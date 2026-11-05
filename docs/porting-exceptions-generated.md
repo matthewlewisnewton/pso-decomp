@@ -220,7 +220,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `pso/enemy/TObjEneGyaranzo.cpp` | `GC/2.0, -inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOExplosiveMachine.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneSlimeTailAttack.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
-| `pso/boss/TBoss8Dragon.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/boss/TBoss8Dragon.cpp` | `GC/2.0, -inline off,deferred` | -inline off,deferred: the real TBoss8Dragon constructor addresses __vt__12TBoss8Dragon as addi r0, r31, 2348 from the .data anchor. Plain -inline off emits lis/addi of the vtable symbol and the ctor grows 0x554 -> 0x558. Deferred also emits the compiler vtable at .data+0x92C, where the hand table was. Other functions are unchanged. See docs/porting-exceptions.md section 5. |
 | `pso/object/TObjCamera.cpp` | `GC/1.3.2` | GC/1.3.2: the container files 0x8018807C-0x8018D900, the CRC-32 pair (`xoris/xori 0xFFFF`; 2.x always emits `li -1; xor`), and five others. TObjCamera: 1.3.2 copies CameraSoundEvent member by member unscheduled. |
 | `pso/object/TObjComputer.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/item/TObjContainerJung.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |

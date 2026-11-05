@@ -8,14 +8,15 @@ struct G_GalGryphonBossActions_6xA0;
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/player/TObjChara.h"
+#include "pso/boss/DragonCoord9.h"
 
 // The 0x3C0 prefix is TObjEneDD_ST. These overrides are the slots whose
-// addresses differ from __vt__12TObjEneDD_ST. ~TBoss8Dragon is declared and
-// defined as the existing __dt__12TBoss8DragonFv, so this class does not emit
-// a second table: a C++ destructor would destroy the fade slots after the
-// embedded TObject, and the original tears the fade slots down first.
+// addresses differ from __vt__12TObjEneDD_ST. Member order is the teardown
+// order reversed: fade slots, then the two coordinate blocks, then the
+// embedded TObject, then the base.
 struct TBoss8Dragon : public TObjEneDD_ST
 {
+    TBoss8Dragon(TObject *parent, void *arg2);
     virtual ~TBoss8Dragon();
     virtual void run_task();
     virtual void render();
@@ -40,8 +41,7 @@ struct TBoss8Dragon : public TObjEneDD_ST
     s32 hasActiveRenderFade();
 
     u32 m_3c0;
-    void* m_3c4;
-    u8 _pad3C8[0x18];
+    TObject child;
     u32 m_3e0;
     u32 m_3e4;
     u8 _pad3E8[0x28];
@@ -71,10 +71,8 @@ struct TBoss8Dragon : public TObjEneDD_ST
     u8 unk_5E0[0x4];
     f32 m_5e4;
     u8 unk_5E8[0x4];
-    void* m_5ec;
-    u8 _pad5F0[0x20];
-    void* m_610;
-    u8 _pad614[0x20];
+    DragonCoord9 coords_5ec;
+    DragonCoord9 coords_610;
     void* m_634;
     u8 _pad638[0x8];
     void* m_640;

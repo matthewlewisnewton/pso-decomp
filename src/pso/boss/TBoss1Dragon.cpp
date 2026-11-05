@@ -1,3 +1,4 @@
+#include "pso/boss/DragonCoord9.h"
 #include "pso/boss/EffectGeometryParameters.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/MatrixVectorArray.h"
@@ -5748,8 +5749,8 @@ Obj_80029C78 *destroy__12TBoss1DragonFPvs(Obj_80029C78 *o, s16 flag) {
             TBoss1Dragon__data_805D4B2C = 0;
         }
         __destroy_arr(o->f6E8, (void *)__dt__15RenderFadeStateFv, 0x1c, 4);
-        TObjBoss2Tunnel::maybe_delete((s32)o->f618, (s16)(-1));
-        TObjBoss2Tunnel::maybe_delete((s32)o->f5F4, (s16)(-1));
+        ((DragonCoord9 *)o->f618)->~DragonCoord9();
+        ((DragonCoord9 *)o->f5F4)->~DragonCoord9();
         __dt__7TObjectFv(o->f3C4, -1);
         __dt__12TObjEneDD_STFv(o, 0);
         if (flag > 0) {
@@ -5761,6 +5762,7 @@ Obj_80029C78 *destroy__12TBoss1DragonFPvs(Obj_80029C78 *o, s16 flag) {
 
 #define F_29DE4(o, T, off) (*(T *)(o + (off)))
 #define O_29DE4 ((Obj_80029DE4 *)arg0)
+extern "C" void __ct__12DragonCoord9Fv(DragonCoord9 *);
 #pragma push
 #pragma opt_loop_invariants off
 #pragma opt_common_subs off
@@ -5773,8 +5775,8 @@ u8 *TBoss1Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     __ct__12TObjEneDD_STFP7TObject(arg0, arg1);
     F_29DE4(arg0, s32, 0x18) = (s32)lbl_80481280;
     __ct__7TObjectFP7TObject(arg0 + 0x3C4, 0);
-    TObjBoss2Tunnel::reset_coords_pass((s32)(arg0 + 0x5F4));
-    TObjBoss2Tunnel::reset_coords_pass((s32)(arg0 + 0x618));
+    __ct__12DragonCoord9Fv((DragonCoord9 *)(arg0 + 0x5F4));
+    __ct__12DragonCoord9Fv((DragonCoord9 *)(arg0 + 0x618));
     __construct_array(arg0 + 0x6E8, __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     __ct__14SubtractiveRngFv(arg0 + 0x77C);
     F_29DE4(arg0, s32, 0) = lbl_805D2650;

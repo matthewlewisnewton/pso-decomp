@@ -71,8 +71,6 @@ struct TObjBoss2Tunnel : public TObject {
     static s32 reset_floats(s32 arg0);
     int check_param_threshold(f32 arg1);
     void reset_coords();
-    static s32 maybe_delete(s32 arg0, s16 arg1);
-    static s32 reset_coords_pass(s32 arg0);
     static s32 decrement_packed_timer(u32 *arg0, s32 arg1);
     void init_zako(void* a1, s32 _w2);
     static s16 turn_toward_angle_limited(s32 arg0, s32 cur, s32 target, s32 step, s32 limit);

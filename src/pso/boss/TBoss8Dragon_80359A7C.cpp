@@ -130,7 +130,7 @@ s32 add_radar_scaled_marker(void *, int, int, int, f32);
 void release_grabbed_player__12TBoss8DragonFPv(TBoss8Dragon *arg0);
 extern s32 local_client_id;
 extern s32 TBoss8Dragon__data_805D69B8;
-u8 *TBoss8Dragon__ct(u8 *arg0, void *arg1, void *arg2);
+void __ct__12TBoss8DragonFP7TObjectPv(u8 *arg0, void *arg1, void *arg2);
 extern s32 boss8_dragon_attack_object_vtable[];
 u8 *__dt__12TBoss8DragonFv(u8 *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
@@ -226,7 +226,7 @@ void *__dt__13TUnk_804F1A78Fv(void *arg0, s16 arg1) {
 }
 typedef char RecoveredGlobal_80359DC4_lbl_804F1A78_size[sizeof(RecoveredGlobal_80359DC4_lbl_804F1A78) == 0x1B0 ? 1 : -1];
 u8 *TBoss8Dragon::ct_attack_object(s32 arg1, s32 arg2, s32 arg3) {
-    TBoss8Dragon__ct(((u8 *)this), (void *)arg1, (void *)arg2);
+    __ct__12TBoss8DragonFP7TObjectPv((u8 *)this, (void *)arg1, (void *)arg2);
     *(void **)((u8 *)this + 0x18) = &(*(RecoveredGlobal_80359DC4_lbl_804F1A78 *)&boss8_dragon_attack_object_vtable).value;
     *(s32 *)&this->m_3c0 = (s32) (*(s32 *)&this->m_3c0 | 0x40);
     this->m_67a = -1;
