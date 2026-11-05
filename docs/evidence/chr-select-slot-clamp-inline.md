@@ -29,20 +29,38 @@ the hoisted row, so the row stays in `r8` and the cell in `r7`. The helper
 is not emitted out of line.
 
 The cell stores are written directly. `a` is the slot scale, used for `v0`
-and again in the `v1` sum. `v1` is `(lbl_805DE588 + a) * scale`. That product
-is `fmuls f0,f3,f0`; the original is `fmuls f0,f0,f3`. Objdiff scores the
-function 99.830505% (236 bytes). Every other instruction matches.
+and again in the `v1` sum. Both products are divisions by `256.0f`:
 
-MWCC's `optimizecomm` swaps a commutative operator when the left tree costs
-more than the right. The sum is an add (cost 2) and the scale is a load
-(cost 1), so the multiply is parsed as `scale * sum`. Writing `scale * (lbl + a)`,
-`+scale`, `(0.f, scale)`, or `scale + 0.f` on the right produces the same
-`fmuls`. A named sum (`b = lbl + a; v1 = b * scale`) costs 1 on the left and
-matches the original object, including `fmuls f0,f0,f3`. That name is used
-once, so it is not in the source. Reusing `a` for the sum (`a = lbl + a`)
-also puts the sum on the left of `fmuls`, but the first `a` then stays live
-in another float register and the prologue loads all move (11 mismatched
-instructions). The expression stays inline.
+```
+v0 = a / 256.0f;
+v1 = (lbl_805DE588 + a) / 256.0f;
+```
+
+`TAdMultiPlyChrSelectGC__data_805DE584` is exactly `1/256` (`0x3b800000`).
+Division is not commutative, so MWCC does not swap the operands, and the
+backend folds `/ 256.0f` into `fmuls` by that pooled reciprocal with the
+dividend still on the left (`fmuls f2,f0,f3` for `v0`, `fmuls f0,f0,f3` for
+`v1`). Objdiff scores the function 100% (236 bytes).
+
+A multiply by the named scale does not. `optimizecomm` swaps a commutative
+operator when the left tree costs more than the right. The sum is an add
+(cost 2) and the scale is a load (cost 1), so `(lbl + a) * scale` is parsed
+as `scale * sum` and emits `fmuls f0,f3,f0` (99.830505%). Writing
+`scale * (lbl + a)`, `+scale`, `(0.f, scale)`, or `scale + 0.f` does the
+same. A named sum (`b = lbl + a; v1 = b * scale`) costs 1 on the left and
+matches, including `fmuls f0,f0,f3`, but that name is used once, so it is
+not in the source. Reusing `a` for the sum keeps the sum on the left and
+moves every prologue load (11 mismatched instructions).
+
+The literals this file already uses (`0.5f`, `255.0f`, `-206.0f`, then the
+zero, `0.54f`, `1/6`, `1.0f`, `16.0f`, and `0.53f` that the other functions
+load) are emitted in that order, and the reciprocal is appended. That is
+the DOL's `.sdata2` from `0x805DE560` through `0x805DE588`, so the split
+covers that range. The zero tables defined in this file run from
+`0x804E0A48` through `0x804E0B00`; the `.data` split covers them. With both
+ranges claimed, every compiled function in the unit is exact and both
+sections match. Claiming only the old 12-byte `.sdata2` leaves the new
+pool outside the original object, and the float relocs no longer match.
 
 The unit's `configure.py` entry replaces `-inline off` with `-inline on`.
 Retested on this source:
@@ -50,8 +68,8 @@ Retested on this source:
 | Flag | `sub_802C5F1C` | Other functions that were already exact | Kept |
 |---|---|---|---|
 | `-inline off` | real call, 332 bytes, 42.79518% | the extra `clamped_slot_802C5F1C` symbol is emitted | no |
-| `-inline auto` | 99.830505% (236) | `update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788 | no |
-| `-inline on` | 99.830505% (236) | the other compiled functions stay exact | yes |
+| `-inline auto` | 99.830505% (236) on the multiply form; not retested after the division | `update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788 | no |
+| `-inline on` | 100% (236) | the other compiled functions stay exact | yes |
 
 `-inline all`, `-inline deferred`, `-inline noauto`, and `-inline auto,deferred`
 were measured on the previous body. `all` and `auto,deferred` inline the same

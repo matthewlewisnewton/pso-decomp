@@ -156,13 +156,10 @@ int TAdMultiPlyChrSelectGC__sub_802C6920(void);
 extern s32 TAdMultiPlyChrSelectGC__select_mode;
 extern s32 TAdMultiPlyChrSelectGC__selected_slot;
 extern RecoveredGlobal_802C6848_lbl_804E0B00 multiplayer_controller_device_codes;
-extern const f32 TAdMultiPlyChrSelectGC__data_805DE56C;
 extern s32 TAdMultiPlyChrSelectGC__data_804E0A68[][5];
 void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *);
 s32 get_field_20__22TAdMultiPlyChrSelectGCFv();
 extern s32 lbl_805D67D4;
-extern const f32 lbl_805DE57C;
-extern const f32 lbl_805DE580;
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
 void TAdMultiPlyChrSelectGC__sub_802C5F1C(S_802C6008 *, int);
@@ -171,10 +168,6 @@ extern void *TAdMultiPlyChrSelectGC__data_804E0A48[4];
 void TAdMultiPlyChrSelectGC__sub_802C50EC(s32);
 void TAdMultiPlyChrSelectGC__sub_802C522C(s32);
 extern s32 lbl_805D67D0;
-extern const f32 lbl_805DE570;
-extern const f32 lbl_805DE574;
-extern const f32 lbl_805DE578;
-extern const f32 TAdMultiPlyChrSelectGC__data_805DE584;
 extern const f32 lbl_805DE588;
 extern const f32 lbl_805DE58C;
 extern const f32 lbl_805DE590;
@@ -249,11 +242,11 @@ void TAdMultiPlyChrSelectGC__sub_802C50EC(s32 arg0) {
             q.z = (-206.0f) + self->quad[i + 4][0].z;
             q.y = self->quad[i + 4][0].y;
             q.w = self->quad[i + 4][0].w;
-            if (q.x > TAdMultiPlyChrSelectGC__data_805DE56C) {
-                draw_textured_quad_at_depth(&q.x, lbl_805DE570);
+            if (q.x > 0.0f) {
+                draw_textured_quad_at_depth(&q.x, 0.54f);
             }
-            TAdMultiPlyChrSelectGC__data_804E0AF0[i] += lbl_805DE574;
-            TAdMultiPlyChrSelectGC__data_804E0AF0[i] = TAdMultiPlyChrSelectGC__data_804E0AF0[i] >= lbl_805DE578 ? lbl_805DE578 : TAdMultiPlyChrSelectGC__data_804E0AF0[i];
+            TAdMultiPlyChrSelectGC__data_804E0AF0[i] += 0.16666667f;
+            TAdMultiPlyChrSelectGC__data_804E0AF0[i] = TAdMultiPlyChrSelectGC__data_804E0AF0[i] >= 1.0f ? 1.0f : TAdMultiPlyChrSelectGC__data_804E0AF0[i];
             TWindowSubStatusDisp::get_player();
         }
     }
@@ -268,10 +261,10 @@ void TAdMultiPlyChrSelectGC__sub_802C522C(s32 arg0) {
             begin_screen_draw(1);
             set_current_texture_list((GinjaTextureList *)(lbl_805D67D0));
             set_draw_texture_and_color(0, (alpha << 24) | 0xFFFFFF);
-            draw_textured_quad_at_depth(&self->quad[i + 4][0].x, lbl_805DE570);
+            draw_textured_quad_at_depth(&self->quad[i + 4][0].x, 0.54f);
             TWindowSubStatusDisp::get_player();
-            TAdMultiPlyChrSelectGC__data_804E0AF0[i] += lbl_805DE574;
-            TAdMultiPlyChrSelectGC__data_804E0AF0[i] = TAdMultiPlyChrSelectGC__data_804E0AF0[i] >= lbl_805DE578 ? lbl_805DE578 : TAdMultiPlyChrSelectGC__data_804E0AF0[i];
+            TAdMultiPlyChrSelectGC__data_804E0AF0[i] += 0.16666667f;
+            TAdMultiPlyChrSelectGC__data_804E0AF0[i] = TAdMultiPlyChrSelectGC__data_804E0AF0[i] >= 1.0f ? 1.0f : TAdMultiPlyChrSelectGC__data_804E0AF0[i];
         }
     }
 }
@@ -300,16 +293,16 @@ void TAdMultiPlyChrSelectGC::draw_selection_cursors() {
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
             if (self->y[i][j] != 0) {
-                self->r324[0] = lbl_805DE57C + self->e[i][j].x;
-                self->r324[2] = self->e[i][j].z - lbl_805DE57C;
+                self->r324[0] = 16.0f + self->e[i][j].x;
+                self->r324[2] = self->e[i][j].z - 16.0f;
                 self->r324[1] = self->e[i][j].y;
                 self->r324[3] = self->e[i][j].w;
                 self->r344[0] = self->e[i][j].x;
-                self->r344[2] = lbl_805DE57C + self->r344[0];
+                self->r344[2] = 16.0f + self->r344[0];
                 self->r344[1] = self->e[i][j].y;
                 self->r344[3] = self->e[i][j].w;
-                self->r364[0] = self->e[i][j].z - lbl_805DE57C;
-                self->r364[2] = lbl_805DE57C + self->r364[0];
+                self->r364[0] = self->e[i][j].z - 16.0f;
+                self->r364[2] = 16.0f + self->r364[0];
                 self->r364[1] = self->e[i][j].y;
                 self->r364[3] = self->e[i][j].w;
                 set_color_blending_mode(0, 8);
@@ -317,9 +310,9 @@ void TAdMultiPlyChrSelectGC::draw_selection_cursors() {
                 begin_screen_draw(1);
                 set_current_texture_list((GinjaTextureList *)(lbl_805D67D4));
                 set_draw_texture_and_color(0, self->sel[i][j]);
-                draw_textured_quad_at_depth(self->r324, lbl_805DE580);
-                draw_textured_quad_at_depth(self->r344, lbl_805DE580);
-                draw_textured_quad_at_depth(self->r364, lbl_805DE580);
+                draw_textured_quad_at_depth(self->r324, 0.53f);
+                draw_textured_quad_at_depth(self->r344, 0.53f);
+                draw_textured_quad_at_depth(self->r364, 0.53f);
                 TWindowSubStatusDisp::get_player();
                 set_color_blending_mode(0, 8);
                 set_color_blending_mode(1, 6);
@@ -363,7 +356,7 @@ void TAdMultiPlyChrSelectGC::reset_cursor_state() {
     s32 j;
     for (i = 0; i < 4; i++) {
         TAdMultiPlyChrSelectGC__data_804E0AE0[i] = 0;
-        TAdMultiPlyChrSelectGC__data_804E0AF0[i] = TAdMultiPlyChrSelectGC__data_805DE56C;
+        TAdMultiPlyChrSelectGC__data_804E0AF0[i] = 0.0f;
         for (j = 0; j < 3; j++) {
             arg0->y[i][j] = 0;
             arg0->x[j] = 0;
@@ -399,7 +392,7 @@ void TAdMultiPlyChrSelectGC::clear_slot_entries(s32 arg1) {
     s32 i;
     for (i = 0; i < 4; i++) {
         arg0->a[i][arg1] = 0;
-        TAdMultiPlyChrSelectGC__data_804E0AF0[i] = TAdMultiPlyChrSelectGC__data_805DE56C;
+        TAdMultiPlyChrSelectGC__data_804E0AF0[i] = 0.0f;
         arg0->b[i][arg1] = 0;
     }
     arg0->f4DC[arg1] = 0;
@@ -564,16 +557,18 @@ void TAdMultiPlyChrSelectGC__sub_802C5F1C(S_802C6008 *self, int) {
     f32 a;
 
     /* Per-player 4x3 grid of selection quads. Cell texture coords scale the shared
-       (u,v) page by the active slot, clamped to 3. The int is the old f1C the
-       callers pass; this body does not read it. Nothing writes r3. */
+       (u,v) page by the active slot, clamped to 3. Dividing by 256 folds to the
+       reciprocal multiply with the dividend on the left; the pooled value is the
+       1/256 at 805DE584. The int is the old f1C the callers pass; this body does
+       not read it. Nothing writes r3. */
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
             idx = clamped_slot_802C5F1C();
-            self->quad[i][j].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
+            self->quad[i][j].u0 = 0.0f;
             a = lbl_805DE588 * (f32)idx;
-            self->quad[i][j].v0 = a * TAdMultiPlyChrSelectGC__data_805DE584;
+            self->quad[i][j].v0 = a / 256.0f;
             self->quad[i][j].u1 = lbl_805DE58C;
-            self->quad[i][j].v1 = (lbl_805DE588 + a) * TAdMultiPlyChrSelectGC__data_805DE584;
+            self->quad[i][j].v1 = (lbl_805DE588 + a) / 256.0f;
         }
     }
 
@@ -582,7 +577,7 @@ void TAdMultiPlyChrSelectGC__sub_802C5F1C(S_802C6008 *self, int) {
     self->cursor[0][5] = lbl_805DE594;
     self->cursor[0][6] = lbl_805DE598;
     self->cursor[0][7] = lbl_805DE59C;
-    self->cursor[1][4] = TAdMultiPlyChrSelectGC__data_805DE56C;
+    self->cursor[1][4] = 0.0f;
     self->cursor[1][5] = lbl_805DE594;
     self->cursor[1][6] = lbl_805DE590;
     self->cursor[1][7] = lbl_805DE59C;
@@ -717,7 +712,7 @@ void TAdMultiPlyChrSelectGC__sub_802C65C0(s32 arg0) {
     s32 c;
     s32 r;
     TAdMultiPlyChrSelectGC__data_804E0AE0[arg0] = 0;
-    TAdMultiPlyChrSelectGC__data_804E0AF0[arg0] = TAdMultiPlyChrSelectGC__data_805DE56C;
+    TAdMultiPlyChrSelectGC__data_804E0AF0[arg0] = 0.0f;
     TAdMultiPlyChrSelectGC::split_slot_index(arg0, &c, &r);
     s32 ri = r + 1;
     s32 ci = c + 1;
