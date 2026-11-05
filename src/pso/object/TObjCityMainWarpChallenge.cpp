@@ -28,15 +28,15 @@ struct Warp_80187438 {
     u8 pad44[0xAC - 0x44];
     f32 radius;
     u8 padb0[0xBC - 0xB0];
-    s32 fbc;
+    s32 dest_floor;
     u8 padc0[0xE4 - 0xC0];
     char names[4][0x18];
     s32 inside[4];
     s32 count;
     s32 n_inside;
-    s32 f15c;
+    s32 player_on_dest_floor;
     u8 pad160[4];
-    u32 window;
+    u32 player_list_window;
 };
 
 struct Player_80187438 {
@@ -101,16 +101,16 @@ extern const f32 lbl_805DBCAC;
 extern const f32 lbl_805DBCB0;
 extern const f32 lbl_805DBCB4;
 s32 get_main_phase();
-void initialize_option_dialog__FPvllf(void *dialog, s32 message, s32 position, f32 width);
 extern s32 camera_ctrl_instance;
 extern s32 city_common_texture_list;
 extern const f32 lbl_805DBCB8;
 extern const f32 lbl_805DBCBC;
 extern const f32 lbl_805DBCC0;
+}
 
+void initialize_option_dialog(void *dialog, s32 message, s32 position, f32 width);
 
-
-
+extern "C" {
 
 u8 *TObjCityMainWarpChallenge__ct(u8 *city_main_warp_challenge) {
     s32 var_r3;
@@ -278,7 +278,7 @@ void TObjCityMainWarp__sub_801875F8(TObjCityMainWarpChallenge *self) {
         if (self->m_168 == 0) {
             self->m_168 = TWindowMessageYesNo::create(self, (void *)local_client_id, (void *)0, (void *)0);
             if (self->m_168 != 0) {
-                initialize_option_dialog__FPvllf(self->m_168, (s32)TWindowSubStatusDisp::get_message_10(0x42), get_window_layout_position(0x36), lbl_805DBCAC);
+                initialize_option_dialog(self->m_168, (s32)TWindowSubStatusDisp::get_message_10(0x42), get_window_layout_position(0x36), lbl_805DBCAC);
             }
         }
         break;
@@ -321,13 +321,13 @@ void TObjCityMainWarpChallenge::count_players_in_warp_radius() {
     old = self->count;
     self->count = 0;
     self->n_inside = 0;
-    self->f15c = 0;
+    self->player_on_dest_floor = 0;
     for (i = 0; i < 4; i++) {
         pl = (Player_80187438 *)get_player_by_client_id(i);
         if (pl != NULL) {
             room = ((TObjPlayer *)pl)->get_floor();
-            if (room == self->fbc) {
-                self->f15c = 1;
+            if (room == self->dest_floor) {
+                self->player_on_dest_floor = 1;
             }
             inside = 0;
             if (room == get_current_floor()) {
@@ -344,9 +344,9 @@ void TObjCityMainWarpChallenge::count_players_in_warp_radius() {
     for (i = self->count; i < 4; i++) {
         self->names[i][0] = 0;
     }
-    if (old != self->count && self->window != 0) {
-        TWindow__close((u8 *)self->window);
-        self->window = 0;
+    if (old != self->count && self->player_list_window != 0) {
+        TWindow__close((u8 *)self->player_list_window);
+        self->player_list_window = 0;
     }
     pl2 = (Player_80187438 *)get_player_by_client_id(local_client_id);
     if (pl2 != NULL && ((TObjPlayer *)pl2)->get_floor() == get_current_floor()) {
@@ -462,7 +462,7 @@ extern "C" void run_task__25TObjCityMainWarpChallengeFv();
 extern "C" void render__25TObjCityMainWarpChallengeFv();
 extern "C" void debug_print_area_num__25TObjCityMainWarpChallengeFv();
 
-s32 __vt__25TObjCityMainWarpChallenge[] = {
+extern "C" s32 __vt__25TObjCityMainWarpChallenge[] = {
     0, 0,
     (s32)__dt__25TObjCityMainWarpChallengeFv,
     (s32)run_task__25TObjCityMainWarpChallengeFv,

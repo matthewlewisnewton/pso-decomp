@@ -134,7 +134,7 @@ void TunnelSceneController::spawn_segment_row_b() {
 void TUnk_804E4B3C::spawn(s32 arg1, s32 arg2) {
     void *new_obj = (void *) __nw__7TObjectFUl(0x78);
     if ((u32) new_obj != 0U) {
-        fn_802F1FB0(new_obj, *(s32 *)((s8 *)this + 0x8C), arg1, this->m_84, arg2);
+        fn_802F1FB0(new_obj, (s32)effect_nodes, arg1, half_length, arg2);
     }
 }
 void TObjBoss2Tunnel__sub_802F2278(void) { (*(int *)&boss2_tunnel_state_flags) = ((*(int *)&boss2_tunnel_state_flags) | 0x8); }
@@ -172,13 +172,13 @@ void TUnk_804E4B3C::render() {
         for (n = (*(Li_802F2348 **)((s8 *)arg0 + 0x90))->head; n != 0; n = n->next) {
             draw_particle_effect(n);
         }
-        for (n = (*(Li_802F2348 * *)&this->m_8c)->head; n != 0; n = n->next) {
+        for (n = (*(Li_802F2348 * *)&this->effect_nodes)->head; n != 0; n = n->next) {
             fn_802F1E54((u8 *)n);
         }
-        for (n = (*(Li_802F2348 * *)&this->m_8c)->head; n != 0; n = n->next) {
+        for (n = (*(Li_802F2348 * *)&this->effect_nodes)->head; n != 0; n = n->next) {
             fn_802F1DAC((u8 *)n);
         }
-        for (n = (*(Li_802F2348 * *)&this->m_8c)->head; n != 0; n = n->next) {
+        for (n = (*(Li_802F2348 * *)&this->effect_nodes)->head; n != 0; n = n->next) {
             draw_tunnel_segment((u8 *)n);
         }
     }
@@ -186,55 +186,53 @@ void TUnk_804E4B3C::render() {
 
 void TUnk_804E4B3C::sub_802F23FC() {}
 void TUnk_804E4B3C::sub_802F2400() {
-#define boss2_tunnel ((u8 *)this)
     f32 temp_f1;
-    u32 temp_r3;
-    ((TObjBoss2Tunnel *)boss2_tunnel)->update_spawn_timer((s32)boss2_tunnel_spawn_timer_table_b, 0xA, 1);
+    TObject *temp_r3;
+    update_spawn_timer((s32)boss2_tunnel_spawn_timer_table_b, 0xA, 1);
     if ((*(s32 *)&boss2_tunnel_state_flags) & 8) {
-        temp_f1 = ((TObjBoss2Tunnel *)boss2_tunnel)->m_80;
+        temp_f1 = unk_80;
         if (temp_f1 < lbl_805DEC98) {
-            *(s32 *)((s8 *)boss2_tunnel + 0x1C) = 2;
-            *(f32 *)((s8 *)boss2_tunnel + 0x5C) = (f32) lbl_805DEC9C;
-            ((TObjBoss2Tunnel *)boss2_tunnel)->m_54 = (f32) lbl_805DECB8;
-            temp_r3 = ((TObjBoss2Tunnel *)boss2_tunnel)->m_88;
-            if (temp_r3 != 0U) {
-                queue_destruction__7TObjectFv((void *)temp_r3);
-                ((TObjBoss2Tunnel *)boss2_tunnel)->m_88 = 0U;
+            phase = 2;
+            scroll_speed = (f32) lbl_805DEC9C;
+            segment_x = (f32) lbl_805DECB8;
+            temp_r3 = tunnel_col;
+            if (temp_r3 != NULL) {
+                queue_destruction__7TObjectFv(temp_r3);
+                tunnel_col = NULL;
             }
             (*(s32 *)&boss2_tunnel_state_flags) |= 0x8000;
             return;
         }
         if (temp_f1 < lbl_805DECBC) {
-            TItemEffOrgaFlowShot::approach_value((f32 *)(boss2_tunnel + 0x5C), (f32)lbl_805DECC0, (f32)((f32) (lbl_805DECC4 * lbl_805DEC68)));
-            TItemEffOrgaFlowShot::approach_value((f32 *)(boss2_tunnel + 0x54), (f32)lbl_805DECC8, (f32)lbl_805DECB8);
+            TItemEffOrgaFlowShot::approach_value(&scroll_speed, (f32)lbl_805DECC0, (f32)((f32) (lbl_805DECC4 * lbl_805DEC68)));
+            TItemEffOrgaFlowShot::approach_value(&segment_x, (f32)lbl_805DECC8, (f32)lbl_805DECB8);
             return;
         }
         if (temp_f1 < lbl_805DECCC) {
-            TItemEffOrgaFlowShot::approach_value((f32 *)(boss2_tunnel + 0x5C), (f32)lbl_805DECD0, (f32)((f32) (lbl_805DECD4 * lbl_805DEC68)));
-            TItemEffOrgaFlowShot::approach_value((f32 *)(boss2_tunnel + 0x54), (f32)lbl_805DECC8, (f32)lbl_805DECD8);
+            TItemEffOrgaFlowShot::approach_value(&scroll_speed, (f32)lbl_805DECD0, (f32)((f32) (lbl_805DECD4 * lbl_805DEC68)));
+            TItemEffOrgaFlowShot::approach_value(&segment_x, (f32)lbl_805DECC8, (f32)lbl_805DECD8);
             return;
         }
         if (temp_f1 < lbl_805DECA8) {
-            TItemEffOrgaFlowShot::approach_value((f32 *)(boss2_tunnel + 0x5C), (f32)lbl_805DECDC, (f32)((f32) (lbl_805DECE0 * lbl_805DEC68)));
-            TItemEffOrgaFlowShot::approach_value((f32 *)(boss2_tunnel + 0x54), (f32)lbl_805DECC8, (f32)lbl_805DECE4);
+            TItemEffOrgaFlowShot::approach_value(&scroll_speed, (f32)lbl_805DECDC, (f32)((f32) (lbl_805DECE0 * lbl_805DEC68)));
+            TItemEffOrgaFlowShot::approach_value(&segment_x, (f32)lbl_805DECC8, (f32)lbl_805DECE4);
         }
     }
-#undef boss2_tunnel
 }
-void TObjBoss2Tunnel::init_effect() {
+void TUnk_804E4B3C::init_effect() {
     advance_effect_timer();
     update_spawn_timer((s32)boss2_tunnel_spawn_timer_table, 0x1F, 0);
     if ((*(s32 *)&boss2_tunnel_state_flags) & 0x200) {
         (*(s32 *)&boss2_tunnel_state_flags) &= 0xFFFFFDFF;
-        *(s32 *)((s8 *)this + 0x1C) = 1;
-        this->m_70 = 0;
+        phase = 1;
+        spawn_index = 0;
     }
     update_dust_spawn();
 }
 
 #pragma push
 #pragma fp_contract on
-void TObjBoss2Tunnel::update_dust_spawn() {
+void TUnk_804E4B3C::update_dust_spawn() {
     u8 *arg0 = (u8 *)this;
     Vec_802F25AC v;
     u32 p;
@@ -254,7 +252,7 @@ void TObjBoss2Tunnel::update_dust_spawn() {
 
 #pragma push
 #pragma opt_common_subs off
-void TObjBoss2Tunnel::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {
+void TUnk_804E4B3C::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {
     u8 *arg0 = (u8 *)this;
     typedef char sp8_offset[(offsetof(Stack_802F2664, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802F2664, spC) == 0x4) ? 1 : -1];
@@ -281,7 +279,7 @@ void TObjBoss2Tunnel::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {
 }
 #pragma pop
 
-void TObjBoss2Tunnel::advance_effect_timer() {
+void TUnk_804E4B3C::advance_effect_timer() {
     *(f32 *)((s8 *)this + 0x5C) = (f32) (*(f32 *)((s8 *)this + 0x5C) + lbl_805DECFC);
     if (*(f32 *)((s8 *)this + 0x5C) > lbl_805DEC68) {
         *(f32 *)((s8 *)this + 0x5C) = (f32) lbl_805DEC68;
@@ -370,11 +368,11 @@ Vec_802F25AC lbl_804E4A44[2] = {
 void TUnk_804E4B3C::run_task() {
     update_phase_motion();
     static void (TUnk_804E4B3C::*phase_handlers[])() = {
-        reinterpret_cast<void (TUnk_804E4B3C::*)()>(&TObjBoss2Tunnel::init_effect),
+        &TUnk_804E4B3C::init_effect,
         &TUnk_804E4B3C::sub_802F2400,
         &TUnk_804E4B3C::sub_802F23FC,
     };
-    void (TUnk_804E4B3C::*handler)() = phase_handlers[*(s32 *)((s8 *)this + 0x1C)];
+    void (TUnk_804E4B3C::*handler)() = phase_handlers[phase];
     (this->*handler)();
     TObjBoss2Tunnel__sub_802F273C(this);
 }
@@ -521,11 +519,4 @@ __declspec(section ".sdata2") extern const f32 lbl_805DECE8 = 10.0f;
 __declspec(section ".sdata2") extern const f32 lbl_805DECEC = 90.0f;
 __declspec(section ".sdata2") extern const f32 lbl_805DECF0 = 3.0517578125e-05f;
 __declspec(section ".sdata2") extern const f32 lbl_805DECF4 = 600.0f;
-// The static-local guard occupies 0x805D6971. These zeros are the pad
-// through 0x805D6978; two bytes then a 4-aligned array so nothing lands
-// on the guard or opens a hole. File-scope static keeps them local, matching
-// the split.
-static u8 lbl_805D6972;
-static u8 lbl_805D6973;
-static u8 tunnel_sbss_tail[4];
 }

@@ -3136,7 +3136,7 @@ force_active:
   - advance_cut__11TBoss4Type3Fv
   - advance_dark_magic__11TBoss4Type3Fv
   - advance_dead__11TBoss4Type3Fv
-  - advance_effect_timer__15TObjBoss2TunnelFv
+  - advance_effect_timer__13TUnk_804E4B3CFv
   - advance_flee_step__12TObjEneLappyFv
   - advance_go_down__11TBoss4Type3Fv
   - advance_go_up__11TBoss4Type3Fv
@@ -6360,7 +6360,7 @@ force_active:
   - init_draw_state__15TObjEneDelDepthFv
   - init_drop_table__9TItemDropFv
   - init_effect__11TBoss4Type3FPv
-  - init_effect__15TObjBoss2TunnelFv
+  - init_effect__13TUnk_804E4B3CFv
   - init_effect_object__13TUnk_804EDD20Fv
   - init_effect_slot_1__11TBoss6Type1Fv
   - init_enemy__16TObjEneRe7BeruraFv
@@ -15911,7 +15911,7 @@ force_active:
   - update_duel_end_effect
   - update_duel_result__6TLobbyFPv
   - update_duel_start_countdown__15TDuelEffectCtrlFv
-  - update_dust_spawn__15TObjBoss2TunnelFv
+  - update_dust_spawn__13TUnk_804E4B3CFv
   - update_dying__9TObjGrassFPv
   - update_dying_state__14TObjEneBm5WolfFl
   - update_dying_state__15TObjEnemyCustomFv
@@ -16279,7 +16279,7 @@ force_active:
   - update_spark_toggle__16TOSparkMachine01Fl
   - update_spawn__15TObjEneMe1GiGueFv
   - update_spawn_state__14TObjEneGibblesFv
-  - update_spawn_timer__15TObjBoss2TunnelFlll
+  - update_spawn_timer__13TUnk_804E4B3CFlll
   - update_spawn_type2_countdown__14TBoss4DarkFalzFv
   - update_spawning__20TContainerAncient01RFv
   - update_special_pose__11TItemMagSubFv
