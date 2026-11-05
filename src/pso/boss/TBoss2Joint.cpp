@@ -1,3 +1,5 @@
+#include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -140,6 +142,9 @@ struct RecoveredGlobal_80036A90_lbl_80435A68 {
     u8 remaining[0x1C];
 };
 
+struct V3_80037178 { f32 x, y, z; };
+
+struct Obj_80037178 { u8 pad[0x1c]; V3_80037178 ring[20]; s32 idx; };
 
 typedef struct Vec_80037074 {
     f32 x, y, z;
@@ -234,12 +239,14 @@ extern s32 __vt__11TBoss2Joint[];
 extern s32 TBoss2Joint__name;
 extern RecoveredGlobal_80036A90_lbl_80435A68 TBoss2Joint__joint_offset_vec4_table;
 extern const f32 TBoss2Joint__data_805D8474;
+extern const f32 lbl_805D8498;
+void push_trail_position__13TBoss2DeRolLeFPvPv(Obj_80037178 *self, V3_80037178 *src);
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
+
+
+
 s32 TBoss2Joint_get_shell_max_hp(void);
-void reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
+void reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
 extern const f32 lbl_805D846C;
 extern const f32 lbl_805D8490;
@@ -329,29 +336,20 @@ void TBoss2Joint::init_joint_offset(s32 arg1) {
 }
 
 struct Ent_80036ACC { s32 a; s32 b; };
-struct Obj_80036ACC {
-    u8 pad0[0x2B8];
-    s16 f2B8;
-    u8 pad1[0x32C - 0x2BA];
-    s16 f32C;
-    u8 pad2[0x38C - 0x32E];
-    u32 f38C;
-};
 void TObjPlayer__sub_8002EA64(void *, void *, void *);
-void reload_stats_keep_hp_tp__9TObjEneDDFv(void *, int, int, int);
 void *__nw__7TObjectFUl(u32);
-void TBoss2Joint__vt102(Obj_80036ACC *self) {
-    self->f38C = self->f38C | 1;
-    reload_stats_keep_hp_tp__9TObjEneDDFv(self,
-        register_boss__6TLobbyFl(((Ent_80036ACC *)&TBoss2Joint__param_table)->b),
-        dispatch_shared_handler_b__6TLobbyFl(((Ent_80036ACC *)lbl_80482A58)->b),
-        register_object__6TLobbyFl(((Ent_80036ACC *)lbl_80482A60)->b));
-    self->f32C = 0x4E20;
-    self->f2B8 = 0x4E20;
+void TBoss2Joint::initialize_joint() {
+    m_38c |= 1;
+    reload_stats_keep_hp_tp(
+        get_battle_base_stats(((Ent_80036ACC *)&TBoss2Joint__param_table)->b),
+        get_battle_attack_params(((Ent_80036ACC *)lbl_80482A58)->b),
+        get_battle_resistance_params(((Ent_80036ACC *)lbl_80482A60)->b));
+    hp = 0x4E20;
+    hpmax = 0x4E20;
     {
         void *o = __nw__7TObjectFUl(0x364);
         if (o != NULL) {
-            TObjPlayer__sub_8002EA64(o, self, (u8 *)self + 0x38);
+            TObjPlayer__sub_8002EA64(o, this, &position);
         }
     }
 }
@@ -417,7 +415,7 @@ void TBoss2Joint::vfunc_28() {  }
 
 void TBoss2Joint::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         VecCopy((Vec *)(arg0 + 0x38), (const Vec *)((int) (*(s32 *)((s8 *)arg0 + 0x390))));
         this->vfunc_83();
         if (((VObj_18 *)(arg0))->m84() == 0) {
@@ -459,7 +457,7 @@ s32 TBoss2Joint::init_params() {
     self->unk34 = 0;
     self->unk24 = 0;
     init_model__9TObjEneDDFP13CollisionBodyl(self, prm->unk34, 1);
-    reset_hp__9TObjEneDDFPUcPUcPUc(self, register_boss__6TLobbyFl(prm->unk0), dispatch_shared_handler_b__6TLobbyFl(prm->unk8), register_object__6TLobbyFl(prm->unk10));
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, ((s32)get_battle_base_stats(prm->unk0)), ((s32)get_battle_attack_params(prm->unk8)), ((s32)get_battle_resistance_params(prm->unk10)));
     self->hp32C = 0x4E20;
     self->hp2B8 = 0x4E20;
     ((TObjEneDD *)self)->check_state_flag_2();
@@ -531,6 +529,15 @@ void TUnk_80482C58::run_task() {
             ((TParticleCtrl *)(self->ptcl))->enable();
             break;
         }
+    }
+}
+
+void push_trail_position__13TBoss2DeRolLeFPvPv(Obj_80037178 *self, V3_80037178 *src) {
+    VecCopy((Vec *)&self->ring[self->idx], (const Vec *)src);
+    self->ring[self->idx].y += lbl_805D8498;
+    self->idx++;
+    if (self->idx >= 20) {
+        self->idx = 0;
     }
 }
 

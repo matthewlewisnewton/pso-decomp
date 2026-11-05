@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/TDuelEffectNumber.h"
 #include "pso/misc/TDuelEffectNumber.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
@@ -104,7 +105,7 @@ void TDuelEffectNumber::render() {
     ((s32 (*)(void *, void *, s32))calc_duel_number_uv)(this, &sp8, *(s32 *)((s8 *)this + 0x24));
     set_additive_blend();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(6, -1);
     sub_8007FFF4((s32)((s32 *)&sp8));
     ((s32 (*)(void *, s32 *))sub_8007FF28__17TDuelEffectNumberFl)(this, (s32 *)&sp8);

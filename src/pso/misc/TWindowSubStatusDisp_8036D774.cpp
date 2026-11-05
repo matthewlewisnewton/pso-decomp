@@ -1,12 +1,10 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8036D774.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/render/render_util.h"
 
-#include "pso/misc/TWindowCtrlMain.h"
-
-
-struct Desc_8036D774 { f32 *pos; u32 *col; s32 a; s32 n; };
+#include "pso/misc/TLobby_801E2F94.h"
 
 #include <stddef.h>
 #include "pso/misc/TWindowSubStatusDisp.h"
@@ -21,35 +19,35 @@ s32 TCameraCtrl__sub_80068EF0();
 extern s32 split_screen_hud_animation_frame;
 
 void TWindowSubStatusDisp::draw_split_screen_dividers() {
-    f32 verts[8];
-    Desc_8036D774 d;
+    ColorLineVertex verts[4];
+    ColorLineList d;
     u32 cols[4];
-    d.pos = verts;
-    d.col = cols;
-    d.a = 0;
-    d.n = 4;
-    d.pos[0] = (1.6e+02f);
-    d.pos[1] = (2.4e+02f);
-    d.col[0] = 0xFF000000;
-    d.pos[2] = (4.8e+02f);
-    d.pos[3] = (2.4e+02f);
-    d.col[1] = 0xFF000000;
-    d.pos[4] = (4.8e+02f);
-    d.pos[5] = (4.8e+02f);
-    d.col[2] = 0xFF000000;
-    d.pos[6] = (1.6e+02f);
-    d.pos[7] = (4.8e+02f);
-    d.col[3] = 0xFF000000;
-    ((TWindowCtrlMain *)(&d))->draw_strip_swap_color(4, 0x16, (-2.0f));
-    d.pos[0] = (0.0f);
-    d.pos[1] = (0.0f);
-    d.pos[2] = (6.4e+02f);
-    d.pos[3] = (0.0f);
-    d.pos[4] = (6.4e+02f);
-    d.pos[5] = (2.4e+02f);
-    d.pos[6] = (0.0f);
-    d.pos[7] = (2.4e+02f);
-    ((TWindowCtrlMain *)(&d))->draw_strip_swap_color(4, 0x16, (-2.0f));
+    d.verts = verts;
+    d.colors = cols;
+    d.unk_8 = 0;
+    d.count = 4;
+    d.verts[0].x = (1.6e+02f);
+    d.verts[0].y = (2.4e+02f);
+    d.colors[0] = 0xFF000000;
+    d.verts[1].x = (4.8e+02f);
+    d.verts[1].y = (2.4e+02f);
+    d.colors[1] = 0xFF000000;
+    d.verts[2].x = (4.8e+02f);
+    d.verts[2].y = (4.8e+02f);
+    d.colors[2] = 0xFF000000;
+    d.verts[3].x = (1.6e+02f);
+    d.verts[3].y = (4.8e+02f);
+    d.colors[3] = 0xFF000000;
+    d.draw_strip_swap_color(4, 0x16, (-2.0f));
+    d.verts[0].x = (0.0f);
+    d.verts[0].y = (0.0f);
+    d.verts[1].x = (6.4e+02f);
+    d.verts[1].y = (0.0f);
+    d.verts[2].x = (6.4e+02f);
+    d.verts[2].y = (2.4e+02f);
+    d.verts[3].x = (0.0f);
+    d.verts[3].y = (2.4e+02f);
+    d.draw_strip_swap_color(4, 0x16, (-2.0f));
 }
 
 void TWindowSubStatusDisp::draw_tiled_background() {
@@ -57,7 +55,7 @@ void TWindowSubStatusDisp::draw_tiled_background() {
     s32 j;
     f32 buf[8];
     begin_screen_draw(1);
-    TObjFish::set_global_param(TBGMulti__textures);
+    set_current_texture_list((GinjaTextureList *)(TBGMulti__textures));
     set_draw_texture_and_color(0, -1);
     i = 0;
     buf[4] = 0.5f;
@@ -91,7 +89,7 @@ void TWindowSubStatusDisp__sub_8036D994(void) {
     if (split_screen_hud_animation_frame <= 0x1E) {
         set_additive_blend();
         begin_screen_draw(1);
-        TObjFish::set_global_param(TBGMulti__textures);
+        set_current_texture_list((GinjaTextureList *)(TBGMulti__textures));
         set_draw_texture_and_color(0, -1);
         i = 0;
         buf[0] = 0.0f;
@@ -119,7 +117,7 @@ void TWindowSubStatusDisp::draw_bottom_bar() {
   f32 buffer_8[8];
   f32 temp_f31;
   begin_screen_draw(1);
-  TObjFish::set_global_param((s32)((void *) TBGMulti__textures));
+  set_current_texture_list((GinjaTextureList *)(((void *) TBGMulti__textures)));
   set_draw_texture_and_color(0, -1);
   var_r31 = 0;
   ;

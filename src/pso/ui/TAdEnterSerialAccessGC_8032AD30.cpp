@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TLobby_80132ED0.h"
 #include "pso/misc/TWindowSubComCard_80265410.h"
 #include "pso/ui/TAdEnterBaseGC_8032B38C.h"
@@ -23,6 +22,8 @@ extern u8 lbl_80477180[];
 int sprintf(char *, const char *, ...);
 void sscanf(int, const char *, ...);
 s32 memset(s32, s32, s32);
+extern char lbl_80477260[];
+extern char lbl_80477268[];
 extern char serial_access_hex_string_buf[];
 u8 *get_access_key_input_buffer();
 u8 *get_raw_serial_input_buffer();
@@ -73,7 +74,7 @@ void TAdEnterSerialAccessGC::create_default_callback() {
 
 s32 TAdEnterSerialAccessGC::show_message_window(void *arg0, void *arg1) {
     s32 r = update_window_mode_from_progress__6TLobbyFPv(lbl_80477178, lbl_80477180);
-    ((TWindowMessage *)r)->append_line(get_localized_text_entry(0x17, (s32)arg1), 1);
+    ((TLobby *)r)->send_and_handle(get_localized_text_entry(0x17, (s32)arg1), 1);
     return r;
 }
 
@@ -146,10 +147,10 @@ void TAdEnterSerialAccessGC::store_serial_access_key(s32 arg0, s32 arg1, s32 arg
 
 char *TAdEnterSerialAccessGC::serial_to_hex_string(int arg0) {
     u32 v = 0;
-    sscanf(arg0, "%08X", &v);
+    sscanf(arg0, lbl_80477260, &v);
     memset((s32)((s32)serial_access_hex_string_buf), 0, 0x40);
     if (v != 0) {
-        sprintf(serial_access_hex_string_buf, "%010lu", v);
+        sprintf(serial_access_hex_string_buf, lbl_80477268, v);
     }
     return serial_access_hex_string_buf;
 }

@@ -1,4 +1,7 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/object/TObjEnvSoundGlobal.h"
 #include "pso/object/TObject_80019A50.h"
@@ -77,7 +80,6 @@ void debug_printf_at(int, void *, ...);
 extern u8 lbl_804456C8[];
 extern const f32 lbl_805DBE08;
 s32 get_bml_model(s32, int);
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_804456D8[];
 extern s32 TObjDoorKey__ginja_model_table[];
@@ -91,20 +93,19 @@ void rotate_matrix_y(int, int);
 void push_matrix();
 void post_translate_matrix(void *);
 extern u8 chunk_material_color_half_alpha_f32[];
-extern NJS_ARGB door_key_beam_color_table[10];
+extern u8 door_key_beam_color_table[][0x10];
 extern s32 actor_frame_tick;
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
-void play_sound_effect(int, void *, int, int);
+
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
 s32 init_collision_body_parts(void *, void *, int);
-extern CollisionBody TObjDoorKey__collision_body_parts[];
 s32 init_key__5TOKeyFPv(void *, void *);
 void *__ct__5TOKeyFP7TObject(TOKey *arg0);
+extern u8 TObjDoorKey__collision_body_parts[];
 extern s32 __vt__11TObjDoorKey[];
 extern s32 TObjDoorKey__class_name;
 extern const f32 lbl_805DBE0C;
-void TLobby__sub_8001FE7C(void*, int);
 int update_armed_switch__5TOKeyFv(void*);
 s32 free_collision_body_parts(void *);
 int submit_cursor_candidate(void*, int);
@@ -154,7 +155,7 @@ s32 TObjDoorKey::draw_active_beam() {
         PPCSync();
         TObjDoorKey__data_805D5C04 = actor_frame_tick;
     }
-    TObjFish::set_global_param(TObjDoorKey__texture_handle);
+    set_current_texture_list((GinjaTextureList *)(TObjDoorKey__texture_handle));
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);
@@ -162,7 +163,7 @@ s32 TObjDoorKey::draw_active_beam() {
     TParticleCtrl::begin_effect_render();
     saved_model_render_flags = model_render_flags;
     model_render_flags |= 0x10;
-    set_constant_material(&door_key_beam_color_table[arg0->f8C]);
+    set_constant_material((const NJS_ARGB *)(((f32 *)door_key_beam_color_table[arg0->f8C])));
     draw_ginja_object((void *)TObjDoorKey__ginja_model_table[1]);
     rotate_matrix_y(0, arg0->fF0);
     s32 *g = TObjDoorKey__ginja_model_table;
@@ -176,7 +177,7 @@ s32 TObjDoorKey::draw_active_beam() {
 
 s32 TObjDoorKey::draw_inactive_badge() {
     Key_8018FCD8 *arg0 = (Key_8018FCD8 *)this;
-    TObjFish::set_global_param(TObjDoorKey__texture_handle);
+    set_current_texture_list((GinjaTextureList *)(TObjDoorKey__texture_handle));
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);
@@ -184,7 +185,7 @@ s32 TObjDoorKey::draw_inactive_badge() {
     TParticleCtrl::begin_effect_render();
     saved_model_render_flags = model_render_flags;
     model_render_flags |= 0x10;
-    set_constant_material(&door_key_beam_color_table[arg0->f8C]);
+    set_constant_material((const NJS_ARGB *)(((f32 *)door_key_beam_color_table[arg0->f8C])));
     s32 *g = TObjDoorKey__ginja_model_table;
     ((TObjDoorJung *)(((Node_8018FCD8 *)g[2])->f4))->free_children((void *)((u16)arg0->f8C));
     draw_ginja_object((void *)g[2]);
@@ -217,18 +218,18 @@ void TObjDoorKey::trigger_activate_sound() {
     case AREA_CAVE1:
     case AREA_CAVE2:
     case AREA_CAVE3:
-        play_sound_effect(0x42D0A, ((u8 *)this) + 0x38, 0, 0);
+        play_sound_effect(0x42D0A, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
         break;
     case AREA_VR_TEMPLE_ALPHA:
     case AREA_VR_TEMPLE_BETA:
-        play_sound_effect(0x4C601, ((u8 *)this) + 0x38, 0, 0);
+        play_sound_effect(0x4C601, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
         break;
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        play_sound_effect(0x4004C601, ((u8 *)this) + 0x38, 0, 0);
+        play_sound_effect(0x4004C601, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
         break;
     default:
-        play_sound_effect(0x4C60A, ((u8 *)this) + 0x38, 0, 0);
+        play_sound_effect(0x4C60A, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
         break;
     }
     this->m_e8 = 1;
@@ -304,7 +305,7 @@ void *TObjDoorKey__create(void *arg0) {
 
 void TObjDoorKey::free_key() {
     if ((u32) door_key_resource_handle != 0U) {
-        TLobby__sub_8001FE7C((void*)door_key_resource_handle, 1);
+        delete (BmlResource *)((void*)door_key_resource_handle);
         door_key_resource_handle = 0U;
     }
     TObjPlayer::free_if_valid(TObjDoorKey__texture_handle);
@@ -313,10 +314,7 @@ void TObjDoorKey::free_key() {
 }
 
 void TObjDoorKey::load_resources() {
-    s32 r = (int)::operator new(0x440);
-    if (r != 0) {
-        r = load_resource_from_descriptor(r, 5, &TObjDoorKey__resource_descriptor, 0, 0, 0);
-    }
+    s32 r = (int)new BmlResource(5, (BmlResourceDescriptor *)(&TObjDoorKey__resource_descriptor), 0, 0, (void *)(0));
     (*(s32 *)&door_key_resource_handle) = r;
     TObjDoorKey__texture_handle = (s32)load_gvm_texture_file((s32)lbl_804456D8);
     TObjDoorKey__ginja_model_table[0] = get_bml_model((*(s32 *)&door_key_resource_handle), 1);
@@ -342,20 +340,4 @@ void * TObjEnvSoundGlobal__create(void *rader_map_core) {
 __declspec(section ".data") const char *abeno_fs_obj001_fosuno_model_names[4] = { lbl_80445650, lbl_8044566C, lbl_80445684, NULL };
 BmlResourceDescriptor TObjDoorKey__resource_descriptor = { lbl_804456A0, abeno_fs_obj001_fosuno_model_names, abeno_fs_obj001_fosuno_motion_names, 3, 0 };
 __declspec(section ".sdata") const char *abeno_fs_obj001_fosuno_motion_names[1] = { NULL };
-CollisionBody TObjDoorKey__collision_body_parts[] = {
-    {{0.0f, 10.0f, 0.0f}, 7.0f, 50.0f, 0, 0x30003, {0.0f, 0.0f, 0.0f}, 0.0f}
-};
-/* beam colour (a, r, g, b) per key id */
-NJS_ARGB door_key_beam_color_table[10] = {
-    { 1.0f, 0.8235294f, 0.09803922f, 0.09803922f },
-    { 1.0f, 0.09803922f, 0.09803922f, 0.8235294f },
-    { 1.0f, 0.8235294f, 0.8235294f, 0.09803922f },
-    { 1.0f, 0.09803922f, 0.8235294f, 0.8235294f },
-    { 1.0f, 0.8235294f, 0.09803922f, 0.8235294f },
-    { 1.0f, 0.8235294f, 0.5019608f, 0.09803922f },
-    { 1.0f, 0.09803922f, 0.5019608f, 0.8235294f },
-    { 1.0f, 0.7058824f, 0.9019608f, 0.09803922f },
-    { 1.0f, 0.8235294f, 0.09803922f, 0.39215687f },
-    { 1.0f, 1.0f, 1.0f, 1.0f },
-};
 }

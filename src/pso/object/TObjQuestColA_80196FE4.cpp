@@ -1,16 +1,10 @@
 #include "types.h"
 #include "pso/object/TObjQuestColA.h"
 #include "pso/object/TObjQuestCol.h"
-#include "pso/object/TObjQuestColBase_80196BFC.h"
 
-// Deferred TU: code is generated last-defined-first, so the functions are written in
-// reverse address order (vtables come out in ascending order like the original).
-#pragma defer_codegen on
+// One original TU. Deferred generation emits last-defined first, so the later
+// class is written first: .text and the vtables then come out
+// TObjQuestColA (0x80196FE4 / 0x804B8808) then TObjQuestCol (0x8019703C / 0x804B884C).
+TObjQuestCol::~TObjQuestCol() {}
 
-TObjQuestCol::~TObjQuestCol() {
-
-}
-
-TObjQuestColA::~TObjQuestColA() {
-
-}
+TObjQuestColA::~TObjQuestColA() {}

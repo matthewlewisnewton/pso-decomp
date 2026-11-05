@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/player/TObjChara.h"
 #include "pso/misc/TWindowFukidasi.h"
 
@@ -67,6 +66,7 @@ extern void *TWindowCtrl__active_window;
 void TLobby__sub_8024AAA0(s32 arg0, s32 arg1);
 u32 get_window__11TWindowCtrlFl(void);
 s32 update_field28__15TWindowCtrlMainFv(u32 a0 = 0, s32 a1 = 0);
+void TWindow__close(u8 *arg0);
 s32 TWindowCtrl__sub_8024B098(void *, void *);
 extern RecoveredGlobal_8024A228_lbl_804CEA88 window_ctrl_main_callback_desc;
 void TWindowCtrl__sub_8024A228(s32 arg0);
@@ -86,6 +86,8 @@ void *acquire_balloon_slot__11TWindowCtrlFPviiPv(Ctrl_8024A928 *self, s32 player
 s32 is_locally_controlled__10TObjPlayerFPv(u8 *);
 s32 obj_isState2_324__9TObjCharaFv(u8 *);
 s32 obj_is_hit_receivable();
+extern const f32 lbl_805DCBD8;
+extern const f32 lbl_805DCBDC;
 void get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv(Ctrl_8024A928 *arg0, s32 arg1, f32 *arg2, s32 *arg3);
 s32 TWindowCtrl__sub_8024C5C4(u32);
 u32 create_area_window();
@@ -181,7 +183,7 @@ void TWindowCtrl::open_status_112() {
 
 void TWindowCtrl::close_active_window() {
     if (((void *) TWindowCtrl__active_window != NULL) && ((u32) *(u32 *)((s8 *)TWindowCtrl__active_window + 0x34) != 0U)) {
-        ((TWindowBase *)(*(void **)((s8 *)TWindowCtrl__active_window + 0x34)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)TWindowCtrl__active_window + 0x34)));
         *(u32 *)((s8 *)TWindowCtrl__active_window + 0x34) = 0U;
     }
 }
@@ -211,7 +213,7 @@ void TWindowCtrl::set_timer_window_time() {
 
 void TWindowCtrl::close_timer_window() {
     if (((void *) TWindowCtrl__active_window != NULL) && ((u32) *(u32 *)((s8 *)TWindowCtrl__active_window + 0x30) != 0U)) {
-        ((TWindowBase *)(*(void **)((s8 *)TWindowCtrl__active_window + 0x30)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)TWindowCtrl__active_window + 0x30)));
         *(u32 *)((s8 *)TWindowCtrl__active_window + 0x30) = 0U;
     }
 }
@@ -249,15 +251,15 @@ void get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv(Ctrl_8024A928 *arg0, s32 
     void *q;
     obj = get_obj_8024A5AC(id);
     if (obj == NULL) {
-        *arg2 = 0.0f;
+        *arg2 = lbl_805DCBD8;
         *arg3 = 0;
         return;
     }
     q = ((TObjChara *)obj)->get_stats();
     if (q == NULL) {
-        *arg2 = 0.0f;
+        *arg2 = lbl_805DCBD8;
     } else {
-        *arg2 = 0.92f * *(f32 *)((u8 *)q + 0x10);
+        *arg2 = lbl_805DCBDC * *(f32 *)((u8 *)q + 0x10);
     }
     if (obj_isState2_324__9TObjCharaFv(obj) != 0 || is_locally_controlled__10TObjPlayerFPv(obj) != 0) {
         u8 *p = obj + 0x85C;
@@ -357,7 +359,7 @@ void *acquire_balloon_slot__11TWindowCtrlFPviiPv(Ctrl_8024A928 *self, s32 player
             return 0;
         }
         if (self->slots[i] != 0) {
-            ((TWindowBase *)(self->slots[i]))->close();
+            TWindow__close((u8 *)self->slots[i]);
         }
         b = __nw__7TObjectFUl(0x98);
         if (b != 0) {

@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include <stdlib.h>
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -34,8 +36,8 @@ void TOHangerMachine01::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         node = (NJS_OBJECT *)model;
         post_translate_matrix(node->pos);
         draw_ginja_model((s32)node->model);
@@ -88,16 +90,13 @@ void *TOHangerMachine01::create(void *set_data) {
 
 void TOHangerMachine01::free_static_model() {
     if (TOHangerMachine01__bml_resource != NULL) {
-        TLobby__sub_8001FE7C(TOHangerMachine01__bml_resource, 1);
+        delete (BmlResource *)(TOHangerMachine01__bml_resource);
         TOHangerMachine01__bml_resource = NULL;
     }
 }
 
 void TOHangerMachine01::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_hanger_moto_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_hanger_moto_resource_descriptor), 0, 0, (void *)(0));
     TOHangerMachine01__bml_resource = resource;
 }
 

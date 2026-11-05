@@ -25,6 +25,7 @@ typedef struct GinjaSurfaceState {
   u32 format;
   u8 reserved8[0x14];
   u32 flags;
+  void *pixels;
 } GinjaSurfaceState;
 typedef struct GinjaTextureState {
   u8 reserved0[12];

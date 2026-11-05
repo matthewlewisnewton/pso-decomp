@@ -1,3 +1,5 @@
+#include "pso/math/VectorNormalize.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/boss/TBoss1DragonEffBullet.h"
 #include "pso/system/vector.h"
@@ -42,15 +44,17 @@ extern "C" {
 s32 isV2Mode__12TBoss1DragonFv(void);
 extern RecoveredGlobal_8002BCE0_lbl_80435410 lbl_80435410;
 extern RecoveredGlobal_8002BCE0_lbl_8043541C lbl_8043541C;
-s32 *dragon_fireball_particle_ids;
-s32 play_sound_effect(int, void *, int, int);
+extern s32 *dragon_fireball_particle_ids;
+
 s32 __ct__7TObjectFP7TObject(void *, void *);
 f32 subtract_vector(void *, void *);
 extern s32 __vt__21TBoss1DragonEffBullet[];
 extern s32 TBoss1DragonEffBullet__name;
+extern const f32 lbl_805D8144;
 void queue_destruction__7TObjectFv(void *);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
+extern const f32 lbl_805D8140;
 
 void TBoss1DragonEffBullet::render() {  }
 
@@ -67,7 +71,7 @@ void TBoss1DragonEffBullet::run_task() {
     u8 *temp_r3_4;
     switch (arg0->field_38) {
     case 0:
-        var_f2 = 25.0f;
+        var_f2 = lbl_805D8140;
         arg0->field_3C += var_f2;
         temp_f0 = arg0->field_3C;
         temp_f1 = arg0->field_40;
@@ -105,7 +109,7 @@ void TBoss1DragonEffBullet::run_task() {
                 queue_destruction__7TObjectFv(temp_r3_4);
                 arg0->field_44 = NULL;
             }
-            play_sound_effect(0x4003AD0C, &arg0->field_1C, 0, 0);
+            play_sound_effect(0x4003AD0C, (const Vec *)(&arg0->field_1C), 0, 0);
             ((TBoss1Dragon *)(TBoss1Dragon::get_instance()))->apply_fireball_impact_damage((s32)&arg0->field_1C);
         }
         if ((s32) arg0->field_34 <= 2) {
@@ -141,13 +145,13 @@ u8 *TBoss1DragonEffBullet__ct(u8 *boss1_dragon_eff_bullet, s32 arg1, s32 arg2, s
     VecCopy((Vec *)(boss1_dragon_eff_bullet + 0x1C), (const Vec *)(arg2));
     VecCopy((Vec *)(boss1_dragon_eff_bullet + 0x28), (const Vec *)(arg3));
     subtract_vector(boss1_dragon_eff_bullet + 0x28, boss1_dragon_eff_bullet + 0x1C);
-    ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_40 = ((TObjBoss2Tunnel *)(boss1_dragon_eff_bullet + 0x28))->update_scale();
-    *(f32 *)((s8 *)boss1_dragon_eff_bullet + 0x3C) = 0.0f;
+    ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_40 = normalize_vector_checked((Vec *)(boss1_dragon_eff_bullet + 0x28));
+    *(f32 *)((s8 *)boss1_dragon_eff_bullet + 0x3C) = (f32) lbl_805D8144;
     ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_34 = 0;
     ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_38 = 0;
     ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_44 = 0;
     ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_48 = 0;
-    play_sound_effect(0x4003B20B, boss1_dragon_eff_bullet + 0x1C, 0, 0);
+    play_sound_effect(0x4003B20B, (const Vec *)(boss1_dragon_eff_bullet + 0x1C), 0, 0);
     return boss1_dragon_eff_bullet;
 }
 

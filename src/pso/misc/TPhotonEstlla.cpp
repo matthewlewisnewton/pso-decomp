@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -76,11 +78,10 @@ struct Self_801AA818 {
 
 extern "C" {
 void *find_entity_by_id(u16 id);
-s32 spawn_photon_blast_attachment_effects(void *, int);
 }
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u32 __nw__7TObjectFUl(int);
 
 s32 TPhotonLine__ct(void *, void *, void *, u16);
@@ -140,10 +141,10 @@ void TPhotonEstlla::render() {
     if (*(s32 *)&this->m_19c != 0) {
         scroll_strip_uvs(estlla_photon_blast_model, self->f14C, 0);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         ((TUnk_804C3248 *)self)->set_photon_blast_joint_callback();
         saved_model_render_flags = model_render_flags;
         copy_argb((NJS_ARGB *)&saved_model_draw_color, (NJS_ARGB *)&model_material_color);
@@ -192,7 +193,7 @@ void TPhotonEstlla::run_task() {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(0);
         *(s32 *)&this->m_1a0 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
-        spawn_photon_blast_attachment_effects(arg0, 1);
+        spawn_photon_blast_attachment_effects(this, 1);
     }
     *(s16 *)&this->m_190 = (s16) this->requested_action;
     ((TUnk_804C3248 *)arg0)->update_state();
@@ -210,7 +211,7 @@ void TPhotonEstlla::run_task() {
         }
     }
     if ((s32) *(s32 *)&this->m_19c != 0) {
-        play_persistent_sound(0x4002462F, (s32)arg0, 0, 0, 0);
+        play_persistent_sound((s32)(0x4002462F), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
     }
 }
 }
@@ -274,12 +275,12 @@ u8 *TPhotonEstlla__ct(u8 *photon_estlla, u8 *arg1) {
     ((TPhotonEstlla *)photon_estlla)->m_17c = *(u16 *)((s8 *)arg1 + 0xC);
     e = (u8 *)find_entity_by_id(((TPhotonEstlla *)photon_estlla)->m_17c);
     if (e != NULL) {
-        ((TPhotonEstlla *)photon_estlla)->rotation_y = *(s32 *)((s8 *)e + 0x60);
+        ((TPhotonEstlla *)photon_estlla)->rotation.yaw = *(s32 *)((s8 *)e + 0x60);
     }
     *(s32 *)((s8 *)photon_estlla + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x98);
     ((TPhotonEstlla *)photon_estlla)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x9C);
-    ((TObjMotion *)photon_estlla)->set_field_d8((s32) photon_estlla_param_table);
-    ((TObjMotion *)photon_estlla)->set_field_dc(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430));
+    ((TObjMotion *)photon_estlla)->set_action_table((TObjMotionAction *)((s32) photon_estlla_param_table));
+    ((TObjMotion *)photon_estlla)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430)));
     ((TPhotonEstlla *)photon_estlla)->requested_action = 1;
     ((TObjMotion *)photon_estlla)->set_animation(((TPhotonEstlla *)photon_estlla)->requested_action);
     ((TObjMotion *)photon_estlla)->set_field_b8(((TPhotonEstlla *)photon_estlla)->requested_action);
@@ -326,7 +327,7 @@ u8 *TPhotonEstlla__ct(u8 *photon_estlla, u8 *arg1) {
         if (p != NULL) {
             construct_photon_magic_square_normal((u8 *)p, (s32)photon_estlla, 1, (s32)&pos, 0x78);
         }
-        spawn_photon_blast_attachment_effects(photon_estlla, 1);
+        spawn_photon_blast_attachment_effects((TPhotonEstlla *)photon_estlla, 1);
         play_cue_stream_file((s32)lbl_80446D10);
     } else {
         spawn_photon_blast_opening_effects(1, ((TPhotonEstlla *)photon_estlla)->m_17c);

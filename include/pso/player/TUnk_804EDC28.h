@@ -6,7 +6,6 @@
 class TUnk_804EDC28 : public TItemWeapon {
 public:
     virtual ~TUnk_804EDC28();
-    virtual void emit_marker_effects();
     void *construct_guardianna(s32, void *);
 };
 

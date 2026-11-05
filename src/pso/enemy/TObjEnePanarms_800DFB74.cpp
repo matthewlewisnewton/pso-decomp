@@ -2,22 +2,18 @@
 #include "pso/enemy/TObjEnePanarms_800DFB74.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEnePanarms.h"
+#include "pso/enemy/TObjEnePanBARA.h"
 
-int TObjEnePanarms__sub_800DFB74(u8 *arg0) {
-    u8 var_r4;
-    var_r4 = 0;
-    if (((s32) *(s32 *)((s8 *)arg0 + 0x378) == 4) && ((s32) *(s32 *)((s8 *)arg0 + 0x3B4) < 0)) {
-        var_r4 = 1;
+int TObjEnePanBARA::is_state_4_timer_expired() {
+    u8 result = 0;
+    if (state == 4 && action_timer < 0) {
+        result = 1;
     }
-    return var_r4;
+    return result;
 }
 
-u8 TObjEnePanarms__sub_800DFB9C(u8 *arg0) {
-    return (u8) (*(s32 *)((s8 *)arg0 + 0x378) == 0xB);
-}
+int TObjEnePanBARA::is_in_state_11() { return (u8)(state == 11); }
 
-u8 TObjEnePanarms__sub_800DFBB0(u8 *arg0) {
-    return (u8) (*(s32 *)((s8 *)arg0 + 0x378) == 8);
-}
+int TObjEnePanBARA::is_in_state_8() { return (u8)(state == 8); }
 
 int TObjEnePanarms__sub_800DFBC4(void* p) { return (*(u32*)((char*)p + 0x30) >> 4) & 0x1; }

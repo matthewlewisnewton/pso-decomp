@@ -1,3 +1,5 @@
+#include "pso/system/SoundSlotPitch.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TTecAnti.h"
@@ -155,13 +157,21 @@ void TTecZonde::render() {  }
 
 void queue_destruction__7TObjectFv(void *arg0);
 void *find_entity_by_id(u16 id);
-void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 u8 *construct_helper_effect__11TTecGiZondeFPvPvPvPvi(u8 *arg0, u8 *arg1, u8 *arg2, u8 *arg3, s32 arg4);
 s32 rand();
 f32 vector_length(void *);
 void normalize_vector(void *);
 extern u8 *tl_07;
+extern const f32 lbl_805DC968;
+extern const f32 lbl_805DC96C;
+extern const f32 lbl_805DC970;
+extern const f32 lbl_805DC974;
+extern const f32 lbl_805DC978;
+extern const f32 lbl_805DC97C;
+extern const f32 lbl_805DC980;
+extern const f32 lbl_805DC984;
+extern const f32 lbl_805DC988;
 
 void TTecZonde::run_task() {
     Zonde_8023C79C *self = (Zonde_8023C79C *)this;
@@ -189,38 +199,38 @@ void TTecZonde::run_task() {
     if (TTecLuker::is_parents_unqueued((u32)t) != 0) {
         for (i = 0; i < 14; i++) {
             s = &segs[i];
-            s->a[1] = 100.0f + t->y;
+            s->a[1] = lbl_805DC968 + t->y;
             if (self->level == 5 && i == 0) {
-                s->a[1] = 500.0f + t->y;
+                s->a[1] = lbl_805DC96C + t->y;
             }
-            s->a[0] = 13.0f * ((f32)i * (3.0517578e-05f * (f32)rand())) + t->x;
-            s->a[2] = 13.0f * ((f32)i * (3.0517578e-05f * (f32)rand())) + t->z;
+            s->a[0] = lbl_805DC970 * ((f32)i * (lbl_805DC974 * (f32)rand())) + t->x;
+            s->a[2] = lbl_805DC970 * ((f32)i * (lbl_805DC974 * (f32)rand())) + t->z;
             s->b[0] = t->x - s->a[0];
             s->b[1] = t->y - s->a[1];
             pb = s->b;
             s->b[2] = t->z - s->a[2];
             s->len = vector_length(pb);
-            if (0.0f != s->len) {
+            if (lbl_805DC978 != s->len) {
                 normalize_vector(pb);
             }
         }
-        scale = 0.5f;
+        scale = lbl_805DC97C;
         switch (self->level) {
         case 0:
             o = __nw__7TObjectFUl(0x260);
             if (o != NULL) {
-                ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[0].a, (u8 *)segs[0].b, 0x14000000, 0x14, segs[0].len, 0.5f);
+                ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[0].a, (u8 *)segs[0].b, 0x14000000, 0x14, segs[0].len, lbl_805DC97C);
             }
             break;
         case 1:
-            scale *= 1.2f;
+            scale *= lbl_805DC980;
             o = __nw__7TObjectFUl(0x260);
             if (o != NULL) {
                 ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[0].a, (u8 *)segs[0].b, 0x14000000, 0x14, segs[0].len, scale);
             }
             break;
         case 2:
-            scale *= 1.4f;
+            scale *= lbl_805DC984;
             o = __nw__7TObjectFUl(0x260);
             if (o != NULL) {
                 ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[0].a, (u8 *)segs[0].b, 0x14000000, 0x14, segs[0].len, scale);
@@ -230,12 +240,12 @@ void TTecZonde::run_task() {
             for (j = 0; j < 3; j++) {
                 o = __nw__7TObjectFUl(0x260);
                 if (o != NULL) {
-                    ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[j].a, (u8 *)segs[j].b, 0x14000000, 0x14, segs[j].len, 0.5f);
+                    ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[j].a, (u8 *)segs[j].b, 0x14000000, 0x14, segs[j].len, lbl_805DC97C);
                 }
             }
             break;
         case 4:
-            scale *= 1.4f;
+            scale *= lbl_805DC984;
             for (k = 0; k < 3; k++) {
                 o = __nw__7TObjectFUl(0x260);
                 if (o != NULL) {
@@ -248,12 +258,12 @@ void TTecZonde::run_task() {
                 if (l == 0) {
                     o = __nw__7TObjectFUl(0x260);
                     if (o != NULL) {
-                        ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[l].a, (u8 *)segs[l].b, 0x14000000, 0x14, segs[l].len, 5.0f);
+                        ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[l].a, (u8 *)segs[l].b, 0x14000000, 0x14, segs[l].len, lbl_805DC988);
                     }
                 } else {
                     o = __nw__7TObjectFUl(0x260);
                     if (o != NULL) {
-                        ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[l].a, (u8 *)segs[l].b, 0x14000000, 0x14, segs[l].len, 0.5f);
+                        ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[l].a, (u8 *)segs[l].b, 0x14000000, 0x14, segs[l].len, lbl_805DC97C);
                     }
                 }
             }
@@ -269,29 +279,29 @@ void TTecZonde::run_task() {
             s32 h;
             switch (self->level) {
             case 0:
-                h = play_sound_effect(0x4002A408, &t->x, 0, 0);
+                h = play_sound_effect(0x4002A408, (const Vec *)(&t->x), 0, 0);
                 if (h >= 0) {
                     update_technique_slot__10TTecRaFoieFl(h, 0x100, 0);
                 }
                 break;
             case 1:
-                play_sound_effect(0x4002A408, &t->x, 0, 0);
+                play_sound_effect(0x4002A408, (const Vec *)(&t->x), 0, 0);
                 break;
             case 2:
             case 3:
-                h = play_sound_effect(0x4002A408, &t->x, 0, 0);
+                h = play_sound_effect(0x4002A408, (const Vec *)(&t->x), 0, 0);
                 if (h >= 0) {
                     update_technique_slot__10TTecRaFoieFl(h, -0x180, 0);
                 }
                 break;
             case 4:
-                h = play_sound_effect(0x4002A408, &t->x, 0, 0);
+                h = play_sound_effect(0x4002A408, (const Vec *)(&t->x), 0, 0);
                 if (h >= 0) {
                     update_technique_slot__10TTecRaFoieFl(h, -0x250, 0);
                 }
                 break;
             case 5:
-                h = play_sound_effect(0x4002A408, &t->x, 0, 0);
+                h = play_sound_effect(0x4002A408, (const Vec *)(&t->x), 0, 0);
                 if (h >= 0) {
                     update_technique_slot__10TTecRaFoieFl(h, -0x100, 0);
                 }

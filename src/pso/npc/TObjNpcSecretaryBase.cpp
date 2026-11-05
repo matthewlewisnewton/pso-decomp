@@ -1,8 +1,9 @@
 #include "types.h"
-#include "pso/npc/TObjNpcSecretaryBase.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/npc/TObjNpcSoldierBase.h"
 #include "pso/npc/TUnk_804A8640.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/npc/TObjNpcSecretaryBase.h"
 #include "pso/npc/TObjNpcBase.h"
 #include "pso/npc/TObjNpcFemaleBase.h"
 #include "pso/player/TObjPlayer.h"
@@ -23,18 +24,16 @@ struct RecoveredGlobal_8014D69C___vt__20TObjNpcSecretaryBase {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern u32 TObjNpcSecretaryBase__static_model_resource;
 extern s32 __vt__20TObjNpcSecretaryBase[];
 extern const char *TObjNpcSecretaryBase__name;
-void TLobby__sub_8001FE7C(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
 void TObjNpcSecretaryBase::free_static_data() {
     if ((u32) TObjNpcSecretaryBase__static_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcSecretaryBase__static_model_resource, 1);
+        delete (BmlResource *)((void*)TObjNpcSecretaryBase__static_model_resource);
         TObjNpcSecretaryBase__static_model_resource = 0U;
     }
 }
@@ -42,17 +41,21 @@ void TObjNpcSecretaryBase::free_static_data() {
 void TObjNpcSecretaryBase::load_static_data() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&secretary_body_resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &secretary_body_resource_descriptor, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcSecretaryBase__static_model_resource) = var_r0;
 }
 
+void *__dt__20TObjNpcSecretaryBaseFv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__20TObjNpcSecretaryBase;
+        ((TUnk_804A8640 *)arg0)->destroy_npc_female_base(0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TObjNpcSecretaryBase::~TObjNpcSecretaryBase() {}
-extern "C" {
 
 extern void *tl_04;
 
@@ -62,7 +65,7 @@ u8 *TObjNpcSecretaryBase__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8014D69C___vt__20TObjNpcSecretaryBase *)&__vt__20TObjNpcSecretaryBase).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjNpcSecretaryBase__name;
     ((TObjNpcSecretaryBase *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(s32 *)((s8 *)arg0 + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcSecretaryBase__static_model_resource) + 0x42C)) + 8);
     ((TObjNpcSecretaryBase *)arg0)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcSecretaryBase__static_model_resource) + 0x42C)) + 0xC);
     ((TObjNpcBase *)arg0)->setup_common();

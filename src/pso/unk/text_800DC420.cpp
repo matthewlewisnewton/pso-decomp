@@ -1,3 +1,5 @@
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/unk/TUnk_80494E10.h"
 #include "pso/system/NinjaUtil.h"
@@ -63,14 +65,13 @@ struct Ang_800DC83C { s32 x, y, z; };
 
 extern "C" {
 s32 TObjPlayer__sub_800DC478(u8 *arg0, s32 arg1, f32 farg0);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 extern s32 lbl_805D5254;
 f32 TObjPlayer__sub_800DC434(s32 arg0, s32 arg1);
 s32 TObjPlayer__sub_800DC420(void *self, s32 i);
 extern D_800DC448 *nano_drago_entry_params_resource;
 u16 get_entity_id(void *);
 s32 is_split_screen();
-s32 spawn_particle_effect(void *, int);
+
 extern const f32 lbl_805D525C;
 extern s32 lbl_805D526C;
 extern s32 local_client_id;
@@ -83,6 +84,7 @@ s32 is_valid_and_active__10TObjPlayerFUl();
 s32 vec3_add_to(void *, void *);
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
+extern const f32 lbl_805DA478;
 f32 atan2_float(f32, f32);
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
@@ -91,6 +93,7 @@ f32 vector_length(void *);
 s32 subtract_vector(void *, void *);
 extern s32 __vt__13TUnk_80494E10[];
 extern s32 tl_06;
+extern const f32 lbl_805DA47C;
 u8 *construct_beam_effect__10TObjPlayerFPvPvPviPv(u8 *arg0, Vec_800DC83C *arg1, Vec_800DC83C *arg2, s32 arg3, void *arg4);
 void TObjPlayer__sub_800DC444(void);
 void *__dt__13TUnk_80494E10Fv(void *arg0, s16 arg1);
@@ -147,13 +150,13 @@ void hit_object_in_radius__10TObjPlayerFPvPvPv(Src_800DC4B4 *arg0, Obj_800DC4B4 
             ((TObjEneNanoDrago *)attacker)->trigger_hit_camera_shake((u32)obj);
         }
     }
-    spawn_particle_effect(obj->pos, 0xFB);
-    spawn_particle_effect(obj->pos, 0xFC);
+    spawn_particle_effect((const Vec *)(obj->pos), 0xFB);
+    spawn_particle_effect((const Vec *)(obj->pos), 0xFC);
 }
 
 s32 TObjPlayer::snap_to_ground(s32 arg0, s32 arg1) {
     u8 *temp_r3;
-    temp_r3 = (u8 *)(csnVecterUnder(arg1, 0x16EF));
+    temp_r3 = (u8 *)(csnVecterUnder((const Vec *)arg1, 0x16EF));
     if (temp_r3 == NULL) {
         return 0;
     }
@@ -183,7 +186,7 @@ void TUnk_80494E10::run_task() {
             ((TParticleCtrl *)arg0->link1)->set_position(&arg0->prev);
         }
     }
-    if (arg0->timer >= 500.0f) {
+    if (arg0->timer >= lbl_805DA478) {
         queue_destruction__7TObjectFv(arg0);
         return;
     }
@@ -215,7 +218,7 @@ u8 *construct_beam_effect__10TObjPlayerFPvPvPviPv(u8 *arg0, Vec_800DC83C *arg1, 
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__13TUnk_80494E10;
     ((TUnk_80494E10 *)arg0)->m_f4 = arg3;
     VecCopy((Vec *)(arg0 + 0xAC), (const Vec *)arg1);
-    ((TUnk_80494E10 *)arg0)->m_dc = 0.0f;
+    ((TUnk_80494E10 *)arg0)->m_dc = lbl_805DA47C;
     VecCopy((Vec *)(arg0 + 0xB8), (const Vec *)arg2);
     subtract_vector(arg0 + 0xB8, arg1);
     s = lbl_805D525C / vector_length(arg0 + 0xB8);

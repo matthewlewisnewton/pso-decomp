@@ -5,7 +5,6 @@
 
 class TUnk_804DCB64 : public TObject {
 public:
-    TUnk_804DCB64();
     virtual ~TUnk_804DCB64();
     virtual void render();
     virtual void run_task();

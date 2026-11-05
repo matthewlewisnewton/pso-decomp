@@ -29,6 +29,11 @@ extern "C" {
 s32 get_creation_sprite_id__14TObjCMMainMenuFl(s32);
 extern f32 cm_icon_screen_position[];
 extern Grp_802995A0 TObjCMIcon__icon_group_table[];
+extern const f32 lbl_805DDC44;
+extern const f32 lbl_805DDC48;
+extern const f32 lbl_805DDC4C;
+extern const f32 lbl_805DDC50;
+extern const f32 lbl_805DDC54;
 
 void TObjCMIcon::reset_icon_flags() {
     s32 i;
@@ -132,11 +137,11 @@ void run_task__10TObjCMIconFv(s32 arg0) {
     p = creation_icon_states;
     for (i = 0; i < 7; i++, p++) {
         if (p->hidden == 0) {
-            if ((p->fade += 0.16666667f) > 1.0f) {
+            if ((p->fade += lbl_805DDC44) > 1.0f) {
                 p->fade = 1.0f;
             }
         } else {
-            if ((p->fade += -0.06666667f) < 0.0f) {
+            if ((p->fade += lbl_805DDC48) < 0.0f) {
                 p->fade = 0.0f;
             }
         }
@@ -155,15 +160,15 @@ void run_task__10TObjCMIconFv(s32 arg0) {
             }
         } else {
             s32 j;
-            p->x += 0.05f * (x - p->x);
+            p->x += lbl_805DDC4C * (x - p->x);
             for (j = 0; j < g->n; j++) {
                 x += (f32)(get_creation_sprite_id__14TObjCMMainMenuFl(TObjCMIcon__sub_80299598(arg0, g->ids[j])) + 4);
             }
-            x += 8.0f;
+            x += lbl_805DDC50;
         }
     }
     }
-    TObjCMIcon__horizontal_scroll_offset += 0.15f * (x - TObjCMIcon__horizontal_scroll_offset);
+    TObjCMIcon__horizontal_scroll_offset += lbl_805DDC54 * (x - TObjCMIcon__horizontal_scroll_offset);
 }
 #pragma pop
 

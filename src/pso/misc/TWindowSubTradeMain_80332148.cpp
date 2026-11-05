@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -11,6 +10,7 @@ void *__dt__19TWindowSubTradeMainFv(TWindowSubTradeMain *arg0, s16 arg1);
 void *get_player_by_client_id(s32 i);
 void TWindowCtrl__sub_8024ADF0(s32 arg0);
 void TWindowSubComCard__sub_8024AB98(s32 arg0);
+void TWindow__close(u8 *arg0);
 s32 __dl__7TObjectFPv(void *);
 s32 __dt__7TObjectFv(void *, s32);
 s32 end_camera_pan__10TObjPlayerFv();
@@ -32,23 +32,23 @@ void *__dt__19TWindowSubTradeMainFv(TWindowSubTradeMain *arg0, s16 arg1) {
             arg0->m_50 = 0U;
         }
         if ((u32) arg0->m_4c != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x4C)))->close();
+            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x4C)));
             arg0->m_4c = 0U;
         }
         if ((u32) arg0->m_48 != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x48)))->close();
+            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x48)));
             arg0->m_48 = 0U;
         }
         if ((u32) arg0->m_44 != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x44)))->close();
+            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x44)));
             arg0->m_44 = 0U;
         }
         if ((u32) arg0->m_40 != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x40)))->close();
+            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x40)));
             arg0->m_40 = 0U;
         }
         if ((u32) arg0->m_3c != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x3C)))->close();
+            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x3C)));
             arg0->m_3c = 0U;
         }
         if ((u32) arg0->m_38 != 0U) {
@@ -56,11 +56,11 @@ void *__dt__19TWindowSubTradeMainFv(TWindowSubTradeMain *arg0, s16 arg1) {
             arg0->m_38 = 0U;
         }
         if ((u32) arg0->m_34 != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x34)))->close();
+            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x34)));
             arg0->m_34 = 0U;
         }
         if ((u32) arg0->m_30 != 0U) {
-            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x30)))->close();
+            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x30)));
             arg0->m_30 = 0U;
         }
         if ((u32) arg0->m_2c != 0U) {

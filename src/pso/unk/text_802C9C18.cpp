@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TOTrapSeabed01.h"
@@ -12,7 +13,7 @@ void obj_clear_flag30_20000(void *arg0);
 s32 check_player_flag1__6TLobbyFv();
 void *get_player_by_client_id(s32 i);
 extern s32 local_client_id;
-s32 play_sound_effect(s32, void *, s32, s32);
+
 extern Sounds_802C9C18 lbl_804720B8;
 
 void TOTrapSeabed01::sub_802C9C18(s32 arg1) {
@@ -24,17 +25,17 @@ void TOTrapSeabed01::sub_802C9C18(s32 arg1) {
     case AREA_JUNGLE_EAST:
     case AREA_MOUNTAIN:
     case AREA_SEASIDE:
-        *(s32 *)(arg0 + 0x358) = play_sound_effect(s.a[arg1], (u8 *)&this->position, 0, 0);
+        *(s32 *)(arg0 + 0x358) = play_sound_effect((s32)(s.a[arg1]), (const Vec *)((u8 *)&this->position), 0, 0);
         break;
     case AREA_SEABED_UPPER:
     case AREA_SEABED_LOWER:
-        *(s32 *)(arg0 + 0x358) = play_sound_effect(s.b[arg1], (u8 *)&this->position, 0, 0);
+        *(s32 *)(arg0 + 0x358) = play_sound_effect((s32)(s.b[arg1]), (const Vec *)((u8 *)&this->position), 0, 0);
         break;
     case AREA_SEASIDE_NIGHT:
-        *(s32 *)(arg0 + 0x358) = play_sound_effect(s.c[arg1], (u8 *)&this->position, 0, 0);
+        *(s32 *)(arg0 + 0x358) = play_sound_effect((s32)(s.c[arg1]), (const Vec *)((u8 *)&this->position), 0, 0);
         break;
     case AREA_TOWER:
-        *(s32 *)(arg0 + 0x358) = play_sound_effect(s.d[arg1], (u8 *)&this->position, 0, 0);
+        *(s32 *)(arg0 + 0x358) = play_sound_effect((s32)(s.d[arg1]), (const Vec *)((u8 *)&this->position), 0, 0);
         break;
     }
 }

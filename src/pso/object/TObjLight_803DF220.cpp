@@ -31,11 +31,13 @@ typedef union WGPipe_803DF5E4 {
     f32 f32;
 } WGPipe_803DF5E4;
 
-s32 light_slot_mask_table[5] = { 1, 2, 4, 8, 16 };
+extern s32 light_slot_mask_table[];
 extern s32 gx_chan_ctrl_light_mask;
 extern "C" {
 s32 GXLoadLightObjImm(void *, int);
 extern RecoveredGlobal_803DF528_TObjLight__data_8058D528 TObjLight__gx_light_objects;
+extern char lbl_804FC75C[];
+extern char lbl_804FC768[];
 void OSPanic(char *, s32, char *, ...);
 void GXSetChanAmbColor(s32 chan, GXColor_803DF268 color);
 void GXInitLightColor(void *, GXColor_803DF268);
@@ -47,7 +49,7 @@ void GXBegin(int, int, u16);
 
 void TObjLight::assert_light_id(s32 arg0) {
     if (arg0 < 0 || arg0 > 5) {
-        OSPanic("gjLight.c", 0x12, "illegal Light ID.");
+        OSPanic(lbl_804FC75C, 0x12, lbl_804FC768);
     }
 }
 }

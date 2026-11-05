@@ -1,3 +1,7 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #pragma fp_contract on
 
 #include "pso/boss/TUnk_80484AFC.h"
@@ -32,8 +36,7 @@ void rotate_matrix_x(s32 matrix, s32 angle);
 void matrix_mult_vec(s32 matrix, const Vec *src, Vec *dst);
 void vec3_add_to(Vec *v, const Vec *add);
 void subtract_vector(Vec *v, const Vec *sub);
-void play_sound_effect(s32 id, const Vec *pos, s32 a2, s32 a3);
-void play_persistent_sound(s32 id, void *owner, const Vec *pos, s32 a3, s32 flags);
+
 s32 obj_is_hit_receivable(TObjChara *actor);
 extern GC_Mtx identity_matrix;
 }
@@ -53,8 +56,8 @@ void TUnk_80484AFC::explode_and_destroy() {
     if (TBoss3Volopt::is_v2_mode() != 0 && 3.0517578e-05f * (f32)rand() < 0.16666667f) {
         attack.kind = 0x11;
     }
-    play_sound_effect(0x4003AD15, &position, 0, 0);
-    play_sound_effect(0x4001C112, &position, 0, 0);
+    play_sound_effect(0x4003AD15, (const Vec *)(&position), 0, 0);
+    play_sound_effect(0x4001C112, (const Vec *)(&position), 0, 0);
     bodies->radius = 15.0f;
     TObjPlayer::init_all_slots();
     ((TObjPlayer *)this)->check_object_collisions();
@@ -69,16 +72,16 @@ void TUnk_80484AFC::explode_and_destroy() {
             }
         }
     }
-    spawn_particle_effect(&position, 0xFB);
+    spawn_particle_effect((const Vec *)(&position), 0xFB);
     queue_destruction();
 }
 
 void TUnk_80484AFC::render() {
-    TObjFish::set_global_param(textures);
+    set_current_texture_list((GinjaTextureList *)(textures));
     push_matrix();
     post_translate_matrix(&position);
-    rotate_matrix_x(0, rotation_x);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_x(0, this->rotation.pitch);
+    rotate_matrix_y(0, this->rotation.yaw);
     model_render_flags &= ~0x400;
     draw_chunk_object((void *)model);
     pop_matrix();
@@ -87,7 +90,7 @@ void TUnk_80484AFC::render() {
 void TUnk_80484AFC::run_task() {
     TObjPlayer *player = get_player_by_client_id(target_id);
     if (player != NULL) {
-        Vec steer = *(Vec *)&player->m_2fc;
+        Vec steer = player->body_center_position;
         subtract_vector(&steer, &position);
         vec_set_length((Vec *)&steer, TBoss3VoloptP02::get_float_param(1));
         vec3_add_to(&velocity, &steer);
@@ -95,7 +98,7 @@ void TUnk_80484AFC::run_task() {
     }
     VecCopy(&prev_position, &position);
     vec3_add_to(&position, &velocity);
-    direction_to_rotation_xy((u8 *)&velocity, &rotation_x, &rotation_y);
+    direction_to_rotation_xy((u8 *)&velocity, &this->rotation.pitch, &this->rotation.yaw);
     if (trail != NULL) {
         Vec back = velocity;
         back.x = -back.x;
@@ -129,7 +132,7 @@ void TUnk_80484AFC::run_task() {
         explode_and_destroy();
         return;
     }
-    play_persistent_sound(0x4003C114, this, &position, 0, 0);
+    play_persistent_sound((s32)(0x4003C114), (const void *)(this), (const Vec *)(&position), 0, 0);
 }
 
 TUnk_80484AFC::~TUnk_80484AFC() {
@@ -144,14 +147,14 @@ TUnk_80484AFC::TUnk_80484AFC(TObject *parent, Vec *pos, s32 angle, s32 target) :
     bodies->radius = 5.0f;
     VecCopy(&position, pos);
     target_id = target;
-    rotation_x = 0;
-    rotation_y = angle;
+    this->rotation.pitch = 0;
+    this->rotation.yaw = angle;
     velocity.x = 0.0f;
     velocity.y = 0.0f;
     velocity.z = TBoss3VoloptP02::get_float_param(0);
     push_matrix_from(identity_matrix);
-    rotate_matrix_y(0, rotation_y);
-    rotate_matrix_x(0, rotation_x);
+    rotate_matrix_y(0, this->rotation.yaw);
+    rotate_matrix_x(0, this->rotation.pitch);
     matrix_mult_vec(0, &velocity, &velocity);
     pop_matrix();
     model = boss3_volopt_resources->models[0x16].model;

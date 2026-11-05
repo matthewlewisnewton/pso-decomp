@@ -21,19 +21,19 @@ void TChCrTagInformation::update_selected_char() {
     Tag_802A1E8C *arg0 = (Tag_802A1E8C *)this;
     s32 c;
     if (arg0->f24 < lbl_805DDE1C) {
-        fn_80309890(arg0, -1);
+        fn_80309890(this, -1);
         return;
     }
     switch (TChCrCharSelect::get_selected_index()) {
     case 0:
         c = TChCrCharSelect::get_selected_char();
         if (c >= 0) {
-            fn_80309890(arg0, c);
+            fn_80309890(this, c);
         }
         break;
     default:
         TChCrCharSelect::get_instance();
-        fn_80309890(arg0, get_char_select_class_id() + 3);
+        fn_80309890(this, get_char_select_class_id() + 3);
         break;
     }
 }

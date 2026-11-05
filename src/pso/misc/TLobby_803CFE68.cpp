@@ -12,6 +12,6 @@ void TLobby::call_callback() {
     }
 }
 
-void TLobby__sub_803CFE9C(void) {
+void TLobby__sub_803CFE9C(s32, DVDFileInfo *) {
 
 }

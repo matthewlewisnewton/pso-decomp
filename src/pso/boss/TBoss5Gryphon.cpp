@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/boss/TBoss5GryphonShockWave.h"
 #include "pso/boss/TBoss5GryphonSnarl.h"
 #include "pso/unk/text_80355A1C.h"
@@ -9,7 +10,6 @@
 extern "C" {
 
 void *TBoss5Gryphon__ct(void *, void *, void *);
-void TLobby__sub_8001FE7C(void*, int);
 s32 release_texture_list(void*);
 void *__nw__7TObjectFUl(int);
 
@@ -28,11 +28,11 @@ void TBoss5Gryphon::cleanup() {
         boss5_gryphon_texture_list = 0U;
     }
     if ((u32) boss5_gryphon_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)boss5_gryphon_bml_resource, 1);
+        delete (BmlResource *)((void*)boss5_gryphon_bml_resource);
         boss5_gryphon_bml_resource = 0U;
     }
     if ((u32) boss5_gryphon_body_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)boss5_gryphon_body_bml_resource, 1);
+        delete (BmlResource *)((void*)boss5_gryphon_body_bml_resource);
         boss5_gryphon_body_bml_resource = 0U;
     }
 }
