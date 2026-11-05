@@ -28,6 +28,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,789 | 880 |
 | Per-unit compiler overrides in `configure.py` | 169 | 169 |
+| CodeWarrior pragmas (excluding push/pop) | 5,787 | 877 |
+| Per-unit compiler overrides in `configure.py` | 167 | 167 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -550,6 +552,7 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `clear_sound_listener_position` | `pso/misc/TLobby_802268F4.cpp` | `src/pso/misc/TLobby_802268F4.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: dead-stripped function | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
 | `__vt__25TObjCityMainWarpChallenge` | `pso/object/TObjCityMainWarpChallenge.cpp` | `src/pso/object/TObjCityMainWarpChallenge.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: hand-written vtable | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
 | `TObjCityMainWarpChallenge.cpp` | `pso/object/TObjCityMainWarpChallenge.cpp` | `configure.py` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: per-unit cflags override | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
+| TLobby_80228818.cpp:391 opt_propagation (`render__14TUnk_804CC048Fv`) | pso/misc/TLobby_80228818.cpp | src/pso/misc/TLobby_80228818.cpp | [#192](https://github.com/zeroz41/pso-decomp/pull/192) | steering pragma | [#360](https://github.com/matthewlewisnewton/pso-decomp/pull/360) | upstream catch-up, rewrite later |
 | `TObjPlayer::apply_status_effect` | `TObjPlayer_801542CC` | `src/pso/player/TObjPlayer_801542CC.cpp` | [#171](https://github.com/zeroz41/pso-decomp/pull/171) | other: s32-to-pointer cast | #305 | upstream catch-up, rewrite later |
 | `TObjBoss2Tunnel__sub_8007D1D0` (`0x8007D1D0`): snapshot cursor `flags = (u32 *)p`, `levels = (u32 *)(p + 0x30)`, `name = (char *)(p + 0x60)` | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | raw offset cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
 | `TObjBoss2Tunnel__sub_8007D1D0`: `((TLobby *)p)->move_data(...)` on the snapshot buffer | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | other: receiver cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
