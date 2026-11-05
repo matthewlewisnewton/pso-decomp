@@ -1426,13 +1426,12 @@ u8 *TLobby::alloc_free_entry() {
     return 0;
 }
 
-s32 NetUnregisterTimer(void *);
 void TLobby__sub_804078B4(void);
 s32 TLobby__sub_80407358(void) {
     Tbl_80408718 *g = &lbl_805C1AB0;
     s32 tmp[2];
     TLobby::release_slot_by_id(0x806);
-    NetUnregisterTimer((void *)TLobby__sub_804078B4);
+    NetUnregisterTimer(TLobby__sub_804078B4);
     TLobby__sub_803F8A24(g);
     g->count = 0;
     g->h2 = 0;
@@ -6194,8 +6193,8 @@ u16 TLobby__sub_80411040(const IPv6Address *src, const IPv6Address *dst, u8 next
 void TLobby__sub_80411334(void);
 s32 TLobby__sub_8041112C(void) {
     RecoveredGlobal_8041123C_lbl_805C1BB8 *g = &ipv6_address_routing_state;
-    NetUnregisterTimer((void *)TLobby__sub_80411334);
-    NetUnregisterTimer((void *)TLobby::tick_entry_timers);
+    NetUnregisterTimer(TLobby__sub_80411334);
+    NetUnregisterTimer(TLobby::tick_entry_timers);
     TLobby__sub_803F8864(g);
     g->ab.a = 0;
     g->ab.b = 0;
@@ -8195,7 +8194,7 @@ struct G_80415B38 {
 extern G_80415B38 ipv6_neighbor_discovery_state;
 void NetIPv6ShutdownNeighborDiscovery(void) {
     G_80415B38 *g = &ipv6_neighbor_discovery_state;
-    NetUnregisterTimer((void *)NetIPv6TickNeighborDiscovery);
+    NetUnregisterTimer(NetIPv6TickNeighborDiscovery);
     TLobby__sub_803F88E0(g);
     g->nb = 0;
     g->nc = 0;
@@ -9878,7 +9877,7 @@ struct G_80418ACC {
 extern G_80418ACC packet_fragment_pool_state;
 s32 TLobby__sub_80418A7C(void) {
     G_80418ACC *g = &packet_fragment_pool_state;
-    NetUnregisterTimer((void *)TLobby::update_timeout_entries);
+    NetUnregisterTimer(TLobby::update_timeout_entries);
     TLobby__sub_803F89A0(g);
     g->na = 0;
     g->nb = 0;
@@ -10395,7 +10394,7 @@ void NetRunTimerDispatchLoop(void) {
 }
 #pragma pop
 
-s32 NetUnregisterTimer(void *fn) {
+s32 NetUnregisterTimer(NetTimerCallback fn) {
     NetworkDispatchState *g = &network_dispatch_state;
     s16 i;
 
@@ -10403,7 +10402,7 @@ s32 NetUnregisterTimer(void *fn) {
         return -0x100;
     }
     for (i = 0; i < 10; i++) {
-        if (network_dispatch_state.timers[i].active != 0 && (void *)network_dispatch_state.timers[i].fn == fn) {
+        if (network_dispatch_state.timers[i].active != 0 && network_dispatch_state.timers[i].fn == fn) {
             g->timers[i].active = 0;
             g->timers[i].fn = NULL;
             g->timers[i].lock_callback = 0;
@@ -10642,8 +10641,8 @@ s32 register_protocol_handler__6TLobbyFUsi(u16 type, Handler_8041A130 fn) {
 
 struct G_8041A1D8 { u8 pad[4]; s16 n; };
 s32 TLobby__sub_8041A1D8(void) {
-    NetUnregisterTimer((void *)TLobby__sub_8041A5B4);
-    NetUnregisterTimer((void *)TLobby__sub_8041A3CC);
+    NetUnregisterTimer(TLobby__sub_8041A5B4);
+    NetUnregisterTimer(TLobby__sub_8041A3CC);
     TLobby__sub_803F8794((void *)&tcp_protocol_state);
     ((G_8041A1D8 *)&tcp_protocol_state)->n = 0;
     return 0;
