@@ -619,6 +619,7 @@ force_active:
   - TLobby__sub_801E6BB8
   - TLobby__sub_801E6C2C
   - TLobby__sub_801E6C40
+  - TLobby__sub_8020D94C
   - TLobby__sub_802232F8
   - TLobby__sub_80223D48
   - TLobby__sub_80223DD8
@@ -8144,6 +8145,7 @@ force_active:
   - load_globals__14QuestVmContextFv
   - load_indirect_info__Fv
   - load_item_pmt__Fv
+  - load_map_decoration_rows__Flll
   - load_map_texture_archive__6TSceneFl
   - load_model__15TBoss3VoloptP01Fl
   - load_models__22TObjContainerJungEnemyFv
