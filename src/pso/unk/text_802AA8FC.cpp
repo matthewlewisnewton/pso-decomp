@@ -23,7 +23,7 @@ s32 TBoss6PlotFalz::get_next_point(s16 *arg1, s16 *arg2) {
     return 1;
 }
 
-s32 TBoss6PlotFalz__sub_802AAC74(u8 *arg0) {
+s32 TBoss6PlotFalz__sub_802AAC74(TBoss6PlotFalz *arg0) {
     s32 temp_r0;
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x3C8);
     if ((temp_r0 < 1) || (temp_r0 > 0x1FD)) {

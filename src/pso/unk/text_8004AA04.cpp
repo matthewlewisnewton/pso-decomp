@@ -1,5 +1,6 @@
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/unk/text_800F5BC0.h"
 #include "pso/boss/TBoss3Volopt.h"
@@ -18,13 +19,12 @@ typedef struct Obj_8004AA80 {
     u8 pad4[0x8 - 0x4];
     s32 f8;
     s32 fc;
-    s32 *items;
+    StripBufferPair **items;
 } Obj_8004AA80;
 
 extern "C" {
 void fn_8004AA04(Obj_8004AA04 *self);
 s32 get_bml_model(s32, s32);
-s32 alloc_tables__6TLobbyFll(s32, s32, s32);
 void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2);
 void fn_8004AA04(Obj_8004AA04 *self) {
     s32 i;
@@ -42,7 +42,6 @@ void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2) {
     s32 i;
     Rec_8004AA80 *r;
     s32 t;
-    s32 p;
     s32 j;
     h = TBoss4Uro::get_instance_count();
     if (h == 0 || arg1 == NULL || arg2 < 1) {
@@ -50,7 +49,7 @@ void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2) {
     }
     arg0->count = arg2;
     arg0->items = NULL;
-    arg0->items = (s32 *)::operator new[](arg0->count * 4);
+    arg0->items = (StripBufferPair **)::operator new[](arg0->count * 4);
     arg0->f8 = 0;
     arg0->fc = 0;
     for (j = 0; j < arg0->count; j++) {
@@ -58,12 +57,8 @@ void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2) {
     }
     for (i = 0; i < arg0->count; i++) {
         r = &arg1[i];
-        t = (s32)find_model_node(get_bml_model(h, r->a), r->b);
-        p = (int)::operator new(0x14);
-        if (p != 0) {
-            p = alloc_tables__6TLobbyFll(p, t, r->c);
-        }
-        arg0->items[i] = p;
+        t = find_model_node(get_bml_model(h, r->a), r->b);
+        arg0->items[i] = new StripBufferPair(t, r->c);
     }
 }
 

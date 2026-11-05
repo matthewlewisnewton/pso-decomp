@@ -3,9 +3,63 @@
 #include "types.h"
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/boss/Boss6ScrollStrips.h"
 
-struct Boss6EffectPoint { f32 x, y, z; };
+typedef Vec Boss6EffectPoint;
+struct ModelNodePositionCapture;
+struct Boss6Motion { s32 f0; u32 frames; };
+struct Boss6Anim {
+    Boss6Motion *motion;
+    f32 t;
+    f32 speed;
+    f32 blend;
+    f32 rate;
+    Boss6Motion *prev_motion;
+    f32 prev_t;
+    void copy_transform(Boss6Anim *src);
+};
+struct Boss6NodeWords {
+    s32 x;
+    s32 y;
+    s32 z;
+};
+union Boss6NodePos {
+    Vec v;
+    Boss6NodeWords w;
+};
+
+struct TBoss6PlotFalz;
+struct TBoss6Zanzo;
+class TParticleCtrl;
+// The three action bytes send_6xA4_action copies into the 6xA4 packet.
+struct Boss6ActionArgs {
+    s8 b0;
+    u8 b1;
+    s8 b2;
+};
+// TBoss6Type1__sub_802B96C0 copies these as one lwz/stw block. MWCC splits a
+// bare Vec copy into lfs/stfs, so the position sits inside a struct.
+struct Boss6Point {
+    Vec v;
+};
+// Set data TBoss6PlotFalz::spawn_type1 copies from its mag-mine block, then
+// offsets the set index and entity id by 0x200.
+struct Boss6Type1SetData {
+    s16 set_index;
+    u8 unk_02[0x4];
+    s16 entity_id;
+    u8 unk_08[0x38];
+    u8 m_40;
+};
+// TBoss6PlotFalz::spawn_type1 builds this on its stack: the plot that owns the
+// boss, then the set data the constructor hands to apply_set_data.
+struct Boss6Type1Spawn {
+    TBoss6PlotFalz *owner;
+    Boss6Type1SetData set_data;
+};
+
 struct TBoss6Type1 : public TObjEnemy {
+    TBoss6Type1(TObject *parent, Boss6Type1Spawn *spawn);
     virtual ~TBoss6Type1();
     void set_action_state(s32);
     void sub_802B5CB4();
@@ -22,55 +76,82 @@ struct TBoss6Type1 : public TObjEnemy {
     void run_task();
     void update_effect_points();
     void update_trail_points();
-    u32 m_374;
-    u8 unk_378[0x80];
-    s32 m_3f8;
-    u8 unk_3FC[0x4];
-    void* trail_point_receiver;
-    void* effect_point_receiver;
-    u8 unk_408[0x4];
+    s32 m_374;
+    // set_action_state shifts the previous action states through this ring.
+    s32 hist[32];
+    TBoss6PlotFalz *m_3f8;
+    s32 m_3fc;
+    TBoss6Zanzo *trail_point_receiver;
+    TBoss6Zanzo *effect_point_receiver;
+    s32 unk_408;
     s32 m_40c;
     s32 action_timer;
     s32 m_414;
-    u8 unk_418[0x4];
-    u8 m_41c;
-    u8 unk_41D[0x1B];
+    s32 unk_418;
+    s8 m_41c;
+    u8 unk_41D[0x3];
+    Boss6Point m_420;
+    Boss6Point m_42C;
     s32 m_438;
-    u8 unk_43C[0x4];
-    s32 m_440;
-    u8 unk_444[0x38];
+    s32 motion_set;
+    s32 motion_mode;
+    Boss6Anim anims[2];
     s32 m_47c;
-    u8 unk_480[0x4];
+    s32 unk_480;
     s32 m_484;
-    u8 unk_488[0x4];
+    s32 unk_488;
     s32 m_48c;
-    u8 unk_490[0x4];
+    s32 unk_490;
     s32 m_494;
-    u8 unk_498[0x4];
+    s32 unk_498;
     s32 m_49c;
     s32 laser_fire_time;
     s32 m_4a4;
-    u8 unk_4A8[0x4];
+    s32 unk_4A8;
     s32 m_4ac;
-    u8 unk_4B0[0x4];
+    s32 unk_4B0;
     f32 m_4b4;
-    u8 unk_4B8[0x1C];
+    s32 unk_4b8;
+    s32 unk_4bc;
+    s32 unk_4c0;
+    s32 unk_4c4;
+    // Previous sword sample. sub_802B715C closes the triangle
+    // position → m_4c8 → effect_points[1] and then stores effect_points[1] here.
+    Vec m_4c8;
     f32 m_4d4;
     f32 m_4d8;
-    u8 unk_4DC[0x4];
+    f32 m_4dc;
     s32 m_4e0;
-    u8 unk_4E4[0x4];
+    s32 unk_4e4;
     f32 m_4e8;
-    u8 unk_4EC[0x1C];
+    s32 m_4ec;
+    s32 m_4f0;
+    s32 m_4f4;
+    // Particle emitters release_effect_slot / spawn_effect_slot index.
+    TParticleCtrl *effect_slots[4];
     s32 m_508;
-    u8 unk_50C[0xC0];
-    f32 sound_pos[3];
-    Boss6EffectPoint trail_points[3];
-    u8 unknown_5FC[0x3C];
+    u32 unk_50C[24];
+    Vec m_56C;
+    // Node positions ModelNodePositionCapture writes for draw_callback_lists[1].
+    // [1] anchors the roar sound and radar marker, [7] is where the flash model
+    // is drawn, [8..10] are the trail points (the beam runs from [8] to [9]).
+    // The beam trail copies node [9] with integer loads, then stores 0 into y.
+    Boss6NodePos node_positions_578[11];
+    // Node positions for draw_callback_lists[0].
+    Vec node_positions_5FC[5];
     Boss6EffectPoint effect_points[2];
-    u8 pad_650[0x30];
+    // One node-position capture per model; render installs each before it
+    // draws that model (upstream: TObjFish__sub_800E3124 lists).
+    ModelNodePositionCapture *draw_callback_lists[2];
+    Boss6ScrollStrips scroll_strips_u; // scroll_strips_uv(8, 0) every frame
+    Boss6ScrollStrips scroll_strips_v; // scroll_strips_uv(0, 0x22) every frame
     TObject *map_csn;
-    static u8 *create_kakusan(s32 arg0, u8 *arg1, u8 *arg2, s16 arg3, f32 farg0);
+    static u8 *create_kakusan(TObject *parent, Vec *pos, Vec *dir, u16 target_client, f32 speed);
+    static void *copy_block(void *d, void *s);
+    void fire_at_all_players(f32 dy);
+    void calc_grid_cell_position(Vec *out);
+    void clamp_to_arena_radius(Vec *out);
+    void randomize_attack(Boss6ActionArgs *atk);
     void clear_slot_array();
     void release_effect_slot(s32 arg1);
     void spawn_effect_slot(s32 arg1);
@@ -78,14 +159,12 @@ struct TBoss6Type1 : public TObjEnemy {
     void interpolate_pos_to_target(s32 step, s32 total);
     void ease_toward_target(s32 a, s32 b);
     s32 count_matches(s32 arg1, s32 arg2);
-    static s32 pick_random_entry(s32 arg0, s32 arg1, s32 arg2);
-    static int rand_range_inclusive(s32 arg0, int arg1, int arg2);
+    s32 pick_random_entry(s32 *table, s32 n);
+    int rand_range_inclusive(int lo, int hi);
     s32 pick_remapped_list_value(s32 a, s32 b, s32 n);
-    void handle_6xa4_action(u8 * _w1);
-    void decode_polar_position(u8 *arg1);
-    static s32 request_jittered_camera(void *arg0, void *arg1, void *arg2, int arg3);
+    void request_jittered_camera(const Vec *eye, const Vec *target, int id);
     void request_default_jittered_camera();
-    u8 is_timer_expired();
+    s32 is_timer_expired();
     void reset_fields_4e0();
     s32 is_field3F8_over_0x20();
     int is_field4b0_delta_reached();
@@ -93,7 +172,7 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 check_field4b0_threshold();
     int is_time_up();
     void set_flag_on_threshold();
-    static void set_part_default_value(int a0, void* a1);
+    void set_part_default_value(Vec *p);
     void init_parts();
     void reset_param();
     void decrease_field_clamped_min();
@@ -112,17 +191,14 @@ struct TBoss6Type1 : public TObjEnemy {
     void draw_part_motions();
     void set_motion_set(s32 arg1);
     void advance_animations();
-    void copy_transform(void* q);
     void render_shadows();
     void do_attack();
-    s32 send_6xA4_action(s32 t, s32 *src);
+    void send_6xA4_action(s32 t, void *args);
+    // Callers pass the action in r4 with mr/li and never extsb; the body stbs it.
+    static void send_flow_action_if_idle(TBoss6Type1 *boss, int action);
     void load_params(void *arg1);
     void set_sync_data(void *arg1);
-    static s32 create(s32 arg0);
-    void*get_mag_mine_ptr();
-    int is_idle();
-    void read_be16_field2();
-    void step_and_send_60();
+    static TBoss6Type1 *create(Boss6Type1Spawn *spawn);
     void enter_flag800_state();
     void update_attack_countdown();
     void update_countdown_state();
@@ -179,11 +255,9 @@ struct TBoss6Type1 : public TObjEnemy {
     void sub_802B3B94();
     void draw_model();
     void render();
-    void release_object(void *);
+    static void release_object(void *);
     void spawn_map_csn();
-    static void *create_zanzo(void *arg0, void *arg1, void *arg2);
     static void *create_grav_ball(void *arg0, void *arg1);
-    void set_effect_points(f32 *a, u32 *b);
     void spawn_grav_ball();
     void damage_players_in_range();
     void update_beam_attack();
@@ -204,5 +278,7 @@ typedef char TBoss6Type1_receiver_offset[(offsetof(TBoss6Type1,effect_point_rece
 typedef char TBoss6Type1_points_offset[(offsetof(TBoss6Type1,effect_points)==0x638)?1:-1];
 typedef char TBoss6Type1_trail_receiver_offset[(offsetof(TBoss6Type1,trail_point_receiver)==0x400)?1:-1];
 typedef char TBoss6Type1_map_csn_offset[(offsetof(TBoss6Type1,map_csn)==0x680)?1:-1];
-typedef char TBoss6Type1_trail_points_offset[(offsetof(TBoss6Type1,trail_points)==0x5D8)?1:-1];
+typedef char Boss6NodePos_size[(sizeof(Boss6NodePos)==0xC)?1:-1];
+typedef char TBoss6Type1_node_positions_offset[(offsetof(TBoss6Type1,node_positions_578)==0x578)?1:-1];
+typedef char TBoss6Type1_m_4c8_offset[(offsetof(TBoss6Type1, m_4c8)==0x4C8)?1:-1];
 #endif

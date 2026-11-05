@@ -42,11 +42,11 @@ void TObjBoss7Dust::run_task() {
 }
 typedef char RecoveredGlobal_802F119C___vt__13TObjBoss7Dust_size[sizeof(RecoveredGlobal_802F119C___vt__13TObjBoss7Dust) == 0x18 ? 1 : -1];
 TObjBoss7Dust::~TObjBoss7Dust() {}
-u8 *__ct__13TObjBoss7DustFv(u8 *object, s32 arg1, s32 arg2) {
-    __ct__7TObjectFP7TObject((void *)object, (void *)arg1);
+u8 *__ct__13TObjBoss7DustFv(u8 *object, TObject *parent, const Vec *pos) {
+    __ct__7TObjectFP7TObject(object, parent);
     *(s32 **)((s8 *)object + 0x18) = &__vt__13TObjBoss7Dust.value;
     *(s32 *)((s8 *)object + 0) = (s32) lbl_805D3FE4;
-    VecCopy((Vec *)(object + 0x24), (const Vec *)(arg2));
+    VecCopy((Vec *)(object + 0x24), pos);
     *(s32 *)((s8 *)object + 0x1C) = 0;
     *(s32 *)((s8 *)object + 0x20) = TObjBoss7DustCtrl__sub_802F125C();
     return object;

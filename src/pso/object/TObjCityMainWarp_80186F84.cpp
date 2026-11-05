@@ -1,5 +1,6 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/object/TObjWarpBossMulti.h"
 #include "pso/misc/TWindowMessageYesNo.h"
 #include "pso/object/TObjCityMainWarpChallenge.h"
@@ -43,7 +44,6 @@ extern "C" {
 s32 get_current_floor(void);
 f32 xz_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
-void TWindow__close(u8 *arg0);
 char *strcpy(char *, const char *);
 extern s32 local_client_id;
 extern const f32 lbl_805DBCA8;

@@ -1,7 +1,11 @@
 #ifndef PSO_BOSS_TUNK_804E4B3C_H
 #define PSO_BOSS_TUNK_804E4B3C_H
 #include "types.h"
+#include <stddef.h>
 #include "pso/TObject.h"
+#include "pso/boss/TObjBoss2Tunnel.h"
+
+struct Vec;
 
 class TUnk_804E4B3C : public TObject {
 public:
@@ -9,30 +13,46 @@ public:
     virtual void run_task();
     void *destroy(s16);
     void update_phase_motion();
-    void spawn(s32, s32);
-    virtual void render();
-    // run_task's phase handlers (indexed by phase)
-    void init_effect();
-    void sub_802F2400();
     void sub_802F23FC();
+    void sub_802F2400();
+    void sub_802F273C();
+    void init_effect();
     void update_dust_spawn();
-    void update_spawn_timer(s32 arg1, s32 arg2, s32 arg3);
+    void update_spawn_timer(const s32 *table, s32 arg2, s32 arg3);
     void advance_effect_timer();
-    // Same object as TunnelSceneController (size 0x94); names shared with it.
-    s32 phase;          // index into run_task's phase handlers
-    u8 pad_20[0x34];
-    f32 segment_x;      // a segment's position.x
-    f32 scroll_offset;  // update_spawn_timer adds scroll_speed, spawns a segment per 800
-    f32 scroll_speed;   // a segment's z step per frame
-    u8 pad_60[0x10];
-    s32 spawn_index;    // update_spawn_timer's index into its spawn table
-    u8 pad_74[0xC];
-    f32 unk_80;
-    f32 half_length;
-    TObject *tunnel_col; // the TObjBoss7TunnelCol the constructor creates
-    void *effect_nodes;  // parent of the segments spawn creates
-    u8 pad_90[0x4];
+    void spawn_segment_row_a();
+    void spawn_segment_row_b();
+    void spawn(s32 kind, Vec *position);
+    s32 check_both();
+    s32 is_phase_active();
+    virtual void render();
+    s32 m_1c;
+    PiecewiseCurve motion;
+    s32 phase;
+    f32 rate;
+    f32 value;
+    f32 m_58;
+    f32 m_5c;
+    u8 unk_60[0x10];
+    s32 m_70;
+    s32 m_74;
+    f32 m_78;
+    f32 m_7c;
+    f32 m_80;
+    f32 m_84;
+    TObject *m_88;
+    TObject *m_8c;
+    TObject *m_90;
 };
 typedef char TUnk_804E4B3C_size[sizeof(TUnk_804E4B3C) == 0x94 ? 1 : -1];
+typedef char TUnk_804E4B3C_motion[(offsetof(TUnk_804E4B3C, motion) == 0x20) ? 1 : -1];
+typedef char TUnk_804E4B3C_phase[(offsetof(TUnk_804E4B3C, phase) == 0x4C) ? 1 : -1];
+typedef char TUnk_804E4B3C_value[(offsetof(TUnk_804E4B3C, value) == 0x54) ? 1 : -1];
+typedef char TUnk_804E4B3C_m58[(offsetof(TUnk_804E4B3C, m_58) == 0x58) ? 1 : -1];
+typedef char TUnk_804E4B3C_m5c[(offsetof(TUnk_804E4B3C, m_5c) == 0x5C) ? 1 : -1];
+typedef char TUnk_804E4B3C_m74[(offsetof(TUnk_804E4B3C, m_74) == 0x74) ? 1 : -1];
+typedef char TUnk_804E4B3C_m70[(offsetof(TUnk_804E4B3C, m_70) == 0x70) ? 1 : -1];
+typedef char TUnk_804E4B3C_m84[(offsetof(TUnk_804E4B3C, m_84) == 0x84) ? 1 : -1];
+typedef char TUnk_804E4B3C_m88[(offsetof(TUnk_804E4B3C, m_88) == 0x88) ? 1 : -1];
 
 #endif

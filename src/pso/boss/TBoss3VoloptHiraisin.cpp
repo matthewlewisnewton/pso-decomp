@@ -366,7 +366,7 @@ void TBoss3VoloptHiraisin::init_params() {
     tp = tpmax;
     referenceHp = hp;
     set_param(0x2E);
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    register_by_id();
     load_params_from_table(0x10);
     sub_800C7860();
     add_flags_2e4(4);

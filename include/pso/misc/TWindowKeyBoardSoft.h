@@ -18,6 +18,7 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     int get_flag_bit6();
     int is_cursor_locked();
     void render();
+    static s32 try_open(TWindowDrawContext *context, f32 *quad);
     u32 m_68;
     u32 m_6c;
     u8 _pad70[0xC];
@@ -63,7 +64,6 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     static u32 get_or_create_instance();
     static u32 free_singleton(u32 arg0, s16 arg1);
     static Vec2_8024EC34 *get_viewport_offset(int view);
-    static s32 try_open(TWindowDrawContext *context, Box_8024E8E8 *quad);
     u32 init_layout();
     s32 get_state();
     void update_input_state();
