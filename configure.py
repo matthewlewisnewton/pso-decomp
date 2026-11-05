@@ -730,10 +730,11 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         },
         # vec3_dot (0x803D89C0) and vec3_cross (0x803D8A18) are fmadds/fmsubs.
         # Ginja defaults leave contraction off. With -fp_contract off those two
-        # score 64.5% and 34.38%; with -fp_contract on, 93.5% and 57.48%.
+        # score 64.5% and 44.76%; with -fp_contract on, 93.5% and 91.19%.
         # vec3_add_to and the seven matrix helpers stay 100% either way.
-        # -inline off/on/auto/noauto/all/deferred/auto,deferred does not change
-        # a byte of this unit. Precedent: dtk-template -fp_contract on
+        # -inline on/auto/noauto/all leave the object byte-identical to
+        # -inline off; deferred and auto,deferred emit the C functions in
+        # reverse order. Precedent: dtk-template -fp_contract on
         # (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209)
         # and Melee, TP, TWW, and Pikmin 2, which contract globally.
         "pso/unk/text_803D8910.cpp": {

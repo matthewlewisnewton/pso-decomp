@@ -72,16 +72,27 @@ void TObjPlayer::invert_matrix_in_place(u32 arg0) {
     PSMTXInverse((MtxP)arg0, (MtxP)arg0);
 }
 
-// 0x803D8A18. a × b into out, written so each fmsubs multiplies b then a.
-// The length square starts before out->z is stored. The return is
-// fres(frsqrte(len^2)); the y/z squares are double fmadds. Not byte-exact for
-// the same reason as vec3_dot, plus the frsp that __fres(float) requires.
+// 0x803D8A18. a × b into out; returns fres(frsqrte(len^2)), with the y/z
+// squares as double fmadds. Each component starts as the subtracted product
+// and is then reassigned, because a contracted b*a - c is evaluated after its
+// multiplicands unless c is computed in an earlier statement. Not byte-exact
+// for the same reason as vec3_dot, plus the frsp that __fres(float) requires.
 extern "C" f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
-    f32 cx = b->z * a->y - b->y * a->z;
+    f32 bx, by, bz, ax, ay, az;
+    by = b->y;
+    az = a->z;
+    f32 cx = by * az;
+    ay = a->y;
+    bz = b->z;
+    cx = bz * ay - cx;
+    ax = a->x;
+    f32 cy = bz * ax;
+    bx = b->x;
+    cy = bx * az - cy;
     out->x = cx;
-    f32 cy = b->x * a->z - b->z * a->x;
+    f32 cz = bx * ay;
     out->y = cy;
-    f32 cz = b->y * a->x - b->x * a->y;
+    cz = by * ax - cz;
     f64 mag = cx * cx;
     out->z = cz;
     mag += (f64)cy * cy;

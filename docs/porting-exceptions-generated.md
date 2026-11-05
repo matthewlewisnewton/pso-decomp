@@ -118,8 +118,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.cpp:129` | `__cntlzw` |
 | `src/pso/ui/TAdSinglePlyChrSelectGC_802E13C8.cpp:175` | `__cntlzw` |
 | `src/pso/unk/text_802530D0.cpp:24` | `__cntlzw` |
-| `src/pso/unk/text_803D8910.cpp:89` | `__fres` |
-| `src/pso/unk/text_803D8910.cpp:89` | `__frsqrte` |
+| `src/pso/unk/text_803D8910.cpp:100` | `__fres` |
+| `src/pso/unk/text_803D8910.cpp:100` | `__frsqrte` |
 | `src/pso/unk/text_803D8DE0.cpp:32` | `__frsqrte` |
 | `src/pso/unk/text_803D8DE0.cpp:76` | `__frsqrte` |
 | `src/pso/unk/text_803D8F74.cpp:24` | `__frsqrte` |
@@ -344,7 +344,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `pso/quest/QuestOpcodeHandlers.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestThread.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/unk/text_803D8098.cpp` | `(multi-line entry; see configure.py)` | render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 / _restgpr_25, and its glyph quads are the inlined SDK FIFO writers (sth/stw to 0xCC008000), not calls. -inline on inlines only functions marked inline, so queue_debug_text stays a call from debug_printf_at. The matrix helpers in text_803D8910.cpp match under the ginja defaults. |
-| `pso/unk/text_803D8910.cpp` | `(multi-line entry; see configure.py)` | vec3_dot (0x803D89C0) and vec3_cross (0x803D8A18) are fmadds/fmsubs. Ginja defaults leave contraction off. With -fp_contract off those two score 64.5% and 34.38%; with -fp_contract on, 93.5% and 57.48%. vec3_add_to and the seven matrix helpers stay 100% either way. -inline off/on/auto/noauto/all/deferred/auto,deferred does not change a byte of this unit. Precedent: dtk-template -fp_contract on (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) and Melee, TP, TWW, and Pikmin 2, which contract globally. |
+| `pso/unk/text_803D8910.cpp` | `(multi-line entry; see configure.py)` | vec3_dot (0x803D89C0) and vec3_cross (0x803D8A18) are fmadds/fmsubs. Ginja defaults leave contraction off. With -fp_contract off those two score 64.5% and 44.76%; with -fp_contract on, 93.5% and 91.19%. vec3_add_to and the seven matrix helpers stay 100% either way. -inline on/auto/noauto/all leave the object byte-identical to -inline off; deferred and auto,deferred emit the C functions in reverse order. Precedent: dtk-template -fp_contract on (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) and Melee, TP, TWW, and Pikmin 2, which contract globally. |
 | `pso/misc/TKeyBoardControl_803F0C50.cpp` | `GC/1.2.5n` | Epilogue order (mtlr before the restores) only 1.2.5n produces. |
 | `pso/unk/text_803F1804.cpp` | `GC/1.2.5n` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/unk/text_803F4D84.cpp` | `-O2, -use_lmw_stmw off` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
