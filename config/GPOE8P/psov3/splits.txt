@@ -9372,11 +9372,8 @@ pso/unk/text_8028D490.cpp:
 	.text       start:0x8028D490 end:0x8028D5D4
 
 pso/ui/TAdSinglePlyChrSelectGC_8028D5D4.cpp:
-	.text       start:0x8028D5D4 end:0x8028D714
+	.text       start:0x8028D5D4 end:0x8028D8B8
 	.bss        start:0x80518850 end:0x80518880
-
-pso/misc/TLobby_8028D714.cpp:
-	.text       start:0x8028D714 end:0x8028D8B8
 
 pso/unk/text_8028D8B8.cpp:
 	.text       start:0x8028D8B8 end:0x8028D9A8
@@ -10896,11 +10893,8 @@ pso/misc/TLobby_8030A834.cpp:
 	.text       start:0x8030A834 end:0x8030A884
 
 pso/boss/TBoss4ZakoDraw.cpp:
-	.text       start:0x8030A884 end:0x8030A96C
+	.text       start:0x8030A884 end:0x8030AD38
 	.data       start:0x804E7650 end:0x804E7668
-
-pso/boss/TBoss4ZakoDraw_8030A96C.cpp:
-	.text       start:0x8030A96C end:0x8030AD38
 	.bss        start:0x80541E58 end:0x80542D60
 
 pso/boss/TBoss4ZakoDraw_8030AD38.cpp:
@@ -12593,6 +12587,7 @@ os/OSMessage.c:
 
 os/OSMemory.c:
 	.text       start:0x8037340C end:0x803736EC
+	.data       start:0x804F4458 end:0x804F4468
 
 os/OSMutex.c:
 	.text       start:0x803736EC end:0x80373938
@@ -13048,6 +13043,9 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/string.c:
 	.text       start:0x8039D8E8 end:0x8039DDB4
 	.rodata     start:0x8047BBE8 end:0x8047BF78
 	.sdata      start:0x805D45F8 end:0x805D4600
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c:
+	.sdata      start:0x805D4600 end:0x805D4628
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c:
 	.text       start:0x8039DDB4 end:0x8039F6B0
@@ -13582,6 +13580,7 @@ pso/audio/GcrnaStream.cpp:
 	.rodata     start:0x8047E220 end:0x8047E3C8
 	.data       start:0x804FA088 end:0x804FA4EC
 	.bss        start:0x8058C0E0 end:0x8058C960
+	.sbss       start:0x805D7680 end:0x805D76A0
 	.sdata2     start:0x805E0DC8 end:0x805E0DCC
 
 original_padding_804FA4EC:

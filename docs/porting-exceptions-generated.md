@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 13 | 4 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5797 | 876 |
-| configure.py per-unit override | 163 | 163 |
+| pragma | 5794 | 875 |
+| configure.py per-unit override | 164 | 164 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1149, `inline_depth` 1041, `fp_contract` 895, `auto_inline` 840, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 238, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040, `fp_contract` 894, `auto_inline` 840, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 238, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -193,7 +193,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1149, `inline_depth` 1041,
 | `src/pso/unk/text_803E2D70.cpp:954` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
 | `src/pso/unk/text_803E2D70.cpp:955` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
 | `src/pso/unk/text_803E2D70.cpp:956` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_80421620.cpp:1196` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
+| `src/pso/unk/text_80421620.cpp:1294` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
 
 ## configure.py per-unit compiler overrides
 
@@ -206,6 +206,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1149, `inline_depth` 1041,
 | `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `-inline off,deferred, -fp_contract on` | Deferred, with definitions in reverse address order: the ctor's function-local static and guard precede run_task's table guard in .sbss, as in the original (docs/porting-exceptions.md section 5). |
 | `pso/boss/TObjBoss2Tunnel.cpp` | `-inline off,deferred, -pool off, -sdata 4, -fp_contract on` | Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is needed (docs/porting-exceptions.md section 5). |
 | `pso/boss/TBoss4DarkFalz_8004C93C.cpp` | `-inline deferred, -sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/boss/TBoss4ZakoDraw.cpp` | `-fp_contract on` | The Falz shadow draw contracts t*t*t into fnmsubs and the tint into fmadds. |
 | `pso/enemy/TObjEneBalClawBody_80090178.cpp` | `-inline deferred, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneRe2Flower_800C3E14.cpp` | `-inline off,deferred` | Deferred generation preserves the flower vtable before its dispatch table. |
 | `pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -421,7 +422,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1149, `inline_depth` 1041,
 | `src/pso/boss/TBoss4Type3.cpp` | fp_contract×3, opt_common_subs×2, opt_propagation×2, defer_codegen×1, pool_data×1 |
 | `src/pso/boss/TBoss4Type3_800524E8.cpp` | fp_contract×1 |
 | `src/pso/boss/TBoss4Zako.cpp` | fp_contract×9, opt_common_subs×4, dont_inline×3, auto_inline×3, inline_depth×3, defer_codegen×1, readonly_strings×1 |
-| `src/pso/boss/TBoss4ZakoDraw_8030A96C.cpp` | fp_contract×1, inline_depth×1, dont_inline×1 |
 | `src/pso/boss/TBoss4Zanzo.cpp` | fp_contract×4, readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/boss/TBoss5GryphonColli.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss5GryphonDemo.cpp` | readonly_strings×1 |

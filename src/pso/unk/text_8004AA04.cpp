@@ -24,7 +24,9 @@ typedef struct Obj_8004AA80 {
 
 extern "C" {
 void fn_8004AA04(Obj_8004AA04 *self);
-s32 get_bml_model(s32, s32);
+struct BmlResource;
+struct NJS_OBJECT;
+NJS_OBJECT *get_bml_model(BmlResource *, s32);
 void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2);
 void fn_8004AA04(Obj_8004AA04 *self) {
     s32 i;
@@ -38,7 +40,7 @@ void fn_8004AA04(Obj_8004AA04 *self) {
     self->items = 0;
 }
 void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2) {
-    s32 h;
+    BmlResource *h;
     s32 i;
     Rec_8004AA80 *r;
     s32 t;
@@ -57,7 +59,7 @@ void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2) {
     }
     for (i = 0; i < arg0->count; i++) {
         r = &arg1[i];
-        t = find_model_node(get_bml_model(h, r->a), r->b);
+        t = find_model_node((u32)get_bml_model(h, r->a), r->b);
         arg0->items[i] = new StripBufferPair(t, r->c);
     }
 }

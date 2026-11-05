@@ -264,9 +264,9 @@ typedef struct Data_8004DEE0 {
     u8 vt[4];
 } Data_8004DEE0;
 
-s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
+s32 get_bml_motion(BmlResource *, s32);
+s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
+s32 get_bml_model(BmlResource *, s32);
 void init_model_node_tables(void *, void *, s32);
 
 void __ct__8TObjBaseFP7TObject(void *, void *);
@@ -295,7 +295,7 @@ void *__vt__11TObjDFDemo0[13] = {
 Obj_8004DEE0 *TObjDFDemo0__ct(void *arg0, void *parent) {
     Obj_8004DEE0 *self = (Obj_8004DEE0 *)arg0;
     s32 k;
-    s32 h;
+    BmlResource *h;
     s32 i;
     s32 j;
 

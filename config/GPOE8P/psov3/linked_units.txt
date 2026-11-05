@@ -16,6 +16,7 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/rand.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/scanf.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/string.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/uart_console_io.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wchar_io.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_acos.c
@@ -241,7 +242,6 @@ pso/boss/TBoss4Type3_800D9960.cpp
 pso/boss/TBoss4Uro.cpp
 pso/boss/TBoss4Zako.cpp
 pso/boss/TBoss4ZakoDraw.cpp
-pso/boss/TBoss4ZakoDraw_8030A96C.cpp
 pso/boss/TBoss4ZakoDraw_8030AD38.cpp
 pso/boss/TBoss4ZakoDraw_8030AD58.cpp
 pso/boss/TBoss4Zanzo.cpp
@@ -1104,7 +1104,6 @@ pso/misc/TLobby_8026B06C.cpp
 pso/misc/TLobby_8026DE30.cpp
 pso/misc/TLobby_80271E48.cpp
 pso/misc/TLobby_8028A7C8.cpp
-pso/misc/TLobby_8028D714.cpp
 pso/misc/TLobby_8028EA28.cpp
 pso/misc/TLobby_80291D94.cpp
 pso/misc/TLobby_80299A60.cpp
@@ -1959,6 +1958,7 @@ pso/misc/pso_date.cpp
 pso/network/NetworkInfoCodec.cpp
 pso/network/NetworkInfoLoader.cpp
 pso/network/NetworkMessageTransport.cpp
+pso/network/NetworkPacketRuntime.cpp
 pso/network/NetworkTransport.cpp
 pso/network/TGameProtocol.cpp
 pso/network/TProtocol.cpp
@@ -3545,6 +3545,7 @@ pso/unk/text_803E4D8C.cpp
 pso/unk/text_803F1804.cpp
 pso/unk/text_803F4D10.cpp
 pso/unk/text_803F4D84.cpp
+pso/unk/text_80421620.cpp
 pso/unk/text_8042EAD4.cpp
 pso/unk/text_8042EE4C.cpp
 si/SIBios.c

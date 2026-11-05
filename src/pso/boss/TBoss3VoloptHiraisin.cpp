@@ -264,7 +264,7 @@ void TBoss3VoloptHiraisin::render() {
             translate_matrix(0, position.x, 4.5f, position.z);
             scale_matrix(NULL, scale, scale, scale);
             set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0)));
-            draw_chunk_object((void *)get_bml_model(volopt_hiraisin_resources, 0));
+            draw_chunk_object(get_bml_model(volopt_hiraisin_resources, 0));
             pop_matrix();
         }
     }
@@ -327,11 +327,11 @@ void TBoss3VoloptHiraisin::destroy() {
 void TBoss3VoloptHiraisin::init_models() {
     TUnk_8048FA00 *breakup;
     volopt_hiraisin_resources = boss3_volopt_resources;
-    volopt_hiraisin_spin_node = (ModelNode *)find_model_node(get_bml_model(boss3_volopt_resources, 0x10), 0xB);
+    volopt_hiraisin_spin_node = (ModelNode *)find_model_node((u32)get_bml_model(boss3_volopt_resources, 0x10), 0xB);
     volopt_hiraisin_spin_node->flags &= ~2;
     breakup = (TUnk_8048FA00 *)::operator new(0x10);
     if (breakup != NULL) {
-        breakup = init_from_model__11TBreakUpMdlFl(breakup, get_bml_model(volopt_hiraisin_resources, 0x10));
+        breakup = init_from_model__11TBreakUpMdlFl(breakup, (s32)get_bml_model(volopt_hiraisin_resources, 0x10));
     }
     volopt_hiraisin_breakup_model = breakup;
     volopt_hiraisin_stats = get_battle_base_stats(0x24);

@@ -54,7 +54,7 @@ s32 TBoss6PlotFalz::is_phase_reached() {
 TOMekaFish00::TOMekaFish00(void *set_data) {
     m_name = class_name;
     apply_object_set_data(set_data);
-    model = (void *)get_bml_model(model_resource, 0);
+    model = get_bml_model(model_resource, 0);
     texlist = TObjFish__sub_8001EDB0(model_resource, 0);
     motion = get_bml_motion(model_resource, 0);
     animation_end_frame = (f32)motion->frameCount - 1.0f;
@@ -90,7 +90,7 @@ void *TOMekaFish00::create(void *set_data) {
 TOMekaFish01::TOMekaFish01(void *set_data) {
     m_name = class_name;
     apply_object_set_data(set_data);
-    model = (void *)get_bml_model(model_resource, 0);
+    model = get_bml_model(model_resource, 0);
     texlist = TObjFish__sub_8001EDB0(model_resource, 0);
     motion = get_bml_motion(model_resource, 0);
     animation_end_frame = (f32)motion->frameCount - 1.0f;
@@ -126,7 +126,7 @@ void *TOMekaFish01::create(void *set_data) {
 TOBiwaMushi::TOBiwaMushi(void *set_data) {
     m_name = class_name;
     apply_object_set_data(set_data);
-    model = (void *)get_bml_model(model_resource, 0);
+    model = get_bml_model(model_resource, 0);
     texlist = TObjFish__sub_8001EDB0(model_resource, 0);
     motion = get_bml_motion(model_resource, 0);
     animation_end_frame = (f32)motion->frameCount - 1.0f;

@@ -1679,7 +1679,7 @@ u8 *TBoss4Type2__ct(u8 *arg0, s32 parent, s32 *arg2) {
     *(s32 *)((s8 *)arg0 + 0x38C) = arg2[0];
     ((TUnk_80486924 *)arg0)->apply_set_data(arg2 + 1);
     ((TUnk_80486924 *)arg0)->clear_lobby_object_state();
-    *(s32 *)((s8 *)arg0 + 0x390) = TBoss4Uro::get_instance_count();
+    *(BmlResource **)((s8 *)arg0 + 0x390) = TBoss4Uro::get_instance_count();
     *(s32 *)((s8 *)arg0 + 0x24) = 0;
     *(s32 *)((s8 *)arg0 + 0x34) = 0;
     VecCopy((Vec *)(arg0 + 0x38), (const Vec *)boss4_type2_start_position);

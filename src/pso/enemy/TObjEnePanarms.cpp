@@ -207,7 +207,7 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *set_data, s32 part) : TObj
     }
     part_index = part;
     texlist = TObjFish__sub_8001EDB0((BmlResource *)TObjEnePanarms__entry_params_resource, lbl_8043CD38[part_index]);
-    model = (void *)get_bml_model((BmlResource *)TObjEnePanarms__entry_params_resource, lbl_8043CD38[part_index]);
+    model = get_bml_model((BmlResource *)TObjEnePanarms__entry_params_resource, lbl_8043CD38[part_index]);
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     collision_body = init_collision_body_parts(this, lbl_80495458, 1);
     set_action_table(panbara_action_tables[part_index]);

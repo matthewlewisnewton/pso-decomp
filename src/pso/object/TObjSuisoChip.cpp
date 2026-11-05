@@ -256,7 +256,7 @@ s32 TObjSeabedSuisoBrakable::last_uv_scroll_tick;
 
 void *TObjSeabedSuisoBrakable::get_model(int index) {
     if (bml_resource != NULL) {
-        return (void *)get_bml_model(bml_resource, index);
+        return get_bml_model(bml_resource, index);
     }
     return NULL;
 }

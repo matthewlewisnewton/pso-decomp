@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `28e77474d`, 2026-11-05)
+## Summary (regenerated on this branch after merging main `73c22f96f`, 2026-11-05)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `28e77474d` (2026-11-05). Assembly is counted as functions;
+after merging main `73c22f96f` (2026-11-05). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 7 functions (13 source lines) | 4 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,796 | 876 |
-| Per-unit compiler overrides in `configure.py` | 163 | 163 |
+| CodeWarrior pragmas (excluding push/pop) | 5,794 | 875 |
+| Per-unit compiler overrides in `configure.py` | 164 | 164 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -70,9 +70,9 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,836 pragmas in 877 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 911, `auto_inline` 844,
-`opt_common_subs` 618, `scheduling` 260, `opt_propagation` 241,
+5,794 pragmas in 875 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1148, `inline_depth` 1040, `fp_contract` 894, `auto_inline` 840,
+`opt_common_subs` 611, `scheduling` 260, `opt_propagation` 238,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -127,7 +127,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-158 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+164 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -345,6 +345,14 @@ Source construct MWCC accepts and standard C++ does not:
 |---|---|---|---|---|
 | `pso/unk/text_801D40D4.cpp`, `pso/player/TObjPlayer_801D5220.cpp`, `pso/player/TPlyItem.cpp`, `pso/player/TObjPlayer_801D4CB8.cpp` | inventory walks (`TObjPlayer__sub_801D4368`, the `TItemList` walks, `destroy_subobjects_recursive`) | unit switch `-inline noauto` | `m_down` / `m_next` are `TObject *`. The slots are `TItemList`. `TItemList::link_down` / `link_next` are class-body inline and hold the one downcast. `-inline noauto` folds each call to `lwz` of `+0x14` / `+0xC`, the same bytes as the old cast. `-inline off` leaves a `bl` and grows the walks (`TObjPlayer__sub_801D4368` `0x248` → `0x278`). `-inline auto` also inlines unmarked `TObjPlayer__sub_801D4730` into `sort_by_key`, so it is not used. Every other function in these objects is unchanged versus `-inline off`. Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) (`-inline auto`); this repo's `TWindowMainMenu_802AD538.cpp` (`-inline noauto,level=1`). | Drop the switch and the accessors; a downcast at the walk is the portable spelling. |
 
+### `TBoss4ZakoDraw.cpp`: `-fp_contract on` ([#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303))
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/TBoss4ZakoDraw.cpp` | `TObjPlayer__sub_8030A9B0` | unit `configure.py` override `-fp_contract on` | The Falz shadow draw contracts `t*(t*t)` to `fnmsubs` and the tint to `fmadds`. Without the switch those are separate mul/add and the function is not the original bytes. The other eight functions in the unit stay byte-identical with the switch (9/9 linked). Not a per-function pragma. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`); Melee, TP, TWW, and Pikmin 2 contract floats globally. | Keep fused multiply-add, or accept the float differences. |
+
+`dhcp_state` is `volatile s32`. The timer callback `TLobby__sub_80423298` (`0x80423298`) and `dhcp_handle_reply` (`0x80424A48`) write it, and `TLobby__sub_80424CF4` stores 6 then reloads it before any call (`lwz` at `0x80424D1C` while r3 still holds 6). A port declares that object `volatile` and does not cache it across those calls. This is portable C++; it is not an MWCC pragma or a `*(volatile s32 *)&` pun.
+
 ## 6. Approved regressions
 
 None on main.
@@ -398,7 +406,7 @@ entry when the PR merges.
 | [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
-| [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
+| [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
 | [#167](https://github.com/matthewlewisnewton/pso-decomp/pull/167) | Unit switch `-opt nolifetimes,nocse,noprop,noloop` on `TMovie_80143988.cpp` (section 5); the pre-existing `__dcbt` in `pack_movie_frame` | `pack_movie_frame` matches 100% in plain C++. The earlier `__rlwinm` / `__rlwimi` calls are gone. `__dcbt` is the original data-cache touch (`dcbt r31, r0` / `dcbt r9, r0`). Port: drop the switch and the cache touch. |
 

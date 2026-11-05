@@ -72,9 +72,9 @@ struct Obj_8004EB78 {
     f32 c0;
 };
 typedef CameraAngles Pose_8004EB78;
-s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
+s32 get_bml_motion(BmlResource *, s32);
+s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
+s32 get_bml_model(BmlResource *, s32);
 
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 boss4_zanzo_bml_index_table[];
@@ -183,7 +183,7 @@ void *__dt__11TObjDFDemo2Fv(void *arg0, s16 arg1) {
 #define self ((Obj_8004EB78 *)arg0)
 void *TObjDFDemo2__ct(void *arg0, void *parent, void *arg2, void *arg3, void *arg4) {
     s32 k;
-    s32 cnt;
+    BmlResource *cnt;
     s32 i;
 
     __ct__8TObjBaseFP7TObject(self, parent);

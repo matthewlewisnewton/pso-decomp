@@ -8,6 +8,7 @@ See the [documentation index](../README.md) for current contributor and operator
 guides.
 
 - [Box-drop directive](box-drop-directive-evidence.md)
+- [DHCP step frames: dead homes for named locals](dhcp-step-frame-locals.md)
 - [Item-drop packet and payload contracts](item-drop-packet-contract.md)
 - [Battle parameter tables](battle-parameter-evidence.md)
 - [Cast-technique (6x47) register allocation](cast-technique-6x47-register-allocation.md)

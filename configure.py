@@ -447,6 +447,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # needed (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
+    # The Falz shadow draw contracts t*t*t into fnmsubs and the tint into fmadds.
+    "pso/boss/TBoss4ZakoDraw.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.
     "pso/enemy/TObjEneRe2Flower_800C3E14.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
@@ -1036,6 +1038,8 @@ if args.target == "psov3":
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/string.c",
                             mw_version="GC/2.6", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c",
+                            mw_version="GC/1.3", cflags=cflags_native_recovered),
+                Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c",
                             mw_version="GC/1.3", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/uart_console_io.c",
                             mw_version="GC/2.6", cflags=cflags_native_recovered),

@@ -39,9 +39,9 @@ typedef struct Data_80050194
   u8 pad3c[0x48 - 0x3C];
   u8 vt[4];
 } Data_80050194;
-s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
+s32 get_bml_motion(BmlResource *, s32);
+s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
+s32 get_bml_model(BmlResource *, s32);
 
 void __ct__8TObjBaseFP7TObject(void *, void *);
 
@@ -83,7 +83,7 @@ void *__dt__11TObjDFDemoFFPvs(void *arg0, s16 arg1) {
 Obj_80050194 *TObjDFDemoF__ct(Obj_80050194 *arg0, void *parent) {
   s32 k;
   s32 *ids2;
-  s32 h;
+  BmlResource *h;
   Obj_80050194 *new_var;
   s32 i;
   __ct__8TObjBaseFP7TObject(arg0, parent);

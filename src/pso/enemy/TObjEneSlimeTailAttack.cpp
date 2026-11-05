@@ -751,15 +751,15 @@ void TObjEneSlime::render() {
         if (temp_r31 != 0) {
             model_render_flags |= 0x400000;
             set_chunk_render_flags(1);
-            draw_chunk_object((void *)get_bml_model((BmlResource *)slime_bml_resource, temp_r30_2));
+            draw_chunk_object(get_bml_model((BmlResource *)slime_bml_resource, temp_r30_2));
             clear_chunk_render_flags();
             model_render_flags &= 0xFFBFFFFF;
         } else {
             set_chunk_render_flags(2);
             set_cull_back();
-            draw_chunk_object((void *)get_bml_model((BmlResource *)slime_bml_resource, temp_r30_2));
+            draw_chunk_object(get_bml_model((BmlResource *)slime_bml_resource, temp_r30_2));
             set_cull_front();
-            draw_chunk_object((void *)get_bml_model((BmlResource *)slime_bml_resource, temp_r30_2));
+            draw_chunk_object(get_bml_model((BmlResource *)slime_bml_resource, temp_r30_2));
             set_cull_none();
             clear_chunk_render_flags();
         }
@@ -985,7 +985,7 @@ void TObjEneSlimeOne::initialize_slime_instance_state() {
   new_var2 = &(actor->variant);
   id = ((s32 *) lbl_804966DC)[*new_var2];
   actor->texlist = TObjFish__sub_8001EDB0((s32)(actor->m_380), id);
-  actor->model = (void *)get_bml_model((BmlResource *)actor->m_380, id);
+  actor->model = get_bml_model((BmlResource *)actor->m_380, id);
   VecCopy(&actor->prev_position, VecCopy(&actor->home_position, VecCopy(&actor->center, &actor->position)));
   actor->collision_body = (CollisionBody *)init_collision_body_parts(actor, lbl_80496370, 1);
   actor->set_action_table((TObjMotionAction *)lbl_8049639C);
@@ -2142,7 +2142,7 @@ TObjEneSlimeTailAttack::TObjEneSlimeTailAttack(TObject *parent, const Vec *posit
     BmlResource *resource = (BmlResource *)get_instance__15TObjEneSlimeOneFv();
     u32 id = ((s32 *)lbl_804966F4)[this->owner->get_attack_target()];
     texlist = TObjFish__sub_8001EDB0((s32)resource, id);
-    model = (void *)get_bml_model(resource, id);
+    model = get_bml_model(resource, id);
     action_table = lbl_8049639C;
     set_action_table((TObjMotionAction *)lbl_8049639C);
     motion_list = resource->motions;

@@ -81,12 +81,12 @@ void TObjSeabedSuisoBrakable::load_resources() {
         break;
     }
     }
-    if ((model = (NJS_OBJECT *)get_bml_model(bml_resource, 12)) != NULL) {
+    if ((model = get_bml_model(bml_resource, 12)) != NULL) {
         model12_nodes[0] = find_object_node(model, 1);
         model12_nodes[1] = find_object_node(model, 2);
         model12_nodes[2] = find_object_node(model, 4);
     }
-    if ((p = (void *)get_bml_model(bml_resource, 13)) != NULL) {
+    if ((p = get_bml_model(bml_resource, 13)) != NULL) {
         model13_nodes[0] = find_object_node((NJS_OBJECT *)p, 1);
         model13_nodes[1] = find_object_node((NJS_OBJECT *)p, 2);
         model13_nodes[2] = find_object_node((NJS_OBJECT *)p, 3);

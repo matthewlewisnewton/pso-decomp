@@ -159,6 +159,8 @@ struct TCameraCtrl : public TObject {
     void update_follow_motion_state();
     static s32 init_projection_state();
     static void set_target(int a0, int a1);
+    // Falz zako passes the scissor rect in the second argument (FiPv).
+    static void set_viewport_scissor(int mode, void *rect);
 };
 
 typedef char TCameraCtrl_size[sizeof(TCameraCtrl) == 0x1D4 ? 1 : -1];
