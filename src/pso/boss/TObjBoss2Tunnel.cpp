@@ -78,7 +78,6 @@ struct Card_8007CCD0 {
     s32 size;
 };
 struct Vec2_8007DD28 { f32 x; f32 y; };
-struct Vtx_8007D828 { f32 x; f32 y; f32 z; u32 color; };
 struct Quad_8007D828 { f32 x0; f32 y0; f32 x1; f32 y1; f32 u0; f32 v0; f32 u1; f32 v1; };
 // The per-player block at the end of the card file: class flags, levels, then names.
 struct SnapshotPlayerBlock {
@@ -652,7 +651,7 @@ void TObjBoss2Tunnel__sub_8007DB80(void) {
 
 void draw_snapshot_capture_overlay(void) {
     Quad_8007D828 q;
-    Vtx_8007D828 v[4];
+    ProjectedVertex v[4];
     s32 i;
     set_default_alpha_blend();
     for (i = 0; i < 4; i++) {
@@ -755,6 +754,10 @@ void draw_snapshot_capture_overlay(void) {
     restore_saved_depth_alpha_state();
 }
 
+#pragma push
+// Porting exception (approved by Matt 2026-11-04 4:38 PM PT, see docs/porting-exceptions.md):
+// the copy-filter flag has to be computed before the capture calls. Remove this pragma when porting off MWCC.
+#pragma opt_propagation off
 /* Takes a snapshot of the screen with the C stick frame and saves it to the memory card. */
 s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
     SnapshotFrameBuffer *frame;
@@ -954,6 +957,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
     }
     return 0;
 }
+#pragma pop
 
 s32 memcard_check_snapshot(s32 arg0, s32 *arg1) {
     s32 temp_r3;

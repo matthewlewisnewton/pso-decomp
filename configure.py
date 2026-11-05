@@ -436,17 +436,16 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
     # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
-    # with -fp_contract on, so the flag belongs on the unit rather than as
-    # per-function pragmas left over from the split units.
-    # TObjBoss2Tunnel_8003B138 and _802F2070 also stay byte-exact (same functions exact as before)
-    # with -fp_contract on for the whole unit, which replaces their per-function pragmas.
-    # _802F2070 is deferred with its definitions in reverse address order: the
-    # ctor's function-local static and guard precede run_task's table guard in
-    # .sbss, as in the original. TObjBoss2Tunnel.cpp keeps upstream #185's
-    # switches; each is needed (docs/porting-exceptions.md sections 5 and 7).
+    # with -fp_contract on (all three tunnel units), so the flag belongs on the
+    # unit rather than as per-function pragmas left over from the split units.
     "pso/boss/TObjBoss2Tunnel_8003B138.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # Deferred, with definitions in reverse address order: the ctor's
+    # function-local static and guard precede run_task's table guard in .sbss,
+    # as in the original (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
-    "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-opt nopropagation", "-pool off", "-sdata 4", "-fp_contract on")},
+    # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
+    # needed (docs/porting-exceptions.md section 5).
+    "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.

@@ -6,6 +6,12 @@
 
 // Velocity/position ramp. init_piecewise_curve fills it, eval_piecewise_curve
 // reads the speed, and sample_piecewise_curve reads the distance.
+// A screen-space vertex for draw_projected_quads: position, then packed ARGB.
+struct ProjectedVertex {
+    f32 x, y, z;
+    u32 color;
+};
+
 struct PiecewiseCurve {
     f32 accel;
     f32 decel;
@@ -98,7 +104,7 @@ struct TObjBoss2Tunnel : public TObject {
     static void poll_pso_screen_load();
     static void show_message_and_wait(s32 arg0);
     static s32 verify_snapshot_checksum();
-    static void draw_projected_quads(void *vertices, int count);
+    static void draw_projected_quads(ProjectedVertex *vertices, int count);
     static s32 load_snapshot();
     static s32 save_snapshot_to_card();
     static s32 save_snapshot();
