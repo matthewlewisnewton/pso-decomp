@@ -1638,9 +1638,10 @@ extern "C" void TBoss6Type1__sub_802B6944(TBoss6Type1 *self) {
 // Sword sweep: while anim set 14 is between 10.5 and 15, damage players inside the
 // triangle position → m_4c8 → effect_points[1], then remember effect_points[1].
 extern "C" void TBoss6Type1__sub_802B715C(TBoss6Type1 *self) {
-    f32 t;
-    t = self->anims[0].t;
-    if (self->anims[0].motion == get_bml_motion(self->m_3fc, TBoss6Type1__motion_set_table[14].ids[0]) &&
+    f32 t = self->anims[0].t;
+    Boss6Motion *motion = self->anims[0].motion;
+    Vec *tip = &self->effect_points[1];
+    if (motion == get_bml_motion(self->m_3fc, TBoss6Type1__motion_set_table[14].ids[0]) &&
         !(t < lbl_805DE390) && !(t > 15.0f)) {
         f32 end = lbl_805DE390 + self->anims[0].speed;
         s32 n;
@@ -1651,23 +1652,21 @@ extern "C" void TBoss6Type1__sub_802B715C(TBoss6Type1 *self) {
         self->update_effect_points();
         n = TLobby::get_game_mode();
         for (i = 0; i < n; i++) {
-            TObjPlayer *p = TObjPlayer::get_player_data(i);
+            Vec rel;
+            Vec seg;
             Vec *chain[4];
-            s32 inside;
-            s32 k;
             f32 cross_y[3];
+            Vec c;
+            s32 inside = 1;
+            s32 k;
+            TObjPlayer *p = TObjPlayer::get_player_data(i);
             if (is_active__14TBoss6PlotFalzFv() == 0) {
                 continue;
             }
-            chain[0] = &self->position;
+            chain[0] = chain[3] = &self->position;
             chain[1] = &self->m_4c8;
-            chain[2] = &self->effect_points[1];
-            chain[3] = &self->position;
-            inside = 1;
+            chain[2] = tip;
             for (k = 0; k < 3; k++) {
-                Vec seg;
-                Vec rel;
-                Vec c;
                 VecCopy(&seg, chain[k + 1]);
                 subtract_vector(&seg, chain[k]);
                 VecCopy(&rel, &p->position);
@@ -1678,7 +1677,7 @@ extern "C" void TBoss6Type1__sub_802B715C(TBoss6Type1 *self) {
                 cross_y[k] = c.y;
                 if (k > 0) {
                     f32 prev = cross_y[k - 1];
-                    if ((prev < 0.0f && c.y >= 0.0f) || (prev > 0.0f && c.y <= 0.0f)) {
+                    if ((prev < 0.0f && cross_y[k] >= 0.0f) || (prev > 0.0f && cross_y[k] <= 0.0f)) {
                         inside = 0;
                         break;
                     }
@@ -1693,7 +1692,7 @@ extern "C" void TBoss6Type1__sub_802B715C(TBoss6Type1 *self) {
             }
         }
     }
-    VecCopy(&self->m_4c8, &self->effect_points[1]);
+    VecCopy(&self->m_4c8, tip);
 }
 
 void TBoss6Type1::spawn_grav_ball() {
