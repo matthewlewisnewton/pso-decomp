@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/TItemList.h"
 #include "pso/item/TItemList_801D3780.h"
 #include "pso/item/TItemList_801D57B0.h"
 #include "pso/player/TObjPlayer_801D3554.h"
@@ -19,7 +20,6 @@ int TItemList__sub_801D5868(void*, void*);
 void create_drop_nodes__9TItemListFPvPvPvPvi(void *arg0, void *arg1, void *arg2, Rec_801D35FC *arg3, s32 arg4);
 s32 TItemList__sub_801D5854(s32, s32);
 s32 copy_item_data__9TItemListFv(s32, s32);
-s32 create_node__9TItemListFPvPvPvSc(s32, s32, s32, s32);
 }
 
 void TObjPlayer::insert_item_node(int pool, int floor, int owner, int data, int id) {
@@ -32,7 +32,7 @@ void TObjPlayer::insert_item_node(int pool, int floor, int owner, int data, int 
         TItemList__sub_801D5838((void *)temp_r31);
         ((TObjPlayer *)temp_r30)->set_field4(id);
         copy_item_data__9TItemListFv(temp_r30, data);
-        create_node__9TItemListFPvPvPvSc(pool, owner, floor, 0);
+        TItemList::create_node((void *)pool, (void *)owner, (void *)floor, 0);
         TItemList__sub_801D5804((s32 *)pool);
     }
 }
@@ -49,7 +49,9 @@ void create_drop_nodes__9TItemListFPvPvPvPvi(void *arg0, void *arg1, void *arg2,
         if (TItemList__sub_801D5844(p) != 0) {
             TItemList__sub_801D5838(p);
             ((void (*)(void *, void *))copy_drop_node)(q, arg3);
-            ((void (*)(void *, void *, void *, s32))create_node__9TItemListFPvPvPvSc)(arg0, arg2, arg1, i);
+            // TItemList_801D3780.cpp declares the index signed char; the original
+        // gave this unit a plain int, so the counter reaches r6 unextended.
+        ((void (*)(void *, void *, void *, s32))&TItemList::create_node)(arg0, arg2, arg1, i);
             TItemList__sub_801D5804((s32 *)arg0);
             p += 4;
             q++;

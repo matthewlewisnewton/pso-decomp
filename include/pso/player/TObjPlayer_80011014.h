@@ -39,7 +39,6 @@ s32 get_current_floor(void);
 int get_item_field_6__10TObjPlayerFPv(void *p);
 int get_player_data__10TObjPlayerFi(int a0);
 s32 get_type__10TObjPlayerFPv(void *p);
-u8 is_locally_controlled__10TObjPlayerFPv(u8 *arg0);
 BOOL is_split_screen(void);
 void main(void);
 // The frame counter main advances once a frame.

@@ -626,7 +626,9 @@ struct TObjPlayer : public TObjChara {
     static void free_shared_data();
     static void finalize_shared();
     static void init_shared();
-    static u8 check_camera_mode();
+    // Every caller outside TObjPlayer_801BE1C0.cpp declares this s32; the
+    // body keeps the (u8) narrowing the original emits.
+    static s32 check_camera_mode();
     int is_android();
     int is_newman();
     int check_stat_flag_41c();
