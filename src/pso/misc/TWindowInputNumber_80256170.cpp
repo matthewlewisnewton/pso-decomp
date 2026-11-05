@@ -215,7 +215,7 @@ void render__18TWindowInputNumberFv(TWindowInputNumber *arg0) {
     temp_r3 = ((TWindowBase *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x74));
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, temp_r3);
-    draw_arrows__18TWindowInputNumberFv(arg0, (Ctx_802563A0 *)temp_r3, (Digit_802561E8 *)((TWindowBase *)arg0)->get_array_entry(arg0->selectedDigit), arg0->is_confirmed());
+    draw_arrows__18TWindowInputNumberFv(arg0, temp_r3, (Digit_802561E8 *)((TWindowBase *)arg0)->get_array_entry(arg0->selectedDigit), arg0->is_confirmed());
     {
         void *temp_ptr = (void *) arg0->unknown70;
         if (temp_ptr != NULL) {

@@ -218,7 +218,7 @@ s32 forward_render__20TWindowSubStatusDispFv(s32, TWindowDrawContext *);
 void TWindowSubStatusDisp__sub_80268C80(u8 *arg0) {
     TWindowDrawContext *temp_r3;
 
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
+    temp_r3 = get_draw_context__11TWindowBaseFPv(arg0);
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     ((TUnk_804D0658 *)arg0)->draw_setting(temp_r3);

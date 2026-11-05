@@ -46,12 +46,10 @@ u8 *create_sub_item_list_window(s32 arg0, s32 arg1, s16 arg2) {
 void TWindowSubItemList::render() {
     TWindowDrawContext *window_key_board_soft = get_draw_context__11TWindowBaseFPv(this);
     u8 *arg0 = (u8 *)this;
-    s32 window_key_board_soft;
-    window_key_board_soft = (s32)get_draw_context__11TWindowBaseFPv(this);
     ((TWindowBase *)arg0)->draw_window_frame((void *)window_key_board_soft);
     draw_visible_window_entries(arg0, arg0 + 0x24, window_key_board_soft);
     ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry(window_key_board_soft);
-    ((TWindowSubItemList *)arg0)->sub_8027ACF8((u8 *)window_key_board_soft);
+    ((TWindowSubItemList *)arg0)->sub_8027ACF8(window_key_board_soft);
     draw_item_list_capacity(arg0, window_key_board_soft, this->m_8c, 0x1E);
     if ((u32) *(u32 *)&this->status_display != 0U) {
         forward_render__20TWindowSubStatusDispFv(this->status_display, window_key_board_soft);

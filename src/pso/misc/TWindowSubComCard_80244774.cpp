@@ -301,7 +301,7 @@ void window_request_show(void *object) {
     allow_rendering__7TObjectFv((TObject *)object);
 }
 
-s32 TWindowBase::setup_window_draw_context(s32 arg1) {
+TWindowKeyBoardSoft *TWindowBase::setup_window_draw_context(s32 arg1) {
     TWindowKeyBoardSoft *window;
     s32 var_r4;
     TUnk_804CE018 *self = (TUnk_804CE018 *)this;
@@ -321,10 +321,10 @@ s32 TWindowBase::setup_window_draw_context(s32 arg1) {
     }
     window->set_open_tick(var_r4);
     apply_window_closing_stretch((u8 *)window, self->unk_22);
-    return (s32)window;
+    return window;
 }
 
-s32 TWindowDD::draw_default_entry(s32 arg0) {
+TWindowKeyBoardSoft *TWindowDD::draw_default_entry(s32 arg0) {
     return ((TWindowBase *)arg0)->setup_window_draw_context((s32)fn_8026CB68());
 }
 

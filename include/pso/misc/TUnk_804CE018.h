@@ -4,6 +4,8 @@
 #include <stddef.h>
 #include "pso/misc/TWindowAddition.h"
 
+struct TWindowKeyBoardSoft;
+
 // Shared window image from 0x1C through 0x5F. The methods stay on TWindowBase
 // so their symbols stay close__11TWindowBaseFv and the rest of that set.
 // Descendants that no longer repeat this prefix inherit this class.

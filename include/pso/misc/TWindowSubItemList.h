@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/misc/TWindowMenuIconLine.h"
 
+struct TWindowDrawContext;
+
 struct TWindowSubItemList : public TWindowMenuIconLine {
     virtual ~TWindowSubItemList();
     void sub_8027ACF8(TWindowDrawContext *);

@@ -36,7 +36,7 @@ void TUnk_804D0948::render() {
     u8 *arg0 = (u8 *)this;
     s32 n;
     void *p;
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
+    temp_r3 = get_draw_context__11TWindowBaseFPv(this);
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     if (!(this->state_flags & 0x80)) {

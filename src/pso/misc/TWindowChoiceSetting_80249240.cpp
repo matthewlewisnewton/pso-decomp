@@ -29,8 +29,8 @@ void fn_80269004(void *);
 extern s32 __vt__20TWindowChoiceSetting[];
 
 void render__20TWindowChoiceSettingFv(u8 *arg0) {
-    s32 temp_r3;
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
+    TWindowDrawContext *temp_r3;
+    temp_r3 = get_draw_context__11TWindowBaseFPv(arg0);
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     ((TUnk_804D0658 *)arg0)->draw_setting(temp_r3);

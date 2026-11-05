@@ -751,7 +751,7 @@ void TWindowMenu::render_selected_entry(TWindowDrawContext *window_key_board_sof
 void render__11TWindowMenuFv(TWindowMenu *arg0) {
     TWindowDrawContext *window_key_board_soft;
 
-    window_key_board_soft = (s32)get_draw_context__11TWindowBaseFPv(arg0);
+    window_key_board_soft = get_draw_context__11TWindowBaseFPv(arg0);
     ((TWindowBase *)arg0)->draw_window_frame((void *)window_key_board_soft);
     draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, window_key_board_soft);
     if (!(arg0->m_70 & 0x80)) {

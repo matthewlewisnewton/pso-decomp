@@ -5,6 +5,8 @@
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowAddition.h"
 
+struct TWindowDrawContext;
+
 struct TWindowMenu : public TUnk_804CE018 {
     virtual ~TWindowMenu();
     s32 get_selected_entry();

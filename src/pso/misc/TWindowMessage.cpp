@@ -388,7 +388,7 @@ s32 TLobby__sub_80269DA4(V2_80269DA4 size, void *arg1) {
 }
 
 extern "C" {
-s32 draw_visible_window_entries(void *, void *, int);
+s32 draw_visible_window_entries(void *, void *, TWindowDrawContext *);
 void *construct_with_parent__15TWindowAdditionFPv(void *, void *, s16, s32);
 extern s32 __vt__14TWindowMessage[];
 extern s32 lbl_805D3980;
@@ -398,11 +398,11 @@ void *__dt__14TWindowMessageFv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 
 void TWindowMessage::render() {
-    s32 temp_r3;
+    TWindowDrawContext *temp_r3;
     s32 arg0 = (s32)this;
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
+    temp_r3 = get_draw_context__11TWindowBaseFPv(this);
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
-    draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), (int)temp_r3);
+    draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), temp_r3);
 }
 
 void TWindowMessage::run_task() {

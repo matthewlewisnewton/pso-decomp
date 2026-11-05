@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/misc/TWindowMenuIconLine.h"
 
+struct TWindowDrawContext;
+
 struct TWindowSubEquipKind : public TWindowMenuIconLine {
     virtual ~TWindowSubEquipKind();
     void draw_tab_label(TWindowDrawContext *);

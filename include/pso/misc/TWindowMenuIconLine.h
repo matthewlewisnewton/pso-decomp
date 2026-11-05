@@ -3,6 +3,7 @@
 #include "types.h"
 #include "pso/misc/TWindowAddition.h"
 
+struct TWindowDrawContext;
 struct Scroll_8026D790;
 
 class TWindowMenuIconLine : public TWindowAddition {
@@ -11,7 +12,7 @@ public:
     virtual void run_task();
     virtual void render();
     virtual void vfunc_6(u32, s32);
-    void draw_selected_list_entry(s32);
+    void draw_selected_list_entry(TWindowDrawContext *);
     void update_scroll_offset();
     void clamp_item_list_scroll();
     void center_list_selection();

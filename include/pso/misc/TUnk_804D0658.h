@@ -4,6 +4,8 @@
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowAddition.h"
 
+struct TWindowDrawContext;
+
 class TUnk_804D0658 : public TUnk_804CE018 {
 public:
     virtual ~TUnk_804D0658();
