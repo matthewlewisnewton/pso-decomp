@@ -18,7 +18,7 @@ entry says *reason not recorded*.
 ## Summary (regenerated on this branch after merging main `1db58393d`, 2026-11-04)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `7ba27eaf2` (2026-11-04). Assembly is counted as functions;
+after merging main `1db58393d` (2026-11-04). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 7 functions (13 source lines) | 4 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
-| Per-unit compiler overrides in `configure.py` | 147 | 147 |
+| CodeWarrior pragmas (excluding push/pop) | 5,856 | 884 |
+| Per-unit compiler overrides in `configure.py` | 149 | 149 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -70,9 +70,9 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,860 pragmas in 886 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240,
+5,856 pragmas in 884 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 924, `auto_inline` 844,
+`opt_common_subs` 623, `scheduling` 262, `opt_propagation` 240,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -103,7 +103,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-147 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+149 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -133,9 +133,17 @@ in `.rodata`. Port: keep FMA or accept small float differences; a normal
 |---|---|---|---|---|
 | `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `scale_point_about_pivot`, `apply_context_transform_to_rect`, `apply_window_closing_stretch`, `clip_textured_quad`, `init_text_window_layout` | unit `configure.py` override `-fp_contract on` | These five functions emit contracted multiplies. In the matched object: `fmadds` at `scale_point_about_pivot`+0x1c/+0x40, `apply_context_transform_to_rect`+0x1c/+0x34/+0x58/+0x70, `apply_window_closing_stretch`+0x40, `clip_textured_quad`+0x80/+0xa8, and `fnmsubs` at `clip_textured_quad`+0xd0/+0xf8; `init_text_window_layout` has four `fmadds` and four `fnmsubs`. Turning contraction off drops the unit from 2156/2156 (17/17) to 1652/2156 (14/17): the transform 79.35% of 124, the stretch 92% of 100, the clip 87.86% of 280. The unit-level flag matches every section of the object that the old per-function `#pragma fp_contract on` produced (`.text` 2156 bytes, `.rodata` 8, `.mwcats.text`, `.comment`). Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`), and the same switch already used here for `PadRumble.cpp` and `CreationCamera.cpp`. | Keep fused multiply-add, or accept the float differences. |
 
-`pso/boss/TBoss7TentacleNeedle.cpp` ([#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299)) sets `-inline off,deferred` and `-fp_contract on`. Deferred emission orders `__vt__20TBoss7TentacleNeedle` before `__vt__14TBoss7Tentacle` while `.text` stays in address order. `-fp_contract on` because the position jitter and the tentacle curve fuse to `fmadds`. Precedent: `-inline auto` and `-fp_contract on` in [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203), and `-fp_contract on` globally in Melee, TP, TWW, and Pikmin 2. Port: drop both flags; the C++ is the behavior. The constructor copies `pos` with `emitter_position.x = pos->x` (and y, z) into `create_particle_emitter`. MWCC emits `lfs`/`stfs` for those floats; the original copies the same three words with `lwz`/`stw`. The function is the same size and stays short of that block. No per-function pragma. The unit is not linked while that copy differs.
+### `TBoss7TentacleNeedle.cpp`: GC/2.0, `-inline off,deferred`, `-fp_contract on` ([#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299))
 
-`pso/boss/TBoss7PhotonBullet_802EF26C.cpp` ([#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299)) sets `-inline off,deferred` and `-fp_contract on`. `run_task__18TBoss7PhotonBulletFv` contracts `2.0f * aim + pos` into `fmadds`; with `-fp_contract off` the function grows by `0x10`. Deferred emission, with the definitions written bottom to top, places `__vt__18TBoss7PhotonBullet` then `__vt__15TBoss7PhotonPad` while `.text` stays in address order. Those vtables are the ones MWCC emits for the virtual destructor, `run_task`, and `render`; there is no hand-written table. `TOBJECT_OUT_OF_LINE_HELPERS` keeps `queue_destruction` as the external call. Without deferred the compiler emits the pad vtable first. With the flags the whole unit matches the split object: `.text` 1428, `.data` 116, `.sdata2` 28, every function 100%. Precedent: `-inline deferred` is already used in this tree, and `-fp_contract on` is in [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209). Port: drop the flags; the C++ is the behavior.
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/TBoss7TentacleNeedle.cpp` | `__ct__20TBoss7TentacleNeedleFP7TObjectP3Vec` (`0x802EFD08`, GC/2.0); `TBoss7Tentacle__sub_802F0608` and the constructor (`-fp_contract on`); `TObjPlayer__sub_802F0D30` and the unit's `.rodata`/`.sdata2` (`-inline off,deferred`) | unit `configure.py` override `mw_version: GC/2.0` with `-inline off,deferred -fp_contract on` | The constructor passes `create_particle_emitter` a stack copy of `pos`, written as `const Vec emitter_position = *pos;`. The original loads all three words before storing any: `lwz r6,0(r31); lwz r5,4(r31); lwz r0,8(r31); stw r6,8(r1); stw r5,0xc(r1); stw r0,0x10(r1)` at `0x802EFE38`. MWCC before 2.5 leaves a `const` local whose address escapes out of the worst-case alias set, so the scheduler may move the third load above the stores; GC/2.6 adds it and interleaves them (`lwz r5; lwz r0; stw r5; stw r0; lwz r0; stw r0`). Under GC/2.6 the constructor is 97.88% and the unit 40/41; under GC/2.0 every one of the 41 functions and every section matches, and no other function changes between the two compilers. Without `-fp_contract on` the unit drops to 39/41 (`TBoss7Tentacle__sub_802F0608` 91.13%, constructor 96.92%): the tentacle curve and the position jitter fuse to `fmadds`. Without deferred inlining `TObjPlayer__sub_802F0D30` falls to 69.59% and `.rodata`/`.sdata2` are emitted out of order (the vtables also come out tentacle first). No pragmas, no asm, no casts in the copy. Precedent: per-object `mw_version` in [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L257), and this repo's GC/2.0 units for compiler-expanded struct copies (`TItemSpecialEvent_803531FC.cpp`, `Boss5GryphonBehavior.cpp`, `TBoss8Dragon.cpp`, ...). | Drop the overrides; the C++ is the behavior. |
+
+### `TBoss7PhotonBullet_802EF26C.cpp`: `-inline off,deferred`, `-fp_contract on` ([#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299))
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/TBoss7PhotonBullet_802EF26C.cpp` | `run_task__18TBoss7PhotonBulletFv` (`0x802EF2AC`); unit vtable order | unit `configure.py` override `-inline off,deferred -fp_contract on` | `run_task` contracts `2.0f * aim + travel` into `fmadds`; with `-fp_contract off` the function grows by `0x10`. Deferred emission, with the definitions written bottom to top, places `__vt__18TBoss7PhotonBullet` then `__vt__15TBoss7PhotonPad` while `.text` stays in address order; without it the compiler emits the pad vtable first. Both vtables are the compiler's own (virtual destructor, `run_task`, `render`); `TOBJECT_OUT_OF_LINE_HELPERS` keeps `queue_destruction` as the external call. With the flags the unit matches every section (`.text` 1428, `.data` 116, `.sdata2` 28, 8/8 functions). Precedent: `-fp_contract on` in [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209), and `-inline off,deferred` on `TObjTombstone.cpp` and other units here. | Drop the flags; the C++ is the behavior. |
 
 ### `-opt noprop`: `TEffIndirectCtrl_802A88AC.cpp` ([#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291))
 
