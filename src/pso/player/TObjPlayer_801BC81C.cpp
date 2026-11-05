@@ -70,7 +70,7 @@ s32 TObjPlayer__sub_801C2244(void *, void *);
 s32 get_class_index__10TObjPlayerFv(void *);
 void TObjPlayer__sub_801BEF44(void *, void *);
 void TObjPlayer__sub_801C1F78(void *, s32);
-void clamp_and_set_unit_value__10TObjPlayerFiUci(void *, u8, s16);
+void clamp_and_set_unit_value__10TObjPlayerFUcl(void *, u8, s16);
 void TObjPlayer__sub_801D955C(void *, s32);
 void init_session_technique_caps__10TObjPlayerFPvPv(Player_801BC948 *self, Src_801BC948 *src);
 
@@ -85,7 +85,7 @@ void init_session_technique_caps__10TObjPlayerFPvPv(Player_801BC948 *self, Src_8
     TObjPlayer__sub_801D955C(self->techs, get_class_index__10TObjPlayerFv(self));
     ((TObjPlayer *)(self->techs))->copy_all_technique_entries((void *)0x1D);
     for (i = 0; i < 0x13; i++) {
-        clamp_and_set_unit_value__10TObjPlayerFiUci(self, src->levels[i] + src->bonus[i].pad[0], i);
+        clamp_and_set_unit_value__10TObjPlayerFUcl(self, src->levels[i] + src->bonus[i].pad[0], i);
     }
     for (i = 0; i < 5; i++) {
         TObjPlayer__sub_801BEF44(&self->recs[i], &src->recs[i]);
@@ -105,7 +105,7 @@ void TObjPlayer__sub_801BCA14(u8 *player, void *arg1) {
     ((TObjPlayer *)(player + 0x428))->copy_all_technique_entries((void *)0x1D);
     i = 0;
     do {
-        clamp_and_set_unit_value__10TObjPlayerFiUci(player, get_slot_value_checked__10TObjPlayerFl(arg1, i) + TObjPlayer__sub_801C21C4(arg1, i), (s16)i);
+        clamp_and_set_unit_value__10TObjPlayerFUcl(player, get_slot_value_checked__10TObjPlayerFl(arg1, i) + TObjPlayer__sub_801C21C4(arg1, i), (s16)i);
         i += 1;
     } while (i < 0x13);
 }
