@@ -1,11 +1,11 @@
 #ifndef PSO_MISC_TUNK_804D0618_H
 #define PSO_MISC_TUNK_804D0618_H
 #include "types.h"
-#include "pso/misc/TUnk_804CDFE8.h"
+#include "pso/misc/TWindowAddition.h"
 
 struct Scroll_8026D790;
 
-class TUnk_804D0618 : public TUnk_804CDFE8 {
+class TUnk_804D0618 : public TWindowAddition {
 public:
     virtual ~TUnk_804D0618();
     virtual void run_task();

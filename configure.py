@@ -435,6 +435,14 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
+    # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
+    # with -fp_contract on, so the flag belongs on the unit rather than as
+    # per-function pragmas left over from the split units.
+    # TObjBoss2Tunnel_8003B138 and _802F2070 also stay byte-exact (same functions exact as before)
+    # with -fp_contract on for the whole unit, which replaces their per-function pragmas.
+    "pso/boss/TObjBoss2Tunnel_8003B138.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-opt nopropagation", "-pool off", "-sdata 4", "-fp_contract on")},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.
@@ -694,6 +702,17 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TLobby_8001EF5C.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the
+    # run_task switch table (written from the last function back). -pool off
+    # keeps each title and window size its own reloc, and -str reuse,readonly
+    # matches the read-only string objects. The whole unit stays byte-exact.
+    # Precedent: dtk-template configure.py unit cflags, and this tree's
+    # TObjBoss2Tunnel / TBoss6EmptyWarp unit flags.
+    "pso/quest/TQuestListVM.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-str reuse,readonly")},
+    # Status gauge: contracting the unit makes `0.299f * depth + ctx->depth`
+    # the fmadds at 0x80257118. The bar multiply stays a separate fmuls
+    # because the 7.5 scale is applied to the sum before the tick subtract.
+    "pso/misc/TWindowSubStatusDisp_80256B94.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf

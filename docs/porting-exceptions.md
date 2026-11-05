@@ -15,19 +15,19 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `7ba27eaf2`, 2026-11-04)
+## Summary (regenerated on this branch after merging main `f6dedd375`, 2026-11-04)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `7ba27eaf2` (2026-11-04). Assembly is counted as functions;
+after merging main `f6dedd375` (2026-11-04). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 5 functions (9 source lines) | 3 |
 | MWCC intrinsics | 83 | 54 |
-| Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
-| Per-unit compiler overrides in `configure.py` | 148 | 148 |
+| Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
+| CodeWarrior pragmas (excluding push/pop) | 5,842 | 880 |
+| Per-unit compiler overrides in `configure.py` | 153 | 153 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -69,9 +69,9 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,860 pragmas in 886 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240,
+5,842 pragmas in 880 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 917, `auto_inline` 844,
+`opt_common_subs` 618, `scheduling` 260, `opt_propagation` 240,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -94,6 +94,12 @@ small float differences without FMA).
 |---|---|---|---|---|
 | `src/pso/effect/TEF_LensFlare.cpp` | `TEF_LensFlare::render` | one scoped `#pragma opt_propagation off` | MWCC propagation needed for the exact receiver/descriptor cursor codegen. Approved by Matt 2026-11-04. | Drop it. |
 
+### Approved: `TUnk_804E4B3C::update_spawn_timer` ([#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `TUnk_804E4B3C::update_spawn_timer` (`0x802F2664`) | one `#pragma opt_common_subs off` | Approved by Matt 2026-11-04 4:38 PM PT. The original prologue is `lfs f0, lbl_805DECB4` then `lfs f2, 0x58(r3)` / `lfs f1, 0x5c(r3)` / `fadds f1, f2, f1` (threshold in f0, then `m_58` and `m_5c`). Without the pragma, common-subexpression elimination sinks that load: the same 44 instructions come out with the threshold in f2 and the add in f1/f0 (8 words differ) whether the threshold is a local, a compound assignment, or the direct compare. A unit `-opt nocse` keeps the timer and breaks `spawn_segment_row_a`, `spawn_segment_row_b`, and `advance_effect_timer`. The constructor `TObjBoss2Tunnel__sub_802F2A2C` does not use this pragma. | Drop the pragma. The value is `m_58 += m_5c`, then subtract `lbl_805DECB4` on wrap; a port does not need MWCC's load schedule. |
+
 ### Approved: `TWindowKeyBoardSoft::set_open_tick` ([#219](https://github.com/matthewlewisnewton/pso-decomp/pull/219))
 
 | File | Function | What | Why | Port should |
@@ -102,7 +108,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-148 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+153 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -142,9 +148,72 @@ and [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configu
 `pso/effect/TEF_LensFlare.cpp` (this change) sets `-fp_contract on` because the
 recovered renderer contracts its attenuation and displacement multiply-adds
 into `fnmsubs`/`fmadds`. The same unit places `lbl_80438E40` with
+
+#240 adds `pso/quest/TQuestListVM.cpp`: `-inline off,deferred`, `-pool off`,
+`-str reuse,readonly`. Deferred inlining emits the unit from the last function
+back, so `__vt__12TQuestListVM` (`.data` `0x804C9D50`) precedes
+`jumptable_804C9D80`, the switch table for `vfunc_11__12TQuestListVMFv`,
+instead of following the function that references it. `-pool off` stops the
+titles and window sizes from sharing one `.rodata` base: each is its own
+object (`quest_file_prefix` at `0x8044BEE8`, `quest_file_99_name` at
+`0x8044BEF4`, `download_list_title_jp` at `0x8044BF04`, `download_list_title`
+at `0x8044BF14`, `tmp_buf_owner_name` at `0x8044BF20`,
+`TQuestListVM__class_name_string` at `0x8044BF30`, `description_window_size`
+at `0x8044BF40`, `detail_window_size` at `0x8044BF48`,
+`quest_file_name_format` at `0x8044BF50`) with its own relocation.
+`-str reuse,readonly` keeps those strings read-only and merged when the text
+repeats. Affected functions are the whole translation unit, including
+`vfunc_11__12TQuestListVMFv` (the switch),
+`__ct__12TQuestListVMFP7TObjectP15TShopWindowBaseP8TObjBase` (installs the
+vtable), `vfunc_6__12TQuestListVMFll`, `display_message__12TQuestListVMFPCcl`,
+and `close_windows__12TQuestListVMFv`. Objdiff of
+`psov3/pso/quest/TQuestListVM` with these flags is byte-identical on every
+function and every named data object. The aggregated `.rodata` section in the
+object is one trailing zero shorter than the original slice; that pad is
+alignment in the linked DOL, which matches. Precedent:
+[dtk-template `configure.py` unit cflags](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203)
+(per-unit `cflags` such as `-inline deferred` / `-str reuse,readonly`) and
+this tree's `TObjBoss2Tunnel_8003B138.cpp` (`-fp_contract on`) and
+`TBoss6EmptyWarp_802B0E2C.cpp` (`-str reuse,readonly`). Port: drop the flags;
+vtable-versus-switch order and string pooling may differ.
+
+`pso/effect/TEF_LensFlare.cpp` sets `-fp_contract on` because the recovered
+renderer contracts its attenuation and displacement multiply-adds into
+`fnmsubs`/`fmadds`. The same unit places `lbl_80438E40` with
 `__declspec(section ".rodata")` so the original `{0,0,-1}` vector symbol stays
 in `.rodata`. Port: keep FMA or accept small float differences; a normal
 `const` is enough for the vector.
+
+#322 (split from #240) builds `pso/misc/TWindowSubStatusDisp_80256B94.cpp`
+with `-fp_contract on` (unit-level flag allowed under Matt's 2026-11-04
+2:37 PM PT policy). Reason: the original fuses the depth term of
+`TWindowSubStatusDisp__sub_80257024` into one `fmadds` at `0x80257118`
+(`0.299f * self->depth + ctx->depth`, then `-1.0f / ...`); MWCC only emits
+that from plain C with contraction on, so the unit no longer needs the
+`__fmadds` intrinsic. Functions affected: only `TWindowSubStatusDisp__sub_80257024`
+changes code; the other ten functions in the unit (`destroy`, `sub_80256BDC`,
+`sub_80256BF8`, `sub_80256BFC`, `calc_bar_width`, `sub_80256C40`,
+`draw_status_gauge_bar`, `step_gauge_bar_width`, `sub_80257298`, `init_from`)
+are byte-identical with and without the flag, and `.sdata2` is exact. The bar
+is written `sum *= 7.5f; bar = (tick - sum) * 17.0f;`, which stays
+`fmuls` / `fsubs` / `fmuls` under contraction. Evidence: per-function
+objdiff of the unit with and without the flag, recorded in the #322 PR body. Precedent:
+[dtk-template configure.py#L209](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209)
+(`-fp_contract on`), and in-tree `TObjTombstone.cpp` / `PadRumble.cpp`.
+The signed `open_tick` cast's `0x4330000080000000` bias is
+`lbl_8044EE40`. That object was an unclaimed 8-byte `.rodata` gap; the only
+relocation to it is the `lis`/`lfd` in `TWindowSubStatusDisp__sub_80257024`,
+so the range `0x8044EE40..0x8044EE48` belongs to this unit. It is
+`scope:local` for the same reason as the other unreferenced compiler pools
+(`TObjFish_8033CCC8`'s `lbl_80477F08`): the compiler names the pool `@N`, and
+nothing else loads the export. With the bytes in the unit, objdiff's
+`functionRelocDiffs=data_value` treats `@N` and `lbl_8044EE40` as the same
+load, and `sub_80257024` is byte-identical. The unit's `.sdata2` floats
+`lbl_805DCE58` through `lbl_805DCECC` are the same kind of unreferenced pool
+(`0.0f` and the other literals, including `lbl_805DCECC` = 2.0f) and are
+`scope:local` too, which is what makes the whole unit linkable. Port: drop the flag;
+`0.299f * depth + ctx->depth` may become a separate multiply and add. The
+cast stays a cast.
 
 ### `TWindowKeyBoardSoft_8024E68C.cpp`: `-fp_contract on` ([#219](https://github.com/matthewlewisnewton/pso-decomp/pull/219))
 
@@ -192,7 +261,7 @@ entry when the PR merges.
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
-| [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
+| [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | Unit `-fp_contract on` for `TObjBoss2Tunnel.cpp`, `TObjBoss2Tunnel_8003B138.cpp`, and `TObjBoss2Tunnel_802F2070.cpp`. | Allowed unit flag. The timer's `#pragma opt_common_subs off` is the approved entry above. `-fp_contract on` replaces the old per-function contraction pragmas; each of these units stays byte-exact. Precedent: dtk-template `configure.py` `-fp_contract off` and this tree's other `-fp_contract on` units. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.

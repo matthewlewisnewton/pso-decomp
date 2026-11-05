@@ -9,7 +9,7 @@ extern "C" {
 void TAdSinglePlyChrSelectGC::start_character_load_task() {
     u32 var_r31;
 
-    if ((TLobby__sub_8001EEF4() != 0) && (this->try_acquire_slot() != 0)) {
+    if ((TLobby::tmp_buf_is_free() != 0) && (this->try_acquire_slot() != 0)) {
         var_r31 = (int)::operator new(0x440);
         if (var_r31 != 0U) {
             var_r31 = (u32)init_from_id_lists((BmlResource *)var_r31, 6, (u32 *)(((u8 *)this) + 0x60),

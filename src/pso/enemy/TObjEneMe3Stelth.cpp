@@ -1001,7 +1001,7 @@ void TObjEneMe3Stelth::handle_breakup_state(s32 arg1) {
                 ofs.x = TObjEneMe3Stelth__data_805DA840;
                 ofs.y = TObjEneMe3Stelth__data_805DA824;
                 ofs.z = TObjEneMe3Stelth__data_805DA844;
-                ((TObjBoss2Tunnel *)(&ofs))->init_zako((u8 *)&this->position, F(s32, 0x60));
+                TObjBoss2Tunnel::init_zako((Vec *)&ofs, (u8 *)&this->position, F(s32, 0x60));
                 TObjPlayer::spawn_effect_f8((s32)&ofs, 0x14);
             } else if (((TObjMotion *)arg0)->is_passing_frame((f32)TObjEneMe3Stelth__data_805DA850) != 0) {
                 F(s32, 0x3CC) |= 8;
