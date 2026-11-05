@@ -4,11 +4,6 @@
 #include "pso/boss/TObjBoss2Tunnel.h"
 #include "pso/player/TObjPlayer.h"
 
-struct Vtx_803E2BCC {
-    f32 x, y, z;
-    u32 color;
-};
-
 extern "C" {
 s32 GXBegin(int, int, u16);
 extern const f32 lbl_805E1080;
@@ -25,8 +20,7 @@ typedef union {
     f32 f32;
 } WGPipe_803E2BCC;
 #define GXWGFifo_803E2BCC (*(volatile WGPipe_803E2BCC *)0xCC008000)
-// FPvi is the existing void-buffer/int-count interface; the buffer contains xyz/color records.
-void TObjBoss2Tunnel::draw_projected_quads(void *vertices, int n) {
+void TObjBoss2Tunnel::draw_projected_quads(ProjectedVertex *vertices, int n) {
     s32 i;
     f32 one;
     GXBegin(0x98, 4, n);
@@ -36,15 +30,15 @@ void TObjBoss2Tunnel::draw_projected_quads(void *vertices, int n) {
         f32 y;
         f32 w;
         u32 c;
-        w = one / ((Vtx_803E2BCC *)vertices)->z;
-        y = ((Vtx_803E2BCC *)vertices)->y * w;
-        x = ((Vtx_803E2BCC *)vertices)->x * w;
+        w = one / vertices->z;
+        y = vertices->y * w;
+        x = vertices->x * w;
         GXWGFifo_803E2BCC.f32 = x;
         GXWGFifo_803E2BCC.f32 = y;
         GXWGFifo_803E2BCC.f32 = w;
-        c = ((Vtx_803E2BCC *)vertices)->color;
+        c = vertices->color;
         GXWGFifo_803E2BCC.u32 = ((c & 0xFFFFFF) << 8) | ((c & 0xFF000000) >> 24);
-        vertices = (Vtx_803E2BCC *)vertices + 1;
+        vertices++;
     }
 }
 
