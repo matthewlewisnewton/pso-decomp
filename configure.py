@@ -704,7 +704,6 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         # sin_table_lookup / cos_table_lookup load the 4-byte sin_cos_table
         # pointer with lis/addi. The .sdata2 constants in this TU stay
         # lfs@sda21, so non-const small data is off and sdata2 stays on.
-        "pso/unk/text_803D6438.cpp": {"cflags": _switch(cflags_middleware, "-sdata 0")},
     }),
     # Sega's Ginja model library.
     ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {

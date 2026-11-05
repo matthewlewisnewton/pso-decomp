@@ -815,6 +815,7 @@ pso/item/WeaponSpecialSelection.cpp
 pso/map/FloorArea_8029E764.cpp
 pso/map/FloorLifecycleTables.cpp
 pso/math/MatrixTransforms.cpp
+pso/math/MatrixVector.cpp
 pso/menu/TAdEndText_80307A34.cpp
 pso/menu/TAdEndText_80399904.cpp
 pso/menu/TAdGuideTxtGC.cpp
@@ -869,6 +870,11 @@ pso/misc/TCameraCtrl_8013F25C.cpp
 pso/misc/TCameraCtrl_801A2FE0.cpp
 pso/misc/TCameraCtrl_801A3C24.cpp
 pso/misc/TCameraCtrl_801A6E60.cpp
+pso/misc/TCameraCtrl_803D6538.cpp
+pso/misc/TCameraCtrl_803D66DC.cpp
+pso/misc/TCameraCtrl_803D676C.cpp
+pso/misc/TCameraCtrl_803D6960.cpp
+pso/misc/TCameraCtrl_803D749C.cpp
 pso/misc/TChCrCharSelect_802937D4.cpp
 pso/misc/TChCrCharSelect_802937E8.cpp
 pso/misc/TChCrCharSelect_80293860.cpp
@@ -3519,9 +3525,12 @@ pso/unk/text_803D4418.cpp
 pso/unk/text_803D4448.cpp
 pso/unk/text_803D4714.cpp
 pso/unk/text_803D619C.cpp
+pso/unk/text_803D6438.cpp
+pso/unk/text_803D647C.cpp
 pso/unk/text_803D64F8.cpp
 pso/unk/text_803D8030.cpp
 pso/unk/text_803D8098.cpp
+pso/unk/text_803D8910.cpp
 pso/unk/text_803D8DE0.cpp
 pso/unk/text_803D8F74.cpp
 pso/unk/text_803D9650.cpp

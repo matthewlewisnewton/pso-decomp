@@ -7,13 +7,13 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 27 | 6 |
+| asm | 40 | 10 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5860 | 886 |
-| configure.py per-unit override | 148 | 148 |
+| pragma | 5862 | 891 |
+| configure.py per-unit override | 147 | 147 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -29,6 +29,19 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
 | `src/pso/math/MatrixTransforms.cpp:56` | `asm void subtract_vector(Vec *v, const Vec *sub) {` |
 | `src/pso/math/MatrixTransforms.cpp:57` | `#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"` |
+| `src/pso/math/MatrixVector.cpp:23` | `asm f32 vector_length(const Vec *v) {` |
+| `src/pso/math/MatrixVector.cpp:24` | `#include "orig_asm/pso/math/MatrixVector/vector_length.inc"` |
+| `src/pso/math/MatrixVector.cpp:49` | `asm f32 matrix_identity(void *m) {` |
+| `src/pso/math/MatrixVector.cpp:50` | `#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"` |
+| `src/pso/misc/TCameraCtrl_803D749C.cpp:557` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_f32_to_u8.inc"` |
+| `src/pso/misc/TCameraCtrl_803D749C.cpp:561` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_u8_to_f32.inc"` |
+| `src/pso/unk/text_803D647C.cpp:28` | `asm f32 sin_table_lookup(s32 angle) {` |
+| `src/pso/unk/text_803D647C.cpp:29` | `#include "orig_asm/pso/unk/text_803D647C/sin_table_lookup.inc"` |
+| `src/pso/unk/text_803D647C.cpp:32` | `asm f32 cos_table_lookup(s32 angle) {` |
+| `src/pso/unk/text_803D647C.cpp:33` | `#include "orig_asm/pso/unk/text_803D647C/cos_table_lookup.inc"` |
+| `src/pso/unk/text_803D8910.cpp:12` | `#include "orig_asm/pso/unk/text_803D8910/vec3_add_to.inc"` |
+| `src/pso/unk/text_803D8910.cpp:39` | `#include "orig_asm/pso/unk/text_803D8910/vec3_dot.inc"` |
+| `src/pso/unk/text_803D8910.cpp:51` | `#include "orig_asm/pso/unk/text_803D8910/vec3_cross.inc"` |
 | `src/pso/unk/text_803D9650.cpp:6` | `asm void matrix_apply_translation(MtxP m, f32 x, f32 y, f32 z) {` |
 | `src/pso/unk/text_803D9650.cpp:7` | `#include "orig_asm/pso/unk/text_803D9650/matrix_apply_translation.inc"` |
 | `src/pso/unk/text_803D96A8.cpp:94` | `asm f32 normalize_vector(Vec *v) {` |
@@ -353,7 +366,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/unk/text_8039739C.cpp` | `-O4,p` | Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs in the runtime lib under its own name. |
 | `pso/quest/QuestOpcodeHandlers.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestThread.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
-| `pso/unk/text_803D6438.cpp` | `-sdata 0` | sin_table_lookup / cos_table_lookup load the 4-byte sin_cos_table pointer with lis/addi. The .sdata2 constants in this TU stay lfs@sda21, so non-const small data is off and sdata2 stays on. |
 | `pso/unk/text_803D8098.cpp` | `(multi-line entry; see configure.py)` | render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 / _restgpr_25, and its glyph quads are the inlined SDK FIFO writers (sth/stw to 0xCC008000), not calls. -inline on inlines only functions marked inline, so queue_debug_text stays a call from debug_printf_at. The matrix helpers in text_803D8910.cpp match under the ginja defaults. |
 | `pso/misc/TKeyBoardControl_803F0C50.cpp` | `GC/1.2.5n` | Epilogue order (mtlr before the restores) only 1.2.5n produces. |
 | `pso/unk/text_803F1804.cpp` | `GC/1.2.5n` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -632,7 +644,11 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TCameraCtrl_8006C8E4.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, fp_contract×1 |
 | `src/pso/misc/TCameraCtrl_8006CC30.cpp` | fp_contract×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/misc/TCameraCtrl_80082FCC.cpp` | opt_common_subs×1 |
-| `src/pso/misc/TCameraCtrl_803D6538.cpp` | scheduling×15, use_lmw_stmw×5, opt_common_subs×4, peephole×3, optimize_for_size×3, optimization_level×1 |
+| `src/pso/misc/TCameraCtrl_803D6538.cpp` | scheduling×3, opt_common_subs×1 |
+| `src/pso/misc/TCameraCtrl_803D66DC.cpp` | use_lmw_stmw×1, opt_common_subs×1 |
+| `src/pso/misc/TCameraCtrl_803D676C.cpp` | use_lmw_stmw×1 |
+| `src/pso/misc/TCameraCtrl_803D6960.cpp` | scheduling×5, use_lmw_stmw×1 |
+| `src/pso/misc/TCameraCtrl_803D749C.cpp` | scheduling×7, use_lmw_stmw×4, peephole×3, optimize_for_size×3, opt_common_subs×2, optimization_level×1 |
 | `src/pso/misc/TCameraCtrl_native.h` | opt_common_subs×6, inline_depth×3, dont_inline×3, opt_propagation×3, auto_inline×2 |
 | `src/pso/misc/TChCrEffCtrlPl_80339658.cpp` | readonly_strings×1, opt_common_subs×1, fp_contract×1 |
 | `src/pso/misc/TChCrEffTag.cpp` | fp_contract×1 |
@@ -1225,7 +1241,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/unk/text_803D4448.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/unk/text_803D4714.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/unk/text_803D619C.cpp` | scheduling×2, peephole×2, optimize_for_size×1, dont_inline×1, inline_depth×1 |
-| `src/pso/unk/text_803D6438.cpp` | scheduling×2 |
+| `src/pso/unk/text_803D6438.cpp` | scheduling×1 |
+| `src/pso/unk/text_803D647C.cpp` | scheduling×1 |
 | `src/pso/unk/text_803D64F8.cpp` | scheduling×1 |
 | `src/pso/unk/text_803D8030.cpp` | scheduling×1 |
 | `src/pso/unk/text_803D8DE0.cpp` | scheduling×3, dont_inline×1, inline_depth×1 |
