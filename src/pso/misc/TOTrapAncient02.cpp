@@ -219,47 +219,6 @@ struct Trap_8017ADC4 {
     s32 timer;
 };
 
-struct Base_8017B6D8 { char pad[0x18]; };
-
-struct V_8017B6D8 : Base_8017B6D8 {
-    virtual void pv8();
-    virtual void pv9();
-    virtual void pv10();
-    virtual void pv11();
-    virtual void pv12();
-    virtual void init(void *);
-};
-
-struct Trap_8017B6D8 {
-    u32 id;
-    u8 pad4[0x18 - 0x4];
-    void *vt;
-    u8 pad1C[0x24 - 0x1C];
-    s32 f24;
-    u8 pad28[0x30 - 0x28];
-    u32 flags;
-    void *f34;
-    u8 pad38[0x64 - 0x38];
-    s32 f64;
-    f32 f68;
-    u8 pad6C[0x84 - 0x6C];
-    s32 f84;
-    u8 pad88[0x326 - 0x88];
-    s16 mode;
-    s16 state;
-    u8 pad32A[0x334 - 0x32A];
-    f32 range;
-    f32 dist;
-    u16 player;
-    u8 pad33E[0x344 - 0x33E];
-    f32 h344;
-    f32 h348;
-    s32 f34C;
-    s32 reset;
-    s32 timer;
-    s32 f358;
-};
-
 u16 get_entity_id(void *);
 void obj_setFlags30(void *, u32);
 s32 is_split_screen();
@@ -271,7 +230,7 @@ void *__dt__6TOTrapFv(void *arg0, s16 arg1);
 void * TOTrap__ct(void *, void *, void *);
 void *TOTrapAncient02R__ct(TOTrapAncient02R *arg0, void *arg1, void *arg2);
 void * __dt__15TOTrapAncient02Fv(void *arg0, s16 arg1);
-void * TOTrapAncient02__ct(void *arg0, void *arg1, void *arg2);
+void * TOTrapAncient02__ct(TOTrapAncient02 *self, void *parent, void *creator);
 
 u8 is_current_floor_switch_set(u16);
 void __dl__7TObjectFPv(void *);
@@ -282,9 +241,9 @@ s32 push_matrix();
 s32 post_translate_matrix(void *);
 void draw_ginja_model(s32 model);
 
-extern u32 TOTrapAncient02__shared_resource;
+extern BmlResource *TOTrapAncient02__shared_resource;
 extern s32 __vt__15TOTrapAncient02[];
-extern u32 lbl_805D31B4;
+extern const char *lbl_805D31B4;
 extern s32 lbl_805D31B8;
 extern s32 actor_frame_tick;
 extern s32 game_difficulty_selection;
@@ -368,38 +327,38 @@ void TOTrapAncient02R::submit_cursor_and_notify() {
 
 #pragma push
 #pragma fp_contract on
-void *TOTrapAncient02__ct(void *arg0, void *arg1, void *arg2) {
-    TOTrap__ct(((Trap_8017B6D8 *)arg0), arg1, arg2);
-    ((Trap_8017B6D8 *)arg0)->vt = (void *)__vt__15TOTrapAncient02;
-    ((Trap_8017B6D8 *)arg0)->id = lbl_805D31B4;
-    ((V_8017B6D8 *)((Trap_8017B6D8 *)arg0))->init(arg2);
-    ((TObjChara *)arg0)->initialize_position_copies();
-    ((TObjChara *)arg0)->calc_attach_pos();
-    ((Trap_8017B6D8 *)arg0)->f34 = *(void **)(*(u8 **)(TOTrapAncient02__shared_resource + 0x42C) + 8);
-    ((Trap_8017B6D8 *)arg0)->f24 = *(s32 *)(*(u8 **)(TOTrapAncient02__shared_resource + 0x42C) + 0xC);
-    ((Trap_8017B6D8 *)arg0)->mode = 0;
-    ((Trap_8017B6D8 *)arg0)->state = 0;
-    ((Trap_8017B6D8 *)arg0)->range = lbl_805DBAA0 * ((Trap_8017B6D8 *)arg0)->f68 + lbl_805DBA9C;
-    ((Trap_8017B6D8 *)arg0)->dist = ((Trap_8017B6D8 *)arg0)->range;
-    ((Trap_8017B6D8 *)arg0)->reset = lbl_805DBA9C + (f32)((Trap_8017B6D8 *)arg0)->f84;
-    if (((Trap_8017B6D8 *)arg0)->reset < 0) {
-        ((Trap_8017B6D8 *)arg0)->reset = 0;
+void *TOTrapAncient02__ct(TOTrapAncient02 *self, void *parent, void *creator) {
+    TOTrap__ct(self, parent, creator);
+    *(s32 **)((s8 *)self + 0x18) = __vt__15TOTrapAncient02;
+    self->m_name = lbl_805D31B4;
+    self->apply_object_set_data(creator);
+    self->initialize_position_copies();
+    self->calc_attach_pos();
+    self->model = (void *)TOTrapAncient02__shared_resource->models->model;
+    self->texlist = TOTrapAncient02__shared_resource->models->m_c;
+    self->mode = 0;
+    self->phase = 0;
+    self->range = lbl_805DBAA0 * self->scale.x + lbl_805DBA9C;
+    self->dist = self->range;
+    self->reset = lbl_805DBA9C + (f32)self->set_params[0];
+    if (self->reset < 0) {
+        self->reset = 0;
     }
-    ((Trap_8017B6D8 *)arg0)->timer = ((Trap_8017B6D8 *)arg0)->reset;
-    ((Trap_8017B6D8 *)arg0)->player = 0xFFFF;
-    init_collision_body_parts(((Trap_8017B6D8 *)arg0), (void *)&trap_ancient02_collision_body, 1);
-    ((TObjCollidable *)arg0)->refresh_collision_body_centers();
-    ((Trap_8017B6D8 *)arg0)->flags |= 0x60000000;
-    ((TObjPlayer *)arg0)->register_object_by_id();
-    ((Trap_8017B6D8 *)arg0)->h348 = lbl_805DBA80;
-    ((Trap_8017B6D8 *)arg0)->h344 = lbl_805DBA80;
-    ((Trap_8017B6D8 *)arg0)->f34C = 0;
-    if (((Trap_8017B6D8 *)arg0)->f64 > 0) {
-        ((Trap_8017B6D8 *)arg0)->f358 = 1;
+    self->timer = self->reset;
+    self->player = 0xFFFF;
+    init_collision_body_parts(self, (void *)&trap_ancient02_collision_body, 1);
+    self->refresh_collision_body_centers();
+    self->actorFlags |= 0x60000000;
+    self->register_object_by_id();
+    self->h348 = lbl_805DBA80;
+    self->h344 = lbl_805DBA80;
+    self->m_34c = 0;
+    if (self->rotation.roll > 0) {
+        self->m_358 = 1;
     } else {
-        ((Trap_8017B6D8 *)arg0)->f358 = 0;
+        self->m_358 = 0;
     }
-    return ((Trap_8017B6D8 *)arg0);
+    return self;
 }
 #pragma pop
 
@@ -418,12 +377,12 @@ void *__dt__15TOTrapAncient02Fv(void *trap, s16 arg1) {
 
 void TOTrapAncient02::load_resources() {
     char *base = (char *)&trap_ancient02_torabasami_resources;
-    void *obj;
+    BmlResource *obj;
     switch (get_current_floor_area()) {
     case AREA_VR_TEMPLE_ALPHA:
     case AREA_VR_TEMPLE_BETA:
         obj = new BmlResource(1, (BmlResourceDescriptor *)(base + 0x20), 0, 0, (void *)(0));
-        TOTrapAncient02__shared_resource = (u32) obj;
+        TOTrapAncient02__shared_resource = obj;
         lbl_805D5AE0 = (u32)find_object_node((NJS_OBJECT *)get_bml_model(obj, 0), 2)->model;
         lbl_805D5AE4 = 2;
         lbl_805D5ADC = 0;
@@ -438,15 +397,15 @@ void TOTrapAncient02::load_resources() {
     case AREA_SEASIDE_NIGHT:
     case AREA_TOWER:
         obj = new BmlResource(1, (BmlResourceDescriptor *)(base + 0x38), 0, 0, (void *)(0));
-        TOTrapAncient02__shared_resource = (u32) obj;
+        TOTrapAncient02__shared_resource = obj;
         lbl_805D5AE0 = (u32)find_object_node((NJS_OBJECT *)get_bml_model(obj, 0), 2)->model;
         lbl_805D5AE4 = 1;
         lbl_805D5ADC = 0;
         break;
     default:
         obj = new BmlResource(1, (BmlResourceDescriptor *)(base + 8), 0, 0, (void *)(0));
-        TOTrapAncient02__shared_resource = (u32) obj;
-        lbl_805D5AE0 = *(u32 *)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)((u8 *)obj + 0x42C) + 8) + 0x2C) + 0x2C) + 4);
+        TOTrapAncient02__shared_resource = obj;
+        lbl_805D5AE0 = (u32)((NJS_OBJECT *)obj->models->model)->child->child->model;
         lbl_805D5AE4 = 1;
         lbl_805D5ADC = 0;
         break;
@@ -454,16 +413,16 @@ void TOTrapAncient02::load_resources() {
 }
 
 void TOTrapAncient02::destroy_instance() {
-    if ((u32) TOTrapAncient02__shared_resource != 0U) {
-        delete (BmlResource *)((void*)TOTrapAncient02__shared_resource);
-        TOTrapAncient02__shared_resource = 0U;
+    if (TOTrapAncient02__shared_resource != NULL) {
+        delete TOTrapAncient02__shared_resource;
+        TOTrapAncient02__shared_resource = NULL;
     }
 }
 
 void *TOTrapAncient02::create(void *arg0) {
-    void *o = TObject::operator new(0x35C);
+    TOTrapAncient02 *o = (TOTrapAncient02 *)TObject::operator new(sizeof(TOTrapAncient02));
     if (o != NULL) {
-        o = TOTrapAncient02__ct(o, tl_05, arg0);
+        o = (TOTrapAncient02 *)TOTrapAncient02__ct(o, tl_05, arg0);
     }
     return o;
 }
@@ -484,33 +443,33 @@ void TOTrapAncient02::render() {
 }
 
 void TOTrapAncient02::draw_effect_chain() {
-    u8 *temp_r31;
-    u8 *temp_r31_2;
-    u8 *temp_r31_3;
-    u8 *temp_r31_4;
+    NJS_OBJECT *base;
+    NJS_OBJECT *upper;
+    NJS_OBJECT *head;
+    NJS_OBJECT *side;
 
     push_matrix();
     set_current_texture_list((GinjaTextureList *)(this->texlist));
-    post_translate_matrix((u8 *)&this->position);
+    post_translate_matrix(&this->position);
     rotate_matrix_y(0, this->rotation.yaw);
-    temp_r31 = (unsigned char *) (this->model);
-    translate_matrix(0, (f32) (*(f32 *)((s8 *)temp_r31 + 8)), (f32) (*(f32 *)((s8 *)temp_r31 + 0xC) + this->h344), (f32) (*(f32 *)((s8 *)temp_r31 + 0x10)));
-    draw_ginja_model((*(s32 *)((s8 *)temp_r31 + 4)));
+    base = (NJS_OBJECT *)this->model;
+    translate_matrix(0, base->pos[0], base->pos[1] + this->h344, base->pos[2]);
+    draw_ginja_model((s32)base->model);
     push_matrix();
-    temp_r31_2 = (unsigned char *) (*(void **)((s8 *)temp_r31 + 0x2C));
-    translate_matrix(0, (f32) (*(f32 *)((s8 *)temp_r31_2 + 8)), (f32) (*(f32 *)((s8 *)temp_r31_2 + 0xC) + this->h348), (f32) (*(f32 *)((s8 *)temp_r31_2 + 0x10)));
-    draw_ginja_model((*(s32 *)((s8 *)temp_r31_2 + 4)));
+    upper = base->child;
+    translate_matrix(0, upper->pos[0], upper->pos[1] + this->h348, upper->pos[2]);
+    draw_ginja_model((s32)upper->model);
     TParticleCtrl::begin_effect_render();
     push_matrix();
-    temp_r31_3 = (unsigned char *) (*(void **)((s8 *)temp_r31_2 + 0x2C));
-    post_translate_matrix(temp_r31_3 + 8);
-    draw_ginja_model((*(s32 *)((s8 *)temp_r31_3 + 4)));
+    head = upper->child;
+    post_translate_matrix(head->pos);
+    draw_ginja_model((s32)head->model);
     pop_matrix();
     push_matrix();
-    temp_r31_4 = (unsigned char *) (*(void **)((s8 *)temp_r31_3 + 0x30));
-    post_translate_matrix(temp_r31_4 + 8);
+    side = head->sibling;
+    post_translate_matrix(side->pos);
     rotate_matrix_y(0, this->m_34c);
-    draw_ginja_model((*(s32 *)((s8 *)temp_r31_4 + 4)));
+    draw_ginja_model((s32)side->model);
     pop_matrix();
     TParticleCtrl::end_effect_render();
     pop_matrix();
@@ -518,47 +477,47 @@ void TOTrapAncient02::draw_effect_chain() {
 }
 
 void TOTrapAncient02::render_particle_chain() {
-    u8 *temp_r31;
-    u8 *temp_r31_2;
-    u8 *temp_r31_3;
-    u8 *temp_r31_4;
+    NJS_OBJECT *base;
+    NJS_OBJECT *upper;
+    NJS_OBJECT *head;
+    NJS_OBJECT *side;
 
     push_matrix();
-    post_translate_matrix((u8 *)&this->position);
+    post_translate_matrix(&this->position);
     rotate_matrix_y(0, this->rotation.yaw);
-    temp_r31 = (unsigned char *) (this->model);
-    translate_matrix(0, (f32) (*(f32 *)((s8 *)temp_r31 + 8)), (f32) (*(f32 *)((s8 *)temp_r31 + 0xC) + this->h344), (f32) (*(f32 *)((s8 *)temp_r31 + 0x10)));
+    base = (NJS_OBJECT *)this->model;
+    translate_matrix(0, base->pos[0], base->pos[1] + this->h344, base->pos[2]);
     setup_particle_tev(0);
     set_current_texture_list((GinjaTextureList *)(this->texlist));
     load_projection_tex_matrix(0x38E);
-    draw_ginja_model((*(s32 *)((s8 *)temp_r31 + 4)));
+    draw_ginja_model((s32)base->model);
     reset_particle_tev();
     push_matrix();
-    temp_r31_2 = (unsigned char *) (*(void **)((s8 *)temp_r31 + 0x2C));
-    translate_matrix(0, (f32) (*(f32 *)((s8 *)temp_r31_2 + 8)), (f32) (*(f32 *)((s8 *)temp_r31_2 + 0xC) + this->h348), (f32) (*(f32 *)((s8 *)temp_r31_2 + 0x10)));
+    upper = base->child;
+    translate_matrix(0, upper->pos[0], upper->pos[1] + this->h348, upper->pos[2]);
     setup_particle_tev(0);
     set_current_texture_list((GinjaTextureList *)(this->texlist));
     load_projection_tex_matrix(0x38E);
-    draw_ginja_model((*(s32 *)((s8 *)temp_r31_2 + 4)));
+    draw_ginja_model((s32)upper->model);
     reset_particle_tev();
     TParticleCtrl::begin_effect_render();
     push_matrix();
-    temp_r31_3 = (unsigned char *) (*(void **)((s8 *)temp_r31_2 + 0x2C));
-    post_translate_matrix(temp_r31_3 + 8);
+    head = upper->child;
+    post_translate_matrix(head->pos);
     setup_particle_tev(1);
     set_current_texture_list((GinjaTextureList *)(this->texlist));
     load_projection_tex_matrix(0x38E);
-    draw_ginja_model((*(s32 *)((s8 *)temp_r31_3 + 4)));
+    draw_ginja_model((s32)head->model);
     reset_particle_tev();
     pop_matrix();
     push_matrix();
-    temp_r31_4 = (unsigned char *) (*(void **)((s8 *)temp_r31_3 + 0x30));
-    post_translate_matrix(temp_r31_4 + 8);
+    side = head->sibling;
+    post_translate_matrix(side->pos);
     rotate_matrix_y(0, this->m_34c);
     setup_particle_tev(0);
     set_current_texture_list((GinjaTextureList *)(this->texlist));
     load_projection_tex_matrix(0x38E);
-    draw_ginja_model((*(s32 *)((s8 *)temp_r31_4 + 4)));
+    draw_ginja_model((s32)side->model);
     reset_particle_tev();
     pop_matrix();
     TParticleCtrl::end_effect_render();
@@ -759,8 +718,8 @@ void *TOTrapAncient02R__ct(TOTrapAncient02R *trap_ancient02_r, void *arg1, void 
     trap_ancient02_r->apply_object_set_data(arg2);
     ((TObjChara *)trap_ancient02_r)->initialize_position_copies();
     ((TObjChara *)trap_ancient02_r)->calc_attach_pos();
-    *(s32 *)((s8 *)trap_ancient02_r + 0x34) = (s32) *(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TOTrapAncient02__shared_resource) + 0x42C)) + 8);
-    trap_ancient02_r->texlist = (s32) *(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TOTrapAncient02__shared_resource) + 0x42C)) + 0xC);
+    trap_ancient02_r->model = (void *)TOTrapAncient02__shared_resource->models->model;
+    trap_ancient02_r->texlist = TOTrapAncient02__shared_resource->models->m_c;
     trap_ancient02_r->mode = 0;
     trap_ancient02_r->phase = 0;
     trap_ancient02_r->range = lbl_805DBAA0 * trap_ancient02_r->scale.x + lbl_805DBA9C;
