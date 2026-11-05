@@ -10,25 +10,17 @@
 #include "pso/misc/TLobby.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_80011014.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/render/render_util.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/unk/text_803D8F74.h"
 
 extern "C" {
-void *get_player_by_client_id(s32 i);
-
-s32 submit_cursor_candidate(void *, s32);
-extern u32 trap_scale_factor_table[];
 extern s32 game_difficulty_selection;
 s32 fn_80171314(void *);
-void send_6x2C_impose_hold(void *, void *, s32, int, f32);
 f32 TOTrap::vfunc_87(f32 farg0) {
-    u32 v[4];
-    v[0] = trap_scale_factor_table[0];
-    v[1] = trap_scale_factor_table[1];
-    v[2] = trap_scale_factor_table[2];
-    v[3] = trap_scale_factor_table[3];
-    return farg0 * ((f32*)v)[game_difficulty_selection];
+    f32 factors[4] = { 1.0f, 2.0f, 3.0f, 6.0f };
+    return farg0 * factors[game_difficulty_selection];
 }
 
 void TOTrap::vfunc_89() {  }
@@ -37,7 +29,7 @@ s32 TOTrap::is_any_player_matching_stat() {
     s32 i;
     void *p;
     for (i = 0; i < 4; i++) {
-        p = ((void *)get_player_by_client_id(i));
+        p = get_player_by_client_id(i);
         if (p != 0) {
             if (((s16)((TObjBase *)p)->get_room() == (s16)get_room()) && (fn_80171314(p) != 0)) {
                 return 1;

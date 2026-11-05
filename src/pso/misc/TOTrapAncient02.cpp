@@ -43,18 +43,16 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/TSwitch.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/system/GinjaUvScroll.h"
 #include "pso/system/GinjaMaterial.h"
 
 extern "C" {
 
-void submit_cursor_candidate(void *, s32);
-void *get_player_by_client_id(s32 i);
 
 extern const f64 lbl_80442F38;
 extern u8 identity_matrix[];
 f32 TObjPlayer__sub_8017A1A4(void *, s32);
-void send_6x2C_impose_hold(void *, void *, s32, s32, f32);
 extern s32 local_client_id;
 s32 check_player_flag1__6TLobbyFv();
 
@@ -348,7 +346,7 @@ void TOTrapAncient02::render_particle_chain() {
 }
 
 void TOTrapAncient02::vfunc_81() {
-    void *p;
+    TObjPlayer *p;
     f32 d;
     submit_cursor_candidate(this, -1);
     switch (this->phase) {
@@ -647,7 +645,7 @@ void TOTrapAncient02R::vfunc_81() {
     case 2:
         player = find_nearest_visible_player(this, 0, range);
         if (player != 0xFFFF) {
-            TObjPlayer *p = (TObjPlayer *)get_player_by_client_id(player);
+            TObjPlayer *p = get_player_by_client_id(player);
             target = (u8 *)p;
             if (target != NULL && p->get_floor() == get_current_floor() &&
                 (((TObjChara *)target)->alt_room == alt_room || ((TObjChara *)target)->room == room || ((TObjChara *)target)->room == alt_room)) {

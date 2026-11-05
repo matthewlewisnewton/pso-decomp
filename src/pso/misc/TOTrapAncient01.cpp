@@ -242,7 +242,7 @@ grounded:
         spawn_particle_effect(&position, 0x8f);
         player = find_nearest_visible_player(this, NULL, range);
         if (player != 0xffff) {
-            TObjPlayer *p = (TObjPlayer *)get_player_by_client_id(player);
+            TObjPlayer *p = get_player_by_client_id(player);
             target = (u8 *)p;
             if (target != NULL) {
                 f32 d = horizontal_distance_squared(&((TObjPlayer *)target)->position, &position);
