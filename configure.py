@@ -570,6 +570,16 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOBiwaMushi.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
     "pso/misc/TODragonflyCave01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
     "pso/misc/TODragonflyMachine01.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
+    # Three fmadds in the original text, and nowhere else in the unit:
+    # __ct__10TOMineTrap at 0x80170058 (fmadds f2,f3,f4,f2), follow_target at
+    # 0x80170B9C (fmadds f0,f1,f0,f2), update_float_height at 0x80170D30
+    # (fmadds f0,f3,f1,f0). No fmsubs. The same expressions are fmuls+fadds
+    # when the flag is omitted. Every other function, including run_task, is
+    # byte-identical with the flag off, and .rodata stays exact.
+    # -inline on expands run_task's mode-4 strike helpers (strike_actor,
+    # strike_player, strike_enemy); no other function in the unit changes.
+    # See docs/porting-exceptions.md.
+    "pso/misc/TOMineTrap_8016F6F8.cpp": {"cflags": _switch(cflags_pso, "-inline on", "-fp_contract on")},
     "pso/item/TItem.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TItemProArmor.cpp, TItemProShield.cpp and TItemProUnit.cpp are written
     # from their last function back (deferred code generation, which also puts
