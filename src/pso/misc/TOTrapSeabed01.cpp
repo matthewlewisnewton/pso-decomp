@@ -26,6 +26,7 @@
 #include "pso/object/TObjFish_8001ED90.h"
 #include "pso/system/ModelDrawContext.h"
 #include "pso/system/MatrixStack.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/GinjaMaterial.h"
@@ -90,14 +91,6 @@ extern s32 seabed01_ginja_mesh_index;
 #include "pso/object/TObjSeabedSuisoBrakable.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-struct SeabedTrapResourceDescriptor {
-    const char *bml_filename;
-    const char *const *model_filenames;
-    const char *const *motion_filenames;
-    s16 model_count;
-    s16 motion_count;
-};
-typedef char SeabedTrapResourceDescriptor_size[(sizeof(SeabedTrapResourceDescriptor) == 0x10) ? 1 : -1];
 
 
 extern "C" {
@@ -105,7 +98,7 @@ extern CollisionBody seabed_trap_collision_body;
 extern const char *TOTrapSeabed01_class_name;
 extern u8 lbl_804720E8[];
 extern u8 lbl_80472100[];
-extern SeabedTrapResourceDescriptor seabed_trap_resource_descriptor;
+extern BmlResourceDescriptor seabed_trap_resource_descriptor;
 
 extern s32 trap_seabed01_param_index_table[];
 
@@ -158,7 +151,7 @@ extern const char lbl_80472010[];
 extern const char lbl_80472028[];
 const char *seabed_trap_model_filenames[4] = { lbl_80471FB8, lbl_80471FD0, lbl_80471FF0, 0 };
 __declspec(section ".data") const char *seabed_trap_motion_filenames[2] = { lbl_80472010, 0 };
-SeabedTrapResourceDescriptor seabed_trap_resource_descriptor = { lbl_80472028, seabed_trap_model_filenames, seabed_trap_motion_filenames, 3, 1 };
+BmlResourceDescriptor seabed_trap_resource_descriptor = { lbl_80472028, seabed_trap_model_filenames, seabed_trap_motion_filenames, 3, 1 };
 CollisionBody seabed_trap_collision_body = { { 0.0f, 20.0f, 0.0f }, 14.0f, 0.0f, 0, 0x08011F04, { 0.0f, 0.0f, 0.0f }, 0.0f };
 SeabedTrapFragmentSpawn seabed_trap_fragment_spawns[6] = {
     { 2, { 9.0f, 21.0f, 9.0f }, -24576 },
@@ -213,7 +206,7 @@ void TOTrapSeabed01::vfunc_6(s16 *arg1, s32 arg2) {
 }
 
 void TOTrapSeabed01::load_resources() {
-    TOTrapSeabed01__bml_resource = new BmlResource(5, (BmlResourceDescriptor *)((void *)&seabed_trap_resource_descriptor), 0, 0, (void *)(0));
+    TOTrapSeabed01__bml_resource = new BmlResource(5, &seabed_trap_resource_descriptor, 0, 0, NULL);
     TOTrapSeabed01__texture_file = load_gvm_texture_file((s32)lbl_804720E8);
     NJS_OBJECT *n = find_object_node((NJS_OBJECT *)get_bml_model(TOTrapSeabed01__bml_resource, 0), 5);
     u8 *t = TOTrapSeabed01__texture_file;
