@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
 | pragma | 5860 | 886 |
-| configure.py per-unit override | 147 | 147 |
+| configure.py per-unit override | 148 | 148 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -83,7 +83,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/object/TObjTombstone.cpp:427` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_80011014.cpp:4898` | `__fabs` |
 | `src/pso/player/TObjPlayer_80011014.cpp:4906` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_800AAFBC.cpp:350` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_800AAFBC.cpp:303` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:2678` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:5209` | `__cntlzw` |
@@ -205,6 +205,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/enemy/TObjEneRe2Flower_800C3E14.cpp` | `-inline off,deferred` | Deferred generation preserves the flower vtable before its dispatch table. |
 | `pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneMe1Gee.cpp` | `-inline off,deferred` | Gee native tables require deferred generation and reverse definitions. |
+| `pso/enemy/TObjEneDubchik.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190 commit 9c4e9ea1d: TObjEneDubchik is written from its last function back. -inline off,deferred emits that order (the vtable lands before the switch tables). -str reuse,readonly keeps the motion-name pool in .rodata. These are upstream's own flags for this unit. |
 | `pso/enemy/TObjEnePanarms.cpp` | `-inline deferred, -sdata 4, -sym on` | Native private header sections preserve initializer and helper emission order. |
 | `pso/enemy/TObjEneDelDepth.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
@@ -497,6 +498,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/enemy/TObjEneDellBiterEffects.cpp` | fp_contract×1 |
 | `src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp` | fp_contract×3, opt_loop_invariants×1 |
 | `src/pso/enemy/TObjEneDolmOlm.cpp` | opt_common_subs×2, defer_codegen×1, fp_contract×1 |
+| `src/pso/enemy/TObjEneDubchik.cpp` | opt_common_subs×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1 |
 | `src/pso/enemy/TObjEneEpsilonGuard_8035DD68.cpp` | opt_common_subs×3, fp_contract×2 |
 | `src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | opt_common_subs×3, fp_contract×3, defer_codegen×1, opt_propagation×1 |
 | `src/pso/enemy/TObjEneGibbles.cpp` | opt_loop_invariants×6, dont_inline×1, inline_depth×1, fp_contract×1, defer_codegen×1, opt_common_subs×1 |
@@ -999,7 +1001,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/player/TObjPlayer_80083B38.cpp` | fp_contract×2 |
 | `src/pso/player/TObjPlayer_8008DCF0.cpp` | opt_common_subs×3 |
 | `src/pso/player/TObjPlayer_8008DCF0_8008DCF0.cpp` | opt_common_subs×1, opt_propagation×1 |
-| `src/pso/player/TObjPlayer_800A894C.cpp` | opt_common_subs×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1 |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp` | fp_contract×1 |
 | `src/pso/player/TObjPlayer_800ACA60.cpp` | dont_inline×2, inline_depth×2, fp_contract×1, opt_common_subs×1 |
 | `src/pso/player/TObjPlayer_800BBE90.cpp` | fp_contract×2 |

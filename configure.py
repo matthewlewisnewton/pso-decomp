@@ -442,6 +442,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Gee native tables require deferred generation and reverse definitions.
     "pso/enemy/TObjEneMe1Gee.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Upstream #190 commit 9c4e9ea1d: TObjEneDubchik is written from its last
+    # function back. -inline off,deferred emits that order (the vtable lands
+    # before the switch tables). -str reuse,readonly keeps the motion-name
+    # pool in .rodata. These are upstream's own flags for this unit.
+    "pso/enemy/TObjEneDubchik.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     # Native private header sections preserve initializer and helper emission order.
     "pso/enemy/TObjEnePanarms.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4", "-sym on")},
     "pso/enemy/TObjEneDelDepth.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},

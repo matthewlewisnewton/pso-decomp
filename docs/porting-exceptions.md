@@ -160,6 +160,257 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
+| TObjEneDubchik.cpp | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | other: unit flags -inline off,deferred and -str reuse,readonly | #0 | upstream catch-up, rewrite later |
+| TObjEneDubchik.cpp:166 inline_depth | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | #0 | upstream catch-up, rewrite later |
+| TObjEneDubchik.cpp:167 auto_inline | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | #0 | upstream catch-up, rewrite later |
+| TObjEneDubchik.cpp:168 dont_inline | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AA82C:547 opt_common_subs | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AA82C:548 opt_propagation | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | #0 | upstream catch-up, rewrite later |
+| TObjEneDubchik::render:707 opt_common_subs | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | #0 | upstream catch-up, rewrite later |
+| Vec_800A9C38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| VBase_800AA704 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| VObj_800AA704 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| VBase_18_fe09eb | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| VObj_18_fe09eb | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Mdl_800AA82C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Res_800AA82C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Node_800AA82C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Desc_800AA82C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Base_Sub | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| V_Sub | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Obj_800AA528 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Obj_800A8A7C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Vec_800A8C4C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| VBase_14_fddec9 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| VObj_14_fddec9 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| VBase_18_ca64a0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| VObj_18_ca64a0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Self_800AA334 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Ids_800AA82C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Vec_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Pair_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| VB_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| VO_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Params_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| Ene_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| T_800AAF98 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| O_800AAF98 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| PADV/PADV4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | other: hand-padded virtual stubs | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AAF98 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| queue_destruction__7TObjectFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| __ct__13TUnk_80491460FPvlll | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| render_anim_model_at_pos__15TObjEnemyCustomFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| __nw__7TObjectFUl | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| __dt__11BmlResourceFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| __ct__11BmlResourceFlP21BmlResourceDescriptorllPv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A4294 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AA82C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8E04 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AB7A0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AA330 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| obj_testFlags30__14TObjCollidableFUl | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AAFF0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| defer_render__7TObjectFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| random_ratio__9TObjCharaFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| find_target_in_range__15TObjEnemyCustomFf | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| sub_8004292C__15TObjEnemyCustomFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| update_shock_clock__9TObjCharaFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| update_movement_status__9TObjCharaFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AB068:437 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AB068:437 0x44 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AB068:437 0x40 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AB068:437 0x4C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AB068:439 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TObjPlayer::set_invuln_flags:449 0x18 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TObjPlayer::set_invuln_flags:449 0x18 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TObjPlayer::clear_flag_04000000:457 0x18 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TObjPlayer::clear_flag_04000000:457 0x18 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AAFF0:461 0x8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| ObjEneDubchik::TObjEneDubchik:493 0x3C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| ObjEneDubchik::TObjEneDubchik:494 0x3E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:523 0xA | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:566 0x1C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:572 0x18 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:577 0x18 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:671 0x338 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:727 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:732 0x34 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:785 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:792 0x354 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:795 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:803 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:803 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:803 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| witch:823 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| witch:827 0x388 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:829 0x380 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:831 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:834 0x368 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:836 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:838 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:840 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:842 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:843 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:845 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:846 0x29C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:846 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:846 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:851 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:853 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:856 0x368 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:858 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:860 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:865 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:870 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:871 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:872 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:875 0x368 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:878 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:878 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:881 0x3A4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:882 0x308 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| witch:896 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:899 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:901 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:902 0x60 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:903 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:904 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:905 0x3CC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:907 0x30 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:911 0x3CC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:915 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:916 0x308 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:917 0x310 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:921 0x308 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:921 0x310 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:924 0x308 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:925 0x310 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:926 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:927 0x308 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:927 0x310 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:928 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:936 0xC0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:939 0xB4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:940 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:944 0x384 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:945 0x384 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:946 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:952 0x388 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:953 0x33E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:953 0x32C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1116 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| witch:1171 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1173 0x39C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1175 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1178 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1178 0x354 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1179 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1180 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1184 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1187 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1190 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1192 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1195 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1197 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1199 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1200 0x29C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1200 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1200 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1201 0x350 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1208 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1209 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1212 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1217 0x410 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1218 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1218 0x410 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1219 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1220 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1224 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1225 0x29C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1225 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1225 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1226 0x350 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1232 0x410 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1233 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1234 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1234 0x410 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1236 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1238 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1241 0x410 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1241 0x60 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1243 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1244 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1245 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1246 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1248 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1256 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1257 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1263 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1264 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1266 0xB4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1267 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1268 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1275 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1275 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1276 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1277 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1284 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1284 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1285 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1286 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1287 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1290 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1295 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1296 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1297 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1324 0x33A | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| witch:1336 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| witch:1337 0x3B0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1340 0x3B0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| witch:1355 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1360 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1363 0x368 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1365 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1367 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1369 0x29C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1369 0x50 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1370 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1377 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1380 0x368 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1382 0x290 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1382 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1383 0x290 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1383 0x29C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1384 0x308 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1386 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1386 0x50 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1387 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1389 0x388 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1389 0x388 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| dubchik_start_dying:1397 0x388 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| dubchik_start_dying:1397 0x388 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800A8B8C:1405 0x318 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800A8B8C:1405 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1418 0x68 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1420 0x68 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1423 0x78 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1425 0x78 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1428 0xA8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1430 0xA8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| f:1469 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| dubchik_update_dying:1476 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| dubchik_update_dying:1476 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| dubchik_update_dying:1481 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| dubchik_update_dying:1485 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| dubchik_update_dying:1487 0x24 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| dubchik_update_dying:1487 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| dubchik_update_dying:1487 0x60 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| dubchik_update_dying:1490 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
