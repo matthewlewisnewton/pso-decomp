@@ -38,6 +38,7 @@
 #include "pso/boss/TBoss7Crawfish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/TPlyItem.h"
+#include "pso/TPlyInventory.h"
 #include "pso/TItemList.h"
 #include <stddef.h>
 #include "pso/player/PlayerRequirementStats.h"
@@ -1196,14 +1197,11 @@ struct Pkt_801B7EB8 {
     s32 item;
 };
 
-struct Ent_801B80C0;
-
+// init_inventory_list's layout: a count and 30 inventory records.
 struct Buf_801B802C {
     s32 n;
-    u8 ents[0x34C];
+    TPlyInventoryItem ents[30];
 };
-
-struct Ent_801B80C0 { u8 pad[0x14]; s32 f14; u8 pad18[0x1C - 0x18]; };
 
 struct S801B7F4C { s8 b[2]; s16 h; s32 w; };
 
@@ -1428,31 +1426,6 @@ struct V_B : Base_B {
     virtual s32 m34();
 };
 
-struct VBase_801B91F0 { char pad[0x18]; };
-
-struct VObj_801B91F0 : VBase_801B91F0 {
-    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
-    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
-    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
-    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
-    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
-    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
-    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
-    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
-    virtual void v32(); virtual void v33();
-    virtual s32 m34();
-};
-
-struct Inv_801B91F0 {
-    u8 pad0[0x1C];
-    s16 count;
-};
-
-struct Player_801B91F0 {
-    u8 pad0[0xD00];
-    Inv_801B91F0 *inv;
-};
-
 typedef struct Vec_801B92EC { f32 x, y, z; } Vec_801B92EC;
 
 struct Obj_801B92EC {
@@ -1558,11 +1531,6 @@ typedef struct Msg_801BA060 {
     s32 c;
     s32 d;
 } Msg_801BA060;
-
-typedef struct Player_801BA060 {
-    u8 pad0[0xD00];
-    TPlyItem *inv;
-} Player_801BA060;
 
 struct VBase_801B9F40 { char pad[0x18]; };
 
@@ -1998,7 +1966,6 @@ s32 TLobby__sub_801B07E0(s32 arg0, void * _w1);
 void handle_6x81_disable_drop_weapon_on_death(void *arg0);
 s32 TLobby__sub_801B08F0(s32 arg0, void * _w1);
 void TLobby__sub_801B09A4(void);
-s32 check_switch_available__6TLobbyFPvi(TObjPlayer *arg0, s32 arg1);
 u8 is_technique_ready__8TTecCtrlFv(void);
 void check_flag_800000__10TObjPlayerFPv(void *arg0);
 void handle_6x7B_disable_stealth_suit_effect(void *arg0);
@@ -2097,7 +2064,7 @@ void send_6x28_feed_mag(void *arg0, s32 arg1, s32 arg2);
 void handle_6x27_use_item(s32 arg0);
 s32 try_send_6x27_use_item(TObjPlayer *player, s32 arg1);
 void rebuild_player_inventory(TObjPlayer *player);
-void assign_inventory_item_ids(void *arg0, Ent_801B80C0 *arg1, s32 arg2);
+void assign_inventory_item_ids(void *arg0, TPlyInventoryItem *arg1, s32 arg2);
 void equip_saved_item_if_slot_empty__10TObjPlayerFPvPv(u8 *arg0, u8 *arg1);
 void bind_saved_inventory_equipment__10TObjPlayerFPvPvi(u8 *p, u8 *records, s32 count);
 void handle_6x2B_create_inventory_item(s32 arg0);
@@ -2110,7 +2077,7 @@ bool is_target_in_facing_cone__10TObjPlayerFPv(Obj_801B92EC *self, Vec_801B92EC 
 void handle_6x26_unequip_item(void *arg0);
 void send_6x26_unequip_item__10TObjPlayerFPvPv(void *self, void *item);
 void handle_6x25_equip_item(void *arg0);
-void send_6x25_equip_item(void *arg0, s32 arg1, s32 arg2);
+void send_6x25_equip_item(TObjPlayer *arg0, s32 arg1, s32 arg2);
 void handle_state2_transitions__10TObjPlayerFv(u8 *arg0);
 void TObjPlayer__sub_801BA42C(void);
 void set_action_state__10TObjPlayerFPvss(void *arg0, s16 arg1, s16 arg2);
@@ -3185,31 +3152,33 @@ void TLobby__sub_801B09A4(void) {
     shared_state_flags &= ~1;
 }
 
-s32 check_switch_available__6TLobbyFPvi(TObjPlayer *arg0, s32 arg1) {
+s32 TObjPlayer::check_switch_available(s32 item_id) {
     if (((s32 (*)(void))is_technique_ready__8TTecCtrlFv)() != 0) {
         if (fn_801D71D0(((s32 *)&lobby_rule_settings)) == 2) {
-            TItemList *slot = arg0->inventory_objects->start_inventory_update(arg1);
+            TItemList *slot = inventory_objects->start_inventory_update(item_id);
             if (slot == NULL) {
                 return 0;
             }
-            if (slot->get_owner_if_alive() == NULL) {
+            TItem *owner = slot->get_owner_if_alive();
+            if (owner == NULL) {
                 return 0;
             }
-            if (((u8 (*)(void))get_item_type__5TItemFv)() == 0) {
+            if (owner->get_item_type() == 0) {
                 return 0;
             }
             goto block_8;
         }
 block_8:
         if (fn_801D719C(((s32 *)&lobby_rule_settings)) == 1) {
-            TItemList *slot = arg0->inventory_objects->start_inventory_update(arg1);
+            TItemList *slot = inventory_objects->start_inventory_update(item_id);
             if (slot == NULL) {
                 return 0;
             }
-            if (slot->get_owner_if_alive() == NULL) {
+            TItem *owner = slot->get_owner_if_alive();
+            if (owner == NULL) {
                 return 0;
             }
-            if (((u8 (*)(void))get_item_type__5TItemFv)() == 2) {
+            if (owner->get_item_type() == 2) {
                 return 0;
             }
             goto block_15;
@@ -6142,24 +6111,24 @@ s32 try_send_6x27_use_item(TObjPlayer *player, s32 arg1) {
 void rebuild_player_inventory(TObjPlayer *player) {
     Buf_801B802C b;
     if (player->inventory_objects != NULL) {
-        ((s32 (*)(s32 *))init_inventory_list__10TObjPlayerFPv)((s32 *)&b);
+        init_inventory_list__10TObjPlayerFPv(&b);
         b.n = player->query_state_if_present(b.ents);
         player->inventory_objects->destroy_subobjects(player);
         player->inventory_objects->queue_destruction();
         player->inventory_objects = NULL;
         player->create_inventory();
-        assign_inventory_item_ids(player, (Ent_801B80C0 *)((Ent_801B80C0 *)b.ents), b.n);
+        assign_inventory_item_ids(player, b.ents, b.n);
         ((s32 (*)(void *, s32 *, s32))bind_saved_inventory_equipment__10TObjPlayerFPvPvi)(player, (s32 *)b.ents, b.n);
     }
 }
 
-void assign_inventory_item_ids(void *arg0, Ent_801B80C0 *arg1, s32 arg2) {
+void assign_inventory_item_ids(void *arg0, TPlyInventoryItem *arg1, s32 arg2) {
     s32 i;
     s16 v;
     if (arg1 != NULL) {
         v = ((s16 (*)(void *))get_entity_id)(arg0);
         for (i = 0; i < arg2; i++) {
-            arg1->f14 = ((s32 (*)(s16))advance_item_id_counter)(v);
+            arg1->m_data.id = ((s32 (*)(s16))advance_item_id_counter)(v);
             arg1++;
         }
     }
@@ -6609,7 +6578,7 @@ s32 TObjPlayer::can_pickup_item_by_id(TItem *item) {
 s32 TObjPlayer::can_inventory_accept_item(u8 *item) {
     s32 max;
     s32 n;
-    VObj_801B91F0 *owner;
+    TItem *owner;
     if (lookup_item_def__9TItemDataFPv(item) != 0) {
         if (item[0] == 4) {
             return 1;
@@ -6621,12 +6590,12 @@ s32 TObjPlayer::can_inventory_accept_item(u8 *item) {
             }
             return ((TItemData *)item)->get_max_stack_size();
         }
-        owner = (VObj_801B91F0 *)slot->get_owner_if_alive();
+        owner = slot->get_owner_if_alive();
         if (owner == NULL) {
             return 0;
         }
-        n = ((TItem *)owner)->get_max_stack_size();
-        n -= owner->m34();
+        n = owner->get_max_stack_size();
+        n -= owner->get_amount();
         max = ((TItemData *)item)->get_stack_count();
         return (n < max) ? 0 : n;
     }
@@ -6950,23 +6919,23 @@ void TObjPlayer::equip_item_to_slot(void *item, s32 slot) {
 
 void handle_6x25_equip_item(void *arg0) {
     Msg_801BA060 m;
-    Player_801BA060 *p;
+    TObjPlayer *p;
     void *o;
     ((TObjPlayer *)(&m))->init_command();
     ((TObjPlayer *)(&m))->copy_pair_fields4(arg0);
     ((TObjPlayer *)(&m))->bswap_body_dwords5();
     if (validate_6x25_equip_item((G_ClientIDHeader *)&m) != 0) {
-        p = ((Player_801BA060 * (*)(u16))get_player_by_client_id)(m.slot);
+        p = (TObjPlayer *)get_player_by_client_id(m.slot);
         TItemList *slot;
-        if ((p != NULL) && ((slot = p->inv->start_inventory_update(m.c)) != NULL) && ((o = slot->get_owner_if_alive()) != NULL)) {
-            ((TObjPlayer *)p)->equip_item_to_slot(o, m.d);
+        if ((p != NULL) && ((slot = p->inventory_objects->start_inventory_update(m.c)) != NULL) && ((o = slot->get_owner_if_alive()) != NULL)) {
+            p->equip_item_to_slot(o, m.d);
         }
     }
 }
 
-void send_6x25_equip_item(void *arg0, s32 arg1, s32 arg2) {
+void send_6x25_equip_item(TObjPlayer *arg0, s32 arg1, s32 arg2) {
     L_801BA0F0 sp8;
-    if (((s32 (*)(void))check_switch_available__6TLobbyFPvi)() != 0 && (arg0 == 0 || ((s32 (*)(void *))obj_isState2_324__9TObjCharaFv)(arg0) == 0)) {
+    if (arg0->check_switch_available(arg1) != 0 && (arg0 == 0 || ((s32 (*)(void *))obj_isState2_324__9TObjCharaFv)(arg0) == 0)) {
         ((TObjPlayer *)(&sp8))->init_command();
         sp8.f2 = ((u16 (*)(void *))get_entity_id)(arg0);
         sp8.f4 = arg1;

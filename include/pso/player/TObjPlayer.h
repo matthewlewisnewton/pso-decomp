@@ -458,6 +458,8 @@ struct TObjPlayer : public TObjChara {
     TItemList *pickup_item(TItem *item);
     s32 can_pickup_item_by_id(TItem *item);
     s32 can_pickup_item(TItemData *data);
+    // 0 when the battle rules forbid equipping the item with item_id.
+    s32 check_switch_available(s32 item_id);
     static u8 find_adjacent_matching_slot(u8 arg0);
     static u8 get_next_matching_special_index(u8 arg0);
     static void free_item_globals();
