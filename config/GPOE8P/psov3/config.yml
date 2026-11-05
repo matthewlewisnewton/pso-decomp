@@ -4309,6 +4309,7 @@ force_active:
   - check_player_hits__13TUnk_804909C4FUs
   - check_player_hits__15TBoss6SwordWaveFv
   - check_player_in_range__13TUnk_804B5BA8Flf
+  - check_player_load_result__21TAdMultiChgGameModeGCFv
   - check_player_proximity__12TOChatSensorFv
   - check_players_near_center__14TBoss4DarkFalzFv
   - check_players_ready__21TAdMultiChgGameModeGCFPv
@@ -4525,6 +4526,9 @@ force_active:
   - close_windows__23TAdSinglePlyChrSelectGCFPv
   - close_windows__9TObjLukerFPv
   - close_windows_and_advance__17TAdEnterPPPPassGCFPv
+  - close_windows_and_cleanup__21TAdMultiChgGameModeGCFv
+  - close_windows_and_reopen__21TAdMultiChgGameModeGCFv
+  - close_windows_on_selection__21TAdMultiChgGameModeGCFv
   - close_with_callback__22TChallenge4PItemSelectFv
   - close_with_cancel_callback__19TShopKeepItemWindowFv
   - close_with_ok_callback__19TShopKeepItemWindowFv
@@ -4553,6 +4557,7 @@ force_active:
   - configure_subtype__12TObjEneSharkFv
   - confirm_and_close_if_valid__15TShopWindowBaseFv
   - confirm_and_free__17TWindowSubComCardFv
+  - confirm_mode_selection__21TAdMultiChgGameModeGCFv
   - construct__12T_OWEHMS_ExpFP10TObjPlayer
   - construct__13TUnk_8049F41CFPvii
   - construct__13TUnk_804EF8C0Fv
@@ -6192,6 +6197,7 @@ force_active:
   - handle_login_result__6TLobbyFUi
   - handle_loss_sequence__18TObjChallengeRetryFv
   - handle_lr_input__19TWindowSoundBalanceFv
+  - handle_menu_input__21TAdMultiChgGameModeGCFv
   - handle_message__13TBoss5GryphonFl
   - handle_message__13TObjEneBm3FlyFl
   - handle_message__16TObjEneBm5GibonUFl
@@ -7320,6 +7326,7 @@ force_active:
   - lbl_804F2BE0
   - lbl_804F2BF0
   - lbl_804F2BF8
+  - lbl_804F3A18
   - lbl_804F6358
   - lbl_804F6558
   - lbl_804F6EE0
@@ -7519,6 +7526,7 @@ force_active:
   - lbl_805D6D84
   - lbl_805D6D88
   - lbl_805D6D90
+  - lbl_805D7020
   - lbl_805D718C
   - lbl_805D72D8
   - lbl_805D72DC
@@ -8076,6 +8084,7 @@ force_active:
   - load_selected_player_slot__12TQuestListVMFv
   - load_selected_slot__12TQuestListVMFv
   - load_supplementary_t_rel__6TSceneFl
+  - load_system_on_mode_default__21TAdMultiChgGameModeGCFv
   - load_tam_file__6TSceneFl
   - load_texture__12TItemTexLoadFl
   - load_texture_archive__12TItemTexLoadFv
@@ -8278,6 +8287,10 @@ force_active:
   - move_toward_dest_with_detour__14TObjEneIllGillFv
   - move_toward_target__15TObjEneDelDepthFv
   - move_update__11TBoss4Type2Fv
+  - multi_chg_game_mode_entry_table
+  - multi_chg_game_mode_text_table_a
+  - multi_chg_game_mode_text_table_b
+  - multi_chg_game_mode_window_extent
   - multi_confirm_texture_descriptor
   - multi_confirm_texture_entries
   - nano_drago_bodies
@@ -13685,6 +13698,7 @@ force_active:
   - request_menu__16TQuestListOnlineFv
   - request_player_camera_offsets__11TBoss6Type2FPvff
   - request_scene_change__11TAdEp3ExistFv
+  - request_scene_change_vt__21TAdMultiChgGameModeGCFv
   - request_split_screen_battle_event__FPv
   - request_stand_action__14TObjEneDolmOlmFv
   - request_state_change__12TBoss1DragonFUl
@@ -15480,6 +15494,16 @@ force_active:
   - sub_80361D4C__18TObjEneEpsilonBodyFl
   - sub_803669B0__14TObjEneIllGillFv
   - sub_80369D68__15TObjSuisouLobbyFv
+  - sub_8036DEDC__21TAdMultiChgGameModeGCFv
+  - sub_8036E51C__21TAdMultiChgGameModeGCFv
+  - sub_8036E6A0__21TAdMultiChgGameModeGCFv
+  - sub_8036E6EC__21TAdMultiChgGameModeGCFv
+  - sub_8036E750__21TAdMultiChgGameModeGCFv
+  - sub_8036E7DC__21TAdMultiChgGameModeGCFv
+  - sub_8036E830__21TAdMultiChgGameModeGCFv
+  - sub_8036E834__21TAdMultiChgGameModeGCFv
+  - sub_8036E854__21TAdMultiChgGameModeGCFv
+  - sub_8036E9EC__21TAdMultiChgGameModeGCFv
   - submit_chat_text__FPUc
   - submit_cursor_and_notify__16TOTrapAncient02RFv
   - submit_keyboard_input__11TWindowChatFv
@@ -15804,6 +15828,7 @@ force_active:
   - update_capture__11TBoss4Type3Fv
   - update_capture__14TObjVoloptCageFv
   - update_card_confirm__16TAdChrSelBSlotGCFPv
+  - update_card_confirm_selection__21TAdMultiChgGameModeGCFv
   - update_card_list_window__6TLobbyFv
   - update_card_select__16TAdChrSelBSlotGCFPv
   - update_center_position__16TObjEneBm5GibonUFv
@@ -15860,6 +15885,7 @@ force_active:
   - update_com_card_window__6TLobbyFv
   - update_computer_machines__13TObjLobbyMainFv
   - update_confirm_input__15TShopWindowBaseFPv
+  - update_confirm_selection__21TAdMultiChgGameModeGCFv
   - update_contact_attacks__16TObjEneDellBiterFv
   - update_countdown__11TBoss6Type1Fv
   - update_countdown__11TBoss6Type2Fv
@@ -16103,6 +16129,8 @@ force_active:
   - update_message__18TWindowMessagePageFv
   - update_mirage__17TObjEneMe3ShinowaFv
   - update_missile_attack__15TObjEneMe1GiGueFv
+  - update_mode_selection__21TAdMultiChgGameModeGCFv
+  - update_mode_selection_and_save__21TAdMultiChgGameModeGCFv
   - update_model_visibility__15TObjEneGyaranzoFv
   - update_motion_playback__9TBoss6MagFv
   - update_motion_tracks__11TBoss6Type2Fv
