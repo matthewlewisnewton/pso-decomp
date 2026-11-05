@@ -155,7 +155,6 @@ entry when the PR merges.
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
-| [#306](https://github.com/matthewlewisnewton/pso-decomp/pull/306) | `-sdata 0` on `pso/unk/text_803D6438.cpp` | `sin_table_lookup` / `cos_table_lookup` load the 4-byte `sin_cos_table` pointer with `lis`/`addi`. The TU's `.sdata2` constants stay `lfs@sda21`, so non-const small data is off and sdata2 stays on. The two constants are declared `__declspec(section ".sdata2")` because that is the section they are in. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.
