@@ -1229,6 +1229,7 @@ pso/misc/TMessageBox.cpp
 pso/misc/TMotorcycle.cpp
 pso/misc/TMotorcycle_802D712C.cpp
 pso/misc/TMovie.cpp
+pso/misc/TMovie_80143988.cpp
 pso/misc/TMovie_80143BBC.cpp
 pso/misc/TMovie_80143C00.cpp
 pso/misc/TMovie_80143C94.cpp
