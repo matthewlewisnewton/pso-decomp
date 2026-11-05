@@ -471,11 +471,28 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
         # entry label. Map the target entry name to the object's image label.
         "symbol_mappings": {"@12": "...data.0"},
     },
-    # deform_indirect_texture_scroll keeps its s16 scroll offset as a named
-    # local (extsh r28, after the coordinate masks in r30/r29). With copy
-    # propagation the frontend replaces it with a hoisted temporary that the
-    # allocator colours first (r30). See docs/porting-exceptions.md section 5.
-    "pso/effect/TEffIndirectCtrl_802A88AC.cpp": {"cflags": _switch(cflags_pso, "-opt noprop")},
+    # GC/2.0: run_task's 36-byte PMF array initializer interleaves its copy
+    # tail with actor_frame_tick (load, tail load, clrlwi., table load, tail
+    # store). GC/2.5, 2.6 and 2.7 pack the tail pair and move the tick
+    # relocation from +0xE4 to +0xEC; GC/2.0p1 and GC/1.3.2 drop the wave
+    # helpers.
+    # -inline off,deferred: the vtables come out in reverse order of their
+    # key functions, and .data has TUnk_804DDF04's vtable before this
+    # class's while TUnk_804DDF04's destructor comes first in .text.
+    # -opt noprop: deform_indirect_texture_scroll keeps its s16 scroll offset
+    # as a named local (extsh r28, after the coordinate masks in r30/r29).
+    # With copy propagation the frontend replaces it with a hoisted temporary
+    # that the allocator colours first (r30).
+    # -fp_contract on: both texture-wave helpers fuse the wave offset into an
+    # fmadds.
+    # -str reuse,readonly: the two file names and the class name are in this
+    # unit's .rodata. See docs/porting-exceptions.md section 5.
+    "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-opt noprop", "-fp_contract on", "-str reuse,readonly")},
+    # pack_movie_frame: the original keeps every named local in one register
+    # (no lifetime splitting), recomputes its pad and stride shifts instead of
+    # sharing them, and leaves invariant hoisting to the backend. See
+    # docs/porting-exceptions.md section 5.
+    "pso/misc/TMovie_80143988.cpp": {"cflags": _switch(cflags_pso, "-opt nolifetimes,nocse,noprop,noloop")},
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
