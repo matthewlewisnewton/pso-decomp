@@ -20,6 +20,7 @@ typedef char TLobbyFloorItemEntrySize[(sizeof(TLobbyFloorItemEntry) == 0x24) ? 1
 typedef char TLobbyFloorItemEntryDataOffset[(offsetof(TLobbyFloorItemEntry, item_data) == 0x10) ? 1 : -1];
 
 struct B_803FADA0;
+struct Self_803FD74C;
 struct Self_80402CE0;
 
 struct TLobby : public TObject {
@@ -591,7 +592,7 @@ struct TLobby : public TObject {
     s32 set_flags_and_state();
     static s16 get_checked_status_value(s16 arg0);
     static s32 clear_socket_slot(s16 i);
-    static void update_connection_state(int arg0);
+    static void update_connection_state(Self_803FD74C *self);
     s32 read_2_bytes(void *src);
     void free_field_98();
     void free_field_98_and_clear();
