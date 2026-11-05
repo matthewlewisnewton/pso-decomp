@@ -26,6 +26,11 @@
 #include "pso/object/TObjFish_8001ED90.h"
 #include "pso/system/ModelDrawContext.h"
 #include "pso/system/MatrixStack.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/player/TObjPlayer_801542CC.h"
+#include "pso/system/GinjaMaterial.h"
+#include "pso/misc/TLobby_80226070.h"
+#include <dolphin/base/PPCArch.h>
 #include "pso/TObjSuisoChip.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/unk/text_803D853C.h"
@@ -45,7 +50,6 @@ struct SeabedTrapFragmentSpawn {
 };
 
 extern "C" {
-u16 find_nearest_visible_player(void *, int, f32);
 f32 TObjPlayer__sub_8017A1A4(TObjCollidable *, s32);
 extern s32 local_client_id;
 
@@ -69,15 +73,9 @@ extern NJS_OBJECT *TOTrapSeabed01__ginja_model;
 
 
 
-void setup_particle_tev(s32 arg0);
 extern "C" {
-void draw_ginja_model(s32 model);
-s32 is_split_screen();
 s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
-s32 PPCSync();
 
-void restore_saved_depth_alpha_state(void);
-void set_model_node_callback(s32 arg0);
 
 extern s32 actor_frame_tick;
 extern s32 lbl_805D681C;
@@ -99,30 +97,17 @@ struct SeabedTrapResourceDescriptor {
     s16 model_count;
     s16 motion_count;
 };
-struct SeabedTrapCollisionBody {
-    f32 local_center[3];
-    f32 radius;
-    f32 field_10;
-    s32 field_14;
-    u32 flags;
-    f32 world_center[3];
-    f32 field_28;
-};
 typedef char SeabedTrapResourceDescriptor_size[(sizeof(SeabedTrapResourceDescriptor) == 0x10) ? 1 : -1];
-typedef char SeabedTrapCollisionBody_size[(sizeof(SeabedTrapCollisionBody) == 0x2C) ? 1 : -1];
 
 
 extern "C" {
-s32 init_collision_body_parts(void *, void *, int);
-extern SeabedTrapCollisionBody seabed_trap_collision_body;
+extern CollisionBody seabed_trap_collision_body;
 extern const char *TOTrapSeabed01_class_name;
 extern u8 lbl_804720E8[];
 extern u8 lbl_80472100[];
 extern SeabedTrapResourceDescriptor seabed_trap_resource_descriptor;
 
 extern s32 trap_seabed01_param_index_table[];
-void stop_sound_request(s32 idx);
-void free_collision_body_parts(void *);
 
 
 
@@ -174,7 +159,7 @@ extern const char lbl_80472028[];
 const char *seabed_trap_model_filenames[4] = { lbl_80471FB8, lbl_80471FD0, lbl_80471FF0, 0 };
 __declspec(section ".data") const char *seabed_trap_motion_filenames[2] = { lbl_80472010, 0 };
 SeabedTrapResourceDescriptor seabed_trap_resource_descriptor = { lbl_80472028, seabed_trap_model_filenames, seabed_trap_motion_filenames, 3, 1 };
-SeabedTrapCollisionBody seabed_trap_collision_body = { { 0.0f, 20.0f, 0.0f }, 14.0f, 0.0f, 0, 0x08011F04, { 0.0f, 0.0f, 0.0f }, 0.0f };
+CollisionBody seabed_trap_collision_body = { { 0.0f, 20.0f, 0.0f }, 14.0f, 0.0f, 0, 0x08011F04, { 0.0f, 0.0f, 0.0f }, 0.0f };
 SeabedTrapFragmentSpawn seabed_trap_fragment_spawns[6] = {
     { 2, { 9.0f, 21.0f, 9.0f }, -24576 },
     { 2, { 9.0f, 21.0f, -9.0f }, -8192 },

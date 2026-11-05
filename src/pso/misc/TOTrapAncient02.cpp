@@ -131,7 +131,6 @@ CollisionBody trap_ancient02_collision_body = {
 
 
 }
-void setup_particle_tev(s32 arg0);
 
 // Reverse definitions with deferred generation reproduce this unit's original
 // function order.

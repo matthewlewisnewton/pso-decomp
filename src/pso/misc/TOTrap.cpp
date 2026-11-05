@@ -10,6 +10,9 @@
 #include "pso/misc/TLobby.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_80011014.h"
+#include "pso/render/render_util.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/unk/text_803D8F74.h"
 
 extern "C" {
 void *get_player_by_client_id(s32 i);
@@ -18,7 +21,6 @@ s32 submit_cursor_candidate(void *, s32);
 extern u32 trap_scale_factor_table[];
 extern s32 game_difficulty_selection;
 s32 fn_80171314(void *);
-f32 horizontal_distance_squared(void *, void *);
 void send_6x2C_impose_hold(void *, void *, s32, int, f32);
 f32 TOTrap::vfunc_87(f32 farg0) {
     u32 v[4];
@@ -189,17 +191,14 @@ void TOTrap::run_task() {
 
 extern "C" {
 
-s32 post_translate_matrix(void *);
-s32 rotate_matrix_y(s32, s32);
-s32 push_matrix();
 
 void TOTrap::render() {
     if (TObjPlayer::is_any_teammate_in_state() == 0) {
         this->m_340 = update_object_view_visibility(400.0f, 20.0f);
         if ((s32) this->m_340 == 1) {
             push_matrix();
-            post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation.yaw);
+            post_translate_matrix(&this->position.x);
+            rotate_matrix_y(NULL, this->rotation.yaw);
             set_current_texture_list((GinjaTextureList *)(this->texlist));
             if (check_demo_mode() == 1) {
                 draw_chunk_object(this->model);
