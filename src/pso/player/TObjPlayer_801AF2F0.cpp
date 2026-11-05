@@ -4717,7 +4717,7 @@ s32 TObjPlayer::execute_palette_action(s32 arg1, void *arg2) {
         break;
     case 3:
         if (TObjPlayer::try_camera_action((s32)this, (s32)act) != 0) {
-            ((TObjPlayer *)(self + 0x428))->set_technique_id(act);
+            ((TechniqueCastState *)(self + 0x428))->set_technique(act);
             run_action_state_phase__10TObjPlayerFisi(this, 8, 5);
             return 1;
         }

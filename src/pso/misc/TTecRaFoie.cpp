@@ -9,6 +9,10 @@
 #include "pso/effect/TEffect.h"
 #include "pso/effect/TEffClitical.h"
 #include "pso/unk/text_802A8210.h"
+extern "C" u8 *__ct__13TUnk_804DDF04FlP7TObject(u8 *object, s32 kind, u8 *parent);
+extern "C" void enable_indirect_tev__FP13TUnk_804DDF04lll(void *, s32, s32, s32);
+extern "C" void disable_indirect_tev__FP13TUnk_804DDF04l(void *, s32);
+#define fn_802A8210 __ct__13TUnk_804DDF04FlP7TObject
 
 #include "pso/system/vector.h"
 #include "pso/object/TObjFish.h"
@@ -354,7 +358,7 @@ void TUnk_804CCB28::render() {
     model_render_flags = id | 0x200010;
     ((void (*)(void *, s32))set_constant_material)(o->m48, id);
     if (o->tev != 0) {
-        ((TScene *)(o->tev))->draw_field_1c(2, 0, 0);
+        enable_indirect_tev__FP13TUnk_804DDF04lll(o->tev, 2, 0, 0);
     }
     lv = o->level;
     x = o->sx;
@@ -383,7 +387,7 @@ void TUnk_804CCB28::render() {
     pop_matrix();
     model_render_flags = saved_model_render_flags;
     if (o->tev != 0) {
-        TScene::set_indirect_tev((s32)o->tev, 0);
+        disable_indirect_tev__FP13TUnk_804DDF04l(o->tev, 0);
     }
     TParticleCtrl::end_effect_render();
 }

@@ -208,7 +208,10 @@ struct Lobby_8020533C { Vec_8020533C v; Ang_8020533C a; void *param; Node_802053
 
 void render_projected_shadow_receiver(void *, void *);
 
-void draw_field_1c__6TSceneFlll(void *, s32, s32, s32);
+void enable_indirect_tev__FP13TUnk_804DDF04lll(void *, s32, s32, s32);
+void disable_indirect_tev__FP13TUnk_804DDF04l(void *, s32);
+extern "C" u8 *__ct__13TUnk_804DDF04FlP7TObject(u8 *object, s32 kind, u8 *parent);
+#define fn_802A8210 __ct__13TUnk_804DDF04FlP7TObject
 
 void release_indexed_entry__6TLobbyFl(Lobby_8020533C *);
 
@@ -1697,11 +1700,11 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
                 Model_8020533C *m = (Model_8020533C *)e->node;
                 if (m != NULL) {
                     if (m->tex != NULL) {
-                        draw_field_1c__6TSceneFlll(tex = m->tex, m->f8, m->fE, 0);
+                        enable_indirect_tev__FP13TUnk_804DDF04lll(tex = m->tex, m->f8, m->fE, 0);
                         set_current_texture_list((GinjaTextureList *)(((void *)*(s32 *)((s8 *)TScene__data_805D5FCC + 0x14))));
                         set_material_alpha_compare_reference(TScene__data_805D5FCC->flags);
                         draw_ginja_object(node);
-                        TScene::set_indirect_tev((u32)tex, 0);
+                        disable_indirect_tev__FP13TUnk_804DDF04l(tex, 0);
                     }
                 }
             }
@@ -1795,11 +1798,11 @@ void TScene::render_animated_map_section(SceneMaterialSection *scene_material_se
         void *tex = m->tex;
         if (tex != 0)
         {
-          draw_field_1c__6TSceneFlll(texture = tex, m->f8, m->fE, 0);
+          enable_indirect_tev__FP13TUnk_804DDF04lll(texture = tex, m->f8, m->fE, 0);
           set_current_texture_list((GinjaTextureList *)(((void *) (*((s32 *) (((s8 *) TScene__data_805D5FCC) + 0x14))))));
           set_material_alpha_compare_reference(TScene__data_805D5FCC->flags);
           draw_ginja_model_with_motion(node, e->motion, e->frame);
-          TScene::set_indirect_tev((u32) texture, 0);
+          disable_indirect_tev__FP13TUnk_804DDF04l(texture, 0);
         }
 
       }

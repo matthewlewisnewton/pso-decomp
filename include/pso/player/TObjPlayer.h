@@ -4,6 +4,7 @@ struct NJS_OBJECT;
 
 #include "types.h"
 #include "pso/player/PhotonBlastGauge.h"
+#include "pso/player/TechniqueCastState.h"
 #include "pso/player/PlayerClassFlags.h"
 #include "pso/player/PlayerScaleState.h"
 #include "pso/player/RenderMaterialState.h"
@@ -173,7 +174,10 @@ struct TObjPlayer : public TObjChara {
     void* m_41c;
     u8 unk_420[0x4];
     s32 m_424;
-    u8 technique_levels[0x84];  // set/get_cast_technique_level's table
+    union {
+        u8 technique_levels[0x84];
+        TechniqueCastState technique_state;
+    };
     PhotonBlastGauge photon_blast_gauge;
     ActionPalette action_palettes[2];
     u8 unk_548[0x4];
@@ -397,6 +401,9 @@ struct TObjPlayer : public TObjChara {
     static TObjPlayer *get_player_data(int index);
     int queue_destruction();
     s32 test_action_mask(s32 arg1);
+    s32 reset_volopt_state();
+    void clamp_and_set_unit_value(u8 level, s32 technique);
+    void run_action_state_phase(s16 phase, s32 arg);
     static void free_singleton();
     static void init_render_target_singleton();
     static void setup_tev_stage();
@@ -1632,4 +1639,5 @@ typedef char PlayerHairWaitOffset[(offsetof(TObjPlayer, m_cfc) == 0xCFC) ? 1 : -
 typedef char PlayerInventoryObjectOffset[(offsetof(TObjPlayer, inventory_objects) == 0xD00) ? 1 : -1];
 
 typedef char TObjPlayer_size[sizeof(TObjPlayer) == 0xDB8 ? 1 : -1];
+#include "pso/player/TechniqueCastAliases.h"
 #endif
