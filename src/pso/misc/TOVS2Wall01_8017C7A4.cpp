@@ -99,7 +99,7 @@ TOVS2::TOVS2(void *set_data, s32 index) : TObjMapObject((TObject *)tl_05) {
     texlist = TObjFish__sub_8001EDB0(TOVS2Wall01__bml_resource, (void *)index);
     init_collision_body_parts(this, (void *)((u8 *)&ovs2wall01_collision_parts.value + (index * 0x2C)), 1);
     register_object_by_id();
-    m_c8 = TObjMapCsn::create((s32)set_data);
+    m_c8 = TObjMapCsn::create(set_data);
     m_cc = 1;
 }
 

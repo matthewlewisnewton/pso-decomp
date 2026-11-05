@@ -2,6 +2,7 @@
 #include "pso/boss/TBoss4Type3_800524E8.h"
 #include "pso/boss/TBoss4Type3.h"
 #include "pso/boss/TBoss3Volopt.h"
+#include "pso/player/TObjPlayer.h"
 
 struct Player_8005254C { u8 pad[0x30]; u32 flags; };
 
@@ -29,7 +30,7 @@ s32 TBoss4Type3__sub_8005254C(u16 id) {
     Player_8005254C *p;
     if (id != 0xFFFF) {
         p = (Player_8005254C *)get_player_by_client_id(id);
-        if (p != 0 && !(p->flags & 0x2000800) && ((TBoss3Volopt *)p)->get_field_3e0() == 0xE) {
+        if (p != 0 && !(p->flags & 0x2000800) && ((TObjPlayer *)p)->get_current_area() == 0xE) {
             return 1;
         }
     }

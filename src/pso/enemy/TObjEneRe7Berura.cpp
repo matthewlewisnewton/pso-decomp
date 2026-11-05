@@ -16,6 +16,7 @@
 #include "pso/math/MatrixTransforms.h"
 #include "pso/misc/RenderFadeState.h"
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneDD_ST.h"
@@ -172,7 +173,6 @@ void TObjEneRe7Berura::load_static_resources() {
     u32 m;
     Mtx34 *matrices;
     s32 i;
-    void *p;
     SampledMotionPoints *sampled;
     if (TObjEneDD::check_v2_mode() != 0) {
         r = load_enemy_bml_resource_named(&ene_berura_bml_descriptor, lbl_80439EF8);
@@ -229,11 +229,7 @@ void TObjEneRe7Berura::load_static_resources() {
     }
     berura_node_matrix_ptr_a = (s32 *)(((NJS_CNK_MODEL *)((NJS_OBJECT *)find_model_node(m, 2))->model)->polygon_list + 4);
     berura_node_matrix_ptr_b = ((NJS_CNK_MODEL *)((NJS_OBJECT *)find_model_node(m, 1))->model)->polygon_list + 4;
-    p = ::operator new(0x14);
-    if (p != NULL) {
-        p = ((TLobby *)p)->alloc_tables(TObjEneRe7Berura__shared_resource->models[0].model, 2);
-    }
-    belra_uv_animation_buffer = p;
+    belra_uv_animation_buffer = new StripBufferPair(TObjEneRe7Berura__shared_resource->models[0].model, 2);
     sampled = new SampledMotionPoints(4, lbl_805D9780, lbl_805D9784,
         TObjEneRe7Berura__data_805D9738);
     belra_trail_buffer = sampled;
