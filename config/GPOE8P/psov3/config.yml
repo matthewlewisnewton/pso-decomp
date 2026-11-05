@@ -4363,7 +4363,7 @@ force_active:
   - clamp_params_and_init__14TOTrapSeabed01Fv
   - clamp_position__13TUnk_804CF0B8FPvf
   - clamp_state__12TObjDoorJungFv
-  - clamp_text_size__15TWindowFukidasiFPvPv
+  - clamp_text_size__13TUnk_804CF0B8FPf
   - clamp_to_ground__14TBoss6GravBallFv
   - clamp_to_target_obstruction__11TCameraCtrlFv
   - class_name__11TOBiwaMushi

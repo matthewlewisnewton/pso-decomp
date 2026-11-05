@@ -66,8 +66,6 @@ struct Entry_80250380 {
 
 struct Fuki_80250380 { u8 pad[0x24]; u8 entries[0x4C]; u8 phase; u8 options; u8 kind; };
 
-struct Fuki_80250314 { u8 pad[0x38]; f32 anchor[2]; };
-
 struct Fuki_80250F70 {
     u8 pad0[0x38]; f32 anchor[2];
     u8 pad40[0x50];
@@ -167,7 +165,6 @@ struct Fuki_80251594 {
 
 s32 obj_isState3_324__9TObjCharaFv();
 s32 is_split_screen();
-void queue_destruction__7TObjectFv(void *);
 s32 get_screen_width__11TCameraCtrlFv();
 s32 get_screen_height__11TCameraCtrlFv();
 Ent_802511E4 * find_entity_by_id(u16);
@@ -180,7 +177,6 @@ s32 set_field_1c__6TLobbyFf(f32);
 s32 refresh_status_display__9TWindowDDFv(void *);
 s32 draw_resolved_window__15TWindowFukidasiFllll(Fuki_80250F70 *, f32 *, f32 *, s32);
 f32 * get_message_by_type__11TWindowCtrlFScl(u8, int);
-void clamp_text_size__15TWindowFukidasiFPvPv(Fuki_80250314 *b, f32 *out);
 s32 TWindowFukidasi__sub_802505C0(Fuki_80251028 *b, f32 *rect, f32 *out);
 s32 shift_rect_with_head__15TWindowFukidasiFPvPvPv(Fuki_80250F70 *b, f32 *rect, f32 *out);
 void refresh_rect_placement__15TWindowFukidasiFPv(Fuki_80251028 *b);
@@ -283,18 +279,18 @@ s32 TWindowFukidasi::check_card_match_enabled(s32 arg1) {
     return (u32) __cntlzw(strcmp(get_field_20__17TWindowSubComCardFv(), arg1)) >> 5;
 }
 
-void clamp_text_size__15TWindowFukidasiFPvPv(Fuki_80250314 *b, f32 *out) {
+void TUnk_804CF0B8::clamp_text_size(f32 *out) {
     f32 size[2];
-    ((TUnk_804CF0B8 *)b)->calc_text_size((f32 *)size);
-    if (b->anchor[0] > size[0]) {
+    this->calc_text_size(size);
+    if (this->m_38 > size[0]) {
         out[0] = size[0];
     } else {
-        out[0] = b->anchor[0];
+        out[0] = this->m_38;
     }
-    if (b->anchor[1] > size[1]) {
+    if (this->m_3c > size[1]) {
         out[1] = size[1];
     } else {
-        out[1] = b->anchor[1];
+        out[1] = this->m_3c;
     }
 }
 
@@ -1172,7 +1168,7 @@ void TUnk_804CF0B8::run_task() {
         }
         break;
     case 5:
-        clamp_text_size__15TWindowFukidasiFPvPv((Fuki_80250314 *)this, &this->m_38);
+        this->clamp_text_size(&this->m_38);
         this->m_50 = 6;
         this->clear_flag();
         this->set_flag2c_bit100();
@@ -1196,7 +1192,7 @@ void TUnk_804CF0B8::run_task() {
         sync_display_pos();
         break;
     case 9:
-        queue_destruction__7TObjectFv(this);
+        this->queue_destruction();
         break;
     }
     TWindowFukidasi__sub_80251790(this);

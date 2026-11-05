@@ -23,6 +23,7 @@ public:
     void place_rect_at_head_or_slot();
     void sub_802504A8();
     void calc_text_size(f32 *);
+    void clamp_text_size(f32 *out);
     void sync_display_pos();
     s32 approach(f32 target);
     virtual void render();
