@@ -28,17 +28,17 @@ typedef char FileLoadEntry_callback[offsetof(FileLoadEntry, callback) == 0x40 ? 
 
 s32 TLobby::create_file_load_entry(const char *name, s32 arg1, void (*callback)(void *), void *arg3, void **arg4) {
     FileLoadEntry *entry;
-    TLobby *file;
+    AdxfHandle *file;
 
     if (arg4 != NULL) {
         *arg4 = NULL;
     }
-    file = TLobby::adxf_open(name, 0);
+    file = ADXF_Open(name, 0);
     if (file == NULL) {
         return -2;
     }
-    if (file->adxf_get_fsize_byte() > 0x40000) {
-        file->close_adxf_handle();
+    if (ADXF_GetFsizeByte(file) > 0x40000) {
+        ADXF_Close(file);
         return -3;
     }
     entry = (FileLoadEntry *)alloc_from_heap__6TLobbyFPv(0x68);
@@ -48,8 +48,8 @@ s32 TLobby::create_file_load_entry(const char *name, s32 arg1, void (*callback)(
     strncpy(entry->name, name, 0x20);
     entry->state = 2;
     entry->field_3c = arg1;
-    entry->file_count = TLobby__sub_803CC53C(file);
-    file->close_adxf_handle();
+    entry->file_count = ADXF_GetFsizeSct(file);
+    ADXF_Close(file);
     entry->field_34 = 0;
     entry->callback = callback;
     if (callback != NULL) {

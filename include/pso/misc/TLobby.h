@@ -4,6 +4,7 @@
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/item/TItemData.h"
+#include "pso/system/Adxf.h"
 
 struct TItemList;
 
@@ -796,7 +797,7 @@ struct TLobby : public TObject {
     static void adxm_goto_mwidle_border();
     static void dec_ref_and_clear_buffer();
     static s32 get_resource_file_size(const void *name);
-    static void read_data_sync(s32 arg0, s32 arg1, s32 arg2);
+    static void read_data_sync(AdxfHandle *arg0, s32 arg1, s32 arg2);
     s32 get_battle_ctrl_default();
     static s32 find_free_chat_log_slot();
     static void apply_menu_cursor_selection();
@@ -861,8 +862,6 @@ struct TLobby : public TObject {
     static void dec_ref_and_reset_tables();
     static void init_afs_adxf_state();
     static s32 get_afs_file_info(s32 arg0, s32 arg1, char *arg2, s32 *arg3, s32 *arg4, s32 *arg5);
-    s32 adxf_get_fsize_byte();
-    s32 adxf_stop();
     static s32 read_checked_align(void *file, s32 arg1, s32 arg2);
     static void release_used_slots();
     static s32 read_afs_toc(s32 arg0);
@@ -965,7 +964,6 @@ struct TLobby : public TObject {
     static void reset_state_byte();
     static s32 create_file_load_entry(const char *name, s32 arg1, void (*callback)(void *), void *arg3, void **arg4);
     static s32 request_file_read(const char *name, s32 arg1, s32 *arg2, void **arg3);
-    static TLobby *adxf_open(const void *name, s32 mode);
     static void reset_lobby_state();
     static void init_keyboard_buffer();
     static s32 poll_connect();
@@ -1126,7 +1124,6 @@ struct TLobby : public TObject {
     static s32 unhide_enemies_at(s32 arg0, s32 arg1, s32 arg2);
     void transfer_trade_item_amount(u32 arg1, s32 arg2);
     void move_trade_item_amount(u32 arg1, s32 arg2);
-    void close_adxf_handle();
     void set_stream_frequency(s32 rate);
     s32 copy_current_entry_name(s32 len);
     s32 build_dhcp_release();

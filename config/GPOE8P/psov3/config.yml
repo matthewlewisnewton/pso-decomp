@@ -13236,7 +13236,7 @@ force_active:
   - read_be_u32__Fv
   - read_byte__24TMessageWindowControllerFv
   - read_byte_advance__6TLobbyFv
-  - read_data_sync__6TLobbyFlll
+  - read_data_sync__6TLobbyFP10AdxfHandlell
   - read_file_header__9TLanguageFiPv
   - read_into_buffer__9TLanguageFll
   - read_stream_u16__Fv
@@ -13319,7 +13319,7 @@ force_active:
   - recv_vm_download__9TProtocolFR6packet
   - recv_vm_download_head__9TProtocolFR6packet
   - ref_counted_load_buffer
-  - refill_gstream_buffer__Fl
+  - refill_gstream_buffer__FP10AdxfHandle
   - reflect_velocity_off_collision__13TUnk_804B8E18FPvPv
   - refresh__14TWindowSubItemFv
   - refresh_display__12TAdDialingGCFv
@@ -16220,7 +16220,7 @@ force_active:
   - update_live_camera__12TBoss8DragonFv
   - update_load_progress__12TChCrLoadReqFv
   - update_load_state__16TAdChrSelASlotGCFv
-  - update_load_state__9TItemLoadFv
+  - update_load_state__13TUnk_8049F42CFv
   - update_load_status__12TQuestListVMFv
   - update_lobby_pigeon_visibility__13TUnk_804E0898Fv
   - update_lobby_selection__12TQuestListVMFPv

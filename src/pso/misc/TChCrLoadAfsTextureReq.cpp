@@ -28,7 +28,7 @@ struct Req_8028C1F0 {
     u32 tab[8];
     s32 count;
     u8 pad3[0x60 - 0x5C];
-    s32 handle;
+    AdxfHandle *handle;
     u8 pad4[0x6C - 0x64];
     s32 mask;
 };
@@ -58,7 +58,6 @@ void init_texture_table__22TChCrLoadAfsTextureReqFPv(R_8028C310 *arg0);
 void __dt__7TObjectFv(void *, s32);
 void __dl__7TObjectFPv(void *);
 void finish_request__22TChCrLoadAfsTextureReqFPv(void *arg0);
-s32 TLobby__sub_803CC4C0(s32);
 Req_8028C1F0 *__dt__22TChCrLoadAfsTextureReqFv(Req_8028C1F0 *arg0, s16 arg1);
 f32 TLobby__sub_8028C50C(void);
 void * create__22TChCrLoadAfsTextureReqFPvPv(void *arg0, void *arg1);
@@ -127,10 +126,10 @@ Req_8028C1F0 *__dt__22TChCrLoadAfsTextureReqFv(Req_8028C1F0 *arg0, s16 arg1) {
     if (arg0 != NULL) {
         arg0->vt = ((s32 *)&__vt__22TChCrLoadAfsTextureReq);
         if (arg0->mode == 0 && arg0->tab[0] != 0) {
-            if (TLobby__sub_803CC4C0(arg0->handle) == 2) {
-                ((TLobby *)(arg0->handle))->adxf_stop();
+            if (ADXF_GetStat(arg0->handle) == 2) {
+                ADXF_Stop(arg0->handle);
             }
-            ((TLobby *)(arg0->handle))->close_adxf_handle();
+            ADXF_Close(arg0->handle);
             arg0->handle = 0;
         }
         finish_request__22TChCrLoadAfsTextureReqFPv(arg0);

@@ -23,14 +23,14 @@ void system_reset(void);
 
 s32 TLobby::get_file_size(const void *name) {
     s32 size;
-    TLobby *file;
+    AdxfHandle *file;
 
-    file = TLobby::adxf_open(name, 0);
+    file = ADXF_Open(name, 0);
     if (file == NULL) {
         return -1;
     }
-    size = file->adxf_get_fsize_byte();
-    file->close_adxf_handle();
+    size = ADXF_GetFsizeByte(file);
+    ADXF_Close(file);
     return size;
 }
 

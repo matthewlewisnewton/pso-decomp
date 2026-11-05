@@ -175,7 +175,7 @@ void TSceneSora::load_sky_resources() {
     void *motion_list[2];
     Ent_80207478 *tbl;
     s32 ok;
-    TLobby *file;
+    AdxfHandle *file;
     BmlResource *loaded;
     TSceneSora__instance = 0;
     TSceneSora__sky_bml_resource = 0;
@@ -191,18 +191,18 @@ void TSceneSora::load_sky_resources() {
         if (ok <= 0) {
             replace_file_extension__6TLobbyFPvPvPv(name2, tbl[ref.idx].name, lbl_8044A9E0);
         }
-        file = TLobby::adxf_open(name2, 0);
+        file = ADXF_Open(name2, 0);
         if (file != NULL) {
             model_list[0] = name2;
-            file->close_adxf_handle();
+            ADXF_Close(file);
         } else {
             return;
         }
-        file = TLobby::adxf_open(name1, 0);
+        file = ADXF_Open(name1, 0);
         if (file != NULL) {
             motion_list[0] = name1;
             TSceneSora__has_sky_motion = 1;
-            file->close_adxf_handle();
+            ADXF_Close(file);
         } else {
             motion_list[0] = NULL;
         }

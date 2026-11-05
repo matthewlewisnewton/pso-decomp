@@ -158,6 +158,24 @@ including section order. Precedent for this family of unit-level inline switches
 [dtk-template `-inline auto`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203)
 and [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264).
 
+The table above records the earlier matching revision. The current PR #308
+plain-index fallback deliberately gives up exactness in `init_from_id_lists`
+and leaves this unit unlinked, after the reference-counter shape was rejected.
+The flag is retained from that revision; the table is not a claim that the
+current initializer is exact. The typed file API recovery is recorded in
+[pr308-typed-file-apis.md](evidence/pr308-typed-file-apis.md).
+
+### `pso/quest/QuestOpcodeHandlers.cpp`: `-inline on`
+
+This existing unit switch also inlines the scalar accessor on the VM's per-slot
+`QuestVmArgument` union. String-push writes the pointer alternative directly;
+the GBA disk opcode reads that same alternative, and saved contexts use the
+same slot type. Whole-unit objdiff after the typed recovery: `.text` 51,176
+bytes, `.data` 88 bytes, and `.bss` 1,392 bytes, all 100%; the linked DOL has
+the original SHA-1. Direct numeric member reads keep the four affected handlers
+exact without any added optimization pragma. Evidence and iteration details:
+[pr308-typed-file-apis.md](evidence/pr308-typed-file-apis.md).
+
 `TObjBoss2Tunnel.cpp`, `TObjBoss2Tunnel_8003B138.cpp`, and `TObjBoss2Tunnel_802F2070.cpp` set `-fp_contract on` because the curve and tunnel helpers fuse multiply-adds. Each unit stays byte-exact, which is why the flag is on the unit rather than a per-function `fp_contract` pragma. Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) and Melee, TP, TWW, and Pikmin 2, which contract globally.
 
 ### `TAdChrSelPlyPlateGC.cpp` ([#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250))

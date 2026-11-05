@@ -4,14 +4,14 @@
 #include "pso/system/GinjaMaterialState.h"
 #include "pso/item/TItemData.h"
 
-struct TLobby;
+struct AdxfHandle;
 
 class TItemTexLoad : public TObject {
 public:
     void* m_archive_buffer;
     s32 m_state;
     s32 m_texture_index;
-    TLobby *m_archive_handle;
+    AdxfHandle *m_archive_handle;
     GinjaTextureList m_texture_list;
     GinjaTextureEntry m_texture_entry;
 

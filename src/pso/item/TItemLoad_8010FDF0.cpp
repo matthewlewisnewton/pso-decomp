@@ -6,6 +6,7 @@
 #include "pso/item/TUnk_8049C658.h"
 #include "pso/TItemLoad.h"
 #include "pso/item/TItemDrop.h"
+#include "pso/item/ItemArchiveReader.h"
 
 extern "C" {
 
@@ -30,7 +31,7 @@ struct Sp8Buf_8010fe6c_8010FDF0 {
 
 s32 apply_rel_relocations(s32 *);
 s32 read_disc_file(u32, s32);
-s32 read_checked_align__6TLobbyFPvll(s32, s32, s32, void *);
+s32 read_checked_align__6TLobbyFPvll(AdxfHandle *, s32, s32, void *);
 s32 prs_decompress_alloc(s32, u32, s32);
 
     extern int item_load_compressed_work_buffer;
@@ -63,8 +64,8 @@ RelocatedFile::RelocatedFile(const char *path, s32 size) {
     }
 }
 
-void TItemLoad::request_load(s32 arg1) {
-    read_checked_align__6TLobbyFPvll(*(s32 *)&this->m_flags, *(s32 *)&this->m_next, arg1, this);
+void ItemArchiveReader::read(s32 arg1) {
+    read_checked_align__6TLobbyFPvll(handle, sectors, arg1, this);
 }
 
 }

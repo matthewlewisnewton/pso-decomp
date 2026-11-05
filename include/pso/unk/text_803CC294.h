@@ -3,10 +3,9 @@
 
 #include "types.h"
 
-struct TLobby;
+#include "pso/system/Adxf.h"
 
 extern "C" {
-s32 TLobby__sub_803CC53C(TLobby *file);
 void TLobby__sub_803CC884(void);
 s32 check_803CC294(s32 arg0, s32 arg1);
 s32 rd32_803CD5C4(u8 *p);

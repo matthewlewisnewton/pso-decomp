@@ -40,10 +40,31 @@ struct Buf_803CD16C { u8 data[0x10C]; };
 
 struct LogHdr_803CD16C { u8 pad[0x4]; u16 seq; u8 pad2[0x1A]; };
 
-struct Slot_803CD16C {
-    s8 used; s8 f1; s8 f2; u8 f3; u32 f4; s32 f8; s32 fc; s32 f10; u8 pad_14[4];
-    s32 f18; s32 f1c; s32 f20; u8 pad_24[8]; s32 f2c; s32 f30; u8 pad_34[0x138 - 0x34];
+struct VObj_803CC980;
+
+struct AdxfHandle {
+    s8 used;
+    s8 state;
+    s8 f2;
+    u8 f3;
+    u32 f4;
+    VObj_803CC980 *f8;
+    s32 fc; // sector count
+    s32 f10; // byte size
+    s32 f14;
+    s32 f18;
+    s32 f1c;
+    s32 f20;
+    s32 f24;
+    s32 f28;
+    s32 f2c;
+    s32 f30;
+    u8 pad_34[0x138 - 0x34];
 };
+
+typedef char AdxfHandleSize[sizeof(AdxfHandle) == 0x138 ? 1 : -1];
+typedef char AdxfHandleByteSizeOffset[offsetof(AdxfHandle, f10) == 0x10 ? 1 : -1];
+typedef AdxfHandle Slot_803CD16C;
 
 struct LogHdr_803CD3A8 { u8 pad[0x2]; u16 seq; };
 
@@ -54,10 +75,7 @@ struct VT_803CC980 { void *a; void *b; void *c; void (*fn)(VObj_803CC980 *); };
 
 struct VObj_803CC980 { VT_803CC980 *vt; };
 
-struct Snd_803CC980 {
-    u8 f0; s8 state; s8 f2; u8 f3; u32 f4; VObj_803CC980 *f8; u8 pad_c[0x14 - 0xC];
-    s32 f14; u8 pad_18[0x20 - 0x18]; s32 f20; s32 f24; s32 f28;
-};
+typedef AdxfHandle Snd_803CC980;
 
 struct Ent_803CC884 {
     s8 used; s8 state; s8 f2; u8 f3; u32 f4; VObj_803CC980 *f8; u8 pad_c[0x14 - 0xC];
@@ -74,7 +92,6 @@ extern RecoveredGlobal_803CC53C_lbl_8047C93C lbl_8047C93C;
 s32 TLobby__sub_803CCB98();
 extern RecoveredGlobal_803CCB5C_lbl_8047CA28 lbl_8047CA28;
 extern char lbl_8047C88C[];
-s32 TLobby__sub_803CC4C0(Obj_803CC4C0 *p);
 s32 strncpy(void *, void *, int);
 extern s32 adx_afs_partition_id_range_error[];
 extern s32 afs_file_id_out_of_range_error[];
@@ -92,11 +109,9 @@ extern LogHdr_803CD16C lbl_8057B7B0;
 extern LogEnt_803CD16C lbl_8057B7D0[];
 extern Slot_803CD16C adxf_file_handle_pool[];
 extern s32 adxf_log_write_index;
-Slot_803CD16C *adxf_open_afs__6TLobbyFii(s32 arg0, s32 arg1);
 u32 TLobby__sub_803C8CDC(const void *, s32, s32);
 extern s32 lbl_8047CBA4[];
 extern s32 lbl_8047CBD8[];
-TLobby *TLobby::adxf_open(const void *name, s32 mode);
 s32 invalidate_cache__6TLobbyFv(s32, s32);
 extern s32 lbl_8047C9B0[];
 extern s32 lbl_8047C9D4[];
@@ -163,29 +178,28 @@ s32 TLobby::get_afs_file_info(s32 arg0, s32 arg1, char *arg2, s32 *arg3, s32 *ar
 }
 #pragma pop
 
-s32 TLobby__sub_803CC4C0(Obj_803CC4C0 *p) {
+s32 ADXF_GetStat(AdxfHandle *p) {
     if (p == 0) {
         TLobby::notify_error((const char *)lbl_8047C88C);
         return -3;
     }
-    return p->b;
+    return p->state;
 }
 
-s32 TLobby::adxf_get_fsize_byte() {
-    u8 *arg0 = (u8 *)this;
+s32 ADXF_GetFsizeByte(AdxfHandle *arg0) {
     if (arg0 == NULL) {
         TLobby::notify_error((const char *)(&lbl_8047C910.value));
         return -3;
     }
-    return *(s32 *)&this->m_up;
+    return arg0->f10;
 }
 typedef char RecoveredGlobal_803CC53C_lbl_8047C93C_size[sizeof(RecoveredGlobal_803CC53C_lbl_8047C93C) == 0x74 ? 1 : -1];
-s32 TLobby__sub_803CC53C(TLobby *arg0) {
+s32 ADXF_GetFsizeSct(AdxfHandle *arg0) {
     if (arg0 == NULL) {
         TLobby::notify_error((const char *)(&lbl_8047C93C.value));
         return -3;
     }
-    return *(s32 *)((s8 *)arg0 + 0xC);
+    return arg0->fc;
 }
 typedef char RecoveredGlobal_803CCB5C_lbl_8047CA28_size[sizeof(RecoveredGlobal_803CCB5C_lbl_8047CA28) == 0x154 ? 1 : -1];
 
@@ -219,8 +233,7 @@ void TLobby__sub_803CC884(void) {
     TLobby::release_ref();
 }
 
-s32 TLobby::adxf_stop() {
-    Snd_803CC980 *arg0 = (Snd_803CC980 *)this;
+s32 ADXF_Stop(AdxfHandle *arg0) {
     s32 sp8;
     {
         LogEnt_803CD16C *e;
@@ -321,7 +334,7 @@ inline Slot_803CD16C *alloc_803CD16C(void) {
     if (s == NULL) {
         return NULL;
     }
-    s->f1 = 1;
+    s->state = 1;
     s->f4 = 0;
     s->f18 = 0;
     s->f1c = 0;
@@ -359,7 +372,7 @@ void TLobby::release_used_slots() {
     for (i = 0; i < 0x10; i++) {
         p = &adxf_file_handle_pool[i];
         if (p->used == 1) {
-            ((TLobby *)p)->close_adxf_handle();
+            ADXF_Close(p);
         }
     }
 }
@@ -426,7 +439,7 @@ inline s32 close_803CCE9C(Snd_803CC980 *arg0) {
     }
     return arg0->f14;
 }
-void TLobby::close_adxf_handle() {
+void ADXF_Close(AdxfHandle *file) {
     {
         LogEnt_803CD16C *e;
         s32 i = adxf_log_write_index % 256;
@@ -437,20 +450,20 @@ void TLobby::close_adxf_handle() {
         e->type = 3;
         e->phase = 0;
         e->seq = seq;
-        e->a = (s32)this;
+        e->a = (s32)file;
         e->b = -1;
         e->c = -1;
         adxf_log_write_index = i + 1;
     }
-    if (this != NULL) {
+    if (file != NULL) {
         TLobby::init_once();
-        if ((s32)((Hdr_803CCE9C *)this)->f1 == 2) {
-            close_803CCE9C((Snd_803CC980 *)this);
+        if ((s32)file->state == 2) {
+            close_803CCE9C(file);
         }
-        if (((Slot_803CD16C *)this)->f4 != 0) {
-            TLobby__sub_803C8B38((u8 *)(((Slot_803CD16C *)this)->f4));
+        if (file->f4 != 0) {
+            TLobby__sub_803C8B38((u8 *)file->f4);
         }
-        memset(this, 0, 0x138);
+        memset(file, 0, 0x138);
         TLobby::release_ref();
         {
             s32 i = adxf_log_write_index % 256;
@@ -458,7 +471,7 @@ void TLobby::close_adxf_handle() {
             e->type = 3;
             e->phase = 1;
             e->seq = ((LogHdr_803CCE9C *)&lbl_8057B7B0)->seq;
-            e->a = (s32)this;
+            e->a = (s32)file;
             e->b = -1;
             e->c = -1;
             adxf_log_write_index = i + 1;
@@ -467,7 +480,7 @@ void TLobby::close_adxf_handle() {
 }
 #pragma pop
 
-Slot_803CD16C *adxf_open_afs__6TLobbyFii(s32 arg0, s32 arg1) {
+AdxfHandle *ADXF_OpenAfs(s32 arg0, s32 arg1) {
     Slot_803CD16C *s;
     {
         LogEnt_803CD16C *e;
@@ -489,7 +502,7 @@ Slot_803CD16C *adxf_open_afs__6TLobbyFii(s32 arg0, s32 arg1) {
     s = alloc_803CD16C();
     if (s != NULL) {
         if (open_803CD16C(s, arg0, arg1) < 0) {
-            ((TLobby *)s)->close_adxf_handle();
+            ADXF_Close(s);
             s = NULL;
         }
     }
@@ -528,7 +541,7 @@ inline Slot_803CD16C *alloc_803CD3A8(void) {
     if (s == NULL) {
         return NULL;
     }
-    s->f1 = 1;
+    s->state = 1;
     s->f4 = 0;
     s->f18 = 0;
     s->f1c = 0;
@@ -557,7 +570,7 @@ inline s32 open_803CD3A8(Slot_803CD16C *s, const void *name, s32 mode) {
     s->f10 = sz;
     return 0;
 }
-TLobby *TLobby::adxf_open(const void *name, s32 mode) {
+AdxfHandle *ADXF_Open(const void *name, s32 mode) {
     Slot_803CD16C *s;
     {
         LogEnt_803CD16C *e;
@@ -579,7 +592,7 @@ TLobby *TLobby::adxf_open(const void *name, s32 mode) {
     s = alloc_803CD3A8();
     if (s != NULL) {
         if (open_803CD3A8(s, name, mode) < 0) {
-            ((TLobby *)s)->close_adxf_handle();
+            ADXF_Close(s);
             s = NULL;
         }
     }
@@ -595,7 +608,7 @@ TLobby *TLobby::adxf_open(const void *name, s32 mode) {
         e->c = -1;
         adxf_log_write_index = i + 1;
     }
-    return (TLobby *)s;
+    return s;
 }
 #pragma pop
 

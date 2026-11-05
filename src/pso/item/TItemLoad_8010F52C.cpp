@@ -77,10 +77,10 @@ void TItemLoad__sub_8010F5A0(void) {
     item_load_model_buffer = (s32)::operator new[](0x21000);
 }
 
-void TItemLoad::start_load_with_id(s32 id, s32 arg2) {
+void TUnk_8049F42C::start_load_with_id(s32 id, s32 arg2) {
     Load_8010F61C *self = (Load_8010F61C *)this;
     s32 i;
-    if (id != 0 && ((TItemLoad *)self)->begin_load(arg2) == 1) {
+    if (id != 0 && begin_load(arg2) == 1) {
         self->id = id;
         self->f28 = 0;
         for (i = 0; i < 4; i++) {
@@ -131,7 +131,7 @@ void TUnk_8049F40C::vfunc_3() {
         }
         TLobby::tmp_buf_release(item_load_tmp_buffer);
         ((Load_8010F68C *)this)->id = 0;
-        ((TItemLoad *)((Load_8010F68C *)this))->reset_state();
+        reset_state();
     }
 }
 
@@ -161,13 +161,13 @@ s32 TUnk_8049F40C::construct_with_vtable(void *a1, int a2, int a3) {
     return (s32)self;
 }
 
-void TItemLoad::begin_load_if_pending(s32 arg1, s32 arg2) {
+void TUnk_8049F42C::begin_load_if_pending(s32 arg1, s32 arg2) {
     if ((arg1 != 0) && (begin_load(arg2) == 1)) {
         *(s32 *)((s8 *)this + 0x24) = arg1;
     }
 }
 
-void TItemLoad::reload_item() {
+void TUnk_8049F42C::reload_item() {
     s32 temp_r31;
 
     if (TLobby__sub_8001EEF4() == 1) {

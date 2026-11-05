@@ -8,7 +8,6 @@ extern "C" {
 u8 *alloc_from_heap__6TLobbyFPv(s32);
 u8 *link_into_list__6TLobbyFv();
 s32 strncpy(void *, void *, int);
-s32 TLobby__sub_803CC53C(TLobby *);
 
 }
 
@@ -32,12 +31,12 @@ typedef char NamedDownloadEntry_callback[offsetof(NamedDownloadEntry, callback) 
 
 s32 TLobby::create_named_entry(void *name, s32 arg1, void (*callback)(Lobby_8001FA1C *), void *src, void **arg4) {
     NamedDownloadEntry *entry;
-    TLobby *file;
+    AdxfHandle *file;
 
     if (arg4 != NULL) {
         *arg4 = NULL;
     }
-    file = TLobby::adxf_open(name, 0);
+    file = ADXF_Open(name, 0);
     if (file == NULL) {
         return -2;
     }
@@ -48,9 +47,9 @@ s32 TLobby::create_named_entry(void *name, s32 arg1, void (*callback)(Lobby_8001
     strncpy(entry->name, name, 0x20);
     entry->state = 1;
     entry->buffer = arg1;
-    entry->file_size = file->adxf_get_fsize_byte();
-    entry->field_30 = TLobby__sub_803CC53C(file);
-    file->close_adxf_handle();
+    entry->file_size = ADXF_GetFsizeByte(file);
+    entry->field_30 = ADXF_GetFsizeSct(file);
+    ADXF_Close(file);
     entry->field_34 = 0;
     entry->callback = callback;
     if (callback != NULL) {

@@ -1,23 +1,21 @@
 #include "types.h"
 #include "pso/unk/text_803CC294.h"
 #include "pso/TItemLoad.h"
+#include "pso/item/ItemArchiveReader.h"
 
 extern "C" {
 
-s32 free_texture__9TItemLoadFv();
-TLobby *adxf_open_afs__6TLobbyFii(s32, s32);
-
-u32 TItemLoad::load_data(s32 arg1) {
-    TLobby *file;
-    if ((s32) *(s32 *)&this->m_up == 1) {
-        free_texture__9TItemLoadFv();
-        *(TLobby **)&this->m_flags = adxf_open_afs__6TLobbyFii(*(s32 *)&this->m_prev, arg1);
-        file = *(TLobby **)&this->m_flags;
+AdxfHandle *ItemArchiveReader::open(s32 arg1) {
+    AdxfHandle *file;
+    if (mode == 1) {
+        close();
+        handle = ADXF_OpenAfs(partition, arg1);
+        file = handle;
         if (file != NULL) {
-            *(s32 *)&this->m_next = TLobby__sub_803CC53C(file);
+            sectors = ADXF_GetFsizeSct(file);
         }
     }
-    return *(u32 *)&this->m_flags;
+    return handle;
 }
 
 }

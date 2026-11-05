@@ -272,7 +272,6 @@ struct Obj_8023FCC0 {
 extern "C" {
 #define lbl_805162EC ((E_8023FF38 *)&lbl_805162EC)
 #define lbl_805162EC ((E_8023FF38 *)&lbl_805162EC)
-void *adxf_open_afs__6TLobbyFii(int, int);
 
 s32 TLobby__sub_8023FFB8(Obj_8023FCC0 *self, int id);
 
@@ -319,7 +318,7 @@ s32 TLobby__sub_8023FFB8(Obj_8023FCC0 *self, int id) {
             goto fail;
         }
         self->ents[id].k[i] = sound_bank_file_indices[id][i];
-        self->fC14[i] = adxf_open_afs__6TLobbyFii(0, sound_bank_file_indices[id][i]);
+        self->fC14[i] = ADXF_OpenAfs(0, sound_bank_file_indices[id][i]);
         if (self->fC14[i] == NULL) {
             ret = 2;
             goto fail;

@@ -2,11 +2,12 @@
 #define PSO_SYSTEM_TGSTREAM_H
 
 #include "pso/system/GslArchive.h"
+#include "pso/system/Adxf.h"
 #include <stddef.h>
 
 struct TGStreamPrefix {
     char name[0x20];
-    s32 adxf_handle;
+    AdxfHandle *adxf_handle;
     s32 direct_read_mode;
     GslArchiveEntry *archive_entry;
 };
@@ -24,7 +25,7 @@ void reset__8TGStreamFv(void);
 void reset_gstream_buffer(void);
 }
 s32 get_gstream_buffered_bytes(void);
-s32 refill_gstream_buffer(s32 adxf_handle);
+s32 refill_gstream_buffer(AdxfHandle *adxf_handle);
 extern "C" {
 int get_gstream_file_size(void);
 }
@@ -48,7 +49,7 @@ void load_area_gsl(void);
 TGStreamPrefix *open__8TGStreamFPvPvi(TGStreamPrefix *arg0, void *file, s32 arg2);
 void open_gsl_archive(char *name);
 }
-s32 refill_gstream_buffer(s32 arg0);
+s32 refill_gstream_buffer(AdxfHandle *arg0);
 extern "C" {
 void reset_gstream_buffer(void);
 }

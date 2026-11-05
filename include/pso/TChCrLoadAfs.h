@@ -4,7 +4,7 @@
 #include "pso/TObject.h"
 #include "types.h"
 
-struct TLobby;
+struct AdxfHandle;
 
 class TChCrLoadAfs : public TObject {
 public:
@@ -16,7 +16,7 @@ public:
     void poll_load();
     void sub_8028B944();
     void sub_8028B940();
-    TLobby *load_handle;
+    AdxfHandle *load_handle;
     u32 source_20;
     u32 source_24;
     u32 buffer_address;

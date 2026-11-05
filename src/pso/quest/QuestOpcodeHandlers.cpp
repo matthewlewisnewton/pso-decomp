@@ -680,7 +680,7 @@ void qst_op_get_guildcard_num(void) {
 void qst_op_check_for_keyword(void) {
     u8 idx;
     idx = (u8) qst_args[0];
-    if (TOChatSensorCapture::check_keyword((u16) qst_args[1], (const char *) qst_args[2]) != 0) {
+    if (TOChatSensorCapture::check_keyword((u16) qst_args[1], qst_args[2].string) != 0) {
         qst_registers[(u8)idx] = 1;
         return;
     }
@@ -696,7 +696,7 @@ s32 fn_801D9FA0(int, int, int, int, void *);
 extern s32 TLobby__protocol_instance;
 void qst_op_arg_pushw(u16 a0);
 void qst_op_arg_pushb(u8 a0);
-void qst_op_arg_pushs(int a0);
+void qst_op_arg_pushs(const char *a0);
 extern "C" {
 
 void qst_op_enable_keyword_detect() { TOChatSensorCapture::create_instance((void*)tl_01); }
@@ -712,24 +712,24 @@ void qst_op_send_statistic() {
 }
 }
 
-void qst_op_arg_pushs(int a0) { int old = qst_arg_count; qst_arg_count = old + 1; qst_args[old] = a0; }
+void qst_op_arg_pushs(const char *a0) { int old = qst_arg_count; qst_arg_count = old + 1; qst_args[old].string = a0; }
 extern "C" {
 
 void qst_op_arg_pusho(u16 a0) {
-    qst_args[qst_arg_count++] = (s32)&qst_function_table[a0];
+    qst_args[qst_arg_count++].integer = (s32)&qst_function_table[a0];
 }
 
 void qst_op_arg_pusha(u8 a0) {
-    qst_args[qst_arg_count++] = (int)(&qst_registers[a0]);
+    qst_args[qst_arg_count++].integer = (int)(&qst_registers[a0]);
 }
 }
 
 void qst_op_arg_pushw(u16 a0) {
-    qst_args[qst_arg_count++] = a0;
+    qst_args[qst_arg_count++].integer = a0;
 }
 
 void qst_op_arg_pushb(u8 a0) {
-    qst_args[qst_arg_count++] = a0;
+    qst_args[qst_arg_count++].integer = a0;
 }
 
 void qst_op_arg_pushl(int a0)
@@ -741,11 +741,11 @@ void qst_op_arg_pushl(int a0)
   new_var2 = &a0;
   new_var3 = *new_var2;
   qst_arg_count = qst_arg_count + 0x1;
-  qst_args[new_var] = new_var3;
+  qst_args[new_var].integer = new_var3;
 }
 extern "C" {
 void qst_op_arg_pushr(u8 a0) {
-    qst_args[qst_arg_count++] = qst_registers[a0];
+    qst_args[qst_arg_count++].integer = qst_registers[a0];
 }
 
 void qst_op_va_call(s32 arg0) {
@@ -2198,7 +2198,7 @@ void qst_op_open_pack_select() {
 }
 
 void qst_op_prepare_gba_rom_from_disk(void) {
-    const void *name = (const void *)qst_args[0];
+    const char *name = qst_args[0].string;
 
     TLobby::free_luker_object();
     TLobby::send_data(name);
@@ -2431,8 +2431,8 @@ void qst_op_get_item_info() {
     s32 r;
     void *item;
     ItemData_801E8000 d;
-    r = qst_args[1];
-    item = find_item_by_id(qst_args[0]);
+    r = qst_args[1].integer;
+    item = find_item_by_id(qst_args[0].integer);
     if (item != NULL) {
         ((TItem *)item)->copy_to_item_data((TItemData *)&d);
         qst_registers[r++] = d.b0;
@@ -4085,9 +4085,9 @@ void qst_op_get_mag_levels(s32 i) {
 
 void qst_op_give_s_rank_weapon() {
     Item_801EBF30 item;
-    u8 r = qst_args[1];
-    s32 a = qst_args[2];
-    u16 id = qst_args[0];
+    u8 r = qst_args[1].integer;
+    s32 a = qst_args[2].integer;
+    u16 id = qst_args[0].integer;
     if (id == local_client_id) {
         void *player = (void *)get_player_by_client_id(id);
         if (player != NULL) {
@@ -5211,8 +5211,8 @@ void qst_op_clear_mainwarp() {
 
 void qst_op_set_mainwarp(void) {
     s32 temp_r31;
-    temp_r31 = qst_args[0];
-    TObjCityMainWarp::set_active_bit((int) (qst_args[0]));
+    temp_r31 = qst_args[0].integer;
+    TObjCityMainWarp::set_active_bit(qst_args[0].integer);
     TObjDoor::set_main_warp_id(temp_r31);
 }
 extern "C" {
@@ -5275,7 +5275,7 @@ void qst_op_load_midi() { TLobby::free_luker_object(); TLobby__sub_80197F74(); T
 void qst_op_load_pvr() { TLobby::free_luker_object(); load_memcard_file(); TLobby::clear_quest_vm_flag(); }
 
 void qst_op_npc_text() {
-    set_partner_common_remark((qst_args[0]), (const char *)(qst_args[1]));
+    set_partner_common_remark((qst_args[0]), qst_args[1].string);
 }
 }
 
@@ -5538,7 +5538,7 @@ void qst_op_p_hpstat(void) {
     void *obj;
     f32 hp;
     s32 player;
-    s32 *args = qst_args;
+    QuestVmArgument *args = qst_args;
     s32 *regs = qst_registers;
     reg = args[0];
     pct = regs[reg];
@@ -5923,8 +5923,8 @@ void qst_op_npc_param() {
     s32 flags;
     s32 arg;
 
-    i = qst_args[0];
-    arg = qst_args[1];
+    i = qst_args[0].integer;
+    arg = qst_args[1].integer;
     s.h0 = qst_registers[i++];
     s.h2 = qst_registers[i++];
     switch (qst_registers[i++]) {
@@ -6037,8 +6037,8 @@ void qst_op_add_msg(void) {
         qst_suspend_reason = QST_WAIT_MESSAGE_QB;
         return;
     }
-    qst_args[1] = x;
-    qst_args[0] = qst_message_speaker;
+    qst_args[1].integer = x;
+    qst_args[0].integer = qst_message_speaker;
     qst_op_message();
 }
 extern "C" {
@@ -6724,7 +6724,7 @@ u16 read_be_u16(void) {
 
 #undef memcpy
 
-s32 qst_args[8];
+QuestVmArgument qst_args[8];
 s32 qst_call_stack[64];
 RecoveredGlobal_801EB73C_lbl_80512340 quest_player_name_buffer;
 RecoveredGlobal_801EB6B8_lbl_80512350 quest_player_class_name_buffer;
