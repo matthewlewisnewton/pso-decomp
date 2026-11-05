@@ -31,9 +31,18 @@ is not emitted out of line.
 The cell stores are written directly. `a` is the slot scale, used for `v0`
 and again in the `v1` sum. `v1` is `(lbl_805DE588 + a) * scale`. That product
 is `fmuls f0,f3,f0`; the original is `fmuls f0,f0,f3`. Objdiff scores the
-function 99.830505% (236 bytes). Every other instruction matches. A named
-sum restores that operand order and is a single-use local, so the expression
-stays inline.
+function 99.830505% (236 bytes). Every other instruction matches.
+
+MWCC's `optimizecomm` swaps a commutative operator when the left tree costs
+more than the right. The sum is an add (cost 2) and the scale is a load
+(cost 1), so the multiply is parsed as `scale * sum`. Writing `scale * (lbl + a)`,
+`+scale`, `(0.f, scale)`, or `scale + 0.f` on the right produces the same
+`fmuls`. A named sum (`b = lbl + a; v1 = b * scale`) costs 1 on the left and
+matches the original object, including `fmuls f0,f0,f3`. That name is used
+once, so it is not in the source. Reusing `a` for the sum (`a = lbl + a`)
+also puts the sum on the left of `fmuls`, but the first `a` then stays live
+in another float register and the prologue loads all move (11 mismatched
+instructions). The expression stays inline.
 
 The unit's `configure.py` entry replaces `-inline off` with `-inline on`.
 Retested on this source:
