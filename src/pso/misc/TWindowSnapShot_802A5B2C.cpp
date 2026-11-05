@@ -106,7 +106,7 @@ void TWindowSnapShot::reset() {
     u8 *arg0 = (u8 *)this;
     *(s32 *)&this->m_name = 0;
     *(s32 *)&this->m_flags = 0;
-    memset((u8 *)&this->_pad1C, 0, 0x20);
+    memset((u8 *)&this->frame_pad_1c, 0, 0x20);
     *(s32 *)&this->m_prev = 0;
     *(s32 *)&this->m_next = 0;
     *(s32 *)&this->m_down = 0;
@@ -125,7 +125,7 @@ void *TWindowSnapShot__sub_802A5EDC(void *arg0, s16 arg1) {
 typedef char RecoveredGlobal_802A5F24_lbl_804DD098_size[sizeof(RecoveredGlobal_802A5F24_lbl_804DD098) == 0x10 ? 1 : -1];
 u8 *TWindowSnapShot::init_and_reset() {
     u8 *arg0 = (u8 *)this;
-    this->m_3c = &(*(RecoveredGlobal_802A5F24_lbl_804DD098 *)&lbl_804DD098).value;
+    this->m_3cp = &(*(RecoveredGlobal_802A5F24_lbl_804DD098 *)&lbl_804DD098).value;
     reset();
     return arg0;
 }

@@ -57,7 +57,7 @@ void TWindowSoundBalance::apply_balance(void *window_key_board_soft) {
     s32 temp;
 
     temp = (s32)get_array_entry((s32)selection);
-    draw_selection_bar((u8 *)window_key_board_soft, (u8 *)temp, is_active());
+    draw_selection_bar((TWindowDrawContext *)window_key_board_soft, (u8 *)temp, is_active());
 }
 
 void TWindowSoundBalance::handle_cancel() {

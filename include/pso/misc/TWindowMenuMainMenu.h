@@ -72,18 +72,6 @@ struct TWindowMenuMainMenu : public TWindowBase {
     int is_flag_set();
     virtual void render();
     virtual void run_task();
-    u8 _pad1C[0x4];
-    u16 m_20;
-    s16 unk_22;
-    u8 unk_24[0x8];
-    s32 m_2c;
-    u8 unk_30[0xC];
-    f32 unk_3c;
-    f32 m_40[2];
-    f32 m_48[2];
-    u32 unk_50;
-    f32 m_54;
-    u8 unk_58[0x8];
     u8 m_60;
     s8 m_61;
     s16 m_62;

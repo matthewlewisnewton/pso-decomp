@@ -27,6 +27,31 @@ public:
     void *get_array_entry(int);
     virtual void render();
     virtual void run_task();
+
+    // Shared window image, 0x1C through 0x5F. Main keeps this on TUnk_804CE018.
+    // Descendants start their own fields at 0x60.
+    u8 frame_pad_1c;
+    s8 m_1d;
+    u8 frame_pad_1e;
+    s8 m_1f;
+    union { s16 m_20; u16 m_20u; };
+    s16 unk_22;
+    void *m_24;
+    u8 frame_pad_28[2];
+    s16 m_2a;
+    union { s32 m_2c; u32 m_2cu; };
+    f32 m_30;
+    union { s32 m_34; f32 m_34f; u32 m_34u; };
+    f32 m_38;
+    union { f32 m_3c; f32 unk_3c; s32 *m_3cp; };
+    union { f32 m_40; u32 m_40u; };
+    union { f32 m_44; u32 m_44u; };
+    f32 m_48;
+    union { f32 m_4c; void *m_4cp; };
+    union { u32 unk_50; u32 m_50; };
+    union { f32 m_54; u32 m_54u; };
+    f32 m_58;
+    union { s32 m_5c; u32 m_5cu; };
 };
 
 #endif

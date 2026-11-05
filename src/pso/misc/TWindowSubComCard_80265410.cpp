@@ -133,7 +133,8 @@ u32 reset_selection__20TWindowSubStatusDispFv(int, void *);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 s32 construct_type1_heading__20TWindowSubStatusDispFll(s32, s32, s32);
 }
-void draw_selection_bar(u8 *arg0, u8 *arg1, s32 arg2);
+struct TWindowDrawContext;
+void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 void set_text_entry_string(u8 *arg0, u32 str, s32 arg2);
 void update_chat_window(void* p);
 s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
@@ -733,7 +734,7 @@ void TWindowMenu::draw_selected_bar(u8 *window_key_board_soft) {
         if (temp_r4 >= 0) {
             temp_r3 = (u16 *)(((s32)((u16 * (*)(void *, int))get_array_entry__11TWindowBaseFi)(this, (s32) temp_r4)));
             if (*temp_r3 & 1) {
-                draw_selection_bar((window_key_board_soft), (u8 *)temp_r3, 1);
+                draw_selection_bar((TWindowDrawContext *)window_key_board_soft, (u8 *)temp_r3, 1);
             }
         }
     }
@@ -744,7 +745,7 @@ void TWindowMenu::render_selected_entry(s32 window_key_board_soft) {
 
     temp_r3 = ((u16 * (*)(void *, int))get_array_entry__11TWindowBaseFi)(this, *(s16 *)&this->m_78);
     if (*temp_r3 & 1) {
-        draw_selection_bar((u8 *)window_key_board_soft, (u8 *)temp_r3, is_decided());
+        draw_selection_bar((TWindowDrawContext *)window_key_board_soft, (u8 *)temp_r3, is_decided());
     }
 }
 

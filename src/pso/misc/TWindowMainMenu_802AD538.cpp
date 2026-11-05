@@ -2,7 +2,6 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
-struct TWindowSubComCard;
 #include "pso/misc/TWindowMenuMainMenu.h"
 #include "pso/misc/TWindowMainMenu.h"
 #include "pso/misc/TLanguage.h"
@@ -14,8 +13,6 @@ struct RecoveredGlobal_802AE59C_lbl_8050E208 {
     s32 value;
     u8 remaining[0x1AC];
 };
-
-struct Rect_802AE2B0 { f32 x, y, w, h; u8 pad[0x34 - 0x10]; u32 color; };
 
 typedef char RecoveredGlobal_802AE59C_lbl_8050E208_size[sizeof(RecoveredGlobal_802AE59C_lbl_8050E208) == 0x1B0 ? 1 : -1];
 
@@ -33,10 +30,9 @@ void begin_render__20TWindowSubStatusDispFl(void);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
-f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *);
+f32 TWindowSubComCard__sub_80244784(void *);
 s32 is_window_reveal_complete__11TWindowBaseFv();
 s32 sub_80246948__11TWindowBaseFv();
-s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);
 void begin_screen_draw(s32 arg0);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
@@ -89,8 +85,8 @@ void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
         r.v0 = uv->v / 256.0f;
         r.u1 = (98.0f + uv->u) / 256.0f;
         r.v1 = (16.0f + uv->v) / 256.0f;
-        if (try_open__19TWindowKeyBoardSoftFii((s32)w, (s32)&r) != 0) {
-            draw_textured_quad_at_depth((f32 *)&r, scale);
+        if (TWindowKeyBoardSoft::try_open(w, &r.x0) != 0) {
+            draw_textured_quad_at_depth(&r.x0, scale);
         }
         TWindowSubStatusDisp::get_player();
         TLanguage::set_entry_index(2, 0x4B);
@@ -422,14 +418,14 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *context) {
 TWindowDrawContext *TWindowMenuMainMenu::setup_content_frame() {
     f32 v;
     TWindowKeyBoardSoft *window;
-    window = TWindowKeyBoardSoft::open_singleton(m_40, m_48, fn_8026CB68(), m_54, m_2c);
+    window = TWindowKeyBoardSoft::open_singleton(&m_40, &m_48, fn_8026CB68(), m_54, m_2c);
     if (is_not_split_screen() != 0) {
         v = 51.0f;
     } else {
         v = 39.0f;
     }
     window->set_bounds(10.0f + window->x, window->y + v, (window->x + window->w) - 10.0f, (window->y + window->h) - 39.0f);
-    window->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784((TWindowSubComCard *)this)) << 24) | 0xFF0000 | 0xFFFF;
+    window->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784(this)) << 24) | 0xFF0000 | 0xFFFF;
     return window;
 }
 
