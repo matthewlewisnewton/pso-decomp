@@ -40,7 +40,7 @@ extern "C" {
 void close_gsl_archive(void);
 TGStreamPrefix *destroy_gstream(TGStreamPrefix *arg0, s16 arg1);
 }
-GslArchiveEntry *find_gsl_entry(void *name);
+GslArchiveEntry *find_gsl_entry(const void *name, s32 mode);
 s32 get_gstream_buffered_bytes(void);
 extern "C" {
 int get_gstream_file_size(void);

@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `1db58393d`, 2026-11-04)
+## Summary (regenerated on this branch after merging main `7ba27eaf2`, 2026-11-04)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `1db58393d` (2026-11-04). Assembly is counted as functions;
+after merging main `7ba27eaf2` (2026-11-04). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -27,7 +27,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
-| Per-unit compiler overrides in `configure.py` | 147 | 147 |
+| Per-unit compiler overrides in `configure.py` | 148 | 148 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -102,7 +102,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-147 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+148 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -110,7 +110,7 @@ small float differences without FMA).
 `pso_date.cpp`: GC/1.3.2 scheduling, see
 [calendar-conversion-evidence.md](evidence/calendar-conversion-evidence.md);
 `TObjTombstone.cpp`: `-fp_contract on` because two calculations fuse
-multiply-adds). The generated table copies each comment; 93 entries have no
+multiply-adds; `TLobby_8001EF5C.cpp`: `-inline on`, see below). The generated table copies each comment; 93 entries have no
 comment of their own (several share a comment with the entry above). Library
 groups (SDK, runtime, TRK, MusyX, CRI, Ginja, mcFs, ntInf, avetcp, modem, ntUtl)
 use their own compiler versions as recorded there.
@@ -118,6 +118,26 @@ use their own compiler versions as recorded there.
 Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
+
+### `pso/misc/TLobby_8001EF5C.cpp`: `-inline on`
+
+`init_from_id_lists` at `0x8002058C` (size `0x30C`) contains the
+model-count walk, the motion-count walk, and the flag `& 2` download walk in
+its body. The project default `-inline off` outlines those `static inline`
+walks, so the function is not the original bytes. Measured with objdiff
+(`functionRelocDiffs=data_value`):
+
+| Flag | Result |
+|---|---|
+| `-inline auto` | `.text` 62.53%, `.data` 0% |
+| `-inline auto,deferred` | `.text` 52.51%, `.data` 0% |
+| `-inline deferred` | Per-function match on the previous `extern "C"` body. On this C++ function it emits `init_from_id_lists` at `.text+0` instead of `.text+0x1630`, so the linked DOL does not match. |
+| `-inline on` | Every function 100%, `.text` and `.data` 100%, function at `.text+0x1630`. The unit links. |
+
+`-inline on` is the least invasive flag that keeps the whole unit identical,
+including section order. Precedent for this family of unit-level inline switches:
+[dtk-template `-inline auto`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203)
+and [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264).
 
 `pso/effect/TEF_LensFlare.cpp` (this change) sets `-fp_contract on` because the
 recovered renderer contracts its attenuation and displacement multiply-adds

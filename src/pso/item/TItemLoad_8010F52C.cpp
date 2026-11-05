@@ -129,7 +129,7 @@ void TUnk_8049F40C::vfunc_3() {
                 break;
             }
         }
-        ((TLobby *)item_load_tmp_buffer)->tmp_buf_release();
+        TLobby::tmp_buf_release((const char *)item_load_tmp_buffer);
         ((Load_8010F68C *)this)->id = 0;
         ((TItemLoad *)((Load_8010F68C *)this))->reset_state();
     }
@@ -174,7 +174,7 @@ void TItemLoad::reload_item() {
         temp_r31 = TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
         decompress_buffer__9TItemLoadFUl();
         load_gvm_texture_archive(temp_r31, *(s32 *)((s8 *)this + 0x24));
-        ((TLobby *)item_load_tmp_buffer)->tmp_buf_release();
+        TLobby::tmp_buf_release((const char *)item_load_tmp_buffer);
         *(s32 *)((s8 *)this + 0x24) = 0;
         reset_state();
     }

@@ -27,7 +27,7 @@ void TItemTexLoad::load_texture_archive() {
     if (r != 0) {
         prs_decompress_alloc(m_archive_buffer, r, 0x40000);
         load_gvm_texture_archive(r, &m_texture_list);
-        ((TLobby *)(&t))->tmp_buf_release();
+        TLobby::tmp_buf_release((const char *)(&t));
         m_state = 2;
     } else {
         unload_texture();
