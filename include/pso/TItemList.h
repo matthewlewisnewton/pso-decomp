@@ -6,7 +6,7 @@
 
 struct TItem;
 
-// Inventory slot. __ct__9TItemListFv writes __vt__9TItemList (0x18 bytes, the
+// Inventory slot. The constructor writes __vt__9TItemList (0x18 bytes, the
 // same four TObject virtuals) at 0x18 and the owned TItem at 0x1C, so this is
 // a TObject plus one pointer. Children and siblings are TItemList nodes.
 // Walks load those links with link_down / link_next.
