@@ -31,6 +31,7 @@ guides.
 - [Soft keyboard unit recovery (WIP)](keyboard-control-recovery-wip.md)
 - [Main-phase predicate return](main-phase-predicate-evidence.md)
 - [Matrix copy and concatenation](matrix-copy-concat-evidence.md)
+- [MatrixVector hand-written kernels](matrixvector-asm-kernels-evidence.md)
 - [Motion drawing and model callbacks](motion-draw-callback-evidence.md)
 - [Motion table setters](motion-table-setter-evidence.md)
 - [MusyX assembly and scalar fallbacks](musyx-asm-fallbacks.md)
