@@ -11,6 +11,8 @@
 #include "pso/boss/TBoss8Dragon.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/object/TObjMotion.h"
+#include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
 
 struct O_8030B370 { u8 pad[0x24]; u32 a; s32 t; };
 
@@ -167,7 +169,6 @@ u16 TObjLiveCameraCtrl::get_first_dragon_part_id() { return TBoss8Dragon::get_gl
 extern "C" {
 s32 angle_diff_s16(int);
 
-u8 *get_player_by_client_id(s32);
 u32 TBoss8Dragon__sub_802F3348(int);
 s32 TBoss8Dragon__sub_802FCCBC(int);
 f32 sin_table_lookup(int);
@@ -208,6 +209,7 @@ void TObjLiveCameraCtrl::sub_8030B818(int _w1) {
 #pragma fp_contract on
 void TObjLiveCameraCtrl::choose_next_camera_shot() {
     f32 r;
+    TObjPlayer *player;
     u8 *p;
     if (this->shot_frames < 0) {
         return;
@@ -238,9 +240,9 @@ void TObjLiveCameraCtrl::choose_next_camera_shot() {
     case 2:
         this->shot_frames = 1.8e+02f * (r = calc_random_ratio__10TObjPlayerFv(this->rng), r) + 1.8e+02f;
         this->target_id = get_local_client_id();
-        p = get_player_by_client_id(this->target_id);
-        if (p != NULL) {
-            this->m_28 = *(s32 *)((s8 *)p + 0x60) - 0x8000;
+        player = get_player_by_client_id(this->target_id);
+        if (player != NULL) {
+            this->m_28 = player->rotation.yaw - 0x8000;
         }
         break;
     case 3:
@@ -269,32 +271,32 @@ void TObjLiveCameraCtrl::choose_next_camera_shot() {
 #pragma fp_contract on
 void TObjLiveCameraCtrl::update_live_camera() {
     u32 boss8_dragon;
-    u8 *player;
-    u8 *temp_r3_2;
+    TObjPlayer *player;
+    TObjPlayer *temp_r3_2;
     u8 *enemy_entity;
     switch (this->shot) {
     case 1:
-        player = (u8 *)(get_player_by_client_id((s32) this->target_id));
+        player = get_player_by_client_id(this->target_id);
         if (player != NULL) {
-            this->vector_34[0] = (f32) ((3e+01f * sin_table_lookup((int) (this->m_28))) + *(f32 *)((s8 *)player + 0x38));
-            this->vector_34[1] = (f32) (*(f32 *)((s8 *)player + 0x3C) + this->orbit_height);
-            this->vector_34[2] = (f32) ((3e+01f * cos_table_lookup((int) (this->m_28))) + *(f32 *)((s8 *)player + 0x40));
-            this->vector_40[0] = (f32) *(f32 *)((s8 *)player + 0x38);
-            this->vector_40[1] = (f32) (*(f32 *)((s8 *)player + 0x3C) + this->orbit_height);
-            this->vector_40[2] = (f32) *(f32 *)((s8 *)player + 0x40);
+            this->vector_34[0] = (f32) ((3e+01f * sin_table_lookup((int) (this->m_28))) + player->position.x);
+            this->vector_34[1] = (f32) (player->position.y + this->orbit_height);
+            this->vector_34[2] = (f32) ((3e+01f * cos_table_lookup((int) (this->m_28))) + player->position.z);
+            this->vector_40[0] = (f32) player->position.x;
+            this->vector_40[1] = (f32) (player->position.y + this->orbit_height);
+            this->vector_40[2] = (f32) player->position.z;
             this->m_28 = (s32) (this->m_28 + this->orbit_step);
         }
         return;
     case 2:
-        temp_r3_2 = (u8 *)(get_player_by_client_id((s32) this->target_id));
+        temp_r3_2 = get_player_by_client_id(this->target_id);
         if (temp_r3_2 != NULL) {
-            this->vector_34[0] = (f32) ((45.42f * sin_table_lookup((int) (this->m_28))) + *(f32 *)((s8 *)temp_r3_2 + 0x38));
-            this->vector_34[1] = (f32) (25.43f + *(f32 *)((s8 *)temp_r3_2 + 0x3C));
-            this->vector_34[2] = (f32) ((45.42f * cos_table_lookup((int) (this->m_28))) + *(f32 *)((s8 *)temp_r3_2 + 0x40));
-            this->vector_40[0] = (f32) (((-5.0f) * sin_table_lookup((int) (this->m_28))) + *(f32 *)((s8 *)temp_r3_2 + 0x38));
-            this->vector_40[1] = (f32) (19.8f + *(f32 *)((s8 *)temp_r3_2 + 0x3C));
-            this->vector_40[2] = (f32) (((-5.0f) * cos_table_lookup((int) (this->m_28))) + *(f32 *)((s8 *)temp_r3_2 + 0x40));
-            sub_8030B818((int)((int) (*(s32 *)((s8 *)temp_r3_2 + 0x60) - 0x8000)));
+            this->vector_34[0] = (f32) ((45.42f * sin_table_lookup((int) (this->m_28))) + temp_r3_2->position.x);
+            this->vector_34[1] = (f32) (25.43f + temp_r3_2->position.y);
+            this->vector_34[2] = (f32) ((45.42f * cos_table_lookup((int) (this->m_28))) + temp_r3_2->position.z);
+            this->vector_40[0] = (f32) (((-5.0f) * sin_table_lookup((int) (this->m_28))) + temp_r3_2->position.x);
+            this->vector_40[1] = (f32) (19.8f + temp_r3_2->position.y);
+            this->vector_40[2] = (f32) (((-5.0f) * cos_table_lookup((int) (this->m_28))) + temp_r3_2->position.z);
+            sub_8030B818((int)((int) (temp_r3_2->rotation.yaw - 0x8000)));
             return;
         }
         break;
