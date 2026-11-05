@@ -30,7 +30,7 @@ struct VObj_8017B9B0 : VBase_8017B9B0 {
 };
 
 extern "C" {
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, int);
+s32 check_value_equals__7TObjectFPCc(void *, int);
 void *find_entity_by_id(u16 id);
 extern s32 TOVS2Wall01__class_name;
 extern Ent_8017B9B0 *quest_object_entries;
@@ -56,7 +56,7 @@ void handle_6x86_hit_destructible_object(Pkt_8017B9B0 *arg0) {
     }
     o = (VObj_8017B9B0 *)find_entity_by_id(id);
     if (o != NULL) {
-        if (check_value_equals__13TUnk_804B6C24Fl(o, TOVS2Wall01__class_name) == 0) {
+        if (check_value_equals__7TObjectFPCc(o, TOVS2Wall01__class_name) == 0) {
             return;
         }
         switch (arg0->e) {

@@ -51,7 +51,7 @@ extern s32 enable_v2_features;
 void submit_cursor_candidate(Obj_8015C48C *self, s32 x);
 s32 TObjFish__sub_8001EDB0(void *, s32);
 s32 get_bml_model(void *, s32);
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
+s32 check_value_equals__7TObjectFPCc(void *, s32);
 }
 void play_container_break_sound(s32 arg0);
 extern Desc_8015C234 fish_break_debris_desc;
@@ -162,7 +162,7 @@ void TUnk_804B08BC::vfunc_79() {
     b.y2 = b.y;
     b.a = get_bml_model((void *)ancient_container_resource_bundle, 2);
     b.b = TObjFish__sub_8001EDB0((void *)ancient_container_resource_bundle, 2);
-    if (check_value_equals__13TUnk_804B6C24Fl(self, lbl_805D2F00) != 0) {
+    if (check_value_equals__7TObjectFPCc(self, lbl_805D2F00) != 0) {
         a.b = ancient_container_fragment_texture_lists->a;
         b.b = ancient_container_fragment_texture_lists->b;
     }

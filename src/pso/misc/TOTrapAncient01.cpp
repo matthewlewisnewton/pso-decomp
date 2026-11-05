@@ -66,7 +66,7 @@ const char *TOTrapAncient01__class_name = "TOTrapAncient01";
 struct AncientTrapResourceSlot { BmlResource *value; u8 reserved[4]; };
 AncientTrapResourceSlot TOTrapAncient01__bml_resource;
 
-extern s32 lbl_805D3530;
+extern const char *lbl_805D3530;
 void TOTrapAncient02R__sub_80154D78(void *);
 
 
@@ -296,7 +296,7 @@ void TOTrapAncient01::vfunc_82() {
             if (obj_is_hit_receivable((u8 *)p) == 0) {
                 break;
             }
-            if (((TUnk_804B6C24 *)p)->check_value_equals(lbl_805D3530) == 0) {
+            if (p->check_value_equals(lbl_805D3530) == 0) {
                 break;
             }
             p->receive_direct_attack(this, attack, NULL, -1, -1);

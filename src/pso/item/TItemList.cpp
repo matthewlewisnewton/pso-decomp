@@ -24,7 +24,7 @@ void TItemList__sub_801D59DC(void* p);
 void *TItemList__sub_801D5B10(void *arg0, s16 arg1);
 void *__dt__9TItemListFPvs(void *arg0, s16 arg1);
 void* reset_position__9TItemListFPv(void* a0);
-s32 check_value_equals__13TUnk_804B6C24Fl(s32, s32);
+s32 check_value_equals__7TObjectFPCc(s32, s32);
 
 void TItemList__sub_801D59DC(void* p) { *(s32*)((char*)p + 0x0) = 2; }
 }
@@ -58,7 +58,7 @@ u8 TItemList::is_item_valid(s32 arg0) {
     int var_r31;
 
     var_r31 = 0;
-    if ((check_value_equals__13TUnk_804B6C24Fl(arg0, TItemList__name) != 0) && (((TObject *)arg0)->all_parents_unqueued_for_destruction() != 0)) {
+    if ((check_value_equals__7TObjectFPCc(arg0, TItemList__name) != 0) && (((TObject *)arg0)->all_parents_unqueued_for_destruction() != 0)) {
         var_r31 = 1;
     }
     return (u8)var_r31;

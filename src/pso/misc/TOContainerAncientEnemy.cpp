@@ -67,7 +67,7 @@ s32 get_current_floor();
 void byteswap_and_send__6TLobbyFv(void *, int);
 extern s32 local_client_id;
 extern const f32 lbl_805DB39C;
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
+s32 check_value_equals__7TObjectFPCc(void *, s32);
 
 u8 *__ct__8TObjChipFP7TObjectP14TObjChipParams(u8 *arg0, u8 *arg1, u8 *arg2);
 }
@@ -113,7 +113,7 @@ void TOContainerAncientEnemy::vfunc_79() {
         b.f38 = self->y;
         b.f40 = get_bml_model((void *)ancient_container_resource_bundle, 2);
         b.f44 = TObjFish__sub_8001EDB0((void *)ancient_container_resource_bundle, 2);
-        if (check_value_equals__13TUnk_804B6C24Fl(self, lbl_805D2F10) != 0) {
+        if (check_value_equals__7TObjectFPCc(self, lbl_805D2F10) != 0) {
             a.f44 = ancient_container_fragment_texture_lists->a;
             b.f44 = ancient_container_fragment_texture_lists->b;
         }

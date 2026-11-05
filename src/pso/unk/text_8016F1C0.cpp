@@ -143,7 +143,7 @@ struct Pkt_8016F418 { u8 pad[4]; u16 id; u16 kind; };
 
 extern "C" {
 void TOMineTrap__sub_8017141C(void *);
-s32 check_value_equals__13TUnk_804B6C24Fl(u32, int);
+s32 check_value_equals__7TObjectFPCc(u32, int);
 extern s32 TOMineTrap__data_805D3080;
 f32 TOMineTrap__vt20(Obj_8016F5B4 *arg0, u32 arg1);
 
@@ -180,7 +180,7 @@ void handle_6x80_trigger_trap(Pkt_8016F418 *arg0) {
         if (p == NULL) {
             continue;
         }
-        if (check_value_equals__13TUnk_804B6C24Fl((u32)p, TOMineTrap__data_805D3080) == 0) {
+        if (check_value_equals__7TObjectFPCc((u32)p, TOMineTrap__data_805D3080) == 0) {
             continue;
         }
         if (arg0->id != TOMineTrap__sub_80171358(p)) {
@@ -235,7 +235,7 @@ f32 TOMineTrap__vt20(Obj_8016F5B4 *arg0, u32 arg1) {
     case 0:
     case 1:
     case 2:
-        if ((arg1 != 0U) && (check_value_equals__13TUnk_804B6C24Fl(arg1, TOMineTrap__data_805D3080) != 0)) {
+        if ((arg1 != 0U) && (check_value_equals__7TObjectFPCc(arg1, TOMineTrap__data_805D3080) != 0)) {
             ((TOMineTrap *)arg0)->set_triggered();
             if (arg0->cnt > 0xF) {
                 arg0->cnt = 0xF;

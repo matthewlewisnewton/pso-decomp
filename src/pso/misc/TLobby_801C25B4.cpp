@@ -380,7 +380,7 @@ void *__nw__7TObjectFUl(u32);
 extern char lbl_80446FF0[];
 extern char lbl_80446FFC[];
 void queue_destruction__7TObjectFv(void *arg0);
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
+s32 check_value_equals__7TObjectFPCc(void *, s32);
 extern s32 lbl_805D2A98;
 s32 get_entity_id();
 }
@@ -451,7 +451,7 @@ void TLobby::destroy_matching_children() {
     void *down;
     down = this->m_down;
 while (down != NULL) {
-        if (check_value_equals__13TUnk_804B6C24Fl(down, lbl_805D2A98) != 0) {
+        if (check_value_equals__7TObjectFPCc(down, lbl_805D2A98) != 0) {
             queue_destruction__7TObjectFv(down);
         }
         ((TLobby *)down)->destroy_matching_children();
