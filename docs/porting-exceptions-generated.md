@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 9 | 3 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5860 | 886 |
-| configure.py per-unit override | 147 | 147 |
+| pragma | 5859 | 886 |
+| configure.py per-unit override | 148 | 148 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 925, `auto_inline` 844, `opt_common_subs` 623, `scheduling` 262, `opt_propagation` 241, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -237,6 +237,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/misc/TWindowMainMenu_802AD538.cpp` | `-inline noauto,level=1` | Row-header copy is a 16-byte struct assignment. -inline off outlines it; noauto,level=1 inlines that helper only. The rest of the unit stays out of line. |
 | `pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `-fp_contract on` | Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs (scale_point_about_pivot, apply_context_transform_to_rect, apply_window_closing_stretch, clip_textured_quad, init_text_window_layout). Unit -fp_contract on replaces the per-function pragmas. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/boss/TBoss7LaserLight.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/boss/TBoss7TentacleNeedle.cpp` | `-inline off,deferred, -fp_contract on` | Position jitter and the tentacle curve contract mul-add to fmadds, so this unit is built with -fp_contract on. -inline off,deferred emits functions and vtables in reverse source order: the Needle vtable then the Tentacle vtable, with .text still in address order. |
 | `pso/enemy/TObjEnemyCustom.cpp` | `-inline deferred, -pool off, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/boss/TBoss3VoloptCore.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/boss/TBoss3VoloptP01.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -436,7 +437,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/boss/TBoss7LaserLight.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss7LaserPtcl.cpp` | fp_contract×2, dont_inline×1, inline_depth×1 |
 | `src/pso/boss/TBoss7PhotonBullet_802EF26C.cpp` | fp_contract×1, opt_loop_invariants×1 |
-| `src/pso/boss/TBoss7TentacleNeedle.cpp` | opt_common_subs×1, fp_contract×1 |
+| `src/pso/boss/TBoss7TentacleNeedle.cpp` | opt_propagation×1 |
 | `src/pso/boss/TBoss8Dragon.cpp` | fp_contract×20, opt_common_subs×3 |
 | `src/pso/boss/TBoss8DragonDemo.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss8DragonEffBullet.cpp` | fp_contract×1 |

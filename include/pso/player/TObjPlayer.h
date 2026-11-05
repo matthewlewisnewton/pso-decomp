@@ -1255,8 +1255,9 @@ struct TObjPlayer : public TObjChara {
     void draw_motion_node_list();
     static void resolve_render_keys(u32 **src, u32 **dst);
     static void advance_render_counters();
-    static void notify_fish_obj(void* a0);
+    static void *notify_fish_obj(void* a0);
     static void draw_effect();
+    static void *queue_boss_effect(void* a0);
     void draw_trail_pair();
     s32 apply_area_attack_hits(u8 *arg1, s32 arg2, u32 arg3, f32 farg0);
     void update_aim_and_fire();

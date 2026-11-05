@@ -510,6 +510,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
     "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # Position jitter and the tentacle curve contract mul-add to fmadds, so
+    # this unit is built with -fp_contract on. -inline off,deferred emits
+    # functions and vtables in reverse source order: the Needle vtable then
+    # the Tentacle vtable, with .text still in address order.
+    "pso/boss/TBoss7TentacleNeedle.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/boss/TBoss3VoloptP01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},

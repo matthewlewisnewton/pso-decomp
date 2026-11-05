@@ -198,7 +198,6 @@ pso/boss/Boss5GryphonBehavior.cpp
 pso/boss/Boss6Type1Appearance.cpp
 pso/boss/Boss6Type2Appearance.cpp
 pso/boss/Boss6Type2Death.cpp
-pso/boss/Boss7TentacleBanks.cpp
 pso/boss/TBoss1Dragon.cpp
 pso/boss/TBoss1DragonColli.cpp
 pso/boss/TBoss1DragonDemo.cpp
@@ -309,6 +308,7 @@ pso/boss/TBoss7LaserLight.cpp
 pso/boss/TBoss7LaserPtcl.cpp
 pso/boss/TBoss7LaserPtcl_8035AE54.cpp
 pso/boss/TBoss7PhotonBullet_802EF26C.cpp
+pso/boss/TBoss7TentacleNeedle.cpp
 pso/boss/TBoss8DragonColli.cpp
 pso/boss/TBoss8DragonDemo.cpp
 pso/boss/TBoss8DragonEffBreath.cpp
