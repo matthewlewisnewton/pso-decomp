@@ -41,7 +41,7 @@ void TOQuestTalkBase::interact(s32 client) {
             }
             object_state = 2;
             interactor = client;
-            TObjPlayer::play_effect_default((s32)player, -1);
+            TObjPlayer::play_effect_default(player, -1);
         } else {
             interactor = 0xFFFF;
         }

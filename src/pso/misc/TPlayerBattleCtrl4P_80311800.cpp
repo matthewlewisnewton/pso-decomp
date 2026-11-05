@@ -49,7 +49,7 @@ s32 reset_players__19TPlayerBattleCtrl4PFv();
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 void *__nw__7TObjectFUl(int);
 s32 check_flag_100__10TObjPlayerFPv();
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);
 void queue_destruction__7TObjectFv(void *);
 int update_players__19TPlayerBattleCtrl4PFv(void*);
 
@@ -104,7 +104,7 @@ void TPlayerBattleCtrl4P::begin_battle_reload() {
     do {
         ret = get_player_by_client_id(var_r31);
         if (ret != 0U) {
-            play_effect_default__10TObjPlayerFii(ret, -1);
+            play_effect_default__10TObjPlayerFP10TObjPlayerl(ret, -1);
         }
         var_r31 += 1;
     } while (var_r31 < 4);

@@ -764,7 +764,7 @@ extern s32 local_client_id;
 void handle_battle_result__6TLobbyFii(int arg0, s32 arg1);
 u32 get_player_by_client_id(u16);
 void begin_player_keyboard_hold(s32 arg0);
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);
 extern s32 local_client_id;
 void request_active_window_close(void);
 void close_and_play_effect__6TLobbyFii(int arg0, s32 arg1);
@@ -903,7 +903,7 @@ extern s32 lobby_rule_settings[];
 extern s32 TLobby__duel_result_table[];
 s32 calc_player_rankings__6TLobbyFPv(Lobby_801C484C *);
 void TLobby__sub_801036CC(void);
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);
 s32 update_battle_controller__10TObjPlayerFv();
 void TLobby__sub_8020BC50(void);
 void TLobby__sub_801C38A4(void);
@@ -1198,7 +1198,7 @@ void TLobby__sub_801C38E8(void *arg0) {
     case 0:
         t = update_battle_controller__10TObjPlayerFv();
         if (t != 0) {
-            play_effect_default__10TObjPlayerFii(t, -1);
+            play_effect_default__10TObjPlayerFP10TObjPlayerl(t, -1);
         }
         *(s32 *)((u8 *)arg0 + 0x2C) = 0xF;
         *(s32 *)((u8 *)arg0 + 0x20) = 1;
@@ -1415,7 +1415,7 @@ void handle_battle_result__6TLobbyFii(int arg0, s32 arg1) {
 void close_and_play_effect__6TLobbyFii(int arg0, s32 arg1) {
     u32 temp = get_player_by_client_id(arg0);
     if (temp != 0U) {
-        play_effect_default__10TObjPlayerFii(temp, -1);
+        play_effect_default__10TObjPlayerFP10TObjPlayerl(temp, -1);
     }
     if (arg1 != 0) {
         begin_player_keyboard_hold(local_client_id);

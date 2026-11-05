@@ -389,7 +389,7 @@ struct TObjPlayer : public TObjChara {
     int draw_fading_motion();
     void update_both();
     static void sync_player_globals();
-    void*get_position_ptr();
+    Vec *get_position_ptr();
     void clear_header_struct();
     static void set_com_card_window(s32 arg0);
     static s32 is_locally_controlled(void *player);
@@ -1363,8 +1363,9 @@ struct TObjPlayer : public TObjChara {
     s32 is_outside_movement_hold(f32 *pos);
     static s32 draw_small_font(s32 arg0, void * _w1);
     static void send_code_45_1(TObjPlayer *player);
-    static void play_effect_default(int player, int effect);
-    static void play_effect(s32 arg0, s32 arg1, s32 arg2);
+    // 6x2C: holds the player at its own position.
+    static void play_effect_default(TObjPlayer *player, s32 frames);
+    static void play_effect(TObjPlayer *player, s32 frames, s32 arg3);
     s32 get_clamped_index();
     void apply_input_mode();
     void select_class_action_provider();

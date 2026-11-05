@@ -192,7 +192,7 @@ void clear_trap_counts(s8 *arg0);
 
 void begin_player_keyboard_hold(s32 arg0);
 s32 obj_testFlags30__14TObjCollidableFUl(u32, s32);
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);
 s32 release_attached_resource__10TObjPlayerFv();
 void request_active_window_close(void);
 s32 send_code_45_1__10TObjPlayerFP10TObjPlayer();
@@ -617,7 +617,7 @@ void TPlayerBattleCtrl4P::remove_player(void *arg0, u16 arg1, s32 arg2) {
     id = arg1;
     temp = get_player_by_client_id(id);
     if (temp != 0U) {
-        play_effect_default__10TObjPlayerFii(temp, -1);
+        play_effect_default__10TObjPlayerFP10TObjPlayerl(temp, -1);
     }
     if (arg2 != 0) {
         begin_player_keyboard_hold(id);

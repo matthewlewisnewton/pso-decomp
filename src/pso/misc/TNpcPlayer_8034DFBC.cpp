@@ -141,7 +141,7 @@ extern s32 local_client_id;
 extern s32 tl_00;
 void handle_6x69_npc_control(Pkt_8034E814 *pkt);
 void send_6x55_intra_map_warp(u16 id, void *pos, s32 c);
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);
 
 s32 obj_isState2_324__9TObjCharaFv();
 }
@@ -196,7 +196,7 @@ void TNpcPlayer::play_effect(int arg0) {
 
     player = get_player_by_client_id((u16) arg0);
     if ((player != 0) && (obj_isState2_324__9TObjCharaFv() == 0)) {
-        play_effect_default__10TObjPlayerFii(player, -1);
+        play_effect_default__10TObjPlayerFP10TObjPlayerl(player, -1);
     }
 }
 

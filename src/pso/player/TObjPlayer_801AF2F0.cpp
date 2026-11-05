@@ -832,7 +832,6 @@ struct pkt_801B5164 {
     u16 player_id;
 };
 
-struct Vec_801B5328 { f32 x, y, z; };
 
 struct Pkt_801B5328 {
     u8 hdr[2];
@@ -2150,8 +2149,7 @@ void fill_player_record__10TObjPlayerFPvPv(Src_801B4CE4 *src, Dst_801B4CE4 *dst)
 Obj_801B4FD8 * init_player_join_record(Obj_801B4FD8 *self);
 void handle_6x2D_release_hold(void *arg0);
 void handle_6x2C_impose_hold(s32 arg0);
-void send_6x2C_impose_hold(s32 arg0, struct Vec_801B5328 *pos, s16 arg2, s16 arg3, f32 radius);
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
+void send_6x2C_impose_hold(f32 radius, TObjPlayer *player, Vec *pos, s32 frames, s32 arg3);
 void set_move_mode__10TObjPlayerFi(s32 arg0);
 int check_flag_100__10TObjPlayerFPv(void* p);
 void *TObjPlayer__sub_801B57E8(TObjPlayer *player);
@@ -3848,7 +3846,7 @@ void TObjPlayer__sub_801B1C8C(void) {
 
 void TObjPlayer::play_sound_if_on_floor(s32 sound_id) {
     if (((s32 (*)(void))is_on_current_floor__10TObjPlayerFi)() != 0) {
-        play_sound_effect((s32)(sound_id), (const Vec *)((s32)get_position_ptr()), 0, 0);
+        play_sound_effect((s32)(sound_id), get_position_ptr(), 0, 0);
     }
 }
 
@@ -5261,13 +5259,13 @@ void handle_6x2C_impose_hold(s32 arg0) {
     }
 }
 
-void send_6x2C_impose_hold(s32 arg0, struct Vec_801B5328 *pos, s16 arg2, s16 arg3, f32 radius) {
+void send_6x2C_impose_hold(f32 radius, TObjPlayer *player, Vec *pos, s32 frames, s32 arg3) {
     struct Pkt_801B5328 pkt;
-    if (arg0 == 0 || obj_isState2_324__9TObjCharaFv() == 0) {
+    if (player == NULL || player->obj_isState2_324() == 0) {
         ((TObjPlayer *)(&pkt))->build_6x2C_impose_hold_packet();
-        pkt.actor_id = ((s16 (*)(s32))get_entity_id)(arg0);
+        pkt.actor_id = get_entity_id(player);
         pkt.b = arg3;
-        pkt.a = arg2;
+        pkt.a = frames;
         pkt.x = pos->x;
         pkt.z = pos->z;
         pkt.radius_sq = radius * radius;
@@ -5275,12 +5273,12 @@ void send_6x2C_impose_hold(s32 arg0, struct Vec_801B5328 *pos, s16 arg2, s16 arg
     }
 }
 
-void TObjPlayer::play_effect(s32 arg0, s32 arg1, s32 arg2) {
-    ((s32 (*)(s32, s32, s32, s32, f32))send_6x2C_impose_hold)(arg0, get_position_ptr__10TObjPlayerFv(), arg1, arg2, (*(f32 *)&TObjPlayer__data_805DC278));
+void TObjPlayer::play_effect(TObjPlayer *player, s32 frames, s32 arg3) {
+    send_6x2C_impose_hold(TObjPlayer__data_805DC278, player, player->get_position_ptr(), frames, arg3);
 }
 
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1) {
-    ((s32 (*)(s32, s32, s32, s32, f32))send_6x2C_impose_hold)(arg0, get_position_ptr__10TObjPlayerFv(), arg1, 0, (*(f32 *)&TObjPlayer__data_805DC278));
+void TObjPlayer::play_effect_default(TObjPlayer *player, s32 frames) {
+    send_6x2C_impose_hold(TObjPlayer__data_805DC278, player, player->get_position_ptr(), frames, 0);
 }
 
 void TObjPlayer::init_trait_flags() {
@@ -6503,7 +6501,7 @@ void TObjPlayer::request_meseta_drop(s32 arg1) {
     typedef char sp14_offset[(offsetof(Stack_801B8A80, sp14) == 0xC) ? 1 : -1];
     Stack_801B8A80 stack;
     if (arg1 > 0) {
-        ((s32 (*)(void *, int))play_effect_default__10TObjPlayerFii)(this, 0x384);
+        play_effect_default(this, 0x384);
         set_action_flag_2();
         ((TObjPlayer *)(&stack.sp8))->init_item_data(arg1);
         stack.sp14 = -1;
@@ -6528,7 +6526,7 @@ void TObjPlayer::request_item_drop(s32 arg1, s32 arg2) {
     if (owner == NULL) {
         return;
     }
-    ((s32 (*)(void *, int))play_effect_default__10TObjPlayerFii)(this, 0x384);
+    play_effect_default(this, 0x384);
     set_action_flag_2();
     ((TItem *)owner)->copy_to_item_data((TItemData *)&item);
     ((TItemData *)&item)->set_stack_count(arg2);
@@ -7685,7 +7683,7 @@ void TObjPlayer::reset_motion_fields() {
     if ((is_locally_controlled__10TObjPlayerFPv((void *)arg0) != 0) && (((s32 (*)(void *, int))check_flag__10TObjPlayerFl)((void *)arg0, 0x800) != 0)) {
         ((s32 (*)(void *, int))sub_8011E204__10TObjPlayerFl)((void *)arg0, 0x800);
         ((s32 (*)(s32))TLobby__sub_8024AC20)(((u16 (*)(void *))get_entity_id)((void *)arg0));
-        ((s32 (*)(void *, int))play_effect_default__10TObjPlayerFii)((void *)arg0, 0xF);
+        play_effect_default(this, 0xF);
         ((TObjPlayer *)arg0)->update_position_from_target();
         ((s32 (*)(void *))send_code_49_1__10TObjPlayerFi)((void *)arg0);
         ((s32 (*)(void *))send_code50_packet__10TObjPlayerFi)((void *)arg0);

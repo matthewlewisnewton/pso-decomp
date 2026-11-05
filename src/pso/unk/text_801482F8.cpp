@@ -339,7 +339,7 @@ extern const f32 lbl_805DB1C0;
 s32 has_interactor__14TObjCollidableFv();
 s32 debug_printf_at(s32, const char *, ...);
 extern char lbl_8043F544[];
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);
 
 void TObjNpcFemaleBase::handle_message_event(u16 arg1) {
     u32 temp_r3;
@@ -354,7 +354,7 @@ void TObjNpcFemaleBase::handle_message_event(u16 arg1) {
                 this->targetId = arg1;
                 *(u32 *)&this->target = temp_r3;
                 if ((s32) this->targetId == (s32) local_client_id) {
-                    play_effect_default__10TObjPlayerFii(temp_r3, -1);
+                    play_effect_default__10TObjPlayerFP10TObjPlayerl(temp_r3, -1);
                 }
                 ((VObj18_801482f8 *) this)->vf160(1);
                 this->m_2ac = 0;

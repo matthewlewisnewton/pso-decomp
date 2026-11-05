@@ -47,7 +47,7 @@ TObjPlayer *get_player_by_client_id(s32);
 s32 check_player_flag1__10TObjPlayerFv();
 extern s32 local_client_id;
 void TObjPlayer__sub_8024ABDC(s32 arg0);
-void play_effect_default__10TObjPlayerFii(TObjPlayer *arg0, s32 arg1);
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(TObjPlayer *arg0, s32 arg1);
 extern s32 TLobby__designated_client_id;
 u8 is_challenge_lobby__6TLobbyFv(void);
 void queue_destruction__7TObjectFv(void *arg0);
@@ -241,7 +241,7 @@ void play_player_default_effect__6TLobbyFv(s32 _w0) {
     TObjPlayer *player;
     player = get_player_by_client_id(local_client_id);
     if ((player != 0) && (check_player_flag1__10TObjPlayerFv() == 0)) {
-        play_effect_default__10TObjPlayerFii(player, -1);
+        play_effect_default__10TObjPlayerFP10TObjPlayerl(player, -1);
     }
 }
 u8 is_challenge_lobby__6TLobbyFv(void) {
