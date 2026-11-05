@@ -5,8 +5,8 @@
 #include <stddef.h>
 
 // Prefix of the text window opened for a menu frame.
-// draw_frame reads x/y/w/inner_h/color. The keyboard object continues
-// with the same prefix, including depth and the clip origin.
+// draw_frame reads x/y/w/inner_h/color. The clip rect continues through
+// clip_bottom, so the singleton allocated for a frame is 0x4C bytes.
 struct TWindowDrawContext {
     f32 x;
     f32 y;
@@ -23,14 +23,18 @@ struct TWindowDrawContext {
     f32 depth;
     f32 clip_left;
     f32 clip_top;
+    f32 clip_right;
+    f32 clip_bottom;
 };
 
-typedef char TWindowDrawContext_size[sizeof(TWindowDrawContext) == 0x44 ? 1 : -1];
+typedef char TWindowDrawContext_size[sizeof(TWindowDrawContext) == 0x4C ? 1 : -1];
 typedef char TWindowDrawContext_inner_h[offsetof(TWindowDrawContext, inner_h) == 0x1C ? 1 : -1];
 typedef char TWindowDrawContext_color[offsetof(TWindowDrawContext, color) == 0x34 ? 1 : -1];
 typedef char TWindowDrawContext_depth[offsetof(TWindowDrawContext, depth) == 0x38 ? 1 : -1];
 typedef char TWindowDrawContext_clip_left[offsetof(TWindowDrawContext, clip_left) == 0x3C ? 1 : -1];
 typedef char TWindowDrawContext_clip_top[offsetof(TWindowDrawContext, clip_top) == 0x40 ? 1 : -1];
+typedef char TWindowDrawContext_clip_right[offsetof(TWindowDrawContext, clip_right) == 0x44 ? 1 : -1];
+typedef char TWindowDrawContext_clip_bottom[offsetof(TWindowDrawContext, clip_bottom) == 0x48 ? 1 : -1];
 
 extern "C" TWindowDrawContext *get_draw_context__11TWindowBaseFPv(void *window);
 
