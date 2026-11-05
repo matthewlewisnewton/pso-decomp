@@ -51,12 +51,14 @@ s32 load_floor_enemy_group_entries__6TLobbyFiPvUi(s32 idx, Src_8020B970 *src, u3
 s32 init_quest_floor_enemies(s32 idx, Src_8020B7C4 *src, u32 size);
 
 s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
-    Tbl_8020B970 *t = TLobby__floor_enemy_group_table;
-    s16 *out;
-    s32 total1;
-    s32 i;
+    // Object rows are written through the packet. The fields after that are
+    // the FloorFlagsBuffer view fn_8020B588 consumes.
+    s16 *out = buf->values;
     buf->object_offset = 0x10;
-    for (i = 0, out = buf->values, total1 = 0; i < 18; i++) {
+    Tbl_8020B970 *t = TLobby__floor_enemy_group_table;
+    s32 total1 = 0;
+    s32 i = 0;
+    for (; i < 18; i++) {
         s32 count = t[i].count;
         if (count > 0) {
             Dst_8020B970 *l = t[i].list;
@@ -85,8 +87,9 @@ s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
             }
         }
     }
-    buf->word_04 = total1;
-    buf->enemy_offset = 0x10 + buf->word_04 * 2;
+    FloorFlagsBuffer *hdr = buf;
+    hdr->word_04 = total1;
+    hdr->enemy_offset = 0x10 + hdr->word_04 * 2;
     s32 total2 = 0;
     s32 i2;
     for (i2 = 0; i2 < 18; i2++) {
@@ -117,8 +120,8 @@ s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
             }
         }
     }
-    buf->word_0c = total2;
-    fn_8020B588(buf);
+    hdr->word_0c = total2;
+    fn_8020B588(hdr);
     return TLobby__sub_8020BF88();
 }
 
