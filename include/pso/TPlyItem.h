@@ -36,7 +36,8 @@ public:
     TItemList *set_mode_and_refresh_object(void *a1);
     void destroy_subobjects(void *player);
     TItemList *start_inventory_update(int a1);
-    int run_and_get_result(void *a1);
+    // Stores the inventory items' ids into out and returns the count.
+    int run_and_get_result(s32 *out);
     int run_state_query(void *a1);
     // Drops amount of the item with item_id at pos on floor.
     s32 update_inventory_item(TObjPlayer *player, s32 item_id, f32 *pos, s32 amount, s32 floor);
@@ -52,5 +53,6 @@ extern s32 inventory_walk_progress_count;
 extern s32 inventory_update_field_d8_key;
 extern u8 item_reduce_owner_match_field_ec;
 extern u8 reduce_owner_match_id;
+extern s32 *TObjPlayer__owner_field_write_cursor;
 
 #endif

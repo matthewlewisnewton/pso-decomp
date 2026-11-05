@@ -9,7 +9,6 @@
 
 extern "C" {
 extern TObjPlayer *item_reduce_target_player;
-extern s32 *TObjPlayer__owner_field_write_cursor;
 }
 
 TPlyItem::~TPlyItem() {

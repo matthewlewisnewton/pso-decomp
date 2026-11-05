@@ -9,7 +9,7 @@
 extern "C" {
 void calc_list_content_extent(void *);
 void fn_802789E0(u8 *arg0) {
-    u32 ids[32];
+    s32 ids[32];
     TObjPlayer *pl;
     u32 n;
     void *item;

@@ -10,8 +10,7 @@
 
 extern "C" {
 
-    extern void *TObjPlayer__owner_field_write_cursor;
-int TPlyItem::run_and_get_result(void *a1) { TObjPlayer__owner_field_write_cursor = a1; inventory_walk_visit_count = 0; item_list->collect_owner_fields_recursive(); return inventory_walk_visit_count; }
+int TPlyItem::run_and_get_result(s32 *out) { TObjPlayer__owner_field_write_cursor = out; inventory_walk_visit_count = 0; item_list->collect_owner_fields_recursive(); return inventory_walk_visit_count; }
 
     extern void *owned_item_export_cursor;
 int TPlyItem::run_state_query(void *a1) { owned_item_export_cursor = a1; inventory_walk_visit_count = 0; item_list->count_owned_items(); return inventory_walk_visit_count; }
