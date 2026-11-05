@@ -14,6 +14,9 @@ struct GinjaTextureError {
 typedef char GinjaTextureErrorPrefixSize[sizeof(GinjaTextureError) == 0x14 ? 1 : -1];
 
 extern "C" {
+// Ninja's njSetTextureName: points `entry` at a texture file or a memory
+// texture's input, by NJD_TEXATTR_* `attr`.
+void set_texture_name(GinjaTextureEntry *entry, const void *name, u32 global_index, u32 attr);
 s32 TObjPlayer__sub_803DAE98(GinjaTextureState *texture);
 // Releases every loaded texture in `texlist`; -1 if one failed, else 1.
 s32 release_texture_list(GinjaTextureList *texlist);
