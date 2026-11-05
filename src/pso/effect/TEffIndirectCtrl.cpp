@@ -21,7 +21,7 @@
 
 // Built with deferred code generation, which emits functions last-defined
 // first: the definitions below run from the end of the unit
-// (get_indirect_recipe) back to TScene::set_indirect_tev. TEffIndirectCtrl's
+// (get_indirect_recipe) back to disable_indirect_tev. TEffIndirectCtrl's
 // destructor is defined before TUnk_804DDF04's, so their vtables come out in
 // the original .data order (TUnk_804DDF04 first).
 
@@ -568,12 +568,12 @@ TUnk_804DDF04::TUnk_804DDF04(s32 kind, TObject *parent) : TObject(parent) {
 
 TUnk_804DDF04::~TUnk_804DDF04() {}
 
-void TScene::draw_field_1c(s32 sampler, s32 arg2, s32 arg3) {
-    TObjPlayer::play_particle_at_active_slot(*(u8 *)((s8 *)this + 0x1C), sampler, arg2, 0, arg3, 0);
+void enable_indirect_tev(TUnk_804DDF04 *obj, s32 sampler, s32 scale, s32 arg3) {
+    TObjPlayer::play_particle_at_active_slot(obj->m_kind, sampler, scale, 0, arg3, 0);
 }
 
-void TScene::set_indirect_tev(s32 ignored, s32 arg1) {
-    if (arg1 != 0) {
+void disable_indirect_tev(TUnk_804DDF04 *obj, s32 direct) {
+    if (direct != 0) {
         GXSetTevDirect(1);
     } else {
         GXSetTevDirect(0);

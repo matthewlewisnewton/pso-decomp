@@ -65,12 +65,17 @@ typedef char TEffIndirectCtrl_size[sizeof(TEffIndirectCtrl) == 0x54 ? 1 : -1];
 // Scene object that registers the indirect controller for its kind.
 // Only the destructor is its own virtual.
 struct TUnk_804DDF04 : public TObject {
-    s8 m_kind;
+    u8 m_kind;
     TUnk_804DDF04(s32 kind, TObject *parent);
     virtual ~TUnk_804DDF04();
 };
 
 typedef char TUnk_804DDF04_size[sizeof(TUnk_804DDF04) == 0x20 ? 1 : -1];
+
+// Sets up the indirect TEV stage of the controller for obj's kind.
+void enable_indirect_tev(TUnk_804DDF04 *obj, s32 sampler, s32 scale, s32 arg3);
+// Goes back to direct TEV. obj is not read.
+void disable_indirect_tev(TUnk_804DDF04 *obj, s32 direct);
 
 extern "C" {
 void TEffIndirectCtrl__sub_802A9548(TEffIndirectCtrl *ctrl);
