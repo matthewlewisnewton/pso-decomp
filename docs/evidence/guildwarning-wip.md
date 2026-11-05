@@ -32,6 +32,10 @@ names them `sub_80211774__19THunterGuildWarningFl` and
 `sub_802119CC__19THunterGuildWarningFv`. Implicit `this` stays in r3, and both
 functions stay 100% (600 and 36 bytes).
 
+The constructor's second parameter is the mode integer (`s32`). Its project-assigned
+symbol is `__ct__19THunterGuildWarningFP7TObjectl`, so `create_instance` passes
+that integer through with no pointer cast.
+
 `THunterGuildWarning::sub_80211774` calls
 `TLobby::create_message_window(const void *, const void *, u32, s32)`.
 The original copies the slot with `mr` (case 0/1 from the `clrlwi` of

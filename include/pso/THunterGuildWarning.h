@@ -9,7 +9,7 @@ class TWindowMessage;
 
 class THunterGuildWarning : public TObject {
 public:
-    THunterGuildWarning(TObject *arg1, void *arg2);
+    THunterGuildWarning(TObject *arg1, s32 mode);
     virtual ~THunterGuildWarning();
     virtual void run_task();
 public:
