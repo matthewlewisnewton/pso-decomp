@@ -8,6 +8,8 @@
 #include "pso/misc/TLobby.h"
 #include "pso/quest/TQuestListVM.h"
 #include "pso/misc/TWindowSubComCard.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/player/TObjPlayer_80011014.h"
 
 struct Base_80288C78_80288B5C { char pad[0x18]; };
 struct VObj_80288C78_80288B5C : Base_80288C78_80288B5C {
@@ -89,7 +91,7 @@ struct Pair_80288DA4 { s32 a; s32 b; };
 
 struct QLC_80288DA4 {
     u8 pad[0x24];
-    s32 f24;
+    TObjBase *f24;
     u8 pad28[0x30 - 0x28];
     VObj_80288DA4 *obj;
     void *f34;
@@ -105,14 +107,11 @@ struct QLC_80288DA4 {
 
 extern "C" {
 
-s32 get_entity_id(s32);
 s32 get_quest_list_text(int, int, int);
 f32 get_scale__15TShopWindowBaseFv(void *);
 s32 TWindow__close(void *);
-void *create_yes_no_window(s32, u16, s32, s32);
+void *create_yes_no_window(const WindowLayoutPosition *, s32, u32, u32);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(s32);
-void *create_message_window__6TLobbyFPCvPCvUll(s32, Pair_80288DA4 *, s32, u16);
-s32 get_window_layout_position(s32);
 void update_selection__19TQuestListChallengeFv(QLC_80288DA4 *self);
 s32 lbl_805D64A8;
 s32 lbl_805D64AC;
@@ -127,7 +126,7 @@ u8 *TQuestListChallenge__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
 struct Entry_80288FDC { s32 id; u8 pad[0xC]; };
 struct QLC_80288FDC {
     u8 pad[0x24];
-    s32 f24;
+    TObjBase *f24;
     u8 pad2[0x30 - 0x28];
     VObj_80288FDC *obj;
     u8 pad3[0x38 - 0x34];
@@ -273,7 +272,6 @@ block_9:
 void update_selection__19TQuestListChallengeFv(QLC_80288DA4 *self) {
     Pair_80288DA4 p;
     s32 sel;
-    s32 id;
     s32 text;
     s32 text2;
     if (self->obj->m8() == 0) {
@@ -300,8 +298,7 @@ void update_selection__19TQuestListChallengeFv(QLC_80288DA4 *self) {
     if (self->f40 == NULL) {
         p.a = lbl_80450AB4[0].a;
         p.b = lbl_80450AB4[0].b;
-        id = (u16)get_entity_id(self->f24);
-        self->f40 = create_message_window__6TLobbyFPCvPCvUll(get_window_layout_position(0x2E), &p, 1, id);
+        self->f40 = TLobby::create_message_window(get_window_layout_position(0x2E), &p, 1, get_entity_id(self->f24));
         text2 = SUB_80222C28(self->f50, self->entries[sel].f8);
         ((TLobby *)(self->f40))->send_and_handle(text2, 0x80);
         ((TLobby *)(self->f40))->set_field_1c(37000.0f);
@@ -310,8 +307,7 @@ void update_selection__19TQuestListChallengeFv(QLC_80288DA4 *self) {
         }
     }
     if (self->f34 == NULL) {
-        id = (u16)get_entity_id(self->f24);
-        self->f34 = create_yes_no_window(get_window_layout_position(0x2B), id, 0, 0);
+        self->f34 = create_yes_no_window(get_window_layout_position(0x2B), get_entity_id(self->f24), 0, 0);
         ((TUnk_804CDFE8 *)(self->f34))->set_position_xy(get_scale__15TShopWindowBaseFv(self), get_scale__15TShopWindowBaseFv(self));
         if (self->obj != NULL) {
             self->obj->m7(5, 0x80);
@@ -322,7 +318,7 @@ void update_selection__19TQuestListChallengeFv(QLC_80288DA4 *self) {
 }
 
 void create_quest_list_window__19TQuestListChallengeFv(QLC_80288FDC *arg0) {
-    u16 id;
+    s32 id;
     s32 i;
     s32 e;
 

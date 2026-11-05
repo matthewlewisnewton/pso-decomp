@@ -18,6 +18,7 @@
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubItem.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 struct Stack_80217EC4 {
     s32 sp8;
     s32 spC;
@@ -78,7 +79,6 @@ extern "C" {
 s32 get_entity_id(int);
 int set_field_20__15TShopWindowBaseFl(void*, int);
 s32 send_and_handle__6TLobbyFii(void *, void *, int);
-const void *get_window_layout_position(s32);
 s32 calc_list_content_extent(u32);
 void *set_window_mode_4__6TLobbyFPvll(const void *, void *, int);
 extern Stack_80217EC4 lbl_8044BED4[];

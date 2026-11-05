@@ -2,9 +2,9 @@
 #define PSO_QUEST_TQUESTLISTVM_H
 
 #include "types.h"
+#include "pso/TShopWindowBase.h"
 
 class TWindowMessage;
-#include "pso/TShopWindowBase.h"
 
 struct TQuestListVM : public TShopWindowBase {
     virtual ~TQuestListVM();

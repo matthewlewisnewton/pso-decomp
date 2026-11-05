@@ -6,6 +6,7 @@
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 
 extern "C" {
 s32 TWindow__close(int);
@@ -15,7 +16,6 @@ void *get_player_by_client_id(s32 i);
 s32 TQuestVmDownLoadServer__sub_8006EF6C(s32);
 s32 has_player_active_menu__11TWindowCtrlFv(u16);
 s32 is_slot_visible__11TWindowCtrlFv(u16);
-const void *get_window_layout_position(s32);
 void __ct__7TObjectFP7TObject(void *);
 s32 get_character_save_record(u32 arg0);
 s32 is_active__19THunterGuildWarningFv();

@@ -12,6 +12,7 @@
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 
 struct RecoveredGlobal_802155B4_TQuestListOnline__data_80513DE8 {
     s32 value;
@@ -127,7 +128,6 @@ extern char lbl_805DC66C[4];
 extern char lbl_805DC670[4];
 extern char lbl_805DC674[4];
 s32 THunterGuildSeqOffline__sub_80212074();
-const void *get_window_layout_position(s32);
 extern Pair_80215380 lbl_8044BCB8[];
 extern const f32 lbl_805DC678;
 

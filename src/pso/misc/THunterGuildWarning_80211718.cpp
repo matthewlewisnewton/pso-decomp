@@ -3,6 +3,7 @@
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TLobby_8030A6A8.h"
 #include "pso/misc/TWindowMessage.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 
@@ -18,7 +19,6 @@ extern const Pair_8044BC7C lbl_8044BC7C;
 struct Data_8044BC84 { Pair_8044BC7C value; u8 padding[4]; };
 extern const Data_8044BC84 lbl_8044BC84;
 extern const f32 lbl_805DC640;
-const Pair_8044BC7C *get_window_layout_position(s32);
 void TWindow__close(TWindowMessage *window);
 }
 
@@ -47,8 +47,7 @@ void THunterGuildWarning::sub_80211774(s32) {
             m_windows[id] = TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, id);
         }
         if (m_windows[id]) {
-            s32 text = 0x63;
-            m_windows[id]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
+            m_windows[id]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x63), 0x81);
             m_windows[id]->set_position_xy(position.x, position.y);
         }
         break;
@@ -59,24 +58,22 @@ void THunterGuildWarning::sub_80211774(s32) {
             m_windows[id] = TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, id);
         }
         if (m_windows[id]) {
-            s32 text = 0x68;
-            m_windows[id]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
+            m_windows[id]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x68), 0x81);
             m_windows[id]->set_position_xy(position.x, position.y);
         }
         break;
     }
     case 2: {
-        s32 text = 0x64;
+        int text = 0x64;
         if (get_game_play_mode() == 2) text = 0x6a;
         u16 local = TCameraCtrl::get_nth_view_player_id(0);
-        const s32 message = text;
         for (s32 i = 0; i < 4; i++) {
             if (local != i) {
                 if (get_player_by_client_id(i)) {
                     m_windows[i] = TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, i);
                 }
                 if (m_windows[i]) {
-                    m_windows[i]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(message), 0x81);
+                    m_windows[i]->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
                     m_windows[i]->set_position_xy(position.x, position.y);
                 }
             }

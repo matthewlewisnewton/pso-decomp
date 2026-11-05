@@ -22,6 +22,7 @@
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/Language.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 
 struct VBase18_80218570 { char pad[0x18]; };
 struct VObj18_80218570 : VBase18_80218570 {
@@ -191,7 +192,6 @@ int get_entity_id(int);
 f32 get_scale__15TShopWindowBaseFv(void *);
 u8 *create_yes_no_window(const void *arg0, s32 arg1, u32 arg2, u32 arg3);
 void send_and_handle__6TLobbyFii(u32, void *, int);
-const void *get_window_layout_position(int);
 extern const f32 lbl_805DC6B8;
 extern const f32 lbl_805DC6BC;
 s32 TAdPlayerLoadGC__sub_801E1538(Dl_80218E94 *, s32);

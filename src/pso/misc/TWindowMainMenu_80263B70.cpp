@@ -16,6 +16,7 @@ struct TWindowSubMag;
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowMainMenu.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 
 extern "C" {
 
@@ -127,7 +128,6 @@ s32 is_quest_active();
 s32 get_short_mail_ctrl__6TLobbyFv();
 s32 is_trade_range_bit_set(s32);
 extern s32 local_client_id;
-const void *get_window_layout_position(s32);
 s32 call_if_split_screen(u32, s32);
 s32 select_main_menu_item_10(s32);
 

@@ -5,6 +5,7 @@ class TChCrTagPlBack;
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowSubShortMail.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 
 struct VBase_18_f23ffb { char pad[0x18]; };
 
@@ -45,7 +46,6 @@ s32 text_builder_append();
 }
 void text_builder_reset(void);
 extern "C" {
-const void *get_window_layout_position(int);
 s32 free_member__17TWindowSubComCardFv(int, int);
 void open_yes_no_prompt(TChCrTagPlBack *arg0, u32 arg1, s32 arg2, s32 arg3, f32 farg0);
 s32 create__19TWindowMessageYesNoFPvPvPvPv(void *, int, int, int);
