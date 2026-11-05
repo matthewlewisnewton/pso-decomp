@@ -6621,14 +6621,14 @@ void TBoss8Dragon::select_next_action() {
         }
 block_14:
         if ((s32) lbl_805D69B4 != 0) {
-            ((VObj_18 *)(arg0))->m85(this->mode, 2);
+            this->dispatch_action(this->mode, 2);
             return;
         }
         if ((s32) this->m_74c != 0) {
-            ((VObj_18 *)(arg0))->m85(this->mode, 0xB);
+            this->dispatch_action(this->mode, 0xB);
             return;
         }
-        ((VObj_18 *)(arg0))->m85(this->mode, 9);
+        this->dispatch_action(this->mode, 9);
     }
 }
 
@@ -6689,8 +6689,8 @@ void TBoss8Dragon::run_task() {
                 } else {
                     ((TBoss8Dragon *)arg0)->check_death();
                 }
-                ((VObj_18 *)(arg0))->m85(this->mode, 8);
-                ((VObj_18 *)(arg0))->m85(this->mode, 0);
+                this->dispatch_action(this->mode, 8);
+                this->dispatch_action(this->mode, 0);
             } else {
                 if ((((VObj_18 *)(arg0))->m30() != 0) && (is_health_low__12TBoss8DragonFPv((TBoss8Dragon *)arg0) != 0)) {
                     if ((s16) this->hp < (s16) *(s16 *)&this->m_67a) {
@@ -6701,13 +6701,13 @@ void TBoss8Dragon::run_task() {
                 if ((s32) TBoss8Dragon__data_805D69B8 == 0) {
                     release_grabbed_player__12TBoss8DragonFPv((TBoss8Dragon *)arg0);
                 }
-                ((VObj_18 *)(arg0))->m85(this->mode, 0);
+                this->dispatch_action(this->mode, 0);
             }
         } else {
             temp_r0_2 = *(s32 *)&this->m_3e0;
             if (temp_r0_2 != 1) {
                 if (temp_r0_2 == 2) {
-                    ((VObj_18 *)(arg0))->m85(this->mode, 2);
+                    this->dispatch_action(this->mode, 2);
                 } else {
                     if ((((VObj_18 *)(arg0))->m30() != 0) && (is_health_low__12TBoss8DragonFPv((TBoss8Dragon *)arg0) != 0)) {
                         if ((s16) this->hp < (s16) *(s16 *)&this->m_67a) {
@@ -6717,8 +6717,8 @@ void TBoss8Dragon::run_task() {
                     }
                     ((TBoss8Dragon *)arg0)->select_next_action();
                 }
-                ((VObj_18 *)(arg0))->m85(this->mode, 8);
-                ((VObj_18 *)(arg0))->m85(this->mode, 0);
+                this->dispatch_action(this->mode, 8);
+                this->dispatch_action(this->mode, 0);
             } else {
                 if ((((VObj_18 *)(arg0))->m30() != 0) && (is_health_low__12TBoss8DragonFPv((TBoss8Dragon *)arg0) != 0)) {
                     if ((s16) this->hp < (s16) *(s16 *)&this->m_67a) {
@@ -6726,7 +6726,7 @@ void TBoss8Dragon::run_task() {
                     }
                     ((TObjEneDD *)arg0)->clear_attack_receipts();
                 }
-                ((VObj_18 *)(arg0))->m85(this->mode, 0);
+                this->dispatch_action(this->mode, 0);
             }
         }
     }
