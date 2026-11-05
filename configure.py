@@ -531,6 +531,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Unit -fp_contract on replaces the per-function pragmas. Precedent:
     # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
     "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # Upstream #190: this file is written in reverse so deferred codegen emits
+    # address order, and the readonly string pool places the constants.
+    "pso/misc/TNpcPlayer.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
