@@ -213,7 +213,6 @@ struct TBoss8Dragon : public TObjEneDD_ST
     static s32 is_any_part_alive();
     static void update_all_parts();
     static bool has_enough_enemies();
-    s32 spawn_attack_object(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
     void set_mode_params(s8 arg1);
     void render_nodes_flagged();
     void copy_vectors();

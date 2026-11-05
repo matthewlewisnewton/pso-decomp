@@ -5,14 +5,11 @@
 #include "pso/boss/TUnk_804E4BF0.h"
 #include "pso/object/TObjControl.h"
 
-struct Vec_802F33C8 { f32 x, y, z; };
-
 struct Ent_802F33C8 { u8 pad0[0x38]; f32 x, y, z; u8 pad44[0x60 - 0x44]; s32 rot; };
 
 extern "C" {
 f32 calc_random_ratio__10TObjPlayerFv(void *);
 void subtractive_rng_seed(void *, s32);
-void spawn_attack_object__12TBoss8DragonFllll(void *, Vec_802F33C8 *, u16, s32, s32);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 extern const f32 lbl_805DED40;
@@ -31,7 +28,7 @@ u16 TBoss8Dragon::get_global_part_count(s32 arg0) {
 }
 void TBoss8Dragon::place_parts_in_ring(s32 arg1, s32 arg2) {
     s32 n = (s32)this;
-    Vec_802F33C8 v;
+    Vec v;
     u8 buf[0xEC];
     s32 ang;
     s32 step;
@@ -51,7 +48,7 @@ void TBoss8Dragon::place_parts_in_ring(s32 arg1, s32 arg2) {
             v.x = lbl_805DED44 * sin_table_lookup(ang);
             v.y = e->y;
             v.z = lbl_805DED44 * cos_table_lookup(ang);
-            spawn_attack_object__12TBoss8DragonFllll(boss8_dragon_leader_part, &v, ang + 0x8000, arg1, i + 1);
+            boss8_dragon_leader_part->spawn_attack_object(&v, (ang + 0x8000) & 0xFFFF, arg1, i + 1);
         }
     }
 }
