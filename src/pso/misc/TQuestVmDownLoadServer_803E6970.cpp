@@ -2888,6 +2888,34 @@ inline s32 count_text_groups_that_fit(QuestDownloadTextNode *head) {
     }
     return n;
 }
+// Second expansion. MWCC colors a later inline in declaration order and the first in reverse.
+inline s32 recount_text_groups_that_fit(QuestDownloadTextNode *head) {
+    s32 n;
+    s32 total;
+    s32 limit;
+    QuestDownloadTextNode *node;
+    if (head == NULL) {
+        return 0;
+    }
+    node = head;
+    n = total = 0;
+    limit = lbl_805D78A4 - 9;
+    while (n < 9 && node != NULL) {
+        total += TQuestVmDownLoadServer__sub_803EB7C0(node) + 3;
+        if (total > limit) {
+            break;
+        }
+        n++;
+        while (node->flags & 1) {
+            node = node->next;
+        }
+        node = node->next;
+    }
+    if (n == 0) {
+        return 1;
+    }
+    return n;
+}
 inline void advance_text_groups(QuestDownloadTextNode *&head, s32 count) {
     for (s32 i = 0; i != count; i++) {
         QuestDownloadTextNode *node = head;
@@ -2899,8 +2927,8 @@ inline void advance_text_groups(QuestDownloadTextNode *&head, s32 count) {
 }
 void TQuestVmDownLoadServer__sub_803EC284(s32 index, s32 mode) {
     QuestDownloadTextNode *head;
-    s32 count;
-    if (mode == 1) {
+    s32 saved_mode = mode;
+    if (saved_mode == 1) {
         TQuestVmDownLoadServer__sub_803EC09C();
     }
     head = quest_download_slot_chain_table[lbl_805D78F0].textHead;
@@ -2909,21 +2937,21 @@ void TQuestVmDownLoadServer__sub_803EC284(s32 index, s32 mode) {
     } else {
         lbl_805D78A4 = TQuestVmDownLoadServer::get_buffer_size();
     }
-    count = count_text_groups_that_fit(head);
-    while (index >= count) {
-        index -= count;
-        advance_text_groups(head, count);
-        count = count_text_groups_that_fit(head);
-        if (count == 0) {
+    mode = count_text_groups_that_fit(head);
+    while (index >= mode) {
+        index -= mode;
+        advance_text_groups(head, mode);
+        mode = recount_text_groups_that_fit(head);
+        if (mode == 0) {
             TQuestVmDownLoadServer__sub_803EC284(0, 0);
             goto finish;
         }
     }
     lbl_805D78A0 = head;
     lbl_805D7898 = index;
-    lbl_805D789C = count;
+    lbl_805D789C = mode;
 finish:
-    if (mode == 1 && lbl_805D7834 == 0) {
+    if (saved_mode == 1 && lbl_805D7834 == 0) {
         TQuestVmDownLoadServer__sub_803EB4D4();
     }
 }
