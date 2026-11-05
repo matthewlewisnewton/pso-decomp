@@ -42,7 +42,6 @@ extern Vec2_8024EC34 keyboard_soft_viewport_offset_table[];
 extern Vec2_8024EC34 lbl_8044EC80[];
 extern Vec2_8024EC34 lbl_8044EC98[];
 extern const float lbl_805DCC94;
-s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b);
 extern const f32 lbl_805DCC98;
 extern const f32 lbl_805DCC9C;
 extern const f32 lbl_805DCCA0;
@@ -50,6 +49,7 @@ extern const f32 lbl_805DCCA4;
 u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
 
 typedef struct RecoveredFields_8024E754_arg0 RecoveredFields_8024E754_arg0;
+
 void TWindowKeyBoardSoft::scale_point_about_pivot(f32 *q) {
     if (lbl_805DCC78 != scale[0]) {
         q[0] = scale[0] * (q[0] - pivot[0]) + pivot[0];
@@ -84,9 +84,9 @@ void apply_window_closing_stretch(u8 *arg0, int arg1) {
   }
 }
 
+
 #pragma push
 #pragma opt_common_subs off
-
 void TWindowKeyBoardSoft::set_open_tick(s32 arg1) {
     s32 temp_r0;
     open_tick = arg1;
@@ -119,50 +119,50 @@ void TWindowKeyBoardSoft::animate_scale() {
     clip_top = clip_top + lbl_805DCC90;
 }
 
-s32 TWindowDrawContext::is_point_in_bounds(f32 *quad) {
-    if ((quad[2] < clip_left) || (quad[3] < clip_top) || (quad[0] > clip_right) || (quad[1] > clip_bottom)) {
+s32 TWindowDrawContext::is_point_in_bounds(Box_8024E8E8 *quad) {
+    if ((quad->x1 < clip_left) || (quad->y1 < clip_top) || (quad->x0 > clip_right) || (quad->y0 > clip_bottom)) {
         return 0;
     }
     return 1;
 }
 
-s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b) {
+s32 TWindowDrawContext::clip_textured_quad(Box_8024E8E8 *b) {
     f32 sx;
     f32 sy;
     f32 d;
-    if (w->is_point_in_bounds(b) == 0) {
+    if (is_point_in_bounds(b) == 0) {
         return 0;
     }
-    sx = (b[6] - b[4]) / (b[2] - b[0]);
-    sy = (b[7] - b[5]) / (b[3] - b[1]);
-    d = w->clip_left - b[0];
+    sx = (b->u1 - b->u0) / (b->x1 - b->x0);
+    sy = (b->v1 - b->v0) / (b->y1 - b->y0);
+    d = clip_left - b->x0;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b[0] = w->clip_left;
-        b[4] = d * sx + b[4];
+        b->x0 = clip_left;
+        b->u0 = d * sx + b->u0;
     }
-    d = w->clip_top - b[1];
+    d = clip_top - b->y0;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b[1] = w->clip_top;
-        b[5] = d * sy + b[5];
+        b->y0 = clip_top;
+        b->v0 = d * sy + b->v0;
     }
-    d = b[2] - w->clip_right;
+    d = b->x1 - clip_right;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b[2] = w->clip_right;
-        b[6] = -(d * sx - b[6]);
+        b->x1 = clip_right;
+        b->u1 = -(d * sx - b->u1);
     }
-    d = b[3] - w->clip_bottom;
+    d = b->y1 - clip_bottom;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b[3] = w->clip_bottom;
-        b[7] = -(d * sy - b[7]);
+        b->y1 = clip_bottom;
+        b->v1 = -(d * sy - b->v1);
     }
     return 1;
 }
 
-s32 TWindowKeyBoardSoft::try_open(TWindowDrawContext *context, f32 *quad) {
-    if (clip_textured_quad__19TWindowKeyBoardSoftFPvPv(context, quad) == 0) {
+s32 TWindowKeyBoardSoft::try_open(TWindowDrawContext *context, Box_8024E8E8 *quad) {
+    if (context->clip_textured_quad(quad) == 0) {
         return 0;
     }
-    apply_context_transform_to_rect(context, quad);
+    apply_context_transform_to_rect(context, &quad->x0);
     return 1;
 }
 
