@@ -681,6 +681,13 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOSensorGeneral01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-pool off")},
     # Unlike the other keys it addresses its descriptors off one .data base.
     "pso/misc/TOKeyGenericSw.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
+    # City main-warp challenge is written last function first. Deferred
+    # emission puts that last definition first, so .text stays in address
+    # order (0x801871D0-0x80187C98) and the hand-written
+    # __vt__25TObjCityMainWarpChallenge at 0x804B6188 precedes
+    # jumptable_804B61DC. Whole unit matches with nothing inlined.
+    # See docs/evidence/city-main-warp-challenge-vtable.md.
+    "pso/object/TObjCityMainWarpChallenge.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Quest-collision deleting destructors share a TU. Deferred generation
     # emits the last definition first, which is the only order that puts each
     # vtable before the next class's (TObjQuestColA then TObjQuestCol;
