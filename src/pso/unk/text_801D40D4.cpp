@@ -13,6 +13,10 @@
 #include "pso/TPlyItem.h"
 #include "pso/item/TItemProShield.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/misc/TCameraCtrl.h"
+#include "pso/TTecCtrl.h"
+#include "pso/misc/TWindowActionPalette_801C1890.h"
+#include <string.h>
 
 // 0x1C inventory record: mode, flags, then the item data. Byte 0 of the
 // item data is the type fn_801D40D4 tests.
@@ -33,55 +37,32 @@ typedef struct Ent_801D41B4 {
     u8 pad18[4];
 } Ent_801D41B4;
 
-// Array element. __construct_new_array runs TObjPlayer__sub_801D4730 and
-// passes a null destructor. The constructor (and no destructor) is what
-// makes delete[] release the 0x10-byte cookie in front of the elements.
+// Sort record: owner key and item. new[] builds the array with this
+// constructor and no destructor (__construct_new_array gets a null dtor),
+// which is also why delete[] frees from the 0x10-byte array cookie.
 struct Ent_801D4744 {
     u32 key;
     TItem *val;
-    Ent_801D4744() { TObjPlayer__sub_801D4730(this); }
+    Ent_801D4744();
+    // Non-const source: the original reloads other.val after storing key.
+    Ent_801D4744 &operator=(Ent_801D4744 &other);
 };
 
-// sort_by_key's temporary is filled by that same function. An Ent_801D4744
-// temporary would construct itself first.
-struct EntScratch_801D4744 {
-    u32 key;
-    TItem *val;
-};
-
-typedef struct List_801D4744 {
+// The 8-byte list TObjPlayer__sub_801D4368 allocates with new and frees with
+// delete (the destructor's s16 argument is MWCC's delete flag).
+struct List_801D4744 {
     s32 count;
     Ent_801D4744 *items;
-    // Bubble-sorts records by key. `this` is the 8-byte list, not a TObjPlayer.
+    List_801D4744(s32 n);
+    ~List_801D4744();
+    // Bubble-sorts records by key.
     void sort_by_key();
-    List_801D4744 *sub_801D46D4(s32 arg1);
-    List_801D4744 *sub_801D4678(s16 arg1);
-} List_801D4744;
-
-// TPlyItem from TObjPlayer::create_inventory (0x1CC bytes). TPlyItem__ct
-// stores the owner count at +0x1C; create_inventory stores the item list at
-// +0x1C4. pickup_item parents a 0x20 TItemList (the item slot) under that list.
-struct PlyItem_801D4368 {
-    u8 pad0[0x1C];
-    s16 item_count;
-    u8 pad_1E[0x1C4 - 0x1E];
-    TItemList *item_list;
 };
 
-typedef char PlyItem_801D4368_count[(offsetof(PlyItem_801D4368, item_count) == 0x1C) ? 1 : -1];
-typedef char PlyItem_801D4368_list[(offsetof(PlyItem_801D4368, item_list) == 0x1C4) ? 1 : -1];
-
 extern "C" {
-s32 is_item_equipped(void *, int);
 u8 *get_ptr_4__10TObjPlayerFv();
-s32 __construct_new_array(void *, void *, int, int, int);
 void fn_801C1BA8(void *, void *);
-s32 fn_801D40D4(s32 arg0, Rec_801D40D4 *arg1, u8 *arg2);
 s32 is_both_confirmed__23TAdSinglePlyChrSelectGCFv(void *);
-void memcpy(void *, void *, s32);
-s32 is_quest_active();
-s32 is_technique_ready__8TTecCtrlFv();
-int memset(void*, int, int);
 
 s32 fn_801D40D4(s32 arg0, Rec_801D40D4 *arg1, u8 *arg2) {
     s32 i;
@@ -100,7 +81,7 @@ s32 fn_801D40D4(s32 arg0, Rec_801D40D4 *arg1, u8 *arg2) {
 }
 
 s32 check_player_action_allowed(void) {
-    if ((get_main_phase() == 0xE) || (is_technique_ready__8TTecCtrlFv() != 0) || ((is_quest_active() == 1) && (get_game_play_mode() == 1))) {
+    if ((get_main_phase() == 0xE) || (TTecCtrl::is_technique_ready() != 0) || ((is_quest_active() == 1) && (get_game_play_mode() == 1))) {
         return 0;
     }
     return TAdSinglePlyChrSelectGC::get_game_mode();
@@ -149,7 +130,7 @@ s32 fn_801D4270(s32 arg0) {
     return 0;
 }
 
-int reset(void* p) { return memset(p, 0, 28); }
+void *reset(void *p) { return memset(p, 0, 28); }
 
 s32 TItem::export_inventory_entry(void *dest) {
     Rec_801D40D4 *rec = (Rec_801D40D4 *)dest;
@@ -164,7 +145,7 @@ s32 TItem::export_inventory_entry(void *dest) {
 // Reassigns each owned item's owner id from a key-sorted copy of the list.
 // Each loop keeps its own cursor: CodeWarrior assigns those registers from
 // this declaration order.
-s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
+s32 TObjPlayer__sub_801D4368(TPlyItem *ply) {
     List_801D4744 *recs;
     s32 filled;
     Ent_801D4744 *rec;
@@ -187,15 +168,12 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     if (ply->item_count > 30 || ply->item_count < 1) {
         return 0;
     }
-    recs = (List_801D4744 *)::operator new(8);
-    if (recs != NULL) {
-        recs = recs->sub_801D46D4(ply->item_count);
-    }
+    recs = new List_801D4744(ply->item_count);
     if (recs == NULL) {
         return 0;
     }
     if (recs->items == NULL) {
-        recs->sub_801D4678(1);
+        delete recs;
         return 0;
     }
     counted = 0;
@@ -207,7 +185,7 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
         node = node->link_next();
     }
     if (counted != ply->item_count) {
-        recs->sub_801D4678(1);
+        delete recs;
         return 0;
     }
     filled = 0;
@@ -216,7 +194,7 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     while (node_filled != NULL) {
         if (TItemList::is_item_valid(node_filled) != 0 && (owner = node_filled->get_owner_if_alive()) != NULL) {
             rec->val = owner;
-            TObjPlayer__sub_801D45B0((s32 *)rec, owner);
+            TObjPlayer__sub_801D45B0(&rec->key, owner);
             rec++;
             filled++;
         }
@@ -234,7 +212,7 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
         node_checked = node_checked->link_next();
     }
     if (filled != checked) {
-        recs->sub_801D4678(1);
+        delete recs;
         return 0;
     }
     rec_assigned = recs->items;
@@ -248,74 +226,65 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
         }
         node_assigned = node_assigned->link_next();
     }
-    recs->sub_801D4678(1);
+    delete recs;
     return 1;
 }
 
-void TObjPlayer__sub_801D45B0(s32 *arg0, TItem *arg1) {
-    s32 temp_r4;
-    u8 player;
+void TObjPlayer__sub_801D45B0(u32 *arg0, TItem *arg1) {
     *arg0 = 0;
-    temp_r4 = arg1->get_item_type() << 0x19;
-    *arg0 |= temp_r4;
+    *arg0 |= arg1->get_item_type() << 0x19;
     if (arg1->get_item_type() == 1) {
         *arg0 |= (arg1->get_item_group() << 0x11) & 0x01FE0000;
     } else {
         *arg0 |= (arg1->get_item_group() << 8) & 0xFF00;
     }
-    player = arg1->get_item_index();
-    *arg0 |= player;
-    if (is_item_equipped(arg1, (int)player) == 0) {
+    *arg0 |= arg1->get_item_index();
+    if (is_item_equipped(arg1) == 0) {
         *arg0 |= 0x10000;
     }
 }
 
-List_801D4744 *List_801D4744::sub_801D4678(s16 arg1) {
-    Ent_801D4744 *q;
-    if (this != NULL) {
-        q = items;
-        if (q != NULL) {
-            delete[] q;
-        }
-        if (arg1 > 0) {
-            ::operator delete(this);
-        }
+List_801D4744::~List_801D4744() {
+    if (items != NULL) {
+        delete[] items;
     }
-    return this;
 }
 
-List_801D4744 *List_801D4744::sub_801D46D4(s32 arg1) {
-    s32 n;
-    count = arg1;
-    n = count;
-    items = (Ent_801D4744 *)__construct_new_array(::operator new[]((n * 8 + 0x10)), TObjPlayer__sub_801D4730, 0, 8, n);
-    return this;
+List_801D4744::List_801D4744(s32 n) {
+    count = n;
+    items = new Ent_801D4744[count];
 }
 
-void TObjPlayer__sub_801D4730(void* p) { *(s32*)((char*)p + 0x0) = -1; *(s32*)((char*)p + 0x4) = 0; }
+Ent_801D4744::Ent_801D4744() {
+    key = -1;
+    val = NULL;
+}
 
 void List_801D4744::sort_by_key() {
-    EntScratch_801D4744 t;
+    Ent_801D4744 t;
     s32 n;
     s32 j;
     Ent_801D4744 *p;
     Ent_801D4744 *q;
-    TObjPlayer__sub_801D4730(&t);
     n = count;
     while (--n > 0) {
         p = items;
         for (j = 0; j < n; p++, j++) {
             q = p + 1;
             if (p->key > q->key) {
-                TObjPlayer__sub_801D47D8(&t, p);
-                TObjPlayer__sub_801D47D8(p, q);
-                TObjPlayer__sub_801D47D8(q, &t);
+                t = *p;
+                *p = *q;
+                *q = t;
             }
         }
     }
 }
 
-void TObjPlayer__sub_801D47D8(void* p, void* q) { *(u32*)((char*)p + 0x0) = *(u32*)((char*)q + 0x0); *(u32*)((char*)p + 0x4) = *(u32*)((char*)q + 0x4); }
+Ent_801D4744 &Ent_801D4744::operator=(Ent_801D4744 &other) {
+    key = other.key;
+    val = other.val;
+    return *this;
+}
 s32 TObjPlayer__sub_801D47EC(TPlyItem *arg0, s32 arg1, s32 arg2) {
     TItemList *temp_r3;
     TItemList *temp_r3_2;

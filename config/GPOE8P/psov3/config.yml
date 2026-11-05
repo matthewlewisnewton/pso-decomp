@@ -1347,8 +1347,6 @@ force_active:
   - TObjPlayer__sub_801C6FE0
   - TObjPlayer__sub_801C7098
   - TObjPlayer__sub_801D45B0
-  - TObjPlayer__sub_801D4730
-  - TObjPlayer__sub_801D47D8
   - TObjPlayer__sub_801D8A38
   - TObjPlayer__sub_801D9C34
   - TObjPlayer__sub_8023E034
@@ -1678,6 +1676,7 @@ force_active:
   - __OSDispatchInterrupt
   - __VIInit
   - __aborting
+  - __as__12Ent_801D4744FR12Ent_801D4744
   - __as__13GameListEntryFRC13GameListEntry
   - __as__14LobbyListEntryFRC14LobbyListEntry
   - __as__14QuestListEntryFRC14QuestListEntry
@@ -1693,6 +1692,7 @@ force_active:
   - __ct__11TOBiwaMushiFPv
   - __ct__11TOKeyCave01FP7TObjectPv
   - __ct__11TPlayerSoulFP7TObjectUs
+  - __ct__12Ent_801D4744Fv
   - __ct__12TBGLightningFv
   - __ct__12TBoss3VoloptFPv
   - __ct__12TChCrEffWallFP7TObject
@@ -1717,6 +1717,7 @@ force_active:
   - __ct__12TOSignCave03FP7TObjectPv
   - __ct__12TOSwitchItemFP7TObjectPv
   - __ct__12TObjEneSharkFP7TObjectPv
+  - __ct__13List_801D4744Fl
   - __ct__13PointerBufferFlPv
   - __ct__13TItemAttackerFllll
   - __ct__13TItemEffFlameFP7TObjectP12ActorBodyHit
@@ -2013,6 +2014,7 @@ force_active:
   - __dt__12TObjRaderColFv
   - __dt__12TObjRainCtrlFv
   - __dt__12TQuestThreadFv
+  - __dt__13List_801D4744Fv
   - __dt__13PointerBufferFv
   - __dt__13TAdGuideTxtGCFv
   - __dt__13TAdMcSelectGCFv
@@ -15332,8 +15334,6 @@ force_active:
   - sub_801AC444__13TPhotonLeillaFv
   - sub_801AD4A8__12TPhotonMyllaFv
   - sub_801ADC7C__12TPhotonPillaFv
-  - sub_801D4678__13List_801D4744Fs
-  - sub_801D46D4__13List_801D4744Fl
   - sub_801F6B00__22TQuestVmDownLoadServerFv
   - sub_801F6C74__22TQuestVmDownLoadServerFv
   - sub_801F6D24__22TQuestVmDownLoadServerFv
