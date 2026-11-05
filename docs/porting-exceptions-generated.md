@@ -72,7 +72,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TWindowFukidasi.cpp:515` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:591` | `__cntlzw` |
 | `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:71` | `__cntlzw` |
-| `src/pso/misc/TWindowMainMenu_802AD538.cpp:282` | `__cntlzw` |
+| `src/pso/misc/TWindowMainMenu_802AD538.cpp:281` | `__cntlzw` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:32` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:33` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:43` | `__rlwinm` |
@@ -215,6 +215,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
 | `pso/item/TItemSpecialEvent_803531FC.cpp` | `(multi-line entry; see configure.py)` | GC/2.0: compiler-expanded struct copies take 2.0's registers. The ending item handler table keeps 2.0's store/load scheduling for its zero-initialized local member-function-pointer array. |
 | `pso/effect/TEffIndirectCtrl_802A88AC.cpp` | `-opt noprop` | deform_indirect_texture_scroll keeps its s16 scroll offset as a named local (extsh r28, after the coordinate masks in r30/r29). With copy propagation the frontend replaces it with a hoisted temporary that the allocator colours first (r30). See docs/porting-exceptions.md section 5. |
+| `pso/misc/TMovie_80143988.cpp` | `-opt nolifetimes,nocse,noprop,noloop` | pack_movie_frame: the original keeps every named local in one register (no lifetime splitting), recomputes its pad and stride shifts instead of sharing them, and leaves invariant hoisting to the backend. See docs/porting-exceptions.md section 5. |
 | `pso/boss/Boss5GryphonBehavior.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneGyaranzo.cpp` | `GC/2.0, -inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOExplosiveMachine.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
