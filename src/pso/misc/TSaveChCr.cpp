@@ -33,7 +33,7 @@ s32 TSaveChCr::poll_memcard_status() {
         this->m_28 = 0;
         return 1;
     }
-    if (((TAdPlayerLoadGC *)0)->probe_and_check_card() == 0) {
+    if (TAdPlayerLoadGC::probe_and_check_card(0) == 0) {
         this->m_28 = 0;
         return 4;
     }

@@ -69,7 +69,7 @@ void draw_ginja_box_tree(u8 *arg0) {
 
 void TAdSinglePlyChrSelectGC__sub_801FBB1C(void) {
     s32 r;
-    if (((TAdPlayerLoadGC *)0)->probe_and_check_card() != 0) {
+    if (TAdPlayerLoadGC::probe_and_check_card(0) != 0) {
         r = find_card_file__15TAdPlayerLoadGCFiPv(0, lbl_804C88C0);
         if (r == 0 || (u32)r == 0xFFFFFF41U) {
             TAdPlayerLoadGC::poll_load_status(0, lbl_804C88C0);
@@ -79,7 +79,7 @@ void TAdSinglePlyChrSelectGC__sub_801FBB1C(void) {
 
 void TAdSinglePlyChrSelectGC__sub_801FBB7C(void) {
     s32 r;
-    if (((TAdPlayerLoadGC *)0)->probe_and_check_card() != 0) {
+    if (TAdPlayerLoadGC::probe_and_check_card(0) != 0) {
         r = find_card_file__15TAdPlayerLoadGCFiPv(0, lbl_804C89BC);
         if (r == 0 || (u32)r == 0xFFFFFF41U) {
             TAdPlayerLoadGC::poll_load_status(0, lbl_804C89BC);
@@ -89,7 +89,7 @@ void TAdSinglePlyChrSelectGC__sub_801FBB7C(void) {
 
 void TAdSinglePlyChrSelectGC::try_load_system_file() {
     s32 r;
-    if (((TAdPlayerLoadGC *)0)->probe_and_check_card() != 0) {
+    if (TAdPlayerLoadGC::probe_and_check_card(0) != 0) {
         r = find_card_file__15TAdPlayerLoadGCFiPv(0, pso_system_card_filename);
         if (r == 0 || (u32)r == 0xFFFFFF41U) {
             TAdPlayerLoadGC::poll_load_status(0, pso_system_card_filename);

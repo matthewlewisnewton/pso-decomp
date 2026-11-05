@@ -827,7 +827,7 @@ void TQuestVmDownLoadServer::check_memcard_slot() {
         s32 t = TAdMcSelectGC::get_selected_slot_index();
         slot = t;
     }
-    if (TAdPlayerLoadGC::probe_card_slot(slot) != 0 && ((TAdPlayerLoadGC *)slot)->probe_and_check_card() != 0) {
+    if (TAdPlayerLoadGC::probe_card_slot(slot) != 0 && TAdPlayerLoadGC::probe_and_check_card(slot) != 0) {
         cap = TAdPlayerLoadGC::query_memcard_capacity(slot, 0);
         switch (cap) {
         case -0xFD:

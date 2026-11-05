@@ -14,7 +14,7 @@ public:
     static void reset_load_state(void *arg0, void *arg1);
     static void poll_card_load(s32 arg0);
     s32 check_card_result_code();
-    s32 probe_and_check_card();
+    static s32 probe_and_check_card(s32 channel);
     static void unmount_card_and_clear_flags(s32 n);
     static void load_banner_files();
     static s32 get_load_result(void * _w0);

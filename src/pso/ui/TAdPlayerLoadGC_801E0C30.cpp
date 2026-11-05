@@ -153,8 +153,7 @@ s32 TAdPlayerLoadGC::check_card_result_code() {
 
 #pragma push
 #pragma fp_contract on
-s32 TAdPlayerLoadGC::probe_and_check_card() {
-    s32 arg0 = (s32)this;
+s32 TAdPlayerLoadGC::probe_and_check_card(s32 arg0) {
     s32 spC;
     s32 sp8;
     s32 temp_r3;
@@ -701,7 +700,7 @@ s32 TAdPlayerLoadGC::check_memcard_status(s32 arg0) {
         TAdPlayerLoadGC__card_result_code = -0xFF;
         return -0xFF;
     }
-    if ((TAdPlayerLoadGC::probe_card_slot(arg0) == 0) || (TAdPlayerLoadGC__sub_801E1B50(arg0) != 0) || (((TAdPlayerLoadGC *)arg0)->probe_and_check_card() == 0)) {
+    if ((TAdPlayerLoadGC::probe_card_slot(arg0) == 0) || (TAdPlayerLoadGC__sub_801E1B50(arg0) != 0) || (TAdPlayerLoadGC::probe_and_check_card(arg0) == 0)) {
         TAdPlayerLoadGC__card_result_code = -0xFF;
         return -0xFF;
     }
@@ -731,7 +730,7 @@ s32 find_card_file__15TAdPlayerLoadGCFiPv(s32 chan, const char *name) {
         return -0xFB;
     }
     if (TAdPlayerLoadGC::probe_card_slot(chan) == 0 || TAdPlayerLoadGC__sub_801E1B50(chan) != 0 ||
-        ((TAdPlayerLoadGC *)chan)->probe_and_check_card() == 0 || TAdPlayerLoadGC::check_memcard_status(chan) != 0) {
+        TAdPlayerLoadGC::probe_and_check_card(chan) == 0 || TAdPlayerLoadGC::check_memcard_status(chan) != 0) {
         TAdPlayerLoadGC__card_result_code = -0xFB;
         return -0xFB;
     }

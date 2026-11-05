@@ -95,7 +95,7 @@ void TMCFormatSequence::process_format_result() {
         this->m_24 = 3;
         return;
     }
-    if (((TAdPlayerLoadGC *)(*(s32 *)((s8 *)this + 0x28)))->probe_and_check_card() == 0) {
+    if (TAdPlayerLoadGC::probe_and_check_card(*(s32 *)((s8 *)this + 0x28)) == 0) {
         show_message((s32)(get_localized_text_entry(0xB, 0x6C)), 0);
         this->m_24 = 3;
         return;

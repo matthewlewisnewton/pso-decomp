@@ -968,7 +968,7 @@ s32 memcard_check_snapshot(s32 arg0, s32 *arg1) {
         }
         return 0;
     }
-    if (((TAdPlayerLoadGC *)1)->probe_and_check_card() == 0) {
+    if (TAdPlayerLoadGC::probe_and_check_card(1) == 0) {
         if (arg1 != NULL) {
             if ((u32)(TAdPlayerLoadGC::get_load_result((void *)1) + 0x10000) == 0xff83U) {
                 if (arg1 != NULL) {

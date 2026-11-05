@@ -1879,7 +1879,7 @@ s32 load_player_data__23TAdSinglePlyChrSelectGCFv(void) {
     s32 var_r31;
 
     var_r31 = 0xFFFF0000;
-    if (((u32) guild_card_save_payload != 0U) && (TAdPlayerLoadGC::get_instance() == 0) && (((TAdPlayerLoadGC *)card_load_channel)->probe_and_check_card() != 0)) {
+    if (((u32) guild_card_save_payload != 0U) && (TAdPlayerLoadGC::get_instance() == 0) && (TAdPlayerLoadGC::probe_and_check_card(card_load_channel) != 0)) {
         var_r31 = find_card_file__15TAdPlayerLoadGCFiPv(card_load_channel, lbl_804C89BC);
         if ((var_r31 == 0) && (check_ready__23TAdSinglePlyChrSelectGCFv() != 0)) {
             var_r31 = setup__23TAdSinglePlyChrSelectGCFi(card_load_channel);

@@ -62,7 +62,7 @@ s32 TAdTrialAgreementGC::check_card_file(s32 arg0) {
     if (TAdPlayerLoadGC::probe_card_slot(0) == 0) {
         return 0;
     }
-    if (((TAdPlayerLoadGC *)0)->probe_and_check_card() == 0) {
+    if (TAdPlayerLoadGC::probe_and_check_card(0) == 0) {
         return 0;
     }
     wait_for_load__19TAdTrialAgreementGCFv(arg0);

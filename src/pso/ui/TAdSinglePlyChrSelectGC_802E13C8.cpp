@@ -189,7 +189,7 @@ s32 TAdTimeSetGC::poll_load_status() {
         sub_802E1F14__12TAdTimeSetGCFv(this);
         return 1;
     }
-    if (((TAdPlayerLoadGC *)0)->probe_and_check_card() == 0) {
+    if (TAdPlayerLoadGC::probe_and_check_card(0) == 0) {
         load_result = TAdPlayerLoadGC::get_load_result(0);
         switch (load_result) {
         case -125:

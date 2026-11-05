@@ -433,7 +433,7 @@ s32 check_system_file_status__23TAdSinglePlyChrSelectGCFv(void) {
     if (TAdPlayerLoadGC__sub_801E1B50(0) != 0) {
         return 2;
     }
-    if (((TAdPlayerLoadGC *)0)->probe_and_check_card() == 0) {
+    if (TAdPlayerLoadGC::probe_and_check_card(0) == 0) {
         return 4;
     }
     if (TAdPlayerLoadGC::check_memcard_status(0) != 0) {
