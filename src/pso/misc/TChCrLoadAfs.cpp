@@ -1,4 +1,5 @@
 #include "pso/math/FloatRounding.h"
+#include "pso/system/GinjaTextureInput.h"
 #include "types.h"
 #include "pso/misc/TChCrLoadAfs.h"
 #include "pso/object/TObject_80019A50.h"
@@ -89,7 +90,7 @@ struct Ent_8028BE00 { u8 pad[0xC]; };
 
 struct List_8028BE00 { Ent_8028BE00 *ents; };
 
-struct Rect_8028BE00 { u8 pad[0x24]; };
+typedef GinjaTextureInput Rect_8028BE00;
 
 struct Ld_8028BE00 {
     u8 pad0[0x1C];
@@ -131,7 +132,7 @@ void TChCrLoadAfs::start_download() {
             return;
         }
         count = TLobby__sub_803CC53C((u8 *)(*(u32 *)((s8 *)this + 0x1C)));
-        temp_r3_3 = (s32)TQuestVmDownLoadServer::alloc(count << 0xB);
+        temp_r3_3 = ((TQuestVmDownLoadServer *)(count << 0xB))->alloc();
         *(u32 *)((s8 *)this + 0x28) = temp_r3_3;
         if (temp_r3_3 == 0U) {
             *(s32 *)((s8 *)this + 0x2C) = 3;
@@ -290,7 +291,7 @@ void TChCrLoadAfsTextureReq::update_loading(void *) {
         return;
     }
     for (i = 0; i < arg0->f58; i++) {
-        ((TObjPlayer *)(&arg0->rects[i]))->set_render_rect(arg0->bufs[i], 0, 0, 0);
+        arg0->rects[i].configure((void *)arg0->bufs[i], 0, 0, 0);
         set_texture_name(&arg0->f30->ents[i], &arg0->rects[i], 0, 0x40000000);
     }
     if (load_texture_list(arg0->f30) != -1) {
@@ -310,7 +311,7 @@ void TChCrLoadAfsTextureReq::start_read(void *) {
         arg0->f20 = 0;
         arg0->f24 = 0;
         n = TLobby__sub_803CC53C((u8 *)arg0->f60);
-        buf = ((void *)TQuestVmDownLoadServer::alloc(n << 11));
+        buf = ((void *)((TQuestVmDownLoadServer *)(n << 11))->alloc());
         arg0->bufs[arg0->f5c] = buf;
         if (buf != NULL) {
             TLobby::read_checked_align((u32)arg0->f60, (s32)n, (u32)arg0->bufs[arg0->f5c]);

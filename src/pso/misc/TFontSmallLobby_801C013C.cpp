@@ -43,7 +43,16 @@ void *TFontSmallLobby__sub_801C01DC(void *arg0, void *arg1) {
 
 void* TFontSmallLobby__sub_801C0228(void* p, void* _w1) { TFontSmallLobby__sub_801C0258(p, _w1); return p; }
 
-void TFontSmallLobby__sub_801C0258(void* p, void* q) { *(u8*)((char*)p + 0x0) = *(u8*)((char*)q + 0x0); *(u8*)((char*)p + 0x1) = *(u8*)((char*)q + 0x1); *(u16*)((char*)p + 0x2) = *(u16*)((char*)q + 0x2); }
+// Callers copy an incoming four-byte header into a separate local packet.
+// Copy its tail through the object representation; the source need not contain
+// a live u16 subobject. Source and destination spans are disjoint.
+void TFontSmallLobby__sub_801C0258(void *destination, void *source) {
+    unsigned char *out = static_cast<unsigned char *>(destination);
+    const unsigned char *in = static_cast<const unsigned char *>(source);
+    out[0] = in[0];
+    out[1] = in[1];
+    __memcpy(out + 2, in + 2, 2);
+}
 
 void TFontSmallLobby::init_packet_6x9b_level_up() {
     u8 *arg0 = (u8 *)this;

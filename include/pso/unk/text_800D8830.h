@@ -2,12 +2,12 @@
 #define PSO_UNK_TEXT_800D8830_H
 
 #include "types.h"
+class TObject;
+struct Vec;
 
-// --- C functions defined in text_800D8830.cpp ---
 extern "C" {
-void fn_800D8830(void *owner, void *pos);
-void fn_800D88E4(void *pos);
+void play_floor_area_persistent_sound(TObject *owner, Vec *position);
+s32 play_floor_area_sound_effect(Vec *position);
 }
-// --- end of C functions
 
 #endif

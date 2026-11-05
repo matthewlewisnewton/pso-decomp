@@ -1,3 +1,7 @@
+#include "pso/player/demo_mode.h"
+#include "pso/misc/MaterialOpacityFade.h"
+#include "pso/misc/RenderFadeState.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -13,10 +17,8 @@
 #include "pso/enemy/TObjEneBm9Mericarol.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
-#include "pso/misc/RenderFadeState.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/map/FloorArea.h"
 struct Stack_802CE68C {
     s32 sp8;
     s32 spC;
@@ -43,16 +45,6 @@ struct VObj_802CE740 : VBase_802CE740 {
 };
 
 struct Node_802CE8CC;
-struct FadeBase_802CE8CC { char pad[0x14]; };
-
-struct Fade_802CE8CC : FadeBase_802CE8CC {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
-    virtual void m4(); virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual s32 m8();
-    u32 f18;
-};
 
 struct ObjBase_802CE8CC { char pad[0x18]; };
 
@@ -97,11 +89,11 @@ struct Self_802CE8CC {
     u8 cam[0x2A];
     s16 f326;
     u8 pad328[0xA0];
-    Fade_802CE8CC fades[4];
+    RenderFadeState fades[4];
     s32 f438;
     f32 f43C;
     u8 pad440[0x2C];
-    Fade_802CE8CC f46C;
+    MaterialOpacityFade f46C;
 };
 
 extern "C" {
@@ -141,7 +133,7 @@ void TObjPlayer__sub_802CE68C(u8 *enemy, s32 arg1, s32 arg2) {
     set_motion_packed_rotation();
     push_matrix_from((void *)&identity_matrix.value);
     post_translate_matrix(enemy + 0x38);
-    rotate_matrix_y(0, (int) (((TObjEnemy *)enemy)->rotation_y));
+    rotate_matrix_y(0, (int) (((TObjEnemy *)enemy)->rotation.yaw));
     set_motion_packed_rotation();
     ((TObjEnemy *)enemy)->calc_joint_matrices((f32) (((TObjEnemy *)enemy)->frame));
     clear_motion_packed_rotation();
@@ -179,10 +171,10 @@ void TObjEneBm9Mericarol::draw_color_variant() {
             (**(s32 ** *)&this->texlist)[8] = (**(s32 ** *)&this->texlist)[26];
             break;
         }
-        TObjFish::set_global_param((s32)(*(void * *)&this->texlist));
+        set_current_texture_list((GinjaTextureList *)((*(void * *)&this->texlist)));
         push_matrix();
         post_translate_matrix(((u8 *)this) + 0x38);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjEneDD::clear_global_flag_400();
         TObjPlayer::toggle_particle_effect();
         set_alpha_ref_override(0);
@@ -200,7 +192,7 @@ void TObjEneBm9Mericarol::draw_color_variant() {
 void TObjEneBm9Mericarol::render() {
     Self_802CE8CC *self = (Self_802CE8CC *)this;
     s32 vis;
-    Fade_802CE8CC *fade;
+    RenderFadeState *fade;
     s16 saved;
     s32 mode;
     s32 cam;
@@ -208,7 +200,7 @@ void TObjEneBm9Mericarol::render() {
     s32 s1;
     s32 s2;
     Node_802CE8CC *n;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->draw_color_variant();
         return;
     }
@@ -260,7 +252,7 @@ void TObjEneBm9Mericarol::render() {
         break;
     }
     saved_model_render_flags = model_render_flags;
-    TObjFish::set_global_param((s32)self->f24);
+    set_current_texture_list((GinjaTextureList *)(self->f24));
     push_matrix();
     post_translate_matrix(self->pos);
     rotate_matrix_y(0, self->f60);
@@ -273,18 +265,18 @@ void TObjEneBm9Mericarol::render() {
         n = self->f34->n2C->n30->n30->n30->n4->n4;
         saved = n->fA;
         n->fA = (u8)n->fA;
-        set_chunk_model_node_callback((s32)TObjEneBm9Mericarol::update_particle_effect);
+        set_chunk_model_node_callback(TObjEneBm9Mericarol::update_particle_effect);
     }
     if (self->f438 & 8) {
-        if (self->f46C.m8() != 0) {
-            self->f46C.m6();
+        if (self->f46C.has_visible_opacity() != 0) {
+            self->f46C.set_flags_and_apply_damage_color();
             if (defer_render__7TObjectFv(((u8 *)this)) == 0) {
                 ((TObjMotion *)((u8 *)this))->draw();
             }
-            self->f46C.m7();
+            self->f46C.clear_flag_and_notify();
         }
     } else if (vis != 0) {
-        fade->m6();
+        fade->set_flags_and_apply_damage_color();
         if (defer_render__7TObjectFv(((u8 *)this)) == 0) {
             if (mode == 1) {
                 ((TObjMotion *)((u8 *)this))->draw();
@@ -292,7 +284,7 @@ void TObjEneBm9Mericarol::render() {
                 ((TObjEnemy *)((u8 *)this))->draw_motion_model();
             }
         }
-        fade->m7();
+        fade->clear_flag_and_notify();
     } else if (mode == 1) {
         ((TObjMotion *)((u8 *)this))->draw();
     } else {

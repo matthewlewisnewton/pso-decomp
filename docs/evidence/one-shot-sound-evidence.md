@@ -1,0 +1,9 @@
+# One-shot positional sound
+
+The original free entry point at `0x8022675C` takes sound ID, optional position, adjustment and flags in r3–r6. It returns a nonnegative slot or -1. With a non-null position it copies the point into the request record and redirects the voice to that copy, but it also stores the original pointer in the request. A later persistent request for the same sound ID can use that stored pointer, so callers cannot assume the original position is never consulted again. Null is accepted, and a reused voice may retain an earlier position.
+
+The original inventory contains 1,198 direct calls in 310 units, including 47 fallback units. Existing actor-byte offsets and local vector overlays do not establish complete C++ object lifetime or ownership. The one-shot request and persistent request interfaces are distinct; neither implies an actor receiver.
+
+Six legacy call sites supplied an unused fifth argument; each was a simple read and is omitted from the recovered four-argument interface. Some declarations narrowed the adjustment to 16 bits, but the original entry point forwards the full register value before retaining its low 16 bits. All 65 affected calls pass either `0` or `-10`.
+
+The result is a signed slot, with `-1` indicating failure. One legacy caller passes that result to a separately declared pointer-valued interface; its explicit integer-to-pointer conversion preserves that unresolved boundary, rather than establishing a pointer return type. The De Rol Le wrapper likewise retains its existing integer/pointer carriers with explicit conversions. The persistent-sound implementation also retains a separate, known inaccurate legacy two-argument declaration where changing it would affect matching; it is not evidence that the one-shot and persistent interfaces share a signature.

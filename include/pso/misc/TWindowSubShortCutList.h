@@ -2,11 +2,12 @@
 #define PSO_MISC_TWINDOWSUBSHORTCUTLIST_H
 
 #include "types.h"
-#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TUnk_804D0618.h"
 
-struct TWindowSubShortCutList : public TWindowMenuIconLine {
+struct TWindowSubShortCutList : public TUnk_804D0618 {
     virtual ~TWindowSubShortCutList();
     void set_cursor_index(s16);
+    void select_cursor_entry();
     void set_flag70_bit10();
     virtual void render();
     u32 m_88;

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLanguage_801E4874.h"
 #include "pso/unk/text_800F9B84.h"
 #include "pso/unk/text_8014B8A4.h"
@@ -20,7 +21,6 @@ struct RecoveredGlobal_8014AC6C___vt__19TObjNpcGovernorBase {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8014ABC4_lbl_804A9428 bm_n_soutoku_i_body_resource_descriptor;
 extern u32 TObjNpcGovernorBase__shared_resource;
 extern s32 __vt__19TObjNpcGovernorBase[];
@@ -29,7 +29,6 @@ extern u32 TObjNpcHFW00__shared_resource_obj;
 extern u32 TObjNpcHFW00__texture_handle;
 extern char lbl_8043FA38[];
 extern char lbl_8043FA4C[];
-void TLobby__sub_8001FE7C(void*, int);
 void release_texture_list(void*);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
@@ -37,7 +36,7 @@ void *__nw__7TObjectFUl(int);
 
 void TObjNpcGovernorBase::free_shared_data() {
     if ((u32) TObjNpcGovernorBase__shared_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcGovernorBase__shared_resource, 1);
+        delete (BmlResource *)((void*)TObjNpcGovernorBase__shared_resource);
         TObjNpcGovernorBase__shared_resource = 0U;
     }
 }
@@ -45,11 +44,8 @@ void TObjNpcGovernorBase::free_shared_data() {
 void TObjNpcGovernorBase::load_shared_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_soutoku_i_body_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_soutoku_i_body_resource_descriptor.value, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcGovernorBase__shared_resource) = var_r0;
 }
 
@@ -72,7 +68,7 @@ u8 *TObjNpcGovernorBase__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_8014AC6C___vt__19TObjNpcGovernorBase *)&__vt__19TObjNpcGovernorBase).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcGovernorBase__name;
     ((TObjNpcGovernorBase *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcGovernorBase__shared_resource) + 0x42C)) + 8);
     ((TObjNpcGovernorBase *)player)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcGovernorBase__shared_resource) + 0x42C)) + 0xC);
     ((TObjNpcBase *)player)->setup_common();

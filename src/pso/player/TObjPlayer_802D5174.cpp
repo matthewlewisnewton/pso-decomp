@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -13,18 +14,17 @@
 #include "pso/unk/TUnk_804E1BB0.h"
 #include "pso/player/TUnk_804E21F8.h"
 #include "pso/item/TItem.h"
+#include "pso/player/TObjPlayer_802D5B78.h"
 
 
-struct Vec_802D52E8 { f32 x, y, z; };
 
 extern "C" {
 u8 *__nw__5TItemFUl(s32);
 extern s32 tl_05;
-void TObjPlayer__sub_802D5B78(void *a, void *b);
-void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg);
+void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg, const Vec *direction);
 void *__dt__13TUnk_804E1BB0Fv(void *arg0, s16 arg1);
 void *__dt__13TUnk_804E1CA8Fv(void *arg0, s16 arg1);
-int spawn_particle_effect(void*, int);
+
 void __ct__11TItemWeaponFP7TObjectPUc(void *);
 void *__dt__13TUnk_804E23F0Fv(void *arg0, s16 arg1);
 
@@ -74,11 +74,15 @@ void *__dt__13TUnk_804E1CA8Fv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-int TObjPlayer::do_action_447() { return spawn_particle_effect(this, 447); }
-void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg) {
-    Vec_802D52E8 v;
-    TObjPlayer__sub_802D5B78(arg, &v);
-    ((TObjPlayer *)(&v))->do_action_447();
+// Preserve the existing exported name while keeping ownership provisional.
+// Its original caller passes a Vec, not a TObjPlayer receiver.
+TParticleCtrl *do_action_447__10TObjPlayerFv(const Vec *position) {
+    return spawn_particle_effect(position, 447);
+}
+void do_action_447_from_packet__10TObjPlayerFPvPv(void *self, void *arg, const Vec *direction) {
+    Vec v;
+    TObjPlayer__sub_802D5B78(arg, &v, direction);
+    do_action_447__10TObjPlayerFv(&v);
 }
 
 }
@@ -122,8 +126,8 @@ struct P_802D5478 { f32 x; f32 y; f32 z; };
 extern "C" {
 s32 VecCopy__FP3VecPC3Vec(void *);
 void spawn_hit_particles_at_vec__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2);
-s32 TObjPlayer__sub_802D5B78(void *, void *);
-void spawn_hit_particles_at__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2);
+
+void spawn_hit_particles_at__10TObjPlayerFiii(s32 arg0, void *arg1, const Vec *arg2);
 extern const f64 lbl_804725B8[];
 f32 atan2_float(f32 y, f32 x);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
@@ -162,10 +166,10 @@ void spawn_hit_particles_at_vec__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2) 
     VecCopy__FP3VecPC3Vec(&sp8);
     spawn_hit_particles__10TObjPlayerFiPv((s32)&sp8, (const P_802D5478 *)(arg2));
 }
-void spawn_hit_particles_at__10TObjPlayerFiii(s32 arg0, s32 arg1, s32 arg2) {
-    s32 sp8;
-    TObjPlayer__sub_802D5B78((void *)arg1, &sp8);
-    spawn_hit_particles__10TObjPlayerFiPv((s32)&sp8, (const P_802D5478 *)(arg2));
+void spawn_hit_particles_at__10TObjPlayerFiii(s32 arg0, void *arg1, const Vec *arg2) {
+    Vec sp8;
+    TObjPlayer__sub_802D5B78(arg1, &sp8, arg2);
+    spawn_hit_particles__10TObjPlayerFiPv((s32)&sp8, (const P_802D5478 *)arg2);
 }
 
 }
@@ -503,7 +507,7 @@ extern "C" {
 
 void* init_vtable_and_field200__10TObjPlayerFPv(void* a0);
 void spawn_item__10TObjPlayerFi(s32 arg0);
-s32 spawn_particle_effect(s32, s32);
+
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 int init_state_445__10TObjPlayerFPv(void);
 
@@ -516,7 +520,7 @@ void spawn_item__10TObjPlayerFi(s32 arg0) {
     s32 sp8;
     s32 particle_effect;
 
-    particle_effect = spawn_particle_effect(arg0, 0x1BF);
+    particle_effect = (s32)spawn_particle_effect((const Vec *)(arg0), 0x1BF);
     if (particle_effect != 0) {
         TItemLoad::lookup_item_data(0xD, &spC);
         TItemLoad::get_data_entry(0xD, &sp8);

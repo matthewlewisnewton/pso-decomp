@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/TAdMultiPlayerNoGC.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/object/TObject_80019A50.h"
@@ -36,7 +37,7 @@ extern s32 lbl_805D6D78;
 void TAdMultiPlayerNoGC::render_status() {
     s32 arg0 = (s32)this;
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D6D78);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D6D78));
     set_draw_texture_and_color(0, -1);
     draw_textured_quad_at_depth((f32 *)(arg0 + 0x20), (0.25f));
     TWindowSubStatusDisp::get_player();

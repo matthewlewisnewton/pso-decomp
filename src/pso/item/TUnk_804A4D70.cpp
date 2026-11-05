@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/item/TItemEquipVariant_80120CF8.h"
 #include "pso/item/TItemEquipVariant_8012B200.h"
@@ -35,7 +36,7 @@ int obj_getPtr2B0_20(u8 *p);
 s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 void show_meseta_label(s32 arg0, u32 arg1, s32 arg2, s32 arg3);
 void update_active_game_effect__10TObjPlayerFv(TItemWeapon*);
-void *spawn_particle_effect(void *pos, s32 id);
+
 s32 scale_current_matrix(void *);
 s32 post_translate_matrix(void *);
 s32 rotate_matrix_z(int, int);
@@ -64,8 +65,8 @@ void TUnk_804A4D70::emit_marker_effects() {
             try_spend_actor_meseta((u8 *)owner, 10000);
             show_meseta_label((s32)owner, (u32)((WeaponVector*)((u8*)owner + 0x2FC)), 0, -10000);
             apply_scale_if_active(3.0f);
-            spawn_particle_effect((WeaponVector*)((u8*)owner + 0x2FC), 0x66);
-            spawn_particle_effect((WeaponVector*)((u8*)owner + 0x2FC), 0x66);
+            spawn_particle_effect((const Vec *)((WeaponVector*)((u8*)owner + 0x2FC)), 0x66);
+            spawn_particle_effect((const Vec *)((WeaponVector*)((u8*)owner + 0x2FC)), 0x66);
         } else {
             update_active_game_effect__10TObjPlayerFv(this);
         }

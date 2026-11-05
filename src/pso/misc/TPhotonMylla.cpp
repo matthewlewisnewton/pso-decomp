@@ -1,8 +1,12 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/misc/TPhotonMylla.h"
+#include "pso/misc/PhotonBlastSummon.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/object/TObjMotion.h"
@@ -108,12 +112,10 @@ struct Game_801AD970 { u8 pad[0x42C]; Res_801AD970 *res; s32 f430; };
 
 extern "C" {
 u16 get_entity_id(void *);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *find_entity_by_id(u16 id);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
-s32 queue_photon_blast_hit(int, int, int, f32);
-s32 spawn_photon_blast_attachment_effects(void *, int);
+
 u8 *__nw__7TObjectFUl(s32, f32);
 extern const f32 lbl_805DC1FC;
 extern const f32 lbl_805DC200;
@@ -184,10 +186,10 @@ void TPhotonMylla::render() {
     Self_801AD4C0 *self = (Self_801AD4C0 *)this;
     if (*(s32 *)&this->m_1a0 != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         saved_model_render_flags = model_render_flags;
         copy_argb((NJS_ARGB *)&saved_model_draw_color, (NJS_ARGB *)&model_material_color);
         saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
@@ -212,7 +214,7 @@ void TPhotonMylla::render() {
 }
 
 void TPhotonMylla::run_task() {
-    u8 *arg0 = (u8 *)this;
+    TPhotonMylla *arg0 = this;
     typedef char sp8_offset[(offsetof(Stack_801AD5D8, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_801AD5D8, spC) == 0x4) ? 1 : -1];
     typedef char sp14_offset[(offsetof(Stack_801AD5D8, sp14) == 0xC) ? 1 : -1];
@@ -246,7 +248,7 @@ void TPhotonMylla::run_task() {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(3);
         ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
-        spawn_photon_blast_attachment_effects((void *) (arg0), 5);
+        spawn_photon_blast_attachment_effects(this, 5);
     }
     ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_194 = (s16) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_B8;
     ((TUnk_804C3248 *)arg0)->update_state();
@@ -261,8 +263,8 @@ void TPhotonMylla::run_task() {
             VecCopy((Vec *)(&stack.sp20), (const Vec *)(temp_r3_3 + 0x38));
         }
         stack.sp24 += lbl_805DC20C;
-        spawn_particle_effect(&stack.sp20, 0x174);
-        spawn_particle_effect(&stack.sp20, 0x175);
+        spawn_particle_effect((const Vec *)(&stack.sp20), 0x174);
+        spawn_particle_effect((const Vec *)(&stack.sp20), 0x175);
     }
     if (lbl_805DC210 == (f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4) {
         temp_r3_4 = (u8 *)(find_entity_by_id(((RecoveredFields_801AD5D8_arg0 *)arg0)->field_17C));
@@ -270,7 +272,7 @@ void TPhotonMylla::run_task() {
             VecCopy((Vec *)(&stack.sp14), (const Vec *)(temp_r3_4 + 0x38));
         }
         stack.sp18 += lbl_805DC20C;
-        spawn_particle_effect(&stack.sp14, 0x169);
+        spawn_particle_effect((const Vec *)(&stack.sp14), 0x169);
     }
     if (lbl_805DC214 == (f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4) {
         temp_r3_5 = (u8 *)(find_entity_by_id(((RecoveredFields_801AD5D8_arg0 *)arg0)->field_17C));
@@ -278,7 +280,7 @@ void TPhotonMylla::run_task() {
             VecCopy((Vec *)(&stack.sp8), (const Vec *)(temp_r3_5 + 0x38));
         }
         stack.spC += lbl_805DC20C;
-        spawn_particle_effect(&stack.sp8, 0x169);
+        spawn_particle_effect((const Vec *)(&stack.sp8), 0x169);
         if (temp_r3_5 != NULL) {
             queue_photon_blast_hit((int) (get_entity_id(temp_r3_5)), 5, 0, (f32) (((RecoveredFields_801AD5D8_arg0 *)arg0)->field_150));
         }
@@ -290,7 +292,7 @@ void TPhotonMylla::run_task() {
         }
     }
     if ((s32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A0 != 0) {
-        play_persistent_sound(0x4002462F, (s32)arg0, (u32)(0U), 0, 0);
+        play_persistent_sound((s32)(0x4002462F), (const void *)((s32)arg0), (const Vec *)((u32)(0U)), 0, 0);
     }
 }
 #pragma pop
@@ -324,8 +326,8 @@ void *TPhotonMylla__ct(Mylla_801AD970 *self, Pkt_801AD970 *pkt) {
     }
     F_801AD970(self, s32, 0x34) = photon_blast_shared_resource->res->fA8;
     F_801AD970(self, s32, 0x24) = photon_blast_shared_resource->res->fAC;
-    ((TObjMotion *)self)->set_field_d8((s32)lbl_804C39D8);
-    ((TObjMotion *)self)->set_field_dc(photon_blast_shared_resource->f430);
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)lbl_804C39D8));
+    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(photon_blast_shared_resource->f430));
     F_801AD970(self, s16, 0xB8) = 1;
     ((TObjMotion *)self)->set_animation(F_801AD970(self, s16, 0xB8));
     ((TObjMotion *)self)->set_field_b8(F_801AD970(self, s16, 0xB8));
@@ -390,7 +392,7 @@ void *TPhotonMylla__ct(Mylla_801AD970 *self, Pkt_801AD970 *pkt) {
         if (o != NULL) {
             TPhotonMagicSquare__ct((u8 *)o, (s32)self, 5, (s32)&v, 0xAA, (f32)lbl_805DC200);
         }
-        spawn_photon_blast_attachment_effects(self, 5);
+        spawn_photon_blast_attachment_effects((TPhotonMylla *)self, 5);
         play_cue_stream_file((s32)lbl_80446E80);
     } else {
         spawn_photon_blast_opening_effects(5, F_801AD970(self, u16, 0x17C));

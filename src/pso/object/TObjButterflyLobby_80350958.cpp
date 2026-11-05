@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjButterflyLobby_80350958.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
@@ -60,7 +62,7 @@ void render__18TObjButterflyLobbyFPv(TObjButterflyLobby *butterfly_lobby) {
 
     push_matrix();
     post_translate_matrix((u8 *)butterfly_lobby + 0x38);
-    rotate_matrix_y(0, butterfly_lobby->rotation_y);
+    rotate_matrix_y(0, butterfly_lobby->rotation.yaw);
     rotate_matrix_x(0, -0x2000);
     if ((s32) butterfly_lobby->m_90 != 3) {
         temp_f1 = *(f32 *)((s8 *)butterfly_lobby + 0x94);
@@ -86,7 +88,7 @@ void TObjButterflyLobby::init_params() {
 
 void TObjButterflyLobby::render() {
     if ((((ButterflyLobbyVObj_80350958*)this)->m8(400.0f, 20.0f) != 0) && ((s32) this->m_90 != 0)) {
-        TObjFish::set_global_param(this->m_c8);
+        set_current_texture_list((GinjaTextureList *)(this->m_c8));
         render__18TObjButterflyLobbyFPv((TObjButterflyLobby *)((u8 *)this));
     }
 }
@@ -285,7 +287,6 @@ s32 get_bml_model(void *, int);
 s32 __ct__8TObjBaseFP7TObject();
 extern s32 __vt__18TObjButterflyLobby[];
 extern s32 lbl_805D4360;
-void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
@@ -336,7 +337,7 @@ void *TObjButterflyLobby__create(void *arg0) {
 
 void TObjButterflyLobby::destroy_instance() {
     if ((u32) lobby_butterfly_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)lobby_butterfly_bml_resource, 1);
+        delete (BmlResource *)((void*)lobby_butterfly_bml_resource);
         lobby_butterfly_bml_resource = 0U;
     }
 }

@@ -3,10 +3,17 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/enemy/BattleParameters.h"
 
 struct TObjEneDD : public TObjEnemy {
     TObjEneDD(TObject *parent);
     virtual ~TObjEneDD();
+    s32 previous_mode;
+    s32 m_378;
+    f32 m_37c;
+    u8 dd_fields_380[0x4];
+    s32 m_384;
+    s32 m_388;
     void set_part_local_pos(void *, s32);
     void transition_enemy_state(s32);
     void sub_800BBA0C();
@@ -36,9 +43,8 @@ struct TObjEneDD : public TObjEnemy {
     virtual u8 *vfunc_101(u8 *);
     virtual u8 *vfunc_102();
     virtual u8 *vfunc_103(u8 *);
-    virtual s32 vfunc_104(f32) = 0;
     int get_flag_b4();
-    static f32 calc_elapsed_scaled();
+    f32 calc_elapsed_scaled();
     void update_velocity();
     void turn_toward_target_direction(s32 max_step);
     void set_target_destination(const Vec *position);
@@ -50,18 +56,17 @@ struct TObjEneDD : public TObjEnemy {
     int query_teammate_state();
     int update_lobby_state();
     static u8 is_phase_e();
-    static u8 is_main_phase_15();
+    static s32 is_main_phase_15();
     static void clear_global_flag_400();
     void draw_ground_shadow(const Vec *scale, s32 forceDraw);
     void draw_oriented_shadow(s32 arg1, s32 arg2, u32 arg3);
     int update_primary_light();
     int update_secondary_light();
-    void reload_stats_keep_hp_tp();
-    void reset_hp(u8 *base_stats, u8 *attack_stats, u8 *resistance_stats);
-    int get_camera_ctrl();
+    void reload_stats_keep_hp_tp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats);
+    void reset_hp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats);
     int update_camera_sequence();
     void initialize_enemy_state(s32 parameter);
-    static s32 get_random_scaled();
+    s32 get_random_scaled();
     f32 rand_range(f32 farg0, f32 farg1);
     int set_state_8();
     int check_state_flag_4();
@@ -82,7 +87,7 @@ struct TObjEneDD : public TObjEnemy {
     void clear_field_388();
     int has_move_failures(s32 arg1);
     void move_to_wall_clamped_destination(f32 farg0, f32 farg1, f32 farg2);
-    void move_with_wall_slide_commit(f32 farg0, f32 farg1, f32 farg2);
+    u8 *move_with_wall_slide_commit(f32 farg0, f32 farg1, f32 farg2);
     void move_with_wall_stop(f32 farg0, f32 farg1, f32 farg2);
     void move_clamped_on_ground(f32 farg0, f32 farg1, f32 farg2);
     void move_with_wall_slide_on_ground(f32 farg0, f32 farg1, f32 farg2);
@@ -96,10 +101,11 @@ struct TObjEneDD : public TObjEnemy {
     void state_damaged(s32 arg1);
     void state_chase_target(s32 arg1);
     int get_target_info();
-    void copy_resource_desc(u8 *arg1);
     void set_field_378(s32 v);
     void init_position_vectors();
     static void release_resource();
 };
+
+typedef char TObjEneDD_size_check[sizeof(TObjEneDD) == 0x38C ? 1 : -1];
 
 #endif
