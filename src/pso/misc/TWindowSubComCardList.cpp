@@ -257,7 +257,7 @@ void TUnk_804D1160::run_task() {
     case 0:
     case 1:
         if (self->f2c != NULL) {
-            TWindow__close((u8 *)self->f2c);
+            ((TWindowBase *)self->f2c)->close();
             self->f2c = NULL;
         }
         ((TWindowSubCustomEquip *)(this->m_28))->clear_flag_and_set_entry_state();

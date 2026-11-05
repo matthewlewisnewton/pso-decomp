@@ -236,7 +236,7 @@ void fn_802449E0(u8 *object) {
     disallow_rendering__7TObjectFv((TObject *)object);
 }
 
-void TWindow__close(u8 *this) {
+void TWindowBase::close() {
     ((TWindowLockOn *)this)->request_close();
     ((TWindowLockOn *)this)->m_2c = (s32) (((TWindowLockOn *)this)->m_2c | 0x10);
 }
@@ -327,7 +327,7 @@ s32 TWindowDD::draw_default_entry(s32 arg0) {
     return ((TWindowBase *)arg0)->setup_window_draw_context((s32)fn_8026CB68());
 }
 
-void TLobby::set_field_1c(f32 farg0) {
+void TWindowBase::set_depth(f32 farg0) {
     sub_8026CC28__11TWindowBaseFv();
     *(f32 *)((s8 *)this + 0x1C) = farg0;
     resort_window_order__11TWindowBaseFv(this);

@@ -109,7 +109,7 @@ void TObjEZRopeBase::sub_800FF8CC(void *src_arg, void *pos_arg, s32 arg) {
         total += s->count;
         ((Self_800FF8CC *)this)->num++;
     }
-    ((Self_800FF8CC *)this)->out = (Vec_800FF8CC *)TQuestVmDownLoadServer::alloc();
+    ((Self_800FF8CC *)this)->out = (Vec_800FF8CC *)TQuestVmDownLoadServer::alloc(total * 0xC);
     s = ((Self_800FF8CC *)this)->src;
     p = ((Self_800FF8CC *)this)->pos;
     out = ((Self_800FF8CC *)this)->out;

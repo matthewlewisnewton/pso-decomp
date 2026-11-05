@@ -464,7 +464,7 @@ void TLobby::load_item_data() {
 
     lbl_805D606C = 0;
     lbl_805D6070 = NULL;
-    temp_r3 = (s32)TQuestVmDownLoadServer::alloc();
+    temp_r3 = (s32)TQuestVmDownLoadServer::alloc(0x24B8);
     forest_rel_work_buffer = temp_r3;
     if (temp_r3 != 0U) {
         drop_item_mode = TLobby::get_drop_item_mode();
@@ -965,7 +965,7 @@ s32 TLobby::add_player(s32 arg0, const void *src, s32 n) {
     }
     block = heap_alloc__5THeapFUl(area_event_set_heap, n);
     if (block != NULL) {
-        ((TLobby *)block)->move_data(src, n);
+        move_data(block, src, n);
         *((u8 **)((s8 *)lobby_slot_ptr_table + temp_r29)) = block;
         bswap_floor_event_set(arg0);
         return 1;

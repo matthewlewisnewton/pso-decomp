@@ -150,7 +150,7 @@ s32 TGStream::load_file(s32 arg0) {
         return 0;
     }
     temp_r31 = (temp_r3_2 + 0x7FF) / 2048;
-    temp_r3 = (s32)TQuestVmDownLoadServer::alloc();
+    temp_r3 = (s32)TQuestVmDownLoadServer::alloc(temp_r31 << 0xB);
     if (temp_r3 == 0) {
         ((s32 (*)(s32 *, s32))destroy_gstream)(sp8, -1);
         return 0;
@@ -178,7 +178,7 @@ s32 TGStream::read_whole_file(s32 arg0, u8 *arg1) {
     rem = size % 2048;
     if (rem > 0) {
         ((TGStream *)((s32 *)&s))->read_sectors_sync(1, (s32)gstream_sector_buffer);
-        ((TLobby *)(arg1 + n * 2048))->move_data( (const void *)gstream_sector_buffer, (u32)rem);
+        move_data((arg1 + n * 2048), (const void *)gstream_sector_buffer, (u32)rem);
     }
     ((s32 (*)(s32 *, s32))destroy_gstream)((s32 *)&s, -1);
     return size;
@@ -197,7 +197,7 @@ s32 TGStream::load_sct_file(s32 name, u8 *dst) {
     }
     sectors = (size + 0x7FF) / 2048;
     if (st.info != NULL && st.info->size != 0) {
-        buf = (s32)TQuestVmDownLoadServer::alloc();
+        buf = (s32)TQuestVmDownLoadServer::alloc(((st.info->size + 0x7FF) / 2048) << 11);
         if (buf == 0) {
             debug_print__6TLobbyFle("TGStream::gsSctLoadFile Malloc Failed.");
         }
@@ -336,7 +336,7 @@ s32 TGStream::read_data(u8 *dst, s32 size) {
         } else {
             n = get_gstream_buffered_bytes();
         }
-        ((TLobby *)dst)->move_data( gstream_tmp_buffer + gstream_buffer_read_offset, n);
+        move_data(dst, gstream_tmp_buffer + gstream_buffer_read_offset, n);
         dst += n;
         size -= n;
         total += n;

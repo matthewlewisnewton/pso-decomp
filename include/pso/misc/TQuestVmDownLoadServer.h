@@ -66,7 +66,7 @@ public:
     static s32 get_field230();
     static void clear_field2A0();
     static void split_time_hms(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3);
-    static void *alloc();
+    static void *alloc(u32 size);
     static void register_global_instance_dtor();
     void clear_flag4_bit4();
     static s32 is_ready();

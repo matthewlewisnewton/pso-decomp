@@ -11,14 +11,14 @@ void TLobby::append_swapped_u32(s32 *arg0) {
     if (lbl_805D60C4 != NULL) {
         sp8 = *arg0;
         bswap_32((u32 *)&sp8);
-        ((TLobby *)lbl_805D60C4 + lbl_805D60C8)->move_data( &sp8, 4);
+        move_data(lbl_805D60C4 + lbl_805D60C8, &sp8, 4);
         lbl_805D60C8 += 4;
     }
 }
 
 void TLobby::append_entity_entry() {
     if (lbl_805D60C4 != NULL) {
-        ((TLobby *)lbl_805D60C4 + lbl_805D60C8)->move_data( this, 1);
+        move_data(lbl_805D60C4 + lbl_805D60C8, this, 1);
         lbl_805D60C8 += 1;
     }
 }

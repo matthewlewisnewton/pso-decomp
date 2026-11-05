@@ -1,11 +1,11 @@
 #ifndef PSO_MISC_TWINDOWMENUICONLINE_H
 #define PSO_MISC_TWINDOWMENUICONLINE_H
 #include "types.h"
-#include "pso/misc/TUnk_804CDFE8.h"
+#include "pso/misc/TWindowAddition.h"
 
 struct Scroll_8026D790;
 
-class TWindowMenuIconLine : public TUnk_804CDFE8 {
+class TWindowMenuIconLine : public TWindowAddition {
 public:
     virtual ~TWindowMenuIconLine();
     virtual void run_task();

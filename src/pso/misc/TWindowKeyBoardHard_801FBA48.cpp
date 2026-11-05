@@ -127,7 +127,7 @@ u8 TAdSinglePlyChrSelectGC::load_and_verify_character_save(char *desc) {
     s32 res;
     u8 *data;
     s32 saved;
-    buf = (u8 *)TQuestVmDownLoadServer::alloc();
+    buf = (u8 *)TQuestVmDownLoadServer::alloc(0x214B0);
     res = TAdPlayerLoadGC::find_card_file(0, lbl_804C8954);
     if (res == 0) {
         lbl_805D49B4 = 1;
@@ -148,7 +148,7 @@ u8 TAdSinglePlyChrSelectGC::load_and_verify_character_save(char *desc) {
     }
     lbl_805D49B4 = 0;
     chr_select_serial_seeds[0] = chr_select_serial_seeds[1] = sum;
-    data = (u8 *)TQuestVmDownLoadServer::alloc();
+    data = (u8 *)TQuestVmDownLoadServer::alloc(0x194B0);
     memcpy(data, buf + 0x2048, 0x194B0);
     TAdSinglePlyChrSelectGC__sub_801FBC3C(data);
     saved = *(s32 *)data;

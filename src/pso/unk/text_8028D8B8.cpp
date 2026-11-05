@@ -28,7 +28,7 @@ typedef char RecoveredGlobal_8028D8F4_lbl_8051C070_size[sizeof(RecoveredGlobal_8
 
 void alloc_quest_download_buffer(void) {
     if (chr_select_load_buffer_base == 0) {
-        if ((chr_select_load_buffer_base = TQuestVmDownLoadServer::alloc()) == 0) return;
+        if ((chr_select_load_buffer_base = TQuestVmDownLoadServer::alloc(0x28000)) == 0) return;
     }
 }
 

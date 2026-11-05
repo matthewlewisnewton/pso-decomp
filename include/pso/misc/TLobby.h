@@ -27,7 +27,6 @@ struct Self_803FD74C;
 struct Self_80402CE0;
 
 struct TLobby : public TObject {
-    void move_data(const void *src, u32 n);
     // Whether a challenge-mode task is running.
     static s32 is_flag_set();
     virtual ~TLobby();
@@ -1151,7 +1150,7 @@ struct TLobby : public TObject {
 
 typedef char TLobby_size[sizeof(TLobby) == 0x1C ? 1 : -1];
 
-void move_data(const void *src, u32 n);
+void move_data(void *dst, const void *src, u32 n);
 // The object set entry new ground items take their placement from, and
 // whether placing one shows the drop effect.
 extern void *item_object_set_data;

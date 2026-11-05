@@ -55,7 +55,7 @@ u8 *load_gvm_texture_file(s32 arg0) {
         return NULL;
     }
     if (((size + 0x7FF) / 2048) * 2048 > 0x40000) {
-        big = (u8 *)alloc__22TQuestVmDownLoadServerFUl();
+        big = alloc__22TQuestVmDownLoadServerFUl();
         buf = big;
     } else {
         buf = TLobby::tmp_buf_use_req((const char *)lbl_8044983C);
@@ -115,7 +115,7 @@ s32 read_file_header__9TLanguageFiPv(u8 *arg0, u8 *arg1) {
 }
 
 void TLanguage::read_into_buffer(u8 *dst, s32 n) {
-    ((TLobby *)dst)->move_data( TLanguage__read_cursor, n);
+    move_data(dst, TLanguage__read_cursor, n);
     TLanguage__read_cursor += n;
 }
 

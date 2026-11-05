@@ -6226,7 +6226,7 @@ pso/misc/TPhotonConcentrate.cpp:
 
 pso/player/PhotonBlastResults.cpp:
 	.text       start:0x801A826C end:0x801A9BAC
-	.rodata     start:0x80446CC8 end:0x80446CD0
+	.rodata     start:0x80446CC8 end:0x80446CD8
 	.bss        start:0x8050E880 end:0x8050E920
 	.sdata2     start:0x805DC130 end:0x805DC138
 
@@ -10076,8 +10076,9 @@ pso/boss/TBoss6Type1_802B20C0.cpp:
 pso/boss/TBoss6Type1.cpp:
 	.text       start:0x802B4898 end:0x802B97E0
 	.rodata     start:0x80471040 end:0x80471050
-	.data       start:0x804DF8B8 end:0x804DF950
-	.sdata2     start:0x805DE2D0 end:0x805DE3C4
+	.data       start:0x804DF4E0 end:0x804DF950
+	.sbss       start:0x805D6728 end:0x805D6740
+	.sdata2     start:0x805DE2C8 end:0x805DE3F0
 
 pso/boss/TBoss6Type2.cpp:
 	.text       start:0x802B97E0 end:0x802BE588
@@ -10536,7 +10537,7 @@ pso/boss/TBoss7TentacleNeedle.cpp:
 	.rodata     start:0x804740C8 end:0x804740E0
 	.data       start:0x804E4830 end:0x804E4860
 	.bss        start:0x80541528 end:0x80541928
-	.sbss       start:0x805D6918 end:0x805D6950
+	.sbss       start:0x805D6948 end:0x805D694C
 	.sdata2     start:0x805DEC00 end:0x805DEC64
 
 pso/unk/text_802F0E24.cpp:

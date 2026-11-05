@@ -6,6 +6,7 @@
 #include "pso/enemy/TObjEnemy.h"
 
 struct TBoss6Tube;
+struct TObjPlayer;
 
 extern "C" {
 s32 TBoss6PlotFalz__sub_802ABADC(void);
@@ -18,7 +19,7 @@ struct TBoss6PlotFalz : public TObjEnemy {
     void call_state_action();
     void sub_802AAC98();
     void vfunc_63();
-    u8 unk_374[0x4];
+    s32 m_374;
     s32 m_378;
     u8 m_37c;
     u8 unk_37D[0x3];
@@ -45,6 +46,9 @@ struct TBoss6PlotFalz : public TObjEnemy {
     static s32 damage_player_hp(s32 arg0, u32 arg1);
     static s32 sort_active_players();
     static u16 pick_random_active_player();
+    static s32 is_active(TObjPlayer *player);
+    static s32 is_state_1f(TObjPlayer *player);
+    // The mag-mine block TBoss4DarkFalz__sub_8004B4F0 copies into spawn set data.
     void *get_mag_mine_ptr();
     int is_idle();
     void set_state_2();
@@ -69,8 +73,6 @@ struct TBoss6PlotFalz : public TObjEnemy {
     static void update_camera_target();
     static void apply_fade_material_color(f32 farg0, f32 farg1, f32 farg2, f32 farg3);
     static int get_phase();
-    void scroll_strips_uv(s32 dx, s32 dy);
-    void free_buffer_pairs();
     static void freeze_all_players();
     void render();
     void run_task();

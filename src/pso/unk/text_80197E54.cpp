@@ -50,7 +50,7 @@ void load_memcard_file(void) {
     if (r != 0) {
         return;
     }
-    buf = TQuestVmDownLoadServer::alloc();
+    buf = TQuestVmDownLoadServer::alloc(stat.blocks << 13);
     if (buf == 0) {
         return;
     }

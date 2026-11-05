@@ -332,6 +332,7 @@ force_active:
   - TBoss6PlotFalz__sub_8036964C
   - TBoss6RockChase__ct
   - TBoss6RockChase__data_805E03B8
+  - TBoss6Rock__ct
   - TBoss6Rock__data_805D6EF0
   - TBoss6Rock__data_805D6EF4
   - TBoss6Rock__data_805D6EF8
@@ -339,8 +340,6 @@ force_active:
   - TBoss6Rock__rock_point_table
   - TBoss6Rock__sub_80354188
   - TBoss6Rock__sub_803542E8
-  - TBoss6SwordShot__ct
-  - TBoss6Rock__ct
   - TBoss6SwordWave__sub_80356D08
   - TBoss6Thanks__sub_8035CB40
   - TBoss6Thanks__sub_8035CCAC
@@ -4169,6 +4168,7 @@ force_active:
   - calc_params__11TTecGiBartaFv
   - calc_params__12TBoss8DragonFPvl
   - calc_part_position__14TObjEnePanBARAFP3VecPl
+  - calc_photon_blast_power__13TUnk_804C349CFlf
   - calc_player_rankings__6TLobbyFPv
   - calc_preview_last_index__12TChCrLoadReqFll
   - calc_preview_offset__23TAdSinglePlyChrSelectGCFPvlll
@@ -4554,6 +4554,7 @@ force_active:
   - clear_network_info_cipher_pool__Fv
   - clear_part_flag_bit0__11TBoss6Type1Fv
   - clear_part_flags__11TBoss6Type2Fv
+  - clear_photon_blast_donations__Fv
   - clear_photon_blast_slots__10TObjPlayerFv
   - clear_pipe_interaction_latch__FPv
   - clear_player_grav_flags__14TBoss6GravBallFv
@@ -4979,6 +4980,7 @@ force_active:
   - deleting_dtor__18TObjEneBalClawClawFPvs
   - deliver_chain_hits__11TTecGiZondeFv
   - deliver_delayed_weapon_hit
+  - deliver_photon_blast_results_animated
   - deliver_target_hit__10TTecSlicerFv
   - dellbiter_demo_camera_vec
   - demo_frame_callback__16TObjEneRe7BeruraFP10NJS_OBJECT
@@ -6805,6 +6807,7 @@ force_active:
   - is_p02_idle__12TBoss3VoloptFv
   - is_phase_12__14TObjEnePanBARAFv
   - is_phase_e__9TObjEneDDFPv
+  - is_photon_blast_presentation_admitted__FUlPv
   - is_player_in_range__10TObjPlayerFllf
   - is_player_in_range__10TObjRoomIdFPvUsf
   - is_player_in_range__13TBoss6MagMineFPv
@@ -13286,8 +13289,8 @@ force_active:
   - random_child_position__13TObjEneMe1GeeFP13TObjEneMe1GeeP3Vec
   - random_in_range__12TBoss8DragonFff
   - random_in_table_range__12TBoss8DragonFiii
-  - randomize_motion__10TBoss6RockFv
   - randomize_attack__11TBoss6Type1FP15Boss6ActionArgs
+  - randomize_motion__10TBoss6RockFv
   - rappy_variant_na_name
   - re4_bit_init_params
   - re4_bit_model_node_desc

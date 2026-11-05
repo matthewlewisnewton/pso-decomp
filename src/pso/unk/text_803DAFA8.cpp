@@ -49,7 +49,7 @@ s32 fn_803DAFA8(struct Hdr_803DAFA8 *arg0, struct Out_803DAFA8 *arg1) {
     case 0x4C505647:
         sp8 = arg0->size;
         fn_803DAF30((u32 *)&sp8);
-        ((TLobby *)(arg1->buf))->move_data( arg0->data, sp8 - 8);
+        move_data((arg1->buf), arg0->data, sp8 - 8);
         arg1->f6 = arg0->fa;
         arg1->f8 = arg0->fc;
         arg1->fa = arg0->fe;

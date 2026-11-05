@@ -209,13 +209,13 @@ void TObjChallengeRetry::sub_80072BB0() {
 
 void TObjChallengeRetry::close_window_2c() {
     if (this->menu != NULL) {
-        TWindow__close((u8 *)this->menu);
+        this->menu->close();
         this->menu = NULL;
     }
 }
 void TObjChallengeRetry::open_loss_menu() {
     if (this->menu != NULL) {
-        TWindow__close((u8 *)this->menu);
+        this->menu->close();
         this->menu = NULL;
     }
     this->menu = check_room_seq_4__16TAdChrSelASlotGCFl(get_window_layout_position(0x3A), 3);

@@ -5,8 +5,7 @@ extern "C" {
 s32 memmove(void *dst, const void *src, u32 n);
 }
 
-void TLobby::move_data(const void *src, u32 n) {
-    void *dst = this;
+void move_data(void *dst, const void *src, u32 n) {
     memmove(dst, src, n);
 }
 

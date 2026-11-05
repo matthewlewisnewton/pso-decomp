@@ -1,5 +1,5 @@
 #include "types.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
@@ -20,8 +20,8 @@ void sub_8026CC28__11TWindowBaseFv(void *);
 
 int TWindowDD::update_com_card() { return TWindowSubComCard__sub_8024634C(this); }
 int TWindowDD::initialize_subwindow() { return update_open_close__17TWindowSubComCardFv(this); }
-void TUnk_804CE018::render() {  }
-void TUnk_804CE018::run_task() {  }
+void TWindowBase::render() {  }
+void TWindowBase::run_task() {  }
 
 void *TWindowDD::destroy_window_base(s16 arg1) {
     if (this != NULL) {

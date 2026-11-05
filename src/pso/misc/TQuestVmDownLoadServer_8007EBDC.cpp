@@ -14,8 +14,12 @@ void __register_global_object(void *obj, void *dtor, void *entry);
 int fn_803DE864(void*);
 
 int TQuestVmDownLoadServer__sub_8007EBDC(void* p) { return fn_803DE864(p); }
-extern int xmalloc__FUl(void *);
-void *TQuestVmDownLoadServer::alloc() { return (void *)xmalloc__FUl((void *)0); }
+void *TQuestVmDownLoadServer::alloc(u32 size) { return xmalloc(size); }
+
+
+void TQuestVmDownLoadServer::register_global_instance_dtor() {
+    __register_global_object(__ct__13TUnk_8048DF58Fv(lbl_805005A4), (void *)__dt__13TUnk_8048DF58Fv, lbl_80500598);
+}
 
 }
 TUnk_8048DF58::~TUnk_8048DF58() {

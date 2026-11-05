@@ -1,6 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
-#include "pso/misc/TLobby.h"
 
 #include <stddef.h>
 #include "pso/object/TObjFish.h"
@@ -47,7 +46,7 @@ struct Rec_803DA8E4 { u32 a; u32 b; u32 c; Obj_803DA8E4 *obj; s32 cnt; s32 v14; 
 struct B_803DAE1C { u32 a; u32 b; Obj_803DAD84 *c; };
 
 extern s32 record_array_ptr;
-void move_data(const void *, u32);
+void move_data(void *, const void *, u32);
 
 extern "C" {
 void TObjPlayer__sub_803DAC1C(s32 arg0);
@@ -112,7 +111,7 @@ void TObjPlayer__sub_803DA7E0(void) {
 #pragma pop
 
 void copy_and_flush(void *buf, s32 src, void *size) {
-    ((TLobby *)buf)->move_data( (const void *)src, (u32)size);
+    move_data(buf, (const void *)src, (u32)size);
     DCFlushRange(buf, size);
 }
 

@@ -293,7 +293,7 @@ void TBoss6Rock__sub_803542E8(TBoss6Rock *rock, s32 landed) {
     }
     for (i = 0; i < count; i++) {
         player = TObjPlayer::get_player_data(i);
-        if (player->is_active() == 0) {
+        if (TBoss6PlotFalz::is_active(player) == 0) {
             continue;
         }
         VecCopy(&d, &player->position);
@@ -379,7 +379,7 @@ void TBoss6Rock::sub_80353F5C() {
         set.scale.z = kind->width;
         set.scale.x = kind->width;
         set.scale.y = kind->height;
-        m_b0 = (TObject *)TObjMapCsn::create(&set);
+        m_b0 = TObjMapCsn::create(&set);
     }
 }
 

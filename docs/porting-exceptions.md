@@ -15,22 +15,19 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `28e77474d`, 2026-11-05)
+## Summary (regenerated on this branch after resolving the merge of main `73c22f96f`, 2026-11-05)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `28e77474d` (2026-11-05). Assembly is counted as functions;
+after resolving the merge of main `73c22f96f` (2026-11-05). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 7 functions (13 source lines) | 4 |
 | MWCC intrinsics | 83 | 54 |
-| Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,840 | 882 |
-| Per-unit compiler overrides in `configure.py` | 148 | 148 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,796 | 876 |
-| Per-unit compiler overrides in `configure.py` | 163 | 163 |
+| CodeWarrior pragmas (excluding push/pop) | 5,785 | 874 |
+| Per-unit compiler overrides in `configure.py` | 165 | 165 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -73,14 +70,10 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,840 pragmas in 882 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1150, `inline_depth` 1042, `fp_contract` 918, `auto_inline` 841,
-`opt_common_subs` 623, `scheduling` 262, `opt_propagation` 239,
+5,785 pragmas in 874 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1148, `inline_depth` 1040, `fp_contract` 889, `auto_inline` 839,
+`opt_common_subs` 610, `scheduling` 260, `opt_propagation` 237,
 `readonly_strings` 203, `peephole` 103, `optimization_level` 88, `bool` 56,
-5,836 pragmas in 877 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 911, `auto_inline` 844,
-`opt_common_subs` 618, `scheduling` 260, `opt_propagation` 241,
-`readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
@@ -377,7 +370,6 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
-| `TBoss6Rock::run_task` | `pso/boss/TBoss6Rock.cpp` | `src/pso/boss/TBoss6Rock.cpp` | [#181](https://github.com/zeroz41/pso-decomp/pull/181) | `other: u64 pointer widen` | [#313](https://github.com/matthewlewisnewton/pso-decomp/pull/313) | upstream catch-up, rewrite later |
 | `TObjBoss2Tunnel__sub_8007D1D0` (`0x8007D1D0`): snapshot cursor `flags = (u32 *)p`, `levels = (u32 *)(p + 0x30)`, `name = (char *)(p + 0x60)` | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | raw offset cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
 | `TObjBoss2Tunnel__sub_8007D1D0`: `((TLobby *)p)->move_data(...)` on the snapshot buffer | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | other: receiver cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
 | `is_on_current_screen__11TCameraCtrlFv` (declared `extern "C"` with a wide `(ControllerInputContext *, s32)` signature; called by `TObjBoss2Tunnel__sub_8007D1D0`) | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | extern "C" mangled name | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
@@ -395,6 +387,8 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `TLobby__sub_80402CE0`: `*(u8 *)((u8 *)g + 0x15A)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
 | `TLobby__sub_80402CE0`: `*(u8 *)((u8 *)g + 0x15B)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
 | `TLobby__sub_80402CE0`: `*(u16 *)((u8 *)g + 0x15C)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+
+| `TBoss6Rock::run_task` | `pso/boss/TBoss6Rock.cpp` | `src/pso/boss/TBoss6Rock.cpp` | [#181](https://github.com/zeroz41/pso-decomp/pull/181) | `other: u64 pointer widen` | [#313](https://github.com/matthewlewisnewton/pso-decomp/pull/313) | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 

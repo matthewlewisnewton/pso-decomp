@@ -48,7 +48,7 @@ void TAdSinglePlyChrSelectGC::init_image_buffer(u8 *arg1, s32 arg2) {
     temp_r3 = (unsigned char *) (*(void * *)&this->unk_40);
     *(s32 *)&this->m_prev = (s32) *(u16 *)((s8 *)temp_r3 + 8);
     *(s32 *)&this->m_prev = (s32) (*(s32 *)&this->m_prev | (*(u16 *)((s8 *)temp_r3 + 0xA) << 0x10));
-    this->m_44 = (s32)TQuestVmDownLoadServer::alloc();
+    this->m_44 = (s32)TQuestVmDownLoadServer::alloc((*(s32 *)&this->m_name * (*(s32 *)&this->m_flags * 2)) + 0x20);
     *(void **)((s8 *)(*(void * *)&this->m_3c) + 0) = ((u8 *)&this->m_next);
     *(s32 *)((s8 *)(*(void * *)&this->m_3c) + 4) = 1;
     ((GinjaTextureInput *)(arg0 + 0x18))->configure((void *)(this->m_44 + 0x20), 5, (int) (*(s32 *)&this->m_flags), (int) (*(s32 *)&this->m_name));

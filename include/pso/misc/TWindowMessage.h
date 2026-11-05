@@ -2,20 +2,18 @@
 #define PSO_MISC_TWINDOWMESSAGE_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804CDFE8.h"
+#include "pso/misc/TWindowAddition.h"
 
 struct TWindowMessageLine {
     s32 flags;
     s32 timer;
 };
 
-struct TWindowMessage : public TUnk_804CDFE8 {
+struct TWindowMessage : public TWindowAddition {
     virtual ~TWindowMessage();
     virtual void run_task();
     virtual void render();
     void update_scroll();
-    void close();
-    void set_depth(f32);
     void retire_scrolled_lines();
     void advance_reveal_cursor();
     void scroll_up_line(u8 *);

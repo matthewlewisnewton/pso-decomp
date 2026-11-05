@@ -605,7 +605,7 @@ struct Quad_8025941C { f32 v[8]; };
 extern "C" {
 u32 calc_text_width(char *s);
 void set_text_draw_params(TWindowDrawContext *arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1);
-void draw_item_list_icon(TWindowDrawContext *, ItemListPosition *, s32, s32, f32);
+void draw_item_list_icon(ItemListWindowView *, ItemListPosition *, s32, s32, f32);
 }
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);
 extern const f32 lbl_805DCF14;
@@ -613,7 +613,7 @@ extern const f32 lbl_805DCF20;
 extern const f32 lbl_805DCF24;
 extern const f32 lbl_805DCF28;
 extern const f32 lbl_805DCF2C;
-void draw_item_list_row(ItemListRow *row, TWindowDrawContext *win);
+void draw_item_list_row(ItemListRow *row, ItemListWindowView *win);
 extern const f32 lbl_805DCF10;
 extern const f32 lbl_805DCF18;
 extern "C" {
@@ -704,7 +704,7 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 
-void draw_item_list_icon(TWindowDrawContext *win, ItemListPosition *pos, s32 icon, s32 style, f32 depth) {
+void draw_item_list_icon(ItemListWindowView *win, ItemListPosition *pos, s32 icon, s32 style, f32 depth) {
     Quad_8025941C q;
     f32 *entry;
     f32 scale;
@@ -738,8 +738,9 @@ void draw_item_list_icon(TWindowDrawContext *win, ItemListPosition *pos, s32 ico
 
 typedef struct ItemListRow ItemListRow;
 typedef struct ItemListPosition ItemListPosition;
+typedef struct ItemListWindowView ItemListWindowView;
 #pragma fp_contract on
-void draw_item_list_row(ItemListRow *row, TWindowDrawContext *win) {
+void draw_item_list_row(ItemListRow *row, ItemListWindowView *win) {
   ItemListPosition pos;
   ItemListRow *new_var;
   f32 y;

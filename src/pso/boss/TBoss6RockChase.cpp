@@ -144,7 +144,7 @@ s32 TBoss6RockChase::damage_players_in_range() {
     }
     for (i = 0; i < n; i++) {
         pl = (Player_8036D1B4 *)get_player_data__10TObjPlayerFi(i);
-        if (((TBoss6PlotFalz *)pl)->is_active() != 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0) {
             VecCopy((Vec *)&d, (const Vec *)&pl->pos);
             subtract_vector(&d, &self->pos);
             d.y = TBoss6RockChase__data_805E03B8;

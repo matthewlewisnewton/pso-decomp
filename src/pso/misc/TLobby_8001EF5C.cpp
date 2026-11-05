@@ -275,7 +275,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
             TLobby::reset_read_state();
             switch ((s8) bml_load_state) {
             case 1: {
-                s32 p = (s32)TQuestVmDownLoadServer::alloc();
+                s32 p = (s32)TQuestVmDownLoadServer::alloc(bml_header_record_ptr->rawSize);
                 if (p != 0) {
                     prs_decompress_buffer((s32)lobby_bml_read_buffer, p);
                     bind_bml_model((Lobby_8001FBEC *) self, bml_header_record_ptr->rawSize, self->nmodel++, p);
@@ -327,7 +327,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
             TLobby::reset_read_state();
             switch ((s8) bml_load_state) {
             case 1: {
-                s32 p = (s32)TQuestVmDownLoadServer::alloc();
+                s32 p = (s32)TQuestVmDownLoadServer::alloc(bml_header_record_ptr->rawSize);
                 if (p != 0) {
                     prs_decompress_buffer((s32)lobby_bml_read_buffer, p);
                     bind_bml_motion((Lobby_8001FB6C *) self, self->nmodel++, (void *) p);
@@ -422,7 +422,7 @@ void TLobby::free_chr_select_data() {
 }
 void TLobby::init_download_buffers() {
     (*(s32 *)&bml_load_buffer) = xmalloc__FUl(0x4000);
-    lobby_download_buffer = (u8 *)TQuestVmDownLoadServer::alloc();
+    lobby_download_buffer = (u8 *)TQuestVmDownLoadServer::alloc(0x40000);
     reset_gstream_globals();
     tmp_buf_in_use_flag = 1;
     TLobby__tmp_buf_name[0] = 0;
@@ -705,7 +705,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
             }
             switch (bml_load_state) {
             case 1:
-                buf = (u8 *)TQuestVmDownLoadServer::alloc();
+                buf = (u8 *)TQuestVmDownLoadServer::alloc(size + 0x800);
                 if (buf != NULL) {
                     disc_read_filename = (s32)descriptor->archive_filename;
                     ((TGStream *)(&st))->read_data(buf, size);
@@ -730,7 +730,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
                 if ((u32)e->m_c != 0U) {
                     s32 tsize = rec->texSize;
                     if (tsize != 0) {
-                        u8 *tbuf = (u8 *)TQuestVmDownLoadServer::alloc();
+                        u8 *tbuf = (u8 *)TQuestVmDownLoadServer::alloc(tsize + 0x800);
                         ((TGStream *)(&st))->read_data(tbuf, tsize);
                         align_gstream_read_offset(&st, blk);
                         prs_decompress_buffer((s32)tbuf, (s32)resource_decompress_buffer);
@@ -757,7 +757,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
             }
             switch (bml_load_state) {
             case 1: {
-                u8 *mb = (u8 *)TQuestVmDownLoadServer::alloc();
+                u8 *mb = (u8 *)TQuestVmDownLoadServer::alloc(sz + 0x800);
                 ((TGStream *)(&st))->read_data(mb, sz);
                 align_gstream_read_offset(&st, blk);
                 prs_decompress_buffer((s32)mb, (s32)resource_decompress_buffer);
