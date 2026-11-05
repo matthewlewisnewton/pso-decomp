@@ -4769,6 +4769,62 @@ s32 TQuestVmDownLoadServer__sub_803F0268(const char *name, s16 len, Out_803F0268
     return 1;
 }
 
+s32 TQuestVmDownLoadServer__sub_803F03B4(u8 *data, Ent_803F03B4 *ents, s32 n, s32 *max) {
+    u32 sum = data[0] + (data[1] << 8);
+    u16 length = (u16)sum;
+    Ent_803F03B4 *base = ents;
+    u8 *end = data + length;
+    u8 *cursor = data + data[2] + 3;
+    ents += n;
+    while (cursor < end) {
+        u8 keyb;
+        s32 found;
+        Ent_803F03B4 *old;
+        u8 *p;
+        ents->a = cursor[0];
+        keyb = cursor[1];
+        cursor += 2;
+        ents->key = keyb;
+        if (keyb > *max) {
+            *max = ents->key;
+        }
+        if (*cursor <= 11) {
+            ents->b = *cursor;
+            cursor += 1;
+        } else {
+            ents->b = 0;
+        }
+        ents->c = 0;
+        found = 0;
+        old = base;
+        while (old < ents) {
+            if (old->a == ents->a && old->b == ents->b) {
+                if (old->key < ents->key) {
+                    old->key = ents->key;
+                }
+                found = 1;
+                break;
+            }
+            old += 1;
+        }
+        if (found == 0) {
+            n += 1;
+            ents += 1;
+            if (n >= 32) {
+                break;
+            }
+        }
+        p = cursor;
+        while (p < end) {
+            if (*p <= 56) {
+                break;
+            }
+            p += 2;
+        }
+        cursor = p;
+    }
+    return n;
+}
 
 s32 TQuestVmDownLoadServer__sub_803F0500(u8 *name, s16 len, Out_803E8C2C *out) {
     s16 blen;
