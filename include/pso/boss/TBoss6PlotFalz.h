@@ -6,6 +6,7 @@
 #include "pso/enemy/TObjEnemy.h"
 
 struct TBoss6Tube;
+struct TObjPlayer;
 
 extern "C" {
 s32 TBoss6PlotFalz__sub_802ABADC(void);
@@ -45,7 +46,8 @@ struct TBoss6PlotFalz : public TObjEnemy {
     static s32 damage_player_hp(s32 arg0, u32 arg1);
     static s32 sort_active_players();
     static u16 pick_random_active_player();
-    s32 is_active();
+    static s32 is_active(TObjPlayer *player);
+    static s32 is_state_1f(TObjPlayer *player);
     // The mag-mine block TBoss4DarkFalz__sub_8004B4F0 copies into spawn set data.
     void *get_mag_mine_ptr();
     int is_idle();

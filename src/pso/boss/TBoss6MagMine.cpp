@@ -232,7 +232,7 @@ void explode__13TBoss6MagMineFPv(Mine_80368C14 *o) {
     s32 i;
     for (i = 0; i < n; i++) {
         u8 *pl = (u8 *)get_player_data__10TObjPlayerFi(i);
-        if (((TBoss6PlotFalz *)pl)->is_active() != 0 && is_locally_controlled__10TObjPlayerFPv(pl) != 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0 && is_locally_controlled__10TObjPlayerFPv(pl) != 0) {
             Vec_80368C14 v = o->pos;
             subtract_vector(&v, pl + 0x38);
             v.y = 0.0f;
@@ -253,7 +253,7 @@ s32 is_player_in_range__13TBoss6MagMineFPv(void *arg0_) {
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         p = (void *)get_player_data__10TObjPlayerFi(i);
-        if (((TBoss6PlotFalz *)p)->is_active() != 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)p) != 0) {
             ((void (*)(Vec_80368C14 *, Vec_80368C14 *))VecCopy__FP3VecPC3Vec)(&d, &((P_80368CE4 *)p)->pos);
             subtract_vector(&d, &arg0->home);
             d.y = 0.0f;

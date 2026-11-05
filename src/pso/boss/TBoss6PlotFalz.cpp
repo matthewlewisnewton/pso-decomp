@@ -136,8 +136,7 @@ struct Color_802ABF44 { f32 a, b, c, d; };
 
 extern "C" {
 void *get_player_data__10TObjPlayerFi(s32 i);
-s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0);
-s16 get_entity_id(void *);
+u16 get_entity_id(void *);
 u8 *get_player_by_client_id(s32);
 s32 get_field_3e0__12TBoss3VoloptFv(void *p);
 extern TBoss6Type1 *TBoss6PlotFalz__type1_instance;
@@ -156,7 +155,6 @@ s32 rand(void);
 }
 
 #define get_player_data__10TObjPlayerFi ((Player_802AAE78 *(*)(s32))get_player_data__10TObjPlayerFi)
-#define is_state_1f__14TBoss6PlotFalzFUi ((s32 (*)())is_state_1f__14TBoss6PlotFalzFUi)
 
 struct Player_802AAE78 { u8 pad[0x32C]; s16 f32c; };
 
@@ -268,7 +266,7 @@ s32 TBoss6PlotFalz::damage_player_hp(s32 arg0, u32 arg1) {
     u16 id;
     id = arg0;
     v = arg1;
-    if (id == 0xFFFF || (p = get_player_by_client_id(id)) == NULL || ((TBoss6PlotFalz *)p)->is_active() == 0) {
+    if (id == 0xFFFF || (p = get_player_by_client_id(id)) == NULL || is_active((TObjPlayer *)p) == 0) {
         return 0;
     }
     hp = get_actor_hp(p);
@@ -306,7 +304,7 @@ s32 TBoss6PlotFalz::sort_active_players() {
     n = 0;
     for (i = 0; i < registered_player_count; i++) {
         p = get_player_data__10TObjPlayerFi(i);
-        if (p != NULL && ((TBoss6PlotFalz *)p)->is_active() != 0 && p->f32c != 0) {
+        if (p != NULL && is_active((TObjPlayer *)p) != 0 && p->f32c != 0) {
             boss6_plot_falz_player_order_table[n] = get_entity_id(p);
             vals[n] = p->f32c;
             n++;
@@ -337,7 +335,7 @@ u16 TBoss6PlotFalz::pick_random_active_player() {
     n = 0;
     for (i = 0; i < registered_player_count; i++) {
         p = get_player_data__10TObjPlayerFi(i);
-        if (p != NULL && ((TBoss6PlotFalz *)p)->is_active() != 0) {
+        if (p != NULL && is_active((TObjPlayer *)p) != 0) {
             ids[n] = get_entity_id(p);
             n++;
         }
@@ -348,8 +346,8 @@ u16 TBoss6PlotFalz::pick_random_active_player() {
     return ids[(s32)(((f32)n - 0.1f) * (3.0517578125e-05f * (f32)rand()))];
 }
 
-s32 TBoss6PlotFalz::is_active() {
-    if ((is_state_1f__14TBoss6PlotFalzFUi() != 0) && !(this->actorFlags & 0x02000800)) {
+s32 TBoss6PlotFalz::is_active(TObjPlayer *player) {
+    if ((is_state_1f(player) != 0) && !(player->actorFlags & 0x02000800)) {
         return 1;
     }
     return 0;
@@ -357,7 +355,6 @@ s32 TBoss6PlotFalz::is_active() {
 
 }
 #undef get_player_data__10TObjPlayerFi
-#undef is_state_1f__14TBoss6PlotFalzFUi
 
 #define get_field_3e0__12TBoss3VoloptFv ((s32 (*)())get_field_3e0__12TBoss3VoloptFv)
 
@@ -374,8 +371,8 @@ struct Stack_802AB14C {
 };
 
 extern "C" {
-s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0) {
-    if ((arg0 == 0U) || (get_field_3e0__12TBoss3VoloptFv() != 0x1F)) {
+s32 TBoss6PlotFalz::is_state_1f(TObjPlayer *player) {
+    if ((player == NULL) || (get_field_3e0__12TBoss3VoloptFv() != 0x1F)) {
         return 0;
     }
     return 1;
@@ -423,7 +420,6 @@ void TBoss6PlotFalz::set_state(s32 arg1) {
 #undef get_field_3e0__12TBoss3VoloptFv
 
 #define get_player_data__10TObjPlayerFi ((Player_802AB3E0 *(*)(int))get_player_data__10TObjPlayerFi)
-#define is_state_1f__14TBoss6PlotFalzFUi ((int (*)(Player_802AB3E0 *))is_state_1f__14TBoss6PlotFalzFUi)
 #define get_player_by_client_id ((u8 *(*)(u16))get_player_by_client_id)
 
 struct Stack_802AB684 {
@@ -477,7 +473,7 @@ void TBoss6PlotFalz::spawn_player_hit_effects() {
         k = 12.5f;
         for (i = 0; i < registered_player_count; i++) {
             p = get_player_data__10TObjPlayerFi(i);
-            if (is_state_1f__14TBoss6PlotFalzFUi(p) != 0) {
+            if (is_state_1f((TObjPlayer *)p) != 0) {
                 VecCopy((Vec *)(&v), (const Vec *)(&p->pos));
                 v.y += k;
                 spawn_particle_effect((const Vec *)(&v), 0x29);
@@ -715,7 +711,6 @@ s32 TBoss6PlotFalz__sub_802AB6CC(void *arg0, f32 r) {
 
 #undef VLEN
 #undef get_player_data__10TObjPlayerFi
-#undef is_state_1f__14TBoss6PlotFalzFUi
 #undef get_player_by_client_id
 f32 cos_table_lookup(s32);
 
@@ -768,7 +763,6 @@ void queue_instance_destruction__14TBoss6PlotFalzFv(void) {
 }
 
 #define get_player_data__10TObjPlayerFi ((s32 (*)(s32))get_player_data__10TObjPlayerFi)
-#define get_entity_id ((s16 (*)(s32))get_entity_id)
 
 struct Stack_802ABC64 {
     s16 spC;
@@ -865,15 +859,15 @@ void TObjFish::reset_fish_globals() { chunk_polygon_flags_and_mask = saved_chunk
 void TBoss6PlotFalz::apply_radial_effect_to_players(void *pos, s16 amount, s16 kind, f32 range) {
     s32 n;
     s32 i;
-    s32 p;
+    TObjPlayer *p;
     f32 d;
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
-        p = get_player_data__10TObjPlayerFi(i);
-        if (is_state_1f__14TBoss6PlotFalzFUi(p) != 0 && is_locally_controlled__10TObjPlayerFPv(p) != 0) {
-            d = xyz_distance((void *)(p + 0x38), pos);
+        p = TObjPlayer::get_player_data(i);
+        if (is_state_1f(p) != 0 && TObjPlayer::is_locally_controlled(p) != 0) {
+            d = xyz_distance(&p->position, pos);
             if (!(d >= range)) {
-                start_pad_rumble_client((s16)((f32)amount * (1.0f - d / range)), kind, (s16)((s32 (*)(s32))get_entity_id)(p));
+                start_pad_rumble_client((s16)((f32)amount * (1.0f - d / range)), kind, get_entity_id(p));
             }
         }
     }
@@ -898,7 +892,6 @@ void TBoss6PlotFalz::set_fade_material_color(f32 f) {
 
 }
 #undef get_player_data__10TObjPlayerFi
-#undef get_entity_id
 
 #define set_chunk_material_override_pair ((s32 (*)(int, int, int, void *, void *, int))set_chunk_material_override_pair)
 #define set_constant_material ((s32 (*)(void *, f32, f32, f32, f32))set_constant_material)

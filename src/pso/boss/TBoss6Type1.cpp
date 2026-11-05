@@ -100,7 +100,6 @@ s32 TBoss6Type1__sub_802B600C(TBoss6Type1 *arg0);
 s32 rand();
 extern s32 boss6_type1_random_action_table[];
 void TBoss6Type1__sub_802B8BB4(TBoss6Type1 *arg0);
-s32 is_active__14TBoss6PlotFalzFv();
 void TBoss6PlotFalz__sub_802AC724(void *, void *);
 void vec3_cross(void *, void *, void *);
 void normalize_vector(void *);
@@ -1055,7 +1054,7 @@ void TBoss6Type1::update_beam_attack() {
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         TObjPlayer *p = TObjPlayer::get_player_data(i);
-        if (is_active__14TBoss6PlotFalzFv() != 0) {
+        if (TBoss6PlotFalz::is_active(p) != 0) {
             Vec *a = &this->node_positions_578[8].v;
             VecCopy(&v, &p->position);
             v.y = 0.0f;
@@ -1200,7 +1199,7 @@ extern "C" void TBoss6Type1__sub_802B715C(TBoss6Type1 *self) {
             s32 inside = 1;
             s32 k;
             TObjPlayer *p = TObjPlayer::get_player_data(i);
-            if (is_active__14TBoss6PlotFalzFv() == 0) {
+            if (TBoss6PlotFalz::is_active(p) == 0) {
                 continue;
             }
             chain[0] = chain[3] = &self->position;
@@ -1292,7 +1291,7 @@ void TBoss6Type1__sub_802B6C30(TBoss6Type1 *self) {
     B.z = self->m_4dc * (b->z - mid.z) + mid.z;
     for (i = 0; i < n; i++) {
         pl = TObjPlayer::get_player_data(i);
-        if (is_active__14TBoss6PlotFalzFv() == 0) {
+        if (TBoss6PlotFalz::is_active(pl) == 0) {
             continue;
         }
         inside = 1;
@@ -1386,7 +1385,7 @@ void TBoss6Type1::damage_players_in_range() {
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         p = TObjPlayer::get_player_data(i);
-        if (is_active__14TBoss6PlotFalzFv() != 0) {
+        if (TBoss6PlotFalz::is_active(p) != 0) {
             Vec v = p->position;
             v.y = 0.0f;
             if (!(vector_length(&v) > 10.0f)) {
@@ -1447,7 +1446,7 @@ void TBoss6Type1::spawn_grav_ball() {
     f32 r;
     flag = 1;
     pl = get_player_by_client_id(this->m_41c & 3);
-    if (is_active__14TBoss6PlotFalzFv() != 0) {
+    if (TBoss6PlotFalz::is_active(pl) != 0) {
         VecCopy(&v, &pl->position);
         flag = 0;
         v.y = this->position.y;

@@ -85,7 +85,6 @@ void normalize_vector(void *);
 
 int get_player_data__10TObjPlayerFi(int a0);
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
-s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0);
 void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0);
 
 }
@@ -326,7 +325,7 @@ void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
         vec3_add_to(&c, lbl_804780B8);
         for (i = 0; i < n; i++) {
             Pl_8033E0F0 *p = (Pl_8033E0F0 *)get_player_data__10TObjPlayerFi(i);
-            if (is_locally_controlled__10TObjPlayerFPv(p) != 0 && is_state_1f__14TBoss6PlotFalzFUi((u32)p) != 0) {
+            if (is_locally_controlled__10TObjPlayerFPv(p) != 0 && TBoss6PlotFalz::is_state_1f((TObjPlayer *)p) != 0) {
                 Vec_8033E0F0 d;
                 VecCopy((Vec *)&d, (const Vec *)&p->pos);
                 subtract_vector(&d, &c);
