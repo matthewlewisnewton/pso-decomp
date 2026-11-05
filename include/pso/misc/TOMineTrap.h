@@ -6,6 +6,11 @@
 
 struct TObjPlayer;
 
+extern "C" {
+// Whether the player has check_flag 0x10000 set.
+s32 fn_80171314(TObjPlayer *player);
+}
+
 struct TOMineTrap : public TOMine {
     TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id);
     virtual ~TOMineTrap();

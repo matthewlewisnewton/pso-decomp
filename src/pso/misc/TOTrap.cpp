@@ -7,6 +7,7 @@
 #include "pso/unk/text_80087278.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TOTrap.h"
+#include "pso/misc/TOMineTrap.h"
 #include "pso/misc/TLobby.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_80011014.h"
@@ -17,7 +18,6 @@
 
 extern "C" {
 extern s32 game_difficulty_selection;
-s32 fn_80171314(void *);
 f32 TOTrap::vfunc_87(f32 farg0) {
     f32 factors[4] = { 1.0f, 2.0f, 3.0f, 6.0f };
     return farg0 * factors[game_difficulty_selection];

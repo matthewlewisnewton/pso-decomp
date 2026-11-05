@@ -32,5 +32,10 @@ struct TOTrapAncient02R : public TOTrapAncient02 {
     static void *create(void *arg0);
 };
 
+extern "C" {
+// Does nothing with the object it is handed.
+void TOTrapAncient02R__sub_80154D78(TObject *object);
+}
+
 typedef char TOTrapAncient02R_size[sizeof(TOTrapAncient02R) == 0x36C ? 1 : -1];
 #endif

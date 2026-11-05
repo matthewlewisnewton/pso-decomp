@@ -67,7 +67,6 @@ struct AncientTrapResourceSlot { BmlResource *value; u8 reserved[4]; };
 AncientTrapResourceSlot TOTrapAncient01__bml_resource;
 
 extern const char *lbl_805D3530;
-void TOTrapAncient02R__sub_80154D78(void *);
 
 
 // Reverse definitions with deferred generation reproduce this unit's original
