@@ -1,10 +1,10 @@
+#include "pso/system/SoundSlotPitch.h"
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/enemy/TObjEneDD.h"
 
 extern "C" {
 
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 extern s32 last_sound_effect_slot;
 

@@ -1,3 +1,8 @@
+#include "pso/player/demo_mode.h"
+#include "pso/math/VectorNormalize.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/vector.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -17,13 +22,13 @@
 struct Mine_80038760; struct O_80038908;
 extern "C" {
 s32 transition_enemy_state__9TObjEneDDFl(void *, int);
-s32 play_sound_effect(int, void *, int, int);
+
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 void init_params__10TBoss2MineFlf(u8 *arg0, s32 arg1, f32 farg0);
 void update_pulse_state__10TBoss2MineFv(Mine_80038760 *self);
 void set_node_offsets__10TBoss2MineFv(O_80038908 *self);
 void *__dt__10TBoss2MineFv(void *arg0, s16 arg1);
-void* __ct__10TBoss2MineFlssl(void* a0, int a1, int a2, int a3, int a4);
+void* TBoss2Mine__ct(void* a0, int a1, int a2, int a3, int a4);
 extern s32 lbl_80482D04[];
 }
 
@@ -31,10 +36,6 @@ extern s32 lbl_80482D04[];
 
 struct Vec_800375C0 { f32 x, y, z; };
 struct Mine_800377E8 { u8 pad[0x404]; Vec_800375C0 vel; };
-struct Col_80038200 { s32 a; f32 r, g, b; };
-
-const Vec lbl_80435AD0 = { 2.0f, 1.0f, 2.0f };
-const Col_80038200 boss2_mine_render_color = { 0, 0.0f, 0.0f, 0.0f };
 
 extern "C" {
 f32 sin_table_lookup(s32);
@@ -135,7 +136,7 @@ void TUnk_80482D04::vfunc_105(s32 arg1) {
             (*(s32 *)((s8 *)arg0 + 0x3CC))++;
             if (*(s32 *)((s8 *)arg0 + 0x3CC) >= 0xF) {
                 *(s32 *)((s8 *)arg0 + 0x3C8) = 1;
-                play_sound_effect(0x4003A804, arg0 + 0x2FC, 0, 0);
+                play_sound_effect(0x4003A804, (const Vec *)(arg0 + 0x2FC), 0, 0);
             }
             *(f32 *)((s8 *)arg0 + 0x2FC) = *(f32 *)((s8 *)arg0 + 0x404) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x2FC);
             *(f32 *)((s8 *)arg0 + 0x304) = *(f32 *)((s8 *)arg0 + 0x40C) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x304);
@@ -162,7 +163,7 @@ void TUnk_80482D04::vfunc_105(s32 arg1) {
             ((TUnk_80482D04 *)arg0)->move_mine();
             VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x390));
             subtract_vector(&v, arg0 + 0x2FC);
-            if (((TObjBoss2Tunnel *)(&v))->update_scale() <= (4.5f)) {
+            if (normalize_vector_checked((Vec *)(&v)) <= (4.5f)) {
                 *(s32 *)((s8 *)arg0 + 0x3C8) = 3;
             }
             *(f32 *)((s8 *)arg0 + 0x3E0) += (0.05f);
@@ -173,7 +174,7 @@ void TUnk_80482D04::vfunc_105(s32 arg1) {
             *(f32 *)((s8 *)arg0 + 0x404) = v.x * t + *(f32 *)((s8 *)arg0 + 0x404);
             *(f32 *)((s8 *)arg0 + 0x408) = v.y * t + *(f32 *)((s8 *)arg0 + 0x408);
             *(f32 *)((s8 *)arg0 + 0x40C) = v.z * t + *(f32 *)((s8 *)arg0 + 0x40C);
-            ((TObjBoss2Tunnel *)((s32)arg0 + 0x404))->update_scale();
+            normalize_vector_checked((Vec *)((s32)arg0 + 0x404));
             *(f32 *)((s8 *)arg0 + 0x2FC) = ((Mine_800377E8 *)arg0)->vel.x * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x2FC);
             *(f32 *)((s8 *)arg0 + 0x300) = *(f32 *)((s8 *)arg0 + 0x408) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x300);
             *(f32 *)((s8 *)arg0 + 0x304) = *(f32 *)((s8 *)arg0 + 0x40C) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x304);
@@ -253,7 +254,6 @@ void *__dt__13TUnk_80482D04Fv(void *arg0, s16 arg1) {
 
 #define init_params__10TBoss2MineFlf ((s32 (*)(void *, int, f32))init_params__10TBoss2MineFlf)
 #define calc_elapsed_scaled__9TObjEneDDFv ((f32 (*)(void *, int, int))calc_elapsed_scaled__9TObjEneDDFv)
-#define play_sound_effect ((s32 (*)(int, void *, int, int, int))play_sound_effect)
 #define update_pulse_state__10TBoss2MineFv ((s32 (*)(void *))update_pulse_state__10TBoss2MineFv)
 
 struct VBase { char pad[0x18]; };
@@ -283,7 +283,7 @@ V(80)V(81)V(82)V(83)V(84)V(85)V(86)V(87)V(88)V(89)V(90)V(91)V(92)V(93)V(94)V(95)
 extern "C" {
 f32 atan2_float(f32 y, f32 x);
 f32 newton_sqrtf(s32, f32, f32, f32);
-void*TUnk_80482D04::create(int a1, int a2, int a3) { __ct__10TBoss2MineFlssl(this, a1, a2, a3, 1); *(int*)((char*)this + 0x18) = (int)lbl_80482D04; *(int*)((char*)this + 0x3f0) = 0; *(int*)((char*)this + 0x3f4) = 0; *(float*)((char*)this + 0x3f8) = (0.0f); *(float*)((char*)this + 0x3fc) = (0.0f); *(float*)((char*)this + 0x400) = (0.0f); *(float*)((char*)this + 0x404) = (0.0f); *(float*)((char*)this + 0x408) = (0.0f); *(float*)((char*)this + 0x40c) = (0.0f); return this; }
+void*TUnk_80482D04::create(int a1, int a2, int a3) { TBoss2Mine__ct(this, a1, a2, a3, 1); *(int*)((char*)this + 0x18) = (int)lbl_80482D04; *(int*)((char*)this + 0x3f0) = 0; *(int*)((char*)this + 0x3f4) = 0; *(float*)((char*)this + 0x3f8) = (0.0f); *(float*)((char*)this + 0x3fc) = (0.0f); *(float*)((char*)this + 0x400) = (0.0f); *(float*)((char*)this + 0x404) = (0.0f); *(float*)((char*)this + 0x408) = (0.0f); *(float*)((char*)this + 0x40c) = (0.0f); return this; }
 #pragma push
 #pragma fp_contract on
 void TUnk_80482EC0::vfunc_106(s32 arg1) {
@@ -301,7 +301,7 @@ void TUnk_80482EC0::vfunc_106(s32 arg1) {
         *(s32 *)((s8 *)((u8 *)this) + 0x3C8) = 0;
         temp_r7 = (s32) ((3e+01f) * calc_elapsed_scaled__9TObjEneDDFv(this, 0x8000, temp_r5));
         *(s32 *)((s8 *)((u8 *)this) + 0x3CC) = (temp_r7 + 0xB4);
-        play_sound_effect(0x4003A804, (void *) (((u8 *)this) + 0x2FC), 0, 0, temp_r7);
+        play_sound_effect(0x4003A804, (const Vec *)((((u8 *)this) + 0x2FC)), 0, 0);
         init_params__10TBoss2MineFlf(this, 0x1E, (f32) ((0.25f)));
         return;
     case 3:
@@ -411,10 +411,8 @@ void TBoss2Mine::set_launch_position_velocity(u8 *arg1, u8 *arg2) {
 
 #undef init_params__10TBoss2MineFlf
 #undef calc_elapsed_scaled__9TObjEneDDFv
-#undef play_sound_effect
 #undef update_pulse_state__10TBoss2MineFv
-#define play_sound_effect ((s32 (*)(s32, u32, s16, s32))play_sound_effect)
-#define __ct__10TBoss2MineFlssl ((void *(*)(void *, s32, s16, s16, s32))__ct__10TBoss2MineFlssl)
+#define TBoss2Mine__ct ((void *(*)(void *, s32, s16, s16, s32))TBoss2Mine__ct)
 #define set_node_offsets__10TBoss2MineFv ((void (*)(void *))set_node_offsets__10TBoss2MineFv)
 
 struct Base_8003843C_80038140 { char pad[0x18]; };
@@ -554,6 +552,7 @@ struct RecoveredGlobal_800384C8_lbl_80435AB0
 };
 
 
+struct Col_80038200 { s32 a; f32 r, g, b; };
 
 struct Base_80038200 { char pad[0x18]; };
 
@@ -609,6 +608,8 @@ void push_matrix(void);
 s32 pop_matrix(void);
 void post_translate_matrix(void *);
 void draw_chunk_object(void *);
+extern Vec lbl_80435AD0;
+extern Col_80038200 boss2_mine_render_color;
 extern void *lbl_805D28BC;
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
@@ -632,7 +633,7 @@ void *TBoss2Mine::deleting_dtor(s16 arg1) {
 }
 
 void *TBoss2Mine__sub_800381B8(void *arg0, s32 arg1, s16 arg2, s16 arg3) {
-    __ct__10TBoss2MineFlssl(arg0, arg1, arg2, arg3, 0);
+    TBoss2Mine__ct(arg0, arg1, arg2, arg3, 0);
     *(s32 **)((s8 *)arg0 + 0x18) = lbl_80482EC0;
     return arg0;
 }
@@ -642,7 +643,7 @@ void TBoss2Mine::vfunc_109() {  }
 
 void TBoss2Mine::render() {
     Mine_80038200 *self = (Mine_80038200 *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         self->m108();
         return;
     }
@@ -656,7 +657,7 @@ void TBoss2Mine::render() {
         Vec v = lbl_80435AD0;
         ((TObjEnemy *)self)->draw_ground_shadow(&v, 0);
     }
-    TObjFish::set_global_param((s32)self->f24);
+    set_current_texture_list((GinjaTextureList *)(self->f24));
     saved_model_render_flags = model_render_flags;
     TObjEneDD::clear_global_flag_400();
     TObjPlayer::toggle_particle_effect();
@@ -754,7 +755,7 @@ void TBoss2Mine::vfunc_107(s32 arg1) {
       TObjEneDD__sub_800BA5A4(arg0, copy_storage_800384C8.bytes);
       spawn_particle_effect_with_flags((void *)((*((s32 *) (((s8 *) arg0) + 0xA4))) + 0x1C), 0x16B, 0x40);
       *((s32 *) (((s8 *) arg0) + 0x3CC)) = 2;
-      play_sound_effect(0x4003AD05, (u32)(arg0 + 0x2FC), 0, 0);
+      play_sound_effect(0x4003AD05, (const Vec *)((arg0 + 0x2FC)), 0, 0);
     }
       break;
   }
@@ -765,8 +766,7 @@ void TBoss2Mine::vfunc_105(s32) {  }
 
 }
 
-#undef play_sound_effect
-#undef __ct__10TBoss2MineFlssl
+#undef TBoss2Mine__ct
 #undef set_node_offsets__10TBoss2MineFv
 #define transition_enemy_state__9TObjEneDDFl ((int (*)(void *, void *))transition_enemy_state__9TObjEneDDFl)
 
@@ -918,10 +918,10 @@ struct VObj_80038948_80038610 : Base_80038948_80038610 {
     virtual u32 m102();
 };
 
-void TBoss2Mine__vt102(void *arg0, s32 arg1);
 void TBoss2Mine__vt85(void *arg0, s32 arg1, s32 arg2);
 
-void TBoss2Mine__vt102(void *boss2_mine, s32 arg1) {
+void TBoss2Mine::handle_initial_action(s32 arg1) {
+    void *boss2_mine = this;
     s32 temp_r4;
 
     switch (arg1) {
@@ -1179,7 +1179,7 @@ void TBoss2Mine::vfunc_63() { if (*(short*)((char*)this + 0x326) != 4) { transit
 void TBoss2Mine::vfunc_28() {  }
 void TBoss2Mine::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_109();
         return;
     }
@@ -1310,10 +1310,10 @@ typedef struct Tbl_80038BA0 {
 } Tbl_80038BA0;
 
 extern "C" {
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+
+
+
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);
 extern u8 *lbl_805D4BA4;
 void init__10TBoss2MineFPvi(u8 *arg0, s32 arg1);
@@ -1362,9 +1362,9 @@ void init__10TBoss2MineFPvi(u8 *boss2_mine, s32 arg1) {
     temp_r6 = *(u8 **)((s8 *)lbl_805D4BA4 + 0x42C);
     *(s32 *)((s8 *)boss2_mine + 0x24) = *(s32 *)((s8 *)temp_r6 + 0x2C);
     init_model__9TObjEneDDFP13CollisionBodyl(boss2_mine, (u8 *)lbl_80482CD8, 1, (int)temp_r6);
-    reset_hp__9TObjEneDDFPUcPUcPUc(boss2_mine, register_boss__6TLobbyFl(((s32 *)boss2_mine_params)[arg1]),
-                            dispatch_shared_handler_b__6TLobbyFl(((s32 *)lbl_80482C90)[arg1]),
-                            register_object__6TLobbyFl(((s32 *)lbl_80482C98)[arg1]));
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(boss2_mine, ((s32)get_battle_base_stats(((s32 *)boss2_mine_params)[arg1])),
+                            ((s32)get_battle_attack_params(((s32 *)lbl_80482C90)[arg1])),
+                            ((s32)get_battle_resistance_params(((s32 *)lbl_80482C98)[arg1])));
     ((TObjEneDD *)boss2_mine)->check_state_flag_2();
     *(Rec_80038BA0 **)((s8 *)boss2_mine + 0x350) = &((Rec_80038BA0 *)lbl_80482CA0)[arg1];
     *(f32 *)((s8 *)boss2_mine + 0x37C) = (3.0f);

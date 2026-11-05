@@ -1,10 +1,11 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubSymbolChatFaceType.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
 extern "C" {
 
-s32 play_sound_effect(int, int, int, int);
+
 s32 is_open__28TWindowSubSymbolChatFaceTypeFv();
 
 void TWindowSubSymbolChatFaceType::close_when_chat_closed() {

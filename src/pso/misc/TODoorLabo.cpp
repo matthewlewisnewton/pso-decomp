@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TODoorFourLightBase.h"
@@ -26,10 +27,6 @@ __declspec(section ".data") const char *bm_obj_labodoor_nrm_model_names[2] = { l
 __declspec(section ".data") const char *bm_obj_labodoor_nrm_motion_names[2] = { lbl_80465F1C, NULL };
 BmlResourceDescriptor labo_door_resource_descriptor_2 = { lbl_80465F30, bm_obj_labodoor_nrm_model_names, bm_obj_labodoor_nrm_motion_names, 1, 1 };
 }
-
-CollisionBody labo_door_collision_body_parts[] = {
-    {{0.0f, 20.0f, 0.0f}, 10.0f, 20.0f, 1, 0x10003, {0.0f, 0.0f, 0.0f}, 0.0f},
-};
 
 #pragma inline_depth(1)
 #pragma auto_inline off
@@ -76,12 +73,15 @@ void init_collision_body_parts(void *, void *, s32);
 void TODoorFourLightBase__ct(void *);
 extern Tbl_8029F7E0 lbl_80466014;
 extern Tbl_8029FAE4 door_labo_link_table;
+extern u8 labo_door_collision_body_parts[];
 extern s32 __vt__16TODoorLaboNormal[];
 extern s32 __vt__10TODoorLabo[];
 extern s32 door_labo_normal_class_name;
 extern s32 odoor_labo_class_name;
+extern const f32 lbl_805DDDB8;
+extern const f32 lbl_805DDDBC;
+extern const f32 lbl_805DDDC0;
 Self_8029F7E0 *TODoorLaboNormal__ct(Self_8029F7E0 *self);
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_80466040[];
 extern u8 lbl_8046605C[];
@@ -93,7 +93,6 @@ s32 get_bml_model(s32, s32);
 extern s32 lbl_80465FF8[];
 extern s32 TODoorLabo__bml_resource;
 Door_8029FAE4 *TODoorLabo__ct(Door_8029FAE4 *arg0);
-void TLobby__sub_8001FE7C(void*, int);
 s32 release_texture_list(void*);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
@@ -131,8 +130,8 @@ Self_8029F7E0 *TODoorLaboNormal__ct(Self_8029F7E0 *self) {
     ((TObjPlayer *)self)->register_object_by_id();
     ((TODoorLaboNormal *)self)->init_field_d4();
     self->fBC = get_bml_motion((s32)TODoorLabo__model_archive, 0);
-    self->fB4 = (f32)self->fBC->f4 - 1.0f;
-    self->fB8 = 0.5f;
+    self->fB4 = (f32)self->fBC->f4 - lbl_805DDDB8;
+    self->fB8 = lbl_805DDDBC;
     {
         Tbl_8029F7E0 t = lbl_80466014;
         for (i = 0; i < 8; i++) {
@@ -142,7 +141,7 @@ Self_8029F7E0 *TODoorLaboNormal__ct(Self_8029F7E0 *self) {
         }
     }
     self->fF8 = 1;
-    self->fC4 = 50.0f;
+    self->fC4 = lbl_805DDDC0;
     return self;
 }
 
@@ -158,7 +157,7 @@ void TODoorLabo::free_resources() {
         TODoorLaboNormal__green_texture_list = 0U;
     }
     if ((u32) TODoorLabo__model_archive != 0U) {
-        TLobby__sub_8001FE7C((void*)TODoorLabo__model_archive, 1);
+        delete (BmlResource *)((void*)TODoorLabo__model_archive);
         TODoorLabo__model_archive = 0U;
     }
 }
@@ -166,10 +165,7 @@ void TODoorLabo::free_resources() {
 extern s32 TODoorLabo__green_texture_list;
 
 void TODoorLabo::load_resources() {
-    s32 r = (int)::operator new(0x440);
-    if (r != 0) {
-        r = load_resource_from_descriptor(r, 5, &labo_door_resource_descriptor_2, 0, 0, 0);
-    }
+    s32 r = (int)new BmlResource(5, (BmlResourceDescriptor *)(&labo_door_resource_descriptor_2), 0, 0, (void *)(0));
     (*(s32 *)&TODoorLabo__model_archive) = r;
     (*(s32 *)&TODoorLaboNormal__green_texture_list) = (s32)load_gvm_texture_file((s32)lbl_80466040);
     (*(s32 *)&TODoorLaboNormal__red_texture_list) = (s32)load_gvm_texture_file((s32)lbl_8046605C);
@@ -223,8 +219,8 @@ Door_8029FAE4 *TODoorLabo__ct(Door_8029FAE4 *arg0) {
     ((TObjPlayer *)arg0)->register_object_by_id();
     ((TODoorLabo *)arg0)->init_model_by_type();
     arg0->fBC = (u8 *)get_bml_motion(TODoorLabo__bml_resource, 0);
-    arg0->fB4 = (f32)*(u32 *)((s8 *)arg0->fBC + 4) - 1.0f;
-    arg0->fB8 = 0.5f;
+    arg0->fB4 = (f32)*(u32 *)((s8 *)arg0->fBC + 4) - lbl_805DDDB8;
+    arg0->fB8 = lbl_805DDDBC;
     tbl = door_labo_link_table;
     for (i = 0; i < 8; i++) {
         if (tbl.v[i] != -1) {
@@ -232,7 +228,7 @@ Door_8029FAE4 *TODoorLabo__ct(Door_8029FAE4 *arg0) {
         }
     }
     arg0->fF8 = 1;
-    arg0->fC4 = 50.0f;
+    arg0->fC4 = lbl_805DDDC0;
     return arg0;
 }
 
@@ -248,7 +244,7 @@ void TAdSinglePlyChrSelectGC::free_all_resources() {
         TODoorLabo__green_texture_list = 0U;
     }
     if ((u32) TODoorLabo__bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TODoorLabo__bml_resource, 1);
+        delete (BmlResource *)((void*)TODoorLabo__bml_resource);
         TODoorLabo__bml_resource = 0U;
     }
 }
@@ -258,10 +254,7 @@ extern u8 lbl_80466074[];
 extern u8 lbl_80466090[];
 
 void load_labo_door_resources(void) {
-    s32 r = (int)::operator new(0x440);
-    if (r != 0) {
-        r = load_resource_from_descriptor(r, 5, &labo_door_resource_descriptor, 0, 0, 0);
-    }
+    s32 r = (int)new BmlResource(5, (BmlResourceDescriptor *)(&labo_door_resource_descriptor), 0, 0, (void *)(0));
     TODoorLabo__bml_resource = r;
     TODoorLabo__green_texture_list = (s32)load_gvm_texture_file((s32)lbl_80466074);
     labo_door_red_textures = (s32)load_gvm_texture_file((s32)lbl_80466090);
@@ -328,8 +321,8 @@ u8 *TODoorFourLightSeabedU__ct(u8 *arg0) {
     ((TObjPlayer *)arg0)->register_object_by_id();
     self->fD4 = get_bml_model((s32)seabed_four_light_door_bml_resource, 0);
     self->infoBC = (Info_8029FD70 *)get_bml_motion((s32)seabed_four_light_door_bml_resource, 0);
-    self->fB4 = (f32)self->infoBC->v4 - 1.0f;
-    self->fB8 = 0.5f;
+    self->fB4 = (f32)self->infoBC->v4 - lbl_805DDDB8;
+    self->fB8 = lbl_805DDDBC;
     {
         Tbl_8029FD70 tbl = door_four_light_seabed_u_table;
         for (i = 0; i < 8; i++) {
@@ -360,7 +353,7 @@ void TLobby::free_global_buffers() {
         seabed_four_light_door_textures = 0U;
     }
     if ((u32) seabed_four_light_door_bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)seabed_four_light_door_bml_resource, 1);
+        delete (BmlResource *)((void*)seabed_four_light_door_bml_resource);
         seabed_four_light_door_bml_resource = 0U;
     }
 }
@@ -371,19 +364,13 @@ void TLanguage__sub_8029FF0C(void) {
     area = get_current_floor_area();
     switch (area) {
     case AREA_SEABED_UPPER:
-        var_r0 = (int)::operator new(0x440);
-        if (var_r0 != 0) {
-            var_r0 = load_resource_from_descriptor(var_r0, 5, bm_o_door_seabed01_u_resource_descriptor, 0, 0, 0);
-        }
+        var_r0 = (int)new BmlResource(5, (BmlResourceDescriptor *)(bm_o_door_seabed01_u_resource_descriptor), 0, 0, (void *)(0));
         seabed_four_light_door_bml_resource = var_r0;
         seabed_four_light_door_textures = (s32)load_gvm_texture_file((s32)lbl_804660AC);
         TODoorFourLightSeabedU__texture_list = (s32)load_gvm_texture_file((s32)lbl_804660C8);
         return;
     case AREA_SEABED_LOWER:
-        var_r0_2 = (int)::operator new(0x440);
-        if (var_r0_2 != 0) {
-            var_r0_2 = load_resource_from_descriptor(var_r0_2, 5, bm_o_door_seabed01_u_resource_descriptor, 0, 0, 0);
-        }
+        var_r0_2 = (int)new BmlResource(5, (BmlResourceDescriptor *)(bm_o_door_seabed01_u_resource_descriptor), 0, 0, (void *)(0));
         seabed_four_light_door_bml_resource = var_r0_2;
         seabed_four_light_door_textures = (s32)load_gvm_texture_file((s32)lbl_804660DC);
         TODoorFourLightSeabedU__texture_list = (s32)load_gvm_texture_file((s32)lbl_804660FC);
@@ -452,8 +439,8 @@ u8 *TODoorFourLightSeabed__ct(u8 *arg0) {
     ((TObjPlayer *)arg0)->register_object_by_id();
     self->fD4 = get_bml_model(door_labo_bml_resource, 0);
     self->infoBC = (Info_802A0068 *)get_bml_motion(door_labo_bml_resource, 0);
-    self->fB4 = (f32)self->infoBC->v4 - 1.0f;
-    self->fB8 = 0.5f;
+    self->fB4 = (f32)self->infoBC->v4 - lbl_805DDDB8;
+    self->fB8 = lbl_805DDDBC;
     {
         Tbl_802A0068 tbl = door_four_light_seabed_index_table;
         for (i = 0; i < 8; i++) {

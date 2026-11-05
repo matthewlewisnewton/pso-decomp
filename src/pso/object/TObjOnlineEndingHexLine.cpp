@@ -7,7 +7,7 @@
 struct Param_802E5CB0 { f32 a; f32 b; s32 c; f32 d; };
 typedef char Param_802E5CB0_size[sizeof(Param_802E5CB0) == 0x10 ? 1 : -1];
 
-struct V2_802E55B8 { f32 x, y; };
+struct V2_802E55B8 { f32 values[2]; };
 struct P2_802E55B8 { s16 x, y; };
 struct Hex_802E55B8 { u8 pad[0x1C]; P2_802E55B8 pts[32]; };
 struct Desc_802E55B8 { V2_802E55B8 *pts; u32 *cols; s32 z; s32 n; };
@@ -39,6 +39,7 @@ s32 __ct__7TObjectFP7TObject(void *, void *);
 void TObjOnlineEndingHexLine__sub_802E55A4(void *arg0, void *arg1);
 extern void *__vt__23TObjOnlineEndingHexLine[];
 extern s32 lbl_805D3FA4;
+extern const f32 lbl_805DE968;
 Hex_802E57E0 *__ct__23TObjOnlineEndingHexLineFv(Hex_802E57E0 *arg0, s32 arg1, Pos_802E57E0 *arg2);
 V4_802E62A4 lbl_804E3A98[1] = {
     { 0x3E800000, 0x3F800000, 0x00000000, 0x41200000 },
@@ -68,6 +69,19 @@ void *__vt__23TObjOnlineEndingHexLine[6] = {
 };
 
 extern Param_802E5CB0 online_ending_hex_line_state;
+extern const f32 lbl_805DE958;
+extern const f32 lbl_805DE95C;
+extern const f32 lbl_805DE960;
+extern const f32 lbl_805DE964;
+extern const f32 lbl_805DE96C;
+extern const f32 lbl_805DE970;
+extern const f32 lbl_805DE974;
+extern const f32 lbl_805DE978;
+extern const f32 lbl_805DE97C;
+extern const f32 lbl_805DE980;
+extern const f32 lbl_805DE984;
+extern const f32 lbl_805DE988;
+extern const f32 lbl_805DE98C;
 extern V2_802E5B0C lbl_80472C00[];
 extern u8 controller_input_state[];
 extern s32 local_client_id;
@@ -111,7 +125,7 @@ void TObjOnlineEndingHexLine::step_line() {
 
     dx = h->pts[1].x - h->pts[0].x;
     dy = h->pts[1].y - h->pts[0].y;
-    h->f9C = 0.0f;
+    h->f9C = lbl_805DE958;
     for (i = 31; i >= 1; i--) {
         TObjOnlineEndingHexLine__sub_802E55A4(&h->pts[i], &h->pts[i - 1]);
     }
@@ -148,7 +162,7 @@ void TObjOnlineEndingHexLine::step_line() {
         }
         break;
     case 0:
-        sel = (s32)(2.99f * (3.0517578e-05f * (f32)rand()));
+        sel = (s32)(lbl_805DE95C * (lbl_805DE960 * (f32)rand()));
         for (i = 0; i < 3; i++) {
             if (bad[sel] == 0 && same[sel] == 0) {
                 break;
@@ -191,13 +205,13 @@ void render__23TObjOnlineEndingHexLineFv(u8 *arg0) {
         if (i == 0) {
             calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(&q0, &((Hex_802E55B8 *) arg0)->pts[0]);
             calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(pq1, &((Hex_802E55B8 *) arg0)->pts[1]);
-            pts[0].x = *(f32 *)((s8 *)arg0 + 0x9C) * (q0.x - q1.x) + q1.x;
-            pts[0].y = *(f32 *)((s8 *)arg0 + 0x9C) * (q0.y - q1.y) + q1.y;
+            pts[0].values[0] = *(f32 *)((s8 *)arg0 + 0x9C) * (q0.values[0] - q1.values[0]) + q1.values[0];
+            pts[0].values[1] = *(f32 *)((s8 *)arg0 + 0x9C) * (q0.values[1] - q1.values[1]) + q1.values[1];
         } else if (i == last) {
             calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(&p0, &((Hex_802E55B8 *) arg0)->pts[last - 1]);
             calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(pp1, &((Hex_802E55B8 *) arg0)->pts[last]);
-            pts[last].x = *(f32 *)((s8 *)arg0 + 0x9C) * (p0.x - p1.x) + p1.x;
-            pts[last].y = *(f32 *)((s8 *)arg0 + 0x9C) * (p0.y - p1.y) + p1.y;
+            pts[last].values[0] = *(f32 *)((s8 *)arg0 + 0x9C) * (p0.values[0] - p1.values[0]) + p1.values[0];
+            pts[last].values[1] = *(f32 *)((s8 *)arg0 + 0x9C) * (p0.values[1] - p1.values[1]) + p1.values[1];
         } else {
             calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(&pts[i], &((Hex_802E55B8 *) arg0)->pts[i]);
         }
@@ -207,13 +221,13 @@ void render__23TObjOnlineEndingHexLineFv(u8 *arg0) {
     d.cols = cols;
     d.z = 0;
     d.n = n;
-    draw_color_lines(&d, n, 0x15, -117.0f);
+    draw_color_lines(&d, n, 0x15, lbl_805DE964);
 }
 #pragma pop
 
 void run_task__23TObjOnlineEndingHexLineFv(TObjOnlineEndingHexLine *online_ending_hex_line) {
     *(f32 *)((s8 *)online_ending_hex_line + 0x9C) = (f32) (*(f32 *)((s8 *)online_ending_hex_line + 0x9C) + TObjOnlineEndingHexLine__hex_line_params.a);
-    if (*(f32 *)((s8 *)online_ending_hex_line + 0x9C) >= 1.0f) {
+    if (*(f32 *)((s8 *)online_ending_hex_line + 0x9C) >= lbl_805DE968) {
         online_ending_hex_line->step_line();
     }
 }
@@ -256,7 +270,7 @@ Hex_802E57E0 *__ct__23TObjOnlineEndingHexLineFv(Hex_802E57E0 *arg0, s32 arg1, Po
     for (i = 0; i < 32; i++) {
         TObjOnlineEndingHexLine__sub_802E55A4(&arg0->lines[i], &pos);
     }
-    arg0->f9C = 1.0f;
+    arg0->f9C = lbl_805DE968;
     return arg0;
 }
 
@@ -284,31 +298,31 @@ void handle_6x92(u8 *arg0) {
     if (get_player_by_client_id(idx) != 0U) {
         switch (idx) {
         case 0:
-            if (v < 0.033333335f || v > 0.5f) {
+            if (v < lbl_805DE96C || v > lbl_805DE970) {
                 return;
             }
             online_ending_hex_line_param.a = v;
-            online_ending_hex_line_state.a = 0.033333335f * (v - BASE_802E5930.a);
+            online_ending_hex_line_state.a = lbl_805DE96C * (v - BASE_802E5930.a);
             break;
         case 1:
-            if (v < 1.0f || v > 2.0f) {
+            if (v < lbl_805DE968 || v > lbl_805DE974) {
                 return;
             }
             d = v - BASE_802E5930.b;
             online_ending_hex_line_param.b = v;
-            online_ending_hex_line_state.b = 0.033333335f * d;
+            online_ending_hex_line_state.b = lbl_805DE96C * d;
             break;
         case 2:
             online_ending_hex_line_param.c = (s32) v;
-            online_ending_hex_line_state.c = (s32) (0.033333335f * (f32) angle_diff_s16(BASE_802E5930.c, online_ending_hex_line_param.c));
+            online_ending_hex_line_state.c = (s32) (lbl_805DE96C * (f32) angle_diff_s16(BASE_802E5930.c, online_ending_hex_line_param.c));
             break;
         case 3:
-            if (v < 3.0f || v > 32.0f) {
+            if (v < lbl_805DE978 || v > lbl_805DE97C) {
                 return;
             }
             d = v - BASE_802E5930.d;
             online_ending_hex_line_param.d = v;
-            online_ending_hex_line_state.d = 0.033333335f * d;
+            online_ending_hex_line_state.d = lbl_805DE96C * d;
             break;
         }
     }
@@ -320,33 +334,33 @@ void handle_6x92(u8 *arg0) {
 #pragma fp_contract on
 
 s32 calc_rotated_hex_point__23TObjOnlineEndingHexLineFPvPv(V2_802E55B8 *arg0, P2_802E55B8 *arg1) {
-    V2_802E5B0C p;
+    V2_802E55B8 p;
     f32 s;
     f32 c;
     f32 sc;
     s32 ang;
 
     if (*(s16 *)((s8 *)arg1 + 2) & 1) {
-        p.x = 30.0f * (0.5f + (f32) *(s16 *)((s8 *)arg1 + 0));
+        p.values[0] = lbl_805DE980 * (lbl_805DE970 + (f32) *(s16 *)((s8 *)arg1 + 0));
     } else {
-        p.x = (f32) (*(s16 *)((s8 *)arg1 + 0) * 0x1E);
+        p.values[0] = (f32) (*(s16 *)((s8 *)arg1 + 0) * 0x1E);
     }
     f32 y = (f32) (*(s16 *)((s8 *)arg1 + 2) * 0x19);
     V2_802E5B0C ctr = lbl_80472C00[0];
     ang = *(s32 *)((s8 *)&TObjOnlineEndingHexLine__hex_line_params + 8);
-    p.x = p.x - ctr.x;
-    p.y = y;
-    p.y = p.y - ctr.y;
+    p.values[0] = p.values[0] - ctr.x;
+    p.values[1] = y;
+    p.values[1] = p.values[1] - ctr.y;
     s = sin_table_lookup(ang);
     c = cos_table_lookup(*(s32 *)((s8 *)&TObjOnlineEndingHexLine__hex_line_params + 8));
     sc = *(f32 *)((s8 *)&TObjOnlineEndingHexLine__hex_line_params + 4);
-    V2_802E5B0C q = p;
-    p.x = c * q.x - s * q.y;
-    p.y = s * q.x + c * q.y;
-    p.x = p.x * sc;
-    p.y = p.y * sc;
-    p.x = p.x + ctr.x;
-    p.y = p.y + ctr.y;
+    V2_802E55B8 q = p;
+    p.values[0] = c * q.values[0] - s * q.values[1];
+    p.values[1] = s * q.values[0] + c * q.values[1];
+    p.values[0] = p.values[0] * sc;
+    p.values[1] = p.values[1] * sc;
+    p.values[0] = p.values[0] + ctr.x;
+    p.values[1] = p.values[1] + ctr.y;
     ((TWindowSubSymbolChatPartsSet *)arg0)->copy_vec2(&p);
     return 1;
 }
@@ -359,29 +373,29 @@ void update_line_params__23TObjOnlineEndingHexLineFv(void) {
     f32 t;
     s32 n;
 
-    if (0.0f != online_ending_hex_line_state.a) {
+    if (lbl_805DE958 != online_ending_hex_line_state.a) {
         d = online_ending_hex_line_param.a - CUR_802E5CB0.a;
-        if (d * online_ending_hex_line_state.a < 0.0f) {
-            online_ending_hex_line_state.a = 0.0f;
+        if (d * online_ending_hex_line_state.a < lbl_805DE958) {
+            online_ending_hex_line_state.a = lbl_805DE958;
         } else {
             t = fabs_float(online_ending_hex_line_state.a);
             if (fabs_float(d) < t) {
                 CUR_802E5CB0.a = online_ending_hex_line_param.a;
-                online_ending_hex_line_state.a = 0.0f;
+                online_ending_hex_line_state.a = lbl_805DE958;
             } else {
                 CUR_802E5CB0.a = CUR_802E5CB0.a + online_ending_hex_line_state.a;
             }
         }
     }
-    if (0.0f != online_ending_hex_line_state.b) {
+    if (lbl_805DE958 != online_ending_hex_line_state.b) {
         d = online_ending_hex_line_param.b - CUR_802E5CB0.b;
-        if (d * online_ending_hex_line_state.b < 0.0f) {
-            online_ending_hex_line_state.b = 0.0f;
+        if (d * online_ending_hex_line_state.b < lbl_805DE958) {
+            online_ending_hex_line_state.b = lbl_805DE958;
         } else {
             t = fabs_float(online_ending_hex_line_state.b);
             if (fabs_float(d) < t) {
                 CUR_802E5CB0.b = online_ending_hex_line_param.b;
-                online_ending_hex_line_state.b = 0.0f;
+                online_ending_hex_line_state.b = lbl_805DE958;
             } else {
                 CUR_802E5CB0.b = CUR_802E5CB0.b + online_ending_hex_line_state.b;
             }
@@ -396,15 +410,15 @@ void update_line_params__23TObjOnlineEndingHexLineFv(void) {
             CUR_802E5CB0.c = CUR_802E5CB0.c + online_ending_hex_line_state.c;
         }
     }
-    if (0.0f != online_ending_hex_line_state.d) {
+    if (lbl_805DE958 != online_ending_hex_line_state.d) {
         d = online_ending_hex_line_param.d - CUR_802E5CB0.d;
-        if (d * online_ending_hex_line_state.d < 0.0f) {
-            online_ending_hex_line_state.d = 0.0f;
+        if (d * online_ending_hex_line_state.d < lbl_805DE958) {
+            online_ending_hex_line_state.d = lbl_805DE958;
         } else {
             t = fabs_float(online_ending_hex_line_state.d);
             if (fabs_float(d) < t) {
                 CUR_802E5CB0.d = online_ending_hex_line_param.d;
-                online_ending_hex_line_state.d = 0.0f;
+                online_ending_hex_line_state.d = lbl_805DE958;
             } else {
                 CUR_802E5CB0.d = CUR_802E5CB0.d + online_ending_hex_line_state.d;
             }
@@ -438,22 +452,22 @@ void TObjOnlineEndingHexMove::run_task() {
             case 3:
                 switch (pkt.idx) {
                 case 0:
-                    step = 0.093333334f;
-                    max = 0.5f;
+                    step = lbl_805DE984;
+                    max = lbl_805DE970;
                     v = TObjOnlineEndingHexLine__hex_line_params.a;
-                    min = 0.033333335f;
+                    min = lbl_805DE96C;
                     break;
                 case 1:
-                    step = 0.2f;
-                    max = 2.0f;
+                    step = lbl_805DE988;
+                    max = lbl_805DE974;
                     v = TObjOnlineEndingHexLine__hex_line_params.b;
-                    min = 1.0f;
+                    min = lbl_805DE968;
                     break;
                 case 3:
-                    step = 5.8f;
-                    max = 32.0f;
+                    step = lbl_805DE98C;
+                    max = lbl_805DE97C;
                     v = TObjOnlineEndingHexLine__hex_line_params.d;
-                    min = 3.0f;
+                    min = lbl_805DE978;
                     break;
                 }
                 if (is_on_current_screen__11TCameraCtrlFv(pad, 0x10000) != 0) {

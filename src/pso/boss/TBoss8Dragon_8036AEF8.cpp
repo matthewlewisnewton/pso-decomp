@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_8036AEF8.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
@@ -25,7 +26,7 @@ struct Obj_8036B1AC {
 extern "C" {
 extern s32 lbl_804F3610[];
 extern s32 lbl_805D63F0;
-s32 lbl_805D7000;
+extern s32 lbl_805D7000;
 void TLobby__sub_8036B1AC(Obj_8036B1AC *arg0);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
@@ -83,7 +84,7 @@ void TBoss8Dragon__sub_8036B088(void) {
     TParticleCtrl::begin_effect_render();
     TCameraCtrl::restore_full_screen_view();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(5, -1);
     o[0] = (545.0f);
     o[1] = (3.9e+02f);

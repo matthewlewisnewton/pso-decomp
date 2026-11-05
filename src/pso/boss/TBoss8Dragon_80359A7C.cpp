@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD_800B9B84.h"
@@ -139,7 +140,7 @@ void TBoss8Dragon__sub_80359A7C(u8 *boss8_dragon) {
     s32 temp_r0_2;
     s32 temp_r30;
     s32 temp_r30_2;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18 *)(boss8_dragon))->m103();
         return;
     }

@@ -1,9 +1,10 @@
 #include "types.h"
-#include "pso/npc/TObjNpcSoutokufu.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/unk/text_8014B8A4.h"
 #include "pso/npc/TUnk_804A9F50.h"
 #include "pso/TObjBoss5FloorStone.h"
 #include "pso/boss/TBoss8Dragon.h"
+#include "pso/npc/TObjNpcSoutokufu.h"
 #include "pso/npc/TObjNpcBase.h"
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
@@ -40,18 +41,16 @@ struct Ow_80289710 { u8 pad[0x58]; Ls_80289710 *list; };
 struct Gl_80289710 { u8 pad[0x42C]; Ow_80289710 *owner; };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 s32 TObjFish__sub_8001EDB0(int, int);
 s32 get_bml_model(int, int);
 extern s32 __vt__16TObjNpcSoutokufu[];
 f32 calc_sq_offset__12TBoss8DragonFf(void *, void *, f32);
 extern void *lbl_805D4DD8;
-void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 
 void TObjNpcSoutokufu::close_dialog_window() {
     if ((u32) TObjNpcSoutokufu__shared_model_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjNpcSoutokufu__shared_model_resource, 1);
+        delete (BmlResource *)((void*)TObjNpcSoutokufu__shared_model_resource);
         TObjNpcSoutokufu__shared_model_resource = 0U;
     }
 }
@@ -59,17 +58,21 @@ void TObjNpcSoutokufu::close_dialog_window() {
 void TObjNpcSoutokufu::load_shared_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_npc_soutokufu_resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_npc_soutokufu_resource_descriptor, 0, 0, 0));
-    }
     (*(s32 *)&TObjNpcSoutokufu__shared_model_resource) = var_r0;
 }
 
+void *__dt__16TObjNpcSoutokufuFv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__16TObjNpcSoutokufu;
+        ((TUnk_804A9F50 *)arg0)->destroy_npc_lappy_base(0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TObjNpcSoutokufu::~TObjNpcSoutokufu() {}
-extern "C" {
 
 extern s32 boss5_common_texture_list;
 
@@ -79,7 +82,7 @@ u8 *TObjNpcSoutokufu__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_80289680___vt__16TObjNpcSoutokufu *)&__vt__16TObjNpcSoutokufu).value;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcSoutokufu__name;
     ((TObjNpcSoutokufu *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = get_bml_model((int) ((*(s32 *)&TObjNpcSoutokufu__shared_model_resource)), 0);
     ((TObjNpcSoutokufu *)player)->texlist = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TObjNpcSoutokufu__shared_model_resource)), 0);
     ((TObjNpcBase *)player)->setup_common();

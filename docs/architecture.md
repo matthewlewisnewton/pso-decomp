@@ -43,8 +43,11 @@ evidence keep a placeholder such as `fn_8001A2B4`.
 
 The game was linked from object files, and each one is a unit here: a contiguous range of `.text` together with
 the data it owns, defined in [`config/GPOE8P/psov3/splits.txt`](../config/GPOE8P/psov3/splits.txt) and compiled
-from one source file of the same name. Functions inside a unit stay in address order, because the linker keeps
-the order of the object file.
+normally from one source file of the same name. The linker follows emitted object layout, which need not follow
+the order of definitions in C++ source. In particular, CodeWarrior deferred emission can reorder functions and
+compiler-generated vtables and switch tables. Use a documented source arrangement that reproduces the original
+object, and verify sections and relocations as well as instructions; the arrangement does not establish the
+original source order.
 
 A unit is linked when every function and data section in it matches; the build then takes its bytes from the
 compiled object instead of the original. [`linked_units.txt`](../config/GPOE8P/psov3/linked_units.txt) lists

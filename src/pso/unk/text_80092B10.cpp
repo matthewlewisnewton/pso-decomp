@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/text_803D96A8.h"
@@ -22,7 +23,6 @@ struct VObj_80092B10 : VBase_80092B10 {
 
 extern "C" {
 
-int TObjEneRe7Berura__sub_80095328(void*);
 
 typedef struct { u32 pad0; u32 count; } Motion_80092B10;
 typedef struct { u32 pad0; Motion_80092B10 *motion; } MotEnt_80092B10;
@@ -50,11 +50,12 @@ s32 rotate_matrix_y(int, int);
 void push_matrix(void);
 void post_translate_matrix(void *);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
+extern Vec re7_berura_init_vec;
 extern const f32 TObjEneRe7Berura__data_805D9724;
 extern const f32 lbl_805D9728;
 extern const f32 TObjEneRe7Berura__data_805D972C;
 
-void TObjEneRe7Berura::vfunc_105() {
+void TObjEneRe7Berura::fn_80092B10() {
     Ene_80092B10 *self = (Ene_80092B10 *)this;
     s32 idx;
     Motion_80092B10 *mot;
@@ -63,11 +64,11 @@ void TObjEneRe7Berura::vfunc_105() {
     ((TObjEneDD *)self)->get_target_info();
     if (self->v.m8(TObjEneRe7Berura__data_805D9724, lbl_805D9728) != 0) {
         if (self->f326 != 0xB) {
-            Vec v = { 2.0f, 1.0f, 2.0f };
+            Vec v = re7_berura_init_vec;
             ((TObjEneDD *)(self))->draw_ground_shadow(&v, 0);
         }
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param(self->f24);
+        set_current_texture_list((GinjaTextureList *)(self->f24));
         push_matrix();
         post_translate_matrix(self->f38);
         rotate_matrix_y(0, self->f60);
@@ -91,6 +92,6 @@ void TObjEneRe7Berura::vfunc_105() {
         TParticleCtrl::end_effect_render();
     }
 }
-void TObjEneRe7Berura::vfunc_83() { if (get_target_info() != 0) { TObjEneRe7Berura__sub_80095328(this); } }
+void TObjEneRe7Berura::fn_80092C90() { if (get_target_info() != 0) { fn_80095328(); } }
 
 }

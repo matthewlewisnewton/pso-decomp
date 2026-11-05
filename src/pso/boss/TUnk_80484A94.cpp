@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 #include "pso/boss/TUnk_80484A94.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/NinjaUtil.h"
@@ -22,7 +23,7 @@ extern "C" {
 void rotate_vector_by_matrix(s32 matrix, const Vec *src, Vec *dst);
 void vec3_add_to(Vec *v, const Vec *add);
 void subtract_vector(Vec *v, const Vec *sub);
-void play_persistent_sound(s32 id, void *owner, const Vec *pos, s32 a3, s32 flags);
+
 s32 obj_is_hit_receivable(TObjChara *actor);
 u16 get_entity_id(TObject *object);
 extern GC_Mtx identity_matrix;
@@ -65,7 +66,7 @@ void TUnk_80484A94::render() {}
 void TUnk_80484A94::run_task() {
     TObjPlayer *player = get_player_by_client_id(target_id);
     if (player != NULL) {
-        Vec steer = *(Vec *)&player->m_2fc;
+        Vec steer = player->body_center_position;
         subtract_vector(&steer, &position);
         vec_set_length(&steer, fn_800499FC(1));
         vec3_add_to(&velocity, &steer);
@@ -73,15 +74,15 @@ void TUnk_80484A94::run_task() {
     }
     VecCopy(&prev_position, &position);
     vec3_add_to(&position, &velocity);
-    direction_to_rotation_yx((u8 *)&velocity, &rotation_y, &rotation_z);
-    rotation_z -= 0x4000;
+    direction_to_rotation_yx((u8 *)&velocity, &this->rotation.yaw, &this->rotation.roll);
+    this->rotation.roll -= 0x4000;
     if (trail != NULL) {
         ((TParticleCtrl *)trail)->set_position(&position);
-        ((TParticleCtrl *)trail)->set_direction(&rotation_x);
+        ((TParticleCtrl *)trail)->set_direction(&this->rotation.pitch);
     }
     if (glow != NULL) {
         ((TParticleCtrl *)glow)->set_position(&position);
-        ((TParticleCtrl *)glow)->set_direction(&rotation_x);
+        ((TParticleCtrl *)glow)->set_direction(&this->rotation.pitch);
     }
     if (csnVector(&prev_position, &position, -1) != 0) {
         queue_destruction();
@@ -94,7 +95,7 @@ void TUnk_80484A94::run_task() {
         queue_destruction();
         return;
     }
-    play_persistent_sound(0x4003C11D, this, &position, 0, 0);
+    play_persistent_sound((s32)(0x4003C11D), (const void *)(this), (const Vec *)(&position), 0, 0);
 }
 
 TUnk_80484A94::~TUnk_80484A94() {
@@ -115,14 +116,14 @@ TUnk_80484A94::TUnk_80484A94(TObjEnemy *owner, Vec *pos, s32 target) : TObjColli
     entity_id = get_entity_id(owner);
     VecCopy(&position, pos);
     target_id = target;
-    rotation_x = 0;
-    trail = spawn_particle_effect_with_rotation(&position, &rotation_x, 0x11C, 2);
-    glow = spawn_particle_effect_with_rotation(&position, &rotation_x, 0x11D, 2);
+    this->rotation.pitch = 0;
+    trail = spawn_particle_effect_with_rotation(&position, &this->rotation.pitch, 0x11C, 2);
+    glow = spawn_particle_effect_with_rotation(&position, &this->rotation.pitch, 0x11D, 2);
     push_matrix_from(identity_matrix);
     {
         Vec dir = volopt_shot_forward;
         dir.z = fn_800499FC(0);
-        rotate_matrix_y(0, ((TObjBase *)owner)->rotation_y);
+        rotate_matrix_y(0, ((TObjBase *)owner)->rotation.yaw);
         rotate_vector_by_matrix(0, &dir, &velocity);
     }
     pop_matrix();

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80083594.h"
 #include "pso/unk/text_803D96A8.h"
@@ -27,6 +28,7 @@ void calc_projection_screen_offset(f32 *arg0, f32 *arg1);
 f32 calc_camera_fov_degrees(void);
 void load_current_pos_matrix(s32 arg0);
 void load_current_tex_matrix(s32 i);
+extern const f64 lbl_80439358;
 extern s32 current_matrix;
 extern const f32 lbl_805D93DC;
 extern const f32 lbl_805D940C;
@@ -43,7 +45,7 @@ void TObjPlayer::setup_tev_stage() {
         GXSetTevOrder(1, 1, 1, 4);
         GXSetTevOp(1, 2);
         TObjPlayer::set_tex_coord_gen(1, 0, 0, 0x1E);
-        TObjFish::set_global_param((s32)shared_capture_texture_list);
+        set_current_texture_list((GinjaTextureList *)(shared_capture_texture_list));
         load_list_texture(0, 0, 0, 1);
         model_render_flags |= 0x80000;
         set_ginja_post_tev_stage_count(1);
@@ -60,7 +62,7 @@ void setup_particle_tev(s32 arg0) {
             GXSetTevOp(1, 1);
         }
         TObjPlayer::set_tex_coord_gen(1, 0, 0, 0x1E);
-        TObjFish::set_global_param((s32)shared_capture_texture_list);
+        set_current_texture_list((GinjaTextureList *)(shared_capture_texture_list));
         load_list_texture(0, 0, 0, 1);
         model_render_flags |= 0x80000;
         set_ginja_post_tev_stage_count(1);
@@ -77,7 +79,7 @@ void load_projected_texture_matrix(f32 farg0) {
     if (is_split_screen() == 0) {
         calc_projection_screen_offset(&stack.spC, &stack.sp8);
         push_matrix();
-        temp_f31 = (f32) (0.0054931640625 * calc_camera_fov_degrees());
+        temp_f31 = (f32) (lbl_80439358 * calc_camera_fov_degrees());
         if (TCameraCtrl__sub_800689F4() != 0) {
             C_MTXLightPerspective(&stack.sp10, temp_f31, farg0, lbl_805D93DC, lbl_805D9414, (f32) (lbl_805D93DC - stack.spC), (f32) (lbl_805D93DC - stack.sp8));
         } else {
@@ -99,7 +101,7 @@ void load_projection_tex_matrix(s32 rotation_y) {
         calc_projection_screen_offset(&spC, &sp8);
         push_matrix();
         rotate_matrix_y(0, (void *)rotation_y);
-        temp_f31 = (f32) (0.0054931640625 * calc_camera_fov_degrees());
+        temp_f31 = (f32) (lbl_80439358 * calc_camera_fov_degrees());
         if (TCameraCtrl__sub_800689F4() != 0) {
             C_MTXLightPerspective(sp10, temp_f31, lbl_805D940C, lbl_805D93DC, lbl_805D9414, (f32) (lbl_805D93DC - spC), (f32) (lbl_805D93DC - sp8));
         } else {

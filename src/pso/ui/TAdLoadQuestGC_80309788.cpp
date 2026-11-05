@@ -1,10 +1,10 @@
 #include "types.h"
+#include "pso/ui/TAdLdQuestPrtGC.h"
 #include "pso/ui/TAdLoadQuestCellGC.h"
 #include "pso/ui/TAdLoadQuestLineGC.h"
 #include "pso/unk/text_8034A090.h"
 #include "pso/ui/TAdLoadQuestGC_80309788.h"
 #include "pso/ui/TAdLoadQuestGC.h"
-#include "pso/ui/TAdLdQuestPrtGC.h"
 
 extern "C" {
 
@@ -27,7 +27,7 @@ void *TAdLoadQuestGC__ct(void *ad_load_quest_gc) {
     get_or_create_line__14TAdLoadQuestGCFii((s32)ad_load_quest_gc, 1);
     get_or_create_prt_txt__14TAdLoadQuestGCFii((s32)ad_load_quest_gc, 1);
     get_or_create_prt_txt__14TAdLoadQuestGCFii((s32)ad_load_quest_gc, 2);
-    o = new TAdLdQuestPrtGC((TObject *)ad_load_quest_gc);
+    o = new TAdLdQuestPrtGC((TAdLoadQuestGC *)ad_load_quest_gc);
     *(void * *)&((TAdLoadQuestGC *)ad_load_quest_gc)->quest_display = o;
     return ad_load_quest_gc;
 }

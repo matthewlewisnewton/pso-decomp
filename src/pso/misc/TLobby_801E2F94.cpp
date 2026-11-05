@@ -1,4 +1,5 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/render/DebugFont.h"
 #include "pso/render/render_util.h"
 #include "pso/misc/TLobby_801E2F94.h"
@@ -10,7 +11,7 @@
 #include "pso/system/main_loop.h"
 #include "pso/misc/TWindowCtrlMain.h"
 #include "types.h"
-#include <dolphin/os/OSCache.h>
+#include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/TObjCMHairMenu.h"
 #include "pso/boss/TBoss8Dragon.h"
 #include "pso/misc/TLobby.h"
@@ -49,7 +50,7 @@ void TObjPlayer::draw_shadow_quad(s32 arg1, s32 flags) {
     f32 ey, ex, cx, cy, z;
     f32 u0, v0, u1, v1;
 
-    TObjFish::set_global_param(self->param);
+    set_current_texture_list((GinjaTextureList *)(self->param));
     set_texture_num(self->rect->tex);
     u0 = 0.01f;
     u1 = 0.99f;
@@ -244,7 +245,7 @@ void draw_line_list(Lines_801E341C *l, s32 n, u32 flags) {
 void reset_line_width(void) { current_line_width = 12; }
 
 void set_line_width(int a0) { current_line_width = a0; }
-void TWindowCtrlMain::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
+void ColorLineList::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
     s32 i;
     u32 x;
     u32 *p;
@@ -252,7 +253,7 @@ void TWindowCtrlMain::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
         ((TObjCMHairMenu *)this)->draw_tri_fan_2d(n, flags, scale);
         return;
     }
-    p = ((Ctrl_801E352C *)this)->data;
+    p = colors;
     for (i = 0; i < n; i++) {
         x = *p;
         *p = (x << 8) | (x >> 24);
@@ -260,7 +261,7 @@ void TWindowCtrlMain::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
     }
     ((TObjCMHairMenu *)this)->draw_tri_fan_2d(n, flags, scale);
     {
-    u32 *q = ((Ctrl_801E352C *)this)->data;
+    u32 *q = colors;
     u32 y;
     for (i = 0; i < n; i++) {
         y = *q;
@@ -353,11 +354,11 @@ void TObjPlayer::draw_tri_fan_3d(s32 n, u32 flags) {
     TObjPlayer__sub_803E2248();
 }
 
-// Reads one Ninja chunk (NJCM, NJTL, NMDM, ...) at file + *offset into dst (or a fresh
-// allocation), stores its type, then applies the POF0 pointer-offset list that follows.
-s32 *TLobby__sub_801E38A0(s32 file, s32 *offset, s32 *type, s32 *dst, s32 *size_out) {
+void DCFlushRange(void *, u32);
+void TLobby__sub_801E3CF0(u32 *);
+
+s32 *TLobby__sub_801E38A0(s32 arg0, s32 *arg1, s32 *arg2, s32 *buf, s32 *arg4) {
     u8 *p;
-    s32 *buf;
     s32 pos;
     s32 tag;
     u32 size;
@@ -368,85 +369,81 @@ s32 *TLobby__sub_801E38A0(s32 file, s32 *offset, s32 *type, s32 *dst, s32 *size_
     s32 off;
 
     pos = 0;
-    p = (u8 *)(file + *offset);
+    p = (u8 *)(arg0 + *arg1);
     ((TLobby *)(&tag))->move_data(p, 4);
     TLobby__sub_801E3CF0((u32 *)&tag);
     ((TLobby *)(&size))->move_data(p + 4, 4);
     TLobby__sub_801E3CF0(&size);
     p += 8;
-    *offset += 8;
+    *arg1 += 8;
     tag = TLobby::bswap32_value(tag);
     switch (tag) {
     case 0x4E4A494E:
-        *type = 0x4E4A494E;
+        *arg2 = 0x4E4A494E;
         break;
     case 0x4E4A434D:
     case 0x474A434D:
-        *type = 0x4E4A434D;
+        *arg2 = 0x4E4A434D;
         break;
     case 0x474A424D:
-        *type = 0x4E4A424D;
+        *arg2 = 0x4E4A424D;
         break;
     case 0x4E4A544C:
     case 0x474A544C:
-        *type = 0x4E4A544C;
+        *arg2 = 0x4E4A544C;
         break;
     case 0x4E4A4C49:
-        *type = 0x4E4A4C49;
+        *arg2 = 0x4E4A4C49;
         break;
     case 0x4E4A4341:
-        *type = 0x4E4A4341;
+        *arg2 = 0x4E4A4341;
         break;
     case 0x4E4D444D:
     case 0x474D444D:
-        *type = 0x4E4D444D;
+        *arg2 = 0x4E4D444D;
         break;
     case 0x474C494D:
-        *type = 0x4E4C494D;
+        *arg2 = 0x4E4C494D;
         break;
     case 0x4743414D:
-        *type = 0x4E43414D;
+        *arg2 = 0x4E43414D;
         break;
     case 0x4E53534D:
     case 0x4753534D:
-        *type = 0x4E53534D;
+        *arg2 = 0x4E53534D;
         break;
     default:
         goto bad;
     }
-    if (dst == 0) {
-        buf = (s32 *)TQuestVmDownLoadServer::alloc(size);
-    } else {
-        buf = dst;
-    }
+    buf = (buf == 0) ? (s32 *)((TQuestVmDownLoadServer *)size)->alloc() : buf;
     if (buf == 0) {
         return 0;
     }
-    if (size_out != 0) {
-        *size_out = size;
+    if (arg4 != 0) {
+        *arg4 = size;
     }
     ((TLobby *)buf)->move_data(p, size);
     DCFlushRange(buf, size);
     p += size;
-    *offset += size;
+    *arg1 += size;
     goto next;
 bad:
-    *type = 0x2A2A2A2A;
+    *arg2 = 0x2A2A2A2A;
     return 0;
 next:
     ((TLobby *)(&tag))->move_data(p, 4);
     TLobby__sub_801E3CF0((u32 *)&tag);
-    *offset += 4;
+    *arg1 += 4;
     tag = TLobby::bswap32_value(tag);
     if (tag == 0x504F4630) {
         ((TLobby *)(&size))->move_data(p + 4, 4);
         TLobby__sub_801E3CF0(&size);
         p += 8;
-        *offset += 4;
+        *arg1 += 4;
         while (size != 0) {
             ((TLobby *)(&b0))->move_data(p, 1);
             p++;
-            *offset += 1;
+            *arg1 += 1;
             size--;
             switch (b0 & 0xC0) {
             case 0:
@@ -458,7 +455,7 @@ next:
                 ((TLobby *)(&b1))->move_data(p, 1);
                 p++;
                 size--;
-                *offset += 1;
+                *arg1 += 1;
                 off = ((b0 << 8) & 0x3F00) | b1;
                 break;
             case 0xC0:
@@ -469,7 +466,7 @@ next:
                 ((TLobby *)(&b3))->move_data(p + 2, 1);
                 p += 3;
                 size--;
-                *offset += 3;
+                *arg1 += 3;
                 off = (((b0 << 24) & 0x3F000000) | (b1 << 16) | (b2 << 8)) | b3;
                 break;
             default:
@@ -510,7 +507,6 @@ extern RecoveredGlobal_801E3E24_TKeyBoardControl__data_80506270 TKeyBoardControl
 s32 TKeyBoardControl__sub_801E3E24(s32 arg0, s32 arg1, s32 arg2);
 s32 GXSetViewport(f32, f32, f32, f32, f32, f32);
 s32 GXSetZMode(s32, s32, s32);
-extern s32 (*chunk_model_node_callback)(void *);
 void TKeyBoardControl__sub_8000F7FC(void);
 void compose_motion_node_matrix(void *arg0);
 
@@ -526,8 +522,8 @@ void TObjPlayer::render_tree(void *arg0) {
     do {
         push_matrix();
         compose_motion_node_matrix(var_r31);
-        if (((s32 (*)(void *)) chunk_model_node_callback) != NULL) {
-            chunk_model_node_callback(var_r31);
+        if (chunk_model_node_callback != NULL) {
+            chunk_model_node_callback((NJS_OBJECT *)var_r31);
         }
         if ((u32) *(u32 *)((s8 *)var_r31 + 0x2C) != 0U) {
             TObjPlayer::render_tree((void *)(*(void **)((s8 *)var_r31 + 0x2C)));

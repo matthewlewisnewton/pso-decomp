@@ -1,3 +1,4 @@
+#include "pso/protocol/ItemDropPacket.h"
 #include "types.h"
 #include "pso/item/TItemData.h"
 #include "pso/protocol/protocol_types.h"
@@ -75,6 +76,7 @@ s32 test_flags_any(void *, s32);
 void TLobby__sub_801041D8(void);
 extern u16 *floor_item_next_sort_keys;
 extern s32 lbl_805D5440;
+void debug_print__6TLobbyFle(const char *, ...);
 void *memcpy(void *, const void *, u32);
 extern char lbl_8043E048[];
 void spawn_dropped_item_from_msg(void *, s32);
@@ -163,7 +165,7 @@ void TLobby::apply_sync_item_state() {
         p = floor_item_row_table[j];
         for (n = 0; n != count; n++, p++) {
             TLobby::copy_floor_item_entry((TLobbyFloorItemEntry *)p, (TLobbyFloorItemEntry *)&((Save_80103890 *)this)->items[k++]);
-            ((TLobby *)p)->bswap_item();
+            bswap_item__6TLobbyFv(p);
             ((TItemData *)((u8 *)p + 0x10))->decode_from_network();
         }
     }
@@ -202,7 +204,7 @@ s32 TLobby::write_sync_item_state() {
         for (n = 0; n != count; n++, p++, k++) {
             TLobby::copy_floor_item_entry((TLobbyFloorItemEntry *)d, (TLobbyFloorItemEntry *)p);
             ((TItemData *)((u8 *)d + 0x10))->encode_for_network();
-            ((TLobby *)d)->bswap_item();
+            bswap_item__6TLobbyFv(d);
             d++;
         }
     }
@@ -286,7 +288,7 @@ s32 remove_item_condition(s32 floor, s32 item_id) {
         }
         return 0;
     }
-    TLobby::debug_print(lbl_8043E048);
+    debug_print__6TLobbyFle(lbl_8043E048);
     return 0;
 }
 FloorItemEntry *find_item_condition(s32 floor, s32 item_id) {
@@ -321,7 +323,7 @@ FloorItemEntry *find_item_condition(s32 floor, s32 item_id) {
         }
         return NULL;
     }
-    TLobby::debug_print(lbl_8043E048);
+    debug_print__6TLobbyFle(lbl_8043E048);
     return NULL;
 }
 s32 insert_item_condition(FloorItem *item) {

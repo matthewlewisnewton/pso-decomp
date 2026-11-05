@@ -2,9 +2,9 @@
 #define PSO_MISC_TWINDOWKEYBOARDHARD_H
 
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
-struct TWindowKeyBoardHard : public TWindowBase {
+struct TWindowKeyBoardHard : public TUnk_804CE018 {
     virtual ~TWindowKeyBoardHard();
     void draw_status_text(void *);
     void update_modifier_flags();
@@ -17,7 +17,6 @@ struct TWindowKeyBoardHard : public TWindowBase {
     u16 lookup_key_char(u8);
     int sub_80260438();
     int sub_8026042C();
-    u8 _pad1C[0x44];
     u32 m_60;
     u32 m_64;
     u32 m_68;

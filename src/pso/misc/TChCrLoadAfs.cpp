@@ -1,4 +1,5 @@
 #include "pso/math/FloatRounding.h"
+#include "pso/system/GinjaTextureInput.h"
 #include "types.h"
 #include "pso/misc/TChCrLoadAfs.h"
 #include "pso/object/TObject_80019A50.h"
@@ -89,7 +90,7 @@ struct Ent_8028BE00 { u8 pad[0xC]; };
 
 struct List_8028BE00 { Ent_8028BE00 *ents; };
 
-struct Rect_8028BE00 { u8 pad[0x24]; };
+typedef GinjaTextureInput Rect_8028BE00;
 
 struct Ld_8028BE00 {
     u8 pad0[0x1C];
@@ -112,6 +113,7 @@ extern "C" {
 extern Te_8028BFA4 player_class_texture_archive_table[];
 f32 TLobby__sub_8028C50C(f32);
 s32 strcmp(const char *, const char *);
+extern const f32 lbl_805DD920;
 void set_texture_name(void *, void *, s32, s32);
 s32 load_texture_list(void *);
 void *__ct__12TChCrLoadAfsFP7TObjectPvPv(void *arg0, void *arg1, void *arg2, void *arg3);
@@ -130,7 +132,7 @@ void TChCrLoadAfs::start_download() {
             return;
         }
         count = TLobby__sub_803CC53C((u8 *)(*(u32 *)((s8 *)this + 0x1C)));
-        temp_r3_3 = (s32)TQuestVmDownLoadServer::alloc(count << 0xB);
+        temp_r3_3 = ((TQuestVmDownLoadServer *)(count << 0xB))->alloc();
         *(u32 *)((s8 *)this + 0x28) = temp_r3_3;
         if (temp_r3_3 == 0U) {
             *(s32 *)((s8 *)this + 0x2C) = 3;
@@ -221,7 +223,7 @@ s32 find_player_texture_name_ordinal(u8 *object) {
     s32 r;
     name = *(char **)(**(u8 ***)((s8 *)object + 0x30) + *(s32 *)((s8 *)object + 0x5C) * 0xC);
     count = (&player_class_texture_archive_table[*(s32 *)((s8 *)object + 0x70)].id)[1];
-    l2 = TLobby__sub_8028C50C(2.0f);
+    l2 = TLobby__sub_8028C50C(lbl_805DD920);
     steps = (s32)ceil_to_float(TLobby__sub_8028C50C(count) / l2) + 1;
     mid = (count + 1) >> 1;
     step = (mid + 1) >> 1;
@@ -289,7 +291,7 @@ void TChCrLoadAfsTextureReq::update_loading(void *) {
         return;
     }
     for (i = 0; i < arg0->f58; i++) {
-        ((TObjPlayer *)(&arg0->rects[i]))->set_render_rect(arg0->bufs[i], 0, 0, 0);
+        arg0->rects[i].configure((void *)arg0->bufs[i], 0, 0, 0);
         set_texture_name(&arg0->f30->ents[i], &arg0->rects[i], 0, 0x40000000);
     }
     if (load_texture_list(arg0->f30) != -1) {
@@ -309,7 +311,7 @@ void TChCrLoadAfsTextureReq::start_read(void *) {
         arg0->f20 = 0;
         arg0->f24 = 0;
         n = TLobby__sub_803CC53C((u8 *)arg0->f60);
-        buf = ((void *)TQuestVmDownLoadServer::alloc(n << 11));
+        buf = ((void *)((TQuestVmDownLoadServer *)(n << 11))->alloc());
         arg0->bufs[arg0->f5c] = buf;
         if (buf != NULL) {
             TLobby::read_checked_align((u32)arg0->f60, (s32)n, (u32)arg0->bufs[arg0->f5c]);
