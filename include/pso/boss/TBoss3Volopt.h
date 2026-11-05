@@ -109,7 +109,6 @@ struct TBoss3Volopt : public TObjEnemyCustom {
     s32 get_part_group(s32 index);
     u16 get_part_id(s32 index);
     u16 find_attack_target();
-    s32 get_field_3e0();
 
     // Defined in other units; most are helpers of other classes filed under
     // TBoss3Volopt.

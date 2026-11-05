@@ -33,6 +33,7 @@
 #include "pso/object/TObjVoloptCage.h"
 #include "pso/object/TObjVoloptPillar.h"
 #include "pso/object/TObjVoloptShutter.h"
+#include "pso/map/FloorArea.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TUnk_804B6C24.h"
 #include "pso/system/BmlResource.h"
@@ -375,8 +376,10 @@ void VoloptPhase2Message::swap() {
     }
 }
 
-s32 TBoss3Volopt::get_field_3e0() {
-    return m_3e0;
+typedef char TObjPlayer_current_area_offset[offsetof(TObjPlayer, current_area) == 0x3E0 ? 1 : -1];
+
+s32 TObjPlayer::get_current_area() {
+    return current_area;
 }
 
 void TObjEnemy::register_by_id() {
@@ -563,7 +566,7 @@ void TBoss3Volopt::move_to_arena(s32 phase2) {
             for (i = 0; i < registered_player_count; i++) {
                 player = TObjPlayer::get_player_data(i);
                 if (player != NULL && TObjRoomId__sub_801A1DB8(get_entity_id(player)) == 0 &&
-                    ((TBoss3Volopt *)player)->get_field_3e0() == 0xD) {
+                    player->get_current_area() == AREA_VOL_OPT) {
                     send_position(player, &volopt_phase2_player_positions[i], volopt_phase2_player_angles[i]);
                 }
             }

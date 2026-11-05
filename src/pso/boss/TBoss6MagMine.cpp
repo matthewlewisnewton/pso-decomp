@@ -106,7 +106,6 @@ void submit_cursor_candidate(void *, int);
 void add_radar_scaled_marker(void *, int, int, int, f32);
 void vt2__13TBoss6MagMineFv(u8 *arg0);
 void vt1__13TBoss6MagMineFv(u8 *arg0);
-s32 is_locally_controlled__10TObjPlayerFPv(void *);
 int get_player_data__10TObjPlayerFi(int a0);
 
 f32 vector_length(Vec_80368C14 *);
@@ -232,7 +231,7 @@ void explode__13TBoss6MagMineFPv(Mine_80368C14 *o) {
     s32 i;
     for (i = 0; i < n; i++) {
         u8 *pl = (u8 *)get_player_data__10TObjPlayerFi(i);
-        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0 && is_locally_controlled__10TObjPlayerFPv(pl) != 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0 && TObjPlayer::is_locally_controlled(pl) != 0) {
             Vec_80368C14 v = o->pos;
             subtract_vector(&v, pl + 0x38);
             v.y = 0.0f;

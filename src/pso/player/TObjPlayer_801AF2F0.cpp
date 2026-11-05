@@ -195,7 +195,7 @@ s32 set_params__10TObjPlayerFPvPvPviPv(void *, void *, void *, int, int);
 u8 * get_slot_value__10TObjPlayerFPvi(void *, s32);
 s32 get_class_stat_entry__10TObjPlayerFPUc(void *);
 s32 preview_equip_stats__10TObjPlayerFv(u8 *arg0, s16 *out, u8 *incoming);
-u8 is_volopt_phase_final__10TObjPlayerFv(void);
+u8 is_volopt_phase_final__10TObjPlayerFv(TObjPlayer *player);
 s32 advance_item_id_counter(int);
 s32 obj_isState2_324__9TObjCharaFv();
 s32 get_entity_id(void * a0);
@@ -1997,7 +1997,6 @@ int test_flags_any(void*, int);
 s8 get_chr_select_state__23TAdSinglePlyChrSelectGCFv();
 s32 *get_shared_text_buffer(void);
 s32 fn_8002AE08(u16);
-s32 get_field_3e0__12TBoss3VoloptFv();
 s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
 void obj_clear_flag30_20000(void *arg0);
 s32 check_player_flag1__6TLobbyFv(s32);
@@ -2092,7 +2091,7 @@ void handle_6x1B_enable_pk_mode_for_player(void *arg0);
 void* draw_font__10TObjPlayerFPv(void* p);
 void TObjPlayer__sub_801B18C0(s32 arg0, u32 arg1);
 void unequip_by_field326__10TObjPlayerFPv(void *arg0);
-void reset_volopt_state__10TObjPlayerFv(void);
+void reset_volopt_state__10TObjPlayerFv(TObjPlayer *player);
 void foreach_player__10TObjPlayerFv(s32 (*arg0)(u32));
 void for_each_player_slot__10TObjPlayerFv(void (*arg0)(void *));
 s32 handle_set_visible__10TObjPlayerFi(s32 arg0);
@@ -2975,8 +2974,8 @@ u8 is_key_machine_ready__10TObjPlayerFv(void) {
     return (u8) var_r0;
 }
 
-u8 is_volopt_phase_final__10TObjPlayerFv(void) {
-    return (u8) (get_field_3e0__12TBoss3VoloptFv() == 0xF);
+u8 is_volopt_phase_final__10TObjPlayerFv(TObjPlayer *player) {
+    return (u8) (player->get_current_area() == AREA_LOBBY);
 }
 
 u8 is_lobby_floor_15__15TFontSmallLobbyFv(void) {
@@ -2996,7 +2995,7 @@ void TObjPlayer::sync_current_floor() {
 }
 
 void TObjPlayer::sync_current_area() {
-    *(s32 *)((s8 *)((u8 *)this) + 0x3E0) = TObjPlayer::get_key_machine_global_state(this);
+    this->current_area = TObjPlayer::get_key_machine_global_state(this);
 }
 
 int TObjPlayer::get_key_machine_global_state(void* p) { return ((int)get_current_floor_area()); }
@@ -3743,7 +3742,10 @@ void TObjPlayer::play_phase_transition_sound(s32 arg0) {
     draw_chunk_object((void *)arg0);
 }
 
-void reset_volopt_state__10TObjPlayerFv(void) { ((int (*)(void))get_field_3e0__12TBoss3VoloptFv)(); is_item_area_enabled(); }
+void reset_volopt_state__10TObjPlayerFv(TObjPlayer *player) {
+    player->get_current_area();
+    is_item_area_enabled();
+}
 
 void foreach_player__10TObjPlayerFv(s32 (*arg0)(u32)) {
     s32 (*var_r27)(u32);
@@ -5118,7 +5120,7 @@ void fill_player_record__10TObjPlayerFPvPv(Src_801B4CE4 *src, Dst_801B4CE4 *dst)
     ((TObjPlayer *)(dst->f78))->copy_player_record_header(src->f830);
     TObjPlayer__sub_801BEEE0(dst->f94, src->f858);
     TObjPlayer__sub_801BEEAC(dst->f98, src->f730);
-    dst->fAC = ((s32 (*)(void *))get_field_3e0__12TBoss3VoloptFv)(src);
+    dst->fAC = ((TObjPlayer *)src)->get_current_area();
     dst->f488 = ((TObjPlayer *)src)->get_floor();
     dst->fB0 = src->f334;
     dst->f64 = ((s32 (*)(void *))TObjPlayer__sub_801AFD8C)(src);

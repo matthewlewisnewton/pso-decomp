@@ -11,6 +11,7 @@ void set_constant_material(const NJS_ARGB *color);
 #include "pso/system/NinjaUtil.h"
 #include "pso/system/PadRumble.h"
 #include "pso/system/vector.h"
+#include "pso/map/FloorArea.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/boss/TBoss6PlotFalzState.h"
@@ -139,7 +140,6 @@ extern "C" {
 void *get_player_data__10TObjPlayerFi(s32 i);
 u16 get_entity_id(void *);
 u8 *get_player_by_client_id(s32);
-s32 get_field_3e0__12TBoss3VoloptFv(void *p);
 extern TBoss6Type1 *TBoss6PlotFalz__type1_instance;
 extern u32 TBoss6PlotFalz__type2_instance;
 int queue_destruction__7TObjectFv(void *);
@@ -371,7 +371,7 @@ struct Stack_802AB14C {
 
 extern "C" {
 s32 TBoss6PlotFalz::is_state_1f(TObjPlayer *player) {
-    if ((player == NULL) || (get_field_3e0__12TBoss3VoloptFv(player) != 0x1F)) {
+    if ((player == NULL) || (player->get_current_area() != AREA_OLGA_FLOW)) {
         return 0;
     }
     return 1;
@@ -777,7 +777,6 @@ extern "C" {
 void TBoss4DarkFalz__sub_8004B4F0(void *arg0p, void *arg1p);
 u32 create__11TBoss6Type2Fl(void *, int);
 s32 TBoss6Type1__sub_802ABDEC(s32 seed);
-s32 is_locally_controlled__10TObjPlayerFPv(s32);
 f32 xyz_distance(const void *, const void *);
 void TBoss6PlotFalz::release_object() {
     if (this->m_384 != 0) {
@@ -1096,7 +1095,7 @@ void TBoss6PlotFalz::refresh_players_equipment() {
     for (i = 0; i < registered_player_count; i++) {
         p = get_player_data__10TObjPlayerFi(i);
         if (p != 0) {
-            if (get_field_3e0__12TBoss3VoloptFv(p) == 0x1f) {
+            if (((TObjPlayer *)p)->get_current_area() == AREA_OLGA_FLOW) {
                 ((TObjPlayer *)p)->refresh_equipment_slot();
             }
         }
@@ -1124,7 +1123,7 @@ void place_players_in_warp_circle(void) {
     }
     for (i = 0; i < registered_player_count; i++) {
         void *p = get_player_data__10TObjPlayerFi(i);
-        if (p != NULL && get_field_3e0__12TBoss3VoloptFv(p) == 0x1F) {
+        if (p != NULL && ((TObjPlayer *)p)->get_current_area() == AREA_OLGA_FLOW) {
             Vec pos = lbl_804705A8;
             pos.x += 350.0f * sin_table_lookup(ang);
             pos.z += 350.0f * cos_table_lookup(ang);
@@ -1132,7 +1131,7 @@ void place_players_in_warp_circle(void) {
             ((TBoss4DarkFalz *)p)->save_position();
             *(s32 *)(get_hit_data__14TBoss4DarkFalzFv(p) + 4) = ang + 0x8000;
             ((TObjPlayer *)p)->refresh_equipment_slot();
-            if (is_locally_controlled__10TObjPlayerFPv((s32)p) != 0) {
+            if (TObjPlayer::is_locally_controlled(p) != 0) {
                 reset_cameras_to_actor(p, 0);
             }
             ang += step;

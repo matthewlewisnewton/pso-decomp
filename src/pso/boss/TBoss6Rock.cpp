@@ -9,6 +9,7 @@
 #include "pso/system/vector.h"
 #include "pso/boss/TUnk_804F1280.h"
 #include "pso/boss/TBoss6Rock.h"
+#include "pso/object/TObjMapCsn.h"
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
@@ -137,7 +138,6 @@ s32 push_matrix();
 s32 post_translate_matrix(void *);
 extern int TBoss6Rock__data_805D6EF0;
 extern int TBoss6Rock__data_805D6EF4;
-u32 create__10TObjMapCsnFPv(void *, void *, f32);
 extern u8 lbl_80479280[];
 int TBoss6Rock__sub_80353A04(void);
 int TBoss6Rock__sub_80353A0C(void);
@@ -399,7 +399,7 @@ void TBoss6Rock::sub_80353F5C() {
     blk.v3.z = e->fc;
     blk.v3.x = e->fc;
     blk.v3.y = e->f8;
-    this->m_b0 = create__10TObjMapCsnFPv(&blk, e, e->fc);
+    this->m_b0 = (u32)TObjMapCsn::create(&blk);
   }
 }
 
