@@ -94,7 +94,7 @@ void TUnk_804C2298::run_task() {
             Pair_801A4D30 a = lbl_80446958[0];
             Pair_801A4D30 b = lbl_80446960[0];
             self->window = update_window_mode_from_progress__6TLobbyFPv(&a, &b);
-            ((TLobby *)(self->window))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0xC), 1);
+            ((TLobby *)(self->window))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0xC), 1);
             self->state = 7;
         }
         break;

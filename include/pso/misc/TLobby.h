@@ -381,7 +381,7 @@ struct TLobby : public TObject {
     static int get_global_63e0();
     static void load_player_data();
     static void send_card_window_state();
-    int send_and_handle(int a1, int a2);
+    int send_and_handle(const void *text, int flags);
     static TWindowMessage *create_message_window(const void *layout, const void *size, u32 kind, s32 slot);
     static TWindowMessage *set_window_mode_4(const void *layout, const void *size, s32 mode);
     void update_window_mode_from_progress(void *arg1);

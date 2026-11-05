@@ -90,7 +90,7 @@ extern u32 TQuestListOnline__quest_list_buffer;
 int memset(void*, void*, void*);
 extern unsigned char TQuestListOnline__dat_download_state[];
 extern unsigned char TQuestListOnline__bin_download_state[];
-extern s32 TQuestListOnline__selected_quest_info;
+extern u8 *TQuestListOnline__selected_quest_info;
 extern int TQuestListOnline__bin_download_complete;
 extern int TQuestListOnline__dat_download_complete;
 extern int TQuestListOnline__download_window;
@@ -141,7 +141,7 @@ void TQuestListOnline::begin_file_download() {
         p.a = lbl_8044BCC0[0].a;
         p.b = lbl_8044BCC0[0].b;
         TQuestListOnline__download_window = update_window_mode_from_progress__6TLobbyFPv(get_window_layout_position(0x2C), &p);
-        ((TLobby *)TQuestListOnline__download_window)->send_and_handle(get_guild_text(0x14), 1);
+        ((TLobby *)TQuestListOnline__download_window)->send_and_handle(((const void *(*)(s32))get_guild_text)(0x14), 1);
         ((TWindowMessage *)TQuestListOnline__download_window)->complete_reveal();
         ((TLobby *)TQuestListOnline__download_window)->set_field_1c(lbl_805DC664);
         main_task.begin_frame();
@@ -203,7 +203,7 @@ void TQuestListOnline::begin_file_download() {
 void TQuestListOnline::receive_quest_info(void *arg0) {
     Pair_80215380 p;
     if ((u32) TQuestListOnline__selected_quest_info != 0U) {
-        memcpy(TQuestListOnline__selected_quest_info, arg0, 0x124);
+        ((void (*)(void *, void *, int))memcpy)(TQuestListOnline__selected_quest_info, arg0, 0x124);
         TQuestListOnline__sub_8013ACF4(2);
         if (THunterGuildSeqOffline__sub_80212074() != 0) {
             ((TWindowCtrl *)local_client_id)->suppress_slot();
@@ -275,7 +275,7 @@ void TQuestListOnline::release_resources() {
 
 void TQuestListOnline::init_download_buffers() {
     (*(s32 *)&TQuestListOnline__quest_list_buffer) = ((TQuestVmDownLoadServer *)((void *)0x11D4))->alloc();
-    TQuestListOnline__selected_quest_info = ((TQuestVmDownLoadServer *)((void *)0x124))->alloc();
+    (*(s32 *)&TQuestListOnline__selected_quest_info) = ((TQuestVmDownLoadServer *)((void *)0x124))->alloc();
     (*(s32 *)&TQuestListOnline__download_window) = 0;
     (*(s32 *)&TQuestListOnline__quest_info_window) = 0;
     (*(s32 *)&TQuestListOnline__download_barrier_window) = 0;

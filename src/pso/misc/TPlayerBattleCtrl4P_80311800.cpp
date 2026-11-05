@@ -16,7 +16,7 @@ struct RecoveredGlobal_80311A64_TPlayerBattleCtrl4P__data_80542E90 {
     u8 remaining[0x1E];
 };
 
-struct Ids_80311C2C { s32 a; s32 b; s32 c; s32 d; };
+struct Ids_80311C2C { const void *a; s32 b; s32 c; s32 d; };
 
 struct O_80311C2C { u8 pad[0x20]; void *w0; void *w1; u8 pad2[0x294 - 0x28]; Ids_80311C2C *ids; };
 

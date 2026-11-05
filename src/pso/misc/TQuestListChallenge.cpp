@@ -268,12 +268,12 @@ block_9:
     }
 }
 
-#define SUB_80222C28(a, b) ((s32 (*)(s32, s32))get_quest_list_text)(a, b)
+#define SUB_80222C28(a, b) ((const void *(*)(s32, s32))get_quest_list_text)(a, b)
 void update_selection__19TQuestListChallengeFv(QLC_80288DA4 *self) {
     Pair_80288DA4 p;
     s32 sel;
-    s32 text;
-    s32 text2;
+    const void *text;
+    const void *text2;
     if (self->obj->m8() == 0) {
         return;
     }

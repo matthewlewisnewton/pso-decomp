@@ -193,8 +193,8 @@ void TWindowMessage::update_scroll() {
 
 #pragma push
 #pragma fp_contract on
-s32 get_shared_text_buffer(void);
-s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 arg3);
+const void *get_shared_text_buffer(void);
+s32 append_message_window_line(TWindowMessage *self, const void *text, s32 flags, s32 arg3);
 
 #pragma readonly_strings on
 s32 TWindowOptionCtrl::add_label_value_line(const char *arg1, const char *arg2, u32 arg3) {
@@ -237,8 +237,8 @@ struct Entry_80269A0C {
 extern "C" {
 void measure_message_text_width(void *, f32);
 
-s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 arg3);
-s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 arg3) {
+s32 append_message_window_line(TWindowMessage *self, const void *text, s32 flags, s32 arg3);
+s32 append_message_window_line(TWindowMessage *self, const void *text, s32 flags, s32 arg3) {
     Entry_80269A0C *e;
     TWindowMessageLine *rec;
     f32 y;
@@ -270,9 +270,9 @@ s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 ar
     e->fC = self->unk_80;
     e->f24 = arg3;
     if (flags & 2) {
-        set_text_entry_string((u8 *)e, text, 0x20);
+        set_text_entry_string((u8 *)e, (u32)text, 0x20);
     } else {
-        set_text_entry_string((u8 *)e, text, 0);
+        set_text_entry_string((u8 *)e, (u32)text, 0);
     }
     if (flags & 0x20) {
         e->flags |= 1;
@@ -356,7 +356,7 @@ TWindowMessage *TWindowMessage__ct(TWindowMessageInit *arg0, const void *arg1, u
 TWindowMessage *__nw__7TObjectFUl(s32);
 extern RecoveredGlobal_80269CA4_lbl_804D071C message_window_settings;
 
-int TLobby::send_and_handle(int a1, int a2) { return append_message_window_line((TWindowMessage *)this, a1, a2, -1); }
+int TLobby::send_and_handle(const void *text, int flags) { return append_message_window_line((TWindowMessage *)this, text, flags, -1); }
 
 typedef char RecoveredGlobal_80269CA4_lbl_804D071C_size[sizeof(RecoveredGlobal_80269CA4_lbl_804D071C) == 0x14 ? 1 : -1];
 

@@ -176,10 +176,10 @@ u8 *TWindowGetComCard__ct(TWindowGetComCard *window_get_com_card) {
         text_builder_append();
         TWindowSubStatusDisp::get_message_10(0x36);
         text_builder_append();
-        ((TLobby *)(window_get_com_card->m_1c))->send_and_handle((int) (get_shared_text_buffer()), 2);
+        ((TLobby *)(window_get_com_card->m_1c))->send_and_handle(((const void *(*)())get_shared_text_buffer)(), 2);
         window_get_com_card->m_28 = 0;
     } else {
-        ((TLobby *)(window_get_com_card->m_1c))->send_and_handle((int) (TWindowSubStatusDisp::get_message_10(0x37)), 0);
+        ((TLobby *)(window_get_com_card->m_1c))->send_and_handle(TWindowSubStatusDisp::get_message_10(0x37), 0);
         window_get_com_card->m_28 = 0x384;
     }
     if (get_player_by_client_id(local_client_id) != 0U) {

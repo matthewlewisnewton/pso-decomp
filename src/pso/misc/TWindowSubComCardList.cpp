@@ -245,7 +245,7 @@ void TUnk_804D1160::update_customize_help_text(void *ev_arg) {
     case 7:
         break;
     }
-    ((TLobby *)(self->lobby))->send_and_handle(get_shared_text_buffer(), 0x82);
+    ((TLobby *)(self->lobby))->send_and_handle(((const void *(*)())get_shared_text_buffer)(), 0x82);
 }
 
 void TUnk_804D1160::render() {  }

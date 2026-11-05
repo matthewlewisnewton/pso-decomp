@@ -80,7 +80,7 @@ struct T_80217B30 { u8 pad[0x38]; s32 f38; };
 extern "C" {
 s32 get_entity_id(int);
 int set_field_20__15TShopWindowBaseFl(void*, int);
-s32 send_and_handle__6TLobbyFii(void *, void *, int);
+s32 send_and_handle__6TLobbyFPCvi(void *, void *, int);
 s32 calc_list_content_extent(u32);
 extern Stack_80217EC4 lbl_8044BED4[];
 extern u8 *TQuestListOnline__quest_list_buffer;
@@ -96,7 +96,7 @@ f32 get_scale__15TShopWindowBaseFv(void *);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(u32);
 }
 extern RecoveredGlobal_80217EC4_lbl_8044BEDC lbl_8044BEDC;
-extern u32 TQuestListOnline__selected_quest_info;
+extern u8 *TQuestListOnline__selected_quest_info;
 extern const f32 lbl_805DC6A4;
 extern const f32 lbl_805DC6A8;
 
@@ -224,7 +224,7 @@ void TQuestListOnline::handle_list_selection() {
     if (list_window != 0) {
         s32 sel = select_cursor_entry__22TWindowSubShortCutListFv(list_window);
         if (description_window != 0 && sel != selected_index) {
-            send_and_handle__6TLobbyFii(description_window, QL_80217C1C->ents[sel].name, 0x80);
+            send_and_handle__6TLobbyFPCvi(description_window, QL_80217C1C->ents[sel].name, 0x80);
         }
         if (info_window != 0 && sel != selected_index) {
             TWindow__close((u8 *)info_window);
@@ -340,9 +340,9 @@ void TQuestListOnline::build_list_window() {
         if (description_window == 0U) {
             Stack_80217EC4 sp8 = lbl_8044BED4[0];
             description_window = TLobby::set_window_mode_4(get_window_layout_position(0x2D), &sp8, 1);
-            send_and_handle__6TLobbyFii(description_window, TQuestListOnline__quest_list_buffer + 0x2C, 0x80);
+            send_and_handle__6TLobbyFPCvi(description_window, TQuestListOnline__quest_list_buffer + 0x2C, 0x80);
         } else {
-            send_and_handle__6TLobbyFii(description_window, TQuestListOnline__quest_list_buffer + 0x2C, 0x80);
+            send_and_handle__6TLobbyFPCvi(description_window, TQuestListOnline__quest_list_buffer + 0x2C, 0x80);
         }
         selected_index = 0;
         set_field_20__15TShopWindowBaseFl(this, 3);

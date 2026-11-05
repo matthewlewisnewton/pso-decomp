@@ -2108,7 +2108,7 @@ extern RecoveredGlobal_801FF200_lbl_80513910 chr_select_serial_seeds;
 extern u32 card_character_save_buffer;
 extern s32 card_load_sequence_state;
 s32 encrypt_save_and_write__23TAdSinglePlyChrSelectGCFv(void);
-s32 get_localized_text_entry(s32, s32);
+const void *get_localized_text_entry(s32, s32);
 s8 func_801A5E54__Fv(void);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 void render_frame__23TAdSinglePlyChrSelectGCFv(void);

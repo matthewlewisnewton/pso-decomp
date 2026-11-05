@@ -89,7 +89,7 @@ s32 calc_text_width();
 s32 text_builder_append();
 s32 set_field_1c__6TLobbyFf(void *);
 s32 TWindowSubEquip__sub_80263AF8(s32, s32);
-s32 send_and_handle__6TLobbyFii(s32, s32 *, s32);
+s32 send_and_handle__6TLobbyFPCvi(s32, s32 *, s32);
 const void *get_window_layout_position(s32);
 void *get_player_by_client_id(s32);
 s32 is_player_input_active(s32);
@@ -137,10 +137,10 @@ void TWindowSubMag::update_mag_help() {
     if (temp_r3 != (s8) this->m_1d) {
         this->m_1d = (u8) temp_r3;
         if (temp_r3 == -1) {
-            send_and_handle__6TLobbyFii(this->m_4c, (s32 *)lbl_805DD648, 0x80);
+            send_and_handle__6TLobbyFPCvi(this->m_4c, (s32 *)lbl_805DD648, 0x80);
             return;
         }
-        send_and_handle__6TLobbyFii(this->m_4c, get_help_text_string(temp_r3 + 0x27), 0x80);
+        send_and_handle__6TLobbyFPCvi(this->m_4c, get_help_text_string(temp_r3 + 0x27), 0x80);
     }
 }
 
@@ -222,7 +222,7 @@ void *TWindowSubMag::create_learned_blast_toast() {
     win = TLobby::create_message_window(&pos, &size, 1, this->m_28);
     TWindowSubEquip__sub_80263AF8(*(s32 *)&this->m_30, 6);
     set_field_1c__6TLobbyFf(win);
-    send_and_handle__6TLobbyFii((s32)win, (s32 *)get_shared_text_buffer(), 2);
+    send_and_handle__6TLobbyFPCvi((s32)win, (s32 *)get_shared_text_buffer(), 2);
     ((TUnk_804CDFE8 *)win)->set_position_xy(scale, scale);
     return win;
 }

@@ -96,8 +96,9 @@ These need cross-file retypes beyond this branch:
   `create_card_list__17TWindowSubComCardFPCvlll`. `open_yes_no_prompt`'s
   layout argument is `const void *` and is passed to
   `create_titled_window_menu` with no cast. Those units stay
-  function-100%. Callers that do not include the header still declare the
-  unmangled prompt as taking `s32`. The other lookup files still declare
+  function-100%. The shortcut, short-mail and `text_802B1AB4` local
+  prototypes of the unmangled prompt now take `const void *` for the
+  layout. The other lookup files still declare
   `get_window_layout_position` as returning `s32`.
 - **The window constructor chain.** `create_message_window` now returns
   the `TWindowMessage *` from `__nw__7TObjectFUl` and `TWindowMessage__ct`
@@ -120,8 +121,17 @@ These need cross-file retypes beyond this branch:
   `TWindowMainMenu__ct`, so the body no longer writes `(s8 *)window + 0x18`.
   The function stays the unmangled C symbol. A C++ constructor of the
   virtual hierarchy still inserts the base call the DOL does not have.
-- **`TLobby::send_and_handle(int, int)`.** It has 127 call sites, so a text
-  pointer is still passed as an integer.
+- **`TLobby::send_and_handle(const void *, int)`.** The member is
+  `send_and_handle__6TLobbyFPCvi`. Text that already has a pointer type is
+  passed with no cast. Getters that are still declared to return `s32`
+  (`get_localized_text_entry`, `TQuestVmDownLoadServer__sub_8006EF6C`, and
+  the other text helpers) are viewed as returning `const void *` at the
+  call, either by that function-pointer type or by a local prototype whose
+  return type is `const void *`. A function-pointer cast emits `bctrl` in
+  `begin_file_download` and `save_character_to_card`; those two use the
+  local-prototype form and stay a direct `bl`. `append_message_window_line`
+  still passes the pointer to `set_text_entry_string` with `(u32)`, which
+  does not emit. The whole DOL stays byte-identical.
 - **`create_yes_no_window` locals now take `const void *`.** The eight
   `s32` prototypes in `THunterGuildSeqOffline`,
   `THunterGuildSeqOffline_80213788`, `TMedicalCenterSequence`,
@@ -133,7 +143,7 @@ These need cross-file retypes beyond this branch:
   `new TWindowHelpItem` / `new TWindowInputNumber` would call
   `__nw__15TWindowHelpItemFUl` / `__nw__18TWindowInputNumberFUl`; the
   originals call `__nw__7TObjectFUl`, so those factories stay C calls.
-- **Four local `TWindow__close` prototypes now take `void *`, matching the header.** The calls still cast `u32` window fields through `u8 *`. `TWindowChatSymbol_802486A8`,
+- **Four local `TWindow__close` prototypes now take `void *`, matching the header.** The calls still cast `u32` window fields through `u8 *`. Retyping `TWindowSubComCard::m_60` through `m_84` to `void *` was reverted: the matched close sequence is `lwz r3, off(r31); cmplwi r3, 0; beq; bl TWindow__close`, and a pointer compare against `NULL` is `cmpwi`. `TWindowChatSymbol_802486A8`,
   `TWindowSubComCard_80271E7C`, `TWindowSubStatusDisp_8026F6DC` and
   `TWindowSubTradeMain_80330A84` declare other functions from
   `TWindowSubComCard_80244774.h` with different signatures:

@@ -207,7 +207,7 @@ void TObjChallenge4PRetry::open_message_window() {
     }
     *(void **)((s8 *)this + 0x30) = TLobby::set_window_mode_4(get_window_layout_position(0x39), message_window_position, 1);
     if ((u32) *(u32 *)((s8 *)this + 0x30) != 0U) {
-        ((TLobby *)(*(u32 *)((s8 *)this + 0x30)))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x5E), 1);
+        ((TLobby *)(*(u32 *)((s8 *)this + 0x30)))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x5E), 1);
     }
 }
 

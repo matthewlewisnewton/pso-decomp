@@ -39,22 +39,22 @@ s32 TAdMultiSaveGC__sub_802FF170(void) {
 }
 s32 TAdMultiSaveGC__sub_802FF1F4(void) {
     s32 r = update_window_mode_from_progress__6TLobbyFPv(TAdMultiSaveGC__data_80474D70, TAdMultiSaveGC__data_80474D78);
-    ((TLobby *)r)->send_and_handle(get_localized_text_entry(0x20, 2), 1);
+    ((TLobby *)r)->send_and_handle(((const void *(*)(s32, s32))get_localized_text_entry)(0x20, 2), 1);
     return r;
 }
 s32 TAdMultiSaveGC__sub_802FF254(void) {
     s32 r = update_window_mode_from_progress__6TLobbyFPv(TAdMultiSaveGC__data_80474D70, TAdMultiSaveGC__data_80474D78);
-    ((TLobby *)r)->send_and_handle(get_localized_text_entry(0x20, 3), 1);
+    ((TLobby *)r)->send_and_handle(((const void *(*)(s32, s32))get_localized_text_entry)(0x20, 3), 1);
     return r;
 }
 s32 TAdMultiSaveGC__sub_802FF2B4(void) {
     s32 r = update_window_mode_from_progress__6TLobbyFPv(TAdMultiSaveGC__data_80474D70, TAdMultiSaveGC__data_80474D78);
-    ((TLobby *)r)->send_and_handle(get_localized_text_entry(0x20, 3), 1);
+    ((TLobby *)r)->send_and_handle(((const void *(*)(s32, s32))get_localized_text_entry)(0x20, 3), 1);
     return r;
 }
 s32 TAdMultiSaveGC__sub_802FF314(void) {
     s32 r = update_window_mode_from_progress__6TLobbyFPv(TAdMultiSaveGC__data_80474D70, TAdMultiSaveGC__data_80474D78);
-    ((TLobby *)r)->send_and_handle(get_localized_text_entry(0x20, 0), 1);
+    ((TLobby *)r)->send_and_handle(((const void *(*)(s32, s32))get_localized_text_entry)(0x20, 0), 1);
     return r;
 }
 void run_task__14TAdMultiSaveGCFv(TAdMultiSaveGC *ad_multi_save_gc) {

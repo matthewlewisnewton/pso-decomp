@@ -33,7 +33,7 @@ extern const f32 lbl_805D90B8;
 extern const f32 lbl_805D90BC;
 extern const f32 lbl_805D90C0;
 extern const f32 lbl_805D90C4;
-s32 send_and_handle__6TLobbyFii(u32, void *, s32);
+s32 send_and_handle__6TLobbyFPCvi(u32, void *, s32);
 void *get_window_layout_position(s32);
 s32 strncpy(void *, s32, s32);
 extern u8 TObjBagWarnWin__message_window_size[];
@@ -105,7 +105,7 @@ void TObjBagWarnWin::open_message_window() {
         }
         strncpy(arg0 + 0x20, TQuestVmDownLoadServer__sub_8006EF6C(0x59), 0x7F);
         *(s8 *)((s8 *)arg0 + 0x9F) = 0;
-        send_and_handle__6TLobbyFii(*(u32 *)((s8 *)arg0 + 0x1C), arg0 + 0x20, 0);
+        send_and_handle__6TLobbyFPCvi(*(u32 *)((s8 *)arg0 + 0x1C), arg0 + 0x20, 0);
     }
 }
 TObjBagWarnWin::~TObjBagWarnWin() {}

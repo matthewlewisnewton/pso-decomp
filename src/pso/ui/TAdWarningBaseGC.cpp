@@ -17,7 +17,7 @@ struct V_8032D214 : B_8032D214 {
 };
 
 extern "C" {
-void send_and_handle__6TLobbyFii(s32, void *, int);
+void send_and_handle__6TLobbyFPCvi(s32, void *, int);
 s32 update_window_mode_from_progress__6TLobbyFPv(void *, void *);
 extern u8 lbl_80477334[];
 extern u8 lbl_8047733C[];
@@ -47,7 +47,7 @@ void TAdWarningBaseGC::vfunc_9() {
 s32 TAdWarningBaseGC::sub_8032D214() {
     V_8032D214 *arg0 = (V_8032D214 *)this;
     s32 r = update_window_mode_from_progress__6TLobbyFPv(lbl_80477334, lbl_8047733C);
-    send_and_handle__6TLobbyFii(r, arg0->m5(), 3);
+    send_and_handle__6TLobbyFPCvi(r, arg0->m5(), 3);
     return r;
 }
 

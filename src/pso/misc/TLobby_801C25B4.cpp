@@ -621,7 +621,7 @@ typedef struct Lobby_801C3AF4 {
     s32 state;
     s32 next;
     u8 pad28[0x40 - 0x28];
-    s32 *msgs;
+    const void **msgs;
     u8 pad44[0x4C - 0x44];
     void *window;
     u8 pad50[0x58 - 0x50];
@@ -1542,7 +1542,7 @@ void update_duel_result__6TLobbyFPv(u8 *arg0) {
                 if (*(void **)((s8 *)arg0 + 0x4C) == NULL) {
                     *(void **)((s8 *)arg0 + 0x4C) = TLobby::set_window_mode_4(get_window_layout_position(0x53), lbl_80446FA4, 1);
                     if (*(void **)((s8 *)arg0 + 0x4C) != NULL) {
-                        ((TLobby *)(*(void **)((s8 *)arg0 + 0x4C)))->send_and_handle(*(s32 *)((s8 *)(*(s32 **)((s8 *)arg0 + 0x40)) + 0), 0x80);
+                        ((TLobby *)(*(void **)((s8 *)arg0 + 0x4C)))->send_and_handle(*(const void **)((s8 *)(*(s32 **)((s8 *)arg0 + 0x40)) + 0), 0x80);
                     }
                 }
                 if (*(void **)((s8 *)arg0 + 0x50) == NULL) {
@@ -1697,7 +1697,7 @@ void update_battle_intro__6TLobbyFPv(Lobby_801C49B8 *self) {
         self->state = 1;
         break;
     case 1:
-        ((TLobby *)(self->window))->send_and_handle((s32)self->msg, 0x80);
+        ((TLobby *)(self->window))->send_and_handle(self->msg, 0x80);
         self->timer = 0xF0;
         self->state = 2;
         break;
@@ -1728,7 +1728,7 @@ void update_battle_intro__6TLobbyFPv(Lobby_801C49B8 *self) {
             }
         }
         sprintf(battle_intro_message_buffer, *(char **)(self->cfg + 0x18), names[0].s, names[1].s, names[2].s, names[3].s);
-        ((TLobby *)(self->window))->send_and_handle((s32)battle_intro_message_buffer, 0x80);
+        ((TLobby *)(self->window))->send_and_handle(battle_intro_message_buffer, 0x80);
         self->timer = 0xF0;
         self->state = 4;
         break;

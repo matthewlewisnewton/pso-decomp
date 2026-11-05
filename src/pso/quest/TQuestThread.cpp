@@ -178,7 +178,7 @@ TObjItemOKWindow::TObjItemOKWindow(TObject *parent) : TObject(parent) {
     pos.y = 80.0f;
     m_64 = update_window_mode_from_progress__6TLobbyFPv(get_window_layout_position(0x55), &pos);
     if (m_64 != NULL) {
-        ((TLobby *)m_64)->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x48), 0x81);
+        ((TLobby *)m_64)->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x48), 0x81);
     }
 }
 
@@ -231,7 +231,7 @@ TObjItemNameSelect::TObjItemNameSelect(TObject *parent) : TObject(parent) {
     pos.y = 80.0f;
     m_20 = update_window_mode_from_progress__6TLobbyFPv(get_window_layout_position(0x55), &pos);
     if (m_20 != NULL) {
-        ((TLobby *)m_20)->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x46), 0x81);
+        ((TLobby *)m_20)->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x46), 0x81);
     }
 }
 

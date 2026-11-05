@@ -10,7 +10,7 @@ s32 TWindowCtrlMain__sub_8024CE58();
 char* strncpy(char*, const char*, int);
 char* strcat(char*, const char*);
 void* get_window_layout_position(s32);
-void send_and_handle__6TLobbyFii(void *, void*, s32);
+void send_and_handle__6TLobbyFPCvi(void *, void*, s32);
 extern s32 local_client_id;
 extern const char TObjDeadListWin_class_name[] = "TObjDeadListWin";
 const char* TObjDeadListWin_name = TObjDeadListWin_class_name;
@@ -34,7 +34,7 @@ void TObjDeadListWin::build_dead_list_window() {
             }
             i += 1;
         } while (i < 4);
-        send_and_handle__6TLobbyFii(m_window_handle, text, 2);
+        send_and_handle__6TLobbyFPCvi(m_window_handle, text, 2);
     }
 }
 

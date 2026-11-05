@@ -192,7 +192,7 @@ s32 strcmp(const char *, const char *);
 s32 is_downloadable_new_entry__12TQuestListVMFPvPv(QL_802193F0 *q, Ent_802193F0 *e);
 int get_entity_id(int);
 f32 get_scale__15TShopWindowBaseFv(void *);
-void send_and_handle__6TLobbyFii(void *, void *, int);
+void send_and_handle__6TLobbyFPCvi(void *, void *, int);
 extern const f32 lbl_805DC6B8;
 extern const f32 lbl_805DC6BC;
 s32 TAdPlayerLoadGC__sub_801E1538(Dl_80218E94 *, s32);
@@ -449,7 +449,7 @@ void TQuestListVM::open_confirm_window() {
         QuestListWindowSize sp8 = lbl_8044BF48;
         u16 id = get_entity_id(*(s32 *)&this->m_24);
         this->m_2380 = TLobby::create_message_window(get_window_layout_position(0x2E), &sp8, 1, id);
-        this->m_2380->send_and_handle((s32)(TQuestListVM__decrypted_quest_buffer + 0xB4), 1);
+        this->m_2380->send_and_handle(TQuestListVM__decrypted_quest_buffer + 0xB4, 1);
         this->m_2380->set_field_1c(lbl_805DC6B8);
         if (TCameraCtrl::get_camera_id() >= 2) {
             this->m_2380->set_position_xy(lbl_805DC6BC, lbl_805DC6BC);
@@ -556,7 +556,7 @@ void TQuestListVM::update_lobby_selection(void *arg0_) {
     if (arg0->f2374 != NULL && arg0->f237C != 0) {
         sel = select_cursor_entry__22TWindowSubShortCutListFv((u32)arg0->f2374);
         if (sel != arg0->f236C) {
-            send_and_handle__6TLobbyFii(arg0->f237C, arg0->recs[sel].name, 0x80);
+            send_and_handle__6TLobbyFPCvi(arg0->f237C, arg0->recs[sel].name, 0x80);
             arg0->f236C = sel;
             if (arg0->f2380 != NULL) {
                 TWindow__close((u8 *)arg0->f2380);
@@ -610,7 +610,7 @@ s32 TQuestListVM::build_download_list(void *p) {
         if (*(void **)(arg0 + 0x237C) == NULL) {
             QuestListWindowSize sp8 = lbl_8044BF40;
             *(void **)(arg0 + 0x237C) = TLobby::set_window_mode_4(get_window_layout_position(0x2D), &sp8, 1);
-            send_and_handle__6TLobbyFii(*(void **)(arg0 + 0x237C), arg0 + 0x55, 0x80);
+            send_and_handle__6TLobbyFPCvi(*(void **)(arg0 + 0x237C), arg0 + 0x55, 0x80);
             *(s32 *)(arg0 + 0x236C) = 0;
         }
     }

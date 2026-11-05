@@ -1911,7 +1911,7 @@ int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int 
 s32 check_room_seq_4__16TAdChrSelASlotGCFl(s32 a, s32 b);
 u32 update_window_mode_from_progress__6TLobbyFPv(s32, Pair_801F1838 *);
 }
-int dispatch_message_window_text(void *w, int text, int flags);
+int dispatch_message_window_text(void *w, const void *text, int flags);
 s32 create_quest_message_window_at(s32 arg0, s32 arg1);
 extern "C" {
 u32 create_quest_message_window();
@@ -2052,7 +2052,7 @@ void qst_op_scroll_text() {
     s32 field90 = qst_args[4];
     f32 timer = *(f32 *)&qst_args[5];
     s32 msg = qst_args[6];
-    s32 arg = qst_args[7];
+    const void *arg = *(const void **)&qst_args[7];
     void *win;
 
     if (qst_message_window != NULL) {
@@ -2146,7 +2146,7 @@ void qst_op_chat_box() {
     s32 cols = qst_args[2];
     s32 rows = qst_args[3];
     s32 field90 = qst_args[4];
-    s32 arg = qst_args[5];
+    const void *arg = *(const void **)&qst_args[5];
 
     if (qst_message_window != NULL) {
         TWindow__close((u8 *)qst_message_window);
@@ -6027,7 +6027,7 @@ void qst_op_mesend(void) {
 }
 
 void qst_op_add_msg(void) {
-    s32 x = qst_args[0];
+    const void *x = *(const void **)&qst_args[0];
     if (qst_message_window != NULL) {
         dispatch_message_window_text(qst_message_window, x, 3);
         qst_suspend_reason = QST_WAIT_MESSAGE;
@@ -6038,7 +6038,7 @@ void qst_op_add_msg(void) {
         qst_suspend_reason = QST_WAIT_MESSAGE_QB;
         return;
     }
-    qst_args[1] = x;
+    *(const void **)&qst_args[1] = x;
     qst_args[0] = qst_message_speaker;
     qst_op_message();
 }
@@ -6053,7 +6053,7 @@ void qst_op_close_msg_qb(void) {
 }
 
 void qst_op_disp_msg_qb(void) {
-    s32 t = qst_args[0];
+    const void *t = *(const void **)&qst_args[0];
     Pair_801F1838 pr = lbl_80449A38[0];
     if (qst_message_window_qb != 0) {
         TWindow__close((u8 *)qst_message_window_qb);
@@ -6066,9 +6066,9 @@ void qst_op_disp_msg_qb(void) {
 }
 
 void qst_op_window_msg(void) {
-    s32 text;
+    const void *text;
     u32 temp_r3;
-    text = qst_args[0];
+    text = *(const void **)&qst_args[0];
     if (qst_message_window != NULL) {
         TWindow__close((u8 *)qst_message_window);
     }

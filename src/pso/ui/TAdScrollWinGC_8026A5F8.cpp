@@ -27,7 +27,7 @@ void TAdScrollWinGC::advance_scroll(f32 v) { *(f32*)((char*)this + 0x94) += v; }
 
 void fn_8026A61C(void* p, f32 v) { *(f32*)((char*)p + 0x94) += v; }
 
-void TWindowMessageLog::append_line(s32 arg1) {
+void TWindowMessageLog::append_line(const void *arg1) {
     ((TLobby *)((u8 *)this))->send_and_handle(arg1, 0x502);
     update_scroll_position();
 }

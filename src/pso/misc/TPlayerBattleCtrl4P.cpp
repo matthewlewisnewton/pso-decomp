@@ -37,7 +37,7 @@ extern "C" {
 s64 OSGetTime(void);
 s32 is_battle_decided__19TPlayerBattleCtrl4PFv(void *);
 void *get_player_by_client_id(s32 i);
-s32 send_and_handle__6TLobbyFii(s32, void *, int);
+s32 send_and_handle__6TLobbyFPCvi(s32, void *, int);
 int sprintf(char *, const char *, ...);
 char *strncpy(char *, const char *, u32);
 extern Cnt_8031224C lbl_80475B68[];
@@ -193,7 +193,7 @@ void TPlayerBattleCtrl4P::show_team_matchup() {
         }
     }
     sprintf(team_matchup_message_buffer, ((O_8031224C *)this)->strs->fmt, names[0], names[1], names[2], names[3]);
-    send_and_handle__6TLobbyFii(((O_8031224C *)this)->w0, team_matchup_message_buffer, 0x80);
+    send_and_handle__6TLobbyFPCvi(((O_8031224C *)this)->w0, team_matchup_message_buffer, 0x80);
     ((O_8031224C *)this)->timer = 0xF0;
     set_score((s32)((void *)4));
 }

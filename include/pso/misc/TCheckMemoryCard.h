@@ -24,12 +24,12 @@ struct TCheckMemoryCard : public TObject {
     u32 m_4c;
     virtual void render();
     virtual void run_task();
-    void create_message_and_menu(u32 message, s32 selection, u32 first, u32 second);
+    void create_message_and_menu(const void *message, s32 selection, u32 first, u32 second);
     void close_windows();
     void set_state(s32 state);
     void reset();
     void update_card_display(s32 kind, s32 menu, s32 first, s32 second);
-    void init(u32 message, s32 selection, u32 first, u32 second);
+    void init(const void *message, s32 selection, u32 first, u32 second);
     void close_and_update_display();
     void update_display_state();
     void fn_8033C19C();

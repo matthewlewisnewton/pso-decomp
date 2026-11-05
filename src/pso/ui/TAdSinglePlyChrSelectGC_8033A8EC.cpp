@@ -295,7 +295,7 @@ void TAdSinglePlyChrSelectGC::handle_load_result() {
         decrypt_char_data__23TAdSinglePlyChrSelectGCFPv(obj);
         if (init_and_register__23TAdSinglePlyChrSelectGCFi(obj) == 0) {
             lbl_805D6D90 &= ~1;
-            ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x38)))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x6D), 1);
+            ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x38)))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x6D), 1);
             *(s32 *)((s8 *)((u8 *)this) + 0x2C) = 0xB;
             init_warp();
             if (obj != 0U) {
@@ -306,7 +306,7 @@ void TAdSinglePlyChrSelectGC::handle_load_result() {
             if (r != 7) {
                 *(s32 *)((s8 *)((u8 *)this) + 0x2C) = 0xC;
                 lbl_805D6D90 &= ~1;
-                ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x38)))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0xA), 1);
+                ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x38)))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0xA), 1);
                 if (r == 6) {
                     init_warp();
                 } else {
@@ -396,9 +396,9 @@ void TAdSinglePlyChrSelectGC::start_check_memory_card() {
     *(s32 *)((s8 *)((u8 *)this) + 0x2C) = 1;
 }
 void TAdSinglePlyChrSelectGC::set_char_slots(s32 arg1, s32 arg2) {
-    ((TLobby *)(*(s32 *)((s8 *)this + 0x38)))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(arg1), 1);
+    ((TLobby *)(*(s32 *)((s8 *)this + 0x38)))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(arg1), 1);
     if (arg2 != -1) {
-        ((TLobby *)(*(s32 *)((s8 *)this + 0x38)))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(arg2), 8);
+        ((TLobby *)(*(s32 *)((s8 *)this + 0x38)))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(arg2), 8);
     }
 }
 int TAdSinglePlyChrSelectGC__sub_8033B244(void* p) { return request_queued_main_phase(p); }

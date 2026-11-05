@@ -15,13 +15,13 @@ extern const RecoveredGlobal_8034CC68_lbl_80478C3C lbl_80478C3C;
 extern "C" {
 
 s32 TKeyBoardControl__ct(s32, s32, s32, s32, s32, s32);
-s32 get_info_board_ptr__6TLobbyFv();
+u8 *get_info_board_ptr__6TLobbyFv();
 void *get_window_layout_position(s32);
 s32 __nw__7TObjectFUl(s32);
 s32 get_keyboard_field_6c__15TWindowMakeTeamFv(s32, s32);
 
 void TWindowSubInformationBoard::set_page(s32 arg1) {
-    s32 temp_r3;
+    u8 *temp_r3;
 
     if (((s32) this->m_24 != arg1) && (arg1 != -1)) {
         temp_r3 = get_info_board_ptr__6TLobbyFv();
@@ -38,7 +38,7 @@ typedef char RecoveredGlobal_8034CC68_lbl_80478C3C_size[sizeof(RecoveredGlobal_8
 void TWindowSubInformationBoard::set_message_index(s32 arg1) {
     if ((s32) this->m_24 != arg1) {
         this->m_24 = arg1;
-        ((TLobby *)(this->m_34))->send_and_handle((s32)(TWindowSubStatusDisp::get_message_10((int) (*(s32 *)((s8 *)&lbl_80478C3C.value + (arg1 * 4))))), 0x80);
+        ((TLobby *)(this->m_34))->send_and_handle(TWindowSubStatusDisp::get_message_10(*(s32 *)((s8 *)&lbl_80478C3C.value + (arg1 * 4))), 0x80);
     }
 }
 

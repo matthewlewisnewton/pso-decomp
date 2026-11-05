@@ -21,7 +21,7 @@ s32 get_character_save_record(u32 arg0);
 s32 is_active__19THunterGuildWarningFv();
 s32 is_level_capped__23TAdSinglePlyChrSelectGCFv();
 s32 get_entity_id();
-s32 send_and_handle__6TLobbyFii(u32, void *, s32);
+s32 send_and_handle__6TLobbyFPCvi(u32, void *, s32);
 s32 strncpy(void *, s32, s32);
 
 s32 TObjBagWarnWin4P::check_can_open(void * _w0) {
@@ -85,7 +85,7 @@ void TObjBagWarnWin4P::create_window() {
     if ((u32) *(u32 *)((s8 *)arg0 + 0x1C) != 0U) {
         strncpy(arg0 + 0x20, TQuestVmDownLoadServer__sub_8006EF6C(0x69), 0x7F);
         *(s8 *)((s8 *)arg0 + 0x9F) = 0;
-        send_and_handle__6TLobbyFii(*(u32 *)((s8 *)arg0 + 0x1C), arg0 + 0x20, 0);
+        send_and_handle__6TLobbyFPCvi(*(u32 *)((s8 *)arg0 + 0x1C), arg0 + 0x20, 0);
     }
 }
 

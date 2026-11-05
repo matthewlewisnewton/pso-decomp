@@ -43,7 +43,7 @@ char *TQuestVmDownLoadServer__sub_8006EF6C(s32);
 s32 get_layout_id__20TWindowSubStatusDispFv(void *);
 s32 fn_80071A9C(void *, void *, void *);
 u8 *get_player_by_client_id(s32);
-void send_and_handle__6TLobbyFii(void *, char *, s32);
+void send_and_handle__6TLobbyFPCvi(void *, char *, s32);
 void *get_window_layout_position(s32);
 int sprintf(char *, const char *, ...);
 char *strcat(char *, const char *);
@@ -145,7 +145,7 @@ void TLobby::open_challenge_window(s32 arg0, s32 arg1) {
         ((TUnk_804CDFE8 *)((*(Chal_8007369C *)&challenge_mode_state).window))->set_position_xy(lbl_805D9138, lbl_805D9138);
     }
     TAdSinglePlyChrSelectGC::format_challenge_stage_times(arg0, arg1);
-    send_and_handle__6TLobbyFii((*(Chal_8007369C *)&challenge_mode_state).window, challenge_progress_text_buffer, 0);
+    send_and_handle__6TLobbyFPCvi((*(Chal_8007369C *)&challenge_mode_state).window, challenge_progress_text_buffer, 0);
 }
 
 void TLobby::open_challenge_progress_window(void *arg1) {
@@ -181,7 +181,7 @@ void TLobby::open_challenge_progress_window(void *arg1) {
             strcat(challenge_progress_text_buffer, lbl_805D912C);
         }
     }
-    send_and_handle__6TLobbyFii(CHAL->window, challenge_progress_text_buffer, 0);
+    send_and_handle__6TLobbyFPCvi(CHAL->window, challenge_progress_text_buffer, 0);
 }
 
 void TLobby__sub_800738F4(void *lobby, s32 arg1) {

@@ -229,7 +229,7 @@ void *TAdEp3Exist__ct(Ep3_8036F354 *o) {
     }
     r = (u32)__nw__7TObjectFUl(0x54);
     if (r != 0) {
-        r = (u32)TAdScrollWinGC__ct((TAdScrollWinGC *)((void *)r), (void *)o, 3, (s32)(get_localized_text_entry(0x2C, 9)));
+        r = (u32)TAdScrollWinGC__ct((TAdScrollWinGC *)((void *)r), (void *)o, 3, ((const void *(*)(s32, s32))get_localized_text_entry)(0x2C, 9));
     }
     o->win1C = r;
     r = (u32)__nw__7TObjectFUl(0x708);

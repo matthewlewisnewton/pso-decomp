@@ -188,8 +188,8 @@ block_9:
 
 void TQuestListOffline::update_list_navigation() {
     s32 sel;
-    s32 msg;
-    s32 msg2;
+    const void *msg;
+    const void *msg2;
     Pos_80216CF8 pos;
     if (((Win_80216CF8 *)this)->f34->m8() == 0) {
         return;
@@ -197,7 +197,7 @@ void TQuestListOffline::update_list_navigation() {
     if (((Win_80216CF8 *)this)->f3C != NULL && ((Win_80216CF8 *)this)->f40 != NULL) {
         sel = select_cursor_entry__22TWindowSubShortCutListFv((s32)((Win_80216CF8 *)this)->f3C);
         if (sel != ((Win_80216CF8 *)this)->f50) {
-            msg = get_quest_list_text(0xE, ((Win_80216CF8 *)this)->f54[sel].f8);
+            msg = ((const void *(*)(s32, s32))get_quest_list_text)(0xE, ((Win_80216CF8 *)this)->f54[sel].f8);
             ((TLobby *)(((Win_80216CF8 *)this)->f40))->send_and_handle(msg, 0x80);
             ((Win_80216CF8 *)this)->f50 = sel;
             if (((Win_80216CF8 *)this)->f44 != NULL) {
@@ -220,7 +220,7 @@ void TQuestListOffline::update_list_navigation() {
             pos.a = lbl_8044BEA4[0].a;
             pos.b = lbl_8044BEA4[0].b;
             m_message = TLobby::create_message_window(get_window_layout_position(0x2E), &pos, 1, get_entity_id(m_entity));
-            msg2 = get_quest_list_text(0xE, ((Win_80216CF8 *)this)->f54[sel].fC);
+            msg2 = ((const void *(*)(s32, s32))get_quest_list_text)(0xE, ((Win_80216CF8 *)this)->f54[sel].fC);
             ((TLobby *)(((Win_80216CF8 *)this)->f44))->send_and_handle(msg2, 0x80);
             ((TLobby *)(((Win_80216CF8 *)this)->f44))->set_field_1c(lbl_805DC694);
             if (TCameraCtrl::get_camera_id() >= 2) {
@@ -286,10 +286,10 @@ void TQuestListOffline::init_quest_list_window() {
             pos.a = lbl_8044BE9C[0].a;
             pos.b = lbl_8044BE9C[0].b;
             self->f40 = TLobby::set_window_mode_4(get_window_layout_position(0x2D), &pos, 1);
-            ((TLobby *)(self->f40))->send_and_handle(get_quest_list_text(0xE, self->f54->f8), 0x80);
+            ((TLobby *)(self->f40))->send_and_handle(((const void *(*)(s32, s32))get_quest_list_text)(0xE, self->f54->f8), 0x80);
             self->f50 = 0;
         } else {
-            ((TLobby *)(self->f40))->send_and_handle(get_quest_list_text(0xE, self->f54->f8), 0x80);
+            ((TLobby *)(self->f40))->send_and_handle(((const void *(*)(s32, s32))get_quest_list_text)(0xE, self->f54->f8), 0x80);
             self->f50 = 0;
         }
     }

@@ -21,7 +21,7 @@ s32 TWindowShortListCtrl__check_controller_button(void*, int);
 s32 TWindow__close(void *);
 s32 TWindowCtrlMain__sub_8024CE58();
 void *get_window_layout_position(s32);
-s32 send_and_handle__6TLobbyFii(void *, void*, s32);
+s32 send_and_handle__6TLobbyFPCvi(void *, void*, s32);
 extern ControllerInputStateResultWin controller_input_state;
 extern s32 current_lobby_id;
 extern TObject* tl_07;
@@ -144,7 +144,7 @@ void TObjResultWin::create_window() {
         if (TCameraCtrl::get_camera_id() == 4) {
             ((TUnk_804CDFE8 *)m_window)->set_position_xy(challenge_result_split_screen_position, challenge_result_split_screen_position);
         }
-        send_and_handle__6TLobbyFii(m_window, m_text, 0);
+        send_and_handle__6TLobbyFPCvi(m_window, m_text, 0);
         ((TLobby *)m_window)->set_field_1c(challenge_result_window_depth);
     }
 }

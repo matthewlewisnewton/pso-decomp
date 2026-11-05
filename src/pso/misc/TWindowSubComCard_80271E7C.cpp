@@ -179,7 +179,7 @@ extern u8 lbl_805DD4F8;
 void TWindowSubComCard::set_card_index(s32 arg1) {
     if ((s32) this->m_28 != arg1) {
         this->m_28 = arg1;
-        ((TLobby *)(this->m_6c))->send_and_handle(get_card_entry_data__17TWindowSubComCardFv(arg1), 0x82);
+        ((TLobby *)(this->m_6c))->send_and_handle(((const void *(*)(s32))get_card_entry_data__17TWindowSubComCardFv)(arg1), 0x82);
     }
 }
 typedef char RecoveredGlobal_8034CC68_lbl_80478C3C_size[sizeof(RecoveredGlobal_8034CC68_lbl_80478C3C) == 0xC ? 1 : -1];
@@ -201,14 +201,14 @@ void TWindowSubComCard::set_selected_card(s32 arg1) {
         text_builder_append((u8 *)(((void* (*)(int))TWindowSubComCard__sub_8027523C)(temp_r30)));
         text_builder_append(&lbl_805DD4F8);
         text_builder_append((u8 *)(((TWindowSubComCard *)temp_r30)->get_card_data_ptr()));
-        ((TLobby *)(*(s32 *)&this->m_6c))->send_and_handle(((s32 (*)(void))get_shared_text_buffer)(), 0x82);
+        ((TLobby *)(*(s32 *)&this->m_6c))->send_and_handle(((const void *(*)(void))get_shared_text_buffer)(), 0x82);
     }
 }
 
 void TWindowSubComCard::set_help_message(s32 arg1) {
     if ((s32) this->m_28 != arg1) {
         this->m_28 = arg1;
-        ((TLobby *)(this->m_6c))->send_and_handle((s32)((s32)(((s32)get_message_10__20TWindowSubStatusDispFl((void*)((int) (*(s32 *)((s8 *)&com_card_help_message_id_table.value + (arg1 * 4)))))))), 0x80);
+        ((TLobby *)(this->m_6c))->send_and_handle(((const void *(*)(s32))get_message_10__20TWindowSubStatusDispFl)(*(s32 *)((s8 *)&com_card_help_message_id_table.value + (arg1 * 4))), 0x80);
     }
 }
 

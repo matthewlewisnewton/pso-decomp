@@ -205,7 +205,7 @@ void TObjChallengeRetry::sub_80072BB0() {
     ((Obj_80072BB0 *)this)->f30 = TLobby::set_window_mode_4(get_window_layout_position(0x39), challenge_retry_window_pos, 1);
     if (((Obj_80072BB0 *)this)->f30 != 0) {
         ((TLobby *)(((Obj_80072BB0 *)this)->f30))->set_field_1c(70200.0f);
-        ((TLobby *)(((Obj_80072BB0 *)this)->f30))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x5E), 1);
+        ((TLobby *)(((Obj_80072BB0 *)this)->f30))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x5E), 1);
     }
 }
 

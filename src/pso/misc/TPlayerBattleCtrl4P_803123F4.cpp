@@ -19,7 +19,7 @@ extern "C" {
 void *get_window_layout_position(s32);
 extern const BattleIntroWindowSize lbl_80475B60;
 s32 lbl_805D6AB0;
-void send_and_handle__6TLobbyFii(void *, void *, int);
+void send_and_handle__6TLobbyFPCvi(void *, void *, int);
 void *destroy__19TPlayerBattleCtrl4PFs(void *arg0, s16 arg1);
 s32 __dl__7TObjectFPv(void *);
 s32 __dt__7TObjectFv(void *, s32);
@@ -57,7 +57,7 @@ void *lbl_804E7D4C[7] = {
 }
 void TPlayerBattleCtrl4P::show_intro_text() {
     if (this->intro_window != NULL) {
-        send_and_handle__6TLobbyFii(this->intro_window, (void *)((char *)((void *)this) + 56), 128);
+        send_and_handle__6TLobbyFPCvi(this->intro_window, (void *)((char *)((void *)this) + 56), 128);
     }
     this->frame_timer = 240;
     set_score(2);
