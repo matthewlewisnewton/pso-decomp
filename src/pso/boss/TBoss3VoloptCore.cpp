@@ -295,7 +295,7 @@ void TBoss3VoloptCore::update_charge_state() {
     s32 angles[3];
     f32 distance;
     TObjPlayer *player;
-    target = (u8 *)get_player_by_client_id(targetId);
+    target = get_player_by_client_id(targetId);
     switch (state) {
     case 0:
         m_388 &= ~0x10000;
@@ -311,7 +311,7 @@ void TBoss3VoloptCore::update_charge_state() {
         }
         break;
     case 1:
-        VecCopy(&movement_velocity, &((TObjPlayer *)target)->position);
+        VecCopy(&movement_velocity, &target->position);
         subtract_vector(&movement_velocity, &position);
         turn_toward_direction(0x800, &movement_velocity);
         if (--charge_timer <= 0) {
@@ -444,7 +444,7 @@ s32 TBoss3VoloptCore::check_target_collision() {
                     object->apply_knockback_from_attacker(this, 3.0f);
                     object->receive_physical_attack(this, 1.0f);
                 }
-                if ((u8 *)object == target) {
+                if ((TObjCollidable *)object == target) {
                     found = 1;
                 }
             }

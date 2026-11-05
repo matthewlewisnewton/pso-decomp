@@ -307,8 +307,8 @@ u8 *get_player_data__10TObjPlayerFi(s32);
 s32 obj_testFlags30__14TObjCollidableFUl(void *, int);
 s32 get_entity_id(void *);
 s32 get_current_floor();
-u8 *get_enemy_entity(u16);
-u8 *get_player_by_client_id(u16);
+TObjChara *get_enemy_entity(u16);
+TObjPlayer *get_player_by_client_id(u16);
 s32 subtract_vector(void *, void *);
 extern s32 lbl_8043B790[];
 extern s32 registered_player_count;
@@ -705,8 +705,8 @@ s32 TObjGrass::update_web_attack() {
     Vec_800BD10C v2;
     s32 ang[3];
     if (arg0->f338 < 0x1000) {
-        u8 *p = get_player_by_client_id(arg0->f338);
-        if (p != NULL && ((TObjPlayer *)p)->get_floor() == get_current_floor()) {
+        TObjPlayer *p = get_player_by_client_id(arg0->f338);
+        if (p != NULL && p->get_floor() == get_current_floor()) {
             arg0->target = (Tgt_800BD10C *)p;
         } else {
             arg0->target = NULL;
@@ -792,8 +792,8 @@ s32 TObjGrass::update_web_attack() {
 void TObjGrass::sub_800BD4D8() {
     Grass_800BD4D8 *o = (Grass_800BD4D8 *)this;
     if (o->f338 < 0x1000) {
-        u8 *p = get_player_by_client_id(o->f338);
-        if (p != NULL && ((TObjPlayer *)p)->get_floor() == get_current_floor()) {
+        TObjPlayer *p = get_player_by_client_id(o->f338);
+        if (p != NULL && p->get_floor() == get_current_floor()) {
             o->target = (Tgt_800BD4D8 *)p;
         } else {
             o->target = NULL;
@@ -987,7 +987,7 @@ void TObjGrass::sub_800BDD70() {
             *(s32 *)&this->actorFlags &= ~0x200000;
             *(s16 *)&this->timer = 0;
         } else {
-            VecCopy((Vec *)&sp8, (const Vec *)(this->target + 0x2FC));
+            VecCopy((Vec *)&sp8, &this->target->body_center_position);
             subtract_vector(&sp8, (u8 *)&this->body_center_position);
             ang = ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8), (Vec *)&sp8);
             apply_actor_gravity(arg0, 0, (0.0f));
@@ -1108,24 +1108,24 @@ f32 calc_xz_distance_sq(void *, void *, Vec_800BE1CC *);
 
 s32 TObjGrass::is_target_in_attack_range() {
     f32 dist;
-    u8 *t;
+    TObjChara *t;
     s32 ang;
     f32 r;
-    u8 *tgt;
+    TObjChara *tgt;
     s32 i;
     u16 kind;
     Vec_800BE1CC v;
 
     tgt = this->target;
-    if (tgt != NULL && T318 != 0 && !(*(s32 *)((s8 *)tgt + 0x30) & 0x02000800)) {
+    if (tgt != NULL && T318 != 0 && !(tgt->actorFlags & 0x02000800)) {
     if (obj_testFlags30__14TObjCollidableFUl(this, 0x2000) != 0) {
         BIND(2)
     }
     dist = calc_xz_distance_sq(this, this->target, &v);
     ang = angle_difference_abs(this->rotation.yaw, (s32)((10430.38043493439) * atan2_float(v.x, v.z)));
     t = this->target;
-    if (*(u8 **)((s8 *)t + 0xA4) != NULL) {
-        r = *(f32 *)((s8 *)(*(u8 **)((s8 *)t + 0xA4)) + 0xC);
+    if (t->bodies != NULL) {
+        r = t->bodies->radius;
     } else {
         r = (1e+01f);
     }
@@ -1449,7 +1449,7 @@ void TObjGrass::vfunc_28() {
     u8 *p;
     f32 best;
     f32 d;
-    u8 *q;
+    TObjPlayer *q;
     u16 tid;
     u8 *arg0 = (u8 *)this;
     if (((TObjGrass *)(arg0))->is_actor_cadence_frame(0x1E) != 0) {
@@ -1491,7 +1491,7 @@ void TObjGrass::vfunc_28() {
         if (tid < 0x1000U) {
             q = get_player_by_client_id(tid);
             if (q != NULL) {
-                if (((TObjPlayer *)q)->get_floor() == get_current_floor()) {
+                if (q->get_floor() == get_current_floor()) {
                     this->target = q;
                     ((TObjBase *)arg0)->obj_clearFlags30(0x04040000);
                     return;
@@ -1614,17 +1614,17 @@ void TObjGrass::run_task() {
     s16 temp_r0;
     s32 temp_r30;
     u16 temp_r3;
-    u8 *temp_r3_2;
-    u8 *temp_r4;
+    TObjPlayer *temp_r3_2;
+    TObjChara *temp_r4;
     if (check_demo_mode() == 1) {
         TObjGrass__sub_800BCA2C(arg0);
         return;
     }
     temp_r3 = this->targetId;
     if (temp_r3 < 0x1000U) {
-        temp_r3_2 = (u8 *)(get_player_by_client_id(temp_r3));
+        temp_r3_2 = get_player_by_client_id(temp_r3);
         if (temp_r3_2 != NULL) {
-            if (((TObjPlayer *)temp_r3_2)->get_floor() == get_current_floor()) {
+            if (temp_r3_2->get_floor() == get_current_floor()) {
                 this->target = temp_r3_2;
                 goto done;
             }
@@ -1672,7 +1672,7 @@ void TObjGrass::run_task() {
         }
     }
     temp_r4 = this->target;
-    if ((temp_r4 != NULL) && (*(s32 *)((s8 *)temp_r4 + 0x30) & 0x02000800)) {
+    if ((temp_r4 != NULL) && (temp_r4->actorFlags & 0x02000800)) {
         this->timer = 0;
         this->actorFlags = (s32) (this->actorFlags & 0xFFDFFFFF);
         this->target = NULL;

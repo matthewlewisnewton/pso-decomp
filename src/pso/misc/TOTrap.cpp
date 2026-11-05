@@ -45,11 +45,11 @@ void TOTrap::vfunc_82() {
     calc_attach_pos();
     refresh_collision_body_centers();
     if ((s32) this->set_params[0] < 0) {
-        u8 *p;
+        TObjChara *p;
         this->receive_physical_attack(this->target, 1.0f);
         p = this->target;
         if (p != NULL) {
-            u32 v = get_entity_id((TObjChara *)p);
+            u32 v = get_entity_id(p);
             if (v < 0x1000U) {
                 pl = get_player_by_client_id(v);
                 if (TObjPlayer::is_locally_controlled(pl) != 0 && ((TLobby *)pl)->check_player_flag1() != 0) {
@@ -67,9 +67,9 @@ void TOTrap::vfunc_81() {
     this->player = find_nearest_visible_player(this, 0, this->range);
     if (this->player != 0xFFFF) {
         pl = get_player_by_client_id(this->player);
-        this->target = (u8 *)pl;
+        this->target = pl;
         if (this->target != 0) {
-            if (horizontal_distance_squared(&((TObjChara *)this->target)->position, &position) < this->dist * this->dist) {
+            if (horizontal_distance_squared(&this->target->position, &position) < this->dist * this->dist) {
                 this->mode = 3;
                 if (TObjPlayer::is_locally_controlled(pl) != 0) {
                     send_6x2C_impose_hold(this->dist, pl, &position, this->set_params[0], 0);
@@ -93,9 +93,9 @@ void TOTrap::find_target_player() {
     calc_attach_pos();
     this->player = find_nearest_visible_player(this, 0, this->range);
     if (this->player != (u16)0xFFFF) {
-        this->target = (u8 *)get_player_by_client_id(this->player);
+        this->target = get_player_by_client_id(this->player);
         if (this->target != 0) {
-            if (horizontal_distance_squared(&((TObjChara *)this->target)->position, &position) < this->range * this->range) {
+            if (horizontal_distance_squared(&this->target->position, &position) < this->range * this->range) {
                 this->mode = 2;
             }
         } else {

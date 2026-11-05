@@ -365,9 +365,9 @@ void TOTrapAncient02::vfunc_81() {
         this->player = find_nearest_visible_player(this, 0, this->range);
         if (this->player != 0xFFFF) {
             p = get_player_by_client_id(this->player);
-            this->target = (u8 *)p;
+            this->target = p;
             if (this->target != NULL) {
-                d = horizontal_distance_squared(&((TObjChara *)this->target)->position, &this->position);
+                d = horizontal_distance_squared(&this->target->position, &this->position);
                 this->dist = this->range - TObjPlayer__sub_8017A1A4(p, 0);
                 if (d < this->dist * this->dist) {
                     if (this->player == local_client_id) {
@@ -425,7 +425,7 @@ void TOTrapAncient02::vfunc_82() {
             if (this->timer < 0) {
                 this->phase = 3;
                 this->timer = this->reset;
-                if (this->target != NULL && local_client_id == get_entity_id((TObjChara *)this->target)) {
+                if (this->target != NULL && local_client_id == get_entity_id(this->target)) {
                     p = get_player_by_client_id(local_client_id);
                     if (p != 0 && ((TLobby *)p)->check_player_flag1() != 0) {
                         TObjPlayer::send_code_45_1((s32)p);
@@ -588,9 +588,9 @@ void TOTrapAncient02R::find_target_player() {
     if (this->m_364 == -1 || is_current_floor_switch_set((u16)this->m_364) == 1) {
         this->player = find_nearest_visible_player(this, 0, this->range);
         if (this->player != 0xFFFF) {
-            this->target = (u8 *)get_player_by_client_id(this->player);
+            this->target = get_player_by_client_id(this->player);
             if (this->target != NULL) {
-                if (horizontal_distance_squared(&((TObjChara *)this->target)->position, &position) < this->range * this->range) {
+                if (horizontal_distance_squared(&this->target->position, &position) < this->range * this->range) {
                     this->mode = 2;
                 }
             } else {
@@ -628,17 +628,17 @@ void TOTrapAncient02R::vfunc_81() {
         player = find_nearest_visible_player(this, 0, range);
         if (player != 0xFFFF) {
             TObjPlayer *p = get_player_by_client_id(player);
-            target = (u8 *)p;
+            target = p;
             if (target != NULL && p->get_floor() == get_current_floor() &&
-                (((TObjChara *)target)->alt_room == alt_room || ((TObjChara *)target)->room == room || ((TObjChara *)target)->room == alt_room)) {
-                d = horizontal_distance_squared(&((TObjChara *)target)->position, &position);
-                dist = range + get_collision_body_radius((TObjChara *)target, 0);
+                (target->alt_room == alt_room || target->room == room || target->room == alt_room)) {
+                d = horizontal_distance_squared(&target->position, &position);
+                dist = range + get_collision_body_radius(target, 0);
                 if (d < dist * dist) {
                     mode = 3;
                     phase = 2;
                     VecCopy(&scratch_vec.vector, &position);
                     scratch_vec.vector.y += h344 + h348;
-                    VecCopy(&lbl_8050BF00.vector, &((TObjChara *)target)->body_center_position);
+                    VecCopy(&lbl_8050BF00.vector, &target->body_center_position);
                     subtract_vector((&lbl_8050BF00.vector), (&scratch_vec.vector));
                     if (normalize_vector_checked(&lbl_8050BF00.vector) < 0.00001f) {
                         lbl_8050BF00.vector.x = lbl_8050BF00.vector.y = 0.0f;
@@ -654,7 +654,7 @@ void TOTrapAncient02R::vfunc_81() {
                         DirectAttackPayload dmg;
                         dmg.kind = 3;
                         dmg.power = vfunc_87(20.0f * (f32)m_360 + 240.0f);
-                        ((TObjChara *)target)->receive_direct_attack(this, dmg, NULL, -1, -1);
+                        target->receive_direct_attack(this, dmg, NULL, -1, -1);
                         spawn_particle_effect(&scratch_vec.vector, 0xB9);
                         spawn_particle_effect(&scratch_vec.vector, 0xBA);
                         {
@@ -667,13 +667,13 @@ void TOTrapAncient02R::vfunc_81() {
                         break;
                     }
                     case 0:
-                        TTecFoie::create_ex(this, &scratch_vec.vector, &((TObjChara *)target)->body_center_position, (void *)m_360);
+                        TTecFoie::create_ex(this, &scratch_vec.vector, &target->body_center_position, (void *)m_360);
                         break;
                     case 2:
                         ((TTecGiBarta *)this)->create_ex((void *)(&scratch_vec.vector), (void *)ang, (void *)m_360);
                         break;
                     case 3:
-                        TTecMegid::create((s32)this, (s32)(&scratch_vec.vector), (s32)&((TObjChara *)target)->body_center_position, m_360);
+                        TTecMegid::create((s32)this, (s32)(&scratch_vec.vector), (s32)&target->body_center_position, m_360);
                         break;
                     case 4:
                         TTecGiFoie::create(this, &scratch_vec.vector, (void *)m_360);

@@ -242,9 +242,9 @@ grounded:
         player = find_nearest_visible_player(this, NULL, range);
         if (player != 0xffff) {
             TObjPlayer *p = get_player_by_client_id(player);
-            target = (u8 *)p;
+            target = p;
             if (target != NULL) {
-                f32 d = horizontal_distance_squared(&((TObjPlayer *)target)->position, &position);
+                f32 d = horizontal_distance_squared(&target->position, &position);
                 dist -= TObjPlayer__sub_8017A1A4(p, 0);
                 if (d < dist * dist) {
                     if (TObjPlayer::is_locally_controlled(target)) {
@@ -414,7 +414,7 @@ void TOTrapAncient01::release_trapped_player() {
     TObjPlayer *player;
     if (TRaderMapCore::is_not_split_screen() == 1) {
         if (this->target != NULL) {
-            player = get_player_by_client_id(get_entity_id((TObjBase *)this->target));
+            player = get_player_by_client_id(get_entity_id(this->target));
             if (player != NULL) {
                 if (((TLobby *)player)->check_player_flag1() != 0) {
                     TObjPlayer::send_code_45_1((s32)player);
@@ -422,7 +422,7 @@ void TOTrapAncient01::release_trapped_player() {
                 obj_clear_flag30_20000(player);
             }
         }
-    } else if ((this->target != NULL) && (local_client_id == get_entity_id((TObjBase *)this->target))) {
+    } else if ((this->target != NULL) && (local_client_id == get_entity_id(this->target))) {
         player = get_player_by_client_id(local_client_id);
         if (player != NULL) {
             if (((TLobby *)player)->check_player_flag1() != 0) {

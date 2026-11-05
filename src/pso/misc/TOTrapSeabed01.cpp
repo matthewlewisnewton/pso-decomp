@@ -402,8 +402,8 @@ void TOTrapSeabed01::check_hold_player() {
     target = NULL;
     player = find_nearest_visible_player(this, 0, range);
     id = player;
-    if ((id != 0xFFFF) && (p = get_player_by_client_id(id), target = (u8 *)p, target != NULL)) {
-        temp_f31 = horizontal_distance_squared(&((TObjChara *)target)->position, &position);
+    if ((id != 0xFFFF) && (p = get_player_by_client_id(id), target = p, target != NULL)) {
+        temp_f31 = horizontal_distance_squared(&target->position, &position);
         dist = dist - TObjPlayer__sub_8017A1A4(p, 0);
         temp_f0 = dist;
         if (temp_f31 < (temp_f0 * temp_f0)) {

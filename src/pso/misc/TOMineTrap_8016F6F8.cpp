@@ -264,13 +264,13 @@ void TOMineTrap::run_task() {
                 }
                 if (horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
                     if (actor->obj_isState2_324() == 0) {
-                        this->target = (u8 *)actor;
+                        this->target = actor;
                         switch (this->attack.kind) {
                         case 2:
-                            ((TObjChara *)this->target)->apply_movement_ailment(0);
+                            this->target->apply_movement_ailment(0);
                             break;
                         default:
-                            ((TObjChara *)this->target)->receive_direct_attack(this, this->attack, 0, -1, -1);
+                            this->target->receive_direct_attack(this, this->attack, 0, -1, -1);
                             break;
                         }
                         record_attack_source(this->target, this->get_trap_type());
@@ -281,22 +281,22 @@ void TOMineTrap::run_task() {
                 }
             } else if (id < 0x4000) {
                 if (horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
-                    this->target = (u8 *)actor;
+                    this->target = actor;
                     switch (this->attack.kind) {
                     case 2:
-                        ((TObjChara *)this->target)->apply_movement_ailment(0);
-                        ((TObjChara *)this->target)->vfunc_74(0);
+                        this->target->apply_movement_ailment(0);
+                        this->target->vfunc_74(0);
                         break;
                     default:
-                        ((TObjChara *)this->target)->receive_direct_attack(owner, this->attack, 0, -1, -1);
+                        this->target->receive_direct_attack(owner, this->attack, 0, -1, -1);
                         break;
                     }
                     record_attack_source(this->target, this->get_trap_type());
                 }
             } else if (check_value_equals__13TUnk_804B6C24Fl(actor, TOMineTrap__data_805D3080) != 0 &&
                        horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
-                this->target = (u8 *)actor;
-                ((TObjChara *)this->target)->receive_physical_attack(this, TOMineTrap__data_805DB868);
+                this->target = actor;
+                this->target->receive_physical_attack(this, TOMineTrap__data_805DB868);
             }
         }
         this->mode = 5;
@@ -725,7 +725,7 @@ void TOMine::follow_target() {
     return;
   }
   VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(arg0 + 0x38));
-  VecCopy((Vec *)(&stack.sp8), (const Vec *)((this->target) + 0x38));
+  VecCopy((Vec *)(&stack.sp8), &this->target->position);
   stack.spC = *((f32 *) (((s8 *) arg0) + 0x3C));
   subtract_vector(&stack.sp8, (u8 *)&this->position);
   if (lbl_805DB870 < vec_squared_length((u8 *)&stack.sp8))
@@ -737,7 +737,7 @@ void TOMine::follow_target() {
   vec3_add_to((u8 *)&this->position, &stack.sp8);
   ((TObjPlayer *)arg0)->update_enemy_collision_flags();
   temp_f2 = *((f32 *) (((s8 *) arg0) + 0x48));
-  *((f32 *) (((s8 *) arg0) + 0x3C)) = (f32) ((lbl_805DB884 * ((lbl_805DB888 + (*((f32 *) ((this->target) + 0x3C)))) - temp_f2)) + temp_f2);
+  *((f32 *) (((s8 *) arg0) + 0x3C)) = (f32) ((lbl_805DB884 * ((lbl_805DB888 + this->target->position.y) - temp_f2)) + temp_f2);
   ((TObjChara *)arg0)->calc_attach_pos();
   this->rotation.yaw = (s32) (lbl_80442200 * atan2_float((f64) stack.sp8, (f64) stack.sp10));
   ((TObjCollidable *)arg0)->refresh_collision_body_centers();

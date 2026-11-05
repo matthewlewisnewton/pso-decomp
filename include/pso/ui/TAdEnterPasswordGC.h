@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-struct TObject;
+class TObject;
 
 struct TAdEnterPasswordGC {
     virtual void m0();

@@ -86,7 +86,7 @@ s32 enemy_move_toward(void *, s32, void *, int, f32);
 s32 test_elt_flag__13TUnk_80493450Fll(void *, int, int);
 s32 enemy_turn_toward_dest(void *, s32);
 s32 get_current_floor(void);
-u8 *get_enemy_entity(u16 arg0);
+TObjChara *get_enemy_entity(u16 arg0);
 TObjPlayer *get_player_by_client_id(s32 i);
 f32 enemy_backstep_from_point(void *, void *, f32);
 s32 angle_difference_abs(s32, s32);
@@ -102,8 +102,8 @@ void TUnk_80493450::select_target_proximity_movement() {
 
 void TUnk_80493450::update_target_near_flag() {
     f32 temp_f31;
-    u8 *temp_r0;
-    u8 *temp_r31;
+    TObjChara *temp_r0;
+    TObjChara *temp_r31;
     temp_r0 = this->target;
     if (temp_r0 == NULL) {
         obj_clearFlags30(0x100000);
@@ -111,7 +111,7 @@ void TUnk_80493450::update_target_near_flag() {
     }
     if ((get_entity_id(temp_r0) < 0x1000U) && (this->is_actor_cadence_frame(0x1E) != 0)) {
         temp_r31 = this->target;
-        temp_f31 = horizontal_distance_squared(temp_r31 + 0x38, (void *) ((u8 *)this + 0x38));
+        temp_f31 = horizontal_distance_squared(&temp_r31->position, (void *) ((u8 *)this + 0x38));
         switch (((TObjPlayer *)temp_r31)->class_flags & CLASS_FLAG_TYPE_MASK) {
         case CLASS_FLAG_HUNTER:
             if (obj_testFlags30__14TObjCollidableFUl(this, 0x100000) != 0) {
@@ -214,7 +214,7 @@ void TUnk_80493450::beast_update_attack() {
     if (targetId < 0x1000) {
         TObjPlayer *player = get_player_by_client_id(targetId);
         if (player != NULL && player->get_floor() == get_current_floor()) {
-            target = (u8 *)player;
+            target = player;
         } else {
             target = NULL;
         }
@@ -229,9 +229,9 @@ void TUnk_80493450::beast_update_attack() {
         phase = 1;
     case 1:
         if (is_passing_frame(BEAST_ATTACK_HIT_FRAME) != 0) {
-            if (target != NULL && ((TObjChara *)target)->select_melee_contact_body(this, BEAST_ATTACK_SCALE) != 0) {
-                ((TObjChara *)target)->receive_physical_attack(this, BEAST_ATTACK_SCALE);
-                ((TObjChara *)target)->apply_knockback_from_attacker((u8 *)this, BEAST_ATTACK_KNOCKBACK);
+            if (target != NULL && target->select_melee_contact_body(this, BEAST_ATTACK_SCALE) != 0) {
+                target->receive_physical_attack(this, BEAST_ATTACK_SCALE);
+                target->apply_knockback_from_attacker((u8 *)this, BEAST_ATTACK_KNOCKBACK);
             }
             vfunc_96();
         }
@@ -349,7 +349,7 @@ void TUnk_80493450::beast_update_group_chase() {
         break;
     }
     if (target != NULL) {
-        Vec v = *(Vec *)&((TObjChara *)target)->body_center_position;
+        Vec v = *(Vec *)&target->body_center_position;
         d = enemy_backstep_from_point(this, &v, m_398);
         turn_toward_direction((s32)((Sub350_800C57F0 *)movementParameters)->p8, (Vec *)&movement_velocity.x);
         r = m_398 + bodies->radius;
@@ -386,11 +386,11 @@ void TUnk_80493450::beast_update_approach() {
                 if (this->m_38c++ < BEAST_HOME_CHASE_FRAME_COUNT) {
                     VecCopy(&sp14, &this->home_position);
                 } else {
-                    VecCopy(&sp14, (const Vec *)&((TObjChara *)this->target)->body_center_position);
+                    VecCopy(&sp14, (const Vec *)&this->target->body_center_position);
                 }
             } else {
                 this->m_38c = 0U;
-                VecCopy(&sp14, (const Vec *)&((TObjChara *)this->target)->body_center_position);
+                VecCopy(&sp14, (const Vec *)&this->target->body_center_position);
             }
             update_target_near_flag();
             select_target_proximity_movement();
@@ -701,7 +701,7 @@ void TUnk_80493450::vfunc_28() {
     if (self->targetId < 0x1000) {
         TObjPlayer *p = get_player_by_client_id(self->targetId);
         if (p != NULL && p->get_floor() == get_current_floor()) {
-            self->target = (u8 *)p;
+            self->target = p;
         } else {
             self->target = NULL;
         }
