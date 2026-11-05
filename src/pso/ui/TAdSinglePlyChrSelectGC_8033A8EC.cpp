@@ -181,7 +181,7 @@ void TAdSinglePlyChrSelectGC::handle_player_load() {
     case 0:
         switch (TAdPlayerLoadGC__sub_801E1B50(arg0->f24)) {
         case 0:
-            switch (TAdPlayerLoadGC::get_load_result((void *)arg0->f24)) {
+            switch (TAdPlayerLoadGC::get_load_result(arg0->f24)) {
             case 0:
                 arg0->f2C = 0xE;
                 close_window__23TAdSinglePlyChrSelectGCFPv(arg0);
@@ -246,7 +246,7 @@ void TAdSinglePlyChrSelectGC::sub_8033ACF4() {
     case 0:
         switch (TAdPlayerLoadGC__sub_801E1B50(arg0->f24)) {
         case 0:
-            switch (TAdPlayerLoadGC::get_load_result((void *)arg0->f24)) {
+            switch (TAdPlayerLoadGC::get_load_result(arg0->f24)) {
             case 0:
                 arg0->f2C = 6;
                 arg0->f24 = get_chr_select_state__23TAdSinglePlyChrSelectGCFv();

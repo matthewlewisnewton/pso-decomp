@@ -1013,7 +1013,7 @@ s32 TLobby::run_disk_error_check() {
     }
     switch (status) {
     case -1:
-        func_803DCDFC__Fv();
+        func_803DCDFC();
         set_perspective_projection_from_fov(0x3555, (1.1333334f), (1.0f), (2.1e+04f));
         if (lobby_font_texture_loaded != 0) {
             ((TLobby *)0)->draw_fullscreen_texture_quad();
@@ -1028,7 +1028,7 @@ s32 TLobby::run_disk_error_check() {
         }
         break;
     case 4:
-        func_803DCDFC__Fv();
+        func_803DCDFC();
         set_perspective_projection_from_fov(0x3555, (1.1333334f), (1.0f), (2.1e+04f));
         controller_stuff();
         if (lobby_font_texture_loaded != 0) {
@@ -1041,7 +1041,7 @@ s32 TLobby::run_disk_error_check() {
         }
         break;
     case 5:
-        func_803DCDFC__Fv();
+        func_803DCDFC();
         set_perspective_projection_from_fov(0x3555, (1.1333334f), (1.0f), (2.1e+04f));
         controller_stuff();
         if (lobby_font_texture_loaded != 0) {
@@ -1056,7 +1056,7 @@ s32 TLobby::run_disk_error_check() {
         }
         break;
     case 6:
-        func_803DCDFC__Fv();
+        func_803DCDFC();
         set_perspective_projection_from_fov(0x3555, (1.1333334f), (1.0f), (2.1e+04f));
         controller_stuff();
         if (lobby_font_texture_loaded != 0) {
@@ -1071,7 +1071,7 @@ s32 TLobby::run_disk_error_check() {
         }
         break;
     case 11:
-        func_803DCDFC__Fv();
+        func_803DCDFC();
         set_perspective_projection_from_fov(0x3555, (1.1333334f), (1.0f), (2.1e+04f));
         if (lobby_font_texture_loaded != 0) {
             ((TLobby *)4)->draw_fullscreen_texture_quad();
