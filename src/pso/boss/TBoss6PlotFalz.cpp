@@ -357,8 +357,6 @@ s32 TBoss6PlotFalz::is_active(TObjPlayer *player) {
 }
 #undef get_player_data__10TObjPlayerFi
 
-#define get_field_3e0__12TBoss3VoloptFv ((s32 (*)())get_field_3e0__12TBoss3VoloptFv)
-
 struct Stack_802AB1C8 {
     s32 sp8;
     s32 spC;
@@ -373,7 +371,7 @@ struct Stack_802AB14C {
 
 extern "C" {
 s32 TBoss6PlotFalz::is_state_1f(TObjPlayer *player) {
-    if ((player == NULL) || (get_field_3e0__12TBoss3VoloptFv() != 0x1F)) {
+    if ((player == NULL) || (get_field_3e0__12TBoss3VoloptFv(player) != 0x1F)) {
         return 0;
     }
     return 1;
@@ -418,7 +416,6 @@ void TBoss6PlotFalz::set_state(s32 arg1) {
 }
 
 }
-#undef get_field_3e0__12TBoss3VoloptFv
 
 #define get_player_data__10TObjPlayerFi ((Player_802AB3E0 *(*)(int))get_player_data__10TObjPlayerFi)
 #define get_player_by_client_id ((u8 *(*)(u16))get_player_by_client_id)
