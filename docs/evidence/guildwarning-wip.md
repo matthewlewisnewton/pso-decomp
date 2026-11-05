@@ -4,7 +4,7 @@
 Construction, destruction, task dispatch and the renderer at 0x80211718–0x802119F0
 are byte-exact.
 
-Base: main `e4877e8f1`, merged normally.
+Base: main `665186958`, merged normally.
 
 ## Measured state
 
@@ -13,9 +13,11 @@ Every function this branch touches is 100% under objdiff. `THunterGuildWarning_8
 `sub_802119CC__19THunterGuildWarningFv`) is linked. On main, `sub_80211774` was
 unmatched and the unit was 17.58%.
 
-`ninja -j8 && python3 tools/check_pr.py --no-build` reports one new exact
-function, zero regressions, and linked units 3554 → 3555, with complete code
-+728. Address `0x80269CC0` is renamed from
+`ninja -j8 && python3 tools/check_pr.py --no-build` against main
+`665186958` reports one new exact function, zero regressions, and linked
+units 3545 → 3546, with complete code +728 and matched code +600. Eight
+functions are renamed, including `set_window_mode_4__6TLobbyFPCvPCvl` and
+`create_titled_window_menu__FPCvlll`. Address `0x80269CC0` is renamed from
 `create_message_window__6TLobbyFllUls` to
 `create_message_window__6TLobbyFPCvPCvUll` and stays 100% (100 bytes). The
 renderer references the split-owned `lbl_8044BC7C` / `lbl_8044BC84` symbols.
