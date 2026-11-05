@@ -198,7 +198,6 @@ pso/boss/Boss5GryphonBehavior.cpp
 pso/boss/Boss6Type1Appearance.cpp
 pso/boss/Boss6Type2Appearance.cpp
 pso/boss/Boss6Type2Death.cpp
-pso/boss/Boss7TentacleBanks.cpp
 pso/boss/TBoss1Dragon.cpp
 pso/boss/TBoss1DragonColli.cpp
 pso/boss/TBoss1DragonDemo.cpp
@@ -273,10 +272,8 @@ pso/boss/TBoss6MagMine.cpp
 pso/boss/TBoss6Mine.cpp
 pso/boss/TBoss6PlotFalz.cpp
 pso/boss/TBoss6PlotFalz_802B0228.cpp
+pso/boss/TBoss6Rock.cpp
 pso/boss/TBoss6RockChase.cpp
-pso/boss/TBoss6Rock_8035477C.cpp
-pso/boss/TBoss6Rock_80354A30.cpp
-pso/boss/TBoss6Rock_80354A44.cpp
 pso/boss/TBoss6SwordShot.cpp
 pso/boss/TBoss6Thanks.cpp
 pso/boss/TBoss6Thanks_8035D1F4.cpp
@@ -284,6 +281,7 @@ pso/boss/TBoss6Tube.cpp
 pso/boss/TBoss6Tube_802B1020.cpp
 pso/boss/TBoss6Tube_802B15F4.cpp
 pso/boss/TBoss6Tube_802B16BC.cpp
+pso/boss/TBoss6Type1.cpp
 pso/boss/TBoss6Type1_802B20C0.cpp
 pso/boss/TBoss6Type1_80320AE0.cpp
 pso/boss/TBoss6Type1_80323DCC.cpp
@@ -309,6 +307,7 @@ pso/boss/TBoss7LaserLight.cpp
 pso/boss/TBoss7LaserPtcl.cpp
 pso/boss/TBoss7LaserPtcl_8035AE54.cpp
 pso/boss/TBoss7PhotonBullet_802EF26C.cpp
+pso/boss/TBoss7TentacleNeedle.cpp
 pso/boss/TBoss8DragonColli.cpp
 pso/boss/TBoss8DragonDemo.cpp
 pso/boss/TBoss8DragonEffBreath.cpp
@@ -349,18 +348,10 @@ pso/boss/TObjBoss2Dust.cpp
 pso/boss/TObjBoss2DustCtrl.cpp
 pso/boss/TObjBoss2RaftSplash.cpp
 pso/boss/TObjBoss2RaftSplash_8003B0A0.cpp
+pso/boss/TObjBoss2Tunnel.cpp
 pso/boss/TObjBoss2Tunnel_8003B138.cpp
-pso/boss/TObjBoss2Tunnel_8007CE14.cpp
-pso/boss/TObjBoss2Tunnel_8007E0CC.cpp
-pso/boss/TObjBoss2Tunnel_8007E100.cpp
-pso/boss/TObjBoss2Tunnel_8007E380.cpp
-pso/boss/TObjBoss2Tunnel_8007E3AC.cpp
-pso/boss/TObjBoss2Tunnel_8007E418.cpp
-pso/boss/TObjBoss2Tunnel_8007E8D8.cpp
-pso/boss/TObjBoss2Tunnel_8007E918.cpp
-pso/boss/TObjBoss2Tunnel_8007E9EC.cpp
-pso/boss/TObjBoss2Tunnel_8007EA74.cpp
 pso/boss/TObjBoss2Tunnel_802F1A58.cpp
+pso/boss/TObjBoss2Tunnel_802F2070.cpp
 pso/boss/TObjBoss2Tunnel_8036EF0C.cpp
 pso/boss/TObjBoss2Tunnel_803E2BAC.cpp
 pso/boss/TObjBoss5Ctrl.cpp
@@ -982,6 +973,7 @@ pso/misc/TLobby.cpp
 pso/misc/TLobbyEventTheme.cpp
 pso/misc/TLobby_80019E24.cpp
 pso/misc/TLobby_8001D6A0.cpp
+pso/misc/TLobby_8001EF5C.cpp
 pso/misc/TLobby_8002C140.cpp
 pso/misc/TLobby_8002C838.cpp
 pso/misc/TLobby_8003A95C.cpp
@@ -1103,6 +1095,7 @@ pso/misc/TLobby_80221820.cpp
 pso/misc/TLobby_80222D24.cpp
 pso/misc/TLobby_802230F8.cpp
 pso/misc/TLobby_80226070.cpp
+pso/misc/TLobby_802268F4.cpp
 pso/misc/TLobby_80228C84.cpp
 pso/misc/TLobby_80242910.cpp
 pso/misc/TLobby_80243370.cpp
@@ -1501,6 +1494,7 @@ pso/misc/TQuestVmDownLoadServer_801F9010.cpp
 pso/misc/TQuestVmDownLoadServer_8033BC88.cpp
 pso/misc/TQuestVmDownLoadServer_8033C22C.cpp
 pso/misc/TQuestVmDownLoadServer_803E5668.cpp
+pso/misc/TRaderMapCore.cpp
 pso/misc/TRaderMapCore_801A6CEC.cpp
 pso/misc/TRaderMapCore_801F3710.cpp
 pso/misc/TRaderMapCore_801FB2B8.cpp
@@ -1531,6 +1525,7 @@ pso/misc/TScene_80327B00.cpp
 pso/misc/TSendDownloadHead.cpp
 pso/misc/TSetManager.cpp
 pso/misc/TSetManager_8020D7D4.cpp
+pso/misc/TSetManager_8020D918.cpp
 pso/misc/TShopArmorListWindow.cpp
 pso/misc/TShopArmorListWindow_80266CF8.cpp
 pso/misc/TShopArmorListWindow_802785FC.cpp
@@ -1892,6 +1887,7 @@ pso/misc/TWindowSubStatusDisp_80249060.cpp
 pso/misc/TWindowSubStatusDisp_8024F688.cpp
 pso/misc/TWindowSubStatusDisp_8024FBA8.cpp
 pso/misc/TWindowSubStatusDisp_80255DF4.cpp
+pso/misc/TWindowSubStatusDisp_80256B94.cpp
 pso/misc/TWindowSubStatusDisp_8025737C.cpp
 pso/misc/TWindowSubStatusDisp_80257784.cpp
 pso/misc/TWindowSubStatusDisp_80257BC0.cpp
@@ -1963,6 +1959,7 @@ pso/misc/pso_date.cpp
 pso/network/NetworkInfoCodec.cpp
 pso/network/NetworkInfoLoader.cpp
 pso/network/NetworkMessageTransport.cpp
+pso/network/NetworkPacketRuntime.cpp
 pso/network/NetworkTransport.cpp
 pso/network/TGameProtocol.cpp
 pso/network/TProtocol.cpp
@@ -2077,6 +2074,7 @@ pso/object/TObjCityMainWarpChallenge.cpp
 pso/object/TObjCityMainWarp_801867F4.cpp
 pso/object/TObjCityMainWarp_80186C44.cpp
 pso/object/TObjCityMainWarp_80186E24.cpp
+pso/object/TObjCityMainWarp_80186F84.cpp
 pso/object/TObjCollision.cpp
 pso/object/TObjComputer.cpp
 pso/object/TObjControl.cpp
@@ -2205,6 +2203,7 @@ pso/object/TObject_800F794C.cpp
 pso/object/TUnk_804A6DC0.cpp
 pso/player/PlayerClassStats.cpp
 pso/player/PlayerTaskEffects.cpp
+pso/player/PhotonBlastResults.cpp
 pso/player/THunterGuildSeqOnlineTask.cpp
 pso/player/THunterGuildWarning.cpp
 pso/player/TItemWeaponFist.cpp
@@ -2422,6 +2421,7 @@ pso/player/TObjPlayer_8013085C.cpp
 pso/player/TObjPlayer_80130BF0.cpp
 pso/player/TObjPlayer_80148DCC.cpp
 pso/player/TObjPlayer_8014C610.cpp
+pso/player/TObjPlayer_801542CC.cpp
 pso/player/TObjPlayer_8015C4CC.cpp
 pso/player/TObjPlayer_8015C8D8.cpp
 pso/player/TObjPlayer_80178150.cpp
@@ -2564,7 +2564,6 @@ pso/quest/QuestOpcodeHandlers.cpp
 pso/quest/QuestOpcodeTables.cpp
 pso/quest/StoryQuestProgress.cpp
 pso/quest/TQuestListVM.cpp
-pso/quest/TQuestListVMData.cpp
 pso/quest/TQuestListVM_80073DC4.cpp
 pso/quest/TQuestListVM_8007EAF8.cpp
 pso/quest/TQuestListVM_800F95F4.cpp
@@ -2695,6 +2694,7 @@ pso/ui/TAdMultiPlyChrSelectGC_802E0064.cpp
 pso/ui/TAdMultiPlyChrSelectGC_802E011C.cpp
 pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.cpp
 pso/ui/TAdMultiPlyChrSelectGC_803495B4.cpp
+pso/ui/TAdMultiPlyChrSelectGC_literals.s
 pso/ui/TAdMultiSaveGC.cpp
 pso/ui/TAdMultiSaveGC_802FF0A0.cpp
 pso/ui/TAdMultiSaveGC_802FF14C.cpp
@@ -3162,6 +3162,7 @@ pso/unk/text_801C543C.cpp
 pso/unk/text_801C5454.cpp
 pso/unk/text_801C5470.cpp
 pso/unk/text_801D34E0.cpp
+pso/unk/text_801D40D4.cpp
 pso/unk/text_801D5DDC.cpp
 pso/unk/text_801D6D60.cpp
 pso/unk/text_801D6D8C.cpp

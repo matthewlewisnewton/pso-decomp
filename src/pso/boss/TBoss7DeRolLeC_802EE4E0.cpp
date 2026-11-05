@@ -41,7 +41,7 @@ extern s32 lbl_805D6928;
 extern s32 lbl_805D692C;
 extern s32 lbl_805D6930;
 extern s32 lbl_805D6934;
-extern s32 boss7_joint_state;
+extern TBoss7DeRolLeC *boss7_joint_state;
 extern u8 *lbl_805D693C;
 extern s32 lbl_805D6940;
 extern const f32 lbl_805DEA10;

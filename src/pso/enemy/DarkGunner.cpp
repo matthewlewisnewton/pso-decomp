@@ -643,7 +643,7 @@ u8 *TObjEneDarkGunCenter__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__20TObjEneDarkGunCenter;
     *(s32 *)((s8 *)arg0 + 0) = TObjEneDarkGunCenter__name;
     ((TObjEneDarkGunCenter *)(arg0))->apply_set_data((void *)arg2);
-    ((TBoss3Volopt *)arg0)->reset_photon_effect();
+    ((TObjEnemy *)arg0)->register_by_id();
     o = (Obj_800A0EDC *)arg0;
     VecCopy((Vec *)o->home, (const Vec *)o->pos);
     o->flags = o->flags | 0x06000000 | 0x800;

@@ -4,48 +4,64 @@
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
+#include "pso/boss/TUnk_804F1280.h"
 
+// The per-kind parameters of a falling rock (TBoss6Rock__data_80479258).
+struct RockKindParams {
+    s32 model_id;
+    f32 radius;      // the marker's radius; players are pushed out to it
+    f32 height;      // TObjMapCsn box: set y scale
+    f32 width;       // TObjMapCsn box: set x/z scale
+    f32 unk_10;
+};
+
+// One of the 32 rocks of the Dark Falz arena (TBoss6Type2): it waits at its
+// point until commanded (set_rock_target), then falls from 450 units, lands
+// as a TObjMapCsn collision box and later breaks into TBoss6CrushRock pieces.
 struct TBoss6Rock : public TObjCollidable {
+    TBoss6Rock(TObject *parent, s32 index);
     virtual ~TBoss6Rock();
-    void sub_80353F5C();
     virtual void run_task();
-    u32 m_ac;
-    u32 m_b0;
-    u32 m_b4;
-    u32 m_b8;
-    u32 m_bc;
-    u32 m_c0;
-    u32 m_c4;
-    u32 m_c8;
-    u8 unk_CC[0x4];
-    s32 m_d0;
-    Vec m_d4;
-    s32 m_e0;
-    u32 m_e4;
-    void set_target(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, f32 farg0);
-    static void *create();
+    virtual void render();
+    void sub_80353F5C();
+    s32 m_ac;            // index into TBoss6Rock__instance_table and the point table
+    TObject *m_b0;       // the TObjMapCsn made when it lands
+    s32 m_b4;            // kind (index into TBoss6Rock__data_80479258)
+    s32 m_b8;            // kind of the next fall
+    s32 m_bc;            // fast fall (1)
+    s32 m_c0;            // fast fall of the next fall
+    s32 m_c4;            // state: 0 waiting, 1 falling, 2 landed
+    s32 m_c8;            // command: 0 none, 2 hold the landed rock
+    f32 m_cc;            // fall speed
+    s32 m_d0;            // y spin per frame
+    Vec m_d4;            // its point
+    s32 m_e0;            // frame counter of the landed push-out
+    TUnk_804F1280 *m_e4; // the marker object
+    static const char *class_name;
+    static TUnk_804F1280 *create();
+    static TBoss6Rock *create(s32 index);
     static s32 is_rock_valid(s32 arg0);
+    static s32 is_rock_state_2(int i);
     static void reset_rock_state(s32 arg0);
     static void clear_rock_state(s32 i);
     static void set_rock_target(s32 i, s32 a, s32 b);
     void release_object();
     void randomize_motion();
-    static u8 *get_rock_entry(s32 arg0);
+    static const RockKindParams *get_rock_entry(s32 arg0);
     void break_and_release();
     void update_fall();
     void init_spin_params();
     void draw_model();
-    virtual void render();
-    static void *create(void *arg0);
-    static u8 is_active();
+    static s32 is_active();
     static void create_rock_pool(s32 arg0);
     static void free_data();
     static void load_resources();
-    void spawn_crush_rocks(s32 kind);
-    void break_rocks_in_radius(f32 r);
-    s32 push_out_of_rocks(f32 r);
+    static void spawn_crush_rocks(Vec *point, s32 kind);
+    static void break_rocks_in_radius(Vec *point, f32 r);
+    static s32 push_out_of_rocks(Vec *point, f32 r);
     static s32 get_point(s32 arg0, s32 arg1, f32 *arg2);
 };
 
 typedef char TBoss6Rock_size[sizeof(TBoss6Rock) == 0xE8 ? 1 : -1];
+
 #endif

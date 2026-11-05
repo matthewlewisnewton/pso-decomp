@@ -1256,7 +1256,7 @@ s32 TObjEneBalClawClaw__ct(void *arg0) {
     ((TObjEnemy *)self)->set_param(0x26);
     VecCopy((Vec *)(self + 0x2FC), (const Vec *)(self + 0x38));
     *(f32 *)((s8 *)self + 0x300) += (5.0f);
-    ((TBoss3Volopt *)self)->reset_photon_effect();
+    ((TObjEnemy *)self)->register_by_id();
     ((TObjEneBalClawClaw *)self)->select_model(2);
     *(s32 *)((s8 *)self + 0x3B8) = 0;
     *(f32 *)((s8 *)self + 0x3BC) = (0.0f);

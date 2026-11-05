@@ -2,12 +2,12 @@
 #define PSO_MISC_TWINDOWKEYBOARDBASE_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 
-struct TWindowKeyBoardBase : public TUnk_804CE018 {
+struct TWindowKeyBoardBase : public TWindowBase {
     virtual ~TWindowKeyBoardBase();
     void init_keyboard_text_field(u32, u32);
-    void sub_8025E6DC(TWindowKeyBoardSoft *);
+    void sub_8025E6DC(u8 *);
     void draw_wrapped_text(void *, void *);
     void draw_text_glyphs(void *, void *);
     int sub_8025EB68();
