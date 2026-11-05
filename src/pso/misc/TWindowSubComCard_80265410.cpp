@@ -125,7 +125,7 @@ u8 * init_shop_judgment_window(void* p);
 TWindowMenu *create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 void render__11TWindowMenuFv(TWindowMenu *arg0);
 void * __dt__11TWindowMenuFv(void *arg0, s16 arg1);
-u8 * TWindowMenu__ct(u8 *arg0, u32 arg1, s32 arg2, s32 arg3);
+TWindowMenu *TWindowMenu__ct(TWindowMenu *arg0, u32 arg1, s32 arg2, s32 arg3);
 u8 test_menu_flag__11TWindowMenuFv(u8 *arg0);
 s32 clamp_list_scroll_offset(int, void *, void *);
 s32 draw_window_scrollbar(s32, TWindowDrawContext *, void *);
@@ -695,7 +695,7 @@ TWindowMenu *create_window_menu(s32 arg0, s32 arg1, s32 arg2) {
     temp_r3 = __nw__7TObjectFUl(0x8C);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (TWindowMenu *)TWindowMenu__ct((u8 *)var_r0, (u32)arg1, arg2, arg0);
+        var_r0 = TWindowMenu__ct(var_r0, (u32)arg1, arg2, arg0);
     }
     return var_r0;
 }
@@ -835,28 +835,28 @@ void *__dt__11TWindowMenuFv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-u8 *TWindowMenu__ct(u8 *window_menu, u32 arg1, s32 arg2, s32 arg3) {
+TWindowMenu *TWindowMenu__ct(TWindowMenu *window_menu, u32 arg1, s32 arg2, s32 arg3) {
     u32 i;
     u8 *p;
     construct_with_parent__15TWindowAdditionFPv(window_menu, lbl_804D05CC, arg2, arg3);
-    *(void **)(window_menu + 0x18) = ((s32 *)&__vt__11TWindowMenu);
+    *(void **)((u8 *)window_menu + 0x18) = ((s32 *)&__vt__11TWindowMenu);
     *(s32 *)window_menu = lbl_805D3960;
-    *(s16 *)(window_menu + 0x72) = 0;
-    *(s16 *)(window_menu + 0x74) = 0;
-    *(u16 *)(window_menu + 0x76) = arg1;
-    *(s16 *)(window_menu + 0x78) = 0;
-    *(s16 *)(window_menu + 0x70) = 0;
-    *(s16 *)(window_menu + 0x20) = arg2;
-    ((TWindowMenu *)window_menu)->reset_selection();
-    *(u8 **)(window_menu + 0x80) = (u8 *)::operator new[](arg1 * 8);
-    p = *(u8 **)(window_menu + 0x80);
+    *(s16 *)((u8 *)window_menu + 0x72) = 0;
+    *(s16 *)((u8 *)window_menu + 0x74) = 0;
+    *(u16 *)((u8 *)window_menu + 0x76) = arg1;
+    *(s16 *)((u8 *)window_menu + 0x78) = 0;
+    *(s16 *)((u8 *)window_menu + 0x70) = 0;
+    *(s16 *)((u8 *)window_menu + 0x20) = arg2;
+    window_menu->reset_selection();
+    *(u8 **)((u8 *)window_menu + 0x80) = (u8 *)::operator new[](arg1 * 8);
+    p = *(u8 **)((u8 *)window_menu + 0x80);
     for (i = 0; i < arg1; i++) {
         *(s32 *)p = 0;
         *(s32 *)(p + 4) = 0;
         p += 8;
     }
-    *(s32 *)(window_menu + 0x88) = 0;
-    *(s32 *)(window_menu + 0x84) = 0;
+    *(s32 *)((u8 *)window_menu + 0x88) = 0;
+    *(s32 *)((u8 *)window_menu + 0x84) = 0;
     return window_menu;
 }
 
