@@ -413,8 +413,6 @@ u8 * TBoss6Type1__sub_802B96C0(s32 arg0, s32 arg1) {
 }
 #define arg0 ((u8 *)arg0_)
 #define arg2 ((s32 *)arg2_)
-#pragma push
-#pragma opt_common_subs off
 s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     TBoss6Type1 *self = (TBoss6Type1 *)arg0_;
     ObjectStateTmp tmp;
@@ -485,7 +483,6 @@ s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     self->set_action_state(0);
     return arg0_;
 }
-#pragma pop
 #undef arg0
 #undef arg2
 
@@ -685,31 +682,29 @@ void TBoss6Type1__sub_802B8BB4(TBoss6Type1 *arg0) {
         break;
     }
 }
-#pragma push
-#pragma opt_lifetimes off
 void TBoss6Type1__sub_802B8A70(TBoss6Type1 *self) {
     Boss6ActionArgs atk;
-    s8 v;
+    s8 dir;
+    s8 pitch;
     f32 ratio;
     s32 total;
-    v = ((u32)self->rotation.yaw >> 8) & 0xFF;
-    v = lbl_805DE3D4 * ((1.0f / 32768.0f) * (f32)rand() - 0.5f) + v;
+    dir = ((u32)self->rotation.yaw >> 8) & 0xFF;
+    dir += lbl_805DE3D4 * ((1.0f / 32768.0f) * (f32)rand() - 0.5f);
+    atk.b0 = dir;
     ratio = 0.5f;
     atk.b1 = 0x1C;
-    atk.b0 = v;
     total = self->unk_4c0 + self->unk_4c4;
     if (total > 0) {
         ratio = (f32)self->unk_4c0 / (f32)total;
     }
-    v = 20;
+    pitch = 20;
     if ((1.0f / 32768.0f) * (f32)rand() < ratio) {
-        v = -5;
+        pitch = -5;
     }
-    atk.b2 = v;
+    atk.b2 = pitch;
     self->m_438 = 1;
     self->send_6xA4_action(0x18, (s32 *)&atk);
 }
-#pragma pop
 }
 
 
