@@ -79,8 +79,11 @@ These need cross-file retypes beyond this branch:
   size are `const void *`). `create_titled_window_menu` is
   `create_titled_window_menu__FPCvlll`. Callers that already hold the
   lookup pointer pass it with no cast, and those units are function-100%,
-  including `TWindowSubMag`, `TWindowSubTechnique`, `TWindowSubItem` and
-  `TWindowSubMagPhoton`. The folded `TObjBoss2Tunnel` message functions
+  including `TWindowSubMag`, `TWindowSubTechnique` and `TWindowSubItem`.
+  `TWindowSubMagPhoton` is function-100% but still casts the layout pointer
+  to `s32` for `TWindowSubStatusDisp__sub_80248BE8` (that free function and
+  `refresh_with_default_list__20TWindowSubStatusDispFll` still take integers;
+  `draw_with_layer__13TAdVIConfigGCFlll` forwards the same integers). The folded `TObjBoss2Tunnel` message functions
   pass their `f32` position arrays the same way and stay 100%.
   `update_window_mode_from_progress` now passes `this` with no cast.
   Two adapter casts remain because the callee's public symbol is still an
@@ -100,24 +103,31 @@ These need cross-file retypes beyond this branch:
   `TWindowMessage::TWindowMessage` does not: MWCC emits
   `bl __ct__13TUnk_804CDFE8Fv` and a vtable store at 0x18 *before*
   `construct_with_parent`, then the body stores the vtable again. The
-  original has only the second store. `construct_with_parent` (0x4C) calls
-  `construct_base` with r4/r5/r6 still holding the caller's arguments and
-  never calls `TObject::TObject` itself; making it a real base constructor
-  would insert that call. The C-named `TWindowMessage__ct` stays.
+  original has only the second store. Defining
+  `TUnk_804CDFE8::TUnk_804CDFE8(void *, s32, const void *)` as that base
+  constructor emits `bl __ct__13TUnk_804CE018Fv`, which emits
+  `bl __ct__6TLobbyFv`, which calls `__ct__7TObjectFP7TObject` with a null
+  parent, and stores the compiler vtable `__vt__13TUnk_804CDFE8`. The DOL
+  slot at `lbl_804CDFE8` is `destroy_window__13TUnk_804CDFE8Fs`, not a C++
+  destructor, so that vtable cannot be the one MWCC emits. The C-named
+  `TWindowMessage__ct` stays. Its field stores now use `m_name`, `m_70`,
+  `m_74`, `next_line`, `line_count`, `m_78`, `m_84`, `unk_80` and `lines`,
+  and the function is still 100%. The vptr store at 0x18 has no declared
+  field (it is the hidden `TObject` vptr) and is still a byte offset.
 - **`TLobby::send_and_handle(int, int)`.** It has 127 call sites, so a text
   pointer is still passed as an integer.
-- **Eight local `create_yes_no_window(s32, ...)` prototypes.** In
-  `THunterGuildSeqOffline`, `THunterGuildSeqOffline_80213788` and
-  `TMedicalCenterSequence` the same integer layout also goes to
-  `TShopSequence::create_message_window(s32, s32)` (8 caller files), some
-  through a two-argument lookup. `TShopGetItemWindow`,
-  `TShopJudgmentItemWindow`, `TShopArmorListWindow` and
-  `TShopEquipmentListWindow` pass it to local mangled `TWindowHelpItem` /
-  `TWindowInputNumber` ctor prototypes. A `new` expression there calls
-  `__nw__15TWindowHelpItemFUl` / `__nw__18TWindowInputNumberFUl`, while these
-  originals call `__nw__7TObjectFUl`. `TWindowSubComCard_802A5748` passes a
-  `s32` local filled by `get_position_offset`.
-- **Four local `TWindow__close` prototypes.** `TWindowChatSymbol_802486A8`,
+- **`create_yes_no_window` locals now take `const void *`.** The eight
+  `s32` prototypes in `THunterGuildSeqOffline`,
+  `THunterGuildSeqOffline_80213788`, `TMedicalCenterSequence`,
+  `TShopGetItemWindow`, `TShopJudgmentItemWindow`, `TShopArmorListWindow`,
+  `TShopEquipmentListWindow` and `TWindowSubComCard_802A5748` pass the
+  lookup pointer through. Those units stay function-100%.
+  `TShopSequence::create_message_window(s32, s32)` still takes the layout
+  as an integer, so the guild and medical callers still cast there.
+  `new TWindowHelpItem` / `new TWindowInputNumber` would call
+  `__nw__15TWindowHelpItemFUl` / `__nw__18TWindowInputNumberFUl`; the
+  originals call `__nw__7TObjectFUl`, so those factories stay C calls.
+- **Four local `TWindow__close` prototypes now take `void *`, matching the header.** The calls still cast `u32` window fields through `u8 *`. `TWindowChatSymbol_802486A8`,
   `TWindowSubComCard_80271E7C`, `TWindowSubStatusDisp_8026F6DC` and
   `TWindowSubTradeMain_80330A84` declare other functions from
   `TWindowSubComCard_80244774.h` with different signatures:

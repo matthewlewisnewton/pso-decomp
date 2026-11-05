@@ -684,7 +684,7 @@ void find_and_load_com_card__6TLobbyFUi(u32 arg0);
 s32 TLobby__sub_8024259C();
 s32 fn_80244958(int, int);
 void fn_802449E0(u8 *arg0);
-void TWindow__close(u8 *arg0);
+void TWindow__close(void *arg0);
 }
 void window_request_show(void *arg0);
 s32 is_com_card_active();

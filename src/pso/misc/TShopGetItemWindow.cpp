@@ -89,8 +89,8 @@ struct Win_8021EA48 : VBase_8021EA48 {
 extern "C" {
 s32 get_entity_id(s32);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
-s32 get_window_layout_position(s32);
+u8 *create_yes_no_window(const void *arg0, s32 arg1, u32 arg2, u32 arg3);
+const void *get_window_layout_position(s32);
 s32 compact_items__18TCheckRoomSequenceFi(int);
 s32 remove_bank_item_amount__18TCheckRoomSequenceFiii(int, int, int);
 s32 copy_item_record__18TCheckRoomSequenceFiPvi(int, void *, int);
@@ -102,10 +102,10 @@ s32 copy_bank_item_with_stack_limit(s32 idx, void *data, s32 *out, s32 slot);
 s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
 void *__nw__7TObjectFUl(u32);
-u32 __ct__18TWindowInputNumberFPvllls(void *, s32, s32, s32, s32, s16);
+u32 __ct__18TWindowInputNumberFPvllls(void *, const void *, s32, s32, s32, s16);
 extern const f32 lbl_805DC6F0;
 s32 get_room_table_entry__18TCheckRoomSequenceFi(void);
-u32 __ct__15TWindowHelpItemFPvUs(void *, s32, u16);
+u32 __ct__15TWindowHelpItemFPvUs(void *, const void *, u16);
 void calc_list_content_extent(u32);
 void add_item_info_entry__20TWindowSubStatusDispFlll(u32, void *, s32, s32);
 void TWindowSetLevelUp__sub_8026DE28(u32, s32);

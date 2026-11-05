@@ -28,7 +28,7 @@ extern "C" {
 int obj_getArrWord_254(void *p, int i);
 void *get_player_by_client_id(s32);
 void *__nw__7TObjectFUl(int);
-void TWindow__close(u8 *arg0);
+void TWindow__close(void *arg0);
 void TWindowComCard__sub_80249D7C(u8 *arg0, s32 arg1);
 void *TWindowComCard__sub_80249ED8(void *, void *, void *, s32, s32, s32);
 extern const f32 lbl_805DD38C;

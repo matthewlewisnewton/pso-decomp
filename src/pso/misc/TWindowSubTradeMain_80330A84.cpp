@@ -400,7 +400,7 @@ int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int 
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
-void TWindow__close(u8 *arg0);
+void TWindow__close(void *arg0);
 }
 s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3);
 void window_request_show(void *);

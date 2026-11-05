@@ -391,7 +391,7 @@ extern "C" {
 s32 draw_visible_window_entries(void *, void *, int);
 void *construct_with_parent__13TUnk_804CDFE8FPv(void *, void *, s16, const void *);
 extern s32 __vt__14TWindowMessage[];
-extern s32 lbl_805D3980;
+extern const char *lbl_805D3980;
 
 TWindowMessage *TWindowMessage__ct(TWindowMessage *arg0, const void *arg1, u32 arg2, s32 arg3);
 void *__dt__14TWindowMessageFv(void *arg0, s16 arg1);
@@ -430,26 +430,25 @@ void *__dt__14TWindowMessageFv(void *arg0, s16 arg1) {
     }
     return arg0;
 }
-TWindowMessage *TWindowMessage__ct(TWindowMessage *window, const void *arg1, u32 arg2, s32 arg3) {
+TWindowMessage *TWindowMessage__ct(TWindowMessage *window, const void *layout, u32 count, s32 slot) {
     u32 i;
-    u8 *p;
-    u8 *arg0 = (u8 *)window;
-    construct_with_parent__13TUnk_804CDFE8FPv(arg0, (u8 *)&message_window_settings, arg3, arg1);
-    *(void **)(arg0 + 0x18) = ((u8 *)&__vt__14TWindowMessage);
-    *(s32 *)arg0 = lbl_805D3980;
-    *(s32 *)(arg0 + 0x70) = 0;
-    *(s32 *)(arg0 + 0x74) = 0;
-    *(s32 *)(arg0 + 0x88) = 0;
-    *(u32 *)(arg0 + 0x8C) = arg2;
-    *(s32 *)(arg0 + 0x78) = 0xB4;
-    *(f32 *)(arg0 + 0x84) = 0.0f;
-    *(f32 *)(arg0 + 0x80) = 0.0f;
-    *(u8 **)(arg0 + 0x7C) = (u8 *)::operator new[](arg2 * 8);
-    p = *(u8 **)(arg0 + 0x7C);
-    for (i = 0; i < arg2; i++) {
-        *(s32 *)p = 0;
-        *(s32 *)(p + 4) = 0;
-        p += 8;
+    TWindowMessageLine *line;
+    construct_with_parent__13TUnk_804CDFE8FPv(window, &message_window_settings, slot, layout);
+    *(void **)((s8 *)window + 0x18) = &__vt__14TWindowMessage;
+    window->m_name = lbl_805D3980;
+    window->m_70 = 0;
+    window->m_74 = 0;
+    window->next_line = 0;
+    window->line_count = count;
+    window->m_78 = 0xB4;
+    window->m_84 = 0.0f;
+    window->unk_80 = 0.0f;
+    window->lines = (TWindowMessageLine *)::operator new[](count * sizeof(TWindowMessageLine));
+    line = window->lines;
+    for (i = 0; i < count; i++) {
+        line->flags = 0;
+        line->timer = 0;
+        line++;
     }
     return window;
 }

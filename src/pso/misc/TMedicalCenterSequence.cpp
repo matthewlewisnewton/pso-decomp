@@ -148,7 +148,7 @@ u8 *TShopSequence__ct(u8 *arg0);
 extern s32 TMedicalCenterSequence__class_name;
 u8 *TMedicalCenterSequence__ct(u8 *arg0, s32 arg1, s32 arg2);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
+u8 *create_yes_no_window(const void *arg0, s32 arg1, u32 arg2, u32 arg3);
 
 s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 int sub_802239EC__13TShopSequenceFv(void *);
@@ -343,7 +343,7 @@ void TMedicalCenterSequence::show_fee_prompt() {
     u16 v;
     ((VObj_802164A4 *)this)->m4(0x20, 1);
     v = get_entity_id(((VObj_802164A4 *)this)->f24);
-    ((VObj_802164A4 *)this)->f30 = (s32)create_yes_no_window(((s32 (*)(int))get_window_layout_position)(0x2B), v, 0, 0);
+    ((VObj_802164A4 *)this)->f30 = (s32)create_yes_no_window(((const void *(*)(int))get_window_layout_position)(0x2B), v, 0, 0);
     ((TUnk_804CDFE8 *)(((VObj_802164A4 *)this)->f30))->set_position_xy(get_scale__15TShopWindowBaseFv(((VObj_802164A4 *)this)), get_scale__15TShopWindowBaseFv(((VObj_802164A4 *)this)));
     this->set_field_20((s32)((void *)3));
 }
