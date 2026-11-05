@@ -6,7 +6,7 @@
 class TUnk_804EFBAC : public TUnk_804CE018 {
 public:
     virtual ~TUnk_804EFBAC();
-    u8 unk_1C[0x50];
+    u8 unk_1C[0xC];
 };
 typedef char TUnk_804EFBAC_size[sizeof(TUnk_804EFBAC) == 0x6C ? 1 : -1];
 
