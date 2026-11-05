@@ -5,6 +5,7 @@
 
 extern "C" {
 s32 TObjPlayer__sub_801AA528(s32 arg0, s16 arg1);
+void set_type__10TObjPlayerFs(void *player, s16 type);
 }
 
 #endif

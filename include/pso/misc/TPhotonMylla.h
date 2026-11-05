@@ -26,4 +26,11 @@ struct TPhotonMylla : public TUnk_804C3248 {
 };
 
 typedef char TPhotonMylla_size[sizeof(TPhotonMylla) == 0x1A8 ? 1 : -1];
+
+struct Mylla_801AD970;
+struct Pkt_801AD970;
+
+extern "C" {
+void *TPhotonMylla__ct(Mylla_801AD970 *self, Pkt_801AD970 *pkt);
+}
 #endif

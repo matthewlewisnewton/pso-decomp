@@ -15,6 +15,15 @@
 #include "pso/unk/text_801AB370.h"
 #include "pso/unk/text_801ABE14.h"
 #include "pso/unk/text_801AE1F8.h"
+#include "pso/unk/text_801A9CB8.h"
+#include "pso/unk/text_80087278.h"
+#include "pso/misc/TParticleCtrl_800867E4.h"
+#include "pso/misc/TPhotonLeilla.h"
+#include "pso/misc/TPhotonMylla.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/player/TObjPlayer_801AA508.h"
+#include "pso/player/TObjPlayer_801AA664.h"
+#include "pso/player/TObjPlayer_803130BC.h"
 
 struct Slot_801A8868 { u8 pad[0x18]; };
 struct Counts_801A8868 { s32 v[4]; };
@@ -72,30 +81,10 @@ extern const f32 lbl_805DC124;
 extern const f32 lbl_805DC128;
 extern const f32 lbl_805DC12C;
 
-TObjChara *find_entity_by_id(u16 identity);
-
-s32 get_current_floor();
-s32 get_floor__10TObjPlayerFv(void *);
-s32 get_photon_blast_chain(void *, s32);
-void *get_player_by_client_id(u32);
-s32 is_split_screen();
-s32 get_room__8TObjBaseFv(void *);
-u16 get_entity_id(void *);
-s32 TObjPlayer__sub_801A9E10(void *, int, void *, void *, int, int);
-void set_type__10TObjPlayerFs(void *, s16);
-s32 TObjPlayer__sub_801AA528(s32 arg0, s16 arg1);
-void *TObjPlayer__sub_801AA66C(void *, void *);
-void *__nw__7TObjectFUl(int);
-s16 TObjPlayer__sub_80313114(u8 *arg0);
-int get_player_data__10TObjPlayerFi(int);
-
-u8 *TPhotonLeilla__ct(u8 *self, u8 *params);
-u8 *TPhotonMylla__ct(u8 *self, u8 *params);
 extern u32 lbl_805D5D18;
 void deliver_photon_blast_results_animated(PhotonBlastSequence_801A9870 *seq);
 void deliver_photon_blast_results_delayed(PhotonBlastSequence_801A9870 *seq);
 void step_photon_blast_sequence(PhotonBlastSequence_801A9870 *seq);
-void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 
 // identity, the blast entry's base value, and the blast kind. Same 12-byte
 // record PhotonBlastSummon writes.
@@ -109,7 +98,6 @@ extern s32 photon_blast_hit_count;
 extern PhotonBlastHit deferred_photon_blast_hit_queue[32];
 extern s32 deferred_photon_blast_hit_count;
 }
-void *create_timed_particle_emitter_with_flags(void *pos, s32 id, s32 a, s32 b, s32 c);
 extern s32 photon_blast_donation_flags[];
 void clear_photon_blast_donations(void);
 extern s32 local_client_id;
@@ -163,10 +151,12 @@ s32 TObjPlayer::is_any_teammate_in_state() {
     s32 current_floor;
     s32 var_r30;
 
+    TObjPlayer *player;
     current_floor = get_current_floor();
     var_r30 = 0;
 loop_1:
-    if ((((u32 (*)(s32))get_player_by_client_id)(var_r30) != 0U) && (current_floor == ((s32 (*)(void))get_floor__10TObjPlayerFv)()) && (get_photon_blast_chain(&sp8, var_r30) == 2)) {
+    player = get_player_by_client_id(var_r30);
+    if (player != NULL && current_floor == player->get_floor() && get_photon_blast_chain(&sp8, var_r30) == 2) {
         return 1;
     }
     var_r30 += 1;
@@ -177,9 +167,9 @@ loop_1:
 }
 
 s32 is_photon_blast_presentation_admitted(u32 owner_id, void *records) {
-    void *local;
-    void *owner;
-    s16 group;
+    TObjPlayer *local;
+    TObjPlayer *owner;
+    s32 group;
     if (is_split_screen() != 0) {
         return 1;
     }
@@ -190,10 +180,10 @@ s32 is_photon_blast_presentation_admitted(u32 owner_id, void *records) {
     if (local == NULL) {
         return 0;
     }
-    group = get_room__8TObjBaseFv(local);
+    group = local->get_room();
     owner = get_player_by_client_id(owner_id);
     if (owner != NULL) {
-        if (get_floor__10TObjPlayerFv(local) == get_floor__10TObjPlayerFv(owner) && group == (s16) get_room__8TObjBaseFv(owner)) {
+        if (local->get_floor() == owner->get_floor() && group == owner->get_room()) {
             return 1;
         }
     }
@@ -201,22 +191,22 @@ s32 is_photon_blast_presentation_admitted(u32 owner_id, void *records) {
 }
 
 void apply_photon_blast_action_hold(s32 arg0, s32 arg1, s32 arg2) {
-    u8 *plr;
-    u8 *ent;
+    TObjPlayer *plr;
+    TObjChara *ent;
     s32 i;
     Hit_801A86E0 tmp1;
     Hit_801A86E0 tmp2;
 
-    ent = ((u8 *(*)(u16))find_entity_by_id)(arg2);
+    ent = find_entity_by_id((u16)arg2);
     for (i = TLobby::get_game_mode(); i < TLobby::get_game_mode() + TObjEneDD::get_enemy_count(); i++) {
-        plr = (u8 *)get_player_data__10TObjPlayerFi(i);
-        if (plr != NULL && !(*(s32 *)((s8 *)plr + 0x30) & 0x40000000)) {
+        plr = TObjPlayer::get_player_data(i);
+        if (plr != NULL && !(plr->actorFlags & 0x40000000)) {
             if (is_split_screen() != 0) {
                 tmp1.value = (f32)arg1;
                 tmp1.kind = 0x14;
                 Hit_801A86E0 hit1 = tmp1;
                 ((VObj_18_b27ba1 *)plr)->m21(ent, &hit1, 0, -1, -1);
-            } else if (*(s16 *)((s8 *)plr + 0x28) == (s16)get_room__8TObjBaseFv(ent)) {
+            } else if (plr->room == ent->get_room()) {
                 tmp2.value = (f32)arg1;
                 tmp2.kind = 0x14;
                 Hit_801A86E0 hit2 = tmp2;
@@ -232,7 +222,8 @@ void clear_photon_blast_donations(void) {
         photon_blast_donation_flags[i] = 0;
     }
 }
-#define GET_STAT ((s16 (*)(void *))get_room__8TObjBaseFv)
+// u16 view of set_type__10TObjPlayerFs: 0xFFFF is lis/subi, and the section id is mr.
+// TObjPlayer::set_type(s16) emits li r4,-1 and extsh instead.
 #define SET_TYPE ((void (*)(void *, u16))set_type__10TObjPlayerFs)
 void admit_photon_blast_sequence(u8 *players, void *self) {
     Slot_801A8868 a[4];
@@ -243,11 +234,11 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
     s32 flag;
     s32 delay;
     void *o;
-    void *p;
+    TObjPlayer *p;
     s32 i;
     s32 idx;
     s32 m;
-    void *q;
+    TObjPlayer *q;
     ((TObjPlayer *)(&a[0]))->init_arrays();
     ((TObjPlayer *)(&a[1]))->init_arrays();
     ((TObjPlayer *)(&a[2]))->init_arrays();
@@ -265,7 +256,7 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
     k = 0;
     for (j = 0; j < 4; j++, players += 0x18) {
         p = get_player_by_client_id(((TObjPlayer *)players)->get_section_id());
-        if (p != NULL && GET_STAT(p) == GET_STAT(self)
+        if (p != NULL && p->get_room() == ((TObjBase *)self)->get_room()
             && TObjPlayer__sub_80313114(players) != -1) {
             SET_TYPE(&a[n], ((TObjPlayer *)players)->get_section_id());
             ((TObjPlayer *)(&a[n]))->set_field_2(TObjPlayer__sub_80313114(players));
@@ -294,7 +285,7 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
     for (i = 0; i < 4; i++) {
         if (i != get_entity_id(self)) {
             q = get_player_by_client_id(i);
-            if (q != NULL && GET_STAT(q) == GET_STAT(self)
+            if (q != NULL && q->get_room() == ((TObjBase *)self)->get_room()
                 && photon_blast_sequence_table[get_entity_id(q)].f20 != 0) {
                 flag = 1;
             }
@@ -312,7 +303,7 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
         return;
     }
     if (is_photon_blast_presentation_admitted(get_entity_id(self), b) != 0) {
-        o = __nw__7TObjectFUl(0x98);
+        o = TObject::operator new(0x98);
         if (o != NULL) {
             TObjPlayer__sub_801A9E10(o, get_entity_id(self), b, &counts, 1, 0);
         }
@@ -325,7 +316,7 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
             }
         }
         delay = idx * 150 + 100;
-        o = __nw__7TObjectFUl(0x98);
+        o = TObject::operator new(0x98);
         if (o != NULL) {
             TObjPlayer__sub_801A9E10(o, get_entity_id(self), b, &counts, 0, delay);
         }
@@ -339,10 +330,7 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
     TObjPlayer__sub_801AA528((s32)&a[1], -1);
     TObjPlayer__sub_801AA528((s32)&a[0], -1);
 }
-#undef GET_STAT
 #undef SET_TYPE
-
-
 // Applies one queued blast. calc_photon_blast_power is a method of this sequence.
 void deliver_photon_blast_results_animated(PhotonBlastSequence_801A9870 *seq) {
     s32 i;
@@ -359,10 +347,10 @@ void deliver_photon_blast_results_animated(PhotonBlastSequence_801A9870 *seq) {
         if (*kind == 4) {
             payload.kind = 6;
             for (s32 j = 0; j < 4; j++) {
-                TObjPlayer *player = (TObjPlayer *)get_player_by_client_id(seq->recipients[j]);
+                TObjPlayer *player = get_player_by_client_id(seq->recipients[j]);
                 if (player != NULL) {
                     player->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
-                    TParticleCtrl *aura = (TParticleCtrl *)spawn_particle_effect_with_flags(&player->body_center_position, 0x1F8, 0x10);
+                    TParticleCtrl *aura = spawn_particle_effect_with_flags(&player->body_center_position, 0x1F8, 0x10);
                     if (aura != NULL) {
                         aura->set_owner_id(get_entity_id(player));
                     }
@@ -372,28 +360,28 @@ void deliver_photon_blast_results_animated(PhotonBlastSequence_801A9870 *seq) {
                 play_sound_effect(0x4002AB0E, NULL, 0, 0);
             }
             target->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
-            TParticleCtrl *aura = (TParticleCtrl *)spawn_particle_effect_with_flags(&target->body_center_position, 0x1F8, 0x10);
+            TParticleCtrl *aura = spawn_particle_effect_with_flags(&target->body_center_position, 0x1F8, 0x10);
             if (aura != NULL) {
                 aura->set_owner_id(get_entity_id(target));
             }
-            TParticleCtrl *effect = (TParticleCtrl *)spawn_particle_effect_with_flags(&target->position, 0x16C, 0x10);
+            TParticleCtrl *effect = spawn_particle_effect_with_flags(&target->position, 0x16C, 0x10);
             if (effect != NULL) {
                 effect->set_owner_id(get_entity_id(target));
             }
-            effect = (TParticleCtrl *)spawn_particle_effect_with_flags(&target->position, 0x16D, 0x10);
+            effect = spawn_particle_effect_with_flags(&target->position, 0x16D, 0x10);
             if (effect != NULL) {
                 effect->set_owner_id(get_entity_id(target));
             }
         } else if (*kind == 5) {
             for (s32 j = 0; j < 4; j++) {
                 payload.kind = 7;
-                TObjPlayer *player = (TObjPlayer *)get_player_by_client_id(seq->recipients[j]);
+                TObjPlayer *player = get_player_by_client_id(seq->recipients[j]);
                 if (player != NULL) {
                     if (player->actorFlags & 0x800) {
                         payload.kind = 8;
                     }
                     player->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
-                    TParticleCtrl *aura = (TParticleCtrl *)spawn_particle_effect_with_flags(&player->body_center_position, 0x1F8, 0x10);
+                    TParticleCtrl *aura = spawn_particle_effect_with_flags(&player->body_center_position, 0x1F8, 0x10);
                     if (aura != NULL) {
                         aura->set_owner_id(get_entity_id(player));
                     }
@@ -404,13 +392,13 @@ void deliver_photon_blast_results_animated(PhotonBlastSequence_801A9870 *seq) {
                 payload.kind = 8;
             }
             target->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
-            TParticleCtrl *aura = (TParticleCtrl *)spawn_particle_effect_with_flags(&target->body_center_position, 0x1F8, 0x10);
+            TParticleCtrl *aura = spawn_particle_effect_with_flags(&target->body_center_position, 0x1F8, 0x10);
             if (aura != NULL) {
                 aura->set_owner_id(get_entity_id(target));
             }
             payload.kind = 10;
             for (s32 j = 0; j < 4; j++) {
-                TObjPlayer *player = (TObjPlayer *)get_player_by_client_id(seq->recipients[j]);
+                TObjPlayer *player = get_player_by_client_id(seq->recipients[j]);
                 if (player != NULL) {
                     player->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
                 }
@@ -418,7 +406,7 @@ void deliver_photon_blast_results_animated(PhotonBlastSequence_801A9870 *seq) {
             target->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
             payload.kind = 9;
             for (s32 j = 0; j < 4; j++) {
-                TObjPlayer *player = (TObjPlayer *)get_player_by_client_id(seq->recipients[j]);
+                TObjPlayer *player = get_player_by_client_id(seq->recipients[j]);
                 if (player != NULL) {
                     player->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
                 }
@@ -429,11 +417,11 @@ void deliver_photon_blast_results_animated(PhotonBlastSequence_801A9870 *seq) {
                 play_sound_effect(0x4002AD14, NULL, 0, 0);
                 play_sound_effect(0x4002AA16, NULL, 0, 0);
             }
-            TParticleCtrl *effect = (TParticleCtrl *)create_timed_particle_emitter_with_flags(&target->position, 0x16E, 0, 0xF, 0x10);
+            TParticleCtrl *effect = create_timed_particle_emitter_with_flags(&target->position, 0x16E, 0, 0xF, 0x10);
             if (effect != NULL) {
                 effect->set_owner_id(get_entity_id(target));
             }
-            effect = (TParticleCtrl *)spawn_particle_effect_with_flags(&target->position, 0x16F, 0x10);
+            effect = spawn_particle_effect_with_flags(&target->position, 0x16F, 0x10);
             if (effect != NULL) {
                 effect->set_owner_id(get_entity_id(target));
             }
@@ -460,10 +448,10 @@ void deliver_photon_blast_results_delayed(PhotonBlastSequence_801A9870 *seq) {
         if (*kind == 4) {
             payload.kind = 6;
             for (s32 j = 0; j < 4; j++) {
-                TObjPlayer *player = (TObjPlayer *)get_player_by_client_id(seq->recipients[j]);
+                TObjPlayer *player = get_player_by_client_id(seq->recipients[j]);
                 if (player != NULL) {
                     player->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
-                    TParticleCtrl *aura = (TParticleCtrl *)spawn_particle_effect_with_flags(&player->body_center_position, 0x1F8, 0x10);
+                    TParticleCtrl *aura = spawn_particle_effect_with_flags(&player->body_center_position, 0x1F8, 0x10);
                     if (aura != NULL) {
                         aura->set_owner_id(get_entity_id(player));
                     }
@@ -473,28 +461,28 @@ void deliver_photon_blast_results_delayed(PhotonBlastSequence_801A9870 *seq) {
                 play_sound_effect(0x4002AB0E, NULL, 0, 0);
             }
             target->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
-            TParticleCtrl *aura = (TParticleCtrl *)spawn_particle_effect_with_flags(&target->body_center_position, 0x1F8, 0x10);
+            TParticleCtrl *aura = spawn_particle_effect_with_flags(&target->body_center_position, 0x1F8, 0x10);
             if (aura != NULL) {
                 aura->set_owner_id(get_entity_id(target));
             }
-            TParticleCtrl *effect = (TParticleCtrl *)spawn_particle_effect_with_flags(&target->position, 0x16C, 0x10);
+            TParticleCtrl *effect = spawn_particle_effect_with_flags(&target->position, 0x16C, 0x10);
             if (effect != NULL) {
                 effect->set_owner_id(get_entity_id(target));
             }
-            effect = (TParticleCtrl *)spawn_particle_effect_with_flags(&target->position, 0x16D, 0x10);
+            effect = spawn_particle_effect_with_flags(&target->position, 0x16D, 0x10);
             if (effect != NULL) {
                 effect->set_owner_id(get_entity_id(target));
             }
         } else if (*kind == 5) {
             for (s32 j = 0; j < 4; j++) {
                 payload.kind = 7;
-                TObjPlayer *player = (TObjPlayer *)get_player_by_client_id(seq->recipients[j]);
+                TObjPlayer *player = get_player_by_client_id(seq->recipients[j]);
                 if (player != NULL) {
                     if (player->actorFlags & 0x800) {
                         payload.kind = 8;
                     }
                     player->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
-                    TParticleCtrl *aura = (TParticleCtrl *)spawn_particle_effect_with_flags(&player->body_center_position, 0x1F8, 0x10);
+                    TParticleCtrl *aura = spawn_particle_effect_with_flags(&player->body_center_position, 0x1F8, 0x10);
                     if (aura != NULL) {
                         aura->set_owner_id(get_entity_id(player));
                     }
@@ -505,13 +493,13 @@ void deliver_photon_blast_results_delayed(PhotonBlastSequence_801A9870 *seq) {
                 payload.kind = 8;
             }
             target->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
-            TParticleCtrl *aura = (TParticleCtrl *)spawn_particle_effect_with_flags(&target->body_center_position, 0x1F8, 0x10);
+            TParticleCtrl *aura = spawn_particle_effect_with_flags(&target->body_center_position, 0x1F8, 0x10);
             if (aura != NULL) {
                 aura->set_owner_id(get_entity_id(target));
             }
             payload.kind = 10;
             for (s32 j = 0; j < 4; j++) {
-                TObjPlayer *player = (TObjPlayer *)get_player_by_client_id(seq->recipients[j]);
+                TObjPlayer *player = get_player_by_client_id(seq->recipients[j]);
                 if (player != NULL) {
                     player->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
                 }
@@ -519,7 +507,7 @@ void deliver_photon_blast_results_delayed(PhotonBlastSequence_801A9870 *seq) {
             target->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
             payload.kind = 9;
             for (s32 j = 0; j < 4; j++) {
-                TObjPlayer *player = (TObjPlayer *)get_player_by_client_id(seq->recipients[j]);
+                TObjPlayer *player = get_player_by_client_id(seq->recipients[j]);
                 if (player != NULL) {
                     player->receive_direct_attack(seq->owner, payload, NULL, -1, -1);
                 }
@@ -530,11 +518,11 @@ void deliver_photon_blast_results_delayed(PhotonBlastSequence_801A9870 *seq) {
                 play_sound_effect(0x4002AD14, NULL, 0, 0);
                 play_sound_effect(0x4002AA16, NULL, 0, 0);
             }
-            TParticleCtrl *effect = (TParticleCtrl *)create_timed_particle_emitter_with_flags(&target->position, 0x16E, 0, 0xF, 0x10);
+            TParticleCtrl *effect = create_timed_particle_emitter_with_flags(&target->position, 0x16E, 0, 0xF, 0x10);
             if (effect != NULL) {
                 effect->set_owner_id(get_entity_id(target));
             }
-            effect = (TParticleCtrl *)spawn_particle_effect_with_flags(&target->position, 0x16F, 0x10);
+            effect = spawn_particle_effect_with_flags(&target->position, 0x16F, 0x10);
             if (effect != NULL) {
                 effect->set_owner_id(get_entity_id(target));
             }
@@ -602,7 +590,7 @@ void step_photon_blast_sequence(PhotonBlastSequence_801A9870 *seq) {
         case 4:
             summon = (u8 *)TObject::operator new(0x1B0);
             if (summon != NULL) {
-                summon = TPhotonLeilla__ct(summon, (u8 *)&params);
+                summon = (u8 *)TPhotonLeilla__ct((Leilla_801AC808 *)summon, (Pkt_801AC808 *)&params);
             }
             seq->summon = (TObject *)summon;
             for (j = 0; j < 4; j++) {
@@ -628,7 +616,7 @@ void step_photon_blast_sequence(PhotonBlastSequence_801A9870 *seq) {
         case 5:
             summon = (u8 *)TObject::operator new(0x1A8);
             if (summon != NULL) {
-                summon = TPhotonMylla__ct(summon, (u8 *)&params);
+                summon = (u8 *)TPhotonMylla__ct((Mylla_801AD970 *)summon, (Pkt_801AD970 *)&params);
             }
             seq->summon = (TObject *)summon;
             for (j = 0; j < 4; j++) {
