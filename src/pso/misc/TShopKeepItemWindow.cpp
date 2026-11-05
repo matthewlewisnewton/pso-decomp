@@ -309,7 +309,7 @@ void TShopKeepItemWindow::handle_deposit_list_select() {
         break;
     }
     if (num > 1 && this->m_38c == 0U) {
-        win = new TWindowInputNumber(get_window_layout_position(0x2B), 1, num, 1, (s16)get_child_field1c__13TShopSequenceFv(this));
+        win = new TWindowInputNumber((void *)get_window_layout_position(0x2B), 1, num, 1, (s16)get_child_field1c__13TShopSequenceFv(this));
         this->m_38c = (u32)win;
         if (this->m_38c != 0U && TLobby::is_camera_ctrl_active() > 2) {
             ((TCheckRoomSequence *)this->m_38c)->set_position(lbl_805DC710, lbl_805DC710);
@@ -368,7 +368,7 @@ s32 TShopKeepItemWindow::rebuild_item_list() {
         cur = ((TShopGetItemWindow *)(self->f384))->get_cursor_index();
     }
     if (self->f390 == 0U) {
-        self->f390 = (u32)new TWindowHelpItem(get_window_layout_position(0x27), get_entity_id((s32)self->f24));
+        self->f390 = (u32)new TWindowHelpItem((void *)get_window_layout_position(0x27), get_entity_id((s32)self->f24));
         if (self->f390 != 0U && TLobby::is_camera_ctrl_active() > 2) {
             ((TLobby *)(self->f390))->set_position(lbl_805DC710, lbl_805DC710);
         }
