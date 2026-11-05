@@ -51,7 +51,7 @@ extern u8 challenge_mode_state[];
 void copy_player_visual_record(Chr_80071BC0 *, void *);
 Plr_80071BC0 *get_player_by_client_id(s32);
 Plr_80071BC0 *create_player_object(s32, s32, TPlyCharData *);
-void clamp_and_set_unit_value__10TObjPlayerFUcl(Plr_80071BC0 *, u8, s16);
+void clamp_and_set_unit_value__10TObjPlayerFiUci(Plr_80071BC0 *, u8, s16);
 void begin_action_state__10TObjPlayerFPv(TPlyCharData *);
 void send_command__10TNpcPlayerFlScllPSc(u8, s32, s32, s32, TPlyCharData *);
 extern s32 local_client_id;
@@ -131,7 +131,7 @@ void TObjPlayer::rebuild_players_for_stage(s32 arg0) {
             ((TObjPlayer *)((u8 *)p + 0x428))->set_all_technique_levels((void *)0xff);
             if (t->techniques != NULL) {
                 for (e = t->techniques; e->level != 0xff; e++) {
-                    clamp_and_set_unit_value__10TObjPlayerFUcl(p, e->level, e->technique);
+                    clamp_and_set_unit_value__10TObjPlayerFiUci(p, e->level, e->technique);
                 }
             }
             *(s32 *)((u8 *)p + 0xd58) = 0;

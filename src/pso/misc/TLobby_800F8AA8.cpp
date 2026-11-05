@@ -873,7 +873,7 @@ extern const char lbl_8043D9F4[];
 void *tmp_buf_use_req__6TLobbyFPCc(const char *);
 s32 load_gvm_texture_archive(void *, void *);
 
-void TLobby::set_read_params(int a0, int a1, int a2) { (*(int *)&pending_file_read_handle_ref) = a0; (*(int *)&pending_file_read_sector_count) = a1; (*(int *)&pending_file_read_destination) = a2; }
+void TLobby::set_read_params(void *handle_ref, int sector_count, int destination) { pending_file_read_handle_ref = (s32 *)handle_ref; (*(int *)&pending_file_read_sector_count) = sector_count; (*(int *)&pending_file_read_destination) = destination; }
 
 void TLobby__sub_800F8DD8(void) { (*(int *)&pending_file_read_flush_requested) = 1; }
 
@@ -907,7 +907,7 @@ void TLobby::load_font_texture() {
         s32 r;
         prs_decompress_buffer((s32)lobby_font_texture_prs_data, (s32)file);
         r = load_gvm_texture_archive(file, lbl_8049C61C);
-        ((TLobby *)lbl_8043D9F4)->tmp_buf_release();
+        TLobby::tmp_buf_release((const char *)lbl_8043D9F4);
         lobby_font_texture_loaded = 1;
         if (r == -1) {
             lobby_font_texture_loaded = 0;

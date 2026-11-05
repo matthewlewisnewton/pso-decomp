@@ -144,7 +144,7 @@ void TLobby__sub_803382E4(void) {
         draw_projected_textured_strip(lbl_804EF344, 4);
         TLobby::reset_player_state();
         set_additive_blend();
-        draw_compass_sprite__10TObjPlayerFlllf(&lbl_804EF3E0, 2, (__cvt_fp2unsigned(lbl_805DF9B4 * alpha) << 24) | 0xFFFFFF, 0x21, lbl_805DF9A0);
+        lbl_804EF3E0.draw_compass_sprite(2, (__cvt_fp2unsigned(lbl_805DF9B4 * alpha) << 24) | 0xFFFFFF, 0x21, lbl_805DF9A0);
         set_default_alpha_blend();
         TCameraCtrl__sub_80068EF0();
         TParticleCtrl::end_effect_render();
@@ -164,8 +164,8 @@ void TLobby::load_now_loading_texture() {
     s32 temp_r31;
     s32 temp_r3;
     if (!(lobby_request_flags & 2)) {
-        temp_r31 = ((TQuestVmDownLoadServer *)0x11000)->alloc();
-        temp_r3 = ((TQuestVmDownLoadServer *)0x2000)->alloc();
+        temp_r31 = (s32)TQuestVmDownLoadServer::alloc(0x11000);
+        temp_r3 = (s32)TQuestVmDownLoadServer::alloc(0x2000);
         set_stream_state__6TLobbyFi(lbl_80477BC4, temp_r3);
         prs_decompress_buffer((temp_r3), (temp_r31));
         load_gvm_texture_archive(temp_r31, lbl_804EF1DC);

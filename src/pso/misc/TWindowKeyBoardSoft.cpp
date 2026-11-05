@@ -943,7 +943,7 @@ void TWindowSubStatusDisp__sub_8025E530(TWindowKeyBoardBase *self, TWindowKeyBoa
 
 #pragma push
 #pragma opt_common_subs off
-void TWindowKeyBoardBase::sub_8025E6DC(TWindowKeyBoardSoft *arg1) {
+void TWindowKeyBoardBase::sub_8025E6DC(u8 *arg1) {
     typedef char sp8_offset[(offsetof(Stack_8025E6DC, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_8025E6DC, spC) == 0x4) ? 1 : -1];
     typedef char sp10_offset[(offsetof(Stack_8025E6DC, sp10) == 0x8) ? 1 : -1];
@@ -957,7 +957,7 @@ void TWindowKeyBoardBase::sub_8025E6DC(TWindowKeyBoardSoft *arg1) {
     u16 temp_r3;
     u16 temp_r3_2;
     TWindowKeyBoardSoft *ctx;
-    ctx = arg1;
+    ctx = (TWindowKeyBoardSoft *)arg1;
     var_r31 = 1;
     if (!(this->m_62 & 2) || (ctx->open_tick >= 0)) {
         stack.sp10 = ctx->inner_x;

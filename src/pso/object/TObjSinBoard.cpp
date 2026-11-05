@@ -389,7 +389,6 @@ struct Vec_80199674;
 struct Vec_8019978C;
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
-void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 extern Sys_80198A2C gogo_ball_configuration;
 extern Vec_80198E84 gogo_ball_sync_state[];
 void TWindowTimer__sub_8019A6F8(void*);
