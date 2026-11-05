@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 13 | 4 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5793 | 875 |
+| pragma | 5794 | 875 |
 | configure.py per-unit override | 164 | 164 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040, `fp_contract` 894, `auto_inline` 840, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040, `fp_contract` 894, `auto_inline` 840, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 238, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -772,7 +772,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1148, `inline_depth` 1040,
 | `src/pso/misc/TSaveChCr_8033A088.cpp` | opt_common_subs×2 |
 | `src/pso/misc/TScene.cpp` | defer_codegen×2, readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1, opt_lifetimes×1 |
 | `src/pso/misc/TScene_800838C4.cpp` | opt_common_subs×1 |
-| `src/pso/misc/TSetManager_8020D918.cpp` | scheduling×1 |
+| `src/pso/misc/TSetManager_8020D918.cpp` | scheduling×1, opt_propagation×1 |
 | `src/pso/misc/TShopArmorListWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/misc/TShopDeleteItemWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1, opt_loop_invariants×1 |
 | `src/pso/misc/TShopEquipmentListWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |

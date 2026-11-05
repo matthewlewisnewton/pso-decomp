@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `7026cbad6`, 2026-11-05)
+## Summary (regenerated on this branch after merging main `73c22f96f`, 2026-11-05)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `7026cbad6` (2026-11-05). Assembly is counted as functions;
+after merging main `73c22f96f` (2026-11-05). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 7 functions (13 source lines) | 4 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,793 | 875 |
+| CodeWarrior pragmas (excluding push/pop) | 5,794 | 875 |
 | Per-unit compiler overrides in `configure.py` | 164 | 164 |
 | Approved regressions | 0 | 0 |
 
@@ -70,9 +70,9 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,793 pragmas in 875 files; per-file table in the generated file. Main kinds:
+5,794 pragmas in 875 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1148, `inline_depth` 1040, `fp_contract` 894, `auto_inline` 840,
-`opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237,
+`opt_common_subs` 611, `scheduling` 260, `opt_propagation` 238,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -100,6 +100,12 @@ small float differences without FMA).
 | File | Function | What | Why | Port should |
 |---|---|---|---|---|
 | `src/pso/boss/TObjBoss2Tunnel.cpp` | `TObjBoss2Tunnel__sub_8007D1D0` (`0x8007D1D0`, size `0x658`) | one `#pragma opt_propagation off` | Approved by Matt 2026-11-04 4:38 PM PT (per-function `opt_propagation off` for #290). It replaces upstream #185's unit switch `-opt nopropagation`; every other function in the unit is 100% without it. The original tests `lbz r3, boss2_tunnel_state_flag` / `cmplwi r3, 0` and computes the copy-filter flag (`clrlwi r3, r3, 31; xori r28, r3, 1`) before `bl TObjBoss2Tunnel__sub_8036EF44`. With propagation on, the load stays live in r30 across the calls, `clrlwi`/`xori` move after `TObjBoss2Tunnel__sub_8036EF44` and `set_display_copy_filter__Fi`, and each early exit branches to a shorter epilogue (`b 0x1210` instead of `b 0x1224`): 92.25%. | Drop the pragma. The flag is `!(boss2_tunnel_state_flag & 1)`; a port does not need MWCC's propagation schedule. |
+
+### Approved: `TLobby__sub_8020DC78` ([#357](https://github.com/matthewlewisnewton/pso-decomp/pull/357))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TSetManager_8020D918.cpp` | `TLobby__sub_8020DC78` | one scoped `#pragma opt_propagation off` | Approved by Matt 2026-11-05, t250s1179. Propagation merged the separate null locals into one register, leaving six callee-saved register rows different at 99.77419%. Disabling it preserves the distinct object-pool and enemy-row null locals: the target is 100% (620/620 bytes), the whole unit `.text` is 100% (1728/1728), and every sibling stays exact. Precedents: `TObjBoss2Tunnel__sub_8007D1D0` and `TEF_LensFlare::render`. | Drop the pragma. A port does not need MWCC's propagation schedule. |
 
 ### Approved: `TUnk_804E4B3C::update_spawn_timer` ([#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290))
 
