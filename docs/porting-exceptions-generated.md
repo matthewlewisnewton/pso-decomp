@@ -10,23 +10,23 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 9 | 3 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5863 | 884 |
-| configure.py per-unit override | 145 | 145 |
+| pragma | 5859 | 885 |
+| configure.py per-unit override | 148 | 148 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 930, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 239, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 925, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
 | File:line | Source |
 |---|---|
-| `src/musyx/runtime/Chorus/chorus_fx.c:119` | `asm void do_src1(void *src) {` |
-| `src/musyx/runtime/Chorus/chorus_fx.c:120` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src1.inc"` |
-| `src/musyx/runtime/Chorus/chorus_fx.c:123` | `asm void do_src2(register void *src) {` |
-| `src/musyx/runtime/Chorus/chorus_fx.c:124` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src2.inc"` |
-| `src/musyx/runtime/StdReverb/reverb.c:89` | `asm void DoCrossTalk(void *a, void *b, f32 start, f32 end) {` |
-| `src/musyx/runtime/StdReverb/reverb.c:90` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
-| `src/musyx/runtime/StdReverb/reverb.c:93` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
-| `src/musyx/runtime/StdReverb/reverb.c:94` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:120` | `asm void do_src1(void *src) {` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:121` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src1.inc"` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:124` | `asm void do_src2(register void *src) {` |
+| `src/musyx/runtime/Chorus/chorus_fx.c:125` | `#include "orig_asm/musyx/runtime/Chorus/chorus_fx/do_src2.inc"` |
+| `src/musyx/runtime/StdReverb/reverb.c:90` | `asm void DoCrossTalk(void *a, void *b, f32 start, f32 end) {` |
+| `src/musyx/runtime/StdReverb/reverb.c:91` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
+| `src/musyx/runtime/StdReverb/reverb.c:94` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
+| `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
 
 ## MWCC intrinsics
@@ -67,13 +67,13 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TWindowFukidasi.cpp:458` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:515` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:591` | `__cntlzw` |
-| `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:73` | `__cntlzw` |
-| `src/pso/misc/TWindowMainMenu_802AD538.cpp:286` | `__cntlzw` |
+| `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:71` | `__cntlzw` |
+| `src/pso/misc/TWindowMainMenu_802AD538.cpp:282` | `__cntlzw` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:32` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:33` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:43` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:44` | `__rlwinm` |
-| `src/pso/misc/TWindowSubComCard_80244774.cpp:230` | `__cntlzw` |
+| `src/pso/misc/TWindowSubComCard_80244774.cpp:229` | `__cntlzw` |
 | `src/pso/misc/TWindowSubItem.cpp:361` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
@@ -211,6 +211,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
 | `pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `(multi-line entry; see configure.py)` | TAdMultiPlyChrSelectGC_802C50EC: -fp_contract on because the original contracts all four multiply-adds (fmadds at 802C5148, 802C5274, 802C58AC and 802C676C). The bias at 0x80471D00 is this unit's only .rodata and is mapped to the pool symbol @156. -inline on (not auto) inlines only clamped_slot_802C5F1C. Written in the caller, sub_802C5F1C swaps r7/r8 in the bdnz loop (row in r7, cell in r8; original row r8, cell r7). Inlining numbers the clamp locals ahead of the hoisted row. -inline auto also inlines unmarked functions (update 108 to 564, update_selection 668 to 2664, sub_802C6660 488 to 580, and three more). -inline deferred emits the unit backwards. Precedent: Brawl configure.py -inline on (only functions marked inline). |
 | `pso/item/TItemSpecialEvent_803531FC.cpp` | `(multi-line entry; see configure.py)` | GC/2.0: compiler-expanded struct copies take 2.0's registers. The ending item handler table keeps 2.0's store/load scheduling for its zero-initialized local member-function-pointer array. |
+| `pso/effect/TEffIndirectCtrl_802A88AC.cpp` | `-opt noprop` | deform_indirect_texture_scroll keeps its s16 scroll offset as a named local (extsh r28, after the coordinate masks in r30/r29). With copy propagation the frontend replaces it with a hoisted temporary that the allocator colours first (r30). See docs/porting-exceptions.md section 5. |
 | `pso/boss/Boss5GryphonBehavior.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneGyaranzo.cpp` | `GC/2.0, -inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOExplosiveMachine.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -235,6 +236,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/misc/TWindowShortListCtrl_8026E7DC.cpp` | `GC/1.3` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TMedicalCenterSequence.cpp` | `-inline deferred` | Deferred inlining: functions come out in reverse source order and the vtables before the switch tables in .data. |
 | `pso/misc/TWindowMainMenu_802AD538.cpp` | `-inline noauto,level=1` | Row-header copy is a 16-byte struct assignment. -inline off outlines it; noauto,level=1 inlines that helper only. The rest of the unit stays out of line. |
+| `pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `-fp_contract on` | Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs (scale_point_about_pivot, apply_context_transform_to_rect, apply_window_closing_stretch, clip_textured_quad, init_text_window_layout). Unit -fp_contract on replaces the per-function pragmas. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/boss/TBoss7LaserLight.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEnemyCustom.cpp` | `-inline deferred, -pool off, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/boss/TBoss3VoloptCore.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -325,6 +327,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/object/TObjQuestColA_80196FE4.cpp` | `-inline off,deferred` | Quest-collision deleting destructors share a TU. Deferred generation emits the last definition first, which is the only order that puts each vtable before the next class's (TObjQuestColA then TObjQuestCol; TObjQuestColApcINW then TObjQuestColApcIN). |
 | `pso/object/TObjQuestColApcINW_80196EDC.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/camera/CreationCamera.cpp` | `-inline off,deferred, -fp_contract on` | The character creation camera: deferred with nothing inlined, and its multiply-adds contracted into fmadds. |
+| `pso/effect/TEF_LensFlare.cpp` | `-fp_contract on` | The lens-flare renderer contracts its attenuation and displacement multiply-adds into fnmsubs/fmadds; the whole unit stays byte-exact with -fp_contract on, so that is this translation unit's setting. |
 | `pso/system/PadRumble.cpp` | `-fp_contract on` | The pad rumble and Ninja helper code contract multiply-adds into fmadds/fnmsubs. |
 | `pso/system/NinjaUtil.cpp` | `-fp_contract on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/render/render_util.cpp` | `GC/1.3.2, -fp_contract on, -DPSO_SDK_COMPACT_MATH` | The render helpers (0x801412D0-0x80142770): GC/1.3.2, one .sdata2 pool. Only 1.3.2 keeps approach_vector_fixed_distance's early-out copy unscheduled. |
@@ -461,6 +464,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/boss/TUnk_80484840.cpp` | fp_contract×1 |
 | `src/pso/boss/TUnk_80484888.cpp` | fp_contract×1 |
 | `src/pso/boss/TUnk_80484AFC.cpp` | fp_contract×1 |
+| `src/pso/effect/TEF_LensFlare.cpp` | opt_propagation×1 |
 | `src/pso/effect/TEffClitical.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/effect/TEffGuard.cpp` | readonly_strings×1 |
 | `src/pso/effect/TEffHit.cpp` | readonly_strings×1 |
@@ -822,7 +826,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TWindowInputNumber_80256170.cpp` | fp_contract×2 |
 | `src/pso/misc/TWindowKeyBoardHard.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TWindowKeyBoardSoft.cpp` | optimization_level×2, opt_propagation×1, opt_common_subs×1 |
-| `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | fp_contract×5, opt_common_subs×1 |
+| `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TWindowKeyBoardSoft_8025B85C.cpp` | opt_propagation×1 |
 | `src/pso/misc/TWindowKeyBoardSoft_80261440.cpp` | fp_contract×2 |
 | `src/pso/misc/TWindowLoadItemTexture.cpp` | opt_common_subs×1, fp_contract×1 |
