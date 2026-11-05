@@ -23,20 +23,6 @@ extern const f32 lbl_805DECBC;
 extern const f32 lbl_805DECC0;
 extern const f32 lbl_805DECC4;
 extern const f32 lbl_805DECC8;
-// This unit's .sdata2 (0x805DECCC..0x805DECF8), in address order. Non-const so
-// MWCC loads these objects instead of pooling a second copy of the initializer.
-// __declspec keeps them in .sdata2 (a plain non-const lands in .sdata).
-__declspec(section ".sdata2") f32 lbl_805DECCC = 200.0f;
-__declspec(section ".sdata2") f32 lbl_805DECD0 = 0.04f;
-__declspec(section ".sdata2") f32 lbl_805DECD4 = 0.2f;
-__declspec(section ".sdata2") f32 lbl_805DECD8 = -30.000002f;
-__declspec(section ".sdata2") f32 lbl_805DECDC = 0.06f;
-__declspec(section ".sdata2") f32 lbl_805DECE0 = 0.3f;
-__declspec(section ".sdata2") f32 lbl_805DECE4 = -15.000001f;
-__declspec(section ".sdata2") f32 lbl_805DECE8 = 10.0f;
-__declspec(section ".sdata2") f32 lbl_805DECEC = 90.0f;
-__declspec(section ".sdata2") f32 lbl_805DECF0 = 3.0517578125e-05f;
-__declspec(section ".sdata2") f32 lbl_805DECF4 = 600.0f;
 extern u8 lbl_804E4A44[];
 extern const f32 lbl_805DECB4;
 extern const f32 lbl_805DECFC;
@@ -301,9 +287,9 @@ void TUnk_804E4B3C::update_dust_spawn() {
     void *p;
     m_74 = m_74 - 1;
     if (m_74 <= 0) {
-        v.x = lbl_805DECCC * rand_signed_unit();
-        v.y = lbl_805DECEC * (lbl_805DECF0 * (f32)rand()) + lbl_805DECE8;
-        v.z = lbl_805DECF4;
+        v.x = 200.0f * rand_signed_unit();
+        v.y = 90.0f * (3.0517578125e-05f * (f32)rand()) + 10.0f;
+        v.z = 600.0f;
         p = TObject::operator new(0x30);
         if (p != NULL) {
             __ct__13TObjBoss7DustFv((u8 *)p, tl_05, &v);
@@ -342,18 +328,18 @@ void TUnk_804E4B3C::sub_802F2400() {
             return;
         }
         if (temp_f1 < lbl_805DECBC) {
-            TItemEffOrgaFlowShot::approach_value(&m_5c, (f32)lbl_805DECC0, (f32)((f32) (lbl_805DECC4 * lbl_805DEC68)));
-            TItemEffOrgaFlowShot::approach_value(&value, (f32)lbl_805DECC8, (f32)lbl_805DECB8);
+            TItemEffOrgaFlowShot::approach_value(&m_5c, lbl_805DECC0, lbl_805DECC4 * lbl_805DEC68);
+            TItemEffOrgaFlowShot::approach_value(&value, lbl_805DECC8, lbl_805DECB8);
             return;
         }
-        if (temp_f1 < lbl_805DECCC) {
-            TItemEffOrgaFlowShot::approach_value(&m_5c, (f32)lbl_805DECD0, (f32)((f32) (lbl_805DECD4 * lbl_805DEC68)));
-            TItemEffOrgaFlowShot::approach_value(&value, (f32)lbl_805DECC8, (f32)lbl_805DECD8);
+        if (temp_f1 < 200.0f) {
+            TItemEffOrgaFlowShot::approach_value(&m_5c, 0.04f, 0.2f * lbl_805DEC68);
+            TItemEffOrgaFlowShot::approach_value(&value, lbl_805DECC8, -30.000002f);
             return;
         }
         if (temp_f1 < lbl_805DECA8) {
-            TItemEffOrgaFlowShot::approach_value(&m_5c, (f32)lbl_805DECDC, (f32)((f32) (lbl_805DECE0 * lbl_805DEC68)));
-            TItemEffOrgaFlowShot::approach_value(&value, (f32)lbl_805DECC8, (f32)lbl_805DECE4);
+            TItemEffOrgaFlowShot::approach_value(&m_5c, 0.06f, 0.3f * lbl_805DEC68);
+            TItemEffOrgaFlowShot::approach_value(&value, lbl_805DECC8, -15.000001f);
         }
     }
 }
