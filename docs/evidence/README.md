@@ -51,6 +51,7 @@ guides.
 - [Shared scratch vector storage](scratch-vector-evidence.md)
 - [Symbol chat parts recovery (WIP)](symbol-chat-parts-recovery-evidence.md)
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)
+- [TBoss6Type1 `.sdata2` integer constants](tboss6type1-sdata2-constants.md)
 - [TChCrTagPlGraphic vtable emission](tchcrtagplgraphic-vtable-evidence.md)
 - [Texture input and runtime surface](texture-input-evidence.md)
 - [Vector helper contracts](vector-helper-evidence.md)

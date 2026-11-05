@@ -23,7 +23,7 @@ s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 is_slot_active__23TAdSinglePlyChrSelectGCFUi();
 
 s32 TAdMultiPlyChrSelectGC__sub_802C5A44(int, void *, int);
-s32 is_multiplayer_character_slot_selected(int);
+s32 is_multiplayer_character_slot_selected(s32);
 s32 TAdMultiPlyChrSelectGC__sub_802C6558();
 s32 TAdMultiPlyChrSelectGC__sub_802C658C(int);
 s32 TAdMultiPlyChrSelectGC__sub_802C6660(int);

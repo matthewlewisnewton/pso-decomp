@@ -20,6 +20,7 @@
 #include "pso/misc/TWindowSubMag.h"
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TPlyItem.h"
 #include "pso/ui/Language.h"
 
 struct Base_802205E4 { char pad[0x18]; };
@@ -116,7 +117,7 @@ struct Ent_80221440 { s32 item; s32 idx; };
 struct Win_80221440 {
     VObj_18_2e9c25 base;
     u8 pad1c[0x24 - 0x1C];
-    u8 *player;
+    TObjPlayer *player;
     u8 pad28[0x54 - 0x28];
     Ent_80221440 ents[30];
     u8 pad144[4];
@@ -174,7 +175,6 @@ s32 get_appraisal_text(s32 arg0);
 extern "C" {
 u8 *create_item_list_window(s32 arg0, s32 arg1, s32 arg2);
 void *memset(void *, int, unsigned long);
-s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 s32 get_item_record__23TShopJudgmentItemWindowFPv(int, int, int);
 void set_judgment_target_flag(void *arg0, void *arg1);
 f32 get_scale__15TShopWindowBaseFv(void *);
@@ -281,7 +281,7 @@ void TShopJudgmentItemWindow::handle_pay_confirm() {
                 *(s32 *)&this->_pad14C = 3;
                 ((TWindowBase *)this->m_158)->close();
                 this->m_158 = 0U;
-                try_spend_actor_meseta((u8 *)this->m_24, 0x64);
+                try_spend_actor_meseta((TObjPlayer *)this->m_24, 0x64);
                 ((VObj_18 *)(this))->m6(0xA, 1);
                 this->set_field_20(5);
                 return;
@@ -419,7 +419,7 @@ void TShopJudgmentItemWindow::update_judge_confirm() {
                     ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x15C)))->close();
                     *(u32 *)((s8 *)arg0 + 0x15C) = 0U;
                 }
-                try_spend_actor_meseta((u8 *)(*(s32 *)((s8 *)arg0 + 0x24)), 0x64);
+                try_spend_actor_meseta((TObjPlayer *)(*(s32 *)((s8 *)arg0 + 0x24)), 0x64);
                 if (check_equip_requirements(*(void **)((s8 *)arg0 + 0x24), arg0 + 0x28, NULL) != 0) {
                     ((VObj_18 *)(arg0))->m6(0xC, 1);
                     ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x158)))->close();
@@ -590,7 +590,7 @@ s32 TShopJudgmentItemWindow::build_item_list(void *arg0) {
     s32 j;
     s32 k;
     memset(W->ents, 0, 0xF0);
-    n = ((TObjPlayer *)(*(s32 *)(W->player + 0xD00)))->apply_shop_judgment((int)items);
+    n = W->player->inventory_objects->apply_shop_judgment(items);
     W->count = 0;
     for (i = 0; i < n; i++) {
         it = items[i];
