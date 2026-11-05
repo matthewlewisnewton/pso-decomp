@@ -72,28 +72,6 @@ struct S_802C5314 {
     s32 y[4][3];
 };
 
-struct S_802C6008 {
-    u8 pad0[0x1C];
-    s32 f1C;
-    u8 pad20[0x4AC - 0x20];
-    s32 sel[4][3];
-    s32 f4DC[4];
-    s32 f4EC;
-    u8 pad4f0[0x8];
-    s32 f4F8;
-};
-
-struct S_802C61E4 {
-    u8 pad0[0x1C];
-    s32 f1C;
-    u8 pad20[0x4AC - 0x20];
-    s32 sel[4][3];
-    s32 f4DC[4];
-    s32 f4EC;
-    u8 pad4f0[0x8];
-    s32 f4F8;
-};
-
 typedef struct Jump_802C5C84 {
     s32 v[4];
 } Jump_802C5C84;
@@ -130,7 +108,9 @@ struct Pad_802C6AC8 { u8 pad[0x20]; u8 ctl[0x30]; };
 struct Quad_802C50EC { f32 x, y, z, w, u0, v0, u1, v1; };
 struct V2_802C50EC { f32 x, y; };
 struct S_802C50EC {
-    u8 pad0[0x24];
+    u8 pad0[0x1C];
+    s32 f1C;
+    u8 pad20[4];
     Quad_802C50EC quad[8][3];
     f32 cursor[3][8];
     V2_802C50EC home[4][3];
@@ -142,7 +122,9 @@ struct S_802C50EC {
     s32 sel[4][3];
     s32 f4DC[4];
     s32 f4EC;
-    u8 pad4f0[0x500 - 0x4F0];
+    u8 pad4f0[8];
+    s32 f4F8;
+    u8 pad4fc[4];
     s32 b[4][3];
 };
 
@@ -166,7 +148,7 @@ extern const f32 lbl_805DE57C;
 extern const f32 lbl_805DE580;
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
-s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *, int);
+s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(S_802C50EC *, int);
 extern u8 controller_physical_port_bank[];
 extern void *TAdMultiPlyChrSelectGC__data_804E0A48[4];
 void TAdMultiPlyChrSelectGC__sub_802C50EC(s32);
@@ -559,8 +541,7 @@ static inline s32 clamped_slot_802C5F1C() {
     return idx;
 }
 
-s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
-    S_802C50EC *self = (S_802C50EC *)arg0;
+s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(S_802C50EC *self, int arg1) {
     u32 i;
     u32 j;
     s32 idx;
@@ -599,7 +580,7 @@ s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *arg0, int arg1) {
 }
 
 void TAdMultiPlyChrSelectGC::update_option_cursor() {
-    S_802C6008 *self = (S_802C6008 *)this;
+    S_802C50EC *self = (S_802C50EC *)this;
     TAdMultiPlyChrSelectGC__sub_802C5F1C(self, self->f1C++);
     if (self->f4DC[self->f4EC] != 0 && self->f4F8 == 0) {
         if (TAdMultiPlyChrSelectGC::dispatch_draw_command((s32)WIN_802C6008, 0x10, 6, 1) != 0) {
@@ -624,7 +605,7 @@ void TAdMultiPlyChrSelectGC::update_option_cursor() {
 
 #define WIN_802C61E4 ((void *)(controller_physical_port_bank + TAdMultiPlyChrSelectGC__data_805D67D8 * 0x50 + 0x20))
 void TAdMultiPlyChrSelectGC::handle_dpad_input() {
-    S_802C61E4 *self = (S_802C61E4 *)this;
+    S_802C50EC *self = (S_802C50EC *)this;
     s32 n;
     s32 m;
     TAdMultiPlyChrSelectGC__sub_802C5F1C(self, self->f1C++);
