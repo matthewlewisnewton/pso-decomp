@@ -29,6 +29,7 @@ extern BmlResourceDescriptor boss6_plot_falz_resource_descriptor;
 #include "pso/boss/TBoss6GravBall.h"
 #include "pso/boss/TBoss6Rock.h"
 #include "pso/boss/TBoss6Tube.h"
+#include "pso/boss/Boss6ScrollStrips.h"
 #include "pso/boss/TBoss6Type1.h"
 #include "pso/boss/TBoss6Type2.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -982,7 +983,6 @@ bool is_normal_difficulty(void) {
 int TBoss6PlotFalz::get_phase() {  return plot_falz_phase; }
 }
 
-struct Obj_8004AA04 { s32 count; u8 pad[0xC]; void **items; };
 
 union MemberActionStorage_8004B084 { s32 words[3]; void (TBoss4DarkFalz::*action)(); };
 
@@ -998,21 +998,7 @@ struct RecoveredGlobal_8004B0F8_TBoss4DarkFalz__data_80485108 {
     u8 remaining[0x33C];
 };
 
-struct Obj_802AC1D8 { s32 count; s32 pad4; s32 x; s32 y; u32 *list; };
 
-typedef struct Rec_8004AA80 {
-    s32 a;
-    s32 b;
-    s32 c;
-} Rec_8004AA80;
-
-typedef struct Obj_8004AA80 {
-    s32 count;
-    u8 pad4[0x8 - 0x4];
-    s32 f8;
-    s32 fc;
-    s32 *items;
-} Obj_8004AA80;
 
 struct Vec_802AC3E8 { f32 x, y, z; };
 
@@ -1022,10 +1008,9 @@ struct Obj_802AC3E8 { u8 pad[0x38]; Vec_802AC3E8 pos; u8 pad2[0xA4 - 0x44]; Sub_
 
 void *destroy_buffer_pair(void *arg0, s16 arg1);
 extern "C" {
-void scroll_strip_uvs(u32, s16, s16);
+void scroll_strip_uvs(void *, s16, s16);
 s32 get_bml_model(s32, s32);
-s32 alloc_tables__6TLobbyFll(s32, s32, s32);
-void build_tables__14TBoss6PlotFalzFPvPvi(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2);
+void *alloc_tables__6TLobbyFll(void *, s32, s32);
 extern s32 lbl_805D5868;
 extern s32 lbl_805D5870;
 void update_active_flag__14TBoss6PlotFalzFv(void);
@@ -1038,66 +1023,60 @@ void update_active_flag__14TBoss6PlotFalzFv(void) {
     }
 }
 
-void TBoss6PlotFalz::scroll_strips_uv(s32 dx, s32 dy) {
-    Obj_802AC1D8 *o = (Obj_802AC1D8 *)this;
-    s32 j;
+void Boss6ScrollStrips::scroll_strips_uv(s32 du, s32 dv) {
     s32 i;
-    i = 0;
-    j = 0;
-    o->x += dx;
-    o->y += dy;
-    for (; i < o->count; i++, j += 4) {
-        u32 e = *(u32 *)((u8 *)o->list + j);
-        if (e != 0) {
-            scroll_strip_uvs(e, o->x, o->y);
+    u += du;
+    v += dv;
+    for (i = 0; i < count; i++) {
+        if (items[i] != 0) {
+            scroll_strip_uvs(items[i], u, v);
         }
     }
 }
 
-void TBoss6PlotFalz::free_buffer_pairs() {
-    Obj_8004AA04 *self = (Obj_8004AA04 *)this;
+void Boss6ScrollStrips::free_buffer_pairs() {
     s32 i;
-    for (i = 0; i < self->count; i++) {
-        if (self->items[i] != 0) {
-            destroy_buffer_pair(self->items[i], 1);
-            self->items[i] = 0;
+    for (i = 0; i < count; i++) {
+        if (items[i] != 0) {
+            destroy_buffer_pair(items[i], 1);
+            items[i] = 0;
         }
     }
-    ::operator delete[](self->items);
-    self->items = 0;
+    ::operator delete[](items);
+    items = 0;
 }
 typedef char MemberActionStorage_8004B084_size[sizeof(MemberActionStorage_8004B084) == 12 ? 1 : -1];
 typedef char RecoveredGlobal_8004B084_TBoss4DarkFalz__data_80485108_size[sizeof(RecoveredGlobal_8004B084_TBoss4DarkFalz__data_80485108) == 0x340 ? 1 : -1];
 typedef char MemberActionStorage_8004B0F8_size[sizeof(MemberActionStorage_8004B0F8) == 12 ? 1 : -1];
 typedef char RecoveredGlobal_8004B0F8_TBoss4DarkFalz__data_80485108_size[sizeof(RecoveredGlobal_8004B0F8_TBoss4DarkFalz__data_80485108) == 0x340 ? 1 : -1];
 
-void build_tables__14TBoss6PlotFalzFPvPvi(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2) {
+void Boss6ScrollStrips::build_tables(Boss6StripDesc *descs, s32 n) {
     s32 h;
     s32 i;
-    Rec_8004AA80 *r;
+    Boss6StripDesc *r;
     s32 t;
-    s32 p;
+    void *p;
     s32 j;
     h = TObjFish::get_fish_count();
-    if (h == 0 || arg1 == NULL || arg2 < 1) {
+    if (h == 0 || descs == NULL || n < 1) {
         return;
     }
-    arg0->count = arg2;
-    arg0->items = NULL;
-    arg0->items = (s32 *)::operator new[](arg0->count * 4);
-    arg0->f8 = 0;
-    arg0->fc = 0;
-    for (j = 0; j < arg0->count; j++) {
-        arg0->items[j] = 0;
+    count = n;
+    items = NULL;
+    items = (void **)::operator new[](count * 4);
+    u = 0;
+    v = 0;
+    for (j = 0; j < count; j++) {
+        items[j] = 0;
     }
-    for (i = 0; i < arg0->count; i++) {
-        r = &arg1[i];
-        t = (s32)find_model_node(get_bml_model(h, r->a), r->b);
-        p = (s32)::operator new(0x14);
+    for (i = 0; i < count; i++) {
+        r = &descs[i];
+        t = (s32)find_model_node(get_bml_model(h, r->model), r->node);
+        p = ::operator new(0x14);
         if (p != 0) {
             p = alloc_tables__6TLobbyFll(p, t, r->c);
         }
-        arg0->items[i] = p;
+        items[i] = p;
     }
 }
 

@@ -16,6 +16,7 @@
 #include "pso/TBoss6EffHyoui.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/boss/TBoss4Type2.h"
+#include "pso/boss/Boss6ScrollStrips.h"
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/boss/TBoss6Rock.h"
 #include "pso/boss/TBoss6Type1.h"
@@ -223,7 +224,6 @@ f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 init_collision_body_parts(void *, void *, int);
-void build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
 void TBoss6Type2__sub_802BA7B0(void* p);
 s32 TBoss6Type2__sub_802BB694(TBoss6Type2 *self);
 void TBoss6Type2__sub_802BB818(TBoss6Type2 *self, f32);
@@ -248,7 +248,7 @@ extern int TBoss6Type2__initial_actor_flag_masks[];
 extern u8 boss6_type2_effect_desc_table[];
 extern s32 boss6_type2_variant_id_table[];
 extern s32 lbl_8047128C[];
-extern u8 boss6_type2_plot_falz_entry_table[];
+extern Boss6StripDesc boss6_type2_plot_falz_entry_table[];
 extern s32 boss6_type2_zero_vec[];
 extern u8 boss6_type2_collision_parts[];
 extern u8 __vt__11TBoss6Type2[];
@@ -2566,7 +2566,7 @@ void TBoss6Type2::run_task() {
     ((TBoss6Type2 *)arg0)->apply_rock_hits_to_players();
     ((TBoss6Type2 *)arg0)->sub_802BB498();
     ((TBoss6Type2 *)arg0)->sub_802BC124();
-    ((TBoss6PlotFalz *)(arg0 + 0x768))->scroll_strips_uv(8, 0);
+    ((Boss6ScrollStrips *)(arg0 + 0x768))->scroll_strips_uv(8, 0);
     TObjPlayer__sub_8023DEE0((s16 *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)(find_model_node(get_bml_model(this->m_3fc, 1), 1)) + 4)) + 4)), 8, 0, 0);
     ((TBoss6Type2 *)arg0)->sub_802BB554();
     copy_vec_array();
@@ -3178,7 +3178,7 @@ s32 __dt__11TBoss6Type2Fv(s32 self_, s16 flag) {
             e->a = 0;
             e->b = 0;
         }
-        ((TBoss6PlotFalz *)&self->m_768)->free_buffer_pairs();
+        ((Boss6ScrollStrips *)&self->m_768)->free_buffer_pairs();
         for (i = 0; i < 1; i++) {
             if (((Fish_802BE014 *)self)->fish[i] != 0) {
                 ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(((Fish_802BE014 *)self)->fish[i]));
@@ -3253,7 +3253,7 @@ s32 TBoss6Type2__ct(s32 arg0_, s32 parent, s32 arg2_) {
     }
     ((TBoss6Type2 *)arg0)->init_motion_entries();
     *(s32 *)((s8 *)arg0 + 0x764) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type2_effect_desc_table), (Vec *)((arg0 + 0x59C)));
-    build_tables__14TBoss6PlotFalzFPvPvi(arg0 + 0x768, boss6_type2_plot_falz_entry_table, 2);
+    ((Boss6ScrollStrips *)(arg0 + 0x768))->build_tables(boss6_type2_plot_falz_entry_table, 2);
     *(s32 *)((s8 *)arg0 + 0x458) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 7, 0xF);
     *(s8 *)((s8 *)arg0 + 0x478) = 0;
     *(s32 *)((s8 *)arg0 + 0x47C) = 0x11;

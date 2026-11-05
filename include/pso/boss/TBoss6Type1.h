@@ -3,6 +3,7 @@
 #include "types.h"
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/boss/Boss6ScrollStrips.h"
 
 typedef Vec Boss6EffectPoint;
 struct ModelNodePositionCapture;
@@ -139,8 +140,8 @@ struct TBoss6Type1 : public TObjEnemy {
     // One node-position capture per model; render installs each before it
     // draws that model (upstream: TObjFish__sub_800E3124 lists).
     ModelNodePositionCapture *draw_callback_lists[2];
-    u8 scroll_strips_u[0x14]; // scroll_strips_uv(8, 0) every frame
-    u8 scroll_strips_v[0x14]; // scroll_strips_uv(0, 0x22) every frame
+    Boss6ScrollStrips scroll_strips_u; // scroll_strips_uv(8, 0) every frame
+    Boss6ScrollStrips scroll_strips_v; // scroll_strips_uv(0, 0x22) every frame
     TObject *map_csn;
     static u8 *create_kakusan(TObject *parent, Vec *pos, Vec *dir, u16 target_client, f32 speed);
     static void *copy_block(void *d, void *s);

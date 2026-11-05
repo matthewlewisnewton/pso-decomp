@@ -271,8 +271,8 @@ void TBoss6Type1__sub_802B854C(TBoss6Type1 *);
 extern u8 lbl_80470D1C[];
 extern u8 boss6_type1_model_node_desc[];
 extern u8 boss6_type1_model_node_desc_b[];
-extern u8 boss6_type1_build_table[];
-extern u8 lbl_80470EA0[];
+extern Boss6StripDesc boss6_type1_build_table[];
+extern Boss6StripDesc lbl_80470EA0[];
 extern Boss6Point lbl_80470EAC;
 extern s32 lbl_805D3EB0;
 
@@ -339,8 +339,8 @@ TBoss6Type1::TBoss6Type1(TObject *parent, Boss6Type1Spawn *spawn) : TObjEnemy(pa
     TBoss6Type1__sub_802B854C(this);
     draw_callback_lists[1] = (ModelNodePositionCapture *)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type1_model_node_desc), &node_positions_578[0].v);
     draw_callback_lists[0] = (ModelNodePositionCapture *)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type1_model_node_desc_b), &node_positions_5FC[0]);
-    TBoss6PlotFalz::build_tables(scroll_strips_u, boss6_type1_build_table, 2);
-    TBoss6PlotFalz::build_tables(scroll_strips_v, lbl_80470EA0, 1);
+    scroll_strips_u.build_tables(boss6_type1_build_table, 2);
+    scroll_strips_v.build_tables(lbl_80470EA0, 1);
     trail_point_receiver = TBoss6Type1::create_zanzo(this, (void *)7, (void *)0xF);
     effect_point_receiver = TBoss6Type1::create_zanzo(this, (void *)2, (void *)0xF);
     m_414 = 0;
@@ -379,8 +379,8 @@ TBoss6Type1::~TBoss6Type1() {
     TBoss6Type1__sub_802B4A70(this);
     TBoss6Type1__sub_802B4B14(this);
     TBoss6Type1__sub_802B4CF4(this);
-    ((TBoss6PlotFalz *)scroll_strips_v)->free_buffer_pairs();
-    ((TBoss6PlotFalz *)scroll_strips_u)->free_buffer_pairs();
+    scroll_strips_v.free_buffer_pairs();
+    scroll_strips_u.free_buffer_pairs();
     for (i = 0; i < 2; i++) {
         if (draw_callback_lists[i] != NULL) {
             ModelNodePositionCapture::destroy(draw_callback_lists[i]);
@@ -654,8 +654,8 @@ void TBoss6Type1::run_task() {
         this->m_4d4 = 0.0f;
     }
     this->m_4d8 = (f32)this->hp / (f32)this->referenceHp;
-    ((TBoss6PlotFalz *)scroll_strips_u)->scroll_strips_uv(8, 0);
-    ((TBoss6PlotFalz *)scroll_strips_v)->scroll_strips_uv(0, 0x22);
+    scroll_strips_u.scroll_strips_uv(8, 0);
+    scroll_strips_v.scroll_strips_uv(0, 0x22);
     update_sway();
     sub_802B4C28();
     this->unk_408 += 1;
