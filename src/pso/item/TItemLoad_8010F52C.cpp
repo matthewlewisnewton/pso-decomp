@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/item/TItemLoad_8010FC28.h"
 #include "pso/item/TItemLoad_8010F52C.h"
@@ -25,7 +26,6 @@ struct List_8010F68C { Ent_8010F68C *ents; u32 count; };
 struct Load_8010F68C { u8 pad[0x24]; s32 id; List_8010F68C *list; void *f2c[4]; void *f3c; };
 
 extern "C" {
-void *mem_alloc(u32 size);
 extern s32 lbl_805D2BE8;
 extern s32 lbl_805D2BEC;
 extern void *item_texture_archive_loader;
@@ -43,10 +43,9 @@ struct VObj_8010F52C : Base_8010F52C {
 };
 
 s32 load_gvm_texture_archive(s32, s32);
-void mem_free(void *p);
 
 void TItemLoad::free_all_models() {
-    mem_free((void *)item_load_model_buffer);
+    ::operator delete[]((void *)item_load_model_buffer);
     if (item_model_chunk_loader != NULL) {
         ((struct VObj_8010F52C *)item_model_chunk_loader)->m0(1);
     }
@@ -75,7 +74,7 @@ void TItemLoad__sub_8010F5A0(void) {
         var_r0_2 = ((TUnk_8049F40C *)temp_r3_2)->construct_with_vtable((void *)lbl_805D2BEC, 0xB4, 0x12F);
     }
     (*(s32 *)&item_model_chunk_loader) = var_r0_2;
-    item_load_model_buffer = (s32)mem_alloc(0x21000);
+    item_load_model_buffer = (s32)::operator new[](0x21000);
 }
 
 void TItemLoad::start_load_with_id(s32 id, s32 arg2) {
@@ -101,7 +100,7 @@ void TUnk_8049F40C::vfunc_3() {
     s32 n;
     void *p;
     u32 i;
-    if (TLobby::tmp_buf_is_free() == 1) {
+    if (TLobby__sub_8001EEF4() == 1) {
         h = TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
         off = ((Load_8010F68C *)this)->id;
         total = decompress_buffer__9TItemLoadFUl();
@@ -130,7 +129,7 @@ void TUnk_8049F40C::vfunc_3() {
                 break;
             }
         }
-        TLobby::tmp_buf_release((const char *)item_load_tmp_buffer);
+        ((TLobby *)item_load_tmp_buffer)->tmp_buf_release();
         ((Load_8010F68C *)this)->id = 0;
         ((TItemLoad *)((Load_8010F68C *)this))->reset_state();
     }
@@ -171,11 +170,11 @@ void TItemLoad::begin_load_if_pending(s32 arg1, s32 arg2) {
 void TItemLoad::reload_item() {
     s32 temp_r31;
 
-    if (TLobby::tmp_buf_is_free() == 1) {
+    if (TLobby__sub_8001EEF4() == 1) {
         temp_r31 = TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
         decompress_buffer__9TItemLoadFUl();
         load_gvm_texture_archive(temp_r31, *(s32 *)((s8 *)this + 0x24));
-        TLobby::tmp_buf_release((const char *)item_load_tmp_buffer);
+        ((TLobby *)item_load_tmp_buffer)->tmp_buf_release();
         *(s32 *)((s8 *)this + 0x24) = 0;
         reset_state();
     }

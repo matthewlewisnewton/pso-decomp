@@ -1,5 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/ui/Language.h"
 
@@ -333,7 +333,6 @@ s32 classify_id__9TWindowDDFs();
 s32 TWindowDD_check_input_mask(void *input_context, s32 arg1);
 void clear_window_dd_nodes(void);
 extern "C" {
-void mem_free(void*);
 
 s32 update_close_flag__9TWindowDDFPv(void *arg0) {
     get_current_child_index__9TWindowDDFv();
@@ -360,7 +359,7 @@ void open_numeric_parameter_input__9TWindowDDFPviii(WordSelectWindowState* self,
     }
     self->numberWindow = window;
     if (self->numberWindow) {
-        ((TWindowBase *)(self->numberWindow))->set_depth(lbl_805DFC28);
+        ((TLobby *)(self->numberWindow))->set_field_1c(lbl_805DFC28);
         ((TWindowSubItem *)(self->numberWindow))->set_flag60_bit10();
         TWindowDD__sub_80341AE0((int)self->pages[self->activePage]);
     }
@@ -911,27 +910,27 @@ Obj_80343C64 *TWindowDD__ct(Obj_80343C64 *self, void *parent, void *arg2) {
 void free_buffers__9TWindowDDFv(void) {
     clear_window_dd_nodes();
     if ((u32) TWindowDD__word_select_lists != 0U) {
-        mem_free((void*)TWindowDD__word_select_lists);
+        ::operator delete[]((void*)TWindowDD__word_select_lists);
         TWindowDD__word_select_lists = 0U;
     }
     if ((u32) lbl_805D6E20 != 0U) {
-        mem_free((void*)lbl_805D6E20);
+        ::operator delete[]((void*)lbl_805D6E20);
         lbl_805D6E20 = 0U;
     }
     if ((u32) TWindowDD__player_name_buffers != 0U) {
-        mem_free((void*)TWindowDD__player_name_buffers);
+        ::operator delete[]((void*)TWindowDD__player_name_buffers);
         TWindowDD__player_name_buffers = 0U;
     }
     if ((u32) window_dd_buffer_b != 0U) {
-        mem_free((void*)window_dd_buffer_b);
+        ::operator delete[]((void*)window_dd_buffer_b);
         window_dd_buffer_b = 0U;
     }
     if ((u32) window_dd_buffer_a != 0U) {
-        mem_free((void*)window_dd_buffer_a);
+        ::operator delete[]((void*)window_dd_buffer_a);
         window_dd_buffer_a = 0U;
     }
     if ((u32) TWindowDD__work_buffer != 0U) {
-        mem_free((void*)TWindowDD__work_buffer);
+        ::operator delete[]((void*)TWindowDD__work_buffer);
         TWindowDD__work_buffer = 0U;
     }
     if ((u32) TWindowDD__ws_data_buffer != 0U) {
@@ -958,7 +957,6 @@ void free_buffers__9TWindowDDFv(void) {
 struct DDPoint_80344114 { f32 x; f32 y; };
 struct WordList_80344114 { u8 *words; s32 count; };
 extern "C++" void ws_data_load(void);
-void *mem_alloc(u32 size);
 void *memset(void *dst, int c, u32 n);
 extern u32 TWindowDD__ws_data_base;
 extern u32 lbl_805D6E34;
@@ -1002,19 +1000,19 @@ void TWindowDD__sub_80344114(void) {
         TWindowDD__window_mode = 0;
     }
     ws_data_load();
-    TWindowDD__work_buffer = (u32)mem_alloc(0x80);
-    window_dd_buffer_a = (u32)mem_alloc(0x80);
+    TWindowDD__work_buffer = (u32)::operator new[](0x80);
+    window_dd_buffer_a = (u32)::operator new[](0x80);
     memset((void *)TWindowDD__work_buffer, 0, 0x80);
     memset((void *)window_dd_buffer_a, 0, 0x80);
-    window_dd_buffer_b = (u32)mem_alloc(0x120);
+    window_dd_buffer_b = (u32)::operator new[](0x120);
     memset((void *)window_dd_buffer_b, 0, 0x120);
-    TWindowDD__player_name_buffers = (u32)mem_alloc(0x30);
+    TWindowDD__player_name_buffers = (u32)::operator new[](0x30);
     for (i = 0; i < 12; i++) {
         ((char **)TWindowDD__player_name_buffers)[i] = (char *)window_dd_buffer_b + i * 0x18;
         ((char **)TWindowDD__player_name_buffers)[i][0] = 0;
     }
-    lbl_805D6E20 = (u32)mem_alloc(0x100);
-    TWindowDD__word_select_lists = (u32)mem_alloc(0x30);
+    lbl_805D6E20 = (u32)::operator new[](0x100);
+    TWindowDD__word_select_lists = (u32)::operator new[](0x30);
     list = (u8 *)lbl_805D6E20;
     for (j = 0; j < 6; j++) {
         entry = &((WordList_80344114 *)TWindowDD__word_select_lists)[j];

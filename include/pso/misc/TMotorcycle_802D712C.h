@@ -3,6 +3,6 @@
 
 #include "types.h"
 
-void copy_position_data(void *arg0, void *arg1);
+#include "pso/npc/NpcAnimationBinding.h"
 
 #endif

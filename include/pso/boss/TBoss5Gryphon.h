@@ -75,17 +75,7 @@ struct TBoss5Gryphon : public TObjEneDD_ST {
     virtual void apply_slow_status();
     virtual void apply_paralysis();
     virtual void apply_poison_status();
-    u8 unk_374[0x8];
-    f32 m_37c;
-    u8 unk_380[0x4];
-    s32 m_384;
-    u8 unk_388[0xC];
-    f32 m_394;
-    u8 unk_398[0x4];
-    f32 m_39c;
-    u8 unk_3A0[0x8];
-    f32 m_3a8;
-    u8 unk_3AC[0xD4];
+    u8 unk_3C0[0xC0];
     s32 m_480;
     u8 _pad484[0xC];
     s32 targetRefreshCounter;

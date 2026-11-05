@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/item/TItemTexLoad.h"
 #include "pso/object/TObjFish_8001ED90.h"
 #include "pso/player/TObjPlayer_8023E480.h"
@@ -10,8 +11,6 @@ void load_gvm_texture_archive(s32, void*);
 u32 adxf_open_afs__6TLobbyFii(int, int);
 void *lookup_item_pmt_record(u8 *item);
 s32 TLobby__sub_803CC4C0(s32);
-void mem_free(void*);
-void* mem_alloc(u32);
 void TObjPlayer__sub_803DD5E8(void*, void*, void*, int);
 char* strncpy(char*, const char*, u32);
 void TLobby__sub_801E3E9C(s32, const char*, void*, s32);
@@ -28,7 +27,7 @@ void TItemTexLoad::load_texture_archive() {
     if (r != 0) {
         prs_decompress_alloc(m_archive_buffer, r, 0x40000);
         load_gvm_texture_archive(r, &m_texture_list);
-        TLobby::tmp_buf_release((const char *)&t);
+        ((TLobby *)(&t))->tmp_buf_release();
         m_state = 2;
     } else {
         unload_texture();
@@ -98,7 +97,7 @@ void TItemTexLoad::run_task() {
         switch (TLobby__sub_803CC4C0(m_archive_handle)) {
         case 3:
             ((TLobby *)m_archive_handle)->close_adxf_handle();
-            if (TLobby::tmp_buf_is_free() != 0) load_texture_archive();
+            if (TLobby__sub_8001EEF4() != 0) load_texture_archive();
             else m_state = 3;
             break;
         case 1:
@@ -110,13 +109,13 @@ void TItemTexLoad::run_task() {
         }
         }
     } else if (m_state == 3) {
-        if (TLobby::tmp_buf_is_free() != 0) load_texture_archive();
+        if (TLobby__sub_8001EEF4() != 0) load_texture_archive();
     }
 }
 
 TItemTexLoad::~TItemTexLoad() {
     unload_texture();
-    mem_free(m_archive_buffer);
+    ::operator delete[](m_archive_buffer);
     m_archive_buffer = nullptr;
 }
 
@@ -127,7 +126,7 @@ TItemTexLoad::TItemTexLoad(TObject* parent) : TObject(parent) {
     m_texture_list.count = 1;
     m_texture_index = -1;
     m_state = 0;
-    m_archive_buffer = mem_alloc(0x4800);
+    m_archive_buffer = ::operator new[](0x4800);
 }
 
 TItemTexLoad* TItemTexLoad::create(TObject* parent) {
@@ -135,15 +134,15 @@ TItemTexLoad* TItemTexLoad::create(TObject* parent) {
 }
 
 void TItemTexLoad::free_textures() {
-    mem_free(item_texture_filename_buffer);
+    ::operator delete[](item_texture_filename_buffer);
     item_texture_filename_buffer = 0;
-    mem_free(item_texture_afs_work_buffer);
+    ::operator delete[](item_texture_afs_work_buffer);
     item_texture_afs_work_buffer = 0;
 }
 
 void load_item_kt_afs(void) {
-    item_texture_afs_work_buffer = mem_alloc(0x40C);
-    item_texture_filename_buffer = (char*)mem_alloc(0x1C);
+    item_texture_afs_work_buffer = ::operator new[](0x40C);
+    item_texture_filename_buffer = (char*)::operator new[](0x1C);
     strncpy(item_texture_filename_buffer, item_kt_archive_filename, 0x1C);
     TLobby__sub_801E3E9C(0xB8, item_kt_archive_filename, item_texture_afs_work_buffer, 0);
 }

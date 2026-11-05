@@ -1,4 +1,7 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/ChunkMaterialState.h"
+#include "pso/system/BmlResourceClass.h"
 #include "types.h"
 #include "pso/misc/TOMineTrap_8016F6F8.h"
 #include "pso/system/GinjaMaterial.h"
@@ -39,10 +42,7 @@ struct VObj_801710E4 : VBase_801710E4 {
     virtual s32 m8(f32, f32);
 };
 
-struct Obj_80171278 { s32 f00; u8 pad0[0x14]; u32 vptr; u8 pad1[0x14]; u32 flags30; u8 pad2[0x30C]; s32 f340; u8 pad3[8]; f32 f34C; f32 f350; s32 f354; f32 f358; u16 f35C; u8 pad4[2]; f32 f360; f32 f364; f32 f368; f32 f36C; s32 f370; };
-
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_801711D0_lbl_804B2F2C mine_resource_desc;
 extern u32 lbl_805D5A50;
 u16 find_nearest_visible_player(void *, int, f32);
@@ -55,14 +55,11 @@ extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
 extern const f32 lbl_805DB854;
 extern const f32 lbl_805DB858;
-void __ct__9TObjCharaFP7TObject(void *);
 void obj_setFlags30(void *, u32);
 extern s32 __vt__6TOMine[];
 extern s32 TOMine__name;
 extern const f32 lbl_805DB85C;
-Obj_80171278 *TOMine__ct(Obj_80171278 *arg0);
 void *__dt__6TOMineFv(void *arg0, s16 arg1);
-void TLobby__sub_8001FE7C(void*, int);
 s32 submit_cursor_candidate(void *, int);
 int submit_target_to_player_cursor(void*);
 void __dl__7TObjectFPv(void *);
@@ -89,7 +86,7 @@ void TOMine::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r3;
 
-    if (TObjPlayer::check_demo_mode() != 1) {
+    if (check_demo_mode() != 1) {
         this->vfunc_79();
         ((TOMine *)arg0)->update_float_height();
         switch (this->mode) {
@@ -125,9 +122,9 @@ void TOMine::run_task() {
     }
 }
 
-void TOMine::free_sub_objects() { TObjFish::set_global_param((s32)(*(void**)((char*)this + 0x378))); draw_ginja_object(*(void**)((char*)this + 0x374)); }
+void TOMine::free_sub_objects() { set_current_texture_list((GinjaTextureList *)((*(void**)((char*)this + 0x378)))); draw_ginja_object(*(void**)((char*)this + 0x374)); }
 
-void TOMine::free_parts() { TObjFish::set_global_param(this->texlist); draw_ginja_object(this->model); }
+void TOMine::free_parts() { set_current_texture_list((GinjaTextureList *)(this->texlist)); draw_ginja_object(this->model); }
 
 void TOMine::render() {
     VObj_801710E4 *arg0 = (VObj_801710E4 *)this;
@@ -152,7 +149,7 @@ void TOMine::render() {
 
 void TOMine::free_instance() {
     if ((u32) lbl_805D5A50 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D5A50, 1);
+        delete (BmlResource *)((void*)lbl_805D5A50);
         lbl_805D5A50 = 0U;
     }
 }
@@ -160,11 +157,8 @@ void TOMine::free_instance() {
 void TOMine::load_static_resource() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
+    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&mine_resource_desc.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &mine_resource_desc.value, 0, 0, 0));
-    }
     (*(s32 *)&lbl_805D5A50) = var_r0;
 }
 
@@ -178,25 +172,22 @@ void *__dt__6TOMineFv(void *arg0, s16 arg1) {
     }
     return arg0;
 }
-Obj_80171278 *TOMine__ct(Obj_80171278 *arg0) {
-    __ct__9TObjCharaFP7TObject(arg0);
-    arg0->vptr = (u32)((s32 *)&__vt__6TOMine);
-    arg0->f00 = TOMine__name;
-    ((TOMine *)arg0)->phase = 0;
-    arg0->f350 = lbl_805DB85C;
-    arg0->f34C = lbl_805DB85C;
-    arg0->f358 = lbl_805DB85C;
-    arg0->f354 = 0;
-    arg0->f35C = 0xFFFF;
-    arg0->f360 = lbl_805DB85C;
-    arg0->f364 = lbl_805DB85C;
-    arg0->f368 = lbl_805DB85C;
-    arg0->f36C = lbl_805DB85C;
-    arg0->f340 = 0;
-    arg0->f370 = 0;
-    obj_setFlags30(arg0, 0x60000000);
-    arg0->flags30 &= 0xFFFBFFFF;
-    return arg0;
 }
 
+TOMine::TOMine(TObject *parent) : TObjChara(parent) {
+    m_name = (const char *)TOMine__name;
+    phase = 0;
+    m_350 = lbl_805DB85C;
+    m_34c = lbl_805DB85C;
+    attack.power = lbl_805DB85C;
+    attack.kind = 0;
+    m_35c = 0xFFFF;
+    m_360.a = lbl_805DB85C;
+    m_360.r = lbl_805DB85C;
+    m_360.g = lbl_805DB85C;
+    m_360.b = lbl_805DB85C;
+    m_340 = 0;
+    m_370 = 0;
+    obj_setFlags30(this, 0x60000000);
+    actorFlags &= 0xFFFBFFFF;
 }

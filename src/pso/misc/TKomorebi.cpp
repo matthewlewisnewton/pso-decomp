@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/GinjaMaterial.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D96A8.h"
@@ -47,11 +49,9 @@ s32 __ct__8TObjBaseFP7TObject(void *);
 extern s32 __vt__9TKomorebi[];
 extern const char *komorebi_class_name;
 extern u32 TKomorebi__resource_bundle;
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern s32 komorebi_last_uv_update_frame;
 s32 get_bml_motion(s32, s32);
 extern s32 lazer_fence_norm_bml_resource;
-void TLobby__sub_8001FE7C(void*, int);
 s32 scroll_ginja_mesh_uvs(s32, s32, s32, s32, s32);
 s32 post_translate_matrix(void *);
 s32 scale_matrix(s32, f32, f32, f32);
@@ -74,9 +74,9 @@ void TKomorebi::render() {
             komorebi_last_uv_update_frame = actor_frame_tick;
         }
         push_matrix();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_yxz(0, *(s32 *)&this->rotation_x, this->rotation_y, this->rotation_z);
+        rotate_matrix_yxz(0, *(s32 *)&this->rotation.pitch, this->rotation.yaw, this->rotation.roll);
         temp_f1 = this->scale.z;
         scale_matrix(0, temp_f1, this->scale.y, temp_f1);
         draw_ginja_object(*(void * *)&this->model);
@@ -123,16 +123,13 @@ void *TKomorebi__create(void *arg0) {
 
 void TKomorebi::free_static() {
     if ((u32) TKomorebi__resource_bundle != 0U) {
-        TLobby__sub_8001FE7C((void*)TKomorebi__resource_bundle, 1);
+        delete (BmlResource *)((void*)TKomorebi__resource_bundle);
         TKomorebi__resource_bundle = 0U;
     }
     komorebi_last_uv_update_frame = 0;
 }
 void TKomorebi::load_resources() {
-    u8 *p = (u8 *)::operator new(0x440);
-    if (p != 0) {
-        p = load_resource_from_descriptor(p, 1, &TKomorebi__resource_descriptor, 0, 0, 0);
-    }
+    u8 *p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(&TKomorebi__resource_descriptor), 0, 0, (void *)(0));
     TKomorebi__resource_bundle = (u32)p;
     komorebi_last_uv_update_frame = 0;
 }

@@ -1,7 +1,11 @@
+#include "pso/misc/CameraHelpers.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjMotion.h"
-#include "pso/object/TObjFish_800E2FFC.h"
 #include "pso/misc/TCameraCtrl_800687BC.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_80052374.h"
@@ -20,11 +24,10 @@
 #pragma readonly_strings on
 
 extern "C" {
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
-s32 play_sound_effect(s32, void *, s32, s32);
+
 void run_task__11TObjDFDemo3Fv(u8 *arg0);
-s32 clear_render_callback__8TObjFishFv(s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
@@ -32,13 +35,13 @@ void render__11TObjDFDemo3Fv(u8 *arg0);
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
-void set_scripted_camera_pose(void *, void *, void *);
+
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 }
 
 struct Vec_8004F030 { f32 x, y, z; };
 
-struct IVec_8004F030 { s32 x, y, z; };
+typedef CameraAngles IVec_8004F030;
 
 struct S_EF94 {
     u8 pad0[0x18];
@@ -74,9 +77,7 @@ void *lbl_804856C0[8] = {
     (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
     (void *)0xffffffff, (void *)0x0, (void *)0x0, (void *)0x0,
 };
-void *lbl_804856E0[3] = {
-    (void *)0x60000, (void *)0x0, (void *)0x3f800000,
-};
+CameraPlayback lbl_804856E0 = {0, 6, 0, 0.0f, 1.0f};
 void *__vt__11TObjDFDemo3[13] = {
     (void *)0x0, (void *)0x0, (void *)&__dt__11TObjDFDemo3Fv, (void *)&run_task__11TObjDFDemo3Fv,
     (void *)&render__11TObjDFDemo3Fv, (void *)&render_shadows__7TObjectFv, (void *)&vfunc_6__8TObjBaseFPsl, (void *)&apply_object_set_data__8TObjBaseFPv,
@@ -100,13 +101,13 @@ void TObjDFDemo3::render() {
     }
     push_matrix();
     set_motion_packed_rotation();
-    post_translate_matrix((u8 *)&this->m_a0);
+    post_translate_matrix((u8 *)&this->camera_position);
     rotate_matrix_y(0, this->m_ac);
-    TObjFish::set_global_param(this->m_98);
-    ((TObjFish *)(this->m_b8))->set_draw_callback_list();
+    set_current_texture_list((GinjaTextureList *)(this->m_98));
+    ((ModelNodePositionCapture *)(this->m_b8))->install();
     set_chunk_render_flags(1);
     draw_model_motion((void *)(*(s32 *)&this->m_94), (void *)(*(s32 *)&this->m_9c), *(f32 *)&this->_padB4);
-    clear_render_callback__8TObjFishFv(this->m_b8);
+    ((ModelNodePositionCapture *)(this->m_b8))->clear();
     set_chunk_render_flags(2);
     draw_model_motion((void *)(*(s32 *)&this->m_94), (void *)(*(s32 *)&this->m_9c), *(f32 *)&this->_padB4);
     clear_chunk_render_flags();
@@ -143,14 +144,14 @@ void TObjDFDemo3::run_task() {
         }
     }
     if ((s32) this->m_b0 == 0x86) {
-        temp_r3 = (u32)spawn_particle_effect(&this->m_a0, 0x9B);
+        temp_r3 = (u32)spawn_particle_effect((const Vec *)(&this->camera_position), 0x9B);
         if (temp_r3 != 0U) {
             ((TParticleCtrl *)temp_r3)->set_flags(0x40);
         }
     }
     temp_r0 = this->m_b0;
     if ((temp_r0 == 0x28) || (temp_r0 == 0x3C)) {
-        play_sound_effect(0x4003D03A, (u8 *)&this->m_a0, 0, 1);
+        play_sound_effect(0x4003D03A, (const Vec *)((u8 *)&this->camera_position), 0, 1);
     }
     if ((*(f32 *)&this->_padB4 += 1.0f) > 119.0f) {
         *(f32 *)&this->_padB4 = 119.0f;
@@ -168,7 +169,7 @@ S_EF94 *__dt__11TObjDFDemo3Fv(S_EF94 *o, s16 flag) {
     if (o != 0) {
         o->vt = __vt__11TObjDFDemo3;
         if (o->fb8 != 0) {
-            TObjFish::init_state_1(o->fb8);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(o->fb8));
             o->fb8 = 0;
         }
         for (i = 0; i < 1; i++) {
@@ -216,11 +217,11 @@ u8 *TObjDFDemo3__ct(u8 *arg0, s32 parent, s32 arg2, s32 arg3) {
     activate_camera_mode(5);
     {
         IVec_8004F030 c = lbl_804373A4;
-        c.y = *(s32 *)((s8 *)arg0 + 0xAC);
-        set_scripted_camera_pose(arg0 + 0xA0, arg0 + 0xA0, &c);
+        c.yaw = *(s32 *)((s8 *)arg0 + 0xAC);
+        set_scripted_camera_pose(&static_cast<TObjDFDemo3*>(static_cast<void*>(arg0))->camera_position, &static_cast<TObjDFDemo3*>(static_cast<void*>(arg0))->camera_position, &c);
     }
-    ((TCameraCtrl *)lbl_804856E0)->cache_target_and_forward(0x1555);
-    *(s32 *)((s8 *)arg0 + 0xB8) = TObjFish__sub_800E3124(lbl_804856C0, (s32)(arg0 + 0xBC));
+    cache_target_and_forward__11TCameraCtrlFl(&lbl_804856E0, 0x1555);
+    *(s32 *)((s8 *)arg0 + 0xB8) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(lbl_804856C0), (Vec *)((arg0 + 0xBC)));
     *(s32 *)((s8 *)arg0 + 0xB0) = 0;
     return arg0;
 }
