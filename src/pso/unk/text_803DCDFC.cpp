@@ -98,7 +98,7 @@ extern void *lbl_805D7720;
 
 
 #define active_gx_render_mode ((RMode_803DCDFC *)active_gx_render_mode)
-void func_803DCDFC__Fv(void) {
+void func_803DCDFC(void) {
     RMode_803DCDFC *rmode = active_gx_render_mode;
     if (rmode->field_rendering) {
         GXSetViewportJitter(0.0f, 0.0f, rmode->fbWidth, rmode->efbHeight, 0.0f, 1.0f, VIGetNextField());
