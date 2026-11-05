@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `7ba27eaf2`, 2026-11-04)
+## Summary (regenerated on this branch after merging main `d6d590510`, 2026-11-04)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `7ba27eaf2` (2026-11-04). Assembly is counted as functions;
+after merging main `d6d590510` (2026-11-04). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -148,6 +148,38 @@ in `.rodata`. Port: keep FMA or accept small float differences; a normal
 ## 6. Approved regressions
 
 None on main.
+
+## 7. Upstream catch-up (rewrite later)
+
+Matt, 2026-11-04 6:55 PM PT: "Yes, allow the one-time upstream asm exception with
+those guardrails." Code taken unchanged from upstream zeroz41/pso-decomp #167-#191
+may keep upstream's asm and other patterns the fork otherwise bans, so the fork can
+catch up quickly. Each instance gets one row here; the C++ rewrite comes later.
+Guardrails: the code is upstream's own (cite the upstream PR), check_pr passes with
+0 matched/linked regressions, and new fork code still follows the full rules.
+
+Matt, 2026-11-04 ~8:17 PM PT, on this PR: "Allow #298's as upstream catch-up with
+register rows." The rows below are the instances kept under that decision.
+
+Columns (all required; `tools/list_port_exceptions.py --check` validates them):
+function/symbol; unit; file (repo path); upstream PR (#167-#191); cheat type (`asm`,
+`raw offset cast`, `extern "C" mangled name`, `steering pragma`, `shadow struct`,
+or `other: <what>`); the fork PR that brought it in; and the tag
+`upstream catch-up, rewrite later`. List and count them with
+`python3 tools/list_port_exceptions.py --upstream-catchup`; check_pr prints the count.
+
+| Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
+|---|---|---|---|---|---|---|
+| `update_connection_state__6TLobbyFP13Self_803FD74C` (extern "C" declaration) | `pso/misc/TLobby_803FAEA0.cpp` | `src/pso/misc/TLobby_803FAEA0.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | extern "C" mangled name | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_803FB6A0`: call `update_connection_state__6TLobbyFP13Self_803FD74C(state, &lbl_805BFF68)` | `pso/misc/TLobby_803FAEA0.cpp` | `src/pso/misc/TLobby_803FAEA0.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | extern "C" mangled name | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby::dispatch_received_packet`: `(Self_803FD74C *)((u8 *)temp_r30_4 + 0xA0)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby::dispatch_received_packet`: `(Self_803FD74C *)((u8 *)temp_r30_4 + 4)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_803FC728`: `(Self_803FD74C *)(sub + 0xA0)` (first call) | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_803FC728`: `(Self_803FD74C *)(sub + 4)` (first call) | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_803FC728`: `(Self_803FD74C *)(sub + 0xA0)` (second call) | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_803FC728`: `(Self_803FD74C *)(sub + 4)` (second call) | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_80402BB4`: `(Self_803FD74C *)(c->sub + 4)` (first call) | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_80402BB4`: `(Self_803FD74C *)(c->sub + 4)` (second call) | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
