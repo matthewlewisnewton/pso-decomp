@@ -26,7 +26,30 @@ union Boss6NodePos {
     Boss6NodeWords w;
 };
 
+struct TBoss6PlotFalz;
+// TBoss6Type1__sub_802B96C0 copies these as one lwz/stw block. MWCC splits a
+// bare Vec copy into lfs/stfs, so the position sits inside a struct.
+struct Boss6Point {
+    Vec v;
+};
+// Set data TBoss6PlotFalz::spawn_type1 copies from its mag-mine block, then
+// offsets the set index and entity id by 0x200.
+struct Boss6Type1SetData {
+    s16 set_index;
+    u8 unk_02[0x4];
+    s16 entity_id;
+    u8 unk_08[0x38];
+    u8 m_40;
+};
+// TBoss6PlotFalz::spawn_type1 builds this on its stack: the plot that owns the
+// boss, then the set data the constructor hands to apply_set_data.
+struct Boss6Type1Spawn {
+    TBoss6PlotFalz *owner;
+    Boss6Type1SetData set_data;
+};
+
 struct TBoss6Type1 : public TObjEnemy {
+    TBoss6Type1(TObject *parent, Boss6Type1Spawn *spawn);
     virtual ~TBoss6Type1();
     void set_action_state(s32);
     void sub_802B5CB4();
@@ -45,10 +68,8 @@ struct TBoss6Type1 : public TObjEnemy {
     void update_trail_points();
     s32 m_374;
     // set_action_state shifts the previous action states through this ring.
-    // get_mag_mine_ptr returns this + 0x10 (the block
-    // TBoss4DarkFalz__sub_8004B4F0 copies); its field layout is still open.
     s32 hist[32];
-    s32 m_3f8;
+    TBoss6PlotFalz *m_3f8;
     s32 m_3fc;
     void* trail_point_receiver;
     void* effect_point_receiver;
@@ -59,8 +80,8 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 unk_418;
     s8 m_41c;
     u8 unk_41D[0x3];
-    Vec m_420;
-    Vec m_42C;
+    Boss6Point m_420;
+    Boss6Point m_42C;
     s32 m_438;
     s32 motion_set;
     s32 motion_mode;
@@ -170,9 +191,7 @@ struct TBoss6Type1 : public TObjEnemy {
     static void send_flow_action_if_idle(TBoss6Type1 *boss, int action);
     void load_params(void *arg1);
     void set_sync_data(void *arg1);
-    static s32 create(s32 arg0);
-    void*get_mag_mine_ptr();
-    int is_idle();
+    static TBoss6Type1 *create(Boss6Type1Spawn *spawn);
     void read_be16_field2();
     void step_and_send_60();
     void enter_flag800_state();

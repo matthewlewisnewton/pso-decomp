@@ -18,7 +18,7 @@ struct TBoss6PlotFalz : public TObjEnemy {
     void call_state_action();
     void sub_802AAC98();
     void vfunc_63();
-    u8 unk_374[0x4];
+    s32 m_374;
     s32 m_378;
     u8 m_37c;
     u8 unk_37D[0x3];
@@ -46,6 +46,9 @@ struct TBoss6PlotFalz : public TObjEnemy {
     static s32 sort_active_players();
     static u16 pick_random_active_player();
     s32 is_active();
+    // The mag-mine block TBoss4DarkFalz__sub_8004B4F0 copies into spawn set data.
+    void *get_mag_mine_ptr();
+    int is_idle();
     void set_state_2();
     void reset_state();
     void activate_warp();

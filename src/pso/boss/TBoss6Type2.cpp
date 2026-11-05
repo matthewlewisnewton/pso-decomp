@@ -1691,7 +1691,7 @@ void TBoss6Type2__sub_802BB818(TBoss6Type2 *self, f32) {
     VecCopy(&params.origin, (const Vec *)&self->position);
     params.origin.y += 150.0f;
     params.rotation_y = self->m_60;
-    TBoss4DarkFalz__sub_8004B4F0(&params, ((TBoss6Type1 *)self->m_3f8)->get_mag_mine_ptr());
+    TBoss4DarkFalz__sub_8004B4F0(&params, ((TBoss6PlotFalz *)self->m_3f8)->get_mag_mine_ptr());
     params.active = 1;
     VecCopy(&params.pos, &params.origin);
     params.flags = self->m_2e4;
@@ -2548,7 +2548,7 @@ void TBoss6Type2::run_task() {
     if (fn) {
         (o->*fn)();
     }
-    if (((TBoss6Type1 *)(this->m_3f8))->is_idle() != 0) {
+    if (((TBoss6PlotFalz *)(this->m_3f8))->is_idle() != 0) {
         Tb_802BD0C8 *tbl = (Tb_802BD0C8 *)lbl_804E00DC;
         fn = tbl[o->a[0]].fn2;
         if (fn) {
@@ -3076,7 +3076,7 @@ void TBoss6Type2::update_action_state() {
 void TBoss6Type2::send_action_packet_if_idle(s32 arg1, s32 *arg2) {
     Pkt_802BDD6C p;
     u8 *s; s32 i;
-    if (((TBoss6Type1 *)(this->m_3f8))->is_idle() != 0) {
+    if (((TBoss6PlotFalz *)(this->m_3f8))->is_idle() != 0) {
         ((TBoss6Type2 *)(&p))->init_packet();
         build_state_packet((u8 *)&p);
         s = (u8 *)arg2; p.d[4] = arg1;
@@ -3099,7 +3099,7 @@ void TBoss6Type2::send_action_packet(s8 arg1) {
     typedef char sp8_offset[(offsetof(Stack_802BDDF8, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802BDDF8, spC) == 0x4) ? 1 : -1];
     Stack_802BDDF8 stack;
-    if (((TBoss6Type1 *)(this->m_3f8))->is_idle() != 0) {
+    if (((TBoss6PlotFalz *)(this->m_3f8))->is_idle() != 0) {
         ((TBoss6Type2 *)(&stack.sp8))->init_packet();
         build_state_packet((u8 *)&stack.sp8);
         stack.spC = arg1;

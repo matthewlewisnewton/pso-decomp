@@ -509,7 +509,7 @@ void spawn_mag_mine_at__13TBoss6MagMineFPvPv(void *arg0, void *arg1) {
     if (boss == 0 || get_phase__8TObjFishFv() != 6) {
         return;
     }
-    TBoss4DarkFalz__sub_8004B4F0(&p, (void *)(((TBoss6Type1 *)boss)->get_mag_mine_ptr()));
+    TBoss4DarkFalz__sub_8004B4F0(&p, (void *)(((TBoss6PlotFalz *)boss)->get_mag_mine_ptr()));
     ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&p.a, arg0);
     ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&p.b, arg1);
     p.f8 = 1;

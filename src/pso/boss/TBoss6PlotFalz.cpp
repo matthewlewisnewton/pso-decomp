@@ -29,6 +29,7 @@ extern BmlResourceDescriptor boss6_plot_falz_resource_descriptor;
 #include "pso/boss/TBoss6GravBall.h"
 #include "pso/boss/TBoss6Rock.h"
 #include "pso/boss/TBoss6Tube.h"
+#include "pso/boss/TBoss6Type1.h"
 #include "pso/boss/TBoss6Type2.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TLobby.h"
@@ -137,7 +138,7 @@ s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0);
 s16 get_entity_id(void *);
 u8 *get_player_by_client_id(s32);
 s32 get_field_3e0__12TBoss3VoloptFv(void *p);
-extern u32 TBoss6PlotFalz__type1_instance;
+extern TBoss6Type1 *TBoss6PlotFalz__type1_instance;
 extern u32 TBoss6PlotFalz__type2_instance;
 int queue_destruction__7TObjectFv(void *);
 extern s32 saved_model_render_flags;
@@ -727,10 +728,10 @@ f32 TBoss6PlotFalz::cosine_ease(f32 t) {
 }
 s32 TBoss6PlotFalz__sub_802ABADC(void);
 f32 TBoss6PlotFalz::get_value() {
-    if ((TBoss6PlotFalz__sub_802ABADC() == 0) || ((void *) (*(void **)&TBoss6PlotFalz__type1_instance) == NULL)) {
+    if ((TBoss6PlotFalz__sub_802ABADC() == 0) || (TBoss6PlotFalz__type1_instance == NULL)) {
         return 0.0f;
     }
-    return *(f32 *)((s8 *)(*(void **)&TBoss6PlotFalz__type1_instance) + 0x3C);
+    return TBoss6PlotFalz__type1_instance->position.y;
 }
 s32 TBoss6PlotFalz::is_boss_active() {
     if (((void *) (*(u8 **)&TBoss6PlotFalz__type2_instance) == NULL) || (((TBoss6Type2 *)(*(u8 **)&TBoss6PlotFalz__type2_instance))->get_state() == 0x23)) {
@@ -739,7 +740,7 @@ s32 TBoss6PlotFalz::is_boss_active() {
     return 1;
 }
 s32 TBoss6PlotFalz__sub_802ABADC(void) {
-    if (((void *) (*(u8 * *)&(*(void **)&TBoss6PlotFalz__type1_instance)) == NULL) || (((TBoss6GravBall *)(*(u8 * *)&(*(void **)&TBoss6PlotFalz__type1_instance)))->get_state() == 0x28)) {
+    if ((TBoss6PlotFalz__type1_instance == NULL) || (((TBoss6GravBall *)TBoss6PlotFalz__type1_instance)->get_state() == 0x28)) {
         return 0;
     }
     return 1;
@@ -756,9 +757,9 @@ void destroy_static_instance__14TBoss6PlotFalzFv(void) {
 }
 
 void queue_instance_destruction__14TBoss6PlotFalzFv(void) {
-    if ((u32) TBoss6PlotFalz__type1_instance != 0U) {
-        queue_destruction__7TObjectFv((void*)TBoss6PlotFalz__type1_instance);
-        TBoss6PlotFalz__type1_instance = 0U;
+    if (TBoss6PlotFalz__type1_instance != NULL) {
+        queue_destruction__7TObjectFv(TBoss6PlotFalz__type1_instance);
+        TBoss6PlotFalz__type1_instance = NULL;
     }
 }
 
@@ -766,14 +767,6 @@ void queue_instance_destruction__14TBoss6PlotFalzFv(void) {
 
 #define get_player_data__10TObjPlayerFi ((s32 (*)(s32))get_player_data__10TObjPlayerFi)
 #define get_entity_id ((s16 (*)(s32))get_entity_id)
-
-struct Stack_802ABCDC {
-    s16 spC;
-    u8 pad_E[0x4];
-    s16 sp12;
-    u8 pad_14[0x38];
-    u8 sp4C;
-};
 
 struct Stack_802ABC64 {
     s16 spC;
@@ -788,7 +781,6 @@ struct Stack_802ABC64 {
 
 extern "C" {
 void TBoss4DarkFalz__sub_8004B4F0(void *arg0p, void *arg1p);
-u32 create__11TBoss6Type1Fl(void *, int);
 u32 create__11TBoss6Type2Fl(void *, int);
 s32 TBoss6Type1__sub_802ABDEC(s32 seed);
 s32 is_locally_controlled__10TObjPlayerFPv(s32);
@@ -805,11 +797,11 @@ s32 TBoss6PlotFalz::get_target_pos_a(s32 arg0, s32 arg1) {
 }
 
 s32 TBoss6PlotFalz::get_target_pos_b(s32 arg0, s32 arg1) {
-    if ((u32) TBoss6PlotFalz__type1_instance == 0U) {
+    if (TBoss6PlotFalz__type1_instance == NULL) {
         VecCopy((Vec *)(arg1), &lbl_804705C0);
         return 0;
     }
-    VecCopy((Vec *)(arg1), (const Vec *)(TBoss6PlotFalz__type1_instance + 0x38));
+    VecCopy((Vec *)(arg1), &TBoss6PlotFalz__type1_instance->position);
     return 1;
 }
 
@@ -831,18 +823,16 @@ void TBoss6PlotFalz::spawn_type2() {
 }
 
 void TBoss6PlotFalz::spawn_type1() {
-    u8 *arg0 = (u8 *)this;
-    Stack_802ABCDC stack;
-    u8 *sp8;
+    Boss6Type1Spawn spawn;
     u16 temp_r4;
-    if ((u32) TBoss6PlotFalz__type1_instance == 0U) {
-        sp8 = arg0;
-        stack.sp4C = this->m_37c;
-        TBoss4DarkFalz__sub_8004B4F0((&stack.spC), (arg0 + 0x388));
-        stack.spC = *(s16 *)&this->set_index + 0x200;
+    if (TBoss6PlotFalz__type1_instance == NULL) {
+        spawn.owner = this;
+        spawn.set_data.m_40 = this->m_37c;
+        TBoss4DarkFalz__sub_8004B4F0(&spawn.set_data, this->unk_388);
+        spawn.set_data.set_index = *(s16 *)&this->set_index + 0x200;
         temp_r4 = this->entity_id;
-        stack.sp12 = temp_r4 + 0x200;
-        TBoss6PlotFalz__type1_instance = create__11TBoss6Type1Fl(&sp8, temp_r4);
+        spawn.set_data.entity_id = temp_r4 + 0x200;
+        TBoss6PlotFalz__type1_instance = TBoss6Type1::create(&spawn);
     }
 }
 
@@ -1447,7 +1437,7 @@ s32 TBoss6PlotFalz__ct(s32 self, s32 arg1, s32 arg2) {
     ((TBoss6PlotFalz *)arg0)->m_380 = (u8 *)create_boss4_fade();
     ((TBoss6PlotFalz *)arg0)->m_384 = 0;
     ((TBoss6PlotFalz *)arg0)->ensure_field384();
-    (*(s32 *)&TBoss6PlotFalz__type1_instance) = 0;
+    TBoss6PlotFalz__type1_instance = NULL;
     (*(s32 *)&TBoss6PlotFalz__type2_instance) = 0;
     ((TBoss6PlotFalz *)arg0)->m_3dc = 0;
     TBoss6PlotFalz__fade_amount = (-1.0f);

@@ -335,8 +335,8 @@ void TBoss6Type1::enter_release_state() {
     play_sound_effect((s32)((void*)(0x4003B515)), (const Vec *)((u8 *)&this->position), (s32)((void*)(0)), (s32)((void*)(0)));
     ((TBoss6Type1 *)arg0)->spawn_effect_slot((s32)((void*)(0)));
     ((TBoss6Type1 *)arg0)->release_effect_slot((s32)((void*)(1)));
-    ((TBoss6PlotFalz *)(this->m_3f8))->activate_warp();
-    ((TBoss6PlotFalz *)(this->m_3f8))->reset_state();
+    this->m_3f8->activate_warp();
+    this->m_3f8->reset_state();
     if (((TBoss6Type1 *)arg0)->count_matches(0x1F, 4) == 0) {
         play_sound_effect((s32)((void*)(0x68A24)), (const Vec *)((u8 *)&this->position), (s32)((void*)(0)), (s32)((void*)(1)));
     }
@@ -389,8 +389,8 @@ void TBoss6Type1::advance_plot_to_state2() {
     u8 *arg0 = (u8 *)this;
     this->m_40c = 0x12C;
     ((TBoss6Type1 *)arg0)->action_timer = 0x12C;
-    ((TBoss6PlotFalz *)(this->m_3f8))->free_child();
-    ((TBoss6PlotFalz *)(this->m_3f8))->set_state_2();
+    this->m_3f8->free_child();
+    this->m_3f8->set_state_2();
     spawn_map_csn();
     play_sound_effect((s32)((void*)(0x40039C13)), (const Vec *)((u8 *)&this->position), (s32)((void*)(0)), (s32)((void*)(0)));
     ((TBoss6Type1 *)arg0)->release_effect_slot((s32)((void*)(0)));

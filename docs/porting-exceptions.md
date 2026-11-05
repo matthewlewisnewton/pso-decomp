@@ -148,7 +148,7 @@ in `.rodata`. Port: keep FMA or accept small float differences; a normal
 
 Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) (`-inline auto`) and [#L209](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`); Melee, TP, TWW and Pikmin 2 contract globally; [Brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) uses `-inline on`.
 
-The unit has no per-function pragmas. `TBoss6Type1__sub_802B8A70` matches without one. `TBoss6Type1__ct` is left at 98.5%: without `opt_common_subs off` the `lbl_80470EAC` address is CSE'd into a register, and no allowed unit flag changes that.
+The unit has no per-function pragmas.
 
 ## 6. Approved regressions
 
