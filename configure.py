@@ -441,7 +441,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # original pool, and clamp_params_and_init inlines its clamp helpers.
     "pso/misc/TOTrapSeabed01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # Reverse definitions with deferred generation: the native TOTrapAncient02R
-    # vtable is emitted before the switch table that follows it in .data.
+    # vtable is emitted before the switch table that follows it in .data, and
+    # the .sdata2 pool keeps its original order.
     "pso/misc/TOTrapAncient02.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris
     # positions before storing them (GC/2.6 interleaves them: 91.09%).

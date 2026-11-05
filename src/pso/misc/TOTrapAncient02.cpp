@@ -53,24 +53,14 @@ void *get_player_by_client_id(s32 i);
 
 extern const f64 lbl_80442F38;
 extern u8 identity_matrix[];
-extern const f32 lbl_805DBA78;
-extern const f32 lbl_805DBA80;
-extern const f32 lbl_805DBA84;
-extern const f32 lbl_805DBA88;
-extern const f32 lbl_805DBA8C;
-extern const f32 lbl_805DBA90;
-extern const f32 lbl_805DBA94;
-extern const f32 lbl_805DBA98;
 f32 TObjPlayer__sub_8017A1A4(void *, s32);
 void send_6x2C_impose_hold(void *, void *, s32, s32, f32);
 extern s32 local_client_id;
 s32 check_player_flag1__6TLobbyFv();
-void *__dt__15TOTrapAncient02Fv(TOTrapAncient02 *trap, s16 arg1);
 
 s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
 
 extern BmlResource *TOTrapAncient02__shared_resource;
-extern s32 __vt__15TOTrapAncient02[];
 extern const char *lbl_805D31B4;
 extern const char *lbl_805D31B8;
 extern s32 actor_frame_tick;
@@ -78,10 +68,6 @@ extern s32 game_difficulty_selection;
 extern s32 lbl_805D5ADC;
 extern void *lbl_805D5AE0;
 extern s32 lbl_805D5AE4;
-extern const f32 lbl_805DBA7C;
-extern const f32 lbl_805DBA9C;
-extern const f32 lbl_805DBAA0;
-extern const f32 lbl_805DBAA4;
 
 extern char lbl_80442E70[];
 extern char lbl_80442E88[];
@@ -123,6 +109,55 @@ CollisionBody trap_ancient02_collision_body = {
 // Reverse definitions with deferred generation reproduce this unit's original
 // function order.
 
+void TOTrapAncient02R::init_trap_object_id() {
+    s32 temp_r0;
+    this->m_364 = (s32) this->set_params[1];
+    temp_r0 = this->m_364;
+    if ((temp_r0 < 0) || (temp_r0 >= 0x100)) {
+        this->m_364 = -1;
+    }
+}
+
+void TOTrapAncient02R::clamp_trap_level_param() {
+    s32 temp_r0;
+    this->m_35c = (s32) this->set_params[2];
+    temp_r0 = this->m_35c;
+    if (temp_r0 < 0) {
+        this->m_35c = 0;
+        return;
+    }
+    if (temp_r0 >= 5) {
+        this->m_35c = 4;
+    }
+}
+
+void TOTrapAncient02R::init_trap_param_clamped() {
+    s32 temp_r0;
+    this->m_368 = (s32) this->scale.y;
+    temp_r0 = this->m_368;
+    if (temp_r0 < 1) {
+        this->m_368 = 1;
+        return;
+    }
+    if (temp_r0 > 0x100) {
+        this->m_368 = 0x100;
+    }
+}
+
+f32 TOTrapAncient02R::receive_weapon_special_attack(void *, void *) {
+    return receive_physical_attack(NULL, 1.0f);
+}
+
+f32 TOTrapAncient02R::receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32) {
+    return receive_physical_attack(NULL, 1.0f);
+}
+
+int TOTrapAncient02R::calc_distance_accuracy_penalty(void *, void *, void *, float) { return 1; }
+s32 TOTrapAncient02R::select_melee_contact_body(void *, f32) { return 1; }
+s32 TOTrapAncient02R::roll_physical_accuracy(void *, s32, f32) { return 1; }
+s32 TOTrapAncient02R::try_start_action(s32, s32) { return 1; }
+s32 TOTrapAncient02R::is_any_player_matching_stat() { return 0; }
+
 void TOTrapAncient02R::submit_cursor_and_notify() {
     find_target_player();
 }
@@ -138,9 +173,9 @@ TOTrapAncient02::TOTrapAncient02(TObject *parent, void *creator) : TOTrap(parent
     this->texlist = TOTrapAncient02__shared_resource->models->m_c;
     this->mode = 0;
     this->phase = 0;
-    this->range = lbl_805DBAA0 * this->scale.x + lbl_805DBA9C;
+    this->range = 0.5f * this->scale.x + 30.0f;
     this->dist = this->range;
-    this->reset = lbl_805DBA9C + (f32)this->set_params[0];
+    this->reset = 30.0f + (f32)this->set_params[0];
     if (this->reset < 0) {
         this->reset = 0;
     }
@@ -150,8 +185,8 @@ TOTrapAncient02::TOTrapAncient02(TObject *parent, void *creator) : TOTrap(parent
     this->refresh_collision_body_centers();
     this->actorFlags |= 0x60000000;
     this->register_object_by_id();
-    this->h348 = lbl_805DBA80;
-    this->h344 = lbl_805DBA80;
+    this->h348 = 0.0f;
+    this->h344 = 0.0f;
     this->m_34c = 0;
     if (this->rotation.roll > 0) {
         this->m_358 = 1;
@@ -161,17 +196,9 @@ TOTrapAncient02::TOTrapAncient02(TObject *parent, void *creator) : TOTrap(parent
 }
 #pragma pop
 
-void *__dt__15TOTrapAncient02Fv(TOTrapAncient02 *trap, s16 arg1) {
-    if (trap != NULL) {
-        *(s32 **)((s8 *)trap + 0x18) = __vt__15TOTrapAncient02;
-        trap->unregister_object_by_id();
-        free_collision_body_parts(trap);
-        __dt__6TOTrapFv(trap, 0);
-        if (arg1 > 0) {
-            TObject::operator delete(trap);
-        }
-    }
-    return trap;
+TOTrapAncient02::~TOTrapAncient02() {
+    unregister_object_by_id();
+    free_collision_body_parts(this);
 }
 
 void TOTrapAncient02::load_resources() {
@@ -224,7 +251,7 @@ void *TOTrapAncient02::create(void *arg0) {
 
 void TOTrapAncient02::render() {
     if (TMainTask::get_render_pass() != 1) {
-        this->m_340 = update_object_view_visibility(lbl_805DBAA4, lbl_805DBA94);
+        this->m_340 = update_object_view_visibility(400.0f, 20.0f);
         if (((s32) this->m_340 == 1) && (((s32) this->m_358 == 0) || (is_split_screen() != 0) || (dispatch_input_to_instance__18TAdEnterPasswordGCFi(this) == 0))) {
             set_draw_list_mask(3);
             if ((s32) this->m_358 != 0) {
@@ -326,18 +353,18 @@ void TOTrapAncient02::vfunc_81() {
     submit_cursor_candidate(this, -1);
     switch (this->phase) {
     case 0:
-        if (this->h344 < lbl_805DBA84) {
-            this->h344 += lbl_805DBA78;
+        if (this->h344 < 7.0f) {
+            this->h344 += 1.0f;
         } else {
             this->phase = 1;
-            this->h344 = lbl_805DBA84;
+            this->h344 = 7.0f;
         }
         break;
     case 1:
-        this->h348 += lbl_805DBA78;
-        if (lbl_805DBA88 <= this->h348) {
+        this->h348 += 1.0f;
+        if (10.15f <= this->h348) {
             this->phase = 2;
-            this->h348 = lbl_805DBA88;
+            this->h348 = 10.15f;
         }
         break;
     case 2:
@@ -367,20 +394,20 @@ void TOTrapAncient02::vfunc_81() {
         }
         break;
     case 3:
-        if (lbl_805DBA80 < this->h348) {
-            this->h348 -= lbl_805DBA78;
+        if (0.0f < this->h348) {
+            this->h348 -= 1.0f;
         } else {
             this->phase = 4;
-            this->h348 = lbl_805DBA80;
+            this->h348 = 0.0f;
         }
         break;
     case 4:
-        if (lbl_805DBA80 < this->h344) {
-            this->h344 -= lbl_805DBA78;
+        if (0.0f < this->h344) {
+            this->h344 -= 1.0f;
         } else {
             this->mode = 0;
             this->phase = 0;
-            this->h344 = lbl_805DBA80;
+            this->h344 = 0.0f;
             this->player = 0xFFFF;
             this->target = NULL;
         }
@@ -399,7 +426,7 @@ void TOTrapAncient02::vfunc_82() {
         if (this->target != NULL) {
             obj_setFlags30(this->target, 0x200);
             ((TObjEnemy *)(this->target))->sub_8002AE64();
-            ((TObjEnemy *)(this->target))->sub_800A7798(lbl_805DBA78);
+            ((TObjEnemy *)(this->target))->sub_800A7798(1.0f);
             this->timer--;
             if (this->timer < 0) {
                 this->phase = 3;
@@ -417,20 +444,20 @@ void TOTrapAncient02::vfunc_82() {
         }
         break;
     case 3:
-        if (lbl_805DBA80 < this->h348) {
-            this->h348 -= lbl_805DBA78;
+        if (0.0f < this->h348) {
+            this->h348 -= 1.0f;
         } else {
             this->phase = 4;
-            this->h348 = lbl_805DBA80;
+            this->h348 = 0.0f;
         }
         break;
     case 4:
-        if (lbl_805DBA80 < this->h344) {
-            this->h344 -= lbl_805DBA78;
+        if (0.0f < this->h344) {
+            this->h344 -= 1.0f;
         } else {
             this->mode = 0;
             this->phase = 0;
-            this->h344 = lbl_805DBA80;
+            this->h344 = 0.0f;
             this->player = 0xFFFF;
             this->target = NULL;
         }
@@ -512,9 +539,9 @@ TOTrapAncient02R::TOTrapAncient02R(TObject *parent, void *creator) : TOTrapAncie
     this->texlist = TOTrapAncient02__shared_resource->models->m_c;
     this->mode = 0;
     this->phase = 0;
-    this->range = lbl_805DBAA0 * this->scale.x + lbl_805DBA9C;
+    this->range = 0.5f * this->scale.x + 30.0f;
     this->dist = this->range;
-    this->reset = (s32) (lbl_805DBA9C + (f32) this->set_params[0]);
+    this->reset = (s32) (30.0f + (f32) this->set_params[0]);
     if (this->reset < 0) {
         this->reset = 0;
     }
@@ -525,8 +552,8 @@ TOTrapAncient02R::TOTrapAncient02R(TObject *parent, void *creator) : TOTrapAncie
     this->init_trap_param_clamped();
     this->player = 0xFFFF;
     this->target = NULL;
-    this->h348 = lbl_805DBA80;
-    this->h344 = lbl_805DBA80;
+    this->h348 = 0.0f;
+    this->h344 = 0.0f;
     this->m_34c = 0;
     if (this->rotation.roll > 0) {
         this->m_358 = 1;
@@ -566,7 +593,7 @@ f32 TOTrapAncient02R::receive_physical_attack(void *, f32) {
             }
         }
     }
-    return lbl_805DBA80;
+    return 0.0f;
 }
 #pragma pop
 
@@ -603,18 +630,18 @@ void TOTrapAncient02R::vfunc_81() {
     submit_cursor_candidate(this, -1);
     switch (phase) {
     case 0:
-        if (h344 < lbl_805DBA84) {
-            h344 += lbl_805DBA78;
+        if (h344 < 7.0f) {
+            h344 += 1.0f;
         } else {
             phase = 1;
-            h344 = lbl_805DBA84;
+            h344 = 7.0f;
         }
         break;
     case 1:
-        h348 += lbl_805DBA78;
-        if (lbl_805DBA88 <= h348) {
+        h348 += 1.0f;
+        if (10.15f <= h348) {
             phase = 2;
-            h348 = lbl_805DBA88;
+            h348 = 10.15f;
         }
         break;
     case 2:
@@ -633,9 +660,9 @@ void TOTrapAncient02R::vfunc_81() {
                     scratch_vec.vector.y += h344 + h348;
                     VecCopy(&lbl_8050BF00.vector, &((TObjChara *)target)->body_center_position);
                     subtract_vector((&lbl_8050BF00.vector), (&scratch_vec.vector));
-                    if (normalize_vector_checked(&lbl_8050BF00.vector) < lbl_805DBA8C) {
-                        lbl_8050BF00.vector.x = lbl_8050BF00.vector.y = lbl_805DBA80;
-                        lbl_8050BF00.vector.z = lbl_805DBA78;
+                    if (normalize_vector_checked(&lbl_8050BF00.vector) < 0.00001f) {
+                        lbl_8050BF00.vector.x = lbl_8050BF00.vector.y = 0.0f;
+                        lbl_8050BF00.vector.z = 1.0f;
                         push_matrix_from(identity_matrix);
                         rotate_matrix_y(NULL, rotation.yaw);
                         rotate_vector_by_matrix(0, (&lbl_8050BF00.vector), (&lbl_8050BF00.vector));
@@ -646,14 +673,14 @@ void TOTrapAncient02R::vfunc_81() {
                     case 1: {
                         DirectAttackPayload dmg;
                         dmg.kind = 3;
-                        dmg.power = vfunc_87(lbl_805DBA94 * (f32)m_360 + lbl_805DBA90);
+                        dmg.power = vfunc_87(20.0f * (f32)m_360 + 240.0f);
                         ((TObjChara *)target)->receive_direct_attack(this, dmg, NULL, -1, -1);
                         spawn_particle_effect(&scratch_vec.vector, 0xB9);
                         spawn_particle_effect(&scratch_vec.vector, 0xBA);
                         {
                             void *t = TObject::operator new(0x260);
                             if (t != NULL) {
-                                ((TTecZonde *)t)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&scratch_vec.vector), (u8 *)(&lbl_8050BF00.vector), 0x14000000, 0x14, range, (f32)lbl_805DBA98);
+                                ((TTecZonde *)t)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&scratch_vec.vector), (u8 *)(&lbl_8050BF00.vector), 0x14000000, 0x14, range, 1.8f);
                             }
                         }
                         play_sound_effect(0x4002A408, &scratch_vec.vector, 0, 0);
@@ -688,20 +715,20 @@ void TOTrapAncient02R::vfunc_81() {
         }
         break;
     case 3:
-        if (lbl_805DBA80 < h348) {
-            h348 -= lbl_805DBA78;
+        if (0.0f < h348) {
+            h348 -= 1.0f;
         } else {
             phase = 4;
-            h348 = lbl_805DBA80;
+            h348 = 0.0f;
         }
         break;
     case 4:
-        if (lbl_805DBA80 < h344) {
-            h344 -= lbl_805DBA78;
+        if (0.0f < h344) {
+            h344 -= 1.0f;
         } else {
             mode = 0;
             phase = 0;
-            h344 = lbl_805DBA80;
+            h344 = 0.0f;
             player = 0xFFFF;
             target = NULL;
         }
@@ -727,21 +754,21 @@ void TOTrapAncient02R::vfunc_82() {
         }
         break;
     case 3:
-        if (lbl_805DBA80 < this->h348) {
-            this->h348 -= lbl_805DBA78;
+        if (0.0f < this->h348) {
+            this->h348 -= 1.0f;
             return;
         }
         this->phase = 4;
-        this->h348 = (f32) lbl_805DBA80;
+        this->h348 = 0.0f;
         return;
     case 4:
-        if (lbl_805DBA80 < this->h344) {
-            this->h344 -= lbl_805DBA78;
+        if (0.0f < this->h344) {
+            this->h344 -= 1.0f;
             return;
         }
         this->mode = 0;
         this->phase = 0;
-        this->h344 = (f32) lbl_805DBA80;
+        this->h344 = 0.0f;
         this->player = 0xFFFF;
         this->target = 0;
         break;
@@ -753,7 +780,7 @@ void TOTrapAncient02R::vfunc_82() {
 void TOTrapAncient02R::calc_trap_count() {
     s32 temp_r4;
 
-    this->m_360 = (s32) (this->scale.z + ((lbl_805DBA7C * (f32) game_difficulty_selection) + lbl_805DBA78));
+    this->m_360 = (s32) (this->scale.z + ((2.0f * (f32) game_difficulty_selection) + 1.0f));
     temp_r4 = this->m_360;
     if (temp_r4 < 0) {
         this->m_360 = 0;
