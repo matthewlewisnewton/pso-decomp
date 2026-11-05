@@ -748,7 +748,7 @@ void draw_item_list_row(ItemListRow *row, ItemListWindowView *win) {
   if (((TWindowSubStatusDisp *)row)->is_flag_4_set() != 0)
   {
     y = win->inner_y + row->y;
-    if (((!((row->height + y) < win->clip_top)) && (!((win->inner_y + row->y) > win->clip_edge[1]))) && (win->open_tick >= 0))
+    if (((!((row->height + y) < win->clip_top)) && (!((win->inner_y + row->y) > win->clip_bottom))) && (win->open_tick >= 0))
     {
       pos.x = win->inner_x + row->x;
       pos.y = win->inner_y + row->y;
@@ -782,7 +782,7 @@ void draw_item_list_row(ItemListRow *row, ItemListWindowView *win) {
       new_var = row;
       if (new_var->flags & 0x1000)
       {
-        set_text_draw_params(win, 1, 0, (f32)depth, (f32)win->clip_edge[0]);
+        set_text_draw_params(win, 1, 0, (f32)depth, (f32)win->clip_right);
       }
       else
       {

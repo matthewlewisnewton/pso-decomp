@@ -37,7 +37,6 @@ extern const f32 lbl_805DCC80;
 void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q);
 s32 is_split_screen();
 f32 TCameraCtrl__sub_80068A04(s32);
-Vec2_8024EC34 *get_viewport_offset__19TWindowKeyBoardSoftFi(s32);
 Vec2_8024EC34 *get_zero_vec2();
 extern Vec2_8024EC34 keyboard_soft_viewport_offset_table[];
 extern Vec2_8024EC34 lbl_8044EC80[];
@@ -52,10 +51,10 @@ u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, 
 
 typedef struct RecoveredFields_8024E754_arg0 RecoveredFields_8024E754_arg0;
 void TWindowKeyBoardSoft::scale_point_about_pivot(f32 *q) {
-    if ((*(const f32 *)&lbl_805DCC78) != scale[0]) {
+    if (lbl_805DCC78 != scale[0]) {
         q[0] = scale[0] * (q[0] - pivot[0]) + pivot[0];
     }
-    if ((*(const f32 *)&lbl_805DCC78) != scale[1]) {
+    if (lbl_805DCC78 != scale[1]) {
         q[1] = scale[1] * (q[1] - pivot[1]) + pivot[1];
     }
 }
@@ -89,12 +88,11 @@ void apply_window_closing_stretch(u8 *arg0, int arg1) {
 #pragma opt_common_subs off
 
 void TWindowKeyBoardSoft::set_open_tick(s32 arg1) {
-    u8 *arg0 = (u8 *)this;
     s32 temp_r0;
-    *(s32 *)((s8 *)arg0 + 0x30) = arg1;
-    temp_r0 = *(s32 *)((s8 *)arg0 + 0x30);
+    open_tick = arg1;
+    temp_r0 = open_tick;
     if (temp_r0 < 0) {
-        *(s32 *)((s8 *)arg0 + 0x34) = (s32) ((__cvt_fp2unsigned(lbl_805DCC84 * ((lbl_805DCC88 + (f32) temp_r0) / lbl_805DCC88)) << 0x18) | 0xFF0000 | 0xFFFF);
+        color = (u32) ((__cvt_fp2unsigned(lbl_805DCC84 * ((lbl_805DCC88 + (f32) temp_r0) / lbl_805DCC88)) << 0x18) | 0xFF0000 | 0xFFFF);
     }
 }
 #pragma pop
@@ -102,15 +100,15 @@ void TWindowKeyBoardSoft::set_open_tick(s32 arg1) {
 void TWindowKeyBoardSoft::set_bounds(f32 a, f32 b, f32 c, f32 d) {
     clip_left = a;
     clip_top = b;
-    clip_edge[0] = c;
-    clip_edge[1] = d;
+    clip_right = c;
+    clip_bottom = d;
 }
 
 extern const f32 lbl_805DCC8C;
 
 void TWindowKeyBoardSoft::shrink_clip_right() {
     inner_w = inner_w - lbl_805DCC8C;
-    clip_edge[0] = clip_edge[0] - lbl_805DCC8C;
+    clip_right = clip_right - lbl_805DCC8C;
 }
 
 extern const f32 lbl_805DCC90;
@@ -122,7 +120,7 @@ void TWindowKeyBoardSoft::animate_scale() {
 }
 
 s32 TWindowDrawContext::is_point_in_bounds(f32 *quad) {
-    if ((quad[2] < clip_left) || (quad[3] < clip_top) || (quad[0] > clip_edge[0]) || (quad[1] > clip_edge[1])) {
+    if ((quad[2] < clip_left) || (quad[3] < clip_top) || (quad[0] > clip_right) || (quad[1] > clip_bottom)) {
         return 0;
     }
     return 1;
@@ -147,14 +145,14 @@ s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b
         b[1] = w->clip_top;
         b[5] = d * sy + b[5];
     }
-    d = b[2] - w->clip_edge[0];
+    d = b[2] - w->clip_right;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b[2] = w->clip_edge[0];
+        b[2] = w->clip_right;
         b[6] = -(d * sx - b[6]);
     }
-    d = b[3] - w->clip_edge[1];
+    d = b[3] - w->clip_bottom;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b[3] = w->clip_edge[1];
+        b[3] = w->clip_bottom;
         b[7] = -(d * sy - b[7]);
     }
     return 1;
@@ -223,14 +221,14 @@ void TWindowKeyBoardSoft::adjust_pos_for_split_screen(s32 i) {
     if (is_split_screen() == 0 || i == 0x64) {
         return;
     }
-    p = get_viewport_offset__19TWindowKeyBoardSoftFi(i);
+    p = TWindowKeyBoardSoft::get_viewport_offset(i);
     arg0->x = arg0->x + (p->x + TCameraCtrl__sub_80068A04(i));
     arg0->y = arg0->y + (p->y + TCameraCtrl::get_split_offset(i));
     arg0->x = arg0->x / TCameraCtrl::get_view_scale();
     arg0->y = arg0->y / TCameraCtrl::get_fov();
 }
 
-Vec2_8024EC34 *get_viewport_offset__19TWindowKeyBoardSoftFi(s32 i) {
+Vec2_8024EC34 *TWindowKeyBoardSoft::get_viewport_offset(int i) {
     switch (TCameraCtrl::get_camera_id()) {
     case 1:
         break;
@@ -288,4 +286,25 @@ u32 TWindowKeyBoardSoft::free_singleton(u32 arg0, s16 arg1) {
     return arg0;
 }
 
-u32 TWindowKeyBoardSoft::init_layout() { *(float*)((char*)this + 0x0) = lbl_805DCC94; *(float*)((char*)this + 0x4) = lbl_805DCC94; *(float*)((char*)this + 0x8) = lbl_805DCC94; *(float*)((char*)this + 0xc) = lbl_805DCC94; *(float*)((char*)this + 0x10) = lbl_805DCC94; *(float*)((char*)this + 0x14) = lbl_805DCC94; *(float*)((char*)this + 0x18) = lbl_805DCC94; *(float*)((char*)this + 0x1c) = lbl_805DCC94; *(float*)((char*)this + 0x3c) = lbl_805DCC94; *(float*)((char*)this + 0x40) = lbl_805DCC94; *(float*)((char*)this + 0x44) = lbl_805DCC94; *(float*)((char*)this + 0x48) = lbl_805DCC94; *(float*)((char*)this + 0x20) = lbl_805DCC94; *(float*)((char*)this + 0x24) = lbl_805DCC94; *(float*)((char*)this + 0x28) = lbl_805DCC78; *(float*)((char*)this + 0x2c) = lbl_805DCC78; *(int*)((char*)this + 0x30) = 0; *(int*)((char*)this + 0x34) = -1; *(float*)((char*)this + 0x38) = lbl_805DCC94; }
+u32 TWindowKeyBoardSoft::init_layout() {
+    x = lbl_805DCC94;
+    y = lbl_805DCC94;
+    w = lbl_805DCC94;
+    h = lbl_805DCC94;
+    inner_x = lbl_805DCC94;
+    inner_y = lbl_805DCC94;
+    inner_w = lbl_805DCC94;
+    inner_h = lbl_805DCC94;
+    clip_left = lbl_805DCC94;
+    clip_top = lbl_805DCC94;
+    clip_right = lbl_805DCC94;
+    clip_bottom = lbl_805DCC94;
+    pivot[0] = lbl_805DCC94;
+    pivot[1] = lbl_805DCC94;
+    scale[0] = lbl_805DCC78;
+    scale[1] = lbl_805DCC78;
+    open_tick = 0;
+    color = (u32)-1;
+    depth = lbl_805DCC94;
+    return (u32)this;
+}

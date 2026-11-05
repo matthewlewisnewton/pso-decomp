@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include "pso/misc/TWindowDrawContext.h"
 
+struct Vec2_8024EC34;
+
 struct TWindowKeyBoardSoft : public TWindowDrawContext
 {
     void spawn_key_effect(s32, s32);
@@ -61,6 +63,7 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     static TWindowKeyBoardSoft *open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags);
     static u32 get_or_create_instance();
     static u32 free_singleton(u32 arg0, s16 arg1);
+    static Vec2_8024EC34 *get_viewport_offset(int view);
     u32 init_layout();
     s32 get_state();
     void update_input_state();
@@ -114,9 +117,7 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     static void dispatch_request_0f(s32 a, s32 b);
 };
 
-typedef char TWindowKeyBoardSoft_m60[offsetof(TWindowKeyBoardSoft, flags) == 0x44 ? 1 : -1];
-
 typedef char TWindowKeyBoardSoft_depth_offset[offsetof(TWindowKeyBoardSoft, depth) == 0x38 ? 1 : -1];
-typedef char TWindowKeyBoardSoft_m_60_offset[offsetof(TWindowKeyBoardSoft, flags) == 0x44 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_m68[offsetof(TWindowKeyBoardSoft, m_68) == 0x4C ? 1 : -1];
 
 #endif

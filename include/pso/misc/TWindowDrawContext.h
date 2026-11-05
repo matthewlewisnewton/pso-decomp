@@ -4,18 +4,9 @@
 #include "types.h"
 #include <stddef.h>
 
-// Flag bytes that share the clip's right and bottom edges.
-struct TWindowClipFlags {
-    u16 m_60;
-    u16 m_62;
-    u8 m_64;
-    u8 m_65;
-    u8 m_66;
-    u8 _pad67;
-};
-
-// Prefix of the text-window object opened for a menu frame.
-// draw_frame reads x/y/w/inner_h/color; label quads also read depth and the clip origin.
+// Prefix of the text window opened for a menu frame.
+// draw_frame reads x/y/w/inner_h/color. The clip rect continues through
+// clip_bottom, so the singleton allocated for a frame is 0x4C bytes.
 struct TWindowDrawContext {
     f32 x;
     f32 y;
@@ -32,12 +23,8 @@ struct TWindowDrawContext {
     f32 depth;
     f32 clip_left;
     f32 clip_top;
-    // clip_edge[0] is the right edge and clip_edge[1] is the bottom edge.
-    // flags is the same eight bytes read as the keyboard flag block.
-    union {
-        f32 clip_edge[2];
-        TWindowClipFlags flags;
-    };
+    f32 clip_right;
+    f32 clip_bottom;
 
     s32 is_point_in_bounds(f32 *quad);
 };
@@ -48,8 +35,8 @@ typedef char TWindowDrawContext_color[offsetof(TWindowDrawContext, color) == 0x3
 typedef char TWindowDrawContext_depth[offsetof(TWindowDrawContext, depth) == 0x38 ? 1 : -1];
 typedef char TWindowDrawContext_clip_left[offsetof(TWindowDrawContext, clip_left) == 0x3C ? 1 : -1];
 typedef char TWindowDrawContext_clip_top[offsetof(TWindowDrawContext, clip_top) == 0x40 ? 1 : -1];
-typedef char TWindowDrawContext_clip_edge[offsetof(TWindowDrawContext, clip_edge) == 0x44 ? 1 : -1];
-typedef char TWindowDrawContext_flags[offsetof(TWindowDrawContext, flags) == 0x44 ? 1 : -1];
+typedef char TWindowDrawContext_clip_right[offsetof(TWindowDrawContext, clip_right) == 0x44 ? 1 : -1];
+typedef char TWindowDrawContext_clip_bottom[offsetof(TWindowDrawContext, clip_bottom) == 0x48 ? 1 : -1];
 
 extern "C" TWindowDrawContext *get_draw_context__11TWindowBaseFPv(void *window);
 
