@@ -60,165 +60,6 @@ extern const f32 lbl_805DBA98;
 f32 TObjPlayer__sub_8017A1A4(void *, s32);
 void send_6x2C_impose_hold(void *, void *, s32, s32, f32);
 extern s32 local_client_id;
-struct Obj_8017A8B0 {
-    u8 pad[0x38];
-    f32 pos[3];
-    u8 pad44[0x2A8 - 0x44];
-    u8 *target;
-    u8 pad2ac[0x326 - 0x2AC];
-    s16 state;
-    u8 pad328[0x334 - 0x328];
-    f32 range;
-    u8 pad338[0x33C - 0x338];
-    u16 idx;
-    u8 pad33e[0x364 - 0x33E];
-    s32 switchId;
-};
-
-struct Vec_8017A988 { f32 x, y, z; };
-
-struct VBase_8017A988 { u8 pad[0x18]; };
-
-struct Obj_8017A988 : VBase_8017A988 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4(s16 *, s32);
-    u16 id;
-    u8 pad1e[0x38 - 0x1E];
-    Vec_8017A988 pos;
-    u8 pad44[0x80 - 0x44];
-    u32 x80;
-    u8 pad84[0x326 - 0x84];
-    s16 state;
-    u8 pad328[0x344 - 0x328];
-    f32 x344;
-    f32 x348;
-    u8 pad34c[0x368 - 0x34C];
-    s32 timer;
-};
-
-struct Base_B_8017AC98 { char pad[0x18]; };
-
-struct V_B_8017AC98 : Base_B_8017AC98 {
-    virtual void pv15();
-    virtual void pv16();
-    virtual void pv17();
-    virtual void pv18();
-    virtual void pv19();
-    virtual void pv20();
-    virtual void pv21();
-    virtual void pv22();
-    virtual s32 m8(f32, f32);
-};
-
-struct Base_8017B84C_8017AC98 { char pad[0x18]; };
-
-struct VObj_8017B84C_8017AC98 : Base_8017B84C_8017AC98 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual void m8();
-    virtual void m9();
-    virtual void m10();
-    virtual void m11();
-    virtual void m12();
-    virtual void m13();
-    virtual void m14();
-    virtual void m15();
-    virtual void m16();
-    virtual void m17();
-    virtual void m18();
-    virtual void m19();
-    virtual void m20();
-    virtual void m21();
-    virtual void m22();
-    virtual void m23();
-    virtual void m24();
-    virtual void m25();
-    virtual void m26();
-    virtual void m27();
-    virtual void m28();
-    virtual void m29();
-    virtual void m30();
-    virtual void m31();
-    virtual void m32();
-    virtual void m33();
-    virtual void m34();
-    virtual void m35();
-    virtual void m36();
-    virtual void m37();
-    virtual void m38();
-    virtual void m39();
-    virtual void m40();
-    virtual void m41();
-    virtual void m42();
-    virtual void m43();
-    virtual void m44();
-    virtual void m45();
-    virtual void m46();
-    virtual void m47();
-    virtual void m48();
-    virtual void m49();
-    virtual void m50();
-    virtual void m51();
-    virtual void m52();
-    virtual void m53();
-    virtual void m54();
-    virtual void m55();
-    virtual void m56();
-    virtual void m57();
-    virtual void m58();
-    virtual void m59();
-    virtual void m60();
-    virtual void m61();
-    virtual void m62();
-    virtual void m63();
-    virtual void m64();
-    virtual void m65();
-    virtual void m66();
-    virtual void m67();
-    virtual void m68();
-    virtual void m69();
-    virtual void m70();
-    virtual void m71();
-    virtual void m72();
-    virtual void m73();
-    virtual void m74();
-    virtual void m75();
-    virtual void m76();
-    virtual void m77();
-};
-
-struct Obj_8017ACA0 {
-    u8 pad[0x326];
-    s16 state;
-    u8 pad328[0x34C - 0x328];
-    s32 angle;
-};
-
-struct Trap_8017ADC4 {
-    u8 pad0[0x2A8];
-    void *target;
-    u8 pad2AC[0x326 - 0x2AC];
-    s16 mode;
-    s16 state;
-    u8 pad32A[0x33C - 0x32A];
-    u16 player;
-    u8 pad33E[0x344 - 0x33E];
-    f32 h344;
-    f32 h348;
-    u8 pad34C[0x350 - 0x34C];
-    s32 reset;
-    s32 timer;
-};
-
 u16 get_entity_id(void *);
 void obj_setFlags30(void *, u32);
 s32 is_split_screen();
@@ -244,7 +85,7 @@ void draw_ginja_model(s32 model);
 extern BmlResource *TOTrapAncient02__shared_resource;
 extern s32 __vt__15TOTrapAncient02[];
 extern const char *lbl_805D31B4;
-extern s32 lbl_805D31B8;
+extern const char *lbl_805D31B8;
 extern s32 actor_frame_tick;
 extern s32 game_difficulty_selection;
 extern s32 lbl_805D5ADC;
@@ -321,8 +162,7 @@ void setup_particle_tev(s32 arg0);
 // function order.
 
 void TOTrapAncient02R::submit_cursor_and_notify() {
-    struct VObj_8017B84C_8017AC98 *o = (struct VObj_8017B84C_8017AC98 *)this;
-    o->m77();
+    find_target_player();
 }
 
 #pragma push
@@ -429,7 +269,7 @@ void *TOTrapAncient02::create(void *arg0) {
 
 void TOTrapAncient02::render() {
     if (TMainTask::get_render_pass() != 1) {
-        this->m_340 = ((V_B_8017AC98 *) this)->m8(lbl_805DBAA4, lbl_805DBA94);
+        this->m_340 = update_object_view_visibility(lbl_805DBAA4, lbl_805DBA94);
         if (((s32) this->m_340 == 1) && (((s32) this->m_358 == 0) || (is_split_screen() != 0) || (dispatch_input_to_instance__18TAdEnterPasswordGCFi(this) == 0))) {
             set_draw_list_mask(3);
             if ((s32) this->m_358 != 0) {
@@ -526,92 +366,90 @@ void TOTrapAncient02::render_particle_chain() {
 }
 
 void TOTrapAncient02::vfunc_81() {
-    TOTrapAncient02 *self = this;
     void *p;
     f32 d;
-    submit_cursor_candidate(self, -1);
-    switch (self->phase) {
+    submit_cursor_candidate(this, -1);
+    switch (this->phase) {
     case 0:
-        if (self->h344 < lbl_805DBA84) {
-            self->h344 += lbl_805DBA78;
+        if (this->h344 < lbl_805DBA84) {
+            this->h344 += lbl_805DBA78;
         } else {
-            self->phase = 1;
-            self->h344 = lbl_805DBA84;
+            this->phase = 1;
+            this->h344 = lbl_805DBA84;
         }
         break;
     case 1:
-        self->h348 += lbl_805DBA78;
-        if (lbl_805DBA88 <= self->h348) {
-            self->phase = 2;
-            self->h348 = lbl_805DBA88;
+        this->h348 += lbl_805DBA78;
+        if (lbl_805DBA88 <= this->h348) {
+            this->phase = 2;
+            this->h348 = lbl_805DBA88;
         }
         break;
     case 2:
-        self->player = find_nearest_visible_player(self, 0, self->range);
-        if (self->player != 0xFFFF) {
-            p = (void *)get_player_by_client_id((self->player));
-            self->target = (u8 *)p;
-            if (self->target != NULL) {
-                d = horizontal_distance_squared((const Vec *)((u8 *)self->target + 0x38), (const Vec *)&self->position);
-                self->dist = self->range - TObjPlayer__sub_8017A1A4(p, 0);
-                if (d < self->dist * self->dist) {
-                    if (self->player == local_client_id) {
-                        send_6x2C_impose_hold(p, &self->position, self->timer, 0, self->dist);
+        this->player = find_nearest_visible_player(this, 0, this->range);
+        if (this->player != 0xFFFF) {
+            p = (void *)get_player_by_client_id((this->player));
+            this->target = (u8 *)p;
+            if (this->target != NULL) {
+                d = horizontal_distance_squared((const Vec *)((u8 *)this->target + 0x38), (const Vec *)&this->position);
+                this->dist = this->range - TObjPlayer__sub_8017A1A4(p, 0);
+                if (d < this->dist * this->dist) {
+                    if (this->player == local_client_id) {
+                        send_6x2C_impose_hold(p, &this->position, this->timer, 0, this->dist);
                     }
-                    self->mode = 3;
-                    self->phase = 2;
+                    this->mode = 3;
+                    this->phase = 2;
                 } else {
-                    self->player = 0xFFFF;
-                    self->target = NULL;
+                    this->player = 0xFFFF;
+                    this->target = NULL;
                 }
             }
         } else {
-            self->target = NULL;
+            this->target = NULL;
         }
-        if (self->target == NULL) {
-            self->phase = 3;
+        if (this->target == NULL) {
+            this->phase = 3;
         }
         break;
     case 3:
-        if (lbl_805DBA80 < self->h348) {
-            self->h348 -= lbl_805DBA78;
+        if (lbl_805DBA80 < this->h348) {
+            this->h348 -= lbl_805DBA78;
         } else {
-            self->phase = 4;
-            self->h348 = lbl_805DBA80;
+            this->phase = 4;
+            this->h348 = lbl_805DBA80;
         }
         break;
     case 4:
-        if (lbl_805DBA80 < self->h344) {
-            self->h344 -= lbl_805DBA78;
+        if (lbl_805DBA80 < this->h344) {
+            this->h344 -= lbl_805DBA78;
         } else {
-            self->mode = 0;
-            self->phase = 0;
-            self->h344 = lbl_805DBA80;
-            self->player = 0xFFFF;
-            self->target = NULL;
+            this->mode = 0;
+            this->phase = 0;
+            this->h344 = lbl_805DBA80;
+            this->player = 0xFFFF;
+            this->target = NULL;
         }
         break;
     }
 }
 
 void TOTrapAncient02::vfunc_82() {
-    Trap_8017ADC4 *self = (Trap_8017ADC4 *)this;
     s32 p;
-    submit_cursor_candidate(self, -1);
-    switch (self->state) {
+    submit_cursor_candidate(this, -1);
+    switch (this->phase) {
     case 0:
     case 1:
-        self->state = 2;
+        this->phase = 2;
     case 2:
-        if (self->target != NULL) {
-            obj_setFlags30(self->target, 0x200);
-            ((TObjEnemy *)(self->target))->sub_8002AE64();
-            ((TObjEnemy *)(self->target))->sub_800A7798(lbl_805DBA78);
-            self->timer--;
-            if (self->timer < 0) {
-                self->state = 3;
-                self->timer = self->reset;
-                if (self->target != NULL && local_client_id == get_entity_id(self->target)) {
+        if (this->target != NULL) {
+            obj_setFlags30(this->target, 0x200);
+            ((TObjEnemy *)(this->target))->sub_8002AE64();
+            ((TObjEnemy *)(this->target))->sub_800A7798(lbl_805DBA78);
+            this->timer--;
+            if (this->timer < 0) {
+                this->phase = 3;
+                this->timer = this->reset;
+                if (this->target != NULL && local_client_id == get_entity_id(this->target)) {
                     p = (s32)get_player_by_client_id(local_client_id);
                     if (p != 0 && check_player_flag1__6TLobbyFv() != 0) {
                         TObjPlayer::send_code_45_1(p);
@@ -619,34 +457,33 @@ void TOTrapAncient02::vfunc_82() {
                 }
             }
         } else {
-            self->state = 3;
-            self->timer = self->reset;
+            this->phase = 3;
+            this->timer = this->reset;
         }
         break;
     case 3:
-        if (lbl_805DBA80 < self->h348) {
-            self->h348 -= lbl_805DBA78;
+        if (lbl_805DBA80 < this->h348) {
+            this->h348 -= lbl_805DBA78;
         } else {
-            self->state = 4;
-            self->h348 = lbl_805DBA80;
+            this->phase = 4;
+            this->h348 = lbl_805DBA80;
         }
         break;
     case 4:
-        if (lbl_805DBA80 < self->h344) {
-            self->h344 -= lbl_805DBA78;
+        if (lbl_805DBA80 < this->h344) {
+            this->h344 -= lbl_805DBA78;
         } else {
-            self->mode = 0;
-            self->state = 0;
-            self->h344 = lbl_805DBA80;
-            self->player = 0xFFFF;
-            self->target = NULL;
+            this->mode = 0;
+            this->phase = 0;
+            this->h344 = lbl_805DBA80;
+            this->player = 0xFFFF;
+            this->target = NULL;
         }
         break;
     }
 }
 
 void TOTrapAncient02::vfunc_84() {
-    Obj_8017ACA0 *self = (Obj_8017ACA0 *)this;
     if (lbl_805D5ADC != actor_frame_tick && lbl_805D5AE0 != 0) {
         lbl_805D5ADC = actor_frame_tick;
         scroll_ginja_mesh_uvs(lbl_805D5AE0, 0, 0xE, lbl_805D5AE4, 1);
@@ -660,20 +497,20 @@ void TOTrapAncient02::vfunc_84() {
         case AREA_CAVE1:
         case AREA_CAVE2:
         case AREA_CAVE3:
-            play_persistent_sound((s32)(0x4461B), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
+            play_persistent_sound(0x4461B, this, &position, 0, 0);
             return;
         case AREA_MINE1:
         case AREA_MINE2:
-            play_persistent_sound((s32)(0x4004C612), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
+            play_persistent_sound(0x4004C612, this, &position, 0, 0);
             return;
         case AREA_RUINS1:
         case AREA_RUINS2:
         case AREA_RUINS3:
-            play_persistent_sound((s32)(0x4004C618), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
+            play_persistent_sound(0x4004C618, this, &position, 0, 0);
             return;
         case AREA_VR_SPACESHIP_ALPHA:
         case AREA_VR_SPACESHIP_BETA:
-            play_persistent_sound((s32)(0x4004C610), (const void *)(self), (const Vec *)((u32)((u8 *)self + 0x38)), 0, 0);
+            play_persistent_sound(0x4004C610, this, &position, 0, 0);
         case AREA_PIONEER2_EP1:
             return;
         case AREA_FOREST1:
@@ -714,7 +551,7 @@ void TOTrapAncient02::vfunc_86() {  }
 void *TOTrapAncient02R__ct(TOTrapAncient02R *trap_ancient02_r, void *arg1, void *arg2) {
     ((s32 (*)(void *, void *))TOTrapAncient02__ct)(trap_ancient02_r, arg1);
     *(s32 **)((s8 *)trap_ancient02_r + 0x18) = __vt__16TOTrapAncient02R;
-    *(s32 *)((s8 *)trap_ancient02_r + 0) = (s32) lbl_805D31B8;
+    trap_ancient02_r->m_name = lbl_805D31B8;
     trap_ancient02_r->apply_object_set_data(arg2);
     ((TObjChara *)trap_ancient02_r)->initialize_position_copies();
     ((TObjChara *)trap_ancient02_r)->calc_attach_pos();
@@ -734,14 +571,14 @@ void *TOTrapAncient02R__ct(TOTrapAncient02R *trap_ancient02_r, void *arg1, void 
     trap_ancient02_r->calc_trap_count();
     trap_ancient02_r->init_trap_param_clamped();
     trap_ancient02_r->player = 0xFFFF;
-    *(s32 *)((s8 *)trap_ancient02_r + 0x2A8) = 0;
+    trap_ancient02_r->target = NULL;
     trap_ancient02_r->h348 = lbl_805DBA80;
     trap_ancient02_r->h344 = lbl_805DBA80;
-    *(s32 *)&trap_ancient02_r->m_34c = 0;
+    trap_ancient02_r->m_34c = 0;
     if (trap_ancient02_r->rotation.roll > 0) {
-        *(s32 *)&trap_ancient02_r->m_358 = 1;
+        trap_ancient02_r->m_358 = 1;
     } else {
-        *(s32 *)&trap_ancient02_r->m_358 = 0;
+        trap_ancient02_r->m_358 = 0;
     }
     return trap_ancient02_r;
 }
@@ -764,21 +601,20 @@ void *TOTrapAncient02R::create(void *arg0) {
 #pragma push
 #pragma fp_contract on
 f32 TOTrapAncient02R::receive_physical_attack(void *, f32) {
-    Obj_8017A988 *self = (Obj_8017A988 *)this;
     s16 msg;
-    if (self->id >= 0x4000 && self->x80 != 0) {
-        Vec_8017A988 v = self->pos;
-        v.y += self->x344 + self->x348;
-        spawn_particle_effect((const Vec *)(&v), 0x1D0);
-        spawn_particle_effect((const Vec *)(&v), 1);
-        if (--self->timer <= 0) {
-            self->timer = 0;
-            if (((TObjCollidable *)self)->access_object_saved_state(&msg, 1) != 0) {
-                self->state = 4;
-                msg = self->state;
-                ((TObjCollidable *)self)->send_object_state_update(&msg);
-                ((TObjCollidable *)self)->access_object_saved_state(&msg, 0);
-                self->m4(&msg, 1);
+    if (entity_id >= 0x4000 && set_entry != NULL) {
+        Vec v = position;
+        v.y += h344 + h348;
+        spawn_particle_effect(&v, 0x1D0);
+        spawn_particle_effect(&v, 1);
+        if (--m_368 <= 0) {
+            m_368 = 0;
+            if (access_object_saved_state(&msg, 1) != 0) {
+                mode = 4;
+                msg = mode;
+                send_object_state_update(&msg);
+                access_object_saved_state(&msg, 0);
+                vfunc_6(&msg, 1);
             }
         }
     }
@@ -789,15 +625,14 @@ f32 TOTrapAncient02R::receive_physical_attack(void *, f32) {
 #pragma push
 #pragma fp_contract on
 void TOTrapAncient02R::find_target_player() {
-    Obj_8017A8B0 *self = (Obj_8017A8B0 *)this;
-    ((TObjCollidable *)self)->clear_player_status_flag(0, 1);
-    ((TObjChara *)self)->calc_attach_pos();
-    if (*(s32 *)&this->m_364 == -1 || is_current_floor_switch_set(*(s32 *)&this->m_364) == 1) {
-        this->player = find_nearest_visible_player(self, 0, this->range);
+    clear_player_status_flag(0, 1);
+    calc_attach_pos();
+    if (this->m_364 == -1 || is_current_floor_switch_set(this->m_364) == 1) {
+        this->player = find_nearest_visible_player(this, 0, this->range);
         if (this->player != 0xFFFF) {
             this->target = (u8 *)get_player_by_client_id(this->player);
             if (this->target != NULL) {
-                if (horizontal_distance_squared((const Vec *)(this->target + 0x38), (const Vec *)self->pos) < this->range * this->range) {
+                if (horizontal_distance_squared(&((TObjChara *)this->target)->position, &position) < this->range * this->range) {
                     this->mode = 2;
                 }
             } else {

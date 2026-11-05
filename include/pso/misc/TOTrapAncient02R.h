@@ -25,8 +25,8 @@ struct TOTrapAncient02R : public TOTrapAncient02 {
     virtual s32 select_melee_contact_body(void *, f32);
     s32 m_35c;
     s32 m_360;
-    u32 m_364;
-    u32 m_368;
+    s32 m_364;
+    s32 m_368;
     void calc_trap_count();
     static void *create(void *arg0);
 };
