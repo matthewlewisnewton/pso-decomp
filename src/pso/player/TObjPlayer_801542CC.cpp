@@ -9,6 +9,11 @@
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/collision/ActorBodyContact.h"
+#include "pso/math/AngleLookup.h"
+#include "pso/player/TObjPlayer_803DF7A8.h"
+
+// This unit's .sdata2 (0x805DB270, 12 bytes) is the pool 0.0f, 40000.0f, 50.0f.
+// No other object references those three floats, so symbols.txt marks them scope:local.
 
 struct Elt_801542CC { char pad[0x18]; s32 f18; char pad2[0x2C - 0x1C]; };
 
@@ -34,11 +39,9 @@ struct Vec_801550DC { f32 x, y, z; };
 
 struct CollisionVector_80155FBC { f32 x,y,z; };
 
-struct CollisionBody_80155FBC { void* colliders; s32 count; CollisionVector_80155FBC position; s32 facing; };
-struct CollisionVector_80155C54 { f32 x,y,z; };
+struct CollisionBody_80155FBC { CollisionBody *colliders; s32 count; Vec position; s32 facing; };
 struct Collider_80155C54 { CollisionVector_80155C54 offset; f32 radius; u32 unknown10; s32 shape; s32 flags; CollisionVector_80155C54 world; u32 unknown28; };
 struct CollisionBox_80155C54 { f32 data[24]; };
-struct CollisionSphere_80155C54 { CollisionVector_80155C54 center; f32 radius; };
 
 struct E_801547E0 { u8 pad[0xc]; f32 f; u8 pad2[0x2c - 0x10]; };
 
@@ -80,8 +83,8 @@ struct Vec_80156844 { f32 x, y, z; };
 struct Hit_80156844 { u32 f0; Vec_80156844 *v; };
 
 struct Obj_80154B60 { u8 pad[0x1C]; u16 id; };
-struct Obj_801559D0 { u8 pad38[0x38]; CollisionVector_80155FBC pos; u8 pad44[0x60 - 0x44]; s32 f60; u8 pad64[0xA4 - 0x64]; u32 a4; s32 a8; };
-struct Obj_80156268 { u8 pad0[0x30]; u32 flags; u8 pad34[4]; CollisionVector_80155FBC pos; u8 pad44[0x60 - 0x44]; s32 f60; u8 pad64[0xA4 - 0x64]; void *a4; s32 a8; };
+struct Obj_801559D0 { u8 pad38[0x38]; CollisionVector_80155FBC pos; u8 pad44[0x60 - 0x44]; s32 f60; u8 pad64[0xA4 - 0x64]; CollisionBody *a4; s32 a8; };
+struct Obj_80156268 { u8 pad0[0x30]; u32 flags; u8 pad34[4]; CollisionVector_80155FBC pos; u8 pad44[0x60 - 0x44]; s32 f60; u8 pad64[0xA4 - 0x64]; CollisionBody *a4; s32 a8; };
 
 struct V3_80154E3C { f32 x, y, z; };
 
@@ -133,8 +136,8 @@ s32 push_matrix_from(void *);
 s32 rotate_vector_by_current_matrix(void *, void *);
 s32 pop_matrix();
 extern f32 identity_matrix[12];
-u8 * TObjPlayer__sub_80155028(s32 arg0, s32 arg1);
-s32 build_collision_box_corners(s32 arg0, s32 arg1, Box_80154EF8 *box, u32 out);
+u8 * TObjPlayer__sub_80155028(CollisionBox_80155C54 *arg0, Vec_80154EF8 *arg1);
+s32 build_collision_box_corners(Vec origin, s32 facing, CollisionBody *body, CollisionBox_80155C54 *out);
 s32 subtract_vector(void *, void *);
 extern s32 enable_v2_features;
 f32 get_collision_body_radius(Obj_801547E0 *self, s32 i);
@@ -145,7 +148,6 @@ TObjCollidable *find_entity_by_id(u16 id);
 extern s32 quest_object_entries;
 void handle_6x0B_update_object_state(G_UpdateObjectState_6x0B *packet);
 }
-extern const f32 TObjPlayer__data_805DB270;
 extern const f32 lbl_805DB284;
 extern const f32 lbl_805DB288;
 extern const f32 lbl_805DB28C;
@@ -156,11 +158,11 @@ struct Obj_80156844 { u8 pad[0x1C]; u16 room; u8 pad2[0x90 - 0x1E]; void *f90; }
 
 extern "C" {
 void TObjPlayer__sub_801550B8(u8 *arg0, u8 *arg1);
-s32 TObjPlayer__sub_8015434C(s32, s32, s32);
+void TObjPlayer__sub_8015434C(CollisionBody_80155FBC *set, s32 start, s32 count);
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 extern s32 registered_entity_count;
-void TObjPlayer__sub_8015431C(u8 *arg0);
+void TObjPlayer__sub_8015431C(CollisionBody_80155FBC *set);
 int TObjPlayer__sub_80154E28(int a0, int a1);
 int get_player_data__10TObjPlayerFi(int a0);
 extern s32 lbl_805D5868;
@@ -170,7 +172,7 @@ f32 horizontal_distance_squared(void *, void *);
 s32 angle_diff_s16(s32 a, s32 b);
 s32 normalize_vector(void *);
 void* refresh_actor_body_spheres(CollisionBody_80155FBC, CollisionBody_80155FBC);
-extern s32 TObjPlayer__data_8050D460[];
+extern TObjCollidable *TObjPlayer__data_8050D460[];
 void *__construct_new_array(void *, void (*)(void *), void *, s32, s32);
 Part_80156780 *init_collision_body_parts(Obj_80156780 *self, Part_80156780 *src, s32 count);
 void *get_player_by_client_id(u32 id);
@@ -195,10 +197,9 @@ extern const f32 lbl_805DB27C;
 extern const f32 lbl_805DB280;
 s32 resolve_actor_sphere_contact(u8 *arg0, s32 arg1, s32 arg2);
 s32 respond_to_body_contact(u8 *arg0, u32 arg1, u8 *arg2);
-s32 spheres_overlap(u8 *arg0, u8 *arg1);
 extern "C" {
 void TOTrapAncient02R__sub_80154D78(void);
-void TObjPlayer__sub_801542F4(s32 a);
+void TObjPlayer__sub_801542F4(CollisionBody_80155FBC *set);
 void reset_global_table(void);
 u8 test_elt_flag__13TUnk_80493450Fll(void *arg0, s32 arg1, s32 arg2);
 s32 obj_is_hit_receivable(void *);
@@ -208,15 +209,118 @@ u16 register_entity_by_id(void*);
 int memset(void*, void*, void*);
 
 void TObjPlayer::apply_status_effect(s32 a) {
-    TObjPlayer__sub_8015434C(a, 0, registered_player_count);
+    // Original symbol is apply_status_effect__10TObjPlayerFl. A pointer
+    // parameter would rename it and break the linked callers.
+    TObjPlayer__sub_8015434C((CollisionBody_80155FBC *)a, 0, registered_player_count);
 }
 
-void TObjPlayer__sub_801542F4(s32 a) {
-    TObjPlayer__sub_8015434C(a, registered_player_count, lbl_805D5870);
+void TObjPlayer__sub_801542F4(CollisionBody_80155FBC *set) {
+    TObjPlayer__sub_8015434C(set, registered_player_count, lbl_805D5870);
 }
 
-void TObjPlayer__sub_8015431C(u8 *arg0) {
-    TObjPlayer__sub_8015434C((s32)arg0, (s32)(registered_player_count + lbl_805D5870), (s32)registered_entity_count);
+void TObjPlayer__sub_8015431C(CollisionBody_80155FBC *set) {
+    TObjPlayer__sub_8015434C(set, registered_player_count + lbl_805D5870, registered_entity_count);
+}
+
+// Places the set's bodies at its position and records every body of the
+// `count` actors from table slot `start` that one of them touches.
+void TObjPlayer__sub_8015434C(CollisionBody_80155FBC *set, s32 start, s32 count) {
+    CollisionBody *body;
+    s32 n;
+    int facing;
+    f32 sine;
+    f32 cosine;
+    int flags;
+    s32 shape;
+    TObjCollidable **entry;
+    s32 i;
+    // add_unique_pair_entry__10TObjPlayerFUll takes the table word as unsigned long.
+    u32 actor_id;
+    TObjCollidable *actor;
+    CollisionBody *other_body;
+    int other_facing;
+    s32 other_count;
+    s32 j;
+    CollisionBody *hit;
+
+    if (set == NULL || set->colliders == NULL || set->count <= 0) {
+        return;
+    }
+    body = set->colliders;
+    n = set->count;
+    facing = set->facing;
+    Vec pos = set->position;
+    sine = sin_table_lookup(facing);
+    cosine = cos_table_lookup(facing);
+    for (; n != 0; n--, body++) {
+        CollisionBox_80155C54 box;
+        CollisionSphere_80155C54 sphere;
+        flags = body->flags;
+        shape = body->shape;
+        body->center.x = body->offset.x * sine + pos.x;
+        body->center.y = pos.y + body->offset.y;
+        body->center.z = body->offset.z * cosine + pos.z;
+        if (body->shape == 1) {
+            build_collision_box_corners(pos, facing, body, &box);
+        } else {
+            sphere.center.x = body->center.x;
+            sphere.center.y = 0.0f;
+            sphere.center.z = body->center.z;
+            sphere.radius = body->radius;
+        }
+        entry = &TObjPlayer__data_8050D460[start];
+        for (i = count; i != 0; i--) {
+            actor = *entry++;
+            actor_id = (u32)actor;
+            if (actor_id != 0 && !(actor->actorFlags & 0x80000800) && actor->bodies != NULL &&
+                horizontal_distance_squared(&pos, &actor->position) < 40000.0f) {
+                Vec other_pos = actor->position;
+                other_body = actor->bodies;
+                other_facing = actor->rotation.yaw;
+                other_count = actor->body_count;
+                push_matrix_from(identity_matrix);
+                rotate_matrix_y(0, other_facing);
+                for (j = 0; j != other_count; j++, other_body++) {
+                    CollisionBox_80155C54 other_box;
+                    Vec offset;
+                    CollisionSphere_80155C54 other_sphere;
+                    hit = NULL;
+                    if (TObjPlayer::check_flags(flags, other_body->flags)) {
+                        rotate_vector_by_current_matrix(other_body, &offset);
+                        other_body->center.x = other_pos.x + offset.x;
+                        other_body->center.y = other_pos.y + offset.y;
+                        other_body->center.z = other_pos.z + offset.z;
+                        if (other_body->shape == 1) {
+                            build_collision_box_corners(other_pos, other_facing, other_body, &other_box);
+                            if (shape == 1) {
+                                if (test_box_overlap__10TObjPlayerFPvPv(&box, &other_box)) {
+                                    hit = other_body;
+                                }
+                            } else if (test_box_sphere_contact(&other_box, &sphere)) {
+                                hit = other_body;
+                            }
+                        } else {
+                            other_sphere.center.x = other_body->center.x;
+                            other_sphere.center.y = 0.0f;
+                            other_sphere.center.z = other_body->center.z;
+                            other_sphere.radius = other_body->radius;
+                            if (shape == 1) {
+                                if (test_box_sphere_contact(&box, &other_sphere)) {
+                                    hit = other_body;
+                                }
+                            } else if (spheres_overlap(&sphere, &other_sphere)) {
+                                hit = other_body;
+                            }
+                        }
+                    }
+                    if (hit != NULL) {
+                        TObjPlayer::add_unique_pair_entry(actor_id, j);
+                    }
+                }
+                pop_matrix();
+            }
+        }
+    }
 }
 
 void TObjPlayer::add_unique_pair_entry(u32 arg0, s32 arg1) {
@@ -272,7 +376,7 @@ f32 get_collision_body_radius(Obj_801547E0 *self, s32 i) {
     if (self->arr != 0) {
         return self->arr[i].f;
     }
-    return TObjPlayer__data_805DB270;
+    return 0.0f;
 }
 
 void *resolve_hittable_target(u16 actorId, s16 collider) {
@@ -500,17 +604,17 @@ void TObjCollidable::refresh_collision_body_centers() {
     }
 }
 
-s32 build_collision_box_corners(s32 arg0, s32 arg1, Box_80154EF8 *box, u32 out) {
+s32 build_collision_box_corners(Vec origin, s32 facing, CollisionBody *body, CollisionBox_80155C54 *out) {
     Vec_80154EF8 pos;
     Vec_80154EF8 c[8];
     s32 i;
     f32 y, nx, nz, ny, x, z;
-    VecCopy__FP3VecPC3Vec(&pos, &box->pos);
+    VecCopy__FP3VecPC3Vec(&pos, &body->center);
     y = 50.0f;
     pos.y = 0.0f;
     ny = -y;
-    x = box->hz;
-    z = box->hx;
+    x = body->half_width;
+    z = body->radius;
     nx = -x;
     nz = -z;
     c[0].x = nx;
@@ -538,20 +642,20 @@ s32 build_collision_box_corners(s32 arg0, s32 arg1, Box_80154EF8 *box, u32 out) 
     c[7].y = ny;
     c[7].z = z;
     push_matrix_from(identity_matrix);
-    rotate_matrix_y(0, arg1);
+    rotate_matrix_y(0, facing);
     for (i = 0; i < 8; i++) {
         rotate_vector_by_current_matrix(&c[i], &c[i]);
         vec3_add_to(&c[i], &pos);
     }
     pop_matrix();
     if (out != 0) {
-        TObjPlayer__sub_80155028(out, (s32)c);
+        TObjPlayer__sub_80155028(out, c);
         return 1;
     }
     return 0;
 }
 
-u8 * TObjPlayer__sub_80155028(s32 arg0, s32 arg1) {
+u8 * TObjPlayer__sub_80155028(CollisionBox_80155C54 *arg0, Vec_80154EF8 *arg1) {
     *(ByteBlock_60 *)(arg0) = *(const ByteBlock_60 *)(arg1);
     return (u8 *)arg0;
 }
@@ -563,7 +667,7 @@ s32 test_collider_sphere_overlap_xz(s32 arg0, u8 *arg1, u32 arg2) {
     typedef char sp14_offset[(offsetof(Stack_80155050, sp14) == 0xC) ? 1 : -1];
     Stack_80155050 stack;
     VecCopy__FP3VecPC3Vec(&stack.sp8, arg1 + 0x1C);
-    stack.spC = TObjPlayer__data_805DB270;
+    stack.spC = 0.0f;
     stack.sp14 = *(f32 *)((s8 *)arg1 + 0xC);
     if (arg2 != 0U) {
         TObjPlayer__sub_801550B8((u8 *)arg2, (u8 *)((void *)&stack.sp8));
@@ -605,7 +709,7 @@ block_7:
         rotate_vector_by_current_matrix(&displacement, &displacement);
         pop_matrix();
         if (lbl_805DB284 < ((displacement.x * displacement.x) + (displacement.z * displacement.z))) {
-            displacement.y = TObjPlayer__data_805DB270;
+            displacement.y = 0.0f;
             normalize_vector(&displacement);
             displacement.x = (displacement.x * tangentScale);
             displacement.z *= tangentScale;
@@ -659,20 +763,20 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
         dx = xl - xx;
         dz = zl - zz;
         if (xx + zz < lbl_805DB284) {
-            v.x = TObjPlayer__data_805DB270;
-            v.y = TObjPlayer__data_805DB270;
+            v.x = 0.0f;
+            v.y = 0.0f;
             v.z = lbl_805DB288;
             SHIFT_80155294(*(s32 *)(arg0 + 0x60));
         } else if (*(u32 *)(arg2 + 0x18) & 0x20000000) {
-            v.x = v.y = v.z = TObjPlayer__data_805DB270;
+            v.x = v.y = v.z = 0.0f;
             if (hd < hw) {
-                if (TObjPlayer__data_805DB270 < scratch_vec.vector.z) {
+                if (0.0f < scratch_vec.vector.z) {
                     v.z = lbl_805DB288;
                 } else {
                     v.z = lbl_805DB28C;
                 }
             } else {
-                if (TObjPlayer__data_805DB270 < scratch_vec.vector.x) {
+                if (0.0f < scratch_vec.vector.x) {
                     v.x = lbl_805DB288;
                 } else {
                     v.x = lbl_805DB28C;
@@ -681,27 +785,27 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
         } else if (dx < dz) {
             v.x = scratch_vec.vector.x < 0.0f ? lbl_805DB28C : lbl_805DB288;
-            v.z = v.y = TObjPlayer__data_805DB270;
+            v.z = v.y = 0.0f;
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
-            v.x = TObjPlayer__data_805DB270;
-            v.y = TObjPlayer__data_805DB270;
-            if (scratch_vec.vector.z < TObjPlayer__data_805DB270) {
+            v.x = 0.0f;
+            v.y = 0.0f;
+            if (scratch_vec.vector.z < 0.0f) {
                 v.z = lbl_805DB290;
             } else {
                 v.z = lbl_805DB294;
             }
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
         } else {
-            v.x = TObjPlayer__data_805DB270;
-            v.y = TObjPlayer__data_805DB270;
-            if (scratch_vec.vector.z < TObjPlayer__data_805DB270) {
+            v.x = 0.0f;
+            v.y = 0.0f;
+            if (scratch_vec.vector.z < 0.0f) {
                 v.z = lbl_805DB28C;
             } else {
                 v.z = lbl_805DB288;
             }
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
             v.x = scratch_vec.vector.x < 0.0f ? lbl_805DB290 : lbl_805DB294;
-            v.z = v.y = TObjPlayer__data_805DB270;
+            v.z = v.y = 0.0f;
             SHIFT_80155294(*(s32 *)(arg1 + 0x60));
         }
         if (moved != 0) {
@@ -786,7 +890,7 @@ s32 test_player_overlap_with_players(void *arg0, Obj_801559D0 *self, CollisionVe
     void *r;
 
     if (self != 0 && self->a4 != 0) {
-        a.colliders = (void *)self->a4;
+        a.colliders = self->a4;
         a.count = self->a8;
         VecCopy__FP3VecPC3Vec(&a.position, pos);
         a.facing = self->f60;
@@ -794,7 +898,7 @@ s32 test_player_overlap_with_players(void *arg0, Obj_801559D0 *self, CollisionVe
             o = (Obj_801559D0 *)get_player_data__10TObjPlayerFi(i);
             if (o != 0 && o != self && obj_testFlags30__14TObjCollidableFUl(o, 0x80000800) == 0 && o->a4 != 0 &&
                 horizontal_distance_squared(&self->pos, &o->pos) < TObjPlayer__data_805DB298) {
-                b.colliders = (void *)o->a4;
+                b.colliders = o->a4;
                 b.count = o->a8;
                 VecCopy__FP3VecPC3Vec(&b.position, &o->pos);
                 b.facing = o->f60;
@@ -816,16 +920,16 @@ s32 test_player_body_overlap_at(s32 arg0, u8 *self, void *pos) {
     CollisionBody_80155FBC destination;
     s32 i;
     u8 *other;
-    void *data;
+    CollisionBody *data;
 
-    if (self != NULL && (data = *(void **)(self + 0xA4)) != NULL) {
+    if (self != NULL && (data = *(CollisionBody **)(self + 0xA4)) != NULL) {
         source.colliders = data;
         source.count = *(s32 *)(self + 0xA8);
         VecCopy__FP3VecPC3Vec(&source.position, pos);
         source.facing = *(s32 *)(self + 0x60);
         for (i = 0; i < lbl_805D5868; i++) {
             other = (u8 *)get_player_data__10TObjPlayerFi(i);
-            if (other != NULL && other != self && (data = *(void **)(other + 0xA4)) != NULL) {
+            if (other != NULL && other != self && (data = *(CollisionBody **)(other + 0xA4)) != NULL) {
                 destination.colliders = data;
                 destination.count = *(s32 *)(other + 0xA8);
                 VecCopy__FP3VecPC3Vec(&destination.position, other + 0x38);
@@ -901,7 +1005,7 @@ void* refresh_actor_body_spheres(CollisionBody_80155FBC a,CollisionBody_80155FBC
                     case 0: default:
                         test_collider_sphere_overlap_xz(worldA,source,&sphereAA);
                         test_collider_sphere_overlap_xz(worldB,destination,&sphereBB);
-                        if (spheres_overlap((u8 *)&sphereAA, (u8 *)&sphereBB)) return destination;
+                        if (spheres_overlap(&sphereAA, &sphereBB)) return destination;
                         break;
                     }
                     break;
@@ -921,13 +1025,13 @@ void*TObjCollidable::find_actor_body_contact(u8*arg1, f32 limit) {
     void* result;
     if (arg1!=arg0 && arg1 && !(*(u32*)(arg0+0x30)&0x800) && !(*(u32*)(arg1+0x30)&0x80000800)) {
         if (limit<horizontal_distance_squared((void *)(arg0+0x38), (void *)(arg1+0x38))) return 0;
-        void* data=*(void**)(arg0+0xA4);
-        if (data && *(void**)(arg1+0xA4)) {
+        CollisionBody *data = *(CollisionBody **)(arg0 + 0xA4);
+        if (data && *(CollisionBody **)(arg1 + 0xA4)) {
             source.colliders=data;
             source.count=*(s32*)(arg0+0xA8);
             VecCopy__FP3VecPC3Vec((void *)&source.position, (void *)(arg0+0x38));
             source.facing=*(s32*)(arg0+0x60);
-            destination.colliders=*(void**)(arg1+0xA4);
+            destination.colliders=*(CollisionBody **)(arg1+0xA4);
             destination.count=*(s32*)(arg1+0xA8);
             VecCopy__FP3VecPC3Vec((void *)&destination.position, (void *)(arg1+0x38));
             destination.facing=*(s32*)(arg1+0x60);
@@ -939,17 +1043,17 @@ void*TObjCollidable::find_actor_body_contact(u8*arg1, f32 limit) {
 }
 
 void TObjCollidable::mark_enemy_body_contacts() {
-    u32 obj;
+    TObjCollidable *obj;
     s32 i;
     Flg_8015610C *f = ((P_8015610C *)this)->f;
     if (f != NULL) {
         f->flags = f->flags & 0xFFEFFFFF;
         for (i = 0; i < lbl_805D5868; i++) {
             obj = TObjPlayer__data_8050D460[i];
-            if (obj == 0U) {
+            if (obj == NULL) {
                 break;
             }
-            u16 t = get_entity_id(obj);
+            u16 t = get_entity_id((int)obj);
             if (t >= 0x1000U && t < 0x4000U && check_actor_body_contact((Obj_80156268 *)obj, lbl_805DB29C) != 0U) {
                 ((P_8015610C *)this)->f->flags = ((P_8015610C *)this)->f->flags | 0x100000;
             }
@@ -1195,6 +1299,6 @@ s32 TObjCollidable::access_object_saved_state(void *lobby, s16 arg2) {
 }
 }
 
-s32 TObjPlayer__data_8050D460[0x18C];
+TObjCollidable *TObjPlayer__data_8050D460[0x18C];
 int player_battle_param_table[0x10];
 unsigned char lbl_8050DAD0[0x80];
