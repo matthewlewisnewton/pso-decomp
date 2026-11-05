@@ -237,6 +237,7 @@ void TLobby__sub_8020DC78(void) {
     LobbyPoolEntry (LobbyPopulationTables::*object_member)[18];
     LobbyFloorRows (LobbyPopulationTables::*enemy_rows_member)[18];
     LobbyFloorRows (LobbyPopulationTables::*object_rows_member)[18];
+    LobbyPoolEntry *object_pool;
     TLobby__data_805D6134 = 0;
     if (TLobby__data_805D6138 != NULL) {
         memset(TLobby__data_805D6138, 0, 0x31680);
@@ -278,8 +279,9 @@ void TLobby__sub_8020DC78(void) {
     TLobby__data_805D6128 = 0;
     lbl_805D6100 = 0;
     // The member-pointer apply encodes the offset as value+1. Decaying the
-    // array to an element pointer at each use is what reduces +1-1 to
-    // `addi rX, rBase, offset` and leaves that address in a temporary.
+    // array to an element pointer reduces +1-1 to an add of the table base.
+    // The object walk keeps that pointer in its own local so it is not the
+    // enemy walk's temporary.
     enemy_member = &LobbyPopulationTables::pool_entries;
     for (s32 j = 17; j >= 0; j--) {
         if (static_cast<LobbyPoolEntry *>(base->*enemy_member)[j].enemies != NULL) {
@@ -289,11 +291,11 @@ void TLobby__sub_8020DC78(void) {
         }
     }
     object_member = &LobbyPopulationTables::pool_entries;
+    object_pool = static_cast<LobbyPoolEntry *>(base->*object_member);
     for (s32 j = 17; j >= 0; j--) {
-        if (static_cast<LobbyPoolEntry *>(base->*object_member)[j].objects != NULL) {
-            archive_pool_free(TLobby__data_805D6104,
-                static_cast<LobbyPoolEntry *>(base->*object_member)[j].objects);
-            static_cast<LobbyPoolEntry *>(base->*object_member)[j].objects = NULL;
+        if (object_pool[j].objects != NULL) {
+            archive_pool_free(TLobby__data_805D6104, object_pool[j].objects);
+            object_pool[j].objects = NULL;
         }
     }
     enemy_rows_member = &LobbyPopulationTables::floors;
