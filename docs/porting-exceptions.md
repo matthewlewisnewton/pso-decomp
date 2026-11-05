@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `28e77474d`, 2026-11-05)
+## Summary (regenerated on this branch after merging main `319105d5c`, 2026-11-05)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `28e77474d` (2026-11-05). Assembly is counted as functions;
+after merging main `319105d5c` (2026-11-05). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 7 functions (13 source lines) | 4 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,796 | 876 |
-| Per-unit compiler overrides in `configure.py` | 163 | 163 |
+| CodeWarrior pragmas (excluding push/pop) | 5,785 | 874 |
+| Per-unit compiler overrides in `configure.py` | 167 | 167 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -70,10 +70,10 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,836 pragmas in 877 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 911, `auto_inline` 844,
-`opt_common_subs` 618, `scheduling` 260, `opt_propagation` 241,
-`readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
+5,785 pragmas in 874 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1148, `inline_depth` 1040, `fp_contract` 889, `auto_inline` 839,
+`opt_common_subs` 610, `scheduling` 260, `opt_propagation` 237,
+`readonly_strings` 203, `peephole` 103, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
@@ -397,6 +397,8 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `TLobby__sub_80402CE0`: `*(u8 *)((u8 *)g + 0x15B)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
 | `TLobby__sub_80402CE0`: `*(u16 *)((u8 *)g + 0x15C)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
 
+| `TBoss6Rock::run_task` | `pso/boss/TBoss6Rock.cpp` | `src/pso/boss/TBoss6Rock.cpp` | [#181](https://github.com/zeroz41/pso-decomp/pull/181) | `other: u64 pointer widen` | [#313](https://github.com/matthewlewisnewton/pso-decomp/pull/313) | upstream catch-up, rewrite later |
+
 ## Pending in open PRs
 
 Found by `tools/list_port_exceptions.py --pr N` on 2026-11-04. Add or remove the
@@ -409,6 +411,7 @@ entry when the PR merges.
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
+| [#313](https://github.com/matthewlewisnewton/pso-decomp/pull/313) | `configure.py`: `TBoss6Rock.cpp` `-fp_contract on`, `-str reuse,readonly`, `-inline off,deferred`; `TOBoss4.cpp` `-fp_contract on`, `-str reuse,readonly`, `-sdata 4`, `-inline deferred` | One TU each, written last-defined first. Deferred emission puts the late helpers and vtables in address order. `-fp_contract on` fuses the fall and spin multiply-adds (and TOBoss4's). `-str reuse,readonly` keeps the literals in the unit's rodata. `-sdata 4` keeps TOBoss4's 8-byte motion-name array in `.data`. |
 | [#167](https://github.com/matthewlewisnewton/pso-decomp/pull/167) | Unit switch `-opt nolifetimes,nocse,noprop,noloop` on `TMovie_80143988.cpp` (section 5); the pre-existing `__dcbt` in `pack_movie_frame` | `pack_movie_frame` matches 100% in plain C++. The earlier `__rlwinm` / `__rlwimi` calls are gone. `__dcbt` is the original data-cache touch (`dcbt r31, r0` / `dcbt r9, r0`). Port: drop the switch and the cache touch. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
