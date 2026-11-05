@@ -8,7 +8,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 9 | 3 |
-| intrinsic | 83 | 54 |
+| intrinsic | 84 | 55 |
 | hardware | 71 | 13 |
 | pragma | 5846 | 879 |
 | configure.py per-unit override | 148 | 148 |
@@ -75,6 +75,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:44` | `__rlwinm` |
 | `src/pso/misc/TWindowSubComCard_80244774.cpp:230` | `__cntlzw` |
 | `src/pso/misc/TWindowSubItem.cpp:359` | `__cntlzw` |
+| `src/pso/misc/TWindowSubStatusDisp_80256B94.cpp:208` | `__fmadds` |
 | `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
 | `src/pso/object/TObjCMMainMenu_8028D9A8.cpp:108` | `__cntlzw` |
