@@ -160,6 +160,12 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
+| `TObjDFDemo1__ct` | `pso/unk/text_8004E6D0.cpp` | `src/pso/unk/text_8004E6D0.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| `TObjDFDemo1__ct` | `pso/unk/text_8004E6D0.cpp` | `src/pso/unk/text_8004E6D0.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | shadow struct | #0 | upstream catch-up, rewrite later |
+| `TObjDFDemo1__ct` | `pso/unk/text_8004E6D0.cpp` | `src/pso/unk/text_8004E6D0.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| `TObjDFDemo5__ct` | `pso/unk/text_8004FE20.cpp` | `src/pso/unk/text_8004FE20.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| `TObjDFDemo5__ct` | `pso/unk/text_8004FE20.cpp` | `src/pso/unk/text_8004FE20.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | shadow struct | #0 | upstream catch-up, rewrite later |
+| `TObjDFDemo5__ct` | `pso/unk/text_8004FE20.cpp` | `src/pso/unk/text_8004FE20.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | raw offset cast | #0 | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
