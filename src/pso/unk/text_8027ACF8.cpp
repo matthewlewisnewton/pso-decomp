@@ -1,13 +1,13 @@
-#include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowSubItemList.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
+struct TWindowDrawContext;
 void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 extern s32 actor_frame_tick;
 
-void TWindowSubItemList::sub_8027ACF8(TWindowDrawContext *window_key_board_soft) {
+void TWindowSubItemList::sub_8027ACF8(u8 *window_key_board_soft) {
     u8 *arg0 = (u8 *)this;
     s16 temp_r5;
     u16 *temp_r3;

@@ -48,6 +48,7 @@
 #include "pso/misc/TLobby_801E43E4.h"
 #include "pso/system/byteswap.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/player/TObjPlayer_801A5AEC.h"
 
 extern "C" ControllerInputState controller_physical_port_bank;
 void set_display_copy_filter(int);
@@ -78,7 +79,6 @@ struct Card_8007CCD0 {
     s32 size;
 };
 struct Vec2_8007DD28 { f32 x; f32 y; };
-struct Vtx_8007D828 { f32 x; f32 y; f32 z; u32 color; };
 struct Quad_8007D828 { f32 x0; f32 y0; f32 x1; f32 y1; f32 u0; f32 v0; f32 u1; f32 v1; };
 // The per-player block at the end of the card file: class flags, levels, then names.
 struct SnapshotPlayerBlock {
@@ -121,7 +121,6 @@ u32 TAdSinglePlyChrSelectGC__sub_80201204(u8 *arg0, u32 arg1);
 void TAdPlayerLoadGC__sub_801E14E4(void *);
 void TAdPlayerLoadGC__sub_801E14E8(u8 *arg0, s32 arg1);
 extern char lbl_804C8974[];
-s8 func_801A5E54__Fv(void);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 extern TCameraCtrl *camera_ctrl_instance;
 void restore_saved_depth_alpha_state(void);
@@ -144,7 +143,6 @@ s32 approach_angle_limited(s32, s32, s32);
 int vec3_add_to(void*, void*);
 int TCameraCtrl__sub_8006B370(f32 farg0);
 f32 vec_squared_length(const Vec *);
-s32 TLobby__sub_8001EEF4(void);
 f32 normalize_vector(void *);
 }
 
@@ -652,7 +650,7 @@ void TObjBoss2Tunnel__sub_8007DB80(void) {
 
 void draw_snapshot_capture_overlay(void) {
     Quad_8007D828 q;
-    Vtx_8007D828 v[4];
+    ProjectedVertex v[4];
     s32 i;
     set_default_alpha_blend();
     for (i = 0; i < 4; i++) {
@@ -755,6 +753,10 @@ void draw_snapshot_capture_overlay(void) {
     restore_saved_depth_alpha_state();
 }
 
+#pragma push
+// Porting exception (approved by Matt 2026-11-04 4:38 PM PT, see docs/porting-exceptions.md):
+// the copy-filter flag has to be computed before the capture calls. Remove this pragma when porting off MWCC.
+#pragma opt_propagation off
 /* Takes a snapshot of the screen with the C stick frame and saves it to the memory card. */
 s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
     SnapshotFrameBuffer *frame;
@@ -786,7 +788,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         (is_boss_area() != 0 || is_quest_active() != 0 || (u32)TQuestVmDownLoadServer__sub_8007EB14() != 0)) {
         return 0;
     }
-    if ((u32)TQuestListVM::get_instance() != 0) {
+    if (TQuestListVM::get_quest_bin() != NULL) {
         return 0;
     }
     if (TCameraCtrl__sub_80069304() != 0) {
@@ -840,7 +842,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
     TObjPlayer::copy_screen_to_texture(mode, &TObjBoss2Tunnel__data_8048DF2C);
     set_display_copy_filter(filter);
     render_tick();
-    if (TLobby__sub_8001EEF4() != 0) {
+    if (TLobby::tmp_buf_is_free() != 0) {
         frame = (SnapshotFrameBuffer *)TLobby::tmp_buf_use_req(lbl_8048DF34);
         p = (u8 *)frame;
         sum = (u32 *)p;
@@ -849,7 +851,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         frame->snapshot.width = 0x100;
         frame->snapshot.height = 0xC0;
         p += 8;
-        ((TLobby *)p)->move_data((void *)TObjPlayer__sub_800845F8(), 0x18000);
+        move_data(p, (void *)TObjPlayer__sub_800845F8(), 0x18000);
         p += 0x18000;
         *p++ = 0x18;
         *p++ = 2;
@@ -954,6 +956,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
     }
     return 0;
 }
+#pragma pop
 
 s32 memcard_check_snapshot(s32 arg0, s32 *arg1) {
     s32 temp_r3;
@@ -995,7 +998,7 @@ s32 memcard_check_snapshot(s32 arg0, s32 *arg1) {
         }
         return 0;
     }
-    temp_r3 = TAdPlayerLoadGC::find_card_file(1, (void *)TObjBoss2Tunnel__data_80438A08);
+    temp_r3 = TAdPlayerLoadGC::find_card_file(1, (const char *)TObjBoss2Tunnel__data_80438A08);
     if (temp_r3 == 0) {
         if (arg1 != NULL) {
             *arg1 = 1;
@@ -1134,7 +1137,7 @@ s32 save_screen_snapshot(void) {
     if (memcard_check_snapshot(1, 0) == 0) {
         return 0;
     }
-    if (((TAdSinglePlyChrSelectGC *)1)->load_player_slot((int)TObjBoss2Tunnel__data_80438A08, (int)TObjBoss2Tunnel__snapshot_buffer) != 0) {
+    if (TAdSinglePlyChrSelectGC::load_player_slot(1, TObjBoss2Tunnel__data_80438A08, TObjBoss2Tunnel__snapshot_buffer) != 0) {
         return 0;
     }
     TObjBoss2Tunnel__snapshot_state = 2;
@@ -1202,21 +1205,21 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
         lbl_805D4E9C = window_size[0] - 40.0f;
         boss2_tunnel_message_shown_flag = 1;
     }
-    win = (TWindowMessage *)TLobby::create_message_window((s32)window_pos, (s32)window_size, (u32)1, (s16)4);
+    win = (TWindowMessage *)TWindowMessage::create((s32)window_pos, (s32)window_size, (u32)1, 4);
     if (win != NULL) {
         switch (arg0) {
         case -2:
         case -9:
-            ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 3), 3);
+            win->append_line(get_localized_text_entry(0x24, 3), 3);
             break;
         case -4:
-            ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 0xD), 3);
+            win->append_line(get_localized_text_entry(0x24, 0xD), 3);
             break;
         default:
-            ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 0xC), 3);
+            win->append_line(get_localized_text_entry(0x24, 0xC), 3);
             break;
         }
-        ((TLobby *)win)->set_field_1c(36900.0f);
+        win->set_depth(36900.0f);
         win->complete_reveal();
     }
     if (get_main_phase() == 0xF) {
@@ -1235,7 +1238,7 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
             break;
         }
         TLobby::wait_ready_loop();
-        if (func_801A5E54__Fv() != 0) {
+        if (func_801A5E54() != 0) {
             break;
         }
         render_tick();
@@ -1269,10 +1272,10 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
         lbl_805D4EA4 = window_size[0] - 40.0f;
         lbl_805D4EA8 = 1;
     }
-    win = (TWindowMessage *)TLobby::create_message_window((s32)window_pos, (s32)window_size, (u32)1, (s16)4);
+    win = (TWindowMessage *)TWindowMessage::create((s32)window_pos, (s32)window_size, (u32)1, 4);
     if (win != NULL) {
-        ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 0xB), 3);
-        ((TLobby *)win)->set_field_1c(36900.0f);
+        win->append_line(get_localized_text_entry(0x24, 0xB), 3);
+        win->set_depth(36900.0f);
     }
     win->complete_reveal();
     graph = (TDLGraph *)TDLGraph::create();
@@ -1294,7 +1297,7 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
         main_task.render();
         draw_snapshot_capture_overlay();
         TLobby::wait_ready_loop();
-        if (func_801A5E54__Fv() != 0) {
+        if (func_801A5E54() != 0) {
             break;
         }
         TParticleCtrl::begin_effect_render();

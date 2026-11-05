@@ -3,6 +3,7 @@
 #include "pso/unk/text_8006EF80.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TUnk_804CDFE8.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/map/FloorArea.h"
 
 #include "types.h"
@@ -100,7 +101,7 @@ void TObjBagWarnWin::open_message_window() {
     u8 *arg0 = (u8 *)this;
     *(u32 *)((s8 *)arg0 + 0x1C) = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x38), TObjBagWarnWin__message_window_size, 1);
     if ((u32) *(u32 *)((s8 *)arg0 + 0x1C) != 0U) {
-        ((TLobby *)(*(u32 *)((s8 *)arg0 + 0x1C)))->set_field_1c(lbl_805D90C8);
+        ((TWindowBase *)(*(u32 *)((s8 *)arg0 + 0x1C)))->set_depth(lbl_805D90C8);
         if (TCameraCtrl::get_camera_id() == 4) {
             ((TUnk_804CDFE8 *)(*(u32 *)((s8 *)arg0 + 0x1C)))->set_position_xy(lbl_805D90CC, lbl_805D90CC);
         }

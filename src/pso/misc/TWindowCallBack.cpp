@@ -45,12 +45,12 @@ void set_field_60__15TWindowCallBackFPvi(void* p, s32 v) { *(s32*)((char*)p + 0x
 class TWindowCallBack {
 public:
     u8 pad[0x60];
-    void (*callback)(TWindowCallBack *, TWindowKeyBoardSoft *);
+    void (*callback)(TWindowCallBack *, s32);
     void render();
 };
 
 void TWindowCallBack::render() {
-    TWindowKeyBoardSoft *r = TWindowDD::draw_default_entry((s32)this);
+    s32 r = TWindowDD::draw_default_entry((s32)this);
     if (callback != NULL) {
         callback(this, r);
     }

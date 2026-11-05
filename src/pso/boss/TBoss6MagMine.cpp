@@ -106,7 +106,6 @@ void submit_cursor_candidate(void *, int);
 void add_radar_scaled_marker(void *, int, int, int, f32);
 void vt2__13TBoss6MagMineFv(u8 *arg0);
 void vt1__13TBoss6MagMineFv(u8 *arg0);
-s32 is_locally_controlled__10TObjPlayerFPv(void *);
 int get_player_data__10TObjPlayerFi(int a0);
 
 f32 vector_length(Vec_80368C14 *);
@@ -232,7 +231,7 @@ void explode__13TBoss6MagMineFPv(Mine_80368C14 *o) {
     s32 i;
     for (i = 0; i < n; i++) {
         u8 *pl = (u8 *)get_player_data__10TObjPlayerFi(i);
-        if (((TBoss6PlotFalz *)pl)->is_active() != 0 && is_locally_controlled__10TObjPlayerFPv(pl) != 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0 && TObjPlayer::is_locally_controlled(pl) != 0) {
             Vec_80368C14 v = o->pos;
             subtract_vector(&v, pl + 0x38);
             v.y = 0.0f;
@@ -253,7 +252,7 @@ s32 is_player_in_range__13TBoss6MagMineFPv(void *arg0_) {
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         p = (void *)get_player_data__10TObjPlayerFi(i);
-        if (((TBoss6PlotFalz *)p)->is_active() != 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)p) != 0) {
             ((void (*)(Vec_80368C14 *, Vec_80368C14 *))VecCopy__FP3VecPC3Vec)(&d, &((P_80368CE4 *)p)->pos);
             subtract_vector(&d, &arg0->home);
             d.y = 0.0f;
@@ -453,7 +452,7 @@ s32 TBoss6MagMine__ct(s32 arg0, s32 parent, s32 arg2) {
     *(s32 *)((s8 *)self + 0x2A8) = 0;
     ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2D)), (u8 *)(get_battle_attack_params(0x2D)), (u8 *)(get_battle_resistance_params(0x2D)));
     *(s16 *)((s8 *)self + 0x33E) = *(s16 *)((s8 *)self + 0x32C);
-    ((TBoss3Volopt *)self)->reset_photon_effect();
+    ((TObjEnemy *)self)->register_by_id();
     ((TObjEnemy *)self)->set_param(0);
     d = ((u8 *)get_battle_movement_params(0x2D));
     *(s32 *)((s8 *)self + 0x39C) = (s32) *(f32 *)((s8 *)d + 4);
@@ -509,7 +508,7 @@ void spawn_mag_mine_at__13TBoss6MagMineFPvPv(void *arg0, void *arg1) {
     if (boss == 0 || get_phase__8TObjFishFv() != 6) {
         return;
     }
-    TBoss4DarkFalz__sub_8004B4F0(&p, (void *)(((TBoss6Type1 *)boss)->get_mag_mine_ptr()));
+    TBoss4DarkFalz__sub_8004B4F0(&p, (void *)(((TBoss6PlotFalz *)boss)->get_mag_mine_ptr()));
     ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&p.a, arg0);
     ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&p.b, arg1);
     p.f8 = 1;

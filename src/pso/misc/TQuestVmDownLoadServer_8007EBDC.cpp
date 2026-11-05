@@ -11,10 +11,10 @@ extern u8 lbl_80500598[];
 void *__ct__13TUnk_8048DF58Fv(void *arg0);
 void __register_global_object(void *obj, void *dtor, void *entry);
 int fn_803DE864(void*);
-int xmalloc__FUl(void*);
+void *xmalloc(u32 size);
 
 int TQuestVmDownLoadServer__sub_8007EBDC(void* p) { return fn_803DE864(p); }
-int TQuestVmDownLoadServer::alloc() { return xmalloc__FUl(this); }
+void *TQuestVmDownLoadServer::alloc(u32 size) { return xmalloc(size); }
 
 
 void TQuestVmDownLoadServer::register_global_instance_dtor() {
