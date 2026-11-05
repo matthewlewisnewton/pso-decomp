@@ -25,6 +25,8 @@ struct TWindowDrawContext {
     f32 clip_top;
     f32 clip_right;
     f32 clip_bottom;
+
+    s32 is_point_in_bounds(f32 *quad);
 };
 
 typedef char TWindowDrawContext_size[sizeof(TWindowDrawContext) == 0x4C ? 1 : -1];
