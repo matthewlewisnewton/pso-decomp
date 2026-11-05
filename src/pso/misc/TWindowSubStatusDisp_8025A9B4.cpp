@@ -1,5 +1,6 @@
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
 #include "pso/system/memory.h"
@@ -37,7 +38,7 @@ u8 get_font_char_advance(u16);
 u16 map_char_to_font_code(u16);
 void measure_message_text_width(Msg_8025A9C0 *msg, f32 maxw);
 s32 reset_entry__20TWindowSubStatusDispFPv(void *, void *);
-void render_text_entry(Win_8025AD5C *arg0, Ref_8025AD5C *arg1);
+void render_text_entry(Win_8025AD5C *arg0, TWindowDrawContext *arg1);
 s32 deleting_destructor__20TWindowSubStatusDispFs(void *, s32);
 
 void *lbl_804CFA28[6] = {
@@ -194,7 +195,7 @@ int TWindowDuelResult::set_default_status(void* p, int a1) { return ((int (*)(vo
 
 #pragma push
 #pragma fp_contract on
-void render_text_entry(Win_8025AD5C *arg0, Ref_8025AD5C *arg1) {
+void render_text_entry(Win_8025AD5C *arg0, TWindowDrawContext *arg1) {
     f32 t;
     f32 a;
     f32 len;
@@ -203,22 +204,22 @@ void render_text_entry(Win_8025AD5C *arg0, Ref_8025AD5C *arg1) {
     f32 alpha;
     s32 r;
     if (arg0->text != NULL && *arg0->text != 0) {
-    pt.x = arg1->f10 + arg0->f8;
-    pt.y = arg1->f14 + arg0->fC;
-    scale = (-1.0f) / ((0.299f) * arg0->f18 + arg1->f38);
+    pt.x = arg1->inner_x + arg0->f8;
+    pt.y = arg1->inner_y + arg0->fC;
+    scale = (-1.0f) / ((0.299f) * arg0->f18 + arg1->depth);
     if (arg0->flags & 0x40) {
         alpha = K_CFB0;
     } else {
-        alpha = arg1->f44;
+        alpha = arg1->clip_right;
     }
     a = arg0->fC / (21.0f);
-    t = a + arg0->f8 / arg1->f18;
+    t = a + arg0->f8 / arg1->inner_w;
     t *= (7.5f);
-    len = (17.0f) * ((f32)arg1->i30 - t);
+    len = (17.0f) * ((f32)arg1->open_tick - t);
     if (len > arg0->f1C) {
         len = arg0->f1C;
     }
-    set_text_draw_params((s32)arg1, (s32)(!(arg0->flags & 0x100)), (s32)(arg0->flags & 0x80), (f32)scale, (f32)alpha);
+    set_text_draw_params(arg1, (s32)(!(arg0->flags & 0x100)), (s32)(arg0->flags & 0x80), (f32)scale, (f32)alpha);
     if (arg0->flags & 4) {
         r = draw_small_font_string_clipped((f32 *)&pt, (const char *)arg0->text, arg0->i24, (f32)len);
     } else {
