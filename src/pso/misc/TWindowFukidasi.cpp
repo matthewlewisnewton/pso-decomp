@@ -259,14 +259,14 @@ void complete_speech_balloon(u8 *arg0) {
     TUnk_804CF0B8 *self = (TUnk_804CF0B8 *)arg0;
     self->m_70 = 4;
     self->m_71 |= 0x40;
-    self->calc_text_size(self->m_38);
+    self->calc_text_size(&self->m_38);
     ((s32 (*)(void *))refresh_rect_placement__15TWindowFukidasiFPv)(arg0);
     TWindowFukidasi__sub_80252C38(arg0);
     ((TUnk_804CF0B8 *)arg0)->set_flag2c_bit100();
     ((TUnk_804CE018 *)arg0)->save_position();
     self->m_80 = 1.0f;
     ((TWindowFukidasi *)arg0)->sync_display_pos();
-    self->m_5C = 0x186A0;
+    self->m_5c = 0x186A0;
     t = self->m_72;
     switch (t) {
     case 0:
@@ -841,7 +841,7 @@ s32 TUnk_804CF0B8::clamp_position(void *arg1, f32 farg0) {
         point[1] = temp_f1_3;
         var_r31 = 1;
     }
-    temp_f1_4 = (((TWindowCtrlMain *)(s32)this->m_20)->get_field_18() - 40.0f) - (this->m_4C * farg0);
+    temp_f1_4 = (((TWindowCtrlMain *)(s32)this->m_20)->get_field_18() - 40.0f) - (this->m_4c * farg0);
     if (point[1] > temp_f1_4) {
         point[1] = temp_f1_4;
         var_r31 = 1;
@@ -977,7 +977,7 @@ void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
     this->m_80 = (f32) (TWindowFukidasi__data_805DCD30[0]);
     this->m_7c = farg0;
     this->m_48 = (f32) (TWindowFukidasi__data_805DCD30[0]);
-    this->m_4C = (f32) (TWindowFukidasi__data_805DCD30[0]);
+    this->m_4c = (f32) (TWindowFukidasi__data_805DCD30[0]);
     this->clear_flag();
     this->clear_flag2c_bit100();
 }
