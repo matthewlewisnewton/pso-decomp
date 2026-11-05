@@ -27,11 +27,11 @@ void TOTrap::vfunc_89() {  }
 
 s32 TOTrap::is_any_player_matching_stat() {
     s32 i;
-    void *p;
+    TObjPlayer *p;
     for (i = 0; i < 4; i++) {
         p = get_player_by_client_id(i);
         if (p != 0) {
-            if (((s16)((TObjBase *)p)->get_room() == (s16)get_room()) && (fn_80171314(p) != 0)) {
+            if (((s16)p->get_room() == (s16)get_room()) && (fn_80171314(p) != 0)) {
                 return 1;
             }
         }
