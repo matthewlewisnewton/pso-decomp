@@ -67,7 +67,9 @@ void *TObjDFDemo5__ct(void *mem, void *parent, void *pos, void *angle) {
     s32 k;
     s32 cnt;
     s32 i;
-    u8 *tables = lbl_80485798;
+    // Keep the anchor in one register. A plain symbol copy is folded back to
+    // lbl_80485798 and reloaded after each call.
+    u8 *tables = (u8 *)(unsigned)lbl_80485798;
     s32 *motab;
 
     __ct__8TObjBaseFP7TObject(self, parent);
