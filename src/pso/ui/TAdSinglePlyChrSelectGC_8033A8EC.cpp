@@ -69,7 +69,6 @@ u32 __nw__7TObjectFUl(int);
 s32 get_selected_menu_value(int);
 
 s32 get_card_file_info__15TAdPlayerLoadGCFiPvPv(int, void *, int);
-s32 query_memcard_capacity__15TAdPlayerLoadGCFl(int, int);
 extern u8 lbl_804C89BC[];
 extern u8 lbl_804C88C0[];
 s32 TAdPlayerLoadGC__sub_801E1944(s32, void *, u32, s32);
@@ -173,7 +172,7 @@ void TAdSinglePlyChrSelectGC::sub_8033AA64() {
 void TAdSinglePlyChrSelectGC::handle_player_load() {
     O_8033AB04 *arg0 = (O_8033AB04 *)this;
     u32 p;
-    if (((TAdPlayerLoadGC *)(arg0->f24))->probe_card_slot() == 0) {
+    if (TAdPlayerLoadGC::probe_card_slot((arg0->f24)) == 0) {
         arg0->f2C = 0;
         ((s32 (*)(void *))TAdSinglePlyChrSelectGC__sub_8033B5F0)(arg0);
         return;
@@ -182,7 +181,7 @@ void TAdSinglePlyChrSelectGC::handle_player_load() {
     case 0:
         switch (TAdPlayerLoadGC__sub_801E1B50(arg0->f24)) {
         case 0:
-            switch (TAdPlayerLoadGC::get_load_result((void *)arg0->f24)) {
+            switch (TAdPlayerLoadGC::get_load_result(arg0->f24)) {
             case 0:
                 arg0->f2C = 0xE;
                 close_window__23TAdSinglePlyChrSelectGCFPv(arg0);
@@ -223,7 +222,7 @@ void TAdSinglePlyChrSelectGC::check_memcard_space() {
     case -1:
         break;
     default:
-        if (arg0->f28 <= query_memcard_capacity__15TAdPlayerLoadGCFl(arg0->f24, 0)) {
+        if (arg0->f28 <= TAdPlayerLoadGC::query_memcard_capacity(arg0->f24, 0)) {
             arg0->f2c = 7;
         } else {
             arg0->f2c = 0xA;
@@ -238,7 +237,7 @@ void TAdSinglePlyChrSelectGC::check_memcard_space() {
 
 void TAdSinglePlyChrSelectGC::sub_8033ACF4() {
     O_8033ACF4 *arg0 = (O_8033ACF4 *)this;
-    if (((TAdPlayerLoadGC *)(arg0->f24))->probe_card_slot() == 0) {
+    if (TAdPlayerLoadGC::probe_card_slot((arg0->f24)) == 0) {
         arg0->f2C = 0;
         ((s32 (*)(void *))TAdSinglePlyChrSelectGC__sub_8033B5F0)(arg0);
         return;
@@ -247,7 +246,7 @@ void TAdSinglePlyChrSelectGC::sub_8033ACF4() {
     case 0:
         switch (TAdPlayerLoadGC__sub_801E1B50(arg0->f24)) {
         case 0:
-            switch (TAdPlayerLoadGC::get_load_result((void *)arg0->f24)) {
+            switch (TAdPlayerLoadGC::get_load_result(arg0->f24)) {
             case 0:
                 arg0->f2C = 6;
                 arg0->f24 = get_chr_select_state__23TAdSinglePlyChrSelectGCFv();

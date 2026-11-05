@@ -4,19 +4,23 @@
 #include "types.h"
 #include "pso/misc/TOMine.h"
 
+struct TObjPlayer;
+class TObjChara;
+
 struct TOMineTrap : public TOMine {
+    TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id);
     virtual ~TOMineTrap();
     virtual void spawn_disp_objects();
     virtual void vfunc_86();
     virtual void vfunc_82();
-    void sub_80171348(s16);
+    void sub_80171348(u16);
     virtual const char *get_name();
     virtual void run_task();
     u32 m_374;
     u32 m_378;
     u8 _pad37C[0x2];
     u16 m_37e;
-    u32 m_380;
+    s32 m_380;
     u16 get_trap_type();
     static int get_trap_count();
     static void set_instance(int a0);
@@ -37,7 +41,10 @@ struct TOMineTrap : public TOMine {
     void sync_position();
     void send_state_packet(u16 idx);
     int update_trap_sub();
-    static s32 show_owner_message(s32 arg0, u32 arg1);
+    static s32 show_owner_message(TOMineTrap *trap, TObjChara *actor);
+    void strike_actor(TObjChara *actor, TObjPlayer *owner);
+    void strike_player(TObjChara *actor);
+    void strike_enemy(TObjChara *actor, TObjPlayer *owner);
 };
 
 typedef char TOMineTrap_size[sizeof(TOMineTrap) == 0x384 ? 1 : -1];

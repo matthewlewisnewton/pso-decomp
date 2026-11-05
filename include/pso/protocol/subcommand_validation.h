@@ -2,6 +2,7 @@
 #define PSO_SUBCOMMAND_VALIDATION_H
 
 #include "pso/protocol/protocol_types.h"
+#include "pso/protocol/subcmd_6x.h"
 
 typedef char SubcommandHeaderSizeCheck[sizeof(G_ClientIDHeader) == 4 ? 1 : -1];
 #include <stddef.h>
@@ -30,7 +31,7 @@ extern "C" {
 s32 validate_6x48_cast_technique_complete(G_ClientIDHeader *packet);
 s32 validate_6x8D_set_technique_level_override(G_ClientIDHeader *packet);
 }
-s32 validate_6x47_cast_technique(u8 *packet);
+s32 validate_6x47_cast_technique(G_CastTechnique_6x47 *packet);
 s32 validate_technique_parameters(void *parameters);
 s32 validate_cast_target_entry(void *parameters);
 extern "C" {
