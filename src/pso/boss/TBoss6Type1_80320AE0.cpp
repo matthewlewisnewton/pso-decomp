@@ -1,18 +1,6 @@
 #include "types.h"
-#include "pso/boss/TBoss6Type1.h"
+#include "pso/boss/TBoss6Zanzo.h"
 
-extern "C" {
-
-void *__ct__11TBoss6ZanzoFP7TObjectll(void *, void *, void *, void *);
-void *__nw__7TObjectFUl(int);
-
-void *TBoss6Type1::create_zanzo(void *arg0, void *arg1, void *arg2) {
-    void *o;
-    o = __nw__7TObjectFUl(0x2C);
-    if (o != NULL) {
-        o = __ct__11TBoss6ZanzoFP7TObjectll(o, arg0, arg1, arg2);
-    }
-    return o;
-}
-
+TBoss6Zanzo *TBoss6Zanzo::create(TObject *parent, s32 arg2, s32 arg3) {
+    return new TBoss6Zanzo(parent, arg2, arg3);
 }

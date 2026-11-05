@@ -49,7 +49,7 @@ struct Obj_8030095C {
 
 extern "C" {
 extern s32 TAdMultiSelGameModeGC__data_805D69F0;
-s32 is_multiplayer_character_slot_selected(u32);
+s32 is_multiplayer_character_slot_selected(s32);
 Ent_80300850 *get_char_table_entry__23TAdSinglePlyChrSelectGCFi(int);
 void *__nw__7TObjectFUl(u32);
 void __ct__7TObjectFP7TObject(void *);
