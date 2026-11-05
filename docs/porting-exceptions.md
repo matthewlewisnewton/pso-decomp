@@ -195,6 +195,10 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
+| `TLobby__sub_80402CE0` `extern "C" handle_request_timeout__6TLobbyFv` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#184](https://github.com/zeroz41/pso-decomp/pull/184) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| `TLobby__sub_80402CE0` `conn + 0x38`, `g + 0x15A/0x15B/0x15C/0x3C` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#184](https://github.com/zeroz41/pso-decomp/pull/184) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| `Self_80402CE0` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#184](https://github.com/zeroz41/pso-decomp/pull/184) | shadow struct | #0 | upstream catch-up, rewrite later |
+| `Timer_80402CE0` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#184](https://github.com/zeroz41/pso-decomp/pull/184) | shadow struct | #0 | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
