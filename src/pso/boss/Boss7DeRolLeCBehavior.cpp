@@ -898,9 +898,7 @@ struct Vec_802EBBC8 { f32 x, y, z; };
 
 
 
-struct Vec_802E85E0 { f32 x, y, z; };
-
-struct Tgt_802E85E0 { u8 pad[0x38]; Vec_802E85E0 pos; };
+struct Tgt_802E85E0 { u8 pad[0x38]; Vec pos; };
 
 struct Fish_802E85E0 {
     u8 pad0[0x390];
@@ -1012,8 +1010,6 @@ struct Fish_802E8B50 {
     s32 f7B0;
     u8 f7B4[4];
 };
-
-struct Vec_802E9ADC { f32 x, y, z; };
 
 struct Fish_802E9ADC {
     u8 pad0[0x390];
@@ -1542,7 +1538,7 @@ void TObjFish__sub_802E8584(void* o, u32 k) {
 
 #define self ((Fish_802E85E0 *)arg0)
 void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
-    Vec_802E85E0 v;
+    Vec v;
     f32 scale;
     s32 r;
     s32 ok;
@@ -1598,17 +1594,17 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
                 if (self->fired == 0) {
                     self->timer = 0;
                     if (((TObjEneDD_ST *)self)->enemy_has_live_target() != 0) {
-                        ((s32 (*)(Vec_802E85E0 *, Vec_802E85E0 *))VecCopy__FP3VecPC3Vec)(&v, &self->target->pos);
+                        VecCopy(&v, &self->target->pos);
                     } else {
                         scale = lbl_805DEA20 * random_ratio__9TObjCharaFv(self);
                         r = ((TObjEneDD *)self)->get_random_scaled();
                         v.x = scale * sin_table_lookup(r);
                         v.y = lbl_805DEA24;
                         v.z = scale * cos_table_lookup(r);
-                        adjust_point_to_ground((const Vec *)&v, (Vec *)((void *)&v));
+                        adjust_point_to_ground(&v, &v);
                     }
                     for (j = 0; j != 4; j++) {
-                        ((TBoss7Tentacle *)(self->kids[j]))->start_attack_at_position((const Vec *)&v, self->f738);
+                        ((TBoss7Tentacle *)(self->kids[j]))->start_attack_at_position(&v, self->f738);
                     }
                     self->fired = 1;
                     self->timer = 0;
@@ -2303,7 +2299,7 @@ void TObjFish__sub_802E979C(Fish_802E979C *o, u32 k, s32 dir) {
 
 void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s32 arg2) {
     s32 ang;
-    Vec_802E9ADC v;
+    Vec v;
     s32 ok;
     s32 i;
     s32 j;
@@ -2362,9 +2358,9 @@ void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s
                     v.x = r * sin_table_lookup(ang);
                     v.y = lbl_805DEA24;
                     v.z = r * cos_table_lookup(ang);
-                    adjust_point_to_ground((const Vec *)&v, (Vec *)((void *)&v));
+                    adjust_point_to_ground(&v, &v);
                 }
-                ((TBoss7Tentacle *)(o->tent[o->idx]))->start_attack_at_position((const Vec *)&v, (s32)o->arg);
+                ((TBoss7Tentacle *)(o->tent[o->idx]))->start_attack_at_position(&v, (s32)o->arg);
                 o->idx++;
                 if (o->idx >= 4) {
                     o->timer = 0;
