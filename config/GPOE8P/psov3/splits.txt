@@ -7540,12 +7540,6 @@ pso/misc/TMedicalCenterSequence.cpp:
 	.bss        start:0x80513E90 end:0x80513EB0
 	.sdata2     start:0x805DC688 end:0x805DC690
 
-pso/quest/TQuestListVMData.cpp:
-	.rodata     start:0x8044BEE8 end:0x8044BF58
-	.sdata      start:0x805D3690 end:0x805D3694
-	.sbss       start:0x805D6200 end:0x805D6214
-	.sdata2     start:0x805DC6B0 end:0x805DC6B8
-
 pso/misc/TWindow.cpp:
 	.text       start:0x80216B44 end:0x802171BC
 
@@ -7576,11 +7570,15 @@ pso/misc/TQuestListOnline_80218310.cpp:
 	.text       start:0x80218310 end:0x802183B4
 
 pso/misc/TWindowSubComCard.cpp:
-	.text       start:0x802183B4 end:0x80218570
+	.text       start:0x802183B4 end:0x802183F8
 
 pso/quest/TQuestListVM.cpp:
-	.text       start:0x80218570 end:0x80219EE8
-	.data       start:0x804C9D80 end:0x804C9DD4
+	.text       start:0x802183F8 end:0x80219EE8
+	.rodata     start:0x8044BEE8 end:0x8044BF58
+	.data       start:0x804C9D50 end:0x804C9DD4
+	.sdata      start:0x805D3690 end:0x805D3694
+	.sbss       start:0x805D6200 end:0x805D6214
+	.sdata2     start:0x805DC6B0 end:0x805DC6C0
 
 pso/quest/StoryQuestProgress.cpp:
 	.text       start:0x80219EE8 end:0x8021A394
@@ -8519,6 +8517,8 @@ pso/misc/TWindowInputNumber_80256170.cpp:
 
 pso/misc/TWindowSubStatusDisp_80256B94.cpp:
 	.text       start:0x80256B94 end:0x8025737C
+	.rodata     start:0x8044EE40 end:0x8044EE48
+	.data       start:0x804CF918 end:0x804CF948
 	.sdata2     start:0x805DCE58 end:0x805DCED0
 
 pso/misc/TWindowSubStatusDisp_8025737C.cpp:

@@ -4,7 +4,6 @@
 #include "pso/system/memory.h"
 #include "pso/TAdPlayerLoadGC.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
-#include "pso/misc/TLobby_800F9DA0.h"
 
 struct RecoveredGlobal_801E14E8_TAdPlayerLoadGC__data_80511ED0 {
     s32 value;
@@ -69,6 +68,7 @@ extern RecoveredGlobal_801E14E8_TAdPlayerLoadGC__data_80511ED0 TAdPlayerLoadGC__
 extern s32 TAdPlayerLoadGC__banner_file_buf;
 s32 CARDGetResultCode(void *);
 s32 CARDUnmount();
+s32 read_disc_file(const char*, void*);
 extern Names_801E13C4 memory_card_banner_filenames;
 extern char lbl_804496A8[];
 s32 TAdSinglePlyChrSelectGC__sub_80201204(void *, s32, s32);
@@ -658,19 +658,19 @@ s32 TAdPlayerLoadGC__sub_801E1B50(s32 chan) {
     return 0;
 }
 
-s32 TAdPlayerLoadGC::probe_card_slot(s32 channel) {
+s32 TAdPlayerLoadGC::probe_card_slot(s32 arg0) {
     s32 spC;
     s32 sp8;
     s32 temp_r3;
-    if (channel >= 2) {
+    if (arg0 >= 2) {
         return 0;
     }
-    if ((TAdPlayerLoadGC__card_slot_state_flags & (0x400 << channel)) && (CARDGetResultCode((void *)channel) == -5)) {
+    if ((TAdPlayerLoadGC__card_slot_state_flags & (0x400 << arg0)) && (CARDGetResultCode((void *)arg0) == -5)) {
         TAdPlayerLoadGC__card_result_code = -0x7D;
         return 1;
     }
     do {
-        temp_r3 = CARDProbeEx(channel, &spC, &sp8);
+        temp_r3 = CARDProbeEx(arg0, &spC, &sp8);
     } while (temp_r3 == -1);
     if (temp_r3 == -3) {
         TAdPlayerLoadGC__card_result_code = -0xFF;
@@ -679,8 +679,8 @@ s32 TAdPlayerLoadGC::probe_card_slot(s32 channel) {
     if (sp8 == 0x2000) {
         switch (temp_r3) {
         case 0:
-            if (!(TAdPlayerLoadGC__card_slot_state_flags & (4 << channel))) {
-                if (((s32)TAdPlayerLoadGC__sub_801E101C(channel)) == 0) {
+            if (!(TAdPlayerLoadGC__card_slot_state_flags & (4 << arg0))) {
+                if (((s32)TAdPlayerLoadGC__sub_801E101C(arg0)) == 0) {
                     TAdPlayerLoadGC__card_result_code = 0;
                     return 1;
                 }
@@ -722,7 +722,7 @@ s32 TAdPlayerLoadGC::check_memcard_status(s32 arg0) {
     }
 }
 
-s32 find_card_file__15TAdPlayerLoadGCFiPv(s32 chan, const char *name) {
+s32 TAdPlayerLoadGC::find_card_file(s32 chan, const char *name) {
     CARDStat_801E2048 st;
     s32 i;
     if (chan >= 2) {
@@ -797,7 +797,7 @@ s32 get_card_file_info__15TAdPlayerLoadGCFiPvPv(s32 chan, const char *name, Info
     case 0:
         break;
     }
-    switch (find_card_file__15TAdPlayerLoadGCFiPv(chan, name)) {
+    switch (TAdPlayerLoadGC::find_card_file(chan, name)) {
     case -251:
         TAdPlayerLoadGC__card_result_code = -0xFB;
         return -0xFB;
