@@ -2858,104 +2858,97 @@ QuestDownloadTextNode *get_next_node__22TQuestVmDownLoadServerFPv(QuestDownloadQ
 #pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(1)
-inline s32 count_text_groups_that_fit(QuestDownloadTextNode *head) {
-    QuestDownloadTextNode *node;
-    s32 n;
-    s32 total;
-    s32 limit;
-    if (head == NULL) {
-        return 0;
-    }
-    node = head;
-    n = total = 0;
-    limit = lbl_805D78A4 - 9;
-    while (n < 9 && node != NULL) {
-        total += TQuestVmDownLoadServer__sub_803EB7C0(node) + 3;
-        if (total > limit) {
-            break;
-        }
-        n++;
-        while (node->flags & 1) {
-            node = node->next;
-        }
-        node = node->next;
-    }
-    if (n == 0) {
-        return 1;
-    }
-    return n;
-}
-// Second expansion. MWCC colors a later inline in declaration order and the first in reverse.
-inline s32 recount_text_groups_that_fit(QuestDownloadTextNode *head) {
-    s32 n;
-    s32 total;
-    s32 limit;
-    QuestDownloadTextNode *node;
-    if (head == NULL) {
-        return 0;
-    }
-    node = head;
-    n = total = 0;
-    limit = lbl_805D78A4 - 9;
-    while (n < 9 && node != NULL) {
-        total += TQuestVmDownLoadServer__sub_803EB7C0(node) + 3;
-        if (total > limit) {
-            break;
-        }
-        n++;
-        while (node->flags & 1) {
-            node = node->next;
-        }
-        node = node->next;
-    }
-    if (n == 0) {
-        return 1;
-    }
-    return n;
-}
-inline void advance_text_groups(QuestDownloadTextNode *&head, s32 count) {
-    for (s32 i = 0; i != count; i++) {
-        QuestDownloadTextNode *node = head;
-        while (node->flags & 1) {
-            node = node->next;
-        }
-        head = node->next;
-    }
-}
 void TQuestVmDownLoadServer__sub_803EC284(s32 index, s32 mode) {
-    QuestDownloadTextNode *head;
-    s32 saved_mode = mode;
-    if (saved_mode == 1) {
+    if (mode == 1) {
         TQuestVmDownLoadServer__sub_803EC09C();
     }
-    head = quest_download_slot_chain_table[lbl_805D78F0].textHead;
+    QuestDownloadTextNode *head = quest_download_slot_chain_table[lbl_805D78F0].textHead;
+    s32 count;
     if (lbl_805D7834 > 0) {
         lbl_805D78A4 = 80;
     } else {
         lbl_805D78A4 = TQuestVmDownLoadServer::get_buffer_size();
     }
-    mode = count_text_groups_that_fit(head);
-    while (index >= mode) {
-        index -= mode;
-        advance_text_groups(head, mode);
-        mode = recount_text_groups_that_fit(head);
-        if (mode == 0) {
+    // Measure whole text groups, reserving nine bytes and accepting at least
+    // one group on a nonempty page, even if that group exceeds the budget.
+    {
+        s32 fitting;
+        if (head == NULL) {
+            fitting = 0;
+        } else {
+            QuestDownloadTextNode *node = head;
+            s32 total = 0;
+            const s32 limit = lbl_805D78A4 - 9;
+            fitting = 0;
+            while (fitting < 9 && node != NULL) {
+                total += TQuestVmDownLoadServer__sub_803EB7C0(node) + 3;
+                if (total > limit) {
+                    break;
+                }
+                fitting++;
+                while (node->flags & 1) {
+                    node = node->next;
+                }
+                node = node->next;
+            }
+            if (fitting == 0) {
+                fitting = 1;
+            }
+        }
+        count = fitting;
+    }
+    while (index >= count) {
+        index -= count;
+        for (s32 i = 0; i != count; i++) {
+            QuestDownloadTextNode *node = head;
+            while (node->flags & 1) {
+                node = node->next;
+            }
+            head = node->next;
+        }
+        {
+            s32 fitting;
+            if (head == NULL) {
+                fitting = 0;
+            } else {
+                QuestDownloadTextNode *node = head;
+                s32 total = 0;
+                const s32 limit = lbl_805D78A4 - 9;
+                fitting = 0;
+                while (fitting < 9 && node != NULL) {
+                    total += TQuestVmDownLoadServer__sub_803EB7C0(node) + 3;
+                    if (total > limit) {
+                        break;
+                    }
+                    fitting++;
+                    while (node->flags & 1) {
+                        node = node->next;
+                    }
+                    node = node->next;
+                }
+                if (fitting == 0) {
+                    fitting = 1;
+                }
+            }
+            count = fitting;
+        }
+        if (count == 0) {
             TQuestVmDownLoadServer__sub_803EC284(0, 0);
             goto finish;
         }
     }
     lbl_805D78A0 = head;
     lbl_805D7898 = index;
-    lbl_805D789C = mode;
+    lbl_805D789C = count;
 finish:
-    if (saved_mode == 1 && lbl_805D7834 == 0) {
+    if (mode == 1 && lbl_805D7834 == 0) {
         TQuestVmDownLoadServer__sub_803EB4D4();
     }
 }
 
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(1)
 inline QuestDownloadTextNode *Default_803EC460(s32 x) {
     QuestDownloadTextNode *n = (QuestDownloadTextNode *)TQuestVmDownLoadServer__sub_803ECED0();
     if (n != NULL) {
