@@ -582,6 +582,7 @@ force_active:
   - TLobby__sub_801C38E8
   - TLobby__sub_801C3AF4
   - TLobby__sub_801C417C
+  - TLobby__sub_801E3CF0
   - TLobby__sub_801E6BB8
   - TLobby__sub_801E6C2C
   - TLobby__sub_801E6C40
@@ -1879,6 +1880,7 @@ force_active:
   - __ct__19TObjEneDelDepthBombFP15TObjEneDelDepthP9TObjCharaPC3Vecl
   - __ct__19TObjStendGlassLobbyFP7TObjectPv
   - __ct__19TWindowMessageYesNoFP7TObjectPvPvPv
+  - __ct__20TAdLoadQuestPrtTxtGCFP7TObjectl
   - __ct__20TBoss3VoloptHiraisinFP7TObjectPv
   - __ct__20TEffStarLight2D_BaseFP7TObjectPv
   - __ct__20TItemReverseTechCtrlFP7TObject
@@ -2378,6 +2380,7 @@ force_active:
   - __dt__19TWindowMessageYesNoFv
   - __dt__20TAdChrSelMovePlateGCFv
   - __dt__20TAdGameStartShadowGCFv
+  - __dt__20TAdLoadQuestPrtTxtGCFv
   - __dt__20TBoss3VoloptHiraisinFv
   - __dt__20TBoss5GryphonTornadoFv
   - __dt__20TEffStarLight2D_BaseFv
@@ -2956,6 +2959,7 @@ force_active:
   - __vt__19TWindowMessageYesNo
   - __vt__20TAdChrSelMovePlateGC
   - __vt__20TAdGameStartShadowGC
+  - __vt__20TAdLoadQuestPrtTxtGC
   - __vt__20TBoss3VoloptHiraisin
   - __vt__20TBoss5GryphonTornado
   - __vt__20TContainerAncient01R
@@ -13626,6 +13630,7 @@ force_active:
   - render_status__18TAdMultiPlayerNoGCFv
   - render_summary_row__15TWindowHelpItemFv
   - render_text_entry
+  - render_tree__10TObjPlayerFPv
   - render_ui__9TMainTaskFv
   - render_with_camera_fade__13TObjEneMorfosFll
   - render_with_fade__13TBoss5GryphonFl
@@ -14139,6 +14144,7 @@ force_active:
   - run_task__19TWindowMessageYesNoFv
   - run_task__20TAdChrSelMovePlateGCFv
   - run_task__20TAdGameStartShadowGCFv
+  - run_task__20TAdLoadQuestPrtTxtGCFv
   - run_task__20TBoss3VoloptHiraisinFv
   - run_task__20TBoss5GryphonTornadoFv
   - run_task__20TContainerAncient01RFv
