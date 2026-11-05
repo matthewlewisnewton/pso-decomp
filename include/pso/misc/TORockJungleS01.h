@@ -4,11 +4,13 @@
 #include "types.h"
 #include "pso/misc/TORockCaveBrakable.h"
 
+struct TObjMapCsn;
+
 struct TORockJungleS01 : public TORockCaveBrakable {
     virtual ~TORockJungleS01();
     virtual void vfunc_16();
     virtual void vfunc_18();
-    u32 m_bc;
+    TObjMapCsn *m_bc;
     static void *create(void *arg0);
     static u8 *get_model(s32 arg0);
     static void free_globals();

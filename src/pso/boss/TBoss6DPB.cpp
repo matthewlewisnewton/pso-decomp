@@ -101,7 +101,7 @@ void TBoss6DPB::apply_shower_damage_to_players() {
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         pl = (Pl_8035D924 *)get_player_data__10TObjPlayerFi(i);
-        if (((TBoss6PlotFalz *)pl)->is_active() != 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0) {
             VecCopy((Vec *)&v, (const Vec *)((u8 *)pl + 0x38));
             subtract_vector(&v, &arg0->pos);
             v.y = 0.0f;

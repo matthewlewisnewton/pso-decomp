@@ -6,6 +6,7 @@
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/misc/PhotonBlastSummon.h"
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/player/TObjPlayer_801AB608.h"
@@ -118,7 +119,7 @@ typedef struct Golla_801AB868 {
 } Golla_801AB868;
 
 extern u8 *photon_blast_shared_resource;
-extern u32 farlla_photon_blast_model_buffers;
+extern void *farlla_photon_blast_model_buffers;
 extern "C" {
 
 void *find_entity_by_id(u16 id);
@@ -170,14 +171,7 @@ void TObjPlayer::destroy_buffers() {
 }
 
 void create_farlla_photon_blast_model(void) {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)::operator new(0x14);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (((TLobby *)temp_r3)->alloc_tables(*(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 8), 0));
-    }
-    (*(s32 *)&farlla_photon_blast_model_buffers) = var_r0;
+    farlla_photon_blast_model_buffers = new StripBufferPair(*(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 8), 0);
 }
 
 void TPhotonGolla::sub_801AB688() { this->m_15c = 0.0f; *(float*)((char*)this + 0x160) = 0.0f; this->m_164 = 0.0f; *(float*)((char*)this + 0x168) = 0.0f; }
