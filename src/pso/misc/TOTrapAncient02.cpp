@@ -343,7 +343,7 @@ void TOTrapAncient02::vfunc_81() {
     case 2:
         this->player = find_nearest_visible_player(this, 0, this->range);
         if (this->player != 0xFFFF) {
-            p = (void *)get_player_by_client_id((this->player));
+            p = get_player_by_client_id(this->player);
             this->target = (u8 *)p;
             if (this->target != NULL) {
                 d = horizontal_distance_squared(&((TObjChara *)this->target)->position, &this->position);
@@ -648,15 +648,15 @@ void TOTrapAncient02R::vfunc_81() {
                         dmg.kind = 3;
                         dmg.power = vfunc_87(lbl_805DBA94 * (f32)m_360 + lbl_805DBA90);
                         ((TObjChara *)target)->receive_direct_attack(this, dmg, NULL, -1, -1);
-                        spawn_particle_effect((const Vec *)((&scratch_vec.vector)), 0xB9);
-                        spawn_particle_effect((const Vec *)((&scratch_vec.vector)), 0xBA);
+                        spawn_particle_effect(&scratch_vec.vector, 0xB9);
+                        spawn_particle_effect(&scratch_vec.vector, 0xBA);
                         {
                             void *t = TObject::operator new(0x260);
                             if (t != NULL) {
                                 ((TTecZonde *)t)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&scratch_vec.vector), (u8 *)(&lbl_8050BF00.vector), 0x14000000, 0x14, range, (f32)lbl_805DBA98);
                             }
                         }
-                        play_sound_effect(0x4002A408, (const Vec *)((&scratch_vec.vector)), 0, 0);
+                        play_sound_effect(0x4002A408, &scratch_vec.vector, 0, 0);
                         break;
                     }
                     case 0:

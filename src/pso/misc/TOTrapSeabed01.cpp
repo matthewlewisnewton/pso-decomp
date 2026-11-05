@@ -457,7 +457,7 @@ void TOTrapSeabed01::play_sounds() {
         rotate_matrix_y(m, rotation.yaw);
         matrix_mult_vec(m, &v, &v);
         {
-            TParticleCtrl *particle = spawn_particle_effect((const Vec *)(&v), 0x8B);
+            TParticleCtrl *particle = spawn_particle_effect(&v, 0x8B);
             if (particle != NULL) {
                 particle->set_scale(0.5f, 0.5f);
             }
