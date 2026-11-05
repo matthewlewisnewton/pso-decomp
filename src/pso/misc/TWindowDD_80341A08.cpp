@@ -51,7 +51,7 @@ void TWindowDD_WS_Word::render() {
         }
     }
     entry->inner_y += lbl_805DFCA0;
-    draw_visible_window_entries(self, &self->entries, entry);
+    draw_visible_window_entries(self, (TWindowDDWordEntryList *)&self->m_24, entry);
 }
 
 #define sub_80341AC0__17TWindowDD_WS_WordFv ((s32 (*)(void))sub_80341AC0__17TWindowDD_WS_WordFv)
