@@ -159,7 +159,14 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 `python3 tools/list_port_exceptions.py --upstream-catchup`; check_pr prints the count.
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
-|---|---|---|---|---|---|---|
+| TLobby__sub_80146314 `(char *)&lbl_8050CCE8 + 0x7C` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TLobby__sub_80146314 `(char *)&lbl_8050CCE8 + 0xFC` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | #0 | upstream catch-up, rewrite later |
+| TLobby__sub_80146314 `send_and_handle__6TLobbyFv` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TLobby__sub_8014734C `send_and_handle__6TLobbyFv` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TLobby__sub_80146314 `func_801A5E54__Fv` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| TLobby__sub_8014734C `func_801A5E54__Fv` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | #0 | upstream catch-up, rewrite later |
+| AccountEntry, NetConnectCfg, NetLinkStatus, ModemDialConfig | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | #0 | upstream catch-up, rewrite later |
+| `...bss.0` | pso/misc/TLobby_801461EC.cpp | tools/coalesce_bss_anchor.py | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | other: bss symbol coalesce | #0 | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 

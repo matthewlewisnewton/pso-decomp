@@ -1,6 +1,8 @@
 #include "types.h"
 #include "pso/misc/TLobby.h"
 #include "pso/system/memory.h"
+#include "pso/system/ControllerInputState.h"
+#include "pso/misc/TKeyBoardControl.h"
 
 struct RecoveredGlobal_80146CB8_lbl_8050CCE8 {
     s32 value;
@@ -53,8 +55,16 @@ void TLobby__sub_8014715C(void* p, void* q);
 s32 TLobby__sub_8040A3C0();
 extern s32 lbl_805D570C;
 s32 TLobby__sub_8014618C(void);
-void strncpy(s32, s32, s32);
-s32 memset(int, int, int);
+char *strncpy(char *dst, const char *src, u32 n);
+void *memset(void *dst, int value, u32 n);
+s32 strlen(const char *s);
+s32 TLobby__sub_803FAEA0(s32 cmd, s32 arg);
+s32 TLobby__sub_803FB280(void *cfg);
+s32 TLobby__sub_803F5524(char *dst, s32 len);
+s32 TWindowShortListCtrl__check_controller_button(ControllerInputContext *ctx, int mask);
+extern char lbl_8043F418[];
+extern char lbl_805DB1B0[3];
+void TLobby__sub_801472F8(s16 *state, s16 *reason);
 void TLobby__sub_8014672C(s32 *arg0);
 extern s32 lbl_805D56D8;
 extern s32 lobby_dns_server_addr;
@@ -63,7 +73,7 @@ extern s32 lobby_connect_battle_flag;
 s32 TLobby__sub_80146588(s32 *arg0);
 u8 *TLobby__sub_80146D14(void);
 u8 *TLobby__sub_80146CA0(s32 arg0);
-s32 *TLobby__sub_80146D44(void);
+char *TLobby__sub_80146D44(void);
 u8 *TLobby__sub_80146D50(s32 arg0);
 s32 TLobby__sub_801466F4(u32 arg0);
 s32 TLobby__sub_80145EE4(void);
@@ -174,15 +184,29 @@ int xmalloc__FUl(void);
     extern int lbl_805D56C8;
     extern short lbl_805D56CE;
     extern int keyboard_buffer_cursor;
+struct PhoneNumber {
+    char number[0x20];
+};
+struct AccountEntry {
+    char host[0x80];
+    char user[0x20];
+    PhoneNumber phone[3];
+    char f100[0x40];
+    char f140[0x40];
+    char f180[0x40];
+    u32 dns1;
+    u32 dns2;
+    s32 valid;
+};
 u32 lbl_8050C0A8[7];
-u32 lbl_8050C0C4[368];
-u32 lbl_8050C684[64];
-u32 lbl_8050C784[345];
+static u32 lbl_8050C0C4[368];
+static u32 lbl_8050C684[64];
+AccountEntry lbl_8050C784[3];
 u32 lbl_8050CCE8[73];
-__declspec(section ".data") s32 lbl_8050CE0C[2];
+static __declspec(section ".data") s32 lbl_8050CE0C[2];
 char lbl_8050CE14[0x20];
-char lbl_8050CE34[0x20];
-u8 lbl_8050CE54[0x114];
+static char lbl_8050CE34[0x20];
+static u8 lbl_8050CE54[0x114];
 extern s32 lbl_805D5714;
 #define lbl_8050C0A8 (*(RecoveredGlobal_8014672C_lbl_8050C0A8 *)lbl_8050C0A8)
 #define lbl_8050C784 (*(unsigned char (*)[0x564])lbl_8050C784)
@@ -223,6 +247,165 @@ void TLobby::set_battle_flag(s32 arg0) {
     TLobby__battle_flag = arg0;
     TLobby__connect_pending_flags |= 2;
     TLobby__sub_80421A50(0, 0, arg0);
+}
+
+// Upstream #190 (5695627bd) connect_pppoe, named for the fork symbol.
+// Raw offset casts into lbl_8050CCE8 are upstream catch-up, rewrite later.
+struct NetConnectCfg {
+    u16 flags;
+    s16 h2;
+    s16 wait;
+    u8 pad_6[2];
+    void *wC;
+    void *password;
+    void *phone_number;
+    void *callback;
+    s16 h18;
+    s16 h1A;
+    s16 h1C;
+    s16 h1E;
+    s16 h20;
+    u8 pad_22[2];
+    s16 h24;
+    s16 h26;
+    s16 h28;
+    s16 h2A;
+    s16 h2C;
+    u8 pad_2E[2];
+    void *prefix;
+    s16 h34;
+    s16 mtu;
+    s32 start_tick;
+    s16 h3C;
+    s16 h3E;
+    s16 h40;
+    u8 pad_42[2];
+    s32 w44;
+    s32 w48;
+    s32 w4C;
+    s32 w50;
+    s32 w54;
+    s32 w58;
+    u8 b5C[8];
+    u8 b64[8];
+};
+struct NetLinkStatus {
+    s16 link_up;
+    s16 ppp_up;
+    s16 state;
+    s16 h6;
+    u32 w8;
+    s16 hC;
+    u8 padE[2];
+    u32 w10;
+    u32 w14;
+    u32 w18;
+    u32 w1C;
+    u32 w20;
+    u32 w24;
+    u8 addr[4][4];
+};
+struct NetWaitParam {
+    s16 wait;
+};
+
+s32 TLobby__sub_80146314(s32 *out_value) {
+    NetConnectCfg cfg;
+    NetLinkStatus status;
+    s16 state;
+    s16 reason;
+    NetWaitParam stop;
+    NetWaitParam stop2;
+    s16 id;
+    s32 cancel;
+    s32 result;
+
+    id = TLobby::init_net_session();
+    TLobby__connect_pending_flags |= 4;
+    lbl_805D2D00 = id;
+    if (id == -1) {
+        return 9;
+    }
+    cfg.flags = 5;
+    cfg.wait = 0;
+    cfg.wC = (char *)&lbl_8050CCE8 + 0x7C;
+    cfg.password = (char *)&lbl_8050CCE8 + 0xFC;
+    cfg.callback = 0;
+    cfg.h2 = 4;
+    cfg.h18 = 6;
+    cfg.h1A = 0;
+    cfg.h1C = 0;
+    cfg.h1E = 3;
+    cfg.h20 = 1;
+    cfg.h28 = 90;
+    cfg.h2A = 0;
+    cfg.h2C = 20;
+    cfg.phone_number = 0;
+    cfg.h24 = 0;
+    cfg.h26 = 0;
+    cfg.prefix = 0;
+    cfg.h34 = 4;
+    cfg.mtu = 1500;
+    cfg.start_tick = 0x12345678;
+    cfg.h3C = 0;
+    cfg.h3E = 0;
+    cfg.h40 = 1;
+    cfg.w44 = 0;
+    cfg.w48 = 0;
+    cfg.w4C = 0;
+    cfg.w50 = 0;
+    cfg.w54 = 0;
+    cfg.w58 = 0;
+    TLobby__sub_803FAEA0(1, 10);
+    TLobby__sub_803FB280(&cfg);
+    state = -1;
+    do {
+        cancel = 0;
+        if (TWindowShortListCtrl__check_controller_button(&controller_input_state.controllers[0], 2) != 0 ||
+            TKeyBoardControl::read_key_checked(0x4C) != 0) {
+            cancel = 1;
+            result = 0x10;
+        }
+        if (func_801A5E54__Fv() != 0) {
+            cancel = 1;
+            result = 0x11;
+        }
+        if (cancel != 0) {
+            stop.wait = 1;
+            TLobby__sub_803FB1A4(&stop.wait);
+            lbl_805D2D00 = -1;
+            return result;
+        }
+        TLobby__sub_801472F8(&state, &reason);
+        if (state == 5 || state == 8 || state == 4) {
+            break;
+        }
+        send_and_handle__6TLobbyFv();
+    } while (state != 4);
+    if (state == 4) {
+        TLobby__sub_803FB184(&status);
+        lbl_805D56D8 = status.w10;
+        *out_value = 0;
+        lobby_dns_server_addr = status.w18;
+        lbl_805D56E0 = status.w1C;
+        lobby_connect_battle_flag = status.w10;
+        return 0;
+    }
+    stop2.wait = 1;
+    TLobby__sub_803FB1A4(&stop2.wait);
+    switch (reason) {
+    case 3:
+        return 5;
+    case 2:
+        return 7;
+    case 6:
+        return 8;
+    case 0:
+    case 1:
+    case 7:
+    default:
+        return 4;
+    }
 }
 
 typedef char RecoveredGlobal_80146588_lbl_8050CCE8_size[sizeof(RecoveredGlobal_80146588_lbl_8050CCE8) == 0x12C ? 1 : -1];
@@ -483,8 +666,8 @@ void TLobby::set_ppp_password(s32 arg0) {
     TLobby__sub_8014618C();
     TLobby::is_state_active();
     temp_r31 = (u8 *)&lbl_8050CCE8.value + 0xFC;
-    memset((int)temp_r31, 0, 0x20);
-    strncpy((s32) temp_r31, arg0, 0x1F);
+    memset(temp_r31, 0, 0x20);
+    strncpy((char *)temp_r31, (const char *)arg0, 0x1F);
 }
 
 typedef char RecoveredGlobal_80146D14_lbl_8050CCE8_size[sizeof(RecoveredGlobal_80146D14_lbl_8050CCE8) == 0x12C ? 1 : -1];
@@ -495,8 +678,8 @@ u8 *TLobby__sub_80146D14(void) {
 }
 
 typedef char RecoveredGlobal_80146D44_lbl_8050CE14_size[sizeof(RecoveredGlobal_80146D44_lbl_8050CE14) == 0x154 ? 1 : -1];
-s32 *TLobby__sub_80146D44(void) {
-    return &lbl_8050CE14.value;
+char *TLobby__sub_80146D44(void) {
+    return (char *)&lbl_8050CE14.value;
 }
 
 typedef char RecoveredGlobal_80146D50_lbl_8050C784_size[sizeof(RecoveredGlobal_80146D50_lbl_8050C784) == 0x564 ? 1 : -1];
@@ -612,6 +795,7 @@ extern RecoveredGlobal_80147A74_lbl_804EF500 ppp_password_buffer;
 s32 *get_ppp_password_buffer(void);
 extern "C" {
 void TLobby__sub_801472F8(s16 *arg0, s16 *arg1);
+s32 fn_80145A44(char *dst);
 void OSReport(const char *, ...);
 s16 init_net_tables__6TLobbyFv();
 s16 TLobby__sub_8040ADE8(Req_801471A0 *);
@@ -676,6 +860,245 @@ void TLobby__sub_801472F8(s16 *arg0, s16 *arg1) {
     *arg0 = s.a;
     *arg1 = s.b;
 }
+
+// Upstream #190 (5695627bd) connect_modem, named for the fork symbol.
+#undef lbl_8050C784
+struct ModemDialConfig {
+    s16 h0;
+    s16 h2;
+    s16 h4;
+    s16 h6;
+    s16 numeric_result;
+    u8 pad0A[2];
+    char *prefix0;
+    char *prefix1;
+    s32 w14;
+    s32 w18;
+    char *result_ok;
+    char *result_error;
+    char *result_busy;
+    char *result_no_dialtone;
+    char *result_no_carrier;
+    char *result_no_answer;
+    s32 w34;
+    u8 terminator;
+    u8 pad39[3];
+    s32 w3C;
+    s32 w40;
+    s32 w44;
+    char *s48;
+    s32 w4C;
+    s32 w50;
+    s32 w54;
+    s32 init_count;
+    char *init_command;
+};
+s32 TLobby__sub_8014734C(s32 idx, s16 id) {
+    NetConnectCfg cfg;
+    ModemDialConfig modem;
+    NetLinkStatus status;
+    NetLinkStatus final_status;
+    char dial_prefix[0x20];
+    char response[0x100];
+    char command[0x100];
+    s16 state;
+    s16 reason;
+    NetWaitParam stop;
+    s32 cancel;
+    s32 result;
+    s32 countdown;
+    s32 len;
+    s32 n;
+
+    if (TLobby__sub_80145DB4(1) == 0) {
+        return 6;
+    }
+    if (lbl_8050C784[2].valid == 0) {
+        return 1;
+    }
+    if (lbl_8050CE0C[1] == 0) {
+        return 1;
+    }
+    if (lbl_8050C784[2].phone[idx].number[0] == 0) {
+        return 3;
+    }
+    lbl_805D2D00 = id;
+    if (id == -1) {
+        return 2;
+    }
+    modem.h0 = 1;
+    modem.h2 = 1;
+    modem.h4 = 1;
+    modem.h6 = 0;
+    modem.numeric_result = 0;
+    modem.prefix0 = 0;
+    modem.prefix1 = 0;
+    modem.w14 = 0;
+    modem.w18 = 0;
+    modem.result_ok = 0;
+    modem.result_error = 0;
+    modem.result_busy = 0;
+    modem.result_no_dialtone = 0;
+    modem.result_no_carrier = 0;
+    modem.result_no_answer = 0;
+    modem.w34 = 0;
+    modem.terminator = '\r';
+    modem.w3C = 0;
+    modem.w40 = 0;
+    modem.w44 = 0;
+    modem.s48 = lbl_805DB1B0;
+    len = strlen(lbl_8043F418);
+    memset(command, 0, sizeof(command));
+    strncpy(command, lbl_8043F418, len);
+    command[len] = '\r';
+    command[len + 1] = '\0';
+    modem.init_count = 1;
+    modem.init_command = command;
+    memset(response, 0, sizeof(response));
+    switch (TLobby__sub_803F5524(response, sizeof(response))) {
+    case 0:
+        memset(command, 0, sizeof(command));
+        n = strlen(response);
+        if (n < 254) {
+            if (n != 0) {
+                strncpy(command, response, n);
+                command[n] = '\r';
+                command[n + 1] = '\0';
+                modem.init_count = 1;
+                modem.init_command = command;
+            } else {
+                len = strlen(lbl_8043F418);
+                memset(command, 0, sizeof(command));
+                strncpy(command, lbl_8043F418, len);
+                command[len] = '\r';
+                command[len + 1] = '\0';
+                modem.init_count = 1;
+                modem.init_command = command;
+            }
+        }
+        break;
+    case -1:
+    case -2:
+    case -3:
+    case -5:
+        return 9;
+    case -4:
+    default:
+        break;
+    }
+    modem.w4C = 2;
+    modem.w50 = 0;
+    modem.w54 = 0;
+    TLobby::copy_name_buffer(&modem);
+    cfg.flags = 1;
+    cfg.wait = 0;
+    cfg.wC = lbl_8050C784[2].host;
+    if (*TLobby__sub_80146D44() == 0) {
+        cfg.password = get_ppp_password_buffer();
+    } else {
+        cfg.password = lbl_8050CE14;
+    }
+    cfg.phone_number = TLobby__sub_80146CA0(idx);
+    cfg.callback = 0;
+    cfg.h2 = 4;
+    cfg.h18 = 6;
+    cfg.h1A = 0;
+    cfg.h1C = 0;
+    cfg.h1E = 3;
+    cfg.h20 = 1;
+    if (TLobby::is_status_zero() != 0) {
+        cfg.h24 = 0;
+    } else {
+        cfg.h24 = 1;
+    }
+    cfg.h28 = 90;
+    cfg.h2A = 0;
+    cfg.h2C = 20;
+    if (fn_80145A44(dial_prefix) != 0) {
+        cfg.h26 = 1;
+        cfg.prefix = dial_prefix;
+    } else {
+        cfg.h26 = 0;
+        cfg.prefix = 0;
+    }
+    cfg.h34 = 4;
+    cfg.mtu = 1500;
+    cfg.start_tick = 0x12345678;
+    cfg.h3C = 0;
+    cfg.h3E = 0;
+    cfg.h40 = 1;
+    cfg.w44 = 0;
+    cfg.w48 = 0;
+    cfg.w4C = 0;
+    cfg.w50 = 0;
+    cfg.w54 = 0;
+    cfg.w58 = 0;
+    TLobby__sub_803FB280(&cfg);
+    TLobby__connect_pending_flags |= 4;
+    state = -1;
+    cancel = 0;
+    result = 0x10;
+    countdown = 0;
+    do {
+        if (countdown == 0) {
+            if (TWindowShortListCtrl__check_controller_button(&controller_input_state.controllers[0], 2) != 0 ||
+                TKeyBoardControl::read_key_checked(0x4C) != 0) {
+                cancel = 1;
+                result = 0x10;
+            }
+            if (func_801A5E54__Fv() != 0) {
+                cancel = 1;
+                result = 0x11;
+            }
+        } else {
+            countdown--;
+        }
+        TLobby__sub_801472F8(&state, &reason);
+        if (state == 5 || state == 8 || state == 4) {
+            break;
+        }
+        if (cancel != 0) {
+            break;
+        }
+        send_and_handle__6TLobbyFv();
+    } while (state != 4);
+    if (state == 4 && cancel == 0) {
+        TLobby__sub_803FB184(&status);
+        lbl_8050C0A8[0] = 4;
+        lbl_8050C0A8[1] = status.w10;
+        lbl_8050C0A8[2] = 0;
+        lbl_8050C0A8[3] = 0;
+        TLobby__sub_8042315C((s16)lbl_805D2D00, lbl_8050C0A8);
+        TLobby::set_battle_flag(status.w10);
+        lobby_dns_server_addr = status.w18;
+        lbl_805D56E0 = status.w1C;
+        return TLobby::set_dns_servers();
+    }
+    lbl_805D2D00 = -1;
+    stop.wait = 0;
+    TLobby__sub_803FB1A4(&stop.wait);
+    do {
+        TLobby__sub_803FB184(&final_status);
+        send_and_handle__6TLobbyFv();
+    } while (final_status.state != 0);
+    if (cancel != 0) {
+        return result;
+    }
+    switch (reason) {
+    case 3:
+        return 5;
+    case 2:
+        return 7;
+    case 6:
+        return 8;
+    case 0:
+    case 1:
+    case 7:
+    default:
+        return 4;
+    }
+}
+#define lbl_8050C784 (*(Cfg_801471A0 *)lbl_8050C784)
 
 s32 TLobby__sub_801478C4(s32 arg0) {
     s32 count;
