@@ -11,6 +11,7 @@
 #include "pso/system/memory.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/TPlyItem.h"
+#include "pso/TPlyCharData.h"
 #include "pso/TPlyInventory.h"
 #include "pso/item/TItemProShield.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
@@ -18,13 +19,6 @@
 #include "pso/TTecCtrl.h"
 #include "pso/misc/TWindowActionPalette_801C1890.h"
 #include <string.h>
-
-typedef struct Ent_801D41B4 {
-    u8 pad0[8];
-    u8 sub[0xC];
-    s32 id;
-    u8 pad18[4];
-} Ent_801D41B4;
 
 // Sort record: owner key and item. new[] builds the array with this
 // constructor and no destructor (__construct_new_array gets a null dtor),
@@ -49,9 +43,8 @@ struct List_801D4744 {
 };
 
 extern "C" {
-u8 *get_ptr_4__10TObjPlayerFv();
-void fn_801C1BA8(void *, void *);
-s32 is_both_confirmed__23TAdSinglePlyChrSelectGCFv(void *);
+// Copies one inventory entry; defined in TWindowActionPalette_801C1890.cpp.
+TPlyInventoryItem *fn_801C1BA8(TPlyInventoryItem *dest, TPlyInventoryItem *src);
 
 // Byte 0 of the item data is the item type.
 s32 fn_801D40D4(s32 arg0, TPlyInventoryItem *arg1, TPlyInventoryItem *arg2) {
@@ -77,28 +70,31 @@ s32 check_player_action_allowed(void) {
     return TAdSinglePlyChrSelectGC::get_game_mode();
 }
 
+// The entry array is the selected character's inventory: get_ptr_4 returns
+// m_inventory.m_items, the two confirm bytes is_both_confirmed reads are the
+// first two bytes of an entry's item data.
 void remove_list_entry_by_id(s32 arg0) {
-    u8 *cnt;
+    TPlyCharData *chr;
     s32 i;
     s32 n;
-    Ent_801D41B4 *p;
+    TPlyInventoryItem *p;
     s32 rem;
-    cnt = ((u8 *)get_char_index__23TAdSinglePlyChrSelectGCFUi(0xFFFF));
-    if (cnt != NULL) {
-        p = ((Ent_801D41B4 *)get_ptr_4__10TObjPlayerFv());
-        n = *cnt;
+    chr = TAdSinglePlyChrSelectGC::get_char_index(0xFFFF);
+    if (chr != NULL) {
+        p = (TPlyInventoryItem *)((TObjPlayer *)chr)->get_ptr_4();
+        n = chr->m_inventory.m_num_items;
         for (i = 0; i < n; p++, i++) {
-            if (p->id == arg0) {
-                if (is_both_confirmed__23TAdSinglePlyChrSelectGCFv(p->sub) != 0) {
-                    TAdSinglePlyChrSelectGC::remove_matching_entries((s32)cnt);
+            if ((s32)p->m_data.id == arg0) {
+                if (((TAdSinglePlyChrSelectGC *)&p->m_data)->is_both_confirmed() != 0) {
+                    TAdSinglePlyChrSelectGC::remove_matching_entries((s32)chr);
                 }
                 rem = n - i;
-                *cnt -= 1;
+                chr->m_inventory.m_num_items -= 1;
                 if (rem <= 0) {
                     reset(p);
                     return;
                 }
-                memcpy(p, p + 1, rem * 0x1C);
+                memcpy(p, p + 1, rem * sizeof(TPlyInventoryItem));
                 return;
             }
         }
@@ -107,20 +103,24 @@ void remove_list_entry_by_id(s32 arg0) {
 
 s32 fn_801D4270(s32 arg0) {
     s32 i;
-    u8 *p;
-    if ((u32)get_char_index__23TAdSinglePlyChrSelectGCFUi(0xFFFF) == 0) {
+    TPlyInventoryItem *p;
+    TPlyCharData *chr;
+    chr = TAdSinglePlyChrSelectGC::get_char_index(0xFFFF);
+    if (chr == NULL) {
         return 0;
     }
-    p = get_ptr_4__10TObjPlayerFv();
-    for (i = 0; i < 30; i++, p += 0x1C) {
-        if (*(s32 *)(p + 0x14) == arg0) {
+    p = (TPlyInventoryItem *)((TObjPlayer *)chr)->get_ptr_4();
+    for (i = 0; i < 30; i++, p++) {
+        if ((s32)p->m_data.id == arg0) {
             return 1;
         }
     }
     return 0;
 }
 
-void *reset(void *p) { return memset(p, 0, 28); }
+TPlyInventoryItem *reset(TPlyInventoryItem *entry) {
+    return (TPlyInventoryItem *)memset(entry, 0, sizeof(TPlyInventoryItem));
+}
 
 s32 TItem::export_inventory_entry(TPlyInventoryItem *dest) {
     if (copy_to_item_data(&dest->m_data) != 0) {

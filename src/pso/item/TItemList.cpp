@@ -2,6 +2,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/memory.h"
 #include "pso/item/TUnk_804C4480.h"
+#include "pso/player/TUnk_804B6C24.h"
 
 #include "types.h"
 #include "pso/TObject.h"
@@ -24,7 +25,6 @@ void TItemList__sub_801D59DC(void* p);
 void *TItemList__sub_801D5B10(void *arg0, s16 arg1);
 void *__dt__9TItemListFPvs(void *arg0, s16 arg1);
 void* reset_position__9TItemListFPv(void* a0);
-s32 check_value_equals__13TUnk_804B6C24Fl(TItemList *, s32);
 
 void TItemList__sub_801D59DC(void* p) { *(s32*)((char*)p + 0x0) = 2; }
 }
@@ -58,7 +58,7 @@ s32 TItemList::is_item_valid(TItemList *node) {
     int var_r31;
 
     var_r31 = 0;
-    if ((check_value_equals__13TUnk_804B6C24Fl(node, TItemList__name) != 0) && (node->all_parents_unqueued_for_destruction() != 0)) {
+    if ((((TUnk_804B6C24 *)node)->check_value_equals(TItemList__name) != 0) && (node->all_parents_unqueued_for_destruction() != 0)) {
         var_r31 = 1;
     }
     return (u8)var_r31;
