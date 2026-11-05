@@ -36,12 +36,20 @@ earlier-linked unit also defines weak, because the linker discards that copy.
 Slot 21 returns `int`, as declared by TObjChara; using `s32` makes this
 compiler append a slot. Slot 27 stays out of line in `TOTrap.cpp`.
 
-Slot 87 performs the existing difficulty-table scaling; its old static spelling
-was referenced only by two existing legacy tables, while Ancient02 calls the
-virtual slot. Those table references are updated mechanically; their tables
-are not newly authored or claimed as native recovered representations.
+Slot 87 performs the existing difficulty-table scaling. Ancient02 calls it as
+the virtual slot.
 
-Ancient02 and Seabed01 keep hand-written vtables. GC/2.6 rejects a cast from
-these virtual member pointers to a function address, so those tables name the
-CodeWarrior symbols with C linkage. That names the existing functions; it is
-not the original source spelling.
+Seabed01's vtable is native. It is TOTrap's with nine overrides: the
+destructor, `render`, `vfunc_6`, slot 22 (`receive_physical_attack`, formerly
+`TOTrapSeabed01__vt20`), `vfunc_67`, `vfunc_81`, `vfunc_82`, `vfunc_84` and
+slot 85 (`play_sounds`, formerly `TOTrapSeabed01__vt83`). The four bytes after
+it are alignment padding before the next unit's `.data`. The original `.sdata2`
+pool starts with `1.0`, `0.0`, the literals of the weak slot copies, so the
+original generated those copies first, as deferred generation does. The unit
+is therefore built with deferred generation and reversed definitions; see
+[porting exceptions](porting-exceptions.md).
+
+Ancient02R keeps a hand-written table in `TOTrapAncient02.cpp`. GC/2.6
+rejects a cast from a virtual member pointer to a function address, so the
+table names `vfunc_87__6TOTrapFf` with C linkage, like its other entries. That
+names the existing function; it is not the original source spelling.

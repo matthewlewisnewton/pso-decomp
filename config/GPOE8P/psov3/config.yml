@@ -767,9 +767,6 @@ force_active:
   - TOTrapChainSaw__level_scale_table
   - TOTrapChainSaw__name
   - TOTrapSeabed01__ct
-  - TOTrapSeabed01__data_805DE644
-  - TOTrapSeabed01__vt20
-  - TOTrapSeabed01__vt83
   - TOVS2Wall01__ct
   - TOVS2Wreck01__ct
   - TOVS2Wreck02__ct
@@ -7937,12 +7934,6 @@ force_active:
   - lbl_805DE130
   - lbl_805DE4BC
   - lbl_805DE620
-  - lbl_805DE640
-  - lbl_805DE648
-  - lbl_805DE64C
-  - lbl_805DE650
-  - lbl_805DE654
-  - lbl_805DE658
   - lbl_805DF2E4
   - lbl_805DF3AC
   - lbl_805DF3B0
@@ -8571,6 +8562,7 @@ force_active:
   - play_sound_events__10TObjCameraFv
   - play_sound_if_no_target__11TBoss6Type2Fv
   - play_sound_variant__16TObjEneBm5GibonUFv
+  - play_sounds__14TOTrapSeabed01Fv
   - play_sounds__15TOTrapAncient01Fv
   - play_variant_sound__14TObjEneBm5WolfFPv
   - play_walk_sound__12TObjEneLappyFv
@@ -13116,6 +13108,7 @@ force_active:
   - receive_direct_attack__18TObjEneMe3SinowZoaFPv19DirectAttackPayloadPvll
   - receive_direct_attack__20TContainerAncient01RFPv19DirectAttackPayloadPvll
   - receive_physical_attack__13TObjEneMorfosFPvf
+  - receive_physical_attack__14TOTrapSeabed01FPvf
   - receive_physical_attack__15TBoss3VoloptP02FPvf
   - receive_physical_attack__15TOTrapAncient01FPvf
   - receive_physical_attack__15TObjEneMe1GiGueFPvf

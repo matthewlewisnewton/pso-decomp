@@ -436,6 +436,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
+    # Reverse definitions with deferred generation: the weak copies of TOTrap's
+    # inline slots are generated first, so their 1.0/0.0 head .sdata2 as in the
+    # original pool, and clamp_params_and_init inlines its clamp helpers.
+    "pso/misc/TOTrapSeabed01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris
     # positions before storing them (GC/2.6 interleaves them: 91.09%).
     # Reverse definitions and deferred generation place the native trap vtable
