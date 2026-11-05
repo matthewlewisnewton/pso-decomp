@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 13 | 4 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5843 | 881 |
+| pragma | 5835 | 879 |
 | configure.py per-unit override | 151 | 151 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 917, `auto_inline` 844, `opt_common_subs` 618, `scheduling` 260, `opt_propagation` 241, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 42, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043, `fp_contract` 915, `auto_inline` 842, `opt_common_subs` 618, `scheduling` 260, `opt_propagation` 241, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 42, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -217,7 +217,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
 | `pso/item/TItemSpecialEvent_803531FC.cpp` | `(multi-line entry; see configure.py)` | GC/2.0: compiler-expanded struct copies take 2.0's registers. The ending item handler table keeps 2.0's store/load scheduling for its zero-initialized local member-function-pointer array. |
-| `pso/effect/TEffIndirectCtrl_802A88AC.cpp` | `-opt noprop` | deform_indirect_texture_scroll keeps its s16 scroll offset as a named local (extsh r28, after the coordinate masks in r30/r29). With copy propagation the frontend replaces it with a hoisted temporary that the allocator colours first (r30). See docs/porting-exceptions.md section 5. |
+| `pso/effect/TEffIndirectCtrl.cpp` | `GC/2.0, -inline off,deferred, -opt noprop, -fp_contract on, -str reuse,readonly` | GC/2.0: run_task's 36-byte PMF array initializer interleaves its copy tail with actor_frame_tick (load, tail load, clrlwi., table load, tail store). GC/2.5, 2.6 and 2.7 pack the tail pair and move the tick relocation from +0xE4 to +0xEC; GC/2.0p1 and GC/1.3.2 drop the wave helpers. -inline off,deferred: the vtables come out in reverse order of their key functions, and .data has TUnk_804DDF04's vtable before this class's while TUnk_804DDF04's destructor comes first in .text. -opt noprop: deform_indirect_texture_scroll keeps its s16 scroll offset as a named local (extsh r28, after the coordinate masks in r30/r29). With copy propagation the frontend replaces it with a hoisted temporary that the allocator colours first (r30). -fp_contract on: both texture-wave helpers fuse the wave offset into an fmadds. -str reuse,readonly: the two file names and the class name are in this unit's .rodata. See docs/porting-exceptions.md section 5. |
 | `pso/misc/TMovie_80143988.cpp` | `-opt nolifetimes,nocse,noprop,noloop` | pack_movie_frame: the original keeps every named local in one register (no lifetime splitting), recomputes its pad and stride shifts instead of sharing them, and leaves invariant hoisting to the backend. See docs/porting-exceptions.md section 5. |
 | `pso/boss/Boss5GryphonBehavior.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneGyaranzo.cpp` | `GC/2.0, -inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -470,7 +470,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/effect/TEffClitical.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/effect/TEffGuard.cpp` | readonly_strings×1 |
 | `src/pso/effect/TEffHit.cpp` | readonly_strings×1 |
-| `src/pso/effect/TEffIndirectCtrl_802A88AC.cpp` | fp_contract×2 |
 | `src/pso/effect/TEffStarLight2D.cpp` | opt_common_subs×1, fp_contract×1 |
 | `src/pso/effect/TEffStarLight2D_Base.cpp` | fp_contract×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/effect/TEffect.cpp` | readonly_strings×1 |
@@ -1021,7 +1020,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/player/TObjPlayer_801D84CC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, scheduling×1 |
 | `src/pso/player/TObjPlayer_8022C6C4.cpp` | opt_propagation×1 |
 | `src/pso/player/TObjPlayer_8023E480.cpp` | readonly_strings×1 |
-| `src/pso/player/TObjPlayer_802A8368.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/player/TObjPlayer_802D5B78.cpp` | fp_contract×1 |
 | `src/pso/player/TObjPlayer_802E6CA8.cpp` | opt_common_subs×1, opt_propagation×1, fp_contract×1 |
 | `src/pso/player/TObjPlayer_8033E910.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
