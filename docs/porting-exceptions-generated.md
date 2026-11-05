@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 13 | 4 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5832 | 877 |
-| configure.py per-unit override | 155 | 155 |
+| pragma | 5828 | 875 |
+| configure.py per-unit override | 156 | 156 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043, `fp_contract` 913, `auto_inline` 842, `opt_common_subs` 618, `scheduling` 260, `opt_propagation` 241, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043, `fp_contract` 909, `auto_inline` 842, `opt_common_subs` 618, `scheduling` 260, `opt_propagation` 241, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -214,6 +214,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `pso/enemy/TObjEneDelDepth.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
+| `pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `(multi-line entry; see configure.py)` | TAdMultiPlyChrSelectGC_802C50EC: -fp_contract on because the original contracts all four multiply-adds (fmadds at 802C5148, 802C5274, 802C58AC and 802C676C). The UV scale is `x / 256.0f`; MWCC folds that into a multiply by the pooled reciprocal at 0x805DE584, which this object emits as @168. -inline on inlines only clamped_slot_802C5F1C (the original has no out-of-line copy). -inline auto also inlines other small functions; -inline deferred emits the unit backwards. |
 | `pso/item/TItemSpecialEvent_803531FC.cpp` | `(multi-line entry; see configure.py)` | GC/2.0: compiler-expanded struct copies take 2.0's registers. The ending item handler table keeps 2.0's store/load scheduling for its zero-initialized local member-function-pointer array. |
 | `pso/effect/TEffIndirectCtrl.cpp` | `GC/2.0, -inline off,deferred, -opt noprop, -fp_contract on, -str reuse,readonly` | GC/2.0: run_task's 36-byte PMF array initializer interleaves its copy tail with actor_frame_tick (load, tail load, clrlwi., table load, tail store). GC/2.5, 2.6 and 2.7 pack the tail pair and move the tick relocation from +0xE4 to +0xEC; GC/2.0p1 and GC/1.3.2 drop the wave helpers. -inline off,deferred: the vtables come out in reverse order of their key functions, and .data has TUnk_804DDF04's vtable before this class's while TUnk_804DDF04's destructor comes first in .text. -opt noprop: deform_indirect_texture_scroll keeps its s16 scroll offset as a named local (extsh r28, after the coordinate masks in r30/r29). With copy propagation the frontend replaces it with a hoisted temporary that the allocator colours first (r30). -fp_contract on: both texture-wave helpers fuse the wave offset into an fmadds. -str reuse,readonly: the two file names and the class name are in this unit's .rodata. See docs/porting-exceptions.md section 5. |
 | `pso/misc/TMovie_80143988.cpp` | `-opt nolifetimes,nocse,noprop,noloop` | pack_movie_frame: the original keeps every named local in one register (no lifetime splitting), recomputes its pad and stride shifts instead of sharing them, and leaves invariant hoisting to the backend. See docs/porting-exceptions.md section 5. |
@@ -257,6 +258,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `pso/misc/TOBiwaMushi.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly, -sdata 4` | TItem.cpp is written from its last function back (deferred code generation; the data keeps source order) and built with GC/2.0, like the struct-copy units above. The dragonfly base and its cave subclass: vtables come out subclass first. |
 | `pso/misc/TODragonflyCave01.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TODragonflyMachine01.cpp` | `-fp_contract on, -str reuse,readonly, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TOMineTrap_8016F6F8.cpp` | `-inline on, -fp_contract on` | Three fmadds in the original text, and nowhere else in the unit: __ct__10TOMineTrap at 0x80170058 (fmadds f2,f3,f4,f2), follow_target at 0x80170B9C (fmadds f0,f1,f0,f2), update_float_height at 0x80170D30 (fmadds f0,f3,f1,f0). No fmsubs. The same expressions are fmuls+fadds when the flag is omitted. Every other function, including run_task, is byte-identical with the flag off, and .rodata stays exact. -inline on expands run_task's mode-4 strike helpers (strike_actor, strike_player, strike_enemy); no other function in the unit changes. See docs/porting-exceptions.md. |
 | `pso/item/TItem.cpp` | `GC/2.0, -inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/item/TItemProArmor.cpp` | `-inline off,deferred` | TItemProArmor.cpp, TItemProShield.cpp and TItemProUnit.cpp are written from their last function back (deferred code generation, which also puts each vtable before the switch tables). |
 | `pso/misc/TODoorBase.cpp` | `-inline off,deferred` | TODoorBase's vtable precedes its switch tables: deferred, written from its last function back. |
@@ -344,7 +346,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `pso/quest/QuestOpcodeHandlers.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestThread.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestListVM.cpp` | `-inline off,deferred, -pool off, -str reuse,readonly` | TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the run_task switch table (written from the last function back). -pool off keeps each title and window size its own reloc, and -str reuse,readonly matches the read-only string objects. The whole unit stays byte-exact. Precedent: dtk-template configure.py unit cflags, and this tree's TObjBoss2Tunnel / TBoss6EmptyWarp unit flags. |
-| `pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `-inline on` | sub_802C5F1C clamps the player slot in a static inline helper. -inline auto also inlines other small functions and breaks seven exact ones; -inline deferred emits the unit in reverse order. -inline on inlines only that helper (same object as -inline noauto here). Evidence: docs/evidence/chr-select-slot-clamp-inline.md. |
 | `pso/unk/text_803D8098.cpp` | `(multi-line entry; see configure.py)` | render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 / _restgpr_25, and its glyph quads are the inlined SDK FIFO writers (sth/stw to 0xCC008000), not calls. -inline on inlines only functions marked inline, so queue_debug_text stays a call from debug_printf_at. The matrix helpers in text_803D8910.cpp match under the ginja defaults. |
 | `pso/misc/TKeyBoardControl_803F0C50.cpp` | `GC/1.2.5n` | Epilogue order (mtlr before the restores) only 1.2.5n produces. |
 | `pso/unk/text_803F1804.cpp` | `GC/1.2.5n` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -707,7 +708,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/misc/TOMineIcon01.cpp` | fp_contract×1 |
 | `src/pso/misc/TOMineIcon02.cpp` | fp_contract×1 |
 | `src/pso/misc/TOMineIcon04.cpp` | fp_contract×1 |
-| `src/pso/misc/TOMineTrap_8016F6F8.cpp` | fp_contract×3 |
 | `src/pso/misc/TOQuestTalkBase.cpp` | fp_contract×1 |
 | `src/pso/misc/TORockCave.cpp` | readonly_strings×1 |
 | `src/pso/misc/TORockCaveBrakable.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -1076,7 +1076,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/ui/TAdMultiConfirmGC_802E03D0.cpp` | defer_codegen×1, fp_contract×1, pool_data×1 |
 | `src/pso/ui/TAdMultiPlayerNoGC.cpp` | fp_contract×1 |
 | `src/pso/ui/TAdMultiPlyChrSelectGC.cpp` | optimization_level×1, opt_propagation×1, dont_inline×1 |
-| `src/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | fp_contract×1 |
 | `src/pso/ui/TAdMultiPlyChrSelectGC_802DEF54.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/TAdPlayerLoadGC.cpp` | opt_common_subs×1 |
 | `src/pso/ui/TAdPlayerLoadGC_801E0C30.cpp` | fp_contract×1 |
