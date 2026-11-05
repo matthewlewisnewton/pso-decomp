@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 struct TObjGoalWarpAncient;
 #include "pso/misc/TLobby_801E43E4.h"
 #include "pso/misc/TOVS2Wall01_8017C7A4.h"
@@ -34,11 +35,9 @@ extern const char *lbl_805D31C4;
 extern u32 TOVS2Wall01__bml_resource;
 extern void *tl_05;
 extern const f32 lbl_805DBAB0;
-s32 load_resource_from_descriptor(int, int, void *, int, int, int);
 extern RecoveredGlobal_8017C7DC_lbl_804B4EBC bm_o_vs2_resource_descriptor;
 extern const f32 lbl_805DBAA8;
 extern const f32 lbl_805DBAB4;
-void TLobby__sub_8001FE7C(void*, int);
 void free_collision_body_parts(void *);
 u8 *TObjGoalWarpAncient__ct(TObjGoalWarpAncient *arg0, s32 arg1, s32 arg2);
 void __dl__7TObjectFPv(void *);
@@ -48,7 +47,7 @@ int init__17TOBarrierEnergy01Fv(void*);
 
 void TOVS2Wall01::release_model() {
     if ((u32) TOVS2Wall01__bml_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TOVS2Wall01__bml_resource, 1);
+        delete (BmlResource *)((void*)TOVS2Wall01__bml_resource);
         TOVS2Wall01__bml_resource = 0U;
     }
 }
@@ -58,12 +57,8 @@ void TOVS2Wall01::load_resources() {
   s32 temp_r31;
   s32 temp_r3;
   s32 var_r0;
-  temp_r3 = (int)::operator new(0x440);
+  temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_o_vs2_resource_descriptor.value), 0, 0, (void *)(0));
   var_r0 = temp_r3;
-  if (var_r0 != 0)
-  {
-    var_r0 = load_resource_from_descriptor((int) temp_r3, 1, &bm_o_vs2_resource_descriptor.value, 0, 0, 0);
-  }
   (*(s32 *)&TOVS2Wall01__bml_resource) = var_r0;
   ;
   TMotorcycle::add_entry(0x3A, (int) ((s32)get_bml_model((s32)((int) (*(s32 *)&TOVS2Wall01__bml_resource)), 5)), (int) TObjFish__sub_8001EDB0((int)((int) var_r0), (void *)(5)), (f32) lbl_805DBAB4, (f32) lbl_805DBAA8);

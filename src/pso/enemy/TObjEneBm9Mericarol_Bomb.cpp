@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/player/TObjPlayer.h"
@@ -123,7 +124,6 @@ struct Hit_802D14F4 { u8 pad[4]; u8 *tri; };
 
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 u32 csnVector(void *, void *, int);
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
 void *find_entity_by_id(u16 id);
@@ -157,7 +157,7 @@ void TObjEneBm9Mericarol_Bomb::run_task() {
         this->m_b4 += *(f32 *)&this->unk_C0;
         *(f32 *)&this->unk_B8 += this->m_c4;
         this->m_bc += *(f32 *)((s8 *)arg0 + 0xC8);
-        hit = (Hit_802D14F4 *)csnVecterUnder((s32)&this->m_b4, 0x16EF);
+        hit = (Hit_802D14F4 *)csnVecterUnder((const Vec *)&this->m_b4, 0x16EF);
         if (hit != NULL) {
             *(f32 *)((s8 *)arg0 + 0x3C) = *(f32 *)((s8 *)hit->tri + 4);
             VecCopy((Vec *)(arg0 + 0xD8), (const Vec *)(hit->tri + 0xC));

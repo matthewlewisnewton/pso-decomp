@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/system/vector.h"
@@ -44,7 +45,7 @@ u16 get_entity_id(u32);
 List_802370D8 *find_support_technique_contact_for_target__10TObjPlayerFl(void *, u32);
 List_802370D8 *gather_contacts_for_self__10TObjPlayerFl(void *, u32);
 void deliver_technique_to_party_targets(Obj_802370D8 *arg0);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *get_player_by_client_id(s32 i);
 u32 classify_distance_band__8TTecCtrlFlll(s16, s16, u16);
 extern s32 support_tec_range_effect_id_table[];
@@ -90,10 +91,10 @@ void spawn_support_tec_range_effect(Tec_80236EE8 *self) {
         band = classify_distance_band__8TTecCtrlFlll(kind, self->level, self->slot);
         {
             Arr_80236EE8 fx = lbl_8044D908;
-            fx.w[0] = (u32)spawn_particle_effect(&pos, support_tec_range_effect_id_table[band]);
+            fx.w[0] = (u32)spawn_particle_effect((const Vec *)(&pos), (s32)(support_tec_range_effect_id_table[band]));
             if (band == 3) {
-                fx.w[1] = (u32)spawn_particle_effect(&pos, 0x1F2);
-                fx.w[2] = (u32)spawn_particle_effect(&pos, 0x19D);
+                fx.w[1] = (u32)spawn_particle_effect((const Vec *)(&pos), 0x1F2);
+                fx.w[2] = (u32)spawn_particle_effect((const Vec *)(&pos), 0x19D);
             }
             switch ((s16)kind) {
             case 14:

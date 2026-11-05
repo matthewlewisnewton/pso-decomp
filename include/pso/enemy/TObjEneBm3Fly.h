@@ -6,6 +6,8 @@
 #include <stddef.h>
 #include "pso/enemy/TObjEneDD_ST.h"
 
+struct TObjEneBm3FlyNest;
+
 struct TObjEneBm3Fly : public TObjEneDD_ST {
     virtual ~TObjEneBm3Fly();
     virtual void vfunc_89();
@@ -20,18 +22,6 @@ struct TObjEneBm3Fly : public TObjEneDD_ST {
     void vfunc_28();
     void render();
     void run_task();
-    u8 unk_374[0x4];
-    s32 m_378;
-    f32 m_37c;
-    u8 unk_380[0xC];
-    u16 m_38c;
-    u8 unk_38E[0x2];
-    void * m_390;
-    u8 unk_394[0x4];
-    f32 m_398;
-    u8 unk_39C[0x10];
-    f32 m_3ac;
-    u8 unk_3B0[0x10];
     s32 m_3c0;
     u8 unk_3C4[0x4];
     s32 m_3c8;
@@ -59,7 +49,8 @@ struct TObjEneBm3Fly : public TObjEneDD_ST {
     void store_position();
     s32 init_child_params();
     static void release_shared_data();
-    void *create(void *arg1, void *arg2, void *arg3, void *arg4);
+    static TObjEneBm3Fly *create(TObjEneBm3FlyNest *nest, s32 id, s32 set_index,
+        const Vec *spawn_position, const Vec *velocity);
     static void load_resources();
     void play_pitched_cue();
     u8 unk_460[0x48];
@@ -95,7 +86,7 @@ void TObjEneBm3Fly__vt85(s32 arg0, u32 arg1, s32 arg2);
 void *__dt__13TObjEneBm3FlyFv(void *arg0, s16 arg1);
 void action__13TObjEneBm3FlyFPvi(u8 *arg0, s32 arg1);
 f32 approach_value__13TObjEneBm3FlyFff(f32 farg0, f32 farg1);
-void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0);
+void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0, f32 dx, f32 dz, f32 distance);
 }
 
 // --- C functions defined in TObjEneBm3Fly.cpp ---
@@ -113,7 +104,7 @@ void TObjEneBm3Fly__vt85(s32 arg0, u32 arg1, s32 msg);
 void *__dt__13TObjEneBm3FlyFv(void *arg0, s16 arg1);
 void action__13TObjEneBm3FlyFPvi(u8 *arg0, s32 arg1);
 f32 approach_value__13TObjEneBm3FlyFff(f32 farg0, f32 farg1);
-void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0);
+void update_dd_flag__13TObjEneBm3FlyFPv(void *arg0, f32 dx, f32 dz, f32 distance);
 }
 // --- end of C functions
 

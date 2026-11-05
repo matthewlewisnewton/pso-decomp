@@ -1,3 +1,4 @@
+#include "pso/math/MatrixCopy.h"
 #include "types.h"
 #include "pso/math/MatrixTransforms.h"
 #include "dolphin/mtx.h"
@@ -27,24 +28,26 @@ void rotate_matrix_z(Matrix34* matrix, s32 angle) {
     }
 }
 
+}
+
 #pragma push
 #pragma peephole off
-void TObjPlayer::copy_matrix(u32 arg0, u32 arg1) {
+extern "C" void copy_matrix(MtxP dest, const f32 (*source)[4]) {
     u32 var_r0;
     u32 var_r3;
-    if (arg0 == 0U) {
+    if (dest == NULL) {
         var_r0 = current_matrix;
     } else {
-        var_r0 = arg0;
+        var_r0 = (u32)dest;
     }
-    if (arg1 == 0U) {
+    if (source == NULL) {
         var_r3 = current_matrix;
     } else {
-        var_r3 = arg1;
+        var_r3 = (u32)source;
     }
     PSMTXCopy((MtxP)var_r3, (MtxP)var_r0);
 }
-}
+
 #pragma pop
 
 void euler_zyx_to_quaternion(u8 *arg0, u8 *arg1) {

@@ -1,5 +1,13 @@
+#include "pso/misc/PositionSoundEffects.h"
+#include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/misc/GroundEffects.h"
 #include "pso/TObjControl.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -15,7 +23,7 @@
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/misc/TCameraCtrl.h"
 
-#include "pso/enemy/TUnk_80494938.h"
+#include "pso/misc/MaterialOpacityFade.h"
 
 extern "C" s32 TObjPlayer__sub_800DC420(void *self, s32 i);
 extern "C" f32 TObjPlayer__sub_800DC434(s32 arg0, s32 arg1);
@@ -49,7 +57,7 @@ typedef char NanoGrow_scale[offsetof(TObjEneNanoDrago, scale.x) == 0x68 ? 1 : -1
 typedef char NanoGrow_target_scale[offsetof(TObjEneNanoDrago, scale.y) == 0x6c ? 1 : -1];
 typedef char NanoGrow_m_2c0[offsetof(TObjEneNanoDrago, m_2c0) == 0x2c0 ? 1 : -1];
 typedef char NanoGrow_m_2c8[offsetof(TObjEneNanoDrago, m_2c8) == 0x2c8 ? 1 : -1];
-typedef char NanoGrow_m_2fc[offsetof(TObjEneNanoDrago, m_2fc) == 0x2fc ? 1 : -1];
+typedef char NanoGrow_m_2fc[offsetof(TObjEneNanoDrago, body_center_position) == 0x2fc ? 1 : -1];
 typedef char NanoGrow_params[offsetof(TObjEneNanoDrago, movementParameters) == 0x350 ? 1 : -1];
 typedef char NanoGrow_next_action[offsetof(TObjEneNanoDrago, next_action) == 0x374 ? 1 : -1];
 typedef char NanoGrow_state[offsetof(TObjEneNanoDrago, state) == 0x37c ? 1 : -1];
@@ -57,7 +65,7 @@ typedef char NanoGrow_growth_count[offsetof(TObjEneNanoDrago, growth_count) == 0
 typedef char NanoGrow_speed[offsetof(TObjEneNanoDrago, speed) == 0x3d8 ? 1 : -1];
 typedef char NanoDrago_flags30_offset[offsetof(TObjEneNanoDrago, actorFlags) == 0x30 ? 1 : -1];
 typedef char NanoDrago_pos_offset[offsetof(TObjEneNanoDrago, position) == 0x38 ? 1 : -1];
-typedef char NanoDrago_angle_offset[offsetof(TObjEneNanoDrago, rotation_y) == 0x60 ? 1 : -1];
+typedef char NanoDrago_angle_offset[offsetof(TObjEneNanoDrago, rotation.yaw) == 0x60 ? 1 : -1];
 typedef char NanoDrago_fb8_offset[offsetof(TObjEneNanoDrago, requested_action) == 0xb8 ? 1 : -1];
 typedef char NanoDrago_home_offset[offsetof(TObjEneNanoDrago, m_29c) == 0x29c ? 1 : -1];
 typedef char NanoDrago_target_offset[offsetof(TObjEneNanoDrago, target) == 0x2a8 ? 1 : -1];
@@ -75,12 +83,10 @@ extern "C" u16 find_nearest_visible_player(void *, s32, f32);
 extern "C" s32 apply_actor_gravity(void *, int, f32);
 extern "C" f32 atan2_float(f32 y, f32 x);
 extern "C" s32 check_enemy_body_collisions(void *);
-extern "C" s32 play_sound_effect(int, void *, int, int);
+
 extern "C" void rotate_vector_by_matrix(int, void *, void *);
 
 extern "C" u32 get_player_by_client_id(s32);
-extern "C" s32 play_area_sound_effect__12TBoss3VoloptFv(void *, s32);
-
 void move_with_wall_slide(u8 *arg0);
 
 struct BeamRotation { s32 x, y, z; };
@@ -93,15 +99,14 @@ extern "C" void enemy_turn_toward_dest(void *, s32);
 extern "C" f32 sin_table_lookup(s32);
 extern "C" f32 cos_table_lookup(s32);
 extern "C" s32 enemy_turn_half_toward_dest(void *);
-extern "C" void *spawn_particle_effect(void *pos, s32 id);
+
 extern "C" s32 construct_beam_effect__10TObjPlayerFPvPvPviPv(u32, void *, void *, u8, void *);
-extern "C" s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 extern "C" s32 check_path_obstructed(void *, Vec *);
 extern "C" void calc_velocity_toward_destination(void *, Vec, Vec, f32);
 extern "C" s32 TObjPlayer__sub_800DC478(u8 *arg0, s32 arg1, f32 farg0);
 extern "C" void project_actor_to_ground(void *, void *, s32);
 extern "C" void TObjPlayer__sub_800D92BC(s32 point, s32 delay);
-extern "C" s32 refresh_lobby_state__10TObjPlayerFv();
 
 #pragma push
 #pragma dont_inline off
@@ -127,6 +132,7 @@ inline f32 xz_length_squared(Vec *v) { return v->x * v->x + v->z * v->z; }
 #include "pso/misc/RenderFadeState.h"
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 extern "C" s32 is_split_screen();
 extern "C" s32 restore_scene_lighting();
@@ -144,12 +150,10 @@ struct NanoDragoAnimationBinding {
 };
 
 extern "C" void obj_setFlags30(void *, u32);
-extern "C" s32 dispatch_shared_handler_a__6TLobbyFl(int);
-extern "C" s32 register_object__6TLobbyFl(int);
-extern "C" s32 dispatch_shared_handler_b__6TLobbyFl(int);
-extern "C" s32 register_boss__6TLobbyFl(int);
-extern "C" void TLobby__sub_8001FE7C(void*, int);
-extern "C" u8 * load_resource_from_descriptor(void *, s32, s32 *, s32, s32, s32);
+
+
+
+
 extern "C" s32 find_active_entity_by_id(int);
 
 extern "C" void TObjPlayer__sub_800DC444(void);
@@ -251,7 +255,7 @@ TObjEneNanoDrago::TObjEneNanoDrago(TObject *parent, void *setData) : TObjEnemyCu
     state36C = *(s16 *)((s8 *)arg2 + 0x3E);
     load_entry_params_nanodrago(variant);
     action_table = nanodrago_action_table;
-    set_field_d8((s32)(action_table));
+    set_action_table((TObjMotionAction *)((s32)(action_table)));
     init_collision_body_parts(this, nano_drago_bodies, 2);
     bodies[1].flags &= ~1;
     movementParameters = &nano_drago_movement;
@@ -302,24 +306,21 @@ void TObjEneNanoDrago::load_resources() {
     BmlModelEntry *modelEntries;
     u8 *resource;
 
-    storage = (u8 *)((int)::operator new(0x440));
+    storage = (u8 *)((int)new BmlResource(1, (BmlResourceDescriptor *)((s32 *)&bm_ene_nanodrago_resource_descriptor), 0, 0, (void *)(0)));
     resource = storage;
-    if (resource != NULL) {
-        resource = (u8 *)(load_resource_from_descriptor(storage, 1, (s32 *)&bm_ene_nanodrago_resource_descriptor, 0, 0, 0));
-    }
     nano_drago_entry_params_resource = (BmlResource *)resource;
-    lbl_805D5248 = register_boss__6TLobbyFl(0x1A);
-    lbl_805D524C = dispatch_shared_handler_b__6TLobbyFl(0x1A);
-    lbl_805D5250 = register_object__6TLobbyFl(0x1A);
-    lbl_805D5254 = dispatch_shared_handler_a__6TLobbyFl(0x1A);
+    lbl_805D5248 = ((s32)get_battle_base_stats(0x1A));
+    lbl_805D524C = ((s32)get_battle_attack_params(0x1A));
+    lbl_805D5250 = ((s32)get_battle_resistance_params(0x1A));
+    lbl_805D5254 = ((s32)get_battle_movement_params(0x1A));
     binding = nano_drago_anim_binding;
     binding.motions = nano_drago_entry_params_resource->motions;
     modelEntries = nano_drago_entry_params_resource->models;
-    TLobby::spawn_npc_enemy((s16)(0x22), modelEntries[0].model, modelEntries[0].m_c, (s32)&binding, (f32)((f32) (15.0f)), (f32)((f32) (0.0f)));
+    NpcModelRegistry::register_animated_chunk((s16)(0x22), (void *)(modelEntries[0].model), (void *)(modelEntries[0].m_c), (const NpcAnimationBinding *)((s32)&binding), (f32)((f32) (15.0f)), (f32)((f32) (0.0f)));
 }
 void TObjEneNanoDrago::free_resources() {
     if ((u32) nano_drago_entry_params_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)nano_drago_entry_params_resource, 1);
+        delete (BmlResource *)((void*)nano_drago_entry_params_resource);
         nano_drago_entry_params_resource = NULL;
     }
 }
@@ -333,7 +334,7 @@ void *TObjEneNanoDrago::create(void *arg0) {
 void TObjEneNanoDrago::run_task() {
     s32 cooldown;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_attack_parameters();
         run_demo_task();
         return;
@@ -356,8 +357,8 @@ void TObjEneNanoDrago::run_task() {
         mode = (s16) next_action;
         state = 0;
     }
-    VecCopy((Vec *)(&m_2fc), (const Vec *)(&position));
-    m_300 = (f32) (m_300 + (15.0f + flightHeight));
+    VecCopy((Vec *)(&body_center_position), (const Vec *)(&position));
+    body_center_position.y = (f32) (body_center_position.y + (15.0f + flightHeight));
     bodies[0].offset.y = (f32) (15.0f + flightHeight);
     if (!(m_388 & 0x40000)) {
         submit_cursor_candidate(((u8 *)this), -1);
@@ -435,28 +436,28 @@ void TObjEneNanoDrago::render() {
     if (is_split_screen() != 0) {
         cameraIndex = TCameraCtrl::get_camera_mode();
     }
-    if (!(actorFlags & 0x02000000) && (viewDetail = classify_actor_view_detail(150.0f, 400.0f, 20.0f), viewDetail != 0) && ((TObjPlayer::check_demo_mode() == 1) || !(m_388 & 0x40000))) {
+    if (!(actorFlags & 0x02000000) && (viewDetail = classify_actor_view_detail(150.0f, 400.0f, 20.0f), viewDetail != 0) && ((check_demo_mode() == 1) || !(m_388 & 0x40000))) {
         saved_model_render_flags = model_render_flags;
         fade = &cameraFades[cameraIndex];
         fade->update();
-        if (fade->updateFromCamera((const f32*)(&m_2fc)) != 0) {
+        if (fade->updateFromCamera((const f32*)(&body_center_position)) != 0) {
             fade->set_flags_and_apply_damage_color();
             if (defer_render() != 0) {
                 model_render_flags = saved_model_render_flags;
                 return;
             }
         }
-        TObjFish::set_global_param((int) (texlist));
+        set_current_texture_list((GinjaTextureList *)((texlist)));
         select_actor_lighting(this);
         TObjPlayer::toggle_particle_effect();
         rendered = 1;
         push_matrix();
         translate_matrix(0, (f32) (position.x), (f32) (flightHeight + (position.y + sinkingOffset)), (f32) (position.z));
-        rotate_matrix_y(0, (int) (rotation_y));
+        rotate_matrix_y(0, (int) (this->rotation.yaw));
         modelScale = scale.x;
         scale_matrix(0, modelScale, modelScale, modelScale);
         model_render_flags &= 0xFFFFFBFF;
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object((int) (model));
         } else if (m_388 & 4) {
             if (appearFade.has_visible_opacity() != 0) {
@@ -508,7 +509,7 @@ void TObjEneNanoDrago::update_idle_state() {
         advance_animation();
         wander_around(&home_position, parameters[1]);
         if (is_passing_frame((f32)(4.0f)) != 0 || is_passing_frame((f32)(20.0f)) != 0) {
-            play_sound_effect(0x4003AD23, (u8 *)(&position), 0, 0);
+            play_sound_effect(0x4003AD23, (const Vec *)((u8 *)(&position)), 0, 0);
         }
         m_384 = m_384 - 1;
         if (m_384 <= 0) {
@@ -563,13 +564,13 @@ void TObjEneNanoDrago::update_circling_state() {
         advance_animation();
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
         if (is_passing_frame((f32)(4.0f)) != 0 || is_passing_frame((f32)(20.0f)) != 0) {
-            play_sound_effect(0x4003AD23, (Vec *)&position, 0, 0);
+            play_sound_effect(0x4003AD23, (const Vec *)((Vec *)&position), 0, 0);
         }
         if (target != NULL) {
             Vec d = *(Vec *)(target + 0x38);
             subtract_vector(&d, (Vec *)&position);
             if (xz_length_squared(&d) <= 160000.0f &&
-                angle_difference_abs(-(s32)(lbl_8043C900[0] * atan2_float(d.z, d.x)) + 0x4000, rotation_y) < 0xAAA) {
+                angle_difference_abs(-(s32)(lbl_8043C900[0] * atan2_float(d.z, d.x)) + 0x4000, this->rotation.yaw) < 0xAAA) {
                 s32 next;
                 if (hp <= hpmax / 4) {
                     next = 10;
@@ -585,8 +586,8 @@ void TObjEneNanoDrago::update_circling_state() {
                 break;
             }
         }
-        rotation_y += ((NanoDragoMovementParams *)movementParameters)->turnSpeed / 2;
-        enemy_set_heading_velocity(speed, this, rotation_y);
+        this->rotation.yaw += ((NanoDragoMovementParams *)movementParameters)->turnSpeed / 2;
+        enemy_set_heading_velocity(speed, this, this->rotation.yaw);
         move_with_wall_slide(((u8 *)this));
         circlingAngle += ((NanoDragoMovementParams *)movementParameters)->turnSpeed / 2;
         if (circlingAngle > 0x10000) {
@@ -601,7 +602,7 @@ void TObjEneNanoDrago::update_circling_state() {
         advance_animation();
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
         if (is_passing_frame((f32)(4.0f)) != 0 || is_passing_frame((f32)(20.0f)) != 0) {
-            play_sound_effect(0x4003AD23, (Vec *)&position, 0, 0);
+            play_sound_effect(0x4003AD23, (const Vec *)((Vec *)&position), 0, 0);
         }
         wanderDistance += speed;
         if (wanderDistance > 100.0f) {
@@ -648,12 +649,12 @@ void TObjEneNanoDrago::update_single_beam_state() {
         case 1:
             if (frame >= 5.0f) {
                 capture_beam_origins();
-                spawn_particle_effect((&beamOrigins[0]), 0xF7);
+                spawn_particle_effect((const Vec *)((&beamOrigins[0])), 0xF7);
                 state = 2;
             }
             break;
         case 2:
-            play_persistent_sound(0x4003AD1E, (s32)((u8 *)this), (u32)(&position), 0, 0);
+            play_persistent_sound((s32)(0x4003AD1E), (const void *)((s32)((u8 *)this)), (const Vec *)((u32)(&position)), 0, 0);
             if (frame >= 20.0f) {
                 capture_beam_origins();
                 u32 obj = __nw__7TObjectFUl(0x100);
@@ -661,7 +662,7 @@ void TObjEneNanoDrago::update_single_beam_state() {
                     construct_beam_effect__10TObjPlayerFPvPvPviPv(obj, &beamOrigins[0], (void *) (target + 0x2FC), (u8) !(actorFlags & 0x01000000), ((u8 *)this));
                 }
                 spawn_beam_particle(0);
-                play_sound_effect(0x4003A527, &position, 0, 0);
+                play_sound_effect(0x4003A527, (const Vec *)(&position), 0, 0);
                 state = 3;
             }
             break;
@@ -672,7 +673,7 @@ void TObjEneNanoDrago::update_single_beam_state() {
         if (!(actorFlags & 0x01000000)) {
             apply_actor_gravity(((u8 *)this), 0, (f32) (0.0f));
         }
-        ((TObjPlayer *)((u8 *)this))->update_collisions();
+        ((TObjCollidable *)((u8 *)this))->update_collisions();
         remainingFrames = m_384 - 1;
         m_384 = remainingFrames;
         if (remainingFrames <= 0) {
@@ -717,13 +718,13 @@ void TObjEneNanoDrago::update_multi_beam_state() {
         case 1:
             if (frame >= 5.0f) {
                 capture_beam_origins();
-                spawn_particle_effect(&beamOrigins[0], 0xF7);
-                spawn_particle_effect(&beamOrigins[1], 0xF7);
+                spawn_particle_effect((const Vec *)(&beamOrigins[0]), 0xF7);
+                spawn_particle_effect((const Vec *)(&beamOrigins[1]), 0xF7);
                 state = 2;
             }
             break;
         case 2:
-            play_persistent_sound(0x4003AD1E, (s32)((u8 *)this), (u32)&position, 0, 0);
+            play_persistent_sound((s32)(0x4003AD1E), (const void *)((s32)((u8 *)this)), (const Vec *)((u32)&position), 0, 0);
             if (frame >= 20.0f) {
                 capture_beam_origins();
                 for (i = 0; i < beamTargetCount; i++) {
@@ -735,7 +736,7 @@ void TObjEneNanoDrago::update_multi_beam_state() {
         }
         advance_animation();
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
-        ((TObjPlayer *)((u8 *)this))->update_collisions();
+        ((TObjCollidable *)((u8 *)this))->update_collisions();
         m_384--;
         if (m_384 <= 0) {
             m_384 = 0x2D;
@@ -747,9 +748,9 @@ void TObjEneNanoDrago::update_multi_beam_state() {
         enemy_wander_home(speed, 100.0f, 100.0f, ((NanoDragoMovementParams *)movementParameters)->turnSpeed);
         advance_animation();
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
-        ((TObjPlayer *)((u8 *)this))->update_collisions();
+        ((TObjCollidable *)((u8 *)this))->update_collisions();
         if (is_passing_frame((f32)(4.0f)) != 0 || is_passing_frame((f32)(20.0f)) != 0) {
-            play_sound_effect(0x4003AD23, &position, 0, 0);
+            play_sound_effect(0x4003AD23, (const Vec *)(&position), 0, 0);
         }
         if (find_nearest_visible_player(this, 0, 50.0f) != 0xFFFF) {
             ((TObjEnemyCustom *)this)->update_if_active(0xB);
@@ -809,28 +810,28 @@ void TObjEneNanoDrago::update_flight_state() {
             if (ok != 0) {
                 flightHeight += 2.2f;
             }
-            ((TObjPlayer *)((u8 *)this))->update_collisions();
+            ((TObjCollidable *)((u8 *)this))->update_collisions();
             if (TObjPlayer__sub_800DC478(((u8 *)this), 6, 22.0f) != 0) {
-                spawn_particle_effect(&position, 0xF0);
+                spawn_particle_effect((const Vec *)(&position), 0xF0);
                 play_sound_effect(0x4003AD20, &position, 0, 0);
             }
         } else {
-            y_speed = 0.0f;
+            movement_velocity.y = 0.0f;
             VecCopy((Vec *)(&prev_position), (const Vec *)(&position));
-            vec3_add_to(&position, &x_speed);
+            vec3_add_to(&position, &movement_velocity);
             if (xz_distance_squared((Vec *)(&position), (Vec *)(&moveDestination)) <= (10.0f + speed) * (10.0f + speed)) {
                 state = 2;
-                m_310 = 0.0f;
-                x_speed = 0.0f;
+                movement_velocity.z = 0.0f;
+                movement_velocity.x = 0.0f;
             }
             if (is_passing_frame((f32)(10.0f)) != 0) {
-                spawn_particle_effect(&position, 0xF0);
+                spawn_particle_effect((const Vec *)(&position), 0xF0);
                 play_sound_effect(0x4003AD20, &position, 0, 0);
             }
             refresh_collision_body_centers();
         }
         if (flightHeight > 15.0f) {
-            turn_toward_direction(((NanoDragoMovementParams *)movementParameters)->turnSpeed * 2, (Vec *)((u8 *)&x_speed));
+            turn_toward_direction(((NanoDragoMovementParams *)movementParameters)->turnSpeed * 2, &movement_velocity);
         }
         project_actor_to_ground(((u8 *)this), &position, 0);
         break;
@@ -842,7 +843,7 @@ void TObjEneNanoDrago::update_flight_state() {
             flightHeight = 0.0f;
             actorFlags |= 0x800000;
             actorFlags &= ~0x01000000;
-            y_speed = 0.0f;
+            movement_velocity.y = 0.0f;
             if (requested_action != 8) {
                 ((TObjEnemyCustom *)this)->update_if_active(0);
             }
@@ -853,11 +854,11 @@ void TObjEneNanoDrago::update_flight_state() {
         } else {
             s32 t = (s32)frame;
             if (t == 20 || t == 40) {
-                spawn_particle_effect(&position, 0xF0);
+                spawn_particle_effect((const Vec *)(&position), 0xF0);
             }
         }
         if (TObjPlayer__sub_800DC478(((u8 *)this), 8, 42.0f) != 0) {
-            play_sound_effect(0x4003AD23, &position, 0, 0);
+            play_sound_effect(0x4003AD23, (const Vec *)(&position), 0, 0);
         }
         check_object_collisions();
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
@@ -882,9 +883,9 @@ void TObjEneNanoDrago::update_growth_state() {
             requested_action = 5;
             state = 1;
             scale.y = 0.1f + scale.x;
-            spawn_particle_effect(&m_2fc, 0xFA);
+            spawn_particle_effect(&body_center_position, 0xFA);
             speed = ((NanoDragoMovementParams *)movementParameters)->baseSpeed * scale.x;
-            play_sound_effect(0x4003A824, (Vec *)&position, 0, 0);
+            play_sound_effect(0x4003A824, (const Vec *)((Vec *)&position), 0, 0);
             m_2c8 += 8;
             m_2c0 += 8;
         } else {
@@ -894,7 +895,7 @@ void TObjEneNanoDrago::update_growth_state() {
     case 1:
         advance_animation();
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
-        ((TObjPlayer *)((u8 *)this))->update_collisions();
+        ((TObjCollidable *)((u8 *)this))->update_collisions();
         t = scale.y;
         v = 0.0016000001f + scale.x;
         scale.x = (v < t) ? v : t;
@@ -922,25 +923,25 @@ void TObjEneNanoDrago::update_knockback_state() {
             animation = 0xA;
         }
         requested_action = animation;
-        spawn_particle_effect((&m_2fc), 0xF2);
+        spawn_particle_effect((const Vec *)((&body_center_position)), 0xF2);
         play_sound_effect(0x40039E22, &position, 0, 0);
         state = 1;
     case 1:
         advance_animation();
         if (!(actorFlags & 0x01000000)) {
-            Vec v = *(Vec *)((s8 *)&m_2fc);
-            v.x += x_speed;
-            v.z += m_310;
+            Vec v = body_center_position;
+            v.x += movement_velocity.x;
+            v.z += movement_velocity.z;
             if (check_path_obstructed(((u8 *)this), &v) == 0) {
                 move_with_wall_slide(((u8 *)this));
             } else {
-                x_speed = m_310 = 0.0f;
+                movement_velocity.x = movement_velocity.z = 0.0f;
             }
-            x_speed *= 0.5f;
-            m_310 *= 0.5f;
+            movement_velocity.x *= 0.5f;
+            movement_velocity.z *= 0.5f;
         }
         apply_actor_gravity(((u8 *)this), 0, 0.0f);
-        ((TObjPlayer *)((u8 *)this))->update_collisions();
+        ((TObjCollidable *)((u8 *)this))->update_collisions();
         if ((u32) action_flags != 8U) {
             state = -1;
         }
@@ -980,10 +981,10 @@ void TObjEneNanoDrago::update_knockback_state() {
 void TObjEneNanoDrago::update_dying_state() {
     switch (state) {
     case 0:
-        refresh_lobby_state__10TObjPlayerFv();
+        this->distribute_experience_and_request_drop();
         send_entity_set_flags();
         timer = 0x1E;
-        play_sound_effect(0x4003A825, &position, 0, 0);
+        play_sound_effect(0x4003A825, (const Vec *)(&position), 0, 0);
         if (actorFlags & 0x01000000) {
             descentSpeed = (f32) (0.015384615f * -flightHeight);
             requested_action = 0xB;
@@ -997,7 +998,7 @@ void TObjEneNanoDrago::update_dying_state() {
         advance_animation();
         apply_actor_gravity(((u8 *)this), 0, (f32) (0.0f));
         if (frame >= 30.0f) {
-            spawn_particle_effect((&position), 0xF0);
+            spawn_particle_effect((const Vec *)((&position)), 0xF0);
             state = 3;
             return;
         }
@@ -1010,7 +1011,7 @@ void TObjEneNanoDrago::update_dying_state() {
         flightHeight = max_float(flightHeight + descentSpeed, lim);
         }
         if (frame >= 30.0f) {
-            spawn_particle_effect((&position), 0xF0);
+            spawn_particle_effect((const Vec *)((&position)), 0xF0);
             play_sound_effect(0x40039E22, &position, 0, 0);
             state = 3;
             return;
@@ -1019,7 +1020,7 @@ void TObjEneNanoDrago::update_dying_state() {
     case 3:
         timer = (s16) (timer - 1);
         if (timer <= 0) {
-            ((TObjPlayer *)(&position))->spawn_ground_effect(0x1E);
+            spawn_ground_effect((const Vec *)(&position), 0x1E);
             TObjPlayer__sub_800D92BC((s32)(&position), 0xF);
             state = 4;
             return;
@@ -1049,13 +1050,13 @@ void TObjEneNanoDrago::wander_around(Vec *center, f32 radius) {
     }
     VecCopy((Vec *)&actor->m_29c, (const Vec *)&actor->moveDestination);
     enemy_turn_toward_dest(actor, ((NanoDragoMovementParams *)actor->movementParameters)->turnSpeed);
-    enemy_set_heading_velocity(actor->speed, actor, actor->rotation_y);
+    enemy_set_heading_velocity(actor->speed, actor, actor->rotation.yaw);
     move_with_wall_slide((u8 *)actor);
 }
 #pragma pop
 void TObjEneNanoDrago::spawn_beam_particle(s32 i) {
     BeamRotation v;
-    v.x = rotation_y + 0x4000;
+    v.x = this->rotation.yaw + 0x4000;
     v.y = 0;
     v.z = 0x4000;
     spawn_directional_particle(&beamOrigins[i], &v, 0xfd);
@@ -1072,7 +1073,7 @@ void TObjEneNanoDrago::spawn_targeted_beam(s32 targetIndex) {
         if (originIndex != 0) {
             spreadAngle = -0x2000;
         }
-        rotation.y = rotation_y + spreadAngle;
+        rotation.y = this->rotation.yaw + spreadAngle;
         rotation.z = 0;
         beam = (void *)__nw__7TObjectFUl(0x104);
         if (beam != 0) {
@@ -1118,7 +1119,7 @@ void TObjEneNanoDrago::begin_hidden_flight() {
     v.x = 0.0f;
     v.z = (-150.0f);
     push_matrix_from(&identity_matrix);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_vector_by_matrix(0, &v, &v);
     pop_matrix();
     vec3_add_to(&position, &v);
@@ -1144,15 +1145,15 @@ void TObjEneNanoDrago::update_fade_in_state() {
         flags = actorFlags | 0x04000000;
         actorFlags = flags;
         requested_action = 0;
-        play_area_sound_effect__12TBoss3VoloptFv((u8 *)(&m_2fc), flags);
-        ((TUnk_80494938 *)((u8 *)(&appearFade)))->start_fade_in();
+        play_area_sound_and_particles_b((const Vec *)((u8 *)(&body_center_position)));
+        appearFade.start_fade_in();
         state = 1;
     case 1:
         advance_animation();
         if (appearFade.advance_toward_max() == 1) {
             state = -1;
         }
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         return;
     case -1:
         stateFlags = m_388;
@@ -1173,7 +1174,7 @@ void TObjEneNanoDrago::add_target_in_front_arc(TObjChara *candidate) {
     {
       dx = v.x;
       heading = (-((s32) (lbl_8043C900[0] * atan2_float(v.z, dx)))) + 0x4000;
-      if (angle_difference_abs(heading, rotation_y) <= 0xAAA)
+      if (angle_difference_abs(heading, this->rotation.yaw) <= 0xAAA)
       {
         s16 id = get_entity_id(candidate);
         u16 *ids = beamTargetIds;
@@ -1198,7 +1199,7 @@ void TObjEneNanoDrago::capture_beam_origins() {
     f32 modelScale;
     push_matrix_from(&identity_matrix);
     translate_matrix(0, (f32) (position.x), (f32) (flightHeight + (position.y + sinkingOffset)), position.z);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     modelScale = scale.x;
     scale_matrix(0, modelScale, modelScale, modelScale);
     calc_joint_matrices(frame);
@@ -1237,8 +1238,8 @@ void TObjEneNanoDrago::find_open_direction(Vec *direction) {
         bias = 20.0f;
         for (; i < 3; i++) {
             matrix_mult_vec(0, &v, &moveDestination);
-            vec3_add_to(&moveDestination, &m_2fc);
-            h = csnVector((Vec *)&m_2fc, &moveDestination, -1);
+            vec3_add_to(&moveDestination, &body_center_position);
+            h = csnVector((Vec *)&body_center_position, &moveDestination, -1);
             if (h == NULL) {
                 pop_matrix();
                 return;
@@ -1259,7 +1260,7 @@ void TObjEneNanoDrago::find_open_direction(Vec *direction) {
         v2.x = bestv;
         rotate_matrix_y(0, best);
         matrix_mult_vec(0, &v2, &moveDestination);
-        vec3_add_to(&moveDestination, &m_2fc);
+        vec3_add_to(&moveDestination, &body_center_position);
         pop_matrix();
     }
 }

@@ -1,4 +1,7 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include <stdlib.h>
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -24,7 +27,7 @@ BmlResource *TORevlightCave01__bml_resource;
 void TORevlightCave01::update_demo() {}
 
 void TORevlightCave01::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_demo();
     }
     spin_angle += spin_speed;
@@ -34,10 +37,10 @@ void TORevlightCave01::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_z(NULL, rotation_z);
-        rotate_matrix_x(NULL, rotation_x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_z(NULL, this->rotation.roll);
+        rotate_matrix_x(NULL, this->rotation.pitch);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         draw_ginja_model((s32)((NJS_OBJECT *)model)->model);
         rotate_matrix_y(NULL, spin_angle);
         draw_ginja_model((s32)((NJS_OBJECT *)model)->child->model);
@@ -54,16 +57,13 @@ void *TORevlightCave01::create(void *set_data) {
 
 void TORevlightCave01::release_static_instance() {
     if (TORevlightCave01__bml_resource != NULL) {
-        TLobby__sub_8001FE7C(TORevlightCave01__bml_resource, 1);
+        delete (BmlResource *)(TORevlightCave01__bml_resource);
         TORevlightCave01__bml_resource = NULL;
     }
 }
 
 void TORevlightCave01::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_yukakaiten01_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_yukakaiten01_resource_descriptor), 0, 0, (void *)(0));
     TORevlightCave01__bml_resource = resource;
 }
 

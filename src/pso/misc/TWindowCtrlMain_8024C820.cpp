@@ -1,5 +1,7 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrlMain.h"
+#include "pso/misc/TLobby_801E2F94.h"
 #include "pso/misc/TWindowCtrlClipOut.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -188,16 +190,10 @@ s32 is_split_screen(void);
 extern s32 TWindowCtrlMain__display_flags;
 extern s32 TWindowCtrlMain__window_task_root;
 WindowControlState TWindowCtrlMain__viewport_states[6];
-struct Vec2_8024CE68 { f32 x, y; };
-struct Poly_8024CE68 {
-    Vec2_8024CE68 *verts;
-    u32 *colors;
-    s32 flags;
-    s32 count;
-};
+typedef ColorLineVertex Vec2_8024CE68;
+typedef ColorLineList Poly_8024CE68;
 struct Quad_8024CE68 { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 
-void draw_color_lines(void *, int, int, f32);
 extern void *lbl_805D63F0;
 
 void TWindowCtrlMain__sub_8024CB7C() {
@@ -320,7 +316,7 @@ void draw_menu_backdrop_gradients(s32 viewport_index) {
     }
     poly.verts = verts;
     poly.colors = colors;
-    poly.flags = 0;
+    poly.unk_8 = 0;
     poly.count = 4;
     colors[0] = 0xFF000000;
     colors[1] = 0xFF000000;
@@ -334,7 +330,7 @@ void draw_menu_backdrop_gradients(s32 viewport_index) {
     verts[2].y = 480.0f;
     verts[3].x = 0.0f;
     verts[3].y = 480.0f;
-    ((TWindowCtrlMain *)(&poly))->draw_strip_swap_color(4, 22, -10.0f);
+    poly.draw_strip_swap_color(4, 22, -10.0f);
 
     verts[0].x = 0.5f * s->field0C;
     verts[0].y = 480.0f - 0.5f * (480.0f - s->field18);
@@ -344,7 +340,7 @@ void draw_menu_backdrop_gradients(s32 viewport_index) {
     verts[2].y = 480.0f;
     verts[3].x = 0.5f * s->field0C;
     verts[3].y = 480.0f;
-    ((TWindowCtrlMain *)(&poly))->draw_strip_swap_color(4, 22, -10.0f);
+    poly.draw_strip_swap_color(4, 22, -10.0f);
 
     colors[2] = 0;
     colors[3] = 0;
@@ -356,7 +352,7 @@ void draw_menu_backdrop_gradients(s32 viewport_index) {
     verts[2].y = 480.0f - 0.5f * (480.0f - s->field18);
     verts[3].x = s->field0C;
     verts[3].y = 0.0f;
-    ((TWindowCtrlMain *)(&poly))->draw_strip_swap_color(4, 22, -10.0f);
+    poly.draw_strip_swap_color(4, 22, -10.0f);
 
     verts[0].x = 0.5f * s->field0C;
     verts[0].y = 480.0f - 0.5f * (480.0f - s->field18);
@@ -366,10 +362,10 @@ void draw_menu_backdrop_gradients(s32 viewport_index) {
     verts[2].y = s->field18;
     verts[3].x = 0.5f * s->field0C;
     verts[3].y = s->field18;
-    ((TWindowCtrlMain *)(&poly))->draw_strip_swap_color(4, 22, -10.0f);
+    poly.draw_strip_swap_color(4, 22, -10.0f);
 
     begin_screen_draw(1);
-    TObjFish::set_global_param((s32)lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     a = (s32)(255.0f * alpha) << 24;
     set_draw_texture_and_color(11, a | 0xFFFFFF);
 
@@ -408,7 +404,7 @@ void draw_menu_backdrop_gradients(s32 viewport_index) {
 
     line.verts = lverts;
     line.colors = lcolors;
-    line.flags = 0;
+    line.unk_8 = 0;
     line.count = 2;
     lcolors[1] = lcolors[0] = a | 0xEDFF;
     lverts[0].x = s->field0C;
@@ -438,7 +434,7 @@ void TWindowCtrlMain__sub_8024D2A4(s32 viewport_index) {
     }
     poly.verts = verts;
     poly.colors = colors;
-    poly.flags = 0;
+    poly.unk_8 = 0;
     poly.count = 4;
     poly.verts[0].x = 0.0f;
     poly.verts[0].y = 0.0f;

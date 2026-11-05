@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/boss/TObjBoss2Tunnel_8007E418.h"
 #include "pso/misc/ParticleBallistic.h"
@@ -408,7 +409,7 @@ void TUnk_8048E778::render() {
                 ((TUnk_8048E728 *)p)->apply_particle_model_fade_color(0);
             }
         }
-        TObjFish::set_global_param(p->texlist);
+        set_current_texture_list((GinjaTextureList *)(p->texlist));
         set_draw_list_mask(3);
         if (p->motion != 0) {
             draw_ginja_model_with_motion(p->model, p->motion, p->frame);

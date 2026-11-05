@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -255,7 +256,6 @@ struct O_8032DFF8 { u8 pad[0x1C]; void *o[3]; };
 extern "C" {
 void *create_particle_emitter(void *pos, s32 id);
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
-void *spawn_particle_effect(void *pos, s32 id);
 
 void *find_entity_by_id(u16 id);
 void queue_destruction__7TObjectFv(void *);
@@ -314,7 +314,7 @@ void TUnk_804EDD44::start_card_effect_flash() {
             ((TParticleCtrl *)(*(u32 *)((s8 *)arg0 + 0x1C)))->set_tint_color(q);
         }
     }
-    spawn_particle_effect(((u8 *)&this->unk_64), 0x30);
+    spawn_particle_effect((const Vec *)(((u8 *)&this->unk_64)), 0x30);
 }
 #pragma pop
 

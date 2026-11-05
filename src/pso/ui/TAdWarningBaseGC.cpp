@@ -1,5 +1,5 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/ui/TAdWarningBaseGC.h"
@@ -17,13 +17,13 @@ struct V_8032D214 : B_8032D214 {
 };
 
 extern "C" {
-void append_line__14TWindowMessageFii(s32, void *, int);
+void send_and_handle__6TLobbyFii(s32, void *, int);
 s32 update_window_mode_from_progress__6TLobbyFPv(void *, void *);
 extern u8 lbl_80477334[];
 extern u8 lbl_8047733C[];
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
-void play_sound_effect(int, int, int, int);
+
 extern u8 controller_input_state[];
 extern u8 controller_physical_port_bank[];
 extern const f32 lbl_805DF7B0;
@@ -47,7 +47,7 @@ void TAdWarningBaseGC::vfunc_9() {
 s32 TAdWarningBaseGC::sub_8032D214() {
     V_8032D214 *arg0 = (V_8032D214 *)this;
     s32 r = update_window_mode_from_progress__6TLobbyFPv(lbl_80477334, lbl_8047733C);
-    append_line__14TWindowMessageFii(r, arg0->m5(), 3);
+    send_and_handle__6TLobbyFii(r, arg0->m5(), 3);
     return r;
 }
 
@@ -76,7 +76,7 @@ void TAdWarningBaseGC::vfunc_8() {
         break;
     case 3:
         if (*(void * *)&this->m_2c != NULL) {
-            ((TWindowBase *)(*(void * *)&this->m_2c))->close();
+            TWindow__close((u8 *)(*(void * *)&this->m_2c));
             *(void * *)&this->m_2c = NULL;
         }
         if ((f32)++*(s32 *)&this->m_28 > lbl_805DF7B0) {
