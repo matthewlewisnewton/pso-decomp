@@ -144,7 +144,7 @@ nothing else changes behaviour.
 
 | File | Function | What | Why | Port should |
 |---|---|---|---|---|
-| `src/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `TAdMultiPlyChrSelectGC__sub_802C5F1C` | unit `-inline on` instead of the game default `-inline off` | The slot clamp is a `static inline` helper with no symbol of its own. Under `-inline off` the helper is a real call and the function is 332 bytes (42.79518%). Under `-inline on` the row stays in `r8` and the cell in `r7`, and the function is 236 bytes. `v0` and `v1` are `a / 256.0f` and `(lbl_805DE588 + a) / 256.0f`. MWCC folds that into `fmuls` by the pooled reciprocal at `805DE584` (exactly 1/256) with the dividend on the left, and the function is exact. `-inline auto` inlines other functions (`update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788). The other compiled functions and the data sections stay exact under `-inline on`. Evidence: [chr-select-slot-clamp-inline.md](evidence/chr-select-slot-clamp-inline.md). Precedent: [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (only functions marked `inline`); [`-inline auto` in dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was tried and does not keep this unit identical. | Drop the flag. The value is `min(slot, 3)` applied to each cell's texture row. A port does not need MWCC's inline-local numbering. |
+| `src/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `TAdMultiPlyChrSelectGC__sub_802C5F1C`; also `mark_grid_cell_occupied` inlined into `sub_802C5688` and `sub_802C6660` | unit `-inline on` instead of the game default `-inline off`, together with the `-fp_contract on` row below | The slot clamp is a `static inline` helper with no symbol of its own. Under `-inline off` the helper is a real call and the function is 332 bytes (42.79518%). Under `-inline on` the row stays in `r8` and the cell in `r7`, and the function is 236 bytes. `v0` and `v1` are `a / 256.0f` and `(lbl_805DE588 + a) / 256.0f`. MWCC folds that into `fmuls` by the pooled reciprocal at `805DE584` (exactly 1/256) with the dividend on the left. The same flag inlines `mark_grid_cell_occupied(row, col)`. `802C6660` passes `row + 1, col + 1` (its `row`/`col` are the 0-based quad indices); the inlined arguments are the `addi` before `mulli 0x14` and `stwx` at `0x802C67xx`. `802C5688` already holds grid coordinates and stays 700/700. `-inline auto` inlines other functions (`update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788). `-inline deferred` emits the unit backwards. With `-inline on` and `-fp_contract on` together, every function and section of this object matches (43/43, `.text` 7288; `.rodata` 0x80471A88–0x80471D08 and `.sdata2` 0x805DE560–0x805DE588 as on main). Evidence: [chr-select-slot-clamp-inline.md](evidence/chr-select-slot-clamp-inline.md), [chr-select-confirm-cell-store.md](evidence/chr-select-confirm-cell-store.md). Precedent: [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (only functions marked `inline`); [`-inline auto` in dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was tried and does not keep this unit identical. | Drop the flag. The value is `min(slot, 3)` applied to each cell's texture row, and the occupied-cell store is `grid[row][col] = -1`. A port does not need MWCC's inline-local numbering. |
 
 `pso/effect/TEF_LensFlare.cpp` (this change) sets `-fp_contract on` because the
 recovered renderer contracts its attenuation and displacement multiply-adds
@@ -152,6 +152,57 @@ into `fnmsubs`/`fmadds`. The same unit places `lbl_80438E40` with
 `__declspec(section ".rodata")` so the original `{0,0,-1}` vector symbol stays
 in `.rodata`. Port: keep FMA or accept small float differences; a normal
 `const` is enough for the vector.
+
+### `pso/misc/TOMineTrap_8016F6F8.cpp`: `-inline on`, `-fp_contract on` ([#321](https://github.com/matthewlewisnewton/pso-decomp/pull/321))
+
+Allowed by Matt on 2026-11-04: unit-wide switches in `configure.py`. No
+function pragma.
+
+| Unit | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/misc/TOMineTrap_8016F6F8.cpp` | `TOMineTrap::run_task` (`0x8016F90C`, 952 bytes); no other function changes | unit switch `-inline on`, which expands the inline members `strike_actor(TObjChara *, TObjPlayer *)`, `strike_player(TObjChara *)` and `strike_enemy(TObjChara *, TObjPlayer *)` into mode 4's loop | The original keeps `this` in r29, the owner in r31, `i` in r30, the entity id in r28 and the actor in r27 (`mr r29, r3` at `0x8016F91C`, `mr. r27, r3` at `0x8016F9F4`, `mr r28, r3` at `0x8016FA48`). With the actor as a named local in `run_task` it is virtual r34, degree 30, and every temp it could lose a neighbour to is numbered above it. MWCC's simplify pass only pushes a node whose degree is already below 29 when the ascending sweep reaches it, so the actor is coloured before the id and gets r29 (`this` r28, id r27; 98.49%). Copy propagation cannot remove the named copy because the actor is passed to calls (`mr r3, actor`). When `get_player_data(i)` is the argument of an inline call, the actor is the inline's argument temp: it is numbered above the two room loads that the frontend CSE pass shares, so the sweep sees degree 28 and gives it the last callee-saved register. The player and enemy branches are their own inlines: nested inlines are expanded one pass later in statement order. That keeps the two `DirectAttackPayload` argument copies in the original stack slots (`0x10(r1)` for the player hit at `0x8016FB10`, `0x8(r1)` for the enemy hit at `0x8016FBE4`). With one inline for the whole body the slots swap (99.97%). With the switch, `run_task` is 100% and every other function, `.rodata` and the symbol table are byte-identical to the object built without it from the previous source (`-inline off` and `-inline on` give identical objects for that source). Without the switch, the new source keeps the three helpers out of line as weak functions and `run_task` is 33.82%. Other keywords tested: `noauto` gives the same object as `on`. `deferred` matches `run_task` but writes the functions in reverse order. `auto`, `auto,deferred` and `all` also auto-inline small members: `run_task` falls to 95.95% (76.70% with `auto,deferred`), and six other functions drop, for example `check_trigger`/`can_trigger` to 39.48% and `receive_direct_attack` to 60.34%. Precedent: [brawl `configure.py`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (`-inline on`), [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) per-group `-inline`, and this repo's `-inline on` units `QuestOpcodeHandlers.cpp` and `TQuestThread.cpp`. | Drop the switch. The helpers are plain inline members. |
+
+#### `-fp_contract on`
+
+The original text has three `fmadds` and no `fmsubs`.
+
+| Function | Instruction | Address | Expression |
+|---|---|---|---|
+| `TOMineTrap::TOMineTrap` | `fmadds f2,f3,f4,f2` | `0x80170058` | damage product `lbl_805DB878 * (float)level + lbl_805DB874`, then two `fmuls` |
+| `TOMine::follow_target` | `fmadds f0,f1,f0,f2` | `0x80170B9C` | `lbl_805DB884 * ((lbl_805DB888 + target_y) - held_y) + held_y` |
+| `TOMine::update_float_height` | `fmadds f0,f3,f1,f0` | `0x80170D30` | `lbl_805DB884 * ((lbl_805DB888 + home_y) - height) + constant`, then `fadds` the old height |
+
+Objdiff of the whole unit (`GC/2.6`, `-O4,s -inline on -sdata2 4`), flag on
+versus flag omitted: `run_task` is byte-identical either way (100%, 952
+bytes). Every other function that is exact without the flag stays exact with
+it. `.rodata` (`lbl_804421F8`, 8 bytes) is exact either way. The three
+functions above change, from 98.82% (1076 bytes) / 97.81% (296) / 95.60%
+(172) without the flag to 100% (1072 bytes) / 100% / 100% with it. `run_task`
+is byte-identical either way. Those multiply-adds compile as `fmuls`+`fadds`
+when `-fp_contract` is omitted and `fmadds` when it is on.
+
+The constructor clamp (`0x80170068`) is written `attack.power < 0.0f`.
+`lbl_805DB85C` is that `0.0f`. Loaded by name, it is an `extern const`, so
+the frontend CSE pass puts it in a temp numbered below the reload of
+`attack.power` and the compare swaps `f0`/`f1` (99.91%). A literal is not
+shared, so the reload is `f1` and the constant is `f0`, which is the
+original. That literal is the unit's only `.sdata2` entry. The split claims
+`0x805DB85C`-`0x805DB860` (`align:4`), the address of `lbl_805DB85C`. The
+other uses in this file still name the symbol, and both relocations resolve
+there. Defining `lbl_805DB85C = 0.0f` in the file does not do this: MWCC
+inlines the const, so every use becomes a second pool slot 4 bytes after
+the exported symbol, and `receive_physical_attack` and
+`receive_weapon_special_attack` leave exact. The compiled `.sdata2` section
+is 8-aligned and `0x805DB85C` is not, and the pool symbol is the compiler's
+`@252` rather than `lbl_805DB85C`, which `text_8016F1C0.cpp` and `TOMine.cpp`
+still reference. The unit therefore matches (38/38 functions, `.text`,
+`.rodata` and `.sdata2`) and is not linked.
+
+`follow_target` and `update_float_height` are exact on main through
+function-local `fp_contract` pragmas. This PR removes those pragmas; the unit
+flag is what keeps their `fmadds`.
+
+Port should: fuse those three multiply-adds, or accept the float difference.
 
 ### `pso/effect/TEffIndirectCtrl.cpp`: GC/2.0, `-inline off,deferred`, `-fp_contract on`, `-str reuse,readonly` ([#161](https://github.com/matthewlewisnewton/pso-decomp/pull/161))
 
@@ -211,6 +262,12 @@ plain source: `free_all` (no copied loop-counter alias) and
 | Unit | Function | What | Why | Port should |
 |---|---|---|---|---|
 | `pso/misc/TMovie_80143988.cpp` | `pack_movie_frame` (`0x80143988`, 564 bytes; the only function in the unit) | unit switch `-opt nolifetimes,nocse,noprop,noloop` | The original keeps each named local in one register for the whole function: the packed word is built in place in `r25`, and `mr r24, r25` copies it for the second scanline before every luma insert (`0x80143A4C`, `0x80143A70`, ... eight times). The cache-touch offset is the single `li r0, 0x20` hoisted to the entry (`0x8014398C`) and reused by both `dcbt r31, r0` / `dcbt r9, r0` (`0x80143A30`, `0x80143ADC`). The pad scales are recomputed late in the entry (`slwi r5, r25, 2` ... `slwi r3, r24, 2`, `0x80143A18`–`0x80143A20`). Without `nolifetimes` the unit is 53.40% (568 bytes, `stmw r21`). Without `noprop`, `touch` is propagated as a constant: 70.50%, 596 bytes. Without `nocse` or `noloop` the shared stride and pad shifts become frontend temps coloured in the wrong order: 93.06%, 564 bytes. With the switch, `.text` (564 bytes), relocations and symbols match the target object. The source is plain C++ (no `__rlwinm`/`__rlwimi`); only `__dcbt` (section 2) remains. Precedent: Petari uses these keywords per object: [`-opt nolifetimes,nocse,noprop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L3735), [`-opt nolifetimes,noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L2974), [`-opt noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L1532). SFA uses [`-opt nolifetimes`](https://github.com/zcanann/SFA-Decomp/blob/f561e933ecc7356259bccdd6a7ce9a4462a950a0/configure.py#L1586). This repo already has `-opt noprop` and `-opt nocse` units. Evidence: [pack-movie-frame-unit-flags.md](evidence/pack-movie-frame-unit-flags.md). | Drop the switch. The source is plain C++; drop the cache touch too. |
+
+### `TAdMultiPlyChrSelectGC_802C50EC.cpp` ([#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp` | `sub_802C50EC` (`fmadds` at `0x802C5148`), `sub_802C522C` (`0x802C5274`), `sub_802C5688` (`0x802C58AC`), `sub_802C6660` (`0x802C676C`) | unit `-fp_contract on`, together with the `-inline on` row above | The original unit has one `fmadds` in each of those four functions, so the whole unit was built with contraction on. Main had `#pragma fp_contract on` around the first two only; the unit flag replaces that pragma. Without contraction, `sub_802C50EC` drops to 97.81%, `sub_802C522C` to 96.98%, `sub_802C5688` to 98.03%, and `sub_802C6660` to 93.89%. With both unit flags, every function and section matches. Precedent: [#219](https://github.com/matthewlewisnewton/pso-decomp/pull/219) (`TWindowKeyBoardSoft_8024E68C.cpp`, above) and `TObjTombstone.cpp`, both unit `-fp_contract on`. | Keep fused multiply-add, or accept small float differences. |
 
 ## 6. Approved regressions
 
