@@ -292,11 +292,16 @@ s32 check_equip_requirements(TObjPlayer *player, u8 *item, s32 *requirement) {
             break;
         }
         break;
-    case 4:
-        if (MESETA_EQUIP_CAP < (s32)((TItemData *)item)->data2.data_u32) {
+    case 4: {
+        // An enum local is rematerialized as the left operand of a signed compare.
+        enum MesetaCap { meseta_cap = MESETA_EQUIP_CAP };
+        MesetaCap cap = meseta_cap;
+
+        if (cap < (MesetaCap)(s32)((TItemData *)item)->data2.data_u32) {
             flags |= 0x20;
         }
         break;
+    }
     }
     if (requirement != NULL) {
         *requirement = flags;
