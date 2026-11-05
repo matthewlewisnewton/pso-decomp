@@ -1,4 +1,5 @@
 #include "pso/system/SoundEffect.h"
+#include "pso/misc/TWindowMenu.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
@@ -62,12 +63,12 @@ void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(void *, void *, int, f32
 extern const f32 lbl_805DD680;
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 fn_801A51F0(int);
-s32 set_field_1c__6TLobbyFf(s32);
+s32 set_depth__11TWindowBaseFf(s32);
 s32 TWindowSubEquip__sub_80263AF8(s32, s32);
 s32 get_window_layout_position(s32);
 extern u8 lbl_8044FA28[];
 void *__dt__19TWindowSubMagPhotonFv(void *arg0, s16 arg1);
-s32 get_selected_menu_value(s32);
+s32 get_selected_value__11TWindowMenuFv(s32);
 s32 align_menu_entry_positions(s32);
 void __dl__7TObjectFPv(void *);
 }
@@ -189,7 +190,7 @@ void TUnk_804D1818::update_photon_selection() {
     s32 selected_menu_value;
     s32 temp_r3;
 
-    selected_menu_value = get_selected_menu_value(*(s32 *)&this->unk_28);
+    selected_menu_value = ((TWindowMenu *)(*(s32 *)&this->unk_28))->get_selected_value();
     temp_r3 = update_selected_item__17TWindowOptionCtrlFv(this->m_2c);
     if ((selected_menu_value == 4) && ((s8)this->m_1d != temp_r3)) {
         (this->m_1d) = (u8) temp_r3;
@@ -203,7 +204,7 @@ void TUnk_804D1818::update_quest_board_card_flags() {
     s32 selected_menu_value;
     s32 temp_r4;
 
-    selected_menu_value = get_selected_menu_value(*(s32 *)&this->unk_28);
+    selected_menu_value = ((TWindowMenu *)(*(s32 *)&this->unk_28))->get_selected_value();
     temp_r4 = update_selected_item__17TWindowOptionCtrlFv(this->m_2c);
     switch (selected_menu_value) {
     case 0:
@@ -281,7 +282,7 @@ s32 TUnk_804D1818::sub_8027C884(s32 arg1) {
     ((TWindowSubStatusDisp *)temp_r31)->set_selected_index(var_r29);
     ((TWindowSubShortCutList *)temp_r31)->set_flag70_bit10();
     TWindowSubEquip__sub_80263AF8((int)this->m_24, 1);
-    set_field_1c__6TLobbyFf(temp_r31);
+    set_depth__11TWindowBaseFf(temp_r31);
     return temp_r31;
 }
 
@@ -303,7 +304,7 @@ s32 TUnk_804D1818::create_option_menu_window() {
     ((TWindowSubComCardList *)titled_window_menu)->update_layout_height(lbl_805DD688);
     align_menu_entry_positions(titled_window_menu);
     TWindowSubEquip__sub_80263AF8(*(s32 *)&this->m_24, 0);
-    set_field_1c__6TLobbyFf(titled_window_menu);
+    set_depth__11TWindowBaseFf(titled_window_menu);
     return titled_window_menu;
 }
 }

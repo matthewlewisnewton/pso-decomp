@@ -73,7 +73,7 @@ void TSaveChCr::fn_80339D78() {
     }
 }
 s32 TAdSinglePlyChrSelectGC__sub_80339DBC(void) {
-    if ((find_card_file__15TAdPlayerLoadGCFiPv(0, (const char *)(pso_system_card_filename)) != 0) || (find_card_file__15TAdPlayerLoadGCFiPv(0, (const char *)(lbl_804C88C0)) != 0) || (find_card_file__15TAdPlayerLoadGCFiPv(0, (const char *)(lbl_804C89BC)) != 0)) {
+    if ((find_card_file__15TAdPlayerLoadGCFlPCc(0, (const char *)(pso_system_card_filename)) != 0) || (find_card_file__15TAdPlayerLoadGCFlPCc(0, (const char *)(lbl_804C88C0)) != 0) || (find_card_file__15TAdPlayerLoadGCFlPCc(0, (const char *)(lbl_804C89BC)) != 0)) {
         return 0;
     }
     return 1;

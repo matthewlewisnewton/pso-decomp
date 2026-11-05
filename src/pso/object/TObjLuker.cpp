@@ -1,4 +1,5 @@
 #include "pso/misc/ParticleFactory.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
@@ -487,7 +488,7 @@ Luker_801A16D8 *__dt__9TObjLukerFv(Luker_801A16D8 *arg0, s16 arg1) {
         arg0->f18 = __vt__9TObjLuker;
         for (i = 0; i < 4; i++) {
             if (arg0->wins[i] != 0) {
-                TWindow__close((u8 *)arg0->wins[i]);
+                ((TWindowBase *)(arg0->wins[i]))->close();
                 arg0->wins[i] = 0;
             }
         }

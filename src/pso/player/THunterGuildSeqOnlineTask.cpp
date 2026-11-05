@@ -1,6 +1,6 @@
 #include "pso/system/ArrayAllocation.h"
-#include "pso/TMainTask.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/TMainTask.h"
 #include "pso/THunterGuildSeqOnlineTask.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/player/TObjPlayer.h"
@@ -23,7 +23,6 @@ struct Pos_80214F80 { s32 a; s32 b; };
 extern "C" {
 void TKeyBoardControl__sub_8000F95C();
 void TQuestListOnline__sub_8013ACF4(s32);
-s32 close__11TWindowBaseFv(int);
 extern unsigned char TQuestListOnline__dat_download_state[];
 extern unsigned char TQuestListOnline__bin_download_state[];
 extern s32 evt2_random_enemies_mode;
@@ -71,7 +70,6 @@ void THunterGuildSeqOnlineTask::run_task() {
 THunterGuildSeqOnlineTask::~THunterGuildSeqOnlineTask() {}
 
 #include "pso/misc/TLobby.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TQuestListOnline.h"
 #include "pso/misc/TDLGraph.h"
 #include "pso/misc/THunterGuildSeqOffline.h"

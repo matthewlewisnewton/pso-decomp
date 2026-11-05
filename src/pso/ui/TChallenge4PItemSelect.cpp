@@ -1,5 +1,6 @@
 #include "pso/ui/TChallenge4PItemSelect.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/item/TItemData_8010EDA8.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -7,11 +8,9 @@
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TWindowSubComCardList.h"
-#include "pso/misc/TWindowMenu.h"
 #include "types.h"
 #include <stddef.h>
 #include "pso/misc/TLobby.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/ui/TChallenge4PResult.h"
 #include "pso/misc/TLobby_80291D94.h"

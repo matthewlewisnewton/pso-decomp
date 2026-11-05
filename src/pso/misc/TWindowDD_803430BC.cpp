@@ -1,6 +1,6 @@
 #include "pso/system/ArrayAllocation.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/ui/Language.h"
 
@@ -143,7 +143,6 @@ struct Obj_80343C64
 #include <stddef.h>
 #include <string.h>
 #include "pso/misc/TLobby.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"

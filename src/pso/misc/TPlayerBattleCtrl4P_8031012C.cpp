@@ -1,4 +1,5 @@
 #include "pso/system/TSetEvtDestroy.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/item/TItem.h"
 #include "types.h"
 #include "pso/misc/TPlayerBattleCtrl4P.h"
@@ -207,7 +208,7 @@ s32 TPlayerBattleCtrl4P::close_windows_on_button() {
         if (get_player_by_client_id(i) != 0) {
             if (self->win[i] != NULL) {
                 if (TWindowShortListCtrl__check_controller_button(controller_input_state[get_map_id__13TRaderMapCoreFv()].sub, 2) != 0) {
-                    TWindow__close((u8 *)self->win[i]);
+                    ((TWindowBase *)(self->win[i]))->close();
                     self->win[i] = 0;
                 } else {
                     r = 0;
@@ -223,7 +224,7 @@ void TPlayerBattleCtrl4P::close_player_windows() {
     s32 i;
     for (i = 0; i < 4; i++) {
         if (o->win[i] != 0) {
-            TWindow__close((u8 *)o->win[i]);
+            ((TWindowBase *)(o->win[i]))->close();
             o->win[i] = 0;
         }
     }
@@ -798,11 +799,11 @@ void TPlayerBattleCtrl4P::shuffle_order() {
         o->order[i] = order[i];
     }
     if (this->intro_window != NULL) {
-        TWindow__close((u8 *)this->intro_window);
+        ((TWindowBase *)this->intro_window)->close();
         this->intro_window = NULL;
     }
     if (this->menu_window != NULL) {
-        TWindow__close((u8 *)this->menu_window);
+        ((TWindowBase *)this->menu_window)->close();
         this->menu_window = NULL;
     }
     close_player_windows();

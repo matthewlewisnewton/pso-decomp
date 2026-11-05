@@ -1,6 +1,7 @@
 #include "types.h"
-#include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowMessage.h"
 #include "pso/ui/TUnk_804F3A20.h"
 #include "pso/ui/TAdPlayerLoadGC_801E0C30.h"
 #include "pso/ui/TAdMultiChgGameModeGC_8036DE10.h"
@@ -8,7 +9,6 @@
 
 #include "pso/TAdMultiChgGameModeGC.h"
 #include "pso/misc/TWindowSubComCardList.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/ui/Language.h"
 
 struct RecoveredGlobal_8036E8DC_lbl_804C88C0 { s32 value; u8 remaining[0x50]; };

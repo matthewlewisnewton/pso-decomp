@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TWindowSubStatusDisp_8026F6DC.h"
 #include "pso/misc/TUnk_804CE018.h"
@@ -50,7 +51,7 @@ u8 *__dt__19TWindowSimpleStatusFv(SS_802705D8 *arg0, s16 arg1) {
         arg0->vt = __vt__19TWindowSimpleStatus;
         for (i = 0; i < 4; i++) {
             if (arg0->w[i] != NULL) {
-                TWindow__close((u8 *)arg0->w[i]);
+                ((TWindowBase *)(arg0->w[i]))->close();
                 arg0->w[i] = NULL;
             }
         }

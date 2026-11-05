@@ -1,8 +1,8 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowAddition.h"
-#include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TUnk_804D0948.h"
 #include "pso/misc/TLobby.h"
 

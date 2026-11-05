@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/object/TObjResultWin.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 #include "pso/TShopWindowBase.h"
@@ -43,7 +44,7 @@ void TObjNewFloorWin::run_task() {
     case 1:
         if (--self->timer28 == 0x3C) {
             if (self->window != NULL) {
-                TWindow__close(self->window);
+                ((TWindowBase *)self->window)->close();
                 self->window = NULL;
             }
             self->state = 2;

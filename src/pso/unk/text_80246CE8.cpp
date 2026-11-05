@@ -1,7 +1,7 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowChallengeResult.h"
 #include "pso/unk/text_80246CE8.h"
-#include "pso/misc/TWindowBase.h"
 
 extern "C" {
 s32 draw_visible_window_entries(void *, void *, int);

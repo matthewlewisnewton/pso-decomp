@@ -1,10 +1,11 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowBase.h"
 #include "types.h"
 #include "pso/misc/TPlyJoinLobbyEntry.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObjWarpLobby_801A0760.h"
 #include "pso/unk/text_803D96A8.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/object/TObjWarpLobby.h"
 #include "pso/TParticleCtrl.h"
@@ -40,7 +41,7 @@ extern s32 warp_lobby_directory_label_table[];
 s32 queue_destruction__7TObjectFv(u32);
 s32 is_idle__6TLobbyFv();
 u32 find_warp_player_in_range(void *, u16, f32);
-s32 get_selected_menu_value(u32);
+s32 get_selected_value__11TWindowMenuFv(u32);
 extern s32 local_client_id;
 
 void run_task__13TObjWarpLobbyFv(VO_801A0894 *arg0);
@@ -96,8 +97,8 @@ void run_task__13TObjWarpLobbyFv(VO_801A0894 *arg0) {
         if (((u32) ((TObjWarpLobby *)arg0)->m_cc == 0U) && (is_idle__6TLobbyFv() != 0)) {
             ((TObjWarpLobby *)arg0)->open_lobby_menu();
         }
-        if (((u32) ((TObjWarpLobby *)arg0)->m_cc != 0U) && (((TWindowMenu *)(((TObjWarpLobby *)arg0)->m_cc))->is_visible() != 0)) {
-            selected_menu_value = get_selected_menu_value(((TObjWarpLobby *)arg0)->m_cc);
+        if (((u32) ((TObjWarpLobby *)arg0)->m_cc != 0U) && (((TWindowMenu *)(((TObjWarpLobby *)arg0)->m_cc))->is_decided() != 0)) {
+            selected_menu_value = ((TWindowMenu *)(((TObjWarpLobby *)arg0)->m_cc))->get_selected_value();
             if (((TObjWarpLobby *)arg0)->m_cc != 0U) {
                 queue_destruction__7TObjectFv(((TObjWarpLobby *)arg0)->m_cc);
                 ((TObjWarpLobby *)arg0)->m_cc = 0U;
@@ -106,7 +107,7 @@ void run_task__13TObjWarpLobbyFv(VO_801A0894 *arg0) {
             send_room_change__6TLobbyFi(selected_menu_value);
         }
     } else if ((u32) ((TObjWarpLobby *)arg0)->m_cc != 0U) {
-        TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0xB0)));
+        ((TWindowBase *)(*(void **)((s8 *)arg0 + 0xB0)))->close();
         ((TObjWarpLobby *)arg0)->m_cc = 0U;
         TWindowCtrl::clear_flag();
     }

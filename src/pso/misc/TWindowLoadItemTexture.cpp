@@ -1,4 +1,5 @@
 #include "pso/ui/ItemTextureConstants.h"
+#include "pso/misc/TWindowBase.h"
 #include "types.h"
 #include "pso/misc/TWindowLoadItemTexture.h"
 #include "pso/misc/TWindowSubStatusDisp_8025B050.h"
@@ -6,7 +7,6 @@
 #include "pso/misc/TWindowSubMag_802627D8.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/misc/TCameraCtrl.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowDD.h"
 
 #pragma push

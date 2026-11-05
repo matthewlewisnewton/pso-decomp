@@ -1,4 +1,7 @@
 #include "pso/misc/TWindowDrawContext.h"
+#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TLobby_80132ED0.h"
@@ -8,9 +11,7 @@
 #include "pso/misc/TWindowChoiceSetting.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
 #include "pso/misc/TWindowAddition.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TUnk_804CE7E8.h"
-#include "pso/misc/TWindowMenuIconLine.h"
 #include <stddef.h>
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TShopEquipmentSellWindow.h"
@@ -20,7 +21,6 @@
 #include "pso/misc/TWindowSubShortMail.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowDD.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
 
@@ -635,7 +635,7 @@ void TWindowMenuIconLine::update_scroll_offset() {
   }
 }
 
-void TWindowMenuIconLine::draw_selected_list_entry(s32 window_key_board_soft) {
+void TWindowMenuIconLine::draw_selected_list_entry(long window_key_board_soft) {
     u16 *temp_r3;
 
     if (!(this->state_flags & 0x80)) {
@@ -689,7 +689,7 @@ void TWindowMenuIconLine::render() {
     temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
-    this->draw_selected_list_entry(temp_r3);
+    this->draw_selected_list_entry((long)temp_r3);
     if ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x80) != 0U) {
         forward_render__20TWindowSubStatusDispFv(*(u32 *)((s8 *)((u8 *)this) + 0x80), temp_r3);
     }

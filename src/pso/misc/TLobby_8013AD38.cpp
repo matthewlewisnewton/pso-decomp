@@ -1,6 +1,6 @@
 #include "types.h"
-#include "pso/misc/TLobby_8013AD38.h"
 #include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TLobby_8013AD38.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowMakeTeam.h"
 #include "pso/misc/TCheckRoomSequence.h"

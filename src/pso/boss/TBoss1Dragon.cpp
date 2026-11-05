@@ -6009,7 +6009,7 @@ void TBoss1Dragon::load_resources() {
     }
     source = ((DragonResource *)TBoss1Dragon__data_805D4B08)->model->root;
     lbl_805D4B24 = TBoss1Dragon::countModelNodes(source);
-    TBoss1Dragon__data_805D4B28 = (u32)((TQuestVmDownLoadServer *)0)->alloc(lbl_805D4B24 * 0x50);
+    TBoss1Dragon__data_805D4B28 = (u32)TQuestVmDownLoadServer::alloc(lbl_805D4B24 * 0x50);
     lbl_804FE1B8.state[0] = 0;
     lbl_804FE1B8.state[1] = 0;
     lbl_804FE1B8.params[0] = (0.0f);

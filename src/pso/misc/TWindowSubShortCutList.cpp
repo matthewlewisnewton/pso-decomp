@@ -1,8 +1,9 @@
 #include "pso/misc/TWindowDrawContext.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
-#include "pso/misc/TWindowSubComCardList_8026CB08.h"
 #include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
+#include "types.h"
+#include "pso/misc/TWindowSubComCardList_8026CB08.h"
 #include "pso/misc/TWindowSubShortCutList.h"
 #include "pso/misc/TWindowChat.h"
 #include "pso/misc/TWindowShortListCtrl.h"
@@ -92,7 +93,7 @@ void render__22TWindowSubShortCutListFv(u8 *arg0) {
     temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
-    ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry(temp_r3);
+    ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry((long)temp_r3);
     if ((u32) *(u32 *)((s8 *)arg0 + 0x80) != 0U) {
         forward_render__20TWindowSubStatusDispFv(*(u32 *)((s8 *)arg0 + 0x80), temp_r3);
     }

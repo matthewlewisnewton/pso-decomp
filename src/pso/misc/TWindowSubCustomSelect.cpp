@@ -58,7 +58,7 @@ extern const f32 lbl_805DD5E4;
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
 s32 get_message_10__20TWindowSubStatusDispFl(int);
 void *get_player_by_client_id(s32 i);
-s32 construct_with_parent__13TUnk_804CDFE8FPv(void *, void *, s16, s32);
+s32 construct_with_parent__15TWindowAdditionFPv(void *, void *, s16, s32);
 s32 get_window_layout_position(int);
 void *reset_selection__20TWindowSubStatusDispFv(void *, Pos_80277AEC *);
 extern u8 custom_select_organic_action_table[];
@@ -76,7 +76,7 @@ extern const f32 lbl_805DD5B8;
 extern const f32 lbl_805DD5BC;
 extern const f32 lbl_805DD5C0;
 s32 can_use_palette_action__10TObjPlayerFPvUcUc(s32, u8, u8);
-u8 *get_array_entry__13TUnk_804CE018Fi(void *, s32);
+u8 *get_array_entry__11TWindowBaseFi(void *, s32);
 s32 draw_action_palette_icon(void *, u16, u16);
 s32 draw_visible_window_entries(void *, void *, void *);
 extern const f32 lbl_805DD5D4;
@@ -200,9 +200,9 @@ void TWindowSubCustomSelect::draw_palette_cells(int ctx) {
         if (lbl_805DD5D4 + (lbl_805DD5D8 + y) < *(f32 *)((s8 *)ctx + 0x40) || lbl_805DD5D8 + y > *(f32 *)((s8 *)ctx + 0x48)) {
             continue;
         }
-        w1 = get_array_entry__13TUnk_804CE018Fi(this, 1);
-        w0 = get_array_entry__13TUnk_804CE018Fi(this, 0);
-        w2 = get_array_entry__13TUnk_804CE018Fi(this, 2);
+        w1 = get_array_entry__11TWindowBaseFi(this, 1);
+        w0 = get_array_entry__11TWindowBaseFi(this, 0);
+        w2 = get_array_entry__11TWindowBaseFi(this, 2);
         *(f32 *)((s8 *)w1 + 8) = lbl_805DD5DC + fx;
         *(f32 *)((s8 *)w1 + 0xC) = lbl_805DD5BC + fy;
         *(f32 *)((s8 *)w0 + 8) = lbl_805DD5E0 + fx;
@@ -281,7 +281,7 @@ u8 *TWindowSubCustomSelect__ct(TWindowSubCustomSelect *window_sub_custom_select,
     Sub_80277AEC *q;
     Ent_80277AEC *e;
     void *o;
-    construct_with_parent__13TUnk_804CDFE8FPv(window_sub_custom_select, TWindowSubCustomSelect__window_settings, arg1, get_window_layout_position(0x10));
+    construct_with_parent__15TWindowAdditionFPv(window_sub_custom_select, TWindowSubCustomSelect__window_settings, arg1, get_window_layout_position(0x10));
     *(s32 **)((s8 *)window_sub_custom_select + 0x18) = __vt__22TWindowSubCustomSelect;
     *(s32 *)((s8 *)window_sub_custom_select + 0) = TWindowSubCustomSelect__class_name;
     window_sub_custom_select->m_20 = arg1;

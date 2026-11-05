@@ -1,9 +1,10 @@
 #include "pso/misc/TWindowDrawContext.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
+#include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_802671F0.h"
 #include "pso/unk/text_80268384.h"
-#include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowSubEquipList.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
@@ -45,7 +46,7 @@ void TWindowSubEquipList::render() {
     temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, (void *) (((u8 *)this) + 0x24), temp_r3);
-    draw_selected_list_entry(temp_r3);
+    draw_selected_list_entry((long)temp_r3);
     if ((u32) this->status_display != 0U) {
         forward_render__20TWindowSubStatusDispFv(this->status_display, temp_r3);
     }

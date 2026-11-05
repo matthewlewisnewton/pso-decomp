@@ -1,4 +1,5 @@
 #include "pso/system/SoundEffect.h"
+#include "pso/misc/TWindowMenu.h"
 #include "types.h"
 #include "pso/misc/TWindowChoiceSetting.h"
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
@@ -11,7 +12,6 @@
 #include "pso/misc/TWindowSubSymbolChatParts.h"
 #include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TWindowDD.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowHelpItem.h"
 #include "pso/misc/TWindowSubStatusDisp_8025B050.h"
@@ -140,7 +140,7 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 
 void __dl__7TObjectFPv(void *);
-void construct_with_parent__13TUnk_804CDFE8FPv(void *, void *, s32, void *);
+void construct_with_parent__15TWindowAdditionFPv(void *, void *, s32, void *);
 void clamp_list_scroll_offset(s32, Vec2_80284D68 *, Vec2_80284D68 *);
 s32 draw_window_scrollbar(s32, s32, void *);
 void * reset_selection__20TWindowSubStatusDispFv(void *, Vec2_80285D38 *);
@@ -549,7 +549,7 @@ Parts_80285D38 *TWindowSubSymbolChatParts__ct(Parts_80285D38 *arg0, void *arg1, 
     Vec2_80285D38 v;
     void *p;
     void *q;
-    construct_with_parent__13TUnk_804CDFE8FPv(arg0, symbol_chat_parts_window_layout, 4, arg1);
+    construct_with_parent__15TWindowAdditionFPv(arg0, symbol_chat_parts_window_layout, 4, arg1);
     arg0->vt = __vt__25TWindowSubSymbolChatParts;
     arg0->f0 = TWindowSubSymbolChatParts__name;
     arg0->f70 = 0;

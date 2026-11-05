@@ -1,4 +1,5 @@
 #include "pso/system/SoundEffect.h"
+#include "pso/misc/TWindowBase.h"
 #include "types.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802DD8E0.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
@@ -261,7 +262,7 @@ void TAdMultiPlyChrSelectGC::reset_to_select() {
         *(u32 *)&this->m_6c = 0U;
     }
     if ((u32) this->m_84 != 0U) {
-        TWindow__close(*(void * *)&this->m_84);
+        ((TWindowBase *)(*(void * *)&this->m_84))->close();
         this->m_84 = 0U;
     }
     if ((u32) *(u32 *)&this->unk_88 != 0U) {

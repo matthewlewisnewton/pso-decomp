@@ -23,11 +23,11 @@ typedef struct Disp_80244238 {
 } Disp_80244238;
 
 extern "C" {
-s32 set_position_xy__13TUnk_804CDFE8Fff(f32, f32);
+s32 set_position_xy__15TWindowAdditionFff(f32, f32);
 extern s32 lbl_805D3878;
 extern const f32 lbl_805DCAAC;
 extern const f32 lbl_805DCAB0;
-Ctx_80244364 *setup_window_draw_context__13TUnk_804CE018Fl(Obj_80244364 *self, f32 *p);
+Ctx_80244364 *setup_window_draw_context__11TWindowBaseFl(Obj_80244364 *self, f32 *p);
 extern const f32 lbl_805DCAA8;
 
 #pragma push
@@ -53,7 +53,7 @@ void TUnk_804CDFE8::step_window_tween() {
 
 TWindowDrawContext *get_draw_context__11TWindowBaseFPv(void *window) {
     Obj_80244364 *self = (Obj_80244364 *)window;
-    Ctx_80244364 *c = setup_window_draw_context__13TUnk_804CE018Fl(self, self->a);
+    Ctx_80244364 *c = setup_window_draw_context__11TWindowBaseFl(self, self->a);
     c->x -= self->x;
     c->y -= self->y;
     return (TWindowDrawContext *)c;
@@ -64,7 +64,7 @@ void TUnk_804CDFE8::sub_802443B4() {
     *(s32 *)&this->m_name = (s32) lbl_805D3878;
     *(f32 *)((s8 *)arg0 + 0x68) = (f32) lbl_805DCAAC;
     *(f32 *)((s8 *)arg0 + 0x6C) = (f32) lbl_805DCAAC;
-    set_position_xy__13TUnk_804CDFE8Fff(lbl_805DCAB0, lbl_805DCAB0);
+    set_position_xy__15TWindowAdditionFff(lbl_805DCAB0, lbl_805DCAB0);
 }
 
 }

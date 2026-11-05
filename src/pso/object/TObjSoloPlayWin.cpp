@@ -4,7 +4,6 @@
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/misc/TLobby.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/map/FloorArea.h"
 
 extern "C" {

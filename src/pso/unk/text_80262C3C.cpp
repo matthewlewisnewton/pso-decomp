@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/item/TItem.h"
 #include "pso/misc/TWindowHelpItem_8025A60C.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -7,7 +8,6 @@
 #include "pso/unk/text_80262C3C.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowComCard.h"
-#include "pso/misc/TWindowBase.h"
 #include <stddef.h>
 #include "pso/misc/TWindowLockOn.h"
 #include "pso/TObject.h"

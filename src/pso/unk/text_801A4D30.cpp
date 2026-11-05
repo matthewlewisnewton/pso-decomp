@@ -1,6 +1,6 @@
 #include "types.h"
-#include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowShortListCtrl_801A4FC0.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 #include "pso/misc/TUnk_804C2298.h"

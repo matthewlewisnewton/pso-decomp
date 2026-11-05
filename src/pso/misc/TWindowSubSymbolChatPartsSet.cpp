@@ -1,8 +1,8 @@
 #include "pso/system/SoundEffect.h"
+#include "pso/misc/TWindowBase.h"
 #include "types.h"
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/misc/TWindowChatSymbol_802486A8.h"
-#include "pso/misc/TWindowBase.h"
 
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowDD.h"

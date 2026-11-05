@@ -1,4 +1,6 @@
 #include "pso/system/SoundEffect.h"
+#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowBase.h"
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
@@ -15,7 +17,6 @@
 #include "pso/TShopWindowBase.h"
 #include "pso/misc/TShopKeepItemWindow.h"
 #include "pso/misc/TUnk_804CDFE8.h"
-#include "pso/misc/TWindowMenu.h"
 
 struct Base_80221844 { char pad[0x18]; };
 struct VObj_80221844 : Base_80221844 {
@@ -114,21 +115,21 @@ s32 store_item_in_bank(u8 *item, s32 arg1, s32 slot);
 void copy_bank_to_card_window(s32 slot);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 
-s32 get_selected_menu_value(void *);
-s32 select_cursor_entry__22TWindowSubShortCutListFv(s32);
+s32 get_selected_value__11TWindowMenuFv(void *);
+s32 get_cursor_value__19TWindowMenuIconLineFv(s32);
 s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 get_child_field1c__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
 s32 lookup_item_def__9TItemDataFPv(void *);
 s32 get_bank_deposit_capacity_for_item(void *, s32);
 void TWindowHelpItem__set_displayed_item_by_id(u32, s32);
-void calc_list_content_extent(u32);
+void calc_content_extent__19TWindowMenuIconLineFv(u32);
 u32 create_item_list_window(s32, s32, u16);
 extern f32 lbl_805DC710;
 void sort_bank_items(s32 slot);
 void __dl__7TObjectFPv(void *);
 
-void TShopKeepItemWindow::vfunc_7() {
+void TShopKeepItemWindow::display_message(const char *, s32) {
     struct VObj_80221844 *temp_r3;
 
     temp_r3 = (struct VObj_80221844 *)this->m_380;
@@ -137,7 +138,7 @@ void TShopKeepItemWindow::vfunc_7() {
     }
 }
 
-void TShopKeepItemWindow::vfunc_6() {
+void TShopKeepItemWindow::vfunc_6(s32, s32) {
     struct VObj_8022187C_80221844 *o = (struct VObj_8022187C_80221844 *)this->m_380;
     if (o != NULL) {
         o->m4();
@@ -182,37 +183,37 @@ void TShopKeepItemWindow::handle_deposit_confirm() {
     s32 i;
     void *win;
     win = self->f388;
-    if (win != NULL && ((TWindowMenu *)win)->is_visible() != 0) {
+    if (win != NULL && ((TWindowMenu *)win)->is_decided() != 0) {
         base = sub_8022397C__15TShopWindowBaseFv(this);
-        r = get_selected_menu_value(self->f388);
+        r = ((TWindowMenu *)self->f388)->get_selected_value();
         if (r == 0) {
-            i = select_cursor_entry__22TWindowSubShortCutListFv(this->m_384);
+            i = get_cursor_value__19TWindowMenuIconLineFv(this->m_384);
             if (store_item_in_bank((u8 *)&self->ents[i].f4, this->m_378, base) != 0) {
                 get_item_record__23TShopJudgmentItemWindowFPv(this->m_24, ((TItem *)(self->ents[i].f0))->get_item_id(), this->m_378);
                 copy_bank_to_card_window(base);
                 play_sound_effect(0x52D01, 0, 0, 0);
-                TWindow__close((u8 *)self->f388);
+                ((TWindowBase *)self->f388)->close();
                 self->f388 = NULL;
                 set_field_20(0);
                 return;
             }
             ((V_802219A0 *) this)->m4(0x3C, 1);
             play_sound_effect(0x53F06, 0, 0, 0);
-            TWindow__close((u8 *)self->f388);
+            ((TWindowBase *)self->f388)->close();
             self->f388 = NULL;
             set_field_20(7);
             return;
         }
         if (r == 1) {
-            TWindow__close((u8 *)self->f388);
+            ((TWindowBase *)self->f388)->close();
             self->f388 = NULL;
             set_field_20(3);
             return;
         }
     }
     win = self->f388;
-    if (win != NULL && ((TWindowSubComCard *)win)->get_status_flag() != 0) {
-        TWindow__close((u8 *)self->f388);
+    if (win != NULL && ((TWindowMenu *)win)->is_cancelled() != 0) {
+        ((TWindowBase *)self->f388)->close();
         self->f388 = NULL;
         set_field_20(3);
     }
@@ -232,14 +233,14 @@ void TShopKeepItemWindow::update_number_input() {
             ((TUnk_804CDFE8 *)(this->m_388))->set_position_xy(get_scale__15TShopWindowBaseFv(this), temp_f31);
         }
         this->m_378 = ((TShopEquipmentSellWindow *)(this->m_38c))->get_result();
-        TWindow__close((u8 *)this->m_38c);
+        ((TWindowBase *)this->m_38c)->close();
         this->m_38c = 0U;
         set_field_20(2);
         return;
     }
     w = this->m_38c;
     if ((w != 0U) && (((TShopEquipmentSellWindow *)w)->is_confirmed() != 0)) {
-        TWindow__close((u8 *)this->m_38c);
+        ((TWindowBase *)this->m_38c)->close();
         this->m_38c = 0U;
         set_field_20(3);
     }
@@ -257,7 +258,7 @@ void TShopKeepItemWindow::handle_deposit_list_select() {
 
     base = sub_8022397C__15TShopWindowBaseFv(this);
     if (this->m_384 != 0U) {
-        sel = select_cursor_entry__22TWindowSubShortCutListFv(this->m_384);
+        sel = get_cursor_value__19TWindowMenuIconLineFv(this->m_384);
         if (this->m_390 != 0U && sel != (s32) this->m_37c) {
             TWindowHelpItem__set_displayed_item_by_id(this->m_390, ((TItem *)self->ents[sel].f0)->get_item_id());
             this->m_37c = sel;
@@ -271,7 +272,7 @@ void TShopKeepItemWindow::handle_deposit_list_select() {
     if (sub_80223A48__15TShopWindowBaseFv(this) == 0) {
         return;
     }
-    sel = select_cursor_entry__22TWindowSubShortCutListFv(this->m_384);
+    sel = get_cursor_value__19TWindowMenuIconLineFv(this->m_384);
     /* The original dispatch is cmpwi/beq/bge/b with both non-matching branches
      * on one body, which MWCC only emits for a switch with a second case label
      * merged into the default body. The extra label's value is not recoverable
@@ -355,7 +356,7 @@ s32 TShopKeepItemWindow::rebuild_item_list() {
         for (s32 j = 0; j < self->f374; j++) {
             ((TShopJudgmentItemWindow *)(self->f384))->add_list_entry(self->ents[j].f0, j);
         }
-        calc_list_content_extent(self->f384);
+        calc_content_extent__19TWindowMenuIconLineFv(self->f384);
         cur = ((TShopGetItemWindow *)(self->f384))->get_cursor_index();
     } else {
         ((TShopArmorListWindow *)(self->f384))->save_cursor_selection();
@@ -364,7 +365,7 @@ s32 TShopKeepItemWindow::rebuild_item_list() {
             ((TShopJudgmentItemWindow *)(self->f384))->add_list_entry(self->ents[j].f0, j);
         }
         ((TShopArmorListWindow *)(self->f384))->clamp_selection_to_valid_entry();
-        calc_list_content_extent(self->f384);
+        calc_content_extent__19TWindowMenuIconLineFv(self->f384);
         ((TWindowSubItem *)((void *)self->f384))->clear_selected_and_update_entry();
         cur = ((TShopGetItemWindow *)(self->f384))->get_cursor_index();
     }
@@ -412,10 +413,10 @@ void TShopKeepItemWindow::vfunc_11() {
 void *__dt__19TShopKeepItemWindowFv(TShopKeepItemWindow *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TShopKeepItemWindow;
-        if (*(void **)((s8 *)arg0 + 0x384) != NULL) { TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x384))); arg0->m_384 = 0; }
-        if (*(void **)((s8 *)arg0 + 0x388) != NULL) { TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x388))); arg0->m_388 = 0; }
-        if (*(void **)((s8 *)arg0 + 0x38C) != NULL) { TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x38C))); arg0->m_38c = 0; }
-        if (*(void **)((s8 *)arg0 + 0x390) != NULL) { TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x390))); arg0->m_390 = 0; }
+        if (*(void **)((s8 *)arg0 + 0x384) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x384)))->close(); arg0->m_384 = 0; }
+        if (*(void **)((s8 *)arg0 + 0x388) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x388)))->close(); arg0->m_388 = 0; }
+        if (*(void **)((s8 *)arg0 + 0x38C) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x38C)))->close(); arg0->m_38c = 0; }
+        if (*(void **)((s8 *)arg0 + 0x390) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x390)))->close(); arg0->m_390 = 0; }
         __dt__15TShopWindowBaseFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);

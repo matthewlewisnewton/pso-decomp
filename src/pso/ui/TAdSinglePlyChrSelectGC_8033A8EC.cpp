@@ -1,6 +1,7 @@
 #include "pso/TMainTask.h"
-#include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowMessage.h"
 #pragma push
 
 #include "types.h"
@@ -15,7 +16,6 @@
 #include "pso/misc/TKeyBoardControl.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/TUnk_804EF8C0.h"

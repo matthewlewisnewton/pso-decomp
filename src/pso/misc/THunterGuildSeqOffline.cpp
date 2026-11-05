@@ -1,10 +1,11 @@
 #include "types.h"
+#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/TShopWindowBase.h"
 #include "pso/misc/TShopSequence.h"
 #include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/misc/THunterGuildSeqOffline.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/quest/TQuestThread.h"
 
 struct Base_A_80212D9C { char pad[0x18]; };
@@ -164,7 +165,7 @@ extern u8 *quest_mission_manager;
 u8 *TShopSequence__ct(u8 *arg0);
 extern s32 lbl_805D3658;
 u8 *THunterGuildSeqOffline__ct(u8 *arg0, s32 arg1, s32 arg2);
-s32 get_selected_menu_value(void *);
+s32 get_selected_value__11TWindowMenuFv(void *);
 void THunterGuildSeqOffline__sub_8021339C(void);
 u16 get_entity_id(s32);
 void THunterGuildSeqOffline__sub_8021E180(void);
@@ -284,7 +285,7 @@ u8 *__dt__22THunterGuildSeqOfflineFv(u8 *arg0, s16 arg1) {
         ((TShopSequence *)arg0)->close_message_window();
         temp_r3_2 = *(u32 *)((s8 *)arg0 + 0x2C);
         if (temp_r3_2 != 0U) {
-            TWindow__close((u8 *)temp_r3_2);
+            ((TWindowBase *)temp_r3_2)->close();
             *(u32 *)((s8 *)arg0 + 0x2C) = 0U;
         }
         temp_r3_3 = ((THunterGuildSeqOffline *)arg0)->m_34;
@@ -392,11 +393,11 @@ void THunterGuildSeqOffline::handle_confirm_window() {
     u8 *window_menu;
     u8 *window_sub_com_card;
     window_menu = (u8 *)(*(u8 **)((s8 *)arg0 + 0x3C));
-    if ((window_menu != NULL) && (((TWindowMenu *)window_menu)->is_visible() != 0)) {
-        selected_menu_value = get_selected_menu_value(*(u8 **)((s8 *)arg0 + 0x3C));
+    if ((window_menu != NULL) && (((TWindowMenu *)window_menu)->is_decided() != 0)) {
+        selected_menu_value = ((TWindowMenu *)(*(u8 **)((s8 *)arg0 + 0x3C)))->get_selected_value();
         switch (selected_menu_value) {
         case 0:
-            TWindow__close((*(u8 **)((s8 *)arg0 + 0x3C)));
+            ((TWindowBase *)(*(u8 **)((s8 *)arg0 + 0x3C)))->close();
             *(u8 **)((s8 *)arg0 + 0x3C) = NULL;
             ((VObj_18_97738d *)(arg0))->m7(9, 1);
             this->m_34 = 1;
@@ -406,7 +407,7 @@ void THunterGuildSeqOffline::handle_confirm_window() {
             ((TShopWindowBase *)arg0)->set_field_20((s32)((void*)(0xC)));
             break;
         case 1:
-            TWindow__close((*(u8 **)((s8 *)arg0 + 0x3C)));
+            ((TWindowBase *)(*(u8 **)((s8 *)arg0 + 0x3C)))->close();
             *(u8 **)((s8 *)arg0 + 0x3C) = NULL;
             ((VObj_18_97738d *)(arg0))->m7(0xA, 1);
             this->m_34 = 0;
@@ -415,8 +416,8 @@ void THunterGuildSeqOffline::handle_confirm_window() {
         }
     }
     window_sub_com_card = (u8 *)(*(u8 **)((s8 *)arg0 + 0x3C));
-    if ((window_sub_com_card != NULL) && (((TWindowSubComCard *)window_sub_com_card)->get_status_flag() != 0)) {
-        TWindow__close((*(u8 **)((s8 *)arg0 + 0x3C)));
+    if ((window_sub_com_card != NULL) && (((TWindowMenu *)window_sub_com_card)->is_cancelled() != 0)) {
+        ((TWindowBase *)(*(u8 **)((s8 *)arg0 + 0x3C)))->close();
         *(u8 **)((s8 *)arg0 + 0x3C) = NULL;
         ((VObj_18_97738d *)(arg0))->m7(0xA, 1);
         this->m_34 = 0;

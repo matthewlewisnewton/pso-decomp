@@ -1,5 +1,7 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TShopJudgmentItemWindow_8026DF00.h"
 #include "pso/misc/TPlyGuildCardTag_8007B434.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -9,8 +11,6 @@
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TShopArmorListWindow.h"
 #include "pso/misc/TWindowAddition.h"
-#include "pso/misc/TWindowMenu.h"
-#include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TQuestListOnline.h"
 
 #include <stddef.h>

@@ -1,7 +1,7 @@
 #include "pso/system/SoundEffect.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TWindowMessage.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/item/TItemMag.h"
 #include "pso/TItemList.h"

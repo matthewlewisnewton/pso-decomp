@@ -185,7 +185,7 @@ void TMessageWindowController::format_shop_message(s32 index, s32 flags) {
 }
 void TMessageWindowController::close() {
     if (window != NULL) {
-        TWindow__close((u8 *)window);
+        window->close();
         window = NULL;
     }
 }
@@ -213,7 +213,7 @@ TWindowMessagePage *TMessageWindowController::create_window(s32 x, s32 y) {
 }
 TMessageWindowController::~TMessageWindowController() {
     if (window != NULL) {
-        TWindow__close((u8 *)window);
+        window->close();
         window = NULL;
     }
 }

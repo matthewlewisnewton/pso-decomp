@@ -1,4 +1,5 @@
 #include "pso/TSaveChCr.h"
+#include "pso/misc/TWindowBase.h"
 
 // The compiler emits the member-action template and writable table together.
 // Keep them before the native vtable so both text and data retain their order.
@@ -34,7 +35,7 @@ int begin_action_from_char_select__10TObjPlayerFv(void*);
 
 void TSaveChCr::close_window() {
     if ((u32) *(u32 *)((s8 *)this + 0x3C) != 0U) {
-        TWindow__close((u8 *)this->owned_window);
+        ((TWindowBase *)this->owned_window)->close();
         *(u32 *)((s8 *)this + 0x3C) = 0U;
         this->timer = 7;
     }

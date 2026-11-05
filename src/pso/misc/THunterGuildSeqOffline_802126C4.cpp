@@ -26,14 +26,14 @@ void THunterGuildSeqOffline::notify_close() {
 }
 
 struct G_80212710 { u8 pad[0x24]; s32 f24; };
-u8 *TQuestListVM__ct(TQuestListVM *, s32, s32, s32);
+u8 *__ct__12TQuestListVMFP7TObjectP15TShopWindowBaseP8TObjBase(void *, void *, void *, void *);
 u8 *__nw__7TObjectFUl(u32);
 struct Q_80212710 { u8 pad[0x23B8]; void *cb0; void *cb1; void *cb2; };
 extern s32 tl_05;
 void THunterGuildSeqOffline::create_quest_list_vm() {
     Q_80212710 *p = (Q_80212710 *)__nw__7TObjectFUl(0x23C4);
     if (p != 0) {
-        p = (Q_80212710 *)TQuestListVM__ct((TQuestListVM *)((u8 *)p), tl_05, (s32)THunterGuildSeqOffline__active_instance, ((G_80212710 *)THunterGuildSeqOffline__active_instance)->f24);
+        p = (Q_80212710 *)__ct__12TQuestListVMFP7TObjectP15TShopWindowBaseP8TObjBase((u8 *)p, (void *)tl_05, THunterGuildSeqOffline__active_instance, (void *)((G_80212710 *)THunterGuildSeqOffline__active_instance)->f24);
     }
     if (p != 0) {
         p->cb0 = (void *)THunterGuildSeqOffline::notify_close;

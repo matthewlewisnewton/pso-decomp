@@ -1,6 +1,8 @@
 #include "pso/misc/TPlayerBattleCtrl4P.h"
-#include "pso/player/TObjPlayer.h"
+#include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowBase.h"
+#include "pso/player/TObjPlayer.h"
 #include "pso/quest/TQuestThread.h"
 
 #include "types.h"
@@ -32,11 +34,11 @@ extern s32 lbl_80475BCC[];
 extern RecoveredGlobal_80311A64_TPlayerBattleCtrl4P__data_80542E90 split_screen_battle_rankings;
 extern s32 local_client_id;
 s32 has_player_active_menu__11TWindowCtrlFv(s32);
-s32 get_selected_menu_value(void *);
+s32 get_selected_value__11TWindowMenuFv(void *);
 s32 align_menu_entry_positions(void *);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, int);
-void *set_window_mode_4__6TLobbyFPvll(void *, void *, int);
+void *create__14TWindowMessageFPvll(void *, void *, int);
 void *get_window_layout_position(int);
 extern u8 lbl_80475B70[];
 void TLobby__sub_801036CC();
@@ -120,11 +122,11 @@ void TPlayerBattleCtrl4P::close_battle_results() {
     s32 i;
     u32 p;
     if (intro_window != NULL) {
-        TWindow__close((u8 *)intro_window);
+        ((TWindowBase *)intro_window)->close();
         intro_window = NULL;
     }
     if (menu_window != NULL) {
-        TWindow__close((u8 *)menu_window);
+        ((TWindowBase *)menu_window)->close();
         menu_window = NULL;
     }
     close_player_windows();
@@ -167,11 +169,11 @@ void TPlayerBattleCtrl4P::wait_for_rematch_menu_button() {
 void TPlayerBattleCtrl4P::close_rematch_menu() {
     u32 var_r31;
     if ((u32) this->intro_window != 0U) {
-        TWindow__close((u8 *)this->intro_window);
+        ((TWindowBase *)this->intro_window)->close();
         this->intro_window = 0U;
     }
     if ((u32) this->menu_window != 0U) {
-        TWindow__close((u8 *)this->menu_window);
+        ((TWindowBase *)this->menu_window)->close();
         this->menu_window = 0U;
     }
     var_r31 = 0;
@@ -189,9 +191,9 @@ void TPlayerBattleCtrl4P::close_rematch_menu() {
 void TPlayerBattleCtrl4P::update_rematch_menu() {
     if (has_player_active_menu__11TWindowCtrlFv(local_client_id) == 0) {
         if (((O_80311C2C *)this)->w0 == NULL) {
-            ((O_80311C2C *)this)->w0 = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x53), lbl_80475B70, 1);
+            ((O_80311C2C *)this)->w0 = create__14TWindowMessageFPvll(get_window_layout_position(0x53), lbl_80475B70, 1);
             if (((O_80311C2C *)this)->w0 != NULL) {
-                ((TLobby *)(((O_80311C2C *)this)->w0))->send_and_handle(((O_80311C2C *)this)->ids->a, 0x80);
+                ((TWindowMessage *)(((O_80311C2C *)this)->w0))->append_line(((O_80311C2C *)this)->ids->a, 0x80);
             }
         }
         if (((O_80311C2C *)this)->w1 == NULL) {
@@ -203,8 +205,8 @@ void TPlayerBattleCtrl4P::update_rematch_menu() {
             ((TCheckRoomSequence *)(((O_80311C2C *)this)->w1))->set_ready_flag();
         }
         if (((O_80311C2C *)this)->w1 != NULL) {
-            if (((TWindowMenu *)(((O_80311C2C *)this)->w1))->is_visible() != 0) {
-                switch (get_selected_menu_value(((O_80311C2C *)this)->w1)) {
+            if (((TWindowMenu *)(((O_80311C2C *)this)->w1))->is_decided() != 0) {
+                switch (((TWindowMenu *)(((O_80311C2C *)this)->w1))->get_selected_value()) {
                 case 1:
                     shuffle_order();
                     break;
@@ -215,7 +217,7 @@ void TPlayerBattleCtrl4P::update_rematch_menu() {
                     break;
                 }
             } else {
-                ((TWindowSubComCard *)(((O_80311C2C *)this)->w1))->get_status_flag();
+                ((TWindowMenu *)(((O_80311C2C *)this)->w1))->is_cancelled();
             }
         }
     }

@@ -32,11 +32,11 @@ s32 deactivate_body_collision__10TObjPlayerFv();
 void *get_player_by_client_id(s32 i);
 s32 suppress_slot__11TWindowCtrlFv(u16);
 s32 unsuppress_slot__11TWindowCtrlFv(u16);
-int display_message__24TMessageWindowControllerFPCcl(void*);
-int format_guild_message__24TMessageWindowControllerFll(void*);
+int display_message__24TMessageWindowControllerFPCcl(void *, const char *, s32);
+int format_guild_message__24TMessageWindowControllerFll(void *, s32, s32);
 s32 is_split_screen();
-int send_message__24TMessageWindowControllerFll(void*);
-int format_shop_message__24TMessageWindowControllerFll(void*);
+int send_message__24TMessageWindowControllerFll(void *, s32, s32);
+int format_shop_message__24TMessageWindowControllerFll(void *, s32, s32);
 
 int TShopSequence::vfunc_10() {
     void *message_window_controller = *(void **)((s8 *)this + 0x28);
@@ -73,10 +73,22 @@ u32 TShopSequence::create_message_window(s32 arg1, s32 arg2) {
     return 0U;
 }
 
-void TShopSequence::vfunc_9() { void* m = *(void**)((char*)this + 0x28); if (m) format_guild_message__24TMessageWindowControllerFll(m); }
-void TShopSequence::vfunc_8() { void* m = *(void**)((char*)this + 0x28); if (m) send_message__24TMessageWindowControllerFll(m); }
-void TShopSequence::vfunc_7() { void* m = *(void**)((char*)this + 0x28); if (m) display_message__24TMessageWindowControllerFPCcl(m); }
-void TShopSequence::vfunc_6() { void* m = *(void**)((char*)this + 0x28); if (m) format_shop_message__24TMessageWindowControllerFll(m); }
+void TShopSequence::display_guild_message(s32 index, s32 flags) {
+    void *m = *(void **)((char *)this + 0x28);
+    if (m) format_guild_message__24TMessageWindowControllerFll(m, index, flags);
+}
+void TShopSequence::vfunc_8(s32 index, s32 flags) {
+    void *m = *(void **)((char *)this + 0x28);
+    if (m) send_message__24TMessageWindowControllerFll(m, index, flags);
+}
+void TShopSequence::display_message(const char *text, s32 flags) {
+    void *m = *(void **)((char *)this + 0x28);
+    if (m) display_message__24TMessageWindowControllerFPCcl(m, text, flags);
+}
+void TShopSequence::vfunc_6(s32 index, s32 flags) {
+    void *m = *(void **)((char *)this + 0x28);
+    if (m) format_shop_message__24TMessageWindowControllerFll(m, index, flags);
+}
 void TShopSequence::close_if_single_screen() {
     if ((TAdSinglePlyChrSelectGC::get_game_mode() != 0) && (is_split_screen() == 0)) {
         load_character_from_card__23TAdSinglePlyChrSelectGCFi(0);

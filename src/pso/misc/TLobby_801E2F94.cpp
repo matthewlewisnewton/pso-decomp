@@ -359,6 +359,7 @@ void TLobby__sub_801E3CF0(u32 *);
 
 s32 *TLobby__sub_801E38A0(s32 arg0, s32 *arg1, s32 *arg2, s32 *buf, s32 *arg4) {
     u8 *p;
+    s32 *chosen;
     s32 pos;
     s32 tag;
     u32 size;
@@ -415,7 +416,12 @@ s32 *TLobby__sub_801E38A0(s32 arg0, s32 *arg1, s32 *arg2, s32 *buf, s32 *arg4) {
     default:
         goto bad;
     }
-    buf = (buf == 0) ? (s32 *)TQuestVmDownLoadServer::alloc(size) : buf;
+    if (buf == 0) {
+        chosen = (s32 *)TQuestVmDownLoadServer::alloc(size);
+    } else {
+        chosen = buf;
+    }
+    buf = chosen;
     if (buf == 0) {
         return 0;
     }

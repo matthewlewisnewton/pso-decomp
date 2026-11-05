@@ -10,11 +10,11 @@ extern "C" {
 
 void *dt__22TWindowDD_WS_ScrollBarFs(void *arg0, s16 arg1);
 s32 draw_visible_window_entries(s32, s32, void *, f32);
-int update_window_entry_list__13TUnk_804CE018FPv(void*, void*);
+int update_window_entry_list__11TWindowBaseFPv(void*, void*);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 void *draw_default_entry__9TWindowDDFl();
-int update_fade__13TUnk_804CE018Fv(void*);
+int update_fade__11TWindowBaseFv(void*);
 
 extern "C" void TWindowDD__sub_80340A78();
 extern "C" void init__9TWindowDDFv();
@@ -155,6 +155,6 @@ void TWindowDD_WS_String::draw_entry_if_visible(void *arg1) {
     }
 }
 
-void TWindowDD::init_window() { initialize_subwindow(); update_fade__13TUnk_804CE018Fv(this); update_window_entry_list__13TUnk_804CE018FPv(this, (char*)this + 0x24); }
+void TWindowDD::init_window() { initialize_subwindow(); update_fade__11TWindowBaseFv(this); update_window_entry_list__11TWindowBaseFPv(this, (char*)this + 0x24); }
 
 }

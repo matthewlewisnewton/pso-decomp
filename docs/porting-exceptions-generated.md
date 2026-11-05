@@ -54,8 +54,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1149, `inline_depth` 1041,
 | `src/pso/enemy/TObjEneMe1GiGue.cpp:1393` | `__cntlzw` |
 | `src/pso/enemy/TObjEneMe3Shinowa.cpp:2526` | `__cntlzw` |
 | `src/pso/item/TItemMag.cpp:1351` | `__cntlzw` |
-| `src/pso/misc/TCheckRoomSequence.cpp:293` | `__cntlzw` |
-| `src/pso/misc/THunterGuildSeqOffline_80211FEC.cpp:70` | `__cntlzw` |
+| `src/pso/misc/TCheckRoomSequence.cpp:292` | `__cntlzw` |
+| `src/pso/misc/THunterGuildSeqOffline_80211FEC.cpp:71` | `__cntlzw` |
 | `src/pso/misc/TKeyBoardControl_803F0C50.cpp:267` | `__cntlzw` |
 | `src/pso/misc/TLoadingCur.cpp:174` | `__cntlzw` |
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
@@ -66,7 +66,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1149, `inline_depth` 1041,
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:542` | `__cntlzw` |
 | `src/pso/misc/TRaderMapCore_8030A808.cpp:9` | `__cntlzw` |
-| `src/pso/misc/TWindowDD_8034725C.cpp:337` | `__cntlzw` |
+| `src/pso/misc/TWindowDD_8034725C.cpp:338` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:361` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:458` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:515` | `__cntlzw` |
@@ -78,7 +78,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1149, `inline_depth` 1041,
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:43` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:44` | `__rlwinm` |
 | `src/pso/misc/TWindowSubComCard_80244774.cpp:229` | `__cntlzw` |
-| `src/pso/misc/TWindowSubItem.cpp:361` | `__cntlzw` |
+| `src/pso/misc/TWindowSubItem.cpp:359` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
 | `src/pso/object/TObjCMMainMenu_8028D9A8.cpp:108` | `__cntlzw` |

@@ -1,11 +1,11 @@
 #include "pso/TMCFormatSequence.h"
 #include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/unk/text_8007C0CC.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/quest/TQuestListVM.h"
 #include "pso/TObject.h"
 

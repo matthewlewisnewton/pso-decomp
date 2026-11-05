@@ -1,8 +1,9 @@
 #include "pso/misc/TWindowDrawContext.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
-#include "pso/unk/text_80268384.h"
 #include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
+#include "types.h"
+#include "pso/unk/text_80268384.h"
 #include "pso/misc/TWindowSubEquipKind.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
@@ -26,7 +27,7 @@ void render__19TWindowSubEquipKindFv(u8 *arg0) {
     temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
-    ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry(temp_r3);
+    ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry((long)temp_r3);
     if ((s16) ((TWindowSubEquipKind *)arg0)->m_88 != 4) {
         ((TWindowSubEquipKind *)arg0)->draw_tab_label((void *)temp_r3);
     }

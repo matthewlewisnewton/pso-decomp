@@ -10,8 +10,8 @@ struct TShopItemListWindow : public TShopWindowBase {
     void prepare_tool_purchase();
     void handle_amount_confirm();
     virtual void vfunc_11();
-    virtual void vfunc_7();
-    virtual void vfunc_6();
+    virtual void display_message(const char *text, s32 flags);
+    virtual void vfunc_6(s32, s32);
     u8 _pad1C[0x4];
     u32 m_20;
     u32 m_24;

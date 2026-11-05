@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/TMainTask.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/ui/TAdEp3Exist.h"
@@ -153,7 +154,7 @@ void TAdEp3Exist::run_task() {
         break;
     case 2:
         if (o->win != 0) {
-            TWindow__close((u8 *)o->win);
+            ((TWindowBase *)o->win)->close();
             o->win = 0;
         }
         close_window();

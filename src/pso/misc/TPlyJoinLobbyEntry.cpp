@@ -1,6 +1,8 @@
 #include "pso/system/ArrayAllocation.h"
-#include "pso/misc/TLobby_801E43E4.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
@@ -14,8 +16,6 @@
 #include "pso/TMainTask.h"
 #include "pso/misc/TWindowMessagePage.h"
 #include "pso/misc/TWindowSubComCardList.h"
-#include "pso/misc/TWindowMenu.h"
-#include "pso/misc/TWindowMenuIconLine.h"
 #include <stddef.h>
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TCheckRoomSequence.h"
@@ -1494,14 +1494,12 @@ void TKeyBoardControl__sub_8000F91C(s32);
 void TKeyBoardControl__sub_8000F9CC(s32);
 void TLobby__sub_80139094(void *self);
 void close_and_set_state_12__6TLobbyFv();
-s32 close__11TWindowBaseFv(u32);
 s32 get_cursor_value__19TWindowMenuIconLineFv(u32);
 extern const char lbl_8043F06C[];
 extern s8 controller_input_state[];
 extern u32 TLobby__list_window;
 void update_block_jump_list__6TLobbyFv(void);
 void close_and_set_state_12__6TLobbyFv();
-s32 close__11TWindowBaseFv(u32);
 s32 get_cursor_value__19TWindowMenuIconLineFv(u32);
 extern const char lbl_8043F078[];
 extern s8 controller_input_state[];

@@ -1,4 +1,5 @@
 #include "pso/system/ArrayAllocation.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/TAdEnterBaseGC_8032B38C.h"
@@ -116,12 +117,12 @@ void close_window_and_destroy__18TAdEnterPasswordGCFPv(u8 *arg0) {
     u8 *temp_r3_2;
     temp_r3 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x30));
     if (temp_r3 != NULL) {
-        TWindow__close(temp_r3);
+        ((TWindowBase *)temp_r3)->close();
         *(u8 **)((s8 *)arg0 + 0x30) = NULL;
     }
     temp_r3_2 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x34));
     if (temp_r3_2 != NULL) {
-        TWindow__close(temp_r3_2);
+        ((TWindowBase *)temp_r3_2)->close();
         *(u8 **)((s8 *)arg0 + 0x34) = NULL;
     }
     if ((void *) password_entry_keyboard_control != NULL) {

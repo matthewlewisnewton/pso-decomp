@@ -3,6 +3,7 @@
 #include "pso/misc/TQuestVmDownLoadServer_8007EBDC.h"
 
 #include "pso/misc/TQuestVmDownLoadServer.h"
+#include "pso/system/memory.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
 extern "C" {
@@ -11,7 +12,6 @@ extern u8 lbl_80500598[];
 void *__ct__13TUnk_8048DF58Fv(void *arg0);
 void __register_global_object(void *obj, void *dtor, void *entry);
 int fn_803DE864(void*);
-void *xmalloc(u32 size);
 
 int TQuestVmDownLoadServer__sub_8007EBDC(void* p) { return fn_803DE864(p); }
 void *TQuestVmDownLoadServer::alloc(u32 size) { return xmalloc(size); }

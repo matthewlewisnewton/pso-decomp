@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowMainMenu.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowLockOn.h"
@@ -215,7 +216,7 @@ void TWindowCtrl::update_target_info_window() {
     }
     if ((TWindowCtrl__sub_8024C7E0(arg0) != 0) || (get_active_menu() != 0) || (((TWindowCtrl *)arg0)->is_visible() != 0) || (TWindowCtrl__sub_8024C7C4(arg0) != 0) || (TWindowCtrl__sub_8024A314() != 0)) {
         if ((u32) *(u32 *)((s8 *)arg0 + 0x38) != 0U) {
-            TWindow__close(*(void **)((s8 *)arg0 + 0x38));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x38)))->close();
             *(u32 *)((s8 *)arg0 + 0x38) = 0U;
         }
     } else {

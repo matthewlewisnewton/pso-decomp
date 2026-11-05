@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowShortCut.h"
@@ -42,8 +43,8 @@ void TWindowShortCut::run_task() { ((TWindowSubStatusDisp *)(this->m_60))->updat
 void *__dt__15TWindowShortCutFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__15TWindowShortCut;
-        if (*(void **)((s8 *)arg0 + 0x68) != NULL) { TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x68))); ((TWindowShortCut *)arg0)->m_68 = 0; }
-        if (*(void **)((s8 *)arg0 + 0x64) != NULL) { TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x64))); ((TWindowShortCut *)arg0)->m_64 = 0; }
+        if (*(void **)((s8 *)arg0 + 0x68) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x68)))->close(); ((TWindowShortCut *)arg0)->m_68 = 0; }
+        if (*(void **)((s8 *)arg0 + 0x64) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x64)))->close(); ((TWindowShortCut *)arg0)->m_64 = 0; }
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x60)), (s16)1);
         ((TWindowDD *)arg0)->destroy_window_base(0);
         if (arg1 > 0) {

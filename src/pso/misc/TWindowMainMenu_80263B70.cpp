@@ -1,6 +1,6 @@
 #include "types.h"
-#include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMessage.h"
 #include "pso/map/FloorArea.h"
 struct TWindowSubItem;
 struct TWindowSubMag;
@@ -17,7 +17,6 @@ struct TWindowSubMag;
 #include "pso/unk/text_80263A20.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TLobby.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowMainMenu.h"
 
 extern "C" {

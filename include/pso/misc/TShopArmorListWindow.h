@@ -3,12 +3,13 @@
 
 #include "types.h"
 #include "pso/TShopWindowBase.h"
+#include "pso/misc/TWindowMenuIconLine.h"
 
 struct TShopArmorListWindow : public TShopWindowBase {
     virtual ~TShopArmorListWindow();
     virtual void vfunc_11();
-    virtual void vfunc_7();
-    virtual void vfunc_6();
+    virtual void display_message(const char *text, s32 flags);
+    virtual void vfunc_6(s32, s32);
     u8 _pad1C[0x4];
     u32 m_20;
     u32 m_24;
@@ -45,7 +46,7 @@ struct TShopArmorListWindow : public TShopWindowBase {
     void close_list();
     void save_and_refresh_cursor(void* a1, void* a2);
     void save_and_close();
-    void reset_list();
+    void reset_list() { ((TWindowMenuIconLine *)this)->reset_list(); }
 };
 
 typedef char TShopArmorListWindow_size[sizeof(TShopArmorListWindow) == 0x1F8 ? 1 : -1];

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/object/TObjCityMainWarpChallenge.h"
 #include "pso/object/TObjCityMainWarp.h"
 #include "pso/misc/TWindowCtrl.h"
@@ -38,11 +39,11 @@ void TObjCityMainWarpChallenge::close_windows() {
         *(u32 *)((s8 *)this + 0x168) = 0U;
     }
     if (this->m_b0 != 0U) {
-        TWindow__close((u8 *)this->m_b0);
+        ((TWindowBase *)this->m_b0)->close();
         (this->m_b0) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x164) != 0U) {
-        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x164)));
+        ((TWindowBase *)(*(void **)((s8 *)this + 0x164)))->close();
         *(u32 *)((s8 *)this + 0x164) = 0U;
     }
     end_player_keyboard_hold(local_client_id);

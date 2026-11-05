@@ -6,7 +6,6 @@
 #include "pso/unk/text_80228E98.h"
 #include <string.h>
 #include "pso/misc/TLobby.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 
 struct O_80347940 { u8 pad[0x20]; s32 base; void *items[1]; };

@@ -1,11 +1,12 @@
 #include "pso/system/SoundEffect.h"
+#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TMedicalCenterMes.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/TShopWindowBase.h"
 #include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/misc/TShopSequence.h"
 #include "pso/misc/TMedicalCenterSequence.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/player/TObjPlayer.h"
 #include "types.h"
 
@@ -152,7 +153,7 @@ u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
 
 int sub_802239EC__13TShopSequenceFv(void *);
 int sub_80223A48__15TShopWindowBaseFv(void *);
-s32 get_selected_menu_value(u32);
+s32 get_selected_value__11TWindowMenuFv(u32);
 s32 close_window__13TShopSequenceFv(void *);
 int obj_getPtr2B0_20(u8 *p);
 int restore_player_state__13TShopSequenceFv(void*);
@@ -197,11 +198,11 @@ u8 *__dt__22TMedicalCenterSequenceFv(TMedicalCenterSequence *arg0, s16 arg1) {
         }
         ((TShopSequence *)arg0)->close_message_window();
         if ((u32) arg0->m_2c != 0U) {
-            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x2C)));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x2C)))->close();
             arg0->m_2c = 0U;
         }
         if ((u32) arg0->m_30 != 0U) {
-            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x30)));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x30)))->close();
             arg0->m_30 = 0U;
         }
         *(s32 *)((s8 *)&TMedicalCenterSequence__data_80513E90.value + (sub_8022397C__15TShopWindowBaseFv(arg0) * 4)) = 0;
@@ -284,16 +285,16 @@ void TMedicalCenterSequence::handle_confirm() {
 void TMedicalCenterSequence::handle_window_result() {
     s32 selected_menu_value;
 
-    if (((u32) this->m_30 != 0U) && (((TWindowMenu *)((u32) this->m_30))->is_visible() != 0)) {
-        selected_menu_value = get_selected_menu_value(this->m_30);
+    if (((u32) this->m_30 != 0U) && (((TWindowMenu *)((u32) this->m_30))->is_decided() != 0)) {
+        selected_menu_value = ((TWindowMenu *)this->m_30)->get_selected_value();
         if (selected_menu_value == 0) {
-            TWindow__close((u8 *)this->m_30);
+            ((TWindowBase *)this->m_30)->close();
             this->m_30 = 0U;
             set_field_20((s32)((void*)(4)));
             return;
         }
         if (selected_menu_value == 1) {
-            TWindow__close((u8 *)this->m_30);
+            ((TWindowBase *)this->m_30)->close();
             this->m_30 = 0U;
             set_field_20((s32)((void*)(5)));
             return;
@@ -301,8 +302,8 @@ void TMedicalCenterSequence::handle_window_result() {
         goto block_6;
     }
 block_6:
-    if (((u32) this->m_30 != 0U) && (((TWindowSubComCard *)((u32) this->m_30))->get_status_flag() != 0)) {
-        TWindow__close((u8 *)this->m_30);
+    if (((u32) this->m_30 != 0U) && (((TWindowMenu *)((u32) this->m_30))->is_cancelled() != 0)) {
+        ((TWindowBase *)this->m_30)->close();
         this->m_30 = 0U;
         set_field_20((s32)((void*)(5)));
     }

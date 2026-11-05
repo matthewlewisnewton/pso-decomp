@@ -95,7 +95,7 @@ s32 push_matrix_from(void *src) {
     if (next > matrix_stack_limit) {
         return 0;
     }
-    move_data(next, (src == 0) ? (void *)current_matrix : src, 0x30);
+    move_data((void *)next, (src == 0) ? (void *)current_matrix : src, 0x30);
     current_matrix = next;
     return 1;
 }
@@ -172,7 +172,7 @@ u32 *find_gvrt_texture_chunk(TLobby *lobby, u32 *arg1, u32 *arg2) {
         TObjPlayer__sub_803D9C60(&tag);
         switch (tag) {
         case 0x54525647:
-            lobby->move_data(p + 2, 8);
+            move_data(lobby, p + 2, 8);
             return p + 4;
         case 0x58494247: {
             u32 len;

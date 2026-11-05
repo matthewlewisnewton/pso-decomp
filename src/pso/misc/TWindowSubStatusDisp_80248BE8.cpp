@@ -1,4 +1,7 @@
 #include "pso/misc/TWindowDrawContext.h"
+#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowSubStatusDisp_80248BE8.h"
@@ -54,7 +57,7 @@ void TWindowSubStatusDisp::render_status_and_children() {
     temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
-    ((TUnk_804D0618 *)((u8 *)this))->draw_selected_list_entry(temp_r3);
+    ((TUnk_804D0618 *)((u8 *)this))->draw_selected_list_entry((long)temp_r3);
     if ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x80) != 0U) {
         forward_render__20TWindowSubStatusDispFv(*(u32 *)((s8 *)((u8 *)this) + 0x80), temp_r3);
     }
@@ -75,7 +78,7 @@ void TWindowSubStatusDisp::handle_input() {
     u8 *temp_r29_2;
     u8 *temp_r29_3;
     temp_r31 = is_player_input_active(((s32) this->m_20));
-    if ((((TUnk_804D0618 *)arg0)->get_flag() == 0) && (((TUnk_804D0618 *)arg0)->get_status_flag() == 0) && (((TUnk_804CE018 *)arg0)->sub_80244994() != 0)) {
+    if ((((TWindowMenuIconLine *)arg0)->get_flag() == 0) && (((TWindowMenuIconLine *)arg0)->is_decided() == 0) && (((TWindowBase *)arg0)->sub_80244994() != 0)) {
         if (*(u16 *)((s8 *)arg0 + 0x70) & 0x10) {
             input = (u8 *)&controller_input_state.value + (temp_r31 * 0x50) + 0x20;
             if ((TWindowChoiceSetting::apply_choice((s32)input, 0x10, 6, 1) != 0) || (TWindowChoiceSetting::apply_choice((s32)((void *) ((u8 *)&controller_input_state.value + 0x160)), 0x10, 6, 1) != 0)) {
