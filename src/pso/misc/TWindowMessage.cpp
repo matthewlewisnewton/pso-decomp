@@ -336,8 +336,8 @@ struct G_80269DA4 { s32 a; s32 b; };
 extern "C" {
 s32 TLobby__sub_80269DA4(V2_80269DA4 size, void *arg1);
 extern G_80269DA4 lbl_804D06F8[];
-u8 *TWindowMessage__ct(u8 *arg0, const void *arg1, u32 arg2, s32 arg3);
-u8 *__nw__7TObjectFUl(s32);
+TWindowMessage *TWindowMessage__ct(TWindowMessage *arg0, const void *arg1, u32 arg2, s32 arg3);
+TWindowMessage *__nw__7TObjectFUl(s32);
 extern RecoveredGlobal_80269CA4_lbl_804D071C message_window_settings;
 
 int TLobby::send_and_handle(int a1, int a2) { return append_message_window_line((TWindowMessage *)this, a1, a2, -1); }
@@ -359,15 +359,15 @@ s32 *TLobby__sub_80269CB4(void) {
 }
 
 TWindowMessage *TLobby::create_message_window(const void *arg0, const void *arg1, u32 arg2, s32 arg3) {
-    u8 *temp_r3;
-    u8 *var_r0;
+    TWindowMessage *temp_r3;
+    TWindowMessage *var_r0;
     ((s32 (*)(void *, void *))TLobby__sub_80269DA4)((void *)arg1, (void *)arg2);
-    temp_r3 = (u8 *)(__nw__7TObjectFUl(0x90));
+    temp_r3 = __nw__7TObjectFUl(0x90);
     var_r0 = temp_r3;
     if (var_r0 != NULL) {
         var_r0 = TWindowMessage__ct(temp_r3, arg0, arg2, arg3);
     }
-    return (TWindowMessage *)var_r0;
+    return var_r0;
 }
 
 TWindowMessage *TLobby::set_window_mode_4(const void *arg0, const void *arg1, s32 arg2) {
@@ -375,8 +375,7 @@ TWindowMessage *TLobby::set_window_mode_4(const void *arg0, const void *arg1, s3
 }
 
 void TLobby::update_window_mode_from_progress(void *arg1) {
-    s32 arg0 = (s32)this;
-    TLobby::set_window_mode_4((const void *)arg0, arg1, (s32)((s32)((s32) TWindowSubStatusDisp::round_away_from_zero((*(f32 *)((s8 *)arg1 + 4) - 2e+01f) / 2e+01f) + 2)));
+    TLobby::set_window_mode_4(this, arg1, (s32)((s32)((s32) TWindowSubStatusDisp::round_away_from_zero((*(f32 *)((s8 *)arg1 + 4) - 2e+01f) / 2e+01f) + 2)));
 }
 
 s32 TLobby__sub_80269DA4(V2_80269DA4 size, void *arg1) {
@@ -394,7 +393,7 @@ void *construct_with_parent__13TUnk_804CDFE8FPv(void *, void *, s16, const void 
 extern s32 __vt__14TWindowMessage[];
 extern s32 lbl_805D3980;
 
-u8 *TWindowMessage__ct(u8 *arg0, const void *arg1, u32 arg2, s32 arg3);
+TWindowMessage *TWindowMessage__ct(TWindowMessage *arg0, const void *arg1, u32 arg2, s32 arg3);
 void *__dt__14TWindowMessageFv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 
@@ -431,9 +430,10 @@ void *__dt__14TWindowMessageFv(void *arg0, s16 arg1) {
     }
     return arg0;
 }
-u8 *TWindowMessage__ct(u8 *arg0, const void *arg1, u32 arg2, s32 arg3) {
+TWindowMessage *TWindowMessage__ct(TWindowMessage *window, const void *arg1, u32 arg2, s32 arg3) {
     u32 i;
     u8 *p;
+    u8 *arg0 = (u8 *)window;
     construct_with_parent__13TUnk_804CDFE8FPv(arg0, (u8 *)&message_window_settings, arg3, arg1);
     *(void **)(arg0 + 0x18) = ((u8 *)&__vt__14TWindowMessage);
     *(s32 *)arg0 = lbl_805D3980;
@@ -451,7 +451,7 @@ u8 *TWindowMessage__ct(u8 *arg0, const void *arg1, u32 arg2, s32 arg3) {
         *(s32 *)(p + 4) = 0;
         p += 8;
     }
-    return arg0;
+    return window;
 }
 
 }

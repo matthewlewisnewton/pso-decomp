@@ -81,25 +81,29 @@ These need cross-file retypes beyond this branch:
   lookup pointer pass it with no cast, and those units are function-100%,
   including `TWindowSubMag`, `TWindowSubTechnique`, `TWindowSubItem` and
   `TWindowSubMagPhoton`. The folded `TObjBoss2Tunnel` message functions
-  pass their `f32` position arrays the same way and stay 100%. Three
-  adapter casts remain because the callee's public symbol is still an
-  integer: `update_window_mode_from_progress` casts its `s32` `this`,
-  `TWindowSubComCard_80271E7C` casts its `s32` lookup into the three
+  pass their `f32` position arrays the same way and stay 100%.
+  `update_window_mode_from_progress` now passes `this` with no cast.
+  Two adapter casts remain because the callee's public symbol is still an
+  integer: `TWindowSubComCard_80271E7C` casts its `s32` lookup into the three
   `set_window_mode_4` calls (widening that file's lookup renames
   `create_for_card__14TWindowComCardFlll`), and `open_yes_no_prompt` stays
   the unmangled `s32` symbol and casts into `create_titled_window_menu`.
-  All three are function-100%. The other lookup files still declare
+  Both are function-100%. The other lookup files still declare
   `get_window_layout_position` as returning `s32`. That remainder still
   runs through `check_room_seq_4__16TAdChrSelASlotGCFl`,
   `draw_card_icon__17TWindowSubComCardFll`, and the mangled
   `TWindowHelpItem` / `TWindowInputNumber` ctors.
-- **The window constructor chain.** A cast-free factory is
-  `return new TWindowMessage(...)`. Retyping `TWindowMessage__ct` alone only
-  moves the cast, because the `__nw` result and the ctor result share one
-  variable. A real ctor needs real ctors on every base (`TUnk_804CDFE8`'s
-  `construct_with_parent`, then `TWindowDD::construct_base`), and each class
-  must declare virtuals matching its DOL vtable. About 18 window ctors in
-  other files call those bases as C-named functions today.
+- **The window constructor chain.** `create_message_window` now returns
+  the `TWindowMessage *` from `__nw__7TObjectFUl` and `TWindowMessage__ct`
+  with no cast, and that function stays 100%. `update_window_mode_from_progress`
+  passes `this` through with no cast and stays 100%. A real
+  `TWindowMessage::TWindowMessage` does not: MWCC emits
+  `bl __ct__13TUnk_804CDFE8Fv` and a vtable store at 0x18 *before*
+  `construct_with_parent`, then the body stores the vtable again. The
+  original has only the second store. `construct_with_parent` (0x4C) calls
+  `construct_base` with r4/r5/r6 still holding the caller's arguments and
+  never calls `TObject::TObject` itself; making it a real base constructor
+  would insert that call. The C-named `TWindowMessage__ct` stays.
 - **`TLobby::send_and_handle(int, int)`.** It has 127 call sites, so a text
   pointer is still passed as an integer.
 - **Eight local `create_yes_no_window(s32, ...)` prototypes.** In
