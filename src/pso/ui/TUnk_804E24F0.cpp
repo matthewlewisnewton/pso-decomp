@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -31,7 +32,7 @@ extern u8 forward_item_effect_callback__10TObjPlayerFll[];
 
 void TAdPlayerLoadGC__sub_802D6390(A_802D6390 *arg0, B_802D6390 *arg1);
 
-void TUnk_804E24F0::vfunc_60() {
+void TAdPlayerLoadGC::play_load_sound() {
     if (TObjPlayer::get_player_list() == 1) {
         translate_matrix(0, 0.0f, *(f32 *)((s8 *)this + 0x1F8), 0.0f);
     }
@@ -53,7 +54,7 @@ void TUnk_804E24F0::emit_marker_effects() {
     s32 arg0 = (s32)this;
 
     ((TItemWeapon *)arg0)->get_gun_point(&sp8);
-    spawn_particle_effect(&sp8, 9);
+    spawn_particle_effect((const Vec *)(&sp8), 9);
     ((TItemWeapon *)arg0)->spawn_light_task();
     ((TItemWeapon *)arg0)->fire_shot_at_target(&sp8, 0, 0);
 }

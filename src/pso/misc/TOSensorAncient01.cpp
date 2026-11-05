@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -69,8 +71,8 @@ void TOSensorAncient01::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(ancient_sensor_resource_pair_table[set_params[2]].red);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(ancient_sensor_resource_pair_table[set_params[2]].red));
         object = (NJS_OBJECT *)model;
         post_translate_matrix(object->pos);
         draw_ginja_model((s32)object->model);
@@ -78,7 +80,7 @@ void TOSensorAncient01::render() {
         push_matrix();
         object = object->child;
         if ((f32)lamp_timer < 30.0f) {
-            TObjFish::set_global_param(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain);
+            set_current_texture_list((GinjaTextureList *)(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain));
         }
         post_translate_matrix(object->pos);
         draw_ginja_model((s32)object->model);
@@ -86,7 +88,7 @@ void TOSensorAncient01::render() {
         push_matrix();
         object = object->sibling;
         if ((f32)lamp_timer < 60.0f) {
-            TObjFish::set_global_param(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain);
+            set_current_texture_list((GinjaTextureList *)(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain));
         }
         post_translate_matrix(object->pos);
         draw_ginja_model((s32)object->model);
@@ -94,7 +96,7 @@ void TOSensorAncient01::render() {
         push_matrix();
         object = object->sibling;
         if ((f32)lamp_timer < 90.0f) {
-            TObjFish::set_global_param(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain);
+            set_current_texture_list((GinjaTextureList *)(ancient_sensor_resource_pair_table[sensor_texture_table_index].plain));
         }
         post_translate_matrix(object->pos);
         draw_ginja_model((s32)object->model);
@@ -142,23 +144,20 @@ void TOSensorAncient01::destroy() {
         TObjPlayer::free_if_valid(ancient_sensor_resource_pair_table[1].plain);
         TObjPlayer::free_if_valid(ancient_sensor_resource_pair_table[1].red);
         if (ancient_sensor_resource_pair_table != NULL) {
-            mem_free(ancient_sensor_resource_pair_table);
+            ::operator delete[](ancient_sensor_resource_pair_table);
             ancient_sensor_resource_pair_table = NULL;
         }
     }
     if (sensor_ancient01_model_resource != NULL) {
-        TLobby__sub_8001FE7C(sensor_ancient01_model_resource, 1);
+        delete (BmlResource *)(sensor_ancient01_model_resource);
         sensor_ancient01_model_resource = NULL;
     }
 }
 
 void TOSensorAncient01::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &TOSensorAncient01__resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&TOSensorAncient01__resource_descriptor), 0, 0, (void *)(0));
     sensor_ancient01_model_resource = resource;
-    ancient_sensor_resource_pair_table = (TOSensorAncient01Textures *)mem_alloc(0x10);
+    ancient_sensor_resource_pair_table = (TOSensorAncient01Textures *)::operator new[](0x10);
     ancient_sensor_resource_pair_table[0].plain = sensor_ancient01_model_resource->models[0].m_c;
     ancient_sensor_resource_pair_table[0].red = (s32)load_gvm_texture_file((s32) "fs_obj_o_sensor01r.gvm");
     ancient_sensor_resource_pair_table[1].plain = (s32)load_gvm_texture_file((s32) "fs_obj_o_sensor02.gvm");

@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/unk/text_803D96A8.h"
@@ -35,7 +36,7 @@ extern s32 model_render_flags;
 
 void TObjBoss1MokoHill_Solo::render() {
     u8 *arg0 = (u8 *)this;
-    TObjFish::set_global_param(dragon_common_texture_list);
+    set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
     update_dragon_trail_uvs((u8 *)&this->m_28);
     push_matrix();
     translate_matrix(0, this->m_28, (f32) (*(f32 *)((s8 *)arg0 + 0x34)), this->m_30);

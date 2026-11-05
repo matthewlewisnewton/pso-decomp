@@ -3,16 +3,24 @@
 
 #include "types.h"
 
+// Kind 0 stores a pointer to bytes in strbuf. Kind 1 stores a pointer to an s16 in ints.
+union ModemFieldSlot {
+    u8 *text;
+    s16 *number;
+};
+
 struct ModemSessionState {
-    char **subst;
+    const char **subst;
     u8 pad04[4];
-    char *strbuf;
+    u8 *strbuf;
     u8 pad0C[2];
     s16 strstride;
-    u8 **fields;
+    ModemFieldSlot *fields;
     u8 pad14[4];
     s16 *ints;
-    u8 pad1C[0xC];
+    u8 pad1C[4];
+    u8 *line;
+    u8 *token;
     u8 *cmd;
     u8 *out;
     u8 *expect;
@@ -32,6 +40,19 @@ struct ModemRequest {
     char *arg;
 };
 
+// Script session passed to the dial runner. Offsets are from the runner:
+// user at 0x0C, password at 0x10, phone number at 0x14, request at 0x88.
+struct ModemScriptSession {
+    u8 pad00[0xC];
+    char *user;
+    char *password;
+    char *phone_number;
+    u8 pad18[0x70];
+    // DIAL, WAIT, and DELAY all pass this address (session+0x88).
+    // DELAY reads the s16 at +4, ModemRequest::timeout.
+    ModemRequest req;
+};
+
 struct ModemConfig {
     u8 pad00[8];
     s16 numeric_result;
@@ -49,12 +70,18 @@ struct ModemConfig {
     u8 terminator;
 };
 
+// DELAY passes the modem request and reads its timeout, same as the other
+// script commands that take ModemRequest*.
+s16 wait_timeout_loop(ModemRequest *req);
+
 extern "C" {
 extern ModemSessionState lobby_net_session_state;
-s32 TLobby__sub_80428A38(void);
-s32 TLobby__sub_80428BB0(ModemRequest *req);
-void TLobby__sub_80428DC8(s16 type, s16 index, char *src, s16 *nstr, s16 *nint);
-s32 TLobby__sub_804290D4(s16 timeout);
+s16 TLobby__sub_804283C8(u8 *script, ModemScriptSession *sess);
+s16 TLobby__sub_80428830(ModemRequest *req);
+s16 TLobby__sub_80428A38(void);
+s16 TLobby__sub_80428BB0(ModemRequest *req);
+void TLobby__sub_80428DC8(s16 type, s16 index, u8 *src, s16 *nstr, s16 *nint);
+s16 TLobby__sub_804290D4(s16 timeout);
 }
 
 s32 init_modem_session_config(void);

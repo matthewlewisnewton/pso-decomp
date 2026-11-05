@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include <stdlib.h>
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -78,8 +80,8 @@ void TOMonitorMachine01::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         n = ((NJS_OBJECT *)model)->child;
         push_matrix();
         translate_matrix(0, -slide, 0.0f, 0.0f);
@@ -137,17 +139,14 @@ void TOMonitorMachine01::reset_static_state() {
         TOMonitorMachine01__scroll_meshes[i] = NULL;
     }
     if (TOMonitorMachine01__bml_resource != NULL) {
-        TLobby__sub_8001FE7C(TOMonitorMachine01__bml_resource, 1);
+        delete (BmlResource *)(TOMonitorMachine01__bml_resource);
         TOMonitorMachine01__bml_resource = NULL;
     }
 }
 
 void TOMonitorMachine01::load_resources() {
     NJS_OBJECT *screen;
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_monitor_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_monitor_resource_descriptor), 0, 0, (void *)(0));
     TOMonitorMachine01__bml_resource = resource;
     screen = ((NJS_OBJECT *)resource->models[0].model)->child->sibling->sibling;
     TOMonitorMachine01__scroll_meshes[1] = screen->model;

@@ -1,9 +1,10 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TUnk_804CF930.h"
 #include "pso/misc/TWindowSubStatusDisp_80256B94.h"
 #include "pso/misc/TWindowSubStatusDisp_80257BC0.h"
 #include "pso/system/memory.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TTecRaFoie.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -35,7 +36,7 @@ struct Pos_80256E0C { f32 x; f32 y; };
 
 extern "C" {
 void sub_80256BDC__13TUnk_804CF930Fs(u8 *arg0, s16 arg1);
-void calc_bar_width__13TUnk_804CF930Fv(struct Bar_80256C00 *bar);
+void calc_bar_width__20TWindowSubStatusDispFPv(struct Bar_80256C00 *bar);
 extern const f32 lbl_805DCE58;
 void step_gauge_bar_width(Gauge_802571B4 *g);
 void draw_status_gauge_bar__13TUnk_804CF930FPvPvff(Gauge_80256E0C *self, void *ctx, Pos_80256E0C *pos, f32 depth, f32 len);
@@ -91,11 +92,9 @@ typedef char RecoveredGlobal_80257B4C_lbl_804CF948_size[sizeof(RecoveredGlobal_8
 
 typedef void *(*Ctor_80257D44)(void *, void *, s32);
 
-void mem_free(void *);
-void ** mem_alloc(u32);
 #define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
 #define sub_80256BDC__13TUnk_804CF930Fs ((int (*)(void*, int))sub_80256BDC__13TUnk_804CF930Fs)
-#define calc_bar_width__13TUnk_804CF930Fv ((s32 (*)())calc_bar_width__13TUnk_804CF930Fv)
+#define calc_bar_width__20TWindowSubStatusDispFPv ((s32 (*)())calc_bar_width__20TWindowSubStatusDispFPv)
 #define step_gauge_bar_width ((void (*)(void *))step_gauge_bar_width)
 void* init_from__13TUnk_804CF930FPvi(void* a0, void* a1, int a2);
 u8 * init_layout_entry_copy__20TWindowSubStatusDispFPUc(u8 *arg0, u8 *arg1);
@@ -127,7 +126,7 @@ void draw_visible_window_entries(void *self, List_80257BC0 *list, void *ctx) {
     }
 }
 
-void TWindowBase::update_window_entry_list(void *list_arg) {
+void TUnk_804CE018::update_window_entry_list(void *list_arg) {
     List_80257C28 *list = (List_80257C28 *)list_arg;
     Ent_80257C28 **p;
     u32 n;
@@ -154,7 +153,7 @@ void TWindowSubStatusDisp::destroy_all_items() {
             }
             p--;
         }
-        mem_free(arg0->items);
+        ::operator delete[](arg0->items);
         arg0->count = 0;
         arg0->items = 0;
     }
@@ -178,7 +177,7 @@ void init_window_layout_entries(List_80257D44 *self, Desc_80257D44 *desc, s32 ar
         self->items = NULL;
         return;
     }
-    self->items = mem_alloc(self->count * 4);
+    self->items = static_cast<void**>(::operator new[](self->count * 4));
     out = self->items;
     while (rows-- != 0) {
         cols = desc->cols;
@@ -314,6 +313,6 @@ void *TWindowSubStatusDisp::deleting_destructor(s16 arg1) {
 #undef draw_status_gauge_bar__13TUnk_804CF930FPvPvff
 #undef destroy__13TUnk_804CF930Fs
 #undef sub_80256BDC__13TUnk_804CF930Fs
-#undef calc_bar_width__13TUnk_804CF930Fv
+#undef calc_bar_width__20TWindowSubStatusDispFPv
 #undef step_gauge_bar_width
 #undef lbl_804CF930

@@ -76,6 +76,8 @@ TUnk_804C2298::TUnk_804C2298() : TObject((TObject *)tl_00) {
 
 s32 TWindowShortListCtrl__sub_801A513C(void* p) { return *(s32*)((char*)p + 0x24); }
 int TWindowShortListCtrl__sub_801A5144(void* p) { return *(u8*)((char*)p + 0x1d) & 0x1; }
+// The short-list constructor passes the client id. The save record this reads is global,
+// so the argument is not referenced.
 s32 TWindowShortListCtrl::get_card_window_flags(s32 client_id) {
     void *character_save_record;
 

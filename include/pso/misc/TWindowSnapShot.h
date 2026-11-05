@@ -2,19 +2,11 @@
 #define PSO_MISC_TWINDOWSNAPSHOT_H
 
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
-struct TWindowSnapShot : public TWindowBase {
+struct TWindowSnapShot : public TUnk_804CE018 {
     virtual ~TWindowSnapShot();
     virtual void render();
-    u8 _pad1C[0x8];
-    void* m_24;
-    u8 _pad28[0x4];
-    u32 m_2c;
-    u8 unk_30[0xC];
-    s32 * m_3c;
-    u8 unk_40[0x1C];
-    u32 m_5c;
     u8 m_60;
     static void free_shared_instance();
     s32 get_size();

@@ -1,3 +1,6 @@
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/misc/TOFenceBase.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -49,14 +52,14 @@ void TOFenceBase::update_trigger() {
         }
         break;
     }
-    play_persistent_sound(0x4004C10F, (s32)this, (u32)&position, 0, 0);
+    play_persistent_sound((s32)(0x4004C10F), (const void *)(this), (const Vec *)((u32)&position), 0, 0);
 }
 
 void TOFenceBase::run_task() {
     f32 frame;
     f32 end_frame;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_demo();
         return;
     }
@@ -84,8 +87,8 @@ void TOFenceBase::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(NULL, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (is_open == 0) {
             draw_ginja_model_with_motion(model, motion, animation_frame);
         } else {

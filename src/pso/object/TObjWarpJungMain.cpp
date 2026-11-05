@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjAreaWarp.h"
 #include "pso/misc/TWindowMenu.h"
@@ -108,6 +109,7 @@ struct Obj_801A0224 {
 
 f32 fabs_float(f32);
 void queue_destruction__7TObjectFv(void *);
+int confirm_area_transfer__12TObjAreaWarpFPvi(void*);
 u8 *__dt__12TObjAreaWarpFv(u8 *arg0, s16 arg1);
 void *TObjAreaWarp__ct(void *arg0);
 int vfunc_14__12TObjWarpBaseFv(void*);
@@ -119,6 +121,7 @@ Obj_801A0224 * TObjWarpJung__ct(Obj_801A0224 *self);
 s32 TObjWarpJung__sub_801A0404(s32);
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
+s32 get_selected_menu_value(void *);
 void * init__13TAdVIConfigGCFf(void *, void *, f32);
 s32 get_game_play_mode(void);
 
@@ -160,7 +163,7 @@ void TObjWarpJungMain::render() {
             }
             break;
         }
-        TObjFish::set_global_param((s32)((void *)warp_jung_model_handle));
+        set_current_texture_list((GinjaTextureList *)(((void *)warp_jung_model_handle)));
         push_matrix();
         post_translate_matrix((u8 *)arg0 + 0x38);
         rotate_matrix_y(0, *(s32 *)((s8 *)arg0 + 0x60));
@@ -175,14 +178,14 @@ void TObjWarpJungMain::render() {
 s32 TObjWarpJungMain__vt16(TObjWarpJungMain *warp_jung_main) {
     u8 *window_menu;
     window_menu = (u8 *)(*(u8 **)((s8 *)warp_jung_main + 0xB0));
-    if ((window_menu != NULL) && (((TWindowMenu *)window_menu)->is_decided() != 0)) {
-        warp_jung_main->m_bc = (s32) *(s32 *)((s8 *)&jungle_warp_destination_ids.value + (((TWindowMenu *)(*(u8 **)((s8 *)warp_jung_main + 0xB0)))->get_selected_value() * 4));
+    if ((window_menu != NULL) && (((TWindowMenu *)window_menu)->is_visible() != 0)) {
+        warp_jung_main->m_bc = (s32) *(s32 *)((s8 *)&jungle_warp_destination_ids.value + (get_selected_menu_value(*(u8 **)((s8 *)warp_jung_main + 0xB0)) * 4));
         return 1;
     }
     return 0;
 }
 
-void TObjWarpJungMain::confirm_area_transfer(s32 arg1) { TObjAreaWarp::confirm_area_transfer(arg1); }
+void TObjWarpJungMain::confirm_area_transfer(s32) { confirm_area_transfer__12TObjAreaWarpFPvi(this); }
 
 void TObjWarpJungMain::vfunc_14() { vfunc_14__12TObjWarpBaseFv(this); TWindowCtrl::clear_flag(); }
 
@@ -272,7 +275,7 @@ void TObjWarpJung::render() {
         TObjWarpJung::set_global_render_param();
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjWarpJung::render_warp(0);
         TParticleCtrl::begin_effect_render();
         TObjWarpJung::render_warp_effect(1, (s32) this->m_c4);
@@ -281,7 +284,7 @@ void TObjWarpJung::render() {
     }
 }
 
-void TObjWarpJung::confirm_area_transfer(s32 arg1) { TObjAreaWarp::confirm_area_transfer(arg1); }
+void TObjWarpJung::confirm_area_transfer(s32) { confirm_area_transfer__12TObjAreaWarpFPvi(this); }
 
 void TObjWarpJung::run_task() {
     u8 *arg0 = (u8 *)this;
@@ -331,7 +334,7 @@ f32 TObjWarpJung::get_static_field4_as_float() {
     return (f32) *(u32 *)((s8 *)warp_jung_beam_motion + 4);
 }
 
-void TObjWarpJung::set_global_render_param() { TObjFish::set_global_param(warp_jung_model_handle); }
+void TObjWarpJung::set_global_render_param() { set_current_texture_list((GinjaTextureList *)(warp_jung_model_handle)); }
 
 void TObjWarpJung::render_warp_effect(s32 arg0, s32 arg1) {
     s32 bml_model;

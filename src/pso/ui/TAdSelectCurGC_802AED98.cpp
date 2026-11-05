@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #ifndef PSO_TADSELECTCURGC_H
 #define PSO_TADSELECTCURGC_H
 #include "pso/TObject.h"
@@ -56,7 +57,7 @@ extern u32 menu_selection_cursor_texture_list;
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 check_flag_0x48__14TAdSelectCurGCFv(void *, int);
-void play_sound_effect(int, int, int, int);
+
 void fn_802AEAA4(void *, s32);
 extern u8 controller_input_state[];
 extern u8 controller_physical_port_bank[];
@@ -64,6 +65,7 @@ void run_task__14TAdSelectCurGCFv(TAdSelectCurGC_802AED98 *o);
 void __ct__7TObjectFP7TObject(void *);
 extern void *__vt__14TAdSelectCurGC[];
 extern s32 lbl_805D3E70;
+extern const f32 lbl_805DE1E0;
 TAdSelectCurGC_802AF0E0 *__ct__14TAdSelectCurGCFv(TAdSelectCurGC_802AF0E0 *o, void *unused, void *a, void *b);
 void release_texture_list(void*);
 void *__nw__7TObjectFUl(int);
@@ -153,7 +155,7 @@ TAdSelectCurGC_802AF0E0 *__ct__14TAdSelectCurGCFv(TAdSelectCurGC_802AF0E0 *o, vo
     o->fB8 = 0;
     o->fB4 = 0;
     o->f700 = 0;
-    TAdSelectCurGC__sub_802AF274(o, 0.5555556f);
+    TAdSelectCurGC__sub_802AF274(o, lbl_805DE1E0);
     for (i = 0; i < 16; i++) {
         o->tbl[i] = 0;
     }

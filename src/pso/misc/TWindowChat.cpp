@@ -1,5 +1,4 @@
 #include "pso/misc/TWindowChat.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
 #include "pso/misc/TKeyBoardControl_8025EC04.h"
 #include "pso/misc/TWindowKeyBoardHard_802601D4.h"
@@ -12,6 +11,7 @@
 #include "pso/TObject.h"
 #include "pso/misc/TWindowMenu.h"
 #include "types.h"
+#include "pso/misc/TWindowKeyBoardSoft_80261440.h"
 
 struct Win_8024701C { u8 p0[0x1E]; u16 flags; s32 f20; u8 p24[4]; s32 f28; };
 
@@ -77,7 +77,6 @@ s32 check_flag_100__10TObjPlayerFPv();
 extern u8 controller_input_state[];
 s32 __nw__7TObjectFUl(int);
 s32 construct_symbol_chat_selection(int, void *);
-s32 TWindowKeyBoardSoft__ct(int, void *, void *);
 s32 get_window_layout_position(int);
 s32 TWindowDD__ct(int, void *, void *);
 void *__dt__11TWindowChatFv(void *, s16);
@@ -85,6 +84,7 @@ void *__dt__11TWindowChatFv(void *arg0, s16 arg1);
 u8 *TWindowKeyBoardBase__ct(u8 *arg0);
 void TWindowChat__sub_80247D2C(void* p);
 s32 TWindowChat__sub_80247D50(u8 *arg0);
+int get_selected_menu_value(void*);
 int TWindowChat__sub_80247DAC(void* p);
 void TWindowChat__sub_80247DFC(u8 *arg0);
 void TWindowChat__sub_80247E50(u8 *arg0);
@@ -267,11 +267,11 @@ void TWindowChat::close_all_children() {
         *(u32 *)((s8 *)arg0 + 0x34) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)arg0 + 0x2C) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x2C)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x2C)));
         *(u32 *)((s8 *)arg0 + 0x2C) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)arg0 + 0x24) != 0U) {
-        ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x24)))->close();
+        TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x24)));
         *(u32 *)((s8 *)arg0 + 0x24) = 0U;
     }
 }
@@ -398,7 +398,7 @@ void TWindowChat::open_next_input_window() {
         temp_r3 = __nw__7TObjectFUl(0x70);
         var_r0 = temp_r3;
         if (var_r0 != 0) {
-            var_r0 = TWindowKeyBoardSoft__ct((int)temp_r3, (void *) (((RecoveredFields_8024792C_arg0 *)arg0)->field_20), (void *)local_client_id);
+            var_r0 = (s32)TWindowKeyBoardSoft__ct((u8 *)temp_r3, (s32)(((RecoveredFields_8024792C_arg0 *)arg0)->field_20), local_client_id);
         }
         ((RecoveredFields_8024792C_arg0 *)arg0)->field_24 = var_r0;
         fn_80247ED8((void*)((int) (((RecoveredFields_8024792C_arg0 *)arg0)->field_24)));
@@ -466,19 +466,19 @@ TWindowChat::~TWindowChat() {
         *(u32 *)((s8 *)this + 0x34) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x2C) != 0U) {
-        ((TWindowBase *)this->auxiliaryWindow)->close();
+        TWindow__close((u8 *)this->auxiliaryWindow);
         *(u32 *)((s8 *)this + 0x2C) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x24) != 0U) {
-        ((TWindowBase *)this->softKeyboard)->close();
+        TWindow__close((u8 *)this->softKeyboard);
         *(u32 *)((s8 *)this + 0x24) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x28) != 0U) {
-        ((TWindowBase *)this->hardKeyboard)->close();
+        TWindow__close((u8 *)this->hardKeyboard);
         *(u32 *)((s8 *)this + 0x28) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x20) != 0U) {
-        ((TWindowBase *)this->composer)->close();
+        TWindow__close((u8 *)this->composer);
         *(u32 *)((s8 *)this + 0x20) = 0U;
     }
 }
@@ -517,11 +517,11 @@ s32 TWindowChat__sub_80247D50(u8 *arg0) {
     return *(s32 *)((s8 *)arg0 + 0x68) > 0;
 }
 
-int TWindowChat::forward_card_at_1c() { return ((TWindowMenu *)(*(void**)((char*)this + 0x1c)))->get_selected_value(); }
+int TWindowChat::forward_card_at_1c() { return get_selected_menu_value(*(void**)((char*)this + 0x1c)); }
 
-int TWindowChat::get_subcard_field1c() { return ((TWindowMenu *)(*(void**)((char*)this + 0x1c)))->is_decided(); }
+int TWindowChat::get_subcard_field1c() { return ((TWindowMenu *)(*(void**)((char*)this + 0x1c)))->is_visible(); }
 
-int TWindowChat__sub_80247DAC(void* p) { return ((TWindowMenu *)(*(void**)((char*)p + 0x1c)))->is_cancelled(); }
+int TWindowChat__sub_80247DAC(void* p) { return ((TWindowSubComCard *)(*(void**)((char*)p + 0x1c)))->get_status_flag(); }
 
 void TWindowChat::set_active_flag() { this->flags |= 0x10; }
 

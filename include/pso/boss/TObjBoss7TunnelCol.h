@@ -6,10 +6,11 @@
 
 struct TObjBoss7TunnelCol : public TObjCollidable {
     virtual ~TObjBoss7TunnelCol();
-    CollisionBody collision_body; // copied from TObjBoss7TunnelCol__col_desc, then set_collision_body
+    void* m_ac;
     virtual void render();
     virtual void run_task();
     s32 is_in_camera_range();
+    u8 unk_B0[0x28];
 };
 
 typedef char TObjBoss7TunnelCol_size[sizeof(TObjBoss7TunnelCol) == 0xD8 ? 1 : -1];

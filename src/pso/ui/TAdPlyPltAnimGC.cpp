@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/ui/TAdPlyPltAnimGC.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
@@ -73,7 +74,7 @@ void TAdPlyPltAnimGC::render() {
     if (((s32) *(s32 *)((s8 *)arg0 + 0x74) != 0) && (TMainTask::get_render_pass() != 1)) {
         set_additive_blend();
         begin_screen_draw(1);
-        TObjFish::set_global_param(player_prate_texture_list_ptr);
+        set_current_texture_list((GinjaTextureList *)(player_prate_texture_list_ptr));
         set_draw_texture_and_color(0, (*(u8 *)((s8 *)arg0 + 0x6C) << 0x18) | 0xFF0000 | 0xFFFF);
         draw_textured_quad_at_depth((f32 *)(arg0 + 0x1C), (lbl_805DFFCC * (f32) *(s32 *)((s8 *)arg0 + 0x70)) + lbl_805DFFC8);
         TWindowSubStatusDisp::get_player();

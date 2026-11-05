@@ -3,7 +3,7 @@
 #include "pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.h"
 #include "pso/misc/TWindowSubSymbolChat_80076F88.h"
 #include "pso/misc/TWindowChatSymbol.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowHelpItem.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowSubSymbolChat.h"
@@ -59,26 +59,12 @@ void apply_part_to_window__28TWindowSubSymbolChatPartsSetFPvPvi(Obj_80248088 *ar
 extern const f32 lbl_805DCB7C;
 struct Ctl_80248324 { u8 pad[4]; s32 *tbl; };
 
-// Layout record type 6 of init_window_layout_entries (0x30 bytes), read by
-// TWindowSubStatusDisp::init_part_scaled: u and v are texel coordinates (divided by 256).
-struct SpritePartLayoutRecord {
-    s32 type;
-    f32 pos[2];
-    f32 size[2];
-    f32 u;
-    f32 v;
-    f32 pad_1C;
-    s32 pad_20;
-    s32 *pad_24;
-    s32 pad_28;
-    s32 pad_2C;
+struct RecoveredGlobal_80248494_lbl_804CE2E8 {
+    s32 value;
+    u8 remaining[0x4B4];
 };
 
-struct SymbolChatSpriteLayout {
-    u32 cols;
-    u32 rows;
-    SpritePartLayoutRecord recs[25];
-};
+typedef char RecoveredGlobal_80248494_lbl_804CE2E8_size[sizeof(RecoveredGlobal_80248494_lbl_804CE2E8) == 0x4B8 ? 1 : -1];
 
 void allow_rendering__7TObjectFv(TObject *arg0);
 void disallow_rendering__7TObjectFv(TObject *arg0);
@@ -87,38 +73,7 @@ void fn_80248324(Ctl_80248324 *c, s32 arg1, s32 arg2);
 s32 draw_visible_window_entries(void *, void *, void *, f32, f32, f32);
 s32 init_window_layout_entries(void *, void *, void *);
 
-extern s32 lbl_805D63F0;
-
-SymbolChatSpriteLayout symbol_chat_layout_sprite_records = {
-    25, 1,
-    {
-        {6, {34.0f, 5.0f}, {60.0f, 60.0f}, 0.0f, 128.0f, 0.2f, -1, &lbl_805D63F0, 10, 4},
-        {6, {-5.0f, 0.0f}, {50.0f, 40.0f}, 178.0f, 168.0f, 0.23f, -1, &lbl_805D63F0, 10, 20},
-        {6, {91.0f, 0.0f}, {50.0f, 40.0f}, 128.0f, 168.0f, 0.23f, -1, &lbl_805D63F0, 10, 20},
-        {6, {-5.0f, 38.0f}, {50.0f, 40.0f}, 178.0f, 128.0f, 0.23f, -1, &lbl_805D63F0, 10, 20},
-        {6, {91.0f, 38.0f}, {50.0f, 40.0f}, 128.0f, 128.0f, 0.23f, -1, &lbl_805D63F0, 10, 20},
-        {6, {0.0f, 0.0f}, {32.0f, 32.0f}, 0.0f, 96.0f, 0.25f, -1, &lbl_805D63F0, 7, 4},
-        {6, {96.0f, 0.0f}, {32.0f, 32.0f}, 0.0f, 96.0f, 0.25f, -1, &lbl_805D63F0, 7, 4},
-        {6, {0.0f, 38.0f}, {32.0f, 32.0f}, 0.0f, 96.0f, 0.25f, -1, &lbl_805D63F0, 7, 4},
-        {6, {96.0f, 38.0f}, {32.0f, 32.0f}, 0.0f, 96.0f, 0.25f, -1, &lbl_805D63F0, 7, 4},
-        {6, {0.0f, 0.0f}, {32.0f, 32.0f}, 128.0f, 208.0f, 0.3f, -1, &lbl_805D63F0, 10, 20},
-        {6, {96.0f, 0.0f}, {32.0f, 32.0f}, 128.0f, 208.0f, 0.3f, -1, &lbl_805D63F0, 10, 20},
-        {6, {0.0f, 38.0f}, {32.0f, 32.0f}, 128.0f, 208.0f, 0.3f, -1, &lbl_805D63F0, 10, 20},
-        {6, {96.0f, 38.0f}, {32.0f, 32.0f}, 128.0f, 208.0f, 0.3f, -1, &lbl_805D63F0, 10, 20},
-        {6, {64.0f, 35.0f}, {16.0f, 16.0f}, 0.0f, 0.0f, 0.35f, -1, &lbl_805D63F0, 10, 20},
-        {6, {64.0f, 35.0f}, {16.0f, 16.0f}, 0.0f, 0.0f, 0.4f, -1, &lbl_805D63F0, 10, 20},
-        {6, {64.0f, 35.0f}, {16.0f, 16.0f}, 0.0f, 0.0f, 0.45f, -1, &lbl_805D63F0, 10, 20},
-        {6, {64.0f, 35.0f}, {16.0f, 16.0f}, 0.0f, 0.0f, 0.5f, -1, &lbl_805D63F0, 10, 20},
-        {6, {64.0f, 35.0f}, {16.0f, 16.0f}, 0.0f, 0.0f, 0.55f, -1, &lbl_805D63F0, 10, 20},
-        {6, {64.0f, 35.0f}, {16.0f, 16.0f}, 0.0f, 0.0f, 0.6f, -1, &lbl_805D63F0, 10, 20},
-        {6, {64.0f, 35.0f}, {16.0f, 16.0f}, 0.0f, 0.0f, 0.65f, -1, &lbl_805D63F0, 10, 20},
-        {6, {64.0f, 35.0f}, {16.0f, 16.0f}, 0.0f, 0.0f, 0.7f, -1, &lbl_805D63F0, 10, 20},
-        {6, {64.0f, 35.0f}, {16.0f, 16.0f}, 0.0f, 0.0f, 0.75f, -1, &lbl_805D63F0, 10, 20},
-        {6, {64.0f, 35.0f}, {16.0f, 16.0f}, 0.0f, 0.0f, 0.8f, -1, &lbl_805D63F0, 10, 20},
-        {6, {64.0f, 35.0f}, {16.0f, 16.0f}, 0.0f, 0.0f, 0.85f, -1, &lbl_805D63F0, 10, 20},
-        {6, {64.0f, 35.0f}, {16.0f, 16.0f}, 0.0f, 0.0f, 0.9f, -1, &lbl_805D63F0, 10, 20},
-    },
-};
+extern RecoveredGlobal_80248494_lbl_804CE2E8 symbol_chat_layout_sprite_records;
 
 #pragma push
 #pragma readonly_strings on
@@ -276,7 +231,7 @@ void setup_part_sprites__28TWindowSubSymbolChatPartsSetFPvPvPvUsiiii(Part_802480
 }
 
 void TWindowSubSymbolChatPartsSet__sub_802482B8(s32 arg0, s32 arg1) {
-    ((TWindowBase *)arg0)->get_array_entry(arg1 + 0x1);
+    ((TUnk_804CE018 *)arg0)->get_array_entry(arg1 + 0x1);
 }
 
 void TWindowSubSymbolChatPartsSet::get_parts_entry(s32 arg1) {
@@ -284,7 +239,7 @@ void TWindowSubSymbolChatPartsSet::get_parts_entry(s32 arg1) {
 }
 
 void get_parts_entry__28TWindowSubSymbolChatPartsSetFii(s32 arg0, s32 arg1) {
-    ((TWindowBase *)arg0)->get_array_entry(arg1 + 5);
+    ((TUnk_804CE018 *)arg0)->get_array_entry(arg1 + 5);
 }
 
 void fn_80248324(Ctl_80248324 *c, s32 arg1, s32 cur) {
@@ -328,7 +283,7 @@ void set_symbol_chat_parts__20TWindowSubSymbolChatFiPv(s32 arg0, void *arg1) {
 
 void TWindowSubSymbolChat::init_layout_entries(s32 player) {
     s32 arg0 = (s32)this;
-    init_window_layout_entries((void *)arg0, &symbol_chat_layout_sprite_records, (void *)player);
+    init_window_layout_entries((void *)arg0, &symbol_chat_layout_sprite_records.value, (void *)player);
 }
 
 void TWindowSubSymbolChatPartsSet::update_visibility() {
@@ -366,7 +321,7 @@ void render__17TWindowChatSymbolFv(u8 *window_chat_symbol) {
         *(f32 *)((s8 *)c_arg + 0x28) = (f32) ((f32) *(s32 *)&((TWindowChatSymbol *)window_chat_symbol)->m_5c / lbl_805DCB9C);
         *(f32 *)((s8 *)c_arg + 0x2C) = (f32) *(f32 *)((s8 *)c_arg + 0x28);
     }
-    ((TWindowBase *)window_chat_symbol)->draw_quest_message_frame(c_arg);
+    ((TUnk_804CE018 *)window_chat_symbol)->draw_quest_message_frame(c_arg);
     *(f32 *)((s8 *)c_arg + 0x10) = (f32) ((lbl_805DCB7C * (((TWindowChatSymbol *)window_chat_symbol)->m_48 - lbl_805DCB94)) + *(f32 *)((s8 *)c_arg + 0x10));
     temp_f2 = *(f32 *)((s8 *)window_chat_symbol + 0x4C);
     temp_f1 = temp_f2 - lbl_805DCB98;

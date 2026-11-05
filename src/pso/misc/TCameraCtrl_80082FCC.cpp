@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TCameraCtrl_80082FCC.h"
 #include "pso/TMainTask.h"
@@ -85,7 +86,7 @@ void TCameraCtrl::copy_position_vectors(void *arg1, void *arg2) {
 
 void TCameraCtrl::update_single_screen() {
     if ((is_split_screen() == 0) && ((u32) camera_render_target_singleton != 0U)) {
-        TObjFish::set_global_param(camera_render_target_singleton + 0x1C);
+        set_current_texture_list((GinjaTextureList *)(camera_render_target_singleton + 0x1C));
         load_list_texture(0, 0, 0, 0);
     }
 }
@@ -93,7 +94,7 @@ void TCameraCtrl::update_single_screen() {
 void TUnk_8048E5DC::render() {  }
 void TUnk_8048E5DC::run_task() {  }
 
-extern s32 __vt__13TUnk_8048E5DC[];
+extern s32 lbl_8048E5DC[];
 
 #pragma push
 #pragma opt_common_subs off
@@ -118,7 +119,7 @@ void TUnk_8048E5DC::render_shadows() {
         stack.sp20 = *(s32 *)((s8 *)&camera_ctrl_up_vector.value + 0);
         stack.sp24 = *(s32 *)((s8 *)&camera_ctrl_up_vector.value + 4);
         stack.sp28 = *(s32 *)((s8 *)&camera_ctrl_up_vector.value + 8);
-        set_perspective_projection_from_fov((int) (((TCameraCtrl *)camera_ctrl_instance)->fov), lbl_805D940C, lbl_805D93D8, lbl_805D9410);
+        set_perspective_projection_from_fov((int) (((TCameraCtrl *)camera_ctrl_instance)->m_19c), lbl_805D940C, lbl_805D93D8, lbl_805D9410);
         set_camera_look_at((u8 *)&this->m_20, (u8 *)&this->unk_2C, (u8 *)&stack.sp20);
         if ((void *) camera_ctrl_instance != NULL) {
             stack.sp14 = *(f32 *)&this->unk_2C - this->m_20;
@@ -150,7 +151,7 @@ void TUnk_8048E5DC::render_shadows() {
 
 void *TUnk_8048E5DC::dt(s16 arg1) {
     if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = __vt__13TUnk_8048E5DC;
+        *(s32 **)((s8 *)this + 0x18) = lbl_8048E5DC;
         __dt__7TObjectFv(this, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
