@@ -4645,14 +4645,15 @@ struct Player_801CD550 {
 
 void handle_6x47_cast_technique(void *arg) {
     CastPacket_801CD550 pkt;
-    Player_801CD550 *player;
     s32 i;
+    Player_801CD550 *player;
     u8 effective;
-    s8 valid;
-    s8 level;
-    u32 *dst;
-    s16 tech;
     s32 count;
+    s8 valid;
+    u32 *dst;
+    s8 level;
+    s16 tech;
+    s32 tech_id;
     u32 *src;
     ((TNpcPlayer *)&pkt)->init_cast_technique_cmd();
     TObjPlayer__sub_801D21CC((u8 *)&pkt, (u8 *)arg);
@@ -4662,22 +4663,24 @@ void handle_6x47_cast_technique(void *arg) {
     if (player == NULL) return;
     if (reset_volopt_state__10TObjPlayerFv(player) == 0) return;
     if (test_action_mask__10TObjPlayerFl(player, 0x8200) != 0) return;
+    // The technique setter takes the s16 id; the level check and the clamp take it as s32.
     tech = pkt.tech;
+    tech_id = tech;
     ((TObjPlayer *)player->techs)->set_technique_id(tech);
     level = (s8)pkt.level;
     valid = ((TObjPlayer *)player->techs)->get_valid_technique();
     if (TObjPlayer::is_valid_technique_slot((u8)valid) == 0) valid = 0;
     if ((s32)level == 14) level += valid;
-    if (!check_technique_level__10TObjPlayerFllUc(player->techs, tech, (u8)level)) level = 0;
+    if (!check_technique_level__10TObjPlayerFllUc(player->techs, tech_id, (u8)level)) level = 0;
     effective = level;
     ((TObjPlayer *)player->techs)->set_technique_id(effective);
-    clamp_and_set_unit_value__10TObjPlayerFiUci((s32)player, effective, tech);
+    clamp_and_set_unit_value__10TObjPlayerFiUci((s32)player, effective, tech_id);
     count = pkt.count;
     ((TObjPlayer *)player->techs)->set_tech_level(count);
     dst = (u32 *)get_technique_data__10TObjPlayerFPv(player->techs);
     src = pkt.targets;
     for (i = 0; i < count; i++) copy_tech_params__10TObjPlayerFPvPv(dst++, src++);
-    run_action_state_phase__10TObjPlayerFisi((s32)player, 8, 0);
+    ((void (*)(void *, s32, s32))run_action_state_phase__10TObjPlayerFisi)(player, 8, 0);
 }
 
 void handle_6x8D_set_technique_level_override(void *arg0) {
