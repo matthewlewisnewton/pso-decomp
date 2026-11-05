@@ -51,17 +51,17 @@ s32 load_floor_enemy_group_entries__6TLobbyFiPvUi(s32 idx, Src_8020B970 *src, u3
 s32 init_quest_floor_enemies(s32 idx, Src_8020B7C4 *src, u32 size);
 
 s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
-    // The floor index is born first. Enemy rows bind the row pointer before
-    // the count snapshot, the same order as the 0x8020B47C importer.
-    s32 i = 0;
+    // The floor index is born with the loop, after the cursor. Object rows
+    // bind the row pointer before the count snapshot, as the 0x8020B47C
+    // importer does. That numbering puts the index in r31 and the count in r25.
     s32 total1 = 0;
     s16 *out = buf->values;
     buf->object_offset = 0x10;
     Tbl_8020B970 *t = TLobby__floor_enemy_group_table;
-    for (; i < 18; i++) {
-        s32 count = t[i].count;
-        if (count > 0) {
+    for (s32 i = 0; i < 18; i++) {
+        if (t[i].count > 0) {
             Dst_8020B970 *l = t[i].list;
+            s32 count = t[i].count;
             if (get_current_floor() == i) {
                 // The raw cursor is copied before the null branch (mr above beq).
                 Src_8020B970 *raw = TLobby__data_805D610C;
