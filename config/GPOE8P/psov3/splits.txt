@@ -1329,7 +1329,7 @@ pso/effect/TEffStarLight2D_Base.cpp:
 
 pso/effect/TEffStarLight2D.cpp:
 	.text       start:0x800851B0 end:0x80085774
-	.sdata2     start:0x805D9454 end:0x805D9478
+	.sdata2     start:0x805D9450 end:0x805D9478
 
 pso/enemy/TObjEneMe1CanadinLeader.cpp:
 	.text       start:0x80085774 end:0x80085798

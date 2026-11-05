@@ -1857,6 +1857,7 @@ force_active:
   - __ct__18TAdLoadQuestLineGCFP7TObjectPv
   - __ct__18TChCrTagOccupationFv
   - __ct__18TChallenge4PResultFP7TObjectUsl
+  - __ct__18TEffStarLightChildFv
   - __ct__18TItemEffNeedleBaseFP7TObjectP5TItem
   - __ct__18TItemReverseTechBGFv
   - __ct__18TOCapsuleAncient01FP7TObjectPv
@@ -4621,6 +4622,7 @@ force_active:
   - copy_from__11TMainCursorFPv
   - copy_from__13TItemAttackerFPv
   - copy_from__14TechniqueBoostFP14TechniqueBoost
+  - copy_from__15TEffStarLight2DFPv
   - copy_from__21BmlResourceDescriptorFRC21BmlResourceDescriptor
   - copy_from__23MagNodeOscillationStateFP23MagNodeOscillationState
   - copy_gauge_warn_vec__10TObjPlayerFv
@@ -7626,6 +7628,7 @@ force_active:
   - lbl_805D8E1C
   - lbl_805D8E20
   - lbl_805D8E24
+  - lbl_805D9474
   - lbl_805D9D70
   - lbl_805D9D88
   - lbl_805D9D90

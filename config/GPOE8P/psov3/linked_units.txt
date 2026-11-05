@@ -407,6 +407,7 @@ pso/effect/TEffGuard.cpp
 pso/effect/TEffHit.cpp
 pso/effect/TEffIndirectCtrl.cpp
 pso/effect/TEffIndirectCtrl_802A9284.cpp
+pso/effect/TEffStarLight2D.cpp
 pso/effect/TEffStarLight2D_Base.cpp
 pso/effect/TEffect.cpp
 pso/effect/TUnk_804CCC68.cpp

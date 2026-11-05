@@ -3,6 +3,13 @@
 #include "pso/effect/TEffStarLightChild.h"
 #include "types.h"
 
+// IEEE bits of 2, 0, 255 and -15. A const float is copied into the literal
+// pool, which duplicates the slot the other effect units load by name.
+__declspec(section ".sdata2") extern const unsigned int lbl_805D9450 = 0x40000000u;
+__declspec(section ".sdata2") extern const unsigned int lbl_805D9454 = 0;
+__declspec(section ".sdata2") extern const unsigned int lbl_805D9458 = 0x437F0000u;
+__declspec(section ".sdata2") extern const int lbl_805D945C = (int)0xC1700000u;
+
 struct Vec_800851B0 { f32 x; f32 y; f32 z; };
 
 struct P2_800851B0 { f32 x; f32 z; };
@@ -72,7 +79,7 @@ void run_task__15TEffStarLight2DFv(Star_800851B0 *self) {
     void *child;
 
     matrix_mult_vec(0, &self->pos, &view);
-    if (view.z > 0.0f) {
+    if (view.z > (*(float *)&lbl_805D9454)) {
         return;
     }
     project_world_to_screen(0, &self->pos, &scr);
@@ -96,7 +103,19 @@ void TEffStarLight2D::copy_from(void* q) { *(f32 *)&this->m_name = *(f32*)((char
 
 }
 
-TEffStarLight2D::~TEffStarLight2D() {}
+extern "C" void __dt__7TObjectFv(void *, int);
+extern "C" void __dl__7TObjectFPv(void *);
+extern "C" void *__vt__15TEffStarLight2D[];
+extern "C" void *__dt__15TEffStarLight2DFv(void *self, s16 flag) {
+    if (self != NULL) {
+        *(void **)((char *)self + 0x18) = __vt__15TEffStarLight2D;
+        __dt__7TObjectFv(self, 0);
+        if (flag > 0) {
+            __dl__7TObjectFPv(self);
+        }
+    }
+    return self;
+}
 
 #pragma push
 #pragma opt_common_subs off
@@ -114,19 +133,19 @@ TEffStarLight2D::TEffStarLight2D(void *arg1, void *arg2, TObject *object) : TObj
 
 #pragma pop
 
-void TEffStarLightChild::render() {  }
+extern "C" void render__18TEffStarLightChildFv(void *self) {}
 void run_task__18TEffStarLightChildFv(Star_80085424 *self) {
     Vec_80085424 a;
     Vec_80085424 b;
     Vec_80085424 c;
     s32 inside = 0;
-    c.z = 0.0f;
+    c.z = (*(float *)&lbl_805D9454);
     c.x = 0.5f * (self->x0 + self->x1);
     c.y = 0.5f * (self->y0 + self->y1);
-    a.z = 0.0f;
+    a.z = (*(float *)&lbl_805D9454);
     a.x = self->x0;
     a.y = self->y0;
-    b.z = 0.0f;
+    b.z = (*(float *)&lbl_805D9454);
     b.x = self->x1;
     b.y = self->y1;
     approach_vector_fixed_distance(&a, &c, &a, self->angle);
@@ -151,7 +170,16 @@ void run_task__18TEffStarLightChildFv(Star_80085424 *self) {
     }
 }
 
-TEffStarLightChild::~TEffStarLightChild() {}
+extern "C" void *__dt__18TEffStarLightChildFv(void *self, s16 flag) {
+    if (self != NULL) {
+        *(void **)((char *)self + 0x18) = __vt__18TEffStarLightChild;
+        __dt__7TObjectFv(self, 0);
+        if (flag > 0) {
+            __dl__7TObjectFPv(self);
+        }
+    }
+    return self;
+}
 
 #pragma push
 #pragma fp_contract on
@@ -160,18 +188,18 @@ Star_800855F8 *__ct__18TEffStarLightChildFv(Star_800855F8 *self, Pt_800855F8 *a,
     __ct__7TObjectFP7TObject(self, parent);
     self->vt = __vt__18TEffStarLightChild;
     self->name = TEffStarLightChild__name;
-    if (speed <= 0.0f) {
+    if (speed <= (*(float *)&lbl_805D9454)) {
         speed = 1.0f;
     }
     d.x = b->x - a->x;
     d.y = b->y - a->y;
-    d.z = 0.0f;
-    if (0.0f != vector_length(&d)) {
+    d.z = (*(float *)&lbl_805D9454);
+    if ((*(float *)&lbl_805D9454) != vector_length(&d)) {
         normalize_vector(&d);
     } else {
-        d.x = 0.0f;
-        d.y = 0.0f;
-        d.z = 0.0f;
+        d.x = (*(float *)&lbl_805D9454);
+        d.y = (*(float *)&lbl_805D9454);
+        d.z = (*(float *)&lbl_805D9454);
     }
     self->x0 = d.y * w + b->x;
     self->y0 = d.x * w + b->y;
@@ -187,3 +215,6 @@ Star_800855F8 *__ct__18TEffStarLightChildFv(Star_800855F8 *self, Pt_800855F8 *a,
     return self;
 }
 #pragma pop
+
+// Unread word after the 0.5 literal. Nothing loads it; force_active keeps it.
+__declspec(section ".sdata2") extern const unsigned char lbl_805D9474[4] = {0, 0, 0, 0};
