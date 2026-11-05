@@ -22,6 +22,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/object/TObjMapCsn.h"
 #include "pso/TParticleCtrl.h"
+#include "pso/TBoss6SwordShot.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/unk/text_802AA8FC.h"
 #include "pso/unk/text_803D96A8.h"
@@ -168,7 +169,6 @@ void scale_matrix(int matrix, f32 x, f32 y, f32 z);
 extern PartPositionSource TBoss6Type1__part_position_sources[];
 extern ActionEntry boss6_type1_action_table[];
 
-u8 *fn_8035648C(s32 arg0, s32 arg1, s32 arg2, f32 farg0);
 extern f32 TBoss6Type1__sword_shot_hit_radii[];
 extern s32 game_difficulty_selection;
 void TBoss6Type1__sub_802B73AC(TBoss6Type1 *self);
@@ -1160,7 +1160,7 @@ void TBoss6Type1__sub_802B73AC(TBoss6Type1 *self) {
         if ((self->unk_408 & 3) == 0) {
             flag = 1;
         }
-        fn_8035648C((s32)self, (s32)&p, flag, sc);
+        TBoss6SwordShot::create(self, &p, flag, sc);
         if (flag != 0) {
             play_sound_effect(0x4003B210, &p, 0, 0);
             TBoss6PlotFalz::apply_radial_effect_to_players(&p, 0xC0, 0xF, 100.0f);

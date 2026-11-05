@@ -172,7 +172,7 @@ struct Shot_80356374 {
     s32 f0;
     u8 pad4[0x14];
     void *vt18;
-    s32 owner;
+    TObject *owner;
     struct { f32 x, y, z; } pos;
     f32 speed;
     s32 f30;
@@ -180,23 +180,22 @@ struct Shot_80356374 {
 };
 
 extern "C" {
-u8 *fn_8035648C(s32 arg0, s32 arg1, s32 arg2, f32 farg0);
 extern s32 lbl_805D43AC;
 extern const f32 lbl_805DFFF4;
-u8 *TBoss6SwordShot__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0);
+u8 *TBoss6SwordShot__ct(void *arg0, TObject *arg1, const Vec *arg2, s32 arg3, f32 farg0);
 
 #pragma push
 #pragma opt_common_subs off
 #define self ((Shot_80356374 *)arg0)
-u8 *TBoss6SwordShot__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0) {
+u8 *TBoss6SwordShot__ct(void *arg0, TObject *arg1, const Vec *arg2, s32 arg3, f32 farg0) {
     f32 scale;
     f32 v;
     void *p;
-    __ct__7TObjectFP7TObject(arg0, (void *)arg1);
+    __ct__7TObjectFP7TObject(arg0, arg1);
     self->vt18 = (s32 *)__vt__15TBoss6SwordShot;
     self->f0 = lbl_805D43AC;
     self->owner = arg1;
-    VecCopy((Vec *)&self->pos, (const Vec *)arg2);
+    VecCopy((Vec *)&self->pos, arg2);
     self->speed = farg0;
     self->f30 = 0;
     v = *((f32 *)get_battle_movement_params(0x2B));
@@ -223,15 +222,15 @@ u8 *TBoss6SwordShot__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0) {
 
 #pragma push
 #pragma fp_contract on
-u8 *fn_8035648C(s32 arg0, s32 arg1, s32 arg2, f32 farg0) {
+TBoss6SwordShot *TBoss6SwordShot::create(TObject *owner, const Vec *pos, s32 with_particles, f32 speed) {
     u8 *temp_r3;
     u8 *var_r0;
     temp_r3 = (u8 *)(__nw__7TObjectFUl(0x38));
     var_r0 = temp_r3;
     if (var_r0 != NULL) {
-        var_r0 = (u8 *)(TBoss6SwordShot__ct(temp_r3, arg0, arg1, arg2, farg0));
+        var_r0 = (u8 *)(TBoss6SwordShot__ct(temp_r3, owner, pos, with_particles, speed));
     }
-    return var_r0;
+    return (TBoss6SwordShot *)var_r0;
 }
 #pragma pop
 
