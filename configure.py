@@ -503,6 +503,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Row-header copy is a 16-byte struct assignment. -inline off outlines it;
     # noauto,level=1 inlines that helper only. The rest of the unit stays out of line.
     "pso/misc/TWindowMainMenu_802AD538.cpp": {"cflags": _switch(cflags_pso, "-inline noauto,level=1")},
+    # Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs
+    # (scale_point_about_pivot, apply_context_transform_to_rect,
+    # apply_window_closing_stretch, clip_textured_quad, init_text_window_layout).
+    # Unit -fp_contract on replaces the per-function pragmas. Precedent:
+    # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
+    "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
