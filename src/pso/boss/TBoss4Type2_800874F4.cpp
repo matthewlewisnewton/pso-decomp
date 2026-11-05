@@ -27,7 +27,7 @@ extern s32 particle_global_entry_table;
 extern s32 particle_area_entry_table;
 void *__nw__7TObjectFUl(int);
 
-TParticleCtrl *create_particle_emitter(void *pos, s32 id) {
+TParticleCtrl *create_particle_emitter(const void *pos, s32 id) {
     void *p;
     if (particle_pool_limit > id) {
         p = __nw__7TObjectFUl(0x78);

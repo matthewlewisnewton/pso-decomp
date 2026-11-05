@@ -144,8 +144,10 @@ struct TLobby : public TObject {
     static s32 run_disk_error_check();
     u32 write_packet_header(s32 arg1, s32 arg2, u32 arg3);
     s32 alloc_download_quest(s32 arg1, s32 *arg2);
-    static void set_stream_and_load_file(int a0);
+    static s32 set_stream_and_load_file(int a0);
     static void set_stream_state(int a0);
+    static void reset_state_flags();
+    static void process_deferred_player_setup();
     static s32 get_file_size();
     static void run_frame();
     static void free_static_buffer(void* a0);
@@ -364,6 +366,7 @@ struct TLobby : public TObject {
     static void set_target_id(s32 arg0);
     static s32 is_camera_state_active();
     static void set_mode(s32 arg0);
+    static int init_sound_mode();
     static void set_menu_index_main(u8 *arg0);
     static void refresh_render_state();
     static void wait_for_sound_init();

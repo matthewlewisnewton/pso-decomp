@@ -35,7 +35,7 @@ void fn_8023F3F8(void) {
         TAdMultiChgGameModeGC::create_mode_scene();
         break;
     }
-    func_803DCDFC__Fv();
+    func_803DCDFC();
     controller_stuff();
     TKeyBoardControl::update_input_frame();
     main_task.begin_frame();
