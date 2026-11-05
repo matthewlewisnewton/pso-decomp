@@ -38,7 +38,7 @@ void TObjGoalWarpAncient::load_resources() {
     temp_r3 = (int)new BmlResource(0x1, (BmlResourceDescriptor *)(&bm_o_warp_ancient_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
     (*(s32 *)&ancient_warp_shared_resource) = var_r0;
-    (*(u8 * *)&goal_warp_ancient_gvm_texture) = load_gvm_texture_file(lbl_80443308);
+    goal_warp_ancient_gvm_texture = (s32)load_gvm_texture_file(lbl_80443308);
 }
 
 void TObjGoalWarpAncient::register_warp_object(void* a0) { TObjFish__sub_8001EDB0((void*)ancient_warp_shared_resource, a0); }

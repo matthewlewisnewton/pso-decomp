@@ -59,7 +59,7 @@ extern s32 local_client_id;
 extern TObjChipParams TOTrapSeabed01__transform_params;
 extern SeabedTrapFragmentSpawn seabed_trap_fragment_spawns[];
 extern BmlResource *TOTrapSeabed01__bml_resource;
-extern u8 *TOTrapSeabed01__texture_file;
+extern GinjaTextureList *TOTrapSeabed01__texture_file;
 extern const char *lbl_805D3530;
 
 
@@ -97,7 +97,7 @@ extern "C" {
 extern CollisionBody seabed_trap_collision_body;
 extern const char *TOTrapSeabed01_class_name;
 extern char lbl_804720E8[];
-extern u8 lbl_80472100[];
+extern char lbl_80472100[];
 extern BmlResourceDescriptor seabed_trap_resource_descriptor;
 
 extern s32 trap_seabed01_param_index_table[];
@@ -209,18 +209,18 @@ void TOTrapSeabed01::load_resources() {
     TOTrapSeabed01__bml_resource = new BmlResource(5, &seabed_trap_resource_descriptor, 0, 0, NULL);
     TOTrapSeabed01__texture_file = load_gvm_texture_file(lbl_804720E8);
     NJS_OBJECT *n = find_object_node((NJS_OBJECT *)get_bml_model(TOTrapSeabed01__bml_resource, 0), 5);
-    u8 *t = TOTrapSeabed01__texture_file;
+    GinjaTextureList *t = TOTrapSeabed01__texture_file;
     TOTrapSeabed01__ginja_model = n;
     lbl_805D681C = 0;
     seabed01_ginja_mesh_index = -1;
     if (t != NULL) {
-        seabed01_ginja_mesh_index = ((TObjDoorJung *)t)->find_entry_by_name((const char *)lbl_80472100);
+        seabed01_ginja_mesh_index = t->find_entry_by_name(lbl_80472100);
     }
 }
 
 void TOTrapSeabed01::free_static_resources() {
     if (TOTrapSeabed01__texture_file != NULL) {
-        release_texture_list((GinjaTextureList *)TOTrapSeabed01__texture_file);
+        release_texture_list(TOTrapSeabed01__texture_file);
         TAdSinglePlyChrSelectGC::safe_free((u32)TOTrapSeabed01__texture_file);
         TOTrapSeabed01__texture_file = NULL;
     }
@@ -278,7 +278,7 @@ void TOTrapSeabed01::draw() {
         set_depth_buffer_settings_3();
         set_draw_list_mask(1);
         TParticleCtrl::begin_effect_render();
-        set_current_texture_list((GinjaTextureList *)(TOTrapSeabed01__texture_file));
+        set_current_texture_list(TOTrapSeabed01__texture_file);
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation.yaw);
@@ -308,7 +308,7 @@ void TOTrapSeabed01::draw_object_tree(NJS_OBJECT *object) {
         if (!(flags & 8)) {
             if (this->m_34c != 0) {
                 setup_particle_tev(0);
-                set_current_texture_list((GinjaTextureList *)(TOTrapSeabed01__texture_file));
+                set_current_texture_list(TOTrapSeabed01__texture_file);
                 load_projection_tex_matrix(0x38E);
                 draw_ginja_model((s32)object->model);
                 reset_particle_tev();
@@ -328,7 +328,7 @@ void TOTrapSeabed01::draw_object_tree(NJS_OBJECT *object) {
 }
 
 void TOTrapSeabed01::render_effect_layers() {
-    set_current_texture_list((GinjaTextureList *)(TOTrapSeabed01__texture_file));
+    set_current_texture_list(TOTrapSeabed01__texture_file);
     if ((s32) actor_frame_tick != (s32) lbl_805D681C) {
         if (TOTrapSeabed01__ginja_model != NULL && seabed01_ginja_mesh_index != -1) {
             scroll_ginja_mesh_uvs(TOTrapSeabed01__ginja_model->model, 0, -0x14, seabed01_ginja_mesh_index, 1);

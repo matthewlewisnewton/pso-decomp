@@ -14,7 +14,7 @@ extern "C" {
 extern char lbl_80446470[];
 extern RecoveredGlobal_8019DBB4_lbl_804B90FC forest_warp_resource_descriptor;
 extern s32 forest_warp_bml_resource;
-extern u8 *forest_warp_texture_list;
+extern GinjaTextureList *forest_warp_texture_list;
 typedef char RecoveredGlobal_8019DBB4_lbl_804B90FC_size[sizeof(RecoveredGlobal_8019DBB4_lbl_804B90FC) == 0x10 ? 1 : -1];
 void load_forest_warp_resources(void) {
     s32 temp_r3;

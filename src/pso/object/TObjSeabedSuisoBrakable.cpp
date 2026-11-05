@@ -63,7 +63,7 @@ void TObjSeabedSuisoBrakable::load_resources() {
         if ((texture_list = (u32)load_gvm_texture_file(seabed_suiso_2_gvm_name)) != 0) {
             SeabedSuisoTextureNames names = seabed_suiso_2_texture_names;
             for (i = 0; i < 5; i++) {
-                texture_entries[i] = ((TObjDoorJung *)texture_list)->find_entry_by_name(names.name[i]);
+                texture_entries[i] = ((GinjaTextureList *)texture_list)->find_entry_by_name(names.name[i]);
             }
         }
         break;
@@ -75,7 +75,7 @@ void TObjSeabedSuisoBrakable::load_resources() {
         if ((texture_list = (u32)load_gvm_texture_file(seabed_suiso_gvm_name)) != 0) {
             SeabedSuisoTextureNames names = seabed_suiso_texture_names;
             for (i = 0; i < 5; i++) {
-                texture_entries[i] = ((TObjDoorJung *)texture_list)->find_entry_by_name(names.name[i]);
+                texture_entries[i] = ((GinjaTextureList *)texture_list)->find_entry_by_name(names.name[i]);
             }
         }
         break;

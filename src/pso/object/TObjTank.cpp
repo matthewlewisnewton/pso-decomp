@@ -33,7 +33,7 @@ s32 push_matrix();
 s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
 extern u32 tank_bml_resource;
-extern u32 TObjTank__texture_list;
+extern GinjaTextureList *TObjTank__texture_list;
 extern const f32 lbl_805DBFA0;
 extern const f32 lbl_805DBFA4;
 extern char lbl_80446184[];
@@ -62,7 +62,7 @@ struct VObj : Base {
 void TObjTank::render() {
     u8 *arg0 = (u8 *)this;
     void *p;
-    if ((((VObj *)arg0)->m8(lbl_805DBFA0, lbl_805DBFA4) != 0) && (p = (*(void * *)&TObjTank__texture_list))) {
+    if ((((VObj *)arg0)->m8(lbl_805DBFA0, lbl_805DBFA4) != 0) && (p = TObjTank__texture_list)) {
         set_current_texture_list((GinjaTextureList *)(p));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
@@ -114,10 +114,10 @@ void *TObjTank__create(void *arg0) {
 }
 
 void TObjTank::free_globals() {
-    if ((u32) TObjTank__texture_list != 0U) {
-        release_texture_list((void*)TObjTank__texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(TObjTank__texture_list);
-        TObjTank__texture_list = 0U;
+    if (TObjTank__texture_list != NULL) {
+        release_texture_list(TObjTank__texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((u32)TObjTank__texture_list);
+        TObjTank__texture_list = NULL;
     }
     if ((u32) tank_bml_resource != 0U) {
         delete (BmlResource *)((void*)tank_bml_resource);
@@ -131,7 +131,7 @@ void TObjTank::load_globals() {
     temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&fs_obj_tank_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
     (*(s32 *)&tank_bml_resource) = var_r0;
-    (*(u8 * *)&TObjTank__texture_list) = load_gvm_texture_file(lbl_80446184);
+    TObjTank__texture_list = load_gvm_texture_file(lbl_80446184);
 }
 
 }

@@ -1,5 +1,6 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/GinjaMaterialState.h"
 #include "pso/misc/TLanguage_801E4874.h"
 #include "pso/system/byteswap.h"
 #include "pso/misc/TLanguage.h"
@@ -16,17 +17,12 @@ struct Hdr_801E4874 {
     u16 count;
 };
 
-struct Ent_801E4874 {
-    u8 *name;
-    u8 pad[8];
-};
-
 extern s32 TLanguage__read_cursor;
 extern "C" {
 u8 *TQuestVmDownLoadServer__sub_8007EBDC(s32, s32);
 u32 alloc__22TQuestVmDownLoadServerFv();
 void debug_print__6TLobbyFle(void *, ...);
-void load_gvm_texture_archive(u32, u8 *);
+void load_gvm_texture_archive(u32, GinjaTextureList *);
 extern u8 texture_file_load_error_format[];
 extern u8 lbl_8044983C[];
 struct Base_801E4B68_801E4874 { char pad[0x50]; };
@@ -37,11 +33,11 @@ struct VObj_801E4B68_801E4874 : Base_801E4B68_801E4874 {
 s32 distort_texture_wave_image(void *);
 s32 is_split_screen();
 
-u8 *load_gvm_texture_file(const char *filename) {
+GinjaTextureList *load_gvm_texture_file(const char *filename) {
     s32 count;
     s32 i;
-    u8 *res;
-    Ent_801E4874 *ent;
+    GinjaTextureList *res;
+    GinjaTextureEntry *ent;
     u8 *str;
     u32 buf;
     u32 big;
@@ -70,11 +66,11 @@ u8 *load_gvm_texture_file(const char *filename) {
         }
         return NULL;
     }
-    res = TQuestVmDownLoadServer__sub_8007EBDC(1, count * 0x2C + 8);
-    *(s32 *)(res + 4) = count;
+    res = (GinjaTextureList *)TQuestVmDownLoadServer__sub_8007EBDC(1, count * 0x2C + 8);
+    res->count = count;
     i = 0;
-    *(Ent_801E4874 **)res = (Ent_801E4874 *)(res + 8);
-    ent = (Ent_801E4874 *)(res + 8);
+    res->entries = (GinjaTextureEntry *)(res + 1);
+    ent = (GinjaTextureEntry *)(res + 1);
     str = (u8 *)(ent + count);
     for (; i < count; i++, ent++, str += 0x20) {
         ent->name = str;
