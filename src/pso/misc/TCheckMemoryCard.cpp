@@ -41,16 +41,16 @@ TCheckMemoryCard::~TCheckMemoryCard() {
     }
 }
 extern void *TCheckMemoryCard__name;
-TCheckMemoryCard::TCheckMemoryCard(TObject *object, void *arg2, void *arg3, void *arg4) : TObject(object) {
+TCheckMemoryCard::TCheckMemoryCard(TObject *object, u32 arg2, u32 arg3, u32 arg4) : TObject(object) {
     m_name = (const char *)TCheckMemoryCard__name;
-    m_48 = (u32)arg2;
-    m_1c = (u32)arg4;
-    m_4c = (u32)arg3;
+    m_48 = arg2;
+    m_1c = arg4;
+    m_4c = arg3;
     // Inherited original debt: reset reads m_20 before initialization. This
     // receiver repair preserves that behavior; defined initialization is unresolved.
     reset();
 }
 
-void *fn_8033C5E4(TObject *parent, void *arg1, void *arg2) {
-    return new TCheckMemoryCard(parent, arg1, arg2, (void *)1);
+TCheckMemoryCard *fn_8033C5E4(TObject *parent, u32 arg1, u32 arg2) {
+    return new TCheckMemoryCard(parent, arg1, arg2, 1);
 }

@@ -15,6 +15,9 @@
 #include "pso/misc/TLanguage.h"
 #include "pso/ui/Language.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TCheckMemoryCard.h"
+#include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/ui/TAdSinglePlyChrSelectGC_8033A8EC.h"
 struct CardFileInfo_804C88C0 {
     char filename[0x20];
     char comment[0x20];
@@ -2117,9 +2120,6 @@ void run_save_load_sequence__23TAdSinglePlyChrSelectGCFv(void);
 s32 get_field_118__22TAdEnterSerialAccessGCFv();
 void TLobby__sub_80269C90(void);
 void TLobby__sub_80269CA4(s32);
-void TAdSinglePlyChrSelectGC__sub_8033B9EC(void);
-s32 TAdSinglePlyChrSelectGC__sub_8033B9F8(Win_801FEE14 *);
-Win_801FEE14 *create_check_memory_card__23TAdSinglePlyChrSelectGCFPvPvPv(void *, s32, s32);
 void func_803DCDFC__Fv(void);
 extern V2_801FEE14 lbl_8044A7D0[];
 extern V2_801FEE14 lbl_8044A7D8[];
@@ -2132,7 +2132,7 @@ extern s32 character_save_card_slot;
 extern s8 lbl_805D5FB4;
 extern f32 lbl_805D5FB8;
 extern s8 lbl_805D5FBC;
-extern void *tl_01;
+extern TObject *tl_01;
 extern const f32 lbl_805DC5C0;
 extern const f32 lbl_805DC5C4;
 extern const f32 lbl_805DC5C8;
@@ -2219,19 +2219,19 @@ s32 start_load__23TAdSinglePlyChrSelectGCFv(void) {
 typedef char RecoveredGlobal_801FF200_lbl_80513910_size[sizeof(RecoveredGlobal_801FF200_lbl_80513910) == 0x10 ? 1 : -1];
 
 s32 save_character_to_card__23TAdSinglePlyChrSelectGCFv(void) {
-    Win_801FEE14 *card;
+    TCheckMemoryCard *card;
     TWindowMessage *w;
     s32 result;
     s32 v;
-    card = create_check_memory_card__23TAdSinglePlyChrSelectGCFPvPvPv(tl_01, 0, 1);
+    card = TAdSinglePlyChrSelectGC::create_check_memory_card(tl_01, 0, 1);
     if (card == NULL) {
         return 0;
     }
     if (card != NULL) {
-        TAdSinglePlyChrSelectGC__sub_8033B9EC();
+        TAdSinglePlyChrSelectGC__sub_8033B9EC(card);
         while (1) {
             func_803DCDFC__Fv();
-            card->v1();
+            card->run_task();
             if (TAdSinglePlyChrSelectGC__sub_8033B9F8(card) != 0) {
                 break;
             }

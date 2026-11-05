@@ -6,7 +6,7 @@
 #include <stddef.h>
 
 struct TCheckMemoryCard : public TObject {
-    TCheckMemoryCard(TObject *arg1, void *arg2, void *arg3, void *arg4);
+    TCheckMemoryCard(TObject *arg1, u32 arg2, u32 arg3, u32 arg4);
     virtual ~TCheckMemoryCard();
     s32 sub_8033BB14();
     u32 m_1c;
@@ -58,7 +58,7 @@ typedef char TCheckMemoryCard_offset_48[offsetof(TCheckMemoryCard, m_48) == 0x48
 typedef char TCheckMemoryCard_offset_4c[offsetof(TCheckMemoryCard, m_4c) == 0x4c ? 1 : -1];
 
 extern "C" {
-void *fn_8033C5E4(TObject *parent, void *arg1, void *arg2);
+TCheckMemoryCard *fn_8033C5E4(TObject *parent, u32 arg1, u32 arg2);
 void *__dt__16TCheckMemoryCardFv(void *arg0, s16 arg1);
 }
 

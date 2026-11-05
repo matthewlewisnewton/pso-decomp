@@ -5,6 +5,7 @@
 #include "pso/system/PadRumble.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_8001C5E8.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_8033A8EC.h"
+#include "pso/misc/TCheckMemoryCard.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 #include "pso/system/main_loop.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -56,7 +57,6 @@ struct TAdSinglePlyChrSelectGC__sub_8033B5F0;
 s32 setup__23TAdSinglePlyChrSelectGCFi(s32);
 s32 TAdSinglePlyChrSelectGC__sub_801FDA4C();
 
-u8 * create_check_memory_card__23TAdSinglePlyChrSelectGCFPvPvPv(void *, void *, void *);
 int request_queued_main_phase(void*);
 s32 call_funcs_reverse__6TLobbyFPvUi(void *, int);
 extern void *character_select_scene_resource_callbacks[];
@@ -389,7 +389,7 @@ void TAdSinglePlyChrSelectGC::sub_8033B0AC() {
 
 void TAdSinglePlyChrSelectGC::start_check_memory_card() {
     u8 *temp_r3;
-    *(u8 **)((s8 *)((u8 *)this) + 0x40) = create_check_memory_card__23TAdSinglePlyChrSelectGCFPvPvPv(this, NULL, NULL);
+    unk_40 = create_check_memory_card(this, 0, 0);
     temp_r3 = (u8 *)(*(u8 **)((s8 *)((u8 *)this) + 0x40));
     if (temp_r3 != NULL) {
         TAdSinglePlyChrSelectGC__sub_8033B9E0(temp_r3);
@@ -612,8 +612,8 @@ void TAdSinglePlyChrSelectGC__sub_8033B9E0(void* p) { *(s32*)((char*)p + 0x40) =
 
 void TAdSinglePlyChrSelectGC__sub_8033B9EC(void* p) { *(s32*)((char*)p + 0x4c) = 1; }
 
-u8 TAdSinglePlyChrSelectGC__sub_8033B9F8(u8 *arg0) {
-    return (u8) (*(s32 *)((s8 *)arg0 + 0x3C) == 1);
+s32 TAdSinglePlyChrSelectGC__sub_8033B9F8(TCheckMemoryCard *card) {
+    return card->m_3c == 1;
 }
 
 s32 TAdSinglePlyChrSelectGC::has_no_save_files() {

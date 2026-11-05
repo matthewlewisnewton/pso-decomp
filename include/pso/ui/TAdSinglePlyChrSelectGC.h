@@ -5,6 +5,7 @@
 #include "pso/TObject.h"
 
 struct CreationTextureCacheEntry;
+struct TCheckMemoryCard;
 
 struct TAdSinglePlyChrSelectGC : public TObject {
     virtual ~TAdSinglePlyChrSelectGC();
@@ -137,11 +138,11 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     s32 start_offline_seq();
     void *destroy(s16 arg1);
     s32 has_no_save_files();
-    static void *create_check_memory_card(void *arg0, void *arg1, void *arg2);
+    static TCheckMemoryCard *create_check_memory_card(TObject *parent, u32 arg1, u32 arg2);
     static void permute_save_blocks(void* stream, const u8* source, u8* destination, u32 size);
     u8 unk_38[0x4];
     s32 m_3c;
-    u8 unk_40[0x4];
+    TCheckMemoryCard *unk_40;
     s32 m_44;
     u8 unk_48[0x4];
     s32 m_4c;
