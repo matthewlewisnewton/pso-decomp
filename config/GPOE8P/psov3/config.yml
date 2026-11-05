@@ -1346,6 +1346,11 @@ force_active:
   - TObjPlayer__sub_801C6FCC
   - TObjPlayer__sub_801C6FE0
   - TObjPlayer__sub_801C7098
+  - TObjPlayer__sub_801D45B0
+  - TObjPlayer__sub_801D4678
+  - TObjPlayer__sub_801D46D4
+  - TObjPlayer__sub_801D4730
+  - TObjPlayer__sub_801D47D8
   - TObjPlayer__sub_801D8A38
   - TObjPlayer__sub_801D9C34
   - TObjPlayer__sub_8023E034
@@ -14785,6 +14790,7 @@ force_active:
   - solo_play_result_window_extent
   - some_stub__9TProtocolFv
   - sorcerers_cane_ct__FPUcPUcl
+  - sort_by_key__10TObjPlayerFv
   - sound_bank_file_crc16
   - sound_bank_filename_a_enemy_pool
   - sound_bank_filename_a_enemy_proj
