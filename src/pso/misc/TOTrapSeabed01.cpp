@@ -27,6 +27,7 @@
 #include "pso/system/ModelDrawContext.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/misc/TOTrapAncient01.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/GinjaMaterial.h"
@@ -51,7 +52,6 @@ struct SeabedTrapFragmentSpawn {
 };
 
 extern "C" {
-f32 TObjPlayer__sub_8017A1A4(TObjCollidable *, s32);
 extern s32 local_client_id;
 
 extern u8 TOTrapSeabed01__transform_params[];

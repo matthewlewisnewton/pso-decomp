@@ -64,7 +64,6 @@ const char *TOTrapAncient01__class_name = "TOTrapAncient01";
 // The original symbol reserves eight bytes; only the first word is accessed here.
 struct AncientTrapResourceSlot { BmlResource *value; u8 reserved[4]; };
 AncientTrapResourceSlot TOTrapAncient01__bml_resource;
-f32 TObjPlayer__sub_8017A1A4(TObjCollidable *self, s32 i);
 s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
 
 extern s32 lbl_805D3530;

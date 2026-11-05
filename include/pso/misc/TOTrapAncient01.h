@@ -31,4 +31,10 @@ struct TOTrapAncient01 : public TOTrap {
 
 typedef char TOTrapAncient01_size[sizeof(TOTrapAncient01) == 0x3C8 ? 1 : -1];
 
+struct TObjCollidable;
+
+extern "C" {
+f32 TObjPlayer__sub_8017A1A4(TObjCollidable *self, s32 i);
+}
+
 #endif

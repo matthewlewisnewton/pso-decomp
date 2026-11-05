@@ -44,6 +44,7 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/TSwitch.h"
+#include "pso/misc/TOTrapAncient01.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/system/GinjaUvScroll.h"
 #include "pso/system/GinjaMaterial.h"
@@ -51,7 +52,6 @@
 extern "C" {
 
 
-f32 TObjPlayer__sub_8017A1A4(void *, s32);
 extern s32 local_client_id;
 s32 check_player_flag1__6TLobbyFv();
 
