@@ -61,8 +61,9 @@ s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
         if (count > 0) {
             Dst_8020B970 *l = t[i].list;
             if (get_current_floor() == i) {
-                if (TLobby__data_805D610C != NULL) {
-                    Src_8020B970 *raw = TLobby__data_805D610C;
+                // The raw cursor is copied before the null branch (mr above beq).
+                Src_8020B970 *raw = TLobby__data_805D610C;
+                if (raw != NULL) {
                     s32 j;
                     for (j = 0; j < count; j++) {
                         s16 v = raw->f2 & ~2;
@@ -93,8 +94,8 @@ s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
         if (count2 > 0) {
             Dst_8020B970 *l2 = TLobby__floor_enemy_group_table[i2].list2;
             if (get_current_floor() == i2) {
-                if (TLobby__data_805D6114 != NULL) {
-                    Src_8020B7C4 *raw2 = TLobby__data_805D6114;
+                Src_8020B7C4 *raw2 = TLobby__data_805D6114;
+                if (raw2 != NULL) {
                     s32 k;
                     for (k = 0; k < count2; k++) {
                         s16 v2 = raw2->f2 & ~2;
