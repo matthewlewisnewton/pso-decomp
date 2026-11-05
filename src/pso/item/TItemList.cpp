@@ -58,7 +58,7 @@ s32 TItemList::is_item_valid(TItemList *node) {
     int var_r31;
 
     var_r31 = 0;
-    if ((check_value_equals__13TUnk_804B6C24Fl(node, TItemList__name) != 0) && (((TObject *)node)->all_parents_unqueued_for_destruction() != 0)) {
+    if ((check_value_equals__13TUnk_804B6C24Fl(node, TItemList__name) != 0) && (node->all_parents_unqueued_for_destruction() != 0)) {
         var_r31 = 1;
     }
     return (u8)var_r31;

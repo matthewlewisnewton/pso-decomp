@@ -23,6 +23,8 @@ public:
     void reduce_item_amount(TObjPlayer *player, TItemList *slot, s32 amount);
     s32 use_item(TObjPlayer *player, s32 item_id, s32 amount);
     void set_globals_and_update(int player, int kind);
+    // First argument of the old free function is this inventory object.
+    void remove_equipped_item(void *player, TItemList *slot);
 };
 
 typedef char TPlyItemCountAt1C[(offsetof(TPlyItem, item_count) == 0x1C) ? 1 : -1];

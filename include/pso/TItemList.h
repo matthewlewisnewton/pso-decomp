@@ -2,25 +2,21 @@
 #define PSO_TITEMLIST_H
 #include "pso/TObject.h"
 #include "types.h"
+#include <stddef.h>
 
 struct TItem;
 
-// Same 0x20-byte TObject prefix as an inventory slot (__ct__9TItemListFv), but
-// the sibling and child links are TItemList so a walk does not downcast.
-// The vptr stays at 0x18, where that constructor writes __vt__9TItemList.
-class TItemList {
+// Inventory slot. __ct__9TItemListFv writes __vt__9TItemList (0x18 bytes, the
+// same four TObject virtuals) at 0x18 and the owned TItem at 0x1C, so this is
+// a TObject plus one pointer. Children and siblings are TItemList nodes; the
+// inherited links are TObject *, and a walk casts them back.
+class TItemList : public TObject {
 public:
-    const char *m_name;
-    u16 m_flags;
-    u16 m_id;
-    TItemList *m_prev;
-    TItemList *m_next;
-    TItemList *m_up;
-    TItemList *m_down;
-    virtual ~TItemList();
     // pickup_item stores the TItem here. get_owner_if_alive returns it while
-    // that item is still live.
+    // that item is still live. Declared before the override so MWCC does not
+    // insert another vptr ahead of it; the vptr stays TObject's at 0x18.
     TItem *item;
+    virtual ~TItemList();
     TItem *get_owner_if_alive();
     void set_field_1c(TItem *v);
     void count_owned_items();
@@ -47,5 +43,8 @@ public:
 public:
     u8 *ct_init_placement_ring(u8 *arg1, s32 arg2, u8 *arg3, u8 *arg4, s8 arg5);
 };
+
+typedef char TItemListItemAt1C[(offsetof(TItemList, item) == 0x1C) ? 1 : -1];
+typedef char TItemListSize[(sizeof(TItemList) == 0x20) ? 1 : -1];
 
 #endif

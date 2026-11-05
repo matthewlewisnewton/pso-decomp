@@ -24,17 +24,18 @@ struct VObj_801D4D48 : Base_801D4D48 {
 extern "C" {
 
 s32 lookup_item_def__9TItemDataFPv(s32);
-void *get_owner_if_alive__9TItemListFv(void *);
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
 
 extern s32 inventory_search_item_data;
 
 s32 TObjPlayer::count_items_by_id(s32 arg1) {
     void *temp_r3;
+    TItemList *slot;
 
     if (lookup_item_def__9TItemDataFPv(arg1) != 0) {
-        if (((u32 (*)(void *, s32))set_mode_and_refresh_object__10TObjPlayerFPvi)(this, arg1) != 0U) {
-            temp_r3 = ((void *(*)())get_owner_if_alive__9TItemListFv)();
+        slot = (TItemList *)((u32 (*)(void *, s32))set_mode_and_refresh_object__10TObjPlayerFPvi)(this, arg1);
+        if (slot != NULL) {
+            temp_r3 = slot->get_owner_if_alive();
             if ((temp_r3 != NULL) && (all_parents_unqueued_for_destruction__7TObjectFv() != 0)) {
                 return ((VObj_801D4D48 *)temp_r3)->m34();
             }
@@ -87,7 +88,7 @@ void TObjPlayer::destroy_subobjects_recursive() {
             }
         }
         ((TObjPlayer *)p)->destroy_subobjects_recursive();
-        p = p->m_next;
+        p = (TItemList *)p->m_next;
     }
 }
 

@@ -47,7 +47,7 @@ void TItemList::reduce_owner_matched_items() {
     TItem *owner;
     TItemList *it;
     TObjPlayer *player;
-    for (it = m_down; it != NULL; it = it->m_next) {
+    for (it = (TItemList *)m_down; it != NULL; it = (TItemList *)it->m_next) {
         if (TItemList::is_item_valid(it) != 0) {
             owner = it->get_owner_if_alive();
             if (owner != NULL && item_reduce_owner_match_field_ec == owner->get_item_type() &&
@@ -67,7 +67,7 @@ void TItemList::reduce_child_item_amounts() {
     TItem *owner;
     TItemList *it;
     TObjPlayer *player;
-    for (it = m_down; it != NULL; it = it->m_next) {
+    for (it = (TItemList *)m_down; it != NULL; it = (TItemList *)it->m_next) {
         if (TItemList::is_item_valid(it) != 0) {
             owner = it->get_owner_if_alive();
             if (owner != NULL && item_reduce_owner_match_field_ec == owner->get_item_type()) {
@@ -85,7 +85,7 @@ void TItemList::reduce_child_item_amounts() {
 void TItemList::collect_owner_fields_recursive() {
     TItemList *it;
     TItem *owner;
-    for (it = m_down; it != NULL; it = it->m_next) {
+    for (it = (TItemList *)m_down; it != NULL; it = (TItemList *)it->m_next) {
         if (TItemList::is_item_valid(it) != 0 && (owner = it->get_owner_if_alive()) != NULL) {
             *TObjPlayer__owner_field_write_cursor++ = owner->get_item_id();
             inventory_walk_visit_count++;

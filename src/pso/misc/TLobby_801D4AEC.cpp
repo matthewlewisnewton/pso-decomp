@@ -31,7 +31,7 @@ void TPlyItem::reduce_item_amount(TObjPlayer *arg1, TItemList *slot, s32 arg3) {
         temp_r4 = item_count;
         item_count = temp_r4 - 1;
         item->destroy();
-        reinterpret_cast<TObject *>(slot)->queue_destruction();
+        slot->queue_destruction();
     }
 }
 
