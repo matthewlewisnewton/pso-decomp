@@ -1526,9 +1526,11 @@ extern "C" void TBoss6Type1__sub_802B6504(TBoss6Type1 *self) {
     VecCopy(&spawn.point, &lbl_80470F84);
     spawn.a8 = 0;
     VecCopy(&spawn.inner, &spawn.position);
-    count = 0x24;
+    step = 0;
     if (TBoss6PlotFalz::get_phase() == 0) {
         count = 0x12;
+    } else {
+        count = 0x24;
     }
     points = 1;
     rings = 0;
@@ -1548,27 +1550,29 @@ extern "C" void TBoss6Type1__sub_802B6504(TBoss6Type1 *self) {
         s32 ang_step = 0x5555;
         s32 ring = 1;
         s32 div = 3;
-        while (pi < points) {
-            pts[pi].x = radius * sin_table_lookup(angle);
-            pts[pi].y = 0.0f;
-            pts[pi].z = radius * cos_table_lookup(angle);
-            pi += 1;
-            if (pi >= points) {
-                break;
-            }
-            angle += ang_step;
-            if (angle <= 0x10000 - ang_step / 2) {
-                continue;
-            }
-            div += 3;
-            ang_step = 0x10000 / div;
-            ring += 1;
-            radius += spacing;
-            angle = 0;
-            if ((ring & 1) != 0) {
-                angle = ang_step / 2;
-            }
+    ring_point:
+        pts[pi].x = radius * sin_table_lookup(angle);
+        pts[pi].y = 0.0f;
+        pts[pi].z = radius * cos_table_lookup(angle);
+        pi += 1;
+        if (pi >= points) {
+            goto ring_done;
         }
+        angle += ang_step;
+        if (angle <= 0x10000 - ang_step / 2) {
+            goto ring_point;
+        }
+        div += 3;
+        ang_step = 0x10000 / div;
+        ring += 1;
+        radius += spacing;
+        angle = 0;
+        if ((ring & 1) == 0) {
+            goto ring_point;
+        }
+        angle = ang_step / 2;
+        goto ring_point;
+    ring_done:;
     }
     half = points / 2;
     if (half > 1) {
@@ -1579,18 +1583,18 @@ extern "C" void TBoss6Type1__sub_802B6504(TBoss6Type1 *self) {
             a = a % points;
             b = seed % points;
             if (a == b) {
-                b = (i + b + 1) % points;
+                b = i + b;
+                b += 1;
+                b %= points;
             }
-            {
-                Vec tmp = pts[a];
-                pts[a] = pts[b];
-                pts[b] = tmp;
-            }
+            Vec saved;
+            __memcpy(&saved, &pts[a], sizeof(Vec));
+            VecCopy(&pts[a], &pts[b]);
+            VecCopy(&pts[b], &saved);
         }
     }
     self->m_4e0 = 0;
     made = 0;
-    step = 0;
     i = 0;
     while (made < count) {
         VecCopy(&spawn.point, &pts[i]);

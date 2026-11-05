@@ -471,7 +471,7 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {
 }
 #pragma pop
 
-s32 TBoss6Mine::create(s32 arg0) {
+u32 TBoss6Mine::create(s32 arg0) {
     s32 var_r31;
     s32 var_r4;
 

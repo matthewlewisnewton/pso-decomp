@@ -35,7 +35,8 @@ struct TBoss6Mine : public TObjEnemy {
     void draw();
     void update_facing_angles();
     s32 is_far_from_origin();
-    static s32 create(s32 arg0);
+    // Callers null-check the allocation with cmplwi. s32 would be cmpwi.
+    static u32 create(s32 arg0);
     static f32 next_random_float(s32 *arg0);
     void explode_damage_players();
     void state_0();
