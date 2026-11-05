@@ -2154,7 +2154,7 @@ s32 TQuestVmDownLoadServer::count_leading_entries(s32 i, s32 end) {
 
 void TQuestVmDownLoadServer__sub_803EADD4(QuestDownloadSlot *arg0, s32 arg1) {
     if (arg1 == 0) {
-        arg0->tokens = (void *)-1;
+        arg0->status = 0xFFFFFFFFU;
         arg0->x18 = -1;
         if ((u32)arg0->items != 0xFFFFFFFF) {
             release_node_chain__22TQuestVmDownLoadServerFPv((QuestDownloadItemNode *)(arg0->items));
@@ -2214,7 +2214,7 @@ void TQuestVmDownLoadServer::init_entries() {
     QuestDownloadSlot *p;
 
     for (p = (QuestDownloadSlot *)quest_download_slot_chain_table; p < (QuestDownloadSlot *)quest_download_slot_chain_table + 80; p++) {
-        p->tokens = (void *)-1;
+        p->status = 0xFFFFFFFFU;
         p->items = 0;
         p->entryHead = 0;
         p->textHead = 0;
