@@ -19,6 +19,10 @@ struct TLobbyFloorItemEntry {
 typedef char TLobbyFloorItemEntrySize[(sizeof(TLobbyFloorItemEntry) == 0x24) ? 1 : -1];
 typedef char TLobbyFloorItemEntryDataOffset[(offsetof(TLobbyFloorItemEntry, item_data) == 0x10) ? 1 : -1];
 
+struct B_803FADA0;
+struct Self_803FD74C;
+struct Self_80402CE0;
+
 struct TLobby : public TObject {
     // Whether a challenge-mode task is running.
     static s32 is_flag_set();
@@ -591,7 +595,7 @@ struct TLobby : public TObject {
     s32 set_flags_and_state();
     static s16 get_checked_status_value(s16 arg0);
     static s32 clear_socket_slot(s16 i);
-    static void update_connection_state(int arg0);
+    static void update_connection_state(Self_803FD74C *self);
     s32 read_2_bytes(void *src);
     void free_field_98();
     void free_field_98_and_clear();
@@ -608,7 +612,9 @@ struct TLobby : public TObject {
     s32 mark_ready();
     void set_active();
     void reset_connection_state();
-    void handle_request_timeout();
+    // Timer callback. r3 is the PAP connection fsm, not a TLobby.
+    static void handle_request_timeout(Self_80402CE0* fsm);
+    static B_803FADA0 *init_net_buffer_entry(u16 idx);
     static s32 init_net_list(s16 arg0, s16 arg1);
     static void init_net_block_18A0();
     static s32 run_net_init_step();
