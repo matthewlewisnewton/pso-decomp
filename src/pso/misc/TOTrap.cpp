@@ -40,7 +40,7 @@ s32 TOTrap::is_any_player_matching_stat() {
 }
 
 void TOTrap::vfunc_82() {
-    void *pl;
+    TObjPlayer *pl;
 
     calc_attach_pos();
     refresh_collision_body_centers();
@@ -52,7 +52,7 @@ void TOTrap::vfunc_82() {
             u32 v = get_entity_id(p);
             if (v < 0x1000U) {
                 pl = get_player_by_client_id(v);
-                if (TObjPlayer::is_locally_controlled(pl) != 0 && ((TLobby *)pl)->check_player_flag1() != 0) {
+                if (TObjPlayer::is_locally_controlled(pl) != 0 && pl->check_player_flag1() != 0) {
                     TObjPlayer::send_code_45_1((s32)pl);
                 }
             }
@@ -124,7 +124,7 @@ void TOTrap::vfunc_6(s16 *arg1, s32 arg2) {
 
 f32 TOTrap::receive_physical_attack(void *source, f32) {
     s16 msg;
-    void *pl;
+    TObjPlayer *pl;
     u16 id;
     if (this->entity_id >= 0x4000U && this->set_entry != NULL && access_object_saved_state(&msg, 1) != 0) {
         this->mode = 4;
@@ -135,7 +135,7 @@ f32 TOTrap::receive_physical_attack(void *source, f32) {
             id = get_entity_id((TObjBase *)source);
             if (id < 0x1000U) {
                 pl = get_player_by_client_id(id);
-                if (pl != NULL && TObjPlayer::is_locally_controlled(pl) != 0 && ((TLobby *)pl)->check_player_flag1() != 0) {
+                if (pl != NULL && TObjPlayer::is_locally_controlled(pl) != 0 && pl->check_player_flag1() != 0) {
                     TObjPlayer::send_code_45_1((s32)pl);
                 }
             }

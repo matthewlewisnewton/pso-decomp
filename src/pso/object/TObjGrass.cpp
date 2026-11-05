@@ -1132,7 +1132,7 @@ s32 TObjGrass::is_target_in_attack_range() {
     kind = get_entity_id(t);
     if (kind < 0x1000) {
         t = this->target;
-        if (((TLobby *)t)->check_player_flag1() == 1 || (enable_v2_features == 1 && obj_testFlags30__14TObjCollidableFUl(t, 0x20) != 0)) {
+        if (((TObjPlayer *)t)->check_player_flag1() == 1 || (enable_v2_features == 1 && obj_testFlags30__14TObjCollidableFUl(t, 0x20) != 0)) {
             T318 = TBL[0];
             if (IN_RANGE()) {
                 BIND(0)

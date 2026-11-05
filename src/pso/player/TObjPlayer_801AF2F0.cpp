@@ -2000,7 +2000,7 @@ s32 fn_8002AE08(u16);
 s32 get_field_3e0__12TBoss3VoloptFv();
 s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
 void obj_clear_flag30_20000(void *arg0);
-s32 check_player_flag1__6TLobbyFv(s32);
+s32 check_player_flag1__10TObjPlayerFv(s32);
 s32 check_flag__10TObjPlayerFl(void *, s32);
 s32 get_position_ptr__10TObjPlayerFv();
 s32 get_mode__11TCameraCtrlFPv(void *p);
@@ -4323,7 +4323,7 @@ void apply_speed_scale__10TObjPlayerFif(s32 arg0, f32 farg0) {
     } else {
         var_f1 = farg0;
     }
-    ((TObjEnemy *)arg0)->sub_800A7798(var_f1);
+    ((TObjMotion *)arg0)->sub_800A7798(var_f1);
 }
 
 #pragma push
@@ -4995,7 +4995,7 @@ void TObjPlayer::update_subsystems() {
         sync_status_effect_flags();
         clear_action_flag();
         ((TObjPlayer *)arg0)->update_target();
-        if ((check_player_flag1__6TLobbyFv(arg0) != 0) && (TObjPlayer__sub_801BF57C((void *)(arg0 + 0x730)) >= 0) && (TObjPlayer__sub_801BF560((s16 *)(arg0 + 0x730)) == 0)) {
+        if ((check_player_flag1__10TObjPlayerFv(arg0) != 0) && (TObjPlayer__sub_801BF57C((void *)(arg0 + 0x730)) >= 0) && (TObjPlayer__sub_801BF560((s16 *)(arg0 + 0x730)) == 0)) {
             TObjPlayer::send_code_45_1(arg0);
         }
         update_target_lock__10TObjPlayerFii(arg0 + 0x63C, arg0);
@@ -5197,7 +5197,7 @@ s32 TObjPlayer::is_outside_movement_hold(f32 *pos) {
     f32 *center;
     f32 x, y, z;
     f32 dx, dz;
-    if (((s32 (*)(void))check_player_flag1__6TLobbyFv)() == 0) {
+    if (((s32 (*)(void))check_player_flag1__10TObjPlayerFv)() == 0) {
         return 0;
     }
     center = TObjPlayer__sub_801BF6B8((u8 *)&this->m_730);
@@ -6101,7 +6101,7 @@ s32 can_destroy_with_parents__10TObjPlayerFUi(u32 arg0) {
 }
 
 s32 TWindowSubItem::is_usable(s32 arg0) {
-    if ((is_action_active__10TObjPlayerFv() != 0U) || (test_action_mask__10TObjPlayerFl(arg0, 0x43001E) == 0) || (obj_testFlags30__14TObjCollidableFUl(arg0, 0x20) != 0) || (check_player_flag1__6TLobbyFv(arg0) != 0)) {
+    if ((is_action_active__10TObjPlayerFv() != 0U) || (test_action_mask__10TObjPlayerFl(arg0, 0x43001E) == 0) || (obj_testFlags30__14TObjCollidableFUl(arg0, 0x20) != 0) || (check_player_flag1__10TObjPlayerFv(arg0) != 0)) {
         return 0;
     }
     return 1;

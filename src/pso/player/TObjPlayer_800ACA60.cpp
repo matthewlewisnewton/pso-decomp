@@ -919,7 +919,7 @@ s32 TObjEneMoja::update_punch_attack(void *self_800ADAAC) {
     s32 e;
     switch (*(s16 *)(arg0 + 0x328)) {
     case 0:
-        ((TObjEnemy *)arg0)->sub_800A7798(*(f32 *)lbl_805D50D4[*(s32 *)(arg0 + 0x368)]);
+        ((TObjMotion *)arg0)->sub_800A7798(*(f32 *)lbl_805D50D4[*(s32 *)(arg0 + 0x368)]);
         *(s16 *)(arg0 + 0x328) = 1;
     case 1:
         ((TObjMotion *)arg0)->advance_animation();
@@ -1113,7 +1113,7 @@ s32 TObjEneMoja::update_approach_state() {
             TObjPlayer::play_effect_if_v2(-0x200);
         }
         if (this->action_flags != 0x20U) {
-            ((TObjEnemy *)arg0)->sub_800A7798(*(f32 *)((s8 *)lbl_805D50D4[(*(s32 *)&this->variant)] + 0xC));
+            ((TObjMotion *)arg0)->sub_800A7798(*(f32 *)((s8 *)lbl_805D50D4[(*(s32 *)&this->variant)] + 0xC));
             this->requested_action = 2;
             {
             Vec_800AE18C v = *(Vec_800AE18C *)&this->target->body_center_position;

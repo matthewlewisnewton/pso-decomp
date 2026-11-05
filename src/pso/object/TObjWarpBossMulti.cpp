@@ -207,7 +207,7 @@ struct Obj_8019F578 {
 };
 
 extern "C" {
-s32 check_player_flag1__6TLobbyFv(void);
+s32 check_player_flag1__10TObjPlayerFv(void);
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 void *get_player_by_client_id(s32 i);
 s32 fn_80248994(void *, u32, int);
@@ -1126,7 +1126,7 @@ s32 TObjWarpBoss::update_warp_dialogs() {
     {
             ((THunterGuildSeqOffline *)(self->list))->advance_matching_entries(self->inside[j] != 0, j);
       color = 0xF0F0F0FF;
-      if (((self->mode == 1) && (((u32)get_player_by_client_id((j))) != 0)) && (check_player_flag1__6TLobbyFv() != 0))
+      if (((self->mode == 1) && (((u32)get_player_by_client_id((j))) != 0)) && (check_player_flag1__10TObjPlayerFv() != 0))
       {
         color = 0xFFFF00FF;
       }

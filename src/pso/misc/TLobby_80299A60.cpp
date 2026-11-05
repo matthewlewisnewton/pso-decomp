@@ -177,7 +177,7 @@ void close_giveup_window__6TLobbyFPv(void* a0);
 void play_all_players_effect__6TLobbyFPv(void* a0);
 void play_effect_all_players__6TLobbyFPv(void*);
 u32 check_room_seq_4__16TAdChrSelASlotGCFl(s32, s32);
-s32 check_player_flag1__6TLobbyFv();
+s32 check_player_flag1__10TObjPlayerFv();
 s32 TLobby__sub_8024AC20(int);
 u32 set_window_mode_4__6TLobbyFPvll(s32, s32 *, s32);
 s32 TLobby__sub_80292F5C();
@@ -239,7 +239,7 @@ void send_giveup_to_all_players__6TLobbyFv(void) {
     var_r31 = 0;
     do {
         player = get_player_by_client_id(var_r31);
-        if ((player != 0) && (check_player_flag1__6TLobbyFv() != 0)) {
+        if ((player != 0) && (check_player_flag1__10TObjPlayerFv() != 0)) {
             TObjPlayer::send_code_45_1(player);
         }
         ((TWindowCtrl *)var_r31)->unsuppress_slot();
@@ -261,7 +261,7 @@ void play_effect_all_players__6TLobbyFPv(void*) {
     do {
         player = get_player_by_client_id(var_r31);
         if (player != 0) {
-            if (check_player_flag1__6TLobbyFv() == 0) {
+            if (check_player_flag1__10TObjPlayerFv() == 0) {
                 play_effect_default__10TObjPlayerFii(player, -1);
             }
         }

@@ -419,15 +419,15 @@ void TOTrapAncient02::vfunc_82() {
     case 2:
         if (this->target != NULL) {
             obj_setFlags30(this->target, 0x200);
-            ((TObjEnemy *)(this->target))->sub_8002AE64();
-            ((TObjEnemy *)(this->target))->sub_800A7798(1.0f);
+            this->target->sub_8002AE64();
+            this->target->sub_800A7798(1.0f);
             this->timer--;
             if (this->timer < 0) {
                 this->phase = 3;
                 this->timer = this->reset;
                 if (this->target != NULL && local_client_id == get_entity_id(this->target)) {
                     p = get_player_by_client_id(local_client_id);
-                    if (p != 0 && ((TLobby *)p)->check_player_flag1() != 0) {
+                    if (p != 0 && p->check_player_flag1() != 0) {
                         TObjPlayer::send_code_45_1((s32)p);
                     }
                 }

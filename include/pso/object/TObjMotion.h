@@ -183,6 +183,9 @@ public:
     virtual void reset_motion_fields();
     void set_animation(s16 action);
     void set_action_table(TObjMotionAction *);
+    void sub_8002AE64();
+    void sub_800A7798(f32);
+    void set_flags_B0(u32);
     void set_motion_list(BmlMotionEntry *);
     void set_field_b8(s16);
     TObjMotionAction *get_anim_entry(int action);

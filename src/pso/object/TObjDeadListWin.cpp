@@ -2,6 +2,7 @@
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/misc/TLobby.h"
+#include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
 extern "C" {
 s32 get_player_by_client_id(s32);
@@ -47,7 +48,7 @@ void TObjDeadListWin::update_countdown() {
         queue_destruction__7TObjectFv(this);
         return;
     }
-    if ((((TLobby *)temp_r3)->check_player_flag1() == 0) && (m_countdown > 0x5A)) m_countdown = 0x5A;
+    if ((((TObjPlayer *)temp_r3)->check_player_flag1() == 0) && (m_countdown > 0x5A)) m_countdown = 0x5A;
     temp_r0 = m_countdown - 1;
     m_countdown = temp_r0;
     if (temp_r0 < 0) {

@@ -384,6 +384,7 @@ struct TObjPlayer : public TObjChara {
     static f32 get_scale_factor();
     static int get_battle_param(int a0);
     s32 check_flag(s32 arg1);
+    s32 check_player_flag1();
     void release_subobjects();
     int draw_fading_motion();
     void update_both();
