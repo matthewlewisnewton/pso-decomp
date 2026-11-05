@@ -221,7 +221,7 @@ s32 TQuestListVM::update_load_status() {
     var_r30 = 0;
     this->m_23a4 = 0;
     do {
-        if (((TAdPlayerLoadGC *)var_r30)->probe_card_slot() != 0) {
+        if (TAdPlayerLoadGC::probe_card_slot(var_r30) != 0) {
             this->m_23a4 = (s32) (this->m_23a4 | (1 << var_r30));
         }
         var_r30 += 1;
