@@ -1,109 +1,173 @@
-#include "types.h"
-
-struct MoviePlanes_80143988 {
-    u8 *luma;
-    u8 *chroma0;
-    u8 *chroma1;
-    u32 luma_stride;
-    u32 chroma_stride;
-    u32 chroma1_stride;
-};
+#include "pso/misc/TMovie_80143988.h"
 
 extern "C" {
 extern void *movie_current_frame_buffer;
-extern s32 lbl_805D56A4;
-extern s32 lbl_805D56A8;
+extern u32 lbl_805D56A4;
+extern u32 lbl_805D56A8;
 
-// Each plane cursor is kept one word behind the bytes it reads or writes.
-// The last access of a group is then `*(p += n)`, which MWCC emits as
-// lwzu/stwu with the original `addi reg, reg, -4` prologue bias.
-// Chroma and luma are inserted with __rlwinm/__rlwimi. The equivalent `|`
-// masks compile to `or` for the second consumer of each chroma word; the
-// rotate-insert form keeps both scanlines on `rlwimi`.
-void pack_movie_frame(MoviePlanes_80143988 *frame) {
-    const s32 width = lbl_805D56A4;
-    const s32 height = lbl_805D56A8;
-    const u32 width2 = (u32)width;
-    const u32 luma_stride = frame->luma_stride;
-    const u32 chroma_stride = frame->chroma_stride;
-    u32 *dp = reinterpret_cast<u32 *>(static_cast<u8 *>(movie_current_frame_buffer)
-        + ((640 - width) & 0x7FFFFFFCU)
-        + ((((480 - height) * 640)) & ~3));
-    u32 *lp = dp + (1280 / 4) - 1;
-    u32 *y = reinterpret_cast<u32 *>(frame->luma);
-    u32 *y2 = reinterpret_cast<u32 *>(frame->luma + (luma_stride & ~3U));
-    u32 *u = reinterpret_cast<u32 *>(frame->chroma0);
-    u32 *v = reinterpret_cast<u32 *>(frame->chroma1);
-    dp -= 1;
-    y -= 1;
-    y2 -= 1;
-    u -= 1;
-    v -= 1;
-    u32 *end = dp + height * (1280 / 4);
-    const u32 row_bytes = (width2 << 1) & 0x7FFFFFFCU;
-    const u32 dst_pad = 640U - (width2 >> 1);
-    const u32 y_pad = ((luma_stride >> 1) & ~1U) - (width2 >> 2);
-    const u32 c_pad = (chroma_stride >> 2) - (width2 >> 3);
-    while (end > dp) {
-        u32 *row_end = dp + (row_bytes >> 2);
-        while (row_end > dp) {
-            u32 uw = u[1];
-            u32 vw = v[1];
-            u32 yw = y[1];
-            u32 lw = y2[1];
-            __dcbt(y, 32);
-            u32 c = __rlwimi(__rlwinm(uw, 24, 8, 15), vw, 8, 24, 31);
-            u32 hi = __rlwimi(__rlwimi(c, yw, 0, 0, 7), yw, 24, 16, 23);
-            u32 lo = __rlwimi(__rlwimi(c, lw, 0, 0, 7), lw, 24, 16, 23);
-            dp[1] = hi;
-            lp[1] = lo;
-            c = __rlwimi(__rlwinm(uw, 0, 8, 15), vw, 16, 24, 31);
-            yw = y[2];
-            lw = *(y2 += 2);
-            hi = __rlwimi(__rlwimi(c, yw, 16, 0, 7), yw, 8, 16, 23);
-            lo = __rlwimi(__rlwimi(c, lw, 16, 0, 7), lw, 8, 16, 23);
-            dp[2] = hi;
-            lp[2] = lo;
-            c = __rlwimi(__rlwinm(uw, 8, 8, 15), vw, 24, 24, 31);
-            hi = __rlwimi(__rlwimi(c, yw, 0, 0, 7), yw, 24, 16, 23);
-            lo = __rlwimi(__rlwimi(c, lw, 0, 0, 7), lw, 24, 16, 23);
-            dp[3] = hi;
-            lp[3] = lo;
-            c = __rlwimi(__rlwinm(uw, 16, 8, 15), vw, 0, 24, 31);
-            hi = __rlwimi(__rlwimi(c, yw, 16, 0, 7), yw, 8, 16, 23);
-            lo = __rlwimi(__rlwimi(c, lw, 16, 0, 7), lw, 8, 16, 23);
-            dp[4] = hi;
-            lp[4] = lo;
-            __dcbt(y2, 32);
-            uw = *(u += 2);
-            vw = *(v += 2);
-            yw = y[3];
-            lw = y2[1];
-            c = __rlwimi(__rlwinm(uw, 24, 8, 15), vw, 8, 24, 31);
-            hi = __rlwimi(__rlwimi(c, yw, 0, 0, 7), yw, 24, 16, 23);
-            lo = __rlwimi(__rlwimi(c, lw, 0, 0, 7), lw, 24, 16, 23);
-            dp[5] = hi;
-            lp[5] = lo;
-            c = __rlwimi(__rlwinm(uw, 0, 8, 15), vw, 16, 24, 31);
-            hi = __rlwimi(__rlwimi(c, yw, 16, 0, 7), yw, 8, 16, 23);
-            lo = __rlwimi(__rlwimi(c, lw, 16, 0, 7), lw, 8, 16, 23);
-            dp[6] = hi;
-            lp[6] = lo;
-            yw = *(y += 4);
-            lw = *(y2 += 2);
-            c = __rlwimi(__rlwinm(uw, 8, 8, 15), vw, 24, 24, 31);
-            lp[7] = __rlwimi(__rlwimi(c, lw, 0, 0, 7), lw, 24, 16, 23);
-            dp[7] = __rlwimi(__rlwimi(c, yw, 0, 0, 7), yw, 24, 16, 23);
-            c = __rlwimi(__rlwinm(uw, 16, 8, 15), vw, 0, 24, 31);
-            *(dp += 8) = __rlwimi(__rlwimi(c, yw, 16, 0, 7), yw, 8, 16, 23);
-            *(lp += 8) = __rlwimi(__rlwimi(c, lw, 16, 0, 7), lw, 8, 16, 23);
+// Packs two luma rows per pass into the 640x480 frame buffer, one cache
+// touch per four words. This unit builds with -opt
+// nolifetimes,nocse,noprop,noloop (configure.py), so every named local keeps
+// one register for the whole function and the declaration order below
+// decides the colouring. See docs/porting-exceptions.md section 5.
+//
+// Each chroma/luma byte is merged as `x = (field) | (x & ~mask)`. MWCC turns
+// that complementary-mask form into rlwimi; `x |= field` stays rlwinm + or.
+void pack_movie_frame(MovieFramePlanes *frame) {
+    u32 *row_end;
+    u32 *end;
+    u32 *y2;
+    u32 width;
+    u32 *cr;
+    u32 *cb;
+    u32 *y;
+    u32 *dst;
+    u32 *low;
+    u32 yw;
+    u32 height;
+    u32 *cr_src;
+    u32 *cb_src;
+    u32 *luma_src;
+    u32 lw;
+    u32 y_pad;
+    u32 uw;
+    u32 vw;
+    u32 hi;
+    int touch;
+    u32 dst_pad;
+    u32 lo;
+    u32 c_pad;
+
+    dst = static_cast<u32 *>(movie_current_frame_buffer);
+    width = lbl_805D56A4;
+    height = lbl_805D56A8;
+    touch = 32;
+    dst += ((640 - width) * 2 / 2) / 4;
+    cb_src = frame->cb;
+    dst += ((480 - height) * 640) / 4;
+    low = dst + 320 - 1;
+    luma_src = frame->luma;
+    cr_src = frame->cr;
+    dst -= 1;
+    // A decrement of a separate source pointer stays where it is written;
+    // an in-place `p -= 1` is sunk to the next use by the forward peephole.
+    y = luma_src - 1;
+    y2 = y + frame->luma_stride / 4;
+    end = dst + height * 320;
+    cb = cb_src - 1;
+    y_pad = (frame->luma_stride / 4) * 2 - width / 4;
+    cr = cr_src - 1;
+    c_pad = frame->chroma_stride / 4 - width / 8;
+    dst_pad = 640 - width / 2;
+
+    while (end > dst) {
+        row_end = dst + (width * 2 * 2 / 2) / 4;
+        while (row_end > dst) {
+            // The two-statement chroma extract keeps the first half above the
+            // 100-pcode block limit, so the block split lands on the second
+            // __dcbt. The second luma pair is reloaded before the second
+            // word's stores.
+            __dcbt(y, touch);
+            uw = *++cb;
+            vw = *++cr;
+            yw = *++y;
+            lw = *++y2;
+            hi = uw >> 8;
+            hi &= 0x00FF0000;
+            hi = (vw >> 24) | (hi & ~0xFFu);
+            lo = hi;
+            hi = (yw & 0xFF000000) | (hi & ~0xFF000000u);
+            hi = ((yw >> 8) & 0x0000FF00) | (hi & ~0x0000FF00u);
+            lo = (lw & 0xFF000000) | (lo & ~0xFF000000u);
+            lo = ((lw >> 8) & 0x0000FF00) | (lo & ~0x0000FF00u);
+            *++dst = hi;
+            *++low = lo;
+            hi = uw;
+            hi &= 0x00FF0000;
+            hi = ((vw >> 16) & 0xFF) | (hi & ~0xFFu);
+            lo = hi;
+            hi = ((yw << 16) & 0xFF000000) | (hi & ~0xFF000000u);
+            hi = ((yw << 8) & 0x0000FF00) | (hi & ~0x0000FF00u);
+            lo = ((lw << 16) & 0xFF000000) | (lo & ~0xFF000000u);
+            lo = ((lw << 8) & 0x0000FF00) | (lo & ~0x0000FF00u);
+            yw = *++y;
+            lw = *++y2;
+            *++dst = hi;
+            *++low = lo;
+            hi = uw << 8;
+            hi &= 0x00FF0000;
+            hi = ((vw >> 8) & 0xFF) | (hi & ~0xFFu);
+            lo = hi;
+            hi = (yw & 0xFF000000) | (hi & ~0xFF000000u);
+            hi = ((yw >> 8) & 0x0000FF00) | (hi & ~0x0000FF00u);
+            lo = (lw & 0xFF000000) | (lo & ~0xFF000000u);
+            lo = ((lw >> 8) & 0x0000FF00) | (lo & ~0x0000FF00u);
+            *++dst = hi;
+            *++low = lo;
+            hi = uw << 16;
+            hi &= 0x00FF0000;
+            hi = (vw & 0xFF) | (hi & ~0xFFu);
+            lo = hi;
+            hi = ((yw << 16) & 0xFF000000) | (hi & ~0xFF000000u);
+            hi = ((yw << 8) & 0x0000FF00) | (hi & ~0x0000FF00u);
+            lo = ((lw << 16) & 0xFF000000) | (lo & ~0xFF000000u);
+            lo = ((lw << 8) & 0x0000FF00) | (lo & ~0x0000FF00u);
+            *++dst = hi;
+            *++low = lo;
+            __dcbt(y2, touch);
+            uw = *++cb;
+            vw = *++cr;
+            yw = *++y;
+            lw = *++y2;
+            hi = uw >> 8;
+            hi &= 0x00FF0000;
+            hi = (vw >> 24) | (hi & ~0xFFu);
+            lo = hi;
+            hi = (yw & 0xFF000000) | (hi & ~0xFF000000u);
+            hi = ((yw >> 8) & 0x0000FF00) | (hi & ~0x0000FF00u);
+            lo = (lw & 0xFF000000) | (lo & ~0xFF000000u);
+            lo = ((lw >> 8) & 0x0000FF00) | (lo & ~0x0000FF00u);
+            *++dst = hi;
+            *++low = lo;
+            hi = uw;
+            hi &= 0x00FF0000;
+            hi = ((vw >> 16) & 0xFF) | (hi & ~0xFFu);
+            lo = hi;
+            hi = ((yw << 16) & 0xFF000000) | (hi & ~0xFF000000u);
+            hi = ((yw << 8) & 0x0000FF00) | (hi & ~0x0000FF00u);
+            lo = ((lw << 16) & 0xFF000000) | (lo & ~0xFF000000u);
+            lo = ((lw << 8) & 0x0000FF00) | (lo & ~0x0000FF00u);
+            yw = *++y;
+            lw = *++y2;
+            *++dst = hi;
+            *++low = lo;
+            hi = uw << 8;
+            hi &= 0x00FF0000;
+            hi = ((vw >> 8) & 0xFF) | (hi & ~0xFFu);
+            lo = hi;
+            hi = (yw & 0xFF000000) | (hi & ~0xFF000000u);
+            hi = ((yw >> 8) & 0x0000FF00) | (hi & ~0x0000FF00u);
+            lo = (lw & 0xFF000000) | (lo & ~0xFF000000u);
+            lo = ((lw >> 8) & 0x0000FF00) | (lo & ~0x0000FF00u);
+            *++dst = hi;
+            *++low = lo;
+            hi = uw << 16;
+            hi &= 0x00FF0000;
+            hi = (vw & 0xFF) | (hi & ~0xFFu);
+            lo = hi;
+            hi = ((yw << 16) & 0xFF000000) | (hi & ~0xFF000000u);
+            hi = ((yw << 8) & 0x0000FF00) | (hi & ~0x0000FF00u);
+            lo = ((lw << 16) & 0xFF000000) | (lo & ~0xFF000000u);
+            lo = ((lw << 8) & 0x0000FF00) | (lo & ~0x0000FF00u);
+            *++dst = hi;
+            *++low = lo;
         }
-        dp += dst_pad;
-        lp += dst_pad;
+        dst += dst_pad;
+        low += dst_pad;
         y += y_pad;
         y2 += y_pad;
-        u += c_pad;
-        v += c_pad;
+        cb += c_pad;
+        cr += c_pad;
     }
 }
 }

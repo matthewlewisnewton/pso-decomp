@@ -8,10 +8,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 9 | 3 |
-| intrinsic | 131 | 55 |
+| intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
 | pragma | 5860 | 886 |
-| configure.py per-unit override | 147 | 147 |
+| configure.py per-unit override | 148 | 148 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 926, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -57,54 +57,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
 | `src/pso/misc/TLobby_803C4698.cpp:234` | `__frsqrte` |
 | `src/pso/misc/TMainCursor.cpp:845` | `__cntlzw` |
-| `src/pso/misc/TMovie_80143988.cpp:55` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:55` | `__rlwinm` |
-| `src/pso/misc/TMovie_80143988.cpp:56` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:56` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:57` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:57` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:60` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:60` | `__rlwinm` |
-| `src/pso/misc/TMovie_80143988.cpp:63` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:63` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:64` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:64` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:67` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:67` | `__rlwinm` |
-| `src/pso/misc/TMovie_80143988.cpp:68` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:68` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:69` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:69` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:72` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:72` | `__rlwinm` |
-| `src/pso/misc/TMovie_80143988.cpp:73` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:73` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:74` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:74` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:82` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:82` | `__rlwinm` |
-| `src/pso/misc/TMovie_80143988.cpp:83` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:83` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:84` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:84` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:87` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:87` | `__rlwinm` |
-| `src/pso/misc/TMovie_80143988.cpp:88` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:88` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:89` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:89` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:94` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:94` | `__rlwinm` |
-| `src/pso/misc/TMovie_80143988.cpp:95` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:95` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:96` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:96` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:97` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:97` | `__rlwinm` |
-| `src/pso/misc/TMovie_80143988.cpp:98` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:98` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:99` | `__rlwimi` |
-| `src/pso/misc/TMovie_80143988.cpp:99` | `__rlwimi` |
 | `src/pso/misc/TNpcPlayer.cpp:2382` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
@@ -259,6 +211,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
 | `pso/item/TItemSpecialEvent_803531FC.cpp` | `(multi-line entry; see configure.py)` | GC/2.0: compiler-expanded struct copies take 2.0's registers. The ending item handler table keeps 2.0's store/load scheduling for its zero-initialized local member-function-pointer array. |
 | `pso/effect/TEffIndirectCtrl_802A88AC.cpp` | `-opt noprop` | deform_indirect_texture_scroll keeps its s16 scroll offset as a named local (extsh r28, after the coordinate masks in r30/r29). With copy propagation the frontend replaces it with a hoisted temporary that the allocator colours first (r30). See docs/porting-exceptions.md section 5. |
+| `pso/misc/TMovie_80143988.cpp` | `-opt nolifetimes,nocse,noprop,noloop` | pack_movie_frame: the original keeps every named local in one register (no lifetime splitting), recomputes its pad and stride shifts instead of sharing them, and leaves invariant hoisting to the backend. See docs/porting-exceptions.md section 5. |
 | `pso/boss/Boss5GryphonBehavior.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneGyaranzo.cpp` | `GC/2.0, -inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOExplosiveMachine.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
