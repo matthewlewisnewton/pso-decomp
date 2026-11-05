@@ -7,7 +7,7 @@
 struct TWindowKeyBoardBase : public TUnk_804CE018 {
     virtual ~TWindowKeyBoardBase();
     void init_keyboard_text_field(u32, u32);
-    void sub_8025E6DC(u8 *);
+    void sub_8025E6DC(TWindowKeyBoardSoft *);
     void draw_wrapped_text(void *, void *);
     void draw_text_glyphs(void *, void *);
     int sub_8025EB68();

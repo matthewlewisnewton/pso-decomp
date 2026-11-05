@@ -4,6 +4,7 @@
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/unk/text_8026C664.h"
 #include "pso/misc/TLobby_8001D6A0.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/unk/text_8026C7AC.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
@@ -84,7 +85,7 @@ void text_builder_reset(void);
 extern s32 lbl_805D63F0;
 
 extern "C" {
-void draw_list_page_indicator(Self_8026C800 *self, Rect_8026C800 *r);
+void draw_list_page_indicator(Self_8026C800 *self, TWindowDrawContext *r);
 s32 fn_8026C7AC(void *arg0, s8 arg1) {
     *(s8 *)((s8 *)arg0 + 0) = 0;
     *(s8 *)((s8 *)arg0 + 1) = arg1;
@@ -109,22 +110,22 @@ s32 fn_8026C7C0(void *arg0, s8 arg1) {
 #pragma push
 #pragma fp_contract on
 #pragma readonly_strings on
-void draw_list_page_indicator(Self_8026C800 *self, Rect_8026C800 *r) {
+void draw_list_page_indicator(Self_8026C800 *self, TWindowDrawContext *r) {
     Vec2_8026C800 pos;
     f32 scale;
-    if (r->f30 < 0) {
+    if (r->open_tick < 0) {
         return;
     }
     pos.x = (r->x + r->w) - 79.0f;
     pos.y = (r->y + r->h) - 22.0f;
-    scale = (-1.0f) / (0.1495f + r->f38);
+    scale = (-1.0f) / (0.1495f + r->depth);
     begin_screen_draw(1);
     set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0, -1);
     fn_8026C708((u8 *)r, (f32)(4e+01f + pos.x), (f32)(2.0f + pos.y), (f32)scale, (f32)self->phase);
     fn_8026C664((u8 *)r, (f32)(pos.x - 69.0f), (f32)(2.0f + pos.y), (f32)scale, (f32)self->phase);
     TWindowSubStatusDisp::get_player();
-    set_text_draw_params((s32)r, 0, 1, (f32)scale, (f32)1e+05f);
+    set_text_draw_params(r, 0, 1, (f32)scale, (f32)1e+05f);
     text_builder_reset();
     TWindowSubStatusDisp__sub_80228F5C(self->page + 1);
     get_shared_text_buffer();
