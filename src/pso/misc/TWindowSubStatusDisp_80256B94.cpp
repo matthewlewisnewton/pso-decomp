@@ -35,15 +35,14 @@ struct Gauge_802571B4 {
 
 struct Pos_80256E0C { f32 x; f32 y; };
 
-struct Quad_80256E0C { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
+// Same eight-float quad main (#187) names Box_8024E8E8 in TWindowDrawContext.h.
+typedef Box_8024E8E8 Quad_80256E0C;
 
 extern "C" {
 void calc_bar_width__20TWindowSubStatusDispFPv(struct Bar_80256C00 *bar);
 f32 fabs_float(f32);
 const f32 lbl_805DCECC = 2.0f;
 void step_gauge_bar_width(Gauge_802571B4 *g);
-void draw_textured_quad_at_depth(f32 *q, f32 depth);
-void draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff(Gauge_80256E0C *self, TWindowDrawContext *ctx, Pos_80256E0C *pos, f32 depth, f32 len);
 void TWindowSubStatusDisp__sub_80256BF8(void);
 void TWindowSubStatusDisp__sub_80256BFC(void);
 // Same symbol as the s16 member below. init_from's argument is the int
