@@ -12,15 +12,7 @@ struct RecoveredFields_8024E754_arg0
   f32 field_2C;
 };
 
-struct Ctx_8024E6D8 { u8 pad[0x20]; f32 pivot[2]; f32 scale[2]; };
-
 struct Vec2_8024EC34 { f32 x; f32 y; };
-
-struct Ctx_8024E68C { u8 pad[0x20]; f32 pivot[2]; f32 scale[2]; };
-
-struct Box_8024E8E8 { f32 x0, y0, x1, y1; f32 u0, v0, u1, v1; };
-
-struct Win_8024E8E8 { u8 pad[0x3C]; f32 x0, y0, x1, y1; };
 
 struct Win_8024EA50 {
     f32 x, y;
@@ -42,7 +34,7 @@ extern const f32 lbl_805DCC88;
 extern const float lbl_805DCC78;
 extern const f32 lbl_805DCC7C;
 extern const f32 lbl_805DCC80;
-void apply_context_transform_to_rect(Ctx_8024E6D8 *c, f32 *q);
+void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q);
 s32 is_split_screen();
 f32 TCameraCtrl__sub_80068A04(s32);
 Vec2_8024EC34 *get_zero_vec2();
@@ -50,7 +42,7 @@ extern Vec2_8024EC34 keyboard_soft_viewport_offset_table[];
 extern Vec2_8024EC34 lbl_8044EC80[];
 extern Vec2_8024EC34 lbl_8044EC98[];
 extern const float lbl_805DCC94;
-s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(Win_8024E8E8 *w, Box_8024E8E8 *b);
+s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b);
 extern const f32 lbl_805DCC98;
 extern const f32 lbl_805DCC9C;
 extern const f32 lbl_805DCCA0;
@@ -58,10 +50,6 @@ extern const f32 lbl_805DCCA4;
 u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
 
 typedef struct RecoveredFields_8024E754_arg0 RecoveredFields_8024E754_arg0;
-#pragma fp_contract on
-
-#pragma push
-#pragma fp_contract on
 void TWindowKeyBoardSoft::scale_point_about_pivot(f32 *q) {
     if (lbl_805DCC78 != scale[0]) {
         q[0] = scale[0] * (q[0] - pivot[0]) + pivot[0];
@@ -70,11 +58,8 @@ void TWindowKeyBoardSoft::scale_point_about_pivot(f32 *q) {
         q[1] = scale[1] * (q[1] - pivot[1]) + pivot[1];
     }
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
-void apply_context_transform_to_rect(Ctx_8024E6D8 *c, f32 *q) {
+void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q) {
     if ((*(const f32 *)&lbl_805DCC78) != c->scale[0]) {
         q[0] = c->scale[0] * (q[0] - c->pivot[0]) + c->pivot[0];
         q[2] = c->scale[0] * (q[2] - c->pivot[0]) + c->pivot[0];
@@ -85,7 +70,6 @@ void apply_context_transform_to_rect(Ctx_8024E6D8 *c, f32 *q) {
     }
 }
 }
-#pragma pop
 
 void apply_window_closing_stretch(u8 *arg0, int arg1) {
   f32 temp_f2;
@@ -123,70 +107,65 @@ void TWindowKeyBoardSoft::set_bounds(f32 a, f32 b, f32 c, f32 d) {
 extern const f32 lbl_805DCC8C;
 
 void TWindowKeyBoardSoft::shrink_clip_right() {
-    inner_w = (f32) (inner_w - lbl_805DCC8C);
-    clip_right = (f32) (clip_right - lbl_805DCC8C);
+    inner_w = inner_w - lbl_805DCC8C;
+    clip_right = clip_right - lbl_805DCC8C;
 }
 
 extern const f32 lbl_805DCC90;
 
 void TWindowKeyBoardSoft::animate_scale() {
-    inner_y = (f32) (inner_y + lbl_805DCC90);
-    inner_h = (f32) (inner_h - lbl_805DCC90);
-    clip_top = (f32) (clip_top + lbl_805DCC90);
+    inner_y = inner_y + lbl_805DCC90;
+    inner_h = inner_h - lbl_805DCC90;
+    clip_top = clip_top + lbl_805DCC90;
 }
 
-s32 TWindowKeyBoardSoft::is_point_in_bounds(void *arg1) {
-    if ((*(f32 *)((s8 *)arg1 + 8) < *(f32 *)((s8 *)this + 0x3C)) || (*(f32 *)((s8 *)arg1 + 0xC) < *(f32 *)((s8 *)this + 0x40)) || (*(f32 *)((s8 *)arg1 + 0) > *(f32 *)((s8 *)this + 0x44)) || (*(f32 *)((s8 *)arg1 + 4) > *(f32 *)((s8 *)this + 0x48))) {
+s32 TWindowDrawContext::is_point_in_bounds(f32 *quad) {
+    if ((quad[2] < clip_left) || (quad[3] < clip_top) || (quad[0] > clip_right) || (quad[1] > clip_bottom)) {
         return 0;
     }
     return 1;
 }
 
-#pragma push
-#pragma fp_contract on
-s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(Win_8024E8E8 *w, Box_8024E8E8 *b) {
+s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b) {
     f32 sx;
     f32 sy;
     f32 d;
-    if (((TWindowKeyBoardSoft *)w)->is_point_in_bounds(b) == 0) {
+    if (w->is_point_in_bounds(b) == 0) {
         return 0;
     }
-    sx = (b->u1 - b->u0) / (b->x1 - b->x0);
-    sy = (b->v1 - b->v0) / (b->y1 - b->y0);
-    d = w->x0 - b->x0;
+    sx = (b[6] - b[4]) / (b[2] - b[0]);
+    sy = (b[7] - b[5]) / (b[3] - b[1]);
+    d = w->clip_left - b[0];
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b->x0 = w->x0;
-        b->u0 = d * sx + b->u0;
+        b[0] = w->clip_left;
+        b[4] = d * sx + b[4];
     }
-    d = w->y0 - b->y0;
+    d = w->clip_top - b[1];
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b->y0 = w->y0;
-        b->v0 = d * sy + b->v0;
+        b[1] = w->clip_top;
+        b[5] = d * sy + b[5];
     }
-    d = b->x1 - w->x1;
+    d = b[2] - w->clip_right;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b->x1 = w->x1;
-        b->u1 = -(d * sx - b->u1);
+        b[2] = w->clip_right;
+        b[6] = -(d * sx - b[6]);
     }
-    d = b->y1 - w->y1;
+    d = b[3] - w->clip_bottom;
     if (d > (*(const f32 *)&lbl_805DCC94)) {
-        b->y1 = w->y1;
-        b->v1 = -(d * sy - b->v1);
+        b[3] = w->clip_bottom;
+        b[7] = -(d * sy - b[7]);
     }
     return 1;
 }
-#pragma pop
 
-s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1) {
-    if (clip_textured_quad__19TWindowKeyBoardSoftFPvPv((Win_8024E8E8 *)(arg0), (Box_8024E8E8 *)(arg1)) == 0) {
+s32 TWindowKeyBoardSoft::try_open(TWindowDrawContext *context, f32 *quad) {
+    if (clip_textured_quad__19TWindowKeyBoardSoftFPvPv(context, quad) == 0) {
         return 0;
     }
-    apply_context_transform_to_rect((Ctx_8024E6D8 *)(arg0), (f32 *)arg1);
+    apply_context_transform_to_rect(context, quad);
     return 1;
 }
 
-#pragma push
-#pragma fp_contract on
 u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth) {
     f32 mx;
     f32 my;
@@ -235,7 +214,6 @@ u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, 
     win->y48 = (win->y + win->h) - my;
     return soft_keyboard_instance;
 }
-#pragma pop
 
 void TWindowKeyBoardSoft::adjust_pos_for_split_screen(s32 i) {
     Vec2_8024EC34 *arg0 = (Vec2_8024EC34 *)this;
@@ -275,7 +253,7 @@ Vec2_8024EC34 *TWindowKeyBoardSoft::get_viewport_offset(int i) {
 
 TWindowKeyBoardSoft *TWindowKeyBoardSoft::open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags) {
     if ((u32) soft_keyboard_instance == 0U) {
-        return NULL;
+        return 0;
     }
     init_text_window_layout((Win_8024EA50 *)(soft_keyboard_instance), pos, size, scale, (u32)flags, depth);
     return (TWindowKeyBoardSoft *)soft_keyboard_instance;

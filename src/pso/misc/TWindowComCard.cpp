@@ -330,8 +330,8 @@ void TUnk_804CE964::run_task() {
     u8 *temp_r4;
     temp_r4 = (unsigned char *) (this->m_60);
     temp_f1 = *(f32 *)((s8 *)temp_r4 + 0x44);
-    this->m_34 = (f32) (temp_f1 + this->m_68);
-    this->m_44 = (f32) this->m_34;
+    this->m_34f = (f32) (temp_f1 + this->m_68);
+    this->m_44 = (f32) this->m_34f;
     ((s32 (*)(void *, int, f32))initialize_subwindow__9TWindowDDFv)((void *)arg0, (int)temp_r4, (f32)temp_f1);
     ((TUnk_804CE018 *)arg0)->update_fade();
     ((TUnk_804CE018 *)arg0)->update_window_entry_list(arg0 + 0x24);

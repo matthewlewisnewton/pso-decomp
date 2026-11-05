@@ -715,9 +715,6 @@ force_active:
   - TOKurage__bml_resource
   - TOKurage__class_name
   - TOLightMachine01__ct
-  - __ct__12TOMineIcon01FP7TObjectPv
-  - __ct__12TOMineIcon02FP7TObjectPv
-  - __ct__12TOMineIcon04FP7TObjectPv
   - TOMineTrapDisp__name
   - TOMonitorMachine01__bml_resource
   - TOMonitorMachine01__class_name
@@ -1681,6 +1678,7 @@ force_active:
   - __atexit_funcs
   - __console_exit
   - __ct__10TItemMoneyFP7TObjectP9TItemData
+  - __ct__10TOMineTrapFP10TObjPlayerss
   - __ct__10TObjCameraFP7TObjectPv
   - __ct__11TBoss4ZanzoFv
   - __ct__11TMessageBoxFRC11TMessageBox
@@ -1703,6 +1701,9 @@ force_active:
   - __ct__12TODoorVoShipFP7TObjectPv
   - __ct__12TOMekaFish00FPv
   - __ct__12TOMekaFish01FPv
+  - __ct__12TOMineIcon01FP7TObjectPv
+  - __ct__12TOMineIcon02FP7TObjectPv
+  - __ct__12TOMineIcon04FP7TObjectPv
   - __ct__12TOSignCave01FP7TObjectPv
   - __ct__12TOSignCave02FP7TObjectPv
   - __ct__12TOSignCave03FP7TObjectPv
@@ -5413,6 +5414,7 @@ force_active:
   - find_strongest_player__12TBoss3VoloptFv
   - find_support_technique_contact__FPviPvPv
   - find_table_entry_id
+  - find_target_in_range__10TOMineTrapFv
   - find_target_player__16TOTrapAncient02RFv
   - find_target_player__6TOMineFv
   - find_target_pos__11TBoss4Type2FPvPv
@@ -6654,6 +6656,7 @@ force_active:
   - is_target_in_attack_range__14TObjEneIllGillFv
   - is_target_in_attack_range__16TBoss3VoloptCoreFv
   - is_target_in_front_range__9TBoss6MagFv
+  - is_target_in_list__6TOMineFPv
   - is_target_in_range__11TObjInfoColFf
   - is_target_in_range__18TObjEneMe3SinowZoaFv
   - is_technique_usable__20TWindowShortListCtrlFv
@@ -15279,6 +15282,7 @@ force_active:
   - sub_80168398__13TUnk_804B2578Fv
   - sub_80168488__13TUnk_804B2578Fv
   - sub_801688C0__13TUnk_804B2578Fv
+  - sub_8017070C__6TOMineFv
   - sub_8018355C__28TObjCity_Season_FireWorkCtrlFv
   - sub_80183C38__25TObjCity_Season_SonicAdv2Fv
   - sub_8018A688__20TContainerAncient01RFv
@@ -15456,6 +15460,7 @@ force_active:
   - sync_field10_from_child__15TPlyPhotonChairFv
   - sync_hp__9TBoss6MagFv
   - sync_hp_apply_damage__9TBoss6MagFv
+  - sync_position__10TOMineTrapFv
   - sync_state__10TObjPlayerFi
   - sync_state__14TObjEneGibblesFv
   - synthAddJob

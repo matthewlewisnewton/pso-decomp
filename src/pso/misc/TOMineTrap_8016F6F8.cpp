@@ -233,7 +233,11 @@ void TOMineTrap::run_task() {
         submit_cursor_candidate(this, -1);
         return;
     }
-    case 4:
+    case 4: {
+        // this->alt_room, the actor's room, and the id's low half are each read twice.
+        s16 trap_alt;
+        s16 actor_room;
+        u32 id_lo;
         trap_arg = (s32)this;
         owner = (TObjPlayer *)get_player_by_client_id(this->get_trap_type());
         if (owner == 0) {
@@ -247,9 +251,11 @@ void TOMineTrap::run_task() {
             if (actor->obj_testFlags30(0x4000800) != 0) {
                 continue;
             }
-            if (actor->alt_room != this->alt_room && actor->room != this->room &&
-                actor->room != this->alt_room) {
-                continue;
+            if (actor->alt_room != (trap_alt = this->alt_room)) {
+                actor_room = actor->room;
+                if (actor_room != this->room && actor_room != trap_alt) {
+                    continue;
+                }
             }
             id = get_entity_id(actor);
             if (id == 0xFFFF) {
@@ -258,7 +264,8 @@ void TOMineTrap::run_task() {
             if (id == this->get_trap_type() && TOMineTrap::get_trap_count() != 1) {
                 continue;
             }
-            if (id < 0x1000) {
+            id_lo = (u32)id;
+            if (id_lo < 0x1000) {
                 if (TObjPlayer::get_player_count() != 1) {
                     continue;
                 }
@@ -282,7 +289,7 @@ void TOMineTrap::run_task() {
                         this->m_380 = TOMineTrap::show_owner_message(trap_arg, (u32)actor);
                     }
                 }
-            } else if (id < 0x4000) {
+            } else if (id_lo < 0x4000) {
                 if (horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
                     this->target = (u8 *)actor;
                     switch (this->attack.kind) {
@@ -307,6 +314,7 @@ void TOMineTrap::run_task() {
         this->sub_8017070C();
         this->queue_destruction();
         return;
+    }
     default:
         return;
     }
