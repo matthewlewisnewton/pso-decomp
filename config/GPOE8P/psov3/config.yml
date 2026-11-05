@@ -715,9 +715,6 @@ force_active:
   - TOKurage__bml_resource
   - TOKurage__class_name
   - TOLightMachine01__ct
-  - __ct__12TOMineIcon01FP7TObjectPv
-  - __ct__12TOMineIcon02FP7TObjectPv
-  - __ct__12TOMineIcon04FP7TObjectPv
   - TOMineTrapDisp__name
   - TOMonitorMachine01__bml_resource
   - TOMonitorMachine01__class_name
@@ -1369,6 +1366,7 @@ force_active:
   - TObjPlayer__sub_80354EEC
   - TObjPlayer__sub_80355098
   - TObjPlayer__sub_80363C5C
+  - TObjPlayer__sub_803D9C60
   - TObjPlayer__sub_803DA808
   - TObjPlayer__sub_803DA84C
   - TObjPlayer__sub_803DA8B4
@@ -1703,6 +1701,9 @@ force_active:
   - __ct__12TODoorVoShipFP7TObjectPv
   - __ct__12TOMekaFish00FPv
   - __ct__12TOMekaFish01FPv
+  - __ct__12TOMineIcon01FP7TObjectPv
+  - __ct__12TOMineIcon02FP7TObjectPv
+  - __ct__12TOMineIcon04FP7TObjectPv
   - __ct__12TOSignCave01FP7TObjectPv
   - __ct__12TOSignCave02FP7TObjectPv
   - __ct__12TOSignCave03FP7TObjectPv

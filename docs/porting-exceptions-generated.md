@@ -7,7 +7,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 9 | 3 |
+| asm | 27 | 6 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
 | pragma | 5860 | 886 |
@@ -27,6 +27,24 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/musyx/runtime/StdReverb/reverb.c:91` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
 | `src/musyx/runtime/StdReverb/reverb.c:94` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
 | `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
+| `src/pso/math/MatrixTransforms.cpp:54` | `asm void subtract_vector(Vec *v, const Vec *sub) {` |
+| `src/pso/math/MatrixTransforms.cpp:55` | `#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"` |
+| `src/pso/unk/text_803D9650.cpp:6` | `asm void matrix_apply_translation(MtxP m, f32 x, f32 y, f32 z) {` |
+| `src/pso/unk/text_803D9650.cpp:7` | `#include "orig_asm/pso/unk/text_803D9650/matrix_apply_translation.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:94` | `asm f32 normalize_vector(Vec *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:95` | `#include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:125` | `asm void transform_point_by_current_matrix(const f32 *src, Vec *dst) {` |
+| `src/pso/unk/text_803D96A8.cpp:126` | `#include "orig_asm/pso/unk/text_803D96A8/transform_point_by_current_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:157` | `asm void rotate_vector_by_current_matrix(const Vec *src, Vec *dst) {` |
+| `src/pso/unk/text_803D96A8.cpp:158` | `#include "orig_asm/pso/unk/text_803D96A8/rotate_vector_by_current_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:161` | `asm void rotate_matrix_by_node_angles(const s32 *ang, u32 zxy) {` |
+| `src/pso/unk/text_803D96A8.cpp:162` | `#include "orig_asm/pso/unk/text_803D96A8/rotate_matrix_by_node_angles.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:165` | `asm s32 push_matrix(void) {` |
+| `src/pso/unk/text_803D96A8.cpp:166` | `#include "orig_asm/pso/unk/text_803D96A8/push_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:183` | `asm void scale_current_matrix(const f32 *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:184` | `#include "orig_asm/pso/unk/text_803D96A8/scale_current_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:187` | `asm void post_translate_matrix(const f32 *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:188` | `#include "orig_asm/pso/unk/text_803D96A8/post_translate_matrix.inc"` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
 
 ## MWCC intrinsics
