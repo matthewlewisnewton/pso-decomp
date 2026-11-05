@@ -1321,27 +1321,6 @@ typedef struct Msg_801B87E4 {
     u8 pad_18[4];
 } Msg_801B87E4;
 
-struct VBase_801B8AF8 { char pad[0x18]; };
-
-struct VObj_801B8AF8 : VBase_801B8AF8 {
-    virtual void v0(); virtual void v1(); virtual void v2(); virtual void v3();
-    virtual void v4(); virtual void v5(); virtual void v6(); virtual void v7();
-    virtual void v8(); virtual void v9(); virtual void v10(); virtual void v11();
-    virtual void v12(); virtual void v13(); virtual void v14(); virtual void v15();
-    virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
-    virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23();
-    virtual void v24(); virtual void v25(); virtual void v26(); virtual void v27();
-    virtual void v28(); virtual void v29(); virtual void v30(); virtual void v31();
-    virtual void v32(); virtual void v33();
-    virtual s32 m34();
-};
-
-struct Item_801B8AF8 {
-    u8 data[0xC];
-    s32 id;
-    u8 data2[4];
-};
-
 typedef struct Vec_801B8870 { f32 x, y, z; } Vec_801B8870;
 
 typedef struct Cmd_801B8870 {
@@ -3455,7 +3434,7 @@ s32 TObjPlayer::try_pickup_item() {
     TItem *owner;
     s32 arg0 = (s32)this;
 
-    if (obj_isState2_324__9TObjCharaFv() != 0) {
+    if (obj_isState2_324() != 0) {
         return 0;
     }
     TItemList *slot = find_revival_item();
@@ -6098,7 +6077,7 @@ s32 try_send_6x27_use_item(TObjPlayer *player, s32 arg1) {
         play_sound_effect(0x3816, 0, 0, 0);
         return 0;
     }
-    if ((player != NULL) && (((s32 (*)(void *))obj_isState2_324__9TObjCharaFv)(player) != 0)) {
+    if ((player != NULL) && (player->obj_isState2_324() != 0)) {
         return 0;
     }
     init_6x27_use_item_cmd((u8 *)&sp8);
@@ -6390,8 +6369,8 @@ void TObjPlayer::request_meseta_drop(s32 arg1) {
 }
 
 void TObjPlayer::request_item_drop(s32 arg1, s32 arg2) {
-    Item_801B8AF8 item;
-    VObj_801B8AF8 *owner;
+    TItemData item;
+    TItem *owner;
     s32 id;
     if (check_player_action_allowed() != 0 &&
         (TAdPlayerLoadGC__sub_801E1B50(get_chr_select_state__23TAdSinglePlyChrSelectGCFv()) != 0 ||
@@ -6403,16 +6382,16 @@ void TObjPlayer::request_item_drop(s32 arg1, s32 arg2) {
     if (slot == NULL) {
         return;
     }
-    owner = (VObj_801B8AF8 *)slot->get_owner_if_alive();
+    owner = slot->get_owner_if_alive();
     if (owner == NULL) {
         return;
     }
     ((s32 (*)(void *, int))play_effect_default__10TObjPlayerFii)(this, 0x384);
     set_action_flag_2();
-    ((TItem *)owner)->copy_to_item_data((TItemData *)&item);
-    ((TItemData *)&item)->set_stack_count(arg2);
+    owner->copy_to_item_data(&item);
+    item.set_stack_count(arg2);
     id = item.id;
-    if (owner->m34() - arg2 > 0) {
+    if (owner->get_amount() - arg2 > 0) {
         item.id = -1;
     }
     insert_item_node__10TObjPlayerFiiiii(&this->inventory_objects->pad_20[0], (void *)TObjPlayer__sub_801BF914(((u8 *)this) + 0x84C), this, &item, id);
@@ -6935,7 +6914,7 @@ void handle_6x25_equip_item(void *arg0) {
 
 void send_6x25_equip_item(TObjPlayer *arg0, s32 arg1, s32 arg2) {
     L_801BA0F0 sp8;
-    if (arg0->check_switch_available(arg1) != 0 && (arg0 == 0 || ((s32 (*)(void *))obj_isState2_324__9TObjCharaFv)(arg0) == 0)) {
+    if (arg0->check_switch_available(arg1) != 0 && (arg0 == 0 || arg0->obj_isState2_324() == 0)) {
         ((TObjPlayer *)(&sp8))->init_command();
         sp8.f2 = ((u16 (*)(void *))get_entity_id)(arg0);
         sp8.f4 = arg1;
