@@ -57,7 +57,7 @@ void TOGrassJungle::load_resources() {
     temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&ograss_jungle_resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
     (*(u8 * *)&TOGrassJungle__bml_resource) = (unsigned char *) ((void *) var_r0);
-    (*(u8 * *)&TOGrassJungle__grass_gvm_texture) = load_gvm_texture_file((s32) &lbl_8046598C.value);
+    (*(u8 * *)&TOGrassJungle__grass_gvm_texture) = load_gvm_texture_file(lbl_8046598C.value);
     TMotorcycle::add_entry(0x3F, (int) (get_bml_model((*(u8 * *)&TOGrassJungle__bml_resource), 0)), (int) ((*(u8 * *)&TOGrassJungle__grass_gvm_texture)), lbl_805DDD28, lbl_805DDD2C);
 }
 

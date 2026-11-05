@@ -81,7 +81,7 @@ void TODoorAncient08::load_resources() {
     bml_resource = resource;
     texture_lists = (s32 *)::operator new[](8);
     texture_lists[0] = bml_resource->models[0].m_c;
-    texture_lists[1] = (s32)load_gvm_texture_file((s32)"fs_obj_o_door06l_r.gvm");
+    texture_lists[1] = (s32)load_gvm_texture_file("fs_obj_o_door06l_r.gvm");
 }
 
 void TODoorAncient08::destroy() {

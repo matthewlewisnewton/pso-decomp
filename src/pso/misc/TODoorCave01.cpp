@@ -267,11 +267,11 @@ void TODoorCave01::load_resources() {
     if (enable_v2_features != 0 && TLobby::is_online_ready() != 0) {
         resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_cave01_a_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;
-        texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_do_doa01r_a.gvm");
+        texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_do_doa01r_a.gvm");
     } else {
         resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_cave01_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;
-        texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_do_doa01r.gvm");
+        texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_do_doa01r.gvm");
     }
     texture_lists[1] = bml_resource->models[0].m_c;
 }

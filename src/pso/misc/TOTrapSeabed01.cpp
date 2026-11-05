@@ -96,7 +96,7 @@ extern s32 seabed01_ginja_mesh_index;
 extern "C" {
 extern CollisionBody seabed_trap_collision_body;
 extern const char *TOTrapSeabed01_class_name;
-extern u8 lbl_804720E8[];
+extern char lbl_804720E8[];
 extern u8 lbl_80472100[];
 extern BmlResourceDescriptor seabed_trap_resource_descriptor;
 
@@ -207,7 +207,7 @@ void TOTrapSeabed01::vfunc_6(s16 *arg1, s32 arg2) {
 
 void TOTrapSeabed01::load_resources() {
     TOTrapSeabed01__bml_resource = new BmlResource(5, &seabed_trap_resource_descriptor, 0, 0, NULL);
-    TOTrapSeabed01__texture_file = load_gvm_texture_file((s32)lbl_804720E8);
+    TOTrapSeabed01__texture_file = load_gvm_texture_file(lbl_804720E8);
     NJS_OBJECT *n = find_object_node((NJS_OBJECT *)get_bml_model(TOTrapSeabed01__bml_resource, 0), 5);
     u8 *t = TOTrapSeabed01__texture_file;
     TOTrapSeabed01__ginja_model = n;

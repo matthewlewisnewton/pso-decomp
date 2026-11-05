@@ -1631,7 +1631,7 @@ void TObjPlayer__sub_800A2DCC() {
     lbl_805D5028 = ((Node_800A2DCC *(*)(void *, s32))get_bml_model)((void *)player_effect_bml_resource, 0)->model[1];
     TObjPlayer__sub_800A4294();
     init_fish_effects__12TEneEffHamonFv();
-    TObjPlayer__effect_resource = (u32)load_gvm_texture_file((s32)"re5_b_gunner_body_pika.gvm");
+    TObjPlayer__effect_resource = (u32)load_gvm_texture_file("re5_b_gunner_body_pika.gvm");
     for (i = 0; i < 1; i++) {
         lbl_805D4FF8[i] = (s32)get_battle_base_stats(30 + i);
         lbl_805D4FFC[i] = (s32)get_battle_attack_params(30 + i);

@@ -11,11 +11,6 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 extern "C" void *__ct__14TObjCollidableFP7TObject(void *, s32);
 
-struct RecoveredGlobal_8019A9B8_lbl_80446184 {
-    s32 value;
-    u8 remaining[0xC];
-};
-
 struct RecoveredGlobal_8019A9B8_lbl_804B8F60 {
     s32 value;
     u8 remaining[0xC];
@@ -41,7 +36,7 @@ extern u32 tank_bml_resource;
 extern u32 TObjTank__texture_list;
 extern const f32 lbl_805DBFA0;
 extern const f32 lbl_805DBFA4;
-extern RecoveredGlobal_8019A9B8_lbl_80446184 lbl_80446184;
+extern char lbl_80446184[];
 extern RecoveredGlobal_8019A9B8_lbl_804B8F60 fs_obj_tank_resource_descriptor;
 s32 init_collision_body_parts(void *, void *, int);
 extern RecoveredGlobal_8019A880_lbl_804B8F70 tobjtank_collision_body_parts;
@@ -129,7 +124,6 @@ void TObjTank::free_globals() {
         tank_bml_resource = 0U;
     }
 }
-typedef char RecoveredGlobal_8019A9B8_lbl_80446184_size[sizeof(RecoveredGlobal_8019A9B8_lbl_80446184) == 0x10 ? 1 : -1];
 typedef char RecoveredGlobal_8019A9B8_lbl_804B8F60_size[sizeof(RecoveredGlobal_8019A9B8_lbl_804B8F60) == 0x10 ? 1 : -1];
 void TObjTank::load_globals() {
     s32 temp_r3;
@@ -137,7 +131,7 @@ void TObjTank::load_globals() {
     temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&fs_obj_tank_resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
     (*(s32 *)&tank_bml_resource) = var_r0;
-    (*(u8 * *)&TObjTank__texture_list) = load_gvm_texture_file((s32) &lbl_80446184.value);
+    (*(u8 * *)&TObjTank__texture_list) = load_gvm_texture_file(lbl_80446184);
 }
 
 }

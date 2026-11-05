@@ -223,7 +223,7 @@ void TOKeyMachine01::load_assets() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_ki_doa_panel_resource_descriptor), 0, 0, (void *)(0));
     TOKeyMachine01__resource_bundle = resource;
     TOKeyMachine01__texture_lists = (s32 *)::operator new[](8);
-    TOKeyMachine01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_ki_doa_panel_r.gvm");
+    TOKeyMachine01__texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_ki_doa_panel_r.gvm");
     TOKeyMachine01__texture_lists[1] = TOKeyMachine01__resource_bundle->models[0].m_c;
 }
 

@@ -37,7 +37,7 @@ struct VObj_801E4B68_801E4874 : Base_801E4B68_801E4874 {
 s32 distort_texture_wave_image(void *);
 s32 is_split_screen();
 
-u8 *load_gvm_texture_file(s32 arg0) {
+u8 *load_gvm_texture_file(const char *filename) {
     s32 count;
     s32 i;
     u8 *res;
@@ -49,9 +49,9 @@ u8 *load_gvm_texture_file(s32 arg0) {
     Hdr_801E4874 hdr;
     big = 0;
     TLobby::pump_frames();
-    size = ((TLobby *)arg0)->get_resource_file_size();
+    size = ((TLobby *)filename)->get_resource_file_size();
     if (size <= 0) {
-        debug_print__6TLobbyFle(texture_file_load_error_format, arg0);
+        debug_print__6TLobbyFle(texture_file_load_error_format, filename);
         return NULL;
     }
     if (((size + 0x7FF) / 2048) * 2048 > 0x40000) {
@@ -60,7 +60,7 @@ u8 *load_gvm_texture_file(s32 arg0) {
     } else {
         buf = TLobby::tmp_buf_use_req((const char *)lbl_8044983C);
     }
-    TGStream::load_sct_file(arg0, buf);
+    TGStream::load_sct_file((s32)filename, buf);
     count = ((s32 (*)(s32, u8 *))read_file_header__9TLanguageFiPv)(buf, (u8 *)&hdr);
     if (count == 0) {
         if (big != 0) {
