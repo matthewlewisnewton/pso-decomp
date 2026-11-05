@@ -52,6 +52,11 @@ s32 TObjPlayer::count_items_by_id(s32 arg1) {
 
 #include "pso/TObject.h"
 
+// This walk's receiver is TObjPlayer, so TItemList::link_down is not in
+// scope. Same class-body inline, folded to lwz under -inline noauto.
+template<class Node>
+inline Node *typed_down(TObject *self) { return static_cast<Node *>(self->m_down); }
+
 struct VB_801D4E94 { u8 pad[0x18]; };
 
 struct V_801D4E94 : VB_801D4E94 {
@@ -79,7 +84,7 @@ void TObjPlayer::destroy_subobjects(int a1) { item_reduce_target_player = a1; in
 void TObjPlayer::destroy_subobjects_recursive() {
     TItemList *p;
     V_801D4E94 *o;
-    p = *(TItemList **)&this->m_down;
+    p = typed_down<TItemList>(this);
     while (p != NULL) {
         if (TItemList::is_item_valid(p) != 0) {
             o = (V_801D4E94 *)p->get_owner_if_alive();
@@ -88,7 +93,7 @@ void TObjPlayer::destroy_subobjects_recursive() {
             }
         }
         ((TObjPlayer *)p)->destroy_subobjects_recursive();
-        p = (TItemList *)p->m_next;
+        p = p->link_next();
     }
 }
 

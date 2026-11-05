@@ -679,6 +679,28 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # Inventory walks read TItemList children through the class-body accessors
+    # TItemList::link_down / link_next (typed_down in TObjPlayer_801D4CB8, whose
+    # receiver is TObjPlayer). -inline noauto folds each call to the lwz of
+    # m_down (+0x14) or m_next (+0xC). -inline off leaves a bl and grows the
+    # walks (TObjPlayer__sub_801D4368 0x248 -> 0x278, and the TItemList walks
+    # by the same 8-byte call). -inline auto also inlines the unmarked
+    # TObjPlayer__sub_801D4730 into sort_by_key, so it is not this unit's flag.
+    # With noauto the whole object matches -inline off on the old cast spelling,
+    # including every function that does not call the accessor. Precedent:
+    # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203
+    # (-inline auto) and TWindowMainMenu_802AD538.cpp (-inline noauto,level=1).
+    "pso/unk/text_801D40D4.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # Same -inline noauto as text_801D40D4.cpp. count_owned_items and the other
+    # TItemList walks stay the lwz of m_down / m_next; -inline off grows each.
+    "pso/player/TObjPlayer_801D5220.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # Same -inline noauto as text_801D40D4.cpp. The three TPlyItem walks
+    # (reduce_owner_matched_items, reduce_child_item_amounts,
+    # collect_owner_fields_recursive) stay byte-identical to the cast spelling.
+    "pso/player/TPlyItem.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # Same -inline noauto as text_801D40D4.cpp. destroy_subobjects_recursive's
+    # child load stays lwz r31,20(r3) and the sibling step stays lwz r31,12(r31).
+    "pso/player/TObjPlayer_801D4CB8.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf

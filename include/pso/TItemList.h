@@ -8,8 +8,8 @@ struct TItem;
 
 // Inventory slot. __ct__9TItemListFv writes __vt__9TItemList (0x18 bytes, the
 // same four TObject virtuals) at 0x18 and the owned TItem at 0x1C, so this is
-// a TObject plus one pointer. Children and siblings are TItemList nodes; the
-// inherited links are TObject *, and a walk casts them back.
+// a TObject plus one pointer. Children and siblings are TItemList nodes.
+// Walks load those links with link_down / link_next.
 class TItemList : public TObject {
 public:
     // pickup_item stores the TItem here. get_owner_if_alive returns it while
@@ -17,6 +17,11 @@ public:
     // insert another vptr ahead of it; the vptr stays TObject's at 0x18.
     TItem *item;
     virtual ~TItemList();
+    // Inherited m_down / m_next are TObject *. Inventory children are
+    // TItemList slots. Class-body inline: -inline noauto folds each call
+    // to the lwz of that link. -inline off leaves a call.
+    TItemList *link_down() { return static_cast<TItemList *>(m_down); }
+    TItemList *link_next() { return static_cast<TItemList *>(m_next); }
     TItem *get_owner_if_alive();
     void set_field_1c(TItem *v);
     void count_owned_items();

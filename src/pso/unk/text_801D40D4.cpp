@@ -202,12 +202,12 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
         return 0;
     }
     counted = 0;
-    node = (TItemList *)ply->item_list->m_down;
+    node = ply->item_list->link_down();
     while (node != NULL) {
         if (TItemList::is_item_valid(node) != 0 && node->get_owner_if_alive() != NULL) {
             counted++;
         }
-        node = (TItemList *)node->m_next;
+        node = node->link_next();
     }
     if (counted != ply->item_count) {
         recs->sub_801D4678(1);
@@ -215,7 +215,7 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
     }
     filled = 0;
     rec = recs->items;
-    node_filled = (TItemList *)ply->item_list->m_down;
+    node_filled = ply->item_list->link_down();
     while (node_filled != NULL) {
         if (TItemList::is_item_valid(node_filled) != 0 && (owner = node_filled->get_owner_if_alive()) != NULL) {
             rec->val = owner;
@@ -223,25 +223,25 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
             rec++;
             filled++;
         }
-        node_filled = (TItemList *)node_filled->m_next;
+        node_filled = node_filled->link_next();
     }
     recs->sort_by_key();
     checked = 0;
     rec_checked = recs->items;
-    node_checked = (TItemList *)ply->item_list->m_down;
+    node_checked = ply->item_list->link_down();
     while (node_checked != NULL) {
         if (TItemList::is_item_valid(node_checked) != 0 && node_checked->get_owner_if_alive() != NULL && rec_checked->val != NULL) {
             rec_checked++;
             checked++;
         }
-        node_checked = (TItemList *)node_checked->m_next;
+        node_checked = node_checked->link_next();
     }
     if (filled != checked) {
         recs->sub_801D4678(1);
         return 0;
     }
     rec_assigned = recs->items;
-    node_assigned = (TItemList *)ply->item_list->m_down;
+    node_assigned = ply->item_list->link_down();
     while (node_assigned != NULL) {
         if (TItemList::is_item_valid(node_assigned) != 0 && node_assigned->get_owner_if_alive() != NULL) {
             if (rec_assigned->val != NULL) {
@@ -249,7 +249,7 @@ s32 TObjPlayer__sub_801D4368(PlyItem_801D4368 *ply) {
                 rec_assigned++;
             }
         }
-        node_assigned = (TItemList *)node_assigned->m_next;
+        node_assigned = node_assigned->link_next();
     }
     recs->sub_801D4678(1);
     return 1;

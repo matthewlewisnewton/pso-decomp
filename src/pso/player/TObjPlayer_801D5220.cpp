@@ -31,21 +31,21 @@ void TItemList::count_owned_items() {
     TItemList *down;
     TItem *temp;
 
-    down = (TItemList *)m_down;
+    down = link_down();
     while (down != NULL) {
         if ((TItemList::is_item_valid(down) != 0) && ((temp = down->get_owner_if_alive()) != NULL) && (temp->export_inventory_entry(owned_item_export_cursor) != 0)) {
             owned_item_export_cursor += 0x1C;
             inventory_walk_visit_count += 1;
         }
         down->count_owned_items();
-        down = (TItemList *)down->m_next;
+        down = down->link_next();
     }
 }
 
 void TObjPlayer__sub_801D52A8(TItemList *arg0) {
     TItemList *n;
     TItem *o;
-    for (n = (TItemList *)arg0->m_down; n != NULL; n = (TItemList *)n->m_next) {
+    for (n = arg0->link_down(); n != NULL; n = n->link_next()) {
         if (TItemList::is_item_valid(n) != 0) {
             o = n->get_owner_if_alive();
             if ((o != NULL) && (is_item_equipped() != 0) && (o->get_item_type() == 0)) {
@@ -62,7 +62,7 @@ void TObjPlayer__sub_801D52A8(TItemList *arg0) {
 void TItemList::collect_item_owners_recursive() {
     TItemList *n;
     TItem *o;
-    for (n = (TItemList *)m_down; n != NULL; n = (TItemList *)n->m_next) {
+    for (n = link_down(); n != NULL; n = n->link_next()) {
         if (TItemList::is_item_valid(n) != 0) {
             o = n->get_owner_if_alive();
             if ((o != NULL) && (is_at_tekker__5TItemFv() == 0)) {
@@ -79,7 +79,7 @@ void TItemList::collect_alive_owners() {
     TItem *temp_r3;
     TItemList *down;
 
-    down = (TItemList *)m_down;
+    down = link_down();
     while (down != NULL) {
         if (TItemList::is_item_valid(down) != 0) {
             temp_r3 = down->get_owner_if_alive();
@@ -90,14 +90,14 @@ void TItemList::collect_alive_owners() {
             }
         }
         down->collect_alive_owners();
-        down = (TItemList *)down->m_next;
+        down = down->link_next();
     }
 }
 
 void TItemList::unequip_invalid_items_recursive() {
     TItemList *n;
     TItem *o;
-    for (n = (TItemList *)m_down; n != NULL; n = (TItemList *)n->m_next) {
+    for (n = link_down(); n != NULL; n = n->link_next()) {
         if (TItemList::is_item_valid(n) != 0) {
             o = n->get_owner_if_alive();
             if ((o != NULL) && (is_item_equipped() != 0) && (o->is_unit() == 0) &&
@@ -114,7 +114,7 @@ void TItemList::count_items_recursive() {
     TItemList *down;
     TItem *temp;
 
-    down = (TItemList *)m_down;
+    down = link_down();
     while (down != NULL) {
         if ((TItemList::is_item_valid(down) != 0) && ((temp = down->get_owner_if_alive()) != NULL)) {
             temp->copy_to_item_data((TItemData *)&sp8[0]);
@@ -123,7 +123,7 @@ void TItemList::count_items_recursive() {
             }
         }
         down->count_items_recursive();
-        down = (TItemList *)down->m_next;
+        down = down->link_next();
     }
 }
 
@@ -132,7 +132,7 @@ TItemList *TItemList::find_inventory_item_matching_data() {
     TItemList *node;
     TItemList *found;
     TItem *owner;
-    for (node = (TItemList *)m_down; node != NULL; node = (TItemList *)node->m_next) {
+    for (node = link_down(); node != NULL; node = node->link_next()) {
         if (TItemList::is_item_valid(node) != 0) {
             owner = node->get_owner_if_alive();
             if (owner != NULL) {
@@ -155,7 +155,7 @@ TItemList *find_matching_inventory_item_node(TItemList *root) {
     TItemList *node;
     TItemList *found;
     TItem *owner;
-    for (node = (TItemList *)root->m_down; node != NULL; node = (TItemList *)node->m_next) {
+    for (node = root->link_down(); node != NULL; node = node->link_next()) {
         if (TItemList::is_item_valid(node) != 0) {
             owner = node->get_owner_if_alive();
             if (owner != NULL) {
@@ -177,7 +177,7 @@ TItemList *TItemList::find_inventory_item_by_field_d8() {
     TItemList *node;
     TItemList *found;
     TItem *owner;
-    for (node = (TItemList *)m_down; node != NULL; node = (TItemList *)node->m_next) {
+    for (node = link_down(); node != NULL; node = node->link_next()) {
         if (TItemList::is_item_valid(node) != 0) {
             owner = node->get_owner_if_alive();
             if (owner != NULL) {

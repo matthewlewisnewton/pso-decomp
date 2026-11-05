@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
 | pragma | 5865 | 886 |
-| configure.py per-unit override | 146 | 146 |
+| configure.py per-unit override | 150 | 150 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844, `opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 43, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -334,6 +334,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `pso/unk/text_8039739C.cpp` | `-O4,p` | Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs in the runtime lib under its own name. |
 | `pso/quest/QuestOpcodeHandlers.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestThread.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/unk/text_801D40D4.cpp` | `-inline noauto` | Inventory walks read TItemList children through the class-body accessors TItemList::link_down / link_next (typed_down in TObjPlayer_801D4CB8, whose receiver is TObjPlayer). -inline noauto folds each call to the lwz of m_down (+0x14) or m_next (+0xC). -inline off leaves a bl and grows the walks (TObjPlayer__sub_801D4368 0x248 -> 0x278, and the TItemList walks by the same 8-byte call). -inline auto also inlines the unmarked TObjPlayer__sub_801D4730 into sort_by_key, so it is not this unit's flag. With noauto the whole object matches -inline off on the old cast spelling, including every function that does not call the accessor. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203 (-inline auto) and TWindowMainMenu_802AD538.cpp (-inline noauto,level=1). |
+| `pso/player/TObjPlayer_801D5220.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. count_owned_items and the other TItemList walks stay the lwz of m_down / m_next; -inline off grows each. |
+| `pso/player/TPlyItem.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. The three TPlyItem walks (reduce_owner_matched_items, reduce_child_item_amounts, collect_owner_fields_recursive) stay byte-identical to the cast spelling. |
+| `pso/player/TObjPlayer_801D4CB8.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. destroy_subobjects_recursive's child load stays lwz r31,20(r3) and the sibling step stays lwz r31,12(r31). |
 | `pso/unk/text_803D8098.cpp` | `(multi-line entry; see configure.py)` | render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 / _restgpr_25, and its glyph quads are the inlined SDK FIFO writers (sth/stw to 0xCC008000), not calls. -inline on inlines only functions marked inline, so queue_debug_text stays a call from debug_printf_at. The matrix helpers in text_803D8910.cpp match under the ginja defaults. |
 | `pso/misc/TKeyBoardControl_803F0C50.cpp` | `GC/1.2.5n` | Epilogue order (mtlr before the restores) only 1.2.5n produces. |
 | `pso/unk/text_803F1804.cpp` | `GC/1.2.5n` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
