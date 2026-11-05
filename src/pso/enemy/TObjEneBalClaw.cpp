@@ -210,7 +210,7 @@ void TObjEneBalClaw__sub_8008D924(void) {
     }
     for (m = 0; m < 7; m++) {
         e = &balclaw_parts[m];
-        e->plist = ((BalClawObject *)find_model_node((u32)get_bml_model(lbl_805D4F20, e->model_index), e->part_index))->model->plist;
+        e->plist = ((BalClawObject *)find_model_node(get_bml_model(lbl_805D4F20, e->model_index), e->part_index))->model->plist;
     }
     for (n = 0; n < 2; n++) {
         lbl_805007A8[n] = get_battle_base_stats(31);

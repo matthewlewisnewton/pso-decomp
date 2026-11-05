@@ -1005,7 +1005,7 @@ struct Obj_802AC3E8 { u8 pad[0x38]; Vec_802AC3E8 pos; u8 pad2[0xA4 - 0x44]; Sub_
 void *destroy_buffer_pair(void *arg0, s16 arg1);
 extern "C" {
 void scroll_strip_uvs(void *, s16, s16);
-NJS_OBJECT *get_bml_model(s32, s32);
+s32 get_bml_model(s32, s32);
 extern s32 lbl_805D5868;
 extern s32 lbl_805D5870;
 void update_active_flag__14TBoss6PlotFalzFv(void);
@@ -1065,7 +1065,7 @@ void Boss6ScrollStrips::build_tables(Boss6StripDesc *descs, s32 n) {
     }
     for (i = 0; i < count; i++) {
         r = &descs[i];
-        t = find_model_node((u32)get_bml_model(h, r->model), r->node);
+        t = find_model_node(get_bml_model(h, r->model), r->node);
         items[i] = new StripBufferPair(t, r->c);
     }
 }

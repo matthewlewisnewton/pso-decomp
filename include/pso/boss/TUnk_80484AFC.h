@@ -3,14 +3,13 @@
 
 #include "types.h"
 #include "pso/object/TObjMotion.h"
-#include "pso/system/NinjaTypes.h"
 #include <dolphin/mtx.h>
 
 // A homing missile of Vol Opt: it steers towards a player and explodes on
 // contact, on the floor or when its time runs out, damaging what it hits.
 class TUnk_80484AFC : public TObjCollidable {
 public:
-    NJS_OBJECT *model;
+    s32 model;
     s32 textures;
     Vec velocity;
     u8 pad_c0[0xC];

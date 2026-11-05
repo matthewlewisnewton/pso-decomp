@@ -491,7 +491,7 @@ void TObjSeabedSuisoBrakable::vfunc_16() {
     piece = seabed_suiso_break_sets[kind].chips;
     for (i = 0; i < 17; i++, piece++) {
         if (piece->model >= 0) {
-            params.model = get_model(piece->model);
+            params.model = (s32)get_model(piece->model);
             params.pos[0] = piece->pos.x;
             params.pos[1] = piece->pos.y;
             params.pos[2] = piece->pos.z;

@@ -2092,15 +2092,15 @@ extern const f32 TObjEneMe3ShinowaMirage__data_805DA5C4;
 extern const f32 lbl_805DA650, lbl_805DA654, lbl_805DA658, lbl_805DA65C, lbl_805DA660, lbl_805DA664;
 BmlResource *load_enemy_bml_resource(void *);
 BmlResource *load_enemy_bml_resource_named(void *, const char *);
-TUnk_8048FA00 *init__11TBreakUpMdlFPviif(void *, void *, s32, f32);
+TUnk_8048FA00 *init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
 
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(4)
 #pragma opt_propagation on
 #pragma opt_common_subs off
-static inline void register_shinowa_npc(s16 id, void *model, s32 textures, NpcAnimationBinding *descriptor) {
-    NpcModelRegistry::register_animated_chunk(id, model, (void *)textures, descriptor, lbl_805DA650, TObjEneMe3ShinowaMirage__data_805DA5B8);
+static inline void register_shinowa_npc(s16 id, s32 model, s32 textures, NpcAnimationBinding *descriptor) {
+    NpcModelRegistry::register_animated_chunk(id, (void *)model, (void *)textures, descriptor, lbl_805DA650, TObjEneMe3ShinowaMirage__data_805DA5B8);
 }
 
 static inline void configure_shinowa_animation_speeds(const Info_800E6F0C *parameters) {
@@ -2156,7 +2156,7 @@ void TObjEneMe3ShinowaMirage::load_shared_resources() {
     lbl_80500FF4.x = TObjEneMe3ShinowaMirage__data_805DA5B8;
     lbl_80500FF4.y = TObjEneMe3ShinowaMirage__data_805DA5B8;
     lbl_80500FF4.z = TObjEneMe3ShinowaMirage__data_805DA5B8;
-    u32 root_model = (u32)TObjEneMe3ShinowaMirage__data_805D5298->models[0].model;
+    u32 root_model = TObjEneMe3ShinowaMirage__data_805D5298->models[0].model;
     NJS_CNK_MODEL *part = (NJS_CNK_MODEL *)((NJS_OBJECT *)find_model_node(root_model, 9))->model;
     lbl_80501000[0] = part ? (s32 *)(part->polygon_list + 2) : NULL;
     part = (NJS_CNK_MODEL *)((NJS_OBJECT *)find_model_node(root_model, 13))->model;

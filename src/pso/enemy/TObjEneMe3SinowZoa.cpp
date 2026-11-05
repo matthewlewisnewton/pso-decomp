@@ -1412,7 +1412,7 @@ extern const f32 lbl_805DF38C;
 extern "C" {
 
 s32 is_split_screen();
-void *init__11TBreakUpMdlFPviif(void *, void *, s32, f32);
+void *init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
 extern const s32 lbl_80475E0C[];
 extern const s32 lbl_80475E14[];
 extern const s32 lbl_80475E1C[];

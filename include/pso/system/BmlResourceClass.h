@@ -4,11 +4,10 @@
 #include "types.h"
 #include <stddef.h>
 
-struct NJS_OBJECT;
 struct BmlModelEntry {
     s32 m_0;
     s32 m_4;
-    NJS_OBJECT *model;
+    s32 model;
     s32 m_c;
 };
 

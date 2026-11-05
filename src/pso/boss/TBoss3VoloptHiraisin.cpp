@@ -33,7 +33,7 @@ void post_translate_matrix(const f32 *pos);
 void rotate_matrix_y(void *mtx, s32 angle);
 void scale_matrix(void *mtx, f32 x, f32 y, f32 z);
 
-TUnk_8048FA00 *init_from_model__11TBreakUpMdlFl(TUnk_8048FA00 *obj, void *model);
+TUnk_8048FA00 *init_from_model__11TBreakUpMdlFl(TUnk_8048FA00 *obj, s32 model);
 void trigger_dell_biter_events__10TObjPlayerFv(Vec *pos);
 
 extern u32 model_render_flags;
@@ -264,7 +264,7 @@ void TBoss3VoloptHiraisin::render() {
             translate_matrix(0, position.x, 4.5f, position.z);
             scale_matrix(NULL, scale, scale, scale);
             set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0)));
-            draw_chunk_object((void *)get_bml_model(volopt_hiraisin_resources, 0));
+            draw_chunk_object(get_bml_model(volopt_hiraisin_resources, 0));
             pop_matrix();
         }
     }
@@ -331,7 +331,7 @@ void TBoss3VoloptHiraisin::init_models() {
     volopt_hiraisin_spin_node->flags &= ~2;
     breakup = (TUnk_8048FA00 *)::operator new(0x10);
     if (breakup != NULL) {
-        breakup = init_from_model__11TBreakUpMdlFl(breakup, get_bml_model(volopt_hiraisin_resources, 0x10));
+        breakup = init_from_model__11TBreakUpMdlFl(breakup, (s32)get_bml_model(volopt_hiraisin_resources, 0x10));
     }
     volopt_hiraisin_breakup_model = breakup;
     volopt_hiraisin_stats = get_battle_base_stats(0x24);

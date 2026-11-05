@@ -330,10 +330,10 @@ void TBoss3VoloptP02::load_resources() {
     lbl_805D4CE4 = boss3_volopt_resources;
     model = (TUnk_8048FA00 *)::operator new(16);
     if (model != NULL) {
-        model = (TUnk_8048FA00 *)((TBreakUpMdl *)model)->init_from_model((s32)lbl_805D4CE4->models[19].model);
+        model = (TUnk_8048FA00 *)((TBreakUpMdl *)model)->init_from_model(lbl_805D4CE4->models[19].model);
     }
     breakup_model = model;
-    root = (s32)lbl_805D4CE4->models[20].model;
+    root = lbl_805D4CE4->models[20].model;
     ((NjObject *)find_model_node(root, 0x44))->evalflags |= 8;
     ((NjObject *)find_model_node(root, 0x39))->evalflags |= 8;
     ((NjObject *)find_model_node(root, 0x27))->evalflags |= 8;
@@ -350,7 +350,7 @@ void TBoss3VoloptP02::load_resources() {
         }
         breakup_models[j] = model;
     }
-    root = (s32)lbl_805D4CE4->models[19].model;
+    root = lbl_805D4CE4->models[19].model;
     for (i = 0; i < 5; i++) {
         parts[i] = (NjObject *)find_model_node(root, part_breakup_node_ids[i]);
     }

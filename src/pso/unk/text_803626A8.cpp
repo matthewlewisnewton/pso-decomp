@@ -266,12 +266,12 @@ void TObjEneEpsilonGuard::load_assets() {
     lbl_805D6FA0 = p;
     p = (u8 *)::operator new(0x10);
     if (p != NULL) {
-        p = ((TBreakUpMdl *)p)->init_from_model((s32)get_bml_model(lbl_805D6FA0, 5));
+        p = ((TBreakUpMdl *)p)->init_from_model((s32)(get_bml_model(lbl_805D6FA0, 5)));
     }
     lbl_805D6FA4 = p;
     p = (u8 *)::operator new(0x10);
     if (p != NULL) {
-        p = ((TBreakUpMdl *)p)->init_from_model((s32)get_bml_model(lbl_805D6FA0, 6));
+        p = ((TBreakUpMdl *)p)->init_from_model((s32)(get_bml_model(lbl_805D6FA0, 6)));
     }
     lbl_805D6FA8 = p;
     lbl_805D6F80 = (s32)get_battle_base_stats(0x23);

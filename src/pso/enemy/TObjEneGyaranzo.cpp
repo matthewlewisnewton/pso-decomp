@@ -110,7 +110,7 @@ void queue_destruction__7TObjectFv(void *);
 
 s32 get_bml_motion(u32, int);
 s32 get_camera_mode__11TCameraCtrlFv();
-TUnk_8048FA00 * init__11TBreakUpMdlFPviif(void *, void *, s32, f32);
+TUnk_8048FA00 * init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
 
 void create_dead_spot__10TObjPlayerFllf(void *, s32, f32);
 }
@@ -303,16 +303,16 @@ void TLobby::load_gyaranzo_resources() {
         gyaranzo_bml_resource = (BmlResource *)p;
     }
     for (i = 0; i < 0x16; i++) {
-        gyaranzo_model_resources[i] = (NJS_OBJECT *)find_model_node((u32)gyaranzo_bml_resource->models[3].model, gyaranzo_resource_index_table[i]);
+        gyaranzo_model_resources[i] = (NJS_OBJECT *)find_model_node(gyaranzo_bml_resource->models[3].model, gyaranzo_resource_index_table[i]);
     }
     for (i = 0; i < 0xD; i++) {
-        gyaranzo_resource_ptrs[i] = (NJS_OBJECT *)find_model_node((u32)gyaranzo_bml_resource->models[4].model, gyaranzo_resource_index_table[i]);
+        gyaranzo_resource_ptrs[i] = (NJS_OBJECT *)find_model_node(gyaranzo_bml_resource->models[4].model, gyaranzo_resource_index_table[i]);
     }
     for (i = 0; i < 0xD; i++) {
         gyaranzo_resource_ptrs[i]->sibling = NULL;
     }
-    lbl_805D5200 = (NJS_OBJECT *)find_model_node((u32)gyaranzo_bml_resource->models[3].model, 0x19);
-    lbl_805D5204 = (NJS_OBJECT *)find_model_node((u32)gyaranzo_bml_resource->models[3].model, 0xD);
+    lbl_805D5200 = (NJS_OBJECT *)find_model_node(gyaranzo_bml_resource->models[3].model, 0x19);
+    lbl_805D5204 = (NJS_OBJECT *)find_model_node(gyaranzo_bml_resource->models[3].model, 0xD);
     p = ::operator new(0x10);
     if (p != NULL) {
         p = init__11TBreakUpMdlFPviif(p, gyaranzo_bml_resource->models[3].model, get_bml_motion((u32)gyaranzo_bml_resource, 3), lbl_805DA294);
@@ -865,7 +865,7 @@ void TObjEneGyaranzo::shed_armor() {
                     { 0.5f, 0.03f, 0.15f }, { v.x, v.y, v.z },
                     { 3.5f, 5.0f, 3.5f }, { 0x400, 0x100, 0x400 },
                     { 3, 50 }, { position.y, 1.0f },
-                    gyaranzo_resource_ptrs[idx],
+                    (s32)gyaranzo_resource_ptrs[idx],
                     gyaranzo_bml_resource->models[3].m_c, 2,
                 };
                 obj = __nw__7TObjectFUl(0x234);

@@ -80,7 +80,7 @@ void TObjPlayer__sub_802EE574(void) {
     lbl_805D6934 = 0;
     boss7_joint_state = 0;
     run_load_callback_table(&lbl_804E3C5C.value, 0x30);
-    lbl_805D693C = (u8 *)find_model_node(*(u32 *)((s8 *)(*(u8 **)((s8 *)lbl_805D6918 + 0x42C)) + 8), 0x4D);
+    lbl_805D693C = (u8 *)find_model_node(*(s32 *)((s8 *)(*(u8 **)((s8 *)lbl_805D6918 + 0x42C)) + 8), 0x4D);
     lbl_805D6940 = *(s32 *)((s8 *)lbl_805D693C + 0x2C);
     for (i = 0; i < 11; i++) {
         Light_802EE574 *l = &boss7_derolle_light_pool[i];

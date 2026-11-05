@@ -198,10 +198,10 @@ void TBoss3VoloptP01::init_breakup_effect() {
     TBoss3VoloptP01__resource_bundle = boss3_volopt_resources;
     pieces = (TBoss3VoloptBreakupPieces *)::operator new(0x10);
     if (pieces != NULL) {
-        pieces = (TBoss3VoloptBreakupPieces *)((TBreakUpMdl *)pieces)->init_from_model((s32)TBoss3VoloptP01__resource_bundle->models[17].model);
+        pieces = (TBoss3VoloptBreakupPieces *)((TBreakUpMdl *)pieces)->init_from_model(TBoss3VoloptP01__resource_bundle->models[17].model);
     }
     TBoss3VoloptP01__breakup_model = pieces;
-    volopt_p01_chunk_list = (TBoss3VoloptChunkList *)find_model_node((u32)TBoss3VoloptP01__resource_bundle->models[17].model, 0xD);
+    volopt_p01_chunk_list = (TBoss3VoloptChunkList *)find_model_node(TBoss3VoloptP01__resource_bundle->models[17].model, 0xD);
     volopt_p01_boss_stat_handle_a = get_battle_base_stats(0x22);
     volopt_p01_shared_handler_b = get_battle_attack_params(0x22);
     volopt_p01_object_handle = get_battle_resistance_params(0x22);

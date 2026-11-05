@@ -40,7 +40,7 @@ s32 TObjFish__sub_8001EDB0(BmlResource *resource, s32 index) {
 }
 
 NJS_OBJECT *get_bml_model(BmlResource *resource, s32 index) {
-    return resource->models[index].model;
+    return (NJS_OBJECT *)resource->models[index].model;
 }
 
 typedef char RecoveredGlobal_8001EDF4_lbl_804FE148_size[sizeof(RecoveredGlobal_8001EDF4_lbl_804FE148) == 0x20 ? 1 : -1];
