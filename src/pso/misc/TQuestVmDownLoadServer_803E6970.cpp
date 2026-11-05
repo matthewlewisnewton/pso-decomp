@@ -2860,7 +2860,13 @@ QuestDownloadTextNode *get_next_node__22TQuestVmDownLoadServerFPv(QuestDownloadQ
 
 #pragma push
 #pragma dont_inline off
-#pragma inline_depth(1)
+#pragma inline_depth(2)
+inline QuestDownloadTextNode *next_text_group(QuestDownloadTextNode *node) {
+    while (node->flags & 1) {
+        node = node->next;
+    }
+    return node->next;
+}
 inline s32 count_text_groups_that_fit(QuestDownloadTextNode *head) {
     QuestDownloadTextNode *node;
     s32 n;
@@ -2878,10 +2884,7 @@ inline s32 count_text_groups_that_fit(QuestDownloadTextNode *head) {
             break;
         }
         n++;
-        while (node->flags & 1) {
-            node = node->next;
-        }
-        node = node->next;
+        node = next_text_group(node);
     }
     if (n == 0) {
         return 1;
