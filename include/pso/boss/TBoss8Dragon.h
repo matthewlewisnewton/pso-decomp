@@ -91,7 +91,7 @@ struct TBoss8Dragon : public TObjEneDD_ST
     u32 m_67c;
     u32 m_680;
     u32 m_684;
-    u8 unk_688[0x4];
+    f32 m_688;
     f32 m_68c;
     u8 unk_690[0x4];
     f32 m_694;
@@ -200,7 +200,6 @@ struct TBoss8Dragon : public TObjEneDD_ST
     static void *create(void *arg0);
     void update_colli_parts();
     int test_card_flag_2();
-    void set_speed(f32 v);
     void set_field_3c();
     void set_field_1c();
     void spawn_child_object();
