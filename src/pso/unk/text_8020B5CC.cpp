@@ -51,12 +51,16 @@ s32 load_floor_enemy_group_entries__6TLobbyFiPvUi(s32 idx, Src_8020B970 *src, u3
 s32 init_quest_floor_enemies(s32 idx, Src_8020B7C4 *src, u32 size);
 
 s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
-    // The floor index is born with the loop, after the cursor. Object rows
-    // bind the row pointer before the count snapshot, as the 0x8020B47C
-    // importer does. That numbering puts the index in r31 and the count in r25.
+    // The enemy total is named before the header copy and zeroed after the
+    // object column. The copy is what stays live, so the table address is
+    // scheduled above the save and the cursor and the object-offset store
+    // still use the incoming pointer. Object rows bind the row pointer
+    // before the count snapshot, as the 0x8020B47C importer does.
+    s32 total2;
     s32 total1 = 0;
     s16 *out = buf->values;
     buf->object_offset = 0x10;
+    FloorFlagsBuffer *hdr = buf;
     Tbl_8020B970 *t = TLobby__floor_enemy_group_table;
     for (s32 i = 0; i < 18; i++) {
         if (t[i].count > 0) {
@@ -87,8 +91,7 @@ s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
             }
         }
     }
-    s32 total2 = 0;
-    FloorFlagsBuffer *hdr = buf;
+    total2 = 0;
     hdr->word_04 = total1;
     hdr->enemy_offset = 0x10 + hdr->word_04 * 2;
     s16 *out2 = out;
