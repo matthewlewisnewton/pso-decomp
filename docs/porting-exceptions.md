@@ -18,7 +18,7 @@ entry says *reason not recorded*.
 ## Summary
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `915508a9d` (2026-11-04). Assembly is counted as functions;
+after merging main `1faa32cb9` (2026-11-04). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 5 functions (9 source lines) | 3 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,865 | 886 |
-| Per-unit compiler overrides in `configure.py` | 145 | 145 |
+| CodeWarrior pragmas (excluding push/pop) | 5,864 | 886 |
+| Per-unit compiler overrides in `configure.py` | 146 | 146 |
 | Approved regressions | 0 on main, 1 pending (#291) | |
 
 ## Rule for assembly
@@ -69,9 +69,9 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,865 pragmas in 886 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 931, `auto_inline` 844,
-`opt_common_subs` 624, `scheduling` 262, `opt_propagation` 240,
+5,864 pragmas in 886 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1153, `inline_depth` 1045, `fp_contract` 930, `auto_inline` 844,
+`opt_common_subs` 623, `scheduling` 262, `opt_propagation` 241,
 `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -94,9 +94,15 @@ small float differences without FMA).
 |---|---|---|---|---|
 | `src/pso/effect/TEF_LensFlare.cpp` | `TEF_LensFlare::render` | one scoped `#pragma opt_propagation off` | MWCC propagation needed for the exact receiver/descriptor cursor codegen. Approved by Matt 2026-11-04. | Drop it. |
 
+### Approved: `TBoss7TentacleNeedle::TBoss7TentacleNeedle` ([#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/TBoss7TentacleNeedle.cpp` | `TBoss7TentacleNeedle::TBoss7TentacleNeedle` (`__ct__20TBoss7TentacleNeedleFP7TObjectP3Vec`, `0x802EFD08`) | one scoped `#pragma opt_propagation off` around this constructor only | Approved by Matt 2026-11-04 4:38 PM PT. The emitter argument is a word copy of `Vec *pos` (`r31`). At `0x802EFE38` the original is `lwz r6,0(r31); lwz r5,4(r31); lwz r0,8(r31); stw r6,8(r1); stw r5,0xc(r1); stw r0,0x10(r1)`, then `bl create_particle_emitter`. `addi r3,r1,8` and `li r4,0x212` are already live, scheduled into the `position.z` block, so the copy cannot use `r3`/`r4`. Three distinct `s32` temps declared `z`, `y`, `x` and assigned `x`, `y`, `z` match that block only with propagation off for the whole constructor. A pragma around just those temps does not. Declaring `x`, `y`, `z` under the same pragma colors them `r0`, `r5`, `r6` (loads `lwz r0,0; lwz r5,4; lwz r6,8`). A real `Vec` copy (`Vec emitter_position = *pos`, or `create_particle_emitter(*pos, 0x212)` by value) stays the interleaved `lwz r5,0; lwz r0,4; stw; stw; lwz r0,8; stw` even with the pragma. Unit-wide `-opt nopropagation` matches this copy and changes `damage_nearby_players` (`0x802EF99C`, swaps `mr r3,r28` with `addi r5,r1,8`) and `TBoss7Tentacle__sub_802F0608` (`0x802F0608`, `xoris` from `r4` to `r0`). | Drop the pragma. Copy the three words of `pos` in address order into the emitter argument. A port does not need MWCC's register schedule. |
+
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-145 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+146 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -138,7 +144,7 @@ entry when the PR merges.
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
 | [#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299) | `TBoss7TentacleNeedle.cpp`: `-inline off,deferred`, `-fp_contract on` | Deferred emission orders `__vt__20TBoss7TentacleNeedle` before `__vt__14TBoss7Tentacle` while `.text` stays in address order. `-fp_contract on` because the position jitter and the tentacle curve fuse to `fmadds`. Port: drop both flags; the C++ is the behavior. |
-| [#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299) | Proposed, not approved: `#pragma opt_propagation off` around `TBoss7TentacleNeedle::TBoss7TentacleNeedle` only | Three distinct word temps (`s32 z, y, x`, assigned x, y, z) match the original `lwz r6,0(r31); lwz r5,4(r31); lwz r0,8(r31)` only with propagation off. A mid-function pragma does not. The same pragma is already on main in `TObjPlayer::spawn_hit_particle_trio`. Unit-wide `-opt nopropagation` also matches this copy and changes `damage_nearby_players` and `TBoss7Tentacle__sub_802F0608`. Awaiting Matt. |
+| [#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299) | `#pragma opt_propagation off` around `TBoss7TentacleNeedle::TBoss7TentacleNeedle` only | Approved by Matt 2026-11-04 4:38 PM PT. Register entry is in section 4. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.

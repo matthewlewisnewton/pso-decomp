@@ -511,9 +511,9 @@ void fn_802EFEA8(void) {
 }
 }
 
-// Propagation off for this constructor only: three distinct word temps match
-// the original lwz r6/r5/r0 emitter copy. Same pragma as
-// TObjPlayer::spawn_hit_particle_trio. Awaiting Matt; not an approved exception.
+// Approved by Matt 2026-11-04 4:38 PM PT. Propagation off for this
+// constructor only: the word copy of pos matches lwz r6/r5/r0 at
+// 0x802EFE38. A Vec copy stays interleaved even with this pragma.
 #pragma push
 #pragma opt_propagation off
 TBoss7TentacleNeedle::TBoss7TentacleNeedle(TObject *parent, Vec *pos)
@@ -528,6 +528,8 @@ TBoss7TentacleNeedle::TBoss7TentacleNeedle(TObject *parent, Vec *pos)
     position.z = 5.0f * (3.0517578e-05f * (f32)rand()) + pos->z - 2.5f;
     m_38 = 0;
     m_3c = 0;
+    // Declare z, y, x so MWCC assigns r0, r5, r6. Assigning x, y, z then
+    // loads pos as lwz r6/r5/r0. See docs/porting-exceptions.md.
     s32 z;
     s32 y;
     s32 x;
