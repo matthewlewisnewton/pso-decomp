@@ -39,6 +39,7 @@
 #include "pso/math/MatrixVector.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/system/MatrixStack.h"
+#include "pso/system/MatrixOps.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/BmlResource.h"
@@ -50,8 +51,6 @@
 extern "C" {
 
 
-extern const f64 lbl_80442F38;
-extern u8 identity_matrix[];
 f32 TObjPlayer__sub_8017A1A4(void *, s32);
 extern s32 local_client_id;
 s32 check_player_flag1__6TLobbyFv();
@@ -661,12 +660,12 @@ void TOTrapAncient02R::vfunc_81() {
                     if (normalize_vector_checked(&lbl_8050BF00.vector) < 0.00001f) {
                         lbl_8050BF00.vector.x = lbl_8050BF00.vector.y = 0.0f;
                         lbl_8050BF00.vector.z = 1.0f;
-                        push_matrix_from(identity_matrix);
+                        push_matrix_from(&identity_matrix);
                         rotate_matrix_y(NULL, rotation.yaw);
                         rotate_vector_by_matrix(0, (&lbl_8050BF00.vector), (&lbl_8050BF00.vector));
                         pop_matrix();
                     }
-                    ang = lbl_80442F38 * atan2_float(lbl_8050BF00.vector.x, lbl_8050BF00.vector.z);
+                    ang = 10430.38043493439 * atan2_float(lbl_8050BF00.vector.x, lbl_8050BF00.vector.z);
                     switch (m_35c) {
                     case 1: {
                         DirectAttackPayload dmg;
