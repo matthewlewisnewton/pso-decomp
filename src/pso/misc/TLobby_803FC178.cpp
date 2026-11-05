@@ -16,6 +16,12 @@ struct Self_803FD74C {
     Chap_803FC728 *f30;
 };
 
+/* Connection block: the state object sits at +4. */
+struct ConnHead_803FD74C {
+    u8 pad0[4];
+    Self_803FD74C state;
+};
+
 struct Self_803FD85C;
 struct Tbl_803FD85C {
     u8 pad[0x14];
@@ -830,7 +836,7 @@ void TLobby::dispatch_received_packet(s32 arg1) {
             TLobby__sub_80405304((void *) ((u8 *)(arg0) + 0x10));
             temp_r30_4 = (u8 *)(*(u8 **)((s8 *)arg0 + 0xC));
             TLobby::update_connection_state((Self_803FD74C *)((u8 *)(temp_r30_4) + 0xA0));
-            TLobby::update_connection_state((Self_803FD74C *)((u8 *)(temp_r30_4) + 4));
+            TLobby::update_connection_state(&((ConnHead_803FD74C *)temp_r30_4)->state);
             *(s16 *)((s8 *)arg0 + 8) = 1;
             lbl_805D7A80 = 1;
             break;
@@ -874,7 +880,7 @@ void TLobby__sub_803FC728(Conn_804004DC *c) {
         chap->msg = lbl_8047FDF0;
         sub = c->sub;
         TLobby::update_connection_state((Self_803FD74C *)(sub + 0xA0));
-        TLobby::update_connection_state((Self_803FD74C *)(sub + 4));
+        TLobby::update_connection_state(&((ConnHead_803FD74C *)sub)->state);
         c->abort = 1;
         return;
     }
@@ -887,7 +893,7 @@ void TLobby__sub_803FC728(Conn_804004DC *c) {
     }
     sub = c->sub;
     TLobby::update_connection_state((Self_803FD74C *)(sub + 0xA0));
-    TLobby::update_connection_state((Self_803FD74C *)(sub + 4));
+    TLobby::update_connection_state(&((ConnHead_803FD74C *)sub)->state);
     c->abort = 1;
 }
 
@@ -3172,7 +3178,7 @@ s16 TLobby__sub_80402BB4(u8 *arg0, s32 timeout) {
     while (c->state != 5) {
         if (TLobby::is_timed_out() != 0 || c->abort != 0 || *sub == 4) {
             TLobby::update_connection_state((Self_803FD74C *)c);
-            TLobby::update_connection_state((Self_803FD74C *)(c->sub + 4));
+            TLobby::update_connection_state(&((ConnHead_803FD74C *)c->sub)->state);
             c->abort = 0;
             if (lbl_805D7A80 != 0) {
                 lbl_805D7A82 = 6;
@@ -3184,7 +3190,7 @@ s16 TLobby__sub_80402BB4(u8 *arg0, s32 timeout) {
         }
         if (TLobby::get_remaining(timeout) != 0) {
             TLobby::update_connection_state((Self_803FD74C *)c);
-            TLobby::update_connection_state((Self_803FD74C *)(c->sub + 4));
+            TLobby::update_connection_state(&((ConnHead_803FD74C *)c->sub)->state);
             return -0x12;
         }
         TUdpSocket::unlock_mutex(g->value);
@@ -3238,9 +3244,9 @@ extern "C" void TLobby__sub_80402CE0(Conn_80402CE0 *conn) {
         p->h6 = 0xE;
         p->b8 = 1;
         p->bB = 0;
-        p->b9 = lbl_805C0620.b9;
-        p->bA = lbl_805C0620.bA;
-        p->timeout = lbl_805C0620.timeout_sec * 1000;
+        p->b9 = *(u8 *)((u8 *)g + 0x15A);
+        p->bA = *(u8 *)((u8 *)g + 0x15B);
+        p->timeout = *(u16 *)((u8 *)g + 0x15C) * 1000;
         p->f10 = TLobby__sub_803FE84C;
         p->f14 = TLobby__sub_803FE84C;
         p->f18 = TLobby__sub_803FE84C;
