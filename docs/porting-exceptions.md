@@ -225,9 +225,6 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `set_camera_look_at` `#pragma scheduling off` | `pso/misc/TCameraCtrl_803D6538.cpp` | `src/pso/misc/TCameraCtrl_803D6538.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
 | `TCameraCtrl::set_clamped_offsets` `#pragma opt_common_subs off` | `pso/misc/TCameraCtrl_803D6538.cpp` | `src/pso/misc/TCameraCtrl_803D6538.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
 | `TCameraCtrl::set_clamped_offsets` `#pragma scheduling off` | `pso/misc/TCameraCtrl_803D6538.cpp` | `src/pso/misc/TCameraCtrl_803D6538.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
-| `TObjDFDemo1.cpp:149` `#pragma defer_codegen on` | `pso/object/TObjDFDemo1.cpp` | `src/pso/object/TObjDFDemo1.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
-| `TObjDFDemo1.cpp:204` `#pragma fp_contract on` | `pso/object/TObjDFDemo1.cpp` | `src/pso/object/TObjDFDemo1.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
-| `configure.py:440` `-sdata 4` | `pso/object/TObjDFDemo1.cpp` | `configure.py` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | other: per-unit cflags override | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
