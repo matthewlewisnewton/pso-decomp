@@ -195,7 +195,7 @@ s32 obj_testFlags30__14TObjCollidableFUl(u32, s32);
 void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
 s32 release_attached_resource__10TObjPlayerFv();
 void request_active_window_close(void);
-s32 send_code_45_1__10TObjPlayerFl();
+s32 send_code_45_1__10TObjPlayerFP10TObjPlayer();
 
 typedef char RecoveredGlobal_80310300_TPlayerBattleCtrl4P__data_80542E90_size[sizeof(RecoveredGlobal_80310300_TPlayerBattleCtrl4P__data_80542E90) == 0x20 ? 1 : -1];
 
@@ -517,7 +517,7 @@ void send_code_45_to_window__19TPlayerBattleCtrl4PFPvii(void *arg0, s32 arg1, s3
     temp_r31 = (u16)arg1;
     temp_r30 = arg2;
     if (get_player_by_client_id(temp_r31) != 0U) {
-        send_code_45_1__10TObjPlayerFl();
+        send_code_45_1__10TObjPlayerFP10TObjPlayer();
     }
     if (temp_r30 != 0) {
         end_player_keyboard_hold(temp_r31);

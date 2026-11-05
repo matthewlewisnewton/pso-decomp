@@ -759,7 +759,7 @@ void build_6x7D_set_battle_mode_data(void *p);
 void send_battle_mode_params__6TLobbyFcii(s8 arg0, s32 arg1, s32 arg2);
 u32 get_player_by_client_id(u16);
 void end_player_keyboard_hold(s32 arg0);
-s32 send_code_45_1__10TObjPlayerFl();
+s32 send_code_45_1__10TObjPlayerFP10TObjPlayer();
 extern s32 local_client_id;
 void handle_battle_result__6TLobbyFii(int arg0, s32 arg1);
 u32 get_player_by_client_id(u16);
@@ -1404,7 +1404,7 @@ void apply_game_settings__6TLobbyFii(s32 arg0, s32 arg1) {
 
 void handle_battle_result__6TLobbyFii(int arg0, s32 arg1) {
     if (get_player_by_client_id(arg0) != 0U) {
-        send_code_45_1__10TObjPlayerFl();
+        send_code_45_1__10TObjPlayerFP10TObjPlayer();
     }
     if (arg1 != 0) {
         end_player_keyboard_hold(local_client_id);

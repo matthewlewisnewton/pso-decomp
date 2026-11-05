@@ -4996,7 +4996,7 @@ void TObjPlayer::update_subsystems() {
         clear_action_flag();
         ((TObjPlayer *)arg0)->update_target();
         if ((check_player_flag1__10TObjPlayerFv(arg0) != 0) && (TObjPlayer__sub_801BF57C((void *)(arg0 + 0x730)) >= 0) && (TObjPlayer__sub_801BF560((s16 *)(arg0 + 0x730)) == 0)) {
-            TObjPlayer::send_code_45_1(arg0);
+            TObjPlayer::send_code_45_1(this);
         }
         update_target_lock__10TObjPlayerFii(arg0 + 0x63C, arg0);
         if (((PlayerScaleState *)(arg0  + 0x5B0))->is_scaled() != 0) {
@@ -5073,7 +5073,7 @@ void TObjPlayer::update_facing_vector() {
 void TObjPlayer::clear_action_flag() {
     if ((TObjPlayer__sub_801C2044((s32 *)(*(s32 *)((s8 *)this + 0xD00) + 0x20)) == 0) && (((u32 (*)(void *))is_action_active__10TObjPlayerFv)(this) != 0U)) {
         this->clear_flag_0x2();
-        TObjPlayer::send_code_45_1((s32)this);
+        TObjPlayer::send_code_45_1(this);
     }
 }
 
@@ -5228,12 +5228,12 @@ s32 TObjPlayer::draw_small_font(s32 arg0, void * _w1) {
     return arg0;
 }
 
-void TObjPlayer::send_code_45_1(s32 arg0) {
+void TObjPlayer::send_code_45_1(TObjPlayer *player) {
     struct S801B5200_801B3FD8 sp8;
 
-    if ((arg0 == 0) || (obj_isState2_324__9TObjCharaFv() == 0)) {
+    if ((player == NULL) || (player->obj_isState2_324() == 0)) {
         ((TObjPlayer *)(&sp8))->set_code_45_1();
-        sp8.h = ((s16 (*)(s32))get_entity_id)(arg0);
+        sp8.h = get_entity_id(player);
         ((TObjPlayer *)(&sp8))->send_lobby_update_font();
     }
 }

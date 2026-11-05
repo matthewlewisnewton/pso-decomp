@@ -261,7 +261,7 @@ TObjVoloptCage::~TObjVoloptCage() {
     TObjPlayer *player = get_player_by_client_id(targetId);
     if (player != NULL && TObjPlayer::is_locally_controlled(player) != 0) {
         if (((TObjPlayer *)player)->check_player_flag1() != 0) {
-            TObjPlayer::send_code_45_1((s32)player);
+            TObjPlayer::send_code_45_1(player);
         }
         obj_clear_flag30_20000(player);
     }

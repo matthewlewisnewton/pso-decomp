@@ -1362,7 +1362,7 @@ struct TObjPlayer : public TObjChara {
     static s32 get_battle_ctrl_flag(u16 arg0);
     s32 is_outside_movement_hold(f32 *pos);
     static s32 draw_small_font(s32 arg0, void * _w1);
-    static void send_code_45_1(s32 arg0);
+    static void send_code_45_1(TObjPlayer *player);
     static void play_effect_default(int player, int effect);
     static void play_effect(s32 arg0, s32 arg1, s32 arg2);
     s32 get_clamped_index();

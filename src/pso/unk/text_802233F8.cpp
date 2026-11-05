@@ -7,21 +7,21 @@
 
 extern "C" {
 s32 get_entity_id(void *);
-u8 *get_player_by_client_id(s32);
+TObjPlayer *get_player_by_client_id(s32);
 s32 TLobby__sub_8024AC20(u16);
 s32 play_effect_default__10TObjPlayerFii(void *, s32);
 s32 TObjPlayer__sub_8024ABDC(u16);
 void fn_802233F8(void) {
     u16 self_slot;
     s32 i;
-    u8 *p;
+    TObjPlayer *p;
     if (TRaderMapCore::is_not_split_screen() == 1) {
         self_slot = TCameraCtrl::get_nth_view_player_id(0);
         for (i = 0; i < 4; i++) {
             if (self_slot != i) {
                 p = get_player_by_client_id(i);
-                if (p != NULL && ((TObjPlayer *)p)->check_player_flag1() != 0) {
-                    TObjPlayer::send_code_45_1((s32)p);
+                if (p != NULL && p->check_player_flag1() != 0) {
+                    TObjPlayer::send_code_45_1(p);
                     TLobby__sub_8024AC20(get_entity_id(p));
                 }
             }
@@ -31,13 +31,13 @@ void fn_802233F8(void) {
 void fn_80223480(void) {
     u16 self_slot;
     s32 i;
-    u8 *p;
+    TObjPlayer *p;
     if (TRaderMapCore::is_not_split_screen() == 1) {
         self_slot = TCameraCtrl::get_nth_view_player_id(0);
         for (i = 0; i < 4; i++) {
             if (self_slot != i) {
                 p = get_player_by_client_id(i);
-                if (p != NULL && ((TObjPlayer *)p)->check_player_flag1() == 0) {
+                if (p != NULL && p->check_player_flag1() == 0) {
                     play_effect_default__10TObjPlayerFii(p, -1);
                     TObjPlayer__sub_8024ABDC(get_entity_id(p));
                 }

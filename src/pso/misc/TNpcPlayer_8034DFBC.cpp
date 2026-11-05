@@ -187,7 +187,7 @@ void TNpcPlayer::send_code_45_to_player(int arg0) {
 
     player = get_player_by_client_id((u16) arg0);
     if ((player != 0) && (obj_isState2_324__9TObjCharaFv() == 0)) {
-        TObjPlayer::send_code_45_1(player);
+        TObjPlayer::send_code_45_1((TObjPlayer *)player);
     }
 }
 

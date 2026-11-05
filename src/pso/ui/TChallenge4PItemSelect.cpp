@@ -370,7 +370,7 @@ s32 update_challenge_result_player_locks() {
         for (s32 i = 0; i < 4; ++i) {
             TObjPlayer *player = ((TObjPlayer *)get_player_by_client_id(i));
             if (player && ((TObjPlayer *)player)->check_player_flag1() != 0) {
-                TObjPlayer::send_code_45_1((s32)player);
+                TObjPlayer::send_code_45_1(player);
                 obj_clear_flag30_20000(player);
                 ((TChallenge4PResult *)player)->get_player_rank();
                 if (((TObjPlayer *)player)->check_flag_0x40000000()) fn_8034BE38(player);
