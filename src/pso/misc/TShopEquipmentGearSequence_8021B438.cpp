@@ -69,7 +69,7 @@ struct VObj_8021B518 : Base_8021B518 {
     virtual void m4(s32, s32);
 };
 
-struct Seq_8021B518 { u8 pad[0x24]; s32 f24; u8 pad28[4]; void *win; };
+struct Seq_8021B518 { u8 pad[0x24]; s32 f24; u8 pad28[4]; TWindowMenu *win; };
 
 extern "C" {
 unsigned short get_child_field1c__13TShopSequenceFv(void *);
@@ -100,7 +100,7 @@ s32 get_shop_text(s32);
 f32 get_scale__15TShopWindowBaseFv(void *);
 s32 align_menu_entry_positions(void *);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
-s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
+TWindowMenu *create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 typedef struct Stack_8021D948 Stack_8021D948;
 typedef struct VBase_18_a93f07 VBase_18_a93f07;
 typedef struct VObj_18_a93f07 VObj_18_a93f07;
@@ -133,33 +133,33 @@ void TShopEquipmentGearSequence::update_buy_sell_choice(void *self) {
     s32 r;
     if (arg0->win == NULL) {
         id = get_entity_id(arg0->f24);
-        arg0->win = (void *)create_window_menu(((s32 (*)(int)) get_window_layout_position)(0x2B), 2, id);
+        arg0->win = create_window_menu(((s32 (*)(int)) get_window_layout_position)(0x2B), 2, id);
         forward_trade_action_default__16TObjCityMainWarpFPviii(arg0->win, get_shop_text(4), 6, 0);
         forward_trade_action_default__16TObjCityMainWarpFPviii(arg0->win, get_shop_text(6), 6, 1);
-        ((TWindowMenu *)(arg0->win))->calc_window_size();
+        arg0->win->calc_window_size();
         align_menu_entry_positions(arg0->win);
         ((TCheckRoomSequence *)(arg0->win))->set_ready_flag();
         ((TWindowAddition *)(arg0->win))->set_position_xy(get_scale__15TShopWindowBaseFv(arg0), get_scale__15TShopWindowBaseFv(arg0));
     }
-    if (arg0->win != NULL && ((TWindowMenu *)(arg0->win))->is_decided() != 0) {
-        r = ((TWindowMenu *)arg0->win)->get_selected_value();
+    if (arg0->win != NULL && arg0->win->is_decided() != 0) {
+        r = arg0->win->get_selected_value();
         if (r == 0) {
             ((TShopWindowBase *)arg0)->set_field_20(3);
-            ((TWindowBase *)arg0->win)->close();
+            arg0->win->close();
             arg0->win = NULL;
             return;
         }
         if (r == 1) {
             ((TShopWindowBase *)arg0)->set_field_20(4);
-            ((TWindowBase *)arg0->win)->close();
+            arg0->win->close();
             arg0->win = NULL;
             return;
         }
     }
-    if (arg0->win != NULL && ((TWindowMenu *)(arg0->win))->is_cancelled() != 0) {
+    if (arg0->win != NULL && arg0->win->is_cancelled() != 0) {
         ((VObj_8021B518 *) arg0)->m4(0x2C, 1);
         ((TShopWindowBase *)arg0)->set_field_20(6);
-        ((TWindowBase *)arg0->win)->close();
+        arg0->win->close();
         arg0->win = NULL;
     }
 }

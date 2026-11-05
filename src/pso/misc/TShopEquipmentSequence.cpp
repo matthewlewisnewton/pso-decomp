@@ -91,7 +91,7 @@ struct VObj_8021D7B8 : Base_8021D7B8 {
     virtual void m4(int, int);
 };
 
-struct Seq_8021D7B8 { u8 pad[0x24]; void *f24; u8 pad28[4]; void *win; };
+struct Seq_8021D7B8 { u8 pad[0x24]; void *f24; u8 pad28[4]; TWindowMenu *win; };
 
 extern "C" {
 s32 set_field_20__15TShopWindowBaseFl(void *, s32);
@@ -194,33 +194,33 @@ void TShopEquipmentSequence::update_buy_sell_choice() {
     s32 r;
     if (self->win == NULL) {
         s32 id = get_entity_id(self->f24);
-        self->win = (void *)create_window_menu(((s32 (*)(int))get_window_layout_position)(0x2B), 2, id);
+        self->win = create_window_menu(((s32 (*)(int))get_window_layout_position)(0x2B), 2, id);
         forward_trade_action_default__16TObjCityMainWarpFPviii(self->win, get_shop_text(4), 6, 0);
         forward_trade_action_default__16TObjCityMainWarpFPviii(self->win, get_shop_text(6), 6, 1);
-        ((TWindowMenu *)(self->win))->calc_window_size();
+        self->win->calc_window_size();
         align_menu_entry_positions(self->win);
         ((TCheckRoomSequence *)(self->win))->set_ready_flag();
         ((TWindowAddition *)(self->win))->set_position_xy(get_scale__15TShopWindowBaseFv(self), get_scale__15TShopWindowBaseFv(self));
     }
-    if (self->win != NULL && ((TWindowMenu *)(self->win))->is_decided() != 0) {
-        r = ((TWindowMenu *)self->win)->get_selected_value();
+    if (self->win != NULL && self->win->is_decided() != 0) {
+        r = self->win->get_selected_value();
         if (r == 0) {
             set_field_20__15TShopWindowBaseFl(self, 3);
-            ((TWindowBase *)self->win)->close();
+            self->win->close();
             self->win = NULL;
             return;
         }
         if (r == 1) {
             set_field_20__15TShopWindowBaseFl(self, 4);
-            ((TWindowBase *)self->win)->close();
+            self->win->close();
             self->win = NULL;
             return;
         }
     }
-    if (self->win != NULL && ((TWindowMenu *)(self->win))->is_cancelled() != 0) {
+    if (self->win != NULL && self->win->is_cancelled() != 0) {
         ((VObj_8021D7B8 *)self)->m4(0x2C, 1);
         set_field_20__15TShopWindowBaseFl(self, 9);
-        ((TWindowBase *)self->win)->close();
+        self->win->close();
         self->win = NULL;
     }
 }

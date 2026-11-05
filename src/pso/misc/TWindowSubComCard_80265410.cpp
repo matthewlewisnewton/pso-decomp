@@ -105,7 +105,7 @@ s32 TWindowShortListCtrl__check_controller_button(int, int);
 Ent_80265C30 * get_array_entry__11TWindowBaseFi(void *w, s32 i);
 
 void __dl__7TObjectFPv(void *);
-s32 __nw__7TObjectFUl(int);
+TWindowMenu *__nw__7TObjectFUl(u32);
 s32 construct_with_parent__15TWindowAdditionFPv(void *, void *, s16, s32);
 void * get_field_20__17TWindowSubComCardFv(void *e);
 void refresh_status_display__9TWindowDDFv(void *);
@@ -122,7 +122,7 @@ int forward_trade_action_default__16TObjCityMainWarpFPviii(void* p, int a1, int 
 void fn_80266378(s32 arg0);
 u8 * create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
 u8 * init_shop_judgment_window(void* p);
-s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
+TWindowMenu *create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 void render__11TWindowMenuFv(TWindowMenu *arg0);
 void * __dt__11TWindowMenuFv(void *arg0, s16 arg1);
 u8 * TWindowMenu__ct(u8 *arg0, u32 arg1, s32 arg2, s32 arg3);
@@ -688,14 +688,14 @@ u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3) {
 
 u8 * init_shop_judgment_window(void* p) { return create_yes_no_window((s32)p, 4, (u32)(0), (u32)(0)); }
 
-s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2) {
-    s32 temp_r3;
-    s32 var_r0;
+TWindowMenu *create_window_menu(s32 arg0, s32 arg1, s32 arg2) {
+    TWindowMenu *temp_r3;
+    TWindowMenu *var_r0;
     ((s32 (*)(void *))fn_80266378)((void *)arg1);
     temp_r3 = __nw__7TObjectFUl(0x8C);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = ((s32 (*)(int, void *, void *, void *))TWindowMenu__ct)((int)temp_r3, (void *)arg1, (void *)arg2, (void *)arg0);
+        var_r0 = (TWindowMenu *)TWindowMenu__ct((u8 *)var_r0, (u32)arg1, arg2, arg0);
     }
     return var_r0;
 }
