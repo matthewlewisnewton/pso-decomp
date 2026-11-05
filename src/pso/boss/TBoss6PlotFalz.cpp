@@ -7,6 +7,7 @@
 #include "pso/system/BmlResourceClass.h"
 void set_constant_material(const NJS_ARGB *color);
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/system/PadRumble.h"
 #include "pso/system/vector.h"
@@ -1009,7 +1010,6 @@ void *destroy_buffer_pair(void *arg0, s16 arg1);
 extern "C" {
 void scroll_strip_uvs(void *, s16, s16);
 s32 get_bml_model(s32, s32);
-void *alloc_tables__6TLobbyFll(void *, s32, s32);
 extern s32 lbl_805D5868;
 extern s32 lbl_805D5870;
 void update_active_flag__14TBoss6PlotFalzFv(void);
@@ -1054,7 +1054,6 @@ void Boss6ScrollStrips::build_tables(Boss6StripDesc *descs, s32 n) {
     s32 i;
     Boss6StripDesc *r;
     s32 t;
-    void *p;
     s32 j;
     h = TObjFish::get_fish_count();
     if (h == 0 || descs == NULL || n < 1) {
@@ -1062,7 +1061,7 @@ void Boss6ScrollStrips::build_tables(Boss6StripDesc *descs, s32 n) {
     }
     count = n;
     items = NULL;
-    items = (void **)::operator new[](count * 4);
+    items = (StripBufferPair **)::operator new[](count * 4);
     u = 0;
     v = 0;
     for (j = 0; j < count; j++) {
@@ -1070,12 +1069,8 @@ void Boss6ScrollStrips::build_tables(Boss6StripDesc *descs, s32 n) {
     }
     for (i = 0; i < count; i++) {
         r = &descs[i];
-        t = (s32)find_model_node(get_bml_model(h, r->model), r->node);
-        p = ::operator new(0x14);
-        if (p != 0) {
-            p = alloc_tables__6TLobbyFll(p, t, r->c);
-        }
-        items[i] = p;
+        t = find_model_node(get_bml_model(h, r->model), r->node);
+        items[i] = new StripBufferPair(t, r->c);
     }
 }
 

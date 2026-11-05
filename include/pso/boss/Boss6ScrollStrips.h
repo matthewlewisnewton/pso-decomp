@@ -3,8 +3,10 @@
 
 #include "types.h"
 
-// One strip: a model, a node in it, and the third argument build_tables
-// passes to alloc_tables__6TLobbyFll.
+struct StripBufferPair;
+
+// One strip: a model, a node in it, and the texture filter build_tables
+// passes to the StripBufferPair constructor.
 struct Boss6StripDesc {
     s32 model;
     s32 node;
@@ -18,7 +20,7 @@ struct Boss6ScrollStrips {
     u8 unk_04[0x4];
     s32 u;
     s32 v;
-    void **items;
+    StripBufferPair **items;
     void scroll_strips_uv(s32 du, s32 dv);
     void free_buffer_pairs();
     void build_tables(Boss6StripDesc *descs, s32 n);
