@@ -160,6 +160,7 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
+| `TBoss6Rock::run_task` | `pso/boss/TBoss6Rock.cpp` | `src/pso/boss/TBoss6Rock.cpp` | [#181](https://github.com/zeroz41/pso-decomp/pull/181) | `other: u64 pointer widen` | [#313](https://github.com/matthewlewisnewton/pso-decomp/pull/313) | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
