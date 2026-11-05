@@ -464,6 +464,17 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # half-width nudge and the drop placement fuse multiply-adds.
     # -str reuse,readonly: the literals live in this unit's .rodata.
     "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
+    # TAdMultiPlyChrSelectGC_802C50EC: -fp_contract on because the original
+    # contracts all four multiply-adds (fmadds at 802C5148, 802C5274, 802C58AC
+    # and 802C676C). The UV scale is `x / 256.0f`; MWCC folds that into a
+    # multiply by the pooled reciprocal at 0x805DE584, which this object
+    # emits as @168. -inline on inlines only clamped_slot_802C5F1C (the
+    # original has no out-of-line copy). -inline auto also inlines other
+    # small functions; -inline deferred emits the unit backwards.
+    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {
+        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on"),
+        "symbol_mappings": {"TAdMultiPlyChrSelectGC__data_805DE584": "@168"},
+    },
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
     # zero-initialized local member-function-pointer array.
@@ -734,12 +745,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
-    # sub_802C5F1C clamps the player slot in a static inline helper. -inline auto
-    # also inlines other small functions and breaks seven exact ones; -inline
-    # deferred emits the unit in reverse order. -inline on inlines only that
-    # helper (same object as -inline noauto here). Evidence:
-    # docs/evidence/chr-select-slot-clamp-inline.md.
-    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf
