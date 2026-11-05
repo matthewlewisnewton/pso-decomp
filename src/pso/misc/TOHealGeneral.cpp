@@ -146,7 +146,7 @@ void TOHealGeneral::find_heal_target() {
             TParticleCtrl *effect;
             object_state = 1;
             if (is_local_player(heal_target) != 0) {
-                send_6x2C_impose_hold(player, &position, 0x3C, 0, r);
+                send_6x2C_impose_hold(r, player, &position, 0x3C, 0);
                 player->clear_harmful_statuses();
             }
             if (player->is_alive_and_ready() != 0) {

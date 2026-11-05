@@ -248,7 +248,7 @@ grounded:
                 dist -= TObjPlayer__sub_8017A1A4(p, 0);
                 if (d < dist * dist) {
                     if (TObjPlayer::is_locally_controlled(target)) {
-                        send_6x2C_impose_hold(p, &position, -1, 0, dist);
+                        send_6x2C_impose_hold(dist, p, &position, -1, 0);
                         obj_set_flag_20000(p);
                     }
                 } else {

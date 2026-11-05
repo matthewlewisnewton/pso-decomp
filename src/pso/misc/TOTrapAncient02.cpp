@@ -371,7 +371,7 @@ void TOTrapAncient02::vfunc_81() {
                 this->dist = this->range - TObjPlayer__sub_8017A1A4(p, 0);
                 if (d < this->dist * this->dist) {
                     if (this->player == local_client_id) {
-                        send_6x2C_impose_hold(p, &this->position, this->timer, 0, this->dist);
+                        send_6x2C_impose_hold(this->dist, p, &this->position, this->timer, 0);
                     }
                     this->mode = 3;
                     this->phase = 2;

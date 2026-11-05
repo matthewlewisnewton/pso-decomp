@@ -408,9 +408,9 @@ void TOTrapSeabed01::check_hold_player() {
         temp_f0 = dist;
         if (temp_f31 < (temp_f0 * temp_f0)) {
             if (TRaderMapCore::is_not_split_screen() == 1) {
-                send_6x2C_impose_hold(p, &position, -1, 0, dist);
+                send_6x2C_impose_hold(dist, p, &position, -1, 0);
             } else if (player == local_client_id) {
-                send_6x2C_impose_hold(p, &position, -1, 0, dist);
+                send_6x2C_impose_hold(dist, p, &position, -1, 0);
             }
             sub_802C9C18(0);
             return;

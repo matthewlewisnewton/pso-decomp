@@ -62,17 +62,17 @@ void TOTrap::vfunc_82() {
 }
 
 void TOTrap::vfunc_81() {
-    u8 *pl;
+    TObjPlayer *pl;
     calc_attach_pos();
     this->player = find_nearest_visible_player(this, 0, this->range);
     if (this->player != 0xFFFF) {
-        pl = (u8 *)get_player_by_client_id(this->player);
-        this->target = pl;
+        pl = get_player_by_client_id(this->player);
+        this->target = (u8 *)pl;
         if (this->target != 0) {
             if (horizontal_distance_squared(&((TObjChara *)this->target)->position, &position) < this->dist * this->dist) {
                 this->mode = 3;
                 if (TObjPlayer::is_locally_controlled(pl) != 0) {
-                    ((void (*)(f32, void *, void *, s32, int))send_6x2C_impose_hold)(this->dist, pl, &position, this->set_params[0], 0);
+                    send_6x2C_impose_hold(this->dist, pl, &position, this->set_params[0], 0);
                 }
             } else {
                 this->player = 0xFFFF;
