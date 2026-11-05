@@ -178,6 +178,12 @@ Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876
 
 The unit has no per-function pragmas.
 
+Source construct MWCC accepts and standard C++ does not:
+
+| File | What | Why | Port should |
+|---|---|---|---|
+| `src/pso/boss/TBoss6Type1.cpp` | Seven `s32` constants (`boss6_type1_particle_slot_count`, `boss6_type1_sway_speed_min`/`_range`, `boss6_type1_sway_hold_min`/`_range`, `boss6_type1_anim_count`, `boss6_type1_main_anim`) are declared `extern const` near the top and defined `static const` at the end of the file. | The original reads them with `lwz` from `.sdata2` (`0x805DE2D4`, `0x805DE3A8`..`0x805DE3B4`, `0x805DE3C4`/`0x805DE3C8`), each placed at its first reader in deferred generation order. MWCC folds a `const` scalar read after its definition, and writes an external-linkage one at parse time (offset 0, ahead of every literal). Only an internal-linkage definition after its readers gives both the loads and the positions. Before, the values were externs, `.sdata2` was 95.73% and `0x805DE2C8`..`0x805DE2D0` / `0x805DE3C4`..`0x805DE3F0` were unowned; now the split owns `0x805DE2C8`..`0x805DE3F0`, the section is 296/296 bytes and the unit links. Evidence: [tboss6type1-sdata2-constants.md](evidence/tboss6type1-sdata2-constants.md). | Drop the `extern` declarations and define the constants (`static const` or `constexpr`) above their first use. |
+
 ## 6. Approved regressions
 
 None on main.

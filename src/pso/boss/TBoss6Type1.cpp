@@ -31,6 +31,17 @@
 extern const Vec boss6_map_csn_offset;
 extern const Vec boss6_map_csn_scale;
 
+// Defined (static) at the end of this file: every read before the definition is
+// a load, and each constant is emitted into .sdata2 at its first use in code
+// generation order.
+extern const s32 boss6_type1_particle_slot_count;
+extern const s32 boss6_type1_sway_speed_min;
+extern const s32 boss6_type1_sway_speed_range;
+extern const s32 boss6_type1_sway_hold_min;
+extern const s32 boss6_type1_sway_hold_range;
+extern const s32 boss6_type1_anim_count;
+extern const s32 boss6_type1_main_anim;
+
 struct RecoveredGlobal_802B7E88_lbl_80470CEC {
     s32 values[12];
 };
@@ -83,14 +94,11 @@ f32 subtract_vector(void *, const void *);
 f32 fabs_float(f32);
 s32 get_entity_id(void *);
 extern const Vec TBoss6Type1__data_80470FB4;
-extern const f32 TBoss6Type1__data_805DE2D0;
 s32 TBoss6Type1__sub_802B5FDC(TBoss6Type1 *arg0);
 s32 TBoss6Type1__sub_802B5FF4(TBoss6Type1 *arg0);
 s32 TBoss6Type1__sub_802B600C(TBoss6Type1 *arg0);
 s32 rand();
 extern s32 boss6_type1_random_action_table[];
-extern const f32 lbl_805DE3D8;
-extern const f32 lbl_805DE3D4;
 void TBoss6Type1__sub_802B8BB4(TBoss6Type1 *arg0);
 s32 is_active__14TBoss6PlotFalzFv();
 void TBoss6PlotFalz__sub_802AC724(void *, void *);
@@ -122,7 +130,6 @@ MotionSetEntry TBoss6Type1__motion_set_table[21] = {
     {2, 16, 44, 17}, {0, 16, 44, 18}, {2, 18, 44, 19}, {0, 18, 44, 20}, {2, 2, 44, 21},
     {2, 2, 44, 15},
 };
-extern const s32 lbl_805DE3C8;
 extern u32 lbl_80470FAC[];
 
 void TBoss6Type1__sub_802B4B04(TBoss6Type1 *arg0);
@@ -134,8 +141,6 @@ extern Vec lbl_80470FE4;
 extern Vec lbl_80470FF0;
 void TBoss6Type1__sub_802B5970(TBoss6Type1 *arg0);
 extern RecoveredGlobal_802B7E88_lbl_80470CEC TBoss6Type1__param_table;
-extern const s32 lbl_805DE3A8;
-extern const s32 lbl_805DE3B0;
 void TBoss6Type1__sub_802B7D50(TBoss6Type1 *arg0);
 extern const Vec lbl_80470CD4;
 extern const Vec lbl_80470CE0;
@@ -144,15 +149,12 @@ void TBoss6Type1__sub_802B4CF4(TBoss6Type1 *arg0);
 void TBoss6Type1__sub_802B59A8(TBoss6Type1 *self);
 void TBoss6Type1__sub_802B59CC(TBoss6Type1 *self);
 void TBoss6Type1__sub_802B5AB0(TBoss6Type1 *self);
-extern const s32 lbl_805DE2D4;
 void TBoss6Type1__sub_802B4D38(TBoss6Type1 *self);
 void TBoss6Type1__sub_802B5DD4(TBoss6Type1 *self);
 extern EffectSlotEntry TBoss6Type1__effect_slot_table[];
 extern u8 lbl_80471014[];
 Boss6Motion *get_bml_motion(s32, s32);
-extern const s32 TBoss6Type1__data_805DE3C4;
 void TBoss6Type1__sub_802B909C(TBoss6Type1 *self, Boss6ActionArgs *atk);
-extern const f32 lbl_805DE3DC;
 void TBoss6Type1__sub_802B8E1C(TBoss6Type1 *arg0);
 TObjPlayer *get_player_by_client_id(u16 client);
 s32 matrix_mult_vec(int, void *, void *);
@@ -176,13 +178,6 @@ extern const f64 TBoss6Type1__data_80471038;
 void request_follow_camera_offsets(void *, const void *, int);
 extern const Vec lbl_80470FC0;
 s32 angle_diff_s16(s32, s32);
-extern const s8 lbl_805DE2C8[2];
-extern const s8 lbl_805DE2CC[2];
-extern const f32 lbl_805DE3E0;
-extern const f32 lbl_805DE3E8;
-extern const f32 lbl_805DE3E4;
-extern const s32 lbl_805DE3AC;
-extern const s32 lbl_805DE3B4;
 void TBoss6Type1__sub_802B4A70(void* p);
 void TBoss6Type1__sub_802B4A90(TBoss6Type1 *p);
 void TBoss6Type1__sub_802B4B14(TBoss6Type1 *p);
@@ -194,7 +189,6 @@ void TBoss6Type1__sub_802B4A9C(TBoss6Type1 *);
 extern const Vec lbl_80470FCC;
 extern const Vec lbl_80470FD8;
 
-extern f32 lbl_805DE350;
 }
 
 void draw_model_blend_motion(void *arg0, void *arg1, f32 farg0);
@@ -213,7 +207,6 @@ extern "C" {
 
 
 Boss6Point *TBoss6Type1__sub_802B96C0(Boss6Point *dst, Boss6Point *src);
-extern const f32 lbl_805DE3D0;
 s32 angle_difference_abs(int, int);
 s32 approach_angle_limited(int, int, int);
 #define VLEN(p) vector_length(p)
@@ -239,7 +232,6 @@ s32 submit_cursor_candidate(void *, int);
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
 }
 
-extern const f32 lbl_805DE3CC;
 
 // Angle (high byte of a 16-bit angle), radius and height (both x10).
 struct Boss6PolarBytes {
@@ -265,7 +257,6 @@ struct OlgaFlowActionMsg : G_ClientIDHeader {
 extern "C" {
 
 
-extern f32 lbl_805DE3EC;
 
 
 extern TObject *tl_04;
@@ -401,7 +392,7 @@ void TBoss6Type1::set_sync_data(void *arg1) {
     msg->client_id = (u16) this->entity_id;
     msg->sync_params[0] = (s8) this->m_438;
     msg->sync_params[1] = (s8) this->m_414;
-    msg->sync_params[2] = (s8) (lbl_805DE3EC * ((1.0f / 32768.0f) * (f32) rand()));
+    msg->sync_params[2] = (s8) (127.0f * ((1.0f / 32768.0f) * (f32) rand()));
 }
 
 void TBoss6Type1::load_params(void *arg1) {
@@ -440,7 +431,7 @@ void TBoss6Type1::send_6xA4_action(s32 t, void *args) {
 void TBoss6Type1__sub_802B909C(TBoss6Type1 *self, Boss6ActionArgs *atk) {
     s8 dir = (u8)((u32)self->rotation.yaw >> 8);
     u8 kind;
-    dir += lbl_805DE3E8 * ((1.0f / 32768.0f) * (f32)rand() - 0.5f);
+    dir += 160.0f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f);
     atk->b0 = dir;
     kind = 0x12;
     if ((1.0f / 32768.0f) * (f32)rand() < 0.5f) {
@@ -449,6 +440,9 @@ void TBoss6Type1__sub_802B909C(TBoss6Type1 *self, Boss6ActionArgs *atk) {
     atk->b1 = kind;
     atk->b2 = 10;
 }
+static const s8 boss6_type1_pitch_pair_a[2] = {0x12, 10};
+static const s8 boss6_type1_pitch_pair_b[2] = {0x12, -2};
+
 void TBoss6Type1::randomize_attack(Boss6ActionArgs *atk) {
     const s8 *tab;
     s8 base;
@@ -458,7 +452,7 @@ void TBoss6Type1::randomize_attack(Boss6ActionArgs *atk) {
     s8 u;
     TBoss6Type1__sub_802B909C(this, atk);
     base = (u8)((u32)this->rotation.yaw >> 8);
-    v = 80.0f * ((1.0f / 32768.0f) * (f32)rand()) + lbl_805DE3E0;
+    v = 80.0f * ((1.0f / 32768.0f) * (f32)rand()) + 32.0f;
     if ((1.0f / 32768.0f) * (f32)rand() < 0.5f) {
         v = -v;
     }
@@ -470,13 +464,13 @@ void TBoss6Type1::randomize_attack(Boss6ActionArgs *atk) {
         w = 0x12;
         if (r < 0.1f) {
             w = -2;
-        } else if (r < lbl_805DE3E4) {
+        } else if (r < 0.3f) {
             w = 10;
         }
         atk->b2 = w;
         return;
     }
-    tab = TBoss6Type1__sub_802B5FDC(this) != 0 ? lbl_805DE2C8 : lbl_805DE2CC;
+    tab = TBoss6Type1__sub_802B5FDC(this) != 0 ? boss6_type1_pitch_pair_a : boss6_type1_pitch_pair_b;
     u = tab[0];
     if ((1.0f / 32768.0f) * (f32)rand() < 0.5f) {
         u = tab[1];
@@ -503,7 +497,7 @@ void TBoss6Type1__sub_802B8E1C(TBoss6Type1 *arg0) {
     s.b1 = 0x1C;
     r4 = 0x21;
     arg0->m_438 = 1;
-    if (arg0->position.y < lbl_805DE3DC) {
+    if (arg0->position.y < -20.0f) {
         r4 = 0x26;
     }
     arg0->send_6xA4_action(r4, &s);
@@ -536,7 +530,7 @@ void TBoss6Type1__sub_802B8BB4(TBoss6Type1 *arg0) {
         if (TBoss6Type1__sub_802B5FDC(arg0) != 0) {
             id = 0x15;
             n = arg0->count_matches(0x15, 8);
-            if (n == 0 || (1.0f / 32768.0f) * (f32)rand() < lbl_805DE3D8 / (f32)n) {
+            if (n == 0 || (1.0f / 32768.0f) * (f32)rand() < 0.4f / (f32)n) {
                 s.b2 = -2;
             } else {
                 id = 2;
@@ -580,7 +574,7 @@ void TBoss6Type1__sub_802B8A70(TBoss6Type1 *self) {
     f32 ratio;
     s32 total;
     dir = ((u32)self->rotation.yaw >> 8) & 0xFF;
-    dir += lbl_805DE3D4 * ((1.0f / 32768.0f) * (f32)rand() - 0.5f);
+    dir += 128.0f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f);
     atk.b0 = dir;
     ratio = 0.5f;
     atk.b1 = 0x1C;
@@ -627,7 +621,7 @@ void TBoss6Type1::vfunc_62() {
 void TBoss6Type1::vfunc_63() { if (this->m_374 != 40) { set_action_state(40); } }
 
 void TBoss6Type1::render_shadows() {
-    if (this->position.y >= lbl_805DE3D0) {
+    if (this->position.y >= -30.0f) {
         TObjEnemy::render_shadows();
     }
 }
@@ -653,7 +647,7 @@ void TBoss6Type1::run_task() {
     submit_cursor_candidate(this, -1);
     add_radar_scaled_marker(&this->node_positions_578[1].v, -0x5DB4, 1, 1, 5.0f);
     sub_802B5CB4();
-    this->m_4d4 += lbl_805DE3CC;
+    this->m_4d4 += -1.0f / 15.0f;
     if (this->m_4d4 < 0.0f) {
         this->m_4d4 = 0.0f;
     }
@@ -710,7 +704,7 @@ void TBoss6Type1__sub_802B854C(TBoss6Type1 *self) {
     s32 i;
     Boss6Anim *a;
     TBoss6Type1::copy_block(&self->motion_set, &lbl_80470ECC);
-    for (i = 0; i < TBoss6Type1__data_805DE3C4; i++) {
+    for (i = 0; i < boss6_type1_anim_count; i++) {
         a = &self->anims[i];
         a->copy_transform(&lbl_80470F0C);
         a->motion = a->prev_motion = get_bml_motion(self->m_3fc, TBoss6Type1__motion_set_table[2].ids[i]);
@@ -724,8 +718,8 @@ void TBoss6Type1::advance_animations() {
     f32 len;
     f32 lim;
     s32 n;
-    cur = lbl_805DE3C8;
-    n = TBoss6Type1__data_805DE3C4;
+    cur = boss6_type1_main_anim;
+    n = boss6_type1_anim_count;
     for (i = 0; i < n; i++) {
         if (i == cur) continue;
         a = &this->anims[i];
@@ -736,7 +730,7 @@ void TBoss6Type1::advance_animations() {
             if ((a->blend += a->rate) >= 1.0f) a->blend = 0.0f;
         }
     }
-    a = &this->anims[lbl_805DE3C8];
+    a = &this->anims[boss6_type1_main_anim];
     len = a->motion->frames;
     a->t += a->speed;
     switch (this->motion_mode) {
@@ -759,27 +753,23 @@ void TBoss6Type1::advance_animations() {
 }
 
 void TBoss6Type1::set_motion_set(s32 arg1) {
-    f32 z;
-    s32 n;
     MotionSetEntry *t;
     s32 i;
     Boss6Anim *a;
 
     if (arg1 != -1 && arg1 != this->motion_set) {
-    this->motion_set = arg1;
-    z = TBoss6Type1__data_805DE2D0;
-    n = TBoss6Type1__data_805DE3C4;
-    t = &TBoss6Type1__motion_set_table[arg1];
-    this->motion_mode = t->mode;
-    for (i = 0; i < n; i++) {
-        a = &this->anims[i];
-        Boss6Motion *motion = get_bml_motion(this->m_3fc, t->ids[i]);
-        a->blend = a->rate;
-        a->prev_motion = a->motion;
-        a->prev_t = a->t;
-        a->motion = motion;
-        a->t = z;
-    }
+        this->motion_set = arg1;
+        t = &TBoss6Type1__motion_set_table[arg1];
+        this->motion_mode = t->mode;
+        for (i = 0; i < boss6_type1_anim_count; i++) {
+            a = &this->anims[i];
+            Boss6Motion *motion = get_bml_motion(this->m_3fc, t->ids[i]);
+            a->blend = a->rate;
+            a->prev_motion = a->motion;
+            a->prev_t = a->t;
+            a->motion = motion;
+            a->t = 0.0f;
+        }
     }
 }
 void TBoss6Type1::draw_part_motions() {
@@ -920,16 +910,16 @@ void TBoss6Type1::update_turn_to_center() {
 void TBoss6Type1__sub_802B7D50(TBoss6Type1 *self) {
     self->m_4e8 = 0.0f;
     self->m_4ec = 0;
-    self->m_4f0 = (s32) lbl_805DE3A8;
-    self->m_4f4 = (s32) lbl_805DE3B0;
+    self->m_4f0 = (s32) boss6_type1_sway_speed_min;
+    self->m_4f4 = (s32) boss6_type1_sway_hold_min;
 }
 void TBoss6Type1::update_sway() {
     f32 d;
     f32 target;
     s32 v;
     if (--this->m_4f4 < 0) {
-        this->m_4f0 = (f32)lbl_805DE3AC * ((1.0f / 32768.0f) * (f32)rand()) + (f32)lbl_805DE3A8;
-        this->m_4f4 = (f32)lbl_805DE3B4 * ((1.0f / 32768.0f) * (f32)rand()) + (f32)lbl_805DE3B0;
+        this->m_4f0 = (f32)boss6_type1_sway_speed_range * ((1.0f / 32768.0f) * (f32)rand()) + (f32)boss6_type1_sway_speed_min;
+        this->m_4f4 = (f32)boss6_type1_sway_hold_range * ((1.0f / 32768.0f) * (f32)rand()) + (f32)boss6_type1_sway_hold_min;
     }
     target = 0.0f;
     switch (this->m_374) {
@@ -2203,7 +2193,7 @@ void TBoss6Type1::release_effect_slot(s32 arg1) {
 void TBoss6Type1::clear_slot_array() {
     s32 i;
     this->m_508 = 0;
-    for (i = 0; i < lbl_805DE2D4; i++) this->unk_50C[i] = 0;
+    for (i = 0; i < boss6_type1_particle_slot_count; i++) this->unk_50C[i] = 0;
 }
 
 void TBoss6Type1__sub_802B4B14(TBoss6Type1 *p) { TBoss6Type1__sub_802B4A9C(p); }
@@ -2215,7 +2205,7 @@ void TBoss6Type1__sub_802B4B04(TBoss6Type1 *self) {
 void TBoss6Type1__sub_802B4A9C(TBoss6Type1 *boss) {
     s32 i;
     boss->m_508 = 0;
-    for (i = 0; i < lbl_805DE2D4; i++) {
+    for (i = 0; i < boss6_type1_particle_slot_count; i++) {
         u32 slot = boss->unk_50C[i];
         if (slot != 0U) {
             TParticleCtrl::release((void *)slot);
@@ -2277,3 +2267,10 @@ void TBoss6Type1::draw_model() {
 }
 }
 
+static const s32 boss6_type1_particle_slot_count = 24;
+static const s32 boss6_type1_sway_speed_min = 256;
+static const s32 boss6_type1_sway_speed_range = 64;
+static const s32 boss6_type1_sway_hold_min = 20;
+static const s32 boss6_type1_sway_hold_range = 20;
+static const s32 boss6_type1_anim_count = 2;
+static const s32 boss6_type1_main_anim = 1;
