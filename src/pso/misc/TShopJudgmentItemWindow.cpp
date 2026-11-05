@@ -592,7 +592,7 @@ s32 TShopJudgmentItemWindow::build_item_list(void *arg0) {
     s32 j;
     s32 k;
     memset(W->ents, 0, 0xF0);
-    n = ((TObjPlayer *)W->player)->inventory_objects->apply_shop_judgment((int)items);
+    n = ((TObjPlayer *)W->player)->inventory_objects->apply_shop_judgment(items);
     W->count = 0;
     for (i = 0; i < n; i++) {
         it = items[i];

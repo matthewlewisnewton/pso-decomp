@@ -27,10 +27,11 @@ public:
     int set_globals_and_notify(TObjPlayer *player, void *out);
     // First argument of the old free function is this inventory object.
     void remove_equipped_item(TObjPlayer *player, TItemList *slot);
-    int count_matching_items(int a1);
-    int apply_shop_judgment(int a1);
+    // Both store the matching TItem pointers into out and return the count.
+    int count_matching_items(void *out);
+    int apply_shop_judgment(void *out);
     void set_flag_and_update(void *player);
-    s32 count_items_by_id(s32 arg1);
+    s32 count_items_by_id(void *data);
     TItemList *find_first_inventory_entry(void *a1);
     TItemList *set_mode_and_refresh_object(void *a1);
     void destroy_subobjects(void *player);

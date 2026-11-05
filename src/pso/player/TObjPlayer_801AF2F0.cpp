@@ -6541,7 +6541,7 @@ s32 TObjPlayer::count_items_of_type(s8 arg1, s8 arg2, s8 arg3) {
     item_data.data1.data_u8[0] = arg1;
     item_data.data1.data_u8[1] = arg2;
     item_data.data1.data_u8[2] = arg3;
-    return this->inventory_objects->count_items_by_id((s32)&item_data.data1.data_u8[0]);
+    return this->inventory_objects->count_items_by_id(&item_data);
 }
 
 void dispatch_input__10TObjPlayerFPvii(void *player, s32 arg1, s32 arg2) {

@@ -334,7 +334,7 @@ s32 TShopKeepItemWindow::rebuild_item_list() {
     s32 i;
     s32 cur;
     self->f378 = 1;
-    count = ((TObjPlayer *)self->f24)->inventory_objects->count_matching_items((int)buf);
+    count = ((TObjPlayer *)self->f24)->inventory_objects->count_matching_items(buf);
     self->f374 = 0;
     for (i = 0; i < count; i++) {
         if (buf[i] != 0 && ((TItem *)(buf[i]))->copy_to_item_data((TItemData *)self->ents[self->f374].item) != 0) {
