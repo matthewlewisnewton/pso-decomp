@@ -162,7 +162,12 @@ struct TObjPlayer : public TObjChara {
     u8 unk_3D4[0x4];
     s32 m_3d8;
     s32 m_3dc;
-    u8 unk_3E0[0x4];
+    // sync_current_area stores the floor area here. render_model_and_set_attach_points
+    // also writes a node position through unk_3E0, over the following words.
+    union {
+        s32 current_area;
+        u8 unk_3E0[0x4];
+    };
     s32 current_floor;
     u8 unk_3E8[0x4];
     s32 m_3ec;
@@ -1309,6 +1314,8 @@ struct TObjPlayer : public TObjChara {
     static s32 check_technique_castable(s32 arg0);
     void sync_current_floor();
     void sync_current_area();
+    s32 get_current_area();
+    s32 is_volopt_phase_final();
     static int get_key_machine_global_state(void* p);
     void set_flag_drop_weapon_on_death();
     static void disable_drop_weapon_on_death(void *arg0);

@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 13 | 4 |
 | intrinsic | 83 | 54 |
 | hardware | 71 | 13 |
-| pragma | 5828 | 875 |
-| configure.py per-unit override | 159 | 159 |
+| pragma | 5788 | 874 |
+| configure.py per-unit override | 160 | 160 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043, `fp_contract` 909, `auto_inline` 842, `opt_common_subs` 618, `scheduling` 260, `opt_propagation` 241, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039, `fp_contract` 893, `auto_inline` 838, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -89,7 +89,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/player/TObjPlayer_80011014.cpp:4904` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:350` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:2520` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:2517` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:5046` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:95` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:116` | `__frsqrte` |
@@ -250,6 +250,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `pso/boss/TBoss7PhotonBullet_802EF26C.cpp` | `-inline off,deferred, -fp_contract on` | Photon bullet run_task contracts a mul-add. Deferred emission puts the compiler vtables in address order while the definitions stay bottom-to-top. |
 | `pso/enemy/TObjEnemyCustom.cpp` | `-inline deferred, -pool off, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/boss/TBoss3VoloptCore.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/boss/TBoss6Type1.cpp` | `-inline deferred, -fp_contract on` | -inline deferred is byte-identical to noauto,deferred,level=1 here (.text/.data/.rodata/.sdata2 and relocs). off,deferred changes 21 functions (copy_transform, sub_802B96C0); noauto alone changes 86; -fp_contract off changes 71 (draw_part_motions, sub_802B626C). The multiply-adds are fmadds. dtk-template uses -inline auto and -fp_contract on; Melee, TP, TWW and Pikmin 2 contract globally. |
 | `pso/boss/TBoss3VoloptP01.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneNanoDrago.cpp` | `-inline deferred` | Delbiter uses deferred code generation: reverse source definitions put native vtables before the switch tables and functions in address order. |
 | `pso/enemy/TObjEneMe1GiGue.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -441,7 +442,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/boss/TBoss6RockChase.cpp` | opt_propagation×1, opt_common_subs×1, fp_contract×1 |
 | `src/pso/boss/TBoss6SwordShot.cpp` | fp_contract×3, opt_common_subs×2 |
 | `src/pso/boss/TBoss6Tube_802B1020.cpp` | fp_contract×2 |
-| `src/pso/boss/TBoss6Type1.cpp` | fp_contract×16, opt_common_subs×7, inline_depth×4, auto_inline×4, dont_inline×4, opt_propagation×4, opt_lifetimes×1 |
 | `src/pso/boss/TBoss6Type1_802B20C0.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss6Type2.cpp` | inline_depth×74, auto_inline×74, dont_inline×74, opt_common_subs×20, opt_propagation×15, opt_dead_assignments×14, fp_contract×5, optimization_level×1 |
 | `src/pso/boss/TBoss6Type2_802BE588.cpp` | opt_common_subs×2 |
