@@ -4,6 +4,7 @@
 #include "pso/misc/TLobby_8030A6A8.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 
@@ -19,7 +20,6 @@ extern const Pair_8044BC7C lbl_8044BC7C;
 struct Data_8044BC84 { Pair_8044BC7C value; u8 padding[4]; };
 extern const Data_8044BC84 lbl_8044BC84;
 extern const f32 lbl_805DC640;
-void TWindow__close(TWindowMessage *window);
 }
 
 void THunterGuildWarning::close_windows() {

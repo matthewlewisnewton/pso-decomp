@@ -3,6 +3,7 @@
 #include "types.h"
 #include "pso/unk/text_8026CB5C.h"
 #include "pso/misc/TWindowLockOn.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowDD.h"
@@ -143,7 +144,6 @@ void TWindowSubTradeMain__sub_802448E4(void *arg0);
 void fn_8024491C(void *arg0);
 void fn_80244958(void *arg0);
 void fn_802449E0(u8 *arg0);
-void TWindow__close(u8 *arg0);
 Win_80244DFC * find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv(Win_80244DFC *self, void *a, void *b, Win_80244DFC *p);
 s32 sub_80246948__13TUnk_804CE018Fv();
 int TWindowFukidasi__sub_8024695C(void *p);
@@ -236,7 +236,7 @@ void fn_802449E0(u8 *object) {
     disallow_rendering__7TObjectFv((TObject *)object);
 }
 
-void TWindow__close(u8 *window_lock_on) {
+void TWindow__close(void *window_lock_on) {
     ((TWindowLockOn *)window_lock_on)->request_close();
     ((TWindowLockOn *)window_lock_on)->m_2c = (s32) (((TWindowLockOn *)window_lock_on)->m_2c | 0x10);
 }
