@@ -1,8 +1,7 @@
 # Character-select plate: typed tables, the cell store, and the float order
 
-Base: fork `main` `f6dedd375`, merged into PR
-[#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214). Unit
-`pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp`, functions
+Base: #214 merged as `ee5fa809f`; this evidence is retained by #250 after
+folding the standalone unit into `pso/ui/TAdChrSelPlyPlateGC.cpp`. Functions
 `TAdMultiPlyChrSelectGC__sub_802C5688` (`0x802C5688`, 700 bytes),
 `TAdMultiPlyChrSelectGC__sub_802C5F1C` (`0x802C5F1C`, 236 bytes), and
 `TAdMultiPlyChrSelectGC__sub_802C6660` (`0x802C6660`, 488 bytes). All three
@@ -52,7 +51,7 @@ bytes as before, and no call site casts between the two classes.
   a multiply by the pooled reciprocal: the dividend stays on the left.
 - The pool entry is the four bytes at `0x805DE584` (`3b800000`, 1/256). The
   unit's `.sdata2` split owns them, and objdiff maps
-  `TAdMultiPlyChrSelectGC__data_805DE584` to the compiler pool `@168`.
+  `TAdMultiPlyChrSelectGC__data_805DE584` to the compiler pool `@175`.
   `802C5688` is then 100% (700/700). `802C6660` moves from 95.29% to 96.07%
   until the cell store below is written through the shared helper.
 - A float local for each product also puts the product on the left, and the
@@ -97,3 +96,13 @@ single-use locals, so none of the local-variable shapes below is kept.
 The two-step `s32 (*sel)[3] = self->sel;` that older heads used in `5688` is no
 longer needed: with the typed tables, the plain `self->sel[player][f4EC]` gives
 the original integer code.
+
+## Folded ownership (#250)
+
+The folded unit owns `.data 0x804E0A48-0x804E0B10` and only the eight bytes
+`.sdata2 0x805DE580-0x805DE588`: the local 0.53 constant and the 1/256
+reciprocal. Earlier pool entries remain externs in the preceding unit. The
+source retains #214's `alpha`, `home[4][3]`/`ox`/`oy`, and
+`mark_grid_cell_occupied` forms. All 36 functions, 7400 code bytes and 848
+data bytes match; the unit links from source. The ctor at `0x802C6DD4`
+remains a separate unmatched unit.
