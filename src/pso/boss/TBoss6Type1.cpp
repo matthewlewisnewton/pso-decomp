@@ -14,6 +14,7 @@
 #include "pso/player/TObjChara.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/TObjControl.h"
+#include "pso/boss/TBoss6Zanzo.h"
 #include "pso/boss/TBoss6Type1.h"
 #include "pso/boss/TBoss6Mine.h"
 #include "pso/system/SoundEffect.h"
@@ -45,7 +46,6 @@ struct EffectSlotEntry { s32 a; s32 b; };
 
 
 struct MotionSetEntry { s32 mode; s32 next; s32 ids[2]; };
-struct Boss6ActionPacket { u8 b[0x10]; };
 
 
 
@@ -122,7 +122,7 @@ MotionSetEntry TBoss6Type1__motion_set_table[21] = {
     {2, 2, 44, 15},
 };
 extern const s32 lbl_805DE3C8;
-extern s32 lbl_80470FAC[];
+extern u32 lbl_80470FAC[];
 
 void TBoss6Type1__sub_802B4B04(TBoss6Type1 *arg0);
 void TBoss6Type1__sub_802B5598(TBoss6Type1 *self, Vec *out);
@@ -208,11 +208,6 @@ void draw_model_blend_motion(void *arg0, void *arg1, f32 farg0);
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/player/TObjPlayer.h"
-struct Stack_802B9204_boss6_1 {
-    s32 sp8;
-    s8 spC;
-    u8 trailing_storage[0xF];
-};
 extern "C" {
 
 
@@ -232,7 +227,7 @@ void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 typedef char RecoveredGlobal_802B7E88_lbl_80470CEC_size[sizeof(RecoveredGlobal_802B7E88_lbl_80470CEC) == 0x30 ? 1 : -1];
 
 extern Boss6AnimBlock lbl_80470ECC;
-extern u8 lbl_80470F0C[];
+extern Boss6Anim lbl_80470F0C;
 }
 
 void build_6xA4_olga_flow_boss_actions(void* p);
@@ -246,14 +241,25 @@ s32 add_radar_scaled_marker(void *, int, int, int, f32);
 
 extern const f32 lbl_805DE3CC;
 
-/* 6xA4: the Olga Flow boss action sent by send_6xA4_action. */
-struct OlgaFlowActionMsg {
-    u8 command;
-    u8 size;
-    u16 entity_id;
+// Angle (high byte of a 16-bit angle), radius and height (both x10).
+struct Boss6PolarBytes {
+    s8 b[3];
+    void decode_polar_position(Vec *out);
+};
+
+struct Boss6FlowAction {
     s8 action;
-    u8 action_args[3];
+    Boss6PolarBytes pos;
+    void handle_6xa4_action(Vec *out);
+};
+
+/* 6xA4: the Olga Flow boss action sent by send_6xA4_action. */
+struct OlgaFlowActionMsg : G_ClientIDHeader {
+    Boss6FlowAction flow;
     u8 sync_params[3];
+    u8 unk_0B[0x9];
+    void read_be16_field2();
+    void step_and_send_60();
 };
 
 extern "C" {
@@ -280,11 +286,11 @@ extern s32 lbl_805D3EB0;
 
 void build_6xA4_olga_flow_boss_actions(void* p) {
     OlgaFlowActionMsg *msg = (OlgaFlowActionMsg *)p;
-    msg->command = 0xA4;
+    msg->subcommand = 0xA4;
     msg->size = 5;
 }
-void TBoss6Type1::step_and_send_60() { read_be16_field2(); send_subcommand((u8 *)this); }
-void TBoss6Type1::read_be16_field2() { ((G_ClientIDHeader *)this)->bswap(); }
+void OlgaFlowActionMsg::step_and_send_60() { read_be16_field2(); send_subcommand(this); }
+void OlgaFlowActionMsg::read_be16_field2() { bswap(); }
 int TBoss6PlotFalz::is_idle() { return this->m_374 == 0; }
 void *TBoss6PlotFalz::get_mag_mine_ptr() { return this->unk_388; }
 void TBoss6Type1::clear_harmful_statuses() {  }
@@ -341,8 +347,8 @@ TBoss6Type1::TBoss6Type1(TObject *parent, Boss6Type1Spawn *spawn) : TObjEnemy(pa
     draw_callback_lists[0] = (ModelNodePositionCapture *)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type1_model_node_desc_b), &node_positions_5FC[0]);
     scroll_strips_u.build_tables(boss6_type1_build_table, 2);
     scroll_strips_v.build_tables(lbl_80470EA0, 1);
-    trail_point_receiver = TBoss6Type1::create_zanzo(this, (void *)7, (void *)0xF);
-    effect_point_receiver = TBoss6Type1::create_zanzo(this, (void *)2, (void *)0xF);
+    trail_point_receiver = TBoss6Zanzo::create(this, 7, 0xF);
+    effect_point_receiver = TBoss6Zanzo::create(this, 2, 0xF);
     m_414 = 0;
     m_41c = 0;
     TBoss6Type1__sub_802B96C0(&m_420, &lbl_80470EAC);
@@ -392,7 +398,7 @@ TBoss6Type1::~TBoss6Type1() {
 
 void TBoss6Type1::set_sync_data(void *arg1) {
     OlgaFlowActionMsg *msg = (OlgaFlowActionMsg *)arg1;
-    msg->entity_id = (u16) this->entity_id;
+    msg->client_id = (u16) this->entity_id;
     msg->sync_params[0] = (s8) this->m_438;
     msg->sync_params[1] = (s8) this->m_414;
     msg->sync_params[2] = (s8) (lbl_805DE3EC * ((1.0f / 32768.0f) * (f32) rand()));
@@ -406,30 +412,28 @@ void TBoss6Type1::load_params(void *arg1) {
 }
 
 void TBoss6Type1::send_flow_action_if_idle(TBoss6Type1 *boss6_type1, int action) {
-    typedef char sp8_offset[(offsetof(Stack_802B9204_boss6_1, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_802B9204_boss6_1, spC) == 0x4) ? 1 : -1];
-    Stack_802B9204_boss6_1 stack;
+    OlgaFlowActionMsg msg;
     if (boss6_type1->m_3f8->is_idle() != 0) {
-        build_6xA4_olga_flow_boss_actions(&stack.sp8);
-        boss6_type1->set_sync_data(&stack.sp8);
-        stack.spC = action;
-        ((TBoss6Type1 *)(&stack.sp8))->step_and_send_60();
+        build_6xA4_olga_flow_boss_actions(&msg);
+        boss6_type1->set_sync_data(&msg);
+        msg.flow.action = action;
+        msg.step_and_send_60();
     }
 }
 
 void TBoss6Type1::send_6xA4_action(s32 t, void *args) {
-    Boss6ActionPacket m;
+    OlgaFlowActionMsg m;
     u8 *s;
     s32 i;
     if (this->m_3f8->is_idle() != 0) {
         build_6xA4_olga_flow_boss_actions(&m);
         set_sync_data(&m);
-        m.b[4] = t;
+        m.flow.action = t;
         s = (u8 *)args;
         for (i = 1; i < 4; i++) {
-            m.b[i + 4] = *s++;
+            m.flow.pos.b[i - 1] = *s++;
         }
-        ((TBoss6Type1 *)(&m))->step_and_send_60();
+        m.step_and_send_60();
     }
 }
 
@@ -600,14 +604,14 @@ void handle_6xA4_olga_flow_boss_actions(void *arg) {
     TBoss6Type1 *boss;
     s32 action;
 
-    ((TBoss6Type1 *)msg)->read_be16_field2();
-    boss = (TBoss6Type1 *)get_enemy_entity(msg->entity_id);
+    msg->read_be16_field2();
+    boss = (TBoss6Type1 *)get_enemy_entity(msg->client_id);
     if (boss == NULL) {
         return;
     }
-    ((TBoss6Type1 *)&msg->action)->handle_6xa4_action((u8 *)&boss->m_420);
+    msg->flow.handle_6xa4_action(&boss->m_420.v);
     boss->load_params(msg);
-    action = msg->action;
+    action = msg->flow.action;
     if (action < 0 || action >= 41) {
         return;
     }
@@ -645,7 +649,7 @@ void TBoss6Type1::run_task() {
     update_position();
     update_part_positions();
     update_parts_flags();
-    ((TObjPlayer *)this)->update_collisions();
+    update_collisions();
     submit_cursor_candidate(this, -1);
     add_radar_scaled_marker(&this->node_positions_578[1].v, -0x5DB4, 1, 1, 5.0f);
     sub_802B5CB4();
@@ -693,21 +697,8 @@ void TBoss6Type1::set_action_state(s32 arg1) {
 
 extern "C" {
 
-
-
-struct Boss6TransformWords {
-    u32 word0;
-    f32 word4;
-    f32 word8;
-    f32 wordC;
-    f32 word10;
-    u32 word14;
-    f32 word18;
-};
-
-void TBoss6Type1::copy_transform(void* q) {
-    Boss6TransformWords* dst = (Boss6TransformWords*)this;
-    *dst = *(Boss6TransformWords*)q;
+void Boss6Anim::copy_transform(Boss6Anim *src) {
+    *this = *src;
 }
 
 void *TBoss6Type1::copy_block(void *d, void *s) {
@@ -721,7 +712,7 @@ void TBoss6Type1__sub_802B854C(TBoss6Type1 *self) {
     TBoss6Type1::copy_block(&self->motion_set, &lbl_80470ECC);
     for (i = 0; i < TBoss6Type1__data_805DE3C4; i++) {
         a = &self->anims[i];
-        ((TBoss6Type1 *)a)->copy_transform(lbl_80470F0C);
+        a->copy_transform(&lbl_80470F0C);
         a->motion = a->prev_motion = get_bml_motion(self->m_3fc, TBoss6Type1__motion_set_table[2].ids[i]);
     }
 }
@@ -1669,7 +1660,12 @@ void TBoss6Type1__sub_802B626C(TBoss6Type1 *boss) {
 }
 
 
-void TBoss6Type1::init_parts() { TBoss6Type1::set_part_default_value((int)this, &this->node_positions_578[8].v); TBoss6Type1::set_part_default_value((int)this, &this->node_positions_578[9].v); TBoss6Type1::set_part_default_value((int)this, &this->node_positions_578[10].v); this->update_trail_points(); }
+void TBoss6Type1::init_parts() {
+    set_part_default_value(&node_positions_578[8].v);
+    set_part_default_value(&node_positions_578[9].v);
+    set_part_default_value(&node_positions_578[10].v);
+    update_trail_points();
+}
 
 void TBoss6Type1::update_trail_points() {
     Boss6EffectPoint points[7];
@@ -1691,19 +1687,19 @@ void TBoss6Type1::update_trail_points() {
     subtract_vector(&points[2],&delta);
     vec3_add_to(&points[4],&delta);
     VecCopy(&points[6], &points[0]);
-    ((TBoss6Type1 *)trail_point_receiver)->set_effect_points((f32 *)points, (u32 *)boss6_type1_trail_point_offsets);
+    trail_point_receiver->set_effect_points(points, boss6_type1_trail_point_offsets);
 }
 
 void TBoss6Type1::update_effect_points() {
     Boss6EffectPoint points[2];
     VecCopy(&points[0], &effect_points[0]);
     VecCopy(&points[1], &effect_points[1]);
-    TBoss6Type1::set_part_default_value((int)this, &points[1]);
-    ((TBoss6Type1 *)effect_point_receiver)->set_effect_points((f32 *)points, (u32 *)lbl_80470FAC);
+    set_part_default_value(&points[1]);
+    effect_point_receiver->set_effect_points(points, lbl_80470FAC);
 }
 
-void TBoss6Type1::set_part_default_value(int a0, void* a1) {
-    ((Boss6EffectPoint *)a1)->y = 10.0f;
+void TBoss6Type1::set_part_default_value(Vec *p) {
+    p->y = 10.0f;
 }
 extern "C" {
 
@@ -1945,25 +1941,20 @@ void TBoss6Type1::request_jittered_camera(const Vec *arg1, const Vec *arg2, int 
     }
 }
 
-void TBoss6Type1::decode_polar_position(u8 *arg1) {
-  const s8 *bytes = (const s8 *)this;
-  Vec *out = (Vec *)arg1;
+void Boss6PolarBytes::decode_polar_position(Vec *out) {
   f32 temp_f31;
   f32 temp_f30;
   s32 temp_r31;
-  temp_r31 = bytes[0] << 8;
-  temp_f31 = (f32) (bytes[1] * 0xA);
-  temp_f30 = (f32) (bytes[2] * 0xA);
+  temp_r31 = b[0] << 8;
+  temp_f31 = (f32) (b[1] * 0xA);
+  temp_f30 = (f32) (b[2] * 0xA);
   out->x = (f32) (temp_f31 * sin_table_lookup(temp_r31));
   out->z = (f32) (temp_f31 * cos_table_lookup(temp_r31));
   out->y = temp_f30;
 }
 
-void TBoss6Type1::handle_6xa4_action(u8 * _w1) {
-    // this points at OlgaFlowActionMsg::action; the polar bytes are the next three.
-    struct ActionBytes { s8 action; s8 args[3]; };
-    ActionBytes *bytes = (ActionBytes *)this;
-    ((TBoss6Type1 *)bytes->args)->decode_polar_position(_w1);
+void Boss6FlowAction::handle_6xa4_action(Vec *out) {
+    pos.decode_polar_position(out);
 }
 void TBoss6Type1::calc_grid_cell_position(Vec *out) {
     u32 t = this->m_374;

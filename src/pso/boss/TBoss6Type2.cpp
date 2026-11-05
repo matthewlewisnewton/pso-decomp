@@ -20,6 +20,7 @@
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/boss/TBoss6Rock.h"
 #include "pso/boss/TBoss6Type1.h"
+#include "pso/boss/TBoss6Zanzo.h"
 #include "pso/enemy/TObjEneLappy.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/misc/TLobby.h"
@@ -241,7 +242,6 @@ f32 receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(void *self, vo
 f32 vfunc_23__11TBoss6Type2FPvPvPvll(TBoss6Type2 *self, void *attacker, AttackMsg_802BD430 msg, void *collision, s32 tech, s32 arg5);
 void set_screen_pos__11TBoss6Type2FPv(void *arg0);
 void TBoss6Type2__sub_802BE4E0(s32 *arg0, s32 *arg1);
-s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
 extern u8 lbl_80471068[];
 extern u8 lbl_80471074[];
 extern int TBoss6Type2__initial_actor_flag_masks[];
@@ -3254,7 +3254,7 @@ s32 TBoss6Type2__ct(s32 arg0_, s32 parent, s32 arg2_) {
     ((TBoss6Type2 *)arg0)->init_motion_entries();
     *(s32 *)((s8 *)arg0 + 0x764) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type2_effect_desc_table), (Vec *)((arg0 + 0x59C)));
     ((Boss6ScrollStrips *)(arg0 + 0x768))->build_tables(boss6_type2_plot_falz_entry_table, 2);
-    *(s32 *)((s8 *)arg0 + 0x458) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 7, 0xF);
+    *(TBoss6Zanzo **)((s8 *)arg0 + 0x458) = TBoss6Zanzo::create((TObject *)arg0, 7, 0xF);
     *(s8 *)((s8 *)arg0 + 0x478) = 0;
     *(s32 *)((s8 *)arg0 + 0x47C) = 0x11;
     TBoss6Type2__sub_802BE4E0((s32 *)(arg0 + 0x480), boss6_type2_zero_vec);

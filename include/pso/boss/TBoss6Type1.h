@@ -16,6 +16,7 @@ struct Boss6Anim {
     f32 rate;
     Boss6Motion *prev_motion;
     f32 prev_t;
+    void copy_transform(Boss6Anim *src);
 };
 struct Boss6NodeWords {
     s32 x;
@@ -28,6 +29,7 @@ union Boss6NodePos {
 };
 
 struct TBoss6PlotFalz;
+struct TBoss6Zanzo;
 // The three action bytes send_6xA4_action copies into the 6xA4 packet.
 struct Boss6ActionArgs {
     s8 b0;
@@ -78,8 +80,8 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 hist[32];
     TBoss6PlotFalz *m_3f8;
     s32 m_3fc;
-    void* trail_point_receiver;
-    void* effect_point_receiver;
+    TBoss6Zanzo *trail_point_receiver;
+    TBoss6Zanzo *effect_point_receiver;
     s32 unk_408;
     s32 m_40c;
     s32 action_timer;
@@ -159,8 +161,6 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 pick_random_entry(s32 *table, s32 n);
     int rand_range_inclusive(int lo, int hi);
     s32 pick_remapped_list_value(s32 a, s32 b, s32 n);
-    void handle_6xa4_action(u8 * _w1);
-    void decode_polar_position(u8 *arg1);
     void request_jittered_camera(const Vec *eye, const Vec *target, int id);
     void request_default_jittered_camera();
     u8 is_timer_expired();
@@ -171,7 +171,7 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 check_field4b0_threshold();
     int is_time_up();
     void set_flag_on_threshold();
-    static void set_part_default_value(int a0, void* a1);
+    void set_part_default_value(Vec *p);
     void init_parts();
     void reset_param();
     void decrease_field_clamped_min();
@@ -190,7 +190,6 @@ struct TBoss6Type1 : public TObjEnemy {
     void draw_part_motions();
     void set_motion_set(s32 arg1);
     void advance_animations();
-    void copy_transform(void* q);
     void render_shadows();
     void do_attack();
     void send_6xA4_action(s32 t, void *args);
@@ -199,8 +198,6 @@ struct TBoss6Type1 : public TObjEnemy {
     void load_params(void *arg1);
     void set_sync_data(void *arg1);
     static TBoss6Type1 *create(Boss6Type1Spawn *spawn);
-    void read_be16_field2();
-    void step_and_send_60();
     void enter_flag800_state();
     void update_attack_countdown();
     void update_countdown_state();
@@ -259,9 +256,7 @@ struct TBoss6Type1 : public TObjEnemy {
     void render();
     static void release_object(void *);
     void spawn_map_csn();
-    static void *create_zanzo(void *arg0, void *arg1, void *arg2);
     static void *create_grav_ball(void *arg0, void *arg1);
-    void set_effect_points(f32 *a, u32 *b);
     void spawn_grav_ball();
     void damage_players_in_range();
     void update_beam_attack();
