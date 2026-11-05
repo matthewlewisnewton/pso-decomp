@@ -611,7 +611,7 @@ struct TObjPlayer : public TObjChara {
     s16 get_hp();
     u16 get_section_id();
     void set_field_2(s16 v);
-    void set_type(s16 v);
+    void set_type(u16 v);
     u16 get_entity_type();
     static void destroy_global_buffer();
     static void destroy_buffers();

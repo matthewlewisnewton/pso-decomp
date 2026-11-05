@@ -222,8 +222,7 @@ void clear_photon_blast_donations(void) {
         photon_blast_donation_flags[i] = 0;
     }
 }
-// set_type takes s16. 0xFFFF folds to li r4,-1 and the section id is extsh.
-// The original caller zero-extends both (lis/addi, mr). This is the real call.
+// set_type takes u16. 0xFFFF is the zero-extended immediate, and the section id is mr.
 void admit_photon_blast_sequence(u8 *players, void *self) {
     Slot_801A8868 a[4];
     Slot_801A8868 b[4];
@@ -248,7 +247,7 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
     ((TObjPlayer *)(&b[3]))->init_arrays();
     Counts_801A8868 counts = photon_blast_result_counts_init;
     for (n = 0; n < 4; n++) {
-        ((TObjPlayer *)&b[n])->set_type((s16)0xFFFF);
+        ((TObjPlayer *)&b[n])->set_type(0xFFFF);
         ((TObjPlayer *)(&b[n]))->set_field_2(-1);
     }
     n = 0;
@@ -263,7 +262,7 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
         }
     }
     for (i = n; i < 4; i++) {
-        ((TObjPlayer *)&a[i])->set_type((s16)0xFFFF);
+        ((TObjPlayer *)&a[i])->set_type(0xFFFF);
         ((TObjPlayer *)(&a[i]))->set_field_2(-1);
     }
     for (m = 0; m < 4; m++) {
