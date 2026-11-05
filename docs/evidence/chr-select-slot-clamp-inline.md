@@ -21,33 +21,38 @@ swapped (objdiff 99.15254%, nine argument mismatches). MWCC numbers named
 locals below its own temporaries and colours the hoisted row first, so the
 row takes `r7`.
 
-## Flag that matches
+## Flag
 
 The clamp is `static inline clamped_slot_802C5F1C` (placeholder; it has no
-symbol). `idx` is declared before `cnt`, and the caller reads the home float
-before the call. Under `-inline on` those locals are temporaries created
-before the hoist, so the row lands in `r8`. The helper is not emitted
-out of line. `.text` stays 6100 bytes of compiled code against the original
-7288 (the two unmatched slot routines are still not in this TU).
+symbol). Under `-inline on` the clamp locals are temporaries created before
+the hoisted row, so the row stays in `r8` and the cell in `r7`. The helper
+is not emitted out of line.
+
+The cell stores are written directly. `a` is the slot scale, used for `v0`
+and again in the `v1` sum. `v1` is `(lbl_805DE588 + a) * scale`. That product
+is `fmuls f0,f3,f0`; the original is `fmuls f0,f0,f3`. Objdiff scores the
+function 99.830505% (236 bytes). Every other instruction matches. A named
+sum restores that operand order and is a single-use local, so the expression
+stays inline.
 
 The unit's `configure.py` entry replaces `-inline off` with `-inline on`.
-Checked against the original object, instruction by instruction, and against
-the data sections:
+Retested on this source:
 
 | Flag | `sub_802C5F1C` | Other functions that were already exact | Kept |
 |---|---|---|---|
-| `-inline off` | real call, 332 bytes | unchanged | no |
-| `-inline auto` | exact | seven grow (`update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788, `sub_802C65C0` 160→212, `reset_slot_selections` 88→132, `find_active_slot` 96→148, `update_selection` 668→1300) | no |
-| `-inline auto,deferred` | exact | thirteen change, including the seven above | no |
-| `-inline all` (`on` + `auto`) | exact | same seven as `auto` | no |
-| `-inline deferred` | each body exact | function order reversed (`update_selection` emitted first) | no |
-| `-inline noauto` | exact | unchanged; object identical to `-inline on` | same result as `on` |
-| `-inline on` | exact | all 32 unchanged; `.data` / `.rodata` / `.sdata2` unchanged | yes |
+| `-inline off` | real call, 332 bytes, 42.79518% | the extra `clamped_slot_802C5F1C` symbol is emitted | no |
+| `-inline auto` | 99.830505% (236) | `update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788 | no |
+| `-inline on` | 99.830505% (236) | the other compiled functions stay exact | yes |
 
-`-inline auto` is the smaller request in other projects, and it does make
-this function exact, but it does not leave the rest of the unit identical.
-`-inline on` inlines only functions marked `inline`. Nothing else in this
-file is marked `inline`. Precedent for that switch:
+`-inline all`, `-inline deferred`, `-inline noauto`, and `-inline auto,deferred`
+were measured on the previous body. `all` and `auto,deferred` inline the same
+extra functions as `auto`. `deferred` reverses emission order. `noauto`
+matched `-inline on`. They are not used on this source.
+
+`-inline auto` is the smaller request in other projects. On this source it
+leaves the commuted `fmuls` and inlines functions that are not marked
+`inline`. `-inline on` inlines only the helper. Nothing else in this file
+is marked `inline`. Precedent for that switch:
 <https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264>.
 The `auto` spelling that was tried first:
 <https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203>.

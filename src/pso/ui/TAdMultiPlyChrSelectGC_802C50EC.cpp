@@ -547,8 +547,7 @@ void TAdMultiPlyChrSelectGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 dep
 }
 
 
-/* Inlined clamp. idx is declared before cnt, and the caller reads uu first,
-   so the hoisted row is allocated after the clamp. No symbol of its own. */
+/* Active player slot, clamped to 3. Inlined; the original has no separate function. */
 static inline s32 clamped_slot_802C5F1C() {
     s32 idx = 3;
     s32 cnt = TAdMultiPlyChrSelectGC__data_805D67D8;
@@ -562,23 +561,19 @@ void TAdMultiPlyChrSelectGC__sub_802C5F1C(S_802C6008 *self, int) {
     u32 i;
     u32 j;
     s32 idx;
-    f32 uu;
     f32 a;
-    f32 b;
 
-    /* Per-player 4x3 grid of selection quads: cell texture coords scale the shared
-       (u,v) page, with the active-slot column clamped to 3. The int is the old
-       f1C the callers pass; this body does not read it. Nothing writes r3. */
+    /* Per-player 4x3 grid of selection quads. Cell texture coords scale the shared
+       (u,v) page by the active slot, clamped to 3. The int is the old f1C the
+       callers pass; this body does not read it. Nothing writes r3. */
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
-            uu = TAdMultiPlyChrSelectGC__data_805DE56C;
             idx = clamped_slot_802C5F1C();
-            self->quad[i][j].u0 = uu;
+            self->quad[i][j].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
             a = lbl_805DE588 * (f32)idx;
-            b = lbl_805DE588 + a;
             self->quad[i][j].v0 = a * TAdMultiPlyChrSelectGC__data_805DE584;
             self->quad[i][j].u1 = lbl_805DE58C;
-            self->quad[i][j].v1 = b * TAdMultiPlyChrSelectGC__data_805DE584;
+            self->quad[i][j].v1 = (lbl_805DE588 + a) * TAdMultiPlyChrSelectGC__data_805DE584;
         }
     }
 
