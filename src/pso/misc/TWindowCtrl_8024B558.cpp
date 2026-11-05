@@ -23,7 +23,7 @@ s32 TWindowCtrl::open(s32 arg0, s32 arg1, s32 arg2) {
     if (temp_r3 == 0) {
         return 0;
     }
-    set_text__15TWindowFukidasiFPvii((u8 *)temp_r3, arg1, arg2);
+    set_text__15TWindowFukidasiFPvii((TUnk_804CF0B8 *)temp_r3, arg1, arg2);
     return temp_r3;
 }
 

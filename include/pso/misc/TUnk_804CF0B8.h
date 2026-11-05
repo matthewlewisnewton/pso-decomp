@@ -22,7 +22,10 @@ public:
     void place_rect_at_head_or_slot();
     void sub_802504A8();
     void calc_text_size(f32 *);
+    void sync_display_pos();
+    s32 approach(f32 target);
     virtual void render();
+    virtual void run_task();
     void clear_flag();
     s16 get_field_20();
     int get_flag_bit1();
@@ -41,7 +44,7 @@ public:
     f32 m_60;
     f32 m_64;
     u8 unk_68[0x8];
-    s8 m_70;
+    u8 m_70;
     u8 m_71;
     u8 m_72;
     s8 m_73;
