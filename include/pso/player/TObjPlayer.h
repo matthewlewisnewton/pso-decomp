@@ -104,7 +104,7 @@ struct TObjPlayer : public TObjChara {
         u8 bindings[2][4][4];
     };
 
-    u32 find_revival_item();
+    TItemList *find_revival_item();
     void request_inventory_item(TItemData* item);
     ActionPalette* select_action_palette(int secondary);
     s32 add_meseta(s32 amount);
@@ -964,13 +964,7 @@ struct TObjPlayer : public TObjChara {
     int is_flag32_clear();
     int get_field_340(int _w1);
     static int check_status_flag_128(void* p);
-    int run_and_get_result(int a1);
-    int run_state_query(int a1);
-    s32 update_inventory_item(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
-    void find_first_inventory_entry(int a1);
-    void destroy_subobjects(int a1);
-    void destroy_subobjects_recursive();
-    TItemList *start_inventory_update(int a1);
+    void unequip_item(TItem *item);
     static s32 decrement_timer(s32 *arg0);
     static void reset_particle_ctrl(s32 *arg0);
     void*init_sub_objects();
@@ -1497,10 +1491,6 @@ struct TObjPlayer : public TObjChara {
     static s32 try_camera_action(s32 arg0, s32 arg1);
     void bswap_entry_list();
     void reset_movement_state();
-    int count_matching_items(int a1);
-    int apply_shop_judgment(int a1);
-    void set_flag_and_update(int a1);
-    s32 count_items_by_id(s32 arg1);
     static void update_party_cursors(s32 arg0, s32 arg1);
     void init_action_config();
     s32 can_use_palette_action_for_entry(u32 obj);

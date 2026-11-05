@@ -3,13 +3,15 @@
 
 #include "types.h"
 
+class TPlyItem;
+
 extern "C" {
-void *TPlyItem__ct(void *ply_item);
+void *TPlyItem__ct(TPlyItem *ply_item);
 }
 
 // --- C functions defined in TPlyItem.cpp ---
 extern "C" {
-void *TPlyItem__ct(void *ply_item);
+void *TPlyItem__ct(TPlyItem *ply_item);
 }
 // --- end of C functions
 

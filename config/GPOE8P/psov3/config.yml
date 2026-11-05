@@ -4899,7 +4899,7 @@ force_active:
   - destroy_parts__13TBoss5GryphonFv
   - destroy_static_array__10TObjPlayerFv
   - destroy_sub_objects__15TBoss3VoloptP02Fv
-  - destroy_subobjects_recursive__10TObjPlayerFv
+  - destroy_subobjects_recursive__9TItemListFv
   - detect_device_type__16TKeyBoardControlFl
   - dimedian_action_table
   - dimedian_appear_motion_filename
@@ -13217,7 +13217,7 @@ force_active:
   - remove_duplicate_bindings__21TWindowSubCustomEquipFPv
   - remove_entry_at__6TLobbyFi
   - remove_equip_effects__14TItemEquipBaseFv
-  - remove_equipped_item__8TPlyItemFPvP9TItemList
+  - remove_equipped_item__8TPlyItemFP10TObjPlayerP9TItemList
   - remove_owner_bonuses__12TItemProUnitFv
   - remove_player__6TLobbyFUiii
   - render__10TAdADXlogoFv

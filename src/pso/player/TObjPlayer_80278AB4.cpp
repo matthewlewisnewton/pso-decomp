@@ -3,6 +3,7 @@
 #include "pso/misc/TShopJudgmentItemWindow.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TPlyItem.h"
 
 extern "C" {
 
@@ -25,7 +26,7 @@ void TObjPlayer::build_shop_item_list() {
 
     player = (u8 *)get_player_by_client_id(*(s16 *)&this->m_20);
     if (player != NULL) {
-        temp_r30 = ((TObjPlayer *)(*(s32 *)((s8 *)player + 0xD00)))->run_and_get_result((int)spC);
+        temp_r30 = ((TObjPlayer *)player)->inventory_objects->run_and_get_result(spC);
         for (i = 0; i < temp_r30; i++) {
             temp_r3_2 = (s32)find_item_by_id(spC[i]);
             if ((temp_r3_2 != 0) && (get_item_type__5TItemFv() == 0) && (check_equip_requirements__5TItemFP10TObjPlayerPs(temp_r3_2, player, &sp8) != 0) && (((TItem *)temp_r3_2)->test_item_flags(8) == 0U) && (((TItem *)temp_r3_2)->get_usable_action_flags(8, 0) != 0U)) {

@@ -31,13 +31,13 @@ void __ct__7TObjectFP7TObject(void *);
 extern s32 __vt__8TPlyItem[];
 extern void *TPlyItem_name_ref;
 
-void *TPlyItem__ct(void *ply_item) {
+void *TPlyItem__ct(TPlyItem *ply_item) {
     __ct__7TObjectFP7TObject(ply_item);
     *(s32 **)((s8 *)ply_item + 0x18) = __vt__8TPlyItem;
     ((TItemList *)((char *)ply_item + 32))->init_items();
-    *(void * *)&((TPlyItem *)ply_item)->m_name = TPlyItem_name_ref;
-    ((TPlyItem *)ply_item)->item_count = 0;
-    ((TPlyItem *)ply_item)->unk_1E = 0;
+    *(void * *)&ply_item->m_name = TPlyItem_name_ref;
+    ply_item->item_count = 0;
+    ply_item->unk_1E = 0;
     return ply_item;
 }
 

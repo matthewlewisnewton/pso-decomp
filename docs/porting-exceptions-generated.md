@@ -74,7 +74,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:43` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:44` | `__rlwinm` |
 | `src/pso/misc/TWindowSubComCard_80244774.cpp:229` | `__cntlzw` |
-| `src/pso/misc/TWindowSubItem.cpp:361` | `__cntlzw` |
+| `src/pso/misc/TWindowSubItem.cpp:362` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
 | `src/pso/object/TObjCMMainMenu_8028D9A8.cpp:108` | `__cntlzw` |
@@ -85,8 +85,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/player/TObjPlayer_80011014.cpp:4906` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:350` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:2679` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:5217` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:2672` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:5210` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:95` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:116` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |

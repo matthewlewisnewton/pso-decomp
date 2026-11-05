@@ -31,6 +31,7 @@ public:
     void count_items_recursive();
     TItemList *find_inventory_item_matching_data();
     TItemList *find_inventory_item_by_field_d8();
+    void destroy_subobjects_recursive();
 public:
     static s32 is_item_valid(TItemList *node);
     void reduce_owner_matched_items();

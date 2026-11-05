@@ -18,6 +18,7 @@
 #include "pso/misc/TWindowSubMag.h"
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TPlyItem.h"
 #include "pso/ui/Language.h"
 
 struct Base_802205E4 { char pad[0x18]; };
@@ -591,7 +592,7 @@ s32 TShopJudgmentItemWindow::build_item_list(void *arg0) {
     s32 j;
     s32 k;
     memset(W->ents, 0, 0xF0);
-    n = ((TObjPlayer *)(*(s32 *)(W->player + 0xD00)))->apply_shop_judgment((int)items);
+    n = ((TObjPlayer *)W->player)->inventory_objects->apply_shop_judgment((int)items);
     W->count = 0;
     for (i = 0; i < n; i++) {
         it = items[i];

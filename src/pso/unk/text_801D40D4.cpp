@@ -10,6 +10,7 @@
 #include "pso/unk/text_801D40D4.h"
 #include "pso/system/memory.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TPlyItem.h"
 #include "pso/item/TItemProShield.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
@@ -19,10 +20,7 @@ struct Rec_801D40D4 {
     s8 mode;
     u8 pad1[3];
     s32 flags;
-    union {
-        u8 type;
-        TItemData data;
-    } item;
+    TItemData item;
 };
 typedef char Rec_801D40D4_size[(sizeof(Rec_801D40D4) == 0x1C) ? 1 : -1];
 typedef char Rec_801D40D4_flags[(offsetof(Rec_801D40D4, flags) == 4) ? 1 : -1];
@@ -74,7 +72,6 @@ typedef char PlyItem_801D4368_count[(offsetof(PlyItem_801D4368, item_count) == 0
 typedef char PlyItem_801D4368_list[(offsetof(PlyItem_801D4368, item_list) == 0x1C4) ? 1 : -1];
 
 extern "C" {
-u8 get_item_type__5TItemFv(void *, int);
 s32 is_item_equipped(void *, int);
 u8 *get_ptr_4__10TObjPlayerFv();
 s32 __construct_new_array(void *, void *, int, int, int);
@@ -90,10 +87,10 @@ s32 fn_801D40D4(s32 arg0, Rec_801D40D4 *arg1, u8 *arg2) {
     s32 i;
     for (i = 0; i < arg0; i++) {
         if (arg1->flags & 8) {
-            if (arg1->item.type == 0) {
+            if (arg1->item.data1.data_u8[0] == 0) {
                 fn_801C1BA8(arg2, arg1);
             }
-            if (arg1->item.type == 2) {
+            if (arg1->item.data1.data_u8[0] == 2) {
                 fn_801C1BA8(arg2 + 0x1C, arg1);
             }
         }
@@ -156,7 +153,7 @@ int reset(void* p) { return memset(p, 0, 28); }
 
 s32 TItem::export_inventory_entry(void *dest) {
     Rec_801D40D4 *rec = (Rec_801D40D4 *)dest;
-    if (copy_to_item_data(&rec->item.data) != 0) {
+    if (copy_to_item_data(&rec->item) != 0) {
         rec->mode = get_mode();
         rec->flags = get_item_flags();
         return 1;
@@ -259,9 +256,9 @@ void TObjPlayer__sub_801D45B0(s32 *arg0, TItem *arg1) {
     s32 temp_r4;
     u8 player;
     *arg0 = 0;
-    temp_r4 = get_item_type__5TItemFv(arg1, (int)arg1) << 0x19;
+    temp_r4 = arg1->get_item_type() << 0x19;
     *arg0 |= temp_r4;
-    if (get_item_type__5TItemFv(arg1, (int)temp_r4) == 1) {
+    if (arg1->get_item_type() == 1) {
         *arg0 |= (arg1->get_item_group() << 0x11) & 0x01FE0000;
     } else {
         *arg0 |= (arg1->get_item_group() << 8) & 0xFF00;
@@ -319,7 +316,7 @@ void List_801D4744::sort_by_key() {
 }
 
 void TObjPlayer__sub_801D47D8(void* p, void* q) { *(u32*)((char*)p + 0x0) = *(u32*)((char*)q + 0x0); *(u32*)((char*)p + 0x4) = *(u32*)((char*)q + 0x4); }
-s32 TObjPlayer__sub_801D47EC(TObjPlayer *arg0, s32 arg1, s32 arg2) {
+s32 TObjPlayer__sub_801D47EC(TPlyItem *arg0, s32 arg1, s32 arg2) {
     TItemList *temp_r3;
     TItemList *temp_r3_2;
     TItem *temp_r3_3;

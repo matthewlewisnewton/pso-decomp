@@ -49,20 +49,18 @@ struct V_A_801d48f8 : Base_A_801d48f8 {
 };
 
 extern "C" {
-TItemList *start_inventory_update__10TObjPlayerFi(void *, s32);
-s32 TObjPlayer__sub_801D49F4(TPlyItem *player, void *arg1, s32 *arg2, s32 arg3);
+s32 TObjPlayer__sub_801D49F4(TPlyItem *player, TObjPlayer *arg1, s32 *arg2, s32 arg3);
 s32 place_on_ground__5TItemFsPfl(void *, s16, s32, s32);
-void unequip_item__10TObjPlayerFiPv(s32 arg0, void *arg1);
 s32 is_item_equipped(void *);
 
-    extern int TObjPlayer__owner_field_write_cursor;
+    extern void *TObjPlayer__owner_field_write_cursor;
     extern int inventory_walk_visit_count;
-int TObjPlayer::run_and_get_result(int a1) { TObjPlayer__owner_field_write_cursor = a1; inventory_walk_visit_count = 0; ((TItemList *)(*(int *)&this->unk_1C4))->collect_owner_fields_recursive(); return inventory_walk_visit_count; }
+int TPlyItem::run_and_get_result(void *a1) { TObjPlayer__owner_field_write_cursor = a1; inventory_walk_visit_count = 0; item_list->collect_owner_fields_recursive(); return inventory_walk_visit_count; }
 
-    extern int owned_item_export_cursor;
-int TObjPlayer::run_state_query(int a1) { owned_item_export_cursor = a1; inventory_walk_visit_count = 0; ((TItemList *)(*(int *)&this->unk_1C4))->count_owned_items(); return inventory_walk_visit_count; }
+    extern void *owned_item_export_cursor;
+int TPlyItem::run_state_query(void *a1) { owned_item_export_cursor = a1; inventory_walk_visit_count = 0; item_list->count_owned_items(); return inventory_walk_visit_count; }
 
-s32 TObjPlayer::update_inventory_item(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 client) {
+s32 TPlyItem::update_inventory_item(TObjPlayer *player, s32 arg2, s32 arg3, s32 arg4, s32 client) {
     s16 temp_r4;
     TItem *temp_r3_2;
     TItemList *temp_r3;
@@ -70,7 +68,7 @@ s32 TObjPlayer::update_inventory_item(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s3
     if (arg4 < 0) {
         return 0;
     }
-    temp_r3 = start_inventory_update__10TObjPlayerFi(this, arg2);
+    temp_r3 = start_inventory_update(arg2);
     if (temp_r3 == NULL) {
         return 0;
     }
@@ -83,20 +81,20 @@ s32 TObjPlayer::update_inventory_item(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s3
         return 1;
     }
     if (is_item_equipped(temp_r3_2) != 0) {
-        unequip_item__10TObjPlayerFiPv(arg1, temp_r3_2);
+        player->unequip_item(temp_r3_2);
     }
-    *(s16 *)((s8 *)temp_r3_2 + 0x28) = ((TObjBase *)arg1)->get_room();
+    *(s16 *)((s8 *)temp_r3_2 + 0x28) = player->get_room();
     place_on_ground__5TItemFsPfl(temp_r3_2, client, arg3, 0);
-    temp_r4 = *(s16 *)&this->entity_id;
-    *(s16 *)&this->entity_id = (temp_r4 - 1);
+    temp_r4 = item_count;
+    item_count = temp_r4 - 1;
     temp_r3->queue_destruction();
     return 1;
 }
-s32 TObjPlayer__sub_801D49F4(TPlyItem *player, void *arg1, s32 *arg2, s32 arg3) {
+s32 TObjPlayer__sub_801D49F4(TPlyItem *player, TObjPlayer *arg1, s32 *arg2, s32 arg3) {
     s32 i;
     TItemList *r;
     for (i = 0; i < arg3; arg2++, i++) {
-        r = start_inventory_update__10TObjPlayerFi(player, *arg2);
+        r = player->start_inventory_update(*arg2);
         if (r == NULL) {
             return 0;
         }
@@ -139,14 +137,14 @@ struct VObj_801D4A6C : Base_801D4A6C {
     virtual void m27(s16);
 };
 
-void TPlyItem::remove_equipped_item(void *arg1, TItemList *arg2) {
+void TPlyItem::remove_equipped_item(TObjPlayer *arg1, TItemList *arg2) {
     s16 temp_r4;
     TItem *temp_r3;
 
     temp_r3 = arg2->get_owner_if_alive();
     if (temp_r3 != NULL) {
         if (((s32 (*)()) is_item_equipped)() != 0) {
-            unequip_item__10TObjPlayerFiPv((s32)arg1, temp_r3);
+            arg1->unequip_item(temp_r3);
         }
         temp_r4 = item_count;
         item_count = temp_r4 - 1;

@@ -1,17 +1,19 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_801D4CB8.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/TItemList.h"
+#include "pso/TPlyItem.h"
 
     extern s32 inventory_walk_visit_count;
     extern s32 player_owner_collect_cursor;
-int TObjPlayer::count_matching_items(int a1) { player_owner_collect_cursor = a1; inventory_walk_visit_count = 0; ((TItemList *)(*(int *)&this->unk_1C4))->collect_item_owners_recursive(); return inventory_walk_visit_count; }
+int TPlyItem::count_matching_items(int a1) { player_owner_collect_cursor = a1; inventory_walk_visit_count = 0; item_list->collect_item_owners_recursive(); return inventory_walk_visit_count; }
 
-int TObjPlayer::apply_shop_judgment(int a1) { player_owner_collect_cursor = a1; inventory_walk_visit_count = 0; ((TItemList *)(*(int *)&this->unk_1C4))->collect_alive_owners(); return inventory_walk_visit_count; }
+int TPlyItem::apply_shop_judgment(int a1) { player_owner_collect_cursor = a1; inventory_walk_visit_count = 0; item_list->collect_alive_owners(); return inventory_walk_visit_count; }
 
-    extern s32 item_reduce_target_player;
-void TObjPlayer::set_flag_and_update(int a1) { item_reduce_target_player = a1; ((TItemList *)(*(int *)&this->unk_1C4))->unequip_invalid_items_recursive(); }
+    extern void *item_reduce_target_player;
+void TPlyItem::set_flag_and_update(void *a1) { item_reduce_target_player = a1; item_list->unequip_invalid_items_recursive(); }
 
 struct Base_801D4D48 { char pad[0x18]; };
 struct VObj_801D4D48 : Base_801D4D48 {
@@ -28,12 +30,12 @@ s32 all_parents_unqueued_for_destruction__7TObjectFv();
 
 extern s32 inventory_search_item_data;
 
-s32 TObjPlayer::count_items_by_id(s32 arg1) {
+s32 TPlyItem::count_items_by_id(s32 arg1) {
     void *temp_r3;
     TItemList *slot;
 
     if (lookup_item_def__9TItemDataFPv(arg1) != 0) {
-        slot = (TItemList *)((u32 (*)(void *, s32))set_mode_and_refresh_object__10TObjPlayerFPvi)(this, arg1);
+        slot = set_mode_and_refresh_object((void *)arg1);
         if (slot != NULL) {
             temp_r3 = slot->get_owner_if_alive();
             if ((temp_r3 != NULL) && (all_parents_unqueued_for_destruction__7TObjectFv() != 0)) {
@@ -44,18 +46,11 @@ s32 TObjPlayer::count_items_by_id(s32 arg1) {
     }
     inventory_search_item_data = arg1;
     inventory_walk_visit_count = 0;
-    ((TItemList *)(*(s32 *)&this->unk_1C4))->count_items_recursive();
+    item_list->count_items_recursive();
     return inventory_walk_visit_count;
 }
 
 }
-
-#include "pso/TObject.h"
-
-// This walk's receiver is TObjPlayer, so TItemList::link_down is not in
-// scope. Same class-body inline, folded to lwz under -inline noauto.
-template<class Node>
-inline Node *typed_down(TObject *self) { return static_cast<Node *>(self->m_down); }
 
 struct VB_801D4E94 { u8 pad[0x18]; };
 
@@ -70,21 +65,21 @@ struct V_801D4E94 : VB_801D4E94 {
 };
 
 extern "C" {
-int find_matching_inventory_item_node(void*);
+TItemList *find_matching_inventory_item_node(TItemList *);
 
-void TObjPlayer::find_first_inventory_entry(int a1) { inventory_search_item_data = a1; ((TItemList *)(*(int *)&this->unk_1C4))->find_inventory_item_matching_data(); }
+TItemList *TPlyItem::find_first_inventory_entry(void *a1) { inventory_search_item_data = (s32)a1; return item_list->find_inventory_item_matching_data(); }
 
-void set_mode_and_refresh_object__10TObjPlayerFPvi(void* a0, int a1) { inventory_search_item_data = a1; find_matching_inventory_item_node((void*)(*(int*)((char*)a0 + 0x1c4))); }
+TItemList *TPlyItem::set_mode_and_refresh_object(void *a1) { inventory_search_item_data = (s32)a1; return find_matching_inventory_item_node(item_list); }
 
     extern s32 inventory_walk_progress_count;
-void TObjPlayer::destroy_subobjects(int a1) { item_reduce_target_player = a1; inventory_walk_progress_count = 0; ((TObjPlayer *)(*(int *)&this->unk_1C4))->destroy_subobjects_recursive(); queue_destruction__7TObjectFv((void *)(*(int *)&this->unk_1C4)); ((TObject *)(this->m_1c8))->run_tasks(); ((TObject *)(this->m_1c8))->run_tasks(); queue_destruction__7TObjectFv((void *)this->m_1c8); }
+void TPlyItem::destroy_subobjects(void *a1) { item_reduce_target_player = a1; inventory_walk_progress_count = 0; item_list->destroy_subobjects_recursive(); item_list->queue_destruction(); unk_1C8->run_tasks(); unk_1C8->run_tasks(); unk_1C8->queue_destruction(); }
 
     extern s32 inventory_update_field_d8_key;
 
-void TObjPlayer::destroy_subobjects_recursive() {
+void TItemList::destroy_subobjects_recursive() {
     TItemList *p;
     V_801D4E94 *o;
-    p = typed_down<TItemList>(this);
+    p = link_down();
     while (p != NULL) {
         if (TItemList::is_item_valid(p) != 0) {
             o = (V_801D4E94 *)p->get_owner_if_alive();
@@ -92,15 +87,15 @@ void TObjPlayer::destroy_subobjects_recursive() {
                 o->m27();
             }
         }
-        ((TObjPlayer *)p)->destroy_subobjects_recursive();
+        p->destroy_subobjects_recursive();
         p = p->link_next();
     }
 }
 
-TItemList *TObjPlayer::start_inventory_update(int a1) {
+TItemList *TPlyItem::start_inventory_update(int a1) {
     inventory_update_field_d8_key = a1;
     inventory_walk_progress_count = 0;
-    return ((TItemList *)(*(int *)&this->unk_1C4))->find_inventory_item_by_field_d8();
+    return item_list->find_inventory_item_by_field_d8();
 }
 
 }

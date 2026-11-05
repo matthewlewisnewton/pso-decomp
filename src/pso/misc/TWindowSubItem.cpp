@@ -10,6 +10,7 @@
 #include "pso/misc/TUnk_804D0618.h"
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/item/TItem.h"
+#include "pso/TPlyItem.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TOSwitchItem.h"
 #include "pso/misc/TShopEquipmentSellWindow.h"
@@ -132,7 +133,7 @@ struct En_8027AB10 { u16 flags; u8 pad2[0x2A]; u32 c2c; u32 c30; u32 c34; };
 
 struct Wn_8027AB10 { u8 pad0[0x76]; s16 f76; };
 struct Quest_8027ABFC { u8 pad[0x20]; s32 count; };
-struct Player_8027ABFC { u8 pad[0xD00]; s32 inv; };
+struct Player_8027ABFC { u8 pad[0xD00]; TPlyItem *inv; };
 struct Win_8027ABFC { u8 pad0[0x20]; s16 id; u8 pad1[0x72 - 0x22]; s16 sel; u8 pad2[0x8C - 0x74]; u32 n; };
 
 void calc_list_content_extent(void *);
@@ -792,7 +793,7 @@ void populate_sub_item_list(Win_8027ABFC *arg0) {
 
     pl = (Player_8027ABFC *)get_player_by_client_id(arg0->id);
     if (pl != NULL) {
-        arg0->n = ((TObjPlayer *)(pl->inv))->run_and_get_result((int)ids);
+        arg0->n = pl->inv->run_and_get_result(ids);
         for (i = 0; i < arg0->n; i++) {
             it = find_item_by_id(ids[i]);
             if (it != NULL) {

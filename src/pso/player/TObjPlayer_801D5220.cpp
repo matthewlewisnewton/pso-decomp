@@ -10,16 +10,20 @@ extern "C" {
 s32 item_identity_matches(void *arg0, void *arg1);
 extern u8 *inventory_search_item_data;
 TItemList *find_matching_inventory_item_node(TItemList *root);
-s32 is_at_tekker__5TItemFv();
 extern s32 inventory_walk_visit_count;
 extern TItem **player_owner_collect_cursor;
 s32 is_item_equipped();
-extern u8 *player_item_collect_cursor;
 void TObjPlayer__sub_801D52A8(TItemList *arg0);
-void unequip_item__10TObjPlayerFiPv(s32 arg0, void *arg1);
-s32 get_slot_value__10TObjPlayerFPvi(s32 *arg0, s32 arg1);
 }
-extern s32 item_reduce_target_player;
+extern TObjPlayer *item_reduce_target_player;
+
+struct Collected_801D52A8 {
+    s8 mode;
+    u8 pad[3];
+    s32 id;
+    TItemData data;
+};
+extern Collected_801D52A8 *player_item_collect_cursor;
 s32 compare_item_data_masked(void *arg0, void *arg1, s32 arg2);
 extern s32 inventory_update_field_d8_key;
 extern s32 inventory_walk_progress_count;
@@ -49,9 +53,9 @@ void TObjPlayer__sub_801D52A8(TItemList *arg0) {
         if (TItemList::is_item_valid(n) != 0) {
             o = n->get_owner_if_alive();
             if ((o != NULL) && (is_item_equipped() != 0) && (o->get_item_type() == 0)) {
-                o->copy_to_item_data((TItemData *)(player_item_collect_cursor + 8));
-                *(s32 *)(player_item_collect_cursor + 4) = o->get_item_id();
-                player_item_collect_cursor += 0x1C;
+                o->copy_to_item_data(&player_item_collect_cursor->data);
+                player_item_collect_cursor->id = o->get_item_id();
+                player_item_collect_cursor += 1;
                 inventory_walk_visit_count += 1;
             }
         }
@@ -65,7 +69,7 @@ void TItemList::collect_item_owners_recursive() {
     for (n = link_down(); n != NULL; n = n->link_next()) {
         if (TItemList::is_item_valid(n) != 0) {
             o = n->get_owner_if_alive();
-            if ((o != NULL) && (is_at_tekker__5TItemFv() == 0)) {
+            if ((o != NULL) && (o->is_at_tekker() == 0)) {
                 *player_owner_collect_cursor = o;
                 player_owner_collect_cursor += 1;
                 inventory_walk_visit_count += 1;
@@ -101,8 +105,8 @@ void TItemList::unequip_invalid_items_recursive() {
         if (TItemList::is_item_valid(n) != 0) {
             o = n->get_owner_if_alive();
             if ((o != NULL) && (is_item_equipped() != 0) && (o->is_unit() == 0) &&
-                (get_slot_value__10TObjPlayerFPvi((s32 *)(item_reduce_target_player + 0xD04), o->get_attach_slot()) != 0U)) {
-                unequip_item__10TObjPlayerFiPv(item_reduce_target_player, o);
+                (TObjPlayer::get_slot_value(item_reduce_target_player->equipped_items, o->get_attach_slot()) != 0U)) {
+                item_reduce_target_player->unequip_item(o);
             }
         }
         n->unequip_invalid_items_recursive();

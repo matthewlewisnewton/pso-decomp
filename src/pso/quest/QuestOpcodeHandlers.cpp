@@ -51,6 +51,7 @@ int qst_label_address(int label);
 #include "pso/TObject.h"
 #include "pso/object/TQuestDamageTask.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TPlyItem.h"
 #include "pso/boss/TBoss1Dragon.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/ui/Language.h"
@@ -1115,7 +1116,7 @@ struct Item_801EE77C {
 
 struct Player_801EE77C {
     u8 pad[0xD00];
-    void *fD00;
+    TPlyItem *fD00;
 };
 
 struct Item_801EEE68 {
@@ -1527,8 +1528,6 @@ void init_battle_ctrl__6TLobbyFii(s32, s32);
 void request_player_size_restore(PlayerScaleState *state);
 void request_player_shrink(PlayerScaleState *state);
 Vec_801ECFDC * TObjPlayer__sub_801C6FDC(void *);
-TItemList * set_mode_and_refresh_object__10TObjPlayerFPvi(void *, Item_801EE77C *);
-TItemList * start_inventory_update__10TObjPlayerFi(void *, s32);
 s32 fn_801DA140(int, int, int);
 void* __ct__13TQuestBgmCtrlFP7TObject(void*, TObject *);
 void qst_op_item_create_multi_cm(u8 i);
@@ -4960,7 +4959,7 @@ void qst_op_find_inventory_item_ex(u8 arg0, u8 arg1) {
         item.data[1] = qst_registers[(u8)arg0++];
         item.data[2] = qst_registers[(u8)arg0++];
         item.data[4] = qst_registers[(u8)arg0];
-        slot = set_mode_and_refresh_object__10TObjPlayerFPvi(player->fD00, &item);
+        slot = player->fD00->set_mode_and_refresh_object(&item);
         if (slot != NULL) {
             owner = slot->get_owner_if_alive();
             if (owner != NULL) {
@@ -4988,7 +4987,7 @@ void qst_op_item_check(u32 first, u32 destination) {
         item.data[0] = qst_registers[(u8)first++];
         item.data[1] = qst_registers[(u8)first++];
         item.data[2] = qst_registers[(u8)first];
-        slot = set_mode_and_refresh_object__10TObjPlayerFPvi(*(void **)((s8 *)player + 0xD00), &item);
+        slot = ((TObjPlayer *)player)->inventory_objects->set_mode_and_refresh_object(&item);
         if (slot != 0) {
             owner = slot->get_owner_if_alive();
             if (owner != 0) {
@@ -5018,7 +5017,7 @@ void qst_op_item_delete2(u32 src, u32 dst) {
         item.data[0] = qst_registers[(u8)src++];
         item.data[1] = qst_registers[(u8)src++];
         item.data[2] = qst_registers[(u8)src];
-        slot = set_mode_and_refresh_object__10TObjPlayerFPvi(*(void **)((s8 *)player + 0xD00), &item);
+        slot = ((TObjPlayer *)player)->inventory_objects->set_mode_and_refresh_object(&item);
         if (slot != 0) {
             owner = slot->get_owner_if_alive();
             if (owner != 0) {
@@ -5057,7 +5056,7 @@ void qst_op_item_delete(u32 src, u32 dst) {
     }
     player = get_player_by_client_id(local_client_id);
     if (player != 0) {
-        slot = start_inventory_update__10TObjPlayerFi(*(void **)((s8 *)player + 0xD00), qst_registers[(u8)src]);
+        slot = ((TObjPlayer *)player)->inventory_objects->start_inventory_update(qst_registers[(u8)src]);
         if (slot != 0) {
             owner = slot->get_owner_if_alive();
             if (owner != 0) {

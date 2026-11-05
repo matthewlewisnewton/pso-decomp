@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/object/TObjWarpBossMulti.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TPlyItem.h"
 #include "pso/player/TUnk_804C4540.h"
 #include "pso/map/FloorArea.h"
 struct Tag_801D7D4C { u8 d[4]; };
@@ -15,7 +16,7 @@ struct TObjPlayer_801D8044 {
     u8 pad0[0x428];
     u8 slots[0x4ac - 0x428];
     u8 cursor[0xd00 - 0x4ac];
-    void *fd00;
+    TPlyItem *fd00;
 };
 
 extern "C" {
@@ -229,7 +230,7 @@ bool can_use_palette_action__10TObjPlayerFPvUcUc(TObjPlayer_801D8044 *self, u8 k
             break;
         }
         if (arg < 0xd || arg > 0x10) {
-            if (set_mode_and_refresh_object__10TObjPlayerFPvi(self->fd00, &item) == 0) {
+            if (self->fd00->set_mode_and_refresh_object(&item) == NULL) {
                 return 0;
             }
         } else {
