@@ -26,6 +26,9 @@ public:
     virtual void render(TWindowKeyBoardSoft *context);
     virtual void calc_bar_width();
 
+    // Base constructor, then __vt__13TUnk_804CF930 at +4, then the init record.
+    TUnk_804CF930(void *src, s16 arg2);
+
     f32 depth;
     f32 x;
     f32 y;
@@ -35,11 +38,8 @@ public:
     f32 maximum;
     f32 target;
 
-    // void* keeps the mangled name init_from__13TUnk_804CF930FPvi.
-    void *init_from(void *src, int arg2);
     // TWindowDrawContext* is the name draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff.
     void draw_status_gauge_bar(TWindowDrawContext *, void *, f32, f32);
-    void sub_80256BDC(s16);
     void *destroy(s16);
 };
 

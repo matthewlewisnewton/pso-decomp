@@ -304,23 +304,22 @@ void window_request_show(void *object) {
 s32 TWindowBase::setup_window_draw_context(s32 arg1) {
     TWindowKeyBoardSoft *window;
     s32 var_r4;
-    TUnk_804CE018 *self = (TUnk_804CE018 *)this;
-    window = TWindowKeyBoardSoft::open_singleton(&self->m_40, &self->m_48, (f32 *)arg1, self->m_54, self->m_2c);
-    if (self->m_2c & 0x40) {
+    window = TWindowKeyBoardSoft::open_singleton(&m_40, &m_48, (f32 *)arg1, m_54, m_2c);
+    if (m_2c & 0x40) {
         animate_scale__19TWindowKeyBoardSoftFv();
     }
-    if (self->m_2c & 0x80) {
+    if (m_2c & 0x80) {
         window->shrink_clip_right();
     }
-    if (self->m_2c & 8) {
+    if (m_2c & 8) {
         window->set_bounds(0.0f, 0.0f, 640.0f, 480.0f);
     }
-    var_r4 = self->m_5c;
-    if (!(self->m_2c & 0x2000)) {
+    var_r4 = m_5c;
+    if (!(m_2c & 0x2000)) {
         var_r4 = (s32) ((f32) var_r4 - 7.5f);
     }
     window->set_open_tick(var_r4);
-    apply_window_closing_stretch((u8 *)window, self->unk_22);
+    apply_window_closing_stretch((u8 *)window, unk_22);
     return (s32)window;
 }
 

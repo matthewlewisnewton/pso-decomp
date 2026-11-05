@@ -37,7 +37,7 @@ struct Gauge_80256E0C { u8 p0[0x14]; f32 max; };
 struct Pos_80256E0C { f32 x; f32 y; };
 
 extern "C" {
-void sub_80256BDC__13TUnk_804CF930Fs(u8 *arg0, s16 arg1);
+void __ct__13TUnk_804CF918Fs(u8 *arg0, s16 arg1);
 void calc_bar_width__20TWindowSubStatusDispFPv(struct Bar_80256C00 *bar);
 extern const f32 lbl_805DCE58;
 void step_gauge_bar_width(Gauge_802571B4 *g);
@@ -112,14 +112,14 @@ struct Bar_8025799C {
 
 
 #define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
-#define sub_80256BDC__13TUnk_804CF930Fs ((int (*)(void*, int))sub_80256BDC__13TUnk_804CF930Fs)
+#define __ct__13TUnk_804CF918Fs ((int (*)(void*, int))__ct__13TUnk_804CF918Fs)
 #define calc_bar_width__20TWindowSubStatusDispFPv ((s32 (*)())calc_bar_width__20TWindowSubStatusDispFPv)
 #define step_gauge_bar_width ((void (*)(void *))step_gauge_bar_width)
-void* init_from__13TUnk_804CF930FPvi(void* a0, void* a1, int a2);
+void* __ct__13TUnk_804CF930FPvs(void* a0, void* a1, int a2);
 u32 update_text_color_transition(Fade_802575C0 *fade);
 void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time);
 
-#define lbl_804CF930 (*(unsigned char (*)[1])&lbl_804CF930)
+#define __vt__13TUnk_804CF930 (*(unsigned char (*)[1])&__vt__13TUnk_804CF930)
 extern s32 lbl_804CF948[];
 extern const float lbl_805DCE58;
 
@@ -328,7 +328,7 @@ void *TWindowSubStatusDisp__sub_80257AF4(void *arg0, s16 arg1) {
 }
 
 u8 *TWindowSubStatusDisp::init_layout_entry_copy(u8 *arg1) {
-    ((s32 (*)(void))init_from__13TUnk_804CF930FPvi)();
+    ((s32 (*)(void))__ct__13TUnk_804CF930FPvs)();
     *(s32 * *)&this->m_flags = &(*(RecoveredGlobal_80257B4C_lbl_804CF948 *)&lbl_804CF948).value;
     *(s16 *)((s8 *)((u8 *)this) + 0x28) = (s16) *(f32 *)&this->m_24;
     *(s32 *)((s8 *)((u8 *)this) + 0x60) = (s32) *(s32 *)((s8 *)arg1 + 0x24);
@@ -340,7 +340,7 @@ u8 *TWindowSubStatusDisp::init_layout_entry_copy(u8 *arg1) {
 }
 
 #undef destroy__13TUnk_804CF930Fs
-#undef sub_80256BDC__13TUnk_804CF930Fs
+#undef __ct__13TUnk_804CF918Fs
 #undef calc_bar_width__20TWindowSubStatusDispFPv
 #undef step_gauge_bar_width
-#undef lbl_804CF930
+#undef __vt__13TUnk_804CF930

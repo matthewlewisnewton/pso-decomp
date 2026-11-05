@@ -20,8 +20,8 @@ struct TUnk_804CF918_table {
 };
 
 extern "C" {
-extern TUnk_804CF918_table lbl_804CF918;
-extern TUnk_804CF918_table lbl_804CF930;
+extern TUnk_804CF918_table __vt__13TUnk_804CF918;
+extern TUnk_804CF918_table __vt__13TUnk_804CF930;
 }
 
 class TUnk_804CF918 {
@@ -33,6 +33,9 @@ public:
     virtual void update();
     virtual void render(TWindowKeyBoardSoft *context);
     virtual void calc_bar_width() = 0;
+
+    // Stores __vt__13TUnk_804CF918 at +4, then flags and m_2.
+    TUnk_804CF918(s16 arg);
 };
 
 typedef char TUnk_804CF918_size[sizeof(TUnk_804CF918) == 8 ? 1 : -1];

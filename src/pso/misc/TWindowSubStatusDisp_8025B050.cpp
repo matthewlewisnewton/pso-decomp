@@ -24,7 +24,7 @@ struct Quad_8025B0D0 { f32 v[8]; };
 extern "C" {
 void apply_context_transform_to_rect(TWindowDrawContext *, f32 *);
 void draw_window_uv_sprite_part(Win_8025B0D0 *arg0, TWindowDrawContext *arg1);
-s32 sub_80256BDC__13TUnk_804CF930Fs(void *, void *);
+s32 __ct__13TUnk_804CF918Fs(void *, void *);
 }
 
 void *window_uv_sprite_part_vtable[6] = {
@@ -137,7 +137,7 @@ void *TWindowSubStatusDisp__sub_8025B2DC(void *arg0, s16 arg1) {
 }
 
 u8 *TWindowSubStatusDisp::init_part_direct(u8 *arg1, s32 arg2) {
-    sub_80256BDC__13TUnk_804CF930Fs(this, (void *)arg2);
+    __ct__13TUnk_804CF918Fs(this, (void *)arg2);
     *(void ***)((s8 *)((u8 *)this) + 4) = window_uv_sprite_part_vtable;
     ((TWindowSubSymbolChatPartsSet *)(((u8 *)this) + 8))->copy_vec2(arg1 + 4);
     ((TWindowSubSymbolChatPartsSet *)(((u8 *)this) + 0x10))->copy_vec2(arg1 + 0xC);
@@ -154,7 +154,7 @@ u8 *TWindowSubStatusDisp::init_part_direct(u8 *arg1, s32 arg2) {
 }
 
 u8 *init_part_scaled__20TWindowSubStatusDispFPvPvi(u8 *arg0, u8 *arg1, s32 arg2) {
-    sub_80256BDC__13TUnk_804CF930Fs(arg0, (void *)arg2);
+    __ct__13TUnk_804CF918Fs(arg0, (void *)arg2);
     *(void ***)((s8 *)arg0 + 4) = window_uv_sprite_part_vtable;
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 8))->copy_vec2(arg1 + 4);
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 0x10))->copy_vec2(arg1 + 0xC);

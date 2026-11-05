@@ -35,7 +35,7 @@ struct Gauge_80256E0C { u8 p0[0x14]; f32 max; };
 struct Pos_80256E0C { f32 x; f32 y; };
 
 extern "C" {
-void sub_80256BDC__13TUnk_804CF930Fs(u8 *arg0, s16 arg1);
+void __ct__13TUnk_804CF918Fs(u8 *arg0, s16 arg1);
 void calc_bar_width__20TWindowSubStatusDispFPv(struct Bar_80256C00 *bar);
 extern const f32 lbl_805DCE58;
 void step_gauge_bar_width(Gauge_802571B4 *g);
@@ -93,10 +93,10 @@ typedef char RecoveredGlobal_80257B4C_lbl_804CF948_size[sizeof(RecoveredGlobal_8
 typedef void *(*Ctor_80257D44)(void *, void *, s32);
 
 #define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
-#define sub_80256BDC__13TUnk_804CF930Fs ((int (*)(void*, int))sub_80256BDC__13TUnk_804CF930Fs)
+#define __ct__13TUnk_804CF918Fs ((int (*)(void*, int))__ct__13TUnk_804CF918Fs)
 #define calc_bar_width__20TWindowSubStatusDispFPv ((s32 (*)())calc_bar_width__20TWindowSubStatusDispFPv)
 #define step_gauge_bar_width ((void (*)(void *))step_gauge_bar_width)
-void* init_from__13TUnk_804CF930FPvi(void* a0, void* a1, int a2);
+void* __ct__13TUnk_804CF930FPvs(void* a0, void* a1, int a2);
 u8 * init_layout_entry_copy__20TWindowSubStatusDispFPUc(u8 *arg0, u8 *arg1);
 void draw_visible_window_entries(void *self, List_80257BC0 *list, void *ctx);
 void init_window_layout_entries(List_80257D44 *self, Desc_80257D44 *desc, s32 arg2);
@@ -111,7 +111,7 @@ extern "C" {
 void * init_part_direct__20TWindowSubStatusDispFPUcl(void *, void *, s32);
 void * init_part_scaled__20TWindowSubStatusDispFPvPvi(void *, void *, s32);
 
-#define lbl_804CF930 (*(unsigned char (*)[1])&lbl_804CF930)
+#define __vt__13TUnk_804CF930 (*(unsigned char (*)[1])&__vt__13TUnk_804CF930)
 extern s32 lbl_804CF998[];
 extern const float lbl_805DCE58;
 __declspec(section ".sdata2") f32 lbl_805DCEF0 = 7.5f;
@@ -195,7 +195,7 @@ void init_window_layout_entries(List_80257D44 *self, Desc_80257D44 *desc, s32 ar
             case 1:
                 o = ::operator new(0x28);
                 if (o != NULL) {
-                    o = ((Ctor_80257D44)init_from__13TUnk_804CF930FPvi)(o, rec, arg2);
+                    o = ((Ctor_80257D44)__ct__13TUnk_804CF930FPvs)(o, rec, arg2);
                 }
                 *out = o;
                 rec += 0x24 / 4;
@@ -312,7 +312,7 @@ void *TWindowSubStatusDisp::deleting_destructor(s16 arg1) {
 
 #undef draw_status_gauge_bar__13TUnk_804CF930FPvPvff
 #undef destroy__13TUnk_804CF930Fs
-#undef sub_80256BDC__13TUnk_804CF930Fs
+#undef __ct__13TUnk_804CF918Fs
 #undef calc_bar_width__20TWindowSubStatusDispFPv
 #undef step_gauge_bar_width
-#undef lbl_804CF930
+#undef __vt__13TUnk_804CF930

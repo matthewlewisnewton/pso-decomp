@@ -189,9 +189,10 @@ with `-fp_contract on` (unit-level flag allowed under Matt's 2026-11-04
 (`0.299f * self->depth + ctx->depth`, then `-1.0f / ...`); MWCC only emits
 that from plain C with contraction on, so the unit no longer needs the
 `__fmadds` intrinsic. Functions affected: only `TWindowSubStatusDisp__sub_80257024`
-changes code; the other ten functions in the unit (`destroy`, `sub_80256BDC`,
-`sub_80256BF8`, `sub_80256BFC`, `calc_bar_width`, `sub_80256C40`,
-`draw_status_gauge_bar`, `step_gauge_bar_width`, `sub_80257298`, `init_from`)
+changes code; the other ten functions in the unit (`destroy`,
+`__ct__13TUnk_804CF918Fs`, `sub_80256BF8`, `sub_80256BFC`, `calc_bar_width`,
+`sub_80256C40`, `draw_status_gauge_bar`, `step_gauge_bar_width`,
+`sub_80257298`, `__ct__13TUnk_804CF930FPvs`)
 are byte-identical with and without the flag, and `.sdata2` is exact. The bar
 is written `sum *= 7.5f; bar = (tick - sum) * 17.0f;`, which stays
 `fmuls` / `fsubs` / `fmuls` under contraction. Evidence: per-function

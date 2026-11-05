@@ -44,15 +44,12 @@ const f32 lbl_805DCECC = 2.0f;
 void step_gauge_bar_width(Gauge_802571B4 *g);
 void TWindowSubStatusDisp__sub_80256BF8(void);
 void TWindowSubStatusDisp__sub_80256BFC(void);
-// Same symbol as the s16 member below. init_from's argument is the int
-// parameter and the original call is `mr r4, r5`. Calling the short member
-// from that int emits `extsh` and drops the function. Short callers pass a
-// short and do not extend, so the definition stays s16.
-void sub_80256BDC__13TUnk_804CF930Fs(TUnk_804CF930 *self, int arg);
 
 void *TUnk_804CF930::destroy(s16 arg1) {
     if (this != NULL) {
-        *(TUnk_804CF918_table **)((u8 *)this + 4) = &lbl_804CF918;
+        // Virtual ~TUnk_804CF918 would store this slot, but defining it emits
+        // __vt__ into this object. Those tables already sit in auto_07_804CF868_data.
+        *(TUnk_804CF918_table **)((u8 *)this + 4) = &__vt__13TUnk_804CF918;
         if (arg1 > 0) {
             ::operator delete(this);
         }
@@ -60,10 +57,9 @@ void *TUnk_804CF930::destroy(s16 arg1) {
     return this;
 }
 
-void TUnk_804CF930::sub_80256BDC(s16 arg1) {
-    *(TUnk_804CF918_table **)((u8 *)this + 4) = &lbl_804CF918;
-    this->flags = 0;
-    this->m_2 = arg1;
+TUnk_804CF918::TUnk_804CF918(s16 arg) {
+    flags = 0;
+    m_2 = arg;
 }
 
 void TWindowSubStatusDisp__sub_80256BF8(void) {  }
@@ -240,7 +236,8 @@ void step_gauge_bar_width(Gauge_802571B4 *g) {
 
 void *TWindowSubStatusDisp__sub_80257298(TUnk_804CF930 *arg0, s16 arg1) {
     if (arg0 != NULL) {
-        *(TUnk_804CF918_table **)((u8 *)arg0 + 4) = &lbl_804CF930;
+        // Same constraint as destroy: ~TUnk_804CF930 would emit a second vtable.
+        *(TUnk_804CF918_table **)((u8 *)arg0 + 4) = &__vt__13TUnk_804CF930;
         arg0->destroy(0);
         if (arg1 > 0) {
             ::operator delete(arg0);
@@ -249,10 +246,8 @@ void *TWindowSubStatusDisp__sub_80257298(TUnk_804CF930 *arg0, s16 arg1) {
     return arg0;
 }
 
-void *TUnk_804CF930::init_from(void *src_raw, int arg2) {
+TUnk_804CF930::TUnk_804CF930(void *src_raw, s16 arg2) : TUnk_804CF918(arg2) {
     TUnk_804CF930_init *src = static_cast<TUnk_804CF930_init *>(src_raw);
-    sub_80256BDC__13TUnk_804CF930Fs(this, arg2);
-    *(TUnk_804CF918_table **)((u8 *)this + 4) = &lbl_804CF930;
     width = 0.0f;
     x = src->x;
     y = src->y;
@@ -262,7 +257,6 @@ void *TUnk_804CF930::init_from(void *src_raw, int arg2) {
     flags = (u16)src->flags;
     maximum = src->maximum;
     target = src->target;
-    return this;
 }
 
 }

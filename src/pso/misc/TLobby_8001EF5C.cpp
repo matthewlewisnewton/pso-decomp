@@ -816,7 +816,7 @@ static inline void request_motion_list(BmlResource *self, u32 *list) {
     for (i = 0; *list != 0; list++, i++) {
         req.a = &self->motions[i].motion;
         req.b = self;
-        TLobby::create_named_entry(*list, lobby_download_buffer, load_bin_motion_callback, &req, (void **)&handle);
+        TLobby::create_named_entry(*list, (s32)lobby_download_buffer, load_bin_motion_callback, &req, (void **)&handle);
         TLobby__sub_8001EDD8(self, handle);
     }
 }
@@ -876,7 +876,7 @@ BmlResource *init_from_id_lists(BmlResource *self, s32 kind, u32 *models, u32 *m
             req.fC = self;
             req.f10 = &self->models[i];
             req.f14 = TLobby::get_resource_file_size((const char *)*p);
-            TLobby::create_named_entry(*p, lobby_download_buffer, load_bin_model_callback, &req, (void **)&handle);
+            TLobby::create_named_entry(*p, (s32)lobby_download_buffer, load_bin_model_callback, &req, (void **)&handle);
             TLobby__sub_8001EDD8(self, handle);
         }
         request_motion_list(self, motions);
