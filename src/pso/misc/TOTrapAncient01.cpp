@@ -16,6 +16,7 @@
 #include "pso/misc/TOTrapAncient02R.h"
 #include "pso/misc/TOTrap.h"
 #include "pso/misc/TOTrapAncient01.h"
+#include "pso/misc/TLobby.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/misc/TMotorcycle.h"
@@ -46,7 +47,6 @@
 
 extern "C" {
 
-s32 check_player_flag1__6TLobbyFv();
 const char *bm_o_trap_ancient01_model_names[] = {
     "fe_obj_o_turigane_hahen01.gj", "fe_obj_o_turigane_hahen02.gj",
     "fe_obj_o_turigane_hahen03.gj", "fs_obj_o_turigane.gj", NULL
@@ -416,7 +416,7 @@ void TOTrapAncient01::release_trapped_player() {
         if (this->target != NULL) {
             player = get_player_by_client_id(get_entity_id((TObjBase *)this->target));
             if (player != NULL) {
-                if (check_player_flag1__6TLobbyFv() != 0) {
+                if (((TLobby *)player)->check_player_flag1() != 0) {
                     TObjPlayer::send_code_45_1((s32)player);
                 }
                 obj_clear_flag30_20000(player);
@@ -425,7 +425,7 @@ void TOTrapAncient01::release_trapped_player() {
     } else if ((this->target != NULL) && (local_client_id == get_entity_id((TObjBase *)this->target))) {
         player = get_player_by_client_id(local_client_id);
         if (player != NULL) {
-            if (check_player_flag1__6TLobbyFv() != 0) {
+            if (((TLobby *)player)->check_player_flag1() != 0) {
                 TObjPlayer::send_code_45_1((s32)player);
             }
             obj_clear_flag30_20000(player);

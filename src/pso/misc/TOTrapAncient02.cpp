@@ -44,6 +44,7 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/TSwitch.h"
+#include "pso/misc/TLobby.h"
 #include "pso/misc/TOTrapAncient01.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/system/GinjaUvScroll.h"
@@ -53,7 +54,6 @@ extern "C" {
 
 
 extern s32 local_client_id;
-s32 check_player_flag1__6TLobbyFv();
 
 s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
 
@@ -410,7 +410,7 @@ void TOTrapAncient02::vfunc_81() {
 }
 
 void TOTrapAncient02::vfunc_82() {
-    s32 p;
+    TObjPlayer *p;
     submit_cursor_candidate(this, -1);
     switch (this->phase) {
     case 0:
@@ -426,9 +426,9 @@ void TOTrapAncient02::vfunc_82() {
                 this->phase = 3;
                 this->timer = this->reset;
                 if (this->target != NULL && local_client_id == get_entity_id((TObjChara *)this->target)) {
-                    p = (s32)get_player_by_client_id(local_client_id);
-                    if (p != 0 && check_player_flag1__6TLobbyFv() != 0) {
-                        TObjPlayer::send_code_45_1(p);
+                    p = get_player_by_client_id(local_client_id);
+                    if (p != 0 && ((TLobby *)p)->check_player_flag1() != 0) {
+                        TObjPlayer::send_code_45_1((s32)p);
                     }
                 }
             }
