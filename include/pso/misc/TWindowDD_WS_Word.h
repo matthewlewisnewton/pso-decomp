@@ -19,9 +19,6 @@ public:
     void *destroy(s16);
     u8 sub_80342268();
     s32 sub_80342254();
-    u8 unk_1C[0x8];
-    TWindowDDWordEntryList entries;
-    u8 unk_2C[0x34];
     s32 m_60;
     u8 unk_64[0x4];
     s32 m_68;
