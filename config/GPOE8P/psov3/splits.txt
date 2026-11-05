@@ -10510,9 +10510,6 @@ pso/boss/TBoss7DeRolLeC_802EE4E0.cpp:
 	.text       start:0x802EE4E0 end:0x802EE6E0
 	.bss        start:0x805412C0 end:0x80541528
 
-pso/boss/Boss7TentacleBanks.cpp:
-	.bss        start:0x80541528 end:0x80541918
-
 pso/boss/TBoss7Joint_802EE6E0.cpp:
 	.text       start:0x802EE6E0 end:0x802EE9A4
 
@@ -10534,8 +10531,10 @@ pso/boss/TBoss7PhotonBullet_802EF26C.cpp:
 pso/boss/TBoss7TentacleNeedle.cpp:
 	.text       start:0x802EF800 end:0x802F0E24
 	.rodata     start:0x804740C8 end:0x804740E0
-	.data       start:0x804E4848 end:0x804E4860
-	.sdata2     start:0x805DEC40 end:0x805DEC4C
+	.data       start:0x804E4830 end:0x804E4860
+	.bss        start:0x80541528 end:0x80541928
+	.sbss       start:0x805D6948 end:0x805D694C
+	.sdata2     start:0x805DEC00 end:0x805DEC64
 
 pso/unk/text_802F0E24.cpp:
 	.text       start:0x802F0E24 end:0x802F0F04
@@ -13885,6 +13884,7 @@ pso/misc/TLobby_803FC178.cpp:
 	.text       start:0x803FC178 end:0x804048E8
 	.data       start:0x804FD628 end:0x804FD650
 	.bss        start:0x805C0180 end:0x805C06D8
+	.sdata2     start:0x805E1158 end:0x805E1160
 
 pso/misc/TLobby_804048E8.cpp:
 	.text       start:0x804048E8 end:0x804050DC
