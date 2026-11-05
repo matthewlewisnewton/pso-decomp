@@ -1,6 +1,16 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include <stdlib.h>
+#include <string.h>
+// The game links the SDK's GXSetIndTexOrder and GXSetIndTexCoordScale under
+// these names.
+#define GXSetIndTexOrder Dolphin_GXSetIndTexOrder
+#define GXSetIndTexCoordScale Dolphin_GXSetIndTexCoordScale
+// Avoid unused out-of-line math constants from the SDK's type header.
+#define PSO_SDK_COMPACT_MATH
+#include <dolphin/gx/GXBump.h>
+#include "dolphin/os/OSCache.h"
+#undef PSO_SDK_COMPACT_MATH
 #include "pso/TMainTask.h"
 #include "pso/TObject.h"
 #include "pso/effect/TEffIndirectCtrl.h"
@@ -13,8 +23,10 @@
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_802A8368.h"
 #include "pso/player/TObjPlayer_803DC834.h"
+#include "pso/player/TObjPlayer_803DF7A8.h"
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/GinjaTexture.h"
 #include "pso/system/GinjaTextureInput.h"
 #include "pso/system/memory.h"
 #include "pso/unk/text_802A8210.h"
@@ -34,22 +46,10 @@ struct Cell_802A8FD8
 };
 
 extern "C" {
-s32 GXSetNumIndStages(s32);
-s32 GXSetTevDirect(s32);
-void GXSetIndTexMtx(s32, f32 (*)[3], s32);
-void Dolphin_GXSetIndTexCoordScale(s32, s32, s32);
-void Dolphin_GXSetIndTexOrder(s32, s32, s32);
-void GXSetTevIndWarp(s32, s32, s32, s32, s32);
-void DCFlushRange(void *, u32);
-void *memcpy(void *, const void *, u32);
-void *memset(void *, s32, u32);
 s32 read_disc_file(const char *, void *);
-TEffIndirectRecipe *get_indirect_recipe(s32 i);
 void set_texture_name(GinjaTextureEntry *entry, GinjaTextureInput *input, s32 texture_id, s32 attr);
 void load_texture_list(GinjaTextureList *list);
-s32 release_texture_list(GinjaTextureList *list);
 }
-void load_list_texture(s32, s32, s32, s32);
 
 const char *indirect_dat_filename = "indirect.dat";
 const char *indinfo_dat_filename = "indinfo.dat";
@@ -307,7 +307,7 @@ void deform_indirect_texture_scroll(u8 *p, u32 px, u32 py, u32 amp, u32 phase) {
 
 #pragma push
 #pragma fp_contract on
-s32 update_indirect_texture_wave(u8 *buf, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5) {
+void update_indirect_texture_wave(u8 *buf, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5) {
     s32 off;
     s32 x;
     s32 i;
@@ -458,55 +458,55 @@ void TEffIndirectCtrl::update_scroll_mode() {
     DCFlushRange(m_1c, 0x1000);
 }
 
-s32 setup_indirect_tev_alternate(TEffIndirectCtrl *ctrl, s32 unused, s32 sampler, s32 arg3) {
+void setup_indirect_tev_alternate(TEffIndirectCtrl *ctrl, s32 unused, s32 sampler, s32 arg3) {
     if ((u8)arg3 < 5) {
-        s32 coords[5] = { 0, 1, 2, 3, 4 };
-        s32 scales[5] = { 0, 1, 2, 3, 4 };
+        GXTexCoordID coords[5] = { GX_TEXCOORD0, GX_TEXCOORD1, GX_TEXCOORD2, GX_TEXCOORD3, GX_TEXCOORD4 };
+        GXIndTexScale scales[5] = { GX_ITS_1, GX_ITS_2, GX_ITS_4, GX_ITS_8, GX_ITS_16 };
         f32 mtx[2][3];
         GXSetNumIndStages(1);
-        Dolphin_GXSetIndTexOrder(0, coords[2], 5);
-        Dolphin_GXSetIndTexCoordScale(0, scales[(u8)arg3], scales[(u8)arg3]);
-        GXSetTevIndWarp(1, 0, 0, 0, 1);
+        GXSetIndTexOrder(GX_INDTEXSTAGE0, coords[2], GX_TEXMAP5);
+        GXSetIndTexCoordScale(GX_INDTEXSTAGE0, scales[(u8)arg3], scales[(u8)arg3]);
+        GXSetTevIndWarp(GX_TEVSTAGE1, GX_INDTEXSTAGE0, GX_FALSE, GX_FALSE, GX_ITM_0);
         mtx[0][0] = 0.5f;
         mtx[0][1] = 0.0f;
         mtx[0][2] = 0.0f;
         mtx[1][0] = 0.0f;
         mtx[1][1] = 0.5f;
         mtx[1][2] = 0.0f;
-        GXSetIndTexMtx(1, mtx, 1);
+        GXSetIndTexMtx(GX_ITM_0, mtx, 1);
         set_current_texture_list(ctrl->m_2c);
         load_list_texture(0, sampler, sampler, 5);
     }
 }
 
-s32 setup_indirect_tev_ordinary(TEffIndirectCtrl *ctrl, s32 sampler, s32 scale, s32 second) {
-    s32 scales[5] = { 0, 1, 2, 3, 4 };
+void setup_indirect_tev_ordinary(TEffIndirectCtrl *ctrl, s32 sampler, s32 scale, s32 second) {
+    GXIndTexScale scales[5] = { GX_ITS_1, GX_ITS_2, GX_ITS_4, GX_ITS_8, GX_ITS_16 };
     f32 m0[2][3];
     f32 m1[2][3];
     GXSetNumIndStages(1);
-    Dolphin_GXSetIndTexOrder(0, 0, 5);
-    Dolphin_GXSetIndTexCoordScale(0, scales[(u8)scale], scales[(u8)scale]);
+    GXSetIndTexOrder(GX_INDTEXSTAGE0, GX_TEXCOORD0, GX_TEXMAP5);
+    GXSetIndTexCoordScale(GX_INDTEXSTAGE0, scales[(u8)scale], scales[(u8)scale]);
     if (second != 0) {
         static s32 shift = -2;
         static s32 unused = 0;
         static f32 k = 0.5f;
-        GXSetTevIndWarp(1, 0, 0, 0, 1);
+        GXSetTevIndWarp(GX_TEVSTAGE1, GX_INDTEXSTAGE0, GX_FALSE, GX_FALSE, GX_ITM_0);
         m0[0][0] = k;
         m0[0][1] = 0.0f;
         m0[0][2] = 0.0f;
         m0[1][0] = 0.0f;
         m0[1][1] = k;
         m0[1][2] = 0.0f;
-        GXSetIndTexMtx(1, m0, (s8)shift);
+        GXSetIndTexMtx(GX_ITM_0, m0, shift);
     } else {
-        GXSetTevIndWarp(0, 0, 0, 0, 1);
+        GXSetTevIndWarp(GX_TEVSTAGE0, GX_INDTEXSTAGE0, GX_FALSE, GX_FALSE, GX_ITM_0);
         m1[0][0] = 0.5f;
         m1[0][1] = 0.0f;
         m1[0][2] = 0.0f;
         m1[1][0] = 0.0f;
         m1[1][1] = 0.5f;
         m1[1][2] = 0.0f;
-        GXSetIndTexMtx(1, m1, 1);
+        GXSetIndTexMtx(GX_ITM_0, m1, 1);
     }
     set_current_texture_list(ctrl->m_2c);
     load_list_texture(0, sampler, sampler, 5);
@@ -574,9 +574,9 @@ void enable_indirect_tev(TUnk_804DDF04 *obj, s32 sampler, s32 scale, s32 arg3) {
 
 void disable_indirect_tev(TUnk_804DDF04 *obj, s32 direct) {
     if (direct != 0) {
-        GXSetTevDirect(1);
+        GXSetTevDirect(GX_TEVSTAGE1);
     } else {
-        GXSetTevDirect(0);
+        GXSetTevDirect(GX_TEVSTAGE0);
     }
     GXSetNumIndStages(0);
     set_ginja_post_texgen_count(0);

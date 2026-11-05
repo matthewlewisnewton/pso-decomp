@@ -78,6 +78,7 @@ void enable_indirect_tev(TUnk_804DDF04 *obj, s32 sampler, s32 scale, s32 arg3);
 void disable_indirect_tev(TUnk_804DDF04 *obj, s32 direct);
 
 extern "C" {
+TEffIndirectRecipe *get_indirect_recipe(s32 i);
 void TEffIndirectCtrl__sub_802A9548(TEffIndirectCtrl *ctrl);
 u8 TEffIndirectCtrl__sub_802A9554(TEffIndirectCtrl *ctrl);
 u32 get_indirect_tile_coord(u8 x, u8 y, s32 width);

@@ -10,6 +10,6 @@ u8 *get_indirect_source_pixels(u8 id);
 }
 void deform_indirect_texture_wave(u8 *buf, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5);
 s32 get_indirect_source_id(u8 id);
-s32 update_indirect_texture_wave(u8 *buf, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5);
+void update_indirect_texture_wave(u8 *buf, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5);
 
 #endif
