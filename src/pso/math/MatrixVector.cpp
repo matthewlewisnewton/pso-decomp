@@ -1,5 +1,8 @@
 #include "types.h"
 #include "pso/math/MatrixVector.h"
+#ifndef __MWERKS__
+#include "libc/math.h"
+#endif
 
 struct Vec_803D8D1C { f32 x, y, z; };
 
@@ -28,9 +31,20 @@ void scale_matrix_vec3(u8 *arg0, u8 *arg1) {
 // two without an intervening frsp (its __frsqrte is f64-typed and __fres
 // f32-typed in every shipped version), so this kernel keeps the original's
 // hand-written body, built from the disc like the SDK's assembly.
+#ifdef __MWERKS__
 asm f32 vector_length(const Vec *v) {
 #include "orig_asm/pso/math/MatrixVector/vector_length.inc"
 }
+#else
+// Scalar fallback: the exact length (the original's estimates are only
+// accurate to a few bits).
+f32 vector_length(const Vec *v) {
+    f32 x = v->x;
+    f32 y = v->y;
+    f32 z = v->z;
+    return sqrtf((x * x) + (y * y) + (z * z));
+}
+#endif
 
 #pragma push
 #pragma scheduling off
@@ -58,9 +72,21 @@ void translate_matrix_vec3(u8 *arg0, u8 *arg1) {
 // with `ps_merge01`, and stores them with `psq_st`. CW 2.6 has no paired-
 // single intrinsics and never auto-emits them, so this kernel keeps the
 // original's hand-written body, built from the disc like the SDK's assembly.
+#ifdef __MWERKS__
 asm void matrix_identity(u8 *arg0) {
 #include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"
 }
+#else
+// Scalar fallback: writes the 3x4 row-major identity matrix.
+void matrix_identity(u8 *arg0) {
+    Mtx &m = *(Mtx *)arg0;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 4; j++) {
+            m[i][j] = (i == j) ? 1.0f : 0.0f;
+        }
+    }
+}
+#endif
 
 #pragma push
 #pragma scheduling off

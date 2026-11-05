@@ -36,9 +36,9 @@ at `0x805D46B4` and `rotate_vector_by_current_matrix` reads {0.0f, 0.0f} at
 The unit keeps the two signatures as `asm` functions whose bodies
 `tools/orig_asm.py` writes from the disc at build time, like the SDK's
 assembly and the MusyX asm kernels; nothing from the game is committed.
-Portable, non-matching implementations of the two kernels are checked in
-under `portable/pso/math/MatrixVector.cpp`, outside the PsoV3 build, for
-potential non-GameCube targets. Two details of the matching representation
+Each `asm` body is guarded by `#ifdef __MWERKS__`; the `#else` branch holds
+a scalar C++ fallback (exact `sqrtf` length, plain identity stores) for
+non-GameCube targets, as in the MusyX kernels. Two details of the matching representation
 are load-bearing:
 
 - the extern `lbl_805D46AC` must be a complete small array (`extern f32
