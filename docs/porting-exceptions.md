@@ -53,9 +53,15 @@ asm always has an entry in this register.
 `__abs` (1), `__builtin_va_info` (1); full list in the generated file. Reason: they
 reproduce single PowerPC instructions the original compiled code used; no
 per-site reason is recorded, except the two `__rlwimi` in
-`TRaderMapCore::draw_compass` (#320): they insert the alpha byte of `m_19c`
-into the sprite color word, matching the original `rlwimi` pair. Port that
-pair as `0xFF00FFFF | ((u32)alpha << 16)`.
+`TRaderMapCore::draw_compass` (#320). The color word is the halfword rotate
+`(w << 16) | (w >> 16)` after the alpha byte is stored. At `-O4,s` that
+expression is one `rlwimi` with mask 0,15 (`srwi` plus a single insert). The
+original is `srwi` plus two inserts, masks 0,7 and 8,15. Plain forms that did
+not match: the or itself (one `rlwimi` 0,15, 99.04%); the same bits as two
+separate masked ors (r30/r31 swapped, 98.85%); one expression of the three
+byte masks (`clrlslwi` plus two different `rlwimi`, 99.31%); a channel
+byte-swap (`lbz`/`stb`). The intrinsic pair is what emits the original two
+inserts. Port it as `(w << 16) | (w >> 16)`.
 
 Port should: `__fabsf`/`__fabs` → `fabsf`/`fabs`; `__abs` → `abs`; `__cntlzw` →
 a count-leading-zeros helper (`__builtin_clz` with a zero check, returns 32 for 0);

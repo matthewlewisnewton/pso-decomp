@@ -61,8 +61,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:544` | `__cntlzw` |
-| `src/pso/misc/TRaderMapCore.cpp:1102` | `__rlwimi` |
-| `src/pso/misc/TRaderMapCore.cpp:1103` | `__rlwimi` |
+| `src/pso/misc/TRaderMapCore.cpp:1089` | `__rlwimi` |
+| `src/pso/misc/TRaderMapCore.cpp:1090` | `__rlwimi` |
 | `src/pso/misc/TRaderMapCore_8030A808.cpp:9` | `__cntlzw` |
 | `src/pso/misc/TWindowDD_8034725C.cpp:337` | `__cntlzw` |
 | `src/pso/misc/TWindowFukidasi.cpp:361` | `__cntlzw` |

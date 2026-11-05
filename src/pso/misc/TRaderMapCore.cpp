@@ -275,19 +275,6 @@ struct Radar_801FAF24 {
     f32 f190;
 };
 
-struct RadarSpriteFrame_801FA6CC {
-    s16 width;
-    s16 height;
-    s16 x;
-    s16 y;
-    s16 u0;
-    s16 v0;
-    s16 u1;
-    s16 v1;
-    s16 unk10;
-    s16 unk12;
-};
-
 struct RadarViewRect_801FA9D8 {
     f32 center_x;
     f32 center_y;
@@ -308,7 +295,7 @@ struct RadarVec2_801FA880 { f32 x, y; };
 extern "C" {
 s32 TCameraCtrl__sub_80068EF0();
 extern const f32 lbl_805DC588;
-extern RadarSpriteFrame_801FA6CC lbl_804C87E4[];
+extern SpriteFrame lbl_804C87E4[];
 extern f32 lbl_804C87B4[][4];
 extern const f32 lbl_805DC574;
 extern f32 lbl_805D35F0;
@@ -1089,21 +1076,21 @@ void TRaderMapCore::draw_compass(s32 mode) {
     sprite.scale_y = scale;
     sprite.rotation = 0;
     sprite.unknown18 = TRaderMapCore__data_805D5F4C;
-    sprite.frames = (SpriteFrame *)&lbl_804C87E4[0];
+    sprite.frames = lbl_804C87E4;
     color.word = 0xFFFFFFFF;
     TParticleCtrl::begin_effect_render();
     compass_xy = &lbl_804C87B4[mode][0];
     marker_xy = &lbl_804C87B4[mode][2];
-    sprite.x = marker_xy[0] + (f32)lbl_804C87E4[1].x;
-    sprite.y = marker_xy[1] + (f32)lbl_804C87E4[1].y;
+    sprite.x = marker_xy[0] + (f32)lbl_804C87E4[1].center_x;
+    sprite.y = marker_xy[1] + (f32)lbl_804C87E4[1].center_y;
     set_default_alpha_blend();
     color.ch.alpha = (u8)(s32)this->m_19c;
     color_arg = color.word >> 16;
     color_arg = __rlwimi(color_arg, color.word, 16, 0, 7);
     color_arg = __rlwimi(color_arg, color.word, 16, 8, 15);
     sprite.draw_compass_sprite(1, color_arg, 0x21, TRaderMapCore__data_805DC58C);
-    sprite.x = compass_xy[0] + (f32)lbl_804C87E4[0].x;
-    sprite.y = compass_xy[1] + (f32)lbl_804C87E4[0].y;
+    sprite.x = compass_xy[0] + (f32)lbl_804C87E4[0].center_x;
+    sprite.y = compass_xy[1] + (f32)lbl_804C87E4[0].center_y;
     sprite.rotation = this->m_174;
     set_additive_blend();
     sprite.draw_compass_sprite(0, -1, 0x21, TRaderMapCore__data_805DC58C);
@@ -1126,7 +1113,7 @@ f32 lbl_804C87B4[3][4] = {
     { 450.0f, 373.0f, 450.0f, 383.0f },
     { 450.0f, 373.0f, 450.0f, 383.0f },
 };
-RadarSpriteFrame_801FA6CC lbl_804C87E4[2] = {
+SpriteFrame lbl_804C87E4[2] = {
     { 32, 32, 16, 27, 0, 0, 256, 256, 0, 0 },
     { 32, 32, 16, 16, 0, 0, 256, 256, 1, 0 },
 };
@@ -1263,7 +1250,6 @@ void TRaderMapCore::render_region_records(void * _w1) {
 }
 
 void TRaderMapCore::render() {
-    u8 *arg0 = (u8 *)this;
     if ((u32) TRaderMapCore__floor_map_resource != 0U) {
         if (is_render_admitted((void *)TRaderMapCore__view_mode) == 0) {
             lbl_805D5F2C = 0;
@@ -1272,33 +1258,33 @@ void TRaderMapCore::render() {
         }
         switch ((s32) TRaderMapCore__view_mode) {
         case 0:
-            TRaderMapCore::draw_backdrop((TRaderMapCore *)arg0, TRaderMapCore__view_mode);
-            begin_map_view__13TRaderMapCoreFii((s32)arg0, (s32)TRaderMapCore__view_mode);
+            TRaderMapCore::draw_backdrop(this, TRaderMapCore__view_mode);
+            begin_map_view__13TRaderMapCoreFii((s32)this, (s32)TRaderMapCore__view_mode);
             render_region_records((void *)TRaderMapCore__view_mode);
-            ((TRaderMapCore *)arg0)->draw_enemy_gate_markers();
+            draw_enemy_gate_markers();
             draw_player_markers();
             setup_view(TRaderMapCore__view_mode);
-            ((TRaderMapCore *)arg0)->draw_compass(TRaderMapCore__view_mode);
+            draw_compass(TRaderMapCore__view_mode);
             break;
         case 1:
             TCameraCtrl::restore_full_screen_view();
-            TRaderMapCore::draw_backdrop((TRaderMapCore *)arg0, TRaderMapCore__view_mode);
+            TRaderMapCore::draw_backdrop(this, TRaderMapCore__view_mode);
             TCameraCtrl__sub_80068EF0();
-            begin_map_view__13TRaderMapCoreFii((s32)arg0, (s32)TRaderMapCore__view_mode);
+            begin_map_view__13TRaderMapCoreFii((s32)this, (s32)TRaderMapCore__view_mode);
             render_region_records((void *)TRaderMapCore__view_mode);
-            ((TRaderMapCore *)arg0)->draw_enemy_gate_markers();
+            draw_enemy_gate_markers();
             draw_player_markers();
             setup_view(TRaderMapCore__view_mode);
             TCameraCtrl::restore_full_screen_view();
             this->m_174 = 0;
-            ((TRaderMapCore *)arg0)->draw_compass(TRaderMapCore__view_mode);
+            draw_compass(TRaderMapCore__view_mode);
             TCameraCtrl__sub_80068EF0();
             break;
         case 2:
-            TRaderMapCore::draw_backdrop((TRaderMapCore *)arg0, TRaderMapCore__view_mode);
-            begin_map_view__13TRaderMapCoreFii((s32)arg0, (s32)TRaderMapCore__view_mode);
+            TRaderMapCore::draw_backdrop(this, TRaderMapCore__view_mode);
+            begin_map_view__13TRaderMapCoreFii((s32)this, (s32)TRaderMapCore__view_mode);
             render_region_records((void *)TRaderMapCore__view_mode);
-            ((TRaderMapCore *)arg0)->draw_enemy_gate_markers();
+            draw_enemy_gate_markers();
             draw_player_markers();
             setup_view(TRaderMapCore__view_mode);
             break;
