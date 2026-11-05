@@ -25,6 +25,7 @@
 
 #include "types.h"
 #include "pso/protocol/protocol_types.h"
+#include "pso/player/TechniqueCastState.h"
 
 struct G_6x70_Base_DCNTE {
  u16 client_id;
@@ -133,6 +134,20 @@ struct G_CastTechnique_Header_6x47 {
  u8 unused;
  u8 level;
  u8 target_count;
+};
+
+// The client sign-extends technique_number and target_count but not level, and
+// sends only target_count of the ten targets.
+struct G_CastTechnique_6x47 {
+ struct G_ClientIDHeader header;
+ s8 technique_number;
+ u8 unused;
+ u8 level;
+ s8 target_count;
+ struct TechniqueTarget targets[10];
+ G_CastTechnique_6x47 *init();
+ void bswap();
+ void send();
 };
 
 struct G_ChangePlayerHP_6x2F {
