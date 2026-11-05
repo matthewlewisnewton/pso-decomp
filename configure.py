@@ -463,6 +463,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
         # entry label. Map the target entry name to the object's image label.
         "symbol_mappings": {"@12": "...data.0"},
     },
+    # deform_indirect_texture_scroll keeps its s16 scroll offset as a named
+    # local (extsh r28, after the coordinate masks in r30/r29). With copy
+    # propagation the frontend replaces it with a hoisted temporary that the
+    # allocator colours first (r30). See docs/porting-exceptions.md section 5.
+    "pso/effect/TEffIndirectCtrl_802A88AC.cpp": {"cflags": _switch(cflags_pso, "-opt noprop")},
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
