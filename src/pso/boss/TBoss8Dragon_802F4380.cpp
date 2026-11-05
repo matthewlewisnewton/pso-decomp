@@ -30,3 +30,4 @@ void TBoss8Dragon::render() {
         draw_with_fade(&pos, view);
     }
 }
+

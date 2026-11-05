@@ -309,6 +309,7 @@ void TLobby::read_data_sync(s32 arg0, s32 arg1, u8 *dst) {
     sp8 = arg0;
     ((s32 (*)())read_checked_align__6TLobbyFlll)();
     TLobby::set_read_params((int)&sp8, (int)arg1, (int)dst);
+    TLobby::set_read_params(&sp8, (int)arg1, (int)dst);
 loop_1:
     if (TLobby__sub_803CC4C0(sp8) != 3) {
         TLobby::run_frame();

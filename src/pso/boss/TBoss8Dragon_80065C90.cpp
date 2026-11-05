@@ -26,6 +26,7 @@ struct RecoveredGlobal_80065F08_lbl_80437938_80065C90 {
     u8 remaining[0x8];
 };
 
+struct O_80065FD4 { u16 a; u16 b; u32 c[4]; };
 
 extern "C" {
 
@@ -109,6 +110,26 @@ void G_GalGryphonBossAction::bswap() {
     bswap_16((u16 *)&timer);
     for (i = 0; i < 4; i++) {
         bswap_32(&params.words[i]);
+void TBoss8Dragon::init_color() { *(u8 *)&this->m_0 = 160; *(u8*)((char*)this + 0x1) = 10; }
+
+void TBoss8Dragon::send_spawn_params_packet() { byteswap_action_packet(); send_subcommand((u8 *)this); }
+
+void TBoss8Dragon::byteswap_action_packet() {
+    ((G_ClientIDHeader *)this)->bswap();
+    ((TBoss8Dragon *)((char *)this + 20))->byteswap_record();
+    bswap_32((u32 *)((void *)((char *)this + 4)));
+    bswap_32((u32 *)((void *)((char *)this + 8)));
+    bswap_32((u32 *)((void *)((char *)this + 12)));
+    bswap_32((u32 *)((void *)((char *)this + 16)));
+}
+
+void TBoss8Dragon::byteswap_record() {
+    O_80065FD4 *p = (O_80065FD4 *)this;
+    s32 i;
+    bswap_16(&p->a);
+    bswap_16(&p->b);
+    for (i = 0; i < 4; i++) {
+        bswap_32(&p->c[i]);
     }
 }
 

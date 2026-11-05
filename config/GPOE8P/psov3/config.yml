@@ -633,6 +633,10 @@ force_active:
   - TLobby__sub_80225A08
   - TLobby__sub_80225C8C
   - TLobby__sub_80225CB8
+  - TLobby__sub_80227A94
+  - TLobby__sub_80228118
+  - TLobby__sub_8023FCC0
+  - TLobby__sub_8023FFB8
   - TLobby__sub_80292AB4
   - TLobby__sub_80292BB8
   - TLobby__sub_80292DA0
@@ -753,6 +757,7 @@ force_active:
   - TOKeyGenericSw__name
   - TOKeyGenericSw__shared_resource_ptrs
   - TOKeyGenericSw__texture_lists
+  - TOKeyJungleMain__ct
   - TOKeyMachine01__class_name
   - TOKey__class_name
   - TOKurage__bml_resource
@@ -3216,6 +3221,7 @@ force_active:
   - add_synchro__8MagStatsFl
   - add_target_in_cone__15TObjEneMe1GiGueFP9TObjChara
   - add_target_in_front_arc__16TObjEneNanoDragoFP9TObjChara
+  - add_token__6TLobbyFPCc
   - add_unique_pair_entry__10TObjPlayerFUll
   - add_weapon_stat_bonuses__9TItemDataFlPslPsl
   - adjust_height_to_ground__15TObjEneDelDepthFv
@@ -3342,6 +3348,7 @@ force_active:
   - apply_behavior_parameters__13TObjEneMe1GeeFv
   - apply_blend_mode_1__10TObjPlayerFv
   - apply_bonuses
+  - apply_clamped_field_27c__6TLobbyFv
   - apply_confusion_status__11TBoss6Type1Fv
   - apply_confusion_status__12TBoss1DragonFv
   - apply_confusion_status__13TObjEneRe4BitFv
@@ -4212,6 +4219,7 @@ force_active:
   - calc_trap_count__16TOTrapAncient02RFv
   - calc_tube_progress__10TBoss6TubeFl
   - calc_xz_direction_to__16TObjEneBm5GibonUFPvPvPv
+  - calculate_crc16_ccitt__FPCUcl
   - call_9A24_plus_1__11TBoss6Type2FPl
   - call_state_action__14TBoss6PlotFalzFv
   - camera_slot_positions
@@ -4589,6 +4597,7 @@ force_active:
   - clear_state_if_flag80__10TObjPlayerFl
   - clear_thread_state__12TQuestThreadFv
   - clear_work__12TBoss1DragonFi
+  - clear_work_buffer
   - cloneModelHierarchy__12TBoss1DragonFP15DragonModelNodeP15DragonModelNodePv
   - close__11TOFenceBaseFv
   - close__12TQuestListVMFv
@@ -6138,6 +6147,7 @@ force_active:
   - get_material_limit_for_class__Fl
   - get_max_difficulty_for_party_level__Fv
   - get_max_tp__13TUnk_8049FE00Fv
+  - get_menu_field_280__6TLobbyFv
   - get_message_10__17TWindowSubComCardFPvPv
   - get_model__13TUnk_804A7488Fv
   - get_model__15TORockJungleS01Fl
@@ -6858,7 +6868,9 @@ force_active:
   - is_sega_logo_done__Fi
   - is_signboard_texture_buffer_missing__Fv
   - is_slot_active__14TShopGeneratorFi
+  - is_sound_enabled
   - is_sound_enabled__12TObjEnvSoundFPvl
+  - is_special_sound_id
   - is_sphere_visible__12TBoss1DragonFf
   - is_split_screen__10TObjPlayerFv
   - is_stat_over_limit__6TLobbyFl
@@ -7546,7 +7558,11 @@ force_active:
   - lbl_80514CE8
   - lbl_80514CF0
   - lbl_80514D40
+  - lbl_80514F58
   - lbl_8051607C
+  - lbl_805162EC
+  - lbl_80517BEC
+  - lbl_80517E44
   - lbl_80540B64
   - lbl_80540B70
   - lbl_80540B88
@@ -13983,6 +13999,7 @@ force_active:
   - reset_selection__21TWindowSubCustomEquipFv
   - reset_slime_tail_node_index
   - reset_sound_events__10TObjCameraFv
+  - reset_sound_group_fade__6TLobbyFv
   - reset_spawn_after_hold__15TObjEneMe1GiGueFv
   - reset_state
   - reset_state__10TSceneSoraFv
@@ -15063,6 +15080,8 @@ force_active:
   - sorcerers_cane_ct__FPUcPUcl
   - sort_by_key__13List_801D4744Fv
   - sound_bank_file_crc16
+  - sound_bank_file_indices
+  - sound_bank_file_sizes
   - sound_bank_filename_a_enemy_pool
   - sound_bank_filename_a_enemy_proj
   - sound_bank_filename_a_enemy_samp
@@ -15240,6 +15259,8 @@ force_active:
   - sound_bank_load_list_v1_enemy_v1_env
   - sound_bank_load_list_v2_enemy_v2_env
   - sound_bank_load_list_w_enemy_w_env
+  - sound_bank_load_routes
+  - sound_control_state
   - sound_effect_bank_range_routes
   - sound_effect_range_a_enemy
   - sound_effect_range_a_env
@@ -16136,6 +16157,7 @@ force_active:
   - update_countdown__15TObjDeadListWinFv
   - update_countdown_shrink__14TBoss4DarkFalzFv
   - update_countdown_state__11TBoss6Type1Fv
+  - update_crc16_ccitt__6TLobbyFUsUc
   - update_cursor_pos__20TWindowShortListCtrlFv
   - update_customize_help_text__13TUnk_804D1160FPv
   - update_cut__11TBoss4Type3Fv

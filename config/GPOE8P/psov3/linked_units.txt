@@ -332,7 +332,6 @@ pso/boss/TBoss8Dragon_802F3EE4.cpp
 pso/boss/TBoss8Dragon_802F3F20.cpp
 pso/boss/TBoss8Dragon_802F42A0.cpp
 pso/boss/TBoss8Dragon_802F4324.cpp
-pso/boss/TBoss8Dragon_802F4380.cpp
 pso/boss/TBoss8Dragon_802F4480.cpp
 pso/boss/TBoss8Dragon_802FDDD4.cpp
 pso/boss/TBoss8Dragon_80324D3C.cpp
@@ -342,6 +341,7 @@ pso/boss/TBoss8Dragon_8036AEF8.cpp
 pso/boss/TObjBoss1Crater.cpp
 pso/boss/TObjBoss1Crater_8002C6B4.cpp
 pso/boss/TObjBoss1Floor.cpp
+pso/boss/TObjBoss1Rock.cpp
 pso/boss/TObjBoss2CeilJunk.cpp
 pso/boss/TObjBoss2CeilJunk_8003A81C.cpp
 pso/boss/TObjBoss2CeilJunk_8003B07C.cpp
@@ -1097,6 +1097,9 @@ pso/misc/TLobby_80222D24.cpp
 pso/misc/TLobby_802230F8.cpp
 pso/misc/TLobby_80226070.cpp
 pso/misc/TLobby_802268F4.cpp
+pso/misc/TLobby_80227A2C.cpp
+pso/misc/TLobby_80227AA0.cpp
+pso/misc/TLobby_80228818.cpp
 pso/misc/TLobby_80228C84.cpp
 pso/misc/TLobby_80242910.cpp
 pso/misc/TLobby_80243370.cpp
@@ -2044,6 +2047,7 @@ pso/object/LobbyPigeonPath.cpp
 pso/object/LobbyPigeonTheme.cpp
 pso/object/ObjectFactoryTables.cpp
 pso/object/TLazerFenceSw.cpp
+pso/object/TOKeyJungleMain.cpp
 pso/object/TObjAreaWarpEndingJung.cpp
 pso/object/TObjAreaWarpQuest.cpp
 pso/object/TObjAreaWarp_80307B70.cpp
@@ -2202,9 +2206,9 @@ pso/object/TObject_80019A50.cpp
 pso/object/TObject_8001A448.cpp
 pso/object/TObject_800F794C.cpp
 pso/object/TUnk_804A6DC0.cpp
+pso/player/PhotonBlastResults.cpp
 pso/player/PlayerClassStats.cpp
 pso/player/PlayerTaskEffects.cpp
-pso/player/PhotonBlastResults.cpp
 pso/player/THunterGuildSeqOnlineTask.cpp
 pso/player/THunterGuildWarning.cpp
 pso/player/TItemWeaponFist.cpp
