@@ -9,6 +9,7 @@ public:
     virtual ~TAdPlayerLoadGC();
     static s32 probe_card_slot(s32 channel);
     static s32 probe_and_check_card(s32 channel);
+    static s32 get_load_result(s32 channel);
 };
 
 #include "types.h"
@@ -30,7 +31,6 @@ struct Item_802D6FD4 {
 extern "C" {
 s32 get_instance__15TAdPlayerLoadGCFv();
 void set_state__15TAdPlayerLoadGCFi(int);
-s32 get_load_result__15TAdPlayerLoadGCFPv(int);
 s32 TAdPlayerLoadGC__sub_801E1B50(int);
 s32 check_memcard_status__15TAdPlayerLoadGCFl(int);
 s32 find_card_file__15TAdPlayerLoadGCFiPv(int, void *);
@@ -85,12 +85,12 @@ void run_task__15TAdPlayerLoadGCFv(u8 *arg0) {
         }
         break;
     case 1:
-        if ((TAdPlayerLoadGC::probe_and_check_card(0) != 0) || ((u32)get_load_result__15TAdPlayerLoadGCFPv(0) != 0xFFFFFF83U)) {
+        if ((TAdPlayerLoadGC::probe_and_check_card(0) != 0) || ((u32)TAdPlayerLoadGC::get_load_result(0) != 0xFFFFFF83U)) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 2U;
         }
         break;
     case 2:
-        if ((TAdPlayerLoadGC::probe_and_check_card(0) != 0) || ((u32)get_load_result__15TAdPlayerLoadGCFPv(0) != 0xFFFFFF21U)) {
+        if ((TAdPlayerLoadGC::probe_and_check_card(0) != 0) || ((u32)TAdPlayerLoadGC::get_load_result(0) != 0xFFFFFF21U)) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 3U;
         }
     case 3:
@@ -153,14 +153,14 @@ void run_task__15TAdPlayerLoadGCFv(u8 *arg0) {
     case 14:
         if (TAdPlayerLoadGC::probe_card_slot(1) == 0) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0xDU;
-        } else if ((TAdPlayerLoadGC::probe_and_check_card(1) != 0) || ((u32)get_load_result__15TAdPlayerLoadGCFPv(1) != 0xFFFFFF83U)) {
+        } else if ((TAdPlayerLoadGC::probe_and_check_card(1) != 0) || ((u32)TAdPlayerLoadGC::get_load_result(1) != 0xFFFFFF83U)) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0xFU;
         }
         break;
     case 15:
         if (TAdPlayerLoadGC::probe_card_slot(1) == 0) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0xDU;
-        } else if ((TAdPlayerLoadGC::probe_and_check_card(1) != 0) || ((u32)get_load_result__15TAdPlayerLoadGCFPv(1) != 0xFFFFFF21U)) {
+        } else if ((TAdPlayerLoadGC::probe_and_check_card(1) != 0) || ((u32)TAdPlayerLoadGC::get_load_result(1) != 0xFFFFFF21U)) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0x10U;
         }
     case 16:

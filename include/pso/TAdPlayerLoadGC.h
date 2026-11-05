@@ -17,7 +17,7 @@ public:
     static s32 probe_and_check_card(s32 channel);
     static void unmount_card_and_clear_flags(s32 n);
     static void load_banner_files();
-    static s32 get_load_result(void * _w0);
+    static s32 get_load_result(s32 channel);
     static s32 probe_card_slot(s32 channel);
     static void build_save_file_image(void *image, void *card);
     static s32 find_card_file(int chan, void *name);
