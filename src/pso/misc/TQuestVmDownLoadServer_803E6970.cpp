@@ -1827,6 +1827,9 @@ s32 TQuestVmDownLoadServer::is_download_cmd_allowed(u8 arg0) {
     }
 }
 
+// Null of the size-1 base. Subtracting one is the failure address.
+static QuestDownloadByteAddress *const quest_download_null_address = 0;
+
 QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u8 a, u8 b) {
     s32 length;
     QuestDownloadMatchToken *recursiveToken;
@@ -1838,10 +1841,10 @@ QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u
     s32 mark;
     if (index >= end) {
         if (lbl_805D7888 < 3) return NULL;
-        return (QuestDownloadSegment *)-1;
+        return static_cast<QuestDownloadSegment *>(quest_download_null_address - 1);
     }
-    if ((token = quest_download_slot_chain_table[index].tokens) == (QuestDownloadMatchToken *)-1) {
-        return (QuestDownloadSegment *)-1;
+    if ((token = quest_download_slot_chain_table[index].tokens) == quest_download_null_address - 1) {
+        return static_cast<QuestDownloadSegment *>(quest_download_null_address - 1);
     }
     if (token == NULL) {
         ch = lbl_805A0470.bytes[index];
@@ -1913,9 +1916,9 @@ QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 index, s32 end, u
         if (a == 0 || TQuestVmDownLoadServer__sub_803E7390(a, b, recursiveToken->a)) {
             length = lbl_8047F0F8[recursiveToken->off];
             segment = TQuestVmDownLoadServer__sub_803E9A74(index + length, end, recursiveToken->a, recursiveToken->b);
-            if (segment == (QuestDownloadSegment *)-1) {
+            if (segment == quest_download_null_address - 1) {
                 TQuestVmDownLoadServer__sub_803ECE5C(head);
-                return (QuestDownloadSegment *)-1;
+                return static_cast<QuestDownloadSegment *>(quest_download_null_address - 1);
             }
             if (segment != NULL) {
                 tail = segment;
@@ -2263,7 +2266,7 @@ s32 TQuestVmDownLoadServer::count_leading_entries(s32 i, s32 end) {
 
 void TQuestVmDownLoadServer__sub_803EADD4(QuestDownloadSlot *arg0, s32 arg1) {
     if (arg1 == 0) {
-        arg0->tokens = (QuestDownloadMatchToken *)-1;
+        arg0->tokens = static_cast<QuestDownloadMatchToken *>(quest_download_null_address - 1);
         arg0->x18 = -1;
         if ((u32)arg0->items != 0xFFFFFFFF) {
             release_node_chain__22TQuestVmDownLoadServerFPv((QuestDownloadItemNode *)(arg0->items));
@@ -2323,7 +2326,7 @@ void TQuestVmDownLoadServer::init_entries() {
     QuestDownloadSlot *p;
 
     for (p = (QuestDownloadSlot *)quest_download_slot_chain_table; p < (QuestDownloadSlot *)quest_download_slot_chain_table + 80; p++) {
-        p->tokens = (QuestDownloadMatchToken *)-1;
+        p->tokens = static_cast<QuestDownloadMatchToken *>(quest_download_null_address - 1);
         p->items = 0;
         p->entryHead = 0;
         p->textHead = 0;
