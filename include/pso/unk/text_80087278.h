@@ -9,7 +9,7 @@ class TParticleCtrl;
 extern "C" {
 TParticleCtrl *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
 
-void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
+TParticleCtrl *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 }
 
 #endif
