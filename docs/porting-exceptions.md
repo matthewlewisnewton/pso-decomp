@@ -15,19 +15,19 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `f6dedd375`, 2026-11-04)
+## Summary (regenerated on this branch after merging main `e4877e8f1`, 2026-11-04)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `f6dedd375` (2026-11-04). Assembly is counted as functions;
+after merging main `e4877e8f1` (2026-11-04). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 7 functions (13 source lines) | 4 |
+| Assembly (`asm` + `orig_asm` include) | 8 functions (15 source lines) | 5 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,852 | 884 |
-| Per-unit compiler overrides in `configure.py` | 148 | 148 |
+| Per-unit compiler overrides in `configure.py` | 149 | 149 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -167,15 +167,35 @@ plain source: `free_all` (no copied loop-counter alias) and
 |---|---|---|---|---|
 | `pso/misc/TMovie_80143988.cpp` | `pack_movie_frame` (`0x80143988`, 564 bytes; the only function in the unit) | unit switch `-opt nolifetimes,nocse,noprop,noloop` | The original keeps each named local in one register for the whole function: the packed word is built in place in `r25`, and `mr r24, r25` copies it for the second scanline before every luma insert (`0x80143A4C`, `0x80143A70`, ... eight times). The cache-touch offset is the single `li r0, 0x20` hoisted to the entry (`0x8014398C`) and reused by both `dcbt r31, r0` / `dcbt r9, r0` (`0x80143A30`, `0x80143ADC`). The pad scales are recomputed late in the entry (`slwi r5, r25, 2` ... `slwi r3, r24, 2`, `0x80143A18`–`0x80143A20`). Without `nolifetimes` the unit is 53.40% (568 bytes, `stmw r21`). Without `noprop`, `touch` is propagated as a constant: 70.50%, 596 bytes. Without `nocse` or `noloop` the shared stride and pad shifts become frontend temps coloured in the wrong order: 93.06%, 564 bytes. With the switch, `.text` (564 bytes), relocations and symbols match the target object. The source is plain C++ (no `__rlwinm`/`__rlwimi`); only `__dcbt` (section 2) remains. Precedent: Petari uses these keywords per object: [`-opt nolifetimes,nocse,noprop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L3735), [`-opt nolifetimes,noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L2974), [`-opt noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L1532). SFA uses [`-opt nolifetimes`](https://github.com/zcanann/SFA-Decomp/blob/f561e933ecc7356259bccdd6a7ce9a4462a950a0/configure.py#L1586). This repo already has `-opt noprop` and `-opt nocse` units. Evidence: [pack-movie-frame-unit-flags.md](evidence/pack-movie-frame-unit-flags.md). | Drop the switch. The source is plain C++; drop the cache touch too. |
 
-### `-opt nocse,nostrength,noprop`: `text_8042E8C4.cpp` ([#284](https://github.com/matthewlewisnewton/pso-decomp/pull/284))
+### `-inline auto -opt nocse,nostrength,noprop`: `text_8042E8C4.cpp` ([#284](https://github.com/matthewlewisnewton/pso-decomp/pull/284))
 
 | Unit | Function | What | Why | Port should |
 |---|---|---|---|---|
-| `pso/unk/text_8042E8C4.cpp` | `LaunchDol` (`0x8042E8C4`, 312 B; sole function in unit) | unit switch `-opt nocse,nostrength,noprop` on `ntutl` (`GC/2.6 -O4,p -inline off -use_lmw_stmw on`) | In the target disassembly, the text (`0x8042E940`–`0x8042E990`) and data (`0x8042E9A0`–`0x8042E9E8`) section loops index with `lwzx` off a separate byte induction variable (`r31`, stepped by `addi r31, r31, 4`) and recompute each member's byte offset per load (`lwzx r4, r26, r31; addi r3, r31, 0x48; addi r0, r31, 0x90; lwzx r28, r26, r3; cmplw r4, r30; lwzx r29, r26, r0` in loop 1; `+0x1c`/`+0x64`/`+0xac` in loop 2), then compute the source address before moving `dest`/`length` into argument registers (`add r4, r26, r4; mr r3, r28; mr r5, r29; bl memmove` at `+0x98`/`+0xfc`). With default `-O4,p` (64.01%), strength reduction folds `image` (`r26`) into a single pointer induction variable (`lwz 0x48(r31)`). With `-opt nostrength` alone (55.29%), CSE hoists a shared `add r3, r30, r31` base per iteration. With `-opt nocse,nostrength` (74.14%), the `lwzx` + `addi` loop headers match, but copy propagation folds `u8 *src = file + offset` into the `memmove` call after the `mr r3, dest; mr r5, length` moves (`mr r3, r28; mr r5, r27; add r4, r30, r4; bl memmove`). Adding `noprop` (`-opt nocse,nostrength,noprop`, **79.14%**) keeps the `src = file + offset` evaluation before the argument moves (`add r4, r30, r4; mr r3, r28; mr r5, r27; bl memmove`) in both loops. Precedent: this repo's `musyx` and `avetcp` (`-opt nocse`), `ginja` (`-opt nopeephole`), and `TEffIndirectCtrl_802A88AC.cpp` (`-opt noprop`, [#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291)); per-object `-opt` overrides in [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L723) (`-opt peephole -opt schedule`) and per-unit `#pragma opt_strength_reduction off` / `#pragma opt_common_subs off` / `#pragma opt_propagation off` in GameCube/Wii MWCC decomps. | Drop the switch; in a port `LaunchDol` is replaced by host/loader equivalents anyway. |
+| `pso/unk/text_8042E8C4.cpp` | `LaunchDol` (`0x8042E8C4`, 312 B; sole function in unit) | unit switch `-inline auto -opt nocse,nostrength,noprop` on `ntutl` (`GC/2.6 -O4,p -use_lmw_stmw on`) | For the C++ implementation in the `#else` branch of `src/pso/unk/text_8042E8C4.cpp`: in the target disassembly, the text (`0x8042E940`–`0x8042E990`) and data (`0x8042E9A0`–`0x8042E9E8`) section loops index with `lwzx` off a separate byte induction variable (`r31`, stepped by `addi r31, r31, 4`), compare each section offset against a zero register (`cmplw r4, r30` initialized in each loop preheader via `mr r30, r27`), recompute each member's byte offset per load (`addi r3, r31, 0x48; addi r0, r31, 0x90; lwzx r28, r26, r3; cmplw r4, r30; lwzx r29, r26, r0`), and evaluate the source address before moving `dest`/`length` into argument registers (`add r4, r26, r4; mr r3, r28; mr r5, r29; bl memmove`). With default `-O4,p` (64.01%), strength reduction folds `image` (`r26`) into a pointer induction variable (`lwz 0x48(r31)`). With `-opt nostrength` alone (55.29%), CSE hoists a shared `add r3, r30, r31` base per iteration. With `-opt nocse,nostrength` (74.14%), copy/constant propagation folds `zero = 0` into `cmplwi r4, 0` and folds `src = image + offset` after the argument moves. Adding `noprop` (`-opt nocse,nostrength,noprop`, 79.14%–88.65%) preserves both `cmplw r4, r30` and the `add r4, r26, r4` schedule; adding `-inline auto` (the repo-wide `cflags_pso` default) so the inlined body's locals are allocated as `@` temporaries (`>= 0x5eb218`) enables PCode CSE (`0x509c32..0x509c48`) to emit `mr r31, r27` and `mr r30, r27` at `0x74`/`0x78` while keeping `li r31, 0` and `mr r30, r27` at `0xd4`/`0xd8`, matching all 74 pre-tail instructions (`0x000..0x124`, **91.03%** overall) byte-for-byte. Precedent: this repo's `musyx` and `avetcp` (`-opt nocse`), `ginja` (`-opt nopeephole`), and `TEffIndirectCtrl.cpp` (`-opt noprop`, [#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291)). | Drop the switch; in a port `LaunchDol` is replaced by host/loader equivalents anyway. |
 
 ## 6. Approved regressions
 
 None on main.
+
+## 7. Upstream catch-up (rewrite later)
+
+Matt, 2026-11-04 6:55 PM PT: "Yes, allow the one-time upstream asm exception with
+those guardrails." Code taken unchanged from upstream zeroz41/pso-decomp #167-#191
+may keep upstream's asm and other patterns the fork otherwise bans, so the fork can
+catch up quickly. Each instance gets one row here; the C++ rewrite comes later.
+Guardrails: the code is upstream's own (cite the upstream PR), check_pr passes with
+0 matched/linked regressions, and new fork code still follows the full rules.
+
+Columns (all required; `tools/list_port_exceptions.py --check` validates them):
+function/symbol; unit; file (repo path); upstream PR (#167-#191); cheat type (`asm`,
+`raw offset cast`, `extern "C" mangled name`, `steering pragma`, `shadow struct`,
+or `other: <what>`); the fork PR that brought it in; and the tag
+`upstream catch-up, rewrite later`. List and count them with
+`python3 tools/list_port_exceptions.py --upstream-catchup`; check_pr prints the count.
+
+| Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
+|---|---|---|---|---|---|---|
+| `LaunchDol` | `pso/unk/text_8042E8C4.cpp` | `src/pso/unk/text_8042E8C4.cpp` | [#172](https://github.com/zeroz41/pso-decomp/pull/172) | asm | [#350](https://github.com/matthewlewisnewton/pso-decomp/pull/350) | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
