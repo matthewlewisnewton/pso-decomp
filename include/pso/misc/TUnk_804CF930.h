@@ -5,6 +5,8 @@
 #include "pso/misc/TUnk_804CF918.h"
 #include "pso/misc/TWindowDrawContext.h"
 
+struct TWindowDrawContext;
+
 class TUnk_804CF930 : public TUnk_804CF918 {
 public:
     virtual ~TUnk_804CF930();
