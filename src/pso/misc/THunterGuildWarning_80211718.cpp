@@ -64,6 +64,8 @@ void THunterGuildWarning::sub_80211774(s32) {
         break;
     }
     case 2: {
+        // int, not s32: the original hoists this int-to-long argument
+        // conversion out of the loop as a register copy.
         int text = 0x64;
         if (get_game_play_mode() == 2) text = 0x6a;
         u16 local = TCameraCtrl::get_nth_view_player_id(0);
