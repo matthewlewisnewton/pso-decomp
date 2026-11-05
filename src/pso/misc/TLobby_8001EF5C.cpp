@@ -643,7 +643,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
     Rec_80020004 *first;
     s32 sectors;
     s32 size;
-    s32 buf;
+    u8 *buf;
     u32 flags;
     reset();
     this->flags = kind | 0x100;
@@ -683,7 +683,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
         }
         hdr = (Hdr_80020004 *)bml_load_buffer;
         first = hdr->recs;
-        ((TGStream *)(&st))->read_data((s32)hdr, (s32)(sectors << 11));
+        ((TGStream *)(&st))->read_data((u8 *)hdr, sectors << 11);
         switch (hdr->compressed) {
         case 0x50:
             bml_load_state = 1;
@@ -705,21 +705,21 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
             }
             switch (bml_load_state) {
             case 1:
-                buf = (s32)TQuestVmDownLoadServer::alloc(size + 0x800);
-                if (buf != 0) {
+                buf = (u8 *)TQuestVmDownLoadServer::alloc(size + 0x800);
+                if (buf != NULL) {
                     disc_read_filename = (s32)descriptor->archive_filename;
-                    ((TGStream *)(&st))->read_data((s32)((void *)buf), (s32)size);
+                    ((TGStream *)(&st))->read_data(buf, size);
                     align_gstream_read_offset(&st, blk);
                     disc_read_filename = lbl_805D2B10;
-                    prs_decompress_buffer(buf, (s32)resource_decompress_buffer);
-                    TAdSinglePlyChrSelectGC::safe_free(buf);
+                    prs_decompress_buffer((s32)buf, (s32)resource_decompress_buffer);
+                    TAdSinglePlyChrSelectGC::safe_free((u32)buf);
                     bind_bml_model((Lobby_8001FBEC *)(this), size, i, (s32)((s32)resource_decompress_buffer));
                 } else {
                     debug_print__6TLobbyFle(lbl_80434DF4, (s32)descriptor->archive_filename);
                 }
                 break;
             default:
-                ((TGStream *)(&st))->read_data((s32)resource_decompress_buffer, (s32)size);
+                ((TGStream *)(&st))->read_data(resource_decompress_buffer, size);
                 align_gstream_read_offset(&st, blk);
                 disc_read_filename = lbl_805D2B10;
                 bind_bml_model((Lobby_8001FBEC *)(this), size, i, (s32)((s32)resource_decompress_buffer));
@@ -730,11 +730,11 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
                 if ((u32)e->m_c != 0U) {
                     s32 tsize = rec->texSize;
                     if (tsize != 0) {
-                        s32 tbuf = (s32)TQuestVmDownLoadServer::alloc(tsize + 0x800);
-                        ((TGStream *)(&st))->read_data((s32)((void *)tbuf), (s32)tsize);
+                        u8 *tbuf = (u8 *)TQuestVmDownLoadServer::alloc(tsize + 0x800);
+                        ((TGStream *)(&st))->read_data(tbuf, tsize);
                         align_gstream_read_offset(&st, blk);
-                        prs_decompress_buffer(tbuf, (s32)resource_decompress_buffer);
-                        TAdSinglePlyChrSelectGC::safe_free(tbuf);
+                        prs_decompress_buffer((s32)tbuf, (s32)resource_decompress_buffer);
+                        TAdSinglePlyChrSelectGC::safe_free((u32)tbuf);
                         if (load_gvm_texture_archive((s32)resource_decompress_buffer, (s32)models[i].m_c) > 0) {
                             models[i].m_0 |= 1;
                         } else {
@@ -757,16 +757,16 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
             }
             switch (bml_load_state) {
             case 1: {
-                s32 mb = (s32)TQuestVmDownLoadServer::alloc(sz + 0x800);
-                ((TGStream *)(&st))->read_data((s32)((void *)mb), (s32)sz);
+                u8 *mb = (u8 *)TQuestVmDownLoadServer::alloc(sz + 0x800);
+                ((TGStream *)(&st))->read_data(mb, sz);
                 align_gstream_read_offset(&st, blk);
-                prs_decompress_buffer(mb, (s32)resource_decompress_buffer);
-                TAdSinglePlyChrSelectGC::safe_free(mb);
+                prs_decompress_buffer((s32)mb, (s32)resource_decompress_buffer);
+                TAdSinglePlyChrSelectGC::safe_free((u32)mb);
                 bind_bml_motion((struct Lobby_8001FB6C *)this, j, resource_decompress_buffer);
                 break;
             }
             default:
-                ((TGStream *)(&st))->read_data((s32)resource_decompress_buffer, (s32)sz);
+                ((TGStream *)(&st))->read_data(resource_decompress_buffer, sz);
                 align_gstream_read_offset(&st, blk);
                 bind_bml_motion((struct Lobby_8001FB6C *)this, j, resource_decompress_buffer);
                 break;

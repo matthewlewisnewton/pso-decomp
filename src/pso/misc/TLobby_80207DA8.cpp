@@ -951,9 +951,10 @@ void free_team_buffers__6TLobbyFv(void);
 #define lobby_slot_ptr_table (*(s32 (*)[1])&lobby_slot_ptr_table)
 #define area_event_set_heap (*(s32 *)&area_event_set_heap)
 
-s32 TLobby::add_player(s32 arg0, s32 arg1, s32 arg2) {
+#undef area_event_set_heap
+s32 TLobby::add_player(s32 arg0, const void *src, s32 n) {
     s32 temp_r29;
-    s32 temp_r3;
+    u8 *block;
 
     if (arg0 > 0x11) {
         return 0;
@@ -962,15 +963,16 @@ s32 TLobby::add_player(s32 arg0, s32 arg1, s32 arg2) {
     if ((u32) *((s32 *)((s8 *)lobby_slot_ptr_table + temp_r29)) != 0U) {
         return 0;
     }
-    temp_r3 = HA2(area_event_set_heap, arg2);
-    if (temp_r3 != 0) {
-        move_data((void *)temp_r3, (const void *)arg1, (u32)arg2);
-        *((s32 *)((s8 *)lobby_slot_ptr_table + temp_r29)) = temp_r3;
+    block = heap_alloc__5THeapFUl(area_event_set_heap, n);
+    if (block != NULL) {
+        move_data(block, src, n);
+        *((u8 **)((s8 *)lobby_slot_ptr_table + temp_r29)) = block;
         bswap_floor_event_set(arg0);
         return 1;
     }
     return 0;
 }
+#define area_event_set_heap (*(s32 *)&area_event_set_heap)
 
 void free_team_buffers__6TLobbyFv(void) {
     s32 i;

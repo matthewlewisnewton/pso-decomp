@@ -25,7 +25,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 5 functions (9 source lines) | 3 |
 | MWCC intrinsics | 83 | 54 |
-| Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
+| Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,865 | 886 |
 | Per-unit compiler overrides in `configure.py` | 145 | 145 |
 | Approved regressions | 0 on main, 1 pending (#291) | |

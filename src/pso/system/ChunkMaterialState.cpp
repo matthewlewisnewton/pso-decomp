@@ -65,8 +65,8 @@ extern f32 light_position_distance;
 extern s32 gx_chan_ctrl_light_mask;
 void GXInitLightAttnK(void *, f32, f32, f32);
 extern u8 identity_matrix[];
-extern u32 matrix_stack_limit;
-extern u32 matrix_stack_base;
+extern u8 *matrix_stack_limit;
+extern u8 *matrix_stack_base;
 extern u32 current_matrix;
 void PSMTXIdentity(void *);
 extern Pad_803DEA18 TKeyBoardControl_prev_pad_state[4];
@@ -210,11 +210,11 @@ void TKeyBoardControl::clamp_axes() {
 }
 
 void TObjPlayer::init_matrix_stack(s32 arg0, s32 arg1) {
-    matrix_stack_base = 0xE0000000;
+    matrix_stack_base = (u8 *)0xE0000000;
     current_matrix = 0xE0000000;
-    matrix_stack_limit = (arg1 - 1) * 0x30 + 0xE0000000;
-    PSMTXIdentity(identity_matrix == 0 ? (u8 *)0xE0000000 : identity_matrix);
-    move_data((void *)matrix_stack_base, identity_matrix, 0x30);
+    matrix_stack_limit = matrix_stack_base + (arg1 - 1) * 0x30;
+    PSMTXIdentity(identity_matrix == 0 ? matrix_stack_base : identity_matrix);
+    move_data(matrix_stack_base, identity_matrix, 0x30);
 }
 
 void init_light_globals(s32, s32) {

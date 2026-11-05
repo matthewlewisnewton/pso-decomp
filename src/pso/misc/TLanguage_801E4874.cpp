@@ -21,7 +21,7 @@ struct Ent_801E4874 {
     u8 pad[8];
 };
 
-extern s32 TLanguage__read_cursor;
+extern u8 *TLanguage__read_cursor;
 extern "C" {
 u8 *TQuestVmDownLoadServer__sub_8007EBDC(s32, s32);
 u32 alloc__22TQuestVmDownLoadServerFUl();
@@ -61,7 +61,7 @@ u8 *load_gvm_texture_file(s32 arg0) {
         buf = TLobby::tmp_buf_use_req((const char *)lbl_8044983C);
     }
     TGStream::load_sct_file(arg0, buf);
-    count = ((s32 (*)(s32, u8 *))read_file_header__9TLanguageFiPv)(buf, (u8 *)&hdr);
+    count = read_file_header__9TLanguageFiPv((u8 *)buf, (u8 *)&hdr);
     if (count == 0) {
         if (big != 0) {
             TAdSinglePlyChrSelectGC::safe_free(big);
@@ -102,7 +102,7 @@ u8 *load_gvm_texture_file(s32 arg0) {
     return res;
 }
 
-u16 read_file_header__9TLanguageFiPv(s32 arg0, u8 *arg1) {
+s32 read_file_header__9TLanguageFiPv(u8 *arg0, u8 *arg1) {
     TLanguage__read_cursor = arg0;
     TLanguage::read_into_buffer(arg1, 4);
     *(s32 *)((s8 *)arg1 + 4) = TLanguage::read_u32_le();
@@ -115,21 +115,21 @@ u16 read_file_header__9TLanguageFiPv(s32 arg0, u8 *arg1) {
 }
 
 void TLanguage::read_into_buffer(u8 *dst, s32 n) {
-    move_data(dst, (const void *)TLanguage__read_cursor, n);
+    move_data(dst, TLanguage__read_cursor, n);
     TLanguage__read_cursor += n;
 }
 
 s32 TLanguage::read_u32_le() {
-    s32 v = *(u8 *)TLanguage__read_cursor++;
-    v |= *(u8 *)TLanguage__read_cursor++ << 8;
-    v |= *(u8 *)TLanguage__read_cursor++ << 16;
-    v |= *(u8 *)TLanguage__read_cursor++ << 24;
+    s32 v = *TLanguage__read_cursor++;
+    v |= *TLanguage__read_cursor++ << 8;
+    v |= *TLanguage__read_cursor++ << 16;
+    v |= *TLanguage__read_cursor++ << 24;
     return v;
 }
 
 s32 TLanguage::read_u16_le() {
-    s32 lo = *(u8 *)TLanguage__read_cursor++;
-    lo |= *(u8 *)TLanguage__read_cursor++ << 8;
+    s32 lo = *TLanguage__read_cursor++;
+    lo |= *TLanguage__read_cursor++ << 8;
     return lo;
 }
 }
