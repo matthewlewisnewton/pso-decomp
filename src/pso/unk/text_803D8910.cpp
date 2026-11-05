@@ -8,6 +8,10 @@
 // mtx.h defines MTXMultVecArray as this symbol but does not prototype it.
 extern "C" void PSMTXMultVecArray(const GC_Mtx m, const Vec *src, Vec *dst, u32 count);
 
+extern "C" asm void vec3_add_to(Vec *dst, const Vec *src) {
+#include "orig_asm/pso/unk/text_803D8910/vec3_add_to.inc"
+}
+
 void matrix_mult_vec(f32 (*m)[4], const Vec *src, Vec *dst) {
     if (m == NULL) {
         m = (f32 (*)[4])current_matrix;
@@ -30,11 +34,21 @@ void get_current_matrix(void *m) {
     PSMTXCopy((MtxP)src, (MtxP)m);
 }
 
+
+extern "C" asm f32 vec3_dot(const Vec *a, const Vec *b) {
+#include "orig_asm/pso/unk/text_803D8910/vec3_dot.inc"
+}
+
 void TObjPlayer::invert_matrix_in_place(u32 arg0) {
     if (arg0 == 0) {
         arg0 = (u32)current_matrix;
     }
     PSMTXInverse((MtxP)arg0, (MtxP)arg0);
+}
+
+
+extern "C" asm f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
+#include "orig_asm/pso/unk/text_803D8910/vec3_cross.inc"
 }
 
 void rotate_matrix_zyx(void *m, s32 x, s32 y, s32 z) {
