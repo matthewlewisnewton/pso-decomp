@@ -81,3 +81,24 @@ source experiment, including rejected variants and their restoration.
 `tools/check_pr.py` passed against the freshly built starting-head baseline
 with zero exact, data, or linked regressions; the exception inventory check
 also passed. The attempt-by-attempt log stays in ignored `.pilot-attempts.md`.
+
+### Current-main integration
+
+The retained source is committed as `347bb2b4a`. Main
+`0b6342088f1d62ccf43a770600c98d33ecd1bac7` was separately built from its
+checked-in splits, symbols and source, and its own `check_pr.py` passed.
+It was integrated with an ordinary merge, `0f70e4d9b`, without changing the
+quest source or its types.
+
+The full build and `tools/check_pr.py --baseline` against that fresh main
+report passed: zero matched-function, matched-data, linked-function, linked-data
+or coverage regressions. All 3,562 linked units remain exact; retention has
+zero missing or stale entries. The DOL SHA-1 check passes. The exception
+inventory check passes without a generated-inventory change from this work.
+
+Project totals after integration are 4,178,212 matched code bytes, 27,357
+matched functions, and 1,463,239 matched data bytes. Relative to current main,
+the extra 476 exact code bytes and one function are the pagination match
+already present at this worker's starting commit. This round's entry-merge
+improvement is fuzzy only. Unit fuzzy coverage is 76.36992%; exact coverage
+remains 75.57560%.
