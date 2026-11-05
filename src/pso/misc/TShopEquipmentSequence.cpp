@@ -194,7 +194,7 @@ void TShopEquipmentSequence::update_buy_sell_choice() {
     s32 r;
     if (self->win == NULL) {
         s32 id = get_entity_id(self->f24);
-        self->win = (void *)create_window_menu(((s32 (*)(int))get_window_layout_position)(0x2B), 2, id);
+        self->win = (void *)create_window_menu(((const WindowLayoutPosition *(*)(int))get_window_layout_position)(0x2B), 2, id);
         forward_trade_action_default__16TObjCityMainWarpFPviii(self->win, get_shop_text(4), 6, 0);
         forward_trade_action_default__16TObjCityMainWarpFPviii(self->win, get_shop_text(6), 6, 1);
         ((TWindowSubComCard *)(self->win))->calc_window_size();

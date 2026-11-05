@@ -24,6 +24,7 @@
 #include "pso/ui/Language.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubComCard_80265410.h"
 
 struct VBase18_80218570 { char pad[0x18]; };
 struct VObj18_80218570 : VBase18_80218570 {
@@ -191,7 +192,6 @@ s32 strcmp(const char *, const char *);
 s32 is_downloadable_new_entry__12TQuestListVMFPvPv(QL_802193F0 *q, Ent_802193F0 *e);
 int get_entity_id(int);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(const void *arg0, s32 arg1, u32 arg2, u32 arg3);
 void send_and_handle__6TLobbyFii(u32, void *, int);
 extern const f32 lbl_805DC6B8;
 extern const f32 lbl_805DC6BC;

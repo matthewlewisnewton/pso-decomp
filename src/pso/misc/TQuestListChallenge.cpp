@@ -9,6 +9,7 @@
 #include "pso/quest/TQuestListVM.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubComCard_80265410.h"
 #include "pso/player/TObjPlayer_80011014.h"
 
 struct Base_80288C78_80288B5C { char pad[0x18]; };
@@ -110,7 +111,6 @@ extern "C" {
 s32 get_quest_list_text(int, int, int);
 f32 get_scale__15TShopWindowBaseFv(void *);
 s32 TWindow__close(void *);
-void *create_yes_no_window(const WindowLayoutPosition *, s32, u32, u32);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(s32);
 void update_selection__19TQuestListChallengeFv(QLC_80288DA4 *self);
 s32 lbl_805D64A8;

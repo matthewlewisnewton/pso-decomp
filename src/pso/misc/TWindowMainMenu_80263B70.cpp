@@ -17,6 +17,7 @@ struct TWindowSubMag;
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowMainMenu.h"
 #include "pso/misc/TWindowMessage.h"
+#include "pso/ui/TUnk_804E0B28.h"
 #include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 
 extern "C" {
@@ -247,16 +248,12 @@ s32 __ct__15TWindowSubTradeFP7TObjectPv(int, void *, int);
 s32 __ct__19TWindowSubTradeMainFP7TObjectPv(int, void *, int);
 s32 __ct__22TWindowSubTradeMessageFP7TObjectl(int, void *, int);
 s32 __ct__26TWindowSubInformationBoardFP7TObjectPv(int, void *, int);
-void *__ct__13TUnk_804E0B28FP7TObjectl(void *, void *, s32);
 
 void TWindowMainMenu1P::create_char_select_slot() {
     void *o;
     destroy_submenu__15TWindowMainMenuFv(this);
     set_scale_f();
-    o = __nw__7TObjectFUl(0x50);
-    if (o != NULL) {
-        o = __ct__13TUnk_804E0B28FP7TObjectl(o, this, this->m_client_id);
-    }
+    o = new TUnk_804E0B28(this, this->m_client_id);
     *(void * *)&this->m_20 = o;
 }
 void TWindowMainMenu::create_submenu(u32 arg1) {

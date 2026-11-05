@@ -28,6 +28,7 @@
 #include "pso/quest/TQuestThread.h"
 #include "pso/ui/Language.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "stdio.h"
 #include "pso/misc/TOBoss4Rock.h"
@@ -57,7 +58,6 @@ s32 check_flag_100__10TObjPlayerFPv(void *);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 has_player_active_menu__11TWindowCtrlFv(s32);
 void TWindow__close(void *);
-void *get_window_layout_position(s32);
 void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, s32);
 void *update_window_mode_from_progress__6TLobbyFPv(void *, WindowPos *);
 s32 align_menu_entry_positions(u32);

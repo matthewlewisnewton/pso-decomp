@@ -20,6 +20,7 @@
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubComCard_80265410.h"
 struct Stack_80217EC4 {
     s32 sp8;
     s32 spC;
@@ -93,7 +94,6 @@ extern u8 lbl_805DC6A0;
 
 s32 get_unlocked_tier__16TQuestListOnlineFv(void *);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(const void *arg0, s32 arg1, u32 arg2, u32 arg3);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(u32);
 }
 extern RecoveredGlobal_80217EC4_lbl_8044BEDC lbl_8044BEDC;
