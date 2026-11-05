@@ -716,7 +716,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Status gauge: contracting the unit makes `0.299f * depth + ctx->depth`
     # the fmadds at 0x80257118. The bar multiply stays a separate fmuls
     # because the 7.5 scale is applied to the sum before the tick subtract.
-    "pso/misc/TWindowSubStatusDisp_80256B94.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    "pso/misc/TWindowSubStatusDisp_80256B94.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf

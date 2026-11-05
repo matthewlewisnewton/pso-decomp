@@ -14,105 +14,93 @@
 
 extern GinjaTextureList *lbl_805D63F0;
 
-struct Bar_80256C00 {
-    u8 pad0[0x14];
-    f32 scale;
-    u8 pad1[4];
-    f32 width;
-    f32 max;
-    f32 target;
-};
-
-struct Gauge_802571B4 {
-    u16 flags;
-    u8 pad2[0x12];
-    f32 scale;
-    u8 pad18[4];
-    f32 cur;
-    f32 max;
-    f32 val;
-};
-
 struct Pos_80256E0C { f32 x; f32 y; };
 
 struct Quad_80256E0C { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 
+// Definitions run last-to-first under this unit's -inline off,deferred, so
+// the emitted .text is address order and __vt__13TUnk_804CF918 precedes
+// __vt__13TUnk_804CF930.
 extern "C" {
-void calc_bar_width__20TWindowSubStatusDispFPv(struct Bar_80256C00 *bar);
+void TWindowSubStatusDisp__sub_80256C40(TUnk_804CF930 *self, TWindowDrawContext *ctx, Pos_80256E0C *pos, f32 depth);
 f32 fabs_float(f32);
 const f32 lbl_805DCECC = 2.0f;
-void step_gauge_bar_width(Gauge_802571B4 *g);
-void TWindowSubStatusDisp__sub_80256BF8(void);
-void TWindowSubStatusDisp__sub_80256BFC(void);
 
-void *TUnk_804CF930::destroy(s16 arg1) {
-    if (this != NULL) {
-        // Virtual ~TUnk_804CF918 would store this slot, but defining it emits
-        // __vt__ into this object. Those tables already sit in auto_07_804CF868_data.
-        *(TUnk_804CF918_table **)((u8 *)this + 4) = &__vt__13TUnk_804CF918;
-        if (arg1 > 0) {
-            ::operator delete(this);
-        }
-    }
-    return this;
+TUnk_804CF930::TUnk_804CF930(void *src_raw, s16 arg2) : TUnk_804CF918(arg2) {
+    TUnk_804CF930_init *src = static_cast<TUnk_804CF930_init *>(src_raw);
+    width = 0.0f;
+    x = src->x;
+    y = src->y;
+    depth = src->depth;
+    scale = src->scale;
+    color = src->color;
+    flags = (u16)src->flags;
+    maximum = src->maximum;
+    target = src->target;
 }
 
-TUnk_804CF918::TUnk_804CF918(s16 arg) {
-    flags = 0;
-    m_2 = arg;
-}
+TUnk_804CF930::~TUnk_804CF930() {}
 
-void TWindowSubStatusDisp__sub_80256BF8(void) {  }
-void TWindowSubStatusDisp__sub_80256BFC(void) {  }
-void calc_bar_width__20TWindowSubStatusDispFPv(struct Bar_80256C00 *bar) {
-    f32 target;
-    f32 max = bar->max;
-    f32 v;
-    if (max <= 0.0f || (target = bar->target) <= 0.0f) {
-        v = 0.0f;
+void TUnk_804CF930::update() {
+    f32 goal;
+    f32 diff;
+    flags &= ~4;
+    if (maximum <= 0.0f || target <= 0.0f) {
+        goal = 0.0f;
     } else {
-        v = (target * bar->scale) / max;
+        goal = (target * scale) / maximum;
     }
-    bar->width = v;
+    diff = goal - width;
+    if (fabs_float(diff) < lbl_805DCECC) {
+        width = goal;
+        flags |= 4;
+    } else if (diff > 0.0f) {
+        width += lbl_805DCECC;
+    } else {
+        width -= lbl_805DCECC;
+    }
 }
 
-void TWindowSubStatusDisp__sub_80256C40(TUnk_804CF930 *self, TWindowDrawContext *ctx, Pos_80256E0C *pos, f32 depth) {
-    Quad_80256E0C q;
-    f32 w;
-    w = self->scale - -2.0f;
-    q.x0 = -1.0f + pos->x;
-    q.y0 = -1.0f + pos->y;
-    q.x1 = 20.0f + q.x0;
-    q.y1 = 9.0f + q.y0;
-    q.u0 = 0.1484375f;
-    q.v0 = 0.93359375f;
-    q.u1 = 0.2265625f;
-    q.v1 = 0.96875f;
-    if (TWindowKeyBoardSoft::try_open(ctx, &q.x0) != 0) {
-        draw_textured_quad_at_depth(&q.x0, depth);
+void TUnk_804CF930::render(TWindowDrawContext *ctx) {
+    // depth before bar: the two values live across the draw calls, and this
+    // order is what puts depth in f31 and the bar in f29.
+    f32 depth_term;
+    f32 len;
+    Pos_80256E0C pos;
+    f32 bar;
+    f32 sum = y / 21.0f + x / ctx->inner_w;
+    // Signed cast. Its bias is this unit's .rodata (lbl_8044EE40). Nothing
+    // else loads that object, so it is scope:local. Naming the double emits
+    // a second copy and the lis/lfd stops matching the compiler pool.
+    f32 tick = (f32)ctx->open_tick;
+
+    sum *= 7.5f;
+    bar = (tick - sum) * 17.0f;
+    if (bar <= 0.0f) {
+        return;
     }
-    q.x0 = 20.0f + (-1.0f + pos->x);
-    q.y0 = -1.0f + pos->y;
-    q.x1 = ((q.x0 + w) - 20.0f) - 20.0f;
-    q.y1 = 9.0f + q.y0;
-    q.u0 = 0.23046875f;
-    q.v0 = 0.93359375f;
-    q.u1 = 0.30859375f;
-    q.v1 = 0.96875f;
-    if (TWindowKeyBoardSoft::try_open(ctx, &q.x0) != 0) {
-        draw_textured_quad_at_depth(&q.x0, depth);
+    if (width <= 0.0f && (flags & 8) == 0) {
+        return;
     }
-    q.x0 = ((-1.0f + pos->x) + w) - 20.0f;
-    q.y0 = -1.0f + pos->y;
-    q.x1 = 20.0f + q.x0;
-    q.y1 = 9.0f + q.y0;
-    q.u0 = 0.41015625f;
-    q.v0 = 0.93359375f;
-    q.u1 = 0.48828125f;
-    q.v1 = 0.96875f;
-    if (TWindowKeyBoardSoft::try_open(ctx, &q.x0) != 0) {
-        draw_textured_quad_at_depth(&q.x0, depth);
+    if (width > bar) {
+        len = bar;
+    } else {
+        len = width;
     }
+    pos.x = ctx->inner_x + x;
+    pos.y = ctx->inner_y + y;
+    depth_term = -1.0f / (0.299f * depth + ctx->depth);
+    begin_screen_draw(1);
+    set_current_texture_list(lbl_805D63F0);
+    set_draw_texture_and_color(0xB, -1);
+    if ((flags & 8) != 0) {
+        TWindowSubStatusDisp__sub_80256C40(this, ctx, &pos, depth_term);
+    }
+    if (bar > 0.0f) {
+        set_constant_material_color(color);
+        draw_status_gauge_bar(ctx, &pos, depth_term, len);
+    }
+    TWindowSubStatusDisp::get_player();
 }
 
 void TUnk_804CF930::draw_status_gauge_bar(TWindowDrawContext *ctx, void *pos_arg, f32 depth, f32 len) {
@@ -172,91 +160,65 @@ void TUnk_804CF930::draw_status_gauge_bar(TWindowDrawContext *ctx, void *pos_arg
     }
 }
 
-void TWindowSubStatusDisp__sub_80257024(TUnk_804CF930 *self, TWindowDrawContext *ctx) {
-    // depth before bar: the two values live across the draw calls, and this
-    // order is what puts depth in f31 and the bar in f29.
-    f32 depth;
-    f32 len;
-    Pos_80256E0C pos;
-    f32 bar;
-    f32 sum = self->y / 21.0f + self->x / ctx->inner_w;
-    // Signed cast. Its bias is this unit's .rodata (lbl_8044EE40). Nothing
-    // else loads that object, so it is scope:local. Naming the double emits
-    // a second copy and the lis/lfd stops matching the compiler pool.
-    f32 tick = (f32)ctx->open_tick;
+void TWindowSubStatusDisp__sub_80256C40(TUnk_804CF930 *self, TWindowDrawContext *ctx, Pos_80256E0C *pos, f32 depth) {
+    Quad_80256E0C q;
+    f32 w;
+    w = self->scale - -2.0f;
+    q.x0 = -1.0f + pos->x;
+    q.y0 = -1.0f + pos->y;
+    q.x1 = 20.0f + q.x0;
+    q.y1 = 9.0f + q.y0;
+    q.u0 = 0.1484375f;
+    q.v0 = 0.93359375f;
+    q.u1 = 0.2265625f;
+    q.v1 = 0.96875f;
+    if (TWindowKeyBoardSoft::try_open(ctx, &q.x0) != 0) {
+        draw_textured_quad_at_depth(&q.x0, depth);
+    }
+    q.x0 = 20.0f + (-1.0f + pos->x);
+    q.y0 = -1.0f + pos->y;
+    q.x1 = ((q.x0 + w) - 20.0f) - 20.0f;
+    q.y1 = 9.0f + q.y0;
+    q.u0 = 0.23046875f;
+    q.v0 = 0.93359375f;
+    q.u1 = 0.30859375f;
+    q.v1 = 0.96875f;
+    if (TWindowKeyBoardSoft::try_open(ctx, &q.x0) != 0) {
+        draw_textured_quad_at_depth(&q.x0, depth);
+    }
+    q.x0 = ((-1.0f + pos->x) + w) - 20.0f;
+    q.y0 = -1.0f + pos->y;
+    q.x1 = 20.0f + q.x0;
+    q.y1 = 9.0f + q.y0;
+    q.u0 = 0.41015625f;
+    q.v0 = 0.93359375f;
+    q.u1 = 0.48828125f;
+    q.v1 = 0.96875f;
+    if (TWindowKeyBoardSoft::try_open(ctx, &q.x0) != 0) {
+        draw_textured_quad_at_depth(&q.x0, depth);
+    }
+}
 
-    sum *= 7.5f;
-    bar = (tick - sum) * 17.0f;
-    if (bar <= 0.0f) {
-        return;
-    }
-    if (self->width <= 0.0f && (self->flags & 8) == 0) {
-        return;
-    }
-    if (self->width > bar) {
-        len = bar;
+void TUnk_804CF930::calc_bar_width() {
+    f32 goal;
+    f32 max = maximum;
+    f32 v;
+    if (max <= 0.0f || (goal = target) <= 0.0f) {
+        v = 0.0f;
     } else {
-        len = self->width;
+        v = (goal * scale) / max;
     }
-    pos.x = ctx->inner_x + self->x;
-    pos.y = ctx->inner_y + self->y;
-    depth = -1.0f / (0.299f * self->depth + ctx->depth);
-    begin_screen_draw(1);
-    set_current_texture_list(lbl_805D63F0);
-    set_draw_texture_and_color(0xB, -1);
-    if ((self->flags & 8) != 0) {
-        TWindowSubStatusDisp__sub_80256C40(self, ctx, &pos, depth);
-    }
-    if (bar > 0.0f) {
-        set_constant_material_color(self->color);
-        self->draw_status_gauge_bar(ctx, &pos, depth, len);
-    }
-    TWindowSubStatusDisp::get_player();
+    width = v;
 }
 
-void step_gauge_bar_width(Gauge_802571B4 *g) {
-    f32 target;
-    f32 diff;
-    g->flags &= ~4;
-    if (g->max <= 0.0f || g->val <= 0.0f) {
-        target = 0.0f;
-    } else {
-        target = (g->val * g->scale) / g->max;
-    }
-    diff = target - g->cur;
-    if (fabs_float(diff) < lbl_805DCECC) {
-        g->cur = target;
-        g->flags |= 4;
-    } else if (diff > 0.0f) {
-        g->cur += lbl_805DCECC;
-    } else {
-        g->cur -= lbl_805DCECC;
-    }
+void TUnk_804CF918::render(TWindowDrawContext *) {}
+void TUnk_804CF918::update() {}
+
+TUnk_804CF918::TUnk_804CF918(s16 arg) {
+    flags = 0;
+    m_2 = arg;
 }
 
-void *TWindowSubStatusDisp__sub_80257298(TUnk_804CF930 *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        // Same constraint as destroy: ~TUnk_804CF930 would emit a second vtable.
-        *(TUnk_804CF918_table **)((u8 *)arg0 + 4) = &__vt__13TUnk_804CF930;
-        arg0->destroy(0);
-        if (arg1 > 0) {
-            ::operator delete(arg0);
-        }
-    }
-    return arg0;
-}
-
-TUnk_804CF930::TUnk_804CF930(void *src_raw, s16 arg2) : TUnk_804CF918(arg2) {
-    TUnk_804CF930_init *src = static_cast<TUnk_804CF930_init *>(src_raw);
-    width = 0.0f;
-    x = src->x;
-    y = src->y;
-    depth = src->depth;
-    scale = src->scale;
-    color = src->color;
-    flags = (u16)src->flags;
-    maximum = src->maximum;
-    target = src->target;
-}
+TUnk_804CF918::~TUnk_804CF918() {}
 
 }

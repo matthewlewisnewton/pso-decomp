@@ -42,6 +42,7 @@ typedef struct Vec2_8025A354 { f32 x, y; } Vec2_8025A354;
 
 extern "C" {
 s32 __ct__13TUnk_804CF918Fs(void *, void *);
+void __dt__13TUnk_804CF918Fv(void *, s16);
 s32 strncpy(s32, u32, s32);
 void render_summary_row__15TWindowHelpItemFv(Item_8025A354 *self, Win_8025A354 *w);
 s32 measure_string_len__20TWindowSubStatusDispFv(u32);
@@ -181,7 +182,7 @@ void *destroy__15TWindowHelpItemFPvs(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(void ***)((s8 *)arg0 + 4) = lbl_804CF9F8;
         ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0x18)));
-        ((TUnk_804CF930 *)arg0)->destroy((s16)(0));
+        __dt__13TUnk_804CF918Fv(arg0, (s16)0);
         if (arg1 > 0) {
             ::operator delete(arg0);
         }

@@ -184,31 +184,46 @@ in `.rodata`. Port: keep FMA or accept small float differences; a normal
 `const` is enough for the vector.
 
 #322 (split from #240) builds `pso/misc/TWindowSubStatusDisp_80256B94.cpp`
-with `-fp_contract on` (unit-level flag allowed under Matt's 2026-11-04
-2:37 PM PT policy). Reason: the original fuses the depth term of
-`TWindowSubStatusDisp__sub_80257024` into one `fmadds` at `0x80257118`
-(`0.299f * self->depth + ctx->depth`, then `-1.0f / ...`); MWCC only emits
-that from plain C with contraction on, so the unit no longer needs the
-`__fmadds` intrinsic. Functions affected: only `TWindowSubStatusDisp__sub_80257024`
-changes code; the other ten functions in the unit (`destroy`,
-`__ct__13TUnk_804CF918Fs`, `sub_80256BF8`, `sub_80256BFC`, `calc_bar_width`,
-`sub_80256C40`, `draw_status_gauge_bar`, `step_gauge_bar_width`,
-`sub_80257298`, `__ct__13TUnk_804CF930FPvs`)
-are byte-identical with and without the flag, and `.sdata2` is exact. The bar
-is written `sum *= 7.5f; bar = (tick - sum) * 17.0f;`, which stays
-`fmuls` / `fsubs` / `fmuls` under contraction. Evidence: per-function
-objdiff of the unit with and without the flag, recorded in the #322 PR body. Precedent:
-[dtk-template configure.py#L209](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209)
-(`-fp_contract on`), and in-tree `TObjTombstone.cpp` / `PadRumble.cpp`.
+with `-fp_contract on` and `-inline off,deferred` (unit-level flags allowed
+under Matt's 2026-11-04 2:37 PM PT policy).
+
+`-fp_contract on`: the original fuses the depth term of
+`render__13TUnk_804CF930FP18TWindowDrawContext` into one `fmadds` at
+`0x80257118` (`0.299f * depth + ctx->depth`, then `-1.0f / ...`); MWCC only
+emits that from plain C with contraction on. Only that function's code
+changes when contraction is turned off. The bar is `sum *= 7.5f; bar =
+(tick - sum) * 17.0f;`, which stays `fmuls` / `fsubs` / `fmuls`. The other
+functions and `.sdata2` stay byte-identical with contraction off.
+
+`-inline off,deferred`: the two vtables `__vt__13TUnk_804CF918` (`.data`
+`0x804CF918`) and `__vt__13TUnk_804CF930` (`0x804CF930`) are emitted by the
+virtual destructors. With `-inline off` and the functions defined in address
+order, MWCC puts the derived table at the lower address. Defining the
+derived functions first and compiling `-inline off` puts the base table
+first but emits the derived functions first in `.text`. `-inline off,deferred`
+emits that reversed source in address order and still puts
+`__vt__13TUnk_804CF918` ahead of `__vt__13TUnk_804CF930`. Each table is
+`0x18` bytes (top offset 0, RTTI 0, then the four virtuals; the base
+`calc_bar_width` slot is the pure-virtual zero). The whole unit, including
+`.text` `0x7e8`, `.rodata` 8, `.data` `0x30` and `.sdata2` `0x78`, matches
+with the flag. Without deferred the same source does not. Precedent:
+[dtk-template configure.py#L203](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203)
+(`-inline auto`) and #L209 (`-fp_contract on`), and this tree's
+`TQuestListVM.cpp` / `TObjTombstone.cpp` deferred units. Functions affected:
+the whole translation unit. The destructors are `__dt__13TUnk_804CF918Fv`
+and `__dt__13TUnk_804CF930Fv`; the other virtuals are
+`update__13TUnk_804CF918Fv`, `render__13TUnk_804CF918FP18TWindowDrawContext`,
+`calc_bar_width__13TUnk_804CF930Fv`, `update__13TUnk_804CF930Fv`, and
+`render__13TUnk_804CF930FP18TWindowDrawContext`.
 The signed `open_tick` cast's `0x4330000080000000` bias is
 `lbl_8044EE40`. That object was an unclaimed 8-byte `.rodata` gap; the only
-relocation to it is the `lis`/`lfd` in `TWindowSubStatusDisp__sub_80257024`,
+relocation to it is the `lis`/`lfd` in `render__13TUnk_804CF930FP18TWindowDrawContext`,
 so the range `0x8044EE40..0x8044EE48` belongs to this unit. It is
 `scope:local` for the same reason as the other unreferenced compiler pools
 (`TObjFish_8033CCC8`'s `lbl_80477F08`): the compiler names the pool `@N`, and
 nothing else loads the export. With the bytes in the unit, objdiff's
 `functionRelocDiffs=data_value` treats `@N` and `lbl_8044EE40` as the same
-load, and `sub_80257024` is byte-identical. The unit's `.sdata2` floats
+load, and `render__13TUnk_804CF930FP18TWindowDrawContext` is byte-identical. The unit's `.sdata2` floats
 `lbl_805DCE58` through `lbl_805DCECC` are the same kind of unreferenced pool
 (`0.0f` and the other literals, including `lbl_805DCECC` = 2.0f) and are
 `scope:local` too, which is what makes the whole unit linkable. Port: drop the flag;

@@ -36,11 +36,11 @@ struct Pos_80256E0C { f32 x; f32 y; };
 
 extern "C" {
 void __ct__13TUnk_804CF918Fs(u8 *arg0, s16 arg1);
-void calc_bar_width__20TWindowSubStatusDispFPv(struct Bar_80256C00 *bar);
+void calc_bar_width__13TUnk_804CF930Fv(struct Bar_80256C00 *bar);
 extern const f32 lbl_805DCE58;
-void step_gauge_bar_width(Gauge_802571B4 *g);
+void update__13TUnk_804CF930Fv(Gauge_802571B4 *g);
 void draw_status_gauge_bar__13TUnk_804CF930FPvPvff(Gauge_80256E0C *self, void *ctx, Pos_80256E0C *pos, f32 depth, f32 len);
-void *destroy__13TUnk_804CF930Fs(void *arg0, s16 arg1);
+void *__dt__13TUnk_804CF918Fv(void *arg0, s16 arg1);
 
 #define draw_status_gauge_bar__13TUnk_804CF930FPvPvff ((s32 (*)(void *, void *, void *, f32, f32))draw_status_gauge_bar__13TUnk_804CF930FPvPvff)
 struct RecoveredGlobal_80257B4C_lbl_804CF948 {
@@ -92,10 +92,10 @@ typedef char RecoveredGlobal_80257B4C_lbl_804CF948_size[sizeof(RecoveredGlobal_8
 
 typedef void *(*Ctor_80257D44)(void *, void *, s32);
 
-#define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
+#define __dt__13TUnk_804CF918Fv ((s32 (*)(s32, s32 *))__dt__13TUnk_804CF918Fv)
 #define __ct__13TUnk_804CF918Fs ((int (*)(void*, int))__ct__13TUnk_804CF918Fs)
-#define calc_bar_width__20TWindowSubStatusDispFPv ((s32 (*)())calc_bar_width__20TWindowSubStatusDispFPv)
-#define step_gauge_bar_width ((void (*)(void *))step_gauge_bar_width)
+#define calc_bar_width__13TUnk_804CF930Fv ((s32 (*)())calc_bar_width__13TUnk_804CF930Fv)
+#define update__13TUnk_804CF930Fv ((void (*)(void *))update__13TUnk_804CF930Fv)
 void* __ct__13TUnk_804CF930FPvs(void* a0, void* a1, int a2);
 u8 * init_layout_entry_copy__20TWindowSubStatusDispFPUc(u8 *arg0, u8 *arg1);
 void draw_visible_window_entries(void *self, List_80257BC0 *list, void *ctx);
@@ -301,7 +301,7 @@ void TWindowSubStatusDisp__sub_80258054(void) {  }
 void *TWindowSubStatusDisp::deleting_destructor(s16 arg1) {
     if (this != NULL) {
         *(s32 * *)&this->m_flags = lbl_804CF998;
-        destroy__13TUnk_804CF930Fs((s32)this, 0);
+        __dt__13TUnk_804CF918Fv((s32)this, 0);
         if (arg1 > 0) {
             ::operator delete(this);
         }
@@ -311,8 +311,8 @@ void *TWindowSubStatusDisp::deleting_destructor(s16 arg1) {
 }
 
 #undef draw_status_gauge_bar__13TUnk_804CF930FPvPvff
-#undef destroy__13TUnk_804CF930Fs
+#undef __dt__13TUnk_804CF918Fv
 #undef __ct__13TUnk_804CF918Fs
-#undef calc_bar_width__20TWindowSubStatusDispFPv
-#undef step_gauge_bar_width
+#undef calc_bar_width__13TUnk_804CF930Fv
+#undef update__13TUnk_804CF930Fv
 #undef __vt__13TUnk_804CF930

@@ -25,6 +25,7 @@ extern "C" {
 void apply_context_transform_to_rect(TWindowDrawContext *, f32 *);
 void draw_window_uv_sprite_part(Win_8025B0D0 *arg0, TWindowDrawContext *arg1);
 s32 __ct__13TUnk_804CF918Fs(void *, void *);
+void __dt__13TUnk_804CF918Fv(void *, s16);
 }
 
 void *window_uv_sprite_part_vtable[6] = {
@@ -128,7 +129,7 @@ void TWindowSubStatusDisp::update_palette_sprite() {  }
 void *TWindowSubStatusDisp__sub_8025B2DC(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(void ***)((s8 *)arg0 + 4) = window_uv_sprite_part_vtable;
-        ((TUnk_804CF930 *)arg0)->destroy(0);
+        __dt__13TUnk_804CF918Fv(arg0, (s16)0);
         if (arg1 > 0) {
             ::operator delete(arg0);
         }

@@ -2683,6 +2683,8 @@ force_active:
   - __vt__13TUnk_804CC870
   - __vt__13TUnk_804CCAA8
   - __vt__13TUnk_804CCD78
+  - __vt__13TUnk_804CF918
+  - __vt__13TUnk_804CF930
   - __vt__13TUnk_804E14E8
   - __vt__13TUnk_804E3BD8
   - __vt__13TUnk_804E4788
@@ -13334,6 +13336,8 @@ force_active:
   - render__13TUnk_804B5C08Fv
   - render__13TUnk_804CC870Fv
   - render__13TUnk_804CE964Fv
+  - render__13TUnk_804CF918FP18TWindowDrawContext
+  - render__13TUnk_804CF930FP18TWindowDrawContext
   - render__13TUnk_804E71A0Fv
   - render__13TUnk_804EEF80Fv
   - render__13TUnk_804F0BF0Fv
@@ -15683,6 +15687,7 @@ force_active:
   - update__12TObjWarpBossFv
   - update__13TObjEneBm3FlyFv
   - update__13TObjEneMe1GeeFv
+  - update__13TUnk_804CF918Fv
   - update__14TObjEneBm5WolfFPv
   - update__15PadRumbleEffectFv
   - update__15TObjEnemyCustomFv

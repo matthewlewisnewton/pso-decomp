@@ -4,26 +4,10 @@
 #include "types.h"
 #include <stddef.h>
 
-class TWindowKeyBoardSoft;
+class TWindowDrawContext;
 
-// 0x18-byte dispatch table stored at object +4. That slot is this class's
-// vptr: linked callers of calc_bar_width load it with lwz r12,4(r3) and the
-// function at table+0x14. A separate pointer member would sit beside the
-// vptr and grow the object.
-struct TUnk_804CF918_table {
-    s32 top_offset;
-    s32 rtti;
-    void (*destroy)(void *, s16);
-    void (*fn_0c)();
-    void (*fn_10)();
-    void (*calc_bar_width)();
-};
-
-extern "C" {
-extern TUnk_804CF918_table __vt__13TUnk_804CF918;
-extern TUnk_804CF918_table __vt__13TUnk_804CF930;
-}
-
+// Virtuals, in vtable order: destructor, update, render, calc_bar_width.
+// The last slot of this base is pure, so the table word is 0.
 class TUnk_804CF918 {
 public:
     u16 flags;
@@ -31,10 +15,9 @@ public:
 
     virtual ~TUnk_804CF918();
     virtual void update();
-    virtual void render(TWindowKeyBoardSoft *context);
+    virtual void render(TWindowDrawContext *context);
     virtual void calc_bar_width() = 0;
 
-    // Stores __vt__13TUnk_804CF918 at +4, then flags and m_2.
     TUnk_804CF918(s16 arg);
 };
 

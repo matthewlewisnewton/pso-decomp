@@ -23,10 +23,10 @@ class TUnk_804CF930 : public TUnk_804CF918 {
 public:
     virtual ~TUnk_804CF930();
     virtual void update();
-    virtual void render(TWindowKeyBoardSoft *context);
+    virtual void render(TWindowDrawContext *context);
     virtual void calc_bar_width();
 
-    // Base constructor, then __vt__13TUnk_804CF930 at +4, then the init record.
+    // Base constructor, then this class's vtable at +4, then the init record.
     TUnk_804CF930(void *src, s16 arg2);
 
     f32 depth;
@@ -40,7 +40,6 @@ public:
 
     // TWindowDrawContext* is the name draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff.
     void draw_status_gauge_bar(TWindowDrawContext *, void *, f32, f32);
-    void *destroy(s16);
 };
 
 typedef char TUnk_804CF930_size[sizeof(TUnk_804CF930) == 0x28 ? 1 : -1];
