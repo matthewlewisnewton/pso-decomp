@@ -25,7 +25,7 @@ void TItemList__sub_801D59DC(void* p);
 void *TItemList__sub_801D5B10(void *arg0, s16 arg1);
 void *__dt__9TItemListFPvs(void *arg0, s16 arg1);
 void* reset_position__9TItemListFPv(void* a0);
-s32 check_value_equals__7TObjectFPCc(s32, s32);
+s32 check_value_equals__7TObjectFPCc(void *, s32);
 
 void TItemList__sub_801D59DC(void* p) { *(s32*)((char*)p + 0x0) = 2; }
 }

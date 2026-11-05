@@ -5942,7 +5942,7 @@ s32 can_destroy_with_parents__10TObjPlayerFUi(u32 arg0) {
 }
 
 s32 TWindowSubItem::is_usable(s32 arg0) {
-    if ((is_action_active__10TObjPlayerFv() != 0U) || (test_action_mask__10TObjPlayerFl(arg0, 0x43001E) == 0) || (obj_testFlags30__14TObjCollidableFUl(arg0, 0x20) != 0) || (check_player_flag1__10TObjPlayerFv(arg0) != 0)) {
+    if (((u32)((TObjPlayer *)arg0)->is_action_active() != 0U) || (((TObjPlayer *)arg0)->test_action_mask(0x43001E) == 0) || (obj_testFlags30__14TObjCollidableFUl(arg0, 0x20) != 0) || (((TObjPlayer *)arg0)->check_player_flag1() != 0)) {
         return 0;
     }
     return 1;
