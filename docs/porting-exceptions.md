@@ -367,6 +367,16 @@ Guardrails: the code is upstream's own (cite the upstream PR), check_pr passes w
 Matt, 2026-11-04 ~8:17 PM PT, on [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298): "Allow #298's as upstream catch-up with
 register rows." The rows below are the instances kept under that decision.
 
+Matt, 2026-11-05 10:17 AM PT, on [#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302): register the named
+`__ct__17AccelerationCurveFv` calls and the hand table `lbl_80481280` on `TBoss1Dragon__ct`, and stop trying to
+replace those sites with a real constructor. A real `TBoss1Dragon` constructor matches the `addi`/`bl` only with
+`-inline off,deferred`, which reverses emission order in that linked unit. The named calls are this PR's rename of
+`reset_coords_pass`, not unchanged upstream text. The compiler-vtable / real-destructor alternative does not match
+the DOL homes (`mr. r31, r3` / `mr r30, r4`; a real `~T()` is `mr. r30, r3` / `mr r31, r4`). This approval is only
+those sites. It does not cover any other function, cast, or hand table. The two rows below record that decision in
+this table; their upstream column is [#191](https://github.com/zeroz41/pso-decomp/pull/191) because that is the
+catch-up this branch integrates, not because those lines appear unchanged in #191.
+
 Columns (all required; `tools/list_port_exceptions.py --check` validates them):
 function/symbol; unit; file (repo path); upstream PR (#167-#191); cheat type (`asm`,
 `raw offset cast`, `extern "C" mangled name`, `steering pragma`, `shadow struct`,
@@ -393,6 +403,8 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `TLobby__sub_80402CE0`: `*(u8 *)((u8 *)g + 0x15A)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
 | `TLobby__sub_80402CE0`: `*(u8 *)((u8 *)g + 0x15B)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
 | `TLobby__sub_80402CE0`: `*(u16 *)((u8 *)g + 0x15C)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TBoss1Dragon__ct` (`0x80029DE4`): `extern "C" void __ct__17AccelerationCurveFv` and the two calls `(AccelerationCurve *)(arg0 + 0x5F4)` and `(arg0 + 0x618)`. Matt, 2026-11-05 10:17 AM PT: do not replace these with a real constructor. It matches only under `-inline off,deferred`, which reverses this linked unit. The calls are this PR's rename of `reset_coords_pass` | `pso/boss/TBoss1Dragon.cpp` | `src/pso/boss/TBoss1Dragon.cpp` | [#191](https://github.com/zeroz41/pso-decomp/pull/191) | extern "C" mangled name | [#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302) | upstream catch-up, rewrite later |
+| `lbl_80481280` (`.data` `0x80481280`, 107 pointers) and its stores in `TBoss1Dragon__ct` (`+0x18`) and `destroy__12TBoss1DragonFPvs`. Matt, 2026-11-05 10:17 AM PT: a compiler vtable and real destructor do not match the DOL r31/r30 homes. Only this table | `pso/boss/TBoss1Dragon.cpp` | `src/pso/boss/TBoss1Dragon.cpp` | [#191](https://github.com/zeroz41/pso-decomp/pull/191) | other: hand-written vtable | [#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302) | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
