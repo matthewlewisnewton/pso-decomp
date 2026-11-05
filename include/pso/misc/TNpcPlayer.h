@@ -70,6 +70,9 @@ struct TNpcPlayer : public TObject {
     void update();
     void update_players();
     void update_lobby();
+    void finalize_and_send_packet();
+    void byteswap_positions();
+    void *init_cast_technique_cmd();
     void reset_model();
     void init_model();
     void reset_move_state();
@@ -78,6 +81,7 @@ struct TNpcPlayer : public TObject {
     void set_field2(s16 v);
     void set_field_0(s16 v);
     void set_state(s32 v);
+    void byteswap_pos();
     u16 get_action_flags();
     static void *get_valid_target_player();
     void send_6x3E();

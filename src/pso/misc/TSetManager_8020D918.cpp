@@ -6,7 +6,6 @@
 #include "pso/misc/TScene.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
-#include "pso/misc/TLobby_800F9DA0.h"
 
 struct Dst_8020DEE4 { u16 id; s16 v; u8 pad[4]; };
 
@@ -87,6 +86,7 @@ s32 lookup_scene_object__6TLobbyFPv(s32, void *);
 void *memset(void *, int, unsigned long);
 extern A_8020DBCC *quest_object_entries;
 extern B_8020DBCC *TLobby__data_805D6144;
+void read_disc_file(char *, void *);
 s32 replace_file_extension__6TLobbyFPvPvPv(char *arg0, char *arg1, char *arg2);
 }
 void arrive_floor_population(void);
