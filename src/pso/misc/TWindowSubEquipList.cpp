@@ -18,8 +18,8 @@ struct RecoveredGlobal_802793E4___vt__19TWindowSubEquipList { s32 value; u8 rema
 typedef char RecoveredGlobal_802793E4___vt__19TWindowSubEquipList_size[sizeof(RecoveredGlobal_802793E4___vt__19TWindowSubEquipList) == 0x20 ? 1 : -1];
 
 extern "C" {
-s32 draw_visible_window_entries(void *, void *, int);
-s32 forward_render__20TWindowSubStatusDispFv(void *, int);
+s32 draw_visible_window_entries(void *, void *, TWindowDrawContext *);
+s32 forward_render__20TWindowSubStatusDispFv(void *, TWindowDrawContext *);
 u8 *__nw__7TObjectFUl(s32);
 s32 TShopJudgmentItemWindow__sub_80267F9C(void *, int);
 extern s32 __vt__19TWindowSubEquipList[];
@@ -41,9 +41,9 @@ u8 *create_equip_list_window(s32 arg0, s32 arg1, s32 arg2) {
 #pragma push
 #pragma fp_contract on
 void TWindowSubEquipList::render() {
-    s32 temp_r3;
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
-    draw_window_frame((void *)temp_r3);
+    TWindowDrawContext *temp_r3;
+    temp_r3 = get_draw_context__11TWindowBaseFPv(this);
+    draw_window_frame(temp_r3);
     draw_visible_window_entries(this, (void *) (((u8 *)this) + 0x24), temp_r3);
     draw_selected_list_entry(temp_r3);
     if ((u32) this->status_display != 0U) {

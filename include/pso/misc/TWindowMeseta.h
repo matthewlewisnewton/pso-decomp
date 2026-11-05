@@ -13,7 +13,7 @@ struct TWindowMeseta : public TWindowBase {
     void* m_6c;
     void run_task();
     s32 get_meseta_value();
-    void draw_value(s32 arg1);
+    void draw_value(TWindowKeyBoardSoft *arg1);
     u8 unk_70[0x4];
 };
 

@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "types.h"
 #include "pso/misc/TWindowSubCustomEquip.h"
 #include "pso/misc/TWindowSubCustomSelect.h"
@@ -13,8 +14,6 @@ struct Obj_80275DB4 { u8 pad[0x60]; char f60; u8 pad2[0x6c - 0x61]; void *f6c; }
 struct Vec2_80275DE8 { f32 x, y; };
 
 struct Win_80275F90 { u8 pad[0x66]; s16 f66; };
-
-struct Rect_80275DE8 { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 
 extern "C" {
 void *get_player_by_client_id(s32);
@@ -47,7 +46,7 @@ void TWindowSubCustomEquip::clear_flag_and_set_entry_state() {
 #pragma push
 #pragma fp_contract on
 void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(TWindowDrawContext *arg0, Vec2_80275DE8 *arg1, s32 arg2, f32 farg0) {
-    Rect_80275DE8 r;
+    Box_8024E8E8 r;
     Vec2_80275DE8 *t;
     f32 scale;
     if (arg0->open_tick < 0) {
@@ -67,7 +66,7 @@ void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(TWindowDrawContext *arg0
     r.v0 = t->y / 256.0f;
     r.u1 = (lbl_805DD560 + t->x) / 256.0f;
     r.v1 = (lbl_805DD560 + t->y) / 256.0f;
-    if (TWindowKeyBoardSoft::try_open(arg0, &r.x0) != 0) {
+    if (TWindowKeyBoardSoft::try_open(arg0, &r) != 0) {
         draw_textured_quad_at_depth(&r.x0, scale);
     }
     TWindowSubStatusDisp::get_player();

@@ -18,6 +18,7 @@
 #include "pso/misc/TLobby_801E2F94.h"
 #include "pso/misc/TPlyJoinLobbyEntry.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/misc/TLobby_800F9DA0.h"
 
 #pragma readonly_strings on
 
@@ -304,7 +305,6 @@ struct File_8001DC30
   Pair_8001DC30 pairs[4][0x60];
 };
 s32 is_main_phase_15__9TObjEneDDFv(void);
-void read_disc_file(const char *, void *);
 }
 extern const char lbl_80434A20[];
 extern const char lbl_80434A38[];

@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "types.h"
 #include "pso/misc/TWindowHelpItem_8025A60C.h"
 #include "pso/system/memory.h"
@@ -18,10 +19,7 @@ struct RecoveredGlobal_8025A95C_lbl_804CFA10 {
 
 struct UV_8025A650 { f32 u; f32 v; };
 
-struct Quad_8025A650 { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
-
 struct Item_8025A650 { u8 p0[8]; f32 x; f32 y; s32 count; };
-
 
 f32 get_item_star_row_width(u8 *arg0);
 extern "C" {
@@ -56,7 +54,7 @@ f32 get_item_star_row_width(u8 *arg0) {
 }
 
 void render_item_rarity_stars(Item_8025A650 *item, TWindowDrawContext *ctx) {
-    Quad_8025A650 q;
+    Box_8024E8E8 q;
     f32 depth2;
     f32 x;
     f32 y;
@@ -88,7 +86,7 @@ void render_item_rarity_stars(Item_8025A650 *item, TWindowDrawContext *ctx) {
         q.v0 = uv->v / 256.0f;
         q.u1 = (16.0f + uv->u) / 256.0f;
         q.v1 = (16.0f + uv->v) / 256.0f;
-        if (TWindowKeyBoardSoft::try_open(ctx, &q.x0) != 0) {
+        if (TWindowKeyBoardSoft::try_open(ctx, &q) != 0) {
             draw_textured_quad_at_depth(&q.x0, depth);
         }
         x += 17.0f;
@@ -110,7 +108,7 @@ void render_item_rarity_stars(Item_8025A650 *item, TWindowDrawContext *ctx) {
         q.v0 = uv->v / 256.0f;
         q.u1 = (16.0f + uv->u) / 256.0f;
         q.v1 = (16.0f + uv->v) / 256.0f;
-        if (TWindowKeyBoardSoft::try_open(ctx, &q.x0) != 0) {
+        if (TWindowKeyBoardSoft::try_open(ctx, &q) != 0) {
             draw_textured_quad_at_depth(&q.x0, depth2);
         }
         x += 17.0f;
