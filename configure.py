@@ -475,9 +475,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # as a named local (extsh r28, after the coordinate masks in r30/r29).
     # With copy propagation the frontend replaces it with a hoisted temporary
     # that the allocator colours first (r30).
+    # -fp_contract on: both texture-wave helpers fuse the wave offset into an
+    # fmadds.
     # -str reuse,readonly: the two file names and the class name are in this
     # unit's .rodata. See docs/porting-exceptions.md section 5.
-    "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-opt noprop", "-str reuse,readonly")},
+    "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-opt noprop", "-fp_contract on", "-str reuse,readonly")},
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},

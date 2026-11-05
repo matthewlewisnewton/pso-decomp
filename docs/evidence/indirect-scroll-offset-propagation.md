@@ -89,5 +89,5 @@ removed and `-opt noprop` added compiles to the same `.text` (including
 
 #161 then merged this file and the six split files around it into
 `pso/effect/TEffIndirectCtrl.cpp` (GC/2.0, `-inline off,deferred`,
-`-opt noprop`, `-str reuse,readonly`). `deform_indirect_texture_scroll` stays
+`-opt noprop`, `-fp_contract on`, `-str reuse,readonly`). `deform_indirect_texture_scroll` stays
 exact there with the same single `off16` assignment.

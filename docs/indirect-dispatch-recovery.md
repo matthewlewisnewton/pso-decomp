@@ -27,6 +27,10 @@ byte-exact.
   `-inline off,deferred`, and the source is written last-defined first.
 - **Strings.** `-str reuse,readonly` keeps the two file names and the class
   name in `.rodata`.
+- **Wave helpers.** The two wave helpers fuse one multiply-add each. The
+  unit-wide `-fp_contract on` replaces the scoped pragmas they had before.
+- **Scroll helper.** `-opt noprop` (#291) keeps the scroll offset as a
+  named local.
 
 The reasons and evidence for each switch are in
 [porting-exceptions.md](porting-exceptions.md) section 5.

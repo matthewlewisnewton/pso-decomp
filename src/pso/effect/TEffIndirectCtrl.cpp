@@ -305,8 +305,6 @@ void deform_indirect_texture_scroll(u8 *p, u32 px, u32 py, u32 amp, u32 phase) {
 }
 }
 
-#pragma push
-#pragma fp_contract on
 void update_indirect_texture_wave(u8 *buf, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5) {
     s32 off;
     s32 x;
@@ -331,10 +329,7 @@ void update_indirect_texture_wave(u8 *buf, s32 arg1, s32 arg2, s32 arg3, s32 arg
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
 void deform_indirect_texture_wave(u8 *buf, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5) {
     s32 v;
     s32 off;
@@ -360,7 +355,6 @@ void deform_indirect_texture_wave(u8 *buf, s32 arg1, s32 arg2, s32 arg3, s32 arg
         }
     }
 }
-#pragma pop
 
 TEffIndirectCtrl::TEffIndirectCtrl(s32 kind, TObject *parent) : TObject(parent) {
     s32 texture_id;
