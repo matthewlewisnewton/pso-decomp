@@ -6,7 +6,7 @@
 
 struct TOTrapSeabed01 : public TOTrap {
     virtual ~TOTrapSeabed01();
-    void draw_object_tree(u8 *);
+    void draw_object_tree(NJS_OBJECT *object);
     void render_effect_layers();
     virtual int vfunc_67(f32 damage_scale);
     virtual void vfunc_84();
@@ -22,8 +22,7 @@ struct TOTrapSeabed01 : public TOTrap {
     u32 m_344;
     s32 m_348;
     s32 m_34c;
-    u32 m_350;
-    u32 m_354;
+    DirectAttackPayload attack;
     u32 m_358;
     void clamp_params_and_init();
     static void *create(void *arg0);

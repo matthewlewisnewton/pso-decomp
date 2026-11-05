@@ -5125,7 +5125,7 @@ force_active:
   - draw_node_tree__19TODoorFourLightBaseFPUc
   - draw_number_value__15TWindowHelpItemFPvPflll
   - draw_object_tree__11TObjDoaEx01Fl
-  - draw_object_tree__14TOTrapSeabed01FPUc
+  - draw_object_tree__14TOTrapSeabed01FP10NJS_OBJECT
   - draw_object_tree_recursive__FPv
   - draw_outline_quad__18TWindowEffectLightFl
   - draw_palette_cells__22TWindowSubCustomSelectFi
