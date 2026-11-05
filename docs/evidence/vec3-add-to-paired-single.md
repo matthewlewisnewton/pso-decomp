@@ -55,8 +55,10 @@ opcode `0xC1040004` (`lfs f8, 4(r4)`). The SDK `PSVECCrossProduct` is `void`,
 `psq_st`. Compiling that SDK body with GC/2.6 reproduces those 0x3C bytes.
 It does not compute a length or a reciprocal.
 
-Both stay the plain C in this file. That C is not byte-exact: GC/2.6's
-register allocator does not keep the original registers, and
-`__fres(__frsqrte(...))` inserts an `frsp` the original does not have.
+Both stay the plain C in this file. That C is not byte-exact.
+
+`vec3_cross`'s tail is double `frsqrte` then single `fres` of that register, with no `frsp`. `libs/dolphin/include/libc/math.h` `sqrtf` is a three-step Newton on `__frsqrte` (`extern inline`); under this unit's `-inline off` it is an out-of-line call plus `fdivs`, and the body is not `fres`. `1.0/__frsqrte`, `(f32)__frsqrte` then `__fres`, and `newton_sqrtf` all insert `frsp` or use `fdiv`. Call sites declare `vec3_cross` as `void` and ignore the return; the bytes still leave the reciprocal in `f1`.
+
+`vec3_dot`'s gap is the register allocator. An MWCC debugger trace of the shipped `a*b` chain (GC/2.6, the unit flags) shows the accumulator as a named virtual register created before the y/z loads. Colouring walks virtual registers downward and gives the lowest free fpr to the highest number, so the later loads take `f0` and `f1` for the accumulator's whole live range and the product lands in `f2`. Scheduling is off at `-O3`, so creation order is also emission order. The original overwrites the first load (`fmuls f0,f3,f0`). Getting that and an x-first schedule needs the later loads created first and emitted later, which is what scheduling does, and `-schedule on` is not an allowed unit flag.
 
 The register entry for `vec3_add_to` is in `docs/porting-exceptions.md`.
