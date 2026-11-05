@@ -160,15 +160,15 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
-| `subtract_vector` | `pso/math/MatrixTransforms.cpp` | `src/pso/math/MatrixTransforms.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
-| `matrix_apply_translation` | `pso/unk/text_803D9650.cpp` | `src/pso/unk/text_803D9650.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
-| `normalize_vector` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
-| `transform_point_by_current_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
-| `rotate_vector_by_current_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
-| `rotate_matrix_by_node_angles` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
-| `push_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
-| `scale_current_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
-| `post_translate_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | #0 | upstream catch-up, rewrite later |
+| `subtract_vector` | `pso/math/MatrixTransforms.cpp` | `src/pso/math/MatrixTransforms.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `matrix_apply_translation` | `pso/unk/text_803D9650.cpp` | `src/pso/unk/text_803D9650.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `normalize_vector` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `transform_point_by_current_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `rotate_vector_by_current_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `rotate_matrix_by_node_angles` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `push_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `scale_current_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `post_translate_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
 
 ## Pending in open PRs
 
