@@ -464,17 +464,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # half-width nudge and the drop placement fuse multiply-adds.
     # -str reuse,readonly: the literals live in this unit's .rodata.
     "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
-    # TAdMultiPlyChrSelectGC_802C50EC: -fp_contract on because the original
-    # contracts all four multiply-adds (fmadds at 802C5148, 802C5274, 802C58AC
-    # and 802C676C). The UV scale is `x / 256.0f`; MWCC folds that into a
-    # multiply by the pooled reciprocal at 0x805DE584, which this object
-    # emits as @168. -inline on inlines only clamped_slot_802C5F1C (the
-    # original has no out-of-line copy). -inline auto also inlines other
-    # small functions; -inline deferred emits the unit backwards.
-    "pso/ui/TAdMultiPlyChrSelectGC_802C50EC.cpp": {
-        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on"),
-        "symbol_mappings": {"TAdMultiPlyChrSelectGC__data_805DE584": "@168"},
-    },
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
     # zero-initialized local member-function-pointer array.
@@ -523,6 +512,21 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/item/TObjContainerItem.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TContainerAncient01.cpp": {"mw_version": "GC/1.3.2"},
     "pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp": {"mw_version": "GC/1.3.2"},
+    # Four depth/UV multiply-adds contract, so -fp_contract on replaces the old
+    # per-function pragmas. -inline on inlines only clamped_active_slot
+    # and mark_grid_cell_occupied; -inline auto also inlines eight unmarked
+    # calls and those functions stop matching. See
+    # docs/evidence/chr-select-slot-clamp-inline.md.
+    # The eight compiler-pool globals before this unit's owned 0.53 / 1/256
+    # literals are defined by TAdMultiPlyChrSelectGC_literals.s, including the
+    # 16.0 conversion constant shared with the separately split ctor.
+    "pso/ui/TAdChrSelPlyPlateGC.cpp": {
+        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on"),
+        "symbol_mappings": {
+            "@102": "lbl_805DE580",
+            "@175": "TAdMultiPlyChrSelectGC__data_805DE584",
+        },
+    },
     "pso/misc/TQuestVmDownLoadServer.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/misc/TCameraCtrl.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TKeyBoardControl_8025EC04.cpp": {"mw_version": "GC/1.3.2"},
@@ -562,6 +566,13 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TBoss7PhotonBullet_802EF26C.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # -inline deferred is byte-identical to noauto,deferred,level=1 here
+    # (.text/.data/.rodata/.sdata2 and relocs). off,deferred changes 21
+    # functions (copy_transform, sub_802B96C0); noauto alone changes 86;
+    # -fp_contract off changes 71 (draw_part_motions, sub_802B626C). The
+    # multiply-adds are fmadds. dtk-template uses -inline auto and
+    # -fp_contract on; Melee, TP, TWW and Pikmin 2 contract globally.
+    "pso/boss/TBoss6Type1.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-fp_contract on")},
     "pso/boss/TBoss3VoloptP01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # Delbiter uses deferred code generation: reverse source definitions put
     # native vtables before the switch tables and functions in address order.
@@ -745,6 +756,28 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # Inventory walks read TItemList children through the class-body accessors
+    # TItemList::link_down / link_next (typed_down in TObjPlayer_801D4CB8, whose
+    # receiver is TObjPlayer). -inline noauto folds each call to the lwz of
+    # m_down (+0x14) or m_next (+0xC). -inline off leaves a bl and grows the
+    # walks (TObjPlayer__sub_801D4368 0x248 -> 0x278, and the TItemList walks
+    # by the same 8-byte call). -inline auto also inlines the unmarked
+    # TObjPlayer__sub_801D4730 into sort_by_key, so it is not this unit's flag.
+    # With noauto the whole object matches -inline off on the old cast spelling,
+    # including every function that does not call the accessor. Precedent:
+    # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203
+    # (-inline auto) and TWindowMainMenu_802AD538.cpp (-inline noauto,level=1).
+    "pso/unk/text_801D40D4.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # Same -inline noauto as text_801D40D4.cpp. count_owned_items and the other
+    # TItemList walks stay the lwz of m_down / m_next; -inline off grows each.
+    "pso/player/TObjPlayer_801D5220.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # Same -inline noauto as text_801D40D4.cpp. The three TPlyItem walks
+    # (reduce_owner_matched_items, reduce_child_item_amounts,
+    # collect_owner_fields_recursive) stay byte-identical to the cast spelling.
+    "pso/player/TPlyItem.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # Same -inline noauto as text_801D40D4.cpp. destroy_subobjects_recursive's
+    # child load stays lwz r31,20(r3) and the sibling step stays lwz r31,12(r31).
+    "pso/player/TObjPlayer_801D4CB8.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf

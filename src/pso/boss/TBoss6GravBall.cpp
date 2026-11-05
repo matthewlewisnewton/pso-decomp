@@ -29,7 +29,6 @@ struct PL_80323544 { u8 pad[0x30]; u32 flags; u8 pad34[4]; Vec_80323544 pos; };
 
 extern "C" {
 P_80323348 *get_player_data__10TObjPlayerFi(s32);
-s32 is_state_1f__14TBoss6PlotFalzFUi();
 f32 vector_length(void *);
 void subtract_vector(void *, void *);
 void normalize_vector(void *);
@@ -59,7 +58,7 @@ void TBoss6GravBall::clear_player_grav_flags() {
     s32 i;
     for (i = 0; i < n; i++) {
         P_80323348 *p = get_player_data__10TObjPlayerFi(i);
-        if (is_state_1f__14TBoss6PlotFalzFUi() != 0) {
+        if (TBoss6PlotFalz::is_state_1f((TObjPlayer *)p) != 0) {
             p->flags &= 0xFFFDFFFF;
         }
     }
@@ -79,7 +78,7 @@ void TBoss6GravBall__sub_803233AC(u8 *self) {
     for (i = 0; i < n; i++) {
         pl = (PL_803233AC *)get_player_data__10TObjPlayerFi(i);
         id = get_entity_id(pl) + 5;
-        if (((TBoss6PlotFalz *)pl)->is_active() == 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) == 0) {
             ((TBoss6GravBall *)self)->destroy_part((s32)((void *)id));
             continue;
         }
@@ -129,7 +128,7 @@ void TBoss6GravBall__sub_80323544(u8 *self) {
     for (i = 0; i < n; i++) {
         pl = (PL_80323544 *)get_player_data__10TObjPlayerFi(i);
         id = get_entity_id(pl) + 5;
-        if (((TBoss6PlotFalz *)pl)->is_active() == 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) == 0) {
             ((TBoss6GravBall *)self)->destroy_part((s32)((void *)id));
             continue;
         }

@@ -3988,7 +3988,7 @@ void TObjPlayer::apply_photon_blast(s32 arg0, s32 arg1) {
 
 void update_active_instance__10TObjPlayerFi(s32 arg0) {
     if ((u32) (*(u32 *)&TObjPlayer__shared_photon_blast_state) != 0U) {
-        if (((s32 (*)(void))reset_volopt_state__10TObjPlayerFv)() == 0) {
+        if (((TObjPlayer *)arg0)->reset_volopt_state() == 0) {
             ((TObjPlayer *)(*(u32 *)&TObjPlayer__shared_photon_blast_state))->process_all_elements();
             return;
         }
@@ -4258,7 +4258,7 @@ void TObjPlayer::prepare_photon_blast_action() {
     s32 *src;
     s32 *dst;
     u8 *arg0 = (u8 *)this;
-    if (((s32 (*)(void))reset_volopt_state__10TObjPlayerFv)() != 0) {
+    if (reset_volopt_state() != 0) {
         ((s32 (*)(void *, int))set_frames__15ProtectionTimerFl)(arg0 + 0x644, 0x708);
         capture_technique_targets__10TObjPlayerFv((void *)((TFontSmallLobby *)(arg0 + 0x4AC))->get_valid_index(), arg0);
         if (this->m_424 != 0U) {

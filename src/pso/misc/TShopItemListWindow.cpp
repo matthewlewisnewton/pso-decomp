@@ -6,6 +6,7 @@
 #include "types.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TPlyItem.h"
 #include "pso/misc/TShopSequence.h"
 #include "pso/misc/TShopItemListWindow.h"
 #include "pso/TShopWindowBase.h"
@@ -84,7 +85,7 @@ struct Rec_8021F798 { s32 w[4]; s32 qty; };
 struct Win_8021F798 {
     VObj_18_a93f07 base;
     u8 pad1c[0x24 - 0x1C];
-    u8 *player;
+    TObjPlayer *player;
     void *list;
     u8 pad2c[0x38 - 0x2C];
     void *help;
@@ -109,7 +110,7 @@ struct Rec_8021F9EC { s32 w[4]; s32 price; };
 
 struct Win_8021F9EC {
     u8 pad0[0x24];
-    u8 *player;
+    TObjPlayer *player;
     void *list;
     u8 pad2c[0x38 - 0x2C];
     void *help;
@@ -225,7 +226,7 @@ void TShopItemListWindow::handle_amount_confirm() {
                     }
                     try_buy_item(this->m_24, &it);
                     if (this->m_3c != 0) {
-                        s32 n = ((TObjPlayer *)(*(s32 *)(this->m_24 + 0xD00)))->count_items_by_id((s32)&this->m_items[i]);
+                        s32 n = ((TObjPlayer *)this->m_24)->inventory_objects->count_items_by_id(&this->m_items[i]);
                         ((TWindowSubStatusDisp *)this->m_3c)->set_entry1_field20(n);
                     }
                     if (is_single_purchase_shop_item((u8 *)&this->m_items[i]) != 0) {
@@ -320,7 +321,7 @@ s32 TShopItemListWindow::handle_tool_list_select(void *p) {
             ((TWindowHelpItem *)(W->help))->set_displayed_item_colored((u32)&W->recs[i]);
         }
         if (W->status != NULL && i != W->cur) {
-            n = ((TObjPlayer *)(*(s32 *)(W->player + 0xD00)))->count_items_by_id((s32)&W->recs[i]);
+            n = W->player->inventory_objects->count_items_by_id(&W->recs[i]);
             ((TWindowSubStatusDisp *)(W->status))->set_entry1_field20(n);
         }
         if (W->sell != NULL && i != W->cur && (e = (u8 *)W + i * 0x14, *(s32 *)(e + 0x68) > 0)) {
@@ -425,7 +426,7 @@ void TShopItemListWindow::build_item_list(void *p) {
     }
     if (W->status == NULL) {
         W->status = create_window_quantity(((TShopSequence *)W)->get_child_field1c());
-        n = ((TObjPlayer *)(*(s32 *)(W->player + 0xD00)))->count_items_by_id((s32)W->recs);
+        n = W->player->inventory_objects->count_items_by_id(W->recs);
         ((TWindowSubStatusDisp *)(W->status))->set_entry1_field20(n);
     }
     if (W->cost == NULL) {
