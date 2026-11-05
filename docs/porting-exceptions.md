@@ -50,14 +50,6 @@ The four MusyX entries predate the scalar-fallback rule and have **no C fallback
 reproduce single PowerPC instructions the original compiled code used; no
 per-site reason is recorded.
 
-`TWindowSubStatusDisp_80256B94.cpp` no longer uses `__fmadds`. Unit
-`-fp_contract on` (see section 5) emits the depth `fmadds` at `0x80257118`
-from `0.299f * self->depth + ctx->depth`. The bar is `(tick - sum) * 17`
-after `sum *= 7.5f`, which stays `fmuls` / `fsubs` / `fmuls`. The signed
-`open_tick` cast still pools its bias locally; the original loads that
-double from `lbl_8044EE40` outside this unit, so the function is not
-byte-identical. Port: the C above.
-
 Port should: `__fabsf`/`__fabs` → `fabsf`/`fabs`; `__abs` → `abs`; `__cntlzw` →
 a count-leading-zeros helper (`__builtin_clz` with a zero check, returns 32 for 0);
 `__frsqrte` → `1.0 / sqrt(x)` (the Newton refinement loops around it then become
@@ -121,10 +113,26 @@ strings are read-only. The same reason is the comment on that `configure.py`
 entry. Port: drop the flags; vtable-versus-switch order and string pooling may
 differ.
 
-#240 also builds `pso/misc/TWindowSubStatusDisp_80256B94.cpp` with
-`-fp_contract on`. That is the depth `fmadds` described in section 2.
-Port: drop the flag; `0.299f * depth + ctx->depth` may be a separate
-multiply and add.
+#322 (split from #240) builds `pso/misc/TWindowSubStatusDisp_80256B94.cpp`
+with `-fp_contract on` (unit-level flag allowed under Matt's 2026-11-04
+2:37 PM PT policy). Reason: the original fuses the depth term of
+`TWindowSubStatusDisp__sub_80257024` into one `fmadds` at `0x80257118`
+(`0.299f * self->depth + ctx->depth`, then `-1.0f / ...`); MWCC only emits
+that from plain C with contraction on, so the unit no longer needs the
+`__fmadds` intrinsic. Functions affected: only `TWindowSubStatusDisp__sub_80257024`
+changes code; the other ten functions in the unit (`destroy`, `sub_80256BDC`,
+`sub_80256BF8`, `sub_80256BFC`, `calc_bar_width`, `sub_80256C40`,
+`draw_status_gauge_bar`, `step_gauge_bar_width`, `sub_80257298`, `init_from`)
+are byte-identical with and without the flag, and `.sdata2` is exact. The bar
+is written `sum *= 7.5f; bar = (tick - sum) * 17.0f;`, which stays
+`fmuls` / `fsubs` / `fmuls` under contraction. Evidence: per-function
+objdiff of the unit with and without the flag, recorded in the #322 PR body. Precedent:
+[dtk-template configure.py#L209](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209)
+(`-fp_contract on`), and in-tree `TObjTombstone.cpp` / `PadRumble.cpp`.
+Still open: the signed `open_tick` conversion pools its `0x4330000080000000`
+bias locally, while the original loads it from `lbl_8044EE40`, so
+`sub_80257024` is 99.9%, not byte-identical. Port: drop the flag;
+`0.299f * depth + ctx->depth` may become a separate multiply and add.
 
 ## 6. Approved regressions
 
