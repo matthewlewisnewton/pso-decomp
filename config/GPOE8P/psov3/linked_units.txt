@@ -1341,7 +1341,6 @@ pso/misc/TOMineTrap.cpp
 pso/misc/TOMineTrapDisp.cpp
 pso/misc/TOMineTrapDisp_8016EDC8.cpp
 pso/misc/TOMineTrap_8016ED9C.cpp
-pso/misc/TOMineTrap_8016F6F8.cpp
 pso/misc/TOMonitorMachine01.cpp
 pso/misc/TOMonumentAncient01.cpp
 pso/misc/TOMonumentAncient02.cpp

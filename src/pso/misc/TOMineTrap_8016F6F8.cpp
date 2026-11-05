@@ -206,11 +206,9 @@ void TOMineTrap::vfunc_86() {
  * destruction. */
 void TOMineTrap::run_task() {
     TObjPlayer *owner;
-    s32 i;
-    // show_owner_message takes the trap as a 32-bit integer.
-    s32 trap_arg;
-    u16 id;
     TObjChara *actor;
+    s32 i;
+    u16 id;
 
     this->update_float_height();
     switch (this->mode) {
@@ -233,12 +231,7 @@ void TOMineTrap::run_task() {
         submit_cursor_candidate(this, -1);
         return;
     }
-    case 4: {
-        // this->alt_room, the actor's room, and the id's low half are each read twice.
-        s16 trap_alt;
-        s16 actor_room;
-        u32 id_lo;
-        trap_arg = (s32)this;
+    case 4:
         owner = (TObjPlayer *)get_player_by_client_id(this->get_trap_type());
         if (owner == 0) {
             owner = (TObjPlayer *)this;
@@ -251,11 +244,9 @@ void TOMineTrap::run_task() {
             if (actor->obj_testFlags30(0x4000800) != 0) {
                 continue;
             }
-            if (actor->alt_room != (trap_alt = this->alt_room)) {
-                actor_room = actor->room;
-                if (actor_room != this->room && actor_room != trap_alt) {
-                    continue;
-                }
+            if (actor->alt_room != this->alt_room && actor->room != this->room &&
+                actor->room != this->alt_room) {
+                continue;
             }
             id = get_entity_id(actor);
             if (id == 0xFFFF) {
@@ -264,8 +255,7 @@ void TOMineTrap::run_task() {
             if (id == this->get_trap_type() && TOMineTrap::get_trap_count() != 1) {
                 continue;
             }
-            id_lo = (u32)id;
-            if (id_lo < 0x1000) {
+            if (id < 0x1000) {
                 if (TObjPlayer::get_player_count() != 1) {
                     continue;
                 }
@@ -286,10 +276,10 @@ void TOMineTrap::run_task() {
                         record_attack_source(this->target, this->get_trap_type());
                     }
                     if (this->m_380 != 1) {
-                        this->m_380 = TOMineTrap::show_owner_message(trap_arg, (u32)actor);
+                        this->m_380 = TOMineTrap::show_owner_message((s32)this, (u32)actor);
                     }
                 }
-            } else if (id_lo < 0x4000) {
+            } else if (id < 0x4000) {
                 if (horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
                     this->target = (u8 *)actor;
                     switch (this->attack.kind) {
@@ -314,7 +304,6 @@ void TOMineTrap::run_task() {
         this->sub_8017070C();
         this->queue_destruction();
         return;
-    }
     default:
         return;
     }
@@ -408,12 +397,8 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine(
                 attack.power = lbl_805DB86C * area_scale *
                                (lbl_805DB870 * (lbl_805DB878 * owner_player->get_actor_level_index() + lbl_805DB874));
             }
-            // Store the clamped local. Writing the constant straight into the
-            // field swaps the compare's float registers.
-            f32 power = attack.power;
-            if (power < lbl_805DB85C) {
-                power = lbl_805DB85C;
-                attack.power = power;
+            if (attack.power < lbl_805DB85C) {
+                attack.power = lbl_805DB85C;
             }
             break;
         case 1:

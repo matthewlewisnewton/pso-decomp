@@ -139,13 +139,16 @@ no `fmsubs`.
 | `TOMine::update_float_height` | `fmadds f0,f3,f1,f0` | `0x80170D30` | `lbl_805DB884 * ((lbl_805DB888 + home_y) - height) + constant`, then `fadds` the old height |
 
 Objdiff of the whole unit (`GC/2.6`, `-O4,s -inline off -sdata2 4`), flag on
-versus flag omitted: `run_task` is byte-identical and exact either way (100%,
-952 bytes). Every other function that is exact without the flag stays exact
-with it. `.rodata` (`lbl_804421F8`, 8 bytes) is exact either way. Only the
-three functions above change, from 99.41% (1076 bytes) / 97.84% / 95.70%
-without the flag to 100% with it. Those same expressions compiled as a
-separate probe emit `fmuls`+`fadds` when `-fp_contract` is omitted and
-`fmadds` when it is on.
+versus flag omitted: `run_task` is byte-identical either way (98.32%, 952
+bytes, a callee-saved permutation; the same score as main). Every other
+function that is exact without the flag stays exact with it. `.rodata`
+(`lbl_804421F8`, 8 bytes) is exact either way. The three functions above
+change, from 99.31% (1076 bytes) / 97.84% / 95.70% without the flag to 99.91%
+(1072 bytes) / 100% / 100% with it. The constructor's remaining gap is the
+direct field clamp at `0x80170068`: the original is `lfs f1, 0x358(r28); lfs
+f0, lbl_805DB85C; fcmpo f1, f0` then `stfs f0`, and the field write swaps
+`f0`/`f1`. Those multiply-adds compile as `fmuls`+`fadds` when
+`-fp_contract` is omitted and `fmadds` when it is on.
 
 `follow_target` and `update_float_height` are exact on main through
 function-local `fp_contract` pragmas. This PR removes those pragmas; the unit
