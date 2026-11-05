@@ -1,3 +1,6 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/math/VectorNormalize.h"
+#include "pso/system/GinjaTextureInput.h"
 #include "types.h"
 #include "pso/enemy/TObjEneRe2Flower_EffCurse3.h"
 #include "pso/enemy/TObjEneRe2Flower_800C4B78.h"
@@ -82,7 +85,6 @@ s32 subtract_vector(void *, void *);
 
 extern void *player_render_texture_buffer;
 void release_texture_list(void *);
-void mem_free(void *);
 s32 is_alive__8TObjBaseFv(s32);
 extern u8 *camera_ctrl_instance;
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
@@ -107,7 +109,7 @@ void TObjEneRe2Flower_EffCurse3::run_task() {
         a.y += (14.0f);
         VecCopy((Vec *)&b, (const Vec *)(camera_ctrl_instance + 0x178));
         subtract_vector(&b, &a);
-        ((TObjBoss2Tunnel *)(&b))->update_scale();
+        normalize_vector_checked((Vec *)(&b));
         a.x = (2e+01f) * b.x + a.x;
         a.y = (2e+01f) * b.y + a.y;
         a.z = (2e+01f) * b.z + a.z;
@@ -131,7 +133,7 @@ TObjEneRe2Flower_EffCurse3::TObjEneRe2Flower_EffCurse3(s32 arg1, s32 arg2) : TOb
 extern "C" {
 
 struct Node_800C4D88 { void *p; s32 v; };
-struct A_800C4D88 { u8 x[0x24]; };
+typedef GinjaTextureInput A_800C4D88;
 struct B_800C4D88 { u8 x[0xC]; };
 A_800C4D88 player_render_target;
 B_800C4D88 player_render_texture_name;
@@ -144,16 +146,15 @@ void TObjPlayer__sub_800C4D44(void) {
         release_texture_list(p);
     }
     if (player_render_texture_buffer != 0) {
-        mem_free(player_render_texture_buffer);
+        ::operator delete[](player_render_texture_buffer);
         player_render_texture_buffer = 0;
     }
 }
 
-void *mem_alloc(u32 size);
 void pso_load_texture__6TLobbyFv(void *, void *);
 void set_texture_name(void *, void *, s32, s32);
 void TObjPlayer::create_render_texture() {
-    ((TObjPlayer *)(&player_render_target))->set_render_rect((s32)(player_render_texture_buffer = mem_alloc(0x800)), 0x902, 0x20, 0x20);
+    player_render_target.configure((void *)(player_render_texture_buffer = ::operator new[](0x800)), 0x902, 0x20, 0x20);
     set_texture_name(&player_render_texture_name, &player_render_target, 0x18696, 0x40800000);
     ((Node_800C4D88 *)lbl_80500C30)->p = &player_render_texture_name;
     ((Node_800C4D88 *)lbl_80500C30)->v = 1;

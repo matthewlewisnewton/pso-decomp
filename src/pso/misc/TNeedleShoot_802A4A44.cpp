@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TObjEneMe1Gee_NEEDLE.h"
 #include "pso/misc/TNeedleShoot_802A4754.h"
@@ -37,7 +38,6 @@ struct VObj_18_174c10 : VBase_18_174c10 {
 struct Pair_802A4AEC { s32 a; f32 b; };
 
 extern "C" {
-s32 play_sound_effect(int, void *, int, int);
 
 void*TNeedleShoot::get_shoot_data() { return (char*)this + 0x28; }
 
@@ -56,9 +56,9 @@ int TObjEneMe1Gee_NEEDLE::queue_destruction() {
 
 int TObjEneMe1Gee_NEEDLE::vfunc_6() {
     if (get_current_floor_area() == AREA_SEASIDE_NIGHT) {
-        play_sound_effect(0x4003B20E, (u8 *)&this->m_6c, 0, 0);
+        play_sound_effect(0x4003B20E, (const Vec *)((u8 *)&this->m_6c), 0, 0);
     } else {
-        play_sound_effect(0x3A847, (u8 *)&this->m_6c, 0, 0);
+        play_sound_effect(0x3A847, (const Vec *)((u8 *)&this->m_6c), 0, 0);
     }
     this->m_b8 = 0;
 }

@@ -2,14 +2,11 @@
 #define PSO_MISC_TWINDOWUSERSORT_H
 
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
-struct TWindowUserSort : public TWindowBase {
+struct TWindowUserSort : public TUnk_804CE018 {
     virtual ~TWindowUserSort();
     virtual void render();
-    u8 _pad1C[0x8];
-    void* m_24;
-    u8 _pad28[0x38];
     u32 m_60;
     virtual void run_task();
 };

@@ -671,19 +671,24 @@ void TWindowKeyBoardSoft::convert_input_text() {
 
 void TWindowKeyBoardSoft__sub_8025DBDC(void *arg0, s32 arg1) {
     KbSoft_8025DBDC *self = (KbSoft_8025DBDC *)arg0;
-    u16 *p;
+    // Gekko uses 32-bit object addresses. Keep the backwards scan cursor as
+    // an address value: the full-prefix case may subtract below the buffer,
+    // but never constructs or dereferences a pointer there. Only live buffer
+    // element addresses are converted back to u16 pointers for access.
+    typedef char AddressFitsU32[sizeof(void *) == sizeof(u32) ? 1 : -1];
+    u32 p;
     s32 lim; u32 n; s32 j; s32 rb; s32 ret; s8 c; s8 *q;
     u32 cnt;
     s8 out[5]; s8 scratch[8];
     cnt = self->count;
     if (cnt == 0) return;
-    p = self->buf + cnt - 1;
+    p = (u32)(self->buf + cnt - 1);
     lim = cnt;
     n = 0;
     if ((s32)cnt > 4) lim = 4;
-    while (is_alpha_char__20TWindowSubStatusDispFUs(*p) != 0) { lim--; p--; n++; if (lim <= 0) break; }
-    p++; j = 0;
-    while (j < n) { out[j] = (u8)*p; j++; p++; }
+    while (is_alpha_char__20TWindowSubStatusDispFUs(*(u16 *)p) != 0) { lim--; p -= sizeof(u16); n++; if (lim <= 0) break; }
+    p += sizeof(u16); j = 0;
+    while (j < n) { out[j] = (u8)*(u16 *)p; j++; p += sizeof(u16); }
     out[j] = 0;
     q = out;
     for (;;) {

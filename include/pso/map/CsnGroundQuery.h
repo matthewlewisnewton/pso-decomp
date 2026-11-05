@@ -17,4 +17,14 @@ struct CsnGroundHit {
     u32 flags;
     CsnGroundSurface *surface;
 };
+struct CsnHit;
+
+extern "C" {
+CsnHit *csnVecterUnder(const Vec *origin, u32 mask);
+
+// Query from source.y + 20. The source and destination may alias; on a miss,
+// the final copy then leaves the shared position raised by 20.
+s32 adjust_point_to_ground(const Vec *source, Vec *destination);
+s32 adjust_point_to_ground_with_normal(const Vec *source, Vec *destination, Vec *normal);
+}
 #endif

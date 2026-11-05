@@ -9,6 +9,7 @@ struct TBoss2Mine : public TObjEneDD {
     void set_node_offsets();
     void init_params(s32, f32);
     void update_pulse_state();
+    virtual void handle_initial_action(s32);
     virtual void vfunc_105(s32);
     virtual void vfunc_106(s32);
     virtual void vfunc_107(s32);
@@ -28,7 +29,7 @@ struct TBoss2Mine : public TObjEneDD {
     void apply_paralysis();
     void apply_poison_status();
     void vfunc_28();
-    u8 _pad390[0x20];
+    u8 unk_38c[0x8];
     u32 m_3b0;
     u8 _pad3B4[0x14];
     u32 m_3c8;

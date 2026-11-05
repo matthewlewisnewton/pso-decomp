@@ -1,7 +1,9 @@
+struct NJS_OBJECT;
 #ifndef PSO_ENEMY_TOBJENERECON_H
 #define PSO_ENEMY_TOBJENERECON_H
 
 #include "types.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 
 struct TObjEneRecon : public TObjEneDD_ST {
@@ -19,8 +21,7 @@ struct TObjEneRecon : public TObjEneDD_ST {
     void vfunc_28();
     void render();
     void run_task();
-    u32 m_390;
-    u8 _pad394[0x78];
+    u8 unk_3C0[0x30];
     void* m_40c;
     u8 _pad410[0x8];
     u32 m_418;
@@ -45,7 +46,7 @@ struct TObjEneRecon : public TObjEneDD_ST {
     static void set_active();
     static void *create_bomb(void *arg0, void *arg1, void *arg2);
     void render_shadows();
-    static void advance_intro_stage();
+    static void advance_intro_stage(NJS_OBJECT *);
     void update_ground_probe();
     u8 is_anim_5();
     void spawn_trap_a();
@@ -71,7 +72,10 @@ struct TObjEneRecon : public TObjEneDD_ST {
     void remove_child_entity(u8 *arg1);
     s32 has_child_in_anim_5();
     s32 is_below_child_limit(u16 arg1);
-    u8 unk_47C[0x54];
+
+    u8 _padBeforeFade[0x4];
+    MaterialOpacityFade fade;
+    u8 _padAfterFade[0x34];
     f32 m_4d0;
     u8 unk_4D4[0x4];
     s32 m_4d8;
@@ -84,11 +88,13 @@ struct TObjEneRecon : public TObjEneDD_ST {
     void retarget();
     void select_next_target();
     void update_collide_flag();
-    void set_flag2();
+    void set_flag2(f32 dx, f32 dz, f32 distance);
     void set_orbit_destination(s32 arg1);
     void advance_field398();
     void sync_height();
 };
+
+typedef char TObjEneReconFadeOffset[offsetof(TObjEneRecon, fade) == 0x480 ? 1 : -1];
 
 typedef char TObjEneRecon_size[sizeof(TObjEneRecon) == 0x4E4 ? 1 : -1];
 #endif

@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/TItemEffBringer.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/vector.h"
@@ -39,12 +40,12 @@ extern const f32 lbl_805DAB14;
 extern const f32 lbl_805DAB18;
 extern const f32 lbl_805DAB1C;
 void *__ct__15TItemEffBringerFv(Bringer_8010834C *self, u32 arg1, Vec_8010834C *src, s32 arg3, f32 farg0);
-void *spawn_particle_effect(void *pos, s32 id);
+
 }
 void TItemEffBringer::hook() {
     Vec work = this->m_pos;
     for (int i = 0; i != this->m_particle_count; i++) {
-        spawn_particle_effect(&work, 0x9C);
+        spawn_particle_effect((const Vec *)(&work), 0x9C);
         subtract_vector(&work, &this->m_84);
     }
 }

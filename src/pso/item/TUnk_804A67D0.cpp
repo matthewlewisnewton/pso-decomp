@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/item/TUnk_804A67D0.h"
 #include "pso/unk/text_8012FDEC.h"
@@ -8,7 +9,6 @@
 #include "pso/item/TItem.h"
 
 extern "C" {
-s32 play_sound_effect(int, int, int, int);
 
 void TUnk_804A67D0::update_idle() {
     f32 temp_f2;
@@ -25,7 +25,7 @@ void TUnk_804A67D0::update_idle() {
     TItemEffOrgaFlowShot::approach_value((f32 *)(((u8 *)this) + 0x1FC), (f32)(-0.04000001f), (f32)1.0f);
     TItemEffOrgaFlowShot::approach_value((f32 *)(((u8 *)this) + 0x200), (f32)0.14f, (f32)1.0f);
     if (var_r31 == 1) {
-        play_sound_effect(0x4001AA24, (int) (*(s32 *)((s8 *)((u8 *)this) + 0xF0) + 0x38), 0, 0);
+        play_sound_effect(0x4001AA24, (const Vec *)((*(s32 *)((s8 *)((u8 *)this) + 0xF0) + 0x38)), 0, 0);
     }
 }
 

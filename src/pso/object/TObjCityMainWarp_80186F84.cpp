@@ -1,5 +1,5 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/object/TObjWarpBossMulti.h"
 #include "pso/misc/TWindowMessageYesNo.h"
 #include "pso/object/TObjCityMainWarpChallenge.h"
@@ -43,6 +43,7 @@ extern "C" {
 s32 get_current_floor(void);
 f32 xz_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
+void TWindow__close(u8 *arg0);
 char *strcpy(char *, const char *);
 extern s32 local_client_id;
 extern const f32 lbl_805DBCA8;
@@ -59,7 +60,7 @@ s32 forward_slot_selection__16TAdChrSelASlotGCFPvPv(void *, s32, s32, f32);
 extern const f32 lbl_805DBCAC;
 extern const f32 lbl_805DBCB0;
 extern const f32 lbl_805DBCB4;
-s32 play_sound_effect(s32, void *, s32, s32);
+
 extern void *city_common_model_archive;
 s32 get_main_phase();
 extern s32 city_main_warp_destination_id;
@@ -106,7 +107,7 @@ void TObjCityMainWarp::update_warp_sequence() {
     switch (this->m_e0) {
     case 0:
         *(s32 *)((s8 *)arg0 + 0x160) = 0x12C;
-        play_sound_effect(0x40003205, (u8 *)&this->position, 0, 0);
+        play_sound_effect(0x40003205, (const Vec *)((u8 *)&this->position), 0, 0);
         this->m_e0 = 1;
         this->m_d0 = *(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x42C)) + 8);
         *(s32 *)((s8 *)arg0 + 0xD4) = *(s32 *)((s8 *)(*(void **)((s8 *)city_common_model_archive + 0x430)) + 0x2C);
@@ -164,11 +165,11 @@ void TObjCityMainWarpChallenge::update_challenge_state() {
             break;
         }
         if (*(u32 *)((s8 *)arg0 + 0xB0) != 0) {
-            ((TWindowBase *)(*(u32 *)((s8 *)arg0 + 0xB0)))->close();
+            TWindow__close((u8 *)(*(u32 *)((s8 *)arg0 + 0xB0)));
             *(u32 *)((s8 *)arg0 + 0xB0) = 0;
         }
         if (*(u32 *)((s8 *)arg0 + 0x164) != 0) {
-            ((TWindowBase *)(*(u32 *)((s8 *)arg0 + 0x164)))->close();
+            TWindow__close((u8 *)(*(u32 *)((s8 *)arg0 + 0x164)));
             *(u32 *)((s8 *)arg0 + 0x164) = 0;
         }
         break;
@@ -257,7 +258,7 @@ void TObjCityMainWarpChallenge::count_players_in_warp_radius() {
         self->names[i][0] = 0;
     }
     if (old != self->count && self->window != 0) {
-        ((TWindowBase *)self->window)->close();
+        TWindow__close((u8 *)self->window);
         self->window = 0;
     }
     pl2 = (Player_80187438 *)get_player_by_client_id(local_client_id);

@@ -1,19 +1,8 @@
 #include "types.h"
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/TAdPlyChrSelPlateGC.h"
-struct O_802C4D5C { u8 pad[0x2a8]; f32 v[1]; };
-
-typedef struct Q_802C4D88 { s8 b[4]; } Q_802C4D88;
-
-typedef struct S_802C4D88 {
-    u8 pad0[0x224];
-    s32 f224;
-    s32 a[32];
-    f32 fl[32];
-    Q_802C4D88 c[32];
-    u8 pad3A8[4];
-    s32 f3AC;
-} S_802C4D88;
+#include "pso/TMainTask.h"
+#include "pso/system/ModelDrawContext.h"
 
 typedef struct V_802C4DD0 { s32 x, y; } V_802C4DD0;
 
@@ -45,78 +34,96 @@ typedef struct S_802C4E38 {
 extern "C" {
 extern const f32 lbl_805DE548;
 extern const f32 lbl_805DE54C;
-void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *, void *);
+void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(f32 *destination, const f32 *source);
+void TAdEnterSerialAccessGC__sub_802C4B64(void *, void *, Q_802C4E38, int);
 extern const f32 lbl_805DE550;
 extern const f32 lbl_805DE554;
 extern const f32 lbl_805DE558;
-bool TAdPlyChrSelPlateGC::is_slot_value_ready(s32 i) {
-    O_802C4D5C *self = (O_802C4D5C *)this;
-    return (self->v[i] >= lbl_805DE548) ? true : false;
+#pragma push
+#pragma peephole off
+void TAdPlyChrSelPlateGC::render() {
+    S_802C4E38 *self = (S_802C4E38 *)this;
+    u32 i;
+    if (TMainTask::get_render_pass() != 1) {
+        set_color_blending_mode(0, 8);
+        set_color_blending_mode(1, 10);
+        for (i = 0; i < self->f224; i++) {
+            if (self->a[i] != 0) {
+                V_802C4E38 *pos = &self->v1C[0];
+                Q_802C4E38 col = self->c[i];
+                TAdEnterSerialAccessGC__sub_802C4B64(this, pos + i, col, i);
+            }
+        }
+        set_color_blending_mode(0, 8);
+        set_color_blending_mode(1, 6);
+    }
+}
+#pragma pop
+
+s32 TAdPlyChrSelPlateGC::is_slot_value_ready(s32 i) {
+    return m_progress[i] >= lbl_805DE548 ? 1 : 0;
 }
 void TAdPlyChrSelPlateGC::reset_selection_slots() {
-    S_802C4D88 *arg0 = (S_802C4D88 *)this;
     s32 i;
-    arg0->f3AC = -1;
-    arg0->f224 = 0;
+    m_frame = -1;
+    m_count = 0;
     for (i = 0; i < 0x20; i++) {
-        arg0->a[i] = 0;
-        arg0->fl[i] = lbl_805DE54C;
-        arg0->c[i].b[0] = 0;
-        arg0->c[i].b[1] = 0;
-        arg0->c[i].b[2] = 0;
-        arg0->c[i].b[3] = 0;
+        m_active[i] = 0;
+        m_progress[i] = lbl_805DE54C;
+        m_colors[i][0] = 0;
+        m_colors[i][1] = 0;
+        m_colors[i][2] = 0;
+        m_colors[i][3] = 0;
     }
 }
-typedef void (*Fn1_802C4DD0)(void *);
-void TAdPlyChrSelPlateGC::push_plate_position() {
-    S_802C4DD0 *arg0 = (S_802C4DD0 *)this;
-    if (arg0->f224 < 0x20) {
-        ((Fn1_802C4DD0)copy_vec2__28TWindowSubSymbolChatPartsSetFPv)(&arg0->v11C[arg0->f224]);
-        ((TWindowSubSymbolChatPartsSet *)(&arg0->v1C[arg0->f224]))->copy_vec2(&arg0->v11C[0]);
-        arg0->f224 = arg0->f224 + 1;
+void push_plate_position__19TAdPlyChrSelPlateGCFv(TAdPlyChrSelPlateGC *self, const f32 *position) {
+    if (self->m_count < 0x20) {
+        copy_vec2__28TWindowSubSymbolChatPartsSetFPv(self->m_target[self->m_count], position);
+        copy_vec2__28TWindowSubSymbolChatPartsSetFPv(self->m_current[self->m_count], self->m_target[0]);
+        self->m_count = self->m_count + 1;
     }
 }
+
 #pragma push
 #pragma fp_contract on
 #pragma opt_propagation off
 void TAdPlyChrSelPlateGC::run_task() {
-    S_802C4E38 *self = (S_802C4E38 *)this;
     s32 half;
     s32 m;
     u32 i;
     s32 j;
-    if (self->f3AC < self->f224 * 2 + 1) {
-        self->f3AC = self->f3AC + 1;
+    if (m_frame < m_count * 2 + 1) {
+        m_frame = m_frame + 1;
     }
     for (i = 0; i < 32; i++) {
-        if (self->a[i] != 0) {
-            if (self->a[i] == -1) {
-                self->c[i].b[2] = 0xFF;
-                self->c[i].b[1] = 0xFF;
-                self->c[i].b[0] = 0xFF;
-                self->c[i].b[3] = 0x22;
-                self->a[i] = 1;
+        if (m_active[i] != 0) {
+            if (m_active[i] == -1) {
+                m_colors[i][2] = 0xFF;
+                m_colors[i][1] = 0xFF;
+                m_colors[i][0] = 0xFF;
+                m_colors[i][3] = 0x22;
+                m_active[i] = 1;
             } else {
-                self->fl[i] += lbl_805DE550;
-                self->fl[i] = (self->fl[i] > lbl_805DE548) ? lbl_805DE548 : self->fl[i];
-                self->c[i].b[2] = self->col[2];
-                self->c[i].b[1] = self->col[1];
-                self->c[i].b[0] = self->col[0];
-                self->c[i].b[3] = (s32)self->fl[i];
+                m_progress[i] += lbl_805DE550;
+                m_progress[i] = (m_progress[i] > lbl_805DE548) ? lbl_805DE548 : m_progress[i];
+                m_colors[i][2] = m_color[2];
+                m_colors[i][1] = m_color[1];
+                m_colors[i][0] = m_color[0];
+                m_colors[i][3] = (s32)m_progress[i];
             }
             for (j = 0; j < 32; j++) {
                 s32 k = 0;
-                self->v1C[j].x = self->v11C[j].x;
-                self->v1C[j].y += (self->v11C[j].y - self->v11C[0].y) / (lbl_805DE558 * (f32)k + lbl_805DE554);
-                self->v1C[j].y = (self->v1C[j].y > self->v11C[j].y) ? self->v11C[j].y : self->v1C[j].y;
+                m_current[j][0] = m_target[j][0];
+                m_current[j][1] += (m_target[j][1] - m_target[0][1]) / (lbl_805DE558 * (f32)k + lbl_805DE554);
+                m_current[j][1] = (m_current[j][1] > m_target[j][1]) ? m_target[j][1] : m_current[j][1];
             }
         }
     }
-    if (self->f3AC % 2 == 0) {
-        half = self->f3AC / 2;
+    if (m_frame % 2 == 0) {
+        half = m_frame / 2;
         m = half - 1;
-        if (m < self->f224 && half - 1 >= 0 && m < 32) {
-            self->a[half - 1] = 1;
+        if (m < m_count && half - 1 >= 0 && m < 32) {
+            m_active[half - 1] = 1;
         }
     }
 }

@@ -5,6 +5,7 @@
 #include "pso/enemy/TObjEnemy.h"
 
 struct TObjEnePanarmsAtkColli : public TObjEnemy {
+    TObjEnePanarmsAtkColli(TObject *parent, const Vec *position, const Vec *direction, s32 type);
     virtual ~TObjEnePanarmsAtkColli();
     void sub_800E32C0(void *);
     u32 m_374;

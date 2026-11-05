@@ -1,5 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowChoiceSetting.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TWindowSubComCard_80265410.h"
@@ -33,13 +33,13 @@ void *get_window_layout_position(s32);
 extern const f32 lbl_805DD144;
 void get_lobby_field_20__15TWindowMakeTeamFv(void *, f32);
 void get_keyboard_field_6c__15TWindowMakeTeamFv(void *, char *);
-void mem_free(void *);
 char *realloc_buffer__17TWindowSubComCardFv(void *);
 char *get_shared_text_buffer(void);
 s32 measure_string_len__20TWindowSubStatusDispFv(char *);
 char *strncpy(char *, const char *, u32);
 void *create_entry_menu_window__15TWindowMakeTeamFv(void *);
 void *create_status_menu_window__15TWindowMakeTeamFv(void *);
+u8 get_selected_menu_value(void *);
 char *draw_entry_0x110__15TWindowMakeTeamFSc(u8);
 char *init_status_disp__15TWindowMakeTeamFc(u8);
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
@@ -66,7 +66,7 @@ void TWindowMakeTeam::run_task() {
             self->keyboard = NULL;
         }
         if (self->window != NULL) {
-            ((TWindowBase *)self->window)->close();
+            TWindow__close((u8 *)self->window);
             self->window = NULL;
         }
         ((TWindowSubComCard *)(self->menu))->clear_flag_and_release2();
@@ -100,7 +100,7 @@ void TWindowMakeTeam::run_task() {
         }
         if (((TWindowSubComCard *)(self->keyboard))->update_keyboard() != 0) {
             s32 n;
-            mem_free(self->name);
+            ::operator delete[](self->name);
             self->name = realloc_buffer__17TWindowSubComCardFv(self->keyboard);
             TWindowSubComCard::mask_profanity_words(self->name, get_shared_text_buffer());
             n = measure_string_len__20TWindowSubStatusDispFv(self->name);
@@ -128,7 +128,7 @@ void TWindowMakeTeam::run_task() {
         }
         if (((TWindowSubComCard *)(self->keyboard))->update_keyboard() != 0) {
             s32 n;
-            mem_free(self->comment);
+            ::operator delete[](self->comment);
             self->comment = realloc_buffer__17TWindowSubComCardFv(self->keyboard);
             TWindowSubComCard::mask_profanity_words(self->comment, get_shared_text_buffer());
             n = measure_string_len__20TWindowSubStatusDispFv(self->comment);
@@ -141,10 +141,10 @@ void TWindowMakeTeam::run_task() {
         self->window = create_entry_menu_window__15TWindowMakeTeamFv(self);
         this->m_1c = 8;
     case 8:
-        if (((TWindowMenu *)(self->window))->is_cancelled() != 0) {
+        if (((TWindowSubComCard *)(self->window))->get_status_flag() != 0) {
             this->m_1c = 1;
-        } else if (((TWindowMenu *)(self->window))->is_decided() != 0) {
-            this->m_1e = ((TWindowMenu *)self->window)->get_selected_value();
+        } else if (((TWindowMenu *)(self->window))->is_visible() != 0) {
+            this->m_1e = get_selected_menu_value(self->window);
             ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(draw_entry_0x110__15TWindowMakeTeamFSc(this->m_1e), 2);
             ((TWindowMakeTeam *)self)->send_state();
             this->m_1c = 1;
@@ -154,10 +154,10 @@ void TWindowMakeTeam::run_task() {
         self->window = create_status_menu_window__15TWindowMakeTeamFv(self);
         this->m_1c = 10;
     case 10:
-        if (((TWindowMenu *)(self->window))->is_cancelled() != 0) {
+        if (((TWindowSubComCard *)(self->window))->get_status_flag() != 0) {
             this->m_1c = 1;
-        } else if (((TWindowMenu *)(self->window))->is_decided() != 0) {
-            this->m_1f = ((TWindowMenu *)self->window)->get_selected_value();
+        } else if (((TWindowMenu *)(self->window))->is_visible() != 0) {
+            this->m_1f = get_selected_menu_value(self->window);
             ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(init_status_disp__15TWindowMakeTeamFc(this->m_1f), 3);
             this->m_1c = 1;
         }

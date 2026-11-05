@@ -1,3 +1,4 @@
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjPlayer.h"
@@ -21,7 +22,7 @@ s32 __ct__8TObjBaseFP7TObject();
 extern s32 __vt__12TObjGrassWeb[];
 extern s32 lbl_805D2A3C;
 u8 *TObjGrassWeb__ct(u8 *arg0, s32 arg1, u32 arg2);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 extern s32 enable_v2_features;
 void TObjGrassWeb__sub_800BC798(Web_800BC798 *o);
 void *__dt__12TObjGrassWebFv(void *arg0, s16 arg1);
@@ -37,19 +38,19 @@ void TObjGrassWeb__sub_800BC798(Web_800BC798 *o) {
     case AREA_CAVE1:
     case AREA_CAVE2:
     case AREA_CAVE3:
-        play_persistent_sound(0x4003A809, (s32)o, (u32)o->pos, 0, 0);
+        play_persistent_sound((s32)(0x4003A809), (const void *)((s32)o), (const Vec *)((u32)o->pos), 0, 0);
         break;
     case AREA_BATTLE1:
     case AREA_BATTLE2:
         if (enable_v2_features == 1) {
-            play_persistent_sound(0x3051E, (s32)o, (u32)o->pos, 0, 0);
+            play_persistent_sound((s32)(0x3051E), (const void *)((s32)o), (const Vec *)((u32)o->pos), 0, 0);
         }
         break;
     case AREA_PIONEER2_EP2:
         break;
     case AREA_VR_TEMPLE_ALPHA:
     case AREA_VR_TEMPLE_BETA:
-        play_persistent_sound(0x3A81D, (s32)o, (u32)o->pos, 0, 0);
+        play_persistent_sound((s32)(0x3A81D), (const void *)((s32)o), (const Vec *)((u32)o->pos), 0, 0);
         break;
     }
     if (o->timer-- < 0) {

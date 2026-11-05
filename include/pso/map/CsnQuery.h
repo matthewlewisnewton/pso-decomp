@@ -2,6 +2,8 @@
 #define PSO_MAP_CSNQUERY_H
 
 #include "types.h"
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/map/CsnResult.h"
 #include <stddef.h>
 #include <dolphin/mtx.h>
 
@@ -25,20 +27,6 @@ typedef char CsnGroupFlagsOffset[offsetof(CsnGroup, flags) == 0x14 ? 1 : -1];
 
 CsnGroup* select_ground_query_groups(CsnVector* origin, u32 mask);
 
-// The polygon a segment query hit: the hit point and the polygon normal.
-struct CsnContact {
-    Vec point;
-    Vec normal;
-    u32 flags;
-};
-
-// The result csnVector returns (one static record, NULL when nothing is hit).
-struct CsnHit {
-    u8 pad_0[0x4];
-    CsnContact *contact;
-    u8 pad_8[0x38];
-};
-
 extern "C" {
 CsnHit *csnVector(const Vec *from, const Vec *to, u32 mask);
 }
@@ -53,7 +41,6 @@ void TObjPlayer__sub_8007911C(void);
 void TObjPlayer__sub_80079120(s32 _w0);
 void TObjPlayer__sub_80079124(void *_w0, void *_w1);
 s32 *csnLookAt(s32 arg0, s32 arg1);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2);
 s32 get_csn_group_flags(u8 arg0);
 }

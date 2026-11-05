@@ -1,3 +1,5 @@
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/boss/TBoss5GryphonTornado.h"
 #include "pso/object/TObject_80019A50.h"
@@ -44,9 +46,8 @@ s32 get_bml_motion(s32, s32);
 s32 get_bml_model(s32, s32);
 void TBoss8Dragon__sub_800640A4(s32, Vec_80355570 *);
 void attach_particle_model(void *, s32, s32, s32, s32, f32);
-Res_80355570 *csnVecterUnder(Vec_80355570 *, s32);
 void add_radar_scaled_marker(Vec_80355570 *, s32, s32, s32, f32);
-void play_persistent_sound(s32, void *, Vec_80355570 *, s32, s32);
+
 extern s32 boss5_gryphon_bml_resource;
 extern s32 boss5_gryphon_texture_list;
 extern s32 *gryphon_tornado_particle_id_table;
@@ -75,7 +76,7 @@ void TBoss5GryphonTornado::run_task() {
         o->state = 1;
     case 1:
         o->pos.y = lbl_805D8D48;
-        r = csnVecterUnder(&o->pos, 0x16EF);
+        r = (Res_80355570 *)csnVecterUnder((const Vec *)&o->pos, 0x16EF);
         if (r == NULL) {
             queue_destruction__7TObjectFv(o);
             return;
@@ -120,7 +121,7 @@ void TBoss5GryphonTornado::run_task() {
         o->pos.x += o->f34;
         o->pos.z += o->f3C;
         add_radar_scaled_marker(&o->pos, -0x5DB4, 1, 1, lbl_805DFFB8);
-        play_persistent_sound(0x40032D05, o, &o->pos, 0, 0);
+        play_persistent_sound((s32)(0x40032D05), (const void *)(o), (const Vec *)(&o->pos), 0, 0);
         o->timer++;
         break;
     case 2:
