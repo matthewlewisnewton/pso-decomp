@@ -212,7 +212,7 @@ u8 *TORockJungleL01__ct(u8 *rock_cave, s32 arg1) {
     {
         Copy_8029C214 c = *(Copy_8029C214 *)arg1;
         VecCopy((Vec *)((u8 *)&c + 0x24), (const Vec *)rock_jungle_vec3_table);
-        ((TORockJungleL01 *)rock_cave)->m_d4 = TObjMapCsn::create((s32)&c);
+        ((TORockJungleL01 *)rock_cave)->m_d4 = TObjMapCsn::create(&c);
     }
     ((RenderFadeState *)(rock_cave + 0xB4))->activate_and_dispatch();
     return rock_cave;
@@ -422,7 +422,7 @@ u8 *TORockJungleM01__ct(u8 *rock_cave_brakable, s32 arg1) {
     }
     *(ByteBlock_3C *)(copy_storage_8029C588.bytes) = *(const ByteBlock_3C *)((arg1 - 4) + 4);
     VecCopy((Vec *)((copy_storage_8029C588.bytes + 0x24)), (const Vec *)rock_jungle_vec3_table);
-    ((TORockJungleM01 *)rock_cave_brakable)->m_dc = TObjMapCsn::create((s32)((void *) ((copy_storage_8029C588.bytes))));
+    ((TORockJungleM01 *)rock_cave_brakable)->m_dc = TObjMapCsn::create(copy_storage_8029C588.bytes);
     ((RenderFadeState *)(rock_cave_brakable + 0xBC))->activate_and_dispatch();
     return rock_cave_brakable;
 }
@@ -615,7 +615,7 @@ u8 *TORockJungleS01__ct(TORockJungleS01 *rock_jungle_s01, s32 arg1) {
     }
     *(ByteBlock_3C *)(copy_storage_8029C9C8.bytes) = *(const ByteBlock_3C *)((arg1 - 4) + 4);
     VecCopy((Vec *)((copy_storage_8029C9C8.bytes + 0x24)), (const Vec *)rock_jungle_vec3_table);
-    rock_jungle_s01->m_bc = TObjMapCsn::create((s32)((void *) ((copy_storage_8029C9C8.bytes))));
+    rock_jungle_s01->m_bc = TObjMapCsn::create(copy_storage_8029C9C8.bytes);
     return (u8 *)rock_jungle_s01;
 }
 

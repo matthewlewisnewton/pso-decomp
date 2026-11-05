@@ -24,7 +24,6 @@
 
 extern "C" {
 u16 get_entity_id(void *);
-s32 get_field_3e0__12TBoss3VoloptFv();
 s32 TObjPlayer__sub_80117E50();
 void *get_player_by_client_id(s32 i);
 s32 is_item_area_enabled();
@@ -305,7 +304,7 @@ void TUnk_8049EFB8::run_task() {
     if (120.0f <= (f32) *(s32 *)&this->unk_1C) {
         player = (s32)get_player_by_client_id((this->m_20));
         if (player != 0) {
-            get_field_3e0__12TBoss3VoloptFv();
+            ((TObjPlayer *)player)->get_current_area();
             if (is_item_area_enabled() == 1) {
                 get_entity_id((void *)player);
                 if (TObjPlayer__sub_80117E50() != 0) {

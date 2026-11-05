@@ -2,9 +2,9 @@
 #define PSO_MISC_TWINDOWDEPOSIT_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 
-struct TWindowDeposit : public TUnk_804CE018 {
+struct TWindowDeposit : public TWindowBase {
     virtual ~TWindowDeposit();
     virtual void render();
     f32 m_60;

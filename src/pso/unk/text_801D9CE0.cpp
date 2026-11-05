@@ -43,7 +43,7 @@ void TObjPlayer::reset_tech_state() {
     set_technique_id__10TObjPlayerFUc(self, 0xFF);
     ((TObjPlayer *)self)->set_tech_override(0);
     set_technique_id__10TObjPlayerFs(self, 0);
-    ((TObjPlayer *)self)->set_tech_level(0);
+    ((TechniqueCastState *)self)->set_target_count(0);
     TObjPlayer__sub_801D9E10(self, 0);
     ((TObjPlayer *)self)->set_technique_state(0);
     TObjPlayer__sub_801D2CC4(self, lbl_805DC408);

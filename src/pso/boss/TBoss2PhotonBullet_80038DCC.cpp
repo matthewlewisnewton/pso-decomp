@@ -71,7 +71,7 @@ void render__18TBoss2PhotonBulletFv(u8 *arg0) {
         stack.sp8 = *(s32 *)((s8 *)&lbl_80435B6C.value + 0);
         stack.spC = *(s32 *)((s8 *)&lbl_80435B6C.value + 4);
         stack.sp10 = *(s32 *)((s8 *)&lbl_80435B6C.value + 8);
-        ((TObjEneDD *)(arg0 + 0x38))->draw_oriented_shadow((s32)(arg0 + 0xCC), 0, (u32)((void *)&stack.sp8));
+        TObjEneDD::draw_oriented_shadow((const Vec *)(arg0 + 0x38), (const Vec *)(arg0 + 0xCC), 0, (const Vec *)&stack.sp8);
     }
 }
 #pragma push

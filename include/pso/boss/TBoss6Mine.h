@@ -5,6 +5,32 @@
 #include <dolphin/mtx.h>
 #include "pso/enemy/TObjEnemy.h"
 
+struct TBoss6Type1;
+
+// Spawn record TBoss6Type1 fills for each mine of its ring. The first 0x40
+// bytes are the mag-mine block it copies from the plot; TBoss6Mine__ct reads
+// owner, position, point, delay and rng.
+struct Boss6MineSpawn {
+    s16 a0;
+    s16 a2;
+    s16 a4;
+    s16 a6;
+    s16 a8;
+    s16 aa;
+    s16 ac;
+    s16 ae;
+    Vec inner;
+    Vec c1c;
+    u32 c28[5];
+    s16 a3c;
+    s16 a3e;
+    TBoss6Type1 *owner;
+    Vec position;
+    Vec point;
+    s32 delay;
+    s32 rng;
+};
+
 struct TBoss6Mine : public TObjEnemy {
     virtual ~TBoss6Mine();
     virtual void run_task();
@@ -35,7 +61,8 @@ struct TBoss6Mine : public TObjEnemy {
     void draw();
     void update_facing_angles();
     s32 is_far_from_origin();
-    static s32 create(s32 arg0);
+    // Callers null-check the allocation with cmplwi. s32 would be cmpwi.
+    static u32 create(Boss6MineSpawn *spawn);
     static f32 next_random_float(s32 *arg0);
     void explode_damage_players();
     void state_0();
@@ -51,7 +78,7 @@ struct TBoss6Mine : public TObjEnemy {
 typedef char TBoss6Mine_size[sizeof(TBoss6Mine) == 0x3D0 ? 1 : -1];
 
 extern "C" {
-s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2);
+s32 TBoss6Mine__ct(s32 arg0, s32 parent, Boss6MineSpawn *arg2);
 void *__dt__10TBoss6MineFPvs(void *arg0, s16 arg1);
 void explode_damage_players__10TBoss6MineFv(u8 *arg0);
 }

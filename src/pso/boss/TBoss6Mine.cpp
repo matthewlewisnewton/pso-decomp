@@ -192,7 +192,7 @@ void TBoss6Mine::explode_damage_players() {
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         pl = (u8 *)get_player_data__10TObjPlayerFi(i);
-        if (((TBoss6PlotFalz *)pl)->is_active() != 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0) {
             Vec_803240F8 v = *(Vec_803240F8 *) (arg0 + 0x38);
             subtract_vector(&v, pl + 0x38);
             v.y = 0.0f;
@@ -412,7 +412,7 @@ extern s32 tl_04;
 #pragma fp_contract on
 #define VecCopyP ((u8 *(*)(void *, void *))VecCopy__FP3VecPC3Vec)
 #define THIS self
-s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {
+s32 TBoss6Mine__ct(s32 arg0, s32 parent, Boss6MineSpawn *arg2) {
     u8 *self;
     Tmp_80324A00 tmp;
     f32 f;
@@ -444,7 +444,7 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {
     *(s32 *)((s8 *)THIS + 0x2A8) = 0;
     ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2D)), (u8 *)(get_battle_attack_params(0x2D)), (u8 *)(get_battle_resistance_params(0x2D)));
     ((TBoss3Volopt *)THIS)->referenceHp = ((TBoss3Volopt *)THIS)->hp;
-    ((TBoss3Volopt *)THIS)->reset_photon_effect();
+    ((TObjEnemy *)THIS)->register_by_id();
     ((TObjEnemy *)THIS)->set_param(0);
     ((TBoss6Mine *)THIS)->rise_delay = (s32)(136.0f * TBoss6Mine::next_random_float((s32 *)(THIS + 0x388)) + 7.0f);
     *(s32 *)((s8 *)THIS + 0x3A4) = 0x96 - ((TBoss6Mine *)THIS)->rise_delay;
@@ -471,7 +471,7 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {
 }
 #pragma pop
 
-s32 TBoss6Mine::create(s32 arg0) {
+u32 TBoss6Mine::create(Boss6MineSpawn *spawn) {
     s32 var_r31;
     s32 var_r4;
 
@@ -481,7 +481,7 @@ s32 TBoss6Mine::create(s32 arg0) {
         if (var_r4 != 0) {
             var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
-        var_r31 = TBoss6Mine__ct(var_r31, var_r4, arg0);
+        var_r31 = TBoss6Mine__ct(var_r31, var_r4, spawn);
     }
     return var_r31;
 }

@@ -5,7 +5,14 @@
 
 struct ControllerInputContext {
     u32 buttons;
-    u8 unknown_04[0x44];
+    u8 unknown_04[0x10];
+    s16 stick_x;
+    s16 stick_y;
+    s16 cstick_x;
+    s16 cstick_y;
+    u8 unknown_1c[0xC];
+    f32 cstick_magnitude;
+    u8 unknown_2c[0x1C];
     u32 previous_buttons;
     u8 unknown_4c[4];
 };
