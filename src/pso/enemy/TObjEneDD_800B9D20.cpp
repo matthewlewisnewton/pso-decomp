@@ -5,6 +5,8 @@
 #include "pso/misc/TCameraCtrl_800687BC.h"
 #include "pso/player/TObjPlayer_800F0810.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/unk/text_803D8F74.h"
+#include "pso/system/MatrixStack.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/player/TObjPlayer.h"
 
@@ -21,12 +23,8 @@ struct Obj_800B9E84 {
 
 extern "C" {
 s32 minimap_render_dot(void *, int, int, int);
-s32 rotate_matrix_y(int, void *);
 s32 rotate_matrix_z(int, int);
 s32 rotate_matrix_x(int, int);
-s32 push_matrix();
-s32 scale_current_matrix(void *);
-s32 post_translate_matrix(void *);
 extern const f32 TObjEneDD__data_805D9E8C;
 extern const f32 lbl_805D9E90;
 int apply_split_screen_view_matrix__11TCameraCtrlFv(void*);
@@ -47,18 +45,17 @@ void TObjEneDD::draw_ground_shadow(const Vec *scale, s32 forceDraw) {
     TObjEnemy::draw_ground_shadow(scale, forceDraw);
 }
 
-void TObjEneDD::draw_oriented_shadow(s32 arg1, s32 arg2, u32 arg3) {
-    s32 arg0 = (s32)this;
+void TObjEneDD::draw_oriented_shadow(const Vec *pos, const Vec *normal, s32 angle, const Vec *scale) {
     Stack_800B9D94 stack;
-    direction_to_rotation_xz((u8 *)arg1, (&stack.sp8), (&stack.sp10));
+    direction_to_rotation_xz((u8 *)normal, (&stack.sp8), (&stack.sp10));
     push_matrix();
-    post_translate_matrix((void *)arg0);
+    post_translate_matrix(&pos->x);
     translate_matrix(0, TObjEneDD__data_805D9E8C, lbl_805D9E90, TObjEneDD__data_805D9E8C);
     rotate_matrix_z(0, stack.sp10);
     rotate_matrix_x(0, stack.sp8);
-    rotate_matrix_y(0, (void *)arg2);
-    if (arg3 != 0U) {
-        scale_current_matrix((void *)arg3);
+    rotate_matrix_y(NULL, angle);
+    if (scale != NULL) {
+        scale_current_matrix(&scale->x);
     }
     rotate_matrix_x(0, -0x4000);
     draw_blob_shadow(0);
