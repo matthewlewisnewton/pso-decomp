@@ -27,8 +27,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,865 | 886 |
-| Per-unit compiler overrides in `configure.py` | 145 | 145 |
-| Approved regressions | 0 on main, 1 pending (#291) | |
+| Per-unit compiler overrides in `configure.py` | 146 | 146 |
+| Approved regressions | 0 | 0 |
 
 ## Rule for assembly
 
@@ -144,6 +144,12 @@ enable it globally. The per-function `#pragma fp_contract on` and
 `*(const f32 *)&`, which is the load the original keeps in `f2`. A plain
 second use is commoned into `f3` and the function misses by one byte.
 
+### `-opt noprop`: `TEffIndirectCtrl_802A88AC.cpp` ([#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291))
+
+| Unit | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/effect/TEffIndirectCtrl_802A88AC.cpp` | `deform_indirect_texture_scroll` (`0x802A8FD8`) | unit switch `-opt noprop`, the unit-wide form of `opt_propagation off` (approved for `TEF_LensFlare::render`, #272) | The original keeps the scroll offset as a named `s16` local: `clrlwi r30,r21,26; clrlwi r29,r20,26; extsh r28,r4` at `0x802A90E4`, then `add r5,r5,r28` at `0x802A9158`. With propagation, the frontend replaces the single `off16 = offset` with a hoisted temp, which is coloured before the masks: `clrlwi r29; clrlwi r28; extsh r30`, six operands, 99.79%. Main matched only with a cancelling `off16++; off16--;`, removed here. No `-inline` or `-fp_contract` setting moves it. With the switch, the object is identical to main's in every section, relocation, and symbol. Every other function in the unit is unchanged. Precedent: per-object switches in [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (`-opt peephole -opt schedule` on `nt_etc_so.cpp`, L723), and this repo's `-opt nocse` / `-opt nopeephole` units. The precedent is weak: brawl uses `-opt peephole/schedule`, not `noprop`; no other decomp found using `-opt noprop`. Accepted by Matt 2026-11-04 4:34 PM PT. Evidence: [indirect-scroll-offset-propagation.md](evidence/indirect-scroll-offset-propagation.md). | Drop the switch. The source is plain C++. |
+
 ## 6. Approved regressions
 
 None on main.
@@ -155,7 +161,6 @@ entry when the PR merges.
 
 | PR | Exception | Status / reason |
 |---|---|---|
-| [#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291) | Allowed regression: `deform_indirect_texture_scroll` 100% → 99.79% | Approved by Matt on 2026-11-04 so the `off16 = offset` steering (still on main in `TEffIndirectCtrl_802A88AC.cpp`) could be removed. Port: nothing; the PR version is the portable one. |
 | [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
