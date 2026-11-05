@@ -512,13 +512,21 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/item/TObjContainerItem.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TContainerAncient01.cpp": {"mw_version": "GC/1.3.2"},
     "pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp": {"mw_version": "GC/1.3.2"},
-    # UV divisions contract to fmadd, so -fp_contract on replaces the old
-    # per-function pragmas. sub_802C5F1C's slot clamp is a static inline
-    # helper: -inline on,noauto inlines that helper and nothing else, which
-    # is what puts the row pointer in r8. -inline auto also inlines eight
-    # unmarked calls and those functions stop matching. See
+    # Four depth/UV multiply-adds contract, so -fp_contract on replaces the old
+    # per-function pragmas. -inline on inlines only clamped_active_slot
+    # and mark_grid_cell_occupied; -inline auto also inlines eight unmarked
+    # calls and those functions stop matching. See
     # docs/evidence/chr-select-slot-clamp-inline.md.
-    "pso/ui/TAdChrSelPlyPlateGC.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-inline on,noauto")},
+    # The eight compiler-pool globals before this unit's owned 0.53 / 1/256
+    # literals are defined by TAdMultiPlyChrSelectGC_literals.s, including the
+    # 16.0 conversion constant shared with the separately split ctor.
+    "pso/ui/TAdChrSelPlyPlateGC.cpp": {
+        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on"),
+        "symbol_mappings": {
+            "@102": "lbl_805DE580",
+            "@175": "TAdMultiPlyChrSelectGC__data_805DE584",
+        },
+    },
     "pso/misc/TQuestVmDownLoadServer.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/misc/TCameraCtrl.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TKeyBoardControl_8025EC04.cpp": {"mw_version": "GC/1.3.2"},

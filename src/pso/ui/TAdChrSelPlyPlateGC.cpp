@@ -13,6 +13,11 @@
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdPlyPltAnimCtrlGC.h"
 
+struct RecoveredGlobal_802C6848_lbl_804E0B00 {
+    s32 value;
+    u8 remaining[0xC];
+};
+
 typedef struct S_802C59EC {
     u8 pad0[0x444];
     s32 a[4][3];
@@ -23,6 +28,14 @@ typedef struct S_802C59EC {
 } S_802C59EC;
 
 typedef struct G_802C6A10 { s32 value; u8 remaining[0xC]; } G_802C6A10;
+
+struct S_802C5594 {
+    u8 pad0[0x4DC];
+    s32 x[3];
+    u8 pad4E8[0x500 - 0x4E8];
+    s32 y[4][3];
+    s32 f530;
+};
 
 struct E_802C5944 { f32 x; f32 y; u8 pad[0x18]; };
 
@@ -55,38 +68,9 @@ struct S_802C5314 {
     s32 y[4][3];
 };
 
-struct S_802C6008 {
-    u8 pad0[0x1C];
-    s32 f1C;
-    u8 pad20[0x4AC - 0x20];
-    s32 sel[4][3];
-    s32 f4DC[4];
-    s32 f4EC;
-    u8 pad4f0[0x8];
-    s32 f4F8;
-};
-
-struct S_802C61E4 {
-    u8 pad0[0x1C];
-    s32 f1C;
-    u8 pad20[0x4AC - 0x20];
-    s32 sel[4][3];
-    s32 f4DC[4];
-    s32 f4EC;
-    u8 pad4f0[0x8];
-    s32 f4F8;
-};
-
 typedef struct Jump_802C5C84 {
     s32 v[4];
 } Jump_802C5C84;
-
-typedef struct Self_802C5C84 {
-    u8 pad0[0x4AC];
-    s32 f4AC[5][3];
-    u8 pad4E8[0x4EC - 0x4E8];
-    s32 f4EC;
-} Self_802C5C84;
 
 struct Pad_802C6AC8 { u8 pad[0x20]; u8 ctl[0x30]; };
 
@@ -111,46 +95,34 @@ struct S_802C50EC {
     s32 b[4][3];
 };
 
-struct RecoveredGlobal_802C64D0_TAdMultiPlyChrSelectGC__data_804E0A48 {
-    s32 value;
-    u8 remaining[0xC];
-};
-
-/* 0x804E0A48 is four slot ids. Nothing in this unit reads them as floats or as
-   the recovered record, so the object is the s32[4] the predicates index. */
-
 extern "C" {
 int TAdMultiPlyChrSelectGC__sub_802C6920(void);
     extern int TAdMultiPlyChrSelectGC__data_805D67D8;
 extern s32 TAdMultiPlyChrSelectGC__select_mode;
 extern s32 TAdMultiPlyChrSelectGC__selected_slot;
 extern s32 multiplayer_controller_device_codes[4];
-extern const f32 TAdMultiPlyChrSelectGC__data_805DE56C;
-extern const s32 multi_ply_chr_select_default_slot_table[][5];
-extern s32 TAdMultiPlyChrSelectGC__data_804E0A68[][5];
 void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *);
 s32 get_field_20__22TAdMultiPlyChrSelectGCFv();
 extern s32 lbl_805D67D4;
-extern const f32 lbl_805DE57C;
-const f32 lbl_805DE580 = 0.53f;
-s32 TWindowShortListCtrl__check_controller_button(void *, int);
-
-void TAdMultiPlyChrSelectGC__sub_802C5F1C(TAdChrSelPlyPlateGC *, int);
-extern u8 controller_physical_port_bank[];
-extern const Jump_802C5C84 multi_chr_select_cursor_jump_table[][5];
-extern s32 TAdMultiPlyChrSelectGC__data_804E0A48[4];
-extern s32 TAdMultiPlyChrSelectGC__selected_slot_order[4];
-extern s32 TAdMultiPlyChrSelectGC__data_804E0AE0[4];
-extern f32 TAdMultiPlyChrSelectGC__data_804E0AF0[4];
-void TAdMultiPlyChrSelectGC__sub_802C50EC(TAdChrSelPlyPlateGC *);
-void TAdMultiPlyChrSelectGC__sub_802C522C(TAdChrSelPlyPlateGC *);
-extern s32 lbl_805D67D0;
+extern s32 TAdMultiPlyChrSelectGC__data_804E0A68[][5];
 extern const f32 lbl_805DE560;
 extern const f32 lbl_805DE564;
 extern const f32 lbl_805DE568;
+extern const f32 TAdMultiPlyChrSelectGC__data_805DE56C;
 extern const f32 lbl_805DE570;
 extern const f32 lbl_805DE574;
 extern const f32 lbl_805DE578;
+extern const f32 lbl_805DE57C;
+extern const f32 TAdMultiPlyChrSelectGC__data_80471D00;
+
+static const f32 lbl_805DE580 = 0.53f;
+extern s32 lbl_804E0B10[];
+extern u32 ad_chr_sel_ply_plate_instance;
+s32 __dl__7TObjectFPv(void *);
+s32 __dt__7TObjectFv(void *, s32);
+s32 TWindowShortListCtrl__check_controller_button(void *, int);
+
+void TAdMultiPlyChrSelectGC__sub_802C5F1C(TAdChrSelPlyPlateGC *, int);
 extern const f32 lbl_805DE588;
 extern const f32 lbl_805DE58C;
 extern const f32 lbl_805DE590;
@@ -158,11 +130,45 @@ extern const f32 lbl_805DE594;
 extern const f32 lbl_805DE598;
 extern const f32 lbl_805DE59C;
 extern const f32 lbl_805DE5A0;
-extern const f32 lbl_80471CE0[2];
-extern const char lbl_80471CE8[20];
 
-s32 TAdMultiPlyChrSelectGC__data_804E0A48[4] = { 0, 0, 0, 0 };
-s32 TAdMultiPlyChrSelectGC__selected_slot_order[4] = { 0, 0, 0, 0 };
+/* This unit's .rodata: the open/occupied grid, the cursor-jump vectors, the two
+   home-position floats, and the plate class name. The compiler's int-to-float
+   pool double follows them. Values are the original table bytes. */
+extern const s32 multi_ply_chr_select_default_slot_table[6][5] = {
+    0, 0, 0, 0, 0,
+    0, 1, 1, 0, 0,
+    0, 1, 1, 0, 0,
+    0, 1, 1, 0, 0,
+    0, 1, -1, 0, 0,
+    0, 0, 0, 0, 0,
+};
+extern const Jump_802C5C84 multi_chr_select_cursor_jump_table[6][5] = {
+    { { { 0, 0, 0, 0 } }, { { 4, 0, 0, 0 } }, { { 3, 0, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } } },
+    { { { 0, 0, 2, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, -2 } }, { { 0, 0, 0, 0 } } },
+    { { { 0, 0, 2, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, -2 } }, { { 0, 0, 0, 0 } } },
+    { { { 0, 0, 2, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, -2 } }, { { 0, 0, 0, 0 } } },
+    { { { 0, 0, 2, 0 } }, { { 0, 0, 0, 0 } }, { { 0, -3, 0, -1 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } } },
+    { { { 0, 0, 0, 0 } }, { { 0, -4, 0, 0 } }, { { 0, -4, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } } },
+};
+extern const f32 lbl_80471CE0[2] = { 180.0f, 38.0f };
+extern const char lbl_80471CE8[20] = "TAdChrSelPlyPlateGC";
+extern u8 controller_physical_port_bank[];
+void TAdMultiPlyChrSelectGC__sub_802C50EC(s32);
+void TAdMultiPlyChrSelectGC__sub_802C522C(s32);
+extern s32 lbl_805D67D0;
+
+/* The grid has a one-cell border, so a 0-based quad (row, col) is grid cell
+   (row + 1, col + 1). Both confirm paths mark that cell occupied. */
+static inline void mark_grid_cell_occupied(s32 row, s32 col) {
+    TAdMultiPlyChrSelectGC__data_804E0A68[row][col] = -1;
+}
+
+s32 TAdMultiPlyChrSelectGC__data_804E0A48[4] = {
+    0, 0, 0, 0,
+};
+s32 TAdMultiPlyChrSelectGC__selected_slot_order[4] = {
+    0, 0, 0, 0,
+};
 s32 TAdMultiPlyChrSelectGC__data_804E0A68[6][5] = {
     0, 0, 0, 0, 0,
     0, 0, 0, 0, 0,
@@ -171,59 +177,17 @@ s32 TAdMultiPlyChrSelectGC__data_804E0A68[6][5] = {
     0, 0, 0, 0, 0,
     0, 0, 0, 0, 0,
 };
-s32 TAdMultiPlyChrSelectGC__data_804E0AE0[4] = { 0, 0, 0, 0 };
-f32 TAdMultiPlyChrSelectGC__data_804E0AF0[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-/* Original words at 0x804E0B00: controller indices 0, 6, 12, 18. */
+s32 TAdMultiPlyChrSelectGC__data_804E0AE0[4] = {
+    0, 0, 0, 0,
+};
+f32 TAdMultiPlyChrSelectGC__data_804E0AF0[4] = {
+    0.0f, 0.0f, 0.0f, 0.0f,
+};
+/* Original controller indices at 0x804E0B00. */
 s32 multiplayer_controller_device_codes[4] = { 0, 6, 12, 18 };
 
-/* The unit's pooled .rodata, recovered from the original object:
-   multi_ply_chr_select_default_slot_table (6x5 s32, the open/occupied grid),
-   multi_chr_select_cursor_jump_table (6x5 four-word cursor-jump vectors),
-   the two home-position floats, the embedded class-name string, and the
-   compiler's int-to-float 2^52+2^31 constant that follows it. */
-const s32 multi_ply_chr_select_default_slot_table[6][5] = {
-    0, 0, 0, 0, 0,
-    0, 1, 1, 0, 0,
-    0, 1, 1, 0, 0,
-    0, 1, 1, 0, 0,
-    0, 1, -1, 0, 0,
-    0, 0, 0, 0, 0,
-};
-const Jump_802C5C84 multi_chr_select_cursor_jump_table[6][5] = {
-    { { { 0, 0, 0, 0 } }, { { 4, 0, 0, 0 } }, { { 3, 0, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } } },
-    { { { 0, 0, 2, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, -2 } }, { { 0, 0, 0, 0 } } },
-    { { { 0, 0, 2, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, -2 } }, { { 0, 0, 0, 0 } } },
-    { { { 0, 0, 2, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, -2 } }, { { 0, 0, 0, 0 } } },
-    { { { 0, 0, 2, 0 } }, { { 0, 0, 0, 0 } }, { { 0, -3, 0, -1 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } } },
-    { { { 0, 0, 0, 0 } }, { { 0, -4, 0, 0 } }, { { 0, -4, 0, 0 } }, { { 0, 0, 0, 0 } }, { { 0, 0, 0, 0 } } },
-};
-const f32 lbl_80471CE0[2] = { 180.0f, 38.0f };
-const char lbl_80471CE8[20] = "TAdChrSelPlyPlateGC";
-
-#if defined(PSO_DEBUG)
-#include "pso/system/debug_print.h"
-/* find_first_open_cell scans the 2x4 sub-grid rows 1..4 / columns 1..2 and only
-   writes its two outputs when it finds an entry equal to 1.  Seven of those eight
-   cells start open (the default table marks row 4 / column 2 occupied), and the
-   game supports at most four players, each occupying at most one cell there, so
-   at least three cells stay 1 and the scan always writes both words.  This debug
-   check enforces that invariant; it compiles out of release. */
-static int count_open_selection_cells(void) {
-    int col;
-    int row;
-    int count = 0;
-    for (col = 1; col < 3; col++) {
-        for (row = 1; row < 5; row++) {
-            if (TAdMultiPlyChrSelectGC__data_804E0A68[row][col] == 1) {
-                count++;
-            }
-        }
-    }
-    return count;
-}
-#endif
-
-void TAdMultiPlyChrSelectGC__sub_802C50EC(TAdChrSelPlyPlateGC *self) {
+void TAdMultiPlyChrSelectGC__sub_802C50EC(s32 arg0) {
+    S_802C50EC *self = (S_802C50EC *)arg0;
     u32 i;
     Quad_802C50EC q;
     for (i = 0; i < 4; i++) {
@@ -249,7 +213,8 @@ void TAdMultiPlyChrSelectGC__sub_802C50EC(TAdChrSelPlyPlateGC *self) {
     }
 }
 
-void TAdMultiPlyChrSelectGC__sub_802C522C(TAdChrSelPlyPlateGC *self) {
+void TAdMultiPlyChrSelectGC__sub_802C522C(s32 arg0) {
+    S_802C50EC *self = (S_802C50EC *)arg0;
     u32 i;
     for (i = 0; i < 4; i++) {
         if (TAdMultiPlyChrSelectGC__data_804E0AE0[i] == 1) {
@@ -317,14 +282,15 @@ void TAdMultiPlyChrSelectGC::draw_selection_cursors() {
 }
 
 void TAdMultiPlyChrSelectGC::update() {
+    s32 arg0 = (s32)this;
     if (TMainTask::get_render_pass() != 1) {
         draw_selection_cursors();
         switch ((s32) TAdMultiPlyChrSelectGC__select_mode) {
         case 0:
-            TAdMultiPlyChrSelectGC__sub_802C522C((TAdChrSelPlyPlateGC *)this);
+            TAdMultiPlyChrSelectGC__sub_802C522C(arg0);
             return;
         case 1:
-            TAdMultiPlyChrSelectGC__sub_802C50EC((TAdChrSelPlyPlateGC *)this);
+            TAdMultiPlyChrSelectGC__sub_802C50EC(arg0);
             break;
         }
     }
@@ -345,19 +311,19 @@ u32 get_multiplayer_controller_active_index(int param_1) {
 }
 
 void TAdMultiPlyChrSelectGC::reset_cursor_state() {
-    TAdChrSelPlyPlateGC *plate = (TAdChrSelPlyPlateGC *)this;
+    S_802C5594 *arg0 = (S_802C5594 *)this;
     u32 i;
     s32 j;
     for (i = 0; i < 4; i++) {
         TAdMultiPlyChrSelectGC__data_804E0AE0[i] = 0;
         TAdMultiPlyChrSelectGC__data_804E0AF0[i] = TAdMultiPlyChrSelectGC__data_805DE56C;
         for (j = 0; j < 3; j++) {
-            plate->b[i][j] = 0;
-            plate->f4DC[j] = 0;
+            arg0->y[i][j] = 0;
+            arg0->x[j] = 0;
         }
     }
     (*(s32 *)&TAdMultiPlyChrSelectGC__data_805D67D8) = 0;
-    plate->f530 = 0;
+    arg0->f530 = 0;
 }
 
 void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
@@ -371,35 +337,18 @@ void TAdMultiPlyChrSelectGC__sub_802C561C(S_802C50EC *self) {
     }
 }
 
-/*
- * Matching note for 0x802C5F1C/0x802C5688/0x802C6660: the original stores the UV scale as
- * an explicit division by 256.0f, not as a multiply by
- * TAdMultiPlyChrSelectGC__data_805DE584.  MWCC folds the division to the same
- * fmuls but the literal reciprocal takes part in constant numbering, which is
- * what yields the original f4/f5/f3 allocation (lbl_80471CE0[1], the 2^52+2^31
- * pool double and the reciprocal) instead of the f3/f4/f5 rotation produced by
- * an extern multiply.  The translation unit is compiled with -fp_contract on
- * (see configure.py); every function in the unit matches that way, so the
- * contraction is a unit flag rather than a per-function pragma.  The unit owns
- * the 8-byte .sdata2 pool at
- * 0x805DE580-0x805DE588: lbl_805DE580 (0.53f, used by the plate draws) followed
- * by the 1/256 reciprocal at 0x805DE584.  The receiver is the plate
- * (the parameter register keeps the first f4EC load off the r31
- * copy), the sel row is addressed directly (self->sel[active][f4EC], as in
- * sub_802C561C) and the scan table cell is read/written in place, which
- * reproduces every GPR row of both functions.  Do not fake this with padding or
- * dummy values.
- */
+// -1 in the selection table marks an occupied cell. Confirming that cell
+// plays the reject sound and leaves the cursor where it is.
 void TAdMultiPlyChrSelectGC__sub_802C5688(TAdChrSelPlyPlateGC *self) {
     u32 cell[2];
     s32 row = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + 1;
     s32 col = self->f4EC + 1;
     if (TAdMultiPlyChrSelectGC__data_804E0A68[row][col] == -1) {
-        play_sound_effect(0x53F06, (const Vec *)NULL, 0, 0);
+        play_sound_effect(0x53f06, NULL, 0, 0);
         return;
     }
     TAdMultiPlyChrSelectGC__data_804E0AE0[TAdMultiPlyChrSelectGC__data_805D67D8] = 1;
-    TAdMultiPlyChrSelectGC__data_804E0A68[row][col] = -1;
+    mark_grid_cell_occupied(row, col);
     TAdMultiPlyChrSelectGC__data_804E0A48[TAdMultiPlyChrSelectGC__data_805D67D8] = self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] + self->f4EC * 4;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].x = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].x;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].z = self->quad[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC].z;
@@ -409,16 +358,10 @@ void TAdMultiPlyChrSelectGC__sub_802C5688(TAdChrSelPlyPlateGC *self) {
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v0 = (f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] / 256.0f;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].u1 = lbl_80471CE0[0] / 256.0f;
     self->quad[TAdMultiPlyChrSelectGC__data_805D67D8 + 4][0].v1 = ((f32)TAdMultiPlyChrSelectGC__data_805D67D8 * lbl_80471CE0[1] + lbl_80471CE0[1]) / 256.0f;
-    self->a[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC] = 0;
+    self->alpha[self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]][self->f4EC] = 0;
     TAdMultiPlyChrSelectGC::add_selected_slot();
     TAdMultiPlyChrSelectGC__data_805D67D8 = self->find_active_slot();
-    /* Seven of the 2x4 scan cells start open and at most four players can occupy
-       cells there, so the scan always writes both outputs. */
-#if defined(PSO_DEBUG)
-    if (count_open_selection_cells() == 0) {
-        debug_print("sub_802C5688: find_first_open_cell found no open cell");
-    }
-#endif
+    // find_first_open_cell leaves cell unchanged when every scanned entry is taken.
     self->find_first_open_cell(cell);
     self->f4EC = cell[1] - 1;
     self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
@@ -479,8 +422,9 @@ void TAdMultiPlyChrSelectGC::split_slot_index(s32 arg0, s32 *arg1, s32 *arg2) {
     *arg2 = var_r3;
 }
 
-/* Callers set r3 to the plate and r4 to the out pointer. The first instruction
-   overwrites r3, so the explicit parameter is only the out pointer. */
+// Columns 1..2, rows 1..4. A hit writes arg1[0] = row and arg1[1] = column.
+// If no cell equals 1, both words are left as the caller passed them. There is
+// no sentinel and no free-cell assumption; the callers still read the words.
 void TAdChrSelPlyPlateGC::find_first_open_cell(u32 *arg1) {
     u32 p;
     s32 q;
@@ -498,7 +442,6 @@ void TAdChrSelPlyPlateGC::find_first_open_cell(u32 *arg1) {
 #define WIN_802C6008 ((void *)(controller_physical_port_bank + TAdMultiPlyChrSelectGC__selected_slot * 0x50 + 0x20))
 
 void TAdChrSelPlyPlateGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth) {
-    Self_802C5C84 *self = (Self_802C5C84 *)this;
     s32 x = x_;
     s32 y = y_;
     s32 dir;
@@ -518,8 +461,8 @@ void TAdChrSelPlyPlateGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth)
         x += dx;
         y += dy;
         play_sound_effect(0x54100, (const Vec *)(NULL), 0, 0);
-        self->f4EC = x - 1;
-        self->f4AC[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = y - 1;
+        this->f4EC = x - 1;
+        this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC] = y - 1;
         return;
     }
     if (TAdMultiPlyChrSelectGC__data_804E0A68[ny][nx] == 0) {
@@ -543,7 +486,7 @@ void TAdChrSelPlyPlateGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth)
         if (dy != 0) {
             cnt = 0;
             for (k = 0; k < 4; k++) {
-                if (TAdMultiPlyChrSelectGC__data_804E0A68[k + 1][self->f4EC + 1] == -1) {
+                if (TAdMultiPlyChrSelectGC__data_804E0A68[k + 1][this->f4EC + 1] == -1) {
                     cnt++;
                 }
             }
@@ -588,102 +531,97 @@ void TAdChrSelPlyPlateGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth)
     }
 }
 
-/* static inline, slot declared before cur. The unit's -inline on,noauto
-   is what inlines this; open-coding the clamp, or declaring cur first,
-   gives the row pointer r7 instead of r8. See
-   docs/evidence/chr-select-slot-clamp-inline.md. */
-static inline s32 clamped_active_slot() {
-    s32 slot = 3;
-    s32 cur = TAdMultiPlyChrSelectGC__data_805D67D8;
-    if (cur < 4) {
-        slot = cur;
+/* Active player slot, clamped to 3. Inlined; the original has no separate function. */
+static inline s32 clamped_slot_802C5F1C() {
+    s32 idx = 3;
+    s32 cnt = TAdMultiPlyChrSelectGC__data_805D67D8;
+    if (cnt < 4) {
+        idx = cnt;
     }
-    return slot;
+    return idx;
 }
 
-void TAdMultiPlyChrSelectGC__sub_802C5F1C(TAdChrSelPlyPlateGC *self, int arg1) {
+void TAdMultiPlyChrSelectGC__sub_802C5F1C(TAdChrSelPlyPlateGC *self, int) {
     u32 i;
     u32 j;
-    s32 slot;
-    f32 top;
+    s32 idx;
+    f32 a;
 
-    /* Per-player 4x3 grid of selection quads: cell texture coords scale the shared
-       (u,v) page, with the active-slot column clamped to 3. arg1 is the caller's
-       post-incremented cursor generation and is not read here. */
+    /* Per-player 4x3 grid of selection quads. Cell texture coords scale the shared
+       (u,v) page by the active slot, clamped to 3. Dividing by 256 folds to the
+       reciprocal multiply with the dividend on the left; the pooled value is the
+       1/256 at 805DE584. The int is the old f1C the callers pass; this body does
+       not read it. Nothing writes r3. */
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
-            slot = clamped_active_slot();
+            idx = clamped_slot_802C5F1C();
             self->quad[i][j].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
-            top = lbl_805DE588 * (f32)slot;
-            self->quad[i][j].v0 = top / 256.0f;
+            a = lbl_805DE588 * (f32)idx;
+            self->quad[i][j].v0 = a / 256.0f;
             self->quad[i][j].u1 = lbl_805DE58C;
-            self->quad[i][j].v1 = (lbl_805DE588 + top) / 256.0f;
+            self->quad[i][j].v1 = (lbl_805DE588 + a) / 256.0f;
         }
     }
-
-    /* Fixed home slots for the trailing (unpaired) columns. */
-    self->cursor[0].u0 = lbl_805DE590;
-    self->cursor[0].v0 = lbl_805DE594;
-    self->cursor[0].u1 = lbl_805DE598;
-    self->cursor[0].v1 = lbl_805DE59C;
-    self->cursor[1].u0 = TAdMultiPlyChrSelectGC__data_805DE56C;
-    self->cursor[1].v0 = lbl_805DE594;
-    self->cursor[1].u1 = lbl_805DE590;
-    self->cursor[1].v1 = lbl_805DE59C;
-    self->cursor[2].u0 = lbl_805DE598;
-    self->cursor[2].v0 = lbl_805DE594;
-    self->cursor[2].u1 = lbl_805DE5A0;
-    self->cursor[2].v1 = lbl_805DE59C;
+    self->cursor[0][4] = lbl_805DE590;
+    self->cursor[0][5] = lbl_805DE594;
+    self->cursor[0][6] = lbl_805DE598;
+    self->cursor[0][7] = lbl_805DE59C;
+    self->cursor[1][4] = TAdMultiPlyChrSelectGC__data_805DE56C;
+    self->cursor[1][5] = lbl_805DE594;
+    self->cursor[1][6] = lbl_805DE590;
+    self->cursor[1][7] = lbl_805DE59C;
+    self->cursor[2][4] = lbl_805DE598;
+    self->cursor[2][5] = lbl_805DE594;
+    self->cursor[2][6] = lbl_805DE5A0;
+    self->cursor[2][7] = lbl_805DE59C;
 }
 
 void TAdChrSelPlyPlateGC::update_option_cursor() {
-    S_802C6008 *self = (S_802C6008 *)this;
-    TAdMultiPlyChrSelectGC__sub_802C5F1C(this, self->f1C++);
-    if (self->f4DC[self->f4EC] != 0 && self->f4F8 == 0) {
+    TAdMultiPlyChrSelectGC__sub_802C5F1C(this, this->f1C++);
+    if (this->f4DC[this->f4EC] != 0 && this->f4F8 == 0) {
         if (TAdMultiPlyChrSelectGC::dispatch_draw_command((s32)WIN_802C6008, 0x10, 6, 1) != 0) {
             play_sound_effect(0x54100, 0, 0, 0);
-            self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]--;
+            this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC]--;
         }
         if (TAdMultiPlyChrSelectGC::dispatch_draw_command((s32)WIN_802C6008, 0x20, 6, 1) != 0) {
             play_sound_effect(0x54100, 0, 0, 0);
-            self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC]++;
+            this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC]++;
         }
-        if (self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] > self->f4DC[self->f4EC] - 1) {
-            self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = 0;
+        if (this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC] > this->f4DC[this->f4EC] - 1) {
+            this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC] = 0;
         }
-        if (self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] < 0) {
-            self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = self->f4DC[self->f4EC] - 1;
+        if (this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC] < 0) {
+            this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC] = this->f4DC[this->f4EC] - 1;
         }
     }
-    if (TWindowShortListCtrl__check_controller_button(WIN_802C6008, 4) != 0 && self->f4F8 == 0) {
-        self->f4F8 = 1;
+    if (TWindowShortListCtrl__check_controller_button(WIN_802C6008, 4) != 0 && this->f4F8 == 0) {
+        this->f4F8 = 1;
     }
 }
 
 #define WIN_802C61E4 ((void *)(controller_physical_port_bank + TAdMultiPlyChrSelectGC__data_805D67D8 * 0x50 + 0x20))
 void TAdChrSelPlyPlateGC::handle_dpad_input() {
-    S_802C61E4 *self = (S_802C61E4 *)this;
     s32 n;
     s32 m;
-    TAdMultiPlyChrSelectGC__sub_802C5F1C(this, self->f1C++);
+    TAdMultiPlyChrSelectGC__sub_802C5F1C(this, this->f1C++);
     n = TAdMultiPlyChrSelectGC::count_ready();
     m = TAdMultiPlyChrSelectGC__sub_802C6558();
-    if (m != n && self->f4DC[self->f4EC] != 0 && self->f4F8 == 0) {
+    if (m != n && this->f4DC[this->f4EC] != 0 && this->f4F8 == 0) {
         if (TAdMultiPlyChrSelectGC::dispatch_draw_command((s32)WIN_802C61E4, 0x10, 6, 1) != 0) {
-            move_cursor(self->f4EC, self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC], 0, -1, self->f4DC[self->f4EC]);
+            move_cursor(this->f4EC, this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC], 0, -1, this->f4DC[this->f4EC]);
         }
         if (TAdMultiPlyChrSelectGC::dispatch_draw_command((s32)WIN_802C61E4, 0x20, 6, 1) != 0) {
-            move_cursor(self->f4EC, self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC], 0, 1, self->f4DC[self->f4EC]);
+            move_cursor(this->f4EC, this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC], 0, 1, this->f4DC[this->f4EC]);
         }
         if (TAdMultiPlyChrSelectGC::dispatch_draw_command((s32)WIN_802C61E4, 0x80, 6, 1) != 0) {
-            move_cursor(self->f4EC, self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC], 1, 0, 2);
+            move_cursor(this->f4EC, this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC], 1, 0, 2);
         }
         if (TAdMultiPlyChrSelectGC::dispatch_draw_command((s32)WIN_802C61E4, 0x40, 6, 1) != 0) {
-            move_cursor(self->f4EC, self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC], -1, 0, 2);
+            move_cursor(this->f4EC, this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC], -1, 0, 2);
         }
     }
-    if (TWindowShortListCtrl__check_controller_button(WIN_802C61E4, 4) != 0 && self->f4F8 == 0) {
-        self->f4F8 = 1;
+    if (TWindowShortListCtrl__check_controller_button(WIN_802C61E4, 4) != 0 && this->f4F8 == 0) {
+        this->f4F8 = 1;
     }
 }
 
@@ -712,12 +650,11 @@ s32 TAdMultiPlyChrSelectGC::is_selection_confirmed() {
     return 0;
 }
 
-typedef char RecoveredGlobal_802C64D0_TAdMultiPlyChrSelectGC__data_804E0A48_size[sizeof(RecoveredGlobal_802C64D0_TAdMultiPlyChrSelectGC__data_804E0A48) == 0x10 ? 1 : -1];
 s32 is_multiplayer_character_slot_selected(s32 arg0) {
     if ((arg0 < 0) || ((u32) arg0 > 3U)) {
         return 0;
     }
-    return TAdMultiPlyChrSelectGC__data_804E0A48[arg0] != -1 ? 1 : 0;
+    return TAdMultiPlyChrSelectGC__data_804E0A48[arg0] == -1 ? 0 : 1;
 }
 
 s32 TAdMultiPlyChrSelectGC::count_ready() {
@@ -770,12 +707,12 @@ void TAdMultiPlyChrSelectGC__sub_802C65C0(s32 arg0) {
     TAdMultiPlyChrSelectGC::remove_selected_slot(arg0);
 }
 
-/* See the matching note above sub_802C5688 for the remaining FPR-allocation rows. */
+// Restore the visible quads and occupied cells from the saved slot selections.
 void TAdMultiPlyChrSelectGC__sub_802C6660(TAdChrSelPlyPlateGC *self) {
     s32 col, row;
     u32 cell[2];
     for (u32 i = 0; i < 4; i++) {
-        if (is_multiplayer_character_slot_selected(i)) {
+        if (is_multiplayer_character_slot_selected(i) != 0) {
             TAdMultiPlyChrSelectGC__data_804E0AE0[i] = 1;
             TAdMultiPlyChrSelectGC::split_slot_index(i, &col, &row);
             self->quad[i + 4][0].x = self->quad[row][col].x;
@@ -786,26 +723,16 @@ void TAdMultiPlyChrSelectGC__sub_802C6660(TAdChrSelPlyPlateGC *self) {
             self->quad[i + 4][0].v0 = (f32)(s32)i * lbl_80471CE0[1] / 256.0f;
             self->quad[i + 4][0].u1 = lbl_80471CE0[0] / 256.0f;
             self->quad[i + 4][0].v1 = ((f32)(s32)i * lbl_80471CE0[1] + lbl_80471CE0[1]) / 256.0f;
-            {
-                s32 y = row + 1;
-                s32 x = col + 1;
-                TAdMultiPlyChrSelectGC__data_804E0A68[y][x] = -1;
-            }
+            mark_grid_cell_occupied(row + 1, col + 1);
         }
     }
     TAdMultiPlyChrSelectGC__data_805D67D8 = self->find_active_slot();
-    /* Only the at most four selected players' cells are marked occupied, so at
-       least three of the seven initially open scan cells remain open. */
-#if defined(PSO_DEBUG)
-    if (count_open_selection_cells() == 0) {
-        debug_print("sub_802C6660: find_first_open_cell found no open cell");
-    }
-#endif
     self->find_first_open_cell(cell);
     self->f4EC = cell[1] - 1;
     self->sel[TAdMultiPlyChrSelectGC__data_805D67D8][self->f4EC] = cell[0] - 1;
 }
 
+typedef char RecoveredGlobal_802C6848_lbl_804E0B00_size[sizeof(RecoveredGlobal_802C6848_lbl_804E0B00) == 0x10 ? 1 : -1];
 s32 TAdMultiPlyChrSelectGC__sub_802C6848(s32 arg0) {
     if ((arg0 < 0) || (arg0 > 3)) {
         return 0;
@@ -879,8 +806,6 @@ void TAdMultiPlyChrSelectGC::reset_slot_selections() {
     (*(s32 *)&TAdMultiPlyChrSelectGC__data_805D67D8) = 0;
 }
 
-/* No parameters. The body never reads this; callers still pass the plate in r3
-   because that is how a member call is made. */
 s32 TAdChrSelPlyPlateGC::find_active_slot() {
     s32 var_r31;
     var_r31 = 0;
@@ -898,21 +823,14 @@ void TAdChrSelPlyPlateGC::update_selection() {
     u32 i;
     u32 j;
     u32 k;
-    if (TAdMultiPlyChrSelectGC__sub_802C6848(TAdMultiPlyChrSelectGC::get_clamped_cursor()) == 0 && this->unk_20 < TAdMultiPlyChrSelectGC::count_ready()) {
-        TAdMultiPlyChrSelectGC__data_805D67D8 = this->find_active_slot();
+    if (TAdMultiPlyChrSelectGC__sub_802C6848(TAdMultiPlyChrSelectGC::get_clamped_cursor()) == 0 && this->f20 < TAdMultiPlyChrSelectGC::count_ready()) {
+        TAdMultiPlyChrSelectGC__data_805D67D8 = find_active_slot();
         switch (TAdMultiPlyChrSelectGC__select_mode) {
         case 1:
             break;
         case 0: {
             u32 buf[2];
-            /* At most four players occupy the 2x4 scan sub-grid, so find_first_open_cell
-               always writes both outputs here as well. */
-#if defined(PSO_DEBUG)
-            if (count_open_selection_cells() == 0) {
-                debug_print("update_selection: find_first_open_cell found no open cell");
-            }
-#endif
-            this->find_first_open_cell(buf);
+            find_first_open_cell(buf);
             this->f4EC = buf[1] - 1;
             this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC] = buf[0] - 1;
             break;
@@ -927,16 +845,16 @@ void TAdChrSelPlyPlateGC::update_selection() {
     if (this->f534 != 0) {
         switch (TAdMultiPlyChrSelectGC__select_mode) {
         case 0:
-            this->handle_dpad_input();
+            handle_dpad_input();
             if (TAdMultiPlyChrSelectGC::get_clamped_cursor() == 3 && is_multiplayer_character_slot_selected(3) != 0) {
                 s32 n = TAdMultiPlyChrSelectGC::count_ready();
                 if (TAdMultiPlyChrSelectGC__sub_802C6558() < n) {
-                    TAdMultiPlyChrSelectGC__data_805D67D8 = this->find_active_slot();
+                    TAdMultiPlyChrSelectGC__data_805D67D8 = find_active_slot();
                 }
             }
             break;
         case 1:
-            this->update_option_cursor();
+            update_option_cursor();
             break;
         }
     }
@@ -950,37 +868,26 @@ void TAdChrSelPlyPlateGC::update_selection() {
     }
     for (k = 0; k < 4; k++) {
         for (j = 0; j < 3; j++) {
-            this->a[k][j] -= 0x16;
-            if (this->a[k][j] < 0) {
-                this->a[k][j] = 0;
+            this->alpha[k][j] -= 0x16;
+            if (this->alpha[k][j] < 0) {
+                this->alpha[k][j] = 0;
             }
         }
     }
-    this->a[this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC]][this->f4EC] = 0xFF;
+    this->alpha[this->sel[TAdMultiPlyChrSelectGC__data_805D67D8][this->f4EC]][this->f4EC] = 0xFF;
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
-            this->col[i][j] = (this->a[i][j] << 24) | 0xFFFFFF;
+            this->col[i][j] = (this->alpha[i][j] << 24) | 0xFFFFFF;
         }
     }
     if (this->f4FC != 0) {
         this->f4F8 = 0;
         this->f4FC = 0;
     }
-    this->unk_20 = TAdMultiPlyChrSelectGC::count_ready();
+    this->f20 = TAdMultiPlyChrSelectGC::count_ready();
 }
 
 }
-#include "types.h"
-#include "pso/ui/TAdChrSelPlyPlateGC.h"
-
-extern "C" {
-
-s32 __dl__7TObjectFPv(void *);
-s32 __dt__7TObjectFv(void *, s32);
-
-extern s32 lbl_804E0B10[];
-extern u32 ad_chr_sel_ply_plate_instance;
-
 void *__dt__19TAdChrSelPlyPlateGCFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = lbl_804E0B10;
@@ -993,6 +900,4 @@ void *__dt__19TAdChrSelPlyPlateGCFv(void *arg0, s16 arg1) {
         }
     }
     return arg0;
-}
-
 }
