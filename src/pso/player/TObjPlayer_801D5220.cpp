@@ -4,6 +4,7 @@
 #include "pso/TObject.h"
 #include <stddef.h>
 #include "pso/item/TItem.h"
+#include "pso/TPlyInventory.h"
 #include "pso/misc/TOSwitchItem.h"
 #include "pso/misc/TWindowActionPalette_801C1890.h"
 #include "pso/player/TObjPlayer_801D5220.h"
@@ -28,7 +29,7 @@ extern s32 inventory_update_field_d8_key;
 extern s32 inventory_walk_progress_count;
 extern "C" {
 
-extern u8 *owned_item_export_cursor;
+extern TPlyInventoryItem *owned_item_export_cursor;
 
 void TItemList::count_owned_items() {
     TItemList *down;
@@ -37,7 +38,7 @@ void TItemList::count_owned_items() {
     down = link_down();
     while (down != NULL) {
         if ((TItemList::is_item_valid(down) != 0) && ((temp = down->get_owner_if_alive()) != NULL) && (temp->export_inventory_entry(owned_item_export_cursor) != 0)) {
-            owned_item_export_cursor += 0x1C;
+            owned_item_export_cursor++;
             inventory_walk_visit_count += 1;
         }
         down->count_owned_items();

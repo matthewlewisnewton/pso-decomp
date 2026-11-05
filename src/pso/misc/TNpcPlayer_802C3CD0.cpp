@@ -4,6 +4,7 @@
 #include "pso/misc/TNpcPlayer.h"
 #include "pso/quest/TQuestListVM.h"
 #include "pso/item/TItem.h"
+#include "pso/TPlyInventory.h"
 #include "pso/player/TObjPlayer.h"
 
 struct E_802C4698 { u8 pad[0x1c]; };
@@ -131,7 +132,7 @@ void export_state_to_record__10TObjPlayerFPvPv(u8 *arg0, s8 *arg1) {
     p = items;
     for (i = 0; i < 30; i++) {
         if (*p != NULL) {
-            (*p)->export_inventory_entry((void *)rec);
+            (*p)->export_inventory_entry((TPlyInventoryItem *)rec);
             p++;
         } else {
             reset(rec);

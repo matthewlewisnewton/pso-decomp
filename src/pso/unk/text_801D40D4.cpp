@@ -11,24 +11,13 @@
 #include "pso/system/memory.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/TPlyItem.h"
+#include "pso/TPlyInventory.h"
 #include "pso/item/TItemProShield.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/TTecCtrl.h"
 #include "pso/misc/TWindowActionPalette_801C1890.h"
 #include <string.h>
-
-// 0x1C inventory record: mode, flags, then the item data. Byte 0 of the
-// item data is the type fn_801D40D4 tests.
-struct Rec_801D40D4 {
-    s8 mode;
-    u8 pad1[3];
-    s32 flags;
-    TItemData item;
-};
-typedef char Rec_801D40D4_size[(sizeof(Rec_801D40D4) == 0x1C) ? 1 : -1];
-typedef char Rec_801D40D4_flags[(offsetof(Rec_801D40D4, flags) == 4) ? 1 : -1];
-typedef char Rec_801D40D4_item[(offsetof(Rec_801D40D4, item) == 8) ? 1 : -1];
 
 typedef struct Ent_801D41B4 {
     u8 pad0[8];
@@ -64,14 +53,15 @@ u8 *get_ptr_4__10TObjPlayerFv();
 void fn_801C1BA8(void *, void *);
 s32 is_both_confirmed__23TAdSinglePlyChrSelectGCFv(void *);
 
-s32 fn_801D40D4(s32 arg0, Rec_801D40D4 *arg1, u8 *arg2) {
+// Byte 0 of the item data is the item type.
+s32 fn_801D40D4(s32 arg0, TPlyInventoryItem *arg1, u8 *arg2) {
     s32 i;
     for (i = 0; i < arg0; i++) {
-        if (arg1->flags & 8) {
-            if (arg1->item.data1.data_u8[0] == 0) {
+        if (arg1->m_flags & 8) {
+            if (arg1->m_data.data1.data_u8[0] == 0) {
                 fn_801C1BA8(arg2, arg1);
             }
-            if (arg1->item.data1.data_u8[0] == 2) {
+            if (arg1->m_data.data1.data_u8[0] == 2) {
                 fn_801C1BA8(arg2 + 0x1C, arg1);
             }
         }
@@ -132,11 +122,10 @@ s32 fn_801D4270(s32 arg0) {
 
 void *reset(void *p) { return memset(p, 0, 28); }
 
-s32 TItem::export_inventory_entry(void *dest) {
-    Rec_801D40D4 *rec = (Rec_801D40D4 *)dest;
-    if (copy_to_item_data(&rec->item) != 0) {
-        rec->mode = get_mode();
-        rec->flags = get_item_flags();
+s32 TItem::export_inventory_entry(TPlyInventoryItem *dest) {
+    if (copy_to_item_data(&dest->m_data) != 0) {
+        dest->m_present[0] = get_mode();
+        dest->m_flags = get_item_flags();
         return 1;
     }
     return 0;

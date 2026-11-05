@@ -8,6 +8,7 @@
 #include "pso/system/FlagWord.h"
 
 struct TItemData;
+class TPlyInventoryItem;
 struct TObjPlayer;
 struct G_PickUpItem_6x59;
 
@@ -153,7 +154,7 @@ struct TItem : public TObjCollidable {
     s32 insert_sorted_by_id();
     s32 copy_to_item_data(TItemData *data);
     // Writes the 0x1C inventory record: mode, flags, then TItemData.
-    s32 export_inventory_entry(void *dest);
+    s32 export_inventory_entry(TPlyInventoryItem *dest);
     void snap_to_ground();
     void send_field_state(s16 floor, TObjPlayer *player);
     void handle_pickup(s16 floor, TObjPlayer *player);
