@@ -34,6 +34,7 @@ struct Quad_80262038 {
 #include "pso/TWindowEffectLight.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubMag.h"
+#include "pso/misc/TWindowSubStatusDisp.h"
 struct RecoveredGlobal_8026088C_lbl_8050E208 {
     s32 value;
     u8 remaining[0x1AC];
@@ -116,8 +117,6 @@ f32 TWindowKeyBoardSoft__sub_802614DC(u8 *, u8 *, f32, f32, f32, f32);
 s32 TWindowKeyBoardSoft__sub_802616BC(void *, int);
 void reset_gauge__20TWindowSubStatusDispFPv(s32);
 s32 end_render_forward__20TWindowSubStatusDispFPv();
-void render_forward__20TWindowSubStatusDispFPv();
-void begin_render__20TWindowSubStatusDispFl();
 u16 map_char_to_font_code(u16);
 u8 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(s32, void *, s32);
 void set_glyph_quad_extents(u8, void *);
@@ -701,7 +700,7 @@ s32 TWindowKeyBoardSoft__sub_802616BC(void *self, int context) {
     }
     end_render_forward__20TWindowSubStatusDispFPv();
     begin_screen_draw(1);
-    render_forward__20TWindowSubStatusDispFPv();
+    TWindowSubStatusDisp::render_forward();
     set_draw_texture_and_color(0, 0xFF999999);
     s32 index = calc_key_index__19TWindowKeyBoardSoftFiii((s32)self, 2, 0);
     for (u32 i = 0; i < 12; ++i, ++index) {
@@ -719,7 +718,7 @@ s32 TWindowKeyBoardSoft__sub_802616BC(void *self, int context) {
             draw_textured_quad_at_depth((f32 *)&q, scale);
         }
     }
-    begin_render__20TWindowSubStatusDispFl();
+    TWindowSubStatusDisp::begin_render();
     set_draw_texture_and_color(3, 0xFF999999);
     f32 x = TWindowKeyBoardSoft__sub_802606E0(kb);
     s32 min_page, max_page;
