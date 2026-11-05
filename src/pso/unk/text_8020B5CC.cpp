@@ -53,11 +53,11 @@ s32 init_quest_floor_enemies(s32 idx, Src_8020B7C4 *src, u32 size);
 s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
     // Object rows are written through the packet. The fields after that are
     // the FloorFlagsBuffer view fn_8020B588 consumes.
+    s32 i = 0;
     s16 *out = buf->values;
     buf->object_offset = 0x10;
     Tbl_8020B970 *t = TLobby__floor_enemy_group_table;
     s32 total1 = 0;
-    s32 i = 0;
     for (; i < 18; i++) {
         s32 count = t[i].count;
         if (count > 0) {
@@ -90,20 +90,22 @@ s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
     FloorFlagsBuffer *hdr = buf;
     hdr->word_04 = total1;
     hdr->enemy_offset = 0x10 + hdr->word_04 * 2;
+    // Same cursor. A second name, with the floor index reused below, is what
+    // puts that cursor in r29. The copy itself is deleted.
+    s16 *out2 = out;
     s32 total2 = 0;
-    s32 i2;
-    for (i2 = 0; i2 < 18; i2++) {
-        s32 count2 = TLobby__floor_enemy_group_table[i2].count2;
+    for (i = 0; i < 18; i++) {
+        s32 count2 = TLobby__floor_enemy_group_table[i].count2;
         if (count2 > 0) {
-            Dst_8020B970 *l2 = TLobby__floor_enemy_group_table[i2].list2;
-            if (get_current_floor() == i2) {
+            Dst_8020B970 *l2 = TLobby__floor_enemy_group_table[i].list2;
+            if (get_current_floor() == i) {
                 Src_8020B7C4 *raw2 = TLobby__data_805D6114;
                 if (raw2 != NULL) {
                     s32 k;
                     for (k = 0; k < count2; k++) {
                         s16 v2 = raw2->f2 & ~2;
                         bswap_16((u16 *)&v2);
-                        *out++ = v2;
+                        *out2++ = v2;
                         raw2++;
                         total2++;
                     }
@@ -113,7 +115,7 @@ s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
                 for (k = 0; k < count2; k++) {
                     s16 v2 = l2->f2 & ~2;
                     bswap_16((u16 *)&v2);
-                    *out++ = v2;
+                    *out2++ = v2;
                     l2++;
                     total2++;
                 }
