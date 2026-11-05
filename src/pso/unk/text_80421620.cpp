@@ -194,12 +194,44 @@ s16 TLobby__sub_80423064(s16 arg0, s32 arg1);
 s16 TLobby__sub_8040F454(s32, s32, s32, s16);
 s16 TLobby__sub_80412CA4(void *, s16, s16, s16, s32);
 s16 TLobby__sub_8042315C(s16 arg0, P_8042315C *p);
-// BOOTP header is 236 (0xEC) bytes; the reply packet sits at 0x5DC and its options at 0x6C8.
+// RFC 951 BOOTP header. The DHCP magic cookie is the u32 at 0xEC; options follow it.
+struct BootpPacket {
+    u8 op;
+    u8 htype;
+    u8 hlen;
+    u8 hops;
+    u32 xid;
+    u16 secs;
+    u16 flags;
+    s32 ciaddr;
+    u32 yiaddr;
+    u32 siaddr;
+    u32 giaddr;
+    u8 chaddr[16];
+    u8 sname[64];
+    u8 file[128];
+    u32 cookie;
+};
+typedef char BootpPacket_flags[offsetof(BootpPacket, flags) == 0xA ? 1 : -1];
+typedef char BootpPacket_ciaddr[offsetof(BootpPacket, ciaddr) == 0xC ? 1 : -1];
+typedef char BootpPacket_chaddr[offsetof(BootpPacket, chaddr) == 0x1C ? 1 : -1];
+typedef char BootpPacket_cookie[offsetof(BootpPacket, cookie) == 0xEC ? 1 : -1];
+
+// The client builds each request in one 1500-byte (0x5DC) message.
+struct DhcpMessage {
+    BootpPacket hdr;
+    u8 options[0x5DC - sizeof(BootpPacket)];
+    s32 build_release();
+    s32 build_request();
+    s32 build_discover();
+};
+
+// The reply packet sits at 0x5DC and its options at 0x6C8.
 struct DhcpClientBuffers {
-    u8 outgoing[0x5DC];
+    DhcpMessage outgoing;
     struct {
-        u8 bootp[0xEC];
-        u8 options[0x1194 - 0x6C8];
+        BootpPacket hdr;
+        u8 options[0x1194 - 0x5DC - sizeof(BootpPacket)];
     } reply;
 };
 typedef char DhcpClientBuffers_size[sizeof(DhcpClientBuffers) == 0x1194 ? 1 : -1];
@@ -210,7 +242,7 @@ extern u8 lbl_805D7B1C[6];
 extern u32 lbl_805D7B4C;
 extern u32 lbl_805D7B50;
 extern u32 lbl_805D7B58;
-extern u32 dhcp_last_tick_ms;
+extern s32 dhcp_last_tick_ms;
 extern volatile s32 dhcp_state;
 extern s32 dhcp_server_id;
 extern s32 lbl_805D7B28;
@@ -501,7 +533,7 @@ s16 TUdpSocket__sub_80421BAC(s32 h, u32 *src, u32 *dst, u16 port, u32 *opt, s8 n
     return r;
 }
 
-s16 TUdpSocket__sub_80421DEC(void *src, s32 sport, void *dst, s32 dport, s32 arg4, void *cb) {
+s16 TUdpSocket__sub_80421DEC(void *src, s32 sport, void *dst, s32 dport, s32 arg4, s32 (*cb)(s16, void *)) {
     u8 any[0x14];
     s16 h;
     s16 r;
@@ -1242,31 +1274,7 @@ extern s32 *lbl_805D7B48;
 extern s32 lbl_805D7B80;
 s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out);
 
-// RFC 951 BOOTP header. The DHCP magic cookie is the u32 at 0xEC; options follow it.
-struct BootpPacket {
-    u8 op;
-    u8 htype;
-    u8 hlen;
-    u8 hops;
-    u32 xid;
-    u16 secs;
-    u16 flags;
-    s32 ciaddr;
-    u32 yiaddr;
-    u32 siaddr;
-    u32 giaddr;
-    u8 chaddr[16];
-    u8 sname[64];
-    u8 file[128];
-    u32 cookie;
-};
-typedef char BootpPacket_flags[offsetof(BootpPacket, flags) == 0xA ? 1 : -1];
-typedef char BootpPacket_ciaddr[offsetof(BootpPacket, ciaddr) == 0xC ? 1 : -1];
-typedef char BootpPacket_chaddr[offsetof(BootpPacket, chaddr) == 0x1C ? 1 : -1];
-typedef char BootpPacket_cookie[offsetof(BootpPacket, cookie) == 0xEC ? 1 : -1];
-
-s32 TLobby__sub_80423440(u8 *pkt) {
-    BootpPacket *hdr = (BootpPacket *)pkt;
+s32 TLobby__sub_80423440(BootpPacket *hdr) {
     u8 *opts = (u8 *)&hdr->cookie;
     u8 *p;
     s32 net;
@@ -1339,22 +1347,21 @@ s32 TLobby__sub_80423440(u8 *pkt) {
     return 0;
 }
 
-s32 TLobby::build_dhcp_release() {
+s32 DhcpMessage::build_release() {
     s32 m;
     u8 *p;
     u16 len;
-    BootpPacket *pkt = (BootpPacket *)this;
-    NetMemset(pkt, 0, 0x5DC);
-    pkt->op = 1;
-    pkt->htype = 1;
-    pkt->hlen = 6;
-    pkt->hops = 0;
-    TLobby::get_time_ms((s32 *)&dhcp_last_tick_ms);
+    NetMemset(this, 0, sizeof(DhcpMessage));
+    hdr.op = 1;
+    hdr.htype = 1;
+    hdr.hlen = 6;
+    hdr.hops = 0;
+    TLobby::get_time_ms(&dhcp_last_tick_ms);
     lbl_805D7B50 = dhcp_last_tick_ms;
-    NetMemcpy(&pkt->xid, &lbl_805D7B50, 4);
-    pkt->ciaddr = lbl_805D7B28;
-    NetMemcpy(pkt->chaddr, lbl_805D7B1C, 6);
-    p = (u8 *)&pkt->cookie;
+    NetMemcpy(&hdr.xid, &lbl_805D7B50, 4);
+    hdr.ciaddr = lbl_805D7B28;
+    NetMemcpy(hdr.chaddr, lbl_805D7B1C, 6);
+    p = (u8 *)&hdr.cookie;
     *(u32 *)p = lbl_805D7B4C;
     p += 4;
     *p++ = 0x35;
@@ -1378,27 +1385,26 @@ s32 TLobby::build_dhcp_release() {
         p += m;
     }
     *p++ = 0xFF;
-    return p - (u8 *)pkt;
+    return p - (u8 *)this;
 }
 
-s32 TLobby::dhcp_build_packet() {
+s32 DhcpMessage::build_request() {
     s32 m;
     u8 *p;
     u16 len;
     u32 tmp;
-    BootpPacket *pkt = (BootpPacket *)this;
-    NetMemset(pkt, 0, 0x5DC);
-    pkt->op = 1;
-    pkt->htype = 1;
-    pkt->hlen = 6;
-    pkt->hops = 0;
-    NetMemcpy(&pkt->xid, &lbl_805D7B50, 4);
-    pkt->flags = 0;
+    NetMemset(this, 0, sizeof(DhcpMessage));
+    hdr.op = 1;
+    hdr.htype = 1;
+    hdr.hlen = 6;
+    hdr.hops = 0;
+    NetMemcpy(&hdr.xid, &lbl_805D7B50, 4);
+    hdr.flags = 0;
     if (dhcp_state == 4 || dhcp_state == 5) {
-        pkt->ciaddr = lbl_805D7B28;
+        hdr.ciaddr = lbl_805D7B28;
     }
-    NetMemcpy(pkt->chaddr, lbl_805D7B1C, 6);
-    p = (u8 *)&pkt->cookie;
+    NetMemcpy(hdr.chaddr, lbl_805D7B1C, 6);
+    p = (u8 *)&hdr.cookie;
     *(u32 *)p = lbl_805D7B4C;
     p += 4;
     *p++ = 0x35;
@@ -1444,26 +1450,25 @@ s32 TLobby::dhcp_build_packet() {
         p += m;
     }
     *p++ = 0xFF;
-    return p - (u8 *)pkt;
+    return p - (u8 *)this;
 }
 
-s32 TLobby::build_dhcp_discover_packet() {
+s32 DhcpMessage::build_discover() {
     u32 spC;
     u8 *p;
     u16 len;
     s32 n;
-    BootpPacket *pkt = (BootpPacket *)this;
-    NetMemset(pkt, 0, 0x5DC);
-    pkt->op = 1;
-    pkt->htype = 1;
-    pkt->hlen = 6;
-    pkt->hops = 0;
-    TLobby::get_time_ms((s32 *)&dhcp_last_tick_ms);
+    NetMemset(this, 0, sizeof(DhcpMessage));
+    hdr.op = 1;
+    hdr.htype = 1;
+    hdr.hlen = 6;
+    hdr.hops = 0;
+    TLobby::get_time_ms(&dhcp_last_tick_ms);
     lbl_805D7B50 = dhcp_last_tick_ms;
-    NetMemcpy(&pkt->xid, &lbl_805D7B50, 4);
-    pkt->flags = 0;
-    NetMemcpy(pkt->chaddr, lbl_805D7B1C, 6);
-    p = (u8 *)&pkt->cookie;
+    NetMemcpy(&hdr.xid, &lbl_805D7B50, 4);
+    hdr.flags = 0;
+    NetMemcpy(hdr.chaddr, lbl_805D7B1C, 6);
+    p = (u8 *)&hdr.cookie;
     *(u32 *)p = lbl_805D7B4C;
     p += 4;
     *p++ = 0x35;
@@ -1497,7 +1502,7 @@ s32 TLobby::build_dhcp_discover_packet() {
         p += n;
     }
     *p++ = 0xFF;
-    return p - (u8 *)pkt;
+    return p - (u8 *)this;
 }
 
 extern s16 lbl_805D7B08;
@@ -1513,7 +1518,6 @@ extern u32 lbl_805D7B98;
 extern s32 lbl_805D7B9C;
 s32 TLobby__sub_804250A8(s32);
 s32 TLobby__sub_80424FE0(void);
-s32 dhcp_handle_reply__6TLobbyFsPv(s16, void *);
 
 s32 TLobby__sub_80423C04(void) {
     s32 now;
@@ -1557,7 +1561,7 @@ s32 TLobby__sub_80423C04(void) {
                 break;
             }
         }
-        len = ((TLobby *)&lbl_805C1E00)->build_dhcp_release();
+        len = lbl_805C1E00.outgoing.build_release();
         src[0] = 4;
         dst[0] = 4;
         src[1] = 0;
@@ -1617,7 +1621,7 @@ s32 TLobby__sub_80423E80(void) {
         }
         lbl_805D7B0C = 1;
     case 1:
-        len = ((TLobby *)&lbl_805C1E00)->dhcp_build_packet();
+        len = lbl_805C1E00.outgoing.build_request();
         dhcp_reply_received = 0;
         if (dhcp_state == 4) {
             server = dhcp_server_id;
@@ -1666,7 +1670,7 @@ s32 TLobby__sub_80423E80(void) {
     case 2:
         if (dhcp_reply_received != 0) {
             if (dhcp_state == 4 || dhcp_state == 5) {
-                ((TLobby *)&lbl_805C1E00.reply.options)->parse_dhcp_lease_times();
+                ((TLobby *)&lbl_805C1E00.reply.hdr.cookie)->parse_dhcp_lease_times();
                 dhcp_lease_elapsed = 0;
             }
             TLobby__sub_80421B3C(dhcp_socket);
@@ -1674,7 +1678,7 @@ s32 TLobby__sub_80423E80(void) {
             if (dhcp_state == 1 || dhcp_state == 2 || dhcp_state == 6) {
                 lbl_805D7B14 = TLobby__sub_804250A8(0);
             }
-            TLobby__sub_80423440((u8 *)&lbl_805C1E00.reply);
+            TLobby__sub_80423440(&lbl_805C1E00.reply.hdr);
             lbl_805D7B0C = 0;
             dhcp_state = 3;
         } else if (dhcp_state == 2) {
@@ -1755,7 +1759,7 @@ s32 TLobby__sub_8042422C(void) {
         any = 0;
         bind_addr[0] = 4;
         bind_addr[1] = any;
-        sock = TUdpSocket__sub_80421DEC(0, 0x44, bind_addr, 0x43, 0, (void *)dhcp_handle_reply__6TLobbyFsPv);
+        sock = TUdpSocket__sub_80421DEC(0, 0x44, bind_addr, 0x43, 0, TLobby::dhcp_handle_reply);
         dhcp_socket = sock;
         if (sock < 0) {
             TLobby__sub_80423064(lbl_805D7B08, 4);
@@ -1768,7 +1772,7 @@ s32 TLobby__sub_8042422C(void) {
         lbl_805D7B0C = 1;
         lbl_805D7B88 = lbl_805D7B74;
     case 1:
-        len = ((TLobby *)&lbl_805C1E00)->build_dhcp_discover_packet();
+        len = lbl_805C1E00.outgoing.build_discover();
         client = 0;
         server = 0xFFFFFFFF;
         src[0] = 4;

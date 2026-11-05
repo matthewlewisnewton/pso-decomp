@@ -422,7 +422,7 @@ s32 TLobby__sub_80424DCC(s16, s32 a1, s32 a2, void *, void *a4, void *a5, void *
 
 extern u8 dhcp_hostname[];
 extern u32 dhcp_elapsed_ms;
-extern u32 dhcp_last_tick_ms;
+extern s32 dhcp_last_tick_ms;
 extern u32 dhcp_lease_elapsed;
 s32 NetRegisterTimer(s32 period, s16 locked, void *fn);
 
