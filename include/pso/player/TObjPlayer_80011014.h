@@ -6,6 +6,7 @@
 struct Vec;
 struct TObjEnemy;
 class TObjBase;
+class TObjPlayer;
 struct EnemyMoveParams;
 
 extern "C" {
@@ -54,7 +55,7 @@ void show_meseta_label(s32 arg0, u32 arg1, s32 arg2, s32 arg3);
 void spawn_poison_effect__10TObjPlayerFii(s32 arg0, s32 arg1);
 void spawn_slow_effect__10TObjPlayerFii(s32 arg0, s32 arg1);
 void trigger_switch_attack__10TObjPlayerFPvi(void *arg0, s32 arg1);
-s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
+s32 try_spend_actor_meseta(TObjPlayer *player, s32 amount);
 s32 vfunc_37__9TObjCharaFv(u8 *player);
 s32 update_attack_stat_status__9TObjCharaFv(u8 *player);
 u16 find_nearest_visible_player(TObjEnemy *enemy, Vec *out, f32 radius);

@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/misc/TLobby.h"
 #include "pso/TProtocol.h"
+#include "pso/player/TObjPlayer.h"
 
 struct RecoveredGlobal_802D298C_TLobby__data_80540BD0 {
     s32 value;
@@ -24,7 +25,6 @@ RecoveredGlobal_802D298C_TLobby__data_80540BD0 TLobby__trade_window_state;
 u8 *TLobby__sub_802D298C(void);
 u8 *TLobby__sub_802D299C(void);
 s32 *get_trade_window_state(void);
-s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 void send_6x29_delete_item__10TObjPlayerFPvii(void *obj, s32 a, s32 b);
 void *get_player_by_client_id(s32 i);
 s32 check_player_action_allowed();
@@ -118,7 +118,7 @@ void TLobby::apply_trade_items() {
                     id = p->id;
                     if (count > 0) {
                         if (id == 0xFFFFFF01) {
-                            try_spend_actor_meseta((u8 *)player, count);
+                            try_spend_actor_meseta((TObjPlayer *)player, count);
                         } else {
                             if ((allowed != 0) && (fn_801D4270(id) != 0)) {
                                 remove_list_entry_by_id(id);

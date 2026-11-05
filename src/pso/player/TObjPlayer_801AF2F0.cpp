@@ -1831,7 +1831,6 @@ s32 get_main_phase();
 void mark_area_change_pending(void);
 s32 get_field_2d4__10TObjPlayerFv(void *);
 void TObjPlayer__sub_8001053C(u8 *arg0);
-s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 s32 set_hp_clamped__10TObjPlayerFs(void * a0 = 0, s16 a1 = 0);
 s32 add_actor_hp(u8 *arg0, s16 arg1);
 f32 receive_physical_attack__9TObjCharaFPvf(s32, s32, f32);
@@ -2249,7 +2248,6 @@ void create_drop_nodes__9TItemListFPvPvPvPvi(u8*,DeathItemPosition*,TObjPlayer*,
 s32 check_player_action_allowed();
 s32 TObjPlayer__sub_801D4368(void * a0 = 0);
 void TObjPlayer__sub_801D47EC(void *, s32, s32);
-u8 * TPlyItem__ct(void *, void *);
 s32 draw_party_label__15TFontSmallLobbyFiUis(s32, s32, s32);
 s32 accumulate_damage_stats(s32, s32, s32);
 s32 TObjPlayer__sub_801D6D28(s32 *);
@@ -4929,7 +4927,7 @@ void TObjPlayer::update_facing_vector() {
 }
 
 void TObjPlayer::clear_action_flag() {
-    if ((TObjPlayer__sub_801C2044(&this->inventory_objects->pad_20[0]) == 0) && (((u32 (*)(void *))is_action_active__10TObjPlayerFv)(this) != 0U)) {
+    if ((TObjPlayer__sub_801C2044(&this->inventory_objects->pad_20[0]) == 0) && ((u32)is_action_active() != 0U)) {
         this->clear_flag_0x2();
         TObjPlayer::send_code_45_1((s32)this);
     }
@@ -6133,15 +6131,8 @@ void bind_saved_inventory_equipment__10TObjPlayerFPvPvi(u8 *p, u8 *records, s32 
 }
 
 void TObjPlayer::create_inventory() {
-    u8 *temp_r3;
-    u8 *var_r0;
-    if ((void *) this->inventory_objects == NULL) {
-        temp_r3 = (u8 *)(((u8 * (*)(s32))__nw__7TObjectFUl)(0x1CC));
-        var_r0 = temp_r3;
-        if (var_r0 != NULL) {
-            var_r0 = (u8 *)(TPlyItem__ct(temp_r3, this));
-        }
-        this->inventory_objects = (TPlyItem *)var_r0;
+    if (this->inventory_objects == NULL) {
+        this->inventory_objects = new TPlyItem(this);
     }
     this->inventory_objects->item_list = new TItemList(this->inventory_objects);
     this->inventory_objects->unk_1C8 = new TObject(this);
@@ -6223,7 +6214,7 @@ s32 try_buy_item(s32 arg0, void *item) {
     if (((TObjPlayer *)arg0)->can_pickup_item((TItemData *)item) == 0) {
         return 1;
     }
-    if (try_spend_actor_meseta((u8 *)arg0, *(s32 *)((s8 *)item + 0x10) * ((TItemData *)item)->get_stack_count()) != 0) {
+    if (try_spend_actor_meseta((TObjPlayer *)arg0, *(s32 *)((s8 *)item + 0x10) * ((TItemData *)item)->get_stack_count()) != 0) {
         buy_item_for_client((TItemData *)item, ((u16 (*)(s32))get_entity_id)(arg0));
         return 0;
     }

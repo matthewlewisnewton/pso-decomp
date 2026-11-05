@@ -1,6 +1,5 @@
 #include "pso/TPlyItem.h"
 #include "pso/item/TItemList.h"
-#include "pso/player/TPlyItem.h"
 #include "pso/item/TItem.h"
 #include "pso/TItemList.h"
 #include "pso/player/TObjPlayer.h"
@@ -20,23 +19,13 @@ TPlyItem::~TPlyItem() {
 #include "pso/TItemList.h"
 #include "pso/misc/TOSwitchItem.h"
 
-extern "C" {
-
-void __ct__7TObjectFP7TObject(void *, TObject *);
-
-extern s32 __vt__8TPlyItem[];
 extern void *TPlyItem_name_ref;
 
-void *TPlyItem__ct(TPlyItem *ply_item, TObject *parent) {
-    __ct__7TObjectFP7TObject(ply_item, parent);
-    *(s32 **)((s8 *)ply_item + 0x18) = __vt__8TPlyItem;
-    ((TItemList *)((char *)ply_item + 32))->init_items();
-    *(void * *)&ply_item->m_name = TPlyItem_name_ref;
-    ply_item->item_count = 0;
-    ply_item->unk_1E = 0;
-    return ply_item;
-}
-
+TPlyItem::TPlyItem(TObject *parent) : TObject(parent) {
+    ((TItemList *)((char *)this + 32))->init_items();
+    *(void **)&m_name = TPlyItem_name_ref;
+    item_count = 0;
+    unk_1E = 0;
 }
 
 void TItemList::reduce_owner_matched_items() {

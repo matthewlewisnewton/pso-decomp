@@ -54,7 +54,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/enemy/TObjEneMe1GiGue.cpp:1393` | `__cntlzw` |
 | `src/pso/enemy/TObjEneMe3Shinowa.cpp:2526` | `__cntlzw` |
 | `src/pso/item/TItemMag.cpp:1351` | `__cntlzw` |
-| `src/pso/misc/TCheckRoomSequence.cpp:294` | `__cntlzw` |
+| `src/pso/misc/TCheckRoomSequence.cpp:293` | `__cntlzw` |
 | `src/pso/misc/THunterGuildSeqOffline_80211FEC.cpp:70` | `__cntlzw` |
 | `src/pso/misc/TKeyBoardControl_803F0C50.cpp:267` | `__cntlzw` |
 | `src/pso/misc/TLoadingCur.cpp:174` | `__cntlzw` |
@@ -85,12 +85,12 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1043,
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
 | `src/pso/object/TObjTombstone.cpp:427` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4898` | `__fabs` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4906` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4896` | `__fabs` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4904` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:350` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:2527` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:5067` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:2525` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:5065` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:95` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:116` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |

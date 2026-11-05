@@ -176,7 +176,6 @@ extern "C" {
 s32 calc_list_content_extent(void *);
 u8 *create_item_list_window(s32 arg0, s32 arg1, s32 arg2);
 void *memset(void *, int, unsigned long);
-s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 s32 get_item_record__23TShopJudgmentItemWindowFPv(int, int, int);
 void set_judgment_target_flag(void *arg0, void *arg1);
 f32 get_scale__15TShopWindowBaseFv(void *);
@@ -283,7 +282,7 @@ void TShopJudgmentItemWindow::handle_pay_confirm() {
                 *(s32 *)&this->_pad14C = 3;
                 TWindow__close((u8 *)this->m_158);
                 this->m_158 = 0U;
-                try_spend_actor_meseta((u8 *)this->m_24, 0x64);
+                try_spend_actor_meseta((TObjPlayer *)this->m_24, 0x64);
                 ((VObj_18 *)(this))->m6(0xA, 1);
                 this->set_field_20(5);
                 return;
@@ -421,7 +420,7 @@ void TShopJudgmentItemWindow::update_judge_confirm() {
                     TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x15C)));
                     *(u32 *)((s8 *)arg0 + 0x15C) = 0U;
                 }
-                try_spend_actor_meseta((u8 *)(*(s32 *)((s8 *)arg0 + 0x24)), 0x64);
+                try_spend_actor_meseta((TObjPlayer *)(*(s32 *)((s8 *)arg0 + 0x24)), 0x64);
                 if (check_equip_requirements(*(void **)((s8 *)arg0 + 0x24), arg0 + 0x28, NULL) != 0) {
                     ((VObj_18 *)(arg0))->m6(0xC, 1);
                     TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x158)));

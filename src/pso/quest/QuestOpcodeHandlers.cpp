@@ -3795,11 +3795,10 @@ void qst_op_get_guild_card_file_creation_time(s32 arg0) {
     qst_registers[(u8)arg0] = 0;
 }
 
-s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 void qst_op_take_slot_meseta(s32 arg0, s32 arg1) {
-    u32 p = get_player_by_client_id(qst_registers[(u8)arg0++]);
-    if (p != 0) {
-        if (try_spend_actor_meseta((u8 *)p, qst_registers[(u8)arg0]) != 0) {
+    TObjPlayer *p = (TObjPlayer *)get_player_by_client_id(qst_registers[(u8)arg0++]);
+    if (p != NULL) {
+        if (try_spend_actor_meseta(p, qst_registers[(u8)arg0]) != 0) {
             qst_registers[(u8)arg1] = 1;
         } else {
             qst_registers[(u8)arg1] = 0;

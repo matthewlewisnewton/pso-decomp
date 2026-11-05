@@ -348,7 +348,7 @@ int get_player_data__10TObjPlayerFi(int a0);
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 u16 find_nearest_hittable_enemy__10TObjPlayerFiPvf(s32 arg0, Vec_800114D8 *arg1, f32 farg0);
-s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
+s32 try_spend_actor_meseta(TObjPlayer *player, s32 amount);
 s32 add_actor_tp(u8 *arg0, s32 arg1);
 s32 damage_hp__10TObjPlayerFii(s32 arg0, s32 arg1);
 void show_meseta_label(s32 arg0, u32 arg1, s32 arg2, s32 arg3);
@@ -1507,15 +1507,13 @@ void TObjEnemy::draw_ground_shadow(const Vec *scale, s32 forceDraw) {
     pop_matrix();
 }
 
-s32 try_spend_actor_meseta(u8 *arg0, s32 arg1) {
-    s32 temp_r0;
-    u8 *temp_r5;
-    temp_r5 = *(u8 **)((s8 *)arg0 + 0x2B0);
-    temp_r0 = *(s32 *)((s8 *)temp_r5 + 0x20);
-    if (temp_r0 < arg1) {
+s32 try_spend_actor_meseta(TObjPlayer *player, s32 amount) {
+    ActorMesetaView *stats = (ActorMesetaView *)player->m_2b0;
+    s32 held = stats->meseta;
+    if (held < amount) {
         return 0;
     }
-    *(s32 *)((s8 *)temp_r5 + 0x20) = (s32) (temp_r0 - arg1);
+    stats->meseta = held - amount;
     return 1;
 }
 

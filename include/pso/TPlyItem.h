@@ -18,10 +18,11 @@ struct DeathDropRecord {
 };
 
 // Inventory object stored at TObjPlayer::inventory_objects (0xD00).
-// TPlyItem__ct clears the count at +0x1C. create_inventory stores the
+// The constructor clears the count at +0x1C. create_inventory stores the
 // item-slot list at +0x1C4 and a child TObject at +0x1C8.
 class TPlyItem : public TObject {
 public:
+    TPlyItem(TObject *parent);
     virtual ~TPlyItem();
     s16 item_count;
     u16 unk_1E;

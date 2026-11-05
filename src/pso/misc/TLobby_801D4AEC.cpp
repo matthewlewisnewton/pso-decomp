@@ -8,10 +8,9 @@
 #include "pso/misc/TLobby_801D4AEC.h"
 #include "pso/misc/TWindowActionPalette_801C1890.h"
 #include "pso/player/TObjPlayer_801D5220.h"
+#include "pso/player/TObjPlayer_80011014.h"
 
 extern "C" {
-
-s32 try_spend_actor_meseta(TObjPlayer *player, s32 amount);
 
 void TPlyItem::reduce_item_amount(TObjPlayer *arg1, TItemList *slot, s32 arg3) {
     s16 temp_r4;

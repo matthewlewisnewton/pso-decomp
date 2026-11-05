@@ -19,6 +19,9 @@ struct TItemList;
 class TPlyItem;
 struct TechniqueContactList;
 
+struct TObjPlayer;
+extern "C" s32 try_spend_actor_meseta(TObjPlayer *player, s32 amount);
+
 // The frames a player stays protected from hits (after getting up, being
 // hurt, or a mag's invincibility).
 struct ProtectionTimer {
