@@ -4521,6 +4521,54 @@ s32 TQuestVmDownLoadServer__sub_803EF958(u32 id, u16 key, s32 *ids, s32 n) {
         return 3;
     }
 }
+
+static inline s32 merge_duplicate_download_entry(Ent_803F03B4 *base, const Ent_803F03B4 *entry) {
+    for (; base < entry; base++) {
+        if (base->a == entry->a && base->b == entry->b) {
+            if (base->key < entry->key) {
+                base->key = entry->key;
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
+
+// The original's duplicate and encoded-text scans have separate cursor/result
+// handoffs. Keep their caller in this existing inline-helper region; see
+// docs/evidence/quest-download-pr295-sol61.md for the remaining header coloring.
+s32 TQuestVmDownLoadServer__sub_803F03B4(u8 *data, Ent_803F03B4 *ents, s32 n, s32 *max) {
+    Ent_803F03B4 *base = ents;
+    u8 *end = data + (u16)(data[0] + (data[1] << 8));
+    u8 *cursor = data + data[2] + 3;
+    ents += n;
+    while (cursor < end) {
+        u8 keyb;
+        ents->a = cursor[0];
+        keyb = cursor[1];
+        cursor += 2;
+        ents->key = keyb;
+        if ((u16)keyb > *max) {
+            *max = ents->key;
+        }
+        if (*cursor <= 11) {
+            ents->b = *cursor;
+            cursor += 1;
+        } else {
+            ents->b = 0;
+        }
+        ents->c = 0;
+        if (merge_duplicate_download_entry(base, ents) == 0) {
+            n += 1;
+            ents += 1;
+            if (n >= 32) {
+                break;
+            }
+        }
+        cursor = skip_entry_text(cursor, end);
+    }
+    return n;
+}
 #pragma pop
 
 u8 *TQuestVmDownLoadServer::find_insert_position(s32 key, s32 n, s32 len) {
@@ -4770,63 +4818,6 @@ s32 TQuestVmDownLoadServer__sub_803F0268(const char *name, s16 len, Out_803F0268
         return 0;
     }
     return 1;
-}
-
-s32 TQuestVmDownLoadServer__sub_803F03B4(u8 *data, Ent_803F03B4 *ents, s32 n, s32 *max) {
-    u32 sum = data[0] + (data[1] << 8);
-    u16 length = (u16)sum;
-    Ent_803F03B4 *base = ents;
-    u8 *end = data + length;
-    u8 *cursor = data + data[2] + 3;
-    ents += n;
-    while (cursor < end) {
-        u8 keyb;
-        s32 found;
-        Ent_803F03B4 *old;
-        u8 *p;
-        ents->a = cursor[0];
-        keyb = cursor[1];
-        cursor += 2;
-        ents->key = keyb;
-        if ((u16)keyb > *max) {
-            *max = ents->key;
-        }
-        if (*cursor <= 11) {
-            ents->b = *cursor;
-            cursor += 1;
-        } else {
-            ents->b = 0;
-        }
-        ents->c = 0;
-        found = 0;
-        old = base;
-        while (old < ents) {
-            if (old->a == ents->a && old->b == ents->b) {
-                if (old->key < ents->key) {
-                    old->key = ents->key;
-                }
-                found = 1;
-                break;
-            }
-            old += 1;
-        }
-        if (found == 0) {
-            n += 1;
-            ents += 1;
-            if (n >= 32) {
-                break;
-            }
-        }
-        p = cursor;
-        while (p < end) {
-            if (*p <= 56) {
-                break;
-            }
-            p += 2;
-        }
-        cursor = p;
-    }
-    return n;
 }
 
 s32 TQuestVmDownLoadServer__sub_803F0500(u8 *name, s16 len, Out_803E8C2C *out) {
