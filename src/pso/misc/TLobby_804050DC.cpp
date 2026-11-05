@@ -1270,6 +1270,39 @@ s32 TLobby__sub_804060B8(u8 *data, s32 len, int type) {
 }
 #pragma pop
 
+void TLobby__sub_8040059C(u8 *conn);
+void TLobby__sub_80402CE0(u8 *conn);
+void TLobby__sub_803FC318(u8 *conn);
+void TLobby__sub_803FEF4C(u8 *conn);
+void TLobby__sub_803F9FAC(u8 *conn);
+extern s32 lbl_805D7ADC;
+
+inline void open_conn_804062A0(void) {
+    Lobby_804062A0 *l = (Lobby_804062A0 *)lbl_805C0038;
+
+    if (l->state == 0) {
+        l->state = 1;
+    }
+    TLobby__sub_803FD958(l->sub);
+}
+
+s32 TLobby__sub_804061FC(s32 arg0) {
+    Lobby_804062A0 *conn;
+    (void)arg0;
+
+    lbl_805D7ADC = 0;
+    conn = (Lobby_804062A0 *)lbl_805C0038;
+    NetMemset(lbl_805C0038, 0, sizeof(Lobby_804062A0));
+    ((Lobby_804062A0 *)lbl_805C0038)->state = 0;
+    TLobby__sub_8040059C((u8 *)conn);
+    TLobby__sub_80402CE0((u8 *)conn);
+    TLobby__sub_803FC318((u8 *)conn);
+    TLobby__sub_803FEF4C((u8 *)conn);
+    TLobby__sub_803F9FAC((u8 *)conn);
+    open_conn_804062A0();
+    return 0;
+}
+
 s32 TLobby__sub_804062A0(s16 arg0) {
     Lobby_804062A0 *l = (Lobby_804062A0 *)lbl_805C0038;
 

@@ -4,7 +4,7 @@
 #include "pso/misc/TWindowDD_803488A8.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
 #include "pso/misc/TWindowDD_80341A08.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowHelpItem.h"
@@ -134,9 +134,9 @@ extern const f32 TWindowDD__data_805DFB20;
 extern const float TWindowDD__data_805DFCA8;
 s32 init_window_layout_entries(void *, void *, int);
 extern RecoveredGlobal_80341F9C_TWindowDD__data_804EFC50 TWindowDD__data_804EFC50;
-s32 get_array_entry__13TUnk_804CE018Fi(void * a0, s32 a1);
+s32 get_array_entry__11TWindowBaseFi(void * a0, s32 a1);
 Elem_80341FFC *get_element_ptr__9TWindowDDFl(s32);
-s32 get_array_entry__13TUnk_804CE018Fi(void * a0 = 0, s32 a1 = 0);
+s32 get_array_entry__11TWindowBaseFi(void * a0 = 0, s32 a1 = 0);
 s32 get_field_20__17TWindowSubComCardFv(void);
 
 void TWindowDD::set_mode_2() { this->m_80 = 2; }
@@ -230,8 +230,8 @@ void TWindowDD::handle_scroll_input() {
         }
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
-    ((TUnk_804CE018 *)arg0)->update_fade();
-    ((TUnk_804CE018 *)arg0)->update_window_entry_list(arg0 + 0x24);
+    ((TWindowBase *)arg0)->update_fade();
+    ((TWindowBase *)arg0)->update_window_entry_list(arg0 + 0x24);
 }
 #pragma pop
 
@@ -283,7 +283,7 @@ void TWindowDD::load_element_list() {
     }
     self->shown = n;
     for (i = 0; i < self->shown; i++) {
-        ent = (Entry_80341FFC *)get_array_entry__13TUnk_804CE018Fi(self, i);
+        ent = (Entry_80341FFC *)get_array_entry__11TWindowBaseFi(self, i);
         set_text_entry_string((u8 *)ent, TWindowDD__sub_80348B70((s16)self->buf[i]), 0xC0);
         ent->y = i * 20;
         refresh_status_display__9TWindowDDFv(ent);
@@ -318,7 +318,7 @@ s32 TWindowDD__sub_8034217C(u8 *arg0) {
 s32 TWindowDD::get_cursor_index() { return this->m_88; }
 s32 TWindowDD::update_if_field28_set() {
     if ((u32) this->m_44 != 0U) {
-        get_array_entry__13TUnk_804CE018Fi(this, this->m_88);
+        get_array_entry__11TWindowBaseFi(this, this->m_88);
         return get_field_20__17TWindowSubComCardFv();
     }
     return 0;

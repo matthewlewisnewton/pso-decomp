@@ -609,7 +609,7 @@ void TBoss4DarkFalz__sub_8004B5A0(void) {
         k = 12.5f;
         for (i = 0; i < registered_player_count; i++) {
             p = (P_8004B5A0 *)get_player_data__10TObjPlayerFi(i);
-            if (p != 0 && ((TBoss3Volopt *)p)->get_field_3e0() == 0xE) {
+            if (p != 0 && ((TObjPlayer *)p)->get_current_area() == 0xE) {
                 VecCopy((Vec *)&v, (const Vec *)&p->pos);
                 v.y += k;
                 spawn_particle_effect((const Vec *)(&v), 0x28);
@@ -666,7 +666,7 @@ void TBoss4DarkFalz::refresh_player_equipment(void *self) {
     for (i = 0; i < registered_player_count; i++) {
         p = get_player_data__10TObjPlayerFi(i);
         if (p != 0) {
-            if (((TBoss3Volopt *)p)->get_field_3e0() == 0xE) {
+            if (((TObjPlayer *)p)->get_current_area() == 0xE) {
                 ((TObjPlayer *)p)->refresh_equipment_slot();
             }
         }
@@ -684,7 +684,7 @@ void TBoss4DarkFalz__sub_8004B7DC(TBoss4DarkFalz *boss4_dark_falz) {
     ang = 0;
     for (i = 0; i < registered_player_count; i++) {
         p = get_player_data__10TObjPlayerFi(i);
-        if (p != NULL && ((TBoss3Volopt *)p)->get_field_3e0() == 0xE) {
+        if (p != NULL && ((TObjPlayer *)p)->get_current_area() == 0xE) {
             Vec v = base;
             v.x += 2.5e+02f * sin_table_lookup(ang);
             v.z += 2.5e+02f * cos_table_lookup(ang);
@@ -711,7 +711,7 @@ void TBoss4DarkFalz__sub_8004B8F8(TBoss4DarkFalz *boss4_dark_falz) {
     ang = rate / 2;
     for (i = 0; i < registered_player_count; i++) {
         p = get_player_data__10TObjPlayerFi(i);
-        if (p != NULL && ((TBoss3Volopt *)p)->get_field_3e0() == 0xE) {
+        if (p != NULL && ((TObjPlayer *)p)->get_current_area() == 0xE) {
             Vec v = base;
             v.x += 12.5f * sin_table_lookup(ang);
             v.z += 12.5f * cos_table_lookup(ang);

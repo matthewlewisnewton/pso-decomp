@@ -23,14 +23,15 @@ extern unsigned char lbl_804CF998[];
 
 extern "C" {
 
+void __ct__13TUnk_804CF918Fs(void *self, s16 arg);
 void* reset_entry__20TWindowSubStatusDispFPv(void* a0, s16 _w1);
 
     extern const float lbl_805DCEF8;
-void* reset_entry__20TWindowSubStatusDispFPv(void* a0, s16 _w1) { ((TUnk_804CF930 *)a0)->sub_80256BDC(_w1); *(int*)((char*)a0 + 0x4) = (int)lbl_804CF998; *(float*)((char*)a0 + 0x8) = lbl_805DCEF8; *(float*)((char*)a0 + 0xc) = lbl_805DCEF8; *(float*)((char*)a0 + 0x10) = lbl_805DCEF8; *(float*)((char*)a0 + 0x14) = lbl_805DCEF8; return a0; }
+void* reset_entry__20TWindowSubStatusDispFPv(void* a0, s16 _w1) { __ct__13TUnk_804CF918Fs(a0, _w1); *(int*)((char*)a0 + 0x4) = (int)lbl_804CF998; *(float*)((char*)a0 + 0x8) = lbl_805DCEF8; *(float*)((char*)a0 + 0xc) = lbl_805DCEF8; *(float*)((char*)a0 + 0x10) = lbl_805DCEF8; *(float*)((char*)a0 + 0x14) = lbl_805DCEF8; return a0; }
 
 typedef char RecoveredGlobal_80258100_lbl_804CF998_size[sizeof(RecoveredGlobal_80258100_lbl_804CF998) == 0x18 ? 1 : -1];
 u8 *TWindowSubStatusDisp::init_layout_entry_rect(u8 *arg1, s16 arg2) {
-    ((TUnk_804CF930 *)((u8 *)this))->sub_80256BDC(arg2);
+    __ct__13TUnk_804CF918Fs(this, arg2);
     *(s32 **)((s8 *)((u8 *)this) + 4) = &(*(RecoveredGlobal_80258100_lbl_804CF998 *)&lbl_804CF998).value;
     *(f32 *)((s8 *)((u8 *)this) + 8) = (f32) *(f32 *)((s8 *)arg1 + 4);
     *(f32 *)((s8 *)((u8 *)this) + 0xC) = (f32) *(f32 *)((s8 *)arg1 + 8);
