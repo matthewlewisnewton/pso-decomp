@@ -20,7 +20,7 @@ public:
     virtual void run_task();
 public:
     void close_window();
-    void show_message(s32 arg1, s32 arg2);
+    void show_message(const void *text, s32 flags);
     void check_memcard_load_result();
     void process_format_result();
     void open_windows();

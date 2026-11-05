@@ -35,7 +35,7 @@ struct VObj_8032BF64_8032BE48 : Base_8032BF64_8032BE48 {
     virtual void m9();
 };
 
-struct Obj_8032C004 { s32 f0; u8 pad[0x14]; void *vt; u8 pad2[0x48 - 0x1C]; s32 f48; };
+struct Obj_8032C004 { s32 f0; u8 pad[0x14]; void *vt; u8 pad2[0x48 - 0x1C]; void *f48; };
 
 extern "C" {
 void *__nw__7TObjectFUl(u32);

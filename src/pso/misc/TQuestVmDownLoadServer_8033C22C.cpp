@@ -7,19 +7,19 @@
 #include "pso/misc/TWindowSubComCard.h"
 
 void TCheckMemoryCard::init_from_keyboard_state() {
-    s32 var_r31;
+    const void *var_r31;
     s32 var_r6;
 
     if (TKeyBoardControl__sub_8000F8EC() == 0xF) {
-        var_r31 = TQuestVmDownLoadServer__sub_8006EF6C(0xA);
+        var_r31 = ((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0xA);
         var_r6 = TQuestVmDownLoadServer__sub_8006EF6C(0xE);
         init(var_r31, -2, var_r6, 0);
         return;
     }
-    var_r31 = TQuestVmDownLoadServer__sub_8006EF6C(0x62);
+    var_r31 = ((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x62);
     var_r6 = TQuestVmDownLoadServer__sub_8006EF6C(0xE);
     if (m_28 & 0x20) {
-        var_r31 = TQuestVmDownLoadServer__sub_8006EF6C(0x6D);
+        var_r31 = ((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x6D);
         var_r6 = TQuestVmDownLoadServer__sub_8006EF6C(0xE);
     }
     init(var_r31, -2, var_r6, 0);

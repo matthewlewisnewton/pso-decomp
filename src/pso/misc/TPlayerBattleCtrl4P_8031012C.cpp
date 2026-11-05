@@ -9,6 +9,7 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/quest/TQuestThread.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_803107D0_8031058C { char pad[0x18]; };
 struct VObj_803107D0_8031058C : Base_803107D0_8031058C {
@@ -105,7 +106,6 @@ extern "C" {
 s32 *get_split_screen_battle_rankings(void);
 void clear_split_screen_battle_window_slots(T_803102A4 *self);
 extern void *TPlayerBattleCtrl4P__instance;
-void TWindow__close(u8 *arg0);
 void *get_player_by_client_id(s32);
 void *__nw__7TObjectFUl(u32);
 void *TWindowDuelResult__ct(void *, int);

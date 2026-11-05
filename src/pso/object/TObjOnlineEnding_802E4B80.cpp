@@ -12,10 +12,10 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 extern "C" {
 
-void TWindow__close(u8 *arg0);
 void *__nw__7TObjectFUl(int);
 
     extern int player_unique_pair_entry_count;

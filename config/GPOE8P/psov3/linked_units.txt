@@ -947,6 +947,7 @@ pso/misc/THunterGuildWarning_80211690.cpp
 pso/misc/THunterGuildWarning_802116EC.cpp
 pso/misc/THunterGuildWarning_80211700.cpp
 pso/misc/THunterGuildWarning_8021170C.cpp
+pso/misc/THunterGuildWarning_80211718.cpp
 pso/misc/TJudgmentSequence.cpp
 pso/misc/TJudgmentSequence_8021E4C4.cpp
 pso/misc/TKeyBoardControl_8000F764.cpp

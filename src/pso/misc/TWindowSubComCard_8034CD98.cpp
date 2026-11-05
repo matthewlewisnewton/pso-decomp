@@ -14,16 +14,16 @@ struct L_8034CDE0 { u8 f0; u8 n; u8 pad2[2]; I_8034CDE0 items[1]; };
 extern "C" {
 s32 draw_text_gray__17TWindowSubComCardFllll(void *, void *, int, int);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
-void *draw_card_icon__17TWindowSubComCardFll(s32, int, void *);
-s32 get_window_layout_position(s32);
+void *draw_card_icon__17TWindowSubComCardFll(void *, int, void *);
+void *get_window_layout_position(s32);
 extern const f32 lbl_805DFDD8;
 extern const f32 lbl_805DFDDC;
 extern s32 lbl_80478C2C[];
 
 void TWindowSubInformationBoard::open_card_info_window() {
-    s32 window_layout_position;
+    void *window_layout_position;
     window_layout_position = get_window_layout_position(0xA5);
-    TLobby::set_window_mode_4((void *)window_layout_position, (s32)lbl_80478C2C, 1);
+    TLobby::set_window_mode_4(window_layout_position, lbl_80478C2C, 1);
     this->m_24 = -1;
 }
 void *TWindowSubComCard__sub_8034CDE0(void) {

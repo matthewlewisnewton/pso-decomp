@@ -25,6 +25,7 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/TWindowInputNumber.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_A_80279714 { char pad[0x18]; };
 struct V_A_80279714 : Base_A_80279714 {
@@ -116,13 +117,13 @@ s32 set_field_1c__6TLobbyFf(s32);
 s32 TWindowSubEquip__sub_80263AF8(s32, s32);
 s32 align_menu_entry_positions(int);
 s32 forward_trade_action_default__16TObjCityMainWarpFPviii(s32, s32, s32, s32);
-s32 get_window_layout_position(s32);
+const void *get_window_layout_position(s32);
 s32 get_player_by_client_id(s32);
 s32 TObjPlayer__sub_801B7B58(int, int, int);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(int);
 s32 check_equip_requirements__5TItemFP10TObjPlayerPs(int, int, void *);
 }
-s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3);
 void add_item_purpose_actions(TWindowSubItem *arg0, s32 arg1, s32 arg2);
 struct En_8027AA80 { u16 flags; u8 pad2[0x2A]; u32 c2c; u32 c30; u32 c34; };
 extern "C" {
@@ -145,9 +146,8 @@ s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 void decrement_clamped(void *, s32);
 
 s32 __nw__7TObjectFUl(s32);
-void TWindow__close(void *);
 s32 TWindowCtrl__sub_8024A228(s32);
-u32 __ct__15TWindowHelpItemFPvUs(s32, s32, s32);
+u32 __ct__15TWindowHelpItemFPvUs(s32, const void *, s32);
 s32 get_selected_menu_value(u32);
 extern Pad_80279FFC controller_input_state[];
 void *TWindowSubItem__ct(TWindowSubItem *arg0, s32 arg1, s32 arg2);
@@ -157,14 +157,14 @@ s32 send_6x25_equip_item(s32, s32, s32);
 int clamp_selection_to_valid_entry__20TShopArmorListWindowFv(void*);
 int reset_list__20TShopArmorListWindowFv(void*);
 s32 TWindowHelpItem__set_displayed_item_by_id(u32);
-s32 __ct__18TWindowInputNumberFPvllls(s32, s32, s32, s32, s32, s16);
+s32 __ct__18TWindowInputNumberFPvllls(s32, const void *, s32, s32, s32, s16);
 int clamp_scroll_offset__20TWindowSubStatusDispFv(void*);
 s32 __ct__7TObjectFP7TObject();
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 s32 close_sub_window__10TObjPlayerFv();
 s32 try_send_6x27_use_item(s32, s32);
-s32 create_sub_item_list_window(s32, s32 *, s32);
+s32 create_sub_item_list_window(const void *, s32 *, s32);
 s32 get_array_entry__13TUnk_804CE018Fi(void *, s16);
 s32 get_cursor_pos__14TWindowSubItemFv();
 s32 get_item_id__5TItemFv();
@@ -394,7 +394,7 @@ s32 TWindowSubItem::create_count_input(s32 maximum) {
 
 s32 TWindowSubItem::create_menu_window() {
     s32 titled_window_menu;
-    titled_window_menu = create_titled_window_menu(((int)get_window_layout_position(6)), 2, get_message_10__20TWindowSubStatusDispFl(0x27), this->m_24);
+    titled_window_menu = create_titled_window_menu(get_window_layout_position(6), 2, get_message_10__20TWindowSubStatusDispFl(0x27), this->m_24);
     forward_trade_action_default__16TObjCityMainWarpFPviii(titled_window_menu, (s32)((int) (get_message_10__20TWindowSubStatusDispFl(0x5D))), 6, 0);
     forward_trade_action_default__16TObjCityMainWarpFPviii(titled_window_menu, (s32)((int) (get_message_10__20TWindowSubStatusDispFl(0x5E))), 6, 1);
     TWindowSubEquip__sub_80263AF8(this->m_2c, 2);
@@ -407,7 +407,7 @@ s32 TWindowSubItem::create_menu_window() {
 
 s32 TWindowSubItem::open_purpose_window(s32 arg1) {
     s32 titled_window_menu;
-    titled_window_menu = create_titled_window_menu(((int)get_window_layout_position(4)), 3, get_message_10__20TWindowSubStatusDispFl(0x26), this->m_24);
+    titled_window_menu = create_titled_window_menu(get_window_layout_position(4), 3, get_message_10__20TWindowSubStatusDispFl(0x26), this->m_24);
     if (arg1 == -0xFF) {
         TWindowSubItem::add_meseta_purpose_actions((s32)this, titled_window_menu);
     } else if ((s32) (arg1 & 0xFFFFFFF0) == -0x10) {

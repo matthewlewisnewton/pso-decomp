@@ -3,6 +3,7 @@
 
 #include "pso/misc/TWindowMainMenu.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
 
 struct RecoveredGlobal_802889A8_lbl_804D04F8 { s32 value; u8 remaining[0x34]; };
 typedef char RecoveredGlobal_802889A8_lbl_804D04F8_size[sizeof(RecoveredGlobal_802889A8_lbl_804D04F8) == 0x38 ? 1 : -1];
@@ -11,7 +12,6 @@ struct RecoveredGlobal_802889A8_lbl_804D0530 { s32 value; u8 remaining[0x2C]; };
 typedef char RecoveredGlobal_802889A8_lbl_804D0530_size[sizeof(RecoveredGlobal_802889A8_lbl_804D0530) == 0x30 ? 1 : -1];
 
 extern "C" {
-void *get_player_by_client_id(s32 i);
 extern RecoveredGlobal_802889A8_lbl_804D04F8 lbl_804D04F8;
 extern RecoveredGlobal_802889A8_lbl_804D0530 lbl_804D0530;
 void *TWindowMainMenu4P__ct(void *arg0);
@@ -21,18 +21,18 @@ s32 close_and_clear_flags__15TWindowMainMenuFv();
 void TWindowMainMenu4P::vfunc_9() { if (close_active_submenu() != 0) { this->show_child_window(); } }
 
 void TWindowMainMenu4P::vfunc_8() {
-    if (this->m_4c & 1) {
+    if (this->m_menu_flags & 1) {
         close_and_clear_flags__15TWindowMainMenuFv();
     }
 }
 
 void TWindowMainMenu4P::vfunc_6() {
     u8 *arg0 = (u8 *)this;
-    u8 *player;
-    if (!(this->m_4c & 1)) {
-        player = (u8 *)(get_player_by_client_id(this->m_54));
+    TObjPlayer *player;
+    if (!(this->m_menu_flags & 1)) {
+        player = get_player_by_client_id(this->m_client_id);
         if (player != NULL) {
-            if (((TObjPlayer *)player)->is_android() != 0) {
+            if (player->is_android() != 0) {
                 ((TWindowMainMenu *)arg0)->open((s32) &lbl_804D0530.value);
             } else {
                 ((TWindowMainMenu *)arg0)->open((s32) &lbl_804D04F8.value);

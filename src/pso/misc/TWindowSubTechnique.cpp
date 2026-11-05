@@ -1,5 +1,6 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowSubTechnique_80286BD4.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/misc/TWindowSubTechnique.h"
@@ -12,6 +13,7 @@
 #include "pso/ui/TAdChrSelASlotGC.h"
 #include "pso/quest/TQuestThread.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 extern "C" f32 TWindowSubEquip__sub_80263AF8(u8 *arg0, u32 arg1);
 
@@ -22,9 +24,9 @@ s32 is_palette_entry_displayable__10TObjPlayerFv(u8 *arg0, u8 kind, u8 sub);
 s32 get_message_10__20TWindowSubStatusDispFl(int);
 s32 set_field_1c__6TLobbyFf(int);
 }
-s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3);
 extern "C" {
-s32 get_window_layout_position(int);
+const void *get_window_layout_position(int);
 extern s16 *technique_menu_category_lists[];
 
 s32 get_cursor_pos__20TWindowShortListCtrlFv(s32);
@@ -94,7 +96,7 @@ void TWindowSubTechnique::rebuildTechniqueList(s32 list, s32 category) {
 
 s32 TWindowSubTechnique::create_title_window() {
   s32 titled_window_menu;
-  titled_window_menu = create_titled_window_menu((int) get_window_layout_position(0x13), 5, (0, get_message_10__20TWindowSubStatusDispFl(0x30)), (this->playerIndex));
+  titled_window_menu = create_titled_window_menu(get_window_layout_position(0x13), 5, (0, get_message_10__20TWindowSubStatusDispFl(0x30)), (this->playerIndex));
   TWindowSubEquip__sub_80263AF8((u8 *)this->m_30, 1);
   set_field_1c__6TLobbyFf((int) titled_window_menu);
   ((TWindowSubComCardList *)titled_window_menu)->set_flag70_bit100();
@@ -138,18 +140,16 @@ s32 validate_and_clear_slot__10TObjPlayerFv(void *, int);
 void TWindowSubStatusDisp__sub_80228F5C(s32 arg0);
 void text_builder_append(u8 *str);
 s32 get_help_text_string(s32 arg0);
-s32 send_and_handle__6TLobbyFii(int, void *, int);
+s32 send_and_handle__6TLobbyFPCvi(int, void *, int);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 try_equip_item__10TObjPlayerFii(s32, s32);
 
-void TWindow__close(u8 *arg0);
 // set_field_1c__6TLobbyFf declared above
 s32 is_player_input_active(s32);
 void call_if_split_screen(void *, s32);
 f32 TWindowSubEquip__sub_80263AF8(u8 *arg0, u32 arg1);
 s16 get_selected_menu_value(void *);
-void *create_message_window__6TLobbyFllUls(s32, void *, s32, s32);
 s32 update_selection__19TWindowSubTechniqueFPsPl(void *, void *, s32);
 void get_current_selection__19TWindowSubTechniqueFPv(void *, void *, s32);
 void rebuildTechniqueList__19TWindowSubTechniqueFll(void *, void *, s16);
@@ -164,7 +164,7 @@ void __dt__7TObjectFv(void *, int);
 }
 void text_builder_reset(void);
 void toggle_help_window_on_button(u32 arg0, s32 arg1);
-s32 create_titled_window_menu(s32, s32, s32, s32);
+s32 create_titled_window_menu(const void *, s32, s32, s32);
 extern "C" {
 
 s32 TWindowSubTechnique::open_menu() {
@@ -207,7 +207,7 @@ void TWindowSubTechnique::update_selected_help(s32 arg1) {
       *(s16 *)&this->m_1e = (s16) tech;
       if (((s16) tech) == 0x13)
       {
-        send_and_handle__6TLobbyFii((int) (*(s32 *)&this->m_3c), (void *)lbl_805DD83C, 0x82);
+        send_and_handle__6TLobbyFPCvi((int) (*(s32 *)&this->m_3c), (void *)lbl_805DD83C, 0x82);
         return;
       }
       text_builder_reset();
@@ -220,7 +220,7 @@ void TWindowSubTechnique::update_selected_help(s32 arg1) {
       text_builder_append((u8 *)((int) get_help_text_string(0x2E)));
       TWindowSubStatusDisp__sub_80228F5C(((s32) (*((s16 *) (((s8 *) calc_technique_parameters((s16) tech, (u8) cast_technique_level, 0xFFFF)) + 0x10)))));
       text_builder_append((u8 *)((int) TWindowSubTechnique__sub_8028753C((s32)((int) ((s32) ((s16) tech))))));
-      send_and_handle__6TLobbyFii((int) (*(s32 *)&this->m_3c), (void *) get_shared_text_buffer(), 0x82);
+      send_and_handle__6TLobbyFPCvi((int) (*(s32 *)&this->m_3c), (void *) get_shared_text_buffer(), 0x82);
     }
   }
 }
@@ -266,7 +266,7 @@ void TWindowSubTechnique::run_task() {
         break;
     }
     case 3:
-        self->help = create_message_window__6TLobbyFllUls(get_window_layout_position(0x14), lbl_8044FC54, 1, self->player);
+        self->help = TLobby::create_message_window(get_window_layout_position(0x14), lbl_8044FC54, 1, self->player);
         TWindowSubEquip__sub_80263AF8((u8 *)self->f30, 2);
         set_field_1c__6TLobbyFf((s32)self->help);
         call_if_split_screen(self->help, self->player);

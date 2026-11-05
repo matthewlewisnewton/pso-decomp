@@ -5,6 +5,7 @@
 #include "pso/misc/TQuestListOffline.h"
 #include "pso/misc/TLobby.h"
 #include "pso/quest/TQuestListVM.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 extern "C" {
 
@@ -46,7 +47,6 @@ void * close_shop_subwindows__17TQuestListOfflineFs(void *arg0, s16 arg1);
 void *__dt__15TShopWindowBaseFv(void *self, s16 m);
 void __ct__15TShopWindowBaseFv(void *, s32);
 void __dl__7TObjectFPv(void *);
-void TWindow__close(u8 *arg0);
 
 extern s32 TQuestListOffline__class_name;
 

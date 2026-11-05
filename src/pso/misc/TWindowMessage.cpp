@@ -193,8 +193,8 @@ void TWindowMessage::update_scroll() {
 
 #pragma push
 #pragma fp_contract on
-s32 get_shared_text_buffer(void);
-s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 arg3);
+const void *get_shared_text_buffer(void);
+s32 append_message_window_line(TWindowMessage *self, const void *text, s32 flags, s32 arg3);
 
 #pragma readonly_strings on
 s32 TWindowOptionCtrl::add_label_value_line(const char *arg1, const char *arg2, u32 arg3) {
@@ -237,8 +237,8 @@ struct Entry_80269A0C {
 extern "C" {
 void measure_message_text_width(void *, f32);
 
-s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 arg3);
-s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 arg3) {
+s32 append_message_window_line(TWindowMessage *self, const void *text, s32 flags, s32 arg3);
+s32 append_message_window_line(TWindowMessage *self, const void *text, s32 flags, s32 arg3) {
     Entry_80269A0C *e;
     TWindowMessageLine *rec;
     f32 y;
@@ -270,9 +270,9 @@ s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 ar
     e->fC = self->unk_80;
     e->f24 = arg3;
     if (flags & 2) {
-        set_text_entry_string((u8 *)e, text, 0x20);
+        set_text_entry_string((u8 *)e, (u32)text, 0x20);
     } else {
-        set_text_entry_string((u8 *)e, text, 0);
+        set_text_entry_string((u8 *)e, (u32)text, 0);
     }
     if (flags & 0x20) {
         e->flags |= 1;
@@ -336,11 +336,27 @@ struct G_80269DA4 { s32 a; s32 b; };
 extern "C" {
 s32 TLobby__sub_80269DA4(V2_80269DA4 size, void *arg1);
 extern G_80269DA4 lbl_804D06F8[];
-u8 *TWindowMessage__ct(u8 *arg0, s32 arg1, u32 arg2, s16 arg3);
-u8 *__nw__7TObjectFUl(s32);
+struct TWindowMessageInit {
+    const char *m_name;
+    u8 pad_04[0x14];
+    void *vt;
+    u8 pad_1c[0x54];
+    u32 m_70;
+    s32 m_74;
+    u32 m_78;
+    TWindowMessageLine *lines;
+    f32 unk_80;
+    f32 m_84;
+    s32 next_line;
+    s32 line_count;
+};
+typedef char TWindowMessageInit_size[sizeof(TWindowMessageInit) == 0x90 ? 1 : -1];
+
+TWindowMessage *TWindowMessage__ct(TWindowMessageInit *arg0, const void *arg1, u32 arg2, s32 arg3);
+TWindowMessage *__nw__7TObjectFUl(s32);
 extern RecoveredGlobal_80269CA4_lbl_804D071C message_window_settings;
 
-int TLobby::send_and_handle(int a1, int a2) { return append_message_window_line((TWindowMessage *)this, a1, a2, -1); }
+int TLobby::send_and_handle(const void *text, int flags) { return append_message_window_line((TWindowMessage *)this, text, flags, -1); }
 
 typedef char RecoveredGlobal_80269CA4_lbl_804D071C_size[sizeof(RecoveredGlobal_80269CA4_lbl_804D071C) == 0x14 ? 1 : -1];
 
@@ -358,25 +374,24 @@ s32 *TLobby__sub_80269CB4(void) {
     return &(*(RecoveredGlobal_80269CB4_lbl_804D071C *)&message_window_settings).value;
 }
 
-u8 *TLobby::create_message_window(s32 arg0, s32 arg1, u32 arg2, s16 arg3) {
-    u8 *temp_r3;
-    u8 *var_r0;
+TWindowMessage *TLobby::create_message_window(const void *arg0, const void *arg1, u32 arg2, s32 arg3) {
+    TWindowMessage *temp_r3;
+    TWindowMessage *var_r0;
     ((s32 (*)(void *, void *))TLobby__sub_80269DA4)((void *)arg1, (void *)arg2);
-    temp_r3 = (u8 *)(__nw__7TObjectFUl(0x90));
+    temp_r3 = __nw__7TObjectFUl(0x90);
     var_r0 = temp_r3;
     if (var_r0 != NULL) {
-        var_r0 = (u8 *)(TWindowMessage__ct(temp_r3, arg0, arg2, arg3));
+        var_r0 = TWindowMessage__ct((TWindowMessageInit *)temp_r3, arg0, arg2, arg3);
     }
     return var_r0;
 }
 
-u8 *TLobby::set_window_mode_4(void *arg0, s32 arg1, s32 arg2) {
-    return TLobby::create_message_window((s32)arg0, (s32)arg1, (u32)arg2, (s16)(4));
+TWindowMessage *TLobby::set_window_mode_4(const void *arg0, const void *arg1, s32 arg2) {
+    return TLobby::create_message_window(arg0, arg1, arg2, 4);
 }
 
 void TLobby::update_window_mode_from_progress(void *arg1) {
-    s32 arg0 = (s32)this;
-    TLobby::set_window_mode_4((void *)arg0, (s32)arg1, (s32)((s32)((s32) TWindowSubStatusDisp::round_away_from_zero((*(f32 *)((s8 *)arg1 + 4) - 2e+01f) / 2e+01f) + 2)));
+    TLobby::set_window_mode_4(this, arg1, (s32)((s32)((s32) TWindowSubStatusDisp::round_away_from_zero((*(f32 *)((s8 *)arg1 + 4) - 2e+01f) / 2e+01f) + 2)));
 }
 
 s32 TLobby__sub_80269DA4(V2_80269DA4 size, void *arg1) {
@@ -390,11 +405,11 @@ s32 TLobby__sub_80269DA4(V2_80269DA4 size, void *arg1) {
 
 extern "C" {
 s32 draw_visible_window_entries(void *, void *, int);
-void *construct_with_parent__13TUnk_804CDFE8FPv(void *, void *, s32, s32);
+void *construct_with_parent__13TUnk_804CDFE8FPv(void *, void *, s16, const void *);
 extern s32 __vt__14TWindowMessage[];
-extern s32 lbl_805D3980;
+extern const char *lbl_805D3980;
 
-u8 *TWindowMessage__ct(u8 *arg0, s32 arg1, u32 arg2, s16 arg3);
+TWindowMessage *TWindowMessage__ct(TWindowMessageInit *arg0, const void *arg1, u32 arg2, s32 arg3);
 void *__dt__14TWindowMessageFv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 
@@ -431,27 +446,27 @@ void *__dt__14TWindowMessageFv(void *arg0, s16 arg1) {
     }
     return arg0;
 }
-u8 *TWindowMessage__ct(u8 *arg0, s32 arg1, u32 arg2, s16 arg3) {
+TWindowMessage *TWindowMessage__ct(TWindowMessageInit *window, const void *layout, u32 count, s32 slot) {
     u32 i;
-    u8 *p;
-    construct_with_parent__13TUnk_804CDFE8FPv(arg0, (u8 *)&message_window_settings, arg3, arg1);
-    *(void **)(arg0 + 0x18) = ((u8 *)&__vt__14TWindowMessage);
-    *(s32 *)arg0 = lbl_805D3980;
-    *(s32 *)(arg0 + 0x70) = 0;
-    *(s32 *)(arg0 + 0x74) = 0;
-    *(s32 *)(arg0 + 0x88) = 0;
-    *(u32 *)(arg0 + 0x8C) = arg2;
-    *(s32 *)(arg0 + 0x78) = 0xB4;
-    *(f32 *)(arg0 + 0x84) = 0.0f;
-    *(f32 *)(arg0 + 0x80) = 0.0f;
-    *(u8 **)(arg0 + 0x7C) = (u8 *)::operator new[](arg2 * 8);
-    p = *(u8 **)(arg0 + 0x7C);
-    for (i = 0; i < arg2; i++) {
-        *(s32 *)p = 0;
-        *(s32 *)(p + 4) = 0;
-        p += 8;
+    TWindowMessageLine *line;
+    construct_with_parent__13TUnk_804CDFE8FPv(window, &message_window_settings, slot, layout);
+    window->vt = &__vt__14TWindowMessage;
+    window->m_name = lbl_805D3980;
+    window->m_70 = 0;
+    window->m_74 = 0;
+    window->next_line = 0;
+    window->line_count = count;
+    window->m_78 = 0xB4;
+    window->m_84 = 0.0f;
+    window->unk_80 = 0.0f;
+    window->lines = (TWindowMessageLine *)::operator new[](count * sizeof(TWindowMessageLine));
+    line = window->lines;
+    for (i = 0; i < count; i++) {
+        line->flags = 0;
+        line->timer = 0;
+        line++;
     }
-    return arg0;
+    return (TWindowMessage *)window;
 }
 
 }

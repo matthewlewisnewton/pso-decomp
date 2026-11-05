@@ -79,6 +79,7 @@ u16 TWindowCtrl::get_window_id() {
 }
 
 #include "pso/TObject.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Ctrl_8024B328 { u8 pad[0x84]; void *win[4]; };
 
@@ -88,7 +89,6 @@ struct Ctrl_8024B440 { u8 pad[0x84]; void *win[4]; };
 
 extern "C" {
 s32 acquire_balloon_slot__11TWindowCtrlFPviiPv(s32, u16, s32, s32);
-void TWindow__close(u8 *arg0);
 
 void TWindowCtrl::close_windows_by_flags(u16 arg0) {
     u32 i;

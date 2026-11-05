@@ -18,6 +18,9 @@
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubItem.h"
+#include "pso/misc/TWindowMessage.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubComCard_80265410.h"
 struct Stack_80217EC4 {
     s32 sp8;
     s32 spC;
@@ -77,11 +80,8 @@ struct T_80217B30 { u8 pad[0x38]; s32 f38; };
 extern "C" {
 s32 get_entity_id(int);
 int set_field_20__15TShopWindowBaseFl(void*, int);
-s32 send_and_handle__6TLobbyFii(int, void *, int);
-u32 create_message_window__6TLobbyFllUls(int, void *, int, int);
-s32 get_window_layout_position(int);
+s32 send_and_handle__6TLobbyFPCvi(void *, void *, int);
 s32 calc_list_content_extent(u32);
-u32 set_window_mode_4__6TLobbyFPvll(s32, void *, int);
 extern Stack_80217EC4 lbl_8044BED4[];
 extern u8 *TQuestListOnline__quest_list_buffer;
 
@@ -93,11 +93,10 @@ extern u8 lbl_805DC6A0;
 
 s32 get_unlocked_tier__16TQuestListOnlineFv(void *);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(u32);
 }
 extern RecoveredGlobal_80217EC4_lbl_8044BEDC lbl_8044BEDC;
-extern u32 TQuestListOnline__selected_quest_info;
+extern u8 *TQuestListOnline__selected_quest_info;
 extern const f32 lbl_805DC6A4;
 extern const f32 lbl_805DC6A8;
 
@@ -225,7 +224,7 @@ void TQuestListOnline::handle_list_selection() {
     if (list_window != 0) {
         s32 sel = select_cursor_entry__22TWindowSubShortCutListFv(list_window);
         if (description_window != 0 && sel != selected_index) {
-            send_and_handle__6TLobbyFii(description_window, QL_80217C1C->ents[sel].name, 0x80);
+            send_and_handle__6TLobbyFPCvi(description_window, QL_80217C1C->ents[sel].name, 0x80);
         }
         if (info_window != 0 && sel != selected_index) {
             TWindow__close((u8 *)info_window);
@@ -290,14 +289,14 @@ void TQuestListOnline::show_info_window() {
         stack.sp8 = *(s32 *)((s8 *)&lbl_8044BEDC.value + 0);
         stack.spC = *(s32 *)((s8 *)&lbl_8044BEDC.value + 4);
         temp_r31 = get_entity_id(window_owner);
-        info_window = create_message_window__6TLobbyFllUls((int) (get_window_layout_position(0x2E)), (void *)&stack.sp8, 1, (int) ((s32) temp_r31));
-        ((TLobby *)info_window)->set_field_1c(lbl_805DC6A4);
+        info_window = TLobby::create_message_window(get_window_layout_position(0x2E), &stack.sp8, 1, temp_r31);
+        info_window->set_field_1c(lbl_805DC6A4);
         if (TCameraCtrl::get_camera_id() >= 2) {
-            ((TUnk_804CDFE8 *)info_window)->set_position_xy(lbl_805DC6A8, lbl_805DC6A8);
+            info_window->set_position_xy(lbl_805DC6A8, lbl_805DC6A8);
         }
     }
     if ((u32) TQuestListOnline__selected_quest_info != 0U) {
-        send_and_handle__6TLobbyFii(info_window, (void *)(TQuestListOnline__selected_quest_info + 4), 0x80);
+        info_window->send_and_handle(TQuestListOnline__selected_quest_info + 4, 0x80);
     }
     set_field_20__15TShopWindowBaseFl((void*)this, 3);
 }
@@ -340,10 +339,10 @@ void TQuestListOnline::build_list_window() {
         }
         if (description_window == 0U) {
             Stack_80217EC4 sp8 = lbl_8044BED4[0];
-            description_window = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x2D), &sp8, 1);
-            send_and_handle__6TLobbyFii(description_window, TQuestListOnline__quest_list_buffer + 0x2C, 0x80);
+            description_window = TLobby::set_window_mode_4(get_window_layout_position(0x2D), &sp8, 1);
+            send_and_handle__6TLobbyFPCvi(description_window, TQuestListOnline__quest_list_buffer + 0x2C, 0x80);
         } else {
-            send_and_handle__6TLobbyFii(description_window, TQuestListOnline__quest_list_buffer + 0x2C, 0x80);
+            send_and_handle__6TLobbyFPCvi(description_window, TQuestListOnline__quest_list_buffer + 0x2C, 0x80);
         }
         selected_index = 0;
         set_field_20__15TShopWindowBaseFl(this, 3);

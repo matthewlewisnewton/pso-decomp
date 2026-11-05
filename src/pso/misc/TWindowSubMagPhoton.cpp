@@ -2,7 +2,9 @@
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
-#include "pso/misc/TWindowSubStatusDisp_80248BE8.h"
+extern "C" {
+u8 *TWindowSubStatusDisp__sub_80248BE8(const void *layout, const void *entries, s32 arg2);
+}
 #include "pso/misc/TWindowMainMenu.h"
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TUnk_804D0618.h"
@@ -64,14 +66,14 @@ s32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 fn_801A51F0(int);
 s32 set_field_1c__6TLobbyFf(s32);
 s32 TWindowSubEquip__sub_80263AF8(s32, s32);
-s32 get_window_layout_position(s32);
+const void *get_window_layout_position(s32);
 extern u8 lbl_8044FA28[];
 void *__dt__19TWindowSubMagPhotonFv(void *arg0, s16 arg1);
 s32 get_selected_menu_value(s32);
 s32 align_menu_entry_positions(s32);
 void __dl__7TObjectFPv(void *);
 }
-s32 create_titled_window_menu(s32, s32, s32, s32);
+s32 create_titled_window_menu(const void *, s32, s32, s32);
 extern "C" {
 s32 forward_trade_action_default__16TObjCityMainWarpFPviii(s32, s32, s32, s32);
 s32 is_split_screen();
@@ -233,7 +235,7 @@ s32 TUnk_804D1818::sub_8027C884(s32 arg1) {
     s16 var_r29;
     s32 temp_r31;
     s32 temp_r3;
-    temp_r31 = (s32)TWindowSubStatusDisp__sub_80248BE8((s32)(get_window_layout_position(0x16)), (s32)lbl_8044FA28, (s32)this->m_20);
+    temp_r31 = (s32)TWindowSubStatusDisp__sub_80248BE8(get_window_layout_position(0x16), lbl_8044FA28, this->m_20);
     switch (arg1) {
     case 0:
         ((TUnk_804D0618 *)temp_r31)->ensure_status_display((int) (get_message_10__20TWindowSubStatusDispFl(0x66)));

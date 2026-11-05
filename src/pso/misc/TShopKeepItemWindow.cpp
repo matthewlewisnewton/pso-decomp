@@ -6,6 +6,8 @@
 #include "types.h"
 #include "pso/misc/TShopWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubComCard_80265410.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_80222C28.h"
 #include "pso/item/TItem.h"
@@ -106,8 +108,6 @@ struct Self_80221F08 {
 extern "C" {
 u32 get_entity_id(s32);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
-s32 get_window_layout_position(s32);
 void memset(void *, int, int);
 s32 get_item_record__23TShopJudgmentItemWindowFPv(s32, s32, s32);
 s32 store_item_in_bank(u8 *item, s32 arg1, s32 slot);

@@ -14,24 +14,23 @@ struct VObj : VBase { virtual void m0(int); };
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/TWindowOptionCtrl.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 extern "C" {
-void TWindow__close(u8 *arg0);
 u32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 align_menu_entry_positions(u32);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 u32 check_room_seq_4__16TAdChrSelASlotGCFl(const void *, s32);
-u32 create_message_window__6TLobbyFllUls(const void *, const void *, s32, s32);
 u32 update_window_mode_from_progress__6TLobbyFPv(const void *, const void *);
 s32 get_selected_menu_value(void *);
 
-void TCheckMemoryCard::create_message_and_menu(u32 arg1, s32 sel, u32 arg3, u32 arg4) {
+void TCheckMemoryCard::create_message_and_menu(const void *arg1, s32 sel, u32 arg3, u32 arg4) {
     u32 msg;
     if (m_30 != NULL || m_34 != NULL) {
         return;
     }
     if ((s32)m_4c != 0) {
-        m_30 = (void *)create_message_window__6TLobbyFllUls(&lbl_80477DB4, &lbl_80477DBC, 1, 4);
+        m_30 = TLobby::create_message_window(&lbl_80477DB4, &lbl_80477DBC, 1, 4);
     } else {
         m_30 = (void *)update_window_mode_from_progress__6TLobbyFPv(&lbl_80477DB4, &lbl_80477DBC);
     }
@@ -41,7 +40,7 @@ void TCheckMemoryCard::create_message_and_menu(u32 arg1, s32 sel, u32 arg3, u32 
     if (m_30 != NULL && (s32)m_4c != 0) {
         ((TWindowSubComCard *)(m_30))->reparent_to_main_ctrl();
     }
-    if (arg1 != 0U) {
+    if (arg1 != NULL) {
         ((TLobby *)(m_30))->send_and_handle(arg1, 3);
     }
     ((TWindowMessage *)(m_30))->complete_reveal();

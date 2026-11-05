@@ -8591,7 +8591,7 @@ force_active:
   - open_message_window__14TObjBagWarnWinFv
   - open_message_window__20TObjChallenge4PRetryFv
   - open_message_window__22TAdEnterSerialAccessGCFPvPv
-  - open_message_window__9TSaveChCrFUl
+  - open_message_window__9TSaveChCrFPCv
   - open_mode4_window__17TWindowSubComCardFv
   - open_option_dialog__19TWindowSubTradeMainFPvi
   - open_option_dialog_thunk__19TWindowSubTradeMainFPvPv
@@ -14831,7 +14831,7 @@ force_active:
   - show_fee_prompt__22TMedicalCenterSequenceFv
   - show_guide_button__12TAdDialingGCFv
   - show_intro_text__19TPlayerBattleCtrl4PFv
-  - show_message__17TMCFormatSequenceFll
+  - show_message__17TMCFormatSequenceFPCvl
   - show_message__18TChallenge4PResultFl
   - show_message_and_wait__15TObjBoss2TunnelFl
   - show_part__9TObjLukerFl

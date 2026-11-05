@@ -32,6 +32,7 @@ struct RecoveredGlobal_8036DE10_lbl_804F37D4 {
 #include "pso/TAdPlayerLoadGC.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowSubComCard.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 struct Stack_8036EA24 {
     s32 sp8;
     s32 spC;
@@ -66,7 +67,6 @@ struct Self_8036E2AC {
 };
 
 extern "C" {
-void TWindow__close(u8 *arg0);
 s32 get_selected_menu_value(void *);
 void *__nw__7TObjectFUl(int);
 void *__ct__9TAdBackGCFv(void *, void *);
@@ -172,7 +172,7 @@ void close_windows_and_cleanup(void *arg0) {
     TAdMultiChgGameModeGC::setup_mode_menu(arg0, 0);
     TAdMultiChgGameModeGC__sub_8036E19C((u8 *)arg0, 4);
     if ((u32) *(u32 *)((s8 *)arg0 + 0x30) != 0U) {
-        ((TLobby *)(*(u32 *)((s8 *)arg0 + 0x30)))->send_and_handle(TAdMultiChgGameModeGC__sub_8036DE10((s32)arg0, 3, (s32)(*(s32 *)((s8 *)arg0 + 0x24))), 3);
+        ((TLobby *)(*(u32 *)((s8 *)arg0 + 0x30)))->send_and_handle(((const void *(*)(s32, s32, s32))TAdMultiChgGameModeGC__sub_8036DE10)((s32)arg0, 3, (s32)(*(s32 *)((s8 *)arg0 + 0x24))), 3);
     }
 }
 
@@ -213,7 +213,7 @@ void TAdMultiChgGameModeGC::close_windows_and_reopen() {
     TAdMultiChgGameModeGC::setup_mode_menu(this, 0);
     TAdMultiChgGameModeGC__sub_8036E19C((u8 *)this, 4);
     if ((u32) *(u32 *)((s8 *)this + 0x30) != 0U) {
-        ((TLobby *)(*(u32 *)((s8 *)this + 0x30)))->send_and_handle(TAdMultiChgGameModeGC__sub_8036DE10((s32)this, 1, (s32)(*(s32 *)((s8 *)this + 0x24))), 3);
+        ((TLobby *)(*(u32 *)((s8 *)this + 0x30)))->send_and_handle(((const void *(*)(s32, s32, s32))TAdMultiChgGameModeGC__sub_8036DE10)((s32)this, 1, (s32)(*(s32 *)((s8 *)this + 0x24))), 3);
     }
 }
 
@@ -224,7 +224,7 @@ void TAdMultiChgGameModeGC__sub_8036E19C(u8 *arg0, s32 arg1) {
     }
     *(u32 *)((s8 *)arg0 + 0x30) = update_window_mode_from_progress__6TLobbyFPv(multi_chg_game_mode_window_extent, lbl_8047B8A0);
     if ((u32) *(u32 *)((s8 *)arg0 + 0x30) != 0U) {
-        ((TLobby *)(*(u32 *)((s8 *)arg0 + 0x30)))->send_and_handle((s32)((int) (TAdMultiChgGameModeGC__sub_8036DE10((s32)arg0, (s32)arg1, (s32)((int) (*(s32 *)((s8 *)arg0 + 0x24)))))), 3);
+        ((TLobby *)(*(u32 *)((s8 *)arg0 + 0x30)))->send_and_handle(((const void *(*)(s32, s32, s32))TAdMultiChgGameModeGC__sub_8036DE10)((s32)arg0, (s32)arg1, (s32)((int) (*(s32 *)((s8 *)arg0 + 0x24)))), 3);
     }
 }
 
@@ -320,7 +320,7 @@ void TAdMultiChgGameModeGC__sub_8036E51C(u8 *ad_multi_chg_game_mode_gc) {
     TAdMultiChgGameModeGC::setup_mode_menu(ad_multi_chg_game_mode_gc, 1);
     TAdMultiChgGameModeGC__sub_8036E19C(ad_multi_chg_game_mode_gc, 4);
     if ((u32) *(u32 *)((s8 *)ad_multi_chg_game_mode_gc + 0x30) != 0U) {
-        ((TLobby *)(*(u32 *)((s8 *)ad_multi_chg_game_mode_gc + 0x30)))->send_and_handle((s32)((int) (TAdMultiChgGameModeGC__sub_8036DE10((s32)ad_multi_chg_game_mode_gc, 0, (s32)((s32)((int) (*(s32 *)((s8 *)ad_multi_chg_game_mode_gc + 0x24))))))), 3);
+        ((TLobby *)(*(u32 *)((s8 *)ad_multi_chg_game_mode_gc + 0x30)))->send_and_handle(((const void *(*)(s32, s32, s32))TAdMultiChgGameModeGC__sub_8036DE10)((s32)ad_multi_chg_game_mode_gc, 0, (s32)((s32)((int) (*(s32 *)((s8 *)ad_multi_chg_game_mode_gc + 0x24))))), 3);
     }
     ((TAdMultiChgGameModeGC *)ad_multi_chg_game_mode_gc)->create_back_objects();
 }

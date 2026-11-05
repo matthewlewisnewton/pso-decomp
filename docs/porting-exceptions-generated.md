@@ -110,12 +110,12 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/render/render_util_tail.cpp:21` | `__frsqrte` |
 | `src/pso/system/SjMemoryBuffer.cpp:26` | `__cntlzw` |
 | `src/pso/ui/TAdExNetConfirmGC.cpp:9` | `__cntlzw` |
-| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:294` | `__cntlzw` |
-| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:529` | `__cntlzw` |
-| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:1527` | `__cntlzw` |
-| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:1556` | `__cntlzw` |
+| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:297` | `__cntlzw` |
+| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:532` | `__cntlzw` |
+| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:1530` | `__cntlzw` |
+| `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:1559` | `__cntlzw` |
 | `src/pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.cpp:129` | `__cntlzw` |
-| `src/pso/ui/TAdSinglePlyChrSelectGC_802E13C8.cpp:174` | `__cntlzw` |
+| `src/pso/ui/TAdSinglePlyChrSelectGC_802E13C8.cpp:175` | `__cntlzw` |
 | `src/pso/unk/text_802530D0.cpp:24` | `__cntlzw` |
 | `src/pso/unk/text_803D8DE0.cpp:32` | `__frsqrte` |
 | `src/pso/unk/text_803D8DE0.cpp:76` | `__frsqrte` |

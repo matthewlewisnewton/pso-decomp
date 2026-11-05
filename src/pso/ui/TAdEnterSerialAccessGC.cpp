@@ -454,7 +454,7 @@ void create_draw_callback__22TAdEnterSerialAccessGCFv(void) {
 
 s32 TAdEnterSerialAccessGC::open_message_window(void *arg0, void *arg1) {
     s32 r = update_window_mode_from_progress__6TLobbyFPv(lbl_804764C8, lbl_804764D0);
-    ((TLobby *)r)->send_and_handle(get_localized_text_entry(0x17, (s32)arg1), 1);
+    ((TLobby *)r)->send_and_handle(((const void *(*)(s32, s32))get_localized_text_entry)(0x17, (s32)arg1), 1);
     return r;
 }
 

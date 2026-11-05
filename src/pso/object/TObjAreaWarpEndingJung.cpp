@@ -43,6 +43,7 @@
 #include "pso/misc/TTecLuker.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TLobby_80207644.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 // The original TU was built with deferred codegen: functions below are in reverse
 // address order, and the pool (three {3, 2} initializers, then the float literals
@@ -400,7 +401,6 @@ void set_area__6TLobbyFl(void *, int, int);
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
 void __ct__7TObjectFP7TObject(void *, void *);
-void TWindow__close(void *);
 s32 align_menu_entry_positions(u32);
 u32 create_window_menu(s32, s32, s16);
 s32 get_window_layout_position(s32);

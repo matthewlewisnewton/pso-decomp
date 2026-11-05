@@ -13,6 +13,7 @@
 #include "pso/ui/TAdEnterSerialAccessGC.h"
 #include "pso/ui/TAdScrollWinGC.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 #pragma readonly_strings on
 
@@ -96,7 +97,6 @@ extern s32 __vt__11TAdEp3Exist[];
 void *TAdEp3Exist__ct(Ep3_8036F354 *o);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
-void TWindow__close(u8 *arg0);
 int TAdEp3Exist__sub_8036F0AC(void* p);
 extern u8 controller_input_state[];
 extern u8 controller_physical_port_bank[];
@@ -229,7 +229,7 @@ void *TAdEp3Exist__ct(Ep3_8036F354 *o) {
     }
     r = (u32)__nw__7TObjectFUl(0x54);
     if (r != 0) {
-        r = (u32)TAdScrollWinGC__ct((TAdScrollWinGC *)((void *)r), (void *)o, 3, (s32)(get_localized_text_entry(0x2C, 9)));
+        r = (u32)TAdScrollWinGC__ct((TAdScrollWinGC *)((void *)r), (void *)o, 3, ((const void *(*)(s32, s32))get_localized_text_entry)(0x2C, 9));
     }
     o->win1C = r;
     r = (u32)__nw__7TObjectFUl(0x708);

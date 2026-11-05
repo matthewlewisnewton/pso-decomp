@@ -22,6 +22,7 @@
 #include "pso/misc/TCheckRoomSequence.h"
 #include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/ui/TWindowInputNumber.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_8021F134 { char pad[0x18]; };
 struct VObj_8021F134 : Base_8021F134 {
@@ -147,7 +148,6 @@ void *create_item_list_window(s32, s32, u16);
 void *create_cost_window(u16);
 extern const f32 lbl_805DC6F8;
 void *__dt__19TShopItemListWindowFv(TShopItemListWindow *arg0, s16 arg1);
-void TWindow__close(u8 *arg0);
 void __dl__7TObjectFPv(void *);
 void *__dt__15TShopWindowBaseFv(void *self, s16 m);
 

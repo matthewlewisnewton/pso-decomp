@@ -20,6 +20,7 @@
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/object/TObjCityMainWarp.h"
 #include "pso/ui/Language.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 #pragma readonly_strings on
 
@@ -79,7 +80,6 @@ u8 *TWindowSubComCardList__ct(u8 *arg0, void *arg1);
 s32 count_leading_active__17TWindowSubComCardFPvi(s32, s32);
 u8 *TWindowSubComCardList__sub_802757AC(u8 *arg0, void *arg1, s32 arg2, s32 arg3, s8 arg4);
 void *__nw__7TObjectFUl(u32);
-void TWindow__close(u8 *arg0);
 s32 set_field_1c__6TLobbyFf(void *);
 f32 TWindowSubEquip__sub_80263AF8(u8 *arg0, u32 arg1);
 Ev_802758C8 *calc_equip_index__21TWindowSubCustomEquipFv(void *);
@@ -245,7 +245,7 @@ void TUnk_804D1160::update_customize_help_text(void *ev_arg) {
     case 7:
         break;
     }
-    ((TLobby *)(self->lobby))->send_and_handle(get_shared_text_buffer(), 0x82);
+    ((TLobby *)(self->lobby))->send_and_handle(((const void *(*)())get_shared_text_buffer)(), 0x82);
 }
 
 void TUnk_804D1160::render() {  }

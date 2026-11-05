@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/TShopWindowBase.h"
 
+class TWindowMessage;
+
 struct TQuestListVM : public TShopWindowBase {
     virtual ~TQuestListVM();
     s32 quest_vm_load();
@@ -32,7 +34,7 @@ struct TQuestListVM : public TShopWindowBase {
     u32 m_2374;
     u32 m_2378;
     u32 m_237c;
-    u32 m_2380;
+    TWindowMessage *m_2380;
     u32 m_2384;
     u32 m_2388;
     u8 _pad238C[0x4];

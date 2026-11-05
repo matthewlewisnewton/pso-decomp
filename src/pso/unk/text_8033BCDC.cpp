@@ -16,7 +16,7 @@ void fn_8033BCDC(TCheckMemoryCard *card, s32 kind, s32 menu_kind, s32 sub_entry,
 }
 
 void fn_8033BCDC(TCheckMemoryCard *card, s32 kind, s32 menu_kind, s32 sub_entry, s32 alt_sub_entry) {
-    s32 text;
+    const void *text;
     s32 sub_text;
     s32 group;
     s32 entry;
@@ -31,7 +31,7 @@ void fn_8033BCDC(TCheckMemoryCard *card, s32 kind, s32 menu_kind, s32 sub_entry,
     if (TKeyBoardControl__sub_8000F8EC() == 0xF) {
         entry = lbl_80477DC4[kind].keyboard_entry;
     }
-    text = get_localized_text_entry(group, entry);
+    text = ((const void *(*)(s32, s32))get_localized_text_entry)(group, entry);
     if (sub_entry >= 0) {
         sub_text = get_localized_text_entry(0x1C, sub_entry);
     }

@@ -18,11 +18,10 @@ int strncmp(const char*, const char*, unsigned long);
 char* strncat(char*, const char*, unsigned long);
 s32 queue_destruction__7TObjectFv(void*);
 s32 TWindowShortListCtrl__check_controller_button(void*, int);
-s32 TWindow__close(int);
+s32 TWindow__close(void *);
 s32 TWindowCtrlMain__sub_8024CE58();
-s32 get_window_layout_position(s32);
-s32 send_and_handle__6TLobbyFii(u32, void*, s32);
-u32 set_window_mode_4__6TLobbyFPvll(s32, void*, s32);
+void *get_window_layout_position(s32);
+s32 send_and_handle__6TLobbyFPCvi(void *, void*, s32);
 extern ControllerInputStateResultWin controller_input_state;
 extern s32 current_lobby_id;
 extern TObject* tl_07;
@@ -119,7 +118,7 @@ void TObjResultWin::build_result_text() {
 }
 void TObjResultWin::run_task() {
     s32 temp_r0;
-    if ((u32) m_window == 0U) {
+    if (m_window == NULL) {
         if (TWindowCtrlMain__sub_8024CE58() != 0) {
             create_window();
         }
@@ -140,12 +139,12 @@ void TObjResultWin::run_task() {
     }
 }
 void TObjResultWin::create_window() {
-    m_window = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x41), challenge_result_window_extent, 1);
-    if ((u32) m_window != 0U) {
+    m_window = TLobby::set_window_mode_4(get_window_layout_position(0x41), challenge_result_window_extent, 1);
+    if (m_window != NULL) {
         if (TCameraCtrl::get_camera_id() == 4) {
             ((TUnk_804CDFE8 *)m_window)->set_position_xy(challenge_result_split_screen_position, challenge_result_split_screen_position);
         }
-        send_and_handle__6TLobbyFii(m_window, m_text, 0);
+        send_and_handle__6TLobbyFPCvi(m_window, m_text, 0);
         ((TLobby *)m_window)->set_field_1c(challenge_result_window_depth);
     }
 }

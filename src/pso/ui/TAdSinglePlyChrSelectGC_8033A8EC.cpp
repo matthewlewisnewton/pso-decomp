@@ -5,6 +5,7 @@
 #include "pso/system/PadRumble.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_8001C5E8.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_8033A8EC.h"
+#include "pso/misc/TCheckMemoryCard.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 #include "pso/system/main_loop.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -56,7 +57,6 @@ struct TAdSinglePlyChrSelectGC__sub_8033B5F0;
 s32 setup__23TAdSinglePlyChrSelectGCFi(s32);
 s32 TAdSinglePlyChrSelectGC__sub_801FDA4C();
 
-u8 * create_check_memory_card__23TAdSinglePlyChrSelectGCFPvPvPv(void *, void *, void *);
 int request_queued_main_phase(void*);
 s32 call_funcs_reverse__6TLobbyFPvUi(void *, int);
 extern void *character_select_scene_resource_callbacks[];
@@ -295,7 +295,7 @@ void TAdSinglePlyChrSelectGC::handle_load_result() {
         decrypt_char_data__23TAdSinglePlyChrSelectGCFPv(obj);
         if (init_and_register__23TAdSinglePlyChrSelectGCFi(obj) == 0) {
             lbl_805D6D90 &= ~1;
-            ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x38)))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x6D), 1);
+            ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x38)))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x6D), 1);
             *(s32 *)((s8 *)((u8 *)this) + 0x2C) = 0xB;
             init_warp();
             if (obj != 0U) {
@@ -306,7 +306,7 @@ void TAdSinglePlyChrSelectGC::handle_load_result() {
             if (r != 7) {
                 *(s32 *)((s8 *)((u8 *)this) + 0x2C) = 0xC;
                 lbl_805D6D90 &= ~1;
-                ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x38)))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0xA), 1);
+                ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x38)))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0xA), 1);
                 if (r == 6) {
                     init_warp();
                 } else {
@@ -388,7 +388,7 @@ void TAdSinglePlyChrSelectGC::sub_8033B0AC() {
 
 void TAdSinglePlyChrSelectGC::start_check_memory_card() {
     u8 *temp_r3;
-    *(u8 **)((s8 *)((u8 *)this) + 0x40) = create_check_memory_card__23TAdSinglePlyChrSelectGCFPvPvPv(this, NULL, NULL);
+    unk_40 = create_check_memory_card(this, 0, 0);
     temp_r3 = (u8 *)(*(u8 **)((s8 *)((u8 *)this) + 0x40));
     if (temp_r3 != NULL) {
         TAdSinglePlyChrSelectGC__sub_8033B9E0(temp_r3);
@@ -396,9 +396,9 @@ void TAdSinglePlyChrSelectGC::start_check_memory_card() {
     *(s32 *)((s8 *)((u8 *)this) + 0x2C) = 1;
 }
 void TAdSinglePlyChrSelectGC::set_char_slots(s32 arg1, s32 arg2) {
-    ((TLobby *)(*(s32 *)((s8 *)this + 0x38)))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(arg1), 1);
+    ((TLobby *)(*(s32 *)((s8 *)this + 0x38)))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(arg1), 1);
     if (arg2 != -1) {
-        ((TLobby *)(*(s32 *)((s8 *)this + 0x38)))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(arg2), 8);
+        ((TLobby *)(*(s32 *)((s8 *)this + 0x38)))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(arg2), 8);
     }
 }
 int TAdSinglePlyChrSelectGC__sub_8033B244(void* p) { return request_queued_main_phase(p); }
@@ -611,8 +611,8 @@ void TAdSinglePlyChrSelectGC__sub_8033B9E0(void* p) { *(s32*)((char*)p + 0x40) =
 
 void TAdSinglePlyChrSelectGC__sub_8033B9EC(void* p) { *(s32*)((char*)p + 0x4c) = 1; }
 
-u8 TAdSinglePlyChrSelectGC__sub_8033B9F8(u8 *arg0) {
-    return (u8) (*(s32 *)((s8 *)arg0 + 0x3C) == 1);
+s32 TAdSinglePlyChrSelectGC__sub_8033B9F8(TCheckMemoryCard *card) {
+    return card->m_3c == 1;
 }
 
 s32 TAdSinglePlyChrSelectGC::has_no_save_files() {

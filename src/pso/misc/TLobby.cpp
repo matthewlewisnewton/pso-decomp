@@ -15,7 +15,7 @@ int get_instance__15TAdPlayerLoadGCFv(void*);
 s32 get_option_field_C__17TWindowOptionCtrlFv();
 
 void *__nw__7TObjectFUl(int);
-void *TAdScrollWinGC__ct(TAdScrollWinGC *arg0, void *arg1, s32 arg2, s32 arg3);
+void *TAdScrollWinGC__ct(TAdScrollWinGC *arg0, void *arg1, s32 arg2, const void *text);
 s32 strncpy(void *, s32, s32);
 extern u8 lobby_scroll_text_buffer[];
 extern s32 TLobby__data_805D5594;
@@ -53,7 +53,7 @@ void TLobby::open_scroll_text_window(s32 arg0) {
         lobby_scroll_text_buffer[0xFFF] = 0;
         obj = __nw__7TObjectFUl(0x54);
         if (obj != 0) {
-            obj = TAdScrollWinGC__ct((TAdScrollWinGC *)obj, (void *)tl_window, 2, (s32)lobby_scroll_text_buffer);
+            obj = TAdScrollWinGC__ct((TAdScrollWinGC *)obj, (void *)tl_window, 2, lobby_scroll_text_buffer);
         }
         lobby_scroll_text_window = obj;
     }

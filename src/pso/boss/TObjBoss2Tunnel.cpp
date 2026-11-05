@@ -1206,18 +1206,18 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
         lbl_805D4E9C = window_size[0] - 40.0f;
         boss2_tunnel_message_shown_flag = 1;
     }
-    win = (TWindowMessage *)TLobby::create_message_window((s32)window_pos, (s32)window_size, (u32)1, (s16)4);
+    win = (TWindowMessage *)TLobby::create_message_window(window_pos, window_size, (u32)1, (s16)4);
     if (win != NULL) {
         switch (arg0) {
         case -2:
         case -9:
-            ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 3), 3);
+            ((TLobby *)win)->send_and_handle(((const void *(*)(s32, s32))get_localized_text_entry)(0x24, 3), 3);
             break;
         case -4:
-            ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 0xD), 3);
+            ((TLobby *)win)->send_and_handle(((const void *(*)(s32, s32))get_localized_text_entry)(0x24, 0xD), 3);
             break;
         default:
-            ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 0xC), 3);
+            ((TLobby *)win)->send_and_handle(((const void *(*)(s32, s32))get_localized_text_entry)(0x24, 0xC), 3);
             break;
         }
         ((TLobby *)win)->set_field_1c(36900.0f);
@@ -1273,9 +1273,9 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
         lbl_805D4EA4 = window_size[0] - 40.0f;
         lbl_805D4EA8 = 1;
     }
-    win = (TWindowMessage *)TLobby::create_message_window((s32)window_pos, (s32)window_size, (u32)1, (s16)4);
+    win = (TWindowMessage *)TLobby::create_message_window(window_pos, window_size, (u32)1, (s16)4);
     if (win != NULL) {
-        ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 0xB), 3);
+        ((TLobby *)win)->send_and_handle(((const void *(*)(s32, s32))get_localized_text_entry)(0x24, 0xB), 3);
         ((TLobby *)win)->set_field_1c(36900.0f);
     }
     win->complete_reveal();

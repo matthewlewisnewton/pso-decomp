@@ -22,6 +22,8 @@
 #include "pso/misc/TWindowHelpItem.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubComCard_80265410.h"
 
 extern const f32 lbl_805DD160;
 extern "C" {
@@ -122,9 +124,6 @@ void align_menu_entry_positions(Win_80265C30 *self);
 void layout_entries__11TWindowMenuFv(u8 *arg0);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void* p, int a1, int a2, int a3);
 void fn_80266378(s32 arg0);
-u8 * create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
-u8 * init_shop_judgment_window(void* p);
-s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 void render__11TWindowMenuFv(TWindowMenu *arg0);
 void * __dt__11TWindowMenuFv(void *arg0, s16 arg1);
 u8 * TWindowMenu__ct(u8 *arg0, u32 arg1, s32 arg2, s32 arg3);
@@ -138,7 +137,7 @@ s32 construct_type1_heading__20TWindowSubStatusDispFll(s32, s32, s32);
 void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 void set_text_entry_string(u8 *arg0, u32 str, s32 arg2);
 void update_chat_window(void* p);
-s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3);
 extern s32 __vt__11TWindowMenu[];
 extern const f64 lbl_8044F330;
 extern RecoveredGlobal_80266378_lbl_804D05A8 lbl_804D05A8;
@@ -655,7 +654,7 @@ void fn_80266378(s32 arg0) {
     *(s32 *)((s8 *)&lbl_804D05A8.value + 4) = arg0;
 }
 
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3) {
+u8 *create_yes_no_window(const WindowLayoutPosition *arg0, s32 arg1, u32 arg2, u32 arg3) {
   u8 *temp_r31;
   u8 *window_menu;
   window_menu = (u8 *) ((u8 *)create_window_menu(arg0, 2, arg1));
@@ -687,9 +686,9 @@ u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3) {
   return (u8 *) window_menu;
 }
 
-u8 * init_shop_judgment_window(void* p) { return create_yes_no_window((s32)p, 4, (u32)(0), (u32)(0)); }
+u8 * init_shop_judgment_window(const WindowLayoutPosition *layout) { return create_yes_no_window(layout, 4, (u32)(0), (u32)(0)); }
 
-s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2) {
+s32 create_window_menu(const WindowLayoutPosition *arg0, s32 arg1, s32 arg2) {
     s32 temp_r3;
     s32 var_r0;
     ((s32 (*)(void *))fn_80266378)((void *)arg1);
@@ -706,7 +705,7 @@ void TAdChrSelASlotGC::check_room_seq_4(s32 arg1) {
     ((int (*)(void*, void*, void*))create_window_menu)((void*)arg0, (void*)arg1, (void*)(4));
 }
 
-s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 temp_r31;
     s32 temp_r3;
     s32 var_r0;

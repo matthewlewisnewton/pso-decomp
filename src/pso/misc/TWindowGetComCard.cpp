@@ -13,6 +13,7 @@
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/object/TObjCityMainWarp.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct RecoveredGlobal_80252FCC___vt__17TWindowGetComCard {
     s32 value;
@@ -40,7 +41,6 @@ s32 text_builder_append();
 s32 __ct__7TObjectFP7TObject();
 void TObjPlayer__sub_8024ABDC(s32 arg0);
 void fn_8024AC64(s32 arg0);
-s32 set_window_mode_4__6TLobbyFPvll(void *, void *, int);
 extern s32 lbl_8044ED94[];
 extern s32 lbl_8044ED9C[];
 extern void *__vt__17TWindowGetComCard[];
@@ -64,7 +64,6 @@ int fn_80252CBC(void* p);
 void TLobby__sub_8024AC20(s32 arg0);
 s32 TWindowCtrl__sub_8024A314();
 void TWindowReturnCity__sub_8024ACA8(s32 arg0);
-void TWindow__close(u8 *arg0);
 s32 init_parts__10TObjPlayerFv();
 
 void TWindowFukidasi__sub_80252C38(void* p) { *(u8*)((char*)p + 0x71) |= 0x4; }
@@ -151,9 +150,9 @@ TWindowGetComCard::~TWindowGetComCard() {
         TWindow__close((u8 *)(*(void **)((s8 *)this + 0x20)));
         this->m_20 = 0U;
     }
-    if ((u32) this->m_1c != 0U) {
+    if (this->m_1c != NULL) {
         TWindow__close((u8 *)(*(void **)((s8 *)this + 0x1C)));
-        this->m_1c = 0U;
+        this->m_1c = NULL;
     }
     TWindowReturnCity__sub_8024ACA8(local_client_id);
     TLobby__sub_8024AC20(local_client_id);
@@ -168,7 +167,7 @@ u8 *TWindowGetComCard__ct(TWindowGetComCard *window_get_com_card) {
     __ct__7TObjectFP7TObject();
     *(s32 **)((s8 *)window_get_com_card + 0x18) = &(*(RecoveredGlobal_80252FCC___vt__17TWindowGetComCard *)&__vt__17TWindowGetComCard).value;
     *(s32 *)((s8 *)window_get_com_card + 0) = (s32) TWindowGetComCard__name;
-    window_get_com_card->m_1c = set_window_mode_4__6TLobbyFPvll(lbl_8044ED94, lbl_8044ED9C, 1);
+    window_get_com_card->m_1c = TLobby::set_window_mode_4(lbl_8044ED94, lbl_8044ED9C, 1);
     window_get_com_card->m_20 = 0;
     if (init_com_card__17TWindowSubComCardFv() != 0) {
         temp_r31 = (s32)TWindowGetComCard__sub_8007B594();
@@ -177,10 +176,10 @@ u8 *TWindowGetComCard__ct(TWindowGetComCard *window_get_com_card) {
         text_builder_append();
         TWindowSubStatusDisp::get_message_10(0x36);
         text_builder_append();
-        ((TLobby *)(window_get_com_card->m_1c))->send_and_handle((int) (get_shared_text_buffer()), 2);
+        ((TLobby *)(window_get_com_card->m_1c))->send_and_handle(((const void *(*)())get_shared_text_buffer)(), 2);
         window_get_com_card->m_28 = 0;
     } else {
-        ((TLobby *)(window_get_com_card->m_1c))->send_and_handle((int) (TWindowSubStatusDisp::get_message_10(0x37)), 0);
+        ((TLobby *)(window_get_com_card->m_1c))->send_and_handle(TWindowSubStatusDisp::get_message_10(0x37), 0);
         window_get_com_card->m_28 = 0x384;
     }
     if (get_player_by_client_id(local_client_id) != 0U) {

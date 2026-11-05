@@ -11,6 +11,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/TObjChallengeRetry.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 #pragma readonly_strings on
 
@@ -30,17 +31,16 @@ struct S_80072994 {
     W4_80072994 e[5];
 };
 
-struct Obj_80072BB0 { u8 pad[0x30]; u32 f30; };
+struct Obj_80072BB0 { u8 pad[0x30]; void *f30; };
 
 extern "C" {
 void TLobby__sub_80072880(u8 *arg0);
 void TLobby__sub_800728FC(u8 *arg0);
 void TLobby__sub_80072AB8(void *arg0);
 s32 TLobby__sub_8006FBE4();
-void TWindow__close(u8 *arg0);
 s32 TQuestVmDownLoadServer__sub_8006EF6C(s32);
-s32 get_window_layout_position(s32);
-u32 check_room_seq_4__16TAdChrSelASlotGCFl(s32, s32);
+void *get_window_layout_position(s32);
+u32 check_room_seq_4__16TAdChrSelASlotGCFl(void *, s32);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 void TLobby__sub_8024AC20(s32 arg0);
 s32 get_player_by_client_id(s32);
@@ -60,7 +60,6 @@ s32 get_selected_menu_value(u32);
 s32 challenge_retry_cmd_table[3] = { 1, 0, 0 };
 extern s8 controller_input_state[];
 s32 check_flag_100__10TObjPlayerFPv();
-u32 set_window_mode_4__6TLobbyFPvll(s32, void *, s32);
 __declspec(section ".data") f32 challenge_retry_window_pos[2] = { 360.0f, 125.0f };
 
 const char *TObjChallengeRetry__class_name = "TObjChallengeRetry";
@@ -203,10 +202,10 @@ void TObjChallengeRetry::sub_80072BB0() {
         TWindow__close((u8 *)((void *)((Obj_80072BB0 *)this)->f30));
         ((Obj_80072BB0 *)this)->f30 = 0;
     }
-    ((Obj_80072BB0 *)this)->f30 = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x39), challenge_retry_window_pos, 1);
+    ((Obj_80072BB0 *)this)->f30 = TLobby::set_window_mode_4(get_window_layout_position(0x39), challenge_retry_window_pos, 1);
     if (((Obj_80072BB0 *)this)->f30 != 0) {
         ((TLobby *)(((Obj_80072BB0 *)this)->f30))->set_field_1c(70200.0f);
-        ((TLobby *)(((Obj_80072BB0 *)this)->f30))->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x5E), 1);
+        ((TLobby *)(((Obj_80072BB0 *)this)->f30))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x5E), 1);
     }
 }
 

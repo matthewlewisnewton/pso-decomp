@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TLobby.h"
 #include "pso/quest/TQuestListVMData.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
 #include "pso/misc/TShopWindowBase.h"
@@ -21,6 +22,9 @@
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/Language.h"
+#include "pso/misc/TWindowMessage.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubComCard_80265410.h"
 
 struct VBase18_80218570 { char pad[0x18]; };
 struct VObj18_80218570 : VBase18_80218570 {
@@ -166,7 +170,7 @@ struct Obj_8021916C {
     s32 f2370;
     void *f2374;
     u8 pad2378[4];
-    u32 f237C;
+    void *f237C;
     void *f2380;
 };
 struct Rec_802194BC { u8 pad[0xD]; char name[0x20]; char desc[0x80]; u8 padAD[0xB4 - 0xAD]; s32 slot; s32 type; };
@@ -188,17 +192,13 @@ s32 strcmp(const char *, const char *);
 s32 is_downloadable_new_entry__12TQuestListVMFPvPv(QL_802193F0 *q, Ent_802193F0 *e);
 int get_entity_id(int);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
-void send_and_handle__6TLobbyFii(u32, void *, int);
-u32 create_message_window__6TLobbyFllUls(int, void *, int, u16);
-int get_window_layout_position(int);
+void send_and_handle__6TLobbyFPCvi(void *, void *, int);
 extern const f32 lbl_805DC6B8;
 extern const f32 lbl_805DC6BC;
 s32 TAdPlayerLoadGC__sub_801E1538(Dl_80218E94 *, s32);
 s32 poll_download__12TQuestListVMFv(void *);
 s32 get_selected_menu_value(void *);
 s32 calc_list_content_extent(void *);
-u32 set_window_mode_4__6TLobbyFPvll(int, void *, int);
 u32 create_item_list_window(void *, int, u16);
 char *strcpy(char *, const char *);
 void *memcpy(void *, const void *, unsigned long);
@@ -448,11 +448,11 @@ void TQuestListVM::open_confirm_window() {
     if (this->m_2380 == 0U) {
         QuestListWindowSize sp8 = lbl_8044BF48;
         u16 id = get_entity_id(*(s32 *)&this->m_24);
-        this->m_2380 = create_message_window__6TLobbyFllUls(get_window_layout_position(0x2E), &sp8, 1, id);
-        send_and_handle__6TLobbyFii(this->m_2380, (void *)(TQuestListVM__decrypted_quest_buffer + 0xB4), 1);
-        ((TLobby *)(this->m_2380))->set_field_1c(lbl_805DC6B8);
+        this->m_2380 = TLobby::create_message_window(get_window_layout_position(0x2E), &sp8, 1, id);
+        this->m_2380->send_and_handle(TQuestListVM__decrypted_quest_buffer + 0xB4, 1);
+        this->m_2380->set_field_1c(lbl_805DC6B8);
         if (TCameraCtrl::get_camera_id() >= 2) {
-            ((TUnk_804CDFE8 *)(this->m_2380))->set_position_xy(lbl_805DC6BC, lbl_805DC6BC);
+            this->m_2380->set_position_xy(lbl_805DC6BC, lbl_805DC6BC);
         }
     }
     if (this->m_2380 != 0U) {
@@ -556,7 +556,7 @@ void TQuestListVM::update_lobby_selection(void *arg0_) {
     if (arg0->f2374 != NULL && arg0->f237C != 0) {
         sel = select_cursor_entry__22TWindowSubShortCutListFv((u32)arg0->f2374);
         if (sel != arg0->f236C) {
-            send_and_handle__6TLobbyFii(arg0->f237C, arg0->recs[sel].name, 0x80);
+            send_and_handle__6TLobbyFPCvi(arg0->f237C, arg0->recs[sel].name, 0x80);
             arg0->f236C = sel;
             if (arg0->f2380 != NULL) {
                 TWindow__close((u8 *)arg0->f2380);
@@ -607,10 +607,10 @@ s32 TQuestListVM::build_download_list(void *p) {
             calc_list_content_extent(*(void **)(arg0 + 0x2374));
             ((TShopWindowBase *)arg0)->set_field_20((s32)((void *)6));
         }
-        if (*(u32 *)(arg0 + 0x237C) == 0U) {
+        if (*(void **)(arg0 + 0x237C) == NULL) {
             QuestListWindowSize sp8 = lbl_8044BF40;
-            *(u32 *)(arg0 + 0x237C) = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x2D), &sp8, 1);
-            send_and_handle__6TLobbyFii(*(u32 *)(arg0 + 0x237C), arg0 + 0x55, 0x80);
+            *(void **)(arg0 + 0x237C) = TLobby::set_window_mode_4(get_window_layout_position(0x2D), &sp8, 1);
+            send_and_handle__6TLobbyFPCvi(*(void **)(arg0 + 0x237C), arg0 + 0x55, 0x80);
             *(s32 *)(arg0 + 0x236C) = 0;
         }
     }

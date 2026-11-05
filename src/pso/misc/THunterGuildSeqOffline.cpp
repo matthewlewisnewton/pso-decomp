@@ -52,6 +52,7 @@ struct VObj_802136A4_80212D9C : Base_802136A4_80212D9C {
 #include "pso/THunterGuildWarning.h"
 #include "pso/TObject.h"
 #include "pso/misc/TWindowSubComCard.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 struct VBase_18_97738d { char pad[0x18]; };
 
 struct VObj_18_97738d : VBase_18_97738d {
@@ -142,7 +143,7 @@ struct V_A_80213474 : Base_A_80213474 {
 };
 
 extern "C" {
-s32 get_window_layout_position(s32);
+const void *get_window_layout_position(s32);
 s32 set_service_counter_camera(void *, int);
 extern const f32 lbl_805DC650;
 extern const f32 lbl_805DC654;
@@ -150,7 +151,6 @@ void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 s32 __dl__7TObjectFPv(void *);
-void TWindow__close(u8 *arg0);
 extern RecoveredGlobal_80213220___vt__22THunterGuildSeqOffline __vt__22THunterGuildSeqOffline;
 s32 THunterGuildSeqOffline__quest_result_callbacks[4];
 RecoveredGlobal_80213220_THunterGuildSeqOffline__data_80513DD8 THunterGuildSeqOffline__instance_table;
@@ -175,7 +175,7 @@ extern void *tl_00;
 void THunterGuildSeqOffline__sub_80213474(void *arg0);
 void THunterGuildSeqOffline__sub_80213410(void* p);
 s32 THunterGuildSeqOffline__sub_80213458(void);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
+u8 *create_yes_no_window(const void *arg0, s32 arg1, u32 arg2, u32 arg3);
 int fn_80223480(void*);
 f32 get_scale__15TShopWindowBaseFv(void *);
 int restore_player_state__13TShopSequenceFv(void*);

@@ -28,6 +28,7 @@
 #include "pso/quest/TQuestThread.h"
 #include "pso/ui/Language.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "stdio.h"
 #include "pso/misc/TOBoss4Rock.h"
@@ -41,6 +42,7 @@
 #include "pso/unk/text_80131ADC.h"
 #include "pso/unk/text_8026CB5C.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 #pragma readonly_strings on
 
@@ -56,8 +58,6 @@ s32 init_quest_script_context(s32, void *);
 s32 check_flag_100__10TObjPlayerFPv(void *);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 has_player_active_menu__11TWindowCtrlFv(s32);
-void TWindow__close(void *);
-void *get_window_layout_position(s32);
 void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, s32);
 void *update_window_mode_from_progress__6TLobbyFPv(void *, WindowPos *);
 s32 align_menu_entry_positions(u32);
@@ -178,7 +178,7 @@ TObjItemOKWindow::TObjItemOKWindow(TObject *parent) : TObject(parent) {
     pos.y = 80.0f;
     m_64 = update_window_mode_from_progress__6TLobbyFPv(get_window_layout_position(0x55), &pos);
     if (m_64 != NULL) {
-        ((TLobby *)m_64)->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x48), 0x81);
+        ((TLobby *)m_64)->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x48), 0x81);
     }
 }
 
@@ -231,7 +231,7 @@ TObjItemNameSelect::TObjItemNameSelect(TObject *parent) : TObject(parent) {
     pos.y = 80.0f;
     m_20 = update_window_mode_from_progress__6TLobbyFPv(get_window_layout_position(0x55), &pos);
     if (m_20 != NULL) {
-        ((TLobby *)m_20)->send_and_handle(TQuestVmDownLoadServer__sub_8006EF6C(0x46), 0x81);
+        ((TLobby *)m_20)->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x46), 0x81);
     }
 }
 

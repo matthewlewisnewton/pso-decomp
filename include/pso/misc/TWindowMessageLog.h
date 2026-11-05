@@ -15,7 +15,7 @@ struct TWindowMessageLog : public TWindowMessage {
     f32 m_94;
     static s32 get_active_photon_object();
     void update_scroll_position();
-    void append_line(s32 arg1);
+    void append_line(const void *text);
     void load_chat_history();
 };
 

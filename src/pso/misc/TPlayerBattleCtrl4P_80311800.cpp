@@ -9,20 +9,20 @@
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowSubComCard.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct RecoveredGlobal_80311A64_TPlayerBattleCtrl4P__data_80542E90 {
     u16 value;
     u8 remaining[0x1E];
 };
 
-struct Ids_80311C2C { s32 a; s32 b; s32 c; s32 d; };
+struct Ids_80311C2C { const void *a; s32 b; s32 c; s32 d; };
 
 struct O_80311C2C { u8 pad[0x20]; void *w0; void *w1; u8 pad2[0x294 - 0x28]; Ids_80311C2C *ids; };
 
 extern "C" {
 u32 get_player_by_client_id(s32);
 s32 check_player_flag1__6TLobbyFv();
-void TWindow__close(u8 *arg0);
 void send_code_45_to_window__19TPlayerBattleCtrl4PFPvii(void *arg0, s32 arg1, s32 arg2);
 s32 record_split_screen_battle_results(void *);
 s32 set_state__19TPlayerBattleCtrl4PFv(void *, int);
@@ -36,7 +36,6 @@ s32 get_selected_menu_value(void *);
 s32 align_menu_entry_positions(void *);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, int);
-void *set_window_mode_4__6TLobbyFPvll(void *, void *, int);
 void *get_window_layout_position(int);
 extern u8 lbl_80475B70[];
 void TLobby__sub_801036CC();
@@ -189,7 +188,7 @@ void TPlayerBattleCtrl4P::close_rematch_menu() {
 void TPlayerBattleCtrl4P::update_rematch_menu() {
     if (has_player_active_menu__11TWindowCtrlFv(local_client_id) == 0) {
         if (((O_80311C2C *)this)->w0 == NULL) {
-            ((O_80311C2C *)this)->w0 = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x53), lbl_80475B70, 1);
+            ((O_80311C2C *)this)->w0 = TLobby::set_window_mode_4(get_window_layout_position(0x53), lbl_80475B70, 1);
             if (((O_80311C2C *)this)->w0 != NULL) {
                 ((TLobby *)(((O_80311C2C *)this)->w0))->send_and_handle(((O_80311C2C *)this)->ids->a, 0x80);
             }

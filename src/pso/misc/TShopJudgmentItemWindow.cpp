@@ -20,6 +20,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/TPlyItem.h"
 #include "pso/ui/Language.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_802205E4 { char pad[0x18]; };
 struct VObj_802205E4 : Base_802205E4 {
@@ -164,7 +165,6 @@ extern "C" {
 int obj_getPtr2B0_20(u8 *p);
 void update_all__6TLobbyFi(s32 arg0);
 void play_cue_stream_file(s32 name);
-void TWindow__close(u8 *arg0);
 s32 get_selected_menu_value(int);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(int);
 extern s32 lbl_8044C1D4[];
@@ -179,16 +179,16 @@ void *memset(void *, int, unsigned long);
 s32 get_item_record__23TShopJudgmentItemWindowFPv(int, int, int);
 void set_judgment_target_flag(void *arg0, void *arg1);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
-s32 get_window_layout_position(s32);
+u8 *create_yes_no_window(const void *arg0, s32 arg1, u32 arg2, u32 arg3);
+const void *get_window_layout_position(s32);
 extern u8 lbl_8044C1B0[];
 void send_6x26_unequip_item__10TObjPlayerFPvPv(void *self, void *item);
 void send_6x25_equip_item(void *arg0, s32 arg1, s32 arg2);
 void TItemData__clear_unidentified_flag(void *arg0);
 u32 advance_item_id_counter(s32 client);
 u32 __nw__7TObjectFUl(int);
-u32 __ct__15TWindowHelpItemFPvUs(int, int, u16);
-u32 create__22TWindowLoadItemTextureFPv(int, u16);
+u32 __ct__15TWindowHelpItemFPvUs(int, const void *, u16);
+u32 create__22TWindowLoadItemTextureFPv(const void *, u16);
 extern u8 lbl_8044C1C0[];
 extern u8 lbl_8044C1CC[];
 extern s32 local_client_id;
@@ -496,7 +496,7 @@ void TShopJudgmentItemWindow::create_result_windows() {
         if ((u32) this->m_15c == 0U) {
             var_r29 = __nw__7TObjectFUl(0xBC);
             if (var_r29 != 0U) {
-                var_r29 = __ct__15TWindowHelpItemFPvUs(var_r29, (int) (get_window_layout_position(0x27)), ((s32 (*)(s32))get_entity_id)(this->m_24));
+                var_r29 = __ct__15TWindowHelpItemFPvUs(var_r29, get_window_layout_position(0x27), ((s32 (*)(s32))get_entity_id)(this->m_24));
             }
             this->m_15c = var_r29;
             if (((u32) this->m_15c != 0U) && (TLobby::is_camera_ctrl_active() > 2)) {

@@ -21,6 +21,7 @@ struct TLobbyFloorItemEntry {
 typedef char TLobbyFloorItemEntrySize[(sizeof(TLobbyFloorItemEntry) == 0x24) ? 1 : -1];
 typedef char TLobbyFloorItemEntryDataOffset[(offsetof(TLobbyFloorItemEntry, item_data) == 0x10) ? 1 : -1];
 
+class TWindowMessage;
 struct B_803FADA0;
 struct Self_803FD74C;
 struct Self_80402CE0;
@@ -380,9 +381,9 @@ struct TLobby : public TObject {
     static int get_global_63e0();
     static void load_player_data();
     static void send_card_window_state();
-    int send_and_handle(int a1, int a2);
-    static u8 *create_message_window(s32 arg0, s32 arg1, u32 arg2, s16 arg3);
-    static u8 *set_window_mode_4(void *arg0, s32 arg1, s32 arg2);
+    int send_and_handle(const void *text, int flags);
+    static TWindowMessage *create_message_window(const void *layout, const void *size, u32 kind, s32 slot);
+    static TWindowMessage *set_window_mode_4(const void *layout, const void *size, s32 mode);
     void update_window_mode_from_progress(void *arg1);
     void set_field_90(s32 v);
     void add_list_entry(s32 arg1, s32 arg2, s32 arg3);

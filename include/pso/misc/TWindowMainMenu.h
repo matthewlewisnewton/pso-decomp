@@ -5,6 +5,7 @@
 #include "pso/TObject.h"
 
 struct TWindowMenuMainMenu;
+class TWindowMessage;
 
 struct TWindowMainMenu : public TObject {
     virtual ~TWindowMainMenu();
@@ -27,7 +28,8 @@ struct TWindowMainMenu : public TObject {
     void set_scale_f();
     TWindowMenuMainMenu *m_1c;
     s32 m_20;
-    u8 unk_24[0x8];
+    TWindowMessage *m_message_window;
+    u32 m_28;
     u32 m_48;
     u32 m_4c;
     u16 m_50;
@@ -35,6 +37,10 @@ struct TWindowMainMenu : public TObject {
     u32 m_54;
     u8 _pad58[0x4];
     u32 m_5c;
+    u8 _pad44[0x8];
+    s32 m_menu_flags;
+    u8 _pad50[0x4];
+    s32 m_client_id;
     void update_trade_submenu();
     void update_submenu();
     void close_submenu(void* a1);

@@ -11,6 +11,7 @@
 #include "pso/ui/TAdEnterSerialAccessGC.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/quest/TQuestThread.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct RecoveredGlobal_80339480_lbl_804EF500 {
     s32 value;
@@ -41,7 +42,6 @@ struct T_8033954C { s32 f0; u8 pad[0x14]; void *vt; u8 pad2[0x40 - 0x1C]; s32 f4
 
 extern "C" {
 void queue_destruction__7TObjectFv(void *);
-void TWindow__close(u8 *arg0);
 extern u8 *password_entry_keyboard_control;
 extern s32 password_entry_dispatch_state;
 extern const f32 lbl_805DF9E8;

@@ -9,7 +9,7 @@ struct TWindowComCard : public TUnk_804CE018 {
     virtual void render();
     virtual void run_task();
     void set_display_value(s32 arg1, s32 arg2);
-    static u8 *create_for_card(s32 arg0, s32 arg1, s32 arg2);
+    static u8 *create_for_card(const void *layout, s32 arg1, s32 arg2);
     static void *create(void *arg0, void *arg1);
     void*get_kbd_ptr();
     void set_help_mode(s32 arg1);

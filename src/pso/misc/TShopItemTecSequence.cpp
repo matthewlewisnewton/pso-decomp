@@ -13,6 +13,7 @@
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/item/TItem.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_8021FEE0_8021FE6C { char pad[0x18]; };
 struct VObj_8021FEE0_8021FE6C : Base_8021FEE0_8021FE6C {
@@ -104,7 +105,6 @@ void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 s32 __dl__7TObjectFPv(void *);
-void TWindow__close(u8 *arg0);
 extern RecoveredGlobal_802203E4___vt__20TShopItemTecSequence __vt__20TShopItemTecSequence;
 extern RecoveredGlobal_802203E4_TShopItemTecSequence__data_80513EE0 TShopItemTecSequence__slot_table;
 extern s32 lbl_805D6250;

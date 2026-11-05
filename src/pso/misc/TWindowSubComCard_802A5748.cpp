@@ -12,7 +12,7 @@
 
 extern "C" {
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
+u8 *create_yes_no_window(const void *arg0, s32 arg1, u32 arg2, u32 arg3);
 s32 create_window_menu(s32, s32, s32);
 s32 get_selected_menu_value(s32);
 int queue_destruction__7TObjectFv(void*);
@@ -42,7 +42,7 @@ s32 TWindowMessageYesNo::is_child_visible() {
     return ((TWindowMenu *)(this->m_2c))->is_visible();
 }
 }
-s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 create_titled_window_menu(const void *arg0, s32 arg1, s32 arg2, s32 arg3);
 void initialize_option_dialog(void *arg0, s32 arg1, s32 arg2, f32 farg0) {
     *(s32 *)((s8 *)arg0 + 0x28) = create_window_menu(arg2, 1, *(s32 *)((s8 *)arg0 + 0x24));
     forward_trade_action_default__16TObjCityMainWarpFPviii((void *)(*(s32 *)((s8 *)arg0 + 0x28)), (int)arg1, 0x21, 0);
@@ -51,10 +51,10 @@ void initialize_option_dialog(void *arg0, s32 arg1, s32 arg2, f32 farg0) {
     ((TWindowSubComCard *)(*(s32 *)((s8 *)arg0 + 0x28)))->calc_layout_height(farg0);
 }
 
-void open_yes_no_prompt(TChCrTagPlBack *ch_cr_tag_pl_back, u32 arg1, s32 arg2, s32 arg3, f32 farg0) {
+void open_yes_no_prompt(TChCrTagPlBack *ch_cr_tag_pl_back, u32 arg1, s32 arg2, const void *arg3, f32 farg0) {
     s32 sp8;
     if (arg1 == 0U) {
-        *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x28) = create_window_menu(arg3, 1, *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x24));
+        *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x28) = ((s32 (*)(const void *, s32, s32))create_window_menu)(arg3, 1, *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x24));
     } else {
         *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x28) = (long) (create_titled_window_menu(arg3, 1, arg1, *(s32 *)((s8 *)ch_cr_tag_pl_back + 0x24)));
     }
@@ -63,5 +63,5 @@ void open_yes_no_prompt(TChCrTagPlBack *ch_cr_tag_pl_back, u32 arg1, s32 arg2, s
     TQuestThread::set_status_flag_80((void *)((int) (*(s32 *)((s8 *)ch_cr_tag_pl_back + 0x28))));
     ((TWindowSubComCard *)(*(s32 *)((s8 *)ch_cr_tag_pl_back + 0x28)))->calc_layout_height(farg0);
     ch_cr_tag_pl_back->get_position_offset(&sp8);
-    *(u8 **)((s8 *)ch_cr_tag_pl_back + 0x2C) = create_yes_no_window((s32)&sp8, (s32)(*(s32 *)((s8 *)ch_cr_tag_pl_back + 0x24)), (u32)(*(u8 **)((s8 *)ch_cr_tag_pl_back + 0x20)), (u32)(*(u32 *)((s8 *)ch_cr_tag_pl_back + 0x1C)));
+    *(u8 **)((s8 *)ch_cr_tag_pl_back + 0x2C) = create_yes_no_window(&sp8, (s32)(*(s32 *)((s8 *)ch_cr_tag_pl_back + 0x24)), (u32)(*(u8 **)((s8 *)ch_cr_tag_pl_back + 0x20)), (u32)(*(u32 *)((s8 *)ch_cr_tag_pl_back + 0x1C)));
 }

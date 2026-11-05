@@ -16,6 +16,7 @@
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_8021B974 { char pad[0x18]; };
 struct VObj_8021B974 : Base_8021B974 {
@@ -208,9 +209,9 @@ s32 get_shop_weapon_stock_item(void *, int, s32);
 int TShopEquipmentListWindow__sub_8021C85C(int a0);
 s32 get_shop_text(s32);
 void *__nw__7TObjectFUl(u32);
-void *__ct__15TWindowHelpItemFPvUs(void *, s32, u16);
+void *__ct__15TWindowHelpItemFPvUs(void *, const void *, u16);
 s32 calc_list_content_extent(void *);
-s32 get_window_layout_position(s32);
+const void *get_window_layout_position(s32);
 void *create_item_list_window(s32, s32, u16);
 s32 get_item_count__24TShopEquipmentSellWindowFv(void *a, s32 b);
 void *create_cost_window(u16);
@@ -222,16 +223,15 @@ void send_6x25_equip_item(void *, s32, s32);
 }
 s32 is_single_purchase_shop_item(u8 *p);
 extern "C" {
-void TWindow__close(void *);
 s32 get_selected_menu_value(void *);
 extern const s32 local_client_id;
 f32 get_scale__15TShopWindowBaseFv(void *);
-u32 create_yes_no_window(int, u16, int, int);
+u32 create_yes_no_window(const void *, u16, int, int);
 s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
 
 void *__dt__24TShopEquipmentListWindowFv(TShopEquipmentListWindow *arg0, s16 arg1);
-s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
+s32 create_window_menu(const void *arg0, s32 arg1, s32 arg2);
 s32 align_menu_entry_positions(u32);
 void __dl__7TObjectFPv(void *);
 void *__dt__15TShopWindowBaseFv(void *self, s16 m);

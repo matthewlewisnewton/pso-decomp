@@ -20,6 +20,7 @@
 #include "types.h"
 #include "pso/ui/Language.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 typedef struct Lobby_801C2898 {
     u8 pad0[0x268];
@@ -620,7 +621,7 @@ typedef struct Lobby_801C3AF4 {
     s32 state;
     s32 next;
     u8 pad28[0x40 - 0x28];
-    s32 *msgs;
+    const void **msgs;
     u8 pad44[0x4C - 0x44];
     void *window;
     u8 pad50[0x58 - 0x50];
@@ -787,8 +788,6 @@ extern s32 TLobby__battle_ctrl_default_value;
 void init_char_slots__6TLobbyFv(void);
 void close_and_play_effect__6TLobbyFii(int arg0, s32 arg1);
 void set_slot__23TAdSinglePlyChrSelectGCFi(u16);
-void TWindow__close(void *);
-void *set_window_mode_4__6TLobbyFPvll(void *, void *, s32);
 void *get_window_layout_position(s32);
 extern Flags_801C3AF4 *controller_input_state[];
 extern s32 local_client_id;
@@ -859,14 +858,12 @@ void send_battle_mode_params__6TLobbyFcii(s8 arg0, s32 arg1, s32 arg2);
 void handle_battle_result__6TLobbyFii(int arg0, s32 arg1);
 void close_and_play_effect__6TLobbyFii(int arg0, s32 arg1);
 u32 __nw__7TObjectFUl(s32);
-void TWindow__close(void *);
 s32 has_player_active_menu__11TWindowCtrlFv(s32);
 u32 TWindowDuelResult__ct(void *, s32);
 s32 get_selected_menu_value(void *);
 s32 align_menu_entry_positions(void *);
 s32 forward_trade_action_default__16TObjCityMainWarpFPviii(void *, s32, int, int);
 void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, int);
-void *set_window_mode_4__6TLobbyFPvll(void *, void *, s32);
 void *get_window_layout_position(s32);
 extern u8 lbl_80447008[];
 extern u8 lbl_80447010[];
@@ -884,8 +881,6 @@ s32 check_all_players_ready__6TLobbyFv(void *);
 void TLobby__sub_801C2C34(void *);
 void clear_battle_player_ready_flags(void);
 u32 __nw__7TObjectFUl(s32);
-void TWindow__close(void *);
-void *set_window_mode_4__6TLobbyFPvll(void *, void *, s32);
 void *get_window_layout_position(s32);
 int sprintf(char *str, const char *format, ...);
 void strncpy(void *, void *, int);
@@ -1278,7 +1273,7 @@ void TLobby__sub_801C3AF4(Lobby_801C3AF4 *self) {
             set_slot__23TAdSinglePlyChrSelectGCFi(s > 0 ? s : 0);
         }
         Pair_801C3AF4 p = lbl_80446FB4[0];
-        self->window = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0xB3), &p, 1);
+        self->window = TLobby::set_window_mode_4(get_window_layout_position(0xB3), &p, 1);
         if (self->window != NULL) {
             ((TLobby *)(self->window))->send_and_handle(self->msgs[idx], 0x80);
         }
@@ -1545,9 +1540,9 @@ void update_duel_result__6TLobbyFPv(u8 *arg0) {
             q = (void *)update_battle_controller__10TObjPlayerFv();
             if (local_client_id == TLobby__designated_client_id && has_player_active_menu__11TWindowCtrlFv(local_client_id) == 0) {
                 if (*(void **)((s8 *)arg0 + 0x4C) == NULL) {
-                    *(void **)((s8 *)arg0 + 0x4C) = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x53), lbl_80446FA4, 1);
+                    *(void **)((s8 *)arg0 + 0x4C) = TLobby::set_window_mode_4(get_window_layout_position(0x53), lbl_80446FA4, 1);
                     if (*(void **)((s8 *)arg0 + 0x4C) != NULL) {
-                        ((TLobby *)(*(void **)((s8 *)arg0 + 0x4C)))->send_and_handle(*(s32 *)((s8 *)(*(s32 **)((s8 *)arg0 + 0x40)) + 0), 0x80);
+                        ((TLobby *)(*(void **)((s8 *)arg0 + 0x4C)))->send_and_handle(*(const void **)((s8 *)(*(s32 **)((s8 *)arg0 + 0x40)) + 0), 0x80);
                     }
                 }
                 if (*(void **)((s8 *)arg0 + 0x50) == NULL) {
@@ -1696,13 +1691,13 @@ void update_battle_intro__6TLobbyFPv(Lobby_801C49B8 *self) {
     case 0:
         if (self->window == NULL) {
             Pair_801C49B8 p = lbl_80446F94[0];
-            self->window = set_window_mode_4__6TLobbyFPvll(get_window_layout_position(0x52), &p, 1);
+            self->window = TLobby::set_window_mode_4(get_window_layout_position(0x52), &p, 1);
         }
         lbl_805D5DA4 = 0;
         self->state = 1;
         break;
     case 1:
-        ((TLobby *)(self->window))->send_and_handle((s32)self->msg, 0x80);
+        ((TLobby *)(self->window))->send_and_handle(self->msg, 0x80);
         self->timer = 0xF0;
         self->state = 2;
         break;
@@ -1733,7 +1728,7 @@ void update_battle_intro__6TLobbyFPv(Lobby_801C49B8 *self) {
             }
         }
         sprintf(battle_intro_message_buffer, *(char **)(self->cfg + 0x18), names[0].s, names[1].s, names[2].s, names[3].s);
-        ((TLobby *)(self->window))->send_and_handle((s32)battle_intro_message_buffer, 0x80);
+        ((TLobby *)(self->window))->send_and_handle(battle_intro_message_buffer, 0x80);
         self->timer = 0xF0;
         self->state = 4;
         break;
@@ -1845,7 +1840,6 @@ void update_player_battle_ctrl_state(void *arg0) {
 
 extern "C" {
 void update_player_battle_ctrl_state(void *arg0);
-void TWindow__close(void *);
 extern s32 lbl_805D55C0;
 }
 

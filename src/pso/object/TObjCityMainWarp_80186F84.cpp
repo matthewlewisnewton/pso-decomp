@@ -12,6 +12,7 @@
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowSubShortMail.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 void initialize_option_dialog(void *dialog, s32 message, s32 position, f32 width);
 
@@ -43,7 +44,6 @@ extern "C" {
 s32 get_current_floor(void);
 f32 xz_distance_squared(void *, void *);
 void *get_player_by_client_id(s32 i);
-void TWindow__close(u8 *arg0);
 char *strcpy(char *, const char *);
 extern s32 local_client_id;
 extern const f32 lbl_805DBCA8;

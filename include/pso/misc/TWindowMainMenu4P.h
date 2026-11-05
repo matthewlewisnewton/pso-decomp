@@ -12,10 +12,6 @@ struct TWindowMainMenu4P : public TWindowMainMenu {
     virtual void vfunc_9();
     void render();
     void run_task();
-    u8 unk_44[0x8];
-    s32 m_4c;
-    u8 unk_50[0x4];
-    u32 m_54;
     u8 unk_58[0x8];
 };
 

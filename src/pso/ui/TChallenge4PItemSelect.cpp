@@ -89,7 +89,6 @@ void fn_8034BE38(TObjPlayer *);
 void TLobby__sub_8024AC20(u16);
 void update_entries__18TChallenge4PResultFii(s32 arg0, s32 arg1);
 s32 __ct__18TChallenge4PResultFP7TObjectUsl(void *, s32, int, s32);
-void TWindow__close(u8 *arg0);
 u32 __nw__7TObjectFUl(s32);
 
 }

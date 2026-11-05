@@ -294,7 +294,7 @@ void TWindowOptionCtrl::run_task() {
         break;
     case 25:
         if (self->f44 == NULL) {
-            self->f44 = (void *)((TWindowOptionCtrl *)((void *)TWindowOptionCtrl::get_option_entry(0xCF)))->create_serial_info_window(1);
+            self->f44 = ((TWindowOptionCtrl *)((void *)TWindowOptionCtrl::get_option_entry(0xCF)))->create_serial_info_window(1);
         }
         ((TWindowOptionCtrl *)(self->f28))->open();
         self->state = 0x1A;

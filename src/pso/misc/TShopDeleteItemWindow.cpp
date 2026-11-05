@@ -15,6 +15,8 @@
 #include "pso/misc/TWindowHelpItem.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubItem.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubComCard_80265410.h"
 #include "pso/ui/TWindowInputNumber.h"
 #include "pso/misc/TShopArmorListWindow.h"
 #include "pso/misc/TShopGetItemWindow.h"
@@ -22,6 +24,7 @@
 #include "pso/misc/TWindowSetLevelUp.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/unk/text_80222C28.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_80337910 { char pad[0x18]; };
 struct VObj_80337910 : Base_80337910 {
@@ -83,15 +86,12 @@ s32 remove_bank_item_amount__18TCheckRoomSequenceFiii(int, int, int);
 s32 copy_item_record__18TCheckRoomSequenceFiPvi(int, void *, int);
 s32 copy_bank_to_card_window(int);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
-void TWindow__close(void *);
 s32 get_selected_menu_value(int);
 s32 select_cursor_entry__22TWindowSubShortCutListFv(int);
 void TShopDeleteItemWindow__sub_80337E2C(Win_80337C2C *win);
 void calc_list_content_extent(void *);
 u16 get_entity_id(void *);
 f32 get_scale__15TShopWindowBaseFv(void *);
-u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
-void *get_window_layout_position(int);
 s32 copy_bank_item_with_stack_limit(s32 idx, void *data, s32 *out, s32 slot);
 s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
@@ -178,7 +178,7 @@ void TShopDeleteItemWindow::handle_number_input() {
     if (*(void **)(((u8 *)this) + 0x38) != 0 && ((TWindowInputNumber *)(*(void **)(((u8 *)this) + 0x38)))->is_confirmed() != 0) {
         if (*(void **)(((u8 *)this) + 0x34) == 0) {
             u32 id = get_entity_id(*(void **)(((u8 *)this) + 0x24));
-            *(void **)(((u8 *)this) + 0x34) = create_yes_no_window((s32)(get_window_layout_position(0x2B)), id, 0, 0);
+            *(void **)(((u8 *)this) + 0x34) = create_yes_no_window(get_window_layout_position(0x2B), id, 0, 0);
             ((TCheckRoomSequence *)(*(void **)(((u8 *)this) + 0x34)))->set_ready_flag();
             ((TWindowSubComCardList *)(*(void **)(((u8 *)this) + 0x34)))->set_selected_index(1);
             ((TUnk_804CDFE8 *)(*(void **)(((u8 *)this) + 0x34)))->set_position_xy(get_scale__15TShopWindowBaseFv(this), get_scale__15TShopWindowBaseFv(this));
@@ -234,7 +234,7 @@ s32 TShopDeleteItemWindow::update_item_select(void *arg0) {
                 ((TShopWindowBase *)self)->set_field_20(2);
             } else {
                 id = get_entity_id(self->item);
-                self->f34 = create_yes_no_window((s32)(get_window_layout_position(0x2B)), id, 0, 0);
+                self->f34 = create_yes_no_window(get_window_layout_position(0x2B), id, 0, 0);
                 ((TCheckRoomSequence *)(self->f34))->set_ready_flag();
                 ((TWindowSubComCardList *)(self->f34))->set_selected_index(1);
                 ((TUnk_804CDFE8 *)(self->f34))->set_position_xy(get_scale__15TShopWindowBaseFv(self), get_scale__15TShopWindowBaseFv(self));

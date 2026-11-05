@@ -15,6 +15,9 @@
 #include "pso/misc/TLanguage.h"
 #include "pso/ui/Language.h"
 #include "pso/map/FloorArea.h"
+#include "pso/misc/TCheckMemoryCard.h"
+#include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/ui/TAdSinglePlyChrSelectGC_8033A8EC.h"
 struct CardFileInfo_804C88C0 {
     char filename[0x20];
     char comment[0x20];
@@ -2105,7 +2108,7 @@ extern RecoveredGlobal_801FF200_lbl_80513910 chr_select_serial_seeds;
 extern u32 card_character_save_buffer;
 extern s32 card_load_sequence_state;
 s32 encrypt_save_and_write__23TAdSinglePlyChrSelectGCFv(void);
-s32 get_localized_text_entry(s32, s32);
+const void *get_localized_text_entry(s32, s32);
 s8 func_801A5E54__Fv(void);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 void render_frame__23TAdSinglePlyChrSelectGCFv(void);
@@ -2117,10 +2120,6 @@ void run_save_load_sequence__23TAdSinglePlyChrSelectGCFv(void);
 s32 get_field_118__22TAdEnterSerialAccessGCFv();
 void TLobby__sub_80269C90(void);
 void TLobby__sub_80269CA4(s32);
-Win_801FEE14 *create_message_window__6TLobbyFllUls(V2_801FEE14 *, V2_801FEE14 *, s32, s32);
-void TAdSinglePlyChrSelectGC__sub_8033B9EC(void);
-s32 TAdSinglePlyChrSelectGC__sub_8033B9F8(Win_801FEE14 *);
-Win_801FEE14 *create_check_memory_card__23TAdSinglePlyChrSelectGCFPvPvPv(void *, s32, s32);
 void func_803DCDFC__Fv(void);
 extern V2_801FEE14 lbl_8044A7D0[];
 extern V2_801FEE14 lbl_8044A7D8[];
@@ -2133,7 +2132,7 @@ extern s32 character_save_card_slot;
 extern s8 lbl_805D5FB4;
 extern f32 lbl_805D5FB8;
 extern s8 lbl_805D5FBC;
-extern void *tl_01;
+extern TObject *tl_01;
 extern const f32 lbl_805DC5C0;
 extern const f32 lbl_805DC5C4;
 extern const f32 lbl_805DC5C8;
@@ -2220,34 +2219,35 @@ s32 start_load__23TAdSinglePlyChrSelectGCFv(void) {
 typedef char RecoveredGlobal_801FF200_lbl_80513910_size[sizeof(RecoveredGlobal_801FF200_lbl_80513910) == 0x10 ? 1 : -1];
 
 s32 save_character_to_card__23TAdSinglePlyChrSelectGCFv(void) {
-    Win_801FEE14 *w;
+    TCheckMemoryCard *card;
+    TWindowMessage *w;
     s32 result;
     s32 v;
-    w = create_check_memory_card__23TAdSinglePlyChrSelectGCFPvPvPv(tl_01, 0, 1);
-    if (w == NULL) {
+    card = TAdSinglePlyChrSelectGC::create_check_memory_card(tl_01, 0, 1);
+    if (card == NULL) {
         return 0;
     }
-    if (w != NULL) {
-        TAdSinglePlyChrSelectGC__sub_8033B9EC();
+    if (card != NULL) {
+        TAdSinglePlyChrSelectGC__sub_8033B9EC(card);
         while (1) {
             func_803DCDFC__Fv();
-            w->v1();
-            if (TAdSinglePlyChrSelectGC__sub_8033B9F8(w) != 0) {
+            card->run_task();
+            if (TAdSinglePlyChrSelectGC__sub_8033B9F8(card) != 0) {
                 break;
             }
             controller_stuff();
             TLobby::wait_ready_loop();
             render_frame__23TAdSinglePlyChrSelectGCFv();
             if (func_801A5E54__Fv() != 0 || TWindowShortListCtrl__check_controller_button(&controller_input_state[0x20], 8) != 0) {
-                if (w != NULL) {
-            delete w;
+                if (card != NULL) {
+            delete card;
         }
                 return 0;
             }
             render_tick();
         }
-        if (w != NULL) {
-            delete w;
+        if (card != NULL) {
+            delete card;
         }
     }
     if (lbl_805D5FB4 == 0) {
@@ -2260,12 +2260,12 @@ s32 save_character_to_card__23TAdSinglePlyChrSelectGCFv(void) {
         lbl_805D5FB8 = lbl_8044A7D8[0].x - lbl_805DC5C8;
     }
     if (TAdSinglePlyChrSelectGC::load_save_from_card() == 0) {
-        w = create_message_window__6TLobbyFllUls(lbl_8044A7D0, lbl_8044A7D8, 1, 4);
+        w = TLobby::create_message_window(lbl_8044A7D0, lbl_8044A7D8, 1, 4);
         if (w != NULL) {
-            ((TLobby *)w)->send_and_handle(get_localized_text_entry(0x20, 4), 3);
+            w->send_and_handle(get_localized_text_entry(0x20, 4), 3);
             ((TWindowSubComCard *)w)->reparent_to_main_ctrl();
         }
-        ((TWindowMessage *)w)->complete_reveal();
+        w->complete_reveal();
         while (1) {
             func_803DCDFC__Fv();
             controller_stuff();
@@ -2308,17 +2308,17 @@ s32 save_character_to_card__23TAdSinglePlyChrSelectGCFv(void) {
         render_tick();
     }
     TLobby__sub_80269CA4(0x23);
-    w = create_message_window__6TLobbyFllUls(lbl_8044A7D0, lbl_8044A7D8, 1, 4);
+    w = TLobby::create_message_window(lbl_8044A7D0, lbl_8044A7D8, 1, 4);
     TLobby__sub_80269C90();
     if (w != NULL) {
         if (TAdPlayerLoadGC::get_load_result(0) == 0xFFFFFF81 || TAdPlayerLoadGC::get_load_result(0) == 0xFFFFFF83) {
-            ((TLobby *)w)->send_and_handle(get_localized_text_entry(0x1C, 1), 3);
+            w->send_and_handle(get_localized_text_entry(0x1C, 1), 3);
         } else {
-            ((TLobby *)w)->send_and_handle(get_localized_text_entry(0x20, 5), 3);
+            w->send_and_handle(get_localized_text_entry(0x20, 5), 3);
         }
         ((TWindowSubComCard *)w)->reparent_to_main_ctrl();
     }
-    ((TWindowMessage *)w)->complete_reveal();
+    w->complete_reveal();
     if (result == 0) {
         while (1) {
             func_803DCDFC__Fv();

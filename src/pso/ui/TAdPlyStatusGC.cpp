@@ -11,6 +11,7 @@
 #include "pso/object/TObjLuker.h"
 #include "pso/ui/TAdGuideButtonGC.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct RecoveredGlobal_8033F93C_lbl_8050E3B8 {
     s32 value;
@@ -71,7 +72,6 @@ struct Save_8033F6A8 { u8 pad[0xC]; u32 fC; };
 extern "C" {
 s32 allow_rendering__7TObjectFv();
 s32 TWindowShortListCtrl__check_controller_button(void *, int, int);
-void TWindow__close(u8 *arg0);
 u32 get_player_index__14TAdPlyStatusGCFv();
 extern RecoveredGlobal_8033F93C_lbl_8050E3B8 controller_physical_port_bank;
 extern s32 TAdPlyStatusGC__window_offset_index;

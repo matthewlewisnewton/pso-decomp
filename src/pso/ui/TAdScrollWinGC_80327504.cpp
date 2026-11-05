@@ -86,7 +86,7 @@ u8 *__dt__14TAdScrollWinGCFv(u8 *arg0, s16 arg1) {
     }
     return arg0;
 }
-void *TAdScrollWinGC__ct(TAdScrollWinGC *ad_scroll_win_gc, void *arg1, s32 arg2, s32 arg3) {
+void *TAdScrollWinGC__ct(TAdScrollWinGC *ad_scroll_win_gc, void *arg1, s32 arg2, const void *arg3) {
     s32 base;
     s32 i;
     __ct__7TObjectFP7TObject(ad_scroll_win_gc, arg1);
@@ -105,7 +105,7 @@ void *TAdScrollWinGC__ct(TAdScrollWinGC *ad_scroll_win_gc, void *arg1, s32 arg2,
     case 0:
     case 1:
         for (i = 0; i < 10; i++) {
-            ((TLobby *)(ad_scroll_win_gc->m_40))->send_and_handle(get_localized_text_entry(0x1A, base + i), 1);
+            ((TLobby *)(ad_scroll_win_gc->m_40))->send_and_handle(((const void *(*)(s32, s32))get_localized_text_entry)(0x1A, base + i), 1);
         }
         break;
     case 2:

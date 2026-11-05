@@ -12,6 +12,7 @@
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/menu/T_ATS_DrawCalendar.h"
 #include "pso/TAdTimeSetGC.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 extern "C" {
 s32 TAdSinglePlyChrSelectGC__sub_802E1868(void);
@@ -78,7 +79,7 @@ s32 TAdSinglePlyChrSelectGC__sub_802E15C8(void);
 int align_menu_entry_positions(void *);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, int);
-int send_and_handle__6TLobbyFii(void *, void *, int);
+int send_and_handle__6TLobbyFPCvi(void *, void *, int);
 void *update_window_mode_from_progress__6TLobbyFPv(void *, void *);
 extern u8 lbl_80472930[];
 extern u8 lbl_804E3040[];
@@ -95,7 +96,7 @@ s32 load_player_and_wait__23TAdSinglePlyChrSelectGCFv();
 int TKeyBoardControl__sub_8000F9CC(void*);
 void TLobby__sub_8022614C(s32 arg0);
 void update_music_stream_gain(s32 user);
-void TWindow__close(u8 *arg0);
+void TWindow__close(void *arg0);
 void *__ct__12TAdBackTxtGCFv(void *, void *);
 void __ct__7TObjectFP7TObject(void *);
 void *__ct__9TAdBackGCFv(void *, void *);
@@ -319,7 +320,7 @@ void TAdSinglePlyChrSelectGC::open_message_choice(void *arg1, s32 sel, void *arg
         return;
     }
     if (arg1 != NULL) {
-        send_and_handle__6TLobbyFii(((Self_802E1A8C *)this)->x50, arg1, 3);
+        send_and_handle__6TLobbyFPCvi(((Self_802E1A8C *)this)->x50, arg1, 3);
     }
     ((TWindowMessage *)(((Self_802E1A8C *)this)->x50))->complete_reveal();
     if (sel == -1) {

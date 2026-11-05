@@ -11,6 +11,7 @@
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/misc/TWindowSubMag.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct VBase_80277F4C { u8 pad[0x18]; };
 
@@ -32,7 +33,6 @@ s32 TWindowShortListCtrl__check_controller_button(void *, s32, s32);
 s32 is_usable__14TWindowSubItemFl();
 void *get_player_by_client_id(s32 i);
 
-void TWindow__close(u8 *arg0);
 s32 is_player_input_active(s32);
 s32 fn_80255A38(s32);
 s32 TWindowSubEquip__sub_80263AF4(void *, s32);
