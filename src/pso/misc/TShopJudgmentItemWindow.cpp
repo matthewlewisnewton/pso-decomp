@@ -115,7 +115,7 @@ struct Ent_80221440 { s32 item; s32 idx; };
 struct Win_80221440 {
     VObj_18_2e9c25 base;
     u8 pad1c[0x24 - 0x1C];
-    u8 *player;
+    TObjPlayer *player;
     u8 pad28[0x54 - 0x28];
     Ent_80221440 ents[30];
     u8 pad144[4];
@@ -592,7 +592,7 @@ s32 TShopJudgmentItemWindow::build_item_list(void *arg0) {
     s32 j;
     s32 k;
     memset(W->ents, 0, 0xF0);
-    n = ((TObjPlayer *)W->player)->inventory_objects->apply_shop_judgment(items);
+    n = W->player->inventory_objects->apply_shop_judgment(items);
     W->count = 0;
     for (i = 0; i < n; i++) {
         it = items[i];

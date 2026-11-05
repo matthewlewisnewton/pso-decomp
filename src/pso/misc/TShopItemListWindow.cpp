@@ -85,7 +85,7 @@ struct Rec_8021F798 { s32 w[4]; s32 qty; };
 struct Win_8021F798 {
     VObj_18_a93f07 base;
     u8 pad1c[0x24 - 0x1C];
-    u8 *player;
+    TObjPlayer *player;
     void *list;
     u8 pad2c[0x38 - 0x2C];
     void *help;
@@ -110,7 +110,7 @@ struct Rec_8021F9EC { s32 w[4]; s32 price; };
 
 struct Win_8021F9EC {
     u8 pad0[0x24];
-    u8 *player;
+    TObjPlayer *player;
     void *list;
     u8 pad2c[0x38 - 0x2C];
     void *help;
@@ -321,7 +321,7 @@ s32 TShopItemListWindow::handle_tool_list_select(void *p) {
             ((TWindowHelpItem *)(W->help))->set_displayed_item_colored((u32)&W->recs[i]);
         }
         if (W->status != NULL && i != W->cur) {
-            n = ((TObjPlayer *)W->player)->inventory_objects->count_items_by_id(&W->recs[i]);
+            n = W->player->inventory_objects->count_items_by_id(&W->recs[i]);
             ((TWindowSubStatusDisp *)(W->status))->set_entry1_field20(n);
         }
         if (W->sell != NULL && i != W->cur && (e = (u8 *)W + i * 0x14, *(s32 *)(e + 0x68) > 0)) {
@@ -426,7 +426,7 @@ void TShopItemListWindow::build_item_list(void *p) {
     }
     if (W->status == NULL) {
         W->status = create_window_quantity(((TShopSequence *)W)->get_child_field1c());
-        n = ((TObjPlayer *)W->player)->inventory_objects->count_items_by_id(W->recs);
+        n = W->player->inventory_objects->count_items_by_id(W->recs);
         ((TWindowSubStatusDisp *)(W->status))->set_entry1_field20(n);
     }
     if (W->cost == NULL) {
