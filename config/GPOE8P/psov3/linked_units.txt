@@ -331,6 +331,7 @@ pso/boss/TBoss8Dragon_802F3EE4.cpp
 pso/boss/TBoss8Dragon_802F3F20.cpp
 pso/boss/TBoss8Dragon_802F42A0.cpp
 pso/boss/TBoss8Dragon_802F4324.cpp
+pso/boss/TBoss8Dragon_802F4380.cpp
 pso/boss/TBoss8Dragon_802F4480.cpp
 pso/boss/TBoss8Dragon_802FDDD4.cpp
 pso/boss/TBoss8Dragon_80324D3C.cpp
@@ -804,6 +805,7 @@ pso/item/WeaponAttackActions.cpp
 pso/item/WeaponSpecialSelection.cpp
 pso/map/FloorArea_8029E764.cpp
 pso/map/FloorLifecycleTables.cpp
+pso/math/MatrixTransforms.cpp
 pso/math/MatrixVector.cpp
 pso/menu/TAdEndText_80307A34.cpp
 pso/menu/TAdEndText_80399904.cpp
@@ -859,6 +861,11 @@ pso/misc/TCameraCtrl_8013F25C.cpp
 pso/misc/TCameraCtrl_801A2FE0.cpp
 pso/misc/TCameraCtrl_801A3C24.cpp
 pso/misc/TCameraCtrl_801A6E60.cpp
+pso/misc/TCameraCtrl_803D6538.cpp
+pso/misc/TCameraCtrl_803D66DC.cpp
+pso/misc/TCameraCtrl_803D676C.cpp
+pso/misc/TCameraCtrl_803D6960.cpp
+pso/misc/TCameraCtrl_803D749C.cpp
 pso/misc/TChCrCharSelect_802937D4.cpp
 pso/misc/TChCrCharSelect_802937E8.cpp
 pso/misc/TChCrCharSelect_80293860.cpp
@@ -1048,6 +1055,7 @@ pso/misc/TLobby_801D6DC4.cpp
 pso/misc/TLobby_801D726C.cpp
 pso/misc/TLobby_801DA7DC.cpp
 pso/misc/TLobby_801DEFC4.cpp
+pso/misc/TLobby_801E2F94.cpp
 pso/misc/TLobby_801E43E4.cpp
 pso/misc/TLobby_801F2D2C.cpp
 pso/misc/TLobby_801F3A24.cpp
@@ -3460,6 +3468,7 @@ pso/unk/text_8033FE30.cpp
 pso/unk/text_8033FF78.cpp
 pso/unk/text_8034960C.cpp
 pso/unk/text_80349B8C.cpp
+pso/unk/text_8034A090.cpp
 pso/unk/text_8034AD38.cpp
 pso/unk/text_8034CEDC.cpp
 pso/unk/text_8034D3D0.cpp
@@ -3520,11 +3529,16 @@ pso/unk/text_803D4418.cpp
 pso/unk/text_803D4448.cpp
 pso/unk/text_803D4714.cpp
 pso/unk/text_803D619C.cpp
+pso/unk/text_803D6438.cpp
+pso/unk/text_803D647C.cpp
 pso/unk/text_803D64F8.cpp
 pso/unk/text_803D8030.cpp
 pso/unk/text_803D8098.cpp
+pso/unk/text_803D8910.cpp
 pso/unk/text_803D8DE0.cpp
 pso/unk/text_803D8F74.cpp
+pso/unk/text_803D9650.cpp
+pso/unk/text_803D96A8.cpp
 pso/unk/text_803D9FF0.cpp
 pso/unk/text_803DA038.cpp
 pso/unk/text_803DA12C.cpp
@@ -3554,10 +3568,9 @@ pso/unk/text_803E4D8C.cpp
 pso/unk/text_803F1804.cpp
 pso/unk/text_803F4D10.cpp
 pso/unk/text_803F4D84.cpp
+pso/unk/text_8042E8C4.cpp
 pso/unk/text_8042EAD4.cpp
 pso/unk/text_8042EE4C.cpp
 si/SIBios.c
 si/SISamplingRate.c
 vi/vi.c
-pso/unk/text_8042E8C4.cpp
-pso/boss/TBoss8Dragon_802F4380.cpp
