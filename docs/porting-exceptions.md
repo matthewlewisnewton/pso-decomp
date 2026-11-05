@@ -27,8 +27,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,865 | 886 |
-| Per-unit compiler overrides in `configure.py` | 145 | 145 |
-| Approved regressions | 0 on main, 1 pending (#291) | |
+| Per-unit compiler overrides in `configure.py` | 146 | 146 |
+| Approved regressions | 0 | 0 |
 
 ## Rule for assembly
 
@@ -102,7 +102,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-145 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+146 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -147,12 +147,20 @@ this tree's `TObjBoss2Tunnel_8003B138.cpp` (`-fp_contract on`) and
 `TBoss6EmptyWarp_802B0E2C.cpp` (`-str reuse,readonly`). Port: drop the flags;
 vtable-versus-switch order and string pooling may differ.
 
+`TObjBoss2Tunnel.cpp`, `TObjBoss2Tunnel_8003B138.cpp`, and `TObjBoss2Tunnel_802F2070.cpp` set `-fp_contract on` because the curve and tunnel helpers fuse multiply-adds. Each unit stays byte-exact, which is why the flag is on the unit rather than a per-function `fp_contract` pragma. Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) and Melee, TP, TWW, and Pikmin 2, which contract globally.
+
 `pso/effect/TEF_LensFlare.cpp` sets `-fp_contract on` because the recovered
 renderer contracts its attenuation and displacement multiply-adds into
 `fnmsubs`/`fmadds`. The same unit places `lbl_80438E40` with
 `__declspec(section ".rodata")` so the original `{0,0,-1}` vector symbol stays
 in `.rodata`. Port: keep FMA or accept small float differences; a normal
 `const` is enough for the vector.
+
+### `-opt noprop`: `TEffIndirectCtrl_802A88AC.cpp` ([#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291))
+
+| Unit | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/effect/TEffIndirectCtrl_802A88AC.cpp` | `deform_indirect_texture_scroll` (`0x802A8FD8`) | unit switch `-opt noprop`, the unit-wide form of `opt_propagation off` (approved for `TEF_LensFlare::render`, #272) | The original keeps the scroll offset as a named `s16` local: `clrlwi r30,r21,26; clrlwi r29,r20,26; extsh r28,r4` at `0x802A90E4`, then `add r5,r5,r28` at `0x802A9158`. With propagation, the frontend replaces the single `off16 = offset` with a hoisted temp, which is coloured before the masks: `clrlwi r29; clrlwi r28; extsh r30`, six operands, 99.79%. Main matched only with a cancelling `off16++; off16--;`, removed here. No `-inline` or `-fp_contract` setting moves it. With the switch, the object is identical to main's in every section, relocation, and symbol. Every other function in the unit is unchanged. Precedent: per-object switches in [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (`-opt peephole -opt schedule` on `nt_etc_so.cpp`, L723), and this repo's `-opt nocse` / `-opt nopeephole` units. The precedent is weak: brawl uses `-opt peephole/schedule`, not `noprop`; no other decomp found using `-opt noprop`. Accepted by Matt 2026-11-04 4:34 PM PT. Evidence: [indirect-scroll-offset-propagation.md](evidence/indirect-scroll-offset-propagation.md). | Drop the switch. The source is plain C++. |
 
 ## 6. Approved regressions
 
@@ -165,12 +173,12 @@ entry when the PR merges.
 
 | PR | Exception | Status / reason |
 |---|---|---|
-| [#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291) | Allowed regression: `deform_indirect_texture_scroll` 100% → 99.79% | Approved by Matt on 2026-11-04 so the `off16 = offset` steering (still on main in `TEffIndirectCtrl_802A88AC.cpp`) could be removed. Port: nothing; the PR version is the portable one. |
 | [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#187](https://github.com/matthewlewisnewton/pso-decomp/pull/187), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | Unit `-fp_contract on` for `TObjBoss2Tunnel.cpp`, `TObjBoss2Tunnel_8003B138.cpp`, and `TObjBoss2Tunnel_802F2070.cpp`. | Allowed unit flag. The timer's `#pragma opt_common_subs off` is the approved entry above. `-fp_contract on` replaces the old per-function contraction pragmas; each of these units stays byte-exact. Precedent: dtk-template `configure.py` `-fp_contract off` and this tree's other `-fp_contract on` units. |
+| [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Unit `-inline off,deferred -pool off -str reuse,readonly` on `pso/quest/TQuestListVM.cpp`. | Allowed unit flags. Every function and named object is exact; the linked DOL matches. Precedent: dtk-template `configure.py` per-unit `-inline deferred` / `-str reuse,readonly`. |
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.
