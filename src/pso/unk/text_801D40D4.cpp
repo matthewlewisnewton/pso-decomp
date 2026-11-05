@@ -35,10 +35,21 @@ typedef struct Ent_801D41B4 {
     u8 pad18[4];
 } Ent_801D41B4;
 
-typedef struct Ent_801D4744 {
+// Array element. __construct_new_array runs TObjPlayer__sub_801D4730 and
+// passes a null destructor. The constructor (and no destructor) is what
+// makes delete[] release the 0x10-byte cookie in front of the elements.
+struct Ent_801D4744 {
     u32 key;
     TItem *val;
-} Ent_801D4744;
+    Ent_801D4744() { TObjPlayer__sub_801D4730(this); }
+};
+
+// sort_by_key's temporary is filled by that same function. An Ent_801D4744
+// temporary would construct itself first.
+struct EntScratch_801D4744 {
+    u32 key;
+    TItem *val;
+};
 
 typedef struct List_801D4744 {
     s32 count;
@@ -267,15 +278,7 @@ List_801D4744 *List_801D4744::sub_801D4678(s16 arg1) {
     if (this != NULL) {
         q = items;
         if (q != NULL) {
-            if (q != NULL) {
-                // sub_801D46D4 allocates n * 8 + 0x10. __construct_new_array
-                // returns the element pointer, and __dla__FPv does not subtract
-                // the 0x10-byte MWCC array cookie in front of it. delete[] of
-                // Ent_801D4744 does not match: the record has no destructor, so
-                // MWCC frees the element pointer. A destructor makes delete[]
-                // call __destroy_new_array instead (see attempts log).
-                ::operator delete[]((u8 *)q - 0x10);
-            }
+            delete[] q;
         }
         if (arg1 > 0) {
             ::operator delete(this);
@@ -295,7 +298,7 @@ List_801D4744 *List_801D4744::sub_801D46D4(s32 arg1) {
 void TObjPlayer__sub_801D4730(void* p) { *(s32*)((char*)p + 0x0) = -1; *(s32*)((char*)p + 0x4) = 0; }
 
 void List_801D4744::sort_by_key() {
-    Ent_801D4744 t;
+    EntScratch_801D4744 t;
     s32 n;
     s32 j;
     Ent_801D4744 *p;
