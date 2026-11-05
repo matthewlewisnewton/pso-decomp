@@ -29,10 +29,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
 | `src/pso/math/MatrixTransforms.cpp:56` | `asm void subtract_vector(Vec *v, const Vec *sub) {` |
 | `src/pso/math/MatrixTransforms.cpp:57` | `#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"` |
-| `src/pso/math/MatrixVector.cpp:23` | `asm f32 vector_length(const Vec *v) {` |
-| `src/pso/math/MatrixVector.cpp:24` | `#include "orig_asm/pso/math/MatrixVector/vector_length.inc"` |
-| `src/pso/math/MatrixVector.cpp:49` | `asm f32 matrix_identity(void *m) {` |
-| `src/pso/math/MatrixVector.cpp:50` | `#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"` |
+| `src/pso/math/MatrixVector.cpp:35` | `asm f32 vector_length(const Vec *v) {` |
+| `src/pso/math/MatrixVector.cpp:36` | `#include "orig_asm/pso/math/MatrixVector/vector_length.inc"` |
+| `src/pso/math/MatrixVector.cpp:76` | `asm void matrix_identity(u8 *arg0) {` |
+| `src/pso/math/MatrixVector.cpp:77` | `#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"` |
 | `src/pso/misc/TCameraCtrl_803D749C.cpp:557` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_f32_to_u8.inc"` |
 | `src/pso/misc/TCameraCtrl_803D749C.cpp:561` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_u8_to_f32.inc"` |
 | `src/pso/unk/text_803D647C.cpp:28` | `asm f32 sin_table_lookup(s32 angle) {` |
