@@ -159,8 +159,6 @@ void TOTrapAncient02R::submit_cursor_and_notify() {
     find_target_player();
 }
 
-#pragma push
-#pragma fp_contract on
 TOTrapAncient02::TOTrapAncient02(TObject *parent, void *creator) : TOTrap(parent, creator) {
     this->m_name = lbl_805D31B4;
     this->apply_object_set_data(creator);
@@ -191,7 +189,6 @@ TOTrapAncient02::TOTrapAncient02(TObject *parent, void *creator) : TOTrap(parent
         this->m_358 = 0;
     }
 }
-#pragma pop
 
 TOTrapAncient02::~TOTrapAncient02() {
     unregister_object_by_id();
@@ -525,8 +522,6 @@ void TOTrapAncient02::vfunc_88() {  }
 
 void TOTrapAncient02::vfunc_86() {  }
 
-#pragma push
-#pragma fp_contract on
 TOTrapAncient02R::TOTrapAncient02R(TObject *parent, void *creator) : TOTrapAncient02(parent, creator) {
     this->m_name = lbl_805D31B8;
     this->apply_object_set_data(creator);
@@ -558,20 +553,14 @@ TOTrapAncient02R::TOTrapAncient02R(TObject *parent, void *creator) : TOTrapAncie
         this->m_358 = 0;
     }
 }
-#pragma pop
 
 TOTrapAncient02R::~TOTrapAncient02R() {
 }
 
-#pragma push
-#pragma fp_contract on
 void *TOTrapAncient02R::create(void *arg0) {
     return new TOTrapAncient02R(tl_05, arg0);
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
 f32 TOTrapAncient02R::receive_physical_attack(void *, f32) {
     s16 msg;
     if (entity_id >= 0x4000 && set_entry != NULL) {
@@ -592,10 +581,7 @@ f32 TOTrapAncient02R::receive_physical_attack(void *, f32) {
     }
     return 0.0f;
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
 void TOTrapAncient02R::find_target_player() {
     clear_player_status_flag(0, 1);
     calc_attach_pos();
@@ -616,10 +602,7 @@ void TOTrapAncient02R::find_target_player() {
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
 void TOTrapAncient02R::vfunc_81() {
     f32 d;
     s32 ang;
@@ -732,7 +715,6 @@ void TOTrapAncient02R::vfunc_81() {
         break;
     }
 }
-#pragma pop
 
 void TOTrapAncient02R::vfunc_82() {
     f32 temp_f1;
@@ -772,8 +754,6 @@ void TOTrapAncient02R::vfunc_82() {
     }
 }
 
-#pragma push
-#pragma fp_contract on
 void TOTrapAncient02R::calc_trap_count() {
     s32 temp_r4;
 
@@ -791,4 +771,3 @@ void TOTrapAncient02R::calc_trap_count() {
         this->m_360 = 0xE;
     }
 }
-#pragma pop

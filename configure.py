@@ -442,8 +442,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOTrapSeabed01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # Reverse definitions with deferred generation: the native TOTrapAncient02R
     # vtable is emitted before the switch table that follows it in .data, and
-    # the .sdata2 pool keeps its original order.
-    "pso/misc/TOTrapAncient02.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # the .sdata2 pool keeps its original order. Unit -fp_contract on replaces
+    # the per-function pragmas: the constructors, calc_trap_count and the R
+    # vfunc_81 fuse multiply-adds.
+    "pso/misc/TOTrapAncient02.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-fp_contract on")},
     # GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris
     # positions before storing them (GC/2.6 interleaves them: 91.09%).
     # Reverse definitions and deferred generation place the native trap vtable
