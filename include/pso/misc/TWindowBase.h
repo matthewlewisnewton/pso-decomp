@@ -1,8 +1,12 @@
 #ifndef PSO_MISC_TWINDOWBASE_H
 #define PSO_MISC_TWINDOWBASE_H
 #include "types.h"
+#include <stddef.h>
 #include "pso/TObject.h"
 
+// Shared window image from 0x1C through 0x5F. Descendants used to declare this
+// prefix themselves; it lives here so setup_window_draw_context can name the
+// floats it passes to open_singleton. The class ends at 0x60.
 class TWindowBase : public TObject {
 public:
     virtual ~TWindowBase();
@@ -53,5 +57,13 @@ public:
     f32 m_58;
     union { s32 m_5c; u32 m_5cu; };
 };
+
+typedef char TWindowBase_size[sizeof(TWindowBase) == 0x60 ? 1 : -1];
+typedef char TWindowBase_unk22[offsetof(TWindowBase, unk_22) == 0x22 ? 1 : -1];
+typedef char TWindowBase_m2c[offsetof(TWindowBase, m_2c) == 0x2C ? 1 : -1];
+typedef char TWindowBase_m40[offsetof(TWindowBase, m_40) == 0x40 ? 1 : -1];
+typedef char TWindowBase_m48[offsetof(TWindowBase, m_48) == 0x48 ? 1 : -1];
+typedef char TWindowBase_m54[offsetof(TWindowBase, m_54) == 0x54 ? 1 : -1];
+typedef char TWindowBase_m5c[offsetof(TWindowBase, m_5c) == 0x5C ? 1 : -1];
 
 #endif
