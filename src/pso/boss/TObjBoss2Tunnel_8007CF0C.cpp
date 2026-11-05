@@ -38,11 +38,11 @@ s32 TAdPlayerLoadGC__sub_801E1B50(s32);
 s32 memmove(void *, void *, s32);
 s32 memset(void *, s32, s32);
 s32 query_memcard_capacity__15TAdPlayerLoadGCFl(s32, s32);
-s32 set_stream_and_load_file__6TLobbyFi(s32);
+s32 set_stream_and_load_file__6TLobbyFi(const void *);
 u32 xmalloc__FUl(s32);
 }
 
-extern s32 screen_binary_filename;
+extern const char *screen_binary_filename;
 extern u32 boss2_tunnel_snapshot_buffer;
 
 void load_data_buffers(void) {
@@ -59,7 +59,7 @@ void load_data_buffers(void) {
     if (temp_r3 != 0U) {
         memset((void *)temp_r3, 0, 0x1818C);
     }
-    temp_r31 = ((TScene *)screen_binary_filename)->update_lobby_scene();
+    temp_r31 = TScene::update_lobby_scene(screen_binary_filename);
     if (temp_r31 <= 0x1818C) {
         temp_r30 = set_stream_and_load_file__6TLobbyFi(screen_binary_filename);
         if (temp_r30 != 0) {

@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/unk/text_800F9B84.h"
 #include "pso/TObject.h"
+#include "pso/misc/TScene.h"
 
 struct RecoveredGlobal_800F9B84_lbl_8050113C {
     s32 value;
@@ -15,7 +16,6 @@ extern "C" {
 s32 apply_rel_relocations(void *);
 u8 *ct_object__13TUnk_8049C658Fv(u8 *, s32 *);
 s32 set_stream_and_load_file__6TLobbyFi(s32);
-s32 update_lobby_scene__6TSceneFv();
 u8 *__nw__7TObjectFUl(s32);
 s32 strncpy(void *, s32, s32);
 s32 memset(void *, s32, s32);
@@ -26,7 +26,7 @@ s32 create_named_object(s32 arg0) {
     s32 temp_r3;
     u8 *var_r30;
 
-    temp_r3 = update_lobby_scene__6TSceneFv();
+    temp_r3 = TScene::update_lobby_scene((const void *)arg0);
     if (temp_r3 > 0) {
         var_r30 = __nw__7TObjectFUl(0x3C);
         if (var_r30 != NULL) {

@@ -8,9 +8,9 @@
 extern "C" {
 void prs_decompress_alloc(void*, s32, s32);
 void load_gvm_texture_archive(s32, void*);
-u32 adxf_open_afs__6TLobbyFii(int, int);
+TLobby *adxf_open_afs__6TLobbyFii(int, int);
 void *lookup_item_pmt_record(u8 *item);
-s32 TLobby__sub_803CC4C0(s32);
+s32 TLobby__sub_803CC4C0(TLobby *);
 void TObjPlayer__sub_803DD5E8(void*, void*, void*, int);
 char* strncpy(char*, const char*, u32);
 void TLobby__sub_801E3E9C(s32, const char*, void*, s32);
@@ -36,7 +36,7 @@ void TItemTexLoad::load_texture_archive() {
 
 void TItemTexLoad::unload_texture() {
     if (m_state == 2) free_texture_if_valid((u32)&m_texture_list);
-    if (m_state == 1) ((TLobby *)m_archive_handle)->close_adxf_handle();
+    if (m_state == 1) m_archive_handle->close_adxf_handle();
     m_state = 0;
     m_texture_index = -1;
 }
@@ -47,13 +47,13 @@ s32 TItemTexLoad::load_texture(s32 index) {
         unload_texture();
         m_texture_index = index;
         m_archive_handle = adxf_open_afs__6TLobbyFii(0xB8, m_texture_index);
-        if (m_archive_handle == 0U) {
+        if (m_archive_handle == NULL) {
             unload_texture();
             return 0;
         }
         m_state = 1;
         {
-            s32 r = TLobby__sub_803CC53C((u8 *)m_archive_handle);
+            s32 r = TLobby__sub_803CC53C(m_archive_handle);
             if (r < 0) {
                 unload_texture();
                 return 0;
@@ -96,7 +96,7 @@ void TItemTexLoad::run_task() {
     if (m_state == 1) {
         switch (TLobby__sub_803CC4C0(m_archive_handle)) {
         case 3:
-            ((TLobby *)m_archive_handle)->close_adxf_handle();
+            m_archive_handle->close_adxf_handle();
             if (TLobby__sub_8001EEF4() != 0) load_texture_archive();
             else m_state = 3;
             break;

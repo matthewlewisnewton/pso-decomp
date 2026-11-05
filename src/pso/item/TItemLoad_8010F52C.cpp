@@ -36,7 +36,7 @@ extern s32 lbl_8049F40C[];
 s32 decompress_buffer__9TItemLoadFUl();
 void *TLobby__sub_801E38A0(s32, u32 *, s32 *, s32, s32 *);
 extern u8 lbl_80506208[];
-extern s32 item_load_tmp_buffer;
+extern const char *item_load_tmp_buffer;
 struct Base_8010F52C { char pad[0x14]; };
 struct VObj_8010F52C : Base_8010F52C {
     virtual void m0(int);
@@ -101,7 +101,7 @@ void TUnk_8049F40C::vfunc_3() {
     void *p;
     u32 i;
     if (TLobby__sub_8001EEF4() == 1) {
-        h = TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
+        h = TLobby::tmp_buf_use_req(item_load_tmp_buffer);
         off = ((Load_8010F68C *)this)->id;
         total = decompress_buffer__9TItemLoadFUl();
         pos = 0;
@@ -129,7 +129,7 @@ void TUnk_8049F40C::vfunc_3() {
                 break;
             }
         }
-        TLobby::tmp_buf_release((const char *)item_load_tmp_buffer);
+        TLobby::tmp_buf_release(item_load_tmp_buffer);
         ((Load_8010F68C *)this)->id = 0;
         ((TItemLoad *)((Load_8010F68C *)this))->reset_state();
     }
@@ -171,10 +171,10 @@ void TItemLoad::reload_item() {
     s32 temp_r31;
 
     if (TLobby__sub_8001EEF4() == 1) {
-        temp_r31 = TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
+        temp_r31 = TLobby::tmp_buf_use_req(item_load_tmp_buffer);
         decompress_buffer__9TItemLoadFUl();
         load_gvm_texture_archive(temp_r31, *(s32 *)((s8 *)this + 0x24));
-        TLobby::tmp_buf_release((const char *)item_load_tmp_buffer);
+        TLobby::tmp_buf_release(item_load_tmp_buffer);
         *(s32 *)((s8 *)this + 0x24) = 0;
         reset_state();
     }

@@ -93,10 +93,10 @@ extern LogEnt_803CD16C lbl_8057B7D0[];
 extern Slot_803CD16C adxf_file_handle_pool[];
 extern s32 adxf_log_write_index;
 Slot_803CD16C *adxf_open_afs__6TLobbyFii(s32 arg0, s32 arg1);
-u32 TLobby__sub_803C8CDC(u32, s32, s32);
+u32 TLobby__sub_803C8CDC(const void *, s32, s32);
 extern s32 lbl_8047CBA4[];
 extern s32 lbl_8047CBD8[];
-Slot_803CD16C *adxf_open__6TLobbyFUii(u32 arg0, s32 arg1);
+TLobby *TLobby::adxf_open(const void *name, s32 mode);
 s32 invalidate_cache__6TLobbyFv(s32, s32);
 extern s32 lbl_8047C9B0[];
 extern s32 lbl_8047C9D4[];
@@ -180,7 +180,7 @@ s32 TLobby::adxf_get_fsize_byte() {
     return *(s32 *)&this->m_up;
 }
 typedef char RecoveredGlobal_803CC53C_lbl_8047C93C_size[sizeof(RecoveredGlobal_803CC53C_lbl_8047C93C) == 0x74 ? 1 : -1];
-s32 TLobby__sub_803CC53C(u8 *arg0) {
+s32 TLobby__sub_803CC53C(TLobby *arg0) {
     if (arg0 == NULL) {
         TLobby::notify_error((const char *)(&lbl_8047C93C.value));
         return -3;
@@ -280,7 +280,7 @@ s32 TLobby::adxf_stop() {
 }
 #pragma pop
 
-s32 TLobby::read_checked_align(s32 arg0, s32 arg1, s32 arg2) {
+s32 TLobby::read_checked_align(void *file, s32 arg1, s32 arg2) {
     if (arg2 & 0x1F) {
         TLobby::notify_error((const char *)(&lbl_8047CA28.value));
         return -3;
@@ -539,10 +539,10 @@ inline Slot_803CD16C *alloc_803CD3A8(void) {
     s->used = 1;
     return s;
 }
-inline s32 open_803CD3A8(Slot_803CD16C *s, u32 name, s32 mode) {
+inline s32 open_803CD3A8(Slot_803CD16C *s, const void *name, s32 mode) {
     u32 h;
     s32 sz;
-    if (name == 0) {
+    if (name == NULL) {
         TLobby::notify_error((const char *)lbl_8047CBA4);
         return -1;
     }
@@ -557,7 +557,7 @@ inline s32 open_803CD3A8(Slot_803CD16C *s, u32 name, s32 mode) {
     s->f10 = sz;
     return 0;
 }
-Slot_803CD16C *adxf_open__6TLobbyFUii(u32 arg0, s32 arg1) {
+TLobby *TLobby::adxf_open(const void *name, s32 mode) {
     Slot_803CD16C *s;
     {
         LogEnt_803CD16C *e;
@@ -569,8 +569,8 @@ Slot_803CD16C *adxf_open__6TLobbyFUii(u32 arg0, s32 arg1) {
         e->type = 1;
         e->phase = 0;
         e->seq = seq;
-        e->a = arg0;
-        e->b = arg1;
+        e->a = (s32)name;
+        e->b = mode;
         ((LogHdr_803CD3A8 *)&lbl_8057B7B0)->seq = seq;
         e->c = -1;
         adxf_log_write_index = i + 1;
@@ -578,7 +578,7 @@ Slot_803CD16C *adxf_open__6TLobbyFUii(u32 arg0, s32 arg1) {
     TLobby::init_once();
     s = alloc_803CD3A8();
     if (s != NULL) {
-        if (open_803CD3A8(s, arg0, arg1) < 0) {
+        if (open_803CD3A8(s, name, mode) < 0) {
             ((TLobby *)s)->close_adxf_handle();
             s = NULL;
         }
@@ -590,12 +590,12 @@ Slot_803CD16C *adxf_open__6TLobbyFUii(u32 arg0, s32 arg1) {
         e->type = 1;
         e->phase = 1;
         e->seq = ((LogHdr_803CD3A8 *)&lbl_8057B7B0)->seq;
-        e->a = arg0;
-        e->b = arg1;
+        e->a = (s32)name;
+        e->b = mode;
         e->c = -1;
         adxf_log_write_index = i + 1;
     }
-    return s;
+    return (TLobby *)s;
 }
 #pragma pop
 

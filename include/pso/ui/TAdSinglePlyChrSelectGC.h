@@ -4,6 +4,9 @@
 #include "types.h"
 #include "pso/TObject.h"
 
+struct TLobby;
+struct BmlResource;
+
 struct CreationTextureCacheEntry;
 
 struct TAdSinglePlyChrSelectGC : public TObject {
@@ -15,7 +18,7 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     virtual void render();
     u32 m_1c;
     u32 m_20;
-    u32 m_24;
+    TLobby *m_24;
     u32 m_28;
     u32 m_2c;
     u32 m_30;
@@ -149,6 +152,12 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     u32 m_54;
     u8 unk_58[0x4];
     s32 m_5c;
+    void *model_ids;
+    void *motion_ids;
+    BmlResource *loaded_bml;
+    u32 unk_6c;
+    u32 unk_70;
+    s32 load_timeout;
     static void free_all_resources();
     u8 load_and_verify_character_save(char *desc);
     static void remove_matching_entries(s32 arg0);
@@ -214,5 +223,5 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     s32 check_capacity();
 };
 
-typedef char TAdSinglePlyChrSelectGC_size[sizeof(TAdSinglePlyChrSelectGC) == 0x60 ? 1 : -1];
+typedef char TAdSinglePlyChrSelectGC_size[sizeof(TAdSinglePlyChrSelectGC) == 0x78 ? 1 : -1];
 #endif

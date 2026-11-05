@@ -19,7 +19,7 @@ extern u32 online_quest_dat_buffer;
 extern s32 online_quest_list_decompressed_size;
 extern u32 online_quest_bin_data;
 extern s32 quest_bin_decompressed_size;
-extern s32 lbl_8044BEB0[];
+extern char lbl_8044BEB0[];
 
 extern s32 online_quest_list_state;
 s32 is_flag_set__6TLobbyFv();
@@ -137,7 +137,7 @@ void TQuestListOnline::decompress_quest_buffer(s32 arg0) {
 s32 TQuestListOnline::init() {
     TQuestListOnline__decompression_cursor = 0;
     if (TLobby__sub_8001EEF4() != 0) {
-        TQuestListOnline__decompression_cursor = TLobby::tmp_buf_use_req((const char *)lbl_8044BEB0);
+        TQuestListOnline__decompression_cursor = TLobby::tmp_buf_use_req(lbl_8044BEB0);
         return 1;
     }
     return 0;
@@ -173,6 +173,6 @@ void TQuestListOnline::invoke_callback_28_and_queue_destruction() {
 
 void TQuestListOnline::ensure_online_quests_loaded() {
     if (TLobby__sub_8001EEF4() == 0) {
-        TLobby__sub_8001EDF4((u8 *)&lbl_8044BEB0);
+        TLobby__sub_8001EDF4(lbl_8044BEB0);
     }
 }

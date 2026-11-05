@@ -69,10 +69,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1153, `inline_depth` 1045,
 | `src/pso/misc/TWindowFukidasi.cpp:591` | `__cntlzw` |
 | `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:71` | `__cntlzw` |
 | `src/pso/misc/TWindowMainMenu_802AD538.cpp:282` | `__cntlzw` |
-| `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:32` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:33` | `__rlwinm` |
-| `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:43` | `__rlwinm` |
+| `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:34` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:44` | `__rlwinm` |
+| `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:45` | `__rlwinm` |
 | `src/pso/misc/TWindowSubComCard_80244774.cpp:229` | `__cntlzw` |
 | `src/pso/misc/TWindowSubItem.cpp:361` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |

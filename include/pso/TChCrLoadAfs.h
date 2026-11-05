@@ -4,6 +4,8 @@
 #include "pso/TObject.h"
 #include "types.h"
 
+struct TLobby;
+
 class TChCrLoadAfs : public TObject {
 public:
     TChCrLoadAfs(TObject *arg1, void *arg2, void *arg3);
@@ -14,7 +16,7 @@ public:
     void poll_load();
     void sub_8028B944();
     void sub_8028B940();
-    u32 load_handle;
+    TLobby *load_handle;
     u32 source_20;
     u32 source_24;
     u32 buffer_address;

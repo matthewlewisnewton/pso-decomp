@@ -26,7 +26,6 @@ void load_gvm_texture_archive(s32, s32);
 extern char texture_prs_stream_filename_buffer[];
 s32 read_disc_file(void *, s32);
 s32 TLobby__sub_803CC53C();
-s32 adxf_open__6TLobbyFUii(void *, s32);
 s32 xmalloc__FUl(s32);
 void xfree__FPv(s32);
 extern char texture_prs_disc_filename_buffer[];
@@ -67,14 +66,14 @@ s32 TLobby__sub_8023E4B4(s32 arg0, s32 arg1) {
 }
 
 s32 TLobby__sub_8023E554(s32 arg0, s32 arg1) {
-    s32 a;
+    TLobby *a;
     s32 b;
     s32 c;
     sprintf(texture_prs_disc_filename_buffer, "%s.prs", arg0);
-    if (((TScene *)texture_prs_disc_filename_buffer)->update_lobby_scene() != -1) {
-        a = adxf_open__6TLobbyFUii(texture_prs_disc_filename_buffer, 0);
+    if (TScene::update_lobby_scene(texture_prs_disc_filename_buffer) != -1) {
+        a = TLobby::adxf_open(texture_prs_disc_filename_buffer, 0);
         b = TLobby__sub_803CC53C();
-        ((TLobby *)a)->close_adxf_handle();
+        a->close_adxf_handle();
         b = xmalloc__FUl((s32)(b << 11));
         if (read_disc_file(texture_prs_disc_filename_buffer, b) != -1) {
             c = xmalloc__FUl(0x200000);

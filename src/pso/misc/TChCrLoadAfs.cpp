@@ -45,13 +45,13 @@ s32 try_begin_load__12TChCrLoadAfsFPv(void *arg0) {
 #define try_begin_load__12TChCrLoadAfsFPv (*(s32 (*)())&try_begin_load__12TChCrLoadAfsFPv)
 #define release_load_slot__12TChCrLoadAfsFv (*(void (*)(void *))&release_load_slot__12TChCrLoadAfsFv)
 
-struct L_8028B948 { u8 pad[0x1c]; s32 f1c; u8 pad2[0xc]; s32 f2c; };
+struct L_8028B948 { u8 pad[0x1c]; TLobby *f1c; u8 pad2[0xc]; s32 f2c; };
 
 extern "C" {
-s32 TLobby__sub_803CC4C0(int);
-void close_adxf_handle__6TLobbyFv(int);
+s32 TLobby__sub_803CC4C0(TLobby *);
+void close_adxf_handle__6TLobbyFv(TLobby *);
 void poll_load__12TChCrLoadAfsFv(L_8028B948 *arg0);
-u32 adxf_open_afs__6TLobbyFii(s32, s32);
+TLobby *adxf_open_afs__6TLobbyFii(s32, s32);
 
 void sub_8028B940__12TChCrLoadAfsFv(void) {  }
 void sub_8028B944__12TChCrLoadAfsFv(void) {  }
@@ -79,12 +79,12 @@ void poll_load__12TChCrLoadAfsFv(L_8028B948 *arg0) {
 
 #define try_begin_load__12TChCrLoadAfsFPv (*(s32 (*)())&try_begin_load__12TChCrLoadAfsFPv)
 #define release_load_slot__12TChCrLoadAfsFv (*(int (*)(void *))&release_load_slot__12TChCrLoadAfsFv)
-#define close_adxf_handle__6TLobbyFv (*(int (*)(int))&close_adxf_handle__6TLobbyFv)
-#define TLobby__sub_803CC4C0 (*(int (*)(int))&TLobby__sub_803CC4C0)
+#define close_adxf_handle__6TLobbyFv (*(int (*)(TLobby *))&close_adxf_handle__6TLobbyFv)
+#define TLobby__sub_803CC4C0 (*(int (*)(TLobby *))&TLobby__sub_803CC4C0)
 
 struct Te_8028BFA4 { s32 id; u8 pad[0xC]; };
 
-struct Cl_8028BFA4 { u8 pad0[0x20]; s32 f20; s32 f24; u8 pad28[4]; s32 f2c; u8 pad30[8]; void *bufs[8]; s32 f58; s32 f5c; s32 f60; u8 pad64[8]; s32 f6c; s32 f70; };
+struct Cl_8028BFA4 { u8 pad0[0x20]; s32 f20; s32 f24; u8 pad28[4]; s32 f2c; u8 pad30[8]; void *bufs[8]; s32 f58; s32 f5c; TLobby *f60; u8 pad64[8]; s32 f6c; s32 f70; };
 
 struct Ent_8028BE00 { u8 pad[0xC]; };
 
@@ -104,7 +104,7 @@ struct Ld_8028BE00 {
     s32 bufs[8];
     s32 f58;
     s32 f5c;
-    s32 f60;
+    TLobby *f60;
     u8 pad64[0x10];
     Rect_8028BE00 rects[8];
 };
@@ -121,25 +121,24 @@ void *__nw__7TObjectFUl(int);
 
 void TChCrLoadAfs::start_download() {
     s32 count;
-    u32 temp_r3;
     u32 temp_r3_3;
 
     if (try_begin_load__12TChCrLoadAfsFPv() != 0) {
-        temp_r3 = adxf_open_afs__6TLobbyFii(*(s32 *)((s8 *)this + 0x20), *(s32 *)((s8 *)this + 0x24));
-        *(u32 *)((s8 *)this + 0x1C) = temp_r3;
-        if (temp_r3 == 0U) {
-            *(s32 *)((s8 *)this + 0x2C) = 3;
+        TLobby *file = adxf_open_afs__6TLobbyFii(source_20, source_24);
+        load_handle = file;
+        if (file == NULL) {
+            load_state = 3;
             return;
         }
-        count = TLobby__sub_803CC53C((u8 *)(*(u32 *)((s8 *)this + 0x1C)));
+        count = TLobby__sub_803CC53C(load_handle);
         temp_r3_3 = ((TQuestVmDownLoadServer *)(count << 0xB))->alloc();
-        *(u32 *)((s8 *)this + 0x28) = temp_r3_3;
+        buffer_address = temp_r3_3;
         if (temp_r3_3 == 0U) {
-            *(s32 *)((s8 *)this + 0x2C) = 3;
+            load_state = 3;
             return;
         }
-        TLobby::read_checked_align(*(u32 *)((s8 *)this + 0x1C), count, *(u32 *)((s8 *)this + 0x28));
-        *(s32 *)((s8 *)this + 0x2C) = 1;
+        TLobby::read_checked_align(load_handle, count, buffer_address);
+        load_state = 1;
     }
 }
 }
@@ -176,11 +175,11 @@ void TChCrLoadAfs::run_task() {
 }
 
 TChCrLoadAfs::~TChCrLoadAfs() {
-    u32 handle = load_handle;
-    if (handle != 0) {
-        if (TLobby__sub_803CC4C0((int)handle) == 2) ((TLobby *)load_handle)->adxf_stop();
-        close_adxf_handle__6TLobbyFv((int)load_handle);
-        load_handle = 0;
+    TLobby *handle = load_handle;
+    if (handle != NULL) {
+        if (TLobby__sub_803CC4C0(handle) == 2) load_handle->adxf_stop();
+        load_handle->close_adxf_handle();
+        load_handle = NULL;
     }
     u32 buffer = buffer_address;
     if (buffer != 0) {
@@ -303,18 +302,18 @@ void TChCrLoadAfsTextureReq::update_loading(void *) {
 void TChCrLoadAfsTextureReq::start_read(void *) {
     Cl_8028BFA4 *arg0 = (Cl_8028BFA4 *)this;
     s32 n;
-    u32 t;
+    TLobby *file;
     void *buf;
-    t = adxf_open_afs__6TLobbyFii(player_class_texture_archive_table[arg0->f70].id, find_player_texture_name_ordinal((u8 *)arg0));
-    arg0->f60 = t;
-    if (t != 0) {
+    file = adxf_open_afs__6TLobbyFii(player_class_texture_archive_table[arg0->f70].id, find_player_texture_name_ordinal((u8 *)arg0));
+    arg0->f60 = file;
+    if (file != NULL) {
         arg0->f20 = 0;
         arg0->f24 = 0;
-        n = TLobby__sub_803CC53C((u8 *)arg0->f60);
+        n = TLobby__sub_803CC53C(arg0->f60);
         buf = ((void *)((TQuestVmDownLoadServer *)(n << 11))->alloc());
         arg0->bufs[arg0->f5c] = buf;
         if (buf != NULL) {
-            TLobby::read_checked_align((u32)arg0->f60, (s32)n, (u32)arg0->bufs[arg0->f5c]);
+            TLobby::read_checked_align(arg0->f60, n, (s32)arg0->bufs[arg0->f5c]);
             arg0->f2c = 2;
         }
     }

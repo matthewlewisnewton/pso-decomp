@@ -326,7 +326,7 @@ s32 TLobby__sub_8023FFB8(Obj_8023FCC0 *self, int id) {
         }
     }
     for (i = 0; i < 4; i++) {
-        TLobby::read_checked_align((s32)self->fC14[i], (s32)(self->fC24[i] / 2048), (s32)self->ents[id].h[i]);
+        TLobby::read_checked_align(self->fC14[i], (s32)(self->fC24[i] / 2048), (s32)self->ents[id].h[i]);
         ((TLobby *)(&self->fC14[i]))->set_entry_params(i, self->fC24[i] / 2048, self->ents[id].h[i]);
     }
     return 0;

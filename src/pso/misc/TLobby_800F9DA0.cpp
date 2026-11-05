@@ -10,12 +10,10 @@
 
 extern "C" {
 
-int read_whole_file__8TGStreamFlPUc(void);
+int read_whole_file__8TGStreamFPCvPUc(void);
 void TLobby__sub_800F8AD0(void);
 void TLobby__sub_800F8F34(void);
 void TLobby__sub_803382E4(void);
-s32 adxf_get_fsize_byte__6TLobbyFv();
-s32 adxf_open__6TLobbyFUii(s32, s32);
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
 void restore_saved_depth_alpha_state(void);
 void fn_801E2C50(void);
@@ -23,21 +21,21 @@ s8 func_801A5E54__Fv();
 void func_803DCDFC__Fv(void);
 void system_reset(void);
 
-s32 TLobby::get_file_size(const char *name) {
-    s32 temp_r31;
-    s32 temp_r3;
+s32 TLobby::get_file_size(const void *name) {
+    s32 size;
+    TLobby *file;
 
-    temp_r3 = adxf_open__6TLobbyFUii((s32)name, 0);
-    if (temp_r3 == 0) {
+    file = TLobby::adxf_open(name, 0);
+    if (file == NULL) {
         return -1;
     }
-    temp_r31 = adxf_get_fsize_byte__6TLobbyFv();
-    ((TLobby *)temp_r3)->close_adxf_handle();
-    return temp_r31;
+    size = file->adxf_get_fsize_byte();
+    file->close_adxf_handle();
+    return size;
 }
 
     extern int disc_read_filename;
-void read_disc_file(int a0) { disc_read_filename = a0; read_whole_file__8TGStreamFlPUc(); }
+void read_disc_file(int a0) { disc_read_filename = a0; read_whole_file__8TGStreamFPCvPUc(); }
 
 extern s32 tl_su;
 extern s32 tl_camera;

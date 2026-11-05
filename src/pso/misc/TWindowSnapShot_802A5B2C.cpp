@@ -1,3 +1,4 @@
+#define PSO_WINDOW_BYTE_COUNT
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/RlcArchive.h"
 #include "types.h"
@@ -13,9 +14,9 @@ struct RecoveredGlobal_802A5F24_lbl_804DD098 {
 };
 
 extern "C" {
-s32 strncpy(void *, void *, int);
-s32 strcpy(void *, void *);
-s32 strlen(void *);
+s32 strncpy(void *, const void *, int);
+s32 strcpy(void *, const void *);
+s32 strlen(const void *);
 
 extern s32 lbl_804DD098[];
 
@@ -61,13 +62,13 @@ void fn_802A5C7C(void *arg0) {
 }
 void fn_802A5CB8(void* p) { *(u32*)((char*)p + 0x0) = *(u32*)((char*)p + 0x8); }
 
-void fn_802A5CC4(u8 *arg0, s32 arg1) {
-    if (strlen((void *)arg1) > 0x1F) {
-        strncpy(arg0 + 0x1C, (void *)arg1, 0x1F);
+void fn_802A5CC4(u8 *arg0, const void *name) {
+    if (strlen(name) > 0x1F) {
+        strncpy(arg0 + 0x1C, name, 0x1F);
         *(s8 *)((s8 *)arg0 + 0x3B) = 0;
         return;
     }
-    strcpy(arg0 + 0x1C, (void *)arg1);
+    strcpy(arg0 + 0x1C, name);
 }
 
 void TWindowSnapShot::free_buffer() {
@@ -85,8 +86,8 @@ s32 alloc_buffer__15TWindowSnapShotFPv(TWindowSnapShot *window_snap_shot) {
     }
     return 1;
 }
-s32 TWindowSnapShot::open_stream(s32 arg1) {
-    *(s32 *)&this->m_next = TGStream::read_whole_file((s32)arg1, (u8 *)(*(s32 *)&this->m_prev));
+s32 TWindowSnapShot::open_stream(const void *name) {
+    this->m_buffer_size = TGStream::read_whole_file(name, (u8 *)this->m_prev);
     if (TWindowSnapShot__sub_802A605C((u8 *)this) == 0) {
         set_mode(2);
         free_buffer();
@@ -94,8 +95,8 @@ s32 TWindowSnapShot::open_stream(s32 arg1) {
     }
     return 1;
 }
-s32 init__15TWindowSnapShotFPvi(TWindowSnapShot *window_snap_shot, s32 arg1) {
-    window_snap_shot->m_next = (TObject *)TLobby::get_resource_file_size((const char *)arg1);
+s32 init__15TWindowSnapShotFPvi(TWindowSnapShot *window_snap_shot, const void *name) {
+    window_snap_shot->m_buffer_size = TLobby::get_resource_file_size(name);
     if (TWindowSnapShot__sub_802A605C((u8 *)window_snap_shot) == 0) {
         window_snap_shot->set_mode(1);
         return 0;
@@ -108,7 +109,7 @@ void TWindowSnapShot::reset() {
     *(s32 *)&this->m_flags = 0;
     memset((u8 *)&this->frame_pad_1c, 0, 0x20);
     *(s32 *)&this->m_prev = 0;
-    *(s32 *)&this->m_next = 0;
+    this->m_buffer_size = 0;
     *(s32 *)&this->m_down = 0;
     *(s32 *)((s8 *)arg0 + 0x18) = 0;
 }
@@ -131,29 +132,29 @@ u8 *TWindowSnapShot::init_and_reset() {
 }
 
 void TWindowSnapShot::update_both() { free_buffer(); reset(); }
-s32 TWindowSnapShot::start_capture(s32 arg1) {
-    if (arg1 == 0) {
+s32 TWindowSnapShot::start_capture(const void *name) {
+    if (name == NULL) {
         set_mode(3);
         return 0;
     }
-    if (init__15TWindowSnapShotFPvi(this, arg1) == 0) {
+    if (init__15TWindowSnapShotFPvi(this, name) == 0) {
         return 0;
     }
     if (alloc_buffer__15TWindowSnapShotFPv(this) == 0) {
         return 0;
     }
-    if (open_stream(arg1) == 0) {
+    if (open_stream(name) == 0) {
         return 0;
     }
     fn_802A5CB8(this);
     fn_802A5C7C(this);
-    fn_802A5CC4((u8 *)this, (s32)arg1);
+    fn_802A5CC4((u8 *)this, name);
     *(s32 *)&this->m_down = 1;
     return 1;
 }
 int TWindowSnapShot::get_width() { return 32; }
 void TWindowSnapShot::set_mode(s32 v) { *(s32*)((char*)this + 0x18) = v; }
-s32 TWindowSnapShot::get_buffer_size() { return *(s32 *)&this->m_next; }
+s32 TWindowSnapShot::get_buffer_size() { return this->m_buffer_size; }
 s32 TWindowSnapShot__sub_802A605C(u8 *arg0) {
     return (u8) (*(s32 *)((s8 *)arg0 + 0xC) != 0);
 }

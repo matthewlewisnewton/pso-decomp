@@ -4,6 +4,7 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC_8001ED80.h"
 #include "pso/TChCrLoadGmNjReq.h"
 #include "pso/misc/TLobby.h"
+#include "pso/misc/TChCrLoadAfsTextureReq.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
 struct RecoveredGlobal_8028C378___vt__22TChCrLoadAfsTextureReq {
@@ -45,13 +46,6 @@ public:
 };
 
 typedef void (Req_8028C090::*Handler_8028C090)();
-
-class TChCrLoadAfsTextureReq {
-public:
-    void try_begin_load(void *);
-    void start_read(void *);
-    void update_loading(void *);
-};
 
 extern "C" {
 s32 queue_destruction__7TObjectFv(void *, int, int);
@@ -225,29 +219,29 @@ f32 TLobby__sub_8028C50C(void) {
 }
 #pragma push
 #pragma fp_contract on
-void TLobby::update_model_load() {
+void TChCrLoadAfsTextureReq::update_model_load() {
     s32 *temp_r5;
     s32 temp_r0;
     s32 temp_r4;
     u32 bml_model;
-    u32 var_r31;
-    temp_r0 = *(s32 *)((s8 *)((u8 *)this) + 0x74) - 1;
-    *(s32 *)((s8 *)((u8 *)this) + 0x74) = temp_r0;
+    BmlResource *loaded;
+    temp_r0 = this->load_timer - 1;
+    this->load_timer = temp_r0;
     if (temp_r0 < 0) {
-        if ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x68) != 0U) {
-            delete (BmlResource *)((int) *(u32 *)((s8 *)((u8 *)this) + 0x68));
+        if (this->loaded_bml != NULL) {
+            delete this->loaded_bml;
         } else {
             return;
         }
-        var_r31 = (int)::operator new(0x440);
-        if (var_r31 != 0U) {
-            var_r31 = (u32)init_from_id_lists((BmlResource *)var_r31, 6, (u32 *)(((u8 *)this) + 0x60), (u32 *)(((u8 *)this) + 0x64), 0, 0, (void *)(((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)))->start_load_default()));
+        loaded = (BmlResource *)::operator new(0x440);
+        if (loaded != NULL) {
+            loaded = init_from_id_lists(loaded, 6, &this->model_ids, &this->motion_ids, 0, 0, this->lobby->start_load_default());
         }
-        *(u32 *)((s8 *)((u8 *)this) + 0x68) = var_r31;
-        if (var_r31 != 0U) {
-            *(s32 *)((s8 *)((u8 *)this) + 0x74) = 0x12C;
+        this->loaded_bml = loaded;
+        if (loaded != NULL) {
+            this->load_timer = 0x12C;
         }
-    } else if (fn_8001ED90((void *)(*(u32 *)((s8 *)((u8 *)this) + 0x68))) != 0) {
+    } else if (fn_8001ED90(this->loaded_bml) != 0) {
         bml_model = get_bml_model((int) (*(u32 *)((s8 *)((u8 *)this) + 0x68)), 0);
         **(u32 **)((s8 *)((u8 *)this) + 0x1C) = bml_model;
         if (bml_model != 0U) {

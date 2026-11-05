@@ -19,7 +19,7 @@
 #include "pso/object/TObjFish.h"
 
 extern "C" {
-s32 *lobby_checked_read_ptr_table[4] = { 0, 0, 0, 0 };
+TLobby **lobby_checked_read_ptr_table[4] = { 0, 0, 0, 0 };
 s32 lbl_80499A10[4] = { 0, 0, 0, 0 };
 u32 lbl_80499A20[4] = { 0, 0, 0, 0 };
 u32 lbl_80499A30[4] = { 0, 0, 0, 0 };
@@ -810,7 +810,7 @@ void TLobby::invoke_callback() {
 #undef main_phase_deferred_callback
 
 void TLobby::set_keyboard_mode(int a0) { (*(int *)&main_phase_deferred_callback) = a0; }
-extern s32 *pending_file_read_handle_ref;
+extern TLobby **pending_file_read_handle_ref;
 extern s32 pending_file_read_sector_count;
 extern u32 pending_file_read_destination;
 extern s32 pending_file_read_flush_requested;
@@ -860,8 +860,7 @@ void TLobby::clear_player_slot_tables(s32 n) {
 }
 
 void TLobby::set_entry_params(s32 arg1, s32 arg2, s32 arg3) {
-    s32 arg0 = (s32)this;
-    lobby_checked_read_ptr_table[arg1] = (s32 *)arg0;
+    lobby_checked_read_ptr_table[arg1] = (TLobby **)this;
     lbl_80499A10[arg1] = arg2;
     lbl_80499A20[arg1] = arg3;
 }
@@ -907,7 +906,7 @@ void TLobby::load_font_texture() {
         s32 r;
         prs_decompress_buffer((s32)lobby_font_texture_prs_data, (s32)file);
         r = load_gvm_texture_archive(file, lbl_8049C61C);
-        TLobby::tmp_buf_release((const char *)lbl_8043D9F4);
+        TLobby::tmp_buf_release(lbl_8043D9F4);
         lobby_font_texture_loaded = 1;
         if (r == -1) {
             lobby_font_texture_loaded = 0;

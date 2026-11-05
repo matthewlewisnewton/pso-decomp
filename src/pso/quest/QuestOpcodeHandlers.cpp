@@ -2200,11 +2200,10 @@ void qst_op_open_pack_select() {
 }
 
 void qst_op_prepare_gba_rom_from_disk(void) {
-    s32 temp_r31;
+    const void *name = (const void *)qst_args[0];
 
-    temp_r31 = qst_args[0];
     TLobby::free_luker_object();
-    TLobby::send_data(temp_r31);
+    TLobby::send_data(name);
     TLobby::set_send_buffer((u8 *)gba_download_data_buffer, (s32)gba_download_data_size);
     TLobby::clear_quest_vm_flag();
 }

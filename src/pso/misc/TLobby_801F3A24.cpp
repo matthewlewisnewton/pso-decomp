@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TScene.h"
 #include "pso/misc/TLobby_801F3A24.h"
 #include "pso/misc/TLobby_80207644.h"
 #include "pso/misc/TLobby_80207DA8.h"
@@ -31,17 +32,16 @@ extern "C" {
 void convert_quest_object_rows(struct QuestObjRow_801F3AD8 *rows, u32 byte_size);
 extern s16 quest_floor_designations[];
 extern s32 TLobby__data_805D5EE0;
-s32 read_disc_file(s32, s32);
+s32 read_disc_file(const void *, s32);
 s32 alloc__22TQuestVmDownLoadServerFv();
-s32 update_lobby_scene__6TSceneFv();
 
-void refresh_quest_list__6TLobbyFi(s32 arg0) {
+void refresh_quest_list__6TLobbyFi(const void *name) {
     s32 temp_r3;
 
-    if (update_lobby_scene__6TSceneFv() >= 0) {
+    if (TScene::update_lobby_scene(name) >= 0) {
         temp_r3 = alloc__22TQuestVmDownLoadServerFv();
         if (temp_r3 != 0) {
-            read_disc_file(arg0, temp_r3);
+            read_disc_file(name, temp_r3);
             rebuild_all__6TLobbyFi(temp_r3);
             TAdSinglePlyChrSelectGC::safe_free(temp_r3);
         }
@@ -370,13 +370,13 @@ extern B_801F4340* TLobby__data_805D6144;
 
 extern s16 TLobby__data_805D6134;
 
-void open_session__6TLobbyFi(s32 arg0) {
+void open_session__6TLobbyFi(const void *name) {
     s32 t;
 
-    if (update_lobby_scene__6TSceneFv() >= 0) {
+    if (TScene::update_lobby_scene(name) >= 0) {
         t = (TLobby__data_805D5EE0 = alloc__22TQuestVmDownLoadServerFv());
         if (t != 0) {
-            read_disc_file(arg0, t);
+            read_disc_file(name, t);
             populate_quest_floor_sets();
             TLobby::init_id_tables();
             TLobby__data_805D6134 = 1;

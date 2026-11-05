@@ -15,7 +15,7 @@
 
 struct Obj_80246948 { u8 pad[0x2c]; u32 f2c; };
 
-extern s32 lbl_8044E658[];
+extern char lbl_8044E658[];
 extern const char lbl_8044E688[];
 extern const char hud_palette_texture_filename[];
 extern const char lbl_8044E6B0[];
@@ -43,7 +43,7 @@ void TWindowCtrlMain::free_window() {
 
 void load_hud_palette_textures(void) {
     s32 sp8[3];
-    sp8[0] = TLobby::tmp_buf_use_req((const char *)lbl_8044E658);
+    sp8[0] = TLobby::tmp_buf_use_req(lbl_8044E658);
     TLanguage::draw_string((void *)lbl_8044E688, (void *)sp8, 0x40);
     TLanguage::draw_string((void *)hud_palette_texture_filename, (void *)sp8, 0x41);
     TLanguage::draw_string((void *)lbl_8044E6B0, (void *)sp8, 0x42);
@@ -54,7 +54,7 @@ void load_hud_palette_textures(void) {
     TLanguage::draw_string((void *)lbl_8044E720, (void *)sp8, 1);
     TLanguage::draw_string((void *)lbl_8044E734, (void *)sp8, 0x4A);
     TLanguage::draw_string((void *)lbl_8044E748, (void *)sp8, 0x43);
-    TLobby::tmp_buf_release((const char *)lbl_8044E658);
+    TLobby::tmp_buf_release(lbl_8044E658);
     TLobby__sub_8023E554((s32)lbl_8044E758, (s32)f256_hyouji_texlist);
     lbl_805D63F0 = (u32)f256_hyouji_texlist;
     set_current_texture_list((GinjaTextureList *)(((void *)f256_hyouji_texlist)));

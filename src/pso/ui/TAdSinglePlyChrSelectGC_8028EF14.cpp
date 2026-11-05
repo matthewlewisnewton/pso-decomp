@@ -293,7 +293,7 @@ s32 __ct__10TObjMotionFP7TObject(void *, void *);
 }
 extern u32 creation_figure_object;
 void request_creation_motion(s32 arg0);
-extern s32 chara_select_creation_shape_rel_files[];
+extern const char *chara_select_creation_shape_rel_files[];
 extern u32 creation_figure_rotation_y;
 void map_shape_region_samples(s32 region, s32 *samples);
 extern CreationShapeBlend creation_shape_blend;
@@ -553,7 +553,7 @@ void TAdSinglePlyChrSelectGC::reset_creation_parts() {
 void load_creation_shape_rel(W_80290250 *arg0) {
     s32 rc;
     arg0->bufp = ((TQuestVmDownLoadServer *)0x44000)->alloc();
-    rc = TLobby::request_file_read((s32)(chara_select_creation_shape_rel_files[((TCharaMaking *)(*(void * *)&creation_player_character))->get_display_index()]), (s32)arg0->bufp, (s32 *)arg0->data, (void **)0);
+    rc = TLobby::request_file_read(chara_select_creation_shape_rel_files[((TCharaMaking *)(*(void * *)&creation_player_character))->get_display_index()], (s32)arg0->bufp, (s32 *)arg0->data, NULL);
     arg0->rc = rc;
     if (rc >= 0) {
         if (arg0->rc > 0x44000) {

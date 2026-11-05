@@ -154,7 +154,7 @@ void *__dt__13TUnk_80488B68Fv(void *arg0, s16 arg1) {
 
 extern "C" {
 
-s32 load_relocatable_file(s32 arg0, s32 arg1);
+s32 load_relocatable_file(const void *arg0, s32 arg1);
 
 }
 TUnk_80488B68::TUnk_80488B68() : TUnk_80488A28() {
@@ -208,7 +208,7 @@ void TCameraCtrl::load_camera_banks() {
         return;
     }
     for (j = 0; j < n; j++) {
-        sz = ((TScene *)(b->entries[j].id))->update_lobby_scene();
+        sz = TScene::update_lobby_scene((b->entries[j].id));
         if (sz <= -1) {
             return;
         }

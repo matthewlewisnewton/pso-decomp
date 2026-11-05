@@ -5,6 +5,7 @@
 #include "pso/misc/TLobby_800F9690.h"
 #include "pso/object/TObjFish_8001ED90.h"
 #include "pso/misc/TLobby.h"
+#include "pso/misc/TScene.h"
 #include "pso/misc/TGStream.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
@@ -53,11 +54,10 @@ s32 TLobby::alloc_download_quest(s32 arg1, s32 *arg2) {
     return ret;
 }
 u8 *set_stream_and_load_file__6TLobbyFi(s32);
-s32 update_lobby_scene__6TSceneFv();
 s32 read_disc_file(s32, s32);
 s32 destroy_gstream(s32 *, s32);
 s32 open__8TGStreamFPvPvi(s32 *, s32, s32);
-extern s32 lbl_80499A40[];
+extern char lbl_80499A40[];
 
 struct Stream_800F979C { u8 data[0x2c]; };
 struct Sel_800F979C { u8 data[240]; };
@@ -71,15 +71,15 @@ s32 load_encrypted_text_archive(char *name, s32 *arg1) {
     Stream_800F979C st;
     Sel_800F979C sel;
 
-    size = update_lobby_scene__6TSceneFv();
+    size = TScene::update_lobby_scene(name);
     if (size <= 0) {
         return 0;
     }
     if ((size <= 0x40000) && (TLobby__sub_8001EEF4() != 0)) {
-        buf = (u8 *)TLobby::tmp_buf_use_req((const char *)lbl_80499A40);
+        buf = (u8 *)TLobby::tmp_buf_use_req(lbl_80499A40);
         read_disc_file((s32)name, (s32)buf);
         ret = ((TLobby *)buf)->alloc_download_quest(size, &sp8);
-        TLobby::tmp_buf_release((const char *)lbl_80499A40);
+        TLobby::tmp_buf_release(lbl_80499A40);
     } else {
         open__8TGStreamFPvPvi((s32 *)&st, (s32)name, 1);
         buf = (u8 *)((TQuestVmDownLoadServer *)0x800)->alloc();
