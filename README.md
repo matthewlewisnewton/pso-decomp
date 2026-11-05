@@ -18,7 +18,7 @@ Nothing from the game is included here. You need your own copy of the game to bu
 <!-- /progress-table -->
 
 Measured on `PsoV3.dol` on 2026-11-05 at validated source commit
-[`874789542f`](https://github.com/matthewlewisnewton/pso-decomp/commit/874789542f30076fe19e5d6517dd459bad4df8ba).
+[`da642a7419`](https://github.com/matthewlewisnewton/pso-decomp/commit/da642a7419e3dd416639d8a603e16ff41220941f).
 The README-only publication commit records the measurements of its parent source tree.
 A function is matched when it compiles to the original's exact bytes. Code, data and
 units are linked when the build takes them from compiled source instead of the original. Data includes `.bss`.
