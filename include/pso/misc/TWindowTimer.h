@@ -2,9 +2,10 @@
 #define PSO_MISC_TWINDOWTIMER_H
 
 #include "types.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowBase.h"
 
-struct TWindowTimer : public TWindowBase {
+struct TWindowTimer : public TUnk_804CE018 {
     virtual ~TWindowTimer();
     void ease_window_timer_position();
     virtual void render();

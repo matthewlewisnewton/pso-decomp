@@ -29,11 +29,11 @@ struct Item_802D6FD4 {
 extern "C" {
 s32 get_instance__15TAdPlayerLoadGCFv();
 void set_state__15TAdPlayerLoadGCFi(int);
-s32 probe_and_check_card__15TAdPlayerLoadGCFv(int);
+s32 probe_and_check_card__15TAdPlayerLoadGCFl(int);
 s32 get_load_result__15TAdPlayerLoadGCFPv(int);
 s32 TAdPlayerLoadGC__sub_801E1B50(int);
 s32 check_memcard_status__15TAdPlayerLoadGCFl(int);
-s32 find_card_file__15TAdPlayerLoadGCFiPv(int, void *);
+s32 find_card_file__15TAdPlayerLoadGCFlPCc(int, void *);
 s32 TAdPlayerLoadGC__sub_801FD770();
 s32 TAdPlayerLoadGC__sub_801FD814();
 s32 check_system_load_result__23TAdSinglePlyChrSelectGCFv();
@@ -85,16 +85,16 @@ void run_task__15TAdPlayerLoadGCFv(u8 *arg0) {
         }
         break;
     case 1:
-        if ((probe_and_check_card__15TAdPlayerLoadGCFv(0) != 0) || ((u32)get_load_result__15TAdPlayerLoadGCFPv(0) != 0xFFFFFF83U)) {
+        if ((probe_and_check_card__15TAdPlayerLoadGCFl(0) != 0) || ((u32)get_load_result__15TAdPlayerLoadGCFPv(0) != 0xFFFFFF83U)) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 2U;
         }
         break;
     case 2:
-        if ((probe_and_check_card__15TAdPlayerLoadGCFv(0) != 0) || ((u32)get_load_result__15TAdPlayerLoadGCFPv(0) != 0xFFFFFF21U)) {
+        if ((probe_and_check_card__15TAdPlayerLoadGCFl(0) != 0) || ((u32)get_load_result__15TAdPlayerLoadGCFPv(0) != 0xFFFFFF21U)) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 3U;
         }
     case 3:
-        if (probe_and_check_card__15TAdPlayerLoadGCFv(0) != 0) {
+        if (probe_and_check_card__15TAdPlayerLoadGCFl(0) != 0) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 4U;
         }
         break;
@@ -104,17 +104,17 @@ void run_task__15TAdPlayerLoadGCFv(u8 *arg0) {
         }
         break;
     case 5:
-        if ((u32)find_card_file__15TAdPlayerLoadGCFiPv(0, lbl_804C88C0) != 0xFFFFFF41U) {
+        if ((u32)find_card_file__15TAdPlayerLoadGCFlPCc(0, lbl_804C88C0) != 0xFFFFFF41U) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 6U;
         }
         break;
     case 6:
-        if ((find_card_file__15TAdPlayerLoadGCFiPv(0, lbl_804C88C0) == 0) && (get_instance__15TAdPlayerLoadGCFv() == 0)) {
+        if ((find_card_file__15TAdPlayerLoadGCFlPCc(0, lbl_804C88C0) == 0) && (get_instance__15TAdPlayerLoadGCFv() == 0)) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 7U;
         }
         break;
     case 7:
-        if ((u32)find_card_file__15TAdPlayerLoadGCFiPv(0, pso_system_card_filename) != 0xFFFFFF41U) {
+        if ((u32)find_card_file__15TAdPlayerLoadGCFlPCc(0, pso_system_card_filename) != 0xFFFFFF41U) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 8U;
         }
         break;
@@ -153,20 +153,20 @@ void run_task__15TAdPlayerLoadGCFv(u8 *arg0) {
     case 14:
         if (TAdPlayerLoadGC::probe_card_slot(1) == 0) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0xDU;
-        } else if ((probe_and_check_card__15TAdPlayerLoadGCFv(1) != 0) || ((u32)get_load_result__15TAdPlayerLoadGCFPv(1) != 0xFFFFFF83U)) {
+        } else if ((probe_and_check_card__15TAdPlayerLoadGCFl(1) != 0) || ((u32)get_load_result__15TAdPlayerLoadGCFPv(1) != 0xFFFFFF83U)) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0xFU;
         }
         break;
     case 15:
         if (TAdPlayerLoadGC::probe_card_slot(1) == 0) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0xDU;
-        } else if ((probe_and_check_card__15TAdPlayerLoadGCFv(1) != 0) || ((u32)get_load_result__15TAdPlayerLoadGCFPv(1) != 0xFFFFFF21U)) {
+        } else if ((probe_and_check_card__15TAdPlayerLoadGCFl(1) != 0) || ((u32)get_load_result__15TAdPlayerLoadGCFPv(1) != 0xFFFFFF21U)) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0x10U;
         }
     case 16:
         if (TAdPlayerLoadGC::probe_card_slot(1) == 0) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0xDU;
-        } else if (probe_and_check_card__15TAdPlayerLoadGCFv(1) != 0) {
+        } else if (probe_and_check_card__15TAdPlayerLoadGCFl(1) != 0) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0x11U;
         }
         break;
@@ -180,28 +180,28 @@ void run_task__15TAdPlayerLoadGCFv(u8 *arg0) {
     case 18:
         if (TAdPlayerLoadGC::probe_card_slot(1) == 0) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0xDU;
-        } else if ((u32)find_card_file__15TAdPlayerLoadGCFiPv(1, lbl_804C88C0) != 0xFFFFFF41U) {
+        } else if ((u32)find_card_file__15TAdPlayerLoadGCFlPCc(1, lbl_804C88C0) != 0xFFFFFF41U) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0x13U;
         }
         break;
     case 19:
         if (TAdPlayerLoadGC::probe_card_slot(1) == 0) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0xDU;
-        } else if ((find_card_file__15TAdPlayerLoadGCFiPv(1, lbl_804C88C0) == 0) && (get_instance__15TAdPlayerLoadGCFv() == 0)) {
+        } else if ((find_card_file__15TAdPlayerLoadGCFlPCc(1, lbl_804C88C0) == 0) && (get_instance__15TAdPlayerLoadGCFv() == 0)) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0x14U;
         }
         break;
     case 20:
         if (TAdPlayerLoadGC::probe_card_slot(1) == 0) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0xDU;
-        } else if ((u32)find_card_file__15TAdPlayerLoadGCFiPv(1, pso_system_card_filename) != 0xFFFFFF41U) {
+        } else if ((u32)find_card_file__15TAdPlayerLoadGCFlPCc(1, pso_system_card_filename) != 0xFFFFFF41U) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0x15U;
         }
         break;
     case 21:
         if (TAdPlayerLoadGC::probe_card_slot(1) == 0) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0xDU;
-        } else if ((find_card_file__15TAdPlayerLoadGCFiPv(1, lbl_804C88C0) == 0) && ((u32)check_system_load_result__23TAdSinglePlyChrSelectGCFv() != 0xFFFFFF05U)) {
+        } else if ((find_card_file__15TAdPlayerLoadGCFlPCc(1, lbl_804C88C0) == 0) && ((u32)check_system_load_result__23TAdSinglePlyChrSelectGCFv() != 0xFFFFFF05U)) {
             *(u32 *)((s8 *)arg0 + 0x1C) = 0x16U;
         }
         break;

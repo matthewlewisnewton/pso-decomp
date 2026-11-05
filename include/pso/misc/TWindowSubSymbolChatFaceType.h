@@ -2,9 +2,10 @@
 #define PSO_MISC_TWINDOWSUBSYMBOLCHATFACETYPE_H
 
 #include "types.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowBase.h"
 
-struct TWindowSubSymbolChatFaceType : public TWindowBase {
+struct TWindowSubSymbolChatFaceType : public TUnk_804CE018 {
     virtual ~TWindowSubSymbolChatFaceType();
     void update_parts_entries();
     void handle_input();

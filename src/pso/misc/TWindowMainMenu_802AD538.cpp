@@ -30,7 +30,7 @@ void begin_render__20TWindowSubStatusDispFl(void);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
-f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *);
+f32 TWindowSubComCard__sub_80244784(void *);
 s32 is_window_reveal_complete__11TWindowBaseFv();
 s32 sub_80246948__11TWindowBaseFv();
 s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);

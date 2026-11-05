@@ -6,7 +6,7 @@
 class TUnk_804EFBAC : public TWindowBase {
 public:
     virtual ~TUnk_804EFBAC();
-    u8 unk_1C[0xC];
+    u8 unk_1C[0x50];
 };
 typedef char TUnk_804EFBAC_size[sizeof(TUnk_804EFBAC) == 0x6C ? 1 : -1];
 

@@ -65,7 +65,7 @@ void TLanguage::free_text_resources() {
 }
 
 void TLanguage::load_fonts(s32 language) {
-    s32 sp8;
+    u8 *sp8;
     GvmTexture *alphabet;
     sp8 = TLobby::tmp_buf_use_req(TLanguage__class_name);
     TLanguage::draw_string((void *)f256_alphabet_gvp, &sp8, 0x48);

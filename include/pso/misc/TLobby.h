@@ -751,7 +751,7 @@ struct TLobby : public TObject {
     static void tmp_buf_release_if_owner(const char *name);
     static s32 tmp_buf_release(const char *name);
     static s32 tmp_buf_is_free();
-    static s32 tmp_buf_use_req(const char *name);
+    static u8 *tmp_buf_use_req(const char *name);
     void handle_quest_download_chunk();
     static u16 alloc_actor_ids(s32 arg);
     void reduce_owner_matched_items();

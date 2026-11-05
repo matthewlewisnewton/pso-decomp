@@ -2,9 +2,10 @@
 #define PSO_MISC_TWINDOWBREAKIN_H
 
 #include "types.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowBase.h"
 
-struct TWindowBreakIn : public TWindowBase {
+struct TWindowBreakIn : public TUnk_804CE018 {
     virtual ~TWindowBreakIn();
     virtual void render();
     virtual void run_task();

@@ -2,9 +2,10 @@
 #define PSO_MISC_TWINDOWCALLBACK_H
 
 #include "types.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowBase.h"
 
-struct TWindowCallBack : public TWindowBase {
+struct TWindowCallBack : public TUnk_804CE018 {
     virtual ~TWindowCallBack();
     void render();
     void run_task();

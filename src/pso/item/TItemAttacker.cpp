@@ -213,7 +213,7 @@ s32 create_item_buff(s32 arg0) {
         temp_r3 = TLobby::tmp_buf_is_free();
         item_buffer_temp_mode = temp_r3;
         if ((temp_r3 != 0) && (arg0 < 0x40000)) {
-            item_buff_buffer = TLobby::tmp_buf_use_req((const char *)(s32 *)"TItemBuff");
+            item_buff_buffer = (s32)TLobby::tmp_buf_use_req((const char *)(s32 *)"TItemBuff");
         } else {
             item_buff_buffer = (s32)::operator new[](arg0);
         }

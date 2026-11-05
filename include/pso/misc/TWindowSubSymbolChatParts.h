@@ -2,9 +2,10 @@
 #define PSO_MISC_TWINDOWSUBSYMBOLCHATPARTS_H
 
 #include "types.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowAddition.h"
 
-struct TWindowSubSymbolChatParts : public TWindowAddition {
+struct TWindowSubSymbolChatParts : public TUnk_804CE018 {
     virtual ~TWindowSubSymbolChatParts();
     void sub_80285274(u8 *);
     void sub_80285054();

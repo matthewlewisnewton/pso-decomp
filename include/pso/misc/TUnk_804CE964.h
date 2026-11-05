@@ -1,9 +1,10 @@
 #ifndef PSO_MISC_TUNK_804CE964_H
 #define PSO_MISC_TUNK_804CE964_H
 #include "types.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowBase.h"
 
-class TUnk_804CE964 : public TWindowBase {
+class TUnk_804CE964 : public TUnk_804CE018 {
 public:
     virtual ~TUnk_804CE964();
     virtual void render();

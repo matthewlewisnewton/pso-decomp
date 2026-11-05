@@ -2,10 +2,11 @@
 #define PSO_MISC_TWINDOWSUBSTATUSDISP_H
 
 #include "types.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include <stddef.h>
 #include "pso/misc/TWindowBase.h"
 
-struct TWindowSubStatusDisp : public TWindowBase {
+struct TWindowSubStatusDisp : public TUnk_804CE018 {
     virtual ~TWindowSubStatusDisp();
     void calc_row_width();
     virtual void run_task();

@@ -2,9 +2,10 @@
 #define PSO_MISC_TWINDOWSUBMAGPHOTON_H
 
 #include "types.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowBase.h"
 
-struct TWindowSubMagPhoton : public TWindowBase {
+struct TWindowSubMagPhoton : public TUnk_804CE018 {
     virtual ~TWindowSubMagPhoton();
     void init_photon_blast_entries();
     int get_active_flag();

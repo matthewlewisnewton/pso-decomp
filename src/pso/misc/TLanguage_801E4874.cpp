@@ -24,9 +24,9 @@ struct Ent_801E4874 {
 extern u8 *TLanguage__read_cursor;
 extern "C" {
 u8 *TQuestVmDownLoadServer__sub_8007EBDC(s32, s32);
-u32 alloc__22TQuestVmDownLoadServerFUl();
+u8 *alloc__22TQuestVmDownLoadServerFUl();
 void debug_print__6TLobbyFle(void *, ...);
-void load_gvm_texture_archive(u32, u8 *);
+void load_gvm_texture_archive(u8 *, u8 *);
 extern u8 texture_file_load_error_format[];
 extern u8 lbl_8044983C[];
 struct Base_801E4B68_801E4874 { char pad[0x50]; };
@@ -43,8 +43,8 @@ u8 *load_gvm_texture_file(s32 arg0) {
     u8 *res;
     Ent_801E4874 *ent;
     u8 *str;
-    u32 buf;
-    u32 big;
+    u8 *buf;
+    u8 *big;
     s32 size;
     Hdr_801E4874 hdr;
     big = 0;
@@ -61,10 +61,10 @@ u8 *load_gvm_texture_file(s32 arg0) {
         buf = TLobby::tmp_buf_use_req((const char *)lbl_8044983C);
     }
     TGStream::load_sct_file(arg0, buf);
-    count = read_file_header__9TLanguageFiPv((u8 *)buf, (u8 *)&hdr);
+    count = read_file_header__9TLanguageFiPv(buf, (u8 *)&hdr);
     if (count == 0) {
         if (big != 0) {
-            TAdSinglePlyChrSelectGC::safe_free(big);
+            TAdSinglePlyChrSelectGC::safe_free((u32)big);
         } else {
             TLobby::tmp_buf_release((const char *)lbl_8044983C);
         }
@@ -95,7 +95,7 @@ u8 *load_gvm_texture_file(s32 arg0) {
     }
     load_gvm_texture_archive(buf, res);
     if (big != 0) {
-        TAdSinglePlyChrSelectGC::safe_free(big);
+        TAdSinglePlyChrSelectGC::safe_free((u32)big);
     } else {
         TLobby::tmp_buf_release((const char *)lbl_8044983C);
     }
