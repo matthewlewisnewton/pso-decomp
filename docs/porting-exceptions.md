@@ -15,19 +15,19 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `88b6540f3`, 2026-11-05)
+## Summary (regenerated on this branch after merging main `97e9c3f93`, 2026-11-05)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `88b6540f3` (2026-11-05). Assembly is counted as functions;
+after merging main `97e9c3f93` (2026-11-05). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 8 functions (15 source lines) | 5 |
+| Assembly (`asm` + `orig_asm` include) | 19 functions (42 source lines) | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,764 | 871 |
-| Per-unit compiler overrides in `configure.py` | 174 | 174 |
+| CodeWarrior pragmas (excluding push/pop) | 5,767 | 875 |
+| Per-unit compiler overrides in `configure.py` | 175 | 175 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -70,11 +70,11 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,764 pragmas in 871 files; per-file table in the generated file. Main kinds:
+5,767 pragmas in 875 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 876, `auto_inline` 837,
-`opt_common_subs` 610, `scheduling` 260, `opt_propagation` 237,
+`opt_common_subs` 609, `scheduling` 260, `opt_propagation` 237,
 `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56,
-`defer_codegen` 51, `pack` 46. Reason: reproduce the original code generation
+`defer_codegen` 53, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -294,6 +294,12 @@ cast stays a cast.
 | `src/pso/boss/TBoss7PhotonBullet_802EF26C.cpp` | `run_task__18TBoss7PhotonBulletFv` (`0x802EF2AC`); unit vtable order | unit `configure.py` override `-inline off,deferred -fp_contract on` | `run_task` contracts `2.0f * aim + travel` into `fmadds`; with `-fp_contract off` the function grows by `0x10`. Deferred emission, with the definitions written bottom to top, places `__vt__18TBoss7PhotonBullet` then `__vt__15TBoss7PhotonPad` while `.text` stays in address order; without it the compiler emits the pad vtable first. Both vtables are the compiler's own (virtual destructor, `run_task`, `render`); `TOBJECT_OUT_OF_LINE_HELPERS` keeps `queue_destruction` as the external call. With the flags the unit matches every section (`.text` 1428, `.data` 116, `.sdata2` 28, 8/8 functions). Precedent: `-fp_contract on` in [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209), and `-inline off,deferred` on `TObjTombstone.cpp` and other units here. | Drop the flags; the C++ is the behavior. |
 
 
+### `text_8034A090.cpp`: `-fp_contract on`
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/unk/text_8034A090.cpp` | `TAdLoadQuestPrtTxtGC::TAdLoadQuestPrtTxtGC` (`0x8034A254`, 892 bytes) | unit `configure.py` override `-fp_contract on` | The constructor's three particle layouts contract `scale * index + base` into `fmadds` (case 0 at ctor+0x120, `ec 1d d8 3a`; the same form in cases 1 and 2). With the flag the unit is 1452/1452 code, 4/4 functions, `.rodata` 8 and `.data` 36. Without it those three functions and both data sections stay 100%, and the constructor falls to 93.32% and grows from 892 to 908 bytes (separate `fmul`/`fadd`). No `-inline` change was needed. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`). | Keep fused multiply-add, or accept the float differences. |
+
 ### `TOTrapAncient01.cpp` unit overrides ([#221](https://github.com/matthewlewisnewton/pso-decomp/pull/221))
 
 | File | Functions | What | Why | Port should |
@@ -416,6 +422,36 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
+| `subtract_vector` | `pso/math/MatrixTransforms.cpp` | `src/pso/math/MatrixTransforms.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `matrix_apply_translation` | `pso/unk/text_803D9650.cpp` | `src/pso/unk/text_803D9650.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `normalize_vector` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `transform_point_by_current_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `rotate_vector_by_current_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `rotate_matrix_by_node_angles` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `push_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `scale_current_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `post_translate_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `__ct__20TAdLoadQuestPrtTxtGCFP7TObjectl` | `pso/unk/text_8034A090.cpp` | `src/pso/unk/text_8034A090.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | extern "C" mangled name | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `sin_table_lookup` | `pso/unk/text_803D647C.cpp` | `src/pso/unk/text_803D647C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `cos_table_lookup` | `pso/unk/text_803D647C.cpp` | `src/pso/unk/text_803D647C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `convert_color_f32_to_u8` | `pso/misc/TCameraCtrl_803D749C.cpp` | `src/pso/misc/TCameraCtrl_803D749C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `convert_color_u8_to_f32` | `pso/misc/TCameraCtrl_803D749C.cpp` | `src/pso/misc/TCameraCtrl_803D749C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `vec3_add_to` | `pso/unk/text_803D8910.cpp` | `src/pso/unk/text_803D8910.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `vec3_dot` | `pso/unk/text_803D8910.cpp` | `src/pso/unk/text_803D8910.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `vec3_cross` | `pso/unk/text_803D8910.cpp` | `src/pso/unk/text_803D8910.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `TCameraCtrl::update_projection_params` `#pragma use_lmw_stmw off` | `pso/misc/TCameraCtrl_803D66DC.cpp` | `src/pso/misc/TCameraCtrl_803D66DC.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `TCameraCtrl::update_projection_params` `#pragma opt_common_subs off` | `pso/misc/TCameraCtrl_803D66DC.cpp` | `src/pso/misc/TCameraCtrl_803D66DC.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `set_perspective_projection_from_fov` `#pragma use_lmw_stmw off` | `pso/misc/TCameraCtrl_803D676C.cpp` | `src/pso/misc/TCameraCtrl_803D676C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `sample_camera_motion` `#pragma use_lmw_stmw off` | `pso/misc/TCameraCtrl_803D6960.cpp` | `src/pso/misc/TCameraCtrl_803D6960.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `interpolate_motion_vector_keys` `#pragma scheduling off` | `pso/misc/TCameraCtrl_803D6960.cpp` | `src/pso/misc/TCameraCtrl_803D6960.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `interpolate_motion_vector_keys_xy` `#pragma scheduling off` | `pso/misc/TCameraCtrl_803D6960.cpp` | `src/pso/misc/TCameraCtrl_803D6960.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `TObjPlayer::interpolate_motion_key` `#pragma scheduling off` | `pso/misc/TCameraCtrl_803D6960.cpp` | `src/pso/misc/TCameraCtrl_803D6960.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `sample_motion_angle_keys` `#pragma scheduling off` | `pso/misc/TCameraCtrl_803D6960.cpp` | `src/pso/misc/TCameraCtrl_803D6960.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `sample_motion_angle_keys_s16` `#pragma scheduling off` | `pso/misc/TCameraCtrl_803D6960.cpp` | `src/pso/misc/TCameraCtrl_803D6960.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `TCameraCtrl::translate_view_negated` `#pragma scheduling off` | `pso/misc/TCameraCtrl_803D6538.cpp` | `src/pso/misc/TCameraCtrl_803D6538.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `set_camera_look_at` `#pragma scheduling off` | `pso/misc/TCameraCtrl_803D6538.cpp` | `src/pso/misc/TCameraCtrl_803D6538.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `TCameraCtrl::set_clamped_offsets` `#pragma opt_common_subs off` | `pso/misc/TCameraCtrl_803D6538.cpp` | `src/pso/misc/TCameraCtrl_803D6538.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `TCameraCtrl::set_clamped_offsets` `#pragma scheduling off` | `pso/misc/TCameraCtrl_803D6538.cpp` | `src/pso/misc/TCameraCtrl_803D6538.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
 | `multi_chg_game_mode_window_extent` | `pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | `src/pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | other: __declspec(section ".data") | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
 | `lbl_804F3A18` | `pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | `src/pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | other: __declspec(section ".data") | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
 | `TObjDFDemo1.cpp:149` `#pragma defer_codegen on` | `pso/object/TObjDFDemo1.cpp` | `src/pso/object/TObjDFDemo1.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
@@ -845,6 +881,8 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `lbl_80481280` (`.data` `0x80481280`, 107 pointers) and its stores in `TBoss1Dragon__ct` (`+0x18`) and `destroy__12TBoss1DragonFPvs`. Matt, 2026-11-05 10:17 AM PT: a compiler vtable and real destructor do not match the DOL r31/r30 homes. Only this table | `pso/boss/TBoss1Dragon.cpp` | `src/pso/boss/TBoss1Dragon.cpp` | [#191](https://github.com/zeroz41/pso-decomp/pull/191) | other: hand-written vtable | [#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302) | upstream catch-up, rewrite later |
 | `TBoss6Rock::run_task` | `pso/boss/TBoss6Rock.cpp` | `src/pso/boss/TBoss6Rock.cpp` | [#181](https://github.com/zeroz41/pso-decomp/pull/181) | `other: u64 pointer widen` | [#313](https://github.com/matthewlewisnewton/pso-decomp/pull/313) | upstream catch-up, rewrite later |
 | `LaunchDol` | `pso/unk/text_8042E8C4.cpp` | `src/pso/unk/text_8042E8C4.cpp` | [#172](https://github.com/zeroz41/pso-decomp/pull/172) | asm | [#350](https://github.com/matthewlewisnewton/pso-decomp/pull/350) | upstream catch-up, rewrite later |
+| `TEffStarLight2D` `#pragma defer_codegen on` | `pso/effect/TEffStarLight2D_Base.cpp` | `src/pso/effect/TEffStarLight2D_Base.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `TObjDFDemo5` `#pragma defer_codegen on` | `pso/object/TObjDFDemo5.cpp` | `src/pso/object/TObjDFDemo5.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
 
 
 ## Pending in open PRs
