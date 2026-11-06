@@ -2,13 +2,13 @@
 #define PSO_MISC_TWINDOWCHALLENGERESULT_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 
-struct TWindowChallengeResult : public TUnk_804CE018 {
+struct TWindowChallengeResult : public TWindowBase {
     virtual ~TWindowChallengeResult();
     virtual void render();
 
-    u8 unk_1C[0x4C];
+    u8 unk_1C[8];
 };
 
 typedef char TWindowChallengeResult_size[sizeof(TWindowChallengeResult) == 0x68 ? 1 : -1];

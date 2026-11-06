@@ -13,12 +13,12 @@ extern u32 boss6_tube_texture_list;
 s32 release_texture_list(void*);
 void *__nw__7TObjectFUl(int);
 
-void *TBoss6Tube::create(void *arg0) {
+TBoss6Tube *TBoss6Tube::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x30);
     if (o != NULL) {
         o = TBoss6Tube__ct((TBoss6Tube *)((u8 *)o), (u8 *)arg0);
     }
-    return o;
+    return (TBoss6Tube *)o;
 }
 
 void TBoss6Tube::free_resources() {

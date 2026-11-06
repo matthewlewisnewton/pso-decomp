@@ -157,7 +157,7 @@ TTecGiBarta_80230B48 *__dt__11TTecGiBartaFv(TTecGiBarta_80230B48 *self, s16 dele
 void __ct__13TUnk_804CCC68FlPUcPUcl();
 extern s32 tec_gibarta_class_name_ptr;
 extern const f32 lbl_805DC80C;
-TTecGiBarta_80230C58 *TTecGiBarta__ct(TTecGiBarta_80230C58 *self, void * _w1, void * _w2, void * _w3, void * _w4);
+TTecGiBarta_80230C58 *TTecGiBarta__ct(TTecGiBarta_80230C58 *self, void *owner, Vec *pos, Vec *target, s32 level);
 void construct_facing_technique__10TObjPlayerFPviPvii();
 
 void *find_entity_by_id(u16 id);
@@ -329,19 +329,19 @@ void TTecGiBarta::vfunc_8(void *target) {
     }
 }
 
-void TTecGiBarta::create(void *arg1, void *arg2, void *arg3) {
+void TTecGiBarta::create(void *owner, Vec *pos, Vec *target, s32 level) {
     void *o;
     o = __nw__7TObjectFUl(0x178);
     if (o != NULL) {
-        TTecGiBarta__ct((TTecGiBarta_80230C58 *)(o), this, arg1, arg2, arg3);
+        TTecGiBarta__ct((TTecGiBarta_80230C58 *)(o), owner, pos, target, level);
     }
 }
 
-void TTecGiBarta::create_ex(void *arg1, void *arg2, void *arg3) {
+void TTecGiBarta::create_ex(void *owner, Vec *pos, s32 angle, s32 level) {
     void *o;
     o = __nw__7TObjectFUl(0x178);
     if (o != NULL) {
-        ((TTecGiBarta *)o)->construct_facing(this, arg1, arg2, arg3);
+        ((TTecGiBarta *)o)->construct_facing(owner, pos, angle, level);
     }
 }
 
@@ -372,7 +372,7 @@ void TTecGiBarta::run_task() {
     dispatch_all_technique_contacts();
 }
 
-TTecGiBarta_80230C58 *TTecGiBarta__ct(TTecGiBarta_80230C58 *self, void * _w1, void * _w2, void * _w3, void * _w4) {
+TTecGiBarta_80230C58 *TTecGiBarta__ct(TTecGiBarta_80230C58 *self, void *owner, Vec *pos, Vec *target, s32 level) {
     s32 i;
     __ct__13TUnk_804CCC68FlPUcPUcl();
     self->vtable = __vt__11TTecGiBarta;
@@ -391,7 +391,7 @@ TTecGiBarta_80230C58 *TTecGiBarta__ct(TTecGiBarta_80230C58 *self, void * _w1, vo
     return self;
 }
 
-u8 *TTecGiBarta::construct_facing(void * _w1, void * _w2, void * _w3, void * _w4) {
+u8 *TTecGiBarta::construct_facing(void *owner, Vec *pos, s32 angle, s32 level) {
     u8 *arg0 = (u8 *)this;
     s32 i;
     construct_facing_technique__10TObjPlayerFPviPvii();

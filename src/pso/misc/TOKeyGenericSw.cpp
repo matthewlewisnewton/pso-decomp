@@ -133,7 +133,7 @@ void TOKeyGenericSw::load_resources() {
         TOKeyGenericSw__texture_lists = (s32 *)::operator new[](0xC);
         TOKeyGenericSw__texture_lists[0] = TOKeyGenericSw__shared_resource_ptrs[0]->models[0].m_c;
         TOKeyGenericSw__texture_lists[1] = TOKeyGenericSw__shared_resource_ptrs[1]->models[0].m_c;
-        TOKeyGenericSw__texture_lists[2] = (s32)load_gvm_texture_file((s32) "fs_obj_hanyousu_light_ao_j.GVM");
+        TOKeyGenericSw__texture_lists[2] = (s32)load_gvm_texture_file("fs_obj_hanyousu_light_ao_j.GVM");
     } else {
         resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&fs_obj_hanyousu_body1_resource_descriptor), 0, 0, (void *)(0));
         TOKeyGenericSw__shared_resource_ptrs[0] = resource;
@@ -142,7 +142,7 @@ void TOKeyGenericSw::load_resources() {
         TOKeyGenericSw__texture_lists = (s32 *)::operator new[](0xC);
         TOKeyGenericSw__texture_lists[0] = TOKeyGenericSw__shared_resource_ptrs[0]->models[0].m_c;
         TOKeyGenericSw__texture_lists[1] = TOKeyGenericSw__shared_resource_ptrs[1]->models[0].m_c;
-        TOKeyGenericSw__texture_lists[2] = (s32)load_gvm_texture_file((s32) "fs_obj_hanyousu_light_ao.GVM");
+        TOKeyGenericSw__texture_lists[2] = (s32)load_gvm_texture_file("fs_obj_hanyousu_light_ao.GVM");
     }
 }
 

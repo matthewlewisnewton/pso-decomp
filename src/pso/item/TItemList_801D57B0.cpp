@@ -1,3 +1,4 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/item/TItemList.h"
 #include "pso/item/TItemList_801D57B0.h"
@@ -18,19 +19,14 @@ s32 TItemList__sub_801D5868(Arr_801D5868 *, s32);
 Ent_801D5854 *TItemList__sub_801D5854(Obj_801D5854 *p, s32 i);
 s32 TItemList__sub_801D598C(Obj_801D598C *arg0, s32 arg1);
 int VecCopy__FP3VecPC3Vec(void*);
-void __ct__7TObjectFP7TObject(void *);
 int copy_from__9TItemDataFP9TItemData(void*);
 
-extern s32 __vt__9TItemList[];
-extern void *TItemList__name;
+extern const char *TItemList__name;
 
-void *__ct__9TItemListFv(void *item_list) {
-    __ct__7TObjectFP7TObject(item_list);
-    *(s32 **)((s8 *)item_list + 0x18) = __vt__9TItemList;
-    *(void * *)&((TItemList *)item_list)->m_name = TItemList__name;
-    *(u32 *)((s8 *)item_list + 0x1C) = 0;
-    disallow_rendering__7TObjectFv((TObject *)item_list);
-    return item_list;
+TItemList::TItemList(TObject *parent) : TObject(parent) {
+    m_name = TItemList__name;
+    item = NULL;
+    disallow_rendering();
 }
 
 void TItemList__sub_801D5804(s32 *arg0) {

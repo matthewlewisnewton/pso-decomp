@@ -39,6 +39,8 @@ public:
     s16 get_field_2c2();
     void add_to_field_2ca(int);
     s16 get_atp();
+    // Boss-6 gate: phase 0x1F, then actorFlags. Defined in TBoss6PlotFalz.cpp.
+    s32 is_active();
     void add_to_field_2ce(int);
     s32 recalc_combat_stats(void *, void *, void *, f32, f32);
     s32 set_motion_params(void *);
@@ -193,7 +195,7 @@ public:
     u16 m_29c;
     s16 m_29e;
     u8 unk_2A0[0x8];
-    u8 *target;
+    TObjChara *target;
     u32 m_2ac;
     u8 * m_2b0;
     f32 m_2b4;
@@ -212,7 +214,7 @@ public:
     s16 m_2d0;
     u8 unk_2D2[0x2];
     u16 m_2d4;
-    u8 unk_2D6[0x2];
+    u16 m_2d6;
     u16 m_2d8;
     u8 unk_2DA[0x2];
     u32 m_2dc;
@@ -251,6 +253,9 @@ public:
 };
 
 typedef char TObjChara_size[(sizeof(TObjChara) == 0x334) ? 1 : -1];
+typedef char TObjChara_m_2d4_offset[(offsetof(TObjChara, m_2d4) == 0x2D4) ? 1 : -1];
+typedef char TObjChara_m_2d6_offset[(offsetof(TObjChara, m_2d6) == 0x2D6) ? 1 : -1];
+typedef char TObjChara_m_2d8_offset[(offsetof(TObjChara, m_2d8) == 0x2D8) ? 1 : -1];
 typedef char TObjChara_m_290_offset[(offsetof(TObjChara, m_290) == 0x290) ? 1 : -1];
 typedef char TObjChara_m_294_offset[(offsetof(TObjChara, m_294) == 0x294) ? 1 : -1];
 typedef char TObjChara_unk_298_offset[(offsetof(TObjChara, unk_298) == 0x298) ? 1 : -1];

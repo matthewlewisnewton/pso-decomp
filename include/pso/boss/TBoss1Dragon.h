@@ -5,6 +5,8 @@
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 
+class TObjBoss1MokoHill_SoloM;
+
 class TBoss1DragonEffTail;
 
 struct DragonModelVector { f32 x, y, z; };
@@ -111,7 +113,9 @@ struct TBoss1Dragon : public TObjEneDD_ST {
     f32 destinationZ;
     f32 savedX;
     f32 savedZ;
-    u8 unknown6A0[0x6E8 - 0x6A0];
+    u8 unknown6A0[0x6D8 - 0x6A0];
+    TObjBoss1MokoHill_SoloM *trail;
+    u8 unknown6DC[0x6E8 - 0x6DC];
     RenderFadeState viewFade[4];
     u8 unknown758[0x768 - 0x758];
     s32 controlTimer;

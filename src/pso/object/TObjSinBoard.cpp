@@ -176,18 +176,18 @@ void TUnk_804B8DD0::render() {
         }
         push_matrix();
         post_translate_matrix((u8 *)&this->unk_1C);
-        ::draw_ginja_model((*(s32 *)((s8 *)bml_model + 4)));
+        ::draw_ginja_model((*(void **)((s8 *)bml_model + 4)));
         push_matrix();
-        ::draw_ginja_model((*(s32 *)((s8 *)(*(u8 **)((s8 *)bml_model + 0x2C)) + 4)));
+        ::draw_ginja_model((*(void **)((s8 *)(*(u8 **)((s8 *)bml_model + 0x2C)) + 4)));
         pop_matrix();
         push_matrix();
         rotate_matrix_z(0, this->m_38);
         rotate_matrix_y(0, 0x8000);
-        ::draw_ginja_model((*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)bml_model + 0x2C)) + 0x30)) + 4)));
+        ::draw_ginja_model((*(void **)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)bml_model + 0x2C)) + 0x30)) + 4)));
         pop_matrix();
         push_matrix();
         rotate_matrix_z(0, (int) (-this->m_38));
-        ::draw_ginja_model((*(s32 *)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)bml_model + 0x2C)) + 0x30)) + 0x30)) + 4)));
+        ::draw_ginja_model((*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)bml_model + 0x2C)) + 0x30)) + 0x30)) + 4)));
         pop_matrix();
         pop_matrix();
     }
@@ -389,7 +389,6 @@ struct Vec_80199674;
 struct Vec_8019978C;
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
-void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 extern Sys_80198A2C gogo_ball_configuration;
 extern Vec_80198E84 gogo_ball_sync_state[];
 void TWindowTimer__sub_8019A6F8(void*);

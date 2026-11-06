@@ -13,6 +13,8 @@ struct TFontSmallLobby
     u32 m_54c;
     u8 _pad550[0x60];
     void* m_5b0;
+    // True on the lobby floor (area 15).
+    static s32 is_lobby_floor_15();
     void init_packet_6x9b_level_up();
     void bswap_battle_damage_packet();
     void init_packet_6x8f_battle_damage();

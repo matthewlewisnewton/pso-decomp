@@ -1,5 +1,6 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/protocol/TradeSession.h"
@@ -33,7 +34,7 @@ extern s32 __vt__15TWindowSubTrade[];
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int, int);
 
-s32 get_selected_menu_value(int);
+s32 get_selected_value__11TWindowMenuFv(int);
 u32 TWindowSubComCard__sub_802B1C1C(void *);
 extern s32 controller_input_state[];
 
@@ -54,7 +55,7 @@ void TWindowSubTrade::run_task() {
             this->m_34 = 0U;
         }
         if ((u32) this->m_30 != 0U) {
-            TWindow__close((u8 *)this->m_30);
+            ((TWindowBase *)this->m_30)->close();
             this->m_30 = 0U;
         }
         if ((u32) this->m_2c == 0U) {
@@ -63,16 +64,16 @@ void TWindowSubTrade::run_task() {
         ((TWindowSubComCard *)(this->m_2c))->clear_flag_and_release();
         this->m_1c = 2U;
     case 2:
-        if (((TWindowSubComCard *)(this->m_2c))->get_status_flag() != 0) {
+        if (((TWindowMenu *)(this->m_2c))->is_cancelled() != 0) {
             ((VObj_18_204a81 *)(this->m_28))->m7();
             this->m_1c = 7U;
-        } else if (((TWindowMenu *)(this->m_2c))->is_visible() != 0) {
+        } else if (((TWindowMenu *)(this->m_2c))->is_decided() != 0) {
             this->m_1c = 3U;
         }
         break;
     case 3:
         if (this->m_2c != 0) {
-            this->m_24 = get_selected_menu_value(this->m_2c);
+            this->m_24 = ((TWindowMenu *)this->m_2c)->get_selected_value();
         }
         if ((u32) this->m_34 == 0U) {
             this->m_34 = ((TWindowSubTrade *)arg0)->open_trade_confirm_prompt(this->m_24);
@@ -127,12 +128,12 @@ u8 *__dt__15TWindowSubTradeFv(u8 *arg0, s16 arg1) {
         }
         temp_r3_2 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x30));
         if (temp_r3_2 != NULL) {
-            TWindow__close(temp_r3_2);
+            ((TWindowBase *)temp_r3_2)->close();
             *(u8 **)((s8 *)arg0 + 0x30) = NULL;
         }
         temp_r3_3 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x2C));
         if (temp_r3_3 != NULL) {
-            TWindow__close(temp_r3_3);
+            ((TWindowBase *)temp_r3_3)->close();
             *(u8 **)((s8 *)arg0 + 0x2C) = NULL;
         }
         __dt__7TObjectFv(arg0, 0);

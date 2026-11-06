@@ -27,9 +27,9 @@ extern s32 enable_v2_features;
 void TObjGrassWeb__sub_800BC798(Web_800BC798 *o);
 void *__dt__12TObjGrassWebFv(void *arg0, s16 arg1);
 s32 is_locally_controlled__10TObjPlayerFPv();
-void *get_player_by_client_id(s32 i);
+TObjPlayer *get_player_by_client_id(s32 i);
 void __dl__7TObjectFPv(void *);
-s32 obj_testFlags30__14TObjCollidableFUl(s32, s32);
+s32 obj_testFlags30__14TObjCollidableFUl(TObjPlayer *, s32);
 
 int TObjGrassWeb::queue_destruction() { return queue_destruction__7TObjectFv(this); }
 
@@ -59,12 +59,12 @@ void TObjGrassWeb__sub_800BC798(Web_800BC798 *o) {
 }
 
 void TObjGrassWeb::apply_to_player() {
-    s32 temp_r3;
+    TObjPlayer *player;
 
     this->m_90 = 1;
-    temp_r3 = (s32)get_player_by_client_id(this->m_a4);
-    if ((temp_r3 != 0) && (is_locally_controlled__10TObjPlayerFPv() != 0) && (((TObject *)temp_r3)->all_parents_unqueued_for_destruction() != 0) && (obj_testFlags30__14TObjCollidableFUl(temp_r3, 0x800) == 0)) {
-        TObjPlayer::play_effect(temp_r3, this->set_params[0], 1);
+    player = get_player_by_client_id(this->m_a4);
+    if ((player != NULL) && (is_locally_controlled__10TObjPlayerFPv() != 0) && (player->all_parents_unqueued_for_destruction() != 0) && (obj_testFlags30__14TObjCollidableFUl(player, 0x800) == 0)) {
+        TObjPlayer::play_effect(player, this->set_params[0], 1);
     }
 }
 

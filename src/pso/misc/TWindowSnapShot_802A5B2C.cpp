@@ -95,7 +95,7 @@ s32 TWindowSnapShot::open_stream(s32 arg1) {
     return 1;
 }
 s32 init__15TWindowSnapShotFPvi(TWindowSnapShot *window_snap_shot, s32 arg1) {
-    *(s32 *)((s8 *)window_snap_shot + 0xC) = ((TLobby *)arg1)->get_resource_file_size();
+    window_snap_shot->m_next = (TObject *)TLobby::get_resource_file_size((const char *)arg1);
     if (TWindowSnapShot__sub_802A605C((u8 *)window_snap_shot) == 0) {
         window_snap_shot->set_mode(1);
         return 0;
@@ -106,7 +106,7 @@ void TWindowSnapShot::reset() {
     u8 *arg0 = (u8 *)this;
     *(s32 *)&this->m_name = 0;
     *(s32 *)&this->m_flags = 0;
-    memset((u8 *)&this->_pad1C, 0, 0x20);
+    memset((u8 *)&this->frame_pad_1c, 0, 0x20);
     *(s32 *)&this->m_prev = 0;
     *(s32 *)&this->m_next = 0;
     *(s32 *)&this->m_down = 0;
@@ -125,7 +125,7 @@ void *TWindowSnapShot__sub_802A5EDC(void *arg0, s16 arg1) {
 typedef char RecoveredGlobal_802A5F24_lbl_804DD098_size[sizeof(RecoveredGlobal_802A5F24_lbl_804DD098) == 0x10 ? 1 : -1];
 u8 *TWindowSnapShot::init_and_reset() {
     u8 *arg0 = (u8 *)this;
-    this->m_3c = &(*(RecoveredGlobal_802A5F24_lbl_804DD098 *)&lbl_804DD098).value;
+    this->m_3cp = &(*(RecoveredGlobal_802A5F24_lbl_804DD098 *)&lbl_804DD098).value;
     reset();
     return arg0;
 }

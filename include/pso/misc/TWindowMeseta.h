@@ -2,14 +2,11 @@
 #define PSO_MISC_TWINDOWMESETA_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 
-struct TWindowMeseta : public TUnk_804CE018 {
+struct TWindowMeseta : public TWindowBase {
     virtual ~TWindowMeseta();
     virtual void render();
-    u8 _pad1C[0x8];
-    void* m_24;
-    u8 unk_28[0x38];
     f32 m_60;
     u32 m_64;
     u32 m_68;

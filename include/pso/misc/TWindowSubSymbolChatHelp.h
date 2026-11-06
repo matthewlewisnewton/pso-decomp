@@ -2,13 +2,12 @@
 #define PSO_MISC_TWINDOWSUBSYMBOLCHATHELP_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 
-struct TWindowSubSymbolChatHelp : public TUnk_804CE018 {
+struct TWindowSubSymbolChatHelp : public TWindowBase {
     virtual ~TWindowSubSymbolChatHelp();
     void draw_help_entry(void *, s32, s32);
     void draw_color_palette(void *);
-    u8 _pad1C[0x44];
     u8 m_60;
     u8 _pad61[0x3];
     u32 m_64;
