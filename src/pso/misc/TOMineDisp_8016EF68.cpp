@@ -45,8 +45,7 @@ extern const char *TOMineTrapDisp__name;
 s32 is_locally_controlled__10TObjPlayerFPv(void);
 f32 horizontal_distance_squared(void *, void *);
 void get_player_state__6TOMineFv(void *, u16);
-s32 fn_80171314(void *);
-void *get_player_by_client_id(s32 i);
+TObjPlayer *get_player_by_client_id(s32 i);
 extern const f32 lbl_805DB850;
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 rotate_matrix_y(int, int);
@@ -98,13 +97,13 @@ void TOMineDisp::render() {
 
 void TOMineDisp::run_task() {
     void *mine = this->m_up;
-    u8 *p;
+    TObjPlayer *p;
     switch (this->m_a4) {
     case 0:
-        p = (u8 *)get_player_by_client_id(this->m_a8);
+        p = get_player_by_client_id(this->m_a8);
         if (p != NULL && is_locally_controlled__10TObjPlayerFPv() != 0 && fn_80171314(p) != 0) {
-            if (horizontal_distance_squared(((u8 *)this) + 0x38, p + 0x38) <= lbl_805DB850 ||
-                ((TObjBase *)p)->get_room() == this->get_room()) {
+            if (horizontal_distance_squared(((u8 *)this) + 0x38, &p->position) <= lbl_805DB850 ||
+                p->get_room() == this->get_room()) {
                 this->m_a4 = 2;
             }
         }

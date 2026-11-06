@@ -462,6 +462,25 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # needed (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
+    # Reverse definitions with deferred generation: the weak copies of TOTrap's
+    # inline slots are generated first, so their 1.0/0.0 head .sdata2 as in the
+    # original pool, and clamp_params_and_init inlines its clamp helpers.
+    "pso/misc/TOTrapSeabed01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # Reverse definitions with deferred generation: the native TOTrapAncient02R
+    # vtable is emitted before the switch table that follows it in .data, and
+    # the .sdata2 pool keeps its original order. Unit -fp_contract on replaces
+    # the per-function pragmas: the constructors, calc_trap_count and the R
+    # vfunc_81 fuse multiply-adds.
+    "pso/misc/TOTrapAncient02.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-fp_contract on")},
+    # GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris
+    # positions before storing them (GC/2.6 interleaves them: 91.09%).
+    # Reverse definitions and deferred generation place the native trap vtable
+    # before its switch tables while preserving the original function order.
+    # Contracted FP keeps the constructor and render exact (98.86% and
+    # 97.66% without it). -opt nolifetimes keeps render exact (99.42% without
+    # it). -pooldata=off keeps play_sounds' copy prologue (94.54% without it);
+    # read-only strings keep the .rodata/.data/.sdata layout.
+    "pso/misc/TOTrapAncient01.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-pooldata=off", "-opt nolifetimes")},
     # Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4).
     "pso/object/TObjDFDemo1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},

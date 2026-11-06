@@ -24,7 +24,7 @@ extern "C" {
 s32 get_bml_model(void *, s32);
 extern RecoveredGlobal_8029CD0C_lbl_8046598C lbl_8046598C;
 extern u32 TOGrassJungle__bml_resource;
-extern u32 TOGrassJungle__grass_gvm_texture;
+extern GinjaTextureList *TOGrassJungle__grass_gvm_texture;
 extern const f32 lbl_805DDD28;
 extern const f32 lbl_805DDD2C;
 s32 release_texture_list(void*);
@@ -41,10 +41,10 @@ void *TOGrassJungle__create(void *arg0) {
 }
 
 void TOGrassJungle::release_static_instance() {
-    if ((u32) TOGrassJungle__grass_gvm_texture != 0U) {
-        release_texture_list((void*)TOGrassJungle__grass_gvm_texture);
-        TAdSinglePlyChrSelectGC::safe_free(TOGrassJungle__grass_gvm_texture);
-        TOGrassJungle__grass_gvm_texture = 0U;
+    if (TOGrassJungle__grass_gvm_texture != NULL) {
+        release_texture_list(TOGrassJungle__grass_gvm_texture);
+        TAdSinglePlyChrSelectGC::safe_free((u32)TOGrassJungle__grass_gvm_texture);
+        TOGrassJungle__grass_gvm_texture = NULL;
     }
     if ((u32) TOGrassJungle__bml_resource != 0U) {
         delete (BmlResource *)((void*)TOGrassJungle__bml_resource);
@@ -57,8 +57,8 @@ void TOGrassJungle::load_resources() {
     temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&ograss_jungle_resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
     (*(u8 * *)&TOGrassJungle__bml_resource) = (unsigned char *) ((void *) var_r0);
-    (*(u8 * *)&TOGrassJungle__grass_gvm_texture) = load_gvm_texture_file((s32) &lbl_8046598C.value);
-    TMotorcycle::add_entry(0x3F, (int) (get_bml_model((*(u8 * *)&TOGrassJungle__bml_resource), 0)), (int) ((*(u8 * *)&TOGrassJungle__grass_gvm_texture)), lbl_805DDD28, lbl_805DDD2C);
+    TOGrassJungle__grass_gvm_texture = load_gvm_texture_file(lbl_8046598C.value);
+    TMotorcycle::add_entry(0x3F, (int) (get_bml_model((*(u8 * *)&TOGrassJungle__bml_resource), 0)), (int) TOGrassJungle__grass_gvm_texture, lbl_805DDD28, lbl_805DDD2C);
 }
 
 __declspec(section ".data") const char *bm_o_grass_jungle_model_names[3] = { lbl_80465938, lbl_80465950, NULL };

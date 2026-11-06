@@ -190,7 +190,7 @@ void TObjEneBalClawBody::sub_8008FC10() {
             break;
         case 1:
             if (target != NULL) {
-                distance = xz_distance_squared(&((TObjBase *)target)->position, &position);
+                distance = xz_distance_squared(&target->position, &position);
                 old_range = range_state;
                 switch (old_range) {
                 case 0:
