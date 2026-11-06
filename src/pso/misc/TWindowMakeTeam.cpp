@@ -96,7 +96,7 @@ s32 TWindowMakeTeam::create_status_menu_window() {
     if (m == 1 || m == 2) {
         forward_trade_action_default__16TObjCityMainWarpFPviii((void *)r, (int)(STATUS(3)), 6, 3);
     }
-    ((TWindowMenu *)r)->calc_window_size();
+    ((TWindowSubComCard *)r)->calc_window_size();
     align_menu_entry_positions(r);
     ((TWindowSubComCardList *)r)->set_selected_index(*(s8 *)(arg0 + 0x1F));
     return r;
@@ -109,7 +109,7 @@ s32 TWindowMakeTeam::create_entry_menu_window() {
     forward_trade_action_default__16TObjCityMainWarpFPviii((void *)r, (int)(TWindowMakeTeam::draw_entry_0x110(0)), 6, 0);
     forward_trade_action_default__16TObjCityMainWarpFPviii((void *)r, (int)(TWindowMakeTeam::draw_entry_0x110(1)), 6, 1);
     forward_trade_action_default__16TObjCityMainWarpFPviii((void *)r, (int)(TWindowMakeTeam::draw_entry_0x110(2)), 6, 2);
-    ((TWindowMenu *)r)->calc_window_size();
+    ((TWindowSubComCard *)r)->calc_window_size();
     align_menu_entry_positions(r);
     ((TWindowSubComCardList *)r)->set_selected_index(*(s8 *)(arg0 + 0x1E));
     return r;

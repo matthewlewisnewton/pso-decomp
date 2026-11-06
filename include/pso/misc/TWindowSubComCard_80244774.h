@@ -5,7 +5,6 @@
 #include "pso/misc/TWindowDrawContext.h"
 
 struct TWindowSubComCard;
-struct TWindowDrawContext;
 extern "C" {
 int TWindowSubComCard__sub_80244774(void);
 f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *arg0);

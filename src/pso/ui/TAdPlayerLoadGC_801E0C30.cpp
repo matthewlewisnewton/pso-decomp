@@ -4,7 +4,6 @@
 #include "pso/system/memory.h"
 #include "pso/TAdPlayerLoadGC.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
-#include "pso/misc/TLobby_800F9DA0.h"
 
 struct RecoveredGlobal_801E14E8_TAdPlayerLoadGC__data_80511ED0 {
     s32 value;
@@ -69,6 +68,7 @@ extern RecoveredGlobal_801E14E8_TAdPlayerLoadGC__data_80511ED0 TAdPlayerLoadGC__
 extern s32 TAdPlayerLoadGC__banner_file_buf;
 s32 CARDGetResultCode(void *);
 s32 CARDUnmount();
+s32 read_disc_file(const char*, void*);
 extern Names_801E13C4 memory_card_banner_filenames;
 extern char lbl_804496A8[];
 s32 TAdSinglePlyChrSelectGC__sub_80201204(void *, s32, s32);

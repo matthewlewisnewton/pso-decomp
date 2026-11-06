@@ -6,8 +6,8 @@
 #include "pso/misc/TLobby.h"
 
 extern "C" {
-void prs_decompress_alloc(void*, u8 *, s32);
-void load_gvm_texture_archive(u8 *, void*);
+void prs_decompress_alloc(void*, s32, s32);
+void load_gvm_texture_archive(s32, void*);
 u32 adxf_open_afs__6TLobbyFii(int, int);
 void *lookup_item_pmt_record(u8 *item);
 s32 TLobby__sub_803CC4C0(s32);
@@ -23,7 +23,7 @@ char* item_texture_filename_buffer;
 
 void TItemTexLoad::load_texture_archive() {
     char t[12] = "ItemTexLoad";
-    u8 *r = TLobby::tmp_buf_use_req((const char *)(&t));
+    s32 r = (s32)TLobby::tmp_buf_use_req((const char *)(&t));
     if (r != 0) {
         prs_decompress_alloc(m_archive_buffer, r, 0x40000);
         load_gvm_texture_archive(r, &m_texture_list);

@@ -2,20 +2,16 @@
 #define PSO_MISC_TWINDOWMENU_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowAddition.h"
 
-struct TWindowDrawContext;
-
-struct TWindowMenu : public TUnk_804CE018 {
+struct TWindowMenu : public TWindowAddition {
     virtual ~TWindowMenu();
     s32 get_selected_entry();
     int sub_80266BB8();
     u8 test_menu_flag();
-    void render_selected_entry(TWindowDrawContext *);
-    void draw_selected_bar(TWindowDrawContext *);
+    void render_selected_entry(s32);
+    void draw_selected_bar(u8 *);
     void layout_entries();
-    void calc_window_size();
     void update_scroll_value();
     void advance_past_disabled_menu_rows();
     void clamp_menu_choice_scroll();

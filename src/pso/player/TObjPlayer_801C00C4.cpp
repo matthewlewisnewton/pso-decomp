@@ -29,7 +29,7 @@ u8 TObjPlayer__sub_801C010C(O_801C010C *self, s16 i) {
     return self->arr[i];
 }
 
-void TechniqueCastState::set_technique(s16 technique) { this->technique = technique; }
+void TechniqueCastState::set_technique(s16 v) { *(s16 *)((char *)this + 4) = v; }
 
 u8 TObjPlayer__sub_801C0124(O_801C0124 *self, s16 i) {
     return self->arr[i];

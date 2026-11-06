@@ -13,10 +13,10 @@
 #include "pso/misc/TShopSequence.h"
 #include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TShopEquipmentSellWindow.h"
-#include "pso/TShopWindowBase.h"
-#include "pso/item/TItem.h"
 #include "pso/TPlyItem.h"
 #include "pso/TItemList.h"
+#include "pso/TShopWindowBase.h"
+#include "pso/item/TItem.h"
 #include "pso/misc/TCheckRoomSequence.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -122,7 +122,7 @@ struct Win_8021CC44 {
     s32 sel;
     u8 pad388[4];
     void *list_win;
-    TWindowMenu *menu_win;
+    u32 menu_win;
     void *qty_win;
     void *status_win;
     void *help_win;
@@ -170,9 +170,9 @@ int sub_802239EC__13TShopSequenceFv(void *);
 int sub_80223A48__15TShopWindowBaseFv(void *);
 
 void *__ct__18TWindowInputNumberFPvllls(void *, s32, s32, s32, s32, s16);
-s32 align_menu_entry_positions(TWindowMenu *);
-s32 forward_trade_action_default__16TObjCityMainWarpFPviii(TWindowMenu *, s32, s32, s32);
-TWindowMenu *create_window_menu(s32, s32, u16);
+s32 align_menu_entry_positions(u32);
+s32 forward_trade_action_default__16TObjCityMainWarpFPviii(u32, s32, s32, s32);
+u32 create_window_menu(s32, s32, u16);
 void *TShopEquipmentSellWindow__ct(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
 void *__dt__24TShopEquipmentSellWindowFv(TShopEquipmentSellWindow *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
@@ -237,11 +237,11 @@ void TShopEquipmentSellWindow::handle_sell_confirm() {
 void TShopEquipmentSellWindow::handle_input_window_result() {
 
     if (((u32) this->m_394 != 0U) && (((TWindowInputNumber *)(this->m_394))->is_confirmed() != 0)) {
-        if (this->m_390 == NULL) {
+        if ((u32) this->m_390 == 0U) {
             this->m_390 = create_window_menu(get_window_layout_position(0x2B), 2, (u16) get_entity_id(this->m_24));
             forward_trade_action_default__16TObjCityMainWarpFPviii(this->m_390, get_shop_text(6), 6, 0);
             forward_trade_action_default__16TObjCityMainWarpFPviii(this->m_390, get_shop_text(7), 6, 1);
-            this->m_390->calc_window_size();
+            ((TWindowSubComCard *)(this->m_390))->calc_window_size();
             align_menu_entry_positions(this->m_390);
             ((TCheckRoomSequence *)(this->m_390))->set_ready_flag();
             ((TWindowAddition *)(this->m_390))->set_position_xy(get_scale__15TShopWindowBaseFv(this), get_scale__15TShopWindowBaseFv(this));
@@ -314,11 +314,11 @@ void TShopEquipmentSellWindow::handle_selection() {
                 return;
             }
         }
-        if (w->menu_win == NULL) {
+        if (w->menu_win == 0) {
             w->menu_win = create_window_menu(get_window_layout_position(0x2B), 2, get_entity_id((s32)w->owner));
             forward_trade_action_default__16TObjCityMainWarpFPviii(w->menu_win, get_shop_text(6), 6, 0);
             forward_trade_action_default__16TObjCityMainWarpFPviii(w->menu_win, get_shop_text(7), 6, 1);
-            w->menu_win->calc_window_size();
+            ((TWindowSubComCard *)(w->menu_win))->calc_window_size();
             align_menu_entry_positions(w->menu_win);
             ((TCheckRoomSequence *)(w->menu_win))->set_ready_flag();
             ((TWindowAddition *)(w->menu_win))->set_position_xy(get_scale__15TShopWindowBaseFv(w), get_scale__15TShopWindowBaseFv(w));
@@ -461,7 +461,7 @@ void *__dt__24TShopEquipmentSellWindowFv(TShopEquipmentSellWindow *arg0, s16 arg
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__24TShopEquipmentSellWindow;
         if (*(void **)((s8 *)arg0 + 0x38C) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x38C)))->close(); arg0->m_38c = 0; }
-        if (arg0->m_390 != NULL) { arg0->m_390->close(); arg0->m_390 = NULL; }
+        if (*(void **)((s8 *)arg0 + 0x390) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x390)))->close(); arg0->m_390 = 0; }
         if (*(void **)((s8 *)arg0 + 0x394) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x394)))->close(); arg0->m_394 = 0; }
         if (*(void **)((s8 *)arg0 + 0x39C) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x39C)))->close(); arg0->m_39c = 0; }
         if (*(void **)((s8 *)arg0 + 0x398) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x398)))->close(); arg0->m_398 = 0; }

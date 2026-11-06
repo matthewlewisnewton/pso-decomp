@@ -2,11 +2,10 @@
 #define PSO_MISC_TWINDOWSUBSTATUSDISP_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804CE018.h"
 #include <stddef.h>
 #include "pso/misc/TWindowBase.h"
 
-struct TWindowSubStatusDisp : public TUnk_804CE018 {
+struct TWindowSubStatusDisp : public TWindowBase {
     virtual ~TWindowSubStatusDisp();
     void calc_row_width();
     virtual void run_task();
@@ -46,8 +45,8 @@ struct TWindowSubStatusDisp : public TUnk_804CE018 {
     static s32 *get_status_window(int arg0);
     static void*get_message_10(s32 index);
     static void draw_number_digits(void *color, s16 value, u16 digits, f32 x, f32 y, f32 scale);
-    static void render_forward();
-    static void begin_render();
+    static void render_forward(void* p);
+    static void begin_render(s32 _w0);
     void clear_fields();
     static int get_download_server();
     static u32 calc_text_width(char *s);

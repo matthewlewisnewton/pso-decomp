@@ -105,9 +105,9 @@ extern s32 online_quest_list_state;
 
 extern T_80217B30 TQuestListOnline__bin_download_state;
 extern T_80217B30 TQuestListOnline__dat_download_state;
-extern u8 *TQuestListOnline__decompression_cursor;
-extern u8 *online_quest_bin_data;
-extern u8 *online_quest_dat_buffer;
+extern s32 TQuestListOnline__decompression_cursor;
+extern s32 online_quest_bin_data;
+extern s32 online_quest_dat_buffer;
 extern s32 quest_bin_decompressed_size;
 extern s32 online_quest_list_decompressed_size;
 void TQuestListOnline::invoke_callback_30_and_queue_destruction() {
@@ -199,10 +199,10 @@ void TQuestListOnline::handle_quest_confirm() {
 #pragma optimization_level 2
 #pragma dont_inline on
 void TQuestListOnline::decompress_quest_list_buffers() {
-    quest_bin_decompressed_size = prs_decompress_buffer(TQuestListOnline__bin_download_state.f38, (s32)TQuestListOnline__decompression_cursor);
+    quest_bin_decompressed_size = prs_decompress_buffer(TQuestListOnline__bin_download_state.f38, TQuestListOnline__decompression_cursor);
     online_quest_bin_data = TQuestListOnline__decompression_cursor;
     TQuestListOnline__decompression_cursor += quest_bin_decompressed_size;
-    online_quest_list_decompressed_size = prs_decompress_buffer(TQuestListOnline__dat_download_state.f38, (s32)TQuestListOnline__decompression_cursor);
+    online_quest_list_decompressed_size = prs_decompress_buffer(TQuestListOnline__dat_download_state.f38, TQuestListOnline__decompression_cursor);
     online_quest_dat_buffer = TQuestListOnline__decompression_cursor;
     set_field_20__15TShopWindowBaseFl(this, (int)((void *)7));
 }
@@ -211,7 +211,7 @@ void TQuestListOnline::decompress_quest_list_buffers() {
 
 void TQuestListOnline::request_download_buffer() {
     if (TLobby::tmp_buf_is_free() != 0) {
-        TQuestListOnline__decompression_cursor = TLobby::tmp_buf_use_req((const char *)lbl_8044BEB0);
+        TQuestListOnline__decompression_cursor = (s32)TLobby::tmp_buf_use_req((const char *)lbl_8044BEB0);
         set_field_20__15TShopWindowBaseFl(this, 6);
     }
 }

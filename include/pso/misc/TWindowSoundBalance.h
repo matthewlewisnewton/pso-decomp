@@ -2,10 +2,7 @@
 #define PSO_MISC_TWINDOWSOUNDBALANCE_H
 
 #include "types.h"
-#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowBase.h"
-
-struct TWindowDrawContext;
 
 struct SoundBalanceSettings {
     u8 unknown_00[4];
@@ -13,7 +10,7 @@ struct SoundBalanceSettings {
     s8 sound_effect_gain;
 };
 
-struct TWindowSoundBalance : public TUnk_804CE018 {
+struct TWindowSoundBalance : public TWindowBase {
     virtual ~TWindowSoundBalance();
     int is_active();
     virtual void render();
@@ -27,7 +24,7 @@ struct TWindowSoundBalance : public TUnk_804CE018 {
     void handle_lr_input();
     void sub_8027095C();
     virtual void run_task();
-    void apply_balance(TWindowDrawContext *arg1);
+    void apply_balance(void *arg1);
     void handle_cancel();
     u8 unk_66[0x2];
 };

@@ -429,6 +429,14 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # TObjPlayer__sub_8015434C fuses offset*sin+pos (fmadds at 0x80154408)
+    # and offset*cos+pos (fmadds at 0x8015442C). The same flag leaves every
+    # other function in this unit unchanged, including resolve_actor_sphere_contact's
+    # (x*x)+(z*z) as fmuls+fadds. resolve_player_box_contact's fmadds at
+    # 0x8015532C and 0x8015533C already come from that function's pragma.
+    # Precedent: dtk-template's GC/Wii base flags use -fp_contract on
+    # (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209).
+    "pso/player/TObjPlayer_801542CC.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # Upstream #183: the Falz plot table TU is built with deferred inlining
     # (its state actions come out in reverse table order).
     "pso/boss/TBoss6PlotFalz_802B0228.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
@@ -442,17 +450,50 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Deferred, with definitions in reverse address order: the ctor's
     # function-local static and guard precede run_task's table guard in .sbss,
     # as in the original (docs/porting-exceptions.md section 5).
-    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # .sbss starts at 0x805D696C and .sdata2 at 0x805DECCC, both only 4-aligned.
+    # mwld takes alignment from the CodeWarrior comment record, which GC/2.6
+    # writes as 8, so the pool and every later sda21 offset shift by 4.
+    # cw_align rewrites that record after compile. -sdata 4 does not.
+    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {
+        "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on"),
+        "cw_align": ".sbss=4 .sdata2=4",
+    },
     # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
     # needed (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
+    # Reverse definitions with deferred generation: the weak copies of TOTrap's
+    # inline slots are generated first, so their 1.0/0.0 head .sdata2 as in the
+    # original pool, and clamp_params_and_init inlines its clamp helpers.
+    "pso/misc/TOTrapSeabed01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # Reverse definitions with deferred generation: the native TOTrapAncient02R
+    # vtable is emitted before the switch table that follows it in .data, and
+    # the .sdata2 pool keeps its original order. Unit -fp_contract on replaces
+    # the per-function pragmas: the constructors, calc_trap_count and the R
+    # vfunc_81 fuse multiply-adds.
+    "pso/misc/TOTrapAncient02.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-fp_contract on")},
+    # GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris
+    # positions before storing them (GC/2.6 interleaves them: 91.09%).
+    # Reverse definitions and deferred generation place the native trap vtable
+    # before its switch tables while preserving the original function order.
+    # Contracted FP keeps the constructor and render exact (98.86% and
+    # 97.66% without it). -opt nolifetimes keeps render exact (99.42% without
+    # it). -pooldata=off keeps play_sounds' copy prologue (94.54% without it);
+    # read-only strings keep the .rodata/.data/.sdata layout.
+    "pso/misc/TOTrapAncient01.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-pooldata=off", "-opt nolifetimes")},
+    # Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4).
+    "pso/object/TObjDFDemo1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.
     "pso/enemy/TObjEneRe2Flower_800C3E14.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Gee native tables require deferred generation and reverse definitions.
     "pso/enemy/TObjEneMe1Gee.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Upstream #190 commit 9c4e9ea1d: TObjEneDubchik is written from its last
+    # function back. -inline off,deferred emits that order (the vtable lands
+    # before the switch tables). -str reuse,readonly keeps the motion-name
+    # pool in .rodata. These are upstream's own flags for this unit.
+    "pso/enemy/TObjEneDubchik.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     # Native private header sections preserve initializer and helper emission order.
     "pso/enemy/TObjEnePanarms.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4", "-sym on")},
     "pso/enemy/TObjEneDelDepth.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
@@ -464,6 +505,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # half-width nudge and the drop placement fuse multiply-adds.
     # -str reuse,readonly: the literals live in this unit's .rodata.
     "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
+    # Vol Opt scenery is one TU. Deferred emission puts TOBoss4Rock::run_task
+    # first; -sdata 4 keeps the 8-byte motion-name array in .data.
+    "pso/misc/TOBoss4.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-sdata 4", "-inline deferred")},
+    # Dark Falz rocks are one TU, written last-defined first. -fp_contract on
+    # fuses the fall and spin multiply-adds.
+    "pso/boss/TBoss6Rock.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-inline off,deferred")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
     # zero-initialized local member-function-pointer array.
@@ -500,7 +547,13 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneSlimeTailAttack.cpp": {"mw_version": "GC/2.0"},
-    "pso/boss/TBoss8Dragon.cpp": {"mw_version": "GC/2.0"},
+    # -inline off,deferred: the real TBoss8Dragon constructor addresses
+    # __vt__12TBoss8Dragon as addi r0, r31, 2348 from the .data anchor.
+    # Plain -inline off emits lis/addi of the vtable symbol and the ctor
+    # grows 0x554 -> 0x558. Deferred also emits the compiler vtable at
+    # .data+0x92C, where the hand table was. Other functions are unchanged.
+    # See docs/porting-exceptions.md section 5.
+    "pso/boss/TBoss8Dragon.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     # GC/1.3.2: the container files 0x8018807C-0x8018D900, the CRC-32 pair
     # (`xoris/xori 0xFFFF`; 2.x always emits `li -1; xor`), and five others.
     # TObjCamera: 1.3.2 copies CameraSoundEvent member by member unscheduled.
@@ -552,6 +605,14 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Unit -fp_contract on replaces the per-function pragmas. Precedent:
     # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
     "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # Upstream #190: this file is written in reverse so deferred codegen emits
+    # address order, and the readonly string pool places the constants.
+    "pso/misc/TNpcPlayer.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
+    # get_technique_caster_flags' unsigned bias is lbl_8044D078, which TTecCtrl
+    # loads from this split. MWCC emits the bias as a local pool object; the
+    # post-process names that object as the split's global. Source cannot do
+    # it without a second pool copy (docs/evidence/conversion-pool-constants.md).
+    "pso/misc/TTecCtrl_8022C444.cpp": {"post_object": "tools/name_pool_symbols.py"},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # Position jitter and the tentacle curve contract mul-add to fmadds, so
     # this unit is built with -fp_contract on. -inline off,deferred emits
@@ -730,6 +791,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOSensorGeneral01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-pool off")},
     # Unlike the other keys it addresses its descriptors off one .data base.
     "pso/misc/TOKeyGenericSw.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
+    # __vt__25TObjCityMainWarpChallenge at 0x804B6188 precedes
+    # jumptable_804B61DC. Whole unit matches with nothing inlined.
+    # See docs/evidence/city-main-warp-challenge-vtable.md.
+    "pso/object/TObjCityMainWarpChallenge.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Quest-collision deleting destructors share a TU. Deferred generation
     # emits the last definition first, which is the only order that puts each
     # vtable before the next class's (TObjQuestColA then TObjQuestCol;
@@ -756,6 +821,15 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
     "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # init_from_id_lists (0x8002058C, size 0x30C) inlines its model and motion
+    # walks. Default -inline off outlines them. auto leaves .text at 62.53% and
+    # .data at 0%; auto,deferred leaves .text at 52.51% and .data at 0%. deferred
+    # matched the previous extern "C" body, but on this C++ function it emits the
+    # function at .text+0 instead of .text+0x1630, so the linked DOL does not
+    # match. -inline on keeps the bytes and that order. Precedent: dtk-template
+    # -inline auto https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203
+    # and Brawl -inline on https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264
+    "pso/misc/TLobby_8001EF5C.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     # TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the
     # run_task switch table (written from the last function back). -pool off
     # keeps each title and window size its own reloc, and -str reuse,readonly
@@ -763,6 +837,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Precedent: dtk-template configure.py unit cflags, and this tree's
     # TObjBoss2Tunnel / TBoss6EmptyWarp unit flags.
     "pso/quest/TQuestListVM.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-str reuse,readonly")},
+    # Status gauge: contracting the unit makes `0.299f * depth + ctx->depth`
+    # the fmadds at 0x80257118. The bar multiply stays a separate fmuls
+    # because the 7.5 scale is applied to the sum before the tick subtract.
+    "pso/misc/TWindowSubStatusDisp_80256B94.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     # Inventory walks read TItemList children through the class-body accessors
     # TItemList::link_down / link_next (typed_down in TObjPlayer_801D4CB8, whose
     # receiver is TObjPlayer). -inline noauto folds each call to the lwz of

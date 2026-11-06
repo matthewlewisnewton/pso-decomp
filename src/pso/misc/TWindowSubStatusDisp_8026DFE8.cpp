@@ -17,10 +17,10 @@ struct RecoveredGlobal_8026E168_lbl_804D0948 {
 };
 
 extern "C" {
-s32 draw_visible_window_entries(void *, void *, TWindowDrawContext *);
-s32 draw_item_list_capacity(void *, TWindowDrawContext *, int, int);
-s32 draw_window_scrollbar(void *, TWindowDrawContext *, void *);
-s32 forward_render__20TWindowSubStatusDispFv(void *, TWindowDrawContext *);
+s32 draw_visible_window_entries(void *, void *, int);
+s32 draw_item_list_capacity(void *, int, int, int);
+s32 draw_window_scrollbar(void *, int, void *);
+s32 forward_render__20TWindowSubStatusDispFv(void *, int);
 u8 * fn_80268384(void *, s32, s32, s16, s32);
 s32 sub_8026DE94__13TUnk_804D0948Fv(void *, void *);
 extern s32 item_list_window_vtable[];
@@ -32,11 +32,11 @@ void __dl__7TObjectFPv(void *);
 #pragma push
 #pragma fp_contract on
 void TUnk_804D0948::render() {
-    TWindowDrawContext *temp_r3;
     u8 *arg0 = (u8 *)this;
+    s32 temp_r3;
     s32 n;
     void *p;
-    temp_r3 = get_draw_context__11TWindowBaseFPv(this);
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     if (!(this->state_flags & 0x80)) {

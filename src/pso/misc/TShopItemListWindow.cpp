@@ -194,7 +194,7 @@ void TShopItemListWindow::handle_amount_confirm() {
                 this->m_30 = create_window_menu(get_window_layout_position(0x2B), 2, get_entity_id((void *)this->m_24));
                 forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(4), 6, 0);
                 forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(5), 6, 1);
-                ((TWindowMenu *)this->m_30)->calc_window_size();
+                ((TWindowSubComCard *)this->m_30)->calc_window_size();
                 align_menu_entry_positions((s32)this->m_30);
                 ((TCheckRoomSequence *)this->m_30)->set_ready_flag();
                 f32 sc = get_scale__15TShopWindowBaseFv(this);
@@ -282,7 +282,7 @@ void TShopItemListWindow::prepare_tool_purchase() {
         this->m_30 = create_window_menu(get_window_layout_position(0x2B), 2, get_entity_id((void *)this->m_24));
         forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(4), 6, 0);
         forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(5), 6, 1);
-        ((TWindowMenu *)this->m_30)->calc_window_size();
+        ((TWindowSubComCard *)this->m_30)->calc_window_size();
         align_menu_entry_positions((s32)this->m_30);
         ((TCheckRoomSequence *)this->m_30)->set_ready_flag();
         f32 sc = get_scale__15TShopWindowBaseFv(this);

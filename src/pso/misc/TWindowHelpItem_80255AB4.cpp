@@ -26,8 +26,8 @@ void *init__21TWindowSubComCardListFiii(void *p, s32 a, s32 b, s32 c);
 void call_if_split_screen(void *self, s32 idx);
 
 s32 handle_list_page_flip_input(s32);
-s32 draw_visible_window_entries(void *, void *, TWindowKeyBoardSoft *);
-s32 draw_list_page_indicator(int, TWindowKeyBoardSoft *);
+s32 draw_visible_window_entries(void *, void *, int);
+s32 draw_list_page_indicator(int, int);
 void __dl__7TObjectFPv(void *);
 void destroy_window_base__9TWindowDDFs(void *, int);
 s32 decay_page_arrow_offset(s32);
@@ -50,7 +50,7 @@ void TWindowHelpItem::update_cursor_selection() {
 }
 
 void TWindowHelpItem__sub_80255B20(u8 *arg0) {
-    TWindowKeyBoardSoft *temp_r3;
+    s32 temp_r3;
     u8 temp_r3_2;
 
     temp_r3 = ((TWindowBase *)arg0)->setup_window_draw_context((s32)(arg0 + 0xA8));

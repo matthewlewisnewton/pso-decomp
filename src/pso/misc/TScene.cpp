@@ -12,6 +12,7 @@
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/unk/text_802A8210.h"
 #include "pso/effect/TEffIndirectCtrl.h"
 #include "pso/item/TItemDrop_800F93F0.h"
 #include "pso/misc/TLobby_80131794.h"

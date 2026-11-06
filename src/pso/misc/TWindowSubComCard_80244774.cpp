@@ -301,30 +301,29 @@ void window_request_show(void *object) {
     allow_rendering__7TObjectFv((TObject *)object);
 }
 
-TWindowKeyBoardSoft *TWindowBase::setup_window_draw_context(s32 arg1) {
+s32 TWindowBase::setup_window_draw_context(s32 arg1) {
     TWindowKeyBoardSoft *window;
     s32 var_r4;
-    TUnk_804CE018 *self = (TUnk_804CE018 *)this;
-    window = TWindowKeyBoardSoft::open_singleton(&self->m_40, &self->m_48, (f32 *)arg1, self->m_54, self->m_2c);
-    if (self->m_2c & 0x40) {
+    window = TWindowKeyBoardSoft::open_singleton(&m_40, &m_48, (f32 *)arg1, m_54, m_2c);
+    if (m_2c & 0x40) {
         animate_scale__19TWindowKeyBoardSoftFv();
     }
-    if (self->m_2c & 0x80) {
+    if (m_2c & 0x80) {
         window->shrink_clip_right();
     }
-    if (self->m_2c & 8) {
+    if (m_2c & 8) {
         window->set_bounds(0.0f, 0.0f, 640.0f, 480.0f);
     }
-    var_r4 = self->m_5c;
-    if (!(self->m_2c & 0x2000)) {
+    var_r4 = m_5c;
+    if (!(m_2c & 0x2000)) {
         var_r4 = (s32) ((f32) var_r4 - 7.5f);
     }
     window->set_open_tick(var_r4);
-    apply_window_closing_stretch((u8 *)window, self->unk_22);
-    return window;
+    apply_window_closing_stretch((u8 *)window, unk_22);
+    return (s32)window;
 }
 
-TWindowKeyBoardSoft *TWindowDD::draw_default_entry(s32 arg0) {
+s32 TWindowDD::draw_default_entry(s32 arg0) {
     return ((TWindowBase *)arg0)->setup_window_draw_context((s32)fn_8026CB68());
 }
 
@@ -413,7 +412,7 @@ void TWindowBase::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
 void draw_selection_bar(TWindowDrawContext *window_key_board_soft, u8 *arg1, s32 arg2) {
     UVPair_8024503C uv = selection_bar_texture_coordinates;
     UV_8024503C *p;
-    Box_8024E8E8 q;
+    Quad_802455CC q;
     f32 x1;
     f32 x;
     f32 y;
@@ -442,7 +441,7 @@ void draw_selection_bar(TWindowDrawContext *window_key_board_soft, u8 *arg1, s32
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + p->u) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q) != 0) {
+    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q.x0) != 0) {
         draw_textured_quad_at_depth(&q.x0, z);
     }
     t = x + window_key_board_soft->inner_w;
@@ -455,7 +454,7 @@ void draw_selection_bar(TWindowDrawContext *window_key_board_soft, u8 *arg1, s32
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + u) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q) != 0) {
+    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q.x0) != 0) {
         draw_textured_quad_at_depth(&q.x0, z);
     }
     q.x0 = x1;
@@ -466,7 +465,7 @@ void draw_selection_bar(TWindowDrawContext *window_key_board_soft, u8 *arg1, s32
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + (16.0f + p->u)) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q) != 0) {
+    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q.x0) != 0) {
         draw_textured_quad_at_depth(&q.x0, z);
     }
     TWindowSubStatusDisp::get_player();

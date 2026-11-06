@@ -83,7 +83,7 @@ extern s32 game_difficulty_selection;
 extern s32 evt2_random_enemies_mode;
 extern u8 controller_input_state[];
 extern int quest_bin_decompressed_size;
-extern u8 *online_quest_bin_data;
+extern int online_quest_bin_data;
 extern char offline_quest_filename_buffer_a[];
 }
 
@@ -486,7 +486,7 @@ void TQuestThread::destroy_all_in(TObject *parent) {
     while (parent->m_down != NULL && child != NULL) {
         TObject *cur = child;
         child = child->m_next;
-        if (((TUnk_804B6C24 *)cur)->check_value_equals((s32)TQuestThread__class_name) != 0) {
+        if (cur->check_value_equals(TQuestThread__class_name) != 0) {
             queue_destruction__7TObjectFv(cur);
         } else {
             destroy_all_in(cur);
@@ -758,14 +758,14 @@ TUnk_804C8678 *TQuestThread::create_by_mode() {
     case 1:
         return new TUnk_804C8678(tl_su, get_offline_quest_filename());
     case 2:
-        return new TUnk_804C8678(tl_su, TQuestListOnline::get_quest_data(), TQuestListOnline::get_quest_size());
+        return new TUnk_804C8678(tl_su, (void *)TQuestListOnline::get_quest_data(), TQuestListOnline::get_quest_size());
     case 3: {
         TUnk_804C8678 *root = new TUnk_804C8678(tl_su, TQuestListVM::get_quest_bin(), TQuestListVM::get_quest_size());
         TQuestListVM::reset();
         return root;
     }
     case 4:
-        return new TUnk_804C8678(tl_su, TQuestListOnline::get_quest_data(), TQuestListOnline::get_quest_size());
+        return new TUnk_804C8678(tl_su, (void *)TQuestListOnline::get_quest_data(), TQuestListOnline::get_quest_size());
     case 5:
         return new TUnk_804C8678(tl_su, get_offline_quest_filename());
     default:
@@ -861,7 +861,7 @@ u32 TQuestListVM::get_quest_size() { return decompression_capacity; }
 
 int TQuestListOnline::get_quest_size() { return quest_bin_decompressed_size; }
 
-u8 *TQuestListOnline::get_quest_data() { return online_quest_bin_data; }
+int TQuestListOnline::get_quest_data() { return online_quest_bin_data; }
 
 char *get_offline_quest_filename() { return offline_quest_filename_buffer_a; }
 

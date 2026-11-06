@@ -4,8 +4,6 @@
 #include "types.h"
 #include "pso/TShopWindowBase.h"
 
-struct TWindowMenu;
-
 struct TShopEquipmentSellWindow : public TShopWindowBase {
     virtual ~TShopEquipmentSellWindow();
     virtual void vfunc_11();
@@ -32,7 +30,7 @@ struct TShopEquipmentSellWindow : public TShopWindowBase {
     u32 m_384;
     u32 m_388;
     u32 m_38c;
-    TWindowMenu *m_390;
+    u32 m_390;
     u32 m_394;
     u32 m_398;
     u32 m_39c;

@@ -52,7 +52,7 @@ struct Color_8009680C { f32 a; f32 r; f32 g; f32 b; };
 
 struct Part_8009680C { u8 pos[0x18]; u8 rot[0x10]; };
 
-struct Chunk_8009680C { s32 model; u8 pad[0x18]; };
+struct Chunk_8009680C { void *model; u8 pad[0x18]; };
 
 struct Model_8009680C { u8 pad0[4]; Chunk_8009680C *chunks; s32 is_chunk; };
 
@@ -163,7 +163,7 @@ void TBreakUpMdl::render() {
         if (self->model->is_chunk != 0) {
             draw_ginja_model(self->model->chunks[i].model);
         } else {
-            draw_chunk_model((void *)self->model->chunks[i].model);
+            draw_chunk_model(self->model->chunks[i].model);
         }
         pop_matrix();
     }

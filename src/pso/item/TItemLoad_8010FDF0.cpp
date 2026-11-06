@@ -29,9 +29,9 @@ struct Sp8Buf_8010fe6c_8010FDF0 {
 };
 
 s32 apply_rel_relocations(s32 *);
-s32 read_disc_file(u32, u8 *);
+s32 read_disc_file(u32, s32);
 s32 read_checked_align__6TLobbyFlll(s32, s32, s32, void *);
-s32 prs_decompress_alloc(u8 *, u32, s32);
+s32 prs_decompress_alloc(s32, u32, s32);
 
     extern int item_load_compressed_work_buffer;
     extern int item_load_work_buffer_busy;
@@ -44,7 +44,7 @@ RelocatedFile::~RelocatedFile() {
 RelocatedFile::RelocatedFile(const char *path, s32 size) {
     struct Sp8Buf_8010fe6c_8010FDF0 sp8;
     s32 temp_r31;
-    u8 *item_buff;
+    s32 item_buff;
 
     buffer = NULL;
     root = NULL;

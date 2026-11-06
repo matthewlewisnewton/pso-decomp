@@ -5,7 +5,6 @@
 #include "pso/misc/TShopJudgmentItemWindow.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/TPlyItem.h"
 
 struct Wn_802788A8 { u8 pad0[0x20]; s16 f20; u8 pad22[0x50]; s16 f72; };
@@ -15,6 +14,7 @@ struct Wn_802787F0 { u8 pad0[0x20]; s16 f20; u8 pad22[0x50]; s16 f72; };
 struct Ent_802787F0 { u32 id; s32 count; };
 
 extern "C" {
+void *get_player_by_client_id(s32 i);
 void build_usable_item_list(Wn_802788A8 *arg0);
 void fill_trade_item_list(Wn_802787F0 *arg0, Ent_802787F0 *arg1);
 
@@ -57,7 +57,7 @@ void build_usable_item_list(Wn_802788A8 *arg0) {
     u32 i;
     u32 count;
     TObjPlayer *p;
-    p = get_player_by_client_id(arg0->f20);
+    p = (TObjPlayer *)get_player_by_client_id(arg0->f20);
     if (p != NULL) {
         count = p->inventory_objects->run_and_get_result(list);
         for (i = 0; i < count; i++) {

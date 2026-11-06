@@ -17,6 +17,8 @@ struct Info_802DC024 {
 
 struct Sel_802DC118 { u8 pad[0x64]; u32 win; };
 
+struct TWindowMenu;
+
 extern "C" {
 s32 get_localized_text_entry(s32 arg0, s32 arg1);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);

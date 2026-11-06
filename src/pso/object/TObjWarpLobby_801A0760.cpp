@@ -63,7 +63,7 @@ void TObjWarpLobby::open_lobby_menu() {
     for (i = 0; i < 0xF; i++) {
         forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_cc, (int)warp_lobby_directory_label_table[i], 6, (int)i);
     }
-    ((TWindowMenu *)(this->m_cc))->calc_window_size();
+    ((TWindowSubComCard *)(this->m_cc))->calc_window_size();
     align_menu_entry_positions(this->m_cc);
     ((TWindowSubComCardList *)(this->m_cc))->set_flag70_bit10();
     request_active_window_close();

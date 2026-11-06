@@ -195,7 +195,7 @@ void TObjWarpJungMain__vt13(TObjWarpJungMain *warp_jung_main, s16 arg1) {
         for (i = 0; i < 3; i++) {
             forward_trade_action_default__16TObjCityMainWarpFPviii(warp_jung_main->m_b0, get_localized_text_entry(9, jungle_warp_destination_text_ids[i]), 0xE, i);
         }
-        ((TWindowMenu *)(warp_jung_main->m_b0))->calc_window_size();
+        ((TWindowSubComCard *)(warp_jung_main->m_b0))->calc_window_size();
         align_menu_entry_positions(warp_jung_main->m_b0);
         ((TWindowSubComCardList *)(warp_jung_main->m_b0))->set_flag70_bit10();
         ((TWindowMenu *)(warp_jung_main->m_b0))->set_loss_flag();

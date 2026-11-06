@@ -7,13 +7,13 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 13 | 4 |
+| asm | 15 | 5 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5788 | 874 |
-| configure.py per-unit override | 161 | 161 |
+| pragma | 5764 | 871 |
+| configure.py per-unit override | 174 | 174 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039, `fp_contract` 893, `auto_inline` 838, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 203, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 50, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 876, `auto_inline` 837, `opt_common_subs` 610, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -32,6 +32,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/math/MatrixVector.cpp:76` | `asm void matrix_identity(u8 *arg0) {` |
 | `src/pso/math/MatrixVector.cpp:77` | `#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
+| `src/pso/unk/text_8042E8C4.cpp:28` | `asm void LaunchDol(register void* dol) {` |
+| `src/pso/unk/text_8042E8C4.cpp:29` | `#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"` |
 
 ## MWCC intrinsics
 
@@ -54,14 +56,14 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/enemy/TObjEneMe1GiGue.cpp:1393` | `__cntlzw` |
 | `src/pso/enemy/TObjEneMe3Shinowa.cpp:2526` | `__cntlzw` |
 | `src/pso/item/TItemMag.cpp:1351` | `__cntlzw` |
-| `src/pso/misc/TCheckRoomSequence.cpp:294` | `__cntlzw` |
+| `src/pso/misc/TCheckRoomSequence.cpp:292` | `__cntlzw` |
 | `src/pso/misc/THunterGuildSeqOffline_80211FEC.cpp:71` | `__cntlzw` |
 | `src/pso/misc/TKeyBoardControl_803F0C50.cpp:267` | `__cntlzw` |
 | `src/pso/misc/TLoadingCur.cpp:174` | `__cntlzw` |
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
-| `src/pso/misc/TLobby_803C4698.cpp:234` | `__frsqrte` |
+| `src/pso/misc/TLobby_803C4698.cpp:237` | `__frsqrte` |
 | `src/pso/misc/TMainCursor.cpp:844` | `__cntlzw` |
-| `src/pso/misc/TNpcPlayer.cpp:2371` | `__cntlzw` |
+| `src/pso/misc/TNpcPlayer.cpp:3269` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:542` | `__cntlzw` |
@@ -79,7 +81,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:44` | `__rlwinm` |
 | `src/pso/misc/TWindowSubComCard_80244774.cpp:229` | `__cntlzw` |
 | `src/pso/misc/TWindowSubItem.cpp:359` | `__cntlzw` |
-| `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:96` | `__cntlzw` |
+| `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
 | `src/pso/object/TObjCMMainMenu_8028D9A8.cpp:108` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
@@ -87,10 +89,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/object/TObjTombstone.cpp:427` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_80011014.cpp:4890` | `__fabs` |
 | `src/pso/player/TObjPlayer_80011014.cpp:4898` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_800AAFBC.cpp:350` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_800AAFBC.cpp:303` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:2510` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:5049` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:2511` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:5050` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:95` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:116` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
@@ -152,8 +154,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/player/TObjPlayer_803E21B8.cpp:258` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = s;` |
 | `src/pso/player/TObjPlayer_803E21B8.cpp:259` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = t;` |
 | `src/pso/player/TObjPlayer_803E5470.cpp:21` | `#define GXWGFifo_803E549C (*(volatile WGPipe_803E549C *)0xCC008000)` |
-| `src/pso/system/ChunkMaterialState.cpp:217` | `base += 0xE0000000;` |
-| `src/pso/system/ChunkMaterialState.cpp:219` | `current_matrix = 0xE0000000;` |
+| `src/pso/system/ChunkMaterialState.cpp:213` | `matrix_stack_base = (u8 *)0xE0000000;` |
+| `src/pso/system/ChunkMaterialState.cpp:214` | `current_matrix = 0xE0000000;` |
 | `src/pso/system/ModelDrawContext.cpp:218` | `int src = cached_blend_factor_table[(v & 0xE0000000) >> 29];` |
 | `src/pso/unk/text_801E3F24.cpp:27` | `*(s32 *)0xCC008000 = arg0;` |
 | `src/pso/unk/text_801E3F24.cpp:31` | `*(f32 *)0xCC008000 = farg0;` |
@@ -199,21 +201,29 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/player/TObjPlayer_801542CC.cpp` | `-fp_contract on` | TObjPlayer__sub_8015434C fuses offset*sin+pos (fmadds at 0x80154408) and offset*cos+pos (fmadds at 0x8015442C). The same flag leaves every other function in this unit unchanged, including resolve_actor_sphere_contact's (x*x)+(z*z) as fmuls+fadds. resolve_player_box_contact's fmadds at 0x8015532C and 0x8015533C already come from that function's pragma. Precedent: dtk-template's GC/Wii base flags use -fp_contract on (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209). |
 | `pso/boss/TBoss6PlotFalz_802B0228.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #183: the Falz plot table TU is built with deferred inlining (its state actions come out in reverse table order). |
 | `pso/boss/TBoss6EmptyWarp_802B0E2C.cpp` | `-str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/pso_date.cpp` | `GC/1.3.2` | Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md. |
 | `pso/boss/TObjBoss2Tunnel_8003B138.cpp` | `-fp_contract on` | Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact with -fp_contract on (all three tunnel units), so the flag belongs on the unit rather than as per-function pragmas left over from the split units. |
-| `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `-inline off,deferred, -fp_contract on` | Deferred, with definitions in reverse address order: the ctor's function-local static and guard precede run_task's table guard in .sbss, as in the original (docs/porting-exceptions.md section 5). |
+| `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `(multi-line entry; see configure.py)` | Deferred, with definitions in reverse address order: the ctor's function-local static and guard precede run_task's table guard in .sbss, as in the original (docs/porting-exceptions.md section 5). .sbss starts at 0x805D696C and .sdata2 at 0x805DECCC, both only 4-aligned. mwld takes alignment from the CodeWarrior comment record, which GC/2.6 writes as 8, so the pool and every later sda21 offset shift by 4. cw_align rewrites that record after compile. -sdata 4 does not. |
 | `pso/boss/TObjBoss2Tunnel.cpp` | `-inline off,deferred, -pool off, -sdata 4, -fp_contract on` | Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is needed (docs/porting-exceptions.md section 5). |
 | `pso/boss/TBoss4DarkFalz_8004C93C.cpp` | `-inline deferred, -sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TOTrapSeabed01.cpp` | `-inline deferred` | Reverse definitions with deferred generation: the weak copies of TOTrap's inline slots are generated first, so their 1.0/0.0 head .sdata2 as in the original pool, and clamp_params_and_init inlines its clamp helpers. |
+| `pso/misc/TOTrapAncient02.cpp` | `-inline deferred, -fp_contract on` | Reverse definitions with deferred generation: the native TOTrapAncient02R vtable is emitted before the switch table that follows it in .data, and the .sdata2 pool keeps its original order. Unit -fp_contract on replaces the per-function pragmas: the constructors, calc_trap_count and the R vfunc_81 fuse multiply-adds. |
+| `pso/misc/TOTrapAncient01.cpp` | `GC/2.0, -inline off,deferred, -fp_contract on, -str reuse,readonly, -pooldata=off, -opt nolifetimes` | GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris positions before storing them (GC/2.6 interleaves them: 91.09%). Reverse definitions and deferred generation place the native trap vtable before its switch tables while preserving the original function order. Contracted FP keeps the constructor and render exact (98.86% and 97.66% without it). -opt nolifetimes keeps render exact (99.42% without it). -pooldata=off keeps play_sounds' copy prologue (94.54% without it); read-only strings keep the .rodata/.data/.sdata layout. |
+| `pso/object/TObjDFDemo1.cpp` | `-sdata 4` | Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4). |
 | `pso/enemy/TObjEneBalClawBody_80090178.cpp` | `-inline deferred, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneRe2Flower_800C3E14.cpp` | `-inline off,deferred` | Deferred generation preserves the flower vtable before its dispatch table. |
 | `pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneMe1Gee.cpp` | `-inline off,deferred` | Gee native tables require deferred generation and reverse definitions. |
+| `pso/enemy/TObjEneDubchik.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190 commit 9c4e9ea1d: TObjEneDubchik is written from its last function back. -inline off,deferred emits that order (the vtable lands before the switch tables). -str reuse,readonly keeps the motion-name pool in .rodata. These are upstream's own flags for this unit. |
 | `pso/enemy/TObjEnePanarms.cpp` | `-inline deferred, -sdata 4, -sym on` | Native private header sections preserve initializer and helper emission order. |
 | `pso/enemy/TObjEneDelDepth.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
+| `pso/misc/TOBoss4.cpp` | `-fp_contract on, -str reuse,readonly, -sdata 4, -inline deferred` | Vol Opt scenery is one TU. Deferred emission puts TOBoss4Rock::run_task first; -sdata 4 keeps the 8-byte motion-name array in .data. |
+| `pso/boss/TBoss6Rock.cpp` | `-fp_contract on, -str reuse,readonly, -inline off,deferred` | Dark Falz rocks are one TU, written last-defined first. -fp_contract on fuses the fall and spin multiply-adds. |
 | `pso/item/TItemSpecialEvent_803531FC.cpp` | `(multi-line entry; see configure.py)` | GC/2.0: compiler-expanded struct copies take 2.0's registers. The ending item handler table keeps 2.0's store/load scheduling for its zero-initialized local member-function-pointer array. |
 | `pso/effect/TEffIndirectCtrl.cpp` | `GC/2.0, -inline off,deferred, -opt noprop, -fp_contract on, -str reuse,readonly` | GC/2.0: run_task's 36-byte PMF array initializer interleaves its copy tail with actor_frame_tick (load, tail load, clrlwi., table load, tail store). GC/2.5, 2.6 and 2.7 pack the tail pair and move the tick relocation from +0xE4 to +0xEC; GC/2.0p1 and GC/1.3.2 drop the wave helpers. -inline off,deferred: the vtables come out in reverse order of their key functions, and .data has TUnk_804DDF04's vtable before this class's while TUnk_804DDF04's destructor comes first in .text. -opt noprop: deform_indirect_texture_scroll keeps its s16 scroll offset as a named local (extsh r28, after the coordinate masks in r30/r29). With copy propagation the frontend replaces it with a hoisted temporary that the allocator colours first (r30). -fp_contract on: both texture-wave helpers fuse the wave offset into an fmadds. -str reuse,readonly: the two file names and the class name are in this unit's .rodata. See docs/porting-exceptions.md section 5. |
 | `pso/misc/TMovie_80143988.cpp` | `-opt nolifetimes,nocse,noprop,noloop` | pack_movie_frame: the original keeps every named local in one register (no lifetime splitting), recomputes its pad and stride shifts instead of sharing them, and leaves invariant hoisting to the backend. See docs/porting-exceptions.md section 5. |
@@ -221,7 +231,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `pso/enemy/TObjEneGyaranzo.cpp` | `GC/2.0, -inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOExplosiveMachine.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneSlimeTailAttack.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
-| `pso/boss/TBoss8Dragon.cpp` | `GC/2.0` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/boss/TBoss8Dragon.cpp` | `GC/2.0, -inline off,deferred` | -inline off,deferred: the real TBoss8Dragon constructor addresses __vt__12TBoss8Dragon as addi r0, r31, 2348 from the .data anchor. Plain -inline off emits lis/addi of the vtable symbol and the ctor grows 0x554 -> 0x558. Deferred also emits the compiler vtable at .data+0x92C, where the hand table was. Other functions are unchanged. See docs/porting-exceptions.md section 5. |
 | `pso/object/TObjCamera.cpp` | `GC/1.3.2` | GC/1.3.2: the container files 0x8018807C-0x8018D900, the CRC-32 pair (`xoris/xori 0xFFFF`; 2.x always emits `li -1; xor`), and five others. TObjCamera: 1.3.2 copies CameraSoundEvent member by member unscheduled. |
 | `pso/object/TObjComputer.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/item/TObjContainerJung.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -243,6 +253,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `pso/misc/TMedicalCenterSequence.cpp` | `-inline deferred` | Deferred inlining: functions come out in reverse source order and the vtables before the switch tables in .data. |
 | `pso/misc/TWindowMainMenu_802AD538.cpp` | `-inline noauto,level=1` | Row-header copy is a 16-byte struct assignment. -inline off outlines it; noauto,level=1 inlines that helper only. The rest of the unit stays out of line. |
 | `pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `-fp_contract on` | Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs (scale_point_about_pivot, apply_context_transform_to_rect, apply_window_closing_stretch, clip_textured_quad, init_text_window_layout). Unit -fp_contract on replaces the per-function pragmas. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
+| `pso/misc/TNpcPlayer.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190: this file is written in reverse so deferred codegen emits address order, and the readonly string pool places the constants. |
+| `pso/misc/TTecCtrl_8022C444.cpp` | `(multi-line entry; see configure.py)` | get_technique_caster_flags' unsigned bias is lbl_8044D078, which TTecCtrl loads from this split. MWCC emits the bias as a local pool object; the post-process names that object as the split's global. Source cannot do it without a second pool copy (docs/evidence/conversion-pool-constants.md). |
 | `pso/boss/TBoss7LaserLight.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/boss/TBoss7TentacleNeedle.cpp` | `GC/2.0, -inline off,deferred, -fp_contract on` | Position jitter and the tentacle curve contract mul-add to fmadds, so this unit is built with -fp_contract on. -inline off,deferred emits functions and vtables in reverse source order: the Needle vtable then the Tentacle vtable, with .text still in address order. GC/2.0: the Needle constructor's const emitter copy. Before 2.5 a const local whose address escapes stays out of the worst-case alias set, so the three word loads of pos batch ahead of the stores; 2.6 interleaves. |
 | `pso/boss/TBoss7PhotonBullet_802EF26C.cpp` | `-inline off,deferred, -fp_contract on` | Photon bullet run_task contracts a mul-add. Deferred emission puts the compiler vtables in address order while the definitions stay bottom-to-top. |
@@ -334,6 +346,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `pso/misc/TOSensorAncient01.cpp` | `-sdata 4, -str reuse,readonly, -pool off` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOSensorGeneral01.cpp` | `-sdata 4, -str reuse,readonly, -pool off` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOKeyGenericSw.cpp` | `-sdata 4, -str reuse,readonly` | Unlike the other keys it addresses its descriptors off one .data base. |
+| `pso/object/TObjCityMainWarpChallenge.cpp` | `-inline off,deferred` | __vt__25TObjCityMainWarpChallenge at 0x804B6188 precedes jumptable_804B61DC. Whole unit matches with nothing inlined. See docs/evidence/city-main-warp-challenge-vtable.md. |
 | `pso/object/TObjQuestColA_80196FE4.cpp` | `-inline off,deferred` | Quest-collision deleting destructors share a TU. Deferred generation emits the last definition first, which is the only order that puts each vtable before the next class's (TObjQuestColA then TObjQuestCol; TObjQuestColApcINW then TObjQuestColApcIN). |
 | `pso/object/TObjQuestColApcINW_80196EDC.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/camera/CreationCamera.cpp` | `-inline off,deferred, -fp_contract on` | The character creation camera: deferred with nothing inlined, and its multiply-adds contracted into fmadds. |
@@ -346,7 +359,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `pso/unk/text_8039739C.cpp` | `-O4,p` | Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs in the runtime lib under its own name. |
 | `pso/quest/QuestOpcodeHandlers.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/quest/TQuestThread.cpp` | `-inline on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TLobby_8001EF5C.cpp` | `-inline on` | init_from_id_lists (0x8002058C, size 0x30C) inlines its model and motion walks. Default -inline off outlines them. auto leaves .text at 62.53% and .data at 0%; auto,deferred leaves .text at 52.51% and .data at 0%. deferred matched the previous extern "C" body, but on this C++ function it emits the function at .text+0 instead of .text+0x1630, so the linked DOL does not match. -inline on keeps the bytes and that order. Precedent: dtk-template -inline auto https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203 and Brawl -inline on https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264 |
 | `pso/quest/TQuestListVM.cpp` | `-inline off,deferred, -pool off, -str reuse,readonly` | TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the run_task switch table (written from the last function back). -pool off keeps each title and window size its own reloc, and -str reuse,readonly matches the read-only string objects. The whole unit stays byte-exact. Precedent: dtk-template configure.py unit cflags, and this tree's TObjBoss2Tunnel / TBoss6EmptyWarp unit flags. |
+| `pso/misc/TWindowSubStatusDisp_80256B94.cpp` | `-inline off,deferred, -fp_contract on` | Status gauge: contracting the unit makes `0.299f * depth + ctx->depth` the fmadds at 0x80257118. The bar multiply stays a separate fmuls because the 7.5 scale is applied to the sum before the tick subtract. |
 | `pso/unk/text_801D40D4.cpp` | `-inline noauto` | Inventory walks read TItemList children through the class-body accessors TItemList::link_down / link_next (typed_down in TObjPlayer_801D4CB8, whose receiver is TObjPlayer). -inline noauto folds each call to the lwz of m_down (+0x14) or m_next (+0xC). -inline off leaves a bl and grows the walks (TObjPlayer__sub_801D4368 0x248 -> 0x278, and the TItemList walks by the same 8-byte call). -inline auto also inlines the unmarked TObjPlayer__sub_801D4730 into sort_by_key, so it is not this unit's flag. With noauto the whole object matches -inline off on the old cast spelling, including every function that does not call the accessor. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203 (-inline auto) and TWindowMainMenu_802AD538.cpp (-inline noauto,level=1). |
 | `pso/player/TObjPlayer_801D5220.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. count_owned_items and the other TItemList walks stay the lwz of m_down / m_next; -inline off grows each. |
 | `pso/player/TPlyItem.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. The three TPlyItem walks (reduce_owner_matched_items, reduce_child_item_amounts, collect_owner_fields_recursive) stay byte-identical to the cast spelling. |
@@ -437,7 +452,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/boss/TBoss6MagMine.cpp` | opt_common_subs×3, opt_propagation×1 |
 | `src/pso/boss/TBoss6Mine.cpp` | fp_contract×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/boss/TBoss6PlotFalz.cpp` | fp_contract×5, opt_common_subs×3, readonly_strings×1, opt_dead_assignments×1 |
-| `src/pso/boss/TBoss6Rock.cpp` | fp_contract×3, peephole×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/boss/TBoss6RockChase.cpp` | opt_propagation×1, opt_common_subs×1, fp_contract×1 |
 | `src/pso/boss/TBoss6SwordShot.cpp` | fp_contract×3, opt_common_subs×2 |
 | `src/pso/boss/TBoss6Tube_802B1020.cpp` | fp_contract×2 |
@@ -459,6 +473,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/boss/TBoss8Dragon_80325D38.cpp` | fp_contract×1 |
 | `src/pso/boss/TBoss8Dragon_8036AEF8.cpp` | fp_contract×1 |
 | `src/pso/boss/TObjBoss1Crater_8002C6B4.cpp` | fp_contract×1 |
+| `src/pso/boss/TObjBoss1Rock.cpp` | fp_contract×1 |
 | `src/pso/boss/TObjBoss2CeilJunk.cpp` | opt_dead_assignments×1 |
 | `src/pso/boss/TObjBoss2DustCtrl.cpp` | opt_propagation×1 |
 | `src/pso/boss/TObjBoss2Tunnel.cpp` | opt_propagation×1 |
@@ -504,6 +519,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/enemy/TObjEneDellBiterEffects.cpp` | fp_contract×1 |
 | `src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp` | fp_contract×3, opt_loop_invariants×1 |
 | `src/pso/enemy/TObjEneDolmOlm.cpp` | opt_common_subs×2, defer_codegen×1, fp_contract×1 |
+| `src/pso/enemy/TObjEneDubchik.cpp` | opt_common_subs×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1 |
 | `src/pso/enemy/TObjEneEpsilonGuard_8035DD68.cpp` | opt_common_subs×3, fp_contract×2 |
 | `src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | opt_common_subs×3, fp_contract×3, defer_codegen×1, opt_propagation×1 |
 | `src/pso/enemy/TObjEneGibbles.cpp` | opt_loop_invariants×6, dont_inline×1, inline_depth×1, fp_contract×1, defer_codegen×1, opt_common_subs×1 |
@@ -667,8 +683,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/misc/TLobby_80207644.cpp` | opt_common_subs×3 |
 | `src/pso/misc/TLobby_80207DA8.cpp` | fp_contract×1 |
 | `src/pso/misc/TLobby_80222D24.cpp` | fp_contract×2, scheduling×2, readonly_strings×1 |
-| `src/pso/misc/TLobby_80227A2C.cpp` | fp_contract×1, opt_propagation×1 |
-| `src/pso/misc/TLobby_8023F734.cpp` | opt_common_subs×3, opt_propagation×3, opt_dead_assignments×3, fp_contract×2, inline_depth×1, auto_inline×1, dont_inline×1 |
+| `src/pso/misc/TLobby_80228154.cpp` | fp_contract×1 |
+| `src/pso/misc/TLobby_80228818.cpp` | opt_propagation×1 |
+| `src/pso/misc/TLobby_8023F734.cpp` | opt_common_subs×3, opt_propagation×3, opt_dead_assignments×3, readonly_strings×1, fp_contract×1 |
+| `src/pso/misc/TLobby_802409AC.cpp` | fp_contract×1, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobby_80291D94.cpp` | inline_depth×3, auto_inline×3, dont_inline×3, fp_contract×1 |
 | `src/pso/misc/TLobby_802A0F3C.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobby_802A5120.cpp` | readonly_strings×1 |
@@ -694,10 +712,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/misc/TNeedleShoot_802A4540.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TNeedleShoot_802A4668.cpp` | fp_contract×1 |
 | `src/pso/misc/TNowLoading.cpp` | fp_contract×2 |
-| `src/pso/misc/TNpcPlayer.cpp` | fp_contract×9, opt_common_subs×2, opt_propagation×1 |
+| `src/pso/misc/TNpcPlayer.cpp` | fp_contract×9, opt_common_subs×3, opt_propagation×1 |
 | `src/pso/misc/TNpcPlayer_8014DADC.cpp` | scheduling×1 |
 | `src/pso/misc/TNpcPlayer_8034DC20.cpp` | opt_pointer_analysis×1 |
-| `src/pso/misc/TOBoss4Rock_801589E8.cpp` | fp_contract×3, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TOComputerMachine01_8023DD0C.cpp` | fp_contract×1 |
 | `src/pso/misc/TOCtrlDubchik_8015CA74.cpp` | opt_common_subs×3, opt_propagation×1, fp_contract×1 |
 | `src/pso/misc/TODoorFourLightSpace.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
@@ -719,11 +736,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/misc/TOSparkMachine01.cpp` | readonly_strings×1 |
 | `src/pso/misc/TOSwitchAttack_801778A4.cpp` | opt_lifetimes×1 |
 | `src/pso/misc/TOSwitchTimer.cpp` | readonly_strings×1 |
-| `src/pso/misc/TOTrap.cpp` | explicit_unused_unused_members×1 |
-| `src/pso/misc/TOTrapAncient01.cpp` | fp_contract×2, opt_lifetimes×1 |
-| `src/pso/misc/TOTrapAncient02.cpp` | fp_contract×9 |
 | `src/pso/misc/TOTrapChainSawEdge.cpp` | auto_inline×16, dont_inline×16, inline_depth×16, readonly_strings×1, fp_contract×1, opt_propagation×1 |
-| `src/pso/misc/TOTrapSeabed01.cpp` | fp_contract×1, inline_depth×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/misc/TOVS2Wall01.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TOVS2Wall01_8017BE08.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TOWreckAncientBrakable.cpp` | readonly_strings×1 |
@@ -769,7 +782,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/misc/TSaveChCr_8033A088.cpp` | opt_common_subs×2 |
 | `src/pso/misc/TScene.cpp` | defer_codegen×2, readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1, opt_lifetimes×1 |
 | `src/pso/misc/TScene_800838C4.cpp` | opt_common_subs×1 |
-| `src/pso/misc/TSetManager_8020D918.cpp` | scheduling×1 |
+| `src/pso/misc/TSetManager_8020D918.cpp` | scheduling×1, opt_propagation×1 |
 | `src/pso/misc/TShopArmorListWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/misc/TShopDeleteItemWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1, opt_loop_invariants×1 |
 | `src/pso/misc/TShopEquipmentListWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
@@ -950,7 +963,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/object/TObjCityMainWarp_801867F4.cpp` | fp_contract×1 |
 | `src/pso/object/TObjControl.cpp` | fp_contract×1 |
 | `src/pso/object/TObjCurtainLobby.cpp` | readonly_strings×1 |
-| `src/pso/object/TObjDFDemo0.cpp` | fp_contract×1 |
+| `src/pso/object/TObjDFDemo1.cpp` | defer_codegen×1, fp_contract×1 |
 | `src/pso/object/TObjDFDemo2.cpp` | readonly_strings×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/object/TObjDFDemo3.cpp` | readonly_strings×1, opt_common_subs×1 |
 | `src/pso/object/TObjDFHorming.cpp` | fp_contract×6, auto_inline×3, dont_inline×3, inline_depth×2, readonly_strings×1, cplusplus×1, opt_common_subs×1 |
@@ -1005,7 +1018,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1147, `inline_depth` 1039,
 | `src/pso/player/TObjPlayer_80083B38.cpp` | fp_contract×2 |
 | `src/pso/player/TObjPlayer_8008DCF0.cpp` | opt_common_subs×3 |
 | `src/pso/player/TObjPlayer_8008DCF0_8008DCF0.cpp` | opt_common_subs×1, opt_propagation×1 |
-| `src/pso/player/TObjPlayer_800A894C.cpp` | opt_common_subs×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1 |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp` | fp_contract×1 |
 | `src/pso/player/TObjPlayer_800ACA60.cpp` | dont_inline×2, inline_depth×2, fp_contract×1, opt_common_subs×1 |
 | `src/pso/player/TObjPlayer_800BBE90.cpp` | fp_contract×2 |

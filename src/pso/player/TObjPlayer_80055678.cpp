@@ -9,4 +9,4 @@ void TObjPlayer__sub_80055684(void) {  }
 void TObjPlayer__sub_80055688(void) {  }
 void TObjPlayer__sub_8005568C(void) {  }
 void TObjPlayer__sub_80055690(void) {  }
-void*TObjPlayer::get_position_ptr() { return (char*)this + 0x38; }
+Vec *TObjPlayer::get_position_ptr() { return &this->position; }

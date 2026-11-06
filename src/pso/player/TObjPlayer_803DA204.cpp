@@ -1,7 +1,8 @@
-#include "pso/system/GinjaTexture.h"
 #include "pso/system/GinjaTextureInput.h"
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
+
+struct S_803DA218 { s32 a; u32 c; s32 b; };
 
 struct Sub_803DA688 { u32 v; };
 
@@ -17,6 +18,7 @@ struct Slot_803DA388 { s32 id; s32 a; s32 b; s32 c; s32 d; s32 e; s32 f; s32 g; 
 
 extern "C" {
 extern s32 player_ref_entry_active_count;
+void set_texture_name(S_803DA218 *self, s32 a, s32 b, u32 c);
 extern s32 record_array_count;
 extern Rec_803DA688 *record_array_ptr;
 extern Err_803DA5A8 lbl_8058D470[];
@@ -35,15 +37,15 @@ void GinjaTextureInput::configure(void *input, s32 input_format, s32 input_width
 #pragma scheduling off
 #pragma peephole off
 #pragma optimize_for_size off
-void set_texture_name(GinjaTextureEntry *entry, const void *name, u32 global_index, u32 attr) {
-    if (attr & 0x40000000) {
-        entry->name = name;
-        entry->value04 = attr;
-        entry->global_index = global_index;
+void set_texture_name(S_803DA218 *self, s32 a, s32 b, u32 c) {
+    if (c & 0x40000000) {
+        self->a = a;
+        self->c = c;
+        self->b = b;
     } else {
-        entry->name = name;
-        entry->value04 = attr;
-        entry->global_index = global_index;
+        self->a = a;
+        self->c = c;
+        self->b = b;
     }
 }
 #pragma pop

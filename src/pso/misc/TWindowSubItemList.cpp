@@ -19,10 +19,10 @@ struct RecoveredGlobal_8027AEDC___vt__18TWindowSubItemList { s32 value; u8 remai
 typedef char RecoveredGlobal_8027AEDC___vt__18TWindowSubItemList_size[sizeof(RecoveredGlobal_8027AEDC___vt__18TWindowSubItemList) == 0x20 ? 1 : -1];
 
 extern "C" {
-s32 draw_visible_window_entries(void *, void *, TWindowDrawContext *);
-s32 draw_item_list_capacity(void *, TWindowDrawContext *, int, int);
-s32 draw_window_scrollbar(void *, TWindowDrawContext *, void *);
-s32 forward_render__20TWindowSubStatusDispFv(void *, TWindowDrawContext *);
+s32 draw_visible_window_entries(void *, void *, int);
+s32 draw_item_list_capacity(void *, int, int, int);
+s32 draw_window_scrollbar(void *, int, void *);
+s32 forward_render__20TWindowSubStatusDispFv(void *, int);
 u8 *__nw__7TObjectFUl(s32);
 s32 TShopJudgmentItemWindow__sub_80267F9C(void *, int);
 extern s32 __vt__18TWindowSubItemList[];
@@ -44,12 +44,13 @@ u8 *create_sub_item_list_window(s32 arg0, s32 arg1, s16 arg2) {
 #pragma push
 #pragma fp_contract on
 void TWindowSubItemList::render() {
-    TWindowDrawContext *window_key_board_soft = get_draw_context__11TWindowBaseFPv(this);
     u8 *arg0 = (u8 *)this;
+    s32 window_key_board_soft;
+    window_key_board_soft = (s32)get_draw_context__11TWindowBaseFPv(this);
     ((TWindowBase *)arg0)->draw_window_frame((void *)window_key_board_soft);
     draw_visible_window_entries(arg0, arg0 + 0x24, window_key_board_soft);
     ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry(window_key_board_soft);
-    ((TWindowSubItemList *)arg0)->sub_8027ACF8(window_key_board_soft);
+    ((TWindowSubItemList *)arg0)->sub_8027ACF8((u8 *)window_key_board_soft);
     draw_item_list_capacity(arg0, window_key_board_soft, this->m_8c, 0x1E);
     if ((u32) *(u32 *)&this->status_display != 0U) {
         forward_render__20TWindowSubStatusDispFv(this->status_display, window_key_board_soft);

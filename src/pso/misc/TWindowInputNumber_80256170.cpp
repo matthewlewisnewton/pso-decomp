@@ -1,5 +1,4 @@
 #include "pso/system/CurrentTextureList.h"
-#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowInputNumber_80256170.h"
@@ -70,16 +69,16 @@ extern s32 TWindowInputNumber__name;
 extern s8 controller_input_state[];
 u8 test_input_flag__18TWindowInputNumberFv(u8 *arg0);
 extern const s32 number_input_decimal_place_values[];
-void draw_arrows__18TWindowInputNumberFv(TWindowInputNumber *, TWindowKeyBoardSoft *, Digit_802561E8 *, int);
-void apply_context_transform_to_rect(TWindowDrawContext *, Quad_802563A0 *);
+void draw_arrows__18TWindowInputNumberFv(TWindowInputNumber *, Ctx_802563A0 *, Digit_802561E8 *, int);
+void apply_context_transform_to_rect(Ctx_802563A0 *, Quad_802563A0 *);
 void begin_screen_draw(s32);
 void set_draw_texture_and_color(s32, s32);
 void draw_textured_quad_at_depth(Quad_802563A0 *q, f32 depth);
 extern s32 lbl_805D63F0;
-s32 draw_visible_window_entries(void *, void *, TWindowKeyBoardSoft *);
+s32 draw_visible_window_entries(void *, void *, int);
 u32 construct_type1_heading__20TWindowSubStatusDispFll(u32, s32, s16);
 void __dl__7TObjectFPv(void *);
-s32 forward_render__20TWindowSubStatusDispFv(void *, TWindowKeyBoardSoft *);
+s32 forward_render__20TWindowSubStatusDispFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 
 void TWindowInputNumber::create(s32 arg1) {
@@ -154,7 +153,7 @@ void TWindowInputNumber::calc_digit_count() {
 
 #pragma push
 #pragma fp_contract on
-void draw_arrows__18TWindowInputNumberFv(TWindowInputNumber *self, TWindowKeyBoardSoft *ctx, Digit_802561E8 *digit, int confirmed) {
+void draw_arrows__18TWindowInputNumberFv(TWindowInputNumber *self, Ctx_802563A0 *ctx, Digit_802561E8 *digit, int confirmed) {
     ArrowUVs uvs = arrow_uvs;
     UV_802563A0 *uv;
     Quad_802563A0 q;
@@ -162,15 +161,15 @@ void draw_arrows__18TWindowInputNumberFv(TWindowInputNumber *self, TWindowKeyBoa
     f32 y;
     f32 depth;
 
-    if (ctx->open_tick < 0) {
+    if (ctx->visible < 0) {
         return;
     }
     uv = &uvs.uv[0];
     if (confirmed != 0) {
         uv = &uvs.uv[1];
     }
-    x = ctx->inner_x + digit->x - 0.5f * digit->w - 7.0f - 1.0f;
-    y = ctx->inner_y + digit->y;
+    x = ctx->x + digit->x - 0.5f * digit->w - 7.0f - 1.0f;
+    y = ctx->y + digit->y;
     depth = -1.0f / (0.22424999f + ctx->depth);
     begin_screen_draw(1);
     set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
@@ -210,12 +209,12 @@ void draw_arrows__18TWindowInputNumberFv(TWindowInputNumber *self, TWindowKeyBoa
 #pragma pop
 
 void render__18TWindowInputNumberFv(TWindowInputNumber *arg0) {
-    TWindowKeyBoardSoft *temp_r3;
+    s32 temp_r3;
 
     temp_r3 = ((TWindowBase *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x74));
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, temp_r3);
-    draw_arrows__18TWindowInputNumberFv(arg0, temp_r3, (Digit_802561E8 *)((TWindowBase *)arg0)->get_array_entry(arg0->selectedDigit), arg0->is_confirmed());
+    draw_arrows__18TWindowInputNumberFv(arg0, (Ctx_802563A0 *)temp_r3, (Digit_802561E8 *)((TWindowBase *)arg0)->get_array_entry(arg0->selectedDigit), arg0->is_confirmed());
     {
         void *temp_ptr = (void *) arg0->unknown70;
         if (temp_ptr != NULL) {

@@ -16,9 +16,9 @@ struct RecoveredGlobal_802492C8_lbl_8050E208 {
 };
 
 extern "C" {
-s32 draw_visible_window_entries(void *, void *, TWindowDrawContext *);
-s32 draw_window_scrollbar(s32, TWindowDrawContext *, void *);
-s32 forward_render__20TWindowSubStatusDispFv(s32, TWindowDrawContext *);
+s32 draw_visible_window_entries(void *, void *, s32);
+s32 draw_window_scrollbar(s32, s32, void *);
+s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 extern RecoveredGlobal_802492C8_lbl_8050E208 controller_input_state;
@@ -29,8 +29,8 @@ void fn_80269004(void *);
 extern s32 __vt__20TWindowChoiceSetting[];
 
 void render__20TWindowChoiceSettingFv(u8 *arg0) {
-    TWindowDrawContext *temp_r3;
-    temp_r3 = get_draw_context__11TWindowBaseFPv(arg0);
+    s32 temp_r3;
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     ((TUnk_804D0658 *)arg0)->draw_setting(temp_r3);

@@ -422,7 +422,7 @@ void push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
 void draw_ginja_object(void *child);
-void draw_ginja_model(s32 model);
+void draw_ginja_model(void * model);
 void draw_ginja_model_with_motion(s32, s32, f32);
 
 extern s32 __vt__12TObjAreaWarp[];
@@ -757,7 +757,7 @@ void TObjMapWarp::open_player_warp_window(s32 arg1) {
     if ((u32) *(u32 *)((s8 *)temp_r31 + 0xEC) == 0U) {
         *(u32 *)((s8 *)temp_r31 + 0xEC) = ((s32 (*)(s32, s32, s32))create_window_menu)(get_window_layout_position(0x33), 1, arg1);
         ((TWindowSubTradeMain *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->add_text_entry(get_localized_text_entry(9, 0x25), 2, 0, -1);
-        ((TWindowMenu *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->calc_window_size();
+        ((TWindowSubComCard *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->calc_window_size();
         align_menu_entry_positions((int) (*(u32 *)((s8 *)temp_r31 + 0xEC)));
         ((TWindowSubComCardList *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->set_flag70_bit10();
         ((TAdChrSelASlotGC *)(*(u32 *)((s8 *)temp_r31 + 0xEC)))->set_flag_40();
@@ -960,7 +960,7 @@ void TObjAreaWarp::open_confirm_window(u16 arg1) {
             get_floor_area(*(s32 *)((s8 *)this + 0xBC));
             ((TWindowSubTradeMain *)(*(u32 *)((s8 *)this + 0xB0)))->add_text_entry(get_floor_destination_name(), 2, 0, -1);
         }
-        ((TWindowMenu *)(*(u32 *)((s8 *)this + 0xB0)))->calc_window_size();
+        ((TWindowSubComCard *)(*(u32 *)((s8 *)this + 0xB0)))->calc_window_size();
         align_menu_entry_positions(*(u32 *)((s8 *)this + 0xB0));
         ((TWindowSubComCardList *)(*(u32 *)((s8 *)this + 0xB0)))->set_flag70_bit10();
         ((TAdChrSelASlotGC *)(*(u32 *)((s8 *)this + 0xB0)))->set_flag_40();
@@ -1159,7 +1159,7 @@ void TObjAreaWarpForest::render() {
         ((void (*)(int, int))rotate_matrix_y)(0, this->rotation.yaw);
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(m->f8);
-        draw_ginja_model((s32)m->f4);
+        draw_ginja_model(m->f4);
         TParticleCtrl::begin_effect_render();
         m = m->next2C;
         while (m != NULL) {
@@ -1167,7 +1167,7 @@ void TObjAreaWarpForest::render() {
             ((void (*)(void *))post_translate_matrix)(m->f8);
             rotate_matrix_zyx(0, (m->f14), (m->f18), (m->f1C));
             rotate_matrix_x(0, self->fCC);
-            draw_ginja_model((s32)m->f4);
+            draw_ginja_model(m->f4);
             ((void (*)(void))pop_matrix)();
             m = m->next30;
         }
@@ -1270,7 +1270,7 @@ void TObjAreaWarpQuest::render() {
         ((void (*)(int, int))rotate_matrix_y)(0, self->f60);
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(m->f8);
-        draw_ginja_model((s32)m->f4);
+        draw_ginja_model(m->f4);
         TParticleCtrl::begin_effect_render();
         m = m->next2C;
         while (m != NULL) {
@@ -1278,7 +1278,7 @@ void TObjAreaWarpQuest::render() {
             ((void (*)(void *))post_translate_matrix)(m->f8);
             rotate_matrix_zyx(0, (m->f14), (m->f18), (m->f1C));
             rotate_matrix_x(0, self->fCC);
-            draw_ginja_model((s32)m->f4);
+            draw_ginja_model(m->f4);
             ((void (*)(void))pop_matrix)();
             m = m->next30;
         }
@@ -1409,14 +1409,14 @@ void TObjAreaWarpEnding::render() {
     ((void (*)(int, int))rotate_matrix_y)(0, arg0->f60);
     push_matrix();
     ((void (*)(void *))post_translate_matrix)(root->pos);
-    draw_ginja_model((s32)root->model);
+    draw_ginja_model(root->model);
     TParticleCtrl::begin_effect_render();
     for (root = root->child; root != 0; root = root->sibling) {
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(root->pos);
         rotate_matrix_zyx(0, root->ang[0], root->ang[1], root->ang[2]);
         rotate_matrix_x(0, arg0->fC8);
-        draw_ginja_model((s32)root->model);
+        draw_ginja_model(root->model);
         ((void (*)(void))pop_matrix)();
     }
     TParticleCtrl::end_effect_render();
@@ -1452,7 +1452,7 @@ void TObjAreaWarpEnding::open_confirm_window(s16 arg1) {
         } else {
             ((TWindowSubTradeMain *)(this->m_cc))->add_text_entry(get_localized_text_entry(9, 0x23), 2, 0, -1);
         }
-        ((TWindowMenu *)(this->m_cc))->calc_window_size();
+        ((TWindowSubComCard *)(this->m_cc))->calc_window_size();
         align_menu_entry_positions(this->m_cc);
         ((TWindowSubComCardList *)(this->m_cc))->set_flag70_bit10();
         ((TAdChrSelASlotGC *)(this->m_cc))->set_flag_40();

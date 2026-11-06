@@ -47,7 +47,7 @@ extern s32 __vt__22TWindowLoadItemTexture[];
 extern s32 lbl_805D3940;
 extern s32 tl_07;
 
-s32 draw_visible_window_entries(void *, void *, TWindowKeyBoardSoft *);
+s32 draw_visible_window_entries(void *, void *, s32);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
@@ -66,7 +66,7 @@ void *TWindowLoadItemTexture::create(void *arg1) {
 }
 
 void render__22TWindowLoadItemTextureFv(TWindowLoadItemTexture *arg0) {
-    TWindowKeyBoardSoft *temp_r31;
+    s32 temp_r31;
 
     if ((s32) arg0->m_60 == 1) {
         arg0->m_70 = (u32)(*(TItemTexLoad**)((s8 *)arg0 + 0x6C))->ready_texture_list();

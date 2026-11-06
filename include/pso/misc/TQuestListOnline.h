@@ -36,7 +36,7 @@ struct TQuestListOnline : public TShopWindowBase {
     void request_menu();
     s32 get_selection_stage();
     static int get_quest_size();
-    static u8 *get_quest_data();
+    static int get_quest_data();
     void begin_file_download();
     static void receive_quest_info(void *arg0);
     void copy_quest_list_data();
@@ -49,7 +49,7 @@ struct TQuestListOnline : public TShopWindowBase {
     static void decompress_quest_buffer(s32 arg0);
     static s32 init();
     static void ensure_online_quests_loaded();
-    static u8 *get_quest_list_flag();
+    static int get_quest_list_flag();
     static void close_windows_and_reset();
     static void handle_quest_ready();
 };

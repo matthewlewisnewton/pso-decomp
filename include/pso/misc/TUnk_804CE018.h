@@ -2,15 +2,34 @@
 #define PSO_MISC_TUNK_804CE018_H
 #include "types.h"
 #include <stddef.h>
-#include "pso/misc/TWindowAddition.h"
+#include "pso/TObject.h"
 
-struct TWindowKeyBoardSoft;
-
-// Shared window image from 0x1C through 0x5F. The methods stay on TWindowBase
-// so their symbols stay close__11TWindowBaseFv and the rest of that set.
-// Descendants that no longer repeat this prefix inherit this class.
-class TUnk_804CE018 : public TWindowAddition {
+// Shared window image from 0x1C through 0x5F. Descendants used to declare this
+// prefix themselves; it lives here so setup_window_draw_context can name the
+// floats it passes to open_singleton. The class ends at 0x60.
+class TUnk_804CE018 : public TObject {
 public:
+    virtual ~TUnk_804CE018();
+    void draw_window_frame(void *);
+    void draw_window_frame_strips(void *, void *);
+    void draw_message_frame_row(void *, void *);
+    void resort_window_order();
+    void calc_inner_rect(u8 *);
+    void sub_8026CC28();
+    void update_window_entry_list(void *);
+    void update_fade();
+    void draw_quest_message_frame(void *);
+    void sub_80244F2C(u8 *, u8 *, s16);
+    s32 setup_window_draw_context(s32);
+    s32 is_window_reveal_complete();
+    s32 sub_80244994();
+    void save_position();
+    f32 get_scale();
+    u8 sub_80246948();
+    void *get_array_entry(int);
+    virtual void render();
+    virtual void run_task();
+
     u8 frame_pad_1c;
     s8 m_1d;
     u8 frame_pad_1e;

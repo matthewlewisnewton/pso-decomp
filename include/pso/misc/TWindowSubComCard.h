@@ -112,6 +112,7 @@ struct TWindowSubComCard : public TObject {
     static void handle_press_a(s32 arg0, s32 arg1);
     static void handle_press_b(s32 arg0, s32 arg1);
     void calc_layout_height(f32 farg0);
+    void calc_window_size();
     s32 find_entry_value_by_id(s32 arg1);
     void mark_entry_by_id(s32 arg1);
     void disable_entry_by_id(s32 arg1);

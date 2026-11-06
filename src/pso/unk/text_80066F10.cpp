@@ -12,7 +12,7 @@ void load_boss5_common_assets(void) {
     switch (TBoss8Dragon__sub_8005D700()) {
     case 0:
         lbl_805D4DD8 = (void *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)bm_obj_boss5_common_resource_descriptor));
-        boss5_common_texture_list = load_gvm_texture_file((s32)lbl_8043810C);
+        boss5_common_texture_list = load_gvm_texture_file(lbl_8043810C);
         break;
     }
 }

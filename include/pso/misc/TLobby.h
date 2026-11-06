@@ -21,6 +21,7 @@ struct TLobbyFloorItemEntry {
 typedef char TLobbyFloorItemEntrySize[(sizeof(TLobbyFloorItemEntry) == 0x24) ? 1 : -1];
 typedef char TLobbyFloorItemEntryDataOffset[(offsetof(TLobbyFloorItemEntry, item_data) == 0x10) ? 1 : -1];
 
+struct Lobby_8001FA1C;
 struct B_803FADA0;
 struct Self_803FD74C;
 struct Self_80402CE0;
@@ -101,8 +102,6 @@ struct TLobby : public TObject {
     static s32 load_bml_exec(u8 *arg0, u8 *arg1);
     static void free_chr_select_data();
     static void init_download_buffers();
-    void load_bin_model_callback();
-    s32 load_bin_motion(s32 arg1, s32 arg2);
     static s32 get_game_mode();
     void copy_header(void *arg1);
     static void free_char_select();
@@ -111,7 +110,6 @@ struct TLobby : public TObject {
     static void init_bosses();
     static void init_boss2_stage();
     static void create_boss2_tunnel();
-    s32 check_player_flag1();
     static int is_boss_phase_reached();
     static void cleanup_pillar_demo();
     static void cleanup_boss5_pillars();
@@ -149,12 +147,13 @@ struct TLobby : public TObject {
     static void set_stream_state(int a0);
     static void reset_state_flags();
     static void process_deferred_player_setup();
-    static s32 get_file_size();
+    static s32 get_file_size(const char *name);
     static void run_frame();
     static void free_static_buffer(void* a0);
     static void alloc_from_heap(void* a0);
     static void pump_frames();
     static void add_named_entry(s32 arg0, s32 arg1);
+    static s32 create_named_entry(s32 name, s32 buffer, void (*callback)(Lobby_8001FA1C *), void *src, void **out);
     static void notify_and_close();
     static void destroy_instance();
     static void pop_and_close();
@@ -788,7 +787,7 @@ struct TLobby : public TObject {
     static void wait_for_lock_release();
     static void adxm_goto_mwidle_border();
     static void dec_ref_and_clear_buffer();
-    s32 get_resource_file_size();
+    static s32 get_resource_file_size(const char *name);
     static void read_data_sync(s32 arg0, s32 arg1, u8 *dst);
     s32 get_battle_ctrl_default();
     static s32 find_free_chat_log_slot();
@@ -910,7 +909,6 @@ struct TLobby : public TObject {
     void update_model_load();
     void copy_player_record(u8 *arg1);
     u8 *init_memory_pool(s32 arg1, s32 arg2, s32 arg3);
-    s32 load_bin_model(s32 arg1, s32 arg2);
     static void init_on_main_phase();
     static void copy_state_block();
     static int get_unit_list();
@@ -953,7 +951,7 @@ struct TLobby : public TObject {
     static void reset_read_state();
     static void clear_player_slot_tables(s32 n);
     void set_entry_params(s32 arg1, s32 arg2, s32 arg3);
-    static void set_read_params(int a0, int a1, int a2);
+    static void set_read_params(void *handle_ref, int sector_count, int destination);
     void draw_fullscreen_texture_quad();
     static void release_menu_font();
     static void load_font_texture();
