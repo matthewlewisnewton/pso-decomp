@@ -92,11 +92,7 @@ public:
     u16 m_flags;
     u16 m_id;
     TObject *m_prev;
-    // Sibling link. TWindowSnapShot keeps its captured byte count in the same word.
-    union {
-        TObject *m_next;
-        s32 m_buffer_size;
-    };
+    TObject *m_next;
     TObject *m_up;
     TObject *m_down;
 
