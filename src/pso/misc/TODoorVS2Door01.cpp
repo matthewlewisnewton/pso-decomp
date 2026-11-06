@@ -83,14 +83,14 @@ void TODoorVS2Door01::render() {
         post_translate_matrix(node->pos);
         push_matrix();
         translate_matrix(NULL, -slide_offset, 0.0f, 0.0f);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         pop_matrix();
         node = node->child;
         push_matrix();
         post_translate_matrix(node->pos);
         push_matrix();
         translate_matrix(NULL, slide_offset, 0.0f, 0.0f);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         pop_matrix();
         pop_matrix();
         TParticleCtrl::begin_effect_render();
@@ -99,7 +99,7 @@ void TODoorVS2Door01::render() {
         post_translate_matrix(node->pos);
         push_matrix();
         translate_matrix(NULL, slide_offset, 0.0f, 0.0f);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         pop_matrix();
         pop_matrix();
         node = node->sibling;
@@ -107,7 +107,7 @@ void TODoorVS2Door01::render() {
         post_translate_matrix(node->pos);
         push_matrix();
         translate_matrix(NULL, slide_offset, 0.0f, 0.0f);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         pop_matrix();
         pop_matrix();
         node = ((NJS_OBJECT *)model)->child->sibling;
@@ -115,7 +115,7 @@ void TODoorVS2Door01::render() {
         post_translate_matrix(node->pos);
         push_matrix();
         translate_matrix(NULL, -slide_offset, 0.0f, 0.0f);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         pop_matrix();
         pop_matrix();
         node = node->sibling;
@@ -123,7 +123,7 @@ void TODoorVS2Door01::render() {
         post_translate_matrix(node->pos);
         push_matrix();
         translate_matrix(NULL, -slide_offset, 0.0f, 0.0f);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         pop_matrix();
         pop_matrix();
         TParticleCtrl::end_effect_render();
@@ -154,7 +154,7 @@ void TODoorVS2Door01::load_resources() {
     bml_resource = resource;
     texture_lists = (s32 *)::operator new[](8);
     texture_lists[1] = bml_resource->models[0].m_c;
-    texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_o_vs2door01lr.gvm");
+    texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_o_vs2door01lr.gvm");
 }
 
 TODoorVS2Door01::~TODoorVS2Door01() {

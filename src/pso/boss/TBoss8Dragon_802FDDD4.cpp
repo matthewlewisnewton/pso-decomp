@@ -41,13 +41,13 @@ Node_802FDDD4 *clone_node_tree__12TBoss8DragonFPvPvi(Node_802FDDD4 *src, Node_80
     return dst;
 }
 
-void TBoss8Dragon::vfunc_44() {  }
-void TBoss8Dragon::vfunc_45() {  }
-void TBoss8Dragon::vfunc_46() {  }
-void TBoss8Dragon::vfunc_47() {  }
-void TBoss8Dragon::vfunc_48(s32) {  }
-void TBoss8Dragon::vfunc_49() {  }
-void TBoss8Dragon::vfunc_50() {  }
+void TBoss8Dragon::apply_poison_status() {  }
+void TBoss8Dragon::apply_paralysis() {  }
+void TBoss8Dragon::apply_slow_status() {  }
+void TBoss8Dragon::apply_confusion_status() {  }
+void TBoss8Dragon::apply_movement_ailment(s32) {  }
+void TBoss8Dragon::apply_shock_status() {  }
+void TBoss8Dragon::clear_harmful_statuses() {  }
 void TBoss8Dragon::send_swapped_packet() { bswap_packet(); send_subcommand((u8 *)this); }
 void TBoss8Dragon::bswap_packet() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_32((u32 *)((char*)this + 0x8)); }
 }

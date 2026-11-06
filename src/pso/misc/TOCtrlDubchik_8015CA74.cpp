@@ -151,14 +151,14 @@ u8 *TOCtrlDubchik__ct(TOCtrlDubchik *arg0, s32 arg1, s32 arg2);
 f32 sin_table_lookup(s32);
 int get_player_data__10TObjPlayerFi(int a0);
 s32 obj_testFlags30__14TObjCollidableFUl(void *, s32);
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
-extern s32 lbl_805D29F8;
+s32 check_value_equals__7TObjectFPCc(void *, s32);
+extern s32 TObjEneDubchik__class_name;
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 void TOCtrlDubchik__sub_8015C9D0(u8 *);
 void submit_cursor_candidate(void *, s32);
 
-void TObjPlayer__sub_800A8C1C(u8 *arg0);
+void dubchik_start_dying(u8 *arg0);
 
 f32 receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(void *, s32, Pair_8015D518, void *, s32, s32);
 f32 TOCtrlDubchik__vt21(Obj_8015D518 *arg0, s32 arg1, Pair_8015D518 arg2, void *arg3);
@@ -182,9 +182,9 @@ void TOCtrlDubchik::sub_8015CA74() {
     }
     for (i = registered_player_count; i < registered_player_count + lbl_805D5870; i++) {
         p = (u8 *)get_player_data__10TObjPlayerFi(i);
-        if (p != NULL && p != arg0 && check_value_equals__13TUnk_804B6C24Fl(p, lbl_805D29F8) != 0 &&
+        if (p != NULL && p != arg0 && check_value_equals__7TObjectFPCc(p, TObjEneDubchik__class_name) != 0 &&
             *(s32 *)(p + 0x368) == 0 && *(s16 *)(arg0 + 0x28) == *(s16 *)(p + 0x28)) {
-            TObjPlayer__sub_800A8C1C(p);
+            dubchik_start_dying(p);
         }
     }
 }
@@ -285,7 +285,7 @@ void TOCtrlDubchik::sub_8015CE80() {
     for (i = registered_player_count; i < registered_player_count + lbl_805D5870; i++) {
         p = (u8 *)get_player_data__10TObjPlayerFi(i);
         if (p != NULL && p != ((u8 *)this) && obj_testFlags30__14TObjCollidableFUl(p, 0x800) != 0 &&
-            check_value_equals__13TUnk_804B6C24Fl(p, lbl_805D29F8) != 0 &&
+            check_value_equals__7TObjectFPCc(p, TObjEneDubchik__class_name) != 0 &&
             *(s32 *)(p + 0x368) == 0 && *(s16 *)(((u8 *)this) + 0x28) == *(s16 *)(p + 0x28)) {
             this->mode = 1;
         }
@@ -345,28 +345,28 @@ void TOCtrlDubchik::render() {
         set_current_texture_list((GinjaTextureList *)texlist);
         node = (NJS_OBJECT *)model;
         post_translate_matrix(node->pos);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         push_matrix();
         node = node->child;
         translate_matrix(0, node->pos[0], node->pos[1] + unk_384, node->pos[2]);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         pop_matrix();
         push_matrix();
         node = node->sibling;
         translate_matrix(0, node->pos[0], node->pos[1] - unk_384, node->pos[2]);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         pop_matrix();
         push_matrix();
         node = node->sibling;
         post_translate_matrix(node->pos);
         rotate_matrix_y(NULL, m_38c);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         TParticleCtrl::begin_effect_render();
         push_matrix();
         node = node->child;
         post_translate_matrix(node->pos);
         scale_matrix(NULL, m_388, TOCtrlDubchik__data_805DB3AC, m_388);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         pop_matrix();
         TParticleCtrl::end_effect_render();
         pop_matrix();

@@ -22,6 +22,7 @@ struct NJS_OBJECT;
 #include "pso/misc/TLobby_801E43E4.h"
 #include "pso/system/byteswap.h"
 #include "pso/boss/TBoss1Dragon.h"
+#include "pso/boss/TObjBoss1MokoHill_SoloM.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/boss/TObjBoss1Rock.h"
 #include "pso/system/vector.h"
@@ -951,7 +952,7 @@ void __ct__13TUnk_804928CCFP7TObjectP8TObjBase(void *);
 s32 update_linked_position__12TObjEneDD_STFf(f32);
 void subtractive_rng_seed(void *, u32);
 f32 calc_random_ratio__10TObjPlayerFv(void *);
-void sub_8002AE64__9TObjEnemyFv(void *);
+void sub_8002AE64__10TObjMotionFv(void *);
 }
 void get_dragon_follow_camera_offsets(u8 *arg0, u8 *arg1);
 extern const f32 lbl_805D8094;
@@ -1625,7 +1626,7 @@ void TBoss1Dragon::handle_fall_state(u32 arg1) {
         ext->dir.z = -self->position.z;
         ((void (*)(void *))normalize_vector_xz__FP3Vec)(arg0 + 0x3A0);
         this->rotation.yaw = (s32) (boss1_dragon_angle_units_per_radian * atan2_float(ext->dir.x, ext->dir.z));
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->set_field_3c();
+        this->trail->set_field_3c();
         return;
     case 2:
     case 11:
@@ -1650,7 +1651,7 @@ void TBoss1Dragon::handle_fall_state(u32 arg1) {
         TBoss1Dragon__sub_800277D8(arg0);
         return;
     case ENEMY_STATE_LEAVE:
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->spawn_child_object();
+        this->trail->spawn_child_object();
         break;
     default:
         return;
@@ -1675,7 +1676,7 @@ void TBoss1Dragon::state_circle_flight(u32 arg1) {
         this->vfunc_91();
         this->vfunc_94();
         ((TBoss1Dragon *)arg0)->updateFacingPosition();
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->set_field_3c();
+        this->trail->set_field_3c();
         return;
     case 2:
     case 11:
@@ -1708,7 +1709,7 @@ void TBoss1Dragon::state_circle_flight(u32 arg1) {
         ((void (*)(u8 *, s32))TBoss1Dragon__sub_800277D8)(arg0, temp_r4);
         return;
     case ENEMY_STATE_LEAVE:
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->spawn_child_object();
+        this->trail->spawn_child_object();
         break;
     default:
         break;
@@ -1748,7 +1749,7 @@ void TBoss1Dragon__sub_80022158(TBoss1Dragon *arg0, u32 arg1) {
         home->y = TBoss1Dragon__data_80434E80.y;
         self->fallVelocity = (0.0f);
         self->rootHeight = (0.0f);
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->set_field_1c();
+        arg0->trail->set_field_1c();
         return;
     case 2:
     case 11:
@@ -1793,7 +1794,7 @@ void TBoss1Dragon__sub_80022158(TBoss1Dragon *arg0, u32 arg1) {
         self->fallVelocity = self->fallVelocity + dx;
         return;
     case 5:
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->spawn_child_object();
+        arg0->trail->spawn_child_object();
         break;
     default:
         return;
@@ -2208,7 +2209,7 @@ void TBoss1Dragon::update_fade_state(u32 arg1) {
         beginHeightTransition__12TBoss1DragonFv(this);
         this->flags |= 0xE80;
         for (i = 0; i < 4; i++) {
-            ((TBoss8Dragon *)(&this->viewFade[i]))->set_speed((0.005f));
+            this->viewFade[i].set_rate(0.005f);
         }
         break;
     case ENEMY_STATE_UPDATE:
@@ -2611,7 +2612,7 @@ void TBoss1Dragon__sub_80023A2C(TBoss1Dragon *arg0, u32 arg1) {
             if ((f32) arg0->impactAge >= (60.0f)) {
                 arg0->impactAge = 0;
                 arg0->stateStep = 1;
-                ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->set_field_3c();
+                arg0->trail->set_field_3c();
                 restorePosition__12TBoss1DragonFv(arg0);
                 *(s32 *)((s8 *)arg0 + 0x874) = (s32) (boss1_dragon_angle_units_per_radian * atan2_float((f32) (*(f32 *)((s8 *)arg0 + 0x38)), (f32) (*(f32 *)((s8 *)arg0 + 0x40))));
                 return;
@@ -2639,7 +2640,7 @@ void TBoss1Dragon__sub_80023A2C(TBoss1Dragon *arg0, u32 arg1) {
     case 5:
         ((TBoss1Dragon *)(arg0))->vfunc_92();
         ((TBoss1Dragon *)(arg0))->vfunc_93();
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->spawn_child_object();
+        arg0->trail->spawn_child_object();
         break;
     default:
         return;
@@ -2676,7 +2677,7 @@ void TBoss1Dragon::update_burrow_outward_run(u32 arg1) {
         this->stateStep = 0;
         this->impactAge = 0;
         this->rootHeight = calc_burrow_speed__12TBoss1DragonFPv(arg0);
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->set_field_1c();
+        this->trail->set_field_1c();
         if (isV2Mode__12TBoss1DragonFv() == 1 && *(s32 *)((s8 *)arg0 + 0x6DC) == 2) {
             *(s32 *)((s8 *)arg0 + 0x6DC) += 1;
             this->rootHeight = calc_burrow_speed__12TBoss1DragonFPv(arg0);
@@ -2725,7 +2726,7 @@ void TBoss1Dragon::update_burrow_outward_run(u32 arg1) {
     case ENEMY_STATE_LEAVE:
         this->vfunc_92();
         this->vfunc_93();
-        ((TBoss8Dragon *)(*(s32 *)((s8 *)arg0 + 0x6D8)))->spawn_child_object();
+        this->trail->spawn_child_object();
         break;
     }
 }
@@ -2791,7 +2792,7 @@ void TBoss1Dragon::update_burrow_inward_run(u32 arg1, s32 arg2) {
             if ((f32) this->impactAge >= (60.0f)) {
                 this->impactAge = 0;
                 this->stateStep = 1;
-                ((TBoss8Dragon *)(*(s32 *)((s8 *)((u8 *)this) + 0x6D8)))->set_field_1c();
+                this->trail->set_field_1c();
                 restorePosition__12TBoss1DragonFv((void *)this);
                 this->rotation.yaw = (s32) ((s32) (boss1_dragon_angle_units_per_radian * atan2_float((f32) (*(f32 *)((s8 *)((u8 *)this) + 0x38)), (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x40)))) + 0x8000);
                 *(f32 *)((s8 *)((u8 *)this) + 0x3A0) = sin_table_lookup(this->rotation.yaw);
@@ -3500,7 +3501,7 @@ void TBoss1Dragon::update_spinning_projectile_attack(u32 reason) {
         break;
     case ENEMY_STATE_LEAVE:
         self->rotation.pitch = 0;
-        sub_8002AE64__9TObjEnemyFv(self);
+        sub_8002AE64__10TObjMotionFv(self);
         self->m_654 = 0;
         break;
     }
@@ -5747,8 +5748,8 @@ Obj_80029C78 *destroy__12TBoss1DragonFPvs(Obj_80029C78 *o, s16 flag) {
             TBoss1Dragon__data_805D4B2C = 0;
         }
         __destroy_arr(o->f6E8, (void *)__dt__15RenderFadeStateFv, 0x1c, 4);
-        TObjBoss2Tunnel::maybe_delete((AccelerationCurve *)o->f618, (s16)(-1));
-        TObjBoss2Tunnel::maybe_delete((AccelerationCurve *)o->f5F4, (s16)(-1));
+        ((AccelerationCurve *)o->f618)->~AccelerationCurve();
+        ((AccelerationCurve *)o->f5F4)->~AccelerationCurve();
         __dt__7TObjectFv(o->f3C4, -1);
         __dt__12TObjEneDD_STFv(o, 0);
         if (flag > 0) {
@@ -5760,6 +5761,7 @@ Obj_80029C78 *destroy__12TBoss1DragonFPvs(Obj_80029C78 *o, s16 flag) {
 
 #define F_29DE4(o, T, off) (*(T *)(o + (off)))
 #define O_29DE4 ((Obj_80029DE4 *)arg0)
+extern "C" void __ct__17AccelerationCurveFv(AccelerationCurve *);
 #pragma push
 #pragma opt_loop_invariants off
 #pragma opt_common_subs off
@@ -5772,8 +5774,8 @@ u8 *TBoss1Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     __ct__12TObjEneDD_STFP7TObject(arg0, arg1);
     F_29DE4(arg0, s32, 0x18) = (s32)lbl_80481280;
     __ct__7TObjectFP7TObject(arg0 + 0x3C4, 0);
-    TObjBoss2Tunnel::reset_coords_pass((AccelerationCurve *)(arg0 + 0x5F4));
-    TObjBoss2Tunnel::reset_coords_pass((AccelerationCurve *)(arg0 + 0x618));
+    __ct__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x5F4));
+    __ct__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x618));
     __construct_array(arg0 + 0x6E8, __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     __ct__14SubtractiveRngFv(arg0 + 0x77C);
     F_29DE4(arg0, s32, 0) = lbl_805D2650;
@@ -6294,9 +6296,9 @@ s32 fn_8002AE08(void *p) {
 
 int TBoss8Dragon::test_card_flag_2() { return TWindowKeyBoardHard::test_card_flag((s32)this, 2); }
 
-void TBoss8Dragon::set_speed(f32 v) { this->m_10 = v; }
+void MaterialColorFade::set_rate(f32 v) { rate = v; }
 
-void TObjEnemy::sub_8002AE64() {
+void TObjMotion::sub_8002AE64() {
     this->motion_flags = (s32) (this->motion_flags & 0xFFFFFFFE);
 }
 

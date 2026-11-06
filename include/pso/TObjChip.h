@@ -5,9 +5,6 @@
 #include "types.h"
 #include <dolphin/mtx.h>
 
-// TObjChipParams followed by the data spawn_chips reads (at +0x4C).
-struct TObjChipSpawnParams;
-
 // One debris piece of a TObjChip.
 struct TObjChipPiece {
     Vec pos;
@@ -33,6 +30,8 @@ public:
     virtual void render_chips();
     virtual void vfunc_12();
     virtual void draw_chips();
+    // Copies params into the head of spawn and clears the three words after it.
+    static TObjChipSpawnParams *copy_transform(TObjChipSpawnParams *spawn, TObjChipParams *params);
 
     f32 pad_1c;
     f32 pad_20;

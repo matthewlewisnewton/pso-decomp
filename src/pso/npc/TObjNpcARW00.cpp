@@ -66,7 +66,7 @@ void TObjNpcARW00::free_resources() {
 
 void TObjNpcARW00::load_resources() {
     TObjNpcARW00__static_model = (u32)create_named_object((s32)lbl_8043F4A8);
-    TObjNpcARW00__gvm_texture_handle = (u32)load_gvm_texture_file((s32)lbl_8043F4BC);
+    TObjNpcARW00__gvm_texture_handle = (u32)load_gvm_texture_file(lbl_8043F4BC);
 }
 
 void *__dt__12TObjNpcARW00Fv(void *arg0, s16 arg1) {

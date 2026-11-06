@@ -77,7 +77,6 @@ extern s32 TChallenge4PResult__slot_entries[];
 
 extern s32 lbl_80478BCC[];
 
-void play_effect_default__10TObjPlayerFii(TObjPlayer *, s32);
 void obj_set_flag_20000(TObjPlayer *);
 void get_player_result__18TChallenge4PResultFPv(TObjPlayer *, s32);
 void fn_8034BE48(TObjPlayer *);
@@ -352,8 +351,8 @@ s32 update_challenge_result_player_locks() {
     if (active) {
         for (s32 i = 0; i < 4; ++i) {
             TObjPlayer *player = ((TObjPlayer *)get_player_by_client_id(i));
-            if (player && ((TLobby *)player)->check_player_flag1() == 0) {
-                play_effect_default__10TObjPlayerFii(player, -1);
+            if (player && ((TObjPlayer *)player)->check_player_flag1() == 0) {
+                TObjPlayer::play_effect_default(player, -1);
                 obj_set_flag_20000(player);
                 get_player_result__18TChallenge4PResultFPv(player, 0);
                 get_player_result__18TChallenge4PResultFPv(player, 1);
@@ -368,8 +367,8 @@ s32 update_challenge_result_player_locks() {
     } else {
         for (s32 i = 0; i < 4; ++i) {
             TObjPlayer *player = ((TObjPlayer *)get_player_by_client_id(i));
-            if (player && ((TLobby *)player)->check_player_flag1() != 0) {
-                TObjPlayer::send_code_45_1((s32)player);
+            if (player && ((TObjPlayer *)player)->check_player_flag1() != 0) {
+                TObjPlayer::send_code_45_1(player);
                 obj_clear_flag30_20000(player);
                 ((TChallenge4PResult *)player)->get_player_rank();
                 if (((TObjPlayer *)player)->check_flag_0x40000000()) fn_8034BE38(player);

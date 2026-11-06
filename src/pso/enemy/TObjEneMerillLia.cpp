@@ -613,11 +613,11 @@ void TObjEneMerillLia::beast_update_approach() {
                 if (this->m_38c++ < lbl_805DA31C) {
                     VecCopy((Vec *)&sp14, &this->home_position);
                 } else {
-                    VecCopy((Vec *)&sp14, (const Vec *)&((TObjChara *)target)->body_center_position.x);
+                    VecCopy((Vec *)&sp14, (const Vec *)&target->body_center_position.x);
                 }
             } else {
                 this->m_38c = 0U;
-                VecCopy((Vec *)&sp14, (const Vec *)&((TObjChara *)target)->body_center_position.x);
+                VecCopy((Vec *)&sp14, (const Vec *)&target->body_center_position.x);
             }
             this->update_target_near_flag();
             this->select_target_proximity_movement();
@@ -699,10 +699,10 @@ void TObjEneMerillLia::beast_update_group_chase() {
             save.y = this->position.y;
             save.z = this->position.z;
             if (this->backstep_distance <= TObjEneMerillLia__data_805DA300) {
-                Vec a = *(Vec *)&((TObjChara *)this->target)->body_center_position.x;
+                Vec a = *(Vec *)&this->target->body_center_position.x;
                 dist = enemy_backstep_from_point(this, &a, this->m_398);
             } else {
-                Vec b = *(Vec *)&((TObjChara *)this->target)->body_center_position.x;
+                Vec b = *(Vec *)&this->target->body_center_position.x;
                 dist = enemy_backstep_from_point(this, &b, this->backstep_distance);
             }
             this->turn_toward_direction(((MerillLiaMovementParameters *)this->movementParameters)->turn_speed, (Vec *)&this->movement_velocity.x);
@@ -737,7 +737,7 @@ void TObjEneMerillLia::beast_update_group_chase() {
         if (this->targetId < 0x1000) {
             TObjPlayer *p = (TObjPlayer *)get_player_by_client_id(this->targetId);
             if (p != NULL && p->get_floor() == get_current_floor()) {
-                this->target = (u8 *)p;
+                this->target = p;
                 break;
             }
             this->target = NULL;
@@ -1039,7 +1039,7 @@ void TObjEneMerillLia::search_target() {
             w = p->get_floor();
             if (w == v) {
                 if (xz_distance_squared(&p->position, &this->position) < this->search_radius * this->search_radius) {
-                    this->target = (u8 *)p;
+                    this->target = p;
                     this->mode = 0;
                     this->phase = 0;
                 }

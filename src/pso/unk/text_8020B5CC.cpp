@@ -3,17 +3,30 @@
 #include "pso/THeap.h"
 #include "pso/misc/TLobby.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/misc/TQuestVmDownLoadServer.h"
+#include "pso/system/byteswap.h"
+#include "pso/unk/text_8020B47C.h"
+#include "pso/slices/pso_carve_8020bf88.h"
 struct Ent_8020BB18 { u8 pad0[2]; s16 a; u8 pad1[0x3C]; u32 f40; };
 
-struct Src_8020B970 { s16 f0; u8 pad2[6]; u16 f8; s16 fA; s16 fC; u8 padE[0x44 - 0xE]; };
+// Raw per-floor rows as they arrive from the quest archive (big endian).
+// +2 is the flags halfword arrive_floor_population patches in for the
+// current floor (ObjRow_8020E08C / EneRow_8020E08C in text_8020E08C.cpp).
+struct Src_8020B970 { s16 f0; s16 f2; u8 pad4[4]; u16 f8; s16 fA; s16 fC; u8 padE[0x44 - 0xE]; };
 
-struct Dst_8020B970 { u16 f0; u8 pad2[2]; s16 f4; s16 f6; };
+struct Dst_8020B970 { u16 f0; s16 f2; s16 f4; s16 f6; };
 
-struct Src_8020B7C4 { s16 f0; u8 pad2[8]; u16 fA; s16 fC; s16 fE; u8 pad10[0x48 - 0x10]; };
+struct Src_8020B7C4 { s16 f0; s16 f2; u8 pad4[6]; u16 fA; s16 fC; s16 fE; u8 pad10[0x48 - 0x10]; };
 
 struct Tbl_8020B970 { s32 count; s32 count2; u8 pad8[8]; Dst_8020B970 *list; Dst_8020B970 *list2; };
 
 struct Slot_8020B970 { void *entry; void *entry2; };
+
+// Buffer built for the 6x6E area-set-flags packet: the FloorFlagsBuffer
+// header, then each row's flags halfword in network byte order.
+struct Buf_8020B5CC : FloorFlagsBuffer {
+    s16 values[1];
+};
 
 extern "C" {
 void destroy_child_recursive__6TLobbyFPvPv(int, int);
@@ -32,8 +45,90 @@ extern Slot_8020B970 TLobby__data_80513A40[];
 extern Tbl_8020B970 TLobby__floor_enemy_group_table[];
 extern u32 TLobby__data_805D6104;
 extern u32 TLobby__data_805D6108;
+extern Src_8020B970 *TLobby__data_805D610C;
+extern Src_8020B7C4 *TLobby__data_805D6114;
+s32 get_current_floor(void);
 s32 load_floor_enemy_group_entries__6TLobbyFiPvUi(s32 idx, Src_8020B970 *src, u32 size);
 s32 init_quest_floor_enemies(s32 idx, Src_8020B7C4 *src, u32 size);
+
+s32 TLobby__sub_8020B5CC(Buf_8020B5CC *buf) {
+    // The enemy total is named before the header copy and zeroed after the
+    // object column. The copy is what stays live, so the table address is
+    // scheduled above the save and the cursor and the object-offset store
+    // still use the incoming pointer. Object rows bind the row pointer
+    // before the count snapshot, as the 0x8020B47C importer does.
+    s32 total2;
+    s32 total1 = 0;
+    s16 *out = buf->values;
+    buf->object_offset = 0x10;
+    FloorFlagsBuffer *hdr = buf;
+    Tbl_8020B970 *t = TLobby__floor_enemy_group_table;
+    for (s32 i = 0; i < 18; i++) {
+        if (t[i].count > 0) {
+            Dst_8020B970 *l = t[i].list;
+            s32 count = t[i].count;
+            if (get_current_floor() == i) {
+                // The raw cursor is copied before the null branch (mr above beq).
+                Src_8020B970 *raw = TLobby__data_805D610C;
+                if (raw != NULL) {
+                    s32 j;
+                    for (j = 0; j < count; j++) {
+                        s16 v = raw->f2 & ~2;
+                        bswap_16((u16 *)&v);
+                        *out++ = v;
+                        raw++;
+                        total1++;
+                    }
+                }
+            } else {
+                s32 j;
+                for (j = 0; j < count; j++) {
+                    s16 v = l->f2 & ~2;
+                    bswap_16((u16 *)&v);
+                    *out++ = v;
+                    l++;
+                    total1++;
+                }
+            }
+        }
+    }
+    total2 = 0;
+    hdr->word_04 = total1;
+    hdr->enemy_offset = 0x10 + hdr->word_04 * 2;
+    s16 *out2 = out;
+    s32 i2 = 0;
+    for (; i2 < 18; i2++) {
+        if (TLobby__floor_enemy_group_table[i2].count2 > 0) {
+            Dst_8020B970 *l2 = TLobby__floor_enemy_group_table[i2].list2;
+            s32 count2 = TLobby__floor_enemy_group_table[i2].count2;
+            if (get_current_floor() == i2) {
+                Src_8020B7C4 *raw2 = TLobby__data_805D6114;
+                if (raw2 != NULL) {
+                    s32 k;
+                    for (k = 0; k < count2; k++) {
+                        s16 v2 = raw2->f2 & ~2;
+                        bswap_16((u16 *)&v2);
+                        *out2++ = v2;
+                        raw2++;
+                        total2++;
+                    }
+                }
+            } else {
+                s32 k;
+                for (k = 0; k < count2; k++) {
+                    s16 v2 = l2->f2 & ~2;
+                    bswap_16((u16 *)&v2);
+                    *out2++ = v2;
+                    l2++;
+                    total2++;
+                }
+            }
+        }
+    }
+    hdr->word_0c = total2;
+    fn_8020B588(hdr);
+    return TLobby__sub_8020BF88();
+}
 
 #pragma push
 #pragma opt_propagation off

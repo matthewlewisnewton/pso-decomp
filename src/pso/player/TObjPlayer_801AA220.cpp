@@ -7,25 +7,24 @@
 extern "C" {
 
 
-s32 is_locally_controlled__10TObjPlayerFPv(s32);
-s32 get_player_by_client_id(u16);
+s32 is_locally_controlled__10TObjPlayerFPv(TObjPlayer *);
+TObjPlayer *get_player_by_client_id(u16);
 u32 __nw__7TObjectFUl(s32);
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
 
 extern s32 tl_07;
 
 void TObjPlayer::start_photon_blast(s32 arg0, u16 arg1) {
-    s32 temp_r3;
+    TObjPlayer *player;
     void *photon_blast_entry;
     void *temp_nw;
 
-    temp_r3 = get_player_by_client_id(arg1);
-    if (temp_r3 != 0) {
+    player = get_player_by_client_id(arg1);
+    if (player != NULL) {
         photon_blast_entry = TObjPlayer::get_photon_blast_entry(arg0);
-        if (is_locally_controlled__10TObjPlayerFPv(temp_r3) != 0) {
-            play_effect_default__10TObjPlayerFii(temp_r3, *(s16 *)((s8 *)photon_blast_entry + 0x20));
+        if (is_locally_controlled__10TObjPlayerFPv(player) != 0) {
+            play_effect_default(player, *(s16 *)((s8 *)photon_blast_entry + 0x20));
         }
-        spawn_particle_effect((const Vec *)((temp_r3 + 0x38)), 0x13D);
+        spawn_particle_effect(&player->position, 0x13D);
         TCameraCtrl::set_shake_preset(0);
         switch (arg0) {
         case 2:
