@@ -889,6 +889,18 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         "pso/unk/text_803D8098.cpp": {
             "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-use_lmw_stmw off", "-inline on"),
         },
+        # vec3_dot (0x803D89C0) and vec3_cross (0x803D8A18) are fmadds/fmsubs.
+        # Ginja defaults leave contraction off. With -fp_contract off those two
+        # score 64.5% and 44.76%; with -fp_contract on, 93.5% and 91.19%.
+        # vec3_add_to and the seven matrix helpers stay 100% either way.
+        # -inline on/auto/noauto/all leave the object byte-identical to
+        # -inline off; deferred and auto,deferred emit the C functions in
+        # reverse order. Precedent: dtk-template -fp_contract on
+        # (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209)
+        # and Melee, TP, TWW, and Pikmin 2, which contract globally.
+        "pso/unk/text_803D8910.cpp": {
+            "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-fp_contract on"),
+        },
     }),
     # mcFsGc ("Ver 1.10.00 Build:Sep 17 2002") with ACCESS's file transfer.
     ("mcfs", 0x803E5668, "GC/1.2.5", cflags_middleware, {
