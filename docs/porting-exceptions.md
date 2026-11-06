@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `3d8eb7eda`, 2026-11-05)
+## Summary (regenerated on this branch after merging main `0b6342088`, 2026-11-05)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `3d8eb7eda` (2026-11-05). Assembly is counted as functions;
+after merging main `0b6342088` (2026-11-05). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 8 functions (15 source lines) | 5 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,780 | 875 |
-| Per-unit compiler overrides in `configure.py` | 169 | 169 |
+| CodeWarrior pragmas (excluding push/pop) | 5,764 | 871 |
+| Per-unit compiler overrides in `configure.py` | 173 | 173 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -70,11 +70,11 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,780 pragmas in 875 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1146, `inline_depth` 1038, `fp_contract` 887, `auto_inline` 837,
-`opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237,
+5,764 pragmas in 871 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1145, `inline_depth` 1037, `fp_contract` 876, `auto_inline` 837,
+`opt_common_subs` 610, `scheduling` 260, `opt_propagation` 237,
 `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56,
-`defer_codegen` 50, `pack` 46. Reason: reproduce the original code generation
+`defer_codegen` 51, `pack` 46. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -294,6 +294,23 @@ cast stays a cast.
 | `src/pso/boss/TBoss7PhotonBullet_802EF26C.cpp` | `run_task__18TBoss7PhotonBulletFv` (`0x802EF2AC`); unit vtable order | unit `configure.py` override `-inline off,deferred -fp_contract on` | `run_task` contracts `2.0f * aim + travel` into `fmadds`; with `-fp_contract off` the function grows by `0x10`. Deferred emission, with the definitions written bottom to top, places `__vt__18TBoss7PhotonBullet` then `__vt__15TBoss7PhotonPad` while `.text` stays in address order; without it the compiler emits the pad vtable first. Both vtables are the compiler's own (virtual destructor, `run_task`, `render`); `TOBJECT_OUT_OF_LINE_HELPERS` keeps `queue_destruction` as the external call. With the flags the unit matches every section (`.text` 1428, `.data` 116, `.sdata2` 28, 8/8 functions). Precedent: `-fp_contract on` in [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209), and `-inline off,deferred` on `TObjTombstone.cpp` and other units here. | Drop the flags; the C++ is the behavior. |
 
 
+### `TOTrapAncient01.cpp` unit overrides ([#221](https://github.com/matthewlewisnewton/pso-decomp/pull/221))
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TOTrapAncient01.cpp` | whole unit; `TOTrapAncient01::TOTrapAncient01`, `render`, `play_sounds` | `configure.py`: `mw_version` `GC/2.0`, `-inline off,deferred`, `-fp_contract on`, `-str reuse,readonly`, `-pooldata=off`, `-opt nolifetimes` | Every section of the object is byte-identical with all six settings; each row below is the score with only that setting removed. `GC/2.0`: `play_sounds` (`0x801794CC`, size `0x2B8`) builds three `const TObjChipParams` records from a `.rodata` template and `position`. The original loads `x`/`y`/`z` into `f2`/`f1`/`f0` before the template's tail `stw r0,4(r5)` (`lfs f2,0x38(r31)` at `+0x48`, `stw` at `+0x4C`, `lfs f1`/`lfs f0` at `+0x50`/`+0x54`, then three `stfs`). GC/2.6 stores the tail first and alternates `lfs`/`stfs`, which leaves the length unchanged but changes the bytes of all three records: `play_sounds` 91.09%, `.text` 98.32%. The sibling trap `TOExplosiveMachine.cpp` builds its debris records the same way and is GC/2.0 for the same reason. Precedent for a per-unit compiler version: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L257) (`GC/1.2.5n` and `GC/1.3.2` objects under a different linker version). `-fp_contract on`: the constructor's `0.5f * scale.x + 30.0f` is an `fmadds`. Without contraction, `TOTrapAncient01::TOTrapAncient01` is 98.86% and `render` 97.66%. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) and the same switch on `TWindowKeyBoardSoft_8024E68C.cpp`. `-inline off,deferred`: deferred emission keeps the vtable ahead of the switch tables and preserves the original function order. Without it, `.rodata` is 42.21%, `.data` 63.58%, and `.sdata2` 56.25%. Precedent for a unit `-inline` switch: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) (`-inline auto`) and [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (`-inline on`). `-opt nolifetimes`: `render` is 99.42% without it. Precedent for a unit `-opt nolifetimes`: [Petari `configure.py`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L2137). `-pooldata=off`: without it, `play_sounds` is 94.54% (the copy prologue becomes `stmw` instead of the original `stwu`/`stw r31`) and `.data` is 63.58%. Precedent for a unit `-pooldata off`: [FFCC-Decomp `configure.py`](https://github.com/zcanann/FFCC-Decomp/blob/48eec39b00014bac8ef9e585d2beb55f5ab6c68d/configure.py#L594) and [marioparty6 `configure.py`](https://github.com/iirg4x/marioparty6/blob/3be3802ab7c1c79e7060500f2aca0e85ad9962dd/configure.py#L1089). `-str reuse,readonly` drops the default `,pool`, so the strings stay in the read-only layout. Without it, `.rodata` is 75%, `.data` 61.97%, and `.sdata` 75%. Precedent: [FFCC-Decomp `configure.py`](https://github.com/zcanann/FFCC-Decomp/blob/48eec39b00014bac8ef9e585d2beb55f5ab6c68d/configure.py#L600) builds a unit with `-pooldata off` and `-str reuse,readonly`; [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L237) uses `-str reuse,pool,readonly` for its runtime libraries. `-opt nopropagation` is not set. | Build with the default compiler: keep contraction for the constructor's float result. The other settings change only scheduling and layout. |
+
+### `TOTrapSeabed01.cpp` unit override ([#221](https://github.com/matthewlewisnewton/pso-decomp/pull/221))
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TOTrapSeabed01.cpp` | whole unit | `configure.py`: `-inline deferred` in place of the default `-inline off`; definitions in reverse order | Every section of the object is byte-identical. The native `TOTrapSeabed01` vtable references TOTrap's inline slots 20, 21, 23 and 24, so this object emits weak copies of them. The linker keeps `TOTrap.o`'s copies. The original `.sdata2` at `0x805DE640` is `1.0, 0.0, 0.5, 15, 0.1, 10, 30`: the copies' `1.0f`/`0.0f` come first, then the unit's literals in function order. Deferred generation emits the copies first, and the reversed definitions in the original `.text` order. With the default `-inline off`, the copies are generated last: `.sdata2` is 71.43%, `.rodata` 50% (the two conversion constants swap), and `clamp_params_and_init` 69.32% because its clamp helpers are not inlined. `-inline off,deferred` fixes the pools but still leaves `clamp_params_and_init` at 69.32%. `-inline auto` loses `draw_object_tree` and `create` entirely (0%). The unit matches without its former per-function `fp_contract`, `opt_common_subs`, `inline_depth` and `dont_inline` pragmas, so they are removed. Precedent: the same switch on `TQuestVmDownLoadServer.cpp`, `TMedicalCenterSequence.cpp` and `TBoss7LaserLight.cpp`, and unit `-inline` switches in [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) and [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264). | Ignore it: generation order has no semantic effect. |
+
+### `TOTrapAncient02.cpp` unit override ([#221](https://github.com/matthewlewisnewton/pso-decomp/pull/221))
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TOTrapAncient02.cpp` | whole unit | `configure.py`: `-inline deferred` in place of the default `-inline off`, and `-fp_contract on`; definitions in reverse order | Every section of the object is byte-identical. The unit defines `~TOTrapAncient02` and `~TOTrapAncient02R`, so it emits both native vtables in place of the former hand-written `s32[90]` table, its `extern "C"` alias for `vfunc_87__6TOTrapFf` and the C-named `__dt__15TOTrapAncient02Fv` with its raw vptr store. It also owns the ten `TOTrapAncient02R` methods at `0x8017B878`..`0x8017B9AC`, formerly split into `pso_const_ids7.cpp` and `text_8017B8A0.cpp`, and its `.sdata2` pool at `0x805DBA78` (`1.0, 2.0, 0.0, 7, 10.15, 0.00001, 240, 20, 1.8, 30, 0.5, 400`) as literals. The original `.data` is the three resource records and the collision body, the `TOTrapAncient02R` vtable at `0x804B4B4C`, `TOTrapAncient02::vfunc_84`'s switch table at `0x804B4CB4`, then the `TOTrapAncient02` vtable at `0x804B4D10`. The `TOTrapAncient02` vtable references TOTrap's inline slots 20, 21, 23 and 24, so this object emits weak copies of them, and the linker keeps `TOTrap.o`'s copies. Deferred generation emits the `TOTrapAncient02R` vtable before any function, so before the switch table, and the reversed definitions keep the original `.text` order. With the default `-inline off`, `.data` is 90.09%, `.sdata2` 70.83%, and `vfunc_84` 99.79% because its switch-table relocation moves, along with most other functions at about 99.8%. Unit `-fp_contract on` replaces the seven per-function `fp_contract on` pragmas from main: without it `.text` is 99.5% (`calc_trap_count` 94.74%, `TOTrapAncient02R::vfunc_81` 99.38%, both constructors about 98%) because their multiply-adds stay unfused; no function in the unit needs it off. Precedent: the `TOTrapSeabed01.cpp` entry above, the same switch on `TQuestVmDownLoadServer.cpp`, `TMedicalCenterSequence.cpp` and `TBoss7LaserLight.cpp`, unit `-inline` switches in [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) and [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264), and unit `-fp_contract on` on `TWindowKeyBoardSoft_8024E68C.cpp` and in [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209). | Ignore them: generation order has no semantic effect, and the unit's fused multiply-adds are the ones its pragmas already selected. |
 
 ### `-opt noprop`: `TEffIndirectCtrl.cpp` ([#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291))
 

@@ -86,7 +86,7 @@ void TObjNpcNFM01::free_resources() {
 }
 void TObjNpcNFM01::load_resources() {
     TObjNpcNFM01__model_object = (u32)create_named_object((s32)lbl_8043FD58);
-    TObjNpcNFM01__texture_handle = (u32)load_gvm_texture_file((s32)lbl_8043FD6C);
+    TObjNpcNFM01__texture_handle = (u32)load_gvm_texture_file(lbl_8043FD6C);
 }
 
 }

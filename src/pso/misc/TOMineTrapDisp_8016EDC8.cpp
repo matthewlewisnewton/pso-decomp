@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/misc/TOMineTrap.h"
+#include "pso/player/TObjPlayer.h"
 
 extern "C" {
 
@@ -8,11 +9,10 @@ s32 is_locally_controlled__10TObjPlayerFPv(void);
 s32 get_entity_id(void *);
 f32 horizontal_distance_squared(void *, void *);
 void get_player_state__6TOMineFv(void *, u16);
-s32 fn_80171314(void *);
 s32 TOMineTrap__sub_80171350(void);
 s32 get_room__8TObjBaseFv(void *);
 s32 is_technique_ready__8TTecCtrlFv(void);
-u8 *get_player_by_client_id(s32);
+TObjPlayer *get_player_by_client_id(s32);
 extern const f32 lbl_805DB850;
 
 }
@@ -36,7 +36,7 @@ void TOMineTrapDisp::run_task() {
     void *d;
     s32 hit;
     s32 i;
-    u8 *pl;
+    TObjPlayer *pl;
 
     d = data;
     switch (state) {
@@ -48,7 +48,7 @@ void TOMineTrapDisp::run_task() {
                 if (pl != 0 && is_locally_controlled__10TObjPlayerFPv() != 0) {
                     if (fn_80171314(pl) != 0 ||
                         (is_technique_ready__8TTecCtrlFv() != 0 && fAC == (u16)get_entity_id(pl))) {
-                        if (!(horizontal_distance_squared(pos, pl + 0x38) <= lbl_805DB850)) {
+                        if (!(horizontal_distance_squared(pos, &pl->position) <= lbl_805DB850)) {
                             if ((s16)get_room__8TObjBaseFv(pl) != (s16)get_room__8TObjBaseFv(this)) {
                                 continue;
                             }

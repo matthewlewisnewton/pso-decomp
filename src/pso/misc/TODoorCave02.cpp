@@ -88,7 +88,7 @@ void TODoorCave02::draw_light(NJS_OBJECT *node) {
     NJS_OBJECT *part;
     push_matrix();
     post_translate_matrix(node->pos);
-    draw_ginja_model((s32)node->model);
+    draw_ginja_model(node->model);
     TParticleCtrl::begin_effect_render();
     flags = model_render_flags;
     saved_model_render_flags = flags;
@@ -97,12 +97,12 @@ void TODoorCave02::draw_light(NJS_OBJECT *node) {
     push_matrix();
     part = node->child;
     post_translate_matrix(part->pos);
-    draw_ginja_model((s32)part->model);
+    draw_ginja_model(part->model);
     pop_matrix();
     push_matrix();
     part = part->sibling;
     post_translate_matrix(part->pos);
-    draw_ginja_model((s32)part->model);
+    draw_ginja_model(part->model);
     pop_matrix();
     set_constant_material(&chunk_material_color_half_alpha_f32);
     model_render_flags = saved_model_render_flags;
@@ -150,11 +150,11 @@ void TODoorCave02::load_resources() {
     if (enable_v2_features == 1 && TLobby::is_online_ready() != 0) {
         resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_cave02_a_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;
-        texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_do_doa02r_a.gvm");
+        texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_do_doa02r_a.gvm");
     } else {
         resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_cave02_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;
-        texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_do_doa02r.gvm");
+        texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_do_doa02r.gvm");
     }
     texture_lists[1] = bml_resource->models[0].m_c;
 }
