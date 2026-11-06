@@ -67,27 +67,27 @@ void TOSensorGeneral01::render() {
         object = (NJS_OBJECT *)model;
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
         set_current_texture_list((GinjaTextureList *)(TOSensorGeneral01__texture_lists[0]));
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         TParticleCtrl::begin_effect_render();
         object = object->child;
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
         set_current_texture_list((GinjaTextureList *)(TOSensorGeneral01__texture_lists[lamps_dark < 1]));
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         object = object->sibling;
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
         set_current_texture_list((GinjaTextureList *)(TOSensorGeneral01__texture_lists[lamps_dark < 2]));
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         object = object->sibling;
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
         set_current_texture_list((GinjaTextureList *)(TOSensorGeneral01__texture_lists[lamps_dark < 3]));
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         TParticleCtrl::end_effect_render();
         object = object->sibling;
         push_matrix();
         translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
         rotate_matrix_y(NULL, head_angle);
         set_current_texture_list((GinjaTextureList *)(TOSensorGeneral01__texture_lists[1]));
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         pop_matrix();
         pop_matrix();
     }
@@ -116,7 +116,7 @@ void TOSensorGeneral01::load_assets() {
     sensor_general_shared_bml_archive = resource;
     TOSensorGeneral01__texture_lists = (s32 *)::operator new[](8);
     TOSensorGeneral01__texture_lists[1] = sensor_general_shared_bml_archive->models[0].m_c;
-    TOSensorGeneral01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_sensor_r.gvm");
+    TOSensorGeneral01__texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_sensor_r.gvm");
 }
 
 TOSensorGeneral01::~TOSensorGeneral01() {}

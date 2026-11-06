@@ -1,6 +1,7 @@
 #include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/TTecZondeEff.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TTecAnti.h"
 #include "pso/misc/TTecZonde.h"
@@ -219,28 +220,28 @@ void TTecZonde::run_task() {
         case 0:
             o = __nw__7TObjectFUl(0x260);
             if (o != NULL) {
-                ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[0].a, (u8 *)segs[0].b, 0x14000000, 0x14, segs[0].len, lbl_805DC97C);
+                ((TTecZondeEff *)o)->construct_bolt_effect(tl_07, (u8 *)segs[0].a, (u8 *)segs[0].b, 0x14000000, 0x14, segs[0].len, lbl_805DC97C);
             }
             break;
         case 1:
             scale *= lbl_805DC980;
             o = __nw__7TObjectFUl(0x260);
             if (o != NULL) {
-                ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[0].a, (u8 *)segs[0].b, 0x14000000, 0x14, segs[0].len, scale);
+                ((TTecZondeEff *)o)->construct_bolt_effect(tl_07, (u8 *)segs[0].a, (u8 *)segs[0].b, 0x14000000, 0x14, segs[0].len, scale);
             }
             break;
         case 2:
             scale *= lbl_805DC984;
             o = __nw__7TObjectFUl(0x260);
             if (o != NULL) {
-                ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[0].a, (u8 *)segs[0].b, 0x14000000, 0x14, segs[0].len, scale);
+                ((TTecZondeEff *)o)->construct_bolt_effect(tl_07, (u8 *)segs[0].a, (u8 *)segs[0].b, 0x14000000, 0x14, segs[0].len, scale);
             }
             break;
         case 3:
             for (j = 0; j < 3; j++) {
                 o = __nw__7TObjectFUl(0x260);
                 if (o != NULL) {
-                    ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[j].a, (u8 *)segs[j].b, 0x14000000, 0x14, segs[j].len, lbl_805DC97C);
+                    ((TTecZondeEff *)o)->construct_bolt_effect(tl_07, (u8 *)segs[j].a, (u8 *)segs[j].b, 0x14000000, 0x14, segs[j].len, lbl_805DC97C);
                 }
             }
             break;
@@ -249,7 +250,7 @@ void TTecZonde::run_task() {
             for (k = 0; k < 3; k++) {
                 o = __nw__7TObjectFUl(0x260);
                 if (o != NULL) {
-                    ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[k].a, (u8 *)segs[k].b, 0x14000000, 0x14, segs[k].len, scale);
+                    ((TTecZondeEff *)o)->construct_bolt_effect(tl_07, (u8 *)segs[k].a, (u8 *)segs[k].b, 0x14000000, 0x14, segs[k].len, scale);
                 }
             }
             break;
@@ -258,12 +259,12 @@ void TTecZonde::run_task() {
                 if (l == 0) {
                     o = __nw__7TObjectFUl(0x260);
                     if (o != NULL) {
-                        ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[l].a, (u8 *)segs[l].b, 0x14000000, 0x14, segs[l].len, lbl_805DC988);
+                        ((TTecZondeEff *)o)->construct_bolt_effect(tl_07, (u8 *)segs[l].a, (u8 *)segs[l].b, 0x14000000, 0x14, segs[l].len, lbl_805DC988);
                     }
                 } else {
                     o = __nw__7TObjectFUl(0x260);
                     if (o != NULL) {
-                        ((TTecZonde *)o)->construct_bolt_effect(tl_07, (u8 *)segs[l].a, (u8 *)segs[l].b, 0x14000000, 0x14, segs[l].len, lbl_805DC97C);
+                        ((TTecZondeEff *)o)->construct_bolt_effect(tl_07, (u8 *)segs[l].a, (u8 *)segs[l].b, 0x14000000, 0x14, segs[l].len, lbl_805DC97C);
                     }
                 }
             }

@@ -3,10 +3,12 @@
 #include "pso/TObject.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/system/vector.h"
+#include "pso/object/TObjChip.h"
 class TObjChip : public TObject {
 public:
     virtual void render_shadows();
     virtual ~TObjChip();
+    static TObjChipSpawnParams *copy_transform(TObjChipSpawnParams *spawn, TObjChipParams *params);
 };
 
 #include "types.h"
@@ -226,7 +228,6 @@ struct VObj_801809F0_801809B4 : Base_801809F0_801809B4 {
 };
 
 int vfunc_8__8TObjChipFv(void* p);
-u8 *copy_transform__8TObjChipFPvPv(u8 *arg0, u8 *arg1);
 void render__8TObjChipFv(void *arg0);
 void run_task__8TObjChipFv(void *arg0);
 void queue_destruction__7TObjectFv(void *arg0);
@@ -243,26 +244,24 @@ typedef char RecoveredGlobal_80180AA4___vt__8TObjChip_size[sizeof(RecoveredGloba
 typedef char RecoveredGlobal_80180BD4___vt__8TObjChip_size[sizeof(RecoveredGlobal_80180BD4___vt__8TObjChip) == 0x38 ? 1 : -1];
 }
 
-extern "C" {
-u8 *copy_transform__8TObjChipFPvPv(u8 *arg0, u8 *arg1) {
-    *(f32 *)((s8 *)arg0 + 0) = (f32) *(f32 *)((s8 *)arg1 + 0);
-    *(f32 *)((s8 *)arg0 + 4) = (f32) *(f32 *)((s8 *)arg1 + 4);
-    *(f32 *)((s8 *)arg0 + 8) = (f32) *(f32 *)((s8 *)arg1 + 8);
-    VecCopy((Vec *)(arg0 + 0xC), (const Vec *)(arg1 + 0xC));
-    VecCopy((Vec *)(arg0 + 0x18), (const Vec *)(arg1 + 0x18));
-    copy_xyz(arg0 + 0x24, arg1 + 0x24);
-    *(s32 *)((s8 *)arg0 + 0x30) = (s32) *(s32 *)((s8 *)arg1 + 0x30);
-    *(s32 *)((s8 *)arg0 + 0x34) = (s32) *(s32 *)((s8 *)arg1 + 0x34);
-    *(f32 *)((s8 *)arg0 + 0x38) = (f32) *(f32 *)((s8 *)arg1 + 0x38);
-    *(f32 *)((s8 *)arg0 + 0x3C) = (f32) *(f32 *)((s8 *)arg1 + 0x3C);
-    *(s32 *)((s8 *)arg0 + 0x40) = (s32) *(s32 *)((s8 *)arg1 + 0x40);
-    *(s32 *)((s8 *)arg0 + 0x44) = (s32) *(s32 *)((s8 *)arg1 + 0x44);
-    *(s32 *)((s8 *)arg0 + 0x48) = (s32) *(s32 *)((s8 *)arg1 + 0x48);
-    *(s32 *)((s8 *)arg0 + 0x54) = 0;
-    *(s32 *)((s8 *)arg0 + 0x50) = 0;
-    *(s32 *)((s8 *)arg0 + 0x4C) = 0;
-    return arg0;
-}
+TObjChipSpawnParams *TObjChip::copy_transform(TObjChipSpawnParams *spawn, TObjChipParams *params) {
+    spawn->pad_0[0] = params->pad_0[0];
+    spawn->pad_0[1] = params->pad_0[1];
+    spawn->pad_0[2] = params->pad_0[2];
+    VecCopy(&spawn->pos, &params->pos);
+    VecCopy(&spawn->pad_18, &params->pad_18);
+    copy_xyz(spawn->pad_24, params->pad_24);
+    spawn->pad_30[0] = params->pad_30[0];
+    spawn->pad_30[1] = params->pad_30[1];
+    spawn->pad_38[0] = params->pad_38[0];
+    spawn->pad_38[1] = params->pad_38[1];
+    spawn->model = params->model;
+    spawn->textures = params->textures;
+    spawn->pad_48 = params->pad_48;
+    spawn->pad_54 = 0;
+    spawn->arg = 0;
+    spawn->pad_4c = 0;
+    return spawn;
 }
 
 extern "C" {

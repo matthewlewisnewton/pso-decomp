@@ -53,7 +53,7 @@ extern const f32 lbl_805DE85C;
 void apply_actor_gravity(TObjEnemy *arg0, s32 *arg1, f32 farg0);
 s16 get_attack_params_atp_min(void *);
 s32 get_current_floor();
-u8 *get_enemy_entity(u16);
+TObjChara *get_enemy_entity(u16);
 
 
 
@@ -667,12 +667,12 @@ void TObjEneGibbles::sub_802D8984() {
     if (o->targetId < 0x1000) {
         TObjPlayer *p = get_player_by_client_id(o->targetId);
         if (p != NULL && p->get_floor() == get_current_floor()) {
-            o->target = (u8 *)p;
+            o->target = p;
         } else {
             o->target = NULL;
         }
     } else if (o->targetId < 0x4000) {
-        o->target = (u8 *)get_enemy_entity(o->targetId);
+        o->target = get_enemy_entity(o->targetId);
     } else {
         o->targetId = 0xFFFF;
         o->target = NULL;
@@ -705,7 +705,7 @@ void TObjEneGibbles::sub_802D8984() {
         if (o->phase_frames >= o->wait_frames) {
             if (o->target != NULL) {
                 Vec v;
-                Vec t = *((TObjChara *)o->target)->body_center();
+                Vec t = *o->target->body_center();
                 if (select_enemy_destination(o, &t, 1) != 0) {
                     f32 dist;
                     o->phase = 1;
@@ -792,18 +792,18 @@ void TObjEneGibbles::sub_802D8984() {
 #pragma opt_loop_invariants off
 void TObjEneGibbles::fn_802D8E8C() {
     TObjEneGibbles *self = this;
-    u32 p;
+    TObjPlayer *p;
     u16 id;
     id = this->targetId;
     if (id < 0x1000) {
-        p = (u32)get_player_by_client_id(id);
-        if (p != 0 && ((TObjPlayer *)p)->get_floor() == get_current_floor()) {
-            target = (u8 *)p;
+        p = get_player_by_client_id(id);
+        if (p != NULL && p->get_floor() == get_current_floor()) {
+            target = p;
         } else {
             target = NULL;
         }
     } else if (id < 0x4000) {
-        target = (u8 *)get_enemy_entity(id);
+        target = get_enemy_entity(id);
     } else {
         this->targetId = 0xFFFF;
         target = NULL;
@@ -1157,7 +1157,7 @@ void TObjEneGibbles::clamp_angle(s32 arg1) {
 
 void TObjEneGibbles::turn_toward_target() {
     Vec difference;
-    VecCopy(&difference, ((TObjChara *)target)->body_center());
+    VecCopy(&difference, target->body_center());
     subtract_vector(&difference, body_center());
     clamp_angle(angle_diff_s16(this->rotation.yaw, (s32)(TObjEneGibbles__data_80472798 * atan2_float(difference.x, difference.z))));
 }
@@ -1204,9 +1204,9 @@ void TObjEneGibbles::vfunc_28() {
         self->targetId = best_id;
         tid = self->targetId;
         if (tid < 0x1000U) {
-            u8 *q = (u8 *)get_player_by_client_id(tid);
+            TObjPlayer *q = get_player_by_client_id(tid);
             if (q != NULL) {
-                if (((TObjPlayer *)q)->get_floor() == get_current_floor()) {
+                if (q->get_floor() == get_current_floor()) {
                     self->target = q;
                     return;
                 }
@@ -1222,9 +1222,9 @@ void TObjEneGibbles::vfunc_28() {
     {
         s32 best_id2;
         s32 best_id;
-        u8 *p;
-        u8 *best_p2;
-        u8 *best_p;
+        TObjPlayer *p;
+        TObjPlayer *best_p2;
+        TObjPlayer *best_p;
         s32 i;
         f32 best2;
         f32 best;
@@ -1238,21 +1238,21 @@ void TObjEneGibbles::vfunc_28() {
         best = ((GibblesMovementParameters *)self->movementParameters)->target_range * ((GibblesMovementParameters *)self->movementParameters)->target_range;
         best2 = best;
         for (; i < registered_player_count; i++) {
-            p = (u8 *)TObjPlayer::get_player_data(i);
+            p = TObjPlayer::get_player_data(i);
             if (p == NULL) continue;
             if ((u16)get_entity_id(p) >= 0x1000) continue;
-            if (((TObjPlayer *)p)->get_floor() != get_current_floor()) continue;
-            if (((TObjChara *)p)->actorFlags & 0x02000800) continue;
-            VecCopy(&v, ((TObjChara *)p)->body_center());
+            if (p->get_floor() != get_current_floor()) continue;
+            if (p->actorFlags & 0x02000800) continue;
+            VecCopy(&v, p->body_center());
             subtract_vector(&v, self->body_center());
             d = v.x * v.x + v.z * v.z;
-            if ((((TObjPlayer *)p)->class_flags & self->target_class_mask) && d < best &&
-                check_path_obstructed(self, ((TObjChara *)p)->body_center()) != 1) {
+            if ((p->class_flags & self->target_class_mask) && d < best &&
+                check_path_obstructed(self, p->body_center()) != 1) {
                 best_id = get_entity_id(p);
                 best = d;
                 best_p = p;
             }
-            if (d < best2 && check_path_obstructed(self, ((TObjChara *)p)->body_center()) != 1) {
+            if (d < best2 && check_path_obstructed(self, p->body_center()) != 1) {
                 best_id2 = get_entity_id(p);
                 best2 = d;
                 best_p2 = p;
@@ -1497,7 +1497,7 @@ void TObjEneGibbles::update_spawn_state() {
         apply_actor_gravity((TObjEnemy *)self, NULL, TObjEneGibbles__data_805DE7E4);
         return;
     case 1:
-        if (horizontal_distance_squared((int) (((TObjChara *)target)->body_center()), (void *) (body_center())) < lbl_805DE870) {
+        if (horizontal_distance_squared((int) (target->body_center()), (void *) (body_center())) < lbl_805DE870) {
             this->phase = 3;
         }
     case 2:
@@ -1578,7 +1578,7 @@ void TObjEneGibbles::sub_802DA0BC() {
     case 2:
         break;
     case 0: {
-        Vec v = *((TObjChara *)target)->body_center();
+        Vec v = *target->body_center();
         if (select_enemy_destination(this, &v, 7) != 0) {
             this->phase = 1;
             {
@@ -1599,12 +1599,12 @@ void TObjEneGibbles::sub_802DA0BC() {
         {
             f32 dt = TObjEneGibbles__ai_parameters->pursuit_step;
             state_distance += dt;
-            Vec v = *((TObjChara *)target)->body_center();
+            Vec v = *target->body_center();
             enemy_move_toward(this, ((GibblesMovementParameters *)movementParameters)->turn_speed, &v, 0, dt);
         }
         d = horizontal_distance_squared((int)&m_29c, (u8 *)&position);
         {
-            Vec v = *((TObjChara *)target)->body_center();
+            Vec v = *target->body_center();
             ok = select_enemy_destination(this, &v, 1);
         }
         if (d >= lbl_805DE860 && ok != 0) {
@@ -1647,14 +1647,14 @@ s32 TObjEneGibbles::is_target_in_attack_range() {
     f32 rad;
     f32 dist;
     s32 ang;
-    u8 *obj;
+    TObjChara *obj;
     CollisionBody *sub;
     if (this->mode >= 3) {
         obj = this->target;
-        if (obj != NULL && this->m_318 != 0 && !(((TObjChara *)obj)->actorFlags & 0x02000800)) {
+        if (obj != NULL && this->m_318 != 0 && !(obj->actorFlags & 0x02000800)) {
             dist = calc_xz_distance_sq(self, obj, &v);
             ang = angle_difference_abs(this->rotation.yaw, (s32)(TObjEneGibbles__data_80472798 * atan2_float(v.x, v.z)));
-            sub = ((TObjChara *)target)->bodies;
+            sub = target->bodies;
             if (sub != NULL) {
                 rad = sub->radius;
             } else {
@@ -1687,7 +1687,7 @@ void TObjEneGibbles::vfunc_60() {
     switch (this->attack_index) {
     case 0:
     default: {
-        VecCopy(&v, (const Vec *)((Vec *) (((TObjChara *)target)->body_center())));
+        VecCopy(&v, (const Vec *)((Vec *) (target->body_center())));
         subtract_vector(&v, body_center());
         f64 t = atan2_float(v.x, v.z);
         this->mode = 4;
@@ -1878,14 +1878,14 @@ void TObjEneGibbles::fn_802D9110() {
     self->actorFlags &= 0xF9FBFFFF;
     u16 id = self->targetId;
     if (id < 0x1000) {
-        u32 p = (u32)get_player_by_client_id(id);
-        if (p != 0 && ((TObjPlayer *)p)->get_floor() == get_current_floor()) {
-            self->target = (u8 *)p;
+        TObjPlayer *p = get_player_by_client_id(id);
+        if (p != NULL && p->get_floor() == get_current_floor()) {
+            self->target = p;
         } else {
             self->target = NULL;
         }
     } else if (id < 0x4000) {
-        self->target = (u8 *)get_enemy_entity(id);
+        self->target = get_enemy_entity(id);
     } else {
         self->targetId = 0xFFFF;
         self->target = NULL;
@@ -1899,7 +1899,7 @@ void TObjEneGibbles::fn_802D9110() {
         } else {
             Vec d;
             s32 diff;
-            VecCopy(&d, ((TObjChara *)self->target)->body_center());
+            VecCopy(&d, self->target->body_center());
             subtract_vector(&d, self->body_center());
             diff = self->turn_toward_direction(((GibblesMovementParameters *)self->movementParameters)->turn_speed, &d);
             if (!(self->actorFlags & 0x800000)) {
@@ -1909,10 +1909,10 @@ void TObjEneGibbles::fn_802D9110() {
                 self->flags |= 0x100;
                 self->phase = 1;
                 self->requested_action = 2;
-                if (check_path_obstructed(self, ((TObjChara *)self->target)->body_center()) == 1) {
+                if (check_path_obstructed(self, self->target->body_center()) == 1) {
                     self->movement_velocity.x = self->movement_velocity.y = self->movement_velocity.z = TObjEneGibbles__data_805DE7E4;
                 } else {
-                    calc_velocity_toward_destination(self, *self->body_center(), *((TObjChara *)self->target)->body_center(), ((GibblesMovementParameters *)self->movementParameters)->speed);
+                    calc_velocity_toward_destination(self, *self->body_center(), *self->target->body_center(), ((GibblesMovementParameters *)self->movementParameters)->speed);
                 }
             }
         }

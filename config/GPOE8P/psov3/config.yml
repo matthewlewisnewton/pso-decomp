@@ -815,9 +815,8 @@ force_active:
   - TOSwitchItem__class_name
   - TOSwitchTimer__ct
   - TOSymbolchatColli__ct
-  - TOTrapAncient02R__ct
-  - TOTrapAncient02R__vt79
-  - TOTrapAncient02__ct
+  - TOTrapAncient01__bml_resource
+  - TOTrapAncient01__class_name
   - TOTrapChainSawDamage__ct
   - TOTrapChainSawDamage__sub_802C9C00
   - TOTrapChainSawDamage__vt14
@@ -828,10 +827,6 @@ force_active:
   - TOTrapChainSawKey__ct
   - TOTrapChainSaw__level_scale_table
   - TOTrapChainSaw__name
-  - TOTrapSeabed01__ct
-  - TOTrapSeabed01__data_805DE644
-  - TOTrapSeabed01__vt20
-  - TOTrapSeabed01__vt83
   - TOVS2Wall01__ct
   - TOVS2Wreck01__ct
   - TOVS2Wreck02__ct
@@ -1874,6 +1869,7 @@ force_active:
   - __ct__14TOKeyGenericSwFP7TObjectPv
   - __ct__14TOKeyMachine01FP7TObjectPv
   - __ct__14TOTrapChainSawFP7TObjectPv
+  - __ct__14TOTrapSeabed01FP7TObjectPv
   - __ct__14TObjEneDubchikFP7TObjectPv
   - __ct__14TObjEneGibblesFP7TObjectPv
   - __ct__14TObjEneIllGillFP7TObjectPv
@@ -1899,6 +1895,8 @@ force_active:
   - __ct__15TODoorMachine02FP7TObjectPv
   - __ct__15TODoorVS2Door01FP7TObjectPv
   - __ct__15TORainbowCave01FP7TObjectPv
+  - __ct__15TOTrapAncient01FP7TObjectPv
+  - __ct__15TOTrapAncient02FP7TObjectPv
   - __ct__15TObjDeadListWinFP7TObject
   - __ct__15TObjEneDelDepthFP7TObjectPv
   - __ct__15TObjEneGyaranzoFP7TObjectPv
@@ -1921,6 +1919,7 @@ force_active:
   - __ct__16TOFenceAncient03FP7TObjectPv
   - __ct__16TOFenceAncient04FP7TObjectPv
   - __ct__16TORevlightCave01FP7TObjectPv
+  - __ct__16TOTrapAncient02RFP7TObjectPv
   - __ct__16TObjCurtainLobbyFP7TObjectPv
   - __ct__16TObjEneDellBiterFP7TObjectPv
   - __ct__16TObjEneMerillLiaFP7TObjectPv
@@ -2316,6 +2315,8 @@ force_active:
   - __dt__15TODoorMachine02Fv
   - __dt__15TODoorVS2Door01Fv
   - __dt__15TORainbowCave01Fv
+  - __dt__15TOTrapAncient01Fv
+  - __dt__15TOTrapAncient02Fv
   - __dt__15TObjBoss8PillerFv
   - __dt__15TObjDeadListWinFv
   - __dt__15TObjEneDelDepthFv
@@ -2911,6 +2912,8 @@ force_active:
   - __vt__15TODoorVS2Door01
   - __vt__15TOQuestTalkBase
   - __vt__15TORainbowCave01
+  - __vt__15TOTrapAncient01
+  - __vt__15TOTrapAncient02
   - __vt__15TObjBoss5Pillar
   - __vt__15TObjBoss8Piller
   - __vt__15TObjDeadListWin
@@ -3164,6 +3167,7 @@ force_active:
   - __vt__5TLogo
   - __vt__5TOKey
   - __vt__6TLobby
+  - __vt__6TOTrap
   - __vt__6TScene
   - __vt__7TEffHit
   - __vt__7TEffect
@@ -3920,6 +3924,9 @@ force_active:
   - bm_o_rock_cave03_motion_names
   - bm_o_rock_cave03_resource_bundle
   - bm_o_rock_jungle_model_names
+  - bm_o_trap_ancient01_model_names
+  - bm_o_trap_ancient01_motion_names
+  - bm_o_trap_ancient01_resource_descriptor
   - bm_obj_boss7_common_model_names
   - bm_obj_boss7_common_motion_names
   - bm_obj_boss8_piller_model_names
@@ -4197,6 +4204,7 @@ force_active:
   - calc_digit_count__18TWindowInputNumberFv
   - calc_digit_transform__17TDuelEffectNumberFlPfPfl
   - calc_dir_angles__11TBoss6Type2FPvPvPvPv
+  - calc_distance_accuracy_penalty__16TOTrapAncient02RFPvPvPvf
   - calc_distance_accuracy_penalty__20TContainerAncient01RFPvPvPvf
   - calc_dominant_axis__12TTecZondeEffFv
   - calc_drop_item__9TItemDropFiPvi
@@ -4446,7 +4454,7 @@ force_active:
   - check_hit_sphere__16TObjEneBm5GibonUFPvif
   - check_hits__21TObjEneSlimeWaterBombFv
   - check_hits__22TObjEneSlimeTailAttackFv
-  - check_hold_player__14TOTrapSeabed01FPv
+  - check_hold_player__14TOTrapSeabed01Fv
   - check_in_range__23TObjEneMe3ShinowaMirageFPv
   - check_load_state__16TAdChrSelASlotGCFv
   - check_local_player_in_range__12TObjRaderColFPv
@@ -4548,6 +4556,7 @@ force_active:
   - clamp_state__12TObjDoorJungFv
   - clamp_to_ground__14TBoss6GravBallFv
   - clamp_to_target_obstruction__11TCameraCtrlFv
+  - clamp_trap_level_param__16TOTrapAncient02RFv
   - class_name__10TBoss6Rock
   - class_name__11TOBiwaMushi
   - class_name__11TOBoss4Bird
@@ -4749,7 +4758,7 @@ force_active:
   - construct_dagger_weapon__FPUcPUcPUc
   - construct_entry_array
   - construct_entry_array__6TLobbyFv
-  - construct_facing__11TTecGiBartaFPvPvPvPv
+  - construct_facing__11TTecGiBartaFPvP3Vecll
   - construct_facing__9TTecMegidFllll
   - construct_gi_gue_bazooka__FPUcPUcl
   - construct_global_arrays__6TLobbyFv
@@ -5342,7 +5351,7 @@ force_active:
   - draw_node_tree__19TODoorFourLightBaseFPUc
   - draw_number_value__15TWindowHelpItemFPvPflll
   - draw_object_tree__11TObjDoaEx01Fl
-  - draw_object_tree__14TOTrapSeabed01FPUc
+  - draw_object_tree__14TOTrapSeabed01FP10NJS_OBJECT
   - draw_object_tree_recursive__FPv
   - draw_outline_quad__18TWindowEffectLightFl
   - draw_palette_cells__22TWindowSubCustomSelectFi
@@ -6800,6 +6809,8 @@ force_active:
   - init_timer__14TBoss4DarkFalzFv
   - init_timer__18TChallenge4PResultFv
   - init_timer_event__13TUnk_804A0608Fv
+  - init_trap_object_id__16TOTrapAncient02RFv
+  - init_trap_param_clamped__16TOTrapAncient02RFv
   - init_vertex_table__17TObjEneBm3FlyNestFv
   - init_vtable_1f8__13TUnk_804ED390FlPv
   - init_vtable_804F2A10__13TUnk_804F2A10Fv
@@ -6851,6 +6862,7 @@ force_active:
   - is_active__16TObjEneBm5GibonUFPv
   - is_angle_in_range__16TObjEneMe3StelthFv
   - is_any_player_in_range__16TObjEvtCollisionFf
+  - is_any_player_matching_stat__16TOTrapAncient02RFv
   - is_any_player_near__Fl
   - is_balloon_overlapping__FPUcPUcPUc
   - is_below_half_hp__14TObjEnePanBARAFv
@@ -7548,6 +7560,7 @@ force_active:
   - lbl_804AF100
   - lbl_804AF18C
   - lbl_804AF218
+  - lbl_804B4844
   - lbl_804B8A10
   - lbl_804B8D80
   - lbl_804B8D94
@@ -8363,12 +8376,6 @@ force_active:
   - lbl_805DE130
   - lbl_805DE4BC
   - lbl_805DE620
-  - lbl_805DE640
-  - lbl_805DE648
-  - lbl_805DE64C
-  - lbl_805DE650
-  - lbl_805DE654
-  - lbl_805DE658
   - lbl_805DF2E4
   - lbl_805DF3AC
   - lbl_805DF3B0
@@ -9036,6 +9043,8 @@ force_active:
   - play_sound_events__10TObjCameraFv
   - play_sound_if_no_target__11TBoss6Type2Fv
   - play_sound_variant__16TObjEneBm5GibonUFv
+  - play_sounds__14TOTrapSeabed01Fv
+  - play_sounds__15TOTrapAncient01Fv
   - play_variant_sound__14TObjEneBm5WolfFPv
   - play_walk_sound__12TObjEneLappyFv
   - player_action_motion_buffer
@@ -13589,11 +13598,14 @@ force_active:
   - receive_direct_attack__15TBoss3VoloptP02FPv19DirectAttackPayloadPvll
   - receive_direct_attack__15TObjEneMe1GiGueFPv19DirectAttackPayloadPvll
   - receive_direct_attack__15TObjEneSlimeOneFPv19DirectAttackPayloadPvll
+  - receive_direct_attack__16TOTrapAncient02RFPv19DirectAttackPayloadPvll
   - receive_direct_attack__18TObjEneEpsilonBodyFPv19DirectAttackPayloadPvll
   - receive_direct_attack__18TObjEneMe3SinowZoaFPv19DirectAttackPayloadPvll
   - receive_direct_attack__20TContainerAncient01RFPv19DirectAttackPayloadPvll
   - receive_physical_attack__13TObjEneMorfosFPvf
+  - receive_physical_attack__14TOTrapSeabed01FPvf
   - receive_physical_attack__15TBoss3VoloptP02FPvf
+  - receive_physical_attack__15TOTrapAncient01FPvf
   - receive_physical_attack__15TObjEneMe1GiGueFPvf
   - receive_physical_attack__16TOTrapAncient02RFPvf
   - receive_physical_attack__18TObjEneEpsilonBodyFPvf
@@ -13603,6 +13615,7 @@ force_active:
   - receive_physical_attack__9TBoss6MagFPvf
   - receive_state_request__12TBoss1DragonFPUc
   - receive_weapon_special_attack__15TObjEneMe1GiGueFPvPv
+  - receive_weapon_special_attack__16TOTrapAncient02RFPvPv
   - receive_weapon_special_attack__18TObjEneEpsilonBodyFPvPv
   - receive_weapon_special_attack__19TObjEneEpsilonGuardFPvPv
   - receive_weapon_special_attack__20TContainerAncient01RFPvPv
@@ -13690,6 +13703,7 @@ force_active:
   - release_split_slimes__12TObjEneSlimeFv
   - release_subobjects__10TObjPlayerFv
   - release_trail_buffer__17TItemEffectWeaponFPv
+  - release_trapped_player__15TOTrapAncient01Fv
   - reload_floor_scene__6TLobbyFv
   - reload_impact_stats__12TBoss1DragonFv
   - reload_lobby_floor_scene__Fv
@@ -13875,6 +13889,8 @@ force_active:
   - render__15TODoorVS2Door01Fv
   - render__15TOQuestTalkBaseFv
   - render__15TORainbowCave01Fv
+  - render__15TOTrapAncient01Fv
+  - render__15TOTrapAncient02Fv
   - render__15TObjEneDelDepthFv
   - render__15TObjEneGyaranzoFv
   - render__15TObjEneMe1GiGueFv
@@ -14042,6 +14058,7 @@ force_active:
   - render__30TObjEneDellBiter_Eff_TpAbsorb1Fv
   - render__30TObjEneMe1Canadin_EffDischargeFv
   - render__5TLogoFv
+  - render__6TOTrapFv
   - render__6TSceneFv
   - render__7TSwitchFv
   - render__8TAdRayGCFv
@@ -14274,6 +14291,7 @@ force_active:
   - roll_armor_bonuses__9TItemDropFv
   - roll_item_channel_below__FUll
   - roll_meseta_range__9TItemDropFPviiii
+  - roll_physical_accuracy__16TOTrapAncient02RFPvlf
   - roll_physical_accuracy__20TContainerAncient01RFPvlf
   - roll_rare_weapon_attributes__9TItemDropFiPvi
   - roll_shop_technique_level
@@ -14807,6 +14825,7 @@ force_active:
   - select_forward_target__12TBoss1DragonFPv
   - select_item_icon__20TWindowSubStatusDispFPviUcUci
   - select_lobby_pigeon_model__13TUnk_804E0898Fv
+  - select_melee_contact_body__16TOTrapAncient02RFPvf
   - select_models__18TObjLazerFenceNormFv
   - select_next__26TWindowSubQuestBoardSelectFv
   - select_next_action__15TObjEneGyaranzoFv
@@ -16179,9 +16198,7 @@ force_active:
   - transform_vertex_list__18TObjTailsTailsMoveFv
   - translate_key_char__16TKeyBoardControlFPvUcPUs
   - trap_ancient02_collision_body
-  - trap_ancient02_ruins_pillar_resources
-  - trap_ancient02_seabed_pillar_resources
-  - trap_ancient02_torabasami_resources
+  - trap_ancient02_resources
   - traverse_animated_node_tree__FPv
   - trigger_activate_sound__11TOKeyCave01Fv
   - trigger_activate_sound__14TOKeyAncient03Fv
@@ -16215,6 +16232,7 @@ force_active:
   - try_spawn_child__12TObjEneSlimeFPv
   - try_spawn_ground_effect__16TObjEneMe3StelthFl
   - try_spawn_mirages__21TObjEneMe3ShinowaRealFv
+  - try_start_action__16TOTrapAncient02RFll
   - try_start_action__20TContainerAncient01RFll
   - try_trigger_action__17TObjEneMe1CanadinFv
   - try_update_target_flag__10TNpcPlayerFPvi
@@ -17331,6 +17349,7 @@ force_active:
   - vfunc_6__14TOTrapSeabed01FPsl
   - vfunc_6__15TODoorAncient08FPsl
   - vfunc_6__15TODoorAncient09FPsl
+  - vfunc_6__15TOTrapAncient01FPsl
   - vfunc_6__17TAdExNetConfirmGCFv
   - vfunc_6__17TAdLicAgreementGCFv
   - vfunc_6__17TWindowMainMenu4PFv
@@ -17354,10 +17373,17 @@ force_active:
   - vfunc_80__12TOMineIcon04Fv
   - vfunc_80__21TObjContainerAbeEnemyFv
   - vfunc_81__14TOTrapSeabed01Fv
+  - vfunc_81__15TOTrapAncient01Fv
+  - vfunc_81__15TOTrapAncient02Fv
+  - vfunc_81__16TOTrapAncient02RFv
   - vfunc_81__21TObjContainerAbeEnemyFv
+  - vfunc_81__6TOTrapFv
   - vfunc_82__12TOMineIcon04Fv
   - vfunc_82__14TOTrapSeabed01Fv
+  - vfunc_82__15TOTrapAncient01Fv
+  - vfunc_82__15TOTrapAncient02Fv
   - vfunc_82__16TOTrapAncient02RFv
+  - vfunc_82__6TOTrapFv
   - vfunc_83__12TObjEneBeastFv
   - vfunc_83__12TObjEneSharkFv
   - vfunc_83__14TObjEneDolmOlmFv
@@ -17367,6 +17393,11 @@ force_active:
   - vfunc_83__18TObjEneRe4SorcererFv
   - vfunc_84__12TOMineIcon04Fv
   - vfunc_84__14TOTrapSeabed01Fv
+  - vfunc_84__15TOTrapAncient01Fv
+  - vfunc_84__15TOTrapAncient02Fv
+  - vfunc_84__6TOTrapFv
+  - vfunc_86__15TOTrapAncient01Fv
+  - vfunc_86__15TOTrapAncient02Fv
   - vfunc_88__12TBoss1DragonFv
   - vfunc_88__13TBoss5GryphonFv
   - vfunc_88__13TObjEneBm3FlyFv
@@ -17374,6 +17405,8 @@ force_active:
   - vfunc_88__13TObjEneMorfosFv
   - vfunc_88__13TObjEneRe4BitFv
   - vfunc_88__14TObjEneBm5WolfFv
+  - vfunc_88__15TOTrapAncient01Fv
+  - vfunc_88__15TOTrapAncient02Fv
   - vfunc_88__16TObjEneBm5GibonUFv
   - vfunc_88__16TObjEneDellBiterFv
   - vfunc_88__16TObjEneRe7BeruraFv

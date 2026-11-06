@@ -588,7 +588,7 @@ s32 pop_matrix(void);
 f32 post_translate_matrix(void *);
 s32 rotate_matrix_y(int, int);
 void draw_ginja_object(void *child);
-void draw_ginja_model(s32 model);
+void draw_ginja_model(void * model);
 s32 draw_ginja_model_with_motion(void *, void *, f32);
 extern u8 *TOHangceilingCave01__model_root;
 struct VBase_80168588 { char pad[0x18]; };
@@ -681,23 +681,23 @@ void TUnk_804B2578::render() {
                 temp_r31 = temp_f2 <= (3.0f * temp_f1);
                 set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 4)));
                 if (temp_r29 == 1) {
-                    draw_ginja_model((*(s32 *)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 4)));
+                    draw_ginja_model((*(void **)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 4)));
                 }
                 if (temp_r30 == 1) {
-                    draw_ginja_model((*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 0x2C)) + 4)));
+                    draw_ginja_model((*(void **)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 0x2C)) + 4)));
                 }
                 if (temp_r31 == 1) {
-                    draw_ginja_model((*(s32 *)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 0x2C)) + 0x2C)) + 4)));
+                    draw_ginja_model((*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 0x2C)) + 0x2C)) + 4)));
                 }
                 set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)turiten_singo_texture_lists + 0)));
                 if (temp_r29 == 0) {
-                    draw_ginja_model((*(s32 *)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 4)));
+                    draw_ginja_model((*(void **)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 4)));
                 }
                 if (temp_r30 == 0) {
-                    draw_ginja_model((*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 0x2C)) + 4)));
+                    draw_ginja_model((*(void **)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 0x2C)) + 4)));
                 }
                 if (temp_r31 == 0) {
-                    draw_ginja_model((*(s32 *)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 0x2C)) + 0x2C)) + 4)));
+                    draw_ginja_model((*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)TOHangceilingCave01__model_root + 0x2C)) + 0x2C)) + 0x2C)) + 4)));
                 }
             } else {
                 if (is_current_floor_switch_set((int) ((u16) *(s32 *)((s8 *)arg0 + 0x35C))) == 1) {

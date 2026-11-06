@@ -230,7 +230,7 @@ extern const f32 lbl_805DC878;
 void *TTecLuker__ct(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
 s32 mark_area_change_pending();
 s32 obj_isState3_324__9TObjCharaFv(void *);
-s32 play_effect_default__10TObjPlayerFii(void *, s32);
+s32 play_effect_default__10TObjPlayerFP10TObjPlayerl(void *, s32);
 s32 send_6x21_inter_level_warp(void *, s32);
 s32 get_floor_map_terrain(s32);
 
@@ -802,7 +802,7 @@ void run_task__9TTecLukerFv(u8 *arg0) {
             spawn_particle_effect((const Vec *)((float *) &sp8), 0xB3);
             player = (u8 *)get_player_by_client_id(((TTecLuker *)arg0)->m_f6);
             if (player != NULL) {
-                play_effect_default__10TObjPlayerFii(player, 0xA);
+                play_effect_default__10TObjPlayerFP10TObjPlayerl(player, 0xA);
                 play_sound_effect(0x40022D1A, (const Vec *)(player + 0x38), 0, 0);
             }
             TWindowCtrl::init_all_slots();

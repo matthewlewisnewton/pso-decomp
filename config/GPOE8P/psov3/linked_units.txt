@@ -1378,6 +1378,7 @@ pso/misc/TOSwitchItem.cpp
 pso/misc/TOSwitchTimer.cpp
 pso/misc/TOSymbolchatColli.cpp
 pso/misc/TOTrap.cpp
+pso/misc/TOTrapAncient01.cpp
 pso/misc/TOTrapAncient01_80226534.cpp
 pso/misc/TOTrapAncient02.cpp
 pso/misc/TOTrapAncient02R.cpp
@@ -1960,7 +1961,6 @@ pso/misc/pso_const_ids.cpp
 pso/misc/pso_const_ids3.cpp
 pso/misc/pso_const_ids4.cpp
 pso/misc/pso_const_ids5.cpp
-pso/misc/pso_const_ids7.cpp
 pso/misc/pso_date.cpp
 pso/network/NetworkInfoCodec.cpp
 pso/network/NetworkInfoLoader.cpp

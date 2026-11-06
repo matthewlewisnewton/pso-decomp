@@ -814,7 +814,7 @@ s32 free_collision_body_parts(void *);
 
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
-s32 create_ex__11TTecGiBartaFPvPvPv(void *, void *, s32, s32);
+s32 create_ex__11TTecGiBartaFPvP3Vecll(void *, void *, s32, s32);
 void __destroy_arr(void *, void *, u32, u32);
 void __construct_array(void *, void *, void *, int, int);
 f32 sin_table_lookup(s32);
@@ -2010,7 +2010,7 @@ s32 TObjEneRe4Sorcerer::cast_technique() {
             VecCopy__FP3VecPC3Vec(&v, *(u8 **)((s8 *)arg0 + 0x390) + 0x38);
             subtract_vector(&v, src);
             frame = TObjEneDD::clamp_frame_index(*(s32 *)((s8 *)sorcerer_behavior_params + 0x1C));
-            create_ex__11TTecGiBartaFPvPvPv(arg0, src, (s32)(TObjEneRe4Sorcerer__data_8043D408 * atan2_float(v.x, v.z)), frame);
+            create_ex__11TTecGiBartaFPvP3Vecll(arg0, src, (s32)(TObjEneRe4Sorcerer__data_8043D408 * atan2_float(v.x, v.z)), frame);
         }
         return 1;
     }

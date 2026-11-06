@@ -79,7 +79,7 @@ void TODoorAncient09::load_resources() {
     bml_resource = resource;
     texture_lists = (s32 *)::operator new[](8);
     texture_lists[0] = bml_resource->models[0].m_c;
-    texture_lists[1] = (s32)load_gvm_texture_file((s32)"fs_obj_o_door05l_g.gvm");
+    texture_lists[1] = (s32)load_gvm_texture_file("fs_obj_o_door05l_g.gvm");
 }
 
 void TODoorAncient09::destroy() {
@@ -221,8 +221,8 @@ void TODoorAncient09::draw_switch_lights() {
     post_translate_matrix(&position.x);
     post_translate_matrix(root->pos);
     rotate_matrix_y(NULL, this->rotation.yaw);
-    draw_ginja_model((s32)root->model);
-    draw_ginja_model((s32)root->child->model);
+    draw_ginja_model(root->model);
+    draw_ginja_model(root->child->model);
     TParticleCtrl::begin_effect_render();
     for (i = 0; i < 2; i++) {
         if (on[i] != 0) {
@@ -233,11 +233,11 @@ void TODoorAncient09::draw_switch_lights() {
         push_matrix();
         pair = pairs[i];
         post_translate_matrix(pair[0]->pos);
-        draw_ginja_model((s32)pair[0]->model);
+        draw_ginja_model(pair[0]->model);
         pop_matrix();
         push_matrix();
         post_translate_matrix(pair[1]->pos);
-        draw_ginja_model((s32)pair[1]->model);
+        draw_ginja_model(pair[1]->model);
         pop_matrix();
     }
     TParticleCtrl::end_effect_render();

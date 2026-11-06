@@ -5,6 +5,7 @@
 #include "pso/misc/TOTrap.h"
 
 struct TOTrapAncient02 : public TOTrap {
+    TOTrapAncient02(TObject *parent, void *creator);
     virtual ~TOTrapAncient02();
     virtual void vfunc_81();
     virtual void vfunc_82();
