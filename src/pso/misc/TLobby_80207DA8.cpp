@@ -391,9 +391,9 @@ s32 TLobby::get_drop_item_mode() {
     }
 }
 
-s32 load_relocatable_file(s32 arg0, s32 arg1);
+s32 load_relocatable_file(const void *arg0, s32 arg1);
 
-extern s32 forest_rel_filename_table[];
+extern const char *forest_rel_filename_table[];
 extern s32 TLobby__data_805D6068;
 extern s32 lbl_805D606C;
 extern s32 *lbl_805D6070;
@@ -408,7 +408,7 @@ void TLobby::update_drop_item() {
     lbl_805D6070 = NULL;
     if ((u32) forest_rel_work_buffer != 0U) {
         drop_item_mode = TLobby::get_drop_item_mode();
-        if (((TScene *)(forest_rel_filename_table[drop_item_mode]))->update_lobby_scene() <= 0x24B8) {
+        if (TScene::update_lobby_scene((forest_rel_filename_table[drop_item_mode])) <= 0x24B8) {
             temp_r3 = (s32 *)load_relocatable_file(forest_rel_filename_table[drop_item_mode], forest_rel_work_buffer);
             lbl_805D6070 = temp_r3;
             if (temp_r3 != NULL) {
@@ -468,7 +468,7 @@ void TLobby::load_item_data() {
     forest_rel_work_buffer = temp_r3;
     if (temp_r3 != 0U) {
         drop_item_mode = TLobby::get_drop_item_mode();
-        if (((TScene *)(forest_rel_filename_table[drop_item_mode]))->update_lobby_scene() <= 0x24B8) {
+        if (TScene::update_lobby_scene((forest_rel_filename_table[drop_item_mode])) <= 0x24B8) {
             temp_r3_2 = (s32 *)load_relocatable_file(forest_rel_filename_table[drop_item_mode], forest_rel_work_buffer);
             lbl_805D6070 = temp_r3_2;
             if (temp_r3_2 != NULL) {
@@ -996,7 +996,7 @@ s32 load_area_event_set(s32 floor, s32 area, s32 terrain, s32 entities) {
         return 0;
     }
     replace_file_extension__6TLobbyFPvPvPv((char *)&buf, (char *)TLobby__data_805D6068[area].terrs[terrain].ents[entities].data, (char *)lbl_8044BAC8);
-    n = ((TScene *)(&buf))->update_lobby_scene();
+    n = TScene::update_lobby_scene((&buf));
     if (n > 0) {
         p = ((void *)HA2((s32)((*(void * *)&area_event_set_heap)), n));
         if (p != 0) {

@@ -23,10 +23,10 @@ extern RecoveredGlobal_8025E9E4_lbl_804CFA70 TWindowKeyBoardBase__window_descrip
 extern s32 __vt__19TWindowKeyBoardBase[];
 extern s32 keyboard_base_type_name_pointer;
 u8 *TWindowKeyBoardBase__ct(u8 *arg0);
-s32 set_stream_and_load_file__6TLobbyFi(s32 *);
+s32 set_stream_and_load_file__6TLobbyFPCv(const char *);
 s32 Dolphin_ARAlloc(s32);
 s32 TQuestVmDownLoadServer__sub_803F0C04(s32, s32, s32, s32, s32);
-extern s32 lbl_8044F098[];
+extern char lbl_8044F098[];
 void *__dt__19TWindowKeyBoardBaseFv(void *arg0, s16 arg1);
 s32 sub_8025CB10__19TWindowKeyBoardBaseFv(void *);
 s32 sub_8025EB68__19TWindowKeyBoardBaseFv();
@@ -92,10 +92,10 @@ void TLobby::load_ask_dictionary() {
     s32 size;
     s32 aligned;
     s32 aram;
-    size = TLobby::get_resource_file_size((const char *)lbl_8044F098);
+    size = TLobby::get_resource_file_size(lbl_8044F098);
     aligned = (size + 0x1F) & ~0x1F;
     aram = Dolphin_ARAlloc(aligned);
-    data = set_stream_and_load_file__6TLobbyFi(lbl_8044F098);
+    data = set_stream_and_load_file__6TLobbyFPCv(lbl_8044F098);
     TLobby::aram_transfer_sync(3, data, aram, aligned);
     TAdSinglePlyChrSelectGC::safe_free(data);
     TQuestVmDownLoadServer__sub_803F0C04(aram, size, 3, 1, 0x2710);

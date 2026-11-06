@@ -10,7 +10,7 @@ struct S_80320358 {
 };
 
 extern "C" {
-s32 read_disc_file(void *, void *);
+s32 read_disc_file(const void *, void *);
 s32 OSLink(void *, void *);
 void OSUnlink(void *);
 S_80320358 *fn_80320358(S_80320358 *arg0, s16 arg1);
@@ -40,19 +40,19 @@ S_80320358 *fn_80320358(S_80320358 *arg0, s16 arg1) {
 
 #pragma push
 #pragma fp_contract on
-u8 *load_rel_module(u8 *arg0, s32 arg1) {
+u8 *load_rel_module(u8 *arg0, const void *name) {
     u8 *temp_r3;
     s32 size;
     u32 size2;
     *(void **)((s8 *)arg0 + 0) = NULL;
     *(void **)((s8 *)arg0 + 4) = NULL;
-    size = ((TScene *)arg1)->update_lobby_scene();
+    size = TScene::update_lobby_scene(name);
     if (size > 0) {
         *(void **)((s8 *)arg0 + 4) = xmalloc(size);
         if ((void *) *(void **)((s8 *)arg0 + 4) == NULL) {
             return arg0;
         }
-        read_disc_file((void *)arg1, *(void **)((s8 *)arg0 + 4));
+        read_disc_file(name, *(void **)((s8 *)arg0 + 4));
         size2 = *(u32 *)((s8 *)(*(void **)((s8 *)arg0 + 4)) + 0x20);
         if (size2 != 0U) {
             *(void **)((s8 *)arg0 + 0) = xmalloc(size2);

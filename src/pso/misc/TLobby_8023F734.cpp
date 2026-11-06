@@ -1,4 +1,5 @@
 #include "pso/audio/SoundBankTables.h"
+#include "pso/system/Adxf.h"
 
 // --- data head (folded from pso/audio/SoundBankTables.cpp) ---
 
@@ -701,7 +702,7 @@ s32 resolve_sound_effect_bank(Owner_8023FBBC *owner, s32 kind, s32 bank, s32 ind
 
 
 struct Ent_8023FCC0 {
-    u32 h[4];
+    void *h[4];
     s32 k[4];
     s32 pad20;
 };
@@ -744,10 +745,8 @@ struct Obj_8023FCC0 {
 };
 
 extern "C" {
-void *adxf_open_afs__6TLobbyFii(int, int);
 
 s32 TLobby__sub_8023FFB8(Obj_8023FCC0 *self, int id);
-s32 TLobby__sub_803CC4C0(void *handle);
 u32 sndPushGroup(void *prj_data, u16 gid, void *samples, void *sdir, void *pool);
 
 u8 is_ready__6TLobbyFPv(void *arg0) {
@@ -783,7 +782,7 @@ void TLobby__sub_8023FCC0(Obj_8023FCC0 *self) {
         for (i = 0; i < 4; i++) {
             if (self->bank_file_handles[i] != NULL) {
                 active++;
-                switch (TLobby__sub_803CC4C0(self->bank_file_handles[i])) {
+                switch (ADXF_GetStat((AdxfHandle *)self->bank_file_handles[i])) {
                 case 2:
                 case 1:
                     break;
@@ -802,7 +801,7 @@ void TLobby__sub_8023FCC0(Obj_8023FCC0 *self) {
     if (errors == 0 && active != 0 && active == done) {
     for (j = 0; j < 4; j++) {
         if (self->bank_file_handles[j] != NULL) {
-            ((TLobby *)self->bank_file_handles[j])->close_adxf_handle();
+            ADXF_Close((AdxfHandle *)self->bank_file_handles[j]);
             self->bank_file_handles[j] = NULL;
         }
     }
@@ -851,56 +850,56 @@ s32 TLobby__sub_8023FFB8(Obj_8023FCC0 *self, int id) {
     s32 i;
     s32 ret;
     if (self->ents[id].h[3] != 0) {
-        xfree((void *)self->ents[id].h[3]);
+        xfree(self->ents[id].h[3]);
         self->ents[id].h[3] = 0;
     }
     if (self->ents[id].h[2] != 0) {
-        xfree((void *)self->ents[id].h[2]);
+        xfree(self->ents[id].h[2]);
         self->ents[id].h[2] = 0;
     }
     if (self->ents[id].h[1] != 0) {
-        xfree((void *)self->ents[id].h[1]);
+        xfree(self->ents[id].h[1]);
         self->ents[id].h[1] = 0;
     }
     if (self->ents[id].h[0] != 0) {
-        xfree((void *)self->ents[id].h[0]);
+        xfree(self->ents[id].h[0]);
         self->ents[id].h[0] = 0;
     }
     for (i = 0; i < 4; i++) {
         self->bank_file_sizes[i] = sound_bank_file_sizes[sound_bank_file_indices[id][i]];
         self->bank_file_sizes[i] = (self->bank_file_sizes[i] + 0x7FF) & ~0x7FF;
-        self->ents[id].h[i] = (u32)xmalloc(self->bank_file_sizes[i]);
+        self->ents[id].h[i] = xmalloc(self->bank_file_sizes[i]);
         if (self->ents[id].h[i] == 0) {
             ret = 3;
             goto fail;
         }
         self->ents[id].k[i] = sound_bank_file_indices[id][i];
-        self->bank_file_handles[i] = adxf_open_afs__6TLobbyFii(0, sound_bank_file_indices[id][i]);
+        self->bank_file_handles[i] = ADXF_OpenAfs(0, sound_bank_file_indices[id][i]);
         if (self->bank_file_handles[i] == NULL) {
             ret = 2;
             goto fail;
         }
     }
     for (i = 0; i < 4; i++) {
-        TLobby::read_checked_align((s32)self->bank_file_handles[i], (s32)(self->bank_file_sizes[i] / 2048), (s32)self->ents[id].h[i]);
+        TLobby::read_checked_align(self->bank_file_handles[i], (s32)(self->bank_file_sizes[i] / 2048), self->ents[id].h[i]);
         ((TLobby *)(&self->bank_file_handles[i]))->set_entry_params(i, self->bank_file_sizes[i] / 2048, self->ents[id].h[i]);
     }
     return 0;
 fail:
     if (self->ents[id].h[3] != 0) {
-        xfree((void *)self->ents[id].h[3]);
+        xfree(self->ents[id].h[3]);
         self->ents[id].h[3] = 0;
     }
     if (self->ents[id].h[2] != 0) {
-        xfree((void *)self->ents[id].h[2]);
+        xfree(self->ents[id].h[2]);
         self->ents[id].h[2] = 0;
     }
     if (self->ents[id].h[1] != 0) {
-        xfree((void *)self->ents[id].h[1]);
+        xfree(self->ents[id].h[1]);
         self->ents[id].h[1] = 0;
     }
     if (self->ents[id].h[0] != 0) {
-        xfree((void *)self->ents[id].h[0]);
+        xfree(self->ents[id].h[0]);
         self->ents[id].h[0] = 0;
     }
     return ret;
@@ -1019,17 +1018,17 @@ s32 init_sound_aux_effects(Obj_8023FCC0 *self) {
             return 3;
         }
         memset(lbl_80517E44[i], 0, size);
-        void *handle = adxf_open_afs__6TLobbyFii(0, sound_bank_file_indices[i][2]);
+        void *handle = ADXF_OpenAfs(0, sound_bank_file_indices[i][2]);
         if (handle != NULL) {
-            TLobby::read_checked_align((s32)handle, (s32)size / 2048, (s32)lbl_80517E44[i]);
+            TLobby::read_checked_align(handle, (s32)size / 2048, lbl_80517E44[i]);
             TLobby::set_read_params(&handle, (s32)size / 2048, (int)lbl_80517E44[i]);
             do {
                 TLobby__sub_803382E4();
                 TLobby::run_disk_error_check();
                 render_tick();
-            } while (TLobby__sub_803CC4C0(handle) != 3);
+            } while (ADXF_GetStat((AdxfHandle *)handle) != 3);
             TLobby::reset_read_state();
-            ((TLobby *)handle)->close_adxf_handle();
+            ADXF_Close((AdxfHandle *)handle);
         } else {
             return 2;
         }

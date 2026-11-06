@@ -8432,9 +8432,9 @@ force_active:
   - load_all_floor_event_sets__6TLobbyFv
   - load_and_verify_data
   - load_battle_params__11TBoss6Type2Fv
-  - load_bin_model__11BmlResourceFll
+  - load_bin_model__11BmlResourceFPvl
   - load_bin_model_callback__FP14Lobby_8001FA1C
-  - load_bin_motion__11BmlResourceFll
+  - load_bin_motion__11BmlResourceFPvl
   - load_bin_motion_callback__FP14Lobby_8001FA1C
   - load_chr_select_slot__23TAdSinglePlyChrSelectGCFv
   - load_downloaded_quest__12TQuestListVMFv
@@ -8945,7 +8945,7 @@ force_active:
   - open_session__6TLobbyFi
   - open_ship_block_select_menu__6TLobbyFiPvPv
   - open_status_window__19TWindowSubTradeMainFi
-  - open_stream__15TWindowSnapShotFl
+  - open_stream__15TWindowSnapShotFPCv
   - open_trade_equip_window__19TWindowSubTradeMainFv
   - open_warp_menu__6TLobbyFv
   - open_window__15TObjNewFloorWinFv
@@ -13581,7 +13581,7 @@ force_active:
   - read_be_u32__Fv
   - read_byte__24TMessageWindowControllerFv
   - read_byte_advance__6TLobbyFv
-  - read_data_sync__6TLobbyFllPUc
+  - read_data_sync__6TLobbyFP10AdxfHandlelPUc
   - read_file_header__9TLanguageFiPv
   - read_into_buffer__9TLanguageFPUcl
   - read_stream_u16__Fv
@@ -13668,7 +13668,7 @@ force_active:
   - recv_vm_download__9TProtocolFR6packet
   - recv_vm_download_head__9TProtocolFR6packet
   - ref_counted_load_buffer
-  - refill_gstream_buffer__Fl
+  - refill_gstream_buffer__FP10AdxfHandle
   - reflect_velocity_off_collision__13TUnk_804B8E18FPvPv
   - refresh__14TWindowSubItemFv
   - refresh_display__12TAdDialingGCFv
@@ -16658,8 +16658,8 @@ force_active:
   - update_list_scroll__22TWindowSubCustomSelectFv
   - update_live_camera__18TObjLiveCameraCtrlFv
   - update_load_progress__12TChCrLoadReqFv
+  - update_load_state__13TUnk_8049F42CFv
   - update_load_state__16TAdChrSelASlotGCFv
-  - update_load_state__9TItemLoadFv
   - update_load_status__12TQuestListVMFv
   - update_lobby_pigeon_visibility__13TUnk_804E0898Fv
   - update_lobby_selection__12TQuestListVMFv
