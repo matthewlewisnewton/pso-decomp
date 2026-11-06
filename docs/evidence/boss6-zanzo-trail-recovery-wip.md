@@ -56,3 +56,20 @@ and four targets remain unchanged. The expanded split and real linked build
 are not yet validated. A proposed native ruler data definition was not retained:
 the original start is four-byte aligned, while the compiler emits an eight-byte
 aligned data section. Its storage and linkage remain unresolved.
+
+## Current-main merge (2026-11-05)
+
+The branch now includes current `origin/main` (`ace1abf1a`) and drops the old
+#289-only base. The merge keeps main's recovered `TBoss6Type1`/`TBoss6Type2`
+layout and `TBoss6Zanzo::create`, and keeps this branch's typed trail frame,
+`set_effect_points` receiver, REL buffer and drawing-descriptor interfaces.
+Conflict resolution preserved the 98.77778% renderer source above.
+
+A fresh full build from the merged tree verifies the original DOL SHA-1.
+`check_pr.py` against a clean `ace1abf1a` baseline passes with zero exact,
+matched-code, complete-code, linked-unit or source-link regressions, and adds
+128 matched data bytes and 112 complete data bytes from the Rico backing data.
+The renderer is still inexact and the `TBoss6Zanzo` unit still does not link, so
+no function, code or link gain is claimed. Remaining holds: exact renderer
+register allocation, the REL filename-size provider's `TScene` receiver, and
+the ruler's original static fan backing.

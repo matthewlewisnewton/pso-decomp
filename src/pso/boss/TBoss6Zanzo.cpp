@@ -57,8 +57,6 @@ void TBoss6Zanzo__sub_803205A0(Boss6TrailPoint *dest, const Boss6TrailPoint *sou
 }
 #pragma pop
 
-#pragma push
-#pragma opt_propagation off
 void TBoss6Zanzo::draw_trail() {
     Boss6TrailFrame *frame;
     Boss6TrailFrame *end;
@@ -86,29 +84,25 @@ void TBoss6Zanzo::draw_trail() {
             fan.uvs = 0;
             fan.count = 4;
             fan.positions = positions;
+            // Packed RGBA colors retain RGB and fade only their fourth byte.
             for (s32 i = 0; i < this->point_count - 1; ++i) {
                 Boss6TrailPoint *p;
-                const u8 *source;
-                u8 *color;
                 p = &previous->points[i];
                 copy_color_bytes(&colors[0], &p->color);
-                source = (const u8 *)&p->color; color = (u8 *)&colors[0];
-                color[3] = (u8)(previous_fade * source[3]);
+                ((u8 *)colors)[3] = (u8)(previous_fade * ((const u8 *)&p->color)[3]);
                 VecCopy(&positions[0], &p->position);
-                p = &previous->points[i + 1];
+                // Advance the indexed point, keeping its scale separate from the next-point offset.
+                p = &previous->points[i] + 1;
                 copy_color_bytes(&colors[1], &p->color);
-                source = (const u8 *)&p->color; color = (u8 *)&colors[1];
-                color[3] = (u8)(previous_fade * source[3]);
+                ((u8 *)colors)[7] = (u8)(previous_fade * ((const u8 *)&p->color)[3]);
                 VecCopy(&positions[1], &p->position);
-                p = &frame->points[i + 1];
+                p = &frame->points[i] + 1;
                 copy_color_bytes(&colors[2], &p->color);
-                source = (const u8 *)&p->color; color = (u8 *)&colors[2];
-                color[3] = (u8)(next_fade * source[3]);
+                ((u8 *)colors)[11] = (u8)(next_fade * ((const u8 *)&p->color)[3]);
                 VecCopy(&positions[2], &p->position);
                 p = &frame->points[i];
                 copy_color_bytes(&colors[3], &p->color);
-                source = (const u8 *)&p->color; color = (u8 *)&colors[3];
-                color[3] = (u8)(next_fade * source[3]);
+                ((u8 *)colors)[15] = (u8)(next_fade * ((const u8 *)&p->color)[3]);
                 VecCopy(&positions[3], &p->position);
                 draw_tri_fan_3d(&fan, 4, 7);
             }
@@ -119,8 +113,6 @@ void TBoss6Zanzo::draw_trail() {
         fade -= step;
     }
 }
-
-#pragma pop
 
 void TBoss6Zanzo::render() { set_depth_buffer_settings_1(); draw_trail(); restore_saved_depth_alpha_state(); }
 

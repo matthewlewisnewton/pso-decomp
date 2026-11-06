@@ -8,6 +8,7 @@
 #include "pso/system/FlagWord.h"
 
 struct TItemData;
+class TPlyInventoryItem;
 struct TObjPlayer;
 struct G_PickUpItem_6x59;
 
@@ -152,6 +153,8 @@ struct TItem : public TObjCollidable {
     s32 unregister_item();
     s32 insert_sorted_by_id();
     s32 copy_to_item_data(TItemData *data);
+    // Writes the 0x1C inventory record: mode, flags, then TItemData.
+    s32 export_inventory_entry(TPlyInventoryItem *dest);
     void snap_to_ground();
     void send_field_state(s16 floor, TObjPlayer *player);
     void handle_pickup(s16 floor, TObjPlayer *player);
@@ -214,7 +217,7 @@ extern int item_system_generation;
 
 // draw_model_node_tree's callbacks; when model_node_matrix_output_cursor
 // is set each node's matrix is stored there.
-extern void (*model_node_draw_callback)(s32 model);
+extern void (*model_node_draw_callback)(void *model);
 extern void (*model_node_visit_callback)(NJS_OBJECT *object);
 extern u8 *model_node_matrix_output_cursor;
 extern s32 model_node_counter;

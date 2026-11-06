@@ -6,6 +6,7 @@ struct TLobby;
 struct TObjPlayer;
 #include "pso/misc/TPacket.h"
 #include "pso/boss/TBoss3Volopt.h"
+#include "pso/boss/Boss5GryphonBehavior.h"
 #include "pso/unk/text_800C7FEC.h"
 #include "pso/item/TItem.h"
 
@@ -171,7 +172,6 @@ extern "C" void handle_6x9C_set_enemy_low_game_flags_ultimate();
 extern "C" void handle_6x9D_set_challenge_dead_flag();
 void handle_6x9E_player_camera_shutter_sound();
 void handle_6x9F_gal_gryphon_boss_actions(void *arg0);
-void handle_6xA0_gal_gryphon_boss_actions(TBoss8Dragon *arg0);
 extern "C" void handle_6xA1_revive_player_v3(void *arg0);
 void handle_6xA2_specializable_item_drop_request(void *arg0);
 extern "C" void handle_6xA3_olga_flow_boss_actions();

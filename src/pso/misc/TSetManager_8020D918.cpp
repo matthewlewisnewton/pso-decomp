@@ -1,6 +1,7 @@
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/TSetManager.h"
+#include "pso/THeap.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TScene.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
@@ -27,6 +28,51 @@ struct Grp_8020D9A0 { Room_8020D9A0 *room; s32 count; };
 struct Map_8020D9A0 { Grp_8020D9A0 *grp; s32 count; };
 
 struct Rec_8020D9A0 { u8 pad0[2]; s16 f2; s16 f4; u8 pad6[2]; u16 f8; u8 padA[0x3A]; };
+
+// Row of a floor object/enemy set as stored in the full set data buffers
+// TLobby__data_805D6138 / TLobby__data_805D613C. The type field doubles as the
+// empty-slot marker: a set row is unused while its type is -1.
+struct FloorObjectSetRow { s16 type; u8 pad02[0x44 - 2]; };
+
+struct FloorEnemySetRow { s16 type; u8 pad02[0x48 - 2]; };
+
+// Per-floor row table for one floor: the loaded object/enemy set row counts
+// (both are -1 for a floor with no set), the placement flags recording which
+// sets were applied, and the heap-allocated processed row lists.
+struct LobbyFloorRows {
+    s32 objects;
+    s32 enemies;
+    u32 objectPlacement;
+    u32 enemyPlacement;
+    void *objectRows;
+    void *enemyRows;
+};
+
+// Per-floor archive pool entry pair holding the raw object/enemy set data
+// (TLobby__data_80513A40, the first two words per floor).
+struct LobbyPoolEntry { void *objects; void *enemies; };
+
+// The lobby population tables are one contiguous block: a pool entry pair per
+// floor, the per-floor row tables, then the per-floor set row counts. The
+// original translation unit defined every table together and reaches the later
+// tables as offsets from TLobby__data_80513A40, so this overlay declares the
+// shared layout: pool_entries is TLobby__data_80513A40, floors is
+// TLobby__floor_enemy_group_table, object_row_counts is TLobby__data_80513C80,
+// enemy_row_counts is TLobby__data_80513CC8 and data_80513D10 is
+// TLobby__data_80513D10.
+struct LobbyPopulationTables {
+    LobbyPoolEntry pool_entries[18];
+    LobbyFloorRows floors[18];
+    s32 object_row_counts[18];
+    s32 enemy_row_counts[18];
+    u8 data_80513D10[0x24];
+};
+
+typedef char LobbyPoolEntry_size[sizeof(LobbyPoolEntry) == 8 ? 1 : -1];
+typedef char LobbyPopulationTables_floors_offset[(offsetof(LobbyPopulationTables, floors) == 0x90) ? 1 : -1];
+typedef char LobbyPopulationTables_object_row_counts_offset[(offsetof(LobbyPopulationTables, object_row_counts) == 0x240) ? 1 : -1];
+typedef char LobbyPopulationTables_enemy_row_counts_offset[(offsetof(LobbyPopulationTables, enemy_row_counts) == 0x288) ? 1 : -1];
+typedef char LobbyPopulationTables_data_80513D10_offset[(offsetof(LobbyPopulationTables, data_80513D10) == 0x2D0) ? 1 : -1];
 
 extern "C" {
 void TLobby__sub_8020D94C(void);
@@ -60,6 +106,17 @@ void* TSetManager__ct(void*, s32);
 void* __nw__7TObjectFUl(u32);
 
 extern s32 tl_02;
+extern u32 TLobby__data_805D6104;
+extern THeap *TLobby__data_805D6108;
+extern FloorObjectSetRow *TLobby__data_805D6138;
+extern FloorEnemySetRow *TLobby__data_805D613C;
+extern s32 TLobby__data_805D6148;
+extern s32 TLobby__data_805D614C;
+extern s32 lbl_805D6100;
+extern LobbyPopulationTables TLobby__data_80513A40;
+void archive_pool_free(u32, void *);
+void TLobby__sub_8020DC78(void);
+
 
 void TSetManager::create() {
     void* obj = __nw__7TObjectFUl(0x20);
@@ -171,6 +228,106 @@ void TLobby::reset_id_tables() {
         }
     }
 }
+
+#pragma push
+// Porting exception (approved by Matt 2026-11-05, t250s1179): propagation
+// merges the separate null locals into one register. Disable it only here to
+// preserve the original register coloring; remove this when porting off MWCC.
+#pragma opt_propagation off
+void TLobby__sub_8020DC78(void) {
+    s32 n;
+    s32 i;
+    LobbyPopulationTables *base = &TLobby__data_80513A40;
+    LobbyPoolEntry (LobbyPopulationTables::*enemy_member)[18];
+    LobbyPoolEntry (LobbyPopulationTables::*object_member)[18];
+    LobbyFloorRows (LobbyPopulationTables::*enemy_rows_member)[18];
+    LobbyFloorRows (LobbyPopulationTables::*object_rows_member)[18];
+    LobbyPoolEntry *object_pool;
+    void *object_blank;
+    void *row_blank;
+    LobbyFloorRows *enemy_rows;
+    TLobby__data_805D6134 = 0;
+    if (TLobby__data_805D6138 != NULL) {
+        memset(TLobby__data_805D6138, 0, 0x31680);
+        for (i = 0; i < 0xBA0; i++) {
+            TLobby__data_805D6138[i].type = -1;
+        }
+    }
+    if (TLobby__data_805D613C != NULL) {
+        memset(TLobby__data_805D613C, 0, 0x19740);
+        for (i = 0; i < 0x5A8; i++) {
+            TLobby__data_805D613C[i].type = -1;
+        }
+    }
+    memset(base->object_row_counts, 0, 0x48);
+    memset(base->enemy_row_counts, 0, 0x48);
+    memset(base->data_80513D10, 0, 0x24);
+    n = 0;
+    if (quest_object_entries != 0) {
+        memset(quest_object_entries, 0, 0x2E80);
+        for (i = 0; i < 0xBA0; i++) {
+            s16 t = n + 0x100;
+            n++;
+            quest_object_entries[i].b = t;
+        }
+    }
+    if (TLobby__data_805D6144 != 0) {
+        memset(TLobby__data_805D6144, 0, 0x87C0);
+        for (i = 0; i < 0xB50; i++) {
+            s16 t = n + 0x100;
+            n++;
+            TLobby__data_805D6144[i].c = t;
+        }
+    }
+    TLobby__data_805D6148 = 0;
+    TLobby__data_805D614C = 0;
+    TLobby__data_805D611C = 0;
+    TLobby__data_805D6124 = 0;
+    TLobby__data_805D6120 = 0;
+    TLobby__data_805D6128 = 0;
+    lbl_805D6100 = 0;
+    // The member-pointer apply encodes the offset as value+1. Decaying the
+    // array to an element pointer reduces +1-1 to an add of the table base.
+    // The object walk keeps that pointer in its own local so it is not the
+    // enemy walk's temporary.
+    enemy_member = &LobbyPopulationTables::pool_entries;
+    for (s32 j = 17; j >= 0; j--) {
+        if (static_cast<LobbyPoolEntry *>(base->*enemy_member)[j].enemies != NULL) {
+            archive_pool_free(TLobby__data_805D6104,
+                static_cast<LobbyPoolEntry *>(base->*enemy_member)[j].enemies);
+            static_cast<LobbyPoolEntry *>(base->*enemy_member)[j].enemies = NULL;
+        }
+    }
+    object_member = &LobbyPopulationTables::pool_entries;
+    object_pool = static_cast<LobbyPoolEntry *>(base->*object_member);
+    for (s32 j = 17; j >= 0; j--) {
+        object_blank = NULL;
+        if (object_pool[j].objects != NULL) {
+            archive_pool_free(TLobby__data_805D6104, object_pool[j].objects);
+            object_pool[j].objects = object_blank;
+        }
+    }
+    enemy_rows_member = &LobbyPopulationTables::floors;
+    enemy_rows = static_cast<LobbyFloorRows *>(base->*enemy_rows_member);
+    for (s32 j = 17; j >= 0; j--) {
+        row_blank = NULL;
+        if (enemy_rows[j].enemyRows != NULL) {
+            TLobby__data_805D6108->heap_free(enemy_rows[j].enemyRows);
+            enemy_rows[j].enemyRows = row_blank;
+        }
+    }
+    object_rows_member = &LobbyPopulationTables::floors;
+    for (s32 j = 17; j >= 0; j--) {
+        if (static_cast<LobbyFloorRows *>(base->*object_rows_member)[j].objectRows != NULL) {
+            TLobby__data_805D6108->heap_free(
+                static_cast<LobbyFloorRows *>(base->*object_rows_member)[j].objectRows);
+            static_cast<LobbyFloorRows *>(base->*object_rows_member)[j].objectRows = NULL;
+        }
+    }
+
+    memset(base->floors, 0, 0x1B0);
+}
+#pragma pop
 
 void depart_floor_population(int unused) {
     Area_8020DEE4 *area = &TLobby__floor_enemy_group_table[get_current_floor()];

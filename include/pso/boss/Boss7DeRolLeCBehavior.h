@@ -43,7 +43,6 @@ void free_laser_light__15TBoss7LaserPtclFv(void *arg0);
 void handle_6xA9_barba_ray_boss_actions(void *arg0);
 void handle_6xAA_barba_ray_boss_actions(void *arg0);
 extern "C" {
-void queue_boss_effect__10TObjPlayerFPv(void *a0);
 void release_laser_light__15TBoss7LaserPtclFPv(void *arg0);
 void set_swim_direction__8TObjFishFPv(void *arg0);
 void spawn_particle_201__8TObjFishFii(s32 arg1, s32 arg2);

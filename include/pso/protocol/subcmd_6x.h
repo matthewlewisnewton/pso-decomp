@@ -335,13 +335,37 @@ struct G_GalGryphonBossActions_6x9F {
  f32 unknown_a3;
 };
 
+struct G_GalGryphonBossActionFields {
+ s32 m_4;
+ f32 m_8;
+ f32 m_c;
+ f32 m_10;
+};
+
+// Each state reads these four words its own way; bswap swaps them as words.
+union G_GalGryphonBossActionParams {
+ struct G_GalGryphonBossActionFields f;
+ u32 words[4];
+};
+
+// One step of Gal Gryphon's action script: the state to enter, how long, and
+// that state's parameters. TBoss5Gryphon keeps the current step at 0x494.
+struct G_GalGryphonBossAction {
+ s16 state;
+ s16 timer;
+ union G_GalGryphonBossActionParams params;
+ void bswap();
+ void copy_action_state(G_GalGryphonBossAction *src);
+};
+
 struct G_GalGryphonBossActions_6xA0 {
- struct G_EntityIDHeader header;
+ struct G_ClientIDHeader header;  // client_id: the gryphon's entity id
  struct VectorXYZF pos;
  u32 angle_y;
- u16 phase;
- u16 unknown_a3;
- u32 unknown_a4[4];
+ struct G_GalGryphonBossAction action;
+ G_GalGryphonBossActions_6xA0();
+ void bswap();
+ void send();
 };
 
 struct G_GogoBall_6x79 {

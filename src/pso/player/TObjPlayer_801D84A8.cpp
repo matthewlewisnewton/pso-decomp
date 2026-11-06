@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/object/TObjWarpBossMulti.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TPlyItem.h"
 #include "pso/player/TUnk_804C4540.h"
 #include "pso/map/FloorArea.h"
 struct Tag_801D7D4C { u8 d[4]; };
@@ -15,7 +16,7 @@ struct TObjPlayer_801D8044 {
     u8 pad0[0x428];
     u8 slots[0x4ac - 0x428];
     u8 cursor[0xd00 - 0x4ac];
-    void *fd00;
+    TPlyItem *fd00;
 };
 
 extern "C" {
@@ -32,7 +33,6 @@ s32 weapon_has_extra_attack(u32);
 int check_flag_100__10TObjPlayerFPv(void *p);
 s32 validate_and_clear_slot__10TObjPlayerFv(void *, s32);
 void init__9TItemDataFv(void *);
-void *set_mode_and_refresh_object__10TObjPlayerFPvi(void *, TItemData_801D8044 *);
 s32 TObjPlayer__sub_801AF694(void *, s32);
 u16 get_entity_id(void *);
 s32 TWindowCtrl__sub_8024A228(s32);
@@ -229,7 +229,7 @@ bool can_use_palette_action__10TObjPlayerFPvUcUc(TObjPlayer_801D8044 *self, u8 k
             break;
         }
         if (arg < 0xd || arg > 0x10) {
-            if (set_mode_and_refresh_object__10TObjPlayerFPvi(self->fd00, &item) == 0) {
+            if (self->fd00->set_mode_and_refresh_object(&item) == NULL) {
                 return 0;
             }
         } else {
@@ -314,7 +314,6 @@ u8 *TObjPlayer__sub_801D84B0(s32 *arg0) {
 }
 
 u32 advance_item_id_counter(s32 client);
-void equip_saved_item_if_slot_empty__10TObjPlayerFPvPv(u8 *arg0, u8 *arg1);
 
 int TObjPlayer::bswap_disp_config_field() { return bswap_16__FPUs((char*)this + 0x2); }
 s32 TObjPlayer__sub_801D84F0(void* p) { return *(s32*)((char*)p + 0x4); }
@@ -331,7 +330,7 @@ extern s32 local_client_id;
 void TObjPlayer::assign_lobby_slot_if_flagged(s32 arg0, void *arg1) {
     if (*(s32 *)((s8 *)arg1 + 4) & 8) {
         *(s32 *)((s8 *)arg1 + 0x14) = advance_item_id_counter((u16) local_client_id);
-        equip_saved_item_if_slot_empty__10TObjPlayerFPvPv((u8 *)arg0, (u8 *)arg1);
+        TObjPlayer::equip_saved_item_if_slot_empty((void *)arg0, arg1);
     }
 }
 

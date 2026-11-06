@@ -12,6 +12,7 @@ struct NJS_OBJECT;
 #include "pso/system/vector.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/enemy/TObjEneRe4Sorcerer.h"
@@ -813,7 +814,7 @@ s32 free_collision_body_parts(void *);
 
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
-s32 create_ex__11TTecGiBartaFPvPvPv(void *, void *, s32, s32);
+s32 create_ex__11TTecGiBartaFPvP3Vecll(void *, void *, s32, s32);
 void __destroy_arr(void *, void *, u32, u32);
 void __construct_array(void *, void *, void *, int, int);
 f32 sin_table_lookup(s32);
@@ -2009,7 +2010,7 @@ s32 TObjEneRe4Sorcerer::cast_technique() {
             VecCopy__FP3VecPC3Vec(&v, *(u8 **)((s8 *)arg0 + 0x390) + 0x38);
             subtract_vector(&v, src);
             frame = TObjEneDD::clamp_frame_index(*(s32 *)((s8 *)sorcerer_behavior_params + 0x1C));
-            create_ex__11TTecGiBartaFPvPvPv(arg0, src, (s32)(TObjEneRe4Sorcerer__data_8043D408 * atan2_float(v.x, v.z)), frame);
+            create_ex__11TTecGiBartaFPvP3Vecll(arg0, src, (s32)(TObjEneRe4Sorcerer__data_8043D408 * atan2_float(v.x, v.z)), frame);
         }
         return 1;
     }
@@ -2434,7 +2435,6 @@ void *TObjEneRe4Sorcerer::create() {
 }
 
 void TObjEneRe4Sorcerer::load_resources() {
-    u32 r;
     lbl_80501070.x = TObjEneRe4Sorcerer__data_805DA790;
     lbl_80501070.y = TObjEneRe4Sorcerer__data_805DA790;
     lbl_80501070.z = TObjEneRe4Sorcerer__data_805DA790;
@@ -2452,11 +2452,7 @@ void TObjEneRe4Sorcerer::load_resources() {
     TObjEneRe4Sorcerer__effect_render_scale = TObjEneRe4Sorcerer__data_805DA790;
     re4_sorcerer_render_node_ptr = 0;
     TObjEneRe4Bit__sub_800EDAB4();
-    r = (u32) (int)::operator new(0x14);
-    if (r != 0) {
-        r = (u32) ((TLobby *)r)->alloc_tables(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 8), 2);
-    }
-    TObjEneRe4Sorcerer__uv_scroll_buffer = r;
+    TObjEneRe4Sorcerer__uv_scroll_buffer = (u32)new StripBufferPair(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 8), 2);
     Params_800F0464 p = re4_sorcerer_spawn_descriptor;
     p.a = *(s32 *)((s8 *)sorcerer_bml_resource + 0x430);
     NpcModelRegistry::register_animated_chunk((s16)0x2A, (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 8))), (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 0xC))), (const NpcAnimationBinding *)((s32)&p), re4_sorcerer_collision_body_part_table[3], (f32)TObjEneRe4Sorcerer__data_805DA78C);

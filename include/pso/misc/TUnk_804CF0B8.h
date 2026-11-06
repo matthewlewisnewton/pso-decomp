@@ -2,9 +2,9 @@
 #define PSO_MISC_TUNK_804CF0B8_H
 #include "types.h"
 #include <stddef.h>
-#include "pso/misc/TUnk_804CDFE8.h"
+#include "pso/misc/TWindowAddition.h"
 
-class TUnk_804CF0B8 : public TUnk_804CDFE8 {
+class TUnk_804CF0B8 : public TWindowAddition {
 public:
     virtual ~TUnk_804CF0B8();
     void draw_body(void *, u32, f32 *, f32);
@@ -35,15 +35,7 @@ public:
     void set_flag2c_bit200();
     void clear_flag2c_bit200();
     void set_flag2c_bit100();
-    u8 unk_1C[0x4];
-    u16 m_20;
-    u8 unk_22[0xA];
-    u32 m_2c;
-    u8 unk_30[0x18];
-    f32 m_48;
-    u8 unk_4C[0xC];
-    f32 m_58;
-    u8 unk_5C[0x14];
+    u8 unk_5C[0x10];
     s8 m_70;
     u8 m_71;
     u8 unk_72[0x1];

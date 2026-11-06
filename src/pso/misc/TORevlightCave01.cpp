@@ -41,11 +41,11 @@ void TORevlightCave01::render() {
         rotate_matrix_x(NULL, this->rotation.pitch);
         rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texlist));
-        draw_ginja_model((s32)((NJS_OBJECT *)model)->model);
+        draw_ginja_model(((NJS_OBJECT *)model)->model);
         rotate_matrix_y(NULL, spin_angle);
-        draw_ginja_model((s32)((NJS_OBJECT *)model)->child->model);
+        draw_ginja_model(((NJS_OBJECT *)model)->child->model);
         TParticleCtrl::begin_effect_render();
-        draw_ginja_model((s32)((NJS_OBJECT *)model)->child->child->model);
+        draw_ginja_model(((NJS_OBJECT *)model)->child->child->model);
         TParticleCtrl::end_effect_render();
         pop_matrix();
     }

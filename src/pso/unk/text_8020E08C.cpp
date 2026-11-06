@@ -1,20 +1,10 @@
 #include "types.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
+#include "pso/unk/text_8020E08C.h"
 struct ObjRow_8020E08C { s16 type; s16 flags; u8 pad04[4]; u16 id; u8 tail[0x44 - 0xA]; };
 
 struct EneRow_8020E08C { s16 type; s16 flags; u8 pad04[6]; u16 id; u8 tail[0x48 - 0xC]; };
-
-struct Saved_8020E08C { u16 id; s16 flags; s16 room; s16 wave; };
-
-struct Floor_8020E08C {
-    s32 objects;
-    s32 enemies;
-    u32 objectPlacement;
-    u32 enemyPlacement;
-    Saved_8020E08C *objectRows;
-    Saved_8020E08C *enemyRows;
-};
 
 struct Archive_8020E08C { void *objects; void *enemies; };
 
@@ -57,7 +47,7 @@ void arrive_floor_population(void) {
     bytes = floor->objects * 0x44;
     if (bytes > 0) {
         bytes = (bytes + 0x1F) & ~0x1F;
-        TLobby__data_805D610C = (ObjRow_8020E08C *)((TQuestVmDownLoadServer *)bytes)->alloc();
+        TLobby__data_805D610C = (ObjRow_8020E08C *)TQuestVmDownLoadServer::alloc(bytes);
     }
     if (TLobby__data_805D610C != NULL) {
         TLobby::send_or_handle_packet((void *)TLobby__data_805D6104, TLobby__data_80513A40[index].objects, (void *)TLobby__data_805D610C, (void *)bytes, (u32)1);
@@ -74,7 +64,7 @@ void arrive_floor_population(void) {
     bytes = floor->enemies * 0x48;
     if (bytes > 0) {
         bytes = (bytes + 0x1F) & ~0x1F;
-        TLobby__data_805D6114 = (EneRow_8020E08C *)((TQuestVmDownLoadServer *)bytes)->alloc();
+        TLobby__data_805D6114 = (EneRow_8020E08C *)TQuestVmDownLoadServer::alloc(bytes);
     }
     if (TLobby__data_805D6114 != NULL) {
         TLobby::send_or_handle_packet((void *)TLobby__data_805D6104, TLobby__data_80513A40[index].enemies, (void *)TLobby__data_805D6114, (void *)bytes, (u32)1);
