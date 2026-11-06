@@ -5,6 +5,7 @@
 #include "pso/TObject.h"
 
 struct TAdMultiPlyChrSelectGC : public TObject {
+    TAdMultiPlyChrSelectGC(TObject *parent, s32 mode);
     virtual ~TAdMultiPlyChrSelectGC();
     void create_widgets();
     void sub_802DC118(s32);
@@ -41,12 +42,13 @@ struct TAdMultiPlyChrSelectGC : public TObject {
     s32 get_selection();
     static void set_select_mode(int a0, int a1);
     void set_entry_value(s32 arg1, u32 arg2);
+    void draw_selection_cursors();
+    void update();
     void reset_cursor_state();
     void init_slot_position(s32 arg1, s32 arg2, s32 arg3);
     void clear_slot_entries(s32 arg1);
     static void reset_slot_selection_table();
     static void split_slot_index(s32 arg0, s32 *arg1, s32 *arg2);
-    static void find_first_open_cell(s32 arg0, u32 *arg1);
     static void init();
     static s32 get_status();
     static s32 is_selection_confirmed();

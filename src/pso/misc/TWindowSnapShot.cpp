@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/misc/TLobby_80132ED0.h"
@@ -40,6 +41,8 @@ extern "C" {
 s32 TObjBoss2Tunnel__sub_8007CAE8(f32 *, f32);
 u8 *draw_default_entry__9TWindowDDFl();
 s32 draw_visible_window_entries(void *, void *, void *);
+extern const f32 lbl_805DE018;
+extern const f32 lbl_805DE01C;
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 extern RecoveredGlobal_802A7FB0_lbl_8050E208 controller_input_state;
@@ -47,7 +50,7 @@ s32 verify_snapshot_checksum__15TObjBoss2TunnelFv(void);
 extern RecoveredGlobal_802A80A0_lbl_804DDEB4 window_snapshot_layout;
 extern s32 __vt__15TWindowSnapShot[];
 extern s32 TWindowSnapShot__name;
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void __dl__7TObjectFPv(void *);
 
 void TWindowSnapShot::free_shared_instance() {
@@ -99,12 +102,12 @@ void render__15TWindowSnapShotFv(u8 *arg0) {
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     if (!(((TWindowSnapShot *)arg0)->m_60 & 2)) {
         if ((s32) *(s32 *)((s8 *)temp_r3 + 0x30) > 0) {
-            stack.sp8 = 18.0f + *(f32 *)((s8 *)temp_r3 + 0x10);
+            stack.sp8 = lbl_805DE018 + *(f32 *)((s8 *)temp_r3 + 0x10);
             stack.spC = *(f32 *)((s8 *)temp_r3 + 0x14);
-            TObjBoss2Tunnel__sub_8007CAE8(&stack.sp8, 18.0f);
+            TObjBoss2Tunnel__sub_8007CAE8(&stack.sp8, lbl_805DE018);
         }
     } else {
-        draw_window_text((f32 *)(temp_r3 + 0x10), (const char *)(get_localized_text_entry(0x24, 7)), -1, 0, 1000000.0f);
+        draw_window_text((f32 *)(temp_r3 + 0x10), (const char *)(get_localized_text_entry(0x24, 7)), -1, 0, (f32)lbl_805DE01C);
     }
 }
 
@@ -143,7 +146,7 @@ u8 *TWindowSnapShot__ct(TWindowSnapShot *window_snap_shot, s32 arg1) {
     if (verify_snapshot_checksum__15TObjBoss2TunnelFv() == 0) {
         window_snap_shot->m_60 = (u8) (window_snap_shot->m_60 | 2);
     }
-    temp_r31 = ((TWindowBase *)window_snap_shot)->get_array_entry(1);
+    temp_r31 = (s32)((TWindowBase *)window_snap_shot)->get_array_entry(1);
     TWindowDuelResult::set_default_status((void *) temp_r31, get_localized_text_entry(0xF, 0x13));
     return (u8 *)window_snap_shot;
 }

@@ -1,5 +1,8 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/misc/TOExplosiveMachine.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TOExplosiveMachine01.h"
 #include "pso/misc/TOExplosiveMachine02.h"
 #include "pso/misc/TOExplosiveMachine03.h"
@@ -16,8 +19,6 @@
 #include "pso/unk/text_803D96A8.h"
 
 extern "C" {
-void *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
-void TLobby__sub_8001FE7C(void *, s32);
 f32 horizontal_distance_squared(const Vec *, const Vec *);
 s32 post_translate_matrix(const Vec *);
 s32 rotate_matrix_y(s32, s32);
@@ -81,16 +82,13 @@ TOExplosiveMachine::~TOExplosiveMachine() {
 }
 
 void TOExplosiveMachine::load_shared_resource() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &explosive_machine_resource_desc, 0, 0, 0);
-    }
+    void *resource = new BmlResource(1, (BmlResourceDescriptor *)(&explosive_machine_resource_desc), 0, 0, (void *)(0));
     explosive_machine_model_archive = resource;
 }
 
 void TOExplosiveMachine::destroy_static_lobby() {
     if (explosive_machine_model_archive != NULL) {
-        TLobby__sub_8001FE7C(explosive_machine_model_archive, 1);
+        delete (BmlResource *)(explosive_machine_model_archive);
         explosive_machine_model_archive = NULL;
     }
 }
@@ -99,8 +97,8 @@ void TOExplosiveMachine::render() {
     if (update_object_view_visibility(view_distance, view_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(0, this->rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         draw_ginja_object(model);
         pop_matrix();
     }
@@ -121,8 +119,8 @@ void TOExplosiveMachine::run_task() {
                 {0x800, 0x100, 0x800}, {7, 50}, {-100, 1},
                 (s32)debris_models[1], debris_textures[1], 22
             };
-            spawn_particle_effect(&position, 0x45);
-            spawn_particle_effect(&position, 0x46);
+            spawn_particle_effect((const Vec *)(&position), 0x45);
+            spawn_particle_effect((const Vec *)(&position), 0x46);
             void *chip = TObject::operator new(0x234);
             if (chip != NULL) {
                 __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)chip, (u8 *)tl_05, (u8 *)&first);

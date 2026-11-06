@@ -33,11 +33,9 @@ struct TObjMapCsn : public TObjCollidable {
     virtual void render();
     void update_state();
     s32 build_box_triangles();
-    static s32 create(s32 arg0);
+    static TObjMapCsn *create(void *set_data);
     void*get_data_ptr();
     static s32 get_map_count();
-    void*init();
-    static s32 init_and_return(s32 arg0);
     u8 unk_1F8[0x5C];
 };
 

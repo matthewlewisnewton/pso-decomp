@@ -145,10 +145,19 @@ void refresh_status_display__9TWindowDDFv(void *);
 void init_window_layout_entries(void *, void *, int);
 f32 get_target_distance__13TWindowLockOnFv(s32);
 extern Cb_802634E8 lockon_photon_blast_marker_callback;
+extern const f32 TWindowLockOn__data_805DD110;
+extern const f32 lbl_805DD124;
+extern const f32 lbl_805DD128;
+extern const f32 lbl_805DD12C;
 
 extern u8 lockon_window_layout_entries[];
 extern Cb_80263370 lbl_804D0288;
 extern s32 __vt__13TWindowLockOn[];
+extern const f32 lbl_805DD100;
+extern const f32 lbl_805DD114;
+extern const f32 lbl_805DD118;
+extern const f32 lbl_805DD11C;
+extern const f32 lbl_805DD120;
 
 s32 obj_testFlags30__14TObjCollidableFUl(s32, s32);
 s32 obj_isState3_324__9TObjCharaFv(void *);
@@ -160,6 +169,8 @@ s32 construct_base__9TWindowDDFPUcsPUc(void *, void *, void *, int);
 s32 get_window_layout_position(int);
 extern u8 lbl_804D0268[];
 extern s32 lbl_805D3948;
+extern const f32 lbl_805DD130;
+extern const f32 lbl_805DD134;
 
 void bind_target__13TWindowLockOnFv(Win_8026366C *w, u16 id);
 
@@ -174,7 +185,7 @@ void TWindowLockOn::validate_target() {
     if ((item == 0) || (((TObject *)item)->all_parents_unqueued_for_destruction() == 0))
     {
       this->m_60 = 0xFFFFU;
-      if (((f32) (*(s32 *)&this->m_64)) > 15.0f)
+      if (((f32) (*(s32 *)&this->m_64)) > lbl_805DD100)
       {
         *(s32 *)&this->m_64 = 0xF;
       }
@@ -187,7 +198,7 @@ void TWindowLockOn::validate_target() {
         if (PSO_VCALL_VObj_18_7b8813_m31(item) != 0)
         {
           this->m_60 = 0xFFFFU;
-          if (((f32) (*(s32 *)&this->m_64)) > 15.0f)
+          if (((f32) (*(s32 *)&this->m_64)) > lbl_805DD100)
           {
             *(s32 *)&this->m_64 = 0xF;
           }
@@ -197,7 +208,7 @@ void TWindowLockOn::validate_target() {
         if ((((s32 (*)(void *, s32))obj_testFlags30__14TObjCollidableFUl)(item, 0x80000000) != 0) && (((TItem *)item)->get_mode() != 0))
       {
         this->m_60 = 0xFFFFU;
-        if (((f32) (*(s32 *)&this->m_64)) > 15.0f)
+        if (((f32) (*(s32 *)&this->m_64)) > lbl_805DD100)
         {
           *(s32 *)&this->m_64 = 0xF;
         }
@@ -297,6 +308,9 @@ s32 get_message_10__20TWindowSubStatusDispFl(int);
 s32 enemy_name_for_rt_index(int);
 u32 calc_text_width(int);
 extern Data_80263014 lock_on_window_params;
+extern const f32 lbl_805DD104;
+extern const f32 lbl_805DD108;
+extern const f32 lbl_805DD10C;
 
 #pragma push
 #pragma fp_contract on
@@ -315,17 +329,17 @@ void TWindowLockOn__update_for_enemy(s32 a0, s32 a1) {
 
     init_window_layout_entries(arg0->sub, d->m6c, arg0->player);
     arg0->cb = d->cb;
-    e = ((TWindowBase *)arg0)->get_array_entry(1);
+    e = (s32)((TWindowBase *)arg0)->get_array_entry(1);
     TWindowDuelResult::set_default_status((void *)e, get_message_10__20TWindowSubStatusDispFl(0xA5));
     ((TWindowHelpItem *)e)->reset_float_field();
     width = calc_text_width(((TWindowSubComCard *)e)->get_field_20());
-    e = ((TWindowBase *)arg0)->get_array_entry(0);
+    e = (s32)((TWindowBase *)arg0)->get_array_entry(0);
     TWindowDuelResult::set_default_status((void *)e, enemy_name_for_rt_index(((TWindowLockOn *)obj)->get_target_id()));
     ((TWindowHelpItem *)e)->reset_float_field();
     arg0->w = (f32)calc_text_width(((TWindowSubComCard *)e)->get_field_20());
-    arg0->h = 64.0f;
+    arg0->h = lbl_805DD104;
     if (is_split_screen() == 0) {
-        arg0->h += 29.0f;
+        arg0->h += lbl_805DD108;
     }
     if (obj_testFlag_2E4__9TObjCharaFUl(obj, 0x40) != 0) {
         kind = 4;
@@ -340,11 +354,11 @@ void TWindowLockOn__update_for_enemy(s32 a0, s32 a1) {
     } else {
         kind = 4;
     }
-    e = ((TWindowBase *)arg0)->get_array_entry(2);
+    e = (s32)((TWindowBase *)arg0)->get_array_entry(2);
     np = d->names;
     TWindowDuelResult::set_default_status((void *)e, np[kind]);
     ((TWindowHelpItem *)e)->reset_float_field();
-    ((Ent_80263014 *)e)->y = 10.0f + (f32)width;
+    ((Ent_80263014 *)e)->y = lbl_805DD10C + (f32)width;
     np = d->colors;
     ((Ent2_80263014 *)e)->color = np[kind];
     w2 = calc_text_width(((TWindowSubComCard *)e)->get_field_20());
@@ -352,15 +366,15 @@ void TWindowLockOn__update_for_enemy(s32 a0, s32 a1) {
     if ((f32)w2 > arg0->w) {
         arg0->w = (f32)w2;
     }
-    arg0->w += 28.0f;
+    arg0->w += TWindowLockOn__data_805DD110;
     arg0->dist = get_target_distance__13TWindowLockOnFv(0x1E) - arg0->h * arg0->scale;
     arg0->i50 = 0;
     p = (Ent_80263014 *)((TWindowBase *)arg0)->get_array_entry(7);
-    p->x14 = arg0->w - 28.0f;
+    p->x14 = arg0->w - TWindowLockOn__data_805DD110;
     p->x20 = (f32)((TItemProShield *)obj)->get_field_2b8();
     p->x24 = (f32)*(s16 *)((u8 *)obj + 0x32C);
     p = (Ent_80263014 *)((TWindowBase *)arg0)->get_array_entry(8);
-    p->x14 = arg0->w - 28.0f;
+    p->x14 = arg0->w - TWindowLockOn__data_805DD110;
     p->x20 = (f32)obj_getS16_2BA((Ent_80262E90 *)obj);
     p->x24 = (f32)*(s16 *)((u8 *)obj + 0x32E);
 }
@@ -381,16 +395,16 @@ s32 TWindowLockOn__update_for_item(s32 a0, s32 a1) {
     e = (Ent_80263370 *)((TWindowBase *)arg0)->get_array_entry(0);
     ((TWindowSubStatusDisp *)e)->init_item_row(item, 0);
     ((TWindowSubStatusDisp *)e)->calc_row_width();
-    e->y = -8.0f;
+    e->y = lbl_805DD114;
     if (e->kind != 0x33) {
-        e->y += 18.0f;
+        e->y += lbl_805DD118;
     }
     arg0->w = e->w;
-    arg0->h = 38.0f;
+    arg0->h = lbl_805DD11C;
     e2 = (Ent_80263370 *)((TWindowBase *)arg0)->get_array_entry(1);
     if (((TItem *)item)->get_item_type() == 0 || ((TItem *)item)->get_item_type() == 1) {
         ((Ent2_80263370 *)e2)->grade = (u8)((TItem *)item)->calc_display_grade();
-        arg0->h += 20.0f;
+        arg0->h += lbl_805DD120;
         e2->flags &= ~2;
         r = get_item_star_row_width((u8 *)e2);
         if (arg0->w < r) {
@@ -399,7 +413,7 @@ s32 TWindowLockOn__update_for_item(s32 a0, s32 a1) {
     } else {
         e2->flags |= 2;
     }
-    arg0->w += 28.0f;
+    arg0->w += TWindowLockOn__data_805DD110;
     arg0->dist = get_target_distance__13TWindowLockOnFv(0x1E) - arg0->h * arg0->scale;
     arg0->i50 = 0;
 }
@@ -421,9 +435,9 @@ s32 TWindowLockOn__update_for_other_player(s32 a0, s32 a1) {
     ((TWindowLockOn *)w)->update_for_player_index(id);
     ((TWindowHelpItem *)w)->reset_float_field();
     refresh_status_display__9TWindowDDFv(w);
-    arg0->w = 34.0f + w->w;
-    arg0->h = 49.0f;
-    arg0->w += 28.0f;
+    arg0->w = lbl_805DD124 + w->w;
+    arg0->h = lbl_805DD128;
+    arg0->w += TWindowLockOn__data_805DD110;
     arg0->dist = get_target_distance__13TWindowLockOnFv(0x1E) - arg0->h * arg0->scale;
     arg0->i50 = 0;
 }
@@ -461,7 +475,7 @@ void bind_target__13TWindowLockOnFv(Win_8026366C *w, u16 id) {
         w->retention = 0x5A;
         return;
     }
-    if ((f32)w->retention > 90.0f) {
+    if ((f32)w->retention > lbl_805DD12C) {
         return;
     }
     w->id = id;
@@ -531,11 +545,11 @@ u8 *TWindowLockOn__ct(TWindowLockOn *window_lock_on, s16 arg1, s32 arg2) {
     *(s32 **)((s8 *)window_lock_on + 0x18) = __vt__13TWindowLockOn;
     *(s32 *)((s8 *)window_lock_on + 0) = (s32) lbl_805D3948;
     if (TCameraCtrl::get_camera_id() > 2) {
-        *(f32 *)((s8 *)window_lock_on + 0x68) = 0.7f;
-        *(f32 *)((s8 *)window_lock_on + 0x6C) = 0.7f;
+        *(f32 *)((s8 *)window_lock_on + 0x68) = (f32) lbl_805DD130;
+        *(f32 *)((s8 *)window_lock_on + 0x6C) = (f32) lbl_805DD130;
     } else {
-        *(f32 *)((s8 *)window_lock_on + 0x68) = 1.0f;
-        *(f32 *)((s8 *)window_lock_on + 0x6C) = 1.0f;
+        *(f32 *)((s8 *)window_lock_on + 0x68) = (f32) lbl_805DD134;
+        *(f32 *)((s8 *)window_lock_on + 0x6C) = (f32) lbl_805DD134;
     }
     window_lock_on->m_60 = 0xFFFF;
     window_lock_on->m_20 = arg1;

@@ -5,6 +5,8 @@
 #include "pso/misc/RenderFadeState.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 
+class TObjBoss1MokoHill_SoloM;
+
 class TBoss1DragonEffTail;
 
 struct DragonModelVector { f32 x, y, z; };
@@ -82,12 +84,6 @@ struct TBoss1Dragon : public TObjEneDD_ST {
     static void clearControlOverride();
     static void setControlOverride(s16 controlId);
     static void requestActionRefresh();
-    u8 unk_374[0x1C];
-    u32 m_390;
-    f32 targetX;
-    f32 targetY;
-    f32 targetZ;
-    u8 unknown3A0[0x3C0 - 0x3A0];
     u32 flags;
     u8 unknown3C4[0x3E4 - 0x3C4];
     s32 phase;
@@ -117,7 +113,9 @@ struct TBoss1Dragon : public TObjEneDD_ST {
     f32 destinationZ;
     f32 savedX;
     f32 savedZ;
-    u8 unknown6A0[0x6E8 - 0x6A0];
+    u8 unknown6A0[0x6D8 - 0x6A0];
+    TObjBoss1MokoHill_SoloM *trail;
+    u8 unknown6DC[0x6E8 - 0x6DC];
     RenderFadeState viewFade[4];
     u8 unknown758[0x768 - 0x758];
     s32 controlTimer;
@@ -214,7 +212,7 @@ DRAGON_OFFSET(stateStep, 0x864);
 DRAGON_OFFSET(impactAge, 0x868);
 DRAGON_OFFSET(fallVelocity, 0x87C);
 DRAGON_OFFSET(rootHeight, 0x880);
-DRAGON_OFFSET(targetX, 0x394);
+DRAGON_OFFSET(target_destination, 0x394);
 DRAGON_OFFSET(flags, 0x3C0);
 DRAGON_OFFSET(phase, 0x3E4);
 DRAGON_OFFSET(height, 0x5D8);

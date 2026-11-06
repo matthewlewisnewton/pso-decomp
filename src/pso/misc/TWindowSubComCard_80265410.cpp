@@ -1,3 +1,6 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/misc/TWindowDrawContext.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowChoiceSetting.h"
@@ -98,14 +101,11 @@ struct RecoveredGlobal_80266B30_lbl_8050E208 {
 
 typedef char RecoveredGlobal_80266B30_lbl_8050E208_size[sizeof(RecoveredGlobal_80266B30_lbl_8050E208) == 0x1B0 ? 1 : -1];
 
-void mem_free(void *);
-void *mem_alloc(u32 size);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 Ent_80265C30 * get_array_entry__11TWindowBaseFi(void *w, s32 i);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 void __dl__7TObjectFPv(void *);
 s32 __nw__7TObjectFUl(int);
-s32 get_draw_context__11TWindowBaseFPv();
 s32 construct_with_parent__15TWindowAdditionFPv(void *, void *, s16, s32);
 void * get_field_20__17TWindowSubComCardFv(void *e);
 void refresh_status_display__9TWindowDDFv(void *);
@@ -133,7 +133,8 @@ u32 reset_selection__20TWindowSubStatusDispFv(int, void *);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 s32 construct_type1_heading__20TWindowSubStatusDispFll(s32, s32, s32);
 }
-void draw_selection_bar(u8 *arg0, u8 *arg1, s32 arg2);
+struct TWindowDrawContext;
+void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 void set_text_entry_string(u8 *arg0, u32 str, s32 arg2);
 void update_chat_window(void* p);
 s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
@@ -733,7 +734,7 @@ void TWindowMenu::draw_selected_bar(u8 *window_key_board_soft) {
         if (temp_r4 >= 0) {
             temp_r3 = (u16 *)(((s32)((u16 * (*)(void *, int))get_array_entry__11TWindowBaseFi)(this, (s32) temp_r4)));
             if (*temp_r3 & 1) {
-                draw_selection_bar((window_key_board_soft), (u8 *)temp_r3, 1);
+                draw_selection_bar((TWindowDrawContext *)window_key_board_soft, (u8 *)temp_r3, 1);
             }
         }
     }
@@ -744,14 +745,14 @@ void TWindowMenu::render_selected_entry(s32 window_key_board_soft) {
 
     temp_r3 = ((u16 * (*)(void *, int))get_array_entry__11TWindowBaseFi)(this, *(s16 *)&this->m_78);
     if (*temp_r3 & 1) {
-        draw_selection_bar((u8 *)window_key_board_soft, (u8 *)temp_r3, is_decided());
+        draw_selection_bar((TWindowDrawContext *)window_key_board_soft, (u8 *)temp_r3, is_decided());
     }
 }
 
 void render__11TWindowMenuFv(TWindowMenu *arg0) {
     s32 window_key_board_soft;
 
-    window_key_board_soft = get_draw_context__11TWindowBaseFPv();
+    window_key_board_soft = (s32)get_draw_context__11TWindowBaseFPv(arg0);
     ((TWindowBase *)arg0)->draw_window_frame((void *)window_key_board_soft);
     draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, window_key_board_soft);
     if (!(arg0->m_70 & 0x80)) {
@@ -826,7 +827,7 @@ void *__dt__11TWindowMenuFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TWindowMenu;
         TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)arg0 + 0x84)), (s16)1);
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x88)), (s16)1);
-        mem_free(*(void **)((s8 *)arg0 + 0x80));
+        ::operator delete[](*(void **)((s8 *)arg0 + 0x80));
         ((TWindowAddition *)arg0)->destroy_window(0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -848,7 +849,7 @@ u8 *TWindowMenu__ct(u8 *window_menu, u32 arg1, s32 arg2, s32 arg3) {
     *(s16 *)(window_menu + 0x70) = 0;
     *(s16 *)(window_menu + 0x20) = arg2;
     ((TWindowMenu *)window_menu)->reset_selection();
-    *(u8 **)(window_menu + 0x80) = (u8 *)mem_alloc(arg1 * 8);
+    *(u8 **)(window_menu + 0x80) = (u8 *)::operator new[](arg1 * 8);
     p = *(u8 **)(window_menu + 0x80);
     for (i = 0; i < arg1; i++) {
         *(s32 *)p = 0;

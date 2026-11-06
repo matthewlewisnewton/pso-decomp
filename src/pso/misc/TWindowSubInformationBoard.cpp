@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -21,10 +23,10 @@ struct VObj_18_204a81 : VBase_18_204a81 {
 };
 
 extern "C" {
-void mem_free(void *p);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
-s32 play_sound_effect(int, int, int, int);
+
+s32 get_selected_value__11TWindowMenuFv(int);
 s32 get_cursor_pos__20TWindowShortListCtrlFv(int);
 s32 set_info_board_text__6TLobbyFv();
 s32 set_message_index__26TWindowSubInformationBoardFl(void *, s16);
@@ -125,7 +127,7 @@ void TWindowSubInformationBoard::run_task() {
             temp_r30 = ((TWindowSubComCard *)(this->m_3c))->realloc_buffer();
             set_info_board_text__6TLobbyFv();
             TLobby::flush_pending_send();
-            mem_free((void *)temp_r30);
+            ::operator delete[]((void *)temp_r30);
             this->m_1c = 0xBU;
             break;
         }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/object/TObjMapCsn.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/system/vector.h"
 #include "pso/boss/TBoss6Demo15_TYPE2_WAIT.h"
@@ -35,7 +36,7 @@ int get_player_data__10TObjPlayerFi(int a0);
 f32 vector_length(void *);
 s32 subtract_vector(void *, void *);
 extern const f32 lbl_805DFAF8;
-s32 create__10TObjMapCsnFl(void *);
+extern const f32 lbl_805DFB10;
 extern E_8034009C lbl_8047843C[];
 void fn_8034009C(O_8034009C *arg0);
 
@@ -50,10 +51,10 @@ void TBoss6Demo15_TYPE2_WAIT::check_any_player_near() {
     arg0->f24 = 0;
     n = TLobby::get_game_mode();
     y = lbl_805DFAF8;
-    lim = 25.0f;
+    lim = lbl_805DFB10;
     for (i = 0; i < n; i++) {
         p = (P_8033FF78 *)get_player_data__10TObjPlayerFi(i);
-        if (((TBoss6PlotFalz *)p)->is_active() != 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)p) != 0) {
             VecCopy((Vec *)&v, (const Vec *)&arg0->pos);
             subtract_vector(&v, &p->pos);
             v.y = y;
@@ -90,7 +91,7 @@ void fn_8034009C(O_8034009C *arg0) {
         prm.f1c = e->f18;
         prm.f20 = 0;
         VecCopy((Vec *)&prm.b, (const Vec *)&e->b);
-        arg0->o[i] = (void *)create__10TObjMapCsnFl(&prm);
+        arg0->o[i] = TObjMapCsn::create(&prm);
     }
 }
 

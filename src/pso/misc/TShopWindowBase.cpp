@@ -1,6 +1,6 @@
 #include "pso/TShopWindowBase.h"
 #include "pso/TObject.h"
-#include "pso/unk/text_80222C28.h"
+#include "pso/misc/TLobby_80222D24.h"
 #include "pso/misc/TShopWindowBase.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TShopSequence.h"
@@ -26,12 +26,14 @@ void __ct__7TObjectFP7TObject(void *);
 
 void TShopWindowBase::vfunc_11() {  }
 
+extern f32 lbl_805DC728;
+extern f32 lbl_805DC72C;
 
 f32 TShopWindowBase::get_scale() {
     if ((TRaderMapCore::is_not_split_screen() == 1) && (TCameraCtrl::get_instance() > 2)) {
-        return 0.75f;
+        return lbl_805DC728;
     }
-    return 1.0f;
+    return lbl_805DC72C;
 }
 
 u16 TShopWindowBase::sub_8022397C() {

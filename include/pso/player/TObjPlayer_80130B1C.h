@@ -4,12 +4,12 @@
 #include "types.h"
 
 extern "C" {
-void *yasminkov_9000m_ct(void *a0, s32 parent, s32 item);
+void *yasminkov_9000m_ct(void *a0);
 }
 
 // --- C functions defined in TObjPlayer_80130B1C.cpp ---
 extern "C" {
-void *yasminkov_9000m_ct(void *a0, s32 parent, s32 item);
+void *yasminkov_9000m_ct(void *a0);
 }
 // --- end of C functions
 

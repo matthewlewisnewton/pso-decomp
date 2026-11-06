@@ -1,9 +1,12 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowComCard.h"
 #include "pso/misc/TWindowLockOn.h"
 #include "pso/misc/TWindowSimpleStatus.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CF930.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/misc/TWindowSubStatusDisp_8026F6DC.h"
 #include "pso/TObjCMHairMenu.h"
 #include "pso/item/TItemProShield.h"
 #include "pso/misc/TLobby.h"
@@ -23,7 +26,7 @@ struct Prim_8026FC5C { f32 *verts; u32 *colors; s32 flags; s32 count; };
 
 extern "C" {
 int obj_getArrWord_254(void *p, int i);
-void * get_player_by_client_id();
+void *get_player_by_client_id(s32);
 void *__nw__7TObjectFUl(int);
 void TWindowComCard__sub_80249D7C(u8 *arg0, s32 arg1);
 void *TWindowComCard__sub_80249ED8(void *, void *, void *, s32, s32, s32);
@@ -39,74 +42,23 @@ extern const f32 lbl_805DD3D0;
 extern const f32 lbl_805DD3D4;
 extern const f32 lbl_805DD3D8;
 void draw_photon_blast_gauge_ring(s32 arg0, Params_80270244 *arg1, const Vec2_80270244 *arg2, f32 farg0, f32 farg1);
-struct VtBase4_8026f71c_more_8026f8cc_0 { void *vtable; };
-
-struct VObj3_8026f71c_more_8026f8cc_0 : VtBase4_8026f71c_more_8026f8cc_0 { virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3(); };
-
-struct Base_8026F77C_more_8026f8cc_0 { char pad[0x18]; };
-
-struct VObj_8026F77C_more_8026f8cc_0 : Base_8026F77C_more_8026f8cc_0 {
-    virtual void m0();virtual void m1();virtual void m2();virtual void m3();
-    virtual void m4();virtual void m5();virtual void m6();virtual void m7();
-    virtual void m8();virtual void m9();virtual void m10();virtual void m11();
-    virtual void m12();virtual void m13();
-    virtual int m14();
-};
-
-struct VObj_8026ff0c;
-
-struct VObj_8026ff0c {
-    char pad[0x18];
-    virtual s32 m0();
-    virtual s32 m1();
-    virtual s32 m2();
-    virtual s32 m3();
-    virtual s32 m4();
-    virtual s32 m5();
-    virtual s32 m6();
-    virtual s32 m7();
-    virtual s32 m8();
-    virtual s32 m9();
-    virtual s32 m10();
-    virtual s32 m11();
-    virtual s32 m12();
-    virtual s32 m13();
-    virtual s32 m14();
-    virtual s32 m15();
-    virtual s32 m16();
-    virtual s32 m17();
-    virtual s32 m18();
-    virtual s32 m19();
-    virtual s32 m20();
-    virtual s32 m21();
-    virtual s32 m22();
-    virtual s32 m23();
-    virtual s32 m24();
-    virtual s32 m25();
-    virtual s32 m26();
-    virtual s32 m27();
-    virtual s32 m28();
-    virtual s32 m29();
-    virtual s32 m30();
-    virtual s32 m31();
-};
-
 struct Slots_80270060 { s32 type[4]; u32 id[4]; };
 
 struct Vec2_80270394 { f32 x; f32 y; };
 
 struct Rect_80270394 { f32 x0; f32 y0; f32 x1; f32 y1; f32 u0; f32 v0; f32 u1; f32 v1; };
 
-s16 obj_getS16_2BA(u8 *p);
-s32 get_photon_blast_charge__10TObjPlayerFv();
-s32 get_photon_blast_chain(Slots_80270060 *);
+s16 obj_getS16_2BA(void *p);
+s16 get_field_2b8__14TItemProShieldFv(TObjPlayer *);
+
+s32 get_photon_blast_chain(void *, s32);
 s32 TLobby__sub_801C19D0(void *);
 void * get_array_entry__11TWindowBaseFi(void *, s32);
 s32 TWindowSubComCard__sub_802452DC(s32);
 s32 TWindowSubComCard__sub_80245320(Rect_80270394 *, u8 *);
 s32 TWindowSubComCard__sub_802454E4(s32);
 s32 TWindowSubComCard__sub_80245558(u8 *, Vec2_80270394 *, Vec2_80270394 *);
-s32 get_width__19TWindowSimpleStatusFv();
+s32 get_width__19TWindowSimpleStatusFv(void *);
 s32 apply_context_transform_to_rect(u8 *, Rect_80270394 *);
 s32 start_text_color_transition(void *, s32, f32);
 }
@@ -115,7 +67,7 @@ void set_text_entry_string(u8 *arg0, u32 str, s32 arg2);
 void set_sprite_uv_from_pixels(u8 *arg0, f32 farg0, f32 farg1);
 extern "C" {
 void update_lockon_window(u8 *arg0);
-s32 update_photon_blast_player_marker(s32 arg0, s32 arg1);
+void update_photon_blast_player_marker(void *arg0, s32 arg1);
 s32 rand(void);
 s32 strcmp(s32, s32);
 f32 sin_table_lookup(s32);
@@ -144,94 +96,92 @@ extern const f32 lbl_805DD3E0;
 extern const f32 lbl_805DD3E4;
 extern const f32 lbl_805DD3E8;
 extern const f32 lbl_805DD3EC;
+extern const f32 lbl_805DD3F0;
+extern const f32 lbl_805DD3F4;
+extern const f32 lbl_805DD3F8;
+extern const f32 lbl_805DD3FC;
 
 void TWindowSubStatusDisp::start_hp_text_color_transition() {
-    u8 *arg0 = (u8 *)this;
-    u8 *temp_r3;
-    temp_r3 = (u8 *)(((s32)get_array_entry__11TWindowBaseFi(arg0, 4)));
-    *(f32 *)((s8 *)temp_r3 + 0x20) = (f32) (*(const f32 *)&lbl_805DD388);
-    *(f32 *)((s8 *)temp_r3 + 0x24) = (f32) (*(const f32 *)&lbl_805DD388);
-    start_text_color_transition(temp_r3, (s32)(0xFF008CFCU), (*(const f32 *)&lbl_805DD38C));
+    TUnk_804CF930 *entry = static_cast<TUnk_804CF930 *>(get_array_entry(4));
+    entry->maximum = lbl_805DD388;
+    entry->target = lbl_805DD388;
+    start_text_color_transition(entry, 0xFF008CFC, lbl_805DD38C);
 }
 
 void TWindowSubStatusDisp::init_gauge_entry() {
-    VObj3_8026f71c_more_8026f8cc_0 *temp_r3;
-    f32 temp_f0;
-
-    temp_r3 = (VObj3_8026f71c_more_8026f8cc_0 *) get_array_entry__11TWindowBaseFi(this, 3);
-    temp_f0 = lbl_805DD388;
-    *(f32 *)((s8 *)temp_r3 + 0x20) = temp_f0;
-    *(f32 *)((s8 *)temp_r3 + 0x24) = temp_f0;
-    temp_r3->m3();
-    start_text_color_transition(temp_r3, 0xFF00FF15, lbl_805DD38C);
+    TUnk_804CF930 *entry = static_cast<TUnk_804CF930 *>(get_array_entry(3));
+    f32 initial = lbl_805DD388;
+    entry->maximum = initial;
+    entry->target = initial;
+    entry->calc_bar_width();
+    start_text_color_transition(entry, 0xFF00FF15, lbl_805DD38C);
 }
 
 void TWindowSubStatusDisp::update_status_entry() {
     s32 arg0 = (s32)this;
     void *temp_r31;
-    VObj_8026F77C_more_8026f8cc_0 *player;
+    TObjPlayer *player;
 
-    get_width__19TWindowSimpleStatusFv();
-    player = (VObj_8026F77C_more_8026f8cc_0 *) get_player_by_client_id();
+    player = static_cast<TObjPlayer *>(get_player_by_client_id(get_width__19TWindowSimpleStatusFv(this)));
     if (player != NULL) {
         temp_r31 = get_array_entry__11TWindowBaseFi((void *)arg0, 2);
-        *(s32 *)((s8 *)temp_r31 + 0x20) = player->m14() + 1;
+        *(s32 *)((s8 *)temp_r31 + 0x20) = player->get_actor_level_index() + 1;
     }
 }
 
 s32 TWindowSubStatusDisp::update_hp_gauge() {
-    s32 var_r4;
-    s32 var_r31;
-    void *temp_r30;
-    void *temp_r3;
-    s32 arg0 = (s32)this;
+    s32 color;
+    s32 result;
+    TUnk_804CF930 *entry;
+    TObjPlayer *player;
+    TWindowSubStatusDisp *window = this;
 
-    get_width__19TWindowSimpleStatusFv();
-    temp_r3 = get_player_by_client_id();
-    if (temp_r3 == NULL) {
-        ((TWindowSubStatusDisp *)arg0)->start_hp_text_color_transition();
+    player = static_cast<TObjPlayer *>(get_player_by_client_id(get_width__19TWindowSimpleStatusFv(window)));
+    if (player == NULL) {
+        window->start_hp_text_color_transition();
         return 0xFF008CFC;
     }
-    temp_r30 = get_array_entry__11TWindowBaseFi((void *)arg0, 4);
-    *(f32 *)((s8 *)temp_r30 + 0x20) = (f32) obj_getS16_2BA((u8 *)temp_r3);
-    *(f32 *)((s8 *)temp_r30 + 0x24) = (f32) *(s16 *)((s8 *)temp_r3 + 0x32E);
-    if (*(f32 *)((s8 *)temp_r30 + 0x24) > (lbl_805DD390 * *(f32 *)((s8 *)temp_r30 + 0x20))) {
-        var_r31 = -1;
-        var_r4 = 0xFF008CFC;
+    entry = static_cast<TUnk_804CF930 *>(window->get_array_entry(4));
+    entry->maximum = obj_getS16_2BA(player);
+    // Corresponding signed/unsigned halfword types may alias; keep the original lha.
+    entry->target = *reinterpret_cast<const s16 *>(&player->tp);
+    if (entry->target > lbl_805DD390 * entry->maximum) {
+        result = -1;
+        color = 0xFF008CFC;
     } else {
-        var_r4 = -0x3EEC;
-        var_r31 = -0x3EEC;
+        color = -0x3EEC;
+        result = -0x3EEC;
     }
-    start_text_color_transition(temp_r30, var_r4, lbl_805DD394);
-    return var_r31;
+    start_text_color_transition(entry, color, lbl_805DD394);
+    return result;
 }
 
 s32 TWindowSubStatusDisp::update_hp_entry() {
-    s32 var_r30;
-    s32 var_r4;
-    u8 *temp_r31;
-    u8 *player;
-    get_width__19TWindowSimpleStatusFv();
-    player = (u8 *)(((u8 *)get_player_by_client_id()));
+    s32 result;
+    s32 color;
+    TUnk_804CF930 *entry;
+    TObjPlayer *player;
+    player = static_cast<TObjPlayer *>(get_player_by_client_id(get_width__19TWindowSimpleStatusFv(this)));
     if (player == NULL) {
-        this->init_gauge_entry();
+        init_gauge_entry();
         return 0xFF00FF15;
     }
-    temp_r31 = (u8 *)(((u8 *)get_array_entry__11TWindowBaseFi(this, 3)));
-    *(f32 *)((s8 *)temp_r31 + 0x20) = (f32) ((TItemProShield *)player)->get_field_2b8();
-    if (*(f32 *)((s8 *)temp_r31 + 0x24) > (f32) *(s16 *)((s8 *)player + 0x32C)) {
-        *(s32 *)((s8 *)((u8 *)this) + 0x60) = 4;
+    entry = static_cast<TUnk_804CF930 *>(get_array_entry(3));
+    entry->maximum = get_field_2b8__14TItemProShieldFv(player);
+    if (entry->target > player->hp) {
+        // Ownership beyond the common window prefix remains provisional here.
+        *reinterpret_cast<s32 *>(reinterpret_cast<u8 *>(this) + 0x60) = 4;
     }
-    *(f32 *)((s8 *)temp_r31 + 0x24) = (f32) *(s16 *)((s8 *)player + 0x32C);
-    if (*(f32 *)((s8 *)temp_r31 + 0x24) > (lbl_805DD390 * *(f32 *)((s8 *)temp_r31 + 0x20))) {
-        var_r30 = -1;
-        var_r4 = 0xFF00FF15;
+    entry->target = player->hp;
+    if (entry->target > lbl_805DD390 * entry->maximum) {
+        result = -1;
+        color = 0xFF00FF15;
     } else {
-        var_r4 = 0xFFF2FF19;
-        var_r30 = 0xFFF2FF19;
+        color = 0xFFF2FF19;
+        result = 0xFFF2FF19;
     }
-    start_text_color_transition(temp_r31, var_r4, lbl_805DD394);
-    return var_r30;
+    start_text_color_transition(entry, color, lbl_805DD394);
+    return result;
 }
 
 void TWindowSimpleStatus::update_status_icons(void *ofs) {
@@ -243,7 +193,7 @@ void TWindowSimpleStatus::update_status_icons(void *ofs) {
     s32 name;
     void *w;
     void *player;
-    player = ((void *(*)(s32))get_player_by_client_id)(((Disp_8026F9F4 *)this)->id);
+    player = get_player_by_client_id(((Disp_8026F9F4 *)this)->id);
     if (player == NULL || sub_80244994() == 0) {
         for (i = 0; i < 5; i++) {
             if (((Disp_8026F9F4 *)this)->windows[i] != NULL) {
@@ -255,7 +205,7 @@ void TWindowSimpleStatus::update_status_icons(void *ofs) {
     }
     count = 0;
     j = 0;
-    i = ((s32 (*)(Slots_80270060 *, s32))get_photon_blast_chain)(&buf, ((Disp_8026F9F4 *)this)->id);
+    i = get_photon_blast_chain(&buf, ((Disp_8026F9F4 *)this)->id);
     if (i == 1 || i == 2) {
         for (i = 0; buf.type[i] != -1; i++) {
             if (buf.id[i] == ((Disp_8026F9F4 *)this)->id) {
@@ -365,19 +315,19 @@ void TWindowSubStatusDisp::update_hp_tp_level() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r31;
     s32 temp_r31_2;
-    temp_r31 = ((s32 (*)(void *, int))get_array_entry__11TWindowBaseFi)(arg0, 6);
+    temp_r31 = (s32)get_array_entry__11TWindowBaseFi(arg0, 6);
     *(s32 *)((s8 *)temp_r31 + 0x2C) = ((TWindowSubStatusDisp *)arg0)->update_hp_entry();
-    temp_r31_2 = ((s32 (*)(void *, int))get_array_entry__11TWindowBaseFi)(arg0, 7);
+    temp_r31_2 = (s32)get_array_entry__11TWindowBaseFi(arg0, 7);
     *(s32 *)((s8 *)temp_r31_2 + 0x2C) = ((TWindowSubStatusDisp *)arg0)->update_hp_gauge();
     update_status_entry();
 }
 
 void TWindowLockOn::update_for_player_index(s32 arg1) {
     s32 temp_r31;
-    struct VObj_8026ff0c *temp_r30;
+    TObjPlayer *temp_r30;
     u8 *temp_r29;
 
-    temp_r30 = ((VObj_8026ff0c * (*)(s32))get_player_by_client_id)(arg1);
+    temp_r30 = static_cast<TObjPlayer *>(get_player_by_client_id(arg1));
     if (temp_r30 == NULL) {
         ((TWindowHelpItem *)((u8 *)this))->set_flag0_bit2();
         return;
@@ -387,7 +337,7 @@ void TWindowLockOn::update_for_player_index(s32 arg1) {
         ((TWindowHelpItem *)((u8 *)this))->set_flag0_bit2();
         return;
     }
-    temp_r31 = temp_r30->m10();
+    temp_r31 = reinterpret_cast<s32>(temp_r30->get_name());
     if (temp_r31 == 0) {
         ((TWindowHelpItem *)((u8 *)this))->set_flag0_bit2();
         return;
@@ -400,7 +350,7 @@ void TWindowLockOn::update_for_player_index(s32 arg1) {
     if ((((TWindowSubComCard *)((u8 *)this))->get_field_20() == 0U) || (strcmp(((TWindowSubComCard *)((u8 *)this))->get_field_20(), temp_r31) != 0)) {
         set_text_entry_string(((u8 *)this), temp_r31, 0x20);
     }
-    if (temp_r30->m31() != 0) {
+    if (temp_r30->has_flag_0x800() != 0) {
         *(s32 *)&this->m_24 = 0xFFFF0000;
         return;
     }
@@ -409,11 +359,11 @@ void TWindowLockOn::update_for_player_index(s32 arg1) {
 
 void update_lockon_window(u8 *arg0) {
     s32 temp_r31;
-    temp_r31 = ((s32 (*)(void *, int))get_array_entry__11TWindowBaseFi)(arg0, 1);
-    ((TWindowLockOn *)temp_r31)->update_for_player_index(((s32 (*)(void *))get_width__19TWindowSimpleStatusFv)(arg0));
+    temp_r31 = (s32)get_array_entry__11TWindowBaseFi(arg0, 1);
+    ((TWindowLockOn *)temp_r31)->update_for_player_index(get_width__19TWindowSimpleStatusFv(arg0));
 }
 
-s32 update_photon_blast_player_marker(s32 arg0, s32 arg1) {
+void update_photon_blast_player_marker(void *arg0, s32 arg1) {
     Slots_80270060 s;
     s32 type;
     u32 key;
@@ -423,7 +373,7 @@ s32 update_photon_blast_player_marker(s32 arg0, s32 arg1) {
     key = arg1;
     type = -1;
     if (key != 0xFFFF) {
-        r = get_photon_blast_chain(&s);
+        r = get_photon_blast_chain(&s, arg1);
         if (r == 1 || r == 2) {
             s32 t;
             for (i = 0; (t = s.type[i]) != -1; i++) {
@@ -453,7 +403,7 @@ s32 update_photon_blast_player_marker(s32 arg0, s32 arg1) {
             set_sprite_uv_from_pixels((u8 *)arg0, lbl_805DD3C0, lbl_805DD3AC);
             break;
         default:
-            if (((TLobby *)lobby_rule_settings)->get_rule_field_a() == 1 && (p = ((u8 * (*)(u32))get_player_by_client_id)(key)) != 0) {
+            if (((TLobby *)lobby_rule_settings)->get_rule_field_a() == 1 && (p = (u8 *)get_player_by_client_id(key)) != 0) {
                 key = TLobby__sub_801C19D0(p + 0x828) - 1;
             }
             set_sprite_uv_from_pixels((u8 *)arg0, lbl_805DD3B0 * key, lbl_805DD3C4);
@@ -465,11 +415,11 @@ s32 update_photon_blast_player_marker(s32 arg0, s32 arg1) {
 void update_status_help_item(s32 arg0) {
     s32 var_r31;
 
-    var_r31 = get_width__19TWindowSimpleStatusFv();
+    var_r31 = get_width__19TWindowSimpleStatusFv((void *)arg0);
     if (get_current_floor_area() == AREA_LOBBY) {
         var_r31 = 0;
     }
-    update_photon_blast_player_marker((s32)(((s32 (*)(s32, s32))get_array_entry__11TWindowBaseFi)(arg0, 0)), var_r31);
+    update_photon_blast_player_marker(get_array_entry__11TWindowBaseFi((void *)arg0, 0), var_r31);
 }
 
 #pragma push
@@ -499,9 +449,9 @@ void TWindowSimpleStatus::draw_background(u8 *arg1) {
     f32 scale;
     f32 f;
 
-    get_width__19TWindowSimpleStatusFv();
-    if (((u32 (*)(void))get_player_by_client_id)() != 0) {
-        f = get_photon_blast_charge__10TObjPlayerFv();
+    TObjPlayer *player = static_cast<TObjPlayer *>(get_player_by_client_id(get_width__19TWindowSimpleStatusFv(this)));
+    if (player != NULL) {
+        f = player->get_photon_blast_charge();
     } else {
         f = lbl_805DD388;
     }
@@ -512,16 +462,16 @@ void TWindowSimpleStatus::draw_background(u8 *arg1) {
     size.y = lbl_805DD3E8;
     scale = lbl_805DD3EC / this->m_54;
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0xB, *(s32 *)((s8 *)arg1 + 0x34));
     r.x0 = pos.x;
     r.y0 = pos.y;
     r.x1 = r.x0 + size.x;
     r.y1 = r.y0 + size.y;
-    r.u0 = 0.7421875f;
-    r.v0 = 0.3125f;
-    r.u1 = 0.8828125f;
-    r.v1 = 0.44921875f;
+    r.u0 = lbl_805DD3F0;
+    r.v0 = lbl_805DD3F4;
+    r.u1 = lbl_805DD3F8;
+    r.v1 = lbl_805DD3FC;
     apply_context_transform_to_rect(arg1, &r);
     draw_textured_quad_at_depth(&r, scale);
     TWindowSubStatusDisp::get_player();

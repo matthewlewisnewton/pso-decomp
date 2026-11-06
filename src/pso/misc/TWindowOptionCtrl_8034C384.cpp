@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubComCard_802A5748.h"
 #include "pso/misc/TLobby_803382E4.h"
@@ -16,7 +17,7 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 TAdPlayerLoadGC__sub_801E1B50(int);
 s32 TAdPlayerLoadGC__sub_801E24F8(int, int, int, int, int);
-s32 play_sound_effect(int, int, int, int);
+
 extern s32 controller_input_state[];
 u32 create__19TWindowMessageYesNoFPvPvPvPv(s32, s32, s32, s32);
 void __ct__7TObjectFP7TObject(void *);
@@ -32,6 +33,7 @@ s32 TWindowOptionCtrl::get_field_24() { return this->m_24; }
 
 extern s32 local_client_id;
 extern s32 tl_01;
+extern const f32 lbl_805DFDD0;
 
 void TWindowOptionCtrl::open_confirm_dialog(s32 arg1, s32 arg2) {
     if ((u32) this->m_2c != 0U) {
@@ -40,10 +42,10 @@ void TWindowOptionCtrl::open_confirm_dialog(s32 arg1, s32 arg2) {
     }
     this->m_2c = create__19TWindowMessageYesNoFPvPvPvPv(tl_01, local_client_id, 0, 0);
     if (arg2 != 0) {
-        forward_slot_selection__16TAdChrSelASlotGCFPvPv(this->m_2c, arg1, get_option_entry__17TWindowOptionCtrlFi(0xCF), 470.0f);
+        forward_slot_selection__16TAdChrSelASlotGCFPvPv(this->m_2c, arg1, get_option_entry__17TWindowOptionCtrlFi(0xCF), lbl_805DFDD0);
         return;
     }
-    initialize_option_dialog((void *)this->m_2c, arg1, (get_option_entry__17TWindowOptionCtrlFi(0xCF)), 470.0f);
+    initialize_option_dialog((void *)this->m_2c, arg1, (get_option_entry__17TWindowOptionCtrlFi(0xCF)), (f32)lbl_805DFDD0);
 }
 
 void TWindowOptionCtrl::set_option_and_confirm(s32 arg1, s32 arg2) {
@@ -250,7 +252,7 @@ void TWindowOptionCtrl::handle_save_result() {
             return;
         case 14:
             if (TAdPlayerLoadGC__sub_801E1B50(1) == 0) {
-                if ((u32) TAdPlayerLoadGC::get_load_result((void *)1) == 0xFFFFFF81U) {
+                if ((u32) TAdPlayerLoadGC::get_load_result(1) == 0xFFFFFF81U) {
                     set_option_and_confirm(9, 0);
                     *(s32 *)((s8 *)arg0 + 0x1C) = 0xF;
                     return;

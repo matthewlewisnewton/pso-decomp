@@ -39,8 +39,4 @@ void run_task__19TBoss8DragonEffTailFv(u8 *arg0p);
 }
 // --- end of C functions
 
-extern "C" {
-void fn_802FE8CC(void);
-}
-
 #endif

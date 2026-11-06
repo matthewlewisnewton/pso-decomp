@@ -1,5 +1,5 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/unk/text_80104FCC.h"
-#include "pso/misc/TShopJudgmentItemWindow.h"
 #include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowBase.h"
 #include "types.h"
@@ -20,6 +20,7 @@
 #include "pso/misc/TWindowSubMag.h"
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TPlyItem.h"
 #include "pso/ui/Language.h"
 
 struct Base_802205E4 { char pad[0x18]; };
@@ -116,7 +117,7 @@ struct Ent_80221440 { s32 item; s32 idx; };
 struct Win_80221440 {
     VObj_18_2e9c25 base;
     u8 pad1c[0x24 - 0x1C];
-    u8 *player;
+    TObjPlayer *player;
     u8 pad28[0x54 - 0x28];
     Ent_80221440 ents[30];
     u8 pad144[4];
@@ -174,7 +175,6 @@ s32 get_appraisal_text(s32 arg0);
 extern "C" {
 u8 *create_item_list_window(s32 arg0, s32 arg1, s32 arg2);
 void *memset(void *, int, unsigned long);
-s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 s32 get_item_record__23TShopJudgmentItemWindowFPv(int, int, int);
 void set_judgment_target_flag(void *arg0, void *arg1);
 f32 get_scale__15TShopWindowBaseFv(void *);
@@ -191,8 +191,10 @@ u32 create__22TWindowLoadItemTextureFPv(int, u16);
 extern u8 lbl_8044C1C0[];
 extern u8 lbl_8044C1CC[];
 extern s32 local_client_id;
+extern const f32 lbl_805DC708;
+void *TShopJudgmentItemWindow__ct(TShopJudgmentItemWindow *arg0, void *arg1, void *arg2, void *arg3);
 void *__dt__23TShopJudgmentItemWindowFv(TShopJudgmentItemWindow *arg0, s16 arg1);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
 void *__ct__15TShopWindowBaseFv(void *arg0);
@@ -209,7 +211,7 @@ void TShopJudgmentItemWindow::display_message(const char *text, s32 flags) {
     }
 }
 
-void TShopJudgmentItemWindow::vfunc_8() {
+void TShopJudgmentItemWindow::vfunc_8(s32, s32) {
     struct VObj_8022061C_802205E4 *temp_r3;
 
     temp_r3 = (struct VObj_8022061C_802205E4 *)this->m_164;
@@ -279,7 +281,7 @@ void TShopJudgmentItemWindow::handle_pay_confirm() {
                 *(s32 *)&this->_pad14C = 3;
                 ((TWindowBase *)this->m_158)->close();
                 this->m_158 = 0U;
-                try_spend_actor_meseta((u8 *)this->m_24, 0x64);
+                try_spend_actor_meseta((TObjPlayer *)this->m_24, 0x64);
                 ((VObj_18 *)(this))->m6(0xA, 1);
                 this->set_field_20(5);
                 return;
@@ -417,7 +419,7 @@ void TShopJudgmentItemWindow::update_judge_confirm() {
                     ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x15C)))->close();
                     *(u32 *)((s8 *)arg0 + 0x15C) = 0U;
                 }
-                try_spend_actor_meseta((u8 *)(*(s32 *)((s8 *)arg0 + 0x24)), 0x64);
+                try_spend_actor_meseta((TObjPlayer *)(*(s32 *)((s8 *)arg0 + 0x24)), 0x64);
                 if (check_equip_requirements(*(void **)((s8 *)arg0 + 0x24), arg0 + 0x28, NULL) != 0) {
                     ((VObj_18 *)(arg0))->m6(0xC, 1);
                     ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x158)))->close();
@@ -497,7 +499,7 @@ void TShopJudgmentItemWindow::create_result_windows() {
             }
             this->m_15c = var_r29;
             if (((u32) this->m_15c != 0U) && (TLobby::is_camera_ctrl_active() > 2)) {
-                ((TLobby *)(this->m_15c))->set_position(0.75f, 0.75f);
+                ((TLobby *)(this->m_15c))->set_position(lbl_805DC708, lbl_805DC708);
             }
             ((TWindowHelpItem *)(this->m_15c))->set_displayed_item_colored((u32)(arg0 + 0x28));
         }
@@ -588,7 +590,7 @@ s32 TShopJudgmentItemWindow::build_item_list(void *arg0) {
     s32 j;
     s32 k;
     memset(W->ents, 0, 0xF0);
-    n = ((TObjPlayer *)(*(s32 *)(W->player + 0xD00)))->apply_shop_judgment((int)items);
+    n = W->player->inventory_objects->apply_shop_judgment(items);
     W->count = 0;
     for (i = 0; i < n; i++) {
         it = items[i];
@@ -682,20 +684,23 @@ void *__dt__23TShopJudgmentItemWindowFv(TShopJudgmentItemWindow *arg0, s16 arg1)
 
 extern void *TShopJudgmentItemWindow__class_name;
 
+void *TShopJudgmentItemWindow__ct(TShopJudgmentItemWindow *shop_judgment_item_window, void *arg1, void *arg2, void *arg3) {
+    __ct__15TShopWindowBaseFv(shop_judgment_item_window);
+    *(s32 **)((s8 *)shop_judgment_item_window + 0x18) = __vt__23TShopJudgmentItemWindow;
+    *(void * *)&shop_judgment_item_window->m_name = TShopJudgmentItemWindow__class_name;
+    shop_judgment_item_window->m_144 = 0;
+    shop_judgment_item_window->m_148 = 0;
+    shop_judgment_item_window->m_150 = 0;
+    *(void **)((s8 *)shop_judgment_item_window + 0x24) = arg3;
+    shop_judgment_item_window->m_154 = 0;
+    shop_judgment_item_window->m_158 = 0;
+    shop_judgment_item_window->m_15c = 0;
+    shop_judgment_item_window->m_160 = 0;
+    shop_judgment_item_window->m_50 = 0;
+    *(void **)((s8 *)shop_judgment_item_window + 0x164) = arg2;
+    shop_judgment_item_window->m_16c = 0;
+    shop_judgment_item_window->m_170 = 0;
+    shop_judgment_item_window->m_174 = 0;
+    return shop_judgment_item_window;
 }
-TShopJudgmentItemWindow::TShopJudgmentItemWindow(void *arg1, void *arg2, void *arg3) : TShopWindowBase() {
-    *(void * *)&this->m_name = TShopJudgmentItemWindow__class_name;
-    this->m_144 = 0;
-    this->m_148 = 0;
-    this->m_150 = 0;
-    *(void **)((s8 *)this + 0x24) = arg3;
-    this->m_154 = 0;
-    this->m_158 = 0;
-    this->m_15c = 0;
-    this->m_160 = 0;
-    this->m_50 = 0;
-    *(void **)((s8 *)this + 0x164) = arg2;
-    this->m_16c = 0;
-    this->m_170 = 0;
-    this->m_174 = 0;
 }

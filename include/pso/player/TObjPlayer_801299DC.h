@@ -4,12 +4,12 @@
 #include "types.h"
 
 extern "C" {
-void *init_s_rank_shot(void *a0, s32 parent, s32 item);
+void *init_s_rank_shot(void *a0);
 }
 
 // --- C functions defined in TObjPlayer_801299DC.cpp ---
 extern "C" {
-void *init_s_rank_shot(void *a0, s32 parent, s32 item);
+void *init_s_rank_shot(void *a0);
 }
 // --- end of C functions
 

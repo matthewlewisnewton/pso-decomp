@@ -357,7 +357,6 @@ cflags_runtime = [
     "-i libs/dolphin/include/dolphin",
     "-i libs/PowerPC_EABI_Support/Runtime/Inc",
     "-i libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
-    "-i libs/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
     "-use_lmw_stmw on",
     "-str reuse,pool,readonly",
     "-common off",
@@ -374,7 +373,6 @@ cflags_trk = [
     "-i libs/dolphin/include/libc",
     "-i libs/PowerPC_EABI_Support/Runtime/Inc",
     "-i libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
-    "-i libs/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
     "-sdata 0",
     "-sdata2 0",
     "-inline auto,deferred",
@@ -431,153 +429,193 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
-    # -str readonly: the string literals of these files sit in .rodata.
-    "pso/misc/TLobby_80103F5C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TPhotonEstlla.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TPhotonFarlla.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TPhotonMylla.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/object/TObjOnlineEnding_802E4B80.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/ui/TAdPlayerLoadGC.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/enemy/TObjEneDelDepth.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/enemy/TObjEnePanarms_800DCEB8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/ui/TAdRicoRingCtrl.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/enemy/TObjEneDD.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/enemy/TObjEneDubchik.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
-    "pso/misc/TShopKeepItemWindow.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
-    "pso/misc/TNpcPlayer.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
-    "pso/misc/TWindowMainMenu_802AD538.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    # -sdata 4: the 8-byte kind tables 0x80542FBC-0x80542FDC sit in .bss, not .sbss.
-    "pso/enemy/TObjEneMe3SinowZoa.cpp": {"cflags": _switch(cflags_pso, "-inline on,deferred", "-str reuse,readonly", "-sdata 4")},
-    "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-opt nopropagation", "-pool off", "-sdata 4")},
-    "pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-sdata 4")},
-    # Functions in reverse source order (0x8008DC18-0x80090448 is written last-to-first) and the four 8-byte
-    # .bss arrays 0x805007A8-0x805007C0 reached through one lis/addi pool base in the ctor, not r13.
-    "pso/enemy/TObjEneBalClawBody.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-sdata 4")},
-    "pso/enemy/TObjEneBalClawClaw.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/misc/TPlyFollowParticleCtrl.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/player/TObjPlayer_8002E784.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/enemy/TObjEneLappy.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/ui/TAdEnterSerialAccessGC_8032AD30.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TPhotonGolla.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TPhotonPilla.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/unk/text_80193018.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/boss/TBoss6Tube_802B16BC.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TLobby_803360CC.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TLobby_801461EC.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TLobby_802268F4.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TLobby_80228818.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/unk/text_8034AD38.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/unk/text_80066F10.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/npc/TObjNpcNgcBase_80358AE8.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4")},
-    "pso/misc/TOVS2Wall01_8017BE08.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/boss/TObjBoss2CeilJunk_8003A81C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TWindowDD_8034725C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/unk/text_8016F1C0.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TRaderMapCore_801FB6A8.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TNpcPlayer_8034DFBC.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TNpcPlayer_80190E64.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/enemy/TObjEnePanarmsAtkColli.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/object/TObjSeabedSuisoBrakable.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TLogo_8001C134.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/quest/TQuestListVM_80073DC4.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/ui/TAdMultiChgGameModeGC_8023EAC4.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/unk/text_800FA464.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/ShopToolStock.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TWindowSubStatusDisp_80228CC0.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TWindowChallengeResult.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/unk/text_8013F810.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/network/TProtocol_801DA240.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/boss/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
+    # TObjPlayer__sub_8015434C fuses offset*sin+pos (fmadds at 0x80154408)
+    # and offset*cos+pos (fmadds at 0x8015442C). The same flag leaves every
+    # other function in this unit unchanged, including resolve_actor_sphere_contact's
+    # (x*x)+(z*z) as fmuls+fadds. resolve_player_box_contact's fmadds at
+    # 0x8015532C and 0x8015533C already come from that function's pragma.
+    # Precedent: dtk-template's GC/Wii base flags use -fp_contract on
+    # (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209).
+    "pso/player/TObjPlayer_801542CC.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # Upstream #183: the Falz plot table TU is built with deferred inlining
+    # (its state actions come out in reverse table order).
     "pso/boss/TBoss6PlotFalz_802B0228.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
-    "pso/misc/TPhotonLeilla.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/unk/text_8028A820.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TOTrapSeabed01.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/npc/TObjNpcMoja.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/npc/TObjNpcNFM01.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/npc/TObjNpcNFM00.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TMovie_80144778.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TLobby_80082048.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/ui/TAdPlayerLoadGC_801E0C30.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TLobby_801E43E4.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/unk/text_801A3014.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TLobby_801A3C48.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/object/TObjWarpBossMulti.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TWindowSubSymbolChatHelp.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TODoorFourLightSpace.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TTecGiBarta.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/object/TObjSinBoard.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TODoorJungleMain.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TWindowComCard.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/object/TObjBgmColCtrl.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/npc/TObjNpcConnoisseur.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/boss/TBoss1Dragon.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TTecBarta.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/enemy/SaverLifecycle.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/enemy/DarkGunner.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/enemy/TObjEneIllGill.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/ui/TAdChrMoveEffectGC.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-pool off")},
-    "pso/boss/TObjBoss2CeilJunk.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-pool off")},
-    "pso/ui/TAdChrSelPlyPlateGC.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
-    "pso/ui/TAdChrSelSlotGC.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/item/TObjContainerIdo_8018BEE4.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/misc/TPlyPhotonChair.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
-    "pso/object/TLazerFenceSw.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
+    "pso/boss/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
+    # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
+    "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
+    # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
+    # with -fp_contract on (all three tunnel units), so the flag belongs on the
+    # unit rather than as per-function pragmas left over from the split units.
+    "pso/boss/TObjBoss2Tunnel_8003B138.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # Deferred, with definitions in reverse address order: the ctor's
+    # function-local static and guard precede run_task's table guard in .sbss,
+    # as in the original (docs/porting-exceptions.md section 5).
+    # .sbss starts at 0x805D696C and .sdata2 at 0x805DECCC, both only 4-aligned.
+    # mwld takes alignment from the CodeWarrior comment record, which GC/2.6
+    # writes as 8, so the pool and every later sda21 offset shift by 4.
+    # cw_align rewrites that record after compile. -sdata 4 does not.
+    "pso/boss/TObjBoss2Tunnel_802F2070.cpp": {
+        "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on"),
+        "cw_align": ".sbss=4 .sdata2=4",
+    },
+    # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
+    # needed (docs/porting-exceptions.md section 5).
+    "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
+    "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
+    # Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4).
+    "pso/object/TObjDFDemo1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
+    "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
+    # Deferred generation preserves the flower vtable before its dispatch table.
+    "pso/enemy/TObjEneRe2Flower_800C3E14.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    "pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Gee native tables require deferred generation and reverse definitions.
+    "pso/enemy/TObjEneMe1Gee.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Upstream #190 commit 9c4e9ea1d: TObjEneDubchik is written from its last
+    # function back. -inline off,deferred emits that order (the vtable lands
+    # before the switch tables). -str reuse,readonly keeps the motion-name
+    # pool in .rodata. These are upstream's own flags for this unit.
+    "pso/enemy/TObjEneDubchik.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
+    # Native private header sections preserve initializer and helper emission order.
+    "pso/enemy/TObjEnePanarms.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4", "-sym on")},
+    "pso/enemy/TObjEneDelDepth.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TObjChip: render's colour template sits after draw_chips' in .rodata
     # while render comes first in .text, so the source runs backwards.
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    # Deferred: the vtables come out in reverse key-function order.
-    "pso/misc/TTecAnti.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/misc/TTecResta.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/misc/TTecReverser.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/object/TObjEnvSoundGlobal.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/object/TObjBigTuitate.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # One unit, written last-defined first: the vtable and the late helpers
+    # precede the early ones in .text. -fp_contract on: draw_name_labels'
+    # half-width nudge and the drop placement fuse multiply-adds.
+    # -str reuse,readonly: the literals live in this unit's .rodata.
+    "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
+    # Vol Opt scenery is one TU. Deferred emission puts TOBoss4Rock::run_task
+    # first; -sdata 4 keeps the 8-byte motion-name array in .data.
+    "pso/misc/TOBoss4.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-sdata 4", "-inline deferred")},
+    # Dark Falz rocks are one TU, written last-defined first. -fp_contract on
+    # fuses the fall and spin multiply-adds.
+    "pso/boss/TBoss6Rock.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-inline off,deferred")},
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
-    # -sdata 4: the 8-byte effect id pair lbl_80485B08 sits in .data, not .sdata.
-    "pso/boss/TBoss4Type1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
-    # -sdata 4: the 8-byte name list lbl_80487858 sits in .data, not .sdata.
-    "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4")},
-    "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0"},
+    # The ending item handler table keeps 2.0's store/load scheduling for its
+    # zero-initialized local member-function-pointer array.
+    "pso/item/TItemSpecialEvent_803531FC.cpp": {
+        "mw_version": "GC/2.0",
+        # The split names the compiler's anonymous PMF initializer image at
+        # 0x804F10C0; the source-built object references its first 12-byte
+        # entry label. Map the target entry name to the object's image label.
+        "symbol_mappings": {"@12": "...data.0"},
+    },
+    # GC/2.0: run_task's 36-byte PMF array initializer interleaves its copy
+    # tail with actor_frame_tick (load, tail load, clrlwi., table load, tail
+    # store). GC/2.5, 2.6 and 2.7 pack the tail pair and move the tick
+    # relocation from +0xE4 to +0xEC; GC/2.0p1 and GC/1.3.2 drop the wave
+    # helpers.
+    # -inline off,deferred: the vtables come out in reverse order of their
+    # key functions, and .data has TUnk_804DDF04's vtable before this
+    # class's while TUnk_804DDF04's destructor comes first in .text.
+    # -opt noprop: deform_indirect_texture_scroll keeps its s16 scroll offset
+    # as a named local (extsh r28, after the coordinate masks in r30/r29).
+    # With copy propagation the frontend replaces it with a hoisted temporary
+    # that the allocator colours first (r30).
+    # -fp_contract on: both texture-wave helpers fuse the wave offset into an
+    # fmadds.
+    # -str reuse,readonly: the two file names and the class name are in this
+    # unit's .rodata. See docs/porting-exceptions.md section 5.
+    "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-opt noprop", "-fp_contract on", "-str reuse,readonly")},
+    # pack_movie_frame: the original keeps every named local in one register
+    # (no lifetime splitting), recomputes its pad and stride shifts instead of
+    # sharing them, and leaves invariant hoisting to the backend. See
+    # docs/porting-exceptions.md section 5.
+    "pso/misc/TMovie_80143988.cpp": {"cflags": _switch(cflags_pso, "-opt nolifetimes,nocse,noprop,noloop")},
+    "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
+    "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
-    "pso/enemy/TObjEneSlimeTailAttack.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline on,deferred", "-fp_contract on", "-str reuse,readonly")},
-    "pso/boss/TBoss8Dragon.cpp": {"mw_version": "GC/2.0"},
-    "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/object/TObjDFDemo1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
+    "pso/enemy/TObjEneSlimeTailAttack.cpp": {"mw_version": "GC/2.0"},
+    # -inline off,deferred: the real TBoss8Dragon constructor addresses
+    # __vt__12TBoss8Dragon as addi r0, r31, 2348 from the .data anchor.
+    # Plain -inline off emits lis/addi of the vtable symbol and the ctor
+    # grows 0x554 -> 0x558. Deferred also emits the compiler vtable at
+    # .data+0x92C, where the hand table was. Other functions are unchanged.
+    # See docs/porting-exceptions.md section 5.
+    "pso/boss/TBoss8Dragon.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     # GC/1.3.2: the container files 0x8018807C-0x8018D900, the CRC-32 pair
     # (`xoris/xori 0xFFFF`; 2.x always emits `li -1; xor`), and five others.
     # TObjCamera: 1.3.2 copies CameraSoundEvent member by member unscheduled.
     "pso/object/TObjCamera.cpp": {"mw_version": "GC/1.3.2"},
-    "pso/object/TObjComputer.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
+    "pso/object/TObjComputer.cpp": {"mw_version": "GC/1.3.2"},
     "pso/item/TObjContainerJung.cpp": {"mw_version": "GC/1.3.2"},
     # The two below also schedule the by-value DirectAttackPayload read of
     # their receive_direct_attack overrides only the way 1.3.2 does.
     "pso/item/TObjContainerItem.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TContainerAncient01.cpp": {"mw_version": "GC/1.3.2"},
     "pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp": {"mw_version": "GC/1.3.2"},
+    # Four depth/UV multiply-adds contract, so -fp_contract on replaces the old
+    # per-function pragmas. -inline on inlines only clamped_active_slot
+    # and mark_grid_cell_occupied; -inline auto also inlines eight unmarked
+    # calls and those functions stop matching. See
+    # docs/evidence/chr-select-slot-clamp-inline.md.
+    # The eight compiler-pool globals before this unit's owned 0.53 / 1/256
+    # literals are defined by TAdMultiPlyChrSelectGC_literals.s, including the
+    # 16.0 conversion constant shared with the separately split ctor.
+    "pso/ui/TAdChrSelPlyPlateGC.cpp": {
+        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on"),
+        "symbol_mappings": {
+            "@102": "lbl_805DE580",
+            "@175": "TAdMultiPlyChrSelectGC__data_805DE584",
+        },
+    },
     "pso/misc/TQuestVmDownLoadServer.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline deferred")},
-    "pso/misc/TCameraCtrl.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
+    "pso/misc/TCameraCtrl.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TKeyBoardControl_8025EC04.cpp": {"mw_version": "GC/1.3.2"},
     "pso/menu/TAdMultiOkGC.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TLobby_802A5120.cpp": {"mw_version": "GC/1.3.2"},
     "pso/unk/text_8032B318.cpp": {"mw_version": "GC/1.3.2"},
+    # The player hit-vector snapshot needs 1.3.2's const-input copy scheduling.
+    "pso/player/TObjPlayer_802D5B78.cpp": {"mw_version": "GC/1.3.2"},
     # GC/1.3: the compiler-generated TMenuList<> copy constructor.
     "pso/misc/TRegister.cpp": {"mw_version": "GC/1.3"},
     "pso/misc/TPlyGuildCardTag_801E0284.cpp": {"mw_version": "GC/1.3"},
     "pso/misc/TPlyStartGame.cpp": {"mw_version": "GC/1.3"},
-    "pso/misc/TWindowShortListCtrl_8026E7DC.cpp": {"mw_version": "GC/1.3", "cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
+    "pso/misc/TWindowShortListCtrl_8026E7DC.cpp": {"mw_version": "GC/1.3"},
     # Deferred inlining: functions come out in reverse source order and the
     # vtables before the switch tables in .data.
     "pso/misc/TMedicalCenterSequence.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # Row-header copy is a 16-byte struct assignment. -inline off outlines it;
+    # noauto,level=1 inlines that helper only. The rest of the unit stays out of line.
+    "pso/misc/TWindowMainMenu_802AD538.cpp": {"cflags": _switch(cflags_pso, "-inline noauto,level=1")},
+    # Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs
+    # (scale_point_about_pivot, apply_context_transform_to_rect,
+    # apply_window_closing_stretch, clip_textured_quad, init_text_window_layout).
+    # Unit -fp_contract on replaces the per-function pragmas. Precedent:
+    # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
+    "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # Upstream #190: this file is written in reverse so deferred codegen emits
+    # address order, and the readonly string pool places the constants.
+    "pso/misc/TNpcPlayer.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
-    # TBoss7TentacleNeedle's vtable precedes TBoss7Tentacle's although every Needle virtual comes
-    # first in .text: deferred, written from the unit's last function back.
-    "pso/boss/TBoss7TentacleNeedle.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Position jitter and the tentacle curve contract mul-add to fmadds, so
+    # this unit is built with -fp_contract on. -inline off,deferred emits
+    # functions and vtables in reverse source order: the Needle vtable then
+    # the Tentacle vtable, with .text still in address order.
+    # GC/2.0: the Needle constructor's const emitter copy. Before 2.5 a const
+    # local whose address escapes stays out of the worst-case alias set, so
+    # the three word loads of pos batch ahead of the stores; 2.6 interleaves.
+    "pso/boss/TBoss7TentacleNeedle.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # Photon bullet run_task contracts a mul-add. Deferred emission puts the
+    # compiler vtables in address order while the definitions stay bottom-to-top.
+    "pso/boss/TBoss7PhotonBullet_802EF26C.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # -inline deferred is byte-identical to noauto,deferred,level=1 here
+    # (.text/.data/.rodata/.sdata2 and relocs). off,deferred changes 21
+    # functions (copy_transform, sub_802B96C0); noauto alone changes 86;
+    # -fp_contract off changes 71 (draw_part_motions, sub_802B626C). The
+    # multiply-adds are fmadds. dtk-template uses -inline auto and
+    # -fp_contract on; Melee, TP, TWW and Pikmin 2 contract globally.
+    "pso/boss/TBoss6Type1.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-fp_contract on")},
     "pso/boss/TBoss3VoloptP01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # Delbiter uses deferred code generation: reverse source definitions put
     # native vtables before the switch tables and functions in address order.
     "pso/enemy/TObjEneNanoDrago.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    "pso/enemy/TObjEneMe1GiGue.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    "pso/enemy/TObjEneRe7Berura.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneDellBiter.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneDellBiterEffects.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # The Vol Opt fade tasks: deferred like the units above, but nothing is
@@ -590,9 +628,17 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # The dragonfly base and its cave subclass: vtables come out subclass first.
     "pso/misc/TOBiwaMushi.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
     "pso/misc/TODragonflyCave01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
-    # The cave rocks: one file, written from its last function back.
-    "pso/misc/TORockCave.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TODragonflyMachine01.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
+    # Three fmadds in the original text, and nowhere else in the unit:
+    # __ct__10TOMineTrap at 0x80170058 (fmadds f2,f3,f4,f2), follow_target at
+    # 0x80170B9C (fmadds f0,f1,f0,f2), update_float_height at 0x80170D30
+    # (fmadds f0,f3,f1,f0). No fmsubs. The same expressions are fmuls+fadds
+    # when the flag is omitted. Every other function, including run_task, is
+    # byte-identical with the flag off, and .rodata stays exact.
+    # -inline on expands run_task's mode-4 strike helpers (strike_actor,
+    # strike_player, strike_enemy); no other function in the unit changes.
+    # See docs/porting-exceptions.md.
+    "pso/misc/TOMineTrap_8016F6F8.cpp": {"cflags": _switch(cflags_pso, "-inline on", "-fp_contract on")},
     "pso/item/TItem.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TItemProArmor.cpp, TItemProShield.cpp and TItemProUnit.cpp are written
     # from their last function back (deferred code generation, which also puts
@@ -601,7 +647,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # TODoorBase's vtable precedes its switch tables: deferred, written from
     # its last function back.
     "pso/misc/TODoorBase.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/misc/TOCtrlDubchik_8015CA74.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # TOBarrierEnergy01's vtable precedes its switch table too.
     "pso/misc/TOBarrierEnergy01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     "pso/misc/TODoorAncient01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
@@ -695,11 +740,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOCapsuleLabo.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
     "pso/misc/TOComputerMachine01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
     "pso/misc/TOMonumentAncient01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
-    "pso/misc/TOBoss4.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-sdata 4", "-inline deferred")},
-    "pso/boss/TBoss6Rock.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-inline off,deferred")},
-    "pso/boss/TBoss6Type1.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/object/TObjCityMainWarpChallenge.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
     "pso/misc/TOCakeshopCave01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
     "pso/misc/TOHangerMachine01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
     "pso/misc/TOMonitorMachine01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
@@ -711,9 +751,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOMonumentAncient02.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-fp_contract on")},
     # Kurage addresses each debug label on its own (no shared .rodata base).
     "pso/misc/TOKurage.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-fp_contract on", "-pool off")},
-    # The TBinModel ctor (0x8002058C) inlines its list helpers; "gvm" is in .sdata2 (readonly strings) and
-    # every literal gets its own lis/addi (no pool base).
-    "pso/misc/TLobby_8001EF5C.cpp": {"cflags": _switch(cflags_pso, "-inline on", "-str reuse,readonly", "-pool off")},
     "pso/misc/TOHealGeneral.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
     # The key subclasses address each of their texture names on its own
     # (no shared .rodata base): built -pool off.
@@ -723,7 +760,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOKeyCave01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-pool off")},
     "pso/misc/TOKeyCol.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-pool off")},
     "pso/misc/TOKeyMachine01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-pool off")},
-    "pso/object/TOKeyJungleMain.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-pool off")},
     # The sensor base: its vtable comes before its jump tables.
     "pso/misc/TOSensor.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     "pso/misc/TOSwitchItem.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
@@ -731,9 +767,23 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOSensorGeneral01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-pool off")},
     # Unlike the other keys it addresses its descriptors off one .data base.
     "pso/misc/TOKeyGenericSw.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
+    # __vt__25TObjCityMainWarpChallenge at 0x804B6188 precedes
+    # jumptable_804B61DC. Whole unit matches with nothing inlined.
+    # See docs/evidence/city-main-warp-challenge-vtable.md.
+    "pso/object/TObjCityMainWarpChallenge.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Quest-collision deleting destructors share a TU. Deferred generation
+    # emits the last definition first, which is the only order that puts each
+    # vtable before the next class's (TObjQuestColA then TObjQuestCol;
+    # TObjQuestColApcINW then TObjQuestColApcIN).
+    "pso/object/TObjQuestColA_80196FE4.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    "pso/object/TObjQuestColApcINW_80196EDC.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # The character creation camera: deferred with nothing inlined, and its
     # multiply-adds contracted into fmadds.
     "pso/camera/CreationCamera.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # The lens-flare renderer contracts its attenuation and displacement
+    # multiply-adds into fnmsubs/fmadds; the whole unit stays byte-exact with
+    # -fp_contract on, so that is this translation unit's setting.
+    "pso/effect/TEF_LensFlare.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # The pad rumble and Ninja helper code contract multiply-adds into fmadds/fnmsubs.
     "pso/system/PadRumble.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/system/NinjaUtil.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
@@ -745,12 +795,50 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Metrowerks' GCN_Mem_Alloc.c (runtime library code at -O4,p); belongs
     # in the runtime lib under its own name.
     "pso/unk/text_8039739C.cpp": {"cflags": _switch(cflags_pso, "-O4,p")},
-    "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on", "-str reuse,readonly")},
+    "pso/quest/QuestOpcodeHandlers.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     "pso/quest/TQuestThread.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
-    # The quest-list vtable precedes its switch table: deferred, written from
-    # its last function back. Its titles and window sizes are addressed one
-    # by one (no shared .rodata base), and its strings are read-only.
+    # init_from_id_lists (0x8002058C, size 0x30C) inlines its model and motion
+    # walks. Default -inline off outlines them. auto leaves .text at 62.53% and
+    # .data at 0%; auto,deferred leaves .text at 52.51% and .data at 0%. deferred
+    # matched the previous extern "C" body, but on this C++ function it emits the
+    # function at .text+0 instead of .text+0x1630, so the linked DOL does not
+    # match. -inline on keeps the bytes and that order. Precedent: dtk-template
+    # -inline auto https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203
+    # and Brawl -inline on https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264
+    "pso/misc/TLobby_8001EF5C.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # TQuestListVM: deferred emission puts __vt__12TQuestListVM ahead of the
+    # run_task switch table (written from the last function back). -pool off
+    # keeps each title and window size its own reloc, and -str reuse,readonly
+    # matches the read-only string objects. The whole unit stays byte-exact.
+    # Precedent: dtk-template configure.py unit cflags, and this tree's
+    # TObjBoss2Tunnel / TBoss6EmptyWarp unit flags.
     "pso/quest/TQuestListVM.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-str reuse,readonly")},
+    # Status gauge: contracting the unit makes `0.299f * depth + ctx->depth`
+    # the fmadds at 0x80257118. The bar multiply stays a separate fmuls
+    # because the 7.5 scale is applied to the sum before the tick subtract.
+    "pso/misc/TWindowSubStatusDisp_80256B94.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # Inventory walks read TItemList children through the class-body accessors
+    # TItemList::link_down / link_next (typed_down in TObjPlayer_801D4CB8, whose
+    # receiver is TObjPlayer). -inline noauto folds each call to the lwz of
+    # m_down (+0x14) or m_next (+0xC). -inline off leaves a bl and grows the
+    # walks (TObjPlayer__sub_801D4368 0x248 -> 0x278, and the TItemList walks
+    # by the same 8-byte call). -inline auto also inlines the unmarked
+    # TObjPlayer__sub_801D4730 into sort_by_key, so it is not this unit's flag.
+    # With noauto the whole object matches -inline off on the old cast spelling,
+    # including every function that does not call the accessor. Precedent:
+    # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203
+    # (-inline auto) and TWindowMainMenu_802AD538.cpp (-inline noauto,level=1).
+    "pso/unk/text_801D40D4.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # Same -inline noauto as text_801D40D4.cpp. count_owned_items and the other
+    # TItemList walks stay the lwz of m_down / m_next; -inline off grows each.
+    "pso/player/TObjPlayer_801D5220.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # Same -inline noauto as text_801D40D4.cpp. The three TPlyItem walks
+    # (reduce_owner_matched_items, reduce_child_item_amounts,
+    # collect_owner_fields_recursive) stay byte-identical to the cast spelling.
+    "pso/player/TPlyItem.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
+    # Same -inline noauto as text_801D40D4.cpp. destroy_subobjects_recursive's
+    # child load stays lwz r31,20(r3) and the sibling step stays lwz r31,12(r31).
+    "pso/player/TObjPlayer_801D4CB8.cpp": {"cflags": _switch(cflags_pso, "-inline noauto")},
 }
 
 # MusyX (Factor 5). Its objects carry extab/extabindex for every non-leaf
@@ -766,14 +854,17 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     ("musyx", 0x803A3858, "GC/1.2.5n", _switch(cflags_musyx, "-opt nocse"), {}),
     ("musyx_hw", 0x803BAC70, "GC/1.2.5n", _switch(cflags_musyx, "-inline auto"), {}),
     # CRI ADX, LSC, SJ, MFCI and GCRNA ("Build:Jun 13 2002").
-    ("cri", 0x803BFE50, "GC/2.6", cflags_middleware, {
-        "pso/unk/text_803CFEA0.cpp": {"cflags": _switch(cflags_middleware, "-str reuse,readonly")},
-        "pso/unk/text_803D31A4.cpp": {"cflags": _switch(cflags_middleware, "-str reuse,readonly")},
-    }),
+    ("cri", 0x803BFE50, "GC/2.6", cflags_middleware, {}),
     # Sega's Ginja model library.
     ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
-        # Saves registers through _savegpr_N everywhere (no stmw in the unit).
-        "pso/unk/text_803E2D70.cpp": {"cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-use_lmw_stmw off")},
+        # render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 /
+        # _restgpr_25, and its glyph quads are the inlined SDK FIFO writers
+        # (sth/stw to 0xCC008000), not calls. -inline on inlines only functions
+        # marked inline, so queue_debug_text stays a call from debug_printf_at.
+        # The matrix helpers in text_803D8910.cpp match under the ginja defaults.
+        "pso/unk/text_803D8098.cpp": {
+            "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-use_lmw_stmw off", "-inline on"),
+        },
     }),
     # mcFsGc ("Ver 1.10.00 Build:Sep 17 2002") with ACCESS's file transfer.
     ("mcfs", 0x803E5668, "GC/1.2.5", cflags_middleware, {
@@ -989,8 +1080,6 @@ if args.target == "psov3":
                             mw_version="GC/1.3", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/uart_console_io.c",
                             mw_version="GC/2.6", cflags=cflags_native_recovered),
-                Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c",
-                            mw_version="GC/1.3", cflags=cflags_native_recovered),
             ],
         ),
         DolphinLib(

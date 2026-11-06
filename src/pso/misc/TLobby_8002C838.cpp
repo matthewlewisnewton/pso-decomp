@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/TObjBoss1Floor.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
@@ -41,7 +42,9 @@ struct Obj_8002CA38 { u8 pad[0x28]; u32 slot[4]; };
 
 extern "C" {
 extern s32 TObjBoss1Floor__name;
+extern const f32 lbl_805D8174;
 void *get_player_by_client_id(s32 i);
+extern const f32 lbl_805D8170;
 void run_task__14TObjBoss1FloorFv(Floor_8002C968 *self);
 int TBoss8Dragon__sub_8002D5F8(void);
 void TObjBoss1Floor__sub_8002CB40(void);
@@ -73,7 +76,7 @@ void render__14TObjBoss1FloorFv(void) {
         model_render_flags = 1;
         set_draw_list_mask(3);
         TObjPlayer::draw_if_all_ready();
-        TObjFish::set_global_param(dragon_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
         temp_r31 = (unsigned char *) (*(void **)((s8 *)(*(void **)((s8 *)lbl_805D4B50 + 0x42C)) + 0x58));
         render_projected_shadow_receiver((u8 *)(temp_r31 + 8), (s32)(temp_r31 + 0x14));
         draw_ginja_model((*(s32 *)((s8 *)temp_r31 + 4)));
@@ -92,7 +95,7 @@ void run_task__14TObjBoss1FloorFv(Floor_8002C968 *self) {
             pl = (Player_8002C968 *)get_player_by_client_id(i);
             if (pl != NULL) {
                 Vec_8002C968 pos = pl->pos;
-                pos.y -= 4.0f;
+                pos.y -= lbl_805D8170;
                 if (self->objs[i] == NULL) {
                     self->objs[i] = create_particle_emitter(&pos, 0x144);
                 } else {
@@ -119,9 +122,9 @@ TObjBoss1Floor::~TObjBoss1Floor() {
 TObjBoss1Floor::TObjBoss1Floor(TObject *parent) : TObject(parent) {
     s32 i;
     ((Obj_8002CACC *)this)->f0 = TObjBoss1Floor__name;
-    ((Obj_8002CACC *)this)->f1c = 0.0f;
-    ((Obj_8002CACC *)this)->f20 = 0.0f;
-    ((Obj_8002CACC *)this)->f24 = 0.0f;
+    ((Obj_8002CACC *)this)->f1c = lbl_805D8174;
+    ((Obj_8002CACC *)this)->f20 = lbl_805D8174;
+    ((Obj_8002CACC *)this)->f24 = lbl_805D8174;
     for (i = 0; i < 4; i++) {
         ((Obj_8002CACC *)this)->f28[i] = 0;
     }

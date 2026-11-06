@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrlMain_8024674C.h"
 #include "pso/misc/TWindowSubShortMail_80246CB8.h"
@@ -41,7 +42,7 @@ void TWindowCtrlMain::free_window() {
 }
 
 void load_hud_palette_textures(void) {
-    s32 sp8[3];
+    u8 *sp8[3];
     sp8[0] = TLobby::tmp_buf_use_req((const char *)lbl_8044E658);
     TLanguage::draw_string((void *)lbl_8044E688, (void *)sp8, 0x40);
     TLanguage::draw_string((void *)hud_palette_texture_filename, (void *)sp8, 0x41);
@@ -56,7 +57,7 @@ void load_hud_palette_textures(void) {
     TLobby::tmp_buf_release((const char *)lbl_8044E658);
     TLobby__sub_8023E554((s32)lbl_8044E758, (s32)f256_hyouji_texlist);
     lbl_805D63F0 = (u32)f256_hyouji_texlist;
-    TObjFish::set_global_param((s32)((void *)f256_hyouji_texlist));
+    set_current_texture_list((GinjaTextureList *)(((void *)f256_hyouji_texlist)));
     TLanguage::set_entry_index(0, 0x40);
     TLanguage::set_entry_index(1, 0x41);
     TLanguage::set_entry_index(2, 0x42);
@@ -107,14 +108,14 @@ void TWindowSubStatusDisp::update_entry_visibility() {
     u32 temp_r25;
     u32 temp_r24;
     s32 arg0 = (s32)this;
-    temp_r31 = ((TWindowBase *)arg0)->get_array_entry(7);
-    temp_r30 = ((TWindowBase *)arg0)->get_array_entry(6);
-    temp_r29 = ((TWindowBase *)arg0)->get_array_entry(5);
-    temp_r28 = ((TWindowBase *)arg0)->get_array_entry(4);
-    temp_r27 = ((TWindowBase *)arg0)->get_array_entry(3);
-    temp_r26 = ((TWindowBase *)arg0)->get_array_entry(2);
-    temp_r25 = ((TWindowBase *)arg0)->get_array_entry(1);
-    temp_r24 = ((TWindowBase *)arg0)->get_array_entry(0);
+    temp_r31 = (s32)((TWindowBase *)arg0)->get_array_entry(7);
+    temp_r30 = (s32)((TWindowBase *)arg0)->get_array_entry(6);
+    temp_r29 = (s32)((TWindowBase *)arg0)->get_array_entry(5);
+    temp_r28 = (s32)((TWindowBase *)arg0)->get_array_entry(4);
+    temp_r27 = (s32)((TWindowBase *)arg0)->get_array_entry(3);
+    temp_r26 = (s32)((TWindowBase *)arg0)->get_array_entry(2);
+    temp_r25 = (s32)((TWindowBase *)arg0)->get_array_entry(1);
+    temp_r24 = (s32)((TWindowBase *)arg0)->get_array_entry(0);
     if (is_guild_card_receive_active() != 0) {
         if (temp_r31 != 0U) {
             ((TWindowSubStatusDisp *)temp_r31)->clear_visible_flag();

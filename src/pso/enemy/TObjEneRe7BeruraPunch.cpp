@@ -1,5 +1,5 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
-#include "pso/enemy/TObjEneRe7BeruraPunch.h"
 #include "pso/enemy/TObjEneDD_800BA138.h"
 #include "pso/enemy/TObjEneRe7BeruraPunch_80095E18.h"
 #include "pso/enemy/TObjEneRe7BeruraPunch.h"
@@ -30,14 +30,14 @@ u16 get_entity_id(void *);
 
 int TObjEneRe7BeruraPunch::is_patrol_active() { return (*(u32 *)&this->m_b0 >> 2) & 0x1; }
 
-void TObjEneRe7BeruraPunch::apply_hit_if_active(void *target, f32 *) {
+void TObjEneRe7BeruraPunch__vt20(TObjEneRe7BeruraPunch *ene_re7_berura_punch, s32 target) {
     s32 entity;
 
     apply_hit_if_active__13TUnk_804928CCFPvPf();
     if (TObjEneDD::check_v2_mode() != 0) {
         get_entity_id((void *)target);
         if (is_player_entity_id() != 0) {
-            entity = (s32)find_entity_by_id(this->m_b0);
+            entity = (s32)find_entity_by_id(ene_re7_berura_punch->m_b0);
             if ((entity != 0) && (random_ratio__9TObjCharaFv() < 0.1f)) {
                 TObjEneDD__sub_800BA438(entity, (u8 *)target);
             }
@@ -69,9 +69,7 @@ extern "C" {
 
 u8 * csnVector(s32, s32, s32);
 void *find_entity_by_id(u16 id);
-s32 TObjEneRe7Berura__sub_80094D98();
 
-void TObjEneRe7Berura__sub_80094C68(TObjEneRe7Berura *self);
 s32 refresh_collision_body_centers__14TObjCollidableFv(void *, void *, f32, f32);
 extern Pair_80096150 lbl_80439F28[];
 
@@ -112,12 +110,12 @@ void TObjEneRe7BeruraPunch::render() {
                 return;
             }
         }
-        ((TObjEneDD *)(arg0 + 0x38))->draw_oriented_shadow((s32)(arg0 + 0xE8), 0, (u32)0);
+        TObjEneDD::draw_oriented_shadow(&position, &ground_normal, 0, NULL);
         TObjPlayer::toggle_particle_effect();
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         translate_matrix(0, 0.0f, *(f32 *)&this->unk_CC, 0.0f);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         temp_f1 = this->m_f4;
         scale_matrix(0, temp_f1, temp_f1, 1.0f);
         TObjEneRe7Berura::init_part(this->m_b8);
@@ -182,8 +180,9 @@ void TObjEneRe7BeruraPunch::update_flight() {
     this->snap_to_ground();
     if ((var_r31 != 0) || (sub_80096150() != 0) || (this->m_114 > this->m_c8)) {
         this->m_b4 = 2;
-        if (find_entity_by_id(this->m_b0) != NULL) {
-            TObjEneRe7Berura__sub_80094D98();
+        TObjEneRe7Berura *owner = (TObjEneRe7Berura *)find_entity_by_id(this->m_b0);
+        if (owner != NULL) {
+            owner->clear_active_part_flag_2();
         }
     }
 }
@@ -212,7 +211,7 @@ s32 TObjEneRe7BeruraPunch::sub_80096150() {
     }
     this->call_vt16_with_default((void *)&p, (void *)(*(s32 *)&this->_padD8));
     if (entity != 0) {
-        TObjEneRe7Berura__sub_80094C68((TObjEneRe7Berura *)entity);
+        ((TObjEneRe7Berura *)entity)->fn_80094C68();
     }
     return 0;
 }
@@ -226,13 +225,13 @@ void TObjEneRe7BeruraPunch::launch(s32 arg1, s32 arg2) {
     ((TObjEneRe7BeruraPunch *)arg0)->snap_to_ground();
     entity = (u8 *)find_entity_by_id(this->m_b0);
     if (entity != NULL) {
-        this->rotation_y = (s32) *(s32 *)((s8 *)entity + 0x60);
+        this->rotation.yaw = (s32) *(s32 *)((s8 *)entity + 0x60);
     } else {
-        this->rotation_y = 0;
+        this->rotation.yaw = 0;
     }
-    *(f32 *)&this->unk_BC = sin_table_lookup(this->rotation_y);
+    *(f32 *)&this->unk_BC = sin_table_lookup(this->rotation.yaw);
     this->m_c0 = (f32) 0.0f;
-    *(f32 *)&this->unk_C4 = cos_table_lookup(this->rotation_y);
+    *(f32 *)&this->unk_C4 = cos_table_lookup(this->rotation.yaw);
     this->m_c8 = (f32) 3e+02f;
     ((TObjEneRe7BeruraPunch *)arg0)->reset();
     this->m_b4 = 1;
@@ -246,10 +245,9 @@ struct Stack_80096300
   f32 spC;
 };
 
-// The punch's two collision spheres (radius 3), handed to the TUnk_804928CC ctor as an array of 2.
 struct RecoveredGlobal_80096750_lbl_8048F930 {
-    CollisionBody value;
-    CollisionBody remaining;
+    s32 value;
+    u8 remaining[0x54];
 };
 
 struct RecoveredGlobal_80096750___vt__21TObjEneRe7BeruraPunch {
@@ -262,13 +260,9 @@ struct Vec_8009640C { f32 x, y, z; };
 struct Ang_8009640C { s32 x, y, z; };
 
 extern "C" {
-s32 *csnVecterUnder(s32 origin, s32 mask);
 
 u16 get_entity_id(void *);
-RecoveredGlobal_80096750_lbl_8048F930 TObjEneRe7BeruraPunch__collision_body_templates = {
-    {{0.0f, 0.0f, 0.0f}, 3.0f, 0.0f, 0, 0x9D03, {0.0f, 0.0f, 0.0f}, 0.0f},
-    {{0.0f, 0.0f, 0.0f}, 3.0f, 0.0f, 0, 0x9D03, {0.0f, 0.0f, 0.0f}, 0.0f},
-};
+extern RecoveredGlobal_80096750_lbl_8048F930 TObjEneRe7BeruraPunch__collision_body_templates;
 extern s32 __vt__21TObjEneRe7BeruraPunch[];
 extern const char *lbl_805D2990;
 u8 *TObjEneRe7BeruraPunch__ct(u8 *arg0, s32 arg1, s32 arg2);
@@ -310,11 +304,11 @@ void TObjEneRe7BeruraPunch::snap_to_ground() {
   u8 *temp_r3;
   VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0xDC));
   stack.spC = 2e+01f;
-  temp_r3 = (u8 *)csnVecterUnder((s32)&stack.sp8, 0x16EF);
+  temp_r3 = (u8 *)csnVecterUnder((const Vec *)&stack.sp8, 0x16EF);
   if (temp_r3 != 0)
   {
     VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(*((s32 *) (((s8 *) temp_r3) + 4))));
-    VecCopy((Vec *)(arg0 + 0xE8), (const Vec *)((*((s32 *) (((s8 *) temp_r3) + 4))) + 0xC));
+    VecCopy(&ground_normal, (const Vec *)((*((s32 *) (((s8 *) temp_r3) + 4))) + 0xC));
   }
   else
   {
@@ -364,10 +358,10 @@ void TObjEneRe7BeruraPunch::run_task() {
     }
     if (*(s32 *)&this->m_b4 == 1) {
         ang.x = 0;
-        ang.y = this->rotation_y + 0x4000;
+        ang.y = this->rotation.yaw + 0x4000;
         ang.z = -0x4000;
-        s = -sin_table_lookup(this->rotation_y);
-        c = -cos_table_lookup(this->rotation_y);
+        s = -sin_table_lookup(this->rotation.yaw);
+        c = -cos_table_lookup(this->rotation.yaw);
         if (*(void * *)&this->m_d0 == NULL) {
             *(void * *)&this->m_d0 = create_particle_emitter(&this->position, 0xDD);
             if (*(void * *)&this->m_d0 != NULL) {
@@ -406,14 +400,20 @@ void TObjEneRe7BeruraPunch::run_task() {
     }
 }
 
+void *__dt__21TObjEneRe7BeruraPunchFv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__21TObjEneRe7BeruraPunch;
+        if (*(void **)((s8 *)arg0 + 0xD0) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0xD0)); ((TObjEneRe7BeruraPunch *)arg0)->m_d0 = 0; }
+        if (*(void **)((s8 *)arg0 + 0xD4) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0xD4)); ((TObjEneRe7BeruraPunch *)arg0)->m_d4 = 0; }
+        if (*(void **)((s8 *)arg0 + 0xD8) != NULL) { __dt__17AreaAttackHistoryFv((s32)(*(void **)((s8 *)arg0 + 0xD8)), 1); *(s32 *)((s8 *)arg0 + 0xD8) = 0; }
+        __dt__13TUnk_80490470Fv((s8 *)arg0 + 0xF8, -1);
+        __dt__13TUnk_804928CCFv(arg0, 0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TObjEneRe7BeruraPunch::~TObjEneRe7BeruraPunch() {
-    if (*(void **)((s8 *)this + 0xD0) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)this + 0xD0)); this->m_d0 = 0; }
-    if (*(void **)((s8 *)this + 0xD4) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)this + 0xD4)); this->m_d4 = 0; }
-    if (*(void **)((s8 *)this + 0xD8) != NULL) { __dt__17AreaAttackHistoryFv((s32)(*(void **)((s8 *)this + 0xD8)), 1); *(s32 *)((s8 *)this + 0xD8) = 0; }
-    __dt__13TUnk_80490470Fv((s8 *)this + 0xF8, -1);
-}
-extern "C" {
 
 void TObjEneRe7BeruraPunch::init() {
     u8 *arg0 = (u8 *)this;

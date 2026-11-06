@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/item/MagStats.h"
 #include "pso/misc/TWindowBase.h"
 #include "types.h"
@@ -10,6 +11,7 @@
 #include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowSubMagPhoton.h"
 #include "pso/misc/TWindowSubMag.h"
+#include "pso/player/TObjPlayer.h"
 #include "pso/item/TItemData.h"
 #include "pso/item/TItemMag.h"
 #include "pso/misc/TLobby.h"
@@ -101,12 +103,11 @@ s32 get_cursor_value__19TWindowMenuIconLineFv(s32);
 s32 update_help_item__13TWindowSubMagFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 are_status_entries_ready__13TWindowSubMagFi(void *);
 s32 fn_8025373C(u8 *self);
 void *TWindowSubMagPhoton__ct(void *, s32, s32, s32);
 int TWindowSubMag__sub_8027C0E8(void* p);
-u32 is_action_active__10TObjPlayerFv(void *);
 extern u8 lbl_8044F9E8[];
 extern Pad_8027B888 controller_input_state[];
 void *TWindowSubMag__ct(TWindowSubMag *arg0, s32 arg1, s32 arg2);
@@ -490,7 +491,7 @@ void TWindowSubMag::run_task(void *arg0) {
         }
         break;
     case 16:
-        if (is_action_active__10TObjPlayerFv(player) == 0) {
+        if ((u32)((TObjPlayer *)player)->is_action_active() == 0U) {
             self->state = 1;
         }
         break;

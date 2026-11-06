@@ -1,7 +1,10 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubEquip.h"
 #include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowSubEquipList.h"
+#include "pso/misc/TUnk_804D0618.h"
 #include "pso/misc/TWindowSubShortCutList.h"
 
 #include "pso/misc/TLobby.h"
@@ -30,15 +33,16 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32, s32);
 s32 is_usable__14TWindowSubItemFl();
 void *get_player_by_client_id(s32 i);
-s32 play_sound_effect(s32, s32, s32, s32);
+
+void close__11TWindowBaseFv(u8 *arg0);
 s32 is_player_input_active(s32);
 s32 fn_80255A38(s32);
 s32 TWindowSubEquip__sub_80263AF4(void *, s32);
 s32 get_cursor_value__19TWindowMenuIconLineFv(u32);
 extern u8 controller_input_state[];
+extern const f32 lbl_805DD5F0;
 void *__nw__7TObjectFUl(u32);
 s32 __ct__15TWindowHelpItemFPvUs(void *, void *, s32);
-s32 create_equip_list_window(void *, void *, s32);
 extern s32 lbl_8044F918[];
 extern s32 __vt__15TWindowSubEquip[];
 extern s32 TWindowSubEquip__class_name;
@@ -97,9 +101,9 @@ void TWindowSubEquip::run_task() {
         fn_80255A38(this->m_30);
         this->m_20 = -1;
         this->m_24 = -1;
-        ((TWindowSubEquip *)(this->m_34))->update_window();
+        ((TWindowSubEquipList *)(this->m_34))->update_window();
         ((TWindowMenuIconLine *)(this->m_34))->clear_decided();
-        ((TWindowSubMag *)(this->m_34))->start_scroll(188.0f);
+        ((TWindowSubMag *)(this->m_34))->start_scroll(lbl_805DD5F0);
         this->m_1c = 2U;
     case 2:
         update();
@@ -167,7 +171,7 @@ TWindowSubEquip::TWindowSubEquip(s32 arg1, s32 arg2) : TObject((TObject *)((void
     *(s32 *)((s8 *)this + 0) = TWindowSubEquip__class_name;
     this->m_2c = arg1;
     this->m_28 = arg2;
-    this->m_34 = create_equip_list_window(get_window_layout_position(0), lbl_8044F918, this->m_28);
+    this->m_34 = (u32)create_equip_list_window((s32)get_window_layout_position(0), (s32)lbl_8044F918, this->m_28);
     TWindowSubEquip__sub_80263AF8((u8 *)this->m_2c, 0);
     set_depth__11TWindowBaseFf(this->m_34);
     ((TWindowSubShortCutList *)(this->m_34))->set_flag70_bit10();

@@ -1,7 +1,7 @@
 #include "pso/system/LscStream.h"
 #include "pso/misc/TLobby_803C4698.h"
 #include "pso/misc/TLobby_803CC0B4.h"
-#include "pso/unk/text_803D31A4.h"
+#include "pso/misc/TLobby_803D3194.h"
 #include "pso/system/AdxStreamRuntime.h"
 #include "pso/system/RefCountedWorkBuffer.h"
 #include "pso/system/SjMemoryBuffer.h"
@@ -52,10 +52,7 @@ s32 strlen(const char *);
 char number_format_digit_buffer[0x20];
 RecoveredGlobal_803C5850_lbl_80572020 adx_error_message_buffer;
 extern const char lbl_805E0D28[2];
-// Sign-extend the low four bits in the same way as the high nibble.
-extern const s32 adx_signed_nibbles[16] = {
-    0, 1, 2, 3, 4, 5, 6, 7, -8, -7, -6, -5, -4, -3, -2, -1,
-};
+extern const s32 adx_signed_nibbles[16];
 f64 cos(f64);
 void calc_adx_predictor_coeffs(s32 cutoff, s32 rate, s16 *k0, s16 *k1);
 s32 set_callback_params__6TLobbyFll();

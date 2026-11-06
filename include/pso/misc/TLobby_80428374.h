@@ -3,18 +3,24 @@
 
 #include "types.h"
 
+// Kind 0 stores a pointer to bytes in strbuf. Kind 1 stores a pointer to an s16 in ints.
+union ModemFieldSlot {
+    u8 *text;
+    s16 *number;
+};
+
 struct ModemSessionState {
-    char **subst;
+    const char **subst;
     u8 pad04[4];
-    char *strbuf;
+    u8 *strbuf;
     u8 pad0C[2];
     s16 strstride;
-    u8 **fields;
+    ModemFieldSlot *fields;
     u8 pad14[4];
     s16 *ints;
     u8 pad1C[4];
-    u8 *line;   // current script line (inferred)
-    u8 *token;  // current parsed token (inferred)
+    u8 *line;
+    u8 *token;
     u8 *cmd;
     u8 *out;
     u8 *expect;
@@ -34,55 +40,47 @@ struct ModemRequest {
     char *arg;
 };
 
-struct ModemConfig {
-    s16 h0;
-    s16 h2;
-    s16 h4;
-    s16 h6;
-    s16 numeric_result;
-    u8 pad0A[2];
-    char *prefix0;
-    char *prefix1;
-    s32 w14;
-    s32 w18;
-    char *result_ok;
-    char *result_error;
-    char *result_busy;
-    char *result_no_dialtone;
-    char *result_no_carrier;
-    char *result_no_answer;
-    s32 w34;
-    u8 terminator;
-    u8 pad39[3];
-    s32 w3C;
-    s32 w40;
-    s32 w44;
-    char *s48;
-    s32 w4C;
-    s32 w50;
-    s32 w54;
-    s32 init_count;
-    char *init_command; /* "AT+MS=V34\r" by default (connect_modem) */
-};
-
-// Modem dial-script session; the script substitutes %t, %u and %p with
-// these strings (field names inferred from the substitution keys).
+// Script session passed to the dial runner. Offsets are from the runner:
+// user at 0x0C, password at 0x10, phone number at 0x14, request at 0x88.
 struct ModemScriptSession {
     u8 pad00[0xC];
     char *user;
     char *password;
     char *phone_number;
     u8 pad18[0x70];
+    // DIAL, WAIT, and DELAY all pass this address (session+0x88).
+    // DELAY reads the s16 at +4, ModemRequest::timeout.
     ModemRequest req;
 };
 
+struct ModemConfig {
+    u8 pad00[8];
+    s16 numeric_result;
+    u8 pad0A[2];
+    char *prefix0;
+    char *prefix1;
+    u8 pad14[8];
+    char *result_ok;
+    char *result_error;
+    char *result_busy;
+    char *result_no_dialtone;
+    char *result_no_carrier;
+    char *result_no_answer;
+    u8 pad34[4];
+    u8 terminator;
+};
+
+// DELAY passes the modem request and reads its timeout, same as the other
+// script commands that take ModemRequest*.
+s16 wait_timeout_loop(ModemRequest *req);
+
 extern "C" {
 extern ModemSessionState lobby_net_session_state;
-s16 modem_run_script(u8 *script, ModemScriptSession *sess);
-s16 modem_script_wait(ModemRequest *req);
-s16 modem_script_send(void);
-s16 modem_script_dial(ModemRequest *req);
-void modem_script_store_field(s16 type, s16 index, char *src, s16 *nstr, s16 *nint);
+s16 TLobby__sub_804283C8(u8 *script, ModemScriptSession *sess);
+s16 TLobby__sub_80428830(ModemRequest *req);
+s16 TLobby__sub_80428A38(void);
+s16 TLobby__sub_80428BB0(ModemRequest *req);
+void TLobby__sub_80428DC8(s16 type, s16 index, u8 *src, s16 *nstr, s16 *nint);
 s16 TLobby__sub_804290D4(s16 timeout);
 }
 

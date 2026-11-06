@@ -3,6 +3,7 @@
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowLockOn.h"
 #include "pso/misc/TWindowCtrl.h"
+#include "pso/misc/TWindowShortListCtrl.h"
 #include "pso/TObject.h"
 #include "pso/misc/TKeyBoardControl.h"
 #include "pso/misc/TLobby.h"
@@ -13,7 +14,6 @@
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
-#include "pso/misc/TWindowShortListCtrl.h"
 
 struct Pad_8024DCE8 { u8 pad[0x20]; u8 btn[0x30]; };
 
@@ -52,7 +52,6 @@ u16 get_current_target_id__10TObjPlayerFv();
 s32 is_player_input_active(s32);
 int TWindowCtrl__sub_8024C7D4(void *p);
 extern Pad_8024DCE8 controller_input_state[];
-u32 is_action_active__10TObjPlayerFv(void *);
 int TWindowMainMenu__sub_8024E3F4(void *p);
 void TWindowCtrl__sub_8024DAAC(void *arg0);
 s32 TWindowMainMenu__sub_8024E3E0(void *);
@@ -135,7 +134,7 @@ void TWindowCtrl::update_short_list_request() {
             } else if (*(void **)((s8 *)this + 0x3C) == NULL && is_enabled() == 0) {
                 if (is_on_current_screen__11TCameraCtrlFv(btn = controller_input_state[idx].btn, fn_8002AE08((void *)(*(s32 *)&this->m_24))) != 0 &&
                     TWindowShortListCtrl__check_controller_button(btn, 0x200) != 0) {
-                    *(void **)((s8 *)this + 0x3C) = new TWindowShortListCtrl(this, *(s32 *)&this->m_24);
+                    *(void **)&this->m_3c = new TWindowShortListCtrl(this, (s32)this->m_24);
                 }
             }
         }
@@ -196,7 +195,7 @@ void TWindowCtrl::update_main_menu_request() {
         TWindowCtrl::update_focused();
         return;
     }
-    if (is_action_active__10TObjPlayerFv((void *) p) != 0) {
+    if ((u32)((TObjPlayer *)p)->is_action_active() != 0U) {
         return;
     }
     if (key == 0x1F) {

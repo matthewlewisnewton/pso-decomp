@@ -4,6 +4,7 @@
 #include "pso/object/TUnk_804AF7B0.h"
 #include "pso/system/memory.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/unk/text_8036BDA0.h"
 #include "pso/misc/TNpcPlayer.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/map/FloorArea.h"
@@ -403,7 +404,7 @@ u8 * csnVector(s32, s32, s32);
 s32 is_alive__8TObjBaseFv(void *);
 s32 find_active_entity_by_id(void *);
 f32 horizontal_distance_squared(void *, void *);
-void *mem_alloc(u32 size);
+void *__nwa__FUl(u32 size);
 void TNpcPlayer__sub_8014DC3C(void *, s32);
 void deliver_partner_chatter(Npc_8014E250 *self);
 void partner_compute_stalled_detour(u8 *self, Vec_8014E3B0 *from, Vec_8014E3B0 *to, Vec_8014E3B0 *d, Vec_8014E3B0 *out);
@@ -501,7 +502,7 @@ extern void *tl_05;
 
 void copy_player_visual_record(void *, void *);
 void bswap__15disp_data_part2Fv(s32 arg0);
-void mem_free(void *);
+void __dla__FPv(void *);
 extern s32 game_difficulty_selection;
 extern s32 TNpcPlayer__data_805D5864;
 
@@ -514,13 +515,13 @@ u32 lbl_8050D3E0[20];
 static const s32 npc_player_combat_action_table[3][2] = {{0, 1}, {3, 4}, {6, 8}};
 
 const char *lbl_805D2E70 = "npcplayerchar.dat";
-const char *TNpcPlayer__name = "TNpcPlayer";
+const char *lbl_805D2E74 = "TNpcPlayer";
 
-// lbl_8050CFC4 is constructed by __sinit_TNpcPlayer_cpp, spelled out below because
-// the original's static initializer precedes the out-of-line helpers at the end
-// of this file, which no compiler-generated __sinit reproduces.
-void __sinit_TNpcPlayer_cpp();
-__declspec(section ".ctors") static void *const npc_player_global_initializer = (void *)__sinit_TNpcPlayer_cpp;
+// lbl_8050CFC4 is constructed by TNpcPlayer::register_ply_char_data_global, spelled
+// out below because the original's static initializer precedes the out-of-line
+// helpers at the end of this file, which no compiler-generated initializer reproduces.
+__declspec(section ".ctors") static void (*const npc_player_global_initializer)() =
+    TNpcPlayer::register_ply_char_data_global;
 extern "C" void render_shadows__7TObjectFv();
 extern void *lbl_804AC690[35];
 extern void *lbl_804AC71C[35];
@@ -1759,7 +1760,7 @@ void TNpcPlayer::reset_model() { init_model(); update_players__6TLobbyFv((s32)th
 
 void TNpcPlayer__sub_80152D64(void* p) { *(u8*)((char*)p + 0x3) = 0; *(u8*)((char*)p + 0x2) = 0; *(u8*)((char*)p + 0x1) = 0; *(u8*)((char*)p + 0x0) = 0; }
 
-void *TNpcPlayer::init_cast_technique_cmd() {
+G_CastTechnique_6x47 *G_CastTechnique_6x47::init() {
     TNpcPlayer__sub_80152D64((void*)((void *)((char *)this + 4)));
     __construct_array((void *)((char *)this + 8), fn_80152EF8, 0, 4, 10);
     *(u8 *)((s8 *)this + 0x0) = 71;
@@ -1771,7 +1772,7 @@ u8 get_6x47_cast_packet_size(u8 *arg0) {
     return (u8) (0x30 - ((0xA - (s8) *(u8 *)((s8 *)arg0 + 7)) * 4));
 }
 
-void TNpcPlayer::byteswap_positions() {
+void G_CastTechnique_6x47::bswap() {
     N_80152C8C *arg0 = (N_80152C8C *)this;
     s32 i;
     ((G_ClientIDHeader *)arg0)->bswap();
@@ -1783,7 +1784,7 @@ void TNpcPlayer::byteswap_positions() {
 void TNpcPlayer::finalize_and_send_packet() {
     u8 *arg0 = (u8 *)this;
     *(s8 *)((s8 *)arg0 + 1) = (s8) ((((u32)get_6x47_cast_packet_size((u8 *)(arg0))) >> 2U) & 0x3F);
-    byteswap_positions();
+    ((G_CastTechnique_6x47 *)this)->bswap();
     send_subcommand((u8 *)((void *) (arg0)));
 }
 
@@ -1897,13 +1898,13 @@ void set_technique_seed_level(Obj_801528A8 *self, s16 i, u8 v) {
     self->arr[i] = v;
 }
 
-void __sinit_TNpcPlayer_cpp() {
+void TNpcPlayer::register_ply_char_data_global() {
     __register_global_object(__ct__12TPlyCharDataFv(lbl_8050CFC4), (void *)__dt__12TPlyCharDataFv, npc_player_ply_char_data_global);
 }
 
 void TNpcPlayer::ensure_rock_singleton() {
     if ((u32) lbl_805D5860 == 0U) {
-        lbl_805D5860 = (u32)mem_alloc(0x1400);
+        lbl_805D5860 = (u32)__nwa__FUl(0x1400);
     }
 }
 
@@ -1920,7 +1921,7 @@ u8 *TNpcPlayer::build_npc_player_record(s32 arg0) {
         copy_player_visual_record(lbl_8050CF68, (u8 *)lbl_805D5860 + arg0 * 0x50);
     }
     bswap__15disp_data_part2Fv((s32)lbl_8050CF68);
-    mem_free((void *)lbl_805D5860);
+    __dla__FPv((void *)lbl_805D5860);
     mode = game_difficulty_selection;
     lbl_805D5860 = 0;
     if (mode >= 0 && mode <= 2) {
@@ -1966,7 +1967,7 @@ u8 *load_npc_player_template(s32 index) {
     if (lbl_805D5860 != 0U) {
         return NULL;
     }
-    lbl_805D5860 = (u32)mem_alloc(0x1400);
+    lbl_805D5860 = (u32)__nwa__FUl(0x1400);
     if (TNpcPlayer__data_805D5864 != 0) {
         TNpcPlayer__data_805D5864 = 0;
         copy_player_visual_record(lbl_8050CF68, lbl_8050D3E0);
@@ -1975,7 +1976,7 @@ u8 *load_npc_player_template(s32 index) {
         copy_player_visual_record(lbl_8050CF68, (u8 *)lbl_805D5860 + index * 0x50);
     }
     bswap__15disp_data_part2Fv((s32)lbl_8050CF68);
-    mem_free((void *)lbl_805D5860);
+    __dla__FPv((void *)lbl_805D5860);
     mode = game_difficulty_selection;
     lbl_805D5860 = 0;
     if (mode >= 0 && mode <= 2) {
@@ -2018,7 +2019,7 @@ Npc_80152330 *construct_partner__10TNpcPlayerFPviisPv(Npc_80152330 *self, s32 a,
     __ct__7TObjectFP7TObject(self, parent);
     self->vt = ((s32 *)__vt__10TNpcPlayer);
     ((TNpcPlayer *)(self->f5C))->init();
-    self->name = TNpcPlayer__name;
+    self->name = lbl_805D2E74;
     self->f24 = 0x19;
     self->f1C = 0;
     self->f20 = 0;
@@ -2069,7 +2070,7 @@ Npc_80152168 *TNpcPlayer__ct(Npc_80152168 *self, s32 a, s32 b, s16 kind, s32 arg
     __ct__7TObjectFP7TObject(self, parent);
     self->vt = ((s32 *)__vt__10TNpcPlayer);
     ((TNpcPlayer *)(self->f5C))->init();
-    self->name = TNpcPlayer__name;
+    self->name = lbl_805D2E74;
     self->f24 = 0x19;
     self->f1C = 0;
     self->f20 = 0;
@@ -2734,7 +2735,7 @@ void request_technique_cast__10TNpcPlayerFPvi(Npc_80150A34 *self, s32 kind) {
     Msg_80150A34 m;
     u8 *actor;
 
-    ((TNpcPlayer *)(&m))->init_cast_technique_cmd();
+    ((G_CastTechnique_6x47 *)(&m))->init();
     actor = self->p78->actor;
     if (kind == 15 || kind == 16) {
         ((TNpcPlayer *)self)->request_chatter(0x16);
@@ -3214,7 +3215,7 @@ s32 partner_view_update_hp_change(void *arg0) {
 // 0x805DB218, pooled between init_ai_state's 19.0 and partner_view_update_hp_change's
 // 0.3). It is the low-HP test hp_change and partner_view_update_conditions make
 // against a fifth of the maximum. Name inferred from that role.
-bool TNpcPlayer::is_hp_low(f32 hp, f32 max_hp) {
+static bool is_hp_low(f32 hp, f32 max_hp) {
     return hp <= 0.2f * max_hp;
 }
 
@@ -3761,7 +3762,7 @@ void calc_box_escape_axis__10TNpcPlayerFv(void *self, Vec_8014E3B0 *a, Vec_8014E
 // calc_box_escape_axis's 7.0). It is the half-size limit under which
 // route_around_object walks around an obstacle instead of escaping its box.
 // Name inferred from that role.
-bool TNpcPlayer::is_small_obstacle(f32 size) {
+static bool is_small_obstacle(f32 size) {
     return 0.5f * size <= 12.0f;
 }
 

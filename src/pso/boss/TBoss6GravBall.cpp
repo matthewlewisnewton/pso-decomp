@@ -1,3 +1,7 @@
+#include "pso/player/demo_mode.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/boss/TBoss6GravBall.h"
 #include "pso/object/TObject_80019A50.h"
@@ -5,6 +9,7 @@
 #include "pso/object/TObjMotion.h"
 extern "C" void *__ct__14TObjCollidableFP7TObject(void *, s32);
 
+#include "pso/boss/TBoss6GravBall.h"
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/misc/TLobby.h"
 
@@ -24,7 +29,6 @@ struct PL_80323544 { u8 pad[0x30]; u32 flags; u8 pad34[4]; Vec_80323544 pos; };
 
 extern "C" {
 P_80323348 *get_player_data__10TObjPlayerFi(s32);
-s32 is_state_1f__14TBoss6PlotFalzFUi();
 f32 vector_length(void *);
 void subtract_vector(void *, void *);
 void normalize_vector(void *);
@@ -54,7 +58,7 @@ void TBoss6GravBall::clear_player_grav_flags() {
     s32 i;
     for (i = 0; i < n; i++) {
         P_80323348 *p = get_player_data__10TObjPlayerFi(i);
-        if (is_state_1f__14TBoss6PlotFalzFUi() != 0) {
+        if (TBoss6PlotFalz::is_state_1f((TObjPlayer *)p) != 0) {
             p->flags &= 0xFFFDFFFF;
         }
     }
@@ -74,7 +78,7 @@ void TBoss6GravBall__sub_803233AC(u8 *self) {
     for (i = 0; i < n; i++) {
         pl = (PL_803233AC *)get_player_data__10TObjPlayerFi(i);
         id = get_entity_id(pl) + 5;
-        if (((TBoss6PlotFalz *)pl)->is_active() == 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) == 0) {
             ((TBoss6GravBall *)self)->destroy_part((s32)((void *)id));
             continue;
         }
@@ -124,7 +128,7 @@ void TBoss6GravBall__sub_80323544(u8 *self) {
     for (i = 0; i < n; i++) {
         pl = (PL_80323544 *)get_player_data__10TObjPlayerFi(i);
         id = get_entity_id(pl) + 5;
-        if (((TBoss6PlotFalz *)pl)->is_active() == 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) == 0) {
             ((TBoss6GravBall *)self)->destroy_part((s32)((void *)id));
             continue;
         }
@@ -227,7 +231,6 @@ typedef void (TBoss6GravBall::*ActP_80323BBC)(void *);
 typedef void (TBoss6GravBall::*Act0_80323BBC)();
 
 extern "C" {
-s32 check_demo_mode__10TObjPlayerFv(void *);
 s32 query_teammate_state__9TObjEneDDFv(void);
 void VecCopy__FP3VecPC3Vec(void *, void *);
 s32 create_emitter__14TBoss6GravBallFl(void *, int);
@@ -236,8 +239,8 @@ extern s32 lbl_8047667C[];
 extern s32 __vt__14TBoss6GravBall[];
 extern s32 TBoss6GravBall__name;
 
-s32 play_persistent_sound(int, void *, void *, int, int);
-s32 play_sound_effect(int, void *, int, int);
+
+
 s32 get_state__14TBoss6GravBallFv(int);
 s32 fn_80323134(void *);
 s32 destroy_part__14TBoss6GravBallFl(void *, int);
@@ -256,7 +259,7 @@ void update_charge_effects__14TBoss6GravBallFPv(u8 *self) {
     s32 temp_r0_3;
 
     TBoss6GravBall__sub_803233AC(self);
-    play_persistent_sound(0x4003C418, self, self + 0xC8, 0, 0);
+    play_persistent_sound((s32)(0x4003C418), (const void *)(self), (const Vec *)(self + 0xC8), 0, 0);
     temp_r0 = *(s32 *)((s8 *)self + 0xB8);
     if (temp_r0 >= 0x96) {
         if (temp_r0 == 0x96) {
@@ -286,8 +289,8 @@ void update_charge_effects__14TBoss6GravBallFPv(u8 *self) {
         return;
     case 31:
         if ((s32) *(s32 *)((s8 *)self + 0xC4) == 0) {
-            spawn_particle_effect((self + 0xC8), 0x21C);
-            spawn_particle_effect((self + 0xC8), 0x21D);
+            spawn_particle_effect((const Vec *)((self + 0xC8)), 0x21C);
+            spawn_particle_effect((const Vec *)((self + 0xC8)), 0x21D);
             *(s32 *)((s8 *)self + 0xC4) = 1;
         }
         destroy_part__14TBoss6GravBallFl(self, 5);
@@ -305,7 +308,7 @@ void update_charge_effects__14TBoss6GravBallFPv(u8 *self) {
         *(s32 *)((s8 *)self + 0xB4) = 0;
         clear_player_grav_flags__14TBoss6GravBallFv(self);
         *(s32 *)((s8 *)self + 0xB0) = 2;
-        play_sound_effect(0x4003C417, self + 0xC8, 0, 0);
+        play_sound_effect(0x4003C417, (const Vec *)(self + 0xC8), 0, 0);
         return;
     default:
         queue_destruction__7TObjectFv((self));
@@ -332,7 +335,7 @@ void update_state__14TBoss6GravBallFPv(u8 *arg0) {
             }
         }
         TBoss6GravBall__sub_80323544((arg0));
-        play_persistent_sound(0x4003B51A, arg0, arg0 + 0xC8, 0, 0);
+        play_persistent_sound((s32)(0x4003B51A), (const void *)(arg0), (const Vec *)(arg0 + 0xC8), 0, 0);
         switch (get_state__14TBoss6GravBallFv((int) (*(s32 *)((s8 *)arg0 + 0xAC)))) {
         case 0x27:
             return;
@@ -347,7 +350,7 @@ void update_state__14TBoss6GravBallFPv(u8 *arg0) {
             *(s32 *)((s8 *)arg0 + 0xB8) = 0;
             *(s32 *)((s8 *)arg0 + 0xB4) = 0;
             *(s32 *)((s8 *)arg0 + 0xB0) = 1;
-            play_sound_effect(0x4003B516, arg0 + 0xC8, 0, 0);
+            play_sound_effect(0x4003B516, (const Vec *)(arg0 + 0xC8), 0, 0);
             break;
         case 0x20:
         default:
@@ -358,7 +361,7 @@ void update_state__14TBoss6GravBallFPv(u8 *arg0) {
 }
 
 void run_task__14TBoss6GravBallFv(TBoss6GravBall_80323BBC *arg0) {
-    if (check_demo_mode__10TObjPlayerFv(arg0) != 0) {
+    if (check_demo_mode() != 0) {
         return;
     }
     if (query_teammate_state__9TObjEneDDFv() != 0) {
@@ -374,10 +377,18 @@ void run_task__14TBoss6GravBallFv(TBoss6GravBall_80323BBC *arg0) {
     arg0->counter++;
 }
 
+void *__dt__14TBoss6GravBallFv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TBoss6GravBall;
+        init_parts__14TBoss6GravBallFv(arg0);
+        clear_player_grav_flags__14TBoss6GravBallFv(arg0);
+        __dt__14TObjCollidableFv(arg0, 0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TBoss6GravBall::~TBoss6GravBall() {
-    init_parts__14TBoss6GravBallFv(this);
-    clear_player_grav_flags__14TBoss6GravBallFv(this);
 }
 TBoss6GravBall::TBoss6GravBall(s32 arg1, void *arg2) : TObjCollidable((TObject *)arg1) {
     s32 i;

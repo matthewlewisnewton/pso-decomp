@@ -1,3 +1,8 @@
+#include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -42,8 +47,8 @@ extern u32 model_render_flags;
 void *find_entity_by_id(u16 id);
 TObjPlayer *get_player_by_client_id(s32 client_id);
 void minimap_render_dot(f32 *pos, s32 color, s32, s32);
-void play_persistent_sound(u32 id, TObject *source, f32 *pos, s32, s32);
-void play_sound_effect(u32 id, f32 *pos, s32, s32);
+
+
 s32 angle_difference_abs(s32 a, s32 b);
 s32 approach_angle_limited(s32 angle, s32 target, s32 step);
 TObject *create_particle_emitter(Vec *pos, s32 id);
@@ -142,7 +147,7 @@ void TBoss3VoloptCore::init_params() {
     m_name = TBoss3VoloptCore_name;
     motion_list = core_resources->motions;
     action_table = core_motions;
-    set_field_d8((s32)action_table);
+    set_action_table((TObjMotionAction *)((s32)action_table));
     init_collision_body_parts(this, core_body_parts, 1);
     variant = 0;
     movementParameters = &core_movement;
@@ -155,7 +160,7 @@ void TBoss3VoloptCore::init_params() {
     referenceHp = hp;
     set_param(0x2E);
     update_prev_position();
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    register_by_id();
     load_entry_params_volopt(0x18);
     m_388 |= 0x10000;
     orbit_angle = 0;
@@ -183,17 +188,17 @@ void *TBoss3VoloptCore::create(void *set_data) {
 
 void TBoss3VoloptCore::load_resources() {
     core_resources = boss3_volopt_resources;
-    core_combat_stats_a = TLobby::register_boss(0x21);
-    core_combat_stats_b = TLobby::dispatch_shared_handler_b(0x21);
-    core_combat_stats_c = TLobby::register_object(0x21);
-    core_orbit_speeds = (TBoss3VoloptOrbitSpeeds *)TLobby::dispatch_shared_handler_a(0x21);
+    core_combat_stats_a = get_battle_base_stats(0x21);
+    core_combat_stats_b = get_battle_attack_params(0x21);
+    core_combat_stats_c = get_battle_resistance_params(0x21);
+    core_orbit_speeds = (TBoss3VoloptOrbitSpeeds *)get_battle_movement_params(0x21);
 }
 
 void TBoss3VoloptCore::release() {}
 
 void TBoss3VoloptCore::run_task() {
     vol_opt_active_hit_zone = calc_hit_zone_index();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_80040558();
         return;
     }
@@ -227,7 +232,7 @@ void TBoss3VoloptCore::run_task() {
         dispatch_reaction_state();
         position.y = (position.y > 7.0f) ? position.y : 7.0f;
         update_prev_position();
-        TBoss3Volopt::set_camera_focus((Vec *)&m_2fc);
+        TBoss3Volopt::set_camera_focus((Vec *)&body_center_position);
         clear_all_status_effects();
     }
 }
@@ -265,19 +270,19 @@ void TBoss3VoloptCore::sub_80040558() {}
 
 void TBoss3VoloptCore::render() {
     if (!(actorFlags & 0x02000000) && update_object_view_visibility(400.0f, 40.0f) != 0) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         model_render_flags &= ~0x400;
         post_translate_matrix(&position.x);
-        rotate_matrix_x(0, rotation_x);
+        rotate_matrix_x(0, this->rotation.pitch);
         if (m_388 & 0x10000) {
             rotate_matrix_y(0, facing_angle);
             scale_matrix(0, 1.0f, 1.0f, 0.05f);
-            rotate_matrix_y(0, rotation_y - facing_angle);
+            rotate_matrix_y(0, this->rotation.yaw - facing_angle);
         } else {
-            rotate_matrix_y(0, rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
         }
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object(model);
         } else {
             draw();
@@ -295,7 +300,7 @@ void TBoss3VoloptCore::update_charge_state() {
     case 0:
         m_388 &= ~0x10000;
         this->requested_action = 0;
-        rotation_x = 0;
+        this->rotation.pitch = 0;
         if ((s32)m_380 == 4) {
             state = charge_step;
         } else {
@@ -306,9 +311,9 @@ void TBoss3VoloptCore::update_charge_state() {
         }
         break;
     case 1:
-        VecCopy((Vec *)unk_308, &((TObjPlayer *)target)->position);
-        subtract_vector((Vec *)unk_308, &position);
-        turn_toward_direction(0x800, (Vec *)unk_308);
+        VecCopy(&movement_velocity, &((TObjPlayer *)target)->position);
+        subtract_vector(&movement_velocity, &position);
+        turn_toward_direction(0x800, &movement_velocity);
         if (--charge_timer <= 0) {
             charge_timer = 0x96;
             charge_step = 2;
@@ -326,11 +331,11 @@ void TBoss3VoloptCore::update_charge_state() {
             state = 4;
             return;
         }
-        VecCopy((Vec *)unk_308, (Vec *)&player->m_2fc);
-        subtract_vector((Vec *)unk_308, &position);
-        vec_set_length((Vec *)unk_308, 5.0f);
-        turn_toward_direction(0x800, (Vec *)unk_308);
-        vec3_add_to(&position, (Vec *)unk_308);
+        VecCopy(&movement_velocity, (Vec *)&player->body_center_position);
+        subtract_vector(&movement_velocity, &position);
+        vec_set_length(&movement_velocity, 5.0f);
+        turn_toward_direction(0x800, &movement_velocity);
+        vec3_add_to(&position, &movement_velocity);
         if (check_target_collision() != 0) {
             charge_step = 4;
             state = 4;
@@ -341,11 +346,11 @@ void TBoss3VoloptCore::update_charge_state() {
         }
         break;
     case 4:
-        VecCopy((Vec *)unk_308, &home_pos);
-        subtract_vector((Vec *)unk_308, &position);
-        distance = vec_set_length((Vec *)unk_308, 5.0f);
-        turn_toward_direction(0x800, (Vec *)unk_308);
-        vec3_add_to(&position, (Vec *)unk_308);
+        VecCopy(&movement_velocity, &home_pos);
+        subtract_vector(&movement_velocity, &position);
+        distance = vec_set_length(&movement_velocity, 5.0f);
+        turn_toward_direction(0x800, &movement_velocity);
+        vec3_add_to(&position, &movement_velocity);
         check_target_collision();
         if (distance < 10.0f) {
             targetId = 0xFFFF;
@@ -366,8 +371,8 @@ void TBoss3VoloptCore::update_grabbed_state() {
         obj_clearFlags30(0x02200200);
         referenceHp = hp;
         this->requested_action = 3;
-        play_sound_effect(0x4003A81F, NULL, 0, 0);
-        play_sound_effect(0x4003BC20, NULL, 0, 0);
+        play_sound_effect(0x4003A81F, (const Vec *)(NULL), 0, 0);
+        play_sound_effect(0x4003BC20, (const Vec *)(NULL), 0, 0);
         if (local_client_id == m_2d4) {
             TCameraCtrl__sub_8006A044(0x1E, 0.08f);
         }
@@ -458,10 +463,10 @@ void TBoss3VoloptCore::update_state_spin() {
         targetId = 0xFFFF;
         m_388 |= 0x10000;
         this->requested_action = 0;
-        rotation_x = 0;
+        this->rotation.pitch = 0;
         update_orbit_position();
         facing_angle = calc_spin_value();
-        rotation_y = facing_angle;
+        this->rotation.yaw = facing_angle;
         *(s16 *)&timer = 0x5A;
         state = 1;
     case 1:
@@ -553,7 +558,7 @@ void TBoss3VoloptCore::update_orbit_state() {
     case 0:
         m_388 |= 0x10000;
         this->requested_action = 0;
-        rotation_x = 0;
+        this->rotation.pitch = 0;
         state = 1;
         break;
     case 1:
@@ -562,7 +567,7 @@ void TBoss3VoloptCore::update_orbit_state() {
         sweep_angle -= get_orbit_speed(0);
         update_orbit_position();
         facing_angle = calc_spin_value();
-        rotation_y = facing_angle - 0x4000;
+        this->rotation.yaw = facing_angle - 0x4000;
         if (moves_left > 1) {
             if (sweep_angle <= -0x238E) {
                 moves_left--;
@@ -578,7 +583,7 @@ void TBoss3VoloptCore::update_orbit_state() {
             drop_angle = orbit_angle;
             this->update_if_active(9);
         }
-        play_persistent_sound(0x4003BC05, this, &position.x, 0, 0);
+        play_persistent_sound((s32)(0x4003BC05), (const void *)(this), (const Vec *)(&position.x), 0, 0);
         break;
     case -1:
         break;
@@ -597,8 +602,8 @@ void TBoss3VoloptCore::sub_8003F81C() {
         effect = NULL;
         state = 1;
     case 1:
-        rotation_y = approach_angle_limited(rotation_y, facing_angle - 0x8000, core_turn_angle_limit);
-        if (angle_difference_abs(rotation_y, facing_angle - 0x8000) <= core_turn_angle_limit) {
+        this->rotation.yaw = approach_angle_limited(this->rotation.yaw, facing_angle - 0x8000, core_turn_angle_limit);
+        if (angle_difference_abs(this->rotation.yaw, facing_angle - 0x8000) <= core_turn_angle_limit) {
             *(s16 *)&timer = (TBoss3Volopt::is_v2_mode() != 0) ? 5 : 0x1E;
             state = 2;
         }
@@ -608,7 +613,7 @@ void TBoss3VoloptCore::sub_8003F81C() {
             Vec pos = *&position;
             pos.y -= 20.0f;
             effect = create_particle_emitter(&pos, 0x31);
-            play_sound_effect(0x4003AD1E, &position.x, 0, 0);
+            play_sound_effect(0x4003AD1E, (const Vec *)(&position.x), 0, 0);
             state = 3;
         }
         break;
@@ -669,7 +674,7 @@ void TBoss3VoloptCore::update_topple_state() {
     case 0:
         m_388 |= 0x10000;
         this->requested_action = 0;
-        if (angle_difference_abs(rotation_y, facing_angle - 0x4000) <= core_turn_angle_limit) {
+        if (angle_difference_abs(this->rotation.yaw, facing_angle - 0x4000) <= core_turn_angle_limit) {
             state = 3;
         } else {
             state = 1;
@@ -681,13 +686,13 @@ void TBoss3VoloptCore::update_topple_state() {
         }
         break;
     case 2:
-        rotation_y = approach_angle_limited(rotation_y, facing_angle - 0x4000, core_turn_angle_limit);
-        if (angle_difference_abs(rotation_y, facing_angle - 0x4000) <= core_turn_angle_limit) {
+        this->rotation.yaw = approach_angle_limited(this->rotation.yaw, facing_angle - 0x4000, core_turn_angle_limit);
+        if (angle_difference_abs(this->rotation.yaw, facing_angle - 0x4000) <= core_turn_angle_limit) {
             state = 3;
         }
         break;
     case 3:
-        play_persistent_sound(0x4003BC05, this, &position.x, 0, 0);
+        play_persistent_sound((s32)(0x4003BC05), (const void *)(this), (const Vec *)(&position.x), 0, 0);
         advance_animation();
         orbit_angle -= get_orbit_speed(0);
         sweep_angle -= get_orbit_speed(0);

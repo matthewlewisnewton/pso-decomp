@@ -51,7 +51,7 @@ struct Tex_803DD784 { u8 pad[0x20]; void *buf; };
 
 struct Slot_803DD784 { s32 f0; s32 f4; s32 f8; Tex_803DD784 *tex; s32 f10; s32 f14; };
 
-s32 lbl_805D77A0;
+extern s32 lbl_805D77A0;
 extern "C" {
 void TLobby__sub_803DDD78(S_803DDD78 *d, S_803DDD78 *s);
 void copy_4word_struct__6TLobbyFPvPv(S_803DDD94 *d, S_803DDD94 *s);
@@ -76,6 +76,7 @@ s32 DVDOpen(const char *, FileInfo_803DD784 *);
 s32 DVDClose(FileInfo_803DD784 *);
 s32 Dolphin_DVDReadPrio(FileInfo_803DD784 *, void *, s32, s32, s32);
 extern u8 gvrt_header_read_buffer[];
+extern char lbl_805D46D8[4];
 extern Slot_803DD784 *record_array_ptr;
 s32 TObjPlayer__sub_803DD784(Obj_803DDA68 *obj, s32 idx);
 void TObjPlayer__sub_803DD5E8(GvmTextureList_803DDDC8 *list, GvmTextureEntry_803DDDC8 *entries, u32 names, s32 count);
@@ -119,7 +120,7 @@ void TObjPlayer__sub_803DD6DC(struct Obj_803DD6DC *arg0, s32 arg1) {
     lbl_804FC688[idx](arg0, arg1);
 }
 
-s32 lbl_805D77A4;
+extern s32 lbl_805D77A4;
 
 #pragma push
 #pragma optimize_for_size off
@@ -142,7 +143,7 @@ s32 TObjPlayer__sub_803DD784(Obj_803DDA68 *obj, s32 idx) {
     if (r != 0) {
         return r;
     }
-    ((TAdSinglePlyChrSelectGC *)name)->append_extension_if_missing((char *)(obj->ents[idx].info), ".GVR");
+    ((TAdSinglePlyChrSelectGC *)name)->append_extension_if_missing((char *)(obj->ents[idx].info), (char *)lbl_805D46D8);
     pfi = &fi;
     if (DVDOpen(name, pfi) == 0) {
         lbl_8058D470.c = 2;
@@ -383,7 +384,7 @@ void replace_gvm_texture_directory(GvmTextureList_803DDDC8* list, s32 stride, co
         if (names) {
             s32 length = strlen((char*)record);
             if (length > 0) {
-                ((TLobby *)(texture->name))->move_data(record, length);
+                move_data((texture->name), record, length);
             }
             record += 0x1C;
         }
@@ -543,9 +544,9 @@ void *load_nj_chunk_model_resource(u8 *base, u32 *off, u32 *out) {
     u32 v;
     pos = 0;
     src = base + *off;
-    ((TLobby *)(&magic))->move_data(src, 4);
+    move_data((&magic), src, 4);
     TLobby::bswap_u32(&magic);
-    ((TLobby *)(&size))->move_data(src + 4, 4);
+    move_data((&size), src + 4, 4);
     TLobby::bswap_u32(&size);
     src += 8;
     *off += 8;
@@ -592,7 +593,7 @@ void *load_nj_chunk_model_resource(u8 *base, u32 *off, u32 *out) {
     if (buf == NULL) {
         return NULL;
     }
-    ((TLobby *)buf)->move_data(src, size);
+    move_data(buf, src, size);
     DCFlushRange(buf, size);
     src += size;
     *off += size;
@@ -601,17 +602,17 @@ unknown:
     *out = 0x2A2A2A2A;
     return NULL;
 relocate:
-    ((TLobby *)(&magic))->move_data(src, 4);
+    move_data((&magic), src, 4);
     TLobby::bswap_u32(&magic);
     *off += 4;
     magic = TLobby::bswap32_value(magic);
     if (magic == 0x504F4630) {
-        ((TLobby *)(&size))->move_data(src + 4, 4);
+        move_data((&size), src + 4, 4);
         TLobby::bswap_u32(&size);
         src += 8;
         *off += 4;
         while (size != 0) {
-            ((TLobby *)(&b0))->move_data(src, 1);
+            move_data((&b0), src, 1);
             src++;
             (*off)++;
             size--;
@@ -620,18 +621,18 @@ relocate:
                 v = b0 & 0x3F;
                 break;
             case 0x80:
-                ((TLobby *)(&b1))->move_data(src, 1);
+                move_data((&b1), src, 1);
                 src++;
                 size--;
                 (*off)++;
                 v = ((b0 & 0x3F) << 8) | b1;
                 break;
             case 0xC0:
-                ((TLobby *)(&b1))->move_data(src, 1);
+                move_data((&b1), src, 1);
                 size--;
-                ((TLobby *)(&b2))->move_data(src + 1, 1);
+                move_data((&b2), src + 1, 1);
                 size--;
-                ((TLobby *)(&b3))->move_data(src + 2, 1);
+                move_data((&b3), src + 2, 1);
                 src += 3;
                 size--;
                 *off += 3;

@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/render/render_util.h"
 #include "pso/system/memory.h"
@@ -14,12 +16,6 @@ struct ByteBlock_C { u8 bytes[0xc]; };
 
 struct Src_80320534 { s32 a; u8 *p; };
 
-struct Ent_803204B8 { u8 pad[4]; f32 v[3]; };
-
-struct Blk_803204B8 { s32 flag; Ent_803204B8 *ents; };
-
-struct Ef_803204B8 { u8 pad[0x20]; Blk_803204B8 *blk; s32 count; };
-
 struct Src_80320950 { s32 a; u8 *p; };
 
 struct Obj_80320950 { u8 pad[0x18]; void *vt; Src_80320950 *arr; Src_80320950 *last; u8 pad2[4]; s32 n; };
@@ -31,28 +27,24 @@ struct Src_803209F0 { s32 a; u8 *p; };
 struct Obj_803209F0 { s32 f0; u8 pad[0x14]; void *vt; Src_803209F0 *arr; Src_803209F0 *last; s32 n; s32 m; };
 
 extern "C" {
-void VecCopy__FP3VecPC3Vec(void *, void *);
-void mem_free(void *);
 void run_task__11TBoss6ZanzoFv(Obj_803208CC *arg0);
-void *mem_alloc(u32 size);
 extern s32 TBoss6Zanzo__name;
 int TBoss6Zanzo__sub_803205C4(void*);
 int set_depth_buffer_settings_1__Fv(void*);
 
 s32 fn_803204B0(void* p) { return *(s32*)((char*)p + 0x4); }
 
-void TBoss6Type1::set_effect_points(f32 *a, u32 *b) {
-    Ef_803204B8 *o = (Ef_803204B8 *)this;
-    Ent_803204B8 *p;
-    Ent_803204B8 *end;
-    f32 *a2 = a;
-    u32 *b2 = b;
-    o->blk->flag = 1;
-    p = o->blk->ents;
-    end = p + o->count;
-    for (; p < end; p++, a2 += 3, b2++) {
-        VecCopy__FP3VecPC3Vec(&p->v, a2);
-        ((TAdChrMoveEffectGC *)p)->copy4(b2);
+void TBoss6Zanzo::set_effect_points(Vec *points, u32 *offsets) {
+    Boss6ZanzoPoint *p;
+    Boss6ZanzoPoint *end;
+    Vec *a2 = points;
+    u32 *b2 = offsets;
+    m_20->dirty = 1;
+    p = m_20->points;
+    end = p + m_24;
+    for (; p < end; p++, a2++, b2++) {
+        VecCopy(&p->pos, a2);
+        fn_80257720(p, b2);
     }
 }
 
@@ -84,7 +76,7 @@ void TBoss6Zanzo::render() { set_depth_buffer_settings_1__Fv(this); TBoss6Zanzo_
 void run_task__11TBoss6ZanzoFv(Obj_803208CC *arg0) {
     Src_80320534 *base;
     Src_80320534 *p;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         base = arg0->arr;
         for (p = base + arg0->n - 1; p > base; p--) {
             ((TBoss6Zanzo *)arg0)->copy_trail_buffer(p, p - 1);
@@ -98,12 +90,12 @@ void run_task__11TBoss6ZanzoFv(Obj_803208CC *arg0) {
 TBoss6Zanzo::~TBoss6Zanzo() {
     Src_80320950 *p;
     Src_80320950 *end;
-    mem_free(((Obj_80320950 *)this)->last->p);
+    ::operator delete[](((Obj_80320950 *)this)->last->p);
     ::operator delete(((Obj_80320950 *)this)->last);
     for (p = ((Obj_80320950 *)this)->arr, end = p + ((Obj_80320950 *)this)->n; p < end; p++) {
-        mem_free(p->p);
+        ::operator delete[](p->p);
     }
-    mem_free(((Obj_80320950 *)this)->arr);
+    ::operator delete[](((Obj_80320950 *)this)->arr);
 }
 
 TBoss6Zanzo::TBoss6Zanzo(TObject *object, s32 arg2, s32 arg3) : TObject(object) {
@@ -118,12 +110,12 @@ TBoss6Zanzo::TBoss6Zanzo(TObject *object, s32 arg2, s32 arg3) : TObject(object) 
     if (((Obj_803209F0 *)this)->m < 2) {
         ((Obj_803209F0 *)this)->m = 2;
     }
-    ((Obj_803209F0 *)this)->arr = (Src_803209F0 *)mem_alloc(((Obj_803209F0 *)this)->m * 8);
+    ((Obj_803209F0 *)this)->arr = (Src_803209F0 *)::operator new[](((Obj_803209F0 *)this)->m * 8);
     for (p = ((Obj_803209F0 *)this)->arr, end = p + ((Obj_803209F0 *)this)->m; p < end; p++) {
         p->a = 0;
-        p->p = (u8 *)mem_alloc(((Obj_803209F0 *)this)->n * 0x10);
+        p->p = (u8 *)::operator new[](((Obj_803209F0 *)this)->n * 0x10);
     }
     ((Obj_803209F0 *)this)->last = (Src_803209F0 *)::operator new(8);
     ((Obj_803209F0 *)this)->last->a = 0;
-    ((Obj_803209F0 *)this)->last->p = (u8 *)mem_alloc(((Obj_803209F0 *)this)->n * 0x10);
+    ((Obj_803209F0 *)this)->last->p = (u8 *)::operator new[](((Obj_803209F0 *)this)->n * 0x10);
 }

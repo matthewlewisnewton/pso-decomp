@@ -261,13 +261,16 @@ struct G_DropItem_6x2A {
 };
 
 struct G_DropItem_DC_6x5F {
- struct G_UnusedHeader header;
- struct FloorItem item;
+ G_ClientIDHeader header;
+ FloorItem item;
+ G_DropItem_DC_6x5F();
 };
 
 struct G_DropItem_PC_V3_BB_6x5F {
- struct G_DropItem_DC_6x5F __base_G_DropItem_DC_6x5F;
- u32 unused3;
+ G_DropItem_DC_6x5F __base_G_DropItem_DC_6x5F;
+ u8 unused3[4];
+ G_DropItem_PC_V3_BB_6x5F();
+ void send();
 };
 
 struct G_DropStackedItem_DC_6x5D {
@@ -332,13 +335,37 @@ struct G_GalGryphonBossActions_6x9F {
  f32 unknown_a3;
 };
 
+struct G_GalGryphonBossActionFields {
+ s32 m_4;
+ f32 m_8;
+ f32 m_c;
+ f32 m_10;
+};
+
+// Each state reads these four words its own way; bswap swaps them as words.
+union G_GalGryphonBossActionParams {
+ struct G_GalGryphonBossActionFields f;
+ u32 words[4];
+};
+
+// One step of Gal Gryphon's action script: the state to enter, how long, and
+// that state's parameters. TBoss5Gryphon keeps the current step at 0x494.
+struct G_GalGryphonBossAction {
+ s16 state;
+ s16 timer;
+ union G_GalGryphonBossActionParams params;
+ void bswap();
+ void copy_action_state(G_GalGryphonBossAction *src);
+};
+
 struct G_GalGryphonBossActions_6xA0 {
- struct G_EntityIDHeader header;
+ struct G_ClientIDHeader header;  // client_id: the gryphon's entity id
  struct VectorXYZF pos;
  u32 angle_y;
- u16 phase;
- u16 unknown_a3;
- u32 unknown_a4[4];
+ struct G_GalGryphonBossAction action;
+ G_GalGryphonBossActions_6xA0();
+ void bswap();
+ void send();
 };
 
 struct G_GogoBall_6x79 {
@@ -751,19 +778,21 @@ struct G_ShrinkPlayer_6x87 {
  f32 size;
 };
 
+// GC handler 8011A868 uses signed loads for entity_index/room and sign-extends
+// effective_area. Preserve these signed types when regenerating the wire records.
 struct G_StandardDropItemRequest_DC_6x60 {
  struct G_UnusedHeader header;
  u8 floor;
  u8 rt_index;
- u16 entity_index;
+ s16 entity_index;
  struct VectorXZF pos;
- u16 room;
+ s16 room;
  u16 ignore_def;
 };
 
 struct G_StandardDropItemRequest_PC_V3_BB_6x60 {
  struct G_StandardDropItemRequest_DC_6x60 __base_G_StandardDropItemRequest_DC_6x60;
- u8 effective_area;
+ s8 effective_area;
  u8 unused[3];
 };
 

@@ -1,5 +1,11 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #pragma readonly_strings on
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -79,15 +85,14 @@ s32 subtract_vector(void *, void *);
 s32 normalize_vector(void *);
 extern u32 boss4_type3_radar_marker_colors[];
 extern const f32 TBoss4Type3__data_805D8C40;
-u32 spawn_particle_effect(void *, int);
+
 u32 create_particle_emitter(void *, int);
-s32 play_sound_effect(int, void *, int, int);
+
 f64 atan2_float(f32, f32);
-u8 * dispatch_shared_handler_a__6TLobbyFl(s32);
 
 void TBoss4Type2__sub_80057128(void *arg0);
 s32 angle_diff_s16(int, int);
-s32 play_persistent_sound(int, void *, void *, int, int);
+
 s32 create__11TTecRaBartaFPvPvPvPv(void *, void *, void *, s32);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
@@ -467,7 +472,6 @@ void * __ct__13TObjBs4CutAtkFv(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 create__11TBoss4BishiFi(void *);
 s32 request_follow_camera_offsets(void *, void *, int);
 int toggle_particle_effect__10TObjPlayerFv(void*);
-s32 clear_render_callback__8TObjFishFv(s32);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 void __dt__9TObjEnemyFv(void *, s32);
 s32 approach_angle_limited(s32, s32, s32);
@@ -512,7 +516,6 @@ extern s32 registered_player_count;
 struct Def_804867C8 { s32 value; s32 remaining[39]; };
 
 void init_model_node_tables(void *, void *, int);
-s32 TObjFish__sub_800E3124(void *, void *, f32);
 s32 init_collision_body_parts(void *, void *, int);
 const char *boss4_type2_class_name = "TBoss4Type2";
 
@@ -592,7 +595,7 @@ void render__11TBoss4ZanzoFv(u8 *arg0) {
         set_motion_packed_rotation();
         post_translate_matrix(arg0 + 0x1C);
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x28)));
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)arg0 + 0x2C)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)arg0 + 0x2C))));
         TObjPlayer__sub_80052390(temp_f31);
         draw_model_motion(*(void **)((s8 *)arg0 + 0x30), *(void **)((s8 *)arg0 + 0x34), *(f32 *)((s8 *)arg0 + 0x38));
         TObjPlayer::sync_player_globals();
@@ -684,7 +687,7 @@ void TBoss4Type2::md_recover_update() {
   }
   if ((*((int *) (((s8 *) boss4_type2) + 0x398))) == 0x46)
   {
-    particle_effect = spawn_particle_effect(boss4_type2 + 0x468, 0x13E);
+    particle_effect = (u32)spawn_particle_effect((const Vec *)(boss4_type2 + 0x468), 0x13E);
     if (particle_effect != 0)
     {
       ((TParticleCtrl *)particle_effect)->set_flags(0x40);
@@ -697,7 +700,7 @@ void TBoss4Type2::md_recover_update() {
       {
         VecCopy((Vec *)(&stack.sp8), (const Vec *)((int) ((TObjPlayer *)temp_r3_5)->get_position_ptr()));
         stack.spC += 10.0f;
-        temp_r3_6 = spawn_particle_effect(&stack.sp8, 0x38);
+        temp_r3_6 = (u32)spawn_particle_effect((const Vec *)(&stack.sp8), 0x38);
         if (temp_r3_6 != 0)
         {
           ((TParticleCtrl *)temp_r3_6)->set_flags(0x40);
@@ -711,7 +714,7 @@ void TBoss4Type2::md_recover_update() {
   *((int *) (((s8 *) boss4_type2) + 0x398)) = temp_r0;
   if (temp_r0 < 0)
   {
-    ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(0x4003AD1A, boss4_type2 + 0x38, 0, 1);
+    play_sound_effect(0x4003AD1A, (const Vec *)(boss4_type2 + 0x38), 0, 1);
     TTecResta::create((void *)boss4_type2, boss4_type2 + 0x38, (void *)(*((int *) (((s8 *) boss4_type2) + 0x428))));
     ((TBoss4Type2 *)((void *) boss4_type2))->change_action((int) (*((int *) (((s8 *) boss4_type2) + 0x424))));
   }
@@ -722,7 +725,7 @@ void TBoss4Type2::md_recover_idle() {  }
 void TBoss4Type2::md_recover_enter() {
     u8 *arg0 = (u8 *)this;
     *(f32 *)((s8 *)arg0 + 0x3E8) = (f32) 0.0f;
-    ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(0x40039E21, arg0 + 0x38, 0, 1);
+    play_sound_effect(0x40039E21, (const Vec *)(arg0 + 0x38), 0, 1);
     *(s32 *)((s8 *)arg0 + 0x398) = 0x96;
 }
 
@@ -873,7 +876,7 @@ void TBoss4Type2::tenchu_update() {
                 if (particle_emitter != 0) {
                     ((TParticleCtrl *)((void *) *(u32 *)((s8 *)arg0 + 0x438)))->set_flags(0x40U);
                 }
-                play_sound_effect(0x40039717, arg0 + 0x38, 0, 1);
+                play_sound_effect(0x40039717, (const Vec *)(arg0 + 0x38), 0, 1);
             }
             if ((u32) *(u32 *)((s8 *)arg0 + 0x43C) == 0) {
                 temp_r3_12 = create_particle_emitter(&sp14, 0x13B);
@@ -915,7 +918,7 @@ void TBoss4Type2::tenchu_update() {
         }
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x398) > 6) {
-        play_persistent_sound(0x4003AD16, arg0, arg0 + 0x38, 0, 1);
+        play_persistent_sound((s32)(0x4003AD16), (const void *)(arg0), (const Vec *)(arg0 + 0x38), 0, 1);
     }
     temp_r0_2 = *(s32 *)((s8 *)arg0 + 0x398) - 1;
     *(s32 *)((s8 *)arg0 + 0x398) = temp_r0_2;
@@ -960,15 +963,15 @@ void TBoss4Type2::beam_update() {
             }
         }
         if (*(f32 *)((s8 *)arg0 + 0x3D0) >= 8.0f && *(f32 *)((s8 *)arg0 + 0x3D0) <= 17.0f) {
-            play_persistent_sound(0x4003B512, arg0, arg0 + 0x38, 0, 1);
+            play_persistent_sound((s32)(0x4003B512), (const void *)(arg0), (const Vec *)(arg0 + 0x38), 0, 1);
         }
     }
     if (*(s32 *)((s8 *)arg0 + 0x398) == 0x26) {
-        h = spawn_particle_effect(&v, 0xFD);
+        h = (u32)spawn_particle_effect((const Vec *)(&v), 0xFD);
         if (h != 0) {
             ((TParticleCtrl *)h)->set_flags(0x40);
         }
-        play_sound_effect(0x4003A813, arg0 + 0x38, 0, 1);
+        play_sound_effect(0x4003A813, (const Vec *)(arg0 + 0x38), 0, 1);
         start_pad_rumble_all(0xC0, 0xF);
     }
     if (*(s32 *)((s8 *)arg0 + 0x398) <= 0x26 && *(s32 *)((s8 *)arg0 + 0x398) >= 4 && !(*(s32 *)((s8 *)arg0 + 0x398) & 1)) {
@@ -976,9 +979,9 @@ void TBoss4Type2::beam_update() {
         p.x += 20.0f * *(f32 *)((s8 *)arg0 + 0x404);
         p.z += 20.0f * *(f32 *)((s8 *)arg0 + 0x40C);
         if (idx == 0) {
-            create__11TTecRaBartaFPvPvPvPv(arg0, &p, &p, *(s32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x36)) + 0x1C));
+            create__11TTecRaBartaFPvPvPvPv(arg0, &p, &p, *(s32 *)((s8 *)((u8 *)get_battle_movement_params(0x36)) + 0x1C));
         } else {
-            ((TTecRaFoie *)arg0)->create(&p, &p, (void *)(*(s32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x36)) + 0x18)));
+            ((TTecRaFoie *)arg0)->create(&p, &p, (void *)(*(s32 *)((s8 *)((u8 *)get_battle_movement_params(0x36)) + 0x18)));
         }
         add_radar_scaled_marker(&p, -0x5DB4, 1, 1, 2.5f);
         *(f32 *)((s8 *)arg0 + 0x404) *= -1.0f;
@@ -1064,7 +1067,7 @@ void TBoss4Type2::jisin_update() {
         TBoss4Type2::create_jisin((void *)arg0, (void *)(*(s32 *)((s8 *)arg0 + 0x3A0)));
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x398) <= 0x1E) {
-        play_persistent_sound(0x4003AD16, arg0, arg0 + 0x38, 0, 1);
+        play_persistent_sound((s32)(0x4003AD16), (const void *)(arg0), (const Vec *)(arg0 + 0x38), 0, 1);
     }
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x398) - 1;
     *(s32 *)((s8 *)arg0 + 0x398) = temp_r0;
@@ -1219,7 +1222,7 @@ void TBoss4Type2::apply_resta_heal() {
 
     temp_r4 = *(void **)((s8 *)this + 0x2B0);
     temp_r31 = *(s16 *)((s8 *)temp_r4 + 2);
-    drain_player_hp(*(u16 *)((s8 *)this + 0x3C4), (temp_r31 / 5) + (s32) TTecResta::calc_heal_amount(*(s32 *)((s8 *)(((void * (*)(s32, void *))dispatch_shared_handler_a__6TLobbyFl)(0x37, temp_r4)) + 0x1C)));
+    drain_player_hp(*(u16 *)((s8 *)this + 0x3C4), (temp_r31 / 5) + (s32) TTecResta::calc_heal_amount(*(s32 *)((s8 *)get_battle_movement_params(0x37) + 0x1C)));
 }
 
 void TBoss4Type2::sub_80056998() {
@@ -1486,16 +1489,16 @@ void TUnk_80486924::draw_hanger() {
     s32 i;
     set_motion_packed_rotation();
     for (i = 0; i < 2; i++) {
-        TObjFish::set_global_param(TObjFish__sub_8001EDB0(arg0->f390, boss4_zanzo_bml_index_table[i]));
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(arg0->f390, boss4_zanzo_bml_index_table[i])));
         switch (i) {
         case 1:
             model_render_flags |= 0x20000;
             TObjEneRe4Sorcerer__sub_801E3F1C(0.0f, arg0->f3c0);
-            ((TObjFish *)(arg0->f44c))->set_draw_callback_list();
+            ((ModelNodePositionCapture *)(arg0->f44c))->install();
             draw_model_motion((void *)get_bml_model(arg0->f390, boss4_zanzo_bml_index_table[i]),
                 (void *)get_bml_motion(arg0->f390, (s32)(((Row_80057270 *)&TBoss4Type2__attack_pattern_table)[arg0->f3c8].c[i])),
                 arg0->f3d0);
-            clear_render_callback__8TObjFishFv(arg0->f44c);
+            ((ModelNodePositionCapture *)(arg0->f44c))->clear();
             model_render_flags &= ~0x20000;
             break;
         default:
@@ -1588,7 +1591,7 @@ void TBoss4Type2::update_main() {
     advance_afterimage();
     if (0.0f == *(f32 *)((s8 *)arg0 + 0x3E8)) {
         *(u32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x394)) + 0x18) |= 1;
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
         submit_cursor_candidate(arg0, -1);
     } else {
         *(u32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x394)) + 0x18) &= ~1;
@@ -1639,7 +1642,7 @@ void TUnk_80486924::vfunc_62() {
     *(s32 *)((s8 *)((u8 *)this) + 0x3E4) = 1;
     *(f32 *)((s8 *)((u8 *)this) + 0x3F0) = (f32) 1.0f;
     *(s32 *)((s8 *)((u8 *)this) + 0x30) = (s32) (*(s32 *)((s8 *)((u8 *)this) + 0x30) & 0xFFFFFDFF);
-    ((s32 (*)(int, void *, int, int, void *))play_sound_effect)(0x4003B723, ((u8 *)this) + 0x38, 0, 1, this);
+    play_sound_effect(0x4003B723, (const Vec *)(((u8 *)this) + 0x38), 0, 1);
 }
 
 S_800578E8 *__dt__13TUnk_80486924Fv(S_800578E8 *o, s16 flag) {
@@ -1653,7 +1656,7 @@ S_800578E8 *__dt__13TUnk_80486924Fv(S_800578E8 *o, s16 flag) {
                 o->ptr[i] = 0;
             }
         }
-        TObjFish::init_state_1(o->f44c);
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(o->f44c));
         o->f44c = 0;
         free_collision_body_parts(o);
         o->f394 = 0;
@@ -1688,16 +1691,16 @@ u8 *TBoss4Type2__ct(u8 *arg0, s32 parent, s32 *arg2) {
     *(f32 *)((s8 *)arg0 + 0x30C) = 0.0f;
     *(f32 *)((s8 *)arg0 + 0x308) = 0.0f;
     *(s32 *)((s8 *)arg0 + 0x2A8) = 0;
-    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)((int) TLobby::register_boss(0x37)), (u8 *)(TLobby::dispatch_shared_handler_b(0x37)), (u8 *)(TLobby::register_object(0x37)));
+    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)((int) get_battle_base_stats(0x37)), (u8 *)(get_battle_attack_params(0x37)), (u8 *)(get_battle_resistance_params(0x37)));
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
-    ((TBoss3Volopt *)arg0)->reset_photon_effect();
+    ((TObjEnemy *)arg0)->register_by_id();
     ((TObjEnemy *)arg0)->set_param(0x2F);
     *(s32 *)((s8 *)arg0 + 0x3CC) = 0;
     *(s32 *)((s8 *)arg0 + 0x3C8) = 0;
     *(s32 *)((s8 *)arg0 + 0x3D8) = 0;
     *(f32 *)((s8 *)arg0 + 0x3D4) = 0.4f;
     *(f32 *)((s8 *)arg0 + 0x3D0) = 0.0f;
-    *(s32 *)((s8 *)arg0 + 0x44C) = TObjFish__sub_800E3124(lbl_80486868, arg0 + 0x450, 0.4f);
+    *(s32 *)((s8 *)arg0 + 0x44C) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(lbl_80486868), (Vec *)( arg0 + 0x450));
     for (i = 0; i < 2; i++) {
         ((Arr_800579A0 *) arg0)->f42C[i] = create_particle_emitter(arg0 + 0x38, boss4_type2_emitter_ids[i]);
     }
@@ -1708,18 +1711,18 @@ u8 *TBoss4Type2__ct(u8 *arg0, s32 parent, s32 *arg2) {
     *(s32 *)((s8 *)arg0 + 0x3A0) = 0;
     *(s32 *)((s8 *)arg0 + 0x3E0) = 0;
     *(u16 *)((s8 *)arg0 + 0x3C4) = 0xFFFF;
-    *(s32 *)((s8 *)arg0 + 0x41C) = floor_to_float(*(f32 *) dispatch_shared_handler_a__6TLobbyFl(0x37));
+    *(s32 *)((s8 *)arg0 + 0x41C) = floor_to_float(*(f32 *) get_battle_movement_params(0x37));
     if (*(s32 *)((s8 *)arg0 + 0x41C) < 1 || *(s32 *)((s8 *)arg0 + 0x41C) > 25) {
         *(s32 *)((s8 *)arg0 + 0x41C) = 4;
     }
     *(s32 *)((s8 *)arg0 + 0x41C) *= 75;
     *(s32 *)((s8 *)arg0 + 0x420) = *(s32 *)((s8 *)arg0 + 0x41C) - 7;
-    v = *(s32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x37)) + 0x18);
+    v = *(s32 *)((s8 *)((u8 *)get_battle_movement_params(0x37)) + 0x18);
     if (v < 1 || v > 4) {
         v = 1;
     }
     *(s32 *)((s8 *)arg0 + 0x424) = v + 8;
-    *(s32 *)((s8 *)arg0 + 0x428) = *(s32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x37)) + 0x1C);
+    *(s32 *)((s8 *)arg0 + 0x428) = *(s32 *)((s8 *)((u8 *)get_battle_movement_params(0x37)) + 0x1C);
     if (*(s32 *)((s8 *)arg0 + 0x428) < 0 || *(s32 *)((s8 *)arg0 + 0x428) > 14) {
         *(s32 *)((s8 *)arg0 + 0x428) = 0;
     }

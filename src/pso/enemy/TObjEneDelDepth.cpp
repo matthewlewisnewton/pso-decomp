@@ -1,4 +1,9 @@
+#include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/DelDepthData.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/animation/ActorAnimationState.h"
 #include "types.h"
@@ -26,6 +31,7 @@
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/unk/text_803E2D70.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 extern "C" {
 f64 atan2_float(f32, f32);
@@ -46,7 +52,7 @@ void minimap_render_dot(void *, s32, s32, s32);
 f32 cos_table_lookup(s32);
 f32 sin_table_lookup(s32);
 f32 fabs_float(f32);
-s32 play_sound_effect(int, void *, int, int);
+
 u16 find_nearest_visible_player(void *, int, f32);
 
 TObjChara *get_battle_param__10TObjPlayerFi(s32);
@@ -71,7 +77,6 @@ s32 TObjFish__sub_8001EDB0(u8 *, int);
 
 s32 get_mode__11TCameraCtrlFPv(void *);
 void draw_blob_shadow(s32 arg0);
-s32 refresh_lobby_state__10TObjPlayerFv();
 s32 free_collision_body_parts(void *);
 s32 init_collision_body_parts(void *, void *, int);
 void create__11TTecRaBartaFPvPvPvPv(void *source, void *origin, void *pos, void *level);
@@ -126,10 +131,6 @@ extern const f32 lbl_805DF2DC;
 
 extern "C" {
 s32 is_split_screen(void);
-s32 dispatch_shared_handler_a__6TLobbyFl(s32);
-BmlResource *load_resource_from_descriptor(BmlResource *, s32, const BmlResourceDescriptor *, s32, s32, s32);
-
-void TLobby__sub_8001FE7C(void*, int);
 
 extern "C" const char lbl_80475BD8[];
 extern "C" const char lbl_80475BE8[];
@@ -270,35 +271,29 @@ TObjEneDelDepth *TObjEneDelDepth::create(void *setData) {
 void TObjEneDelDepth::load_assets() {
 
     if (is_split_screen() != 0) {
-        BmlResource *p = (BmlResource *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, &lbl_804E8158, 0, 0, 0);
-        }
+        BmlResource *p = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&lbl_804E8158), 0, 0, (void *)(0));
         TObjEneDelDepth__shared_resource = p;
     } else {
-        BmlResource *p = (BmlResource *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, &lbl_804E8104, 0, 0, 0);
-        }
+        BmlResource *p = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&lbl_804E8104), 0, 0, (void *)(0));
         TObjEneDelDepth__shared_resource = p;
     }
 
     {
         DelDepthAnimationBinding info = deldepth_anim_binding;
         info.motions = TObjEneDelDepth__shared_resource->motions;
-        TLobby::spawn_npc_enemy((s16)0x47, TObjEneDelDepth__shared_resource->models[0].model, (NJS_TEXLIST *)TObjEneDelDepth__shared_resource->models[0].m_c, &info, TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
+        NpcModelRegistry::register_animated_chunk((s16)0x47, (void *)(TObjEneDelDepth__shared_resource->models[0].model), (void *)(TObjEneDelDepth__shared_resource->models[0].m_c), (const NpcAnimationBinding *)((s32)&info), TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
     }
     {
         DelDepthAnimationBinding info = deldepth_anim_binding_b;
         info.motions = TObjEneDelDepth__shared_resource->motions;
-        TLobby::spawn_npc_enemy((s16)0x48, TObjEneDelDepth__shared_resource->models[1].model, (NJS_TEXLIST *)TObjEneDelDepth__shared_resource->models[1].m_c, &info, TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
+        NpcModelRegistry::register_animated_chunk((s16)0x48, (void *)(TObjEneDelDepth__shared_resource->models[1].model), (void *)(TObjEneDelDepth__shared_resource->models[1].m_c), (const NpcAnimationBinding *)((s32)&info), TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
     }
-    TObjEneDelDepth__tune_params = (DelDepthParameters *)dispatch_shared_handler_a__6TLobbyFl(0x30);
+    TObjEneDelDepth__tune_params = (DelDepthParameters *)((s32)get_battle_movement_params(0x30));
 }
 
 void TObjEneDelDepth::free_shared_data() {
     if ((u32) TObjEneDelDepth__shared_resource != 0U) {
-        TLobby__sub_8001FE7C((void*)TObjEneDelDepth__shared_resource, 1);
+        delete (BmlResource *)((void*)TObjEneDelDepth__shared_resource);
         TObjEneDelDepth__shared_resource = NULL;
     }
 }
@@ -320,18 +315,18 @@ void TObjEneDelDepth::init() {
     this->model = (void *)get_bml_model(TObjEneDelDepth__shared_resource, 0);
     VecCopy(&this->prev_position, (const Vec *)(VecCopy(&this->home_position, (const Vec *)(VecCopy(&this->center, &this->position)))));
     this->collisionBody = (CollisionBody *)init_collision_body_parts(arg0, TObjEneDelDepth_collision_body_parts, 1);
-    ((TObjMotion *)arg0)->set_field_d8((s32)lbl_804E8194);
-    ((TObjMotion *)arg0)->set_field_dc((int) (TObjEneDelDepth__shared_resource->motions));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)lbl_804E8194));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)((int) (TObjEneDelDepth__shared_resource->motions)));
     ((TObjMotion *)arg0)->set_animation(0);
     ((TObjMotion *)arg0)->set_field_b8(0);
-    VecCopy((Vec *)((u8 *)&this->m_2fc), &this->position);
-    this->m_310 = (f32) TObjEneDelDepth__data_805DF258;
-    this->y_speed = (f32) TObjEneDelDepth__data_805DF258;
-    x_speed = (f32) TObjEneDelDepth__data_805DF258;
+    VecCopy((Vec *)((u8 *)&this->body_center_position), &this->position);
+    this->movement_velocity.z = (f32) TObjEneDelDepth__data_805DF258;
+    this->movement_velocity.y = (f32) TObjEneDelDepth__data_805DF258;
+    movement_velocity.x = (f32) TObjEneDelDepth__data_805DF258;
     this->target = 0;
-    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x30)), (u8 *)(TLobby::dispatch_shared_handler_b(0x30)), (u8 *)(TLobby::register_object(0x30)));
+    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x30)), (u8 *)(get_battle_attack_params(0x30)), (u8 *)(get_battle_resistance_params(0x30)));
     this->referenceHp = (s16) this->hp;
-    ((TBoss3Volopt *)arg0)->reset_photon_effect();
+    register_by_id();
     this->movementParameters = 0;
     ((TObjEnemy *)arg0)->set_param(0x47);
     var_r0 = new DelDepthMotion(this);
@@ -362,7 +357,7 @@ TObjEneDelDepth::~TObjEneDelDepth() {
 void TObjEneDelDepth::run_task() {
     TObjEneDelDepth *o = this;
     TObjEneDelDepth::Action fn;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         update_target_depth();
         return;
     }
@@ -371,21 +366,21 @@ void TObjEneDelDepth::run_task() {
     (void)(fn != NULL);
     (this->*fn)();
     ((TObjEnemy *)o)->update_prev_position();
-    ((TObjPlayer *)o)->update_collisions();
+    ((TObjCollidable *)o)->update_collisions();
     if (this->targetable != 0) {
         submit_cursor_candidate(o, -1);
     }
     motionController->update_animation_frame();
     this->sub_803152A0();
     if (this->action != 0xD) {
-        minimap_render_dot(&o->m_2fc, -0x5DB4, 1, 0);
+        minimap_render_dot(&o->body_center_position, -0x5DB4, 1, 0);
     }
     update_ground_check();
 }
 
 void TObjEneDelDepth::render() {
     TObjEneDelDepth *o = this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->fn_80315518();
         return;
     }
@@ -406,7 +401,7 @@ void TObjEneDelDepth::render() {
     Vec v = o->position;
     v.y += o->drawOffsetY;
     post_translate_matrix(&v);
-    rotate_matrix_y(0, o->rotation_y);
+    rotate_matrix_y(0, o->rotation.yaw);
     scale_matrix_vec3(0, (u8 *)&o->drawScale);
     o->motionController->draw_model_part();
     pop_matrix();
@@ -428,7 +423,7 @@ s32 TObjEneDelDepth::draw_if_visible() {
             Vec v = o->position;
             v.y += o->drawOffsetY;
             post_translate_matrix(&v);
-            rotate_matrix_y(0, o->rotation_y);
+            rotate_matrix_y(0, o->rotation.yaw);
             scale_matrix_vec3(0, (u8 *)&o->drawScale);
             o->motionController->draw_model_part();
             pop_matrix();
@@ -458,9 +453,9 @@ void TObjEneDelDepth::set_depth_offset(s32 minimum, s32 range) {
 s32 TObjEneDelDepth::adjust_height_to_ground() {
     TObjEneDelDepth *arg0 = this;
     Vec v = arg0->position;
-    v.x = TObjEneDelDepth__data_805DF270 * cos_table_lookup(arg0->rotation_y) + v.x;
+    v.x = TObjEneDelDepth__data_805DF270 * cos_table_lookup(arg0->rotation.yaw) + v.x;
     v.y = v.y + TObjEneDelDepth__data_805DF268;
-    v.x = TObjEneDelDepth__data_805DF270 * sin_table_lookup(arg0->rotation_y) + v.x;
+    v.x = TObjEneDelDepth__data_805DF270 * sin_table_lookup(arg0->rotation.yaw) + v.x;
     if (project_actor_to_ground(arg0, &v, NULL) != 0) {
         arg0->position.y += TObjEneDelDepth__data_805DF298 * (v.y - arg0->position.y);
         return 1;
@@ -600,7 +595,7 @@ void TObjEneDelDepth::fn_80314EC4() {
     if (temp_f1_4 > TObjEneDelDepth__data_805DF260) {
         if (find_nearest_visible_player(ene_del_depth, 0, TObjEneDelDepth__data_805DF26C) != 0xFFFF) {
             ene_del_depth->set_action_state(3);
-            play_sound_effect(0x4003A822, (u8 *)&ene_del_depth->position, 0, 0);
+            play_sound_effect(0x4003A822, (const Vec *)((u8 *)&ene_del_depth->position), 0, 0);
         } else {
             ene_del_depth->set_action_state(2);
         }
@@ -776,7 +771,7 @@ void TObjEneDelDepth::update_movement() {
         arg0->direction.y = TObjEneDelDepth__data_805DF258;
         arg0->direction.z = s * arg0->direction.x + c * arg0->direction.z;
         normalize_vector(&arg0->direction);
-        this->rotation_y = (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(arg0->direction.x, arg0->direction.z));
+        this->rotation.yaw = (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(arg0->direction.x, arg0->direction.z));
         VecCopy((Vec *)&arg0->position, (const Vec *)&arg0->prev_position);
     }
     if (this->m_38c <= TObjEneDelDepth__data_805DF258 && TObjEneDelDepth__data_805DF258 == arg0->movementSpeed) {
@@ -785,7 +780,7 @@ void TObjEneDelDepth::update_movement() {
             this->set_action_state(4);
         } else {
             this->set_action_state(3);
-            play_sound_effect(0x4003A822, &arg0->position, 0, 0);
+            play_sound_effect(0x4003A822, (const Vec *)(&arg0->position), 0, 0);
         }
     }
 }
@@ -795,7 +790,7 @@ void TObjEneDelDepth::enter_state8() {
     this->actorFlags = (s32) (this->actorFlags | 0x04000000);
     this->attackTimer = 8;
     this->motionController->set_motion(0xA);
-    play_sound_effect(0x4003A820, (u8 *)&this->position, 0, 0);
+    play_sound_effect(0x4003A820, (const Vec *)((u8 *)&this->position), 0, 0);
     this->set_draw_mode(1);
 }
 
@@ -813,7 +808,7 @@ void TObjEneDelDepth::update_state() {
 void TObjEneDelDepth::enter_appear_state() {
     this->actorFlags = (s32) (this->actorFlags | 0x04000000);
     this->attackTimer = 0x14;
-    play_sound_effect(0x4003A820, (void *) ((u8 *)&this->position), 0, 0);
+    play_sound_effect(0x4003A820, (const Vec *)(((u8 *)&this->position)), 0, 0);
     this->motionController->set_motion(0xB);
     this->set_draw_mode(1);
 }
@@ -822,7 +817,7 @@ void TObjEneDelDepth::try_enter_appear() {
     if (this->motionController->is_state_complete() == 1) {
         this->actorFlags = (s32) (this->actorFlags | 0x04000000);
         this->set_action_state(3);
-        play_sound_effect(0x4003A822, (u8 *)&this->position, 0, 0);
+        play_sound_effect(0x4003A822, (const Vec *)((u8 *)&this->position), 0, 0);
     }
 }
 
@@ -851,10 +846,10 @@ void TObjEneDelDepth::fn_803142DC() {
     if (f < TObjEneDelDepth__data_805DF258) {
         f = TObjEneDelDepth__data_805DF258;
     }
-    this->rotation_y = (s32)(f * (f32)this->m_3bc + (f32)this->rotation_y);
+    this->rotation.yaw = (s32)(f * (f32)this->m_3bc + (f32)this->rotation.yaw);
     if (this->targetPlayer == 0xFFFF) {
         id = find_nearest_visible_player(ene_del_depth, (int)&v, lbl_805DF29C);
-        if (id != 0xFFFF && angle_difference_abs(this->rotation_y, (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(v.x, v.z))) < 0x1C71) {
+        if (id != 0xFFFF && angle_difference_abs(this->rotation.yaw, (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(v.x, v.z))) < 0x1C71) {
             this->m_394 = 0;
             this->targetPlayer = id;
         }
@@ -868,7 +863,7 @@ void TObjEneDelDepth::fn_803142DC() {
             w.x = TObjEneDelDepth__data_805DF260;
     w.z = w.y = TObjEneDelDepth__data_805DF258;
             TObjPlayer::calc_distance_to_client((s32)ene_del_depth, (u16)((u16)this->targetPlayer), (u32)&w);
-            this->rotation_y = approach_angle_limited(this->rotation_y, (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(w.x, w.z)), 0x280);
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(w.x, w.z)), 0x280);
         }
         if (this->timer > lim) {
             this->motionController->set_motion(0);
@@ -899,11 +894,11 @@ void TObjEneDelDepth::fn_803141A8() {
     f32 sp[3];
     s32 r = 0;
     s32 t;
-    arg0->rotation_y = arg0->rotation_y + arg0->m_3bc;
+    arg0->rotation.yaw = arg0->rotation.yaw + arg0->m_3bc;
     if (this->find_nearest_enemy_with_flag((s32)sp, (f32)lbl_805DF294) != 0xFFFF) {
         t = (s32) (((const f64 *)&TObjEneDelDepth__data_80475DD0)[0] * atan2_float(sp[0], sp[2]));
-        if (angle_difference_abs(arg0->rotation_y, t) < 0x444) {
-            arg0->rotation_y = t;
+        if (angle_difference_abs(arg0->rotation.yaw, t) < 0x444) {
+            arg0->rotation.yaw = t;
             r = 1;
         }
     }
@@ -927,8 +922,8 @@ void TObjEneDelDepth::move_toward_target() {
         TObjPlayer::calc_distance_to_client((s32)arg0, (u16)((u16)id), (u32)&v);
     }
     ang = (s32)(TObjEneDelDepth__data_80475DD0 * atan2_float(v.x, v.z));
-    this->rotation_y = approach_angle_limited(this->rotation_y, ang, 0x200);
-    if (angle_difference_abs(this->rotation_y, ang) < 0x200) {
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, ang, 0x200);
+    if (angle_difference_abs(this->rotation.yaw, ang) < 0x200) {
         this->timer = 0;
     }
     VecCopy(&this->prev_position, &this->position);
@@ -967,7 +962,7 @@ void TObjEneDelDepth::update_bomb_drop() {
         set_motion_packed_rotation();
         push_matrix_from(identity_matrix);
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         ((TObjEnemy *)arg0)->calc_joint_matrices(lbl_805DF284);
         pop_matrix();
         push_matrix_from(anim_model_matrix_array[23]);
@@ -977,7 +972,7 @@ void TObjEneDelDepth::update_bomb_drop() {
         }
         pop_matrix();
         clear_motion_packed_rotation();
-        play_sound_effect(0x4003A81D, (u8 *)&this->position, 0, 0);
+        play_sound_effect(0x4003A81D, (const Vec *)((u8 *)&this->position), 0, 0);
         TObjEneDelDepthBomb::create(this, this, (Vec *)&out, TObjEneDelDepth__tune_params->techniqueLevel);
     }
     temp_r0_2 = this->timer - 1;
@@ -1007,9 +1002,9 @@ void TObjEneDelDepth::update_attack_cast() {
     temp_r0 = this->attackTimer;
     if ((temp_r0 <= 0) && (temp_r0 == 0)) {
         if ((s32) game_difficulty_selection == 3) {
-            TTecMegid::create_ex((s32)arg0, (s32)((u8 *)&this->position), (s32)((int)this->rotation_y), (s32)((int) (TObjEneDelDepth__tune_params->techniqueLevel)));
+            TTecMegid::create_ex((s32)arg0, (s32)((u8 *)&this->position), (s32)((int)this->rotation.yaw), (s32)((int) (TObjEneDelDepth__tune_params->techniqueLevel)));
         } else {
-            ((TTecBarta *)arg0)->create_ex((u8 *)&this->position, (void *)this->rotation_y, (void *)(TObjEneDelDepth__tune_params->techniqueLevel));
+            ((TTecBarta *)arg0)->create_ex((u8 *)&this->position, (void *)this->rotation.yaw, (void *)(TObjEneDelDepth__tune_params->techniqueLevel));
         }
     }
     temp_r0_2 = this->timer - 1;
@@ -1048,7 +1043,7 @@ void TObjEneDelDepth::start_attack_motion() {
     this->drawScale.z = (f32) TObjEneDelDepth__data_805DF260;
     this->drawScale.y = (f32) TObjEneDelDepth__data_805DF260;
     this->drawScale.x = (f32) TObjEneDelDepth__data_805DF260;
-    play_sound_effect(0x4003A321, (void *) ((u8 *)&this->position), 0, 0);
+    play_sound_effect(0x4003A321, (const Vec *)(((u8 *)&this->position)), 0, 0);
     if (this->motionController->get_type() < 6) {
         this->motionController->set_motion(4);
     } else {
@@ -1076,7 +1071,7 @@ void TObjEneDelDepth::update_ai_state() {
                 return;
             }
             this->set_action_state(3);
-            play_sound_effect(0x4003A822, (u8 *)&this->position, 0, 0);
+            play_sound_effect(0x4003A822, (const Vec *)((u8 *)&this->position), 0, 0);
         }
     }
 }
@@ -1085,7 +1080,7 @@ void TObjEneDelDepth::init_move() {
     this->drawScale.z = (f32) TObjEneDelDepth__data_805DF260;
     this->drawScale.y = (f32) TObjEneDelDepth__data_805DF260;
     this->drawScale.x = (f32) TObjEneDelDepth__data_805DF260;
-    refresh_lobby_state__10TObjPlayerFv();
+    this->distribute_experience_and_request_drop();
     this->actionPhase = 0;
     if (this->motionController->get_type() < 6) {
         this->timer = 0x22;
@@ -1111,7 +1106,7 @@ void TObjEneDelDepth::update_death_fade() {
         this->timer = temp_r0_2;
         if (temp_r0_2 <= 0) {
             this->actionPhase = 1;
-            play_sound_effect(0x4003A321, (u8 *)&this->position, 0, 0);
+            play_sound_effect(0x4003A321, (const Vec *)((u8 *)&this->position), 0, 0);
             this->timer = 5;
         }
         break;
@@ -1131,7 +1126,7 @@ void TObjEneDelDepth::update_death_fade() {
     default:
         sp8 = 0x800;
         ((TObjEnemy *)enemy)->send_6x0A_enemy_state(&sp8);
-        ((TObjEnemy *)enemy)->exchange_object_state((s32)&sp8, (s16)(0));
+        ((TObjEnemy *)enemy)->exchange_object_state(&sp8, (s16)(0));
         vfunc_79(&sp8);
         ((TObjEnemy *)enemy)->send_entity_set_flags();
         TObjPlayer::apply_effect_variant_a((s32)((u8 *)&this->position), 0);
@@ -1229,10 +1224,10 @@ void TObjEneDelDepth::update_ground_check() {
 TObjEneDelDepthBomb::TObjEneDelDepthBomb(TObjEneDelDepth *parent, TObjChara *attacker, const Vec *origin, s32 level) : TObjChara(parent) {
     m_name = TObjEneDelDepthBomb__name;
     source = attacker;
-    rotation_y = ((TObjEneDelDepth *)m_up)->rotation_y;
+    this->rotation.yaw = ((TObjEneDelDepth *)m_up)->rotation.yaw;
     VecCopy(&position, origin);
-    f32 sine = sin_table_lookup(rotation_y);
-    f32 cosine = cos_table_lookup(rotation_y);
+    f32 sine = sin_table_lookup(this->rotation.yaw);
+    f32 cosine = cos_table_lookup(this->rotation.yaw);
     speed = ((TObjEneDelDepth *)m_up)->get_bomb_speed();
     velocity.x = speed * sine;
     velocity.y = TObjEneDelDepth__data_805DF258;
@@ -1299,8 +1294,8 @@ void TObjEneDelDepthBomb::render() {
     s32 texture = TObjFish__sub_8001EDB0((u8 *)data, 2);
     push_matrix();
     post_translate_matrix(&position);
-    rotate_matrix_zyx(0, rotation_x, rotation_y, rotation_z);
-    TObjFish::set_global_param(texture);
+    rotate_matrix_zyx(0, this->rotation.pitch, this->rotation.yaw, this->rotation.roll);
+    set_current_texture_list((GinjaTextureList *)(texture));
     draw_chunk_object((void *)model);
     pop_matrix();
     push_matrix();

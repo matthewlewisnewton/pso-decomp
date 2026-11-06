@@ -208,7 +208,7 @@ void TQuestListVM::init() {
 
 void TQuestListVM::load_quest_vm() {
     if (TLobby::tmp_buf_is_free() != 0) {
-        tmp_buffer = (u8 *)TLobby::tmp_buf_use_req(tmp_buf_owner_name);
+        tmp_buffer = TLobby::tmp_buf_use_req(tmp_buf_owner_name);
         decrypted_quest_buffer = tmp_buffer;
         decompression_capacity = 0x40000;
         set_field_20(2);
@@ -452,7 +452,7 @@ void TQuestListVM::update_lobby_selection() {
 
 void TQuestListVM::quest_vm_load() {
     if (TLobby::tmp_buf_is_free() != 0) {
-        tmp_buffer = (u8 *)TLobby::tmp_buf_use_req(tmp_buf_owner_name);
+        tmp_buffer = TLobby::tmp_buf_use_req(tmp_buf_owner_name);
         set_field_20(resume_state);
     }
 }
@@ -754,9 +754,9 @@ s32 TQuestListVM::update_load_status() {
     return 0;
 }
 
-void TQuestListVM::vfunc_6() {
+void TQuestListVM::vfunc_6(s32 index, s32 flags) {
     if (owner != NULL) {
-        owner->vfunc_6();
+        owner->vfunc_6(index, flags);
     }
 }
 

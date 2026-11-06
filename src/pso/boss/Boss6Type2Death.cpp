@@ -1,6 +1,10 @@
+#include "pso/misc/CameraHelpers.h"
+#include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
-#include "pso/object/TObjFish_800E2FFC.h"
 #include "pso/boss/Boss6Type2Death.h"
 #include "pso/boss/TBoss4Type2_800874F4.h"
 #include "pso/misc/TCameraCtrl_800687BC.h"
@@ -14,6 +18,7 @@
 #include "pso/boss/TBoss4Type2.h"
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/boss/TBoss6Type1.h"
+#include "pso/boss/TBoss6Zanzo.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TNowLoading.h"
@@ -51,7 +56,7 @@ struct Fish_8033E0F0 {
     Vec_8033E0F0 f90;
     u8 pad9C[0xA0 - 0x9C];
     void *emit[4];
-    void *fb0;
+    TBoss6Zanzo *fb0;
 };
 
 struct Pl_8033E0F0 {
@@ -63,28 +68,22 @@ struct Pl_8033E0F0 {
 
 extern "C" {
 void *__nw__7TObjectFUl(int);
-s32 refresh_players_equipment__14TBoss6PlotFalzFPv();
 extern void *__vt__23TBoss6Demo21_TYPE2_DEAD[];
-void clear_render_callback__8TObjFishFv(int);
 void push_matrix();
 void post_translate_matrix(void *);
 s32 get_bml_motion(void *, int);
 s32 TObjFish__sub_8001EDB0(void *, int);
 s32 get_bml_model(void *, int);
-void set_scripted_camera_pose(void *, void *, void *);
+
 void __ct__7TObjectFP7TObject(void *);
 void *get_fish_count__8TObjFishFv(void);
-s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
 void vec3_add_to(void *, void *);
 f32 vector_length(void *);
 void subtract_vector(void *, void *);
 void normalize_vector(void *);
 #define __vt__23TBoss6Demo21_TYPE2_DEAD ((u8 *)__vt__23TBoss6Demo21_TYPE2_DEAD)
-s32 play_sound_effect(int, void *, int, int);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 int get_player_data__10TObjPlayerFi(int a0);
-s32 is_locally_controlled__10TObjPlayerFPv(void *);
-s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0);
 void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0);
 
 }
@@ -95,8 +94,8 @@ extern "C" const u32 lbl_804780B8[3] = {0x0, 0xc0000000, 0x40cccccd};
 extern "C" const u32 boss6_type2_death_effect_desc_a[8] = {0x24, 0x0, 0x0, 0x0, 0xffffffff, 0x0, 0x0, 0x0};
 extern "C" const u32 boss6_type2_death_effect_desc_b[8] = {0x19, 0x0, 0x0, 0x0, 0xffffffff, 0x0, 0x0, 0x0};
 extern "C" const u32 boss6_type2_death_effect_desc_c[12] = {0x2, 0x0, 0x0, 0x0, 0x3, 0x0, 0x0, 0x0, 0xffffffff, 0x0, 0x0, 0x0};
-extern "C" const u32 lbl_80478134[3] = {0x0, 0x0, 0x0};
-extern "C" const u32 lbl_80478140[3] = {0x1010000, 0x0, 0x3f333333};
+extern "C" const CameraAngles lbl_80478134 = {0, 0, 0};
+extern "C" const CameraPlayback lbl_80478140 = {1, 1, 0, 0.0f, 0.7f};
 extern "C" const u32 boss6_type2_death_emitter_ranges[12] = {0x0, 0x8e, 0x228, 0xfa, 0x13a, 0x22a, 0x11d, 0x1ac, 0x22e, 0xf2, 0x13a, 0x179};
 extern "C" const u32 lbl_8047817C[3] = {0xffff4000, 0xffffff60, 0xffff4000};
 extern "C" const char *TBoss6Demo21_TYPE2_DEAD__name = lbl_80478088;
@@ -106,8 +105,6 @@ extern "C" const char *TBoss6Demo21_TYPE2_DEAD__name = lbl_80478088;
 #define boss6_type2_death_effect_desc_a ((u8 *)boss6_type2_death_effect_desc_a)
 #define boss6_type2_death_effect_desc_b ((u8 *)boss6_type2_death_effect_desc_b)
 #define boss6_type2_death_effect_desc_c ((u8 *)boss6_type2_death_effect_desc_c)
-#define lbl_80478134 ((u8 *)lbl_80478134)
-#define lbl_80478140 ((u8 *)lbl_80478140)
 #define boss6_type2_death_emitter_ranges ((Rng_8033E0F0 *)boss6_type2_death_emitter_ranges)
 #define lbl_8047817C ((u8 *)lbl_8047817C)
 #pragma pool_data off
@@ -117,10 +114,10 @@ void TBoss6Demo21_TYPE2_DEAD::draw_model_13() {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix((void *) (((u8 *)this) + 0x58));
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)((u8 *)this) + 0x44)));
-        ((TObjFish *)(this->m_9c))->set_draw_callback_list();
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)((u8 *)this) + 0x44))));
+        ((ModelNodePositionCapture *)(this->m_9c))->install();
         draw_model_motion((void *)this->m_40, (void *)this->m_48, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x4C)));
-        clear_render_callback__8TObjFishFv(this->m_9c);
+        ((ModelNodePositionCapture *)(this->m_9c))->clear();
         clear_motion_packed_rotation();
         pop_matrix();
     }
@@ -152,10 +149,10 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_8(void *p) {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(arg0 + 0x58);
-        TObjFish::set_global_param(*(s32 *)(arg0 + 0x38));
-        ((TObjFish *)(*(s32 *)(arg0 + 0x80)))->set_draw_callback_list();
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(arg0 + 0x38)));
+        ((ModelNodePositionCapture *)(*(s32 *)(arg0 + 0x80)))->install();
         draw_model_motion((void *)(*(s32 *)(arg0 + 0x34)), (void *)(*(s32 *)(arg0 + 0x3C)), *(f32 *)(arg0 + 0x4C));
-        clear_render_callback__8TObjFishFv(*(s32 *)(arg0 + 0x80));
+        ((ModelNodePositionCapture *)(*(s32 *)(arg0 + 0x80)))->clear();
         clear_motion_packed_rotation();
         pop_matrix();
         if (f < 1.0f) {
@@ -187,10 +184,10 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_5(void *p) {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(arg0 + 0x58);
-        TObjFish::set_global_param(*(s32 *)(arg0 + 0x2C));
-        ((TObjFish *)(*(s32 *)(arg0 + 0x70)))->set_draw_callback_list();
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(arg0 + 0x2C)));
+        ((ModelNodePositionCapture *)(*(s32 *)(arg0 + 0x70)))->install();
         draw_model_motion((void *)(*(s32 *)(arg0 + 0x28)), (void *)(*(s32 *)(arg0 + 0x30)), *(f32 *)(arg0 + 0x4C));
-        clear_render_callback__8TObjFishFv(*(s32 *)(arg0 + 0x70));
+        ((ModelNodePositionCapture *)(*(s32 *)(arg0 + 0x70)))->clear();
         clear_motion_packed_rotation();
         pop_matrix();
         if (f < 1.0f) {
@@ -218,10 +215,10 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_4() {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(((u8 *)this) + 0x58);
-        TObjFish::set_global_param(this->m_20);
-        ((TObjFish *)(this->m_70))->set_draw_callback_list();
+        set_current_texture_list((GinjaTextureList *)(this->m_20));
+        ((ModelNodePositionCapture *)(this->m_70))->install();
         draw_model_motion((void *)(*(s32 *)((s8 *)((u8 *)this) + 0x1C)), (void *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)), *(f32 *)((s8 *)((u8 *)this) + 0x4C));
-        clear_render_callback__8TObjFishFv(this->m_70);
+        ((ModelNodePositionCapture *)(this->m_70))->clear();
         clear_motion_packed_rotation();
         pop_matrix();
         if (var_f31 < (1.0f)) {
@@ -254,10 +251,10 @@ void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
         break;
     }
     if (arg0->timer >= 0x12C && arg0->timer <= 0x1AC) {
-        play_persistent_sound(0x4003352E, (s32)arg0, 0, 0, 0);
+        play_persistent_sound((s32)(0x4003352E), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
     }
     if (arg0->timer >= 0x1D7 && arg0->timer <= 0x23A) {
-        play_persistent_sound(0x32D2F, (s32)arg0, 0, 0, 0);
+        play_persistent_sound((s32)(0x32D2F), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
     }
     switch (arg0->timer) {
     case 0xAE:
@@ -317,7 +314,7 @@ void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
         mid.x *= (0.5f);
         mid.y *= (0.5f);
         mid.z *= (0.5f);
-        ((TBoss6Type1 *)(arg0->fb0))->set_effect_points((f32 *)&a, (u32 *)lbl_8047817C);
+        arg0->fb0->set_effect_points((Vec *)&a, (u32 *)lbl_8047817C);
     }
     if (arg0->timer == 0x23A) {
         s32 n = TLobby::get_game_mode();
@@ -327,7 +324,7 @@ void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
         vec3_add_to(&c, lbl_804780B8);
         for (i = 0; i < n; i++) {
             Pl_8033E0F0 *p = (Pl_8033E0F0 *)get_player_data__10TObjPlayerFi(i);
-            if (is_locally_controlled__10TObjPlayerFPv(p) != 0 && is_state_1f__14TBoss6PlotFalzFUi((u32)p) != 0) {
+            if (TObjPlayer::is_locally_controlled(p) != 0 && TBoss6PlotFalz::is_state_1f((TObjPlayer *)p) != 0) {
                 Vec_8033E0F0 d;
                 VecCopy((Vec *)&d, (const Vec *)&p->pos);
                 subtract_vector(&d, &c);
@@ -366,17 +363,17 @@ TBoss6Demo21_TYPE2_DEAD::~TBoss6Demo21_TYPE2_DEAD() {
         }
     }
     restore_player_cameras();
-    refresh_players_equipment__14TBoss6PlotFalzFPv();
+    TBoss6PlotFalz::refresh_players_equipment();
     if (((O_8033E5A8 *)this)->f70 != NULL) {
-        TObjFish::init_state_1(((O_8033E5A8 *)this)->f70);
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(((O_8033E5A8 *)this)->f70));
         ((O_8033E5A8 *)this)->f70 = NULL;
     }
     if (((O_8033E5A8 *)this)->f80 != NULL) {
-        TObjFish::init_state_1(((O_8033E5A8 *)this)->f80);
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(((O_8033E5A8 *)this)->f80));
         ((O_8033E5A8 *)this)->f80 = NULL;
     }
     if (((O_8033E5A8 *)this)->f9c != NULL) {
-        TObjFish::init_state_1(((O_8033E5A8 *)this)->f9c);
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(((O_8033E5A8 *)this)->f9c));
         ((O_8033E5A8 *)this)->f9c = NULL;
     }
 }
@@ -419,16 +416,16 @@ void *TBoss6Demo21_TYPE2_DEAD__ct(void *arg0p, void *arg1, void *arg2) {
     *(s32 *)((s8 *)arg0 + 0x40) = get_bml_model(count, 0xD);
     *(s32 *)&((TBoss6Type1 *)arg0)->prev_position.x = TObjFish__sub_8001EDB0(count, 0xD);
     *(s32 *)&((TBoss6Type1 *)arg0)->prev_position.y = get_bml_motion(count, 0x3D);
-    *(s32 *)&((TBoss6Type1 *)arg0)->scale.z = TObjFish__sub_800E3124(boss6_type2_death_effect_desc_a, (s32)(arg0 + 0x64));
-    *(s32 *)((s8 *)arg0 + 0x80) = TObjFish__sub_800E3124(boss6_type2_death_effect_desc_b, (s32)(arg0 + 0x74));
-    *(s32 *)((s8 *)arg0 + 0x9C) = TObjFish__sub_800E3124(boss6_type2_death_effect_desc_c, (s32)(arg0 + 0x84));
+    *(s32 *)&((TBoss6Type1 *)arg0)->scale.z = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type2_death_effect_desc_a), (Vec *)((arg0 + 0x64)));
+    *(s32 *)((s8 *)arg0 + 0x80) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type2_death_effect_desc_b), (Vec *)((arg0 + 0x74)));
+    *(s32 *)((s8 *)arg0 + 0x9C) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type2_death_effect_desc_c), (Vec *)((arg0 + 0x84)));
     activate_camera_mode(5);
-    set_scripted_camera_pose(arg0 + 0x58, arg0 + 0x58, lbl_80478134);
-    ((TCameraCtrl *)lbl_80478140)->cache_target_and_forward(0x416C);
+    set_scripted_camera_pose(&static_cast<TBoss6Demo21_TYPE2_DEAD*>(static_cast<void*>(arg0))->camera_position, &static_cast<TBoss6Demo21_TYPE2_DEAD*>(static_cast<void*>(arg0))->camera_position, &lbl_80478134);
+    cache_target_and_forward__11TCameraCtrlFl(&lbl_80478140, 0x416C);
     for (i = 0; i < 4; i++) {
         ((Fish_8033E688 *)arg0)->arr[i] = 0;
     }
-    ((TBoss6Type1 *)arg0)->motion_flags = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 3, 0xF);
+    ((Fish_8033E0F0 *)arg0)->fb0 = TBoss6Zanzo::create((TObject *)arg0, 3, 0xF);
     *(f32 *)((s8 *)arg0 + 0x4C) = (0.0f);
     *(s32 *)((s8 *)arg0 + 0x50) = 0;
     return arg0;

@@ -29,6 +29,7 @@ void TLobby__sub_8033EE38(void* p) { *(s32*)((char*)p + 0x18) = 0; *(s32*)((char
 void TAdMcCheckGC::render() {  }
 
 extern u8 lbl_804783B8[];
+extern f32 lbl_805DFAD8;
 
 s32 TAdMcCheckGC::create(s32 arg1) {
     s32 temp_r31;
@@ -39,7 +40,7 @@ s32 TAdMcCheckGC::create(s32 arg1) {
     forward_trade_action_default__16TObjCityMainWarpFPviii((void *)temp_r31, (int)(get_localized_text_entry(0x16, arg1)), 0x20, 0);
     ((TAdChrSelASlotGC *)temp_r31)->set_flag_40();
     TQuestThread::set_status_flag_80((void *)temp_r31);
-    ((TWindowSubComCard *)temp_r31)->calc_layout_height(190.0f);
+    ((TWindowSubComCard *)temp_r31)->calc_layout_height(lbl_805DFAD8);
     return temp_r31;
 }
 
@@ -71,7 +72,7 @@ void TAdMcCheckGC::run_task() {
         }
         break;
     case 1:
-        if ((TAdPlayerLoadGC::probe_and_check_card(this->m_28) == 0) && ((u32) (TAdPlayerLoadGC::get_load_result((void *)this->m_28) + 0x10000) == 0xFF83U)) {
+        if ((TAdPlayerLoadGC::probe_and_check_card(this->m_28) == 0) && ((u32) (TAdPlayerLoadGC::get_load_result(this->m_28) + 0x10000) == 0xFF83U)) {
             if (((s32) this->m_24 > 0xA) && ((u32) this->m_2c == 0U)) {
                 this->m_2c = create(this->m_28 + 2);
             }
@@ -84,7 +85,7 @@ void TAdMcCheckGC::run_task() {
         }
         break;
     case 2:
-        if ((TAdPlayerLoadGC::probe_and_check_card(this->m_28) == 0) && ((u32) (TAdPlayerLoadGC::get_load_result((void *)this->m_28) + 0x10000) == 0xFF21U)) {
+        if ((TAdPlayerLoadGC::probe_and_check_card(this->m_28) == 0) && ((u32) (TAdPlayerLoadGC::get_load_result(this->m_28) + 0x10000) == 0xFF21U)) {
             if (((s32) this->m_24 > 0xA) && ((u32) this->m_30 == 0U)) {
                 this->m_30 = create(this->m_28 + 4);
             }

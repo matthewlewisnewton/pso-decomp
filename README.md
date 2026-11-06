@@ -8,22 +8,22 @@ Nothing from the game is included here. You need your own copy of the game to bu
 
 ## Progress
 
-[![Code matched]][progress page] [![Data matched]][progress page] [![Functions matched]][progress page]<br>
-[![Code linked]][progress page] [![Data linked]][progress page] [![Units linked]][progress page]
+<!-- progress-table -->
+| | Matched | Linked |
+|:--|--:|--:|
+| Code | 95.97% (4,177,736 of 4,353,092) | 83.19% (3,621,124 of 4,353,092) |
+| Data | 83.08% (1,463,239 of 1,761,279) | 65.88% (1,160,287 of 1,761,279) |
+| Functions | 99.22% (27,356 of 27,572) | |
+| Units | | 71.71% (3,562 of 4,967) |
+<!-- /progress-table -->
 
-[progress page]: https://zeroz41.github.io/pso-decomp/
-[treemap]: https://zeroz41.github.io/pso-decomp/treemap.html
-[Code matched]: https://img.shields.io/endpoint?url=https%3A%2F%2Fzeroz41.github.io%2Fpso-decomp%2Fbadges%2Fcode.json
-[Data matched]: https://img.shields.io/endpoint?url=https%3A%2F%2Fzeroz41.github.io%2Fpso-decomp%2Fbadges%2Fdata.json
-[Functions matched]: https://img.shields.io/endpoint?url=https%3A%2F%2Fzeroz41.github.io%2Fpso-decomp%2Fbadges%2Ffunctions.json
-[Code linked]: https://img.shields.io/endpoint?url=https%3A%2F%2Fzeroz41.github.io%2Fpso-decomp%2Fbadges%2Fcode-linked.json
-[Data linked]: https://img.shields.io/endpoint?url=https%3A%2F%2Fzeroz41.github.io%2Fpso-decomp%2Fbadges%2Fdata-linked.json
-[Units linked]: https://img.shields.io/endpoint?url=https%3A%2F%2Fzeroz41.github.io%2Fpso-decomp%2Fbadges%2Funits-linked.json
-
-Measured on `PsoV3.dol` from the latest build of `master`. The [progress page] breaks it down by unit and
-function, and the [treemap] shows every function and data section as a tile sized by its bytes. A function is
-matched when it compiles to the original's exact bytes. Code, data and units are linked when the build takes them
-from compiled source instead of the original. Data includes `.bss`.
+Measured on `PsoV3.dol` on 2026-11-05 at validated source commit
+[`0e300a246c`](https://github.com/matthewlewisnewton/pso-decomp/commit/0e300a246c82219450270d0b9e7677722a03e464).
+The README-only publication commit records the measurements of its parent source tree.
+A function is matched when it compiles to the original's exact bytes. Code, data and
+units are linked when the build takes them from compiled source instead of the original. Data includes `.bss`.
+The build still uses 1,438 original-object fallback units; matched functions in those units are not counted as
+source-linked coverage. Unit counts can change when translation units are consolidated.
 
 ## Target
 
@@ -65,8 +65,8 @@ in assembly: `tools/orig_asm.py` rebuilds their bodies from your disc before any
 
       python tools/progress_map.py build/GPOE8P/report.json -o build/progress
 
-  Then open `build/progress/index.html`, or `build/progress/treemap.html` for the treemap, in a browser. They
-  are the pages the [progress page] and [treemap] links show for `master`.
+  Then open `build/progress/index.html`, or `build/progress/treemap.html` for the treemap, in a browser.
+  Add `--readme README.md` to refresh the table above from the supplied report.
 
 ## Working on it
 
@@ -76,6 +76,7 @@ in assembly: `tools/orig_asm.py` rebuilds their bodies from your disc before any
 
 [CONTRIBUTING.md](CONTRIBUTING.md) covers what a change can do and the rules for it.
 [docs/architecture.md](docs/architecture.md) describes how the executable and the source tree are laid out.
+The [documentation index](docs/README.md) links to contributor guides and recovery evidence.
 
 ## Credits
 

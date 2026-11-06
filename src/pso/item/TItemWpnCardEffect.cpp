@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -52,16 +53,16 @@ void __ct__11TItemWeaponFP7TObjectPUc(void *);
 s16 get_validated_attack_stage(u8 *arg0);
 void __dl__7TObjectFPv(void *);
 
-void TUnk_804EDC28::emit_marker_effects() {
+void TObjPlayer::launch_guardianna_colliders() {
     s32 sp8;
 
     ((TItemWeapon *)this)->get_joint_position(4, &sp8);
-    if (get_validated_attack_stage((u8 *)(*(s32 *)&(*(NJS_MOTION_LINK *)((u8 *)this + 0xE4)).frame[1] + 0x7CC)) == 2) {
-        ((TItemWeapon *)this)->fire_shot_at_target(&sp8, (void *)*(s32 *)&(*(s16 *)((u8 *)this + 0xF4)), 0);
-        ((TItemWeapon *)this)->fire_shot_at_target(&sp8, (void *)*(s32 *)&(*(s16 *)((u8 *)this + 0xF4)), 0x1555);
-        ((TItemWeapon *)this)->fire_shot_at_target(&sp8, (void *)*(s32 *)&(*(s16 *)((u8 *)this + 0xF4)), -0x1555);
+    if (get_validated_attack_stage((u8 *)(*(s32 *)&this->blend.frame[1] + 0x7CC)) == 2) {
+        ((TItemWeapon *)this)->fire_shot_at_target(&sp8, (void *)*(s32 *)&this->play_mode, 0);
+        ((TItemWeapon *)this)->fire_shot_at_target(&sp8, (void *)*(s32 *)&this->play_mode, 0x1555);
+        ((TItemWeapon *)this)->fire_shot_at_target(&sp8, (void *)*(s32 *)&this->play_mode, -0x1555);
     } else {
-        ((TItemWeapon *)this)->fire_shot_at_target(&sp8, (void *)*(s32 *)&(*(s16 *)((u8 *)this + 0xF4)), 0);
+        ((TItemWeapon *)this)->fire_shot_at_target(&sp8, (void *)*(s32 *)&this->play_mode, 0);
     }
     if (((TItemWeapon *)this)->get_attack_stage() == 0) {
         ((TObjPlayer *)tl_05)->spawn_cane_effect((TItem*)this, 4);
@@ -255,7 +256,6 @@ struct O_8032DFF8 { u8 pad[0x1C]; void *o[3]; };
 extern "C" {
 void *create_particle_emitter(void *pos, s32 id);
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
-void *spawn_particle_effect(void *pos, s32 id);
 
 void *find_entity_by_id(u16 id);
 void queue_destruction__7TObjectFv(void *);
@@ -314,7 +314,7 @@ void TUnk_804EDD44::start_card_effect_flash() {
             ((TParticleCtrl *)(*(u32 *)((s8 *)arg0 + 0x1C)))->set_tint_color(q);
         }
     }
-    spawn_particle_effect(((u8 *)&this->unk_64), 0x30);
+    spawn_particle_effect((const Vec *)(((u8 *)&this->unk_64)), 0x30);
 }
 #pragma pop
 

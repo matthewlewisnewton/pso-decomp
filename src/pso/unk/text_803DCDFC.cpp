@@ -98,7 +98,7 @@ extern void *lbl_805D7720;
 
 
 #define active_gx_render_mode ((RMode_803DCDFC *)active_gx_render_mode)
-void func_803DCDFC__Fv(void) {
+void func_803DCDFC(void) {
     RMode_803DCDFC *rmode = active_gx_render_mode;
     if (rmode->field_rendering) {
         GXSetViewportJitter(0.0f, 0.0f, rmode->fbWidth, rmode->efbHeight, 0.0f, 1.0f, VIGetNextField());
@@ -333,6 +333,8 @@ void GXAdjustForOverscan(GXRenderModeObj_803DD430 *rmin, GXRenderModeObj_803DD43
 extern GXRenderModeObj_803DD430 GXNtsc480IntDf;
 extern GXRenderModeObj_803DD430 GXMpal480IntDf;
 extern GXRenderModeObj_803DD430 GXPal528IntDf;
+extern char lbl_804FC668[];
+extern char lbl_804FC674[];
 void *OSGetArenaLo(void);
 void OSSetArenaLo(void *);
 f64 cos(f64);
@@ -350,7 +352,7 @@ void get_render_mode_for_tv_format(GXRenderModeObj_803DD430 *rmode, GXRenderMode
         rmode = &GXMpal480IntDf;
         break;
     default:
-        OSPanic("gjSystem.c", 0x340, "invalid TV format\x0A");
+        OSPanic(lbl_804FC668, 0x340, lbl_804FC674);
         break;
     }
     GXAdjustForOverscan(rmode, out, 0, 0);

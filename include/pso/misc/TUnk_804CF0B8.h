@@ -1,6 +1,7 @@
 #ifndef PSO_MISC_TUNK_804CF0B8_H
 #define PSO_MISC_TUNK_804CF0B8_H
 #include "types.h"
+#include <stddef.h>
 #include "pso/misc/TWindowAddition.h"
 
 class TUnk_804CF0B8 : public TWindowAddition {
@@ -34,27 +35,22 @@ public:
     void set_flag2c_bit200();
     void clear_flag2c_bit200();
     void set_flag2c_bit100();
-    u8 unk_1C[0x4];
-    u16 m_20;
-    u8 unk_22[0xA];
-    u32 m_2c;
-    u8 unk_30[0x18];
-    f32 m_48;
-    u8 unk_4C[0xC];
-    f32 m_58;
-    u8 unk_5C[0x14];
+    u8 unk_5C[0x10];
     s8 m_70;
     u8 m_71;
     u8 unk_72[0x1];
     s8 m_73;
     u8 unk_74[0x2];
     s16 m_76;
-    u8 unk_78[0x4];
+    char *name;
     f32 m_7c;
     u8 unk_80[0x4];
     s32 m_84;
     u8 unk_88[0x10];
 };
+typedef char TUnk_804CF0B8_name_offset[offsetof(TUnk_804CF0B8, name) == 0x78 ? 1 : -1];
+typedef char TUnk_804CF0B8_next_offset[offsetof(TUnk_804CF0B8, m_7c) == 0x7c ? 1 : -1];
+typedef char TUnk_804CF0B8_pointer_size[sizeof(char *) == 4 ? 1 : -1];
 typedef char TUnk_804CF0B8_size[sizeof(TUnk_804CF0B8) == 0x98 ? 1 : -1];
 
 #endif

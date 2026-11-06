@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_802A5748.h"
@@ -23,6 +25,7 @@
 #include "pso/misc/TWindowSubSymbolChatHelp.h"
 #include "pso/misc/TWindowSubSymbolChat_802838C4.h"
 #include "pso/misc/TWindowSubSymbolChat_80283954.h"
+#include "pso/unk/text_802841FC.h"
 #include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowMessageYesNo.h"
 #include "pso/misc/TWindowSubSymbolChatFaceType.h"
@@ -102,7 +105,7 @@ void TWindowSubSymbolChat__sub_80281840(Win_80281840 *arg0) {
         }
         scale = (-1.0f) / get_scale__15TWindowCtrlMainFv(arg0->ctrl);
         begin_screen_draw(1);
-        TObjFish::set_global_param(lbl_805D63F0);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_draw_texture_and_color(0, color);
         q.x = 482.0f;
         q.y = 344.0f;
@@ -392,7 +395,7 @@ s32 draw_card_icon__17TWindowSubComCardFll(s32, s32, s32);
 
 s32 refresh_parts__20TWindowSubSymbolChatFv();
 s32 play_symbol_sound__20TWindowSubSymbolChatFl();
-void mem_free(void *p);
+s32 get_selected_value__11TWindowMenuFv(int);
 u32 create_menu__20TWindowSubSymbolChatFv(void *);
 u32 create_parts__20TWindowSubSymbolChatFv(void *);
 s32 TWindowSubSymbolChat__sub_80283944(int);
@@ -688,7 +691,7 @@ void TWindowSubSymbolChat::run_task() {
             this->m_4c = create_parts__20TWindowSubSymbolChatFv(arg0);
             fn_80285A28(this->m_4c, &TWindowSubSymbolChat__help_window);
         }
-        ((TWindowSubSymbolChat *)(this->m_4c))->select_index_and_scroll(this->m_1e);
+        select_index_and_scroll__20TWindowSubSymbolChatFl((TWindowSubSymbolChatParts *)this->m_4c, this->m_1e);
         if ((u32) this->m_54 == 0U) {
             var_r0_2 = ((u32)__nw__7TObjectFUl(0x74));
             if (var_r0_2 != 0U) {
@@ -749,9 +752,9 @@ void TWindowSubSymbolChat::run_task() {
         }
         if ((u32) this->m_4c == 0U) {
             this->m_4c = create_parts__20TWindowSubSymbolChatFv(arg0);
-            ((TWindowSubSymbolChat *)(this->m_4c))->open((s32)&TWindowSubSymbolChat__data_805D6494);
+            open__20TWindowSubSymbolChatFl((TWindowSubSymbolChatParts *)this->m_4c, (s32)&TWindowSubSymbolChat__data_805D6494);
         }
-        ((TWindowSubSymbolChat *)(this->m_4c))->select_index_and_scroll(this->m_1e);
+        select_index_and_scroll__20TWindowSubSymbolChatFl((TWindowSubSymbolChatParts *)this->m_4c, this->m_1e);
         if ((u32) this->m_54 == 0U) {
             var_r0_3 = ((u32)__nw__7TObjectFUl(0x74));
             if (var_r0_3 != 0U) {
@@ -830,9 +833,9 @@ void TWindowSubSymbolChat::run_task() {
         }
         if ((u32) this->m_4c == 0U) {
             this->m_4c = create_parts__20TWindowSubSymbolChatFv(arg0);
-            ((TWindowSubSymbolChat *)(this->m_4c))->update_height();
+            update_height__20TWindowSubSymbolChatFv((TWindowSubSymbolChatParts *)this->m_4c);
         }
-        ((TWindowSubSymbolChat *)(this->m_4c))->select_index_and_scroll(this->m_1e);
+        select_index_and_scroll__20TWindowSubSymbolChatFl((TWindowSubSymbolChatParts *)this->m_4c, this->m_1e);
         if ((u32) this->m_54 == 0U) {
             var_r0_4 = ((u32)__nw__7TObjectFUl(0x74));
             if (var_r0_4 != 0U) {
@@ -1002,7 +1005,7 @@ void TWindowSubSymbolChat::run_task() {
         if (((TWindowSubComCard *)(this->m_58))->update_keyboard() != 0) {
             temp_r3_2 = ((TWindowSubComCard *)(this->m_58))->realloc_buffer();
             ((TWindowSubSymbolChat *)(this->m_28))->set_entry_name((void *)temp_r3_2);
-            mem_free((void *)temp_r3_2);
+            ::operator delete[]((void *)temp_r3_2);
             this->m_1c = 4U;
         }
         break;

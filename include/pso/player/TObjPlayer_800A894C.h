@@ -15,7 +15,7 @@ void TObjPlayer__sub_800AA330(void *_w0);
 void TObjPlayer__sub_800AA82C(void);
 }
 
-// --- C functions defined in TObjPlayer_800A894C.cpp ---
+// --- C functions defined in TObjEneDubchik.cpp ---
 extern "C" {
 void dubchik_start_dying(u8 *arg0);
 void TObjPlayer__sub_800A8C4C(u8 *arg0);

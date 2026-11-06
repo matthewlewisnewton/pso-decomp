@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDarkGunCenter.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -59,6 +60,8 @@ void TObjEneDarkGunCenter__sub_800A0B18(void);
 u8 *get_enemy_entity(u16);
 void *get_player_by_client_id(s32 i);
 extern const f64 lbl_8043A488[];
+extern const f32 lbl_805D9970;
+extern const f32 lbl_805D9974;
 void run_task__20TObjEneDarkGunCenterFv(Gun_800A0B20 *self);
 void TObjEneDarkGunCenter__sub_800A0E7C(void);
 void TObjEneDarkGunCenter__sub_800A0E80(void);
@@ -243,7 +246,7 @@ void TObjEneDarkGunCenter::run_task() {
     s32 t;
     s32 id;
     u8 *e;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((void (*)(void *))TObjEneDarkGunCenter__sub_800A0B18)(self);
         return;
     }
@@ -251,7 +254,7 @@ void TObjEneDarkGunCenter::run_task() {
     switch (self->state) {
     case 0:
         if (self->m17(0x1e) != 0) {
-            id = find_nearest_visible_player(self, 0, 1000.0f);
+            id = find_nearest_visible_player(self, 0, lbl_805D9970);
             if (id != 0xFFFF) {
                 self->target = (u8 *)get_player_by_client_id(id);
                 ang = (s32)(lbl_8043A488[0] * atan2_float(*(f32 *)(self->target + 0x40) - self->f40, *(f32 *)(self->target + 0x38) - self->f38)) + 0x4000;
@@ -284,7 +287,7 @@ void TObjEneDarkGunCenter::run_task() {
         }
         break;
     case 3:
-        if (find_nearest_visible_player(self, 0, 1000.0f) != 0xFFFF) {
+        if (find_nearest_visible_player(self, 0, lbl_805D9970) != 0xFFFF) {
             ((TObjEneDarkGunCenter *)self)->hide_linked_enemies();
             fn_800A0884(self);
         } else {
@@ -316,7 +319,7 @@ void TObjEneDarkGunCenter::run_task() {
             self->f3a4 = 0x5a;
         } else {
             self->f3a4 = t - 1;
-            if ((f32)(t - 1) <= -30.0f) {
+            if ((f32)(t - 1) <= lbl_805D9974) {
                 self->f3a4 = 0x5a;
             }
         }

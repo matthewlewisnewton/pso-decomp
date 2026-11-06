@@ -8,6 +8,7 @@
 #include "pso/system/FlagWord.h"
 
 struct TItemData;
+class TPlyInventoryItem;
 struct TObjPlayer;
 struct G_PickUpItem_6x59;
 
@@ -152,6 +153,8 @@ struct TItem : public TObjCollidable {
     s32 unregister_item();
     s32 insert_sorted_by_id();
     s32 copy_to_item_data(TItemData *data);
+    // Writes the 0x1C inventory record: mode, flags, then TItemData.
+    s32 export_inventory_entry(TPlyInventoryItem *dest);
     void snap_to_ground();
     void send_field_state(s16 floor, TObjPlayer *player);
     void handle_pickup(s16 floor, TObjPlayer *player);
@@ -236,7 +239,7 @@ void scroll_item_model_uvs(NJS_OBJECT *object, s16 du, s16 dv, u16 mesh);
 s32 feed_item_to_mag(TItem *mag, TItem *item);
 void give_item_to_client(u16 client, TItemData *data);
 void replace_item_with_new_code(const TItemData *data, TItem *item);
-s32 is_point_on_screen(const f32 *pos, f32 range, f32 radius);
+s32 is_point_on_screen(const Vec *pos, f32 range, f32 radius);
 s32 is_default_camera();
 s16 calc_base_tp_bonus(u16 client);
 s16 calc_base_hp_bonus(u16 client);

@@ -4,9 +4,7 @@
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
-
-class TUnk_804F1280;
-struct TBoss6Type2;
+#include "pso/boss/TUnk_804F1280.h"
 
 // The per-kind parameters of a falling rock (TBoss6Rock__data_80479258).
 struct RockKindParams {
@@ -27,7 +25,7 @@ struct TBoss6Rock : public TObjCollidable {
     virtual void render();
     void sub_80353F5C();
     s32 m_ac;            // index into TBoss6Rock__instance_table and the point table
-    u32 m_b0;            // the TObjMapCsn made when it lands
+    TObject *m_b0;       // the TObjMapCsn made when it lands
     s32 m_b4;            // kind (index into TBoss6Rock__data_80479258)
     s32 m_b8;            // kind of the next fall
     s32 m_bc;            // fast fall (1)
@@ -58,26 +56,12 @@ struct TBoss6Rock : public TObjCollidable {
     static void create_rock_pool(s32 arg0);
     static void free_data();
     static void load_resources();
-    void spawn_crush_rocks(s32 kind);
-    void break_rocks_in_radius(f32 r);
-    s32 push_out_of_rocks(f32 r);
+    static void spawn_crush_rocks(Vec *point, s32 kind);
+    static void break_rocks_in_radius(Vec *point, f32 r);
+    static s32 push_out_of_rocks(Vec *point, f32 r);
     static s32 get_point(s32 arg0, s32 arg1, f32 *arg2);
 };
 
 typedef char TBoss6Rock_size[sizeof(TBoss6Rock) == 0xE8 ? 1 : -1];
-
-extern "C" {
-// The texture list and model resource load_resources loads (TBoss6CrushRock's ctor).
-int TBoss6Rock__sub_80353A04(void);
-int TBoss6Rock__sub_80353A0C(void);
-// The point a rock pushes players out of the boss's reach towards (TBoss6Type2).
-s32 TBoss6Rock__sub_80353A14(s32 i, Vec *out, f32 *radius);
-// Lays the 32 rock points out on four rings around the arena centre.
-void TBoss6Rock__sub_80354188(void);
-// Pushes the players out of a landed rock, hurting them when it lands.
-void TBoss6Rock__sub_803542E8(TBoss6Rock *rock, s32 landed);
-// Clears the owner (TBoss6Type2's dtor): every rock then destroys itself.
-void TBoss6Rock__sub_80354A44(void);
-}
 
 #endif

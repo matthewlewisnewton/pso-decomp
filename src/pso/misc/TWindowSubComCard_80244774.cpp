@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/unk/text_8026CB5C.h"
 #include "pso/misc/TWindowLockOn.h"
@@ -134,7 +136,7 @@ void queue_destruction__7TObjectFv(void *);
 void allow_rendering__7TObjectFv(TObject *arg0);
 void disallow_rendering__7TObjectFv(TObject *);
 int copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void*);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 int TWindowSubComCard__sub_80244774(void);
 f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *arg0);
 void save_position__11TWindowBaseFv(void* p);
@@ -147,7 +149,6 @@ s32 sub_80246948__11TWindowBaseFv();
 int TWindowFukidasi__sub_8024695C(void *p);
 s32 TWindowCtrlMain__sub_8024CE24();
 s32 animate_scale__19TWindowKeyBoardSoftFv();
-s32 open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, void *, int, f32);
 s32 init_window_layout_entries(void *, int, int);
 s32 sub_8026CC28__11TWindowBaseFv();
 s32 resort_window_order__11TWindowBaseFv(void *);
@@ -156,19 +157,18 @@ extern int lbl_805D3614;
 extern s32 lbl_805D3888;
 
 extern "C" {
-s32 try_open__19TWindowKeyBoardSoftFii(void *, Quad_802455CC *);
 }
 
 int TWindowSubComCard__sub_80244774(void) {  return lbl_805D3614; }
 
 s32 TWindowSubComCard::get_field_20() { return this->m_20; }
 
-f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *window_sub_com_card) {
-    f32 v = window_sub_com_card->calc_offset();
+f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *self) {
+    f32 v = self->calc_offset();
     if (v < 1.0f) {
         return v;
     }
-    return window_sub_com_card->get_normalized_progress();
+    return self->get_normalized_progress();
 }
 
 f32 TWindowSubComCard::calc_offset() {
@@ -268,7 +268,7 @@ extern s16 lbl_805D63F6;
 void draw_window_scanlines(u8 *arg0, u8 *arg1);
 extern UVPair_8024503C selection_bar_texture_coordinates;
 extern s32 lbl_805D63F0;
-void draw_selection_bar(u8 *arg0, u8 *arg1, s32 arg2);
+void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 void window_request_refresh(u8 *arg0);
 void window_request_show(void *arg0);
 bool is_balloon_overlapping(u8 *arg0, u8 *arg1, u8 *arg2);
@@ -302,25 +302,25 @@ void window_request_show(void *object) {
 }
 
 s32 TWindowBase::setup_window_draw_context(s32 arg1) {
-    s32 temp_r31;
+    TWindowKeyBoardSoft *window;
     s32 var_r4;
-    temp_r31 = ((s32 (*)(void *, void *, void *, f32, int))open_singleton__19TWindowKeyBoardSoftFiiii)((void *) (((u8 *)this) + 0x40), (void *) (((u8 *)this) + 0x48), (void *)arg1, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x54)), (int) (*(s32 *)((s8 *)((u8 *)this) + 0x2C)));
-    if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x40) {
+    window = TWindowKeyBoardSoft::open_singleton(&m_40, &m_48, (f32 *)arg1, m_54, m_2c);
+    if (m_2c & 0x40) {
         animate_scale__19TWindowKeyBoardSoftFv();
     }
-    if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x80) {
-        ((TWindowKeyBoardSoft *)temp_r31)->shrink_clip_right();
+    if (m_2c & 0x80) {
+        window->shrink_clip_right();
     }
-    if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 8) {
-        ((TWindowKeyBoardSoft *)temp_r31)->set_bounds(0.0f, 0.0f, 640.0f, 480.0f);
+    if (m_2c & 8) {
+        window->set_bounds(0.0f, 0.0f, 640.0f, 480.0f);
     }
-    var_r4 = *(s32 *)((s8 *)((u8 *)this) + 0x5C);
-    if (!(*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x2000)) {
+    var_r4 = m_5c;
+    if (!(m_2c & 0x2000)) {
         var_r4 = (s32) ((f32) var_r4 - 7.5f);
     }
-    ((TWindowKeyBoardSoft *)temp_r31)->set_open_tick(var_r4);
-    apply_window_closing_stretch((u8 *)temp_r31, (*(s16 *)((s8 *)((u8 *)this) + 0x22)));
-    return temp_r31;
+    window->set_open_tick(var_r4);
+    apply_window_closing_stretch((u8 *)window, unk_22);
+    return (s32)window;
 }
 
 s32 TWindowDD::draw_default_entry(s32 arg0) {
@@ -402,14 +402,14 @@ void TWindowBase::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
     }
     temp_r3_2 = *(s32 *)((s8 *)((u8 *)this) + 0x2C);
     if ((temp_r3_2 & 1) && (temp_r3_2 & 2) && !(temp_r3_2 & 0x20)) {
-        ((s32 (*)(int, int, int, int))play_sound_effect)(0x53703, 0, 0, 0);
+        play_sound_effect(0x53703, 0, 0, 0);
     }
     if (TWindowSubStatusDisp::get_card_window_scale((int) (*(s16 *)((s8 *)((u8 *)this) + 0x20))) <= 0.0f) {
         *(s32 *)((s8 *)((u8 *)this) + 0x5C) = 0x01000000;
     }
 }
 
-void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
+void draw_selection_bar(TWindowDrawContext *window_key_board_soft, u8 *arg1, s32 arg2) {
     UVPair_8024503C uv = selection_bar_texture_coordinates;
     UV_8024503C *p;
     Quad_802455CC q;
@@ -419,19 +419,19 @@ void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
     f32 z;
     f32 t;
     f32 u;
-    if (*(s32 *)((s8 *)window_key_board_soft + 0x30) < 0) {
+    if (window_key_board_soft->open_tick < 0) {
         return;
     }
     p = &uv.e[0];
     if (arg2 != 0) {
         p = &uv.e[1];
     }
-    y = *(f32 *)((s8 *)window_key_board_soft + 0x14) + *(f32 *)((s8 *)arg1 + 0xC);
-    x = *(f32 *)((s8 *)window_key_board_soft + 0x10);
-    z = -1.0f / (0.22424999f + *(f32 *)((s8 *)window_key_board_soft + 0x38));
+    y = window_key_board_soft->inner_y + *(f32 *)((s8 *)arg1 + 0xC);
+    x = window_key_board_soft->inner_x;
+    z = -1.0f / (0.22424999f + window_key_board_soft->depth);
     set_additive_blend();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(2, -1);
     q.x0 = x - 2.0f;
     q.y0 = y;
@@ -441,10 +441,10 @@ void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + p->u) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (try_open__19TWindowKeyBoardSoftFii(window_key_board_soft, &q) != 0) {
-        draw_textured_quad_at_depth((f32 *)&q, z);
+    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q.x0) != 0) {
+        draw_textured_quad_at_depth(&q.x0, z);
     }
-    t = x + *(f32 *)((s8 *)window_key_board_soft + 0x18);
+    t = x + window_key_board_soft->inner_w;
     q.x0 = 2.0f + (t - 16.0f);
     q.y0 = y;
     q.x1 = 2.0f + t;
@@ -454,19 +454,19 @@ void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + u) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (try_open__19TWindowKeyBoardSoftFii(window_key_board_soft, &q) != 0) {
-        draw_textured_quad_at_depth((f32 *)&q, z);
+    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q.x0) != 0) {
+        draw_textured_quad_at_depth(&q.x0, z);
     }
     q.x0 = x1;
     q.y0 = y;
-    q.x1 = 2.0f + ((x + *(f32 *)((s8 *)window_key_board_soft + 0x18)) - 16.0f);
+    q.x1 = 2.0f + ((x + window_key_board_soft->inner_w) - 16.0f);
     q.y1 = y + *(f32 *)((s8 *)arg1 + 0x14);
     q.u0 = (16.0f + p->u) / 256.0f;
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + (16.0f + p->u)) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (try_open__19TWindowKeyBoardSoftFii(window_key_board_soft, &q) != 0) {
-        draw_textured_quad_at_depth((f32 *)&q, z);
+    if (TWindowKeyBoardSoft::try_open(window_key_board_soft, &q.x0) != 0) {
+        draw_textured_quad_at_depth(&q.x0, z);
     }
     TWindowSubStatusDisp::get_player();
     set_default_alpha_blend();
@@ -565,7 +565,7 @@ void TWindowSubComCard__sub_802454E4(s32 texture) {
     }
     set_additive_blend();
     set_tev_swap_channels(3, 3, 3, 3);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_texture_num(texture);
     TLobby__sub_803E2EE4(1);
 }
@@ -642,7 +642,7 @@ void TWindowBase::draw_quest_message_frame(void *c_arg) {
   f32 rem;
   f32 half;
   begin_screen_draw(1);
-  TObjFish::set_global_param((s32)((*(void * *)&lbl_805D63F0)));
+  set_current_texture_list((GinjaTextureList *)(((*(void * *)&lbl_805D63F0))));
   set_draw_texture_and_color(1, -1);
   if (((struct QFrameWindow_80245808 *)this)->height < 64.0f)
   {
@@ -835,7 +835,7 @@ void TWindowBase::draw_window_frame(void *r) {
   f32 dy;
   f32 rem;
   begin_screen_draw(1);
-  TObjFish::set_global_param((s32)((*(void * *)&lbl_805D63F0)));
+  set_current_texture_list((GinjaTextureList *)(((*(void * *)&lbl_805D63F0))));
   set_draw_texture_and_color(1, ((Rect_80245F98 *)r)->f34);
   n = (s32) ((Card_80245F98 *)this)->f4C;
   n += (4 - (n & 3)) & 3;
@@ -941,7 +941,7 @@ void TWindowSubComCard::update_open_close() {
         if ((f32) *(s32 *)&this->m_5c >= 7.5f) {
             if (temp_r5 & 4) {
                 if (!(temp_r5 & 0x20)) {
-                    ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x53704, 0U, 0, 0);
+                    play_sound_effect(0x53704, (const Vec *)(0U), 0, 0);
                 }
                 *(s32 *)&this->m_2c = (s32) (*(s32 *)&this->m_2c & ~5);
                 return;
@@ -959,7 +959,7 @@ void TWindowSubComCard::update_open_close() {
             card_window_flags = *(s32 *)&this->m_2c;
             if (card_window_flags & 4) {
                 if (!(card_window_flags & 0x20)) {
-                    ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x53703, 0U, 0, 0);
+                    play_sound_effect(0x53703, (const Vec *)(0U), 0, 0);
                 }
                 *(s32 *)&this->m_2c = (s32) (*(s32 *)&this->m_2c & 0xFFFFFFFB);
                 *(s32 *)&this->m_2c = (s32) (*(s32 *)&this->m_2c | 1);

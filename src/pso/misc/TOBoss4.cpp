@@ -1,3 +1,6 @@
+// One TU (birds, tower, rocks and the shared base). Compiled -inline deferred
+// -fp_contract on -str reuse,readonly -sdata 4: definitions run from the base
+// constructor back to TOBoss4Rock::run_task so CodeWarrior emits address order.
 #include "types.h"
 #include <stdlib.h>
 #include "pso/TMainTask.h"
@@ -5,7 +8,10 @@
 #include "pso/math/AngleLookup.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/math/MatrixVector.h"
-#include "pso/math/ScratchVectors.h"
+#include "pso/math/ScratchVectorStorage.h"
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TOBoss4.h"
 #include "pso/misc/TOBoss4Bird.h"
 #include "pso/misc/TOBoss4Rock.h"
@@ -16,7 +22,6 @@
 #include "pso/render/render_util.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/system/GinjaMaterial.h"
 #include "pso/system/GinjaModel.h"
 #include "pso/system/MatrixOps.h"
@@ -60,16 +65,12 @@ TOBoss4::~TOBoss4() {
 }
 
 void TOBoss4::load_static_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_o_boss4_resource_descriptor, 0, 0, 0);
-    }
-    model_resource = resource;
+    model_resource = new BmlResource(1, &bm_o_boss4_resource_descriptor, 0, 0, NULL);
 }
 
 void TOBoss4::free_instance() {
     if (model_resource != NULL) {
-        TLobby__sub_8001FE7C(model_resource, 1);
+        delete model_resource;
         model_resource = NULL;
     }
 }
@@ -95,8 +96,8 @@ TOBoss4Bird::TOBoss4Bird(void *set_data) {
     } else if (count > 6) {
         count = 6;
     }
-    offsets = (Vec *)mem_alloc(count * 0xC);
-    angles = (s32 *)mem_alloc(count * 4);
+    offsets = (Vec *)::operator new[](count * 0xC);
+    angles = (s32 *)::operator new[](count * 4);
     {
         TOBoss4BirdFormation formation = boss4_bird_vec_table;
         for (i = 0; i < count; i++) {
@@ -115,10 +116,10 @@ TOBoss4Bird::TOBoss4Bird(void *set_data) {
 
 TOBoss4Bird::~TOBoss4Bird() {
     if (offsets != NULL) {
-        mem_free(offsets);
+        ::operator delete[](offsets);
     }
     if (angles != NULL) {
-        mem_free(angles);
+        ::operator delete[](angles);
     }
 }
 
@@ -131,12 +132,12 @@ void TOBoss4Bird::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         for (i = 0; i < count; i++) {
             push_matrix();
             translate_matrix(0, 0.0f, bob_offset, 0.0f);
             post_translate_matrix(&offsets[i].x);
-            rotate_matrix_y(NULL, rotation_y);
+            rotate_matrix_y(NULL, rotation.yaw);
             rotate_matrix_y(NULL, angles[i]);
             draw_ginja_model_with_motion(model, motion, animation_frame);
             pop_matrix();
@@ -155,28 +156,28 @@ void TOBoss4Bird::run_task() {
     switch (state) {
     case 0:
         state = 1;
-        scratch_vec.x = 0.0f;
-        scratch_vec.y = wander_height * ((1.0f / 32768.0f) * (f32)rand());
-        scratch_vec.z = wander_radius * ((1.0f / 32768.0f) * (f32)rand());
+        scratch_vec.vector.x = 0.0f;
+        scratch_vec.vector.y = wander_height * ((1.0f / 32768.0f) * (f32)rand());
+        scratch_vec.vector.z = wander_radius * ((1.0f / 32768.0f) * (f32)rand());
         push_matrix_from(&identity_matrix);
         rotate_matrix_y(NULL, (s32)(182.04445f * (360.0f * ((1.0f / 32768.0f) * (f32)rand()))));
-        rotate_vector_by_matrix(0, &scratch_vec, &scratch_vec);
+        rotate_vector_by_matrix(0, &scratch_vec.vector, &scratch_vec.vector);
         pop_matrices(1);
         VecCopy(&target, &home_position);
-        vec3_add_to(&target, &scratch_vec);
+        vec3_add_to(&target, &scratch_vec.vector);
         break;
     case 1:
-        VecCopy(&scratch_vec, &target);
-        subtract_vector(&scratch_vec, &position);
-        rotation_y = approach_angle_limited(
-            rotation_y, (s32)(10430.38043493439 * atan2_float(scratch_vec.x, scratch_vec.z)), 0x100);
-        lbl_8050BF00.x = lbl_8050BF00.y = 0.0f;
-        lbl_8050BF00.z = speed;
+        VecCopy(&scratch_vec.vector, &target);
+        subtract_vector(&scratch_vec.vector, &position);
+        rotation.yaw = approach_angle_limited(
+            rotation.yaw, (s32)(10430.38043493439 * atan2_float(scratch_vec.vector.x, scratch_vec.vector.z)), 0x100);
+        lbl_8050BF00.vector.x = lbl_8050BF00.vector.y = 0.0f;
+        lbl_8050BF00.vector.z = speed;
         push_matrix_from(&identity_matrix);
-        rotate_matrix_y(NULL, rotation_y);
-        rotate_vector_by_matrix(0, &lbl_8050BF00, &lbl_8050BF00);
+        rotate_matrix_y(NULL, rotation.yaw);
+        rotate_vector_by_matrix(0, &lbl_8050BF00.vector, &lbl_8050BF00.vector);
         pop_matrices(1);
-        vec3_add_to(&position, &lbl_8050BF00);
+        vec3_add_to(&position, &lbl_8050BF00.vector);
         if (horizontal_distance_squared(&target, &position) < wander_radius || 150.0f < (f32)flight_timer++) {
             state = 0;
             flight_timer = 0;
@@ -200,8 +201,8 @@ void TOBoss4Tower::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        rotate_matrix_y(NULL, rotation.yaw);
+        set_current_texture_list((GinjaTextureList *)texlist);
         draw_ginja_object(model);
         pop_matrix();
     }
@@ -231,12 +232,12 @@ TOBoss4Rock::TOBoss4Rock(void *set_data) {
     } else if (count > 8) {
         count = 8;
     }
-    models = (s32 *)mem_alloc(count * 4);
-    texlists = (s32 *)mem_alloc(count * 4);
-    positions = (Vec *)mem_alloc(count * 0xC);
-    speeds = (f32 *)mem_alloc(count * 4);
-    rotations = (TOBoss4RockAngles *)mem_alloc(count * 0xC);
-    rotation_speeds = (TOBoss4RockAngles *)mem_alloc(count * 0xC);
+    models = (s32 *)::operator new[](count * 4);
+    texlists = (s32 *)::operator new[](count * 4);
+    positions = (Vec *)::operator new[](count * 0xC);
+    speeds = (f32 *)::operator new[](count * 4);
+    rotations = (TOBoss4RockAngles *)::operator new[](count * 0xC);
+    rotation_speeds = (TOBoss4RockAngles *)::operator new[](count * 0xC);
     for (i = 0; i < count; i++) {
         model = 4.0f * ((1.0f / 32768.0f) * (f32)rand());
         models[i] = get_bml_model(model_resource, model);
@@ -257,22 +258,22 @@ TOBoss4Rock::TOBoss4Rock(void *set_data) {
 
 TOBoss4Rock::~TOBoss4Rock() {
     if (models != NULL) {
-        mem_free(models);
+        ::operator delete[](models);
     }
     if (texlists != NULL) {
-        mem_free(texlists);
+        ::operator delete[](texlists);
     }
     if (positions != NULL) {
-        mem_free(positions);
+        ::operator delete[](positions);
     }
     if (speeds != NULL) {
-        mem_free(speeds);
+        ::operator delete[](speeds);
     }
     if (rotations != NULL) {
-        mem_free(rotations);
+        ::operator delete[](rotations);
     }
     if (rotation_speeds != NULL) {
-        mem_free(rotation_speeds);
+        ::operator delete[](rotation_speeds);
     }
 }
 
@@ -286,7 +287,7 @@ void TOBoss4Rock::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         for (i = 0; i < count; i++) {
-            TObjFish::set_global_param(texlists[i]);
+            set_current_texture_list((GinjaTextureList *)texlists[i]);
             push_matrix();
             post_translate_matrix(&positions[i].x);
             rotate_matrix_z(NULL, rotations[i].z);

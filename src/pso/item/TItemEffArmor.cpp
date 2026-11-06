@@ -1,3 +1,5 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/unk/text_80087278.h"
@@ -22,7 +24,6 @@
 
 extern "C" {
 u16 get_entity_id(void *);
-s32 get_field_3e0__12TBoss3VoloptFv();
 s32 TObjPlayer__sub_80117E50();
 void *get_player_by_client_id(s32 i);
 s32 is_item_area_enabled();
@@ -165,7 +166,7 @@ struct Self_80108020 {
 };
 
 extern "C" {
-void play_sound_effect(u32, void *, s32, s32);
+
 f32 xyz_distance(Vec_80108164 *, Vec_80108164 *);
 void *__nw__7TObjectFUl(u32);
 
@@ -202,7 +203,7 @@ void TObjPlayer::spawn_appearance_effect(u16 client) {
             if (o != 0) {
                 TItemEffArmor__ct((Self_80108020 *)(o), (u8 *)p, s, v);
             }
-            play_sound_effect(0x4000B20A, (u8 *)p + 0x38, 0, 0);
+            play_sound_effect(0x4000B20A, (const Vec *)((u8 *)p + 0x38), 0, 0);
         }
     }
 }
@@ -303,11 +304,11 @@ void TUnk_8049EFB8::run_task() {
     if (120.0f <= (f32) *(s32 *)&this->unk_1C) {
         player = (s32)get_player_by_client_id((this->m_20));
         if (player != 0) {
-            get_field_3e0__12TBoss3VoloptFv();
+            ((TObjPlayer *)player)->get_current_area();
             if (is_item_area_enabled() == 1) {
                 get_entity_id((void *)player);
                 if (TObjPlayer__sub_80117E50() != 0) {
-                    spawn_particle_effect((void *)(player + 0x2FC), 0x1BE);
+                    spawn_particle_effect((const Vec *)((player + 0x2FC)), 0x1BE);
                 }
             }
         }

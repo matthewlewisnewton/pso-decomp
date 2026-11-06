@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowGetComCard.h"
@@ -52,7 +53,7 @@ void start_player_data_load__17TWindowSubComCardFl(void);
 void TWindowGetComCard__sub_8007B54C(void);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
-void play_sound_effect(s32, s32, s32, s32);
+
 s32 is_player_input_active(s32);
 u8 *init_shop_judgment_window(void *p);
 extern u8 TWindowGetComCard__window_rect[];

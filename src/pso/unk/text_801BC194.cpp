@@ -11,13 +11,11 @@ s32 get_main_phase();
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
 s32 obj_isState2_324__9TObjCharaFv(void *);
 u16 get_entity_id(void *);
-s32 check_flag__10TObjPlayerFl(void *, int);
 }
 void reset_cameras_to_actor(void *actor, s32 arg1);
 extern "C" {
 s32 sub_801A1DDC__10TObjPlayerFv(void *);
 s32 is_single_screen__10TObjPlayerFv();
-s32 is_key_machine_ready__10TObjPlayerFv();
 s32 play_effect_default__10TObjPlayerFii(void *, int);
 void *get_player_by_client_id(s32);
 s32 has_active_camera_event__10TObjPlayerFv(void *);
@@ -44,10 +42,10 @@ void TObjPlayer::place_on_area_entry() {
 
     if (get_main_phase() == 0xE && is_single_screen__10TObjPlayerFv() == 0 &&
         is_locally_controlled__10TObjPlayerFPv(arg0) != 0 && has_active_camera_event__10TObjPlayerFv(arg0) == 0 &&
-        check_flag__10TObjPlayerFl(arg0, 0x100000) == 0 && is_key_machine_ready__10TObjPlayerFv() != 0) {
+        ((TObjPlayer *)arg0)->check_flag(0x100000) == 0 && TObjPlayer::is_key_machine_ready() != 0) {
         ((TObjPlayer *)arg0)->set_state_flags(0x100000);
         ((TObjBase *)arg0)->set_position_from(get_lobby_entry_ptr__10TObjPlayerFv(arg0));
-        this->rotation_y = TObjPlayer__sub_801D8C3C(arg0);
+        this->rotation.yaw = TObjPlayer__sub_801D8C3C(arg0);
         play_effect_default__10TObjPlayerFii(arg0, 0x1E);
         TObjPlayer::set_camera_mode(3);
         obj = __nw__7TObjectFUl(0x24);
@@ -55,20 +53,20 @@ void TObjPlayer::place_on_area_entry() {
             TForceOperate__ct(obj, tl_02, get_entity_id(arg0));
         }
     } else if (obj_isState2_324__9TObjCharaFv(arg0) == 0) {
-        p = consume_telepipe_arrival(get_entity_id(arg0), (u8 *)&this->rotation_y);
+        p = consume_telepipe_arrival(get_entity_id(arg0), (u8 *)&this->rotation.yaw);
         if (p != NULL) {
             ((TObjBase *)arg0)->set_position_from(p);
         } else {
             e = &TObjPlayer__arrival_override_table[get_entity_id(arg0)];
             if (obj_isState2_324__9TObjCharaFv(arg0) == 0 && TObjPlayer__sub_801BF95C(e) == 1) {
                 TObjPlayer__sub_801BF954(e, 0);
-                this->rotation_y = ((TObjPlayer *)e)->get_lock_timer();
+                this->rotation.yaw = ((TObjPlayer *)e)->get_lock_timer();
                 ((TObjBase *)arg0)->set_position_from(((TObjPlayer *)e)->get_sub_object());
             } else {
                 other = find_player_arrival_set(arg0, get_entity_id(arg0));
                 if (other != NULL) {
                     ((TObjBase *)arg0)->set_position_from(other + 0x38);
-                    this->rotation_y = *(s32 *)((s8 *)other + 0x60);
+                    this->rotation.yaw = *(s32 *)((s8 *)other + 0x60);
                 } else {
                     ((TObjPlayer *)arg0)->set_position(TObjPlayer__data_805DC278, TObjPlayer__data_805DC278, TObjPlayer__data_805DC278);
                 }

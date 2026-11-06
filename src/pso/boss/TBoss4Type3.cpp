@@ -1,4 +1,9 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/misc/SampledMotionPoints.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -165,11 +170,11 @@ s32 vec3_add_to(void *, void *);
 f32 vector_length(void *);
 s32 subtract_vector(void *, void *);
 s32 normalize_vector(void *);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *create_particle_emitter(void *pos, s32 id);
-s32 play_sound_effect(int, void *, int, int);
+
 f64 atan2_float(f32, f32);
-u8 * dispatch_shared_handler_a__6TLobbyFl(s32);
+
 s32 angle_diff_s16(int, int);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
@@ -380,7 +385,7 @@ int get_player_data__10TObjPlayerFi(int a0);
 u16 get_entity_id(void *);
 s32 is_split_screen();
 void queue_destruction__7TObjectFv(void *);
-s16 * register_boss__6TLobbyFl(s32);
+
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
@@ -395,15 +400,14 @@ void TBoss4Type3__sub_80059F64(Obj_80059F64 *self, s32 arg1);
 void TBoss4Type3__sub_8005A150(TBoss4Type3 *self);
 void TBoss4Type3__sub_80059DCC(TBoss4Type3 *self, u32 packed);
 void TBoss4Type3__sub_8005A86C(void* p);
-void vfunc_63__11TBoss4Type3Fv(Obj_8005ACBC *self);
-void vfunc_62__11TBoss4Type3Fv(u8 *arg0);
+void reset_action_to_3__11TBoss4Type3FPv(Obj_8005ACBC *self);
+void init_effect__11TBoss4Type3FPv(u8 *arg0);
 S_8005AD50 * __dt__11TBoss4Type3Fv(S_8005AD50 *o, s16 flag);
 void * __ct__13TObjBs4CutAtkFv(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 void * create__13TObjBs4CutAtkFPvPvPv(void *arg0, void *arg1, void *arg2);
 void request_follow_camera_offsets(void *arg0, void *arg1, u16 arg2);
 s32 query_teammate_state__9TObjEneDDFv(void *);
 int toggle_particle_effect__10TObjPlayerFv(void*);
-s32 clear_render_callback__8TObjFishFv(s32);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 s32 approach_angle_limited(s32, s32, s32);
@@ -429,7 +433,6 @@ extern void* __vt__13TObjBs4CutAtk[];
 extern s32 local_client_id;
 
 void init_model_node_tables(void *, void *, int);
-s32 TObjFish__sub_800E3124(u8 *list, s32 vecs);
 s32 init_collision_body_parts(void *, void *, int);
 extern s32 model_render_flags;
 extern s32 tl_04;
@@ -749,7 +752,7 @@ void *__vt__11TBoss4Type3[83] = {
     (void *)&apply_movement_ailment__11TBoss4Type3Fl, (void *)&apply_shock_status__11TBoss4Type3Fv, (void *)&clear_harmful_statuses__11TBoss4Type3Fv, (void *)&apply_attack_stat_status__9TObjCharaFPv,
     (void *)&apply_defense_stat_status__9TObjCharaFPv, (void *)&cure_poison_ailment__9TObjCharaFv, (void *)&cure_paralysis__9TObjCharaFv, (void *)&clear_all_status_effects__9TObjCharaFv,
     (void *)&apply_action_hold_status__9TObjCharaFf, (void *)&apply_anti_technique__9TObjCharaFl, (void *)&vfunc_58__9TObjCharaFv, (void *)&vfunc_59__9TObjCharaFv,
-    (void *)&vfunc_60__9TObjCharaFv, (void *)&vfunc_61__9TObjCharaFv, (void *)&vfunc_62__11TBoss4Type3Fv, (void *)&vfunc_63__11TBoss4Type3Fv,
+    (void *)&vfunc_60__9TObjCharaFv, (void *)&vfunc_61__9TObjCharaFv, (void *)&init_effect__11TBoss4Type3FPv, (void *)&reset_action_to_3__11TBoss4Type3FPv,
     (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
     (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
@@ -776,7 +779,6 @@ struct TBoss4Type3;
 typedef char TypedVector_80059B78_size[(sizeof(TypedVector_80059B78) == 12) ? 1 : -1];
 
 extern "C" {
-void update_collisions__10TObjPlayerFv(void *);
 void submit_cursor_candidate(void *, int);
 struct O_80059618;
 struct Obj_8005A1AC;
@@ -839,7 +841,7 @@ void TObjBs4CutAtk::run_task() {
             Dmg_8005B218 d;
             id = *(s32 *)&this->m_up;
             d.type = 0;
-            d.val = *register_boss__6TLobbyFl(0x38);
+            d.val = *((s16 *)get_battle_base_stats(0x38));
             {
                 Dmg_8005B218 t = d;
                 p->m21(id, &t, 0, -1, -1);
@@ -895,16 +897,16 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
     VecCopy__FP3VecPC3Vec(self->v2FC, self->v38);
     self->f308 = self->f30C = self->f310 = 0.0f;
     self->f2A8 = 0;
-    ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)((int)register_boss__6TLobbyFl(0x38)), (u8 *)(TLobby::dispatch_shared_handler_b(0x38)), (u8 *)(TLobby::register_object(0x38)));
+    ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)((int)((s16 *)get_battle_base_stats(0x38))), (u8 *)(get_battle_attack_params(0x38)), (u8 *)(get_battle_resistance_params(0x38)));
     self->f33E = self->f3E4 = self->f32C;
-    ((TBoss3Volopt *)self)->reset_photon_effect();
+    ((TObjEnemy *)self)->register_by_id();
     ((TObjEnemy *)self)->set_param(0x2F);
     self->f3F0 = 0;
     self->f3FC = 0;
     self->f3F8 = 0.6f;
     self->f3F4 = 0.0f;
     for (i = 0; i < 3; i++) {
-        self->a438[i] = TObjFish__sub_800E3124((u8 *)(((void **)boss4_type3_effect_desc_ptr_table)[i]), (s32)&self->a444[i]);
+        self->a438[i] = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)((((void **)boss4_type3_effect_desc_ptr_table)[i])), (Vec *)(&self->a444[i]));
     }
     set_motion_packed_rotation();
     model = get_bml_model(self->f390, ((s32 *)lbl_80486FB0)[0]);
@@ -921,7 +923,7 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
     init_model_node_tables(self->f378, (void *)boss4_type3_model_node_specs, 2);
     self->f3D4 = self->f32C;
     self->f3CC = 0;
-    self->f3D0 = *(s32 *)(dispatch_shared_handler_a__6TLobbyFl(0x38) + 0x24);
+    self->f3D0 = *(s32 *)(((u8 *)get_battle_movement_params(0x38)) + 0x24);
     self->f3B0 = 1.0f;
     self->f3B4 = 0;
     self->f3A4 = 0x10;
@@ -966,7 +968,7 @@ S_8005AD50 *__dt__11TBoss4Type3Fv(S_8005AD50 *o, s16 flag) {
             o->f528 = 0;
         }
         for (i = 0; i < 3; i++) {
-            TObjFish::init_state_1(o->fx[i]);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(o->fx[i]));
             o->fx[i] = 0;
         }
         free_collision_body_parts(o);
@@ -979,17 +981,17 @@ S_8005AD50 *__dt__11TBoss4Type3Fv(S_8005AD50 *o, s16 flag) {
     return o;
 }
 
-void TBoss4Type3::vfunc_62() {
-    *(s32 *)((s8 *)((u8 *)this) + 0x30) = (s32) (*(s32 *)((s8 *)((u8 *)this) + 0x30) & 0xFFFFFDFF);
-    *(f32 *)((s8 *)((u8 *)this) + 0x3E8) = (f32) 1.0f;
-    ((s32 (*)(int, void *, int, int, void *))play_sound_effect)(0x4003B734, ((u8 *)this) + 0x38, 0, 1, ((u8 *)this));
+void init_effect__11TBoss4Type3FPv(u8 *arg0) {
+    *(s32 *)((s8 *)arg0 + 0x30) = (s32) (*(s32 *)((s8 *)arg0 + 0x30) & 0xFFFFFDFF);
+    *(f32 *)((s8 *)arg0 + 0x3E8) = (f32) 1.0f;
+    play_sound_effect(0x4003B734, (const Vec *)(arg0 + 0x38), 0, 1);
 }
 
-void TBoss4Type3::vfunc_63() {
-    if (((Obj_8005ACBC *)this)->f374 != 3 && ((Obj_8005ACBC *)this)->f374 != 2) {
-        ((Obj_8005ACBC *)this)->f3b8 = 0xFFFF;
-        ((Obj_8005ACBC *)this)->f3ba = 0xFFFF;
-        ((TBoss4Type3 *)((Obj_8005ACBC *)this))->set_action_from_table(3);
+void reset_action_to_3__11TBoss4Type3FPv(Obj_8005ACBC *self) {
+    if (self->f374 != 3 && self->f374 != 2) {
+        self->f3b8 = 0xFFFF;
+        self->f3ba = 0xFFFF;
+        ((TBoss4Type3 *)self)->set_action_from_table(3);
     }
 }
 
@@ -1024,7 +1026,7 @@ void TBoss4Type3::run_task() {
     advance_afterimage();
     if (this->m_3a0 != 17) {
         this->m_394->flags |= 1;
-        update_collisions__10TObjPlayerFv(this);
+        ((TObjCollidable *)(this))->update_collisions();
         submit_cursor_candidate(this, -1);
     } else {
         this->m_394->flags &= ~1;
@@ -1067,7 +1069,7 @@ void TBoss4Type3::run_task() {
     push_matrix();
     set_matrix_identity(0);
     post_translate_matrix(&this->position.x);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     matrix_mult_vec(0, e, v[0]);
     matrix_mult_vec(0, e + 0xC, v[1]);
     pop_matrix();
@@ -1099,12 +1101,12 @@ void TBoss4Type3::draw() {
     ((void (*)(void *))toggle_particle_effect__10TObjPlayerFv)(this);
     ((void (*)(void))push_matrix)();
     ((void (*)(void *))post_translate_matrix)((void *)((char *)this + 56));
-    ((void (*)(int, void *))rotate_matrix_y)(0, *(void * *)&this->rotation_y);
+    ((void (*)(int, void *))rotate_matrix_y)(0, *(void * *)&this->rotation.yaw);
     sub_8005A438();
     ((void (*)(void))pop_matrix)();
     ((void (*)(void))push_matrix)();
     ((void (*)(void *))post_translate_matrix)((void *)((char *)this + 1152));
-    ((void (*)(int, void *))rotate_matrix_y)(0, *(void * *)&this->rotation_y);
+    ((void (*)(int, void *))rotate_matrix_y)(0, *(void * *)&this->rotation.yaw);
     TObjPlayer::draw_player_model_by_id(this->m_3ba, this->m_3c8);
     ((void (*)(void))pop_matrix)();
     TParticleCtrl::end_effect_render();
@@ -1183,11 +1185,11 @@ void TBoss4Type3::draw_model_set(const s32 *tbl, f32 t) {
     TObjEneRe4Sorcerer__sub_801E3F1C(0.0f, this->m_3dc);
     set_motion_packed_rotation();
     for (i = 0; i < 3; i++) {
-        TObjFish::set_global_param(TObjFish__sub_8001EDB0(this->m_390, tbl[i]));
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(this->m_390, tbl[i])));
         off = i;
-        ((TObjFish *)((s32)this->render_lists[off]))->set_draw_callback_list();
+        ((ModelNodePositionCapture *)((s32)this->render_lists[off]))->install();
         draw_model_motion((void *)(get_bml_model(this->m_390, tbl[i])), (void *)(get_bml_motion(this->m_390, TBoss4Type3__anim_state_table[this->m_3f0].motions[i])), this->m_3f4);
-        clear_render_callback__8TObjFishFv((s32)this->render_lists[off]);
+        ((ModelNodePositionCapture *)((s32)this->render_lists[off]))->clear();
     }
     clear_motion_packed_rotation();
     model_render_flags &= ~0x20000;
@@ -1338,7 +1340,7 @@ void TBoss4Type3::update_scale_sound() {
             var_r3 = 0x4003B02F;
             var_r5 = 0;
             var_r6 = 1;
-            ((s32 (*)(s32, s32, s32, s32))play_sound_effect)(0x4003B02F, (s32)var_r4, 0, 1);
+            play_sound_effect(0x4003B02F, (const Vec *)((s32)var_r4), 0, 1);
         }
         if ((temp_f31 > 0.0f) && (0.0f == *(f32 *)((s8 *)var_r31 + 0x3B0))) {
             var_r3 = 0x40040000;
@@ -1346,7 +1348,7 @@ void TBoss4Type3::update_scale_sound() {
             var_r3 = 0x4003AD30;
             var_r5 = 0;
             var_r6 = 1;
-            ((s32 (*)(s32, s32, s32, s32))play_sound_effect)(0x4003AD30, (s32)var_r4, 0, 1);
+            play_sound_effect(0x4003AD30, (const Vec *)((s32)var_r4), 0, 1);
         }
     }
 }
@@ -1415,7 +1417,7 @@ void TBoss4Type3::interp_position_between_nodes() {
     s32 i;
 
     a = this->m_3ac << 12;
-    this->rotation_y = approach_angle_limited(this->rotation_y, -(a + (s32)(this->m_39c * (f32)((s32 (*)(s32, s32))angle_diff_s16)(a, this->m_3a8 << 12))), 0x888);
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, -(a + (s32)(this->m_39c * (f32)((s32 (*)(s32, s32))angle_diff_s16)(a, this->m_3a8 << 12))), 0x888);
     ids[0] = this->m_3a4;
     ids[1] = this->m_3a0;
     for (i = 0; i < 2; i++) {
@@ -1477,8 +1479,8 @@ void TBoss4Type3::turn_toward_player(s32 arg1) {
 }
 
 void TBoss4Type3::calc_grid_index() {
-    this->m_3ac = (s32) (((u32) -(this->rotation_y + 0x800) >> 0xCU) & 0xF);
-    this->m_3a8 = (s32) (((u32) -(this->rotation_y + 0x800) >> 0xCU) & 0xF);
+    this->m_3ac = (s32) (((u32) -(this->rotation.yaw + 0x800) >> 0xCU) & 0xF);
+    this->m_3a8 = (s32) (((u32) -(this->rotation.yaw + 0x800) >> 0xCU) & 0xF);
 }
 
 void TBoss4Type3__sub_800599F4(void *p, int lo, int hi) {
@@ -1576,7 +1578,7 @@ void TBoss4Type3::handle_damage_taken() {
     dir.y *= 25.0f;
     dir.z *= 25.0f;
     for (i = 0; i < 8; i++) {
-        e = (u32)spawn_particle_effect(&pos, 0x38);
+        e = (u32)spawn_particle_effect((const Vec *)(&pos), 0x38);
         if (e != 0) {
             ((TParticleCtrl *)e)->set_flags(0x40);
         }
@@ -1612,7 +1614,7 @@ void TBoss4Type3::update_target_effect_timer() {
         start_pad_rumble_client(0x60, 0xF, (s16) *(u16 *)((s8 *)this + 0x3BA));
     }
     if (temp_r30 == sound_frame) {
-        ((s32 (*)(s32, s32, s32, s32))play_sound_effect)(0x4003C133, 0, 0, 0);
+        play_sound_effect(0x4003C133, 0, 0, 0);
     }
     *(s32 *)((s8 *)this + 0x3D8) = (s32) (*(s32 *)((s8 *)this + 0x3D8) + 1);
 }
@@ -1716,7 +1718,7 @@ void TBoss4Type3::update_cut() {
   if (o->f398 == 0x28)
   {
     ((s32 (*)(void *, s32, s32))create__13TObjBs4CutAtkFPvPvPv)(o, o->f3a8, (o->f374 - 4) & 1);
-    play_sound_effect(0x4003B228, o->f38, 0, 1);
+    play_sound_effect(0x4003B228, (const Vec *)(o->f38), 0, 1);
   }
   if ((o->f3f4 >= 3.0f) && (o->f3f4 <= 9.0f))
   {
@@ -1746,7 +1748,7 @@ void TBoss4Type3::enter_go_up() {
     this->m_3a4 = (s32) this->m_3a0;
     this->m_3a0 = 0x11;
     this->m_3ac = (s32) this->m_3a8;
-    play_sound_effect(0x4003B031, arg0 + 0x38, 0, 1);
+    play_sound_effect(0x4003B031, (const Vec *)(arg0 + 0x38), 0, 1);
     this->m_52c = 1;
     this->m_398 = 0x31;
 }
@@ -1785,9 +1787,9 @@ void TBoss4Type3::enter_go_down() {
     this->m_3a4 = 0x11;
     this->m_3a0 = 0x10;
     this->m_3ac = (s32) this->m_3a8;
-    play_sound_effect(0x4003B032, arg0 + 0x38, 0, 1);
+    play_sound_effect(0x4003B032, (const Vec *)(arg0 + 0x38), 0, 1);
     if ((u16) this->m_3ba == (u16)-1) {
-        play_sound_effect(0x4003C62D, (void *)(0), 0, 0);
+        play_sound_effect(0x4003C62D, (const Vec *)((0)), 0, 0);
     }
     this->m_52c = 0;
     this->m_398 = 0x31;
@@ -1875,7 +1877,7 @@ void TBoss4Type3::update_homing() {
         }
         o->f52c = 0;
     }
-    n = *(s32 *)(dispatch_shared_handler_a__6TLobbyFl(0x38) + 0x20);
+    n = *(s32 *)(((u8 *)get_battle_movement_params(0x38)) + 0x20);
     if (n < 1 || n > 8) {
         n = 4;
     }
@@ -1888,7 +1890,7 @@ void TBoss4Type3::update_homing() {
         if (o->f398 == v) {
             TBoss4Type3::create_horming((void *)o, (void *)a, (void *)o->f3b8);
             TBoss4Type3::create_horming((void *)o, (void *)b, (void *)o->f3b8);
-            play_sound_effect(0x4003B229, o->f38, 0, 1);
+            play_sound_effect(0x4003B229, (const Vec *)(o->f38), 0, 1);
             break;
         }
         v += step;
@@ -1928,13 +1930,13 @@ void TBoss4Type3::update_light_magic() {
         ((TBoss4Type3 *)arg0)->set_anim_state(7);
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x398) == 0x49) {
-        p = spawn_particle_effect(sub, 0x133);
+        p = spawn_particle_effect((const Vec *)(sub), 0x133);
         if (p != 0) {
             ((TParticleCtrl *)p)->set_flags(0x40);
         }
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x398) == 0x45) {
-        r29 = *(s32 *)(dispatch_shared_handler_a__6TLobbyFl(0x38) + 0x18);
+        r29 = *(s32 *)(((u8 *)get_battle_movement_params(0x38)) + 0x18);
         for (i = 0; i < 4; i++) {
             if (TBoss4Type3__sub_8005254C(i) != 0) {
                 ((TObjPlayer *)(&g))->construct_target_cursor_records();
@@ -1956,7 +1958,7 @@ void TBoss4Type3::enter_dark_magic() {
     this->m_3a0 = 0x11;
     this->m_3a4 = 0x11;
     this->m_3ac = (s32) this->m_3a8;
-    play_sound_effect(0x4003B238, (void *)(0), 0, 0);
+    play_sound_effect(0x4003B238, (const Vec *)((0)), 0, 0);
     this->m_52c = 1;
     this->m_398 = 0x62;
 }
@@ -1975,7 +1977,7 @@ void TBoss4Type3::update_dark_magic() {
     f32 s;
     o = (O_80058848 *)this;
     if (o->f398 == 0x46) {
-        r30 = *(s32 *)(dispatch_shared_handler_a__6TLobbyFl(0x38) + 0x1C);
+        r30 = *(s32 *)(((u8 *)get_battle_movement_params(0x38)) + 0x1C);
         for (i = 0; i < TLobby::get_game_mode(); i++) {
             p = ((s32 (*)(s32))get_player_by_client_id)(i);
             if (TBoss4Type3__sub_8005254C(i) != 0) {
@@ -2004,7 +2006,7 @@ void TBoss4Type3::update_dark_magic() {
 #pragma pop
 
 void TBoss4Type3::enter_capture() {
-    play_sound_effect(0x4003C12B, (void *)(0), 0, 0);
+    play_sound_effect(0x4003C12B, (const Vec *)((0)), 0, 0);
     this->m_52c = 0;
     this->m_398 = 0x62;
 }
@@ -2020,7 +2022,7 @@ void TBoss4Type3::advance_capture() {
     if ((s32) this->m_398 == 0) {
         this->m_3ba = (u16) this->m_3b8;
         this->m_3b8 = 0xFFFFU;
-        play_sound_effect(0x4003C12C, (void *)(0), 0, 0);
+        play_sound_effect(0x4003C12C, (const Vec *)((0)), 0, 0);
         this->m_3bc = 0;
         ((TBoss4Type3 *)arg0)->spawn_random_effect();
     }
@@ -2069,7 +2071,7 @@ void TBoss4Type3::update_capture() {
         TBoss4Type3::create_yutai((void *)arg0, (void *)0, (void *)((void *)this->m_3b8));
     }
     if (this->m_398 == 0x1C) {
-        h = (u32)spawn_particle_effect(&v, 0x38);
+        h = (u32)spawn_particle_effect((const Vec *)(&v), 0x38);
         if (h != 0) {
             ((TParticleCtrl *)h)->set_flags(0x40);
         }

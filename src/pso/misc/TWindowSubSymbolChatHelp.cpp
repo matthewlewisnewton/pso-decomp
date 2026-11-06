@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
@@ -43,25 +44,18 @@ struct Quad_802845EC { f32 x, y, x2, y2, u0, v0, u1, v1; };
 
 struct Win_802845EC { u8 pad[0x10]; f32 x; f32 y; u8 pad2[0x38 - 0x18]; f32 scale; };
 
-const char *TWindowSubSymbolChatHelp__name = "TWindowSubSymbolChatHelp";
-const UV_802845EC symbol_chat_help_icon_uv_table[6] = {
-    {216.0f, 54.0f}, {216.0f, 70.0f}, {216.0f, 86.0f},
-    {216.0f, 102.0f}, {216.0f, 118.0f}, {216.0f, 134.0f},
-};
-const UV_802844C8 symbol_chat_help_entry_uv_table[7] = {
-    {0.0f, 0.0f}, {0.0f, 16.0f}, {0.0f, 32.0f}, {0.0f, 48.0f},
-    {0.0f, 64.0f}, {0.0f, 80.0f}, {0.0f, 96.0f},
-};
-
 extern "C" {
 s32 draw_default_entry__9TWindowDDFl();
 u8 * get_window_layout_position(s32);
 extern RecoveredGlobal_80284B84_lbl_804D2D10 symbol_chat_help_window_layout;
 extern s32 __vt__24TWindowSubSymbolChatHelp[];
+extern s32 TWindowSubSymbolChatHelp__name;
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 extern s8 controller_input_state[];
 int TWindowSubSymbolChatHelp__sub_80247EE8(int);
 void apply_context_transform_to_rect(void *, void *);
+extern UV_802844C8 symbol_chat_help_entry_uv_table[];
+extern UV_802845EC symbol_chat_help_icon_uv_table[];
 void draw_help_icon__24TWindowSubSymbolChatHelpFiPvii(s32 arg0, Win_802845EC *arg1, s32 arg2, s32 arg3);
 void __dl__7TObjectFPv(void *);
 s32 begin_render__20TWindowSubStatusDispFl();
@@ -117,7 +111,7 @@ void TWindowSubSymbolChatHelp::draw_color_palette(void *arg1) {
 #pragma fp_contract on
 void TWindowSubSymbolChatHelp::draw_help_entry(void *arg1, s32 arg2, s32 arg3) {
     Quad_802844C8 q;
-    const UV_802844C8 *uv;
+    UV_802844C8 *uv;
     f32 scale;
     s32 idx;
     idx = arg2;
@@ -144,7 +138,7 @@ void TWindowSubSymbolChatHelp::draw_help_entry(void *arg1, s32 arg2, s32 arg3) {
 #pragma fp_contract on
 void draw_help_icon__24TWindowSubSymbolChatHelpFiPvii(s32 arg0, Win_802845EC *arg1, s32 arg2, s32 arg3) {
     Quad_802845EC q;
-    const UV_802845EC *uv;
+    UV_802845EC *uv;
     f32 scale;
     uv = &symbol_chat_help_icon_uv_table[arg2];
     scale = (-1.0f) / ((0.1794f) + arg1->scale);
@@ -165,7 +159,7 @@ void draw_help_icon__24TWindowSubSymbolChatHelpFiPvii(s32 arg0, Win_802845EC *ar
 void TWindowSubSymbolChatHelp::draw_help_entries(void *arg1) {
     if ((s32) *(s32 *)((s8 *)arg1 + 0x30) >= 0) {
         begin_screen_draw(1);
-        TObjFish::set_global_param(lbl_805D63F0);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_draw_texture_and_color(2, -1);
         draw_help_icon__24TWindowSubSymbolChatHelpFiPvii((s32)this, (Win_802845EC *)(arg1), 0, -1);
         draw_help_icon__24TWindowSubSymbolChatHelpFiPvii((s32)this, (Win_802845EC *)(arg1), 1, -1);

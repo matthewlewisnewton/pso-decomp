@@ -1,28 +1,13 @@
 #ifndef PSO_ENEMY_TUNK_80494938_H
 #define PSO_ENEMY_TUNK_80494938_H
-#include "types.h"
-#include "pso/misc/MaterialColorFade.h"
 
-class TUnk_80494938 : public MaterialColorFade {
-public:
-    TUnk_80494938();
-    virtual ~TUnk_80494938();
-    virtual void set_rate_from_divisor(s32);
-    virtual void reset_color();
-    virtual void reset_obstruction_fade();
-    virtual s32 decay_value_toward_floor();
-    virtual s32 advance_toward_max();
-    virtual void set_flags_and_apply_damage_color();
-    virtual s32 has_visible_opacity();
-    void sub_800D741C();
-    void start_fade_in();
-    f32 value;
-};
+// Upstream calls this class TUnk_80494938. On the fork it is MaterialOpacityFade:
+// the vtable is __vt__19MaterialOpacityFade at 0x80494938, and the constructor,
+// destructor, and start_fade_in are the same addresses. A typedef keeps
+// upstream's Dubchik source unchanged while relocations use the fork's symbols.
+#include "pso/misc/MaterialOpacityFade.h"
 
-// Unrecovered enclosing constructors call the native constructor by its ABI symbol.
-extern "C" void *__ct__13TUnk_80494938Fv(void *);
-
-typedef char FadeValueOffset[offsetof(TUnk_80494938, value) == 0x18 ? 1 : -1];
-typedef char FadeValueSize[sizeof(TUnk_80494938) == 0x1c ? 1 : -1];
+// MWCC rejects alias-declarations. A typedef keeps the existing mangling.
+typedef MaterialOpacityFade TUnk_80494938;
 
 #endif

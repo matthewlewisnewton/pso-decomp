@@ -1,18 +1,16 @@
-#include "pso/misc/TGameProtocol.h"
 #include "pso/TGameProtocol.h"
 #include "pso/quest/TQuestThread.h"
-#include "pso/misc/TPacket.h"
-#include "pso/boss/TBoss3Volopt.h"
-#include "pso/unk/text_800C7FEC.h"
-#include "pso/item/TItem.h"
-#include "types.h"
-
 struct TBoss3Volopt;
 struct TBoss8Dragon;
 struct TLobby;
 struct TObjPlayer;
+#include "pso/misc/TPacket.h"
+#include "pso/boss/TBoss3Volopt.h"
+#include "pso/boss/Boss5GryphonBehavior.h"
+#include "pso/unk/text_800C7FEC.h"
+#include "pso/item/TItem.h"
 
-extern void *game_protocol_instance;
+extern s32 game_protocol_instance;
 
 struct VBase_18_801E4260 { char pad[0x18]; };
 struct Node_801E4260 : VBase_18_801E4260 {
@@ -174,7 +172,6 @@ extern "C" void handle_6x9C_set_enemy_low_game_flags_ultimate();
 extern "C" void handle_6x9D_set_challenge_dead_flag();
 void handle_6x9E_player_camera_shutter_sound();
 void handle_6x9F_gal_gryphon_boss_actions(void *arg0);
-void handle_6xA0_gal_gryphon_boss_actions(TBoss8Dragon *arg0);
 extern "C" void handle_6xA1_revive_player_v3(void *arg0);
 void handle_6xA2_specializable_item_drop_request(void *arg0);
 extern "C" void handle_6xA3_olga_flow_boss_actions();
@@ -303,30 +300,4 @@ void TGameProtocol::run_task() {
 
 TGameProtocol::~TGameProtocol() {
     game_protocol_instance = 0;
-}
-
-extern "C" {
-
-void __ct__7TObjectFP7TObject(void *);
-void *__nw__7TObjectFUl(int);
-
-extern s32 __vt__13TGameProtocol[];
-extern void *TGameProtocol__class_name;
-extern void * TGameProtocol__instance;
-
-void *TGameProtocol__ct(void *game_protocol) {
-    void *o;
-    __ct__7TObjectFP7TObject(game_protocol);
-    *(s32 **)((s8 *)game_protocol + 0x18) = __vt__13TGameProtocol;
-    *(void * *)&((TGameProtocol *)game_protocol)->m_name = TGameProtocol__class_name;
-    TGameProtocol__instance = game_protocol;
-    *(u32 *)((s8 *)game_protocol + 0x1C) = 0;
-    o = __nw__7TObjectFUl(0x1C);
-    if (o != NULL) {
-        o = ((void * (*)(void *, void *))__ct__7TObjectFP7TObject)(o, game_protocol);
-    }
-    game_protocol_instance = o;
-    return game_protocol;
-}
-
 }

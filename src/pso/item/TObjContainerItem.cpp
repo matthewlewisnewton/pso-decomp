@@ -1,3 +1,5 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/render/render_util.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -401,18 +403,17 @@ extern s32 lbl_805D5B8C;
 void debug_printf_at(s32 id, const char *fmt, ...);
 extern const f32 lbl_805DBCF8;
 u32 init_collision_body_parts(void *, void *, s32);
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+
 u8 *load_gvm_texture_file(s32 arg0);
 s32 get_current_floor();
 extern s32 local_client_id;
 extern const f32 lbl_805DBCF4;
-void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 u8 *__ct__8TObjChipFP7TObjectP14TObjChipParams(u8 *arg0, u8 *arg1, u8 *arg2);
 s32 dispatch_fish_event__6TLobbyFPv(void *a0);
 void *__nw__7TObjectFUl(int);
 extern void *tl_05;
 void TObjContainerAbeEnemy__vt77(const Obj_8018860C *self);
-void TLobby__sub_8001FE7C(void*, int);
+
 s32 release_texture_list(void*);
 s32 free_collision_body_parts(void *);
 s32 submit_cursor_candidate(void *, s32);
@@ -437,7 +438,7 @@ extern s32 __vt__18TObjContainerEnemy[];
 extern const f32 lbl_805DBD0C;
 extern s32 __vt__17TObjContainerItem[];
 u8 *TObjContainerItem__ct(u8 *arg0, s32 arg1, s32 arg2);
-s32 play_sound_effect(int, void *, int, int);
+
 void run_task__13TUnk_804B6C24Fv();
 void render__13TUnk_804B6C24Fv();
 void render_shadows__7TObjectFv();
@@ -635,10 +636,10 @@ void TObjContainerAbeEnemy::vfunc_81() {
     if (container_breakup_model_archive != 0) {
         switch (this->mode) {
         case 0:
-            TObjFish::set_global_param(lbl_805D5B8C);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5B8C));
             push_matrix();
             post_translate_matrix(self->pos);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_ginja_box_tree((u8 *)dispatch_fish_event__6TLobbyFPv((void *)2));
             pop_matrix();
             break;
@@ -770,10 +771,10 @@ void TObjContainerBase::vfunc_81() {
     if (container_breakup_model_archive != 0) {
         switch (this->mode) {
         case 0:
-            TObjFish::set_global_param(lbl_805D5B8C);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5B8C));
             push_matrix();
             post_translate_matrix(self->pos);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_ginja_box_tree((u8 *)dispatch_fish_event__6TLobbyFPv((void *)2));
             pop_matrix();
             break;
@@ -900,10 +901,10 @@ void TObjContainerNoItem::vfunc_81() {
         case 1:
             break;
         case 0:
-        TObjFish::set_global_param(lbl_805D5B7C);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D5B7C));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, lbl_805DBCFC, lbl_805DBCFC, lbl_805DBCFC);
         draw_ginja_box_tree((u8 *)(*(s32 *)((s8 *)arg0 + 0x34)));
         pop_matrix();
@@ -1057,7 +1058,7 @@ void TObjContainerEnemy::vfunc_81() {
     }
     switch (self->mode) {
     case 0:
-        TObjFish::set_global_param(lbl_805D5B7C);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D5B7C));
         push_matrix();
         post_translate_matrix(self->f38);
         rotate_matrix_y(0, self->f60);
@@ -1183,7 +1184,7 @@ void TObjContainerItem::vfunc_81() {
     if (lbl_805D5B78 != 0) {
         switch (self->state) {
         case 0:
-            TObjFish::set_global_param(lbl_805D5B7C);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5B7C));
             push_matrix();
             post_translate_matrix(self->pos);
             rotate_matrix_y(0, self->rot);
@@ -1363,50 +1364,50 @@ void play_container_break_sound(s32 arg0) {
     switch (area) {
     case AREA_FOREST1:
     case AREA_FOREST2:
-        play_sound_effect(0x4BC10, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4BC10, (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case AREA_CAVE1:
     case AREA_CAVE2:
     case AREA_CAVE3:
-        play_sound_effect(0x43C0F, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x43C0F, (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case AREA_MINE1:
     case AREA_MINE2:
-        play_sound_effect(0x4004BC09, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC09, (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case AREA_RUINS1:
     case AREA_RUINS2:
     case AREA_RUINS3:
-        play_sound_effect(0x4004BC10, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC10, (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case AREA_BATTLE1:
     case AREA_BATTLE2:
-        play_sound_effect(0x4004BC05, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC05, (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case AREA_VR_TEMPLE_ALPHA:
     case AREA_VR_TEMPLE_BETA:
-        play_sound_effect(0x4BC05, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4BC05, (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        play_sound_effect(0x4004BC05, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC05, (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case AREA_CENTRAL_CONTROL_AREA:
     case AREA_JUNGLE_NORTH:
     case AREA_JUNGLE_EAST:
     case AREA_MOUNTAIN:
     case AREA_SEASIDE:
-        play_sound_effect(0x4BC16, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4BC16, (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case AREA_SEABED_UPPER:
     case AREA_SEABED_LOWER:
-        play_sound_effect(0x4004BC16, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC16, (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case AREA_SEASIDE_NIGHT:
-        play_sound_effect(0x4004BC16, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC16, (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     case AREA_TOWER:
-        play_sound_effect(0x4004BC16, (void *)(arg0 + 0x38), 0, 0);
+        play_sound_effect(0x4004BC16, (const Vec *)(arg0 + 0x38), 0, 0);
     default:
         return;
     }
@@ -1539,7 +1540,7 @@ void TLobby::free_chr_select_slot() {
         lbl_805D5B8C = 0U;
     }
     if ((u32) container_breakup_model_archive != 0U) {
-        TLobby__sub_8001FE7C(container_breakup_model_archive, 1);
+        delete (BmlResource *)(container_breakup_model_archive);
         container_breakup_model_archive = NULL;
     }
 }
@@ -1550,19 +1551,13 @@ void TLobby::load_console_resources() {
     case AREA_SEABED_UPPER:
     case AREA_SEABED_LOWER:
     case AREA_OLGA_FLOW:
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &bm_obj_seabed_con_rare_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_seabed_con_rare_resource_descriptor), 0, 0, (void *)0);
         container_breakup_model_archive = (BmlResource *)p;
         lbl_805D5B8C = (u32)load_gvm_texture_file((s32)seabed_rare_console_texture_filename);
         break;
     case AREA_GAL_GRYPHON:
     default:
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &fe_obj_con_hahen1_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, (BmlResourceDescriptor *)(&fe_obj_con_hahen1_resource_descriptor), 0, 0, (void *)0);
         container_breakup_model_archive = (BmlResource *)p;
         lbl_805D5B8C = (u32)load_gvm_texture_file((s32)lbl_80444F48);
         break;
@@ -1578,7 +1573,7 @@ void TLobby::free_char_select_resources() {
         lbl_805D5B7C = 0U;
     }
     if ((u32) lbl_805D5B78 != 0U) {
-        TLobby__sub_8001FE7C(lbl_805D5B78, 1);
+        delete (BmlResource *)(lbl_805D5B78);
         lbl_805D5B78 = NULL;
     }
 }
@@ -1594,10 +1589,7 @@ void load_forest_box_resources(void) {
     case AREA_SEABED_UPPER:
     case AREA_SEABED_LOWER:
     case AREA_OLGA_FLOW:
-        bundle = (void *)::operator new(0x440);
-        if (bundle != NULL) {
-            bundle = load_resource_from_descriptor(bundle, 5, &bm_obj_seabed_con_resource_descriptor, 0, 0, 0);
-        }
+        bundle = new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_seabed_con_resource_descriptor), 0, 0, (void *)0);
         lbl_805D5B78 = (BmlResource *)bundle;
         lbl_805D5B7C = (s32)load_gvm_texture_file((s32)lbl_80444F58);
         lbl_805D5B80 = &forest_box_break_params[2];
@@ -1608,10 +1600,7 @@ void load_forest_box_resources(void) {
         }
         break;
     default:
-        bundle = (void *)::operator new(0x440);
-        if (bundle != NULL) {
-            bundle = load_resource_from_descriptor(bundle, 5, &fe_obj_hako01_hahen02_resource_descriptor, 0, 0, 0);
-        }
+        bundle = new BmlResource(5, (BmlResourceDescriptor *)(&fe_obj_hako01_hahen02_resource_descriptor), 0, 0, (void *)0);
         lbl_805D5B78 = (BmlResource *)bundle;
         lbl_805D5B7C = TLobby::is_online_ready() != 0 ? (s32)load_gvm_texture_file((s32)lbl_80444F6C) : (s32)load_gvm_texture_file((s32)lbl_80444F80);
         lbl_805D5B80 = &forest_box_break_params[0];

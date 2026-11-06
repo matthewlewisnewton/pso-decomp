@@ -3,6 +3,8 @@
 
 #include "types.h"
 #include "pso/TObject.h"
+#include <dolphin/mtx/GeoTypes.h>
+#include <stddef.h>
 
 struct TCameraCtrl : public TObject {
     virtual ~TCameraCtrl();
@@ -52,31 +54,23 @@ struct TCameraCtrl : public TObject {
     int m_110;
     u8 unk_114[0x60];
     u32 m_174;
-    // Camera position and the point it looks at; each frame they approach
-    // eye_* and at_* (approach_camera_vector), or snap to them.
-    f32 pos_x;
-    f32 pos_y;
-    f32 pos_z;
-    f32 tgt_x;
-    f32 tgt_y;
-    f32 tgt_z;
-    // View angles fed to rotate_matrix_x/y/z, and the field of view given to
-    // set_perspective_projection_from_fov (0x3555 = 75 degrees at reset).
-    u32 pitch;
-    u32 yaw;
-    u32 roll;
-    u32 fov;
-    f32 eye_x;
-    f32 eye_y;
-    f32 eye_z;
-    f32 at_x;
-    f32 at_y;
-    f32 at_z;
-    f32 eye_rate;  // rate pos_* approaches eye_* with (approach_camera_vector)
-    // Rate tgt_* approaches at_* with.
-    f32 at_rate;
-    // Frames of screen shake left (set_shake_preset, update_shake).
-    u32 shake_timer;
+    Vec position;
+    f32 m_184;
+    u8 unk_188[0x4];
+    f32 m_18c;
+    u32 m_190;
+    u32 m_194;
+    u32 m_198;
+    u32 m_19c;
+    u8 unk_1A0[0x4];
+    f32 m_1a4;
+    u8 unk_1A8[0x4];
+    f32 m_1ac;
+    u8 unk_1B0[0x4];
+    f32 m_1b4;
+    u8 unk_1B8[0x4];
+    f32 m_1bc;
+    u32 m_1c0;
     static s32 get_camera_mode();
     void update_target_follow();
     void init_state();
@@ -116,7 +110,7 @@ struct TCameraCtrl : public TObject {
     static void update_battle_camera();
     static void create(s32 arg0, s32 arg1, s32 arg2);
     void *destroy(s16 arg1);
-    void cache_target_and_forward(s32 arg1);
+    void apply_look_at_from_target();
     static void reset_to_local_player();
     static void set_override_position_and_angle(u8 *arg0, s16 arg1);
     static void set_fixed_position_and_target(u8 *arg0, u8 *arg1);
@@ -129,12 +123,16 @@ struct TCameraCtrl : public TObject {
     void *deleting_dtor(s16 arg1);
     static void *construct_view_controller(void *arg0);
     s32 set_field_100(s32 v);
-    static short get_screen_width();
-    static short get_screen_height();
+    // The viewport edges, returned as the full register the callers convert
+    // to float (the bodies are lha/blr, and no caller sign-extends again).
+    static s32 get_screen_width();
+    static s32 get_screen_height();
     static s32 should_update();
     void copy_position_vectors(void *arg1, void *arg2);
     static void update_single_screen();
     static int get_mode();
+    // s32 at object+0x1c. &main_task reads TMainTask::task_flags.
+    static s32 get_mode(void *object);
     static s32 get_camera_no();
     static void set_mode(int a0);
     u8 is_on_current_screen();
@@ -145,10 +143,9 @@ struct TCameraCtrl : public TObject {
     void update_projection_params();
     static void concat_matrix(u32 arg0, u32 arg1);
     u8 unk_1C4[0x4];
-    // Copy of pos_* taken whenever the position snaps.
-    f32 look_x;
-    f32 look_y;
-    f32 look_z;
+    f32 m_1c8;
+    u8 unk_1CC[0x4];
+    f32 m_1d0;
     static void update();
     static void reset_view_state();
     static void select_active_controller(s8 arg0);
@@ -167,6 +164,9 @@ struct TCameraCtrl : public TObject {
 };
 
 typedef char TCameraCtrl_size[sizeof(TCameraCtrl) == 0x1D4 ? 1 : -1];
+typedef char TCameraCtrl_position_offset[offsetof(TCameraCtrl, position) == 0x178 ? 1 : -1];
+typedef char TCameraCtrl_position_size[sizeof(Vec) == 0xC ? 1 : -1];
+typedef char TCameraCtrl_after_position_offset[offsetof(TCameraCtrl, m_184) == 0x184 ? 1 : -1];
 // The camera's right axis, which screen tests offset points along.
 extern f32 camera_right[3];
 

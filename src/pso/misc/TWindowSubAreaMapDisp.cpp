@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowSubAreaMapDisp.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -55,12 +57,10 @@ struct RecoveredGlobal_80271D00___vt__21TWindowSubAreaMapDisp {
 };
 
 extern "C" {
-void mem_free(void *p);
 s32 __dl__7TObjectFPv(void *);
 extern RecoveredGlobal_80271C6C___vt__21TWindowSubAreaMapDisp __vt__21TWindowSubAreaMapDisp;
 s32 TQuestVmDownLoadServer__sub_8006EF6C(s32 arg0);
 u8 *get_floor_destination_name(s32);
-void *mem_alloc(u32 size);
 s32 measure_string_len__20TWindowSubStatusDispFv(int);
 void text_builder_append(u8 *str);
 }
@@ -98,7 +98,7 @@ void fn_80271848(s32 arg0, u8 *arg1) {
         color = -1;
     }
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0, color);
     r.x0 = 16.0f;
     r.y0 = 346.0f;
@@ -183,7 +183,7 @@ u8 *__dt__21TWindowSubAreaMapDispFv(TWindowSubAreaMapDisp *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = &__vt__21TWindowSubAreaMapDisp.value;
         if ((u32) arg0->m_74 != 0U) {
-            mem_free(*(void **)((s8 *)arg0 + 0x74));
+            ::operator delete[](*(void **)((s8 *)arg0 + 0x74));
             arg0->m_74 = 0U;
         }
         if ((s32) arg0->m_6c != 0) {
@@ -218,7 +218,7 @@ u8 *TWindowSubAreaMapDisp__ct(TWindowSubAreaMapDisp *window_sub_area_map_disp) {
         var_r30 = (u8 *)(get_floor_destination_name(get_current_floor_area()));
     }
     temp_r3 = measure_string_len__20TWindowSubStatusDispFv((int)var_r30);
-    window_sub_area_map_disp->m_74 = (s32)mem_alloc((temp_r3 + 1));
+    window_sub_area_map_disp->m_74 = (s32)::operator new[]((temp_r3 + 1));
     strncpy((int)window_sub_area_map_disp->m_74, (int)var_r30, (void *)(temp_r3 + 1));
     temp_r3_2 = (int)::operator new(0x24);
     var_r0 = temp_r3_2;

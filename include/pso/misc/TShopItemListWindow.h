@@ -3,14 +3,15 @@
 
 #include "types.h"
 #include "pso/TShopWindowBase.h"
+#include "pso/item/TItemData.h"
 
 struct TShopItemListWindow : public TShopWindowBase {
     virtual ~TShopItemListWindow();
-    s32 prepare_tool_purchase();
-    s32 handle_amount_confirm();
+    void prepare_tool_purchase();
+    void handle_amount_confirm();
     virtual void vfunc_11();
     virtual void display_message(const char *text, s32 flags);
-    virtual void vfunc_6();
+    virtual void vfunc_6(s32 index, s32 flags);
     u8 _pad1C[0x4];
     u32 m_20;
     u32 m_24;
@@ -26,7 +27,10 @@ struct TShopItemListWindow : public TShopWindowBase {
     u32 m_4c;
     u32 m_50;
     u32 m_54;
-    u8 _pad58[0x168];
+    // Shop copies of the listed tools. The meseta price is stored in each
+    // item's data2 word (overwritten after the item bytes are copied in).
+    TItemData m_items[16];
+    u8 _pad198[0x28];
     u32 m_1c0;
     s32 handle_confirm();
     s32 update();
@@ -36,6 +40,7 @@ struct TShopItemListWindow : public TShopWindowBase {
 };
 
 typedef char TShopItemListWindow_size[sizeof(TShopItemListWindow) == 0x1C4 ? 1 : -1];
+typedef char TShopItemListWindow_items_off[offsetof(TShopItemListWindow, m_items) == 0x58 ? 1 : -1];
 
 extern "C" {
 u8 *TShopItemListWindow__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);

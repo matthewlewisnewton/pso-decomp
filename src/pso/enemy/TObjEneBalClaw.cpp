@@ -1,11 +1,13 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
-#include "pso/enemy/TObjEneBalClaw.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/misc/TOComputerMachine01_8023DD0C.h"
 #include "pso/player/TObjPlayer_800A0408.h"
 #include "pso/player/TObjChara.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/player/TUnk_80490470.h"
+#include "pso/enemy/TObjEneBalClaw.h"
 #include "pso/enemy/TObjEneBalClawClaw.h"
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/player/TObjPlayer.h"
@@ -14,6 +16,8 @@
 #include "pso/misc/TLobby.h"
 #include "pso/system/BmlResourceDescriptor.h"
 
+struct RecoveredGlobal_8008DB6C___vt__14TObjEneBalClaw { s32 value; u8 remaining[0x148]; };
+typedef char RecoveredGlobal_8008DB6C___vt__14TObjEneBalClaw_size[sizeof(RecoveredGlobal_8008DB6C___vt__14TObjEneBalClaw) == 0x14C ? 1 : -1];
 
 struct Ent_8008D68C { s16 *plist; s16 model_index; s16 part_index; s16 a; s16 b; s16 c; s16 d; };
 
@@ -76,10 +80,11 @@ struct O_8008D700 { u8 pad0[0x30]; u32 flags; u8 pad34[0x378]; f32 f3ac; f32 f3b
 struct Obj_8008D79C { u8 pad0[0x388]; s32 flags; u8 pad38C[0x3B8 - 0x38C]; s32 f3B8; f32 f3BC; };
 
 extern "C" {
+u8 *__ct__15TObjEnemyCustomFP7TObject(u8 *arg0);
+extern s32 __vt__14TObjEneBalClaw[];
 extern s32 balclaw_last_shared_update_frame;
 extern s32 actor_frame_tick;
 f32 sin_table_lookup(s32);
-void TLobby__sub_8001FE7C(void*, int);
 void __dl__7TObjectFPv(void *);
 void *__dt__15TObjEnemyCustomFv(void *arg0, s16 arg1);
 
@@ -161,7 +166,7 @@ void TObjEneBalClaw::vfunc_62() {
 
 void TObjEneBalClaw::release_global_805D4F20() {
     if ((u32) lbl_805D4F20 != 0U) {
-        TLobby__sub_8001FE7C((void*)lbl_805D4F20, 1);
+        delete (BmlResource *)((void*)lbl_805D4F20);
         lbl_805D4F20 = 0U;
     }
 }
@@ -175,7 +180,6 @@ extern void *lbl_805D4F28[];
 extern void *lbl_805D4F2C[];
 extern void *lbl_805D4F30[];
 extern void *lbl_805D4F34[];
-u8 *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
 u32 get_bml_model(u32, s32);
 
 void TObjEneBalClaw__sub_8008D924(void) {
@@ -189,10 +193,7 @@ void TObjEneBalClaw__sub_8008D924(void) {
     s32 j;
     s32 m;
     s32 n;
-    p = (u8 *)::operator new(0x440);
-    if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, &balclaw_resource_descriptor, 0, 0, 0);
-    }
+    p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(&balclaw_resource_descriptor), 0, 0, (void *)(0));
     lbl_805D4F20 = (u32)p;
     model = ((BalClawResource *)p)->models[1].model;
     for (k = 0; k < 4; k++) {
@@ -212,21 +213,29 @@ void TObjEneBalClaw__sub_8008D924(void) {
         e->plist = ((BalClawObject *)find_model_node(get_bml_model(lbl_805D4F20, e->model_index), e->part_index))->model->plist;
     }
     for (n = 0; n < 2; n++) {
-        lbl_805007A8[n] = TLobby::register_boss(31);
-        lbl_805007B0[n] = TLobby::dispatch_shared_handler_b(31);
-        lbl_805007B8[n] = TLobby::register_object(31);
-        lbl_805007C0[n] = TLobby::dispatch_shared_handler_a(31);
+        lbl_805007A8[n] = get_battle_base_stats(31);
+        lbl_805007B0[n] = get_battle_attack_params(31);
+        lbl_805007B8[n] = get_battle_resistance_params(31);
+        lbl_805007C0[n] = get_battle_movement_params(31);
     }
     for (n = 0; n < 1; n++) {
-        lbl_805D4F28[n] = TLobby::register_boss(32);
-        lbl_805D4F2C[n] = TLobby::dispatch_shared_handler_b(32);
-        lbl_805D4F30[n] = TLobby::register_object(32);
-        lbl_805D4F34[n] = TLobby::dispatch_shared_handler_a(32);
+        lbl_805D4F28[n] = get_battle_base_stats(32);
+        lbl_805D4F2C[n] = get_battle_attack_params(32);
+        lbl_805D4F30[n] = get_battle_resistance_params(32);
+        lbl_805D4F34[n] = get_battle_movement_params(32);
     }
 }
 
-}
-TObjEneBalClaw::~TObjEneBalClaw() {
+void *__dt__14TObjEneBalClawFv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TObjEneBalClaw;
+        __dt__13TUnk_80490470Fv((s8 *)arg0 + 0x390, -1);
+        __dt__15TObjEnemyCustomFv(arg0, 0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
 
 TObjEneBalClaw::TObjEneBalClaw(TObject *parent) : TObjEnemyCustom(parent) {
@@ -238,7 +247,6 @@ TObjEneBalClaw::TObjEneBalClaw(TObject *parent) : TObjEnemyCustom(parent) {
     clear_attack_flag();
     m_388 |= 0x20000;
 }
-extern "C" {
 
 void TObjEneBalClaw::vfunc_61() {  }
 void TObjEneBalClaw::vfunc_59() {  }

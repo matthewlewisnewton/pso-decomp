@@ -2,7 +2,6 @@
 #pragma auto_inline off
 #pragma dont_inline off
 #include "types.h"
-#include "pso/misc/TShopDeleteItemWindow.h"
 #include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TShopWindowBase.h"
@@ -98,12 +97,14 @@ s32 sub_80223A48__15TShopWindowBaseFv(void *);
 s16 get_child_field1c__13TShopSequenceFv(void *);
 void *__nw__7TObjectFUl(u32);
 void *__ct__18TWindowInputNumberFPvllls(void *, void *, int, s32, int, int);
+extern const f32 lbl_805DF998;
 struct Base_80337980_80337910 { char pad[0x18]; };
 struct VObj_80337980_80337910 : Base_80337980_80337910 {
     virtual void m0();virtual void m1();virtual void m2();virtual void m3();
     virtual void m4(int a, int b);
 };
 
+void *TShopDeleteItemWindow__ct(void *arg0, void *arg1, void *arg2, void *arg3);
 void *__dt__21TShopDeleteItemWindowFv(TShopDeleteItemWindow *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 void init__9TItemDataFv(void *);
@@ -115,7 +116,7 @@ void TShopDeleteItemWindow::display_message(const char *text, s32 flags) {
     }
 }
 
-void TShopDeleteItemWindow::vfunc_6() {
+void TShopDeleteItemWindow::vfunc_6(s32, s32) {
     struct VObj_80337948_80337910 *o = (struct VObj_80337948_80337910 *)*(void **)((s8 *)this + 0x64);
     if (o != NULL) {
         o->m4();
@@ -227,7 +228,7 @@ s32 TShopDeleteItemWindow::update_item_select(void *arg0) {
                 }
                 self->f38 = p;
                 if (self->f38 != NULL && TLobby::is_camera_ctrl_active() > 2) {
-                    ((TCheckRoomSequence *)(self->f38))->set_position(0.75f, 0.75f);
+                    ((TCheckRoomSequence *)(self->f38))->set_position(lbl_805DF998, lbl_805DF998);
                 }
                 ((TShopWindowBase *)self)->set_field_20(2);
             } else {
@@ -303,7 +304,7 @@ void TShopDeleteItemWindow__sub_80337E2C(Win_80337C2C *win) {
         if (copy_item_record__18TCheckRoomSequenceFiPvi(cursor, win->f40, base) != 0) {
             win->f3c = new TWindowHelpItem(get_window_layout_position(0x27), (u32)get_entity_id(win->item));
             if (win->f3c != NULL && TLobby::is_camera_ctrl_active() > 2) {
-                ((TLobby *)win->f3c)->set_position(0.75f, 0.75f);
+                ((TLobby *)win->f3c)->set_position(lbl_805DF998, lbl_805DF998);
             }
             ((TWindowHelpItem *)win->f3c)->set_displayed_item_colored((u32)win->f40);
             win->f60 = cursor;
@@ -371,20 +372,24 @@ void *__dt__21TShopDeleteItemWindowFv(TShopDeleteItemWindow *arg0, s16 arg1) {
 
 extern void *TShopDeleteItemWindow__name;
 
+void *TShopDeleteItemWindow__ct(void *shop_delete_item_window, void *arg1, void *arg2, void *arg3) {
+    __ct__15TShopWindowBaseFv(shop_delete_item_window);
+    *(s32 **)((s8 *)shop_delete_item_window + 0x18) = __vt__21TShopDeleteItemWindow;
+    *(void * *)&((TShopDeleteItemWindow *)shop_delete_item_window)->m_name = TShopDeleteItemWindow__name;
+    ((TShopDeleteItemWindow *)shop_delete_item_window)->m_20 = 0;
+    *(void **)((s8 *)shop_delete_item_window + 0x24) = arg3;
+    ((TShopDeleteItemWindow *)shop_delete_item_window)->m_5c = 1;
+    ((TShopDeleteItemWindow *)shop_delete_item_window)->m_54 = 0;
+    ((TShopDeleteItemWindow *)shop_delete_item_window)->m_60 = 0;
+    ((TShopDeleteItemWindow *)shop_delete_item_window)->m_28 = 0;
+    ((TShopDeleteItemWindow *)shop_delete_item_window)->m_2c = 0;
+    ((TShopDeleteItemWindow *)shop_delete_item_window)->m_30 = 0;
+    ((TShopDeleteItemWindow *)shop_delete_item_window)->m_34 = 0;
+    ((TShopDeleteItemWindow *)shop_delete_item_window)->m_38 = 0;
+    ((TShopDeleteItemWindow *)shop_delete_item_window)->m_3c = 0;
+    *(void **)((s8 *)shop_delete_item_window + 0x64) = arg2;
+    init__9TItemDataFv((void *)((char *)shop_delete_item_window + 64));
+    return shop_delete_item_window;
 }
-TShopDeleteItemWindow::TShopDeleteItemWindow(void *arg1, void *arg2, void *arg3) : TShopWindowBase() {
-    *(void * *)&this->m_name = TShopDeleteItemWindow__name;
-    this->m_20 = 0;
-    *(void **)((s8 *)this + 0x24) = arg3;
-    this->m_5c = 1;
-    this->m_54 = 0;
-    this->m_60 = 0;
-    this->m_28 = 0;
-    this->m_2c = 0;
-    this->m_30 = 0;
-    this->m_34 = 0;
-    this->m_38 = 0;
-    this->m_3c = 0;
-    *(void **)((s8 *)this + 0x64) = arg2;
-    init__9TItemDataFv((void *)((char *)this + 64));
+
 }
