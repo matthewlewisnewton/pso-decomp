@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 42 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5783 | 880 |
+| pragma | 5784 | 879 |
 | configure.py per-unit override | 171 | 171 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 888, `auto_inline` 837, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 888, `auto_inline` 837, `opt_common_subs` 610, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 53, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -514,8 +514,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/effect/TEffClitical.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/effect/TEffGuard.cpp` | readonly_strings×1 |
 | `src/pso/effect/TEffHit.cpp` | readonly_strings×1 |
-| `src/pso/effect/TEffStarLight2D.cpp` | opt_common_subs×1, fp_contract×1 |
-| `src/pso/effect/TEffStarLight2D_Base.cpp` | fp_contract×1, opt_common_subs×1, opt_propagation×1 |
+| `src/pso/effect/TEffStarLight2D_Base.cpp` | fp_contract×2, opt_common_subs×2, defer_codegen×1, opt_propagation×1 |
 | `src/pso/effect/TEffect.cpp` | readonly_strings×1 |
 | `src/pso/effect/TUnk_804CCC68.cpp` | fp_contract×2, opt_common_subs×1 |
 | `src/pso/enemy/BringerEffects.cpp` | fp_contract×2 |
@@ -998,6 +997,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/object/TObjDFDemo1.cpp` | defer_codegen×1, fp_contract×1 |
 | `src/pso/object/TObjDFDemo2.cpp` | readonly_strings×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/object/TObjDFDemo3.cpp` | readonly_strings×1, opt_common_subs×1 |
+| `src/pso/object/TObjDFDemo5.cpp` | readonly_strings×1, defer_codegen×1 |
 | `src/pso/object/TObjDFHorming.cpp` | fp_contract×6, auto_inline×3, dont_inline×3, inline_depth×2, readonly_strings×1, cplusplus×1, opt_common_subs×1 |
 | `src/pso/object/TObjDoaEx01.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/object/TObjDoor_8018E358.cpp` | fp_contract×2, opt_common_subs×1 |
@@ -1046,7 +1046,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/player/TObjPlayerSet.cpp` | opt_common_subs×1 |
 | `src/pso/player/TObjPlayer_80011014.cpp` | scheduling×42, fp_contract×11, opt_common_subs×3, opt_pointer_analysis×1, opt_loop_invariants×1 |
 | `src/pso/player/TObjPlayer_8002E784.cpp` | opt_common_subs×2, fp_contract×1 |
-| `src/pso/player/TObjPlayer_8004FA98.cpp` | opt_common_subs×1, readonly_strings×1 |
 | `src/pso/player/TObjPlayer_80083B38.cpp` | fp_contract×2 |
 | `src/pso/player/TObjPlayer_8008DCF0.cpp` | opt_common_subs×3 |
 | `src/pso/player/TObjPlayer_8008DCF0_8008DCF0.cpp` | opt_common_subs×1, opt_propagation×1 |
