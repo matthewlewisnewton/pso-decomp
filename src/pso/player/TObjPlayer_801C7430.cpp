@@ -1196,7 +1196,7 @@ void set__8FlagWordFUl(void *, u32);
 s32 clear__8FlagWordFUl(void *, int);
 s32 test_flags_any(void *, int);
 s32 set_frames__15ProtectionTimerFl(void *, s32);
-s32 check_value_equals__13TUnk_804B6C24Fl(int, void *);
+s32 check_value_equals__7TObjectFPCc(int, void *);
 s32 check_flag__10TObjPlayerFl(int, int);
 s32 fn_800660B8(void *);
 s32 test_action_mask__10TObjPlayerFl(void *, s32);
@@ -3223,14 +3223,14 @@ void TObjPlayer::enter_death_state() {
     if (is_technique_ready__8TTecCtrlFv() != 0) {
         entity = find_entity_by_id(get_field_2d4__10TObjPlayerFv(arg0));
         if (entity != NULL) {
-            if (check_value_equals__13TUnk_804B6C24Fl((int)entity, lbl_805D3530) != 0) {
+            if (check_value_equals__7TObjectFPCc((int)entity, lbl_805D3530) != 0) {
                 temp_r31 = (u16)((s32 (*)(void *))get_entity_id)(arg0);
                 other = (u16)((s32 (*)(void *))get_entity_id)(entity);
                 if (other != temp_r31) {
                     fn_801B0480((int) (entity), (void *) (arg0), 1);
                 }
             }
-            if (check_value_equals__13TUnk_804B6C24Fl((int) (entity), (void *) (TOMineTrap__data_805D3080)) == 0) {
+            if (check_value_equals__7TObjectFPCc((int) (entity), (void *) (TOMineTrap__data_805D3080)) == 0) {
                 update_trap_sub__10TOMineTrapFv((void *) (arg0), (int) (entity), 1);
             } else if ((u16)(killer = get_trap_type__10TOMineTrapFv((int)entity)) == 0xffffU) {
                 update_trap_sub__10TOMineTrapFv((void *) (arg0), (int) (entity), 1);
@@ -3331,7 +3331,7 @@ void TObjPlayer::check_reopen_return_city_window() {
   TObjPlayer__sub_8024ABDC((void *) new_var);
   temp_r3 = this->m_36c;
   new_var = 0U;
-  if ((temp_r3 != new_var) && ((((TObject *)temp_r3)->all_parents_unqueued_for_destruction() == 0) || (check_value_equals__13TUnk_804B6C24Fl((int) (this->m_36c), (void *) TWindowReturnCity__class_name) == 0)))
+  if ((temp_r3 != new_var) && ((((TObject *)temp_r3)->all_parents_unqueued_for_destruction() == 0) || (check_value_equals__7TObjectFPCc((int) (this->m_36c), (void *) TWindowReturnCity__class_name) == 0)))
   {
     this->m_36c = 0U;
   }
@@ -5566,7 +5566,7 @@ s32 update_aim_target__10TObjPlayerFPv(void *arg0) {
     if (temp_r3 == 0) {
         return 1;
     }
-    if ((is_locally_controlled__10TObjPlayerFPv(arg0) != 0) && (((TLobby *)arg0)->check_player_flag1() == 0) && (temp_r3 == 4)) {
+    if ((is_locally_controlled__10TObjPlayerFPv(arg0) != 0) && (((TObjPlayer *)arg0)->check_player_flag1() == 0) && (temp_r3 == 4)) {
         return 1;
     }
     return 0;
@@ -5613,7 +5613,7 @@ void start_action__10TObjPlayerFPv(u8 *arg0) {
     ((s32 (*)(void *, s32, s16))set_action_state__10TObjPlayerFPvss)(arg0, 4, temp_r3);
     temp_f31 = TObjPlayer__sub_801D2858(arg0 + 0x5E0);
     temp_f1 = ((f32 (*)(void *))get_action_rate_entry)(arg0);
-    ((TObjEnemy *)arg0)->sub_800A7798(temp_f1 * temp_f31);
+    ((TObjMotion *)arg0)->sub_800A7798(temp_f1 * temp_f31);
 }
 
 void handle_6x42_move_to_position(void *pkt) {
@@ -5834,7 +5834,7 @@ s32 update_combat_stats__10TObjPlayerFPv(u8 *arg0) {
     if (temp_r3 == 0) {
         return 1;
     }
-    if ((is_locally_controlled__10TObjPlayerFPv((void *) (arg0)) != 0) && (((TLobby *)arg0)->check_player_flag1() == 0) && (temp_r3 == 4)) {
+    if ((is_locally_controlled__10TObjPlayerFPv((void *) (arg0)) != 0) && (((TObjPlayer *)arg0)->check_player_flag1() == 0) && (temp_r3 == 4)) {
         return 1;
     }
     return 0;
@@ -5890,7 +5890,7 @@ void set_attack_state__10TObjPlayerFPv(u8 *arg0) {
     ((s32 (*)(void *, s32, s16))set_action_state__10TObjPlayerFPvss)(arg0, 2, temp_r3);
     temp_f31 = TObjPlayer__sub_801D2858(arg0 + 0x5E0);
     temp_f1 = ((f32 (*)(void *))get_action_rate_entry)(arg0);
-    ((TObjEnemy *)arg0)->sub_800A7798(temp_f1 * temp_f31);
+    ((TObjMotion *)arg0)->sub_800A7798(temp_f1 * temp_f31);
 }
 
 void handle_6x40_walk_to_position(void *pkt) {
@@ -6930,7 +6930,7 @@ f32 get_action_rate_entry(Obj_801D2640 *p) {
 void TObjPlayer::set_field_d4_and_flag_200(f32 value) {
     u8 *p = (u8 *)this;
     *(f32 *)(p + 0xD4) = value;
-    ((TObjEnemy *)p)->set_flags_B0(0x200U);
+    ((TObjMotion *)p)->set_flags_B0(0x200U);
 }
 
 int TObjPlayer__sub_801D2680(void *p) {

@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 15 | 5 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5781 | 875 |
-| configure.py per-unit override | 170 | 170 |
+| pragma | 5764 | 871 |
+| configure.py per-unit override | 173 | 173 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 888, `auto_inline` 837, `opt_common_subs` 611, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 876, `auto_inline` 837, `opt_common_subs` 610, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -61,7 +61,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/misc/TKeyBoardControl_803F0C50.cpp:267` | `__cntlzw` |
 | `src/pso/misc/TLoadingCur.cpp:174` | `__cntlzw` |
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
-| `src/pso/misc/TLobby_803C4698.cpp:234` | `__frsqrte` |
+| `src/pso/misc/TLobby_803C4698.cpp:237` | `__frsqrte` |
 | `src/pso/misc/TMainCursor.cpp:844` | `__cntlzw` |
 | `src/pso/misc/TNpcPlayer.cpp:3269` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
@@ -91,8 +91,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/player/TObjPlayer_80011014.cpp:4898` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:303` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:2510` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:5049` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:2511` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:5050` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:95` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:116` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
@@ -209,6 +209,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `(multi-line entry; see configure.py)` | Deferred, with definitions in reverse address order: the ctor's function-local static and guard precede run_task's table guard in .sbss, as in the original (docs/porting-exceptions.md section 5). .sbss starts at 0x805D696C and .sdata2 at 0x805DECCC, both only 4-aligned. mwld takes alignment from the CodeWarrior comment record, which GC/2.6 writes as 8, so the pool and every later sda21 offset shift by 4. cw_align rewrites that record after compile. -sdata 4 does not. |
 | `pso/boss/TObjBoss2Tunnel.cpp` | `-inline off,deferred, -pool off, -sdata 4, -fp_contract on` | Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is needed (docs/porting-exceptions.md section 5). |
 | `pso/boss/TBoss4DarkFalz_8004C93C.cpp` | `-inline deferred, -sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TOTrapSeabed01.cpp` | `-inline deferred` | Reverse definitions with deferred generation: the weak copies of TOTrap's inline slots are generated first, so their 1.0/0.0 head .sdata2 as in the original pool, and clamp_params_and_init inlines its clamp helpers. |
+| `pso/misc/TOTrapAncient02.cpp` | `-inline deferred, -fp_contract on` | Reverse definitions with deferred generation: the native TOTrapAncient02R vtable is emitted before the switch table that follows it in .data, and the .sdata2 pool keeps its original order. Unit -fp_contract on replaces the per-function pragmas: the constructors, calc_trap_count and the R vfunc_81 fuse multiply-adds. |
+| `pso/misc/TOTrapAncient01.cpp` | `GC/2.0, -inline off,deferred, -fp_contract on, -str reuse,readonly, -pooldata=off, -opt nolifetimes` | GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris positions before storing them (GC/2.6 interleaves them: 91.09%). Reverse definitions and deferred generation place the native trap vtable before its switch tables while preserving the original function order. Contracted FP keeps the constructor and render exact (98.86% and 97.66% without it). -opt nolifetimes keeps render exact (99.42% without it). -pooldata=off keeps play_sounds' copy prologue (94.54% without it); read-only strings keep the .rodata/.data/.sdata layout. |
 | `pso/object/TObjDFDemo1.cpp` | `-sdata 4` | Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4). |
 | `pso/enemy/TObjEneBalClawBody_80090178.cpp` | `-inline deferred, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneRe2Flower_800C3E14.cpp` | `-inline off,deferred` | Deferred generation preserves the flower vtable before its dispatch table. |
@@ -732,11 +735,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/misc/TOSparkMachine01.cpp` | readonly_strings×1 |
 | `src/pso/misc/TOSwitchAttack_801778A4.cpp` | opt_lifetimes×1 |
 | `src/pso/misc/TOSwitchTimer.cpp` | readonly_strings×1 |
-| `src/pso/misc/TOTrap.cpp` | explicit_unused_unused_members×1 |
-| `src/pso/misc/TOTrapAncient01.cpp` | fp_contract×2, opt_lifetimes×1 |
-| `src/pso/misc/TOTrapAncient02.cpp` | fp_contract×9 |
 | `src/pso/misc/TOTrapChainSawEdge.cpp` | auto_inline×16, dont_inline×16, inline_depth×16, readonly_strings×1, fp_contract×1, opt_propagation×1 |
-| `src/pso/misc/TOTrapSeabed01.cpp` | fp_contract×1, inline_depth×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/misc/TOVS2Wall01.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TOVS2Wall01_8017BE08.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TOWreckAncientBrakable.cpp` | readonly_strings×1 |

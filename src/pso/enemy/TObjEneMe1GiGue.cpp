@@ -182,7 +182,7 @@ extern Vec lbl_80472274[];
 
 s32 is_split_screen();
 s32 init_from_model__11TBreakUpMdlFl(s32, s32);
-s32 find_active_entity_by_id(int);
+TObjChara *find_active_entity_by_id(int);
 s32 submit_cursor_candidate(void *, int);
 s32 minimap_render_dot(void *, int, int, int);
 void TObjEneMe1GiGue__sub_802CE4E8(void);
@@ -367,7 +367,7 @@ void TObjEneMe1GiGue::run_task() {
         fn_802CD054();
         return;
     }
-    target = (u8 *)find_active_entity_by_id(targetId);
+    target = find_active_entity_by_id(targetId);
     this->release_destroyed_target();
     select_next_action();
     if ((s16) this->mode != (s32) this->next_action) {
@@ -600,14 +600,14 @@ void TObjEneMe1GiGue::update_search() {
         this->requested_action = 1;
         this->search_turn = 0;
         if (this->target != NULL) {
-            VecCopy((Vec *)&this->m_29c, (const Vec *)&((TObjChara *)this->target)->body_center_position.x);
+            VecCopy((Vec *)&this->m_29c, (const Vec *)&this->target->body_center_position.x);
         }
         this->state = 1;
     case 1:
         advance_animation();
         apply_actor_gravity(this, 0, 0.0f);
         if (this->target != NULL) {
-            Vec d = ((TObjChara *)this->target)->position;
+            Vec d = this->target->position;
             subtract_vector(&d, &this->position);
             if (d.x * d.x + d.z * d.z <= this->attack_range * this->attack_range &&
                 angle_difference_abs(-(s32)(TObjEneMe1GiGue__data_80472298 * atan2_float(d.z, d.x)) + 0x4000, this->rotation.yaw) < this->attack_angle / 2) {
@@ -700,13 +700,13 @@ void TObjEneMe1GiGue::update_missile_attack() {
                     Vec v = lbl_80472274[0];
                     ((TParticleCtrl *)r)->set_direction(&v);
                 }
-                TObjEneMe1GiGueMissile::create((s32)this, (s32)&this->missile_origin, (s32)&((TObjChara *)target)->body_center_position.x, (f32)lbl_805D6840, (f32)lbl_805D6850);
+                TObjEneMe1GiGueMissile::create((s32)this, (s32)&this->missile_origin, (s32)&target->body_center_position.x, (f32)lbl_805D6840, (f32)lbl_805D6850);
                 play_sound_effect(remap_sound_id(0x3A31E), &this->position, 0, 0);
                 this->state = 3;
             }
             break;
         }
-        VecCopy((Vec *)&this->m_29c, (const Vec *)&((TObjChara *)target)->body_center_position.x);
+        VecCopy((Vec *)&this->m_29c, (const Vec *)&target->body_center_position.x);
         enemy_turn_half_toward_dest(this);
         advance_animation();
         if (!(this->actorFlags & 0x01000000)) {
@@ -922,7 +922,7 @@ void TObjEneMe1GiGue::update_rush_attack() {
             if (this->target != NULL) {
                 Vec d;
                 VecCopy((Vec *)&d, (const Vec *)&this->position);
-                subtract_vector(&d, &((TObjChara *)target)->position);
+                subtract_vector(&d, &target->position);
                 this->find_open_direction(&d);
                 calc_velocity_toward_destination(this, position, move_destination, movement_speed);
             } else {

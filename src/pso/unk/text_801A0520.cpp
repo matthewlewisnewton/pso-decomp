@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/GinjaMaterialState.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/unk/text_801A0520.h"
 #include "pso/object/TObjDoorJung.h"
@@ -63,9 +64,9 @@ void load_warp_beam_resources(void) {
     warp_jung_beam_models[5] = root->sibling->f4;
     warp_jung_beam_mesh_node = root->sibling->sibling->sibling->f4;
     lbl_805D5CB4 = 0;
-    warp_jung_beam_entry_index = ((TObjDoorJung *)warp_jung_model_handle)->find_entry_by_name(lbl_80446718);
-    lbl_805D5CC0 = ((TObjDoorJung *)warp_jung_model_handle)->find_entry_by_name(lbl_80446728);
-    lbl_805D5CC4 = ((TObjDoorJung *)warp_jung_model_handle)->find_entry_by_name(lbl_80446738);
+    warp_jung_beam_entry_index = ((GinjaTextureList *)warp_jung_model_handle)->find_entry_by_name(lbl_80446718);
+    lbl_805D5CC0 = ((GinjaTextureList *)warp_jung_model_handle)->find_entry_by_name(lbl_80446728);
+    lbl_805D5CC4 = ((GinjaTextureList *)warp_jung_model_handle)->find_entry_by_name(lbl_80446738);
 }
 extern "C" {
 

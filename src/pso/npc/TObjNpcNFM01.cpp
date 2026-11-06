@@ -83,7 +83,7 @@ void TObjNpcNFW00::free_resources() {
 }
 void TObjNpcNFW00::load_assets() {
     TObjNpcNFW00__named_object_resource = (u32)create_named_object((s32)lbl_8043FD90);
-    TObjNpcNFW00__texture_gvm_handle = (u32)load_gvm_texture_file((s32)lbl_8043FDA4);
+    TObjNpcNFW00__texture_gvm_handle = (u32)load_gvm_texture_file(lbl_8043FDA4);
 }
 
 }

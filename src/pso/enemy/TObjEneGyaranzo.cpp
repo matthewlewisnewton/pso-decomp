@@ -95,7 +95,7 @@ extern "C" {
 u16 find_nearest_visible_player(void *, int, int, f32);
 extern const f32 lbl_805DA290;
 void enemy_turn_toward_dest(void *, s32);
-u8 *find_active_entity_by_id(u16);
+TObjChara *find_active_entity_by_id(u16);
 extern s32 actor_frame_tick;
 extern const f32 lbl_805DA274;
 extern const f32 gyaranzo_volley_fire_frame;
@@ -546,14 +546,14 @@ void TObjEneGyaranzo::update_chase() {
         }
         play_sound_effect((s32)(((TObjEnemy *)(this))->remap_sound_for_area(((TObjEnemy *)(this))->remap_sound_for_area(0x4003B209))), (const Vec *)(&position), 0, 0);
         if (target != NULL) {
-            VecCopy((Vec *)(&m_29c), (const Vec *)(&((TObjChara *)target)->body_center_position));
+            VecCopy((Vec *)(&m_29c), (const Vec *)(&target->body_center_position));
         }
         state = 1;
         break;
     case 1:
         if (target != NULL) {
-            VecCopy((Vec *)(&chase_destination), (const Vec *)(&((TObjChara *)target)->body_center_position));
-            VecCopy((Vec *)(&m_29c), (const Vec *)(&((TObjChara *)target)->body_center_position));
+            VecCopy((Vec *)(&chase_destination), (const Vec *)(&target->body_center_position));
+            VecCopy((Vec *)(&m_29c), (const Vec *)(&target->body_center_position));
         } else {
             vfunc_58();
             return;
@@ -726,7 +726,7 @@ void TObjEneGyaranzo::update_aim_and_fire() {
     s32 temp_r4;
     s32 temp_r5;
     s32 var_r30;
-    u8 *temp_r6;
+    TObjChara *temp_r6;
     switch (state) {
     case 0:
         m_388 = (s32) (m_388 | 0x40000);
@@ -739,7 +739,7 @@ void TObjEneGyaranzo::update_aim_and_fire() {
         }
         temp_r6 = this->target;
         if (temp_r6 != NULL) {
-            Vec v = ((TObjChara *)temp_r6)->position;
+            Vec v = temp_r6->position;
             subtract_vector(&v, (void *) (&position));
             temp_r3 = turn_toward_direction( ((EnemyMoveParams *)movementParameters)->turn_speed, &v);
             temp_r4 = temp_r3 >> 0x1F;

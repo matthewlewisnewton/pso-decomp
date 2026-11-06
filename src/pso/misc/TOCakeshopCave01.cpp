@@ -69,7 +69,7 @@ void TOCakeshopCave01::render() {
         set_current_texture_list((GinjaTextureList *)(texlist));
         node = (NJS_OBJECT *)model;
         post_translate_matrix(node->pos);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         node = node->child;
         TParticleCtrl::begin_effect_render();
         for (i = 0; i < 8; i++) {
@@ -77,7 +77,7 @@ void TOCakeshopCave01::render() {
                 push_matrix();
                 post_translate_matrix(node->pos);
                 scale_matrix(NULL, 1.0f - blink_fade[i], 1.0f - blink_fade[i], 0.0f);
-                draw_ginja_model((s32)node->model);
+                draw_ginja_model(node->model);
                 pop_matrix();
             }
             node = node->sibling;

@@ -44,7 +44,7 @@ void TObjNpcNHW01::free_resources() {
 
 void TObjNpcNHW01::load_resources() {
     TObjNpcNHW01__model_object = (u32)create_named_object((s32)"npc_b01_data.rel");
-    TObjNpcNHW01__texture_handle = (u32)load_gvm_texture_file((s32)"n_b01_e_body.gvm");
+    TObjNpcNHW01__texture_handle = (u32)load_gvm_texture_file("n_b01_e_body.gvm");
 }
 
 void *__dt__12TObjNpcNHW01Fv(void *arg0, s16 arg1) {
