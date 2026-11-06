@@ -4,6 +4,7 @@
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/boss/TBoss6EffHyoui.h"
 #include "pso/object/TObject_80019A50.h"
+#include "pso/player/TObjChara.h"
 
 #include "types.h"
 

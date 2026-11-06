@@ -356,11 +356,10 @@ void TObjPlayer::draw_tri_fan_3d(s32 n, u32 flags) {
 
 void DCFlushRange(void *, u32);
 void TLobby__sub_801E3CF0(u32 *);
-// Reads one Ninja chunk (NJCM, NJTL, NMDM, ...) at file + *offset into dst (or a fresh
-// allocation), stores its type, then applies the POF0 pointer-offset list that follows.
-s32 *TLobby__sub_801E38A0(s32 file, s32 *offset, s32 *type, s32 *dst, s32 *size_out) {
+
+s32 *TLobby__sub_801E38A0(s32 arg0, s32 *arg1, s32 *arg2, s32 *buf, s32 *arg4) {
     u8 *p;
-    s32 *buf;
+    s32 *chosen;
     s32 pos;
     s32 tag;
     u32 size;
@@ -371,85 +370,86 @@ s32 *TLobby__sub_801E38A0(s32 file, s32 *offset, s32 *type, s32 *dst, s32 *size_
     s32 off;
 
     pos = 0;
-    p = (u8 *)(file + *offset);
-    ((TLobby *)(&tag))->move_data(p, 4);
+    p = (u8 *)(arg0 + *arg1);
+    move_data((&tag), p, 4);
     TLobby__sub_801E3CF0((u32 *)&tag);
-    ((TLobby *)(&size))->move_data(p + 4, 4);
+    move_data((&size), p + 4, 4);
     TLobby__sub_801E3CF0(&size);
     p += 8;
-    *offset += 8;
+    *arg1 += 8;
     tag = TLobby::bswap32_value(tag);
     switch (tag) {
     case 0x4E4A494E:
-        *type = 0x4E4A494E;
+        *arg2 = 0x4E4A494E;
         break;
     case 0x4E4A434D:
     case 0x474A434D:
-        *type = 0x4E4A434D;
+        *arg2 = 0x4E4A434D;
         break;
     case 0x474A424D:
-        *type = 0x4E4A424D;
+        *arg2 = 0x4E4A424D;
         break;
     case 0x4E4A544C:
     case 0x474A544C:
-        *type = 0x4E4A544C;
+        *arg2 = 0x4E4A544C;
         break;
     case 0x4E4A4C49:
-        *type = 0x4E4A4C49;
+        *arg2 = 0x4E4A4C49;
         break;
     case 0x4E4A4341:
-        *type = 0x4E4A4341;
+        *arg2 = 0x4E4A4341;
         break;
     case 0x4E4D444D:
     case 0x474D444D:
-        *type = 0x4E4D444D;
+        *arg2 = 0x4E4D444D;
         break;
     case 0x474C494D:
-        *type = 0x4E4C494D;
+        *arg2 = 0x4E4C494D;
         break;
     case 0x4743414D:
-        *type = 0x4E43414D;
+        *arg2 = 0x4E43414D;
         break;
     case 0x4E53534D:
     case 0x4753534D:
-        *type = 0x4E53534D;
+        *arg2 = 0x4E53534D;
         break;
     default:
         goto bad;
     }
-    if (dst == 0) {
-        buf = (s32 *)((TQuestVmDownLoadServer *)size)->alloc();
+    if (buf == 0) {
+        chosen = (s32 *)TQuestVmDownLoadServer::alloc(size);
     } else {
-        buf = dst;
+        chosen = buf;
     }
+    buf = chosen;
     if (buf == 0) {
         return 0;
     }
-    if (size_out != 0) {
-        *size_out = size;
+    if (arg4 != 0) {
+        *arg4 = size;
     }
-    ((TLobby *)buf)->move_data(p, size);
+    move_data(buf, p, size);
     DCFlushRange(buf, size);
     p += size;
-    *offset += size;
+    *arg1 += size;
     goto next;
 bad:
-    *type = 0x2A2A2A2A;
+    *arg2 = 0x2A2A2A2A;
     return 0;
 next:
-    ((TLobby *)(&tag))->move_data(p, 4);
+    move_data((&tag), p, 4);
     TLobby__sub_801E3CF0((u32 *)&tag);
-    *offset += 4;
+    *arg1 += 4;
     tag = TLobby::bswap32_value(tag);
     if (tag == 0x504F4630) {
-        ((TLobby *)(&size))->move_data(p + 4, 4);
+        move_data((&size), p + 4, 4);
         TLobby__sub_801E3CF0(&size);
         p += 8;
-        *offset += 4;
+        *arg1 += 4;
         while (size != 0) {
-            ((TLobby *)(&b0))->move_data(p, 1);
+            move_data((&b0), p, 1);
             p++;
-            *offset += 1;
+            *arg1 += 1;
             size--;
             switch (b0 & 0xC0) {
             case 0:
@@ -458,21 +458,21 @@ next:
                 off = b0 & 0x3F;
                 break;
             case 0x80:
-                ((TLobby *)(&b1))->move_data(p, 1);
+                move_data((&b1), p, 1);
                 p++;
                 size--;
-                *offset += 1;
+                *arg1 += 1;
                 off = ((b0 << 8) & 0x3F00) | b1;
                 break;
             case 0xC0:
-                ((TLobby *)(&b1))->move_data(p, 1);
+                move_data((&b1), p, 1);
                 size--;
-                ((TLobby *)(&b2))->move_data(p + 1, 1);
+                move_data((&b2), p + 1, 1);
                 size--;
-                ((TLobby *)(&b3))->move_data(p + 2, 1);
+                move_data((&b3), p + 2, 1);
                 p += 3;
                 size--;
-                *offset += 3;
+                *arg1 += 3;
                 off = (((b0 << 24) & 0x3F000000) | (b1 << 16) | (b2 << 8)) | b3;
                 break;
             default:

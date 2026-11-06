@@ -39,7 +39,9 @@ u8 get_small_font_glyph_width(s32);
 s32 TWindowSubStatusDisp__sub_800FC248(s32);
 void calc_plain_glyph_quad(s32, void *);
 void build_small_font_glyph_quad(s32, void *);
+void render_forward__20TWindowSubStatusDispFPv();
 void apply_context_transform_to_rect(TWindowDrawContext *, f32 *);
+s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *, f32 *);
 void begin_screen_draw(s32);
 void draw_textured_quad_at_depth(void *, f32);
 void set_draw_texture_and_color(s32, u32);
@@ -60,7 +62,7 @@ s32 draw_small_font_string_clipped(f32 *pos, const char *s, u32 color, f32 width
     s32 glyph;
     u8 adv;
     s32 c;
-    Box_8024E8E8 q;
+    Quad_8024FBB0 q;
     ok = 1;
     if (s == NULL) {
         return 1;
@@ -71,7 +73,7 @@ s32 draw_small_font_string_clipped(f32 *pos, const char *s, u32 color, f32 width
     x = pos[0];
     y = pos[1];
     begin_screen_draw(1);
-    TWindowSubStatusDisp::render_forward();
+    render_forward__20TWindowSubStatusDispFPv();
     set_draw_texture_and_color(0, color);
     while (*s != 0) {
         c = (u8)*s++;
@@ -83,8 +85,8 @@ s32 draw_small_font_string_clipped(f32 *pos, const char *s, u32 color, f32 width
         } else {
             glyph = TWindowSubStatusDisp__sub_800FC248(c);
             adv = get_small_font_glyph_width(glyph);
-            q.x0 = x;
-            q.y0 = y;
+            q.x = x;
+            q.y = y;
             if (lbl_805D6440 != 0) {
                 calc_plain_glyph_quad(glyph, &q);
             } else {
@@ -92,13 +94,13 @@ s32 draw_small_font_string_clipped(f32 *pos, const char *s, u32 color, f32 width
             }
             if ((f32)adv > width) {
                 ok = 0;
-                q.x1 = q.x0 + width;
+                q.x2 = q.x + width;
             }
             x += (f32)adv;
             width -= (f32)adv;
-            if (text_clip_enabled_flag == 0 || text_draw_clip_context->clip_textured_quad(&q) != 0) {
-                apply_context_transform_to_rect(text_draw_clip_context, &q.x0);
-                draw_textured_quad_at_depth(&q.x0, text_draw_depth);
+            if (text_clip_enabled_flag == 0 || clip_textured_quad__19TWindowKeyBoardSoftFPvPv(text_draw_clip_context, &q.x) != 0) {
+                apply_context_transform_to_rect(text_draw_clip_context, &q.x);
+                draw_textured_quad_at_depth(&q, text_draw_depth);
             }
         }
     }
@@ -116,7 +118,7 @@ s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width) {
     s32 code;
     s32 col;
     s32 flag;
-    Box_8024E8E8 q;
+    Quad_8024FD8C q;
     col = color;
     ok = 1;
     flag = 0;
@@ -176,24 +178,24 @@ s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width) {
             width -= (f32)(s32)(u8)adv;
             continue;
         }
-        q.x0 = x;
-        q.y0 = y;
+        q.x = x;
+        q.y = y;
         set_glyph_quad_extents(adv, &q);
         if ((f32)(u8)adv > width) {
             ok = 0;
-            q.x1 = q.x0 + width;
+            q.x2 = q.x + width;
         }
-        if (text_clip_enabled_flag == 0 || text_draw_clip_context->is_point_in_bounds(&q) != 0) {
+        if (text_clip_enabled_flag == 0 || text_draw_clip_context->is_point_in_bounds(&q.x) != 0) {
             calc_gauge_scale__20TWindowSubStatusDispFPvPvi(glyph, &q, col);
             set_glyph_quad_extents(adv, &q);
             if ((f32)(u8)adv > width) {
-                q.x1 = q.x0 + width;
+                q.x2 = q.x + width;
             }
             if (text_clip_enabled_flag != 0) {
-                text_draw_clip_context->clip_textured_quad(&q);
+                clip_textured_quad__19TWindowKeyBoardSoftFPvPv(text_draw_clip_context, &q.x);
             }
-            apply_context_transform_to_rect(text_draw_clip_context, &q.x0);
-            draw_textured_quad_at_depth(&q.x0, text_draw_depth);
+            apply_context_transform_to_rect(text_draw_clip_context, &q.x);
+            draw_textured_quad_at_depth(&q, text_draw_depth);
         }
         x += (f32)(u8)adv;
         width -= (f32)(u8)adv;

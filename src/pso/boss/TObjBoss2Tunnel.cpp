@@ -143,7 +143,6 @@ s32 approach_angle_limited(s32, s32, s32);
 int vec3_add_to(void*, void*);
 int TCameraCtrl__sub_8006B370(f32 farg0);
 f32 vec_squared_length(const Vec *);
-s32 TLobby__sub_8001EEF4(void);
 f32 normalize_vector(void *);
 }
 
@@ -393,6 +392,14 @@ s32 TObjBoss2Tunnel::decrement_packed_timer(u32 *arg0, s32 arg1) {
     *arg0 = ((((temp_r5 >> 24) - arg1) << 24) & 0xFF000000) | (temp_r5 & 0xFFFFFF);
     return 0;
 }
+
+// Defined ctor-then-dtor: this unit is -inline off,deferred, which emits
+// them dtor-then-ctor, the order at 0x8007E3AC / 0x8007E3E8.
+AccelerationCurve::AccelerationCurve() {
+    TObjBoss2Tunnel::reset_coords(this);
+}
+
+AccelerationCurve::~AccelerationCurve() {}
 
 AccelerationCurve *TObjBoss2Tunnel::reset_coords_pass(AccelerationCurve *c) {
     reset_coords(c);
@@ -789,7 +796,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         (is_boss_area() != 0 || is_quest_active() != 0 || (u32)TQuestVmDownLoadServer__sub_8007EB14() != 0)) {
         return 0;
     }
-    if ((u32)TQuestListVM::get_instance() != 0) {
+    if (TQuestListVM::get_quest_bin() != NULL) {
         return 0;
     }
     if (TCameraCtrl__sub_80069304() != 0) {
@@ -843,7 +850,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
     TObjPlayer::copy_screen_to_texture(mode, &TObjBoss2Tunnel__data_8048DF2C);
     set_display_copy_filter(filter);
     render_tick();
-    if (TLobby__sub_8001EEF4() != 0) {
+    if (TLobby::tmp_buf_is_free() != 0) {
         frame = (SnapshotFrameBuffer *)TLobby::tmp_buf_use_req(lbl_8048DF34);
         p = (u8 *)frame;
         sum = (u32 *)p;
@@ -852,7 +859,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         frame->snapshot.width = 0x100;
         frame->snapshot.height = 0xC0;
         p += 8;
-        ((TLobby *)p)->move_data((void *)TObjPlayer__sub_800845F8(), 0x18000);
+        move_data(p, (void *)TObjPlayer__sub_800845F8(), 0x18000);
         p += 0x18000;
         *p++ = 0x18;
         *p++ = 2;
@@ -952,7 +959,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
                 TObjBoss2Tunnel::show_message_and_wait(-2);
             }
         }
-        ((TLobby *)lbl_8048DF34)->tmp_buf_release();
+        TLobby::tmp_buf_release(lbl_8048DF34);
         return 1;
     }
     return 0;
@@ -999,7 +1006,7 @@ s32 memcard_check_snapshot(s32 arg0, s32 *arg1) {
         }
         return 0;
     }
-    temp_r3 = TAdPlayerLoadGC::find_card_file(1, (void *)TObjBoss2Tunnel__data_80438A08);
+    temp_r3 = TAdPlayerLoadGC::find_card_file(1, (const char *)TObjBoss2Tunnel__data_80438A08);
     if (temp_r3 == 0) {
         if (arg1 != NULL) {
             *arg1 = 1;
@@ -1138,7 +1145,7 @@ s32 save_screen_snapshot(void) {
     if (memcard_check_snapshot(1, 0) == 0) {
         return 0;
     }
-    if (((TAdSinglePlyChrSelectGC *)1)->load_player_slot((int)TObjBoss2Tunnel__data_80438A08, (int)TObjBoss2Tunnel__snapshot_buffer) != 0) {
+    if (TAdSinglePlyChrSelectGC::load_player_slot(1, TObjBoss2Tunnel__data_80438A08, TObjBoss2Tunnel__snapshot_buffer) != 0) {
         return 0;
     }
     TObjBoss2Tunnel__snapshot_state = 2;
@@ -1206,21 +1213,21 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
         lbl_805D4E9C = window_size[0] - 40.0f;
         boss2_tunnel_message_shown_flag = 1;
     }
-    win = (TWindowMessage *)TLobby::create_message_window((s32)window_pos, (s32)window_size, (u32)1, (s16)4);
+    win = (TWindowMessage *)TWindowMessage::create((s32)window_pos, (s32)window_size, (u32)1, 4);
     if (win != NULL) {
         switch (arg0) {
         case -2:
         case -9:
-            ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 3), 3);
+            win->append_line(get_localized_text_entry(0x24, 3), 3);
             break;
         case -4:
-            ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 0xD), 3);
+            win->append_line(get_localized_text_entry(0x24, 0xD), 3);
             break;
         default:
-            ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 0xC), 3);
+            win->append_line(get_localized_text_entry(0x24, 0xC), 3);
             break;
         }
-        ((TLobby *)win)->set_field_1c(36900.0f);
+        win->set_depth(36900.0f);
         win->complete_reveal();
     }
     if (get_main_phase() == 0xF) {
@@ -1273,10 +1280,10 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
         lbl_805D4EA4 = window_size[0] - 40.0f;
         lbl_805D4EA8 = 1;
     }
-    win = (TWindowMessage *)TLobby::create_message_window((s32)window_pos, (s32)window_size, (u32)1, (s16)4);
+    win = (TWindowMessage *)TWindowMessage::create((s32)window_pos, (s32)window_size, (u32)1, 4);
     if (win != NULL) {
-        ((TLobby *)win)->send_and_handle(get_localized_text_entry(0x24, 0xB), 3);
-        ((TLobby *)win)->set_field_1c(36900.0f);
+        win->append_line(get_localized_text_entry(0x24, 0xB), 3);
+        win->set_depth(36900.0f);
     }
     win->complete_reveal();
     graph = (TDLGraph *)TDLGraph::create();

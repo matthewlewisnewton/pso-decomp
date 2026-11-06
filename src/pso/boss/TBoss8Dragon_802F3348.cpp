@@ -2,37 +2,33 @@
 #include "pso/boss/TBoss8Dragon_802F3348.h"
 #include "pso/misc/TLobby_8007C550.h"
 #include "pso/boss/TBoss8Dragon.h"
-
-struct Vec_802F33C8 { f32 x, y, z; };
+#include "pso/boss/TUnk_804E4BF0.h"
+#include "pso/object/TObjControl.h"
 
 struct Ent_802F33C8 { u8 pad0[0x38]; f32 x, y, z; u8 pad44[0x60 - 0x44]; s32 rot; };
 
 extern "C" {
-s32 get_enemy_entity();
-extern u8 *boss8_dragon_leader_part;
 f32 calc_random_ratio__10TObjPlayerFv(void *);
 void subtractive_rng_seed(void *, s32);
-void spawn_attack_object__12TBoss8DragonFllll(void *, Vec_802F33C8 *, u16, s32, s32);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 extern const f32 lbl_805DED40;
 extern const f32 lbl_805DED44;
-s32 TBoss8Dragon__sub_802F3348(s32 arg0) {
-    if ((void *) boss8_dragon_leader_part == NULL) {
-        return 0;
+u8 *TBoss8Dragon__sub_802F3348(s32 arg0) {
+    if (boss8_dragon_leader_part == NULL) {
+        return NULL;
     }
-    ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(arg0);
-    return get_enemy_entity();
+    return get_enemy_entity(boss8_dragon_leader_part->get_part_entity_id(arg0));
 }
 u16 TBoss8Dragon::get_global_part_count(s32 arg0) {
-    if ((void *) boss8_dragon_leader_part == NULL) {
+    if (boss8_dragon_leader_part == NULL) {
         return 0xFFFFU;
     }
-    return ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(arg0);
+    return boss8_dragon_leader_part->get_part_entity_id(arg0);
 }
 void TBoss8Dragon::place_parts_in_ring(s32 arg1, s32 arg2) {
     s32 n = (s32)this;
-    Vec_802F33C8 v;
+    Vec v;
     u8 buf[0xEC];
     s32 ang;
     s32 step;
@@ -43,8 +39,7 @@ void TBoss8Dragon::place_parts_in_ring(s32 arg1, s32 arg2) {
         subtractive_rng_seed(buf, arg2);
         ang = (s32)(lbl_805DED40 * calc_random_ratio__10TObjPlayerFv(buf));
         step = 0x10000 / (n + 1);
-        ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(0);
-        e = (Ent_802F33C8 *)get_enemy_entity();
+        e = (Ent_802F33C8 *)get_enemy_entity(boss8_dragon_leader_part->get_part_entity_id(0));
         e->x = lbl_805DED44 * sin_table_lookup(ang);
         e->z = lbl_805DED44 * cos_table_lookup(ang);
         e->rot = (u16)(ang + 0x8000);
@@ -53,7 +48,7 @@ void TBoss8Dragon::place_parts_in_ring(s32 arg1, s32 arg2) {
             v.x = lbl_805DED44 * sin_table_lookup(ang);
             v.y = e->y;
             v.z = lbl_805DED44 * cos_table_lookup(ang);
-            spawn_attack_object__12TBoss8DragonFllll(boss8_dragon_leader_part, &v, ang + 0x8000, arg1, i + 1);
+            boss8_dragon_leader_part->spawn_attack_object(&v, (ang + 0x8000) & 0xFFFF, arg1, i + 1);
         }
     }
 }

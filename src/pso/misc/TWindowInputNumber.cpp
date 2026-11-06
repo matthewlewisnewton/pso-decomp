@@ -9,7 +9,7 @@ extern "C" {
 
 
 s32 is_confirmed__18TWindowInputNumberFv();
-s32 save_position__13TUnk_804CE018Fv();
+s32 save_position__11TWindowBaseFv();
 
 void TWindowInputNumber::mark_confirmed() {
     if (!(this->inputFlags & 8) && (is_confirmed__18TWindowInputNumberFv() == 0)) {
@@ -83,7 +83,7 @@ void TWindowInputNumber::move_cursor_next() {
 
 void TWindowInputNumber::set_value(f32 farg0) {
     this->m_38 = farg0;
-    save_position__13TUnk_804CE018Fv();
+    save_position__11TWindowBaseFv();
     align_digits();
 }
 

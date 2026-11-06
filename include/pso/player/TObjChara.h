@@ -39,6 +39,8 @@ public:
     s16 get_field_2c2();
     void add_to_field_2ca(int);
     s16 get_atp();
+    // Boss-6 gate: phase 0x1F, then actorFlags. Defined in TBoss6PlotFalz.cpp.
+    s32 is_active();
     void add_to_field_2ce(int);
     s32 recalc_combat_stats(void *, void *, void *, f32, f32);
     s32 set_motion_params(void *);

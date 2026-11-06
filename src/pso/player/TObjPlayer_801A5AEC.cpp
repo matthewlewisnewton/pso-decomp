@@ -245,8 +245,8 @@ s8 func_801A5E54(void) {
     return lbl_805D5D09;
 }
 
-void TKeyBoardControl::read_key_checked(u8 arg0) {
-    TKeyBoardControl::check_and_read((s32)(arg0));
+s32 TKeyBoardControl::read_key_checked(u8 arg0) {
+    return TKeyBoardControl::check_and_read((s32)(arg0));
 }
 typedef char RecoveredGlobal_801A5EC4_TKeyBoardControl__data_80506270_size[sizeof(RecoveredGlobal_801A5EC4_TKeyBoardControl__data_80506270) == 0xB0 ? 1 : -1];
 typedef char RecoveredGlobal_801A5EC4_lbl_8050E208_size[sizeof(RecoveredGlobal_801A5EC4_lbl_8050E208) == 0x1B0 ? 1 : -1];

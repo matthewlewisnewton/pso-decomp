@@ -1,6 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
-#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowKeyBoardSoft_8024E68C.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowSubStatusDisp_8025B050.h"
@@ -20,10 +19,13 @@ struct Win_8025B0D0 {
     s32 i2C; s32 *p30; s32 i34;
 };
 
+struct Quad_8025B0D0 { f32 v[8]; };
+
 extern "C" {
 void apply_context_transform_to_rect(TWindowDrawContext *, f32 *);
 void draw_window_uv_sprite_part(Win_8025B0D0 *arg0, TWindowDrawContext *arg1);
-s32 sub_80256BDC__13TUnk_804CF930Fs(void *, void *);
+s32 __ct__13TUnk_804CF918Fs(void *, void *);
+void __dt__13TUnk_804CF918Fv(void *, s16);
 }
 
 void *window_uv_sprite_part_vtable[6] = {
@@ -66,7 +68,7 @@ void set_sprite_dimensions(void* p, f32 a, f32 b) { *(f32*)((char*)p + 0x10) = a
 #pragma fp_contract on
 
 void draw_window_uv_sprite_part(Win_8025B0D0 *arg0, TWindowDrawContext *arg1) {
-    Box_8024E8E8 q;
+    Quad_8025B0D0 q;
     f32 x;
     f32 y;
     f32 scale;
@@ -103,19 +105,19 @@ void draw_window_uv_sprite_part(Win_8025B0D0 *arg0, TWindowDrawContext *arg1) {
     w = arg0->f10;
     lo = (0.5f) - len;
     hi = (0.5f) + len;
-    q.x0 = w * lo + x;
-    q.y0 = arg0->f14 * lo + y;
-    q.x1 = w * hi + x;
-    q.y1 = arg0->f14 * hi + y;
-    q.u0 = arg0->f1C;
-    q.v0 = arg0->f20;
-    q.u1 = arg0->f24;
-    q.v1 = arg0->f28;
+    q.v[0] = w * lo + x;
+    q.v[1] = arg0->f14 * lo + y;
+    q.v[2] = w * hi + x;
+    q.v[3] = arg0->f14 * hi + y;
+    q.v[4] = arg0->f1C;
+    q.v[5] = arg0->f20;
+    q.v[6] = arg0->f24;
+    q.v[7] = arg0->f28;
     if (arg0->flags & 0x10) {
-        apply_context_transform_to_rect(arg1, &q.x0);
-        draw_textured_quad_at_depth(&q.x0, scale);
-    } else if (TWindowKeyBoardSoft::try_open(arg1, &q) != 0) {
-        draw_textured_quad_at_depth(&q.x0, scale);
+        apply_context_transform_to_rect(arg1, q.v);
+        draw_textured_quad_at_depth((f32 *)&q, scale);
+    } else if (TWindowKeyBoardSoft::try_open(arg1, q.v) != 0) {
+        draw_textured_quad_at_depth((f32 *)&q, scale);
     }
     TWindowSubStatusDisp::get_player();
     set_default_alpha_blend();
@@ -127,7 +129,7 @@ void TWindowSubStatusDisp::update_palette_sprite() {  }
 void *TWindowSubStatusDisp__sub_8025B2DC(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(void ***)((s8 *)arg0 + 4) = window_uv_sprite_part_vtable;
-        ((TUnk_804CF930 *)arg0)->destroy(0);
+        __dt__13TUnk_804CF918Fv(arg0, (s16)0);
         if (arg1 > 0) {
             ::operator delete(arg0);
         }
@@ -136,7 +138,7 @@ void *TWindowSubStatusDisp__sub_8025B2DC(void *arg0, s16 arg1) {
 }
 
 u8 *TWindowSubStatusDisp::init_part_direct(u8 *arg1, s32 arg2) {
-    sub_80256BDC__13TUnk_804CF930Fs(this, (void *)arg2);
+    __ct__13TUnk_804CF918Fs(this, (void *)arg2);
     *(void ***)((s8 *)((u8 *)this) + 4) = window_uv_sprite_part_vtable;
     ((TWindowSubSymbolChatPartsSet *)(((u8 *)this) + 8))->copy_vec2(arg1 + 4);
     ((TWindowSubSymbolChatPartsSet *)(((u8 *)this) + 0x10))->copy_vec2(arg1 + 0xC);
@@ -153,7 +155,7 @@ u8 *TWindowSubStatusDisp::init_part_direct(u8 *arg1, s32 arg2) {
 }
 
 u8 *init_part_scaled__20TWindowSubStatusDispFPvPvi(u8 *arg0, u8 *arg1, s32 arg2) {
-    sub_80256BDC__13TUnk_804CF930Fs(arg0, (void *)arg2);
+    __ct__13TUnk_804CF918Fs(arg0, (void *)arg2);
     *(void ***)((s8 *)arg0 + 4) = window_uv_sprite_part_vtable;
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 8))->copy_vec2(arg1 + 4);
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 0x10))->copy_vec2(arg1 + 0xC);

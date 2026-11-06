@@ -39,7 +39,7 @@ s32 TCheckMemoryCard::sub_8033BB14() {
         if (TAdSinglePlyChrSelectGC__sub_8033BA84(0) == 0) {
             var_r31 |= 0x10;
         }
-    } else if (((TAdSinglePlyChrSelectGC *)0)->has_no_save_files() == 0) {
+    } else if (TAdSinglePlyChrSelectGC::has_no_save_files(0) == 0) {
         var_r31 |= 0x10;
     }
     return var_r31;
