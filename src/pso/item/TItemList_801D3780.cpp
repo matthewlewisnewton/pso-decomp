@@ -108,7 +108,7 @@ void *find_placement_obstruction(void *self, Body_801D3E20 *s);
 extern const f32 lbl_805DC3C8;
 void TItemList__sub_801D59A0(void *, int);
 void send_6x29_delete_item__10TObjPlayerFPvii(void *, s32, s32);
-void *get_player_by_client_id(u16);
+TObjPlayer *get_player_by_client_id(u16);
 void *get_ptr_0x44__9TItemListFPv(void *);
 s8 get_chr_select_state__23TAdSinglePlyChrSelectGCFv();
 s32 TAdPlayerLoadGC__sub_801E1B50(s32);
@@ -134,7 +134,7 @@ extern void *tl_07;
 
 void TUnk_804C4468::run_task() {
     Req_801D3780 *r;
-    void *player;
+    TObjPlayer *player;
     switch (this->step_placement_search()) {
     case 0:
         return;
@@ -148,15 +148,15 @@ void TUnk_804C4468::run_task() {
                 if (r->source == -1) {
                     ((void (*)(TItemData *, s32, f32 *))drop_stacked_item)((TItemData *)r->item, get_client_id(), (f32 *)get_ptr_0x44__9TItemListFPv(this));
                     send_6x29_delete_item__10TObjPlayerFPvii(player, r->source, r->extra);
-                    TObjPlayer::send_code_45_1((s32)player);
+                    TObjPlayer::send_code_45_1(player);
                 } else {
                     ((void (*)(TItemData *, s32, f32 *))drop_stacked_item)((TItemData *)r->item, get_client_id(), (f32 *)get_ptr_0x44__9TItemListFPv(this));
                     send_6x29_delete_item__10TObjPlayerFPvii(player, r->source, ((TItemData *)r->item)->get_stack_count());
-                    TObjPlayer::send_code_45_1((s32)player);
+                    TObjPlayer::send_code_45_1(player);
                 }
             } else {
                 TObjPlayer::send_6x2A_drop_item(player, r->source, get_ptr_0x44__9TItemListFPv(this), ((TItemData *)r->item)->get_stack_count());
-                TObjPlayer::send_code_45_1((s32)player);
+                TObjPlayer::send_code_45_1(player);
             }
         }
         break;

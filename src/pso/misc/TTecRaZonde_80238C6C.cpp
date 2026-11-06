@@ -3,6 +3,7 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/TTecZondeEff.h"
 #include "pso/misc/TTecRaZonde.h"
 #include "pso/system/vector.h"
 #include "pso/misc/TTecZonde.h"
@@ -363,13 +364,13 @@ void *TTecRaZonde__ct(void *self_, void *source, void *origin, void *level) {
         {
             u8 *o = (u8 *)__nw__7TObjectFUl(0x260);
             if (o != 0) {
-                ((TTecZonde *)o)->construct_bolt_effect((u8 *)tl_07, (u8 *)&a, (u8 *)&b, 0x14000000, 6, len, (5.0f));
+                ((TTecZondeEff *)o)->construct_bolt_effect((u8 *)tl_07, (u8 *)&a, (u8 *)&b, 0x14000000, 6, len, (5.0f));
             }
         }
         if (self->band == 5) {
             u8 *o = (u8 *)__nw__7TObjectFUl(0x260);
             if (o != 0) {
-                ((TTecZonde *)o)->construct_bolt_effect((u8 *)tl_07, (u8 *)&a, (u8 *)&b, 0x14000000, 6, len, (0.5f));
+                ((TTecZondeEff *)o)->construct_bolt_effect((u8 *)tl_07, (u8 *)&a, (u8 *)&b, 0x14000000, 6, len, (0.5f));
             }
         }
     }

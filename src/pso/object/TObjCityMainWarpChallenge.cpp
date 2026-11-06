@@ -256,7 +256,7 @@ void TObjCityMainWarp__sub_801875F8(TObjCityMainWarpChallenge *self) {
     s32 i;
     s32 j;
     u32 color;
-    TLobby *player;
+    TObjPlayer *player;
     f32 pos[2];
 
     switch (self->m_de) {
@@ -299,7 +299,7 @@ void TObjCityMainWarp__sub_801875F8(TObjCityMainWarpChallenge *self) {
         for (j = 0; j < self->player_count; j++) {
             ((THunterGuildSeqOffline *)self->m_164)->advance_matching_entries(self->player_in_range[j] != 0, j);
             color = 0xF0F0F0FF;
-            if (self->m_de == 1 && (player = (TLobby *)get_player_by_client_id(j)) != NULL &&
+            if (self->m_de == 1 && (player = (TObjPlayer *)get_player_by_client_id(j)) != NULL &&
                 player->check_player_flag1() != 0) {
                 color = 0xFFFF00FF;
             }

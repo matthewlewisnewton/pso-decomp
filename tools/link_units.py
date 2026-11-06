@@ -294,13 +294,32 @@ def _canonical_function_owners(report: Path, mtime_ns: int, size: int) -> dict:
     return owners
 
 
+@functools.lru_cache(maxsize=1)
+def _link_order(path: Path, mtime_ns: int, size: int) -> dict[str, int]:
+    """Unit name -> position in the link order dtk generated."""
+    return {unit["name"]: i for i, unit in enumerate(json.loads(path.read_text())["units"])}
+
+
+def _links_before(first: dict, second: dict) -> bool:
+    """True when `first` precedes `second` in the generated link order."""
+    if not SPLIT_CONFIG.exists():
+        return False
+    stat = SPLIT_CONFIG.stat()
+    order = _link_order(SPLIT_CONFIG, stat.st_mtime_ns, stat.st_size)
+    a, b = order.get(unit_name(first)), order.get(unit_name(second))
+    return a is not None and b is not None and a < b
+
+
 def discarded_weak_functions(u: dict) -> set[str]:
-    """Extra inline copies that mwld resolves to a canonical strong function.
+    """Extra inline copies that mwld resolves to a canonical function.
 
     Require a unique report owner and a GLOBAL function in its original object.
     Its compiled object must also provide it strongly unless that owner is
     unlinked and has non-exact report scores, preventing promotion in this scan.
     Thus selection changes cannot replace our strong provider with a weak copy.
+    A weak copy in the owner's compiled object is accepted only when the owner
+    precedes this unit in the link order: mwld keeps the first weak definition,
+    as with an inline virtual emitted by every unit that emits a vtable using it.
     Weak data, strong duplicates, and ambiguous/missing providers remain errors.
     This does not waive any function, section, order or final DOL-hash check.
     """
@@ -324,7 +343,8 @@ def discarded_weak_functions(u: dict) -> set[str]:
         split = SPLIT_OBJ_DIR / compiled.relative_to(OBJ_DIR)
         if not split.exists() or elf_symbol_bindings(split).get(name) != (1, 2):
             continue
-        if compiled.exists() and elf_symbol_bindings(compiled).get(name) != (1, 2):
+        binding = elf_symbol_bindings(compiled).get(name) if compiled.exists() else (1, 2)
+        if binding != (1, 2) and not (binding == (2, 2) and _links_before(owner, u)):
             if (unit_name(owner) in linked or (owner.get("metadata") or {}).get("complete")
                     or report_scores_exact(owner)):
                 continue

@@ -11,6 +11,7 @@
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
+#include "pso/TTecZondeEff.h"
 #include "pso/boss/TBoss3VoloptHiraisin.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
@@ -508,8 +509,8 @@ s32 obj_testFlags30__14TObjCollidableFUl(void *, int);
 s32 get_entity_id(void *);
 s32 get_current_floor();
 u32 csnVector(void *, void *, int);
-u8 *get_enemy_entity(u16);
-void *get_player_by_client_id(s32 i);
+TObjChara *get_enemy_entity(u16);
+TObjPlayer *get_player_by_client_id(s32 i);
 s32 subtract_vector(void *, void *);
 extern s32 lbl_8043B0B4[];
 extern s32 registered_player_count;
@@ -744,7 +745,7 @@ void update_attack_jump__11TObjEneMojaFv(Obj_800ACFE8 *arg0) {
 #define self ((Moja_800AD3D8 *)self_800AD3D8)
 s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
     Vec_800AE18C dir;
-    Vec_800AE18C pos;
+    Vec pos;
     Ang_800AD3D8 ang;
     s32 ang2;
     void *obj;
@@ -850,7 +851,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
                     }
                     obj = __nw__7TObjectFUl(0x260);
                     if (obj != NULL) {
-                        ((TTecZonde *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&pos, (u8 *)&dir, 0x14000000, 20, (f32)(((AttackParams *)(self->f318))->get_attack_range()), (f32)lbl_805D9C24);
+                        ((TTecZondeEff *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&pos, (u8 *)&dir, 0x14000000, 20, (f32)(((AttackParams *)(self->f318))->get_attack_range()), (f32)lbl_805D9C24);
                     }
                     play_sound_effect((s32)((void *) 0x4002A408), (const Vec *)(&pos), 0, 0);
                     break;
@@ -858,7 +859,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
             } else {
                 switch (self->kind) {
                 case 1:
-                    ((TTecGiBarta *)self)->create_ex(&pos, (void *)self->rot_y, (void *)(((TObjEneMoja *)self)->calc_technique_level()));
+                    TTecGiBarta::create_ex(self, &pos, self->rot_y, ((TObjEneMoja *)self)->calc_technique_level());
                     break;
                 default:
                     if (ang2 < ((AttackParams *)(self->f318))->get_attack_angle() / 2 && self->target != NULL) {
@@ -919,7 +920,7 @@ s32 TObjEneMoja::update_punch_attack(void *self_800ADAAC) {
     s32 e;
     switch (*(s16 *)(arg0 + 0x328)) {
     case 0:
-        ((TObjEnemy *)arg0)->sub_800A7798(*(f32 *)lbl_805D50D4[*(s32 *)(arg0 + 0x368)]);
+        ((TObjMotion *)arg0)->sub_800A7798(*(f32 *)lbl_805D50D4[*(s32 *)(arg0 + 0x368)]);
         *(s16 *)(arg0 + 0x328) = 1;
     case 1:
         ((TObjMotion *)arg0)->advance_animation();
@@ -1034,17 +1035,17 @@ s32 TObjEneMoja::is_target_in_attack_range() {
     f32 sq;
     f32 dist;
     f32 radius;
-    u8 *t;
-    u8 *c;
+    TObjChara *t;
+    CollisionBody *c;
     Vec_800AE18C d;
     if (this->mode > 1 && (t = this->target) != NULL &&
-        this->m_318 != 0 && !(*(u32 *)((s8 *)t + 0x30) & 0x02000800)) {
+        this->m_318 != 0 && !(t->actorFlags & 0x02000800)) {
         dist = calc_xz_distance_sq(this, t, &d);
         angd = angle_difference_abs(this->rotation.yaw,
                                     (s32)(lbl_8043B0C8[0] * atan2_float(d.x, d.z)));
-        c = *(u8 **)(this->target + 0xA4);
+        c = this->target->bodies;
         if (c != NULL) {
-            radius = *(f32 *)((s8 *)c + 0xC);
+            radius = c->radius;
         } else {
             radius = lbl_805D9BE8;
         }
@@ -1104,7 +1105,7 @@ s32 TObjEneMoja::update_approach_state() {
     u8 *arg0 = (u8 *)this;
     f32 temp_f0_2;
     u8 *temp_r4;
-    u8 *temp_r7;
+    TObjChara *temp_r7;
     switch (this->phase) {
     case 0:
         ((s32 (*)(void *, s32, f32))apply_actor_gravity)((void *) arg0, 0, lbl_805D9BD8);
@@ -1113,10 +1114,10 @@ s32 TObjEneMoja::update_approach_state() {
             TObjPlayer::play_effect_if_v2(-0x200);
         }
         if (this->action_flags != 0x20U) {
-            ((TObjEnemy *)arg0)->sub_800A7798(*(f32 *)((s8 *)lbl_805D50D4[(*(s32 *)&this->variant)] + 0xC));
+            ((TObjMotion *)arg0)->sub_800A7798(*(f32 *)((s8 *)lbl_805D50D4[(*(s32 *)&this->variant)] + 0xC));
             this->requested_action = 2;
             {
-            Vec_800AE18C v = *(Vec_800AE18C *)(this->target + 0x2FC);
+            Vec_800AE18C v = *(Vec_800AE18C *)&this->target->body_center_position;
             if (select_enemy_destination(arg0, &v, 1) != 0) {
                 Vec_800AE18C v2 = *(Vec_800AE18C *)(arg0 + 0x2FC);
                 copy_position_if_valid__10TObjPlayerFii(arg0, &v2);
@@ -1131,7 +1132,7 @@ s32 TObjEneMoja::update_approach_state() {
     default:
         temp_r7 = this->target;
         if (temp_r7 != NULL) {
-            Vec_800AE18C v3 = *(Vec_800AE18C *)(temp_r7 + 0x2FC);
+            Vec_800AE18C v3 = *(Vec_800AE18C *)&temp_r7->body_center_position;
             temp_r4 = lbl_805D50D4[(*(s32 *)&this->variant)];
             if (*(f32 *)((s8 *)((*(u8 * *)&this->movementParameters)) + 0) * *(f32 *)((s8 *)((*(u8 * *)&this->movementParameters)) + 0) < enemy_pursue_point(arg0, *(s32 *)((s8 *)((*(u8 * *)&this->movementParameters)) + 8), &v3, temp_r4, *(f32 *)((s8 *)temp_r4 + 8), lbl_805D9BF0)) {
                 this->target = NULL;
@@ -1446,7 +1447,7 @@ void acquire_target__11TObjEneMojaFPv(u8 *arg0) {
     u8 *p;
     f32 best;
     f32 d;
-    u8 *q;
+    TObjPlayer *q;
     u16 tid;
     if (((TObjEneMoja *)arg0)->appearance != 1 && ((((TObjEneMoja *)arg0)->mode != 0 && ((TObjEneMoja *)arg0)->target == NULL) || ((TObjEneMoja *)(arg0))->is_actor_cadence_frame(0x1E) != 0)) {
         if (obj_testFlags30__14TObjCollidableFUl(arg0, 0x10) != 0) {
@@ -1480,9 +1481,9 @@ void acquire_target__11TObjEneMojaFPv(u8 *arg0) {
         }
         tid = ((TObjEneMoja *)arg0)->targetId;
         if (tid < 0x1000U) {
-            q = (u8 *)get_player_by_client_id(tid);
+            q = get_player_by_client_id(tid);
             if (q != NULL) {
-                if (((TObjPlayer *)q)->get_floor() == get_current_floor()) {
+                if (q->get_floor() == get_current_floor()) {
                     ((TObjEneMoja *)arg0)->target = q;
                     return;
                 }
@@ -1580,17 +1581,17 @@ void TObjEneMoja::run_task() {
     s16 temp_r0;
     s32 temp_r30;
     u16 temp_r3;
-    u8 *temp_r3_2;
-    u8 *temp_r4;
+    TObjPlayer *temp_r3_2;
+    TObjChara *temp_r4;
     if (check_demo_mode() == 1) {
         fn_800ACA0C();
         return;
     }
     temp_r3 = this->targetId;
     if (temp_r3 < 0x1000U) {
-        temp_r3_2 = (u8 *)(get_player_by_client_id(temp_r3));
+        temp_r3_2 = get_player_by_client_id(temp_r3);
         if (temp_r3_2 != NULL) {
-            if (((TObjPlayer *)temp_r3_2)->get_floor() == get_current_floor()) {
+            if (temp_r3_2->get_floor() == get_current_floor()) {
                 this->target = temp_r3_2;
                 goto done;
             }
@@ -1641,7 +1642,7 @@ void TObjEneMoja::run_task() {
     copy_body_to_center();
     submit_cursor_candidate(arg0, -1);
     temp_r4 = this->target;
-    if ((temp_r4 != NULL) && (*(s32 *)((s8 *)temp_r4 + 0x30) & 0x02000800)) {
+    if ((temp_r4 != NULL) && (temp_r4->actorFlags & 0x02000800)) {
         this->attackSequence = -1;
         (this->timer) = 0;
         (this->actorFlags) = (s32) ((this->actorFlags) & 0xFFDFFFFF);

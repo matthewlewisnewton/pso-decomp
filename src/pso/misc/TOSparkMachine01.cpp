@@ -59,7 +59,7 @@ struct Obj_80177088 { u8 pad[0x90]; f32 timer[4]; u8 on[4]; f32 speed; };
 
 struct VBase_801771F4 { u8 pad[0x18]; };
 
-struct Node_801771F4 { u8 pad[4]; s32 f4; u8 m[0x28]; Node_801771F4 *next; };
+struct Node_801771F4 { u8 pad[4]; void *f4; u8 m[0x28]; Node_801771F4 *next; };
 
 struct Res_801771F4 { u8 pad[0x2C]; Node_801771F4 *head; };
 

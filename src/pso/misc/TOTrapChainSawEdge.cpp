@@ -3,6 +3,7 @@
 #include "pso/misc/PersistentSound.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/system/BmlResourceClass.h"
+#include "pso/misc/TOTrapAncient02R.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_801E2D1C.h"
 #include "pso/TObject.h"
@@ -190,7 +191,6 @@ u16 get_entity_id(void *);
 s32 obj_setFlags30(void *, int);
 s8 get_current_floor(int);
 f32 fabs_float(f32);
-s32 TOTrapAncient02R__sub_80154D78(void *);
 void free_collision_body_parts(void *);
 s32 init_collision_body_parts(void *, int, int);
 void *get_player_by_client_id(s32 i);
