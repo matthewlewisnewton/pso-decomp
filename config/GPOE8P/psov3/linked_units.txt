@@ -160,6 +160,7 @@ musyx/runtime/stream.c
 musyx/runtime/synth.c
 musyx/runtime/synth_ac.c
 musyx/runtime/synth_adsr.c
+musyx/runtime/synth_dbtab.c
 musyx/runtime/synth_vsamples.c
 musyx/runtime/synthdata.c
 musyx/runtime/synthmacros.c
@@ -1050,6 +1051,7 @@ pso/misc/TLobby_801D6DC4.cpp
 pso/misc/TLobby_801D726C.cpp
 pso/misc/TLobby_801DA7DC.cpp
 pso/misc/TLobby_801DEFC4.cpp
+pso/misc/TLobby_801E2F94.cpp
 pso/misc/TLobby_801E43E4.cpp
 pso/misc/TLobby_801F2D2C.cpp
 pso/misc/TLobby_801F3A24.cpp
@@ -1572,6 +1574,7 @@ pso/misc/TSlicerHistory_8023BDD0.cpp
 pso/misc/TSwitch.cpp
 pso/misc/TTecAnti.cpp
 pso/misc/TTecBarta.cpp
+pso/misc/TTecCtrl_8022C444.cpp
 pso/misc/TTecDeband.cpp
 pso/misc/TTecFoie.cpp
 pso/misc/TTecFoie_802301EC.cpp
