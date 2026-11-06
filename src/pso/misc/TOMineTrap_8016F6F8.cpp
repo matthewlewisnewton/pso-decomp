@@ -121,7 +121,7 @@ extern const f64 lbl_80442200;
 extern const f32 lbl_805DB870;
 void queue_destruction__7TObjectFv(void *arg0);
 int get_player_data__10TObjPlayerFi(int a0);
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
+s32 check_value_equals__7TObjectFPCc(void *, s32);
 extern s32 TOMineTrap__data_805D3080;
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
@@ -214,7 +214,7 @@ inline void TOMineTrap::strike_player(TObjChara *actor) {
     }
     if (horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
         if (actor->obj_isState2_324() == 0) {
-            this->target = (u8 *)actor;
+            this->target = actor;
             switch (this->attack.kind) {
             case 2:
                 ((TObjChara *)this->target)->apply_movement_ailment(0);
@@ -233,7 +233,7 @@ inline void TOMineTrap::strike_player(TObjChara *actor) {
 
 inline void TOMineTrap::strike_enemy(TObjChara *actor, TObjPlayer *owner) {
     if (horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
-        this->target = (u8 *)actor;
+        this->target = actor;
         switch (this->attack.kind) {
         case 2:
             ((TObjChara *)this->target)->apply_movement_ailment(0);
@@ -269,9 +269,9 @@ inline void TOMineTrap::strike_actor(TObjChara *actor, TObjPlayer *owner) {
         this->strike_player(actor);
     } else if (id < 0x4000) {
         this->strike_enemy(actor, owner);
-    } else if (check_value_equals__13TUnk_804B6C24Fl(actor, TOMineTrap__data_805D3080) != 0 &&
+    } else if (check_value_equals__7TObjectFPCc(actor, TOMineTrap__data_805D3080) != 0 &&
                horizontal_distance_squared(&this->position, &actor->position) < this->m_350 * this->m_350) {
-        this->target = (u8 *)actor;
+        this->target = actor;
         ((TObjChara *)this->target)->receive_physical_attack(this, TOMineTrap__data_805DB868);
     }
 }
@@ -325,7 +325,7 @@ void TOMineTrap::destroy_matching_traps() {
     s32 i;
     for (i = registered_player_count + lbl_805D5870; i < lbl_805D5868; i++) {
         p = (void *)get_player_data__10TObjPlayerFi(i);
-        if (p != 0 && check_value_equals__13TUnk_804B6C24Fl(p, TOMineTrap__data_805D3080) != 0) {
+        if (p != 0 && check_value_equals__7TObjectFPCc(p, TOMineTrap__data_805D3080) != 0) {
             queue_destruction__7TObjectFv(p);
         }
     }
@@ -736,7 +736,7 @@ void TOMine::follow_target() {
     return;
   }
   VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(arg0 + 0x38));
-  VecCopy((Vec *)(&stack.sp8), (const Vec *)((this->target) + 0x38));
+  VecCopy((Vec *)(&stack.sp8), &this->target->position);
   stack.spC = *((f32 *) (((s8 *) arg0) + 0x3C));
   subtract_vector(&stack.sp8, (u8 *)&this->position);
   if (lbl_805DB870 < vec_squared_length((u8 *)&stack.sp8))
@@ -748,7 +748,7 @@ void TOMine::follow_target() {
   vec3_add_to((u8 *)&this->position, &stack.sp8);
   ((TObjPlayer *)arg0)->update_enemy_collision_flags();
   temp_f2 = *((f32 *) (((s8 *) arg0) + 0x48));
-  *((f32 *) (((s8 *) arg0) + 0x3C)) = (f32) ((lbl_805DB884 * ((lbl_805DB888 + (*((f32 *) ((this->target) + 0x3C)))) - temp_f2)) + temp_f2);
+  *((f32 *) (((s8 *) arg0) + 0x3C)) = (f32) ((lbl_805DB884 * ((lbl_805DB888 + this->target->position.y) - temp_f2)) + temp_f2);
   ((TObjChara *)arg0)->calc_attach_pos();
   this->rotation.yaw = (s32) (lbl_80442200 * atan2_float((f64) stack.sp8, (f64) stack.sp10));
   ((TObjCollidable *)arg0)->refresh_collision_body_centers();
@@ -763,10 +763,10 @@ void TOMine::sub_80170BEC() {
         for (i = lbl_805D5870; i < lbl_805D5868; i++) {
             p = (u8 *)get_player_data__10TObjPlayerFi(i);
             if (p != NULL && p != ((u8 *)this) &&
-                (check_value_equals__13TUnk_804B6C24Fl(p, TOMineIcon01__name) != 0 ||
-                 check_value_equals__13TUnk_804B6C24Fl(p, TOMineIcon02__name) != 0 ||
-                 check_value_equals__13TUnk_804B6C24Fl(p, TOMineIcon03__name) != 0 ||
-                 check_value_equals__13TUnk_804B6C24Fl(p, TOMineIcon04__name) != 0) &&
+                (check_value_equals__7TObjectFPCc(p, TOMineIcon01__name) != 0 ||
+                 check_value_equals__7TObjectFPCc(p, TOMineIcon02__name) != 0 ||
+                 check_value_equals__7TObjectFPCc(p, TOMineIcon03__name) != 0 ||
+                 check_value_equals__7TObjectFPCc(p, TOMineIcon04__name) != 0) &&
                 *(s32 *)(p + 0x344) == 1 && *(s32 *)(p + 0x348) == *(s32 *)(((u8 *)this) + 0x348)) {
                 ((TOMine *)p)->update_trigger();
             }

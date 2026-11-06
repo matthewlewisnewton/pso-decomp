@@ -18,6 +18,7 @@ struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
+#include "pso/TTecZondeEff.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/player/TObjPlayer.h"
@@ -2002,7 +2003,7 @@ struct Obj_800CCB24;
 void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
     u8 *arg0 = (u8 *)this;
     Vec_800CD5F4 v;
-    Vec_800CD5F4 p;
+    Vec p;
     s32 ang[3];
     s32 r;
     switch (arg1) {
@@ -2093,7 +2094,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                             pop_matrix();
                             e = __nw__7TObjectFUl(0x260);
                             if (e != 0) {
-                                ((TTecZonde *)e)->construct_bolt_effect((u8 *)tl_07, (u8 *)&p, (u8 *)&v, 0x14000000, 20, (f32)(((AttackParams *)(F(s32, 0x318)))->get_attack_range()), (f32)lbl_805DA1A0);
+                                ((TTecZondeEff *)e)->construct_bolt_effect((u8 *)tl_07, (u8 *)&p, (u8 *)&v, 0x14000000, 20, (f32)(((AttackParams *)(F(s32, 0x318)))->get_attack_range()), (f32)lbl_805DA1A0);
                             }
                         }
                         play_sound_effect((s32)((void *)0x4002A408), (const Vec *)(&p), 0, 0);
@@ -2102,7 +2103,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                 } else {
                     switch (F(s32, 0x468)) {
                     case 1:
-                        ((TTecGiBarta *)arg0)->create_ex(&p, (void *)(F(s32, 0x60)), (void *)(CB24(arg0)));
+                        TTecGiBarta::create_ex(arg0, &p, F(s32, 0x60), CB24(arg0));
                         break;
                     default:
                         if (r < ((AttackParams *)(F(s32, 0x318)))->get_attack_angle() / 2 && F(u32, 0x390) != 0) {

@@ -83,7 +83,7 @@ void TObjNpcHFW01::free_static_resources() {
 }
 void TObjNpcHFW01::load_resources() {
     TObjNpcHFW01__resource_node = (u32)create_named_object((s32)lbl_8043FA70);
-    TObjNpcHFW01__texture_handle = (u32)load_gvm_texture_file((s32)TObjNpcHFW01__texture_filename);
+    TObjNpcHFW01__texture_handle = (u32)load_gvm_texture_file(TObjNpcHFW01__texture_filename);
 }
 
 }

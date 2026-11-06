@@ -142,7 +142,7 @@ void TOMonumentAncient02::render() {
         set_current_texture_list((GinjaTextureList *)(texlist));
         node = (NJS_OBJECT *)model;
         post_translate_matrix(node->pos);
-        draw_ginja_model((s32)node->model);
+        draw_ginja_model(node->model);
         if (activated == 1) {
             if (brightening != 0) {
                 light_color.a += 0.05f;
@@ -164,7 +164,7 @@ void TOMonumentAncient02::render() {
             saved_model_render_flags = model_render_flags;
             model_render_flags |= 0x20;
             set_constant_material(&light_color);
-            draw_ginja_model((s32)node->model);
+            draw_ginja_model(node->model);
             set_constant_material(&chunk_material_color_half_alpha_f32);
             model_render_flags = saved_model_render_flags;
             TParticleCtrl::end_effect_render();

@@ -353,7 +353,7 @@ extern f32 radar_overhead_projection_scale;
 void rotate_matrix_zyx(void *m, s32 x, s32 y, s32 z);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 void push_matrix(void);
-void draw_ginja_model(s32);
+void draw_ginja_model(void *);
 void set_chunk_material_override_pair(s32, s32);
 extern Color_801FAAEC radar_map_backdrop_color;
 extern u8 saved_model_draw_color[];
@@ -1231,7 +1231,7 @@ void TRaderMapCore::render_region_records(s32 mode) {
             push_matrix();
             translate_matrix(0, r->x, r->y, r->z);
             rotate_matrix_zyx(0, r->rx, r->ry, r->rz);
-            draw_ginja_model(r->model->obj);
+            draw_ginja_model((void *)r->model->obj);
             pop_matrix();
             set_constant_material(&chunk_material_color_half_alpha_f32);
         }

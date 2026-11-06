@@ -16,9 +16,8 @@ s16 TOMineTrap__sub_80171340(void* p);
 int TOMineTrap__sub_80171350(void);
 u16 TOMineTrap__sub_80171358(void* p);
 void TOMineTrap__sub_8017141C(void* p);
-void fn_80171314(void* p);
 
-void fn_80171314(void* p) { ((TObjPlayer *)p)->check_flag((s32)((void*)65536)); }
+s32 fn_80171314(TObjPlayer *player) { return player->check_flag(0x10000); }
 u16 TOMineTrap::get_trap_type() { return this->m_2d8; }
 s16 TOMineTrap__sub_80171340(void* p) { return *(s16*)((char*)p + 0x326); }
 void TOMineTrap::sub_80171348(u16 v) { this->m_2d8 = v; }

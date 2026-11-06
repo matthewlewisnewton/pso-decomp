@@ -952,7 +952,7 @@ void __ct__13TUnk_804928CCFP7TObjectP8TObjBase(void *);
 s32 update_linked_position__12TObjEneDD_STFf(f32);
 void subtractive_rng_seed(void *, u32);
 f32 calc_random_ratio__10TObjPlayerFv(void *);
-void sub_8002AE64__9TObjEnemyFv(void *);
+void sub_8002AE64__10TObjMotionFv(void *);
 }
 void get_dragon_follow_camera_offsets(u8 *arg0, u8 *arg1);
 extern const f32 lbl_805D8094;
@@ -3501,7 +3501,7 @@ void TBoss1Dragon::update_spinning_projectile_attack(u32 reason) {
         break;
     case ENEMY_STATE_LEAVE:
         self->rotation.pitch = 0;
-        sub_8002AE64__9TObjEnemyFv(self);
+        sub_8002AE64__10TObjMotionFv(self);
         self->m_654 = 0;
         break;
     }
@@ -6298,7 +6298,7 @@ int TBoss8Dragon::test_card_flag_2() { return TWindowKeyBoardHard::test_card_fla
 
 void MaterialColorFade::set_rate(f32 v) { rate = v; }
 
-void TObjEnemy::sub_8002AE64() {
+void TObjMotion::sub_8002AE64() {
     this->motion_flags = (s32) (this->motion_flags & 0xFFFFFFFE);
 }
 
