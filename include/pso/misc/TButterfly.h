@@ -5,7 +5,6 @@
 #include "pso/object/TObjMotion.h"
 
 struct TButterfly : public TObjBase {
-    TButterfly(TObject *arg1, void *arg2);
     virtual ~TButterfly();
     u8 unk_90[0xC];
     void* m_9c;
@@ -31,11 +30,6 @@ typedef char TButterfly_size[sizeof(TButterfly) == 0xBC ? 1 : -1];
 
 extern "C" {
 void *__dt__10TButterflyFv(void *arg0, s16 arg1);
-}
-
-extern "C" {
-void *TButterfly__create(void *arg0);
-void *__ct__10TButterflyFP7TObjectPv(void *butterfly, void *arg1, void *arg2);
 }
 
 #endif

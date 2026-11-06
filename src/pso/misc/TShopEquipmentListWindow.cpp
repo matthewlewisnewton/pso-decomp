@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/item/TItemData.h"
 #include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowBase.h"
@@ -214,6 +215,7 @@ s32 get_window_layout_position(s32);
 void *create_item_list_window(s32, s32, u16);
 s32 get_item_count__24TShopEquipmentSellWindowFv(void *a, s32 b);
 void *create_cost_window(u16);
+extern const f32 lbl_805DC6D0;
 s32 advance_item_id_counter(u16);
 void try_buy_item(void *, void *);
 void send_6x26_unequip_item__10TObjPlayerFPvPv(void *, s32);
@@ -226,7 +228,7 @@ f32 get_scale__15TShopWindowBaseFv(void *);
 u32 create_yes_no_window(int, u16, int, int);
 s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
-void play_sound_effect(int, int, int, int);
+
 void *__dt__24TShopEquipmentListWindowFv(TShopEquipmentListWindow *arg0, s16 arg1);
 s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 s32 align_menu_entry_positions(u32);
@@ -241,7 +243,7 @@ void TShopEquipmentListWindow::display_message(const char *text, s32 flags) {
     }
 }
 
-void TShopEquipmentListWindow::vfunc_6() {
+void TShopEquipmentListWindow::vfunc_6(s32, s32) {
     struct VObj_8021B9AC_8021B974 *o = (struct VObj_8021B9AC_8021B974 *)*(void **)((s8 *)this + 0x28);
     if (o != NULL) {
         o->m4();
@@ -523,7 +525,7 @@ void TShopEquipmentListWindow::create_buy_list_windows(void *p) {
         }
         W->help = o;
         if (W->help != NULL && TLobby::is_camera_ctrl_active() > 2) {
-            ((TLobby *)(W->help))->set_position(0.75f, 0.75f);
+            ((TLobby *)(W->help))->set_position(lbl_805DC6D0, lbl_805DC6D0);
         }
         ((TWindowHelpItem *)(W->help))->set_displayed_item_colored((u32)W->recs);
     }

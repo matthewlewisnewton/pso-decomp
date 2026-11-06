@@ -27,7 +27,6 @@ char *strncpy(char *, const char *, u32);
 void *memcpy(void *, const void *, u32);
 extern char lbl_804C8954[];
 extern s32 lbl_805D49B4;
-void poll_load_status__15TAdPlayerLoadGCFl(s32, void *);
 extern char lbl_804C88C0[];
 extern char lbl_804C89BC[];
 extern char pso_system_card_filename[];
@@ -73,7 +72,7 @@ void TAdSinglePlyChrSelectGC__sub_801FBB1C(void) {
     if (TAdPlayerLoadGC::probe_and_check_card(0) != 0) {
         r = TAdPlayerLoadGC::find_card_file(0, lbl_804C88C0);
         if (r == 0 || (u32)r == 0xFFFFFF41U) {
-            poll_load_status__15TAdPlayerLoadGCFl(0, lbl_804C88C0);
+            TAdPlayerLoadGC::poll_load_status(0, lbl_804C88C0);
         }
     }
 }
@@ -83,7 +82,7 @@ void TAdSinglePlyChrSelectGC__sub_801FBB7C(void) {
     if (TAdPlayerLoadGC::probe_and_check_card(0) != 0) {
         r = TAdPlayerLoadGC::find_card_file(0, lbl_804C89BC);
         if (r == 0 || (u32)r == 0xFFFFFF41U) {
-            poll_load_status__15TAdPlayerLoadGCFl(0, lbl_804C89BC);
+            TAdPlayerLoadGC::poll_load_status(0, lbl_804C89BC);
         }
     }
 }
@@ -93,7 +92,7 @@ void TAdSinglePlyChrSelectGC::try_load_system_file() {
     if (TAdPlayerLoadGC::probe_and_check_card(0) != 0) {
         r = TAdPlayerLoadGC::find_card_file(0, pso_system_card_filename);
         if (r == 0 || (u32)r == 0xFFFFFF41U) {
-            poll_load_status__15TAdPlayerLoadGCFl(0, pso_system_card_filename);
+            TAdPlayerLoadGC::poll_load_status(0, pso_system_card_filename);
         }
     }
 }
@@ -154,7 +153,7 @@ u8 TAdSinglePlyChrSelectGC::load_and_verify_character_save(char *desc) {
     TAdSinglePlyChrSelectGC__sub_801FBC3C(data);
     saved = *(s32 *)data;
     *(s32 *)data = 0;
-    res = calc_crc32_bitwise(data, 0x194B0);
+    res = TAdSinglePlyChrSelectGC__sub_80201204(data, 0x194B0);
     strncpy(((char *)this), (char *)(data + 0x193F0), 0x10);
     strncpy(desc, (char *)(data + 0x19400), 0x10);
     TAdSinglePlyChrSelectGC::safe_free((u32)data);

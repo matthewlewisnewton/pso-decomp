@@ -1,9 +1,9 @@
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/enemy/TObjEneReconBomb.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_800F0810.h"
-#include "pso/player/BlobShadow.h"
 #include "pso/render/render_util.h"
 #include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D853C.h"
@@ -93,7 +93,7 @@ s32 fn_8031B618(Obj_8031B618 *arg0);
 int get_player_data__10TObjPlayerFi(int a0);
 u32 csnVector(void *, void *, int);
 s32 project_actor_to_ground(void *, void *, void *);
-s32 play_sound_effect(s32, void *, int, int);
+
 s32 TObjEneRecon__sub_8031C250(u32);
 s32 vec3_add_to(void *, void *);
 extern s32 lbl_805D5868;
@@ -156,8 +156,8 @@ void TObjEneReconBomb::render() {
     temp_r30 = TObjFish__sub_8001EDB0((void *)recon_bomb_bml_resource, 2);
     push_matrix();
     translate_matrix(0, (f32) (*(f32 *)((s8 *)arg0 + 0x38)), (f32) ((2.0f) + *(f32 *)((s8 *)arg0 + 0x3C)), (f32) (*(f32 *)((s8 *)arg0 + 0x40)));
-    rotate_matrix_zyx(0, (*(s32 *)&this->rotation_x), (this->rotation_y), (this->rotation_z));
-    TObjFish::set_global_param(temp_r30);
+    rotate_matrix_zyx(0, (*(s32 *)&this->rotation.pitch), (this->rotation.yaw), (this->rotation.roll));
+    set_current_texture_list((GinjaTextureList *)(temp_r30));
     draw_chunk_object((void *)bml_model);
     pop_matrix();
     push_matrix();
@@ -227,7 +227,7 @@ void TObjEneReconBomb::run_task() {
         break;
     case 3:
     default:
-        play_sound_effect(TObjEneRecobox::remap_area_sound_id(0x4003A80B), &arg0->pos, 0, 0);
+        play_sound_effect((s32)(TObjEneRecobox::remap_area_sound_id(0x4003A80B)), (const Vec *)(&arg0->pos), 0, 0);
         spawn_particle_effect_with_flags(&arg0->pos, 0x45, 0x40);
         spawn_particle_effect_with_flags(&arg0->pos, 0x46, 0x40);
         for (i = 0; i < lbl_805D5868; i++) {
@@ -247,11 +247,16 @@ void TObjEneReconBomb::run_task() {
     }
 }
 
+void *__dt__16TObjEneReconBombFv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__16TObjEneReconBomb;
+        __dt__9TObjCharaFv(arg0, 0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TObjEneReconBomb::~TObjEneReconBomb() {
-
-}
-extern "C" {
 
 extern const char *TObjEneReconBomb__name;
 
@@ -270,10 +275,10 @@ u8 *TObjEneReconBomb__ct(TObjEneReconBomb *ene_recon_bomb, s32 arg1, s32 arg2, s
     *(f32 *)((s8 *)ene_recon_bomb + 0x354) = TObjEneRecon__sub_8031C2BC(ene_recon_bomb->m_334);
     ene_recon_bomb->m_358 = calc_scaled_value__12TObjEneReconFv(ene_recon_bomb->m_334);
     temp_r5 = (unsigned char *) (ene_recon_bomb->m_up);
-    ene_recon_bomb->rotation_y = (s32) *(s32 *)((s8 *)temp_r5 + 0x60);
+    ene_recon_bomb->rotation.yaw = (s32) *(s32 *)((s8 *)temp_r5 + 0x60);
     VecCopy__FP3VecPC3Vec((u8 *)ene_recon_bomb + 0x38, (void *)arg3, (int)temp_r5);
-    temp_f31 = sin_table_lookup(ene_recon_bomb->rotation_y);
-    temp_f1 = cos_table_lookup(ene_recon_bomb->rotation_y);
+    temp_f31 = sin_table_lookup(ene_recon_bomb->rotation.yaw);
+    temp_f1 = cos_table_lookup(ene_recon_bomb->rotation.yaw);
     *(f32 *)((s8 *)ene_recon_bomb + 0x33C) = (f32) (*(f32 *)((s8 *)ene_recon_bomb + 0x354) * temp_f31);
     *(f32 *)((s8 *)ene_recon_bomb + 0x340) = (f32) (0.0f);
     ene_recon_bomb->m_344 = (f32) (*(f32 *)((s8 *)ene_recon_bomb + 0x354) * temp_f1);

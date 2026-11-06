@@ -10,12 +10,12 @@ struct TObjDFDemo2 : public TObjBase {
     virtual void run_task();
     u8 unk_90[0x18];
     u32 m_a8;
-    void* m_ac;
-    u8 _padB0[0x8];
+    Vec camera_position;
     u32 m_b8;
     u32 m_bc;
     u8 unk_C0[0x4];
 };
 
 typedef char TObjDFDemo2_size[sizeof(TObjDFDemo2) == 0xC4 ? 1 : -1];
+typedef char TObjDFDemo2_camera_position_offset[offsetof(TObjDFDemo2, camera_position)==0xac?1:-1];
 #endif

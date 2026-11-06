@@ -1,8 +1,10 @@
+struct NJS_OBJECT;
 #ifndef PSO_PLAYER_TOBJPLAYER_H
 #define PSO_PLAYER_TOBJPLAYER_H
 
 #include "types.h"
 #include "pso/player/PhotonBlastGauge.h"
+#include "pso/player/TechniqueCastState.h"
 #include "pso/player/PlayerClassFlags.h"
 #include "pso/player/PlayerScaleState.h"
 #include "pso/player/RenderMaterialState.h"
@@ -13,7 +15,14 @@ struct TItemData;
 struct player_stats;
 
 struct TItem;
+struct TItemList;
+class TPlyItem;
 struct TechniqueContactList;
+struct NJS_MOTION;
+struct NJS_OBJECT;
+
+struct TObjPlayer;
+extern "C" s32 try_spend_actor_meseta(TObjPlayer *player, s32 amount);
 
 // The frames a player stays protected from hits (after getting up, being
 // hurt, or a mag's invincibility).
@@ -25,7 +34,6 @@ struct ProtectionTimer {
 };
 
 struct TObjPlayer : public TObjChara {
-    TObjPlayer(TObject *arg1, void *arg2);
     virtual ~TObjPlayer();
     virtual void reset_motion_fields();
     virtual const char *get_name();
@@ -33,7 +41,6 @@ struct TObjPlayer : public TObjChara {
     void setup_radar_marker(void *, void *);
     void fire_spread_shot(void *);
     void draw_weapon_if_not_hidden(void *);
-    void draw_chunk_vertices_cached(void *);
     void draw_actor_model(void *);
     s32 destroy_char_data(int, s16);
     s32 create_shoot_model(int, int, int, f32);
@@ -92,7 +99,7 @@ struct TObjPlayer : public TObjChara {
     void sub_801BD240();
     u8 sub_801A1DDC();
     void vfunc_77();
-    void vfunc_76(f32 charge);
+    void vfunc_76(f32 amount);
     void vfunc_75(f32);
     int vfunc_67(f32 damage_scale);
     void render_shadows();
@@ -103,7 +110,7 @@ struct TObjPlayer : public TObjChara {
         u8 bindings[2][4][4];
     };
 
-    u32 find_revival_item();
+    TItemList *find_revival_item();
     void request_inventory_item(TItemData* item);
     ActionPalette* select_action_palette(int secondary);
     s32 add_meseta(s32 amount);
@@ -155,7 +162,12 @@ struct TObjPlayer : public TObjChara {
     u8 unk_3D4[0x4];
     s32 m_3d8;
     s32 m_3dc;
-    u8 unk_3E0[0x4];
+    // sync_current_area stores the floor area here. render_model_and_set_attach_points
+    // also writes a node position through unk_3E0, over the following words.
+    union {
+        s32 current_area;
+        u8 unk_3E0[0x4];
+    };
     s32 current_floor;
     u8 unk_3E8[0x4];
     s32 m_3ec;
@@ -172,7 +184,10 @@ struct TObjPlayer : public TObjChara {
     void* m_41c;
     u8 unk_420[0x4];
     s32 m_424;
-    u8 technique_levels[0x84];  // set/get_cast_technique_level's table
+    union {
+        u8 technique_levels[0x84];
+        TechniqueCastState technique_state;
+    };
     PhotonBlastGauge photon_blast_gauge;
     ActionPalette action_palettes[2];
     u8 unk_548[0x4];
@@ -240,7 +255,7 @@ struct TObjPlayer : public TObjChara {
     u32 m_8b4;
     u8 unk_8B8[0x444];
     s32 m_cfc;
-    void* inventory_objects;
+    TPlyItem *inventory_objects;
     void *equipped_items[13];  // by equip slot; read through get_equipped_item
     u8 unk_D38[0x10];
     f32 m_d48;
@@ -264,7 +279,7 @@ struct TObjPlayer : public TObjChara {
     void clear_counter();
     void set_cancel_flag();
     static void reset_effect_count();
-    static void step_cutscene_frame();
+    static void step_cutscene_frame(NJS_OBJECT *);
     static void free_resources();
     void enter_state_8();
     void tick_freeze_state();
@@ -281,7 +296,6 @@ struct TObjPlayer : public TObjChara {
     void drain_owner_hp_fraction(f32 farg0);
     void call_callback_1ec(s32 arg1, s32 arg2);
     void copy_wall_polygon(u8 *arg1);
-    static void copy_matrix(u32 arg0, u32 arg1);
     static s32 run_next_key_callback(s32 arg0);
     static s32 sample_next_quaternion_key(s32 arg0);
     void interpolate_motion_key(s32 arg1, s32 *arg2, f32 farg0);
@@ -298,7 +312,6 @@ struct TObjPlayer : public TObjChara {
     void draw_shadow_quad(s32 arg1, s32 flags);
     void draw_tri_fan_3d(s32 n, u32 flags);
     static void render_tree(void *arg0);
-    void draw_compass_sprite(s32 idx, s32 color, s32 flags, f32 z);
     void init_vec_record();
     s32 get_entrance_id();
     void copy_efb_to_texture();
@@ -317,11 +330,7 @@ struct TObjPlayer : public TObjChara {
     static void*get_pmt_record_by_index(int i);
     static bool is_hit_receivable_target(s32 arg0, u32 arg1);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
-    void refresh_lobby_state();
-    int query_lobby_state();
-    s32 is_action_available();
     void draw_trail_strip(void *arg1, s32 arg2);
-    f32 calc_photon_blast_power(s32 arg1, f32 farg0);
     static s32 is_any_teammate_in_state();
     static void set_shared_flag(int a0);
     static void set_shared_count(int a0);
@@ -385,20 +394,44 @@ struct TObjPlayer : public TObjChara {
     void bswap_stats();
     static void clear_target_ref();
     static void create_breakup_model();
+    void *deleting_dtor(s16 arg1);
     static s32 calc_random_scaled();
     static f32 get_scale_factor();
     static int get_battle_param(int a0);
     s32 check_flag(s32 arg1);
+    void release_subobjects();
+    int draw_fading_motion();
+    void update_both();
     static void sync_player_globals();
     void*get_position_ptr();
     void clear_header_struct();
-    void clear_velocity_vectors();
     static void set_com_card_window(s32 arg0);
-    static s32 check_demo_mode();
     static s32 is_locally_controlled(void *player);
+    // Tells the server one inventory item went away. Defined in
+    // TObjPlayer_801AF2F0.cpp; the int widths are what the symbol encodes.
+    static void send_6x29_delete_item(void *player, int item_id, int count);
+    // Re-equips the items a saved character was wearing. Defined in
+    // TObjPlayer_801AF2F0.cpp; TObjPlayer_801BCF04.cpp used to declare the
+    // count u8 and the records an s32.
+    static void bind_saved_inventory_equipment(void *player, void *records, int count);
+    // Clears an inventory list in place and hands it back. Defined in
+    // TObjPlayer_801BE778.cpp.
+    static void *init_inventory_list(void *list);
+    // True on either Pioneer 2 floor. Defined in TObjPlayer_801AF2F0.cpp,
+    // which returned u8; every other unit declares it s32.
+    static s32 is_key_machine_ready();
+    // Reads the player's 0x800000 action flag. Defined in
+    // TObjPlayer_801AF2F0.cpp, which dropped the result on the floor.
+    static s32 check_flag_800000(void *player);
+    // Re-creates one saved item and equips it if its slot is free.
+    // Defined in TObjPlayer_801AF2F0.cpp.
+    static void equip_saved_item_if_slot_empty(void *player, void *record);
     static TObjPlayer *get_player_data(int index);
     int queue_destruction();
     s32 test_action_mask(s32 arg1);
+    s32 reset_volopt_state();
+    void clamp_and_set_unit_value(u8 level, s32 technique);
+    void run_action_state_phase(s16 phase, s32 arg);
     static void free_singleton();
     static void init_render_target_singleton();
     static void setup_tev_stage();
@@ -412,10 +445,6 @@ struct TObjPlayer : public TObjChara {
     static f32 get_end_text_value();
     int is_inactive();
     static void set_visibility_flags_by_count(void *arg0, s32 arg1);
-    void run_death_sequence();
-    int reset_enemy_state();
-    void update_move_to_target();
-    void init_position_vectors();
     void trigger_targets_action();
     s16 get_field_2c8();
     void set_flag_start_effect();
@@ -432,13 +461,11 @@ struct TObjPlayer : public TObjChara {
     s32 get_action_priority();
     void draw_model_no_fog();
     void update_invincibility();
-    static void update_effect_sequence();
+    static void update_effect_sequence(NJS_OBJECT *);
     static void toggle_particle_effect();
     static void create_dead_spot(s32 arg0, s32 arg1, f32 farg0);
     static void spawn_effect_f8(s32 arg1, s32 arg2);
-    static void set_field_e4(s32 arg1, s32 arg2);
     void trigger_dell_biter_events();
-    void spawn_ground_effect(s32 arg1);
     void spawn_effect_at_ground(s32 arg1);
     static void apply_effect_variant_a(s32 arg0, s32 arg1);
     static void apply_effect_variant_b(s32 arg0, s32 arg1);
@@ -461,9 +488,11 @@ struct TObjPlayer : public TObjChara {
     s32 is_body_collision_inactive();
     static int get_slot_value(void *slots, int slot);
     void play_sound_if_on_floor(s32 sound_id);
-    u32 pickup_item(TItem *item);
+    TItemList *pickup_item(TItem *item);
     s32 can_pickup_item_by_id(TItem *item);
     s32 can_pickup_item(TItemData *data);
+    // 0 when the battle rules forbid equipping the item with item_id.
+    s32 check_switch_available(s32 item_id);
     static u8 find_adjacent_matching_slot(u8 arg0);
     static u8 get_next_matching_special_index(u8 arg0);
     static void free_item_globals();
@@ -495,48 +524,83 @@ struct TObjPlayer : public TObjChara {
     void draw_status_icons(void* a1, void* a2);
     void set_model_param(s16 v);
     void set_model_id(s16 v);
-    s16 is_status_subsystem_ready();
+    int is_status_subsystem_ready();
     void*get_extended_state();
-    f32 query_extended_state();
+    int query_extended_state();
     void test_flag30_bit0x100000();
     void set_action_type(s16 v);
     void*get_state_ptr();
     static int get_player_list();
+    void cast_foie_effect();
+    void release_container_if_active();
+    void *enter_state_804A0BC0();
     s32 get_tp();
     void set_effect_state(s32 v);
+    void notify_tentacle_if_mode1();
     void set_atp(s16 v);
+    void cast_tech_gibarta();
+    void notify_container_if_mode1();
+    void update_twice();
+    void *init_substate_a();
+    void cast_foie();
+    void update_effect_if_state1();
+    void draw_mag();
+    void update_1f8_if_ready();
     void*init_state();
+    void launch_double_cannon_extra();
+    void play_side_step_particle();
     s16 get_stage_strike_count();
+    void apply_11e618_twice();
     void *init_and_configure();
     void draw_faust_loaded_projectile();
     void *init_state_vt2678();
+    void apply_shield_scale_to_unit();
+    void handle_tentacle_state_2();
+    void start_shield_action();
+    void notify_container_change();
     void cast_jellen_zalure();
     void *init_substate_b();
     void create_foie_effect();
+    static void spawn_cane_effects_if_ready(s32 arg0);
     static void notify_hit_target(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+    void handle_tunnel_state_0();
     void start_srank_regen_timer();
+    void update_photon_chair_sit();
     static s32 is_rand_below_threshold();
+    void update_area_effect_objects();
+    void apply_conveyor_effect();
+    void apply_conveyor_move();
+    void check_shield_combo();
     s32 get_hp_by_flag();
     void *construct_weapon_variant(s32 arg1, void *arg2);
     void *init_state(s32 arg1, void *arg2);
+    void release_container_if_positive();
+    void notify_container_if_mode0();
+    void create_shield();
     void trigger_megid_special();
     void update_weapon_kill_count();
     s16 get_kill_count();
+    void setup_item_render();
     void apply_frame_camera_shake();
     void update_approach_value();
+    void apply_scale_effect();
     void cast_shifta_deband();
     void *init_variant_a();
+    void update_boss2tunnel_move();
+    void update_boss2tunnel();
     void *init_from_item(void *arg1, void *arg2);
+    void handle_move_input();
     void *initialize_effect_object();
+    void handle_container_state_3();
+    void set_temp_flag10_and_update();
+    void draw_model();
     void draw_if_visible();
     static void apply_status_effect(s32 a);
-    // Enters (target, body) in the hit pair table unless it is already there.
-    static void add_unique_pair_entry(TObjCollidable *target, s32 body);
+    static void add_unique_pair_entry(u32 arg0, s32 arg1);
     static void clear_item_table();
     static void init_all_slots();
     static s32 check_flag_pair(s32 arg0, s32 arg1);
     static s32 check_flags(s32 arg0, s32 arg1);
-    void update_collisions();
     static void reset();
     static void set_camera_mode(s32 arg0);
     void reset_fields();
@@ -545,7 +609,7 @@ struct TObjPlayer : public TObjChara {
     s16 get_hp();
     u16 get_section_id();
     void set_field_2(s16 v);
-    void set_type(s16 v);
+    void set_type(u16 v);
     u16 get_entity_type();
     static void destroy_global_buffer();
     static void destroy_buffers();
@@ -580,7 +644,9 @@ struct TObjPlayer : public TObjChara {
     static void free_shared_data();
     static void finalize_shared();
     static void init_shared();
-    static u8 check_camera_mode();
+    // Every caller outside TObjPlayer_801BE1C0.cpp declares this s32; the
+    // body keeps the (u8) narrowing the original emits.
+    static s32 check_camera_mode();
     int is_android();
     int is_newman();
     int check_stat_flag_41c();
@@ -604,8 +670,8 @@ struct TObjPlayer : public TObjChara {
     void set_flag_200000();
     int check_flag_4();
     void*set_invisible();
-    void clear_flag_4000_callback();
-    void set_flag_4000();
+    int clear_flag_4000_callback();
+    int set_flag_4000();
     int clear_flag_4000();
     void set_battle_flag(s32 v);
     s32 get_anim_id();
@@ -663,6 +729,13 @@ struct TObjPlayer : public TObjChara {
     void set_technique_id(s16 v);
     static int get_item_count_max();
     void *init();
+    // The animation the player returns to after unequipping, from its
+    // current action at +0x326.
+    static s16 unequip_by_field326(void *player);
+    // Drops one item: the item pool inside the owner's TPlyItem, the floor
+    // record, the owner, the TItemData to copy and the item id. The original
+    // declared all five as int, so the callers hand it casts.
+    static void insert_item_node(int pool, int floor, int owner, int data, int id);
     void set_field4(s32 v);
     void*init_c2098_return_self();
     u8 get_field_5();
@@ -935,22 +1008,9 @@ struct TObjPlayer : public TObjChara {
     int is_flag32_clear();
     int get_field_340(int _w1);
     static int check_status_flag_128(void* p);
-    int run_and_get_result(int a1);
-    int run_state_query(int a1);
-    s32 update_inventory_item(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
-    void find_first_inventory_entry(int a1);
-    void destroy_subobjects(int a1);
-    void destroy_subobjects_recursive();
-    void start_inventory_update(int a1);
-    void count_owned_items();
-    void collect_item_owners_recursive();
-    void collect_alive_owners();
-    void unequip_invalid_items_recursive();
-    void count_items_recursive();
-    void *find_inventory_item_matching_data();
-    void *find_inventory_item_by_field_d8();
-    s32 get_owner_if_alive();
-    void set_field_1c(s32 v);
+    void unequip_item(TItem *item);
+    // Fills out with the inventory export records; 0 without an inventory.
+    s32 query_state_if_present(void *out);
     static s32 decrement_timer(s32 *arg0);
     static void reset_particle_ctrl(s32 *arg0);
     void*init_sub_objects();
@@ -988,7 +1048,7 @@ struct TObjPlayer : public TObjChara {
     void validate_and_clear_slot();
     static u8 is_invalid_slot(u8 arg0);
     static u8 is_valid_technique_id(s16 arg0);
-    static u8 is_valid_technique_slot(u8 arg0);
+    static s32 is_valid_technique_slot(u8 arg0);
     void set_tech_level(s16 arg1);
     void reset_slots();
     void set_field_1c(f32 v);
@@ -1008,7 +1068,6 @@ struct TObjPlayer : public TObjChara {
     void*get_pos_ptr();
     void *destroy_technique_effect_resources(s16 arg1);
     static void create_tec_zarua(void *arg0, void *arg1, void *arg2, void *arg3);
-    void add_status_line(u8 arg1, u32 arg2, s32 arg3);
     static void clear_state_if_flag80(s32 arg0);
     static void setup_projection_texture(s32 arg0, s32 arg1, s32 arg2);
     void reset_lobby_subobject();
@@ -1063,6 +1122,7 @@ struct TObjPlayer : public TObjChara {
     int check_flag_at_4();
     void set_field_0(s16 v);
     static int get_max_children(void*);
+    void launch_guardianna_colliders();
     static void alloc_and_init(s32 arg0, s32 arg1, s32 arg2);
     static void create_and_init_effect(s32 arg0, u32 *arg1, s32 arg2);
     void destroy_effect_objects();
@@ -1075,6 +1135,7 @@ struct TObjPlayer : public TObjChara {
     s32 get_plot_state();
     static void notify_all_battle_players();
     static void update_4p_battle_ctrls();
+    void dispatch_by_state();
     s32 get_target_field_1c();
     f32 get_attached_float_24();
     s32 try_ground_action(s32 arg1);
@@ -1103,10 +1164,6 @@ struct TObjPlayer : public TObjChara {
     void spawn_hit_effect(s32 arg1, s32 arg2, s32 arg3);
     void spawn_mirror_pair(void *arg1, s32 arg2, s32 arg3);
     void handle_hit_effect(s32 arg1, s32 arg2, s32 arg3);
-    static void process_callback_list(s32 arg0);
-    void draw_node_tree(void *arg1);
-    void draw_node_tree_if_visible();
-    void apply_with_callback(s32 arg1, f32 farg0);
     static s32 conditional_delete_ex(s32 arg0, s16 arg1);
     static void create_cane_if_ready(s32 arg0, void *position);
     static void create_cleanup_object(void *arg0);
@@ -1119,7 +1176,6 @@ struct TObjPlayer : public TObjChara {
     static void copy_gauge_warn_vec();
     static void free_global_805D6FB8();
     static void alloc_and_init_object_b4();
-    void set_render_rect(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
     void init_record_array(s32 arg1);
     static s32 find_table_index_by_id(u32 arg0);
     static s32 find_record_index(u32 arg0, u32 arg1);
@@ -1142,9 +1198,10 @@ struct TObjPlayer : public TObjChara {
     static void set_global_state(s32 arg0);
     static void set_global_7778(s32 arg0);
     static void update_render_state();
-    void collect_owner_fields_recursive();
     static void set_global_color_rgba(u32 v);
     static void set_global_color_rgba_alt_b(u32 v);
+    void cast_gifoie();
+    void create_pro_armor();
     void update_chara_making_if_state3();
     void update_chara_making();
     void draw_model_with_arg(void* a1);
@@ -1157,12 +1214,11 @@ struct TObjPlayer : public TObjChara {
     static u8 *create_vtable_804A08B8(u8 *arg0);
     static u8 *create_substate(u8 *arg0);
     static u8 *create_enter_state_804A0BC0(u8 *arg0);
-    // A weapon shot callback: news the shoot model that draws the shot.
-    static int create_item_shoot_model(int weapon, int origin, int end, f32 frames);
     static u8 *create_vtable_804a1288(u8 *arg0);
     static u8 *create_obj_80122C2C(u8 *arg0);
     static u8 *create_bringer_effect(u8 *arg0);
     static u8 *create_twin_chakram(u8 *arg0);
+    void spawn_particle_at_icon();
     static u8 *create_state_35(u8 *arg0);
     static u8 *create_set_vtable_state(u8 *arg0);
     static u8 *create_state_80125154(u8 *arg0);
@@ -1206,7 +1262,6 @@ struct TObjPlayer : public TObjChara {
     static void alloc_shared_buffers();
     static void destroy_char_data_array();
     static s8 get_rule_field_0();
-    void sort_by_key();
     static void set_slot_type_state(s32 arg0, s32 arg1, s16 arg2, s16 arg3);
     void set_all_technique_levels(void *arg1);
     void copy_all_technique_entries(void *arg1);
@@ -1218,9 +1273,7 @@ struct TObjPlayer : public TObjChara {
     void create_party_effects(s32 id);
     u16 find_first_valid_target_id();
     void process_all_elements();
-    static void mult_vec_array(u32 arg0, s32 arg1);
     static void invert_matrix_in_place(u32 arg0);
-    static void concat_matrix(u32 arg0, u32 arg1);
     void concat_quaternion_rotation();
     void apply_quat_rotation(f32 farg0);
     static s32 is_gvm_load_ok();
@@ -1233,13 +1286,13 @@ struct TObjPlayer : public TObjChara {
     void draw_motion_node_list();
     static void resolve_render_keys(u32 **src, u32 **dst);
     static void advance_render_counters();
-    static void notify_fish_obj(void* a0);
+    static NJS_MOTION *notify_fish_obj(s32 id);
     static void draw_effect();
+    static NJS_OBJECT *queue_boss_effect(s32 id);
     void draw_trail_pair();
     s32 apply_area_attack_hits(u8 *arg1, s32 arg2, u32 arg3, f32 farg0);
     void update_aim_and_fire();
     void set_flag_and_notify();
-    static void update_particle_by_phase();
     void draw_blob_shadows();
     void set_flag_8_if_check_passes();
     void fill_status_info(void *arg1);
@@ -1285,6 +1338,8 @@ struct TObjPlayer : public TObjChara {
     static s32 check_technique_castable(s32 arg0);
     void sync_current_floor();
     void sync_current_area();
+    s32 get_current_area();
+    s32 is_volopt_phase_final();
     static int get_key_machine_global_state(void* p);
     void set_flag_drop_weapon_on_death();
     static void disable_drop_weapon_on_death(void *arg0);
@@ -1393,6 +1448,7 @@ struct TObjPlayer : public TObjChara {
     void request_item_drop(s32 arg1, s32 arg2);
     s32 count_items_of_type(s8 arg1, s8 arg2, s8 arg3);
     void dispatch_action(s32 arg1, s32 arg2);
+    void dispatch_input(s32 *item_ids, s32 count);
     s32 can_inventory_accept_item(u8 *item);
     s32 update_target_lock();
     void use_current_item();
@@ -1485,10 +1541,6 @@ struct TObjPlayer : public TObjChara {
     static s32 try_camera_action(s32 arg0, s32 arg1);
     void bswap_entry_list();
     void reset_movement_state();
-    int count_matching_items(int a1);
-    int apply_shop_judgment(int a1);
-    void set_flag_and_update(int a1);
-    s32 count_items_by_id(s32 arg1);
     static void update_party_cursors(s32 arg0, s32 arg1);
     void init_action_config();
     s32 can_use_palette_action_for_entry(u32 obj);
@@ -1503,7 +1555,6 @@ struct TObjPlayer : public TObjChara {
     void build_shop_item_list();
     void reset_action_palette();
     u8 *create_state_513();
-    int do_action_447();
     static void set_radar_marker_pos(int a0, void* a1);
     static void spawn_item_from_arg(s32 arg0, s32 arg1);
     u8 *init_breakup_pieces(void *arg1, s32 arg2);
@@ -1514,11 +1565,13 @@ struct TObjPlayer : public TObjChara {
     u8 *create_mode_floats_state();
     u8 *create_vtable_1f8_state();
     static s32 try_add_item_count(s32 arg0, s32 arg1, s32 arg2, u8 arg3);
+    void rotate_by_player_list();
     static void spawn_particle_at_entity_slot(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     u8 *create_rappys_fan();
     static void spawn_fire_explosion_for_item(s32 arg0, s32 arg1);
     static void spawn_fire_explosion_at_item(s32 arg0, s32 arg1);
     static s32 spawn_fire_explosion(u32 a0, s32 a1);
+    void pose_gi_gue_bazooka_nodes();
     static u8 *create_gi_gue_bazooka(s32 arg0);
     static void finish_quest_thread();
     static void destroy_static_array();
@@ -1566,6 +1619,7 @@ struct TObjPlayer : public TObjChara {
     void revive_or_spawn_marker();
     static void spawn_dead_spot(s32 point, s32 selector, s32 delay, f32 farg0);
     void update_homing_shot();
+    void update_shield_effect();
     static s32 find_or_alloc_slot(u32 arg0);
     void apply_luck_reward(u8 arg1);
     void add_dfp_material(u8 arg1);
@@ -1606,4 +1660,5 @@ typedef char PlayerHairWaitOffset[(offsetof(TObjPlayer, m_cfc) == 0xCFC) ? 1 : -
 typedef char PlayerInventoryObjectOffset[(offsetof(TObjPlayer, inventory_objects) == 0xD00) ? 1 : -1];
 
 typedef char TObjPlayer_size[sizeof(TObjPlayer) == 0xDB8 ? 1 : -1];
+#include "pso/player/TechniqueCastAliases.h"
 #endif

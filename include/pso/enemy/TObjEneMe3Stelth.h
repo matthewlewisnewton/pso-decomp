@@ -2,11 +2,11 @@
 #define PSO_ENEMY_TOBJENEME3STELTH_H
 
 #include "types.h"
+#include "pso/misc/MaterialOpacityFade.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 
 struct TObjEneMe3Stelth : public TObjEneDD_ST {
     virtual ~TObjEneMe3Stelth();
-    virtual s32 vfunc_104(f32);
     void handle_direct_attack(void *, void *, int, void *);
     virtual void vfunc_88();
     virtual void vfunc_95();
@@ -38,14 +38,11 @@ struct TObjEneMe3Stelth : public TObjEneDD_ST {
     void vfunc_28();
     void render();
     void run_task();
-    u8 unk_374[0x2C];
-    f32 m_3a0;
-    u32 m_3c0;
-    u8 _pad3C4[0x8];
-    u32 m_3cc;
-    u32 m_3d0;
-    u8 unk_3D4[0x30];
+    u8 unk_3C0[0x28];
     void* m_404;
+    u8 _padBeforeFade[0x18];
+    MaterialOpacityFade fade;
+    static void destroy_resources();
     s32 try_spawn_ground_effect(s32 arg1);
     void play_hit_effect();
     static void spawn_attack(s16 arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0, f32 farg1);
@@ -63,9 +60,6 @@ struct TObjEneMe3Stelth : public TObjEneDD_ST {
     void state_chase(s32 arg1);
 };
 
-extern "C" {
-void *TObjEneMe3Stelth__ct(void *arg0);
-void TObjEneMe3Stelth__sub_800F0C90(u8 *arg0);
-}
+typedef char TObjEneMe3StelthFadeOffset[offsetof(TObjEneMe3Stelth, fade) == 0x404 ? 1 : -1];
 
 #endif

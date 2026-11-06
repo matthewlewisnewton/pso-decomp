@@ -30,7 +30,7 @@ struct Ent_801F3A80 {
 extern "C" {
 void convert_quest_object_rows(struct QuestObjRow_801F3AD8 *rows, u32 byte_size);
 extern s16 quest_floor_designations[];
-s32 TLobby__data_805D5EE0;
+extern s32 TLobby__data_805D5EE0;
 s32 read_disc_file(s32, s32);
 s32 alloc__22TQuestVmDownLoadServerFUl();
 s32 update_lobby_scene__6TSceneFv();
@@ -227,7 +227,7 @@ loop_1:
         bswap_32((u32 *)&spC);
         bswap_32((u32 *)&sp8);
         if ((sp14 == 3) && (spC == arg0)) {
-            return TLobby::add_player(spC, (s32)(var_r31 + 0x10), sp8) != 0;
+            return TLobby::add_player(spC, var_r31 + 0x10, sp8) != 0;
         }
         if (sp14 != 0) {
             var_r31 += sp10;

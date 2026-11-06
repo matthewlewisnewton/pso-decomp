@@ -1,10 +1,11 @@
+#include "pso/math/MatrixCopy.h"
 #include "types.h"
 #include "pso/system/GinjaModelQueue.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/math/MatrixTransforms.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TLobby.h"
-#include "pso/math/AngleLookup.h"
 
 struct Q_803D98E4 { f32 x, y, z, w; };
 
@@ -25,7 +26,7 @@ struct Tbl_803D9E38 { u8 pad[8]; Ent_803D9E38 arr[1]; };
 extern u32 matrix_stack_base;
 extern u32 current_matrix;
 extern "C" {
-f32 PSMTXConcat(int, int, int);
+void PSMTXConcat(const f32 (*)[4], const f32 (*)[4], f32 (*)[4]);
 extern u32 matrix_stack_limit;
 void PSMTXQuat(void *, void *);
 s32 fn_803DA12C(u8 *, s32, s32, s32);
@@ -45,26 +46,28 @@ void rotate_matrix_x(Matrix34* matrix, s32 angle) {
         if (matrix == NULL) selected = (Matrix34*)current_matrix;
         else selected = matrix;
         PSMTXRotRad(&rotation, 'x', (f32)(lbl_805E0F48 * (f64)angle));
-        PSMTXConcat((int)selected, (int)&rotation, (int)selected);
+        PSMTXConcat((const f32 (*)[4])selected, (const f32 (*)[4])&rotation, (MtxP)selected);
     }
+}
+
 }
 
 #pragma push
 #pragma scheduling off
-void TObjPlayer::concat_matrix(u32 arg0, u32 arg1) {
-    u32 elements;
-    u32 var_r4;
-    elements = arg0;
-    var_r4 = arg1;
-    if (elements == 0U) {
-        elements = current_matrix;
+extern "C" void concat_matrix(MtxP dest, const f32 (*source)[4]) {
+    MtxP elements = dest;
+    const f32 (*selected_source)[4] = source;
+    if (elements == NULL) {
+        elements = (MtxP)current_matrix;
     }
-    if (var_r4 == 0U) {
-        var_r4 = current_matrix;
+    if (selected_source == NULL) {
+        selected_source = (MtxP)current_matrix;
     }
-    PSMTXConcat(elements, var_r4, elements);
+    PSMTXConcat(elements, selected_source, elements);
 }
 #pragma pop
+
+extern "C" {
 
 #pragma push
 #pragma peephole off
@@ -81,13 +84,9 @@ void TCameraCtrl::concat_matrix(u32 arg0, u32 arg1) {
     if (var_r4 == 0U) {
         var_r4 = current_matrix;
     }
-    PSMTXConcat(var_r4, elements, elements);
+    PSMTXConcat((const f32 (*)[4])var_r4, (const f32 (*)[4])elements, (MtxP)elements);
 }
 #pragma pop
-
-asm f32 normalize_vector(Vec *v) {
-#include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"
-}
 
 #pragma push
 #pragma scheduling off
@@ -96,7 +95,7 @@ s32 push_matrix_from(void *src) {
     if (next > matrix_stack_limit) {
         return 0;
     }
-    ((TLobby *)next)->move_data((src == 0) ? (void *)current_matrix : src, 0x30);
+    move_data((void *)next, (src == 0) ? (void *)current_matrix : src, 0x30);
     current_matrix = next;
     return 1;
 }
@@ -115,10 +114,6 @@ s32 pop_matrices(s32 arg0) {
 }
 #pragma pop
 
-asm void transform_point_by_current_matrix(const f32 *src, Vec *dst) {
-#include "orig_asm/pso/unk/text_803D96A8/transform_point_by_current_matrix.inc"
-}
-
 void TObjPlayer::concat_quaternion_rotation() {
     f32 *arg0 = (f32 *)this;
     u8 sp18[0x30];
@@ -128,7 +123,7 @@ void TObjPlayer::concat_quaternion_rotation() {
     q.y = arg0[2];
     q.z = arg0[3];
     PSMTXQuat(sp18, &q);
-    PSMTXConcat(current_matrix, (int)sp18, current_matrix);
+    PSMTXConcat((const f32 (*)[4])current_matrix, (const f32 (*)[4])sp18, (MtxP)current_matrix);
 }
 
 void TObjPlayer::apply_quat_rotation(f32 farg0) {
@@ -140,22 +135,7 @@ void TObjPlayer::apply_quat_rotation(f32 farg0) {
     q.y = arg0[1];
     q.z = arg0[2];
     PSMTXQuat(sp18, &q);
-    PSMTXConcat(current_matrix, (int)sp18, current_matrix);
-}
-
-// 0.0f in .sdata, read by the assembly below (not yet split into this unit).
-extern f32 lbl_805D46B8;
-
-asm void rotate_vector_by_current_matrix(const Vec *src, Vec *dst) {
-#include "orig_asm/pso/unk/text_803D96A8/rotate_vector_by_current_matrix.inc"
-}
-
-asm void rotate_matrix_by_node_angles(const s32 *ang, u32 zxy) {
-#include "orig_asm/pso/unk/text_803D96A8/rotate_matrix_by_node_angles.inc"
-}
-
-asm s32 push_matrix(void) {
-#include "orig_asm/pso/unk/text_803D96A8/push_matrix.inc"
+    PSMTXConcat((const f32 (*)[4])current_matrix, (const f32 (*)[4])sp18, (MtxP)current_matrix);
 }
 
 #pragma push
@@ -170,14 +150,6 @@ s32 pop_matrix(void) {
     return 1;
 }
 #pragma pop
-
-asm void scale_current_matrix(const f32 *v) {
-#include "orig_asm/pso/unk/text_803D96A8/scale_current_matrix.inc"
-}
-
-asm void post_translate_matrix(const f32 *v) {
-#include "orig_asm/pso/unk/text_803D96A8/post_translate_matrix.inc"
-}
 
 #pragma push
 #pragma scheduling off
@@ -200,7 +172,7 @@ u32 *find_gvrt_texture_chunk(TLobby *lobby, u32 *arg1, u32 *arg2) {
         TObjPlayer__sub_803D9C60(&tag);
         switch (tag) {
         case 0x54525647:
-            lobby->move_data(p + 2, 8);
+            move_data(lobby, p + 2, 8);
             return p + 4;
         case 0x58494247: {
             u32 len;

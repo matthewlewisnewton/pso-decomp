@@ -2,13 +2,15 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/memory.h"
 #include "pso/item/TUnk_804C4480.h"
-
-TItemList::~TItemList() {}
+#include "pso/player/TUnk_804B6C24.h"
 
 #include "types.h"
 #include "pso/TObject.h"
 
 extern "C" {
+void *__dt__7TObjectFv(void *, int);
+void __dl__7TObjectFPv(void *);
+extern s32 __vt__9TItemList[];
 void TItemList__sub_801D5A0C(s32 *arg0);
 void TItemList__sub_801D5A64(void* p);
 u8 *TItemList__sub_801D5868(s32, s8);
@@ -23,7 +25,6 @@ void TItemList__sub_801D59DC(void* p);
 void *TItemList__sub_801D5B10(void *arg0, s16 arg1);
 void *__dt__9TItemListFPvs(void *arg0, s16 arg1);
 void* reset_position__9TItemListFPv(void* a0);
-s32 check_value_equals__13TUnk_804B6C24Fl(s32, s32);
 
 void TItemList__sub_801D59DC(void* p) { *(s32*)((char*)p + 0x0) = 2; }
 }
@@ -53,11 +54,11 @@ void TUnk_804C4480::sub_801D5A70() {
     copy_position__9TItemListFPv(TItemList__sub_801D598C(*(s32 *)(arg0 + 0x54), ((s8)((TItemList *)arg0)->get_item_count())), ((s32)get_ptr_0x44__9TItemListFPv(arg0)));
 }
 
-u8 TItemList::is_item_valid(s32 arg0) {
+s32 TItemList::is_item_valid(TItemList *node) {
     int var_r31;
 
     var_r31 = 0;
-    if ((check_value_equals__13TUnk_804B6C24Fl(arg0, TItemList__name) != 0) && (((TObject *)arg0)->all_parents_unqueued_for_destruction() != 0)) {
+    if ((((TUnk_804B6C24 *)node)->check_value_equals(TItemList__name) != 0) && (node->all_parents_unqueued_for_destruction() != 0)) {
         var_r31 = 1;
     }
     return (u8)var_r31;
@@ -122,4 +123,22 @@ u8 *TItemList__sub_801D5CF8(u8 *arg0) {
     __construct_array(arg0 + 4, TObjPlayer__sub_801C2098, 0, 4, 8);
     *(s32 *)arg0 = 0;
     return arg0;
+}
+
+extern "C" {
+// This unit's original object has no .data section: __vt__9TItemList lives in
+// the unclaimed original data blob (auto_07_804C43C0_data). Defining the
+// deleting destructor by its C symbol keeps MWCC from emitting a duplicate
+// local vtable here.
+void *__dt__9TItemListFv(void *self, s16 flag) {
+    if (self != NULL) {
+        *(s32 **)((s8 *)self + 0x18) = __vt__9TItemList;
+        __dt__7TObjectFv(self, 0);
+        if (flag > 0) {
+            __dl__7TObjectFPv(self);
+        }
+    }
+    return self;
+}
+
 }

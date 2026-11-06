@@ -1,11 +1,11 @@
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_802F3638.h"
 #include "pso/boss/TBoss8Dragon.h"
+#include "pso/boss/TUnk_804E4BF0.h"
 
 extern "C" {
 s32 is_split_screen();
 u8 *get_enemy_entity(u16 entity_id);
-extern TBoss8Dragon *boss8_dragon_leader_part;
 
 s32 TBoss8Dragon__sub_802F3638() {
     s32 i;
@@ -19,7 +19,7 @@ s32 TBoss8Dragon__sub_802F3638() {
     }
     alive = 0;
     for (i = 0; i < 6; i++) {
-        if (get_enemy_entity(boss8_dragon_leader_part->get_part_count_plus(i)) != NULL) {
+        if (get_enemy_entity(boss8_dragon_leader_part->get_part_entity_id(i)) != NULL) {
             alive++;
         }
     }

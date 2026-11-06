@@ -56,6 +56,7 @@ void TWindowCtrlMain::run_task() { { (void)(update_com_card__9TWindowDDFv(this))
 void load_hud_palette_textures(void);
 extern void *TWindowCtrlMain__display_flags;
 extern f32 window_depth_order_cursor;
+extern const f32 lbl_805DCC58;
 TWindowCtrlMain::~TWindowCtrlMain() {
     W_8024D3C0 *root;
     s32 i;
@@ -178,7 +179,7 @@ void TWindowCtrlMain::reset_all(void* _w0) {
     TWindowCtrlMain__sub_controller = 0;
     window_clip_out_instance = 0;
     TWindowCtrlMain__instance = 0;
-    window_depth_order_cursor = -1.5999999f;
+    window_depth_order_cursor = lbl_805DCC58;
     for (i = 0; i < 6; i++) {
         ((TWindowCtrlMain *)(&TWindowCtrlMain__viewport_states[i]))->init_fields();
     }

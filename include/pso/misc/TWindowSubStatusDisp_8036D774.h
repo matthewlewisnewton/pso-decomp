@@ -7,8 +7,4 @@ extern "C" {
 void TWindowSubStatusDisp__sub_8036D994(void);
 }
 
-extern "C" {
-void TBGMulti__ct(void);
-}
-
 #endif

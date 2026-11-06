@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjFish_8001ED90.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_8001ED80.h"
 #include "pso/TChCrLoadGmNjReq.h"
@@ -55,8 +56,6 @@ public:
 extern "C" {
 s32 queue_destruction__7TObjectFv(void *, int, int);
 u32 get_bml_model(int, int);
-s32 TLobby__sub_8001FE7C(int, int);
-u32 TLobby__sub_8002058C(int, int, void *, void *, int, int, int);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__22TChCrLoadAfsTextureReq[];
 extern void *lbl_805D3B50;
@@ -236,13 +235,13 @@ void TLobby::update_model_load() {
     *(s32 *)((s8 *)((u8 *)this) + 0x74) = temp_r0;
     if (temp_r0 < 0) {
         if ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x68) != 0U) {
-            TLobby__sub_8001FE7C((int) *(u32 *)((s8 *)((u8 *)this) + 0x68), 1);
+            delete (BmlResource *)((int) *(u32 *)((s8 *)((u8 *)this) + 0x68));
         } else {
             return;
         }
         var_r31 = (int)::operator new(0x440);
         if (var_r31 != 0U) {
-            var_r31 = TLobby__sub_8002058C(var_r31, 6, (void *) (((u8 *)this) + 0x60), (void *) (((u8 *)this) + 0x64), 0, 0, (int) (((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)))->start_load_default()));
+            var_r31 = (u32)init_from_id_lists((BmlResource *)var_r31, 6, (u32 *)(((u8 *)this) + 0x60), (u32 *)(((u8 *)this) + 0x64), 0, 0, (void *)(((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)))->start_load_default()));
         }
         *(u32 *)((s8 *)((u8 *)this) + 0x68) = var_r31;
         if (var_r31 != 0U) {
@@ -253,7 +252,7 @@ void TLobby::update_model_load() {
         **(u32 **)((s8 *)((u8 *)this) + 0x1C) = bml_model;
         if (bml_model != 0U) {
             ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)))->alloc_load_buffer((int) (TLobby__sub_8001ED88((void *)(*(u32 *)((s8 *)((u8 *)this) + 0x68)))));
-            TLobby__sub_8001FE7C((int) (*(u32 *)((s8 *)((u8 *)this) + 0x68)), 1);
+            delete (BmlResource *)((int) (*(u32 *)((s8 *)((u8 *)this) + 0x68)));
             *(u32 *)((s8 *)((u8 *)this) + 0x68) = 0U;
             ((TChCrLoadGmNjReq *)((u8 *)this))->sub_8028C8A8();
             temp_r5 = *(s32 **)((s8 *)((u8 *)this) + 0x28);

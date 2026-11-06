@@ -1,3 +1,4 @@
+struct NJS_OBJECT;
 #ifndef PSO_BOSS_BOSS7DEROLLECBEHAVIOR_H
 #define PSO_BOSS_BOSS7DEROLLECBEHAVIOR_H
 
@@ -33,7 +34,7 @@ void TObjFish__sub_802ED4AC(u8 *arg0, s32 arg1);
 void TObjPlayer__sub_802E7F30(void *unused, s32 arg1);
 void TObjPlayer__sub_802E80A0(void);
 void render__14TBoss7DeRolLeCFv(u8 *unused);
-void TObjPlayer__sub_802E8274(void);
+void TObjPlayer__sub_802E8274(NJS_OBJECT *);
 void fn_802EC52C(s32 arg0, s32 arg1);
 void fn_802EC9A4(void *arg0, void *arg1);
 void fn_802EC9F0(TObjEneDD *arg0, void *arg1);
@@ -42,7 +43,6 @@ void free_laser_light__15TBoss7LaserPtclFv(void *arg0);
 void handle_6xA9_barba_ray_boss_actions(void *arg0);
 void handle_6xAA_barba_ray_boss_actions(void *arg0);
 extern "C" {
-void queue_boss_effect__10TObjPlayerFPv(void *a0);
 void release_laser_light__15TBoss7LaserPtclFPv(void *arg0);
 void set_swim_direction__8TObjFishFPv(void *arg0);
 void spawn_particle_201__8TObjFishFii(s32 arg1, s32 arg2);

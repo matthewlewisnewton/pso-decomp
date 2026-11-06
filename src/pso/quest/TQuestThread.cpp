@@ -1,6 +1,8 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/quest/TQuestListVMData.h"
 #include <string.h>
 #include "pso/TMainTask.h"
 #include "pso/TObject.h"
@@ -244,17 +246,17 @@ s32 TObjItemNameEntry::process_keyboard_input() {
     if (m_1c != NULL && ((TWindowSubComCard *)m_1c)->update_keyboard() != 0) {
         text = ((TWindowSubComCard *)m_1c)->realloc_buffer();
         if (strcmp((const char *)text, "") == 0) {
-            mem_free((void *)text);
+            ::operator delete[]((void *)text);
             free_menu_object(m_1c);
             return 0;
         }
         if (TWindowSubComCard::contains_profanity((char *)text) != 0) {
             free_menu_object(m_1c);
-            mem_free((void *)text);
+            ::operator delete[]((void *)text);
             return 0;
         }
         set_entered_name((const char *)text);
-        mem_free((void *)text);
+        ::operator delete[]((void *)text);
         return 1;
     }
     return 0;

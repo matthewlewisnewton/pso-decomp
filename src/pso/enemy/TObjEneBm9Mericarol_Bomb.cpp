@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/player/TObjPlayer.h"
@@ -87,9 +88,8 @@ s32 TObjPlayer::apply_area_attack_hits(u8 *arg1, s32 arg2, u32 object, f32 range
 }
 
 void TObjEneBm9Mericarol_Bomb::render() {
-    u8 *arg0 = (u8 *)this;
-    if ((s32) *(s32 *)((s8 *)arg0 + 0x10C) != 0) {
-        ((TObjEneDD *)(arg0 + 0x38))->draw_oriented_shadow((s32)(arg0 + 0xD8), 0, (u32)0);
+    if (m_10c != 0) {
+        TObjEneDD::draw_oriented_shadow(&position, &ground_normal, 0, NULL);
     }
 }
 
@@ -123,7 +123,6 @@ struct Hit_802D14F4 { u8 pad[4]; u8 *tri; };
 
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 u32 csnVector(void *, void *, int);
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
 void *find_entity_by_id(u16 id);
@@ -157,13 +156,13 @@ void TObjEneBm9Mericarol_Bomb::run_task() {
         this->m_b4 += *(f32 *)&this->unk_C0;
         *(f32 *)&this->unk_B8 += this->m_c4;
         this->m_bc += *(f32 *)((s8 *)arg0 + 0xC8);
-        hit = (Hit_802D14F4 *)csnVecterUnder((s32)&this->m_b4, 0x16EF);
+        hit = (Hit_802D14F4 *)csnVecterUnder((const Vec *)&this->m_b4, 0x16EF);
         if (hit != NULL) {
             *(f32 *)((s8 *)arg0 + 0x3C) = *(f32 *)((s8 *)hit->tri + 4);
-            VecCopy((Vec *)(arg0 + 0xD8), (const Vec *)(hit->tri + 0xC));
-            *(s32 *)&this->unk_10C = 1;
+            VecCopy(&this->ground_normal, (const Vec *)(hit->tri + 0xC));
+            this->m_10c = 1;
         } else {
-            *(s32 *)&this->unk_10C = 0;
+            this->m_10c = 0;
         }
         *(f32 *)((s8 *)arg0 + 0x38) = this->m_b4;
         *(f32 *)((s8 *)arg0 + 0x40) = this->m_bc;
@@ -290,9 +289,9 @@ u8 *TObjEneBm9Mericarol__sub_802D1880(u8 *ene_bm9_mericarol_bomb, u8 *ene_bm9_me
     *(s16 *)((s8 *)ene_bm9_mericarol_bomb + 0xB0) = get_entity_id(ene_bm9_mericarol);
     VecCopy((Vec *)(ene_bm9_mericarol_bomb + 0xB4), (const Vec *)arg2);
     VecCopy((Vec *)(ene_bm9_mericarol_bomb + 0x38), (const Vec *)(ene_bm9_mericarol_bomb + 0xB4));
-    *(f32 *)((s8 *)ene_bm9_mericarol_bomb + 0xD8) = 0.0f;
-    ((TObjEneBm9Mericarol_Bomb *)ene_bm9_mericarol_bomb)->m_dc = 0.0f;
-    *(f32 *)((s8 *)ene_bm9_mericarol_bomb + 0xE0) = 0.0f;
+    ((TObjEneBm9Mericarol_Bomb *)ene_bm9_mericarol_bomb)->ground_normal.x = 0.0f;
+    ((TObjEneBm9Mericarol_Bomb *)ene_bm9_mericarol_bomb)->ground_normal.y = 0.0f;
+    ((TObjEneBm9Mericarol_Bomb *)ene_bm9_mericarol_bomb)->ground_normal.z = 0.0f;
     d.x = arg3->x - arg2->x;
     d.y = 12.0f + (arg3->y - arg2->y);
     d.z = arg3->z - arg2->z;

@@ -1,5 +1,4 @@
 #include "pso/item/TItemData.h"
-#include "pso/misc/TShopGetItemWindow.h"
 #include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowBase.h"
 #include "types.h"
@@ -104,11 +103,13 @@ s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
 void *__nw__7TObjectFUl(u32);
 u32 __ct__18TWindowInputNumberFPvllls(void *, s32, s32, s32, s32, s16);
+extern const f32 lbl_805DC6F0;
 s32 get_room_table_entry__18TCheckRoomSequenceFi(void);
 u32 __ct__15TWindowHelpItemFPvUs(void *, s32, u16);
 void add_item_info_entry__20TWindowSubStatusDispFlll(u32, void *, s32, s32);
 void TWindowSetLevelUp__sub_8026DE28(u32, s32);
 u32 create_item_list_window(s32, s32, u16);
+void *TShopGetItemWindow__ct(void *arg0, void *arg1, void *arg2, void *arg3);
 void *__dt__18TShopGetItemWindowFv(TShopGetItemWindow *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 void init__9TItemDataFv(void *);
@@ -241,7 +242,7 @@ s32 TShopGetItemWindow::handle_withdraw_list_input() {
                 }
                 arg0->f30 = (u32)obj;
                 if (arg0->f30 != 0U && TLobby::is_camera_ctrl_active() > 2) {
-                    ((TCheckRoomSequence *)(arg0->f30))->set_position(0.75f, 0.75f);
+                    ((TCheckRoomSequence *)(arg0->f30))->set_position(lbl_805DC6F0, lbl_805DC6F0);
                 }
                 ((TShopWindowBase *)arg0)->set_field_20(2);
                 return;
@@ -318,7 +319,7 @@ void TShopGetItemWindow::rebuild_item_list() {
             }
             arg0->f34 = (u32)obj;
             if (arg0->f34 != 0U && TLobby::is_camera_ctrl_active() > 2) {
-                ((TLobby *)(arg0->f34))->set_position(0.75f, 0.75f);
+                ((TLobby *)(arg0->f34))->set_position(lbl_805DC6F0, lbl_805DC6F0);
             }
             ((TWindowHelpItem *)(arg0->f34))->set_displayed_item_colored((u32)&arg0->item);
             arg0->f58 = sel;
@@ -386,20 +387,24 @@ void *__dt__18TShopGetItemWindowFv(TShopGetItemWindow *arg0, s16 arg1) {
 
 extern void *TShopGetItemWindow__class_name;
 
+void *TShopGetItemWindow__ct(void *shop_get_item_window, void *arg1, void *arg2, void *arg3) {
+    __ct__15TShopWindowBaseFv(shop_get_item_window);
+    *(s32 **)((s8 *)shop_get_item_window + 0x18) = __vt__18TShopGetItemWindow;
+    *(void * *)&((TShopGetItemWindow *)shop_get_item_window)->m_name = TShopGetItemWindow__class_name;
+    ((TShopGetItemWindow *)shop_get_item_window)->m_20 = 0;
+    *(void **)((s8 *)shop_get_item_window + 0x24) = arg3;
+    ((TShopGetItemWindow *)shop_get_item_window)->m_54 = 1;
+    ((TShopGetItemWindow *)shop_get_item_window)->m_4c = 0;
+    ((TShopGetItemWindow *)shop_get_item_window)->m_58 = 0;
+    ((TShopGetItemWindow *)shop_get_item_window)->m_60 = 0;
+    ((TShopGetItemWindow *)shop_get_item_window)->m_64 = 0;
+    ((TShopGetItemWindow *)shop_get_item_window)->m_28 = 0;
+    ((TShopGetItemWindow *)shop_get_item_window)->m_2c = 0;
+    ((TShopGetItemWindow *)shop_get_item_window)->m_30 = 0;
+    ((TShopGetItemWindow *)shop_get_item_window)->m_34 = 0;
+    *(void **)((s8 *)shop_get_item_window + 0x5C) = arg2;
+    init__9TItemDataFv((void *)((char *)shop_get_item_window + 56));
+    return shop_get_item_window;
 }
-TShopGetItemWindow::TShopGetItemWindow(void *arg1, void *arg2, void *arg3) : TShopWindowBase() {
-    *(void * *)&this->m_name = TShopGetItemWindow__class_name;
-    this->m_20 = 0;
-    *(void **)((s8 *)this + 0x24) = arg3;
-    this->m_54 = 1;
-    this->m_4c = 0;
-    this->m_58 = 0;
-    this->m_60 = 0;
-    this->m_64 = 0;
-    this->m_28 = 0;
-    this->m_2c = 0;
-    this->m_30 = 0;
-    this->m_34 = 0;
-    *(void **)((s8 *)this + 0x5C) = arg2;
-    init__9TItemDataFv((void *)((char *)this + 56));
+
 }

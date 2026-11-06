@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -11,7 +12,7 @@
 
 extern "C" {
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 u32 TAdMultiPlyChrSelectGC__sub_802DBE4C(void *, s32 *);
 s32 TAdMultiPlyChrSelectGC__sub_802DBEC4(void *, s32 *);
 extern s8 lbl_80472880[];

@@ -5,14 +5,13 @@
 #include "pso/TObject.h"
 
 struct TDLGraph : public TObject {
-    TDLGraph(TObject *parent);
     virtual ~TDLGraph();
     void sub_8007F644();
     void sub_8007F5A4();
     void init_dl_graph_entries();
     void draw_countdown_timer(f32, f32);
     void draw_percent_text(f32, f32);
-    f32 m_1c;
+    u8 _pad1C[0x4];
     u32 m_20;
     u32 m_24;
     u32 m_28;
@@ -23,7 +22,7 @@ struct TDLGraph : public TObject {
     void set_graph_param(s32 v);
     static void update_graph(s32 arg0, s32 arg1);
     static void *create();
-    s32 m_34;
+    u8 unk_34[0x4];
     s32 m_38;
     s32 m_3c;
     u8 unk_40[0x24];
@@ -31,9 +30,13 @@ struct TDLGraph : public TObject {
 
 typedef char TDLGraph_size[sizeof(TDLGraph) == 0x64 ? 1 : -1];
 
+extern "C" {
+u8 *__dt__8TDLGraphFv(u8 *arg0, s16 arg1);
+}
+
 // --- C functions defined in TDLGraph.cpp ---
 extern "C" {
-void fn_8007F560(void *p, void *q);
+u8 *__dt__8TDLGraphFv(u8 *arg0, s16 arg1);
 }
 // --- end of C functions
 

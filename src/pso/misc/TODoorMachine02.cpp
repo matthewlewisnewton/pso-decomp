@@ -1,3 +1,5 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TODoorMachine02.h"
 
 #include "pso/TMainTask.h"
@@ -51,7 +53,7 @@ void TODoorMachine02::update_open() {
     if (!(door_flags & 1) || is_any_player_within_radius_xz(10000.0f) != 1) {
         object_state = DOOR_CLOSING;
         clear_player_status_flag(0, 8);
-        play_sound_effect(0x4004BC01, &position, 0, 0);
+        play_sound_effect(0x4004BC01, (const Vec *)(&position), 0, 0);
     }
 }
 
@@ -59,7 +61,7 @@ void TODoorMachine02::update_closed() {
     if ((door_flags & 1) && is_any_player_within_radius_xz(4900.0f) == 1) {
         object_state = DOOR_OPENING;
         set_indexed_flags(0, 8);
-        play_sound_effect(0x4004BC01, &position, 0, 0);
+        play_sound_effect(0x4004BC01, (const Vec *)(&position), 0, 0);
     }
     if (door_flags & PULSE_RISING) {
         light_color.r += 0.1f;
@@ -80,9 +82,9 @@ void TODoorMachine02::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0 && is_in_view_depth(30.0f) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         unlocked = door_flags & 1;
-        TObjFish::set_global_param(texture_lists[door_flags & 1]);
+        set_current_texture_list((GinjaTextureList *)(texture_lists[door_flags & 1]));
         if (object_state == DOOR_CLOSED) {
             node = ((NJS_OBJECT *)model)->child;
             post_translate_matrix(node->pos);
@@ -125,31 +127,25 @@ void TODoorMachine02::destroy() {
     if (texture_lists != NULL) {
         TObjPlayer::free_if_valid(texture_lists[0]);
         if (texture_lists != NULL) {
-            mem_free(texture_lists);
+            ::operator delete[](texture_lists);
             texture_lists = NULL;
         }
     }
     if (bml_resource != NULL) {
-        TLobby__sub_8001FE7C(bml_resource, 1);
+        delete (BmlResource *)(bml_resource);
         bml_resource = NULL;
     }
 }
 
 void TODoorMachine02::load_resources() {
     BmlResource *resource;
-    texture_lists = (s32 *)mem_alloc(8);
+    texture_lists = (s32 *)::operator new[](8);
     if (enable_v2_features == 1 && TLobby::is_online_ready() != 0) {
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &door_machine02_a_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_machine02_a_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;
         texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_ki_doa2_r_a.gvm");
     } else {
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &door_machine02_resource_descriptor, 0, 0, 0);
-        }
+        resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_machine02_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;
         texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_ki_doa2_r.gvm");
     }

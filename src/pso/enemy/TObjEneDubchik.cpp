@@ -2,6 +2,9 @@
 #include "pso/enemy/TUnk_80494938.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/player/demo_mode.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/unk/TUnk_80494968.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
@@ -127,7 +130,7 @@ s32 play_sound_effect(s32, void *, int, int);
 void *__nw__7TObjectFUl(int);
 void TObjPlayer__sub_800A8FB4(void *arg0_);
 
-void TLobby__sub_8001FE7C(void *, s32);
+void __dt__11BmlResourceFv(void *, s32);
 extern s32 lbl_80500AF0[];
 extern s32 lbl_80500AF8[];
 struct Res_800AA82C;
@@ -135,12 +138,8 @@ Res_800AA82C *dubchik_resource;
 NJS_TEXLIST *dubchik_texlist;
 NJS_TEXLIST *dubchik_variant_texlist;
 
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 s32 get_bml_motion(void *, int);
-void *load_resource_from_descriptor(void *, int, void *, int, int, int);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, int, void *, int, int, int);
 void TObjPlayer__sub_800A4294(void);
 Res_800AA82C *load_enemy_bml_resource_named(BmlResourceDescriptor *, const char *);
 u8 *load_gvm_texture_file(s32 arg0);
@@ -205,10 +204,12 @@ struct Self_800AA334 { u8 pad[0x3B0]; VObj_14_fddec9 sub; };
 typedef struct Vec_800A9E9C { f32 x, y, z; } Vec_800A9E9C;
 
 extern "C" {
-void TBoss3Volopt__sub_800D8D88(s32 arg0);
+void play_area_sound_and_particles_a(const Vec *position);
 void TObjPlayer__sub_800A8E04(u8 *arg0);
 void obj_setFlags30(void *, u32);
 void dubchik_start_dying(u8 *arg0);
+void dubchik_update_dying(u8 *arg0);
+u8 *TObjPlayer__sub_800AB7A0(u8 *part, s32 index, TObjEneDubchik *self, NJS_TEXLIST *tex, Vec *offset);
 s32 find_active_entity_by_id(u16);
 void TObjPlayer__sub_800AA330(void *);
 s32 submit_cursor_candidate(void *, s32);
@@ -400,7 +401,7 @@ struct Ene_800A93E4 {
     VO_800A93E4 *model;
 };
 
-s32 mult_vec_array__10TObjPlayerFUll(int, u32, void *, int);
+extern "C" void matrix_mult_vec_array(f32 (*m)[4], const Vec *src, Vec *dst, u32 count);
 void set_matrix_identity(u8 *arg0);
 
 
@@ -493,7 +494,7 @@ TObjEneDubchik::TObjEneDubchik(TObject *parent, void *set_data) : TObjEnemyCusto
     state36C = *(s16 *)((u8 *)set_data + 0x3E);
     init_level_stats(variant);
     action_table = (TObjMotionAction *)&lbl_804910F4;
-    set_field_d8((s32)action_table);
+    set_action_table(action_table);
     init_collision_body_parts(this, dubchik_collision_body, 1);
     movementParameters = &dubchik_movement;
     bind_enemy_combat_stats((u8 *)((s32 *)lbl_805009A0)[variant], (u8 *)lbl_805009A8[variant], (u8 *)lbl_805009B0[variant]);
@@ -513,7 +514,7 @@ TObjEneDubchik::TObjEneDubchik(TObject *parent, void *set_data) : TObjEnemyCusto
     add_flags_2e4(4);
     attack_count = 0;
     chase_distance = 0.0f;
-    if (variant != 0) {
+    if ((s32)variant != 0) {
         set_param(50);
     } else {
         set_param(24);
@@ -558,7 +559,7 @@ extern "C" void TObjPlayer__sub_800AA82C(void) {
     } else {
         p = ::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &bm_ene_dubchik_resource_descriptor, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, &bm_ene_dubchik_resource_descriptor, 0, 0, 0);
         }
         dubchik_resource = (Res_800AA82C *)p;
     }
@@ -594,10 +595,10 @@ extern "C" void TObjPlayer__sub_800AA82C(void) {
     t[1] = (s32)p;
     ((SampledMotionPoints *)t[1])->sample_two_nodes((NJS_OBJECT *)get_bml_model((BmlResource *)dubchik_resource, 0), (NJS_MOTION *)get_bml_motion(dubchik_resource, 7), 0x2E, 0x32);
     for (i = 0; i < 2; i++) {
-        ((s32 *)lbl_805009A0)[i] = register_boss__6TLobbyFl(i + 0x1B);
-        lbl_805009A8[i] = dispatch_shared_handler_b__6TLobbyFl(i + 0x1B);
-        lbl_805009B0[i] = register_object__6TLobbyFl(i + 0x1B);
-        lbl_805009B8[i] = dispatch_shared_handler_a__6TLobbyFl(i + 0x1B);
+        ((s32 *)lbl_805009A0)[i] = (s32)get_battle_base_stats(i + 0x1B);
+        lbl_805009A8[i] = (s32)get_battle_attack_params(i + 0x1B);
+        lbl_805009B0[i] = (s32)get_battle_resistance_params(i + 0x1B);
+        lbl_805009B8[i] = (s32)get_battle_movement_params(i + 0x1B);
     }
     mdl = dubchik_resource->mdl->f8;
     for (i = 0; i < 3; i++) {
@@ -613,7 +614,7 @@ extern "C" void TObjPlayer__sub_800AA82C(void) {
         d.a = dubchik_resource->f430;
         for (j = 0; j < 2; j++) {
             Mdl_800AA82C *e = &dubchik_resource->mdl[j];
-            TLobby::spawn_npc_enemy(ids.v[j], e->f8, (NJS_TEXLIST *)e->fC, &d, 5.0f, 0.0f);
+            NpcModelRegistry::register_animated_chunk(ids.v[j], (void *)e->f8, (void *)e->fC, (const NpcAnimationBinding *)&d, 5.0f, 0.0f);
         }
     }
 }
@@ -625,7 +626,7 @@ void TObjPlayer::free_effect_resources() {
         breakup_model_ptr = NULL;
     }
     if (dubchik_resource != NULL) {
-        TLobby__sub_8001FE7C(dubchik_resource, 1);
+        __dt__11BmlResourceFv(dubchik_resource, 1);
         dubchik_resource = NULL;
     }
     dubchik_texlist = NULL;
@@ -662,7 +663,7 @@ void *TObjPlayer::create_dubchik(void *arg0) {
 
 void TObjEneDubchik::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjPlayer__sub_800AA330(arg0);
         return;
     }
@@ -681,7 +682,7 @@ void TObjEneDubchik::run_task() {
     ((TObjPlayer *)arg0)->run_synced_state_handler();
     ((TObjEneDubchik *)arg0)->sub_800AB068();
     ((TObjEnemy *)arg0)->update_prev_position();
-    VecCopy(&this->center, (const Vec *)&this->m_2fc);
+    VecCopy(&this->center, &this->body_center_position);
     if (obj_testFlags30__14TObjCollidableFUl(arg0, 0x04000000) == 0) {
         submit_cursor_candidate(arg0, -1);
     }
@@ -715,19 +716,19 @@ void TObjEneDubchik::render() {
             select_actor_lighting((s32)arg0);
             TObjPlayer::toggle_particle_effect();
             if (collapsed != 0) {
-                TObjFish::set_global_param((s32)dubchik_texlist);
+                set_current_texture_list((GinjaTextureList *)dubchik_texlist);
             } else {
-                TObjFish::set_global_param((s32)((void *) (((TObjEneDubchik *)arg0)->texlist)));
+                set_current_texture_list((GinjaTextureList *)((void *)(((TObjEneDubchik *)arg0)->texlist)));
             }
             var_r30 = 1;
             push_matrix();
             saved_model_render_flags = model_render_flags;
             ((TObjEneDubchik *)arg0)->sub_800A8A7C();
             post_translate_matrix(arg0 + 0x38);
-            rotate_matrix_y(0, (int) (((TObjEneDubchik *)arg0)->rotation_y));
+            rotate_matrix_y(0, (int)(((TObjEneDubchik *)arg0)->rotation.yaw));
             scale_matrix(0, 1.3f, 1.3f, 1.3f);
             model_render_flags &= 0xFFFFFBFF;
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 draw_chunk_object((void *)(*(s32 *)((s8 *)arg0 + 0x34)));
             } else if (((TObjEneDubchik *)arg0)->m_388 & 4) {
                 if (((Self_800AA334 *)arg0)->sub.m8() != 0) {
@@ -972,7 +973,7 @@ void TObjEneDubchik::update_fall_apart() {
         m_388 &= ~0x800000;
         ((TObjPlayer *)this)->set_invuln_flags();
         requested_action = 4;
-        enemy_set_heading_velocity(-7.0f, this, rotation_y);
+        enemy_set_heading_velocity(-7.0f, this, rotation.yaw);
         ((TObjPlayer *)this)->render_model_and_set_attach_points();
         for (i = 0; i < 3; i++) {
             if (parts[i] == NULL && random_ratio() >= 0.5f) {
@@ -1144,12 +1145,12 @@ extern "C" void TObjPlayer__sub_800A93E4(void *arg0_) {
         post_translate_matrix(&e->pos);
         rotate_matrix_y(0, e->angle);
         if (h0 != 0) {
-            mult_vec_array__10TObjPlayerFUll(0, h0, &a1, 2);
+            matrix_mult_vec_array((f32 (*)[4])0, (const Vec *)h0, (Vec *)&a1, 2);
             e->model->m4(&a1, &b1);
         }
         if (h1 != 0) {
             s32 pa = (s32)&a2;
-            mult_vec_array__10TObjPlayerFUll(0, h1, (void *)pa, 2);
+            matrix_mult_vec_array((f32 (*)[4])0, (const Vec *)h1, (Vec *)pa, 2);
             e->model->m4((Vec_800A93E4 *)pa, &b2);
         }
         pop_matrix();
@@ -1332,7 +1333,7 @@ extern "C" void TObjPlayer__sub_800A8E04(u8 *ene_me1_gi_gue) {
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags = (((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags | 0x04000000);
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->requested_action = 5;
         ((TObjMotion *)ene_me1_gi_gue)->advance_animation();
-        TBoss3Volopt__sub_800D8D88((s32)(ene_me1_gi_gue + 0x2FC));
+        play_area_sound_and_particles_a((const Vec *)(ene_me1_gi_gue + 0x2FC));
         ((TUnk_80494938 *)(ene_me1_gi_gue + 0x3B0))->start_fade_in();
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->state = 1;
     case 1:
@@ -1484,7 +1485,7 @@ extern "C" void dubchik_update_dying(u8 *arg0) {
       play_sound_effect(((TObjEnemy *)((void *) arg0))->remap_sound_for_area((s32)(0x4003AD16)), arg0 + 0x38, 0, 0);
     }
     TBoss3Volopt::create_breakup_mdl((s32)breakup_model_ptr, (s32)&lbl_80491260, (s32)((int) (*((s32 *) (((s8 *) arg0) + 0x24)))), (s32)(arg0 + 0x2FC), (s32)((int) (*((s32 *) (((s8 *) arg0) + 0x60)))));
-    ((TObjPlayer *)arg0)->refresh_lobby_state();
+    ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
     ((TObjEnemy *)arg0)->send_entity_set_flags();
     ((TObjPlayer *)(arg0 + 0x2FC))->trigger_dell_biter_events();
     obj_setFlags30((void *) arg0, 0x800);

@@ -1,8 +1,10 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/TObjBoss2Tunnel_803E2BAC.h"
 #include "pso/misc/TLobby_803382E4.h"
 #include "pso/unk/text_800F7DAC.h"
 #include "pso/render/render_util.h"
+#include "pso/render/SpriteDescriptor.h"
 #include "pso/unk/text_803DA798.h"
 #include "pso/unk/text_803E2D70.h"
 
@@ -17,7 +19,7 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
 
-struct G_80338534 { u8 p0[0x2C]; u8 a[0x40]; u8 b[0x60]; u8 c[0x40]; };
+struct G_80338534 { u8 p0[0x2C]; ProjectedVertex a[4]; u8 b[0x60]; u8 c[0x40]; };
 
 struct Fx_803382E4 {
     u8 pad0[0x14];
@@ -32,14 +34,13 @@ extern "C" {
 s32 set_stream_state__6TLobbyFi(void *, int);
 s32 load_gvm_texture_archive(int, void *);
 extern s32 lbl_80477BC4[];
-s32 lobby_request_flags;
+extern s32 lobby_request_flags;
 void TCameraCtrl__sub_80068EF0(void);
-void draw_projected_quads__15TObjBoss2TunnelFPvi(void *, s32);
 void draw_projected_textured_strip(void *, s32);
 extern s32 lbl_805D63F0;
-int info_icon_texture;
+extern int info_icon_texture;
 f32 cos_table_lookup(s32);
-s32 lobby_pulse_color_phase;
+extern s32 lobby_pulse_color_phase;
 extern const f32 lbl_805DF9A0;
 extern const f32 lbl_805DF9A4;
 extern const f32 lbl_805DF9A8;
@@ -100,16 +101,12 @@ void *lbl_804EF344[24] = {
     (void *)0x0, (void *)0xffffffff, (void *)0x441c0000, (void *)0x43f00000,
     (void *)0x3f000000, (void *)0x3f800000, (void *)0x3f800000, (void *)0xffffffff,
 };
-void *lbl_804EF3A4[15] = {
-    (void *)0x400040, (void *)0x200020, (void *)0x0, (void *)0x1000100,
-    (void *)0x20000, (void *)0x400040, (void *)0x200020, (void *)0x0,
-    (void *)0x1000100, (void *)0x20000, (void *)0x400040, (void *)0x200020,
-    (void *)0x0, (void *)0x1000100, (void *)0x20000,
+SpriteFrame lbl_804EF3A4[3] = {
+    { 64, 64, 32, 32, 0, 0, 256, 256, 2, 0 },
+    { 64, 64, 32, 32, 0, 0, 256, 256, 2, 0 },
+    { 64, 64, 32, 32, 0, 0, 256, 256, 2, 0 },
 };
-void *lbl_804EF3E0[8] = {
-    (void *)0x43f80000, (void *)0x43d00000, (void *)0x0, (void *)0x3f800000,
-    (void *)0x3f800000, (void *)0x0, (void *)&lbl_804EF1DC, (void *)&lbl_804EF3A4,
-};
+SpriteDescriptor lbl_804EF3E0 = { 496.0f, 416.0f, 0.0f, 1.0f, 1.0f, 0, &lbl_804EF1DC, lbl_804EF3A4 };
 
 #define lbl_804EF1B8 (*(G_80338534 *)lbl_804EF1B8)
 #define lbl_804EF1DC ((s32 *)lbl_804EF1DC)
@@ -125,21 +122,19 @@ static inline s32 step_803382E4(Fx_803382E4 *fx) {
 }
 #pragma fp_contract on
 void TLobby__sub_803382E4(void) {
-    Fx_803382E4 *fx;
     f32 v;
     f32 alpha;
 
     if (lobby_request_flags & 2) {
-        fx = (Fx_803382E4 *)(lbl_804EF3E0);
-        fx->angle += 0x16C;
-        v = lbl_805DF9A4 + cos_table_lookup(fx->angle);
+        lbl_804EF3E0.rotation += 0x16C;
+        v = lbl_805DF9A4 + cos_table_lookup(lbl_804EF3E0.rotation);
         alpha = v * lbl_805DF9A8 + lbl_805DF9A0;
         set_perspective_projection_from_fov(0x3555, lbl_805DF9AC, lbl_805DF9A4, lbl_805DF9B0, lbl_805DF9A8, v);
         set_depth_buffer_settings_2();
         TParticleCtrl::begin_effect_render();
         TCameraCtrl::restore_full_screen_view();
         set_default_alpha_blend();
-        TObjFish::set_global_param((s32)lbl_804EF1DC);
+        set_current_texture_list((GinjaTextureList *)(lbl_804EF1DC));
         set_texture_num(0);
         TLobby__sub_803E2EE4(0);
         draw_projected_textured_strip(lbl_804EF2E4, 4);
@@ -149,7 +144,7 @@ void TLobby__sub_803382E4(void) {
         draw_projected_textured_strip(lbl_804EF344, 4);
         TLobby::reset_player_state();
         set_additive_blend();
-        ((TObjPlayer *)lbl_804EF3E0)->draw_compass_sprite(2, (__cvt_fp2unsigned(lbl_805DF9B4 * alpha) << 24) | 0xFFFFFF, 0x21, lbl_805DF9A0);
+        lbl_804EF3E0.draw_compass_sprite(2, (__cvt_fp2unsigned(lbl_805DF9B4 * alpha) << 24) | 0xFFFFFF, 0x21, lbl_805DF9A0);
         set_default_alpha_blend();
         TCameraCtrl__sub_80068EF0();
         TParticleCtrl::end_effect_render();
@@ -209,10 +204,10 @@ void TLobby__sub_80338534(void) {
     set_default_alpha_blend();
     TParticleCtrl::begin_effect_render();
     TObjBoss2Tunnel__sub_803E2D10(1);
-    draw_projected_quads__15TObjBoss2TunnelFPvi(t->a, 4);
+    TObjBoss2Tunnel::draw_projected_quads(t->a, 4);
     TObjBoss2Tunnel::reset_player_state();
     if ((u32)info_icon_texture != 0) {
-        TObjFish::set_global_param(info_icon_texture);
+        set_current_texture_list((GinjaTextureList *)(info_icon_texture));
         if (lobby_request_flags & 4) {
             set_texture_num(1);
         } else {
@@ -223,7 +218,7 @@ void TLobby__sub_80338534(void) {
         draw_projected_textured_strip(t->b, 4);
         TLobby::reset_player_state();
         set_default_alpha_blend();
-        TObjFish::set_global_param(lbl_805D63F0);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_texture_num(5);
         TLobby__sub_803E2EE4(1);
         draw_projected_textured_strip(t->c, 4);

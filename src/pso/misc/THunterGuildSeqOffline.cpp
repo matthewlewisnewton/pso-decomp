@@ -145,6 +145,8 @@ struct V_A_80213474 : Base_A_80213474 {
 extern "C" {
 s32 get_window_layout_position(s32);
 s32 set_service_counter_camera(void *, int);
+extern const f32 lbl_805DC650;
+extern const f32 lbl_805DC654;
 void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
@@ -161,7 +163,7 @@ extern s32 THunterGuildSeqOffline__quest_result_callbacks[];
 extern u8 *quest_mission_manager;
 u8 *TShopSequence__ct(u8 *arg0);
 extern s32 lbl_805D3658;
-u8 *THunterGuildSeqOffline__ct(u8 *arg0, s32 arg1, s32 arg2);
+u8 *THunterGuildSeqOffline__ct(u8 *arg0, s32 arg1, TObjPlayer *player);
 void THunterGuildSeqOffline__sub_8021339C(void);
 u16 get_entity_id(s32);
 void THunterGuildSeqOffline__sub_8021E180(void);
@@ -198,7 +200,7 @@ void THunterGuildSeqOffline::open_judgment_window() {
 
     if ((this->vfunc_10() != 0)
         && ((sub_80223A48__15TShopWindowBaseFv(this) != 0) || (sub_802239EC__13TShopSequenceFv(this) != 0))) {
-        *(s32 *)&this->m_2c = (s32)create_yes_no_window(get_window_layout_position(0x2B), (u16)get_entity_id(this->m_24), 0, 0);
+        *(s32 *)&this->m_2c = (s32)create_yes_no_window(get_window_layout_position(0x2B), (u16)get_entity_id((u32)this->player), 0, 0);
         ((TWindowSubComCardList *)(this->m_2c))->set_selected_index(1);
         ((TWindowAddition *)(this->m_2c))->set_position_xy(get_scale__15TShopWindowBaseFv(this), get_scale__15TShopWindowBaseFv(this));
         ((VObj_802136A4_80212e50_80212D9C *)this)->m9(8, 1);
@@ -240,8 +242,8 @@ void THunterGuildSeqOffline::open_greeting() {
     typedef char sp8_offset[(offsetof(Stack_802130AC, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802130AC, spC) == 0x4) ? 1 : -1];
     Stack_802130AC stack;
-    stack.sp8 = 332.0f;
-    stack.spC = 80.0f;
+    stack.sp8 = lbl_805DC650;
+    stack.spC = lbl_805DC654;
     ((TShopSequence *)arg0)->create_message_window((s32)((int) (((u8 *)get_window_layout_position(0x2C)))), (s32)&stack.sp8);
     ((VObj_18_97738d *)(arg0))->m7(1, 1);
     *(s32 *)((s8 *)arg0 + 0x30) = set_service_counter_camera(arg0, 1);
@@ -301,13 +303,13 @@ u8 *__dt__22THunterGuildSeqOfflineFv(u8 *arg0, s16 arg1) {
 
 typedef char RecoveredGlobal_802132F0___vt__22THunterGuildSeqOffline_size[sizeof(RecoveredGlobal_802132F0___vt__22THunterGuildSeqOffline) == 0x38 ? 1 : -1];
 typedef char RecoveredGlobal_802132F0_THunterGuildSeqOffline__data_80513DD8_size[sizeof(RecoveredGlobal_802132F0_THunterGuildSeqOffline__data_80513DD8) == 0x10 ? 1 : -1];
-u8 *THunterGuildSeqOffline__ct(u8 *hunter_guild_seq_offline, s32 arg1, s32 arg2) {
+u8 *THunterGuildSeqOffline__ct(u8 *hunter_guild_seq_offline, s32 arg1, TObjPlayer *player) {
     TShopSequence__ct((hunter_guild_seq_offline));
     *(s32 **)((s8 *)hunter_guild_seq_offline + 0x18) = &(*(RecoveredGlobal_802132F0___vt__22THunterGuildSeqOffline *)&__vt__22THunterGuildSeqOffline).value;
     *(s32 *)((s8 *)hunter_guild_seq_offline + 0) = (s32) lbl_805D3658;
     *(s32 *)((s8 *)hunter_guild_seq_offline + 0x20) = 0;
     *(s32 *)((s8 *)hunter_guild_seq_offline + 0x2C) = 0;
-    ((THunterGuildSeqOffline *)hunter_guild_seq_offline)->m_24 = arg2;
+    ((THunterGuildSeqOffline *)hunter_guild_seq_offline)->player = player;
     *(s32 *)((s8 *)hunter_guild_seq_offline + 0x30) = 0;
     ((THunterGuildSeqOffline *)hunter_guild_seq_offline)->m_34 = 0;
     *(s32 *)((s8 *)hunter_guild_seq_offline + 0x38) = 0;
@@ -425,7 +427,7 @@ void THunterGuildSeqOffline::open_judgment_item_window() {
 
     if ((this->vfunc_10() != 0)
         && ((sub_80223A48__15TShopWindowBaseFv(this) != 0) || (sub_802239EC__13TShopSequenceFv(this) != 0))) {
-        *(s32 *)((s8 *)this + 0x3C) = (s32)create_yes_no_window(get_window_layout_position(0x2B), (u16)get_entity_id(this->m_24), 0, 0);
+        *(s32 *)((s8 *)this + 0x3C) = (s32)create_yes_no_window(get_window_layout_position(0x2B), (u16)get_entity_id((u32)this->player), 0, 0);
         ((TWindowSubComCardList *)(*(s32 *)((s8 *)this + 0x3C)))->set_selected_index(1);
         ((TWindowAddition *)(*(s32 *)((s8 *)this + 0x3C)))->set_position_xy(get_scale__15TShopWindowBaseFv(this), get_scale__15TShopWindowBaseFv(this));
         ((VObj_802136A4_80212D9C *)this)->m9(8, 1);

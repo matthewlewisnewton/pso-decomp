@@ -2,11 +2,10 @@
 #define PSO_BOSS_TUNK_804F1280_H
 #include "types.h"
 #include "pso/TObject.h"
-#include <dolphin/mtx.h>
+#include "pso/system/vector.h"
 
-// The second object of a TBoss6Rock (TBoss6Rock::marker, made by
-// TBoss6Rock::create()): it draws the rock's model at the falling rock's
-// position while the rock is airborne (inferred: the rock's falling shadow).
+// The marker a TBoss6Rock creates: it draws the rock model at the falling
+// rock's position while the rock is airborne.
 class TUnk_804F1280 : public TObject {
 public:
     TUnk_804F1280(TObject *parent);

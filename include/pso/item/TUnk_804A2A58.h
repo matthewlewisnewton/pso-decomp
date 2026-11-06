@@ -8,13 +8,8 @@ public:
     virtual ~TUnk_804A2A58();
     virtual void update_weapon();
     virtual void emit_marker_effects();
-    virtual void vfunc_60();
     u8 unk_1F8[0x4];
     s32 m_1fc;
 };
-
-extern "C" {
-void *baranz_launcher_ct(void *a0, TObject *parent, void *item);
-}
 
 #endif

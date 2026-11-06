@@ -6,12 +6,11 @@
 class TUnk_804A5150 : public TItemWeapon {
 public:
     virtual ~TUnk_804A5150();
-    virtual void vfunc_60();
     virtual void update_idle();
     virtual void update_attack();
-    TUnk_804A5150(TObject *parent, u8 *item);
-    s32 rotation_x;  // rotate_matrix_x in vfunc_60
-    s32 rotation_z;  // rotate_matrix_z in vfunc_60
+    void *init_vtable_and_handlers();
+    u8 unk_1F8[0x4];
+    s32 m_1fc;
 };
 
 #endif

@@ -10,7 +10,6 @@ struct TItemData {
     void init();
     void bswap();
     static s32 is_usable(void *data);
-    static s32 lookup_item_def(void *data);
     static s32 is_wrapped(void *data);
     static s32 is_rare_item(void *data);
     static s32 is_custom_name_srank(void *data);
@@ -48,6 +47,8 @@ struct TItemData {
     s32 get_stack_count();
     void set_stack_count(u8 count);
     void set_unit_modifier(s16 arg1);
+    // Nonzero when the item data's type stacks (is_item_stackable).
+    static s32 lookup_item_def(void *data);
     // The item data's byte-swapped s16 at +6 (a unit's modifier).
     static s16 get_field6_bswap(void *data);
     // The byte-swapped s16s at +6 and +8 (an armor's or shield's DFP and

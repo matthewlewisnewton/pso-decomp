@@ -1,6 +1,7 @@
 #ifndef PSO_PLAYER_TOBJCHARA_H
 #define PSO_PLAYER_TOBJCHARA_H
 #include "types.h"
+#include <stddef.h>
 #include "pso/object/TObjMotion.h"
 
 struct Vec;
@@ -38,6 +39,8 @@ public:
     s16 get_field_2c2();
     void add_to_field_2ca(int);
     s16 get_atp();
+    // Boss-6 gate: phase 0x1F, then actorFlags. Defined in TBoss6PlotFalz.cpp.
+    s32 is_active();
     void add_to_field_2ce(int);
     s32 recalc_combat_stats(void *, void *, void *, f32, f32);
     s32 set_motion_params(void *);
@@ -111,8 +114,7 @@ public:
     virtual void recalc_stats();
     virtual s32 vfunc_74(s32);
     virtual void vfunc_75(f32);
-    // Spends photon blast charge; TObjPlayer forwards it to subtract_photon_blast_charge (param name inferred).
-    virtual void vfunc_76(f32 charge);
+    virtual void vfunc_76(f32 amount);
     virtual void vfunc_77();
     virtual void vfunc_78(s32);
     void request_box_item_drop(void *, s16);
@@ -212,7 +214,7 @@ public:
     s16 m_2d0;
     u8 unk_2D2[0x2];
     u16 m_2d4;
-    u8 unk_2D6[0x2];
+    u16 m_2d6;
     u16 m_2d8;
     u8 unk_2DA[0x2];
     u32 m_2dc;
@@ -228,15 +230,8 @@ public:
     u8 unk_2F6[0x2];
     s16 m_2f8;
     u8 unk_2FA[0x2];
-    f32 m_2fc;
-    f32 m_300;
-    f32 m_304;
-    union {
-        u8 unk_308[0x4];
-        f32 x_speed;
-    };
-    f32 y_speed;
-    f32 m_310;
+    Vec body_center_position;
+    Vec movement_velocity;
     s32 m_314;
     u32 m_318;
     u8 unk_31C[0x6];
@@ -249,13 +244,29 @@ public:
     u16 tp;
     u8 unk_330[0x4];
 
-    // Typed views of the vectors the fields above split up: the movement
-    // destination at 0x29C, the body centre other actors measure distance to
-    // at 0x2FC, and the velocity at 0x308.
+    // The destination still uses split storage.
     Vec *destination() { return (Vec *)&m_29c; }
-    Vec *body_center() { return (Vec *)&m_2fc; }
-    Vec *velocity() { return (Vec *)unk_308; }
+    void copy_body_to_center();
+    void initialize_position_copies();
+    Vec *body_center() { return &body_center_position; }
+    Vec *velocity() { return &movement_velocity; }
 };
+
+typedef char TObjChara_size[(sizeof(TObjChara) == 0x334) ? 1 : -1];
+typedef char TObjChara_m_2d4_offset[(offsetof(TObjChara, m_2d4) == 0x2D4) ? 1 : -1];
+typedef char TObjChara_m_2d6_offset[(offsetof(TObjChara, m_2d6) == 0x2D6) ? 1 : -1];
+typedef char TObjChara_m_2d8_offset[(offsetof(TObjChara, m_2d8) == 0x2D8) ? 1 : -1];
+typedef char TObjChara_m_290_offset[(offsetof(TObjChara, m_290) == 0x290) ? 1 : -1];
+typedef char TObjChara_m_294_offset[(offsetof(TObjChara, m_294) == 0x294) ? 1 : -1];
+typedef char TObjChara_unk_298_offset[(offsetof(TObjChara, unk_298) == 0x298) ? 1 : -1];
+typedef char TObjChara_m_29c_offset[(offsetof(TObjChara, m_29c) == 0x29C) ? 1 : -1];
+typedef char TObjChara_m_29e_offset[(offsetof(TObjChara, m_29e) == 0x29E) ? 1 : -1];
+typedef char TObjChara_unk_2A0_offset[(offsetof(TObjChara, unk_2A0) == 0x2A0) ? 1 : -1];
+typedef char TObjChara_target_offset[(offsetof(TObjChara, target) == 0x2A8) ? 1 : -1];
+typedef char TObjChara_body_center_offset[(offsetof(TObjChara, body_center_position) == 0x2FC) ? 1 : -1];
+typedef char TObjChara_body_center_size[(sizeof(((TObjChara *)0)->body_center_position) == 0xC) ? 1 : -1];
+typedef char TObjChara_velocity_offset[(offsetof(TObjChara, movement_velocity) == 0x308) ? 1 : -1];
+typedef char TObjChara_velocity_size[(sizeof(((TObjChara *)0)->movement_velocity) == 0xC) ? 1 : -1];
 
 extern "C" void *__dt__9TObjCharaFv(void *, s16);
 

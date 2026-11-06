@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/RlcArchive.h"
 #include "types.h"
 #include "pso/misc/TWindowSnapShot_802A5B2C.h"
@@ -15,20 +16,35 @@ extern "C" {
 s32 strncpy(void *, void *, int);
 s32 strcpy(void *, void *);
 s32 strlen(void *);
-void mem_free(void *);
+
 extern s32 lbl_804DD098[];
-u32 mem_alloc();
+
 s32 memset(void *, int, int);
 
 }
 
 u32 RlcDirectoryEntry::get_size() { return read_be32(size_be); }
 u32 RlcDirectoryEntry::get_offset() { return read_be32(offset_be); }
-u32 RlcDirectoryEntry::read_be32(const s8 *bytes) { return 0; }
+u32 RlcDirectoryEntry::read_be32(const s8 *bytes) {
+    // Keep the u64 byte conversions and direct lane masks: GC 2.6 needs
+    // these lifetimes to retain the byte extensions and accumulator copy.
+    s64 result = (u32)bytes[0] << 24;
+    result |= (u32)__rlwinm((u32)(u64)bytes[1], 16, 8, 15);
+    result |= (u32)__rlwinm((u32)(u64)bytes[2], 8, 16, 23);
+    result |= (u32)(u64)bytes[3] & 0xFF;
+    return (u32)result;
+}
 
 u32 RlcHeader::get_directory_offset() { return read_be32(directory_offset_be); }
 u32 RlcHeader::get_chunk_count() { return read_be32(chunk_count_be); }
-u32 RlcHeader::read_be32(const s8 *bytes) { return 0; }
+u32 RlcHeader::read_be32(const s8 *bytes) {
+    // Use the same unsigned byte lanes and widening as the directory reader.
+    s64 result = (u32)bytes[0] << 24;
+    result |= (u32)__rlwinm((u32)(u64)bytes[1], 16, 8, 15);
+    result |= (u32)__rlwinm((u32)(u64)bytes[2], 8, 16, 23);
+    result |= (u32)(u64)bytes[3] & 0xFF;
+    return (u32)result;
+}
 
 s32 fn_802A5C3C(u32 *arg0) {
     u32 temp_r0;
@@ -56,14 +72,13 @@ void fn_802A5CC4(u8 *arg0, s32 arg1) {
 
 void TWindowSnapShot::free_buffer() {
     if (this->m_prev != NULL) {
-        mem_free(this->m_prev);
+        ::operator delete[](this->m_prev);
         this->m_prev = 0;
     }
 }
 
 s32 alloc_buffer__15TWindowSnapShotFPv(TWindowSnapShot *window_snap_shot) {
-    window_snap_shot->get_buffer_size();
-    *(u32 *)((s8 *)window_snap_shot + 8) = mem_alloc();
+    *(u32 *)((s8 *)window_snap_shot + 8) = (u32)::operator new[](window_snap_shot->get_buffer_size());
     if ((u32) *(u32 *)((s8 *)window_snap_shot + 8) == 0U) {
         window_snap_shot->set_mode(4);
         return 0;
@@ -80,7 +95,7 @@ s32 TWindowSnapShot::open_stream(s32 arg1) {
     return 1;
 }
 s32 init__15TWindowSnapShotFPvi(TWindowSnapShot *window_snap_shot, s32 arg1) {
-    *(s32 *)((s8 *)window_snap_shot + 0xC) = ((TLobby *)arg1)->get_resource_file_size();
+    window_snap_shot->m_next = (TObject *)TLobby::get_resource_file_size((const char *)arg1);
     if (TWindowSnapShot__sub_802A605C((u8 *)window_snap_shot) == 0) {
         window_snap_shot->set_mode(1);
         return 0;
@@ -91,7 +106,7 @@ void TWindowSnapShot::reset() {
     u8 *arg0 = (u8 *)this;
     *(s32 *)&this->m_name = 0;
     *(s32 *)&this->m_flags = 0;
-    memset((u8 *)&this->_pad1C, 0, 0x20);
+    memset((u8 *)&this->frame_pad_1c, 0, 0x20);
     *(s32 *)&this->m_prev = 0;
     *(s32 *)&this->m_next = 0;
     *(s32 *)&this->m_down = 0;
@@ -110,7 +125,7 @@ void *TWindowSnapShot__sub_802A5EDC(void *arg0, s16 arg1) {
 typedef char RecoveredGlobal_802A5F24_lbl_804DD098_size[sizeof(RecoveredGlobal_802A5F24_lbl_804DD098) == 0x10 ? 1 : -1];
 u8 *TWindowSnapShot::init_and_reset() {
     u8 *arg0 = (u8 *)this;
-    this->m_3c = &(*(RecoveredGlobal_802A5F24_lbl_804DD098 *)&lbl_804DD098).value;
+    this->m_3cp = &(*(RecoveredGlobal_802A5F24_lbl_804DD098 *)&lbl_804DD098).value;
     reset();
     return arg0;
 }

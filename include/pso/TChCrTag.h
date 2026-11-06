@@ -8,7 +8,6 @@ public:
     TChCrTag(TObject *arg1, void *arg2);
     virtual ~TChCrTag();
     virtual void render();
-    virtual s32 vt4();
 public:
 };
 

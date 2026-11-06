@@ -1,12 +1,22 @@
+#include "pso/misc/CameraHelpers.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/math/FloatRounding.h"
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
+struct NJS_OBJECT;
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/misc/TUnk_804F1C58.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/boss/TBoss7PhotonBullet.h"
+#include "pso/TBoss7PhotonPad.h"
 #include "pso/TBoss7Tentacle.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/boss/TBoss3Volopt.h"
@@ -27,6 +37,8 @@
 #include "pso/object/TObjFish.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/boss/TBoss7TentacleNeedle.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/boss/TBoss7DeRolLeC.h"
 #include "pso/TObject.h"
 #include "pso/system/vector.h"
@@ -46,6 +58,19 @@ struct Boss7AttackParams {
     f32 field_C;
     s32 field_10;
 };
+typedef char Boss7AttackParamsSize[sizeof(Boss7AttackParams) == 0x14 ? 1 : -1];
+typedef char Boss7AttackParamsScale[offsetof(Boss7AttackParams, field_4) == 4 ? 1 : -1];
+typedef char Boss7AttackParamsRadius[offsetof(Boss7AttackParams, field_8) == 8 ? 1 : -1];
+typedef char Boss7AttackParamsTail[offsetof(Boss7AttackParams, field_C) == 0xC ? 1 : -1];
+// The native copy preserves the complete parameter representation. Trivial
+// union assignment expresses that copy while keeping params as the live member;
+// it also prevents MWCC from replacing the copy with floating-point field loads.
+// No access selects the representation member.
+union Boss7AttackParameterCopy {
+    Boss7AttackParams params;
+    u8 representation[sizeof(Boss7AttackParams)];
+};
+typedef char Boss7AttackCopyLayout[sizeof(Boss7AttackParameterCopy) == 0x14 && offsetof(Boss7AttackParameterCopy, params) == 0 ? 1 : -1];
 
 extern const s32 lbl_80472CB0[21] = {0x18, 0x1a, 0x1c, 0x1d, 0x1e, 0x1f, 0x22, 0x45, 0x4a, 0x5f, 0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, -1};
 extern const Vec lbl_80472D04[10] = {
@@ -61,7 +86,7 @@ extern const Vec lbl_80472D04[10] = {
     {0.0f, -100.0f, 25.0f}
 };
 extern const Boss7AttackParams lbl_80472D7C = {0, 0.0f, 8.0f, 5.0f, 1};
-extern const Boss7AttackParams boss7_laser_particle_params = {0, 120.0f, 16.0f, 20.0f, 1};
+extern const Boss7AttackParameterCopy boss7_laser_particle_params = {{0, 120.0f, 16.0f, 20.0f, 1}};
 extern const Ent_802E88F8 lbl_80472DA4[68] = {
     {1, 0}, {3, 0}, {8, 0}, {15, 0}, {3, 0}, {40, 0}, {60, 0}, {50, 0},
     {68, 0}, {57, 0}, {61, 0}, {41, 0}, {17, 0}, {63, 10}, {21, 0}, {17, 0},
@@ -532,13 +557,11 @@ struct Fish_802E7B40 { u8 pad[0x6DC]; void* t[4]; };
 struct Fish_802E7B94 { u8 pad[0x6DC]; void* t[4]; };
 
 extern "C" {
-void queue_boss_effect__10TObjPlayerFPv(void* a0);
 void TObjPlayer__sub_802E7F30(void *unused, s32 arg1);
 void TBoss7Tentacle__sub_802F0B80(void* p);
 void TObjFish__sub_802E7B40(Fish_802E7B40* o);
 void TBoss7Tentacle__sub_802F0B70(void* p);
 void TObjFish__sub_802E7B94(Fish_802E7B94* o);
-#define queue_boss_effect__10TObjPlayerFPv ((u32 (*)(int))queue_boss_effect__10TObjPlayerFPv)
 void TBoss7DeRolLeC::render_shadows() {
     if (*(s32 *)((s8 *)this->bodies + 0x18) & 1) {
         render_shadows__9TObjEnemyFv((u8 *)this);
@@ -603,9 +626,8 @@ struct EffectRef_802E7EA0 { u8 pad[4]; EffectNode_802E7EA0 *node; };
 struct Saved_802E7EA0 { u8 pad[0x5A8]; s32 a[10]; s32 b[10]; };
 
 void TObjPlayer__sub_802E7EA0(void *arg0) {
-    u32 effect;
+    u32 effect = (u32)TObjPlayer::queue_boss_effect(0);
     s32 i;
-    effect = queue_boss_effect__10TObjPlayerFPv(0);
     for (i = 0; i != 10; i++) {
         ((Saved_802E7EA0 *)arg0)->a[i] = ((EffectRef_802E7EA0 *)find_model_node(effect, lbl_804739AC[i]))->node->value;
         ((Saved_802E7EA0 *)arg0)->b[i] = ((EffectRef_802E7EA0 *)find_model_node(effect, lbl_804739D4[i]))->node->value;
@@ -628,7 +650,7 @@ void TObjPlayer__sub_802E7F30(void *unused, s32 arg1) {
     {
       var_r4 = (s32 *)lbl_804739AC;
       var_r4 = (s32 *) (*((s32 *) (((s8 *)lbl_804739AC) + var_r31)));
-      temp_r3 = (u8 *) find_model_node(queue_boss_effect__10TObjPlayerFPv(0), (s32) var_r4);
+      temp_r3 = (u8 *) find_model_node((u32)TObjPlayer::queue_boss_effect(0), (s32) var_r4);
     }
     if (temp_r3 != 0)
     {
@@ -639,7 +661,7 @@ void TObjPlayer__sub_802E7F30(void *unused, s32 arg1) {
     var_r4 = (s32 *)lbl_804739D4;
     var_r4 = (s32 *)lbl_804739D4;
     var_r4 = (s32 *) (*((s32 *) (((s8 *)lbl_804739D4) + var_r31)));
-    temp_r3_2 = (u8 *) find_model_node(queue_boss_effect__10TObjPlayerFPv(0), (s32) var_r4);
+    temp_r3_2 = (u8 *) find_model_node((u32)TObjPlayer::queue_boss_effect(0), (s32) var_r4);
     if (temp_r3_2 != 0)
     {
       var_r3 = (u8 *) ((RecoveredFields_802E7F30_temp_r3_2 *) temp_r3_2)->field_4;
@@ -649,10 +671,9 @@ void TObjPlayer__sub_802E7F30(void *unused, s32 arg1) {
 }
 
 void TObjPlayer__sub_802E7FC0(void *arg0) {
-    u32 effect;
+    u32 effect = (u32)TObjPlayer::queue_boss_effect(0);
     s32 i;
     EffectRef_802E7EA0 *ref;
-    effect = queue_boss_effect__10TObjPlayerFPv(0);
     for (i = 0; i != 10; i++) {
         ref = (EffectRef_802E7EA0 *)find_model_node(effect, lbl_804739AC[i]);
         ref->node->value = ((Saved_802E7EA0 *)arg0)->a[i];
@@ -662,8 +683,6 @@ void TObjPlayer__sub_802E7FC0(void *arg0) {
 }
 
 }
-
-#undef queue_boss_effect__10TObjPlayerFPv
 
 #include <stddef.h>
 struct Stack_802E8274 {
@@ -703,7 +722,6 @@ struct RecoveredGlobal_802E80F4_lbl_8058D4C0 {
 };
 
 extern "C" {
-s32 mult_vec_array__10TObjPlayerFUll(int, void *, void *, int);
 }
 void get_current_matrix(void *m);
 extern "C" {
@@ -720,7 +738,7 @@ extern s32 lbl_805D692C;
 extern s32 lbl_805D6930;
 extern s32 lbl_805D6934;
 extern s32 lbl_805D6944;
-void TObjPlayer__sub_802E8274(void);
+void TObjPlayer__sub_802E8274(NJS_OBJECT *);
 s32 get_mode__11TCameraCtrlFPv(void *);
 void TObjPlayer__sub_802E7FC0(void *arg0);
 extern RecoveredGlobal_802E80F4_lbl_8050BEC0 saved_model_draw_color;
@@ -735,19 +753,18 @@ extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 void TObjPlayer__sub_802E80A0(void);
-int get_bml_motion(void*, void*);
+NJS_MOTION *get_bml_motion(void *resource, s32 id);
 int TObjFish__sub_8001EDB0(void*, void*);
-int get_bml_model(void*, void*);
-int set_global_param__8TObjFishFl(void);
+NJS_OBJECT *get_bml_model(void *resource, s32 id);
 
-    extern int lbl_805D6918;
-void TObjPlayer::notify_fish_obj(void* a0) { get_bml_motion((void*)lbl_805D6918, a0); }
+    extern void *lbl_805D6918;
+NJS_MOTION *TObjPlayer::notify_fish_obj(s32 id) { return get_bml_motion(lbl_805D6918, id); }
 
-void queue_boss_effect__10TObjPlayerFPv(void* a0) { get_bml_model((void*)lbl_805D6918, a0); }
+NJS_OBJECT *TObjPlayer::queue_boss_effect(s32 id) { return get_bml_model(lbl_805D6918, id); }
 
 void TObjPlayer__sub_802E80A0(void) { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); }
 
-void TObjPlayer::draw_effect() { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); set_global_param__8TObjFishFl(); }
+void TObjPlayer::draw_effect() { set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0))); }
 
 typedef char RecoveredGlobal_802E80F4_lbl_8050BEC0_size[sizeof(RecoveredGlobal_802E80F4_lbl_8050BEC0) == 0x20 ? 1 : -1];
 typedef char RecoveredGlobal_802E80F4_main_task_size[sizeof(RecoveredGlobal_802E80F4_main_task) == 0x34 ? 1 : -1];
@@ -780,7 +797,7 @@ void TBoss7DeRolLeC::render() {
                 *(s32 **)((s8 *)lbl_805D693C + 0x2C) = (s32 *) lbl_805D6940;
             }
             TObjPlayer::draw_effect();
-            ((TObjPlayer *)(*(u32 *)((s8 *)((u8 *)this) + 0x7AC)))->draw_node_tree_if_visible();
+            ((TUnk_804F1C58 *)(*(u32 *)((s8 *)((u8 *)this) + 0x7AC)))->draw_node_tree_if_visible();
         }
         pop_matrix();
         TParticleCtrl::end_effect_render();
@@ -803,7 +820,7 @@ void TBoss7DeRolLeC::sub_802E8234() {
     lbl_805D692C = (long) (((u8 *)this) + 0x4DC);
     lbl_805D6944 = (long) (((u8 *)this) + 0x7B4);
 }
-void TObjPlayer__sub_802E8274(void) {
+void TObjPlayer__sub_802E8274(NJS_OBJECT *) {
     typedef char sp8_offset[(offsetof(Stack_802E8274, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802E8274, spC) == 0x4) ? 1 : -1];
     typedef char sp10_offset[(offsetof(Stack_802E8274, sp10) == 0x8) ? 1 : -1];
@@ -836,7 +853,7 @@ void TObjPlayer__sub_802E8274(void) {
     }
     if ((s32) boss7_derolle_c_motion_id == 0x33) {
         push_matrix();
-        mult_vec_array__10TObjPlayerFUll(0, (void *)&lbl_804E3BFC.value, (void *)lbl_805D692C, 4);
+        matrix_mult_vec_array((f32 (*)[4])(0), (const Vec *)((void *)&lbl_804E3BFC.value), (Vec *)((void *)lbl_805D692C), 4);
         pop_matrix();
         subtract_vector((void *)(lbl_805D692C + 0xC), (void *)lbl_805D692C);
     }
@@ -872,7 +889,6 @@ void set_swim_direction__8TObjFishFPv(void *arg0);
 #define release_laser_light__15TBoss7LaserPtclFPv ((s32 (*)(void *, int))release_laser_light__15TBoss7LaserPtclFPv)
 #define set_swim_direction__8TObjFishFPv ((void (*)(void *, s32))set_swim_direction__8TObjFishFPv)
 
-struct ByteBlock_14 { u8 bytes[0x14]; };
 
 struct Pt_802E95F8 { f32 x, y, z; };
 
@@ -880,11 +896,9 @@ struct Fish_802E95F8 { u8 pad[0x534]; Pt_802E95F8 pts[16]; u8 pad2[0x728 - 0x534
 
 struct Vec_802EBBC8 { f32 x, y, z; };
 
-struct Cam_802EBBC8 { s8 a; s8 b; s16 c; f32 d; f32 e; };
 
-struct Vec_802E85E0 { f32 x, y, z; };
 
-struct Tgt_802E85E0 { u8 pad[0x38]; Vec_802E85E0 pos; };
+struct Tgt_802E85E0 { u8 pad[0x38]; Vec pos; };
 
 struct Fish_802E85E0 {
     u8 pad0[0x390];
@@ -961,7 +975,7 @@ struct PCtrl_802EC550 {
 
 struct Vec_802E8B50 { f32 x, y, z; };
 
-struct Cam_802E8B50 { s8 a; s8 b; s16 c; f32 d; f32 e; };
+
 
 struct Body_802E8B50 { u8 pad[8]; s32 flags; };
 
@@ -996,8 +1010,6 @@ struct Fish_802E8B50 {
     s32 f7B0;
     u8 f7B4[4];
 };
-
-struct Vec_802E9ADC { f32 x, y, z; };
 
 struct Fish_802E9ADC {
     u8 pad0[0x390];
@@ -1119,15 +1131,12 @@ void TObjFish__sub_802ECE90(void *arg0, int idx, int arg);
 void TObjFish__sub_802E95F8(u8 *arg0, u32 arg1, s32 arg2);
 s32 restore_player_cameras();
 s32 activate_camera_mode(s32 arg0);
-u8 *get_scripted_camera_playback();
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
 s32 query_teammate_state__9TObjEneDDFv();
-int play_sound_effect(void*, void*, void*, void*);
 
 void TObjFish__sub_802EBBC8(u8 *arg0, u32 arg1);
 f32 random_ratio__9TObjCharaFv(void *);
-s32 get_random_scaled__9TObjEneDDFv(void *);
 
 s32 TBoss7Tentacle__sub_802F0904(s32);
 void TBoss7Tentacle__sub_802F0AF0(s32);
@@ -1421,7 +1430,7 @@ s32 enemy_set_target_id(void * a0 = 0, u16 a1 = 0);
 void project_sound_origin_from_camera(s32 arg0, u8 *arg1, f32 farg0);
 s32 is_alive__8TObjBaseFv();
 u8 *get_enemy_entity(u16 arg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 #define TObjFish__sub_802E7B40 ((s32 (*)(void *))TObjFish__sub_802E7B40)
 #define TObjFish__sub_802E7B94 ((s32 (*)(void *))TObjFish__sub_802E7B94)
 void TObjFish__sub_802E8AD4(Fish_802E8AD4* o, u32 k);
@@ -1442,14 +1451,11 @@ extern RecoveredGlobal_802EC468_lbl_804FF5E8 lbl_804FF5E8;
 struct Boss_802E83E8 { u8 pad[0x728]; s32 timer; s32 count; u8 pad730[0x7CC - 0x730]; u16 targets[4]; };
 
 extern "C" {
-void *get_player_by_client_id(s32 i);
-void *TBoss7TentacleNeedle__ct(void *o, void *boss, void *pos);
 }
 
 void TObjFish__sub_802E83E8(u8 *boss, u32 k) {
     Boss_802E83E8 *self = (Boss_802E83E8 *)boss;
-    u8 *player;
-    void *o;
+    TObjPlayer *player;
     u16 id;
     u16 n;
     switch (k) {
@@ -1477,12 +1483,9 @@ void TObjFish__sub_802E83E8(u8 *boss, u32 k) {
             if (self->timer == 0) {
                 self->timer = 20;
                 self->count--;
-                player = (u8 *)get_player_by_client_id(self->targets[self->count & 3]);
+                player = get_player_by_client_id(self->targets[self->count & 3]);
                 if (player != NULL) {
-                    o = TObject::operator new(0x7C);
-                    if (o != NULL) {
-                        TBoss7TentacleNeedle__ct(o, boss, player + 0x38);
-                    }
+                    new TBoss7TentacleNeedle((TObject *)boss, &player->position);
                 }
             } else {
                 self->timer--;
@@ -1535,7 +1538,7 @@ void TObjFish__sub_802E8584(void* o, u32 k) {
 
 #define self ((Fish_802E85E0 *)arg0)
 void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
-    Vec_802E85E0 v;
+    Vec v;
     f32 scale;
     s32 r;
     s32 ok;
@@ -1591,17 +1594,17 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
                 if (self->fired == 0) {
                     self->timer = 0;
                     if (((TObjEneDD_ST *)self)->enemy_has_live_target() != 0) {
-                        ((s32 (*)(Vec_802E85E0 *, Vec_802E85E0 *))VecCopy__FP3VecPC3Vec)(&v, &self->target->pos);
+                        VecCopy(&v, &self->target->pos);
                     } else {
                         scale = lbl_805DEA20 * random_ratio__9TObjCharaFv(self);
-                        r = get_random_scaled__9TObjEneDDFv(self);
+                        r = ((TObjEneDD *)self)->get_random_scaled();
                         v.x = scale * sin_table_lookup(r);
                         v.y = lbl_805DEA24;
                         v.z = scale * cos_table_lookup(r);
-                        TObjBoss2Tunnel::adjust_to_ground((s32)&v, (void *)&v);
+                        adjust_point_to_ground(&v, &v);
                     }
                     for (j = 0; j != 4; j++) {
-                        ((TBoss7Tentacle *)(self->kids[j]))->start_attack_at_position((u8 *)&v, self->f738);
+                        ((TBoss7Tentacle *)(self->kids[j]))->start_attack_at_position(&v, self->f738);
                     }
                     self->fired = 1;
                     self->timer = 0;
@@ -1776,7 +1779,7 @@ __declspec(section ".sdata2") const f32 lbl_805DEA2C[1] = { 85.0f };
 #define lbl_805DEA2C (lbl_805DEA2C[0])
 void TObjFish::handle_death_state(u32 arg1) {
     Fish_802E8B50 *o = (Fish_802E8B50 *)this;
-    Cam_802E8B50 cam;
+    CameraPlayback cam;
     s32 i;
     switch (arg1) {
     case 4:
@@ -1801,13 +1804,13 @@ void TObjFish::handle_death_state(u32 arg1) {
         TObjBoss2Tunnel::clear_flags_0x3000();
         TWindowCtrl::init_all_slots();
         {
-            cam.b = 0;
-            cam.a = 2;
-            cam.c = 0;
-            cam.d = lbl_805DEA10;
-            cam.e = lbl_805DEA28;
+            cam.index = 0;
+            cam.bank = 2;
+            cam.flags = 0;
+            cam.frame = lbl_805DEA10;
+            cam.frame_step = lbl_805DEA28;
             activate_camera_mode(5);
-            ((TCameraCtrl *)(&cam))->cache_target_and_forward(0x1C71);
+            cache_target_and_forward__11TCameraCtrlFl(&cam, 0x1C71);
         }
         break;
     case 2:
@@ -1824,7 +1827,7 @@ void TObjFish::handle_death_state(u32 arg1) {
         break;
     case 0:
         ((TObjMotion *)o)->advance_animation();
-        if (*(u16 *)(get_scripted_camera_playback() + 2) & 1) {
+        if (get_scripted_camera_playback()->flags & 1) {
             o->phase = 1;
             TWindowCtrl::init_all_slots2();
             restore_player_cameras();
@@ -1832,7 +1835,7 @@ void TObjFish::handle_death_state(u32 arg1) {
         if (((TObjMotion *)o)->is_passing_frame((f32)lbl_805DEA2C) != 0) {
             Vec v = lbl_80473F90;
             create_timed_particle_emitter_with_flags(&v, 0x20C, 0, 0xA0, 0x40);
-            play_sound_effect((void *)0x39614, 0, 0, 0);
+            play_sound_effect((s32)((void *)0x39614), 0, 0, 0);
         }
         if (((TObjMotion *)o)->is_passing_frame((f32)lbl_805DEA30) != 0) {
             ((TObjFish *)o)->destroy_child();
@@ -1931,8 +1934,7 @@ void TObjFish__sub_802E8EEC(u8 *arg0, u32 arg1, s32 _w2) {
 
 struct Fish_802ECBDC;
 void TBoss7LaserPtcl__sub_802E8FCC(u8 *arg0, u32 arg1) {
-    struct CopyStack_802E8FCC { u8 bytes[0x14]; };
-    CopyStack_802E8FCC copy_storage_802E8FCC;
+    Boss7AttackParameterCopy copy_storage_802E8FCC;
     struct { f32 v[3]; } sp8;
     s32 temp_r4_2;
     u32 boss7_laser_ptcl;
@@ -2046,9 +2048,11 @@ void TBoss7LaserPtcl__sub_802E8FCC(u8 *arg0, u32 arg1) {
                     (*(TUnk_804E4788 **)((s8 *)arg0 + 0x720))->push_ring_point((const Vec *)src);
                 }
             }
-            *(ByteBlock_14 *)(copy_storage_802E8FCC.bytes) = *(const ByteBlock_14 *)((s32) ((u8 *)((void *)((u8 *)&boss7_laser_particle_params + -4))) + 4);
-            (*(f32 *)(copy_storage_802E8FCC.bytes + 0x4)) = *(f32 *)((s8 *)(*(f32 **)((s8 *)arg0 + 0x620)) + 0);
-            TObjEneDD::setup_instance((s32)((void *)arg0), (s32)((int)src), (u8 *)copy_storage_802E8FCC.bytes, (s32)((int) (*(s32 *)((s8 *)arg0 + 0x718))));
+            copy_storage_802E8FCC = boss7_laser_particle_params;
+            copy_storage_802E8FCC.params.field_4 = **(f32 **)(arg0 + 0x620);
+            // The existing setup ABI borrows the representation of this live
+            // parameter object; its float accesses select real float members.
+            TObjEneDD::setup_instance((s32)((void *)arg0), (s32)((int)src), (u8 *)&copy_storage_802E8FCC, (s32)((int) (*(s32 *)((s8 *)arg0 + 0x718))));
             if ((u32) *(u32 *)((s8 *)arg0 + 0x7A8) != 0U) {
                 if (is_state_2__15TBoss7LaserPtclFv(*(void **)((s8 *)arg0 + 0x7A8)) != 0) {
                     *(s32 *)((s8 *)arg0 + 0x728) = 3;
@@ -2295,7 +2299,7 @@ void TObjFish__sub_802E979C(Fish_802E979C *o, u32 k, s32 dir) {
 
 void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s32 arg2) {
     s32 ang;
-    Vec_802E9ADC v;
+    Vec v;
     s32 ok;
     s32 i;
     s32 j;
@@ -2350,13 +2354,13 @@ void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s
                     VecCopy__FP3VecPC3Vec((int)&v, o->target + 0x38);
                 } else {
                     f32 r = lbl_805DEA20 * random_ratio__9TObjCharaFv(o);
-                    ang = get_random_scaled__9TObjEneDDFv(o);
+                    ang = ((TObjEneDD *)o)->get_random_scaled();
                     v.x = r * sin_table_lookup(ang);
                     v.y = lbl_805DEA24;
                     v.z = r * cos_table_lookup(ang);
-                    TObjBoss2Tunnel::adjust_to_ground((s32)&v, (void *)&v);
+                    adjust_point_to_ground(&v, &v);
                 }
-                ((TBoss7Tentacle *)(o->tent[o->idx]))->start_attack_at_position((u8 *)&v, (s32)o->arg);
+                ((TBoss7Tentacle *)(o->tent[o->idx]))->start_attack_at_position(&v, (s32)o->arg);
                 o->idx++;
                 if (o->idx >= 4) {
                     o->timer = 0;
@@ -3121,20 +3125,20 @@ void TObjFish__sub_802EBBC8(u8 *arg0, u32 arg1) {
     case 0:
         if (*(s32 *)((s8 *)arg0 + 0x72C) == 0) {
             if (query_teammate_state__9TObjEneDDFv() == 0) {
-                Cam_802EBBC8 cam;
-                cam.b = 0;
-                cam.a = 1;
-                cam.c = 0;
-                cam.d = lbl_805DEA10;
-                cam.e = lbl_805DEA28;
+                CameraPlayback cam;
+                cam.index = 0;
+                cam.bank = 1;
+                cam.flags = 0;
+                cam.frame = lbl_805DEA10;
+                cam.frame_step = lbl_805DEA28;
                 activate_camera_mode(5);
-                ((TCameraCtrl *)(&cam))->cache_target_and_forward(0x1C71);
+                cache_target_and_forward__11TCameraCtrlFl(&cam, 0x1C71);
                 *(s32 *)((s8 *)arg0 + 0x72C) = 1;
             }
         } else {
             ((TObjMotion *)arg0)->advance_animation();
             if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DEB54) != 0) {
-                play_sound_effect((void *) 0x39E00, 0, 0, 0);
+                play_sound_effect((s32)((void *) 0x39E00), 0, 0, 0);
             }
             if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DEB78) != 0) {
                 ((TObjFish *)arg0)->destroy_child();
@@ -3150,10 +3154,10 @@ void TObjFish__sub_802EBBC8(u8 *arg0, u32 arg1) {
             if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DEB80) != 0) {
                 Vec w = lbl_80473F84;
                 spawn_particle_effect_with_flags(&w, 0x20F, 0x40);
-                play_sound_effect((void *) 0x39906, 0, 0, 0);
+                play_sound_effect((s32)((void *) 0x39906), 0, 0, 0);
             }
             ((TObjFish *)arg0)->update_attached_orientation();
-            if (*(u16 *) (get_scripted_camera_playback() + 2) & 1) {
+            if (get_scripted_camera_playback()->flags & 1) {
                 restore_player_cameras();
                 ((TBoss7DeRolLeC *)arg0)->advance_action_sequence();
                 *(s32 *)((s8 *)arg0 + 0x728) = 1;
@@ -3375,10 +3379,10 @@ void TBoss7DeRolLeC__dispatch_state(u8 *arg0, u32 arg1, u32 arg2) {
 }
 
 void TObjFish::spawn_via_trap(s32 arg0, s32 arg1, s32 arg2) {
-    play_persistent_sound(arg1, arg0, arg2, 0, 0);
+    play_persistent_sound((s32)(arg1), (const void *)(arg0), (const Vec *)(arg2), 0, 0);
 }
 
-void TObjFish::set_effect_target_position(void* p, void* a1, void* a2) { play_sound_effect(a1, a2, (void*)0, (void*)0); }
+void TObjFish::set_effect_target_position(void* p, void* a1, void* a2) { play_sound_effect((s32)(a1), (const Vec *)(a2), 0, 0); }
 
 void TObjFish__sub_802EC32C(void) {  }
 
@@ -3737,7 +3741,6 @@ struct Boss_802ECE90 { u8 pad[0x530]; Vec pads[16]; u8 pad5F0[0x690 - 0x5F0]; u8
 void TObjFish__sub_802ECE90(void *arg0, int idx, int arg) {
     s32 angle;
     Vec dir;
-    void *o;
     angle = 0x3800 - idx * 51;
     dir.x = sin_table_lookup(angle);
     dir.y = lbl_805DEA10;
@@ -3745,11 +3748,8 @@ void TObjFish__sub_802ECE90(void *arg0, int idx, int arg) {
     if (((Boss_802ECE90 *)arg0)->mode == 2) {
         dir.x = dir.x * lbl_805DEA70;
     }
-    o = TObject::operator new(0x38);
-    if (o != NULL) {
-        __ct__15TBoss7PhotonPadFllll((u8 *)o, (s32)((Boss_802ECE90 *)arg0)->nodes, (s32)&((Boss_802ECE90 *)arg0)->pads[idx], (s32)&dir, arg);
-    }
-    play_sound_effect((void *)0x39D11, &((Boss_802ECE90 *)arg0)->pads[idx], (void *)0, (void *)1);
+    new TBoss7PhotonPad((TObject *)((Boss_802ECE90 *)arg0)->nodes, &((Boss_802ECE90 *)arg0)->pads[idx], &dir, arg);
+    play_sound_effect((s32)((void *)0x39D11), (const Vec *)(&((Boss_802ECE90 *)arg0)->pads[idx]), 0, (s32)((void *)1));
 }
 
 
@@ -3965,7 +3965,7 @@ void TObjFish__sub_802ED4AC(u8 *arg0, s32 arg1) {
 }
 
 s32 TBoss7Joint_get_shell_max_hp(void) {
-    return *(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0xF)) + 0x1C);
+    return *(s32 *)((s8 *)(get_battle_movement_params(0xF)) + 0x1C);
 }
 
 }
@@ -4075,10 +4075,10 @@ struct Elem_802ED73C { u8 pad0[0x18]; s32 flags; u8 pad1C[0x2C - 0x1C]; };
 extern "C" {
 void TBoss7Joint__sub_802EE7B8(void *);
 void TBoss7Joint__sub_802EE800(void *);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
-s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, s32, s32, s32);
+
+
+
+s32 reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 void TBoss7PhotonBullet__sub_802ED5A0(void *arg0, int arg1);
 s32 update_local_colliders_from_world(void *, void *);
 #define VecCopy__FP3VecPC3Vec ((s32 (*)(void *, void *))VecCopy__FP3VecPC3Vec)
@@ -4086,11 +4086,11 @@ s32 add_radar_scaled_marker(void *, int, int, int, f32);
 s32 submit_default_cursor_candidate__9TObjEnemyFv(void *);
 
 f32 TBoss7PhotonBullet::get_target_pos_y() {
-    return *(f32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0xF)) + 4);
+    return *(f32 *)((s8 *)(get_battle_movement_params(0xF)) + 4);
 }
 
 
-void TBoss7PhotonBullet::emit_hit_effect(void *arg1) {
+void TBoss7DeRolLeC::emit_hit_effect(void *arg1) {
     TBoss7PhotonBullet__sub_802ED5A0(this, 2);
     TObjEneDD::emit_effect((void*)this, (int)arg1, (int)&lbl_80472D7C);
     ((void (*)(void *, void *))TBoss7PhotonBullet__sub_802ED5A0)(this, *(void **)((s8 *)this + 0x62C));
@@ -4110,7 +4110,7 @@ void TBoss7PhotonBullet__sub_802ED5A0(void *arg0, int arg1) {
         v = 0x11;
         break;
     }
-    reload_stats_keep_hp_tp__9TObjEneDDFv(arg0, register_boss__6TLobbyFl(0xF), dispatch_shared_handler_b__6TLobbyFl(v), register_object__6TLobbyFl(0xF));
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, ((s32)get_battle_base_stats(0xF)), ((s32)get_battle_attack_params(v)), ((s32)get_battle_resistance_params(0xF)));
 }
 
 void TBoss7DeRolLeC::set_state_and_send(s32 arg1) {
@@ -4122,7 +4122,7 @@ void TBoss7DeRolLeC::set_state_and_send(s32 arg1) {
         pa.a = this->entity_id;
         pa.b = arg1;
         pa.c = (s16)this->m_6d0;
-        pa.d = this->m_38c;
+        pa.d = this->target_entity_id;
         ((TBoss7Joint *)(&pa))->broadcast_state();
         return;
     }

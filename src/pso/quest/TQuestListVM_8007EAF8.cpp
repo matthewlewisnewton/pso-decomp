@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/quest/TQuestListVMData.h"
 #include "pso/system/debug_print.h"
 #include "pso/quest/TQuestListVM_8007EAF8.h"
 #include "pso/quest/TQuestListVM.h"
@@ -15,9 +16,9 @@ u8 *TQuestListVM::get_quest_bin() { return decrypted_quest_buffer; }
 
 void TQuestListVM::reset() { decrypted_quest_buffer = NULL; }
 
-extern TQuestVmDownLoadServer *TQuestVmDownLoadServer__instance;
+extern s32 TQuestVmDownLoadServer__instance;
 
-TQuestVmDownLoadServer *TQuestVmDownLoadServer__sub_8007EB14(void) {
+s32 TQuestVmDownLoadServer__sub_8007EB14(void) {
     return TQuestVmDownLoadServer__instance;
 }
 

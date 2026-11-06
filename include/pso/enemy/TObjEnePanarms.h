@@ -4,9 +4,13 @@
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/misc/RenderFadeState.h"
+#include <stddef.h>
+
+class TObjEnePanBARA;
+struct ModelNodePositionCapture;
 
 struct TObjEnePanarms : public TObjEnemy {
-    TObjEnePanarms(TObject *parent, void *setData);
+    TObjEnePanarms(TObject *parent, void *set_data);
     virtual ~TObjEnePanarms();
     virtual void run_task();
     virtual void render();
@@ -14,40 +18,48 @@ struct TObjEnePanarms : public TObjEnemy {
     void vfunc_63();
     void vfunc_62();
     void vfunc_61();
-    s32 state; // index into the TU's {enter, update} state table
-    Vec move_velocity; // added to position every frame (0x378)
-    u8 unk_384[0x4];
-    s32 m_388;
+    s32 state;
+    Vec velocity;
+    f32 ground_height;
+    s32 state_timer;
     s32 m_38c;
-    CollisionBody *collision_body_parts; // init_collision_body_parts / free_collision_body_parts
-    u32 particle_handles[2]; // released by destroy_handles
-    u32 m_39c;
-    void* m_3a0;
-    u8 unk_3A4[0x4];
-    f32 m_3a8;
-    u8 unk_3AC[0xC];
-    u8 unk_3B8[0x18];
-    u8 unk_3D0[0xC];
-    void* m_3dc;
-    u8 unk_3E0[0x4];
-    u32 m_3e4; // the two TObjEnePanBARA halves (create_bara)
-    u32 m_3e8;
-    s32 attack_count; // bit 0 / bit 1 pick the next arm attack
-    s32 spin_count;
-    s32 max_hp; // the split starts at max_hp / 3
-    s32 has_split;
-    s32 move_count; // moves since the last split check
-    RenderFadeState fades[4]; // one per camera (render)
-    f32 pad_470;
-    s32 search_range; // range passed to find_nearest_visible_player while waiting hidden
-    s32 wait_frames; // state timer start value of the hidden wait
+    CollisionBody *collision_body;
+    void *particle_emitters[2];
+    ModelNodePositionCapture *draw_callbacks;
+    Vec draw_positions[5];
+    s32 visible;
+    s32 shadow_enabled;
+    TObjEnePanBARA *first_half;
+    TObjEnePanBARA *second_half;
+    s32 m_3ec;
+    s32 m_3f0;
+    s32 initial_hp;
+    s32 m_3f8;
+    s32 m_3fc;
+    RenderFadeState camera_fades[4];
+    f32 m_470;
+    s32 m_474;
+    s32 m_478;
     int find_nearest_enemy_with_flag(s32 arg1, f32 farg0);
     static void spawn_npc_pair();
-    static int do_action_2(void* p);
-    static s32 create_bara(void *setData, s32 index);
+    static TObjEnePanBARA *create_bara(void *set_data, s32 part);
     static s32 create(s32 arg0);
     void init(s16 action);
-    int get_state_flag();
+    void copy_target_state(void* a1);
+    void fn_800DE2B0();
+    void fn_800DE124();
+    void fn_800DDED8();
+    void fn_800DDC30();
+    void fn_800DDAD8();
+    void fn_800DD9A0();
+    void fn_800DD7F4();
+    void fn_800DD5C8();
+    void fn_800DD488();
+    void fn_800DD368();
+    void fn_800DCFE0();
+    void init_state();
+    typedef void (TObjEnePanarms::*Action)();
+    struct ActionPair { Action enter; Action update; };
     void update_spin();
     void enter_down_state();
     void update_state_effect();
@@ -64,20 +76,13 @@ struct TObjEnePanarms : public TObjEnemy {
     void update_fall();
     void set_hidden_flags();
     void try_activate();
-    // State-table entries (enter, update) indexed by the state at +0x374; names from their table slots.
-    void enter_idle();
-    void enter_wait_hidden();
-    void update_wait_hidden();
-    void enter_move();
-    void update_move();
-    void enter_dead();
-    void update_dead();
-    void enter_arm_attack_0();
-    void enter_arm_attack_1();
-    void enter_split();
-    void enter_separated();
-    void enter_rejoin();
-    static s32 find_combine_position(void *p);
+    s32 find_combine_position();
+    s32 try_warp_to_position(Vec *position);
+    s32 check_ground_along_path(Vec *start, Vec *end, f32 step, f32 dy);
+    s32 has_ground_around(Vec *position);
+    s32 no_player_within_range();
+    void fn_800DE430(s32 first, s32 second);
+    void draw_model();
     void turn_toward_target(s32 arg1);
     u16 turn_to_nearest_player(s32 arg1, s32 arg2);
     void snap_to_ground();
@@ -87,5 +92,8 @@ struct TObjEnePanarms : public TObjEnemy {
     static void free_data();
     static void load_and_spawn_npc();
 };
+
+typedef char PanarmsSize[sizeof(TObjEnePanarms) == 0x47C ? 1 : -1];
+typedef char PanarmsFadeOffset[offsetof(TObjEnePanarms, camera_fades) == 0x400 ? 1 : -1];
 
 #endif

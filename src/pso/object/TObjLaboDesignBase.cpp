@@ -1,8 +1,10 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TMainTask.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/object/TObjMapCsn.h"
 
 #pragma inline_depth(1)
 #pragma auto_inline off
@@ -53,7 +55,6 @@ void draw_ginja_model(s32 model);
 void draw_node_tree__18TObjLaboDesignBaseFiPv(s32 arg0, u8 *arg1);
 s32 init_collision_body_parts(void *, int, int);
 s32 __ct__14TObjCollidableFP7TObject();
-s32 create__10TObjMapCsnFl(void *, f32, f32);
 u8 *TObjLaboDesignBase__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
 void *TObjLaboDesignBase__create(void *arg0);
 void *TObjLaboDesignBase__sub_80364D38(void *arg0);
@@ -69,8 +70,6 @@ s32 rotate_matrix_y(int, int);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 void queue_destruction__7TObjectFv(void *);
-s32 set_global_param__8TObjFishFl();
-
 
 extern "C" u8 lbl_8047A0A8[];
 extern "C" u8 lbl_8047A0C4[];
@@ -177,6 +176,11 @@ void* get_labo_design_entry(int a0);
 int get_labo_design_object(int a0);
 extern s32 __vt__18TObjLaboDesignBase[];
 extern s32 TObjLaboDesignBase_class_name;
+extern const f32 lbl_805E02A0;
+extern const f32 lbl_805E02A4;
+extern const f32 lbl_805E02A8;
+extern const f32 lbl_805E02AC;
+extern const f32 lbl_805E02B0;
 void *create_labo_design_base(void *arg0);
 void *create_obj_labo_design_base(void *arg0);
 void *create_obj_labo_design_base(void *arg0) {
@@ -267,8 +271,7 @@ void draw_node_tree__18TObjLaboDesignBaseFiPv(s32 arg0, u8 *arg1) {
 }
 
 void render__18TObjLaboDesignBaseFPv(u8 *arg0) {
-    TObjFish__sub_8001EDB0((int) (*(s32 *)((s8 *)arg0 + 0xAC)), 0);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((int) (*(s32 *)((s8 *)arg0 + 0xAC)), 0)));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x60)));
@@ -325,16 +328,16 @@ u8 *TObjLaboDesignBase__ct(u8 *player, s32 arg1, s32 arg2, s32 arg3) {
     *(s32 *)((s8 *)player + 0xAC) = ((s32)get_labo_design_object((int) (*(s32 *)((s8 *)player + 0xB0))));
     init_collision_body_parts(player, (int) (((s32)get_labo_design_entry((int) (*(s32 *)((s8 *)player + 0xB0))))), 1);
     ((TObjPlayer *)player)->register_object_by_id();
-    *(f32 *)((s8 *)player + 0xB4) = 400.0f;
-    *(f32 *)((s8 *)player + 0xB8) = 50.0f;
+    *(f32 *)((s8 *)player + 0xB4) = (f32) lbl_805E02A0;
+    *(f32 *)((s8 *)player + 0xB8) = (f32) lbl_805E02A4;
     *(s32 *)((s8 *)player + 0xBC) = 0;
     temp_r0 = *(s32 *)((s8 *)player + 0xB0);
     if ((temp_r0 == 3) || (temp_r0 == 4)) {
         *(ByteBlock_3C *)(copy_storage_80365210.bytes) = *(const ByteBlock_3C *)((arg2 - 4) + 4);
-        (*(f32 *)(copy_storage_80365210.bytes + 0x24)) = 40.0f;
-        (*(f32 *)(copy_storage_80365210.bytes + 0x28)) = 20.0f;
-        (*(f32 *)(copy_storage_80365210.bytes + 0x2C)) = 10.0f;
-        *(s32 *)((s8 *)player + 0xBC) = create__10TObjMapCsnFl((void *) ((copy_storage_80365210.bytes)), 20.0f, 40.0f);
+        (*(f32 *)(copy_storage_80365210.bytes + 0x24)) = lbl_805E02A8;
+        (*(f32 *)(copy_storage_80365210.bytes + 0x28)) = lbl_805E02AC;
+        (*(f32 *)(copy_storage_80365210.bytes + 0x2C)) = lbl_805E02B0;
+        *(TObjMapCsn **)((s8 *)player + 0xBC) = TObjMapCsn::create(copy_storage_80365210.bytes);
     }
     return player;
 }

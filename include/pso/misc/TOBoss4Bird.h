@@ -4,6 +4,7 @@
 #include "types.h"
 #include "pso/misc/TOBoss4.h"
 #include "pso/animation/ActorAnimationState.h"
+#include "pso/system/vector.h"
 
 // A flock of birds circling its set position, bobbing up and down.
 struct TOBoss4Bird : public TOBoss4 {

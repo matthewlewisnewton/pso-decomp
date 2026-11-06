@@ -5,11 +5,10 @@
 
 class TUnk_804A1668 : public TItemWeapon {
 public:
-    // No destructor of its own: the compiler's comes last in the TU.
+    virtual ~TUnk_804A1668();
     virtual void update_weapon();
-    TUnk_804A1668(TObject *parent, u8 *item);
-    s16 uv_scroll;  // scroll_item_model_uvs du
-    u8 pad_1fa[0x1FC - 0x1FA];
+    void *init_bringer_effect();
+    u8 unk_1F8[0x4];
 };
 
 #endif

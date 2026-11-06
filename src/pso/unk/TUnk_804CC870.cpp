@@ -1,22 +1,19 @@
+#include "pso/system/ArrayAllocation.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/ChunkMaterialState.h"
+// ---- pso/unk/text_80232934
 #include "types.h"
 #include "pso/map/FloorArea.h"
 #include "pso/effect/TEffect.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/render/render_util.h"
 #include "pso/unk/text_803D96A8.h"
+
 #include "pso/unk/TUnk_804CC870.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/object/TObjFish.h"
-#include "pso/object/TObject_80019A50.h"
-#include "pso/system/vector.h"
-#include "pso/unk/text_80232B24.h"
-#include "pso/unk/TUnk_804CC888.h"
-#include "pso/misc/TLobby_80226070.h"
-#include "pso/player/TObjPlayer.h"
-
-// ---- pso/unk/text_80232934
-
+#include "pso/map/FloorArea.h"
 struct Vec_80232934 { f32 x; f32 y; f32 z; };
 
 struct Quad_80232934 { u32 a; u32 b; u32 c; u32 d; };
@@ -46,9 +43,16 @@ extern s32 saved_model_render_flags;
 extern s32 technique_effect_bml;
 extern s32 model_render_flags;
 
+
 }
 
+
 // ---- pso/unk/text_80232AA4
+#include "types.h"
+#include "pso/effect/TEffect.h"
+#include "pso/object/TObject_80019A50.h"
+#include "pso/system/vector.h"
+#include "pso/unk/TUnk_804CC870.h"
 
 extern "C" {
 void *find_entity_by_id(u16 id);
@@ -56,13 +60,21 @@ void *find_entity_by_id(u16 id);
 }
 
 // ---- pso/unk/text_80232B24
+#include "types.h"
+#include "pso/effect/TEffect.h"
+#include "pso/unk/TUnk_804CC870.h"
+#include "pso/unk/text_80232B24.h"
 
 // ---- pso/unk/text_80232B7C
+#include "types.h"
+#include "pso/effect/TEffect.h"
+#include "pso/unk/TUnk_804CC888.h"
 
-struct Part_80232EC0 { s32 id; u32 flags; u8 pad8[4]; };
+#include "pso/misc/TLobby_80226070.h"
+#include "pso/object/TObject_80019A50.h"
+#include "pso/system/vector.h"
 
-struct Profile_80232EC0 { Part_80232EC0 *parts; u32 count; };
-extern Profile_80232EC0 grants_effect_emitter_table[];
+struct Ent_80232E0C { u32 a; u32 count; };
 
 struct Obj_80232E0C {
     u8 pad0[0x18];
@@ -103,14 +115,17 @@ struct Ctl_80232C50 {
 };
 
 extern "C" {
-void mem_free(void *);
+extern Ent_80232E0C grants_effect_emitter_table[];
 void __ct__7TObjectFP7TObject(void *self, void *parent);
 extern u8 __vt__13TUnk_804CC870[];
+
+
+
 
 Obj_80232B7C *construct_grants_flash(Obj_80232B7C *self, s32 id, void *parent, Vec_80232B7C *pos, f32 scale);
 
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *find_entity_by_id(u16 id);
 void *__nw__7TObjectFUl(u32);
 }
@@ -119,6 +134,7 @@ extern SGrp_80232C50 technique_effect_entry_table[];
 extern void *tl_07;
 extern s32 technique_effect_bml;
 extern s32 lbl_805D63B0;
+
 
 // Function definitions in reverse address order (defer_codegen emits them reversed).
 #pragma defer_codegen on
@@ -131,7 +147,7 @@ TUnk_804CC888::~TUnk_804CC888() {
         }
     }
     stop_sound_request(((Obj_80232E0C *)this)->f20);
-    mem_free(((Obj_80232E0C *)this)->items);
+    ::operator delete[](((Obj_80232E0C *)this)->items);
 }
 
 void TUnk_804CC888::run_task() {
@@ -153,12 +169,12 @@ void TUnk_804CC888::run_task() {
             if (obj != 0) {
                 SEnt_80232C50 *e = &technique_effect_entry_table[((Ctl_80232C50 *)this)->kind].ents[i];
                 if (e->flags & 0x20) {
-                    r = (s32)spawn_particle_effect(obj + 0x38, e->a);
+                    r = (s32)spawn_particle_effect((const Vec *)(obj + 0x38), (s32)(e->a));
                     if (r != 0) {
                         attach_particle_model((u8 *)r, (s32)(get_bml_model(technique_effect_bml, technique_effect_entry_table[((Ctl_80232C50 *)this)->kind].ents[i].flags >> 16)), (s32)lbl_805D63B0, 0, 1, (f32)1.0f);
                     }
                 } else {
-                    spawn_particle_effect(obj + 0x38, e->a);
+                    spawn_particle_effect((const Vec *)(obj + 0x38), (s32)(e->a));
                 }
             }
         }
@@ -254,7 +270,7 @@ void TUnk_804CC870::render() {
     post_translate_matrix(arg0->f20);
     scale_matrix(0, arg0->pos.x, arg0->pos.y, arg0->pos.z);
     translate_matrix(0, 0.0f, 1e+01f, 0.0f);
-    TObjFish::set_global_param((s32)lbl_804CC868);
+    set_current_texture_list((GinjaTextureList *)(lbl_804CC868));
     get_bml_model(technique_effect_bml, 10);
     draw_ginja_object();
     pop_matrix();
@@ -264,73 +280,3 @@ void TUnk_804CC870::render() {
 }
 
 #pragma defer_codegen off
-
-struct Task_80232EC0 {
-    u8 pad0[0x18];
-    void **vt;
-    u32 *emitters;
-    s32 sound;
-    s32 tier;
-    s32 level;
-    s16 x2c;
-    u16 owner;
-    u8 pos[0xC];
-};
-
-extern "C" {
-u16 get_entity_id(void *);
-void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
-void *mem_alloc(u32 size);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
-s32 play_sound_effect(s32, void *, s32, s32);
-}
-TUnk_804CC888::TUnk_804CC888(u8 *src, s32 level, TObject *parent) : TObject(parent) {
-    u32 i;
-    VecCopy((Vec *)(((Task_80232EC0 *)this)->pos), (const Vec *)(src + 0x38));
-    ((Task_80232EC0 *)this)->x2c = 0;
-    ((Task_80232EC0 *)this)->owner = get_entity_id(src);
-    ((Task_80232EC0 *)this)->level = level;
-    if (((Task_80232EC0 *)this)->level < 0) {
-        ((Task_80232EC0 *)this)->level = 0;
-    } else if (level >= 0x1E) {
-        ((Task_80232EC0 *)this)->level = 0x1E;
-    }
-    ((Task_80232EC0 *)this)->tier = TObjPlayer::get_level_tier(((Task_80232EC0 *)this)->level);
-    ((Task_80232EC0 *)this)->emitters = (u32 *)mem_alloc(grants_effect_emitter_table[((Task_80232EC0 *)this)->tier].count * 4);
-    for (i = 0; i < grants_effect_emitter_table[((Task_80232EC0 *)this)->tier].count; i++) {
-        ((Task_80232EC0 *)this)->emitters[i] = (u32)spawn_continuous_particle_effect_with_flags(((Task_80232EC0 *)this)->pos, grants_effect_emitter_table[((Task_80232EC0 *)this)->tier].parts[i].id, 0x10);
-        if (((Task_80232EC0 *)this)->emitters[i] != 0) {
-            ((TParticleCtrl *)(((Task_80232EC0 *)this)->emitters[i]))->set_owner_id(((Task_80232EC0 *)this)->owner);
-        }
-    }
-    switch (((Task_80232EC0 *)this)->tier) {
-    case 0:
-        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, ((Task_80232EC0 *)this)->pos, 0, 0);
-        if (((Task_80232EC0 *)this)->sound >= 0) {
-            update_technique_slot__10TTecRaFoieFl(((Task_80232EC0 *)this)->sound, 0x100, 0);
-        }
-        break;
-    case 1:
-        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, ((Task_80232EC0 *)this)->pos, 0, 0);
-        break;
-    case 2:
-    case 3:
-        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, ((Task_80232EC0 *)this)->pos, 0, 0);
-        if (((Task_80232EC0 *)this)->sound >= 0) {
-            update_technique_slot__10TTecRaFoieFl(((Task_80232EC0 *)this)->sound, -0x180, 0);
-        }
-        break;
-    case 4:
-        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, ((Task_80232EC0 *)this)->pos, 0, 0);
-        if (((Task_80232EC0 *)this)->sound >= 0) {
-            update_technique_slot__10TTecRaFoieFl(((Task_80232EC0 *)this)->sound, -0x250, 0);
-        }
-        break;
-    case 5:
-        ((Task_80232EC0 *)this)->sound = play_sound_effect(0x4002A90C, ((Task_80232EC0 *)this)->pos, 0, 0);
-        if (((Task_80232EC0 *)this)->sound >= 0) {
-            update_technique_slot__10TTecRaFoieFl(((Task_80232EC0 *)this)->sound, -0x100, 0);
-        }
-        break;
-    }
-}

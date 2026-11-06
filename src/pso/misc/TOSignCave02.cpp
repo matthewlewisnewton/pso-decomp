@@ -1,4 +1,6 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include <stdlib.h>
 #include "pso/TMainTask.h"
 #include "pso/TParticleCtrl.h"
@@ -22,10 +24,10 @@ BmlResource *TOSignCave02__bml_resource;
 void TOSignCave02::render() {
     NJS_OBJECT *node;
     if (update_object_view_visibility(view_range, model_radius) != 0) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         node = (NJS_OBJECT *)model;
         translate_matrix(0, node->pos[0], node->pos[1], node->pos[2]);
         draw_ginja_model((s32)node->model);
@@ -85,16 +87,13 @@ void *TOSignCave02::create(void *set_data) {
 
 void TOSignCave02::release_static_resource() {
     if (TOSignCave02__bml_resource != NULL) {
-        TLobby__sub_8001FE7C(TOSignCave02__bml_resource, 1);
+        delete (BmlResource *)(TOSignCave02__bml_resource);
         TOSignCave02__bml_resource = NULL;
     }
 }
 
 void TOSignCave02::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_dokanban02_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_dokanban02_resource_descriptor), 0, 0, (void *)(0));
     TOSignCave02__bml_resource = resource;
 }
 

@@ -15,13 +15,15 @@ extern "C" {
 s32 TProtocol__send_60(int, int, int);
 s32 dispatch_6x_subcommand(void *);
 extern u32 TLobby__protocol_instance;
-void *tmp_buf_use_req__6TLobbyFPCc(char *);
-void *alloc__22TQuestVmDownLoadServerFUl(void);
+u8 *tmp_buf_use_req__6TLobbyFPCc(char *);
+u8 *alloc__22TQuestVmDownLoadServerFUl(void);
+void debug_print__6TLobbyFle(const char *, ...);
 char *strncpy(char *, const char *, u32);
 s32 load_gvm_texture_archive(void *, s32);
 extern char texture_pvm_not_found_format[];
 extern char lbl_804497C4[];
 extern char texture_pvm_load_error_format[];
+extern char lbl_805DC448[4];
 s32 load_texture_list(s32 **);
 extern char pso_texture_load_error_format[];
 s32 append_command_to_batch_buffer(void *, s32);
@@ -132,18 +134,18 @@ void TLobby::update_players() {
 void TLobby::bswap_switch_activate_token() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); }
 s32 TLobby::load_texture_pvm_file(const char *name, s32 arg1) {
     char path[0x40];
-    void *buf;
+    u8 *buf;
     s32 allocated;
     s32 size;
     s32 ret;
     TLobby::pump_frames();
     strncpy(path, name, 0x40);
-    if (((TLobby *)path)->compare_file_extension("gvm") != 0) {
-        change_file_extension__6TLobbyFPvPvPv(0, path, "gvm");
+    if (((TLobby *)path)->compare_file_extension(lbl_805DC448) != 0) {
+        change_file_extension__6TLobbyFPvPvPv(0, path, lbl_805DC448);
     }
-    size = ((TLobby *)path)->get_resource_file_size();
+    size = TLobby::get_resource_file_size((const char *)path);
     if (size <= 0) {
-        TLobby::debug_print(texture_pvm_not_found_format, name);
+        debug_print__6TLobbyFle(texture_pvm_not_found_format, name);
         return -1;
     }
     allocated = 0;
@@ -156,7 +158,7 @@ s32 TLobby::load_texture_pvm_file(const char *name, s32 arg1) {
     } else {
         buf = tmp_buf_use_req__6TLobbyFPCc(lbl_804497C4);
     }
-    TGStream::load_sct_file((s32)path, (s32)buf);
+    TGStream::load_sct_file((s32)path, buf);
     ret = load_gvm_texture_archive(buf, arg1);
     if (allocated != 0) {
         TAdSinglePlyChrSelectGC::safe_free((u32)buf);
@@ -164,7 +166,7 @@ s32 TLobby::load_texture_pvm_file(const char *name, s32 arg1) {
         TLobby::tmp_buf_release((const char *)lbl_804497C4);
     }
     if (ret < 0) {
-        TLobby::debug_print(texture_pvm_load_error_format, name);
+        debug_print__6TLobbyFle(texture_pvm_load_error_format, name);
     }
     return ret;
 }
@@ -180,7 +182,7 @@ s32 TLobby::pso_load_texture() {
         }
         if (r == -1) {
             ret = -1;
-            TLobby::debug_print(pso_texture_load_error_format, **((s32 **)this));
+            debug_print__6TLobbyFle(pso_texture_load_error_format, **((s32 **)this));
             break;
         }
         TLobby::run_frame();

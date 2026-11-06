@@ -60,7 +60,7 @@ extern s32 lbl_805DD884;
 void TWindowTimer::draw(s32 arg1, s32 arg2) {
     s32 array_entry;
 
-    array_entry = get_array_entry(0);
+    array_entry = (s32)get_array_entry(0);
     text_builder_reset();
     text_builder_append((u8 *)&lbl_805DD884);
     append_padded_number(arg1, 3);
@@ -74,7 +74,7 @@ void TWindowTimer::set_time(u32 secs) {
     s32 entry;
     u32 hours;
     u32 mins;
-    entry = get_array_entry(0);
+    entry = (s32)get_array_entry(0);
     text_builder_reset();
     hours = secs / 3600;
     secs %= 3600;

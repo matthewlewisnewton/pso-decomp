@@ -1,3 +1,9 @@
+#include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/player/TObjChara.h"
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/boss/TBoss3VoloptCore.h"
@@ -18,7 +24,7 @@
 
 
 extern "C" {
-s32 play_sound_effect(s32 id, Vec *pos, s32 a2, s32 flags);
+
 void obj_setFlags30(TObject *obj, u32 mask);
 void *find_entity_by_id(u16 id);
 void submit_cursor_candidate(TObject *obj, s32 a1);
@@ -192,11 +198,11 @@ TBoss3VoloptMonitor::TBoss3VoloptMonitor(TObjBase *parent, u16 id, s32 index, s3
     variant = slot_index & 3;
     timer = start_timer;
     init_params();
-    rotation_y = 182.04445f * (f32)((slot_index / 4) * 60);
+    this->rotation.yaw = 182.04445f * (f32)((slot_index / 4) * 60);
     set_model(volopt_monitor_models[0][variant]);
     push_matrix();
     set_matrix_identity(NULL);
-    rotate_matrix_y(NULL, rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     matrix_mult_vec(NULL, &volopt_monitor_offsets[variant], &position);
     pop_matrix();
     VecCopy(&volopt_slot_positions[slot], &position);
@@ -218,7 +224,7 @@ void TBoss3VoloptMonitor::init_params() {
     referenceHp = hp;
     set_param(0x2E);
     update_prev_position();
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    register_by_id();
     anim_frame = 8.0f * (3.0517578e-05f * (f32)rand());
     anim_timer = 3.0f * (3.0517578e-05f * (f32)rand());
     add_flags_2e4(4);
@@ -240,10 +246,10 @@ void TBoss3VoloptMonitor::load_resources() {
     for (i = 0; i < 4; i++) {
         volopt_monitor_screen_meshes[i] = ((void **)get_bml_model(volopt_monitor_resources, volopt_monitor_models[2][i]))[1];
     }
-    volopt_monitor_stats = (BossStats *)TLobby::register_boss(0x23);
-    volopt_monitor_stats_b = TLobby::dispatch_shared_handler_b(0x23);
-    volopt_monitor_object_params = TLobby::register_object(0x23);
-    volopt_monitor_stat_table = (MonitorStatTable *)TLobby::dispatch_shared_handler_a(0x23);
+    volopt_monitor_stats = (BossStats *)get_battle_base_stats(0x23);
+    volopt_monitor_stats_b = get_battle_attack_params(0x23);
+    volopt_monitor_object_params = get_battle_resistance_params(0x23);
+    volopt_monitor_stat_table = (MonitorStatTable *)get_battle_movement_params(0x23);
 }
 
 void TBoss3VoloptMonitor::release() {
@@ -257,7 +263,7 @@ void TBoss3VoloptMonitor::run_task() {
     s32 i;
     s32 in_zone;
     s32 base;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_800420D8();
         return;
     }
@@ -277,7 +283,7 @@ void TBoss3VoloptMonitor::run_task() {
     dispatch_state();
     update_prev_position();
     if (obj_testFlags30(0x800) == 0) {
-        ((TBoss3VoloptHiraisin *)this)->copy_position();
+        ((TObjChara *)this)->copy_body_to_center();
         submit_cursor_candidate(this, -1);
         minimap_render_dot(&position, -0x5DB4, 1, 0);
     }
@@ -359,11 +365,11 @@ void TBoss3VoloptMonitor::render() {
             }
         }
         volopt_monitor_screen.entries = &volopt_monitor_textures->entries[frame];
-        TObjFish::set_global_param((s32)&volopt_monitor_screen);
+        set_current_texture_list((GinjaTextureList *)(&volopt_monitor_screen));
         set_draw_list_mask(3);
         push_matrix();
         model_render_flags &= ~0x400;
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         draw_ginja_object(model);
         pop_matrix();
         restore_draw_list_mask();
@@ -379,7 +385,7 @@ void TBoss3VoloptMonitor::sub_80041E88() {
         anim_timer = 3;
         anim_frame = 0;
         m_388 |= 0x10000;
-        play_sound_effect(0x4003BC03, &position, 0, 0);
+        play_sound_effect(0x4003BC03, (const Vec *)(&position), 0, 0);
         damage_player_if_aligned();
         referenceHp = hp;
         *(s16 *)&timer = 3;
@@ -402,7 +408,7 @@ void TBoss3VoloptMonitor::sub_80041D3C() {
     TBoss3VoloptMonitor *other;
     switch (state) {
     case 0:
-        play_sound_effect(0x4003A804, &position, 0, 0);
+        play_sound_effect(0x4003A804, (const Vec *)(&position), 0, 0);
         damage_player_if_aligned();
         spawn_effects();
         volopt_target_slot_used[slot] = 1;
@@ -477,10 +483,10 @@ void TBoss3VoloptMonitor::damage_player_if_aligned() {
 void TBoss3VoloptMonitor::spawn_effects() {
     s32 angle[3];
     angle[0] = 0;
-    angle[1] = rotation_y;
+    angle[1] = this->rotation.yaw;
     angle[2] = 0;
-    spawn_directional_particle(&m_2fc, angle, (slot & 3) == 0 ? 0x62 : 0x61);
-    spawn_particle_effect(&m_2fc, 0x45);
+    spawn_directional_particle(&body_center_position, angle, (slot & 3) == 0 ? 0x62 : 0x61);
+    spawn_particle_effect((const Vec *)(&body_center_position), 0x45);
 }
 
 void TBoss3VoloptMonitor::set_hit_flags_and_notify() {

@@ -1,4 +1,12 @@
+#include "pso/player/demo_mode.h"
+#include "pso/misc/MaterialOpacityFade.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/enemy/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/NinjaUtil.h"
@@ -18,137 +26,6 @@ extern "C" void test_flag_1000__9TObjCharaFv();
 #include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/misc/TLobby.h"
-extern "C" const u8 rappy_variant_na_name[3] = "NA";
-void *TObjEneLappy__model_filename_table[3] = {
-    (void *)"re3_b_lappy_base.nj", (void *)"re3_s_lappy_base.nj", (void *)0x0,
-};
-void *lbl_80492BE4[11] = {
-    (void *)"attack_re3_b_base.njm", (void *)"damage_re3_b_base.njm", (void *)"die_re3_b_base.njm", (void *)"run_re3_b_base.njm",
-    (void *)"tumble_re3_b_base.njm", (void *)"wait2_re3_b_base.njm", (void *)"wait_re3_b_base.njm", (void *)"wake2_re3_b_base.njm",
-    (void *)"wake_re3_b_base.njm", (void *)"walk_re3_b_base.njm", (void *)0x0,
-};
-void *lbl_80492C10[4] = {
-    (void *)"bm_ene_lappy.bml", (void *)&TObjEneLappy__model_filename_table, (void *)&lbl_80492BE4, (void *)0x2000a,
-};
-void *lbl_80492C20[3] = {
-    (void *)"re3_b_lappy_base.nj", (void *)"re3_s_lappy_base.nj", (void *)0x0,
-};
-void *lbl_80492C2C[11] = {
-    (void *)"attack_re3_b_base.njm", (void *)"damage_re3_b_base.njm", (void *)"die_re3_b_base.njm", (void *)"run_re3_b_base.njm",
-    (void *)"tumble_re3_b_base.njm", (void *)"wait2_re3_b_base.njm", (void *)"wait_re3_b_base.njm", (void *)"wake2_re3_b_base.njm",
-    (void *)"wake_re3_b_base.njm", (void *)"walk_re3_b_base.njm", (void *)0x0,
-};
-void *lbl_80492C58[4] = {
-    (void *)"bm_ene_lappy_ap.bml", (void *)&lbl_80492C20, (void *)&lbl_80492C2C, (void *)0x2000a,
-};
-void *lbl_80492C68[3] = {
-    (void *)"re3_b_lappy_base.nj", (void *)"re3_s_elappy_base.nj", (void *)0x0,
-};
-void *lbl_80492C74[11] = {
-    (void *)"attack_re3_b_base.njm", (void *)"damage_re3_b_base.njm", (void *)"die_re3_b_base.njm", (void *)"run_re3_b_base.njm",
-    (void *)"tumble_re3_b_base.njm", (void *)"wait2_re3_b_base.njm", (void *)"wait_re3_b_base.njm", (void *)"wake2_re3_b_base.njm",
-    (void *)"wake_re3_b_base.njm", (void *)"walk_re3_b_base.njm", (void *)0x0,
-};
-void *lbl_80492CA0[4] = {
-    (void *)"bm_ene_lappy_es.bml", (void *)&lbl_80492C68, (void *)&lbl_80492C74, (void *)0x2000a,
-};
-void *lbl_80492CB0[3] = {
-    (void *)"re3_b_lappy_base.nj", (void *)"re3_s_elappy_base.nj", (void *)0x0,
-};
-void *lbl_80492CBC[11] = {
-    (void *)"attack_re3_b_base.njm", (void *)"damage_re3_b_base.njm", (void *)"die_re3_b_base.njm", (void *)"run_re3_b_base.njm",
-    (void *)"tumble_re3_b_base.njm", (void *)"wait2_re3_b_base.njm", (void *)"wait_re3_b_base.njm", (void *)"wake2_re3_b_base.njm",
-    (void *)"wake_re3_b_base.njm", (void *)"walk_re3_b_base.njm", (void *)0x0,
-};
-void *lbl_80492CE8[4] = {
-    (void *)"bm_ene_lappy_ap_es.bml", (void *)&lbl_80492CB0, (void *)&lbl_80492CBC, (void *)0x2000a,
-};
-void *lbl_80492CF8[3] = {
-    (void *)"re3_b_lappy_base.nj", (void *)"re3_s_hlappy_base.nj", (void *)0x0,
-};
-void *TObjEneLappy__resource_name_table[11] = {
-    (void *)"attack_re3_b_base.njm", (void *)"damage_re3_b_base.njm", (void *)"die_re3_b_base.njm", (void *)"run_re3_b_base.njm",
-    (void *)"tumble_re3_b_base.njm", (void *)"wait2_re3_b_base.njm", (void *)"wait_re3_b_base.njm", (void *)"wake2_re3_b_base.njm",
-    (void *)"wake_re3_b_base.njm", (void *)"walk_re3_b_base.njm", (void *)0x0,
-};
-void *lbl_80492D30[4] = {
-    (void *)"bm_ene_lappy_hw.bml", (void *)&lbl_80492CF8, (void *)&TObjEneLappy__resource_name_table, (void *)0x2000a,
-};
-void *lbl_80492D40[3] = {
-    (void *)"re3_b_lappy_base.nj", (void *)"re3_s_hlappy_base.nj", (void *)0x0,
-};
-void *TObjEneLappy__resource_list[11] = {
-    (void *)"attack_re3_b_base.njm", (void *)"damage_re3_b_base.njm", (void *)"die_re3_b_base.njm", (void *)"run_re3_b_base.njm",
-    (void *)"tumble_re3_b_base.njm", (void *)"wait2_re3_b_base.njm", (void *)"wait_re3_b_base.njm", (void *)"wake2_re3_b_base.njm",
-    (void *)"wake_re3_b_base.njm", (void *)"walk_re3_b_base.njm", (void *)0x0,
-};
-void *lbl_80492D78[4] = {
-    (void *)"bm_ene_lappy_ap_hw.bml", (void *)&lbl_80492D40, (void *)&TObjEneLappy__resource_list, (void *)0x2000a,
-};
-void *lbl_80492D88[3] = {
-    (void *)"re3_b_lappy_base.nj", (void *)"re3_s_slappy_base.nj", (void *)0x0,
-};
-void *lbl_80492D94[11] = {
-    (void *)"attack_re3_b_base.njm", (void *)"damage_re3_b_base.njm", (void *)"die_re3_b_base.njm", (void *)"run_re3_b_base.njm",
-    (void *)"tumble_re3_b_base.njm", (void *)"wait2_re3_b_base.njm", (void *)"wait_re3_b_base.njm", (void *)"wake2_re3_b_base.njm",
-    (void *)"wake_re3_b_base.njm", (void *)"walk_re3_b_base.njm", (void *)0x0,
-};
-void *lbl_80492DC0[4] = {
-    (void *)"bm_ene_lappy_xs.bml", (void *)&lbl_80492D88, (void *)&lbl_80492D94, (void *)0x2000a,
-};
-void *lbl_80492DD0[3] = {
-    (void *)"re3_b_lappy_base.nj", (void *)"re3_s_slappy_base.nj", (void *)0x0,
-};
-void *lbl_80492DDC[11] = {
-    (void *)"attack_re3_b_base.njm", (void *)"damage_re3_b_base.njm", (void *)"die_re3_b_base.njm", (void *)"run_re3_b_base.njm",
-    (void *)"tumble_re3_b_base.njm", (void *)"wait2_re3_b_base.njm", (void *)"wait_re3_b_base.njm", (void *)"wake2_re3_b_base.njm",
-    (void *)"wake_re3_b_base.njm", (void *)"walk_re3_b_base.njm", (void *)0x0,
-};
-void *lbl_80492E08[4] = {
-    (void *)"bm_ene_lappy_ap_xs.bml", (void *)&lbl_80492DD0, (void *)&lbl_80492DDC, (void *)0x2000a,
-};
-void *rappy_variant_speed_table[40] = {
-    (void *)0x10000, (void *)0x6, (void *)0x3f666666, (void *)0x0,
-    (void *)0x10001, (void *)0x5, (void *)0x3f333333, (void *)0x0,
-    (void *)0x20003, (void *)0x8, (void *)0x3f333333, (void *)0x0,
-    (void *)0x10003, (void *)0x9, (void *)0x3fe66666, (void *)0x1,
-    (void *)0x10004, (void *)0x3, (void *)0x3f99999a, (void *)0x1,
-    (void *)0x20001, (void *)0x0, (void *)0x3f800000, (void *)0x4,
-    (void *)0x20001, (void *)0x1, (void *)0x3f800000, (void *)0x8,
-    (void *)0x30006, (void *)0x2, (void *)0x3f19999a, (void *)0x10,
-    (void *)0x20004, (void *)0x4, (void *)0x3f666666, (void *)0x1,
-    (void *)0x20004, (void *)0x7, (void *)0x3f000000, (void *)0x0,
-};
-void *lbl_80492EB8[3] = {
-    (void *)"RAG-LAPPY", (void *)"AL-LAPPY", (void *)&rappy_variant_na_name,
-};
-void *lbl_80492EC4[14] = {
-    (void *)0x43160000, (void *)0x3f097b42, (void *)0x400, (void *)0x1e0000,
-    (void *)0x0, (void *)0x1, (void *)0x0, (void *)0x43160000,
-    (void *)0x3f097b42, (void *)0x400, (void *)0x1e0000, (void *)0x0,
-    (void *)0x1, (void *)0x0,
-};
-void *lbl_80492EFC[11] = {
-    (void *)0x0, (void *)0x40f00000, (void *)0x0, (void *)0x40e00000,
-    (void *)0x0, (void *)0x0, (void *)0x8003, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0,
-};
-
-const char *TObjEneLappy__class_name = "TObjEneLappy";
-
-typedef struct Desc_800C17B8 {
-    s32 a;
-    void *b;
-    s32 c;
-    s32 d;
-} Desc_800C17B8;
-
-const Desc_800C17B8 lappy_resource_binding_desc = {0, rappy_variant_speed_table, 0x10003, 0xA0000};
-
-struct Vec_800C1224 { f32 x, y, z; };
-
-const Vec_800C1224 lappy_target_zero_vec = {0.0f, 0.0f, 0.0f};
-
 extern "C" __declspec(section ".data") s32 lappy_variant_speed_ptr_table[2];
 #define lappy_variant_speed_ptr_table ((f32 * *)lappy_variant_speed_ptr_table)
 extern "C" void * rappy_variant_speed_table[40];
@@ -285,6 +162,8 @@ struct Sub_800BFCD4 { u8 pad[0xc]; f32 fc; };
 struct Obj_800BFCD4 { u8 pad[0xa4]; Sub_800BFCD4 *fa4; u8 pad2[0x368 - 0xa8]; s32 f368; };
 
 struct G_800BFCD4 { u8 pad[0x68]; f32 f68; u8 pad2[0x1c]; f32 f88; };
+
+struct Vec_800C1224 { f32 x, y, z; };
 
 struct VBase_18_800C0588 { char pad[0x18]; };
 
@@ -424,7 +303,7 @@ void move_with_wall_slide(u8 *arg0);
 extern "C" {
 void sub_800C20B0__12TObjEneLappyFv(void *arg0);
 #define sub_800C20B0__12TObjEneLappyFv (*(s32 (*)())&sub_800C20B0__12TObjEneLappyFv)
-s32 play_sound_effect(s32, u32, s32, s32);
+
 void vfunc_63__12TObjEneLappyFv(u8 *arg0);
 void *get_player_by_client_id(s32 i);
 void vfunc_62__12TObjEneLappyFv(u8 *arg0);
@@ -446,7 +325,7 @@ s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 s32 pop_matrix();
 f32 post_translate_matrix(void *);
-s32 set_global_param__8TObjFishFl(int);
+
 s32 draw_chunk_object(int);
 extern s32 *rappy_visibility_node;
 extern s32 model_render_flags;
@@ -464,6 +343,7 @@ s32 check_path_obstructed(void *, void *);
 int get_player_data__10TObjPlayerFi(int a0);
 s32 get_entity_id(void *);
 s32 subtract_vector(void *, void *);
+extern s32 lappy_target_zero_vec[];
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 void vfunc_28__12TObjEneLappyFv(u8 *arg0);
@@ -483,10 +363,11 @@ s32 enemy_backstep_from_point(void *, void *, f32);
 f32 update_enemy_wander_move(void *, void *, int, f32);
 f64 atan2_float(f32, f32);
 s32 queue_destruction__7TObjectFv(void *);
-s32 spawn_particle_effect(void *, int);
+
 s32 angle_difference_abs(int, int);
 s32 lerp_angle_half__Fll(int, int);
-s32 play_persistent_sound(s32, void *, void *, int, int);
+
+extern const f64 lbl_8043BA18;
 s32 update_action_hold_status__12TObjEneLappyFv(s32 arg0);
 s32 update_movement_status__12TObjEneLappyFv(s32 arg0);
 s32 update_movement_status__9TObjCharaFv();
@@ -555,10 +436,10 @@ s32 TObjEneLappy::advance_flee_step() {
     s32 var_r30;
     s32 var_r29;
     VecCopy((Vec *)((LappyVec *)&arg0->prev_position), (const Vec *)&arg0->position);
-    VecCopy((Vec *)&sp20, (const Vec *)((LappyVec *)&arg0->m_2fc));
-    vec3_add_to(&sp20, (LappyVec *)&arg0->unk_308);
+    VecCopy((Vec *)&sp20, (const Vec *)((LappyVec *)&arg0->body_center_position));
+    vec3_add_to(&sp20, &arg0->movement_velocity);
     if (arg0->is_actor_cadence_frame(0x1E) != 0) {
-        if (csnVector((LappyVec *)&arg0->m_2fc, &sp20, -1) != 0U) {
+        if (csnVector((LappyVec *)&arg0->body_center_position, &sp20, -1) != 0U) {
             return 0;
         }
         if (random_ratio__9TObjCharaFv(arg0) < lbl_805D9F24) {
@@ -570,19 +451,19 @@ s32 TObjEneLappy::advance_flee_step() {
         var_r31 = 0;
 loop_7:
         if (var_r29 == 0) {
-            VecCopy((Vec *)&sp14, (const Vec *)((LappyVec *)&arg0->unk_308));
+            VecCopy((Vec *)&sp14, &arg0->movement_velocity);
         } else {
             push_matrix_from(&identity_matrix);
             rotate_matrix_y(0, (int)(var_r30 * var_r31));
-            rotate_vector_by_matrix(0, (LappyVec *)&arg0->unk_308, &sp14);
+            rotate_vector_by_matrix(0, &arg0->movement_velocity, &sp14);
             pop_matrices(1);
         }
         VecCopy((Vec *)&sp8, (const Vec *)&arg0->position);
         vec3_add_to(&sp8, &sp14);
         if (((s32)project_actor_to_ground(arg0, &sp8, 0)) == 1) {
             VecCopy((Vec *)&arg0->position, (const Vec *)&sp8);
-            VecCopy((Vec *)((LappyVec *)&arg0->unk_308), (const Vec *)&arg0->position);
-            subtract_vector((LappyVec *)&arg0->unk_308, (LappyVec *)&arg0->prev_position);
+            VecCopy(&arg0->movement_velocity, (const Vec *)&arg0->position);
+            subtract_vector(&arg0->movement_velocity, (LappyVec *)&arg0->prev_position);
             return 1;
         }
         var_r29 += 1;
@@ -594,8 +475,8 @@ loop_7:
     }
     if (((s32)project_actor_to_ground(arg0, &sp20, 0)) == 1) {
         VecCopy((Vec *)((LappyVec *)&arg0->position), (const Vec *)&sp20);
-        VecCopy((Vec *)((LappyVec *)&arg0->unk_308), (const Vec *)((LappyVec *)&arg0->position));
-        subtract_vector((LappyVec *)&arg0->unk_308, (LappyVec *)&arg0->prev_position);
+        VecCopy(&arg0->movement_velocity, (const Vec *)((LappyVec *)&arg0->position));
+        subtract_vector(&arg0->movement_velocity, (LappyVec *)&arg0->prev_position);
         return 1;
     }
     return 0;
@@ -604,7 +485,7 @@ loop_7:
 void TObjEneLappy::play_walk_sound() {
     u8 *arg0 = (u8 *)this;
     if (((s16) this->requested_action == 3) && ((((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805D9F28) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805D9F2C)) != 0))) {
-        play_sound_effect(remap_area_sound_id(0x3D20C, 5), (u32)(arg0 + 0x38), 0, 0);
+        play_sound_effect((s32)(remap_area_sound_id(0x3D20C, 5)), (const Vec *)((arg0 + 0x38)), 0, 0);
     }
 }
 void TObjPlayer__sub_800BFF54(void * _w0) {  }
@@ -620,12 +501,12 @@ void TObjEneLappy::render() {
         temp_r3 = ((VObj_18_ca64a0 *)(this))->m9(lbl_805D9F30, lbl_805D9F34, lbl_805D9F28);
         if (temp_r3 != 0) {
             set_speed_params__12TObjEneLappyFl(this, this->variant);
-            set_global_param__8TObjFishFl(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             select_actor_lighting(this);
             toggle_particle_effect__10TObjPlayerFv();
             push_matrix();
             post_translate_matrix(((u8 *)this) + 0x38);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             if (this->m_374 & 0x400) {
                 scale_matrix(0, lbl_805D9F38, lbl_805D9F3C, lbl_805D9F38);
                 TObjEneDD__sub_800B9B24(lbl_805D9F40);
@@ -681,7 +562,7 @@ s32 TObjEneLappy::apply_move_friction() {
     if (this->frame < (lbl_805D9F24 * (lbl_805D9F2C * this->play_speed))) {
         move_with_wall_slide((u8 *)this);
         *(f32 *)((s8 *)this + 0x308) = (f32) (*(f32 *)((s8 *)this + 0x308) * lbl_805D9F24);
-        this->m_310 = (f32) (this->m_310 * lbl_805D9F24);
+        this->movement_velocity.z = (f32) (this->movement_velocity.z * lbl_805D9F24);
     }
 }
 void TObjEneLappy::vfunc_63() {
@@ -691,15 +572,15 @@ void TObjEneLappy::vfunc_63() {
     if (temp_r3 & 2) {
         if (!(temp_r3 & 4)) {
             this->m_374 = (s16) (temp_r3 | 4);
-            play_sound_effect((s32)(((s32)remap_area_sound_id(0x3AD13, 5))), (u32)(((u8 *)this) + 0x38), 0, 0);
-            ((TObjPlayer *)((u8 *)this))->query_lobby_state();
+            play_sound_effect((s32)(((s32)remap_area_sound_id(0x3AD13, 5))), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);
+            ((TObjEnemy *)((u8 *)this))->request_standard_drop();
             this->requested_action = 8;
         }
     } else if ((s16) this->mode != 5) {
         this->mode = 5;
         this->requested_action = 7;
         if (!(this->m_374 & 0x10)) {
-            play_sound_effect((s32)(((s32)remap_area_sound_id(0x3AE10, 5))), (u32)(((u8 *)this) + 0x38), 0, 0);
+            play_sound_effect((s32)((s32)(((s32)remap_area_sound_id(0x3AE10, 5)))), (const Vec *)((((u8 *)this) + 0x38)), 0, 0);
             this->distribute_experience();
             ((TObjPlayer *)((u8 *)this))->set_flag_and_notify();
         }
@@ -722,7 +603,7 @@ void TObjEneLappy::update_hurt() {
     self->vx *= lbl_805D9F24;
     self->vz *= lbl_805D9F24;
     apply_actor_gravity(arg0, 0, lbl_805D9F4C);
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     if (this->action_flags != 8U) {
         this->actorFlags &= ~0x200;
         this->referenceHp = this->hp;
@@ -748,7 +629,7 @@ void TObjEneLappy::vfunc_62() {
             this->m_374 = (s16) (this->m_374 | 2);
             ((TObjPlayer *)((u8 *)this))->set_flag_and_notify();
         }
-        play_sound_effect((s32)((void*)((s32)remap_area_sound_id(0x3B10F, 5))), (u32)(((u8 *)this) + 0x38), 0, 0);
+        play_sound_effect((s32)((s32)((void*)((s32)remap_area_sound_id(0x3B10F, 5)))), (const Vec *)((((u8 *)this) + 0x38)), 0, 0);
     }
 }
 
@@ -759,7 +640,7 @@ void TObjEneLappy::update_invuln_timer() {
     if (!(*(s32 *)&this->actorFlags & 0x800000)) {
         apply_actor_gravity(arg0, NULL, lbl_805D9F4C);
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
     temp_r4 = *(s16 *)&this->timer;
     *(s16 *)&this->timer = (temp_r4 - 1);
     if (temp_r4 < 0) {
@@ -786,7 +667,7 @@ void TObjEneLappy::update_attacking() {
         enemy_turn_toward_dest(arg0, (void *) *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
         apply_actor_gravity(arg0, 0, lbl_805D9F4C);
         if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805D9F54) != 0) {
-            enemy_set_heading_velocity(*(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4), (TObjEnemy *)(arg0), this->rotation_y);
+            enemy_set_heading_velocity(*(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4), (TObjEnemy *)(arg0), this->rotation.yaw);
             *(f32 *)((s8 *)arg0 + 0x30C) = lbl_805D9F4C;
             this->phase = 1;
         }
@@ -795,8 +676,8 @@ void TObjEneLappy::update_attacking() {
         VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(arg0 + 0x38));
         *(f32 *)((s8 *)arg0 + 0x38) += *(f32 *)((s8 *)arg0 + 0x308);
         *(f32 *)((s8 *)arg0 + 0x308) *= lbl_805D9F58;
-        *(f32 *)((s8 *)arg0 + 0x40) += this->m_310;
-        this->m_310 *= lbl_805D9F58;
+        *(f32 *)((s8 *)arg0 + 0x40) += this->movement_velocity.z;
+        this->movement_velocity.z *= lbl_805D9F58;
         apply_actor_gravity(arg0, 0, lbl_805D9F4C);
         if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805D9F5C) != 0) {
             temp_r3 = this->target;
@@ -804,7 +685,7 @@ void TObjEneLappy::update_attacking() {
                 ((VObj_18_800C0588 *) this->target)->m20(arg0, lbl_805D9F60);
                 ((VObj_18_800C0588 *) this->target)->m23(arg0, lbl_805D9F64);
             }
-            play_sound_effect(remap_area_sound_id(0x3BC0D, 5), (u32)(arg0 + 0x38), 0, 0);
+            play_sound_effect((s32)(remap_area_sound_id(0x3BC0D, 5)), (const Vec *)((arg0 + 0x38)), 0, 0);
             this->phase = 2;
             *(s16 *)&this->timer = 0x1E;
         }
@@ -819,17 +700,17 @@ void TObjEneLappy::update_attacking() {
     case 3:
         VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(arg0 + 0x38));
         *(f32 *)((s8 *)arg0 + 0x38) += *(f32 *)((s8 *)arg0 + 0x308);
-        *(f32 *)((s8 *)arg0 + 0x40) += this->m_310;
+        *(f32 *)((s8 *)arg0 + 0x40) += this->movement_velocity.z;
         apply_actor_gravity(arg0, 0, lbl_805D9F4C);
         if (this->action_flags != 4U) {
-            *(f32 *)((s8 *)arg0 + 0x308) = *(f32 *)((s8 *)arg0 + 0x30C) = this->m_310 = lbl_805D9F4C;
+            *(f32 *)((s8 *)arg0 + 0x308) = *(f32 *)((s8 *)arg0 + 0x30C) = this->movement_velocity.z = lbl_805D9F4C;
             *(s32 *)&this->actorFlags &= 0xFFDFFFFF;
             this->vfunc_59();
             *(s16 *)&this->timer = 0;
         }
         break;
     }
-    ((TObjPlayer *)arg0)->update_collisions();
+    ((TObjCollidable *)arg0)->update_collisions();
 }
 
 void TObjEneLappy::vfunc_60() {
@@ -886,9 +767,9 @@ void TObjEneLappy::update_moving() {
         if (temp_r6 != NULL) {
             Position_800C08A0 target1 = *(Position_800C08A0 *)(temp_r6 + 0x2FC);
             enemy_backstep_from_point(arg0, &target1.x, (f32) (*(f32 *)((s8 *)((u8 *)(*(u8 * *)&this->movementParameters)) + 4)));
-            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), (Vec *)unk_308);
+            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), &movement_velocity);
             apply_actor_gravity(arg0, 0, lbl_805D9F4C);
-            ((TObjPlayer *)arg0)->update_collisions();
+            ((TObjCollidable *)arg0)->update_collisions();
             return;
         }
     }
@@ -914,7 +795,7 @@ void TObjEneLappy::update_moving() {
                 temp_r4 = (u8 *)(*(u8 * *)&this->movementParameters);
                 ((TObjEnemy *)(arg0))->enemy_wander_home(*(f32 *)((s8 *)temp_r4 + 4), lbl_805D9F68, lbl_805D9F6C, *(s32 *)((s8 *)temp_r4 + 8));
             }
-            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), (Vec *)unk_308);
+            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), &movement_velocity);
             play_walk_sound();
             goto block_48;
         case 1:
@@ -925,7 +806,7 @@ void TObjEneLappy::update_moving() {
                 if (temp_f1 > lbl_805D9F70) {
                     *(s16 *)&this->m_37a = 0;
                 }
-                turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), (Vec *)unk_308);
+                turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), &movement_velocity);
                 temp_r3_3 = (u8 *)(*(u8 * *)&this->movementParameters);
                 if (*(f32 *)((s8 *)temp_r3_3 + 0) * *(f32 *)((s8 *)temp_r3_3 + 0) < temp_f1 || temp_f1 < *(f32 *)((s8 *)temp_r3_3 + 4) * *(f32 *)((s8 *)temp_r3_3 + 4)) {
                     this->target = NULL;
@@ -938,27 +819,27 @@ void TObjEneLappy::update_moving() {
         case 2:
             break;
         case 3:
-            this->rotation_y = lerp_angle_half__Fll(this->rotation_y, this->m_390);
+            this->rotation.yaw = lerp_angle_half__Fll(this->rotation.yaw, this->m_390);
             if ((u32) this->action_flags == 1U) {
                 *(s32 *)&this->actorFlags = (*(s32 *)&this->actorFlags & 0xFBFFFFFF);
                 *(s16 *)&this->m_37a = 4;
-                play_sound_effect(remap_area_sound_id(0x3AF12, 5), (u32)(arg0 + 0x38), 0, 0);
+                play_sound_effect((s32)(remap_area_sound_id(0x3AF12, 5)), (const Vec *)((arg0 + 0x38)), 0, 0);
             }
             if (((TObjMotion *)arg0)->is_passing_frame(lbl_805D9F2C) != 0) {
-                play_sound_effect(remap_area_sound_id(0x3AA11, 5), (u32)(arg0 + 0x38), 0, 0);
+                play_sound_effect((s32)(remap_area_sound_id(0x3AA11, 5)), (const Vec *)((arg0 + 0x38)), 0, 0);
             }
             goto block_48;
         case 4:
             if (temp_r3 == 1U) {
-                enemy_set_heading_velocity((f32) (lbl_805D9F74 * *(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4)), (TObjEnemy *)(arg0), this->rotation_y);
+                enemy_set_heading_velocity((f32) (lbl_805D9F74 * *(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4)), (TObjEnemy *)(arg0), this->rotation.yaw);
                 *(s16 *)&this->unk_394 = (s16) (*(s16 *)&this->unk_394 + 1);
-                if (((f32) *(s16 *)&this->unk_394 > lbl_805D9F78) && (((u16 (*)(void *, void *, f32))find_nearest_visible_player)(arg0, &probe.x, lbl_805D9F7C) != 0xFFFFU) && (angle_difference_abs(this->rotation_y, (int) ((s32) (10430.38043493439 * atan2_float(probe.x, probe.z)))) < 0xAAA)) {
+                if (((f32) *(s16 *)&this->unk_394 > lbl_805D9F78) && (((u16 (*)(void *, void *, f32))find_nearest_visible_player)(arg0, &probe.x, lbl_805D9F7C) != 0xFFFFU) && (angle_difference_abs(this->rotation.yaw, (int) ((s32) (lbl_8043BA18 * atan2_float(probe.x, probe.z)))) < 0xAAA)) {
                     if (random_ratio__9TObjCharaFv(arg0) >= lbl_805D9F24) {
                         var_r4 = -0x4000;
                     } else {
                         var_r4 = 0x4000;
                     }
-                    this->rotation_y = (s32) (this->rotation_y + var_r4);
+                    this->rotation.yaw = (s32) (this->rotation.yaw + var_r4);
                     *(s16 *)&this->unk_394 = 0;
                 }
                 if (((TObjEneLappy *)arg0)->advance_flee_step() == 0) {
@@ -966,10 +847,10 @@ void TObjEneLappy::update_moving() {
                     return;
                 }
                 if (--*(s16 *)&this->m_396 < 0) {
-                    spawn_particle_effect((u8 *)&this->position, 0xF3);
+                    spawn_particle_effect(&this->position, 0xF3);
                     *(s16 *)&this->m_396 = 2;
                 }
-                play_persistent_sound(((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x3AF12)), arg0, (u8 *)&this->position, 0, 0);
+                play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x3AF12)), (const void *)(arg0), (const Vec *)((u8 *)&this->position), 0, 0);
                 goto block_47;
             }
 block_47:
@@ -980,7 +861,7 @@ block_47:
     }
 block_48:
         apply_actor_gravity(arg0, 0, lbl_805D9F4C);
-        ((TObjPlayer *)arg0)->update_collisions();
+        ((TObjCollidable *)arg0)->update_collisions();
 }
 
 void TObjEneLappy::vfunc_59() {
@@ -1043,7 +924,7 @@ void TObjEneLappy::update_idle_state(void *ov) {
         case 1:
             (*(s16 *)((s8 *)arg0 + 0x37E))--;
             if (*(s16 *)((s8 *)arg0 + 0x37E) < 0) {
-                play_sound_effect(remap_area_sound_id(0x3B20B, 5), (u32)(arg0 + 0x38), 0, 0);
+                play_sound_effect((s32)(remap_area_sound_id(0x3B20B, 5)), (const Vec *)((arg0 + 0x38)), 0, 0);
                 ((TObjPlayer *)arg0)->phase = 2;
             }
             break;
@@ -1065,7 +946,7 @@ void TObjEneLappy::update_idle_state(void *ov) {
         ((TObjMotion *)arg0)->advance_animation();
         (*(s16 *)((s8 *)arg0 + 0x37E))--;
         if (*(s16 *)((s8 *)arg0 + 0x37E) < 0) {
-            play_sound_effect(remap_area_sound_id(0x3B20B, 5), (u32)(arg0 + 0x38), 0, 0);
+            play_sound_effect((s32)(remap_area_sound_id(0x3B20B, 5)), (const Vec *)((arg0 + 0x38)), 0, 0);
             *(s16 *)((s8 *)arg0 + 0x37E) = (s16) (lbl_805D9F2C * (lbl_805D9F84 * (lbl_805D9F60 + random_ratio__9TObjCharaFv(arg0))));
         }
         break;
@@ -1137,7 +1018,7 @@ void TObjEneLappy::vfunc_28() {
         } else if (obj_testFlags30__14TObjCollidableFUl(arg0, 0x10) != 0) {
             i = 0;
             best_id = 0xFFFF;
-            Vec_800C1224 v = lappy_target_zero_vec;
+            Vec_800C1224 v = *(Vec_800C1224 *)lappy_target_zero_vec;
             best = *(f32 *)((s8 *)(*(f32 **)((s8 *)arg0 + 0x350)) + 0) * *(f32 *)((s8 *)(*(f32 **)((s8 *)arg0 + 0x350)) + 0);
             for (; i < registered_player_count + lbl_805D5870; i++) {
                 p = (u8 *)get_player_data__10TObjPlayerFi(i);
@@ -1185,7 +1066,7 @@ void TObjEneLappy::run_task() {
     u8 *temp_r3;
     u8 *temp_r3_2;
     sub_800C20C0__12TObjEneLappyFv();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         apply_variant_speeds__12TObjEneLappyFv((Obj_800BFCD4 *)(this));
         TObjPlayer__sub_800BFF54(this);
         return;
@@ -1227,9 +1108,9 @@ void TObjEneLappy::run_task() {
         if (((RecoveredFields_800C1478_arg0 *)((u8 *)this))->field_30 & 0x800000) {
             ((RecoveredFields_800C1478_arg0 *)((u8 *)this))->field_374 = (s16) (((RecoveredFields_800C1478_arg0 *)((u8 *)this))->field_374 & 0xFFFFFFBF);
             if (TLobby::get_instance() == 1) {
-                play_sound_effect(0x3AB44, (u32)(((u8 *)this) + 0x38), 0, 0);
+                play_sound_effect(0x3AB44, (const Vec *)((((u8 *)this) + 0x38)), 0, 0);
             } else {
-                play_sound_effect(0x4003AB33, (u32)(((u8 *)this) + 0x38), 0, 0);
+                play_sound_effect(0x4003AB33, (const Vec *)((((u8 *)this) + 0x38)), 0, 0);
             }
             temp_r3_2 = (unsigned char *) (((RecoveredFields_800C1478_arg0 *)((u8 *)this))->field_A4);
             ((RecoveredFields_800C1478_temp_r3_2 *)temp_r3_2)->field_18 = (s32) (((RecoveredFields_800C1478_temp_r3_2 *)temp_r3_2)->field_18 | 1);
@@ -1283,7 +1164,6 @@ void *TObjEneLappy::create(void *arg0) {
 #define draw__10TObjMotionFv (*(void (*)(void *))&draw__10TObjMotionFv)
 #define scale_matrix (*(void (*)(int, f32, f32, f32))&scale_matrix)
 #define draw_chunk_object (*(s32 (*)(int))&draw_chunk_object)
-#define set_global_param__8TObjFishFl (*(s32 (*)(void *))&set_global_param__8TObjFishFl)
 #define post_translate_matrix (*(s32 (*)(void *))&post_translate_matrix)
 #define pop_matrix (*(s32 (*)())&pop_matrix)
 #define push_matrix (*(s32 (*)())&push_matrix)
@@ -1296,6 +1176,7 @@ void *TObjEneLappy::create(void *arg0) {
 #include "pso/enemy/TObjEneRe2Flower.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/npc/NpcModelRegistry.h"
 
 struct Set_800C1C4C {
     u8 pad0[0xA];
@@ -1351,162 +1232,6 @@ struct Obj_800C20D0 : VObj_800C20D0 {
     s32 f60;
 };
 
-
-typedef struct Mat_800C220C {
-    u8 pad0[0x8];
-    s32 f8;
-    u8 padC[0x14 - 0xC];
-    s32 f14;
-    u8 pad18[0x20 - 0x18];
-    s32 f20;
-    u8 pad24[0x2C - 0x24];
-    s32 f2C;
-} Mat_800C220C;
-
-typedef struct Model_800C220C { Mat_800C220C *mat; } Model_800C220C;
-
-struct SBase_800C220C { char pad0[0x14]; };
-
-struct Sub_800C220C : SBase_800C220C {
-    virtual void s0(); virtual void s1(); virtual void s2(); virtual void s3();
-    virtual void s4(); virtual void s5();
-    virtual void m6(); virtual void m7(); virtual s32 m8();
-};
-
-struct VBase_800C220C { char pad0[0x18]; };
-
-struct VObj_800C220C : VBase_800C220C {
-    virtual void v0();
-    virtual void v1();
-    virtual void v2();
-    virtual void v3();
-    virtual void v4();
-    virtual void v5();
-    virtual void v6();
-    virtual void v7();
-    virtual s32 m8(f32, f32);
-    virtual s32 m9(f32, f32, f32);
-    virtual void v10();
-    virtual void v11();
-    virtual void v12();
-    virtual void v13();
-    virtual void v14();
-    virtual void v15();
-    virtual void v16();
-    virtual void v17();
-    virtual void v18();
-    virtual void v19();
-    virtual void v20();
-    virtual void v21();
-    virtual void v22();
-    virtual void v23();
-    virtual void v24();
-    virtual void v25();
-    virtual void v26();
-    virtual void v27();
-    virtual void v28();
-    virtual void v29();
-    virtual void v30();
-    virtual void v31();
-    virtual void v32();
-    virtual void v33();
-    virtual void v34();
-    virtual void v35();
-    virtual void v36();
-    virtual void v37();
-    virtual void v38();
-    virtual void v39();
-    virtual void v40();
-    virtual void v41();
-    virtual void v42();
-    virtual void v43();
-    virtual void v44();
-    virtual void v45();
-    virtual void v46();
-    virtual void v47();
-    virtual void v48();
-    virtual void v49();
-    virtual void v50();
-    virtual void v51();
-    virtual void v52();
-    virtual void v53();
-    virtual void v54();
-    virtual void v55();
-    virtual void v56();
-    virtual void v57();
-    virtual void v58();
-    virtual void v59();
-    virtual void v60();
-    virtual void v61();
-    virtual void v62();
-    virtual void v63();
-    virtual void v64();
-    virtual void v65();
-    virtual void v66();
-    virtual void v67();
-    virtual void v68();
-    virtual void v69();
-    virtual void v70();
-    virtual void v71();
-    virtual void v72();
-    virtual void v73();
-    virtual void v74();
-    virtual void v75();
-    virtual void v76();
-    virtual void v77();
-    virtual void v78();
-    virtual void v79();
-    virtual void v80();
-    virtual void v81();
-    virtual void v82();
-    virtual void v83();
-    virtual void v84();
-    virtual void v85();
-    virtual void v86();
-    virtual void v87();
-    virtual void v88();
-    virtual void v89();
-    virtual void v90();
-    virtual void v91();
-    virtual void v92();
-    virtual void v93();
-    virtual void v94();
-    virtual void v95();
-    virtual void v96();
-    virtual void v97();
-    virtual void v98();
-    virtual void v99();
-    virtual void v100();
-    virtual void v101();
-    virtual void v102();
-    virtual void v103();
-    virtual void m104();
-};
-
-struct Obj_800C220C : VObj_800C220C {
-    u8 pad1C[0x24 - 0x1C];
-    Model_800C220C *model;
-    u8 pad28[0x38 - 0x28];
-    Vec pos;
-    u8 pad44[0x60 - 0x44];
-    s32 f60;
-    u8 pad64[0x326 - 0x64];
-    s16 f326;
-    u8 pad328[0x3C0 - 0x328];
-    s32 f3C0;
-    u32 f3C4;
-    f32 f3C8;
-    u8 pad3CC[0x3D8 - 0x3CC];
-    s32 f3D8;
-    f32 f3DC;
-    f32 f3E0;
-    f32 f3E4;
-    f32 f3E8;
-    f32 f3EC;
-    f32 f3F0;
-    Sub_800C220C sub;
-};
-
 extern "C" {
 s32 sub_800C3B8C__16TObjEneRe2FlowerFv(void *);
 }
@@ -1528,7 +1253,7 @@ extern const f32 lbl_805D9FAC;
 extern const f32 lbl_805D9FB0;
 extern const f32 lbl_805D9FB4;
 extern const f32 lbl_805D9FB8;
-void TObjPlayer__sub_800C220C(Obj_800C220C *o);
+
 void *__dt__12TObjEneLappyFv(void *arg0, s16 arg1);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
@@ -1538,6 +1263,7 @@ s32 add_flags_2e4__9TObjCharaFUl(void *, int, f32, f32);
 s32 __ct__9TObjEnemyFP7TObject(void *, s32, void *);
 s32 init_collision_body_parts(void *, void *, int);
 
+extern s32 lbl_805D2A40;
 extern s32 lappy_variant_id;
 extern void *rappy_bml_resource;
 
@@ -1588,6 +1314,32 @@ extern "C" void get_name__9TObjEnemyFv();
 extern "C" void get_pos__9TObjCharaFl();
 extern "C" void is_actor_cadence_frame__9TObjCharaFl();
 extern "C" void is_target_in_attack_range__9TObjCharaFv();
+extern "C" u8 lbl_8043B7D8[];
+extern "C" u8 lbl_8043B7EC[];
+extern "C" u8 lbl_8043B800[];
+extern "C" u8 lbl_8043B818[];
+extern "C" u8 lbl_8043B830[];
+extern "C" u8 lbl_8043B844[];
+extern "C" u8 lbl_8043B858[];
+extern "C" u8 lbl_8043B870[];
+extern "C" u8 lbl_8043B888[];
+extern "C" u8 lbl_8043B89C[];
+extern "C" u8 lbl_8043B8B4[];
+extern "C" u8 lbl_8043B8C8[];
+extern "C" u8 lbl_8043B8DC[];
+extern "C" u8 lbl_8043B8F0[];
+extern "C" u8 lbl_8043B904[];
+extern "C" u8 lbl_8043B91C[];
+extern "C" u8 lbl_8043B930[];
+extern "C" u8 lbl_8043B948[];
+extern "C" u8 lbl_8043B960[];
+extern "C" u8 lbl_8043B974[];
+extern "C" u8 lbl_8043B98C[];
+extern "C" u8 lbl_8043B9A4[];
+extern "C" u8 lbl_8043B9B8[];
+extern "C" u8 lbl_8043B9D0[];
+extern "C" u8 lbl_8043B9DC[];
+extern "C" const u8 rappy_variant_na_name[3] = "NA";
 extern "C" void receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll();
 extern "C" void receive_physical_attack__9TObjCharaFPvf();
 extern "C" void receive_weapon_special_attack__9TObjCharaFPvPv();
@@ -1622,6 +1374,120 @@ extern void *lbl_80492D88[3];
 extern void *lbl_80492D94[11];
 extern void *lbl_80492DD0[3];
 extern void *lbl_80492DDC[11];
+void *TObjEneLappy__model_filename_table[3] = {
+    (void *)&lbl_8043B7D8, (void *)&lbl_8043B7EC, (void *)0x0,
+};
+void *lbl_80492BE4[11] = {
+    (void *)&lbl_8043B800, (void *)&lbl_8043B818, (void *)&lbl_8043B830, (void *)&lbl_8043B844,
+    (void *)&lbl_8043B858, (void *)&lbl_8043B870, (void *)&lbl_8043B888, (void *)&lbl_8043B89C,
+    (void *)&lbl_8043B8B4, (void *)&lbl_8043B8C8, (void *)0x0,
+};
+void *lbl_80492C10[4] = {
+    (void *)&lbl_8043B8DC, (void *)&TObjEneLappy__model_filename_table, (void *)&lbl_80492BE4, (void *)0x2000a,
+};
+void *lbl_80492C20[3] = {
+    (void *)&lbl_8043B7D8, (void *)&lbl_8043B7EC, (void *)0x0,
+};
+void *lbl_80492C2C[11] = {
+    (void *)&lbl_8043B800, (void *)&lbl_8043B818, (void *)&lbl_8043B830, (void *)&lbl_8043B844,
+    (void *)&lbl_8043B858, (void *)&lbl_8043B870, (void *)&lbl_8043B888, (void *)&lbl_8043B89C,
+    (void *)&lbl_8043B8B4, (void *)&lbl_8043B8C8, (void *)0x0,
+};
+void *lbl_80492C58[4] = {
+    (void *)&lbl_8043B8F0, (void *)&lbl_80492C20, (void *)&lbl_80492C2C, (void *)0x2000a,
+};
+void *lbl_80492C68[3] = {
+    (void *)&lbl_8043B7D8, (void *)&lbl_8043B904, (void *)0x0,
+};
+void *lbl_80492C74[11] = {
+    (void *)&lbl_8043B800, (void *)&lbl_8043B818, (void *)&lbl_8043B830, (void *)&lbl_8043B844,
+    (void *)&lbl_8043B858, (void *)&lbl_8043B870, (void *)&lbl_8043B888, (void *)&lbl_8043B89C,
+    (void *)&lbl_8043B8B4, (void *)&lbl_8043B8C8, (void *)0x0,
+};
+void *lbl_80492CA0[4] = {
+    (void *)&lbl_8043B91C, (void *)&lbl_80492C68, (void *)&lbl_80492C74, (void *)0x2000a,
+};
+void *lbl_80492CB0[3] = {
+    (void *)&lbl_8043B7D8, (void *)&lbl_8043B904, (void *)0x0,
+};
+void *lbl_80492CBC[11] = {
+    (void *)&lbl_8043B800, (void *)&lbl_8043B818, (void *)&lbl_8043B830, (void *)&lbl_8043B844,
+    (void *)&lbl_8043B858, (void *)&lbl_8043B870, (void *)&lbl_8043B888, (void *)&lbl_8043B89C,
+    (void *)&lbl_8043B8B4, (void *)&lbl_8043B8C8, (void *)0x0,
+};
+void *lbl_80492CE8[4] = {
+    (void *)&lbl_8043B930, (void *)&lbl_80492CB0, (void *)&lbl_80492CBC, (void *)0x2000a,
+};
+void *lbl_80492CF8[3] = {
+    (void *)&lbl_8043B7D8, (void *)&lbl_8043B948, (void *)0x0,
+};
+void *TObjEneLappy__resource_name_table[11] = {
+    (void *)&lbl_8043B800, (void *)&lbl_8043B818, (void *)&lbl_8043B830, (void *)&lbl_8043B844,
+    (void *)&lbl_8043B858, (void *)&lbl_8043B870, (void *)&lbl_8043B888, (void *)&lbl_8043B89C,
+    (void *)&lbl_8043B8B4, (void *)&lbl_8043B8C8, (void *)0x0,
+};
+void *lbl_80492D30[4] = {
+    (void *)&lbl_8043B960, (void *)&lbl_80492CF8, (void *)&TObjEneLappy__resource_name_table, (void *)0x2000a,
+};
+void *lbl_80492D40[3] = {
+    (void *)&lbl_8043B7D8, (void *)&lbl_8043B948, (void *)0x0,
+};
+void *TObjEneLappy__resource_list[11] = {
+    (void *)&lbl_8043B800, (void *)&lbl_8043B818, (void *)&lbl_8043B830, (void *)&lbl_8043B844,
+    (void *)&lbl_8043B858, (void *)&lbl_8043B870, (void *)&lbl_8043B888, (void *)&lbl_8043B89C,
+    (void *)&lbl_8043B8B4, (void *)&lbl_8043B8C8, (void *)0x0,
+};
+void *lbl_80492D78[4] = {
+    (void *)&lbl_8043B974, (void *)&lbl_80492D40, (void *)&TObjEneLappy__resource_list, (void *)0x2000a,
+};
+void *lbl_80492D88[3] = {
+    (void *)&lbl_8043B7D8, (void *)&lbl_8043B98C, (void *)0x0,
+};
+void *lbl_80492D94[11] = {
+    (void *)&lbl_8043B800, (void *)&lbl_8043B818, (void *)&lbl_8043B830, (void *)&lbl_8043B844,
+    (void *)&lbl_8043B858, (void *)&lbl_8043B870, (void *)&lbl_8043B888, (void *)&lbl_8043B89C,
+    (void *)&lbl_8043B8B4, (void *)&lbl_8043B8C8, (void *)0x0,
+};
+void *lbl_80492DC0[4] = {
+    (void *)&lbl_8043B9A4, (void *)&lbl_80492D88, (void *)&lbl_80492D94, (void *)0x2000a,
+};
+void *lbl_80492DD0[3] = {
+    (void *)&lbl_8043B7D8, (void *)&lbl_8043B98C, (void *)0x0,
+};
+void *lbl_80492DDC[11] = {
+    (void *)&lbl_8043B800, (void *)&lbl_8043B818, (void *)&lbl_8043B830, (void *)&lbl_8043B844,
+    (void *)&lbl_8043B858, (void *)&lbl_8043B870, (void *)&lbl_8043B888, (void *)&lbl_8043B89C,
+    (void *)&lbl_8043B8B4, (void *)&lbl_8043B8C8, (void *)0x0,
+};
+void *lbl_80492E08[4] = {
+    (void *)&lbl_8043B9B8, (void *)&lbl_80492DD0, (void *)&lbl_80492DDC, (void *)0x2000a,
+};
+void *rappy_variant_speed_table[40] = {
+    (void *)0x10000, (void *)0x6, (void *)0x3f666666, (void *)0x0,
+    (void *)0x10001, (void *)0x5, (void *)0x3f333333, (void *)0x0,
+    (void *)0x20003, (void *)0x8, (void *)0x3f333333, (void *)0x0,
+    (void *)0x10003, (void *)0x9, (void *)0x3fe66666, (void *)0x1,
+    (void *)0x10004, (void *)0x3, (void *)0x3f99999a, (void *)0x1,
+    (void *)0x20001, (void *)0x0, (void *)0x3f800000, (void *)0x4,
+    (void *)0x20001, (void *)0x1, (void *)0x3f800000, (void *)0x8,
+    (void *)0x30006, (void *)0x2, (void *)0x3f19999a, (void *)0x10,
+    (void *)0x20004, (void *)0x4, (void *)0x3f666666, (void *)0x1,
+    (void *)0x20004, (void *)0x7, (void *)0x3f000000, (void *)0x0,
+};
+void *lbl_80492EB8[3] = {
+    (void *)&lbl_8043B9D0, (void *)&lbl_8043B9DC, (void *)&rappy_variant_na_name,
+};
+void *lbl_80492EC4[14] = {
+    (void *)0x43160000, (void *)0x3f097b42, (void *)0x400, (void *)0x1e0000,
+    (void *)0x0, (void *)0x1, (void *)0x0, (void *)0x43160000,
+    (void *)0x3f097b42, (void *)0x400, (void *)0x1e0000, (void *)0x0,
+    (void *)0x1, (void *)0x0,
+};
+void *lbl_80492EFC[11] = {
+    (void *)0x0, (void *)0x40f00000, (void *)0x0, (void *)0x40e00000,
+    (void *)0x0, (void *)0x0, (void *)0x8003, (void *)0x0,
+    (void *)0x0, (void *)0x0, (void *)0x0,
+};
 void *lbl_80492F28[84] = {
     (void *)0x0, (void *)0x0, (void *)&__dt__12TObjEneLappyFv, (void *)&run_task__12TObjEneLappyFv,
     (void *)&render__12TObjEneLappyFv, (void *)&render_shadows__9TObjEnemyFv, (void *)&vfunc_6__8TObjBaseFPsl, (void *)&apply_object_set_data__8TObjBaseFPv,
@@ -1652,17 +1518,23 @@ __declspec(section ".data") s32 lappy_object_handles[2];
 __declspec(section ".data") s32 lappy_variant_speed_ptr_table[2];
 #define lbl_80492F28 ((s32 *)lbl_80492F28)
 
-void TLobby__sub_8001FE7C(void*, int);
+typedef struct Desc_800C17B8 {
+    s32 a;
+    void *b;
+    s32 c;
+    s32 d;
+} Desc_800C17B8;
+
 s32 release_texture_list(void*);
 s32 get_main_phase();
-s32 dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
+
+
+
+
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_8043BA28[];
 extern u8 lbl_8043BA44[];
+extern const Desc_800C17B8 lappy_resource_binding_desc;
 extern s32 game_difficulty_selection;
 extern s32 TLobby__event_theme_id;
 extern s32 rappy_alternate_texture_list;
@@ -1678,7 +1550,7 @@ void TLobby::cleanup_handles() {
         (*(u32 *)&rappy_alternate_texture_list) = 0U;
     }
     if ((u32) (*(u32 *)&rappy_bml_resource) != 0U) {
-        TLobby__sub_8001FE7C((void*)(*(u32 *)&rappy_bml_resource), 1);
+        delete (BmlResource *)((void*)(*(u32 *)&rappy_bml_resource));
         (*(u32 *)&rappy_bml_resource) = 0U;
     }
 }
@@ -1696,64 +1568,40 @@ void TObjEneLappy::load_resources() {
         case 1:
             lappy_variant_id = 1;
             if (rare) {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492E08, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492E08), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492DC0, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492DC0), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             }
             break;
         case 4:
             lappy_variant_id = 2;
             if (rare) {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492CE8, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492CE8), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492CA0, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492CA0), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             }
             break;
         case 5:
             lappy_variant_id = 3;
             if (rare) {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492D78, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492D78), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492D30, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492D30), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             }
             break;
         default:
             lappy_variant_id = 0;
             if (rare) {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492C58, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492C58), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
-                p = (int)::operator new(0x440);
-                if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492C10, 0, 0, 0);
-                }
+                p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492C10), 0, 0, (void *)(0));
                 (*(u32 *)&rappy_bml_resource) = p;
             }
             break;
@@ -1761,16 +1609,10 @@ void TObjEneLappy::load_resources() {
     } else {
         lappy_variant_id = 0;
         if (rare) {
-            p = (int)::operator new(0x440);
-            if (p != 0) {
-                p = load_resource_from_descriptor(p, 1, lbl_80492C58, 0, 0, 0);
-            }
+            p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492C58), 0, 0, (void *)(0));
             (*(u32 *)&rappy_bml_resource) = p;
         } else {
-            p = (int)::operator new(0x440);
-            if (p != 0) {
-                p = load_resource_from_descriptor(p, 1, lbl_80492C10, 0, 0, 0);
-            }
+            p = (int)new BmlResource(1, (BmlResourceDescriptor *)(lbl_80492C10), 0, 0, (void *)(0));
             (*(u32 *)&rappy_bml_resource) = p;
         }
     }
@@ -1785,23 +1627,20 @@ void TObjEneLappy::load_resources() {
     }
     (*(s32 *)&rappy_visibility_node) = (s32)find_model_node((*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8)), 0x12);
     for (i = 0; i < 2; i++) {
-        lappy_boss_stats_handles[i] = register_boss__6TLobbyFl(i + 0x18);
-        lappy_boss_stats_ptrs_b[i] = dispatch_shared_handler_b__6TLobbyFl(i + 0x18);
-        lappy_object_handles[i] = register_object__6TLobbyFl(i + 0x18);
-        lappy_variant_speed_ptr_table[i] = dispatch_shared_handler_a__6TLobbyFl(i + 0x18);
+        lappy_boss_stats_handles[i] = ((s32)get_battle_base_stats(i + 0x18));
+        lappy_boss_stats_ptrs_b[i] = ((s32)get_battle_attack_params(i + 0x18));
+        lappy_object_handles[i] = ((s32)get_battle_resistance_params(i + 0x18));
+        lappy_variant_speed_ptr_table[i] = ((s32)get_battle_movement_params(i + 0x18));
     }
     {
         u8 *res = RES_800C17B8;
         Desc_800C17B8 d = lappy_resource_binding_desc;
         d.a = *(s32 *)(res + 0x430);
-        TLobby::spawn_npc_enemy(5, *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8),
-                                        (NJS_TEXLIST *)*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0xC), &d, lbl_805D9F28, lbl_805D9F4C);
+        NpcModelRegistry::register_animated_chunk(5, (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8)), (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0xC)), (const NpcAnimationBinding *)(&d), lbl_805D9F28, lbl_805D9F4C);
         if (TLobby::get_instance() == 0) {
-            TLobby::spawn_npc_enemy(6, *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8), (NJS_TEXLIST *)(*(u32 *)&rappy_alternate_texture_list), &d,
-                                            lbl_805D9F28, lbl_805D9F4C);
+            NpcModelRegistry::register_animated_chunk(6, (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8)), (void *)((*(u32 *)&rappy_alternate_texture_list)), (const NpcAnimationBinding *)(&d), lbl_805D9F28, lbl_805D9F4C);
         } else {
-            TLobby::spawn_npc_enemy(6, *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x18),
-                                            (NJS_TEXLIST *)*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x1C), &d, lbl_805D9F28, lbl_805D9F4C);
+            NpcModelRegistry::register_animated_chunk(6, (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x18)), (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x1C)), (const NpcAnimationBinding *)(&d), lbl_805D9F28, lbl_805D9F4C);
         }
     }
 }
@@ -1828,7 +1667,7 @@ u8 *TObjEneLappy__ct(u8 *self, s32 arg1, Set_800C1C4C *set) {
 
     __ct__9TObjEnemyFP7TObject(self, arg1, set);
     *(void **)(self + 0x18) = (u8 *)lbl_80492F28;
-    *(const char **)(self + 0) = TObjEneLappy__class_name;
+    *(s32 *)(self + 0) = lbl_805D2A40;
     ((TObjEneLappy *)self)->apply_set_data(set);
     *(s32 *)(self + 0xDC) = *(s32 *)((u8 *)rappy_bml_resource + 0x430);
     VecCopy((Vec *)(self + 0x38), (const Vec *)set->pos);
@@ -1891,14 +1730,14 @@ u8 *TObjEneLappy__ct(u8 *self, s32 arg1, Set_800C1C4C *set) {
     *(s16 *)(self + 0x32E) = *(s16 *)(self + 0x2BA);
     *(s16 *)(self + 0x33E) = *(s16 *)(self + 0x32C);
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     ((TObjPlayer *)self)->register_object_by_id();
     scale = lbl_805D9F84 * (lbl_805D9F60 + random_ratio__9TObjCharaFv(self));
     *(s16 *)(self + 0x37E) = lbl_805D9F2C * scale;
     add_flags_2e4__9TObjCharaFUl(self, 1, scale, lbl_805D9F84);
     *(u32 *)(self + 0x30) |= 0x40000;
     *(void **)(self + 0xD8) = (u8 *)rappy_variant_speed_table;
-    ((TObjMotion *)self)->set_field_d8((s32)(*(void **)(self + 0xD8)));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)(*(void **)(self + 0xD8)));
     *(s16 *)(self + 0xB8) = 0;
     ((TObjMotion *)self)->set_animation(*(s16 *)(self + 0xB8));
     ((TObjMotion *)self)->set_field_b8(*(s16 *)(self + 0xB8));
@@ -1989,7 +1828,7 @@ void TObjEneRe2Flower::vfunc_106() {
         ((Obj_800C20D0 *)this)->model->mat->f8 = ((Obj_800C20D0 *)this)->model->mat->f20;
         ((Obj_800C20D0 *)this)->model->mat->f14 = ((Obj_800C20D0 *)this)->model->mat->f2C;
     }
-    set_global_param__8TObjFishFl(((Obj_800C20D0 *)this)->model);
+    set_current_texture_list((GinjaTextureList *)(((Obj_800C20D0 *)this)->model));
     push_matrix();
     post_translate_matrix(&((Obj_800C20D0 *)this)->pos);
     rotate_matrix_y(0, ((Obj_800C20D0 *)this)->f60);
@@ -2005,79 +1844,79 @@ void TObjEneRe2Flower::vfunc_106() {
         ((Obj_800C20D0 *)this)->model->mat->f14 = save14;
     }
 }
-void TObjPlayer__sub_800C220C(Obj_800C220C *o) {
+void TObjEneRe2Flower::render() {
     s32 visible;
-    s32 save8;
-    s32 save14;
-    if (TObjPlayer::check_demo_mode() != 0) {
-        o->m104();
+    s32 savedTexture0;
+    s32 savedTexture1;
+    if (check_demo_mode() != 0) {
+        vfunc_106();
         return;
     }
-    if (o->f326 == 11) {
+    if (mode == 11) {
         return;
     }
     if (is_main_phase_15__9TObjEneDDFv() != 0) {
-        if (((TObjEneRe2Flower *)o)->get_flag_11() != 0) {
-            visible = o->m9(600.0f, 600.0f, 25.0f);
+        if (get_flag_11() != 0) {
+            visible = classify_actor_view_detail(600.0f, 600.0f, 25.0f);
         } else {
-            visible = o->m9(lbl_805D9E88, lbl_805D9E84, 25.0f);
+            visible = classify_actor_view_detail(lbl_805D9E88, lbl_805D9E84, 25.0f);
         }
-    } else if (o->m8(400.0f, 25.0f) != 0) {
+    } else if (update_object_view_visibility(400.0f, 25.0f) != 0) {
         visible = 1;
     } else {
         visible = 0;
     }
     if (visible != 0) {
-        if (o->f326 != 10) {
-            Vec v = lbl_8043BBB4[0];
-            ((TObjEneDD *)(o))->draw_ground_shadow(&v, 0);
+        if (mode != 10) {
+            Vec lightPosition = lbl_8043BBB4[0];
+            draw_ground_shadow(&lightPosition, 0);
         }
-        ((TObjEneDD *)o)->update_secondary_light();
-        if (((TObjEneRe2Flower *)o)->get_flag_11() == 0 && sub_800C3B8C__16TObjEneRe2FlowerFv(o) != 0) {
-            save8 = o->model->mat->f8;
-            save14 = o->model->mat->f14;
-            o->model->mat->f8 = o->model->mat->f20;
-            o->model->mat->f14 = o->model->mat->f2C;
+        update_secondary_light();
+        if (get_flag_11() == 0 && sub_800C3B8C() != 0) {
+            savedTexture0 = ((NJS_TEXLIST *)texlist)->textures[0].texaddr;
+            savedTexture1 = ((NJS_TEXLIST *)texlist)->textures[1].texaddr;
+            ((NJS_TEXLIST *)texlist)->textures[0].texaddr = ((NJS_TEXLIST *)texlist)->textures[2].texaddr;
+            ((NJS_TEXLIST *)texlist)->textures[1].texaddr = ((NJS_TEXLIST *)texlist)->textures[3].texaddr;
         }
-        set_global_param__8TObjFishFl(o->model);
+        set_current_texture_list((GinjaTextureList *)texlist);
         push_matrix();
-        post_translate_matrix(&o->pos);
-        rotate_matrix_y(0, o->f3C0);
+        post_translate_matrix(&position);
+        rotate_matrix_y(0, renderRotationY);
         saved_model_render_flags = model_render_flags;
         set_alpha_ref_override(0);
         TObjEneDD::clear_global_flag_400();
-        translate_matrix(0, lbl_805D9FAC, o->f3C8, lbl_805D9FAC);
-        lbl_805D517C = o->f60 - o->f3C0;
-        lbl_805D5180 = &o->f3DC;
-        o->f3DC = lbl_805D9FAC;
-        o->f3E0 = lbl_805D9FB0;
-        o->f3E4 = lbl_805D9FAC;
-        o->f3E8 = lbl_805D9FAC;
-        o->f3EC = lbl_805D9FB4;
-        o->f3F0 = lbl_805D9FAC;
+        translate_matrix(0, lbl_805D9FAC, renderOffsetY, lbl_805D9FAC);
+        lbl_805D517C = this->rotation.yaw - renderRotationY;
+        lbl_805D5180 = &renderAnchors[0].x;
+        renderAnchors[0].x = lbl_805D9FAC;
+        renderAnchors[0].y = lbl_805D9FB0;
+        renderAnchors[0].z = lbl_805D9FAC;
+        renderAnchors[1].x = lbl_805D9FAC;
+        renderAnchors[1].y = lbl_805D9FB4;
+        renderAnchors[1].z = lbl_805D9FAC;
         scale_matrix(0, lbl_805D9FB8, lbl_805D9FB8, lbl_805D9FB8);
-        set_chunk_model_node_callback((s32)((void *)TObjPlayer::update_effect_sequence));
-        if (o->f326 == 8) {
-            s32 c = (o->f3D8 & 0xFF) << 16;
+        set_chunk_model_node_callback(TObjPlayer::update_effect_sequence);
+        if (mode == 8) {
+            s32 color = (m_3d8 & 0xFF) << 16;
             lbl_805D5178 = -1;
             toggle_particle_effect__10TObjPlayerFv();
-            ((TObjEneDD_ST *)o)->draw_with_alt_model(c);
+            draw_with_alt_model(color);
             end_effect_render__13TParticleCtrlFv();
         } else {
             lbl_805D5178 = 0;
             toggle_particle_effect__10TObjPlayerFv();
-            if (o->f3C4 & 8) {
-                if (o->sub.m8() != 0) {
-                    o->sub.m6();
-                    if (defer_render__7TObjectFv(o) == 0) {
-                        draw__10TObjMotionFv(o);
+            if (flowerFlags & 8) {
+                if (fade.has_visible_opacity() != 0) {
+                    fade.set_flags_and_apply_damage_color();
+                    if (defer_render__7TObjectFv(this) == 0) {
+                        draw();
                     }
-                    o->sub.m7();
+                    fade.clear_flag_and_notify();
                 }
             } else if (visible == 1) {
-                draw__10TObjMotionFv(o);
+                draw();
             } else {
-                draw_motion_model__10TObjMotionFv(o);
+                draw_motion_model__10TObjMotionFv(this);
             }
             end_effect_render__13TParticleCtrlFv();
         }
@@ -2085,19 +1924,19 @@ void TObjPlayer__sub_800C220C(Obj_800C220C *o) {
         restore_alpha_ref();
         model_render_flags = saved_model_render_flags;
         pop_matrix();
-        ((TObjEneDD *)o)->update_primary_light();
-        if (((TObjEneRe2Flower *)o)->get_flag_11() == 0 && sub_800C3B8C__16TObjEneRe2FlowerFv(o) != 0) {
-            o->model->mat->f8 = save8;
-            o->model->mat->f14 = save14;
+        update_primary_light();
+        if (get_flag_11() == 0 && sub_800C3B8C() != 0) {
+            ((NJS_TEXLIST *)texlist)->textures[0].texaddr = savedTexture0;
+            ((NJS_TEXLIST *)texlist)->textures[1].texaddr = savedTexture1;
         }
         return;
     }
-    o->f3DC = o->pos.x;
-    o->f3E0 = lbl_805D9FB0 + o->pos.y;
-    o->f3E4 = o->pos.z;
-    o->f3E8 = o->pos.x;
-    o->f3EC = lbl_805D9FB4 + o->pos.y;
-    o->f3F0 = o->pos.z;
+    renderAnchors[0].x = position.x;
+    renderAnchors[0].y = lbl_805D9FB0 + position.y;
+    renderAnchors[0].z = position.z;
+    renderAnchors[1].x = position.x;
+    renderAnchors[1].y = lbl_805D9FB4 + position.y;
+    renderAnchors[1].z = position.z;
 }
 }
 
@@ -2107,7 +1946,6 @@ void TObjPlayer__sub_800C220C(Obj_800C220C *o) {
 #undef push_matrix
 #undef pop_matrix
 #undef post_translate_matrix
-#undef set_global_param__8TObjFishFl
 #undef draw_chunk_object
 #undef scale_matrix
 #undef draw__10TObjMotionFv

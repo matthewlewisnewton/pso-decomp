@@ -5,6 +5,9 @@
 #include <stddef.h>
 #include "pso/object/TObjMotion.h"
 
+struct Rect_801F9228;
+struct RadarMapViewState;
+
 struct RadarViewportParameters
 {
     u8 unknown00[0x8];
@@ -55,7 +58,7 @@ struct TRaderMapCore : public TObjBase {
     void reset_counter();
     static void hide_radar();
     static void show_radar();
-    static s32 set_view_scissor(void *self, int mode, void *arg2);
+    static s32 set_view_scissor(void *self, int mode, Rect_801F9228 *rect);
     static void free_map_data();
     static void free_heap();
     static void set_piece_flags(s32 arg0);
@@ -67,8 +70,19 @@ struct TRaderMapCore : public TObjBase {
     static s32 reveal_region_by_id(s16 id);
     void draw_player_markers();
     void copy_transform(void* q);
+    // Binds the compass texture list. The caller passes &m_90 (the scroll
+    // delay); the body does not read that pointer.
+    static s32 apply_compass_param(const s32 *delay);
+    void draw_compass(s32 mode);
+    // r3 is this and r4 is the view mode. A second int would be passed in r5,
+    // which this call never sets.
+    void begin_map_view(int mode);
+    // r3 is this (unread). r4 points at one 0x28 view record; the camera
+    // words are that record's first 0x1C.
+    void setup_overhead_projection(RadarMapViewState *view);
     void setup_view(s32 arg1);
-    void render_region_records(void * _w1);
+    // The caller passes the view mode. This body does not read it.
+    void render_region_records(s32 mode);
     virtual void render();
     s32 is_render_admitted(void *arg1);
     void update_pan_zoom_input();
@@ -80,7 +94,6 @@ struct TRaderMapCore : public TObjBase {
     static void create();
     static void unload_floor_map();
     static void load_map_resources();
-    static s32 apply_compass_param();
     static void free_statics();
     static void load_frame_texture();
     void reset();

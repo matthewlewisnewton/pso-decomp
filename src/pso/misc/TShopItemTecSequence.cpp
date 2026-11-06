@@ -1,5 +1,4 @@
 #include "types.h"
-#include "pso/misc/TShopEquipmentSellWindow.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TShopItemListWindow.h"
 #include "pso/player/TObjPlayer_801A5AEC.h"
@@ -100,6 +99,8 @@ struct Seq_80220110 : VBase_18_80220110 {
 extern "C" {
 s32 set_service_counter_camera(void *, int);
 s32 get_window_layout_position(int, f32);
+extern const f32 lbl_805DC700;
+extern const f32 lbl_805DC704;
 void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
@@ -113,6 +114,7 @@ extern s32 lbl_805D6248;
 extern s32 lbl_805D624C;
 s32 restore_player_state__13TShopSequenceFv(void *);
 void *__nw__7TObjectFUl(u32);
+void *TShopEquipmentSellWindow__ct(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
 extern void *tl_05;
 s32 get_entity_id(void *);
 s32 get_shop_text(s32 arg0);
@@ -174,7 +176,10 @@ typedef struct VBase_18_a93f07 VBase_18_a93f07;
 typedef struct VObj_18_a93f07 VObj_18_a93f07;
 
 void TShopItemTecSequence::open_sell_window() {
-    W_80220030 *o = (W_80220030 *)new TShopEquipmentSellWindow((void *)tl_05, (void *)((S_80220030 *)this), (void *)(((S_80220030 *)this)->f24), (void *)(0x2d));
+    W_80220030 *o = (W_80220030 *)__nw__7TObjectFUl(0x3ac);
+    if (o != 0) {
+        o = (W_80220030 *)(TShopEquipmentSellWindow__ct((void *)o, (void *)tl_05, (void *)((S_80220030 *)this), (void *)(((S_80220030 *)this)->f24), (void *)(0x2d)));
+    }
     o->cb0 = (void *)close__20TShopItemTecSequenceFPv;
     o->cb1 = (void *)select_and_advance__20TShopItemTecSequenceFPv;
     reset_controller_input_state();
@@ -229,9 +234,9 @@ void TShopItemTecSequence::update_buy_sell_choice() {
 
 s32 TShopItemTecSequence::open_greeting() {
   Stack_802202BC stack;
-  stack.sp8 = 332.0f;
-  stack.spC = 80.0f;
-  this->create_message_window(get_window_layout_position(0x2C, 332.0f), (s32)&stack.sp8);
+  stack.sp8 = lbl_805DC700;
+  stack.spC = lbl_805DC704;
+  this->create_message_window(get_window_layout_position(0x2C, (f32) lbl_805DC700), (s32)&stack.sp8);
   (((VObj_18_a93f07 *)(this))->m4(0x2E, 1));
   this->m_2c = create_meseta_window((s32) ((((this->get_child_field1c() & 0xFFFF) & 0xFFFF) & 0xFFFF) & 0xFFFF));
   this->set_field_20(2);

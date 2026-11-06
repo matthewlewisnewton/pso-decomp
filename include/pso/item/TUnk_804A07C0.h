@@ -6,12 +6,7 @@
 class TUnk_804A07C0 : public TItemWeapon {
 public:
     virtual ~TUnk_804A07C0();
-    TUnk_804A07C0(TObject *parent, u8 *item);
+    void *init_vtable();
 };
-
-// Factory
-extern "C" {
-u8 *TObjPlayer__sub_80121318(u8 *arg0);
-}
 
 #endif

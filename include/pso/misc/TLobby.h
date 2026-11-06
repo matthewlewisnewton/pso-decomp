@@ -5,7 +5,7 @@
 #include "pso/TObject.h"
 #include "pso/item/TItemData.h"
 
-struct NJS_TEXLIST;
+struct TItemList;
 
 struct TLobbyFloorItemEntry {
     u8 n;
@@ -21,6 +21,11 @@ struct TLobbyFloorItemEntry {
 typedef char TLobbyFloorItemEntrySize[(sizeof(TLobbyFloorItemEntry) == 0x24) ? 1 : -1];
 typedef char TLobbyFloorItemEntryDataOffset[(offsetof(TLobbyFloorItemEntry, item_data) == 0x10) ? 1 : -1];
 
+struct Lobby_8001FA1C;
+struct B_803FADA0;
+struct Self_803FD74C;
+struct Self_80402CE0;
+
 struct TLobby : public TObject {
     // Whether a challenge-mode task is running.
     static s32 is_flag_set();
@@ -34,7 +39,6 @@ struct TLobby : public TObject {
     static void load_dimedian_resources();
     static void load_gyaranzo_resources();
     static void cleanup_handles();
-    static void load_shark_resources();
     static s32 clear_record_flags_a();
     static s32 clear_record_flags_b();
     static void free_nodes_with_id(u32 arg0);
@@ -82,10 +86,6 @@ struct TLobby : public TObject {
     static void copy_data(void* a0);
     void copy_entry(void *arg1);
     void copy_from(void *arg1);
-    static void*dispatch_shared_handler_a(s32 index);
-    static void*register_object(s32 index);
-    static void*dispatch_shared_handler_b(s32 index);
-    static void*register_boss(s32 index);
     static void clamp_difficulty(s32 arg0);
     static void update_difficulty();
     static void free_boss4_rock();
@@ -99,14 +99,9 @@ struct TLobby : public TObject {
     static f32 calc_phase_offset();
     static s32 get_internet_beat();
     static s32 get_clock_frames();
-    void free_if_not_owner(void* a1);
-    void load_texture_sub(void *arg1, s32 arg2);
-    void set_flag_and_notify();
     static s32 load_bml_exec(u8 *arg0, u8 *arg1);
     static void free_chr_select_data();
     static void init_download_buffers();
-    s32 load_bin_motion(s32 arg1, s32 arg2);
-    void reset_battle_state();
     static s32 get_game_mode();
     void copy_header(void *arg1);
     static void free_char_select();
@@ -133,7 +128,6 @@ struct TLobby : public TObject {
     static s32 count_set_bits(u32 x);
     static s32 get_party_min_tier(s32 arg0);
     void copy_header_struct(void* q);
-    void set_loss_flag();
     static void set_enemy_mode_flag();
     static void *create_tombstone(void *arg0, void *arg1, void *arg2);
     static void free_static_windows();
@@ -142,7 +136,6 @@ struct TLobby : public TObject {
     static void destroy_global_singleton();
     static void load_freeze_ice_resource();
     void bswap_packet_header();
-    void *alloc_tables(s32 arg1, s32 arg2);
     static void clear_flag_on_phase_e();
     void bswap_field();
     void broadcast_state();
@@ -151,14 +144,17 @@ struct TLobby : public TObject {
     static s32 run_disk_error_check();
     u32 write_packet_header(s32 arg1, s32 arg2, u32 arg3);
     s32 alloc_download_quest(s32 arg1, s32 *arg2);
-    static void set_stream_and_load_file(int a0);
+    static s32 set_stream_and_load_file(int a0);
     static void set_stream_state(int a0);
-    static s32 get_file_size();
+    static void reset_state_flags();
+    static void process_deferred_player_setup();
+    static s32 get_file_size(const char *name);
     static void run_frame();
     static void free_static_buffer(void* a0);
     static void alloc_from_heap(void* a0);
     static void pump_frames();
     static void add_named_entry(s32 arg0, s32 arg1);
+    static s32 create_named_entry(s32 name, s32 buffer, void (*callback)(Lobby_8001FA1C *), void *src, void **out);
     static void notify_and_close();
     static void destroy_instance();
     static void pop_and_close();
@@ -166,6 +162,7 @@ struct TLobby : public TObject {
     static void init_download_state();
     void link_into_list();
     static void set_ending_callback();
+    void init_range(s32 arg1);
     static void clear_object_count();
     static void reset_floor_items();
     static void free_boss_rocks();
@@ -173,7 +170,6 @@ struct TLobby : public TObject {
     static int get_lobby_flag();
     void bswap_player_packet();
     void update_and_send();
-    void bswap_item();
     static TLobbyFloorItemEntry *copy_floor_item_entry(TLobbyFloorItemEntry *dst, TLobbyFloorItemEntry *src);
     static void set_boss_buf_entry(int a0, int a1);
     static int get_sync_counter(int a0);
@@ -188,14 +184,10 @@ struct TLobby : public TObject {
     void process_and_dispatch_packet();
     void bswap_6xa2_fields();
     void *build_6x06_guild_card_packet();
-    void send_item_packet();
-    void bswap_item_packet();
-    void *init_header_packet();
-    void *init_header();
     void bswap_packet();
     static s32 apply_table_entry(s16 arg0, void * _w1);
     void copy_short_fields(void *arg1);
-    static void debug_print(const char *fmt, ...);
+    static void debug_print(s32 arg0, ...);
     int compare_file_extension(const char *ext);
     static s32 get_class_type_name(s32 class_flags);
     static void update_menu_cursor();
@@ -206,7 +198,6 @@ struct TLobby : public TObject {
     void bswap_fields();
     void bswap_header_3words();
     void bswap_6x6B();
-    u8 get_mode();
     static void init_serial_access();
     static void heap_alloc(void* a0);
     void set_range(int a1, int a2, int a3);
@@ -261,8 +252,8 @@ struct TLobby : public TObject {
     static void start_udp_test_game();
     s32 construct_entry_array();
     void bswap_udp_test_header();
-    static void send_and_handle();
-    static void blocking_vsync();
+    void send_and_handle();
+    static void blocking_vsync(void* _w0);
     static void reload_floor_scene();
     static void free_objects();
     static void run_lobby_frame();
@@ -279,10 +270,6 @@ struct TLobby : public TObject {
     void bswap_set_battle_mode_data();
     void send_6x7D_set_battle_mode_data();
     static s32 free_if_positive(s32 arg0, s16 arg1);
-    void reduce_item_amount(s32 arg1, s32 arg2, s32 arg3);
-    s32 use_item(s32 arg1, s32 arg2, s32 arg3);
-    void set_globals_and_update(int a1, int a2);
-    int set_globals_and_notify(int a1, int a2);
     void update_all_children();
     void set_volume(u8 arg1);
     void set_validated_field_0x11(u8 arg1);
@@ -330,9 +317,7 @@ struct TLobby : public TObject {
     static s32 set_flags_on_matching_entries(s32 arg0, s16 arg1, s16 arg2, s32 arg3);
     static s32 set_room_group_flags(s32 floor, s16 room, s16 group, s32 bits);
     static s32 sum_floor_enemy_counts();
-    void bswap_4_words();
     static void init_scene_objects();
-    int sync_game_state();
     static s32 spawn_matching_objects(s16 arg0, s16 arg1, s32 arg2);
     static s32 link_matching_objects(s16 arg0, s16 arg1);
     static s32 spawn_objects_at_pos(s16 arg0, s16 arg1);
@@ -382,6 +367,8 @@ struct TLobby : public TObject {
     static void wait_for_sound_init();
     void clear_ready_flag_unless_locked();
     void set_area(s32 arg1);
+    static s32 init_range_zero_global();
+    s32 init_range_zero();
     void add_token(const char *src);
     void trim_whitespace();
     static void refresh_player_status();
@@ -449,7 +436,6 @@ struct TLobby : public TObject {
     static void clear_stale_entries(u8 *arg0);
     void*get_trade_obj_ptr();
     void prepare_trade_packet();
-    static void spawn_npc_enemy(s16 arg0, s32 arg1, NJS_TEXLIST *texlist, void *arg3, f32 farg0, f32 farg1);
     int forward_npc_enemy();
     static unsigned char get_trade_mode();
     void set_ad_field(s32 v);
@@ -466,10 +452,6 @@ struct TLobby : public TObject {
     static void*get_record(int a0);
     void queue_destruction_and_cleanup();
     void set_flag_and_clear_download();
-    void open_keyboard();
-    void request_change_game_mode();
-    void enter_game_mode_change();
-    void enter_chg_game_mode();
     static void destroy_global_object();
     static void set_global_flags(s32 arg0);
     static void handle_flag2_request();
@@ -574,7 +556,6 @@ struct TLobby : public TObject {
     void release_handle();
     u32 get_packet_size();
     u32 get_available_size();
-    void move_data(const void * _w1, u32 _w2);
     void copy_u16_array(u16 *src, s32 n);
     void move_words(u32 *src, s32 n);
     static s32 calc_delta(s32 arg0, s32 arg1);
@@ -603,7 +584,7 @@ struct TLobby : public TObject {
     s32 set_flags_and_state();
     static s16 get_checked_status_value(s16 arg0);
     static s32 clear_socket_slot(s16 i);
-    static void update_connection_state(int arg0);
+    static void update_connection_state(Self_803FD74C *self);
     s32 read_2_bytes(void *src);
     void free_field_98();
     void free_field_98_and_clear();
@@ -620,7 +601,9 @@ struct TLobby : public TObject {
     s32 mark_ready();
     void set_active();
     void reset_connection_state();
-    void handle_request_timeout();
+    // Timer callback. r3 is the PAP connection fsm, not a TLobby.
+    static void handle_request_timeout(Self_80402CE0* fsm);
+    static B_803FADA0 *init_net_buffer_entry(u16 idx);
     static s32 init_net_list(s16 arg0, s16 arg1);
     static void init_net_block_18A0();
     static s32 run_net_init_step();
@@ -635,7 +618,7 @@ struct TLobby : public TObject {
     static s32 dispatch_slot_a(s16 arg0, s32 arg1);
     static s32 dispatch_slot_b(s16 arg0, s32 arg1);
     static s32 forward_net_op(s16 arg0, u8 *arg1, u8 *arg2);
-    static s16 forward_net_op_5args(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s16 arg6, s32 arg7);
+    static s16 forward_net_op_5args(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s8 arg6, s32 arg7);
     static void flush_flags_step();
     static void run_connect_step();
     static s16 init_net_sockets();
@@ -645,9 +628,8 @@ struct TLobby : public TObject {
     static s32 call_handler_by_index(s16 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
     static s32 dispatch_handler_by_index(s16 arg0, s32 arg1, s32 arg2, s32 arg3);
     static s32 dispatch_handler_by_id(s16 arg0, s32 arg1, s32 arg2);
-    static s16 invoke_socket_callback(s16 i, s32 arg);
-    static s16 is_socket_flag_set(s16 i);
-    static s32 call_entry_callback(s16 i, s16 arg);
+    static s32 invoke_socket_callback(s16 i, s32 arg);
+    static s32 call_entry_callback(s16 i, s32 arg);
     static s16 is_slot_flag_0x40_set(s16 i);
     static s32 is_slot_flag_0x20_set(s16 i);
     static s16 is_entry_flag10_set(s16 i);
@@ -698,7 +680,6 @@ struct TLobby : public TObject {
     static s32 parse_tlv_records(s32 arg0, u8 *arg1, u16 arg2);
     static s16 get_slot_id(s16 arg0);
     static void reset_boot_state();
-    s16 wait_timeout_loop();
     static void cancel_alarm_b();
     static s32 init_buffer_pool();
     static void reset_buffer_pool();
@@ -752,7 +733,6 @@ struct TLobby : public TObject {
     static s32 set_connect_mode(s32 arg0);
     static s32 get_task_count();
     void parse_dhcp_lease_times();
-    static s32 dhcp_handle_reply(s16 status, void *arg);
     static s32 validate_slot_buffers(s32 arg0, void *arg1, void *arg2, void *arg3);
     static void release_entry_by_id(u32 arg0);
     static u8 *find_entry_by_address(s32 arg0);
@@ -764,10 +744,9 @@ struct TLobby : public TObject {
     static void stop_network_thread();
     static void queue_thread_main();
     static s32 write_ring_buffer(u8 *src, s32 len);
-    static s16 map_state_to_mode_id();
+    static s32 map_state_to_mode_id();
     static s32 map_state_to_code(s32 arg0, s16 arg1);
     static s32 send_atx_command_mode(s32 arg0);
-    static s16 wait_for_connection(void *conn);
     u32 compute_range_end(s32 arg1, u32 arg2);
     s32 validate_and_store_net_params();
     void init_net_config();
@@ -775,11 +754,9 @@ struct TLobby : public TObject {
     static void tmp_buf_release_if_owner(const char *name);
     static s32 tmp_buf_release(const char *name);
     static s32 tmp_buf_is_free();
-    static s32 tmp_buf_use_req(const char *name);
+    static u8 *tmp_buf_use_req(const char *name);
     void handle_quest_download_chunk();
     static u16 alloc_actor_ids(s32 arg);
-    void reduce_owner_matched_items();
-    void reduce_child_item_amounts();
     static s32 cancel_pending_alarms();
     static void get_time_seconds(s32 *out);
     static void get_time_ms(s32 *out);
@@ -811,8 +788,8 @@ struct TLobby : public TObject {
     static void wait_for_lock_release();
     static void adxm_goto_mwidle_border();
     static void dec_ref_and_clear_buffer();
-    s32 get_resource_file_size();
-    static void read_data_sync(s32 arg0, s32 arg1, s32 arg2);
+    static s32 get_resource_file_size(const char *name);
+    static void read_data_sync(s32 arg0, s32 arg1, u8 *dst);
     s32 get_battle_ctrl_default();
     static s32 find_free_chat_log_slot();
     static void apply_menu_cursor_selection();
@@ -933,7 +910,6 @@ struct TLobby : public TObject {
     void update_model_load();
     void copy_player_record(u8 *arg1);
     u8 *init_memory_pool(s32 arg1, s32 arg2, s32 arg3);
-    s32 load_bin_model(s32 arg1, s32 arg2);
     static void init_on_main_phase();
     static void copy_state_block();
     static int get_unit_list();
@@ -1051,7 +1027,7 @@ struct TLobby : public TObject {
     static void import_sync_records(s16 *arg0);
     static s32 export_sync_records(s16 *arg0);
     static u8 *alloc_heap_slot(s32 arg0, s32 arg1);
-    static s32 add_player(s32 arg0, s32 arg1, s32 arg2);
+    static s32 add_player(s32 arg0, const void *src, s32 n);
     static s32 load_all_floor_event_sets();
     static int get_destroy_event_obj();
     static void free_data_60F0();
@@ -1118,13 +1094,9 @@ struct TLobby : public TObject {
     static s32 write_zero_padded_block(void *arg0p);
     void set_field_10_and_notify(s32 arg1);
     void set_buffer(void **arg1);
-    s32 get_field_14();
     void update_stream_read();
     void set_scroll_position(s32 arg1);
     void set_coords(s32 arg1, s32 arg2);
-    s32 init_stream_position();
-    s32 get_file_offset_relative();
-    s32 set_scroll_offset(s32 arg1);
     static void si_get_type_async();
     static s32 clear_buffer_a00();
     static void on_set_mode();
@@ -1177,6 +1149,8 @@ struct TLobby : public TObject {
 };
 
 typedef char TLobby_size[sizeof(TLobby) == 0x1C ? 1 : -1];
+
+void move_data(void *dst, const void *src, u32 n);
 // The object set entry new ground items take their placement from, and
 // whether placing one shows the drop effect.
 extern void *item_object_set_data;

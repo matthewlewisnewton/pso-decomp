@@ -1,3 +1,5 @@
+#include "pso/misc/TWindowDrawContext.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TLobby_80132ED0.h"
 #include "pso/misc/TWindowSubStatusDisp_802671F0.h"
@@ -109,7 +111,7 @@ void fn_80266BD0(s32 index, u8 *first, u8 *second, s32 player);
 void TWindowSubStatusDisp__sub_80258A28(u8 *arg0, s32 arg1, s32 arg2);
 void *get_player_by_client_id(s32 i);
 s8 clamp_char_at__10TObjPlayerFl(s32, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
+
 s32 finalize_state__20TWindowSubStatusDispFv(s32);
 s32 is_flag80_set__20TWindowSubStatusDispFv(s32);
 s32 advance_state__20TWindowSubStatusDispFv();
@@ -121,14 +123,14 @@ s32 is_flag_4_set__20TWindowSubStatusDispFv();
 }
 void text_builder_reset();
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);
-void draw_selection_bar(u8 *arg0, u8 *arg1, s32 arg2);
+struct TWindowDrawContext;
+void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 extern "C" {
 u8 *fn_802683F4(void *, s32, s32, s16);
 u8 *__nw__7TObjectFUl(s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 is_player_input_active(s32 param_1);
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 void __dl__7TObjectFPv(void *);
@@ -304,7 +306,7 @@ void TWindowSubStatusDisp::add_status_entry(s8 arg1, s32 src, s32 arg3) {
         init_status_entry__20TWindowSubStatusDispFPvcUii(window_sub_status_disp, var_r29, src, arg3);
         *(f32 *)((s8 *)window_sub_status_disp + 8) = (f32) (*(const f32 *)&lbl_805DD194);
         if (arg1 & 2) {
-            *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->unk_1C = 0xE;
+            *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->frame_pad_1c = 0xE;
             *(u16 *)((s8 *)window_sub_status_disp + 0) = (u16) (*(u16 *)((s8 *)window_sub_status_disp + 0) | 0x100);
         }
         *(s16 *)((s8 *)this + 0x72) = (s16) (*(s16 *)((s8 *)this + 0x72) + 1);
@@ -639,7 +641,7 @@ void TWindowMenuIconLine::draw_selected_list_entry(s32 window_key_board_soft) {
     if (!(this->state_flags & 0x80)) {
         temp_r3 = ((u16 *(*)(void *, s16))get_array_entry__11TWindowBaseFi)(this, (s16)(*(s16 *)&this->cursor));
         if (*temp_r3 & 1) {
-            draw_selection_bar((u8 *)window_key_board_soft, (u8 *)temp_r3, is_decided__19TWindowMenuIconLineFv(this));
+            draw_selection_bar((TWindowDrawContext *)window_key_board_soft, (u8 *)temp_r3, is_decided());
         }
     }
 }
@@ -684,7 +686,7 @@ void TShopJudgmentItemWindow__sub_80267F9C(V_80267F9C v, s32 x) {
 void TWindowMenuIconLine::render() {
     s32 temp_r3;
 
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
     this->draw_selected_list_entry(temp_r3);

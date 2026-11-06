@@ -13,6 +13,9 @@
 // epilogue-dropping terminator (for(;;)) emits a `b .` word the object
 // does not contain.  Body is therefore kept as function-level asm
 // (nofralloc) per the TRK_MINNOW/musyx orig_asm precedent, byte-exact.
+//
+// Source: zeroz41/pso-decomp #172, src/pso/unk/text_8042E8C4.cpp
+// (refs/upstream-pr/172, commit d5ab5a472; same text at #189 943ce88c2).
 
 extern "C" {
 

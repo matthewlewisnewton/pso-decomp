@@ -12,6 +12,7 @@ struct TBoss7DeRolLeC : public TObjEneDD_ST {
     void update_or_dispatch();
     void flee_if_disturbed();
     void set_state_and_send(s32);
+    void emit_hit_effect(void *arg1);
     u8 sub_802ECB10();
     void sub_802ECAA4();
     void advance_action_sequence();
@@ -30,11 +31,7 @@ struct TBoss7DeRolLeC : public TObjEneDD_ST {
     void apply_paralysis();
     void apply_poison_status();
     void vfunc_28();
-    u8 unk_374[0x18];
-    u16 m_38c;
-    u8 unk_38E[0x16];
-    void* m_3c0;
-    u8 _pad3C4[0x25C];
+    u8 unk_3C0[0x244];
     u32 m_620;
     u32 m_624;
     u32 m_628;
@@ -91,7 +88,6 @@ struct TBoss7DeRolLeC : public TObjEneDD_ST {
     u16 m_7ce;
     u16 m_7d0;
     u16 m_7d2;
-    void set_field_38(s32 v);
     static void run_exit_callbacks();
     static void *create(void *arg0);
     u8 unk_7B8[0x1C];

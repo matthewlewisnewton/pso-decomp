@@ -1,7 +1,9 @@
+#include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/TObjBoss5Pillar.h"
 #include "pso/boss/TObjBoss5PillarDemo.h"
 #include "pso/object/TObject_80019A50.h"
+#include "pso/unk/text_8028ADDC.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
 
@@ -34,6 +36,8 @@ void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__15TObjBoss5Pillar[];
 extern s32 lbl_805D3B40;
 extern u8 *lbl_805D4DD8;
+extern const f32 lbl_805DD918;
+extern const f32 lbl_805DD91C;
 void fn_8028AE1C(void *);
 s32 post_translate_matrix(void *);
 s32 draw_ginja_model_with_motion(int, int, f32);
@@ -45,7 +49,7 @@ void TObjBoss5Pillar::render() {
     u8 *arg0 = (u8 *)this;
     if (TObjPlayer::is_any_teammate_in_state() == 0) {
         push_matrix();
-        TObjFish::set_global_param(boss5_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(boss5_common_texture_list));
         post_translate_matrix((u8 *)&this->m_2c);
         if ((s32) this->m_1c != 3) {
             fn_8028ADDC((void *)this->m_48);
@@ -103,8 +107,8 @@ u8 *TObjBoss5Pillar__ct(TObjBoss5Pillar *boss5_pillar, u8 *arg1, u8 *arg2) {
     *(s32 *)((s8 *)boss5_pillar + 0) = (s32) lbl_805D3B40;
     VecCopy((Vec *)((u8 *)boss5_pillar + 0x2C), (const Vec *)arg2);
     boss5_pillar->m_1c = 0;
-    *(f32 *)((s8 *)boss5_pillar + 0x20) = 0.0f;
-    boss5_pillar->m_24 = 1.0f;
+    *(f32 *)((s8 *)boss5_pillar + 0x20) = (f32) lbl_805DD918;
+    boss5_pillar->m_24 = (f32) lbl_805DD91C;
     boss5_pillar->m_28 = 0;
     boss5_pillar->m_48 = 0;
     boss5_pillar->m_38 = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)lbl_805D4DD8 + 0x42C)) + 8);

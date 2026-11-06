@@ -3,7 +3,8 @@
 
 #include "types.h"
 #include "pso/object/TObjMotion.h"
-#include "pso/system/BmlResource.h"
+
+struct BmlResource;
 
 // Shared base of the Vol Opt arena scenery: the birds, the tower and the
 // falling rocks all draw from bm_o_boss4.bml.

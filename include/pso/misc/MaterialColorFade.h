@@ -9,6 +9,7 @@ public:
     MaterialColorFade();
     NJS_ARGB color;
     f32 rate;
+    void set_rate(f32 v);
     virtual ~MaterialColorFade();
     virtual void set_rate_from_divisor(s32);
     virtual void reset_color();

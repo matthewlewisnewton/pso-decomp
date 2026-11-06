@@ -25,7 +25,6 @@ void close_and_next__23TAdSinglePlyChrSelectGCFPvPvPvPvPv(void* p, void* a1, voi
 void close_windows__23TAdSinglePlyChrSelectGCFPv(void *arg0);
 void create_backgrounds__23TAdSinglePlyChrSelectGCFPv(void *arg0);
 s32 get_localized_text_entry(s32, s32);
-s32 is_decided__11TWindowMenuFv();
 extern u8 lbl_804C88C0[];
 extern u8 lbl_804C89BC[];
 }
@@ -392,7 +391,6 @@ void create_backgrounds__23TAdSinglePlyChrSelectGCFPv(void *arg0) {
 }
 
 s32 TAdPlayerLoadGC__sub_801E0FA4(s32);
-s32 query_memcard_capacity__15TAdPlayerLoadGCFl(s32, s32);
 s32 count_flags__23TAdSinglePlyChrSelectGCFPv(void *arg0);
 
 s32 TAdSinglePlyChrSelectGC::check_capacity() {
@@ -405,7 +403,7 @@ s32 TAdSinglePlyChrSelectGC::check_capacity() {
     temp_r29 = ((s32 (*)())count_flags__23TAdSinglePlyChrSelectGCFPv)();
     temp_r30 = ((TAdSinglePlyChrSelectGC *)arg0)->count_selected_flags();
     temp_r31 = TAdPlayerLoadGC__sub_801E0FA4(0);
-    temp_r3 = query_memcard_capacity__15TAdPlayerLoadGCFl(0, 0);
+    temp_r3 = TAdPlayerLoadGC::query_memcard_capacity(0, 0);
     if ((temp_r29 > temp_r31) || (temp_r30 > temp_r3)) {
         return 0;
     }
@@ -546,7 +544,7 @@ void update_state__23TAdSinglePlyChrSelectGCFPv(void *arg0) {
 int TAdSinglePlyChrSelectGC__sub_802E1F8C(void* p) { return close_windows__23TAdSinglePlyChrSelectGCFPv(p); }
 void TAdSinglePlyChrSelectGC__sub_802E1FAC(u8 *ad_time_set_gc) {
     s32 temp_r3;
-    if (*(u32 *)((s8 *)ad_time_set_gc + 0x54) == 0U || ((s32 (*)(u32))is_decided__11TWindowMenuFv)(*(u32 *)((s8 *)ad_time_set_gc + 0x54)) == 0) {
+    if (*(u32 *)((s8 *)ad_time_set_gc + 0x54) == 0U || ((TWindowMenu *)(*(u32 *)((s8 *)ad_time_set_gc + 0x54)))->is_decided() == 0) {
         return;
     }
     switch (((TWindowMenu *)(*(u32 *)((s8 *)ad_time_set_gc + 0x54)))->get_selected_value()) {
@@ -600,7 +598,6 @@ void show_confirm_dialog__23TAdSinglePlyChrSelectGCFPv(u8 *arg0) {
 #define close_and_next__23TAdSinglePlyChrSelectGCFPvPvPvPvPv ((int (*)(void*, void*, void*, void*, void*))close_and_next__23TAdSinglePlyChrSelectGCFPvPvPvPvPv)
 #define close_windows__23TAdSinglePlyChrSelectGCFPv ((s32 (*)(void *))close_windows__23TAdSinglePlyChrSelectGCFPv)
 #define create_backgrounds__23TAdSinglePlyChrSelectGCFPv ((s32 (*)())create_backgrounds__23TAdSinglePlyChrSelectGCFPv)
-#define is_decided__11TWindowMenuFv ((s32 (*)(u32))is_decided__11TWindowMenuFv)
 void TAdSinglePlyChrSelectGC__sub_802E2158(void);
 
 void TAdSinglePlyChrSelectGC__sub_802E2158(void) {  }
@@ -638,7 +635,7 @@ void TAdSinglePlyChrSelectGC__sub_802E22A4(u8 *ad_time_set_gc) {
     s32 selected_menu_value;
     u32 temp_r3_2;
     temp_r3_2 = *(u32 *)((s8 *)ad_time_set_gc + 0x54);
-    if (temp_r3_2 == 0U || is_decided__11TWindowMenuFv(temp_r3_2) == 0) {
+    if (temp_r3_2 == 0U || ((TWindowMenu *)temp_r3_2)->is_decided() == 0) {
         return;
     }
     selected_menu_value = ((TWindowMenu *)(*(u32 *)((s8 *)ad_time_set_gc + 0x54)))->get_selected_value();
@@ -696,8 +693,6 @@ void TAdSinglePlyChrSelectGC__sub_802E23E8(u8 *arg0);
 void TAdSinglePlyChrSelectGC__sub_802E2450(u8 *arg0);
 
 void TAdSinglePlyChrSelectGC__sub_802E2520(u8 *arg0);
-s32 poll_load_status__15TAdPlayerLoadGCFl(int, void *);
-
 void advance_when_load_done__23TAdSinglePlyChrSelectGCFi(s32 arg0);
 
 void TAdSinglePlyChrSelectGC__sub_802E24B8(S_802E24B8 *arg0);
@@ -730,7 +725,7 @@ void TAdSinglePlyChrSelectGC__sub_802E2450(u8 *arg0) {
 }
 
 void TAdSinglePlyChrSelectGC__sub_802E24B8(S_802E24B8 *arg0) {
-    if (arg0->f54 == 0 || ((s32 (*)(void *))is_decided__11TWindowMenuFv)(arg0->f54) == 0) {
+    if (arg0->f54 == 0 || ((TWindowMenu *)arg0->f54)->is_decided() == 0) {
         return;
     }
     ((TWindowMenu *)arg0->f54)->get_selected_value();
@@ -746,7 +741,7 @@ void TAdSinglePlyChrSelectGC__sub_802E2520(u8 *arg0) {
 }
 
 void TAdSinglePlyChrSelectGC__sub_802E2588(S_802E2588 *arg0) {
-    if (arg0->f54 == 0 || ((s32 (*)(void *))is_decided__11TWindowMenuFv)(arg0->f54) == 0) {
+    if (arg0->f54 == 0 || ((TWindowMenu *)arg0->f54)->is_decided() == 0) {
         return;
     }
     switch (((TWindowMenu *)arg0->f54)->get_selected_value()) {
@@ -862,7 +857,7 @@ void TAdSinglePlyChrSelectGC::update_char_timer() {
 void TAdSinglePlyChrSelectGC__sub_802E2A7C(void* p) { *(s32*)((char*)p + 0x64) = 30; }
 typedef char RecoveredGlobal_802E2A88_lbl_804C89BC_size[sizeof(RecoveredGlobal_802E2A88_lbl_804C89BC) == 0x78 ? 1 : -1];
 void advance_when_load_done__23TAdSinglePlyChrSelectGCFi(s32 arg0) {
-    if (poll_load_status__15TAdPlayerLoadGCFl(0, (void *) (&(*(RecoveredGlobal_802E2A88_lbl_804C89BC *)&lbl_804C89BC).value)) == 0) {
+    if (TAdPlayerLoadGC::poll_load_status(0, (const char *)(&(*(RecoveredGlobal_802E2A88_lbl_804C89BC *)&lbl_804C89BC).value)) == 0) {
         ((s32 (*)(void *, s32))change_state__12TAdTimeSetGCFl)((void *)arg0, 0xB);
     }
 }
@@ -914,7 +909,7 @@ void TAdSinglePlyChrSelectGC__sub_802E2BC8(void* p) { *(s32*)((char*)p + 0x64) =
 
 typedef char RecoveredGlobal_802E2BD4_lbl_804C88C0_size[sizeof(RecoveredGlobal_802E2BD4_lbl_804C88C0) == 0x54 ? 1 : -1];
 void TAdSinglePlyChrSelectGC__sub_802E2BD4(s32 arg0) {
-    if (poll_load_status__15TAdPlayerLoadGCFl(0, (void *) (&(*(RecoveredGlobal_802E2BD4_lbl_804C88C0 *)&lbl_804C88C0).value)) == 0) {
+    if (TAdPlayerLoadGC::poll_load_status(0, (const char *)(&(*(RecoveredGlobal_802E2BD4_lbl_804C88C0 *)&lbl_804C88C0).value)) == 0) {
         ((s32 (*)(void *, s32))change_state__12TAdTimeSetGCFl)((void *)arg0, 9);
     }
 }
@@ -965,7 +960,7 @@ void TAdSinglePlyChrSelectGC::update_load_state() {
 int TAdSinglePlyChrSelectGC::close_and_next_cancel() { return ((int (*)(void *, int, int, int, int))close_and_next__23TAdSinglePlyChrSelectGCFPvPvPvPvPv)(this, 2, -1, -1, -1); }
 
 void TAdSinglePlyChrSelectGC::handle_confirm_menu() {
-    if (*(void * *)&this->m_54 == 0 || ((s32 (*)(void *))is_decided__11TWindowMenuFv)(*(void * *)&this->m_54) == 0) {
+    if (*(void * *)&this->m_54 == 0 || ((TWindowMenu *)(*(void * *)&this->m_54))->is_decided() == 0) {
         return;
     }
     switch (((TWindowMenu *)(*(void * *)&this->m_54))->get_selected_value()) {
@@ -1126,4 +1121,3 @@ void TAdSinglePlyChrSelectGC::rebuild_and_maybe_close() {
 #undef close_and_next__23TAdSinglePlyChrSelectGCFPvPvPvPvPv
 #undef close_windows__23TAdSinglePlyChrSelectGCFPv
 #undef create_backgrounds__23TAdSinglePlyChrSelectGCFPv
-#undef is_decided__11TWindowMenuFv

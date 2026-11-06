@@ -50,10 +50,6 @@ void __dl__7TObjectFPv(void *);
 
 extern s32 TQuestListOffline__class_name;
 
-extern "C" void vfunc_6__15TShopWindowBaseFv();
-extern "C" void vfunc_8__15TShopWindowBaseFv();
-extern "C" void display_message__15TShopWindowBaseFPCcl();
-extern "C" void display_guild_message__15TShopWindowBaseFll();
 extern "C" void vfunc_10__15TShopWindowBaseFv();
 extern "C" void run_task__15TShopWindowBaseFv();
 extern "C" u8 lbl_8044BDA0[];
@@ -150,10 +146,16 @@ void *lbl_804C9C10[35] = {
     (void *)0xffffffff, (void *)0xffffffff, (void *)0xffffffff, (void *)0xffffffff,
     (void *)0xffffffff, (void *)0xffffffff, (void *)&lbl_805DC690,
 };
+extern "C" {
+void vfunc_6__15TShopWindowBaseFll();
+void display_message__15TShopWindowBaseFPCcl();
+void vfunc_8__15TShopWindowBaseFll();
+void display_guild_message__15TShopWindowBaseFll();
+}
 void *lbl_804C9C9C[12] = {
     (void *)0x0, (void *)0x0, (void *)&close_shop_subwindows__17TQuestListOfflineFs, (void *)&run_task__15TShopWindowBaseFv,
-    (void *)&render__7TObjectFv, (void *)&render_shadows__7TObjectFv, (void *)&vfunc_6__15TShopWindowBaseFv, (void *)&display_message__15TShopWindowBaseFPCcl,
-    (void *)&vfunc_8__15TShopWindowBaseFv, (void *)&display_guild_message__15TShopWindowBaseFll, (void *)&vfunc_10__15TShopWindowBaseFv, (void *)&vfunc_11__17TQuestListOfflineFv,
+    (void *)&render__7TObjectFv, (void *)&render_shadows__7TObjectFv, (void *)&vfunc_6__15TShopWindowBaseFll, (void *)&display_message__15TShopWindowBaseFPCcl,
+    (void *)&vfunc_8__15TShopWindowBaseFll, (void *)&display_guild_message__15TShopWindowBaseFll, (void *)&vfunc_10__15TShopWindowBaseFv, (void *)&vfunc_11__17TQuestListOfflineFv,
 };
 #define lbl_804C9C9C ((s32 *)lbl_804C9C9C)
 

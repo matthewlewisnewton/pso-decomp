@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/enemy/TObjEneDD.h"
 
+struct TBoss7DeRolLeC;
+
 struct TBoss7Joint : public TObjEneDD {
     virtual ~TBoss7Joint();
     void init_boss_stats();
@@ -20,7 +22,7 @@ struct TBoss7Joint : public TObjEneDD {
     virtual void vfunc_28();
     virtual void vfunc_88();
     virtual void vfunc_93();
-    u8 unk_374[0x28];
+    u8 unk_38c[0x10];
     u32 m_3b8;
     u8 _pad3BC[0x4];
     u32 m_3c0;
@@ -28,7 +30,7 @@ struct TBoss7Joint : public TObjEneDD {
     void store_position();
     void run_task();
     s32 init_params();
-    static int get_state();
+    static TBoss7DeRolLeC *get_state();
     void read_state();
     void byteswap_action_packet();
     void update_and_send_60();

@@ -1,8 +1,12 @@
+#include "pso/misc/ParticleFactory.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/misc/PersistentSound.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/misc/PhotonBlastSummon.h"
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/player/TObjPlayer_801AB608.h"
@@ -115,13 +119,12 @@ typedef struct Golla_801AB868 {
 } Golla_801AB868;
 
 extern u8 *photon_blast_shared_resource;
-extern u32 farlla_photon_blast_model_buffers;
+extern void *farlla_photon_blast_model_buffers;
 extern "C" {
-void *spawn_particle_effect(void *pos, s32 id);
+
 void *find_entity_by_id(u16 id);
-s32 spawn_photon_blast_attachment_effects(void *, int);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
+
 u32 __nw__7TObjectFUl(int);
 
 s32 scroll_strip_uvs(void *, s16, int);
@@ -168,14 +171,7 @@ void TObjPlayer::destroy_buffers() {
 }
 
 void create_farlla_photon_blast_model(void) {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)::operator new(0x14);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (((TLobby *)temp_r3)->alloc_tables(*(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 8), 0));
-    }
-    (*(s32 *)&farlla_photon_blast_model_buffers) = var_r0;
+    farlla_photon_blast_model_buffers = new StripBufferPair(*(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 8), 0);
 }
 
 void TPhotonGolla::sub_801AB688() { this->m_15c = 0.0f; *(float*)((char*)this + 0x160) = 0.0f; this->m_164 = 0.0f; *(float*)((char*)this + 0x168) = 0.0f; }
@@ -306,10 +302,10 @@ void TPhotonGolla::render() {
     if (this->m_1c4 != 0) {
         scroll_strip_uvs(golla_photon_blast_buffer_pair, self->f14C, 0);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix(&self->pos);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         ((TUnk_804C3248 *)self)->set_photon_blast_joint_callback();
         saved_model_render_flags = model_render_flags;
         copy_argb((NJS_ARGB *)&saved_model_draw_color, (NJS_ARGB *)&model_material_color);
@@ -357,7 +353,7 @@ void TPhotonGolla::run_task() {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(5);
         *(s32 *)&this->unk_1C8 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
-        spawn_photon_blast_attachment_effects(arg0, 2);
+        spawn_photon_blast_attachment_effects(this, 2);
     }
     this->m_1b8 = (s16) this->requested_action;
     ((TUnk_804C3248 *)arg0)->update_state();
@@ -366,8 +362,8 @@ void TPhotonGolla::run_task() {
     *(s16 *)((s8 *)arg0 + 0x14C) = (s16) (*(s16 *)((s8 *)arg0 + 0x14C) + 0xF);
     *(s16 *)((s8 *)arg0 + 0x14C) = (s16) (u8) *(s16 *)((s8 *)arg0 + 0x14C);
     if ((s32) *(s32 *)&this->unk_1C8 == 0x50) {
-        VecCopy((Vec *)(arg0 + 0x1AC), (const Vec *)(this->m_148 + 0x44));
-        spawn_particle_effect((arg0 + 0x1AC), 0x133);
+        VecCopy((Vec *)(arg0 + 0x1AC), &this->m_148[2].position);
+        spawn_particle_effect((const Vec *)((arg0 + 0x1AC)), 0x133);
         TPhotonGolla::spawn_concentrate(arg0);
     }
     temp_r0 = *(s32 *)&this->unk_1C8;
@@ -375,7 +371,7 @@ void TPhotonGolla::run_task() {
         TPhotonGolla::spawn_concentrate(arg0);
     }
     if ((s32) this->m_1c4 != 0) {
-        play_persistent_sound(0x4002462F, (s32)arg0, 0, 0, 0);
+        play_persistent_sound((s32)(0x4002462F), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
     }
 }
 
@@ -430,6 +426,8 @@ void *find_entity_by_id(u16 id);
 s32 init_collision_body_parts(void *, void *, int);
 void sub_801AB688__12TPhotonGollaFv(void *);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
+extern u8 lbl_80446DA8[];
+extern u8 lbl_80446DB4[];
 extern s32 lbl_805D34E8;
 extern u8 *photon_blast_shared_resource;
 
@@ -468,7 +466,7 @@ u8 *TPhotonGolla__ct(u8 *arg0, u8 *arg1) {
     Stack_801ABE14 pos;
     u8 *e;
     void *p;
-    __ct__13TUnk_804C3248Fv(arg0);
+    photon_base_ct(arg0);
     *(u8 **)((s8 *)arg0 + 0x18) = (u8 *)lbl_804C35F4;
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D34E8;
     *(s32 *)((s8 *)arg0 + 0x138) = 2;
@@ -481,14 +479,14 @@ u8 *TPhotonGolla__ct(u8 *arg0, u8 *arg1) {
     ((TPhotonGolla *)arg0)->m_1a4 = (u8 *)find_entity_by_id(*(u16 *)((s8 *)arg0 + 0x158));
     e = ((TPhotonGolla *)arg0)->m_1a4;
     if (e != NULL) {
-        ((TPhotonGolla *)arg0)->rotation_y = *(s32 *)((s8 *)e + 0x60);
+        ((TPhotonGolla *)arg0)->rotation.yaw = *(s32 *)((s8 *)e + 0x60);
     } else {
-        ((TPhotonGolla *)arg0)->rotation_y = 0;
+        ((TPhotonGolla *)arg0)->rotation.yaw = 0;
     }
     *(s32 *)((s8 *)arg0 + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x48);
     ((TPhotonGolla *)arg0)->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x4C);
-    ((TObjMotion *)arg0)->set_field_d8((s32) photon_blast_golla_params);
-    ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32) photon_blast_golla_params));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430)));
     ((TPhotonGolla *)arg0)->requested_action = 1;
     ((TObjMotion *)arg0)->set_animation(((TPhotonGolla *)arg0)->requested_action);
     ((TObjMotion *)arg0)->set_field_b8(((TPhotonGolla *)arg0)->requested_action);
@@ -536,11 +534,11 @@ u8 *TPhotonGolla__ct(u8 *arg0, u8 *arg1) {
         if (p != NULL) {
             TPhotonMagicSquare__ct((u8 *)p, (s32)arg0, 3, (s32)&pos, 0x96, (f32)0.5f);
         }
-        spawn_photon_blast_attachment_effects(arg0, 2);
-        play_cue_stream_file((s32)"goula2.adx");
+        spawn_photon_blast_attachment_effects((TPhotonGolla *)arg0, 2);
+        play_cue_stream_file((s32)lbl_80446DA8);
     } else {
         spawn_photon_blast_opening_effects(2, *(u16 *)((s8 *)arg0 + 0x158));
-        play_cue_stream_file((s32)"goula.adx");
+        play_cue_stream_file((s32)lbl_80446DB4);
     }
     return arg0;
 }

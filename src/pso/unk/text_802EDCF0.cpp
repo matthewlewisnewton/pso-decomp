@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_800BC53C.h"
 #include "pso/enemy/TObjEneDD_800B9A34.h"
@@ -25,10 +26,10 @@ struct Obj_802EDCF0 {
 extern "C" {
 s32 __dt__7TObjectFv(void *, int);
 s32 free_if_positive__13TBoss2DeRolLeFis(s32 arg0, s16 arg1);
-void mem_free(void *p);
 s32 __dl__7TObjectFPv(void *);
 extern s32 TBoss7DeRolLeC__vtable[];
-extern u32 boss7_joint_state;
+struct TBoss7DeRolLeC;
+extern TBoss7DeRolLeC *boss7_joint_state;
 u8 *__dt__14TBoss7DeRolLeCFv(u8 *arg0, s16 arg1) {
     Obj_802EDCF0 *o = (Obj_802EDCF0 *) arg0;
     s32 i;
@@ -44,7 +45,7 @@ u8 *__dt__14TBoss7DeRolLeCFv(u8 *arg0, s16 arg1) {
                 o->f788[i] = 0;
             }
         }
-        mem_free((void *)o->f6D4);
+        ::operator delete[]((void *)o->f6D4);
         o->f6D4 = 0;
         if (o->f71C != 0) {
             queue_destruction__7TObjectFv(o->f71C);
@@ -66,9 +67,9 @@ u8 *__dt__14TBoss7DeRolLeCFv(u8 *arg0, s16 arg1) {
             queue_destruction__7TObjectFv(o->f6DC[i]);
             o->f6DC[i] = 0;
         }
-        mem_free((void *)o->f6D8);
+        ::operator delete[]((void *)o->f6D8);
         ((TObjCollidable *)arg0)->clear_collision_bodies();
-        if (boss7_joint_state == (u32) arg0) {
+        if (boss7_joint_state == (TBoss7DeRolLeC *) arg0) {
             boss7_joint_state = 0;
         }
         ((TObjFish *)arg0)->destroy_child();

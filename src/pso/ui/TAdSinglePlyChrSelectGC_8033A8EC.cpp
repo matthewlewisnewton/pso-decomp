@@ -65,10 +65,10 @@ extern void *character_select_scene_resource_callbacks[];
 int check_room_seq_4__16TAdChrSelASlotGCFl(void*, void*);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void*, void*, void*, void*);
     extern unsigned char lbl_80477D58[];
+    extern const float lbl_805DFA30;
 u32 __nw__7TObjectFUl(int);
 
 s32 get_card_file_info__15TAdPlayerLoadGCFiPvPv(int, void *, int);
-s32 query_memcard_capacity__15TAdPlayerLoadGCFl(int, int);
 extern char lbl_804C89BC[];
 extern char lbl_804C88C0[];
 s32 TAdPlayerLoadGC__sub_801E1944(s32, void *, u32, s32);
@@ -181,7 +181,7 @@ void TAdSinglePlyChrSelectGC::handle_player_load() {
     case 0:
         switch (TAdPlayerLoadGC__sub_801E1B50(arg0->f24)) {
         case 0:
-            switch (TAdPlayerLoadGC::get_load_result((void *)arg0->f24)) {
+            switch (TAdPlayerLoadGC::get_load_result(arg0->f24)) {
             case 0:
                 arg0->f2C = 0xE;
                 close_window__23TAdSinglePlyChrSelectGCFPv(arg0);
@@ -222,7 +222,7 @@ void TAdSinglePlyChrSelectGC::check_memcard_space() {
     case -1:
         break;
     default:
-        if (arg0->f28 <= query_memcard_capacity__15TAdPlayerLoadGCFl(arg0->f24, 0)) {
+        if (arg0->f28 <= TAdPlayerLoadGC::query_memcard_capacity(arg0->f24, 0)) {
             arg0->f2c = 7;
         } else {
             arg0->f2c = 0xA;
@@ -246,7 +246,7 @@ void TAdSinglePlyChrSelectGC::sub_8033ACF4() {
     case 0:
         switch (TAdPlayerLoadGC__sub_801E1B50(arg0->f24)) {
         case 0:
-            switch (TAdPlayerLoadGC::get_load_result((void *)arg0->f24)) {
+            switch (TAdPlayerLoadGC::get_load_result(arg0->f24)) {
             case 0:
                 arg0->f2C = 6;
                 arg0->f24 = get_chr_select_state__23TAdSinglePlyChrSelectGCFv();
@@ -478,8 +478,8 @@ void close_window__23TAdSinglePlyChrSelectGCFPv(void *arg0) {
         }
     }
 }
-void TAdSinglePlyChrSelectGC::init_warp() { close_window__23TAdSinglePlyChrSelectGCFPv(this); *(int*)((char*)this + 0x3c) = check_room_seq_4__16TAdChrSelASlotGCFl(lbl_80477D58, (void*)2); forward_trade_action_default__16TObjCityMainWarpFPviii((void*)(*(int*)((char*)this + 0x3c)), (void*)((int)TQuestVmDownLoadServer__sub_8006EF6C((s32)((void*)14))), (void*)6, (void*)1); ((TWindowSubComCardList *)(*(int*)((char*)this + 0x3c)))->update_layout_height(289.0f); }
-void TAdSinglePlyChrSelectGC::init_warps() { close_window__23TAdSinglePlyChrSelectGCFPv(this); *(int*)((char*)this + 0x3c) = check_room_seq_4__16TAdChrSelASlotGCFl(lbl_80477D58, (void*)2); forward_trade_action_default__16TObjCityMainWarpFPviii((void*)(*(int*)((char*)this + 0x3c)), (void*)((int)TQuestVmDownLoadServer__sub_8006EF6C((s32)((void*)13))), (void*)6, (void*)0); forward_trade_action_default__16TObjCityMainWarpFPviii((void*)(*(int*)((char*)this + 0x3c)), (void*)((int)TQuestVmDownLoadServer__sub_8006EF6C((s32)((void*)14))), (void*)6, (void*)1); ((TWindowSubComCardList *)(*(int*)((char*)this + 0x3c)))->update_layout_height(289.0f); }
+void TAdSinglePlyChrSelectGC::init_warp() { close_window__23TAdSinglePlyChrSelectGCFPv(this); *(int*)((char*)this + 0x3c) = check_room_seq_4__16TAdChrSelASlotGCFl(lbl_80477D58, (void*)2); forward_trade_action_default__16TObjCityMainWarpFPviii((void*)(*(int*)((char*)this + 0x3c)), (void*)((int)TQuestVmDownLoadServer__sub_8006EF6C((s32)((void*)14))), (void*)6, (void*)1); ((TWindowSubComCardList *)(*(int*)((char*)this + 0x3c)))->update_layout_height(lbl_805DFA30); }
+void TAdSinglePlyChrSelectGC::init_warps() { close_window__23TAdSinglePlyChrSelectGCFPv(this); *(int*)((char*)this + 0x3c) = check_room_seq_4__16TAdChrSelASlotGCFl(lbl_80477D58, (void*)2); forward_trade_action_default__16TObjCityMainWarpFPviii((void*)(*(int*)((char*)this + 0x3c)), (void*)((int)TQuestVmDownLoadServer__sub_8006EF6C((s32)((void*)13))), (void*)6, (void*)0); forward_trade_action_default__16TObjCityMainWarpFPviii((void*)(*(int*)((char*)this + 0x3c)), (void*)((int)TQuestVmDownLoadServer__sub_8006EF6C((s32)((void*)14))), (void*)6, (void*)1); ((TWindowSubComCardList *)(*(int*)((char*)this + 0x3c)))->update_layout_height(lbl_805DFA30); }
 
 typedef char RecoveredGlobal_8033B264_lbl_804EF728_size[sizeof(RecoveredGlobal_8033B264_lbl_804EF728) == 0x198 ? 1 : -1];
 typedef char RecoveredGlobal_8033B264_main_task_size[sizeof(RecoveredGlobal_8033B264_main_task) == 0x34 ? 1 : -1];

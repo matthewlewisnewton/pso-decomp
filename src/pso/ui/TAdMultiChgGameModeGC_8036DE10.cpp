@@ -20,7 +20,6 @@ typedef char RecoveredGlobal_8036E8DC_lbl_804C8914_size[sizeof(RecoveredGlobal_8
 struct RecoveredGlobal_8036E8DC_lbl_804C89BC { s32 value; u8 remaining[0x74]; };
 typedef char RecoveredGlobal_8036E8DC_lbl_804C89BC_size[sizeof(RecoveredGlobal_8036E8DC_lbl_804C89BC) == 0x78 ? 1 : -1];
 
-
 #include <stddef.h>
 #include "pso/TAdPlayerLoadGC.h"
 #include "pso/misc/TLobby.h"
@@ -47,29 +46,6 @@ struct Self_8036E2AC {
     u8 pad28[0x34 - 0x28];
     void *win;
 };
-
-extern "C" {
-void *__nw__7TObjectFUl(int);
-void *__ct__9TAdBackGCFv(void *, void *);
-void *__ct__12TAdBackTxtGCFv(void *, void *);
-s32 load_system_file(s32 arg0);
-void refresh_char_slots__23TAdSinglePlyChrSelectGCFv(void);
-s32 encrypt_save_and_write__23TAdSinglePlyChrSelectGCFv();
-int request_scene_change__21TAdMultiChgGameModeGCFv(void*);
-int init_change_mode__21TAdMultiChgGameModeGCFv(void*);
-void queue_destruction__7TObjectFv(void *arg0);
-s32 TAdPlayerLoadGC__sub_801E1B50(s32);
-extern RecoveredGlobal_8036E8DC_lbl_804C88C0 lbl_804C88C0;
-extern RecoveredGlobal_8036E8DC_lbl_804C8914 pso_system_card_filename;
-extern RecoveredGlobal_8036E8DC_lbl_804C89BC lbl_804C89BC;
-u32 load_system_file_flag__23TAdSinglePlyChrSelectGCFv(void);
-u32 update_window_mode_from_progress__6TLobbyFPv(void *, const void *);
-void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, s32);
-int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
-s32 align_menu_entry_positions(void *);
-s32 all_players_loaded__23TAdSinglePlyChrSelectGCFv();
-s32 TAdPlayerLoadGC__sub_801FD770();
-void TKeyBoardControl__sub_8000F90C(s32 arg0);
 
 extern const char lbl_8047AD30[];
 extern const char lbl_8047AEB0[];
@@ -106,7 +82,6 @@ const char *multi_chg_game_mode_text_table_b[11] = {
 
 typedef void (TAdMultiChgGameModeGC::*TAdMultiChgGameModeGCAction)();
 
-// One entry per state: enter is called by set_state, task by run_task every frame.
 struct TAdMultiChgGameModeGCState {
     TAdMultiChgGameModeGCAction enter;
     TAdMultiChgGameModeGCAction task;
@@ -131,6 +106,29 @@ __declspec(section ".data") f32 lbl_804F3A18[2] = {
     10.0f + (multi_chg_game_mode_window_extent[1] + lbl_8047B8A0[1]),
 };
 f32 lbl_805D7020 = lbl_8047B8A0[0] - 40.0f;
+
+extern "C" {
+void *__nw__7TObjectFUl(int);
+void *__ct__9TAdBackGCFv(void *, void *);
+void *__ct__12TAdBackTxtGCFv(void *, void *);
+s32 load_system_file(s32 arg0);
+void refresh_char_slots__23TAdSinglePlyChrSelectGCFv(void);
+s32 encrypt_save_and_write__23TAdSinglePlyChrSelectGCFv();
+int request_scene_change__21TAdMultiChgGameModeGCFv(void*);
+int init_change_mode__21TAdMultiChgGameModeGCFv(void*);
+void queue_destruction__7TObjectFv(void *arg0);
+s32 TAdPlayerLoadGC__sub_801E1B50(s32);
+extern RecoveredGlobal_8036E8DC_lbl_804C88C0 lbl_804C88C0;
+extern RecoveredGlobal_8036E8DC_lbl_804C8914 pso_system_card_filename;
+extern RecoveredGlobal_8036E8DC_lbl_804C89BC lbl_804C89BC;
+u32 load_system_file_flag__23TAdSinglePlyChrSelectGCFv(void);
+u32 update_window_mode_from_progress__6TLobbyFPv(f32 *, const f32 *);
+void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, s32);
+int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
+s32 align_menu_entry_positions(void *);
+s32 all_players_loaded__23TAdSinglePlyChrSelectGCFv();
+s32 TAdPlayerLoadGC__sub_801FD770();
+void TKeyBoardControl__sub_8000F90C(s32 arg0);
 
 s32 TAdMultiChgGameModeGC__sub_8036DE10(s32 arg0, s32 arg1, s32 arg2) {
     if (arg2 == -1) {
@@ -478,7 +476,7 @@ s32 check_system_file_status__23TAdSinglePlyChrSelectGCFv(void) {
 }
 
 void TAdMultiChgGameModeGC::confirm_mode_selection() { if (((int)handle_mode_selection()) == 0) { set_state((s32)((s32)((void*)((void*)1)))); } }
-void TAdMultiChgGameModeGC::sub_8036E9EC() { close_window_30(); TAdMultiChgGameModeGC__sub_8036E19C((u8 *)this, 4); }
+void TAdMultiChgGameModeGC::sub_8036E9EC() { close_window_30(); TAdMultiChgGameModeGC__sub_8036E19C((u8 *)this, (s32)((s32)((void*)4))); }
 
 typedef char MemberActionStorage_8036EA24_size[sizeof(MemberActionStorage_8036EA24) == 12 ? 1 : -1];
 void TUnk_804F3A20::run_task() {

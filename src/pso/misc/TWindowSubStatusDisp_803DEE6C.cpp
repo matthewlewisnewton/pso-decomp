@@ -12,9 +12,10 @@ union Pipe_803DEECC { u8 u8v; u16 u16v; u32 u32v; s32 s32v; f32 f32v; };
 #define FIFO_803DF00C (*(volatile Pipe_803DF00C *)0xCC008000)
 union Pipe_803DF00C { u8 u8v; u16 u16v; u32 u32v; s32 s32v; f32 f32v; };
 
-s32 constant_material_color;
+extern s32 constant_material_color;
 extern "C" {
 void GXBegin(u32, u32, u16);
+extern const f32 lbl_805E0FC8;
 s64 OSGetTime(void);
 
 void begin_screen_draw(s32 arg0) {
@@ -39,33 +40,34 @@ void TWindowSubStatusDisp::get_player() {
 #pragma peephole off
 #pragma opt_common_subs off
 #pragma optimize_for_size off
-void draw_textured_quad_at_depth(f32 *q, f32 depth) {
+void draw_textured_quad_at_depth(void *q, f32 depth) {
+    f32 *qf = (f32 *)q;
     u32 color = (*(u32 *)&constant_material_color);
-    f32 z = -1.0f / depth;
-    f32 x0 = q[0] * z;
-    f32 x1 = q[2] * z;
-    f32 y0 = q[1] * z;
-    f32 y1 = q[3] * z;
+    f32 z = lbl_805E0FC8 / depth;
+    f32 x0 = qf[0] * z;
+    f32 x1 = qf[2] * z;
+    f32 y0 = qf[1] * z;
+    f32 y1 = qf[3] * z;
     GXBegin(0x80, 4, 4);
     GXPosition3f32_803DEECC(x0, y0, z);
     GXColor1u32_803DEECC(color);
-    GXTexCoord2f32_803DEECC(q[4], q[5]);
+    GXTexCoord2f32_803DEECC(qf[4], qf[5]);
     GXPosition3f32_803DEECC(x0, y1, z);
     GXColor1u32_803DEECC(color);
-    GXTexCoord2f32_803DEECC(q[4], q[7]);
+    GXTexCoord2f32_803DEECC(qf[4], qf[7]);
     GXPosition3f32_803DEECC(x1, y1, z);
     GXColor1u32_803DEECC(color);
-    GXTexCoord2f32_803DEECC(q[6], q[7]);
+    GXTexCoord2f32_803DEECC(qf[6], qf[7]);
     GXPosition3f32_803DEECC(x1, y0, z);
     GXColor1u32_803DEECC(color);
-    GXTexCoord2f32_803DEECC(q[6], q[5]);
+    GXTexCoord2f32_803DEECC(qf[6], qf[5]);
 }
 #pragma pop
 
 #pragma push
 #pragma scheduling off
 void DVDConvertEntrynumToPath(f32 *q) {
-    f32 z = -1.0f / q[2];
+    f32 z = lbl_805E0FC8 / q[2];
     u32 color = (*(u32 *)&constant_material_color);
     f32 y0, x0, u0, v0;
     f32 x1, y1, u1, v1;

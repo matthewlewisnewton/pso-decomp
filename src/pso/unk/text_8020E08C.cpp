@@ -2,21 +2,9 @@
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/unk/text_8020E08C.h"
-
 struct ObjRow_8020E08C { s16 type; s16 flags; u8 pad04[4]; u16 id; u8 tail[0x44 - 0xA]; };
 
 struct EneRow_8020E08C { s16 type; s16 flags; u8 pad04[6]; u16 id; u8 tail[0x48 - 0xC]; };
-
-struct Saved_8020E08C { u16 id; s16 flags; s16 room; s16 wave; };
-
-struct Floor_8020E08C {
-    s32 objects;
-    s32 enemies;
-    u32 objectPlacement;
-    u32 enemyPlacement;
-    Saved_8020E08C *objectRows;
-    Saved_8020E08C *enemyRows;
-};
 
 struct Archive_8020E08C { void *objects; void *enemies; };
 
@@ -152,24 +140,4 @@ void init_item_drop_tables(void) {
     TLobby__data_805D6120 = 0;
     TLobby__data_805D6128 = 0;
     lbl_805D6100 = 0;
-}
-
-extern "C" {
-
-s32 Dolphin_ARAlloc(s32);
-
-void TLobby__sub_8020E3BC(void) {  }
-
-extern s32 item_drop_memory_pool_ar_addr;
-extern s32 item_drop_memory_pool_size;
-
-void TLobby__sub_8020E3C0(void) {
-    item_drop_memory_pool_size = 0x100000;
-    item_drop_memory_pool_ar_addr = Dolphin_ARAlloc(0x100000);
-}
-
-int TLobby::get_matching_object() {  return (int)TLobby__data_805D6114; }
-
-int TLobby::get_object_count() {  return (int)TLobby__data_805D610C; }
-
 }

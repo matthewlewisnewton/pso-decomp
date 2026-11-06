@@ -1,8 +1,13 @@
+#include "pso/player/demo_mode.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/misc/PersistentSound.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
-#include "pso/boss/TBoss6Mine.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/boss/TBoss6Mine.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjChara.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -79,13 +84,10 @@ f32 vec3_add_to(void *, void *);
 f32 subtract_vector(void *, void *);
 f32 normalize_vector(void *);
 int get_player_data__10TObjPlayerFi(int a0);
-s32 play_sound_effect(int, void *, int, int);
+
 f64 atan2_float(f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
 f64 TBoss5GryphonLightningWing__sub_80324CEC(f32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
-f32 *dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
 void *create_particle_emitter(void *pos, s32 id);
 s32 init_collision_body_parts(void *, void *, int);
 static u32 TBoss6Mine__collision_body_template[11] = {
@@ -138,7 +140,7 @@ void TBoss6Mine::draw() {
     temp_r31 = TObjFish__sub_8001EDB0(this->m_374, 2);
     bml_model = get_bml_model(this->m_374, 2);
     bml_motion = get_bml_motion(this->m_374, 0);
-    TObjFish::set_global_param(temp_r31);
+    set_current_texture_list((GinjaTextureList *)(temp_r31));
     TBoss6PlotFalz__sub_802AC008(this->fade_amount, 0.0f);
     draw_model_motion((void *)bml_model, (void *)bml_motion, this->anim_frame);
     TBoss6PlotFalz::update_camera_target();
@@ -190,7 +192,7 @@ void TBoss6Mine::explode_damage_players() {
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         pl = (u8 *)get_player_data__10TObjPlayerFi(i);
-        if (((TBoss6PlotFalz *)pl)->is_active() != 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0) {
             Vec_803240F8 v = *(Vec_803240F8 *) (arg0 + 0x38);
             subtract_vector(&v, pl + 0x38);
             v.y = 0.0f;
@@ -205,7 +207,7 @@ void TBoss6Mine::explode_damage_players() {
             }
         }
     }
-    play_sound_effect(0x4003BA1E, (u8 *)&this->position, 0, 0);
+    play_sound_effect(0x4003BA1E, (const Vec *)((u8 *)&this->position), 0, 0);
 }
 
 void TBoss6Mine::state_7() {
@@ -261,7 +263,7 @@ void TBoss6Mine::state_4() {
     if (frames > (s32)this->arm_delay) {
         this->state_frames = 0;
         this->state = 5;
-        play_sound_effect(0x4003B51D, &this->position, 0, 0);
+        play_sound_effect(0x4003B51D, (const Vec *)(&this->position), 0, 0);
     }
 }
 
@@ -301,7 +303,7 @@ void TBoss6Mine::state_2() {
         this->state_frames = 0;
         this->state = 3;
     }
-    play_persistent_sound(0x4003B21C, (s32)this, (u32)&this->position, 0, 0);
+    play_persistent_sound((s32)(0x4003B21C), (const void *)(this), (const Vec *)((u32)&this->position), 0, 0);
 }
 
 void TBoss6Mine::state_1() {
@@ -347,7 +349,7 @@ void add_radar_scaled_marker(void *pos, u32 color, s32 a2, s32 a3, f32 scale);
 
 void TBoss6Mine::run_task() {
     u32 color;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         return;
     }
     if (TBoss6PlotFalz__sub_802ABADC() == 0) {
@@ -369,7 +371,7 @@ void TBoss6Mine::run_task() {
     }
     copy_pos();
     if (this->state == 2) {
-        ((TObjPlayer *)this)->update_collisions();
+        ((TObjCollidable *)this)->update_collisions();
         submit_cursor_candidate(this, -1);
     }
     color = 0xFF7F5126;
@@ -390,13 +392,19 @@ void TBoss6Mine::run_task() {
     }
 }
 
+void *__dt__10TBoss6MineFPvs(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__10TBoss6Mine;
+        if (*(void **)((s8 *)arg0 + 0x3CC) != NULL) { TParticleCtrl::release(*(void **)((s8 *)arg0 + 0x3CC)); ((TBoss6Mine *)arg0)->emitter = 0; }
+        free_collision_body_parts(arg0);
+        if (*(void **)((s8 *)arg0 + 0x378) != NULL) { TBoss6Type1__sub_802B5DD4(*(void **)((s8 *)arg0 + 0x378)); }
+        __dt__9TObjEnemyFv((TObjEnemy *)arg0, 0);
+        if (arg1 > 0) {
+            __dl__7TObjectFPv(arg0);
+        }
+    }
+    return arg0;
 }
-TBoss6Mine::~TBoss6Mine() {
-    if (*(void **)((s8 *)this + 0x3CC) != NULL) { TParticleCtrl::release(*(void **)((s8 *)this + 0x3CC)); this->emitter = 0; }
-    free_collision_body_parts(this);
-    if (*(void **)((s8 *)this + 0x378) != NULL) { TBoss6Type1__sub_802B5DD4(*(void **)((s8 *)this + 0x378)); }
-}
-extern "C" {
 
 extern s32 tl_04;
 
@@ -404,7 +412,7 @@ extern s32 tl_04;
 #pragma fp_contract on
 #define VecCopyP ((u8 *(*)(void *, void *))VecCopy__FP3VecPC3Vec)
 #define THIS self
-s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {
+s32 TBoss6Mine__ct(s32 arg0, s32 parent, Boss6MineSpawn *arg2) {
     u8 *self;
     Tmp_80324A00 tmp;
     f32 f;
@@ -419,10 +427,10 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {
     ((TBoss3Volopt *)THIS)->m_388 = *(s32 *)((s8 *)arg2 + 0x60);
     ((TObjChara *)THIS)->add_flags_2e4(8);
     ((TBoss3Volopt *)THIS)->apply_set_data((void *)arg2);
-    if (exchange_object_state__9TObjEnemyFls(THIS, &tmp, 1) != 0) {
+    if (((TObjEnemy *)(THIS))->exchange_object_state(&tmp, 1) != 0) {
         tmp.a = 0;
         tmp.b = 0;
-        exchange_object_state__9TObjEnemyFls(THIS, &tmp, 0);
+        ((TObjEnemy *)(THIS))->exchange_object_state(&tmp, 0);
     }
     ((TBoss3Volopt *)THIS)->next_action = TObjFish::get_fish_count();
     ((TBoss3Volopt *)THIS)->texlist = 0;
@@ -430,19 +438,19 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {
     VecCopyP(THIS + 0x44, VecCopyP(THIS + 0x50, VecCopyP(THIS + 0x74, THIS + 0x38)));
     init_collision_body_parts(THIS, TBoss6Mine__collision_body_template, 1);
     VecCopyP(THIS + 0x2FC, THIS + 0x38);
-    ((TBoss3Volopt *)THIS)->m_310 = 0.0f;
+    ((TBoss3Volopt *)THIS)->movement_velocity.z = 0.0f;
     *(f32 *)((s8 *)THIS + 0x30C) = 0.0f;
     *(f32 *)((s8 *)THIS + 0x308) = 0.0f;
     *(s32 *)((s8 *)THIS + 0x2A8) = 0;
-    ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x2D)), (u8 *)(TLobby::dispatch_shared_handler_b(0x2D)), (u8 *)(TLobby::register_object(0x2D)));
+    ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2D)), (u8 *)(get_battle_attack_params(0x2D)), (u8 *)(get_battle_resistance_params(0x2D)));
     ((TBoss3Volopt *)THIS)->referenceHp = ((TBoss3Volopt *)THIS)->hp;
-    ((TBoss3Volopt *)THIS)->reset_photon_effect();
+    ((TObjEnemy *)THIS)->register_by_id();
     ((TObjEnemy *)THIS)->set_param(0);
     ((TBoss6Mine *)THIS)->rise_delay = (s32)(136.0f * TBoss6Mine::next_random_float((s32 *)(THIS + 0x388)) + 7.0f);
     *(s32 *)((s8 *)THIS + 0x3A4) = 0x96 - ((TBoss6Mine *)THIS)->rise_delay;
     ((TBoss6Mine *)THIS)->arm_delay = (s32)(57.0f * TBoss6Mine::next_random_float((s32 *)(THIS + 0x388)) + 3.0f);
     *(f32 *)((s8 *)THIS + 0x3AC) = 80.0f * TBoss6Mine::next_random_float((s32 *)(THIS + 0x388)) + 120.0f;
-    f = *dispatch_shared_handler_a__6TLobbyFl(0x2D);
+    f = *((f32 *)get_battle_movement_params(0x2D));
     ((TBoss3Volopt *)THIS)->m_384 = f;
     if (0.0f == f) {
         ((TBoss3Volopt *)THIS)->m_384 = 0x14;
@@ -463,7 +471,7 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {
 }
 #pragma pop
 
-s32 TBoss6Mine::create(s32 arg0) {
+u32 TBoss6Mine::create(Boss6MineSpawn *spawn) {
     s32 var_r31;
     s32 var_r4;
 
@@ -473,7 +481,7 @@ s32 TBoss6Mine::create(s32 arg0) {
         if (var_r4 != 0) {
             var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
-        var_r31 = TBoss6Mine__ct(var_r31, var_r4, arg0);
+        var_r31 = TBoss6Mine__ct(var_r31, var_r4, spawn);
     }
     return var_r31;
 }

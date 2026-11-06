@@ -1,3 +1,6 @@
+#include "pso/map/CsnGroundQuery.h"
+#include "pso/system/CurrentTextureList.h"
+#include "pso/system/SoundEffect.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/boss/TObjBoss2CeilJunk.h"
@@ -56,14 +59,6 @@ struct Color_8003A1B4
   s32 d;
 };
 
-extern "C" {
-const s32 boss2_ceil_junk_model_index_table[6] = { 0, 1, 2, 4, 3, 5 };
-const f32 TObjBoss2CeilJunk__height_offset_table[6] = { 10.0f, 10.0f, 7.0f, 3.0f, 10.0f, 6.0f };
-const f32 TObjBoss2CeilJunk__radius_table[6] = { 15.0f, 15.0f, 10.5f, 15.0f, 0.45000002f, 1.2f };
-const char *TObjBoss2CeilJunk__name = "TObjBoss2CeilJunk";
-const Color_8003A1B4 boss2_ceil_junk_render_color = { 0.0f, 0, 0, 0 };
-}
-
 struct Vec_8003A1B4
 {
   f32 x;
@@ -119,15 +114,19 @@ struct Junk_8003A314 {
 };
 
 extern "C" {
-s32 spawn_effect__15TObjBoss2TunnelFlPvPv(void *, void *, void *, f32, f32);
 s32 __ct__8TObjBaseFP7TObject();
 s32 rand();
+extern RecoveredGlobal_8003A6F4_lbl_80435BD8 TObjBoss2CeilJunk__height_offset_table;
 extern s32 __vt__17TObjBoss2CeilJunk[];
+extern s32 TObjBoss2CeilJunk__name;
 u8 *TObjBoss2CeilJunk__ct(struct RecoveredFields_8003A6F4_arg0 *arg0, s32 arg1, s32 arg2);
 s32 rotate_matrix_y(int, int);
 s32 rotate_matrix_x(int, int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
+extern s32 boss2_ceil_junk_model_index_table[];
+extern f32 TObjBoss2CeilJunk__radius_table[];
+extern Color_8003A1B4 boss2_ceil_junk_render_color;
 extern Holder_8003A1B4 *boss2_tunnel_instance;
 extern s32 lbl_805D4BEC;
 extern s32 saved_model_render_flags;
@@ -136,7 +135,7 @@ int get_player_data__10TObjPlayerFi(int a0);
 void forward_switch_phase_stats__13TBoss2DeRolLeFi(s32 arg0);
 s32 create_particle__17TObjBoss2CeilJunkFv(void *, int);
 s32 is_valid_target__9TObjEneDDFv(void *);
-s32 play_sound_effect(int, void *, int, int);
+
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
 s32 vec3_add_to(void *, void *);
@@ -155,12 +154,12 @@ void TObjBoss2CeilJunk::render() {
   float new_var;
   if (*(s32 *)&this->m_a8 == 2)
   {
-    Vec_8003A1B4 s;
+    Vec s;
     f32 t = TObjBoss2CeilJunk__radius_table[*(s32 *)&this->m_ac];
     new_var = (0.2f) * t;
     s.y = (1.0f);
     s.x = (s.z = new_var);
-    ((TObjEneDD *)(self->f44))->draw_oriented_shadow((s32)self->f9C, 0, (u32)&s);
+    TObjEneDD::draw_oriented_shadow((const Vec *)self->f44, (const Vec *)self->f9C, 0, &s);
   }
   saved_model_render_flags = model_render_flags;
   if (self->fB4 < (1.0f))
@@ -175,9 +174,9 @@ void TObjBoss2CeilJunk::render() {
     set_chunk_blend(0x2500);
   }
   push_matrix();
-  TObjFish::set_global_param(lbl_805D4BEC);
+  set_current_texture_list((GinjaTextureList *)(lbl_805D4BEC));
   post_translate_matrix(self->pos);
-  rotate_matrix_y(0, this->rotation_y);
+  rotate_matrix_y(0, this->rotation.yaw);
   rotate_matrix_x(0, self->f5C);
   draw_ginja_object((void *)(boss2_tunnel_instance->mdls[boss2_ceil_junk_model_index_table[*(s32 *)&this->m_ac]].f8));
   pop_matrix();
@@ -265,7 +264,7 @@ void run_task__17TObjBoss2CeilJunkFv(Junk_8003A314 *o) {
                 o->vel.x = (2.0f) * sin_table_lookup(o->f60);
                 o->vel.z = (2.0f) * cos_table_lookup(o->f60);
                 o->fA8 = 3;
-                play_sound_effect(0x4003A801, &o->pos, 0, 0);
+                play_sound_effect(0x4003A801, (const Vec *)(&o->pos), 0, 0);
                 TCameraCtrl::set_shake_preset(0);
             }
         }
@@ -304,16 +303,16 @@ u8 *TObjBoss2CeilJunk__ct(struct RecoveredFields_8003A6F4_arg0 *arg0, s32 arg1, 
     f32 temp_f2;
     __ct__8TObjBaseFP7TObject();
     arg0->unk18 = &(*(RecoveredGlobal_8003A6F4___vt__17TObjBoss2CeilJunk *)&__vt__17TObjBoss2CeilJunk).value;
-    arg0->field_0 = (s32)TObjBoss2CeilJunk__name;
+    arg0->field_0 = TObjBoss2CeilJunk__name;
     VecCopy((Vec *)&arg0->unknown_1C[0x1C], (const Vec *)arg2);
     temp_f2 = (f32) rand();
     temp_f1 = (3.0517578e-05f) * temp_f2;
     arg0->field_AC = (s32) (*(const volatile f32 *)&lbl_805D85A0 * temp_f1);
-    if (spawn_effect__15TObjBoss2TunnelFlPvPv(&arg0->unknown_1C[0x1C], &arg0->unknown_1C[0x28], arg0->unknown_9C, temp_f1, temp_f2) == 0) {
+    if (adjust_point_to_ground_with_normal((const Vec *)&arg0->unknown_1C[0x1C], (Vec *)&arg0->unknown_1C[0x28], (Vec *)arg0->unknown_9C) == 0) {
         arg0->field_A8 = 0;
     } else {
         arg0->field_A8 = 2;
-        arg0->field_54 = arg0->field_48 + *(f32 *)((s8 *)((u8 *)TObjBoss2CeilJunk__height_offset_table + (arg0->field_AC * 4)) + 0);
+        arg0->field_54 = arg0->field_48 + *(f32 *)((s8 *)((u8 *)&TObjBoss2CeilJunk__height_offset_table.value + (arg0->field_AC * 4)) + 0);
     }
     arg0->field_60 = TObjPlayer::calc_random_scaled();
     arg0->field_5C = (s32) ((4096.0f) * rand_signed_unit());

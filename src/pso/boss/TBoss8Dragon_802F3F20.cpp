@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
@@ -120,16 +121,16 @@ s32 TBoss8Dragon__sub_802F3F20(u8 *arg0) {
     return 0;
 }
 
-void TBoss8Dragon::sub_802F4098(u8 *arg1) {
-    VecCopy((Vec *)arg1, (const Vec *)(((u8 *)this) + 0x38));
-    if ((get_mode__11TCameraCtrlFPv(&(*(RecoveredGlobal_802F4098_main_task *)&main_task).value) & 0x10) && (TBoss8Dragon__sub_802FCCBC(this) == 0) && !(this->m_c0 > lbl_805DED68)) {
-        *(f32 *)((s8 *)arg1 + 8) = (f32) (*(f32 *)((s8 *)arg1 + 8) + lbl_805DED6C);
+void TBoss8Dragon::sub_802F4098(Vec *pos) {
+    VecCopy(pos, &this->position);
+    if ((get_mode__11TCameraCtrlFPv(&(*(RecoveredGlobal_802F4098_main_task *)&main_task).value) & 0x10) && (TBoss8Dragon__sub_802FCCBC(this) == 0) && !(this->frame > lbl_805DED68)) {
+        pos->z = pos->z + lbl_805DED6C;
     }
 }
-void TBoss8Dragon::draw_with_fade(s32 arg1, s32 arg2) {
+void TBoss8Dragon::draw_with_fade(Vec *pos, s32 arg2) {
     u8 *temp_r31;
-    if (!(*(f32 *)&this->unk_3C <= lbl_805DED70)) {
-        TObjFish::set_global_param(this->m_24);
+    if (!(this->position.y <= lbl_805DED70)) {
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         TObjEneDD::clear_global_flag_400();
         saved_model_render_flags = model_render_flags;
         set_material_alpha_compare_reference(0);
@@ -143,19 +144,19 @@ void TBoss8Dragon::draw_with_fade(s32 arg1, s32 arg2) {
             ((VObj_14_681f8e *)(temp_r31))->m6();
         }
         push_matrix();
-        post_translate_matrix((void *)arg1);
-        rotate_matrix_y(0, this->m_60);
-        rotate_matrix_x(0, this->m_5c);
-        rotate_matrix_z(0, (int) (*(s32 *)((s8 *)((u8 *)this) + 0x64)));
-        scale_current_matrix((void *) (((u8 *)this) + 0x68));
+        post_translate_matrix(pos);
+        rotate_matrix_y(0, this->rotation.yaw);
+        rotate_matrix_x(0, this->rotation.pitch);
+        rotate_matrix_z(0, this->rotation.roll);
+        scale_current_matrix((void *)&this->scale);
         TObjPlayer::toggle_particle_effect();
         if (this->m_3c0 & 0x80) {
             set_tev_swap_channels(3, 3, 3, 3);
         }
         if (has_enough_enemies__12TBoss8DragonFv() != 0) {
-            this->m_34 = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)TBoss8Dragon__data_805D6988 + 0x42C)) + 0x18);
+            this->model = *(void **)((s8 *)(*(u8 **)((s8 *)TBoss8Dragon__data_805D6988 + 0x42C)) + 0x18);
         } else {
-            this->m_34 = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)TBoss8Dragon__data_805D6988 + 0x42C)) + 8);
+            this->model = *(void **)((s8 *)(*(u8 **)((s8 *)TBoss8Dragon__data_805D6988 + 0x42C)) + 8);
         }
         ((TObjMotion *)((u8 *)this))->draw();
         init_tev_swap();

@@ -1,3 +1,4 @@
+#include "pso/misc/ParticleFactory.h"
 #include "pso/TParticleCtrl.h"
 #include "types.h"
 #include "pso/unk/text_8016F1C0.h"
@@ -27,11 +28,12 @@ extern const f32 lbl_805DB85C;
 void *get_shared_text_buffer(void);
 s32 get_trap_type__10TOMineTrapFv(s32);
 s32 is_technique_ready__8TTecCtrlFv(void);
-VO_8016F320 *get_player_by_client_id(u16);
+VO_8016F320 *get_player_by_client_id(s32);
 void text_builder_append(const char *);
 }
 void text_builder_reset(void);
 extern const char lbl_804421F0[];
+extern const char lbl_805DB860[4];
 extern "C" {
 u32 TOMineTrapDisp__ct(u32, s32, u16, s32);
 u32 __nw__7TObjectFUl(s32);
@@ -81,16 +83,16 @@ void TOMineTrap::spawn_disp_objects() {
         }
     }
 }
-s32 TOMineTrap::show_owner_message(s32 arg0, u32 arg1) {
+s32 TOMineTrap::show_owner_message(TOMineTrap *trap, TObjChara *actor) {
     char *name;
     VO_8016F320 *p;
-    if ((arg1 != 0U) && (is_technique_ready__8TTecCtrlFv() != 0)) {
-        p = get_player_by_client_id(get_trap_type__10TOMineTrapFv(arg0));
+    if ((actor != 0) && (is_technique_ready__8TTecCtrlFv() != 0)) {
+        p = get_player_by_client_id(trap->get_trap_type());
         if (p != NULL) {
             name = p->m10();
             if (name != NULL) {
                 text_builder_reset();
-                text_builder_append("\x09""C4");
+                text_builder_append(lbl_805DB860);
                 text_builder_append(name);
                 text_builder_append(lbl_804421F0);
                 TWindowCtrl::init_all((void*)(get_shared_text_buffer()), (void*)0x200);
@@ -144,7 +146,7 @@ void TOMineTrap__sub_8017141C(void *);
 s32 check_value_equals__13TUnk_804B6C24Fl(u32, int);
 extern s32 TOMineTrap__data_805D3080;
 f32 TOMineTrap__vt20(Obj_8016F5B4 *arg0, u32 arg1);
-void *spawn_particle_effect(void *pos, s32 id);
+
 extern const f32 lbl_805DB864;
 int get_player_data__10TObjPlayerFi(int a0);
 s16 TOMineTrap__sub_80171340(void *);
@@ -250,9 +252,9 @@ f32 TOMineTrap__vt20(Obj_8016F5B4 *arg0, u32 arg1) {
 void TOMineTrap::vfunc_82() {
     Obj_8016F64C *arg0 = (Obj_8016F64C *)this;
     u32 r;
-    switch (this->m_354) {
+    switch (this->attack.kind) {
     default:
-        r = (u32)spawn_particle_effect(arg0->sub, 0x45);
+        r = (u32)spawn_particle_effect((const Vec *)(arg0->sub), 0x45);
         if (r != 0U) {
             ((TParticleCtrl *)r)->set_scale(lbl_805DB864, lbl_805DB864);
         }
@@ -261,13 +263,13 @@ void TOMineTrap::vfunc_82() {
     case 16:
     case 17:
     case 18:
-        spawn_particle_effect(arg0->sub, 0x8E);
-        spawn_particle_effect(arg0->sub, 0x8E);
+        spawn_particle_effect((const Vec *)(arg0->sub), 0x8E);
+        spawn_particle_effect((const Vec *)(arg0->sub), 0x8E);
         break;
     case 6:
     case 7:
-        spawn_particle_effect(arg0->sub, 0x8D);
-        spawn_particle_effect(arg0->sub, 0x8D);
+        spawn_particle_effect((const Vec *)(arg0->sub), 0x8D);
+        spawn_particle_effect((const Vec *)(arg0->sub), 0x8D);
         break;
     }
 }

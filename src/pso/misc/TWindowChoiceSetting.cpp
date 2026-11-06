@@ -1,3 +1,5 @@
+#include "pso/misc/TWindowDrawContext.h"
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
 #include "pso/misc/TWindowAddition.h"
@@ -23,7 +25,7 @@ extern const f32 lbl_805DD1DC;
 extern const f32 lbl_805DD1E0;
 u32 construct_type1_heading__20TWindowSubStatusDispFll(u32, s32, s16);
 s32 TWindowSubComCard__sub_8026906C(void);
-s32 play_sound_effect(s32 a0 = 0, s32 a1 = 0, s32 a2 = 0, s32 a3 = 0);
+
 s32 is_open__13TUnk_804D0658Fv();
 s32 get_array_entry__11TWindowBaseFi(void * a0 = 0, s16 a1 = 0);
 
@@ -136,14 +138,15 @@ void TUnk_804D0658::clamp_scroll() {
     }
 }
 
-void draw_selection_bar(u8 *arg0, u8 *arg1, s32 arg2);
+struct TWindowDrawContext;
+void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 
 void TUnk_804D0658::draw_setting(s32 window_key_board_soft) {
     u16 *temp_r3;
 
     temp_r3 = ((u16 * (*)(void *, s16))get_array_entry__11TWindowBaseFi)(this, this->m_74);
     if (*temp_r3 & 1) {
-        draw_selection_bar((u8 *)window_key_board_soft, (u8 *)temp_r3, ((s32 (*)(void *))is_open__13TUnk_804D0658Fv)(this));
+        draw_selection_bar((TWindowDrawContext *)window_key_board_soft, (u8 *)temp_r3, ((s32 (*)(void *))is_open__13TUnk_804D0658Fv)(this));
     }
 }
 
@@ -174,12 +177,10 @@ struct V_80268C5C { f32 x; f32 y; };
 
 extern V_80268C5C choice_setting_popup_window_descriptor[];
 extern s32 lbl_804D0638[];
-struct Obj_80269004 { u8 p0[0x18]; void *f18; };
-
 extern "C" {
 void fn_80268C5C(V_80268C5C v, s32 x);
 s32 __nw__7TObjectFUl(s32);
-Obj_80269004 *fn_80269004(Obj_80269004 *self, void *parent, void *arg2);
+s32 fn_80269004(s32, s32, s32);
 s32 get_window_layout_position(s32);
 }
 extern s32 lbl_8044F3A0[];
@@ -190,7 +191,7 @@ s32 create_information_counter_window(s32 arg0) {
     ((s32 (*)(s32 *, s32))fn_80268C5C)(lbl_8044F3A0, arg0);
     var_r31 = __nw__7TObjectFUl(0x80);
     if (var_r31 != 0) {
-        var_r31 = (s32)fn_80269004((Obj_80269004 *)var_r31, (void *)get_window_layout_position(0xAE), (void *)arg0);
+        var_r31 = fn_80269004(var_r31, get_window_layout_position(0xAE), arg0);
     }
     ((s32 (*)(s32, s32 *))create_sub_window__20TWindowChoiceSettingFPvi)(var_r31, lbl_8044F3B8);
     return var_r31;
@@ -211,7 +212,6 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 extern RecoveredGlobal_80268D08_lbl_8050E208 controller_input_state;
 extern const f32 lbl_805DD1F8;
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 void __dl__7TObjectFPv(void *);
@@ -220,7 +220,7 @@ s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 void TWindowSubStatusDisp__sub_80268C80(u8 *arg0) {
     s32 temp_r3;
 
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     ((TUnk_804D0658 *)arg0)->draw_setting(temp_r3);
@@ -296,18 +296,6 @@ void *TUnk_804D0658::destroy_children(s16 arg1) {
         }
     }
     return this;
-}
-
-}
-
-extern "C" {
-void construct_with_parent__15TWindowAdditionFPv(void *, void *, s32, void *);
-void TWindowMenuInfomation__ct(u8 *arg0, u32 arg1);
-Obj_80269004 *fn_80269004(Obj_80269004 *self, void *parent, void *arg2) {
-    construct_with_parent__15TWindowAdditionFPv(self, choice_setting_popup_window_descriptor, 4, parent);
-    self->f18 = choice_setting_popup_vtable;
-    TWindowMenuInfomation__ct((u8 *)self, (u32)arg2);
-    return self;
 }
 
 }

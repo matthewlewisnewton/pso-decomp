@@ -1,7 +1,6 @@
 #include "pso/TMainTask.h"
 #include "pso/misc/TWindowMessage.h"
 #include "types.h"
-#include "pso/misc/TLobby_800FD78C.h"
 #include "pso/system/debug_print.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/TAdPlayerLoadGC.h"
@@ -132,6 +131,7 @@ s32 call_funcs_reverse__6TLobbyFPvUi(void *, int);
 s32 cleanup__6TLobbyFv();
 void run_area_scene_cleanup(u8 *arg0);
 s32 PPCSync();
+extern const char lbl_80446930[];
 extern s32 lbl_805D5718;
 void __construct_array(void *, void *, int, int, int);
 s32 TLobby__sub_8013A23C(s32 arg0);
@@ -139,10 +139,9 @@ void bswap_32__FPUl(void *);
 s32 handle_game_join__6TLobbyFPv(void *);
 char *strcpy(char *, const char *);
 void *memset(void *, int, u32);
-Pair_801A3CFC lobby_udp_test_game_entries[2] = {
-    {0x9D6D3202, 0},
-    {0x9D6D3201, 0},
-};
+extern char lbl_80446918[];
+extern char lbl_80446924[];
+extern Pair_801A3CFC lobby_udp_test_game_entries[];
 extern s32 TLobby__designated_client_id;
 extern s32 game_protocol_instance;
 s32 __dt__7TObjectFv(void *, s32);
@@ -244,12 +243,12 @@ void TLobby::start_udp_test_game() {
     msg.entries[0].f4 = 0x013158B7;
     msg.entries[0].f8 = lobby_udp_test_game_entries[0].f4;
     msg.entries[0].fC = 0;
-    strcpy(msg.entries[0].name, "UDPTEST-1");
+    strcpy(msg.entries[0].name, lbl_80446918);
     msg.entries[1].f2 = 1;
     msg.entries[1].f4 = 0x013158B8;
     msg.entries[1].f8 = lobby_udp_test_game_entries[1].f4;
     msg.entries[1].fC = 1;
-    strcpy(msg.entries[1].name, "UDPTEST-2");
+    strcpy(msg.entries[1].name, lbl_80446924);
     handle_game_join__6TLobbyFPv(&msg);
     ((TObject *)game_protocol_instance)->delete_children();
     ((TLobby *)(1 - local_client_id))->open_udp_socket_for_player();
@@ -317,10 +316,10 @@ void reload_lobby_floor_scene(void) {
     __dt__7TObjectFv(sp8, -1);
 }
 
-void TLobby::send_and_handle() { TLobby::blocking_vsync(); }
+void TLobby::send_and_handle() { TLobby::blocking_vsync(this); }
 
 typedef char RecoveredGlobal_801A400C_main_task_size[sizeof(RecoveredGlobal_801A400C_main_task) == 0x34 ? 1 : -1];
-void TLobby::blocking_vsync() {
+void TLobby::blocking_vsync(void* _w0) {
     TLoadCtrl::set_field1C(0);
     func_803DCDFC__Fv();
     if ((s32) lbl_805D5718 != 0) {
@@ -328,7 +327,7 @@ void TLobby::blocking_vsync() {
         main_task.run_tl_camera_tasks();
         main_task.render();
         main_task.render_screen_overlay();
-        ::debug_print("BlockingVsync");
+        ::debug_print(lbl_80446930);
         render_tick__Fv();
     } else {
         controller_stuff__Fv();
@@ -780,9 +779,9 @@ void run_online_lobby_scene(void) {
         reset_state_flags__6TLobbyFv();
         if (TLobby__sub_801A3E8C() != 0) {
             TLobby::load_set_gsl_files();
-            ((Obj_80515BA0 *)lbl_80515BA0)->init_range(0);
+            ((TLobby *)lbl_80515BA0)->init_range(0);
         } else {
-            ((Obj_80515BA0 *)lbl_80515BA0)->init_range(0xF);
+            ((TLobby *)lbl_80515BA0)->init_range(0xF);
             ((TLobby *)lbl_80515BA0)->set_value(0);
             set_current_floor_area(0xF);
             TScene::set_scene(0);
