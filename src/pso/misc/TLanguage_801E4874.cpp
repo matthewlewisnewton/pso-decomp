@@ -78,7 +78,7 @@ GinjaTextureList *load_gvm_texture_file(const char *filename) {
     ent = (GinjaTextureEntry *)(res + 1);
     str = (u8 *)(ent + count);
     for (; i < count; i++, ent++, str += 0x20) {
-        ent->name = str;
+        ent->name = (char *)str;
         TLanguage__read_cursor += 2;
         if (hdr.flags & 1) {
             TLanguage::read_into_buffer(str, 0x1C);
