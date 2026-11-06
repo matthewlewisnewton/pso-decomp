@@ -9,7 +9,7 @@ char *strncpy(char *, const char *, unsigned long);
 void *memset(void *, int, unsigned long);
 unsigned long strlen(const char *);
 int sprintf(char *, const char *, ...);
-void fn_8042E8C4(ModemLaunchContext *);
+void LaunchDol(ModemLaunchContext *);
 extern const char lbl_80480404[];
 // Address anchor into adjacent pooled literals; see modem-launch-recovery-evidence.md.
 extern const char lbl_80480240[];
@@ -44,7 +44,7 @@ void fn_8042EBA4(s32 arg0, s32 arg1) {
     lbl_805D7CB0->field_100 = arg1;
     lbl_805D7CB0->field_104 = arg0;
     lbl_805D7CB0->payload_size = 0x8000;
-    fn_8042E8C4(lbl_805D7CB0);
+    LaunchDol(lbl_805D7CB0);
 }
 #pragma pop
 

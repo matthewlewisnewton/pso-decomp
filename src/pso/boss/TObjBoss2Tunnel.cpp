@@ -393,6 +393,14 @@ s32 TObjBoss2Tunnel::decrement_packed_timer(u32 *arg0, s32 arg1) {
     return 0;
 }
 
+// Defined ctor-then-dtor: this unit is -inline off,deferred, which emits
+// them dtor-then-ctor, the order at 0x8007E3AC / 0x8007E3E8.
+AccelerationCurve::AccelerationCurve() {
+    TObjBoss2Tunnel::reset_coords(this);
+}
+
+AccelerationCurve::~AccelerationCurve() {}
+
 AccelerationCurve *TObjBoss2Tunnel::reset_coords_pass(AccelerationCurve *c) {
     reset_coords(c);
     return c;
