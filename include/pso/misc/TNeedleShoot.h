@@ -17,7 +17,8 @@ struct TNeedleShoot : public TObject {
     f32 m_2c;
     u8 unk_30[0x4];
     u16 m_34;
-    u8 _pad36[0x6];
+    u8 _pad36[0x2];
+    u32 m_38;
     void* m_3c;
     u8 _pad40[0x10];
     u32 m_50;

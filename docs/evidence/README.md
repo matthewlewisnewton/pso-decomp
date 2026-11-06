@@ -53,6 +53,7 @@ guides.
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)
 - [TBoss6Type1 `.sdata2` integer constants](tboss6type1-sdata2-constants.md)
 - [TChCrTagPlGraphic vtable emission](tchcrtagplgraphic-vtable-evidence.md)
+- [Technique dispatcher hit-test argument order](kenkyuw-dispatcher-hit-test-scheduling.md)
 - [Texture input and runtime surface](texture-input-evidence.md)
 - [Vector helper contracts](vector-helper-evidence.md)
 - [Window effect light recovery](window-effect-light-recovery-evidence.md)
