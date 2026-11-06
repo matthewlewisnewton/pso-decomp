@@ -2858,6 +2858,8 @@ QuestDownloadTextNode *get_next_node__22TQuestVmDownLoadServerFPv(QuestDownloadQ
 #pragma pop
 
 
+// Depth 2 lets the page fit inline the nested group walk at both sites; a
+// depth-1 region leaves it out of line and changes both expansions.
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(2)
