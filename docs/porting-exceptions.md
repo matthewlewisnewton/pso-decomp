@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `ace1abf1a`, 2026-11-05)
+## Summary (regenerated on this branch after merging main `97e9c3f93`, 2026-11-05)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `ace1abf1a` (2026-11-05). Assembly is counted as functions;
+after merging main `97e9c3f93` (2026-11-05). Assembly is counted as functions;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -27,7 +27,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,767 | 875 |
-| Per-unit compiler overrides in `configure.py` | 174 | 174 |
+| Per-unit compiler overrides in `configure.py` | 175 | 175 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -379,6 +379,12 @@ Source construct MWCC accepts and standard C++ does not:
 | Unit | Function | What | Why | Port should |
 |---|---|---|---|---|
 | `pso/unk/text_801D40D4.cpp`, `pso/player/TObjPlayer_801D5220.cpp`, `pso/player/TPlyItem.cpp`, `pso/player/TObjPlayer_801D4CB8.cpp` | inventory walks (`TObjPlayer__sub_801D4368`, the `TItemList` walks, `destroy_subobjects_recursive`) | unit switch `-inline noauto` | `m_down` / `m_next` are `TObject *`. The slots are `TItemList`. `TItemList::link_down` / `link_next` are class-body inline and hold the one downcast. `-inline noauto` folds each call to `lwz` of `+0x14` / `+0xC`, the same bytes as the old cast. `-inline off` leaves a `bl` and grows the walks (`TObjPlayer__sub_801D4368` `0x248` → `0x278`). `-inline auto` also inlines unmarked `TObjPlayer__sub_801D4730` into `sort_by_key`, so it is not used. Every other function in these objects is unchanged versus `-inline off`. Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) (`-inline auto`); this repo's `TWindowMainMenu_802AD538.cpp` (`-inline noauto,level=1`). | Drop the switch and the accessors; a downcast at the walk is the portable spelling. |
+
+### `TTecCtrl_8022C444.cpp`: name a referenced conversion pool ([issue #233](https://github.com/matthewlewisnewton/pso-decomp/issues/233))
+
+| Unit | Symbols | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/misc/TTecCtrl_8022C444.cpp` | `get_technique_caster_flags`'s unsigned bias, `lbl_8044D078` | per-unit `post_object: tools/name_pool_symbols.py`; after MWCC it renames the emitted local `@N` `.rodata` object to `lbl_8044D078` and makes it global | The original split exports the 8-byte unsigned `2^52` bias and `TTecCtrl` loads it across units. Per-file MWCC emits the bias as a local pool object, and source cannot reuse that slot: a named global used by value gets a second pool copy. The post-process changes only the symbol name and binding, not the section bytes or relocations; the object then matches the split's 8-byte `.rodata`, the unit links, and the DOL keeps its original hash. The script refuses a bias with no matching local pool at the split's section and offset. Evidence: [conversion-pool-constants.md](evidence/conversion-pool-constants.md). | Drop the hook; keep the cast. The symbol name has no semantic meaning to a port. |
 
 ## 6. Approved regressions
 

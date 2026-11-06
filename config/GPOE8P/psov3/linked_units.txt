@@ -160,6 +160,7 @@ musyx/runtime/stream.c
 musyx/runtime/synth.c
 musyx/runtime/synth_ac.c
 musyx/runtime/synth_adsr.c
+musyx/runtime/synth_dbtab.c
 musyx/runtime/synth_vsamples.c
 musyx/runtime/synthdata.c
 musyx/runtime/synthmacros.c
@@ -1577,6 +1578,7 @@ pso/misc/TSlicerHistory_8023BDD0.cpp
 pso/misc/TSwitch.cpp
 pso/misc/TTecAnti.cpp
 pso/misc/TTecBarta.cpp
+pso/misc/TTecCtrl_8022C444.cpp
 pso/misc/TTecDeband.cpp
 pso/misc/TTecFoie.cpp
 pso/misc/TTecFoie_802301EC.cpp
