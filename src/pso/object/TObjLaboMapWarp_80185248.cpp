@@ -1,11 +1,11 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMapWarp.h"
 #include "pso/object/TObjCityMainWarp_801867F4.h"
 #include "pso/object/TObjAreaWarp.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/object/TObjCityAreaWarp.h"
 #include "pso/object/TObjCityMainWarp.h"
@@ -178,6 +178,7 @@ int vfunc_14__12TObjWarpBaseFv(void*);
 
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
+s32 get_selected_value__11TWindowMenuFv(void *);
 s32 align_menu_entry_positions(int);
 s32 create_window_menu(s32, s32, s32);
 s32 get_window_layout_position(s32);

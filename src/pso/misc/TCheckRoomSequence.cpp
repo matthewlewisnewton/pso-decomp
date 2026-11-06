@@ -1,12 +1,12 @@
 #include "pso/system/ArrayAllocation.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenu.h"
+#include "types.h"
 #include "pso/TShopWindowBase.h"
 struct TShopKeepItemWindow;
 
 #include "pso/misc/TShopSequence.h"
 #include "pso/misc/TWindowAddition.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TRaderMapCore.h"

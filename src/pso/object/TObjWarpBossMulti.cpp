@@ -1,9 +1,9 @@
 #include "pso/player/demo_mode.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/object/TObjWarpBase.h"
 #include "pso/misc/THunterGuildSeqOffline.h"
 #include "pso/misc/TLobby.h"
@@ -226,6 +226,7 @@ s32 get_main_phase();
 s32 is_local_client_floor_leader();
 s32 TObjWarpBossMulti__sub_8019E570(s32 arg0, f32 farg0);
 void close_windows__12TObjWarpBossFv(void *arg0);
+s32 TWindow__close(void *);
 extern s32 boss_warp_confirmation_model;
 extern s32 warp_boss_motion;
 extern s32 __vt__12TObjWarpBoss[];

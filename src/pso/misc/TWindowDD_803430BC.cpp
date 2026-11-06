@@ -1,6 +1,6 @@
 #include "pso/system/ArrayAllocation.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/ui/Language.h"
 

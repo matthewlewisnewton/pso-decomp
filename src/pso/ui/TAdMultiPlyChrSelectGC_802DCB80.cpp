@@ -1,6 +1,6 @@
 #include "pso/system/SoundEffect.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "types.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_8001A448.h"

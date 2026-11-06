@@ -92,12 +92,11 @@ extern "C" {
 char *strncpy(char *, const char *, u32);
 void *memset(void *, s32, u32);
 s32 TLobby__sub_803CCB98(void *, int, int);
-void *adxf_open__6TLobbyFUii(const char *, s32);
 extern char lbl_8047C818[];
 extern Ent_803CD840 *afs_archive_toc_table[256];
 u8 adxf_open_file_buffer[0x2080];
 extern s32 lobby_adxf_current_file_id;
-extern void *lobby_adxf_open_file_handle;
+extern AdxfHandle *lobby_adxf_open_file_handle;
 extern s32 lobby_afs_toc_entry_index;
 extern s32 lbl_805D75EC;
 s32 lbl_805D75F0;
@@ -134,7 +133,7 @@ s32 adxf_open_file__6TLobbyFiPviPv(s32 id, const char *name, s32 arg2, Ent_803CD
         TLobby::notify_error(msg + 0x56C);
         return -1;
     }
-    lobby_adxf_open_file_handle = adxf_open__6TLobbyFUii(name, arg2);
+    lobby_adxf_open_file_handle = ADXF_Open(name, arg2);
     if (lobby_adxf_open_file_handle == NULL) {
         TLobby::notify_error(msg + 0x5A4);
         return -1;
@@ -152,7 +151,7 @@ s32 adxf_open_file__6TLobbyFiPviPv(s32 id, const char *name, s32 arg2, Ent_803CD
     lbl_805D75EC = aligned;
     r = TLobby__sub_803CCB98(lobby_adxf_open_file_handle, 1, aligned);
     if (r < 0) {
-        ((TLobby *)lobby_adxf_open_file_handle)->close_adxf_handle();
+        ADXF_Close(lobby_adxf_open_file_handle);
         return r;
     }
     e->f8 = 0;

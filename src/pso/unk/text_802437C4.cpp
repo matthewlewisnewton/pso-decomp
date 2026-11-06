@@ -1,5 +1,5 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/TWindowEffectLight.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 struct Win_802437C4 {
@@ -36,15 +36,15 @@ void spawn_action_palette_slot_light(Win_802437C4 *arg0, s32 arg1) {
     switch (arg1) {
     case 1:
         kind = 0;
-        e = (Ent_802437C4 *)((TWindowBase *)arg0)->get_array_entry(2);
+        e = (Ent_802437C4 *)((TUnk_804CE018 *)arg0)->get_array_entry(2);
         break;
     case 2:
         kind = 2;
-        e = (Ent_802437C4 *)((TWindowBase *)arg0)->get_array_entry(4);
+        e = (Ent_802437C4 *)((TUnk_804CE018 *)arg0)->get_array_entry(4);
         break;
     case 3:
         kind = 1;
-        e = (Ent_802437C4 *)((TWindowBase *)arg0)->get_array_entry(6);
+        e = (Ent_802437C4 *)((TUnk_804CE018 *)arg0)->get_array_entry(6);
         break;
         return;
     default:

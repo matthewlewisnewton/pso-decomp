@@ -11,6 +11,7 @@ void *__dt__19TWindowSubTradeMainFv(TWindowSubTradeMain *arg0, s16 arg1);
 void *get_player_by_client_id(s32 i);
 void TWindowCtrl__sub_8024ADF0(s32 arg0);
 void TWindowSubComCard__sub_8024AB98(s32 arg0);
+void TWindow__close(u8 *arg0);
 s32 __dl__7TObjectFPv(void *);
 s32 __dt__7TObjectFv(void *, s32);
 s32 end_camera_pan__10TObjPlayerFv();

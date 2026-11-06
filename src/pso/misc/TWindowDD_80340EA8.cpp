@@ -2,7 +2,7 @@
 #include "pso/TObject.h"
 #include "pso/misc/TWindowDD_80340EA8.h"
 #include "pso/misc/TWindowDD_WS_String.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowDD_WS_ScrollBar.h"
 #include "pso/misc/TWindowDD.h"
 
@@ -140,7 +140,7 @@ void TWindowDD_WS_String::render() {
     s32 arg0 = (s32)this;
 
     temp_r3 = draw_default_entry__9TWindowDDFl();
-    ((TWindowBase *)arg0)->calc_inner_rect((u8 *)temp_r3);
+    ((TUnk_804CE018 *)arg0)->calc_inner_rect((u8 *)temp_r3);
     ((TWindowDD_WS_String *)arg0)->draw_entry_if_visible(temp_r3);
     ctx = *(f32 *)((s8 *)temp_r3 + 0x14);
     *(f32 *)((s8 *)temp_r3 + 0x14) = (f32) (ctx + lbl_805DFC90);

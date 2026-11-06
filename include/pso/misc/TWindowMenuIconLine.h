@@ -1,6 +1,7 @@
 #ifndef PSO_MISC_TWINDOWMENUICONLINE_H
 #define PSO_MISC_TWINDOWMENUICONLINE_H
 #include "types.h"
+struct TWindowDrawContext;
 #include "pso/misc/TWindowAddition.h"
 
 struct Scroll_8026D790;
@@ -11,7 +12,7 @@ public:
     virtual void run_task();
     virtual void render();
     virtual void vfunc_6(u32, s32);
-    void draw_selected_list_entry(s32);
+    void draw_selected_list_entry(long);
     void update_scroll_offset();
     void clamp_item_list_scroll();
     void center_list_selection();
@@ -22,6 +23,7 @@ public:
     void handle_open();
     void set_flag4();
     int get_flag();
+    int get_status_flag() { return (state_flags >> 1) & 1; }
     int is_decided();
     int is_cancelled();
     void clear_decided();
@@ -34,14 +36,14 @@ public:
     u32 m_64;
     u32 m_68;
     u8 unk_6C[0x4];
-    u16 state_flags;
-    s16 entry_count;
-    s16 cursor;
-    s16 entry_capacity;
+    union { u16 state_flags; u16 m_70; };
+    union { s16 entry_count; s16 m_72; };
+    union { s16 cursor; s16 unk_74; };
+    union { s16 entry_capacity; s16 m_76; };
     s16 m_78;
     u8 unk_7A[0x2];
     s32 m_7c;
-    void * status_display;
+    union { void *status_display; void *m_80; };
     Scroll_8026D790 *unk_84;
 };
 typedef char TWindowMenuIconLine_size[sizeof(TWindowMenuIconLine) == 0x88 ? 1 : -1];

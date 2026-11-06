@@ -7,6 +7,7 @@
 #include "pso/player/TObjPlayer.h"
 
 extern "C" {
+s32 TWindow__close(int);
 s32 TWindowCtrlMain__sub_8024CE58();
 void *__ct__16TObjBagWarnWin4PFv(void *arg0);
 u32 create__14TWindowMessageFllUll(s32, void *, s32, s32);

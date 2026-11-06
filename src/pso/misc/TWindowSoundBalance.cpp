@@ -7,7 +7,7 @@
 #include "types.h"
 #include "pso/misc/TWindowChoiceSetting.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowSoundBalance.h"
 #include "pso/item/TItemMag.h"
 #include "pso/item/TItemProShield.h"

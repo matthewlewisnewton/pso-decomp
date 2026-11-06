@@ -1,13 +1,15 @@
 #include "pso/system/ArrayAllocation.h"
+#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_802A5748.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/misc/TWindowSubSymbolChat_80076F88.h"
 #include "pso/misc/TWindowSubSymbolChat_80281814.h"
 #include "pso/misc/TWindowSubSymbolChat_8028239C.h"
-#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TUnk_804D0618.h"
 #include "pso/misc/TWindowSubShortCutList.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/misc/TWindowSubSymbolChat.h"
@@ -26,7 +28,6 @@
 #include "pso/misc/TWindowSubSymbolChat_802838C4.h"
 #include "pso/misc/TWindowSubSymbolChat_80283954.h"
 #include "pso/unk/text_802841FC.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowMessageYesNo.h"
 #include "pso/misc/TWindowSubSymbolChatFaceType.h"
 #include "pso/misc/TLobby.h"
@@ -44,6 +45,7 @@ struct Sub_80281840 { u8 pad[0x5C]; s32 count; };
 struct Win_80281840 { u8 pad[0x24]; s32 ctrl; u8 pad2[0x34 - 0x28]; Sub_80281840 *sub; };
 
 extern "C" {
+s32 TWindow__close(int);
 s32 get_window_layout_position(s32);
 u8 *create_chat_symbol_window__20TWindowSubSymbolChatFll(void *, s32);
 s32 add__20TWindowSubSymbolChatFlllll(int, int, int, int, int, int);
@@ -67,6 +69,7 @@ extern s32 lbl_805D63F0;
 void TWindowSubSymbolChat__sub_80281840(Win_80281840 *arg0);
 s32 TKeyBoardControl__ct(s32, void *, s32, s32, s32, s32);
 s32 TWindowSubComCard__sub_80265660(s32, s32);
+s32 get_selected_value__11TWindowMenuFv(int);
 s32 align_menu_entry_positions(s32);
 s32 TWindowSubSymbolChatPartsSet__ct(s32, s32, s16, s32 *, s32 *);
 s32 TWindowSubSymbolChatParts__ct(s32, s32, s32 *, s32 *);
@@ -254,7 +257,7 @@ s32 TWindowSubSymbolChat::create_confirm_window() {
     s32 temp_r31;
 
     temp_r31 = refresh_with_default_list__20TWindowSubStatusDispFll(get_window_layout_position(0x79), lbl_804D2B48);
-    ((TWindowMenuIconLine *)temp_r31)->ensure_status_display(get_message_10__20TWindowSubStatusDispFl(0xAC));
+    ((TUnk_804D0618 *)temp_r31)->ensure_status_display(get_message_10__20TWindowSubStatusDispFl(0xAC));
     TWindowOptionCtrl::add_menu_item(temp_r31, get_message_10__20TWindowSubStatusDispFl(0xBF), 1);
     TWindowOptionCtrl::add_menu_item(temp_r31, get_message_10__20TWindowSubStatusDispFl(0xC0), 0);
     if (TWindowSubSymbolChat__sub_80076FE0((void *)this->m_28) != 0) {
@@ -380,6 +383,7 @@ extern RecoveredGlobal_8028379C_lbl_804FF968 symbol_chat_receive_buffer;
 s32 __dt__7TObjectFv(void *, int);
 s32 queue_destruction__7TObjectFv(int);
 s32 __dl__7TObjectFPv(void *);
+s32 TWindow__close(int);
 s32 update_selected_item__17TWindowOptionCtrlFv(int);
 s32 TWindowCtrlMain__sub_8024CE58();
 extern s32 __vt__20TWindowSubSymbolChat[];

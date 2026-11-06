@@ -1,6 +1,6 @@
 #include "pso/system/SoundEffect.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "types.h"
 #include "pso/misc/TWindowSubLog.h"
 #include "pso/unk/text_8026A93C.h"
 #include "pso/misc/TWindowCtrl_8024ADAC.h"

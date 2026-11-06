@@ -1,10 +1,10 @@
 #include "pso/system/SoundEffect.h"
-#include "types.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
+#include "types.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802DBCC4.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802DE094.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802E0064.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowMessageYesNo.h"
 #include "pso/misc/TWindowOptionCtrl.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -25,6 +25,7 @@ s32 is_slot_active__23TAdSinglePlyChrSelectGCFUi(s32);
 u32 check_flag__23TAdSinglePlyChrSelectGCFl(s32);
 
 u32 __nw__7TObjectFUl(s32);
+s32 TWindow__close(void *);
 s32 TAdMultiPlyChrSelectGC__sub_802C561C(s32);
 s32 TAdMultiPlyChrSelectGC__sub_802C5688(s32);
 s32 is_multiplayer_character_slot_selected(s32);
@@ -46,6 +47,7 @@ extern s32 controller_physical_port_bank[];
 extern s32 tl_fade;
 s32 destroy_windows__14TAdGameStartGCFPv(s32);
 s32 set_entry_value__22TAdMultiPlyChrSelectGCFlUl(s32, s32, s32 *);
+s32 get_selected_value__11TWindowMenuFv(s32);
 s32 clear_entry__23TAdSinglePlyChrSelectGCFi();
 void clear_slot_body__23TAdSinglePlyChrSelectGCFi(s32 i);
 s32 create__16TAdChrSelBSlotGCFPv(void *);

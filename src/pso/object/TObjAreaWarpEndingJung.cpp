@@ -1,8 +1,8 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/system/vector.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -401,6 +401,7 @@ void set_area__6TLobbyFl(void *, int, int);
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
 void __ct__7TObjectFP7TObject(void *, void *);
+void TWindow__close(void *);
 s32 align_menu_entry_positions(u32);
 u32 create_window_menu(s32, s32, s16);
 s32 get_window_layout_position(s32);

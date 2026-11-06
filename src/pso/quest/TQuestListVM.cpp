@@ -1,5 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include <stdio.h>
+#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowMenuIconLine.h"
 #include <string.h>
 #include "types.h"
 #include "pso/quest/TQuestListVM.h"
@@ -11,8 +13,6 @@
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/TShopJudgmentItemWindow_8026DF00.h"
-#include "pso/misc/TWindowMenu.h"
-#include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowSubComCard_80265410.h"
 #include "pso/player/TObjPlayer_80011014.h"

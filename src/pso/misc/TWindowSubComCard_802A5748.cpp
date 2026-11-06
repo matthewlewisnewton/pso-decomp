@@ -1,8 +1,8 @@
 #include "types.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowSubComCard_802A5748.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/TChCrTagPlBack.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowMessageYesNo.h"
 #include "pso/misc/TWindowSubShortMail.h"
 #include "pso/misc/TWindowSubTradeMain.h"
@@ -14,6 +14,7 @@ extern "C" {
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
 s32 create_window_menu(s32, s32, s32);
+s32 get_selected_value__11TWindowMenuFv(s32);
 int queue_destruction__7TObjectFv(void*);
 int set_selected_index__21TWindowSubComCardListFs(void*);
 

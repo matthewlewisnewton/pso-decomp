@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/TAdMultiSelGameModeGC.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/ui/TAdDrawLineCtrl.h"
 #include "pso/enemy/TObjEneDolmOlm.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
@@ -17,7 +18,6 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_801334D4.h"
 #include "pso/TAdSelectTxtGC.h"
-#include "pso/misc/TWindowMenu.h"
 
 struct Self_80300770 {
     u8 pad0[0x1C];
@@ -90,6 +90,7 @@ extern const f32 lbl_805DEF40;
 extern u8 controller_input_state[];
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
+s32 get_selected_value__11TWindowMenuFv(void *);
 
 void TAdMultiSelGameModeGC::render() {  }
 

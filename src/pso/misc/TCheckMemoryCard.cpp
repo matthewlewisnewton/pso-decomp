@@ -1,6 +1,6 @@
 #include "types.h"
-#include "pso/misc/TCheckMemoryCardState.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TCheckMemoryCardState.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_8033C4E0_8033C420 { char pad[0x18]; };

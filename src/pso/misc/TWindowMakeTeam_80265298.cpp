@@ -1,6 +1,6 @@
 #include "pso/system/ArrayAllocation.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "types.h"
 #include "pso/misc/TWindowMakeTeam_80265298.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"

@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/unk/text_802789E0.h"
 #include "pso/item/TItem.h"
 #include "pso/misc/TShopJudgmentItemWindow.h"
@@ -8,6 +9,7 @@
 #include "pso/TPlyItem.h"
 extern "C" {
 void *get_player_by_client_id(s32 i);
+void calc_content_extent__19TWindowMenuIconLineFv(void *);
 void fn_802789E0(u8 *arg0) {
     s32 ids[32];
     TObjPlayer *pl;

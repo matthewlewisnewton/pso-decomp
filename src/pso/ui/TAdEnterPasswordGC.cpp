@@ -1,7 +1,7 @@
 #include "pso/system/ArrayAllocation.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/ui/TAdEnterBaseGC_8032B38C.h"
 #include "pso/ui/TAdEnterPasswordGC.h"
 #include "pso/TLevelSelect.h"
@@ -65,6 +65,7 @@ extern s32 password_entry_dispatch_state;
 RecoveredGlobal_8032BA8C_TAdEnterPasswordGC__data_804EDA20 TAdEnterPasswordGC__input_buffer = { 0 };
 #pragma explicit_zero_data off
 void queue_destruction__7TObjectFv(void *);
+void TWindow__close(u8 *arg0);
 extern u8 *password_entry_keyboard_control;
 extern const f32 lbl_805DF780;
 s32 create_default_callback__22TAdEnterSerialAccessGCFv(void *);

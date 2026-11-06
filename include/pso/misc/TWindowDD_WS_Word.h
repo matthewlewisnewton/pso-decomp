@@ -1,7 +1,7 @@
 #ifndef PSO_MISC_TWINDOWDD_WS_WORD_H
 #define PSO_MISC_TWINDOWDD_WS_WORD_H
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
 class TUnk_804CFA28;
 
@@ -10,7 +10,7 @@ struct TWindowDDWordEntryList {
     TUnk_804CFA28 **items;
 };
 
-class TWindowDD_WS_Word : public TWindowBase {
+class TWindowDD_WS_Word : public TUnk_804CE018 {
 public:
     virtual ~TWindowDD_WS_Word();
     virtual void render();

@@ -5,7 +5,7 @@
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include <stddef.h>
 
 typedef char palette_children_offset[offsetof(TWindowActionPalette, children) == 0x24 ? 1 : -1];
@@ -298,8 +298,8 @@ void run_task__20TWindowActionPaletteFv(u8 *arg0) {
         ((TWindowActionPalette *)SELF)->set_bank_panel_art(2);
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
-    ((TWindowBase *)arg0)->update_fade();
-    ((TWindowBase *)arg0)->update_window_entry_list(arg0 + 0x24);
+    ((TUnk_804CE018 *)arg0)->update_fade();
+    ((TUnk_804CE018 *)arg0)->update_window_entry_list(arg0 + 0x24);
 }
 
 extern "C" u8 *__dt__20TWindowActionPaletteFv(u8 *self, s16 delete_flag) {

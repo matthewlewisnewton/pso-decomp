@@ -1,6 +1,6 @@
 #include "pso/system/SoundEffect.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "types.h"
 #include "pso/ui/TAdChrSelASlotGC.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"

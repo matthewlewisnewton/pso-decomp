@@ -1,11 +1,11 @@
 #include "pso/system/SoundEffect.h"
+#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowBase.h"
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
 
 #include "types.h"
-#include "pso/misc/TWindowMenuIconLine.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TShopWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
@@ -16,8 +16,7 @@
 #include "pso/TPlyItem.h"
 #include "pso/TShopWindowBase.h"
 #include "pso/misc/TShopKeepItemWindow.h"
-#include "pso/misc/TWindowAddition.h"
-#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 
 struct Base_80221844 { char pad[0x18]; };
 struct VObj_80221844 : Base_80221844 {
@@ -124,12 +123,13 @@ s32 sub_80223A48__15TShopWindowBaseFv(void *);
 s32 lookup_item_def__9TItemDataFPv(void *);
 s32 get_bank_deposit_capacity_for_item(void *, s32);
 void TWindowHelpItem__set_displayed_item_by_id(u32, s32);
+void calc_content_extent__19TWindowMenuIconLineFv(u32);
 u32 create_item_list_window(s32, s32, u16);
 extern f32 lbl_805DC710;
 void sort_bank_items(s32 slot);
 void __dl__7TObjectFPv(void *);
 
-void TShopKeepItemWindow::display_message(const char *text, s32 flags) {
+void TShopKeepItemWindow::display_message(const char *, s32) {
     struct VObj_80221844 *temp_r3;
 
     temp_r3 = (struct VObj_80221844 *)this->m_380;
@@ -169,7 +169,7 @@ s32 TShopKeepItemWindow::close_with_ok_callback() {
 
 s32 TShopKeepItemWindow::close() {
     if ((u32) this->m_384 != 0U) {
-        ((TWindowMenuIconLine *)(this->m_384))->clear_decided();
+        ((TWindowSubItem *)(this->m_384))->clear_selected_and_update_entry();
     }
     set_field_20(1);
 }
@@ -230,7 +230,7 @@ void TShopKeepItemWindow::update_number_input() {
             this->m_388 = (u32)create_yes_no_window(get_window_layout_position(0x2B), temp_r31, 0, 0);
             ((TCheckRoomSequence *)(this->m_388))->set_ready_flag();
             temp_f31 = get_scale__15TShopWindowBaseFv(this);
-            ((TWindowAddition *)(this->m_388))->set_position_xy(get_scale__15TShopWindowBaseFv(this), temp_f31);
+            ((TUnk_804CDFE8 *)(this->m_388))->set_position_xy(get_scale__15TShopWindowBaseFv(this), temp_f31);
         }
         this->m_378 = ((TShopEquipmentSellWindow *)(this->m_38c))->get_result();
         ((TWindowBase *)this->m_38c)->close();
@@ -323,7 +323,7 @@ void TShopKeepItemWindow::handle_deposit_list_select() {
         this->m_388 = (u32)create_yes_no_window(get_window_layout_position(0x2B), (u16)get_entity_id(this->m_24), 0, 0);
         ((TCheckRoomSequence *)this->m_388)->set_ready_flag();
         temp_f31 = get_scale__15TShopWindowBaseFv(this);
-        ((TWindowAddition *)this->m_388)->set_position_xy(get_scale__15TShopWindowBaseFv(this), temp_f31);
+        ((TUnk_804CDFE8 *)this->m_388)->set_position_xy(get_scale__15TShopWindowBaseFv(this), temp_f31);
         set_field_20(2);
     }
 }
@@ -356,17 +356,17 @@ s32 TShopKeepItemWindow::rebuild_item_list() {
         for (s32 j = 0; j < self->f374; j++) {
             ((TShopJudgmentItemWindow *)(self->f384))->add_list_entry(self->ents[j].f0, j);
         }
-        ((TWindowMenuIconLine *)self->f384)->calc_content_extent();
+        calc_content_extent__19TWindowMenuIconLineFv(self->f384);
         cur = ((TShopGetItemWindow *)(self->f384))->get_cursor_index();
     } else {
         ((TShopArmorListWindow *)(self->f384))->save_cursor_selection();
-        ((TWindowMenuIconLine *)(self->f384))->reset_list();
+        ((TShopArmorListWindow *)(self->f384))->reset_list();
         for (s32 j = 0; j < self->f374; j++) {
             ((TShopJudgmentItemWindow *)(self->f384))->add_list_entry(self->ents[j].f0, j);
         }
         ((TShopArmorListWindow *)(self->f384))->clamp_selection_to_valid_entry();
-        ((TWindowMenuIconLine *)self->f384)->calc_content_extent();
-        ((TWindowMenuIconLine *)((void *)self->f384))->clear_decided();
+        calc_content_extent__19TWindowMenuIconLineFv(self->f384);
+        ((TWindowSubItem *)((void *)self->f384))->clear_selected_and_update_entry();
         cur = ((TShopGetItemWindow *)(self->f384))->get_cursor_index();
     }
     if (self->f390 == 0U) {

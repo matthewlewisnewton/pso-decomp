@@ -1,7 +1,9 @@
 #include "pso/system/ArrayAllocation.h"
+#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
 #include "types.h"
 #include "pso/misc/TWindowMessage.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/quest/TQuestListVMData.h"
 #include <string.h>
 #include "pso/TMainTask.h"
@@ -17,12 +19,10 @@
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/TScene.h"
 #include "pso/misc/TUnk_804C8678.h"
-#include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/player/TUnk_804B6C24.h"
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowCtrl_8024B1A0.h"
 #include "pso/misc/TWindowMakeTeam.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/quest/AreaDialogueScripts.h"
@@ -795,7 +795,7 @@ TUnk_804C8678::TUnk_804C8678(TObject *parent, const char *filename, s32 kind) : 
     switch (this->kind) {
     case 0:
         copy_name((s32)"QUEST");
-        size = ((TScene *)filename)->update_lobby_scene();
+        size = TScene::update_lobby_scene(filename);
         if (size < 0) {
             queue_destruction__7TObjectFv(this);
         } else {
@@ -809,7 +809,7 @@ TUnk_804C8678::TUnk_804C8678(TObject *parent, const char *filename, s32 kind) : 
         TQuestThread::clear_thread_state();
         break;
     case 1:
-        size = ((TScene *)filename)->update_lobby_scene();
+        size = TScene::update_lobby_scene(filename);
         if (size < 0) {
             queue_destruction__7TObjectFv(this);
         } else {
@@ -828,7 +828,7 @@ TUnk_804C8678::TUnk_804C8678(TObject *parent, const char *filename, s32 kind) : 
 TUnk_804C8678::TUnk_804C8678(TObject *parent, const char *filename) : TObject(parent) {
     s32 size;
     copy_name((s32)"QUEST");
-    size = ((TScene *)filename)->update_lobby_scene();
+    size = TScene::update_lobby_scene(filename);
     if (size < 0) {
         queue_destruction__7TObjectFv(this);
     } else {

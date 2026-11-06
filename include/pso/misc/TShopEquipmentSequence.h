@@ -12,6 +12,9 @@ struct TShopEquipmentSequence : public TShopSequence {
     void update_buy_sell_choice();
     s32 open_greeting();
     static void *create_instance(void *arg0);
+    u8 unk_1C[0x4];
+    u32 m_20;
+    u8 unk_24[0x8];
     u32 m_2c;
     s32 m_30;
     u8 unk_34[0x4];

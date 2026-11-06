@@ -25,9 +25,9 @@ struct VObj_18_a28850 : VBase_18_a28850 {
 struct Vec_80144778 { s32 x, y, z; };
 
 extern "C" {
-u8 *load_rel_module(u8 *arg0, s32 arg1);
+u8 *load_rel_module(u8 *arg0, const void *name);
 char *strncpy(char *, const char *, u32);
-extern u8 lbl_8043F380[];
+extern char lbl_8043F380[];
 extern s32 TMovie__name;
 void queue_destruction__7TObjectFv(void *arg0);
 u8 *__ct__10TAdEndTextFv(void *, void *);
@@ -105,7 +105,7 @@ TMovie::TMovie(TObject *parent, s8 *name, s32 a3, s32 a4, s32 a5) : TObject(pare
     strncpy(((TMovie_80144910 *)this)->path, (const char *)name, 0x20);
     p = (u8 *)::operator new(8);
     if (p != 0) {
-        p = load_rel_module(p, (s32)lbl_8043F380);
+        p = load_rel_module(p, lbl_8043F380);
     }
     ((TMovie_80144910 *)this)->obj1C = p;
     p = (u8 *)::operator new(0xD0);

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TQuestListChallenge.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
@@ -6,7 +7,6 @@
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/TShopWindowBase.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/THunterGuildSeqOffline.h"
 #include "pso/THunterGuildWarning.h"
 #include "pso/TObject.h"
@@ -82,6 +82,7 @@ struct Seq_802129FC : Base_802129FC {
 };
 
 extern "C" {
+s32 get_selected_value__11TWindowMenuFv(void *);
 extern RecoveredGlobal_802128B0_THunterGuildSeqOffline__data_80513DC8 THunterGuildSeqOffline__quest_result_callbacks;
 List_80212B88 *TQuestListOffline__ct(void *, s32, Seq_80212B88 *, s32);
 void *__nw__7TObjectFUl(u32);

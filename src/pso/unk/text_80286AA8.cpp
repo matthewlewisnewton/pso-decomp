@@ -3,6 +3,7 @@
 #include "pso/misc/TWindowSubTechnique.h"
 
 extern "C" {
+s32 get_selected_value__11TWindowMenuFv(int);
 s32 TWindowSubTechnique::sub_80286AA8() {
     if ((u32) this->m_34 == 0U) {
         return 0;

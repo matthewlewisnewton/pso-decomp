@@ -1,11 +1,11 @@
 #include "pso/system/ArrayAllocation.h"
-#include "types.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
+#include "types.h"
 #include "pso/misc/TWindowChoiceSetting.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TWindowSubComCard_80265410.h"
 #include "pso/object/TObject_80019A50.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TUnk_804D0658.h"
 #include "pso/misc/TWindowMakeTeam.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -40,6 +40,7 @@ s32 measure_string_len__20TWindowSubStatusDispFv(char *);
 char *strncpy(char *, const char *, u32);
 void *create_entry_menu_window__15TWindowMakeTeamFv(void *);
 void *create_status_menu_window__15TWindowMakeTeamFv(void *);
+u8 get_selected_value__11TWindowMenuFv(void *);
 char *draw_entry_0x110__15TWindowMakeTeamFSc(u8);
 char *init_status_disp__15TWindowMakeTeamFc(u8);
 s32 get_message_10__20TWindowSubStatusDispFl(s32);

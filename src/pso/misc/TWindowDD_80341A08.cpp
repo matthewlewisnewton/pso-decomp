@@ -4,7 +4,7 @@
 #include "pso/misc/TWindowDD_803488A8.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
 #include "pso/misc/TWindowDD_80341A08.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowHelpItem.h"
@@ -230,8 +230,8 @@ void TWindowDD::handle_scroll_input() {
         }
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
-    ((TWindowBase *)arg0)->update_fade();
-    ((TWindowBase *)arg0)->update_window_entry_list(arg0 + 0x24);
+    ((TUnk_804CE018 *)arg0)->update_fade();
+    ((TUnk_804CE018 *)arg0)->update_window_entry_list(arg0 + 0x24);
 }
 #pragma pop
 

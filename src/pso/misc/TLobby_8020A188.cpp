@@ -19,7 +19,7 @@ extern u32 TLobby__item_data_table_buffer;
 extern s32 lbl_805D60B4;
 extern s32 lbl_805D60BC;
 extern s32 lbl_805D60C0;
-extern u8 *lbl_805D60C4;
+extern s32 lbl_805D60C4;
 extern s32 lbl_805D60C8;
 
 void init_buffers__6TLobbyFii(s32 id, s32 arg1) {
@@ -33,10 +33,10 @@ void init_buffers__6TLobbyFii(s32 id, s32 arg1) {
         lbl_805D60B4 = (s32)TQuestVmDownLoadServer::alloc(0x9000);
         lbl_805D60BC = (s32)TQuestVmDownLoadServer::alloc(0x1400);
         lbl_805D60C0 = 0;
-        lbl_805D60C4 = (u8 *)TQuestVmDownLoadServer::alloc(0x1000);
+        lbl_805D60C4 = (s32)TQuestVmDownLoadServer::alloc(0x1000);
         lbl_805D60C8 = 0;
         TLobby__sub_80209D34(id);
-        TAdSinglePlyChrSelectGC::safe_free((u32)lbl_805D60C4);
+        TAdSinglePlyChrSelectGC::safe_free(lbl_805D60C4);
         TAdSinglePlyChrSelectGC::safe_free(lbl_805D60BC);
         lbl_805D60BC = 0;
         TAdSinglePlyChrSelectGC::safe_free(lbl_805D60B4);

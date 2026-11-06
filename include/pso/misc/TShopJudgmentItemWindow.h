@@ -7,7 +7,7 @@
 struct TShopJudgmentItemWindow : public TShopWindowBase {
     virtual ~TShopJudgmentItemWindow();
     virtual void vfunc_11();
-    virtual void vfunc_8(s32 index, s32 flags);
+    virtual void vfunc_8(s32, s32);
     virtual void display_message(const char *text, s32 flags);
     u8 _pad1C[0x4];
     u32 m_20;

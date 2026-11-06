@@ -4,9 +4,6 @@
 #include "types.h"
 #include "pso/TShopWindowBase.h"
 
-struct TObjPlayer;
-class TMessageWindowController;
-
 struct TShopSequence : public TShopWindowBase {
     virtual ~TShopSequence();
     virtual void restore_player_state();
@@ -21,10 +18,6 @@ struct TShopSequence : public TShopWindowBase {
     virtual void display_guild_message(s32 index, s32 flags);
     virtual int vfunc_10();
     static void close_if_single_screen();
-    f32 field_1c;
-    s32 m_20;
-    TObjPlayer *player;
-    TMessageWindowController *message;
 };
 
 #endif

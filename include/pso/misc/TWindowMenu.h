@@ -17,6 +17,7 @@ struct TWindowMenu : public TWindowAddition {
     void clamp_menu_choice_scroll();
     void update_target_y();
     void reset_selection();
+    int is_visible();
     int is_decided();
     int is_cancelled();
     s32 get_selected_value();

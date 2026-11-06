@@ -138,8 +138,6 @@ public:
 };
 typedef char TQuestVmDownLoadServer_size_check[sizeof(TQuestVmDownLoadServer) == 0x2A4 ? 1 : -1];
 
-// The two seeds of the download cipher; a quest saved to a memory card is
-// encrypted with the console's serial number in both.
 extern "C" {
 extern __declspec(section ".data") u32 download_rng_seed_pair[2];
 }

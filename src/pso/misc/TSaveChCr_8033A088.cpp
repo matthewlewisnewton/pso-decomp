@@ -1,4 +1,5 @@
 #include "pso/TSaveChCr.h"
+#include "pso/misc/TWindowBase.h"
 
 // The compiler emits the member-action template and writable table together.
 // Keep them before the native vtable so both text and data retain their order.
@@ -10,7 +11,6 @@ TSaveChCrStateActions lbl_804EF658[5] = {
     { &TSaveChCr::fn_80339B94, &TSaveChCr::destroy_if_keyboard_idle },
 };
 
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TSaveChCr_8033A088.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "types.h"

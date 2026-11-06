@@ -1,9 +1,10 @@
 #include "pso/misc/TWindowDrawContext.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
+#include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_802671F0.h"
 #include "pso/unk/text_80268384.h"
-#include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowSubItemList.h"
 #include "pso/misc/TWindowSubItem.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
@@ -49,7 +50,7 @@ void TWindowSubItemList::render() {
     window_key_board_soft = (s32)get_draw_context__11TWindowBaseFPv(this);
     ((TWindowBase *)arg0)->draw_window_frame((void *)window_key_board_soft);
     draw_visible_window_entries(arg0, arg0 + 0x24, window_key_board_soft);
-    ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry(window_key_board_soft);
+    ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry((long)window_key_board_soft);
     ((TWindowSubItemList *)arg0)->sub_8027ACF8((u8 *)window_key_board_soft);
     draw_item_list_capacity(arg0, window_key_board_soft, this->m_8c, 0x1E);
     if ((u32) *(u32 *)&this->status_display != 0U) {

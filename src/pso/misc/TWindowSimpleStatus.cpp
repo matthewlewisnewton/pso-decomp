@@ -1,7 +1,8 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TWindowSubStatusDisp_8026F6DC.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowSimpleStatus.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -37,8 +38,8 @@ void TWindowSimpleStatus::run_task() {
     update_status_help_item(arg0);
     ((TWindowSimpleStatus *)arg0)->update_status_icons((void *)(get_window_layout_position(0x1D)));
     ((TWindowDD *)arg0)->initialize_subwindow();
-    ((TWindowBase *)arg0)->update_fade();
-    ((TWindowBase *)arg0)->update_window_entry_list((void *)(arg0 + 0x24));
+    ((TUnk_804CE018 *)arg0)->update_fade();
+    ((TUnk_804CE018 *)arg0)->update_window_entry_list((void *)(arg0 + 0x24));
     ((TWindowSimpleStatus *)arg0)->apply_random_shake();
 }
 

@@ -106,6 +106,7 @@ extern "C" {
 s32 *get_split_screen_battle_rankings(void);
 void clear_split_screen_battle_window_slots(T_803102A4 *self);
 extern void *TPlayerBattleCtrl4P__instance;
+void TWindow__close(u8 *arg0);
 void *get_player_by_client_id(s32);
 void *__nw__7TObjectFUl(u32);
 void *TWindowDuelResult__ct(void *, int);

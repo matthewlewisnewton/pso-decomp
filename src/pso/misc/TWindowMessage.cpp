@@ -1,4 +1,5 @@
 #include "pso/system/ArrayAllocation.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
@@ -11,7 +12,6 @@
 #include "pso/misc/TLobby_80269C6C.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TWindowDD.h"
 

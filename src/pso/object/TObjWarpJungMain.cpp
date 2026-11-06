@@ -1,7 +1,7 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/TWindowMenu.h"
 #include "types.h"
 #include "pso/object/TObjAreaWarp.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/object/TObjWarpJung.h"
 #include "pso/object/TObjWarpJungMain.h"
@@ -121,6 +121,7 @@ Obj_801A0224 * TObjWarpJung__ct(Obj_801A0224 *self);
 s32 TObjWarpJung__sub_801A0404(s32);
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
+s32 get_selected_value__11TWindowMenuFv(void *);
 void * init__13TAdVIConfigGCFf(void *, void *, f32);
 s32 get_game_play_mode(void);
 

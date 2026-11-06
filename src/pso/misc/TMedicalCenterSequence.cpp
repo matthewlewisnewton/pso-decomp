@@ -1,12 +1,12 @@
 #include "pso/system/SoundEffect.h"
-#include "pso/misc/TMedicalCenterMes.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TMedicalCenterMes.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/TShopWindowBase.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/misc/TShopSequence.h"
 #include "pso/misc/TMedicalCenterSequence.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/player/TObjPlayer.h"
 #include "types.h"
 
@@ -141,6 +141,7 @@ s32 set_service_counter_camera(void *, int);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 s32 __dl__7TObjectFPv(void *);
+void TWindow__close(u8 *arg0);
 extern RecoveredGlobal_802169A8___vt__22TMedicalCenterSequence __vt__22TMedicalCenterSequence;
 extern RecoveredGlobal_802169A8_TMedicalCenterSequence__data_80513E90 TMedicalCenterSequence__data_80513E90;
 u8 *__dt__22TMedicalCenterSequenceFv(TMedicalCenterSequence *arg0, s16 arg1);
@@ -152,6 +153,7 @@ u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
 
 int sub_802239EC__13TShopSequenceFv(void *);
 int sub_80223A48__15TShopWindowBaseFv(void *);
+s32 get_selected_value__11TWindowMenuFv(u32);
 s32 close_window__13TShopSequenceFv(void *);
 int obj_getPtr2B0_20(u8 *p);
 int restore_player_state__13TShopSequenceFv(void*);
@@ -342,7 +344,7 @@ void TMedicalCenterSequence::show_fee_prompt() {
     ((VObj_802164A4 *)this)->m4(0x20, 1);
     v = get_entity_id(((VObj_802164A4 *)this)->f24);
     ((VObj_802164A4 *)this)->f30 = (s32)create_yes_no_window(((s32 (*)(int))get_window_layout_position)(0x2B), v, 0, 0);
-    ((TWindowAddition *)(((VObj_802164A4 *)this)->f30))->set_position_xy(get_scale__15TShopWindowBaseFv(((VObj_802164A4 *)this)), get_scale__15TShopWindowBaseFv(((VObj_802164A4 *)this)));
+    ((TUnk_804CDFE8 *)(((VObj_802164A4 *)this)->f30))->set_position_xy(get_scale__15TShopWindowBaseFv(((VObj_802164A4 *)this)), get_scale__15TShopWindowBaseFv(((VObj_802164A4 *)this)));
     this->set_field_20((s32)((void *)3));
 }
 

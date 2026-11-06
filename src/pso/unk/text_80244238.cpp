@@ -1,6 +1,6 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/misc/TWindowDrawContext.h"
 
 struct Ctx_80244364 { u8 pad[0x10]; f32 x; f32 y; };
@@ -32,13 +32,13 @@ extern const f32 lbl_805DCAA8;
 
 #pragma push
 #pragma fp_contract on
-void TWindowAddition::step_window_tween() {
+void TUnk_804CDFE8::step_window_tween() {
     Disp_80244238 *o = (Disp_80244238 *)this;
     f32 d;
     u32 n = o->n;
     if (n == 0) {
         d = o->tz - o->z;
-        ((TWindowBase *)o)->save_position();
+        ((TUnk_804CE018 *)o)->save_position();
     } else {
         d = (o->tw - o->w) / n;
         o->x += (o->tx - o->x) / n;
@@ -59,7 +59,7 @@ TWindowDrawContext *get_draw_context__11TWindowBaseFPv(void *window) {
     return (TWindowDrawContext *)c;
 }
 
-void TWindowAddition::sub_802443B4() {
+void TUnk_804CDFE8::sub_802443B4() {
     u8 *arg0 = (u8 *)this;
     *(s32 *)&this->m_name = (s32) lbl_805D3878;
     *(f32 *)((s8 *)arg0 + 0x68) = (f32) lbl_805DCAAC;

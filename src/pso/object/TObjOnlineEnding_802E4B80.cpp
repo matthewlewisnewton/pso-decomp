@@ -1,7 +1,7 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/TWindowBase.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/TObject.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/system/vector.h"
@@ -16,6 +16,7 @@
 
 extern "C" {
 
+void TWindow__close(u8 *arg0);
 void *__nw__7TObjectFUl(int);
 
     extern int player_unique_pair_entry_count;

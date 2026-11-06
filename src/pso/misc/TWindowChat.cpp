@@ -1,4 +1,5 @@
 #include "pso/misc/TWindowChat.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
 #include "pso/misc/TKeyBoardControl_8025EC04.h"
@@ -10,7 +11,6 @@
 #include "pso/misc/TKeyBoardControl.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/TObject.h"
-#include "pso/misc/TWindowMenu.h"
 #include "types.h"
 #include "pso/misc/TWindowKeyBoardSoft_80261440.h"
 
@@ -85,6 +85,7 @@ void *__dt__11TWindowChatFv(void *arg0, s16 arg1);
 u8 *TWindowKeyBoardBase__ct(u8 *arg0);
 void TWindowChat__sub_80247D2C(void* p);
 s32 TWindowChat__sub_80247D50(u8 *arg0);
+int get_selected_value__11TWindowMenuFv(void*);
 int TWindowChat__sub_80247DAC(void* p);
 void TWindowChat__sub_80247DFC(u8 *arg0);
 void TWindowChat__sub_80247E50(u8 *arg0);

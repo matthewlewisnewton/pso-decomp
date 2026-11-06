@@ -4,7 +4,7 @@
 #include "pso/misc/TWindowSubAreaMapDisp.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/TWindowCtrl.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TLobby_8001D6A0.h"
 #include "pso/misc/TWindowCtrl_80271DFC.h"
 #include "pso/misc/TWindowSubStatusDisp_80228CC0.h"

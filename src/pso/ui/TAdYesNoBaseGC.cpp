@@ -1,10 +1,10 @@
 #include "types.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/ui/TAdYesNoBaseGC.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/misc/TWindowSubComCardList.h"
-#include "pso/misc/TWindowMenu.h"
 
 #include "pso/misc/TWindowSubComCard.h"
 
@@ -45,6 +45,7 @@ struct VtObj8032C1C8_8032C188 : VtBase8032C1C8_8032C188 {
 
 void *TAdYesNoBaseGC__ct(TAdYesNoBaseGC *arg0);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
+s32 get_selected_value__11TWindowMenuFv(u32);
 void *__ct__12TAdBackTxtGCFv(void *, void *);
 void __ct__7TObjectFP7TObject(void *);
 void *__ct__9TAdBackGCFv(void *, void *);

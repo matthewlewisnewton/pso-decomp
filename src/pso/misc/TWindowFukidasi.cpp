@@ -3,7 +3,7 @@
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TUnk_804CF0B8.h"
 #include "pso/misc/TWindowFukidasi.h"
 #include "pso/TObjCMHairMenu.h"
@@ -301,7 +301,7 @@ void complete_speech_balloon(u8 *arg0) {
     ((s32 (*)(void *))refresh_rect_placement__15TWindowFukidasiFPv)(arg0);
     TWindowFukidasi__sub_80252C38(arg0);
     ((TUnk_804CF0B8 *)arg0)->set_flag2c_bit100();
-    ((TWindowBase *)arg0)->save_position();
+    ((TUnk_804CE018 *)arg0)->save_position();
     *(f32 *)(arg0 + 0x80) = TWindowFukidasi__data_805DCCE8;
     ((TWindowFukidasi *)arg0)->sync_display_pos();
     *(s32 *)(arg0 + 0x5C) = 0x186A0;
@@ -1275,7 +1275,7 @@ void TWindowFukidasi::run_task() {
   TWindowFukidasi__sub_80251790(arg0);
   if (((TUnk_804CF0B8 *)arg0)->is_active() != 0)
   {
-    ((TWindowBase *)arg0)->update_window_entry_list(((u8 *) arg0) + 0x24);
+    ((TUnk_804CE018 *)arg0)->update_window_entry_list(((u8 *) arg0) + 0x24);
   }
 }
 }

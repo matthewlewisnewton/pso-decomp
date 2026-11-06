@@ -3,9 +3,10 @@
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowHelpItem_80243408.h"
-#include "pso/misc/TWindowBase.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/misc/TWindowSubCustomSelect.h"
+#include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
@@ -223,7 +224,7 @@ void TWindowSubCustomSelect::draw_palette_cells(int ctx) {
 void render__22TWindowSubCustomSelectFv(TWindowSubCustomSelect *window_sub_custom_select) {
     s32 temp_r3;
     temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(window_sub_custom_select);
-    ((TWindowBase *)window_sub_custom_select)->draw_window_frame((void *)temp_r3);
+    ((TUnk_804CE018 *)window_sub_custom_select)->draw_window_frame((void *)temp_r3);
     window_sub_custom_select->draw_palette_cells(temp_r3);
     window_sub_custom_select->draw_cursor((u8 *)temp_r3);
     forward_render__20TWindowSubStatusDispFv(window_sub_custom_select->m_7c, temp_r3);
@@ -255,7 +256,7 @@ void TWindowSubCustomSelect::run_task() {
         ((TWindowSubStatusDisp *)(*(s32 *)&this->m_80))->increment_counter();
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
-    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
+    ((TUnk_804CE018 *)arg0)->update_window_entry_list((u8 *)&this->m_24);
     *(s32 *)&this->m_74 = (s32) (*(s32 *)&this->m_74 + 1);
 }
 
@@ -264,7 +265,7 @@ void *__dt__22TWindowSubCustomSelectFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__22TWindowSubCustomSelect;
         TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)arg0 + 0x80)), (s16)1);
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x7C)), (s16)1);
-        ((TWindowAddition *)arg0)->destroy_window(0);
+        ((TUnk_804CDFE8 *)arg0)->destroy_window(0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }

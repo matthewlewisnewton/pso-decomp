@@ -6,7 +6,7 @@
 #include "pso/boss/TBoss4DarkFalz.h"
 #include "pso/boss/TBoss4Type2.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TUnk_804EF4E0.h"
 
 struct RecoveredGlobal_80338C88_lbl_804EF458 {
@@ -96,13 +96,13 @@ void TUnk_804EF4E0::vfunc_6(u32 count, s32 id) {
 
     m_name = lbl_805D4260;
     m_20 = id;
-    entry_count = 0;
-    cursor = 0;
-    entry_capacity = count;
+    m_72 = 0;
+    unk_74 = 0;
+    m_76 = count;
     m_78 = 0;
     m_7c = 0;
-    state_flags = 0;
-    status_display = 0;
+    m_70 = 0;
+    m_80 = 0;
     unk_84 = 0;
     for (i = 0; i < (s32)count; i++) {
         entry = (TUnk_804EF4E0::Entry *)get_array_entry(i);

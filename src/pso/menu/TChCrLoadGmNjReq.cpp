@@ -1,4 +1,5 @@
 #include "pso/TChCrLoadGmNjReq.h"
+#include "pso/misc/TChCrLoadAfsTextureReq.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/menu/TChCrLoadGmNjReq.h"
 
@@ -35,7 +36,7 @@ void TChCrLoadGmNjReq::run_task() {
         start_character_load_task__23TAdSinglePlyChrSelectGCFv();
         return;
     case 1:
-        update_model_load__6TLobbyFv();
+        ((TChCrLoadAfsTextureReq *)arg0)->update_model_load();
         return;
     }
 }

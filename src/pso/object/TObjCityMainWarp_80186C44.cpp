@@ -25,6 +25,7 @@ extern "C" {
 u8 is_current_floor_switch_set(int);
 void *get_player_by_client_id(s32 i);
 void end_player_keyboard_hold(s32 arg0);
+void TWindow__close(u8 *arg0);
 void obj_clear_flag30_20000(void *arg0);
 void obj_set_flag_20000(void *arg0);
 void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);

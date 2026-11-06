@@ -1,7 +1,7 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/system/memory.h"
 #include "pso/system/CurrentTextureList.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TUnk_804CF930.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"

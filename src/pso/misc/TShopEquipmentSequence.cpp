@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TShopEquipmentListWindow.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -8,8 +9,7 @@
 #include "pso/unk/text_80222C28.h"
 #include "pso/unk/text_8026934C.h"
 #include "pso/misc/TShopSequence.h"
-#include "pso/misc/TWindowAddition.h"
-#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/misc/TShopEquipmentSequence.h"
 #include "pso/misc/TCheckRoomSequence.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -116,6 +116,7 @@ void *TShopEquipmentSellWindow__ct(void *arg0, void *arg1, void *arg2, void *arg
 extern void *tl_05;
 u16 get_entity_id(void *);
 f32 get_scale__15TShopWindowBaseFv(void *);
+s32 get_selected_value__11TWindowMenuFv(void *);
 void align_menu_entry_positions(void *w);
 struct Base_8021D524 { char pad[0x18]; };
 struct VObj_8021D524 : Base_8021D524 {
@@ -200,7 +201,7 @@ void TShopEquipmentSequence::update_buy_sell_choice() {
         ((TWindowSubComCard *)(self->win))->calc_window_size();
         align_menu_entry_positions(self->win);
         ((TCheckRoomSequence *)(self->win))->set_ready_flag();
-        ((TWindowAddition *)(self->win))->set_position_xy(get_scale__15TShopWindowBaseFv(self), get_scale__15TShopWindowBaseFv(self));
+        ((TUnk_804CDFE8 *)(self->win))->set_position_xy(get_scale__15TShopWindowBaseFv(self), get_scale__15TShopWindowBaseFv(self));
     }
     if (self->win != NULL && ((TWindowMenu *)(self->win))->is_decided() != 0) {
         r = ((TWindowMenu *)self->win)->get_selected_value();

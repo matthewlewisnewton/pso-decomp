@@ -1,6 +1,6 @@
 #include "pso/system/SoundEffect.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "types.h"
 #include "pso/ui/TAdDrawLineCtrl.h"
 #include "pso/ui/TAdPlayerLoadGC.h"
 #include "pso/misc/TLobby_80132ED0.h"

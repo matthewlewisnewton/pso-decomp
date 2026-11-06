@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/unk/text_80278BD8.h"
 #include "pso/item/TItem.h"
 #include "pso/misc/TShopJudgmentItemWindow.h"
@@ -11,6 +12,7 @@ struct Wn_80278DA4 { u8 pad0[0x20]; s16 f20; u8 pad22[0x50]; s16 f72; };
 
 extern "C" {
 void *get_player_by_client_id(s32 i);
+void calc_content_extent__19TWindowMenuIconLineFv(void *);
 void populate_judgment_item_list(Wn_80278DA4 *arg0);
 u8 get_item_type__5TItemFv();
 

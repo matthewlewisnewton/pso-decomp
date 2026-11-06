@@ -1,5 +1,5 @@
 #include "types.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
@@ -20,8 +20,8 @@ void sub_8026CC28__11TWindowBaseFv(void *);
 
 int TWindowDD::update_com_card() { return TWindowSubComCard__sub_8024634C(this); }
 int TWindowDD::initialize_subwindow() { return update_open_close__17TWindowSubComCardFv(this); }
-void TWindowBase::render() {  }
-void TWindowBase::run_task() {  }
+void TUnk_804CE018::render() {  }
+void TUnk_804CE018::run_task() {  }
 
 void *TWindowDD::destroy_window_base(s16 arg1) {
     if (this != NULL) {
@@ -39,7 +39,7 @@ typedef char RecoveredGlobal_802466E0_lbl_804CE018_size[sizeof(RecoveredGlobal_8
 u8 *TWindowDD::construct_base(u8 *arg1, s16 arg2, u8 *arg3) {
     __ct__7TObjectFP7TObject(this, (void *) (TWindowCtrlMain__sub_8024CDB0((void *)arg2)));
     *(s32 **)((s8 *)((u8 *)this) + 0x18) = &(*(RecoveredGlobal_802466E0_lbl_804CE018 *)&lbl_804CE018).value;
-    ((TWindowBase *)((u8 *)this))->sub_80244F2C(arg1, arg3, arg2);
+    ((TUnk_804CE018 *)((u8 *)this))->sub_80244F2C(arg1, arg3, arg2);
     return ((u8 *)this);
 }
 

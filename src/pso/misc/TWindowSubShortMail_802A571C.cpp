@@ -1,7 +1,7 @@
 #include "types.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/misc/TWindowSubShortMail.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowMessageYesNo.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubTradeMain.h"

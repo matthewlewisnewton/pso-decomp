@@ -1,11 +1,11 @@
 #include "pso/system/CurrentTextureList.h"
-#include "types.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
+#include "types.h"
 #include "pso/misc/TPlyJoinLobbyEntry.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObjWarpLobby_801A0760.h"
 #include "pso/unk/text_803D96A8.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/object/TObjWarpLobby.h"
 #include "pso/TParticleCtrl.h"
@@ -41,6 +41,7 @@ extern s32 warp_lobby_directory_label_table[];
 s32 queue_destruction__7TObjectFv(u32);
 s32 is_idle__6TLobbyFv();
 u32 find_warp_player_in_range(void *, u16, f32);
+s32 get_selected_value__11TWindowMenuFv(u32);
 extern s32 local_client_id;
 
 void run_task__13TObjWarpLobbyFv(VO_801A0894 *arg0);

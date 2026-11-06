@@ -1,8 +1,9 @@
 #include "pso/misc/TWindowDrawContext.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
-#include "pso/misc/TWindowSubStatusDisp_802671F0.h"
 #include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
+#include "types.h"
+#include "pso/misc/TWindowSubStatusDisp_802671F0.h"
 #include "pso/misc/TUnk_804D0948.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
@@ -40,7 +41,7 @@ void TUnk_804D0948::render() {
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     if (!(this->state_flags & 0x80)) {
-        ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry(temp_r3);
+        ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry((long)temp_r3);
     }
     n = *(s32 *)&this->unk_88;
     if (n > 0) {

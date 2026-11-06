@@ -18,6 +18,9 @@ struct TMedicalCenterSequence : public TShopSequence {
     void show_declined();
     void show_already_healthy();
     s32 handle_window_input();
+    u8 unk_1C[0x4];
+    u32 m_20;
+    u8 unk_24[0x8];
     s32 m_2c;
     u32 m_30;
     u8 unk_34[0x4];

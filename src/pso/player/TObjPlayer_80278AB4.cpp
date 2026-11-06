@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/item/TItem.h"
 #include "pso/misc/TShopJudgmentItemWindow.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
@@ -9,6 +10,7 @@
 
 extern "C" {
 
+s32 calc_content_extent__19TWindowMenuIconLineFv(void *);
 u8 get_item_type__5TItemFv();
 s32 get_item_id__5TItemFv();
 s32 check_equip_requirements__5TItemFP10TObjPlayerPs(s32, void *, s32 *);

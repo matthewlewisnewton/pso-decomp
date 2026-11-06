@@ -7,7 +7,7 @@
 #include "pso/misc/TWindowSubStatusDisp_80228F5C.h"
 #include "pso/unk/text_80246CE8.h"
 #include "pso/misc/TCameraCtrl.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowDD.h"
 
 #pragma push
@@ -78,7 +78,7 @@ void *lbl_804CE2B8[6] = {
 };
 #define lbl_804CE2B8 ((s32 *)lbl_804CE2B8)
 
-void init_subwindow__22TWindowChallengeResultFPv(void* p) { ((TWindowDD *)p)->initialize_subwindow(); ((TWindowBase *)p)->update_window_entry_list((char*)p + 0x24); }
+void init_subwindow__22TWindowChallengeResultFPv(void* p) { ((TWindowDD *)p)->initialize_subwindow(); ((TUnk_804CE018 *)p)->update_window_entry_list((char*)p + 0x24); }
 
 void *dt__22TWindowChallengeResultFPvs(void *arg0, s16 arg1) {
     if (arg0 != NULL) {

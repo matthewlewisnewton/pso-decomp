@@ -1,6 +1,6 @@
 #include "pso/system/SoundEffect.h"
-#include "pso/ui/TWindowSubTradeMessage.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/ui/TWindowSubTradeMessage.h"
 #include "pso/unk/text_802D298C.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"

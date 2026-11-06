@@ -1,6 +1,6 @@
 #include "types.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowChatSymbol_802486A8.h"
 #include "pso/misc/TWindowSubSymbolChat.h"
 #include "pso/misc/TUnk_804CE7D0.h"
@@ -22,6 +22,8 @@ s32 fn_8024491C(void *, void *);
 extern RecoveredGlobal_80248700_lbl_804CE7A0 window_chat_symbol_settings;
 extern s32 __vt__17TWindowChatSymbol[];
 extern s32 lbl_805D38A8;
+s32 get_selected_value__11TWindowMenuFv(s32);
+void TWindow__close(u8 *arg0);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 

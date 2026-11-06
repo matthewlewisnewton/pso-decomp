@@ -1,12 +1,12 @@
 #include "types.h"
-#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowSubQuestBoard.h"
 #include "pso/quest/TQuestThread.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TWindowSubQuestBoard_8027D148.h"
 #include "pso/misc/TWindowSubQuestBoard_8027D1E8.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowSubQuestBoardSelect.h"
 #include "pso/misc/TUnk_804D1818.h"
 
@@ -43,6 +43,7 @@ void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__19TWindowSubQuestBoard[];
+s32 get_selected_value__11TWindowMenuFv(s32);
 s8 get_page_index__20TWindowSubQuestBoardFv(s32);
 s32 fn_8027D1E8(s32);
 extern Ent_8027CFC8 quest_board_handlers[];

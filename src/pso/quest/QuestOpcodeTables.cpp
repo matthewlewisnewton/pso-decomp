@@ -355,7 +355,7 @@ void qst_getargs_801F2B0C(s32 opcode);
 void qst_op_npc_crptalk_id(u8 first);
 void qst_op_npc_crptalk(u8 first);
 void qst_op_check_for_keyword();
-void qst_op_arg_pushs(int a0);
+void qst_op_arg_pushs(const char *a0);
 void qst_op_arg_pushw(u16 a0);
 void qst_op_arg_pushb(u8 a0);
 void qst_op_arg_pushl(int a0);

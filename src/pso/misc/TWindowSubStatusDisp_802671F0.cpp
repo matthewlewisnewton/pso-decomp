@@ -1,4 +1,7 @@
 #include "pso/misc/TWindowDrawContext.h"
+#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowMenuIconLine.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TLobby_80132ED0.h"
@@ -8,9 +11,7 @@
 #include "pso/misc/TWindowChoiceSetting.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
 #include "pso/misc/TWindowAddition.h"
-#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TUnk_804CE7E8.h"
-#include "pso/misc/TWindowMenuIconLine.h"
 #include <stddef.h>
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TShopEquipmentSellWindow.h"
@@ -20,7 +21,6 @@
 #include "pso/misc/TWindowSubShortMail.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowDD.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
 
@@ -221,10 +221,10 @@ void TWindowSubShortCutList::draw_entry(s32 index, u8 arg2, s32 arg3, s32 arg4) 
     u8 sp9;
     u8 sp8;
 
-    if ((s16) this->entry_count < (s16) this->entry_capacity) {
+    if ((s16) this->m_72 < (s16) this->m_76) {
         fn_80266BD0(index, &sp9, &sp8, this->m_20);
-        init_entry__20TWindowSubStatusDispFScScUcUll(get_array_entry__11TWindowBaseFi(this, this->entry_count), sp9, sp8, arg2, arg3, arg4);
-        this->entry_count = (this->entry_count + 1);
+        init_entry__20TWindowSubStatusDispFScScUcUll(get_array_entry__11TWindowBaseFi(this, this->m_72), sp9, sp8, arg2, arg3, arg4);
+        this->m_72 = (this->m_72 + 1);
     }
 }
 
@@ -267,7 +267,7 @@ void TUnk_804CE7E8::advance_all_entries(s32 arg1) {
         if (arg1 != 0) {
             play_sound_effect(0x52D01, 0, 0, 0);
         }
-        for (i = 0; i < this->entry_capacity; i++) {
+        for (i = 0; i < this->m_76; i++) {
             ((s32 (*)(void *, s32))get_array_entry__11TWindowBaseFi)(this, i);
             advance_state__20TWindowSubStatusDispFv();
         }
@@ -635,7 +635,7 @@ void TWindowMenuIconLine::update_scroll_offset() {
   }
 }
 
-void TWindowMenuIconLine::draw_selected_list_entry(s32 window_key_board_soft) {
+void TWindowMenuIconLine::draw_selected_list_entry(long window_key_board_soft) {
     u16 *temp_r3;
 
     if (!(this->state_flags & 0x80)) {
@@ -689,7 +689,7 @@ void TWindowMenuIconLine::render() {
     temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
-    this->draw_selected_list_entry(temp_r3);
+    this->draw_selected_list_entry((long)temp_r3);
     if ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x80) != 0U) {
         forward_render__20TWindowSubStatusDispFv(*(u32 *)((s8 *)((u8 *)this) + 0x80), temp_r3);
     }

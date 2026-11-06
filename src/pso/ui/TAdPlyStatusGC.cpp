@@ -1,6 +1,6 @@
 #include "pso/system/CurrentTextureList.h"
-#include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "types.h"
 #include "pso/TMainTask.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
@@ -71,6 +71,7 @@ struct Save_8033F6A8 { u8 pad[0xC]; u32 fC; };
 extern "C" {
 s32 allow_rendering__7TObjectFv();
 s32 TWindowShortListCtrl__check_controller_button(void *, int, int);
+void TWindow__close(u8 *arg0);
 u32 get_player_index__14TAdPlyStatusGCFv();
 extern RecoveredGlobal_8033F93C_lbl_8050E3B8 controller_physical_port_bank;
 extern s32 TAdPlyStatusGC__window_offset_index;

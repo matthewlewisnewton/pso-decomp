@@ -1,12 +1,12 @@
 #include "pso/system/SoundEffect.h"
-#include "types.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
+#include "types.h"
 #include "pso/TMainTask.h"
 #include "pso/ui/TAdPlayerLoadGC_801E0C30.h"
 #include "pso/misc/TLobby_80132ED0.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_802D3AB8.h"
 #include "pso/unk/text_802A1144.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowMessageYesNo.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/TAdMultiChgGameModeGC.h"
@@ -38,6 +38,7 @@ struct RecoveredGlobal_802D4570_lbl_8050E208 {
 };
 
 extern "C" {
+void TWindow__close(void *);
 extern const f32 lbl_805DE780;
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
@@ -50,6 +51,7 @@ extern RecoveredGlobal_802D4730_lbl_8050E208 controller_input_state;
 extern RecoveredGlobal_802D4570_lbl_80472510 single_chr_select_item_rect_table;
 void TKeyBoardControl__sub_8000F91C(s32 arg0);
 void TKeyBoardControl__sub_8000F9CC(s32 arg0);
+s32 get_selected_value__11TWindowMenuFv(int);
 s32 TAdChrSelASlotGC__sub_8030C978(void *arg0, s32 arg1, s32 arg2);
 extern s32 lbl_80472538[];
 s32 queue_destruction__7TObjectFv(void *);
@@ -439,7 +441,7 @@ void TAdSinglePlyChrSelectGC::sub_802D4730() {
         return;
     }
     if (TAdPlayerLoadGC__sub_801E1B50(0) == 0) {
-        if (TAdPlayerLoadGC::find_card_file(0, (const char *)(&lbl_804C89BC.value)) == 0) {
+        if (find_card_file__15TAdPlayerLoadGCFlPCc(0, (const char *)(&lbl_804C89BC.value)) == 0) {
             if ((u32) *(u32 *)((s8 *)arg0 + 0x40) != 0U) {
                 ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x40)))->close();
                 *(u32 *)((s8 *)arg0 + 0x40) = 0U;
@@ -472,7 +474,7 @@ void TAdSinglePlyChrSelectGC::sub_802D486C() {
         return;
     }
     if (TAdPlayerLoadGC__sub_801E1B50(0) == 0) {
-        if ((u32)TAdPlayerLoadGC::find_card_file(0, (const char *)&lbl_804C89BC.value) != 0xFFFFFF41U) {
+        if ((u32)find_card_file__15TAdPlayerLoadGCFlPCc(0, (const char *)&lbl_804C89BC.value) != 0xFFFFFF41U) {
             if (*(u32 *)((s8 *)arg0 + 0x3C) != 0U) {
                 ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x3C)))->close();
                 *(u32 *)((s8 *)arg0 + 0x3C) = 0U;

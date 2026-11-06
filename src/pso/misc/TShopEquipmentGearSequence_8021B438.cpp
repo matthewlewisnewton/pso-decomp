@@ -1,13 +1,13 @@
 #include "types.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TShopEquipmentGearSequence_8021B438.h"
 #include "pso/player/TObjPlayer_801A5AEC.h"
 #include "pso/unk/text_8026934C.h"
 #include "pso/misc/TShopSequence.h"
-#include "pso/misc/TWindowAddition.h"
+#include "pso/misc/TUnk_804CDFE8.h"
 #include "pso/TShopWindowBase.h"
 #include "pso/misc/TShopEquipmentGearSequence.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TCheckRoomSequence.h"
 #include "pso/quest/TQuestListVM.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -81,6 +81,7 @@ void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 s32 __dl__7TObjectFPv(void *);
+void TWindow__close(u8 *arg0);
 extern RecoveredGlobal_8021B7D0___vt__26TShopEquipmentGearSequence __vt__26TShopEquipmentGearSequence;
 extern RecoveredGlobal_8021B7D0_TShopEquipmentGearSequence__data_80513EB0 TShopEquipmentGearSequence__window_slot_table;
 extern s32 lbl_805D6220;
@@ -98,6 +99,7 @@ u8 *TShopArmorListWindow__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 get_entity_id(s32);
 s32 get_shop_text(s32);
 f32 get_scale__15TShopWindowBaseFv(void *);
+s32 get_selected_value__11TWindowMenuFv(void *);
 s32 align_menu_entry_positions(void *);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
@@ -139,7 +141,7 @@ void TShopEquipmentGearSequence::update_buy_sell_choice(void *self) {
         ((TWindowSubComCard *)(arg0->win))->calc_window_size();
         align_menu_entry_positions(arg0->win);
         ((TCheckRoomSequence *)(arg0->win))->set_ready_flag();
-        ((TWindowAddition *)(arg0->win))->set_position_xy(get_scale__15TShopWindowBaseFv(arg0), get_scale__15TShopWindowBaseFv(arg0));
+        ((TUnk_804CDFE8 *)(arg0->win))->set_position_xy(get_scale__15TShopWindowBaseFv(arg0), get_scale__15TShopWindowBaseFv(arg0));
     }
     if (arg0->win != NULL && ((TWindowMenu *)(arg0->win))->is_decided() != 0) {
         r = ((TWindowMenu *)arg0->win)->get_selected_value();

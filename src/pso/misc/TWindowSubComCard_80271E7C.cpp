@@ -1,7 +1,9 @@
 #include "pso/system/ArrayAllocation.h"
+#include "pso/misc/TWindowMessage.h"
+#include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/quest/TQuestThread.h"
-#include "pso/misc/TWindowMessage.h"
 #include "pso/map/FloorArea.h"
 #pragma push
 
@@ -12,12 +14,11 @@ class TChCrTagPlBack;
 #include "pso/misc/TWindowComCard.h"
 #include "pso/TProtocol.h"
 #include "pso/misc/TLobby.h"
-#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TUnk_804D0658.h"
 #include "pso/misc/TWindowKeyBoardHard.h"
 #include "pso/misc/TWindowLockOn.h"
 #include "pso/misc/TWindowMakeTeam.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowMessageYesNo.h"
 #include "pso/misc/TWindowOptionCtrl.h"
 #include "pso/misc/TWindowShortListCtrl.h"
@@ -686,6 +687,7 @@ void find_and_load_com_card__6TLobbyFUi(u32 arg0);
 s32 TLobby__sub_8024259C();
 s32 fn_80244958(int, int);
 void fn_802449E0(u8 *arg0);
+void TWindow__close(u8 *arg0);
 }
 void window_request_show(void *arg0);
 s32 is_com_card_active();
@@ -1051,7 +1053,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
         ((s32 (*)(int, int, void*))update_display_value__17TWindowSubComCardFUiUiPv)(window_sub_com_card->m_84, window_sub_com_card->m_74, (void *) ((u8 *)window_sub_com_card + 0x24));
         window_sub_com_card->set_card_index((int) (((TWindowMenu *)window_sub_com_card->m_84)->get_selected_value()));
         if (TWindowShortListCtrl__check_controller_button((void *) ((u8 *)controller_input_state + 0x20), 0x400) != 0) {
-            if (((TWindowBase *)(window_sub_com_card->m_6c))->sub_80244994() != 0) {
+            if (((TUnk_804CE018 *)(window_sub_com_card->m_6c))->sub_80244994() != 0) {
                 ((TWindowLockOn *)(window_sub_com_card->m_6c))->request_close();
             } else {
                 window_request_show((void *)window_sub_com_card->m_6c);

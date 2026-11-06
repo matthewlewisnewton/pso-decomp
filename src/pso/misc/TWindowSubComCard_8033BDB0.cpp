@@ -1,9 +1,9 @@
 #include "types.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_8033BDB0.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowSubComCardList.h"
-#include "pso/misc/TWindowMenu.h"
 
 struct VBase { char pad[0x18]; };
 
@@ -16,7 +16,6 @@ struct VObj : VBase { virtual void m0(int); };
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/TWindowOptionCtrl.h"
 extern "C" {
-void close__11TWindowBaseFv(u8 *arg0);
 u32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 align_menu_entry_positions(u32);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
@@ -101,7 +100,7 @@ void TCheckMemoryCard::close_windows() {
     }
     temp_r3_2 = (u8 *)m_34;
     if (temp_r3_2 != NULL) {
-        close__11TWindowBaseFv(temp_r3_2);
+        ((TWindowBase *)(temp_r3_2))->close();
         m_34 = NULL;
         m_38 = 7;
     }

@@ -1,8 +1,8 @@
 #include "pso/misc/TPlayerBattleCtrl4P.h"
 #include "pso/misc/TWindowMessage.h"
+#include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/misc/TWindowMenu.h"
 #include "pso/quest/TQuestThread.h"
 
 #include "types.h"
@@ -34,6 +34,7 @@ extern s32 lbl_80475BCC[];
 extern RecoveredGlobal_80311A64_TPlayerBattleCtrl4P__data_80542E90 split_screen_battle_rankings;
 extern s32 local_client_id;
 s32 has_player_active_menu__11TWindowCtrlFv(s32);
+s32 get_selected_value__11TWindowMenuFv(void *);
 s32 align_menu_entry_positions(void *);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, int);
