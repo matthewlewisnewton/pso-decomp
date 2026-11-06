@@ -1027,6 +1027,7 @@ pso/misc/TLobby_8013FFA8.cpp
 pso/misc/TLobby_801404CC.cpp
 pso/misc/TLobby_80140FF4.cpp
 pso/misc/TLobby_80145E40.cpp
+pso/misc/TLobby_801461EC.cpp
 pso/misc/TLobby_80156B18.cpp
 pso/misc/TLobby_8015ABD0.cpp
 pso/misc/TLobby_8015C944.cpp
@@ -1244,6 +1245,7 @@ pso/misc/TNeedleShoot_802A4668.cpp
 pso/misc/TNeedleShoot_802A4754.cpp
 pso/misc/TNeedleShoot_802A4A44.cpp
 pso/misc/TNowLoading.cpp
+pso/misc/TNpcPlayer.cpp
 pso/misc/TNpcPlayer_800D87A8.cpp
 pso/misc/TNpcPlayer_80149374.cpp
 pso/misc/TNpcPlayer_8014DADC.cpp
@@ -2085,6 +2087,7 @@ pso/object/TObjComputer.cpp
 pso/object/TObjControl.cpp
 pso/object/TObjCurtainLobby.cpp
 pso/object/TObjDFDemo0.cpp
+pso/object/TObjDFDemo1.cpp
 pso/object/TObjDFDemo2.cpp
 pso/object/TObjDFDemo3.cpp
 pso/object/TObjDFDemo4.cpp
@@ -2883,9 +2886,6 @@ pso/unk/text_800A0814.cpp
 pso/unk/text_800A0884.cpp
 pso/unk/text_800A0994.cpp
 pso/unk/text_800A884C.cpp
-pso/unk/text_800A887C.cpp
-pso/unk/text_800AAC5C.cpp
-pso/unk/text_800AAF78.cpp
 pso/unk/text_800B9194.cpp
 pso/unk/text_800B9254.cpp
 pso/unk/text_800BC4C8.cpp
@@ -3559,3 +3559,5 @@ pso/unk/text_8042EE4C.cpp
 si/SIBios.c
 si/SISamplingRate.c
 vi/vi.c
+pso/unk/text_8042E8C4.cpp
+pso/boss/TBoss8Dragon_802F4380.cpp

@@ -131,6 +131,8 @@ struct TCameraCtrl : public TObject {
     void copy_position_vectors(void *arg1, void *arg2);
     static void update_single_screen();
     static int get_mode();
+    // s32 at object+0x1c. &main_task reads TMainTask::task_flags.
+    static s32 get_mode(void *object);
     static s32 get_camera_no();
     static void set_mode(int a0);
     u8 is_on_current_screen();
