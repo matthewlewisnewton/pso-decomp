@@ -482,7 +482,7 @@ extern s32 lbl_804A6FC0[];
 
 void load_light_entry_file(void) {
     TObjLight__light_entry_data = 0;
-    light_entry_file_size = ((TScene *)lbl_8043ED80)->update_lobby_scene();
+    light_entry_file_size = TScene::update_lobby_scene(lbl_8043ED80);
     if (light_entry_file_size > 0) {
         TObjLight__light_entry_data = (s32)TQuestVmDownLoadServer::alloc(light_entry_file_size);
         if (TObjLight__light_entry_data) {

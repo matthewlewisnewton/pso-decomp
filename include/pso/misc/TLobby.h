@@ -4,6 +4,7 @@
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/item/TItemData.h"
+#include "pso/system/Adxf.h"
 
 struct TItemList;
 
@@ -143,17 +144,17 @@ struct TLobby : public TObject {
     static s32 run_disk_error_check();
     u32 write_packet_header(s32 arg1, s32 arg2, u32 arg3);
     s32 alloc_download_quest(s32 arg1, s32 *arg2);
-    static s32 set_stream_and_load_file(int a0);
-    static void set_stream_state(int a0);
+    static s32 set_stream_and_load_file(const void *name);
+    static void set_stream_state(const void *name);
     static void reset_state_flags();
     static void process_deferred_player_setup();
-    static s32 get_file_size(const char *name);
+    static s32 get_file_size(const void *name);
     static void run_frame();
     static void free_static_buffer(void* a0);
     static void alloc_from_heap(void* a0);
     static void pump_frames();
     static void add_named_entry(s32 arg0, s32 arg1);
-    static s32 create_named_entry(s32 name, s32 buffer, void (*callback)(Lobby_8001FA1C *), void *src, void **out);
+    static s32 create_named_entry(void *name, s32 buffer, void (*callback)(Lobby_8001FA1C *), void *src, void **out);
     static void notify_and_close();
     static void destroy_instance();
     static void pop_and_close();
@@ -186,7 +187,7 @@ struct TLobby : public TObject {
     void bswap_packet();
     static s32 apply_table_entry(s16 arg0, void * _w1);
     void copy_short_fields(void *arg1);
-    static void debug_print(s32 arg0, ...);
+    static void debug_print(const char *fmt, ...);
     int compare_file_extension(const char *ext);
     static s32 get_class_type_name(s32 class_flags);
     static void update_menu_cursor();
@@ -380,7 +381,7 @@ struct TLobby : public TObject {
     void set_field_90(s32 v);
     static void send_packet(s32 arg0, s32 arg1);
     static void free_shared_objects();
-    int start_load_default();
+    void *start_load_default();
     static void free_single_player_chr_select();
     static void alloc_download_server();
     static void free_chr_select_singleton();
@@ -787,8 +788,8 @@ struct TLobby : public TObject {
     static void wait_for_lock_release();
     static void adxm_goto_mwidle_border();
     static void dec_ref_and_clear_buffer();
-    static s32 get_resource_file_size(const char *name);
-    static void read_data_sync(s32 arg0, s32 arg1, u8 *dst);
+    static s32 get_resource_file_size(const void *name);
+    static void read_data_sync(AdxfHandle *arg0, s32 arg1, u8 *dst);
     s32 get_battle_ctrl_default();
     static s32 find_free_chat_log_slot();
     static void apply_menu_cursor_selection();
@@ -853,9 +854,7 @@ struct TLobby : public TObject {
     static void dec_ref_and_reset_tables();
     static void init_afs_adxf_state();
     static s32 get_afs_file_info(s32 arg0, s32 arg1, char *arg2, s32 *arg3, s32 *arg4, s32 *arg5);
-    s32 adxf_get_fsize_byte();
-    s32 adxf_stop();
-    static s32 read_checked_align(s32 arg0, s32 arg1, s32 arg2);
+    static s32 read_checked_align(void *file, s32 count, void *dest);
     static void release_used_slots();
     static s32 read_afs_toc(s32 arg0);
     s32 demux_stream_chunks();
@@ -903,10 +902,9 @@ struct TLobby : public TObject {
     static void init_graph();
     static void free_buffer();
     static void alloc_buffer();
-    static void send_data(s32 arg0);
+    static void send_data(const void *name);
     static void update_alloc_size();
     static u8 get_selected_slot();
-    void update_model_load();
     void copy_player_record(u8 *arg1);
     u8 *init_memory_pool(s32 arg1, s32 arg2, s32 arg3);
     static void init_on_main_phase();
@@ -950,14 +948,14 @@ struct TLobby : public TObject {
     static void flush_checked_reads();
     static void reset_read_state();
     static void clear_player_slot_tables(s32 n);
-    void set_entry_params(s32 arg1, s32 arg2, s32 arg3);
+    void set_entry_params(s32 arg1, s32 arg2, void *dest);
     static void set_read_params(void *handle_ref, int sector_count, int destination);
     void draw_fullscreen_texture_quad();
     static void release_menu_font();
     static void load_font_texture();
     static void reset_state_byte();
-    static s32 create_file_load_entry(s32 arg0, s32 arg1, u32 arg2, s32 arg3, void **arg4);
-    static s32 request_file_read(s32 arg0, s32 arg1, s32 *arg2, void **arg3);
+    static s32 create_file_load_entry(const char *name, s32 arg1, void (*callback)(void *), void *arg3, void **arg4);
+    static s32 request_file_read(const char *name, s32 arg1, s32 *arg2, void **arg3);
     static void reset_lobby_state();
     static void init_keyboard_buffer();
     static s32 poll_connect();
@@ -1118,7 +1116,6 @@ struct TLobby : public TObject {
     static s32 unhide_enemies_at(s32 arg0, s32 arg1, s32 arg2);
     void transfer_trade_item_amount(u32 arg1, s32 arg2);
     void move_trade_item_amount(u32 arg1, s32 arg2);
-    void close_adxf_handle();
     void set_stream_frequency(s32 rate);
     s32 copy_current_entry_name(s32 len);
     s32 build_dhcp_release();

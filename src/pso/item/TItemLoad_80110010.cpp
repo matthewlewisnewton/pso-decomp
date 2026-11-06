@@ -47,7 +47,7 @@ s32 get_bml_model(s32, s32);
 void *TUnk_8049F42C::sub_80110010(s16 arg1) {
     if (this != NULL) {
         *(s32 *)((s8 *)this + 0x14) = (s32)lbl_8049F43C;
-        ((TItemLoad *)this)->free_texture();
+        close();
         ::operator delete[]((void *)(*(s32 *)((s8 *)this + 0)));
         if (arg1 > 0) {
             ::operator delete(this);
