@@ -6,11 +6,6 @@
 #include "pso/system/GinjaTexture.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-struct RecoveredGlobal_8019A9B8_lbl_80446184 {
-    s32 value;
-    u8 remaining[0xC];
-};
-
 struct RecoveredGlobal_8019A9B8_lbl_804B8F60 {
     s32 value;
     u8 remaining[0xC];
@@ -28,7 +23,7 @@ struct RecoveredGlobal_8019A880___vt__8TObjTank {
 
 extern "C" {
 extern u32 TRaderMapCore__frame_model_resource;
-extern RecoveredGlobal_8019A9B8_lbl_80446184 lbl_8044A7B8;
+extern char lbl_8044A7B8[];
 extern RecoveredGlobal_8019A9B8_lbl_804B8F60 obj_f_enemy_resource_descriptor;
 
 void TRaderMapCore::free_statics() {
@@ -44,7 +39,6 @@ void TRaderMapCore::free_statics() {
 }
 typedef char RecoveredGlobal_8019A880_lbl_804B8F70_size[sizeof(RecoveredGlobal_8019A880_lbl_804B8F70) == 0x2C ? 1 : -1];
 typedef char RecoveredGlobal_8019A880___vt__8TObjTank_size[sizeof(RecoveredGlobal_8019A880___vt__8TObjTank) == 0x3C ? 1 : -1];
-typedef char RecoveredGlobal_8019A9B8_lbl_80446184_size[sizeof(RecoveredGlobal_8019A9B8_lbl_80446184) == 0x10 ? 1 : -1];
 typedef char RecoveredGlobal_8019A9B8_lbl_804B8F60_size[sizeof(RecoveredGlobal_8019A9B8_lbl_804B8F60) == 0x10 ? 1 : -1];
 void TRaderMapCore::load_frame_texture() {
     s32 temp_r3;
@@ -53,7 +47,7 @@ void TRaderMapCore::load_frame_texture() {
     var_r0 = temp_r3;
     (*(s32 *)&TRaderMapCore__frame_model_resource) = var_r0;
     // The legacy loader returns the allocated texture-list buffer as bytes.
-    TRaderMapCore__data_805D5F4C = (GinjaTextureList *)load_gvm_texture_file((s32) &lbl_8044A7B8.value);
+    TRaderMapCore__data_805D5F4C = (GinjaTextureList *)load_gvm_texture_file(lbl_8044A7B8);
 }
 
 }

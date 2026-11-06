@@ -486,7 +486,7 @@ void TQuestThread::destroy_all_in(TObject *parent) {
     while (parent->m_down != NULL && child != NULL) {
         TObject *cur = child;
         child = child->m_next;
-        if (((TUnk_804B6C24 *)cur)->check_value_equals((s32)TQuestThread__class_name) != 0) {
+        if (cur->check_value_equals(TQuestThread__class_name) != 0) {
             queue_destruction__7TObjectFv(cur);
         } else {
             destroy_all_in(cur);

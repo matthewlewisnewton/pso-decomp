@@ -192,7 +192,6 @@ os/__start.c
 pad/Pad.c
 pso/audio/GcrnaError.cpp
 pso/audio/GcrnaStream.cpp
-pso/audio/SoundBankTables.cpp
 pso/boss/Boss5GryphonActionScripts.cpp
 pso/boss/Boss5GryphonBehavior.cpp
 pso/boss/Boss6Type1Appearance.cpp
@@ -272,10 +271,8 @@ pso/boss/TBoss6MagMine.cpp
 pso/boss/TBoss6Mine.cpp
 pso/boss/TBoss6PlotFalz.cpp
 pso/boss/TBoss6PlotFalz_802B0228.cpp
+pso/boss/TBoss6Rock.cpp
 pso/boss/TBoss6RockChase.cpp
-pso/boss/TBoss6Rock_8035477C.cpp
-pso/boss/TBoss6Rock_80354A30.cpp
-pso/boss/TBoss6Rock_80354A44.cpp
 pso/boss/TBoss6SwordShot.cpp
 pso/boss/TBoss6Thanks.cpp
 pso/boss/TBoss6Thanks_8035D1F4.cpp
@@ -343,6 +340,7 @@ pso/boss/TBoss8Dragon_8036AEF8.cpp
 pso/boss/TObjBoss1Crater.cpp
 pso/boss/TObjBoss1Crater_8002C6B4.cpp
 pso/boss/TObjBoss1Floor.cpp
+pso/boss/TObjBoss1Rock.cpp
 pso/boss/TObjBoss2CeilJunk.cpp
 pso/boss/TObjBoss2CeilJunk_8003A81C.cpp
 pso/boss/TObjBoss2CeilJunk_8003B07C.cpp
@@ -353,6 +351,7 @@ pso/boss/TObjBoss2RaftSplash_8003B0A0.cpp
 pso/boss/TObjBoss2Tunnel.cpp
 pso/boss/TObjBoss2Tunnel_8003B138.cpp
 pso/boss/TObjBoss2Tunnel_802F1A58.cpp
+pso/boss/TObjBoss2Tunnel_802F2070.cpp
 pso/boss/TObjBoss2Tunnel_8036EF0C.cpp
 pso/boss/TObjBoss2Tunnel_803E2BAC.cpp
 pso/boss/TObjBoss5Ctrl.cpp
@@ -1028,6 +1027,7 @@ pso/misc/TLobby_8013FFA8.cpp
 pso/misc/TLobby_801404CC.cpp
 pso/misc/TLobby_80140FF4.cpp
 pso/misc/TLobby_80145E40.cpp
+pso/misc/TLobby_801461EC.cpp
 pso/misc/TLobby_80156B18.cpp
 pso/misc/TLobby_8015ABD0.cpp
 pso/misc/TLobby_8015C944.cpp
@@ -1096,7 +1096,12 @@ pso/misc/TLobby_80221820.cpp
 pso/misc/TLobby_80222D24.cpp
 pso/misc/TLobby_802230F8.cpp
 pso/misc/TLobby_80226070.cpp
+pso/misc/TLobby_802268F4.cpp
+pso/misc/TLobby_80227A2C.cpp
+pso/misc/TLobby_80227AA0.cpp
+pso/misc/TLobby_80228818.cpp
 pso/misc/TLobby_80228C84.cpp
+pso/misc/TLobby_8023F734.cpp
 pso/misc/TLobby_80242910.cpp
 pso/misc/TLobby_80243370.cpp
 pso/misc/TLobby_8024A148.cpp
@@ -1240,6 +1245,7 @@ pso/misc/TNeedleShoot_802A4668.cpp
 pso/misc/TNeedleShoot_802A4754.cpp
 pso/misc/TNeedleShoot_802A4A44.cpp
 pso/misc/TNowLoading.cpp
+pso/misc/TNpcPlayer.cpp
 pso/misc/TNpcPlayer_800D87A8.cpp
 pso/misc/TNpcPlayer_80149374.cpp
 pso/misc/TNpcPlayer_8014DADC.cpp
@@ -1372,6 +1378,7 @@ pso/misc/TOSwitchItem.cpp
 pso/misc/TOSwitchTimer.cpp
 pso/misc/TOSymbolchatColli.cpp
 pso/misc/TOTrap.cpp
+pso/misc/TOTrapAncient01.cpp
 pso/misc/TOTrapAncient01_80226534.cpp
 pso/misc/TOTrapAncient02.cpp
 pso/misc/TOTrapAncient02R.cpp
@@ -1954,11 +1961,11 @@ pso/misc/pso_const_ids.cpp
 pso/misc/pso_const_ids3.cpp
 pso/misc/pso_const_ids4.cpp
 pso/misc/pso_const_ids5.cpp
-pso/misc/pso_const_ids7.cpp
 pso/misc/pso_date.cpp
 pso/network/NetworkInfoCodec.cpp
 pso/network/NetworkInfoLoader.cpp
 pso/network/NetworkMessageTransport.cpp
+pso/network/NetworkPacketRuntime.cpp
 pso/network/NetworkTransport.cpp
 pso/network/TGameProtocol.cpp
 pso/network/TProtocol.cpp
@@ -2042,6 +2049,7 @@ pso/object/LobbyPigeonPath.cpp
 pso/object/LobbyPigeonTheme.cpp
 pso/object/ObjectFactoryTables.cpp
 pso/object/TLazerFenceSw.cpp
+pso/object/TOKeyJungleMain.cpp
 pso/object/TObjAreaWarpEndingJung.cpp
 pso/object/TObjAreaWarpQuest.cpp
 pso/object/TObjAreaWarp_80307B70.cpp
@@ -2073,11 +2081,13 @@ pso/object/TObjCityMainWarpChallenge.cpp
 pso/object/TObjCityMainWarp_801867F4.cpp
 pso/object/TObjCityMainWarp_80186C44.cpp
 pso/object/TObjCityMainWarp_80186E24.cpp
+pso/object/TObjCityMainWarp_80186F84.cpp
 pso/object/TObjCollision.cpp
 pso/object/TObjComputer.cpp
 pso/object/TObjControl.cpp
 pso/object/TObjCurtainLobby.cpp
 pso/object/TObjDFDemo0.cpp
+pso/object/TObjDFDemo1.cpp
 pso/object/TObjDFDemo2.cpp
 pso/object/TObjDFDemo3.cpp
 pso/object/TObjDFDemo4.cpp
@@ -2199,9 +2209,9 @@ pso/object/TObject_80019A50.cpp
 pso/object/TObject_8001A448.cpp
 pso/object/TObject_800F794C.cpp
 pso/object/TUnk_804A6DC0.cpp
+pso/player/PhotonBlastResults.cpp
 pso/player/PlayerClassStats.cpp
 pso/player/PlayerTaskEffects.cpp
-pso/player/PhotonBlastResults.cpp
 pso/player/THunterGuildSeqOnlineTask.cpp
 pso/player/THunterGuildWarning.cpp
 pso/player/TItemWeaponFist.cpp
@@ -2419,6 +2429,7 @@ pso/player/TObjPlayer_8013085C.cpp
 pso/player/TObjPlayer_80130BF0.cpp
 pso/player/TObjPlayer_80148DCC.cpp
 pso/player/TObjPlayer_8014C610.cpp
+pso/player/TObjPlayer_801542CC.cpp
 pso/player/TObjPlayer_8015C4CC.cpp
 pso/player/TObjPlayer_8015C8D8.cpp
 pso/player/TObjPlayer_80178150.cpp
@@ -2875,9 +2886,6 @@ pso/unk/text_800A0814.cpp
 pso/unk/text_800A0884.cpp
 pso/unk/text_800A0994.cpp
 pso/unk/text_800A884C.cpp
-pso/unk/text_800A887C.cpp
-pso/unk/text_800AAC5C.cpp
-pso/unk/text_800AAF78.cpp
 pso/unk/text_800B9194.cpp
 pso/unk/text_800B9254.cpp
 pso/unk/text_800BC4C8.cpp
@@ -3551,3 +3559,5 @@ pso/unk/text_8042EE4C.cpp
 si/SIBios.c
 si/SISamplingRate.c
 vi/vi.c
+pso/unk/text_8042E8C4.cpp
+pso/boss/TBoss8Dragon_802F4380.cpp

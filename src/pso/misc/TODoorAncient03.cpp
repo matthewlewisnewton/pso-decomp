@@ -72,7 +72,7 @@ void TODoorAncient03::load_resources() {
     s32 *texlists = (s32 *)::operator new[](2 * sizeof(s32));
     door_ancient03_texlists = texlists;
     texlists[0] = door_ancient03_archive->models[0].m_c;
-    door_ancient03_texlists[1] = (s32)load_gvm_texture_file((s32)"fe_obj_o_door03g.gvm");
+    door_ancient03_texlists[1] = (s32)load_gvm_texture_file("fe_obj_o_door03g.gvm");
 }
 
 void TODoorAncient03::free_resources() {
@@ -102,22 +102,22 @@ void TODoorAncient03::render() {
         if (object_state == DOOR_CLOSED) {
             NJS_OBJECT *node = (NJS_OBJECT *)model;
             post_translate_matrix(node->pos);
-            draw_ginja_model((s32)node->model);
+            draw_ginja_model(node->model);
             node = node->child;
             push_matrix();
             post_translate_matrix(node->pos);
-            draw_ginja_model((s32)node->model);
+            draw_ginja_model(node->model);
             pop_matrix();
             TParticleCtrl::begin_effect_render();
             node = node->sibling;
             push_matrix();
             post_translate_matrix(node->pos);
-            draw_ginja_model((s32)node->model);
+            draw_ginja_model(node->model);
             pop_matrix();
             node = node->sibling;
             push_matrix();
             post_translate_matrix(node->pos);
-            draw_ginja_model((s32)node->model);
+            draw_ginja_model(node->model);
             pop_matrix();
             TParticleCtrl::end_effect_render();
         } else {
