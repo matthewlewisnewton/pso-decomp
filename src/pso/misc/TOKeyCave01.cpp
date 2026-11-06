@@ -176,7 +176,7 @@ void TOKeyCave01::render() {
         rotate_matrix_y(NULL, this->rotation.yaw);
         object = (NJS_OBJECT *)model;
         post_translate_matrix(object->pos);
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         if (is_on != 1) {
             flags = model_render_flags;
             saved_model_render_flags = flags;
@@ -195,11 +195,11 @@ void TOKeyCave01::render() {
             break;
         }
         post_translate_matrix(object->pos);
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         object = object->child;
         push_matrix();
         post_translate_matrix(object->pos);
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         pop_matrix();
         pop_matrix();
         TParticleCtrl::end_effect_render();
@@ -237,7 +237,7 @@ void TOKeyCave01::load_resources() {
         resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&fs_obj_key_jungle_resource_descriptor), 0, 0, (void *)(0));
         TOKeyCave01__resource_bundle = resource;
         TOKeyCave01__texture_lists = (s32 *)::operator new[](8);
-        TOKeyCave01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_key_jungle_red.gvm");
+        TOKeyCave01__texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_key_jungle_red.gvm");
         TOKeyCave01__texture_lists[1] = TOKeyCave01__resource_bundle->models[0].m_c;
         key_cave_render_state = 1;
         return;
@@ -245,7 +245,7 @@ void TOKeyCave01::load_resources() {
     resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_do_doa_panel_resource_descriptor), 0, 0, (void *)(0));
     TOKeyCave01__resource_bundle = resource;
     TOKeyCave01__texture_lists = (s32 *)::operator new[](8);
-    TOKeyCave01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_do_doa_panelr.gvm");
+    TOKeyCave01__texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_do_doa_panelr.gvm");
     TOKeyCave01__texture_lists[1] = TOKeyCave01__resource_bundle->models[0].m_c;
     key_cave_render_state = 0;
 }

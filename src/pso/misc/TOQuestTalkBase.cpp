@@ -41,7 +41,7 @@ void TOQuestTalkBase::interact(s32 client) {
             }
             object_state = 2;
             interactor = client;
-            TObjPlayer::play_effect_default((s32)player, -1);
+            TObjPlayer::play_effect_default(player, -1);
         } else {
             interactor = 0xFFFF;
         }
@@ -144,8 +144,8 @@ void TOQuestTalkBase::run_task() {
             end_conversation_camera();
             if (interactor == local_client_id) {
                 player = get_player_by_client_id(local_client_id);
-                if (player != NULL && ((TLobby *)player)->check_player_flag1() != 0) {
-                    TObjPlayer::send_code_45_1((s32)player);
+                if (player != NULL && ((TObjPlayer *)player)->check_player_flag1() != 0) {
+                    TObjPlayer::send_code_45_1(player);
                 }
             }
         }

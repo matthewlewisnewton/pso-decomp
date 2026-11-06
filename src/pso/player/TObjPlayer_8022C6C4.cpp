@@ -338,8 +338,8 @@ void capture_technique_targets__10TObjPlayerFv(int kind, Owner_8022CDE8 *owner) 
     }                                                                   \
     VecCopy__FP3VecPC3Vec(&aim, &ent->colls[targets->part].pos);
 void launch_technique__10TObjPlayerFv(s32 tech, s32 unused, Player_8022D27C *pl) {
-    Vec_8022D27C aim;
-    Vec_8022D27C hand;
+    Vec aim;
+    Vec hand;
     Vec_8022D27C ofs;
     List_8022D27C list;
     void *td;
@@ -415,9 +415,9 @@ void launch_technique__10TObjPlayerFv(s32 tech, s32 unused, Player_8022D27C *pl)
     case 4:
         if (n != 0) {
             AIM_8022D27C()
-            ((TTecGiBarta *)pl)->create(&hand, &aim, (void *)(get_cast_technique_level(td, 4)));
+            TTecGiBarta::create(pl, &hand, &aim, get_cast_technique_level(td, 4));
         } else {
-            ((TTecGiBarta *)pl)->create_ex(&hand, (void *)pl->rotY, (void *)(get_cast_technique_level(td, 4)));
+            TTecGiBarta::create_ex(pl, &hand, pl->rotY, get_cast_technique_level(td, 4));
         }
         break;
     case 5:

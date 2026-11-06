@@ -195,7 +195,7 @@ public:
     u16 m_29c;
     s16 m_29e;
     u8 unk_2A0[0x8];
-    u8 *target;
+    TObjChara *target;
     u32 m_2ac;
     u8 * m_2b0;
     f32 m_2b4;

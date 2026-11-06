@@ -27,7 +27,7 @@
 extern "C" {
 int rand(void);
 // TNpcPlayer_800D87A8.h declares it without the id its definition passes through.
-TObjBase *find_active_entity_by_id(u16 id);
+TObjChara *find_active_entity_by_id(u16 id);
 s32 push_matrix(void);
 void post_translate_matrix(const f32 *offset);
 void matrix_mult_vec(s32 matrix, const Vec *src, Vec *dst);
@@ -165,7 +165,7 @@ void TObjEnemyCustom::update_wander_state() {
     case 1:
         advance_animation();
         if (target != NULL) {
-            Vec dest = *((TObjChara *)target)->body_center();
+            Vec dest = *target->body_center();
             EnemyMoveParams *params = (EnemyMoveParams *)movementParameters;
             f32 distance = update_enemy_wander_move(this, &dest, 1, params, params->min_distance);
             params = (EnemyMoveParams *)movementParameters;
@@ -461,7 +461,7 @@ BOOL TObjEnemyCustom::find_target_in_range(f32 radius) {
         return select_nearest_target(radius);
     }
     targetId = find_nearest_visible_player(this, NULL, radius);
-    target = (u8 *)get_player_by_client_id(targetId);
+    target = get_player_by_client_id(targetId);
     return has_target();
 }
 
@@ -481,7 +481,7 @@ BOOL TObjEnemyCustom::select_nearest_target(f32 radius) {
                        ? player
                        : enemy;
     }
-    target = (u8 *)find_active_entity_by_id(targetId);
+    target = find_active_entity_by_id(targetId);
     if (target != NULL) {
         return TRUE;
     }
@@ -541,7 +541,7 @@ void TObjEnemyCustom::target_nearest_player(f32 radius) {
     }
     for (i = 0; i < count; i++) {
         entity = (TObjEnemyCustom *)TObjPlayer::get_player_data(i);
-        if (entity != this && entity != NULL && target != (u8 *)entity) {
+        if (entity != this && entity != NULL && target != entity) {
             distance = xz_distance_squared(entity->body_center(), body_center());
             if (distance < best_distance) {
                 best_distance = distance;
@@ -550,7 +550,7 @@ void TObjEnemyCustom::target_nearest_player(f32 radius) {
         }
     }
     targetId = best;
-    target = (u8 *)find_active_entity_by_id(targetId);
+    target = find_active_entity_by_id(targetId);
 }
 
 u16 TObjEnemyCustom::pick_random_nearby_player(f32 radius) {
@@ -667,7 +667,7 @@ void TObjEnemyCustom::pick_open_direction(f32 *dir, f32 reach, f32 radius) {
 }
 
 void TObjEnemyCustom::release_destroyed_target() {
-    if (target != NULL && (((TObjBase *)target)->actorFlags & 0x800)) {
+    if (target != NULL && (target->actorFlags & 0x800)) {
         target = NULL;
         targetId = 0xFFFF;
     }

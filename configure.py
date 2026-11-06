@@ -462,12 +462,38 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # needed (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
+    # Reverse definitions with deferred generation: the weak copies of TOTrap's
+    # inline slots are generated first, so their 1.0/0.0 head .sdata2 as in the
+    # original pool, and clamp_params_and_init inlines its clamp helpers.
+    "pso/misc/TOTrapSeabed01.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # Reverse definitions with deferred generation: the native TOTrapAncient02R
+    # vtable is emitted before the switch table that follows it in .data, and
+    # the .sdata2 pool keeps its original order. Unit -fp_contract on replaces
+    # the per-function pragmas: the constructors, calc_trap_count and the R
+    # vfunc_81 fuse multiply-adds.
+    "pso/misc/TOTrapAncient02.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-fp_contract on")},
+    # GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris
+    # positions before storing them (GC/2.6 interleaves them: 91.09%).
+    # Reverse definitions and deferred generation place the native trap vtable
+    # before its switch tables while preserving the original function order.
+    # Contracted FP keeps the constructor and render exact (98.86% and
+    # 97.66% without it). -opt nolifetimes keeps render exact (99.42% without
+    # it). -pooldata=off keeps play_sounds' copy prologue (94.54% without it);
+    # read-only strings keep the .rodata/.data/.sdata layout.
+    "pso/misc/TOTrapAncient01.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-pooldata=off", "-opt nolifetimes")},
+    # Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4).
+    "pso/object/TObjDFDemo1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.
     "pso/enemy/TObjEneRe2Flower_800C3E14.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Gee native tables require deferred generation and reverse definitions.
     "pso/enemy/TObjEneMe1Gee.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Upstream #190 commit 9c4e9ea1d: TObjEneDubchik is written from its last
+    # function back. -inline off,deferred emits that order (the vtable lands
+    # before the switch tables). -str reuse,readonly keeps the motion-name
+    # pool in .rodata. These are upstream's own flags for this unit.
+    "pso/enemy/TObjEneDubchik.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     # Native private header sections preserve initializer and helper emission order.
     "pso/enemy/TObjEnePanarms.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4", "-sym on")},
     "pso/enemy/TObjEneDelDepth.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
@@ -521,7 +547,13 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneSlimeTailAttack.cpp": {"mw_version": "GC/2.0"},
-    "pso/boss/TBoss8Dragon.cpp": {"mw_version": "GC/2.0"},
+    # -inline off,deferred: the real TBoss8Dragon constructor addresses
+    # __vt__12TBoss8Dragon as addi r0, r31, 2348 from the .data anchor.
+    # Plain -inline off emits lis/addi of the vtable symbol and the ctor
+    # grows 0x554 -> 0x558. Deferred also emits the compiler vtable at
+    # .data+0x92C, where the hand table was. Other functions are unchanged.
+    # See docs/porting-exceptions.md section 5.
+    "pso/boss/TBoss8Dragon.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     # GC/1.3.2: the container files 0x8018807C-0x8018D900, the CRC-32 pair
     # (`xoris/xori 0xFFFF`; 2.x always emits `li -1; xor`), and five others.
     # TObjCamera: 1.3.2 copies CameraSoundEvent member by member unscheduled.
@@ -573,6 +605,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Unit -fp_contract on replaces the per-function pragmas. Precedent:
     # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
     "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # Upstream #190: this file is written in reverse so deferred codegen emits
+    # address order, and the readonly string pool places the constants.
+    "pso/misc/TNpcPlayer.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # Position jitter and the tentacle curve contract mul-add to fmadds, so
     # this unit is built with -fp_contract on. -inline off,deferred emits

@@ -6,23 +6,25 @@
 extern "C" {
 void TBoss8Dragon__sub_8028B0DC(void *, s32, s32);
 extern u8 *boss5_ctrl_instance;
-#pragma fp_contract on
-s32 TBoss8Dragon::is_within_xz_distance(u8 *arg1, f32 farg0) {
-    u8 *arg0 = (u8 *)this;
-  f32 temp_f2;
-  f32 temp_f4;
-  temp_f2 = (*((f32 *) (((s8 *) arg0) + 0))) - (*((f32 *) (((s8 *) arg1) + 8)));
-  temp_f4 = (this->m_8) - (*((f32 *) (((s8 *) arg1) + 0x10)));
-  return ((temp_f2 * temp_f2) + (temp_f4 * temp_f4)) < farg0;
 }
 
-f32 TBoss8Dragon::calc_sq_offset(f32 farg0) {
+#pragma fp_contract on
+s32 is_within_xz_distance(Vec *pos, XzSwitchNode *node, f32 limit) {
+    f32 temp_f2;
+    f32 temp_f4;
+    temp_f2 = pos->x - node->x;
+    temp_f4 = pos->z - node->z;
+    return ((temp_f2 * temp_f2) + (temp_f4 * temp_f4)) < limit;
+}
+
+f32 calc_sq_offset(EffectGeometryParameters *params, f32 extra) {
     f32 temp_f0;
 
-    temp_f0 = this->m_8 + farg0;
+    temp_f0 = params->field_8 + extra;
     return temp_f0 * temp_f0;
 }
 
+extern "C" {
 void TBoss8Dragon__sub_80067074(s32 arg0, s32 arg1) {
     u32 temp_r3;
     u32 temp_r3_2;
