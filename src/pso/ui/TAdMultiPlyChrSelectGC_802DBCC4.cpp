@@ -30,7 +30,7 @@ extern const f32 lbl_805DE888;
 extern s32 lbl_804728A0[];
 extern const f32 lbl_805DE88C;
 s32 align_menu_entry_positions(int);
-s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
+TWindowMenu *create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 extern s32 lbl_80472890[];
 extern const f32 lbl_805DE894;
 extern u8 lbl_80472898[];
@@ -100,7 +100,7 @@ s32 TAdMultiPlyChrSelectGC__sub_802DBEC4(unsigned long long arg1) {
 }
 
 s32 TAdMultiPlyChrSelectGC::create_choice_menu() {
-    s32 window_menu;
+    TWindowMenu *window_menu;
     window_menu = create_window_menu((s32)lbl_80472890, 4, (TAdMultiPlyChrSelectGC::get_clamped_cursor()));
     forward_trade_action_default__16TObjCityMainWarpFPviii((void *)window_menu, (int)(get_localized_text_entry(0x1F, 2)), 6, 0);
     forward_trade_action_default__16TObjCityMainWarpFPviii((void *)window_menu, (int)(get_localized_text_entry(0x1F, 3)), 6, 1);
@@ -108,8 +108,8 @@ s32 TAdMultiPlyChrSelectGC::create_choice_menu() {
     forward_trade_action_default__16TObjCityMainWarpFPviii((void *)window_menu, (int)(get_localized_text_entry(0x1F, 5)), 6, 3);
     ((TWindowSubComCardList *)window_menu)->update_layout_height(lbl_805DE894);
     ((TWindowSubComCardList *)window_menu)->set_selected_index(0);
-    align_menu_entry_positions(window_menu);
-    return window_menu;
+    align_menu_entry_positions((int)window_menu);
+    return (s32)window_menu;
 }
 
 void TAdMultiPlyChrSelectGC::collect_player_slots() {
