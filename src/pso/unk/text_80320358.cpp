@@ -1,7 +1,6 @@
 #include "types.h"
 #include "pso/unk/text_80320358.h"
 #include "pso/system/memory.h"
-#include "pso/misc/TScene.h"
 
 extern "C" {
 s32 read_disc_file(void *, void *);
@@ -34,19 +33,19 @@ RelModuleBuffer *fn_80320358(RelModuleBuffer *arg0, s16 arg1) {
 
 #pragma push
 #pragma fp_contract on
-RelModuleBuffer *load_rel_module(RelModuleBuffer *arg0, s32 arg1) {
+RelModuleBuffer *load_rel_module(RelModuleBuffer *arg0, const char *filename) {
     u8 *temp_r3;
     s32 size;
     u32 size2;
     arg0->bss = NULL;
     arg0->image = NULL;
-    size = ((TScene *)arg1)->update_lobby_scene();
+    size = update_lobby_scene__6TSceneFv(filename);
     if (size > 0) {
         arg0->image = xmalloc(size);
         if ((void *) arg0->image == NULL) {
             return arg0;
         }
-        read_disc_file((void *)arg1, arg0->image);
+        read_disc_file((void *)filename, arg0->image);
         size2 = *(u32 *)((s8 *)(arg0->image) + 0x20);
         if (size2 != 0U) {
             arg0->bss = xmalloc(size2);

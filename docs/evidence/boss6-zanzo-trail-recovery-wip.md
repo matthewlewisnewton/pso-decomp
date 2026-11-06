@@ -42,8 +42,8 @@ native destructor, task, render and inherited shadow-render functions. The
 compiler-emitted vtable has the same bytes and targets. The two conversion
 constants emitted for the renderer match the original bytes at
 `0x80476470..0x80476480`; original-reference inspection found no other unit
-using either constant. The split records these ranges for the eventual link,
-but generated graph and symbol-localization checks remain pending.
+using either constant. The split records these ranges and the constants are now localized to this
+unit; the configured link check passes.
 
 The Rico ring's static 3D fan now uses an actual four-element `Vec` array. The
 native definitions cover the packed colors, positions, descriptor and 2D
@@ -52,24 +52,44 @@ The original descriptor points to the position and color arrays, and the 2D
 render parameters point to the following 2D array. A targeted compile retained
 the original unit's complete code bytes; the added data bytes and two pointer
 relocations match the original auto object, and the pre-existing vtable bytes
-and four targets remain unchanged. The expanded split and real linked build
-are not yet validated. A proposed native ruler data definition was not retained:
+and four targets remain unchanged. The expanded split and real linked build now pass. A proposed replacement ruler data definition was not retained:
 the original start is four-byte aligned, while the compiler emits an eight-byte
-aligned data section. Its storage and linkage remain unresolved.
+aligned data section. The original `NJS_POINT3[4]`/`NJS_POINT3COL` definitions
+remain in place and match the original data.
 
-## Current-main merge (2026-11-05)
+## Current-main exact match and link (2026-11-05)
 
 The branch now includes current `origin/main` (`ace1abf1a`) and drops the old
 #289-only base. The merge keeps main's recovered `TBoss6Type1`/`TBoss6Type2`
 layout and `TBoss6Zanzo::create`, and keeps this branch's typed trail frame,
 `set_effect_points` receiver, REL buffer and drawing-descriptor interfaces.
-Conflict resolution preserved the 98.77778% renderer source above.
 
-A fresh full build from the merged tree verifies the original DOL SHA-1.
-`check_pr.py` against a clean `ace1abf1a` baseline passes with zero exact,
-matched-code, complete-code, linked-unit or source-link regressions, and adds
-128 matched data bytes and 112 complete data bytes from the Rico backing data.
-The renderer is still inexact and the `TBoss6Zanzo` unit still does not link, so
-no function, code or link gain is claimed. Remaining holds: exact renderer
-register allocation, the REL filename-size provider's `TScene` receiver, and
-the ruler's original static fan backing.
+The renderer is now **100.00%** exact (180 instructions, 720 bytes). The last
+source difference was variable lifetime, not instruction selection: four
+separate short-lived point-pointer scopes (`p` re-declared for each of the four
+vertex writes) reproduce the original general-purpose register assignment. A
+single reused pointer produces the same instructions with a different
+allocation. The two conversion constants at `0x80476470..0x80476480` are now
+marked `scope:local` with `tools/localize_split_globals.py`, which unblocks the
+unit's link input.
+
+The full merged build verifies the original DOL SHA-1. `check_pr.py` against a
+clean `ace1abf1a` baseline passes with zero regressions and reports:
+
+- 1 new exact function (`draw_trail__11TBoss6ZanzoFv`, `0x803205C4`)
+- +720 matched code bytes, +6,460 complete code bytes, +188 complete data bytes
+- +3 linked units: `pso/boss/TBoss6Zanzo.cpp`, `pso/misc/TShopItemListWindow.cpp`
+  and `pso/unk/text_8020B5CC.cpp`
+
+Source holds from the earlier review are resolved or removed:
+
+- The REL loader no longer casts the `movie.rel` path to a `TScene` receiver.
+  `load_rel_module` takes `const char *filename` and calls the original
+  filename-size helper at `0x800F9D80` with that filename.
+- The ruler keeps the original `NJS_POINT3[4]` positions and `NJS_POINT3COL`
+  descriptor; only the fake `TObjPlayer` receiver is replaced with the typed
+  `draw_tri_fan_3d` call. The Rico backing at `0x804809E0` is the reviewed
+  `Vec[4]`/`TriangleFan3D` storage.
+- The typed `create_zanzo` factory and related overlay-path changes are no
+  longer part of the diff; the branch uses main's `TBoss6Zanzo::create` and
+  main's recovered owner constructors.

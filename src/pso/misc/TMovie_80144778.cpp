@@ -105,7 +105,7 @@ TMovie::TMovie(TObject *parent, s8 *name, s32 a3, s32 a4, s32 a5) : TObject(pare
     strncpy(((TMovie_80144910 *)this)->path, (const char *)name, 0x20);
     RelModuleBuffer *module = new RelModuleBuffer;
     if (module != 0) {
-        module = load_rel_module(module, (s32)lbl_8043F380);
+        module = load_rel_module(module, (const char *)lbl_8043F380);
     }
     m_1c = module;
     p = (u8 *)::operator new(0xD0);

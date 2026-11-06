@@ -86,24 +86,30 @@ void TBoss6Zanzo::draw_trail() {
             fan.positions = positions;
             // Packed RGBA colors retain RGB and fade only their fourth byte.
             for (s32 i = 0; i < this->point_count - 1; ++i) {
-                Boss6TrailPoint *p;
-                p = &previous->points[i];
-                copy_color_bytes(&colors[0], &p->color);
-                ((u8 *)colors)[3] = (u8)(previous_fade * ((const u8 *)&p->color)[3]);
-                VecCopy(&positions[0], &p->position);
-                // Advance the indexed point, keeping its scale separate from the next-point offset.
-                p = &previous->points[i] + 1;
-                copy_color_bytes(&colors[1], &p->color);
-                ((u8 *)colors)[7] = (u8)(previous_fade * ((const u8 *)&p->color)[3]);
-                VecCopy(&positions[1], &p->position);
-                p = &frame->points[i] + 1;
-                copy_color_bytes(&colors[2], &p->color);
-                ((u8 *)colors)[11] = (u8)(next_fade * ((const u8 *)&p->color)[3]);
-                VecCopy(&positions[2], &p->position);
-                p = &frame->points[i];
-                copy_color_bytes(&colors[3], &p->color);
-                ((u8 *)colors)[15] = (u8)(next_fade * ((const u8 *)&p->color)[3]);
-                VecCopy(&positions[3], &p->position);
+                {
+                    Boss6TrailPoint *p = &previous->points[i];
+                    copy_color_bytes(&colors[0], &p->color);
+                    ((u8 *)colors)[3] = (u8)(previous_fade * ((const u8 *)&p->color)[3]);
+                    VecCopy(&positions[0], &p->position);
+                }
+                {
+                    Boss6TrailPoint *p = &previous->points[i] + 1;
+                    copy_color_bytes(&colors[1], &p->color);
+                    ((u8 *)colors)[7] = (u8)(previous_fade * ((const u8 *)&p->color)[3]);
+                    VecCopy(&positions[1], &p->position);
+                }
+                {
+                    Boss6TrailPoint *p = &frame->points[i] + 1;
+                    copy_color_bytes(&colors[2], &p->color);
+                    ((u8 *)colors)[11] = (u8)(next_fade * ((const u8 *)&p->color)[3]);
+                    VecCopy(&positions[2], &p->position);
+                }
+                {
+                    Boss6TrailPoint *p = &frame->points[i];
+                    copy_color_bytes(&colors[3], &p->color);
+                    ((u8 *)colors)[15] = (u8)(next_fade * ((const u8 *)&p->color)[3]);
+                    VecCopy(&positions[3], &p->position);
+                }
                 draw_tri_fan_3d(&fan, 4, 7);
             }
             drawn = 1;
