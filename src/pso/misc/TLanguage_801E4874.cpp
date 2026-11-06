@@ -17,6 +17,11 @@ struct Hdr_801E4874 {
     u16 count;
 };
 
+struct Ent_801E4874 {
+    u8 *name;
+    u8 pad[8];
+};
+
 extern u8 *TLanguage__read_cursor;
 extern "C" {
 u8 *TQuestVmDownLoadServer__sub_8007EBDC(s32, s32);

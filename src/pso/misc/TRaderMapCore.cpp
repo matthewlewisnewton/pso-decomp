@@ -169,7 +169,7 @@ union VertexColor_801FA6CC {
     u8 c[4];
 };
 
-struct Model_801FAAEC { u8 pad[4]; void *obj; };
+struct Model_801FAAEC { u8 pad[4]; s32 obj; };
 
 struct Rec_801FAAEC {
     s16 id; s16 flags;
@@ -1231,7 +1231,7 @@ void TRaderMapCore::render_region_records(s32 mode) {
             push_matrix();
             translate_matrix(0, r->x, r->y, r->z);
             rotate_matrix_zyx(0, r->rx, r->ry, r->rz);
-            draw_ginja_model(r->model->obj);
+            draw_ginja_model((void *)r->model->obj);
             pop_matrix();
             set_constant_material(&chunk_material_color_half_alpha_f32);
         }

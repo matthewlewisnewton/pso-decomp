@@ -199,6 +199,7 @@ extern const f32 lbl_805DB280;
 s32 resolve_actor_sphere_contact(u8 *arg0, s32 arg1, s32 arg2);
 s32 respond_to_body_contact(u8 *arg0, u32 arg1, u8 *arg2);
 extern "C" {
+void TOTrapAncient02R__sub_80154D78(TObject *object);
 void TObjPlayer__sub_801542F4(CollisionBody_80155FBC *set);
 void reset_global_table(void);
 u8 test_elt_flag__13TUnk_80493450Fll(void *arg0, s32 arg1, s32 arg2);
