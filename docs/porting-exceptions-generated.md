@@ -7,11 +7,11 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 15 | 5 |
-| intrinsic | 83 | 54 |
+| asm | 16 | 6 |
+| intrinsic | 85 | 55 |
 | hardware | 69 | 13 |
 | pragma | 5764 | 871 |
-| configure.py per-unit override | 174 | 174 |
+| configure.py per-unit override | 175 | 175 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 876, `auto_inline` 837, `opt_common_subs` 610, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -31,6 +31,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/math/MatrixVector.cpp:36` | `#include "orig_asm/pso/math/MatrixVector/vector_length.inc"` |
 | `src/pso/math/MatrixVector.cpp:76` | `asm void matrix_identity(u8 *arg0) {` |
 | `src/pso/math/MatrixVector.cpp:77` | `#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"` |
+| `src/pso/unk/text_803D8910.cpp:17` | `asm void vec3_add_to(register Vec *dst, register const Vec *src) {` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
 | `src/pso/unk/text_8042E8C4.cpp:28` | `asm void LaunchDol(register void* dol) {` |
 | `src/pso/unk/text_8042E8C4.cpp:29` | `#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"` |
@@ -119,6 +120,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.cpp:129` | `__cntlzw` |
 | `src/pso/ui/TAdSinglePlyChrSelectGC_802E13C8.cpp:174` | `__cntlzw` |
 | `src/pso/unk/text_802530D0.cpp:24` | `__cntlzw` |
+| `src/pso/unk/text_803D8910.cpp:100` | `__fres` |
+| `src/pso/unk/text_803D8910.cpp:100` | `__frsqrte` |
 | `src/pso/unk/text_803D8DE0.cpp:32` | `__frsqrte` |
 | `src/pso/unk/text_803D8DE0.cpp:76` | `__frsqrte` |
 | `src/pso/unk/text_803D8F74.cpp:24` | `__frsqrte` |
@@ -367,6 +370,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `pso/player/TPlyItem.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. The three TPlyItem walks (reduce_owner_matched_items, reduce_child_item_amounts, collect_owner_fields_recursive) stay byte-identical to the cast spelling. |
 | `pso/player/TObjPlayer_801D4CB8.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. destroy_subobjects_recursive's child load stays lwz r31,20(r3) and the sibling step stays lwz r31,12(r31). |
 | `pso/unk/text_803D8098.cpp` | `(multi-line entry; see configure.py)` | render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 / _restgpr_25, and its glyph quads are the inlined SDK FIFO writers (sth/stw to 0xCC008000), not calls. -inline on inlines only functions marked inline, so queue_debug_text stays a call from debug_printf_at. The matrix helpers in text_803D8910.cpp match under the ginja defaults. |
+| `pso/unk/text_803D8910.cpp` | `(multi-line entry; see configure.py)` | vec3_dot (0x803D89C0) and vec3_cross (0x803D8A18) are fmadds/fmsubs. Ginja defaults leave contraction off. With -fp_contract off those two score 64.5% and 44.76%; with -fp_contract on, 93.5% and 91.19%. vec3_add_to and the seven matrix helpers stay 100% either way. -inline on/auto/noauto/all leave the object byte-identical to -inline off; deferred and auto,deferred emit the C functions in reverse order. Precedent: dtk-template -fp_contract on (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) and Melee, TP, TWW, and Pikmin 2, which contract globally. |
 | `pso/misc/TKeyBoardControl_803F0C50.cpp` | `GC/1.2.5n` | Epilogue order (mtlr before the restores) only 1.2.5n produces. |
 | `pso/unk/text_803F1804.cpp` | `GC/1.2.5n` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/unk/text_803F4D84.cpp` | `-O2, -use_lmw_stmw off` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
