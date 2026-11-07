@@ -5,9 +5,9 @@
 #include "pso/system/GinjaTextureMatrices.h"
 #include "pso/player/TObjPlayer.h"
 #ifndef __MWERKS__
-// Host builds use the platform math header, as the SMS PC and TP ports do.
-// The MSL header is MWCC-only: its sqrt/sqrtf call __frsqrte.
-#include <math.h>
+// Host builds use the shared port fallbacks, following the SMS PC and TP
+// port compatibility pattern.
+#include "pso/port/VectorMathFallbacks.h"
 #endif
 
 // mtx.h defines MTXMultVecArray as this symbol but does not prototype it.
@@ -72,9 +72,7 @@ asm f32 vec3_dot(const Vec *a, const Vec *b) {
 #else
 // Scalar fallback: the same x, y, z accumulation order.
 f32 vec3_dot(const Vec *a, const Vec *b) {
-    f32 dot = a->x * b->x;
-    dot = a->y * b->y + dot;
-    return a->z * b->z + dot;
+    return pso::port::vec3_dot(a, b);
 }
 #endif
 }
@@ -100,21 +98,7 @@ asm f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
 // same cross-product length. The root is taken in the magnitude's double
 // range before narrowing, so large vectors do not saturate early.
 f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
-    f32 ax = a->x, ay = a->y, az = a->z;
-    f32 bx = b->x, by = b->y, bz = b->z;
-    f32 cx = by * az;
-    cx = bz * ay - cx;
-    f32 cy = bz * ax;
-    cy = bx * az - cy;
-    f32 cz = bx * ay;
-    cz = by * ax - cz;
-    out->x = cx;
-    out->y = cy;
-    out->z = cz;
-    f64 mag = cx * cx;
-    mag += (f64)cy * cy;
-    mag += (f64)cz * cz;
-    return (f32)sqrt((f64)mag);
+    return pso::port::vec3_cross(a, b, out);
 }
 #endif
 }
