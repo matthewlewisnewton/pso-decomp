@@ -1,3 +1,4 @@
+#include "pso/render/TriangleFan3D.h"
 #include "types.h"
 #include "pso/unk/text_80290D1C.h"
 #include "pso/player/TObjPlayer.h"
@@ -324,7 +325,7 @@ void draw_creation_ruler_lines(f32 farg0) {
     draw_line_list(&d, 0x10, 5);
     c = __cvt_fp2unsigned(64.0f * farg0) | 0x40400000 | 0x4000;
     creation_ruler_line_colors[0] = creation_ruler_line_colors[1] = c;
-    ((TObjPlayer *)&lbl_804DA98C)->draw_tri_fan_3d(4, 7);
+    draw_tri_fan_3d((TriangleFan3D *)&lbl_804DA98C, 4, 7); // NJS_POINT3COL shares the 0x10-byte TriangleFan3D layout
 }
 
 NJS_POINT3 lbl_804DA94C[4] = {
