@@ -1945,6 +1945,130 @@ inline s32 IsX_803E9FFC(u8 arg0) {
         return 0;
     }
 }
+// The search reports a failed download scan as all-ones in the result
+// register, which the callers test as a 32-bit word. See
+// docs/evidence/quest-download-search-evidence.md.
+#define QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED ((QuestDownloadSegment *)-1)
+// The quest download name character class. The original lowers this sparse
+// switch behind an explicit range guard at the head of the slot search.
+inline s32 IsNameChar_803E9A74(u8 c) {
+    if (c >= 0xA0) {
+        return 0;
+    }
+    switch (c) {
+    case 0x20:
+    case 0x21:
+    case 0x2C:
+    case 0x2E:
+    case 0x3A:
+    case 0x3B:
+    case 0x3F:
+    case 0x98:
+    case 0x9B:
+    case 0x9C:
+        return 1;
+    default:
+        return 0;
+    }
+}
+// Scan one slot's match-token chain for segments covering [beg, end). A
+// token names an item pair (a, b); lbl_8047F0F8 maps its displacement byte
+// to an offset into the download buffer, and the first-fill path above
+// covers the empty-slot single-byte case. The walk runs backwards by the
+// token's signed link count.
+QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 beg, s32 end, u8 a, u8 b) {
+    QuestDownloadMatchToken *t;
+    QuestDownloadSegment *result;
+    QuestDownloadSegment *seg;
+    QuestDownloadSegment *sub;
+    QuestDownloadSegment *walk;
+    s32 off;
+
+    result = NULL;
+    if (beg >= end) {
+        if (lbl_805D7888 < 3) {
+            return NULL;
+        }
+        return QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED;
+    }
+    if ((t = quest_download_slot_chain_table[beg].tokens) == (QuestDownloadMatchToken *)-1) {
+        return QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED;
+    }
+    if (t == NULL) {
+        if (IsNameChar_803E9A74(lbl_805A0470.bytes[beg]) != 0) {
+            if (a == 0 || TQuestVmDownLoadServer::is_valid_item_for_slot(a, b) != 0) {
+                seg = (QuestDownloadSegment *)TQuestVmDownLoadServer__sub_803ECF0C();
+                if (seg != NULL) {
+                    seg->off = 1;
+                    seg->a = 0xFF;
+                    seg->reserved_2[0] = 0xFF;
+                    seg->b = 0;
+                    seg->reserved_2[1] = 0;
+                    seg->next = NULL;
+                }
+                return seg;
+            }
+        }
+    }
+    while (t != NULL) {
+        if (TQuestVmDownLoadServer::is_valid_item_for_slot(t->a, t->b) == 0) {
+            goto advance;
+        }
+        if (a != 0) {
+            if (TQuestVmDownLoadServer__sub_803E7390(a, b, t->a) == 0) {
+                goto advance;
+            }
+        }
+        off = lbl_8047F0F8[t->off];
+        if (beg + off >= end || IsX_803E9FFC(lbl_805A0470.bytes[beg + off]) == 0) {
+            seg = (QuestDownloadSegment *)TQuestVmDownLoadServer__sub_803ECF0C();
+            if (seg != NULL) {
+                seg->off = (s16)off;
+                seg->reserved_2[0] = (seg->a = t->a);
+                seg->reserved_2[1] = (seg->b = t->b);
+                seg->next = result;
+                result = seg;
+            }
+        }
+advance:
+        if ((s8)t->d == 0) {
+            break;
+        }
+        t -= (s8)t->d;
+    }
+    t = quest_download_slot_chain_table[beg].tokens;
+    while (t != NULL) {
+        if (a != 0) {
+            if (TQuestVmDownLoadServer__sub_803E7390(a, b, t->a) == 0) {
+                goto advance2;
+            }
+        }
+        off = lbl_8047F0F8[t->off];
+        sub = TQuestVmDownLoadServer__sub_803E9A74(beg + off, end, t->a, t->b);
+        if ((u32)sub == 0xFFFFFFFFU) {
+            TQuestVmDownLoadServer__sub_803ECE5C(result);
+            return QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED;
+        }
+        if (sub != NULL) {
+            for (walk = sub; ; walk = walk->next) {
+                walk->off = walk->off + off;
+                walk->reserved_2[0] = t->a;
+                walk->reserved_2[1] = t->b;
+                if (walk->next == NULL) {
+                    break;
+                }
+            }
+            walk->next = result;
+            result = sub;
+        }
+advance2:
+        if ((s8)t->d == 0) {
+            break;
+        }
+        t -= (s8)t->d;
+    }
+    return result;
+}
 void *TQuestVmDownLoadServer__sub_803E9FFC(s32 arg0, s32 arg1, QuestDownloadItemNode *t) {
     s32 off;
     QuestDownloadEntryNode *head;
