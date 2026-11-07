@@ -230,7 +230,7 @@ s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
 
 void *__dt__24TShopEquipmentListWindowFv(TShopEquipmentListWindow *arg0, s16 arg1);
-s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
+TWindowMenu *create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 s32 align_menu_entry_positions(u32);
 void __dl__7TObjectFPv(void *);
 void *__dt__15TShopWindowBaseFv(void *self, s16 m);
@@ -380,7 +380,7 @@ s32 TShopEquipmentListWindow::open_menu_window() {
         forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_2c, (int)(get_shop_text(4)), 6, 0);
         forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_2c, (int)(get_shop_text(5)), 6, 1);
         ((TWindowSubComCard *)(this->m_2c))->calc_window_size();
-        align_menu_entry_positions(this->m_2c);
+        align_menu_entry_positions((u32)this->m_2c);
         ((TCheckRoomSequence *)(this->m_2c))->set_ready_flag();
         temp_f31 = get_scale__15TShopWindowBaseFv(this);
         ((TWindowAddition *)(this->m_2c))->set_position_xy(get_scale__15TShopWindowBaseFv(this), temp_f31);
