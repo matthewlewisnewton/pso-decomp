@@ -55,7 +55,12 @@ opcode `0xC1040004` (`lfs f8, 4(r4)`). The SDK `PSVECCrossProduct` is `void`,
 `psq_st`. Compiling that SDK body with GC/2.6 reproduces those 0x3C bytes.
 It does not compute a length or a reciprocal.
 
-Both stay the plain C in this file. That C is not byte-exact.
+Both are recovered as the original assembly bodies through the standard
+`orig_asm` mechanism (`tools/orig_asm.py`), not as a new asm exception. Each
+body is guarded by `#ifdef __MWERKS__`; the `#else` path is a scalar C/C++
+fallback with the same contract for ports. The C/C++ experiments below are
+retained because they establish why GC/2.6 cannot emit these two bodies from
+source; they are not the shipped GameCube definitions.
 
 `vec3_cross`'s tail is double `frsqrte`, then single `fres` of that register, with no `frsp`. `libs/dolphin/include/libc/math.h` `sqrtf` is a three-step Newton on `__frsqrte` (`extern inline`); under this unit's `-inline off` it is an out-of-line call plus `fdivs`, and the body is not `fres`. `1.0/__frsqrte`, `(f32)__frsqrte` then `__fres`, and `newton_sqrtf` all insert `frsp` or use `fdiv`. Call sites declare `vec3_cross` as `void` and ignore the return; the bytes still leave the reciprocal in `f1`.
 
@@ -68,6 +73,7 @@ The instruction order of `vec3_cross` is reachable. For a contracted `x * y - c`
 
 `vec3_dot` has no such lever. Its loads are each used once, so propagation folds every named local back into the expression. Of 34,608 combinations of declaration order, operand order and accumulator form, each scores 93.5%, 92.5%, 91.5% or 90.5%, set by operand order alone.
 
-The same tail is in `vector_length` (`0x803D8BD8`, `frsqrte` then `fres`), which main keeps as approved asm for that reason ([#356](https://github.com/matthewlewisnewton/pso-decomp/pull/356), [matrixvector-asm-kernels-evidence.md](matrixvector-asm-kernels-evidence.md)), and in `normalize_vector` (`0x803D97B4`, `frsqrte` feeding single `fmuls`), which is not C on main. Without an asm exception, `vec3_dot` and `vec3_cross` stay at the best C found: 93.5% and 91.19%.
+The same tail is in `vector_length` (`0x803D8BD8`, `frsqrte` then `fres`),
+which main keeps as approved asm for that reason ([#356](https://github.com/matthewlewisnewton/pso-decomp/pull/356), [matrixvector-asm-kernels-evidence.md](matrixvector-asm-kernels-evidence.md)), and in `normalize_vector` (`0x803D97B4`, `frsqrte` feeding single `fmuls`). All three original bodies are now recovered through `orig_asm`: `vec3_dot`, `vec3_cross` and `normalize_vector` in this change, with `vector_length` already on main. Each is guarded by `#ifdef __MWERKS__` and ships a scalar C/C++ fallback in the `#else` path: `vec3_dot` keeps the accumulation order, `vec3_cross` keeps the load order and mixed single/double length square but returns the exact length, and `normalize_vector` returns the exact length and scales by its reciprocal. The C++ forms above remain only as the record of the source-level barrier; the shipped GameCube functions are the original assembly, so `vec3_dot`, `vec3_cross` and `normalize_vector` are byte-exact rather than 93.5%, 91.19% and 89.33%.
 
 The register entry for `vec3_add_to` is in `docs/porting-exceptions.md`.

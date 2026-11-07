@@ -4,6 +4,9 @@
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/GinjaTextureMatrices.h"
 #include "pso/player/TObjPlayer.h"
+#ifndef __MWERKS__
+#include "libc/math.h"
+#endif
 
 // mtx.h defines MTXMultVecArray as this symbol but does not prototype it.
 extern "C" void PSMTXMultVecArray(const GC_Mtx m, const Vec *src, Vec *dst, u32 count);
@@ -56,13 +59,22 @@ void get_current_matrix(void *m) {
     PSMTXCopy((MtxP)src, (MtxP)m);
 }
 
-// 0x803D89C0. a->x * b->x, then y and z, contracted by the unit's -fp_contract on.
-// Not byte-exact: MWCC cannot emit the original's register assignment. See
-// docs/evidence/vec3-add-to-paired-single.md.
-extern "C" f32 vec3_dot(const Vec *a, const Vec *b) {
+// 0x803D89C0. The original body is assembly: six component registers with each
+// load immediately before its math op, which GC/2.6 cannot colour from C.
+// Recovered from the disc by tools/orig_asm.py.
+extern "C" {
+#ifdef __MWERKS__
+asm f32 vec3_dot(const Vec *a, const Vec *b) {
+#include "orig_asm/pso/unk/text_803D8910/vec3_dot.inc"
+}
+#else
+// Scalar fallback: the same x, y, z accumulation order.
+f32 vec3_dot(const Vec *a, const Vec *b) {
     f32 dot = a->x * b->x;
     dot = a->y * b->y + dot;
     return a->z * b->z + dot;
+}
+#endif
 }
 
 void TObjPlayer::invert_matrix_in_place(u32 arg0) {
@@ -72,32 +84,36 @@ void TObjPlayer::invert_matrix_in_place(u32 arg0) {
     PSMTXInverse((MtxP)arg0, (MtxP)arg0);
 }
 
-// 0x803D8A18. a × b into out; returns fres(frsqrte(len^2)), with the y/z
-// squares as double fmadds. Each component starts as the subtracted product
-// and is then reassigned, because a contracted b*a - c is evaluated after its
-// multiplicands unless c is computed in an earlier statement. Not byte-exact
-// for the same reason as vec3_dot, plus the frsp that __fres(float) requires.
-extern "C" f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
-    f32 bx, by, bz, ax, ay, az;
-    by = b->y;
-    az = a->z;
+// 0x803D8A18. The original body is assembly: its tail is a double frsqrte
+// feeding fres and single-precision fmuls with no frsp, which GC/2.6's typed
+// builtins cannot express. Recovered from the disc by tools/orig_asm.py.
+extern "C" {
+#ifdef __MWERKS__
+asm f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
+#include "orig_asm/pso/unk/text_803D8910/vec3_cross.inc"
+}
+#else
+// Scalar fallback. It keeps the original load order, the single-precision
+// first length-square product followed by double accumulates, and returns the
+// same cross-product length, but computes the root exactly.
+f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
+    f32 ax = a->x, ay = a->y, az = a->z;
+    f32 bx = b->x, by = b->y, bz = b->z;
     f32 cx = by * az;
-    ay = a->y;
-    bz = b->z;
     cx = bz * ay - cx;
-    ax = a->x;
     f32 cy = bz * ax;
-    bx = b->x;
     cy = bx * az - cy;
-    out->x = cx;
     f32 cz = bx * ay;
-    out->y = cy;
     cz = by * ax - cz;
-    f64 mag = cx * cx;
+    out->x = cx;
+    out->y = cy;
     out->z = cz;
+    f64 mag = cx * cx;
     mag += (f64)cy * cy;
     mag += (f64)cz * cz;
-    return __fres(__frsqrte(mag));
+    return sqrtf((f32)mag);
+}
+#endif
 }
 
 void rotate_matrix_zyx(void *m, s32 x, s32 y, s32 z) {

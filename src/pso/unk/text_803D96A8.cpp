@@ -6,6 +6,9 @@
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TLobby.h"
+#ifndef __MWERKS__
+#include "libc/math.h"
+#endif
 
 struct Q_803D98E4 { f32 x, y, z, w; };
 
@@ -87,6 +90,31 @@ void TCameraCtrl::concat_matrix(u32 arg0, u32 arg1) {
     PSMTXConcat((const f32 (*)[4])var_r4, (const f32 (*)[4])elements, (MtxP)elements);
 }
 #pragma pop
+
+// 0x803D97B4. The original body is assembly: one unconverted double frsqrte
+// estimate feeds the component fmuls and the fres return with no frsp, which
+// GC/2.6's typed builtins cannot express. Recovered from the disc by
+// tools/orig_asm.py.
+#ifdef __MWERKS__
+asm f32 normalize_vector(Vec *v) {
+#include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"
+}
+#else
+// Scalar fallback: the same accumulator split, component scaling and returned
+// length. fres(frsqrte(sum)) estimates the length, so the port returns the
+// exact length and scales by its reciprocal.
+f32 normalize_vector(Vec *v) {
+    f32 x = v->x, y = v->y, z = v->z;
+    f32 acc = x * x;
+    acc = y * y + acc;
+    f32 sum = z * z + acc;
+    f32 inv = 1.0f / sqrtf(sum);
+    v->x = inv * x;
+    v->y = inv * y;
+    v->z = inv * z;
+    return sqrtf(sum);
+}
+#endif
 
 #pragma push
 #pragma scheduling off

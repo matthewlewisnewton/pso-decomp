@@ -68,8 +68,9 @@ two-`fmadds` shape and 93.5% at `-fp_contract on`.
 The survey found **no untried source idiom with credible register-allocation
 evidence**. More permutations of declarations or operand order would repeat
 the exhaustive local search, not test a new hypothesis. The peer examples
-support retaining the plain C body; they do not support paired-single asm,
-an unapproved optimization pragma, or a claim of exactness.
+support the arithmetic shape of the plain C body; they do not reproduce PSO's
+registers. `vec3_dot` is therefore shipped as the original assembly leaf
+through `orig_asm`, with the plain C body kept as the non-MWCC fallback.
 
 ### `vec3_cross`
 
@@ -85,13 +86,19 @@ The return tail is independent evidence. The surveyed C implementations use
 sequence. PSO instead emits double `frsqrte` immediately followed by single
 `fres`. With this compiler's `double __frsqrte(double)` and
 `float __fres(float)` declarations, plain C inserts `frsp`. None of the
-surveyed idioms removes that conversion.
+surveyed idioms removes that conversion. `vec3_cross` is therefore shipped
+as the original assembly leaf, with the retained C body as the non-MWCC
+fallback.
 
 ## Recommendation
 
-Keep #128 parked as draft with the existing plain-C `vec3_dot` and
-`vec3_cross`. Do not copy another project's source form merely because its
-mathematics is equivalent, and do not infer an SDK-asm exception from a
-similarly named operation. A future exact-C attempt needs new evidence
-about this MWCC version's allocation/emission behavior, not another generic
-vector implementation. The existing `vec3_add_to` exception is unchanged.
+`vec3_dot`, `vec3_cross` and `normalize_vector` are recovered as original
+assembly leaves through the standard `orig_asm` mechanism, with scalar C/C++
+fallbacks for ports; see [`vec3-add-to-paired-single.md`](vec3-add-to-paired-single.md).
+This survey remains the evidence for why GC/2.6 cannot produce those bodies
+from C. Do not copy another project's source form merely because its
+mathematics is equivalent, and do not infer an SDK paired-single exception
+from a similarly named operation. A future exact-C attempt would need new
+evidence about this MWCC version's allocation/emission behavior, not another
+generic vector implementation. The existing `vec3_add_to` exception is
+unchanged.
