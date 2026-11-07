@@ -5,7 +5,9 @@
 #include "pso/system/GinjaTextureMatrices.h"
 #include "pso/player/TObjPlayer.h"
 #ifndef __MWERKS__
-#include "libc/math.h"
+// Host builds use the platform math header, as the SMS PC and TP ports do.
+// The MSL header is MWCC-only: its sqrt/sqrtf call __frsqrte.
+#include <math.h>
 #endif
 
 // mtx.h defines MTXMultVecArray as this symbol but does not prototype it.
@@ -95,7 +97,8 @@ asm f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
 #else
 // Scalar fallback. It keeps the original load order, the single-precision
 // first length-square product followed by double accumulates, and returns the
-// same cross-product length, but computes the root exactly.
+// same cross-product length. The root is taken in the magnitude's double
+// range before narrowing, so large vectors do not saturate early.
 f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
     f32 ax = a->x, ay = a->y, az = a->z;
     f32 bx = b->x, by = b->y, bz = b->z;
@@ -111,7 +114,7 @@ f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
     f64 mag = cx * cx;
     mag += (f64)cy * cy;
     mag += (f64)cz * cz;
-    return sqrtf((f32)mag);
+    return (f32)sqrt((f64)mag);
 }
 #endif
 }

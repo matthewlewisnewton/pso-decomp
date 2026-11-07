@@ -7,7 +7,9 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TLobby.h"
 #ifndef __MWERKS__
-#include "libc/math.h"
+// Host builds use the platform math header, as the SMS PC and TP ports do.
+// The MSL header is MWCC-only: its sqrt/sqrtf call __frsqrte.
+#include <math.h>
 #endif
 
 struct Q_803D98E4 { f32 x, y, z, w; };
