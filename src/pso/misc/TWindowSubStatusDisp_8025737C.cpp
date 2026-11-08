@@ -1,3 +1,4 @@
+#include "pso/render/ColorCopy.h"
 #include "pso/system/SoundSlotPitch.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -191,7 +192,7 @@ void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time) {
         arg0->tr = c.r;
         arg0->tg = c.g;
         arg0->tb = c.b;
-        fn_80257720(&c, &arg0->col);
+        copy_color_bytes(&c, &arg0->col);
         time = 1.0f / time;
         arg0->cr = c.r;
         arg0->cg = c.g;
@@ -206,17 +207,16 @@ void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time) {
 }
 
 #pragma push
-#pragma scheduling off // preserves the native load/store order
-void fn_80257720(void *destination, const void *source) {
-    *(u8 *)destination = *(const u8 *)((const char *)source + 0);
-    *(u8 *)((char *)destination + 1) = *(const u8 *)((const char *)source + 1);
-    *(u8 *)((char *)destination + 2) = *(const u8 *)((const char *)source + 2);
-    *(u8 *)((char *)destination + 3) = *(const u8 *)((const char *)source + 3);
+#pragma scheduling off
+void copy_color_bytes(void *destination, const void *source) {
+    u8 *dst = (u8 *)destination;
+    const u8 *src = (const u8 *)source;
+    dst[0] = src[0]; dst[1] = src[1]; dst[2] = src[2]; dst[3] = src[3];
 }
+
 #pragma pop
 
 extern "C" {
-
 void TWindowSubStatusDisp::update_disp_value() {
     calc_bar_width__13TUnk_804CF930Fv();
     *(s16 *)((s8 *)this + 0x28) = (s16) *(f32 *)&this->m_24;

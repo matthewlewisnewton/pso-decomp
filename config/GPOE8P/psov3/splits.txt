@@ -88,7 +88,7 @@ pso/unk/text_8001B424.cpp:
 
 pso/ui/TAdRicoRingCtrl_8001B4A0.cpp:
 	.text       start:0x8001B4A0 end:0x8001BAC8
-	.data       start:0x80480A40 end:0x80480A58
+	.data       start:0x804809D0 end:0x80480A58
 
 pso/menu/TAdRicoRing.cpp:
 	.text       start:0x8001BAC8 end:0x8001BE00
@@ -2011,10 +2011,14 @@ pso/enemy/TObjEneRe4Bit.cpp:
 	.bss        start:0x80501050 end:0x80501070
 
 pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp:
-	.text       start:0x800EDB98 end:0x800F0810
+	.text       start:0x800EDB98 end:0x800F05A0
 	.rodata     start:0x8043D410 end:0x8043D418
 	.data       start:0x80496EE0 end:0x804971BC
 	.sdata2     start:0x805DA788 end:0x805DA7F0
+
+pso/enemy/AreaSoundRemap.cpp:
+	.text       start:0x800F05A0 end:0x800F0810
+	.data       start:0x804971C0 end:0x804976B0
 
 pso/player/TObjPlayer_800F0810.cpp:
 	.text       start:0x800F0810 end:0x800F0AE4
@@ -11172,6 +11176,7 @@ pso/unk/text_80320358.cpp:
 
 pso/boss/TBoss6Zanzo.cpp:
 	.text       start:0x803204B0 end:0x80320AE0
+	.rodata     start:0x80476470 end:0x80476480
 	.data       start:0x804EC968 end:0x804EC980
 
 pso/boss/TBoss6Type1_80320AE0.cpp:

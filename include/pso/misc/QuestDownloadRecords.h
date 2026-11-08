@@ -8,6 +8,15 @@ struct QuestDownloadTextNode;
 struct QuestDownloadEntryNode;
 struct QuestDownloadItemNode;
 
+// Dictionary record stored through slot+0. The same word is all-ones until
+// the producer writes the pointer; reset stores that status as an integer.
+struct QuestDownloadMatchToken {
+    u8 a;
+    u8 b;
+    u8 off;
+    u8 d;
+};
+
 // Source records are the distinct sixteen-byte item objects produced by CF84.
 // The four-byte slot+0 match tokens are a separate format.
 struct QuestDownloadEntryPrefix {
@@ -72,7 +81,10 @@ struct QuestDownloadQueueNode {
 };
 
 struct QuestDownloadSlot {
-    void *tokens;
+    union {
+        u32 status;
+        QuestDownloadMatchToken *tokens;
+    };
     QuestDownloadItemNode *items;
     QuestDownloadEntryNode *entryHead;
     QuestDownloadTextNode *textHead;
@@ -100,7 +112,10 @@ QUEST_RECORD_CHECK(QuestText_source_offset, offsetof(QuestDownloadTextNode, payl
 QUEST_RECORD_CHECK(QuestSegment_extent, sizeof(QuestDownloadSegment) == 0xC);
 QUEST_RECORD_CHECK(QuestItem_extent, sizeof(QuestDownloadItemNode) == 0x10);
 QUEST_RECORD_CHECK(QuestQueue_extent, sizeof(QuestDownloadQueueNode) == 0x10);
+QUEST_RECORD_CHECK(QuestToken_extent, sizeof(QuestDownloadMatchToken) == 4);
 QUEST_RECORD_CHECK(QuestSlot_extent, sizeof(QuestDownloadSlot) == 0x1C);
+QUEST_RECORD_CHECK(QuestSlot_status_offset, offsetof(QuestDownloadSlot, status) == 0);
+QUEST_RECORD_CHECK(QuestSlot_tokens_offset, offsetof(QuestDownloadSlot, tokens) == 0);
 QUEST_RECORD_CHECK(QuestSlot_entry_offset, offsetof(QuestDownloadSlot, entryHead) == 8);
 QUEST_RECORD_CHECK(QuestSlot_text_offset, offsetof(QuestDownloadSlot, textHead) == 0xC);
 #undef QUEST_RECORD_CHECK
