@@ -102,7 +102,7 @@ void run_task__20TWindowShortListCtrlFv(TWindowShortListCtrl *arg0);
 extern const Buf_8026E884 lbl_8044F5A8;
 void TWindowShortListCtrl__sub_8026E884(s16 *dst);
 void *__dt__20TWindowShortListCtrlFv(TWindowShortListCtrl *arg0, s16 arg1);
-s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
+TWindowMenu *create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 s32 end_player_keyboard_hold(s32);
 s32 TWindowCtrl__sub_8024A1A8();
 s32 has_player_active_menu__11TWindowCtrlFv(s32);

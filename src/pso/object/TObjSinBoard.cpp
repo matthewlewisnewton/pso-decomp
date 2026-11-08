@@ -1,3 +1,4 @@
+#include "pso/render/TriangleFan3D.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -53,11 +54,10 @@ struct RecoveredGlobal_80198228___vt__12TObjSinBoard {
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-struct Pos_8019806C { u32 w[12]; };
+struct Pos_8019806C { Vec points[4]; };
 
-struct Uv_8019806C { u32 w[4]; };
+struct Uv_8019806C { u32 colors[4]; };
 
-struct Desc_8019806C { Pos_8019806C *pos; Uv_8019806C *uv; s16 *col; s32 count; };
 
 struct Vec_80198504 { f32 x, y, z; };
 
@@ -92,22 +92,22 @@ void TObjSinBoard::render() {
     u8 *arg0 = (u8 *)this;
     Pos_8019806C pos;
     Uv_8019806C uv;
-    Desc_8019806C d;
-    s16 col[8];
+    TriangleFan3D d;
+    TriangleFan3DUV col[4];
     if (TMainTask::get_render_pass() != 1 && TObjSinBoard__texture_buffer != 0) {
         pos = TObjSinBoard__quad_position_table;
         uv = sin_board_uv_table;
-        col[0] = 0;
-        col[1] = 0;
-        col[2] = 0;
-        col[3] = 0xFF;
-        col[4] = 0xFF;
-        col[5] = 0xFF;
-        col[6] = 0xFF;
-        col[7] = 0;
-        d.pos = &pos;
-        d.uv = &uv;
-        d.col = col;
+        col[0].u = 0;
+        col[0].v = 0;
+        col[1].u = 0;
+        col[1].v = 0xFF;
+        col[2].u = 0xFF;
+        col[2].v = 0xFF;
+        col[3].u = 0xFF;
+        col[3].v = 0;
+        d.positions = pos.points;
+        d.colors = uv.colors;
+        d.uvs = col;
         d.count = 4;
         set_default_alpha_blend();
         set_current_texture_list((GinjaTextureList *)(signboard_texture_list));
@@ -119,7 +119,7 @@ void TObjSinBoard::render() {
         rotate_matrix_x(0, *(s32 *)(arg0 + 0x5C));
         rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
         scale_matrix(0, *(f32 *)(arg0 + 0x68), *(f32 *)(arg0 + 0x6C), *(f32 *)(arg0 + 0x70));
-        ((TObjPlayer *)(&d))->draw_tri_fan_3d(4, 0xE);
+        draw_tri_fan_3d(&d, 4, 0xE);
         pop_matrix();
         TParticleCtrl::end_effect_render();
     }

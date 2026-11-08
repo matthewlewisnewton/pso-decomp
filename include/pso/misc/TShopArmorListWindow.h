@@ -5,6 +5,8 @@
 #include "pso/TShopWindowBase.h"
 #include "pso/misc/TWindowMenuIconLine.h"
 
+struct TWindowMenu;
+
 struct TShopArmorListWindow : public TShopWindowBase {
     virtual ~TShopArmorListWindow();
     virtual void vfunc_11();
@@ -15,7 +17,7 @@ struct TShopArmorListWindow : public TShopWindowBase {
     u32 m_24;
     u32 m_28;
     u32 m_2c;
-    u32 m_30;
+    TWindowMenu *m_30;
     u32 m_34;
     u32 m_38;
     u32 m_3c;

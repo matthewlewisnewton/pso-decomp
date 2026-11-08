@@ -294,6 +294,7 @@ pso/boss/TBoss6Type2_80336E6C.cpp
 pso/boss/TBoss6Type2_80356E50.cpp
 pso/boss/TBoss6Type2_8036A92C.cpp
 pso/boss/TBoss6Type2_8036DC80.cpp
+pso/boss/TBoss6Zanzo.cpp
 pso/boss/TBoss7Crawfish.cpp
 pso/boss/TBoss7Crawfish_80308C10.cpp
 pso/boss/TBoss7Crawfish_80308C84.cpp
@@ -332,6 +333,7 @@ pso/boss/TBoss8Dragon_802F3EE4.cpp
 pso/boss/TBoss8Dragon_802F3F20.cpp
 pso/boss/TBoss8Dragon_802F42A0.cpp
 pso/boss/TBoss8Dragon_802F4324.cpp
+pso/boss/TBoss8Dragon_802F4380.cpp
 pso/boss/TBoss8Dragon_802F4480.cpp
 pso/boss/TBoss8Dragon_802FDDD4.cpp
 pso/boss/TBoss8Dragon_80324D3C.cpp
@@ -403,6 +405,7 @@ pso/effect/TEffect.cpp
 pso/effect/TUnk_804CCC68.cpp
 pso/encryption/PSOV3Encryption.cpp
 pso/encryption/PSOV3EncryptionTCP.cpp
+pso/enemy/AreaSoundRemap.cpp
 pso/enemy/BringerEffects.cpp
 pso/enemy/CanadinEffects.cpp
 pso/enemy/DarkGunner.cpp
@@ -1558,6 +1561,7 @@ pso/misc/TShopGetItemWindow.cpp
 pso/misc/TShopGetItemWindow_8021EEE4.cpp
 pso/misc/TShopGetItemWindow_8021F074.cpp
 pso/misc/TShopGetItemWindow_8021F0A4.cpp
+pso/misc/TShopItemListWindow.cpp
 pso/misc/TShopItemTecSequence.cpp
 pso/misc/TShopJudgmentItemWindow.cpp
 pso/misc/TShopJudgmentItemWindow_8026DF00.cpp
@@ -3235,6 +3239,7 @@ pso/unk/text_8020AB50.cpp
 pso/unk/text_8020AD40.cpp
 pso/unk/text_8020B374.cpp
 pso/unk/text_8020B47C.cpp
+pso/unk/text_8020B5CC.cpp
 pso/unk/text_8020BC50.cpp
 pso/unk/text_8020BFE4.cpp
 pso/unk/text_8020C354.cpp
@@ -3557,10 +3562,9 @@ pso/unk/text_803E4D8C.cpp
 pso/unk/text_803F1804.cpp
 pso/unk/text_803F4D10.cpp
 pso/unk/text_803F4D84.cpp
+pso/unk/text_8042E8C4.cpp
 pso/unk/text_8042EAD4.cpp
 pso/unk/text_8042EE4C.cpp
 si/SIBios.c
 si/SISamplingRate.c
 vi/vi.c
-pso/unk/text_8042E8C4.cpp
-pso/boss/TBoss8Dragon_802F4380.cpp

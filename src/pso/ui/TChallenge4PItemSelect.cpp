@@ -38,7 +38,7 @@ extern RecoveredGlobal_8034B158_lbl_804F00C8 TChallenge4PItemSelect__item_table;
 
 extern "C" {
 
-u32 create_window_menu(s32, s32, s32);
+TWindowMenu *create_window_menu(s32, s32, s32);
 s32 TWindowSubComCard__sub_80265500(u32);
 s32 get_window_layout_position(s32);
 s32 fn_8034BE30(TChallenge4PResult *);
@@ -442,7 +442,7 @@ void TChallenge4PItemSelect::open_menu() {
     waitFrames = temp_r0;
     if (temp_r0 <= 0) {
         temp_r30 = fn_8034BE30(result);
-        (u32 &)menu_window = create_window_menu(get_window_layout_position(0x42), 8, temp_r30);
+        menu_window = create_window_menu(get_window_layout_position(0x42), 8, temp_r30);
         if ((u32) (u32 &)menu_window != 0U) {
             var_r29 = 0;
             do {
