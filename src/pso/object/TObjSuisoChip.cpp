@@ -474,10 +474,10 @@ void TObjSeabedSuisoBrakable::vfunc_16() {
     params.pad_0[0] = 0.35f;
     params.pad_0[1] = 0.07f;
     params.pad_0[2] = 0.54f;
-    VecCopy((Vec *)params.pos, &position);
-    params.pad_18[0] = 2.5f;
-    params.pad_18[1] = 4.0f;
-    params.pad_18[2] = 2.5f;
+    VecCopy(&params.pos, &position);
+    params.pad_18.x = 2.5f;
+    params.pad_18.y = 4.0f;
+    params.pad_18.z = 2.5f;
     params.pad_24[0] = 0x200;
     params.pad_24[1] = 0x150;
     params.pad_24[2] = 0x200;
@@ -492,9 +492,9 @@ void TObjSeabedSuisoBrakable::vfunc_16() {
     for (i = 0; i < 17; i++, piece++) {
         if (piece->model >= 0) {
             params.model = (s32)get_model(piece->model);
-            params.pos[0] = piece->pos.x;
-            params.pos[1] = piece->pos.y;
-            params.pos[2] = piece->pos.z;
+            params.pos.x = piece->pos.x;
+            params.pos.y = piece->pos.y;
+            params.pos.z = piece->pos.z;
             new TObjSuisoChip(this, &params);
         }
     }

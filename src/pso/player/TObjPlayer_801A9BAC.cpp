@@ -3,6 +3,7 @@
 #include "pso/unk/TUnk_804C349C.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/PhotonBlastSummon.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
 
 extern "C" {
 
@@ -17,7 +18,6 @@ typedef struct SA9_801a9bac {
 
 s32 deliver_photon_blast_results_delayed(void *);
 s32 step_photon_blast_sequence(void *);
-void *get_player_by_client_id(s32 i);
 
 void TUnk_804C349C::update_and_destroy() {
     SA9_801a9bac *self = (SA9_801a9bac *)this;
@@ -47,8 +47,8 @@ void TUnk_804C349C::update_and_destroy() {
 }
 
 void TUnk_804C349C::run_task() {
-    this->m_38 = (s32)get_player_by_client_id(*(u16 *)((s8 *)this + 0x3C));
-    if ((s32) this->m_4c != 0) {
+    this->owner = get_player_by_client_id(this->owner_client_id);
+    if (this->animated != 0) {
         step_photon_blast_sequence(this);
         return;
     }

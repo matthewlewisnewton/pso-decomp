@@ -1,3 +1,4 @@
+#include "pso/render/ColorCopy.h"
 #include "pso/TAdPlyChrSelPlateGC.h"
 
 TAdPlyChrSelPlateGC::~TAdPlyChrSelPlateGC() {}
@@ -43,7 +44,7 @@ S_802C5040 *__ct__19TAdPlyChrSelPlateGCFv(S_802C5040 *arg0, s32 arg1, Arg_802C50
         arg0->c[i].b[3] = 0;
     }
     ((TWindowSubSymbolChatPartsSet *)((u8 *)arg0 + 0x21C))->copy_vec2(arg2);
-    fn_80257720((u8 *)arg0 + 0x3A8, (u8 *)arg2 + 8);
+    copy_color_bytes((u8 *)arg0 + 0x3A8, (u8 *)arg2 + 8);
     return arg0;
 }
 }

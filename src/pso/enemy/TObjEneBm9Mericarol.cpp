@@ -725,7 +725,7 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     ((TObjEneDD *)self)->transform_part_positions();
     self->f326 = 0;
     ((VObj18_802D0D3C *)self)->m85(self->f326, 4);
-    ((TObjEnemy *)self)->sub_8002AE64();
+    ((TObjMotion *)self)->sub_8002AE64();
     for (i = 0; i < 4; i++) {
         ((RenderFadeState *)(self->a3C8[i]))->activate_and_dispatch();
     }

@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/boss/TObjBoss5Pillar.h"
 #include "pso/boss/TBoss8Dragon.h"
+#include "pso/boss/TBoss8Dragon_80067034.h"
 #include "pso/boss/TObjBoss5PillarCtrl.h"
 
 extern "C" {
@@ -30,10 +31,10 @@ void TBoss8Dragon__sub_8028B0DC(Pc_8028B0DC *arg0, void *arg1, void *arg2) {
     s32 i;
 
     n = lbl_805D4DD8->owner->list;
-    off = ((TBoss8Dragon *)arg2)->calc_sq_offset(lbl_805DD910);
+    off = calc_sq_offset((EffectGeometryParameters *)arg2, lbl_805DD910);
     n = n->head;
     for (i = 0; i < arg0->count; i++) {
-        if (arg0->a[i] != NULL && ((TBoss8Dragon *)arg1)->is_within_xz_distance((u8 *)n, (f32)off) != 0) {
+        if (arg0->a[i] != NULL && is_within_xz_distance((Vec *)arg1, (XzSwitchNode *)n, off) != 0) {
             ((TObjBoss5PillarCtrl *)(arg0->a[i]))->play_sound_once();
         }
         n = n->next;

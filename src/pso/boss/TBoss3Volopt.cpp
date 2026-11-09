@@ -80,7 +80,7 @@ u16 get_entity_id(void *object);
 void obj_setFlags30(void *object, s32 flags);
 u16 TObjRoomId__sub_801A1DB8(u16 id);
 void TObjPlayer__sub_801BA42C(void);
-extern s32 door_vo_ship_class_name;
+extern const char *door_vo_ship_class_name;
 extern s32 local_client_id;
 extern s32 lbl_805D5868;
 extern s32 registered_player_count;
@@ -279,8 +279,8 @@ void TObject::pause_update() {
     m_flags |= PAUSE_UPDATE;
 }
 
-BOOL TUnk_804B6C24::check_value_equals(s32 name) {
-    return (s32)m_name == name;
+BOOL TObject::check_value_equals(const char *name) {
+    return m_name == name;
 }
 
 void clear_volopt_cage_flag() {
@@ -1332,8 +1332,8 @@ void TBoss3Volopt::push_actors_out(s32 phase2) {
         actor = TObjPlayer::get_player_data(i);
         if (actor == NULL) continue;
         if (actor->bodies == NULL) continue;
-        if (((TUnk_804B6C24 *)actor)->check_value_equals((s32)TOCapsuleAncient01::class_name) != 0) continue;
-        if (((TUnk_804B6C24 *)actor)->check_value_equals(door_vo_ship_class_name) != 0) continue;
+        if (actor->check_value_equals(TOCapsuleAncient01::class_name) != 0) continue;
+        if (actor->check_value_equals(door_vo_ship_class_name) != 0) continue;
         if (!(actor->bodies->flags & 0x20000)) continue;
         if (fabs_float(actor->position.z - center_z) > 1000.0f) {
             Vec pos = *&actor->position;

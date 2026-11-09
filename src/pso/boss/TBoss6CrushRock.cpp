@@ -14,7 +14,7 @@ struct RecoveredGlobal_8035A1A4___vt__15TBoss6CrushRock {
     u8 remaining[0x14];
 };
 
-struct Vec_8035A460 { f32 x, y, z; };
+#include "pso/system/vector.h"
 
 extern "C" {
 s32 get_bml_model(int, void *);
@@ -56,7 +56,7 @@ u8 *__ct__15TBoss6CrushRockFv(u8 *object, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma push
 #pragma fp_contract on
-void TBoss6Rock::spawn_crush_rocks(s32 kind) {
+void TBoss6Rock::spawn_crush_rocks(Vec *point, s32 kind) {
     f32 radius;
     s32 base;
     s32 n;
@@ -66,7 +66,7 @@ void TBoss6Rock::spawn_crush_rocks(s32 kind) {
     if (TBoss6CrushRock::is_falz_alive() == 0) {
         return;
     }
-    ((TBoss6CrushPtcl *)this)->create();
+    TBoss6CrushPtcl::create(point);
     radius = 7.5f;
     base = 5;
     n = 2;
@@ -84,14 +84,14 @@ void TBoss6Rock::spawn_crush_rocks(s32 kind) {
     }
     for (i = 0; i < 0x12 / n; i++) {
         for (j = 0; j < n; j++) {
-            Vec_8035A460 p = *((Vec_8035A460 *)this);
+            Vec p = *point;
             s32 angle = (s32)(65535.0f * (0.000030517578f * (f32)rand()));
             p.x += radius * sin_table_lookup(angle);
             p.y += 35.0f * (0.000030517578f * (f32)rand());
             p.z += radius * cos_table_lookup(angle);
             u8 *o = (u8 *)__nw__7TObjectFUl(0x54);
             if (o != NULL) {
-                ((u8 *(*)(u8 *, s32, Vec_8035A460 *, s32))__ct__15TBoss6CrushRockFv)(o, tl_02, &p, base + j);
+                ((u8 *(*)(u8 *, s32, Vec *, s32))__ct__15TBoss6CrushRockFv)(o, tl_02, &p, base + j);
             }
         }
     }

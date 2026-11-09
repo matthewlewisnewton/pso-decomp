@@ -404,11 +404,9 @@ void debug_printf_at(s32 id, const char *fmt, ...);
 extern const f32 lbl_805DBCF8;
 u32 init_collision_body_parts(void *, void *, s32);
 
-u8 *load_gvm_texture_file(s32 arg0);
 s32 get_current_floor();
 extern s32 local_client_id;
 extern const f32 lbl_805DBCF4;
-void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 u8 *__ct__8TObjChipFP7TObjectP14TObjChipParams(u8 *arg0, u8 *arg1, u8 *arg2);
 s32 dispatch_fish_event__6TLobbyFPv(void *a0);
 void *__nw__7TObjectFUl(int);
@@ -572,9 +570,9 @@ void TObjContainerAbeEnemy__vt77(const Obj_8018860C *self) {
         xa = self->pos.x;
         ya = self->pos.y;
         za = self->pos.z;
-        a.pos[0] = xa;
-        a.pos[1] = ya;
-        a.pos[2] = za;
+        a.pos.x = xa;
+        a.pos.y = ya;
+        a.pos.z = za;
         a.pad_38[0] = ya;
         a.model = dispatch_fish_event__6TLobbyFPv((void *)0);
         a.textures = lbl_805D5B8C;
@@ -585,9 +583,9 @@ void TObjContainerAbeEnemy__vt77(const Obj_8018860C *self) {
         xb = self->pos.x;
         yb = self->pos.y;
         zb = self->pos.z;
-        b.pos[0] = xb;
-        b.pos[1] = yb;
-        b.pos[2] = zb;
+        b.pos.x = xb;
+        b.pos.y = yb;
+        b.pos.z = zb;
         b.pad_38[0] = yb;
         b.model = dispatch_fish_event__6TLobbyFPv((void *)1);
         b.textures = lbl_805D5B8C;
@@ -734,9 +732,9 @@ void TObjContainerBase__vt77(const Obj_80188B3C *self) {
     xa = self->x;
     ya = self->y;
     za = self->z;
-    a.pos[0] = xa;
-    a.pos[1] = ya;
-    a.pos[2] = za;
+    a.pos.x = xa;
+    a.pos.y = ya;
+    a.pos.z = za;
     a.pad_38[0] = ya;
     a.model = dispatch_fish_event__6TLobbyFPv((void *)0);
     a.textures = lbl_805D5B8C;
@@ -747,9 +745,9 @@ void TObjContainerBase__vt77(const Obj_80188B3C *self) {
     xb = self->x;
     yb = self->y;
     zb = self->z;
-    b.pos[0] = xb;
-    b.pos[1] = yb;
-    b.pos[2] = zb;
+    b.pos.x = xb;
+    b.pos.y = yb;
+    b.pos.z = zb;
     b.pad_38[0] = yb;
     b.model = dispatch_fish_event__6TLobbyFPv((void *)1);
     b.textures = lbl_805D5B8C;
@@ -863,11 +861,11 @@ void TObjContainerNoItem::vfunc_79() {
     if (this->mode != 1) {
         TObjChipParams a = *lbl_805D5B80;
         TObjChipParams b = *lbl_805D5B84;
-        VecCopy((Vec *)a.pos, (const Vec *)&self->x);
+        VecCopy(&a.pos, (const Vec *)&self->x);
         a.pad_38[0] = self->y;
         a.model = get_container_param(2);
         a.textures = lbl_805D5B7C;
-        VecCopy((Vec *)b.pos, (const Vec *)&self->x);
+        VecCopy(&b.pos, (const Vec *)&self->x);
         b.pad_38[0] = self->y;
         b.model = get_container_param(0);
         b.textures = lbl_805D5B7C;
@@ -1005,11 +1003,11 @@ void TObjContainerEnemy::vfunc_79() {
     if (this->mode != 1) {
         TObjChipParams a = *lbl_805D5B80;
         TObjChipParams b = *lbl_805D5B84;
-        VecCopy((Vec *)a.pos, (const Vec *)&self->x);
+        VecCopy(&a.pos, (const Vec *)&self->x);
         a.pad_38[0] = self->y;
         a.model = get_container_param(2);
         a.textures = lbl_805D5B7C;
-        VecCopy((Vec *)b.pos, (const Vec *)&self->x);
+        VecCopy(&b.pos, (const Vec *)&self->x);
         b.pad_38[0] = self->y;
         b.model = get_container_param(0);
         b.textures = lbl_805D5B7C;
@@ -1158,11 +1156,11 @@ void TObjContainerItem::vfunc_79() {
     if (this->mode != 1) {
         TObjChipParams a = *lbl_805D5B80;
         TObjChipParams b = *lbl_805D5B84;
-        VecCopy((Vec *)a.pos, (const Vec *)&self->x);
+        VecCopy(&a.pos, (const Vec *)&self->x);
         a.pad_38[0] = self->y;
         a.model = get_container_param(2);
         a.textures = lbl_805D5B7C;
-        VecCopy((Vec *)b.pos, (const Vec *)&self->x);
+        VecCopy(&b.pos, (const Vec *)&self->x);
         b.pad_38[0] = self->y;
         b.model = get_container_param(0);
         b.textures = lbl_805D5B7C;
@@ -1554,13 +1552,13 @@ void TLobby::load_console_resources() {
     case AREA_OLGA_FLOW:
         p = new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_seabed_con_rare_resource_descriptor), 0, 0, (void *)0);
         container_breakup_model_archive = (BmlResource *)p;
-        lbl_805D5B8C = (u32)load_gvm_texture_file((s32)seabed_rare_console_texture_filename);
+        lbl_805D5B8C = (u32)load_gvm_texture_file(seabed_rare_console_texture_filename);
         break;
     case AREA_GAL_GRYPHON:
     default:
         p = new BmlResource(5, (BmlResourceDescriptor *)(&fe_obj_con_hahen1_resource_descriptor), 0, 0, (void *)0);
         container_breakup_model_archive = (BmlResource *)p;
-        lbl_805D5B8C = (u32)load_gvm_texture_file((s32)lbl_80444F48);
+        lbl_805D5B8C = (u32)load_gvm_texture_file(lbl_80444F48);
         break;
     }
 }
@@ -1592,7 +1590,7 @@ void load_forest_box_resources(void) {
     case AREA_OLGA_FLOW:
         bundle = new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_seabed_con_resource_descriptor), 0, 0, (void *)0);
         lbl_805D5B78 = (BmlResource *)bundle;
-        lbl_805D5B7C = (s32)load_gvm_texture_file((s32)lbl_80444F58);
+        lbl_805D5B7C = (s32)load_gvm_texture_file(lbl_80444F58);
         lbl_805D5B80 = &forest_box_break_params[2];
         lbl_805D5B84 = &forest_box_break_params[3];
         node = (u32 *)find_object_node((get_bml_model(lbl_805D5B78, 1)), 2);
@@ -1603,7 +1601,7 @@ void load_forest_box_resources(void) {
     default:
         bundle = new BmlResource(5, (BmlResourceDescriptor *)(&fe_obj_hako01_hahen02_resource_descriptor), 0, 0, (void *)0);
         lbl_805D5B78 = (BmlResource *)bundle;
-        lbl_805D5B7C = TLobby::is_online_ready() != 0 ? (s32)load_gvm_texture_file((s32)lbl_80444F6C) : (s32)load_gvm_texture_file((s32)lbl_80444F80);
+        lbl_805D5B7C = TLobby::is_online_ready() != 0 ? (s32)load_gvm_texture_file(lbl_80444F6C) : (s32)load_gvm_texture_file(lbl_80444F80);
         lbl_805D5B80 = &forest_box_break_params[0];
         lbl_805D5B84 = &forest_box_break_params[1];
         break;

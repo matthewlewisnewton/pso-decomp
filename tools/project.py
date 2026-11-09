@@ -58,6 +58,7 @@ class Object:
             "asflags": None,
             "asm_dir": None,
             "cflags": None,
+            "cw_align": None,
             "extab_padding": None,
             "extra_asflags": [],
             "extra_cflags": [],
@@ -694,6 +695,18 @@ def generate_build_ninja(
     mwcc_sjis_extab_cmd = f'{CHAIN}{mwcc_sjis_cmd} && {dtk} extab clean --padding "$extab_padding" $out $out'
     mwcc_sjis_extab_implicit: List[Optional[Path]] = [*mwcc_sjis_implicit, dtk]
 
+    # MWCC plus a unit script that rewrites the object (see post_object).
+    mwcc_post_cmd = f'{CHAIN}{mwcc_cmd} && $python $post_object $out'
+    mwcc_post_implicit: List[Optional[Path]] = [
+        *mwcc_implicit, binutils_implicit or (binutils / f"powerpc-eabi-objcopy{EXE}")
+    ]
+
+    # MWCC with a CodeWarrior .comment alignment fixup. mwld ignores
+    # sh_addralign and reads this record; see tools/cw_comment_align.py.
+    cw_comment_align = config.tools_dir / "cw_comment_align.py"
+    mwcc_cw_align_cmd = f"{CHAIN}{mwcc_cmd} && $python {cw_comment_align} $out $cw_align"
+    mwcc_cw_align_implicit: List[Optional[Path]] = [*mwcc_implicit, cw_comment_align]
+
     # MWLD
     mwld = compiler_path / "mwldeppc.exe"
     mwld_cmd = f"{wrapper_cmd}{mwld} $ldflags -o $out @$out.rsp"
@@ -717,12 +730,16 @@ def generate_build_ninja(
         mwcc_pch_sjis_cmd += f" && $python {transform_dep} $basefile.d $basefile.d"
         mwcc_extab_cmd += f" && $python {transform_dep} $basefile.d $basefile.d"
         mwcc_sjis_extab_cmd += f" && $python {transform_dep} $basefile.d $basefile.d"
+        mwcc_post_cmd += f" && $python {transform_dep} $basefile.d $basefile.d"
+        mwcc_cw_align_cmd += f" && $python {transform_dep} $basefile.d $basefile.d"
         mwcc_implicit.append(transform_dep)
         mwcc_sjis_implicit.append(transform_dep)
         mwcc_pch_implicit.append(transform_dep)
         mwcc_pch_sjis_implicit.append(transform_dep)
         mwcc_extab_implicit.append(transform_dep)
         mwcc_sjis_extab_implicit.append(transform_dep)
+        mwcc_post_implicit.append(transform_dep)
+        mwcc_cw_align_implicit.append(transform_dep)
 
     n.comment("Link ELF file")
     n.rule(
@@ -766,6 +783,26 @@ def generate_build_ninja(
     n.rule(
         name="mwcc_extab",
         command=mwcc_extab_cmd,
+        description="MWCC $out",
+        depfile="$basefile.d",
+        deps="gcc",
+    )
+    n.newline()
+
+    n.comment("MWCC build (with an object post-process)")
+    n.rule(
+        name="mwcc_post",
+        command=mwcc_post_cmd,
+        description="MWCC $out",
+        depfile="$basefile.d",
+        deps="gcc",
+    )
+    n.newline()
+
+    n.comment("MWCC build (with CodeWarrior comment alignment fixup)")
+    n.rule(
+        name="mwcc_cw_align",
+        command=mwcc_cw_align_cmd,
         description="MWCC $out",
         depfile="$basefile.d",
         deps="gcc",
@@ -1053,6 +1090,21 @@ def generate_build_ninja(
                 variables["extab_padding"] = "".join(
                     f"{i:02x}" for i in obj.options["extab_padding"]
                 )
+            elif obj.options.get("post_object"):
+                build_rule = "mwcc_post"
+                build_implcit = [*mwcc_post_implicit, Path(obj.options["post_object"])]
+                variables["post_object"] = obj.options["post_object"]
+            if obj.options.get("cw_align"):
+                if build_rule != "mwcc":
+                    sys.exit(f"{obj.name}: cw_align cannot combine with {build_rule}")
+                build_rule = "mwcc_cw_align"
+                build_implcit = mwcc_cw_align_implicit
+                variables["cw_align"] = obj.options["cw_align"]
+            order_only: Union[str, List[Path]] = "pre-compile"
+            if obj.options.get("post_object"):
+                # The post-process reads the split object; make sure dtk has
+                # written the split before this source object is post-processed.
+                order_only = ["pre-compile", build_path / "config.json"]
             n.comment(f"{obj.name}: {lib_name} (linked {obj.completed})")
             n.build(
                 outputs=obj.src_obj_path,
@@ -1060,7 +1112,7 @@ def generate_build_ninja(
                 inputs=src_path,
                 variables=variables,
                 implicit=build_implcit,
-                order_only="pre-compile",
+                order_only=order_only,
             )
 
             # Add ctx build rule

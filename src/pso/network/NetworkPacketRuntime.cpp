@@ -1,4 +1,5 @@
 #include "pso/protocol/NetworkRuntime.h"
+#include "pso/network/NetworkDispatch.h"
 #include "pso/network/NetworkPacketPool.h"
 #include <stddef.h>
 #include "pso/network/NetworkTransport.h"
@@ -129,14 +130,13 @@ typedef struct Tbl_804267F0 {
 
 s16 TLobby__sub_804262CC(void *);
 u8 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out);
-void NetUnregisterTimer(void *);
 s32 TLobby__sub_80421B3C(s32);
 s32 TLobby__sub_804250A8(s32);
 s16 TLobby__sub_80422F70(s16 iface, void *buf, s32 len, void *out);
 s16 TLobby__sub_8042315C(s16 iface, void *req);
 s16 TLobby__sub_80423064(s16 iface, s32 mode);
 extern s16 lbl_805D7B08;
-extern u8 TLobby__sub_80423298[];
+void TLobby__sub_80423298(void);
 extern s32 lbl_805D7B14;
 extern s16 dhcp_socket;
 void TLobby__sub_80424CA8(void);
@@ -424,7 +424,6 @@ extern u8 dhcp_hostname[];
 extern u32 dhcp_elapsed_ms;
 extern s32 dhcp_last_tick_ms;
 extern u32 dhcp_lease_elapsed;
-s32 NetRegisterTimer(s32 period, s16 locked, void *fn);
 
 // The option clear and the mode-4 open are separate inline functions. MWCC
 // then keeps the zero in r31 across the clear, copies it into the loop index

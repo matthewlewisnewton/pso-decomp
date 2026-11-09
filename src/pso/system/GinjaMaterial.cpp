@@ -134,7 +134,7 @@ s32 queue_model_draw_current_matrix(s32 model) {
 }
 #pragma pop
 
-void draw_ginja_model(s32 model) {
+void draw_ginja_model(void *model) {
     load_ginja_model_matrices(0);
     prepare_ginja_model();
     draw_ginja_model_lists((GinjaModel *)model);
