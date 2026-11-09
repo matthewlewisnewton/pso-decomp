@@ -608,6 +608,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Unit -fp_contract on replaces the per-function pragmas. Precedent:
     # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
     "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
+    # Loading-text particle positions contract `scale * i + base` into fmadds
+    # (TAdLoadQuestPrtTxtGC ctor, cases 0/1/2). The other three functions have
+    # no contracted multiply. Precedent:
+    # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
+    "pso/unk/text_8034A090.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # Upstream #190: this file is written in reverse so deferred codegen emits
     # address order, and the readonly string pool places the constants.
     "pso/misc/TNpcPlayer.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
@@ -881,7 +886,11 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     ("musyx", 0x803A3858, "GC/1.2.5n", _switch(cflags_musyx, "-opt nocse"), {}),
     ("musyx_hw", 0x803BAC70, "GC/1.2.5n", _switch(cflags_musyx, "-inline auto"), {}),
     # CRI ADX, LSC, SJ, MFCI and GCRNA ("Build:Jun 13 2002").
-    ("cri", 0x803BFE50, "GC/2.6", cflags_middleware, {}),
+    ("cri", 0x803BFE50, "GC/2.6", cflags_middleware, {
+        # sin_table_lookup / cos_table_lookup load the 4-byte sin_cos_table
+        # pointer with lis/addi. The .sdata2 constants in this TU stay
+        # lfs@sda21, so non-const small data is off and sdata2 stays on.
+    }),
     # Sega's Ginja model library.
     ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
         # render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 /

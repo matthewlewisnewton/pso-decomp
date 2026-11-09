@@ -6,6 +6,8 @@
 #include "dolphin/os/OSInterrupt.h"
 
 #include "pso/misc/TUdpSocket.h"
+#include "pso/network/NetworkPacketPool.h"
+#include "pso/misc/TLobby_80426CAC.h"
 
 struct Ent_803F9B48 {
     s32 active;
@@ -43,6 +45,11 @@ extern "C" {
 u8 *write_network_u16_be(u8 *p, u16 v);
 
 s32 TLobby__sub_80405304(void *arg0);
+struct NetworkBufferSlot { s32 active; s32 size; u32 key; };
+typedef char NetworkBufferSlot_size[(sizeof(NetworkBufferSlot) == 12) ? 1 : -1];
+typedef char NetworkThreadSlot_size[(sizeof(Ent_803F9B48) == 0x328) ? 1 : -1];
+extern u16 lbl_805D7A60;
+extern NetworkBufferSlot *lbl_805D7A64;
 extern u16 lbl_805D7A68;
 extern Ent_803F9B48 *lbl_805D7A6C;
 void TLobby__sub_803FA2A8(P_803FA2A8 *o);
@@ -66,7 +73,7 @@ void TLobby__sub_803F9FAC(u8 *obj);
 s32 TLobby__sub_803FA318(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src);
 s32 TLobby__sub_803FA4A4(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src);
 s16 TLobby__sub_803FA7B0(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src);
-s32 TLobby__sub_803FABDC(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src);
+B_803FADA0 *TLobby__sub_803FABDC(Obj_803FA664 *fsm);
 s32 verify_message_sequence__6TLobbyFPvPvUi(Obj_803FA664 *arg0, Msg_803FA664 *arg1, u32 arg2);
 void init_net_state_entry__6TLobbyFv(TLobby *obj);
 void TLobby__sub_803FD694(u8 *entry);
@@ -105,6 +112,92 @@ s32 TLobby::cancel_pending_alarms() {
     TLobby::cancel_alarm_b();
     return 0;
 }
+
+#pragma push
+#pragma pool_data on
+// The native initializer pools the three adjacent OS slot arrays. Its word
+// cursor and temporary lifetimes are inherited matching constraints; see
+// docs/evidence/upstream-network-runtime.md for typed-port alternatives.
+s32 TLobby__sub_803F8E9C(void) {
+    s32 i;
+    // These unused upstream locals retain the original MWCC stack frame.
+    s32 unused_count;
+    u8 *unused_mutex_bytes;
+    s32 unused_zero;
+    u8 *queue_base;
+    NetworkAlarmSlot *unused_alarm;
+    s32 *slot_words;
+    s32 *third_mutex;
+    s32 *fourth_mutex;
+    u8 *alarm_base;
+    alarm_base = (u8 *) lobby_alarm_slot_table;
+    queue_base = alarm_base;
+    // Native BSS: 64 alarms (0x1600), then 8 mutexes (0x100).
+    queue_base = queue_base + 0x1700;
+    if ((lbl_805D7A6C == 0) || (lbl_805D7A64 == 0)) {
+        return -1;
+    }
+    for (i = 0; i < lbl_805D7A68; i++) {
+        lbl_805D7A6C[i].active = 0;
+        Ent_803F9B48 *thread = &lbl_805D7A6C[i];
+        thread->key = (u32)&thread->thread;
+    }
+
+    for (i = 0; i < 0x40; i++) {
+        ((NetworkAlarmSlot *) alarm_base)[i].active = 0;
+        OSInitMessageQueue(&((NetworkAlarmSlot *)alarm_base)[i].queue, &((NetworkAlarmSlot *)alarm_base)[i].message, 1);
+    }
+
+    slot_words = (s32 *) network_mutex_slot_table;
+    ((s32 *) (unused_mutex_bytes = (u8 *) network_mutex_slot_table))[0] = 0;
+    ((s32 *) network_mutex_slot_table)[1] = (s32) (slot_words + 2);
+    slot_words = (s32 *)&network_mutex_slot_table[1];
+    slot_words[0] = 0;
+    third_mutex = (s32 *)&network_mutex_slot_table[2];
+    slot_words[1] = (s32) (slot_words + 2);
+    slot_words = third_mutex;
+    fourth_mutex = (s32 *)&network_mutex_slot_table[3];
+    slot_words[0] = 0;
+    slot_words[1] = (s32) (slot_words + 2);
+    slot_words = fourth_mutex;
+    slot_words[0] = 0;
+    slot_words[1] = (s32) (slot_words + 2);
+    slot_words = (s32 *)&network_mutex_slot_table[4];
+    slot_words[0] = 0;
+    slot_words[1] = (s32) (slot_words + 2);
+    slot_words = (s32 *)&network_mutex_slot_table[5];
+    slot_words[0] = 0;
+    slot_words[1] = (s32) (slot_words + 2);
+    slot_words = (s32 *)&network_mutex_slot_table[6];
+    slot_words[0] = 0;
+    slot_words[1] = (s32) (slot_words + 2);
+    slot_words = (s32 *)&network_mutex_slot_table[7];
+    slot_words[0] = 0;
+    slot_words[1] = (s32) (slot_words + 2);
+    slot_words = (s32 *) queue_base;
+    slot_words[0] = 0;
+    slot_words[1] = (s32) (slot_words + 2);
+    // The second message queue follows the first 0x3A8-byte slot.
+    slot_words = (s32 *) (alarm_base + 0x1aa8);
+    slot_words[0] = 0;
+    slot_words[1] = (s32) (slot_words + 2);
+    for (i = 0; i < lbl_805D7A60; i++) {
+        lbl_805D7A64[i].active = 0;
+    }
+
+    if (TLobby::init_buffer_pool() < 0) {
+        return -1;
+    }
+    if (initialize_network_packet_pool() < 0) {
+        return -1;
+    }
+    if (TLobby__sub_80428360(0) < 0) {
+        return -1;
+    }
+    return 0;
+}
+
+#pragma pop
 
 void TLobby::get_time_seconds(s32 *out) {
     s64 t = OSGetTime();
@@ -477,7 +570,7 @@ struct Proto_803F9FAC {
     void (*f1C)(TLobby *);
     void (*f20)(void);
     void (*f24)(s32);
-    s32 (*f28)(Obj_803FA664 *, Msg_803FA664 *, u32);
+    B_803FADA0 *(*f28)(Obj_803FA664 *);
     s16 (*f2C)(Obj_803FA664 *, Msg_803FA664 *, u32);
     s32 (*f30)(Obj_803FA664 *, Msg_803FA664 *, u32);
     s32 (*f34)(Obj_803FA664 *, Msg_803FA664 *, u32);
@@ -913,6 +1006,38 @@ s16 NetIPv6CPParseConfigureOption(u32 *src, Sub_803FA664 *a, Sub_803FA664 *b, u8
 #pragma pop
 
 extern u8 lbl_804FD398[];
+
+B_803FADA0 *TLobby__sub_803FABDC(Obj_803FA664 *fsm) {
+    s16 i;
+    s16 bits;
+    u8 *s;
+    Sub_803FA664 *opts;
+    B_803FADA0 *packet;
+
+    opts = fsm->p30;
+    packet = NULL;
+    packet = init_net_buffer_entry__6TLobbyFUs(0);
+    if (packet == NULL) {
+        return NULL;
+    }
+    bits = opts->h1C;
+    if (packet == NULL) {
+        packet = init_net_buffer_entry__6TLobbyFUs(0);
+        if (packet == NULL) {
+            goto done;
+        }
+    }
+    s = lbl_804FD398 + 1;
+    for (i = 1; i < 0x20; i++) {
+        if (bits & (1 << i)) {
+            TLobby__sub_803FADA0(&packet, (A_803FADA0 *)&opts->h1C,
+                (i < 8) ? i : ((i < 0x20) ? i + 0x78 : 0), *s, NULL);
+        }
+        s++;
+    }
+done:
+    return packet;
+}
 
 #pragma push
 #pragma dont_inline off
