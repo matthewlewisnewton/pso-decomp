@@ -33,12 +33,14 @@ the recursion result's tail, and adopts its head. The empty-slot first-fill
 allocates one segment (`off = 1`, `a = 0xFF`, `b = 0`) when the byte at
 `beg` passes the name class below.
 
-The name class is a sparse ten-case switch (`0x20, 0x21, 0x2C, 0x2E, 0x3A,
-0x3B, 0x3F, 0x98, 0x9B, 0x9C`) behind an explicit `c >= 0xA0` early return.
+The recovered name class is a sparse ten-case switch (`0x20, 0x21, 0x2C,
+0x2E, 0x3A, 0x3B, 0x3F, 0x98, 0x9B, 0x9C`) behind an explicit
+`c >= 0xA0` early return.
 The `cmpwi 0x2D; beq → return 0` in the original is the switch lowering's
 binary-search split between the `0x2C` and `0x2E` cases, not a case; the
-`cmplwi 0xA0` root cut is the source-level guard, and the early-return form
-puts its `li 0` fallthrough in the original's place. `IsX_803E9FFC` inlines
+`cmplwi 0xA0` root cut matches the reconstructed range guard. This establishes
+a matching source form, not the original source spelling. The early-return
+form puts its `li 0` fallthrough in the original's place. `IsX_803E9FFC` inlines
 into the first pass with its own local `jumptable_804FCA54` copy, exactly as
 it does into `sub_803E9FFC` (`jumptable_804FCBB0`).
 
@@ -49,7 +51,7 @@ The original returns `li r3, -1` from three sites: the empty-range path when
 failure (which first frees the accumulated list through `sub_803ECE5C`).
 A standalone probe confirmed `return ((T *)-1)` compiles to a bare
 `li r3, -1` with no stack traffic, and the recovery spells it once as a
-named constant and compares against it directly:
+named constant used at the three failure returns:
 
 ```c
 #define QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED ((QuestDownloadSegment *)-1)
@@ -105,7 +107,7 @@ the coloring unchanged; the tested compiler versions that recolor it
 (1.1p1, 1.3+) break other exact functions in the unit. These negative probes
 do not establish that no matching source exists under the pinned profile.
 
-## Validation
+## Initial recovery validation
 
 `ninja` rebuilds `PsoV3.dol` and the SHA-1 check passes.
 `python3 tools/check_pr.py --no-build` against the freshly built baseline:
