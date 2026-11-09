@@ -308,6 +308,13 @@ table add 44 bytes while retaining the original suffix. Measured canonical
 string/draw/result differences remain explicit interface holds; CallBack's
 mixed callback family is deferred. No new matching control is introduced.
 
+The [QuestBoardSelect recovery](window-quest-board-select-lifetime.md) adds
+native window construction/cleanup and its actual ordinary-new producer.
+Text getter/width and draw receiver forwarding are explicit; slot updates use
+the real member rather than unsupported floating formals. Descriptor and
+compiler table add 44 bytes with the original entry prefix and following
+suffix preserved. Opaque heading and wider interface holds remain.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

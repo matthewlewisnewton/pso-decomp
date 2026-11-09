@@ -1211,3 +1211,10 @@ and boolean-result ABI views remain held after measured canonical probes.
 CallBack is deferred pending its full callback contract. Native descriptor/table
 emission preserves the original suffix without new controls or manual padding;
 this does not claim portable interface completion.
+
+[QuestBoardSelect lifetime recovery](evidence/window-quest-board-select-lifetime.md)
+removes another raw Base pair and closes constructor text-width, slot-update
+and render receiver forwarding. Its opaque heading and wider entry/controller
+qualifications remain. The constructor's existing FP-contract scope stays;
+no new control, manual table or padding is introduced. Native data emission
+retains the original entry prefix and following table/tail suffix.
