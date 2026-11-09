@@ -58,10 +58,12 @@ named constant and compares against it directly:
 with `if ((t = quest_download_slot_chain_table[beg].tokens) ==
 (QuestDownloadMatchToken *)-1)` for the slot status and the existing
 `(u32)sub == 0xFFFFFFFFU` word test on the recursion result, the same
-word-test its matched caller `sub_803E9FFC` already uses. This is the
-pointer-sentinel spelling whose earlier spellings were rejected; the
-alternative (leaving the search undefined) no longer applies since a
-concrete spelling is now required for the byte-identical return.
+word-test its matched caller `sub_803E9FFC` already uses. This belongs to
+the pointer-sentinel spelling family Matt rejected on 2026-11-04. The
+concrete spelling above still requires his explicit sign-off. A matching
+compiler result does not clear that decision: PR #366 must remain draft
+until the gate is resolved. Leaving the search undefined remains an option
+if this spelling is not approved.
 
 ## Register allocation findings
 
@@ -96,12 +98,12 @@ shapes, each verified by rebuild:
 The entry merger remains 99.75903% objdiff (332/332 bytes). Its only
 remaining differences are the four header words that color the length mask
 `r9` and the name displacement `r10` instead of the original's `r10`/`r9`.
-Source-side probes over every permutation of the four header statements,
+The recorded source-side probes over permutations of the four header statements,
 association and cast spellings of both expressions, named temporaries,
 declaration styles (`register`, declarations-first), and loop forms leave
-the coloring unchanged; only compiler versions that break the unit's 158
-other exact functions (1.1p1, 1.3+) recolor it. The four words are not
-reachable from source under the unit's pinned profile.
+the coloring unchanged; the tested compiler versions that recolor it
+(1.1p1, 1.3+) break other exact functions in the unit. These negative probes
+do not establish that no matching source exists under the pinned profile.
 
 ## Validation
 
