@@ -1692,7 +1692,6 @@ force_active:
   - TWindowSubComCard__sub_8027346C
   - TWindowSubComCard__sub_8027353C
   - TWindowSubEquipList__class_name
-  - TWindowSubEquipList__ct
   - TWindowSubGameEnd__class_name
   - TWindowSubItemList__class_name
   - TWindowSubItemList__ct
@@ -2003,6 +2002,7 @@ force_active:
   - __ct__19TObjEneDelDepthBombFP15TObjEneDelDepthP9TObjCharaPC3Vecl
   - __ct__19TObjStendGlassLobbyFP7TObjectPv
   - __ct__19TWindowMessageYesNoFP7TObjectPvPvPv
+  - __ct__19TWindowSubEquipListFPvl
   - __ct__20TAdLoadQuestPrtTxtGCFP7TObjectl
   - __ct__20TBoss3VoloptHiraisinFP7TObjectPv
   - __ct__20TEffStarLight2D_BaseFP7TObjectPv
@@ -2531,6 +2531,8 @@ force_active:
   - __dt__19TQuestListChallengeFv
   - __dt__19TWindowMenuMainMenuFv
   - __dt__19TWindowMessageYesNoFv
+  - __dt__19TWindowSubEquipKindFv
+  - __dt__19TWindowSubEquipListFv
   - __dt__19TWindowSubMagPhotonFv
   - __dt__20TAdChrSelMovePlateGCFv
   - __dt__20TAdGameStartShadowGCFv
@@ -3147,6 +3149,8 @@ force_active:
   - __vt__19TTecPlayerInfluence
   - __vt__19TWindowMenuMainMenu
   - __vt__19TWindowMessageYesNo
+  - __vt__19TWindowSubEquipKind
+  - __vt__19TWindowSubEquipList
   - __vt__19TWindowSubMagPhoton
   - __vt__20TAdChrSelMovePlateGC
   - __vt__20TAdGameStartShadowGC
@@ -14133,6 +14137,8 @@ force_active:
   - render__19TWindowMenuIconLineFv
   - render__19TWindowMenuMainMenuFv
   - render__19TWindowMessageYesNoFv
+  - render__19TWindowSubEquipKindFv
+  - render__19TWindowSubEquipListFv
   - render__19TWindowSubMagPhotonFv
   - render__20TAdChrSelMovePlateGCFv
   - render__20TAdGameStartShadowGCFv
@@ -14817,6 +14823,8 @@ force_active:
   - run_task__19TTecPlayerInfluenceFv
   - run_task__19TWindowMenuMainMenuFv
   - run_task__19TWindowMessageYesNoFv
+  - run_task__19TWindowSubEquipKindFv
+  - run_task__19TWindowSubEquipListFv
   - run_task__19TWindowSubMagPhotonFv
   - run_task__20TAdChrSelMovePlateGCFv
   - run_task__20TAdGameStartShadowGCFv

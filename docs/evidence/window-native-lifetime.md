@@ -203,6 +203,11 @@ cleanup. It adds two 24-byte compiler-owned tables and removes one raw Addition
 construction/cleanup pair. The unknown auxiliary producer and task-global
 second word remain unclaimed.
 
+The [equipment-window follow-up](window-equipment-lifetime.md) recovers the
+native EquipKind/List constructor and cleanup chains plus both factories,
+with a consistent word-client contract and two 28-byte compiler tables. It
+removes four more raw ABI calls, preserving the remaining ownership holds.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

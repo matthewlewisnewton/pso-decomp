@@ -1090,3 +1090,9 @@ one more raw Addition construction/cleanup pair. Both factories construct the
 actual owners, with explicit position/count forwarding and compiler-owned
 tables. The existing auxiliary release protocol remains type-erased because
 no positive producer for field `0x7C` has been established.
+
+[Equipment-window lifetime recovery](evidence/window-equipment-lifetime.md)
+removes two MenuIconLine construction/cleanup pairs. Native word-client
+constructors narrow at the base initializer; Kind's factory forwards the same
+word contract. Two compiler-owned five-function tables replace original inputs.
+The remaining lifetime interface and unrelated unknown ownership holds persist.
