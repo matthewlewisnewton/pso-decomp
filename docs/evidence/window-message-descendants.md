@@ -50,6 +50,8 @@ A genuine member interpretation of the registration helper also failed and
 was discarded; no speculative member ownership or renamed helper is retained.
 An isolated probe moving the native constructor outside the surrounding C
 linkage block preserves the same mismatch; the validated source is unchanged.
+A constructor-only unit also emits 168 bytes with the same mismatch, without
+emitting a table. No speculative source split is activated by that probe.
 
 This is a measurement of those source variants, not a proof that native Log
 construction cannot match. No assembly, new pragma, compiler override, manual

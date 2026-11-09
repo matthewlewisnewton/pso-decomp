@@ -170,6 +170,11 @@ data bytes, for 284 versus main, with unchanged exact functions and linked
 units. Retention is clean at 17,601 entries. No new alignment override or
 compiler exception is used; the note qualifies both original zero tails.
 
+The same note records integration with subsequent main `001c33d3f`: a fresh
+main baseline and integrated build reproduce the original DOL hash, with
+27,370 exact functions and 3,576 exact linked units in the PR. Its incremental
+contributions remain unchanged; retention is clean at 17,607 entries.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

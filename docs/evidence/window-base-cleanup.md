@@ -71,3 +71,20 @@ Three more destroyer units no longer need the Base destructor ABI binding.
 The shared interface still has five constructor and three destructor entry
 declarations for other raw-storage callers. Log's constructor mismatch and the
 remaining Base/Addition/MenuIconLine lifetime work keep the draft hold active.
+
+## Integration with the next main checkpoint
+
+Fork main subsequently advanced to
+`001c33d3fdd9f3f9d4e627ed96be6ac4669d0e53` (footprint recovery).
+Normal merge `bc73cc5815fb5ba8a590a4b08581744fbdff4995` preserves the
+window sources from published checkpoint
+`3e497a25b903bf4798b353abd440cb4b4cfafa60` unchanged and retains main's
+source, metadata, and porting-register additions. Both a fresh main build
+and the integrated build reproduce the original DOL hash.
+
+Against this fresh main, exact functions are 27,369 to 27,370, and exact
+linked units 3,575 to 3,576. The PR's contributions remain 600 matched code
+bytes, 728 linked code bytes, and 284 matched/linked data bytes. The only
+coverage removal remains the verified four-byte Deposit zero tail; there
+are no non-padding regressions. Retention is clean at 17,607 entries and the
+porting inventory check passes. The draft hold remains in force.
