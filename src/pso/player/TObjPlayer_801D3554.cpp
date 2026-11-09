@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/TItemList.h"
 #include "pso/item/TItemList_801D3780.h"
 #include "pso/item/TItemList_801D57B0.h"
 #include "pso/player/TObjPlayer_801D3554.h"
@@ -18,24 +19,30 @@ extern "C" {
 int TItemList__sub_801D5868(void*, void*);
 void create_drop_nodes__9TItemListFPvPvPvPvi(void *arg0, void *arg1, void *arg2, Rec_801D35FC *arg3, s32 arg4);
 s32 TItemList__sub_801D5854(s32, s32);
+// TItemList::copy_item_data takes no argument: it adds 8 to its own this and
+// tail-calls TItemData::copy_from, whose second parameter arrives in the
+// caller's hands. The original's caller supplies it, so the only declaration
+// that reproduces both the symbol and the extra argument is this one; a real
+// member call cannot set that register. See TItemList_801D57B0.cpp.
 s32 copy_item_data__9TItemListFv(s32, s32);
-s32 create_node__9TItemListFPvPvPvSc(s32, s32, s32, s32);
+}
 
-void insert_item_node__10TObjPlayerFiiiii(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+void TObjPlayer::insert_item_node(int pool, int floor, int owner, int data, int id) {
     s32 temp_r31;
     s32 temp_r30;
 
-    temp_r31 = TItemList__sub_801D5868((void*)arg0, (void*)(0));
-    temp_r30 = TItemList__sub_801D5854(arg0, 0);
+    temp_r31 = TItemList__sub_801D5868((void*)pool, (void*)(0));
+    temp_r30 = TItemList__sub_801D5854(pool, 0);
     if (TItemList__sub_801D5844((void *)temp_r31) != 0) {
         TItemList__sub_801D5838((void *)temp_r31);
-        ((TObjPlayer *)temp_r30)->set_field4(arg4);
-        copy_item_data__9TItemListFv(temp_r30, arg3);
-        create_node__9TItemListFPvPvPvSc(arg0, arg2, arg1, 0);
-        TItemList__sub_801D5804((s32 *)arg0);
+        ((TObjPlayer *)temp_r30)->set_field4(id);
+        copy_item_data__9TItemListFv(temp_r30, data);
+        TItemList::create_node((void *)pool, (void *)owner, (void *)floor, 0);
+        TItemList__sub_801D5804((s32 *)pool);
     }
 }
 
+extern "C" {
 void create_drop_nodes__9TItemListFPvPvPvPvi(void *arg0, void *arg1, void *arg2, Rec_801D35FC *arg3, s32 arg4) {
     s32 i;
     u8 *p;
@@ -47,7 +54,9 @@ void create_drop_nodes__9TItemListFPvPvPvPvi(void *arg0, void *arg1, void *arg2,
         if (TItemList__sub_801D5844(p) != 0) {
             TItemList__sub_801D5838(p);
             ((void (*)(void *, void *))copy_drop_node)(q, arg3);
-            ((void (*)(void *, void *, void *, s32))create_node__9TItemListFPvPvPvSc)(arg0, arg2, arg1, i);
+            // TItemList_801D3780.cpp declares the index signed char; the original
+        // gave this unit a plain int, so the counter reaches r6 unextended.
+        ((void (*)(void *, void *, void *, s32))&TItemList::create_node)(arg0, arg2, arg1, i);
             TItemList__sub_801D5804((s32 *)arg0);
             p += 4;
             q++;

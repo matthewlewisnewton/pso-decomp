@@ -100,7 +100,7 @@ int TObjLiveMonitor::render_live_monitor_screen() {
     }
     free_children__12TObjDoorJungFPv((void *) (*(s32 *)((s8 *)(*(u8 **)((s8 *)this + 0x1C)) + 4)), var_r4);
     push_matrix();
-    ::draw_ginja_model((void *) (*(s32 *)((s8 *)(*(u8 **)((s8 *)this + 0x1C)) + 4)));
+    ::draw_ginja_model((void *) (*(void **)((s8 *)(*(u8 **)((s8 *)this + 0x1C)) + 4)));
     return pop_matrix();
 }
 

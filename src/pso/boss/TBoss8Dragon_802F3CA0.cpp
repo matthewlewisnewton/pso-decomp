@@ -61,7 +61,6 @@ extern const f32 TBoss8Dragon__data_805DED58;
 extern const f32 lbl_805DED5C;
 extern const f32 TBoss8Dragon__data_805DED60;
 f32 receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(void *, void *, Pair_802F3D18 *, s32, s32, s32);
-f32 calc_direct_attack_damage__12TBoss8DragonFPvPvPviii(void *a, void *b, Pair_802F3D18 *p, s32 x, s32 y, s32 z);
 typedef char RecoveredGlobal_802F3CA0_lbl_80474508_size[sizeof(RecoveredGlobal_802F3CA0_lbl_80474508) == 0x28 ? 1 : -1];
 typedef char RecoveredGlobal_802F3CA0_lbl_80474530_size[sizeof(RecoveredGlobal_802F3CA0_lbl_80474530) == 0x28 ? 1 : -1];
 typedef char RecoveredGlobal_802F3CA0_lbl_80474558_size[sizeof(RecoveredGlobal_802F3CA0_lbl_80474558) == 0x28 ? 1 : -1];
@@ -84,14 +83,14 @@ void TBoss8Dragon::set_mode_params(s8 arg1) {
     }
 }
 
-f32 calc_direct_attack_damage__12TBoss8DragonFPvPvPviii(void *a, void *b, Pair_802F3D18 *p, s32 x, s32 y, s32 z) {
-    switch (p->a) {
+f32 TBoss8Dragon::receive_direct_attack(void *att, DirectAttackPayload payload, void *coll, s32 tech, s32 arg5) {
+    switch (payload.kind) {
     case 0xB:
     case 0xC:
         return TBoss8Dragon__data_805DED50;
     }
-    Pair_802F3D18 t = *p;
-    return receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(a, b, &t, x, y, z);
+    DirectAttackPayload t = payload;
+    return TObjChara::receive_direct_attack(att, t, coll, tech, arg5);
 }
 
 void TBoss8Dragon::draw_motion_model() {
@@ -102,7 +101,7 @@ void TBoss8Dragon::draw_motion_model() {
     if (((VObj_18_26a62c *)(arg0))->m8(lbl_805DED54, TBoss8Dragon__data_805DED58) != 0) {
         set_current_texture_list((GinjaTextureList *)(*(s32 *)(arg0 + 0x24)));
         push_matrix();
-        post_translate_matrix((u8 *)&this->m_38);
+        post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
         push_matrix();
         scale_matrix(0, lbl_805DED5C, TBoss8Dragon__data_805DED60, lbl_805DED5C);

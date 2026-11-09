@@ -1,97 +1,47 @@
 struct NJS_OBJECT;
+struct G_GalGryphonBossActions_6xA0;
 #ifndef PSO_BOSS_TBOSS8DRAGON_H
 #define PSO_BOSS_TBOSS8DRAGON_H
 
 #include "types.h"
 #include <dolphin/mtx/GeoTypes.h>
+#include "pso/enemy/TObjEneDD_ST.h"
 #include "pso/misc/RenderFadeState.h"
+#include "pso/player/TObjChara.h"
+#include "pso/boss/TObjBoss2Tunnel.h"
 
-class TObject;
-
-struct TBoss8Dragon
+// The 0x3C0 prefix is TObjEneDD_ST. These overrides are the slots whose
+// addresses differ from __vt__12TObjEneDD_ST. Member order is the teardown
+// order reversed: fade slots, then the two coordinate blocks, then the
+// embedded TObject, then the base.
+struct TBoss8Dragon : public TObjEneDD_ST
 {
-    void sub_802F4098(u8 *);
-    void vfunc_63();
-    void vfunc_62();
-    void vfunc_61();
-    void vfunc_50();
-    void vfunc_49();
-    void vfunc_48(s32);
-    void vfunc_47();
-    void vfunc_46();
-    void vfunc_45();
-    void vfunc_44();
-    void vfunc_28();
-    void render_shadows();
-    void run_task();
+    TBoss8Dragon(TObject *parent, void *arg2);
+    virtual ~TBoss8Dragon();
+    virtual void run_task();
+    virtual void render();
+    virtual void render_shadows();
+    virtual f32 receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32);
+    virtual void vfunc_28();
+    virtual void apply_poison_status();
+    virtual void apply_paralysis();
+    virtual void apply_slow_status();
+    virtual void apply_confusion_status();
+    virtual void apply_movement_ailment(s32);
+    virtual void apply_shock_status();
+    virtual void clear_harmful_statuses();
+    virtual void vfunc_61();
+    virtual void vfunc_62();
+    virtual void vfunc_63();
+    virtual void dispatch_action(u32 state, s32 reason);
+    virtual void vfunc_88();
+    virtual s32 vfunc_105();
+    virtual void draw_motion_model();
+    void sub_802F4098(Vec *pos);
     s32 hasActiveRenderFade();
 
-    s32 m_0;
-    u8 unk_4[0x4];
-    f32 m_8;
-    u8 unk_C[0x4];
-    f32 m_10;
-    u8 unk_14[0x4];
-    s32 * m_18;
-    u8 unk_1C[0x2];
-    s16 m_1e;
-    u8 unk_20[0x2];
-    u16 m_22;
-    u32 m_24;
-    u8 unk_28[0x4];
-    s32 m_2c;
-    u8 unk_30[0x4];
-    u32 m_34;
-    void* m_38;
-    u8 unk_3C[0x4];
-    f32 m_40;
-    u8 unk_44[0x4];
-    f32 m_48;
-    u8 unk_4C[0x4];
-    u32 m_50;
-    u8 unk_54[0x8];
-    s32 m_5c;
-    s32 m_60;
-    u8 unk_64[0x4];
-    f32 m_68;
-    u8 unk_6C[0x4];
-    f32 m_70;
-    u8 unk_74[0x30];
-    void * m_a4;
-    u8 unk_A8[0x8];
-    u32 m_b0;
-    u8 _padB4[0x4];
-    s16 m_b8;
-    u8 unk_BA[0x6];
-    f32 m_c0;
-    u8 unk_C4[0x1EC];
-    u32 m_2b0;
-    u8 _pad2B4[0x4];
-    s16 m_2b8;
-    u8 _pad2BA[0x6C];
-    s16 m_326;
-    u8 unk_328[0x4];
-    s16 m_32c;
-    u8 unk_32E[0x22];
-    u32 m_350;
-    u8 unk_354[0x28];
-    f32 m_37c;
-    u8 unk_380[0xC];
-    u16 m_38c;
-    u8 unk_38E[0x2];
-    u32 m_390;
-    f32 m_394;
-    u8 unk_398[0x4];
-    f32 m_39c;
-    u8 unk_3A0[0x4];
-    f32 m_3a4;
-    f32 m_3a8;
-    u8 unk_3AC[0x4];
-    s32 m_3b0;
-    u8 unk_3B4[0xC];
     u32 m_3c0;
-    void* m_3c4;
-    u8 _pad3C8[0x18];
+    TObject child;
     u32 m_3e0;
     u32 m_3e4;
     u8 _pad3E8[0x28];
@@ -121,10 +71,8 @@ struct TBoss8Dragon
     u8 unk_5E0[0x4];
     f32 m_5e4;
     u8 unk_5E8[0x4];
-    void* m_5ec;
-    u8 _pad5F0[0x20];
-    void* m_610;
-    u8 _pad614[0x20];
+    AccelerationCurve coords_5ec;
+    AccelerationCurve coords_610;
     void* m_634;
     u8 _pad638[0x8];
     void* m_640;
@@ -138,11 +86,11 @@ struct TBoss8Dragon
     f32 m_670;
     u32 m_674;
     u16 m_678;
-    u16 m_67a;
+    s16 m_67a;
     u32 m_67c;
     u32 m_680;
     u32 m_684;
-    u8 unk_688[0x4];
+    f32 m_688;
     f32 m_68c;
     u8 unk_690[0x4];
     f32 m_694;
@@ -206,8 +154,7 @@ struct TBoss8Dragon
     int set_state_2();
     int attack_default();
     int query_default();
-    void copy_spawn_params(void* a1);
-    void copy_action_state(u8 *arg1);
+    void copy_spawn_params(G_GalGryphonBossActions_6xA0 *cmd);
     static s32 spawn_ground_lightning(TObject *parent, const Vec *source, s32 direction);
     void set_default_on_state0();
     static void update_camera_script(NJS_OBJECT *);
@@ -251,23 +198,12 @@ struct TBoss8Dragon
     static void *create(void *arg0);
     void update_colli_parts();
     int test_card_flag_2();
-    void set_speed(f32 v);
-    void set_field_3c();
-    void set_field_1c();
-    void spawn_child_object();
     static void free_resources();
-    f32 apply_default_velocity_scale();
     int get_flag_bit6();
     void fill_follow_camera_params(u8 *arg1, u8 *arg2);
     static int get_instance_count();
-    void init_color();
-    void send_spawn_params_packet();
-    void byteswap_action_packet();
-    void byteswap_record();
     void send_boss_actions();
     void bswap_boss_actions();
-    s32 is_within_xz_distance(u8 *arg1, f32 farg0);
-    f32 calc_sq_offset(f32 farg0);
     static int get_instance();
     static u16 get_global_part_count(s32 arg0);
     void place_parts_in_ring(s32 arg1, s32 arg2);
@@ -275,10 +211,7 @@ struct TBoss8Dragon
     static s32 is_any_part_alive();
     static void update_all_parts();
     static bool has_enough_enemies();
-    s32 spawn_attack_object(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-    u16 get_part_count_plus(s32 arg1);
     void set_mode_params(s8 arg1);
-    void draw_motion_model();
     void render_nodes_flagged();
     void copy_vectors();
     void send_swapped_packet();
@@ -286,27 +219,37 @@ struct TBoss8Dragon
     void copy_position(s32 arg1);
     int queue_destruction();
     static void trigger_switches_in_range(void *arg0, void *arg1, void *arg2);
-    void choose_next_camera_shot();
-    void update_live_camera();
-    void update_toggle_state();
     static s32 calc_binomial_coefficient(s32 n, s32 k);
     void play_animation_index(s32 arg1);
     void render_body_model();
     void select_freeze_target();
     void emit_body_effects();
-    f32 apply_velocity_scale(f32 farg0, f32 farg1);
     void get_follow_camera_offsets(u8 *arg1);
     s32 is_closest_part();
     s32 push_apart_from_parts();
     s32 is_near_other_part();
-    void draw_with_fade(s32 arg1, s32 arg2);
+    void draw_with_fade(Vec *pos, s32 arg2);
     void draw();
-    u8 *ct_attack_object(s32 arg1, s32 arg2, s32 arg3);
+};
+
+// Attack object spawned for one part. Same layout as TBoss8Dragon; its vtable
+// replaces the destructor and run_task.
+struct TUnk_804F1A78 : TBoss8Dragon {
+    TUnk_804F1A78(TObject *parent, void *param, s32 hp);
+    virtual ~TUnk_804F1A78();
+    virtual void run_task();
 };
 
 #include <stddef.h>
 typedef char TBoss8DragonFadeStride[(sizeof(RenderFadeState) == 0x1C) ? 1 : -1];
 typedef char TBoss8DragonFadeOffset[(offsetof(TBoss8Dragon, renderFadeStates) == 0x6DC) ? 1 : -1];
+typedef char TBoss8DragonBase[(sizeof(TObjEneDD_ST) == 0x3C0) ? 1 : -1];
+typedef char TBoss8DragonMode[(offsetof(TBoss8Dragon, mode) == 0x326) ? 1 : -1];
+typedef char TBoss8DragonHp[(offsetof(TBoss8Dragon, hp) == 0x32C) ? 1 : -1];
+typedef char TBoss8DragonYaw[(offsetof(TBoss8Dragon, rotation) == 0x5C) ? 1 : -1];
+typedef char TBoss8DragonAction[(offsetof(TBoss8Dragon, requested_action) == 0xB8) ? 1 : -1];
+typedef char TBoss8DragonBodies[(offsetof(TBoss8Dragon, bodies) == 0xA4) ? 1 : -1];
+typedef char TBoss8DragonPos[(offsetof(TBoss8Dragon, position) == 0x38) ? 1 : -1];
 typedef char TBoss8DragonAfterFadeOffset[(offsetof(TBoss8Dragon, m_74c) == 0x74C) ? 1 : -1];
 
 #endif

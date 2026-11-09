@@ -25,7 +25,8 @@ struct Item_8025A650 { u8 p0[8]; f32 x; f32 y; s32 count; };
 
 f32 get_item_star_row_width(u8 *arg0);
 extern "C" {
-s32 sub_80256BDC__13TUnk_804CF930Fs(void *, void *);
+s32 __ct__13TUnk_804CF918Fs(void *, void *);
+void __dt__13TUnk_804CF918Fv(void *, s16);
 void begin_screen_draw(s32 arg0);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
@@ -123,7 +124,7 @@ void TWindowHelpItem__sub_8025A900(void) {  }
 void *TWindowHelpItem__sub_8025A904(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(void ***)((s8 *)arg0 + 4) = lbl_804CFA10;
-        ((TUnk_804CF930 *)arg0)->destroy((s16)(0));
+        __dt__13TUnk_804CF918Fv(arg0, (s16)0);
         if (arg1 > 0) {
             ::operator delete(arg0);
         }
@@ -133,7 +134,7 @@ void *TWindowHelpItem__sub_8025A904(void *arg0, s16 arg1) {
 
 typedef char RecoveredGlobal_8025A95C_lbl_804CFA10_size[sizeof(RecoveredGlobal_8025A95C_lbl_804CFA10) == 0x18 ? 1 : -1];
 u8 *TWindowHelpItem__sub_8025A95C(u8 *arg0, s32 arg1, s32 arg2) {
-    sub_80256BDC__13TUnk_804CF930Fs((void *)arg0, (void *)arg2);
+    __ct__13TUnk_804CF918Fs((void *)arg0, (void *)arg2);
     *(s32 **)((s8 *)arg0 + 4) = &(*(RecoveredGlobal_8025A95C_lbl_804CFA10 *)&lbl_804CFA10).value;
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 8))->copy_vec2((void *)(arg1 + 4));
     *(s32 *)((s8 *)arg0 + 0x10) = 0;

@@ -31,19 +31,16 @@ typedef struct GinjaTextureState {
   u8 reserved0[12];
   GinjaSurfaceState *surface;
 } GinjaTextureState;
-// Ninja's texture name: a file name, or a texture input for memory textures.
 typedef struct GinjaTextureEntry {
-  const void *name;
+  char *name;
   u32 value04;
-  // The global texture index until the list is loaded, then the texture.
-  union {
-    GinjaTextureState *texture;
-    u32 global_index;
-  };
+  GinjaTextureState *texture;
 } GinjaTextureEntry;
 typedef struct GinjaTextureList {
   GinjaTextureEntry *entries;
   u32 count;
+  // The index of the entry with this name, or -1.
+  s32 find_entry_by_name(const char *name);
 } GinjaTextureList;
 typedef struct GinjaSceneState {
   u8 reserved0[0x20];

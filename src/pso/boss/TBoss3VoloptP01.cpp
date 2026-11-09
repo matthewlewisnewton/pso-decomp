@@ -173,7 +173,7 @@ void TBoss3VoloptP01::init_params() {
     referenceHp = hp;
     set_param(0x2E);
     update_prev_position();
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    register_by_id();
     load_model(17);
     start_rise();
     ((TBoss3VoloptP01Collision *)bodies)->flags &= ~1;
@@ -844,7 +844,7 @@ void TBoss3VoloptP01::cast_tech_on_players() {
         for (k = 0; k < registered_player_count; k++) {
             target = TObjPlayer::get_player_data(k);
             if (target != NULL && get_entity_id(target) < 0x1000 && !(target->actorFlags & 0x02000800)) {
-                ((TTecGiBarta *)this)->create(&pos, &target->body_center_position, (void *)0x1D);
+                TTecGiBarta::create(this, &pos, &target->body_center_position, 0x1D);
             }
         }
         break;

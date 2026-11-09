@@ -88,7 +88,7 @@ void TODoorMachine02::render() {
         if (object_state == DOOR_CLOSED) {
             node = ((NJS_OBJECT *)model)->child;
             post_translate_matrix(node->pos);
-            draw_ginja_model((s32)node->model);
+            draw_ginja_model(node->model);
             if (unlocked != 1) {
                 u32 flags = model_render_flags;
                 saved_model_render_flags = flags;
@@ -98,12 +98,12 @@ void TODoorMachine02::render() {
             push_matrix();
             node = node->child;
             post_translate_matrix(node->pos);
-            draw_ginja_model((s32)node->model);
+            draw_ginja_model(node->model);
             pop_matrix();
             push_matrix();
             node = node->sibling;
             post_translate_matrix(node->pos);
-            draw_ginja_model((s32)node->model);
+            draw_ginja_model(node->model);
             pop_matrix();
             if (unlocked != 1) {
                 set_constant_material(&chunk_material_color_half_alpha_f32);
@@ -111,7 +111,7 @@ void TODoorMachine02::render() {
             }
             node = ((NJS_OBJECT *)model)->child->sibling;
             post_translate_matrix(node->pos);
-            draw_ginja_model((s32)node->model);
+            draw_ginja_model(node->model);
         } else {
             draw_ginja_model_with_motion(model, motion, animation_frame);
         }
@@ -143,11 +143,11 @@ void TODoorMachine02::load_resources() {
     if (enable_v2_features == 1 && TLobby::is_online_ready() != 0) {
         resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_machine02_a_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;
-        texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_ki_doa2_r_a.gvm");
+        texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_ki_doa2_r_a.gvm");
     } else {
         resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_machine02_resource_descriptor), 0, 0, (void *)(0));
         bml_resource = resource;
-        texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_ki_doa2_r.gvm");
+        texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_ki_doa2_r.gvm");
     }
     texture_lists[1] = bml_resource->models[0].m_c;
 }

@@ -11,13 +11,13 @@ int get_player_list__10TObjPlayerFv(void*);
 
 void TObjPlayer::set_atp(s16 v) { *(s16 *)&this->unk_1CC = v; }
 void TObjPlayer::cast_tech_gibarta() {
-    s32 sp8;
+    Vec sp8;
     void *tec_gi_barta;
 
     if (((TItemWeapon *)this)->is_mode_two_and_ready() != 0) {
         if (((TItemWeapon *)this)->get_joint_position(0, &sp8) != 0) {
             tec_gi_barta = *(void * *)&this->blend.frame[1];
-            ((TTecGiBarta *)tec_gi_barta)->create_ex(&sp8, (void *)(*(s32 *)((s8 *)tec_gi_barta + 0x60)), (void *)(get_tp()));
+            TTecGiBarta::create_ex(tec_gi_barta, &sp8, *(s32 *)((s8 *)tec_gi_barta + 0x60), get_tp());
             ((TItemWeapon *)this)->roll_technique();
         }
     } else {

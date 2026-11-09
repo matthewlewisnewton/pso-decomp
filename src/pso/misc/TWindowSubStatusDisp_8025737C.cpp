@@ -1,10 +1,11 @@
+#include "pso/render/ColorCopy.h"
 #include "pso/system/SoundSlotPitch.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8025737C.h"
 #include "pso/system/memory.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/ui/TAdChrMoveEffectGC.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -37,12 +38,12 @@ struct Gauge_80256E0C { u8 p0[0x14]; f32 max; };
 struct Pos_80256E0C { f32 x; f32 y; };
 
 extern "C" {
-void sub_80256BDC__13TUnk_804CF930Fs(u8 *arg0, s16 arg1);
-void calc_bar_width__20TWindowSubStatusDispFPv(struct Bar_80256C00 *bar);
+void __ct__13TUnk_804CF918Fs(u8 *arg0, s16 arg1);
+void calc_bar_width__13TUnk_804CF930Fv(struct Bar_80256C00 *bar);
 extern const f32 lbl_805DCE58;
-void step_gauge_bar_width(Gauge_802571B4 *g);
-void *destroy__13TUnk_804CF930Fs(void *arg0, s16 arg1);
-void *TWindowSubStatusDisp__sub_80257298(void *arg0, s16 arg1);
+void update__13TUnk_804CF930Fv(Gauge_802571B4 *g);
+void *__dt__13TUnk_804CF918Fv(void *arg0, s16 arg1);
+void *__dt__13TUnk_804CF930Fv(void *arg0, s16 arg1);
 }
 
 struct Gauge_80257784 {
@@ -111,15 +112,15 @@ struct Bar_8025799C {
 };
 
 
-#define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
-#define sub_80256BDC__13TUnk_804CF930Fs ((int (*)(void*, int))sub_80256BDC__13TUnk_804CF930Fs)
-#define calc_bar_width__20TWindowSubStatusDispFPv ((s32 (*)())calc_bar_width__20TWindowSubStatusDispFPv)
-#define step_gauge_bar_width ((void (*)(void *))step_gauge_bar_width)
-void* init_from__13TUnk_804CF930FPvi(void* a0, void* a1, int a2);
+#define __dt__13TUnk_804CF918Fv ((s32 (*)(s32, s32 *))__dt__13TUnk_804CF918Fv)
+#define __ct__13TUnk_804CF918Fs ((int (*)(void*, int))__ct__13TUnk_804CF918Fs)
+#define calc_bar_width__13TUnk_804CF930Fv ((s32 (*)())calc_bar_width__13TUnk_804CF930Fv)
+#define update__13TUnk_804CF930Fv ((void (*)(void *))update__13TUnk_804CF930Fv)
+void* __ct__13TUnk_804CF930FPvs(void* a0, void* a1, int a2);
 u32 update_text_color_transition(Fade_802575C0 *fade);
 void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time);
 
-#define lbl_804CF930 (*(unsigned char (*)[1])&lbl_804CF930)
+#define __vt__13TUnk_804CF930 (*(unsigned char (*)[1])&__vt__13TUnk_804CF930)
 extern s32 lbl_804CF948[];
 extern const float lbl_805DCE58;
 
@@ -191,7 +192,7 @@ void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time) {
         arg0->tr = c.r;
         arg0->tg = c.g;
         arg0->tb = c.b;
-        fn_80257720(&c, &arg0->col);
+        copy_color_bytes(&c, &arg0->col);
         time = 1.0f / time;
         arg0->cr = c.r;
         arg0->cg = c.g;
@@ -206,19 +207,18 @@ void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time) {
 }
 
 #pragma push
-#pragma scheduling off // preserves the native load/store order
-void fn_80257720(void *destination, const void *source) {
-    *(u8 *)destination = *(const u8 *)((const char *)source + 0);
-    *(u8 *)((char *)destination + 1) = *(const u8 *)((const char *)source + 1);
-    *(u8 *)((char *)destination + 2) = *(const u8 *)((const char *)source + 2);
-    *(u8 *)((char *)destination + 3) = *(const u8 *)((const char *)source + 3);
+#pragma scheduling off
+void copy_color_bytes(void *destination, const void *source) {
+    u8 *dst = (u8 *)destination;
+    const u8 *src = (const u8 *)source;
+    dst[0] = src[0]; dst[1] = src[1]; dst[2] = src[2]; dst[3] = src[3];
 }
+
 #pragma pop
 
 extern "C" {
-
 void TWindowSubStatusDisp::update_disp_value() {
-    calc_bar_width__20TWindowSubStatusDispFPv();
+    calc_bar_width__13TUnk_804CF930Fv();
     *(s16 *)((s8 *)this + 0x28) = (s16) *(f32 *)&this->m_24;
 }
 
@@ -312,14 +312,14 @@ void update_status_gauge_hold(Bar_8025799C *bar) {
             update_technique_slot__10TTecRaFoieFl(slot, -0x100, 0);
         }
     } else {
-        step_gauge_bar_width(bar);
+        update__13TUnk_804CF930Fv(bar);
     }
 }
 
 void *TWindowSubStatusDisp__sub_80257AF4(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 4) = lbl_804CF948;
-        TWindowSubStatusDisp__sub_80257298(arg0, 0);
+        __dt__13TUnk_804CF930Fv(arg0, 0);
         if (arg1 > 0) {
             ::operator delete(arg0);
         }
@@ -328,7 +328,7 @@ void *TWindowSubStatusDisp__sub_80257AF4(void *arg0, s16 arg1) {
 }
 
 u8 *TWindowSubStatusDisp::init_layout_entry_copy(u8 *arg1) {
-    ((s32 (*)(void))init_from__13TUnk_804CF930FPvi)();
+    ((s32 (*)(void))__ct__13TUnk_804CF930FPvs)();
     *(s32 * *)&this->m_flags = &(*(RecoveredGlobal_80257B4C_lbl_804CF948 *)&lbl_804CF948).value;
     *(s16 *)((s8 *)((u8 *)this) + 0x28) = (s16) *(f32 *)&this->m_24;
     *(s32 *)((s8 *)((u8 *)this) + 0x60) = (s32) *(s32 *)((s8 *)arg1 + 0x24);
@@ -339,8 +339,8 @@ u8 *TWindowSubStatusDisp::init_layout_entry_copy(u8 *arg1) {
 }
 }
 
-#undef destroy__13TUnk_804CF930Fs
-#undef sub_80256BDC__13TUnk_804CF930Fs
-#undef calc_bar_width__20TWindowSubStatusDispFPv
-#undef step_gauge_bar_width
-#undef lbl_804CF930
+#undef __dt__13TUnk_804CF918Fv
+#undef __ct__13TUnk_804CF918Fs
+#undef calc_bar_width__13TUnk_804CF930Fv
+#undef update__13TUnk_804CF930Fv
+#undef __vt__13TUnk_804CF930

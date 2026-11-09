@@ -6,6 +6,11 @@
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TLobby.h"
+#ifndef __MWERKS__
+// Host builds use the shared port fallbacks, following the SMS PC and TP
+// port compatibility pattern.
+#include "pso/port/VectorMathFallbacks.h"
+#endif
 
 struct Q_803D98E4 { f32 x, y, z, w; };
 
@@ -88,6 +93,23 @@ void TCameraCtrl::concat_matrix(u32 arg0, u32 arg1) {
 }
 #pragma pop
 
+// 0x803D97B4. The original body is assembly: one unconverted double frsqrte
+// estimate feeds the component fmuls and the fres return with no frsp, which
+// GC/2.6's typed builtins cannot express. Recovered from the disc by
+// tools/orig_asm.py.
+#ifdef __MWERKS__
+asm f32 normalize_vector(Vec *v) {
+#include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"
+}
+#else
+// Scalar fallback: the same accumulator split, component scaling and returned
+// length. fres(frsqrte(sum)) estimates the length, so the port returns the
+// exact length and scales by its reciprocal.
+f32 normalize_vector(Vec *v) {
+    return pso::port::normalize_vector(v);
+}
+#endif
+
 #pragma push
 #pragma scheduling off
 s32 push_matrix_from(void *src) {
@@ -95,7 +117,7 @@ s32 push_matrix_from(void *src) {
     if (next > matrix_stack_limit) {
         return 0;
     }
-    ((TLobby *)next)->move_data((src == 0) ? (void *)current_matrix : src, 0x30);
+    move_data((void *)next, (src == 0) ? (void *)current_matrix : src, 0x30);
     current_matrix = next;
     return 1;
 }
@@ -172,7 +194,7 @@ u32 *find_gvrt_texture_chunk(TLobby *lobby, u32 *arg1, u32 *arg2) {
         TObjPlayer__sub_803D9C60(&tag);
         switch (tag) {
         case 0x54525647:
-            lobby->move_data(p + 2, 8);
+            move_data(lobby, p + 2, 8);
             return p + 4;
         case 0x58494247: {
             u32 len;

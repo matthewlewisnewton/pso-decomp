@@ -28,7 +28,7 @@ extern const f32 lbl_805DB85C;
 void *get_shared_text_buffer(void);
 s32 get_trap_type__10TOMineTrapFv(s32);
 s32 is_technique_ready__8TTecCtrlFv(void);
-VO_8016F320 *get_player_by_client_id(u16);
+VO_8016F320 *get_player_by_client_id(s32);
 void text_builder_append(const char *);
 }
 void text_builder_reset(void);
@@ -83,11 +83,11 @@ void TOMineTrap::spawn_disp_objects() {
         }
     }
 }
-s32 TOMineTrap::show_owner_message(s32 arg0, u32 arg1) {
+s32 TOMineTrap::show_owner_message(TOMineTrap *trap, TObjChara *actor) {
     char *name;
     VO_8016F320 *p;
-    if ((arg1 != 0U) && (is_technique_ready__8TTecCtrlFv() != 0)) {
-        p = get_player_by_client_id(get_trap_type__10TOMineTrapFv(arg0));
+    if ((actor != 0) && (is_technique_ready__8TTecCtrlFv() != 0)) {
+        p = get_player_by_client_id(trap->get_trap_type());
         if (p != NULL) {
             name = p->m10();
             if (name != NULL) {
@@ -143,7 +143,7 @@ struct Pkt_8016F418 { u8 pad[4]; u16 id; u16 kind; };
 
 extern "C" {
 void TOMineTrap__sub_8017141C(void *);
-s32 check_value_equals__13TUnk_804B6C24Fl(u32, int);
+s32 check_value_equals__7TObjectFPCc(u32, int);
 extern s32 TOMineTrap__data_805D3080;
 f32 TOMineTrap__vt20(Obj_8016F5B4 *arg0, u32 arg1);
 
@@ -180,7 +180,7 @@ void handle_6x80_trigger_trap(Pkt_8016F418 *arg0) {
         if (p == NULL) {
             continue;
         }
-        if (check_value_equals__13TUnk_804B6C24Fl((u32)p, TOMineTrap__data_805D3080) == 0) {
+        if (check_value_equals__7TObjectFPCc((u32)p, TOMineTrap__data_805D3080) == 0) {
             continue;
         }
         if (arg0->id != TOMineTrap__sub_80171358(p)) {
@@ -235,7 +235,7 @@ f32 TOMineTrap__vt20(Obj_8016F5B4 *arg0, u32 arg1) {
     case 0:
     case 1:
     case 2:
-        if ((arg1 != 0U) && (check_value_equals__13TUnk_804B6C24Fl(arg1, TOMineTrap__data_805D3080) != 0)) {
+        if ((arg1 != 0U) && (check_value_equals__7TObjectFPCc(arg1, TOMineTrap__data_805D3080) != 0)) {
             ((TOMineTrap *)arg0)->set_triggered();
             if (arg0->cnt > 0xF) {
                 arg0->cnt = 0xF;

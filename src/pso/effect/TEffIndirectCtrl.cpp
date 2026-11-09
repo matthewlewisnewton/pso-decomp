@@ -17,7 +17,9 @@
 #include "pso/effect/TEffIndirectCtrl_802A88AC.h"
 #include "pso/effect/TEffIndirectCtrl_802A9284.h"
 #include "pso/math/AngleLookup.h"
-#include "pso/misc/TLobby_800F9DA0.h"
+// This branch's TLobby_800F9DA0.h declares the one-argument disc setup.
+// The call below is the two-argument file read.
+extern "C" s32 read_disc_file(const char *filename, void *buffer);
 #include "pso/misc/TScene.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/player/TObjPlayer.h"
@@ -32,6 +34,9 @@
 #include "pso/system/memory.h"
 #include "pso/unk/text_802A8210.h"
 #include "pso/unk/text_803DD5E0.h"
+
+extern "C" void set_texture_name(GinjaTextureEntry *entry, const void *name, u32 global_index, u32 attr);
+extern "C" s32 load_texture_list(GinjaTextureList *texlist);
 
 // Built with deferred code generation, which emits functions last-defined
 // first: the definitions below run from the end of the unit

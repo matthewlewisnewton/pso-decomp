@@ -141,7 +141,7 @@ int TBoss6Thanks::is_player_near(void *arg0) {
     r = lbl_805E0198;
     for (i = 0; i < n; i++) {
         p = (u8 *)get_player_data__10TObjPlayerFi(i);
-        if (p != NULL && ((TBoss6PlotFalz *)p)->is_active() != 0 &&
+        if (p != NULL && TBoss6PlotFalz::is_active((TObjPlayer *)p) != 0 &&
             xyz_distance(p + 0x38, TBoss6Thanks__data_80479BA8) <= r) {
             return 1;
         }

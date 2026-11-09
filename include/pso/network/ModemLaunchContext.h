@@ -7,7 +7,8 @@
 // Views of the reserved launch record at 0x80003100. Unknown spans stay opaque.
 // DolImageHeader is the DOL file header stored at ModemLaunchContext::field_104:
 // 7 text slots, 11 data slots, then BSS and the entry. File offsets are
-// relative to that header. Not a recovered original type name.
+// relative to that header. This view ends at entry; the trailing DOL header
+// padding is not represented. Not a recovered original type name.
 struct DolImageHeader {
     u32 text_offset[7];
     u32 data_offset[11];
@@ -20,6 +21,14 @@ struct DolImageHeader {
     void (*entry)();
 };
 
+typedef char DolImageHeaderSections[
+    offsetof(DolImageHeader, text_offset) == 0x00 &&
+    offsetof(DolImageHeader, data_offset) == 0x1C &&
+    offsetof(DolImageHeader, text_address) == 0x48 &&
+    offsetof(DolImageHeader, data_address) == 0x64 &&
+    offsetof(DolImageHeader, text_size) == 0x90 &&
+    offsetof(DolImageHeader, data_size) == 0xAC ? 1 : -1];
+typedef char DolImageHeaderViewSize[sizeof(DolImageHeader) == 0xE4 ? 1 : -1];
 typedef char DolImageHeaderBss[offsetof(DolImageHeader, bss_address) == 0xD8 ? 1 : -1];
 typedef char DolImageHeaderEntry[offsetof(DolImageHeader, entry) == 0xE0 ? 1 : -1];
 struct ModemLaunchOptions {
