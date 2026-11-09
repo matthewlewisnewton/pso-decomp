@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
@@ -120,7 +121,7 @@ void TWindowSubStatusDisp::handle_input() {
 void *__dt__13TUnk_804CE7E8Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = status_disp_window_dispatch_table;
-        ((TWindowSubStatusDisp *)arg0)->destroy_item_list_resources(0);
+        __dt__19TWindowMenuIconLineFv((TWindowMenuIconLine *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }

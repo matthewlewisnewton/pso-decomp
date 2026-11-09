@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TWindowMenuMainMenu.h"
 #include "pso/misc/TWindowBase.h"
@@ -49,7 +50,7 @@ void TWindowMenuMainMenu::run_task() {
 void *__dt__19TWindowMenuMainMenuFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TWindowMenuMainMenu;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -59,7 +60,7 @@ void *__dt__19TWindowMenuMainMenuFv(void *arg0, s16 arg1) {
 u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *window_menu_main_menu, s32 arg1, s16 arg2) {
     s32 i;
     TMainMenuEntry *entry;
-    ((TWindowDD *)window_menu_main_menu)->construct_base((u8 *)window_menu_main_menu_params, (s16)arg2, (u8 *)arg1);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)window_menu_main_menu), (u8 *)((u8 *)window_menu_main_menu_params), (s16)((s16)arg2), (u8 *)((u8 *)arg1));
     *(s32 **)((s8 *)window_menu_main_menu + 0x18) = __vt__19TWindowMenuMainMenu;
     entry = window_menu_main_menu->entries;
     i = 0;

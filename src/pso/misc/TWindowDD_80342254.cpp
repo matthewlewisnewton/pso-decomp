@@ -1,3 +1,5 @@
+#include "pso/misc/TWindowBase.h"
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/TObject.h"
@@ -73,7 +75,7 @@ void *TWindowDD_WS_Word::destroy(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804EFC90;
         if (this->m_80 != NULL) { ::operator delete[](this->m_80); this->m_80 = 0; }
-        ((TWindowDD *)this)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(this), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
         }
@@ -86,7 +88,7 @@ s32 TWindowDD__sub_803422F0(int a0, void *a1, void *a2) {
 #define arg1 ((s32)a1)
 #define arg2 ((s32)a2)
     s32 v;
-    ((TWindowDD *)arg0)->construct_base((u8 *)lbl_804EFC7C, (s16)4, (u8 *)lbl_804EFC74);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)lbl_804EFC7C), (s16)((s16)4), (u8 *)((u8 *)lbl_804EFC74));
     arg0->f18 = lbl_804EFC90;
     v = lbl_805D42E0;
     arg0->f0 = v;

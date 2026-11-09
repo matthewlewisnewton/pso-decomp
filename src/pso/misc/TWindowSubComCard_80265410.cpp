@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/SoundEffect.h"
@@ -106,7 +107,6 @@ Ent_80265C30 * get_array_entry__11TWindowBaseFi(void *w, s32 i);
 
 void __dl__7TObjectFPv(void *);
 s32 __nw__7TObjectFUl(int);
-s32 construct_with_parent__15TWindowAdditionFPv(void *, void *, s16, s32);
 void * get_field_20__17TWindowSubComCardFv(void *e);
 void refresh_status_display__9TWindowDDFv(void *);
 void TWindowChat__sub_80247D2C(void *p);
@@ -828,7 +828,7 @@ void *__dt__11TWindowMenuFv(void *arg0, s16 arg1) {
         TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)arg0 + 0x84)), (s16)1);
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x88)), (s16)1);
         ::operator delete[](*(void **)((s8 *)arg0 + 0x80));
-        ((TWindowAddition *)arg0)->destroy_window(0);
+        __dt__15TWindowAdditionFv((TWindowAddition *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -839,7 +839,7 @@ void *__dt__11TWindowMenuFv(void *arg0, s16 arg1) {
 u8 *TWindowMenu__ct(u8 *window_menu, u32 arg1, s32 arg2, s32 arg3) {
     u32 i;
     u8 *p;
-    construct_with_parent__15TWindowAdditionFPv(window_menu, lbl_804D05CC, arg2, arg3);
+    __ct__15TWindowAdditionFPUcsPUc((TWindowAddition *)(window_menu), (u8 *)(lbl_804D05CC), (s16)(arg2), (u8 *)(arg3));
     *(void **)(window_menu + 0x18) = ((s32 *)&__vt__11TWindowMenu);
     *(s32 *)window_menu = lbl_805D3960;
     *(s16 *)(window_menu + 0x72) = 0;

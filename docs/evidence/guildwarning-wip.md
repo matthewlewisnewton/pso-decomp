@@ -79,13 +79,13 @@ not used as evidence for changed code.
 
 The standing instruction in this PR is **do not merge or mark ready** until
 the window construction/lifetime contracts are resolved. It remains in force.
-Main's C-named `TWindowMessage__ct` and `construct_with_parent` are unchanged;
-the earlier attempts to force them into real C++ constructors emitted extra
-base calls/vtable stores. A subsequent isolated probe with a correctly owned
-base-initializer chain now reproduces those bodies and compiler-generated tables.
-It exposes a caller-width and lifetime qualification blocker instead; see
-[the constructor-chain evidence](window-constructor-chain-probe.md).
-The probe is not activated in this PR.
+The [native lifetime integration](window-native-lifetime.md) now recovers the
+Base/Addition/Message chain, genuine MenuIconLine constructors, related caller
+contracts, and compiler-emitted table ownership. It also removes the unneeded
+empty defaults and preserves the repaired Addition fields. Complete linked
+validation supersedes the earlier isolated-probe width blocker. Remaining
+C-named raw-storage functions still use a documented native ABI boundary, and
+the separate pre-existing DuelResult `init` ownership anomaly remains unresolved.
 
 Current-main integration and exact code matching alone do not lift that hold.
 The earlier wider window-interface cleanup is not claimed complete.

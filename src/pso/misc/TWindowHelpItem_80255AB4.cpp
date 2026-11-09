@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/unk/text_80263A20.h"
 #include "pso/misc/TWindowHelpItem_80255AB4.h"
@@ -29,7 +30,6 @@ s32 handle_list_page_flip_input(s32);
 s32 draw_visible_window_entries(void *, void *, int);
 s32 draw_list_page_indicator(int, int);
 void __dl__7TObjectFPv(void *);
-void destroy_window_base__9TWindowDDFs(void *, int);
 s32 decay_page_arrow_offset(s32);
 
 void TWindowHelpItem::update_cursor_selection() {
@@ -89,7 +89,7 @@ void *TWindowHelpItem::dt(s16 arg1) {
     if (this != NULL) {
         this->m_vtable18 = TWindowHelpItem__object_vtable;
         delete_if_allocated(this->m_64, 1);
-        destroy_window_base__9TWindowDDFs(this, 0);
+        __dt__11TWindowBaseFv((TWindowBase *)(this), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
         }
@@ -101,7 +101,7 @@ void *TWindowHelpItem::dt(s16 arg1) {
 TWindowHelpItem::TWindowHelpItem(void *pos, u16 idx) {
     TWindowHelpItem *self = this;
     void *p;
-    ((TWindowDD *)self)->construct_base((u8 *)__vt__15TWindowHelpItem, (s16)idx, (u8 *)pos);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)self), (u8 *)((u8 *)__vt__15TWindowHelpItem), (s16)((s16)idx), (u8 *)((u8 *)pos));
     self->m_vtable18 = ((s32 *)&TWindowHelpItem__object_vtable);
     self->m_00 = window_help_item_class_name;
     ((TWindowSubSymbolChatPartsSet *)((u8 *)self + 0x30))->copy_vec2(pos);

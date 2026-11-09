@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TWindowDD_80341334.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
@@ -57,7 +58,7 @@ void __dl__7TObjectFPv(void *);
 void *__dt__9TWindowDDFPvs(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = lbl_804EFC38;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -69,7 +70,7 @@ typedef char RecoveredGlobal_8034138C_lbl_804EFC38_size[sizeof(RecoveredGlobal_8
 u8 *TWindowDD__sub_8034138C(u8 *arg0, s32 arg1, s32 arg2, s32 str, s32 arg4) {
     s32 temp_r0;
     u8 *window_help_item;
-    ((TWindowDD *)arg0)->construct_base((u8 *)&TWindowDD__data_804EFC24.value, (s16)(4), (u8 *)arg1);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)&TWindowDD__data_804EFC24.value), (s16)((s16)(4)), (u8 *)((u8 *)arg1));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8034138C_lbl_804EFC38 *)&lbl_804EFC38).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) ((s32)lbl_805D42D8);
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 0x64))->copy_vec2((void *)arg1);

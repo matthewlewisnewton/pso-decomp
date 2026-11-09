@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/quest/TQuestThread.h"
@@ -284,7 +285,7 @@ void *__dt__26TWindowSubQuestBoardSelectFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__26TWindowSubQuestBoardSelect;
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x64)), (s16)1);
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -306,7 +307,7 @@ u8 *TWindowSubQuestBoardSelect__ct(TWindowSubQuestBoardSelect *window_sub_quest_
     f32 temp_f2;
     s32 temp_r30;
     s32 var_r30;
-    ((TWindowDD *)window_sub_quest_board_select)->construct_base((u8 *)&TWindowSubQuestBoardSelect__window_parameters.value, (s16)(4), (u8 *)(get_window_layout_position(0x70)));
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)window_sub_quest_board_select), (u8 *)((u8 *)&TWindowSubQuestBoardSelect__window_parameters.value), (s16)((s16)(4)), (u8 *)((u8 *)(get_window_layout_position(0x70))));
     *(s32 **)((s8 *)window_sub_quest_board_select + 0x18) = __vt__26TWindowSubQuestBoardSelect;
     *(s32 *)((s8 *)window_sub_quest_board_select + 0) = (s32) TWindowSubQuestBoardSelect__class_name;
     var_r30 = (int)::operator new(0x24);

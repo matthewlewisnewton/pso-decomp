@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TQuestVmDownLoadServer_803E6970.h"
@@ -54,7 +55,7 @@ void *__dt__19TWindowKeyBoardBaseFv(void *arg0, s16 arg1) {
         ::operator delete[](*(void **)((s8 *)arg0 + 0x9C));
         destroy__19TWindowKeyBoardBaseFPvs((u32 *)((s8 *)arg0 + 0x84), -1);
         destroy__19TWindowKeyBoardBaseFPvs((u32 *)((s8 *)arg0 + 0x6C), -1);
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -63,7 +64,7 @@ void *__dt__19TWindowKeyBoardBaseFv(void *arg0, s16 arg1) {
 }
 u8 *TWindowKeyBoardBase__ct(u8 *arg0) {
     s32 temp_r31;
-    ((TWindowDD *)arg0)->construct_base((u8 *)&TWindowKeyBoardBase__window_descriptor.value, (s16)(4), (u8 *)(get_window_layout_position(0xB7)));
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)&TWindowKeyBoardBase__window_descriptor.value), (s16)((s16)(4)), (u8 *)((u8 *)(get_window_layout_position(0xB7))));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8025E9E4___vt__19TWindowKeyBoardBase *)&__vt__19TWindowKeyBoardBase).value;
     ((TWindowKeyBoardBase *)(arg0 + 0x6C))->init_text_buffer_holder();
     ((TWindowKeyBoardBase *)(arg0 + 0x84))->init_text_buffer_holder();

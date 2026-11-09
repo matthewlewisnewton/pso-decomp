@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
@@ -128,7 +129,7 @@ void TWindowSnapShot::run_task() {
 void *__dt__15TWindowSnapShotFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__15TWindowSnapShot;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -139,7 +140,7 @@ typedef char RecoveredGlobal_802A80A0_lbl_804DDEB4_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_802A80A0___vt__15TWindowSnapShot_size[sizeof(RecoveredGlobal_802A80A0___vt__15TWindowSnapShot) == 0x18 ? 1 : -1];
 u8 *TWindowSnapShot__ct(TWindowSnapShot *window_snap_shot, s32 arg1) {
     s32 temp_r31;
-    ((TWindowDD *)window_snap_shot)->construct_base((u8 *)((s32) &window_snapshot_layout.value), (s16)4, (u8 *)arg1);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)window_snap_shot), (u8 *)((u8 *)((s32) &window_snapshot_layout.value)), (s16)((s16)4), (u8 *)((u8 *)arg1));
     *(s32 **)((s8 *)window_snap_shot + 0x18) = &(*(RecoveredGlobal_802A80A0___vt__15TWindowSnapShot *)&__vt__15TWindowSnapShot).value;
     *(s32 *)((s8 *)window_snap_shot + 0) = (s32) TWindowSnapShot__name;
     window_snap_shot->m_60 = 0U;

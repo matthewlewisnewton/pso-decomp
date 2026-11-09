@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TLobby_8001D6A0.h"
 #include "pso/misc/TWindowSubStatusDisp_80228CC0.h"
@@ -9,29 +10,15 @@
 extern "C" {
 extern s32 TWindowSubStatusDisp__count_ratio_value;
 extern s32 lbl_805DCAB8;
-void sub_802443B4__15TWindowAdditionFv(void *, void *);
-void construct_base__9TWindowDDFPUcsPUc(void *);
+void sub_802443B4__15TWindowAdditionFPUc(void *, void *);
 void __dl__7TObjectFPv(void *);
-void destroy_window_base__9TWindowDDFs(void *, int);
+extern s32 __vt__15TWindowAddition[];
 
-extern s32 lbl_804CDFE8[];
+TWindowAddition::~TWindowAddition() {}
 
-void *TWindowAddition::destroy_window(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = lbl_804CDFE8;
-        destroy_window_base__9TWindowDDFs(this, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(this);
-        }
-    }
-    return this;
-}
-
-void *TWindowAddition::construct_with_parent(void *arg1) {
-    construct_base__9TWindowDDFPUcsPUc(this);
-    *(s32 **)((s8 *)this + 0x18) = lbl_804CDFE8;
-    sub_802443B4__15TWindowAdditionFv(this, arg1);
-    return this;
+TWindowAddition::TWindowAddition(u8 *descriptor, s16 client, u8 *position)
+    : TWindowBase(descriptor, client, position) {
+    sub_802443B4(descriptor);
 }
 void TWindowSubStatusDisp::set_count_ratio_text(s32 arg1, s32 arg2) {
     s32 arg0 = (s32)this;

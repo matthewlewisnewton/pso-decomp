@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TWindowMessagePage.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
@@ -25,7 +26,6 @@ struct Page_8026AE20 { u8 pad[0x90]; s32 flags; void *msg; };
 extern "C" {
 u8 *__nw__7TObjectFUl(s32);
 s32 TLobby__sub_80269DA4(void *, void *);
-u8 *TWindowMessage__ct(u8 *arg0, s32 arg1, u32 arg2, s32 arg3);
 extern s32 __vt__18TWindowMessagePage[];
 extern const char *lbl_805D3998;
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
@@ -103,7 +103,7 @@ TWindowMessagePage::~TWindowMessagePage() {
 }
 
 u8 *TWindowMessagePage__ct(u8 *window_message_page, s32 arg1, s32 arg2, s32 arg3) {
-    TWindowMessage__ct((window_message_page), (arg1), (arg2), (arg3));
+    __ct__14TWindowMessageFlUll((TWindowMessage *)((window_message_page)), (s32)((arg1)), (u32)((arg2)), (s32)((arg3)));
     *(s32 **)((s8 *)window_message_page + 0x18) = &(*(RecoveredGlobal_8026B014___vt__18TWindowMessagePage *)&__vt__18TWindowMessagePage).value;
     *(s32 *)((s8 *)window_message_page + 0) = (s32) ((s32)lbl_805D3998);
     *(s32 *)((s8 *)window_message_page + 0x90) = 0;

@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
@@ -14,7 +15,6 @@ extern "C" {
 void TShopJudgmentItemWindow__sub_80267F9C(void *, int);
 void *__nw__7TObjectFUl(int);
 extern s32 lbl_8044FAA8[];
-void fn_802683F4(void *, void *, s32, s16);
 void *init__21TWindowSubComCardListFiii(void *, s8, s32, s32);
 extern s32 __vt__22TWindowSubShortCutList[];
 extern s32 TWindowSubShortCutList__class_name;
@@ -112,7 +112,7 @@ void *__dt__22TWindowSubShortCutListFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__22TWindowSubShortCutList;
         delete_if_allocated((s32)(*(void **)((s8 *)arg0 + 0x88)), 1);
-        ((TWindowSubStatusDisp *)arg0)->destroy_item_list_resources(0);
+        __dt__19TWindowMenuIconLineFv((TWindowMenuIconLine *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -123,7 +123,7 @@ void *TWindowSubShortCutList__ct(void *window_sub_short_cut_list, void *arg1, vo
     s32 row;
     s32 col;
     void *p;
-    fn_802683F4(window_sub_short_cut_list, arg1, 4, local_client_id);
+    __ct__19TWindowMenuIconLineFPUcUls((TWindowMenuIconLine *)(window_sub_short_cut_list), (u8 *)(arg1), (u32)(4), (s16)(local_client_id));
     ((Obj_8027E558 *)window_sub_short_cut_list)->vt = ((s32 *)&__vt__22TWindowSubShortCutList);
     ((Obj_8027E558 *)window_sub_short_cut_list)->f0 = TWindowSubShortCutList__class_name;
     row = (s32)arg2 / 4;

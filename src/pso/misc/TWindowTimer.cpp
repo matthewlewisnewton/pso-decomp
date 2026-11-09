@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TLobby_8001D6A0.h"
 #include "pso/misc/TWindowSubShortMail_80246CB8.h"
@@ -137,7 +138,7 @@ void run_task__12TWindowTimerFv(TWindowTimer *window_timer) {
 void *__dt__12TWindowTimerFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TWindowTimer;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -147,7 +148,7 @@ void *__dt__12TWindowTimerFv(void *arg0, s16 arg1) {
 typedef char RecoveredGlobal_80287FBC_lbl_804D2E74_size[sizeof(RecoveredGlobal_80287FBC_lbl_804D2E74) == 0x14 ? 1 : -1];
 typedef char RecoveredGlobal_80287FBC___vt__12TWindowTimer_size[sizeof(RecoveredGlobal_80287FBC___vt__12TWindowTimer) == 0x18 ? 1 : -1];
 u8 *TWindowTimer__ct(TWindowTimer *window_timer) {
-    ((TWindowDD *)window_timer)->construct_base((u8 *)&window_timer_layout.value, (s16)4, (u8 *)(get_zero_vec2()));
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)window_timer), (u8 *)((u8 *)&window_timer_layout.value), (s16)((s16)4), (u8 *)((u8 *)(get_zero_vec2())));
     *(s32 **)((s8 *)window_timer + 0x18) = &(*(RecoveredGlobal_80287FBC___vt__12TWindowTimer *)&__vt__12TWindowTimer).value;
     *(s32 *)((s8 *)window_timer + 0) = (s32) TWindowTimer__name;
     window_timer->m_60 = 0;

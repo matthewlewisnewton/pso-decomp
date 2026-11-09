@@ -8151,6 +8151,7 @@ pso/unk/text_80244238.cpp:
 
 pso/misc/TWindowAddition.cpp:
 	.text       start:0x802443F0 end:0x8024450C
+	.data       start:0x804CDFE8 end:0x804CE000
 
 pso/unk/text_8024450C.cpp:
 	.text       start:0x8024450C end:0x8024467C
@@ -8166,6 +8167,7 @@ pso/misc/TWindowSubComCard_80244774.cpp:
 
 pso/misc/TWindowDD_8024662C.cpp:
 	.text       start:0x8024662C end:0x8024674C
+	.data       start:0x804CE018 end:0x804CE030
 
 pso/misc/TWindowCtrlMain_8024674C.cpp:
 	.text       start:0x8024674C end:0x80246B80
@@ -8528,6 +8530,7 @@ pso/misc/TWindowInputNumber.cpp:
 pso/misc/TWindowInputNumber_80256170.cpp:
 	.text       start:0x80256170 end:0x80256B94
 	.rodata     start:0x8044EE28 end:0x8044EE40
+	.data       start:0x804CF900 end:0x804CF918
 	.sdata2     start:0x805DCE18 end:0x805DCE58
 
 pso/misc/TWindowSubStatusDisp_80256B94.cpp:
@@ -8702,6 +8705,7 @@ pso/misc/TShopArmorListWindow_80266CF8.cpp:
 pso/misc/TWindowSubStatusDisp_802671F0.cpp:
 	.text       start:0x80266E0C end:0x80268384
 	.rodata     start:0x8044F378 end:0x8044F388
+	.data       start:0x804D0618 end:0x804D0634
 	.sdata2     start:0x805DD188 end:0x805DD1C0
 
 pso/unk/text_80268384.cpp:
@@ -8747,6 +8751,7 @@ pso/unk/text_802693B4.cpp:
 pso/misc/TWindowMessage.cpp:
 	.text       start:0x802694F4 end:0x80269FB0
 	.rodata     start:0x8044F3F0 end:0x8044F3F8
+	.data       start:0x804D0730 end:0x804D0748
 	.sdata2     start:0x805DD218 end:0x805DD240
 
 pso/misc/TWindowCtrl_80269FB0.cpp:

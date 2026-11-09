@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TWindowSubStatusDisp_8026F6DC.h"
@@ -54,7 +55,7 @@ u8 *__dt__19TWindowSimpleStatusFv(SS_802705D8 *arg0, s16 arg1) {
                 arg0->w[i] = NULL;
             }
         }
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -64,7 +65,7 @@ u8 *__dt__19TWindowSimpleStatusFv(SS_802705D8 *arg0, s16 arg1) {
 
 SS_80270668 *TWindowSimpleStatus__ct(SS_80270668 *arg0, void *arg1, s32 arg2, void *arg3) {
     s32 i;
-    ((TWindowDD *)arg0)->construct_base((u8 *)arg3, (s16)arg2, (u8 *)arg1);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)arg3), (s16)((s16)arg2), (u8 *)((u8 *)arg1));
     arg0->vt = __vt__19TWindowSimpleStatus;
     arg0->f0 = TWindowSimpleStatus__name;
     arg0->f20 = arg2;

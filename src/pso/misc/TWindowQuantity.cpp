@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
 #include "pso/misc/TWindowSubStatusDisp_80287570.h"
@@ -54,7 +55,7 @@ void TWindowQuantity::run_task() { initialize_subwindow__9TWindowDDFv(this); upd
 void *__dt__15TWindowQuantityFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__15TWindowQuantity;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -68,7 +69,7 @@ void *TWindowQuantity__ct(void *arg0, void *arg1) {
     u8 *e0;
     s32 id;
     f32 n;
-    ((TWindowDD *)arg0)->construct_base((u8 *)quantity_window_layout, (s16)((s16)(s32)arg1), (u8 *)(get_window_layout_position(0x2A)));
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)quantity_window_layout), (s16)((s16)((s16)(s32)arg1)), (u8 *)((u8 *)(get_window_layout_position(0x2A))));
     self->vt = ((void * *)&__vt__15TWindowQuantity);
     self->f0 = lbl_805D39B0;
     id = TQuestVmDownLoadServer__sub_8006EF6C(1);

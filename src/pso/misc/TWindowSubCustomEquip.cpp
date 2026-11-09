@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
@@ -315,7 +316,7 @@ void *__dt__21TWindowSubCustomEquipFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__21TWindowSubCustomEquip;
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x6C)), (s16)1);
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -329,7 +330,7 @@ extern const char *lbl_805D3A20;
 
 TWindowSubCustomEquip *TWindowSubCustomEquip__ct(TWindowSubCustomEquip *self, s32 slot) {
     void *heading;
-    ((TWindowDD *)self)->construct_base(lbl_804D1488, slot, get_window_layout_position(0xF));
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)self), (u8 *)(lbl_804D1488), (s16)(slot), (u8 *)(get_window_layout_position(0xF)));
     *(s32 **)((s8 *)self + 0x18) = __vt__21TWindowSubCustomEquip;
     self->m_name = lbl_805D3A20;
     self->m_20 = slot;

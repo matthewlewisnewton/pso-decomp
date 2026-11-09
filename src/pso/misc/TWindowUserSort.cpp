@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/camera/CameraViewParams.h"
 #include "pso/misc/TWindowBase.h"
@@ -53,7 +54,7 @@ void TWindowUserSort::run_task() { initialize_subwindow__9TWindowDDFv(this); upd
 void *__dt__15TWindowUserSortFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__15TWindowUserSort;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -64,7 +65,7 @@ void *__dt__15TWindowUserSortFv(void *arg0, s16 arg1) {
 typedef char RecoveredGlobal_80288380_lbl_804D304C_size[sizeof(RecoveredGlobal_80288380_lbl_804D304C) == 0x14 ? 1 : -1];
 typedef char RecoveredGlobal_80288380___vt__15TWindowUserSort_size[sizeof(RecoveredGlobal_80288380___vt__15TWindowUserSort) == 0x18 ? 1 : -1];
 u8 *TWindowUserSort__ct(u8 *arg0, s32 arg1, s32 arg2) {
-    ((TWindowDD *)arg0)->construct_base((u8 *)((s32) &window_user_sort_settings.value), (s16)4, (u8 *)arg1);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)((s32) &window_user_sort_settings.value)), (s16)((s16)4), (u8 *)((u8 *)arg1));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_80288380___vt__15TWindowUserSort *)&__vt__15TWindowUserSort).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TWindowUserSort__name;
     ((TWindowUserSort *)arg0)->m_60 = arg2;

@@ -59,7 +59,7 @@ TWindowDrawContext *get_draw_context__11TWindowBaseFPv(void *window) {
     return (TWindowDrawContext *)c;
 }
 
-void TWindowAddition::sub_802443B4() {
+void TWindowAddition::sub_802443B4(u8 *) {
     u8 *arg0 = (u8 *)this;
     *(s32 *)&this->m_name = (s32) lbl_805D3878;
     m_68 = lbl_805DCAAC;

@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
@@ -61,7 +62,7 @@ void run_task__15TWindowCallBackFv(void* p) { ((TWindowDD *)p)->initialize_subwi
 void *__dt__15TWindowCallBackFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__15TWindowCallBack;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -71,7 +72,7 @@ void *__dt__15TWindowCallBackFv(void *arg0, s16 arg1) {
 typedef char RecoveredGlobal_802ACE84_lbl_804DE360_size[sizeof(RecoveredGlobal_802ACE84_lbl_804DE360) == 0x14 ? 1 : -1];
 typedef char RecoveredGlobal_802ACE84___vt__15TWindowCallBack_size[sizeof(RecoveredGlobal_802ACE84___vt__15TWindowCallBack) == 0x1C ? 1 : -1];
 u8 *TWindowCallBack__ct(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3) {
-    ((TWindowDD *)arg0)->construct_base((u8 *)((s32) &window_callback_base_params.value), (s16)4, (u8 *)arg1);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)((s32) &window_callback_base_params.value)), (s16)((s16)4), (u8 *)((u8 *)arg1));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_802ACE84___vt__15TWindowCallBack *)&__vt__15TWindowCallBack).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) lbl_805D3E58;
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 0x38))->copy_vec2(arg2);

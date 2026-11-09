@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TWindowActionPalette.h"
 #include "pso/TPlyDispData.h"
@@ -307,7 +308,7 @@ extern "C" u8 *__dt__20TWindowActionPaletteFv(u8 *self, s16 delete_flag) {
         *(u32 **)(self + 0x18) = __vt__20TWindowActionPalette;
         __destroy_arr(self + 0x60,
                                (void *)TPlyDispConfig::free_if_valid, 4, 3);
-        ((TWindowDD *)self)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(self), 0);
         if (delete_flag > 0) {
             __dl__7TObjectFPv(self);
         }
@@ -316,7 +317,7 @@ extern "C" u8 *__dt__20TWindowActionPaletteFv(u8 *self, s16 delete_flag) {
 }
 Pal_80244108 *TWindowActionPalette__ct(Pal_80244108 *self, s16 slot) {
     u32 i;
-    ((TWindowDD *)self)->construct_base((u8 *)twindow_action_palette_layout, (s16)slot, (u8 *)(get_window_layout_position(0x1F)));
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)self), (u8 *)((u8 *)twindow_action_palette_layout), (s16)((s16)slot), (u8 *)((u8 *)(get_window_layout_position(0x1F))));
     self->vt = __vt__20TWindowActionPalette;
     __construct_array(self->arr, (void *)init_gc_tag, (void *)TPlyDispConfig::free_if_valid, 4, 3);
     self->f0 = lbl_805D3870;

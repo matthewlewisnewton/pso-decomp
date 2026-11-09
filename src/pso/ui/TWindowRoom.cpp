@@ -1,3 +1,5 @@
+#include "pso/misc/TWindowBase.h"
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
 #include "pso/misc/TWindowSubStatusDisp_80287570.h"
@@ -27,7 +29,6 @@ struct RoomTitleEntry {
 extern "C" {
 int get_array_entry__11TWindowBaseFi(void*, int);
 s32 save_position__11TWindowBaseFv(void *);
-void construct_base__9TWindowDDFPUcsPUc(void *, void *, s16, void *);
 void refresh_status_display__9TWindowDDFv(void *);
 s32 get_window_layout_position(int);
 extern RecoveredGlobal_8026D674_lbl_804D08DC room_window_base_parameters;
@@ -71,7 +72,7 @@ void TWindowRoom::run_task() { initialize_subwindow__9TWindowDDFv(this); update_
 void *__dt__11TWindowRoomFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         ((TWindowRoom *)arg0)->objectVtable = __vt__11TWindowRoom;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -83,8 +84,7 @@ typedef char RecoveredGlobal_8026D674___vt__11TWindowRoom_size[sizeof(RecoveredG
 
 TWindowRoom::TWindowRoom(char *title) {
     RoomTitleEntry *entry;
-    construct_base__9TWindowDDFPUcsPUc(this, &room_window_base_parameters.value, 4,
-                                    (void *)get_window_layout_position(0xAF));
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)(this), (u8 *)(&room_window_base_parameters.value), (s16)(4), (u8 *)((void *)get_window_layout_position(0xAF)));
     objectVtable = __vt__11TWindowRoom;
     className = TWindowRoom__class_name;
     entry = (RoomTitleEntry *)get_array_entry__11TWindowBaseFi(this, 0);

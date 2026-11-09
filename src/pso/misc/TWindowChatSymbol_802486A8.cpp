@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowBase.h"
@@ -28,7 +29,7 @@ void __dt__7TObjectFv(void *, int);
 void *__dt__17TWindowChatSymbolFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__17TWindowChatSymbol;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -39,7 +40,7 @@ void *__dt__17TWindowChatSymbolFv(void *arg0, s16 arg1) {
 typedef char RecoveredGlobal_80248700_lbl_804CE7A0_size[sizeof(RecoveredGlobal_80248700_lbl_804CE7A0) == 0x14 ? 1 : -1];
 typedef char RecoveredGlobal_80248700___vt__17TWindowChatSymbol_size[sizeof(RecoveredGlobal_80248700___vt__17TWindowChatSymbol) == 0x1C ? 1 : -1];
 u8 *TWindowChatSymbol__ct(TWindowChatSymbol *window_chat_symbol, s32 arg1, s32 arg2) {
-    ((TWindowDD *)window_chat_symbol)->construct_base((u8 *)((s32) &window_chat_symbol_settings.value), (s16)4, (u8 *)arg1);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)window_chat_symbol), (u8 *)((u8 *)((s32) &window_chat_symbol_settings.value)), (s16)((s16)4), (u8 *)((u8 *)arg1));
     *(s32 **)((s8 *)window_chat_symbol + 0x18) = &(*(RecoveredGlobal_80248700___vt__17TWindowChatSymbol *)&__vt__17TWindowChatSymbol).value;
     *(s32 *)((s8 *)window_chat_symbol + 0) = (s32) lbl_805D38A8;
     fn_8024491C((void *)window_chat_symbol, (void *)arg2);

@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/unk/text_802841FC.h"
 #include "pso/misc/TWindowSubSymbolChatFaceType.h"
@@ -24,7 +25,7 @@ typedef char RecoveredGlobal_802841FC_lbl_804D2CE0_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_802841FC___vt__28TWindowSubSymbolChatFaceType_size[sizeof(RecoveredGlobal_802841FC___vt__28TWindowSubSymbolChatFaceType) == 0x1C ? 1 : -1];
 u8 *TWindowSubSymbolChatFaceType__ct(TWindowSubSymbolChatFaceType *window_sub_symbol_chat_face_type, s32 arg1, s32 arg2) {
     s32 var_r31;
-    ((TWindowDD *)window_sub_symbol_chat_face_type)->construct_base((u8 *)((s32) &symbol_chat_face_type_window_layout.value), (s16)4, (u8 *)arg1);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)window_sub_symbol_chat_face_type), (u8 *)((u8 *)((s32) &symbol_chat_face_type_window_layout.value)), (s16)((s16)4), (u8 *)((u8 *)arg1));
     *(s32 **)((s8 *)window_sub_symbol_chat_face_type + 0x18) = &__vt__28TWindowSubSymbolChatFaceType.value;
     *(s32 *)((s8 *)window_sub_symbol_chat_face_type + 0) = (s32) TWindowSubSymbolChatFaceType__name;
     window_sub_symbol_chat_face_type->m_60 = 0;

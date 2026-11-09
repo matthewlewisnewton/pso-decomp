@@ -1,3 +1,5 @@
+#include "pso/misc/TWindowBase.h"
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowKeyBoardSoft_80261440.h"
@@ -55,7 +57,7 @@ void __dl__7TObjectFPv(void *);
 void *__dt__19TWindowKeyBoardSoftFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TWindowKeyBoardSoft;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -64,7 +66,7 @@ void *__dt__19TWindowKeyBoardSoftFv(void *arg0, s16 arg1) {
 }
 typedef char RecoveredGlobal_80262740_lbl_804D0004_size[sizeof(RecoveredGlobal_80262740_lbl_804D0004) == 0x1C ? 1 : -1];
 u8 *TWindowKeyBoardSoft__ct(u8 *arg0, s32 arg1, s32 arg2) {
-    ((TWindowDD *)arg0)->construct_base((u8 *)&soft_keyboard_window_and_action_data, (s16)arg2, (u8 *)get_window_layout_position(0xBA));
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)&soft_keyboard_window_and_action_data), (s16)((s16)arg2), (u8 *)((u8 *)get_window_layout_position(0xBA)));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_80262740_lbl_804D0004 *)&__vt__19TWindowKeyBoardSoft).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) keyboard_soft_type_name_pointer;
     *(s32 *)((s8 *)arg0 + 0x60) = 0;

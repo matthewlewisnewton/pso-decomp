@@ -1,3 +1,5 @@
+#include "pso/misc/TWindowBase.h"
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/TObject.h"
 #include "pso/misc/TUnk_804EFBAC.h"
@@ -195,7 +197,7 @@ void TWindowDD::set_clamped_selection(s32 arg1) {
 void *__dt__13TUnk_804EFBACFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = lbl_804EFBAC;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -207,7 +209,7 @@ struct W_803409A4 { u8 pad0[0x18]; void *p18; u8 pad1c[0x5C - 0x1C]; s32 f5c; s3
 
 #define arg0 ((W_803409A4 *)arg0v)
 void *TWindowDD::construct_variant_a(void *arg0v) {
-    ((TWindowDD *)arg0)->construct_base((u8 *)TWindowDD__layout_constants, (s16)4, (u8 *)TWindowDD__layout_constant_pair);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)TWindowDD__layout_constants), (s16)((s16)4), (u8 *)((u8 *)TWindowDD__layout_constant_pair));
     arg0->p18 = lbl_804EFBAC;
     arg0->f60 = 1;
     arg0->f64 = 2;

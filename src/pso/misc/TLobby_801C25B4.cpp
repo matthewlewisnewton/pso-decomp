@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/TSetEvtDestroy.h"
 #include "pso/misc/TWindowMessage.h"
@@ -861,7 +862,6 @@ void handle_battle_result__6TLobbyFii(int arg0, s32 arg1);
 void close_and_play_effect__6TLobbyFii(int arg0, s32 arg1);
 u32 __nw__7TObjectFUl(s32);
 s32 has_player_active_menu__11TWindowCtrlFv(s32);
-u32 TWindowDuelResult__ct(void *, s32);
 s32 align_menu_entry_positions(void *);
 s32 forward_trade_action_default__16TObjCityMainWarpFPviii(void *, s32, int, int);
 void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, int);
@@ -1512,7 +1512,7 @@ void update_duel_result__6TLobbyFPv(u8 *arg0) {
         }
         p = (void *)__nw__7TObjectFUl(0x6C);
         if (p != NULL) {
-            p = (void *)TWindowDuelResult__ct(p, local_client_id);
+            p = (void *)__ct__17TWindowDuelResultFl((TWindowDuelResult *)(p), (s32)(local_client_id));
         }
         *(void **)((s8 *)arg0 + 0x54) = p;
         q = (void *)update_battle_controller__10TObjPlayerFv();

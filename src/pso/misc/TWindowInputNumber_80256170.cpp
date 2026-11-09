@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
@@ -62,7 +63,6 @@ typedef struct InNum_802561E8 {
 struct Win_80256354 { u8 p0[0x62]; s8 f62; u8 p63[5]; s32 f68; };
 
 extern "C" {
-void construct_base__9TWindowDDFPUcsPUc(void *, void *, s16, void *);
 extern RecoveredGlobal_80256A60_lbl_804CF8EC window_input_number_layout;
 extern s32 __vt__18TWindowInputNumber[];
 extern s32 TWindowInputNumber__name;
@@ -88,7 +88,7 @@ void TWindowInputNumber::create(s32 arg1) {
         var_r0 = (int)::operator new(0x24);
         if (var_r0 != 0U) {
             u32 saved = var_r0;
-            var_r0 = construct_type1_heading__20TWindowSubStatusDispFll(saved, arg1, this->clientIndex);
+            var_r0 = construct_type1_heading__20TWindowSubStatusDispFll(saved, arg1, this->m_20);
         }
         this->unknown70 = var_r0;
         this->m_2c = (s32) (this->m_2c | 0x40);
@@ -208,7 +208,8 @@ void draw_arrows__18TWindowInputNumberFv(TWindowInputNumber *self, Ctx_802563A0 
 }
 #pragma pop
 
-void render__18TWindowInputNumberFv(TWindowInputNumber *arg0) {
+void TWindowInputNumber::render() {
+    TWindowInputNumber *arg0 = this;
     s32 temp_r3;
 
     temp_r3 = ((TWindowBase *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x74));
@@ -282,16 +283,10 @@ void TWindowInputNumber::run_task() {
     ((TWindowBase *)arg0)->update_window_entry_list(arg0 + 0x24);
 }
 
-void *__dt__18TWindowInputNumberFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        ((TWindowInputNumber *)arg0)->objectVtable = __vt__18TWindowInputNumber;
-        if (*(void **)((s8 *)arg0 + 0x70) != NULL) { TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x70)), (s16)1); }
-        ((TWindowDD *)arg0)->destroy_window_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
+TWindowInputNumber::~TWindowInputNumber() {
+    if ((u32)unknown70 != 0U) {
+        TWindowSubStatusDisp::destroy_status_display(unknown70, (s16)1);
     }
-    return arg0;
 }
 
 typedef char RecoveredGlobal_80256A60_lbl_804CF8EC_size[sizeof(RecoveredGlobal_80256A60_lbl_804CF8EC) == 0x14 ? 1 : -1];
@@ -299,11 +294,10 @@ typedef char RecoveredGlobal_80256A60___vt__18TWindowInputNumber_size[sizeof(Rec
 }
 
 TWindowInputNumber::TWindowInputNumber(void *position, s32 low, s32 high,
-                                     s32 initial, s16 client) {
-    construct_base__9TWindowDDFPUcsPUc(this, &window_input_number_layout.value, client, position);
-    objectVtable = __vt__18TWindowInputNumber;
-    className = TWindowInputNumber__name;
-    clientIndex = client;
+                                     s32 initial, s16 client)
+    : TWindowBase((u8 *)&window_input_number_layout.value, client, (u8 *)position) {
+    m_name = (const char *)TWindowInputNumber__name;
+    m_20 = client;
     inputFlags = 0;
     selectedDigit = 0;
     minimum = low;

@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TWindowBase.h"
@@ -45,7 +46,7 @@ void *__dt__15TWindowShortCutFv(void *arg0, s16 arg1) {
         if (*(void **)((s8 *)arg0 + 0x68) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x68)))->close(); ((TWindowShortCut *)arg0)->m_68 = 0; }
         if (*(void **)((s8 *)arg0 + 0x64) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x64)))->close(); ((TWindowShortCut *)arg0)->m_64 = 0; }
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x60)), (s16)1);
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -56,7 +57,7 @@ typedef char RecoveredGlobal_8026E728_lbl_804D0AE0_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_8026E728___vt__15TWindowShortCut_size[sizeof(RecoveredGlobal_8026E728___vt__15TWindowShortCut) == 0x1C ? 1 : -1];
 u8 *TWindowShortCut__ct(TWindowShortCut *window_short_cut, s32 arg1, s32 arg2, s32 arg3) {
     s32 var_r31;
-    ((TWindowDD *)window_short_cut)->construct_base((u8 *)((s32) &window_short_cut_layout.value), (s16)4, (u8 *)arg1);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)window_short_cut), (u8 *)((u8 *)((s32) &window_short_cut_layout.value)), (s16)((s16)4), (u8 *)((u8 *)arg1));
     *(s32 **)((s8 *)window_short_cut + 0x18) = &(*(RecoveredGlobal_8026E728___vt__15TWindowShortCut *)&__vt__15TWindowShortCut).value;
     *(s32 *)((s8 *)window_short_cut + 0) = (s32) TWindowShortCut__name;
     var_r31 = (int)::operator new(0x24);

@@ -1,4 +1,12 @@
-# Window constructor chain: native probe and integration blocker
+# Window constructor chain: historical probe
+
+The results below describe an earlier diagnostic checkpoint. The subsequent
+[native lifetime integration](window-native-lifetime.md) resolves the wrapper
+width regression using genuine derived constructors, removes the unneeded
+empty defaults, assigns compiler-emitted tables, and validates the complete
+linked build. Its bounded legacy ABI interface and remaining ownership
+uncertainty are documented separately. The historical failures below remain
+recorded so they are not repeated or mistaken for a proof of impossibility.
 
 This investigation starts from GuildWarning PR #268's validated source commit
 `74966a46e24be7e560e55fa7b91d8b808e53e9a8`. The probe is retained only in

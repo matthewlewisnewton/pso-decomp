@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowBase.h"
@@ -274,7 +275,6 @@ void *get_player_by_client_id(s32 i);
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_list_page_indicator(s32, s32);
 void __dl__7TObjectFPv(void *);
-void destroy_window_base__9TWindowDDFs(void *, int);
 }
 s32 delete_if_allocated(s32 arg0, s16 arg1);
 #pragma defer_codegen on
@@ -368,7 +368,7 @@ void *TWindowSubStatusDisp::dt(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = __vt__20TWindowSubStatusDisp;
         delete_if_allocated(this->m_68, 1);
-        destroy_window_base__9TWindowDDFs(this, 0);
+        __dt__11TWindowBaseFv((TWindowBase *)(this), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
         }
@@ -377,7 +377,7 @@ void *TWindowSubStatusDisp::dt(s16 arg1) {
 }
 SD_80281760 *TWindowSubStatusDisp__ct(SD_80281760 *arg0, s32 arg1) {
     void *w;
-    ((TWindowDD *)arg0)->construct_base((u8 *)TWindowSubStatusDisp__window_layout, (s16)arg1, (u8 *)(get_window_layout_position(0x19)));
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)TWindowSubStatusDisp__window_layout), (s16)((s16)arg1), (u8 *)((u8 *)(get_window_layout_position(0x19))));
     arg0->vt = ((u8 *)&__vt__20TWindowSubStatusDisp);
     arg0->f0 = TWindowSubStatusDisp__class_name;
     arg0->f20 = arg1;

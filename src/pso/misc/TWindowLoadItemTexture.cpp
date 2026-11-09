@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/ui/ItemTextureConstants.h"
 #include "types.h"
 #include "pso/misc/TWindowLoadItemTexture.h"
@@ -88,7 +89,7 @@ void *__dt__22TWindowLoadItemTextureFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__22TWindowLoadItemTexture;
         queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x6C));
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -98,7 +99,7 @@ void *__dt__22TWindowLoadItemTextureFv(void *arg0, s16 arg1) {
 
 void *TWindowLoadItemTexture__ct(TWindowLoadItemTexture *window_load_item_texture, void *arg1, void *arg2, void *arg3) {
     void *e;
-    ((TWindowDD *)window_load_item_texture)->construct_base((u8 *)lbl_804D0058, (s16)((s16)(s32)arg3), (u8 *)arg1);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)window_load_item_texture), (u8 *)((u8 *)lbl_804D0058), (s16)((s16)((s16)(s32)arg3)), (u8 *)((u8 *)arg1));
     *(s32 **)((s8 *)window_load_item_texture + 0x18) = __vt__22TWindowLoadItemTexture;
     *(s32 *)((s8 *)window_load_item_texture + 0) = lbl_805D3940;
     switch (TCameraCtrl::get_camera_id()) {

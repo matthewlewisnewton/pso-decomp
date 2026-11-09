@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8026AD44.h"
@@ -36,7 +37,6 @@ extern const f32 lbl_805DD254;
 void *__dt__14TWindowMessageFv(void *arg0, s16 arg1);
 s32 __dl__7TObjectFPv(void *);
 extern RecoveredGlobal_8026AB3C___vt__17TWindowMessageLog __vt__17TWindowMessageLog;
-u8 *TWindowMessage__ct(u8 *arg0, s32 arg1, u32 arg2, s32 arg3);
 s32 reset_selection__20TWindowSubStatusDispFv(int, void *);
 extern const char *lbl_805D3990;
 extern const f32 lbl_805DD240;
@@ -82,7 +82,7 @@ u8 *TWindowMessageLog__ct(TWindowMessageLog *window_message_log, s32 arg1, s32 a
     f32 temp_f2;
     s32 temp_r3;
     s32 var_r0;
-    TWindowMessage__ct(((u8 *)window_message_log), (arg1), 0x1E, (arg2));
+    __ct__14TWindowMessageFlUll((TWindowMessage *)(((u8 *)window_message_log)), (s32)((arg1)), (u32)(0x1E), (s32)((arg2)));
     *(s32 **)((s8 *)window_message_log + 0x18) = &(*(RecoveredGlobal_8026ABA8___vt__17TWindowMessageLog *)&__vt__17TWindowMessageLog).value;
     *(s32 *)((s8 *)window_message_log + 0) = (s32) ((s32)lbl_805D3990);
     TWindowCtrl__sub_8026AD78((s32)window_message_log);

@@ -39,8 +39,6 @@ s32 TWindowCtrl__sub_8024C7F8(void *);
 s32 TWindowCtrl__sub_8024A314();
 s32 TWindowCtrl__sub_8024C7C4(void *);
 s32 TWindowCtrl__sub_8024C7E0(void *);
-s32 bind_target__13TWindowLockOnFv(void *, s32);
-u32 create_for_target__13TWindowLockOnFlUs(int, s32);
 s32 TKeyBoardControl__sub_801A58B0();
 s32 TKeyBoardControl__sub_801A58D8();
 s32 get_function_key_menu__16TKeyBoardControlFPv(void *arg0);
@@ -218,13 +216,13 @@ void TWindowCtrl::update_target_info_window() {
             *(u32 *)((s8 *)arg0 + 0x38) = 0U;
         }
     } else {
-        s32 id = TObjPlayer::get_battle_ctrl_id((int) ((u16) *(s32 *)((s8 *)arg0 + 0x24)));
+        u16 id = TObjPlayer::get_battle_ctrl_id((int) ((u16) *(s32 *)((s8 *)arg0 + 0x24)));
         if ((u16) id != 0xFFFF) {
             void *w = *(void **)((s8 *)arg0 + 0x38);
             if (w == NULL) {
-                *(u32 *)((s8 *)arg0 + 0x38) = create_for_target__13TWindowLockOnFlUs((int) (*(s32 *)((s8 *)arg0 + 0x24)), id);
+                *(u32 *)((s8 *)arg0 + 0x38) = (u32)TWindowLockOn::create_for_target((int) (*(s32 *)((s8 *)arg0 + 0x24)), id);
             } else {
-                bind_target__13TWindowLockOnFv(w, id);
+                bind_target__13TWindowLockOnFv((Win_8026366C *)w, id);
             }
         }
     }

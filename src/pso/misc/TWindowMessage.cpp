@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
@@ -335,7 +336,6 @@ struct G_80269DA4 { s32 a; s32 b; };
 extern "C" {
 s32 TLobby__sub_80269DA4(V2_80269DA4 size, void *arg1);
 extern G_80269DA4 lbl_804D06F8[];
-u8 *TWindowMessage__ct(u8 *arg0, s32 arg1, u32 arg2, s32 arg3);
 u8 *__nw__7TObjectFUl(s32);
 extern RecoveredGlobal_80269CA4_lbl_804D071C message_window_settings;
 
@@ -358,15 +358,8 @@ s32 *TLobby__sub_80269CB4(void) {
 }
 
 u8 *TWindowMessage::create(s32 arg0, const void *arg1, u32 arg2, s32 arg3) {
-    u8 *temp_r3;
-    u8 *var_r0;
     ((s32 (*)(void *, void *))TLobby__sub_80269DA4)((void *)arg1, (void *)arg2);
-    temp_r3 = (u8 *)(__nw__7TObjectFUl(0x90));
-    var_r0 = temp_r3;
-    if (var_r0 != NULL) {
-        var_r0 = (u8 *)(TWindowMessage__ct(temp_r3, arg0, arg2, arg3));
-    }
-    return var_r0;
+    return (u8 *)new TWindowMessage(arg0, arg2, arg3);
 }
 
 u8 *TWindowMessage::create(void *arg0, s32 arg1, s32 arg2) {
@@ -389,11 +382,8 @@ s32 TLobby__sub_80269DA4(V2_80269DA4 size, void *arg1) {
 
 extern "C" {
 s32 draw_visible_window_entries(void *, void *, int);
-void *construct_with_parent__15TWindowAdditionFPv(void *, void *, s16, s32);
 extern s32 __vt__14TWindowMessage[];
 extern s32 lbl_805D3980;
-
-u8 *TWindowMessage__ct(u8 *arg0, s32 arg1, u32 arg2, s32 arg3);
 void *__dt__14TWindowMessageFv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 
@@ -419,38 +409,25 @@ void TWindowMessage::run_task() {
     ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
 }
 
-void *__dt__14TWindowMessageFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TWindowMessage;
-        if (*(void **)((s8 *)arg0 + 0x7C) != NULL) { ::operator delete[](*(void **)((s8 *)arg0 + 0x7C)); }
-        ((TWindowAddition *)arg0)->destroy_window(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TWindowMessage::~TWindowMessage() {
+    if (lines != NULL) ::operator delete[](lines);
 }
-u8 *TWindowMessage__ct(u8 *arg0, s32 arg1, u32 arg2, s32 arg3) {
-    u32 i;
-    u8 *p;
-    construct_with_parent__15TWindowAdditionFPv(arg0, (u8 *)&message_window_settings, arg3, arg1);
-    *(void **)(arg0 + 0x18) = ((u8 *)&__vt__14TWindowMessage);
-    *(s32 *)arg0 = lbl_805D3980;
-    *(s32 *)(arg0 + 0x70) = 0;
-    *(s32 *)(arg0 + 0x74) = 0;
-    *(s32 *)(arg0 + 0x88) = 0;
-    *(u32 *)(arg0 + 0x8C) = arg2;
-    *(s32 *)(arg0 + 0x78) = 0xB4;
-    *(f32 *)(arg0 + 0x84) = 0.0f;
-    *(f32 *)(arg0 + 0x80) = 0.0f;
-    *(u8 **)(arg0 + 0x7C) = (u8 *)::operator new[](arg2 * 8);
-    p = *(u8 **)(arg0 + 0x7C);
-    for (i = 0; i < arg2; i++) {
-        *(s32 *)p = 0;
-        *(s32 *)(p + 4) = 0;
-        p += 8;
+TWindowMessage::TWindowMessage(s32 layout, u32 count, s32 client)
+    : TWindowAddition((u8 *)&message_window_settings, (s16)client, (u8 *)layout) {
+    m_name = (const char *)lbl_805D3980;
+    m_70 = 0;
+    m_74 = 0;
+    next_line = 0;
+    line_count = count;
+    m_78 = 0xB4;
+    m_84 = 0.0f;
+    unk_80 = 0.0f;
+    lines = (TWindowMessageLine *)::operator new[](count * 8);
+    TWindowMessageLine *p = lines;
+    for (u32 i = 0; i < count; ++i, ++p) {
+        p->flags = 0;
+        p->timer = 0;
     }
-    return arg0;
 }
 
 }

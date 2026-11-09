@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/TSetEvtDestroy.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/item/TItem.h"
@@ -108,7 +109,6 @@ void clear_split_screen_battle_window_slots(T_803102A4 *self);
 extern void *TPlayerBattleCtrl4P__instance;
 void *get_player_by_client_id(s32);
 void *__nw__7TObjectFUl(u32);
-void *TWindowDuelResult__ct(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 get_map_id__13TRaderMapCoreFv();
 extern MapEnt_8031012C controller_input_state[];
@@ -237,7 +237,7 @@ void TPlayerBattleCtrl4P::create_result_windows() {
         if (get_player_by_client_id(i) != 0) {
             w = __nw__7TObjectFUl(0x6C);
             if (w != 0) {
-                w = TWindowDuelResult__ct(w, i);
+                w = __ct__17TWindowDuelResultFl((TWindowDuelResult *)(w), (s32)(i));
             }
             o->win[i] = w;
         }

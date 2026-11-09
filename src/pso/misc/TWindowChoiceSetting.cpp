@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -290,7 +291,7 @@ void *TUnk_804D0658::destroy_children(s16 arg1) {
         *(s32 **)((s8 *)this + 0x18) = choice_setting_popup_vtable;
         TWindowSubStatusDisp::destroy_allocation((s32)(*(void * *)&this->unk_7C), (s16)1);
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void * *)&this->m_78), (s16)1);
-        destroy_window(0);
+        __dt__15TWindowAdditionFv(this, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
         }

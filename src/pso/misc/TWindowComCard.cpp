@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/object/TObject_80019A50.h"
@@ -181,7 +182,7 @@ void run_task__14TWindowComCardFv(void* p) { initialize_subwindow__9TWindowDDFv(
 void *__dt__14TWindowComCardFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TWindowComCard;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -192,7 +193,7 @@ void *__dt__14TWindowComCardFv(void *arg0, s16 arg1) {
 typedef char RecoveredGlobal_80249BA8_lbl_804CE8D0_size[sizeof(RecoveredGlobal_80249BA8_lbl_804CE8D0) == 0x14 ? 1 : -1];
 typedef char RecoveredGlobal_80249BA8___vt__14TWindowComCard_size[sizeof(RecoveredGlobal_80249BA8___vt__14TWindowComCard) == 0x1C ? 1 : -1];
 u8 *TWindowComCard__ct(u8 *window_dd, s32 arg1, s32 arg2) {
-    ((TWindowDD *)window_dd)->construct_base((u8 *)((s32) &TWindowComCard__window_desc.value), (s16)4, (u8 *)arg1);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)window_dd), (u8 *)((u8 *)((s32) &TWindowComCard__window_desc.value)), (s16)((s16)4), (u8 *)((u8 *)arg1));
     *(s32 **)((s8 *)window_dd + 0x18) = (s32 *)__vt__14TWindowComCard;
     *(s32 *)((s8 *)window_dd + 0) = (s32) lbl_805D38C0;
     update_com_card_display((s32)(window_dd + 0x24), arg2);
@@ -340,7 +341,7 @@ void TUnk_804CE964::run_task() {
 void *TWindowComCard__sub_80249E80(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = lbl_804CE964;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -351,7 +352,7 @@ void *TWindowComCard__sub_80249E80(void *arg0, s16 arg1) {
 #pragma push
 #pragma fp_contract on
 Win_80249ED8 *TWindowComCard__sub_80249ED8(Win_80249ED8 *o, Parent_80249ED8 *parent, Vec2_80249ED8 *ofs, s32 col, s32 mode, s32 arg5) {
-    ((TWindowDD *)o)->construct_base((u8 *)TWindowComCard__window_desc_b, (s16)arg5, (u8 *)(get_zero_vec2()));
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)o), (u8 *)((u8 *)TWindowComCard__window_desc_b), (s16)((s16)arg5), (u8 *)((u8 *)(get_zero_vec2())));
     o->vtbl = (s32 *)lbl_804CE964;
     o->parent = parent;
     o->ofs.x = ofs->x;

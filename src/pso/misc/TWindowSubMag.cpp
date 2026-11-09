@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/item/MagStats.h"
 #include "pso/misc/TWindowBase.h"
@@ -106,7 +107,6 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 
 s32 are_status_entries_ready__13TWindowSubMagFi(void *);
 s32 fn_8025373C(u8 *self);
-void *TWindowSubMagPhoton__ct(void *, s32, s32, s32);
 int TWindowSubMag__sub_8027C0E8(void* p);
 extern u8 lbl_8044F9E8[];
 extern Pad_8027B888 controller_input_state[];
@@ -474,7 +474,7 @@ void TWindowSubMag::run_task(void *arg0) {
         }
         w = __nw__7TObjectFUl(0x74);
         if (w != NULL) {
-            w = TWindowSubMagPhoton__ct(w, get_window_layout_position(0xA), self->mag_state, self->client_id);
+            w = __ct__19TWindowSubMagPhotonFlll((TWindowSubMagPhoton *)(w), (s32)(get_window_layout_position(0xA)), (s32)(self->mag_state), (s32)(self->client_id));
         }
         self->photon = w;
         TWindowSubEquip__sub_80263AF8((s32)self->parent, 3);

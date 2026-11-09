@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
@@ -66,7 +67,7 @@ void TWindowSubItemList::run_task() { { (void)(run_task__19TWindowMenuIconLineFv
 void *__dt__18TWindowSubItemListFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__18TWindowSubItemList;
-        ((TWindowSubStatusDisp *)arg0)->destroy_item_list_resources(0);
+        __dt__19TWindowMenuIconLineFv((TWindowMenuIconLine *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -74,7 +75,7 @@ void *__dt__18TWindowSubItemListFv(void *arg0, s16 arg1) {
     return arg0;
 }
 u8 *TWindowSubItemList__ct(u8 *arg0, s32 arg1, s16 arg2) {
-    fn_802683F4((arg0), (arg1), 0x24, (arg2));
+    __ct__19TWindowMenuIconLineFPUcUls((TWindowMenuIconLine *)((arg0)), (u8 *)((arg1)), (u32)(0x24), (s16)((arg2)));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8027AEDC___vt__18TWindowSubItemList *)&__vt__18TWindowSubItemList).value;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TWindowSubItemList__class_name;
     ((TWindowMenuIconLine *)arg0)->ensure_status_display((int) (TWindowSubStatusDisp::get_message_10(0x24)));

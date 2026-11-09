@@ -860,6 +860,28 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `LaunchDol` | `pso/unk/text_8042E8C4.cpp` | `src/pso/unk/text_8042E8C4.cpp` | [#172](https://github.com/zeroz41/pso-decomp/pull/172) | asm | [#350](https://github.com/matthewlewisnewton/pso-decomp/pull/350) | upstream catch-up, rewrite later |
 
 
+## 8. Window lifetime entry points for legacy raw-storage functions
+
+`include/pso/misc/WindowConstructorAbi.h` is a bounded MWCC ABI interface for
+the remaining C-named initializers and destroyers that receive allocated object
+storage. Its declarations name the actual compiler-emitted constructors and
+destructors with their complete native arguments. Recovered C++ constructors
+use base initializers, recovered destructors use automatic base cleanup, and
+the updated factories use ordinary `new`.
+
+The remaining raw destroyers pass the native hidden deleting flag `0` for base
+cleanup. An explicit C++ destructor expression emits `-1` instead; both avoid
+deallocation, but the latter does not reproduce these call sites. No substitute
+helper body, alternate-width mangled declaration, hand-written table, new pragma,
+or compiler override is used. Evidence and full qualification:
+[window-native-lifetime.md](evidence/window-native-lifetime.md).
+
+A port must replace this symbol-name transport with real constructor/destructor
+calls, or placement construction where an external owner supplies storage.
+Preserve the ownership distinction: positive deleting flags also release storage
+through `TObject::operator delete`; base cleanup does not. This interface does
+not claim that the remaining C-named functions have portable C++ lifetime semantics.
+
 ## Pending in open PRs
 
 Found by `tools/list_port_exceptions.py --pr N` on 2026-11-04. Add or remove the
