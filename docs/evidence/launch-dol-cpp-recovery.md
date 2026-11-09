@@ -2,7 +2,7 @@
 
 PR #284 remains relevant as recovery of the DOL section-table view and a C++
 loader implementation. It is not a completed C++ match. The main integration baseline
-`224eb99838471c243b20c305eddac75e7ff76c8f` already has the exact, linked
+`387621104107ed1ff8c650bf2f50ef00c6859ba4` already has the exact, linked
 `LaunchDol` assembly implementation, so retaining that implementation adds no
 matched code, functions or linked units against this main.
 
@@ -58,3 +58,36 @@ MWCC `__isync` call and console addresses do not establish host portability.
 No host build or execution of the DOL loader is claimed. Keep the draft status
 until the remaining C++/assembly boundary has an accepted resolution and the
 final head receives independent review.
+
+## Compiler provenance and the alternate call helper
+
+Both `config/GPOE8P/config.yml` and `config/GPOE8P/psov3/config.yml` set
+`mw_comment_version: 10`. decomp-toolkit creates a new MW comment from that
+setting while loading the DOL for splitting; see the pinned
+[decomp-toolkit v1.8.4 loader](https://github.com/encounter/decomp-toolkit/blob/v1.8.4/src/cmd/dol.rs),
+`ProjectConfig::mw_comment_version` and `load_analyze_dol`.
+The split object's `.comment` is therefore not original compiler provenance.
+In particular, its format must not be used to authenticate a GC/1.3.x compiler
+or to justify changing this unit's compiler. The configured GC/2.6 profile is
+an experimentally reproduced match profile, not an authenticated original
+ntUtl toolchain identity.
+
+A focused follow-up also checked the alternate, non-CTR-named helper in the
+[GC/2.6 compiler source](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/optimizer/FunctionCalls.c),
+`branch_subroutine_indirect`. It moves its supplied operand to r12 and invokes
+`branch_subroutine(func, 1, ...)`. The latter emits a linking branch to a named
+function followed by a NOP; see
+[PCodeUtilities.c](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/backend/PCodeUtilities.c).
+It does not provide a runtime LR transfer, despite the helper's name. The DOL
+entry is an ordinary code pointer; inventing a member-function or descriptor
+representation would change that interface and is not a valid substitution.
+No new compiler/source-spelling sweep was run for this follow-up.
+
+The concrete blocker is still a source-reachable nonlinking LR transfer that
+preserves the existing frame and saved-register state. The installed GC/2.6
+backend audit does not establish such a route, nor does it prove impossibility
+for every compiler. Further compiler experiments need a distinct, evidenced
+control-transfer facility or authentic original-toolchain evidence first.
+Neither the synthesized comment nor a cosmetic call spelling supplies that
+lead. No new assembly, compiler override, symbol widening or coverage change
+is justified by these findings.
