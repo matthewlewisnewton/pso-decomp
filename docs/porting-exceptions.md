@@ -1161,3 +1161,10 @@ images and an allocator adapter; actual producers use ordinary new. The
 existing two-float copy export retains its qualified legacy ABI and historical
 name, with no wrapper or invented object owner. The existing queue-destruction
 entry avoids duplicate inline emission. No new compiler control is introduced.
+
+[SoundBalance lifetime recovery](evidence/window-sound-balance-lifetime.md)
+removes another raw Base construction/cleanup pair. Actual draw-context and
+borrowed settings views accompany explicit entry-word/text argument forwarding.
+The historical entry getter ownership stays qualified. Existing scoped render
+CSE and constructor FP controls remain; no new compiler control is introduced.
+The original data suffix is retained rather than assigned as padding.

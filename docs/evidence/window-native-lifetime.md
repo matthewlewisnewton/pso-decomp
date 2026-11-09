@@ -264,6 +264,13 @@ add 48 bytes; Room's descriptor stays original. The position-copy and shared
 entry interfaces retain explicit qualifications, along with all original
 remainders and unrelated holds.
 
+The [SoundBalance recovery](window-sound-balance-lifetime.md) adds genuine
+position construction, automatic Base cleanup and its sole ordinary-new
+producer. Entry/text argument forwarding is explicit, settings remain a
+borrowed prefix, and rendering uses the actual draw-context view. Descriptor
+and compiler table add 44 bytes while the original suffix and existing
+compiler/interface qualifications remain intact.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration
