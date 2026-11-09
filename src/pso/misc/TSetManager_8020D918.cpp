@@ -156,7 +156,7 @@ s32 load_map_decoration_rows(s32 map, s32 grp, s32 room) {
     } else {
         replace_file_extension__6TLobbyFPvPvPv((char *)path, (char *)r->name, (char *)lbl_8044BC2C);
     }
-    size = ((TScene *)path)->update_lobby_scene();
+    size = TScene::update_lobby_scene(path);
     if (size < 0) {
         return 0;
     }

@@ -3,6 +3,7 @@
 #include "pso/map/FloorArea.h"
 #include "pso/misc/TContainerAncient01.h"
 #include "pso/misc/TScene.h"
+#include "pso/misc/TLobby.h"
 #include "pso/misc/TLobby_80207644.h"
 #include "pso/enemy/TObjEneRecon.h"
 #include "pso/object/TObjDoorJung.h"
@@ -367,7 +368,6 @@ void bind_gvm_texture_list(s32 *, u32);
 
 
 
-s32 debug_print__6TLobbyFle(s32 *, ...);
 
 s32 collect_collision_groups(u32, s32);
 
@@ -811,7 +811,7 @@ void TScene::load_current_floor() {
         found = 0;
         if (TRaderMapCore::is_not_split_screen() == 1) {
             replace_file_extension__6TLobbyFPvPvPv((char *)path, (char *)tbl[scene_resource_index].name, (char *)"m.gvm");
-            found = ((TScene *)path)->update_lobby_scene();
+            found = TScene::update_lobby_scene(path);
         }
         if (found <= 0) {
             replace_file_extension__6TLobbyFPvPvPv((char *)path, (char *)tbl[scene_resource_index].name, (char *)".gvm");
@@ -842,7 +842,7 @@ void TScene::load_scene_data(s32 name) {
     TScene__collision_file_buffer = 0U;
     lbl_805D6014 = 0;
     replace_file_extension__6TLobbyFPvPvPv((char *)((s32 *)((s32 *)&sp8)), (char *)(name), (char *)("c.rel"));
-    temp_r31 = ((TScene *)((s32 *)&sp8))->update_lobby_scene();
+    temp_r31 = TScene::update_lobby_scene(((s32 *)&sp8));
     if (get_current_floor_area() == AREA_LOBBY) {
         if ((temp_r31 > 0) && ((u32) temp_r31 <= 0x10000U)) {
             temp_r3 = (s32)TQuestVmDownLoadServer::alloc(0x10000);
@@ -865,7 +865,7 @@ void TScene::load_scene_data(s32 name) {
         collect_collision_groups(temp_csn, *scene_collision_data);
         return;
     }
-    debug_print__6TLobbyFle((s32 *)"TScene : CANNOT LOAD COLLISION DATA");
+    TLobby::debug_print("TScene : CANNOT LOAD COLLISION DATA");
 }
 
 void TScene::load_scene_rel_file(s32 arg0) {
@@ -880,11 +880,11 @@ void TScene::load_scene_rel_file(s32 arg0) {
     TScene__data_805D5FE8 = -1;
     if (TRaderMapCore::is_not_split_screen() == 1) {
         replace_file_extension__6TLobbyFPvPvPv((char *)((s32 *)id), (char *)arg0, (char *)((s32 *)"nm.rel"));
-        size = ((TScene *)id)->update_lobby_scene();
+        size = TScene::update_lobby_scene(id);
     }
     if (size <= 0) {
         replace_file_extension__6TLobbyFPvPvPv((char *)((s32 *)id), (char *)arg0, (char *)((s32 *)"n.rel"));
-        size = ((TScene *)id)->update_lobby_scene();
+        size = TScene::update_lobby_scene(id);
     }
     if (area == AREA_LOBBY) {
         if (size > 0 && (u32)size <= 0x80000U) {
@@ -919,7 +919,7 @@ void TScene::load_supplementary_t_rel(s32 name) {
     TScene__supplementary_rel_buffer = 0U;
     TScene__loaded_floor_rel_file_index = 0;
     replace_file_extension__6TLobbyFPvPvPv((char *)((s32 *)id), (char *)name, (char *)((s32 *)"t.rel"));
-    n = ((TScene *)id)->update_lobby_scene();
+    n = TScene::update_lobby_scene(id);
     if (n > 0) {
         TScene__supplementary_rel_buffer = (s32)TQuestVmDownLoadServer::alloc(n);
         if (TScene__supplementary_rel_buffer != 0U) {
@@ -942,11 +942,11 @@ void TScene::load_map_texture_archive(s32 name) {
     lbl_805D6018 = 0;
     if (TRaderMapCore::is_not_split_screen() == 1) {
         replace_file_extension__6TLobbyFPvPvPv((char *)(sp8), (char *)(name), (char *)("m.tam"));
-        var_r30 = ((TScene *)sp8)->update_lobby_scene();
+        var_r30 = TScene::update_lobby_scene(sp8);
     }
     if (var_r30 <= 0) {
         replace_file_extension__6TLobbyFPvPvPv((char *)(sp8), (char *)(name), (char *)(".tam"));
-        var_r30 = ((TScene *)sp8)->update_lobby_scene();
+        var_r30 = TScene::update_lobby_scene(sp8);
     }
     if (area == AREA_LOBBY) {
         if ((var_r30 > 0) && ((u32) var_r30 <= 0x100U)) {
@@ -977,7 +977,7 @@ void TScene::load_floor_bin_file(s32 name) {
     } else {
         replace_file_extension__6TLobbyFPvPvPv((char *)((s32 *)sp8), (char *)name, (char *)((s32 *)"b.bin"));
     }
-    size = ((TScene *)sp8)->update_lobby_scene();
+    size = TScene::update_lobby_scene(sp8);
     if (get_current_floor_area() == AREA_LOBBY) {
         if (size > 0 && (u32)size <= 0x100U) {
             TScene__data_805D6020 = (s32)TQuestVmDownLoadServer::alloc(0x100);
@@ -1004,7 +1004,7 @@ void TScene::load_file_to_buffer(s32 name) {
     TScene__material_info_buffer = 0U;
     scene_file_buffer_size = 0;
     replace_file_extension__6TLobbyFPvPvPv((char *)(sp8), (char *)(name), (char *)("i.bin"));
-    temp_r31 = ((TScene *)sp8)->update_lobby_scene();
+    temp_r31 = TScene::update_lobby_scene(sp8);
     if (get_current_floor_area() == AREA_LOBBY) {
         if ((temp_r31 > 0) && ((u32) temp_r31 <= 0x100U)) {
             temp_r3 = (s32)TQuestVmDownLoadServer::alloc(0x100);
@@ -1093,7 +1093,7 @@ void load_floor_scene(void) {
         found = 0;
         if (TRaderMapCore::is_not_split_screen() == 1) {
             replace_file_extension__6TLobbyFPvPvPv((char *)path, (char *)tbl[scene_resource_index].name, (char *)"m.gvm");
-            found = ((TScene *)path)->update_lobby_scene();
+            found = TScene::update_lobby_scene(path);
         }
         if (found <= 0) {
             replace_file_extension__6TLobbyFPvPvPv((char *)path, (char *)tbl[scene_resource_index].name, (char *)".gvm");
@@ -1116,7 +1116,7 @@ void load_floor_scene(void) {
 void load_scene_collision_file(s32 name) {
     struct Sp8Buf20_80206494 sp8;
     replace_file_extension__6TLobbyFPvPvPv((char *)((s32 *)&sp8), (char *)name, (char *)"c.rel");
-    if (((TScene *)((char *)&sp8))->update_lobby_scene() <= lbl_805D6014) {
+    if (TScene::update_lobby_scene(((char *)&sp8)) <= lbl_805D6014) {
         if (TScene__collision_file_buffer != 0U) {
             scene_collision_data = (s32 *)load_relocatable_file((s32)((s32 *)&sp8), TScene__collision_file_buffer);
             if (scene_collision_data != NULL && TObjMapCsn::get_map_count() != 0U) {
@@ -1124,7 +1124,7 @@ void load_scene_collision_file(s32 name) {
                 collect_collision_groups(csn, *scene_collision_data);
                 return;
             }
-            debug_print__6TLobbyFle((s32 *)"TScene : CANNOT LOAD COLLISION DATA");
+            TLobby::debug_print("TScene : CANNOT LOAD COLLISION DATA");
             return;
         }
         scene_collision_data = NULL;
@@ -1137,7 +1137,7 @@ void load_scene_map_file(s32 arg0) {
     TScene__data_805D5FCC = NULL;
     TScene__data_805D5FE8 = -1;
     replace_file_extension__6TLobbyFPvPvPv((char *)((s32 *)id), (char *)arg0, (char *)((s32 *)"n.rel"));
-    if (((TScene *)id)->update_lobby_scene() <= TScene__map_rel_load_size_limit && TScene__map_rel_load_buffer != 0) {
+    if (TScene::update_lobby_scene(id) <= TScene__map_rel_load_size_limit && TScene__map_rel_load_buffer != 0) {
         TScene__data_805D5FCC = (SceneMaterialRoot *)load_relocatable_file((s32)((s32 *)id), TScene__map_rel_load_buffer);
     }
     if (TScene__data_805D5FCC != NULL) {
@@ -1153,7 +1153,7 @@ void load_scene_map_file(s32 arg0) {
 void TScene::load_tam_file(s32 name) {
     u8 sp8[0x20];
     replace_file_extension__6TLobbyFPvPvPv((char *)((s32 *)sp8), (char *)name, (char *)((s32 *)".tam"));
-    if (((TScene *)sp8)->update_lobby_scene() <= lbl_805D6018) {
+    if (TScene::update_lobby_scene(sp8) <= lbl_805D6018) {
         if (TScene__texture_animation_buffer != 0U) {
             read_disc_file((char *)sp8, TScene__texture_animation_buffer);
         } else {
@@ -1165,7 +1165,7 @@ void TScene::load_tam_file(s32 name) {
 void TScene::load_floor_rel_file(s32 name) {
     u8 id[0x20];
     replace_file_extension__6TLobbyFPvPvPv((char *)((s32 *)id), (char *)name, (char *)((s32 *)"t.rel"));
-    if (((TScene *)id)->update_lobby_scene() <= TScene__loaded_floor_rel_file_index) {
+    if (TScene::update_lobby_scene(id) <= TScene__loaded_floor_rel_file_index) {
         if (TScene__supplementary_rel_buffer != 0U) {
             TScene__texture_wave_resource = (u32)load_relocatable_file((s32)((s32 *)id), TScene__supplementary_rel_buffer);
         } else {

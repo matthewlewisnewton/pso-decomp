@@ -1,4 +1,5 @@
 #include "pso/map/CsnGroundQuery.h"
+#include "pso/unk/text_803D8DE0.h"
 #include "pso/system/CurrentTextureList.h"
 #ifndef PSO_TDEADSPOT_H
 #define PSO_TDEADSPOT_H
@@ -108,7 +109,6 @@ void run_task__9TDeadSpotFv(Obj_800D8228 *arg0);
 void direction_to_rotation_yx(u8 *arg0, s32 *arg1, s32 *arg2);
 extern "C" {
 s32 rand();
-s32 fn_803D8DE0(int, void *, void *, int);
 s32 rotate_matrix_y(int, int);
 s32 rotate_matrix_z(int, int);
 s32 rotate_matrix_x(int, int);
@@ -324,7 +324,7 @@ void run_task__9TDeadSpotFv(Obj_800D8228 *arg0) {
 #pragma opt_common_subs off
 TDeadSpot::~TDeadSpot() {}
 Mark_800D8314 *__ct__9TDeadSpotFv(Mark_800D8314 *self, void *parent, Vec_800D8314 *point, void *texture, s32 selector, s32 delay, f32 maxScale) {
-    Vec_800D8314 basis[2];
+    Vec basis[2];
     Vec_800D8314 probe;
     Vec_800D8314 tmp;
     s32 yaw;

@@ -71,7 +71,7 @@ void *find_entity_by_id(u16 id);
 void fn_8017866C(void *, s32, u16);
 void run_task__17TOSymbolchatColliFv(Obj_80178890 *self);
 u32 prs_decompress_buffer(s32 arg0, s32 arg1);
-s32 set_stream_and_load_file__6TLobbyFi(s32);
+s32 set_stream_and_load_file__6TLobbyFPCv(s32);
 extern u32 symbolchat_colli_param_table[];
 extern s32 lbl_805D3190;
 extern int symbol_chat_colli_entries;
@@ -190,7 +190,7 @@ void TOSymbolchatColli::load_symbol_chat_data() {
     s32 h;
     s32 i;
     symbol_chat_colli_entries = (int)::operator new[](0x840);
-    h = set_stream_and_load_file__6TLobbyFi(lbl_805D3190);
+    h = set_stream_and_load_file__6TLobbyFPCv(lbl_805D3190);
     if (h != 0) {
         prs_decompress_buffer(h, symbol_chat_colli_entries);
     }

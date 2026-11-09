@@ -4,12 +4,12 @@
 #include "types.h"
 
 extern "C" {
-void read_disc_file(int a0);
+s32 read_disc_file(const char *filename, void *buffer);
 }
 
 // --- C functions defined in TLobby_800F9DA0.cpp ---
 extern "C" {
-void read_disc_file(int a0);
+s32 read_disc_file(const char *filename, void *buffer);
 }
 // --- end of C functions
 

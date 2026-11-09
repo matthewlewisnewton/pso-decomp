@@ -795,7 +795,7 @@ TUnk_804C8678::TUnk_804C8678(TObject *parent, const char *filename, s32 kind) : 
     switch (this->kind) {
     case 0:
         copy_name((s32)"QUEST");
-        size = ((TScene *)filename)->update_lobby_scene();
+        size = TScene::update_lobby_scene(filename);
         if (size < 0) {
             queue_destruction__7TObjectFv(this);
         } else {
@@ -809,7 +809,7 @@ TUnk_804C8678::TUnk_804C8678(TObject *parent, const char *filename, s32 kind) : 
         TQuestThread::clear_thread_state();
         break;
     case 1:
-        size = ((TScene *)filename)->update_lobby_scene();
+        size = TScene::update_lobby_scene(filename);
         if (size < 0) {
             queue_destruction__7TObjectFv(this);
         } else {
@@ -828,7 +828,7 @@ TUnk_804C8678::TUnk_804C8678(TObject *parent, const char *filename, s32 kind) : 
 TUnk_804C8678::TUnk_804C8678(TObject *parent, const char *filename) : TObject(parent) {
     s32 size;
     copy_name((s32)"QUEST");
-    size = ((TScene *)filename)->update_lobby_scene();
+    size = TScene::update_lobby_scene(filename);
     if (size < 0) {
         queue_destruction__7TObjectFv(this);
     } else {

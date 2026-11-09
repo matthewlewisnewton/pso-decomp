@@ -3,13 +3,13 @@
 #include "pso/misc/TLobby.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 typedef struct Entry_802A1020 {
-    s32 file;
+    const char *file;
     u32 size;
     u32 crc;
 } Entry_802A1020;
 
 extern "C" {
-u8 *set_stream_and_load_file__6TLobbyFi(s32);
+u8 *set_stream_and_load_file__6TLobbyFPCv(const char *);
 extern Entry_802A1020 file_integrity_table[];
 extern s32 lobby_cursor_active_flag;
 s32 fn_802A1020(void) {
@@ -21,13 +21,13 @@ s32 fn_802A1020(void) {
     s32 j;
     s32 k;
     for (i = 0; i < 11; i++) {
-        size = TLobby::get_file_size((const char *)file_integrity_table[i].file);
+        size = TLobby::get_file_size(file_integrity_table[i].file);
         if (size != file_integrity_table[i].size) {
             lobby_cursor_active_flag = 1;
             return 1;
         }
         if (file_integrity_table[i].size <= 1000000) {
-            buf = set_stream_and_load_file__6TLobbyFi(file_integrity_table[i].file);
+            buf = set_stream_and_load_file__6TLobbyFPCv(file_integrity_table[i].file);
             if (buf == NULL) {
                 TAdSinglePlyChrSelectGC::safe_free((u32)buf);
                 lobby_cursor_active_flag = 0;

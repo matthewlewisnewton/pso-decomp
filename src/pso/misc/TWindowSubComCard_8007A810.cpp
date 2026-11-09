@@ -182,7 +182,7 @@ void TWindowSubComCard::remove_card_at(s32 i) {
     Box_8007AC10 *box = ((Box_8007AC10 *)((s32 (*)(s32))get_card_entry__17TWindowSubComCardFi)(0));
     if (i < 0xD1) {
         Card_8007AC10 *p = &box->cards[i];
-        ((TLobby *)p)->move_words((u32 *)(p + 1), (0xD1 - i) * sizeof(Card_8007AC10) / 4);
+        move_words(p, p + 1, (0xD1 - i) * sizeof(Card_8007AC10) / 4);
     }
     ((void (*)(Card_8007AC10 *))TWindowSubComCard__sub_8007B26C)(&box->cards[0xD1]);
     box->cards[0xD1].used = 0;

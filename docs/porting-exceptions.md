@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `9924ce113`, 2026-11-09)
+## Summary (regenerated after merging main `6e880491f`, 2026-11-09)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `9924ce113` (2026-11-09). Assembly is counted as source lines;
+after merging main `6e880491f` (2026-11-09). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -27,7 +27,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,771 | 876 |
-| Per-unit compiler overrides in `configure.py` | 175 | 175 |
+| Per-unit compiler overrides in `configure.py` | 176 | 176 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -140,7 +140,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-158 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+167 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -156,6 +156,43 @@ use their own compiler versions as recorded there.
 Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
+
+### `pso/misc/TLobby_8001EF5C.cpp`: `-inline on`
+
+`init_from_id_lists` at `0x8002058C` (size `0x30C`) contains the
+model-count walk, the motion-count walk, and the flag `& 2` download walk in
+its body. The project default `-inline off` outlines those `static inline`
+walks, so the function is not the original bytes. Measured with objdiff
+(`functionRelocDiffs=data_value`):
+
+| Flag | Result |
+|---|---|
+| `-inline auto` | `.text` 62.53%, `.data` 0% |
+| `-inline auto,deferred` | `.text` 52.51%, `.data` 0% |
+| `-inline deferred` | Per-function match on the previous `extern "C"` body. On this C++ function it emits `init_from_id_lists` at `.text+0` instead of `.text+0x1630`, so the linked DOL does not match. |
+| `-inline on` | Every function 100%, `.text` and `.data` 100%, function at `.text+0x1630`. The unit links. |
+
+`-inline on` is the least invasive flag that keeps the whole unit identical,
+including section order. Precedent for this family of unit-level inline switches:
+[dtk-template `-inline auto`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203)
+and [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264).
+
+The current source walks each id list with a pointer and a caller-born index
+(`load_model_list`, `load_motion_list`, and the flag `& 2` model request).
+Objdiff of that body is 100% (780 bytes, at `.text+0x1630`). The unit links.
+The typed file API recovery is recorded in
+[pr308-typed-file-apis.md](evidence/pr308-typed-file-apis.md).
+
+### `pso/quest/QuestOpcodeHandlers.cpp`: `-inline on`
+
+This existing unit switch also inlines the scalar accessor on the VM's per-slot
+`QuestVmArgument` union. String-push writes the pointer alternative directly;
+the GBA disk opcode reads that same alternative, and saved contexts use the
+same slot type. Whole-unit objdiff after the typed recovery: `.text` 51,176
+bytes, `.data` 88 bytes, and `.bss` 1,392 bytes, all 100%; the linked DOL has
+the original SHA-1. Direct numeric member reads keep the four affected handlers
+exact without any added optimization pragma. Evidence and iteration details:
+[pr308-typed-file-apis.md](evidence/pr308-typed-file-apis.md).
 
 | Unit | Flags | What needs the fused multiply-adds | Original asm | Rest of the unit |
 |---|---|---|---|---|
@@ -398,6 +435,12 @@ Source construct MWCC accepts and standard C++ does not:
 | Unit | Symbols | What | Why | Port should |
 |---|---|---|---|---|
 | `pso/misc/TTecCtrl_8022C444.cpp` | `get_technique_caster_flags`'s unsigned bias, `lbl_8044D078` | per-unit `post_object: tools/name_pool_symbols.py`; after MWCC it renames the emitted local `@N` `.rodata` object to `lbl_8044D078` and makes it global | The original split exports the 8-byte unsigned `2^52` bias and `TTecCtrl` loads it across units. Per-file MWCC emits the bias as a local pool object, and source cannot reuse that slot: a named global used by value gets a second pool copy. The post-process changes only the symbol name and binding, not the section bytes or relocations; the object then matches the split's 8-byte `.rodata`, the unit links, and the DOL keeps its original hash. The script refuses a bias with no matching local pool at the split's section and offset. Evidence: [conversion-pool-constants.md](evidence/conversion-pool-constants.md). | Drop the hook; keep the cast. The symbol name has no semantic meaning to a port. |
+
+### Footprint unit recovered from upstream #208
+
+| Unit | Compiler settings | Reason and port action |
+|---|---|---|
+| `pso/misc/TPlayerFootStamp.cpp` | `-fp_contract on`, `-inline off,deferred`, `-str reuse,readonly` | Adapted from upstream [#208](https://github.com/zeroz41/pso-decomp/pull/208), `ae797d392`. Removing fusion drops the constructor to 90.710144%; removing deferred emission changes function/vtable/switch/constant order (`.data` 33.333332%, `.sdata2` 14.285715%); writable strings move the class name (`.rodata` 95.38461%, `.sdata` 50%). All settings together give an exact, linked unit. A port can drop the flags, retaining explicit fused arithmetic if its results are required. [Evidence and remaining API boundaries](evidence/upstream-footstamp.md). |
 
 ## 6. Approved regressions
 
