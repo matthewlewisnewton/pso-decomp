@@ -4,13 +4,40 @@
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/GinjaTextureMatrices.h"
 #include "pso/player/TObjPlayer.h"
+#ifndef __MWERKS__
+// Host builds use the shared port fallbacks, following the SMS PC and TP
+// port compatibility pattern.
+#include "pso/port/VectorMathFallbacks.h"
+#endif
 
 // mtx.h defines MTXMultVecArray as this symbol but does not prototype it.
 extern "C" void PSMTXMultVecArray(const GC_Mtx m, const Vec *src, Vec *dst, u32 count);
 
-extern "C" asm void vec3_add_to(Vec *dst, const Vec *src) {
-#include "orig_asm/pso/unk/text_803D8910/vec3_add_to.inc"
+// One-time no-asm exception approved by Matt on 2026-11-04 (11:14 AM PT), the
+// same kind as #281. vec3_add_to (0x803D8910) is an in-place paired-single add
+// (dst += src): D-form psq_l/psq_st with W=1 on z, which GC/2.6 does not emit
+// from C or from __vec2x32float__. See docs/evidence/vec3-add-to-paired-single.md.
+// The asm builds only under Metrowerks; other compilers get the scalar adds.
+#ifdef __MWERKS__
+asm void vec3_add_to(register Vec *dst, register const Vec *src) {
+    nofralloc
+    psq_l f0, 0(dst), 0, 0
+    psq_l f2, 0(src), 0, 0
+    psq_l f1, 8(dst), 1, 0
+    ps_add f0, f2, f0
+    psq_l f3, 8(src), 1, 0
+    ps_add f1, f3, f1
+    psq_st f0, 0(dst), 0, 0
+    psq_st f1, 8(dst), 1, 0
+    blr
 }
+#else
+void vec3_add_to(Vec *dst, const Vec *src) {
+    dst->x += src->x;
+    dst->y += src->y;
+    dst->z += src->z;
+}
+#endif
 
 void matrix_mult_vec(f32 (*m)[4], const Vec *src, Vec *dst) {
     if (m == NULL) {
@@ -34,9 +61,20 @@ void get_current_matrix(void *m) {
     PSMTXCopy((MtxP)src, (MtxP)m);
 }
 
-
-extern "C" asm f32 vec3_dot(const Vec *a, const Vec *b) {
+// 0x803D89C0. The original body is assembly: six component registers with each
+// load immediately before its math op, which GC/2.6 cannot colour from C.
+// Recovered from the disc by tools/orig_asm.py.
+extern "C" {
+#ifdef __MWERKS__
+asm f32 vec3_dot(const Vec *a, const Vec *b) {
 #include "orig_asm/pso/unk/text_803D8910/vec3_dot.inc"
+}
+#else
+// Scalar fallback: the same x, y, z accumulation order.
+f32 vec3_dot(const Vec *a, const Vec *b) {
+    return pso::port::vec3_dot(a, b);
+}
+#endif
 }
 
 void TObjPlayer::invert_matrix_in_place(u32 arg0) {
@@ -46,9 +84,23 @@ void TObjPlayer::invert_matrix_in_place(u32 arg0) {
     PSMTXInverse((MtxP)arg0, (MtxP)arg0);
 }
 
-
-extern "C" asm f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
+// 0x803D8A18. The original body is assembly: its tail is a double frsqrte
+// feeding fres and single-precision fmuls with no frsp, which GC/2.6's typed
+// builtins cannot express. Recovered from the disc by tools/orig_asm.py.
+extern "C" {
+#ifdef __MWERKS__
+asm f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
 #include "orig_asm/pso/unk/text_803D8910/vec3_cross.inc"
+}
+#else
+// Scalar fallback. It keeps the original load order, the single-precision
+// first length-square product followed by double accumulates, and returns the
+// same cross-product length. The root is taken in the magnitude's double
+// range before narrowing, so large vectors do not saturate early.
+f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
+    return pso::port::vec3_cross(a, b, out);
+}
+#endif
 }
 
 void rotate_matrix_zyx(void *m, s32 x, s32 y, s32 z) {

@@ -73,7 +73,7 @@ void __ct__7TObjectFP7TObject(void *, void *);
 void project_world_to_screen(int, void *, void *);
 void queue_destruction__7TObjectFv(void *arg0);
 f32 vector_length(void *);
-s32 normalize_vector(void *);
+f32 normalize_vector(void *);
 f32 newton_sqrtf(f32);
 extern void *__vt__18TEffStarLightChild[];
 void run_task__15TEffStarLight2DFv(Star_800851B0 *self);
