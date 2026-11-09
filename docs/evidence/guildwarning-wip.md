@@ -81,8 +81,11 @@ The standing instruction in this PR is **do not merge or mark ready** until
 the window construction/lifetime contracts are resolved. It remains in force.
 Main's C-named `TWindowMessage__ct` and `construct_with_parent` are unchanged;
 the earlier attempts to force them into real C++ constructors emitted extra
-base calls/vtable stores. Those previous measurements do not prove that no
-future solution exists, and this pass does not retry or resolve them.
+base calls/vtable stores. A subsequent isolated probe with a correctly owned
+base-initializer chain now reproduces those bodies and compiler-generated tables.
+It exposes a caller-width and lifetime qualification blocker instead; see
+[the constructor-chain evidence](window-constructor-chain-probe.md).
+The probe is not activated in this PR.
 
 Current-main integration and exact code matching alone do not lift that hold.
 The earlier wider window-interface cleanup is not claimed complete.
