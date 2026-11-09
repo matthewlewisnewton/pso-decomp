@@ -397,7 +397,7 @@ Source construct MWCC accepts and standard C++ does not:
 
 | Unit | Function | What | Why | Port should |
 |---|---|---|---|---|
-| `pso/unk/text_8042E8C4.cpp` | `LaunchDol` (`0x8042E8C4`, 312 B) | unit switch `-inline auto -opt nocse,nostrength,noprop` on `ntutl` (`GC/2.6 -O4,p -use_lmw_stmw on`) | The C++ fallback needs byte-offset section indexing, a register-held zero and source-address evaluation before the argument moves. With these settings its first 296 bytes and all 10 relocations in that prefix match; the indirect jump still differs (91.02564% overall). See [reproduction and limits](evidence/launch-dol-cpp-recovery.md). The native build retains main's existing `orig_asm` implementation. | Drop the switches and replace the console loader/cache operations with host equivalents. |
+| `pso/unk/text_8042E8C4.cpp` | `LaunchDol` (`0x8042E8C4`, 312 B) | unit switch `-inline auto -opt nocse,nostrength,noprop` on `ntutl` (`GC/2.6 -O4,p -use_lmw_stmw on`) | The C++ fallback needs byte-offset section indexing, a register-held zero and source-address evaluation before the argument moves. With these settings its first 296 bytes and all 10 relocations in that prefix match; the indirect jump still differs (93.39744% overall). See [reproduction and limits](evidence/launch-dol-cpp-recovery.md). The native build retains main's existing `orig_asm` implementation. | Drop the switches and replace the console loader/cache operations with host equivalents. |
 
 ## 6. Approved regressions
 

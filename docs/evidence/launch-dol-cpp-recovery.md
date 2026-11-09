@@ -27,18 +27,23 @@ compiler. Compile with the normal ntutl GC/2.6 flags and the unit override
 `-inline auto -opt nocse,nostrength,noprop`, then compare the resulting
 `LaunchDol` with the freshly split original object using objdiff.
 
-The independent temporary compile reproduces **91.02564%**. Its first 296 bytes
+The independent temporary compile reproduces **93.39744%**. Its first 296 bytes
 (`0x000..0x127`, 74 instructions) and all 10 relocations within that prefix are
 identical to the target. The compiled C++ function is 332 bytes; the target
 symbol is 312 bytes. The section loops and setup are recovered, but the complete
 functions are not byte-identical. This is a fuzzy result, not 312 recovered
-matching bytes.
+matching bytes. The final 20 bytes of the 332-byte C++ output also equal the
+stranded epilogue in the next original split. Across the combined span, only
+the words at offsets `0x128`, `0x130` and `0x134` differ. That suffix equality
+does not create a standalone matched symbol or linkable unit for PR #285.
 
 ## Remaining boundary
 
 The target's final jump begins at `0x8042E9EC` and ends before `0x8042E9FC`.
-GC/2.6 emits the cache synchronization followed by a CTR indirect call and a
-normal frame restore for the C++ expression. The original transfers control
+The C++ source loads the actual typed entry pointer before synchronization,
+as the target does. GC/2.6 then emits a CTR indirect call and a normal frame
+restore. This ordering improves the result from 91.02564% to 93.39744%; it
+does not change the entry type or introduce a forced register or qualifier. The original transfers control
 through LR without restoring the frame. Earlier PR experiments tested other
 MWCC versions and spellings; none established an ordinary C++ match for that
 transfer. This evidence does not prove impossibility for every compiler or

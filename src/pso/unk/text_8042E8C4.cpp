@@ -17,7 +17,7 @@ extern u8 launch_record[] AT_ADDRESS(0x80003100);
 // do not emit this jump from an ordinary C++ indirect call. Under __MWERKS__ we keep upstream #172/#350's orig_asm
 // body (registered in docs/porting-exceptions.md section 7); the #else
 // branch holds the C++ implementation, which matches all 74 pre-tail
-// instructions (0x000..0x124, 91.03% overall) byte-for-byte under GC/2.6
+// instructions (0x000..0x124, 93.40% overall) byte-for-byte under GC/2.6
 // -O4,p -use_lmw_stmw on -inline auto -opt nocse,nostrength,noprop.
 #ifdef __MWERKS__
 extern "C" {
@@ -73,8 +73,9 @@ static inline void LaunchDolInline(ModemLaunchContext *ctx) {
         DCStoreRange(dest, length);
     }
 
+    void (*entry)() = image->entry;
     __isync();
-    image->entry();
+    entry();
 }
 
 extern "C" void LaunchDol(ModemLaunchContext *ctx) {
