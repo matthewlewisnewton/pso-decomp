@@ -633,9 +633,9 @@ void TObjCity_Season_SonicAdv2::render() {
     Obj_80183AF0 *self = (Obj_80183AF0 *)this;
     Res_80183AF0 *res;
     s32 idx;
-    Vec_80183AF0 pos;
-    Vec_80183AF0 a;
-    Vec_80183AF0 b;
+    Vec pos;
+    Vec a;
+    Vec b;
     res = ((Res_80183AF0 * (*)(void *))get_anim_frame__13TUnk_804B5E48Fv)(self);
     if (res != NULL && self->m8(lbl_805DBC44[0], lbl_805DBC4C[0]) != 0) {
         set_current_texture_list((GinjaTextureList *)(city_season_xmas_model_table[5]));
@@ -653,7 +653,7 @@ void TObjCity_Season_SonicAdv2::render() {
         b.x = lbl_805DBC54[0];
         b.y = lbl_805DBC1C[0];
         b.z = lbl_805DBC58[0];
-        ((TObjEneDD *)(&pos))->draw_oriented_shadow((s32)&a, self->x60, (u32)&b);
+        TObjEneDD::draw_oriented_shadow(&pos, &a, self->x60, &b);
     }
 }
 #pragma pop

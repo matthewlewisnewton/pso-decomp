@@ -1,129 +1,164 @@
+#include "pso/system/RelModuleBuffer.h"
+#include "pso/render/ColorCopy.h"
+#include "pso/render/TriangleFan3D.h"
+#include "pso/system/vector.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/render/render_util.h"
 #include "pso/system/memory.h"
 #include "pso/boss/TBoss6Zanzo.h"
-#include "pso/boss/TBoss6Type1.h"
-#include "pso/player/TObjPlayer.h"
-#include "pso/ui/TAdChrMoveEffectGC.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-struct ByteBlock_C { u8 bytes[0xc]; };
-
-struct Src_80320534 { s32 a; u8 *p; };
-
-struct Ent_803204B8 { u8 pad[4]; f32 v[3]; };
-
-struct Blk_803204B8 { s32 flag; Ent_803204B8 *ents; };
-
-struct Ef_803204B8 { u8 pad[0x20]; Blk_803204B8 *blk; s32 count; };
-
-struct Src_80320950 { s32 a; u8 *p; };
-
-struct Obj_80320950 { u8 pad[0x18]; void *vt; Src_80320950 *arr; Src_80320950 *last; u8 pad2[4]; s32 n; };
-
-struct Obj_803208CC { u8 pad[0x1C]; Src_80320534 *arr; Src_80320534 *last; u8 pad2[4]; s32 n; };
-
-struct Src_803209F0 { s32 a; u8 *p; };
-
-struct Obj_803209F0 { s32 f0; u8 pad[0x14]; void *vt; Src_803209F0 *arr; Src_803209F0 *last; s32 n; s32 m; };
-
 extern "C" {
-void VecCopy__FP3VecPC3Vec(void *, void *);
-void run_task__11TBoss6ZanzoFv(Obj_803208CC *arg0);
-extern s32 TBoss6Zanzo__name;
-int TBoss6Zanzo__sub_803205C4(void*);
-int set_depth_buffer_settings_1__Fv(void*);
+extern const char *TBoss6Zanzo__name[2];
+extern const f32 lbl_805DF470;
+extern const f32 lbl_805DF474;
 
-s32 fn_803204B0(void* p) { return *(s32*)((char*)p + 0x4); }
+void *fn_803204B0(RelModuleBuffer *module) { return module->image; }
 
-void TBoss6Type1::set_effect_points(f32 *a, u32 *b) {
-    Ef_803204B8 *o = (Ef_803204B8 *)this;
-    Ent_803204B8 *p;
-    Ent_803204B8 *end;
-    f32 *a2 = a;
-    u32 *b2 = b;
-    o->blk->flag = 1;
-    p = o->blk->ents;
-    end = p + o->count;
-    for (; p < end; p++, a2 += 3, b2++) {
-        VecCopy__FP3VecPC3Vec(&p->v, a2);
-        fn_80257720(p, b2);
+void TBoss6Zanzo::set_effect_points(const Vec *points, const u32 *colors) {
+    Boss6TrailPoint *p;
+    Boss6TrailPoint *end;
+    const Vec *a2 = points;
+    const u32 *b2 = colors;
+    current->active = 1;
+    p = current->points;
+    end = p + point_count;
+    for (; p < end; ++p, ++a2, ++b2) {
+        VecCopy(&p->position, a2);
+        copy_color_bytes(&p->color, b2);
     }
 }
 
-void TBoss6Zanzo::copy_trail_buffer(void *arg1_arg, void *arg2_arg) {
-    TBoss6Zanzo *arg0 = this;
-    Src_80320534 *arg1 = (Src_80320534 *)arg1_arg;
-    Src_80320534 *arg2 = (Src_80320534 *)arg2_arg;
-    u8 *src;
-    u8 *dst;
-    u8 *end;
-    arg1->a = arg2->a;
-    if (arg1->a != 0) {
-        dst = arg1->p;
-        src = arg2->p;
-        end = dst + (arg0->m_24 << 4);
-        for (; dst < end; dst += 0x10, src += 0x10) {
-            TBoss6Zanzo__sub_803205A0((s32 *)dst, (s32 *)src);
+void TBoss6Zanzo::copy_trail_buffer(Boss6TrailFrame *dest, Boss6TrailFrame *source) {
+    TBoss6Zanzo *owner = this;
+    Boss6TrailFrame *arg1 = dest;
+    Boss6TrailFrame *arg2 = source;
+    Boss6TrailPoint *src;
+    Boss6TrailPoint *dst;
+    Boss6TrailPoint *end;
+    arg1->active = arg2->active;
+    if (arg1->active != 0) {
+        s32 count = owner->point_count;
+        dst = arg1->points;
+        end = dst + count;
+        src = arg2->points;
+        for (; dst < end; ++dst, ++src) TBoss6Zanzo__sub_803205A0(dst, src);
+    }
+}
+
+#pragma push
+#pragma scheduling off
+void TBoss6Zanzo__sub_803205A0(Boss6TrailPoint *dest, const Boss6TrailPoint *source) {
+    *dest = *source;
+}
+#pragma pop
+
+void TBoss6Zanzo::draw_trail() {
+    Boss6TrailFrame *frame;
+    Boss6TrailFrame *end;
+    Boss6TrailFrame *previous;
+    f32 step;
+    f32 fade;
+    f32 previous_fade;
+    s32 drawn;
+    frame = this->frames;
+    end = frame + this->frame_count;
+    fade = lbl_805DF470;
+    step = lbl_805DF470 / this->frame_count;
+    drawn = 0;
+    for (; frame < end; ++frame) {
+        if (frame == this->frames || !frame->active || !previous->active) {
+            drawn = 0;
+        } else {
+            if (!drawn) previous_fade = lbl_805DF474;
+            f32 next_fade = fade;
+            if (frame == end - 1 || !(frame + 1)->active) next_fade = lbl_805DF474;
+            u32 colors[4];
+            Vec positions[4];
+            TriangleFan3D fan;
+            fan.colors = colors;
+            fan.uvs = 0;
+            fan.count = 4;
+            fan.positions = positions;
+            // Packed RGBA colors retain RGB and fade only their fourth byte.
+            for (s32 i = 0; i < this->point_count - 1; ++i) {
+                {
+                    Boss6TrailPoint *p = &previous->points[i];
+                    copy_color_bytes(&colors[0], &p->color);
+                    ((u8 *)colors)[3] = (u8)(previous_fade * ((const u8 *)&p->color)[3]);
+                    VecCopy(&positions[0], &p->position);
+                }
+                {
+                    Boss6TrailPoint *p = &previous->points[i] + 1;
+                    copy_color_bytes(&colors[1], &p->color);
+                    ((u8 *)colors)[7] = (u8)(previous_fade * ((const u8 *)&p->color)[3]);
+                    VecCopy(&positions[1], &p->position);
+                }
+                {
+                    Boss6TrailPoint *p = &frame->points[i] + 1;
+                    copy_color_bytes(&colors[2], &p->color);
+                    ((u8 *)colors)[11] = (u8)(next_fade * ((const u8 *)&p->color)[3]);
+                    VecCopy(&positions[2], &p->position);
+                }
+                {
+                    Boss6TrailPoint *p = &frame->points[i];
+                    copy_color_bytes(&colors[3], &p->color);
+                    ((u8 *)colors)[15] = (u8)(next_fade * ((const u8 *)&p->color)[3]);
+                    VecCopy(&positions[3], &p->position);
+                }
+                draw_tri_fan_3d(&fan, 4, 7);
+            }
+            drawn = 1;
         }
+        previous_fade = fade;
+        previous = frame;
+        fade -= step;
     }
 }
 
-void TBoss6Zanzo__sub_803205A0(s32 *arg0, s32 *arg1) {
-    *arg0 = *arg1;
-    *(ByteBlock_C *)((s32) arg0 + 4) = *(const ByteBlock_C *)((s32) arg1 + 4);
-}
+void TBoss6Zanzo::render() { set_depth_buffer_settings_1(); draw_trail(); restore_saved_depth_alpha_state(); }
 
-void TBoss6Zanzo::render() { set_depth_buffer_settings_1__Fv(this); TBoss6Zanzo__sub_803205C4(this); restore_saved_depth_alpha_state(); }
-
-void run_task__11TBoss6ZanzoFv(Obj_803208CC *arg0) {
-    Src_80320534 *base;
-    Src_80320534 *p;
+void TBoss6Zanzo::run_task() {
+    Boss6TrailFrame *base;
+    Boss6TrailFrame *p;
     if (check_demo_mode() == 0) {
-        base = arg0->arr;
-        for (p = base + arg0->n - 1; p > base; p--) {
-            ((TBoss6Zanzo *)arg0)->copy_trail_buffer(p, p - 1);
-        }
-        ((TBoss6Zanzo *)arg0)->copy_trail_buffer(p, arg0->last);
-        arg0->last->a = 0;
+        base = frames;
+        for (p = base + frame_count - 1; p > base; p--) copy_trail_buffer(p, p - 1);
+        copy_trail_buffer(p, current);
+        current->active = 0;
     }
 }
 
 }
 TBoss6Zanzo::~TBoss6Zanzo() {
-    Src_80320950 *p;
-    Src_80320950 *end;
-    ::operator delete[](((Obj_80320950 *)this)->last->p);
-    ::operator delete(((Obj_80320950 *)this)->last);
-    for (p = ((Obj_80320950 *)this)->arr, end = p + ((Obj_80320950 *)this)->n; p < end; p++) {
-        ::operator delete[](p->p);
+    Boss6TrailFrame *p;
+    Boss6TrailFrame *end;
+    ::operator delete[](current->points);
+    ::operator delete(current);
+    for (p = frames, end = p + frame_count; p < end; p++) {
+        ::operator delete[](p->points);
     }
-    ::operator delete[](((Obj_80320950 *)this)->arr);
+    ::operator delete[](frames);
 }
 
 TBoss6Zanzo::TBoss6Zanzo(TObject *object, s32 arg2, s32 arg3) : TObject(object) {
-    Src_803209F0 *p;
-    Src_803209F0 *end;
-    ((Obj_803209F0 *)this)->f0 = TBoss6Zanzo__name;
-    ((Obj_803209F0 *)this)->n = arg2;
-    if (((Obj_803209F0 *)this)->n < 2) {
-        ((Obj_803209F0 *)this)->n = 2;
+    Boss6TrailFrame *p;
+    Boss6TrailFrame *end;
+    m_name = TBoss6Zanzo__name[0];
+    point_count = arg2;
+    if (point_count < 2) point_count = 2;
+    frame_count = arg3;
+    if (frame_count < 2) frame_count = 2;
+    frames = (Boss6TrailFrame *)::operator new[](frame_count * sizeof(Boss6TrailFrame));
+    for (p = frames, end = p + frame_count; p < end; p++) {
+        p->active = 0;
+        p->points = (Boss6TrailPoint *)::operator new[](point_count * sizeof(Boss6TrailPoint));
     }
-    ((Obj_803209F0 *)this)->m = arg3;
-    if (((Obj_803209F0 *)this)->m < 2) {
-        ((Obj_803209F0 *)this)->m = 2;
-    }
-    ((Obj_803209F0 *)this)->arr = (Src_803209F0 *)::operator new[](((Obj_803209F0 *)this)->m * 8);
-    for (p = ((Obj_803209F0 *)this)->arr, end = p + ((Obj_803209F0 *)this)->m; p < end; p++) {
-        p->a = 0;
-        p->p = (u8 *)::operator new[](((Obj_803209F0 *)this)->n * 0x10);
-    }
-    ((Obj_803209F0 *)this)->last = (Src_803209F0 *)::operator new(8);
-    ((Obj_803209F0 *)this)->last->a = 0;
-    ((Obj_803209F0 *)this)->last->p = (u8 *)::operator new[](((Obj_803209F0 *)this)->n * 0x10);
+    current = (Boss6TrailFrame *)::operator new(sizeof(Boss6TrailFrame));
+    current->active = 0;
+    current->points = (Boss6TrailPoint *)::operator new[](point_count * sizeof(Boss6TrailPoint));
 }

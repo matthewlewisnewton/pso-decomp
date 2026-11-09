@@ -43,7 +43,7 @@ void __ct__12TAdBackTxtGCFv(void *, void *);
 void __ct__10TAdTitleGCFP7TObjectl(void *, void *, s32);
 void __ct__13TAdTitleTexGCFv(void *, void *);
 void *__ct__13TAdGuideTxtGCFv(void *, void *);
-s32 is_multiplayer_character_slot_selected(u32);
+s32 is_multiplayer_character_slot_selected(s32);
 void *get_or_create_player__22TAdMultiPlyChrSelectGCFiiii(void *, u32, u32, s32);
 void fn_802FF7EC(void *);
 void *__ct__12TAdMultiOkGCFv(void *, void *, OkArg_802FFA3C *);

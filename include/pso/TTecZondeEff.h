@@ -17,6 +17,7 @@ public:
     static void init_resources();
 public:
     u8 *construct(u8 *arg1, u8 *arg2, u8 *arg3, f32 farg0);
+    u8 *construct_bolt_effect(u8 *arg1, u8 *arg2, u8 *arg3, s32 arg4, s32 arg5, f32 farg0, f32 farg1);
 };
 
 #endif

@@ -1,3 +1,4 @@
+#include "pso/render/TriangleFan3D.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/render/DebugFont.h"
@@ -162,16 +163,6 @@ struct Lines_801E341C {
     u32 *colors;
 };
 
-struct Vec3_801E3784 { f32 x, y, z; };
-
-struct UV_801E3784 { s16 u, v; };
-
-struct Tris_801E3784 {
-    Vec3_801E3784 *positions;
-    u32 *colors;
-    UV_801E3784 *uvs;
-};
-
 extern "C" {
 void GXBegin(s32, s32, u16);
 void GXSetLineWidth(s32, s32);
@@ -317,10 +308,11 @@ void TObjCMHairMenu::draw_tri_fan_2d(s32 count, s32 flags, f32 scale) {
     }
     TObjEneRe4Sorcerer__sub_801E3F20();
 }
-void TObjPlayer::draw_tri_fan_3d(s32 n, u32 flags) {
-    Tris_801E3784 *t = (Tris_801E3784 *)this;
-    Vec3_801E3784 *p;
-    UV_801E3784 *uv;
+}
+
+void draw_tri_fan_3d(TriangleFan3D *t, s32 n, u32 flags) {
+    Vec *p;
+    TriangleFan3DUV *uv;
     u32 *c;
     s32 i;
     load_camera_view_matrix();
@@ -354,11 +346,13 @@ void TObjPlayer::draw_tri_fan_3d(s32 n, u32 flags) {
     TObjPlayer__sub_803E2248();
 }
 
+extern "C" {
 void DCFlushRange(void *, u32);
 void TLobby__sub_801E3CF0(u32 *);
 
 s32 *TLobby__sub_801E38A0(s32 arg0, s32 *arg1, s32 *arg2, s32 *buf, s32 *arg4) {
     u8 *p;
+    s32 *chosen;
     s32 pos;
     s32 tag;
     u32 size;
@@ -370,9 +364,9 @@ s32 *TLobby__sub_801E38A0(s32 arg0, s32 *arg1, s32 *arg2, s32 *buf, s32 *arg4) {
 
     pos = 0;
     p = (u8 *)(arg0 + *arg1);
-    ((TLobby *)(&tag))->move_data(p, 4);
+    move_data((&tag), p, 4);
     TLobby__sub_801E3CF0((u32 *)&tag);
-    ((TLobby *)(&size))->move_data(p + 4, 4);
+    move_data((&size), p + 4, 4);
     TLobby__sub_801E3CF0(&size);
     p += 8;
     *arg1 += 8;
@@ -415,14 +409,19 @@ s32 *TLobby__sub_801E38A0(s32 arg0, s32 *arg1, s32 *arg2, s32 *buf, s32 *arg4) {
     default:
         goto bad;
     }
-    buf = (buf == 0) ? (s32 *)((TQuestVmDownLoadServer *)size)->alloc() : buf;
+    if (buf == 0) {
+        chosen = (s32 *)TQuestVmDownLoadServer::alloc(size);
+    } else {
+        chosen = buf;
+    }
+    buf = chosen;
     if (buf == 0) {
         return 0;
     }
     if (arg4 != 0) {
         *arg4 = size;
     }
-    ((TLobby *)buf)->move_data(p, size);
+    move_data(buf, p, size);
     DCFlushRange(buf, size);
     p += size;
     *arg1 += size;
@@ -431,17 +430,17 @@ bad:
     *arg2 = 0x2A2A2A2A;
     return 0;
 next:
-    ((TLobby *)(&tag))->move_data(p, 4);
+    move_data((&tag), p, 4);
     TLobby__sub_801E3CF0((u32 *)&tag);
     *arg1 += 4;
     tag = TLobby::bswap32_value(tag);
     if (tag == 0x504F4630) {
-        ((TLobby *)(&size))->move_data(p + 4, 4);
+        move_data((&size), p + 4, 4);
         TLobby__sub_801E3CF0(&size);
         p += 8;
         *arg1 += 4;
         while (size != 0) {
-            ((TLobby *)(&b0))->move_data(p, 1);
+            move_data((&b0), p, 1);
             p++;
             *arg1 += 1;
             size--;
@@ -452,18 +451,18 @@ next:
                 off = b0 & 0x3F;
                 break;
             case 0x80:
-                ((TLobby *)(&b1))->move_data(p, 1);
+                move_data((&b1), p, 1);
                 p++;
                 size--;
                 *arg1 += 1;
                 off = ((b0 << 8) & 0x3F00) | b1;
                 break;
             case 0xC0:
-                ((TLobby *)(&b1))->move_data(p, 1);
+                move_data((&b1), p, 1);
                 size--;
-                ((TLobby *)(&b2))->move_data(p + 1, 1);
+                move_data((&b2), p + 1, 1);
                 size--;
-                ((TLobby *)(&b3))->move_data(p + 2, 1);
+                move_data((&b3), p + 2, 1);
                 p += 3;
                 size--;
                 *arg1 += 3;

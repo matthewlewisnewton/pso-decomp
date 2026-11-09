@@ -5,31 +5,26 @@
 #include "pso/object/TObjDFHorming.h"
 #include "pso/system/vector.h"
 
-
-    extern void* boss8_dragon_leader_part;
 extern "C" {
 extern s32 __vt__13TUnk_804E4BF0[];
-extern void *boss8_dragon_leader_part;
 s32 __dl__7TObjectFPv(void *);
 s32 __dt__7TObjectFv(void *, s32);
 
 #include "pso/boss/TBoss8Dragon.h"
 
-extern "C" {
-s32 setup_attack_slot__12TBoss8DragonFiUiiiPv(s32 arg0, u32 arg1, s32 arg2, s32 arg3, u8 *arg4) {
-    if ((arg3 < 0) || (arg3 > 5)) {
+s32 TUnk_804E4BF0::setup_attack_slot(Vec *pos, s32 angle, s32 part, u8 *slot) {
+    if ((part < 0) || (part > 5)) {
         return 0;
     }
-    TBoss4DarkFalz__sub_8004B4F0(arg4, (void *)(arg0 + 0x1C));
-    *(s16 *)((s8 *)arg4 + 0) = TBoss8Dragon__sub_802F3C94((void *)arg0, (s32)arg3);
-    *(s16 *)((s8 *)arg4 + 2) = 0;
-    *(s16 *)((s8 *)arg4 + 6) = ((TBoss8Dragon *)arg0)->get_part_count_plus(arg3);
-    if (arg1 != 0U) {
-        VecCopy((Vec *)(arg4 + 0x10), (const Vec *)(arg1));
+    TBoss4DarkFalz__sub_8004B4F0(slot, &this->part_type);
+    *(s16 *)((s8 *)slot + 0) = TBoss8Dragon__sub_802F3C94(this, part);
+    *(s16 *)((s8 *)slot + 2) = 0;
+    *(s16 *)((s8 *)slot + 6) = this->get_part_entity_id(part);
+    if (pos != NULL) {
+        VecCopy((Vec *)(slot + 0x10), pos);
     }
-    *(s32 *)((s8 *)arg4 + 0x20) = arg2;
+    *(s32 *)((s8 *)slot + 0x20) = angle;
     return 1;
-}
 }
 
 void TUnk_804E4BF0::render() {  }
@@ -69,8 +64,8 @@ void TBoss8Dragon__sub_802F3C74(void) {  }
 
 void clear_boss8_dragon_leader_part(void) { boss8_dragon_leader_part = 0; }
 
-u16 TBoss8Dragon::get_part_count_plus(s32 arg1) {
-    return (u16) (this->m_22 + arg1);
+u16 TUnk_804E4BF0::get_part_entity_id(s32 part) {
+    return (u16) (this->first_part_id + part);
 }
 
 s32 TBoss8Dragon__sub_802F3C94(void *arg0, s32 arg1) {

@@ -5,19 +5,21 @@
 #include "pso/TShopWindowBase.h"
 #include "pso/item/TItemData.h"
 
+struct TWindowMenu;
+
 struct TShopItemListWindow : public TShopWindowBase {
     virtual ~TShopItemListWindow();
     void prepare_tool_purchase();
     void handle_amount_confirm();
     virtual void vfunc_11();
-    virtual void vfunc_7();
-    virtual void vfunc_6();
+    virtual void display_message(const char *text, s32 flags);
+    virtual void vfunc_6(s32 index, s32 flags);
     u8 _pad1C[0x4];
     u32 m_20;
     u32 m_24;
     u32 m_28;
     u32 m_2c;
-    u32 m_30;
+    TWindowMenu *m_30;
     u32 m_34;
     u32 m_38;
     u32 m_3c;

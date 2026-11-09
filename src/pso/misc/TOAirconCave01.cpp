@@ -26,7 +26,7 @@ void TOAirconCave01::render() {
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)(texlist));
-        draw_ginja_model((s32)object->model);
+        draw_ginja_model(object->model);
         pop_matrix();
     }
 }

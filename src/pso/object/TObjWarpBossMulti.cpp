@@ -3,6 +3,7 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/object/TObjWarpBase.h"
 #include "pso/misc/THunterGuildSeqOffline.h"
 #include "pso/misc/TLobby.h"
@@ -207,7 +208,7 @@ struct Obj_8019F578 {
 };
 
 extern "C" {
-s32 check_player_flag1__6TLobbyFv(void);
+s32 check_player_flag1__10TObjPlayerFv(void);
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 void *get_player_by_client_id(s32 i);
 s32 fn_80248994(void *, u32, int);
@@ -225,7 +226,6 @@ s32 get_main_phase();
 s32 is_local_client_floor_leader();
 s32 TObjWarpBossMulti__sub_8019E570(s32 arg0, f32 farg0);
 void close_windows__12TObjWarpBossFv(void *arg0);
-s32 TWindow__close(void *);
 extern s32 boss_warp_confirmation_model;
 extern s32 warp_boss_motion;
 extern s32 __vt__12TObjWarpBoss[];
@@ -390,8 +390,8 @@ s32 align_menu_entry_positions(u32);
 u32 check_room_seq_4__16TAdChrSelASlotGCFl(s32, s32);
 void obj_clear_flag30_20000(void *arg0);
 void obj_set_flag_20000(void *arg0);
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
-s32 send_code_45_1__10TObjPlayerFl();
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);
+s32 send_code_45_1__10TObjPlayerFP10TObjPlayer();
 
 char *strcpy(char *, const char *);
 s32 is_locally_controlled__10TObjPlayerFPv(u32);
@@ -731,11 +731,11 @@ void TObjWarpBoss::close_windows() {
         *(u32 *)((s8 *)this + 0x168) = 0U;
     }
     if ((u32) this->m_b0 != 0U) {
-        TWindow__close(*(void **)((s8 *)this + 0xB0));
+        ((TWindowBase *)(*(void **)((s8 *)this + 0xB0)))->close();
         this->m_b0 = 0U;
     }
     if ((u32) this->m_180 != 0U) {
-        TWindow__close(*(void **)((s8 *)this + 0x164));
+        ((TWindowBase *)(*(void **)((s8 *)this + 0x164)))->close();
         this->m_180 = 0U;
     }
     end_player_keyboard_hold(local_client_id);
@@ -770,7 +770,7 @@ void TObjWarpBossMulti::notify_player(void *arg0, s32 arg1) {
 
     player = (s32)get_player_by_client_id(arg1);
     if (player != 0) {
-        send_code_45_1__10TObjPlayerFl();
+        send_code_45_1__10TObjPlayerFP10TObjPlayer();
         obj_clear_flag30_20000((void *)player);
     }
 }
@@ -780,7 +780,7 @@ void TObjWarpBoss::warp_player(s32 arg1) {
 
     player = (s32)get_player_by_client_id(arg1);
     if (player != 0) {
-        play_effect_default__10TObjPlayerFii(player, -1);
+        play_effect_default__10TObjPlayerFP10TObjPlayerl(player, -1);
         obj_set_flag_20000((void *)player);
         *(s32 *)((s8 *)this + 0x174) = 0x12C;
     }
@@ -828,7 +828,7 @@ void TObjWarpBoss::warp_boss_handle_window() {
             }
         } else {
             if ((u32) *(u32 *)((s8 *)this + 0xB0) != 0U) {
-                TWindow__close(*(void **)((s8 *)this + 0xB0));
+                ((TWindowBase *)(*(void **)((s8 *)this + 0xB0)))->close();
                 *(u32 *)((s8 *)this + 0xB0) = 0U;
             }
             end_player_keyboard_hold(local_client_id);
@@ -841,7 +841,7 @@ void TObjWarpBoss::warp_boss_handle_window() {
         return;
     case -1:
         if ((u32) *(u32 *)((s8 *)this + 0xB0) != 0U) {
-            TWindow__close(*(void **)((s8 *)this + 0xB0));
+            ((TWindowBase *)(*(void **)((s8 *)this + 0xB0)))->close();
             *(u32 *)((s8 *)this + 0xB0) = 0U;
         }
         end_player_keyboard_hold(local_client_id);
@@ -955,11 +955,11 @@ void TObjWarpBoss::update_warp_confirmation() {
             break;
         }
         if (*(void **)((s8 *)arg0 + 0xB0) != NULL) {
-            TWindow__close(*(void **)((s8 *)arg0 + 0xB0));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0xB0)))->close();
             *(void **)((s8 *)arg0 + 0xB0) = NULL;
         }
         if (*(void **)((s8 *)arg0 + 0x164) != NULL) {
-            TWindow__close(*(void **)((s8 *)arg0 + 0x164));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x164)))->close();
             *(void **)((s8 *)arg0 + 0x164) = NULL;
         }
         break;
@@ -1049,7 +1049,7 @@ void TObjWarpBoss::update_warp_occupants() {
         self->names[i][0] = 0;
     }
     if (old != self->count && self->window != 0) {
-        ((s32 (*)(u32))TWindow__close)(self->window);
+        ((TWindowBase *)self->window)->close();
         self->window = 0;
     }
     pl2 = (Player_8019EE14 *)get_player_by_client_id(local_client_id);
@@ -1126,7 +1126,7 @@ s32 TObjWarpBoss::update_warp_dialogs() {
     {
             ((THunterGuildSeqOffline *)(self->list))->advance_matching_entries(self->inside[j] != 0, j);
       color = 0xF0F0F0FF;
-      if (((self->mode == 1) && (((u32)get_player_by_client_id((j))) != 0)) && (check_player_flag1__6TLobbyFv() != 0))
+      if (((self->mode == 1) && (((u32)get_player_by_client_id((j))) != 0)) && (check_player_flag1__10TObjPlayerFv() != 0))
       {
         color = 0xFFFF00FF;
       }

@@ -1,6 +1,6 @@
 #include "types.h"
 #include "pso/misc/TWindowMainMenu.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowLockOn.h"
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowShortListCtrl.h"
@@ -36,7 +36,6 @@ void window_request_show(void *arg0);
 extern "C" {
 s32 is_split_screen();
 s32 TWindowCtrl__sub_8024C7F8(void *);
-s32 TWindow__close(void *);
 s32 TWindowCtrl__sub_8024A314();
 s32 TWindowCtrl__sub_8024C7C4(void *);
 s32 TWindowCtrl__sub_8024C7E0(void *);
@@ -53,7 +52,6 @@ u16 get_current_target_id__10TObjPlayerFv();
 s32 is_player_input_active(s32);
 int TWindowCtrl__sub_8024C7D4(void *p);
 extern Pad_8024DCE8 controller_input_state[];
-u32 is_action_active__10TObjPlayerFv(void *);
 int TWindowMainMenu__sub_8024E3F4(void *p);
 void TWindowCtrl__sub_8024DAAC(void *arg0);
 s32 TWindowMainMenu__sub_8024E3E0(void *);
@@ -197,7 +195,7 @@ void TWindowCtrl::update_main_menu_request() {
         TWindowCtrl::update_focused();
         return;
     }
-    if (is_action_active__10TObjPlayerFv((void *) p) != 0) {
+    if ((u32)((TObjPlayer *)p)->is_action_active() != 0U) {
         return;
     }
     if (key == 0x1F) {
@@ -211,12 +209,12 @@ void TWindowCtrl::update_main_menu_request() {
 #pragma fp_contract on
 void TWindowCtrl::update_target_info_window() {
     u8 *arg0 = (u8 *)this;
-    if ((*(void **)((s8 *)arg0 + 0x38) != NULL) && ((((TObject *)(*(void **)((s8 *)arg0 + 0x38)))->all_parents_unqueued_for_destruction() == 0) || (((TUnk_804CE018 *)(*(u32 *)((s8 *)arg0 + 0x38)))->sub_80244994() == 0))) {
+    if ((*(void **)((s8 *)arg0 + 0x38) != NULL) && ((((TObject *)(*(void **)((s8 *)arg0 + 0x38)))->all_parents_unqueued_for_destruction() == 0) || (((TWindowBase *)(*(u32 *)((s8 *)arg0 + 0x38)))->sub_80244994() == 0))) {
         *(u32 *)((s8 *)arg0 + 0x38) = 0U;
     }
     if ((TWindowCtrl__sub_8024C7E0(arg0) != 0) || (get_active_menu() != 0) || (((TWindowCtrl *)arg0)->is_visible() != 0) || (TWindowCtrl__sub_8024C7C4(arg0) != 0) || (TWindowCtrl__sub_8024A314() != 0)) {
         if ((u32) *(u32 *)((s8 *)arg0 + 0x38) != 0U) {
-            TWindow__close(*(void **)((s8 *)arg0 + 0x38));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x38)))->close();
             *(u32 *)((s8 *)arg0 + 0x38) = 0U;
         }
     } else {
