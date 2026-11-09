@@ -15,15 +15,15 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch after merging main `97e9c3f93`, 2026-11-05)
+## Summary (regenerated on this branch for the ginja math kernels after merging main `8d9b51485`, 2026-11-08)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `97e9c3f93` (2026-11-05). Assembly is counted as functions;
+for the current branch after merging main `8d9b51485` (2026-11-08). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 8 functions (15 source lines) | 5 |
+| Assembly (`asm` + `orig_asm` include) | 22 source lines | 7 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,766 | 871 |
@@ -44,7 +44,20 @@ asm always has an entry in this register.
 | `src/musyx/runtime/Chorus/chorus_fx.c` | `do_src1`, `do_src2` | `asm` body from `orig_asm` include under `#ifdef __MWERKS__`; scalar C in the `#else` | Vendor MusyX hand-written assembly. Matt approved keeping it on 2026-11-04 with a scalar fallback ([#316](https://github.com/matthewlewisnewton/pso-decomp/pull/316)). Evidence: [musyx-asm-fallbacks.md](evidence/musyx-asm-fallbacks.md). | Compile the scalar C fallback. |
 | `src/musyx/runtime/StdReverb/reverb.c` | `DoCrossTalk`, `HandleReverb` | Same: MWCC assembly, scalar C fallback | Same approval and evidence as the chorus pair ([#316](https://github.com/matthewlewisnewton/pso-decomp/pull/316)). | Compile the scalar C fallback. |
 | `src/pso/math/MatrixVector.cpp` | `vector_length`, `matrix_identity` | `asm` body from `orig_asm` include under `#ifdef __MWERKS__`; scalar C++ in the `#else` | Hand-written Gekko kernels (`frsqrte`+`fres` estimates at 0x803D8BD8; paired-single `ps_sub`/`ps_merge01`/`psq_st` at 0x803D8CA8) that CW 2.6 cannot emit. Matt approved them on 2026-11-04 with a scalar fallback ([#356](https://github.com/matthewlewisnewton/pso-decomp/pull/356)). Evidence: [matrixvector-asm-kernels-evidence.md](evidence/matrixvector-asm-kernels-evidence.md). | Compile the scalar C++ fallback. |
+| `src/pso/unk/text_803D8910.cpp` | `vec3_add_to` | hand-written `asm void` under `#ifdef __MWERKS__`; scalar add in the `#else` | In-place paired-single add (`psq_l`/`ps_add`/`psq_st`, z with W=1) at 0x803D8910 that CW 2.6 cannot emit from C. Matt confirmed this exception in the [#128 approval](#approval-for-the-ginja-vector-kernels). Evidence: [vec3-add-to-paired-single.md](evidence/vec3-add-to-paired-single.md). | Compile the scalar add fallback. |
+| `src/pso/unk/text_803D8910.cpp`, `src/pso/unk/text_803D96A8.cpp` | `vec3_dot`, `vec3_cross`, `normalize_vector` | standard `orig_asm` body from the disc under `#ifdef __MWERKS__`; scalar C/C++ in the `#else` | GC/2.6 did not reproduce the register allocation and load order of `vec3_dot` (0x803D89C0). The typed intrinsics also insert an extra rounding step when reproducing the estimate sequence in `vec3_cross` (0x803D8A18) and `normalize_vector` (0x803D97B4). Matt approved these three disc-generated bodies in the [#128 approval](#approval-for-the-ginja-vector-kernels). Evidence: [vec3-add-to-paired-single.md](evidence/vec3-add-to-paired-single.md). | Compile the scalar C/C++ fallback. |
 | `src/pso/unk/text_803E2D70.cpp` | `transform_chunk_vertices_pos_normal` | hand-written `asm void` under `#ifdef __MWERKS__` | One-time asm exception approved by Matt on 2026-11-04 ([#281](https://github.com/matthewlewisnewton/pso-decomp/pull/281)): SDK `PSMTXROMultVecArray`-style paired-single code (`psq_l`/`ps_madds*`/`psq_stu`) that MWCC cannot emit from C; other GameCube decomps keep it as asm. Evidence: [docs/evidence/paired-single-sdk-asm.md](evidence/paired-single-sdk-asm.md). | Use the scalar C++ `#else` fallback that ships with it. |
+
+### Approval for the Ginja vector kernels
+
+On 2026-11-09, Matt approved merging
+[PR #128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) with
+the hand-written paired-single `vec3_add_to` body and the disc-generated
+`vec3_dot`, `vec3_cross` and `normalize_vector` bodies. The approval covers
+their scalar C++ fallbacks and the `ports/` layout in that PR. See the
+[merge review](https://github.com/matthewlewisnewton/pso-decomp/pull/128#pullrequestreview-5820919265)
+for the decision it resolves and [#356](https://github.com/matthewlewisnewton/pso-decomp/pull/356)
+for the earlier `vector_length` precedent.
 
 ## 2. MWCC intrinsics
 
