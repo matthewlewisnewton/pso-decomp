@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (network runtime recovery on main `fe6cdb141`, 2026-11-09)
+## Summary (fish recovery on main `224eb9983`, 2026-11-09)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after network runtime recovery on main `fe6cdb141` (2026-11-09). Assembly is counted as source lines;
+after fish recovery on main `224eb9983` (2026-11-09). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -27,7 +27,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,772 | 876 |
-| Per-unit compiler overrides in `configure.py` | 176 | 176 |
+| Per-unit compiler overrides in `configure.py` | 177 | 177 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -155,7 +155,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-167 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+177 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -450,6 +450,13 @@ Source construct MWCC accepts and standard C++ does not:
 | Unit | Symbols | What | Why | Port should |
 |---|---|---|---|---|
 | `pso/misc/TTecCtrl_8022C444.cpp` | `get_technique_caster_flags`'s unsigned bias, `lbl_8044D078` | per-unit `post_object: tools/name_pool_symbols.py`; after MWCC it renames the emitted local `@N` `.rodata` object to `lbl_8044D078` and makes it global | The original split exports the 8-byte unsigned `2^52` bias and `TTecCtrl` loads it across units. Per-file MWCC emits the bias as a local pool object, and source cannot reuse that slot: a named global used by value gets a second pool copy. The post-process changes only the symbol name and binding, not the section bytes or relocations; the object then matches the split's 8-byte `.rodata`, the unit links, and the DOL keeps its original hash. The script refuses a bias with no matching local pool at the split's section and offset. Evidence: [conversion-pool-constants.md](evidence/conversion-pool-constants.md). | Drop the hook; keep the cast. The symbol name has no semantic meaning to a port. |
+
+### Fish behavior recovered from upstream #240
+
+| Unit / scope | What | Why | Port should |
+|---|---|---|---|
+| `pso/object/TObjFish.cpp` | Upstream `-pool off`; existing FMA and inline pragmas | The update loads each table/conversion constant separately; pooling uses another saved register and changes the frame. [Evidence](evidence/upstream-fish-behavior.md). | Drop pool/inline steering; preserve required floating-point behavior. |
+| Previously exact fish resource/rendering code now linked | Existing hand-written vtable/destructor/constructor wrappers, raw views and function-pointer casts, 32-bit resource handles | Pre-existing native recovery debt is retained, not new table recovery or proof of original ownership. | Use normal class lifetime/virtual dispatch and typed resource/render interfaces; replace integer handles with appropriate pointer-sized types. |
 
 ### Footprint unit recovered from upstream #208
 

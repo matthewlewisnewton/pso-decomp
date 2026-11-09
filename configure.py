@@ -616,6 +616,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Upstream #190: this file is written in reverse so deferred codegen emits
     # address order, and the readonly string pool places the constants.
     "pso/misc/TNpcPlayer.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
+    # Upstream #240: fish update loads each table/conversion constant directly.
+    "pso/object/TObjFish.cpp": {"cflags": _switch(cflags_pso, "-pool off")},
     # get_technique_caster_flags' unsigned bias is lbl_8044D078, which TTecCtrl
     # loads from this split. MWCC emits the bias as a local pool object; the
     # post-process names that object as the split's global. Source cannot do

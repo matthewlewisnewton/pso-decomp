@@ -1,5 +1,10 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/player/TObjPlayer_801542CC.h"
+#include "pso/misc/TLobby.h"
+#include "pso/network/client_id.h"
+#include <stdlib.h>
 #include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/TMainTask.h"
@@ -120,7 +125,6 @@ s32 push_matrix();
 
 extern u32 TOKeyJungleMain__static_model_resource;
 void render__15TOKeyJungleMainFv(TOKeyJungleMain *arg0);
-void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
 void *__dt__5TOKeyFv(void *arg0, s16 arg1);
 extern s32 __vt__15TOKeyJungleMain[];
@@ -133,7 +137,6 @@ extern RecoveredGlobal_8029D238_TOKeyJungleMain__data_804653C8 TOKeyJungleMain__
 extern s32 game_difficulty_selection;
 extern RecoveredGlobal_8029CFEC_lbl_804DC590 bm_obj_jungle_mkey_resource_descriptor;
 s32 dispatch_by_phase__15TOKeyJungleMainFlUs(void *, int);
-s32 init_collision_body_parts(void *, void *, int);
 void *__ct__5TOKeyFP7TObject(TOKey *arg0);
 extern RecoveredGlobal_8029D438_lbl_804DC5A0 TOKeyJungleMain_collision_body_parts;
 extern s32 lbl_805D3D50;
@@ -205,8 +208,8 @@ extern const char lbl_80465D30[] = "sakana05_obj1.njm";
 extern const char lbl_80465D44[] = "sakana06_obj1.njm";
 extern const char lbl_80465D58[] = "bm_sakana_obj_seabed2.bml";
 
-extern const f32 lbl_80465D74[15] = { 1.0f, 1.0f, 1.0f, 0.4f, 0.4f, 0.4f, 0.4f, 0.4f, 0.4f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f };
-extern const f32 lbl_80465DB0[15] = { 30.0f, 30.0f, 30.0f, 5.0f, 20.0f, 30.0f, 5.0f, 5.0f, 5.0f, 30.0f, 30.0f, 30.0f, 30.0f, 30.0f, 30.0f };
+extern const f32 lbl_80465D74[5][3] = { { 1.0f, 1.0f, 1.0f }, { 0.4f, 0.4f, 0.4f }, { 0.4f, 0.4f, 0.4f }, { 0.4f, 0.4f, 0.4f }, { 0.0f, 0.0f, 0.0f } };
+extern const f32 lbl_80465DB0[5][3] = { { 30.0f, 30.0f, 30.0f }, { 5.0f, 20.0f, 30.0f }, { 5.0f, 5.0f, 5.0f }, { 30.0f, 30.0f, 30.0f }, { 30.0f, 30.0f, 30.0f } };
 extern const char lbl_80465DEC[] = "TObjFish";
 #pragma pop
 }
@@ -242,9 +245,6 @@ struct Fish_8029D5C8 {
 extern "C" {
 
 extern u8 *camera_ctrl_instance;
-extern const f32 lbl_805DDD40;
-extern const f32 TObjFish__data_805DDD44;
-extern const f32 lbl_805DDD48;
 
 #pragma push
 #pragma fp_contract on
@@ -265,7 +265,7 @@ void render__8TObjFishFv(u8 *arg0) {
     struct { f32 x, y, z; } d;
 
     if (TMainTask::get_render_pass() != 1 &&
-        ((VObj_18_26a62c *)arg0)->m8(lbl_805DDD40, TObjFish__data_805DDD44) != 0 &&
+        ((VObj_18_26a62c *)arg0)->m8(400.0f, 200.0f) != 0 &&
         F(Fish_8029D5C8 *, 0xA0) != NULL && ((s32 (*)(void *))update_state__8TObjFishFv)(arg0) != 0) {
         f = F(Fish_8029D5C8 *, 0xA0);
         n = F(s32, 0x94);
@@ -288,7 +288,7 @@ void render__8TObjFishFv(u8 *arg0) {
             } else {
                 *pa += 0x4000;
             }
-            r = lbl_805DDD48 * a;
+            r = 0.2f * a;
             {
                 struct { f32 x, y, z; } e, t;
                 e.x = d.x - f->x;
@@ -352,6 +352,138 @@ void render__8TObjFishFv(u8 *arg0) {
     }
 }
 #undef F
+
+void TObjFish::run_task() {
+    TObjFishEntry *f;
+    s32 n;
+    s32 k;
+    f32 dx;
+    f32 dy;
+    f32 dz;
+    f32 best;
+    s16 m;
+
+    if (m_a0 == NULL) {
+        return;
+    }
+    n = m_94;
+    f = m_a0;
+    while (n-- != 0) {
+        k = m_98 + n;
+        if (--f->timer <= 0) {
+            f->timer = 0;
+        }
+        f->pos.x += f->velocity.x;
+        f->pos.y += f->velocity.y;
+        f->pos.z += f->velocity.z;
+        if (fabs_float(f->pos.x) >= scale.x) {
+            f->pos.x -= f->velocity.x;
+            f->velocity.x = -f->velocity.x;
+        }
+        if (fabs_float(f->pos.y) >= scale.y) {
+            f->pos.y -= f->velocity.y;
+            f->velocity.y = -f->velocity.y;
+        }
+        if (fabs_float(f->pos.z) >= scale.z) {
+            f->pos.z -= f->velocity.z;
+            f->velocity.z = -f->velocity.z;
+        }
+        f->velocity.y = 0.85f * (1e-05f + f->velocity.y);
+        f->velocity.x *= 0.98f;
+        f->velocity.z *= 0.98f;
+        if (f->mode == 1) {
+            f32 ex;
+            f32 ez;
+            f32 ey;
+            ex = f->target.x - f->pos.x;
+            ey = f->target.y - f->pos.y;
+            ez = f->target.z - f->pos.z;
+            if (ex * ex + ey * ey + ez * ez < 10000.0f) {
+                f->mode = 0;
+            } else if (k & 7) {
+                k >>= 3;
+            } else {
+                f++;
+                continue;
+            }
+        }
+        if ((k & 7) == 0 && f->timer == 0) {
+            TObjCollidable *pl;
+            TLobby::get_game_mode();
+            pl = find_entity_by_id(local_client_id);
+            best = 900.0f;
+            if (pl != NULL) {
+                f32 d;
+                dx = (pl->position.x - position.x) - f->pos.x;
+                dy = (pl->position.y - position.y) - f->pos.y;
+                dz = (pl->position.z - position.z) - f->pos.z;
+                d = dx * dx + dy * dy + dz * dz;
+                if (best > d) {
+                    best = d;
+                }
+            }
+            if (best < 900.0f) {
+                f32 s;
+                f->timer = 0.5f * (200.0f * ((1.0f / 32768.0f) * (f32)rand()));
+                s = 0.9f / newton_sqrtf(best);
+                dx *= s;
+                dy *= s;
+                dz *= s;
+                f->velocity.x = -dx;
+                f->velocity.y = -dy;
+                f->velocity.z = -dz;
+            } else {
+                f32 a = f->velocity.x * f->velocity.x;
+                f32 b = f->velocity.y * f->velocity.y;
+                f32 c = f->velocity.z * f->velocity.z;
+                if (c + (a + b) <= 0.0009f) {
+                    f->timer = 200.0f * ((1.0f / 32768.0f) * (f32)rand());
+                    f->velocity.x += 0.9f * (2.0f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f));
+                    f->velocity.y += 0.9f * (2.0f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f));
+                    f->velocity.z += 0.9f * (2.0f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f));
+                } else {
+                    dx = f->pos.x - f->target.x;
+                    dy = f->pos.y - f->target.y;
+                    dz = f->pos.z - f->target.z;
+                    if (dx * dx + dy * dy + dz * dz > 10000.0f) {
+                        f->mode = 1;
+                    }
+                }
+            }
+            if ((1.0f / 32768.0f) * (f32)rand() < 6.6666665f) {
+                f->velocity.x += 0.02f * (2.0f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f));
+                f->velocity.y += 0.02f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f);
+                f->velocity.z += 0.02f * (2.0f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f));
+            }
+        }
+        if (fabs_float(f->velocity.z) > 0.0f && (k & 3) == 0) {
+            f->target_angle = 10430.38043493439 * atan2_float(f->velocity.x, f->velocity.z);
+        }
+        f32 turn = (s16)(f->target_angle - f->angle);
+        turn *= 0.12f;
+        f->angle += (s32)turn;
+        if ((k & 3) == 0) {
+            turn = (s16)((s16)((s32)(10430.38043493439 * atan2_float(f->target.x - f->pos.x, f->target.z - f->pos.z)) - rotation.yaw) - f->yaw);
+            turn *= 0.8f;
+            f->yaw += (s32)turn;
+        }
+        m = f->anim;
+        if (m < 0 || m > 2) {
+            f->frame += lbl_80465D74[TObjFish__area_event_stage][0];
+            if (f->frame >= lbl_80465DB0[TObjFish__area_event_stage][0]) {
+                f->frame -= lbl_80465DB0[TObjFish__area_event_stage][0];
+            }
+        } else {
+            f->frame += lbl_80465D74[TObjFish__area_event_stage][m];
+            if (f->frame >= lbl_80465DB0[TObjFish__area_event_stage][f->anim]) {
+                f->frame -= lbl_80465DB0[TObjFish__area_event_stage][f->anim];
+            }
+        }
+        f->seen = 0;
+        f++;
+    }
+    m_98++;
+}
 #pragma pop
 
 }
@@ -375,10 +507,6 @@ struct Ent_8029E170 {
 extern "C" {
 
 int rand(void);
-extern const f32 lbl_805DDD60;
-extern const f32 lbl_805DDD64;
-extern const f32 lbl_805DDD70;
-extern const f32 lbl_805DDD7C;
 
 #pragma push
 #pragma fp_contract on
@@ -402,12 +530,12 @@ s32 TObjFish::init_fish_school(void *arg1_arg, s32 arg2, s32 arg3) {
     }
     p = *(Ent_8029E170 * *)&this->m_a0;
     for (i = 0; i < *(s32 *)&this->m_94; i++) {
-        p->pos.x = lbl_805DDD70 * (arg1->x * (lbl_805DDD64 * (f32) rand() - lbl_805DDD60));
-        p->pos.y = lbl_805DDD70 * (arg1->y * (lbl_805DDD64 * (f32) rand() - lbl_805DDD60));
-        p->pos.z = lbl_805DDD70 * (arg1->z * (lbl_805DDD64 * (f32) rand() - lbl_805DDD60));
-        p->v18.x = lbl_805DDD7C;
-        p->v18.y = lbl_805DDD7C;
-        p->v18.z = lbl_805DDD7C;
+        p->pos.x = 2.0f * (arg1->x * ((1.0f / 32768.0f) * (f32) rand() - 0.5f));
+        p->pos.y = 2.0f * (arg1->y * ((1.0f / 32768.0f) * (f32) rand() - 0.5f));
+        p->pos.z = 2.0f * (arg1->z * ((1.0f / 32768.0f) * (f32) rand() - 0.5f));
+        p->v18.x = 0.0f;
+        p->v18.y = 0.0f;
+        p->v18.z = 0.0f;
         if (i < arg2) {
             p->f30 = 0;
         } else if (i < arg2 + arg3) {
@@ -415,16 +543,16 @@ s32 TObjFish::init_fish_school(void *arg1_arg, s32 arg2, s32 arg3) {
         } else {
             p->f30 = 2;
         }
-        p->f32 = TObjFish__data_805DDD44 * (lbl_805DDD64 * (f32) rand());
+        p->f32 = 200.0f * ((1.0f / 32768.0f) * (f32) rand());
         p->f24 = 0;
-        p->f28 = lbl_805DDD64 * (f32) rand();
+        p->f28 = (1.0f / 32768.0f) * (f32) rand();
         p->f2c = 0;
         p->f2e = 0;
         p->f38 = 0;
         p->f34 = 0;
-        p->v0c.x = lbl_805DDD7C;
-        p->v0c.y = lbl_805DDD7C;
-        p->v0c.z = lbl_805DDD7C;
+        p->v0c.x = 0.0f;
+        p->v0c.y = 0.0f;
+        p->v0c.z = 0.0f;
         p++;
     }
     return 1;
@@ -439,7 +567,6 @@ s32 TObjFish::init_fish_school(void *arg1_arg, s32 arg2, s32 arg3) {
 #define init_fish_school__8TObjFishFPvll ((s32 (*)(void *, void *, int, int))init_fish_school__8TObjFishFPvll)
 
 extern "C" {
-s32 is_split_screen(void);
 u8 *TObjFish__create(u8 *arg0);
 s32 __ct__8TObjBaseFP7TObject();
 extern s32 lbl_805D3D58;
@@ -517,9 +644,6 @@ void render_shadows__7TObjectFv();
 void reset_motion_fields__8TObjBaseFv();
 void run_task__8TObjFishFv();
 void update_object_view_visibility__8TObjBaseFff();
-#pragma push
-extern const f64 lbl_80465E00 = 10430.38043493439;
-#pragma pop
 void *fish_resource_name_table[60] = {
     (void *)lbl_80465A48,
     (void *)lbl_80465A68,
