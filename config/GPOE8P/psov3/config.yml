@@ -2398,6 +2398,7 @@ force_active:
   - __dt__15TPlyOnCountOverFv
   - __dt__15TWindowCtrlMainFv
   - __dt__15TWindowQuantityFv
+  - __dt__15TWindowShortCutFv
   - __dt__15TWindowUserSortFv
   - __dt__16TAdChrSelASlotGCFv
   - __dt__16TAdChrSelBSlotGCFv
@@ -3035,6 +3036,7 @@ force_active:
   - __vt__15TWindowAddition
   - __vt__15TWindowCtrlMain
   - __vt__15TWindowQuantity
+  - __vt__15TWindowShortCut
   - __vt__15TWindowUserSort
   - __vt__16TAdChrSelASlotGC
   - __vt__16TAdGuideButtonGC
@@ -14099,6 +14101,7 @@ force_active:
   - render__15TPlyPhotonChairFPvPv
   - render__15TWindowCtrlMainFv
   - render__15TWindowQuantityFv
+  - render__15TWindowShortCutFv
   - render__15TWindowUserSortFv
   - render__16TAdChrSelASlotGCFv
   - render__16TAdGuideButtonGCFv
@@ -14783,6 +14786,7 @@ force_active:
   - run_task__15TObjSuisouLobbyFv
   - run_task__15TWindowCtrlMainFv
   - run_task__15TWindowQuantityFv
+  - run_task__15TWindowShortCutFv
   - run_task__15TWindowUserSortFv
   - run_task__16TAdChrSelASlotGCFv
   - run_task__16TAdGuideButtonGCFv
@@ -17768,6 +17772,7 @@ force_active:
   - window_duel_result_descriptor
   - window_label_value_part_vtable
   - window_menu_main_menu_params
+  - window_short_cut_layout
   - window_sound_balance_settings
   - window_sub_game_end_active_flag
   - window_uv_sprite_part_vtable

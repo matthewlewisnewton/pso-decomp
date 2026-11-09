@@ -1218,3 +1218,10 @@ and render receiver forwarding. Its opaque heading and wider entry/controller
 qualifications remain. The constructor's existing FP-contract scope stays;
 no new control, manual table or padding is introduced. Native data emission
 retains the original entry prefix and following table/tail suffix.
+
+[ShortCut window lifetime recovery](evidence/window-shortcut-window-lifetime.md)
+removes another raw Base pair, retaining deferred child close and opaque
+heading release. The 1,044-byte setup helper remains original input under its
+qualified machine ABI, with broader record/child interfaces held. Native
+descriptor/table emission preserves original entry and following table/tail
+inputs without new controls or manual padding.

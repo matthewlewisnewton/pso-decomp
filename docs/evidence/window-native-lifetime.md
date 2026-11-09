@@ -315,6 +315,13 @@ the real member rather than unsupported floating formals. Descriptor and
 compiler table add 44 bytes with the original entry prefix and following
 suffix preserved. Opaque heading and wider interface holds remain.
 
+The [ShortCut window recovery](window-shortcut-window-lifetime.md) adds
+native window construction/cleanup and its actual ordinary-new producer.
+Optional message/symbol children retain deferred close; heading and borrowed
+record interfaces stay qualified. The protected 1,044-byte setup helper stays
+original input. Descriptor/compiler table add 44 bytes while preserving the
+original entry prefix and following table/tail suffix, without new controls.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

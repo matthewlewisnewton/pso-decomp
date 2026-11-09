@@ -198,10 +198,8 @@ void TWindowSubShortCut::run_task() {
             this->m_38 = 0U;
         }
         if ((u32) this->m_3c == 0U) {
-            var_r30 = __nw__7TObjectFUl(0x74);
-            if (var_r30 != 0) {
-                var_r30 = (void *)TWindowShortCut__ct((TWindowShortCut *)((u8 *)var_r30), (s32)(get_window_layout_position(0x73)), this->m_24, (s32)((u8 *)arg0 + 0x40));
-            }
+            var_r30 = new TWindowShortCut((void *)get_window_layout_position(0x73),
+                                         this->m_24, (u8 *)arg0 + 0x40);
             *(void * *)&this->m_3c = var_r30;
         }
         if ((u32) this->m_34 == 0U) {
