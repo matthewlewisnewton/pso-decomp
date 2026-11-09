@@ -12,7 +12,7 @@ compiler overrides in configure.py with their recorded comments.
 
 --check also validates the "Upstream catch-up (rewrite later)" table in
 docs/porting-exceptions.md: every row needs a function/symbol, unit, file
-that exists, upstream PR (#167-#192), a known cheat type, the fork PR and
+that exists, upstream PR (#167-#192 or #207), a known cheat type, the fork PR and
 the tag "upstream catch-up, rewrite later".
 """
 import argparse, collections, re, subprocess, sys
@@ -72,7 +72,7 @@ REGISTER = ROOT / "docs" / "porting-exceptions.md"
 CATCHUP_HEADING = "## 7. Upstream catch-up"
 CATCHUP_TAG = "upstream catch-up, rewrite later"
 CATCHUP_TYPES = ("asm", "raw offset cast", 'extern "C" mangled name', "steering pragma", "shadow struct")
-CATCHUP_UPSTREAM = range(167, 193)
+CATCHUP_UPSTREAM = {*range(167, 193), 207}
 CATCHUP_COLS = ("symbol", "unit", "file", "upstream", "type", "fork_pr", "tag")
 
 def _cell(s):
@@ -109,7 +109,7 @@ def catchup_entries():
                 errors.append(f"{where}: empty {k}")
         up = _pr_number(row["upstream"])
         if up not in CATCHUP_UPSTREAM:
-            errors.append(f"{where}: upstream PR must be one of zeroz41 #167-#192, got {row['upstream']!r}")
+            errors.append(f"{where}: upstream PR must be one of zeroz41 #167-#192 or #207, got {row['upstream']!r}")
         typ = _cell(row["type"])
         if typ not in CATCHUP_TYPES and not re.match(r"other:\s*\S", typ):
             errors.append(f"{where}: cheat type must be one of {', '.join(CATCHUP_TYPES)} or 'other: <what>', got {typ!r}")
