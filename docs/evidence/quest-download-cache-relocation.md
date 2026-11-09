@@ -56,7 +56,9 @@ full-provider or exhaustive reachability proofs.
 
 An independent named-reference census at draft `34dd35d745da73e5730f236f080fc7a0049b2531`
 (main `6e880491f`) inspected all 4,970 active original objects. It rechecked
-earlier dispatcher evidence against the native bytes:
+earlier dispatcher evidence against the native bytes. A subsequent rebind after
+merging main `fe6cdb141` inspects 4,973 active objects and preserves the same
+reference topology and wrapper/function bytes:
 
 - Fifteen observed wrappers issue requests 15, 16, 19, 20, 21, 28 and 32 through
   40. They omit request 24, the sole identified dispatcher route into `EE2F4`,
