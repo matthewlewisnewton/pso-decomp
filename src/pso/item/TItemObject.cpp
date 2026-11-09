@@ -1,6 +1,7 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/map/FloorArea.h"
 #include "pso/item/TItemObject.h"
+#include "pso/item/ItemCreateFunction.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/item/TItemData.h"
 #include "pso/TMainTask.h"
@@ -33,8 +34,6 @@ void handle_6x66_use_star_atomizer(u8 *arg0);
 
 extern "C" {
 void *lookup_item_pmt_record(u8 *item);
-// The factory that builds the tool an item code names.
-TItem *(*TLobby__sub_8010440C(u8 *item))(u8 *item);
 }
 
 extern const char *TItemObject_name;
@@ -53,7 +52,7 @@ TItem *TItemObject::create_tool(u8 *item) {
     return NULL;
 }
 
-TItemObject *TItemObject::create(u8 *item) {
+TItem *TItemObject::create(u8 *item) {
     if (item != NULL) {
         return new TItemObject(tl_05, item);
     }

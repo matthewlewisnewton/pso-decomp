@@ -94,7 +94,7 @@ s32 is_quest_active();
 s32 is_flag_set__6TLobbyFv();
 s32 is_item_usable__9TItemDataFlPUc(void *, void *);
 s32 check_equip_requirements(void *, void *, int);
-s32 check_class_equip_permission(void *, int);
+s32 check_class_equip_permission(void *, s16);
 void *lookup_item_pmt_record(u8 *item);
 s32 update_player_field__9TItemDataFv(void *);
 u8 get_technique_learn_limit(u8, u8);

@@ -14,7 +14,7 @@ extern "C" s16 calc_base_hp_bonus__FUs();
 
 extern "C" {
 s32 get_entity_id(void *);
-s32 check_class_equip_permission(void *, int);
+s32 check_class_equip_permission(void *, s16);
 u8 get_item_index__5TItemFv();
 }
 

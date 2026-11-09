@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch for the ginja math kernels after merging main `8d9b51485`, 2026-11-08)
+## Summary (upstream #207 carrier, 2026-11-09)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-for the current branch after merging main `8d9b51485` (2026-11-08). Assembly is counted as source lines;
+for the #207 carrier based on main `6daa19a11` (2026-11-09). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 22 source lines | 7 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,766 | 871 |
+| CodeWarrior pragmas (excluding push/pop) | 5,768 | 872 |
 | Per-unit compiler overrides in `configure.py` | 174 | 174 |
 | Approved regressions | 0 | 0 |
 
@@ -426,8 +426,20 @@ this table; their upstream column is [#191](https://github.com/zeroz41/pso-decom
 catch-up this branch integrates, not because those lines appear unchanged in #191.
 
 
+Matt, 2026-11-09, authorized this carrier after the #207 exception-scope limitation
+was identified: "Skip the license change (or don’t, the two are equivalent) and merge
+the rest." He also requested documentation of outstanding inherited cheats. This
+adds only the #207 sites below to the catch-up scope; it does not grant a blanket
+exception to #193–#228. Some listed constructs already existed in these three fork
+units before this carrier; they are included because the units now link from source.
+The #207 source uses the fork's existing include paths and symbol names. The explicit
+BmlResource constructor symbol is the fork spelling of upstream's
+`load_resource_from_descriptor`; real `StripBufferPair` construction replaces the
+old `TLobby::alloc_tables` calls. Reasons, measured alternatives, port guidance, and
+deferred upstream work are in [the carrier audit](evidence/upstream-catchup-207.md).
+
 Columns (all required; `tools/list_port_exceptions.py --check` validates them):
-function/symbol; unit; file (repo path); upstream PR (#167-#191); cheat type (`asm`,
+function/symbol; unit; file (repo path); upstream PR (#167-#192 or the specifically authorized #207 sites); cheat type (`asm`,
 `raw offset cast`, `extern "C" mangled name`, `steering pragma`, `shadow struct`,
 or `other: <what>`); the fork PR that brought it in; and the tag
 `upstream catch-up, rewrite later`. List and count them with
@@ -866,6 +878,71 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `LaunchDol` | `pso/unk/text_8042E8C4.cpp` | `src/pso/unk/text_8042E8C4.cpp` | [#172](https://github.com/zeroz41/pso-decomp/pull/172) | asm | [#350](https://github.com/matthewlewisnewton/pso-decomp/pull/350) | upstream catch-up, rewrite later |
 
 
+| `RecoveredGlobal_8001B3BC_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `RecoveredGlobal_8001B3EC_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `RecoveredGlobal_8001B3D4_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `RecoveredGlobal_8001B404_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Pos_8001AD8C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Box_8001AD8C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Self_8001AD8C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Pos_8001AF80` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Box_8001AF80` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Self_8001AF80` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Box_8001B190` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Self_8001B190` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText.cpp:137 #pragma readonly_strings on` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | steering pragma | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText__ending_font_texture_list` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".data") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText.cpp:311 #pragma fp_contract on` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | steering pragma | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_804347B0` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".rodata") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_804347C0` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".rodata") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7DF0` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7DF4` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText__data_805D7DF8` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7DFC` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E00` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E04` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E08` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E0C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E10` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E14` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E18` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E1C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E20` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E24` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E28` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E2C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E30` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E34` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E38` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E3C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E40` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Obj_80185160` | `pso/unk/text_80184C2C.cpp` | `src/pso/unk/text_80184C2C.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `VBase_802A2A00` | `pso/unk/text_802A2A00.cpp` | `src/pso/unk/text_802A2A00.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TChCrTag_802A2A00` | `pso/unk/text_802A2A00.cpp` | `src/pso/unk/text_802A2A00.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `text_802A2A00.cpp:17 #pragma fp_contract on` | `pso/unk/text_802A2A00.cpp` | `src/pso/unk/text_802A2A00.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | steering pragma | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `render__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | extern "C" mangled name | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `run_task__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | extern "C" mangled name | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `__ct__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | extern "C" mangled name | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `__ct__7TObjectFP7TObject` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | extern "C" mangled name | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `__vt__10TAdEndText assignment in __ct__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: explicit compiler-vtable pointer assignment | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `render__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `run_task__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `__ct__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText__sub_8001B3BC` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText__sub_8001B3D4` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText__sub_8001B3EC` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText__sub_8001B404` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText::free_resources` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: pointer stored in 32-bit integer ABI | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText::load_ending_font` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: pointer stored in 32-bit integer ABI | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `__cvt_fp2unsigned in render__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: CodeWarrior conversion runtime helper | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText::~TAdEndText placement` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: source ordering for compiler vtable emission | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TLobby__sub_80184DF4` | `pso/unk/text_80184C2C.cpp` | `src/pso/unk/text_80184C2C.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TObjLaboMapWarp::slot4C` | `pso/unk/text_80184C2C.cpp` | `src/pso/unk/text_80184C2C.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `__ct__11BmlResourceFlP21BmlResourceDescriptorllPv in TLobby__sub_80184DF4` | `pso/unk/text_80184C2C.cpp` | `src/pso/unk/text_80184C2C.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | extern "C" mangled name | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `clear_global_array__6TLobbyFPv in TLobby__sub_80184DF4` | `pso/unk/text_80184C2C.cpp` | `src/pso/unk/text_80184C2C.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | extern "C" mangled name | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `fn_802A2A00` | `pso/unk/text_802A2A00.cpp` | `src/pso/unk/text_802A2A00.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `fn_802A2A00 self-assignment, identical branches and goto` | `pso/unk/text_802A2A00.cpp` | `src/pso/unk/text_802A2A00.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: matching-oriented source control flow | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+
 ## Pending in open PRs
 
 Found by `tools/list_port_exceptions.py --pr N` on 2026-11-04. Add or remove the
@@ -884,3 +961,14 @@ entry when the PR merges.
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.
+
+
+## 8. Native item factory callback ABI
+
+| File | Boundary | Why | Port should |
+|---|---|---|---|
+| `src/pso/unk/text_80104FCC.cpp`, `include/pso/item/ItemCreateFunction.h` | `item_create_fn_table[4]` stores `TItemMoney::create(TItemData*)` in the byte-buffer callback type and the MWCC branch invokes that type | The original relocation targets the typed money factory, while the dispatcher makes the same indirect call for all five item categories. Native PPC passes either record pointer in `r3`; this is an ABI dependency, not portable C++ call compatibility. The complete 124-byte data section and 2012-byte code section match and link. [Evidence](evidence/equip-requirements-match.md). | Compile the non-MWCC `invoke_item_factory` path, which converts the stored money callback back to its actual function type before calling it. Keep the typed money declaration; do not erase it globally. `ports/tests/item_factory_callbacks.cpp` exercises this fallback. |
+
+This callback boundary is documented for review; it does not add assembly,
+steering pragmas, per-unit compiler switches or link-check exceptions. The
+mechanical inventory does not currently enumerate function-pointer conversions.
