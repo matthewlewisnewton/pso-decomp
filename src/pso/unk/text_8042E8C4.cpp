@@ -13,8 +13,8 @@ extern u8 launch_record[] AT_ADDRESS(0x80003100);
 //
 // The tail at 0x8042E9EC..0x8042E9F8 is an epilogue-free computed jump
 // (lwz r0, 0xE0(r26); isync; mtlr r0; blr) followed by a stranded 20-byte
-// epilogue at 0x8042E9FC (pad_03_8042E9FC_text), which no MWCC version can
-// emit from C/C++. Under __MWERKS__ we keep upstream #172/#350's orig_asm
+// epilogue at 0x8042E9FC (pad_03_8042E9FC_text). The tested MWCC versions
+// do not emit this jump from an ordinary C++ indirect call. Under __MWERKS__ we keep upstream #172/#350's orig_asm
 // body (registered in docs/porting-exceptions.md section 7); the #else
 // branch holds the C++ implementation, which matches all 74 pre-tail
 // instructions (0x000..0x124, 91.03% overall) byte-for-byte under GC/2.6
