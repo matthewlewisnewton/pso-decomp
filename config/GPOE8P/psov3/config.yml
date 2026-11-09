@@ -1677,7 +1677,6 @@ force_active:
   - TWindowMeseta__class_name
   - TWindowMessageYesNo__name
   - TWindowPartyStatus__name
-  - TWindowQuantity__ct
   - TWindowSnapShot__sub_802A605C
   - TWindowSubComCardList__class_name
   - TWindowSubComCard__sub_8007AC7C
@@ -1927,6 +1926,7 @@ force_active:
   - __ct__15TObjSoloPlayWinFP7TObject
   - __ct__15TObjSuisouLobbyFP7TObjectPv
   - __ct__15TRecvGenerateIDFRC15TRecvGenerateID
+  - __ct__15TWindowQuantityFl
   - __ct__16TAdChrSelASlotGCFP7TObjectl
   - __ct__16TAdGuideButtonGCFP7TObject
   - __ct__16TBoss3VoloptCoreFP7TObjectPv
@@ -2365,6 +2365,7 @@ force_active:
   - __dt__15TObjSuisouLobbyFv
   - __dt__15TPlyOnCountOverFv
   - __dt__15TWindowCtrlMainFv
+  - __dt__15TWindowQuantityFv
   - __dt__16TAdChrSelASlotGCFv
   - __dt__16TAdChrSelBSlotGCFv
   - __dt__16TAdGuideButtonGCFv
@@ -2882,6 +2883,7 @@ force_active:
   - __vt__13TUnk_804F3640
   - __vt__13TUnk_804F3A20
   - __vt__13TWindowLockOn
+  - __vt__13TWindowMeseta
   - __vt__13TWindowSubLog
   - __vt__14CreationCamera
   - __vt__14TAdEnterBaseGC
@@ -2988,6 +2990,7 @@ force_active:
   - __vt__15TShopWindowBase
   - __vt__15TWindowAddition
   - __vt__15TWindowCtrlMain
+  - __vt__15TWindowQuantity
   - __vt__16TAdChrSelASlotGC
   - __vt__16TAdGuideButtonGC
   - __vt__16TAdStorySelectGC
@@ -13628,6 +13631,7 @@ force_active:
   - qst_call_stack_push
   - qst_cstring_buffer
   - qst_label_address
+  - quantity_window_layout
   - query_battle_state__17TWindowReturnCityFv
   - query_default__12TBoss8DragonFv
   - query_status_field__20TWindowSubStatusDispFPvSc
@@ -14028,6 +14032,7 @@ force_active:
   - render__15TObjSuisouLobbyFv
   - render__15TPlyPhotonChairFPvPv
   - render__15TWindowCtrlMainFv
+  - render__15TWindowQuantityFv
   - render__16TAdChrSelASlotGCFv
   - render__16TAdGuideButtonGCFv
   - render__16TAdStorySelectGCFv
@@ -14627,6 +14632,7 @@ force_active:
   - run_task__13TUnk_804F3640Fv
   - run_task__13TUnk_804F3A20Fv
   - run_task__13TWindowLockOnFv
+  - run_task__13TWindowMesetaFv
   - run_task__13TWindowSubLogFv
   - run_task__14CreationCameraFv
   - run_task__14TAdEnterBaseGCFv
@@ -14698,6 +14704,7 @@ force_active:
   - run_task__15TObjSoloPlayWinFv
   - run_task__15TObjSuisouLobbyFv
   - run_task__15TWindowCtrlMainFv
+  - run_task__15TWindowQuantityFv
   - run_task__16TAdChrSelASlotGCFv
   - run_task__16TAdGuideButtonGCFv
   - run_task__16TAdStorySelectGCFv

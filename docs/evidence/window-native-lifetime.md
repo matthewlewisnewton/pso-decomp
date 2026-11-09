@@ -221,6 +221,12 @@ MenuIconLine ABI bindings. Only the Base/Addition constructor/destructor
 interface remains; the note qualifies a newly linked source prefix and
 untouched original remainder without asserting an original TU boundary.
 
+The [numeric-readout recovery](window-numeric-readout-lifetime.md) adds native
+Meseta/Cost/Quantity construction, automatic Base cleanup, evidenced float
+scale pairs and coordinated factory/value-update interfaces. It removes
+four more raw Base calls and owns two compiler tables plus Quantity
+layout metadata without alignment overrides.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

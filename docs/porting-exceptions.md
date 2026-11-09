@@ -1110,3 +1110,10 @@ three bindings. WindowConstructorAbi.h now contains only Base/Addition: two
 constructor and two destructor entries. Native word carriers, explicit heading
 forwarding, source-claim refinement and original remainder provenance are
 qualified in the note; broader unresolved interfaces retain their holds.
+
+[Numeric-readout lifetime recovery](evidence/window-numeric-readout-lifetime.md)
+removes two more Base construction/cleanup pairs. Meseta/Cost/Quantity use
+real construction, actual float scale fields and shared typed factory/update
+interfaces. Existing word handles/text transport remain qualified; the
+pre-existing Meseta factory scheduling control is unchanged. No new compiler
+control or alignment override is introduced.

@@ -8741,6 +8741,7 @@ pso/misc/TWindowMeseta_802690B4.cpp:
 pso/misc/TWindowMeseta.cpp:
 	.text       start:0x80269184 end:0x8026934C
 	.rodata     start:0x8044F3D0 end:0x8044F3E0
+	.data       start:0x804D06E0 end:0x804D06F8
 	.sdata      start:0x805D3978 end:0x805D3980
 	.sdata2     start:0x805DD200 end:0x805DD218
 
@@ -8903,6 +8904,7 @@ pso/misc/TShopEquipmentSellWindow_8026CE78.cpp:
 pso/misc/TWindowQuantity.cpp:
 	.text       start:0x8026CEEC end:0x8026D18C
 	.rodata     start:0x8044F4F0 end:0x8044F4F8
+	.data       start:0x804D0870 end:0x804D089C
 
 pso/misc/TWindowReturnCity.cpp:
 	.text       start:0x8026D18C end:0x8026D504
