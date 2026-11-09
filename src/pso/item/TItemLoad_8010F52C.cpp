@@ -36,7 +36,7 @@ extern s32 lbl_8049F40C[];
 s32 decompress_buffer__9TItemLoadFUl();
 void *TLobby__sub_801E38A0(s32, u32 *, s32 *, s32, s32 *);
 extern u8 lbl_80506208[];
-extern s32 item_load_tmp_buffer;
+extern const char *item_load_tmp_buffer;
 struct Base_8010F52C { char pad[0x14]; };
 struct VObj_8010F52C : Base_8010F52C {
     virtual void m0(int);
@@ -77,10 +77,10 @@ void TItemLoad__sub_8010F5A0(void) {
     item_load_model_buffer = (s32)::operator new[](0x21000);
 }
 
-void TItemLoad::start_load_with_id(s32 id, s32 arg2) {
+void TUnk_8049F42C::start_load_with_id(s32 id, s32 arg2) {
     Load_8010F61C *self = (Load_8010F61C *)this;
     s32 i;
-    if (id != 0 && ((TItemLoad *)self)->begin_load(arg2) == 1) {
+    if (id != 0 && begin_load(arg2) == 1) {
         self->id = id;
         self->f28 = 0;
         for (i = 0; i < 4; i++) {
@@ -101,7 +101,7 @@ void TUnk_8049F40C::vfunc_3() {
     void *p;
     u32 i;
     if (TLobby::tmp_buf_is_free() == 1) {
-        h = (s32)TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
+        h = (s32)TLobby::tmp_buf_use_req(item_load_tmp_buffer);
         off = ((Load_8010F68C *)this)->id;
         total = decompress_buffer__9TItemLoadFUl();
         pos = 0;
@@ -129,9 +129,9 @@ void TUnk_8049F40C::vfunc_3() {
                 break;
             }
         }
-        TLobby::tmp_buf_release((const char *)item_load_tmp_buffer);
+        TLobby::tmp_buf_release(item_load_tmp_buffer);
         ((Load_8010F68C *)this)->id = 0;
-        ((TItemLoad *)((Load_8010F68C *)this))->reset_state();
+        reset_state();
     }
 }
 
@@ -161,20 +161,20 @@ s32 TUnk_8049F40C::construct_with_vtable(void *a1, int a2, int a3) {
     return (s32)self;
 }
 
-void TItemLoad::begin_load_if_pending(s32 arg1, s32 arg2) {
+void TUnk_8049F42C::begin_load_if_pending(s32 arg1, s32 arg2) {
     if ((arg1 != 0) && (begin_load(arg2) == 1)) {
         *(s32 *)((s8 *)this + 0x24) = arg1;
     }
 }
 
-void TItemLoad::reload_item() {
+void TUnk_8049F42C::reload_item() {
     s32 temp_r31;
 
     if (TLobby::tmp_buf_is_free() == 1) {
-        temp_r31 = (s32)TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
+        temp_r31 = (s32)TLobby::tmp_buf_use_req(item_load_tmp_buffer);
         decompress_buffer__9TItemLoadFUl();
         load_gvm_texture_archive(temp_r31, *(s32 *)((s8 *)this + 0x24));
-        TLobby::tmp_buf_release((const char *)item_load_tmp_buffer);
+        TLobby::tmp_buf_release(item_load_tmp_buffer);
         *(s32 *)((s8 *)this + 0x24) = 0;
         reset_state();
     }

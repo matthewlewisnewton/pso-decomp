@@ -38,7 +38,7 @@ extern RecoveredGlobal_8019118C_lbl_804B7BD8 npc_player_collision_body_part;
 extern RecoveredGlobal_8019118C_lbl_804B7C1C lbl_804B7C1C;
 u8 *TLobby__sub_8019118C(u8 *arg0, s32 arg1, s32 arg2);
 void __ct__7TObjectFP7TObject(void *, void *);
-extern u8 lbl_80445910[];
+extern char lbl_80445910[];
 extern s32 lbl_804B7C04[];
 extern s32 lbl_805D5860;
 Npc_80190F3C *TNpcPlayer__sub_80190F3C(Npc_80190F3C *arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, void *arg6);
@@ -94,7 +94,7 @@ Npc_80190F3C *TNpcPlayer__sub_80190F3C(Npc_80190F3C *arg0, void *arg1, s32 arg2,
     arg0->f2C = 0;
     arg0->f38 = arg5;
     TNpcPlayer::ensure_rock_singleton();
-    TLobby::request_file_read((s32)lbl_80445910, (s32)lbl_805D5860, &arg0->f2C, (void **)0);
+    TLobby::request_file_read(lbl_80445910, (s32)lbl_805D5860, &arg0->f2C, NULL);
     return arg0;
 }
 

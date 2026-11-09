@@ -31,7 +31,7 @@ struct A_80338608 { u8 pad[0x14]; u32 col; };
 struct B_80338608 { u8 pad[0xC]; u32 col; };
 
 extern "C" {
-s32 set_stream_state__6TLobbyFi(void *, int);
+s32 set_stream_state__6TLobbyFPCv(void *, int);
 s32 load_gvm_texture_archive(int, void *);
 extern s32 lbl_80477BC4[];
 extern s32 lobby_request_flags;
@@ -166,7 +166,7 @@ void TLobby::load_now_loading_texture() {
     if (!(lobby_request_flags & 2)) {
         temp_r31 = (s32)TQuestVmDownLoadServer::alloc(0x11000);
         temp_r3 = (s32)TQuestVmDownLoadServer::alloc(0x2000);
-        set_stream_state__6TLobbyFi(lbl_80477BC4, temp_r3);
+        set_stream_state__6TLobbyFPCv(lbl_80477BC4, temp_r3);
         prs_decompress_buffer((temp_r3), (temp_r31));
         load_gvm_texture_archive(temp_r31, lbl_804EF1DC);
         TAdSinglePlyChrSelectGC::safe_free(temp_r3);
