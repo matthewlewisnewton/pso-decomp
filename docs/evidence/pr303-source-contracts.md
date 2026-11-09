@@ -150,3 +150,46 @@ The full build retains the original DOL hash, and the address/linkage/retention
 checks and porting inventory pass. `make -C ports/tests run` also passes the
 host vector fallback and item factory callback checks brought by main.
 The same three DHCP matches account for the entire incremental match gain.
+
+## Typed-file-API main refresh
+
+The next refresh merges main `6e880491f335b26239b4553f0882c04676a0a6e7`,
+which includes #308's typed file APIs and #368's footprint recovery. The PR
+head before this merge was `c9b3f518054c429f5384fb4c2f11360cd366e567`.
+No other active task owned #303, and the existing remote head was unchanged.
+
+The texture loader retains main's `loaded_bml` member and typed loader
+interface, taking the model through the shared accessor and converting only
+at its legacy output word. The sky scene retains main's `BmlResource *`
+archive and the shared model accessor, with the existing integer model slot
+as its explicit boundary. Neither unit restores a conflicting model-accessor
+prototype. The remaining automatic source merges preserve main's new handle
+and filename interfaces while retaining the pointer-returning model accessor.
+
+Main also changes `TLobby::start_load_default` to return `void *`. Its former
+source file was already folded into the character-select unit by #303, so
+that return-type change is applied to the owning definition there. The old
+fragment stays deleted: restoring it would duplicate the folded functions.
+The exception documents combine both branches' records and regenerate the
+inventory (5,765 pragmas in 871 files, 176 compiler overrides).
+
+Both the fresh detached main baseline and merged branch pass the original
+DOL hash and full address/linkage/retention checks. Against this main:
+
+| Measure | Main `6e880491f` | Continuation | Delta |
+|---|---:|---:|---:|
+| Exact functions | 27,369 | 27,372 | +3 |
+| Matched code bytes | 4,185,572 | 4,187,752 | +2,180 |
+| Matched data bytes | 1,469,759 | 1,469,847 | +88 |
+| Complete code bytes | 3,645,480 | 3,657,700 | +12,220 |
+| Complete data bytes | 1,167,051 | 1,171,939 | +4,888 |
+| Linked units | 3,575 | 3,575 | 0 |
+
+There are no regressions or coverage losses. Retention has 17,600 entries,
+with no missing or stale entries. The affected texture-loader unit stays
+12/12, sky scene 9/9, and folded character-select unit 9/9, all with exact
+code/data and source linkage. All 179 accessor-using source files still
+include the canonical header, without accessor macros or function-pointer
+casts. Host vector and item-factory tests and the exception inventory pass.
+The prior GitHub metadata failure is separate from this branch integration;
+no title/body write is retried here. Keep the PR draft pending current checks.

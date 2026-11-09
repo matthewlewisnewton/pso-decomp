@@ -17,7 +17,7 @@ struct Ent_80077544 { u8 b[0x58]; };
 struct Win_80077544 { u8 pad[0x15A0]; struct Ent_80077544 e[12]; };
 
 extern "C" {
-s32 set_stream_and_load_file__6TLobbyFi(char *);
+s32 set_stream_and_load_file__6TLobbyFPCv(char *);
 extern char symbol_chat_default_data_filename[];
 
 void TWindowChat::open_symbol_chat(s32 *arg0) {
@@ -48,7 +48,7 @@ void TWindowSubSymbolChat::load_symbol_chat_data() {
     s32 data;
     struct Ent_80077544 *e;
     e = w->e;
-    data = set_stream_and_load_file__6TLobbyFi(symbol_chat_default_data_filename);
+    data = set_stream_and_load_file__6TLobbyFPCv(symbol_chat_default_data_filename);
     move_data(e, (const void *)data, (u32)0x420);
     TAdSinglePlyChrSelectGC::safe_free(data);
     for (i = 0; i < 6; i++) {

@@ -124,7 +124,7 @@ void TWindowSubSymbolChat::remove_slot_shift_down(s32 i) {
     Obj_8007714C *self = (Obj_8007714C *)this;
     if (i < 11) {
         Ent_8007714C *p = &self->e[i];
-        ((TLobby *)p)->move_words((u32 *)(p + 1), (s32)(((11 - i) * sizeof(Ent_8007714C)) / 4));
+        move_words(p, p + 1, ((11 - i) * sizeof(Ent_8007714C)) / 4);
     }
     self->e[11].id = -1;
     self->e[11].a = 0;

@@ -55,7 +55,7 @@ u32 TLobby::alloc_load_buffer(s32 size) {
 
 }
 
-int TLobby::start_load_default() { return alloc_load_buffer(0); }
+void *TLobby::start_load_default() { return (void *)alloc_load_buffer(0); }
 
 s32 TLobby__sub_8028D738(s32 i) {
     s32 temp_r3;

@@ -10,7 +10,7 @@ struct E_8006C668 { CameraMotionDirectory *directory; void *p; };
 struct G_8006C668 { E_8006C668 e[8]; };
 
 struct Entry_8006C6CC {
-    s32 id;
+    const char *id;
     s32 f4;
 };
 

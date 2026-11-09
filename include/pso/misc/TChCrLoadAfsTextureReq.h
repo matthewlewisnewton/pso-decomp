@@ -17,6 +17,7 @@ struct TChCrLoadAfsTextureReq : public TObject {
     u8 _pad68[0x4];
     u32 m_6c;
     u32 m_70;
+    void try_begin_load(void *);
     void update_loading(void *);
     void start_read(void *);
     u8 unk_74[0x120];
