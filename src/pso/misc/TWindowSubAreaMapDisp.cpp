@@ -1,4 +1,4 @@
-#include "pso/misc/WindowConstructorAbi.h"
+#include "pso/misc/WindowLayoutDescriptor.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -19,60 +19,49 @@
 
 extern "C" {
 
-s32 sub_80246948__11TWindowBaseFv();
+// Legacy word-result ABI view; Base retains its shared u8 declaration.
+s32 sub_80246948__11TWindowBaseFv(TWindowBase *);
 
 void TWindowSubAreaMapDisp::update_visibility() {
     if ((s32) this->m_6c != 0) {
-        if (sub_80246948__11TWindowBaseFv() != 0) {
+        if (sub_80246948__11TWindowBaseFv(this) != 0) {
             this->m_6c = 0;
             TWindowCtrl::clear_active_flag();
             TRaderMapCore::clear();
         }
-    } else if (!(this->m_2c & 2) && (sub_80246948__11TWindowBaseFv() == 0)) {
+    } else if (!(this->m_2c & 2) && (sub_80246948__11TWindowBaseFv(this) == 0)) {
         this->m_6c = 1;
         TRaderMapCore::open_free_map_view();
         TRaderMapCore::show_radar();
         TWindowCtrl::set_flag_bit0();
         {
             f32 c = 0.0f;
-            *(f32 *)&this->unk_60 = c;
+            this->m_60 = c;
             this->m_64 = c;
-            *(f32 *)&this->unk_68 = c;
+            this->m_68 = c;
         }
     }
 }
 
 }
 
-struct RecoveredGlobal_80271C6C___vt__21TWindowSubAreaMapDisp { s32 value; u8 remaining[0x18]; };
-typedef char RecoveredGlobal_80271C6C___vt__21TWindowSubAreaMapDisp_size[sizeof(RecoveredGlobal_80271C6C___vt__21TWindowSubAreaMapDisp) == 0x1C ? 1 : -1];
-
-struct RecoveredGlobal_80271D00_lbl_804D0FC0 {
-    s32 value;
-    u8 remaining[0x10];
-};
-
-struct RecoveredGlobal_80271D00___vt__21TWindowSubAreaMapDisp {
-    s32 value;
-    u8 remaining[0x18];
-};
-
 extern "C" {
-s32 __dl__7TObjectFPv(void *);
-extern RecoveredGlobal_80271C6C___vt__21TWindowSubAreaMapDisp __vt__21TWindowSubAreaMapDisp;
 s32 TQuestVmDownLoadServer__sub_8006EF6C(s32 arg0);
 u8 *get_floor_destination_name(s32);
-s32 measure_string_len__20TWindowSubStatusDispFv(int);
+s32 measure_string_len__20TWindowSubStatusDispFv(const char *);
 void text_builder_append(u8 *str);
 }
 void text_builder_reset(void);
 extern "C" {
 s32 get_window_layout_position(int);
-s32 construct_type1_heading__20TWindowSubStatusDispFll(int, int, int);
+void *construct_type1_heading__20TWindowSubStatusDispFll(void *, s32, s32);
 s32 get_game_play_mode();
+// Existing word/string-copy ABI boundary; portable signature recovery is held.
 s32 strncpy(int, int, void *);
-extern RecoveredGlobal_80271D00_lbl_804D0FC0 TWindowSubAreaMapDisp__window_parameters;
-extern s32 TWindowSubAreaMapDisp__name;
+WindowLayoutDescriptor TWindowSubAreaMapDisp__window_parameters = {
+    {610.0f, 188.0f}, 50150.0f, NULL, 3
+};
+extern const char *TWindowSubAreaMapDisp__name;
 extern s32 local_client_id;
 void apply_context_transform_to_rect(void *, void *);
 extern s32 lbl_805D63F0;
@@ -82,8 +71,9 @@ struct Vec2_80271A6C {
     f32 y;
 };
 
-s32 draw_default_entry__9TWindowDDFl();
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
+// Existing live-register draw boundary; explicit canonical forwarding is held.
+s32 draw_default_entry__9TWindowDDFl();
 
 struct Rect_80271848 { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 
@@ -164,7 +154,7 @@ void TWindowSubAreaMapDisp::render() {
 
     temp_r3 = draw_default_entry__9TWindowDDFl();
     draw_window_frame((void *)temp_r3);
-    forward_render__20TWindowSubStatusDispFv(this->m_70, temp_r3);
+    forward_render__20TWindowSubStatusDispFv((s32)this->m_70, temp_r3);
     if ((s32) this->m_6c != 0) {
         ((s32 (*)(void *, s32))TWindowSubStatusDisp__sub_80271A6C)(this, temp_r3);
         ((s32 (*)(void *, s32))fn_80271848)(this, temp_r3);
@@ -180,54 +170,42 @@ void TWindowSubAreaMapDisp::run_task() {
         ((TWindowSubStatusDisp *)(*(u8 * *)&this->m_70))->update_subwindow();
     }
 }
-u8 *__dt__21TWindowSubAreaMapDispFv(TWindowSubAreaMapDisp *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = &__vt__21TWindowSubAreaMapDisp.value;
-        if ((u32) arg0->m_74 != 0U) {
-            ::operator delete[](*(void **)((s8 *)arg0 + 0x74));
-            arg0->m_74 = 0U;
-        }
-        if ((s32) arg0->m_6c != 0) {
-            TWindowCtrl::clear_active_flag();
-            TRaderMapCore::clear();
-        }
-        TWindowSubStatusDisp::destroy_status_display(arg0->m_70, 1);
-        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
+TWindowSubAreaMapDisp::~TWindowSubAreaMapDisp() {
+    if ((u32)m_74 != 0U) {
+        ::operator delete[](m_74);
+        m_74 = NULL;
     }
-    return (u8 *)arg0;
+    if ((s32)m_6c != 0) {
+        TWindowCtrl::clear_active_flag();
+        TRaderMapCore::clear();
+    }
+    TWindowSubStatusDisp::destroy_status_display((s32)m_70, 1);
 }
-typedef char RecoveredGlobal_80271D00_lbl_804D0FC0_size[sizeof(RecoveredGlobal_80271D00_lbl_804D0FC0) == 0x14 ? 1 : -1];
-typedef char RecoveredGlobal_80271D00___vt__21TWindowSubAreaMapDisp_size[sizeof(RecoveredGlobal_80271D00___vt__21TWindowSubAreaMapDisp) == 0x1C ? 1 : -1];
-u8 *TWindowSubAreaMapDisp__ct(TWindowSubAreaMapDisp *window_sub_area_map_disp) {
-    s32 temp_r3;
-    s32 temp_r3_2;
-    s32 var_r0;
-    u8 *var_r30;
-    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)window_sub_area_map_disp), (u8 *)((u8 *)&TWindowSubAreaMapDisp__window_parameters.value), (s16)((s16)((void *) ((s16) local_client_id))), (u8 *)((u8 *)(get_window_layout_position(0x59))));
-    *(s32 **)((s8 *)window_sub_area_map_disp + 0x18) = &(*(RecoveredGlobal_80271D00___vt__21TWindowSubAreaMapDisp *)&__vt__21TWindowSubAreaMapDisp).value;
-    *(s32 *)((s8 *)window_sub_area_map_disp + 0) = (s32) TWindowSubAreaMapDisp__name;
+
+TWindowSubAreaMapDisp::TWindowSubAreaMapDisp()
+    : TWindowBase((u8 *)&TWindowSubAreaMapDisp__window_parameters, (s16)local_client_id,
+                  (u8 *)get_window_layout_position(0x59)) {
+    s32 length;
+    void *heading;
+    char *text;
+    m_name = TWindowSubAreaMapDisp__name;
     if (get_game_play_mode() == 1) {
         text_builder_reset();
         text_builder_append((u8 *)(TQuestVmDownLoadServer__sub_8006EF6C(0x67)));
         append_text_space();
         append_padded_number((get_window_count_ratio_value()), (2U));
-        var_r30 = (u8 *)(get_shared_text_buffer());
+        text = (char *)get_shared_text_buffer();
     } else {
-        var_r30 = (u8 *)(get_floor_destination_name(get_current_floor_area()));
+        text = (char *)get_floor_destination_name(get_current_floor_area());
     }
-    temp_r3 = measure_string_len__20TWindowSubStatusDispFv((int)var_r30);
-    window_sub_area_map_disp->m_74 = (s32)::operator new[]((temp_r3 + 1));
-    strncpy((int)window_sub_area_map_disp->m_74, (int)var_r30, (void *)(temp_r3 + 1));
-    temp_r3_2 = (int)::operator new(0x24);
-    var_r0 = temp_r3_2;
-    if (var_r0 != 0) {
-        var_r0 = construct_type1_heading__20TWindowSubStatusDispFll(temp_r3_2, window_sub_area_map_disp->m_74, (int) ((s32) window_sub_area_map_disp->m_20));
+    length = measure_string_len__20TWindowSubStatusDispFv(text);
+    m_74 = (char *)::operator new[](length + 1);
+    strncpy((s32)m_74, (s32)text, (void *)(length + 1));
+    heading = ::operator new(0x24);
+    if (heading != NULL) {
+        heading = construct_type1_heading__20TWindowSubStatusDispFll(heading, (s32)m_74, m_20);
     }
-    window_sub_area_map_disp->m_70 = var_r0;
-    window_sub_area_map_disp->m_6c = 0;
-    return (u8 *)window_sub_area_map_disp;
+    m_70 = heading;
+    m_6c = 0;
 }
 }

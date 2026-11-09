@@ -301,6 +301,13 @@ ready texture list is borrowed and bound through the address of its field.
 Descriptor and compiler table add 44 bytes while the following original
 suffix and existing controls/interface holds are preserved.
 
+The [AreaMapDisp recovery](window-area-map-lifetime.md) adds native window
+construction/cleanup and its actual ordinary-new producer, with actual float,
+owned character-storage and opaque heading fields. Descriptor and compiler
+table add 44 bytes while retaining the original suffix. Measured canonical
+string/draw/result differences remain explicit interface holds; CallBack's
+mixed callback family is deferred. No new matching control is introduced.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

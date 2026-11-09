@@ -1203,3 +1203,11 @@ request/bind receivers. Loader destruction remains deferred; the texture list
 is borrowed. The factory's existing CSE/FP scopes and upstream word interfaces
 remain qualified. Descriptor and compiler table are native, with the opaque
 original suffix retained and no new compiler control or manual padding.
+
+[AreaMapDisp lifetime recovery](evidence/window-area-map-lifetime.md) removes
+another raw Base pair, retaining the owned character-storage allocation/release
+protocol and opaque heading ownership. Existing word/string-copy, draw-context
+and boolean-result ABI views remain held after measured canonical probes.
+CallBack is deferred pending its full callback contract. Native descriptor/table
+emission preserves the original suffix without new controls or manual padding;
+this does not claim portable interface completion.
