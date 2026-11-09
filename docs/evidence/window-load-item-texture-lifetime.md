@@ -76,3 +76,28 @@ its original range. Full link, exact DOL hash, address-based regression
 checks, retention/port inventory, actual selected input provenance and
 protected original remainders are checked before publication. This change
 adds 44 matched and source-linked data bytes without code or function loss.
+
+Current main `387621104107ed1ff8c650bf2f50ef00c6859ba4` is merged.
+Its independent DHCP progress is retained: compared with the prior published
+checkpoint the integrated branch has +2180 matched code, +12220 linked code,
++44 matched data and +4844 linked data bytes, three additional exact functions
+and one additional exact linked unit. The LoadItemTexture family alone adds
+44 matched/linked data bytes and no code/function delta. Against fresh current
+main, the combined PR has +600 matched code, +1220 linked code and +1000
+matched/linked data bytes, one extra exact function and two extra linked units.
+
+Final checks report 27,390 exact functions and 3,589 exact linked units, with
+17,765 retention names and no retention drift. No new padding coverage gap is
+introduced. The raw Base/Addition ABI boundary is reduced to 48 calls in 24
+units (20 Base and four Addition construction/cleanup pairs). Four shared raw
+ABI bindings remain. Both full builds reproduce DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`.
+
+Actual selected inputs contain each of the four affected source objects once,
+and no corresponding original text fallback. The newly divided original data
+prefix remains 84 bytes at 804D0004, and the opaque suffix remains 580 bytes
+at 804D0084 through the already-source-owned LockOn table at 804D02C8. Both
+are selected exactly once and match current-main original bytes. The protected
+1,044-byte text remainder and data remainders 204, 532 and 204 bytes remain
+original inputs once; their resolved DOL ranges are also unchanged. The original
+Room, FaceType and CustomEquip data prefixes remain selected original inputs.
