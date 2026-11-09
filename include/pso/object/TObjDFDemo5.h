@@ -4,28 +4,38 @@
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 
+class TParticleCtrl;
+class ModelNodePositionCapture;
+struct AnimationMotion;
+struct NJS_OBJECT;
+
+// One model of the Dark Falz death scene: its model, texture list and motion.
+struct TObjDFDemo5Part {
+    NJS_OBJECT *model;
+    s32 texlist;
+    AnimationMotion *motion;
+};
+
 struct TObjDFDemo5 : public TObjBase {
+    TObjDFDemo5(TObject *parent, const Vec *pos, s32 angle);
     virtual ~TObjDFDemo5();
     virtual void run_task();
+    virtual void render();
     void update_particle_emitters();
-    u8 unk_90[0x4];
-    u32 m_94;
-    u8 unk_98[0x30];
-    u32 m_c8;
-    u32 m_cc;
-    u32 m_d0;
-    void* m_d4;
-    u8 _padD8[0x8];
-    u32 m_e0;
-    u32 m_e4;
-    u8 _padE8[0x4];
-    u32 m_ec;
-    void* m_f0;
-    u8 _padF4[0x14];
-    u32 m_108;
-    void* m_10c;
+    void release_subobjects();
+    void draw_fading_motion();
     static void *create(void *arg0, void *arg1, void *arg2);
-    u8 unk_110[0x8];
+
+    TParticleCtrl *particle_emitters[5];
+    TObjDFDemo5Part parts[4];
+    Vec pos;
+    s32 angle;
+    s32 timer;
+    f32 frame;
+    ModelNodePositionCapture *node_list0;     // tracks emitter_positions
+    Vec emitter_positions[2];
+    ModelNodePositionCapture *node_list1;     // tracks tail_position
+    Vec tail_position;
 };
 
 typedef char TObjDFDemo5_size[sizeof(TObjDFDemo5) == 0x118 ? 1 : -1];

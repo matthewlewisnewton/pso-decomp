@@ -193,3 +193,47 @@ include the canonical header, without accessor macros or function-pointer
 casts. Host vector and item-factory tests and the exception inventory pass.
 The prior GitHub metadata failure is separate from this branch integration;
 no title/body write is retried here. Keep the PR draft pending current checks.
+
+## Network-runtime main refresh
+
+The next refresh merges main `18207f98696bab4911ca2cecac1c19381e2ea506`
+into PR head `0a88bed9af6d85d586a0265027077f464a734627`. Main includes the
+#361 unit folds and #369 network-runtime recovery. No other active task
+owned #303, and its remote head still matched the local starting commit.
+
+Only retention metadata and the two exception documents conflicted. Both
+sides' live retention entries are preserved; fresh split inputs confirm no
+missing/stale entries. The exception documents retain main's additional
+units and registered native-code debt, together with this branch's Falz
+override. The regenerated inventory has 44 assembly source lines in 11 files,
+5,769 pragmas in 875 files, and 177 unit overrides. This refresh adds no new
+assembly, pragma, or compiler override beyond the changes already in main.
+
+Main's newly folded `TObjDFDemo5` constructor consumes the canonical model
+accessor. Its `TObjDFDemo5Part::model` field is now `NJS_OBJECT *`: the
+constructor assigns the accessor's model pointers, and all four reads feed
+`draw_model_motion`. This removes the old pointer-to-integer boundary and
+redundant draw casts while preserving the 0x118 class size and exact compiled
+unit (8/8 functions, all data exact, linked). The incoming packet-pool return
+type is consistently `s16` in its shared headers and definition. No local
+accessor prototype or function-pointer cast is restored; all 180 source
+files using the accessor include its canonical header.
+
+Both fresh main and the merged branch reproduce the original DOL hash and
+pass address/linkage/retention checks. Against this main:
+
+| Measure | Main `18207f986` | Continuation | Delta |
+|---|---:|---:|---:|
+| Exact functions | 27,385 | 27,388 | +3 |
+| Matched code bytes | 4,189,044 | 4,191,224 | +2,180 |
+| Matched data bytes | 1,470,159 | 1,470,247 | +88 |
+| Complete code bytes | 3,667,732 | 3,679,952 | +12,220 |
+| Complete data bytes | 1,175,627 | 1,180,515 | +4,888 |
+| Linked units | 3,585 | 3,585 | 0 |
+
+There are no regressions or coverage losses. Retention has 17,658 entries,
+with no missing or stale symbols. Network packet runtime stays 24/24 and
+the incoming OS network-runtime unit stays 53/53; both remain exact and linked.
+Host vector and item-factory tests and the exception inventory pass. The
+earlier failed metadata write is not retried by this refresh; keep the PR
+draft while its latest source checks and readiness are verified.

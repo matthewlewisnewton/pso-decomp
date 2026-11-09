@@ -917,7 +917,7 @@ s32 TLobby__sub_80428358(void) {
 typedef char RecoveredGlobal_80428374_lbl_805D0A40_size[sizeof(RecoveredGlobal_80428374_lbl_805D0A40) == 0x60 ? 1 : -1];
 
 typedef char RecoveredGlobal_80428360_lbl_805CFC20_size[sizeof(RecoveredGlobal_80428360_lbl_805CFC20) == 0xE20 ? 1 : -1];
-s32 TLobby__sub_80428360(void) {
+s16 TLobby__sub_80428360(s32) {
     (*(RecoveredGlobal_80428360_lbl_805CFC20 *)&lobby_pppoe_slot_table).value = -1;
     return 0;
 }

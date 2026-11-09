@@ -743,7 +743,7 @@ void TLobby::cancel_alarm_b() {
     NetReleaseMutex(lobby_buffer_pool_alarm_handle);
 }
 
-s32 TLobby::init_buffer_pool() {
+s16 TLobby::init_buffer_pool() {
     lbl_805D7BEC = lobby_buffer_pool_base;
     lbl_805D7BF0 = lobby_buffer_pool_base;
     lbl_805D7BF4 = lobby_buffer_pool_base;

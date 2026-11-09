@@ -808,6 +808,7 @@ pso/item/WeaponAttackActions.cpp
 pso/item/WeaponSpecialSelection.cpp
 pso/map/FloorArea_8029E764.cpp
 pso/map/FloorLifecycleTables.cpp
+pso/math/MatrixTransforms.cpp
 pso/math/MatrixVector.cpp
 pso/menu/TAdEndText.cpp
 pso/menu/TAdEndText_80307A34.cpp
@@ -864,6 +865,11 @@ pso/misc/TCameraCtrl_8013F25C.cpp
 pso/misc/TCameraCtrl_801A2FE0.cpp
 pso/misc/TCameraCtrl_801A3C24.cpp
 pso/misc/TCameraCtrl_801A6E60.cpp
+pso/misc/TCameraCtrl_803D6538.cpp
+pso/misc/TCameraCtrl_803D66DC.cpp
+pso/misc/TCameraCtrl_803D676C.cpp
+pso/misc/TCameraCtrl_803D6960.cpp
+pso/misc/TCameraCtrl_803D749C.cpp
 pso/misc/TChCrCharSelect_802937D4.cpp
 pso/misc/TChCrCharSelect_802937E8.cpp
 pso/misc/TChCrCharSelect_80293860.cpp
@@ -2229,7 +2235,6 @@ pso/player/TObjPlayer_80011014.cpp
 pso/player/TObjPlayer_80020898.cpp
 pso/player/TObjPlayer_8002E784.cpp
 pso/player/TObjPlayer_80036824.cpp
-pso/player/TObjPlayer_8004FA98.cpp
 pso/player/TObjPlayer_80052374.cpp
 pso/player/TObjPlayer_80055678.cpp
 pso/player/TObjPlayer_800666B0.cpp
@@ -2569,6 +2574,7 @@ pso/player/TObjPlayer_803E5470.cpp
 pso/player/TPlyItem.cpp
 pso/player/TUnk_80490470.cpp
 pso/player/TUnk_804A5D28.cpp
+pso/protocol/NetworkRuntime.cpp
 pso/protocol/TradeSession.cpp
 pso/protocol/subcommand_validation_actions.cpp
 pso/protocol/subcommand_validation_movement.cpp
@@ -2831,7 +2837,6 @@ pso/unk/text_8004D9A8.cpp
 pso/unk/text_8004F1FC.cpp
 pso/unk/text_8004F2A8.cpp
 pso/unk/text_8004F5F8.cpp
-pso/unk/text_8004F904.cpp
 pso/unk/text_80050050.cpp
 pso/unk/text_80050134.cpp
 pso/unk/text_800502FC.cpp
@@ -3472,6 +3477,7 @@ pso/unk/text_8033FE30.cpp
 pso/unk/text_8033FF78.cpp
 pso/unk/text_8034960C.cpp
 pso/unk/text_80349B8C.cpp
+pso/unk/text_8034A090.cpp
 pso/unk/text_8034AD38.cpp
 pso/unk/text_8034CEDC.cpp
 pso/unk/text_8034D3D0.cpp
@@ -3532,12 +3538,16 @@ pso/unk/text_803D4418.cpp
 pso/unk/text_803D4448.cpp
 pso/unk/text_803D4714.cpp
 pso/unk/text_803D619C.cpp
+pso/unk/text_803D6438.cpp
+pso/unk/text_803D647C.cpp
 pso/unk/text_803D64F8.cpp
 pso/unk/text_803D8030.cpp
 pso/unk/text_803D8098.cpp
 pso/unk/text_803D8910.cpp
 pso/unk/text_803D8DE0.cpp
 pso/unk/text_803D8F74.cpp
+pso/unk/text_803D9650.cpp
+pso/unk/text_803D96A8.cpp
 pso/unk/text_803D9FF0.cpp
 pso/unk/text_803DA038.cpp
 pso/unk/text_803DA12C.cpp
