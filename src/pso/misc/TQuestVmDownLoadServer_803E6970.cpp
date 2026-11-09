@@ -1949,14 +1949,16 @@ s32 TQuestVmDownLoadServer__sub_803E93DC(void) {
     QuestDownloadCachedNameNode *previous;
     QuestDownloadCachedNameNode **link;
 
+    u8 *cacheBytes = lbl_80591EC8;
     if (TQuestVmDownLoadServer::seek_or_reopen(0x1400) == -1) {
         return -1;
     }
-    if (aram_read_thunk__22TQuestVmDownLoadServerFUli(
-            (void *)lbl_805D7904, lbl_80591EC8, 0x2000) != 0x2000) {
+    s32 readCount = (s32)aram_read_thunk__22TQuestVmDownLoadServerFUli(
+            (void *)lbl_805D7904, cacheBytes, 0x2000);
+    if (readCount != 0x2000) {
         return -1;
     }
-    pageStart = lbl_80591EC8;
+    pageStart = cacheBytes;
     for (page = 0; page < 8; page++, pageStart += 0x400) {
         for (record = pageStart;
              (u16)(record[0] + (record[1] << 8)) != 0;

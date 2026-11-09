@@ -4,7 +4,7 @@
 name index. The existing `__VIRetraceHandler` symbol at `0x803E97B0` initializes
 that index and handles a failed reload. Both are partial C++ recoveries; the
 symbol spelling does not establish an SDK owner or retrace-handler role.
-The standard report scores reload 86.61818% and initializer 80.99363%.
+The standard report scores reload 88.67273% and initializer 80.99363%.
 Neither recovery adds an exact function or source-linked coverage.
 
 ## Actual objects and provider boundary
@@ -41,10 +41,21 @@ from header `+0x30/+0x31` has no local range validation. Page range, bounded
 terminated chains and names shorter than the local 80-byte buffer are unchecked
 preconditions, not properties established by this implementation.
 
+The loader now borrows the actual byte-array base before seeking and uses that
+same base for the read destination and subsequent page walk. This matches the
+native base lifetime without assuming an owner spanning the cache and index.
+Its read result is interpreted as a signed native I/O-status word locally. For
+this positive `0x2000`-byte request, the actual reader bounds the count to
+`0..0x2000`; timeout returns all-ones. The native conversion therefore preserves
+the existing complete-read versus failure test. The unsigned thunk/provider ABI
+is unchanged, and this ordinary integer status is unrelated to the held pointer
+sentinel. Neither stable record contents nor valid predecessor links across a
+nested rotation are inferred from the stable array address.
+
 ## Mutator audit
 
-A named-reference census of all 4,970 current original objects confines direct
-references to the cache, index and cursor/free-list globals to this unit. This
+A named-reference census of all 4,970 original objects at the initial lifecycle
+checkpoint confines direct references to the cache, index and cursor/free-list globals to this unit. This
 is not proof against every possible alias-derived write.
 
 | Routine | Observed transition |
@@ -128,18 +139,52 @@ show that the simple initialized/sorted/unique-record premises are insufficient
 for a universal lifecycle proof. No null guard, validation policy, rollback or
 other behavioral repair is added to imitate such a proof.
 
+## Later direct-reload validation
+
+The current 528-case run retains the [456-case lifecycle/removal corpus](quest-download-primary-removal.md)
+and adds 72 direct loader cases. Every selected page is exercised with read
+results `-1`, zero, one, two, 127, 128, 8,191 and 8,192, plus seek failure.
+Calling reload directly prevents initializer fallback from masking its effects.
+
+Before these reads, the old cache bytes have a nonzero pattern. A failed or
+short read is checked against an independent complete nonstack snapshot with
+only the provider's returned prefix replaced. Thus the 8,191-byte case tests
+retention of a distinct final byte. These failure cases do not parse the old
+pattern or establish its validity as a record image. Complete reads replace it
+with a valid image and check the selected-page cursor/end and index invariants.
+The actual dirty byte is seeded nonzero, with distinct adjacent bytes; both
+the byte and entire word must remain unchanged. Seek failure also preserves
+its full snapshot and makes no read call.
+
+Native/candidate meaningful returns, complete nonstack data, normalized provider
+traces and restored stack/nonvolatile registers agree. The actual read thunk
+executes, while seek/read/string operations retain their bounded hooks. No DMA
+quiescence, arbitrary-image, callback-lifetime or shipped-reachability proof is
+added. All earlier precondition witnesses remain in the retained corpus.
+
+The model script SHA-256 is
+`433f38840a9da1bdcb556691421074ac3440761553dbf1865a3a968a089d989c`;
+its compiled candidate SHA-256 is
+`6f389de7b08b1302b259c4165e53fef5fdf00fb920bf94ba502a7c3700a09570`.
+
 ## Matching and remaining work
 
 Relocation-sensitive probes (`functionRelocDiffs=data_value`) score reload
-85.59091% (444 compiled bytes versus 440 original) and initializer 55.254776%
-(640 versus 628). Existing exact functions and the three previous partial
-scores are preserved. Native code commonly retains the cache byte symbol as
+88.09091% (448 compiled bytes versus 440 original), improved from 85.59091%
+at 444 bytes. The initializer remains 55.254776% (640 versus 628). This is a
+modest matching gain with four additional compiled bytes, not exact completion.
+All 167 other provider bodies, eight other partial scores, 159 exact functions
+and 16 frontend functions are preserved. Provider noncode data, object layout
+and relocations are unchanged; all frontend allocated bytes/layout and normalized
+relocations are preserved.
+Native code commonly retains the cache byte symbol as
 one base and reaches the adjacent index from it; honest source names the two
 actual objects. Register/stack and loop-lowering differences remain. No false
 owner, dummy padding, new pragma or compiler override is introduced.
 
 Native/no-loss results and independent review accompany the published checkpoint.
-Original instructions, objects, interpreter inputs and hashes remain private.
+Original instructions, objects and interpreter inputs remain private; the note
+publishes provenance summaries and hashes.
 The unit remains incomplete and unlinked. Full provider behavior, every reachable
 producer transition, malformed-image safety and exactness remain unproved. The
 [search sentinel gate](quest-download-search-evidence.md) remains in force.
