@@ -297,7 +297,7 @@ TechniqueContactList *TObjPlayer::collect_technique_contacts(void *src) {
     return &L_802A41CC;
 }
 
-void TObjPlayer__sub_802A445C(TNeedleShoot *self) {
+void TObjPlayer__sub_802A445C(TNeedleShoot *self, s32) {
     TechniqueContactList *list;
     TechniqueContactActor *actor;
     if (self->m_68 == 0U) {

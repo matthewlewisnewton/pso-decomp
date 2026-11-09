@@ -47,4 +47,7 @@ struct TNeedleShoot : public TObject {
 };
 
 typedef char TNeedleShoot_size[sizeof(TNeedleShoot) == 0xBC ? 1 : -1];
+
+// Both projectile callers pass a second argument; the dispatcher does not read it.
+extern "C" void TObjPlayer__sub_802A445C(TNeedleShoot *self, s32 arg1);
 #endif

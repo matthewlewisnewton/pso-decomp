@@ -36,7 +36,6 @@ extern s32 lbl_805D3F20;
 extern const f32 lbl_805DE6DC;
 u8 *TObjEneMe1GiGueMissile__ct(u8 *arg0, s32 arg1, u8 *arg2, u8 *arg3, f32 farg0, f32 farg1);
 void *find_entity_by_id(u16 id);
-s32 TObjPlayer__sub_802A445C(void *, int);
 extern const f32 lbl_805DE6E0;
 void TObjEneMe1GiGue__sub_802CE4E8(void);
 void TObjEneMe1GiGue__sub_802CE4EC(void);
@@ -154,7 +153,7 @@ void TObjEneMe1GiGueMissile::run_task() {
     }
     ((TNeedleShoot *)arg0)->update_position();
     ((TObjEneMe1GiGueMissile *)arg0)->update_lifetime();
-    TObjPlayer__sub_802A445C(arg0, 1);
+    TObjPlayer__sub_802A445C(this, 1);
 }
 #pragma pop
 
