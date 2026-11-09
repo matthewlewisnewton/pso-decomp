@@ -200,6 +200,6 @@ at 97.70635%. The [replacement continuation](quest-download-cache-replacement.md
 defines `sub_803E8DA0` at 84.08247% in the standard report. The
 [primary-page removal continuation](quest-download-primary-removal.md) defines
 `sub_803EF208` at 86.40686%. The [byte-input consumer continuation](quest-download-byte-conversion.md)
-defines `sub_803EDF64` at 1.3303572% in the standard report (0.22767857% in the
+defines `sub_803EDF64` at 60.044643% in the standard report (59.848213% in the
 relocation-sensitive comparison), preserving the frontend producer lifetime hold.
 Five functions remain undefined and nine are inexact, including `sub_803F03B4`.
