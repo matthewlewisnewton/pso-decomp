@@ -1534,6 +1534,70 @@ void TQuestVmDownLoadServer__sub_803E8918(void) {
     lbl_805D7868 = 1;
 }
 
+// Move the indexed record to the append page, preserving native reservation
+// and identity-check order. See the lifecycle evidence for unchecked preconditions.
+void TQuestVmDownLoadServer__sub_803E8924(s32 id) {
+    char name[0x50];
+    s16 sourcePage = (s16)(id >> 12);
+    u8 *source;
+    u8 *original;
+    u8 *destination;
+    s32 length;
+    u8 len;
+    s16 wanted;
+    s32 bucket;
+    QuestDownloadCachedNameNode *node;
+
+    if (lbl_805D7874 == sourcePage) {
+        return;
+    }
+    source = lbl_80591EC8 + sourcePage * 0x400 + (s16)(id & 0xFFF);
+    original = source;
+    length = (u16)(source[0] + (source[1] << 8));
+    if (lbl_805D7870 > lbl_805D786C - length - 2) {
+        TQuestVmDownLoadServer__sub_803E95BC();
+    }
+    destination = lbl_805D7870;
+    lbl_805D7870 += length;
+    lbl_805D7870[0] = 0;
+    lbl_805D7870[1] = 0;
+    if (sourcePage == lbl_805D7874) {
+        return;
+    }
+    len = source[2];
+    strncpy(name, (const char *)(source + 3), (s16)len);
+    name[(s16)len] = 0;
+    u8 first = (u8)name[0];
+    if (first >= 0xA0 && first < 0xF0) {
+        bucket = first - 0xA0;
+    } else {
+        bucket = 0;
+    }
+    node = lbl_80593EC8.heads[bucket];
+    wanted = (s16)len;
+    for (; node != NULL; node = node->next) {
+        u8 *indexed = node->encodedRecord;
+        len = indexed[2];
+        s32 comparison = strncmp((const char *)(indexed + 3), name, (s16)len);
+        if (comparison == 0) {
+            if (wanted == (s16)len) {
+                break;
+            }
+        } else if (comparison > 0) {
+            break;
+        }
+    }
+    // Native code also requires a non-null stopping node at this point.
+    if (node->encodedRecord == original) {
+        node->encodedRecord = destination;
+        for (; length != 0; length--) {
+            *destination++ = *source++;
+        }
+        original[2] = 0;
+        TQuestVmDownLoadServer::invalidate_entries_by_id(id);
+    }
+}
+
 
 
 #pragma push

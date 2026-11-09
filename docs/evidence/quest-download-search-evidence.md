@@ -194,5 +194,7 @@ remains 159/173 exact and unlinked. DC20 remains 94.41237%; the separate
 [cache-page rotation recovery](quest-download-cache-rotation.md) defines
 `sub_803E95BC` at 90.330185% in the standard report (90.18868% in the
 relocation-sensitive probe). The [lifecycle continuation](quest-download-cache-lifecycle.md)
-defines the loader and initializer as partial source. Nine functions remain
-undefined and five are inexact, including `sub_803F03B4`.
+defines the loader and initializer as partial source. The
+[relocation continuation](quest-download-cache-relocation.md) defines `sub_803E8924`
+at 97.70635%. Eight functions remain undefined and six are inexact, including
+`sub_803F03B4`.

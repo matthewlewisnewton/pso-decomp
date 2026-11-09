@@ -55,7 +55,7 @@ is not proof against every possible alias-derived write.
 | `8924` | May rotate, then reserves append space. For the indexed source, redirects its node before copying, clears the old name length and invalidates its ID. |
 | `95BC` | Evicts the next page's indexed records and returns their nodes to the free list. |
 | `EF958`, `EF8E0` | Change payload/version or flag bytes through resolved records; observed writes preserve lengths, name keys and links. Their callers mark dirty state. |
-| `read_ask_header`, `8150`, `9764` | Load/save the selected-page word and persist the cache byte image. |
+| `read_ask_header`, `8150`, `9764` | Read the selected-page word and prepare header/cache write attempts; the write hook returns minus one without writing. |
 
 Both `8DA0` and `8924` also require a non-null sorted-search stopping node;
 `8DA0` dereferences it at `0x803E8E64`, and `8924` at `0x803E8A64`. During a
@@ -143,3 +143,8 @@ Original instructions, objects, interpreter inputs and hashes remain private.
 The unit remains incomplete and unlinked. Full provider behavior, every reachable
 producer transition, malformed-image safety and exactness remain unproved. The
 [search sentinel gate](quest-download-search-evidence.md) remains in force.
+
+The later [relocation and entry-gate audit](quest-download-cache-relocation.md)
+recovers `8924` and bounds these lower-level witnesses against the observed
+dispatcher, disabled mode flag and fixed dictionary image. Snapshot round trips
+here use the test provider; the native write stub does not establish persistence.
