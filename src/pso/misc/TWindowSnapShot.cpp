@@ -36,7 +36,7 @@ struct RecoveredGlobal_802A80A0___vt__15TWindowSnapShot {
     u8 remaining[0x14];
 };
 
-extern int player_motion_data_filename_ptr;
+extern const char *player_motion_data_filename_ptr;
 extern void *shared_snapshot_capture;
 extern "C" {
 s32 TObjBoss2Tunnel__sub_8007CAE8(f32 *, f32);
@@ -80,7 +80,7 @@ s32 load_player_motion_data(void) {
     if ((u32) var_r0 == 0U) {
         return 0;
     }
-    ((TWindowSnapShot *)var_r0)->start_capture((*(s32 *)&player_motion_data_filename_ptr));
+    ((TWindowSnapShot *)var_r0)->start_capture(player_motion_data_filename_ptr);
     return 1;
 }
 
@@ -88,7 +88,7 @@ s32 TWindowSnapShot::get_size() { return *(s32 *)&this->m_name; }
 s32 TWindowSnapShot::get_field_8() { return *(s32 *)&this->m_prev; }
 int TWindowSnapShot::get_height() { return 600; }
 
-int TWindowSnapShot__sub_802A7EAC(void) {  return player_motion_data_filename_ptr; }
+const char *TWindowSnapShot__sub_802A7EAC(void) {  return player_motion_data_filename_ptr; }
 
 void TWindowSnapShot::play_open_sound() {
     play_sound_effect(0x52F16, 0, 0, 0);

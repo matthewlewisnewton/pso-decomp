@@ -6,7 +6,7 @@
 struct TGStream
 {
     static s32 load_file(s32 arg0);
-    static s32 read_whole_file(s32 arg0, u8 *arg1);
+    static s32 read_whole_file(const void *name, u8 *arg1);
     static s32 load_sct_file(s32 name, u8 *dst);
     void read_sectors_sync(s32 arg1, s32 arg2);
     static void reset();

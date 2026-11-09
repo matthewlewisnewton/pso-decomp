@@ -52,14 +52,14 @@ struct Res_80207478 { void *buf; s32 n; };
 extern "C" {
 extern s32 TSceneSora__sky_active_flag;
 extern s32 TSceneSora__instance;
-extern u32 TSceneSora__sky_bml_resource;
+extern BmlResource *TSceneSora__sky_bml_resource;
 void TSceneSora__sub_80207430(void);
 s32 __dl__7TObjectFPv(void *);
 extern RecoveredGlobal_802072E0___vt__10TSceneSora __vt__10TSceneSora;
 u8 *__dt__10TSceneSoraFv(u8 *arg0, s16 arg1);
-s32 get_bml_motion(int, int);
-s32 TObjFish__sub_8001EDB0(int, int);
-s32 get_bml_model(int, int);
+s32 get_bml_motion(BmlResource *, int);
+s32 TObjFish__sub_8001EDB0(BmlResource *, int);
+s32 get_bml_model(BmlResource *, int);
 s32 __ct__8TObjBaseFP7TObject(void *);
 extern s32 lbl_805D3624;
 extern s32 TSceneSora__has_sky_motion;
@@ -72,7 +72,6 @@ s32 push_matrix();
 
 void *get_current_floor();
 s32 lookup_scene_object__6TLobbyFPv(void *, Ref_80207478 *);
-void *adxf_open__6TLobbyFUii(char *, int);
 extern char lbl_8044A9D0[];
 extern char lbl_8044A9D8[];
 extern char lbl_8044A9E0[];
@@ -86,7 +85,7 @@ typedef char RecoveredGlobal_802072E0___vt__10TSceneSora_size[sizeof(RecoveredGl
 void TSceneSora::render() {
     if ((s32) TSceneSora__sky_active_flag != 0) {
         TParticleCtrl::begin_effect_render();
-        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0)));
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TSceneSora__sky_bml_resource, 0)));
         push_matrix();
         rotate_matrix_y(0, this->rotation.yaw);
         if ((u32) this->m_94 != 0U) {
@@ -133,13 +132,13 @@ u8 *TSceneSora__ct(TSceneSora *scene_sora, s32 _w1) {
     __ct__8TObjBaseFP7TObject(scene_sora);
     *(s32 **)((s8 *)scene_sora + 0x18) = &(*(RecoveredGlobal_80207340___vt__10TSceneSora *)&__vt__10TSceneSora).value;
     *(s32 *)((s8 *)scene_sora + 0) = lbl_805D3624;
-    scene_sora->m_90 = get_bml_model((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
+    scene_sora->m_90 = get_bml_model(TSceneSora__sky_bml_resource, 0);
     if (TSceneSora__has_sky_motion != 0) {
-        scene_sora->m_94 = get_bml_motion((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
+        scene_sora->m_94 = get_bml_motion(TSceneSora__sky_bml_resource, 0);
     } else {
         scene_sora->m_94 = 0;
     }
-    scene_sora->m_98 = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
+    scene_sora->m_98 = TObjFish__sub_8001EDB0(TSceneSora__sky_bml_resource, 0);
     *(f32 *)((s8 *)scene_sora + 0x9C) = lbl_805DC60C;
     scene_sora->m_a0 = lbl_805DC608;
     return (u8 *)scene_sora;
@@ -148,7 +147,7 @@ u8 *TSceneSora__ct(TSceneSora *scene_sora, s32 _w1) {
 void TSceneSora::create_instance() {
     s32 scene_sora;
 
-    if ((u32) TSceneSora__sky_bml_resource != 0U) {
+    if (TSceneSora__sky_bml_resource != NULL) {
         scene_sora = __nw__7TObjectFUl(0xA4);
         if (scene_sora != 0) {
             scene_sora = ((s32)TSceneSora__ct((TSceneSora *)((u8 *)scene_sora), (s32)tl_05));
@@ -161,9 +160,9 @@ void TSceneSora::create_instance() {
 
 void TSceneSora__sub_80207430(void) {
     TSceneSora__sky_active_flag = 1;
-    if ((void *) (*(u8 * *)&TSceneSora__sky_bml_resource) != NULL) {
-        delete (BmlResource *)((*(u8 * *)&TSceneSora__sky_bml_resource));
-        (*(u8 * *)&TSceneSora__sky_bml_resource) = NULL;
+    if (TSceneSora__sky_bml_resource != NULL) {
+        delete TSceneSora__sky_bml_resource;
+        TSceneSora__sky_bml_resource = NULL;
     }
     TSceneSora__instance = 0;
 }
@@ -172,12 +171,12 @@ void TSceneSora::load_sky_resources() {
     char name2[0x20];
     char name1[0x20];
     Ref_80207478 ref;
-    Res_80207478 b;
-    Res_80207478 a;
+    void *model_list[2];
+    void *motion_list[2];
     Ent_80207478 *tbl;
     s32 ok;
-    void *p;
-    u32 o;
+    AdxfHandle *file;
+    BmlResource *loaded;
     TSceneSora__instance = 0;
     TSceneSora__sky_bml_resource = 0;
     TSceneSora__has_sky_motion = 0;
@@ -187,33 +186,33 @@ void TSceneSora::load_sky_resources() {
         replace_file_extension__6TLobbyFPvPvPv(name1, tbl[ref.idx].name, lbl_8044A9D0);
         if (TRaderMapCore::is_not_split_screen() == 1) {
             replace_file_extension__6TLobbyFPvPvPv(name2, tbl[ref.idx].name, lbl_8044A9D8);
-            ok = ((TScene *)name2)->update_lobby_scene();
+            ok = TScene::update_lobby_scene(name2);
         }
         if (ok <= 0) {
             replace_file_extension__6TLobbyFPvPvPv(name2, tbl[ref.idx].name, lbl_8044A9E0);
         }
-        p = adxf_open__6TLobbyFUii(name2, 0);
-        if (p != NULL) {
-            b.buf = name2;
-            ((TLobby *)p)->close_adxf_handle();
+        file = ADXF_Open(name2, 0);
+        if (file != NULL) {
+            model_list[0] = name2;
+            ADXF_Close(file);
         } else {
             return;
         }
-        p = adxf_open__6TLobbyFUii(name1, 0);
-        if (p != NULL) {
-            a.buf = name1;
+        file = ADXF_Open(name1, 0);
+        if (file != NULL) {
+            motion_list[0] = name1;
             TSceneSora__has_sky_motion = 1;
-            ((TLobby *)p)->close_adxf_handle();
+            ADXF_Close(file);
         } else {
-            a.buf = NULL;
+            motion_list[0] = NULL;
         }
-        b.n = 0;
-        a.n = 0;
-        o = (u32)(int)::operator new(0x440);
-        if (o != 0) {
-            o = (u32)init_from_id_lists((BmlResource *)o, 1, (u32 *)&b, (u32 *)&a, 0, 0, 0);
+        model_list[1] = NULL;
+        motion_list[1] = NULL;
+        loaded = (BmlResource *)::operator new(0x440);
+        if (loaded != NULL) {
+            loaded = init_from_id_lists(loaded, 1, model_list, motion_list, 0, 0, 0);
         }
-        TSceneSora__sky_bml_resource = o;
+        TSceneSora__sky_bml_resource = loaded;
         TSceneSora__sky_active_flag = 1;
     }
 }

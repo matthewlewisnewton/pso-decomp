@@ -131,7 +131,7 @@ s32 TAdPlayerLoadGC__sub_801E0FA4(s32);
 // through a TCameraCtrl receiver regresses the other callers.
 s32 is_on_current_screen__11TCameraCtrlFv(ControllerInputContext *, s32);
 }
-extern s32 screen_binary_filename;
+extern const char *screen_binary_filename;
 extern "C" {
 f32 sample_acceleration_curve(AccelerationCurve *c, f32 t);
 f32 newton_sqrtf(f32);
@@ -1054,7 +1054,7 @@ void load_data_buffers(void) {
     if (buf != NULL) {
         memset(buf, 0, 0x1818C);
     }
-    temp_r31 = ((TScene *)screen_binary_filename)->update_lobby_scene();
+    temp_r31 = TScene::update_lobby_scene(screen_binary_filename);
     if (temp_r31 <= 0x1818C) {
         temp_r30 = TLobby::set_stream_and_load_file(screen_binary_filename);
         if (temp_r30 != 0) {
