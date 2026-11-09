@@ -115,3 +115,80 @@ do not establish that no matching source exists under the pinned profile.
 31512 → 32388 (+876), linked units unchanged (3568 all exact).
 `python3 tools/list_port_exceptions.py --check` passes with no new
 exception.
+
+## Native result contract and bounded follow-up
+
+An original-object reference audit found two direct calls to the search:
+the recursive call at `0x803E9D44` and the call in `sub_803E9FFC` at
+`0x803EA030`. Both test all ones before traversing a returned list.
+
+The three all-ones producers are distinct from allocation exhaustion:
+
+- `beg >= end` returns all ones when `lbl_805D7888 >= 3`, and zero in the
+  other mode.
+- An all-ones slot word returns failure before token dereference or allocation.
+- An all-ones recursive result first frees this frame's accumulated segment
+  list, then propagates failure.
+
+The allocator itself returns zero when its free list is empty. The first-fill
+path returns that zero directly; a failed first-pass allocation skips that
+node while retaining earlier results. A zero recursive result contributes
+nothing. Thus zero does not distinguish an empty list from allocation
+exhaustion, and it cannot replace the all-ones failure state without changing
+the native behavior.
+
+`sub_803E9FFC` propagates all ones before allocating entry nodes. Otherwise it
+converts any returned segments, frees the entire original segment list even
+if entry allocation stopped early, and may add an independent direct entry.
+Its caller `sub_803EA1A8` clears existing slot entries and returns integer
+zero on that failure. Its own fallback-entry allocation failure instead
+returns integer `-1`; those function-specific contracts must not be conflated.
+
+The native slot producer calls `find_longest_match_entry` at `0x803EAA50`,
+rejects an all-ones result, and on success stores the length at slot+0x18
+and the actual token pointer at slot+0. The slot word is not an index or a
+length-based handle. These observations justify preserving three states;
+they do not approve any pointer-sentinel spelling.
+
+Six private cast-free slot-check variants were compiled with the unchanged
+GC/1.2.5 profile. They retained the other exact functions but reduced the
+search to 99.06393–99.84018%. The clearer form classifies the existing integer
+status arm before loading the token pointer; a comma expression that loads
+the pointer first provides less semantic improvement. Two four-byte union
+result variants also regressed the exact `sub_803E9FFC` caller: the factory
+form scored 90.84475% for the search and 96.40187% for the caller; the
+constructor form scored 91.87215% and 91.57944%. Neither is an adopted repair
+or proof of a portable result representation. No tested alternative clears
+the explicit sign-off gate, and the tests are not an impossibility proof.
+
+## Entry-merger live ranges
+
+The four remaining `sub_803F03B4` words reflect different legal register reuse
+at the header-to-loop transition:
+
+| Value | Definition | Last header use | Original | Recovery |
+| --- | --- | --- | --- | --- |
+| Masked encoded length | +0x18 | +0x24 | r10 | r9 |
+| Name displacement plus 3 | +0x1C | +0x28 | r9 | r10 |
+| End pointer | +0x24 | Live through loop | r7 | r7 |
+| Entry cursor | +0x28 | Live through loop | r10 | r10 |
+
+The length and displacement temporaries overlap. The length dies before the
+cursor definition, so its register can be reused as in the original. The
+displacement's last use is also the cursor's definition, allowing the
+coalescing chosen by the recovery. This describes the emitted live ranges;
+it does not establish the compiler allocator's internal choice mechanism.
+
+Nine targeted source-interface/data-flow probes retained the same four
+differences at +0x18, +0x1C, +0x24 and +0x28, with no existing exact-function
+regressions. These covered semantic length/cursor helpers, combined bounds
+outputs, a cursor that first seeds the upper bound, and consistent reversal
+of the duplicate-merge helper's parameters, alone and with the semantic
+helpers. No probe was adopted. No pragma, dummy local, shared text-skip helper
+change, compiler override or claim that matching source is impossible follows
+from these negative results.
+
+The separate input-record and partial DC20 continuation is documented in
+[quest-download-input-records.md](quest-download-input-records.md). The unit
+remains 159/173 exact and unlinked; defining DC20 at 94.41237% leaves twelve
+undefined functions and two inexact functions, including `sub_803F03B4`.
