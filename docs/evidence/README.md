@@ -54,6 +54,7 @@ guides.
 - [Quest-download cache-page rotation (partial)](quest-download-cache-rotation.md)
 - [Quest-download cache lifecycle and partial loader/initializer](quest-download-cache-lifecycle.md)
 - [Quest-download cache relocation and observed entry gates](quest-download-cache-relocation.md)
+- [Quest-download cache replacement (partial)](quest-download-cache-replacement.md)
 - [Shared scratch vector storage](scratch-vector-evidence.md)
 - [Symbol chat parts recovery (WIP)](symbol-chat-parts-recovery-evidence.md)
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)

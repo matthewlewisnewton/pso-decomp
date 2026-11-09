@@ -94,3 +94,8 @@ not evidence of a shipped crash or a reason to alter original behavior.
 Native/no-loss results and exact-head independent review accompany publication.
 The unit remains incomplete and unlinked; the separate search sentinel sign-off
 gate remains unresolved.
+
+The later [replacement recovery](quest-download-cache-replacement.md) executes
+`8DA0` as recovered source in an extended 234-case corpus, including independent
+packet encoding and distinct lookup/stored-name buffers. It preserves the entry
+gates and reachability limitations above.

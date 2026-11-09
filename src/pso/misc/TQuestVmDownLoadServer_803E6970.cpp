@@ -1729,6 +1729,129 @@ s32 TQuestVmDownLoadServer__sub_803E8C2C(char *arg0, s16 arg1, Out_803E8C2C *arg
 }
 #pragma pop
 
+// Replace a matching name and append its encoded record. Native unchecked
+// search-stop, node-availability and bounded-input preconditions are retained.
+s32 TQuestVmDownLoadServer__sub_803E8DA0(char *key, Req_803EEF2C *req, s32 value) {
+    QuestDownloadCachedNameNode *node;
+    QuestDownloadCachedNameNode *previous;
+    QuestDownloadCachedNameNode **link;
+    QuestDownloadCachedNameNode *reserved;
+    u8 *oldRecord;
+    u8 *record;
+    u8 *p;
+    u8 len;
+    s16 wanted;
+    s32 bucket;
+    s32 extra;
+    s32 width;
+    s32 length;
+    s32 offset;
+
+    lbl_805D7868 = 1;
+    previous = NULL;
+    u8 first = (u8)key[0];
+    wanted = req->len;
+    if (first >= 0xA0 && first < 0xF0) {
+        bucket = first - 0xA0;
+    } else {
+        bucket = 0;
+    }
+    node = lbl_80593EC8.heads[bucket];
+    for (; node != NULL; node = node->next) {
+        u8 *indexed = node->encodedRecord;
+        len = indexed[2];
+        s32 comparison = strncmp((const char *)(indexed + 3), key, (s16)len);
+        if (comparison == 0) {
+            if (wanted == (s16)len) {
+                break;
+            }
+        } else if (comparison > 0) {
+            break;
+        }
+        previous = node;
+    }
+    if (previous == NULL) {
+        link = &lbl_80593EC8.heads[bucket];
+    } else {
+        link = &previous->next;
+    }
+    // The original also dereferences its stopping node without a null check.
+    oldRecord = node->encodedRecord;
+    if (oldRecord[2] == req->len
+            && strncmp(key, (const char *)(oldRecord + 3), req->len) == 0) {
+        oldRecord[2] = 0;
+        *link = node->next;
+        offset = node->encodedRecord - lbl_80591EC8;
+        TQuestVmDownLoadServer::invalidate_entries_by_id(
+            ((offset / 0x400) << 12) | (offset % 0x400));
+        node->next = lbl_805D7878;
+        lbl_805D7878 = node;
+    }
+    if (lbl_805D7878 == NULL) {
+        TQuestVmDownLoadServer__sub_803E95BC();
+    }
+    reserved = lbl_805D7878;
+    lbl_805D7878 = reserved->next;
+    if (req->x8 != 0 || req->x7 >= 0x2D) {
+        extra = 3;
+    } else {
+        extra = 2;
+    }
+    width = TQuestVmDownLoadServer::calc_sjis_string_width(req->text);
+    length = req->len + extra + width + 3;
+    if (lbl_805D7870 > lbl_805D786C - length - 2) {
+        TQuestVmDownLoadServer__sub_803E95BC();
+    }
+    record = lbl_805D7870;
+    lbl_805D7870 += length;
+    lbl_805D7870[0] = 0;
+    lbl_805D7870[1] = 0;
+    record[0] = length % 256;
+    record[1] = length / 256;
+    record[2] = req->len;
+    p = record + 3;
+    strncpy((char *)p, req->name, req->len);
+    p += req->len;
+    *p++ = req->x7;
+    *p++ = value;
+    if (req->x8 != 0 || req->x7 >= 0x2D) {
+        *p++ = req->x8;
+    }
+    TQuestVmDownLoadServer::copy_sjis_string(req->text, p);
+
+    previous = NULL;
+    first = (u8)key[0];
+    wanted = req->len;
+    if (first >= 0xA0 && first < 0xF0) {
+        bucket = first - 0xA0;
+    } else {
+        bucket = 0;
+    }
+    node = lbl_80593EC8.heads[bucket];
+    for (; node != NULL; node = node->next) {
+        u8 *indexed = node->encodedRecord;
+        len = indexed[2];
+        s32 comparison = strncmp((const char *)(indexed + 3), key, (s16)len);
+        if (comparison == 0) {
+            if (wanted == (s16)len) {
+                break;
+            }
+        } else if (comparison > 0) {
+            break;
+        }
+        previous = node;
+    }
+    if (previous == NULL) {
+        link = &lbl_80593EC8.heads[bucket];
+    } else {
+        link = &previous->next;
+    }
+    reserved->encodedRecord = record;
+    reserved->next = node;
+    *link = reserved;
+    return 0;
+}
+
 void append_message_text__22TQuestVmDownLoadServerFPviPvUc(u8 *arg0, s32 arg1, Msg_803E90A8 *arg2, u8 arg3) {
     u16 cur;
     s32 v;
