@@ -7,8 +7,8 @@ Base: fork `main` `d27f62054`, branch `decomp-tobjnpc-kenkyuw` (PR
 `-inline off`). Nine of the ten functions in the unit are exact; this one is
 96.49123% with two adjacent instructions transposed.
 
-This note records *why* the remaining pair cannot be reordered from C++, so
-that the measured shapes are not re-searched. It does not propose an
+This note records the scheduling constraint and measured source shapes, so
+that those shapes are not re-searched. It does not propose an
 exception: the function stays unmatched.
 
 ## The mismatch
@@ -69,9 +69,9 @@ that may alias serialises the load behind it (`serialize_load` /
 (`mr r3,r30` / `stw r0,56(r30)` / `lwz r4,0(r31)` / `bl`), at the cost of a
 store the original does not have.
 
-## The only remaining mechanism, and why no source shape reaches it
+## Investigated block-split mechanism
 
-Because the scheduler cannot be argued with, the original pair must have sat
+A demonstrated way to preserve the original pair is to keep it
 in a block of at most two pcodes. `Peephole.c peepholemergeblocks(FALSE)`
 runs before pass 1 and produces exactly that: a non-empty, call-free
 predecessor whose last instruction is a `b` to the next block has that branch
@@ -106,9 +106,11 @@ Loops contribute nothing: the frontend lowers them to `ST_GOTO`/`ST_IFGOTO`,
 and `newstatement` only splits a block that already holds more than 100
 pcodes (this function has 57 instructions).
 
-So the transposition is reachable only through a construct that is banned
-here — a pragma, a no-op or unreachable statement, or a dead switch case.
-The function is left unmatched, which is what `CONTRIBUTING.md` asks for.
+The measured successful block-split shapes need a pragma, a no-op or
+unreachable statement, or a dead switch case. None is a permitted solution.
+These experiments have not established a source-correct way to preserve
+the pair, and the function is left unmatched. They do not establish that
+every possible C++ source shape is impossible; see the qualification below.
 
 ## Shapes already measured
 
@@ -158,3 +160,47 @@ after sharing the declaration. The dispatcher remains 96.49123% (228
 bytes), its nine siblings remain 100%, and the unit remains 99.6633% fuzzy
 with 2,148 of 2,376 code bytes exact. This unit remains unlinked. These are
 object-level results; the passing DOL hash does not score the dispatcher.
+
+## Direct source-link diagnostic and proof limits
+
+A separate scratch link on 2026-11-09 used the validated source/configuration
+of PR head `b47c9e6ff7f55d16bb40ed0c260f2ea98d9e24b8`. Starting with the
+generated main executable's 4,970-input link list, it replaced only
+`build/GPOE8P/obj/pso/npc/TObjNpcKenkyuW.o` with
+`build/GPOE8P/src/pso/npc/TObjNpcKenkyuW.o`. It used the same GC/2.6 linker,
+`-fp hardware -nodefaults`, and generated `ldscript.lcf`, with a private ELF,
+response file and DOL output. No source, linkset or canonical build output
+was changed for this diagnostic.
+
+The link succeeded. The resulting DOL had the same 5,233,088-byte size as
+the original, with exactly eight changed bytes in two instruction words at
+`0x802A44F0` and `0x802A44F4`. Every other byte was identical. Its SHA-1 was
+`d61c4fd1d8e938620c55a2b30ebfc66f7c05db7c`, rather than the required
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. This rules out the hypothesis
+that ordinary linking repairs this pair, and exposes no additional
+symbol/data/layout blocker in this exact build. It is an intentional
+failing-hash diagnostic, not authorization to link the unmatched unit.
+
+Inputs binding this diagnostic (SHA-256):
+
+- Compiled unit: `2fa267c3643deacd0477e1f6d1de91c558f0b24adbfc2466fdb3b0dbbb314f7a`.
+- Original split unit: `29a9d8a030a78f44e85e96ea0798655d4a8520d3dd3ff1b9be8a097b00906a42`.
+- Linker script: `cf83ca3d5e14c9c7af513d1b2b6d86919546f78c7172ceec59d871a17de01c00`.
+
+One assertion in the earlier local attempt notes needs qualification:
+"Nothing after the second schedule deletes a branch" is not generally true.
+In the inspected compiler source, `assemblefunction` calls
+[`optimizefinalbranches`](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/backend/PCodeAssembly.c#L1519)
+after scheduling; the pass can delete unconditional and conditional branches
+whose targets are the next instruction. Thus an intermediate branch in a
+backend scheduling dump is not, by itself, proof that the branch will be
+present in the emitted object. This observation does not produce a matching
+source shape, and does not invalidate the measured failures above. It does
+mean that the block-split investigation is a bounded search, not an
+exhaustive proof about every C++ program.
+
+The concrete remaining blocker is unchanged: no permitted source shape has
+produced the original instruction order while preserving all other code.
+A new candidate must be meaningful source, preserve the other nine exact
+functions, and pass a real source link with the original DOL hash. Assembly,
+synthetic split units, dead cases and no-op steering are not solutions.
