@@ -6,12 +6,12 @@ extern "C" {
 int load_sct_file__8TGStreamFlPUc(void);
 int load_file__8TGStreamFl(void);
 
-    extern int disc_read_filename;
-s32 TLobby::set_stream_and_load_file(int a0) {
-    disc_read_filename = a0;
+    extern const void *disc_read_filename;
+s32 TLobby::set_stream_and_load_file(const void *name) {
+    disc_read_filename = name;
     return load_file__8TGStreamFl();
 }
 
-void TLobby::set_stream_state(int a0) { disc_read_filename = a0; load_sct_file__8TGStreamFlPUc(); }
+void TLobby::set_stream_state(const void *name) { disc_read_filename = name; load_sct_file__8TGStreamFlPUc(); }
 
 }

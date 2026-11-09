@@ -54,7 +54,7 @@ s32 launch_switcher_dol(const char *arg0) {
     char buf[0x100];
     s32 r;
     s32 v;
-    r = ((TScene *)lbl_80438D20)->update_lobby_scene();
+    r = TScene::update_lobby_scene(lbl_80438D20);
     read_disc_file(lbl_80438D20, v = resource_decompress_buffer);
     VISetBlack(1);
     VIFlush();

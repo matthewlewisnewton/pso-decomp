@@ -25,8 +25,8 @@ struct BmlResource {
     void reset();
     void load_texture_sub(void *filename, s32 index);
     void set_flag_and_notify();
-    s32 load_bin_motion(s32 name, s32 index);
-    s32 load_bin_model(s32 name, s32 index);
+    s32 load_bin_motion(void *name, s32 index);
+    s32 load_bin_model(void *name, s32 index);
 
     u32 flags;
     s32 loaded_models;
@@ -34,7 +34,7 @@ struct BmlResource {
     s32 loaded_textures;
     s32 load_state;
     s32 unknown_14;
-    s32 handles[256];
+    void *handles[256];
     s32 handle_count;
     s32 callback;
     s32 callback_context;
@@ -57,7 +57,7 @@ typedef char BmlResource_model_count_offset[offsetof(BmlResource, model_count) =
 
 // Callers allocate the storage. A constructor's implicit this, and a static
 // member's emission order, both miss the original .text layout.
-BmlResource *init_from_id_lists(BmlResource *self, s32 kind, u32 *models, u32 *motions, s32 on_loaded,
+BmlResource *init_from_id_lists(BmlResource *self, s32 kind, void **models, void **motions, s32 on_loaded,
                                 s32 on_loaded_arg, void *load_buffer);
 
 #endif

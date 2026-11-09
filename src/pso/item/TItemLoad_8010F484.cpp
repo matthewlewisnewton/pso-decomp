@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/item/TUnk_8049F3F4.h"
 #include "pso/TItemLoad.h"
+#include "pso/item/TUnk_8049F42C.h"
 
 extern "C" {
 
@@ -20,18 +21,18 @@ void *TUnk_8049F3F4::init(void *arg1, void *arg2, void *arg3, void *arg4) {
     return this;
 }
 
-extern void *item_texture_archive_loader;
-extern void *item_model_chunk_loader;
+extern TUnk_8049F42C *item_texture_archive_loader;
+extern TUnk_8049F42C *item_model_chunk_loader;
 
 void TItemLoad::update_all() {
-    void *temp_r3;
+    TUnk_8049F42C *temp_r3;
     temp_r3 = item_texture_archive_loader;
     if (temp_r3 != 0) {
-        ((TItemLoad *)temp_r3)->update_state();
+        temp_r3->update_state();
     }
     temp_r3 = item_model_chunk_loader;
     if (temp_r3 != 0) {
-        ((TItemLoad *)temp_r3)->update_state();
+        temp_r3->update_state();
     }
 }
 
