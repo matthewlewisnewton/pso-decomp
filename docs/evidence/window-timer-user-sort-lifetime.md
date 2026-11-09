@@ -92,6 +92,24 @@ inventory passes. Against fresh main fe6cdb141, the combined PR retains
 +600 matched code, +1,220 linked code and +688 matched/linked data bytes.
 The existing nine qualified four-byte gaps remain the only coverage loss.
 
+## Current-main integration
+
+After this recovery, main advanced through the network-runtime merge
+`72dc809d404cba656837da561eeaee010705ce74` and README-only follow-up
+`18207f98696bab4911ca2cecac1c19381e2ea506`. Both are normally merged.
+A separate main worktree verifies the original DOL and its own check_pr:
+27,385 exact functions and 3,585 exact linked units. The integrated PR's
+full build and incremental checks retain both newly exact network functions,
+its 8,344 linked code bytes, 7,928 linked data bytes and source-linked unit.
+The network runtime's existing scoped controls and qualifications come from
+main; this lifetime family adds none.
+
+On current main, the PR has 27,386 exact functions and 3,587 exact linked
+units. Retention is clean at 17,712 entries and the porting inventory passes.
+The original DOL hash is unchanged. Relative gains remain +600 matched code,
++1,220 linked code and +688 matched/linked data bytes, with the same nine
+qualified alignment gaps. Main's README-only follow-up changes no build input.
+
 ## Remaining holds
 
 Two Base construction/cleanup pairs leave the raw interface, reducing it to

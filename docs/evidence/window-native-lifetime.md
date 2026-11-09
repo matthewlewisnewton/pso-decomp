@@ -234,6 +234,11 @@ tab-helper receiver/context contract are coordinated. Two naturally aligned
 compiler tables add 48 bytes, removing four more raw Base calls while
 preserving the original remainder and unrelated ownership/interface holds.
 
+The Timer/UserSort checkpoint normally integrates main's network-runtime
+recovery and README follow-up through `18207f986`, preserving its two new
+exact functions and source-linked unit. Current qualification retains 27,386
+exact functions, 3,587 exact linked units and clean retention at 17,712 names.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration
