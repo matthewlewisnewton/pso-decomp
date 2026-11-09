@@ -3,8 +3,9 @@
 `TQuestVmDownLoadServer__sub_803E95BC` (`0x803E95BC`, 424 original bytes)
 rotates an encoded-name cache page, unlinks its indexed records, returns
 their nodes to the existing free list, and invalidates cached IDs for the
-selected page. This is a partial C++ recovery: **90.18868%, 428 compiled
-bytes**, adding no exact function or source-linked coverage.
+selected page. This is a partial C++ recovery: **90.330185% in the standard
+report, 428 compiled bytes**, adding no exact function or source-linked
+coverage. The relocation-sensitive probe scores 90.18868%.
 
 ## Interface and real storage
 
@@ -63,8 +64,9 @@ object, producing another symbol/base reference. Its stack frame,
 name-buffer position and register choices also differ. No dummy storage,
 pragma change or false enclosing object is used to imitate that layout.
 
-Three honest link formulations were measured. The pointer-to-pointer
-lvalue retained here scores 90.18868% at 428 bytes. Direct conditional stores
+Three honest link formulations were measured with
+`functionRelocDiffs=data_value`. The pointer-to-pointer lvalue retained here
+scores 90.18868% at 428 bytes in that probe. Direct conditional stores
 score 80.896225% at 428 bytes; a reference lvalue scores 89.71698% at 424
 bytes. All preserve the 159 exact functions and the DC20/F03B4 scores.
 Equal extent does not establish exactness; these bounded results do not
