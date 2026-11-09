@@ -946,6 +946,7 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `LaunchDol` | `pso/unk/text_8042E8C4.cpp` | `src/pso/unk/text_8042E8C4.cpp` | [#172](https://github.com/zeroz41/pso-decomp/pull/172) | asm | [#350](https://github.com/matthewlewisnewton/pso-decomp/pull/350) | upstream catch-up, rewrite later |
 | `TEffStarLight2D` `#pragma defer_codegen on` | `pso/effect/TEffStarLight2D_Base.cpp` | `src/pso/effect/TEffStarLight2D_Base.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
 | `TObjDFDemo5` `#pragma defer_codegen on` | `pso/object/TObjDFDemo5.cpp` | `src/pso/object/TObjDFDemo5.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `__ct__20TAdLoadQuestPrtTxtGCFP7TObjectl` | `pso/unk/text_8034A090.cpp` | `src/pso/unk/text_8034A090.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | extern "C" mangled name | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
 
 
 | `RecoveredGlobal_8001B3BC_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
