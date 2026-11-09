@@ -237,3 +237,23 @@ the incoming OS network-runtime unit stays 53/53; both remain exact and linked.
 Host vector and item-factory tests and the exception inventory pass. The
 earlier failed metadata write is not retried by this refresh; keep the PR
 draft while its latest source checks and readiness are verified.
+
+## PPPoE main refresh
+
+Main advanced to `224eb99838471c243b20c305eddac75e7ff76c8f` through #370.
+The remote PR head was still `46ee82d720db5f04c33b13ea4e767b285abaf22b`,
+with no other active owner. This merge was clean: only main's PPPoE recovery,
+metadata and associated `s16 post_send_message` contract were added. The
+member declaration, C-linkage declaration and definition consistently use
+`s16`; #303's shared DHCP/BML contracts are unchanged. All 180 model-accessor
+source consumers still include the canonical header without accessor aliases.
+
+Both the fresh main baseline and continuation reproduce the original DOL
+hash and pass `check_pr.py`, retention and exception-inventory checks. The
+continuation has 27,389 exact functions, 4,191,812 matched code bytes and
+1,470,247 matched data bytes: +3 functions, +2,180 code bytes and +88 data
+bytes against main, with no regressions or coverage losses. Complete code
+and data increase by 12,220 and 4,888 bytes. All 3,586 linked units are exact;
+retention has 17,672 entries with no missing/stale entries. PPPoE remains
+20/20 and message transport 26/26, exact and linked. Host vector and item-
+factory tests pass. The failed metadata write is not retried by this refresh.

@@ -720,6 +720,16 @@ force_active:
   - TLobby__sub_80426190
   - TLobby__sub_804262CC
   - TLobby__sub_80426AAC
+  - TLobby__sub_80426D80
+  - TLobby__sub_80426EB8
+  - TLobby__sub_804270C0
+  - TLobby__sub_80427240
+  - TLobby__sub_80427378
+  - TLobby__sub_804275B0
+  - TLobby__sub_8042787C
+  - TLobby__sub_80427988
+  - TLobby__sub_80427B6C
+  - TLobby__sub_80427C6C
   - TLobby__sub_80428830
   - TLobby__sub_80428A38
   - TLobby__sub_80428BB0
@@ -4231,6 +4241,7 @@ force_active:
   - build_discover__11DhcpMessageFv
   - build_door_collision_triangles__18TObjCityDoor_LobbyFv
   - build_download_list__12TQuestListVMFv
+  - build_ethernet_frame_header__6TLobbyFPvPvUsUcUsUs
   - build_item_list__19TShopItemListWindowFPv
   - build_item_list__23TShopJudgmentItemWindowFPv
   - build_menu__19TWindowSubShortMailFv
@@ -8633,6 +8644,7 @@ force_active:
   - lobby_make_team_window
   - lobby_net_channel_table
   - lobby_net_recv_desc
+  - lobby_pppoe_slot_table
   - lobby_pulse_color_table
   - lobby_pumpkin_resource_descriptor
   - lobby_selected_game_list_index
@@ -9112,6 +9124,7 @@ force_active:
   - parse_pad_event__16TKeyBoardControlFlUl
   - parse_r_index
   - parse_tag_command__24TMessageWindowControllerFv
+  - parse_tlv_records__6TLobbyFlPUcUs
   - particle_regular_bml_descriptor
   - particle_sprite_atlas_uv_rects
   - particle_texture_id_table
@@ -17664,6 +17677,7 @@ force_active:
   - write_item_data__14TItemProShieldFP9TItemData
   - write_item_data__8TItemMagFP9TItemData
   - write_memcard_file__22TQuestVmDownLoadServerFv
+  - write_name_field__6TLobbyFPlPUc
   - write_node_flags__FP10NJS_OBJECT
   - write_quest_data__22TQuestVmDownLoadServerFv
   - write_quest_data_named__22TQuestVmDownLoadServerFv
