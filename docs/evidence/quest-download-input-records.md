@@ -74,6 +74,26 @@ reviewed as a bounded continuation. Earlier private work at
 older dependency stack, propagation pragma and historical behavior tests
 are not imported or treated as validation of this composition.
 
+### Follow-up on the published source
+
+At source checkpoint `dc0f10db1`, seven changed data-flow variants plus the
+unchanged control tested shared zero resets, a word-sized conversion result
+with a low-halfword test, an explicit mask, and combinations of these forms.
+Most reproduced the same 388-byte, 94.41237% body. The redundant explicit
+mask produced 392 bytes at 93.329895%. No variant was adopted, no shared
+converter interface was widened, and no impossibility claim follows.
+
+A fresh bounded comparison of the actual original/current instructions and
+an independent append model passed 3,000 initialized valid states: 1,951
+successes and 1,049 errors, including 639 errors retaining partial writes.
+It compared complete data memory, native/source stack bytes, provider calls,
+SP restoration and nonvolatile registers. It uses the actual character-pair
+conversion formula and a bounded opaque code-mapper callback. This is not
+full-provider, malformed-state, exhaustive safety, exactness or linkage proof.
+The private control's allocated bytes match the previously validated native
+checkpoint; historical tests from the frozen stack are not substituted for
+this new run.
+
 The containing unit remains incomplete and unlinked. This input recovery
 does **not** clear the separate search pointer-sentinel decision documented
 in [quest-download-search-evidence.md](quest-download-search-evidence.md).

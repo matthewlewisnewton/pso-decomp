@@ -51,6 +51,7 @@ guides.
 - [Player target-candidate evidence (work in progress)](player-target-candidate-evidence.md)
 - [Projectile entity-ID contract](pr100-projectile-id.md)
 - [Quest-download input records and partial text append](quest-download-input-records.md)
+- [Quest-download cache-page rotation (partial)](quest-download-cache-rotation.md)
 - [Shared scratch vector storage](scratch-vector-evidence.md)
 - [Symbol chat parts recovery (WIP)](symbol-chat-parts-recovery-evidence.md)
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)

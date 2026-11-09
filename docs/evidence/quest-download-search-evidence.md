@@ -190,5 +190,7 @@ from these negative results.
 
 The separate input-record and partial DC20 continuation is documented in
 [quest-download-input-records.md](quest-download-input-records.md). The unit
-remains 159/173 exact and unlinked; defining DC20 at 94.41237% leaves twelve
-undefined functions and two inexact functions, including `sub_803F03B4`.
+remains 159/173 exact and unlinked. DC20 remains 94.41237%; the separate
+[cache-page rotation recovery](quest-download-cache-rotation.md) defines
+`sub_803E95BC` at 90.18868%. Eleven functions remain undefined and three are
+inexact, including `sub_803F03B4`.

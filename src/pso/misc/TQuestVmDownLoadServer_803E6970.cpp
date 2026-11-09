@@ -285,6 +285,9 @@ extern u8 lbl_80591AC4[];
 extern s32 lbl_805D7820;
 extern s32 quest_download_ask_header_size;
 extern s32 quest_download_header_name_index_hi_count;
+extern u8 *lbl_805D786C;
+extern u8 *lbl_805D7870;
+extern QuestDownloadCachedNameNode *lbl_805D7878;
 extern s32 lbl_805D7874;
 extern s32 lbl_805D78FC;
 void append_message_text__22TQuestVmDownLoadServerFPviPvUc(u8 *arg0, s32 arg1, Msg_803E90A8 *arg2, u8 arg3);
@@ -1779,6 +1782,68 @@ s32 TQuestVmDownLoadServer::calc_message_length() {
     return n + 3;
 }
 #pragma pop
+
+// Rotate the encoded-name cache page and return its indexed nodes to the
+// existing free list. Requires valid bounded records and a consistent index.
+void TQuestVmDownLoadServer__sub_803E95BC(void) {
+    char name[0x50];
+    u8 *record;
+    u8 len;
+    s16 wanted;
+    s32 bucket;
+    QuestDownloadCachedNameNode *node;
+    QuestDownloadCachedNameNode *previous;
+    QuestDownloadCachedNameNode **link;
+
+    *lbl_805D7870++ = 0;
+    *lbl_805D7870++ = 0;
+    lbl_805D7874 = (lbl_805D7874 + 1) % 8;
+    lbl_805D7870 = lbl_80591EC8 + lbl_805D7874 * 0x400;
+    lbl_805D786C = lbl_805D7870 + 0x400;
+    for (record = lbl_805D7870;
+         (u16)(record[0] + (record[1] << 8)) != 0;
+         record += (u16)(record[0] + (record[1] << 8))) {
+        len = record[2];
+        if ((s16)len != 0) {
+            strncpy(name, (const char *)(record + 3), (s16)len);
+            previous = NULL;
+            name[(s16)len] = 0;
+            u8 first = (u8)name[0];
+            if (first >= 0xA0 && first < 0xF0) {
+                bucket = first - 0xA0;
+            } else {
+                bucket = 0;
+            }
+            node = lbl_80593EC8.heads[bucket];
+            wanted = (s16)len;
+            for (; node != NULL; node = node->next) {
+                u8 *indexed = node->encodedRecord;
+                len = indexed[2];
+                s32 comparison = strncmp((const char *)(indexed + 3), name, (s16)len);
+                if (comparison == 0) {
+                    if (wanted == (s16)len) {
+                        break;
+                    }
+                } else if (comparison > 0) {
+                    break;
+                }
+                previous = node;
+            }
+            if (previous == NULL) {
+                link = &lbl_80593EC8.heads[bucket];
+            } else {
+                link = &previous->next;
+            }
+            // The native code also requires a non-null stopping node here.
+            if (node->encodedRecord == record) {
+                *link = node->next;
+                node->next = lbl_805D7878;
+                lbl_805D7878 = node;
+            }
+        }
+    }
+    TQuestVmDownLoadServer::clear_entries_by_id(lbl_805D7874);
+}
 
 u8 *TQuestVmDownLoadServer::get_buffer_ptr(s32 arg0) {
     return lbl_80591EC8 + ((s16) (arg0 >> 0xC) << 0xA) + (s16) (arg0 & 0xFFF);
