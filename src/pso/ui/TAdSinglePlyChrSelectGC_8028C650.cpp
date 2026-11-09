@@ -7,18 +7,17 @@
 extern "C" {
 
 void TAdSinglePlyChrSelectGC::start_character_load_task() {
-    u32 var_r31;
+    BmlResource *loaded;
 
     if ((TLobby::tmp_buf_is_free() != 0) && (this->try_acquire_slot() != 0)) {
-        var_r31 = (int)::operator new(0x440);
-        if (var_r31 != 0U) {
-            var_r31 = (u32)init_from_id_lists((BmlResource *)var_r31, 6, (u32 *)(((u8 *)this) + 0x60),
-                                                          (u32 *)(((u8 *)this) + 0x64), 0, 0,
-                                                          (void *)((TLobby *)(this->m_24))->start_load_default());
+        loaded = (BmlResource *)::operator new(0x440);
+        if (loaded != NULL) {
+            loaded = init_from_id_lists(loaded, 6, &this->model_ids, &this->motion_ids, 0, 0,
+                                        this->m_24->start_load_default());
         }
-        *(u32 *)((s8 *)((u8 *)this) + 0x68) = var_r31;
-        if (var_r31 != 0U) {
-            *(s32 *)((s8 *)((u8 *)this) + 0x74) = 0x12C;
+        this->loaded_bml = loaded;
+        if (loaded != NULL) {
+            this->load_timeout = 0x12C;
             this->m_2c = 1;
         }
     }

@@ -2,6 +2,7 @@
 #include "pso/item/TUnk_8049F3F4.h"
 #include "pso/item/TItemLoad_8010F3D8.h"
 #include "pso/TItemLoad.h"
+#include "pso/item/TUnk_8049F42C.h"
 
 extern "C" {
 
@@ -10,8 +11,8 @@ s32 __dt__7TObjectFv(void *, s32);
 s32 free_texture_if_valid(void *, void *);
 
 extern s32 lbl_8049F3F4[];
-extern s32 item_texture_archive_loader;
-extern s32 item_model_chunk_loader;
+extern TUnk_8049F42C *item_texture_archive_loader;
+extern TUnk_8049F42C *item_model_chunk_loader;
 
 void *__dt__13TUnk_8049F3F4Fv(void *arg0, s16 arg1) {
     void **temp_r3;
@@ -20,10 +21,10 @@ void *__dt__13TUnk_8049F3F4Fv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = lbl_8049F3F4;
         switch (((TUnk_8049F3F4 *)arg0)->m_20) {
         case 2:
-            ((TItemLoad *)item_model_chunk_loader)->reset_ring_state();
+            item_model_chunk_loader->reset_ring_state();
             break;
         case 3:
-            ((TItemLoad *)item_texture_archive_loader)->reset_ring_state();
+            item_texture_archive_loader->reset_ring_state();
             break;
         }
         temp_r3 = *(void ***)((s8 *)arg0 + 0x3C);

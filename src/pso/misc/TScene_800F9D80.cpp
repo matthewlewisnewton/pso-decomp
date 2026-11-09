@@ -4,6 +4,6 @@
 
 extern "C" {
 
-int TScene::update_lobby_scene() { return TLobby::get_resource_file_size((const char *)this); }
+int TScene::update_lobby_scene(const void *name) { return TLobby::get_resource_file_size(name); }
 
 }
