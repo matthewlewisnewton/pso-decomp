@@ -2516,6 +2516,7 @@ force_active:
   - __dt__19TObjEneEpsilonGuardFv
   - __dt__19TObjStendGlassLobbyFv
   - __dt__19TQuestListChallengeFv
+  - __dt__19TWindowMenuMainMenuFv
   - __dt__19TWindowMessageYesNoFv
   - __dt__19TWindowSubMagPhotonFv
   - __dt__20TAdChrSelMovePlateGCFv
@@ -3126,6 +3127,7 @@ force_active:
   - __vt__19TPlayerBattleCtrl4P
   - __vt__19TQuestListChallenge
   - __vt__19TTecPlayerInfluence
+  - __vt__19TWindowMenuMainMenu
   - __vt__19TWindowMessageYesNo
   - __vt__19TWindowSubMagPhoton
   - __vt__20TAdChrSelMovePlateGC
@@ -14095,6 +14097,7 @@ force_active:
   - render__19TObjStendGlassLobbyFv
   - render__19TTecPlayerInfluenceFv
   - render__19TWindowMenuIconLineFv
+  - render__19TWindowMenuMainMenuFv
   - render__19TWindowMessageYesNoFv
   - render__19TWindowSubMagPhotonFv
   - render__20TAdChrSelMovePlateGCFv
@@ -14773,6 +14776,7 @@ force_active:
   - run_task__19TObjStendGlassLobbyFv
   - run_task__19TPlayerBattleCtrl4PFv
   - run_task__19TTecPlayerInfluenceFv
+  - run_task__19TWindowMenuMainMenuFv
   - run_task__19TWindowMessageYesNoFv
   - run_task__19TWindowSubMagPhotonFv
   - run_task__20TAdChrSelMovePlateGCFv
@@ -17602,6 +17606,7 @@ force_active:
   - window_duel_result_class_name
   - window_duel_result_descriptor
   - window_label_value_part_vtable
+  - window_menu_main_menu_params
   - window_sub_game_end_active_flag
   - window_uv_sprite_part_vtable
   - wolf_stat_handle_a_table

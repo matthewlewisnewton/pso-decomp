@@ -43,7 +43,7 @@ struct TWindowMainMenu : public TObject {
     void render();
     void run_task();
     static void set_entry_field_20(s32 arg0, s32 arg1);
-    static void *create_menu(void *arg0, void *arg1);
+    static void *create_menu(void *position, s32 client);
     void open_menu_with_entry(s16 arg1);
     void try_open_battle_menu(s16 arg1);
     s32 filter_menu_entry(s16 *arg1, s32 *arg2);

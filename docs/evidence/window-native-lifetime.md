@@ -177,6 +177,13 @@ contributions remain unchanged; retention is clean at 17,607 entries.
 The subsequent typed file-API main `6e880491f` is also normally merged and
 qualified against a fresh baseline, preserving these results and main's types.
 
+The [main-menu window recovery](window-main-menu-lifetime.md) subsequently
+removes another raw Base construction/cleanup pair, with a consistent word
+client contract and compiler-owned descriptor/table. It adds 44 matched and
+linked data bytes while preserving code and exact linked units. The specific
+task-global second-word audit is recorded in the task ownership note; it does
+not assign that unreferenced word a source owner.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

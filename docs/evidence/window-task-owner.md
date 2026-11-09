@@ -34,6 +34,18 @@ observed pointer occupies the first word; the second word is not recovered
 or silently consumed. The character-selection reset still clears only the
 observed pointer. The already matching task update body is preserved.
 
+An additional audit at checkpoint `6af091722` scanned 4,982 original split
+ELFs. Five direct relocations target this symbol: four in the task unit and
+one in the character-selection reset. All are SDA21 references with addend
+zero; none targets the second word at `0x805D5D94`. The containing `.sbss`
+section is NOBITS, so that word is initially zero by BSS semantics, not a
+stored original word. Its eight-byte symbol size and `.skip 8` are generated
+from catalog metadata and do not independently prove an eight-byte source type.
+The next pointer starts at `0x805D5D98`; four-byte pointer alignment does not
+require the intervening word. Unknown original section boundaries or computed
+accesses remain possible. These findings do not prove padding or a second
+pointer, so the range and unclaimed word are preserved.
+
 Complete unrelocated text is identical for both relevant units:
 
 | Source unit | Original and recovered bytes |

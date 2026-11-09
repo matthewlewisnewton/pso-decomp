@@ -65,7 +65,6 @@ struct Win_802649C0 {
 
 extern "C" {
 s32 get_window_layout_position(int);
-u32 create_menu__15TWindowMainMenuFPvPv(void *, int);
 u8 * __dt__7TObjectFv(void *, s16);
 void *get_player_by_client_id(s32 i);
 void __dl__7TObjectFPv(s32);
@@ -97,7 +96,7 @@ void TWindowMainMenu::close() { if (*(unsigned int*)((char*)this + 0x1c) != 0) {
 void TWindowMainMenu::open_menu_with_entry(s16 arg1) {
     TWindowMenuMainMenu *menu;
     if ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x1C) == 0U) {
-        *(u32 *)((s8 *)((u8 *)this) + 0x1C) = create_menu__15TWindowMainMenuFPvPv((void *)(get_window_layout_position(0x1A)), (int) (*(s32 *)((s8 *)((u8 *)this) + 0x54)));
+        *(u32 *)((s8 *)((u8 *)this) + 0x1C) = (u32)TWindowMainMenu::create_menu((void *)(get_window_layout_position(0x1A)), (int) (*(s32 *)((s8 *)((u8 *)this) + 0x54)));
     }
     menu = m_1c;
     menu->append_child_rows(arg1);
@@ -112,7 +111,7 @@ void populate_menu__15TWindowMainMenuFPvPv(u8 *window_main_menu, Ent_802646E4 *a
     TWindowMenuMainMenu *w;
     s32 d;
     if (*(u32 *)(window_main_menu + 0x1C) == 0) {
-        *(u32 *)(window_main_menu + 0x1C) = create_menu__15TWindowMainMenuFPvPv((void *)get_window_layout_position(0x1A), *(s32 *)(window_main_menu + 0x54));
+        *(u32 *)(window_main_menu + 0x1C) = (u32)TWindowMainMenu::create_menu((void *)get_window_layout_position(0x1A), *(s32 *)(window_main_menu + 0x54));
         *(s32 *)(window_main_menu + 0x48) = 0x1F;
     }
     w = ((TWindowMainMenu *)window_main_menu)->m_1c;

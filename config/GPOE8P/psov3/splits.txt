@@ -10005,6 +10005,7 @@ pso/misc/TWindowMainMenu_802AD538.cpp:
 
 pso/misc/TWindowMenuMainMenu.cpp:
 	.text       start:0x802AE730 end:0x802AE928
+	.data       start:0x804DE3C8 end:0x804DE3F4
 
 pso/misc/TWindowMainMenu_802AE928.cpp:
 	.text       start:0x802AE928 end:0x802AE978
