@@ -191,7 +191,7 @@ void remove_short_mail_by_id(u32 id) {
 void remove_entry_at__6TLobbyFi(s32 idx) {
     if (idx < 7) {
         L_80225AD8 *p = &((L_80225AD8 *)&lbl_80513F70)[idx];
-        ((TLobby *)p)->move_words((u32 *)(p + 1), (s32)((void *)(((7 - idx) * sizeof(L_80225AD8)) >> 2)));
+        move_words(p, p + 1, ((7 - idx) * sizeof(L_80225AD8)) >> 2);
     }
     ((L_80225AD8 *)&lbl_80513F70)[7].flags &= ~1;
     (*(s32 *)&lobby_short_mail_entry_count) = (*(s32 *)&lobby_short_mail_entry_count) - 1;

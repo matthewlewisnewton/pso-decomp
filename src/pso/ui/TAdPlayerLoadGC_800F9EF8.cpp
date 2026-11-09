@@ -9,8 +9,8 @@ void *destroy__13TUnk_8049C658Fs(void *p, s16 flag);
 void __register_global_object(void *obj, void *dtor, void *link);
 extern u8 resource_load_task_root[];
 extern u8 resource_load_task_root_dtor_registration[];
-extern s32 lbl_805D2B10;
-extern s32 disc_read_filename;
+extern const void *lbl_805D2B10;
+extern const void *disc_read_filename;
 
     extern int TAdPlayerLoadGC__load_state;
 void TAdPlayerLoadGC::set_state(int a0) { TAdPlayerLoadGC__load_state = a0; }

@@ -11,7 +11,6 @@ const char *lbl_805D3B58 = "TChCrLoadGmNjReq";
 
 extern "C" {
 s32 queue_destruction__7TObjectFv();
-s32 update_model_load__6TLobbyFv();
 s32 start_character_load_task__23TAdSinglePlyChrSelectGCFv();
 struct VOff_8028C7BC_arg0_8028C6EC { char pad_0[0x30]; char f_30[1]; };
 
@@ -35,15 +34,15 @@ void TChCrLoadGmNjReq::run_task() {
         start_character_load_task__23TAdSinglePlyChrSelectGCFv();
         return;
     case 1:
-        update_model_load__6TLobbyFv();
+        update_model_load();
         return;
     }
 }
 
 TChCrLoadGmNjReq::~TChCrLoadGmNjReq() {
     sub_8028C8A8();
-    if (m_68 != nullptr) {
-        delete (BmlResource *)(m_68);
+    if (loaded_bml != nullptr) {
+        delete loaded_bml;
     }
 }
 void *TChCrLoadGmNjReq__ct(void *ch_cr_load_gm_nj_req, void *arg1, void *arg2) {
@@ -56,7 +55,7 @@ void *TChCrLoadGmNjReq__ct(void *ch_cr_load_gm_nj_req, void *arg1, void *arg2) {
     *(void **)((s8 *)ch_cr_load_gm_nj_req + 0x1C) = *(void **)((s8 *)arg2 + 0x4);
     ((TChCrLoadGmNjReq *)ch_cr_load_gm_nj_req)->m_20 = *(void **)((s8 *)arg2 + 0xC);
     strncpy(self->f_30, *(void **)((s8 *)arg2 + 0x0), 48);
-    ((TChCrLoadGmNjReq *)ch_cr_load_gm_nj_req)->m_60 = self->f_30;
+    ((TChCrLoadGmNjReq *)ch_cr_load_gm_nj_req)->model_ids = self->f_30;
     *(u32 *)((s8 *)ch_cr_load_gm_nj_req + 0x64) = 0;
     *(u32 *)((s8 *)ch_cr_load_gm_nj_req + 0x68) = 0;
     *(u32 *)((s8 *)ch_cr_load_gm_nj_req + 0x6C) = 0;
