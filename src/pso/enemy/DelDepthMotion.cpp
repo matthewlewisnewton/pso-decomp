@@ -133,7 +133,7 @@ void DelDepthMotion::set_motion(s32 arg1) {
     } else if (id < 0xA) {
         s32 data = (s32)TObjEneDelDepth::get_data();
         DelDepthMotionBinding *e = &lbl_804E8760[motion] - 6;
-        model = (void *)(s32)get_bml_model((BmlResource *)data, 1);
+        model = (void *)get_bml_model((BmlResource *)data, 1);
         texture = TObjFish__sub_8001EDB0(data, 1);
         animation = (AnimationMotion *)get_bml_motion(data, e->motion);
         endFrame = animation->frameCount;
@@ -143,11 +143,11 @@ void DelDepthMotion::set_motion(s32 arg1) {
         s32 data = (s32)TObjEneDelDepth::get_data();
         DelDepthPairBinding *e = &lbl_804E8780[motion] - 10;
         DelDepthModelMotion *q;
-        model = (void *)(s32)get_bml_model((BmlResource *)data, e->first.model);
+        model = (void *)get_bml_model((BmlResource *)data, e->first.model);
         texture = TObjFish__sub_8001EDB0(data, e->first.model);
         animation = (AnimationMotion *)get_bml_motion(data, e->first.motion);
         q = &e->second;
-        secondModel = (void *)(s32)get_bml_model((BmlResource *)data, q->model);
+        secondModel = (void *)get_bml_model((BmlResource *)data, q->model);
         secondTexture = TObjFish__sub_8001EDB0(data, q->model);
         secondAnimation = (AnimationMotion *)get_bml_motion(data, q->motion);
         endFrame = secondAnimation->frameCount;

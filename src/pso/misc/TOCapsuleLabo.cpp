@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -43,7 +44,7 @@ void TOCapsuleLabo::load_resources() {
     NJS_OBJECT *root;
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_obj_labo_infocapsule_resource_descriptor), 0, 0, (void *)(0));
     model_resource = resource;
-    root = (NJS_OBJECT *)get_bml_model(resource, 0);
+    root = get_bml_model(resource, 0);
     if (root != NULL) {
         light_node = find_object_node(root, 3);
     }

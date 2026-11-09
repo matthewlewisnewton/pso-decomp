@@ -262,7 +262,7 @@ void *TObjComputer__ct(void *arg0, void *parent, void *row) {
         self->selector = 1;
     }
     if (TObjComputer__model_archive != 0U) {
-        self->model = (void *)(s32)get_bml_model((BmlResource *)TObjComputer__model_archive, TObjComputer__data_805DBCD8[self->selector]);
+        self->model = (void *)get_bml_model((BmlResource *)TObjComputer__model_archive, TObjComputer__data_805DBCD8[self->selector]);
     } else {
         queue_destruction__7TObjectFv(self);
         return self;

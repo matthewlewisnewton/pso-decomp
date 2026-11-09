@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"

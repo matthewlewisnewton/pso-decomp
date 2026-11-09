@@ -139,12 +139,12 @@ void TObjLazerFenceExtra::init_models() {
     Node_80192434 *node;
     s32 j;
     if (*(s32 *)&this->set_params[2] % 2 == 0) {
-        arg0->fBC = (Node_80192434 *)(s32)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 1);
-        arg0->fC0 = (Node_80192434 *)(s32)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 0);
+        arg0->fBC = (Node_80192434 *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 1);
+        arg0->fC0 = (Node_80192434 *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 0);
         this->m_c4 = get_bml_motion(lazer_fence_norm_bml_resource, 0);
     } else {
-        arg0->fBC = (Node_80192434 *)(s32)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 3);
-        arg0->fC0 = (Node_80192434 *)(s32)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 2);
+        arg0->fBC = (Node_80192434 *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 3);
+        arg0->fC0 = (Node_80192434 *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 2);
         this->m_c4 = get_bml_motion(lazer_fence_norm_bml_resource, 1);
     }
     for (j = 0; j < 4; j++) {

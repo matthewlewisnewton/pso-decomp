@@ -1495,7 +1495,7 @@ void TUnk_80486924::draw_hanger() {
             model_render_flags |= 0x20000;
             TObjEneRe4Sorcerer__sub_801E3F1C(0.0f, arg0->f3c0);
             ((ModelNodePositionCapture *)(arg0->f44c))->install();
-            draw_model_motion((void *)(s32)get_bml_model((BmlResource *)arg0->f390, boss4_zanzo_bml_index_table[i]),
+            draw_model_motion((void *)get_bml_model((BmlResource *)arg0->f390, boss4_zanzo_bml_index_table[i]),
                 (void *)get_bml_motion(arg0->f390, (s32)(((Row_80057270 *)&TBoss4Type2__attack_pattern_table)[arg0->f3c8].c[i])),
                 arg0->f3d0);
             ((ModelNodePositionCapture *)(arg0->f44c))->clear();
@@ -1503,7 +1503,7 @@ void TUnk_80486924::draw_hanger() {
             break;
         default:
             TBoss6PlotFalz__sub_802AC008(arg0->f3f0, arg0->f3f4);
-            draw_model_motion((void *)(s32)get_bml_model((BmlResource *)arg0->f390, boss4_zanzo_bml_index_table[i]),
+            draw_model_motion((void *)get_bml_model((BmlResource *)arg0->f390, boss4_zanzo_bml_index_table[i]),
                 (void *)get_bml_motion(arg0->f390, (s32)(((Row_80057270 *)&TBoss4Type2__attack_pattern_table)[arg0->f3c8].c[i])),
                 arg0->f3d0);
             TBoss6PlotFalz::update_camera_target();

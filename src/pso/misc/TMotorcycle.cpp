@@ -119,8 +119,8 @@ void TMotorcycle::load_resources() {
     var_r0 = temp_r3;
     (*(u8 * *)&TMotorcycle__bml_resource) = (unsigned char *) ((void *) var_r0);
     (*(u8 * *)&TMotorcycle__texture_list) = load_gvm_texture_file((s32) &lbl_80445E18.value);
-    TMotorcycle::add_entry((s16)(0x3C), (s32)((void *) (((s32)(s32)get_bml_model((BmlResource *)((*(u8 * *)&TMotorcycle__bml_resource)), 0)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), lbl_805DBED8, lbl_805DBEDC);
-    TMotorcycle::add_entry((s16)(0x3D), (s32)((void *) (((s32)(s32)get_bml_model((BmlResource *)((*(u8 * *)&TMotorcycle__bml_resource)), 1)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), lbl_805DBED8, lbl_805DBEDC);
+    TMotorcycle::add_entry((s16)(0x3C), (s32)((void *) (((s32)get_bml_model((BmlResource *)((*(u8 * *)&TMotorcycle__bml_resource)), 0)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), lbl_805DBED8, lbl_805DBEDC);
+    TMotorcycle::add_entry((s16)(0x3D), (s32)((void *) (((s32)get_bml_model((BmlResource *)((*(u8 * *)&TMotorcycle__bml_resource)), 1)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), lbl_805DBED8, lbl_805DBEDC);
 }
 
 void *__dt__11TMotorcycleFv(void *arg0, s16 arg1) {

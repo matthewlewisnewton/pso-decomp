@@ -137,7 +137,7 @@ void TObjCamera::render() {
         rotate_matrix_y(0, this->rotation.yaw);
         camera_slot_scan_index = 0;
         set_model_node_callback((s32)TObjCamera::update_camera_slots);
-        draw_ginja_model_with_motion((void *)(s32)get_bml_model((BmlResource *)model_resource, 0),
+        draw_ginja_model_with_motion((void *)get_bml_model((BmlResource *)model_resource, 0),
                                      get_bml_motion(model_resource, 0), animation_frame);
         set_model_node_callback(0);
         pop_matrix();

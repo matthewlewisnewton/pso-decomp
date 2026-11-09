@@ -450,18 +450,18 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine(
         case 4:
         case 5:
         case 19:
-            model = (void *)(s32)get_bml_model((BmlResource *)lbl_805D5A50, 4);
+            model = (void *)get_bml_model((BmlResource *)lbl_805D5A50, 4);
             texlist = TObjFish__sub_8001EDB0(lbl_805D5A50, 4);
-            m_374 = (u32)(s32)get_bml_model((BmlResource *)lbl_805D5A50, 1);
+            m_374 = (u32)get_bml_model((BmlResource *)lbl_805D5A50, 1);
             m_378 = (u32)TObjFish__sub_8001EDB0(lbl_805D5A50, 1);
             break;
         case 15:
         case 16:
         case 17:
         case 18:
-            model = (void *)(s32)get_bml_model((BmlResource *)lbl_805D5A50, 5);
+            model = (void *)get_bml_model((BmlResource *)lbl_805D5A50, 5);
             texlist = TObjFish__sub_8001EDB0(lbl_805D5A50, 5);
-            m_374 = (u32)(s32)get_bml_model((BmlResource *)lbl_805D5A50, 0);
+            m_374 = (u32)get_bml_model((BmlResource *)lbl_805D5A50, 0);
             m_378 = (u32)TObjFish__sub_8001EDB0(lbl_805D5A50, 0);
             break;
         }

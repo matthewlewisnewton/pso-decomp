@@ -167,7 +167,7 @@ void TUnk_804B8DD0::render() {
             this->m_38 = 0;
         }
     }
-    bml_model = (u8 *)((s32)get_bml_model((BmlResource *)gogo_ball_bml_resource, 1));
+    bml_model = (u8 *)(get_bml_model((BmlResource *)gogo_ball_bml_resource, 1));
     if (bml_model != NULL) {
         if ((s32) this->m_28 != 0) {
             set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)lobby_gvm_texture_handles + 0x1C))));

@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjFish_8001ED90.h"
@@ -55,7 +56,6 @@ public:
 
 extern "C" {
 s32 queue_destruction__7TObjectFv(void *, int, int);
-u32 get_bml_model(int, int);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__22TChCrLoadAfsTextureReq[];
 extern void *lbl_805D3B50;
@@ -248,7 +248,7 @@ void TLobby::update_model_load() {
             *(s32 *)((s8 *)((u8 *)this) + 0x74) = 0x12C;
         }
     } else if (fn_8001ED90((void *)(*(u32 *)((s8 *)((u8 *)this) + 0x68))) != 0) {
-        bml_model = get_bml_model((int) (*(u32 *)((s8 *)((u8 *)this) + 0x68)), 0);
+        bml_model = ((u32)get_bml_model((BmlResource *)(*(u32 *)((s8 *)((u8 *)this) + 0x68)), 0));
         **(u32 **)((s8 *)((u8 *)this) + 0x1C) = bml_model;
         if (bml_model != 0U) {
             ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)))->alloc_load_buffer((int) (TLobby__sub_8001ED88((void *)(*(u32 *)((s8 *)((u8 *)this) + 0x68)))));

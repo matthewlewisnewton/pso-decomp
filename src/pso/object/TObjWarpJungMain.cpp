@@ -166,7 +166,7 @@ void TObjWarpJungMain::render() {
         push_matrix();
         post_translate_matrix((u8 *)arg0 + 0x38);
         rotate_matrix_y(0, *(s32 *)((s8 *)arg0 + 0x60));
-        draw_ginja_object((void *)((s32)get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, 0)));
+        draw_ginja_object((void *)(get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, 0)));
         TParticleCtrl::begin_effect_render();
         draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, 1), *(s32 *)&warp_jung_beam_motion, *(f32 *)((s8 *)arg0 + 0xC4));
         TParticleCtrl::end_effect_render();

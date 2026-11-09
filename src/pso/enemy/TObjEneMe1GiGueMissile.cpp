@@ -129,7 +129,7 @@ void TObjEneMe1GiGueMissile::render() {
   set_current_texture_list((GinjaTextureList *)(((void *) (*((s32 *) (((s8 *) (*((u8 **) (((s8 *) (*(u8 * *)&TObjEneMe1GiGue_barrier_count)) + 0x42C)))) + 0x1C))))));
   set_motion_packed_rotation();
   bml_motion = get_bml_motion((void *) (*(u8 * *)&TObjEneMe1GiGue_barrier_count), 5);
-  draw_model_motion((void *) (s32)get_bml_model((BmlResource *)(*(u8 * *)&TObjEneMe1GiGue_barrier_count), 1), (void *)bml_motion, (f32) (*((f32 *) (((s8 *) arg0) + 0xBC))));
+  draw_model_motion((void *) get_bml_model((BmlResource *)(*(u8 * *)&TObjEneMe1GiGue_barrier_count), 1), (void *)bml_motion, (f32) (*((f32 *) (((s8 *) arg0) + 0xBC))));
   clear_motion_packed_rotation();
   TParticleCtrl::end_effect_render();
   pop_matrix();

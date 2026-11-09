@@ -144,7 +144,7 @@ TObjTombstone::TObjTombstone(TObject *parent, s32 client, TObjTombstoneSpot *spo
 
 void TObjTombstone::setup(s32 client, TObjTombstoneRecord *src) {
     this->texlist = TObjFish__sub_8001EDB0(TObjTombstone__shared_resource_object, 0);
-    this->model = (void *)(s32)get_bml_model(TObjTombstone__shared_resource_object, 0);
+    this->model = (void *)get_bml_model(TObjTombstone__shared_resource_object, 0);
     this->client_id = client;
     this->record = *src;
     VecCopy(&this->position, &this->record.position);

@@ -25,25 +25,37 @@ declarations; it does not claim that `volatile` provides thread synchronization.
 ## Floating constants
 
 The newly supplied MSL `float.c` defines `unsigned long` word arrays, as the
-existing MSL headers declare them. `strtoul.c` now uses those word-array
-declarations and explicitly interprets the float bit patterns, following the
-existing `ansi_fp.c` convention. It no longer declares the same objects as
-`float[]`. No constant bytes or target arithmetic change.
+existing MSL headers declare them. Both `strtoul.c` and `render_util_tail.cpp`
+now use those word-array declarations and explicitly interpret the float bit
+patterns, following the existing `ansi_fp.c` convention. No reader declares
+these objects as `float[]` or `const f32[]`. No constant bytes or target
+arithmetic change.
 
 ## BML model accessor
 
-An inventory found 142 `get_bml_model` declarations/definitions across 138
-source files: 121 `s32`, 5 `int`, 7 `u8 *`, 6 `void *`, and 3 `NJS_OBJECT *`.
-The definition and shared header returned `NJS_OBJECT *`, but local prototypes
-kept conflicting return/parameter types for that same C-linkage function.
+The definition and shared header returned `NJS_OBJECT *`, but callers used
+conflicting integer, void, byte-pointer and local node-pointer prototypes for
+that same C-linkage function. Macros and function-pointer casts also hid
+incompatible declarations, including one fabricated six-argument call.
 
-Callers now include `BmlResource.h` and use its single canonical declaration.
+All 179 source files referencing the accessor now directly include
+`BmlResource.h` and compile against its single canonical declaration.
 No local accessor prototype or incompatible accessor function-pointer cast
 remains. Legacy integer resource/model words use explicit conversions at
 their calls or storage boundaries; this does not invent new field types or
 claim that those words can hold pointers on a 64-bit port. Other accessor
 families are outside this change. No wrapper, alias, assembly, or compiler
 override is used to conceal the conflicting declarations.
+
+The dolphin loader at `0x802C2958` now copies the real `NpcAnimationBinding`
+object, replaces its motions pointer with `BmlResource::motions`, and supplies
+that local binding to `register_animated_chunk`. This produces the original
+four-word copy followed by its first-word overwrite. The old six-argument
+accessor cast merely forced the copy temporaries into registers `r5`–`r8`;
+those registers are not model-accessor arguments. The real two-argument call
+and native binding copy retain the exact 184-byte function with no compiler
+override or steering helper. The other Pigeon and Rafoie accessor casts/macros
+are also ordinary shared-header calls now.
 
 Two one-argument prototypes had hidden model-index arguments:
 
