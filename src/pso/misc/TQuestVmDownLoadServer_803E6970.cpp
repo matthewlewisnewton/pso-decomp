@@ -253,6 +253,9 @@ extern u16 quest_download_char_code_table[];
 s32 TQuestVmDownLoadServer__sub_803EC69C(int);
 extern u8 quest_name_index_table[1024][4];
 void __VIRetraceHandler(void);
+s32 TQuestVmDownLoadServer__sub_803E93DC(void);
+void TQuestVmDownLoadServer__sub_803E95BC(void);
+u32 aram_read_thunk__22TQuestVmDownLoadServerFUli(void *handle, void *dst, s32 size);
 QuestDownloadTextNode *detach_node_chain__22TQuestVmDownLoadServerFPv(QuestDownloadTextNode *p);
 QuestDownloadTextNode *advance_nodes__22TQuestVmDownLoadServerFPvi(QuestDownloadTextNode *p, s32 n);
 extern s32 lbl_805D78AC;
@@ -1458,9 +1461,10 @@ s32 TQuestVmDownLoadServer__sub_803E8788(int _w0, void * _w1, int _w2) {
     return -1;
 }
 
-u32 TQuestVmDownLoadServer::aram_read_thunk(u32 arg1, int _w2) {
-    s32 arg0 = (s32)this;
-    return TQuestVmDownLoadServer::aram_dma_read((void *)arg0, (void *)arg1, (int)_w2);
+// Provisional native link name: the first word is the provider's opaque
+// handle, not a TQuestVmDownLoadServer receiver.
+u32 aram_read_thunk__22TQuestVmDownLoadServerFUli(void *handle, void *dst, s32 size) {
+    return TQuestVmDownLoadServer::aram_dma_read(handle, dst, size);
 }
 
 void TQuestVmDownLoadServer::unescape_copy_string(u8 *arg0, u8 *arg1, u8 *arg2) {
@@ -1783,6 +1787,81 @@ s32 TQuestVmDownLoadServer::calc_message_length() {
 }
 #pragma pop
 
+// Rebuild the name index from the persisted eight-page byte image. Bounds,
+// initialized page index and producer-consistent names remain preconditions.
+s32 TQuestVmDownLoadServer__sub_803E93DC(void) {
+    char name[0x50];
+    u8 *pageStart;
+    u8 *record;
+    s32 page;
+    u8 len;
+    s16 wanted;
+    s32 bucket;
+    QuestDownloadCachedNameNode *node;
+    QuestDownloadCachedNameNode *previous;
+    QuestDownloadCachedNameNode **link;
+
+    if (TQuestVmDownLoadServer::seek_or_reopen(0x1400) == -1) {
+        return -1;
+    }
+    if (aram_read_thunk__22TQuestVmDownLoadServerFUli(
+            (void *)lbl_805D7904, lbl_80591EC8, 0x2000) != 0x2000) {
+        return -1;
+    }
+    pageStart = lbl_80591EC8;
+    for (page = 0; page < 8; page++, pageStart += 0x400) {
+        for (record = pageStart;
+             (u16)(record[0] + (record[1] << 8)) != 0;
+             record += (u16)(record[0] + (record[1] << 8))) {
+            len = record[2];
+            if ((s16)len != 0) {
+                strncpy(name, (const char *)(record + 3), (s16)len);
+                previous = NULL;
+                name[(s16)len] = 0;
+                u8 first = (u8)name[0];
+                if (first >= 0xA0 && first < 0xF0) {
+                    bucket = first - 0xA0;
+                } else {
+                    bucket = 0;
+                }
+                node = lbl_80593EC8.heads[bucket];
+                wanted = (s16)len;
+                for (; node != NULL; node = node->next) {
+                    u8 *indexed = node->encodedRecord;
+                    len = indexed[2];
+                    s32 comparison = strncmp((const char *)(indexed + 3), name, (s16)len);
+                    if (comparison == 0) {
+                        if (wanted == (s16)len) {
+                            break;
+                        }
+                    } else if (comparison > 0) {
+                        break;
+                    }
+                    previous = node;
+                }
+                if (previous == NULL) {
+                    link = &lbl_80593EC8.heads[bucket];
+                } else {
+                    link = &previous->next;
+                }
+                if (lbl_805D7878 == NULL) {
+                    TQuestVmDownLoadServer__sub_803E95BC();
+                }
+                QuestDownloadCachedNameNode *allocated = lbl_805D7878;
+                lbl_805D7878 = allocated->next;
+                allocated->encodedRecord = record;
+                allocated->next = node;
+                *link = allocated;
+            }
+        }
+        if (lbl_805D7874 == page) {
+            lbl_805D7870 = record;
+            lbl_805D786C = pageStart + 0x400;
+        }
+    }
+    return 0;
+}
+
 // Rotate the encoded-name cache page and return its indexed nodes to the
 // existing free list. Requires valid bounded records and a consistent index.
 void TQuestVmDownLoadServer__sub_803E95BC(void) {
@@ -1863,6 +1942,30 @@ void TQuestVmDownLoadServer__sub_803E9764(void) {
             TQuestVmDownLoadServer__sub_803E8788(var_r3, lbl_80591EC8, 0x2000);
         }
     }
+}
+
+// This existing link name denotes the cache initializer here; no SDK owner
+// or retrace-handler semantics are inferred from the placeholder symbol.
+void __VIRetraceHandler(void) {
+    QuestDownloadCachedNameNode *node = lbl_80593EC8.nodes;
+    for (; node < &lbl_80593EC8.nodes[511]; node++) {
+        node->next = node + 1;
+    }
+    node->next = NULL;
+    lbl_805D7878 = lbl_80593EC8.nodes;
+    for (s32 i = 0; i < 80; i++) {
+        lbl_80593EC8.heads[i] = NULL;
+    }
+    if (TQuestVmDownLoadServer__sub_803E93DC() == -1) {
+        for (s32 page = 0; page < 8; page++) {
+            lbl_80591EC8[page * 0x400 + 1] = 0;
+            lbl_80591EC8[page * 0x400] = 0;
+        }
+        lbl_805D7874 = 0;
+        lbl_805D7870 = lbl_80591EC8;
+        lbl_805D786C = lbl_80591EC8 + 0x400;
+    }
+    lbl_805D7868 = 0;
 }
 
 typedef char RecoveredGlobal_803E9F20_lbl_80595998_size[sizeof(RecoveredGlobal_803E9F20_lbl_80595998) == 0x8C0 ? 1 : -1];

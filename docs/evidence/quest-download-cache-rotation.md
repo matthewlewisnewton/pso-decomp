@@ -92,3 +92,8 @@ instructions, compiled objects, interpreter inputs and hashes remain local.
 Final native/no-loss results accompany the published checkpoint. The unit
 remains incomplete and unlinked; the separate search
 [sentinel gate](quest-download-search-evidence.md) remains intact.
+
+The later [native lifecycle sequences](quest-download-cache-lifecycle.md)
+exercise the actual producers and document concrete limits to the invariant,
+including uneven exhaustion and relocation onto the source page. They do not
+turn the constructed-graph corpus above into a reachability proof.

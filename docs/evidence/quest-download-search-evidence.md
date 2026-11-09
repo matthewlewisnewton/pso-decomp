@@ -192,5 +192,7 @@ The separate input-record and partial DC20 continuation is documented in
 [quest-download-input-records.md](quest-download-input-records.md). The unit
 remains 159/173 exact and unlinked. DC20 remains 94.41237%; the separate
 [cache-page rotation recovery](quest-download-cache-rotation.md) defines
-`sub_803E95BC` at 90.18868%. Eleven functions remain undefined and three are
-inexact, including `sub_803F03B4`.
+`sub_803E95BC` at 90.330185% in the standard report (90.18868% in the
+relocation-sensitive probe). The [lifecycle continuation](quest-download-cache-lifecycle.md)
+defines the loader and initializer as partial source. Nine functions remain
+undefined and five are inexact, including `sub_803F03B4`.

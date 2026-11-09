@@ -52,6 +52,7 @@ guides.
 - [Projectile entity-ID contract](pr100-projectile-id.md)
 - [Quest-download input records and partial text append](quest-download-input-records.md)
 - [Quest-download cache-page rotation (partial)](quest-download-cache-rotation.md)
+- [Quest-download cache lifecycle and partial loader/initializer](quest-download-cache-lifecycle.md)
 - [Shared scratch vector storage](scratch-vector-evidence.md)
 - [Symbol chat parts recovery (WIP)](symbol-chat-parts-recovery-evidence.md)
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)
