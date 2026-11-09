@@ -3,31 +3,12 @@
 #include "pso/network/NetworkPacketPool.h"
 #include <stddef.h>
 #include "pso/network/NetworkTransport.h"
+#include "pso/network/DhcpClient.h"
 
 #include "types.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TUdpSocket.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
-
-struct Pkt_804249F0 {
-    u8 f0;
-    u8 f1;
-    u8 f2;
-    u8 pad3;
-    u8 f4[4];
-    u8 pad8[0x10 - 0x8];
-    u32 f10;
-    u8 pad14[0x1C - 0x14];
-    u8 f1C[6];
-    u8 pad22[0xEC - 0x22];
-    u8 opts[4];
-};
-
-struct G_804249F0 {
-    u8 pad0[0x5DC];
-    u8 buf[0xBB8 - 0x5DC];
-    Pkt_804249F0 pkt;
-};
 
 struct Arg_804249F0 {
     u8 pad0[2];
@@ -142,12 +123,9 @@ extern s16 dhcp_socket;
 void TLobby__sub_80424CA8(void);
 extern u8 lbl_805CF240[];
 s32 TLobby__sub_804251C0(s16, void *);
-extern volatile s32 dhcp_state;
 extern volatile s32 lbl_805D7BA0;
 
-extern G_804249F0 lbl_805C1E00;
 extern s32 lbl_805D7B0C;
-extern s32 dhcp_reply_received;
 extern u8 lbl_805D7B1C[6];
 extern u32 lbl_805D7B28;
 extern u32 lbl_805D7B4C;
@@ -294,24 +272,24 @@ s32 TLobby::validate_slot_buffers(s32 arg0, void *arg1, void *arg2, void *arg3) 
 #pragma opt_propagation off
 s32 dhcp_handle_reply__6TLobbyFsPv(s16 arg0, Arg_804249F0 *arg1) {
     s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out);
-    G_804249F0 *g = &lbl_805C1E00;
-    Pkt_804249F0 *pk;
+    DhcpClientBuffers *g = &lbl_805C1E00;
+    BootpPacket *pk;
     u8 *q;
     u8 *p;
 
     if (arg0 == 0) {
-        arg1->p = &g->pkt;
+        arg1->p = &g->received.hdr;
         return 0;
     }
-    pk = &g->pkt;
-    q = pk->opts;
-    if (pk->f0 != 2 || pk->f1 != 1 || pk->f2 != 6) {
+    pk = &g->received.hdr;
+    q = (u8 *)&pk->cookie;
+    if (pk->op != 2 || pk->htype != 1 || pk->hlen != 6) {
         return 0;
     }
-    if (NetMemcmp(pk->f4, &lbl_805D7B50, 4) != 0) {
+    if (NetMemcmp(&pk->xid, &lbl_805D7B50, 4) != 0) {
         return 0;
     }
-    if (NetMemcmp(pk->f1C, lbl_805D7B1C, 6) != 0) {
+    if (NetMemcmp(pk->chaddr, lbl_805D7B1C, 6) != 0) {
         return 0;
     }
     if (NetMemcmp(q, &lbl_805D7B4C, 4) != 0) {
@@ -327,27 +305,27 @@ s32 dhcp_handle_reply__6TLobbyFsPv(s16 arg0, Arg_804249F0 *arg1) {
         if (dhcp_reply_received == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 2 &&
             find_dhcp_option__6TLobbyFPvUcPv(q, 0x36, &p) == 4) {
             TLobby__sub_80425288(0xE, 4, p);
-            lbl_805D7B28 = pk->f10;
+            lbl_805D7B28 = pk->yiaddr;
             dhcp_reply_received = 1;
         }
         break;
     case 2:
         if (dhcp_reply_received == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 5) {
-            NetMemcpy(g->buf, pk, arg1->len);
+            NetMemcpy(&g->reply, pk, arg1->len);
             dhcp_reply_received = 1;
         }
         break;
     case 4:
         if (dhcp_reply_received == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 5 &&
-            lbl_805D7B28 == pk->f10) {
-            NetMemcpy(g->buf, pk, arg1->len);
+            lbl_805D7B28 == pk->yiaddr) {
+            NetMemcpy(&g->reply, pk, arg1->len);
             dhcp_reply_received = 1;
         }
         break;
     case 5:
         if (dhcp_reply_received == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 5 &&
-            lbl_805D7B28 == pk->f10) {
-            NetMemcpy(g->buf, pk, arg1->len);
+            lbl_805D7B28 == pk->yiaddr) {
+            NetMemcpy(&g->reply, pk, arg1->len);
             dhcp_reply_received = 1;
         }
         break;

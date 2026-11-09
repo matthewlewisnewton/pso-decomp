@@ -1,5 +1,6 @@
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/UdpRuntime.h"
+#include "pso/network/DhcpClient.h"
 #include "pso/network/SocketEvents.h"
 #include "types.h"
 #include "pso/misc/TLobby.h"
@@ -194,47 +195,6 @@ s16 TLobby__sub_80423064(s16 arg0, s32 arg1);
 s16 TLobby__sub_8040F454(s32, s32, s32, s16);
 s16 TLobby__sub_80412CA4(void *, s16, s16, s16, s32);
 s16 TLobby__sub_8042315C(s16 arg0, P_8042315C *p);
-// RFC 951 BOOTP header. The DHCP magic cookie is the u32 at 0xEC; options follow it.
-struct BootpPacket {
-    u8 op;
-    u8 htype;
-    u8 hlen;
-    u8 hops;
-    u32 xid;
-    u16 secs;
-    u16 flags;
-    s32 ciaddr;
-    u32 yiaddr;
-    u32 siaddr;
-    u32 giaddr;
-    u8 chaddr[16];
-    u8 sname[64];
-    u8 file[128];
-    u32 cookie;
-};
-typedef char BootpPacket_flags[offsetof(BootpPacket, flags) == 0xA ? 1 : -1];
-typedef char BootpPacket_ciaddr[offsetof(BootpPacket, ciaddr) == 0xC ? 1 : -1];
-typedef char BootpPacket_chaddr[offsetof(BootpPacket, chaddr) == 0x1C ? 1 : -1];
-typedef char BootpPacket_cookie[offsetof(BootpPacket, cookie) == 0xEC ? 1 : -1];
-
-// The client builds each request in one 1500-byte (0x5DC) message.
-struct DhcpMessage {
-    BootpPacket hdr;
-    u8 options[0x5DC - sizeof(BootpPacket)];
-    s32 build_release();
-    s32 build_request();
-    s32 build_discover();
-};
-
-// The reply packet sits at 0x5DC and its options at 0x6C8.
-struct DhcpClientBuffers {
-    DhcpMessage outgoing;
-    struct {
-        BootpPacket hdr;
-        u8 options[0x1194 - 0x5DC - sizeof(BootpPacket)];
-    } reply;
-};
-typedef char DhcpClientBuffers_size[sizeof(DhcpClientBuffers) == 0x1194 ? 1 : -1];
 DhcpClientBuffers lbl_805C1E00;
 u8 lbl_805C2F94[0x100];
 u8 dhcp_hostname[0x2C];
@@ -243,7 +203,6 @@ extern u32 lbl_805D7B4C;
 extern u32 lbl_805D7B50;
 extern u32 lbl_805D7B58;
 extern s32 dhcp_last_tick_ms;
-extern volatile s32 dhcp_state;
 extern s32 dhcp_server_id;
 extern s32 lbl_805D7B28;
 s32 set_slot_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2);
@@ -1507,7 +1466,6 @@ s32 DhcpMessage::build_discover() {
 
 extern s16 lbl_805D7B08;
 extern s32 lbl_805D7B14;
-extern volatile s32 dhcp_reply_received;
 extern s32 lbl_805D7B74;
 extern s32 lbl_805D7B84;
 extern s32 lbl_805D7B88;
