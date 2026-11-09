@@ -239,6 +239,12 @@ recovery and README follow-up through `18207f986`, preserving its two new
 exact functions and source-linked unit. Current qualification retains 27,386
 exact functions, 3,587 exact linked units and clean retention at 17,712 names.
 
+The [BreakIn recovery](window-break-in-lifetime.md) adds genuine no-argument
+construction, automatic Base cleanup and its sole ordinary-new producer.
+The evidenced descriptor and compiler table own 44 bytes with natural
+alignment, removing one more raw Base construction/cleanup pair. The
+original remainder and broader ownership/interface holds remain intact.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

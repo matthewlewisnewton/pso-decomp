@@ -2323,6 +2323,7 @@ force_active:
   - __dt__14TQuadSpriteSclFv
   - __dt__14TSetEvtDestroyFv
   - __dt__14TSlicerHistoryFv
+  - __dt__14TWindowBreakInFv
   - __dt__14TWindowComCardFv
   - __dt__14TWindowCtrlSubFv
   - __dt__14TWindowDepositFv
@@ -2944,6 +2945,7 @@ force_active:
   - __vt__14TQuadSpriteCol
   - __vt__14TQuadSpriteScl
   - __vt__14TSetEvtDestroy
+  - __vt__14TWindowBreakIn
   - __vt__14TWindowComCard
   - __vt__14TWindowCtrlSub
   - __vt__14TWindowDeposit
@@ -14011,6 +14013,7 @@ force_active:
   - render__14TPhotonRainbowFv
   - render__14TQuadSpriteColFv
   - render__14TQuadSpriteSclFv
+  - render__14TWindowBreakInFv
   - render__14TWindowComCardFv
   - render__14TWindowDepositFv
   - render__15TAdChrSelSlotGCFv
@@ -14693,6 +14696,7 @@ force_active:
   - run_task__14TObjWarpStringFv
   - run_task__14TPhotonRainbowFv
   - run_task__14TSetEvtDestroyFv
+  - run_task__14TWindowBreakInFv
   - run_task__14TWindowComCardFv
   - run_task__14TWindowCtrlSubFv
   - run_task__14TWindowDepositFv
@@ -17701,6 +17705,7 @@ force_active:
   - warp_boss_handle_window__12TObjWarpBossFv
   - warp_nearby_players__14TBoss6PlotFalzFv
   - warp_player__12TObjWarpBossFl
+  - window_break_in_layout
   - window_chat_type_name_pointer
   - window_deposit_layout
   - window_duel_result_class_name

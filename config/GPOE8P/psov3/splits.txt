@@ -8173,6 +8173,7 @@ pso/misc/TWindowCtrlMain_8024674C.cpp:
 pso/misc/TWindowBreakIn.cpp:
 	.text       start:0x80246B80 end:0x80246CB8
 	.rodata     start:0x8044E768 end:0x8044E778
+	.data       start:0x804CE1B8 end:0x804CE1E4
 	.sdata      start:0x805D3890 end:0x805D3898
 
 pso/misc/TWindowSubShortMail_80246CB8.cpp:

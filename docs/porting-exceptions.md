@@ -1132,3 +1132,10 @@ automatic cleanup, virtual methods and actual allocation producers own two
 naturally aligned compiler tables. The tab helper's sole receiver/context
 contract supports the reconstructed member; broader Timer and entry-prefix
 attributions remain qualified. No new compiler control is introduced.
+
+[BreakIn lifetime recovery](evidence/window-break-in-lifetime.md) removes
+another raw Base construction/cleanup pair. The Base-only window uses
+native construction, automatic cleanup and its actual allocation producer;
+its descriptor and compiler table emit with natural alignment. The zero
+tail remains linker padding. No new compiler control is introduced, and
+broader entry/position ownership remains qualified.
