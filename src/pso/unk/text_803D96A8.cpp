@@ -30,6 +30,8 @@ struct Tbl_803D9E38 { u8 pad[8]; Ent_803D9E38 arr[1]; };
 
 extern u32 matrix_stack_base;
 extern u32 current_matrix;
+// .sbss pointer. rotate_matrix_by_node_angles (upstream asm) addresses it by name.
+extern "C" u32 sin_cos_table;
 extern "C" {
 void PSMTXConcat(const f32 (*)[4], const f32 (*)[4], f32 (*)[4]);
 extern u32 matrix_stack_limit;
@@ -136,6 +138,11 @@ s32 pop_matrices(s32 arg0) {
 }
 #pragma pop
 
+// Upstream zeroz41/pso-decomp #180 (squash 9575dbb7c), unchanged. Scalar rewrite pending.
+asm void transform_point_by_current_matrix(const f32 *src, Vec *dst) {
+#include "orig_asm/pso/unk/text_803D96A8/transform_point_by_current_matrix.inc"
+}
+
 void TObjPlayer::concat_quaternion_rotation() {
     f32 *arg0 = (f32 *)this;
     u8 sp18[0x30];
@@ -160,6 +167,22 @@ void TObjPlayer::apply_quat_rotation(f32 farg0) {
     PSMTXConcat((const f32 (*)[4])current_matrix, (const f32 (*)[4])sp18, (MtxP)current_matrix);
 }
 
+// 0.0f in .sdata, read by the assembly below (not yet split into this unit).
+extern f32 lbl_805D46B8;
+
+// Upstream zeroz41/pso-decomp #180 (squash 9575dbb7c), unchanged. Scalar rewrite pending.
+asm void rotate_vector_by_current_matrix(const Vec *src, Vec *dst) {
+#include "orig_asm/pso/unk/text_803D96A8/rotate_vector_by_current_matrix.inc"
+}
+
+asm void rotate_matrix_by_node_angles(const s32 *ang, u32 zxy) {
+#include "orig_asm/pso/unk/text_803D96A8/rotate_matrix_by_node_angles.inc"
+}
+
+asm s32 push_matrix(void) {
+#include "orig_asm/pso/unk/text_803D96A8/push_matrix.inc"
+}
+
 #pragma push
 #pragma scheduling off
 s32 pop_matrix(void) {
@@ -172,6 +195,15 @@ s32 pop_matrix(void) {
     return 1;
 }
 #pragma pop
+
+// Upstream zeroz41/pso-decomp #180 (squash 9575dbb7c), unchanged. Scalar rewrite pending.
+asm void scale_current_matrix(const f32 *v) {
+#include "orig_asm/pso/unk/text_803D96A8/scale_current_matrix.inc"
+}
+
+asm void post_translate_matrix(const f32 *v) {
+#include "orig_asm/pso/unk/text_803D96A8/post_translate_matrix.inc"
+}
 
 #pragma push
 #pragma scheduling off
