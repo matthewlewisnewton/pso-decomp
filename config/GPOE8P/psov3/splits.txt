@@ -82,6 +82,11 @@ pso/misc/TEndingPicStage.cpp:
 
 pso/menu/TAdEndText.cpp:
 	.text       start:0x8001A988 end:0x8001B424
+	.rodata     start:0x80434590 end:0x804347D0
+	.data       start:0x80480950 end:0x804809B0
+	.sdata      start:0x805D2610 end:0x805D2618
+	.sbss       start:0x805D49F0 end:0x805D4A00
+	.sdata2     start:0x805D7DF0 end:0x805D7E48
 
 pso/unk/text_8001B424.cpp:
 	.text       start:0x8001B424 end:0x8001B4A0
@@ -2350,6 +2355,7 @@ pso/unk/text_80104F4C.cpp:
 
 pso/unk/text_80104FCC.cpp:
 	.text       start:0x80104FCC end:0x801057A8
+	.data       start:0x8049EED8 end:0x8049EF54
 
 pso/unk/text_801057A8.cpp:
 	.text       start:0x801057A8 end:0x80105874
@@ -9771,6 +9777,7 @@ pso/misc/TChCrTagName.cpp:
 
 pso/unk/text_802A2A00.cpp:
 	.text       start:0x802A2A00 end:0x802A2BD8
+	.sdata2     start:0x805DDEA8 end:0x805DDECC
 
 pso/misc/TChCrTagOccHeader.cpp:
 	.text       start:0x802A2BD8 end:0x802A2DF4
