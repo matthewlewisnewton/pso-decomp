@@ -56,9 +56,11 @@ opcode `0xC1040004` (`lfs f8, 4(r4)`). The SDK `PSVECCrossProduct` is `void`,
 It does not compute a length or a reciprocal.
 
 Both are recovered as the original assembly bodies through the standard
-`orig_asm` mechanism (`tools/orig_asm.py`), not as a new asm exception. Each
-body is guarded by `#ifdef __MWERKS__`; the `#else` path is a scalar C/C++
-fallback with the same contract for ports. The C/C++ experiments below are
+`orig_asm` mechanism (`tools/orig_asm.py`). Matt approved these bodies and
+`normalize_vector` as separate exceptions in
+[the #128 approval](../porting-exceptions.md#approval-for-the-ginja-vector-kernels).
+Each body is guarded by `#ifdef __MWERKS__`. The `#else` path is a scalar
+C++ fallback with the same contract for ports. The C/C++ experiments below are
 retained because they establish why GC/2.6 cannot emit these two bodies from
 source; they are not the shipped GameCube definitions.
 
