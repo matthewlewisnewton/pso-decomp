@@ -8,7 +8,7 @@ struct NetworkPacketBufferDescriptor {
     s32 queued_length;
     u8 *data;
 };
-s32 initialize_network_packet_pool(void);
+s16 initialize_network_packet_pool(void);
 extern NetworkPacketBufferDescriptor network_packet_buffer_descriptors[NETWORK_PACKET_BUFFER_COUNT];
 extern u8 network_packet_buffers[NETWORK_PACKET_BUFFER_COUNT][NETWORK_PACKET_BUFFER_BYTES];
 #endif
