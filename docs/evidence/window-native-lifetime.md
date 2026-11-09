@@ -193,6 +193,10 @@ has four constructor and three destructor declarations. No matching or linked
 metric changes. The auxiliary counter/release protocol remains type-erased
 because one caller's positive producer is unknown.
 
+The Log follow-up also records the normal integration and fresh baseline
+qualification of main `fe6cdb141`, retaining all contributions with 27,384 exact
+functions and 3,585 exact linked units. Retention is clean at 17,650 entries.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

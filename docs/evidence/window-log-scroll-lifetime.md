@@ -87,3 +87,23 @@ The [task-global second-word audit](window-task-owner.md) remains unchanged:
 805D5D94 is unclaimed, not assumed padding or another pointer. The unknown
 ChoiceSetting producer and broader historical interface holds also remain.
 The PR stays draft and must not be marked ready or merged on this evidence.
+
+## Subsequent main integration
+
+Fork main `fe6cdb14138b2413778c08f21fd1851170c22ab5` is normally merged
+after the published Log checkpoint
+`c8302f469b23b66de719e3e1403e11fe3a1e12bd`. Both a fresh main worktree
+and the integrated PR reproduce the original DOL hash and pass check_pr.
+Main has 27,383 exact functions / 3,584 exact linked units; the PR has
+27,384 / 3,585. Against that main snapshot the combined PR contribution
+remains +600 matched code, +728 linked code and +328 matched/linked data
+bytes, with the same two previously qualified four-byte padding differences.
+Against the published Log checkpoint, all 14 new exact functions and nine
+new linked units from main are retained with no regressions. Main's existing
+four-byte StarLight conversion-pool padding coverage change is independently
+reproduced by the fresh main baseline.
+
+Retention is clean at 17,650 entries for the integrated PR (17,617 on main).
+The porting inventory passes. No window source/type change or hold relaxation
+is part of the merge. This qualifies that immutable main snapshot; the broader
+legacy lifetime and unknown-producer boundaries above remain open.
