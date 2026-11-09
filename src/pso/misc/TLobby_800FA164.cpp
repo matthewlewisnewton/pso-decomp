@@ -19,8 +19,10 @@ struct FileLoadEntry {
     s32 unused_38;
     s32 field_3c;
     void (*callback)(void *);
-    u8 params[8];
-    u8 rest[0x68 - 0x4C];
+    // Eight words are copied starting at +0x44. Callback-specific fields
+    // occupy the beginning of this storage; the whole copy spans 0x20 bytes.
+    u8 params[0x20];
+    u8 rest[0x68 - 0x64];
 };
 
 typedef char FileLoadEntry_size[sizeof(FileLoadEntry) == 0x68 ? 1 : -1];
@@ -53,7 +55,7 @@ s32 TLobby::create_file_load_entry(const char *name, s32 arg1, void (*callback)(
     entry->field_34 = 0;
     entry->callback = callback;
     if (callback != NULL) {
-        ((TLobby *)entry->params)->move_words((u32 *)arg3, 8);
+        move_words(entry->params, arg3, 8);
     }
     if (arg4 != NULL) {
         *arg4 = entry;

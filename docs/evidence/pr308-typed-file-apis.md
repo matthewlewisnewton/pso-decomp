@@ -94,3 +94,59 @@ regressions, all 3,549 linked units exact, force-active current), and
 `list_port_exceptions.py --check`. The refreshed main brings the total to
 4,164,192 exact code bytes and 1,454,863 exact data bytes. The original baseline
 and DOL SHA-1 are preserved.
+
+
+## Current-main refresh and buffer-copy boundary (2026-11-09)
+
+PR head `d77cdec95ecf64de21723acdf1aec09c809a0322` already contained
+main `ab62e8cf7`. Normal merge `8b57f8b163c5f18d450ca43b083f84e4e5d5d602`
+adds current main `6daa19a11db97b1b8222fd2665eba485ed3a74a4` without conflicts.
+The slice remains useful for the typed APIs above, even though main already
+has the exact linked bytes of `TLobby_8001EF5C`. The combined upstream-history
+merge is still PR #353; this source slice does not clear its separate review hold.
+
+The wrapper at `0x803DE7BC` is a buffer operation: it passes r3/r4 to `memmove`
+and scales the r5 word count by four. Its callers supply download parameter
+storage, mail/card arrays, chat-log entries, and an asynchronous read buffer.
+None supplies a `TLobby` object. It is now the free function
+`move_words(void *dst, const void *src, s32 n)`, with the corresponding symbol-map
+entry. All nine source callers use that declaration. The existing scheduling
+and peephole pragmas are unchanged. The halfword wrapper is unchanged.
+
+Both download constructors pass destination `entry + 0x44` and count 8, so the
+copy spans 0x20 bytes. Their local entry descriptions now represent that whole
+span instead of an 8-byte array followed by unnamed storage. The total entry
+size is still 0x68 and the callback is still at 0x40. Callback-specific structures
+may describe only the used prefix; this change preserves the original copy
+length and does not infer fields for the unused bytes or change caller payloads.
+
+Fresh candidate build results with the pinned project tool versions (DTK 1.8.4,
+objdiff 3.6.1, CodeWarrior GC/2.6 for these units):
+
+| Unit / function | Code bytes | Exact |
+|---|---:|---:|
+| `TLobby_8001EF5C` | 6,460 | 19/19 functions |
+| `init_from_id_lists` | 780 | 100% |
+| `create_file_load_entry` | 252 | 100% |
+| `create_named_entry` | 232 | 100% |
+| `move_words` | 36 | 100% |
+| `TLobby_803DE778` | 104 | 3/3 functions |
+
+The target unit's 48 data bytes remain exact. The full candidate DOL matches
+SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Link checking passes for all
+3,570 units, force-active is +0/-0, and the porting-exception inventory check
+passes. A fresh build of main `6daa19a11` also matches the original DOL.
+`tools/check_pr.py --no-build` against that report passes with zero address-based
+regressions: matched functions 27,364 -> 27,364, matched code 4,180,388 ->
+4,180,388 bytes, matched data 1,468,463 -> 1,468,463 bytes, linked code
+3,636,556 -> 3,636,556 bytes, linked data 1,165,731 -> 1,165,731 bytes, and
+linked units 3,570 -> 3,570. There are zero newly exact functions. The main
+baseline's own link/retention and exception checks also pass. The generated
+Ninja link inputs name the compiled source objects for the target unit, both
+entry constructors, and `TLobby_803DE778`. Build outputs and original inputs
+stay local in isolated checkouts.
+
+Remaining boundaries are explicit: the legacy `safe_free(u32)` API and pointer
+alignment mask remain; `create_named_object(long)` keeps an unrecompiled caller's
+ABI. The screenshot size representation follows current main. No new assembly,
+steering pragma, or compiler override was added.

@@ -557,7 +557,6 @@ struct TLobby : public TObject {
     u32 get_packet_size();
     u32 get_available_size();
     void copy_u16_array(u16 *src, s32 n);
-    void move_words(u32 *src, s32 n);
     static s32 calc_delta(s32 arg0, s32 arg1);
     static void reset_player_state();
     void init_params();
@@ -1147,6 +1146,7 @@ struct TLobby : public TObject {
 typedef char TLobby_size[sizeof(TLobby) == 0x1C ? 1 : -1];
 
 void move_data(void *dst, const void *src, u32 n);
+void move_words(void *dst, const void *src, s32 n);
 // The object set entry new ground items take their placement from, and
 // whether placing one shows the drop effect.
 extern void *item_object_set_data;

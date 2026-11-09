@@ -79,7 +79,7 @@ void process_async_file_reads(void) {
             }
             switch (n & 3) {
             case 0:
-                ((TLobby *)dst)->move_words((u32 *)async_file_read_sector_buffer, (s32)(n / 4));
+                move_words(dst, async_file_read_sector_buffer, n / 4);
                 break;
             case 2:
                 ((TLobby *)dst)->copy_u16_array((u16 *)async_file_read_sector_buffer, (s32)(n / 2));
