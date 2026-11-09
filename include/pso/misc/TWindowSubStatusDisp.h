@@ -62,7 +62,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     static void draw_status(s32 arg1, s32 arg2, s32 arg3);
     static void dispatch_without_flags(s32 arg1, s32 arg2, s32 arg3);
     static void *refresh_with_default_list(s32 a, s32 b);
-    void handle_input();
     int is_flag_4_set();
     s8 get_type();
     void set_input_mode(u8 v);
@@ -93,7 +92,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     int is_flag80_set();
     void add_text_entry(s32 arg1, s32 arg2);
     void set_entry1_field20(s32 arg1);
-    void *deleting_dtor(s16 arg1);
     void start_hp_text_color_transition();
     void init_gauge_entry();
     void update_status_entry();
@@ -130,7 +128,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     static s32 calc_entry_offset();
     static s32 get_layout_id();
     static s32 resolve_player_slot(s32 slot);
-    void render_status_and_children();
     u8 *init_layout_entry_copy(u8 *arg1);
     u8 *init_layout_entry_rect(u8 *arg1, s16 arg2);
     void advance_state();
@@ -153,8 +150,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     void update_pb_counter_approach();
     u8 *init_part_direct(u8 *arg1, s32 arg2);
     void append_entry(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
-    u8 *ct_helper(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-    u8 *construct_item_list(s32 arg1, s32 arg2, s16 arg3);
     s32 update_hp_entry();
     static s32 destroy_status_display(s32 arg0, s16 arg1);
     u8 *construct_type1_heading(s32 arg1, s32 arg2);

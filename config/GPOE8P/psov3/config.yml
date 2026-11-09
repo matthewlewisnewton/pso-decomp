@@ -1694,7 +1694,6 @@ force_active:
   - TWindowSubEquipList__class_name
   - TWindowSubGameEnd__class_name
   - TWindowSubItemList__class_name
-  - TWindowSubItemList__ct
   - TWindowSubItem__sub_8027AA30
   - TWindowSubItem__sub_8027AB10
   - TWindowSubLog__class_name
@@ -1992,6 +1991,7 @@ force_active:
   - __ct__18TPlayerLobbyMarkerFP7TObjectsSc
   - __ct__18TWindowEffectLightFPvsUl
   - __ct__18TWindowMessagePageFlll
+  - __ct__18TWindowSubItemListFPvl
   - __ct__19TBoss3VoloptMonitorFP7TObjectPv
   - __ct__19TOChatSensorCaptureFP7TObject
   - __ct__19TOComputerMachine01FPv
@@ -2241,6 +2241,7 @@ force_active:
   - __dt__13TUnk_804CCA90Fv
   - __dt__13TUnk_804CCAA8Fv
   - __dt__13TUnk_804CCD78Fv
+  - __dt__13TUnk_804CE7E8Fv
   - __dt__13TUnk_804DDF04Fv
   - __dt__13TUnk_804E14E8Fv
   - __dt__13TUnk_804E3BD8Fv
@@ -2249,6 +2250,7 @@ force_active:
   - __dt__13TUnk_804E71A0Fv
   - __dt__13TUnk_804EEF80Fv
   - __dt__13TUnk_804EF130Fv
+  - __dt__13TUnk_804EF4E0Fv
   - __dt__13TUnk_804EFA88Fv
   - __dt__13TUnk_804F0BF0Fv
   - __dt__13TUnk_804F0C48Fv
@@ -2507,6 +2509,7 @@ force_active:
   - __dt__18TWindowEffectLightFv
   - __dt__18TWindowInputNumberFv
   - __dt__18TWindowMessagePageFv
+  - __dt__18TWindowSubItemListFv
   - __dt__19TAdGameStartShineGCFv
   - __dt__19TAdTrialAgreementGCFv
   - __dt__19TBoss1DragonColli_CFv
@@ -2860,6 +2863,7 @@ force_active:
   - __vt__13TUnk_804CCD78
   - __vt__13TUnk_804CF918
   - __vt__13TUnk_804CF930
+  - __vt__13TUnk_804D0948
   - __vt__13TUnk_804DDF04
   - __vt__13TUnk_804E14E8
   - __vt__13TUnk_804E3BD8
@@ -3128,6 +3132,7 @@ force_active:
   - __vt__18TWindowEffectLight
   - __vt__18TWindowInputNumber
   - __vt__18TWindowMessagePage
+  - __vt__18TWindowSubItemList
   - __vt__19MaterialOpacityFade
   - __vt__19TAdGameStartShineGC
   - __vt__19TAdPlyChrSelPlateGC
@@ -13786,7 +13791,7 @@ force_active:
   - ref_counted_load_buffer
   - refill_gstream_buffer__FP10AdxfHandle
   - reflect_velocity_off_collision__13TUnk_804B8E18FPvPv
-  - refresh__14TWindowSubItemFv
+  - refresh__18TWindowSubItemListFv
   - refresh_display__12TAdDialingGCFv
   - refresh_invincibility__8TItemMagFv
   - refresh_item_list__20TShopArmorListWindowFPv
@@ -13935,6 +13940,7 @@ force_active:
   - render__13TUnk_804A2148Fv
   - render__13TUnk_804B5C08Fv
   - render__13TUnk_804CC870Fv
+  - render__13TUnk_804CE7E8Fv
   - render__13TUnk_804CE964Fv
   - render__13TUnk_804CF918FP18TWindowDrawContext
   - render__13TUnk_804CF930FP18TWindowDrawContext
@@ -14124,6 +14130,7 @@ force_active:
   - render__18TWindowEffectLightFv
   - render__18TWindowInputNumberFv
   - render__18TWindowMessagePageFv
+  - render__18TWindowSubItemListFv
   - render__19TAdGameStartShineGCFv
   - render__19TBoss1DragonColli_CFv
   - render__19TBoss3VoloptMonitorFv
@@ -14604,6 +14611,7 @@ force_active:
   - run_task__13TUnk_804CCA90Fv
   - run_task__13TUnk_804CCAA8Fv
   - run_task__13TUnk_804CCD78Fv
+  - run_task__13TUnk_804CE7E8Fv
   - run_task__13TUnk_804CE964Fv
   - run_task__13TUnk_804D0658Fv
   - run_task__13TUnk_804E14E8Fv
@@ -14807,6 +14815,7 @@ force_active:
   - run_task__18TWindowEffectLightFv
   - run_task__18TWindowInputNumberFv
   - run_task__18TWindowMessagePageFv
+  - run_task__18TWindowSubItemListFv
   - run_task__19TAdGameStartShineGCFv
   - run_task__19TAdTrialAgreementGCFv
   - run_task__19TBoss3VoloptMonitorFv

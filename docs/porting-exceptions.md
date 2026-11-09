@@ -1103,3 +1103,10 @@ initializers. The shared plain indicator and typed release interface replace
 false window ownership; its byte parameters reflect all observed caller
 contracts. Remaining prefix interfaces and unrelated unknown ownership retain
 their holds.
+
+[Remaining MenuIconLine descendant recovery](evidence/window-item-list-lifetime.md)
+removes all remaining raw MenuIconLine construction/cleanup calls and its
+three bindings. WindowConstructorAbi.h now contains only Base/Addition: two
+constructor and two destructor entries. Native word carriers, explicit heading
+forwarding, source-claim refinement and original remainder provenance are
+qualified in the note; broader unresolved interfaces retain their holds.

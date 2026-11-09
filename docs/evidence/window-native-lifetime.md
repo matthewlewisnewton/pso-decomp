@@ -214,6 +214,13 @@ sites, then native ShortCutList construction/cleanup and its real static
 factory. It removes two more raw ABI calls and adds a 28-byte compiler table,
 while retaining the unresolved prefix and unrelated ownership boundaries.
 
+The [remaining MenuIconLine descendant recovery](window-item-list-lifetime.md)
+adds native SubItemList, CheckBox, D0948 and its EF4E0 derived window. It
+recovers the remaining constructor/cleanup edges and removes all three
+MenuIconLine ABI bindings. Only the Base/Addition constructor/destructor
+interface remains; the note qualifies a newly linked source prefix and
+untouched original remainder without asserting an original TU boundary.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration
