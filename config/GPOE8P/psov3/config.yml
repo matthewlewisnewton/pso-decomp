@@ -139,6 +139,15 @@ force_active:
   - TAdChrSelSlotGC__sub_802C754C
   - TAdDialingGC__sub_803284F8
   - TAdDialingMessageWindow__name
+  - TAdEndText__class_name
+  - TAdEndText__credit_script_lines
+  - TAdEndText__data_805D7DF8
+  - TAdEndText__ending_font_texture_list
+  - TAdEndText__font_loaded_flag
+  - TAdEndText__loaded_font_texture_list
+  - TAdEndText__sub_8001A998
+  - TAdEndText__sub_8001B3D4
+  - TAdEndText__sub_8001B404
   - TAdEnterPasswordGC__sub_8032BC94
   - TAdEnterSerialAccessGC__sub_8032190C
   - TAdEnterSerialAccessGC__sub_8032195C
@@ -625,6 +634,9 @@ force_active:
   - TLobby__sub_8014734C
   - TLobby__sub_801478C4
   - TLobby__sub_80182E60
+  - TLobby__sub_80184C6C
+  - TLobby__sub_80184C80
+  - TLobby__sub_80184CE0
   - TLobby__sub_801A20C8
   - TLobby__sub_801A3CF8
   - TLobby__sub_801A3E94
@@ -2026,6 +2038,7 @@ force_active:
   - __destroy_global_chain_reference
   - __dl__5THeapFPv
   - __dt__10TAdADXlogoFv
+  - __dt__10TAdEndTextFv
   - __dt__10TAdTitleGCFv
   - __dt__10TBoss4FadeFv
   - __dt__10TBoss4ZakoFv
@@ -2627,6 +2640,7 @@ force_active:
   - __two_exp
   - __ull2dec
   - __vt__10TAdADXlogo
+  - __vt__10TAdEndText
   - __vt__10TAdTitleGC
   - __vt__10TBoss4Fade
   - __vt__10TBoss4Zako
@@ -4633,6 +4647,7 @@ force_active:
   - clear_flags__11TItemMagSubFUl
   - clear_flags__13MagOwnerWatchFUl
   - clear_four_slots__6TLobbyFv
+  - clear_global_array__6TLobbyFPv
   - clear_growth_flag__11TItemMagSubFv
   - clear_harmful_statuses__11TBoss6Type1Fv
   - clear_harmful_statuses__12TBoss1DragonFv
@@ -7071,6 +7086,10 @@ force_active:
   - lazer_fence_norm_episode1_resource_descriptor
   - lazer_fence_norm_episode2_resource_descriptor
   - lazer_fence_sw_ginja_model_table
+  - lbl_804345D8
+  - lbl_804345E0
+  - lbl_804347B0
+  - lbl_804347C0
   - lbl_80434EC8
   - lbl_80434ED4
   - lbl_804371BC
@@ -7334,6 +7353,7 @@ force_active:
   - lbl_8047817C
   - lbl_80479280
   - lbl_8047B928
+  - lbl_80480950
   - lbl_804809D0
   - lbl_804809E0
   - lbl_80480A10
@@ -8027,6 +8047,26 @@ force_active:
   - lbl_805D750C
   - lbl_805D75F0
   - lbl_805D7D3C
+  - lbl_805D7DF0
+  - lbl_805D7DF4
+  - lbl_805D7DFC
+  - lbl_805D7E00
+  - lbl_805D7E04
+  - lbl_805D7E08
+  - lbl_805D7E0C
+  - lbl_805D7E10
+  - lbl_805D7E14
+  - lbl_805D7E18
+  - lbl_805D7E1C
+  - lbl_805D7E20
+  - lbl_805D7E24
+  - lbl_805D7E28
+  - lbl_805D7E2C
+  - lbl_805D7E30
+  - lbl_805D7E34
+  - lbl_805D7E38
+  - lbl_805D7E3C
+  - lbl_805D7E40
   - lbl_805D85A0
   - lbl_805D8D70
   - lbl_805D8D74
@@ -13743,6 +13783,7 @@ force_active:
   - remove_player__6TLobbyFUiii
   - remove_selected_slot__22TAdMultiPlyChrSelectGCFl
   - render__10TAdADXlogoFv
+  - render__10TAdEndTextFv
   - render__10TAdTitleGCFv
   - render__10TBoss6RockFv
   - render__10TButterflyFv
@@ -14349,6 +14390,7 @@ force_active:
   - run_state_machine__15TBoss3VoloptP01Fv
   - run_synced_state_handler__10TObjPlayerFv
   - run_task__10TAdADXlogoFv
+  - run_task__10TAdEndTextFv
   - run_task__10TAdTitleGCFv
   - run_task__10TBoss4ZakoFv
   - run_task__10TBoss6RockFv

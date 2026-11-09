@@ -809,6 +809,7 @@ pso/item/WeaponSpecialSelection.cpp
 pso/map/FloorArea_8029E764.cpp
 pso/map/FloorLifecycleTables.cpp
 pso/math/MatrixVector.cpp
+pso/menu/TAdEndText.cpp
 pso/menu/TAdEndText_80307A34.cpp
 pso/menu/TAdEndText_80399904.cpp
 pso/menu/TAdGuideTxtGC.cpp
@@ -3126,6 +3127,7 @@ pso/unk/text_80181278.cpp
 pso/unk/text_8018130C.cpp
 pso/unk/text_80181310.cpp
 pso/unk/text_801815A0.cpp
+pso/unk/text_80184C2C.cpp
 pso/unk/text_8018E258.cpp
 pso/unk/text_8018FA6C.cpp
 pso/unk/text_80192554.cpp
@@ -3387,6 +3389,7 @@ pso/unk/text_802A1020.cpp
 pso/unk/text_802A1144.cpp
 pso/unk/text_802A1154.cpp
 pso/unk/text_802A1324.cpp
+pso/unk/text_802A2A00.cpp
 pso/unk/text_802A3138.cpp
 pso/unk/text_802A4D74.cpp
 pso/unk/text_802A9588.cpp
