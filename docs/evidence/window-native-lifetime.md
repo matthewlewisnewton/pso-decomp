@@ -2,7 +2,10 @@
 
 This continues PR #268 from the validated shared-prefix checkpoint
 `b3fa2a885cfba859c3ba2f63c286b01f65a0070c`, on main
-`6daa19a11db97b1b8222fd2665eba485ed3a74a4`. It supersedes the integration
+`6daa19a11db97b1b8222fd2665eba485ed3a74a4`. The final integration normally
+merges current main `9924ce113b5e6dff309a5ae94065265d3066fb24` in source
+checkpoint `5982db6bdf235927cf18431ae75da4d9a873d6f0`.
+It supersedes the integration
 blockers in the [historical constructor probe](window-constructor-chain-probe.md).
 The original draft hold remains pending disposition of the bounded legacy
 interfaces below; exact matching alone does not establish complete portability.
@@ -129,12 +132,23 @@ integration, including unchanged callers. The initial raw-byte and normalized
 relocation checks remain useful evidence for the core four units and both Menu
 constructors; they do not replace whole-program qualification.
 
-Against the preceding published checkpoint, exact functions remain 27,365,
-matched and linked code are unchanged, matched and linked data increase by
-124 bytes, and all 3,571 source-linked units remain exact. Against main, the
-GuildWarning recovery retains one additional exact function, 600 matched code
-bytes, and 728 linked code bytes. The build reproduces DOL SHA-1
+Against a fresh build of main `9924ce113`, exact functions increase from
+27,368 to 27,369, matched code increases by 600 bytes, linked code by 728 bytes,
+and matched and linked data by 124 bytes. All 3,575 source-linked units remain
+exact (main has 3,574). There are zero function, address-coverage, data, or
+linked-unit regressions. A separate address-based comparison against the
+preceding published checkpoint also passes, including the intervening main
+changes. The native lifetime work adds no matched code beyond the retained
+GuildWarning recovery. The build reproduces DOL SHA-1
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
+
+`tools/check_pr.py --no-build --baseline <fresh-main-report>` passes, including
+all linked-unit checks and clean retention metadata (17,581 listed symbols,
+zero additions or stale entries). `tools/list_port_exceptions.py --check`
+also passes after refreshing the inventory. Main's independently built baseline
+passes its corresponding checks. Final source review is independent and
+read-only; the accompanying documentation freeze does not change code or link
+configuration.
 
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and unresolved ownership. This recovery resolves the measured native
