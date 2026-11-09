@@ -4458,8 +4458,9 @@ u8 *TQuestVmDownLoadServer__sub_803EDDA4(u16 *start, u16 *end) {
 
 // The scratch owner is bytes. These adapters create real local halfwords for
 // the existing readonly lookups; no halfword-array lifetime is claimed there.
-inline u16 input_word_803EDF64(const u8 *input) {
-    return (u16)((input[0] << 8) | input[1]);
+inline u32 input_word_803EDF64(const u8 *input) {
+    // The two representation bytes decode to a zero-extended native code word.
+    return (input[0] << 8) | input[1];
 }
 inline void copy_download_input_prefix(const u8 *input, s32 count, u16 *words) {
     // Native input words and the actual local halfwords have big-endian representation.

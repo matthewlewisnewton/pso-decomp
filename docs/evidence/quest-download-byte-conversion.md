@@ -1,10 +1,11 @@
 # Byte-input conversion consumer (partial)
 
 `sub_803EDF64` (`0x803EDF64`, 896 original bytes) now has a partial C++
-implementation. It is **60.044643% in the standard report, 59.848213% in the
-relocation-sensitive comparison, 1,016 compiled bytes**. The first published
+implementation. It is **62.267857% in both the standard report and the
+relocation-sensitive comparison, 1,000 compiled bytes**. The first published
 byte-consumer recovery was 1.3303572% / 0.22767857% and 1,580 bytes. Sharing the
-prefix copy and recovering an advancing cursor removes 564 compiled bytes.
+prefix copy and recovering an advancing cursor removed 564 compiled bytes.
+Preserving the naturally zero-extended decoder result removes another 16.
 This remains a partial with instruction, register and size differences, not
 an exactness or linking gain.
 
@@ -12,7 +13,11 @@ an exactness or linking gain.
 
 The provisional entry borrows `const u8 *input`; its count remains in
 halfwords, matching the native ABI. Live input-word reads decode two bytes in
-native big-endian order. The definition of `quest_download_text_buffer` remains the actual
+native big-endian order. The decoder returns the composed integer as `u32`:
+unsigned-byte promotion and the eight-bit shift bound it to `0..65535`, so an
+intermediate `u16` return cast is unnecessary. The actual mapping boundaries
+receive the same value, and attribute-bearing reads remain at their live
+input locations. The definition of `quest_download_text_buffer` remains the actual
 `u8[0x404]` owner. No halfword array or union is invented over that storage.
 
 The existing keyword and fallback lookups accept halfword ranges. When the scan
@@ -82,7 +87,7 @@ aliases. This demonstrates bounded native phase agreement, not a C++ lifetime,
 arbitrary-alias, whole-provider or shipped-flow proof.
 
 The consumer object SHA-256 is
-`0c60fe30714c1d40df9293be2719e37d684af73836f58ecc433ea8389bd26033`.
+`0933f54c07e4ddb8b93e711dae3ec796d7d2718b597b56b95c45ad858236cfa2`.
 The direct differential script SHA-256 is
 `c0da2ccea97a299f64e3834676054d9f553e74e911d55cce23dd48204f075e15`;
 the frontend sequence script SHA-256 is
@@ -116,7 +121,14 @@ Advancing the output pointer instead of indexing its second element regressed
 to 59.424107% at 1,020 bytes; capturing the first full word over the original
 short lifetime left the best result unchanged. Neither was adopted. All probes
 preserved the prior exact functions. No new pragma or compiler override was used.
-The retained function remains 120 bytes larger than the original. Its explicit
+Moving mapping/emission into the scan branch left the prior result unchanged;
+combining lookup resolution into an inline helper regressed to 58.794643% at
+1,032 bytes. Direct low-byte-only input accesses reduced size but regressed
+matching (59.361607% at 960 bytes for all byte-only classification/conditions;
+58.370537% at 976 bytes for table classification alone). None was adopted.
+Returning the composed decoder word without premature narrowing improves the
+prior 59.848213% / 1,016-byte result to the current result. The retained function
+remains 104 bytes larger than the original. Its explicit
 representation loads, real prefix copy, register allocation and scheduling still
 need work; these results do not establish that exact source is impossible.
 
