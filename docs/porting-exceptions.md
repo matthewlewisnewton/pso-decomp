@@ -153,6 +153,12 @@ small float differences without FMA).
 | `src/pso/misc/TLobby_80426CAC.cpp` | `TLobby__sub_804275B0` (`0x804275B0`) | Unused upstream `pad[2]` and `spare[2]` locals | Preserve the original MWCC stack frame/slot offsets; removing them scores 99.90–99.97%. Typed fields and consistent helper signatures retain 100%; see [the evidence](evidence/upstream-pppoe.md). | Remove unused locals; use typed buffers and explicit byte-order/length handling. |
 | `src/pso/misc/TLobby_80426CAC.cpp` | Previously exact code now linked | 12 existing pragma lines, opaque/overlapping table views, 32-bit address tokens, raw packet/tag accesses, redundant expressions and provisional class wrappers | Existing native matching debt becomes source-linked; no new pragma or compiler override. [The evidence](evidence/upstream-pppoe.md) records its limits. | Use one typed table, explicit buffer/free-function interfaces and portable pointer/token types; validate lengths and remove optimizer-only steering. |
 
+### Focused DHCP recovery from fork #303
+
+| File | Scope | What remains | Port should |
+|---|---|---|---|
+| `src/pso/unk/text_80421620.cpp` | DHCP timer/request/discovery and previously exact code now linked | Provisional class wrappers on packet buffers, fixed reply/options offsets, 32-bit pointer/callback words, native byte-order and volatile-state assumptions; existing optimizer steering and release-frame padding. The new callback header makes callback declarations consistent. See [evidence](evidence/dhcp-focused-recovery.md). | Use shared typed packet/state definitions, explicit byte order and length checks, pointer-sized handles and appropriate synchronization; remove optimizer-only constraints. |
+
 ## 5. Per-unit compiler overrides (`configure.py`)
 
 167 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in

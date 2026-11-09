@@ -706,6 +706,11 @@ force_active:
   - TLobby__sub_803FABDC
   - TLobby__sub_803FACD8
   - TLobby__sub_803FADA0
+  - TLobby__sub_80421FB8
+  - TLobby__sub_80423440
+  - TLobby__sub_80423C04
+  - TLobby__sub_80423E80
+  - TLobby__sub_8042422C
   - TLobby__sub_80424DCC
   - TLobby__sub_804251C0
   - TLobby__sub_80425D88
@@ -4281,6 +4286,8 @@ force_active:
   - build_collision_box_corners
   - build_dead_list_window__15TObjDeadListWinFv
   - build_default_save_file__23TAdSinglePlyChrSelectGCFv
+  - build_dhcp_discover_packet__6TLobbyFv
+  - build_dhcp_release__6TLobbyFv
   - build_door_collision_triangles__18TObjCityDoor_LobbyFv
   - build_download_list__12TQuestListVMFv
   - build_ethernet_frame_header__6TLobbyFPvPvUsUcUsUs
@@ -5263,6 +5270,7 @@ force_active:
   - destroy_sub_objects__15TBoss3VoloptP02Fv
   - destroy_subobjects_recursive__9TItemListFv
   - detect_device_type__16TKeyBoardControlFl
+  - dhcp_build_packet__6TLobbyFv
   - dimedian_action_table
   - dimedian_appear_motion_filename
   - dimedian_attack_left_motion_filename
