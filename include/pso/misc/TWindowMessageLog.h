@@ -2,6 +2,7 @@
 #define PSO_MISC_TWINDOWMESSAGELOG_H
 
 #include "types.h"
+#include <stddef.h>
 #include "pso/misc/TWindowMessage.h"
 
 struct TWindowMessageLog : public TWindowMessage {
@@ -11,7 +12,7 @@ struct TWindowMessageLog : public TWindowMessage {
     void clamp_scroll_offset();
     virtual void run_task();
     virtual void render();
-    u8 unk_90[0x4];
+    u32 m_90;
     f32 m_94;
     static s32 get_active_photon_object();
     void update_scroll_position();
@@ -20,4 +21,6 @@ struct TWindowMessageLog : public TWindowMessage {
 };
 
 typedef char TWindowMessageLog_size[sizeof(TWindowMessageLog) == 0x98 ? 1 : -1];
+typedef char TWindowMessageLog_owned_field_offset[offsetof(TWindowMessageLog, m_90) == 0x90 ? 1 : -1];
+
 #endif

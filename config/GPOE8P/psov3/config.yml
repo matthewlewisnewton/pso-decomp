@@ -1668,7 +1668,6 @@ force_active:
   - TWindowLockOn__update_for_item
   - TWindowLockOn__update_for_other_player
   - TWindowMeseta__class_name
-  - TWindowMessagePage__ct
   - TWindowMessageYesNo__name
   - TWindowPartyStatus__name
   - TWindowQuantity__ct
@@ -1983,6 +1982,7 @@ force_active:
   - __ct__18TObjTailsTailsMoveFP10TObjPlayer
   - __ct__18TPlayerLobbyMarkerFP7TObjectsSc
   - __ct__18TWindowEffectLightFPvsUl
+  - __ct__18TWindowMessagePageFlll
   - __ct__19TBoss3VoloptMonitorFP7TObjectPv
   - __ct__19TOChatSensorCaptureFP7TObject
   - __ct__19TOComputerMachine01FPv
@@ -2445,6 +2445,7 @@ force_active:
   - __dt__17TWindowDuelResultFv
   - __dt__17TWindowGetComCardFv
   - __dt__17TWindowMainMenu4PFv
+  - __dt__17TWindowMessageLogFv
   - __dt__17TWindowReturnCityFv
   - __dt__17TWindowSetLevelUpFv
   - __dt__17TWindowSubAreaMapFv
@@ -3050,6 +3051,7 @@ force_active:
   - __vt__17TWindowDuelResult
   - __vt__17TWindowGetComCard
   - __vt__17TWindowMainMenu4P
+  - __vt__17TWindowMessageLog
   - __vt__17TWindowReturnCity
   - __vt__17TWindowSetLevelUp
   - __vt__17TWindowSubAreaMap
@@ -14028,6 +14030,7 @@ force_active:
   - render__17TWindowDuelResultFv
   - render__17TWindowGetComCardFv
   - render__17TWindowMainMenu4PFv
+  - render__17TWindowMessageLogFv
   - render__17TWindowReturnCityFv
   - render__17TWindowSetLevelUpFv
   - render__17TWindowSubAreaMapFv
@@ -14698,6 +14701,7 @@ force_active:
   - run_task__17TWindowDuelResultFv
   - run_task__17TWindowGetComCardFv
   - run_task__17TWindowMainMenu4PFv
+  - run_task__17TWindowMessageLogFv
   - run_task__17TWindowReturnCityFv
   - run_task__17TWindowSetLevelUpFv
   - run_task__17TWindowSubAreaMapFv

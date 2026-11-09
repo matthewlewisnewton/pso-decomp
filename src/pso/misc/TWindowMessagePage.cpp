@@ -1,4 +1,3 @@
-#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TWindowMessagePage.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
@@ -65,15 +64,8 @@ void TWindowMessagePage::set_message(void *msg, s32 flags) {
 }
 
 u8 *TWindowMessagePage::create(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    u8 *window_message_page;
-    u8 *var_r0;
     TLobby__sub_80269DA4((void *)arg1, (void *)arg2);
-    window_message_page = (u8 *)(__nw__7TObjectFUl(0x98));
-    var_r0 = window_message_page;
-    if (var_r0 != NULL) {
-        var_r0 = (u8 *)(TWindowMessagePage__ct(window_message_page, arg0, arg2, arg3));
-    }
-    return var_r0;
+    return (u8 *)new TWindowMessagePage(arg0, arg2, arg3);
 }
 
 void TWindowMessagePage::set_text(s32 a, s32 b, s32 c) {
@@ -102,13 +94,10 @@ TWindowMessagePage::~TWindowMessagePage() {
 
 }
 
-u8 *TWindowMessagePage__ct(u8 *window_message_page, s32 arg1, s32 arg2, s32 arg3) {
-    __ct__14TWindowMessageFlUll((TWindowMessage *)((window_message_page)), (s32)((arg1)), (u32)((arg2)), (s32)((arg3)));
-    *(s32 **)((s8 *)window_message_page + 0x18) = &(*(RecoveredGlobal_8026B014___vt__18TWindowMessagePage *)&__vt__18TWindowMessagePage).value;
-    *(s32 *)((s8 *)window_message_page + 0) = (s32) ((s32)lbl_805D3998);
-    *(s32 *)((s8 *)window_message_page + 0x90) = 0;
-    ((TWindowMessagePage *)window_message_page)->m_20 = (s16) arg3;
-    ((TWindowMessagePage *)window_message_page)->m_94 = 0;
-    return window_message_page;
+TWindowMessagePage::TWindowMessagePage(s32 layout, s32 capacity, s32 client)
+    : TWindowMessage(layout, (u32)capacity, client) {
+    m_name = lbl_805D3998;
+    m_90 = 0;
+    m_20 = (s16)client;
+    m_94 = 0;
 }
-

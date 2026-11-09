@@ -156,6 +156,13 @@ The follow-up preserves these code and linked-unit results and adds another
 17,583 names with zero drift. The task ownership note records the incremental
 qualification against the published constructor checkpoint.
 
+The subsequent [message descendant recovery](window-message-descendants.md)
+adds native Page, Quest, and Scroll construction plus Log destruction/table
+ownership. It adds another 24 matched/linked data bytes, for 172 versus main,
+with unchanged exact functions and linked units. Log is now the sole caller
+of the Message constructor ABI binding; its measured four-instruction native
+constructor mismatch remains open. Retention is clean at 17,587 entries.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

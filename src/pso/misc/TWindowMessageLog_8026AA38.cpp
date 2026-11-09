@@ -61,17 +61,9 @@ void TWindowMessageLog::run_task() {
     update_fade_offset();
     update_window_entry_list(((u8 *)this) + 0x24);
 }
-u8 *__dt__17TWindowMessageLogFv(u8 *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = &__vt__17TWindowMessageLog.value;
-        TWindowSubStatusDisp::destroy_allocation(*(s32 *)((s8 *)arg0 + 0x90), 1);
-        TWindowCtrl__sub_8026AD60();
-        __dt__14TWindowMessageFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TWindowMessageLog::~TWindowMessageLog() {
+    TWindowSubStatusDisp::destroy_allocation((s32)m_90, 1);
+    TWindowCtrl__sub_8026AD60();
 }
 typedef char RecoveredGlobal_8026ABA8___vt__17TWindowMessageLog_size[sizeof(RecoveredGlobal_8026ABA8___vt__17TWindowMessageLog) == 0x18 ? 1 : -1];
 u8 *TWindowMessageLog__ct(TWindowMessageLog *window_message_log, s32 arg1, s32 arg2) {
@@ -85,7 +77,7 @@ u8 *TWindowMessageLog__ct(TWindowMessageLog *window_message_log, s32 arg1, s32 a
     __ct__14TWindowMessageFlUll((TWindowMessage *)(((u8 *)window_message_log)), (s32)((arg1)), (u32)(0x1E), (s32)((arg2)));
     *(s32 **)((s8 *)window_message_log + 0x18) = &(*(RecoveredGlobal_8026ABA8___vt__17TWindowMessageLog *)&__vt__17TWindowMessageLog).value;
     *(s32 *)((s8 *)window_message_log + 0) = (s32) ((s32)lbl_805D3990);
-    TWindowCtrl__sub_8026AD78((s32)window_message_log);
+    TWindowCtrl__sub_8026AD78(window_message_log);
     temp_f2 = window_message_log->m_38;
     temp_f1 = temp_f2 - lbl_805DD258;
     stack.spC = lbl_805DD240;

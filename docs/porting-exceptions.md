@@ -994,3 +994,8 @@ more raw factory calls with ordinary construction and removes their bindings
 plus an unused information-window declaration. This interface now contains
 five constructor and three destructor declarations. It no longer transports
 Deposit, DuelResult, SubMagPhoton, or MessageInfomation construction.
+
+[Message descendant recovery](evidence/window-message-descendants.md) moves
+Page, Quest, and Scroll to native construction. Log remains the only caller
+of this interface's Message constructor binding; its specific matching
+limitation and unchanged legacy auxiliary interfaces are recorded there.
