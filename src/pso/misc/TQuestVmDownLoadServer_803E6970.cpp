@@ -4998,13 +4998,28 @@ inline s32 max_entry_index(u8 *rec) {
     return max;
 }
 
+inline void shift_tail_cursors(u8 *source, u8 *end, s32 delta) {
+    if (delta > 0) {
+        u8 *destination = end + delta;
+        while (source < end) {
+            --end;
+            --destination;
+            *destination = *end;
+        }
+    } else if (delta < 0) {
+        u8 *destination = source + delta;
+        for (; source < end; source++, destination++) {
+            *destination = *source;
+        }
+    }
+}
+
 // Remove one matching message from a primary cached page. Caller-supplied
 // names/text and page records retain the native bounded-input preconditions.
 s32 TQuestVmDownLoadServer__sub_803EF208(Req_803EEF2C *request) {
     char name[0x50];
     u8 *record;
     u8 *end;
-    u8 *page;
     u8 len;
     s32 comparison;
     s32 size;
@@ -5018,11 +5033,11 @@ s32 TQuestVmDownLoadServer__sub_803EF208(Req_803EEF2C *request) {
     }
     strncpy(name, request->name, request->len);
     name[request->len] = 0;
-    page = get_cached_page__22TQuestVmDownLoadServerFi(
+    record = get_cached_page__22TQuestVmDownLoadServerFi(
         find_name_index__22TQuestVmDownLoadServerFv(name));
-    for (end = page; (size = (u16)(end[0] + (end[1] << 8))) != 0; end += size) {
+    for (end = record; (size = (u16)(end[0] + (end[1] << 8))) != 0; end += size) {
     }
-    for (record = page; record < end;
+    for (; record < end;
          record += (u16)(record[0] + (record[1] << 8))) {
         len = record[2];
         comparison = strncmp((const char *)(record + 3), name, (s16)len);
@@ -5044,7 +5059,7 @@ s32 TQuestVmDownLoadServer__sub_803EF208(Req_803EEF2C *request) {
     }
     if (removed == -1) {
         size = (u16)(record[0] + (record[1] << 8));
-        shift_tail_bytes(record + size, end + 2, -size);
+        shift_tail_cursors(record + size, end + 2, -size);
     } else {
         size = (u16)(record[0] + (record[1] << 8));
         shift_tail_bytes(record + size + removed, end + 2, -removed);

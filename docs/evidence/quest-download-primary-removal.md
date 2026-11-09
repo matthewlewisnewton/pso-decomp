@@ -1,7 +1,7 @@
 # Primary byte-page removal (partial)
 
 `sub_803EF208` (`0x803EF208`, 816 original bytes) is now defined as partial
-C++: **86.40686%, 868 compiled bytes** in the standard and relocation-sensitive
+C++: **95.303925%, 808 compiled bytes** in the standard and relocation-sensitive
 reports. It removes a matching message from a primary cached page. It adds no
 exact function or source-linked coverage.
 
@@ -52,6 +52,18 @@ terminator bytes and preserve the stale suffix beyond the new terminator. A
 removal then clears all 128 reference counts, marks the current page active and
 returns three. No extra cleanup or validation policy is introduced.
 
+The record cursor now starts directly at the cached page and remains live while
+a second cursor locates its terminator, matching the native data-flow roles.
+Whole-record removal uses a separate advancing destination cursor for the
+constant-displacement tail copy. The helper chooses backward copying for a
+positive displacement and forward copying for a negative displacement; its
+source and shifted destination ranges must belong to the same backing array.
+Backward pre-decrements occur only inside the range test, so an empty span or
+a span starting at the first array element forms no before-array pointer.
+The actual whole-record call uses negative displacement `-size`, with source
+`record + size` and destination `record`. Partial-message compaction retains
+its existing helper and already-compacted record-length handling.
+
 Names must fit the local and page chains must be bounded and terminated. The
 helper's 128-byte encoded-text local additionally requires width at most 127;
 complete two-byte output units give at most 126 in the demonstrated inputs.
@@ -60,7 +72,7 @@ These are unchecked native preconditions, not an arbitrary-input safety proof.
 
 ## Bounded instruction and independent-memory checks
 
-The private 456-case run retains the previous 234 lifecycle/packet cases and
+The initial 456-case run retained the previous 234 lifecycle/packet cases and
 adds 78 removal cases plus 144 dedicated name-index cases. Candidate execution
 uses the recovered remover and the actual name search, cached-page hit,
 `EEFC8`, reference-reset and dirty-state helper instructions.
@@ -91,18 +103,45 @@ Stack-pointer/nonvolatile restoration is checked on successful returns.
 String/lifecycle I/O hooks and finite test inputs remain bounded; this is not
 full-provider, exhaustive alias, malformed-page or shipped-flow proof.
 
+The current 528-case [lifecycle corpus](quest-download-cache-lifecycle.md)
+retains all 456 cases and adds the direct reload boundaries documented there.
+It passes with the updated removal body, including the independent full-page
+oracle, marker/stale-suffix comparisons and existing lower-level witnesses.
+The model script SHA-256 remains
+`433f38840a9da1bdcb556691421074ac3440761553dbf1865a3a968a089d989c`;
+the current compiled candidate SHA-256 is
+`edbb4d36652ead814aadf48ae1ad078dff69144d122e29a976bd1ccb01ba0e71`.
+
+A separate host C++98 test extracts the exact new helper and checks 980 valid
+same-array cases against `memmove`, comparing every byte of the buffer. It
+covers both overlap directions, disjoint ranges, zero displacement and empty
+spans, including an array-start source. AddressSanitizer and
+UndefinedBehaviorSanitizer pass; leak detection is disabled because the traced
+runner does not support LeakSanitizer, and the helper/test buffers allocate no
+dynamic storage. This supplements the native negative-displacement tests; it
+does not establish PowerPC code generation or broader provider behavior.
+Its source SHA-256 is
+`caa1ade5088d0f7f3bfd36a6f3e6f96e71c0ea482d89a213c8f1092129577bd5`.
+
 ## Remaining work and held boundaries
 
-Four combinations of the two existing byte-shift helpers were measured. The
-retained helper in both branches scores 86.40686%; the other combinations score
+At the initial checkpoint, four combinations of the two existing byte-shift
+helpers were measured. The helper retained in both branches scored 86.40686%; the other combinations scored
 84.34804%, 85.45098% and 85.303925%, all at 868 bytes, without exact regressions.
-No alternative was adopted. Remaining differences include copy-loop lowering,
-register/stack allocation and scheduling. No pragma, padding, new enclosing object, null guard or pointer/status
-sentinel is introduced. The 167 modeled provider functions and all 16 frontend
-functions bind to the native build checkpoint; full native/no-loss results and
+None of those alternatives was adopted. The later record-cursor change measured
+87.65686% at 868 bytes. An explicit-destination interface measured 93.44118%
+at 820 bytes. An initial advancing-cursor helper measured 97.411766% at 820
+bytes but retained before-array pointer formation for some generic positive
+copy inputs. The adopted range-safe helper scores 95.303925% at 808 bytes,
+60 fewer than the initial recovery and eight fewer than the original.
+Remaining differences include register/stack allocation and copy-loop lowering.
+No pragma, padding, new enclosing object, null guard or pointer/status
+sentinel is introduced. All 168 compiled candidate bodies bind to the native
+build checkpoint; the other 167 bodies, all 16 frontend functions and provider
+noncode data/layout/relocations are preserved. Full native/no-loss results and
 exact-head independent review accompany publication.
 
-At this checkpoint, the conversion target `EDF64` was left undefined: its frontend still names a
+At the initial removal checkpoint, the conversion target `EDF64` was left undefined: its frontend still names a
 byte-owned shared buffer through a historical signed-halfword view. A signedness
 change alone would not establish a live halfword array. `B4D4` also needs its
 four-byte label versus five-byte NUL-scanned string boundary resolved. Existing
@@ -114,7 +153,7 @@ wrappers. This source recovery provides no enabled shipped mutation trace and
 does not turn lower-level witnesses into claims of shipped failures. Earlier
 [reachability caveats](quest-download-cache-relocation.md) still apply.
 
-The unit remains **159/173 exact, six undefined and eight partial, unlinked**.
+The unit remains **159/173 exact, five undefined and nine partial, unlinked**.
 The separate search pointer-sentinel sign-off remains unresolved.
-The later [byte-consumer recovery](quest-download-byte-conversion.md) defines
+The separate [byte-consumer recovery](quest-download-byte-conversion.md) defines
 `EDF64` as a partial without clearing the frontend producer's lifetime hold.
