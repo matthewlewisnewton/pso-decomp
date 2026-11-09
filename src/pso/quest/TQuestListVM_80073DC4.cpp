@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/object/TObjResultWin.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 #include "pso/TShopWindowBase.h"
@@ -7,7 +8,6 @@
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/ui/TAdChrSelASlotGC.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct TObjNewFloorWin_80073DCC { u8 pad[0x1C]; s32 state; void *window; s32 timer24; s32 timer28; };
 
@@ -43,7 +43,7 @@ void TObjNewFloorWin::run_task() {
     case 1:
         if (--self->timer28 == 0x3C) {
             if (self->window != NULL) {
-                TWindow__close(self->window);
+                ((TWindowBase *)self->window)->close();
                 self->window = NULL;
             }
             self->state = 2;

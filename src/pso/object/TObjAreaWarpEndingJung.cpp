@@ -2,6 +2,7 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/system/vector.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -43,7 +44,6 @@
 #include "pso/misc/TTecLuker.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TLobby_80207644.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 
 // The original TU was built with deferred codegen: functions below are in reverse
 // address order, and the pool (three {3, 2} initializers, then the float literals
@@ -422,7 +422,7 @@ void push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
 void draw_ginja_object(void *child);
-void draw_ginja_model(s32 model);
+void draw_ginja_model(void * model);
 void draw_ginja_model_with_motion(s32, s32, f32);
 
 extern s32 __vt__12TObjAreaWarp[];
@@ -650,7 +650,7 @@ void TObjWarpBase::vfunc_14() {
 
     player = (u32) *(u32 *)((s8 *)this + 0xB0);
     if (player != 0U) {
-        TWindow__close((u8 *)player);
+        ((TWindowBase *)player)->close();
         *(u32 *)((s8 *)this + 0xB0) = 0U;
         player = (u32)get_player_by_client_id(*(u16 *)((s8 *)this + 0xB8));
         if (player != 0U) {
@@ -738,7 +738,7 @@ void TObjMapWarp::closePlayerWindow(u16 arg1) {
     temp_r31 = (u8 *)(arg0 + ((arg1 * 4) & 0x3FFFC));
     temp_r3 = *(u32 *)((s8 *)temp_r31 + 0xEC);
     if (temp_r3 != 0U) {
-        TWindow__close((u8 *)temp_r3);
+        ((TWindowBase *)temp_r3)->close();
         *(u32 *)((s8 *)temp_r31 + 0xEC) = 0U;
         player = ((u32)get_player_by_client_id((u32)((void *) ((s32) arg1))));
         if (player != 0U) {
@@ -800,7 +800,7 @@ void TObjMapWarp::process_player_warps() {
         for (i = 0; i < 4; i++) {
             if (can_warp__11TObjMapWarpFlUs(this, i) == 0) {
                 if (d->win[i] != NULL) {
-                    TWindow__close(d->win[i]);
+                    ((TWindowBase *)(d->win[i]))->close();
                     d->win[i] = NULL;
                 }
             } else {
@@ -827,7 +827,7 @@ void TObjMapWarp::process_player_warps() {
     }
     if (((VObj_8019D250 *)this)->m14() == 0) {
         if (this->m_b0 != NULL) {
-            TWindow__close(this->m_b0);
+            ((TWindowBase *)this->m_b0)->close();
             this->m_b0 = NULL;
         }
     } else {
@@ -999,7 +999,7 @@ void TObjAreaWarp::handle_area_selection() {
     void *t;
     if (((VObj_8019CAB0 *)this)->m14() == 0) {
         if (d->fB0 != NULL) {
-            TWindow__close(d->fB0);
+            ((TWindowBase *)d->fB0)->close();
             d->fB0 = NULL;
         }
     } else {
@@ -1159,7 +1159,7 @@ void TObjAreaWarpForest::render() {
         ((void (*)(int, int))rotate_matrix_y)(0, this->rotation.yaw);
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(m->f8);
-        draw_ginja_model((s32)m->f4);
+        draw_ginja_model(m->f4);
         TParticleCtrl::begin_effect_render();
         m = m->next2C;
         while (m != NULL) {
@@ -1167,7 +1167,7 @@ void TObjAreaWarpForest::render() {
             ((void (*)(void *))post_translate_matrix)(m->f8);
             rotate_matrix_zyx(0, (m->f14), (m->f18), (m->f1C));
             rotate_matrix_x(0, self->fCC);
-            draw_ginja_model((s32)m->f4);
+            draw_ginja_model(m->f4);
             ((void (*)(void))pop_matrix)();
             m = m->next30;
         }
@@ -1270,7 +1270,7 @@ void TObjAreaWarpQuest::render() {
         ((void (*)(int, int))rotate_matrix_y)(0, self->f60);
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(m->f8);
-        draw_ginja_model((s32)m->f4);
+        draw_ginja_model(m->f4);
         TParticleCtrl::begin_effect_render();
         m = m->next2C;
         while (m != NULL) {
@@ -1278,7 +1278,7 @@ void TObjAreaWarpQuest::render() {
             ((void (*)(void *))post_translate_matrix)(m->f8);
             rotate_matrix_zyx(0, (m->f14), (m->f18), (m->f1C));
             rotate_matrix_x(0, self->fCC);
-            draw_ginja_model((s32)m->f4);
+            draw_ginja_model(m->f4);
             ((void (*)(void))pop_matrix)();
             m = m->next30;
         }
@@ -1409,14 +1409,14 @@ void TObjAreaWarpEnding::render() {
     ((void (*)(int, int))rotate_matrix_y)(0, arg0->f60);
     push_matrix();
     ((void (*)(void *))post_translate_matrix)(root->pos);
-    draw_ginja_model((s32)root->model);
+    draw_ginja_model(root->model);
     TParticleCtrl::begin_effect_render();
     for (root = root->child; root != 0; root = root->sibling) {
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(root->pos);
         rotate_matrix_zyx(0, root->ang[0], root->ang[1], root->ang[2]);
         rotate_matrix_x(0, arg0->fC8);
-        draw_ginja_model((s32)root->model);
+        draw_ginja_model(root->model);
         ((void (*)(void))pop_matrix)();
     }
     TParticleCtrl::end_effect_render();

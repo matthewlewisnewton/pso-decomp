@@ -660,7 +660,7 @@ void TObjEneLappy::vfunc_61() {
 
 void TObjEneLappy::update_attacking() {
     u8 *arg0 = (u8 *)this;
-    u8 *temp_r3;
+    TObjChara *temp_r3;
     ((TObjMotion *)arg0)->advance_animation();
     switch (this->phase) {
     case 0:
@@ -758,14 +758,14 @@ void TObjEneLappy::update_moving() {
     u8 *temp_r3_2;
     u8 *temp_r3_3;
     u8 *temp_r4;
-    u8 *temp_r6;
-    u8 *temp_r7;
-    u8 *temp_r7_2;
+    TObjChara *temp_r6;
+    TObjChara *temp_r7;
+    TObjChara *temp_r7_2;
     ((TObjMotion *)arg0)->advance_animation();
     if ((*(s32 *)&this->actorFlags & 0x1000) && !(this->m_374 & 2)) {
         temp_r6 = this->target;
         if (temp_r6 != NULL) {
-            Position_800C08A0 target1 = *(Position_800C08A0 *)(temp_r6 + 0x2FC);
+            Position_800C08A0 target1 = *(Position_800C08A0 *)&temp_r6->body_center_position;
             enemy_backstep_from_point(arg0, &target1.x, (f32) (*(f32 *)((s8 *)((u8 *)(*(u8 * *)&this->movementParameters)) + 4)));
             turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), &movement_velocity);
             apply_actor_gravity(arg0, 0, lbl_805D9F4C);
@@ -779,7 +779,7 @@ void TObjEneLappy::update_moving() {
         case 0:
             temp_r7 = this->target;
             if (temp_r7 != NULL) {
-                Position_800C08A0 target2 = *(Position_800C08A0 *)(temp_r7 + 0x2FC);
+                Position_800C08A0 target2 = *(Position_800C08A0 *)&temp_r7->body_center_position;
                 temp_f31 = update_enemy_wander_move(arg0, &target2.x, 1, (f32) (*(f32 *)((s8 *)((u8 *)(*(u8 * *)&this->movementParameters)) + 4)));
                 if ((obj_testFlags30__14TObjCollidableFUl(arg0, 2) == 0) && (temp_f31 < lbl_805D9F50)) {
                     *(s16 *)&this->m_37a = 1;
@@ -801,7 +801,7 @@ void TObjEneLappy::update_moving() {
         case 1:
             temp_r7_2 = this->target;
             if (temp_r7_2 != NULL) {
-                Position_800C08A0 target3 = *(Position_800C08A0 *)(temp_r7_2 + 0x2FC);
+                Position_800C08A0 target3 = *(Position_800C08A0 *)&temp_r7_2->body_center_position;
                 temp_f1 = update_enemy_wander_move(arg0, &target3.x, 1, (f32) (*(f32 *)((s8 *)((u8 *)(*(u8 * *)&this->movementParameters)) + 4)));
                 if (temp_f1 > lbl_805D9F70) {
                     *(s16 *)&this->m_37a = 0;

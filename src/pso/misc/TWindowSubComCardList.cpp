@@ -1,6 +1,7 @@
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowMessage.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowHelpItem_80255AB4.h"
 #include "pso/misc/TWindowSubComCardList_8026CB08.h"
 #include "pso/misc/TWindowSubComCard_8007A810.h"
@@ -20,7 +21,6 @@
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/object/TObjCityMainWarp.h"
 #include "pso/ui/Language.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 
 #pragma readonly_strings on
 
@@ -80,27 +80,27 @@ u8 *TWindowSubComCardList__ct(u8 *arg0, void *arg1);
 s32 count_leading_active__17TWindowSubComCardFPvi(s32, s32);
 u8 *TWindowSubComCardList__sub_802757AC(u8 *arg0, void *arg1, s32 arg2, s32 arg3, s8 arg4);
 void *__nw__7TObjectFUl(u32);
-s32 set_field_1c__6TLobbyFf(void *);
+s32 set_depth__11TWindowBaseFf(void *);
 f32 TWindowSubEquip__sub_80263AF8(u8 *arg0, u32 arg1);
 Ev_802758C8 *calc_equip_index__21TWindowSubCustomEquipFv(void *);
 void *__dt__21TWindowSubComCardListFv(void *arg0, s16 arg1);
 void render__21TWindowSubComCardListFv(TWindowSubComCardList *arg0);
 s32 handle_list_page_flip_input(s32);
-s32 draw_visible_window_entries(void *, void *, TWindowDrawContext *);
-s32 draw_list_page_indicator(s32, TWindowDrawContext *);
+s32 draw_visible_window_entries(void *, void *, s32);
+s32 draw_list_page_indicator(s32, s32);
 void __dl__7TObjectFPv(void *);
 void *__dt__11TWindowMenuFv(void *arg0, s16 arg1);
-s32 forward_render__20TWindowSubStatusDispFv(s32, TWindowDrawContext *);
+s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 s32 run_task__11TWindowMenuFv();
 
 void render__21TWindowSubComCardListFv(TWindowSubComCardList *arg0) {
-    TWindowDrawContext *temp_r3;
+    s32 temp_r3;
 
-    temp_r3 = get_draw_context__11TWindowBaseFPv(arg0);
-    ((TUnk_804CE018 *)arg0)->draw_window_frame(temp_r3);
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
+    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, temp_r3);
     ((TWindowMenu *)arg0)->render_selected_entry(temp_r3);
-    arg0->draw_card_list_selection(temp_r3);
+    arg0->draw_card_list_selection((u8 *)temp_r3);
     if ((u32) arg0->m_88 != 0U) {
         forward_render__20TWindowSubStatusDispFv(arg0->m_88, temp_r3);
     }
@@ -111,7 +111,7 @@ void render__21TWindowSubComCardListFv(TWindowSubComCardList *arg0) {
 
 void TWindowSubComCardList::run_task() {
     run_task__11TWindowMenuFv();
-    if ((is_visible() == 0) && (handle_list_page_flip_input(this->m_8c) != 0)) {
+    if ((is_decided() == 0) && (handle_list_page_flip_input(this->m_8c) != 0)) {
         set_selected_index(0);
         TWindowSubComCardList__sub_80275360(this);
     }
@@ -245,7 +245,7 @@ void TUnk_804D1160::update_customize_help_text(void *ev_arg) {
     case 7:
         break;
     }
-    ((TLobby *)(self->lobby))->send_and_handle(((const void *(*)())get_shared_text_buffer)(), 0x82);
+    ((TWindowMessage *)(self->lobby))->append_line(get_shared_text_buffer(), 0x82);
 }
 
 void TUnk_804D1160::render() {  }
@@ -257,7 +257,7 @@ void TUnk_804D1160::run_task() {
     case 0:
     case 1:
         if (self->f2c != NULL) {
-            TWindow__close((u8 *)self->f2c);
+            ((TWindowBase *)self->f2c)->close();
             self->f2c = NULL;
         }
         ((TWindowSubCustomEquip *)(this->m_28))->clear_flag_and_set_entry_state();
@@ -279,7 +279,7 @@ void TUnk_804D1160::run_task() {
         }
         self->f2c = p;
         TWindowSubEquip__sub_80263AF8((u8 *)self->f24, 1);
-        set_field_1c__6TLobbyFf(self->f2c);
+        set_depth__11TWindowBaseFf(self->f2c);
         self->state = 4;
     case 4:
         ((TUnk_804D1160 *)self)->update_customize_help_text(calc_equip_index__21TWindowSubCustomEquipFv(self->f2c));

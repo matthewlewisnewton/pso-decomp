@@ -1,156 +1,88 @@
-# GuildWarning recovery — source linked, still draft
+# GuildWarning recovery on current main
 
-`THunterGuildWarning` has a warning mode, a timer and four message-window pointers.
-Construction, destruction, task dispatch and the renderer at 0x80211718–0x802119F0
-are byte-exact.
+PR #268 remains relevant: main `6daa19a11db97b1b8222fd2665eba485ed3a74a4`
+still lacks the 600-byte renderer at `0x80211774`. The previous PR head is
+`3004a1a51343272ec7f2cf388d4959e7ca2ae08a`.
 
-Base: main `665186958`, merged normally.
+## Integration scope
 
-## Measured state
+The normal merge retains main's newer `TWindowBase` / `TWindowAddition`
+hierarchy, `TWindowMessage::create` and `TWindowMessage::append_line` ownership,
+and typed quest VM. The old PR's broad TLobby window-interface retypes conflict
+with that work and are superseded by main for this recovery. Their original
+commits remain in this branch's history. The existing unpushed continuation
+`sol61-pr268` at `2fe55e2e0`, including its dirty follow-up files, is preserved
+in its original worktree and is not included here.
 
-Every function this branch touches is 100% under objdiff. `THunterGuildWarning_80211718`
-(`close_windows`, `sub_80211774__19THunterGuildWarningFl` at 600 bytes, and
-`sub_802119CC__19THunterGuildWarningFv`) is linked. On main, `sub_80211774` was
-unmatched and the unit was 17.58%.
+The retained recovery covers GuildWarning's fields, constructor, instance
+helpers, lifetime methods and renderer. It calls the current window members
+directly. The layout lookup and its defining unit share
+`WindowLayoutPosition *get_window_layout_position(s32)` from one header;
+the two-float layout is the same as main's previous local type.
 
-`ninja -j8 && python3 tools/check_pr.py --no-build` against main
-`665186958` reports one new exact function, zero regressions, and linked
-units 3545 → 3546, with complete code +728 and matched code +600. Eight
-functions are renamed, including `set_window_mode_4__6TLobbyFPCvPCvl` and
-`create_titled_window_menu__FPCvlll`. Address `0x80269CC0` is renamed from
-`create_message_window__6TLobbyFllUls` to
-`create_message_window__6TLobbyFPCvPCvUll` and stays 100% (100 bytes). The
-renderer references the split-owned `lbl_8044BC7C` / `lbl_8044BC84` symbols.
-`force_active` is unchanged.
+The actual four-argument message factory's size input is now `const void *`.
+Its body passes that address to the helper that copies two floats into the
+message-window settings. Keeping it as an integer made MWCC hoist an extra
+address conversion in the renderer loop, consuming another register and
+growing its stack frame. The header, definition, real member callers and
+project-assigned symbol change together to
+`create__14TWindowMessageFlPCvUll`. Main's existing C-named local declarations
+are retargeted to that symbol; their other legacy types are unchanged.
+The three-argument overload keeps its existing interface and converts the
+size word at the delegation boundary.
 
-`TUnk_804CE018` derives from `TLobby`, which adds no fields past `TObject`
-(`sizeof` 0x1C), so `send_and_handle` and `set_position_xy` are called on a
-`TWindowMessage *` with no receiver cast. `TWindow__close` is the unmangled
-symbol at `0x80244A14`. It closes any window, so its one header declaration
-takes `void *`.
+The factory still accepts the layout as a word and returns `u8 *`. Those
+two existing boundaries require an explicit layout conversion and return
+pointer conversion here. This recovery does not assign window operations
+back to TLobby or assert a new constructor contract to remove them. The
+factory's existing function-pointer view of its size-copy helper is unchanged;
+this is not a claim that all its interfaces are unified.
 
-`sub_80211774` and `sub_802119CC` are ordinary non-static members. Their
-symbol names are project-assigned (the DOL holds only class-name strings).
-The constructor's second parameter is the mode integer (`s32`,
-`__ct__19THunterGuildWarningFP7TObjectl`).
+The mode is an `s32`, stored at `0x1C`; the timer is at `0x20`; the four message
+windows begin at `0x24`; the whole GuildWarning object is `0x34` bytes. Compile
+time size/offset checks record these facts. The renderer's two `sub_` member
+names and the constructor's mode parameter retarget project-assigned symbols;
+they are not recovered original C++ names. The split-owned coordinate constants
+remain external references, rather than newly defined game data.
 
-`get_window_layout_position` returns `WindowLayoutPosition *` in
-`TWindowOptionCtrl_8026CBA4.h`. `create_yes_no_window`,
-`init_shop_judgment_window` and `create_window_menu` take that type in
-`TWindowSubComCard_80265410.h`. The guild-warning, quest-list, quest-thread
-and main-menu callers include those headers instead of declaring the
-functions locally. So do `TWindow`, `TShopDeleteItemWindow` and
-`TShopKeepItemWindow`, which no longer cast the layout.
+## Validation
 
-`TWindow__close` is declared once, in `TWindowSubComCard_80244774.h`.
-57 files used to declare it locally (`u8 *`, `void *` or `TWin_8020F070 *`);
-53 now include the header.
+The baseline was freshly built from main `6daa19a11` with pinned tools and
+local original inputs in an isolated checkout. It has 27,364 exact functions
+and 3,570 linked units. Its DOL SHA-1 and linked-unit check pass, and its
+retention check has zero additions or removals.
 
-The character-select save's memory-card window is a `TCheckMemoryCard *`.
-Its ctor stores the three trailing arguments as integers, so it takes
-`(TObject *, u32, u32, u32)`. `TAdSinglePlyChrSelectGC::create_check_memory_card`
-and `fn_8033C5E4` return `TCheckMemoryCard *`, and both callers use the
-static member instead of a mangled prototype.
-`TAdSinglePlyChrSelectGC__sub_8033B9F8` returns `s32`: the original caller
-tests it with `cmpwi r3, 0`.
+The integration build (`ninja -j2`) reproduces the original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. The full
+`tools/check_pr.py --no-build` comparison against that fresh main report passes:
 
-## Register notes
+- Exact functions: 27,364 → 27,365; one new exact renderer, zero regressions.
+- Matched code: 4,180,388 → 4,180,988 bytes (+600).
+- Linked code: 3,636,556 → 3,637,284 bytes (+728).
+- Linked units: 3,570 → 3,571; all linked units exact.
+- Matched and linked data unchanged; four project-assigned function renames.
+- Retention metadata unchanged: zero additions or removals.
+- `tools/list_port_exceptions.py --check` passes; no new exception.
 
-`TLobby::create_message_window` takes the slot as `s32`. The factory `mr`s it
-into `TWindowMessage__ct`, and the ctor's `extsh` is the narrowing into
-`construct_with_parent`, whose third parameter is `s16`.
+Every function in the 728-byte renderer unit is exact, as are the existing
+GuildWarning helpers, constructor and destructor. The layout lookup unit
+remains exact. Address-based no-loss validation also covers the factory and
+all its changed callers.
 
-`update_selection__19TQuestListChallengeFv` passes `get_entity_id(...)`
-inline as the factory's last argument, as `TQuestListOffline` does. MWCC
-evaluates arguments right to left, so the call still comes first, and `sel`
-and the slot get r29/r30 as in the original. A named `id` local shared with
-the yes/no call is what swapped them (99.72%).
+Candidate build outputs are private; unchanged compiler outputs were copied only from this
+fresh local main baseline, and split objects are regenerated from the
+candidate's checked-in symbol/configuration inputs before validation. Every
+changed source unit is explicitly recompiled; copied object timestamps are
+not used as evidence for changed code.
 
-In `sub_80211774` case 2 the selected text is an `int` passed to a `long`
-parameter inside the loop. MWCC hoists that conversion as the original's
-`mr r28, r27`. An `s32` variable or a literal at each call does not.
+## Draft hold
 
-## Still open
+The standing instruction in this PR is **do not merge or mark ready** until
+the window construction/lifetime contracts are resolved. It remains in force.
+Main's C-named `TWindowMessage__ct` and `construct_with_parent` are unchanged;
+the earlier attempts to force them into real C++ constructors emitted extra
+base calls/vtable stores. Those previous measurements do not prove that no
+future solution exists, and this pass does not retry or resolve them.
 
-These need cross-file retypes beyond this branch:
-
-- **The `s32` layout convention, partly retyped.** `set_window_mode_4` is
-  the real static member `set_window_mode_4__6TLobbyFPCvPCvl` (layout and
-  size are `const void *`). `create_titled_window_menu` is
-  `create_titled_window_menu__FPCvlll`. Callers that already hold the
-  lookup pointer pass it with no cast, and those units are function-100%,
-  including `TWindowSubMag`, `TWindowSubTechnique` and `TWindowSubItem`.
-  `TWindowSubMagPhoton` passes the layout pointer into a local
-  `const void *` prototype of the unmangled
-  `TWindowSubStatusDisp__sub_80248BE8`. The definition and
-  `refresh_with_default_list__20TWindowSubStatusDispFll` /
-  `draw_with_layer__13TAdVIConfigGCFlll` stay integer parameters so those
-  symbols do not rename. The photon unit stays function-100%.
-  The folded `TObjBoss2Tunnel` message functions pass their `f32` position
-  arrays the same way and stay 100%.
-  `update_window_mode_from_progress` now passes `this` with no cast.
-  `TWindowSubComCard_80271E7C` returns the lookup as `const void *` and
-  passes it into `set_window_mode_4` with no cast. The one-caller members
-  moved with it: `create_for_card__14TWindowComCardFPCvll`,
-  `create_com_card_window__17TWindowSubComCardFPCv`,
-  `create_card_list__17TWindowSubComCardFPCvlll`. `open_yes_no_prompt`'s
-  layout argument is `const void *` and is passed to
-  `create_titled_window_menu` with no cast. Those units stay
-  function-100%. The shortcut, short-mail and `text_802B1AB4` local
-  prototypes of the unmangled prompt now take `const void *` for the
-  layout. The other lookup files still declare
-  `get_window_layout_position` as returning `s32`.
-- **The window constructor chain.** `create_message_window` now returns
-  the `TWindowMessage *` from `__nw__7TObjectFUl` and `TWindowMessage__ct`
-  with no cast, and that function stays 100%. `update_window_mode_from_progress`
-  passes `this` through with no cast and stays 100%. A real
-  `TWindowMessage::TWindowMessage` does not: MWCC emits
-  `bl __ct__13TUnk_804CDFE8Fv` and a vtable store at 0x18 *before*
-  `construct_with_parent`, then the body stores the vtable again. The
-  original has only the second store. Defining
-  `TUnk_804CDFE8::TUnk_804CDFE8(void *, s32, const void *)` as that base
-  constructor emits `bl __ct__13TUnk_804CE018Fv`, which emits
-  `bl __ct__6TLobbyFv`, which calls `__ct__7TObjectFP7TObject` with a null
-  parent, and stores the compiler vtable `__vt__13TUnk_804CDFE8`. The DOL
-  slot at `lbl_804CDFE8` is `destroy_window__13TUnk_804CDFE8Fs`, not a C++
-  destructor, so that vtable cannot be the one MWCC emits. The C-named
-  `TWindowMessage__ct` stays. Its field stores now use `m_name`, `m_70`,
-  `m_74`, `next_line`, `line_count`, `m_78`, `m_84`, `unk_80` and `lines`,
-  and the function is still 100%. The vptr store uses a flat
-  `TWindowMessageInit::vt` at offset 0x18, the same pattern as
-  `TWindowMainMenu__ct`, so the body no longer writes `(s8 *)window + 0x18`.
-  The function stays the unmangled C symbol. A C++ constructor of the
-  virtual hierarchy still inserts the base call the DOL does not have.
-- **`TLobby::send_and_handle(const void *, int)`.** The member is
-  `send_and_handle__6TLobbyFPCvi`. Text that already has a pointer type is
-  passed with no cast. Getters that are still declared to return `s32`
-  (`get_localized_text_entry`, `TQuestVmDownLoadServer__sub_8006EF6C`, and
-  the other text helpers) are viewed as returning `const void *` at the
-  call, either by that function-pointer type or by a local prototype whose
-  return type is `const void *`. A function-pointer cast emits `bctrl` in
-  `begin_file_download` and `save_character_to_card`; those two use the
-  local-prototype form and stay a direct `bl`. `append_message_window_line`
-  still passes the pointer to `set_text_entry_string` with `(u32)`, which
-  does not emit. The whole DOL stays byte-identical.
-- **`create_yes_no_window` locals now take `const void *`.** The eight
-  `s32` prototypes in `THunterGuildSeqOffline`,
-  `THunterGuildSeqOffline_80213788`, `TMedicalCenterSequence`,
-  `TShopGetItemWindow`, `TShopJudgmentItemWindow`, `TShopArmorListWindow`,
-  `TShopEquipmentListWindow` and `TWindowSubComCard_802A5748` pass the
-  lookup pointer through. Those units stay function-100%.
-  `TShopSequence::create_message_window(s32, s32)` still takes the layout
-  as an integer, so the guild and medical callers still cast there.
-  `new TWindowHelpItem` / `new TWindowInputNumber` would call
-  `__nw__15TWindowHelpItemFUl` / `__nw__18TWindowInputNumberFUl`; the
-  originals call `__nw__7TObjectFUl`, so those factories stay C calls.
-- **Four local `TWindow__close` prototypes now take `void *`, matching the header.** The calls still cast `u32` window fields through `u8 *`. Retyping `TWindowSubComCard::m_60` through `m_84` to `void *` was reverted: the matched close sequence is `lwz r3, off(r31); cmplwi r3, 0; beq; bl TWindow__close`, and a pointer compare against `NULL` is `cmpwi`. `TWindowChatSymbol_802486A8`,
-  `TWindowSubComCard_80271E7C`, `TWindowSubStatusDisp_8026F6DC` and
-  `TWindowSubTradeMain_80330A84` declare other functions from
-  `TWindowSubComCard_80244774.h` with different signatures:
-  - `fn_8024491C`, `fn_80244958` and `TWindowSubTradeMain__sub_802448E4`
-    take `(window, pos)`, but their definitions forward `pos` to a mangled
-    `copy_vec2` call by r4 pass-through.
-  - `TWindowSubComCard__sub_80245558` returns a byte in its definition
-    (`extrwi r3, r0, 8, 19`), while its four callers test a word
-    (`cmpwi r3, 0`). With `bool` the callers gain a `clrlwi`, and with `s32`
-    the definition drops to 97.93%, so one declaration can't be exact.
+Current-main integration and exact code matching alone do not lift that hold.
+The earlier wider window-interface cleanup is not claimed complete.

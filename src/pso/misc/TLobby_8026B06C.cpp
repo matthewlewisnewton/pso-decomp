@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowMessage.h"
 #include "pso/unk/text_8026B260.h"
 #include "pso/misc/TLobby_8026B06C.h"
 #include "pso/misc/TLobby.h"
@@ -6,17 +7,17 @@
 extern "C" {
 s32 __nw__7TObjectFUl(int);
 s32 TLobby__sub_80269DA4(void *, int);
-int append_message_window_line(void *w, const void *text, int flags, int color);
+int append_message_window_line(void *w, int text, int flags, int color);
 void TLobby::set_field_90(s32 v) { *(s32*)((char*)this + 0x90) = v; }
 }
 
-int dispatch_message_window_text(void *w, const void *text, int flags) {
+int dispatch_message_window_text(void *w, int text, int flags) {
     switch (*(s32 *)((u8 *)w + 0x90)) {
     case 0:
         return append_message_window_line(w, text, flags, 0xFF000000);
     case 1:
     case 2:
-        return ((TLobby *)w)->send_and_handle(text, flags);
+        return ((TWindowMessage *)w)->append_line(text, flags);
     default:
         return 0;
     }

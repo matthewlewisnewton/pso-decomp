@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/misc/TCheckMemoryCardState.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_8033C4E0_8033C420 { char pad[0x18]; };
@@ -36,21 +37,21 @@ TCheckMemoryCard::~TCheckMemoryCard() {
         this->m_30 = NULL;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x34) != 0U) {
-        TWindow__close((u8 *)(*(void **)((s8 *)this + 0x34)));
+        ((TWindowBase *)(*(void **)((s8 *)this + 0x34)))->close();
         *(u32 *)((s8 *)this + 0x34) = 0U;
     }
 }
 extern void *TCheckMemoryCard__name;
-TCheckMemoryCard::TCheckMemoryCard(TObject *object, u32 arg2, u32 arg3, u32 arg4) : TObject(object) {
+TCheckMemoryCard::TCheckMemoryCard(TObject *object, void *arg2, void *arg3, void *arg4) : TObject(object) {
     m_name = (const char *)TCheckMemoryCard__name;
-    m_48 = arg2;
-    m_1c = arg4;
-    m_4c = arg3;
+    m_48 = (u32)arg2;
+    m_1c = (u32)arg4;
+    m_4c = (u32)arg3;
     // Inherited original debt: reset reads m_20 before initialization. This
     // receiver repair preserves that behavior; defined initialization is unresolved.
     reset();
 }
 
-TCheckMemoryCard *fn_8033C5E4(TObject *parent, u32 arg1, u32 arg2) {
-    return new TCheckMemoryCard(parent, arg1, arg2, 1);
+void *fn_8033C5E4(TObject *parent, void *arg1, void *arg2) {
+    return new TCheckMemoryCard(parent, arg1, arg2, (void *)1);
 }

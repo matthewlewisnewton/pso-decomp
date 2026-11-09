@@ -1,4 +1,5 @@
 #include "pso/system/TSetEvtDestroy.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/item/TItem.h"
 #include "types.h"
 #include "pso/misc/TPlayerBattleCtrl4P.h"
@@ -9,7 +10,6 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/quest/TQuestThread.h"
 #include "pso/map/FloorArea.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct Base_803107D0_8031058C { char pad[0x18]; };
 struct VObj_803107D0_8031058C : Base_803107D0_8031058C {
@@ -128,7 +128,7 @@ s32 TWindowDuelResult__sub_801C19AC(void *);
 
 s32 calc_battle_score__19TPlayerBattleCtrl4PFPvPv(void *self, u8 *arg1);
 void set_split_screen_battle_phase__19TPlayerBattleCtrl4PFl(u8 *arg0, s32 arg1);
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, int);
+s32 check_value_equals__7TObjectFPCc(void *, int);
 void queue_destruction__7TObjectFv(void *);
 extern s32 lbl_805D2A98;
 void destroy_matching_children__19TPlayerBattleCtrl4PFPvPv(void *self, Par_80311304 *p);
@@ -192,10 +192,10 @@ void clear_trap_counts(s8 *arg0);
 
 void begin_player_keyboard_hold(s32 arg0);
 s32 obj_testFlags30__14TObjCollidableFUl(u32, s32);
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);
 s32 release_attached_resource__10TObjPlayerFv();
 void request_active_window_close(void);
-s32 send_code_45_1__10TObjPlayerFl();
+s32 send_code_45_1__10TObjPlayerFP10TObjPlayer();
 
 typedef char RecoveredGlobal_80310300_TPlayerBattleCtrl4P__data_80542E90_size[sizeof(RecoveredGlobal_80310300_TPlayerBattleCtrl4P__data_80542E90) == 0x20 ? 1 : -1];
 
@@ -207,7 +207,7 @@ s32 TPlayerBattleCtrl4P::close_windows_on_button() {
         if (get_player_by_client_id(i) != 0) {
             if (self->win[i] != NULL) {
                 if (TWindowShortListCtrl__check_controller_button(controller_input_state[get_map_id__13TRaderMapCoreFv()].sub, 2) != 0) {
-                    TWindow__close((u8 *)self->win[i]);
+                    ((TWindowBase *)(self->win[i]))->close();
                     self->win[i] = 0;
                 } else {
                     r = 0;
@@ -223,7 +223,7 @@ void TPlayerBattleCtrl4P::close_player_windows() {
     s32 i;
     for (i = 0; i < 4; i++) {
         if (o->win[i] != 0) {
-            TWindow__close((u8 *)o->win[i]);
+            ((TWindowBase *)(o->win[i]))->close();
             o->win[i] = 0;
         }
     }
@@ -517,7 +517,7 @@ void send_code_45_to_window__19TPlayerBattleCtrl4PFPvii(void *arg0, s32 arg1, s3
     temp_r31 = (u16)arg1;
     temp_r30 = arg2;
     if (get_player_by_client_id(temp_r31) != 0U) {
-        send_code_45_1__10TObjPlayerFl();
+        send_code_45_1__10TObjPlayerFP10TObjPlayer();
     }
     if (temp_r30 != 0) {
         end_player_keyboard_hold(temp_r31);
@@ -617,7 +617,7 @@ void TPlayerBattleCtrl4P::remove_player(void *arg0, u16 arg1, s32 arg2) {
     id = arg1;
     temp = get_player_by_client_id(id);
     if (temp != 0U) {
-        play_effect_default__10TObjPlayerFii(temp, -1);
+        play_effect_default__10TObjPlayerFP10TObjPlayerl(temp, -1);
     }
     if (arg2 != 0) {
         begin_player_keyboard_hold(id);
@@ -752,7 +752,7 @@ void destroy_matching_children__19TPlayerBattleCtrl4PFPvPv(void *self, Par_80311
     while (p->head != 0 && n != 0) {
         cur = n;
         n = cur->next;
-        if (check_value_equals__13TUnk_804B6C24Fl(cur, lbl_805D2A98) != 0) {
+        if (check_value_equals__7TObjectFPCc(cur, lbl_805D2A98) != 0) {
             queue_destruction__7TObjectFv(cur);
         } else {
             destroy_matching_children__19TPlayerBattleCtrl4PFPvPv(self, (Par_80311304 *)cur);
@@ -798,11 +798,11 @@ void TPlayerBattleCtrl4P::shuffle_order() {
         o->order[i] = order[i];
     }
     if (this->intro_window != NULL) {
-        TWindow__close((u8 *)this->intro_window);
+        ((TWindowBase *)this->intro_window)->close();
         this->intro_window = NULL;
     }
     if (this->menu_window != NULL) {
-        TWindow__close((u8 *)this->menu_window);
+        ((TWindowBase *)this->menu_window)->close();
         this->menu_window = NULL;
     }
     close_player_windows();

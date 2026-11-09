@@ -80,7 +80,7 @@ u16 get_entity_id(void *object);
 void obj_setFlags30(void *object, s32 flags);
 u16 TObjRoomId__sub_801A1DB8(u16 id);
 void TObjPlayer__sub_801BA42C(void);
-extern s32 door_vo_ship_class_name;
+extern const char *door_vo_ship_class_name;
 extern s32 local_client_id;
 extern s32 lbl_805D5868;
 extern s32 registered_player_count;
@@ -279,8 +279,8 @@ void TObject::pause_update() {
     m_flags |= PAUSE_UPDATE;
 }
 
-BOOL TUnk_804B6C24::check_value_equals(s32 name) {
-    return (s32)m_name == name;
+BOOL TObject::check_value_equals(const char *name) {
+    return m_name == name;
 }
 
 void clear_volopt_cage_flag() {
@@ -647,7 +647,7 @@ void TBoss3Volopt::select_phase1_attack() {
                 attack.id = entity_id;
                 attack.count = max_targets < count ? max_targets : count;
                 attack.tech = 3.0f * random_ratio__9TObjCharaFv(this);
-                ((TLobby *)attack.order)->move_data(volopt_p01_order, 6);
+                move_data(attack.order, volopt_p01_order, 6);
                 attack.send();
                 if (max_targets < 5) {
                     max_targets++;
@@ -710,7 +710,7 @@ void TBoss3Volopt::select_phase1_attack() {
                 targets.init();
                 targets.id = entity_id;
                 targets.count = max_targets < count_v1 ? max_targets : count_v1;
-                ((TLobby *)targets.order)->move_data(volopt_p01_order, 6);
+                move_data(targets.order, volopt_p01_order, 6);
                 targets.send();
                 if (max_targets < 5) {
                     max_targets++;
@@ -1332,8 +1332,8 @@ void TBoss3Volopt::push_actors_out(s32 phase2) {
         actor = TObjPlayer::get_player_data(i);
         if (actor == NULL) continue;
         if (actor->bodies == NULL) continue;
-        if (((TUnk_804B6C24 *)actor)->check_value_equals((s32)TOCapsuleAncient01::class_name) != 0) continue;
-        if (((TUnk_804B6C24 *)actor)->check_value_equals(door_vo_ship_class_name) != 0) continue;
+        if (actor->check_value_equals(TOCapsuleAncient01::class_name) != 0) continue;
+        if (actor->check_value_equals(door_vo_ship_class_name) != 0) continue;
         if (!(actor->bodies->flags & 0x20000)) continue;
         if (fabs_float(actor->position.z - center_z) > 1000.0f) {
             Vec pos = *&actor->position;
@@ -1422,7 +1422,7 @@ void handle_6x15_vol_opt_boss_actions(TBoss3VoloptActionPacket *packet) {
 
 void handle_6x16_vol_opt_boss_actions(TBoss3VoloptTargetsPacket *packet) {
     packet->swap();
-    ((TLobby *)volopt_p01_order)->move_data(packet->order, 6);
+    move_data(volopt_p01_order, packet->order, 6);
     TBoss3Volopt::set_primary_p01s(packet->count);
     volopt_p01_tech = -1;
 }
@@ -1487,7 +1487,7 @@ void TBoss3Volopt::update_phase() {
 
 void handle_6x84_vol_opt_boss_actions(TBoss3VoloptAttackPacket *packet) {
     packet->swap();
-    ((TLobby *)volopt_p01_order)->move_data(packet->order, 6);
+    move_data(volopt_p01_order, packet->order, 6);
     volopt_p01_tech = packet->tech;
     TBoss3Volopt::set_primary_p01s(packet->count);
 }

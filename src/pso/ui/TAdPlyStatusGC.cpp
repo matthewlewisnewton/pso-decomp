@@ -1,7 +1,7 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/TMainTask.h"
-#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/system/ModelDrawContext.h"
@@ -11,7 +11,6 @@
 #include "pso/object/TObjLuker.h"
 #include "pso/ui/TAdGuideButtonGC.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct RecoveredGlobal_8033F93C_lbl_8050E3B8 {
     s32 value;
@@ -85,9 +84,9 @@ extern u32 ply_status_gc_instance;
 u8 *__dt__14TAdPlyStatusGCFv(u8 *arg0, s16 arg1);
 void update_shown__14TAdPlyStatusGCFv(struct RecoveredFields_8033F9DC_arg0 *arg0);
 void set_load_state__14TAdPlyStatusGCFPvi(u8 *arg0, s32 arg1);
-void set_field_1c__6TLobbyFf(f32);
+void set_depth__11TWindowBaseFf(f32);
 s32 create_callback__22TAdEnterSerialAccessGCFPvPvPv(void *, void *, void *);
-void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, TWindowDrawContext *arg1);
+void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, void *arg1);
 extern u8 lbl_804783D8[];
 extern const f32 lbl_805DFAEC;
 s32 TAdPlyStatusGC__sub_8033F8B0(void *arg0, void *arg1);
@@ -152,19 +151,19 @@ struct Box_8033F3D8 { f32 v[8]; };
 struct Item_8033F3D8 { s8 valid; u8 pad[0xF]; };
 struct Status_8033F3D8 { u8 pad[8]; u32 f8; };
 
-void draw_window_frame__13TUnk_804CE018FPv(void *);
+void draw_window_frame__11TWindowBaseFPv(void *);
 Status_8033F3D8 **get_status_sub__14TAdPlyStatusGCFv(s32);
 extern const f32 lbl_805DFAE0;
 extern const f32 lbl_805DFAE4;
 extern Vec2_8033F3D8 ply_status_window_offset_table[];
-void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, TWindowDrawContext *arg1) {
+void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, void *arg1) {
     Item_8033F3D8 items[3];
     Box_8033F3D8 box;
     Vec2_8033F3D8 pts[3];
     Vec2_8033F3D8 pts2[3];
     s32 i;
 
-    draw_window_frame__13TUnk_804CE018FPv(arg0);
+    draw_window_frame__11TWindowBaseFPv(arg0);
     if ((u32)ply_status_chcr_load_afs != 0 && ((TChCrLoadAfs *)ply_status_chcr_load_afs)->is_unloaded() != 0 && TAdPlyStatusGC__is_shown != 0 &&
         (*get_status_sub__14TAdPlyStatusGCFv(ply_status_chcr_load_afs))->f8 != 0) {
         box = TAdPlyStatusGC__status_window_box;
@@ -179,7 +178,7 @@ void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, TWindowDrawContext *a
         TWindowSubStatusDisp::get_player();
     }
     format_status_strings__14TAdPlyStatusGCFPv((char *)items);
-    set_text_draw_params(arg1, 1, 1, (f32)lbl_805DFAE0, (f32)lbl_805DFAE4);
+    set_text_draw_params((s32)arg1, 1, 1, (f32)lbl_805DFAE0, (f32)lbl_805DFAE4);
     for (i = 0; i < 3; i++) {
         pts[i].x = ply_status_window_points_first[i].x + OFF_8033F3D8.x;
         pts[i].y = ply_status_window_points_first[i].y + OFF_8033F3D8.y;
@@ -271,7 +270,7 @@ void format_status_strings__14TAdPlyStatusGCFPv(char *buf) {
 
 s32 TAdPlyStatusGC__sub_8033F8B0(void *arg0, void *ad_enter_serial_access_gc) {
     s32 r = create_callback__22TAdEnterSerialAccessGCFPvPvPv(ad_enter_serial_access_gc, lbl_804783D8, (void *)draw_status_window__14TAdPlyStatusGCFPvPv);
-    set_field_1c__6TLobbyFf(lbl_805DFAEC);
+    set_depth__11TWindowBaseFf(lbl_805DFAEC);
     return r;
 }
 
@@ -295,7 +294,7 @@ void update_hidden__14TAdPlyStatusGCFv(u8 *arg0) {
     s32 temp_r5;
     TAdPlyStatusGC__is_shown = 0;
     if ((u32) *(u32 *)((s8 *)arg0 + 0x6C) != 0U) {
-        TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x6C)));
+        ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x6C)))->close();
         *(u32 *)((s8 *)arg0 + 0x6C) = 0U;
     }
     if ((s32) TAdPlyStatusGC__window_offset_index < 3) {
@@ -336,7 +335,7 @@ void update_shown__14TAdPlyStatusGCFv(struct RecoveredFields_8033F9DC_arg0 *arg0
 void close_window__14TAdPlyStatusGCFv(void *arg0) {
     void *temp_r3 = *(void **)((s8 *)arg0 + 0x6C);
     if ((u32) temp_r3 != 0U) {
-        TWindow__close((u8 *)temp_r3);
+        ((TWindowBase *)temp_r3)->close();
         *(u32 *)((s8 *)arg0 + 0x6C) = 0U;
     }
     if (get_player_index__14TAdPlyStatusGCFv() != 0U) {

@@ -1,4 +1,6 @@
 #include "types.h"
+#include "pso/misc/TWindowMessage.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowShortListCtrl_801A4FC0.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 #include "pso/misc/TUnk_804C2298.h"
@@ -6,7 +8,6 @@
 #include "pso/TAdPlayerLoadGC.h"
 #include "pso/misc/TCheckMemoryCard.h"
 #include "pso/misc/TLobby.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 typedef struct Vec_801A4D30 {
     s32 x, y, z;
 } Vec_801A4D30;
@@ -73,7 +74,7 @@ void TUnk_804C2298::run_task() {
         break;
     case 4:
         if (self->card == NULL) {
-            self->card = fn_8033C5E4(this, 0, 0);
+            self->card = fn_8033C5E4(this, NULL, NULL);
         }
         self->state = 5;
     case 5:
@@ -94,13 +95,13 @@ void TUnk_804C2298::run_task() {
             Pair_801A4D30 a = lbl_80446958[0];
             Pair_801A4D30 b = lbl_80446960[0];
             self->window = update_window_mode_from_progress__6TLobbyFPv(&a, &b);
-            ((TLobby *)(self->window))->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0xC), 1);
+            ((TWindowMessage *)(self->window))->append_line(TQuestVmDownLoadServer__sub_8006EF6C(0xC), 1);
             self->state = 7;
         }
         break;
     case 7:
         if (TAdPlayerLoadGC::get_instance() == 0) {
-            TWindow__close((u8 *)self->window);
+            ((TWindowBase *)self->window)->close();
             self->window = NULL;
             self->state = 8;
         }

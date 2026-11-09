@@ -6,7 +6,7 @@
 #include <stddef.h>
 
 struct TCheckMemoryCard : public TObject {
-    TCheckMemoryCard(TObject *arg1, u32 arg2, u32 arg3, u32 arg4);
+    TCheckMemoryCard(TObject *arg1, void *arg2, void *arg3, void *arg4);
     virtual ~TCheckMemoryCard();
     s32 sub_8033BB14();
     u32 m_1c;
@@ -24,12 +24,12 @@ struct TCheckMemoryCard : public TObject {
     u32 m_4c;
     virtual void render();
     virtual void run_task();
-    void create_message_and_menu(const void *message, s32 selection, u32 first, u32 second);
+    void create_message_and_menu(u32 message, s32 selection, u32 first, u32 second);
     void close_windows();
     void set_state(s32 state);
     void reset();
     void update_card_display(s32 kind, s32 menu, s32 first, s32 second);
-    void init(const void *message, s32 selection, u32 first, u32 second);
+    void init(u32 message, s32 selection, u32 first, u32 second);
     void close_and_update_display();
     void update_display_state();
     void fn_8033C19C();
@@ -58,7 +58,7 @@ typedef char TCheckMemoryCard_offset_48[offsetof(TCheckMemoryCard, m_48) == 0x48
 typedef char TCheckMemoryCard_offset_4c[offsetof(TCheckMemoryCard, m_4c) == 0x4c ? 1 : -1];
 
 extern "C" {
-TCheckMemoryCard *fn_8033C5E4(TObject *parent, u32 arg1, u32 arg2);
+void *fn_8033C5E4(TObject *parent, void *arg1, void *arg2);
 void *__dt__16TCheckMemoryCardFv(void *arg0, s16 arg1);
 }
 

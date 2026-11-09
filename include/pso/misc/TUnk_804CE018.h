@@ -2,16 +2,12 @@
 #define PSO_MISC_TUNK_804CE018_H
 #include "types.h"
 #include <stddef.h>
-#include "pso/misc/TLobby.h"
+#include "pso/TObject.h"
 
 // Shared window image from 0x1C through 0x5F. Descendants used to declare this
 // prefix themselves; it lives here so setup_window_draw_context can name the
 // floats it passes to open_singleton. The class ends at 0x60.
-// TLobby adds no fields and no virtuals beyond TObject's destructor
-// (sizeof 0x1C), so these offsets match a TObject base. The lobby base is
-// what lets a message window call send_and_handle without a receiver cast.
-struct TWindowKeyBoardSoft;
-class TUnk_804CE018 : public TLobby {
+class TUnk_804CE018 : public TObject {
 public:
     virtual ~TUnk_804CE018();
     void draw_window_frame(void *);
@@ -24,7 +20,7 @@ public:
     void update_fade();
     void draw_quest_message_frame(void *);
     void sub_80244F2C(u8 *, u8 *, s16);
-    TWindowKeyBoardSoft *setup_window_draw_context(s32);
+    s32 setup_window_draw_context(s32);
     s32 is_window_reveal_complete();
     s32 sub_80244994();
     void save_position();

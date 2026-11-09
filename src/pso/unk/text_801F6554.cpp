@@ -1,4 +1,6 @@
 #include "types.h"
+#include "pso/misc/TWindowMessage.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TLobby_80132ED0.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
@@ -37,15 +39,14 @@ s32 get_window_layout_position(s32);
 extern Pair_801F68FC lbl_8044A684[];
 s32 TAdPlayerLoadGC__sub_801E1B50(s32);
 s32 TAdPlayerLoadGC__sub_801E24F8(s32, s32, s32, s32, s32);
-s32 get_selected_menu_value(u32);
 
 typedef char RecoveredGlobal_801F6548_lbl_80512790_size[sizeof(RecoveredGlobal_801F6548_lbl_80512790) == 0x20 ? 1 : -1];
-void TMCFormatSequence::close_window() { if (this->m_34 != 0) { TWindow__close((u8 *)this->m_34); this->m_34 = 0; } }
+void TMCFormatSequence::close_window() { if (this->m_34 != 0) { ((TWindowBase *)this->m_34)->close(); this->m_34 = 0; } }
 
-void TMCFormatSequence::show_message(const void *arg1, s32 arg2) {
+void TMCFormatSequence::show_message(s32 arg1, s32 arg2) {
     u32 v = this->m_34;
     if (v != 0U) {
-        ((TLobby *)v)->send_and_handle(arg1, arg2 | 0x81);
+        ((TWindowMessage *)v)->append_line(arg1, arg2 | 0x81);
     }
 }
 
@@ -76,13 +77,13 @@ void update_wait_confirm__17TMCFormatSequenceFPv(void *arg0) {
 }
 
 void TMCFormatSequence::check_memcard_load_result() {
-    if (TAdPlayerLoadGC::probe_card_slot((*(s32 *)((s8 *)this + 0x28))) == 0) {
-        show_message(((const void *(*)(s32, s32))get_localized_text_entry)(0xB, 0x6C), 0);
+    if (TAdPlayerLoadGC::probe_card_slot(*(s32 *)((s8 *)this + 0x28)) == 0) {
+        show_message((s32)(get_localized_text_entry(0xB, 0x6C)), 0);
         this->m_24 = 3;
         return;
     }
     if (TAdPlayerLoadGC__sub_801E1B50(*(s32 *)((s8 *)this + 0x28)) == 0) {
-        show_message(((const void *(*)(s32, s32))get_localized_text_entry)(0xB, 0x6B), 0);
+        show_message((s32)(get_localized_text_entry(0xB, 0x6B)), 0);
         this->m_24 = 4;
     }
 }
@@ -90,28 +91,28 @@ void TMCFormatSequence::check_memcard_load_result() {
 void TMCFormatSequence::process_format_result() {
     s32 selected_menu_value;
 
-    if (TAdPlayerLoadGC::probe_card_slot((*(s32 *)((s8 *)this + 0x28))) == 0) {
-        show_message(((const void *(*)(s32, s32))get_localized_text_entry)(0xB, 0x6C), 0);
+    if (TAdPlayerLoadGC::probe_card_slot(*(s32 *)((s8 *)this + 0x28)) == 0) {
+        show_message((s32)(get_localized_text_entry(0xB, 0x6C)), 0);
         this->m_24 = 3;
         return;
     }
     if (TAdPlayerLoadGC::probe_and_check_card(*(s32 *)((s8 *)this + 0x28)) == 0) {
-        show_message(((const void *(*)(s32, s32))get_localized_text_entry)(0xB, 0x6C), 0);
+        show_message((s32)(get_localized_text_entry(0xB, 0x6C)), 0);
         this->m_24 = 3;
         return;
     }
     if ((u32) (TAdPlayerLoadGC::check_memcard_status(*(s32 *)((s8 *)this + 0x28)) + 0x10000) != 0xFF03U) {
-        show_message(((const void *(*)(s32, s32))get_localized_text_entry)(0xB, 0x6C), 0);
+        show_message((s32)(get_localized_text_entry(0xB, 0x6C)), 0);
         this->m_24 = 3;
         return;
     }
-    if (((u32) this->m_38 != 0U) && (((TWindowMenu *)(this->m_38))->is_visible() != 0)) {
-        selected_menu_value = get_selected_menu_value(*(u32 *)&this->m_38);
+    if (((u32) this->m_38 != 0U) && (((TWindowMenu *)(this->m_38))->is_decided() != 0)) {
+        selected_menu_value = ((TWindowMenu *)(*(u32 *)&this->m_38))->get_selected_value();
         if (selected_menu_value == 0) {
             if (TAdPlayerLoadGC__sub_801E24F8(*(s32 *)((s8 *)this + 0x28), 0, 0, 0, 0) == 0) {
                 this->m_24 = 2;
             } else {
-                show_message(((const void *(*)(s32, s32))get_localized_text_entry)(0xB, 0x6C), 0);
+                show_message((s32)(get_localized_text_entry(0xB, 0x6C)), 0);
                 this->m_24 = 3;
             }
         }
@@ -119,12 +120,12 @@ void TMCFormatSequence::process_format_result() {
             close_window();
             this->m_24 = 4;
         }
-        TWindow__close((u8 *)this->m_38);
+        ((TWindowBase *)this->m_38)->close();
         this->m_38 = 0U;
     }
-    if (((u32) this->m_38 != 0U) && (((TWindowSubComCard *)(this->m_38))->get_status_flag() != 0)) {
+    if (((u32) this->m_38 != 0U) && (((TWindowMenu *)(this->m_38))->is_cancelled() != 0)) {
         this->m_24 = 4;
-        TWindow__close((u8 *)this->m_38);
+        ((TWindowBase *)this->m_38)->close();
         this->m_38 = 0U;
         close_window();
     }
@@ -134,7 +135,7 @@ void TMCFormatSequence::open_windows() {
     if (self->f34 == 0) {
         Pair_801F68FC t = lbl_8044A684[0];
         self->f34 = set_text__18TWindowMessagePageFlll(get_window_layout_position(0x2F), &t, 1);
-        show_message(((const void *(*)(s32, s32))get_localized_text_entry)(self->f2C, self->f30), 0);
+        show_message(get_localized_text_entry(self->f2C, self->f30), 0);
     }
     if (self->f38 == 0) {
         get_window_layout_position(0x2B);

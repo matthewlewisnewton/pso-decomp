@@ -1,10 +1,11 @@
 #include "pso/ui/TChallenge4PItemSelect.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/item/TItemData_8010EDA8.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/misc/TCameraCtrl.h"
-#include "pso/misc/TUnk_804CDFE8.h"
+#include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/misc/TWindowMenu.h"
 #include "types.h"
@@ -32,13 +33,12 @@ struct RecoveredGlobal_8034B158_lbl_804F00C8 {
 
 extern "C" {
 void init__9TItemDataFv(void *);
-s32 get_selected_menu_value(void *);
 extern RecoveredGlobal_8034B158_lbl_804F00C8 TChallenge4PItemSelect__item_table;
 }
 
 extern "C" {
 
-u32 create_window_menu(s32, s32, s32);
+TWindowMenu *create_window_menu(s32, s32, s32);
 s32 TWindowSubComCard__sub_80265500(u32);
 s32 get_window_layout_position(s32);
 s32 fn_8034BE30(TChallenge4PResult *);
@@ -77,7 +77,6 @@ extern s32 TChallenge4PResult__slot_entries[];
 
 extern s32 lbl_80478BCC[];
 
-void play_effect_default__10TObjPlayerFii(TObjPlayer *, s32);
 void obj_set_flag_20000(TObjPlayer *);
 void get_player_result__18TChallenge4PResultFPv(TObjPlayer *, s32);
 void fn_8034BE48(TObjPlayer *);
@@ -305,13 +304,13 @@ void TChallenge4PResult::show_message(s32 text_handle) {
     if (message_window != NULL) {
         ((TWindowMessagePage *)message_window)->set_message((void *)text_handle, 0x81);
         if (TCameraCtrl::get_instance() > 2) {
-            ((TUnk_804CDFE8 *)message_window)->set_position_xy(0.9f, 0.9f);
+            ((TWindowAddition *)message_window)->set_position_xy(0.9f, 0.9f);
         }
     }
 }
 
 extern "C" {
-void TChallenge4PResult::close_window() { if (this->message_window != 0) { TWindow__close((u8 *)this->message_window); this->message_window = 0; } }
+void TChallenge4PResult::close_window() { if (this->message_window != 0) { this->message_window->close(); this->message_window = 0; } }
 }
 
 extern "C" {
@@ -352,8 +351,8 @@ s32 update_challenge_result_player_locks() {
     if (active) {
         for (s32 i = 0; i < 4; ++i) {
             TObjPlayer *player = ((TObjPlayer *)get_player_by_client_id(i));
-            if (player && ((TLobby *)player)->check_player_flag1() == 0) {
-                play_effect_default__10TObjPlayerFii(player, -1);
+            if (player && ((TObjPlayer *)player)->check_player_flag1() == 0) {
+                TObjPlayer::play_effect_default(player, -1);
                 obj_set_flag_20000(player);
                 get_player_result__18TChallenge4PResultFPv(player, 0);
                 get_player_result__18TChallenge4PResultFPv(player, 1);
@@ -368,8 +367,8 @@ s32 update_challenge_result_player_locks() {
     } else {
         for (s32 i = 0; i < 4; ++i) {
             TObjPlayer *player = ((TObjPlayer *)get_player_by_client_id(i));
-            if (player && ((TLobby *)player)->check_player_flag1() != 0) {
-                TObjPlayer::send_code_45_1((s32)player);
+            if (player && ((TObjPlayer *)player)->check_player_flag1() != 0) {
+                TObjPlayer::send_code_45_1(player);
                 obj_clear_flag30_20000(player);
                 ((TChallenge4PResult *)player)->get_player_rank();
                 if (((TObjPlayer *)player)->check_flag_0x40000000()) fn_8034BE38(player);
@@ -417,7 +416,7 @@ TChallenge4PItemSelect::TChallenge4PItemSelect(TObject *parent, TChallenge4PResu
 }
 
 TChallenge4PItemSelect::~TChallenge4PItemSelect() {
-    if (menu_window != nullptr) { TWindow__close((u8 *)menu_window); menu_window = nullptr; }
+    if (menu_window != nullptr) { ((TWindowBase *)menu_window)->close(); menu_window = nullptr; }
 }
 
 void TChallenge4PItemSelect::run_task() {
@@ -443,7 +442,7 @@ void TChallenge4PItemSelect::open_menu() {
     waitFrames = temp_r0;
     if (temp_r0 <= 0) {
         temp_r30 = fn_8034BE30(result);
-        (u32 &)menu_window = create_window_menu(get_window_layout_position(0x42), 8, temp_r30);
+        menu_window = create_window_menu(get_window_layout_position(0x42), 8, temp_r30);
         if ((u32) (u32 &)menu_window != 0U) {
             var_r29 = 0;
             do {
@@ -452,9 +451,9 @@ void TChallenge4PItemSelect::open_menu() {
             } while (var_r29 < 8);
             ((TWindowSubComCardList *)((u32 &)menu_window))->set_scroll_target(252.0f, 1.4e+02f);
             TWindowSubComCard__sub_80265500((u32 &)menu_window);
-            ((TLobby *)((u32 &)menu_window))->set_field_1c(3.9e+04f);
+            ((TWindowBase *)((u32 &)menu_window))->set_depth(3.9e+04f);
             if (TCameraCtrl::get_instance() > 2) {
-                ((TUnk_804CDFE8 *)((u32 &)menu_window))->set_position_xy(0.9f, 0.9f);
+                ((TWindowAddition *)((u32 &)menu_window))->set_position_xy(0.9f, 0.9f);
             }
             state = 1;
         }
@@ -470,8 +469,8 @@ void TChallenge4PItemSelect::submit_selected_item() {
     u8 *temp_r31;
     u8 *window_menu;
     window_menu = (u8 *)((u8 *)menu_window);
-    if ((window_menu != NULL) && (((TWindowMenu *)window_menu)->is_visible() != 0)) {
-        temp_r31 = (u8 *)&TChallenge4PItemSelect__item_table.value + (get_selected_menu_value((u8 *)menu_window) * 0xC);
+    if ((window_menu != NULL) && (((TWindowMenu *)window_menu)->is_decided() != 0)) {
+        temp_r31 = (u8 *)&TChallenge4PItemSelect__item_table.value + (((TWindowMenu *)menu_window)->get_selected_value() * 0xC);
         init__9TItemDataFv(&stack.sp8);
         stack.sp8 = (s8) *(s32 *)((s8 *)temp_r31 + 0);
         stack.sp9 = (s8) *(s32 *)((s8 *)temp_r31 + 4);

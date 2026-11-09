@@ -4,16 +4,18 @@
 #include "types.h"
 #include "pso/TShopWindowBase.h"
 
+struct TWindowMenu;
+
 struct TShopEquipmentListWindow : public TShopWindowBase {
     virtual ~TShopEquipmentListWindow();
     virtual void vfunc_11();
-    virtual void vfunc_7();
-    virtual void vfunc_6();
+    virtual void display_message(const char *text, s32 flags);
+    virtual void vfunc_6(s32 index, s32 flags);
     u8 _pad1C[0x4];
     u32 m_20;
     u32 m_24;
     u32 m_28;
-    u32 m_2c;
+    TWindowMenu *m_2c;
     u32 m_30;
     u32 m_34;
     u32 m_38;

@@ -37,6 +37,8 @@ struct AccelerationCurve {
     f32 accelDist;
     f32 decelPos;
     f32 dist;
+    AccelerationCurve();
+    ~AccelerationCurve();
 };
 
 extern "C" void init_piecewise_curve(PiecewiseCurve *curve, f32 accel, f32 decel,
@@ -116,8 +118,8 @@ struct TObjBoss2Tunnel : public TObject {
     static int check_param_threshold(AccelerationCurve *c, f32 arg1);
     static void reset_coords(AccelerationCurve *c);
     static AccelerationCurve *maybe_delete(AccelerationCurve *c, s16 arg1);
-    static s32 count_active_segments(void *node);
     static AccelerationCurve *reset_coords_pass(AccelerationCurve *c);
+    static s32 count_active_segments(void *node);
     static s32 decrement_packed_timer(u32 *arg0, s32 arg1);
     static void init_zako(Vec *v, void* a1, s32 _w2);
     static s16 turn_toward_angle_limited(s32 arg0, s32 cur, s32 target, s32 step, s32 limit);

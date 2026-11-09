@@ -2,6 +2,7 @@
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -17,7 +18,6 @@
 #include "pso/object/TObjAreaWarpQuest.h"
 #include "pso/ui/TAdChrSelASlotGC.h"
 #include "pso/misc/TLobby_80207644.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 
 #pragma readonly_strings on
 
@@ -103,7 +103,7 @@ s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 check_flag_100__10TObjPlayerFPv(void *);
 void queue_destruction__7TObjectFv(void *);
 
-s32 play_effect_default__10TObjPlayerFii(void *, int);
+s32 play_effect_default__10TObjPlayerFP10TObjPlayerl(void *, int);
 
 void *__nw__7TObjectFUl(int);
 s32 TTecLuker__sub_8023401C(void *);
@@ -446,7 +446,7 @@ void TObjLuker::run_task() {
                         spawn_particle_effect((const Vec *)(spC), 0xB3);
                         p = PBC_801A1418(local_client_id);
                         if (p != NULL) {
-                            play_effect_default__10TObjPlayerFii(p, 0xA);
+                            play_effect_default__10TObjPlayerFP10TObjPlayerl(p, 0xA);
                             play_sound_effect(0x40022D1A, (const Vec *)((arg0 + 0x38)), 0, 0);
                         }
                         TWindowCtrl::init_all_slots();
@@ -487,7 +487,7 @@ Luker_801A16D8 *__dt__9TObjLukerFv(Luker_801A16D8 *arg0, s16 arg1) {
         arg0->f18 = __vt__9TObjLuker;
         for (i = 0; i < 4; i++) {
             if (arg0->wins[i] != 0) {
-                TWindow__close((u8 *)arg0->wins[i]);
+                ((TWindowBase *)(arg0->wins[i]))->close();
                 arg0->wins[i] = 0;
             }
         }

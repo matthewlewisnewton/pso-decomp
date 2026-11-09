@@ -73,14 +73,14 @@ void TSaveChCr::set_message_by_index(s32 arg1) {
     u8 *temp_r4;
     sp8 = *(const ByteBlock_20 *)((s32) ((u8 *)&TSaveChCr__message_text_ids.value + -4) + 4);
     temp_r4 = (u8 *)&sp8 + (arg1 * 8);
-    open_message_window(((const void *(*)(s32, s32))get_localized_text_entry)(*(s32 *)((s8 *)temp_r4 + 0), *(s32 *)((s8 *)temp_r4 + 4)));
+    open_message_window((u32)((int) (get_localized_text_entry(*(s32 *)((s8 *)temp_r4 + 0), *(s32 *)((s8 *)temp_r4 + 4)))));
 }
-void TSaveChCr::open_message_window(const void *arg1) {
+void TSaveChCr::open_message_window(u32 arg1) {
     if ((u32) this->owned_window == 0U) {
         *(u32 *)&this->owned_window = update_window_mode_from_progress__6TLobbyFPv(lbl_80477CAC, lbl_80477CB4);
         if ((u32) this->owned_window != 0U) {
-            if (arg1 != NULL) {
-                ((TLobby *)(this->owned_window))->send_and_handle(arg1, 3);
+            if (arg1 != 0U) {
+                ((TWindowMessage *)(this->owned_window))->append_line(arg1, 3);
             }
             ((TWindowMessage *)(this->owned_window))->complete_reveal();
         }

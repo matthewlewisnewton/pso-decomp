@@ -4,7 +4,7 @@
 #include "pso/unk/text_8026CB5C.h"
 #include "pso/misc/TWindowCtrl.h"
 #include "pso/misc/TWindowComCard.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TUnk_804CE964.h"
@@ -28,7 +28,7 @@ void *__nw__7TObjectFUl(int);
 extern s32 local_client_id;
 s32 update_com_card_display(s32, s32);
 extern s32 lbl_805D38C0;
-u8 *TWindowComCard__ct(u8 *arg0, const void *arg1, s32 arg2);
+u8 *TWindowComCard__ct(u8 *arg0, s32 arg1, s32 arg2);
 void TWindowComCard__sub_80249920(s32 arg0, s32 arg1, s32 arg2);
 u8 TWindowComCard__sub_80249C18(void* p);
 u8 TWindowComCard__sub_80249C20(void* p);
@@ -110,10 +110,10 @@ void TWindowComCard::set_display_value(s32 arg1, s32 arg2) {
     }
 }
 
-u8 *TWindowComCard::create_for_card(const void *arg0, s32 arg1, s32 arg2) {
-    const void *var_r30;
+u8 *TWindowComCard::create_for_card(s32 arg0, s32 arg1, s32 arg2) {
+    s32 var_r30;
     s32 var_r31;
-    const void *var_r4;
+    s32 var_r4;
     s32 var_r5;
     u8 *window_dd;
     u8 *var_r0;
@@ -145,12 +145,12 @@ void *TWindowComCard::create(void *arg0, void *arg1) {
     }
     o = __nw__7TObjectFUl(0x60);
     if (o != NULL) {
-        o = TWindowComCard__ct((u8 *)o, arg0, (s32)x0);
+        o = TWindowComCard__ct((u8 *)o, (s32)arg0, (s32)x0);
     }
     return o;
 }
 
-s32 TWindowSubComCard::create_com_card_window(const void *arg0) {
+s32 TWindowSubComCard::create_com_card_window(s32 arg0) {
     s32 keyboard_mode;
     s32 window_dd;
     s32 var_r0;
@@ -164,7 +164,7 @@ s32 TWindowSubComCard::create_com_card_window(const void *arg0) {
     window_dd = ((s32)__nw__7TObjectFUl(0x60));
     var_r0 = window_dd;
     if (var_r0 != 0) {
-        var_r0 = ((s32)TWindowComCard__ct((u8 *)window_dd, arg0, (s32)keyboard_mode));
+        var_r0 = ((s32)TWindowComCard__ct((u8 *)window_dd, (s32)arg0, (s32)keyboard_mode));
     }
     return var_r0;
 }
@@ -172,11 +172,11 @@ s32 TWindowSubComCard::create_com_card_window(const void *arg0) {
 void render__14TWindowComCardFv(s32 arg0) {
     s32 temp_r3;
     temp_r3 = draw_default_entry__9TWindowDDFl();
-    ((TUnk_804CE018 *)arg0)->draw_window_frame((void *)temp_r3);
+    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), (int)temp_r3);
 }
 
-void run_task__14TWindowComCardFv(void* p) { initialize_subwindow__9TWindowDDFv(p); ((TUnk_804CE018 *)p)->update_fade(); ((TUnk_804CE018 *)p)->update_window_entry_list((char*)p + 0x24); }
+void run_task__14TWindowComCardFv(void* p) { initialize_subwindow__9TWindowDDFv(p); ((TWindowBase *)p)->update_fade(); ((TWindowBase *)p)->update_window_entry_list((char*)p + 0x24); }
 
 void *__dt__14TWindowComCardFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -191,7 +191,7 @@ void *__dt__14TWindowComCardFv(void *arg0, s16 arg1) {
 
 typedef char RecoveredGlobal_80249BA8_lbl_804CE8D0_size[sizeof(RecoveredGlobal_80249BA8_lbl_804CE8D0) == 0x14 ? 1 : -1];
 typedef char RecoveredGlobal_80249BA8___vt__14TWindowComCard_size[sizeof(RecoveredGlobal_80249BA8___vt__14TWindowComCard) == 0x1C ? 1 : -1];
-u8 *TWindowComCard__ct(u8 *window_dd, const void *arg1, s32 arg2) {
+u8 *TWindowComCard__ct(u8 *window_dd, s32 arg1, s32 arg2) {
     ((TWindowDD *)window_dd)->construct_base((u8 *)((s32) &TWindowComCard__window_desc.value), (s16)4, (u8 *)arg1);
     *(s32 **)((s8 *)window_dd + 0x18) = (s32 *)__vt__14TWindowComCard;
     *(s32 *)((s8 *)window_dd + 0) = (s32) lbl_805D38C0;
@@ -333,8 +333,8 @@ void TUnk_804CE964::run_task() {
     this->m_34f = (f32) (temp_f1 + this->m_68);
     this->m_44 = (f32) this->m_34f;
     ((s32 (*)(void *, int, f32))initialize_subwindow__9TWindowDDFv)((void *)arg0, (int)temp_r4, (f32)temp_f1);
-    ((TUnk_804CE018 *)arg0)->update_fade();
-    ((TUnk_804CE018 *)arg0)->update_window_entry_list(arg0 + 0x24);
+    ((TWindowBase *)arg0)->update_fade();
+    ((TWindowBase *)arg0)->update_window_entry_list(arg0 + 0x24);
 }
 
 void *TWindowComCard__sub_80249E80(void *arg0, s16 arg1) {
@@ -360,8 +360,8 @@ Win_80249ED8 *TWindowComCard__sub_80249ED8(Win_80249ED8 *o, Parent_80249ED8 *par
     o->mode = mode;
     o->x = lbl_805DCBD0 * (f32)o->col + (o->parent->x + o->ofs.x);
     o->y = o->parent->y + o->ofs.y;
-    ((TUnk_804CE018 *)o)->save_position();
-    ((TWindowComCard *)((s32)((TUnk_804CE018 *)o)->get_array_entry(0)))->set_help_mode(mode);
+    ((TWindowBase *)o)->save_position();
+    ((TWindowComCard *)((s32)((TWindowBase *)o)->get_array_entry(0)))->set_help_mode(mode);
     return o;
 }
 #pragma pop

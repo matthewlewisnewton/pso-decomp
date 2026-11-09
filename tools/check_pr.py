@@ -107,6 +107,11 @@ def main() -> int:
     print(out.rstrip())
     write_json(args.json, checks, delta)
 
+    info = subprocess.run([python, "tools/list_port_exceptions.py", "--upstream-catchup", "--count"], cwd=ROOT,
+                          stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    print(f"info: upstream catch-up exceptions in the register: {info.stdout.strip() or '?'} "
+          "(list: python3 tools/list_port_exceptions.py --upstream-catchup)")
+
     if failed:
         for reason in failed:
             print(f"FAIL: {reason}")

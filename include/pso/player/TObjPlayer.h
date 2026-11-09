@@ -4,11 +4,11 @@ struct NJS_OBJECT;
 
 #include "types.h"
 #include "pso/player/PhotonBlastGauge.h"
+#include "pso/player/TechniqueCastState.h"
 #include "pso/player/PlayerClassFlags.h"
 #include "pso/player/PlayerScaleState.h"
 #include "pso/player/RenderMaterialState.h"
 #include "pso/player/TObjChara.h"
-#include "pso/player/TechniqueCastState.h"
 
 struct TItemData;
 
@@ -184,7 +184,10 @@ struct TObjPlayer : public TObjChara {
     void* m_41c;
     u8 unk_420[0x4];
     s32 m_424;
-    TechniqueCastState technique_state;
+    union {
+        u8 technique_levels[0x84];
+        TechniqueCastState technique_state;
+    };
     PhotonBlastGauge photon_blast_gauge;
     ActionPalette action_palettes[2];
     u8 unk_548[0x4];
@@ -209,8 +212,7 @@ struct TObjPlayer : public TObjChara {
     void* m_64c;
     u8 _pad650[0x8];
     void* m_658;
-    s32 intra_map_area;
-    Vec intra_map_pos;
+    u8 _pad65C[0x10];
     void* m_66c;
     u8 _pad670[0x8];
     void* m_678;
@@ -308,7 +310,6 @@ struct TObjPlayer : public TObjChara {
     void clear_target_lock();
     static void init_matrix_stack(s32 arg0, s32 arg1);
     void draw_shadow_quad(s32 arg1, s32 flags);
-    void draw_tri_fan_3d(s32 n, u32 flags);
     static void render_tree(void *arg0);
     void init_vec_record();
     s32 get_entrance_id();
@@ -329,7 +330,6 @@ struct TObjPlayer : public TObjChara {
     static bool is_hit_receivable_target(s32 arg0, u32 arg1);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
     void draw_trail_strip(void *arg1, s32 arg2);
-    f32 calc_photon_blast_power(s32 arg1, f32 farg0);
     static s32 is_any_teammate_in_state();
     static void set_shared_flag(int a0);
     static void set_shared_count(int a0);
@@ -398,11 +398,12 @@ struct TObjPlayer : public TObjChara {
     static f32 get_scale_factor();
     static int get_battle_param(int a0);
     s32 check_flag(s32 arg1);
+    s32 check_player_flag1();
     void release_subobjects();
     int draw_fading_motion();
     void update_both();
     static void sync_player_globals();
-    void*get_position_ptr();
+    Vec *get_position_ptr();
     void clear_header_struct();
     static void set_com_card_window(s32 arg0);
     static s32 is_locally_controlled(void *player);
@@ -448,11 +449,9 @@ struct TObjPlayer : public TObjChara {
     s16 get_field_2c8();
     void set_flag_start_effect();
     void clear_state7_flag();
-    s32 try_apply_800a89b0();
     void render_model_and_set_attach_points();
     void update_timed_state();
     void run_synced_state_handler();
-    void update_synced_state();
     static void *create_dubchik(void *arg0);
     static void free_effect_resources();
     void clear_flag_04000000();
@@ -610,7 +609,7 @@ struct TObjPlayer : public TObjChara {
     s16 get_hp();
     u16 get_section_id();
     void set_field_2(s16 v);
-    void set_type(s16 v);
+    void set_type(u16 v);
     u16 get_entity_type();
     static void destroy_global_buffer();
     static void destroy_buffers();
@@ -727,6 +726,7 @@ struct TObjPlayer : public TObjChara {
     int is_handle_valid();
     int forward_801C210C();
     static int get_hold_effect_count();
+    void set_technique_id(s16 v);
     static int get_item_count_max();
     void *init();
     // The animation the player returns to after unequipping, from its
@@ -989,6 +989,7 @@ struct TObjPlayer : public TObjChara {
     void bswap_u16_pair_list();
     void bswap_u16_pair();
     void set_technique_state(s32 v);
+    void set_technique_id(u8 v);
     int test_bit1_at_10();
     f32 get_float_14();
     void set_tech_override(u8 v);
@@ -1041,12 +1042,14 @@ struct TObjPlayer : public TObjChara {
     s16 get_section_clamped();
     s16 get_or_init_field_4();
     static void split_capped_value(u8 arg0, u8 *arg1, s8 *arg2);
+    u8 get_valid_technique();
     void level_up_all_techniques(s32 add);
     static u8 clamp_to_max(s32 arg0, u8 arg1, u8 arg2);
     void validate_and_clear_slot();
     static u8 is_invalid_slot(u8 arg0);
     static u8 is_valid_technique_id(s16 arg0);
     static s32 is_valid_technique_slot(u8 arg0);
+    void set_tech_level(s16 arg1);
     void reset_slots();
     void set_field_1c(f32 v);
     void set_field18(f32 v);
@@ -1392,9 +1395,10 @@ struct TObjPlayer : public TObjChara {
     static s32 get_battle_ctrl_flag(u16 arg0);
     s32 is_outside_movement_hold(f32 *pos);
     static s32 draw_small_font(s32 arg0, void * _w1);
-    static void send_code_45_1(s32 arg0);
-    static void play_effect_default(int player, int effect);
-    static void play_effect(s32 arg0, s32 arg1, s32 arg2);
+    static void send_code_45_1(TObjPlayer *player);
+    // 6x2C: holds the player at its own position.
+    static void play_effect_default(TObjPlayer *player, s32 frames);
+    static void play_effect(TObjPlayer *player, s32 frames, s32 arg3);
     s32 get_clamped_index();
     void apply_input_mode();
     void select_class_action_provider();
@@ -1548,6 +1552,7 @@ struct TObjPlayer : public TObjChara {
     f32 select_normal_attack_marker();
     u8 get_castable_technique_level();
     static void update_all_units(s32 arg0, s32 arg1);
+    static s32 check_technique_level(s32 arg0, s32 arg1, u8 arg2);
     void build_shop_item_list();
     void reset_action_palette();
     u8 *create_state_513();
@@ -1647,8 +1652,6 @@ struct TObjPlayer : public TObjChara {
 typedef char PlayerActionPaletteSize[(sizeof(TObjPlayer::ActionPalette) == 0x24) ? 1 : -1];
 typedef char PlayerActionPaletteBanks[(offsetof(TObjPlayer::ActionPalette, bindings) == 4) ? 1 : -1];
 typedef char PlayerPaletteModifierOffset[(offsetof(TObjPlayer, photon_blast_gauge) == 0x4AC) ? 1 : -1];
-typedef char PlayerIntraMapAreaOffset[(offsetof(TObjPlayer, intra_map_area) == 0x65C) ? 1 : -1];
-typedef char PlayerIntraMapPosOffset[(offsetof(TObjPlayer, intra_map_pos) == 0x660) ? 1 : -1];
 typedef char PlayerActionPalettesOffset[(offsetof(TObjPlayer, action_palettes) == 0x500) ? 1 : -1];
 typedef char PlayerStateAfterPalettes[(offsetof(TObjPlayer, m_550) == 0x550) ? 1 : -1];
 typedef char PlayerHairSelectorOffset[(offsetof(TObjPlayer, m_878) == 0x878) ? 1 : -1];
@@ -1658,4 +1661,5 @@ typedef char PlayerHairWaitOffset[(offsetof(TObjPlayer, m_cfc) == 0xCFC) ? 1 : -
 typedef char PlayerInventoryObjectOffset[(offsetof(TObjPlayer, inventory_objects) == 0xD00) ? 1 : -1];
 
 typedef char TObjPlayer_size[sizeof(TObjPlayer) == 0xDB8 ? 1 : -1];
+#include "pso/player/TechniqueCastAliases.h"
 #endif

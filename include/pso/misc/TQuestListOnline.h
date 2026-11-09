@@ -3,8 +3,6 @@
 #include "types.h"
 #include "pso/TShopWindowBase.h"
 
-class TWindowMessage;
-
 struct TQuestListOnline : public TShopWindowBase {
     virtual ~TQuestListOnline();
     void vfunc_11();
@@ -16,8 +14,8 @@ struct TQuestListOnline : public TShopWindowBase {
     s32 (*callback30)();
     s32 (*callback34)();
     u32 list_window;
-    void *description_window;
-    TWindowMessage *info_window;
+    u32 description_window;
+    u32 info_window;
     u32 confirm_window;
     s32 selected_index;
     u8 selected_entry[0x1C];

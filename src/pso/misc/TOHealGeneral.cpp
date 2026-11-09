@@ -146,7 +146,7 @@ void TOHealGeneral::find_heal_target() {
             TParticleCtrl *effect;
             object_state = 1;
             if (is_local_player(heal_target) != 0) {
-                send_6x2C_impose_hold(player, &position, 0x3C, 0, r);
+                send_6x2C_impose_hold(r, player, &position, 0x3C, 0);
                 player->clear_harmful_statuses();
             }
             if (player->is_alive_and_ready() != 0) {
@@ -199,18 +199,18 @@ void TOHealGeneral::render() {
         set_current_texture_list((GinjaTextureList *)(texlist));
         base = (NJS_OBJECT *)model;
         post_translate_matrix(base->pos);
-        draw_ginja_model((s32)base->model);
+        draw_ginja_model(base->model);
         push_matrix();
         rotor = base->child;
         post_translate_matrix(rotor->pos);
         rotate_matrix_y(NULL, rotor_angle);
-        draw_ginja_model((s32)rotor->model);
+        draw_ginja_model(rotor->model);
         pop_matrix();
         push_matrix();
         ring = rotor->sibling;
         translate_matrix(0, ring->pos[0], ring->pos[1] - ring_drop, ring->pos[2]);
         rotate_matrix_y(NULL, -rotor_angle);
-        draw_ginja_model((s32)ring->model);
+        draw_ginja_model(ring->model);
         pop_matrix();
         pop_matrix();
     }

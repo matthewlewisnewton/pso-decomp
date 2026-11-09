@@ -69,20 +69,51 @@ in another split becomes an undefined reference to that name. That is a fact
 about the finished DOL, not a fact about the `.o` files the compiler wrote.
 
 Several of these 8-byte biases are loaded from a different split than the one
-that contains the bytes. `TObjBoss2Tunnel_8007CF0C` loads
-`TObjBoss2Tunnel__data_80438A90`. `TTecCtrl` loads `lbl_8044D078`. The bytes
-are the signed and unsigned biases. Per-file GC/2.6 does not emit that
-cross-file relocation for a cast: each file gets its own local pool. The
-original program did end up with one shared address. This compiler, with the
-flags it actually accepts, will not do that again. No source arrangement tried
-here produces a global pool entry of the original size and a second file
-whose cast relocates to it.
+that contains the bytes. The finished DOL therefore has a shared address that
+per-file GC/2.6 does not reproduce: each file gets its own local pool for a
+cast. The original program did end up with one shared address, and this
+compiler, with the flags it actually accepts, will not do that again from
+source. No source arrangement tried here produces a global pool entry of the
+original size and a second file whose cast relocates to it.
 
 `scope:local` is the end state for a bias that nothing else loads. It tells
 decomp-toolkit to stop exporting the split's copy, which is what the compiler
 emits on its own. A bias that another split loads has to stay a real exported
-definition. Localizing it would make that split's link fail, and a synthetic
-absolute alias would not be the original object.
+definition. Two such cases were found in the original DOL, and both are now
+handled without a second copy:
+
+- `TObjBoss2Tunnel_8007CF0C` used to load
+  `TObjBoss2Tunnel__data_80438A90` from `TObjBoss2Tunnel_8007C5C0`'s split.
+  The two ranges are now the consolidated `pso/boss/TObjBoss2Tunnel.cpp`
+  unit, so the bias is `scope:local` there and the cross-unit load is gone.
+- `TTecCtrl` still loads `lbl_8044D078` from
+  `TTecCtrl_8022C444`'s split. That unit links, and its compiled object names
+  the emitted pool object as the split's global (see below).
+
+## Naming a referenced pool
+
+Source cannot turn the local `@N` pool object into the split's global without
+changing the object, so a referenced bias uses a post-process instead.
+`tools/name_pool_symbols.py` runs after MWCC, before the link. For each
+missing non-function object that `link_units.conversion_pool_kind` identifies
+as one of the two biases, it finds the local 8-byte pool object at the split
+symbol's section and offset with identical bytes, renames it to the split's
+name with `objcopy`, and makes it global. The section contents and every
+relocation are unchanged; the symbol name and binding are now the ones the
+original split exports.
+
+`pso/misc/TTecCtrl_8022C444.cpp` uses the hook. Its `.rodata` is only the
+unsigned bias, and the compiled object's `@50` is at the same offset as
+`lbl_8044D078`. The renamed object defines `lbl_8044D078` as an 8-byte global
+at `.rodata:0`, so `TTecCtrl`'s undefined reference resolves to the existing
+pool bytes. The unit is now in `linked_units.txt`, and the DOL still hashes to
+the original `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The hook refuses a
+`symbols.txt` bias that has no matching local pool object, rather than
+inventing a definition.
+
+This is a per-unit build exception (`post_object` in `configure.py`); a port
+drops it and keeps the cast. It is not a way to localize an unreferenced pool
+or to waive a section-size check.
 
 ## Duplicate copies that hide a size mismatch
 
@@ -121,28 +152,25 @@ of these biases. A missing symbol with a similar name is not a conversion
 constant unless the bytes say so. `TObjPlayer_8008DCF0` is already matched;
 its float is a real named zero, not a pool entry to localize.
 
-## Referenced biases that stay exported
+## Referenced biases and remaining units
 
-These units match, and the original split exports a bias that another split
-loads. Their compiled objects emit a local `@N` instead, so `link_units.py`
-reports the global missing. Localizing it is refused because the other split
-needs a definition.
-
-| Unit | Symbol | Who loads it |
-| --- | --- | --- |
-| `TObjBoss2Tunnel_8007C5C0` | `TObjBoss2Tunnel__data_80438A90` (signed, at offset 8 after `6.0`) | `TObjBoss2Tunnel_8007CF0C` |
-| `TTecCtrl_8022C444` | `lbl_8044D078` (unsigned, the whole 8-byte `.rodata`) | `TTecCtrl` |
+The two referenced biases found on the DOL are resolved. `TObjBoss2Tunnel`'s
+signed bias became local when its two splits were consolidated. `TTecCtrl`'s
+unsigned bias is the pool named by the post-process above, and
+`TTecCtrl_8022C444` is linked. `TLobby_801E2F94`'s signed bias was
+unreferenced; it is `scope:local` and that unit is linked too.
 
 `TWindowSubSymbolChatParts` matches and its `.rodata` is the signed bias
-`lbl_8044FC08`. Nothing else loads that symbol, so it is now `scope:local`.
-The unit still does not link: its compiled object references `lbl_805DD7F8`,
-and the other missing symbols stay exported until each one has a definition.
+`lbl_8044FC08`. Nothing else loads that symbol, so it is `scope:local`. The
+unit still does not link: its compiled object references `lbl_805DD7F8`, and
+the other missing symbols stay exported until each one has a definition.
 
-`link_units.py scan` also recognizes biases inside units that fail for other
-reasons: `lbl_8043FFE0` in `TNpcPlayer`, and `lbl_80440390` / `lbl_804403A0`
-in `TOBoss4Rock_801589E8`. Those units are not missing-only, so
-`localize_split_globals.py` does not rewrite them. Marking the bias local
-would not make the unit link.
+`link_units.py scan` still recognizes biases inside units that fail for other
+reasons. On this tree that is `TObjPlayer__data_80447130` (signed) in
+`TObjPlayer_801C7430`, which also fails its `.sdata2` size and data score.
+`lbl_8043FFE0` in `TNpcPlayer` and `lbl_80440390` / `lbl_804403A0` in
+`TOBoss4Rock_801589E8` are now `scope:local`; `TNpcPlayer` links and the
+remaining `TOBoss4Rock` unit fails for reasons other than the bias.
 
 `TObjPlayer_8008DCF0` is not in this set. Its missing-looking float is the
 4-byte zero above.
@@ -156,8 +184,14 @@ in that unit is referenced elsewhere. A referenced bias is not marked, and
 the plan names the object that loads it. `--pools-only` limits a run to the
 biases, so a sweep does not also localize unrelated missing symbols.
 
-The label is not a size waiver and not a reason to link a unit. After a
-write, rebuild and check the original bytes, the section size, the
+`name_pool_symbols.py` is the one post-process for a referenced bias. It runs
+from `configure.py` through `post_object` on a compiled object, names the
+matching local pool entry as the split global, and fails if the bytes,
+section, or offset do not match. Use it only for a unit whose bias the DOL
+references from another split; unreferenced biases stay `scope:local`.
+
+The `scope:local` label is not a size waiver and not a reason to link a unit.
+After a write, rebuild and check the original bytes, the section size, the
 relocations, and the DOL hash.
 
 `TBoss6Demo11_TYPE1_DEAD_progress_limit` (0x805DFA68, formerly `lbl_805DFA68`)

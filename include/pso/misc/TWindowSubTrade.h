@@ -4,12 +4,10 @@
 #include "types.h"
 #include "pso/TObject.h"
 
-class TWindowMessage;
-
 struct TWindowSubTrade : public TObject {
     TWindowSubTrade(TObject *arg1, void *arg2);
     virtual ~TWindowSubTrade();
-    TWindowMessage *open_player_message_window(s32, s32);
+    s32 open_player_message_window(s32, s32);
     s32 open_trade_confirm_prompt(s32);
     u8 m_1c;
     u8 _pad1D[0x3];
@@ -17,7 +15,7 @@ struct TWindowSubTrade : public TObject {
     u32 m_24;
     u32 m_28;
     u32 m_2c;
-    TWindowMessage *m_30;
+    u32 m_30;
     u32 m_34;
     virtual void render();
     virtual void run_task();

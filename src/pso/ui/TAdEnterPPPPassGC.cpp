@@ -1,6 +1,7 @@
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/ui/TAdEnterPPPPassGC.h"
 #include "pso/unk/text_8014618C.h"
 #include "pso/TLevelSelect.h"
@@ -11,7 +12,6 @@
 #include "pso/ui/TAdEnterSerialAccessGC.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/quest/TQuestThread.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 
 struct RecoveredGlobal_80339480_lbl_804EF500 {
     s32 value;
@@ -84,12 +84,12 @@ void close_windows_and_advance__17TAdEnterPPPPassGCFPv(u8 *arg0) {
     u8 *temp_r3_2;
     temp_r3 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x30));
     if (temp_r3 != NULL) {
-        TWindow__close(temp_r3);
+        ((TWindowBase *)temp_r3)->close();
         *(u8 **)((s8 *)arg0 + 0x30) = NULL;
     }
     temp_r3_2 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x34));
     if (temp_r3_2 != NULL) {
-        TWindow__close(temp_r3_2);
+        ((TWindowBase *)temp_r3_2)->close();
         *(u8 **)((s8 *)arg0 + 0x34) = NULL;
     }
     if ((void *) password_entry_keyboard_control != NULL) {

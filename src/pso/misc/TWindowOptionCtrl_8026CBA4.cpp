@@ -1,7 +1,7 @@
 #include "types.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowCtrlMain.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowOptionCtrl.h"
 #include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
@@ -28,7 +28,7 @@ extern const f32 lbl_805DD2CC;
 s32 is_split_screen(void);
 extern WindowLayoutPosition window_layout_position_table[];
 extern WindowLayoutPosition lbl_80477890[];
-extern WindowLayoutPosition window_layout_rect_table[];
+extern unsigned char window_layout_rect_table[];
 s32 TWindowCtrlMain__sub_8024CE58(void);
 extern f32 window_depth_order_cursor;
 extern const f32 lbl_805DD2C8;
@@ -37,9 +37,9 @@ WindowLayoutPosition *get_window_layout_position(s32 idx) {
     if (is_split_screen() != 0) {
         return (TCameraCtrl::get_camera_id() == 2) ? &lbl_80477890[idx] : &window_layout_position_table[idx];
     }
-    return &window_layout_rect_table[idx];
+    return (WindowLayoutPosition *)((char *)window_layout_rect_table + idx * 8);
 }
-void TUnk_804CE018::sub_8026CC28() {
+void TWindowBase::sub_8026CC28() {
     Node_8026CC28 *n;
     f32 lim;
     f32 t;
@@ -56,7 +56,7 @@ void TUnk_804CE018::sub_8026CC28() {
     }
 }
 
-void TUnk_804CE018::resort_window_order() {
+void TWindowBase::resort_window_order() {
     Node_8026CCA4 *n;
     Grp_8026CCA4 *g;
     Node_8026CCA4 *last;
@@ -79,11 +79,11 @@ void TUnk_804CE018::resort_window_order() {
             g->head->prev = ((Node_8026CCA4 *)this)->prev;
         }
     }
-    scale = ((TUnk_804CE018 *)((Node_8026CCA4 *)this))->get_scale();
+    scale = ((TWindowBase *)((Node_8026CCA4 *)this))->get_scale();
     window_depth_order_cursor += lbl_805DD2C8;
     for (n = g->head; n != NULL; n = n->next) {
         last = n;
-        if (!(scale < ((TUnk_804CE018 *)n)->get_scale())) {
+        if (!(scale < ((TWindowBase *)n)->get_scale())) {
             break;
         }
         n->f54 += lbl_805DD2C8;

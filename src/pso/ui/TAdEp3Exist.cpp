@@ -1,6 +1,6 @@
 #include "types.h"
 #include "pso/TMainTask.h"
-#include "pso/misc/TUnk_804CE018.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/ui/TAdEp3Exist.h"
 #include "pso/quest/TQuestListVM_8007EAF8.h"
 #include "pso/ui/TAdAgreementBaseGC.h"
@@ -13,7 +13,6 @@
 #include "pso/ui/TAdEnterSerialAccessGC.h"
 #include "pso/ui/TAdScrollWinGC.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 
 #pragma readonly_strings on
 
@@ -110,7 +109,7 @@ int request_transition__21TAdMultiChgGameModeGCFv(void*);
 
 void TAdEp3Exist::draw_message_window(s32 arg1) {
     s32 arg0 = (s32)this;
-    ((TUnk_804CE018 *)arg0)->draw_window_frame((void *) (arg1));
+    ((TWindowBase *)arg0)->draw_window_frame((void *) (arg1));
     render_status_line__15TAdSubPlyItemGCFi((int) (get_localized_text_entry(0x2C, 0xA)), -1, (f32) (lbl_805E0440 - (f32) (calc_text_width((char *)(get_localized_text_entry(0x2C, 0xA))) >> 1U)), (f32) (lbl_805E0444), (f32) (lbl_805E0448));
 }
 
@@ -153,7 +152,7 @@ void TAdEp3Exist::run_task() {
         break;
     case 2:
         if (o->win != 0) {
-            TWindow__close((u8 *)o->win);
+            ((TWindowBase *)o->win)->close();
             o->win = 0;
         }
         close_window();
@@ -229,7 +228,7 @@ void *TAdEp3Exist__ct(Ep3_8036F354 *o) {
     }
     r = (u32)__nw__7TObjectFUl(0x54);
     if (r != 0) {
-        r = (u32)TAdScrollWinGC__ct((TAdScrollWinGC *)((void *)r), (void *)o, 3, ((const void *(*)(s32, s32))get_localized_text_entry)(0x2C, 9));
+        r = (u32)TAdScrollWinGC__ct((TAdScrollWinGC *)((void *)r), (void *)o, 3, (s32)(get_localized_text_entry(0x2C, 9)));
     }
     o->win1C = r;
     r = (u32)__nw__7TObjectFUl(0x708);

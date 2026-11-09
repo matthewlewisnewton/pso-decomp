@@ -39,7 +39,7 @@ void post_chat_log_message(u16 arg0, s32 *shared_text_buffer) {
     {
         u32 tmp_ad = TWindowCtrl::get_field44();
         if (tmp_ad != 0U) {
-            ((TWindowMessageLog *)tmp_ad)->append_line(shared_text_buffer);
+            ((TWindowMessageLog *)tmp_ad)->append_line((s32) shared_text_buffer);
         }
     }
 }

@@ -1,9 +1,9 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubLog.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 
 extern "C" {
 
@@ -32,23 +32,23 @@ void *__dt__19TWindowSubTradeMainFv(TWindowSubTradeMain *arg0, s16 arg1) {
             arg0->m_50 = 0U;
         }
         if ((u32) arg0->m_4c != 0U) {
-            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x4C)));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x4C)))->close();
             arg0->m_4c = 0U;
         }
         if ((u32) arg0->m_48 != 0U) {
-            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x48)));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x48)))->close();
             arg0->m_48 = 0U;
         }
         if ((u32) arg0->m_44 != 0U) {
-            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x44)));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x44)))->close();
             arg0->m_44 = 0U;
         }
         if ((u32) arg0->m_40 != 0U) {
-            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x40)));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x40)))->close();
             arg0->m_40 = 0U;
         }
         if ((u32) arg0->m_3c != 0U) {
-            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x3C)));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x3C)))->close();
             arg0->m_3c = 0U;
         }
         if ((u32) arg0->m_38 != 0U) {
@@ -56,11 +56,11 @@ void *__dt__19TWindowSubTradeMainFv(TWindowSubTradeMain *arg0, s16 arg1) {
             arg0->m_38 = 0U;
         }
         if ((u32) arg0->m_34 != 0U) {
-            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x34)));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x34)))->close();
             arg0->m_34 = 0U;
         }
         if ((u32) arg0->m_30 != 0U) {
-            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x30)));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x30)))->close();
             arg0->m_30 = 0U;
         }
         if ((u32) arg0->m_2c != 0U) {

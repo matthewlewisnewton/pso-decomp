@@ -49,7 +49,6 @@ struct TWindowSubComCard : public TObject {
     u32 m_84;
     static s32 get_card_slot(s32 arg0);
     void clear_flag_and_release();
-    int get_status_flag();
     s32 find_value_by_key(u16 key);
     static s32 get_com_count();
     static void release();
@@ -89,7 +88,7 @@ struct TWindowSubComCard : public TObject {
     void update_selected_entry();
     void update_next_entry(s32 arg1, s32 arg2, s32 arg3);
     s32 get_entry_id();
-    static s32 create_card_list(const void *layout, s32 arg1, s32 arg2, s32 arg3);
+    static s32 create_card_list(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     void free_windows();
     void update_card_slot();
     void notify_trade_main();
@@ -132,7 +131,7 @@ struct TWindowSubComCard : public TObject {
     void set_page(s16 v);
     void set_flag_10();
     void set_display_page();
-    static s32 create_com_card_window(const void *layout);
+    static s32 create_com_card_window(s32 arg0);
 };
 
 typedef char TWindowSubComCard_size[sizeof(TWindowSubComCard) == 0x88 ? 1 : -1];

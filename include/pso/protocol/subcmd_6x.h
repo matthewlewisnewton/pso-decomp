@@ -25,7 +25,6 @@
 
 #include "types.h"
 #include "pso/protocol/protocol_types.h"
-#include "pso/player/TechniqueCastState.h"
 
 struct G_6x70_Base_DCNTE {
  u16 client_id;
@@ -135,26 +134,6 @@ struct G_CastTechnique_Header_6x47 {
  u8 level;
  u8 target_count;
 };
-
-// The client sign-extends technique_number and target_count but not level, and
-// sends only target_count of the ten targets.
-struct G_CastTechnique_6x47 {
- struct G_ClientIDHeader header;
- s8 technique_number;
- u8 unused;
- u8 level;
- s8 target_count;
- struct TechniqueTarget targets[10];
- G_CastTechnique_6x47 *init();
- void bswap();
- void send();
-};
-
-// Copies an incoming 6x47 buffer into a local packet: the client header,
-// the technique word at +4, and the ten targets. dst is the typed packet;
-// src is the untyped buffer the dispatcher hands the handler. extern "C"
-// keeps the unmangled DOL symbol.
-extern "C" G_CastTechnique_6x47 *TObjPlayer__sub_801D21CC(G_CastTechnique_6x47 *dst, void *src);
 
 struct G_ChangePlayerHP_6x2F {
  struct G_ClientIDHeader header;
@@ -356,13 +335,37 @@ struct G_GalGryphonBossActions_6x9F {
  f32 unknown_a3;
 };
 
+struct G_GalGryphonBossActionFields {
+ s32 m_4;
+ f32 m_8;
+ f32 m_c;
+ f32 m_10;
+};
+
+// Each state reads these four words its own way; bswap swaps them as words.
+union G_GalGryphonBossActionParams {
+ struct G_GalGryphonBossActionFields f;
+ u32 words[4];
+};
+
+// One step of Gal Gryphon's action script: the state to enter, how long, and
+// that state's parameters. TBoss5Gryphon keeps the current step at 0x494.
+struct G_GalGryphonBossAction {
+ s16 state;
+ s16 timer;
+ union G_GalGryphonBossActionParams params;
+ void bswap();
+ void copy_action_state(G_GalGryphonBossAction *src);
+};
+
 struct G_GalGryphonBossActions_6xA0 {
- struct G_EntityIDHeader header;
+ struct G_ClientIDHeader header;  // client_id: the gryphon's entity id
  struct VectorXYZF pos;
  u32 angle_y;
- u16 phase;
- u16 unknown_a3;
- u32 unknown_a4[4];
+ struct G_GalGryphonBossAction action;
+ G_GalGryphonBossActions_6xA0();
+ void bswap();
+ void send();
 };
 
 struct G_GogoBall_6x79 {

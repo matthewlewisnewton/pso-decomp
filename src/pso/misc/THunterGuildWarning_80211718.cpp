@@ -1,10 +1,8 @@
 #include "pso/THunterGuildWarning.h"
 #include "pso/misc/TCameraCtrl.h"
-#include "pso/misc/TLobby.h"
 #include "pso/misc/TLobby_8030A6A8.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/ui/TObjBagWarnWin_8006EF24.h"
 
@@ -26,7 +24,7 @@ void THunterGuildWarning::close_windows() {
     s32 i = 0;
     do {
         if (m_windows[i] != NULL) {
-            TWindow__close(m_windows[i]);
+            m_windows[i]->close();
             m_windows[i] = NULL;
         }
         i++;
@@ -44,10 +42,10 @@ void THunterGuildWarning::sub_80211774(s32) {
     case 0: {
         u16 id = TCameraCtrl::get_nth_view_player_id(0);
         if (get_player_by_client_id(id)) {
-            m_windows[id] = TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, id);
+            m_windows[id] = (TWindowMessage *)TWindowMessage::create((s32)get_window_layout_position(0x31), &size, 1, id);
         }
         if (m_windows[id]) {
-            m_windows[id]->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x63), 0x81);
+            m_windows[id]->append_line(TQuestVmDownLoadServer__sub_8006EF6C(0x63), 0x81);
             m_windows[id]->set_position_xy(position.x, position.y);
         }
         break;
@@ -55,10 +53,10 @@ void THunterGuildWarning::sub_80211774(s32) {
     case 1: {
         u16 id = TCameraCtrl::get_nth_view_player_id(0);
         if (get_player_by_client_id(id)) {
-            m_windows[id] = TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, id);
+            m_windows[id] = (TWindowMessage *)TWindowMessage::create((s32)get_window_layout_position(0x31), &size, 1, id);
         }
         if (m_windows[id]) {
-            m_windows[id]->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(0x68), 0x81);
+            m_windows[id]->append_line(TQuestVmDownLoadServer__sub_8006EF6C(0x68), 0x81);
             m_windows[id]->set_position_xy(position.x, position.y);
         }
         break;
@@ -72,10 +70,10 @@ void THunterGuildWarning::sub_80211774(s32) {
         for (s32 i = 0; i < 4; i++) {
             if (local != i) {
                 if (get_player_by_client_id(i)) {
-                    m_windows[i] = TLobby::create_message_window(get_window_layout_position(0x31), &size, 1, i);
+                    m_windows[i] = (TWindowMessage *)TWindowMessage::create((s32)get_window_layout_position(0x31), &size, 1, i);
                 }
                 if (m_windows[i]) {
-                    m_windows[i]->send_and_handle(((const void *(*)(s32))TQuestVmDownLoadServer__sub_8006EF6C)(text), 0x81);
+                    m_windows[i]->append_line(TQuestVmDownLoadServer__sub_8006EF6C(text), 0x81);
                     m_windows[i]->set_position_xy(position.x, position.y);
                 }
             }

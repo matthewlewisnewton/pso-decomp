@@ -10,10 +10,16 @@ struct TWindowMainMenu1P : public TWindowMainMenu {
     virtual void vfunc_8();
     virtual void vfunc_7();
     virtual void vfunc_9();
+    u8 m_60;
+    u8 m_61;
+    u8 _pad62[0x2];
+    void* m_64;
     void update_backdrop_transition();
     void render();
     void run_task();
     void create_char_select_slot();
+    u8 unk_4C[0x8];
+    void * m_54;
     u8 unk_58[0x14];
     f32 m_6c;
     u8 unk_70[0x1C];

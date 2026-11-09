@@ -1,12 +1,12 @@
 #include "pso/ui/TMessageWindowController.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TQuestListChallenge.h"
-#include "pso/misc/TUnk_804CDFE8.h"
+#include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/TWindowMessagePage.h"
 #include "pso/quest/TQuestThread.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 #pragma readonly_strings on
 extern "C" {
 void *memset(void *, int, unsigned long);
@@ -185,7 +185,7 @@ void TMessageWindowController::format_shop_message(s32 index, s32 flags) {
 }
 void TMessageWindowController::close() {
     if (window != NULL) {
-        TWindow__close((u8 *)window);
+        window->close();
         window = NULL;
     }
 }
@@ -195,7 +195,7 @@ TWindowMessagePage *TMessageWindowController::create_message_window(s32 x, s32 y
     else scale = 1.0f;
     if (window == NULL) {
         window = create__18TWindowMessagePageFllll(x, y, 1, flags);
-        ((TUnk_804CDFE8 *)window)->set_position_xy(scale, scale);
+        ((TWindowAddition *)window)->set_position_xy(scale, scale);
         return window;
     }
     return NULL;
@@ -206,14 +206,14 @@ TWindowMessagePage *TMessageWindowController::create_window(s32 x, s32 y) {
     else scale = 1.0f;
     if (window == NULL) {
         window = set_text__18TWindowMessagePageFlll(x, y, 1);
-        ((TUnk_804CDFE8 *)window)->set_position_xy(scale, scale);
+        ((TWindowAddition *)window)->set_position_xy(scale, scale);
         return window;
     }
     return NULL;
 }
 TMessageWindowController::~TMessageWindowController() {
     if (window != NULL) {
-        TWindow__close((u8 *)window);
+        window->close();
         window = NULL;
     }
 }

@@ -5,7 +5,6 @@
 #include "pso/TObject.h"
 
 struct CreationTextureCacheEntry;
-struct TCheckMemoryCard;
 class TPlyCharData;
 
 struct TAdSinglePlyChrSelectGC : public TObject {
@@ -100,7 +99,7 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     void clear_inventory_slot();
     static void draw_window_bg(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     static s32 load_player(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-    int load_player_slot(int a1, int a2);
+    static s32 load_player_slot(s32 chan, const char *file_name, void *buffer);
     s32 try_acquire_slot();
     s32 are_all_selections_done();
     s32 load_preview_models();
@@ -140,12 +139,12 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     static int get_data();
     s32 start_offline_seq();
     void *destroy(s16 arg1);
-    s32 has_no_save_files();
-    static TCheckMemoryCard *create_check_memory_card(TObject *parent, u32 arg1, u32 arg2);
+    static s32 has_no_save_files(s32 chan);
+    static void *create_check_memory_card(void *arg0, void *arg1, void *arg2);
     static void permute_save_blocks(void* stream, const u8* source, u8* destination, u32 size);
     u8 unk_38[0x4];
     s32 m_3c;
-    TCheckMemoryCard *unk_40;
+    u8 unk_40[0x4];
     s32 m_44;
     u8 unk_48[0x4];
     s32 m_4c;

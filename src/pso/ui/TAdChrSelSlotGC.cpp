@@ -1,5 +1,6 @@
 #include "pso/system/CurrentTextureList.h"
 #include "pso/ui/TAdChrSelSlotGC.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/player/TObjPlayer_8023E480.h"
 #include "pso/system/ModelDrawContext.h"
@@ -83,7 +84,6 @@ struct TAdChrSelSlotGC_802C7314 {
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 struct TObject;
 struct StatusWindow;
 struct CallbackTask;
@@ -169,11 +169,11 @@ void *__dt__13TUnk_804E0B28Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__13TUnk_804E0B28;
         if ((u32) *(u32 *)((s8 *)arg0 + 0x4C) != 0U) {
-            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x4C)));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x4C)))->close();
             *(u32 *)((s8 *)arg0 + 0x4C) = 0U;
         }
         if ((u32) ((TUnk_804E0B28 *)arg0)->m_48 != 0U) {
-            TWindow__close((u8 *)(*(void **)((s8 *)arg0 + 0x48)));
+            ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x48)))->close();
             ((TUnk_804E0B28 *)arg0)->m_48 = 0U;
         }
         lbl_805D67E8 = 0;

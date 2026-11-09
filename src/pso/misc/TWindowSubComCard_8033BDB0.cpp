@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_8033BDB0.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowSubComCardList.h"
@@ -14,23 +15,24 @@ struct VObj : VBase { virtual void m0(int); };
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/TWindowOptionCtrl.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
 extern "C" {
+void close__11TWindowBaseFv(u8 *arg0);
 u32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 align_menu_entry_positions(u32);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 u32 check_room_seq_4__16TAdChrSelASlotGCFl(const void *, s32);
+u32 create__14TWindowMessageFlPCvUll(const void *, const void *, s32, s32);
 u32 update_window_mode_from_progress__6TLobbyFPv(const void *, const void *);
-s32 get_selected_menu_value(void *);
+s32 get_selected_value__11TWindowMenuFv(void *);
 
-void TCheckMemoryCard::create_message_and_menu(const void *arg1, s32 sel, u32 arg3, u32 arg4) {
+void TCheckMemoryCard::create_message_and_menu(u32 arg1, s32 sel, u32 arg3, u32 arg4) {
     u32 msg;
     if (m_30 != NULL || m_34 != NULL) {
         return;
     }
     if ((s32)m_4c != 0) {
-        m_30 = TLobby::create_message_window(&lbl_80477DB4, &lbl_80477DBC, 1, 4);
+        m_30 = (void *)create__14TWindowMessageFlPCvUll(&lbl_80477DB4, &lbl_80477DBC, 1, 4);
     } else {
         m_30 = (void *)update_window_mode_from_progress__6TLobbyFPv(&lbl_80477DB4, &lbl_80477DBC);
     }
@@ -40,8 +42,8 @@ void TCheckMemoryCard::create_message_and_menu(const void *arg1, s32 sel, u32 ar
     if (m_30 != NULL && (s32)m_4c != 0) {
         ((TWindowSubComCard *)(m_30))->reparent_to_main_ctrl();
     }
-    if (arg1 != NULL) {
-        ((TLobby *)(m_30))->send_and_handle(arg1, 3);
+    if (arg1 != 0U) {
+        ((TWindowMessage *)(m_30))->append_line(arg1, 3);
     }
     ((TWindowMessage *)(m_30))->complete_reveal();
     if (sel == -1) {
@@ -92,14 +94,14 @@ void TCheckMemoryCard::close_windows() {
                 ((VObj *)temp_r3)->m0(1);
             }
         } else {
-            TWindow__close(temp_r3);
+            ((TWindowBase *)temp_r3)->close();
         }
         m_30 = NULL;
         m_38 = 7;
     }
     temp_r3_2 = (u8 *)m_34;
     if (temp_r3_2 != NULL) {
-        TWindow__close(temp_r3_2);
+        close__11TWindowBaseFv(temp_r3_2);
         m_34 = NULL;
         m_38 = 7;
     }
@@ -148,10 +150,10 @@ void TCheckMemoryCard::fn_8033C178() { close_windows(); }
 void TCheckMemoryCard::fn_8033C198() { }
 void TCheckMemoryCard::fn_8033C19C() { update_card_display(0, -1, -1, -1); }
 void TCheckMemoryCard::handle_menu_selection() {
-    if (m_34 == 0 || ((TWindowMenu *)(m_34))->is_visible() == 0) {
+    if (m_34 == 0 || ((TWindowMenu *)(m_34))->is_decided() == 0) {
         return;
     }
-    switch (get_selected_menu_value(m_34)) {
+    switch (get_selected_value__11TWindowMenuFv(m_34)) {
     case 0:
         m_44 = 1;
         break;
