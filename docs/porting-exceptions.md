@@ -1190,3 +1190,10 @@ remains qualified. The out-of-extent selection helper moves to the evidenced
 CustomSelect receiver with pointer transport; that class's lifetime/early-return
 hold remains. Descriptor/table emission is natural and the opaque original
 suffix is retained. No compiler control or manual padding is introduced.
+
+[LoadItemTexture lifetime recovery](evidence/window-load-item-texture-lifetime.md)
+removes another raw Base construction/cleanup pair and recovers the actual
+request/bind receivers. Loader destruction remains deferred; the texture list
+is borrowed. The factory's existing CSE/FP scopes and upstream word interfaces
+remain qualified. Descriptor and compiler table are native, with the opaque
+original suffix retained and no new compiler control or manual padding.

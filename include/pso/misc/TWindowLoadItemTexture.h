@@ -4,36 +4,35 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 
+class TItemTexLoad;
+struct GinjaTextureList;
+
 struct TWindowLoadItemTexture : public TWindowBase {
+    TWindowLoadItemTexture(void *position, void *extent, s32 client);
     virtual ~TWindowLoadItemTexture();
     virtual void render();
+    virtual void run_task();
+    static TWindowLoadItemTexture *create(void *position, s32 client);
+    void sub_80262814(s32 item);
+
     u8 m_60;
     u8 m_61;
     u8 _pad62[0x2];
-    void* m_64;
-    u8 _pad68[0x4];
-    u32 m_6c;
-    u32 m_70;
-    void *create(void *arg1);
-    virtual void run_task();
+    f32 m_64;
+    f32 m_68;
+    TItemTexLoad *m_6c; // Managed task; destruction is queued, not immediate.
+    GinjaTextureList *m_70; // Borrowed from the loader after it reports readiness.
 };
 
 typedef char TWindowLoadItemTexture_size[sizeof(TWindowLoadItemTexture) == 0x74 ? 1 : -1];
+typedef char LoadTexture_scale[offsetof(TWindowLoadItemTexture, m_64) == 0x64 ? 1 : -1];
+typedef char LoadTexture_loader[offsetof(TWindowLoadItemTexture, m_6c) == 0x6C ? 1 : -1];
+typedef char LoadTexture_list[offsetof(TWindowLoadItemTexture, m_70) == 0x70 ? 1 : -1];
 
 extern "C" {
-void *TWindowLoadItemTexture__ct(TWindowLoadItemTexture *window_load_item_texture, void *arg1, void *arg2, void *arg3);
-void *__dt__22TWindowLoadItemTextureFv(void *arg0, s16 arg1);
-void fn_80262C2C(void *p);
-void render__22TWindowLoadItemTextureFv(TWindowLoadItemTexture *arg0);
+TWindowLoadItemTexture *fn_802628C0(void *position, void *extent, s32 client);
+void fn_8026287C(TWindowLoadItemTexture *window);
+void fn_80262C2C(TWindowLoadItemTexture *window);
 }
-
-// --- C functions defined in TWindowLoadItemTexture.cpp ---
-extern "C" {
-void *TWindowLoadItemTexture__ct(TWindowLoadItemTexture *window_load_item_texture, void *arg1, void *arg2, void *arg3);
-void *__dt__22TWindowLoadItemTextureFv(void *arg0, s16 arg1);
-void fn_80262C2C(void *p);
-void render__22TWindowLoadItemTextureFv(TWindowLoadItemTexture *arg0);
-}
-// --- end of C functions
 
 #endif

@@ -294,6 +294,13 @@ receiver and returns the actual record pointer; CustomSelect's lifetime hold
 is retained. Descriptor and compiler table add 44 bytes with original data
 and all protected remainders preserved.
 
+The [LoadItemTexture recovery](window-load-item-texture-lifetime.md) adds
+native construction/cleanup, two ordinary-new factories and the actual
+texture-request receiver. Managed loader destruction stays queued; its
+ready texture list is borrowed and bound through the address of its field.
+Descriptor and compiler table add 44 bytes while the following original
+suffix and existing controls/interface holds are preserved.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

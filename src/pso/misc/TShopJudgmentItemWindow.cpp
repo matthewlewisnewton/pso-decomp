@@ -1,4 +1,5 @@
 #include "pso/system/SoundEffect.h"
+#include "pso/misc/TWindowLoadItemTexture.h"
 #include "pso/unk/text_80104FCC.h"
 #include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowBase.h"
@@ -187,7 +188,6 @@ void TItemData__clear_unidentified_flag(void *arg0);
 u32 advance_item_id_counter(s32 client);
 u32 __nw__7TObjectFUl(int);
 u32 __ct__15TWindowHelpItemFPvUs(int, int, u16);
-u32 create__22TWindowLoadItemTextureFPv(int, u16);
 extern u8 lbl_8044C1C0[];
 extern u8 lbl_8044C1CC[];
 extern s32 local_client_id;
@@ -489,8 +489,8 @@ void TShopJudgmentItemWindow::create_result_windows() {
             ((TWindowMenuIconLine *)this->m_154)->calc_content_extent();
         }
         if ((u32) this->m_160 == 0U) {
-            this->m_160 = create__22TWindowLoadItemTextureFPv(get_window_layout_position(0x30), ((s32 (*)(s32))get_entity_id)(this->m_24));
-            ((TWindowSubMag *)(this->m_160))->set_mag_slot_state((s32)(arg0 + 0x28));
+            this->m_160 = (u32)TWindowLoadItemTexture::create((void *)get_window_layout_position(0x30), (u16)((s32 (*)(s32))get_entity_id)(this->m_24));
+            ((TWindowLoadItemTexture *)(this->m_160))->sub_80262814((s32)(arg0 + 0x28));
         }
         if ((u32) this->m_15c == 0U) {
             var_r29 = __nw__7TObjectFUl(0xBC);

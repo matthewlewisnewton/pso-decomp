@@ -1,4 +1,5 @@
 #include "pso/system/SoundEffect.h"
+#include "pso/misc/TWindowLoadItemTexture.h"
 #include "pso/item/MagStats.h"
 #include "pso/misc/TWindowBase.h"
 #include "types.h"
@@ -96,7 +97,6 @@ void *get_player_by_client_id(s32);
 s32 is_player_input_active(s32);
 void *__nw__7TObjectFUl(u32);
 void *__ct__15TWindowHelpItemFPvUs(void *, s32, s32);
-void *fn_802628C0(s32, void *, s32);
 void queue_destruction__7TObjectFv(void *arg0);
 s32 call_if_split_screen(void *, s32);
 s32 get_cursor_value__19TWindowMenuIconLineFv(s32);
@@ -331,7 +331,7 @@ void TWindowSubMag::run_task(void *arg0) {
             set_depth__11TWindowBaseFf(self->help);
         }
         if (self->slotwin == NULL) {
-            self->slotwin = fn_802628C0(get_window_layout_position(0xC), lbl_8044F9E8, self->client_id);
+            self->slotwin = fn_802628C0((void *)get_window_layout_position(0xC), lbl_8044F9E8, self->client_id);
         }
         ((TWindowHelpItem *)(self->help))->sub_80255E24();
         ((TWindowSubMag *)((s32)self->list))->init_and_setup((void*)2);
@@ -341,7 +341,7 @@ void TWindowSubMag::run_task(void *arg0) {
     case 2:
         ((TWindowSubMag *)self)->update_displayed_item();
         self->mag_state = ((TWindowSubMag *)(self->help))->get_mag_state();
-        ((TWindowSubMag *)(self->slotwin))->set_mag_slot_state(((TWindowSubMag *)(self->help))->get_mag_state());
+        ((TWindowLoadItemTexture *)(self->slotwin))->sub_80262814(((TWindowSubMag *)(self->help))->get_mag_state());
         if (((TWindowMenuIconLine *)(self->list))->is_cancelled() != 0) {
             self->parent->m7();
             self->state = 0x11;
@@ -418,7 +418,7 @@ void TWindowSubMag::run_task(void *arg0) {
         ((TWindowSubMag *)(self->help))->set_flag60_bit8();
         ((TWindowHelpItem *)(self->help))->refresh_copied_items();
         ((TWindowSubMag *)((s32)self->list))->init_and_setup((void*)2);
-        ((TWindowSubMag *)(self->slotwin))->set_mag_slot_state(((TWindowSubMag *)(self->help))->get_mag_state());
+        ((TWindowLoadItemTexture *)(self->slotwin))->sub_80262814(((TWindowSubMag *)(self->help))->get_mag_state());
         if (((TItemData *)(self->help))->update_mag_status_gauges() != 0) {
             self->state = 9;
         } else {

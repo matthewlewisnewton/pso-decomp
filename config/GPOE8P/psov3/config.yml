@@ -1692,7 +1692,6 @@ force_active:
   - TWindowKeyBoardSoft__sub_8025D378
   - TWindowKeyBoardSoft__sub_8025D544
   - TWindowKeyBoardSoft__text_resource
-  - TWindowLoadItemTexture__ct
   - TWindowLockOn__update_for_enemy
   - TWindowLockOn__update_for_item
   - TWindowLockOn__update_for_other_player
@@ -2045,6 +2044,7 @@ force_active:
   - __ct__22TObjEneMe3SinowZoaRealFP7TObjectPv
   - __ct__22TObjEneSlimeTailAttackFP7TObjectPC3VeclP15TObjEneSlimeOne
   - __ct__22TQuestVmDownLoadServerFP7TObject
+  - __ct__22TWindowLoadItemTextureFPvPvl
   - __ct__22TWindowSubShortCutListFPvl
   - __ct__23TObjEneMe1CanadinLeaderFP7TObjectPv
   - __ct__23TObjEneMe3ShinowaMirageFP7TObjectP17TObjEneMe3Shinowall
@@ -2617,6 +2617,7 @@ force_active:
   - __dt__22TObjFogCollisionPoisonFv
   - __dt__22TObjFogCollisionSwitchFv
   - __dt__22TQuestVmDownLoadServerFv
+  - __dt__22TWindowLoadItemTextureFv
   - __dt__22TWindowSubShortCutListFv
   - __dt__22TWindowSubTradeMessageFv
   - __dt__23TAdDialingMessageWindowFv
@@ -3246,6 +3247,7 @@ force_active:
   - __vt__22TObjFogCollisionPoison
   - __vt__22TObjFogCollisionSwitch
   - __vt__22TQuestVmDownLoadServer
+  - __vt__22TWindowLoadItemTexture
   - __vt__22TWindowSubShortCutList
   - __vt__22TWindowSubTradeMessage
   - __vt__23TAdDialingMessageWindow
@@ -7743,6 +7745,7 @@ force_active:
   - lbl_804CF9F8
   - lbl_804CFA10
   - lbl_804CFA28
+  - lbl_804D0058
   - lbl_804D1488
   - lbl_804D9670
   - lbl_804DA19C
@@ -14235,6 +14238,7 @@ force_active:
   - render__22TObjEneMe1GiGueBarrierFv
   - render__22TObjEneMe1GiGueMissileFv
   - render__22TObjEneSlimeTailAttackFv
+  - render__22TWindowLoadItemTextureFv
   - render__22TWindowSubShortCutListFv
   - render__22TWindowSubTradeMessageFv
   - render__23TAdDialingMessageWindowFv
@@ -14946,6 +14950,7 @@ force_active:
   - run_task__22TObjFogCollisionPoisonFv
   - run_task__22TObjFogCollisionSwitchFv
   - run_task__22TQuestVmDownLoadServerFv
+  - run_task__22TWindowLoadItemTextureFv
   - run_task__22TWindowSubShortCutListFv
   - run_task__22TWindowSubTradeMessageFv
   - run_task__23TBoss6Demo21_TYPE2_DEADFv
