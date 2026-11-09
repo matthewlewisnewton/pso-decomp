@@ -94,3 +94,7 @@ The [observed entry gates and fixed-image caveats](quest-download-cache-relocati
 still apply: no enabled shipped mutation route was demonstrated. Lower-level
 counterexamples are not claims of shipped failures. The search pointer-sentinel
 sign-off remains unresolved.
+
+The [primary-page remover continuation](quest-download-primary-removal.md)
+shares the existing request type with its real frontend producer. Former local
+request/message names are aliases; this does not widen or retype byte buffers.

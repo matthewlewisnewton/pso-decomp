@@ -86,25 +86,9 @@ struct E_803E6F48 { u16 key; u8 val; u8 pad; };
 
 
 
-struct Msg_803E92C0 {
-    u8 pad0[4];
-    s16 len;
-    u8 pad6;
-    u8 x7;
-    u8 x8;
-    u8 pad9[3];
-    u8 *text;
-};
+typedef Req_803EEF2C Msg_803E92C0;
 
-struct Msg_803E9348 {
-    u8 pad0[4];
-    s16 len;
-    u8 pad6;
-    u8 x7;
-    u8 x8;
-    u8 pad9[3];
-    u8 *text;
-};
+typedef Req_803EEF2C Msg_803E9348;
 
 struct Item_803EA384 { u8 a; u8 b; u8 pad2[2]; u16 c; };
 
@@ -126,30 +110,14 @@ struct Obj_803EA960 { u8 pad[2]; u8 type; };
 
 
 
-struct Req_803EEF2C {
-    char *name;
-    s16 len;
-    u8 pad6;
-    u8 x7;
-    u8 x8;
-    u8 pad9[3];
-    u8 *text;
-};
+
 
 struct File_803F09FC {
     s32 remain;
     s32 pos;
 };
 
-struct Msg_803E90A8 {
-    char *name;
-    s16 len;
-    u8 pad6;
-    u8 x7;
-    u8 x8;
-    u8 pad9[3];
-    u8 *text;
-};
+typedef Req_803EEF2C Msg_803E90A8;
 
 
 
@@ -200,15 +168,7 @@ struct Out_803E8C2C { s16 a; s16 id; s16 len; s16 pre; u8 pad[4]; u8 *ent; };
 
 struct Ent_803E9DE0 { u8 a; u8 b; u8 off; u8 d; };
 
-struct Msg_803E9190 {
-    char *name;
-    s16 len;
-    u8 pad6;
-    u8 x7;
-    u8 x8;
-    u8 pad9[3];
-    u8 *text;
-};
+typedef Req_803EEF2C Msg_803E9190;
 
 struct Out_803E8B1C { s16 a; s16 id; u8 pad[8]; u8 *ent; };
 
@@ -1148,7 +1108,7 @@ s32 TQuestVmDownLoadServer::has_name_mismatch(u8 *arg1) {
 }
 #pragma pop
 
-s32 TQuestVmDownLoadServer::find_name_index() {
+s32 find_name_index__22TQuestVmDownLoadServerFv(const char *name) {
     s32 mid;
     s32 hi;
     s32 lo;
@@ -1157,7 +1117,7 @@ s32 TQuestVmDownLoadServer::find_name_index() {
     lo = quest_download_name_search_lo;
     while (lo + 1 < hi) {
         mid = (hi + lo) / 2;
-        r = strncmp(((const char *)this), (const char *)quest_name_index_table[mid], 4);
+        r = strncmp(name, (const char *)quest_name_index_table[mid], 4);
         if (r == 0) {
             return mid;
         }
@@ -1167,7 +1127,7 @@ s32 TQuestVmDownLoadServer::find_name_index() {
             hi = mid;
         }
     }
-    if (strncmp(((const char *)this), (const char *)quest_name_index_table[lo], 4) < 0) {
+    if (strncmp(name, (const char *)quest_name_index_table[lo], 4) < 0) {
         return lo - 1;
     }
     return lo;
@@ -4925,6 +4885,62 @@ inline s32 max_entry_index(u8 *rec) {
     return max;
 }
 
+// Remove one matching message from a primary cached page. Caller-supplied
+// names/text and page records retain the native bounded-input preconditions.
+s32 TQuestVmDownLoadServer__sub_803EF208(Req_803EEF2C *request) {
+    char name[0x50];
+    u8 *record;
+    u8 *end;
+    u8 *page;
+    u8 len;
+    s32 comparison;
+    s32 size;
+    s32 removed;
+    s32 missing = 1;
+    if (lbl_805D7904 == -1) {
+        return -3;
+    }
+    if (lbl_805D78F8 == 0x8000) {
+        return -6;
+    }
+    strncpy(name, request->name, request->len);
+    name[request->len] = 0;
+    page = get_cached_page__22TQuestVmDownLoadServerFi(
+        find_name_index__22TQuestVmDownLoadServerFv(name));
+    for (end = page; (size = (u16)(end[0] + (end[1] << 8))) != 0; end += size) {
+    }
+    for (record = page; record < end;
+         record += (u16)(record[0] + (record[1] << 8))) {
+        len = record[2];
+        comparison = strncmp((const char *)(record + 3), name, (s16)len);
+        if (comparison == 0) {
+            if ((s16)len == request->len) {
+                missing = 0;
+                break;
+            }
+        } else if (comparison > 0) {
+            break;
+        }
+    }
+    if (missing) {
+        return 0;
+    }
+    removed = TQuestVmDownLoadServer__sub_803EEFC8(record, request);
+    if (removed == 0) {
+        return 0;
+    }
+    if (removed == -1) {
+        size = (u16)(record[0] + (record[1] << 8));
+        shift_tail_bytes(record + size, end + 2, -size);
+    } else {
+        size = (u16)(record[0] + (record[1] << 8));
+        shift_tail_bytes(record + size + removed, end + 2, -removed);
+    }
+    TQuestVmDownLoadServer__sub_803E79AC();
+    TQuestVmDownLoadServer::set_active();
+    return 3;
+}
+
 s32 TQuestVmDownLoadServer__sub_803EF538(Msg_803E9190 *msg) {
     u8 *end;
     u8 *page;
@@ -4943,7 +4959,7 @@ s32 TQuestVmDownLoadServer__sub_803EF538(Msg_803E9190 *msg) {
     }
     strncpy(buf, msg->name, msg->len);
     buf[msg->len] = 0;
-    page = get_cached_page__22TQuestVmDownLoadServerFi(((TQuestVmDownLoadServer *)buf)->find_name_index());
+    page = get_cached_page__22TQuestVmDownLoadServerFi(find_name_index__22TQuestVmDownLoadServerFv(buf));
     for (end = page; (size = (u16)(end[0] + (end[1] << 8))) != 0; end += size) {
     }
     for (p = page; p < end; p += (u16)(p[0] + (p[1] << 8))) {
@@ -4970,7 +4986,7 @@ s32 TQuestVmDownLoadServer__sub_803EF538(Msg_803E9190 *msg) {
         }
     } else {
         shift_tail_bytes(p + (u16)(p[0] + (p[1] << 8)), end + 2, len);
-        append_message_text__22TQuestVmDownLoadServerFPviPvUc(p, len, (Msg_803E90A8 *)msg, max_entry_index(p) + 1);
+        append_message_text__22TQuestVmDownLoadServerFPviPvUc(p, len, msg, max_entry_index(p) + 1);
     }
     TQuestVmDownLoadServer__sub_803E79AC();
     TQuestVmDownLoadServer::set_active();
@@ -5293,7 +5309,7 @@ s32 find_symbol_entry__22TQuestVmDownLoadServerFPvsPv(const char *name, s16 len,
         out->off = -1;
         return 0;
     }
-    id = ((TQuestVmDownLoadServer *)name)->find_name_index();
+    id = find_name_index__22TQuestVmDownLoadServerFv((const char *)name);
     {
         u8 *get_cached_page__22TQuestVmDownLoadServerFi(void);
         base = get_cached_page__22TQuestVmDownLoadServerFi();
@@ -5371,7 +5387,7 @@ s32 TQuestVmDownLoadServer__sub_803F0500(u8 *name, s16 len, Out_803E8C2C *out) {
     first = 1;
     out->pre = 0;
     out->len = 0;
-    idx = ((TQuestVmDownLoadServer *)name)->find_name_index();
+    idx = find_name_index__22TQuestVmDownLoadServerFv((const char *)name);
     if (((TQuestVmDownLoadServer *)idx)->has_name_mismatch(name) == 0) {
         return 2;
     }
@@ -5413,7 +5429,7 @@ s32 TQuestVmDownLoadServer__sub_803F0500(u8 *name, s16 len, Out_803E8C2C *out) {
         }
         len = cnt - 1;
         name[len] = 0;
-        idx = ((TQuestVmDownLoadServer *)name)->find_name_index();
+        idx = find_name_index__22TQuestVmDownLoadServerFv((const char *)name);
         first = 0;
     }
     out->a = idx;

@@ -98,6 +98,17 @@ struct QuestDownloadSlot {
     u8 reserved_1a[2];
 };
 
+// Shared native request created by the frontend and consumed by byte-page/cache APIs.
+struct Req_803EEF2C {
+    char *name;
+    s16 len;
+    u8 pad6;
+    u8 x7;
+    u8 x8;
+    u8 pad9[3];
+    u8 *text;
+};
+
 #define QUEST_RECORD_CHECK(name, condition) typedef char name[(condition) ? 1 : -1]
 QUEST_RECORD_CHECK(QuestEntryPrefix_extent, sizeof(QuestDownloadEntryPrefix) == 8);
 QUEST_RECORD_CHECK(QuestEntryPrefix_offset, offsetof(QuestDownloadEntryNode, prefix) == 0);
@@ -118,11 +129,20 @@ QUEST_RECORD_CHECK(QuestSlot_status_offset, offsetof(QuestDownloadSlot, status) 
 QUEST_RECORD_CHECK(QuestSlot_tokens_offset, offsetof(QuestDownloadSlot, tokens) == 0);
 QUEST_RECORD_CHECK(QuestSlot_entry_offset, offsetof(QuestDownloadSlot, entryHead) == 8);
 QUEST_RECORD_CHECK(QuestSlot_text_offset, offsetof(QuestDownloadSlot, textHead) == 0xC);
+QUEST_RECORD_CHECK(QuestRequest_extent, sizeof(Req_803EEF2C) == 0x10);
+QUEST_RECORD_CHECK(QuestRequest_name, offsetof(Req_803EEF2C, name) == 0);
+QUEST_RECORD_CHECK(QuestRequest_pad6, offsetof(Req_803EEF2C, pad6) == 6);
+QUEST_RECORD_CHECK(QuestRequest_len, offsetof(Req_803EEF2C, len) == 4);
+QUEST_RECORD_CHECK(QuestRequest_kind, offsetof(Req_803EEF2C, x7) == 7);
+QUEST_RECORD_CHECK(QuestRequest_extra, offsetof(Req_803EEF2C, x8) == 8);
+QUEST_RECORD_CHECK(QuestRequest_text, offsetof(Req_803EEF2C, text) == 0xC);
 #undef QUEST_RECORD_CHECK
 
 extern "C" {
 // Defined by QuestDownloadBuffers.cpp. The pointed-to nodes are not in this array.
 extern QuestDownloadSlot quest_download_slot_chain_table[80];
+s32 TQuestVmDownLoadServer__sub_803EF208(Req_803EEF2C *);
+s32 TQuestVmDownLoadServer__sub_803EF538(Req_803EEF2C *);
 s32 calc_entry_cost__22TQuestVmDownLoadServerFPvPv(QuestDownloadEntryPrefix *, QuestDownloadEntryPrefix *);
 s32 TQuestVmDownLoadServer__sub_803ED84C(QuestDownloadEntryNode *, s32, s32);
 s32 calc_item_entry_cost__22TQuestVmDownLoadServerFUcUcl(QuestDownloadEntryPrefix *, u8, u8, s32);

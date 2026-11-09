@@ -197,5 +197,7 @@ relocation-sensitive probe). The [lifecycle continuation](quest-download-cache-l
 defines the loader and initializer as partial source. The
 [relocation continuation](quest-download-cache-relocation.md) defines `sub_803E8924`
 at 97.70635%. The [replacement continuation](quest-download-cache-replacement.md)
-defines `sub_803E8DA0` at 84.08247% in the standard report. Seven functions remain
-undefined and seven are inexact, including `sub_803F03B4`.
+defines `sub_803E8DA0` at 84.08247% in the standard report. The
+[primary-page removal continuation](quest-download-primary-removal.md) defines
+`sub_803EF208` at 86.40686%. Six functions remain undefined and eight are
+inexact, including `sub_803F03B4`.

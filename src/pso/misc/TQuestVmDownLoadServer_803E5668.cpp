@@ -17,15 +17,7 @@ extern RecoveredGlobal_803E5EFC_lbl_8058DD88 lbl_8058DD88;
 
 
 
-struct Req_803E5D20
-{
-  u8 *buf;
-  s16 len;
-  u8 a;
-  u8 code;
-  u8 b;
-  s32 x;
-};
+typedef Req_803EEF2C Req_803E5D20;
 
 extern "C" {
 s32 TQuestVmDownLoadServer__sub_803F0890(void);
@@ -256,7 +248,7 @@ s32 TQuestVmDownLoadServer__sub_803E5B94(s32 *arg0) {
     return 0;
 }
 
-typedef struct Req_803E5D20 Req_803E5D20;
+
 s32 TQuestVmDownLoadServer__sub_803E5D20(s32 *arg0) {
   s32 kind;
   s32 x;
@@ -317,12 +309,13 @@ s32 TQuestVmDownLoadServer__sub_803E5D20(s32 *arg0) {
     src += 2;
   }
   *dst = 0;
-  req.buf = lbl_8058DD38;
+  req.name = (char *)lbl_8058DD38;
   req.len = (s16) n;
-  req.a = 0;
-  req.code = code;
-  req.b = 0;
-  req.x = x;
+  req.pad6 = 0;
+  req.x7 = code;
+  req.x8 = 0;
+  // The packet word carries the borrowed native text address.
+  req.text = reinterpret_cast<u8 *>(x);
   if (kind == 30)
   {
     if (TQuestVmDownLoadServer__sub_803EF538(&req) == 3)

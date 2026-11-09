@@ -133,7 +133,6 @@ public:
 public:
     void encrypt_download_data(s32 size);
     static void unshuffle_and_decrypt(void *data, s32 size);
-    s32 find_name_index();
 };
 typedef char TQuestVmDownLoadServer_size_check[sizeof(TQuestVmDownLoadServer) == 0x2A4 ? 1 : -1];
 
