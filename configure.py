@@ -429,6 +429,9 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Upstream #208: fused scale/corner arithmetic; deferred emission puts the
+    # compiler vtable before the constructor switch table; class string is rodata.
+    "pso/misc/TPlayerFootStamp.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-inline off,deferred", "-str reuse,readonly")},
     # TObjPlayer__sub_8015434C fuses offset*sin+pos (fmadds at 0x80154408)
     # and offset*cos+pos (fmadds at 0x8015442C). The same flag leaves every
     # other function in this unit unchanged, including resolve_actor_sphere_contact's

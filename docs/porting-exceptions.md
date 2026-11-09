@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (upstream #207 carrier, 2026-11-09)
+## Summary (upstream footprint port, 2026-11-09)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-for the #207 carrier based on main `6daa19a11` (2026-11-09). Assembly is counted as source lines;
+for the footprint port based on main `9924ce113` (2026-11-09). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -27,7 +27,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,768 | 872 |
-| Per-unit compiler overrides in `configure.py` | 174 | 174 |
+| Per-unit compiler overrides in `configure.py` | 175 | 175 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -392,6 +392,12 @@ Source construct MWCC accepts and standard C++ does not:
 | Unit | Symbols | What | Why | Port should |
 |---|---|---|---|---|
 | `pso/misc/TTecCtrl_8022C444.cpp` | `get_technique_caster_flags`'s unsigned bias, `lbl_8044D078` | per-unit `post_object: tools/name_pool_symbols.py`; after MWCC it renames the emitted local `@N` `.rodata` object to `lbl_8044D078` and makes it global | The original split exports the 8-byte unsigned `2^52` bias and `TTecCtrl` loads it across units. Per-file MWCC emits the bias as a local pool object, and source cannot reuse that slot: a named global used by value gets a second pool copy. The post-process changes only the symbol name and binding, not the section bytes or relocations; the object then matches the split's 8-byte `.rodata`, the unit links, and the DOL keeps its original hash. The script refuses a bias with no matching local pool at the split's section and offset. Evidence: [conversion-pool-constants.md](evidence/conversion-pool-constants.md). | Drop the hook; keep the cast. The symbol name has no semantic meaning to a port. |
+
+### Footprint unit recovered from upstream #208
+
+| Unit | Compiler settings | Reason and port action |
+|---|---|---|
+| `pso/misc/TPlayerFootStamp.cpp` | `-fp_contract on`, `-inline off,deferred`, `-str reuse,readonly` | Adapted from upstream [#208](https://github.com/zeroz41/pso-decomp/pull/208), `ae797d392`. Removing fusion drops the constructor to 90.710144%; removing deferred emission changes function/vtable/switch/constant order (`.data` 33.333332%, `.sdata2` 14.285715%); writable strings move the class name (`.rodata` 95.38461%, `.sdata` 50%). All settings together give an exact, linked unit. A port can drop the flags, retaining explicit fused arithmetic if its results are required. [Evidence and remaining API boundaries](evidence/upstream-footstamp.md). |
 
 ## 6. Approved regressions
 
