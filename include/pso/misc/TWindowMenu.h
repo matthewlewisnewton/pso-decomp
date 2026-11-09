@@ -21,9 +21,6 @@ struct TWindowMenu : public TWindowAddition {
     int is_cancelled();
     s32 get_selected_value();
     virtual void render();
-    u8 _pad60[0x8];
-    void* m_68;
-    u8 _pad6C[0x4];
     u16 m_70;
     void set_loss_flag();
     u16 m_72;
@@ -45,4 +42,6 @@ struct TWindowMenu : public TWindowAddition {
 };
 
 typedef char TWindowMenu_size[sizeof(TWindowMenu) == 0x8C ? 1 : -1];
+typedef char TWindowMenu_fields_begin[offsetof(TWindowMenu, m_70) == 0x70 ? 1 : -1];
+
 #endif

@@ -16,7 +16,6 @@ public:
     void *destroy_children(s16);
     int is_selected();
     int is_open();
-    u8 unk_60[0x10];
     u16 m_70;
     u8 unk_72[0x2];
     s16 m_74;
@@ -25,5 +24,7 @@ public:
     u8 unk_7C[0x4];
 };
 typedef char TUnk_804D0658_size[sizeof(TUnk_804D0658) == 0x80 ? 1 : -1];
+
+typedef char TUnk_804D0658_fields_begin[offsetof(TUnk_804D0658, m_70) == 0x70 ? 1 : -1];
 
 #endif

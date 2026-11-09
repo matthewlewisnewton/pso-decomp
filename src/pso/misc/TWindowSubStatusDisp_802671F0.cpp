@@ -590,7 +590,7 @@ void TWindowMenuIconLine::center_list_selection() {
         f32 t = (*(f32 *)&this->m_4c - lbl_805DD1C8) - lbl_805DD1CC;
         target = lbl_805DD1C4 + (f32) (*(s16 *)&this->cursor * 0x14);
         target -= (*(const f32 *)&lbl_805DD1BC) * t;
-        *(f32 *)&this->unk_6C += target - *(f32 *)&this->unk_6C;
+        this->m_6c += target - this->m_6c;
     }
 }
 #pragma pop

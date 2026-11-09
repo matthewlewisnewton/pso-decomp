@@ -435,7 +435,7 @@ void TWindowMenu::update_scroll_value() {
     return;
   }
   v += lbl_805DD160 * ((*((f32 *)(arg0 + 0x3C))) - (*((f32 *)(arg0 + 0x4C))));
-  new_var2 = (u8 *)&this->_pad6C;
+  new_var2 = (u8 *)&this->m_6c;
   *((f32 *) new_var2) += (v - (*((f32 *)(arg0 + 0x6C)))) / ((f32) n);
 }
 

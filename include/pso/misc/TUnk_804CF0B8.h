@@ -35,7 +35,6 @@ public:
     void set_flag2c_bit200();
     void clear_flag2c_bit200();
     void set_flag2c_bit100();
-    u8 unk_5C[0x10];
     s8 m_70;
     u8 m_71;
     u8 unk_72[0x1];
@@ -52,5 +51,7 @@ typedef char TUnk_804CF0B8_name_offset[offsetof(TUnk_804CF0B8, name) == 0x78 ? 1
 typedef char TUnk_804CF0B8_next_offset[offsetof(TUnk_804CF0B8, m_7c) == 0x7c ? 1 : -1];
 typedef char TUnk_804CF0B8_pointer_size[sizeof(char *) == 4 ? 1 : -1];
 typedef char TUnk_804CF0B8_size[sizeof(TUnk_804CF0B8) == 0x98 ? 1 : -1];
+
+typedef char TUnk_804CF0B8_fields_begin[offsetof(TUnk_804CF0B8, m_70) == 0x70 ? 1 : -1];
 
 #endif

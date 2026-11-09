@@ -12,9 +12,6 @@ struct TWindowSubSymbolChatParts : public TWindowAddition {
     s32 sub_80283974();
     virtual void render();
     virtual void run_task();
-    u8 _pad60[0x8];
-    void* m_68;
-    u8 _pad6C[0x4];
     u8 m_70;
     u8 m_71;
     u8 m_72;
@@ -53,5 +50,7 @@ void render__25TWindowSubSymbolChatPartsFv(u8 *arg0);
 void select_symbol_chat_slot(TWindowSubSymbolChatParts *parts);
 }
 // --- end of C functions
+
+typedef char TWindowSubSymbolChatParts_fields_begin[offsetof(TWindowSubSymbolChatParts, m_70) == 0x70 ? 1 : -1];
 
 #endif

@@ -85,12 +85,14 @@ establish that no source-correct solution exists.
 
 ## Remaining lifetime and qualification work
 
-`TWindowAddition` still has an incomplete field declaration: its methods access
+At the starting checkpoint, `TWindowAddition` has an incomplete field declaration: its methods access
 the prefix through `0x6C`, while the current class declaration ends at `0x60`
 and descendants carry their own copies of that storage. The probe preserves
 that existing arrangement rather than asserting complete field ownership.
 Recovering the shared prefix must preserve every descendant's size, offsets,
 field interpretation, and matching code.
+The subsequent [shared-prefix repair](window-addition-prefix.md) now makes those
+floats owned Addition members, preserving the descendant layouts and full build.
 
 Adding real constructors also affects default-constructor availability in other
 descendants. The probe retains empty default constructors only to allow those
