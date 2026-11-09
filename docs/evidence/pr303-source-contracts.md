@@ -74,4 +74,45 @@ code/data, coverage, and linked units are unchanged; the radar signature is
 the only function rename. The pinned compiler also emits the exact original
 radar helper, its constructor calls, the DarkGunner helper and its caller.
 Fresh full validation after integrating current main is recorded separately
-in the continuation result.
+below.
+
+## Current-main integration
+
+Merged main `560addd4270d97c8f14fbb1025d07ec3f5f751d2`, preserving the
+three new units and inherited exception records from its #207 carrier. The
+only conflicts were the two exception documents. Their merged inventory
+contains 5,765 pragmas in 871 files and 175 unit overrides; this continuation
+introduces no new pragma or override.
+
+A separately built main baseline passes the original DOL hash, source-linkage
+and retention checks. The merged continuation also builds to the original
+DOL hash and passes `check_pr.py --no-build` against that fresh baseline:
+
+| Measure | Current main | Continuation | Delta |
+|---|---:|---:|---:|
+| Exact functions | 27,367 | 27,370 | +3 |
+| Matched code bytes | 4,182,748 | 4,184,928 | +2,180 |
+| Matched data bytes | 1,469,283 | 1,469,371 | +88 |
+| Complete code bytes | 3,641,308 | 3,653,528 | +12,220 |
+| Complete data bytes | 1,166,551 | 1,171,439 | +4,888 |
+| Linked units | 3,573 | 3,573 | 0 |
+
+There are no address-level regressions or coverage losses against current
+main. Retention contains 17,591 names, with no missing or stale entry. All
+3,573 linked units are exact. The three new matches are the same DHCP functions
+as the initial PR; the declaration repairs deliberately add no match count.
+The DarkGunner unit remains 43/43 with exact code/data; the radar constructor
+unit remains 4/4 and its helper unit 3/3. Their original compiled source inputs
+remain on the DOL's link edge. The porting-exception inventory check passes.
+
+Against the preserved pre-contract candidate, the additional functions/data
+and three additional linked units all come from current main. Its 4-byte
+total-data decrease is main's dropped zero alignment padding, already
+documented by the #207 carrier; the address-level delta check passes.
+
+The four audited contract conflicts are reconciled. Other legacy accessor
+families, integer storage fields, the character-select no-argument function
+cast/receiver-as-index convention, and the opaque DHCP lease-parser/cookie
+interfaces remain bounded inherited work. This continuation does not claim
+complete original-source type recovery or host-pointer portability. Keep
+the PR draft pending review and the separate publication authorization.
