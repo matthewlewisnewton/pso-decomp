@@ -227,6 +227,13 @@ scale pairs and coordinated factory/value-update interfaces. It removes
 four more raw Base calls and owns two compiler tables plus Quantity
 layout metadata without alignment overrides.
 
+The [Timer/UserSort recovery](window-timer-user-sort-lifetime.md) adds native
+construction, automatic Base cleanup and virtual methods for two bounded
+one-word descendants. Their actual allocation producers and Timer's sole
+tab-helper receiver/context contract are coordinated. Two naturally aligned
+compiler tables add 48 bytes, removing four more raw Base calls while
+preserving the original remainder and unrelated ownership/interface holds.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

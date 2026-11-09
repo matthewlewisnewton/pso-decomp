@@ -1,4 +1,3 @@
-#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/camera/CameraViewParams.h"
 #include "pso/misc/TWindowBase.h"
@@ -22,55 +21,33 @@ struct RecoveredGlobal_80288380_lbl_804D304C {
     u8 remaining[0x10];
 };
 
-struct RecoveredGlobal_80288380___vt__15TWindowUserSort {
-    s32 value;
-    u8 remaining[0x14];
-};
-
 extern "C" {
-s32 draw_default_entry__9TWindowDDFl();
 s32 draw_visible_window_entries(void *, void *, int);
 void *get_player_by_client_id(s32 i);
 extern RecoveredGlobal_80288490_lbl_804D0460 lbl_804D0460;
 extern RecoveredGlobal_80288490_lbl_804D04A0 lbl_804D04A0;
 extern RecoveredGlobal_80288380_lbl_804D304C window_user_sort_settings;
-extern s32 __vt__15TWindowUserSort[];
-extern s32 TWindowUserSort__name;
-u8 *TWindowUserSort__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *__dt__15TWindowUserSortFv(void *arg0, s16 arg1);
-void __dl__7TObjectFPv(void *);
+extern const char *TWindowUserSort__name;
 s32 close_and_clear_flags__15TWindowMainMenuFv();
 int initialize_subwindow__9TWindowDDFv(void*);
 
-void render__15TWindowUserSortFv(s32 arg0) {
-    s32 temp_r3;
-    temp_r3 = draw_default_entry__9TWindowDDFl();
-    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
-    draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), (int)temp_r3);
+void TWindowUserSort::render() {
+    s32 context = TWindowDD::draw_default_entry((s32)this);
+    draw_window_frame((void *)context);
+    draw_visible_window_entries(this, &m_24, context);
 }
 
 void TWindowUserSort::run_task() { initialize_subwindow__9TWindowDDFv(this); update_fade(); update_window_entry_list((char*)this + 0x24); }
 
-void *__dt__15TWindowUserSortFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__15TWindowUserSort;
-        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TWindowUserSort::~TWindowUserSort() {}
 
 typedef char RecoveredGlobal_80288380_lbl_804D304C_size[sizeof(RecoveredGlobal_80288380_lbl_804D304C) == 0x14 ? 1 : -1];
-typedef char RecoveredGlobal_80288380___vt__15TWindowUserSort_size[sizeof(RecoveredGlobal_80288380___vt__15TWindowUserSort) == 0x18 ? 1 : -1];
-u8 *TWindowUserSort__ct(u8 *arg0, s32 arg1, s32 arg2) {
-    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)((s32) &window_user_sort_settings.value)), (s16)((s16)4), (u8 *)((u8 *)arg1));
-    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_80288380___vt__15TWindowUserSort *)&__vt__15TWindowUserSort).value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TWindowUserSort__name;
-    ((TWindowUserSort *)arg0)->m_60 = arg2;
-    ((TWindowSubStatusDisp *)(arg0 + 0x24))->fill_card_text_entries(arg2);
-    return arg0;
+
+TWindowUserSort::TWindowUserSort(void *position, s32 value)
+    : TWindowBase((u8 *)&window_user_sort_settings, 4, (u8 *)position) {
+    m_name = TWindowUserSort__name;
+    m_60 = value;
+    ((TWindowSubStatusDisp *)((u8 *)this + 0x24))->fill_card_text_entries(value);
 }
 
 void TWindowMainMenu1P::vfunc_9() { if (close_active_submenu() != 0) { this->create_char_select_slot(); } }

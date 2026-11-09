@@ -1721,7 +1721,6 @@ force_active:
   - TWindowSubSymbolChat__sub_8028379C
   - TWindowSubTechnique__sub_8028753C
   - TWindowSubTradeMessage__name
-  - TWindowTimer__ct
   - TWindowTimer__sub_8019886C
   - TWindowTimer__sub_801988E8
   - TWindowTimer__sub_80198CF8
@@ -1819,6 +1818,7 @@ force_active:
   - __ct__12TOSignCave03FP7TObjectPv
   - __ct__12TOSwitchItemFP7TObjectPv
   - __ct__12TObjEneSharkFP7TObjectPv
+  - __ct__12TWindowTimerFv
   - __ct__13List_801D4744Fl
   - __ct__13PointerBufferFlPv
   - __ct__13TItemAttackerFllll
@@ -2144,6 +2144,7 @@ force_active:
   - __dt__12TObjRainCtrlFv
   - __dt__12TQuestListVMFv
   - __dt__12TQuestThreadFv
+  - __dt__12TWindowTimerFv
   - __dt__13List_801D4744Fv
   - __dt__13PointerBufferFv
   - __dt__13TAdGuideTxtGCFv
@@ -2366,6 +2367,7 @@ force_active:
   - __dt__15TPlyOnCountOverFv
   - __dt__15TWindowCtrlMainFv
   - __dt__15TWindowQuantityFv
+  - __dt__15TWindowUserSortFv
   - __dt__16TAdChrSelASlotGCFv
   - __dt__16TAdChrSelBSlotGCFv
   - __dt__16TAdGuideButtonGCFv
@@ -2774,6 +2776,7 @@ force_active:
   - __vt__12TQuestListVM
   - __vt__12TQuestThread
   - __vt__12TTecZondeEff
+  - __vt__12TWindowTimer
   - __vt__12T_OWEHMS_Exp
   - __vt__13TAdGuideTxtGC
   - __vt__13TAdMcSelectGC
@@ -2991,6 +2994,7 @@ force_active:
   - __vt__15TWindowAddition
   - __vt__15TWindowCtrlMain
   - __vt__15TWindowQuantity
+  - __vt__15TWindowUserSort
   - __vt__16TAdChrSelASlotGC
   - __vt__16TAdGuideButtonGC
   - __vt__16TAdStorySelectGC
@@ -5474,7 +5478,7 @@ force_active:
   - draw_switch_lights__15TODoorAncient08Fv
   - draw_switch_lights__15TODoorAncient09Fv
   - draw_tab__11TWindowRoomFPv
-  - draw_tab__12TWindowTimerFll
+  - draw_tab__12TWindowTimerFl
   - draw_tag_sprite__12TChCrTagNameFPv
   - draw_tag_sprites__12TChCrTagNameFPv
   - draw_text_glyphs__19TWindowKeyBoardBaseFPvPv
@@ -13913,6 +13917,7 @@ force_active:
   - render__12TPhotonGollaFv
   - render__12TPhotonPillaFv
   - render__12TTecZondeEffFv
+  - render__12TWindowTimerFv
   - render__13TAdMcSelectGCFv
   - render__13TAdTitleTexGCFv
   - render__13TBoss6KakusanFv
@@ -14033,6 +14038,7 @@ force_active:
   - render__15TPlyPhotonChairFPvPv
   - render__15TWindowCtrlMainFv
   - render__15TWindowQuantityFv
+  - render__15TWindowUserSortFv
   - render__16TAdChrSelASlotGCFv
   - render__16TAdGuideButtonGCFv
   - render__16TAdStorySelectGCFv
@@ -14547,6 +14553,7 @@ force_active:
   - run_task__12TPhotonGollaFv
   - run_task__12TPhotonPillaFv
   - run_task__12TQuestThreadFv
+  - run_task__12TWindowTimerFv
   - run_task__12T_OWEHMS_ExpFv
   - run_task__13TAdGuideTxtGCFv
   - run_task__13TAdMcSelectGCFv
@@ -14705,6 +14712,7 @@ force_active:
   - run_task__15TObjSuisouLobbyFv
   - run_task__15TWindowCtrlMainFv
   - run_task__15TWindowQuantityFv
+  - run_task__15TWindowUserSortFv
   - run_task__16TAdChrSelASlotGCFv
   - run_task__16TAdGuideButtonGCFv
   - run_task__16TAdStorySelectGCFv

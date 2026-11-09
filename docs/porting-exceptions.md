@@ -1117,3 +1117,10 @@ real construction, actual float scale fields and shared typed factory/update
 interfaces. Existing word handles/text transport remain qualified; the
 pre-existing Meseta factory scheduling control is unchanged. No new compiler
 control or alignment override is introduced.
+
+[Timer/UserSort lifetime recovery](evidence/window-timer-user-sort-lifetime.md)
+removes two more Base construction/cleanup pairs. Native constructors,
+automatic cleanup, virtual methods and actual allocation producers own two
+naturally aligned compiler tables. The tab helper's sole receiver/context
+contract supports the reconstructed member; broader Timer and entry-prefix
+attributions remain qualified. No new compiler control is introduced.
