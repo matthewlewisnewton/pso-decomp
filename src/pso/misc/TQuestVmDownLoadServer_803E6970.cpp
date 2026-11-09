@@ -2097,6 +2097,7 @@ void TQuestVmDownLoadServer__sub_803E9764(void) {
 // This existing link name denotes the cache initializer here; no SDK owner
 // or retrace-handler semantics are inferred from the placeholder symbol.
 void __VIRetraceHandler(void) {
+    u8 *cacheBytes = lbl_80591EC8;
     QuestDownloadCachedNameNode *node = lbl_80593EC8.nodes;
     for (; node < &lbl_80593EC8.nodes[511]; node++) {
         node->next = node + 1;
@@ -2108,12 +2109,12 @@ void __VIRetraceHandler(void) {
     }
     if (TQuestVmDownLoadServer__sub_803E93DC() == -1) {
         for (s32 page = 0; page < 8; page++) {
-            lbl_80591EC8[page * 0x400 + 1] = 0;
-            lbl_80591EC8[page * 0x400] = 0;
+            cacheBytes[page * 0x400 + 1] = 0;
+            cacheBytes[page * 0x400] = 0;
         }
         lbl_805D7874 = 0;
-        lbl_805D7870 = lbl_80591EC8;
-        lbl_805D786C = lbl_80591EC8 + 0x400;
+        lbl_805D7870 = cacheBytes;
+        lbl_805D786C = cacheBytes + 0x400;
     }
     lbl_805D7868 = 0;
 }

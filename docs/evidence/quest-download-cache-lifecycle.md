@@ -4,7 +4,7 @@
 name index. The existing `__VIRetraceHandler` symbol at `0x803E97B0` initializes
 that index and handles a failed reload. Both are partial C++ recoveries; the
 symbol spelling does not establish an SDK owner or retrace-handler role.
-The standard report scores reload 88.67273% and initializer 80.99363%.
+The standard report scores reload 88.67273% and initializer 82.47771%.
 Neither recovery adds an exact function or source-linked coverage.
 
 ## Actual objects and provider boundary
@@ -51,6 +51,12 @@ the existing complete-read versus failure test. The unsigned thunk/provider ABI
 is unchanged, and this ordinary integer status is unrelated to the held pointer
 sentinel. Neither stable record contents nor valid predecessor links across a
 nested rotation are inferred from the stable array address.
+
+The initializer also borrows the fixed cache-array base before building the
+free list and preserves it across reload for its existing failure path. Both
+initialization loops, store order and fallback cursor assignments are unchanged.
+This follows the native cache-base lifetime while retaining the separate typed
+index object; it supplies no new callback or lifecycle invariant.
 
 ## Mutator audit
 
@@ -165,15 +171,20 @@ added. All earlier precondition witnesses remain in the retained corpus.
 The model script SHA-256 is
 `433f38840a9da1bdcb556691421074ac3440761553dbf1865a3a968a089d989c`;
 its compiled candidate SHA-256 is
-`6f389de7b08b1302b259c4165e53fef5fdf00fb920bf94ba502a7c3700a09570`.
+`f4b7f1f419cc4ba56fc0bfd43e7833b51d3c80169844309e58869bfb7434b25b`.
 
 ## Matching and remaining work
 
 Relocation-sensitive probes (`functionRelocDiffs=data_value`) score reload
 88.09091% (448 compiled bytes versus 440 original), improved from 85.59091%
-at 444 bytes. The initializer remains 55.254776% (640 versus 628). This is a
-modest matching gain with four additional compiled bytes, not exact completion.
-All 167 other provider bodies, eight other partial scores, 159 exact functions
+at 444 bytes. The initializer improves from 55.254776% at 640 bytes to
+57.057323% at 648 bytes, versus 628 original. Its whole-project report improves
+from 80.99363% to 82.47771%; the direct object comparison remains less matched.
+The initializer lifetime change is a modest matching gain with eight additional
+compiled bytes. Pointer-range clearing, library fill, nonempty-loop and
+failure-page cursor variants all regressed and were left out; the retained
+variant preserves both existing loops. Neither refinement is exact completion.
+At the initializer checkpoint, all 167 other provider bodies, eight other partial scores, 159 exact functions
 and 16 frontend functions are preserved. Provider noncode data, object layout
 and relocations are unchanged; all frontend allocated bytes/layout and normalized
 relocations are preserved.

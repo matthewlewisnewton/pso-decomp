@@ -195,7 +195,7 @@ remains 159/173 exact and unlinked. DC20 remains 94.41237%; the separate
 `sub_803E95BC` at 90.330185% in the standard report (90.18868% in the
 relocation-sensitive probe). The [lifecycle continuation](quest-download-cache-lifecycle.md)
 defines the loader at 88.67273% standard / 88.09091% relocation-sensitive and
-the initializer as partial source. The
+the initializer at 82.47771% / 57.057323%, both as partial source. The
 [relocation continuation](quest-download-cache-relocation.md) defines `sub_803E8924`
 at 97.70635%. The [replacement continuation](quest-download-cache-replacement.md)
 defines `sub_803E8DA0` at 84.08247% in the standard report. The
