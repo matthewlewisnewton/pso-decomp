@@ -25,6 +25,7 @@ guides.
 - [Dead-spot effect wrapper](dead-spot-e4-evidence.md)
 - [Scale-15 dead-spot position](dead-spot-scale15-evidence.md)
 - [Enemy experience and drop wrappers](enemy-death-award-evidence.md)
+- [Equipment requirement match and link limit](equip-requirements-match.md)
 - [Empty enemy-call interfaces](enemy-empty-hooks-evidence.md)
 - [Floor-area sound wrappers](floor-area-sound-evidence.md)
 - [Gee native recovery checkpoint](gee-native-recovery-evidence.md)
