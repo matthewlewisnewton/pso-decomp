@@ -1,7 +1,9 @@
 # LaunchDol's stranded epilogue
 
-Investigation on source head `5de7fd190c109955b36aebabc6d47b428fa8fc7c`
-narrows the ownership question for `0x8042E9FC..0x8042EA0F`. The restore is
+Investigation first performed on source head
+`5de7fd190c109955b36aebabc6d47b428fa8fc7c`, and refreshed against #284 at
+`5b639174d431c7bcbe1c1d007f9998a0a60ec09f`, narrows the ownership question
+for `0x8042E9FC..0x8042EA0F`. The restore is
 already reproducible as the ordinary C++ LaunchDol's epilogue. Its isolated
 function representation is the remaining bookkeeping boundary; a standalone
 prologue-less C function is not established by these bytes.
@@ -22,9 +24,13 @@ replaced. With GC/2.6 and the unit's existing
   neither compared restore range contains a relocation. MWCC's separate
   metadata relocation section is not part of this comparison.
 - Comparing that 332-byte C++ function with original LaunchDol plus the
-  following restore leaves four differing instruction words, at offsets
-  `0x128`, `0x12C`, `0x130` and `0x134`. These are the entry transfer already
+  following restore leaves three differing instruction words, at offsets
+  `0x128`, `0x130` and `0x134`. These are the entry transfer already
   investigated in #284; no further tail-call spellings were tested here.
+  The initial probe also differed at `0x12C`; #284's reviewed change to load
+  the entry before `__isync()` removes that difference. The current 332-byte
+  output, prefix, suffix and relocation comparisons were reproduced against
+  the refreshed base.
 
 Thus the old 74.14% experiment's different restore register is not a current
 obstacle. The current C++ frame already has the required r26-through-r31
@@ -86,7 +92,7 @@ settings or original source between the two loaders.
 
 Use a fresh normal game build and compile the temporary fallback as described
 in [the C++ reproduction](launch-dol-cpp-recovery.md). With its object saved
-as `build/epilogue-probe/LaunchDolCpp.o`, compare sections without publishing
+as `build/epilogue-probe-r2/LaunchDolCpp.o`, compare sections without publishing
 the original bytes:
 
 ```python
@@ -95,7 +101,7 @@ import sys
 sys.path.insert(0, "tools")
 from link_units import elf_section_bytes
 
-cpp = elf_section_bytes(Path("build/epilogue-probe/LaunchDolCpp.o"), ".text")
+cpp = elf_section_bytes(Path("build/epilogue-probe-r2/LaunchDolCpp.o"), ".text")
 loader = elf_section_bytes(Path("build/GPOE8P/obj/pso/unk/text_8042E8C4.o"), ".text")
 following = elf_section_bytes(Path("build/GPOE8P/obj/pso/unk/text_8042E9FC.o"), ".text")
 assert len(cpp) == 0x14C and len(loader) == 0x138
@@ -103,7 +109,7 @@ assert cpp[:0x128] == loader[:0x128]
 assert cpp[0x138:0x14C] == following[:0x14]
 target = loader + following[:0x14]
 assert [i for i in range(0, 0x14C, 4) if cpp[i:i+4] != target[i:i+4]] == [
-    0x128, 0x12C, 0x130, 0x134,
+    0x128, 0x130, 0x134,
 ]
 ```
 
@@ -125,6 +131,6 @@ words loses that owning-frame context.
 A future ownership correction needs an explicit coverage-accounting plan.
 Simply widening the existing symbol would remove the currently reported
 function address at `0x8042E9FC` and fail the repository's address/no-loss gate;
-it would not solve the four differing transfer instructions. No symbols,
+it would not solve the three differing transfer instructions. No symbols,
 splits, linkage selection, assembly exceptions or coverage rules were changed
 for this investigation, and no new matching bytes are claimed.
