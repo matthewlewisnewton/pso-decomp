@@ -252,6 +252,11 @@ Help receiver. Descriptor and compiler table own 44 bytes; the trailing
 word stays in a verified original suffix, without a new padding claim.
 Remaining ownership/interface holds and the original text remainder persist.
 
+The Help checkpoint also normally integrates main's PPPoE recovery and
+README follow-up through `224eb9983`, retaining its new exact function and
+source-linked unit. Current qualification has 27,387 exact functions,
+3,588 exact linked units and clean retention at 17,736 names.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

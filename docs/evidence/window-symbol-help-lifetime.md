@@ -111,7 +111,7 @@ units, each selected as actual source link input exactly once:
 
 Help's complete 44-byte data, eight-byte rodata and 60-byte sdata2
 sections also match.
-The full DOL reproduces SHA-1
+Before the subsequent main integration, the full DOL reproduces SHA-1
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Incremental check_pr passes:
 all 27,386 exact functions and 3,587 exact linked units retained, no
 function/code/data/coverage loss and 44 additional matched/linked data
@@ -119,6 +119,25 @@ bytes. Retention is clean at 17,722 names (+5, no removals), and the porting
 inventory passes. Against fresh main 18207f986, the PR retains +600 matched
 code, +1,220 linked code and +776 matched/linked data bytes. The ten previously
 qualified four-byte alignment gaps are unchanged.
+
+## Current-main integration
+
+Main advanced through PPPoE recovery b47369c1b and its README follow-up
+`224eb99838471c243b20c305eddac75e7ff76c8f`; both are normally merged.
+The independent current-main worktree passes the original hash and check_pr
+with 27,386 exact functions and 3,586 exact linked units. The integrated
+branch retains the new exact function at 804275B0, all 5,832 newly linked
+code bytes, 3,616 newly linked data bytes and the new linked unit.
+
+The final integrated full build and check_pr pass with 27,387 exact functions,
+3,588 exact linked units and clean retention at 17,736 names. The porting
+inventory passes, and the original DOL hash remains unchanged. Relative to
+fresh main 224eb9983, the PR retains +600 matched code, +1,220 linked code
+and +776 matched/linked data bytes, with only the ten previously qualified
+alignment gaps. This family introduces no compiler control; main's existing
+PPPoE qualifications remain attached to that recovery.
+
+## Standing holds
 
 The raw Base/Addition interface now has 58 calls across 30 source units:
 25 Base pairs and four Addition pairs. Its four bindings remain. The separate
