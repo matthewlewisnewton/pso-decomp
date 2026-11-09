@@ -204,3 +204,71 @@ produced the original instruction order while preserving all other code.
 A new candidate must be meaningful source, preserve the other nine exact
 functions, and pass a real source link with the original DOL hash. Assembly,
 synthetic split units, dead cases and no-op steering are not solutions.
+
+## Further bounded probes on 2026-11-09
+
+The following experiments used the source and headers of
+`fe4628c545db1f7d35e8dee3583bf124921201b1`, the default GC/2.6 flags and
+private outputs. The inline continuation probe alone used
+`-inline on,noauto`. None was retained, and no compiler exception is proposed.
+
+| Source organization | Dispatcher fuzzy | Emitted size |
+| --- | ---: | ---: |
+| Each real collection mode handles its own contacts | 22.666666% | 400 bytes |
+| Same per-mode continuation through an inline helper | 22.666666% | 400 bytes |
+| Null-list response joins a nullable receiver before hit testing | 94.38596% | 236 bytes |
+| Materialize the selected nullable actor with statements | 91.29825% | 236 bytes |
+| Materialize the selected nullable actor with a conditional expression | 89.12281% | 244 bytes |
+
+All nine existing functions stayed 100% in each full-unit compile. The
+per-mode forms did not merge their common tails. The receiver form retained
+extra null state/testing. The actor forms preserved the null-list callback,
+the post-hit reload of `actors[0]`, and the final null-actor guard. They
+materialized an actual nullable actor, rather than a dummy hit-status value,
+but neither improved the instruction order or whole-function match.
+
+The debugger was extended to capture the shipped GC/2.6 compiler immediately
+after `optimizefinalbranches` returns (x86 VA `0x4EB166`), instead of stopping
+before `assemblefunction` (VA `0x4340B1`). The compiler executable's SHA-256
+was `316e2a98236c23f3fc902243b157eaebf8ef2ad6edb88cfd632a15b6676fa9a8`.
+Both the earlier `v_if_tern_cond.cpp` specimen and the new nullable-actor
+statement form had one three-pcode hit-test block before scheduling:
+`mr`, `lwz`, `bl`. The first scheduler changed it to `lwz`, `mr`, `bl`;
+the second scheduler retained that order. The complete final-branch dump
+was identical to the second-scheduler dump for both specimens. Neither
+provides a late-deleted branch witness. These traces investigate the
+unobserved final stage; they do not retry the old conditional shape as a fix.
+
+A bounded scan of the fresh build's compiled `.text` sections found 112
+adjacent `mr r3,...` / independent `lwz r4,...` / direct-call sequences.
+Eight began at branch targets; all eight used GC/1.2.5n middleware units,
+not GC/2.6 game units. This is not a universal compiler-pattern proof.
+It supplies no GC/2.6 witness with the required branch-entry dependency shape.
+
+### Header-free GC/1.2.5n diagnostic
+
+The earlier full-unit GC/1.2.5n attempt failed while parsing
+`TObjNpcBase.h`, before dispatcher code generation. It therefore did not
+establish the dispatcher's behavior under that compiler.
+
+One diagnostic compile used the existing header-free `/tmp/pr318x/base.cpp`
+unchanged, with the normal game flags (`-O4,s -inline off`, `-proc gekko`,
+`-fp hardware`, `-use_lmw_stmw on`, `-sdata2 4`, exceptions/RTTI off).
+Fixture SHA-256:
+`0397cc5aede431d00632d54613d0b8aa864cd8d19532c99be6dcbe54ca294cf0`.
+GC/1.2.5n compiler SHA-256:
+`ccf4b465cec73b5aae9c5c5543dcf8cda8a62aba246f89e2e0b200d742f2e55c`.
+Only the fixture's dispatcher symbol label was mapped to the original
+placeholder for object comparison; its instruction bytes were not changed.
+
+The compile succeeded and emitted the desired `mr` before `lwz` at the
+hit-test call. However, the complete function was 244 bytes and only
+72.38596% fuzzy, with different stack-frame and virtual-call sequences.
+Whole-unit and sibling compatibility were not established. This closes a
+gap in the old measurements; it does not justify a compiler override or
+a synthetic unit split, and it is not a matching implementation.
+
+The next useful lead needs a genuine GC/2.6 source-generated boundary that
+reuses the existing condition, survives both scheduling passes, and then
+loses only a legitimate branch. Another local-variable permutation, extra
+comparison, dead case or scheduling override is not evidence for that lead.
