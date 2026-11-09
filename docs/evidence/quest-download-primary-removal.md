@@ -102,7 +102,7 @@ sentinel is introduced. The 167 modeled provider functions and all 16 frontend
 functions bind to the native build checkpoint; full native/no-loss results and
 exact-head independent review accompany publication.
 
-The conversion target `EDF64` was left undefined: its frontend still names a
+At this checkpoint, the conversion target `EDF64` was left undefined: its frontend still names a
 byte-owned shared buffer through a historical signed-halfword view. A signedness
 change alone would not establish a live halfword array. `B4D4` also needs its
 four-byte label versus five-byte NUL-scanned string boundary resolved. Existing
@@ -116,3 +116,5 @@ does not turn lower-level witnesses into claims of shipped failures. Earlier
 
 The unit remains **159/173 exact, six undefined and eight partial, unlinked**.
 The separate search pointer-sentinel sign-off remains unresolved.
+The later [byte-consumer recovery](quest-download-byte-conversion.md) defines
+`EDF64` as a partial without clearing the frontend producer's lifetime hold.

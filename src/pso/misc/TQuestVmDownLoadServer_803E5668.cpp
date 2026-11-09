@@ -43,7 +43,7 @@ extern s32 lbl_805D7898;
 s32 TQuestVmDownLoadServer__sub_803E9F54(s32 arg0);
 s32 TQuestVmDownLoadServer__sub_803EA9E8(int, int, int, int);
 s32 TQuestVmDownLoadServer__sub_803EDC20(u32);
-s32 TQuestVmDownLoadServer__sub_803EDF64(s16 *, s32, u16 *, s32 *);
+s32 TQuestVmDownLoadServer__sub_803EDF64(const u8 *, s32, u16 *, s32 *);
 extern s16 quest_download_text_buffer[0x200];
 void TQuestVmDownLoadServer__sub_803EE870(s32, s32);
 void TQuestVmDownLoadServer__sub_803EAE84(s32 arg0, s32 arg1, void *arg2);
@@ -535,7 +535,7 @@ s32 TQuestVmDownLoadServer::convert_jis_to_sjis_string() {
     }
     p = quest_download_text_buffer;
     while (n > 0) {
-        r = TQuestVmDownLoadServer__sub_803EDF64(p, n, buf, &cnt);
+        r = TQuestVmDownLoadServer__sub_803EDF64(reinterpret_cast<const u8 *>(p), n, buf, &cnt);
         if (r <= 0) {
             if (r != -1) {
                 return (p - quest_download_text_buffer) + 1;
