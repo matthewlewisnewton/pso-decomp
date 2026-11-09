@@ -680,7 +680,7 @@ struct TLobby : public TObject {
     static s16 get_slot_id(s16 arg0);
     static void reset_boot_state();
     static void cancel_alarm_b();
-    static s32 init_buffer_pool();
+    static s16 init_buffer_pool();
     static void reset_buffer_pool();
     static void wake_network_thread();
     static void exi_write(s32 arg0, s32 arg1, s32 arg2);
