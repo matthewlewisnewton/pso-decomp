@@ -6,6 +6,12 @@
 #include "pso/misc/TUnk_804CE018.h"
 #include "pso/misc/TWindowDrawContext.h"
 
+// get_row_position writes this pair: x then y (the entry's x/y targets).
+struct TMainMenuRow {
+    f32 x;
+    f32 y;
+};
+
 // One row of the main menu. Eight of these are embedded at 0x64, stride 0x18.
 // init_color writes the four floats and the five bytes that follow; the
 // constructor walks that array, not the menu object itself.
@@ -22,20 +28,19 @@ struct TMainMenuEntry {
     u8 b5;
     u8 b6;
     u8 b7;
-    void init_color();
-    void update_item_tween();
+    void draw_item_labels(TWindowDrawContext *context);
     int is_item_active();
+    void sub_802AD74C();
+    void set_symbol_chat_parts(TMainMenuRow *row);
+    void init_row_entry(TMainMenuRow *row, s8 icon, s8 fade);
+    void update_item_tween();
+    void init_color();
+    void copy_color_entry(TMainMenuEntry *src);
 };
 
 typedef char TMainMenuEntry_size[sizeof(TMainMenuEntry) == 0x18 ? 1 : -1];
 typedef char TMainMenuEntry_flags[offsetof(TMainMenuEntry, flags) == 0x13 ? 1 : -1];
 typedef char TMainMenuEntry_kind[offsetof(TMainMenuEntry, kind) == 0x12 ? 1 : -1];
-
-// get_row_position writes this pair: y then x.
-struct TMainMenuRow {
-    f32 y;
-    f32 x;
-};
 
 struct TWindowMenuMainMenu : public TUnk_804CE018 {
     virtual ~TWindowMenuMainMenu();
@@ -49,7 +54,17 @@ struct TWindowMenuMainMenu : public TUnk_804CE018 {
     void update_slide_position();
     void draw_entries_reversed(TWindowDrawContext *context);
     void pop_level();
-    s32 update_if_active(s32 id);
+    void park_selection();
+    int get_selected_item_type();
+    void sub_802ADADC(int slot);
+    int sub_802ADB00();
+    void clear_menu_flags();
+    int find_free_item_slot();
+    void get_row_position(TMainMenuRow *row, int index);
+    s32 is_not_split_screen();
+    TMainMenuEntry *append_child_rows(int id);
+    void play_cursor_sound(int delta);
+    TMainMenuEntry *update_if_active(s32 id);
     TMainMenuEntry *find_active_item_by_id(int id);
     TMainMenuEntry *find_free_slot();
     s32 count_active_items();
@@ -57,18 +72,6 @@ struct TWindowMenuMainMenu : public TUnk_804CE018 {
     int is_flag_set();
     virtual void render();
     virtual void run_task();
-    u8 _pad1C[0x4];
-    u16 m_20;
-    s16 unk_22;
-    u8 unk_24[0x8];
-    s32 m_2c;
-    u8 unk_30[0xC];
-    f32 unk_3c;
-    f32 m_40[2];
-    f32 m_48[2];
-    u32 unk_50;
-    f32 m_54;
-    u8 unk_58[0x8];
     u8 m_60;
     s8 m_61;
     s16 m_62;
@@ -89,14 +92,12 @@ typedef char TWindowMenuMainMenu_slots[offsetof(TWindowMenuMainMenu, slots) == 0
 extern "C" {
 u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *arg0, s32 arg1, s16 arg2);
 void *__dt__19TWindowMenuMainMenuFv(void *arg0, s16 arg1);
-void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *arg0);
 }
 
 // --- C functions defined in TWindowMenuMainMenu.cpp ---
 extern "C" {
 u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *window_menu_main_menu, s32 arg1, s16 arg2);
 void *__dt__19TWindowMenuMainMenuFv(void *arg0, s16 arg1);
-void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window_menu_main_menu);
 }
 // --- end of C functions
 

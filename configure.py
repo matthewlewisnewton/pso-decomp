@@ -456,13 +456,35 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # GC/2.0: compiler-expanded struct copies take 2.0's registers.
     # The ending item handler table keeps 2.0's store/load scheduling for its
     # zero-initialized local member-function-pointer array.
-    "pso/unk/text_803531FC.cpp": {
+    "pso/item/TItemSpecialEvent_803531FC.cpp": {
         "mw_version": "GC/2.0",
         # The split names the compiler's anonymous PMF initializer image at
         # 0x804F10C0; the source-built object references its first 12-byte
         # entry label. Map the target entry name to the object's image label.
         "symbol_mappings": {"@12": "...data.0"},
     },
+    # GC/2.0: run_task's 36-byte PMF array initializer interleaves its copy
+    # tail with actor_frame_tick (load, tail load, clrlwi., table load, tail
+    # store). GC/2.5, 2.6 and 2.7 pack the tail pair and move the tick
+    # relocation from +0xE4 to +0xEC; GC/2.0p1 and GC/1.3.2 drop the wave
+    # helpers.
+    # -inline off,deferred: the vtables come out in reverse order of their
+    # key functions, and .data has TUnk_804DDF04's vtable before this
+    # class's while TUnk_804DDF04's destructor comes first in .text.
+    # -opt noprop: deform_indirect_texture_scroll keeps its s16 scroll offset
+    # as a named local (extsh r28, after the coordinate masks in r30/r29).
+    # With copy propagation the frontend replaces it with a hoisted temporary
+    # that the allocator colours first (r30).
+    # -fp_contract on: both texture-wave helpers fuse the wave offset into an
+    # fmadds.
+    # -str reuse,readonly: the two file names and the class name are in this
+    # unit's .rodata. See docs/porting-exceptions.md section 5.
+    "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-opt noprop", "-fp_contract on", "-str reuse,readonly")},
+    # pack_movie_frame: the original keeps every named local in one register
+    # (no lifetime splitting), recomputes its pad and stride shifts instead of
+    # sharing them, and leaves invariant hoisting to the backend. See
+    # docs/porting-exceptions.md section 5.
+    "pso/misc/TMovie_80143988.cpp": {"cflags": _switch(cflags_pso, "-opt nolifetimes,nocse,noprop,noloop")},
     "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
@@ -498,6 +520,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Row-header copy is a 16-byte struct assignment. -inline off outlines it;
     # noauto,level=1 inlines that helper only. The rest of the unit stays out of line.
     "pso/misc/TWindowMainMenu_802AD538.cpp": {"cflags": _switch(cflags_pso, "-inline noauto,level=1")},
+    # Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs
+    # (scale_point_about_pivot, apply_context_transform_to_rect,
+    # apply_window_closing_stretch, clip_textured_quad, init_text_window_layout).
+    # Unit -fp_contract on replaces the per-function pragmas. Precedent:
+    # https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209
+    "pso/misc/TWindowKeyBoardSoft_8024E68C.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/boss/TBoss7LaserLight.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/enemy/TObjEnemyCustom.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-pool off", "-str reuse,readonly")},
     "pso/boss/TBoss3VoloptCore.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
@@ -648,9 +676,19 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOSensorGeneral01.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly", "-pool off")},
     # Unlike the other keys it addresses its descriptors off one .data base.
     "pso/misc/TOKeyGenericSw.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-str reuse,readonly")},
+    # Quest-collision deleting destructors share a TU. Deferred generation
+    # emits the last definition first, which is the only order that puts each
+    # vtable before the next class's (TObjQuestColA then TObjQuestCol;
+    # TObjQuestColApcINW then TObjQuestColApcIN).
+    "pso/object/TObjQuestColA_80196FE4.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    "pso/object/TObjQuestColApcINW_80196EDC.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # The character creation camera: deferred with nothing inlined, and its
     # multiply-adds contracted into fmadds.
     "pso/camera/CreationCamera.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # The lens-flare renderer contracts its attenuation and displacement
+    # multiply-adds into fnmsubs/fmadds; the whole unit stays byte-exact with
+    # -fp_contract on, so that is this translation unit's setting.
+    "pso/effect/TEF_LensFlare.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     # The pad rumble and Ninja helper code contract multiply-adds into fmadds/fnmsubs.
     "pso/system/PadRumble.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
     "pso/system/NinjaUtil.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
@@ -681,7 +719,16 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     # CRI ADX, LSC, SJ, MFCI and GCRNA ("Build:Jun 13 2002").
     ("cri", 0x803BFE50, "GC/2.6", cflags_middleware, {}),
     # Sega's Ginja model library.
-    ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {}),
+    ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
+        # render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 /
+        # _restgpr_25, and its glyph quads are the inlined SDK FIFO writers
+        # (sth/stw to 0xCC008000), not calls. -inline on inlines only functions
+        # marked inline, so queue_debug_text stays a call from debug_printf_at.
+        # The matrix helpers in text_803D8910.cpp match under the ginja defaults.
+        "pso/unk/text_803D8098.cpp": {
+            "cflags": _switch(cflags_middleware, "-O3,p", "-opt nopeephole", "-use_lmw_stmw off", "-inline on"),
+        },
+    }),
     # mcFsGc ("Ver 1.10.00 Build:Sep 17 2002") with ACCESS's file transfer.
     ("mcfs", 0x803E5668, "GC/1.2.5", cflags_middleware, {
         # Epilogue order (mtlr before the restores) only 1.2.5n produces.
@@ -705,10 +752,12 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     ("modem", 0x8042BF48, "GC/1.2.5", cflags_middleware, {}),
     # ntUtl ("Ver 1.16.00 Build:Jul 8 2002"); the SDK's EXI library follows.
     ("ntutl", 0x8042E8C4, "GC/2.6", cflags_middleware, {
-        # LaunchDol's section loops index with lwzx off a separate byte
-        # induction variable and recompute base+index per load, i.e. no
-        # strength reduction of the base and no common subexpressions.
-        "pso/unk/text_8042E8C4.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse,nostrength")},
+        # LaunchDol's C++ recovery matches all 74 pre-tail instructions
+        # (0x000..0x124) with -inline auto -opt nocse,nostrength,noprop:
+        # the section loops index with lwzx off a byte induction variable,
+        # recompute base+index per load, keep zero in r30 for cmplw, and
+        # evaluate the section source address before loading r3/r5.
+        "pso/unk/text_8042E8C4.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-opt nocse,nostrength,noprop")},
     }),
 ]
 MIDDLEWARE_END = 0x8042F13C
