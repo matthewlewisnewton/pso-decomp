@@ -2617,6 +2617,7 @@ force_active:
   - __dt__24TObjCity_Season_FireWorkFv
   - __dt__24TObjWaitEntryHairMoveSimFv
   - __dt__24TWindowMessageInfomationFv
+  - __dt__24TWindowSubSymbolChatHelpFv
   - __dt__25TBoss5GryphonLightningEffFv
   - __dt__25TBoss6Demo10_TYPE1_APPEARFv
   - __dt__25TBoss6Demo20_TYPE2_APPEARFv
@@ -3240,6 +3241,7 @@ force_active:
   - __vt__24TObjCity_Season_FireWork
   - __vt__24TObjWaitEntryHairMoveSim
   - __vt__24TWindowMessageInfomation
+  - __vt__24TWindowSubSymbolChatHelp
   - __vt__25TBoss5GryphonLightningEff
   - __vt__25TBoss6Demo10_TYPE1_APPEAR
   - __vt__25TBoss6Demo20_TYPE2_APPEAR
@@ -14217,6 +14219,7 @@ force_active:
   - render__23TObjOnlineEndingHexLineFv
   - render__23TObjSeabedSuisoBrakableFv
   - render__24TWindowMessageInfomationFv
+  - render__24TWindowSubSymbolChatHelpFv
   - render__25TBoss5GryphonLightningEffFv
   - render__25TBoss6Demo10_TYPE1_APPEARFv
   - render__25TBoss6Demo20_TYPE2_APPEARFv
@@ -14924,6 +14927,7 @@ force_active:
   - run_task__23TObjOnlineEndingHexMoveFv
   - run_task__24TObjCity_Season_FireWorkFv
   - run_task__24TObjWaitEntryHairMoveSimFv
+  - run_task__24TWindowSubSymbolChatHelpFv
   - run_task__25TBoss5GryphonLightningEffFv
   - run_task__25TBoss6Demo10_TYPE1_APPEARFv
   - run_task__25TBoss6Demo20_TYPE2_APPEARFv
@@ -16268,6 +16272,7 @@ force_active:
   - sweep_head_fall_spheres_late__12TBoss1DragonFv
   - switch_state__14TBoss7TentacleFv
   - symbol_chat_face_uv_table
+  - symbol_chat_help_window_layout
   - symbol_chat_part_size_table
   - symbol_chat_part_uv_table
   - symbol_chat_parts_color_table

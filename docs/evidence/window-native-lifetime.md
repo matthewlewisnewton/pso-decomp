@@ -245,6 +245,13 @@ The evidenced descriptor and compiler table own 44 bytes with natural
 alignment, removing one more raw Base construction/cleanup pair. The
 original remainder and broader ownership/interface holds remain intact.
 
+The [SymbolChatHelp recovery](window-symbol-help-lifetime.md) adds native
+construction and automatic cleanup with four ordinary-new producers. Its
+borrowed selection/mode/toggle pointers and six helpers now use the actual
+Help receiver. Descriptor and compiler table own 44 bytes; the trailing
+word stays in a verified original suffix, without a new padding claim.
+Remaining ownership/interface holds and the original text remainder persist.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

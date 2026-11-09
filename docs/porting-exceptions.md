@@ -1139,3 +1139,11 @@ native construction, automatic cleanup and its actual allocation producer;
 its descriptor and compiler table emit with natural alignment. The zero
 tail remains linker padding. No new compiler control is introduced, and
 broader entry/position ownership remains qualified.
+
+[SymbolChatHelp lifetime recovery](evidence/window-symbol-help-lifetime.md)
+removes another raw Base construction/cleanup pair. Native lifetime and four
+allocation producers use borrowed byte/word pointers; six helpers receive
+the actual Help owner. Signed flag storage preserves the observed low-bit
+contract with existing explicit byte conversions; original signedness is
+qualified. Descriptor/table emission is natural, and the trailing original
+word is retained. No new compiler control is introduced.

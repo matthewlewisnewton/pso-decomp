@@ -2,11 +2,10 @@
 #include "pso/misc/TWindowSubSymbolChat_802838C4.h"
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/misc/TWindowSubSymbolChat.h"
+#include "pso/misc/TWindowSubSymbolChatHelp.h"
 
-struct Obj_80283944 { u8 pad[0x60]; s8 f60; };
 
 extern "C" {
-void TWindowSubSymbolChat__sub_80283944(Obj_80283944 *o);
 void TWindowSubSymbolChat::set_flag_bit2(s32 *arg0) {
     *arg0 |= 2;
 }
@@ -31,21 +30,21 @@ s32 TWindowSubSymbolChat__sub_80283900(void *arg0) {
     return *(u8 *)((s8 *)arg0 + 0x68) & 2;
 }
 
-void TWindowSubSymbolChat::clear_flag60_bit2() {
-    *(u8 *)((s8 *)this + 0x60) = (u8) (*(u8 *)((s8 *)this + 0x60) & 0xFFFFFFFD);
+void TWindowSubSymbolChatHelp::clear_flag60_bit2() {
+    m_60 = (u8)(m_60 & ~2);
 }
 
-void TWindowSubSymbolChat::clear_flag60_bit4() {
-    *(u8 *)((s8 *)this + 0x60) = (u8) (*(u8 *)((s8 *)this + 0x60) & 0xFFFFFFFB);
+void TWindowSubSymbolChatHelp::clear_flag60_bit4() {
+    m_60 = (u8)(m_60 & ~4);
 }
 
-void TWindowSubSymbolChat::set_pos_and_flag(s32 arg1, s32 arg2) {
-    *(s32 *)((s8 *)this + 0x6C) = arg1;
-    *(s32 *)((s8 *)this + 0x70) = arg2;
-    *(u8 *)((s8 *)this + 0x60) = (u8) (*(u8 *)((s8 *)this + 0x60) | 4);
+void TWindowSubSymbolChatHelp::sub_8028392C(s32 *first, s32 *second) {
+    m_6c = first;
+    m_70 = second;
+    m_60 = (u8)(m_60 | 4);
 }
-void TWindowSubSymbolChat__sub_80283944(Obj_80283944 *o) {
-    o->f60 &= ~1;
+void fn_80283944(TWindowSubSymbolChatHelp *window) {
+    window->m_60 &= ~1;
 }
 
 }
