@@ -1,3 +1,4 @@
+#include "pso/misc/Scroll_8026D790.h"
 #include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -142,7 +143,6 @@ s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 void __dl__7TObjectFPv(void *);
 void clamp_list_scroll_offset(s32, Vec2_80284D68 *, Vec2_80284D68 *);
 s32 draw_window_scrollbar(s32, s32, void *);
-void * reset_selection__20TWindowSubStatusDispFv(void *, Vec2_80285D38 *);
 s32 sub_80283974__25TWindowSubSymbolChatPartsFv();
 s32 calc_symbol_index__25TWindowSubSymbolChatPartsFv(void *arg0);
 void fn_80285314(Win_802857C4 *, Rect_802857C4 *);
@@ -163,7 +163,7 @@ void fn_80284C04(u8 *arg0) {
     *(s8 *)((s8 *)arg0 + 0x74) = (s8) TWindowSubStatusDisp::round_away_from_zero((f32) *(s16 *)((s8 *)arg0 + 0x76) / 4.0f);
     stack.sp8 = 170.0f;
     stack.spC = (40.0f * (f32) (s8) (u8) *(s8 *)((s8 *)arg0 + 0x74)) + 18.0f;
-    ((TWindowMenu *)(*(u8 **)((s8 *)arg0 + 0x8C)))->copy_position(&stack.sp8);
+    ((Scroll_8026D790 *)(*(u8 **)((s8 *)arg0 + 0x8C)))->copy_position(&stack.sp8);
 }
 #pragma pop
 
@@ -526,7 +526,7 @@ void run_task__25TWindowSubSymbolChatPartsFv(Parts_80285B84 *arg0) {
     fn_80284FB8(arg0);
     if ((f32)arg0->timer >= 7.5f) {
         ((TWindowSubStatusDisp *)(arg0->sub88))->update_subwindow();
-        ((TWindowSubStatusDisp *)(arg0->sub8C))->increment_counter();
+        fn_8026D9C0((void *)(arg0->sub8C));
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
 }
@@ -534,7 +534,7 @@ void run_task__25TWindowSubSymbolChatPartsFv(Parts_80285B84 *arg0) {
 void *__dt__25TWindowSubSymbolChatPartsFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__25TWindowSubSymbolChatParts;
-        TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)arg0 + 0x8C)), (s16)1);
+        fn_8026D9D0((void *)((s32)(*(void **)((s8 *)arg0 + 0x8C))), (s16)1);
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x88)), (s16)1);
         __dt__15TWindowAdditionFv((TWindowAddition *)(arg0), 0);
         if (arg1 > 0) {
@@ -564,11 +564,7 @@ Parts_80285D38 *TWindowSubSymbolChatParts__ct(Parts_80285D38 *arg0, void *arg1, 
     arg0->sub88 = p;
     v.x = 0.0f;
     v.y = 0.0f;
-    q = ::operator new(0xC);
-    if (q != NULL) {
-        q = reset_selection__20TWindowSubStatusDispFv(q, &v);
-    }
-    arg0->sub8C = q;
+    arg0->sub8C = new Scroll_8026D790(&v);
     return arg0;
 }
 

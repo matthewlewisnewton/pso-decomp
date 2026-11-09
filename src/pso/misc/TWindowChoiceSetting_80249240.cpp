@@ -1,3 +1,4 @@
+#include "pso/misc/Scroll_8026D790.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowChoiceSetting_80249240.h"
@@ -83,7 +84,7 @@ void TWindowChoiceSetting::run_task() {
         }
         temp_r3_2 = *(u32 *)&this->unk_7C;
         if (temp_r3_2 != 0U) {
-            ((TWindowSubStatusDisp *)temp_r3_2)->increment_counter();
+            fn_8026D9C0((void *)temp_r3_2);
         }
     }
     ((TWindowDD *)arg0)->initialize_subwindow();

@@ -1,3 +1,4 @@
+#include "pso/misc/Scroll_8026D790.h"
 #include "pso/misc/WindowConstructorAbi.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/SoundEffect.h"
@@ -59,7 +60,6 @@ s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
 s32 get_message_10__20TWindowSubStatusDispFl(int);
 void *get_player_by_client_id(s32 i);
 s32 get_window_layout_position(int);
-void *reset_selection__20TWindowSubStatusDispFv(void *, Pos_80277AEC *);
 extern u8 custom_select_organic_action_table[];
 extern u8 custom_select_android_action_table[];
 extern u8 TWindowSubCustomSelect__window_settings[];
@@ -252,7 +252,7 @@ void TWindowSubCustomSelect::run_task() {
     update_list_scroll();
     if ((f32) *(s32 *)&this->m_5c >= lbl_805DD5E4) {
         ((TWindowSubStatusDisp *)(*(s32 *)&this->m_7c))->update_subwindow();
-        ((TWindowSubStatusDisp *)(*(s32 *)&this->m_80))->increment_counter();
+        fn_8026D9C0((void *)(*(s32 *)&this->m_80));
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
     ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
@@ -262,7 +262,7 @@ void TWindowSubCustomSelect::run_task() {
 void *__dt__22TWindowSubCustomSelectFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__22TWindowSubCustomSelect;
-        TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)arg0 + 0x80)), (s16)1);
+        fn_8026D9D0((void *)((s32)(*(void **)((s8 *)arg0 + 0x80))), (s16)1);
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x7C)), (s16)1);
         __dt__15TWindowAdditionFv((TWindowAddition *)(arg0), 0);
         if (arg1 > 0) {
@@ -314,11 +314,7 @@ u8 *TWindowSubCustomSelect__ct(TWindowSubCustomSelect *window_sub_custom_select,
     *(void **)((s8 *)window_sub_custom_select + 0x7C) = o;
     pos.x = lbl_805DD5E8;
     pos.y = TWindowSubCustomSelect__data_805DD5B0 * (f32)(s8)window_sub_custom_select->m_72 + lbl_805DD5EC;
-    o = ::operator new(0xC);
-    if (o != NULL) {
-        o = reset_selection__20TWindowSubStatusDispFv(o, &pos);
-    }
-    *(void **)((s8 *)window_sub_custom_select + 0x80) = o;
+    *(void **)((s8 *)window_sub_custom_select + 0x80) = new Scroll_8026D790(&pos);
     return (u8 *)window_sub_custom_select;
 }
 #pragma pop

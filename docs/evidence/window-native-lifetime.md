@@ -159,9 +159,10 @@ qualification against the published constructor checkpoint.
 The subsequent [message descendant recovery](window-message-descendants.md)
 adds native Page, Quest, and Scroll construction plus Log destruction/table
 ownership. It adds another 24 matched/linked data bytes, for 172 versus main,
-with unchanged exact functions and linked units. Log is now the sole caller
-of the Message constructor ABI binding; its measured four-instruction native
-constructor mismatch remains open. Retention is clean at 17,587 entries.
+with unchanged exact functions and linked units. At that checkpoint Log was
+the sole caller of the Message constructor ABI binding, with a measured
+four-instruction native mismatch; the follow-up below resolves it. Retention
+was clean at 17,587 entries.
 
 The next [Base cleanup recovery](window-base-cleanup.md) replaces Deposit,
 LockOn, and Photon raw destruction/rendering with native members and owns
@@ -183,6 +184,14 @@ client contract and compiler-owned descriptor/table. It adds 44 matched and
 linked data bytes while preserving code and exact linked units. The specific
 task-global second-word audit is recorded in the task ownership note; it does
 not assign that unreferenced word a source owner.
+
+The subsequent [Log and auxiliary-storage recovery](window-log-scroll-lifetime.md)
+resolves Log's four-instruction mismatch by removing a decompiler receiver
+alias, replaces five raw auxiliary allocations with ordinary construction,
+and removes the final Message constructor binding. The remaining interface
+has four constructor and three destructor declarations. No matching or linked
+metric changes. The auxiliary counter/release protocol remains type-erased
+because one caller's positive producer is unknown.
 
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native

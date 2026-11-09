@@ -1,4 +1,4 @@
-# Message descendant construction and the remaining Log boundary
+# Message descendant construction and the Log boundary
 
 This follows PR #268 checkpoint
 `9ef96cd1673fd908185cd272b8fe0e3a4af90328` on main
@@ -38,9 +38,9 @@ Complete unrelocated text reproduces the original bytes:
 | `TWindowMessageLog_8026AA38` | 536 |
 | `TWindowCtrl_8026AD44` | 72 |
 
-## Measured remaining limitation
+## Historical Log limitation (resolved in the follow-up)
 
-Log's initializer and factory remain their matching legacy functions. A real
+At this checkpoint, Log's initializer and factory remained their matching legacy functions. A real
 Log constructor with `Message(layout, 30, client)` has the same 168-byte size
 but differs in four instructions around the compiler's vptr installation:
 the original prepares the call receiver before the store and uses a different
@@ -69,3 +69,16 @@ data, function, or address-coverage regressions. Matched and linked data gain
 24 bytes. Retention is clean at 17,587 entries. Against fresh main, the PR has
 one additional exact function, 600 matched code bytes, 728 linked code bytes,
 and 172 matched/linked data bytes. The standing draft hold remains.
+
+## Native Log follow-up
+
+The [Log and auxiliary-storage recovery](window-log-scroll-lifetime.md),
+following checkpoint `034308446b77aba2c1df8808860a1ed81d64b4df`, resolves
+the measured four-instruction difference. Direct access to actual members
+removes the decompiler pointer alias; no compiler setting changes. Log now
+initializes Message directly and its factory uses ordinary `new`. Its
+auxiliary scrollbar construction also uses ordinary `new`. The sole Message
+constructor binding leaves the ABI header, which now contains four constructor
+and three destructor declarations. The broader raw-storage lifetime hold
+remains. The earlier failed probes above describe history, not a current
+constructor blocker.

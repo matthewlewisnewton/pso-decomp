@@ -1,3 +1,4 @@
+#include "pso/misc/Scroll_8026D790.h"
 #include "pso/misc/WindowConstructorAbi.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/SoundEffect.h"
@@ -276,7 +277,7 @@ void TWindowSubStatusDisp::handle_choice_input() {
         }
         temp_r3_2 = *(u32 *)((s8 *)arg0 + 0x7C);
         if (temp_r3_2 != 0U) {
-            ((TWindowSubStatusDisp *)temp_r3_2)->increment_counter();
+            fn_8026D9C0((void *)temp_r3_2);
         }
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
@@ -289,7 +290,7 @@ void TWindowSubStatusDisp::handle_choice_input() {
 void *TUnk_804D0658::destroy_children(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = choice_setting_popup_vtable;
-        TWindowSubStatusDisp::destroy_allocation((s32)(*(void * *)&this->unk_7C), (s16)1);
+        fn_8026D9D0((void *)((s32)(*(void * *)&this->unk_7C)), (s16)1);
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void * *)&this->m_78), (s16)1);
         __dt__15TWindowAdditionFv(this, 0);
         if (arg1 > 0) {

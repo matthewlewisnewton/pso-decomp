@@ -37,7 +37,6 @@ struct TWindowMenu : public TWindowAddition {
     void select_next_item();
     void move_cursor_prev();
     virtual void run_task();
-    void copy_position(void* q);
     s32 is_locked(s32 arg1);
 };
 

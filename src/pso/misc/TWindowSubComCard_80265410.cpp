@@ -1,3 +1,4 @@
+#include "pso/misc/Scroll_8026D790.h"
 #include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/misc/TWindowDrawContext.h"
@@ -129,7 +130,6 @@ u8 * TWindowMenu__ct(u8 *arg0, u32 arg1, s32 arg2, s32 arg3);
 u8 test_menu_flag__11TWindowMenuFv(u8 *arg0);
 s32 clamp_list_scroll_offset(int, void *, void *);
 s32 draw_window_scrollbar(s32, s32, void *);
-u32 reset_selection__20TWindowSubStatusDispFv(int, void *);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 s32 construct_type1_heading__20TWindowSubStatusDispFll(s32, s32, s32);
 }
@@ -175,7 +175,7 @@ void TWindowSubComCardList::update_scroll_target_position() {
     if (window_menu != NULL) {
         stack.sp8 = ((this->m_48) - lbl_805DD148) - lbl_805DD14C;
         stack.spC = (f32) ((*(s16 *)&this->m_72 * 0x14) - 2);
-        ((TWindowMenu *)window_menu)->copy_position(&stack.sp8);
+        ((Scroll_8026D790 *)window_menu)->copy_position(&stack.sp8);
     }
 }
 
@@ -206,12 +206,7 @@ void TWindowSubComCardList::sub_8026556C() {
         temp_f1 = temp_f2 - lbl_805DD15C;
         stack.spC = 0.0f;
         stack.sp8 = temp_f1;
-        temp_r3 = ((u32 (*)(u32, f32, f32))(void *(*)(size_t))::operator new)(0xC, temp_f1, temp_f2);
-        var_r0 = temp_r3;
-        if (var_r0 != 0U) {
-            var_r0 = reset_selection__20TWindowSubStatusDispFv(temp_r3, &stack.sp8);
-        }
-        this->m_84 = var_r0;
+        this->m_84 = (u32)new Scroll_8026D790(&stack.sp8);
         this->m_2c = (s32) (this->m_2c | 0x80);
     }
 }
@@ -810,7 +805,7 @@ void TWindowMenu::run_task() {
             ((TWindowSubStatusDisp *)(*(void * *)&this->m_88))->update_subwindow();
         }
         if ((u32) this->m_84 != 0U) {
-            ((TWindowSubStatusDisp *)(*(void * *)&this->m_84))->increment_counter();
+            fn_8026D9C0((void *)(*(void * *)&this->m_84));
         }
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
@@ -825,7 +820,7 @@ void TWindowMenu::run_task() {
 void *__dt__11TWindowMenuFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TWindowMenu;
-        TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)arg0 + 0x84)), (s16)1);
+        fn_8026D9D0((void *)((s32)(*(void **)((s8 *)arg0 + 0x84))), (s16)1);
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x88)), (s16)1);
         ::operator delete[](*(void **)((s8 *)arg0 + 0x80));
         __dt__15TWindowAdditionFv((TWindowAddition *)(arg0), 0);
@@ -861,7 +856,10 @@ u8 *TWindowMenu__ct(u8 *window_menu, u32 arg1, s32 arg2, s32 arg3) {
     return window_menu;
 }
 
-void TWindowMenu::copy_position(void* q) { *(f32 *)&this->m_name = *(f32*)((char*)q + 0x0); *(f32 *)&this->m_flags = *(f32*)((char*)q + 0x4); }
+void Scroll_8026D790::copy_position(void *pair) {
+    m_0 = *(const f32 *)pair;
+    height = *(const f32 *)((const u8 *)pair + 4);
+}
 
 s32 TWindowAddition::sub_80266B18(s32 arg1) {
     return *(u16 *)((s8 *)(*(u16 **)((s8 *)(*(s32 *)((s8 *)((u8 *)this) + 0x28) + (arg1 * 4)) + 0)) + 0) & 1;

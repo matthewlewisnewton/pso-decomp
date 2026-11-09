@@ -1035,13 +1035,16 @@ not claim that the remaining C-named functions have portable C++ lifetime semant
 The [task ownership follow-up](evidence/window-task-owner.md) replaces four
 more raw factory calls with ordinary construction and removes their bindings
 plus an unused information-window declaration. This interface now contains
-five constructor and three destructor declarations. It no longer transports
-Deposit, DuelResult, SubMagPhoton, or MessageInfomation construction.
+four constructor and three destructor declarations after the follow-ups below.
+It no longer transports Deposit, DuelResult, SubMagPhoton, or
+MessageInfomation construction.
 
 [Message descendant recovery](evidence/window-message-descendants.md) moves
-Page, Quest, and Scroll to native construction. Log remains the only caller
-of this interface's Message constructor binding; its specific matching
-limitation and unchanged legacy auxiliary interfaces are recorded there.
+Page, Quest, and Scroll to native construction. The subsequent
+[Log follow-up](evidence/window-log-scroll-lifetime.md) resolves its native
+constructor difference and removes the final Message constructor binding.
+Its auxiliary plain-storage constructor is also native; the counter/release
+protocol remains type-erased where a positive producer is still unknown.
 
 [Native Base cleanup](evidence/window-base-cleanup.md) removes Deposit,
 LockOn, and Photon from the raw destructor interface. Their constructor,

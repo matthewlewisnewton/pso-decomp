@@ -1,3 +1,4 @@
+#include "pso/misc/Scroll_8026D790.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -116,7 +117,6 @@ s32 finalize_state__20TWindowSubStatusDispFv(s32);
 s32 is_flag80_set__20TWindowSubStatusDispFv(s32);
 s32 advance_state__20TWindowSubStatusDispFv();
 s32 init_status_entry__20TWindowSubStatusDispFPvcUii(void*, s32, s32, s32);
-u32 reset_selection__20TWindowSubStatusDispFv(int, void *);
 u32 construct_type1_heading__20TWindowSubStatusDispFll(u32, s32, s16);
 s32 is_decided__19TWindowMenuIconLineFv(void *);
 s32 is_flag_4_set__20TWindowSubStatusDispFv();
@@ -169,7 +169,7 @@ void TWindowMenuIconLine::calc_content_extent() {
             v.x -= lbl_805DD184;
         }
         v.y = (f32) (s->count * 20 - 2);
-        ((TWindowMenu *)(s->scrollbar))->copy_position(&v);
+        ((Scroll_8026D790 *)(s->scrollbar))->copy_position(&v);
     }
 }
 
@@ -529,12 +529,7 @@ void TWindowMenuIconLine::create_menu_scroll_bar() {
         temp_f1 = this->m_38 - lbl_805DD180;
         stack.spC = (*(const f32 *)&lbl_805DD188);
         stack.sp8 = temp_f1;
-        temp_r3 = (int)::operator new(0xC);
-        var_r0 = temp_r3;
-        if (var_r0 != 0U) {
-            var_r0 = reset_selection__20TWindowSubStatusDispFv(temp_r3, &stack.sp8);
-        }
-        *(u32 *)&this->unk_84 = var_r0;
+        this->unk_84 = new Scroll_8026D790(&stack.sp8);
         this->m_2c = (s32) (this->m_2c | 0x80);
     }
 }
@@ -731,7 +726,7 @@ void TWindowMenuIconLine::run_task() {
         }
         temp_r3_2 = *(u32 *)((s8 *)((u8 *)this) + 0x84);
         if (temp_r3_2 != 0U) {
-            ((TWindowSubStatusDisp *)temp_r3_2)->increment_counter();
+            fn_8026D9C0((void *)temp_r3_2);
         }
     }
     ((TWindowDD *)((u8 *)this))->initialize_subwindow();
@@ -743,7 +738,7 @@ void TWindowMenuIconLine::run_task() {
 }
 
 TWindowMenuIconLine::~TWindowMenuIconLine() {
-    TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)this + 0x84)), (s16)1);
+    fn_8026D9D0((void *)((s32)(*(void **)((s8 *)this + 0x84))), (s16)1);
     TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)this + 0x80)), (s16)1);
 }
 }
