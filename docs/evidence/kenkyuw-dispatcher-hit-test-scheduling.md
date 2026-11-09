@@ -137,3 +137,24 @@ second argument and returns no result. Its shared declaration in
 inconsistent local `s32 (void *, s32)` / `s32 (void *, int)` declarations and
 the one-argument definition without dropping the callers' original argument.
 The role of the unused argument and the original function name remain unknown.
+
+## 2026-11-09 refresh
+
+Merged fork `main` `6daa19a11db97b1b8222fd2665eba485ed3a74a4` into
+the PR without conflicts. Main still has no source implementation of the
+dispatcher, so this work has not been superseded. The signature repair does
+not solve the instruction-order mismatch.
+
+Fresh, separate main and PR builds used GC/2.6, the default unit flags and
+fresh splits from the original inputs. Both builds reproduced the original
+PsoV3 DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
+`check_pr.py --no-build` against the fresh main report passed with zero
+regressions and zero new exact functions; 3,570 linked units remained exact,
+with no force-active drift. `list_port_exceptions.py --check` also passed.
+
+Both projectile `run_task` functions remain 100% exact. Their complete
+compiled `.text` sections are byte-identical to the fresh main baseline
+after sharing the declaration. The dispatcher remains 96.49123% (228
+bytes), its nine siblings remain 100%, and the unit remains 99.6633% fuzzy
+with 2,148 of 2,376 code bytes exact. This unit remains unlinked. These are
+object-level results; the passing DOL hash does not score the dispatcher.
