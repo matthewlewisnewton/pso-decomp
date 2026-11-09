@@ -24,22 +24,18 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 extern RecoveredGlobal_802492C8_lbl_8050E208 controller_input_state;
 extern const f32 lbl_805DCBC0;
-void __dl__7TObjectFPv(void *);
-void fn_80269004(void *);
 
-extern s32 __vt__20TWindowChoiceSetting[];
-
-void render__20TWindowChoiceSettingFv(u8 *arg0) {
+void TWindowChoiceSetting::render() {
     s32 temp_r3;
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(arg0);
-    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
-    draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
-    ((TUnk_804D0658 *)arg0)->draw_setting(temp_r3);
-    if ((u32) ((TWindowChoiceSetting *)arg0)->m_78 != 0U) {
-        forward_render__20TWindowSubStatusDispFv(((TWindowChoiceSetting *)arg0)->m_78, temp_r3);
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
+    this->draw_window_frame((void *)temp_r3);
+    draw_visible_window_entries(this, (u8 *)this + 0x24, temp_r3);
+    this->draw_setting(temp_r3);
+    if ((u32) this->m_78 != 0U) {
+        forward_render__20TWindowSubStatusDispFv(this->m_78, temp_r3);
     }
-    if ((u32) *(u32 *)((s8 *)arg0 + 0x7C) != 0U) {
-        draw_window_scrollbar(*(u32 *)((s8 *)arg0 + 0x7C), temp_r3, arg0 + 0x68);
+    if ((u32) *(u32 *)((s8 *)this + 0x7C) != 0U) {
+        draw_window_scrollbar(*(u32 *)((s8 *)this + 0x7C), temp_r3, (u8 *)this + 0x68);
     }
 }
 
@@ -95,25 +91,14 @@ void TWindowChoiceSetting::run_task() {
     ((TWindowBase *)arg0)->update_window_entry_list(arg0 + 0x24);
 }
 
-void *__dt__20TWindowChoiceSettingFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__20TWindowChoiceSetting;
-        ((TUnk_804D0658 *)arg0)->destroy_children(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TWindowChoiceSetting::~TWindowChoiceSetting() {}
 
-extern void *lbl_805D38B8;
+extern const char *lbl_805D38B8;
 
-void *TWindowChoiceSetting__ct(void *window_choice_setting) {
-    fn_80269004(window_choice_setting);
-    *(s32 **)((s8 *)window_choice_setting + 0x18) = __vt__20TWindowChoiceSetting;
-    *(void * *)&((TWindowChoiceSetting *)window_choice_setting)->m_name = lbl_805D38B8;
-    ((TWindowChoiceSetting *)window_choice_setting)->m_80 = 0;
-    return window_choice_setting;
+TWindowChoiceSetting::TWindowChoiceSetting(void *position, u32 count)
+    : TUnk_804D0658(position, count) {
+    m_name = lbl_805D38B8;
+    m_80 = 0;
 }
 
 }

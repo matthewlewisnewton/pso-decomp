@@ -2554,6 +2554,7 @@ force_active:
   - __dt__20TPlayerParticleOwnerFv
   - __dt__20TPlayerReadyCallbackFv
   - __dt__20TQuadSpriteSclColRotFv
+  - __dt__20TWindowChoiceSettingFv
   - __dt__20TWindowMessageScrollFv
   - __dt__20TWindowSubQuestBoardFv
   - __dt__21TAdMultiChgGameModeGCFv
@@ -3167,6 +3168,7 @@ force_active:
   - __vt__20TPlayerLevelFeedback
   - __vt__20TPlayerParticleOwner
   - __vt__20TQuadSpriteSclColRot
+  - __vt__20TWindowChoiceSetting
   - __vt__20TWindowMessageScroll
   - __vt__21TAdMultiChgGameModeGC
   - __vt__21TAdMultiSelGameModeGC
@@ -13930,6 +13932,7 @@ force_active:
   - render__13TUnk_804CE964Fv
   - render__13TUnk_804CF918FP18TWindowDrawContext
   - render__13TUnk_804CF930FP18TWindowDrawContext
+  - render__13TUnk_804D0658Fv
   - render__13TUnk_804E71A0Fv
   - render__13TUnk_804EEF80Fv
   - render__13TUnk_804F0BF0Fv
@@ -14142,6 +14145,7 @@ force_active:
   - render__20TObjEneDarkGunCenterFv
   - render__20TObjLiveMonitorSmallFv
   - render__20TQuadSpriteSclColRotFv
+  - render__20TWindowChoiceSettingFv
   - render__20TWindowSubQuestBoardFv
   - render__21TAdMultiChgGameModeGCFv
   - render__21TAdMultiSelGameModeGCFv
@@ -14592,6 +14596,7 @@ force_active:
   - run_task__13TUnk_804CCAA8Fv
   - run_task__13TUnk_804CCD78Fv
   - run_task__13TUnk_804CE964Fv
+  - run_task__13TUnk_804D0658Fv
   - run_task__13TUnk_804E14E8Fv
   - run_task__13TUnk_804E4788Fv
   - run_task__13TUnk_804E71A0Fv
@@ -14827,6 +14832,7 @@ force_active:
   - run_task__20TObjEneDarkGunCenterFv
   - run_task__20TObjLiveMonitorSmallFv
   - run_task__20TPlayerLevelFeedbackFv
+  - run_task__20TWindowChoiceSettingFv
   - run_task__20TWindowMessageScrollFv
   - run_task__20TWindowSubQuestBoardFv
   - run_task__21TAdMultiChgGameModeGCFv

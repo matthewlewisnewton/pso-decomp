@@ -1084,3 +1084,9 @@ protocol remains type-erased where a positive producer is still unknown.
 LockOn, and Photon from the raw destructor interface. Their constructor,
 destructor, and render chains are native, with compiler-generated tables and
 evidence-backed descriptor ownership. Other raw-storage callers remain.
+
+[ChoiceSetting lifetime recovery](evidence/window-choice-lifetime.md) removes
+one more raw Addition construction/cleanup pair. Both factories construct the
+actual owners, with explicit position/count forwarding and compiler-owned
+tables. The existing auxiliary release protocol remains type-erased because
+no positive producer for field `0x7C` has been established.

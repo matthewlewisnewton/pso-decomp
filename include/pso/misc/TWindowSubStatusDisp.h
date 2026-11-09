@@ -35,7 +35,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     void dispatch_page_update();
     void dispatch_page_init();
     void set_count_ratio_text(s32 arg1, s32 arg2);
-    void handle_choice_input();
     void clear_visible_flag();
     static s32 get_status_index(int arg0);
     static s32 get_status_index_or_default(u16 *arg0);

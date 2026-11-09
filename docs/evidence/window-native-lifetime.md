@@ -197,6 +197,12 @@ The Log follow-up also records the normal integration and fresh baseline
 qualification of main `fe6cdb141`, retaining all contributions with 27,384 exact
 functions and 3,585 exact linked units. Retention is clean at 17,650 entries.
 
+The [ChoiceSetting follow-up](window-choice-lifetime.md) recovers the native
+position/count constructor chain, both factories, and automatic Addition/base
+cleanup. It adds two 24-byte compiler-owned tables and removes one raw Addition
+construction/cleanup pair. The unknown auxiliary producer and task-global
+second word remain unclaimed.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

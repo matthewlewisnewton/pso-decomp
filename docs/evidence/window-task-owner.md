@@ -46,6 +46,17 @@ require the intervening word. Unknown original section boundaries or computed
 accesses remain possible. These findings do not prove padding or a second
 pointer, so the range and unclaimed word are preserved.
 
+A later scan uses the active split inventory from `build/GPOE8P/config.json`,
+rather than stale files left in the object directory. Across 4,978 active
+original objects it resolves 249,768 relocation targets as symbol address
+plus signed addend. Catalog addresses resolve 249,747; the 21 remaining
+references use actual linked ELF addresses for linker-defined symbols and
+two original address-named reset symbols. All targets resolve. Only the same
+five references reach `[805D5D90,805D5D98)`, all at the first word. No
+neighboring-symbol-plus-offset relocation reaches `805D5D94`. Runtime-computed
+addresses are not excluded, so this still does not justify a source claim or
+shrinking the catalog entry.
+
 Complete unrelocated text is identical for both relevant units:
 
 | Source unit | Original and recovered bytes |
