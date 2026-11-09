@@ -208,6 +208,12 @@ native EquipKind/List constructor and cleanup chains plus both factories,
 with a consistent word-client contract and two 28-byte compiler tables. It
 removes four more raw ABI calls, preserving the remaining ownership holds.
 
+The [ShortCut/page-indicator follow-up](window-shortcut-page-lifetime.md)
+recovers the separate plain 12-byte allocation across all six construction
+sites, then native ShortCutList construction/cleanup and its real static
+factory. It removes two more raw ABI calls and adds a 28-byte compiler table,
+while retaining the unresolved prefix and unrelated ownership boundaries.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

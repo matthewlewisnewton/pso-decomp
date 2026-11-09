@@ -1,3 +1,4 @@
+#include "pso/misc/PageIndicator_8026CB44.h"
 #include "pso/misc/WindowConstructorAbi.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowDD.h"
@@ -262,9 +263,7 @@ struct SD_80281760 { s32 f0; u8 pad4[0x14]; void *vt; u8 pad1c[4]; s16 f20; u8 p
 
 extern "C" {
 s32 fn_8026C7AC(void *arg0, s8 arg1);
-s32 handle_list_page_flip_input(int);
 extern s32 lbl_805DD6F4;
-void *init__21TWindowSubComCardListFiii(void *, int, int, s32);
 s32 get_window_layout_position(int);
 
 extern s32 __vt__20TWindowSubStatusDisp[];
@@ -273,10 +272,8 @@ extern const f32 lbl_805DD70C;
 SD_80281760 *TWindowSubStatusDisp__ct(SD_80281760 *arg0, s32 arg1);
 void *get_player_by_client_id(s32 i);
 s32 draw_visible_window_entries(void *, void *, s32);
-s32 draw_list_page_indicator(s32, s32);
 void __dl__7TObjectFPv(void *);
 }
-s32 delete_if_allocated(s32 arg0, s16 arg1);
 #pragma defer_codegen on
 void TWindowSubStatusDisp::dispatch_page_init() {
     static void (TWindowSubStatusDisp::*page0[3])() = {
@@ -339,7 +336,7 @@ void TWindowSubStatusDisp::render() {
         temp_r3 = this->setup_window_draw_context((s32)(((u8 *)this) + 0x6C));
         draw_window_frame((void *)temp_r3);
         draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
-        draw_list_page_indicator(this->m_68, temp_r3);
+        draw_list_page_indicator((PageIndicator_8026CB44 *)(this->m_68), (TWindowDrawContext *)(temp_r3));
     }
 }
 
@@ -349,7 +346,7 @@ void TWindowSubStatusDisp::run_task() {
   {
     *(s32 *)&arg0->m_5c = 0x01000000;
   }
-  if ((handle_list_page_flip_input((int) (*(s32 *)&arg0->m_68)) != 0) || ((arg0->m_60) != ((s16) (*(s16 *)&arg0->m_62))))
+  if ((handle_list_page_flip_input((PageIndicator_8026CB44 *)((int) (*(s32 *)&arg0->m_68))) != 0) || ((arg0->m_60) != ((s16) (*(s16 *)&arg0->m_62))))
   {
     if ((arg0->m_60) != (*(s16 *)&arg0->m_62))
     {
@@ -367,7 +364,7 @@ void TWindowSubStatusDisp::run_task() {
 void *TWindowSubStatusDisp::dt(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = __vt__20TWindowSubStatusDisp;
-        delete_if_allocated(this->m_68, 1);
+        delete_if_allocated((void *)(this->m_68), 1);
         __dt__11TWindowBaseFv((TWindowBase *)(this), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
@@ -385,10 +382,7 @@ SD_80281760 *TWindowSubStatusDisp__ct(SD_80281760 *arg0, s32 arg1) {
     arg0->f62 = arg0->f60;
     arg0->f6c = lbl_805DD70C;
     arg0->f70 = lbl_805DD70C;
-    w = ::operator new(0xC);
-    if (w != NULL) {
-        w = init__21TWindowSubComCardListFiii(w, 0, 3, arg1);
-    }
+    w = new PageIndicator_8026CB44(0, 3, arg1);
     arg0->f68 = w;
     ((TWindowSubStatusDisp *)arg0)->dispatch_page_init();
     return arg0;

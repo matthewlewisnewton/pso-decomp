@@ -1,8 +1,8 @@
+#include "pso/misc/PageIndicator_8026CB44.h"
 #include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/unk/text_80263A20.h"
 #include "pso/misc/TWindowHelpItem_80255AB4.h"
-#include "pso/misc/TWindowSubComCardList_8026CB08.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowHelpItem.h"
 #include "pso/misc/TWindowDD.h"
@@ -23,14 +23,10 @@ extern s32 TWindowHelpItem__object_vtable[];
 extern u32 window_help_item_class_name;
 extern TWindowHelpItem::CallbackWords __ptmf_null;
 extern const f32 lbl_805DCE10;
-void *init__21TWindowSubComCardListFiii(void *p, s32 a, s32 b, s32 c);
 void call_if_split_screen(void *self, s32 idx);
 
-s32 handle_list_page_flip_input(s32);
 s32 draw_visible_window_entries(void *, void *, int);
-s32 draw_list_page_indicator(int, int);
 void __dl__7TObjectFPv(void *);
-s32 decay_page_arrow_offset(s32);
 
 void TWindowHelpItem::update_cursor_selection() {
     this->m_60 = (u8) (this->m_60 | 1);
@@ -58,7 +54,7 @@ void TWindowHelpItem__sub_80255B20(u8 *arg0) {
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     temp_r3_2 = ((TWindowHelpItem *)arg0)->m_60;
     if ((temp_r3_2 & 1) && (temp_r3_2 & 2)) {
-        draw_list_page_indicator((int) (((TWindowHelpItem *)arg0)->m_64), temp_r3);
+        draw_list_page_indicator((PageIndicator_8026CB44 *)((TWindowHelpItem *)arg0)->m_64, (TWindowDrawContext *)(temp_r3));
     }
 }
 
@@ -69,11 +65,11 @@ void TWindowHelpItem::update_display() {
     }
     if ((this->m_60 & 1) && (((TWindowBase *)arg0)->sub_80244994() != 0) && !(this->m_2c & 4)) {
         if (!(this->m_60 & 4)) {
-            if (handle_list_page_flip_input(this->m_64) != 0) {
+            if (handle_list_page_flip_input((PageIndicator_8026CB44 *)(this->m_64)) != 0) {
                 ((TWindowHelpItem *)arg0)->dispatch_item_help();
             }
         } else {
-            decay_page_arrow_offset(this->m_64);
+            decay_page_arrow_offset((PageIndicator_8026CB44 *)(this->m_64));
         }
         ((TWindowHelpItem *)arg0)->invoke_callback_pmf();
     }
@@ -88,7 +84,7 @@ void TWindowHelpItem::update_display() {
 void *TWindowHelpItem::dt(s16 arg1) {
     if (this != NULL) {
         this->m_vtable18 = TWindowHelpItem__object_vtable;
-        delete_if_allocated(this->m_64, 1);
+        delete_if_allocated((void *)(this->m_64), 1);
         __dt__11TWindowBaseFv((TWindowBase *)(this), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
@@ -107,10 +103,7 @@ TWindowHelpItem::TWindowHelpItem(void *pos, u16 idx) {
     ((TWindowSubSymbolChatPartsSet *)((u8 *)self + 0x30))->copy_vec2(pos);
     ((TWindowBase *)self)->save_position();
     self->m_60 = 0;
-    p = ::operator new(0xc);
-    if (p != 0) {
-        p = init__21TWindowSubComCardListFiii(p, 0, 3, self->m_20);
-    }
+    p = new PageIndicator_8026CB44(0, 3, self->m_20);
     self->m_64 = (u32)p;
     self->m_68 = 0;
     self->m_6c = 0;

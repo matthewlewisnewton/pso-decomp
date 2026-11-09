@@ -1,6 +1,6 @@
+#include "pso/misc/PageIndicator_8026CB44.h"
 #include "types.h"
 #include "pso/TObject.h"
-#include "pso/misc/TWindowSubComCardList_8026CB08.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TLobby.h"
@@ -43,10 +43,8 @@ const char *window_duel_result_class_name = "TWindowDuelResult";
 
 extern "C" {
 s32 draw_visible_window_entries(void *, void *, int);
-s32 draw_list_page_indicator(int, int);
 void render__17TWindowDuelResultFv(u8 *arg0);
 s32 TWindowDuelResult__sub_8024F3CC(void *);
-u8 *init__21TWindowSubComCardListFiii(void *, s32, s32, s32);
 s32 get_window_layout_position(int);
 
 extern const char *window_duel_result_class_name;
@@ -73,7 +71,6 @@ void sub_8024EF3C__17TWindowDuelResultFv(void);
 void *__dt__17TWindowDuelResultFv(void *arg0, s16 arg1);
 void run_task__17TWindowDuelResultFv(u8 *arg0);
 s32 TWindowDuelResult__sub_8024F330(void *);
-s32 handle_list_page_flip_input(s32);
 void __dl__7TObjectFPv(void *);
 
 extern "C" u8 lbl_805D63F0[];
@@ -269,7 +266,7 @@ void TWindowDuelResult::render() {
     s32 context = setup_window_draw_context((s32)&m_60);
     draw_window_frame((void *)context);
     draw_visible_window_entries(this, &m_24, context);
-    draw_list_page_indicator((int)m_68, context);
+    draw_list_page_indicator((PageIndicator_8026CB44 *)m_68, (TWindowDrawContext *)(context));
 }
 
 void TWindowDuelResult::run_task() {
@@ -277,7 +274,7 @@ void TWindowDuelResult::run_task() {
     if (!(*(s32 *)((s8 *)arg0_ + 0x2C) & 2)) {
         *(s32 *)((s8 *)arg0_ + 0x5C) = 0x01000000;
     }
-    if (handle_list_page_flip_input(*(s32 *)((s8 *)arg0_ + 0x68)) != 0) {
+    if (handle_list_page_flip_input((PageIndicator_8026CB44 *)(*(s32 *)((s8 *)arg0_ + 0x68))) != 0) {
         TWindowDuelResult__sub_8024F3CC(arg0_);
     }
     TWindowDuelResult__sub_8024F330(arg0_);
@@ -287,21 +284,14 @@ void TWindowDuelResult::run_task() {
 
 
 TWindowDuelResult::~TWindowDuelResult() {
-    delete_if_allocated((s32)(*(void **)((u8 *)this + 0x68)), 1);
+    delete_if_allocated((void *)m_68, 1);
 }
 typedef char RecoveredGlobal_8024F5B0_window_duel_result_descriptor_size[sizeof(RecoveredGlobal_8024F5B0_window_duel_result_descriptor) == 0x14 ? 1 : -1];
 typedef char RecoveredGlobal_8024F5B0___vt__17TWindowDuelResult_size[sizeof(RecoveredGlobal_8024F5B0___vt__17TWindowDuelResult) == 0x18 ? 1 : -1];
 TWindowDuelResult::TWindowDuelResult(s32 arg1)
     : TWindowBase((u8 *)&window_duel_result_descriptor.value, (s16)arg1, (u8 *)get_window_layout_position(0x24)) {
-    u8 *temp_r3;
-    u8 *var_r0;
     *(s32 *)((s8 *)((u8 *)this) + 0) = (s32) ((s32)window_duel_result_class_name);
-    temp_r3 = (u8 *)((int)::operator new(0xC));
-    var_r0 = temp_r3;
-    if (var_r0 != NULL) {
-        var_r0 = (u8 *)(init__21TWindowSubComCardListFiii(temp_r3, 0, 2, (s32) *(s16 *)((s8 *)((u8 *)this) + 0x20)));
-    }
-    *(u8 **)((s8 *)((u8 *)this) + 0x68) = var_r0;
+    m_68 = (u32)new PageIndicator_8026CB44(0, 2, m_20);
     if (TCameraCtrl::get_camera_id() > 2) {
         *(f32 *)((s8 *)((u8 *)this) + 0x60) = (f32) (0.8f);
         *(f32 *)((s8 *)((u8 *)this) + 0x64) = (f32) (0.8f);

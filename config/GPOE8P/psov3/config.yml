@@ -1702,7 +1702,6 @@ force_active:
   - TWindowSubMag__sub_8027C0B0
   - TWindowSubMag__sub_8027C0E8
   - TWindowSubQuestBoardSelect__sub_8027D444
-  - TWindowSubShortCutList__ct
   - TWindowSubShortMail__sub_8027E620
   - TWindowSubShortMail__sub_8027FAD0
   - TWindowSubStatusDisp__sub_8025AF0C
@@ -2024,6 +2023,7 @@ force_active:
   - __ct__22TObjEneMe3SinowZoaRealFP7TObjectPv
   - __ct__22TObjEneSlimeTailAttackFP7TObjectPC3VeclP15TObjEneSlimeOne
   - __ct__22TQuestVmDownLoadServerFP7TObject
+  - __ct__22TWindowSubShortCutListFPvl
   - __ct__23TObjEneMe1CanadinLeaderFP7TObjectPv
   - __ct__23TObjEneMe3ShinowaMirageFP7TObjectP17TObjEneMe3Shinowall
   - __ct__23TObjOnlineEndingHexLineFv
@@ -2585,6 +2585,7 @@ force_active:
   - __dt__22TObjFogCollisionPoisonFv
   - __dt__22TObjFogCollisionSwitchFv
   - __dt__22TQuestVmDownLoadServerFv
+  - __dt__22TWindowSubShortCutListFv
   - __dt__22TWindowSubTradeMessageFv
   - __dt__23TAdDialingMessageWindowFv
   - __dt__23TBoss6Demo21_TYPE2_DEADFv
@@ -3200,6 +3201,7 @@ force_active:
   - __vt__22TObjFogCollisionPoison
   - __vt__22TObjFogCollisionSwitch
   - __vt__22TQuestVmDownLoadServer
+  - __vt__22TWindowSubShortCutList
   - __vt__22TWindowSubTradeMessage
   - __vt__23TAdDialingMessageWindow
   - __vt__23TBoss6Demo21_TYPE2_DEAD
@@ -14169,6 +14171,7 @@ force_active:
   - render__22TObjEneMe1GiGueBarrierFv
   - render__22TObjEneMe1GiGueMissileFv
   - render__22TObjEneSlimeTailAttackFv
+  - render__22TWindowSubShortCutListFv
   - render__22TWindowSubTradeMessageFv
   - render__23TAdDialingMessageWindowFv
   - render__23TBoss6Demo21_TYPE2_DEADFv
@@ -14866,6 +14869,7 @@ force_active:
   - run_task__22TObjFogCollisionPoisonFv
   - run_task__22TObjFogCollisionSwitchFv
   - run_task__22TQuestVmDownLoadServerFv
+  - run_task__22TWindowSubShortCutListFv
   - run_task__22TWindowSubTradeMessageFv
   - run_task__23TBoss6Demo21_TYPE2_DEADFv
   - run_task__23TObjEneMe1CanadinLeaderFv

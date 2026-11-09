@@ -24,7 +24,6 @@ struct TWindowSubComCardList : public TWindowMenu {
     u32 m_98;
     u8 m_9c;
     virtual void run_task();
-    void init(int a1, int a2, int a3);
     u8 unk_9D[0x3];
 };
 

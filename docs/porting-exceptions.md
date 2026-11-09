@@ -1096,3 +1096,10 @@ removes two MenuIconLine construction/cleanup pairs. Native word-client
 constructors narrow at the base initializer; Kind's factory forwards the same
 word contract. Two compiler-owned five-function tables replace original inputs.
 The remaining lifetime interface and unrelated unknown ownership holds persist.
+
+[ShortCut/page-indicator lifetime recovery](evidence/window-shortcut-page-lifetime.md)
+removes another MenuIconLine construction/cleanup pair and six auxiliary raw
+initializers. The shared plain indicator and typed release interface replace
+false window ownership; its byte parameters reflect all observed caller
+contracts. Remaining prefix interfaces and unrelated unknown ownership retain
+their holds.

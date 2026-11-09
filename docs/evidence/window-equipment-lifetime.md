@@ -79,3 +79,8 @@ No new ChoiceSetting 0x7C producer lead was found in this equipment family;
 MenuIconLine's separate storage does not establish that unrelated field's
 identity. ChoiceSetting's unknown producer, task word 805D5D94 and the broader
 legacy interfaces keep the standing draft hold active.
+
+The subsequent [ShortCut/page-indicator recovery](window-shortcut-page-lifetime.md)
+resolves this specific deferral with a separate plain address-based type and
+six genuine construction sites before recovering the window lifetime. It does
+not identify ChoiceSetting's unrelated 0x7C producer.
