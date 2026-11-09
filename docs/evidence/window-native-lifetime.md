@@ -257,6 +257,13 @@ README follow-up through `224eb9983`, retaining its new exact function and
 source-linked unit. Current qualification has 27,387 exact functions,
 3,588 exact linked units and clean retention at 17,736 names.
 
+The [Room/Area recovery](window-room-area-lifetime.md) replaces flat images
+with the evidenced Base/Room inheritance, genuine construction, automatic
+cleanup and all three ordinary-new allocation producers. Two compiler tables
+add 48 bytes; Room's descriptor stays original. The position-copy and shared
+entry interfaces retain explicit qualifications, along with all original
+remainders and unrelated holds.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

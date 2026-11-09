@@ -1000,7 +1000,6 @@ extern const char lbl_8043EF90[];
 extern const char lbl_8043EF9C[];
 extern const char lbl_8043EFB4[];
 void close_all_windows__6TLobbyFv(void);
-void *__ct__11TWindowRoomFPc(void *self, char *title);
 void handle_chat_message__11TWindowCtrlFPc(char *);
 
 #pragma push
@@ -3178,7 +3177,6 @@ void construct_lobby_players(Rec_801378AC *records, s32 count, int self_id, s32 
     s32 j;
     s32 i;
     u8 *plr;
-    void *room;
 
     for (i = 0; i < count; i++) {
         if (self_id == ((Entry_8013634C *)records)[i].client_id) {
@@ -3207,15 +3205,11 @@ void construct_lobby_players(Rec_801378AC *records, s32 count, int self_id, s32 
     }
     *(void **)(TLobby__protocol_instance + 0xBBF0) = (void *)handle_chat_message__11TWindowCtrlFPc;
     if (lobby_player_construction_window != NULL) {
-        lobby_player_construction_window->queue_destruction();
+        queue_destruction__7TObjectFv(lobby_player_construction_window);
         lobby_player_construction_window = NULL;
     }
     sprintf((char *)lbl_80509D3C, lbl_8043EFB4, TLobby__data_8050AAAC, TLobby__data_805D55AC, TLobby__lobby_number + 1);
-    room = __nw__7TObjectFUl(sizeof(TWindowRoom));
-    if (room != NULL) {
-        room = __ct__11TWindowRoomFPc(room, (char *)lbl_80509D3C);
-    }
-    lobby_player_construction_window = (TObject *)room;
+    lobby_player_construction_window = new TWindowRoom((char *)lbl_80509D3C);
     close_all_windows__6TLobbyFv();
 }
 }

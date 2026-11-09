@@ -2120,6 +2120,7 @@ force_active:
   - __dt__11TPlayerSoulFv
   - __dt__11TSetManagerFv
   - __dt__11TTecRaZondeFv
+  - __dt__11TWindowAreaFv
   - __dt__11TWindowChatFv
   - __dt__11TWindowCostFv
   - __dt__12TAdBackTxtGCFv
@@ -2753,9 +2754,11 @@ force_active:
   - __vt__11TObjNpcMoja
   - __vt__11TPlayerSoul
   - __vt__11TTecRaZonde
+  - __vt__11TWindowArea
   - __vt__11TWindowBase
   - __vt__11TWindowChat
   - __vt__11TWindowCost
+  - __vt__11TWindowRoom
   - __vt__12TAdBackTxtGC
   - __vt__12TAdMultiOkGC
   - __vt__12TAdTimeSetGC
@@ -14560,7 +14563,9 @@ force_active:
   - run_task__11TPlayerSoulFv
   - run_task__11TSetManagerFv
   - run_task__11TTecRaZondeFv
+  - run_task__11TWindowAreaFv
   - run_task__11TWindowChatFv
+  - run_task__11TWindowRoomFv
   - run_task__12TAdBackTxtGCFv
   - run_task__12TAdMultiOkGCFv
   - run_task__12TAdSoniclogoFv

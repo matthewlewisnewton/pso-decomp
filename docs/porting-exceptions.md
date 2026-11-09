@@ -1154,3 +1154,10 @@ the actual Help owner. Signed flag storage preserves the observed low-bit
 contract with existing explicit byte conversions; original signedness is
 qualified. Descriptor/table emission is natural, and the trailing original
 word is retained. No new compiler control is introduced.
+
+[Room/Area lifetime recovery](evidence/window-room-area-lifetime.md) removes
+another raw Base construction/cleanup pair. True inheritance replaces flat
+images and an allocator adapter; actual producers use ordinary new. The
+existing two-float copy export retains its qualified legacy ABI and historical
+name, with no wrapper or invented object owner. The existing queue-destruction
+entry avoids duplicate inline emission. No new compiler control is introduced.
