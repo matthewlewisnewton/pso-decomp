@@ -1,5 +1,13 @@
 # Upstream provenance
 
+## 2026-11-09 carrier through #228
+
+The [#207 carrier audit](evidence/upstream-catchup-207.md) records the ancestry fold
+through `00cda35c8f04b9089a26b46a5cc2df017f669198`, the three units actually ported,
+the inherited exceptions and the substantive upstream changes still deferred. The
+fold keeps the fork tree before the selected code port; ancestry is not a claim that
+all upstream source changes were applied. The entries below describe earlier work.
+
 Which original upstream commits each fork mirror PR carries, and how they were brought in.
 Checked against the live PR bodies on `matthewlewisnewton/pso-decomp` on 2026-11-04, plus `PROVENANCE:` lines workers left in the pilot logs.
 A row is **pending** when that body does not yet name the original SHAs or the merge method.

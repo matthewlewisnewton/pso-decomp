@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 22 | 7 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5766 | 871 |
+| pragma | 5768 | 872 |
 | configure.py per-unit override | 175 | 175 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 876, `auto_inline` 837, `opt_common_subs` 610, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 41, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 837, `opt_common_subs` 610, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 41, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -611,7 +611,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/map/CsnQuery.cpp` | fp_contract×6, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/math/MatrixTransforms.cpp` | peephole×1, scheduling×1 |
 | `src/pso/math/MatrixVector.cpp` | scheduling×4, fp_contract×1 |
-| `src/pso/menu/TAdEndText.cpp` | fp_contract×1 |
+| `src/pso/menu/TAdEndText.cpp` | readonly_strings×1, fp_contract×1 |
 | `src/pso/menu/TAdGuideTxtGC.cpp` | readonly_strings×1, fp_contract×1, opt_common_subs×1 |
 | `src/pso/menu/TAdMultiOkGC.cpp` | fp_contract×3 |
 | `src/pso/menu/TAdPlyChrSelPlateGC_802C4CA0.cpp` | peephole×1, fp_contract×1, opt_propagation×1 |
@@ -1199,6 +1199,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/unk/text_802910EC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, fp_contract×1 |
 | `src/pso/unk/text_80293D84.cpp` | fp_contract×1 |
 | `src/pso/unk/text_8029EC3C.cpp` | fp_contract×1 |
+| `src/pso/unk/text_802A2A00.cpp` | fp_contract×1 |
 | `src/pso/unk/text_802A3138.cpp` | opt_common_subs×1, fp_contract×1 |
 | `src/pso/unk/text_802A4D74.cpp` | opt_common_subs×1 |
 | `src/pso/unk/text_802C09E0.cpp` | readonly_strings×1 |
