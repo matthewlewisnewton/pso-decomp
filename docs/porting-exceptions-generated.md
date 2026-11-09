@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5771 | 876 |
+| pragma | 5772 | 876 |
 | configure.py per-unit override | 176 | 176 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 837, `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 53, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 41, `pool_data` 34, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 837, `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 53, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 41, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -1081,7 +1081,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/player/TObjPlayer_803E5470.cpp` | use_lmw_stmw×1 |
 | `src/pso/player/TUnk_80490470.cpp` | fp_contract×1 |
 | `src/pso/player/TUnk_804A5D28.cpp` | opt_common_subs×1, fp_contract×1 |
-| `src/pso/protocol/NetworkRuntime.cpp` | dont_inline×8, inline_depth×8, opt_common_subs×6, pool_data×4, opt_propagation×3, opt_lifetimes×1, opt_dead_assignments×1, bool×1 |
+| `src/pso/protocol/NetworkRuntime.cpp` | dont_inline×8, inline_depth×8, opt_common_subs×6, pool_data×5, opt_propagation×3, opt_lifetimes×1, opt_dead_assignments×1, bool×1 |
 | `src/pso/quest/QuestOpcodeHandlers.cpp` | opt_common_subs×2, opt_propagation×2, fp_contract×2, opt_dead_assignments×1, scheduling×1 |
 | `src/pso/quest/TQuestThread.cpp` | readonly_strings×1 |
 | `src/pso/system/AdxStreamRuntime.cpp` | dont_inline×18, inline_depth×11, opt_propagation×2, fp_contract×2 |
