@@ -1,3 +1,4 @@
+#include "pso/system/RelModuleBuffer.h"
 #include "types.h"
 #include "pso/misc/TMovie_801443C0.h"
 #include "pso/misc/TMovie.h"
@@ -9,7 +10,6 @@ extern "C" {
 s32 render_until_finished__6TMovieFv(void *);
 s32 __dl__7TObjectFPv(void *);
 s32 __dt__7TObjectFv(void *, s32);
-s32 fn_80320358(u32, s32);
 
 extern void *__vt__6TMovie[];
 
@@ -28,10 +28,10 @@ void *__dt__6TMovieFv(TMovie *arg0, s16 arg1) {
         }
         render_tick();
         render_tick();
-        t = arg0->m_1c;
-        if (t != 0U) {
-            fn_80320358(t, 1);
-            arg0->m_1c = 0U;
+        RelModuleBuffer *module = arg0->m_1c;
+        if (module != 0) {
+            fn_80320358(module, 1);
+            arg0->m_1c = 0;
         }
         render_tick();
         temp_r12 = *(s32 (**)(void *))((s8 *)arg0 + 0x44);

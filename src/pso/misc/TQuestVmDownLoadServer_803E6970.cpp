@@ -31,9 +31,11 @@ struct RecoveredGlobal_803EE2E4_lbl_8058DC98 {
     u8 remaining[0x4F];
 };
 
+// 0x28-byte buffer. sub_803E9A74 loads one byte at this address plus the
+// index (lbz). sub_803EDC20 writes the same bytes through lbl_805D78B8 /
+// lbl_805D78BC (stb, then addi by 1) after those cursors are planted here.
 struct RecoveredGlobal_803E6ACC_lbl_805A0470 {
-    s32 value;
-    u8 remaining[0x24];
+    u8 bytes[0x28];
 };
 
 struct RecoveredGlobal_803E6ACC_lbl_805A0498 {
@@ -50,11 +52,6 @@ struct RecoveredGlobal_803E6ACC_lbl_805A05D0 {
 struct RecoveredGlobal_803E9F20_lbl_80595998 {
     s32 value;
     u8 remaining[0x8BC];
-};
-
-struct RecoveredGlobal_803E6ED0_lbl_805A0470 {
-    s32 value;
-    u8 remaining[0x24];
 };
 
 struct RecoveredGlobal_803E6ED0_lbl_805A0498 {
@@ -221,8 +218,8 @@ extern RecoveredGlobal_803E6ACC_lbl_805A0470 lbl_805A0470;
 extern RecoveredGlobal_803E6ACC_lbl_805A0498 quest_download_entry_table;
 extern RecoveredGlobal_803E6ACC_lbl_805A05D0 lbl_805A05D0;
 extern s32 lbl_805D7848;
-extern s32 *lbl_805D78B8;
-extern s32 *lbl_805D78BC;
+extern u8 *lbl_805D78B8;
+extern u8 *lbl_805D78BC;
 extern s32 lbl_805D78C0;
 extern s32 *lbl_805D78C4;
 extern s32 *lbl_805D78C8;
@@ -414,8 +411,8 @@ void TQuestVmDownLoadServer__sub_803E6ACC(s32 arg0) {
     quest_vm_download_buffer_end = &lbl_805A05D0.value;
     lbl_805D78C4 = &quest_download_entry_table.value;
     lbl_805D78C8 = &quest_download_entry_table.value;
-    lbl_805D78B8 = &lbl_805A0470.value;
-    lbl_805D78BC = &lbl_805A0470.value;
+    lbl_805D78B8 = lbl_805A0470.bytes;
+    lbl_805D78BC = lbl_805A0470.bytes;
     lbl_805D78C0 = 0;
     TQuestVmDownLoadServer__sub_803EAE84(0, 0x50, (void *)(0));
     TQuestVmDownLoadServer__sub_803EE2E4();
@@ -532,7 +529,6 @@ void TQuestVmDownLoadServer__sub_803E6B70(u8 *dst, s32 start, s32 count, s32 mod
 
 #pragma push
 #pragma opt_common_subs off
-typedef char RecoveredGlobal_803E6ED0_lbl_805A0470_size[sizeof(RecoveredGlobal_803E6ED0_lbl_805A0470) == 0x28 ? 1 : -1];
 typedef char RecoveredGlobal_803E6ED0_lbl_805A0498_size[sizeof(RecoveredGlobal_803E6ED0_lbl_805A0498) == 0x138 ? 1 : -1];
 typedef char RecoveredGlobal_803E6ED0_lbl_805A05D0_size[sizeof(RecoveredGlobal_803E6ED0_lbl_805A05D0) == 0xC8 ? 1 : -1];
 void TQuestVmDownLoadServer::init_buffer_pointers() {
@@ -542,8 +538,8 @@ void TQuestVmDownLoadServer::init_buffer_pointers() {
     quest_vm_download_buffer_end = &(*(RecoveredGlobal_803E6ED0_lbl_805A05D0 *)&lbl_805A05D0).value;
     lbl_805D78C4 = &(*(RecoveredGlobal_803E6ED0_lbl_805A0498 *)&quest_download_entry_table).value;
     lbl_805D78C8 = &(*(RecoveredGlobal_803E6ED0_lbl_805A0498 *)&quest_download_entry_table).value;
-    lbl_805D78B8 = &(*(RecoveredGlobal_803E6ED0_lbl_805A0470 *)&lbl_805A0470).value;
-    lbl_805D78BC = &(*(RecoveredGlobal_803E6ED0_lbl_805A0470 *)&lbl_805A0470).value;
+    lbl_805D78B8 = lbl_805A0470.bytes;
+    lbl_805D78BC = lbl_805A0470.bytes;
     lbl_805D78C0 = 0;
     TQuestVmDownLoadServer__sub_803EAE84(0, 0x50, (void *)(0));
     TQuestVmDownLoadServer__sub_803EE2E4();
@@ -1987,7 +1983,7 @@ void *TQuestVmDownLoadServer__sub_803E9FFC(s32 arg0, s32 arg1, QuestDownloadItem
     }
     TQuestVmDownLoadServer__sub_803ECE5C((QuestDownloadSegment *)first);
     if (off > 0 && TQuestVmDownLoadServer::is_valid_item_for_slot(t->a, t->b) != 0) {
-        if (pos >= arg1 || IsX_803E9FFC(((u8 *)&lbl_805A0470)[pos]) == 0) {
+        if (pos >= arg1 || IsX_803E9FFC(lbl_805A0470.bytes[pos]) == 0) {
             o = (QuestDownloadEntryNode *)TQuestVmDownLoadServer__sub_803ECF48();
             if (o != NULL) {
                 if (head == NULL) {
@@ -2158,7 +2154,7 @@ s32 TQuestVmDownLoadServer::count_leading_entries(s32 i, s32 end) {
 
 void TQuestVmDownLoadServer__sub_803EADD4(QuestDownloadSlot *arg0, s32 arg1) {
     if (arg1 == 0) {
-        arg0->tokens = (void *)-1;
+        arg0->status = 0xFFFFFFFFU;
         arg0->x18 = -1;
         if ((u32)arg0->items != 0xFFFFFFFF) {
             release_node_chain__22TQuestVmDownLoadServerFPv((QuestDownloadItemNode *)(arg0->items));
@@ -2218,7 +2214,7 @@ void TQuestVmDownLoadServer::init_entries() {
     QuestDownloadSlot *p;
 
     for (p = (QuestDownloadSlot *)quest_download_slot_chain_table; p < (QuestDownloadSlot *)quest_download_slot_chain_table + 80; p++) {
-        p->tokens = (void *)-1;
+        p->status = 0xFFFFFFFFU;
         p->items = 0;
         p->entryHead = 0;
         p->textHead = 0;
@@ -2862,9 +2858,81 @@ QuestDownloadTextNode *get_next_node__22TQuestVmDownLoadServerFPv(QuestDownloadQ
 #pragma pop
 
 
+// Depth 2 lets the page fit inline the nested group walk at both sites; a
+// depth-1 region leaves it out of line and changes both expansions.
 #pragma push
 #pragma dont_inline off
-#pragma inline_depth(1)
+#pragma inline_depth(2)
+inline QuestDownloadTextNode *next_text_group(QuestDownloadTextNode *node) {
+    while (node->flags & 1) {
+        node = node->next;
+    }
+    return node->next;
+}
+inline s32 count_text_groups_that_fit(QuestDownloadTextNode *head) {
+    QuestDownloadTextNode *node;
+    s32 n;
+    s32 total;
+    s32 limit;
+    if (head == NULL) {
+        return 0;
+    }
+    node = head;
+    n = total = 0;
+    limit = lbl_805D78A4 - 9;
+    while (n < 9 && node != NULL) {
+        total += TQuestVmDownLoadServer__sub_803EB7C0(node) + 3;
+        if (total > limit) {
+            break;
+        }
+        n++;
+        node = next_text_group(node);
+    }
+    if (n == 0) {
+        return 1;
+    }
+    return n;
+}
+inline void advance_text_groups(QuestDownloadTextNode *&head, s32 count) {
+    for (s32 i = 0; i != count; i++) {
+        QuestDownloadTextNode *node = head;
+        while (node->flags & 1) {
+            node = node->next;
+        }
+        head = node->next;
+    }
+}
+void TQuestVmDownLoadServer__sub_803EC284(s32 index, s32 mode) {
+    QuestDownloadTextNode *head;
+    s32 saved_mode = mode;
+    if (saved_mode == 1) {
+        TQuestVmDownLoadServer__sub_803EC09C();
+    }
+    head = quest_download_slot_chain_table[lbl_805D78F0].textHead;
+    if (lbl_805D7834 > 0) {
+        lbl_805D78A4 = 80;
+    } else {
+        lbl_805D78A4 = TQuestVmDownLoadServer::get_buffer_size();
+    }
+    mode = count_text_groups_that_fit(head);
+    while (index >= mode) {
+        index -= mode;
+        advance_text_groups(head, mode);
+        mode = count_text_groups_that_fit(head);
+        if (mode == 0) {
+            TQuestVmDownLoadServer__sub_803EC284(0, 0);
+            goto finish;
+        }
+    }
+    lbl_805D78A0 = head;
+    lbl_805D7898 = index;
+    lbl_805D789C = mode;
+finish:
+    if (saved_mode == 1 && lbl_805D7834 == 0) {
+        TQuestVmDownLoadServer__sub_803EB4D4();
+    }
+}
+
 inline QuestDownloadTextNode *Default_803EC460(s32 x) {
     QuestDownloadTextNode *n = (QuestDownloadTextNode *)TQuestVmDownLoadServer__sub_803ECED0();
     if (n != NULL) {
@@ -4455,6 +4523,54 @@ s32 TQuestVmDownLoadServer__sub_803EF958(u32 id, u16 key, s32 *ids, s32 n) {
         return 3;
     }
 }
+
+static inline s32 merge_duplicate_download_entry(Ent_803F03B4 *base, const Ent_803F03B4 *entry) {
+    for (; base < entry; base++) {
+        if (base->a == entry->a && base->b == entry->b) {
+            if (base->key < entry->key) {
+                base->key = entry->key;
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
+
+// The original's duplicate and encoded-text scans have separate cursor/result
+// handoffs. Keep their caller in this existing inline-helper region; see
+// docs/evidence/quest-download-pr295-sol61.md for the remaining header coloring.
+s32 TQuestVmDownLoadServer__sub_803F03B4(u8 *data, Ent_803F03B4 *ents, s32 n, s32 *max) {
+    Ent_803F03B4 *base = ents;
+    u8 *end = data + (u16)(data[0] + (data[1] << 8));
+    u8 *cursor = data + data[2] + 3;
+    ents += n;
+    while (cursor < end) {
+        u8 keyb;
+        ents->a = cursor[0];
+        keyb = cursor[1];
+        cursor += 2;
+        ents->key = keyb;
+        if ((u16)keyb > *max) {
+            *max = ents->key;
+        }
+        if (*cursor <= 11) {
+            ents->b = *cursor;
+            cursor += 1;
+        } else {
+            ents->b = 0;
+        }
+        ents->c = 0;
+        if (merge_duplicate_download_entry(base, ents) == 0) {
+            n += 1;
+            ents += 1;
+            if (n >= 32) {
+                break;
+            }
+        }
+        cursor = skip_entry_text(cursor, end);
+    }
+    return n;
+}
 #pragma pop
 
 u8 *TQuestVmDownLoadServer::find_insert_position(s32 key, s32 n, s32 len) {
@@ -4705,7 +4821,6 @@ s32 TQuestVmDownLoadServer__sub_803F0268(const char *name, s16 len, Out_803F0268
     }
     return 1;
 }
-
 
 s32 TQuestVmDownLoadServer__sub_803F0500(u8 *name, s16 len, Out_803E8C2C *out) {
     s16 blen;

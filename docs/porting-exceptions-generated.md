@@ -7,13 +7,13 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 15 | 5 |
+| asm | 22 | 7 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5764 | 871 |
+| pragma | 5766 | 871 |
 | configure.py per-unit override | 174 | 174 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 876, `auto_inline` 837, `opt_common_subs` 610, `scheduling` 260, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 40, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 876, `auto_inline` 837, `opt_common_subs` 610, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 41, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -31,6 +31,13 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/math/MatrixVector.cpp:36` | `#include "orig_asm/pso/math/MatrixVector/vector_length.inc"` |
 | `src/pso/math/MatrixVector.cpp:76` | `asm void matrix_identity(u8 *arg0) {` |
 | `src/pso/math/MatrixVector.cpp:77` | `#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"` |
+| `src/pso/unk/text_803D8910.cpp:22` | `asm void vec3_add_to(register Vec *dst, register const Vec *src) {` |
+| `src/pso/unk/text_803D8910.cpp:69` | `asm f32 vec3_dot(const Vec *a, const Vec *b) {` |
+| `src/pso/unk/text_803D8910.cpp:70` | `#include "orig_asm/pso/unk/text_803D8910/vec3_dot.inc"` |
+| `src/pso/unk/text_803D8910.cpp:92` | `asm f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {` |
+| `src/pso/unk/text_803D8910.cpp:93` | `#include "orig_asm/pso/unk/text_803D8910/vec3_cross.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:101` | `asm f32 normalize_vector(Vec *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:102` | `#include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
 | `src/pso/unk/text_8042E8C4.cpp:28` | `asm void LaunchDol(register void* dol) {` |
 | `src/pso/unk/text_8042E8C4.cpp:29` | `#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"` |
@@ -460,7 +467,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/boss/TBoss6Type2_802BE588.cpp` | opt_common_subs×2 |
 | `src/pso/boss/TBoss6Type2_8032E708.cpp` | fp_contract×4, opt_common_subs×3, inline_depth×1, auto_inline×1, dont_inline×1, readonly_strings×1 |
 | `src/pso/boss/TBoss6Type2_80336E6C.cpp` | opt_common_subs×2, readonly_strings×1, opt_propagation×1 |
-| `src/pso/boss/TBoss6Zanzo.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
+| `src/pso/boss/TBoss6Zanzo.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, scheduling×1 |
 | `src/pso/boss/TBoss7Joint.cpp` | opt_common_subs×1 |
 | `src/pso/boss/TBoss7LaserLight.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss7LaserPtcl.cpp` | fp_contract×2, dont_inline×1, inline_depth×1 |
@@ -1102,7 +1109,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/ui/TAdPlyStatusGC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/TAdPlyStatusGC_802E1128.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, fp_contract×1 |
 | `src/pso/ui/TAdRayGC.cpp` | readonly_strings×1 |
-| `src/pso/ui/TAdRicoRingCtrl_8001B4A0.cpp` | opt_common_subs×2 |
+| `src/pso/ui/TAdRicoRingCtrl_8001B4A0.cpp` | opt_common_subs×2, opt_dead_assignments×1 |
 | `src/pso/ui/TAdSEGAlogo_8001BF4C.cpp` | readonly_strings×1, const_strings×1 |
 | `src/pso/ui/TAdSelectCurGC_802AED98.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/TAdSelectTxtSubGC.cpp` | fp_contract×2 |

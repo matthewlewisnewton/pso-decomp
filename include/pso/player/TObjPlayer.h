@@ -310,7 +310,6 @@ struct TObjPlayer : public TObjChara {
     void clear_target_lock();
     static void init_matrix_stack(s32 arg0, s32 arg1);
     void draw_shadow_quad(s32 arg1, s32 flags);
-    void draw_tri_fan_3d(s32 n, u32 flags);
     static void render_tree(void *arg0);
     void init_vec_record();
     s32 get_entrance_id();
