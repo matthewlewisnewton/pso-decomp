@@ -1,8 +1,8 @@
 # Quest-download cache replacement (partial)
 
 `sub_803E8DA0` (`0x803E8DA0`, 776 original bytes) is now defined as partial
-C++: **84.08247% in the standard report**, 83.92783% in the relocation-sensitive
-probe (`functionRelocDiffs=data_value`), and 768 compiled bytes. It adds no exact
+C++: **90.71134% in the standard report**, 90.5567% in the relocation-sensitive
+probe (`functionRelocDiffs=data_value`), and 772 compiled bytes. It adds no exact
 function or source-linked coverage. The existing provisional interface remains
 `s32(char *key, Req_803EEF2C *request, s32 value)`.
 
@@ -45,7 +45,7 @@ append destination is not established.
 
 ## Native/candidate and independent packet checks
 
-The private 234-case run executes recovered replacement on the candidate side,
+The original private 234-case checkpoint executed recovered replacement on the candidate side,
 as well as the already recovered relocation/loader/initializer/rotation. It
 retains the earlier 79 continuous lifecycle, guard and expected-precondition
 cases; it does not repair indexes between operations. Complete nonstack data
@@ -81,15 +81,33 @@ provider, malformed-input safety, exhaustive alias or reachability proof.
 
 ## Remaining differences and gates
 
-Native code retains the cache-byte base and reaches the adjacent heads at
-`+0x2000`; honest source addresses the separate index object. Register/stack
-allocation, scheduling and code extent also differ. Existing 159 exact functions
-and six previous partial scores are preserved. The 166 modeled compiled
-functions bind to the native build checkpoint; noncode layout, objects and
-relocations are checked separately. Native/no-loss results and independent
+The refinement retains the actual byte-cache base across lookup for the encoded
+ID calculation, writes the three-byte record prefix through an advancing byte
+cursor, and extends the optional-prefix length into the complete record length.
+The request length is still read after the text-width call and reread for the
+header, name copy and cursor advance. The optional-byte predicates remain
+separate for sizing and writing. These source data flows improve the standard
+score from 84.08247% (768 compiled bytes), without changing the request boundary,
+lookup key, reservation order or post-rotation index lookup.
+
+The current private 528-case run re-executes this candidate, including the 154
+independent packet encodings above, continuous mutation sequences, primary-page
+removal, name-index boundaries and 72 direct reload/seek/read boundary cases.
+The [cache lifecycle continuation](quest-download-cache-lifecycle.md) records the bounded
+provider and reachability limitations. The candidate object SHA-256 is
+`3d4f4f03a68bf40037aedc8eba301a70e0785230a5b2756973dbd28f90fbdf02`.
+All 168 modeled compiled provider functions bind to the native build; the other
+167 provider functions, all 16 frontend functions, all 159 exact functions and
+the eight other partial scores are preserved. Noncode bytes, layout, objects
+and relocations are checked separately. Native/no-loss results and independent
 exact-head review accompany publication.
 
-The unit remains 159/173 exact, seven undefined and seven partial, unlinked.
+Native code also reaches the adjacent heads at `+0x2000`; honest source still
+addresses the separate index object. Register/stack allocation, scheduling and
+code extent remain different. The cache-base borrow does not establish a shared
+enclosing owner or clear the request/input alias preconditions.
+
+The unit remains 159/173 exact, five undefined and nine partial, unlinked.
 The [observed entry gates and fixed-image caveats](quest-download-cache-relocation.md)
 still apply: no enabled shipped mutation route was demonstrated. Lower-level
 counterexamples are not claims of shipped failures. The search pointer-sentinel

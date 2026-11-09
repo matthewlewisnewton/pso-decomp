@@ -198,7 +198,7 @@ defines the loader at 88.67273% standard / 88.09091% relocation-sensitive and
 the initializer at 82.47771% / 57.057323%, both as partial source. The
 [relocation continuation](quest-download-cache-relocation.md) defines `sub_803E8924`
 at 97.70635%. The [replacement continuation](quest-download-cache-replacement.md)
-defines `sub_803E8DA0` at 84.08247% in the standard report. The
+defines `sub_803E8DA0` at 90.71134% in the standard report. The
 [primary-page removal continuation](quest-download-primary-removal.md) defines
 `sub_803EF208` at 95.303925%. The [byte-input consumer continuation](quest-download-byte-conversion.md)
 defines `sub_803EDF64` at 62.267857% in the standard report (62.267857% in the

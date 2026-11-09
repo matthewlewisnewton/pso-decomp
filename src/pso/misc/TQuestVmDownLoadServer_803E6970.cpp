@@ -1703,11 +1703,11 @@ s32 TQuestVmDownLoadServer__sub_803E8DA0(char *key, Req_803EEF2C *req, s32 value
     u8 len;
     s16 wanted;
     s32 bucket;
-    s32 extra;
     s32 width;
     s32 length;
     s32 offset;
 
+    u8 *cacheBytes = lbl_80591EC8;
     lbl_805D7868 = 1;
     previous = NULL;
     u8 first = (u8)key[0];
@@ -1742,7 +1742,7 @@ s32 TQuestVmDownLoadServer__sub_803E8DA0(char *key, Req_803EEF2C *req, s32 value
             && strncmp(key, (const char *)(oldRecord + 3), req->len) == 0) {
         oldRecord[2] = 0;
         *link = node->next;
-        offset = node->encodedRecord - lbl_80591EC8;
+        offset = node->encodedRecord - cacheBytes;
         TQuestVmDownLoadServer::invalidate_entries_by_id(
             ((offset / 0x400) << 12) | (offset % 0x400));
         node->next = lbl_805D7878;
@@ -1754,12 +1754,12 @@ s32 TQuestVmDownLoadServer__sub_803E8DA0(char *key, Req_803EEF2C *req, s32 value
     reserved = lbl_805D7878;
     lbl_805D7878 = reserved->next;
     if (req->x8 != 0 || req->x7 >= 0x2D) {
-        extra = 3;
+        length = 3;
     } else {
-        extra = 2;
+        length = 2;
     }
     width = TQuestVmDownLoadServer::calc_sjis_string_width(req->text);
-    length = req->len + extra + width + 3;
+    length = req->len + length + width + 3;
     if (lbl_805D7870 > lbl_805D786C - length - 2) {
         TQuestVmDownLoadServer__sub_803E95BC();
     }
@@ -1767,10 +1767,10 @@ s32 TQuestVmDownLoadServer__sub_803E8DA0(char *key, Req_803EEF2C *req, s32 value
     lbl_805D7870 += length;
     lbl_805D7870[0] = 0;
     lbl_805D7870[1] = 0;
-    record[0] = length % 256;
-    record[1] = length / 256;
-    record[2] = req->len;
-    p = record + 3;
+    p = record;
+    *p++ = length % 256;
+    *p++ = length / 256;
+    *p++ = req->len;
     strncpy((char *)p, req->name, req->len);
     p += req->len;
     *p++ = req->x7;
