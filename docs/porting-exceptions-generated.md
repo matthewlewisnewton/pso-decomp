@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5772 | 876 |
+| pragma | 5771 | 875 |
 | configure.py per-unit override | 176 | 176 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 837, `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 53, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 41, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 837, `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 53, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -696,7 +696,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/misc/TFontSmallLobby_801C013C.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TForceOperate.cpp` | opt_common_subs×2 |
 | `src/pso/misc/THunterGuildSeqOffline_80213788.cpp` | opt_propagation×2 |
-| `src/pso/misc/TKeyBoardControl.cpp` | fp_contract×13, pool_data×1, opt_loop_invariants×1 |
+| `src/pso/misc/TKeyBoardControl.cpp` | fp_contract×15, pool_data×1 |
 | `src/pso/misc/TKeyBoardControl_80131C58.cpp` | opt_loop_invariants×1 |
 | `src/pso/misc/TKeyBoardControl_803F0C50.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/misc/TKomorebi.cpp` | readonly_strings×1 |
@@ -880,7 +880,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/misc/TWindowKeyBoardSoft.cpp` | optimization_level×2, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TWindowKeyBoardSoft_8025B85C.cpp` | opt_propagation×1 |
-| `src/pso/misc/TWindowKeyBoardSoft_80261440.cpp` | fp_contract×2 |
 | `src/pso/misc/TWindowLoadItemTexture.cpp` | opt_common_subs×1, fp_contract×1 |
 | `src/pso/misc/TWindowMainMenu1P.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowMeseta.cpp` | readonly_strings×1 |
