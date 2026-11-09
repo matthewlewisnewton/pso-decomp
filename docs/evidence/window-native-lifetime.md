@@ -279,6 +279,13 @@ descriptor and compiler table add 44 bytes without inventing a child class
 or original translation-unit identity. Standing holds and original remainders
 remain intact.
 
+The [ChallengeResult interface follow-up](window-challenge-result-interface.md)
+recovers its actual float scale fields and explicit death-count entry argument
+without changing bytes. A native constructor/table probe reproduces data but
+retains measured constructor/producer instruction differences. Only validated
+interface progress is published; raw lifetime, manual table and upstream return
+contracts retain their holds.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

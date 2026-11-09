@@ -1176,3 +1176,10 @@ legacy child protocol is preserved rather than assigned a speculative class.
 Descriptor/key-function organization is qualified without an original TU
 claim. Native table emission and the existing Help alignment reproduce the
 tail, with no new compiler control or manual padding.
+
+[ChallengeResult interface follow-up](evidence/window-challenge-result-interface.md)
+recovers float fields and explicit numeric-entry forwarding. The native lifetime
+probe is not activated: constructor pooling and producer register differences
+remain measured blockers, alongside upstream return-contract holds. Existing
+string/section controls and manual-table/raw-lifetime debt remain; no new
+compiler control or matching exception is introduced.

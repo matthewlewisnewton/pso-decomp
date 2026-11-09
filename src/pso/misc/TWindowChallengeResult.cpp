@@ -1,5 +1,6 @@
 #include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
+#include "pso/misc/TWindowSubStatusDisp_802598E4.h"
 #include "pso/TObject.h"
 #include "pso/misc/TLobby_8001D6A0.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
@@ -38,7 +39,6 @@ struct Win_80246DCC {
 
 Entry_80246DCC *get_array_entry__11TWindowBaseFi(void *, s32);
 void refresh_status_display__9TWindowDDFv(Entry_80246DCC *);
-void draw_right_aligned_number(void);
 s32 get_window_layout_position(s32);
 extern const char lbl_8044E7BC[];
 extern const f32 lbl_805DCB60;
@@ -125,7 +125,7 @@ Win_80246DCC *TWindowChallengeResult__ct(Win_80246DCC *self, s32 str, s32 arg2, 
     set_text_entry_string((u8 *)e, (u32)(get_shared_text_buffer()), 0x20);
     e = get_array_entry__11TWindowBaseFi(self, 5);
     e->f20 = arg3;
-    draw_right_aligned_number();
+    draw_right_aligned_number(e);
     e->f8 = lbl_805DCB60 + e->f10;
     if (TCameraCtrl::get_camera_id() == 4) {
         self->f60 = lbl_805DCB68;
