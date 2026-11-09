@@ -13,6 +13,9 @@ struct GinjaTextureError {
 
 typedef char GinjaTextureErrorPrefixSize[sizeof(GinjaTextureError) == 0x14 ? 1 : -1];
 
+// Select an entry in the current texture list.
+s32 set_texture_num(s32 index);
+
 extern "C" {
 s32 TObjPlayer__sub_803DAE98(GinjaTextureState *texture);
 // Releases every loaded texture in `texlist`; -1 if one failed, else 1.
