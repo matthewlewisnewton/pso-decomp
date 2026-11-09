@@ -3614,6 +3614,8 @@ force_active:
   - area_dialogue_file_space_s
   - area_dialogue_file_space_s_u
   - area_gsl_filename_table
+  - area_sound_remap_table_a
+  - area_sound_remap_table_b
   - assert_light_id__9TObjLightFl
   - assign_char_data__23TAdSinglePlyChrSelectGCFPvPv
   - assign_guard_targets__19TObjEneEpsilonGuardFv
