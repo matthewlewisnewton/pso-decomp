@@ -146,6 +146,13 @@ small float differences without FMA).
 | `src/pso/protocol/NetworkRuntime.cpp` | `TLobby__sub_803FABDC` (`0x803FABDC`) | Redundant second null test/allocation branch and `goto`, `A_803FADA0` option-block view, explicit allocator ABI name | These reproduce the original control flow and existing protocol ABI. The callback signature itself is corrected consistently. | Remove redundant control flow and consolidate the packet/option/allocator interfaces. |
 | `src/pso/protocol/NetworkRuntime.cpp` | Previously exact code now linked | Existing 32 pragmas, `-opt nocse`, raw protocol views and mangled names, provisional class wrappers, direct bus-clock reads | Existing native matching debt becomes source-linked with this unit; no new hardware access, asm, intrinsic or compiler override. See [the bounded inventory and port guidance](evidence/upstream-network-runtime.md). | Replace clock/OS operations with target services and consolidate protocol interfaces; remove optimizer-only pragmas/overrides. |
 
+### PPPoE discovery recovered from upstream #213/#215
+
+| File | Function / scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_80426CAC.cpp` | `TLobby__sub_804275B0` (`0x804275B0`) | Unused upstream `pad[2]` and `spare[2]` locals | Preserve the original MWCC stack frame/slot offsets; removing them scores 99.90–99.97%. Typed fields and consistent helper signatures retain 100%; see [the evidence](evidence/upstream-pppoe.md). | Remove unused locals; use typed buffers and explicit byte-order/length handling. |
+| `src/pso/misc/TLobby_80426CAC.cpp` | Previously exact code now linked | 12 existing pragma lines, opaque/overlapping table views, 32-bit address tokens, raw packet/tag accesses, redundant expressions and provisional class wrappers | Existing native matching debt becomes source-linked; no new pragma or compiler override. [The evidence](evidence/upstream-pppoe.md) records its limits. | Use one typed table, explicit buffer/free-function interfaces and portable pointer/token types; validate lengths and remove optimizer-only steering. |
+
 ## 5. Per-unit compiler overrides (`configure.py`)
 
 167 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
