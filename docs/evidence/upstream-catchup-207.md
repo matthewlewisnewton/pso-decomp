@@ -64,6 +64,10 @@ The checker admits #207 in addition to its existing #167–#192 set; intermediat
 
 ## Upstream content still requiring explicit ports
 
+Follow-up: the [footprint port](upstream-footstamp.md) recovers the #208
+`TPlayerFootStamp` unit. The carrier measurements above remain historical; the
+other deferred work below still needs reconciliation.
+
 An ancestry fold does not import the omitted patches. Future merges start after the
 folded tip and will not automatically restore these earlier changes. Existing fork
 implementations may already cover individual functions; each follow-up must compare

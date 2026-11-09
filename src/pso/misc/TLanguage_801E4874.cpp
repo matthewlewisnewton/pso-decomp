@@ -26,7 +26,6 @@ extern u8 *TLanguage__read_cursor;
 extern "C" {
 u8 *TQuestVmDownLoadServer__sub_8007EBDC(s32, s32);
 u8 *alloc__22TQuestVmDownLoadServerFUl();
-void debug_print__6TLobbyFle(void *, ...);
 void load_gvm_texture_archive(u8 *, GinjaTextureList *);
 extern u8 texture_file_load_error_format[];
 extern u8 lbl_8044983C[];
@@ -52,7 +51,7 @@ GinjaTextureList *load_gvm_texture_file(const char *filename) {
     TLobby::pump_frames();
     size = TLobby::get_resource_file_size(filename);
     if (size <= 0) {
-        debug_print__6TLobbyFle(texture_file_load_error_format, filename);
+        TLobby::debug_print((const char *)texture_file_load_error_format, filename);
         return NULL;
     }
     if (((size + 0x7FF) / 2048) * 2048 > 0x40000) {
