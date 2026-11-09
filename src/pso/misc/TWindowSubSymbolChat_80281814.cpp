@@ -489,7 +489,6 @@ extern s32 TWindowSubSymbolChat__class_name;
 void TWindowSubSymbolChat::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r3_2;
-    u32 var_r30;
     u8 *temp_r5;
     switch (this->m_1c) {
     case 0:
@@ -619,11 +618,7 @@ void TWindowSubSymbolChat::run_task() {
         break;
     case 8:
         if ((u32) this->m_48 == 0U) {
-            var_r30 = ((u32)__nw__7TObjectFUl(0x6C));
-            if (var_r30 != 0U) {
-                var_r30 = (u32)TWindowSubSymbolChatFaceType__ct((TWindowSubSymbolChatFaceType *)((u8 *)var_r30), (s32)(((s32)get_window_layout_position(0x7D))), (s32)((s32)&TWindowSubSymbolChat__data_805D6494));
-            }
-            this->m_48 = var_r30;
+            this->m_48 = (u32)new TWindowSubSymbolChatFaceType((void *)get_window_layout_position(0x7D), &TWindowSubSymbolChat__data_805D6494);
         }
         if ((u32) this->m_54 == 0U) {
             this->m_54 = (u32)new TWindowSubSymbolChatHelp(&TWindowSubSymbolChat__data_805D6494, &TWindowSubSymbolChat__help_window);

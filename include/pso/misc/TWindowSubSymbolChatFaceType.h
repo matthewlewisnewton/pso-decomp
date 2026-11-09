@@ -5,6 +5,7 @@
 #include "pso/misc/TWindowBase.h"
 
 struct TWindowSubSymbolChatFaceType : public TWindowBase {
+    TWindowSubSymbolChatFaceType(void *position, s8 *selection);
     virtual ~TWindowSubSymbolChatFaceType();
     void update_parts_entries();
     void handle_input();
@@ -15,22 +16,15 @@ struct TWindowSubSymbolChatFaceType : public TWindowBase {
     u8 m_61;
     u8 m_62;
     u8 _pad63[0x1];
-    u32 m_64;
-    u32 m_68;
+    s8 *m_64; // Borrowed selection byte.
+    void *m_68; // Owned opaque heading storage; legacy child lifetime protocol.
     void close_when_chat_closed();
     void confirm_selection();
 };
 
 typedef char TWindowSubSymbolChatFaceType_size[sizeof(TWindowSubSymbolChatFaceType) == 0x6C ? 1 : -1];
 
-extern "C" {
-void *__dt__28TWindowSubSymbolChatFaceTypeFv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TWindowSubSymbolChatFaceType.cpp ---
-extern "C" {
-void *__dt__28TWindowSubSymbolChatFaceTypeFv(void *arg0, s16 arg1);
-}
-// --- end of C functions
+typedef char FaceType_selection[offsetof(TWindowSubSymbolChatFaceType, m_64) == 0x64 ? 1 : -1];
+typedef char FaceType_heading[offsetof(TWindowSubSymbolChatFaceType, m_68) == 0x68 ? 1 : -1];
 
 #endif

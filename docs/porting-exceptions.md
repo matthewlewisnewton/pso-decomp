@@ -1168,3 +1168,11 @@ borrowed settings views accompany explicit entry-word/text argument forwarding.
 The historical entry getter ownership stays qualified. Existing scoped render
 CSE and constructor FP controls remain; no new compiler control is introduced.
 The original data suffix is retained rather than assigned as padding.
+
+[FaceType lifetime recovery](evidence/window-face-type-lifetime.md) removes
+another raw Base construction/cleanup pair. Actual window construction and
+borrowed selection coexist with an explicitly opaque heading lifecycle; its
+legacy child protocol is preserved rather than assigned a speculative class.
+Descriptor/key-function organization is qualified without an original TU
+claim. Native table emission and the existing Help alignment reproduce the
+tail, with no new compiler control or manual padding.

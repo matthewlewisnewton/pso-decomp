@@ -271,6 +271,14 @@ borrowed prefix, and rendering uses the actual draw-context view. Descriptor
 and compiler table add 44 bytes while the original suffix and existing
 compiler/interface qualifications remain intact.
 
+The [FaceType recovery](window-face-type-lifetime.md) adds genuine window
+construction/cleanup, native virtual methods and its sole ordinary-new
+producer. Selection is borrowed; the owned 0x24-byte heading stays opaque
+under its observed legacy initializer/release protocol. The class-associated
+descriptor and compiler table add 44 bytes without inventing a child class
+or original translation-unit identity. Standing holds and original remainders
+remain intact.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration
