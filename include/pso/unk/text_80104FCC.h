@@ -8,7 +8,8 @@ struct TObjPlayer;
 extern "C" {
 int roll_weapon_special_channel15(void *p);
 // Whether the player's class has every class bit perm asks for.
-int check_class_equip_permission(TObjPlayer *player, s32 perm);
+// ItemPMT permission words are passed as signed halfwords.
+int check_class_equip_permission(TObjPlayer *player, s16 perm);
 // Whether `player` meets the item's requirements; *requirement gets the
 // stat it falls short on.
 s32 check_equip_requirements(void *player, void *item, s32 *requirement);

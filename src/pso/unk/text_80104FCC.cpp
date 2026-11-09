@@ -93,7 +93,7 @@ s32 TObjPlayer__sub_80104840(s32);
 extern s32 TLobby__designated_client_id;
 extern Entry_8010567C *quest_object_entries;
 extern s32 local_client_id;
-int check_class_equip_permission(TObjPlayer *player, s32 perm);
+int check_class_equip_permission(TObjPlayer *player, s16 perm);
 s32 is_valid_drop_floor();
 }
 void *build_6x06_send_guild_card(void *arg0);
@@ -188,7 +188,7 @@ s32 check_equip_requirements(TObjPlayer *player, u8 *item, s32 *requirement) {
 
         rec = (WeaponReqPmt *)lookup_item_pmt_record(item);
         if (rec != NULL) {
-            if (check_class_equip_permission(player, (s16)rec->class_equip) == 0) {
+            if (check_class_equip_permission(player, rec->class_equip) == 0) {
                 flags |= 1;
             }
             ((TWindowSubStatusDisp *)&stats)->clear_fields();
@@ -213,7 +213,7 @@ s32 check_equip_requirements(TObjPlayer *player, u8 *item, s32 *requirement) {
 
             rec = (ArmorReqPmt *)lookup_item_pmt_record(item);
             if (rec != NULL) {
-                if (check_class_equip_permission(player, (s16)rec->class_equip) == 0) {
+                if (check_class_equip_permission(player, rec->class_equip) == 0) {
                     flags |= 1;
                 }
                 if (player->get_actor_level_index() < rec->level_req) {
@@ -264,7 +264,7 @@ s32 check_equip_requirements(TObjPlayer *player, u8 *item, s32 *requirement) {
 
         rec = (MagReqPmt *)lookup_item_pmt_record(item);
         if (rec != NULL) {
-            if (check_class_equip_permission(player, (s16)rec->class_equip) == 0) {
+            if (check_class_equip_permission(player, rec->class_equip) == 0) {
                 flags |= 1;
             }
         } else {
@@ -297,7 +297,7 @@ s32 check_equip_requirements(TObjPlayer *player, u8 *item, s32 *requirement) {
         enum MesetaCap { meseta_cap = MESETA_EQUIP_CAP };
         MesetaCap cap = meseta_cap;
 
-        if (cap < (MesetaCap)(s32)((TItemData *)item)->data2.data_u32) {
+        if (cap < ((TItemData *)item)->data2.meseta) {
             flags |= 0x20;
         }
         break;
@@ -312,7 +312,7 @@ s32 check_equip_requirements(TObjPlayer *player, u8 *item, s32 *requirement) {
     return 0;
 }
 
-int check_class_equip_permission(TObjPlayer *player, s32 perm) {
+int check_class_equip_permission(TObjPlayer *player, s16 perm) {
     s32 t = player->class_flags;
     if (t & CLASS_FLAG_HUNTER) {
         if (!(perm & 1)) return 0;
