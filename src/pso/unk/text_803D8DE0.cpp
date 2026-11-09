@@ -5,10 +5,9 @@ extern "C" {
 typedef struct { f32 x, y, z, w; } Quat_803D8E0C;
 
 extern s32 current_matrix;
-s32 PSMTXMultVecArraySR(int);
 #pragma push
 #pragma scheduling off
-void fn_803D8DE0(u32 arg0) {
+void fn_803D8DE0(u32 arg0, const Vec *src, Vec *dst, u32 count) {
     u32 var_r3;
     u32 phi_r3;
     var_r3 = arg0;
@@ -16,7 +15,7 @@ void fn_803D8DE0(u32 arg0) {
     if (var_r3 == 0U) {
         phi_r3 = ((*(u32 *)&current_matrix));
     }
-    PSMTXMultVecArraySR(phi_r3);
+    PSMTXMultVecArraySR((MtxP)phi_r3, src, dst, count);
 }
 #pragma pop
 #pragma push

@@ -1947,6 +1947,7 @@ force_active:
   - __ct__16TObjKabochaLobbyFP7TObjectPv
   - __ct__16TObjRainbowLobbyFP7TObjectPv
   - __ct__16TObjWeddingLobbyFP7TObjectPv
+  - __ct__16TPlayerFootStampFP10TObjPlayerl
   - __ct__17TAdGameStartSubGCFv
   - __ct__17TChCrTagOccHeaderFv
   - __ct__17TChCrTagPlGraphicFv
@@ -2395,6 +2396,7 @@ force_active:
   - __dt__16TObjTagChallengeFv
   - __dt__16TObjVoloptPillarFv
   - __dt__16TObjWeddingLobbyFv
+  - __dt__16TPlayerFootStampFv
   - __dt__16TQuestDamageTaskFv
   - __dt__17TAdExNetConfirmGCFv
   - __dt__17TAdFloorLoadCamGCFv
@@ -2995,6 +2997,7 @@ force_active:
   - __vt__16TObjTagChallenge
   - __vt__16TObjVoloptPillar
   - __vt__16TObjWeddingLobby
+  - __vt__16TPlayerFootStamp
   - __vt__16TQuestDamageTask
   - __vt__17MaterialColorFade
   - __vt__17TAdExNetConfirmGC
@@ -4599,6 +4602,7 @@ force_active:
   - class_name__16TOFenceAncient04
   - class_name__16TObjHashiVersus1
   - class_name__16TObjHashiVersus2
+  - class_name__16TPlayerFootStamp
   - class_name__17TODragonflyCave01
   - class_name__18TObjSeabedSuiso_CH
   - class_name__19TOComputerMachine01
@@ -13992,6 +13996,7 @@ force_active:
   - render__16TObjRainbowLobbyFv
   - render__16TObjVoloptPillarFv
   - render__16TObjWeddingLobbyFv
+  - render__16TPlayerFootStampFv
   - render__17TAdExNetConfirmGCFv
   - render__17TAdFloorLoadCamGCFv
   - render__17TAdGameStartSubGCFv
@@ -14652,6 +14657,7 @@ force_active:
   - run_task__16TObjTagChallengeFv
   - run_task__16TObjVoloptPillarFv
   - run_task__16TObjWeddingLobbyFv
+  - run_task__16TPlayerFootStampFv
   - run_task__16TQuestDamageTaskFv
   - run_task__17TAdExNetConfirmGCFv
   - run_task__17TAdFloorLoadCamGCFv

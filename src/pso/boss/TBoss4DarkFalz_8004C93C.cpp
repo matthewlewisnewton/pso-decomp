@@ -663,7 +663,7 @@ void TBoss4DarkFalz::save_position() {
     VecCopy__FP3VecPC3Vec((void*)(arg0 + 0x44), (void*)(arg0 + 0x38));
 }
 
-void*TBoss4DarkFalz::get_hit_data() { return (char*)this + 0x5c; }
+CameraAngles *TObjBase::get_rotation() { return &rotation; }
 
 s32 TBoss4DarkFalz::get_state() { return this->m_374; }
 
