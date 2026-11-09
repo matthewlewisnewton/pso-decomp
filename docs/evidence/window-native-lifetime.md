@@ -286,6 +286,14 @@ retains measured constructor/producer instruction differences. Only validated
 interface progress is published; raw lifetime, manual table and upstream return
 contracts retain their holds.
 
+The [CustomEquip recovery](window-custom-equip-lifetime.md) adds native
+construction/cleanup, rendering and its actual ordinary-new producer. The
+owned heading stays opaque under the existing child protocol. A helper that
+accessed beyond CustomEquip's extent now belongs to its evidenced CustomSelect
+receiver and returns the actual record pointer; CustomSelect's lifetime hold
+is retained. Descriptor and compiler table add 44 bytes with original data
+and all protected remainders preserved.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

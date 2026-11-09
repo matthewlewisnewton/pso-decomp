@@ -1183,3 +1183,10 @@ probe is not activated: constructor pooling and producer register differences
 remain measured blockers, alongside upstream return-contract holds. Existing
 string/section controls and manual-table/raw-lifetime debt remain; no new
 compiler control or matching exception is introduced.
+
+[CustomEquip lifetime recovery](evidence/window-custom-equip-lifetime.md)
+removes another raw Base construction/cleanup pair. Its opaque heading protocol
+remains qualified. The out-of-extent selection helper moves to the evidenced
+CustomSelect receiver with pointer transport; that class's lifetime/early-return
+hold remains. Descriptor/table emission is natural and the opaque original
+suffix is retained. No compiler control or manual padding is introduced.

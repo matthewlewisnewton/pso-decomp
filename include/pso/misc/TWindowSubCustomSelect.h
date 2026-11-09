@@ -23,6 +23,7 @@ struct TWindowSubCustomSelect : public TWindowAddition {
     void draw_palette_cells(int arg1);
     virtual void run_task();
     int is_active();
+    void *sub_80277290();
 };
 
 typedef char TWindowSubCustomSelect_size[sizeof(TWindowSubCustomSelect) == 0x84 ? 1 : -1];

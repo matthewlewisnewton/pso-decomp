@@ -81,7 +81,6 @@ u8 *TWindowSubComCardList__sub_802757AC(u8 *arg0, void *arg1, s32 arg2, s32 arg3
 void *__nw__7TObjectFUl(u32);
 s32 set_depth__11TWindowBaseFf(void *);
 f32 TWindowSubEquip__sub_80263AF8(u8 *arg0, u32 arg1);
-Ev_802758C8 *calc_equip_index__21TWindowSubCustomEquipFv(void *);
 void *__dt__21TWindowSubComCardListFv(void *arg0, s16 arg1);
 void render__21TWindowSubComCardListFv(TWindowSubComCardList *arg0);
 s32 draw_visible_window_entries(void *, void *, s32);
@@ -273,12 +272,12 @@ void TUnk_804D1160::run_task() {
         set_depth__11TWindowBaseFf(self->f2c);
         self->state = 4;
     case 4:
-        ((TUnk_804D1160 *)self)->update_customize_help_text(calc_equip_index__21TWindowSubCustomEquipFv(self->f2c));
+        ((TUnk_804D1160 *)self)->update_customize_help_text(((TWindowSubCustomSelect *)self->f2c)->sub_80277290());
         if (fn_80275D90(self->f2c) != 0) {
             self->state = 1;
         }
         if (((TWindowSubCustomSelect *)(self->f2c))->is_active() != 0) {
-            Ev_802758C8 *e = calc_equip_index__21TWindowSubCustomEquipFv(self->f2c);
+            Ev_802758C8 *e = (Ev_802758C8 *)((TWindowSubCustomSelect *)self->f2c)->sub_80277290();
             ((TWindowSubCustomEquip *)(this->m_28))->toggle_action_binding(e);
             self->state = 1;
         }

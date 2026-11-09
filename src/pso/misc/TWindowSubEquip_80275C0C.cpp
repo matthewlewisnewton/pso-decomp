@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowSubCustomEquip.h"
 #include "pso/misc/TUnk_804D1160.h"
 #include "pso/misc/TWindowSubEquip.h"
 
@@ -25,7 +26,6 @@ void call_if_split_screen(void *, s32);
 f32 TWindowSubEquip__sub_80263AF8(u8 *arg0, u32 arg1);
 void *create__14TWindowMessageFlPCvUll(void *, void *, s32, s32);
 void *get_window_layout_position(s32);
-void *TWindowSubCustomEquip__ct(void *, s32);
 extern u8 lbl_8044F718[];
 extern s32 lbl_804D1160[];
 void *TWindowSubEquip__sub_80275CB0(void *arg0, void *arg1, s32 arg2);
@@ -47,16 +47,11 @@ void *TUnk_804D1160::destroy(s16 arg1) {
 }
 #define self ((Equip_80275CB0 *)arg0)
 void *TWindowSubEquip__sub_80275CB0(void *arg0, void *arg1, s32 arg2) {
-    void *p;
     __ct__7TObjectFP7TObject(arg0, arg1);
     self->vt = lbl_804D1160;
     self->parent = arg1;
     self->x20 = arg2;
-    p = __nw__7TObjectFUl(0x70);
-    if (p != NULL) {
-        p = TWindowSubCustomEquip__ct(p, self->x20);
-    }
-    self->custom = p;
+    self->custom = new TWindowSubCustomEquip(self->x20);
     TWindowSubEquip__sub_80263AF8((u8 *)self->parent, 0);
     set_depth__11TWindowBaseFf(self->custom);
     self->list = create__14TWindowMessageFlPCvUll(get_window_layout_position(0x11), lbl_8044F718, 1, self->x20);
