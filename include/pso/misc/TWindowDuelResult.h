@@ -16,7 +16,6 @@ struct TWindowDuelResult : public TWindowBase {
     f32 m_60;
     f32 m_64;
     u32 m_68;
-    void *init(void *arg1, void *arg2, void *arg3);
     static int set_default_status(void* p, int a1);
 };
 

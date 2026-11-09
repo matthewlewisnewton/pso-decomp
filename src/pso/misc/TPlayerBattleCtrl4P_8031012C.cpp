@@ -1,4 +1,5 @@
-#include "pso/misc/WindowConstructorAbi.h"
+#include "pso/misc/TWindowDuelResult.h"
+#include "pso/unk/text_801C23A8.h"
 #include "pso/system/TSetEvtDestroy.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/item/TItem.h"
@@ -183,7 +184,6 @@ extern Team_801C343C lbl_80475B78[];
 s32 calculate_split_screen_battle_rankings(void *);
 void TLobby__sub_801B09A4(void);
 void play_cue_stream_file(s32 name);
-void show_duel_result_window(s32 arg0, s32 arg1);
 
 void TLobby__sub_8020BB18(void);
 void TLobby__sub_8020BCE4(void);
@@ -235,10 +235,7 @@ void TPlayerBattleCtrl4P::create_result_windows() {
     void *w;
     for (i = 0; i < 4; i++) {
         if (get_player_by_client_id(i) != 0) {
-            w = __nw__7TObjectFUl(0x6C);
-            if (w != 0) {
-                w = __ct__17TWindowDuelResultFl((TWindowDuelResult *)(w), (s32)(i));
-            }
+            w = new TWindowDuelResult(i);
             o->win[i] = w;
         }
     }
@@ -343,7 +340,7 @@ void TPlayerBattleCtrl4P::init() {
 }
 
 int TPlayerBattleCtrl4P::init_ctrl_default(void* p) { return ((int (*)(void*, int))set_split_screen_battle_phase__19TPlayerBattleCtrl4PFl)(p, 0); }
-void TPlayerBattleCtrl4P::notify_lobby(void* p, void* a1, void* a2) { play_cue_stream_file((s32)a1); show_duel_result_window((s32)((void*)-50), (s32)a2); }
+void TPlayerBattleCtrl4P::notify_lobby(void* p, void* a1, void* a2) { play_cue_stream_file((s32)a1); fn_801C23A8(-50, (s32)a2); }
 void TPlayerBattleCtrl4P::reset_score_counters() { this->timed_event_state = 0; *(s32 *)&this->unknown_290 = 0; }
 
 void record_split_screen_battle_results(void) {

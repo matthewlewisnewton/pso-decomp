@@ -2,10 +2,6 @@
 #define PSO_MISC_WINDOWCONSTRUCTORABI_H
 
 #include "pso/misc/TWindowBase.h"
-#include "pso/misc/TWindowMessageInfomation.h"
-#include "pso/misc/TWindowSubMagPhoton.h"
-#include "pso/misc/TWindowDuelResult.h"
-#include "pso/misc/TWindowDeposit.h"
 #include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowMenuIconLine.h"
@@ -26,10 +22,6 @@ TWindowMenuIconLine *__ct__19TWindowMenuIconLineFPUcUls(TWindowMenuIconLine *sto
 TWindowBase *__dt__11TWindowBaseFv(TWindowBase *storage, s16 flags);
 TWindowAddition *__dt__15TWindowAdditionFv(TWindowAddition *storage, s16 flags);
 TWindowMenuIconLine *__dt__19TWindowMenuIconLineFv(TWindowMenuIconLine *storage, s16 flags);
-TWindowDeposit *__ct__14TWindowDepositFs(TWindowDeposit *storage, s16 arg1);
-TWindowDuelResult *__ct__17TWindowDuelResultFl(TWindowDuelResult *storage, s32 arg1);
-TWindowSubMagPhoton *__ct__19TWindowSubMagPhotonFlll(TWindowSubMagPhoton *storage, s32 arg1, s32 arg2, s32 arg3);
-TWindowMessageInfomation *__ct__24TWindowMessageInfomationFll(TWindowMessageInfomation *storage, s32 arg1, s32 arg2);
 }
 
 #endif

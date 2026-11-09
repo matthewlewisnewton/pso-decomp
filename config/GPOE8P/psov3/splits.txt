@@ -6517,6 +6517,7 @@ pso/player/TObjPlayer_801C1FF8.cpp:
 pso/unk/text_801C23A8.cpp:
 	.text       start:0x801C23A8 end:0x801C2528
 	.rodata     start:0x80446F78 end:0x80446F80
+	.data       start:0x804C3E60 end:0x804C3E78
 
 pso/misc/TWindowDuelResult_801C2528.cpp:
 	.text       start:0x801C2528 end:0x801C25B4

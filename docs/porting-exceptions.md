@@ -988,3 +988,9 @@ calls, or placement construction where an external owner supplies storage.
 Preserve the ownership distinction: positive deleting flags also release storage
 through `TObject::operator delete`; base cleanup does not. This interface does
 not claim that the remaining C-named functions have portable C++ lifetime semantics.
+
+The [task ownership follow-up](evidence/window-task-owner.md) replaces four
+more raw factory calls with ordinary construction and removes their bindings
+plus an unused information-window declaration. This interface now contains
+five constructor and three destructor declarations. It no longer transports
+Deposit, DuelResult, SubMagPhoton, or MessageInfomation construction.

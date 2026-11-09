@@ -117,11 +117,12 @@ documents replacement with real constructors/destructors or placement
 construction where an external owner supplies storage. No new assembly,
 intrinsic, pragma, per-unit compiler override, or hand-written table is added.
 
-An independent existing ownership anomaly also remains outside this recovery:
-`TWindowDuelResult::init` at `0x801C2528` constructs TObject and installs a
-different dispatch table. It is unchanged here and is not evidence for the
-recovered DuelResult lifetime. Do not silently infer its ownership from its
-current project-assigned class name.
+The follow-up [task ownership correction](window-task-owner.md) resolves the
+independent `TWindowDuelResult::init` anomaly at `0x801C2528`: it belongs to
+the existing `TUnk_804C3E60`, with a 0x24-byte allocation, TObject parent,
+native constructor/destructor, and its own compiler-generated table. The
+false DuelResult declaration is removed. Four more factories use ordinary
+`new`, reducing the constructor ABI interface from nine declarations to five.
 
 ## Qualification
 
@@ -150,7 +151,12 @@ passes its corresponding checks. Final source review is independent and
 read-only; the accompanying documentation freeze does not change code or link
 configuration.
 
+The follow-up preserves these code and linked-unit results and adds another
+24 matched/linked data bytes, for 148 versus main. Retention increases to
+17,583 names with zero drift. The task ownership note records the incremental
+qualification against the published constructor checkpoint.
+
 The standing draft hold is retained for review of the remaining legacy ABI
-boundary and unresolved ownership. This recovery resolves the measured native
+boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration
 problems; it does not claim that every historical hold in the PR body is closed.

@@ -1,4 +1,4 @@
-#include "pso/misc/WindowConstructorAbi.h"
+#include "pso/misc/TWindowMessageInfomation.h"
 #include "types.h"
 #include "pso/misc/TLobby_80269C6C.h"
 #include "pso/unk/text_80269FE8.h"

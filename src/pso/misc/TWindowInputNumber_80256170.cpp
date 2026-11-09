@@ -1,4 +1,3 @@
-#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"

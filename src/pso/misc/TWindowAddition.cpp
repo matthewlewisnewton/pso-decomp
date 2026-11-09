@@ -1,4 +1,3 @@
-#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TLobby_8001D6A0.h"
 #include "pso/misc/TWindowSubStatusDisp_80228CC0.h"

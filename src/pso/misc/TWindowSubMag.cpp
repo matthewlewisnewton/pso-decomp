@@ -1,4 +1,3 @@
-#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/item/MagStats.h"
 #include "pso/misc/TWindowBase.h"
@@ -472,10 +471,7 @@ void TWindowSubMag::run_task(void *arg0) {
             ((TWindowSubMag *)(self->help))->set_flag60_bit8();
             ((TWindowHelpItem *)(self->help))->set_flag60_bit4();
         }
-        w = __nw__7TObjectFUl(0x74);
-        if (w != NULL) {
-            w = __ct__19TWindowSubMagPhotonFlll((TWindowSubMagPhoton *)(w), (s32)(get_window_layout_position(0xA)), (s32)(self->mag_state), (s32)(self->client_id));
-        }
+        w = new TWindowSubMagPhoton(get_window_layout_position(0xA), self->mag_state, self->client_id);
         self->photon = w;
         TWindowSubEquip__sub_80263AF8((s32)self->parent, 3);
         set_depth__11TWindowBaseFf(self->photon);

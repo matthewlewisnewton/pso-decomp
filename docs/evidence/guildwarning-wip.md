@@ -84,8 +84,9 @@ Base/Addition/Message chain, genuine MenuIconLine constructors, related caller
 contracts, and compiler-emitted table ownership. It also removes the unneeded
 empty defaults and preserves the repaired Addition fields. Complete linked
 validation supersedes the earlier isolated-probe width blocker. Remaining
-C-named raw-storage functions still use a documented native ABI boundary, and
-the separate pre-existing DuelResult `init` ownership anomaly remains unresolved.
+C-named raw-storage functions still use a documented native ABI boundary. The
+separate [task ownership correction](window-task-owner.md) now resolves the
+misattributed DuelResult `init` as native construction of `TUnk_804C3E60`.
 
 Current-main integration and exact code matching alone do not lift that hold.
 The earlier wider window-interface cleanup is not claimed complete.
