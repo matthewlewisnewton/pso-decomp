@@ -955,3 +955,14 @@ entry when the PR merges.
 
 The scan covers source lines only; `configure.py` overrides added by PRs show up
 in the generated table once merged.
+
+
+## 8. Native item factory callback ABI
+
+| File | Boundary | Why | Port should |
+|---|---|---|---|
+| `src/pso/unk/text_80104FCC.cpp`, `include/pso/item/ItemCreateFunction.h` | `item_create_fn_table[4]` stores `TItemMoney::create(TItemData*)` in the byte-buffer callback type and the MWCC branch invokes that type | The original relocation targets the typed money factory, while the dispatcher makes the same indirect call for all five item categories. Native PPC passes either record pointer in `r3`; this is an ABI dependency, not portable C++ call compatibility. The complete 124-byte data section and 2012-byte code section match and link. [Evidence](evidence/equip-requirements-match.md). | Compile the non-MWCC `invoke_item_factory` path, which converts the stored money callback back to its actual function type before calling it. Keep the typed money declaration; do not erase it globally. `ports/tests/item_factory_callbacks.cpp` exercises this fallback. |
+
+This callback boundary is documented for review; it does not add assembly,
+steering pragmas, per-unit compiler switches or link-check exceptions. The
+mechanical inventory does not currently enumerate function-pointer conversions.

@@ -29,6 +29,8 @@ struct TItemData {
         u8 data_u8[4];
         u16 data_u16[2];
         u32 data_u32;
+        // Type 4's signed amount, also stored in TItemMoney::amount.
+        s32 meseta;
     } data2;
     static s8 char_to_letter_index(void *self, s8 c);
     void copy_from(TItemData *src);

@@ -11,11 +11,8 @@
 #include <stddef.h>
 #include "pso/misc/TLobby.h"
 #include "pso/item/TItemData.h"
+#include "pso/item/ItemCreateFunction.h"
 #include "pso/player/TObjPlayer.h"
-
-struct In_8010440C { u8 pad0; u8 idx; };
-
-struct In_80104438 { u8 pad0; u8 idx; };
 
 struct Ent_80103F68 { u8 pad[0x24]; };
 
@@ -58,13 +55,11 @@ extern s32 TLobby__designated_client_id;
 void send_6x26_unequip_item__10TObjPlayerFPvPv(void *self, void *item);
 s32 get_item_id__5TItemFv();
 int get_item_field_6__10TObjPlayerFPv(void *p);
-extern void *item_tool_factory_table[];
-void *TLobby__sub_8010440C(In_8010440C *arg0);
-void *get_weapon_factory_for_item(In_80104438 *arg0);
+extern ItemCreateFunction item_tool_factory_table[];
 int is_quest_active(void);
 s32 TItemDropSub__sub_80107B74();
 }
-extern void *weapon_factory_table[];
+extern ItemCreateFunction weapon_factory_table[];
 
 extern Tbl_801044B8 item_drop_area_remap_table;
 void normalize_drop_area(s32 *p);
@@ -184,20 +179,20 @@ void TLobby::forward_message(s32 buf, u32 arg1) {
 void TLobby::mark_selected() { lobby_drop_flag = 1; }
 int TLobby::get_drop_flag() {  return lobby_drop_flag; }
 
-void *TLobby__sub_8010440C(In_8010440C *arg0) {
-    u8 i = arg0->idx;
+ItemCreateFunction TLobby__sub_8010440C(u8 *item) {
+    u8 i = item[1];
     if (i < 0x18) {
         return item_tool_factory_table[i];
     }
-    return (void *)TItemObject::create;
+    return TItemObject::create;
 }
 
-void *get_weapon_factory_for_item(In_80104438 *arg0) {
-    u8 i = arg0->idx;
+ItemCreateFunction get_weapon_factory_for_item(u8 *item) {
+    u8 i = item[1];
     if (i < 0xAA) {
         return weapon_factory_table[i];
     }
-    return (void *)create_common_weapon;
+    return create_common_weapon;
 }
 
 void TLobby__sub_80104464(void) {  }
