@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated on this branch for the ginja math kernels, 2026-11-06)
+## Summary (regenerated on this branch for the ginja math kernels after merging main `8d9b51485`, 2026-11-08)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-for the current branch (2026-11-06). Assembly is counted as source lines;
+for the current branch after merging main `8d9b51485` (2026-11-08). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 22 source lines | 7 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,764 | 871 |
+| CodeWarrior pragmas (excluding push/pop) | 5,766 | 871 |
 | Per-unit compiler overrides in `configure.py` | 174 | 174 |
 | Approved regressions | 0 | 0 |
 
@@ -72,11 +72,11 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,764 pragmas in 871 files; per-file table in the generated file. Main kinds:
+5,766 pragmas in 871 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 876, `auto_inline` 837,
-`opt_common_subs` 610, `scheduling` 260, `opt_propagation` 237,
+`opt_common_subs` 610, `scheduling` 261, `opt_propagation` 237,
 `readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56,
-`defer_codegen` 51, `pack` 46. Reason: reproduce the original code generation
+`defer_codegen` 51, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -859,7 +859,8 @@ entry when the PR merges.
 | [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
-| [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
+| [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295) | `inline_depth(2)` (main's existing region uses depth 1) on `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | The nested `flags & 1` group walk only inlines at depth 2, which is required for both page-fit expansions in `sub_803EC284` to match. A port can drop the pragma and keep the scalar loop. |
+| [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
 | [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
 | [#313](https://github.com/matthewlewisnewton/pso-decomp/pull/313) | `configure.py`: `TBoss6Rock.cpp` `-fp_contract on`, `-str reuse,readonly`, `-inline off,deferred`; `TOBoss4.cpp` `-fp_contract on`, `-str reuse,readonly`, `-sdata 4`, `-inline deferred` | One TU each, written last-defined first. Deferred emission puts the late helpers and vtables in address order. `-fp_contract on` fuses the fall and spin multiply-adds (and TOBoss4's). `-str reuse,readonly` keeps the literals in the unit's rodata. `-sdata 4` keeps TOBoss4's 8-byte motion-name array in `.data`. |
 | [#167](https://github.com/matthewlewisnewton/pso-decomp/pull/167) | Unit switch `-opt nolifetimes,nocse,noprop,noloop` on `TMovie_80143988.cpp` (section 5); the pre-existing `__dcbt` in `pack_movie_frame` | `pack_movie_frame` matches 100% in plain C++. The earlier `__rlwinm` / `__rlwimi` calls are gone. `__dcbt` is the original data-cache touch (`dcbt r31, r0` / `dcbt r9, r0`). Port: drop the switch and the cache touch. |

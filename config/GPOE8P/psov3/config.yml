@@ -379,6 +379,7 @@ force_active:
   - TBoss6Type2__sub_8032EAB8
   - TBoss6Type2__sub_8032F2F0
   - TBoss6Type2__sub_803300C8
+  - TBoss6Zanzo__sub_803205A0
   - TBoss7LaserLight_name
   - TBoss7Tentacle__needle_offsets
   - TBoss7Tentacle__segment_offsets
@@ -2046,6 +2047,7 @@ force_active:
   - __dt__11TBoss4Type3Fv
   - __dt__11TBoss4ZanzoFv
   - __dt__11TBoss6Type1Fv
+  - __dt__11TBoss6ZanzoFv
   - __dt__11TBreakUpMdlFv
   - __dt__11TChCrEffTagFv
   - __dt__11TEF_PvrWaveFv
@@ -2649,6 +2651,7 @@ force_active:
   - __vt__11TBoss4Type3
   - __vt__11TBoss4Zanzo
   - __vt__11TBoss6Type1
+  - __vt__11TBoss6Zanzo
   - __vt__11TBreakUpMdl
   - __vt__11TChCrEffTag
   - __vt__11TItemMagSub
@@ -3611,6 +3614,8 @@ force_active:
   - area_dialogue_file_space_s
   - area_dialogue_file_space_s_u
   - area_gsl_filename_table
+  - area_sound_remap_table_a
+  - area_sound_remap_table_b
   - assert_light_id__9TObjLightFl
   - assign_char_data__23TAdSinglePlyChrSelectGCFPvPv
   - assign_guard_targets__19TObjEneEpsilonGuardFv
@@ -4165,6 +4170,7 @@ force_active:
   - build_default_save_file__23TAdSinglePlyChrSelectGCFv
   - build_door_collision_triangles__18TObjCityDoor_LobbyFv
   - build_download_list__12TQuestListVMFv
+  - build_item_list__19TShopItemListWindowFPv
   - build_item_list__23TShopJudgmentItemWindowFPv
   - build_menu__19TWindowSubShortMailFv
   - build_mode_menu__21TAdMultiSelGameModeGCFl
@@ -4484,6 +4490,7 @@ force_active:
   - check_player_proximity__12TOChatSensorFv
   - check_players_near_center__14TBoss4DarkFalzFv
   - check_players_ready__21TAdMultiChgGameModeGCFPv
+  - check_purchase_eligibility__19TShopItemListWindowFv
   - check_purchase_eligibility__20TShopArmorListWindowFv
   - check_purchase_eligibility__24TShopEquipmentListWindowFv
   - check_return_to_leader__10TNpcPlayerFv
@@ -4871,6 +4878,7 @@ force_active:
   - copy_struct__6TLobbyFPUc
   - copy_struct_f8__6TLobbyFii
   - copy_target_record__11TMainCursorFPvPv
+  - copy_trail_buffer__11TBoss6ZanzoFP15Boss6TrailFrameP15Boss6TrailFrame
   - copy_transform__10TNpcPlayerFPvPv
   - copy_transform__11TBoss6Type2FPv
   - copy_transform__13TRaderMapCoreFPv
@@ -5397,6 +5405,7 @@ force_active:
   - draw_title_background_pulse
   - draw_title_layer__10TAdTitleGCFll
   - draw_title_rings
+  - draw_trail__11TBoss6ZanzoFv
   - draw_value__13TWindowMesetaFl
   - draw_window__17TWindowDuelResultFPv
   - draw_window_frame_strips__11TWindowBaseFPvPv
@@ -6373,6 +6382,7 @@ force_active:
   - handle_6x91_update_state__15TOAttackableColFv
   - handle_6xa4_action__15Boss6FlowActionFP3Vec
   - handle_action__10TNpcPlayerFl
+  - handle_amount_confirm__19TShopItemListWindowFv
   - handle_appear__17TObjEneBm3FlyNestFl
   - handle_battle_result__6TLobbyFii
   - handle_box_drop_directive
@@ -6395,6 +6405,7 @@ force_active:
   - handle_com_card__6TLobbyFv
   - handle_comcard_window__6TLobbyFv
   - handle_confirm__17TJudgmentSequenceFv
+  - handle_confirm__19TShopItemListWindowFv
   - handle_confirm__19TWindowMenuMainMenuFv
   - handle_confirm__22TMedicalCenterSequenceFv
   - handle_confirm__22TShopEquipmentSequenceFv
@@ -6497,6 +6508,7 @@ force_active:
   - handle_team_select__6TLobbyFv
   - handle_third_reward__18TChallenge4PResultFv
   - handle_toggle_input__24TWindowSubSymbolChatHelpFv
+  - handle_tool_list_select__19TShopItemListWindowFPv
   - handle_trade_final_confirmation__FPv
   - handle_trade_item_amount__6TLobbyFPv
   - handle_trade_item_move__6TLobbyFPv
@@ -7322,6 +7334,9 @@ force_active:
   - lbl_8047817C
   - lbl_80479280
   - lbl_8047B928
+  - lbl_804809D0
+  - lbl_804809E0
+  - lbl_80480A10
   - lbl_80480A70
   - lbl_80480D20
   - lbl_80480D48
@@ -13477,6 +13492,7 @@ force_active:
   - prepare_flight_destination__12TBoss1DragonFPv
   - prepare_heavy_attack_particles__FPUc
   - prepare_save_data__23TAdSinglePlyChrSelectGCFv
+  - prepare_tool_purchase__19TShopItemListWindowFv
   - present_frame_and_wait_vsync__Fv
   - process_download_entry__12TQuestListVMFv
   - process_enemy_drop_request__Flsisiff
@@ -13742,6 +13758,7 @@ force_active:
   - render__11TAdSEGAlogoFv
   - render__11TBoss4ZanzoFv
   - render__11TBoss6Type1Fv
+  - render__11TBoss6ZanzoFv
   - render__11TBreakUpMdlFv
   - render__11TCameraCtrlFv
   - render__11TChCrEffTagFv
@@ -14351,6 +14368,7 @@ force_active:
   - run_task__11TBoss4Type3Fv
   - run_task__11TBoss4ZanzoFv
   - run_task__11TBoss6Type1Fv
+  - run_task__11TBoss6ZanzoFv
   - run_task__11TBreakUpMdlFv
   - run_task__11TCameraCtrlFv
   - run_task__11TChCrEffTagFv
@@ -16277,6 +16295,7 @@ force_active:
   - update__16PadRumbleChannelFP14PadRumbleLevel
   - update__17TObjWarpBossMultiFv
   - update__17TWindowDuelResultFPv
+  - update__19TShopItemListWindowFv
   - update__20TShopArmorListWindowFv
   - update__23TShopJudgmentItemWindowFv
   - update__24TShopEquipmentSellWindowFv

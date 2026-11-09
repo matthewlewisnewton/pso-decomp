@@ -152,7 +152,7 @@ void __dl__7TObjectFPv(void *);
 void *__dt__15TShopWindowBaseFv(void *self, s16 m);
 
 // The menu's entity id is the low 16 bits of get_entity_id.
-s32 create_window_menu(s32, s32, u16);
+TWindowMenu *create_window_menu(s32, s32, u16);
 s32 align_menu_entry_positions(s32);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 s32 get_selected_value__11TWindowMenuFv(void *);
@@ -195,7 +195,7 @@ void TShopItemListWindow::handle_amount_confirm() {
                 forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(4), 6, 0);
                 forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(5), 6, 1);
                 ((TWindowSubComCard *)this->m_30)->calc_window_size();
-                align_menu_entry_positions(this->m_30);
+                align_menu_entry_positions((s32)this->m_30);
                 ((TCheckRoomSequence *)this->m_30)->set_ready_flag();
                 f32 sc = get_scale__15TShopWindowBaseFv(this);
                 ((TWindowAddition *)this->m_30)->set_position_xy(get_scale__15TShopWindowBaseFv(this), sc);
@@ -283,7 +283,7 @@ void TShopItemListWindow::prepare_tool_purchase() {
         forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(4), 6, 0);
         forward_trade_action_default__16TObjCityMainWarpFPviii((void *)this->m_30, get_shop_text(5), 6, 1);
         ((TWindowSubComCard *)this->m_30)->calc_window_size();
-        align_menu_entry_positions(this->m_30);
+        align_menu_entry_positions((s32)this->m_30);
         ((TCheckRoomSequence *)this->m_30)->set_ready_flag();
         f32 sc = get_scale__15TShopWindowBaseFv(this);
         ((TWindowAddition *)this->m_30)->set_position_xy(get_scale__15TShopWindowBaseFv(this), sc);

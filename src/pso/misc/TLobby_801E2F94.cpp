@@ -1,3 +1,4 @@
+#include "pso/render/TriangleFan3D.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/render/DebugFont.h"
@@ -162,16 +163,6 @@ struct Lines_801E341C {
     u32 *colors;
 };
 
-struct Vec3_801E3784 { f32 x, y, z; };
-
-struct UV_801E3784 { s16 u, v; };
-
-struct Tris_801E3784 {
-    Vec3_801E3784 *positions;
-    u32 *colors;
-    UV_801E3784 *uvs;
-};
-
 extern "C" {
 void GXBegin(s32, s32, u16);
 void GXSetLineWidth(s32, s32);
@@ -317,10 +308,11 @@ void TObjCMHairMenu::draw_tri_fan_2d(s32 count, s32 flags, f32 scale) {
     }
     TObjEneRe4Sorcerer__sub_801E3F20();
 }
-void TObjPlayer::draw_tri_fan_3d(s32 n, u32 flags) {
-    Tris_801E3784 *t = (Tris_801E3784 *)this;
-    Vec3_801E3784 *p;
-    UV_801E3784 *uv;
+}
+
+void draw_tri_fan_3d(TriangleFan3D *t, s32 n, u32 flags) {
+    Vec *p;
+    TriangleFan3DUV *uv;
     u32 *c;
     s32 i;
     load_camera_view_matrix();
@@ -354,6 +346,7 @@ void TObjPlayer::draw_tri_fan_3d(s32 n, u32 flags) {
     TObjPlayer__sub_803E2248();
 }
 
+extern "C" {
 void DCFlushRange(void *, u32);
 void TLobby__sub_801E3CF0(u32 *);
 
