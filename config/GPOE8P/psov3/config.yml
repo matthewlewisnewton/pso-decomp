@@ -597,6 +597,7 @@ force_active:
   - TLobby__sub_800F8DD8
   - TLobby__sub_800F9F08
   - TLobby__sub_80104350
+  - TLobby__sub_801054E0
   - TLobby__sub_80135198
   - TLobby__sub_80135DE4
   - TLobby__sub_80135FFC
@@ -7004,6 +7005,7 @@ force_active:
   - item_bml_resource_descriptor
   - item_box_primary_colors
   - item_box_secondary_colors
+  - item_create_fn_table
   - item_disabled_area_table
   - item_eff_armor_particle_class_name
   - item_equip_base_class_name
@@ -7023,6 +7025,7 @@ force_active:
   - item_name_table_b
   - item_pro_armor_class_name
   - item_pro_armor_particle_class_name
+  - item_pro_create_fn_table
   - item_pro_unit_class_name
   - item_rarity_star_uv_table
   - item_registry_count

@@ -18,6 +18,7 @@ GameCube-only layout asserts.
 | `include/pso/port/PortCompat.h` | Host C/C++ library include for the port layer. |
 | `include/pso/port/VectorMathFallbacks.h` | Scalar `vec3_dot`, `vec3_cross` and `normalize_vector`; the same bodies the game units' non-MWERKS branches call. |
 | `tests/vector_math_fallbacks.cpp` | Behavior tests for those fallbacks. |
+| `tests/item_factory_callbacks.cpp` | Tests the typed item-factory callback path, including restoring the money factory's function type. |
 | `tests/Makefile` | Builds and runs the tests. |
 
 ## Running
@@ -37,7 +38,7 @@ make -C ports/tests clean
 make -C ports/tests CXX=aarch64-linux-gnu-g++ all
 ```
 
-Run the resulting binary on the device, or under `qemu-aarch64` when the host
+Run the resulting binaries on the device, or under `qemu-aarch64` when the host
 has it.
 
 The fallbacks use only the standard C++ library and `std::sqrt`, with no x86
