@@ -731,7 +731,7 @@ void TLobby::cancel_alarm_a() {
     NetReleaseMutex(lbl_805D7BA8);
 }
 }
-s32 initialize_network_packet_pool(void) {
+s16 initialize_network_packet_pool(void) {
     s32 i;
     if (TLobby__sub_803F96AC(&lbl_805D7BA8) < 0) {
         return -1;

@@ -7,13 +7,13 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 22 | 7 |
+| asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5768 | 872 |
-| configure.py per-unit override | 175 | 175 |
+| pragma | 5772 | 876 |
+| configure.py per-unit override | 176 | 176 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 837, `opt_common_subs` 610, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 51, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 41, `pool_data` 34, `optimize_for_size` 27, `use_lmw_stmw` 25, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 837, `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 53, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 41, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -27,17 +27,39 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/musyx/runtime/StdReverb/reverb.c:91` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
 | `src/musyx/runtime/StdReverb/reverb.c:94` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
 | `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
+| `src/pso/math/MatrixTransforms.cpp:56` | `asm void subtract_vector(Vec *v, const Vec *sub) {` |
+| `src/pso/math/MatrixTransforms.cpp:57` | `#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"` |
 | `src/pso/math/MatrixVector.cpp:35` | `asm f32 vector_length(const Vec *v) {` |
 | `src/pso/math/MatrixVector.cpp:36` | `#include "orig_asm/pso/math/MatrixVector/vector_length.inc"` |
 | `src/pso/math/MatrixVector.cpp:76` | `asm void matrix_identity(u8 *arg0) {` |
 | `src/pso/math/MatrixVector.cpp:77` | `#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"` |
+| `src/pso/misc/TCameraCtrl_803D749C.cpp:557` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_f32_to_u8.inc"` |
+| `src/pso/misc/TCameraCtrl_803D749C.cpp:561` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_u8_to_f32.inc"` |
+| `src/pso/unk/text_803D647C.cpp:28` | `asm f32 sin_table_lookup(s32 angle) {` |
+| `src/pso/unk/text_803D647C.cpp:29` | `#include "orig_asm/pso/unk/text_803D647C/sin_table_lookup.inc"` |
+| `src/pso/unk/text_803D647C.cpp:32` | `asm f32 cos_table_lookup(s32 angle) {` |
+| `src/pso/unk/text_803D647C.cpp:33` | `#include "orig_asm/pso/unk/text_803D647C/cos_table_lookup.inc"` |
 | `src/pso/unk/text_803D8910.cpp:22` | `asm void vec3_add_to(register Vec *dst, register const Vec *src) {` |
 | `src/pso/unk/text_803D8910.cpp:69` | `asm f32 vec3_dot(const Vec *a, const Vec *b) {` |
 | `src/pso/unk/text_803D8910.cpp:70` | `#include "orig_asm/pso/unk/text_803D8910/vec3_dot.inc"` |
 | `src/pso/unk/text_803D8910.cpp:92` | `asm f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {` |
 | `src/pso/unk/text_803D8910.cpp:93` | `#include "orig_asm/pso/unk/text_803D8910/vec3_cross.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:101` | `asm f32 normalize_vector(Vec *v) {` |
-| `src/pso/unk/text_803D96A8.cpp:102` | `#include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"` |
+| `src/pso/unk/text_803D9650.cpp:6` | `asm void matrix_apply_translation(MtxP m, f32 x, f32 y, f32 z) {` |
+| `src/pso/unk/text_803D9650.cpp:7` | `#include "orig_asm/pso/unk/text_803D9650/matrix_apply_translation.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:103` | `asm f32 normalize_vector(Vec *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:104` | `#include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:142` | `asm void transform_point_by_current_matrix(const f32 *src, Vec *dst) {` |
+| `src/pso/unk/text_803D96A8.cpp:143` | `#include "orig_asm/pso/unk/text_803D96A8/transform_point_by_current_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:174` | `asm void rotate_vector_by_current_matrix(const Vec *src, Vec *dst) {` |
+| `src/pso/unk/text_803D96A8.cpp:175` | `#include "orig_asm/pso/unk/text_803D96A8/rotate_vector_by_current_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:178` | `asm void rotate_matrix_by_node_angles(const s32 *ang, u32 zxy) {` |
+| `src/pso/unk/text_803D96A8.cpp:179` | `#include "orig_asm/pso/unk/text_803D96A8/rotate_matrix_by_node_angles.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:182` | `asm s32 push_matrix(void) {` |
+| `src/pso/unk/text_803D96A8.cpp:183` | `#include "orig_asm/pso/unk/text_803D96A8/push_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:200` | `asm void scale_current_matrix(const f32 *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:201` | `#include "orig_asm/pso/unk/text_803D96A8/scale_current_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:204` | `asm void post_translate_matrix(const f32 *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:205` | `#include "orig_asm/pso/unk/text_803D96A8/post_translate_matrix.inc"` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
 | `src/pso/unk/text_8042E8C4.cpp:28` | `asm void LaunchDol(register void* dol) {` |
 | `src/pso/unk/text_8042E8C4.cpp:29` | `#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"` |
@@ -261,6 +283,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `pso/misc/TMedicalCenterSequence.cpp` | `-inline deferred` | Deferred inlining: functions come out in reverse source order and the vtables before the switch tables in .data. |
 | `pso/misc/TWindowMainMenu_802AD538.cpp` | `-inline noauto,level=1` | Row-header copy is a 16-byte struct assignment. -inline off outlines it; noauto,level=1 inlines that helper only. The rest of the unit stays out of line. |
 | `pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `-fp_contract on` | Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs (scale_point_about_pivot, apply_context_transform_to_rect, apply_window_closing_stretch, clip_textured_quad, init_text_window_layout). Unit -fp_contract on replaces the per-function pragmas. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
+| `pso/unk/text_8034A090.cpp` | `-fp_contract on` | Loading-text particle positions contract `scale * i + base` into fmadds (TAdLoadQuestPrtTxtGC ctor, cases 0/1/2). The other three functions have no contracted multiply. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/misc/TNpcPlayer.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190: this file is written in reverse so deferred codegen emits address order, and the readonly string pool places the constants. |
 | `pso/misc/TTecCtrl_8022C444.cpp` | `(multi-line entry; see configure.py)` | get_technique_caster_flags' unsigned bias is lbl_8044D078, which TTecCtrl loads from this split. MWCC emits the bias as a local pool object; the post-process names that object as the split's global. Source cannot do it without a second pool copy (docs/evidence/conversion-pool-constants.md). |
 | `pso/boss/TBoss7LaserLight.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -498,8 +521,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/effect/TEffClitical.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/effect/TEffGuard.cpp` | readonly_strings×1 |
 | `src/pso/effect/TEffHit.cpp` | readonly_strings×1 |
-| `src/pso/effect/TEffStarLight2D.cpp` | opt_common_subs×1, fp_contract×1 |
-| `src/pso/effect/TEffStarLight2D_Base.cpp` | fp_contract×1, opt_common_subs×1, opt_propagation×1 |
+| `src/pso/effect/TEffStarLight2D_Base.cpp` | fp_contract×2, opt_common_subs×2, defer_codegen×1, opt_propagation×1 |
 | `src/pso/effect/TEffect.cpp` | readonly_strings×1 |
 | `src/pso/effect/TUnk_804CCC68.cpp` | fp_contract×2, opt_common_subs×1 |
 | `src/pso/enemy/BringerEffects.cpp` | fp_contract×2 |
@@ -644,7 +666,11 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/misc/TCameraCtrl_8006C8E4.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, fp_contract×1 |
 | `src/pso/misc/TCameraCtrl_8006CC30.cpp` | fp_contract×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/misc/TCameraCtrl_80082FCC.cpp` | opt_common_subs×1 |
-| `src/pso/misc/TCameraCtrl_803D6538.cpp` | scheduling×15, use_lmw_stmw×5, opt_common_subs×4, peephole×3, optimize_for_size×3, optimization_level×1 |
+| `src/pso/misc/TCameraCtrl_803D6538.cpp` | scheduling×3, opt_common_subs×1 |
+| `src/pso/misc/TCameraCtrl_803D66DC.cpp` | use_lmw_stmw×1, opt_common_subs×1 |
+| `src/pso/misc/TCameraCtrl_803D676C.cpp` | use_lmw_stmw×1 |
+| `src/pso/misc/TCameraCtrl_803D6960.cpp` | scheduling×5, use_lmw_stmw×1 |
+| `src/pso/misc/TCameraCtrl_803D749C.cpp` | scheduling×7, use_lmw_stmw×4, peephole×3, optimize_for_size×3, opt_common_subs×2, optimization_level×1 |
 | `src/pso/misc/TCameraCtrl_native.h` | opt_common_subs×6, inline_depth×3, dont_inline×3, opt_propagation×3, auto_inline×2 |
 | `src/pso/misc/TChCrEffCtrlPl_80339658.cpp` | readonly_strings×1, opt_common_subs×1, fp_contract×1 |
 | `src/pso/misc/TChCrEffTag.cpp` | fp_contract×1 |
@@ -974,6 +1000,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/object/TObjDFDemo1.cpp` | defer_codegen×1, fp_contract×1 |
 | `src/pso/object/TObjDFDemo2.cpp` | readonly_strings×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/object/TObjDFDemo3.cpp` | readonly_strings×1, opt_common_subs×1 |
+| `src/pso/object/TObjDFDemo5.cpp` | readonly_strings×1, defer_codegen×1 |
 | `src/pso/object/TObjDFHorming.cpp` | fp_contract×6, auto_inline×3, dont_inline×3, inline_depth×2, readonly_strings×1, cplusplus×1, opt_common_subs×1 |
 | `src/pso/object/TObjDoaEx01.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/object/TObjDoor_8018E358.cpp` | fp_contract×2, opt_common_subs×1 |
@@ -1022,7 +1049,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/player/TObjPlayerSet.cpp` | opt_common_subs×1 |
 | `src/pso/player/TObjPlayer_80011014.cpp` | scheduling×42, fp_contract×11, opt_common_subs×3, opt_pointer_analysis×1, opt_loop_invariants×1 |
 | `src/pso/player/TObjPlayer_8002E784.cpp` | opt_common_subs×2, fp_contract×1 |
-| `src/pso/player/TObjPlayer_8004FA98.cpp` | opt_common_subs×1, readonly_strings×1 |
 | `src/pso/player/TObjPlayer_80083B38.cpp` | fp_contract×2 |
 | `src/pso/player/TObjPlayer_8008DCF0.cpp` | opt_common_subs×3 |
 | `src/pso/player/TObjPlayer_8008DCF0_8008DCF0.cpp` | opt_common_subs×1, opt_propagation×1 |
@@ -1055,7 +1081,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/player/TObjPlayer_803E5470.cpp` | use_lmw_stmw×1 |
 | `src/pso/player/TUnk_80490470.cpp` | fp_contract×1 |
 | `src/pso/player/TUnk_804A5D28.cpp` | opt_common_subs×1, fp_contract×1 |
-| `src/pso/protocol/NetworkRuntime.cpp` | dont_inline×8, inline_depth×8, opt_common_subs×6, pool_data×4, opt_propagation×3, opt_lifetimes×1, opt_dead_assignments×1, bool×1 |
+| `src/pso/protocol/NetworkRuntime.cpp` | dont_inline×8, inline_depth×8, opt_common_subs×6, pool_data×5, opt_propagation×3, opt_lifetimes×1, opt_dead_assignments×1, bool×1 |
 | `src/pso/quest/QuestOpcodeHandlers.cpp` | opt_common_subs×2, opt_propagation×2, fp_contract×2, opt_dead_assignments×1, scheduling×1 |
 | `src/pso/quest/TQuestThread.cpp` | readonly_strings×1 |
 | `src/pso/system/AdxStreamRuntime.cpp` | dont_inline×18, inline_depth×11, opt_propagation×2, fp_contract×2 |
@@ -1231,7 +1257,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/unk/text_803D4448.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/unk/text_803D4714.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/unk/text_803D619C.cpp` | scheduling×2, peephole×2, optimize_for_size×1, dont_inline×1, inline_depth×1 |
-| `src/pso/unk/text_803D6438.cpp` | scheduling×2 |
+| `src/pso/unk/text_803D6438.cpp` | scheduling×1 |
+| `src/pso/unk/text_803D647C.cpp` | scheduling×1 |
 | `src/pso/unk/text_803D64F8.cpp` | scheduling×1 |
 | `src/pso/unk/text_803D8030.cpp` | scheduling×1 |
 | `src/pso/unk/text_803D8DE0.cpp` | scheduling×3, dont_inline×1, inline_depth×1 |
