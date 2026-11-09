@@ -3,12 +3,10 @@
 
 extern "C" {
 
-s32 (*get_weapon_factory_for_item())(s32);
-
-s32 create_weapon_for_item(s32 arg0) {
-    if (arg0 != 0) {
-        s32 (*fp)(s32) = get_weapon_factory_for_item();
-        return fp(arg0);
+TItem *create_weapon_for_item(u8 *item) {
+    if (item != 0) {
+        ItemCreateFunction factory = get_weapon_factory_for_item(item);
+        return factory(item);
     }
     return 0;
 }

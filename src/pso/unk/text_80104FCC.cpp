@@ -6,6 +6,16 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
 #include "pso/unk/text_8011A780.h"
+#include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/player/PlayerRequirementStats.h"
+#include "pso/TItemMenuCtrl.h"
+#include "pso/item/TItemProArmor.h"
+#include "pso/item/TItemProShield.h"
+#include "pso/item/TItemProUnit.h"
+#include "pso/item/TItemMag.h"
+#include "pso/item/TItemObject.h"
+#include "pso/item/TItemMoney.h"
+#include "pso/player/TObjPlayer_80121010.h"
 
 struct Blk_8010542C { u32 w[4]; };
 struct Item_8010542C { u32 a; Blk_8010542C b; };
@@ -75,20 +85,17 @@ struct Obj_80105538 {
 };
 
 extern "C" {
-typedef s32 (*Fn_8010542C)(void *);
-extern Fn_8010542C item_create_fn_table[];
-struct In_801054E0 { u8 pad0; u8 idx; };
-typedef s32 (*Fn_801054E0)(In_801054E0 *);
-struct E_801054E0 { Fn_801054E0 fn; };
-extern E_801054E0 item_pro_create_fn_table[];
-s32 TLobby__sub_801054E0(In_801054E0 *arg0);
+int is_quest_active(void);
+u8 get_technique_learn_limit(u8, u8);
+extern ItemCreateFunction item_create_fn_table[];
+extern ItemCreateFunction item_pro_create_fn_table[];
 void *get_player_by_client_id(s32);
 s32 get_current_floor(void);
 s32 TObjPlayer__sub_80104840(s32);
 extern s32 TLobby__designated_client_id;
 extern Entry_8010567C *quest_object_entries;
 extern s32 local_client_id;
-int check_class_equip_permission(TObjPlayer *player, s32 perm);
+int check_class_equip_permission(TObjPlayer *player, s16 perm);
 s32 is_valid_drop_floor();
 }
 void *build_6x06_send_guild_card(void *arg0);
@@ -99,7 +106,230 @@ void send_6x60_standard_drop_item_request(Obj_80105538 *self);
 int roll_weapon_special_channel15(void* p);
 int roll_weapon_special_for_stars(void*);
 
-int check_class_equip_permission(TObjPlayer *player, s32 perm) {
+// These two factory tables precede this unit's generated restriction table.
+ItemCreateFunction item_pro_create_fn_table[4] = {
+    NULL, TItemProArmor::create, TItemProShield::create, TItemProUnit::create,
+};
+ItemCreateFunction item_create_fn_table[5] = {
+    create_weapon_for_item,
+    TLobby__sub_801054E0,
+    TItemMag::create,
+    TItemObject::create_tool,
+    // The original callback table erases this factory's TItemData* argument
+    // to the record's byte buffer. See equip-requirements-match.md for the
+    // native ABI boundary; the shared factory declaration remains typed.
+    (ItemCreateFunction)TItemMoney::create,
+};
+
+// Slices of the ItemPMT record (lookup_item_pmt_record) this check loads.
+// Weapon: class at +8, ATP/MST/ATA minimums at +0xE/+0x10/+0x12.
+struct WeaponReqPmt {
+    u8 pad0[8];
+    u16 class_equip;
+    u8 padA[4];
+    u16 req_atp;
+    u16 req_mst;
+    u16 req_ata;
+};
+// Armor and barrier (type 1, subtype other than a unit): class at +0xE, level at +0x10.
+struct ArmorReqPmt {
+    u8 pad0[0xE];
+    u16 class_equip;
+    u8 level_req;
+};
+// Unit (type 1, subtype 3). restrict_index selects an android allow/deny case.
+struct UnitReqPmt {
+    u8 pad0[8];
+    s16 restrict_index;
+};
+// Mag: class word at +0x14.
+struct MagReqPmt {
+    u8 pad0[0x14];
+    u16 class_equip;
+};
+
+// Permission word whose human and newman bits are clear, so only an android passes.
+#define ANDROID_EQUIP_PERM 0xD7
+// Meseta above this (999999) is rejected.
+#define MESETA_EQUIP_CAP 0xF423F
+
+s32 check_equip_requirements(TObjPlayer *player, u8 *item, s32 *requirement) {
+    s32 flags;
+    PlayerRequirementStats stats;
+
+    if (player == NULL || item == NULL) {
+        if (requirement != NULL) {
+            *requirement |= 0x20;
+        }
+        return 0;
+    }
+    if (player->obj_isState3_324() != 0 || player->is_script_controlled() != 0) {
+        if (requirement != NULL) {
+            *requirement = 0;
+        }
+        return 1;
+    }
+    if (is_quest_active() != 0) {
+        u32 qflag;
+
+        qflag = 0;
+        switch (item[0]) {
+        case 0:
+            qflag = 1;
+            break;
+        case 1:
+            switch (item[1]) {
+            case 1:
+                qflag = 2;
+                break;
+            case 2:
+                qflag = 3;
+                break;
+            case 3:
+                qflag = 4;
+                break;
+            }
+            break;
+        case 2:
+            qflag = 5;
+            break;
+        }
+        if (qflag != 0 && TItemMenuCtrl::query_flag(qflag) == 1) {
+            return 0;
+        }
+    }
+    flags = 0;
+    switch (item[0]) {
+    case 0: {
+        WeaponReqPmt *rec;
+
+        rec = (WeaponReqPmt *)lookup_item_pmt_record(item);
+        if (rec != NULL) {
+            if (check_class_equip_permission(player, rec->class_equip) == 0) {
+                flags |= 1;
+            }
+            ((TWindowSubStatusDisp *)&stats)->clear_fields();
+            build_player_equipment_requirement_stats(player, &stats);
+            if (stats.values[0] < rec->req_atp) {
+                flags |= 2;
+            }
+            if (stats.values[3] < rec->req_ata) {
+                flags |= 4;
+            }
+            if (stats.values[2] < rec->req_mst) {
+                flags |= 8;
+            }
+        } else {
+            flags |= 0x20;
+        }
+        break;
+    }
+    case 1:
+        if (item[1] != 3) {
+            ArmorReqPmt *rec;
+
+            rec = (ArmorReqPmt *)lookup_item_pmt_record(item);
+            if (rec != NULL) {
+                if (check_class_equip_permission(player, rec->class_equip) == 0) {
+                    flags |= 1;
+                }
+                if (player->get_actor_level_index() < rec->level_req) {
+                    flags |= 0x10;
+                }
+            } else {
+                flags |= 0x20;
+            }
+        } else if (check_class_equip_permission(player, ANDROID_EQUIP_PERM) != 0) {
+            UnitReqPmt *rec;
+
+            rec = (UnitReqPmt *)lookup_item_pmt_record(item);
+            if (rec != NULL) {
+                switch (rec->restrict_index) {
+                case 0:
+                case 2:
+                case 3:
+                case 4:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 17:
+                case 19:
+                case 20:
+                    break;
+                case 1:
+                case 5:
+                case 16:
+                case 18:
+                case 21:
+                    flags |= 1;
+                    break;
+                }
+            } else {
+                flags |= 0x20;
+            }
+        }
+        break;
+    case 2: {
+        MagReqPmt *rec;
+
+        rec = (MagReqPmt *)lookup_item_pmt_record(item);
+        if (rec != NULL) {
+            if (check_class_equip_permission(player, rec->class_equip) == 0) {
+                flags |= 1;
+            }
+        } else {
+            flags |= 0x20;
+        }
+        break;
+    }
+    case 3:
+        switch (item[1]) {
+        case 2: {
+            u8 learn_limit;
+
+            // Widened the same way as TItemData::calc_action_flags: the u8
+            // parameter narrows it, and that argument is evaluated first.
+            learn_limit = get_technique_learn_limit(player->m_88d, (s16)item[4]);
+            if (learn_limit == 0xFF || learn_limit < item[2]) {
+                flags |= 1;
+            }
+            break;
+        }
+        case 8:
+            if (check_class_equip_permission(player, ANDROID_EQUIP_PERM) != 0) {
+                flags |= 1;
+            }
+            break;
+        }
+        break;
+    case 4: {
+        // An enum local is rematerialized as the left operand of a signed compare.
+        enum MesetaCap { meseta_cap = MESETA_EQUIP_CAP };
+        MesetaCap cap = meseta_cap;
+
+        if (cap < ((TItemData *)item)->data2.meseta) {
+            flags |= 0x20;
+        }
+        break;
+    }
+    }
+    if (requirement != NULL) {
+        *requirement = flags;
+    }
+    if (flags == 0) {
+        return 1;
+    }
+    return 0;
+}
+
+int check_class_equip_permission(TObjPlayer *player, s16 perm) {
     s32 t = player->class_flags;
     if (t & CLASS_FLAG_HUNTER) {
         if (!(perm & 1)) return 0;
@@ -128,7 +358,7 @@ int roll_weapon_special_channel15(void* p) { return roll_weapon_special_for_star
 
 TItem *construct_item(TItemData *data) {
     Item_8010542C *src = (Item_8010542C *)data;
-    Fn_8010542C fn;
+    ItemCreateFunction fn;
     if (src != 0) {
         Item_8010542C item = *src;
         ((TItemData *)&item)->decode_from_network();
@@ -137,7 +367,11 @@ TItem *construct_item(TItemData *data) {
                 fn = item_create_fn_table[*(u8 *)src];
                 if (fn != 0) {
                     observe_item_id(item.b.w[2]);
-                    return (TItem *)fn(&item);
+#ifdef __MWERKS__
+                    return fn((u8 *)&item);
+#else
+                    return invoke_item_factory(fn, (u8 *)&item, *(u8 *)src);
+#endif
                 }
             }
         }
@@ -147,11 +381,11 @@ TItem *construct_item(TItemData *data) {
 
 extern "C" {
 
-s32 TLobby__sub_801054E0(In_801054E0 *arg0) {
-    if (arg0 != 0) {
-        if (arg0->idx < 4) {
-            if (item_pro_create_fn_table[arg0->idx].fn != 0) {
-                return item_pro_create_fn_table[arg0->idx].fn(arg0);
+TItem *TLobby__sub_801054E0(u8 *item) {
+    if (item != 0) {
+        if (item[1] < 4) {
+            if (item_pro_create_fn_table[item[1]] != 0) {
+                return item_pro_create_fn_table[item[1]](item);
             }
         }
     }

@@ -128,3 +128,25 @@ cast/receiver-as-index convention, and the opaque DHCP lease-parser/cookie
 interfaces remain bounded inherited work. This continuation does not claim
 complete original-source type recovery or host-pointer portability. Keep
 the PR draft pending review and the separate publication authorization.
+
+## Final main checkpoint
+
+A final remote check found main had advanced through #319 to
+`9924ce113b5e6dff309a5ae94065265d3066fb24`. This was merged without conflicts,
+and both the detached baseline and continuation were rebuilt from their
+updated split inputs. The prior validation above remains historical evidence.
+Against this newer baseline:
+
+| Measure | Main `9924ce113` | Continuation | Delta |
+|---|---:|---:|---:|
+| Exact functions | 27,368 | 27,371 | +3 |
+| Matched code bytes | 4,183,640 | 4,185,820 | +2,180 |
+| Matched data bytes | 1,469,407 | 1,469,495 | +88 |
+| Complete code bytes | 3,643,320 | 3,655,540 | +12,220 |
+| Complete data bytes | 1,166,675 | 1,171,563 | +4,888 |
+| Linked units | 3,574 | 3,574 | 0 |
+
+The full build retains the original DOL hash, and the address/linkage/retention
+checks and porting inventory pass. `make -C ports/tests run` also passes the
+host vector fallback and item factory callback checks brought by main.
+The same three DHCP matches account for the entire incremental match gain.
