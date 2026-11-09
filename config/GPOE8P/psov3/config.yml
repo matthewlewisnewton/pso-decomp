@@ -99,6 +99,8 @@ force_active:
   - L2GlobalInvalidate
   - LastState
   - LowPrecisionHandler
+  - NetIPv6CPCancelTimer__Fl
+  - NetIPv6CPParseConfigureOption
   - NumHeaps
   - OSExitThread
   - OSNotifyLink
@@ -694,6 +696,16 @@ force_active:
   - TLobby__sub_803DDD2C
   - TLobby__sub_803DDD40
   - TLobby__sub_803DDD78
+  - TLobby__sub_803FA234
+  - TLobby__sub_803FA238
+  - TLobby__sub_803FA280
+  - TLobby__sub_803FA2A8
+  - TLobby__sub_803FA318
+  - TLobby__sub_803FA4A4
+  - TLobby__sub_803FA7B0
+  - TLobby__sub_803FABDC
+  - TLobby__sub_803FACD8
+  - TLobby__sub_803FADA0
   - TLobby__sub_80424DCC
   - TLobby__sub_804251C0
   - TLobby__sub_80425D88
@@ -6798,6 +6810,7 @@ force_active:
   - init_move__15TObjEneDelDepthFv
   - init_move__15TObjEneMe1GiGueFv
   - init_move_attack__11TBoss6Type1Fv
+  - init_net_state_entry__6TLobbyFv
   - init_network_config_defaults__Fv
   - init_object__12TFogCtrl_EORFv
   - init_object__13TUnk_804E24F0FlPv
@@ -8615,6 +8628,7 @@ force_active:
   - load_texture_sequence_frame
   - load_texture_sub__11BmlResourceFPvl
   - lobby_account_entries
+  - lobby_alarm_slot_table
   - lobby_buffer_refcount
   - lobby_checked_read_ptr_table
   - lobby_class_name
@@ -8895,6 +8909,8 @@ force_active:
   - network_info_trailer_buffer
   - network_info_unparsed_config_length
   - network_info_unparsed_config_lines
+  - network_message_queue_slot_table
+  - network_mutex_slot_table
   - network_packet_buffer_descriptors
   - network_packet_buffer_storage
   - network_packet_buffers
@@ -13598,6 +13614,7 @@ force_active:
   - pose_player__15TEndingPicStageF17player_class_typeSc
   - post_aram_request__16TAdWarningBaseGCFii
   - post_message__6TLobbyFlll
+  - ppp_ipv6cp_protocol_state
   - pppoe_discovery_name_storage
   - prepare_flight_destination__12TBoss1DragonFPv
   - prepare_heavy_attack_particles__FPUc
@@ -14464,6 +14481,7 @@ force_active:
   - run_and_return_arg__10TObjPlayerFl
   - run_confirm_message_loop__15TObjBoss2TunnelFv
   - run_connect_sequence__6TLobbyFv
+  - run_current_thread_callback__6TLobbyFv
   - run_default_state__12TBoss8DragonFv
   - run_demo_task__16TObjEneNanoDragoFv
   - run_floor_cleanup_callbacks__6TLobbyFi
@@ -15446,6 +15464,7 @@ force_active:
   - shuffle_event_entries__FP17EventShuffleTable
   - shuffle_p01_order__12TBoss3VoloptFv
   - shuffle_shop_pool__FPv
+  - signal_alarm_queue__6TLobbyFPv
   - single_ply_quest_download_server
   - sinow_zoa_alternate_position
   - sinow_zoa_attack_parameters
@@ -17238,6 +17257,7 @@ force_active:
   - validate_target__13TWindowLockOnFv
   - varGet32
   - varSet32
+  - verify_message_sequence__6TLobbyFPvPvUi
   - verify_save_checksum__23TAdSinglePlyChrSelectGCFi
   - verify_save_checksum__23TAdSinglePlyChrSelectGCFv
   - vfunc_100__14TObjEneDolmOlmFv

@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `6e880491f`, 2026-11-09)
+## Summary (network runtime recovery on main `fe6cdb141`, 2026-11-09)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `6e880491f` (2026-11-09). Assembly is counted as source lines;
+after network runtime recovery on main `fe6cdb141` (2026-11-09). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,771 | 876 |
+| CodeWarrior pragmas (excluding push/pop) | 5,772 | 876 |
 | Per-unit compiler overrides in `configure.py` | 176 | 176 |
 | Approved regressions | 0 | 0 |
 
@@ -83,10 +83,10 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,769 pragmas in 875 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1145, `inline_depth` 1037, `fp_contract` 876, `auto_inline` 837,
+5,772 pragmas in 876 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 837,
 `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237,
-`readonly_strings` 204, `peephole` 103, `optimization_level` 88, `bool` 56,
+`readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56,
 `defer_codegen` 53, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
@@ -137,6 +137,14 @@ small float differences without FMA).
 | File | Function | What | Why | Port should |
 |---|---|---|---|---|
 | `src/pso/misc/TLobby_803FC178.cpp` | `TLobby__sub_803FCF44` @ `0x803FCF44` (size `0x148`) | one scoped `#pragma opt_common_subs on` | Approved by Matt 2026-11-04 6:14 PM PT. This avetcp unit is compiled `-opt nocse`, so common-subexpression elimination is off for the file. The original reuses common subexpressions in this one function: two direct `lis`/`addi` of `lbl_805C02D0` (`0x803FD034` and `0x803FD058`) and a length clamp of `lhz` / `extsh` / `addi r0,r4,0` (`0x803FD03C`–`0x803FD04C`), frame 32. Without the pragma those reads become one hoisted `...bss.0` base (frame 32→40, saves r29) and the clamp folds to `lha`. The function is then 83.24% (objdiff instruction match 82.65%). `#pragma opt_propagation off` does not change that. `-inline` (`auto`, `deferred`, `auto,deferred`, `noauto`, `on`, `off`, `all`) and `-fp_contract on`/`off` leave the builder at 82.65%, and the auto modes regress other exact functions. Unit-wide `-opt commonsubs` drops other functions in the file. | Drop the pragma. The value is the clamped copy into the challenge buffer; a port does not need MWCC's addressing. |
+
+### Network runtime recovered from upstream #213/#215
+
+| File | Functions / scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/protocol/NetworkRuntime.cpp` | `TLobby__sub_803F8E9C` (`0x803F8E9C`) | One new scoped `pool_data on`; pooled cross-array queue addresses, word views, pointer-valued 32-bit handles, explicit initialization order and unused upstream temporaries | Exact native BSS references, register schedule and stack frame. Typed alternatives range from 74.49% to 99.95%; concrete offsets and probes are in [the evidence](evidence/upstream-network-runtime.md). | Use the actual typed slot arrays and native handle types; remove unused locals and optimizer steering. Do not preserve cross-array pointer arithmetic. |
+| `src/pso/protocol/NetworkRuntime.cpp` | `TLobby__sub_803FABDC` (`0x803FABDC`) | Redundant second null test/allocation branch and `goto`, `A_803FADA0` option-block view, explicit allocator ABI name | These reproduce the original control flow and existing protocol ABI. The callback signature itself is corrected consistently. | Remove redundant control flow and consolidate the packet/option/allocator interfaces. |
+| `src/pso/protocol/NetworkRuntime.cpp` | Previously exact code now linked | Existing 32 pragmas, `-opt nocse`, raw protocol views and mangled names, provisional class wrappers, direct bus-clock reads | Existing native matching debt becomes source-linked with this unit; no new hardware access, asm, intrinsic or compiler override. See [the bounded inventory and port guidance](evidence/upstream-network-runtime.md). | Replace clock/OS operations with target services and consolidate protocol interfaces; remove optimizer-only pragmas/overrides. |
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 

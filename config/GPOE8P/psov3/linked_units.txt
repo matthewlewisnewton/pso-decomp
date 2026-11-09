@@ -2577,6 +2577,7 @@ pso/player/TObjPlayer_803E5470.cpp
 pso/player/TPlyItem.cpp
 pso/player/TUnk_80490470.cpp
 pso/player/TUnk_804A5D28.cpp
+pso/protocol/NetworkRuntime.cpp
 pso/protocol/TradeSession.cpp
 pso/protocol/subcommand_validation_actions.cpp
 pso/protocol/subcommand_validation_movement.cpp
