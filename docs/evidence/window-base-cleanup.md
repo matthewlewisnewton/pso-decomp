@@ -88,3 +88,11 @@ bytes, 728 linked code bytes, and 284 matched/linked data bytes. The only
 coverage removal remains the verified four-byte Deposit zero tail; there
 are no non-padding regressions. Retention is clean at 17,607 entries and the
 porting inventory check passes. The draft hold remains in force.
+
+Main then advanced to `6e880491f` with the typed file-API integration.
+Normal merge `31ef5f272462172464e6434a81b6287d24a4fe24` preserves those
+APIs and the window recovery together without conflicts. Fresh main and
+integrated builds again reproduce the original DOL hash; overall and
+incremental address-based checks pass with the same function, data, linked-unit,
+and retention results above. The window contribution and remaining holds
+are unchanged.

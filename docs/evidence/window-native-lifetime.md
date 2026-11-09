@@ -174,6 +174,8 @@ The same note records integration with subsequent main `001c33d3f`: a fresh
 main baseline and integrated build reproduce the original DOL hash, with
 27,370 exact functions and 3,576 exact linked units in the PR. Its incremental
 contributions remain unchanged; retention is clean at 17,607 entries.
+The subsequent typed file-API main `6e880491f` is also normally merged and
+qualified against a fresh baseline, preserving these results and main's types.
 
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
