@@ -4,30 +4,23 @@
 #include "types.h"
 #include "pso/TObject.h"
 
-struct TLobby;
-struct BmlResource;
-
 struct TChCrLoadAfsTextureReq : public TObject {
     virtual ~TChCrLoadAfsTextureReq();
     virtual void run_task();
-    u8 _pad1C[0x8];
-    TLobby *lobby;
+    u8 _pad1C[0xC];
     u32 m_28;
     u32 m_2c;
     u32 m_30;
     u32 m_34;
-    u8 _pad38[0x28];
-    void *model_ids;
-    void *motion_ids;
-    BmlResource *loaded_bml;
+    u8 _pad38[0x2C];
+    u32 m_64;
+    u8 _pad68[0x4];
     u32 m_6c;
     u32 m_70;
-    void update_model_load();
     void try_begin_load(void *);
     void update_loading(void *);
     void start_read(void *);
-    s32 load_timer;
-    u8 unk_78[0x11C];
+    u8 unk_74[0x120];
 };
 
 typedef char TChCrLoadAfsTextureReq_size[sizeof(TChCrLoadAfsTextureReq) == 0x194 ? 1 : -1];

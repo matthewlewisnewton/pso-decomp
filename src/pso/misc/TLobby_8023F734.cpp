@@ -740,7 +740,7 @@ struct Obj_8023FCC0 {
     u8 pad_30C[4];
     Ent_8023FCC0 ents[(0xC14 - 0x310) / 0x24];
     u8 padC10[4];
-    void *bank_file_handles[4];
+    AdxfHandle *bank_file_handles[4];
     s32 bank_file_sizes[4];
 };
 
@@ -782,7 +782,7 @@ void TLobby__sub_8023FCC0(Obj_8023FCC0 *self) {
         for (i = 0; i < 4; i++) {
             if (self->bank_file_handles[i] != NULL) {
                 active++;
-                switch (ADXF_GetStat((AdxfHandle *)self->bank_file_handles[i])) {
+                switch (ADXF_GetStat(self->bank_file_handles[i])) {
                 case 2:
                 case 1:
                     break;
@@ -801,7 +801,7 @@ void TLobby__sub_8023FCC0(Obj_8023FCC0 *self) {
     if (errors == 0 && active != 0 && active == done) {
     for (j = 0; j < 4; j++) {
         if (self->bank_file_handles[j] != NULL) {
-            ADXF_Close((AdxfHandle *)self->bank_file_handles[j]);
+            ADXF_Close(self->bank_file_handles[j]);
             self->bank_file_handles[j] = NULL;
         }
     }
@@ -882,7 +882,7 @@ s32 TLobby__sub_8023FFB8(Obj_8023FCC0 *self, int id) {
     }
     for (i = 0; i < 4; i++) {
         TLobby::read_checked_align(self->bank_file_handles[i], (s32)(self->bank_file_sizes[i] / 2048), self->ents[id].h[i]);
-        ((TLobby *)(&self->bank_file_handles[i]))->set_entry_params(i, self->bank_file_sizes[i] / 2048, self->ents[id].h[i]);
+        TLobby::set_entry_params(&self->bank_file_handles[i], i, self->bank_file_sizes[i] / 2048, self->ents[id].h[i]);
     }
     return 0;
 fail:
@@ -1018,7 +1018,7 @@ s32 init_sound_aux_effects(Obj_8023FCC0 *self) {
             return 3;
         }
         memset(lbl_80517E44[i], 0, size);
-        void *handle = ADXF_OpenAfs(0, sound_bank_file_indices[i][2]);
+        AdxfHandle *handle = ADXF_OpenAfs(0, sound_bank_file_indices[i][2]);
         if (handle != NULL) {
             TLobby::read_checked_align(handle, (s32)size / 2048, lbl_80517E44[i]);
             TLobby::set_read_params(&handle, (s32)size / 2048, (int)lbl_80517E44[i]);
@@ -1026,9 +1026,9 @@ s32 init_sound_aux_effects(Obj_8023FCC0 *self) {
                 TLobby__sub_803382E4();
                 TLobby::run_disk_error_check();
                 render_tick();
-            } while (ADXF_GetStat((AdxfHandle *)handle) != 3);
+            } while (ADXF_GetStat(handle) != 3);
             TLobby::reset_read_state();
-            ADXF_Close((AdxfHandle *)handle);
+            ADXF_Close(handle);
         } else {
             return 2;
         }

@@ -150,3 +150,37 @@ Remaining boundaries are explicit: the legacy `safe_free(u32)` API and pointer
 alignment mask remain; `create_named_object(long)` keeps an unrecompiled caller's
 ABI. The screenshot size representation follows current main. No new assembly,
 steering pragma, or compiler override was added.
+
+
+## Independent source review follow-up (2026-11-09)
+
+Independent review of `4da8dbbea19d686d18a9ddc84d8431fec9831912` found two
+ownership/type issues in the complete PR diff. The word-copy cleanup itself
+had no finding. Both issues were corrected before requesting final review:
+
+- Pending and checked-read references now use `AdxfHandle **`, matching the
+  addresses of middleware handles supplied by all callers. `set_read_params`
+  accepts that type. `set_entry_params` is static with an explicit handle-ref
+  parameter instead of treating the reference as a `TLobby` receiver. The bank
+  handle array and local archive handle now use `AdxfHandle *` as well. Pointer
+  reset stores use `NULL`. The existing integer destination parameter of
+  `set_read_params` remains a documented boundary with the integer destination
+  API of `TGStream::read_sectors_sync`; it is not a handle-ownership claim.
+- `update_model_load` belongs to `TChCrLoadGmNjReq`. Its only source caller is
+  that class's `run_task`, whose constructed object has the GmNjReq vtable; the
+  helper also calls `TChCrLoadGmNjReq::sub_8028C8A8`. Its model IDs, motion IDs,
+  loaded resource and timer fields are now declared on that class, with size
+  0x78 and offset assertions for 0x60 and 0x74. The unrelated TextureReq field
+  additions were removed, and the caller no longer casts to that class. The
+  method remains in the existing split-owned source unit, so byte ownership and
+  unit order do not change. The older `start_character_load_task` receiver ABI
+  remains a separate legacy boundary; this fix does not extend its ownership
+  claim to the corrected update method.
+
+The two setters remain exact (40 and 16 bytes); `update_model_load` remains
+exact (288 bytes). The rebuilt DOL retains the original SHA-1. `check_pr`
+against fresh main `6daa19a11` and an incremental address-based comparison
+against the saved `4da8dbbea` report both pass with zero regressions and no
+changes to matched or linked totals. All 3,570 linked units remain exact,
+force-active is +0/-0, and the exception inventory check passes. Final review
+and CI must apply to the newly pushed head rather than the first reviewed head.

@@ -218,7 +218,7 @@ f32 TLobby__sub_8028C50C(void) {
 }
 #pragma push
 #pragma fp_contract on
-void TChCrLoadAfsTextureReq::update_model_load() {
+void TChCrLoadGmNjReq::update_model_load() {
     s32 *temp_r5;
     s32 temp_r0;
     s32 temp_r4;
@@ -247,7 +247,7 @@ void TChCrLoadAfsTextureReq::update_model_load() {
             ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)))->alloc_load_buffer((int) (TLobby__sub_8001ED88((void *)(*(u32 *)((s8 *)((u8 *)this) + 0x68)))));
             delete (BmlResource *)((int) (*(u32 *)((s8 *)((u8 *)this) + 0x68)));
             *(u32 *)((s8 *)((u8 *)this) + 0x68) = 0U;
-            ((TChCrLoadGmNjReq *)((u8 *)this))->sub_8028C8A8();
+            sub_8028C8A8();
             temp_r5 = *(s32 **)((s8 *)((u8 *)this) + 0x28);
             temp_r4 = *temp_r5;
             *temp_r5 = temp_r4 & ~*(s32 *)((s8 *)((u8 *)this) + 0x20);
