@@ -2,6 +2,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/memory.h"
 #include "pso/item/TUnk_804C4480.h"
+#include "pso/player/TUnk_804B6C24.h"
 
 #include "types.h"
 #include "pso/TObject.h"
@@ -24,7 +25,7 @@ void TItemList__sub_801D59DC(void* p);
 void *TItemList__sub_801D5B10(void *arg0, s16 arg1);
 void *__dt__9TItemListFPvs(void *arg0, s16 arg1);
 void* reset_position__9TItemListFPv(void* a0);
-s32 check_value_equals__13TUnk_804B6C24Fl(s32, s32);
+s32 check_value_equals__7TObjectFPCc(void *, s32);
 
 void TItemList__sub_801D59DC(void* p) { *(s32*)((char*)p + 0x0) = 2; }
 }
@@ -54,11 +55,11 @@ void TUnk_804C4480::sub_801D5A70() {
     copy_position__9TItemListFPv(TItemList__sub_801D598C(*(s32 *)(arg0 + 0x54), ((s8)((TItemList *)arg0)->get_item_count())), ((s32)get_ptr_0x44__9TItemListFPv(arg0)));
 }
 
-u8 TItemList::is_item_valid(s32 arg0) {
+s32 TItemList::is_item_valid(TItemList *node) {
     int var_r31;
 
     var_r31 = 0;
-    if ((check_value_equals__13TUnk_804B6C24Fl(arg0, TItemList__name) != 0) && (((TObject *)arg0)->all_parents_unqueued_for_destruction() != 0)) {
+    if ((check_value_equals__7TObjectFPCc(node, TItemList__name) != 0) && (((TObject *)node)->all_parents_unqueued_for_destruction() != 0)) {
         var_r31 = 1;
     }
     return (u8)var_r31;

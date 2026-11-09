@@ -77,9 +77,9 @@ void TOFenceAncient03::load_resources() {
     s32 *lists = (s32 *)::operator new[](4 * sizeof(s32));
     texlists = lists;
     lists[0] = model_resource->models[0].m_c;
-    texlists[1] = (s32)load_gvm_texture_file((s32)texture_file_b);
-    texlists[2] = (s32)load_gvm_texture_file((s32)texture_file_g);
-    texlists[3] = (s32)load_gvm_texture_file((s32)texture_file_p);
+    texlists[1] = (s32)load_gvm_texture_file(texture_file_b);
+    texlists[2] = (s32)load_gvm_texture_file(texture_file_g);
+    texlists[3] = (s32)load_gvm_texture_file(texture_file_p);
 }
 
 // Defined after load_resources, which addresses each by its own symbol.

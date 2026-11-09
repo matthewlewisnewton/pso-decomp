@@ -224,7 +224,7 @@ void TBoss3VoloptMonitor::init_params() {
     referenceHp = hp;
     set_param(0x2E);
     update_prev_position();
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    register_by_id();
     anim_frame = 8.0f * (3.0517578e-05f * (f32)rand());
     anim_timer = 3.0f * (3.0517578e-05f * (f32)rand());
     add_flags_2e4(4);

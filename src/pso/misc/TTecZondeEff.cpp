@@ -503,7 +503,7 @@ u8 *__ct__12TTecZondeEffFv(u8 *object, u8 *arg1, s32 arg2, s32 arg3, f32 farg0) 
 typedef char RecoveredGlobal_8023DADC___vt__12TTecZondeEff_size[sizeof(RecoveredGlobal_8023DADC___vt__12TTecZondeEff) == 0x18 ? 1 : -1];
 
 typedef char RecoveredGlobal_8023DA10___vt__12TTecZondeEff_size[sizeof(RecoveredGlobal_8023DA10___vt__12TTecZondeEff) == 0x18 ? 1 : -1];
-u8 *TTecZonde::construct_bolt_effect(u8 *arg1, u8 *arg2, u8 *arg3, s32 arg4, s32 arg5, f32 farg0, f32 farg1) {
+u8 *TTecZondeEff::construct_bolt_effect(u8 *arg1, u8 *arg2, u8 *arg3, s32 arg4, s32 arg5, f32 farg0, f32 farg1) {
     __ct__7TObjectFP7TObject(this, arg1);
     *(s32 **)((s8 *)((u8 *)this) + 0x18) = &(*(RecoveredGlobal_8023DA10___vt__12TTecZondeEff *)&__vt__12TTecZondeEff).value;
     *(s32 *)&this->m_name = (s32) TTecZondeEff_class_name;
@@ -516,7 +516,7 @@ u8 *TTecZonde::construct_bolt_effect(u8 *arg1, u8 *arg2, u8 *arg3, s32 arg4, s32
     *(s32 *)((s8 *)((u8 *)this) + 0x250) = 0;
     *(s16 *)((s8 *)((u8 *)this) + 0x25C) = 0;
     *(s32 *)((s8 *)((u8 *)this) + 0x38) = 0xD;
-    ((TTecZondeEff *)((u8 *)this))->init_bolt_points();
+    init_bolt_points();
     randomize_bolt_jitter__12TTecZondeEffFv((Obj_8023D4A8 *)(this));
     *(s32 *)((s8 *)((u8 *)this) + 0x248) = 0;
     *(s32 *)((s8 *)((u8 *)this) + 0x24C) = 0xFF000000;

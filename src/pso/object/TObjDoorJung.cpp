@@ -1,5 +1,6 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/system/GinjaMaterialState.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/object/TObjDoorJung.h"
@@ -111,10 +112,10 @@ void TObjDoorJung__sub_8018F4AC(void) {
     door_jung_child_list = model->child->sibling->model;
     lbl_805D5BDC = 0;
     DoorJungPartNames parts = lbl_80445640;
-    lbl_805D5BE4 = ((TObjDoorJung *)lbl_805D5BD4)->find_entry_by_name(parts.names[0]);
-    lbl_805D5BE8 = ((TObjDoorJung *)lbl_805D5BD4)->find_entry_by_name(parts.names[1]);
-    lbl_805D5BEC = ((TObjDoorJung *)lbl_805D5BD4)->find_entry_by_name(parts.names[2]);
-    lbl_805D5BF0 = ((TObjDoorJung *)lbl_805D5BD4)->find_entry_by_name(parts.names[3]);
+    lbl_805D5BE4 = ((GinjaTextureList *)lbl_805D5BD4)->find_entry_by_name(parts.names[0]);
+    lbl_805D5BE8 = ((GinjaTextureList *)lbl_805D5BD4)->find_entry_by_name(parts.names[1]);
+    lbl_805D5BEC = ((GinjaTextureList *)lbl_805D5BD4)->find_entry_by_name(parts.names[2]);
+    lbl_805D5BF0 = ((GinjaTextureList *)lbl_805D5BD4)->find_entry_by_name(parts.names[3]);
     if (lbl_805D5BEC != -1) {
         scene = (void *)::operator new(0x14);
         if (scene != NULL) {

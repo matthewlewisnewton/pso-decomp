@@ -3,6 +3,10 @@
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TLoadCtrl.h"
 
+// Upstream #183 (0fdea2fa9). Opens this unit's .sdata2 at the 8-byte-aligned
+// address 0x805DC748. The following float pool is 0x805DC74C..0x805DC760.
+extern const u32 lbl_805DC748 = 1;
+
 struct RecoveredGlobal_8022727C_lbl_804CB850 {
     s32 value;
     u8 remaining[0x8];
@@ -103,6 +107,17 @@ extern "C" {
 void TLobby__sub_8022644C(void);
 
 void TLobby::update_lobby_subsystems() { TLobby__sub_8022644C(); stop_cue_stream(); }
+
+// Dead-stripped from the DOL: no code of it survives. The TU's .sdata2 pool opens
+// with 0.0 (0x805DC74C) ahead of check_sound_admission_range's 90000/40/260/127
+// although that function loads 0.0 last, so a function before it used 0.0 first.
+// From upstream #183 (0fdea2fa9), unchanged. The fork's real functions do not
+// reference 0.0 first.
+void clear_sound_listener_position(void) {
+    lbl_80514C50[2] = 0.0f;
+    lbl_80514C50[1] = 0.0f;
+    lbl_80514C50[0] = 0.0f;
+}
 
 f32 xz_distance_squared(const Vec *a, const Vec *b);
 f32 newton_sqrtf(f32 x);

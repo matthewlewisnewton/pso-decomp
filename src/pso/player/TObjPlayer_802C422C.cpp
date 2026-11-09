@@ -3,6 +3,7 @@
 #include "pso/ui/TAdSelectGameModeGC_802C4748.h"
 #include "pso/system/date.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/TPlyItem.h"
 #include "pso/TAdSelectGameModeGC.h"
 #include "pso/TPlyOnCreated.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
@@ -101,7 +102,7 @@ void export_player_record__10TObjPlayerFPvPv(TObjPlayer *arg0, u8 *arg1) {
     ((TObjPlayer *)arg1)->set_flag_80000();
     copy_player_visual_record((u8 *)arg0 + 0x370, arg1 + 0x85C);
     *(s8 *)((s8 *)arg0 + 0) = query_state_if_present__10TObjPlayerFPv(arg1, (void *) (arg0->get_ptr_4()));
-    ((TObjPlayer *)(*(s32 *)((s8 *)arg1 + 0xD00)))->set_flag_and_update((int)arg1);
+    ((TObjPlayer *)arg1)->inventory_objects->set_flag_and_update(arg1);
     clamp_stats__10TObjPlayerFiPv(arg1, (u8 *)arg0 + 0x34C, (void *) (TObjPlayer::get_class_stat_entry((u8 *)arg1)));
     *(s8 *)((s8 *)arg0 + 1) = ((TObjPlayer *)arg1)->get_hp_material_points();
     *(s8 *)((s8 *)arg0 + 2) = ((TObjPlayer *)arg1)->get_tp_materials_clamped();

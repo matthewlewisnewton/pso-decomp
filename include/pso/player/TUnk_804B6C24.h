@@ -6,7 +6,6 @@
 class TUnk_804B6C24 : public TObjChara {
 public:
     virtual ~TUnk_804B6C24();
-    BOOL check_value_equals(s32);
     virtual void vfunc_79();
     virtual void vfunc_80();
     virtual void vfunc_81();

@@ -79,7 +79,7 @@ extern s32 tl_06;
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/TPlayerParticleOwner.h"
 #include "pso/TParticleCtrl.h"
-extern "C" int check_value_equals__13TUnk_804B6C24Fl(TParticleCtrl*, const char*);
+extern "C" int check_value_equals__7TObjectFPCc(TParticleCtrl*, const char*);
 extern "C" const char* TParticleCtrl__class_name_descriptor;
 
 namespace accessors {
@@ -904,7 +904,7 @@ TPlayerParticleOwner::~TPlayerParticleOwner() {
 }
 
 TParticleCtrl* TPlayerParticleOwner::get_particle() {
-    if (particle != 0 && check_value_equals__13TUnk_804B6C24Fl(particle, TParticleCtrl__class_name_descriptor) == 0) {
+    if (particle != 0 && check_value_equals__7TObjectFPCc(particle, TParticleCtrl__class_name_descriptor) == 0) {
         particle = 0;
     }
     return particle;

@@ -49,6 +49,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/misc/TScene.h"
 #include "pso/misc/TTecResta.h"
 #include "pso/misc/TTecSifta.h"
+#include "pso/ui/TAdEnterPasswordGC.h"
 
 extern "C" {
 u8 * TObjEneMe3Stelth__bml_resource;
@@ -447,7 +448,6 @@ s32 is_main_phase_15__9TObjEneDDFv();
 #define sub_800F47D4__16TObjEneMe3StelthFv ((s32 (*)(void *))sub_800F47D4__16TObjEneMe3StelthFv)
 s32 draw_ginja_motion_model__10TObjMotionFv(void *);
 s32 defer_render__7TObjectFv(void *);
-s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
 #define rotate_matrix_y ((s32 (*)(s32, s32))rotate_matrix_y)
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 void set_color_blend_mode(s32 a, s32 b, s32 c, s32 d);
@@ -491,7 +491,7 @@ void TObjEneMe3Stelth::render() {
     } else {
         mode = 0;
     }
-    if (F(s32, 0x3C0) != 0 && is_split_screen() == 0 && dispatch_input_to_instance__18TAdEnterPasswordGCFi(arg0) != 0) {
+    if (F(s32, 0x3C0) != 0 && is_split_screen() == 0 && TAdEnterPasswordGC::dispatch_input_to_instance(this) != 0) {
         return;
     }
     if (mode != 0) {
@@ -976,7 +976,7 @@ void TObjEneMe3Stelth__sub_800F2270(u8 *arg0, s32 arg1) {
 
 void TObjEneMe3Stelth::handle_breakup_state(s32 arg1) {
     u8 *arg0 = (u8 *)this;
-    Vec_800F26A4 ofs;
+    Vec ofs;
     Vec_800F26A4 v;
     switch (arg1) {
     case 4:
@@ -1001,7 +1001,7 @@ void TObjEneMe3Stelth::handle_breakup_state(s32 arg1) {
                 ofs.x = TObjEneMe3Stelth__data_805DA840;
                 ofs.y = TObjEneMe3Stelth__data_805DA824;
                 ofs.z = TObjEneMe3Stelth__data_805DA844;
-                ((TObjBoss2Tunnel *)(&ofs))->init_zako((u8 *)&this->position, F(s32, 0x60));
+                TObjBoss2Tunnel::init_zako(&ofs, (u8 *)&this->position, F(s32, 0x60));
                 TObjPlayer::spawn_effect_f8((s32)&ofs, 0x14);
             } else if (((TObjMotion *)arg0)->is_passing_frame((f32)TObjEneMe3Stelth__data_805DA850) != 0) {
                 F(s32, 0x3CC) |= 8;
