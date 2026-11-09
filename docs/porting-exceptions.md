@@ -159,6 +159,13 @@ small float differences without FMA).
 |---|---|---|---|
 | `src/pso/unk/text_80421620.cpp` | DHCP timer/request/discovery and previously exact code now linked | Provisional class wrappers on packet buffers, fixed reply/options offsets, 32-bit pointer/callback words, native byte-order and volatile-state assumptions; existing optimizer steering and release-frame padding. The new callback header makes callback declarations consistent. See [evidence](evidence/dhcp-focused-recovery.md). | Use shared typed packet/state definitions, explicit byte order and length checks, pointer-sized handles and appropriate synchronization; remove optimizer-only constraints. |
 
+### PPP/session control recovered from upstream #213/#215
+
+| File | Function / scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_803FAEA0.cpp` | `TLobby__sub_803FB358` | Redundant base initialization and otherwise-unused `new_var` assignment | Simplifying the native temporary pattern changes the base register (99.882355%); [evidence](evidence/upstream-ppp-session.md). | Use a typed protocol/status copy and remove matching-only temporaries. |
+| `src/pso/misc/TLobby_803FAEA0.cpp` | Connection routine and previously exact code now linked | Bounded session views, raw status offsets, native-endian words, 32-bit addresses, notification macros/goto and 36 existing pragma lines | Existing native representation/emission constraints; new status helper declarations and definitions are consistent. No new pragma or compiler override. | Consolidate layouts and signatures, use portable handles and explicit byte order, preserve callback timing and remove optimizer steering. |
+
 ## 5. Per-unit compiler overrides (`configure.py`)
 
 167 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
