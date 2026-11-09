@@ -1,4 +1,4 @@
-#include "pso/misc/WindowConstructorAbi.h"
+#include "pso/misc/WindowLayoutDescriptor.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
@@ -11,23 +11,11 @@
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
-struct RecoveredGlobal_8024E548_lbl_804CEB70
-{
-  s32 value;
-  u8 remaining[0x10];
-};
-
-struct RecoveredGlobal_8024E548___vt__14TWindowDeposit
-{
-  s32 value;
-  u8 remaining[0x18];
-};
-
 extern "C" {
 s32 draw_visible_window_entries(void *, void *, int);
 s32 get_window_layout_position(int);
-extern RecoveredGlobal_8024E548_lbl_804CEB70 window_deposit_layout;
-extern s32 __vt__14TWindowDeposit[];
+extern u8 lbl_804CEB30[];
+WindowLayoutDescriptor window_deposit_layout = { {160.0f, 27.0f}, 50100.0f, lbl_804CEB30, 0x82BU };
 extern s32 TWindowDeposit__name;
 extern const f32 lbl_805DCC60;
 extern const f32 lbl_805DCC64;
@@ -42,32 +30,20 @@ void TWindowDeposit::render_status(s32 arg1) {
     draw_window_tab(arg1, arg1 + 0x10, 3, this->m_60);
 }
 
-void render__14TWindowDepositFv(s32 arg0) {
-    s32 ctx;
-    ctx = ((TWindowBase *)arg0)->setup_window_draw_context(arg0 + 0x64);
-    ((TWindowDeposit *)arg0)->render_status(ctx);
-    draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), (int)ctx);
+void TWindowDeposit::render() {
+    s32 context = setup_window_draw_context((s32)&m_64);
+    render_status(context);
+    draw_visible_window_entries(this, &m_24, context);
 }
 
 void TWindowDeposit::run_task() { initialize_subwindow__9TWindowDDFv(this); update_window_entry_list((char*)this + 0x24); }
 
-void *__dt__14TWindowDepositFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TWindowDeposit;
-        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
-typedef struct RecoveredGlobal_8024E548___vt__14TWindowDeposit RecoveredGlobal_8024E548___vt__14TWindowDeposit;
-typedef struct RecoveredGlobal_8024E548_lbl_804CEB70 RecoveredGlobal_8024E548_lbl_804CEB70;
+TWindowDeposit::~TWindowDeposit() {}
 #pragma opt_common_subs off
 #pragma opt_propagation off
 #pragma opt_dead_assignments off
 TWindowDeposit::TWindowDeposit(s16 arg1)
-    : TWindowBase((u8 *)&window_deposit_layout.value, arg1, (u8 *)get_window_layout_position(0x29)) {
+    : TWindowBase((u8 *)&window_deposit_layout, arg1, (u8 *)get_window_layout_position(0x29)) {
   u8 *temp_r30;
   u32 spC;
   s32 sp8;

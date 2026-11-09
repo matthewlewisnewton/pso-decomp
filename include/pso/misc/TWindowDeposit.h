@@ -17,16 +17,4 @@ struct TWindowDeposit : public TWindowBase {
 
 typedef char TWindowDeposit_size[sizeof(TWindowDeposit) == 0x6C ? 1 : -1];
 
-extern "C" {
-void *__dt__14TWindowDepositFv(void *arg0, s16 arg1);
-void render__14TWindowDepositFv(s32 arg0);
-}
-
-// --- C functions defined in TWindowDeposit.cpp ---
-extern "C" {
-void *__dt__14TWindowDepositFv(void *arg0, s16 arg1);
-void render__14TWindowDepositFv(s32 arg0);
-}
-// --- end of C functions
-
 #endif

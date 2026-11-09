@@ -8437,6 +8437,7 @@ pso/misc/TWindowMainMenu_8024E3CC.cpp:
 pso/misc/TWindowDeposit.cpp:
 	.text       start:0x8024E434 end:0x8024E68C
 	.rodata     start:0x8044EC68 end:0x8044EC70
+	.data       start:0x804CEB70 end:0x804CEB9C
 
 pso/misc/TWindowKeyBoardSoft_8024E68C.cpp:
 	.text       start:0x8024E68C end:0x8024EEF8
@@ -8664,6 +8665,7 @@ pso/misc/TWindowLoadItemTexture.cpp:
 pso/unk/text_80262C3C.cpp:
 	.text       start:0x80262C3C end:0x80263A20
 	.rodata     start:0x8044F2C0 end:0x8044F2D0
+	.data       start:0x804D02C8 end:0x804D02E0
 
 pso/unk/text_80263A20.cpp:
 	.text       start:0x80263A20 end:0x80263AB0
@@ -9132,6 +9134,7 @@ pso/unk/text_8027C13C.cpp:
 
 pso/misc/TWindowSubMagPhoton.cpp:
 	.text       start:0x8027C22C end:0x8027CCC8
+	.data       start:0x804D17E8 end:0x804D1814
 
 pso/misc/TWindowSubQuestBoard.cpp:
 	.text       start:0x8027CCC8 end:0x8027D148

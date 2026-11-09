@@ -999,3 +999,8 @@ Deposit, DuelResult, SubMagPhoton, or MessageInfomation construction.
 Page, Quest, and Scroll to native construction. Log remains the only caller
 of this interface's Message constructor binding; its specific matching
 limitation and unchanged legacy auxiliary interfaces are recorded there.
+
+[Native Base cleanup](evidence/window-base-cleanup.md) removes Deposit,
+LockOn, and Photon from the raw destructor interface. Their constructor,
+destructor, and render chains are native, with compiler-generated tables and
+evidence-backed descriptor ownership. Other raw-storage callers remain.

@@ -1,4 +1,3 @@
-#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/item/TItem.h"
 #include "pso/misc/TWindowHelpItem_8025A60C.h"
@@ -153,7 +152,6 @@ extern const f32 lbl_805DD12C;
 
 extern u8 lockon_window_layout_entries[];
 extern Cb_80263370 lbl_804D0288;
-extern s32 __vt__13TWindowLockOn[];
 extern const f32 lbl_805DD100;
 extern const f32 lbl_805DD114;
 extern const f32 lbl_805DD118;
@@ -495,13 +493,11 @@ void *TWindowLockOn::create_for_target(s32 arg0, u16 arg1) {
     return new TWindowLockOn(arg0, arg1);
 }
 
-void render__13TWindowLockOnFv(TWindowLockOn *arg0) {
-    s32 temp_r3;
-
-    temp_r3 = ((TWindowBase *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x68));
-    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
-    if ((arg0->m_30 == arg0->m_40) && (*(f32 *)((s8 *)arg0 + 0x34) == *(f32 *)((s8 *)arg0 + 0x44)) && (arg0->m_38 == arg0->m_48) && (*(f32 *)((s8 *)arg0 + 0x3C) == *(f32 *)((s8 *)arg0 + 0x4C))) {
-        draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, temp_r3);
+void TWindowLockOn::render() {
+    s32 context = setup_window_draw_context((s32)&m_68);
+    draw_window_frame((void *)context);
+    if (m_30 == m_40 && m_34f == m_44 && m_38 == m_48 && m_3c == m_4c) {
+        draw_visible_window_entries(this, &m_24, context);
     }
 }
 
@@ -523,16 +519,7 @@ void TWindowLockOn::run_task() {
     }
 }
 
-void *__dt__13TWindowLockOnFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__13TWindowLockOn;
-        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TWindowLockOn::~TWindowLockOn() {}
 
 TWindowLockOn::TWindowLockOn(s32 arg1, u16 arg2)
     : TWindowBase((u8 *)lbl_804D0268, (s16)arg1, (u8 *)get_window_layout_position(0x1E)) {

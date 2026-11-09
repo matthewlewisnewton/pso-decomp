@@ -163,6 +163,13 @@ with unchanged exact functions and linked units. Log is now the sole caller
 of the Message constructor ABI binding; its measured four-instruction native
 constructor mismatch remains open. Retention is clean at 17,587 entries.
 
+The next [Base cleanup recovery](window-base-cleanup.md) replaces Deposit,
+LockOn, and Photon raw destruction/rendering with native members and owns
+their compiler tables plus two typed descriptors. It adds 112 matched/linked
+data bytes, for 284 versus main, with unchanged exact functions and linked
+units. Retention is clean at 17,601 entries. No new alignment override or
+compiler exception is used; the note qualifies both original zero tails.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration
