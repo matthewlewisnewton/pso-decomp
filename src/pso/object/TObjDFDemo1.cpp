@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -111,7 +112,6 @@ void push_matrix();
 void post_translate_matrix(void *);
 void TObjEneRe4Sorcerer__sub_801E3F1C(f32, f32);
 extern s32 model_render_flags;
-s32 get_bml_model(BmlResource *, s32);
 void init_model_node_tables(void *, void *, s32);
 void fn_8004AA04(void *);
 f32 sin_table_lookup(s32);
@@ -161,13 +161,13 @@ TObjDFDemo1::TObjDFDemo1(TObject *parent, const Vec *pos, s32 angle) : TObjBase(
     res = (BmlResource *)TBoss4Uro::get_instance_count();
     for (i = 0; i < 6; i++) {
         int id = lbl_80485EB0[i];
-        body_parts[i].model = get_bml_model(res, id);
+        body_parts[i].model = (s32)get_bml_model(res, id);
         body_parts[i].texlist = TObjFish__sub_8001EDB0(res, id);
         body_parts[i].motion = (s32)get_bml_motion(res, lbl_804855F0[i]);
     }
     for (i = 0; i < 2; i++) {
         int id = boss4_zanzo_bml_index_table[i];
-        zanzo_parts[i].model = get_bml_model(res, id);
+        zanzo_parts[i].model = (s32)get_bml_model(res, id);
         zanzo_parts[i].texlist = TObjFish__sub_8001EDB0(res, id);
         zanzo_parts[i].motion = (s32)get_bml_motion(res, lbl_80485608[i]);
     }

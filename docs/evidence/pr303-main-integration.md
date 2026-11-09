@@ -1,5 +1,9 @@
 # DHCP and Falz folds after main integration
 
+This records the initial integration. The later [source-contract audit and
+repairs](pr303-source-contracts.md) supersede its treatment of inconsistent
+local declarations as legacy boundaries.
+
 PR #303 was refreshed from head `1f98305a1069024acf087f83b906c3feab8a4964`
 against fork main `6daa19a11db97b1b8222fd2665eba485ed3a74a4` on 2026-11-09.
 The older local `sol61-pr303` continuation and dirty lane8 worktrees were left

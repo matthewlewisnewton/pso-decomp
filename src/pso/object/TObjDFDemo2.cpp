@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -74,7 +75,6 @@ struct Obj_8004EB78 {
 typedef CameraAngles Pose_8004EB78;
 s32 get_bml_motion(BmlResource *, s32);
 s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
-s32 get_bml_model(BmlResource *, s32);
 
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 boss4_zanzo_bml_index_table[];
@@ -196,7 +196,7 @@ void *TObjDFDemo2__ct(void *arg0, void *parent, void *arg2, void *arg3, void *ar
     for (i = 0; i < 2; i++) {
         s32 t = boss4_zanzo_bml_index_table[i];
         k = t;
-        ((s32 *)self)[i * 3 + 0x24] = get_bml_model(cnt, t);
+        ((s32 *)self)[i * 3 + 0x24] = (s32)get_bml_model(cnt, t);
         ((s32 *)self)[i * 3 + 0x25] = TObjFish__sub_8001EDB0(cnt, k);
         ((s32 *)self)[i * 3 + 0x26] = get_bml_motion(cnt, ((s32 *)TObjDFDemo2__motion_index_table)[i]);
     }

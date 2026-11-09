@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
@@ -201,7 +202,6 @@ extern "C" {
 void vec3_add_to(void *, void *);
 u8 *TObjPathObj__ct(u8 *arg0, s32 arg1, s32 arg2);
 
-s32 get_bml_model(void *, s32);
 s32 get_bml_motion(void *, s32);
 
 s32 rand();
@@ -650,7 +650,7 @@ LobbyPigeon* construct_lobby_pigeon(LobbyPigeon* self, void* parent, const void*
     self->vtable = ((void* *)&lobby_pigeon_vtable);
     ((TUnk_804E0898 *)self)->select_lobby_pigeon_model();
     self->scale = (1.0f);
-    self->model = ((void*)get_bml_model((void *)(lobby_pigeon_bml_archive), (s32)(self->modelIndex)));
+    self->model = ((void*)(s32)get_bml_model((BmlResource *)(lobby_pigeon_bml_archive), (s32)(self->modelIndex)));
     self->animation = ((void*)get_bml_motion((void *)(lobby_pigeon_bml_archive), 0));
     selector = self->movementSelector;
     if (selector < 0) movement = 0;
@@ -1028,7 +1028,7 @@ u8 *TObjPlayer__sub_802C20E8(u8 *arg0, s32 arg1, const void* _w2) {
   s32 temp_r3;
   ((u8 * (*)(LobbyPigeon*, void*, const void*))TObjPathObj__ct)((LobbyPigeon*)(arg0), (void*)(arg1), (const void*)(_w2));
   *((s32 **) (((s8 *) arg0) + 0x18)) = &(*(RecoveredGlobal_802C20E8_lbl_804E0910 *)&lbl_804E0910).value;
-  *((s32 *) (((s8 *) arg0) + 0x98)) = get_bml_model((*(u8 * *)&jungle_bird_bml_resource), 0);
+  *((s32 *) (((s8 *) arg0) + 0x98)) = (s32)get_bml_model((BmlResource *)(*(u8 * *)&jungle_bird_bml_resource), 0);
   ((TUnk_804E0910 *)arg0)->m_9c = get_bml_motion((*(u8 * *)&jungle_bird_bml_resource), 0);
   temp_r3 = ((TUnk_804E0910 *)arg0)->set_params[0];
   if (temp_r3 < 0)
@@ -1238,7 +1238,7 @@ u8 *TObjPlayer__sub_802C27FC(u8 *arg0, s32 arg1, const void* _w2) {
   s32 temp_r3;
   ((u8 * (*)(LobbyPigeon*, void*, const void*))TObjPathObj__ct)((LobbyPigeon*)(arg0), (void*)(arg1), (const void*)(_w2));
   *((s32 **) (((s8 *) arg0) + 0x18)) = &(*(RecoveredGlobal_802C27FC_lbl_804E094C *)&lbl_804E094C).value;
-  *((s32 *) (((s8 *) arg0) + 0x98)) = get_bml_model((*(u8 * *)&jungle_ebi_model_resource), 0);
+  *((s32 *) (((s8 *) arg0) + 0x98)) = (s32)get_bml_model((BmlResource *)(*(u8 * *)&jungle_ebi_model_resource), 0);
   ((TUnk_804E094C *)arg0)->m_9c = get_bml_motion((*(u8 * *)&jungle_ebi_model_resource), 0);
   temp_r3 = ((TUnk_804E094C *)arg0)->set_params[0];
   if (temp_r3 < 0)
@@ -1426,7 +1426,7 @@ u8 *TObjPlayer__sub_802C2F04(u8 *arg0, s32 arg1, const void* _w2) {
   s32 temp_r3;
   ((u8 * (*)(LobbyPigeon*, void*, const void*))TObjPathObj__ct)((LobbyPigeon*)(arg0), (void*)(arg1), (const void*)(_w2));
   *((s32 **) (((s8 *) arg0) + 0x18)) = &(*(RecoveredGlobal_802C2F04_lbl_804E0988 *)&seabed_dolphin_vtable).value;
-  *((s32 *) (((s8 *) arg0) + 0x98)) = get_bml_model((*(u8 * *)&seabed_dolphin_bml_archive), 0);
+  *((s32 *) (((s8 *) arg0) + 0x98)) = (s32)get_bml_model((BmlResource *)(*(u8 * *)&seabed_dolphin_bml_archive), 0);
   ((TUnk_804E0988 *)arg0)->m_9c = get_bml_motion((*(u8 * *)&seabed_dolphin_bml_archive), 5);
   temp_r3 = ((TUnk_804E0988 *)arg0)->set_params[0];
   if (temp_r3 < 0)

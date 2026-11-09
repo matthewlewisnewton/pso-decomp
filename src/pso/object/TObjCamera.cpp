@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -25,7 +26,6 @@
 
 extern "C" {
 AnimationMotion *get_bml_motion(u32, int);
-s32 get_bml_model(u32, int);
 s32 TObjFish__sub_8001EDB0(u32, int);
 void transform_point_to_view(const Vec *, Vec *);
 }
@@ -137,7 +137,7 @@ void TObjCamera::render() {
         rotate_matrix_y(0, this->rotation.yaw);
         camera_slot_scan_index = 0;
         set_model_node_callback((s32)TObjCamera::update_camera_slots);
-        draw_ginja_model_with_motion((void *)get_bml_model(model_resource, 0),
+        draw_ginja_model_with_motion((void *)(s32)get_bml_model((BmlResource *)model_resource, 0),
                                      get_bml_motion(model_resource, 0), animation_frame);
         set_model_node_callback(0);
         pop_matrix();

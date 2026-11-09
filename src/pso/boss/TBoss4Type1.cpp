@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
@@ -292,7 +293,6 @@ f32 atan2_float(f32 y, f32 x);
 
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 void fn_8004AA04(void *);
 s32 TBoss4DarkFalz__sub_8004AF5C(s32, s16 *, s16 *);
 void TBoss4DarkFalz__sub_8004B4F0(void *, void *);
@@ -1492,18 +1492,18 @@ void TBoss4Type1::draw_parts() {
             TBoss6PlotFalz__sub_802AC008(*(f32 *)((s8 *)arg0 + 0x3DC), *(f32 *)((s8 *)arg0 + 0x3E0));
             off = (i - 2) * 4 + 0x42C;
             ((ModelNodePositionCapture *)(*(s32 *)(arg0 + off)))->install();
-            a = get_bml_model(*(s32 *)((s8 *)arg0 + 0x390), lbl_80485EB0[i]);
+            a = (s32)get_bml_model((BmlResource *)*(s32 *)((s8 *)arg0 + 0x390), lbl_80485EB0[i]);
             draw_model_motion((void *)a, (void *)(get_bml_motion(*(s32 *)((s8 *)arg0 + 0x390), *(s32 *)((s8 *)((u8 *)&boss4_type1_motion_states.value + (*(s32 *)((s8 *)arg0 + 0x3E4) << 5) + i * 4) + 8))), *(f32 *)((s8 *)arg0 + 0x3E8));
             ((ModelNodePositionCapture *)(*(s32 *)(arg0 + off)))->clear();
             TBoss6PlotFalz::update_camera_target();
             break;
         case 5:
             ((ModelNodePositionCapture *)(*(s32 *)((s8 *)arg0 + 0x480)))->install();
-            draw_model_motion((void *)(get_bml_model(*(s32 *)((s8 *)arg0 + 0x390), lbl_80485EB0[i])), (void *)(get_bml_motion(*(s32 *)((s8 *)arg0 + 0x390), *(s32 *)((s8 *)((u8 *)&boss4_type1_motion_states.value + (*(s32 *)((s8 *)arg0 + 0x3E4) << 5) + i * 4) + 8))), *(f32 *)((s8 *)arg0 + 0x3E8));
+            draw_model_motion((void *)((s32)get_bml_model((BmlResource *)*(s32 *)((s8 *)arg0 + 0x390), lbl_80485EB0[i])), (void *)(get_bml_motion(*(s32 *)((s8 *)arg0 + 0x390), *(s32 *)((s8 *)((u8 *)&boss4_type1_motion_states.value + (*(s32 *)((s8 *)arg0 + 0x3E4) << 5) + i * 4) + 8))), *(f32 *)((s8 *)arg0 + 0x3E8));
             ((ModelNodePositionCapture *)(*(s32 *)((s8 *)arg0 + 0x480)))->clear();
             break;
         default:
-            draw_model_motion((void *)(get_bml_model(*(s32 *)((s8 *)arg0 + 0x390), lbl_80485EB0[i])), (void *)(get_bml_motion(*(s32 *)((s8 *)arg0 + 0x390), *(s32 *)((s8 *)((u8 *)&boss4_type1_motion_states.value + (*(s32 *)((s8 *)arg0 + 0x3E4) << 5) + i * 4) + 8))), *(f32 *)((s8 *)arg0 + 0x3E8));
+            draw_model_motion((void *)((s32)get_bml_model((BmlResource *)*(s32 *)((s8 *)arg0 + 0x390), lbl_80485EB0[i])), (void *)(get_bml_motion(*(s32 *)((s8 *)arg0 + 0x390), *(s32 *)((s8 *)((u8 *)&boss4_type1_motion_states.value + (*(s32 *)((s8 *)arg0 + 0x3E4) << 5) + i * 4) + 8))), *(f32 *)((s8 *)arg0 + 0x3E8));
             break;
         }
     }

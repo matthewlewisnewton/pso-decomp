@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/system/StripBufferPair.h"
@@ -26,7 +27,6 @@ extern "C" {
 void fn_8004AA04(Obj_8004AA04 *self);
 struct BmlResource;
 struct NJS_OBJECT;
-NJS_OBJECT *get_bml_model(BmlResource *, s32);
 void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2);
 void fn_8004AA04(Obj_8004AA04 *self) {
     s32 i;

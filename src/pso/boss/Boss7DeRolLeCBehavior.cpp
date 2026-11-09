@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/animation/MotionContext.h"
@@ -755,12 +756,11 @@ extern s32 model_render_flags;
 void TObjPlayer__sub_802E80A0(void);
 NJS_MOTION *get_bml_motion(void *resource, s32 id);
 int TObjFish__sub_8001EDB0(void*, void*);
-NJS_OBJECT *get_bml_model(void *resource, s32 id);
 
     extern void *lbl_805D6918;
 NJS_MOTION *TObjPlayer::notify_fish_obj(s32 id) { return get_bml_motion(lbl_805D6918, id); }
 
-NJS_OBJECT *TObjPlayer::queue_boss_effect(s32 id) { return get_bml_model(lbl_805D6918, id); }
+NJS_OBJECT *TObjPlayer::queue_boss_effect(s32 id) { return get_bml_model((BmlResource *)lbl_805D6918, id); }
 
 void TObjPlayer__sub_802E80A0(void) { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); }
 

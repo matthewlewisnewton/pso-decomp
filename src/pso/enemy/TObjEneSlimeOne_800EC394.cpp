@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -30,7 +31,6 @@ void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 extern s32 slime_one_part_texture_index_table[];
 extern s32 model_render_flags;
 s32 get_bml_motion(s32, s32);
-s32 get_bml_model(s32, s32);
 s32 init__14TObjEnePanarmsFs(void *, int);
 extern SlimePairedMotion lbl_80496C68[2];
 extern SlimePairedMotion lbl_80496C90[2];
@@ -228,7 +228,7 @@ void SlimeAnimationState::set_state(s32 next_state) {
         s32 resource = TObjEneSlimeOne::get_instance();
         SlimeShapeMotion *entry = slime_one_motion_state_table + state - 7;
         u32 id = slime_one_attack_target_id_table[owner->get_attack_target()];
-        model = (NJS_OBJECT *)get_bml_model(resource, id);
+        model = (NJS_OBJECT *)(s32)get_bml_model((BmlResource *)resource, id);
         texture_list = TObjFish__sub_8001EDB0(resource, id);
         motion = (AnimationMotion *)get_bml_motion(resource, entry->motion);
         shape_motion = (AnimationMotion *)get_bml_motion(resource, entry->shape_motion);
@@ -240,10 +240,10 @@ void SlimeAnimationState::set_state(s32 next_state) {
     s32 index = state - 9;
     s32 resource = TObjEneSlimeOne::get_instance();
     SlimePairedMotion *entry = &lbl_80496CB8[owner->get_attack_target()][index];
-    model = (NJS_OBJECT *)get_bml_model(resource, entry->model);
+    model = (NJS_OBJECT *)(s32)get_bml_model((BmlResource *)resource, entry->model);
     texture_list = TObjFish__sub_8001EDB0(resource, entry->model);
     motion = (AnimationMotion *)get_bml_motion(resource, entry->motion);
-    second_model = (NJS_OBJECT *)get_bml_model(resource, entry->second_model);
+    second_model = (NJS_OBJECT *)(s32)get_bml_model((BmlResource *)resource, entry->second_model);
     second_texture_list = TObjFish__sub_8001EDB0(resource, entry->second_model);
     second_motion = (AnimationMotion *)get_bml_motion(resource, entry->second_motion);
     frame_count = second_motion->frameCount;

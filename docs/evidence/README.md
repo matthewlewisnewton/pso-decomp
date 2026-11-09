@@ -49,6 +49,7 @@ guides.
 - [Particle factory position](particle-factory-position-evidence.md)
 - [Persistent positional sound](persistent-sound-evidence.md)
 - [PR #303 DHCP and Falz main integration](pr303-main-integration.md)
+- [PR #303 shared source contracts](pr303-source-contracts.md)
 - [Player target-candidate evidence (work in progress)](player-target-candidate-evidence.md)
 - [Projectile entity-ID contract](pr100-projectile-id.md)
 - [Shared scratch vector storage](scratch-vector-evidence.md)

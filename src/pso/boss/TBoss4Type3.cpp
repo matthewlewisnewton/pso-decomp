@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/enemy/BattleParameters.h"
@@ -388,7 +389,6 @@ void queue_destruction__7TObjectFv(void *);
 
 s32 get_bml_motion(BmlResource *, s32);
 s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
-s32 get_bml_model(BmlResource *, s32);
 void fn_80044330(void *p);
 void fn_8004AA04(void *);
 void TObjPlayer__sub_80052390(f32 x);
@@ -909,7 +909,7 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
         self->a438[i] = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)((((void **)boss4_type3_effect_desc_ptr_table)[i])), (Vec *)(&self->a444[i]));
     }
     set_motion_packed_rotation();
-    model = get_bml_model(self->f390, ((s32 *)lbl_80486FB0)[0]);
+    model = (s32)get_bml_model(self->f390, ((s32 *)lbl_80486FB0)[0]);
     p = (s32)new SampledMotionPoints(2, 3.0f, 9.0f, 0.6f);
     *(s32 *)((u8 *)self + 0x51C) = p;
     ((SampledMotionPoints *)(*(s32 *)((u8 *)self + 0x51C)))->sample_two_nodes((NJS_OBJECT *)model, (NJS_MOTION *)get_bml_motion(self->f390, ((s32 *)&TBoss4Type3__anim_state_table)[0x44 / 4]), 0x16, 0x17);
@@ -1063,7 +1063,7 @@ void TBoss4Type3::run_task() {
     }
     p = new SampledMotionPoints(2, lim, lim, 0.6f);
     set_motion_packed_rotation();
-    p->sample((NJS_OBJECT *)(get_bml_model(this->m_390, ((s32 *)lbl_80486FB0)[0])), (NJS_MOTION *)(get_bml_motion(this->m_390, TBoss4Type3__anim_state_table[this->m_3f0].motions[0])), (const s32 *)boss4_type3_run_task_params, NULL);
+    p->sample((NJS_OBJECT *)((s32)get_bml_model(this->m_390, ((s32 *)lbl_80486FB0)[0])), (NJS_MOTION *)(get_bml_motion(this->m_390, TBoss4Type3__anim_state_table[this->m_3f0].motions[0])), (const s32 *)boss4_type3_run_task_params, NULL);
     clear_motion_packed_rotation();
     e = (u8 *)((SampledMotionPoints *)p)->lookup(lim);
     push_matrix();
@@ -1188,7 +1188,7 @@ void TBoss4Type3::draw_model_set(const s32 *tbl, f32 t) {
         set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(this->m_390, tbl[i])));
         off = i;
         ((ModelNodePositionCapture *)((s32)this->render_lists[off]))->install();
-        draw_model_motion((void *)(get_bml_model(this->m_390, tbl[i])), (void *)(get_bml_motion(this->m_390, TBoss4Type3__anim_state_table[this->m_3f0].motions[i])), this->m_3f4);
+        draw_model_motion((void *)((s32)get_bml_model(this->m_390, tbl[i])), (void *)(get_bml_motion(this->m_390, TBoss4Type3__anim_state_table[this->m_3f0].motions[i])), this->m_3f4);
         ((ModelNodePositionCapture *)((s32)this->render_lists[off]))->clear();
     }
     clear_motion_packed_rotation();

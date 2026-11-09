@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/render/TriangleFan3D.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -62,7 +63,6 @@ struct Uv_8019806C { u32 colors[4]; };
 struct Vec_80198504 { f32 x, y, z; };
 
 extern "C" {
-s32 get_bml_model(void *, s32);
 s32 draw_chunk_object(s32);
 s32 rotate_matrix_y(int, int);
 s32 rotate_matrix_z(int, int);
@@ -167,7 +167,7 @@ void TUnk_804B8DD0::render() {
             this->m_38 = 0;
         }
     }
-    bml_model = (u8 *)(get_bml_model((void *)gogo_ball_bml_resource, 1));
+    bml_model = (u8 *)((s32)get_bml_model((BmlResource *)gogo_ball_bml_resource, 1));
     if (bml_model != NULL) {
         if ((s32) this->m_28 != 0) {
             set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)lobby_gvm_texture_handles + 0x1C))));
@@ -375,7 +375,7 @@ void TUnk_804B8DE8::render() {
         post_translate_matrix(((u8 *)this) + 0x1C);
         rotate_matrix_y(0, this->m_34);
         scale_matrix(0, 1.5f, 1.5f, 1.5f);
-        draw_chunk_object(get_bml_model((void *)gogo_ball_bml_resource, 4));
+        draw_chunk_object((s32)get_bml_model((BmlResource *)gogo_ball_bml_resource, 4));
         pop_matrix();
     }
 }
@@ -1101,7 +1101,6 @@ struct Vec_80199A44 { f32 x, y, z; };
 struct Color_80199A44 { f32 a, r, g, b; };
 struct Glob_80199A44 { u8 pad[0x1C]; f32 scale; u8 pad20[0x28]; u16 kind; };
 
-s32 get_bml_model(void *, s32);
 }
 void direction_to_rotation_yx(u8 *arg0, s32 *arg1, s32 *arg2);
 extern "C" {
@@ -1178,41 +1177,41 @@ void draw_model__8TObjFishFPv(u8 *arg0) {
         case 0:
             set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[0]));
             set_cull_back();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 3));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 3));
             set_cull_front();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 3));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 3));
             set_cull_none();
             break;
         case 1:
             set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[1]));
             set_cull_back();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 0));
             set_cull_none();
             break;
         case 2:
             set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[2]));
             set_cull_back();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 0));
             set_cull_none();
             break;
         case 3:
             set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[3]));
             set_cull_back();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 0));
             set_cull_none();
             break;
         case 6:
             set_current_texture_list((GinjaTextureList *)(lobby_gvm_texture_handles[6]));
             set_cull_back();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 2));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 2));
             set_cull_front();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 2));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 2));
             set_cull_none();
             break;
         }

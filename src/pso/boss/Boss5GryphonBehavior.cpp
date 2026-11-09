@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/boss/TBoss5GryphonLightningWing.h"
 #include "pso/boss/EffectGeometryParameters.h"
 #include "pso/misc/CameraHelpers.h"
@@ -560,7 +561,6 @@ struct Ent_8005E868 { s32 a; s32 b; s32 f8[]; };
 struct Seg_80063CDC { f32 x, y, z, w; };
 
 f32 newton_sqrtf(f32);
-s32 get_bml_model(s32, s32);
 s32 get_player_pos_in_arc__13TBoss5GryphonFPviiPvPv(Obj_8005D880 *arg0, s32 arg1, s32 arg2, Vec_8005D880 *org, Vec_8005D880 *out);
 s32 TBoss8Dragon__sub_8005DC0C(Obj_8005DC0C *arg0);
 void render_shadows__13TBoss5GryphonFv(void* p);
@@ -4141,7 +4141,7 @@ void TBoss8Dragon::spawn_switch_attack() {
 
     particle_effect_with_flags = spawn_particle_effect_with_flags(this, 0x211, 0x40);
     if (particle_effect_with_flags != 0) {
-        attach_particle_model((u8 *)particle_effect_with_flags, (s32)(get_bml_model(boss5_gryphon_bml_resource, 2)), (s32)boss5_gryphon_texture_list, 0, 0, (f32)lbl_805D8D88);
+        attach_particle_model((u8 *)particle_effect_with_flags, (s32)((s32)get_bml_model((BmlResource *)boss5_gryphon_bml_resource, 2)), (s32)boss5_gryphon_texture_list, 0, 0, (f32)lbl_805D8D88);
     }
 }
 #pragma pop
@@ -4155,7 +4155,7 @@ void TBoss8Dragon::spawn_attack_effect() {
 
     particle_effect_with_flags = spawn_particle_effect_with_flags(this, 0x210, 0x40);
     if (particle_effect_with_flags != 0) {
-        attach_particle_model((u8 *)particle_effect_with_flags, (s32)(get_bml_model(boss5_gryphon_bml_resource, 1)), (s32)boss5_gryphon_texture_list, 0, 0, (f32)lbl_805D8D88);
+        attach_particle_model((u8 *)particle_effect_with_flags, (s32)((s32)get_bml_model((BmlResource *)boss5_gryphon_bml_resource, 1)), (s32)boss5_gryphon_texture_list, 0, 0, (f32)lbl_805D8D88);
     }
 }
 #pragma pop

@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -41,7 +42,6 @@ typedef struct Data_80050194
 } Data_80050194;
 s32 get_bml_motion(BmlResource *, s32);
 s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
-s32 get_bml_model(BmlResource *, s32);
 
 void __ct__8TObjBaseFP7TObject(void *, void *);
 
@@ -97,7 +97,7 @@ Obj_80050194 *TObjDFDemoF__ct(Obj_80050194 *arg0, void *parent) {
     ids2 = lbl_80485834;
     {
       k = t;
-      arg0->f94[i] = get_bml_model(h, t);
+      arg0->f94[i] = (s32)get_bml_model(h, t);
     }
     arg0->fa0[i] = TObjFish__sub_8001EDB0(h, k);
     if (ids2[i] < 0)

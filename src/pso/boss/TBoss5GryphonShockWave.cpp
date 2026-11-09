@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -16,7 +17,6 @@ s32 TBoss8Dragon__sub_8005D700(void *self);
 extern u8 lbl_80437F40[];
 extern void *gryphon_shockwave_particle_ids_ptr;
 s32 get_bml_motion(s32, s32);
-s32 get_bml_model(s32, s32);
 s32 attach_particle_model(s32, s32, s32, s32, s32, f32);
 s32 spawn_particle_effect_with_flags(void *, s32, s32);
 u32 spawn_continuous_particle_effect_with_flags(void *, s32, s32);
@@ -62,7 +62,7 @@ void TBoss5GryphonShockWave::run_task() {
     case 2:
         particle_effect_with_flags = spawn_particle_effect_with_flags((u8 *)&this->m_2c, *(s32 *)((s8 *)(*(u8 * *)&gryphon_shockwave_particle_ids_ptr) + 4), 0x40);
         if (particle_effect_with_flags != 0) {
-            attach_particle_model(particle_effect_with_flags, get_bml_model(boss5_gryphon_bml_resource, 0), boss5_gryphon_texture_list, get_bml_motion(boss5_gryphon_bml_resource, 0), 0, lbl_805D8EE8);
+            attach_particle_model(particle_effect_with_flags, (s32)get_bml_model((BmlResource *)boss5_gryphon_bml_resource, 0), boss5_gryphon_texture_list, get_bml_motion(boss5_gryphon_bml_resource, 0), 0, lbl_805D8EE8);
         }
         spawn_particle_effect_with_flags((u8 *)&this->m_2c, *(s32 *)((s8 *)(*(u8 * *)&gryphon_shockwave_particle_ids_ptr) + 8), 0x40);
         play_sound_effect(0x40033C13, (const Vec *)((u8 *)&this->m_2c), 0, 0);
