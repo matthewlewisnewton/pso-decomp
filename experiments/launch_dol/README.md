@@ -7,10 +7,12 @@ its object into the game, execute it as a replacement loader, or treat it as a
 host fallback. Production `LaunchDol` continues to use its existing exact
 whole-function generated assembly provider.
 
-The prerequisite header/type recovery is PR #284 at immutable commit
-`d70369041672d5c881d895dc0a27b96f612e4b0c`, which integrates main
-`25b4001837b8bdc46666d2ad736a7148a411f978`. No production source, compiler
-profile, symbols, splits, retention or linkset is changed by this experiment.
+The prerequisite header/type recovery from PR #284 at immutable commit
+`d70369041672d5c881d895dc0a27b96f612e4b0c` is now merged into main via
+`b96d4c294f9f8ef84756fc394c9b042e0f36bfa9`. This refresh integrates main
+`4bec40d6cca74a85e91c848ea2d9f25425a313ad`. Relative to that main, no
+production source, compiler profile, symbols, splits, retention or linkset
+is changed by this experiment.
 The body is preserved from historical commit
 `a9eab37139ef10f53e3e9baf4f8d2dd1ade395aa`; only the compile guard and
 warning comments are new.
