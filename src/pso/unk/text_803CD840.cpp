@@ -92,14 +92,13 @@ struct Obj_803CDB0C {
 extern "C" {
 char *strncpy(char *, const char *, u32);
 void *memset(void *, s32, u32);
-s32 TLobby__sub_803CCB98(void *, int, int);
 extern char lbl_8047C818[];
 extern Ent_803CD840 *afs_archive_toc_table[256];
 u8 adxf_open_file_buffer[0x2080];
 extern s32 lobby_adxf_current_file_id;
 extern AdxfHandle *lobby_adxf_open_file_handle;
 extern s32 lobby_afs_toc_entry_index;
-extern s32 lbl_805D75EC;
+extern u8 *lbl_805D75EC;
 s32 lbl_805D75F0;
 s32 adxf_open_file__6TLobbyFiPviPv(s32 id, const char *name, s32 arg2, Ent_803CD840 *e);
 int memcmp(const void *, const void *, unsigned long);
@@ -124,7 +123,7 @@ inline s32 check_803CD840(char *msg, s32 id, Ent_803CD840 *e) {
 s32 adxf_open_file__6TLobbyFiPviPv(s32 id, const char *name, s32 arg2, Ent_803CD840 *e) {
     char *msg = lbl_8047C818;
     s32 r;
-    s32 aligned;
+    u8 *aligned;
     r = check_803CD840(msg, id, e);
     if (r < 0) {
         return r;
@@ -146,10 +145,10 @@ s32 adxf_open_file__6TLobbyFiPviPv(s32 id, const char *name, s32 arg2, Ent_803CD
     strncpy(e->name, name, 0x100);
     e->f110 = arg2;
     e->fE = 0;
-    aligned = (s32)(adxf_open_file_buffer + 0x20) & ~0x1F;
-    lbl_805D75F0 = aligned;
+    aligned = (u8 *)((u32)(adxf_open_file_buffer + 0x20) & ~0x1F);
+    lbl_805D75F0 = (s32)aligned;
     lbl_805D75EC = aligned;
-    r = TLobby__sub_803CCB98(lobby_adxf_open_file_handle, 1, aligned);
+    r = ADXF_ReadNw32(lobby_adxf_open_file_handle, 1, aligned);
     if (r < 0) {
         ADXF_Close(lobby_adxf_open_file_handle);
         return r;

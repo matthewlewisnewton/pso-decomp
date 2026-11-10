@@ -1,12 +1,5 @@
-#include "types.h"
-#include "pso/misc/TLobby.h"
+#include <dolphin/os/OSCache.h>
 
-extern "C" {
-
-s32 DCInvalidateRange();
-
-void TLobby::invalidate_cache() {
-    DCInvalidateRange();
-}
-
+extern "C" void invalidate_cache__6TLobbyFv(void *address, u32 length) {
+    DCInvalidateRange(address, length);
 }
