@@ -77,7 +77,6 @@ struct TWindowDD
     int update_com_card();
     int initialize_subwindow();
     static void refresh_status_display();
-    void init_window();
     void init_and_set_field50(void *arg1);
     void update_position(s32 arg1);
     void set_first_entry_text(u32 arg1);

@@ -156,6 +156,6 @@ void TWindowDD_WS_String::draw_entry_if_visible(void *arg1) {
     }
 }
 
-void TWindowDD::init_window() { initialize_subwindow(); update_fade__11TWindowBaseFv(this); update_window_entry_list__11TWindowBaseFPv(this, (char*)this + 0x24); }
+void TWindowDD_WS_String::run_task() { ((TWindowDD *)this)->initialize_subwindow(); update_fade__11TWindowBaseFv(this); update_window_entry_list__11TWindowBaseFPv(this, (char*)this + 0x24); }
 
 }

@@ -1664,7 +1664,6 @@ force_active:
   - TWindowCtrl__sub_8024DAAC
   - TWindowCtrl__sub_8026D4E8
   - TWindowDD__sub_80340FA8
-  - TWindowDD__sub_8034138C
   - TWindowDD__sub_803414DC
   - TWindowDD__sub_803422F0
   - TWindowDD__sub_803423E0
@@ -2041,6 +2040,7 @@ force_active:
   - __ct__19TObjEZBoneRotPlayerFv
   - __ct__19TObjEneDelDepthBombFP15TObjEneDelDepthP9TObjCharaPC3Vecl
   - __ct__19TObjStendGlassLobbyFP7TObjectPv
+  - __ct__19TWindowDD_WS_StringFPvPvll
   - __ct__19TWindowMessageYesNoFP7TObjectPvPvPv
   - __ct__19TWindowSubEquipListFPvl
   - __ct__20TAdLoadQuestPrtTxtGCFP7TObjectl
@@ -2583,6 +2583,7 @@ force_active:
   - __dt__19TObjEneEpsilonGuardFv
   - __dt__19TObjStendGlassLobbyFv
   - __dt__19TQuestListChallengeFv
+  - __dt__19TWindowDD_WS_StringFv
   - __dt__19TWindowMenuMainMenuFv
   - __dt__19TWindowMessageYesNoFv
   - __dt__19TWindowSoundBalanceFv
@@ -3223,6 +3224,7 @@ force_active:
   - __vt__19TPlayerBattleCtrl4P
   - __vt__19TQuestListChallenge
   - __vt__19TTecPlayerInfluence
+  - __vt__19TWindowDD_WS_String
   - __vt__19TWindowMenuMainMenu
   - __vt__19TWindowMessageYesNo
   - __vt__19TWindowSimpleStatus
