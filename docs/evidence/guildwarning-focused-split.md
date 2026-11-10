@@ -102,3 +102,12 @@ word's purpose. The BSS change originates in main's TLobby guild-card recovery,
 not GuildWarning or the Status-page change. Fresh-main acceptance establishes
 zero additional loss. No source word, padding definition, tool change or new
 regression exception is introduced to conceal the inherited difference.
+
+The ordinary refresh through main `00c484c57b38bc7f112016860e9faa628c7b49e9`
+inherits the separate ParticleRadial recovery (#412). All fourteen upstream
+path patches are preserved, while the focused window source/configuration
+delta remains unchanged. Its compiler-control qualification belongs to upstream;
+this refresh introduces no window control or new lifetime exception. Validation
+compares the rebuilt stack with its preceding verified heads; the 12a3368673
+fresh-main certificate remains the earlier baseline certificate, not a claim
+of a separate new-main build. Existing historical coverage and ABI holds remain.

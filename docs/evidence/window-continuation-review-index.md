@@ -81,6 +81,17 @@ inputs and coverage. The same-symbol legacy declarations and pointer-shaped
 setter view remain qualified; this is bounded source-quality progress with no
 new match or source-link gain.
 
+The next ordinary refresh inherits main `00c484c57b` (ParticleRadial #412)
+through focused head `e7a41184bf`. All fourteen upstream path patches and every
+window implementation are preserved, including the new explicit save-flag client
+contracts. The exception-document append conflict retains both complete sections.
+The capacity-gated rebuild and comparisons with preceding B and refreshed A pass;
+3598 linked units are exact and retention has 18460 names with no drift. This
+comparison reuses prior verified heads, not a newly claimed standalone main build.
+The source-quality repair has zero metric gain; the refresh's additional exact
+function and particle code/data gains belong to upstream. All existing holds and
+historical coverage qualifications remain.
+
 ## Current tried/blocked index
 
 | Area | Established result | Remaining evidence / hold |
