@@ -1026,3 +1026,11 @@ The output/status contract repair remains the substantive checkpoint; no Falz
 match credit is attributed beyond main. Scanner length, allocator/task ownership,
 adjacent legacy APIs and the metadata restriction remain bounded as above.
 Keep draft pending current-head independent review and hosted checks.
+
+
+Main then advances to `1a9c290489ea7a20edaf5f960e57bfffef5a5e14` solely
+by publishing the README progress table for source commit `30d8a1266`.
+Merge that publication too. Its complete diff is README-only; source,
+configuration, tools, splits and build/link inputs are identical to the
+freshly built baseline. README is not a Ninja input, so the native and
+regression validation above remains applicable without a redundant build.
