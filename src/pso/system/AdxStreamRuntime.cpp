@@ -4,6 +4,7 @@
 #undef PSO_SDK_COMPACT_MATH
 #include "pso/system/AdxmThreadStorage.h"
 #include "pso/system/LscStream.h"
+#include "pso/unk/text_803D2F1C.h"
 
 #include "types.h"
 
@@ -80,7 +81,6 @@ struct PointerRecords_803C5E78_var_r31 { u8 bytes[0x2D0]; };
 struct PointerRecords_803C8610_var_r31 { u8 bytes[0x40]; };
 
 extern "C" {
-s32 TLobby__sub_803D3130(void *, s32, Pair_803C8678 *, Pair_803C8678 *);
 extern s32 tlobby_stream_read_retry_limit;
 extern s32 lbl_805D7558;
 s32 memset(void *, int, int);

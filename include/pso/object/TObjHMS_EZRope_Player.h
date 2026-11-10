@@ -16,4 +16,6 @@ public:
 };
 typedef char TObjHMS_EZRope_Player_size[sizeof(TObjHMS_EZRope_Player) == 0x48 ? 1 : -1];
 
+extern "C" void *__dt__21TObjHMS_EZRope_PlayerFv(TObjHMS_EZRope_Player *rope, s16 delete_flag);
+
 #endif
