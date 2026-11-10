@@ -4,7 +4,6 @@
 #include "types.h"
 #include "pso/boss/Boss7DeRolLeCBehavior.h"
 #include "pso/boss/TBoss1DragonColli.h"
-#include "pso/enemy/TObjEneDD_800BB804.h"
 #include "pso/system/vector.h"
 #include "pso/boss/TBoss7DeRolLeC.h"
 #include "pso/enemy/TObjEneDD.h"
@@ -21,6 +20,8 @@ struct RecoveredGlobal_802EEC60___vt__11TBoss7Joint {
 struct J_802EEB88 { u8 pad[0x38C]; u8 sub; };
 
 extern "C" {
+TObjEneDD *__ct__9TObjEneDDFP7TObject(TObjEneDD *, TObject *);
+void *__dt__9TObjEneDDFv(void *, s16);
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
 extern const f32 lbl_805DEBB8;
 void initialize_enemy_state__9TObjEneDDFl(void *, s32);
@@ -115,15 +116,16 @@ s32 TBoss7Joint::init_params() {
     return *(s32 *)((s8 *)this + 0x3C4) = TBoss7Joint_get_shell_max_hp();
 }
 
-u8 *TBoss7Joint__ct(u8 *boss7_joint, u8 *arg1, s16 arg2, s16 arg3, s32 arg4, s32 arg5) {
-    __ct__9TObjEneDDFP7TObject(boss7_joint);
+TBoss7Joint *TBoss7Joint__ct(TBoss7Joint *boss7_joint, TBoss7DeRolLeC *boss, u16 entity_id, s16 set_index,
+                            Vec *position, s32 segment) {
+    __ct__9TObjEneDDFP7TObject(boss7_joint, boss);
     *(s32 **)((s8 *)boss7_joint + 0x18) = &(*(RecoveredGlobal_802EEC60___vt__11TBoss7Joint *)&__vt__11TBoss7Joint).value;
     *(s32 *)((s8 *)boss7_joint + 0) = (s32) lbl_805D3FC0;
-    ((TObjEneDD *)boss7_joint)->init_common_from(arg1);
-    ((TBoss7Joint *)boss7_joint)->entity_id = arg2;
-    *(s16 *)((s8 *)boss7_joint + 0x2C) = arg3;
-    *(s32 *)((s8 *)boss7_joint + 0x3C0) = arg4;
-    *(s32 *)((s8 *)boss7_joint + 0x3B8) = arg5;
+    ((TObjEneDD *)boss7_joint)->init_common_from(reinterpret_cast<u8 *>(boss));
+    boss7_joint->entity_id = entity_id;
+    boss7_joint->set_index = set_index;
+    *reinterpret_cast<Vec **>(reinterpret_cast<u8 *>(boss7_joint) + 0x3C0) = position;
+    *reinterpret_cast<s32 *>(reinterpret_cast<u8 *>(boss7_joint) + 0x3B8) = segment;
     initialize_enemy_state__9TObjEneDDFl(boss7_joint, 0x49);
     ((TBoss7Joint *)boss7_joint)->init_params();
     return boss7_joint;

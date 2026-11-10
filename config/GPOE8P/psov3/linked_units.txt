@@ -3432,6 +3432,7 @@ pso/unk/text_802E4A4C.cpp
 pso/unk/text_802E52AC.cpp
 pso/unk/text_802E62A4.cpp
 pso/unk/text_802EDCF0.cpp
+pso/unk/text_802EDE90.cpp
 pso/unk/text_802F0E24.cpp
 pso/unk/text_802F0F04.cpp
 pso/unk/text_802F190C.cpp
