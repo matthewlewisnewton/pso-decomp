@@ -1691,6 +1691,7 @@ force_active:
   - TWindowHelpItem__vt7
   - TWindowHelpItem__vt9
   - TWindowKeyBoardHard__name
+  - TWindowKeyBoardSoft__data_8044F124
   - TWindowKeyBoardSoft__sub_80080B34
   - TWindowKeyBoardSoft__sub_80080F68
   - TWindowKeyBoardSoft__sub_8025C51C
@@ -1698,6 +1699,15 @@ force_active:
   - TWindowKeyBoardSoft__sub_8025D1C8
   - TWindowKeyBoardSoft__sub_8025D378
   - TWindowKeyBoardSoft__sub_8025D544
+  - TWindowKeyBoardSoft__sub_802606E0
+  - TWindowKeyBoardSoft__sub_80260760
+  - TWindowKeyBoardSoft__sub_80260904
+  - TWindowKeyBoardSoft__sub_80260E30
+  - TWindowKeyBoardSoft__sub_80261134
+  - TWindowKeyBoardSoft__sub_802614DC
+  - TWindowKeyBoardSoft__sub_802616BC
+  - TWindowKeyBoardSoft__sub_80261DD8
+  - TWindowKeyBoardSoft__sub_8026227C
   - TWindowKeyBoardSoft__text_resource
   - TWindowLoadItemTexture__ct
   - TWindowLockOn__ct
@@ -2645,6 +2655,7 @@ force_active:
   - __dt__8TOKurageFv
   - __dt__8TObjRainFv
   - __dt__8TPlyItemFv
+  - __dt__8TTecCtrlFv
   - __dt__9TAdBackGCFv
   - __dt__9TAdFadeGCFv
   - __dt__9TBoss2FinFv
@@ -3256,6 +3267,7 @@ force_active:
   - __vt__8TObjChip
   - __vt__8TObjRain
   - __vt__8TPlyItem
+  - __vt__8TTecCtrl
   - __vt__9TAdBackGC
   - __vt__9TAdFadeGC
   - __vt__9TBoss2Fin
@@ -4276,6 +4288,7 @@ force_active:
   - calc_circle_offset__14TObjEneBm5WolfFPvPvPv
   - calc_clamp_offset__11TLoadingCurFlPUcPUc
   - calc_clock_bonus__9TItemDataFPv
+  - calc_cursor_step__19TWindowKeyBoardSoftFiPvPv
   - calc_damage__11TTecRaZondeFv
   - calc_day_in_cycle__FP9DateStamp
   - calc_death_slide_speed__14TObjEneBm5WolfFPvf
@@ -4304,6 +4317,9 @@ force_active:
   - calc_hit_zone_index__16TBoss3VoloptCoreFv
   - calc_i8_tiled_texel_offset
   - calc_joyboot_checksum__6TLobbyFv
+  - calc_key_coord__19TWindowKeyBoardSoftFll
+  - calc_key_index__19TWindowKeyBoardSoftFiii
+  - calc_key_x__19TWindowKeyBoardSoftFiii
   - calc_large_tp__13TUnk_8049FE00Fv
   - calc_lightning_scatter_direction__12TTecZondeEffFlPv
   - calc_loading_cursor_pos
@@ -4747,6 +4763,7 @@ force_active:
   - close__17TObjVoloptShutterFv
   - close__18TShopGetItemWindowFv
   - close__19TShopKeepItemWindowFv
+  - close__19TWindowKeyBoardSoftFv
   - close__19TWindowSubShortMailFv
   - close__20TShopItemTecSequenceFPv
   - close__22TQuestVmDownLoadServerFv
@@ -5402,6 +5419,7 @@ force_active:
   - draw_if_visible__15TObjEneDelDepthFv
   - draw_inactive_badge__11TObjDoorKeyFv
   - draw_item_labels__14TMainMenuEntryFP18TWindowDrawContext
+  - draw_key_frame__19TWindowKeyBoardSoftFPvPfffffUll
   - draw_label__16TAdGuideButtonGCFiPCc
   - draw_label_value__20TWindowSubStatusDispFPvPv
   - draw_laser_beam__13TLazerFenceSwFv
@@ -6022,7 +6040,6 @@ force_active:
   - fn_80214254
   - fn_80223B98
   - fn_80223C28
-  - fn_8022F164
   - fn_80235078
   - fn_8024450C
   - fn_80248324
@@ -6393,6 +6410,7 @@ force_active:
   - get_table_entry_by_clamped_index__10TObjPlayerFv
   - get_table_value__19TAdPlyPltAnimCtrlGCFi
   - get_target_position__11TCameraCtrlFv
+  - get_technique_base_params
   - get_texlist__23TObjSeabedSuisoBrakableFi
   - get_total_materials_used__Fl
   - get_type__15TFontSmallLobbyFPv
@@ -6548,6 +6566,7 @@ force_active:
   - handle_number_input__21TShopDeleteItemWindowFv
   - handle_open__19TWindowMenuIconLineFv
   - handle_pad_transfer_done__16TKeyBoardControlFiUiPv
+  - handle_page_cycle_input__19TWindowKeyBoardSoftFl
   - handle_page_input__24TWindowSubSymbolChatHelpFv
   - handle_page_input__26TWindowSubQuestBoardSelectFv
   - handle_pay_confirm__23TShopJudgmentItemWindowFv
@@ -6631,6 +6650,7 @@ force_active:
   - hide_title_layers_and_release
   - hit_object_in_radius__10TObjPlayerFPvPvPv
   - hit_target__13TUnk_804EF130FP9TObjCharaP9TObjChara
+  - hit_test_relative__19TWindowKeyBoardSoftFPUcPUc
   - hold_captured_player__12TBoss1DragonFv
   - hook__13TItemEffLavisFv
   - hook__13TUnk_804A2148Fv
@@ -7124,6 +7144,7 @@ force_active:
   - key_generic_sw_collision_body
   - keyboard_accent_composed_chars
   - keyboard_control_pad_slots
+  - keyboard_key_frame_uv_table
   - keyboard_layout_mode_table
   - keyboard_pad_state_table
   - keyboard_pad_status_buffer
@@ -7320,6 +7341,10 @@ force_active:
   - lbl_8044E748
   - lbl_8044E758
   - lbl_8044E7BC
+  - lbl_8044F138
+  - lbl_8044F164
+  - lbl_8044F1B4
+  - lbl_8044F204
   - lbl_8044FCF0
   - lbl_804507A8
   - lbl_804507BC
@@ -7867,6 +7892,8 @@ force_active:
   - lbl_80514CF0
   - lbl_80514D40
   - lbl_80514F58
+  - lbl_80515F90
+  - lbl_80515FBC
   - lbl_8051607C
   - lbl_805162EC
   - lbl_80517BEC
@@ -14208,6 +14235,7 @@ force_active:
   - render__8TOSensorFv
   - render__8TObjDoorFPv
   - render__8TObjRainFv
+  - render__8TTecCtrlFv
   - render__9TAdBackGCFv
   - render__9TAdFadeGCFv
   - render__9TBoss2FinFv
@@ -14896,6 +14924,7 @@ force_active:
   - run_task__8TOKeyColFv
   - run_task__8TOKurageFv
   - run_task__8TObjRainFv
+  - run_task__8TTecCtrlFv
   - run_task__9TAdBackGCFv
   - run_task__9TAdFadeGCFv
   - run_task__9TBoss2FinFv
@@ -15480,6 +15509,7 @@ force_active:
   - sndStreamAllocLength
   - snd_handle_irq
   - sock_status_names
+  - soft_keyboard_window_and_action_data
   - solo_play_result_window_depth
   - solo_play_result_window_extent
   - some_stub__9TProtocolFv
@@ -15747,6 +15777,7 @@ force_active:
   - spawn_impact_crater__12TBoss1DragonFl
   - spawn_item__10TObjPlayerFi
   - spawn_item_follow_effect__FlUlll
+  - spawn_key_effect__19TWindowKeyBoardSoftFll
   - spawn_landing_effect__16TObjEneBm5GibonUFPvPv
   - spawn_laser__12TPhotonPillaFv
   - spawn_lightning_at_angle__16TBGLightningCtrlFl
@@ -16063,6 +16094,8 @@ force_active:
   - sub_8024F094__17TWindowDuelResultFv
   - sub_8025F2F8__19TWindowKeyBoardHardFUc
   - sub_8025F4A0__19TWindowKeyBoardHardFUc
+  - sub_802605DC__19TWindowKeyBoardSoftFv
+  - sub_80260808__19TWindowKeyBoardSoftFl
   - sub_8026556C__21TWindowSubComCardListFv
   - sub_80266BB8__11TWindowMenuFv
   - sub_8026EA48__20TWindowShortListCtrlFv
@@ -16712,6 +16745,7 @@ force_active:
   - update_flight_state__16TObjEneNanoDragoFv
   - update_floor_name_windows__9TObjLukerFv
   - update_floor_switch_state__12TObjWarpBossFv
+  - update_focus_flags__19TWindowKeyBoardSoftFv
   - update_follow__11TItemMagSubFv
   - update_follow_motion_state__11TCameraCtrlFv
   - update_follow_parent__18TObjEneBalClawClawFPv
@@ -16785,6 +16819,7 @@ force_active:
   - update_judge_confirm__23TShopJudgmentItemWindowFv
   - update_kafun_attack__16TObjEneMerillLiaFv
   - update_key_events__16TKeyBoardControlFl
+  - update_keyboard_child_input_from_controller__19TWindowKeyBoardSoftFl
   - update_knockback__15TObjEneGyaranzoFv
   - update_knockback_state__12TObjEneSaverFv
   - update_knockback_state__15TObjEnemyCustomFv

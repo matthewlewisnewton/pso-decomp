@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5774 | 878 |
+| pragma | 5773 | 877 |
 | configure.py per-unit override | 178 | 178 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 877, `auto_inline` 837, `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 53, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 41, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 877, `auto_inline` 837, `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 53, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -285,7 +285,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `-fp_contract on` | Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs (scale_point_about_pivot, apply_context_transform_to_rect, apply_window_closing_stretch, clip_textured_quad, init_text_window_layout). Unit -fp_contract on replaces the per-function pragmas. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/unk/text_8034A090.cpp` | `-fp_contract on` | Loading-text particle positions contract `scale * i + base` into fmadds (TAdLoadQuestPrtTxtGC ctor, cases 0/1/2). The other three functions have no contracted multiply. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/misc/TNpcPlayer.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190: this file is written in reverse so deferred codegen emits address order, and the readonly string pool places the constants. |
-| `pso/misc/TTecCtrl_8022C444.cpp` | `(multi-line entry; see configure.py)` | get_technique_caster_flags' unsigned bias is lbl_8044D078, which TTecCtrl loads from this split. MWCC emits the bias as a local pool object; the post-process names that object as the split's global. Source cannot do it without a second pool copy (docs/evidence/conversion-pool-constants.md). |
+| `pso/misc/TTecCtrl.cpp` | `-fp_contract on, -inline on,deferred` | Native FMA in parameter scaling; deferred emission places the vtable before four switch tables. Explicit inline helpers retain the global-load order. |
 | `pso/boss/TBoss7LaserLight.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/boss/TBoss7TentacleNeedle.cpp` | `GC/2.0, -inline off,deferred, -fp_contract on` | Position jitter and the tentacle curve contract mul-add to fmadds, so this unit is built with -fp_contract on. -inline off,deferred emits functions and vtables in reverse source order: the Needle vtable then the Tentacle vtable, with .text still in address order. GC/2.0: the Needle constructor's const emitter copy. Before 2.5 a const local whose address escapes stays out of the worst-case alias set, so the three word loads of pos batch ahead of the stores; 2.6 interleaves. |
 | `pso/boss/TBoss7PhotonBullet_802EF26C.cpp` | `-inline off,deferred, -fp_contract on` | Photon bullet run_task contracts a mul-add. Deferred emission puts the compiler vtables in address order while the definitions stay bottom-to-top. |
@@ -698,7 +698,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/misc/TFontSmallLobby_801C013C.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TForceOperate.cpp` | opt_common_subs×2 |
 | `src/pso/misc/THunterGuildSeqOffline_80213788.cpp` | opt_propagation×2 |
-| `src/pso/misc/TKeyBoardControl.cpp` | fp_contract×13, pool_data×1, opt_loop_invariants×1 |
+| `src/pso/misc/TKeyBoardControl.cpp` | fp_contract×15, pool_data×1 |
 | `src/pso/misc/TKeyBoardControl_80131C58.cpp` | opt_loop_invariants×1 |
 | `src/pso/misc/TKeyBoardControl_803F0C50.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/misc/TKomorebi.cpp` | readonly_strings×1 |
@@ -829,6 +829,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/misc/TShopKeepItemWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TSwitch.cpp` | readonly_strings×1 |
 | `src/pso/misc/TTecAnti.cpp` | readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1 |
+| `src/pso/misc/TTecCtrl.cpp` | opt_propagation×1 |
 | `src/pso/misc/TTecDeband.cpp` | opt_common_subs×2, readonly_strings×1 |
 | `src/pso/misc/TTecGiBarta.cpp` | auto_inline×2, inline_depth×1, dont_inline×1 |
 | `src/pso/misc/TTecGiFoie.cpp` | opt_propagation×4, opt_common_subs×3, opt_dead_assignments×3, fp_contract×1 |
@@ -882,7 +883,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/misc/TWindowKeyBoardSoft.cpp` | optimization_level×2, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TWindowKeyBoardSoft_8025B85C.cpp` | opt_propagation×1 |
-| `src/pso/misc/TWindowKeyBoardSoft_80261440.cpp` | fp_contract×2 |
 | `src/pso/misc/TWindowLoadItemTexture.cpp` | opt_common_subs×1, fp_contract×1 |
 | `src/pso/misc/TWindowMainMenu1P.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowMeseta.cpp` | readonly_strings×1 |
@@ -1072,7 +1072,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/player/TObjPlayer_801C7430.cpp` | inline_depth×262, dont_inline×262, auto_inline×260, opt_common_subs×3, fp_contract×3, opt_propagation×2, opt_dead_assignments×2, opt_lifetimes×2 |
 | `src/pso/player/TObjPlayer_801D3554.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/player/TObjPlayer_801D84CC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, scheduling×1 |
-| `src/pso/player/TObjPlayer_8022C6C4.cpp` | opt_propagation×1 |
 | `src/pso/player/TObjPlayer_8023E480.cpp` | readonly_strings×1 |
 | `src/pso/player/TObjPlayer_802D5B78.cpp` | fp_contract×1 |
 | `src/pso/player/TObjPlayer_802E6CA8.cpp` | opt_common_subs×1, opt_propagation×1, fp_contract×1 |

@@ -47,9 +47,9 @@ void draw_textured_quad_at_depth(void *, f32);
 void set_draw_texture_and_color(s32, u32);
 const char *parse_text_control_codes(const char *, s32 *, s32 *);
 void set_glyph_quad_extents(s32, void *);
-s32 get_font_char_advance(s32);
-s32 map_char_to_font_code(s32);
-void calc_gauge_scale__20TWindowSubStatusDispFPvPvi(s32, void *, s32);
+s32 get_font_char_advance(u16);
+u16 map_char_to_font_code(s32 code);
+u8 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(u16 glyph, void *quad, s32 color);
 void end_render_forward__20TWindowSubStatusDispFPv();
 void TWindowSubStatusDisp::set_input_mode(u8 v) { *(u8*)((char*)this + 0x64) = v; }
 }
@@ -109,7 +109,7 @@ s32 draw_small_font_string_clipped(f32 *pos, const char *s, u32 color, f32 width
 }
 
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width) {
-    s32 glyph;
+    u16 glyph;
     s32 adv;
     s32 ok;
     f32 x;
