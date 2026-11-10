@@ -1,6 +1,6 @@
 # CVFS file query and open recovery
 
-The independent base is fork main `12a3368673103f37dfd3710886ce24a4e19c6783`.
+The independent base is fork main `00c484c57b38bc7f112016860e9faa628c7b49e9`.
 The existing `pso/unk/text_803CE568.cpp` text and BSS boundaries are retained.
 This work does not authenticate a different original translation-unit boundary.
 
@@ -62,7 +62,7 @@ The shared types do not unify those behaviors. Every backend body retains its or
 continuation behavior. No bounds or validation bug is repaired here.
 
 The original tables at `0x804F9D98` (DVD) and `0x804FA020` (MFS) each bind these
-callbacks at offsets `0x08` and `0x10`. A census of all 4,951 active original
+callbacks at offsets `0x08` and `0x10`. A census of all 4,950 active original
 objects finds exactly those four data relocations and no direct text caller of
 the four implementations. Both complete original table providers retain their
 allocated contents and resolved relocations.
@@ -103,7 +103,7 @@ extents where a live named literal is defined. The intervening catalog spans
 retain local labels. Localization followed a census of every active original
 object, including unlinked objects, rather than source text alone. Before the
 fold, only this code unit and its original version-pointer provider referred to
-the catalog. After the fold, the 4,951-object inventory contains no other-object
+the catalog. After the fold, the 4,950-object inventory contains no other-object
 reference into the claimed catalog, small-data constants or handle storage.
 The latter census examined 249,573 other-object relocations.
 
@@ -132,19 +132,31 @@ artificial reference or source-only padding function.
 
 ## Validation
 
-The current-main baseline report and its sealed source, tools, generated graph
-and active object inventory were independently rehashed before reuse. The
-candidate generates fresh split objects from its own checked-in split/symbol
-configuration and local original inputs.
+A fresh, isolated current-main build authenticates all tracked source payloads
+against the exact git blobs, then seals its tools, generated graph, original
+input and active object inventory. The baseline passes the native gated build
+and address/retention checks against independently authenticated main
+`12a3368673103f37dfd3710886ce24a4e19c6783`. The candidate generates fresh split
+objects from its own checked-in split/symbol configuration and local original
+inputs.
+
+The current-main composition retains every ParticleRadial source/header and
+evidence blob from #412 exactly. Its shared metadata retains the complete main
+changes and the same CVFS additions/removals as the independently reviewed
+`d9546e895f9bd49f26db9003a7f1bfe52bbd3bb4` recovery. No conflict was resolved
+by discarding either contribution. The native object comparison separately
+checks all ParticleRadial/sibling outputs against this standalone main build.
+The one exact function, 1,384 matched / 4,220 linked code bytes and 56 matched /
+64 linked data bytes introduced by #412 belong to main, not to this CVFS work.
 
 Against that base:
 
-- Exact functions: 27,421 to 27,424, a gain of three.
-- Matched code: 4,218,916 to 4,222,936, a gain of 4,020 bytes.
-- Matched data: 1,472,639 to 1,475,599, a gain of 2,960 bytes.
-- Source-linked code: 3,807,220 to 3,813,620, a gain of 6,400 bytes.
-- Source-linked data: 1,193,999 to 1,198,103, a gain of 4,104 bytes.
-- Linked units: 3,595 to 3,596. Every linked unit remains exact.
+- Exact functions: 27,422 to 27,425, a gain of three.
+- Matched code: 4,220,300 to 4,224,320, a gain of 4,020 bytes.
+- Matched data: 1,472,695 to 1,475,655, a gain of 2,960 bytes.
+- Source-linked code: 3,811,440 to 3,817,840, a gain of 6,400 bytes.
+- Source-linked data: 1,194,063 to 1,198,167, a gain of 4,104 bytes.
+- Linked units: 3,596 to 3,597. Every linked unit remains exact.
 - Total code, data and function counts are unchanged. There are no regressions.
 
 All thirteen functions and all four allocated sections score 100%. An independent
@@ -157,7 +169,7 @@ adds its four existing BSS exports.
 There is one disclosed ELF representation difference: the DTK split marks
 `.sdata2` allocated/read-only (`A`), while the native compiler emits allocated/
 writable (`WA`). A census of the sealed current main finds the same difference
-in 542 already-linked units, including `TAdADXlogo` and `TBoss2Tentacle`.
+in 543 already-linked units, including `TAdADXlogo` and `TBoss2Tentacle`.
 Changing the version pointer's volatile spelling does not change it. No compiler
 control or object patch is added to force ELF flags. This is not whole-ELF byte
 identity; payloads, relocations, final addresses and DOL bytes are the checks.
