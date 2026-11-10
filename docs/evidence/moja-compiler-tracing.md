@@ -4,8 +4,33 @@ Date: 2026-11-10. Follow-up to the
 [first index investigation](moja-constructor-index-investigation.md), using the
 same immutable PR 394 head `2484bc5ae9d6042a06d935a27663696d7d2bb99e`, fresh
 original-object split, CodeWarrior GC/2.6, and isolated investigation worktree.
-This records the investigation before production integration; the source and
-current checks establish whether a candidate has since landed.
+The investigation sections below record the original experiments. The subsequent
+integration checkpoint records the replacement's complete linked validation;
+the current branch determines whether that replacement has landed.
+
+## Replacement integration checkpoint
+
+The replacement applies the minimal byte-offset form, retaining the existing
+clamps and compiler flags. The multiply/divide spelling is removed from source
+and from the active exception description; the scoped clamp CSE pragma remains
+documented. The independent field-clamp and inline-helper candidates were not
+included in this change.
+
+Validation used current-main code at
+`1a18b4bd7577af4ee367317064e020d1f91ce5a8`; the documentation-only base
+`79768ce7da340723a8b6b559bca32fbdd705a5b2` has identical build inputs. Both the
+unchanged baseline and replacement passed `python3 tools/check_pr.py`, using
+fresh split objects/configuration and the pinned toolchain:
+
+- Rebuilt DOL SHA-1: `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
+- All 3,590 linked units remain exact; force-active additions/removals: 0/0.
+- Exact functions: 27,416 → 27,416; matched code: 4,213,640 → 4,213,640 bytes;
+  matched data: 1,472,575 → 1,472,575 bytes.
+- Linked code: 3,737,624 → 3,737,624 bytes; linked data:
+  1,190,727 → 1,190,727 bytes. No coverage or denominator changes.
+- Moja's owned section bytes, allocated sizes/alignment, function order,
+  defined globals, and resolved relocations equal the baseline.
+- `python3 tools/list_port_exceptions.py --check` and `git diff --check` pass.
 
 ## Findings and recommendation
 
@@ -22,9 +47,10 @@ strongest route to removing both workarounds remains recovery of the earlier
 Moja functions and their shared literal pool.
 
 An independent cleanup also matches: compare the probability fields directly
-instead of copying them into two `chance` locals. Candidate patches are prepared
-under ignored `build/`; no production source, configuration, split, or PR was
-changed. This round did not perform a full-game link or `check_pr.py`.
+instead of copying them into two `chance` locals. The research round prepared
+candidate patches under ignored `build/` and did not change production source,
+configuration, splits, or a PR. It stopped at object comparisons; the subsequent
+full-game integration check is recorded above.
 
 ## What the original compiler actually does
 
@@ -141,7 +167,7 @@ allocated sizes/alignment, function order, defined globals, and resolved
 relocations all agree. All six functions match the fresh original target;
 `.text` is 2,204 bytes, `.data` 776, and `.sdata2` 8. The minimal candidate was
 also independently replayed with the recorded production compiler command.
-Integration would still require the repository's normal linked validation.
+These research checks preceded the complete linked validation recorded above.
 
 ## Reproducing the method
 
