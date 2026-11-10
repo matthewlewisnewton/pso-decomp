@@ -1,6 +1,6 @@
 # Modem command-path recovery
 
-Base: fork main `f0f05f3afe56fd2b71e9dc1fe946e2fa03c84b86`.
+Initial base: fork main `f0f05f3afe56fd2b71e9dc1fe946e2fa03c84b86`.
 Reference: upstream `8c507b2dacae5428291a823c3868ca486419660c`, including
 network C recovery #213 (`76d99c974ba4897eca428c505be1af4d4f6ec124`) and
 modem initializer recovery #243 (`23795dfa1d27576b0cd4034d2fb37c47583969ab`).
@@ -212,3 +212,43 @@ coverage and unit counts are unchanged. ModemRuntime is 14/25 exact functions
 and its original 0x120-byte BSS coverage is unchanged. The complete current-main
 comparison and the incremental comparison both retain every byte in all nine
 strict coverage/exactness/link categories. This remains partial progress.
+
+
+## Pinned-main integration validation
+
+The branch integrates pinned main
+`1a18b4bd7577af4ee367317064e020d1f91ce5a8` through merge
+`f2ff3e6efa` after the transmit increment `b3b48349b6`. The merge is clean;
+main's rope and ADX recovery, shared declarations and generated metadata are
+preserved. The same modem code and storage remain under review.
+
+The sealed shared main baseline is authenticated by its exact commit/tree,
+tracked-source manifest, active object inputs, toolchain and generated build
+artifacts before its report is reused. No redundant main build is run. The
+candidate receives its own capacity-gated native build with fresh split objects.
+It reproduces the original DOL SHA-1. `check_pr.py`, all nine strict no-loss
+categories, linked-unit/retention and exception-inventory checks pass against
+that exact main baseline.
+
+| Measure | Pinned main | Candidate | Change |
+| --- | ---: | ---: | ---: |
+| Exact functions | 27,416 | 27,418 | +2 |
+| Exact code bytes | 4,213,640 | 4,214,300 | +660 |
+| Exact data bytes | 1,472,575 | 1,472,575 | 0 |
+| Source-linked code bytes | 3,737,624 | 3,737,624 | 0 |
+| Source-linked data bytes | 1,190,727 | 1,190,727 | 0 |
+| Linked units | 3,590 | 3,590 | 0 |
+
+Relative to the earlier published branch, main itself removes four unallocated
+`.sdata2` padding bytes at `[0x805DAA54, 0x805DAA58)`. This inherited main
+accounting change is disclosed separately; the fresh pinned-main comparison
+loses no original coverage, exactness or source-linked interval. All 268
+source-tool tests and changed-line whitespace checks pass. Modem's full
+BSS extent and existing exact functions remain unchanged throughout.
+
+Actual ELF linker inputs still select the original modem fallback and the
+source transport/session objects. ModemRuntime remains 14/25 exact functions,
+with six recovered non-exact bodies and five missing bodies. A passing full
+DOL is not evidence that those held bodies are source-linked. The branch stays
+draft; neither callback cleanup nor matching gains resolves its storage,
+remaining data-layout or frame-recovery holds.
