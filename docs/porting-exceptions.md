@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (network runtime recovery on main `fe6cdb141`, 2026-11-09)
+## Summary (keyboard recovery on main `224eb9983`, 2026-11-09)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after network runtime recovery on main `fe6cdb141` (2026-11-09). Assembly is counted as source lines;
+after keyboard recovery on main `224eb9983` (2026-11-09). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,772 | 876 |
+| CodeWarrior pragmas (excluding push/pop) | 5,771 | 875 |
 | Per-unit compiler overrides in `configure.py` | 176 | 176 |
 | Approved regressions | 0 | 0 |
 
@@ -83,7 +83,7 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,772 pragmas in 876 files; per-file table in the generated file. Main kinds:
+5,771 pragmas in 875 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 837,
 `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237,
 `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56,
@@ -158,6 +158,13 @@ small float differences without FMA).
 | File | Scope | What remains | Port should |
 |---|---|---|---|
 | `src/pso/unk/text_80421620.cpp` | DHCP timer/request/discovery and previously exact code now linked | Provisional class wrappers on packet buffers, fixed reply/options offsets, 32-bit pointer/callback words, native byte-order and volatile-state assumptions; existing optimizer steering and release-frame padding. The new callback header makes callback declarations consistent. See [evidence](evidence/dhcp-focused-recovery.md). | Use shared typed packet/state definitions, explicit byte order and length checks, pointer-sized handles and appropriate synchronization; remove optimizer-only constraints. |
+
+### Keyboard control recovered from upstream #208
+
+| File | Function / scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TKeyBoardControl.cpp` | Keyboard glyph/tab and key-frame drawing | Existing scoped `pool_data off` and `fp_contract` pragmas, provisional receiver/layout views and explicit mangled helper names | Native table references, floating-point instructions and class boundaries; see [the evidence](evidence/upstream-keyboard-control.md). The existing `opt_loop_invariants off` is removed. | Drop optimizer steering, preserve required floating-point semantics, and consolidate keyboard/rendering types. |
+| `src/pso/misc/TWindowSubStatusDisp_8024FBA8.cpp` | Font-code mapper declaration | Existing wide input declaration remains `s32`, while the shared mapper interface takes `u16`; return type is corrected to `u16` | Narrowing the caller declaration changes original instruction selection. The new glyph-drawing signature is consistent in all callers, but this neighboring legacy boundary remains unresolved. | Use the shared narrow mapper interface and explicit character decoding; do not preserve the declaration discrepancy. |
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
