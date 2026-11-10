@@ -26,6 +26,8 @@ struct TWindowKeyBoardHard : public TWindowBase {
     u32 m_6c;
     u32 m_70;
     void release_keyboard();
+    void reset_input_state();
+    void reset_composer_input_flags();
     s32 translate_key_char(u8 key, u16 *output);
     s32 get_input_mode();
     void enable_keyboard_led();

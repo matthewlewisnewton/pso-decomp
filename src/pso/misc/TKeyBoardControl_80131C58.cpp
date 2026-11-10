@@ -1,7 +1,6 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TKeyBoardControl_80131C58.h"
-#include "pso/misc/TKeyBoardControl_8025EC04.h"
 #include "pso/misc/TKeyBoardControl_803F0C50.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -17,7 +16,6 @@
 #include "pso/misc/TWindowKeyBoardHard_802601D4.h"
 #include "pso/misc/TWindowKeyBoardSoft_80261440.h"
 #include "pso/misc/TKeyBoardControl_8025CB70.h"
-#include "pso/unk/text_8025FF8C.h"
 
 struct RecoveredGlobal_80131C5C_lbl_8050E208 {
     s32 value;
@@ -94,7 +92,7 @@ void run_task__16TKeyBoardControlFv(TKeyBoardControl *key_board_control) {
         temp_r5 = temp_r3 * 0x50;
         if (TWindowShortListCtrl__check_controller_button((void *) ((u8 *)&controller_input_state.value + temp_r5 + 0x20), 0x200, temp_r5) != 0) {
             key_board_control->m_1c = (u16) (key_board_control->m_1c & 0xFFFE);
-            TKeyBoardControl__sub_8025EC04((u8 *)key_board_control->m_24);
+            ((TWindowKeyBoardHard *)key_board_control->m_24)->reset_input_state();
             if ((u32) key_board_control->m_28 != 0U) {
                 window_request_show(*(void **)((s8 *)key_board_control + 0x28));
             }
@@ -137,7 +135,7 @@ TKeyBoardControl *TKeyBoardControl__ct(TKeyBoardControl *self, TObject *parent, 
     ((TWindowKeyBoardBase *)self->m_20)->set_flag62_bit8();
     o = new TWindowKeyBoardHard((TWindowKeyBoardBase *)self->m_20);
     self->m_24 = (u32)o;
-    TKeyBoardControl__sub_8025EC04((u8 *)self->m_24);
+    ((TWindowKeyBoardHard *)self->m_24)->reset_input_state();
     o = __nw__7TObjectFUl(0x70);
     if (o != NULL) {
         o = TWindowKeyBoardSoft__ct((u8 *)o, self->m_20, client);
@@ -147,7 +145,7 @@ TKeyBoardControl *TKeyBoardControl__ct(TKeyBoardControl *self, TObject *parent, 
     case 0:
         self->m_1c |= 2;
         ((TWindowKeyBoardBase *)self->m_20)->set_input_flags_12();
-        fn_8025FF8C((void *)self->m_24);
+        ((TWindowKeyBoardHard *)self->m_24)->reset_composer_input_flags();
         ((TKeyBoardControl *)self->m_28)->release();
         break;
     case 1:

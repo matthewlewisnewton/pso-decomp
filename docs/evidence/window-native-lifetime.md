@@ -421,3 +421,11 @@ base call and subsequent word reload/update. All five complete selected source
 objects and their relocation/data provenance remain exact. Soft outer owners,
 adjacent record/language helpers and all lifetime/constant/provider holds remain
 qualified; no source activation or metric gain is claimed.
+
+
+The [Hard state-forwarding follow-up](window-hard-state-forwarding.md) recovers
+two actual Hard members and all ten observed calls from Control/Chat producers
+and Hard's own methods. Word widths, child guards, composer forwarding and
+language-specific state updates remain exact across all four complete selected
+source objects. The adjacent language helper, no-argument query and all lifetime,
+record, Soft and table/provider holds remain qualified; no metric gain is claimed.

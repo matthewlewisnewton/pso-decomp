@@ -1,7 +1,5 @@
 #include "types.h"
 #include "pso/misc/TKeyBoardControl_8025CB70.h"
-#include "pso/misc/TKeyBoardControl_8025EC04.h"
-#include "pso/unk/text_8025FF8C.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
 #include "pso/misc/KeyboardCharacterMaps.h"
 #include "pso/misc/TKeyBoardControl.h"
@@ -49,9 +47,9 @@ u8 TKeyBoardControl__sub_8013239C(void *, u8);
 s32 TKeyBoardControl__sub_801A58B0(void);
 s32 set_input_mode__20TWindowSubStatusDispFUc(s32, s32);
 
-void TKeyBoardControl__sub_8025EC04(u8 *arg0) {
-    *(s32 *)((s8 *)arg0 + 0x68) = 0;
-    *(s32 *)((s8 *)arg0 + 0x60) = (s32) (*(s32 *)((s8 *)arg0 + 0x60) | 0x100);
+void TWindowKeyBoardHard::reset_input_state() {
+    m_68 = 0;
+    m_60 |= 0x100;
 }
 
 s32 TKeyBoardControl::is_printable_key(void *arg0, u8 arg1) {
@@ -551,7 +549,7 @@ void TWindowKeyBoardHard::enable_keyboard_led() {
     if ((u32) m_70 != 0U) {
         m_60 = (s32) (m_60 | 0x1000);
         ((TWindowKeyBoardBase *)m_70)->set_input_flags_212();
-        fn_8025FF8C(this);
+        reset_composer_input_flags();
     }
 }
 
@@ -559,7 +557,7 @@ void TWindowKeyBoardHard::enable_kana_led() {
     if ((u32) m_70 != 0U) {
         m_60 = (s32) (m_60 | 0x800);
         ((TWindowKeyBoardBase *)m_70)->set_input_flags_112();
-        fn_8025FF8C(this);
+        reset_composer_input_flags();
     }
 }
 
@@ -567,7 +565,7 @@ void TWindowKeyBoardHard::enable_caps_led() {
     if ((u32) m_70 != 0U) {
         m_60 = (s32) (m_60 | 0x400);
         ((TWindowKeyBoardBase *)m_70)->set_input_flags_92();
-        fn_8025FF8C(this);
+        reset_composer_input_flags();
     }
 }
 
