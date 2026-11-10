@@ -6,12 +6,28 @@
 #include <stddef.h>
 
 class TObjPlayer;
+class TUnk_804C349C;
+
+// The admission code supplies four 0x18-byte entries to the sequence task.
+struct PhotonBlastSlot {
+    u8 data[0x18];
+};
+
+struct PhotonBlastChain {
+    s32 kinds[4];
+    u32 participants[4];
+    s32 state;
+};
+
+extern PhotonBlastChain photon_blast_sequence_table[4];
+void apply_photon_blast_action_hold(TUnk_804C349C *sequence, s32 duration, s32 client);
 
 // The photon-blast sequence task. run_task stores the owner at +0x38 from the
 // client id at +0x3C and passes this object to the result deliveries.
 // calc_photon_blast_power reads that owner; it is not a TObjPlayer method.
 class TUnk_804C349C : public TObject {
 public:
+    TUnk_804C349C(s32 client, PhotonBlastSlot *slots, const s32 *counts, s32 animated, s32 delay);
     virtual ~TUnk_804C349C();
     void update_and_destroy();
     virtual void run_task();

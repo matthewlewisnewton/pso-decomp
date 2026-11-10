@@ -868,3 +868,32 @@ This reconciliation carries main's recovery without attributing its new match
 to this branch. Lengthless scanning, allocator/output-pointer questions and
 metadata holds remain unchanged. No exhausted probe or held write is retried.
 Keep draft pending exact-head review and CI.
+
+
+## Network configuration and photon-blast refresh through `9dcde8562`
+
+Refresh reviewed head `19f7ad1f2` against main
+`9dcde8562fbd176110243274f18215c3cbbbc19a`. No competing owner is active.
+Source, splits, retention and configuration merge automatically; all 17
+incoming source/header paths (including deletions) match main. Preserve
+main's network-config lifecycle split/profile and photon-blast recovery.
+Only the curated and generated exception summaries conflict: regenerate the
+inventory, retain main's initializer evidence, and align the summary to
+5,773 pragmas in 876 files, 186 overrides and 263 scheduling pragmas. The
+existing DHCP scanner/lease/volatile and selection-predicate files are unchanged.
+
+Fresh capacity-gated main and candidate builds reproduce original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Complete network-config lifecycle,
+player-load and photon-blast objects compare byte-for-byte to fresh main,
+including metadata/relocations. They remain exact and source-linked: 3/3,
+9/9 and 8/8 respectively. Full fresh-main comparison passes: zero new
+functions/code, existing +88 matched/linked data bytes and no losses. All
+3,583 linked units and 17,799 retention entries pass without drift. Main
+has 3,584 linked units; the existing branch fold explains the difference.
+Host vector/item-factory tests, exception inventory and whitespace pass.
+
+The unchanged-main baseline report is pinned locally with its build, original
+DOL and retention-check provenance so other owners can verify and reuse it;
+no binaries are shared. This refresh claims no match beyond main. All length,
+allocator/output-pointer and metadata holds remain. No exhausted probe or
+held write is retried. Keep draft pending exact-head review and CI.
