@@ -42,7 +42,8 @@ struct TBoss7Joint : public TObjEneDD {
 typedef char TBoss7Joint_size[sizeof(TBoss7Joint) == 0x3C8 ? 1 : -1];
 
 extern "C" {
-u8 *TBoss7Joint__ct(u8 *arg0, u8 *arg1, s16 arg2, s16 arg3, s32 arg4, s32 arg5);
+TBoss7Joint *TBoss7Joint__ct(TBoss7Joint *joint, TBoss7DeRolLeC *boss, u16 entity_id, s16 set_index,
+                            Vec *position, s32 segment);
 void TBoss7Joint__vt85(void);
 void *__dt__11TBoss7JointFv(void *arg0, s16 arg1);
 }

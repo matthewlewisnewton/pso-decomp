@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `f0f05f3afe56`, 2026-11-10)
+## Summary (regenerated after merging main `fffd67d0c35e`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `f0f05f3afe56` (2026-11-10). Assembly is counted as source lines;
+after merging main `fffd67d0c35e` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,770 | 878 |
-| Per-unit compiler overrides in `configure.py` | 188 | 188 |
+| CodeWarrior pragmas (excluding push/pop) | 5,775 | 879 |
+| Per-unit compiler overrides in `configure.py` | 189 | 189 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -89,11 +89,11 @@ preserve the graph's exported constants and format strings. See
 [download graph recovery](evidence/download-graph-recovery.md) for the
 compiler and data layout evidence.
 
-5,773 pragmas in 877 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1146, `inline_depth` 1038, `fp_contract` 877, `auto_inline` 837,
-`opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237,
-`readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56,
-`defer_codegen` 53, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
+5,775 pragmas in 879 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1143, `inline_depth` 1035, `fp_contract` 878, `auto_inline` 833,
+`opt_common_subs` 611, `scheduling` 263, `opt_propagation` 239,
+`readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
+`defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -128,6 +128,13 @@ same helpers with ordinary inlining and native pointer-sized handles.
 | `src/pso/object/TObjDFDemo4.cpp` | Constructor at `0x8004F6AC` | Weak linkage for the strip-node table | With strong linkage CodeWarrior pools the strip table and both camera initializers under a shared `.rodata` base. Weak linkage preserves the original direct relocations and keeps the shared `.data` base for the motion tables and vtable. | Use the same const table with ordinary linkage. |
 | `configure.py` | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | The two eight-byte afterimage index tables use normal data addressing. The class-name pointer still uses small data. | Use ordinary arrays and a string pointer. |
 
+### Lobby spatial audio and guild-card startup
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_802409AC.cpp` | `calc_sound_spatial_params` at `0x80241C84` | Scoped `opt_propagation off` and `opt_lifetimes off` | Keeping the quarter-turn adjustments separate preserves the angle instruction order. The lifetime setting preserves the register assignment and operand order of the surround add at `0x80241F2C`. The direct signed-byte conversion emits the original pan truncation and sign extension. | Drop the pragmas and preserve the float evaluation and integer truncation. |
+| `configure.py` | `pso/misc/TLobby_802409AC.cpp` | `-sym on` and source-private tail header | CodeWarrior emits the startup routine at `0x8024287C` at the end of the first text contribution and places the record constructor and two accessors in the following contribution. Without source-file sections, the compiler puts the startup routine after all three functions. | Use the ordinary C++ globals and constructor. The source-file sections preserve the GameCube link order. |
+
 ### Dark Falz Type 1 death cutscene
 
 | File | Scope | What | Why | Port should |
@@ -160,6 +167,12 @@ changes all nine preceding card-loading functions. The provisional split now
 places the initializer with the adjacent network-config update and teardown
 routines under the existing ntInf profile. Ports use the plain `s32` parameter
 and the same function body.
+
+### Barba Ray constructor at `0x802EDE90`
+
+| File | What | Why | Port should |
+|---|---|---|---|
+| `src/pso/unk/text_802EDE90.cpp` | Scoped `opt_common_subs off`, `opt_propagation off`, and `opt_lifetimes off` | With CSE enabled the vector resets share a computed address instead of using indexed stores (96.78%, 1,600 bytes). Propagation reloads the data-bank address before installing the vtable (99.21%, 1,624 bytes). Lifetime splitting changes register allocation for the part and matrix loops (99.53%, 1,616 bytes). The three pragmas together preserve all 1,616 bytes with the existing unit flags. | Drop the optimizer pragmas. Keep the initialization order and use the target compiler's ordinary constructor and virtual dispatch when porting the rest of the class. |
 
 ### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
 
@@ -253,7 +266,7 @@ and the same function body.
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-188 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+189 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The

@@ -6954,6 +6954,10 @@ pso/player/TObjPlayer_801E483C.cpp:
 
 pso/misc/TLanguage_801E4874.cpp:
 	.text       start:0x801E4874 end:0x801E4BCC
+	.sbss       start:0x805D5E58 end:0x805D5E5C
+
+original_unclaimed_805D5E5C:
+	.sbss       start:0x805D5E5C end:0x805D5E60 align:4
 
 pso/unk/text_801E4BCC.cpp:
 	.text       start:0x801E4BCC end:0x801E4CF0
@@ -8056,7 +8060,7 @@ pso/misc/TLobby_802409AC.cpp:
 	.ctors      start:0x80433FB8 end:0x80433FBC
 	.rodata     start:0x8044E5C0 end:0x8044E5C8
 	.data       start:0x804CDA50 end:0x804CDC88
-	.bss        start:0x80517EE0 end:0x80518580
+	.bss        start:0x80517EE0 end:0x8051857C
 	.sdata2     start:0x805DC9E0 end:0x805DCA00
 
 pso/misc/TWindowSubStatusDisp_80242908.cpp:
@@ -9097,7 +9101,7 @@ pso/misc/TWindowSubShortMail_8027E620.cpp:
 pso/unk/text_8027FCE4.cpp:
 	.text       start:0x8027FCE4 end:0x8027FD88
 
-pso/unk/text_8027FD88.cpp:
+pso/misc/TWindowSubStatusDispPages.cpp:
 	.text       start:0x8027FD88 end:0x80281198
 	.rodata     start:0x8044FB00 end:0x8044FB08
 
