@@ -7,7 +7,9 @@ and typed follow-up [#215](https://github.com/zeroz41/pso-decomp/pull/215),
 checked at upstream `dd7a1a2d6e200a69462fff12172ff35aaa460c93`.
 Its `NetDispatcher.c` and `NetTcp.c` own the same code and BSS ranges below.
 This change extracts the fork's existing C++ bodies and shared interfaces;
-it does not import upstream's C rewrite or recover additional functions.
+it does not import upstream's C rewrite or recover additional functions. The
+follow-up below improves the dispatcher's state accesses while preserving its
+complete native object.
 
 ## Boundaries and source ownership
 
@@ -61,19 +63,71 @@ upstream catch-up register stays at 521 entries.
 Remaining inherited constraints are recorded in section 4 of the
 [porting exceptions register](../porting-exceptions.md):
 
-- Dispatcher reset/shutdown and handler-release functions still use overlapping
-  provisional struct views and raw offsets. The thread fields are still accessed
-  through `unknown_08`; handles and payloads are 32-bit. Replace these with one
-  typed state and target-appropriate handle/payload types in a port.
+- Dispatcher reset/shutdown and handler release now use the shared state and
+  named fields. Handles and payloads remain 32-bit, and the final four state bytes
+  remain unresolved. Use target-appropriate handle/payload types in a port.
 - Existing `TLobby` / `TUdpSocket` wrappers do not establish actual class ownership.
-  The block-local `NetResumeThread(s32)` declaration and legacy mangled handler
-  registration name remain as on main. Consolidate these with the runtime API.
+  The block-local `NetResumeThread(s32)` redeclaration is removed in favor of the
+  shared runtime declaration. The legacy mangled handler-registration name and
+  the thread creator's callback/return-type mismatch remain unresolved.
+- The reset definition now explicitly returns the runtime's `s32` status, but
+  DHCP's legacy `s16(int)` caller declaration remains incompatible. The follow-up
+  below records why this is not a completed ABI repair.
 - TCP still contains overlapping record views, raw packet offsets, provisional
   member calls, local signed/unsigned status declarations, pointer/integer casts,
   and optimizer-only locals. Preserve the original native ABI for this split;
   a future typed recovery should consolidate callers and callees together.
 - Timer wraparound and synchronization behavior remain the original implementation.
   Native byte matching is not a portable runtime/concurrency validation.
+
+## Typed dispatcher follow-up (2026-11-10)
+
+The fork main is still `387621104107ed1ff8c650bf2f50ef00c6859ba4`, already
+an ancestor of the original PR head `205d83303ed37d03efba67768825b867c4c77b2e`;
+no main integration is needed. The dispatcher is already fully exact and linked,
+so this follow-up improves source quality rather than claiming new recovered bytes.
+
+- Replace the reset/shutdown per-function state views and the handler-release
+  overlay with `NetworkDispatchState` and its existing handler records. Remove
+  the unused duplicate views and lifecycle declarations from the old prefix.
+- Name the protocol and timer thread handles at offsets `0x08` and `0x0C`.
+  Their creation callbacks, shutdown order and yield checks establish these roles;
+  upstream #215 uses the same two slots. Offset assertions pin both fields.
+  Keep them unsigned, as the old yield check's `u32 *` view and the runtime's
+  `u32 *` output/`u32` resume argument require. A signed-field probe changed the
+  yield function's two unsigned comparisons and was rejected.
+- Preserve the reset range through `offsetof(NetworkDispatchState, unknown_F4)`
+  with a new offset assertion. Both reset functions still clear only `0xF4` bytes,
+  not the whole `0xF8`-byte object. The trailing four bytes stay untouched.
+- Use the shared `NetResumeThread(u32)` declaration. The thread creator's output
+  declaration is now `u32 *`, matching its definition; its inherited callback and
+  narrow return declaration are not claimed as a unified runtime contract.
+
+### Reset status boundary remains unresolved
+
+`TLobby__sub_80419A34` calls `TLobby__sub_803F8E9C`, whose definition returns
+`s32` success/failure. The dispatcher now explicitly forwards that result and
+its canonical header declares `s32(void)`, as upstream #215 does. That callee
+change is byte-identical. DHCP's `TLobby::init_network_stack` still declares it
+as `s16(int)`, passes an unused count, and consumes the result as signed 16-bit
+status. The older `void(void)` definition did not describe this behavior.
+
+A probe with one shared `s32(void)` declaration, a no-argument call and the
+existing `s16` status local was rejected: `init_network_stack` fell to
+97.608696%, its frame grew from `0x10` to `0x18`, and the result copy gained
+sign extension. The caller is retained unchanged, with an explanatory comment.
+This partial callee correction does **not** repair the cross-unit mismatch.
+Consolidating that boundary requires a separate caller/callee recovery that
+preserves both complete objects; no frame padding or compiler steering is added.
+
+The final dispatcher, DHCP, prefix and TCP source objects are each byte-identical
+to their pre-cleanup objects, including object metadata and relocations. Raw
+objdiff with `functionRelocDiffs=data_value` confirms dispatcher 12/12 and DHCP
+42/42 functions exact and their code/BSS sections at 100%. Full build and
+`tools/check_pr.py` pass against both current main and the original PR head.
+No exact function, data, linked range, padding coverage or retention entry is lost.
+The cleanup adds no linked bytes beyond the extraction totals below and changes
+no compiler exception counts or link inputs.
 
 ## Validation
 

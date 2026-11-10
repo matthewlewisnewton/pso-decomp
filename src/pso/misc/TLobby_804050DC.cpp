@@ -262,16 +262,6 @@ struct RecoveredGlobal_8040FF0C_lbl_805C1B78 {
     Ipv6Header hdr;
 };
 
-struct RecoveredGlobal_80419A34_lbl_805C1C50 {
-    s32 value;
-    u8 remaining[0xF4];
-};
-
-struct RecoveredGlobal_80419A7C_lbl_805C1C50 {
-    s32 value;
-    u8 remaining[0xF4];
-};
-
 struct RecoveredGlobal_80409A3C_lbl_805C1C50 {
     s32 value;
     u8 remaining[0xF4];
@@ -587,7 +577,6 @@ void NetIPv6TickNeighborCache(void);
 void NetIPv6TickNeighborDiscovery(void);
 s32 NetIPv6SendUnspecifiedSourceNeighborSolicitation(s32 arg0, s32 arg1);
 extern NetworkDispatchState network_dispatch_state;
-void TLobby__sub_80419A00(void);
 s32 TLobby__sub_8041D368(u8 *arg0);
 u8 * TLobby__sub_8041B5C0(void *);
 extern RecoveredGlobal_8041E178_lbl_805C1D48 tcp_protocol_state;
@@ -612,8 +601,6 @@ s32 NetIPv6Shutdown(void);
 void TLobby__sub_803F89D8(void *);
 extern Pool_80415690 network_buffer_pool_state;
 s32 TLobby__sub_803F8E9C();
-void TLobby__sub_80419A34(void);
-s32 TLobby__sub_80419A7C(void);
 s16 TLobby__sub_8041579C(void *);
 s32 TLobby__sub_8041EB74(u8 *arg0);
 s16 TLobby__sub_80409A3C(u8 *arg0, s16 arg1);

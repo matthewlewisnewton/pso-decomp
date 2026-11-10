@@ -3,15 +3,6 @@
 #include "pso/misc/TUdpSocket.h"
 #include "pso/protocol/NetworkRuntime.h"
 
-struct RecoveredGlobal_80419A34_lbl_805C1C50 {
-    s32 value;
-    u8 remaining[0xF4];
-};
-struct RecoveredGlobal_80419A7C_lbl_805C1C50 {
-    s32 value;
-    u8 remaining[0xF4];
-};
-
 extern "C" {
 typedef void (*Handler_8041A130)(s32, s16, s16, s16);
 s32 TLobby__sub_803F8E9C();
@@ -20,46 +11,42 @@ void TLobby__sub_803F9344(s32, void *, s32);
 
 NetworkDispatchState network_dispatch_state;
 
-typedef char NetworkDispatchState_size[sizeof(NetworkDispatchState) == 0xF8 ? 1 : -1];
 void TLobby__sub_80419A00(void) {
-    NetMemset((void *) (&network_dispatch_state.lock_handle), 0, 0xF4);
+    NetMemset(&network_dispatch_state.lock_handle, 0, offsetof(NetworkDispatchState, unknown_F4));
     TLobby::cancel_pending_alarms();
 }
 
-typedef char RecoveredGlobal_80419A34_lbl_805C1C50_size[sizeof(RecoveredGlobal_80419A34_lbl_805C1C50) == 0xF8 ? 1 : -1];
-void TLobby__sub_80419A34(void) {
-    NetMemset((void *) (&(*(RecoveredGlobal_80419A34_lbl_805C1C50 *)&network_dispatch_state).value), 0, 0xF4);
-    *(s32 *)((s8 *)(&(*(RecoveredGlobal_80419A34_lbl_805C1C50 *)&network_dispatch_state).value) + 0x10) = 0x1E;
-    TLobby__sub_803F8E9C();
+s32 TLobby__sub_80419A34(void) {
+    NetMemset(&network_dispatch_state.lock_handle, 0, offsetof(NetworkDispatchState, unknown_F4));
+    network_dispatch_state.interval = 0x1E;
+    return TLobby__sub_803F8E9C();
 }
 
 #pragma push
 #pragma opt_common_subs on
-typedef char RecoveredGlobal_80419A7C_lbl_805C1C50_size[sizeof(RecoveredGlobal_80419A7C_lbl_805C1C50) == 0xF8 ? 1 : -1];
 s32 TLobby__sub_80419A7C(void) {
-    TLobby::lock_mutex((int)((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80419A7C_lbl_805C1C50 *)&network_dispatch_state).value) + 0))));
-    ((TLobby *)(*(s32 *)((s8 *)(&(*(RecoveredGlobal_80419A7C_lbl_805C1C50 *)&network_dispatch_state).value) + 0xC)))->cancel_thread_if_running();
-    ((TLobby *)(*(s32 *)((s8 *)(&(*(RecoveredGlobal_80419A7C_lbl_805C1C50 *)&network_dispatch_state).value) + 8)))->cancel_thread_if_running();
-    TLobby::deactivate_entry_by_key((u32)((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80419A7C_lbl_805C1C50 *)&network_dispatch_state).value) + 0xC))));
-    TLobby::deactivate_entry_by_key((u32)((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80419A7C_lbl_805C1C50 *)&network_dispatch_state).value) + 8))));
-    TLobby::clear_slot_for_handle((u32)((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80419A7C_lbl_805C1C50 *)&network_dispatch_state).value) + 4))));
-    TUdpSocket::unlock_mutex((int)((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80419A7C_lbl_805C1C50 *)&network_dispatch_state).value) + 0))));
-    NetReleaseMutex((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80419A7C_lbl_805C1C50 *)&network_dispatch_state).value) + 0)));
+    TLobby::lock_mutex(network_dispatch_state.lock_handle);
+    ((TLobby *)network_dispatch_state.timer_thread_handle)->cancel_thread_if_running();
+    ((TLobby *)network_dispatch_state.protocol_thread_handle)->cancel_thread_if_running();
+    TLobby::deactivate_entry_by_key(network_dispatch_state.timer_thread_handle);
+    TLobby::deactivate_entry_by_key(network_dispatch_state.protocol_thread_handle);
+    TLobby::clear_slot_for_handle(network_dispatch_state.queue_handle);
+    TUdpSocket::unlock_mutex(network_dispatch_state.lock_handle);
+    NetReleaseMutex(network_dispatch_state.lock_handle);
     return 0;
 }
 #pragma pop
 
 s16 TLobby__sub_803F94F0(s32 *queue);
 s16 TLobby__sub_803F96AC(s32 *lock);
-s16 TLobby__sub_803F9B94(void (*fn)(void), s32 *thread);
+s16 TLobby__sub_803F9B94(void (*fn)(void), u32 *thread);
 void NetRunProtocolDispatchLoop(void);
 void NetRunTimerDispatchLoop(void);
 
 s16 NetInitializeDispatcher(void) {
     s32 *queue;
-    s32 *proto_thread;
-    s32 *timer_thread;
-    void NetResumeThread(s32 thread);
+    u32 *proto_thread;
+    u32 *timer_thread;
 
     queue = &network_dispatch_state.queue_handle;
     if (TLobby__sub_803F94F0(queue) < 0) {
@@ -69,13 +56,13 @@ s16 NetInitializeDispatcher(void) {
         TLobby::clear_slot_for_handle(*queue);
         return -0x100;
     }
-    proto_thread = &((s32 *)network_dispatch_state.unknown_08)[0];
+    proto_thread = &network_dispatch_state.protocol_thread_handle;
     if (TLobby__sub_803F9B94(NetRunProtocolDispatchLoop, proto_thread) < 0) {
         TLobby::clear_slot_for_handle(*queue);
         NetReleaseMutex(network_dispatch_state.lock_handle);
         return -0x100;
     }
-    timer_thread = &((s32 *)network_dispatch_state.unknown_08)[1];
+    timer_thread = &network_dispatch_state.timer_thread_handle;
     if (TLobby__sub_803F9B94(NetRunTimerDispatchLoop, timer_thread) < 0) {
         TLobby::deactivate_entry_by_key(*proto_thread);
         TLobby::clear_slot_for_handle(*queue);
@@ -92,7 +79,7 @@ void NetYieldOutsideDispatcherThread(void) {
     s32 self;
 
     NetStoreCurrentThread(&self);
-    if (self != ((u32 *)g->unknown_08)[0] && self != ((u32 *)g->unknown_08)[1]) {
+    if (self != g->protocol_thread_handle && self != g->timer_thread_handle) {
         TUdpSocket::unlock_mutex(g->lock_handle);
         NetYieldThread();
         TLobby::lock_mutex(g->lock_handle);
@@ -259,17 +246,14 @@ void NetRunProtocolDispatchLoop(void) {
     }
 }
 
-struct E_8041A0C0 { u8 pad[0x14]; s16 f14; u16 f16; s32 f18; };
-s32 TLobby::release_slot_by_id(u16 a) {
-    E_8041A0C0 *g = (E_8041A0C0 *)&network_dispatch_state;
-    E_8041A0C0 *p = g;
+s32 TLobby::release_slot_by_id(u16 type) {
+    NetworkDispatchState *g = &network_dispatch_state;
     s16 i;
-    for (i = 0; i < 3; p = (E_8041A0C0 *)((u8 *)p + 8), i++) {
-        if (p->f14 != 0 && p->f16 == a) {
-            E_8041A0C0 *q = (E_8041A0C0 *)((u8 *)g + i * 8);
-            q->f14 = 0;
-            q->f16 = 0;
-            q->f18 = 0;
+    for (i = 0; i < 3; i++) {
+        if (g->handlers[i].used != 0 && g->handlers[i].type == type) {
+            g->handlers[i].used = 0;
+            g->handlers[i].type = 0;
+            g->handlers[i].fn = NULL;
             return 0;
         }
     }
