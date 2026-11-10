@@ -1,21 +1,18 @@
 #include "types.h"
 #include "pso/audio/SoundRequestVoice.h"
+#include "pso/map/FloorArea.h"
+#include "pso/math/AngleLookup.h"
+#include "pso/misc/LobbyGuildCardRecord.h"
+#include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TLobby_8023F734.h"
 #include "pso/misc/TLobby_80242910.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
-
-typedef struct Entry_8024220C
-{
-  s32 id;
-  s32 f4;
-  char name[0x11];
-  char s19[0x11];
-  char s2A[0x11];
-  char s3B[0x11];
-  u8 f4C[0xC];
-  u8 ext[0x64];
-} Entry_8024220C;
+#include "pso/network/client_id.h"
+#include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/render/render_util.h"
 
 typedef struct Src_8024220C
 {
@@ -30,26 +27,32 @@ extern "C" {
 s32 __as__21TPlyMeetUserExtensionFRC21TPlyMeetUserExtension(void *, void *);
 s32 strncpy(void *, void *, int);
 s32 memset(void *, int, int);
-extern u8 selected_guild_card_record[];
 void load_selected_guild_card_record(Src_8024220C *arg0);
-void *__construct_array(void *, void *, void *, u32, u32);
 }
 void set_field0__6TLobbyFPvi(SoundRequestVoice *voice, void *owner) { voice->owner = (SoundRequestOwner *)owner; }
 
-extern const f32 TLobby__data_805DC9E0;
-extern const f32 lbl_805DC9E4;
-extern f32 lbl_805DC9E8;
+namespace {
+const f32 zero = 0.0f;
+const f32 defaultReverb = -1.0f;
+const f32 maxReverb = 1.0f;
+const f32 maxControllerValue = 127.0f;
+const f32 voiceMaxDistance = 300.0f;
+const f32 bossArenaDistanceScale = 2.0f;
+const f32 splitListenerDistanceLimit = 10000.0f;
+const f32 voiceMinDistance = 40.0f;
+const f64 angleUnitsPerRadian = 10430.38043493439;
+}
 
 void clamp_field9c__6TLobbyFPvf(void *arg0, f32 farg0) {
     f32 var_f1;
 
     var_f1 = farg0;
-    if (var_f1 < TLobby__data_805DC9E0) {
-        *(f32 *)((s8 *)arg0 + 0x9C) = (f32) lbl_805DC9E4;
+    if (var_f1 < zero) {
+        *(f32 *)((s8 *)arg0 + 0x9C) = (f32) defaultReverb;
         return;
     }
-    if (var_f1 > lbl_805DC9E8) {
-        var_f1 = lbl_805DC9E8;
+    if (var_f1 > maxReverb) {
+        var_f1 = maxReverb;
     }
     *(f32 *)((s8 *)arg0 + 0x9C) = var_f1;
 }
@@ -680,15 +683,13 @@ void TLobby__sub_80241798(Sound_80241798 *arg0) {
 
 void TLobby__sub_80241A0C(void) {  }
 
-extern const f32 lbl_805DC9EC;
-
 void send_sound_request_reverb(SoundRequestVoice *voice) {
     f32 request = voice->reverb;
     s32 amount;
-    if (request < TLobby__data_805DC9E0) {
+    if (request < zero) {
         if (voice->bank == 5 || (voice->flags & 0x10)) amount = 0;
-        else amount = s32(lbl_805DC9EC * voice->owner->reverb);
-    } else amount = s32(lbl_805DC9EC * request);
+        else amount = s32(maxControllerValue * voice->owner->reverb);
+    } else amount = s32(maxControllerValue * request);
     if (voice->bank == 6) {
         switch (voice->index) {
         case 12:
@@ -750,6 +751,126 @@ void clamp_params__6TLobbyFPv(void *arg0) {
     }
 }
 
+extern TCameraCtrl *camera_ctrl_instance;
+extern "C" f32 PSVECDistance(Vec *a, Vec *b);
+
+#pragma push
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+void calc_sound_spatial_params(SoundRequestVoice *voice) {
+    enum {
+        disablePan = 2,
+        disableAttenuation = 4,
+        disableSurround = 8
+    };
+    const s32 quarterTurn = 0x4000;
+    s32 pan = 0;
+    s32 attenuation = 0;
+    s32 surround = 0;
+
+    if (camera_ctrl_instance != NULL) {
+        Vec listener;
+        listener.x = camera_ctrl_instance->position.x;
+        listener.y = zero;
+        listener.z = camera_ctrl_instance->position.z;
+
+        if (voice->position != NULL) {
+            f32 distance;
+            f32 maxDistance = voiceMaxDistance;
+            if (get_current_floor_area() == AREA_DARK_FALZ || get_current_floor_area() == AREA_OLGA_FLOW) {
+                maxDistance *= bossArenaDistanceScale;
+            }
+
+            Vec source;
+            source.x = static_cast<const Vec *>(voice->position)->x;
+            source.y = zero;
+            source.z = static_cast<const Vec *>(voice->position)->z;
+
+            if (is_split_screen()) {
+                distance = splitListenerDistanceLimit;
+                // The original reads the camera count once before entering the loop.
+                TCameraCtrl::get_camera_id();
+                for (s32 i = 0; i < TCameraCtrl::get_camera_id(); ++i) {
+                    s32 id = TCameraCtrl::get_nth_view_player_id(i);
+                    if (id < 12) {
+                        TObjPlayer *player = get_player_by_client_id(id);
+                        if (player != NULL) {
+                            listener.x = player->position.x;
+                            listener.y = zero;
+                            listener.z = player->position.z;
+                        }
+                        f32 distanceSquared = horizontal_distance_squared(&listener, &source);
+                        if (distance > distanceSquared) {
+                            distance = distanceSquared;
+                        }
+                    }
+                }
+                if (splitListenerDistanceLimit != distance) {
+                    distance = newton_sqrtf(distance);
+                }
+            } else {
+                if (TLobby::is_camera_state_active()) {
+                    listener.x = camera_ctrl_instance->position.x;
+                    listener.y = zero;
+                    listener.z = camera_ctrl_instance->position.z;
+                } else {
+                    TObjPlayer *player = get_player_by_client_id(local_client_id);
+                    if (player != NULL) {
+                        listener.x = player->position.x;
+                        listener.y = zero;
+                        listener.z = player->position.z;
+                    }
+                }
+                distance = PSVECDistance(&listener, &source);
+            }
+
+            if (is_split_screen() || (voice->flags & disablePan)) {
+                pan = 0;
+            } else if (distance > zero) {
+                const TCameraCtrl *camera = camera_ctrl_instance;
+                const Vec *position = static_cast<const Vec *>(voice->position);
+                f32 z = position->z - camera->position.z;
+                f32 x = position->x - camera->position.x;
+                f32 angle = atan2_float(z, x);
+                s32 bearing = static_cast<s32>(angleUnitsPerRadian * angle);
+                s32 turn = static_cast<s32>(camera_ctrl_instance->m_194) + quarterTurn;
+                pan = static_cast<s8>(maxControllerValue * -sin_table_lookup(bearing + turn));
+            }
+
+            if (is_split_screen() || (voice->flags & disableSurround)) {
+                surround = 0;
+            } else {
+                const Vec *position = static_cast<const Vec *>(voice->position);
+                f32 angle = atan2_float(position->z - listener.z, position->x - listener.x);
+                s32 bearing = static_cast<s32>(angleUnitsPerRadian * angle);
+                s32 turn = static_cast<s32>(camera_ctrl_instance->m_194) - quarterTurn;
+                turn = bearing + turn;
+                f32 surroundScale = get_field_2a4__6TLobbyFPv(voice->owner);
+                f32 cosine = cos_table_lookup(turn);
+                surround = static_cast<s32>(distance * (cosine * surroundScale));
+            }
+
+            if (voice->flags & disableAttenuation) {
+                attenuation = 0;
+            } else {
+                f32 beyondMinDistance = distance - voiceMinDistance;
+                f32 distanceRange = maxDistance - voiceMinDistance;
+                f32 fraction = beyondMinDistance / distanceRange;
+                if (fraction < zero) {
+                    fraction = zero;
+                }
+                fraction *= maxControllerValue;
+                attenuation = -static_cast<s32>(fraction);
+            }
+        }
+    }
+
+    voice->spatial = attenuation;
+    voice->panSpatial = pan;
+    voice->surroundSpatial = surround;
+}
+#pragma pop
+
 s32 start_voice_fade(struct Voice_80241FD8 *v, s32 step) {
     switch (v->kind) {
     case 0:
@@ -808,7 +929,7 @@ s32 init_sound_voice__6TLobbyFPviiii(void *lobby, s32 arg1, s32 arg2, s32 arg3, 
     *(s16 *)((s8 *)lobby + 0x90) = 0;
     *(s16 *)((s8 *)lobby + 0x92) = 0;
     *(s32 *)((s8 *)lobby + 0x94) = 0;
-    *(f32 *)((s8 *)lobby + 0x9C) = (f32) lbl_805DC9E4;
+    *(f32 *)((s8 *)lobby + 0x9C) = (f32) defaultReverb;
     *(s32 *)((s8 *)lobby + 0x88) = 0;
     switch (*(s32 *)((s8 *)lobby + 0xC)) {
     case 0:
@@ -834,26 +955,6 @@ typedef struct Tag_802421C4 { s32 a; s32 b; } Tag_802421C4;
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-struct Pair_80242380 {
-    u8 c[8];
-};
-
-struct Ext_80242380 {
-    u8 bytes[0x64];
-};
-
-typedef struct Entry_80242380 {
-    s32 id;
-    s32 f4;
-    char name[0x11];
-    char s19[0x11];
-    char s2A[0x11];
-    char s3B[0x11];
-    Pair_80242380 f4C;
-    s32 f54;
-    Ext_80242380 ext;
-} Entry_80242380;
-
 extern "C" {
 s32 seq_jump__9TProtocolFPUcR21TPlyMeetUserExtension(int, void *, void *);
 extern RecoveredGlobal_8024259C_TLobby__data_8050AAAC TLobby__data_8050AAAC;
@@ -864,10 +965,10 @@ void text_builder_append(char *);
 void text_builder_reset();
 extern "C" {
 s32 send_find_user__9TProtocolFR16TPlyGuildCardTagUl(void *, Tag_802421C4 *, s32);
-extern unsigned char lbl_80517F9C[];
+extern LobbyGuildCardRecord lbl_80517F9C[8];
 void __copy(void *, void *, int);
-Entry_80242380 *copy_com_card_entry__6TLobbyFPvPv(Entry_80242380 *dst, Entry_80242380 *src);
-int TLobby__sub_8024273C(void*);
+LobbyGuildCardRecord *copy_com_card_entry__6TLobbyFPvPv(LobbyGuildCardRecord *dst, LobbyGuildCardRecord *src);
+void TLobby__sub_8024273C(void *);
 
 SoundRequestVoice::~SoundRequestVoice() {
     state = 0;
@@ -877,7 +978,9 @@ SoundRequestVoice::SoundRequestVoice() {
     state = 0;
 }
 s32 get_field_308__6TLobbyFPv(void* p) { return *(s32*)((char*)p + 0x308); }
-int forward_8024273C__6TLobbyFPv(void* p) { return TLobby__sub_8024273C(p); }
+void forward_8024273C__6TLobbyFPv(TUserAns &response) {
+    TLobby__sub_8024273C(&response);
+}
 
 void send_find_user_self_tag__6TLobbyFi(s32 arg0) {
     if ((u32) TLobby__protocol_instance != 0U) {
@@ -886,25 +989,20 @@ void send_find_user_self_tag__6TLobbyFi(s32 arg0) {
     }
 }
 
-typedef struct Entry_8024220C Entry_8024220C;
-typedef struct Src_8024220C Src_8024220C;
 void load_selected_guild_card_record(Src_8024220C *arg0) {
-  char *new_var;
-  void *p;
-  (*(Entry_8024220C *)&selected_guild_card_record).id = arg0->id;
-  (*(Entry_8024220C *)&selected_guild_card_record).f4 = 0;
-  memset((*(Entry_8024220C *)&selected_guild_card_record).name, 0, 0x11);
-  strncpy((*(Entry_8024220C *)&selected_guild_card_record).name, arg0->name, 0x10);
-  (*(Entry_8024220C *)&selected_guild_card_record).name[0x10] = 0;
-  new_var = arg0->list;
-  new_var = build_text_from_comma_list__6TLobbyFPv(new_var);
-  p = new_var;
-  p = ((void *)parse_csv_token__6TLobbyFPvPv((char *)(p), (char *)((*(Entry_8024220C *)&selected_guild_card_record).s19)));
-  p = ((void *)parse_csv_token__6TLobbyFPvPv((char *)(p), (char *)((*(Entry_8024220C *)&selected_guild_card_record).s2A)));
-  p = ((void *)parse_csv_token__6TLobbyFPvPv((char *)(p), (char *)((*(Entry_8024220C *)&selected_guild_card_record).s2A)));
-  parse_csv_token__6TLobbyFPvPv((char *)(p), (char *)((*(Entry_8024220C *)&selected_guild_card_record).s3B));
-  TLobby__sub_802422EC((*(Entry_8024220C *)&selected_guild_card_record).f4C, arg0->f64);
-  __as__21TPlyMeetUserExtensionFRC21TPlyMeetUserExtension((*(Entry_8024220C *)&selected_guild_card_record).ext, arg0->ext);
+  selected_guild_card_record.id = arg0->id;
+  selected_guild_card_record.f4 = 0;
+  memset(selected_guild_card_record.name, 0, 0x11);
+  strncpy(selected_guild_card_record.name, arg0->name, 0x10);
+  selected_guild_card_record.name[0x10] = 0;
+  char *p = arg0->list;
+  p = build_text_from_comma_list__6TLobbyFPv(p);
+  p = parse_csv_token__6TLobbyFPvPv(p, selected_guild_card_record.s19);
+  p = parse_csv_token__6TLobbyFPvPv(p, selected_guild_card_record.s2A);
+  p = parse_csv_token__6TLobbyFPvPv(p, selected_guild_card_record.s2A);
+  parse_csv_token__6TLobbyFPvPv(p, selected_guild_card_record.s3B);
+  TLobby__sub_802422EC(&selected_guild_card_record.f4C, arg0->f64);
+  __as__21TPlyMeetUserExtensionFRC21TPlyMeetUserExtension(&selected_guild_card_record.ext, arg0->ext);
 }
 
 void TLobby__sub_802422EC(void *arg0, void *arg1) {
@@ -922,11 +1020,11 @@ void find_and_load_com_card__6TLobbyFUi(u32 arg0) {
         if (arg0 == ((u32 (*)(void))TLobby__sub_802428F8)()) break;
     }
     if (i < n) {
-        copy_com_card_entry__6TLobbyFPvPv((Entry_80242380 *)(selected_guild_card_record), (Entry_80242380 *)(get_com_card_entry__6TLobbyFi(i)));
+        copy_com_card_entry__6TLobbyFPvPv(&selected_guild_card_record, (LobbyGuildCardRecord *)(get_com_card_entry__6TLobbyFi(i)));
     }
 }
 
-Entry_80242380 *copy_com_card_entry__6TLobbyFPvPv(Entry_80242380 *dst, Entry_80242380 *src) {
+LobbyGuildCardRecord *copy_com_card_entry__6TLobbyFPvPv(LobbyGuildCardRecord *dst, LobbyGuildCardRecord *src) {
     dst->id = src->id;
     dst->f4 = src->f4;
     __copy(dst->name, src->name, 0x11);
@@ -1007,26 +1105,8 @@ void TLobby__sub_8024259C(s32 arg0) {
 
 #pragma pop
 
-struct RecoveredGlobal_802426E8_lbl_80517F9C {
-    s32 value;
-    u8 remaining[0x5E0];
-};
-
-struct RecoveredGlobal_8024287C_lbl_80517EE0 {
-    s32 value;
-    u8 remaining[0xB8];
-};
-
-struct RecoveredGlobal_8024287C_lbl_80517F9C {
-    s32 value;
-    u8 remaining[0x5E0];
-};
-
 extern "C" {
-#define lbl_80517F9C (*(RecoveredGlobal_802426E8_lbl_80517F9C *)lbl_80517F9C)
 extern int com_card_entry_count;
-#define selected_guild_card_record (*(RecoveredGlobal_8024287C_lbl_80517EE0 *)selected_guild_card_record)
-#define lbl_80517F9C (*(RecoveredGlobal_802426E8_lbl_80517F9C *)lbl_80517F9C)
 u32 find_card_by_id__17TWindowSubComCardFUl();
 int fn_80077AA4(void*);
 s32 get_com_card_list__6TLobbyFPv();
@@ -1057,20 +1137,19 @@ void init_player_entry__6TLobbyFPvPv(u8 *arg0, u8 *arg1) {
     ((void* (*)(void*, void*))parse_csv_token__6TLobbyFPvPv)(p, arg0 + 0x3B);
 }
 
-typedef char RecoveredGlobal_802426E8_lbl_80517F9C_size[sizeof(RecoveredGlobal_802426E8_lbl_80517F9C) == 0x5E4 ? 1 : -1];
 void remove_com_card_entry__6TLobbyFi(s32 arg0) {
     u8 *lobby;
     if (arg0 < 7) {
-        lobby = (u8 *)&lbl_80517F9C.value + (arg0 * 0xBC);
+        lobby = (u8 *)lbl_80517F9C + (arg0 * 0xBC);
         move_words(lobby, lobby + 0xBC, (u32)((7 - arg0) * 0xBC) >> 2U);
     }
     (*(s32 *)&com_card_entry_count) -= 1;
 }
 
-int TLobby__sub_8024273C(void *p) {
+void TLobby__sub_8024273C(void *p) {
     u8 *entry;
     s32 slot = remove_com_card_by_id__6TLobbyFUi(*(u32 *)((u8 *)p + 0xC));
-    entry = (u8 *)&lbl_80517F9C.value;
+    entry = (u8 *)lbl_80517F9C;
     entry += slot * 0xBC;
     init_player_entry__6TLobbyFPvPv(entry, (u8 *)p);
     com_card_entry_count++;
@@ -1099,21 +1178,10 @@ void reset_state_805D63DC__6TLobbyFv(void*) { com_card_entry_count = 0; TLobby::
 void reset_state__6TLobbyFPv(void* p) { reset_state_805D63DC__6TLobbyFv(p); }
 void TLobby__sub_8024285C(void* p) { reset_state_805D63DC__6TLobbyFv(p); }
 
-typedef char RecoveredGlobal_8024287C_lbl_80517EE0_size[sizeof(RecoveredGlobal_8024287C_lbl_80517EE0) == 0xBC ? 1 : -1];
-typedef char RecoveredGlobal_8024287C_lbl_80517F9C_size[sizeof(RecoveredGlobal_8024287C_lbl_80517F9C) == 0x5E4 ? 1 : -1];
-void construct_entry_arrays__6TLobbyFv(void) {
-    TLobby__sub_802428C4((void*)((void *) &selected_guild_card_record.value));
-    ((s32 (*)(s32 *, void *(*)(void *), s32, s32, s32))__construct_array)(&(*(RecoveredGlobal_8024287C_lbl_80517F9C *)&lbl_80517F9C).value, TLobby__sub_802428C4, 0, 0xBC, 8);
-}
+} // extern "C"
 
-void* TLobby__sub_802428C4(void* p) { fn_80077AA4((char*)p + 0x58); return p; }
-s32 TLobby__sub_802428F8(void* p) { return *(s32*)((char*)p + 0x4); }
+// With CodeWarrior's source-file sections, these follow the generated initializer.
+#include "pso/misc/TLobby_802409AC_tail.h"
 
-int get_com_card_data__6TLobbyFv(void) {  return com_card_entry_count; }
-
-}
-#undef lbl_80517F9C
-#undef selected_guild_card_record
-
-u8 selected_guild_card_record[0xBC];
-unsigned char lbl_80517F9C[0x5E4];
+LobbyGuildCardRecord selected_guild_card_record;
+LobbyGuildCardRecord lbl_80517F9C[8];
