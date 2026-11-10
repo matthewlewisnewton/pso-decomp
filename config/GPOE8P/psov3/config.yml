@@ -2009,6 +2009,8 @@ force_active:
   - __ct__17TOSensorAncient01FP7TObjectPv
   - __ct__17TOSensorGeneral01FP7TObjectPv
   - __ct__17TObjEneBm3FlyNestFP7TObjectP14EnemySetRecord
+  - __ct__17TObjEneMe1CanadinFP7TObjectP17TObjEneMe1CanadinP3Vecll
+  - __ct__17TObjEneMe1CanadinFP7TObjectPvl
   - __ct__17TObjEneMe3ShinowaFP7TObject
   - __ct__17TObjItemNameEntryFP7TObject
   - __ct__17TObjParticleLobbyFP7TObjectPv
@@ -3823,6 +3825,7 @@ force_active:
   - bm_ene_me1_gee_resource_descriptor
   - bm_ene_me1_mb_model_names
   - bm_ene_me1_mb_motion_names
+  - bm_ene_me1_mb_resource_descriptor
   - bm_ene_me3_shinowa_model_names
   - bm_ene_me3_shinowa_motion_names
   - bm_ene_morfos_low_model_names
@@ -4380,6 +4383,8 @@ force_active:
   - can_start_win_timer__15TObjSoloPlayWinFv
   - can_trigger__15TBoss3VoloptP02Fv
   - can_warp__11TObjMapWarpFlUs
+  - canadin_attack_params
+  - canadin_base_stats
   - canadin_discharge_motion_scale
   - canadin_effect_negative_one
   - canadin_effect_zero
@@ -4387,7 +4392,10 @@ force_active:
   - canadin_light_width_cutoff
   - canadin_light_width_decay
   - canadin_line_initial_phase_range
+  - canadin_movement_params
   - canadin_random_scale
+  - canadin_render_point
+  - canadin_resistance_params
   - canadin_setup_param_block
   - cancel_fade_state__15TObjEneGyaranzoFv
   - cancel_trade_for_member_out_of_range__Fl
@@ -5039,6 +5047,7 @@ force_active:
   - create_backgrounds__23TAdSinglePlyChrSelectGCFPv
   - create_backgrounds__9TSaveChCrFv
   - create_buy_list_windows__24TShopEquipmentListWindowFPv
+  - create_canadin__23TObjEneMe1CanadinLeaderFP17TObjEneMe1CanadinP3Vecll
   - create_cane_if_ready__10TObjPlayerFlPv
   - create_card_action_window__17TWindowSubComCardFv
   - create_ch_cr_tag_occ_header__FPv
@@ -7837,9 +7846,6 @@ force_active:
   - lbl_804FF67C
   - lbl_804FF82C
   - lbl_805007C8
-  - lbl_8050093C
-  - lbl_80500948
-  - lbl_80500954
   - lbl_805009A0
   - lbl_805009A8
   - lbl_805009B0
