@@ -8,6 +8,11 @@ splits and linked coverage remain those of the integration baseline
 
 ## Historical experimental candidate
 
+The separate research draft preserves that candidate in
+[`experiments/launch_dol`](../../experiments/launch_dol/README.md), outside
+the production build. Its explicit opt-in is for private compile comparison,
+not a host port or permission to replace the exact provider.
+
 The incomplete C++ loader remains inspectable at immutable commit
 [`a9eab37139ef10f53e3e9baf4f8d2dd1ade395aa`](https://github.com/matthewlewisnewton/pso-decomp/blob/a9eab37139ef10f53e3e9baf4f8d2dd1ade395aa/src/pso/unk/text_8042E8C4.cpp).
 It is removed from the active implementation in this narrowed scope, along

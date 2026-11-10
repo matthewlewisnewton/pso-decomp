@@ -61,6 +61,14 @@ for the earlier `vector_length` precedent.
 
 ## 2. MWCC intrinsics
 
+The research-only `experiments/launch_dol/LaunchDol.cpp` preserves the removed
+LaunchDol candidate's target cache calls, `__isync` and reserved-address
+anchor. It is explicitly opt-in, outside the production source inventory and
+link graph, and is not a working port fallback. Its private comparison flags
+do not add a production compiler override. A future port needs an independently
+validated loader/cache/handoff implementation; see the
+[experiment and its limits](../experiments/launch_dol/README.md).
+
 `__cntlzw` (55), `__frsqrte` (11), `__fabsf` (6), `__fabs` (4), `__rlwinm` (4),
 `__abs` (1), `__builtin_va_info` (1); full list in the generated file. Reason: they
 reproduce single PowerPC instructions the original compiled code used; no
