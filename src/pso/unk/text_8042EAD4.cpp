@@ -42,7 +42,7 @@ s32 fn_8042EAD4(u8 *arg0, u32 arg1) {
 void fn_8042EBA4(s32 arg0, s32 arg1) {
     strcpy(lbl_805D7CB0->path, lbl_80480404);
     lbl_805D7CB0->field_100 = arg1;
-    lbl_805D7CB0->field_104 = arg0;
+    lbl_805D7CB0->field_104 = reinterpret_cast<DolImageHeader *>(arg0);
     lbl_805D7CB0->payload_size = 0x8000;
     LaunchDol(lbl_805D7CB0);
 }

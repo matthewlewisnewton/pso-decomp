@@ -26,4 +26,14 @@ public:
 typedef char TAdPlyChrSelPlateGC_size[sizeof(TAdPlyChrSelPlateGC) == 0x3B4 ? 1 : -1];
 extern "C" void push_plate_position__19TAdPlyChrSelPlateGCFv(TAdPlyChrSelPlateGC *self, const f32 *position);
 
+struct ColorLineVertex;
+
+struct SelectionPlateColor {
+    u32 packed;
+};
+
+// Some callers construct the plate in raw storage through the legacy constructor.
+extern "C" void draw_selection_plate(const void *plate, const ColorLineVertex *position,
+                                     SelectionPlateColor color, u32 index);
+
 #endif
