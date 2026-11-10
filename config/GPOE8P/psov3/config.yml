@@ -575,6 +575,7 @@ force_active:
   - TKomorebi__resource_bundle
   - TKomorebi__resource_descriptor
   - TLanguage__class_name
+  - TLanguage__read_cursor
   - TLazerFenceSw__ct
   - TLoadCtrl__ct
   - TLobby__battle_team_table
