@@ -27,7 +27,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,774 | 877 |
-| Per-unit compiler overrides in `configure.py` | 183 | 183 |
+| Per-unit compiler overrides in `configure.py` | 184 | 184 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -568,6 +568,12 @@ the class destructor emits it. [Historical evidence](evidence/conversion-pool-co
 | Unit | Compiler settings | Reason and port action |
 |---|---|---|
 | `pso/misc/TPlayerFootStamp.cpp` | `-fp_contract on`, `-inline off,deferred`, `-str reuse,readonly` | Adapted from upstream [#208](https://github.com/zeroz41/pso-decomp/pull/208), `ae797d392`. Removing fusion drops the constructor to 90.710144%; removing deferred emission changes function/vtable/switch/constant order (`.data` 33.333332%, `.sdata2` 14.285715%); writable strings move the class name (`.rodata` 95.38461%, `.sdata` 50%). All settings together give an exact, linked unit. A port can drop the flags, retaining explicit fused arithmetic if its results are required. [Evidence and remaining API boundaries](evidence/upstream-footstamp.md). |
+
+### Sprite frame draw recovered from upstream #208
+
+| Unit | Compiler settings | Reason and port action |
+|---|---|---|
+| `pso/misc/TLobby_80228154.cpp` | `mw_version` GC/1.3.2 | Adapted from upstream [#208](https://github.com/zeroz41/pso-decomp/pull/208), `ae797d392`, which links the unit exact under GC/1.3.2. `TLobby__sub_80228154` (`0x80228154`, sprite frame draw) is plain C++: no asm, casts or pragmas. Under GC/2.6 the unit's `.text` is 1720 bytes instead of 1732 (the sprite draw's frame and flag tests come out shorter); under GC/1.3.2 every section and relocation is identical to upstream's linked object. The unit's other functions are unchanged fork code. Build with the port compiler. |
 
 ## 6. Approved regressions
 
