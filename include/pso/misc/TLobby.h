@@ -5,6 +5,7 @@
 #include "pso/TObject.h"
 #include "pso/item/TItemData.h"
 #include "pso/system/Adxf.h"
+#include "pso/system/CvFsDeviceCallbacks.h"
 
 struct TItemList;
 
@@ -545,7 +546,6 @@ struct TLobby : public TObject {
     void set_client_slot(s8 arg1);
     static void update_scroll_impl();
     void update_scroll();
-    static void call_callback();
     static void set_callback(u32 arg0, s32 arg1);
     static void notify_dvd_read();
     static void enter_lock();
@@ -865,7 +865,7 @@ struct TLobby : public TObject {
     s32 get_field10_or_report();
     s32 get_handle_value_checked();
     s32 get_handle_field_1c();
-    static s32 get_dvd_file_size(const char *name);
+    static CvFsGetFileSizeFunction get_dvd_file_size;
     static void poll_dvd_requests();
     static void log_printf(const char *fmt, ...);
     static void init_callback_tables();
