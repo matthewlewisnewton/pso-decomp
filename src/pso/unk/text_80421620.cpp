@@ -1164,7 +1164,6 @@ s32 TLobby__sub_8042325C(s32 a, s32 b, s32 c, s32 (*fn)(s32, s32, s32)) {
 // DHCP client state (names inferred): dhcp_state 1/2/6 dispatch to the discover/request/reboot steps, 3/4/5 =
 // bound/renewing/rebinding; dhcp_socket is the UDP 68->67 socket; dhcp_elapsed_ms/dhcp_lease_elapsed count the
 // lease clock against dhcp_lease_time/dhcp_renewal_time/dhcp_rebinding_time.
-extern volatile s32 lbl_805D7B0C;
 extern s16 dhcp_socket;
 extern u32 dhcp_elapsed_ms;
 extern u32 dhcp_lease_time;

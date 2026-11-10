@@ -125,7 +125,6 @@ extern u8 lbl_805CF240[];
 s32 TLobby__sub_804251C0(s16, void *);
 extern volatile s32 lbl_805D7BA0;
 
-extern s32 lbl_805D7B0C;
 extern u8 lbl_805D7B1C[6];
 extern u32 lbl_805D7B28;
 extern u32 lbl_805D7B4C;
@@ -342,7 +341,7 @@ void TLobby__sub_80424CA8(void) {
 s32 TLobby__sub_80424CF4(void *, void *, s32 timeout) {
     s32 state;
     dhcp_state = 6;
-    *(volatile s32 *)&lbl_805D7B0C = 0;
+    lbl_805D7B0C = 0;
     lbl_805D7B74 = timeout;
     lbl_805D7BA0 = 0;
     do {
@@ -390,7 +389,7 @@ s32 TLobby__sub_80424DCC(s16, s32 a1, s32 a2, void *, void *a4, void *a5, void *
     lbl_805D7B58 = a2;
     lbl_805D7B74 = a7;
     dhcp_state = 1;
-    *(volatile s32 *)&lbl_805D7B0C = 0;
+    lbl_805D7B0C = 0;
     return 0;
 }
 
@@ -479,7 +478,7 @@ s32 TLobby__sub_80424FE0(void) {
                 lbl_805D7B14 = TLobby__sub_804250A8(0);
             }
             lbl_805D7BA0 = 4;
-            *(volatile s32 *)&lbl_805D7B0C = -1;
+            lbl_805D7B0C = -1;
             dhcp_state = -2;
             return -1;
         }
@@ -525,7 +524,7 @@ s32 TLobby__sub_804250A8(s32 mode) {
                 TLobby__sub_80423064(lbl_805D7B08, 4);
                 if (request_iface_mode4(lbl_805D7B08) != 0) {
                     lbl_805D7BA0 = 3;
-                    *(volatile s32 *)&lbl_805D7B0C = -1;
+                    lbl_805D7B0C = -1;
                     dhcp_state = -2;
                     return 0;
                 }

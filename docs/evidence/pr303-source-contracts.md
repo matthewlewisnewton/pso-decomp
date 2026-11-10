@@ -768,3 +768,44 @@ volatility candidate at `lbl_805D7B0C` was not probed: its remaining plain
 read/store need their own scheduling/observability proof. Output-pointer
 families B40/B44/B48 require broader API tracing and are not guessed here.
 The metadata hold is unchanged; keep draft pending current-head review/CI.
+
+
+## Shared volatile DHCP step-word contract
+
+On reviewed head `893e8fddb3f780cd1f3bf9847fc3be6f16a08782` and main
+`25b4001837b8bdc46666d2ad736a7148a411f978`, audit all named source and
+original references to the four-byte step word `lbl_805D7B0C` at `0x805D7B0C`.
+References occur only in packet runtime, the DHCP unit and original BSS storage.
+There are 32 source accesses: 26 in the DHCP unit already see `volatile s32`;
+six in packet runtime see a plain declaration, including four stores through
+explicit volatile lvalues. Values written are -1/0 in runtime and -1/0/1/2
+in the DHCP state steps. No other worker owns these complete units.
+
+Move one `extern volatile s32` declaration into the already shared
+`DhcpClient.h`. Remove both local declarations and replace the four cast
+stores with direct assignments. All values, expressions, source statement
+order and control flow remain unchanged. The two newly-qualified accesses
+are the receive callback's step gate read and reset helper's zero store.
+The original reset stores state, step and reply flags in that source order;
+no reordering is needed to reproduce it. This reconciles an existing native
+observability contract, not proof of unique original qualifiers. Volatile
+is not claimed to provide atomicity or thread synchronization.
+
+The capacity-gated candidate build completed successfully and explicitly
+recompiled both affected objects before comparison. Both complete objects
+compare byte-for-byte with their saved pre-change versions, including metadata
+and relocations. Thus the callback read and reset store, their ordering and
+all other generated accesses remain unchanged. The DOL reproduces original
+SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Complete units remain
+packet runtime 24/24 and DHCP 42/42, with exact code/data and compiled source
+link inputs. Full incremental comparison has zero metric, name, coverage or
+retention changes. Fresh-main comparison retains +88 data bytes and zero new
+functions/code with no losses; all 3,582 linked units and 17,739 retention
+entries pass. Host tests and whitespace pass. The generated exception inventory
+changes only the existing DHCP address-mask hit's line number.
+
+The step-word declaration/cast discrepancy is resolved without compiler
+steering, a new algorithm or synchronization mechanism. Lengthless scanning,
+allocator conventions and broader output-pointer APIs remain separate; no
+length/type contract is guessed for them. Keep draft with the other documented
+limits and metadata hold. No held write is retried.

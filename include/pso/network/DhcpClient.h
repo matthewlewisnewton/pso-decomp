@@ -64,6 +64,7 @@ extern "C" s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *cookie_and_options, u8 tag, 
 
 extern DhcpClientBuffers lbl_805C1E00;
 extern volatile s32 dhcp_state;
+extern volatile s32 lbl_805D7B0C;
 extern volatile s32 dhcp_reply_received;
 
 #endif
