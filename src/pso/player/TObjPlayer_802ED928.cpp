@@ -175,24 +175,24 @@ void TBoss7DeRolLeC::run_task() {
             }
         }
     }
-    if ((is_main_phase_15__9TObjEneDDFv() != 0) && ((s32) this->m_6c8 == 0)) {
+    if ((is_main_phase_15__9TObjEneDDFv() != 0) && ((s32) this->m_6ac == 0)) {
         if (this->update_lobby_state() != 0) {
-            this->m_6d4 = 0;
+            this->m_6b8 = 0;
         } else {
-            this->m_6d4 = 1;
+            this->m_6b8 = 1;
         }
     }
-    if (((s32) this->m_6c8 != 0) && (*(s32 *)((s8 *)(*(u8 **)((s8 *)((u8 *)this) + 0x624)) + 8) & 0x10000)) {
-        switch (this->m_6d4) {
+    if (((s32) this->m_6ac != 0) && (*(s32 *)((s8 *)(*(u8 **)((s8 *)((u8 *)this) + 0x624)) + 8) & 0x10000)) {
+        switch (this->m_6b8) {
         case 1:
-            this->m_6d4 = 0;
+            this->m_6b8 = 0;
             this->advance_action_sequence();
             break;
         case 0:
-            this->m_6d4 = 2;
+            this->m_6b8 = 2;
             break;
         case 2:
-            this->m_6d4 = 1;
+            this->m_6b8 = 1;
             break;
         }
     }
@@ -205,7 +205,7 @@ void TBoss7DeRolLeC::run_task() {
         } else {
             this->actorFlags = (s32) (this->actorFlags & 0xFFFFF7FF);
         }
-        temp_r0_3 = this->m_6d4;
+        temp_r0_3 = this->m_6b8;
         if (temp_r0_3 != 1) {
             if (temp_r0_3 == 2) {
                 if (((s32 (*)(void *))sub_802ECB10__14TBoss7DeRolLeCFv)(this) != 0) {

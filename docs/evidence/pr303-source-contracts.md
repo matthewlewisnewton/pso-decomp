@@ -1419,3 +1419,29 @@ The documentation merge is published; prior native validation remains scoped to
 unchanged source/configuration inputs, with no old receipt relabeled as a new
 build. Keep draft and the metadata restriction. Any DHCP hardening remains a
 separate behavior-changing project, not an exact-match repair.
+
+
+## Latest-main reconciliation after characterization checkpoint
+
+Publish characterization checkpoint `19d5cbeb6`, then integrate main
+`5f837b43888ac935b8a74fad20701c9195ee7338`, which advanced during that work.
+Retain its De Rol Le and player-unit recovery, texture-reader cursor and adjacent
+original-data/category accounting, and all source evidence. The configuration
+conflict joins main's packet-header retention name with the existing DHCP
+release/request names; none is dropped. The Boss7 automatic merge retains the
+shared canonical BML declaration and explicit resource-pointer boundary.
+Regenerate inventory and curated counts (5,770 pragmas in 878 files; 189
+per-unit overrides). DHCP code and the characterization tests are unchanged.
+
+Fresh main and candidate capacity-gated builds reproduce the original DOL.
+A new pinned baseline is sealed for independently verified reuse without
+relabeling older receipts. Full comparison passes: existing +88 data bytes,
+zero new code/functions, no losses, all 3,591 linked units exact and 18,276
+retention entries without drift. All seven incoming complete objects match
+fresh main; all 19 saved contract-object comparisons remain raw byte-identical,
+including relocations. Actual branch inputs are 3,591 source and 1,356 original
+fallbacks. Main has 3,592 source inputs and 1,358 fallbacks; the prior branch
+fold/provider choices remain visible. Seven actual-source characterization
+cases still pass after the merge. Original behavior, including the documented
+bugs, is retained. The reset-status mismatch and metadata restriction remain;
+no hardening or speculative ABI change is introduced.
