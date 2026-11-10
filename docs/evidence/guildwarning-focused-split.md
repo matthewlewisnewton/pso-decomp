@@ -62,3 +62,15 @@ Both replacements stay draft. Exact recovery of this slice does not waive
 Message/Base/Addition boundary concerns, the continuation's source-quality
 holds, or any original-provider limitation. Neither PR is approved or merged
 by this reconstruction.
+
+## Current-main refresh
+
+The subsequent non-rewriting integration refresh uses main
+`b3062dc640fa3ab9463269dca4e80fa057df5ec7`. All original focused hunks remain
+unchanged; main's lobby/challenge-set types and GC/1.3.2 sprite profile are
+preserved. Separate main and focused capacity-gated builds reproduce the
+original DOL hash. Both the prior-head and fresh-main comparisons pass with no
+function, meaningful-data or linked-address loss. The focused delta stays
++600 matched/+728 linked code and zero data; all 3589 linked units are exact.
+Retention and port checks are clean. Later integration gains are attributed to
+main, not new GuildWarning recovery. All standing draft boundaries remain.

@@ -610,6 +610,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TCameraCtrl.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TKeyBoardControl_8025EC04.cpp": {"mw_version": "GC/1.3.2"},
     "pso/menu/TAdMultiOkGC.cpp": {"mw_version": "GC/1.3.2"},
+    # TLobby_80228154: its sprite draw keeps the frame size and flag tests only under 1.3.2
+    # (upstream zeroz41/pso-decomp #208).
+    "pso/misc/TLobby_80228154.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TLobby_802A5120.cpp": {"mw_version": "GC/1.3.2"},
     "pso/unk/text_8032B318.cpp": {"mw_version": "GC/1.3.2"},
     # The player hit-vector snapshot needs 1.3.2's const-input copy scheduling.

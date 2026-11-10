@@ -302,14 +302,11 @@ struct TLobby : public TObject {
     static void create_heap_8000();
     void *free_boss4rock(s16 arg1);
     static void append_swapped_u32(s32 *arg0);
-    void append_entity_entry();
-    static u32 clamp_min_drop(u32 arg0);
+    static u32 clamp_min_drop(u32 minimum, u32 limit);
     static void free_boss4rock();
     void bswap_quad_word();
     void bswap_vec3();
     void swap_header_endian();
-    void bswap();
-    void swap_endian_header();
     static void init_sub_objects();
     int rebuild_entry();
     int init_sub_state();

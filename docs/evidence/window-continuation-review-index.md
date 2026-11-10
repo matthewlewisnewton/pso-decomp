@@ -6,11 +6,11 @@ The two-commit continuation keeps the coupled implementation/configuration graph
 atomic, then restores its evidence and attribution. It is not a claim of 100%
 completion or portable recovery of every historical ABI boundary.
 
-## Preservation and review order
+## Initial split preservation and review order
 
 Original PR #268 is preserved at `2b99de553e82eff0ab0bb70263c943bb68e23fb4`,
 tree `e3c70688aa16f8122e0cdaf2a590f6e8e2ba8859`, on its unchanged branch
-`codex/fork-guildwarning-wip-20261102`. All original branch work is retained. Main advanced during validation from
+`codex/fork-guildwarning-wip-20261102`. At initial publication, all original branch work was retained. Main advanced from
 78a6f8fae to 1a9c290489, so ten paths also incorporate that accepted Falz recovery:
 README.md; configure.py; the four config/GPOE8P/psov3 metadata files;
 docs/porting-exceptions.md and its generated inventory;
@@ -33,6 +33,23 @@ and the linked family notes. Shared ABI/caller changes precede derived-family
 reasoning. Original-provider and relocation qualifications are part of the
 implementation, not optional cleanup. Historical checkpoint metrics in family
 notes remain historical; the final preservation/build checks govern this split.
+
+## Current-main refresh
+
+The stack is refreshed through main `b3062dc640fa3ab9463269dca4e80fa057df5ec7`.
+The published commits remain intact, with one baseline integration commit per
+branch. Main's lobby/challenge-set recovery, typed headers and GC/1.3.2 sprite
+profile are preserved. Every added/removed source/configuration line in the
+318-path continuation delta remains identical to the original published stack.
+All original evidence and attribution records remain present.
+
+Separate main, focused and continuation gated builds preserve the original DOL
+hash. Comparisons against refreshed A, previous B and current main pass without
+function, meaningful-data or linked-address loss. B's delta versus A remains
++492 linked code and +1604 matched/+1560 linked data; all 3590 linked units are
+exact. Retention, port inventories and protected-provider checks are clean.
+Main contributes all refresh gains; no new window recovery is claimed by it.
+The previous ownership, constant, initialization and original-provider holds stay.
 
 ## Current tried/blocked index
 
