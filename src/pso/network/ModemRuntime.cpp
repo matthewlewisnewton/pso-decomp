@@ -401,6 +401,9 @@ void TAdSinglePlyChrSelectGC__sub_8042C2E4(s32 channel, OSContext *context) {
             EXIUnlock(0);
         } else {
             ModemWriteRegister(1, 0);
+            // Transfer branches keep EXI locked until their completion paths.
+            // An unsupported highest bit also leaves it locked in the original;
+            // deliberately do not add a default unlock or dispatch lower bits.
             switch (ModemHighestStatusBit(status)) {
             case 0x10:
                 TAdSinglePlyChrSelectGC__sub_8042DE20();

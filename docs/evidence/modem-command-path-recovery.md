@@ -1,7 +1,10 @@
 # Modem command-path recovery
 
-Current validation base: `12a3368673103f37dfd3710886ce24a4e19c6783`.
+Current validation base: `00c484c57b38bc7f112016860e9faa628c7b49e9`.
 The unit has 25 recovered bodies, 14 exact functions, and remains unlinked.
+The PR is reviewed as partial source recovery. Complete native matching and
+source linking remain follow-up work; the historical draft checkpoints below
+record the limits at each earlier validation base.
 
 Initial base: fork main `f0f05f3afe56fd2b71e9dc1fe946e2fa03c84b86`.
 Reference: upstream `8c507b2dacae5428291a823c3868ca486419660c`, including
@@ -491,3 +494,57 @@ both pinned main and the published control checkpoint, all 3,595 linked units,
 18,288 retention entries, exception inventory and whitespace checks pass.
 All 270 source-tool tests pass. The rebuilt modem object comparison is unchanged
 from the reviewed control checkpoint; no gain is attributed to merging main.
+
+## Review preparation against current main
+
+Merge `3bb58cfd7fd61c3e2afb19e7cf3ab7669cb2741e` integrates fork main
+`00c484c57b38bc7f112016860e9faa628c7b49e9` without conflicts. Main's radial
+particle recovery, source-link entry, shared declarations and retention changes
+are preserved. The only subsequent production-source edit explains the modem
+dispatcher's intentional lock retention for transfer branches and unsupported
+highest status bits; it changes no behavior.
+
+GitHub contained no inline review comments or submitted reviews at this pass.
+The previous progress comment's matching, data-layout and ownership limits
+remain valid. They constrain whole-unit matching and source linking, rather
+than being claimed as resolved by this recovery PR. The 11 non-exact bodies,
+provisional initializer buffer capacity, final two data-bank bytes and four
+unclassified storage bytes remain explicit follow-up work. The unit is still
+excluded from `linked_units.txt`.
+
+Both the exact archived main tree and the integrated candidate receive fresh
+native builds using checkout-local original inputs and the pinned tools under
+the shared exclusive capacity gate, with Ninja `-j2`. Both reproduce DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. The candidate then passes the full
+`tools/check_pr.py`, including its Ninja step, against that fresh main report.
+
+| Measure | Current main | Candidate | Change |
+| --- | ---: | ---: | ---: |
+| Exact functions | 27,422 | 27,424 | +2 |
+| Exact code bytes | 4,220,300 | 4,220,960 | +660 |
+| Exact data bytes | 1,472,695 | 1,472,695 | 0 |
+| Source-linked code bytes | 3,811,440 | 3,811,440 | 0 |
+| Source-linked data bytes | 1,194,063 | 1,194,063 | 0 |
+| Linked units | 3,596 | 3,596 | 0 |
+
+Unfiltered original-address comparison preserves all nine code/data/function
+coverage, exactness and source-link categories. All 3,596 linked units and
+18,291 retention entries pass. All 270 source-tool tests, Python syntax,
+porting-exception inventory and changed-line whitespace checks pass. No new
+porting exception is introduced.
+
+The receive/control fixtures again pass eight receive scenarios and all
+65,536 raw status/mask pairs. A separate extracted-source transmit spot check
+passes 512 cases across all 32 buffer alignments and 16 lengths, covering
+immediate/DMA byte order, multiple FIFO windows, deferred lock acquisition,
+busy/disconnected returns, readiness thresholds and callback delivery after
+unlock and one-shot state clearing. The same spot check passes AddressSanitizer
+and UndefinedBehaviorSanitizer with leak detection disabled because this
+environment's tracer prevents LeakSanitizer operation. These synthetic checks
+do not authenticate native ABI, frame matching or real hardware behavior.
+
+Direct object comparison still reports 14/25 exact functions. The actual ELF
+inputs select the original modem object and the compiled transport/session
+callers. Review readiness applies to the bounded source recovery and its two
+exact-function gains; it does not claim that the modem unit can now link from
+source.
