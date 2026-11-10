@@ -104,6 +104,12 @@ small float differences without FMA).
 | `src/pso/object/TObjDFDemo4.cpp` | Constructor at `0x8004F6AC` | Weak linkage for the strip-node table | With strong linkage CodeWarrior pools the strip table and both camera initializers under a shared `.rodata` base. Weak linkage preserves the original direct relocations and keeps the shared `.data` base for the motion tables and vtable. | Use the same const table with ordinary linkage. |
 | `configure.py` | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | The two eight-byte afterimage index tables use normal data addressing. The class-name pointer still uses small data. | Use ordinary arrays and a string pointer. |
 
+### Network info load request
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/network/NetworkInfoRequests.cpp` | `request_network_info_load` (0x803F3DD4) | Scoped `scheduling off` and `peephole off` with 32-byte alignment on the channel parameter | The parameter alignment reproduces the dynamic frame. Disabling scheduling keeps the original frame setup and state-store order. Grouping modes 2 and 3 with the default and disabling peephole optimization retains the comparison at the upper end of that range. | Compile the same request logic with ordinary parameter alignment and scheduling. |
+
 ### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
 
 | File | Function | What | Why | Port should |
