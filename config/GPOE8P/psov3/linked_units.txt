@@ -1696,6 +1696,7 @@ pso/misc/TWindowDD_80246F8C.cpp
 pso/misc/TWindowDD_80340EA8.cpp
 pso/misc/TWindowDD_803411E8.cpp
 pso/misc/TWindowDD_80341334.cpp
+pso/misc/TWindowDD_80341A08.cpp
 pso/misc/TWindowDD_80342254.cpp
 pso/misc/TWindowDD_803424EC.cpp
 pso/misc/TWindowDD_80342554.cpp

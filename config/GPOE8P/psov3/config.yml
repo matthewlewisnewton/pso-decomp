@@ -1826,6 +1826,7 @@ force_active:
   - TWindowDD__sub_80340FA8
   - TWindowDD__sub_8034138C
   - TWindowDD__sub_803414DC
+  - TWindowDD__sub_80341674
   - TWindowDD__sub_803422F0
   - TWindowDD__sub_803423E0
   - TWindowDD__sub_80346F30
@@ -3515,6 +3516,7 @@ force_active:
   - add_mind__8MagStatsFs
   - add_photon_blast__8MagStatsFUc
   - add_pow__8MagStatsFs
+  - add_scroll_offset__9TWindowDDFi
   - add_selected_slot__22TAdMultiPlyChrSelectGCFv
   - add_shield_stat_contribution__9TItemDataFPviiPv
   - add_status_line__19TWindowSubEquipListFUcP5TIteml
@@ -4622,6 +4624,7 @@ force_active:
   - can_hit_same_target__17TObjEneMe3ShinowaFv
   - can_hit_same_target__23TObjEneMe3ShinowaMirageFv
   - can_perform_action__8TItemMagFl
+  - can_scroll__17TWindowDD_WS_WordFl
   - can_set_motion__15TBoss3VoloptP02Fv
   - can_start_win_timer__15TObjSoloPlayWinFv
   - can_trigger__15TBoss3VoloptP02Fv
@@ -7170,6 +7173,7 @@ force_active:
   - init_launch_angles__10TTecSlicerFPlPll
   - init_layout__17TWindowSubComCardFv
   - init_layout__19TWindowKeyBoardSoftFv
+  - init_layout_entries__9TWindowDDFv
   - init_level_stats__14TObjEneDubchikFl
   - init_light__9TObjLightFi
   - init_light_params__15TORainbowCave01Fv
@@ -16739,6 +16743,7 @@ force_active:
   - sub_8033AFC8__23TAdSinglePlyChrSelectGCFv
   - sub_8033B0AC__23TAdSinglePlyChrSelectGCFv
   - sub_8033C7C8__25TBoss6Demo10_TYPE1_APPEARFv
+  - sub_80341AC0__17TWindowDD_WS_WordFv
   - sub_80348E34__18TAdChrMoveEffectGCFv
   - sub_8034B8B0__18TChallenge4PResultFv
   - sub_8034B8BC__18TChallenge4PResultFv
