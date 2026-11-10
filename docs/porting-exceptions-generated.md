@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5773 | 877 |
-| configure.py per-unit override | 180 | 180 |
+| pragma | 5772 | 877 |
+| configure.py per-unit override | 181 | 181 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 877, `auto_inline` 837, `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 53, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 836, `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 206, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -243,6 +243,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `pso/misc/TOTrapAncient02.cpp` | `-inline deferred, -fp_contract on` | Reverse definitions with deferred generation: the native TOTrapAncient02R vtable is emitted before the switch table that follows it in .data, and the .sdata2 pool keeps its original order. Unit -fp_contract on replaces the per-function pragmas: the constructors, calc_trap_count and the R vfunc_81 fuse multiply-adds. |
 | `pso/misc/TOTrapAncient01.cpp` | `GC/2.0, -inline off,deferred, -fp_contract on, -str reuse,readonly, -pooldata=off, -opt nolifetimes` | GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris positions before storing them (GC/2.6 interleaves them: 91.09%). Reverse definitions and deferred generation place the native trap vtable before its switch tables while preserving the original function order. Contracted FP keeps the constructor and render exact (98.86% and 97.66% without it). -opt nolifetimes keeps render exact (99.42% without it). -pooldata=off keeps play_sounds' copy prologue (94.54% without it); read-only strings keep the .rodata/.data/.sdata layout. |
 | `pso/object/TObjDFDemo1.cpp` | `-sdata 4` | Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4). |
+| `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | Keep both 8-byte afterimage tables out of .sdata in the demo constructor. |
 | `pso/enemy/TObjEneBalClawBody_80090178.cpp` | `-inline deferred, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneRe2Flower_800C3E14.cpp` | `-inline off,deferred` | Deferred generation preserves the flower vtable before its dispatch table. |
 | `pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -1006,6 +1007,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/object/TObjDFDemo1.cpp` | defer_codegen×1, fp_contract×1 |
 | `src/pso/object/TObjDFDemo2.cpp` | readonly_strings×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/object/TObjDFDemo3.cpp` | readonly_strings×1, opt_common_subs×1 |
+| `src/pso/object/TObjDFDemo4.cpp` | readonly_strings×1, defer_codegen×1 |
 | `src/pso/object/TObjDFDemo5.cpp` | readonly_strings×1, defer_codegen×1 |
 | `src/pso/object/TObjDFHorming.cpp` | fp_contract×6, auto_inline×3, dont_inline×3, inline_depth×2, readonly_strings×1, cplusplus×1, opt_common_subs×1 |
 | `src/pso/object/TObjDoaEx01.cpp` | opt_common_subs×1, opt_propagation×1 |
@@ -1162,7 +1164,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `src/pso/unk/text_8001B424.cpp` | fp_contract×1 |
 | `src/pso/unk/text_8002E090.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/unk/text_8004D9A8.cpp` | opt_common_subs×1, opt_propagation×1 |
-| `src/pso/unk/text_8004F2A8.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/unk/text_80050050.cpp` | opt_common_subs×1 |
 | `src/pso/unk/text_80050134.cpp` | opt_propagation×1, opt_common_subs×1 |
 | `src/pso/unk/text_800502FC.cpp` | fp_contract×1, dont_inline×1, inline_depth×1, opt_common_subs×1 |

@@ -2,7 +2,7 @@
 
 PR #284 remains relevant as recovery of the DOL section-table view and a C++
 loader implementation. It is not a completed C++ match. The main integration baseline
-`b2a90ff1eabedf275aaed6cc16acbbd3e8b4a36c` already has the exact, linked
+`3ee5a151c72efc2763fb72e1d8deaae26e9aade2` already has the exact, linked
 `LaunchDol` assembly implementation, so retaining that implementation adds no
 matched code, functions or linked units against this main.
 
