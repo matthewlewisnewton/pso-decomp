@@ -28,7 +28,7 @@ struct TObjFish : public TObjBase {
     s32 update_state();
     virtual void render();
     virtual void run_task();
-    u8 unk_90[0x2];
+    s16 m_90;
     s16 m_92;
     u32 m_94;
     u32 m_98;
@@ -63,7 +63,15 @@ struct TObjFish : public TObjBase {
 };
 
 typedef char TObjFishEntry_size[sizeof(TObjFishEntry) == 0x44 ? 1 : -1];
+typedef char TObjFishEntry_target_offset[offsetof(TObjFishEntry, target) == 0x0C ? 1 : -1];
 typedef char TObjFishEntry_velocity_offset[offsetof(TObjFishEntry, velocity) == 0x18 ? 1 : -1];
 typedef char TObjFishEntry_timer_offset[offsetof(TObjFishEntry, timer) == 0x32 ? 1 : -1];
+typedef char TObjFishEntry_yaw_offset[offsetof(TObjFishEntry, yaw) == 0x24 ? 1 : -1];
+typedef char TObjFishEntry_frame_offset[offsetof(TObjFishEntry, frame) == 0x28 ? 1 : -1];
+typedef char TObjFishEntry_angle_offset[offsetof(TObjFishEntry, angle) == 0x2C ? 1 : -1];
+typedef char TObjFishEntry_target_angle_offset[offsetof(TObjFishEntry, target_angle) == 0x2E ? 1 : -1];
+typedef char TObjFishEntry_anim_offset[offsetof(TObjFishEntry, anim) == 0x30 ? 1 : -1];
+typedef char TObjFishEntry_seen_offset[offsetof(TObjFishEntry, seen) == 0x34 ? 1 : -1];
+typedef char TObjFishEntry_mode_offset[offsetof(TObjFishEntry, mode) == 0x38 ? 1 : -1];
 typedef char TObjFish_size[sizeof(TObjFish) == 0xA4 ? 1 : -1];
 #endif

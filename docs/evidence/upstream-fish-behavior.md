@@ -68,13 +68,36 @@ base-constructor ABI and use the declared object allocator/deallocator and schoo
 initializer directly. No new compiler option, pragma or output-layout steering
 is added by this interface correction.
 
+## Shared entry storage and renderer ownership
+
+The follow-up to published head `98f946cd3b` removes the renderer's
+`Fish_8029D5C8` and initializer's `Ent_8029E170`/`Vec_8029E170` views. Both now
+use the same `TObjFishEntry` as `run_task`. The initializer allocates the
+`m_a0` array with a 0x44-byte stride and initializes the exact fields later read
+and updated by those two consumers. Size and offset assertions cover its target,
+velocity, yaw, frame, angle, animation, timer, visibility and return-mode fields.
+The school state at object offset `0x90` is a signed halfword member, matching
+the existing loads and stores. Signed count comparisons remain unchanged.
+
+The renderer is now the declared `TObjFish::render` override, rather than a free
+function named after its mangled symbol. It uses the shared object position,
+rotation, count and entry-pointer members instead of the raw-offset macro.
+Initialization assigns the typed entry pointer directly, without accessing its
+slot through a pointer-to-pointer cast to an unrelated record type. The shared
+vector type also replaces the initializer's duplicate vector declaration.
+
+This is a source/interface improvement, not a matching gain. All nine functions,
+allocated section payloads and relocations remain exact with the existing fish
+settings and definition order. The inherited manual vtable still names ABI
+symbols, including the renderer, and is not a recovered native vtable.
+
 ## Remaining inherited debt
 
 The hand-written vtable and constructor/destructor wrappers remain unchanged in
 structure, including manual vptr writes, and still block treating this as clean
-native lifetime/virtual-dispatch recovery. The renderer and initializer also
-retain separate raw entry views, and some shared model/texture getters and heap
-helpers carry legacy 32-bit address values. The explicit conversions at those
+native lifetime/virtual-dispatch recovery. The duplicate entry views have been
+removed, but some shared model/texture getters and heap helpers still carry
+legacy 32-bit address values. The explicit conversions at those
 shared boundaries need pointer-sized types and target heap services in a port.
 These are inherited limitations, not evidence that all original class/interface
 ownership has been recovered. Matching completeness alone does not resolve them.
@@ -83,6 +106,30 @@ the follow-up. Existing `-pool off`, FMA and inline settings remain as documente
 above; the final inventory after main synchronization is 5,774 pragmas in 877 files
 and 184 unit overrides, including current main's existing compiler and mapping
 settings. The refresh introduces no additional fish compiler setting.
+
+### Why native lifetime remains held
+
+The earlier native-constructor/destructor experiment established the expected
+class lifetime operations and virtual slots. Under unchanged immediate emission,
+eight functions match, but the loader's data references and the complete data
+layout do not. The generated vtable starts at `.data+0x140`, after the switch
+table at `+0xF0`; the original requires the vtable at `+0xF0` and switch table at
+`+0x124`. The emission-pragma solution is not part of this PR.
+
+Further ownership review found direct vtable references in the constructor and
+destructor, while the resource-table references occur only in the final loader
+at `0x8029E5E8`. Unlike the Moja recovery, Fish has no demonstrated shared
+constructor/table/vtable anchor. A separate loader translation unit might avoid
+the emission conflict mechanically, but these references do not establish such
+an original boundary. The reconstructed split object's filename is not original
+debug or source-file evidence. Moja's documented deferred-emission setting does
+not supply a no-steering solution for Fish.
+
+Before trying another native-lifetime organization, the missing evidence is an
+independently supported object/source boundary or resource-table ownership, or
+declaration/header ownership that naturally emits the original order with the
+unchanged fish settings. No speculative unit split or source-order permutation
+is included in this follow-up.
 
 ## Validation
 
