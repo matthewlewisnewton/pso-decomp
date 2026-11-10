@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `3ee5a151c`, 2026-11-09)
+## Summary (regenerated after merging main `c23775bb4`, 2026-11-09)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `3ee5a151c` (2026-11-09). Assembly is counted as source lines;
+after merging main `c23775bb4` (2026-11-09). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -27,7 +27,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,772 | 877 |
-| Per-unit compiler overrides in `configure.py` | 181 | 181 |
+| Per-unit compiler overrides in `configure.py` | 182 | 182 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
