@@ -16177,6 +16177,7 @@ force_active:
   - sub_800F8250__13TUnk_80499988Ff
   - sub_800FEC40__17TObjEZBoneRotBaseFPUc
   - sub_800FED0C__17TObjEZBoneRotBaseFv
+  - sub_800FF580__14TObjEZRopeBaseFP3Vecf
   - sub_80140F44__11TMapCsnCtrlFv
   - sub_80156A68__14TObjCollidableFv
   - sub_80158604__13TObjMapObjectFv
