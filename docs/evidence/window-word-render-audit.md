@@ -81,3 +81,28 @@ hold and all other existing technical holds persist; the PR remains draft.
 
 
 The later [shared state/reset recovery](window-render-state-reset-contracts.md) establishes the observed unused reset word and explicit float depth through one shared raw ABI, plus no-argument begin/forward state helpers. This supplies new contract evidence without resolving Word's fused arithmetic or changing its provider. One separate DD renderer probe remains nonexact by 37 words; no additional matching claim follows.
+
+## Separate recovery lane inspected on 2026-11-10
+
+[PR #407](https://github.com/matthewlewisnewton/pso-decomp/pull/407), inspected at
+`7e9d178bb54617d4c5cc4722da20afbbc6659347`, reports an exact 916-byte renderer
+and activation of the complete 3412-byte unit. Its new body uses a scoped
+`fp_contract on`, informed by upstream commit
+`a006b8f1baa81a9924b7ca27d6f25cfe03afedc1`. These are a separate worker's
+implementation and validation claims, not a rerun or activation by continuation
+#403. No code from that lane is imported here.
+
+Independent original-object inspection confirms ten fused operations in this
+renderer: eight `fmadds` and two `fnmsubs`. This is concrete arithmetic/rounding
+evidence for reviewing contraction, rather than evidence that separate arithmetic
+is interchangeable. It does not authorize a new compiler control under this
+continuation's standing constraint or establish exactness of the proposed source.
+
+The separate head also retains a caller-local reset declaration interpreted as
+color, whereas this continuation has the shared, explicitly unused-word/depth
+contract. Wholesale adoption would replace this branch's native Word task and
+offset ownership and its recovered float-field contract with older views. Any
+future integration must preserve those established changes, independently qualify
+the arithmetic mechanism and all affected objects/targets, and coordinate with
+the active owner. The original Word provider and lifetime/constant/interface
+holds remain selected and unchanged here.

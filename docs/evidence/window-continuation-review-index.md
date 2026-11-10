@@ -58,6 +58,7 @@ The previous ownership, constant, initialization and original-provider holds sta
 | Base/Addition and recovered descendants | Native chains, tables and observed widths; most factories use ordinary new | Sixteen raw calls across nine units; three shared bindings; no invented default lifetime |
 | Status display | Native 0x74-byte lifetime, two producers, borrowed table and compiler table exact | Incomplete consumer stays original; vt4 probe 1344 vs 1348 needs independent value-lifetime evidence; unchecked rank index remains qualified |
 | Basic ComCard | Native constructor and exact native render body; coherent cleanup/table probe | Unknown trailing word ownership prevents regression-free activation; no padding/object invention or four-byte waiver |
+| ActionPalette | Native construction and exact retained methods | Contiguous icon/light/table probe changed icon and two caller objects; needs common UV/data ownership and conversion-contract evidence |
 | DD renderer | Shared begin/forward/reset contracts established | 608-byte probe remains 37 words different; needs value-lifetime/quad evidence; original provider retained |
 | Word renderer/lifetime | Task/scroll ownership established; shared buffer extent corrected | 916-byte renderer arithmetic and constructor data-base differences unresolved; original provider retained |
 | Nameplate | Ordinary reconstructed 800-byte body and helper evidence | Nonexact arithmetic/register result; original full provider retained |
@@ -70,6 +71,10 @@ The previous ownership, constant, initialization and original-provider holds sta
 
 The [ComCard render note](window-com-card-render-member.md) records the byte-identical
 member-body recovery without lifting destructor/table or unknown-word holds.
+The [Palette note](window-action-palette-construction.md) records the rejected
+contiguous-owner probe and its stop condition. The [Word audit](window-word-render-audit.md)
+also distinguishes separate PR #407's reported recovery from this continuation's
+unchanged original provider and compiler-control/interface holds.
 
 The [bounded Status/ComCard audit](window-status-page-com-card-blocker-audit.md)
 records explicit stop conditions. Do not repeat those probes absent new evidence.

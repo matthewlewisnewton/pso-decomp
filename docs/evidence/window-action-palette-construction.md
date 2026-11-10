@@ -89,3 +89,59 @@ PR stays draft. Integrated main remains
 `12cc95ca737a3a8757c17f45df06a9af4821d872`; combined deltas remain +600 matched
 code, +1220 linked code, +1472 matched data and +1428 linked data bytes. The
 fourteen qualified four-byte alignment gaps are unchanged.
+
+## Bounded contiguous-owner probe on continuation #403
+
+At continuation checkpoint `e0c0e8f51d688c0300e6659a8b8dd895781264fe`, a new
+read-only ownership audit distinguished the earlier table-only extraction from
+a contiguous source organization. The icon at 80243630 (404 bytes), adjacent
+palette slot-light helper (344 bytes), and existing Palette unit (2288 bytes)
+form a contiguous 3036-byte text range ending at 8024420C. Co-locating them could
+keep the anonymous jump table with its generating icon code. This organization
+would not establish an original translation-unit boundary or a new native owner
+for the light helper.
+
+One bounded candidate tested that organization with a genuine Palette destructor
+and automatic Base cleanup. The original-selected prefix retained all 552 text
+and 776 data bytes, including the serialized entry records and descriptor. The
+five existing mutable UV banks (19/17/6/3/8 pairs) were represented by one
+424-byte aggregate with size/offset assertions and kept in that prefix's source;
+the moved icon referenced it externally. No raw replacement blob, extra virtual
+slot, padding object, compiler control or alignment override was introduced.
+
+The same candidate tested one shared raw icon-helper contract: callers transport
+words and the callee explicitly consumes their low 16 bits. All eight direct
+calls in five caller units discard the result; there is no evidenced external
+address-taking. The original's eight local jump-table relocations target its
+own icon body. This evidence supports the observed transport and consumption,
+but does not uniquely recover original parameter signedness or source types.
+The old function-pointer call view was removed only in the candidate. The light
+helper's existing one-argument caller qualification was not changed.
+
+The first compile rejected this candidate. The icon grew from 404 to 428 bytes,
+making the combined text 3060 rather than 3036 bytes. Its generated code loaded
+the external UV aggregate within individual cases rather than retaining the
+original common local-data base. The word contract also changed two complete
+caller objects: text_8027C13C stayed 240 bytes but changed instructions, and
+CustomSelect changed from 2488 to 2480 bytes. The HelpItem_802531A0 and
+CustomEquip_80275D9C complete caller texts stayed identical. The compiler emitted
+56 data bytes naturally, but the changed text prevents qualification of their
+jump targets or the complete object. The rebuilt DOL failed its original hash.
+
+All candidate implementation, header and configuration changes were restored;
+the failed probe is retained privately. No declaration/order variant, explicit
+base-hoisting device, new control or coverage waiver was tried. The native
+destructor/table hold and the existing helper views remain active. Further work
+needs independent evidence for a common UV/table/jump source owner and the
+caller conversion contract. Recovering the actual serialized entry schema could
+support a larger coherent owner; merely moving or spelling declarations to
+recover the original load schedule would not.
+
+The restored capacity-gated full build reproduces DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. All seven affected complete source
+objects and their seven original counterparts are byte-identical to the frozen
+published checkpoint. check_pr passes with zero metric, function, provider or
+address-coverage delta; all 3590 linked units remain exact and retention is clean
+at 17968 entries. Comparisons against refreshed focused #402 and main b3062dc640
+also pass. Port inventory and independent read-only review pass. Only these
+evidence notes and the current blocker index are published from this probe.
