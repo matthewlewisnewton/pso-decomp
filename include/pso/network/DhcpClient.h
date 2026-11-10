@@ -62,6 +62,15 @@ extern "C" void dhcp_parse_lease_times(u8 *cookie_and_options);
 // The scanner still receives no packet length.
 extern "C" s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *cookie_and_options, u8 tag, u8 **value);
 
+// Reply configuration writes one address, subnet-mask and broadcast word.
+extern "C" s16 TLobby__sub_80424D58(s16 iface, s32 arg1, s32 arg2, void *arg3,
+                                   s32 *address, s32 *netmask, s32 *broadcast, s32 arg7);
+extern "C" s32 TLobby__sub_80424DCC(s16 iface, s32 arg1, s32 arg2, void *arg3,
+                                   s32 *address, s32 *netmask, s32 *broadcast, s32 arg7);
+
+extern s32 *lbl_805D7B40;
+extern s32 *lbl_805D7B44;
+extern s32 *lbl_805D7B48;
 extern DhcpClientBuffers lbl_805C1E00;
 extern volatile s32 dhcp_state;
 extern volatile s32 lbl_805D7B0C;

@@ -139,10 +139,6 @@ struct DhcpOption_804FD948 {
 };
 extern DhcpOption_804FD948 lbl_804FD948[12];
 void TLobby__sub_803F97E8(s32);
-s32 TLobby__sub_80424DCC(s16, s32, s32, void *, void *, void *, void *, s32);
-extern void *lbl_805D7B40;
-extern void *lbl_805D7B44;
-extern void *lbl_805D7B48;
 extern s32 lbl_805D7B54;
 extern s32 lbl_805D7B58;
 extern s32 lbl_805D7B74;
@@ -354,7 +350,7 @@ s32 TLobby__sub_80424CF4(void *, void *, s32 timeout) {
     return 0;
 }
 
-s32 TLobby__sub_80424D58(s16 a0, s32 a1, s32 a2, void *a3, void *a4, void *a5, void *a6, s32 a7) {
+s16 TLobby__sub_80424D58(s16 a0, s32 a1, s32 a2, void *a3, s32 *a4, s32 *a5, s32 *a6, s32 a7) {
     s32 state;
     if (TLobby__sub_80424DCC(a0, a1, a2, a3, a4, a5, a6, a7) != 0) {
         return -1;
@@ -372,7 +368,7 @@ s32 TLobby__sub_80424D58(s16 a0, s32 a1, s32 a2, void *a3, void *a4, void *a5, v
     return 0;
 }
 
-s32 TLobby__sub_80424DCC(s16, s32 a1, s32 a2, void *, void *a4, void *a5, void *a6, s32 a7) {
+s32 TLobby__sub_80424DCC(s16, s32 a1, s32 a2, void *, s32 *a4, s32 *a5, s32 *a6, s32 a7) {
     lbl_805D7BA0 = 0;
     if (dhcp_state != 0) {
         lbl_805D7BA0 = 2;

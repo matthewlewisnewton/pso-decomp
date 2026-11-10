@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/misc/TLobby.h"
+#include "pso/network/DhcpClient.h"
 #include "pso/system/memory.h"
 #include "pso/system/ControllerInputState.h"
 #include "pso/misc/TKeyBoardControl.h"
@@ -156,7 +157,6 @@ s16 TLobby__sub_8042455C(void *);
 s16 TLobby__sub_8042474C(void *, void *, void *);
 s16 TLobby__sub_8042489C(void *, void *);
 s16 validate_slot_buffers__6TLobbyFlPvPvPv(void *, void *, void *, void *);
-s16 TLobby__sub_80424D58(s16, s32, s32, void *, void *, s32 *, void *, s32);
 s16 TLobby__sub_80424E44(s16);
 extern s32 lbl_805D56E8;
 extern s32 lbl_805D56EC;

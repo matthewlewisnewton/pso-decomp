@@ -1229,9 +1229,6 @@ void TLobby__sub_80423298(void) {
 
 extern s32 lbl_805D7B2C;
 extern s32 lbl_805D7B30;
-extern s32 *lbl_805D7B40;
-extern s32 *lbl_805D7B44;
-extern s32 *lbl_805D7B48;
 extern s32 lbl_805D7B80;
 
 s32 TLobby__sub_80423440(BootpPacket *hdr) {

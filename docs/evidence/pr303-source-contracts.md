@@ -932,3 +932,61 @@ This refresh claims no Recon match beyond main. Lengthless scanning, allocator/
 output-pointer questions and the metadata restriction remain unchanged. No
 exhausted probe or held write is retried. Keep draft pending exact-head review
 and hosted checks.
+
+
+## Shared DHCP reply-output and request-status contracts
+
+At reviewed head `846b8d8b1` on main `78a6f8fae`, trace every source and native
+reference to `lbl_805D7B40`, `lbl_805D7B44` and `lbl_805D7B48`. Each is one
+four-byte original `.sbss` slot. The complete call chain is connection sequence
+-> `TLobby__sub_801465C0(s32 *)` -> blocking `80424D58` -> registration
+`80424DCC` -> ACK processing -> parser `80423440`. The supplied destinations
+are `&lbl_805D56D8` (declared `s32`), the caller's `s32 *arg0`, and `&sp8`
+(a local `s32`). The parser writes assigned address, subnet mask and broadcast
+respectively through these pointers, then clears each. The native option table
+independently maps those source words to four-byte entries. No other caller or
+address-taken reference was found.
+
+Put the three `extern s32 *` declarations and both request prototypes in the
+shared DHCP header. Replace runtime's conflicting `void *` declarations and
+parameters, remove the parser's duplicate declarations, and include the shared
+header in the upstream lobby caller. `80424D58` now returns `s16`, agreeing
+with its sole native caller's `extsh.` at `0x80146664` and its complete result
+set {-1, 0, 1}. The registration function retains `s32`, agreeing with its
+sole caller's full-word comparison at `0x80424D6C`. This establishes one
+truthful source contract without claiming a uniquely recoverable original
+typedef. No symbol, original provider, layout, allocation, algorithm, value,
+statement order, retention entry or link selection changes.
+
+Outputs remain borrowed. Success writes and clears them before state 3. Failure
+leaves them populated until reset; this change does not add cancellation cleanup,
+ownership transfer, synchronization or lifetime enforcement. Unused opaque
+arguments remain opaque. Adjacent hostname/lease/router/init result interfaces
+remain separate debt, including the previously held dispatcher-reset boundary.
+
+The capacity-gated build explicitly recompiles runtime, parser and lobby caller.
+All three complete objects compare byte-for-byte with their saved pre-change
+objects, including metadata and relocations. They remain 24/24, 42/42 and
+40/40 respectively, exact code/data and compiled-source-linked. The DOL
+reproduces original SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
+Full incremental checks show zero metric/name/coverage/retention changes.
+Verified main comparison keeps +88 data bytes, zero new functions/code and no
+losses; all 3,584 linked units and 17,799 retention entries pass without drift.
+Host vector/item-factory tests and whitespace pass. The exception inventory
+changes only the existing mask-expression line number. No compiler steering,
+adapter, new cast or artificial object ownership is introduced.
+
+The lengthless scanner is still held: the original signed `base - cursor`
+guard at `0x80424888` does not establish a forward-read bound. Received length
+is available to the callback but is not carried with the accepted reply into
+all parser calls. A 1500-byte allocation alone cannot establish the received
+record extent, so no length or malformed-packet behavior is invented.
+
+Allocator tracing confirms a numeric slot in native r3, with size in r4, rather
+than a TLobby object. A complete repair must also reconcile the request task's
+offset-0x24 slot field and methods currently assigned to character selection,
+plus the allocator/reset caller declarations. The reset helper's extra argument
+spelling and the slot-validation helper do not prove an enforced range. Do not
+substitute a guessed class or add bounds. This broader caller/task audit remains
+separate from the completed three-slot repair. The metadata hold is unchanged;
+keep draft pending exact-head review and hosted checks.
