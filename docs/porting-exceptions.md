@@ -104,6 +104,13 @@ small float differences without FMA).
 | `src/pso/object/TObjDFDemo4.cpp` | Constructor at `0x8004F6AC` | Weak linkage for the strip-node table | With strong linkage CodeWarrior pools the strip table and both camera initializers under a shared `.rodata` base. Weak linkage preserves the original direct relocations and keeps the shared `.data` base for the motion tables and vtable. | Use the same const table with ordinary linkage. |
 | `configure.py` | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | The two eight-byte afterimage index tables use normal data addressing. The class-name pointer still uses small data. | Use ordinary arrays and a string pointer. |
 
+### Dark Falz Type 1 death cutscene
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `configure.py` | `pso/object/TObjFish_8033CCC8.cpp` | `-inline off,deferred` and reverse definition order | The constructor shares a `.data` base at `0x804EF9D8` for the motion indices, origin at +8 and compiler-generated vtable at +0x14. Immediate emission addresses the vtable separately. Deferred emission also places the signed conversion constant after the read-only tables. | Use ordinary C++ definitions and compiler-generated virtual dispatch. |
+| `src/pso/object/TObjFish_8033CCC8.cpp` | Constructor at `0x8033D1AC` and its data | CodeWarrior section placement and weak linkage for the three read-only capture and camera tables | The motion indices are eight bytes and need normal `.data` addressing to share the constructor's base. Weak linkage gives the three capture and camera tables direct relocations, matching the original's independent address loads. | Use ordinary definitions and linkage for the same tables. |
+
 ### `request_network_info_load` frame and instruction ordering
 
 `src/pso/network/NetworkInfoRequests.cpp` uses scoped `scheduling off` and

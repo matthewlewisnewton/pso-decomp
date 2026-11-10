@@ -1,4 +1,7 @@
 #include "pso/system/ModelNodePositionCapture.h"
+#include "pso/system/BmlResource.h"
+#include "pso/misc/CameraHelpers.h"
+#include "pso/object/TObjFish_8001ED90.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
@@ -10,7 +13,7 @@
 #include "pso/object/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/text_80087278.h"
-#include "pso/unk/text_803D96A8.h"
+#include "pso/system/MatrixStack.h"
 #include "pso/object/TBoss6Demo11_TYPE1_DEAD.h"
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/object/TObjFish.h"
@@ -20,75 +23,105 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/TParticleCtrl.h"
 
-struct Range_8033CDF8 { s32 lo; s32 hi; s32 idx; };
+struct ParticleWindow {
+    s32 first_frame;
+    s32 end_frame;
+    s32 node;
+};
 
-struct Vec_8033CDF8 { f32 x, y, z; };
-
-struct Fish_8033CDF8 { u8 pad[0x4C]; Vec_8033CDF8 vecs[3]; };
+struct DeathClassTag {
+    const char *name;
+    u32 padding;
+};
 
 extern "C" {
+extern s32 lbl_804DF614[];
+// The legacy symbol's receiver is the Falz plot controller at this call site.
+s32 get_phase__8TObjFishFv(TBoss6PlotFalz *);
 
-extern Range_8033CDF8 fish_spawn_entry_table[];
-s32 push_matrix(void);
-f32 post_translate_matrix(void);
-extern const f32 lbl_805DFA58;
-extern const f32 lbl_805DFA5C;
-extern const f32 lbl_805DFA60;
-__declspec(section ".sdata2") extern const f32 TBoss6Demo11_TYPE1_DEAD_progress_limit[2];
-void *TObjFish__sub_8033D1AC(void *, void *, void *);
-void __dl__7TObjectFPv(void *);
-void __dt__7TObjectFv(void *, int);
-void *__nw__7TObjectFUl(int);
+extern const char lbl_80477E48[];
+extern const ParticleWindow fish_spawn_entry_table[];
 
-void TBoss6Demo11_TYPE1_DEAD::render_fade_model() {
-    u8 *arg0 = (u8 *)this;
-    f32 var_f31;
-    s32 temp_r0;
-    temp_r0 = *(s32 *)((s8 *)arg0 + 0x44);
-    if (temp_r0 < 0xBF) {
-        var_f31 = lbl_805DFA58;
-    } else if (temp_r0 >= 0xCC) {
-        var_f31 = lbl_805DFA5C;
-    } else {
-        var_f31 = (f32) (0xCC - temp_r0) / lbl_805DFA60;
+#ifdef __MWERKS__
+// Keep direct relocations for the capture and camera tables.
+__declspec(weak) extern ModelNodePositionEntry lbl_80477E60[];
+__declspec(weak) extern const CameraAngles lbl_80477EC0;
+__declspec(weak) extern const CameraPlayback lbl_80477ECC;
+#else
+extern ModelNodePositionEntry lbl_80477E60[];
+extern const CameraAngles lbl_80477EC0;
+extern const CameraPlayback lbl_80477ECC;
+#endif
+
+__declspec(section ".rodata") const char lbl_80477E48[] ATTRIBUTE_ALIGN(4) = "TBoss6Demo11_TYPE1_DEAD";
+__declspec(section ".rodata") ModelNodePositionEntry lbl_80477E60[] = {
+    {0, {0.0f, 0.0f, 0.0f}},
+    {4, {0.0f, 0.0f, 0.0f}},
+    {6, {0.0f, 0.0f, 0.0f}},
+    {25, {0.0f, 0.0f, 0.0f}},
+    {49, {0.0f, 0.0f, 0.0f}},
+    {-1, {0.0f, 0.0f, 0.0f}},
+};
+__declspec(section ".rodata") const CameraAngles lbl_80477EC0 = {0, 0, 0};
+__declspec(section ".rodata") const CameraPlayback lbl_80477ECC = {1, 0, 0, 0.0f, 0.7f};
+__declspec(section ".rodata") const ParticleWindow fish_spawn_entry_table[] = {
+    {7, 42, 4}, {71, 128, 3}, {107, 137, 1}, {142, 185, 2},
+};
+__declspec(section ".data") static s32 death_motion_indices[] = {4, 5};
+__declspec(section ".data") static Vec death_origin = {0.0f, 0.0f, 70.0f};
+__declspec(section ".sdata") DeathClassTag lbl_805D42A0 = {lbl_80477E48, 0};
+}
+
+// CodeWarrior's deferred generation emits these definitions in reverse order.
+void *TBoss6PlotFalz::create(void *parent, void *target) {
+    return new TBoss6Demo11_TYPE1_DEAD(static_cast<TBoss6PlotFalz *>(parent), static_cast<const Vec *>(target));
+}
+
+TBoss6Demo11_TYPE1_DEAD::TBoss6Demo11_TYPE1_DEAD(TBoss6PlotFalz *parent, const Vec *)
+    : TObject(parent) {
+    m_name = lbl_805D42A0.name;
+    plot = parent;
+    VecCopy(&origin, &death_origin);
+
+    // The legacy accessor returns the loaded BML archive as a 32-bit value.
+    BmlResource *resource = reinterpret_cast<BmlResource *>(TObjFish::get_fish_count());
+    for (s32 i = 0; i < 2; i++) {
+        const s32 index = lbl_804DF614[i];
+        models[i].object = get_bml_model(resource, index);
+        models[i].textures = TObjFish__sub_8001EDB0(resource, index);
+        models[i].motion = get_bml_motion(resource, death_motion_indices[i]);
     }
-    if (lbl_805DFA5C != var_f31) {
-        if (var_f31 < lbl_805DFA58) {
-            TBoss6PlotFalz::set_fade_material_color(var_f31);
-        }
-        push_matrix();
-        set_motion_packed_rotation();
-        ((f32 (*)(void *))post_translate_matrix)(arg0 + 0x1C);
-        set_current_texture_list((GinjaTextureList *)(*(s32 *)&(*(void * *)((u8 *)this + 0x2C))));
-        draw_model_motion((void *)(*(s32 *)&(this->m_28)), (void *)(*(s32 *)&(this->m_30)), this->m_40);
-        set_current_texture_list((GinjaTextureList *)(this->m_38));
-        ((ModelNodePositionCapture *)((this->m_88)))->install();
-        draw_model_motion((void *)(*(s32 *)&(*(void * *)((u8 *)this + 0x34))), (void *)(*(s32 *)((s8 *)arg0 + 0x3C)), this->m_40);
-        ((ModelNodePositionCapture *)(this->m_88))->clear();
-        clear_motion_packed_rotation();
-        pop_matrix();
-        if (var_f31 < lbl_805DFA58) {
-            TObjFish::reset_fish_globals();
-        }
+    capture = ModelNodePositionCapture::create(lbl_80477E60, captured_positions);
+    emitter = NULL;
+    activate_camera_mode(5);
+    set_scripted_camera_pose(&origin, &origin, &lbl_80477EC0);
+    cache_target_and_forward__11TCameraCtrlFl(&lbl_80477ECC, 0x416C);
+    frame = 0.0f;
+    elapsed = 0;
+}
+
+TBoss6Demo11_TYPE1_DEAD::~TBoss6Demo11_TYPE1_DEAD() {
+    restore_player_cameras();
+    if (capture != NULL) {
+        ModelNodePositionCapture::destroy(capture);
+        capture = NULL;
+    }
+    if (emitter != NULL) {
+        TParticleCtrl::release(emitter);
+        emitter = NULL;
     }
 }
 
-void TBoss6Demo11_TYPE1_DEAD::render() { this->render_fade_model(); }
-
-extern s32 lbl_804EF9EC[];
-
-#define F(T, o) (*(T *)(arg0 + (o)))
 void TBoss6Demo11_TYPE1_DEAD::run_task() {
-    u8 *arg0 = (u8 *)this;
     s32 found;
     s32 i;
-    Vec_8033CDF8 *p;
-    u8 *q;
-    Range_8033CDF8 *t;
-    if ((F(f32, 0x40) += 0.7f) > TBoss6Demo11_TYPE1_DEAD_progress_limit[0]) {
-        F(f32, 0x40) = TBoss6Demo11_TYPE1_DEAD_progress_limit[0];
+    Vec *p;
+    Vec *q;
+    const ParticleWindow *t;
+    if ((frame += 0.7f) > 179.0f) {
+        frame = 179.0f;
     }
-    switch (F(s32, 0x44)) {
+    switch (elapsed) {
     case 0x98:
         play_sound_effect(0x40032104, 0, 0, 0);
         break;
@@ -105,48 +138,48 @@ void TBoss6Demo11_TYPE1_DEAD::run_task() {
         play_sound_effect(0x40032E23, 0, 0, 0);
         break;
     }
-    if (F(s32, 0x44) >= 0x89) {
-        play_persistent_sound((s32)(0x4003A424), (const void *)((s32)arg0), (const Vec *)(0), 0, 0);
+    if (elapsed >= 0x89) {
+        play_persistent_sound(0x4003A424, this, NULL, 0, 0);
     }
-    switch (F(s32, 0x44)) {
+    switch (elapsed) {
     case 0xE:
-        q = arg0 + 0x7C;
+        q = &captured_positions[4];
         spawn_particle_effect_with_flags(q, 0x21C, 0x40);
         spawn_particle_effect_with_flags(q, 0x21D, 0x40);
         break;
     case 0x4E:
-        q = arg0 + 0x70;
+        q = &captured_positions[3];
         spawn_particle_effect_with_flags(q, 0x21C, 0x40);
         spawn_particle_effect_with_flags(q, 0x21D, 0x40);
         break;
     }
-    if (F(s32, 0x44) >= 0xB9 && !(F(s32, 0x44) & 3)) {
-        q = arg0 + 0x4C;
+    if (elapsed >= 0xB9 && !(elapsed & 3)) {
+        q = &captured_positions[0];
         spawn_particle_effect_with_flags(q, 0x13C, 0x40);
         spawn_particle_effect_with_flags(q, 0x13D, 0x40);
     }
     found = 0;
     for (i = 0; i < 4; i++) {
         t = &fish_spawn_entry_table[i];
-        if (F(s32, 0x44) >= t->lo && F(s32, 0x44) < t->hi) {
-            p = &((Fish_8033CDF8 *)arg0)->vecs[t->idx];
-            if (F(void *, 0x8C) == NULL) {
-                F(void *, 0x8C) = create_particle_emitter(p, 0x21F);
-                if (F(void *, 0x8C) != NULL) {
-                    ((TParticleCtrl *)(F(void *, 0x8C)))->set_flags(0x40);
+        if (elapsed >= t->first_frame && elapsed < t->end_frame) {
+            p = &captured_positions[t->node];
+            if (emitter == NULL) {
+                emitter = create_particle_emitter(p, 0x21F);
+                if (emitter != NULL) {
+                    emitter->set_flags(0x40);
                 }
             } else {
-                ((TParticleCtrl *)F(void *, 0x8C))->set_position(p);
+                emitter->set_position(p);
             }
             found = 1;
             break;
         }
     }
-    if (found == 0 && F(void *, 0x8C) != NULL) {
-        TParticleCtrl::release(F(void *, 0x8C));
-        F(void *, 0x8C) = NULL;
+    if (found == 0 && emitter != NULL) {
+        TParticleCtrl::release(emitter);
+        emitter = NULL;
     }
-    switch (F(s32, 0x44)) {
+    switch (elapsed) {
     case 5:
     case 0x19:
     case 0x46:
@@ -158,43 +191,43 @@ void TBoss6Demo11_TYPE1_DEAD::run_task() {
         start_pad_rumble_all(0xC0, 0xF);
         break;
     }
-    F(s32, 0x44)++;
-    if (F(s32, 0x44) >= 0x101 || ((TObjFish *)(F(s32, 0x48)))->get_phase() != 3) {
-        queue_destruction__7TObjectFv(arg0);
+    elapsed++;
+    if (elapsed >= 0x101 || get_phase__8TObjFishFv(plot) != 3) {
+        queue_destruction__7TObjectFv(this);
     }
 }
 
-void *TBoss6Demo11_TYPE1_DEAD::destroy(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = lbl_804EF9EC;
-        restore_player_cameras();
-        if (*(void * *)&(this->m_88) != NULL) { ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(*(void * *)&(this->m_88))); *(s32 *)&(this->m_88) = 0; }
-        if (*(void * *)&(this->unk_8C) != NULL) { TParticleCtrl::release(*(void * *)&(this->unk_8C)); *(s32 *)&(this->unk_8C) = 0; }
-        __dt__7TObjectFv(this, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(this);
+void TBoss6Demo11_TYPE1_DEAD::render() {
+    render_fade_model();
+}
+
+void TBoss6Demo11_TYPE1_DEAD::render_fade_model() {
+    f32 alpha;
+    const s32 tick = elapsed;
+    if (tick < 0xBF) {
+        alpha = 1.0f;
+    } else if (tick >= 0xCC) {
+        alpha = 0.0f;
+    } else {
+        alpha = (f32) (0xCC - tick) / 13.0f;
+    }
+    if (0.0f != alpha) {
+        if (alpha < 1.0f) {
+            TBoss6PlotFalz::set_fade_material_color(alpha);
+        }
+        push_matrix();
+        set_motion_packed_rotation();
+        post_translate_matrix(&origin.x);
+        set_current_texture_list(reinterpret_cast<GinjaTextureList *>(models[0].textures));
+        draw_model_motion(reinterpret_cast<void *>(models[0].object), models[0].motion, frame);
+        set_current_texture_list(reinterpret_cast<GinjaTextureList *>(models[1].textures));
+        capture->install();
+        draw_model_motion(reinterpret_cast<void *>(models[1].object), models[1].motion, frame);
+        capture->clear();
+        clear_motion_packed_rotation();
+        pop_matrix();
+        if (alpha < 1.0f) {
+            TObjFish::reset_fish_globals();
         }
     }
-    return this;
-}
-
-void *TBoss6PlotFalz::create(void *arg0, void *arg1) {
-    void *o;
-    o = __nw__7TObjectFUl(0x90);
-    if (o != NULL) {
-        o = TObjFish__sub_8033D1AC(o, arg0, arg1);
-    }
-    return o;
-}
-
-// lbl_80477F08 is the compiler pool for the signed cast in render_fade_model.
-// Defining it by name emitted a second copy (16-byte .rodata against 8).
-// 0.7f is the same kind of pool for lbl_805DFA64: naming that float changes
-// the registers in run_task. 179.0f and the trailing 0.0f are TBoss6Demo11_TYPE1_DEAD_progress_limit.
-// Both pool symbols are scope:local; nothing else loads them.
-// Original 8-byte .sdata2 pool object at 0x805DFA68 (was lbl_805DFA68):
-// [0] = 179.0f, the clamp limit run_task applies to the +0.7f progress at
-// 0x40; [1] = 0.0f. Read by element so the real symbol, not a literal, is used.
-__declspec(section ".sdata2") extern const f32 TBoss6Demo11_TYPE1_DEAD_progress_limit[2] = { 179.0f, 0.0f };
-
 }
