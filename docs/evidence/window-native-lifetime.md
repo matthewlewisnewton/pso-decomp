@@ -340,6 +340,14 @@ matched 44-byte data split refines the earlier Help suffix into 156 original
 prefix bytes, original target data and four qualified alignment bytes. Current
 keyboard/technique main is merged with the relocated Base ABI fixes retained.
 
+The [HelpItem prerequisites](window-help-item-layout.md) separate actual window
+fields from entry position/color/string/value receivers and recover the true
+20-byte descriptor identity. The page pointer and opaque callback layout are
+asserted. Native Base activation remains held on a two-instruction constructor
+scheduling difference; its matching legacy lifetime and original table stay
+active. No code/data gain or new compiler control is claimed. The Parts constant
+hold remains unchanged after reviewing the existing placement evidence.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

@@ -1261,3 +1261,10 @@ the own 32.0f external reference blocks constant localization, and literal,
 normal definition and actual-member probes did not establish a matching source
 link. No section control, padding or alternate binding is introduced. This is
 compiled-source progress without a claimed executable source-link gain.
+
+[HelpItem layout prerequisites](evidence/window-help-item-layout.md) remove
+misleading entry-field aliases from the legacy window image and qualify their
+separate prefix views. Descriptor identity, page ownership and opaque callback
+storage are explicit. Native inheritance/table activation remains held on the
+measured constructor scheduling difference. No new compiler control, manual
+vptr assignment, callback signature or lifetime exception is introduced.

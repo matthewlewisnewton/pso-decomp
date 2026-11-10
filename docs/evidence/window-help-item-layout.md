@@ -70,7 +70,7 @@ A coordinated native probe used Base inheritance, genuine destructor/render/
 run_task, the page/callback tail and a compiler-owned table. Destruction (104
 bytes), task update (208) and direct-receiver render (116) reproduced the original.
 The 252-byte constructor differed only at relative offsets 38/3C: the target
-computes the 30-byte position address before storing the derived vptr, while
+computes the position address at offset 0x30 before storing the derived vptr, while
 the native constructor stores the vptr first. The instructions are otherwise
 the same, but exact matching is not established.
 
@@ -82,7 +82,8 @@ the matching legacy lifetime/render/task and all exact objects are retained.
 
 ## Parts constant follow-up and standing holds
 
-Before this family, the existing conversion-pool and Boss6 constant evidence
+Before this family, the existing [conversion-pool](conversion-pool-constants.md) and
+[Boss6 constant evidence](tboss6type1-sdata2-constants.md)
 was reviewed for the Parts 32.0f blocker. It already covers ordinary external,
 unnamed-namespace, C-linkage and class-static placement forms. It supplies no
 new source-correct placement fix and does not authorize treating a four-byte
@@ -93,3 +94,36 @@ Callback/signature, entry-owner, raw lifetime, ChoiceSetting, task-global,
 Snapshot, ChallengeResult, CustomSelect, status cleanup asymmetry and other
 standing holds remain. The protected original remainders are unchanged.
 PR remains draft; no native HelpItem completion is claimed.
+
+## Final validation and current main
+
+Current main `7e25e5b529718a679cc65a028ea6d46952c74f36` is merged,
+retaining its PPP-session recovery. The separate fresh-main baseline and this
+branch both reproduce DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. check_pr against the prior
+published head passes with no exact function/code/data/coverage or linked-address
+loss; this family's own metric delta is zero. Main's two new exact functions,
+4824 linked code and 536 linked data bytes are preserved.
+
+Totals are 27,395 exact functions and 3,588 exact linked units. Retention is
+clean at 17,832 names, including only the related additional callback label.
+The port inventory is regenerated for the shifted line of an existing intrinsic;
+its constructs and scopes are unchanged. No new exception is introduced.
+
+Twenty-one complete compiled text sections are identical to current-main
+originals: the seven affected helper/reset units and all fourteen constructor-
+call units. Twenty are selected source inputs exactly once; the already-held
+TWindowHelpItem_80243408 unit keeps its original input once because of its
+unrelated existing data blockers. Its compiled text also remains exact.
+The descriptor/callback owner's entire 1832-byte .data is identical, and the
+new descriptor symbol is exactly twenty bytes. The original HelpItem table
+provider remains unchanged; no native table is emitted or newly source-linked.
+
+Selected-input and resolved-range checks also preserve the Parts original
+provider/source-link hold, protected 1044-byte setup helper and all retained
+original remainders, prefixes and suffixes. No additional padding gap is
+introduced. Combined PR deltas versus fresh main remain +600 matched code,
++1220 linked code, +1308 matched data and +1264 linked data bytes, with the
+existing fourteen qualified four-byte alignment gaps. Source raw Base/Addition
+binding use remains 38 calls across 19 units. These prerequisites do not lift
+any native-lifetime, callback, constant or ownership hold.
