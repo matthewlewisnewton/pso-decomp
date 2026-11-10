@@ -897,3 +897,38 @@ DOL and retention-check provenance so other owners can verify and reuse it;
 no binaries are shared. This refresh claims no match beyond main. All length,
 allocator/output-pointer and metadata holds remain. No exhausted probe or
 held write is retried. Keep draft pending exact-head review and CI.
+
+
+## Recon refresh through main `78a6f8fae` with a shared baseline
+
+Refresh reviewed head `99842fbf8` against main
+`78a6f8fae432ad941677d392d332273e1079603b`. No competing owner is active.
+All five incoming Recon source/header paths match main, and the earlier DHCP
+scanner/lease/volatile and selection-predicate repairs are unchanged. Source
+and configuration merge automatically. Resolve only exception-summary conflicts
+by regenerating the inventory and retaining main's Recon compiler evidence.
+Summary totals are 5,773 pragmas in 876 files, with 187 per-unit overrides.
+
+Reuse the unchanged-main baseline sealed by the #375 owner instead of launching
+a duplicate main build. Independently verify its archived report/build/check/
+ordered-link artifacts, all 91 recorded tool/compiler hashes, five exact-main
+tracked configuration blobs and ordered-link digest. The pinned report SHA-256
+is `595fcf53782eb2e830d0180f8a5e760478883159b11c1a219a95dfd4d47e025a`.
+The seal records the original-main graph hashes; the owner's checkout has since
+advanced, so its current generated graph and objects are not substituted for
+the sealed baseline. Copy only the sealed reports/receipts into this task.
+The successful gated baseline receipt and native build log verify the original
+DOL, 3,585 linked units and 17,786 retention entries without drift.
+
+The candidate's own capacity-gated native build reproduces original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Recon remains 5/5 exact code/data
+and source-linked. Full comparison against the verified sealed main report
+passes: zero new functions/code, the existing +88 matched/linked data bytes,
+and no losses. All 3,584 linked units and 17,799 retention entries pass without
+drift. The existing fold accounts for the one-unit structural difference from
+main. Host tests, generated inventory and whitespace pass.
+
+This refresh claims no Recon match beyond main. Lengthless scanning, allocator/
+output-pointer questions and the metadata restriction remain unchanged. No
+exhausted probe or held write is retried. Keep draft pending exact-head review
+and hosted checks.
