@@ -1,6 +1,7 @@
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/UdpRuntime.h"
 #include "pso/network/SocketEvents.h"
+#include "pso/network/NetworkReceiveCallback.h"
 #include "types.h"
 #include "pso/misc/TLobby.h"
 
@@ -203,7 +204,7 @@ extern u32 lbl_805D7B50;
 extern u32 lbl_805D7B58;
 extern u32 lbl_805D7B60;
 extern volatile s32 lbl_805D4820;
-extern u8 lbl_805D7B24[4];
+extern s32 lbl_805D7B24;
 extern s32 lbl_805D7B28;
 s32 set_slot_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2);
 s32 set_thread_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2);
@@ -492,7 +493,7 @@ s16 TUdpSocket__sub_80421BAC(s32 h, u32 *src, u32 *dst, u16 port, u32 *opt, s8 n
     return r;
 }
 
-s16 TUdpSocket__sub_80421DEC(void *src, s32 sport, void *dst, s32 dport, s32 arg4, void *cb) {
+s16 TUdpSocket__sub_80421DEC(void *src, s32 sport, void *dst, s32 dport, s32 arg4, NetworkReceiveCallback cb) {
     u8 any[0x14];
     s16 h;
     s16 r;
@@ -692,33 +693,6 @@ s32 set_slot_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2
 }
 
 typedef struct T_8042276C T_8042276C;
-s32 set_thread_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2) {
-  T_8042276C *s = (T_8042276C *) tcp_protocol_state[0];
-  s16 new_var;
-  s += (s16) idx;
-  if ((cb != 0) && (!(s->fl & 8)))
-  {
-    new_var = (s16) idx;
-    cb(arg2, new_var);
-    s->st = arg2;
-    s->fl &= ~1;
-    s->fl |= 4;
-    s->z = 0;
-  }
-  else
-    if ((s->fl & 1) && (!(s->fl & 4)))
-  {
-    if (s->fl & 2)
-    {
-      TLobby::resume_thread(s->th);
-    }
-    s->st = arg2;
-    s->fl &= ~1;
-    s->fl |= 4;
-    s->z = 0;
-  }
-  return 0;
-}
 
 }
 
@@ -828,6 +802,36 @@ s16 tcp_send__FsPFss_vcP10send_buffs(s32 nh, void (*notify)(s16, s16), char bufn
     s->f2B4 &= ~1;
     TUdpSocket::unlock_mutex(network_dispatch_state.value);
     return r;
+}
+
+extern "C" {
+s32 set_thread_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2) {
+  T_8042276C *s = (T_8042276C *) tcp_protocol_state[0];
+  s16 new_var;
+  s += (s16) idx;
+  if ((cb != 0) && (!(s->fl & 8)))
+  {
+    new_var = (s16) idx;
+    cb(arg2, new_var);
+    s->st = arg2;
+    s->fl &= ~1;
+    s->fl |= 4;
+    s->z = 0;
+  }
+  else
+    if ((s->fl & 1) && (!(s->fl & 4)))
+  {
+    if (s->fl & 2)
+    {
+      TLobby::resume_thread(s->th);
+    }
+    s->st = arg2;
+    s->fl &= ~1;
+    s->fl |= 4;
+    s->z = 0;
+  }
+  return 0;
+}
 }
 
 s16 tcp_get_opt(s16 nh, s16 type, u32 *opt) {
@@ -1164,9 +1168,62 @@ extern u32 lbl_805D7B64;
 extern u32 lbl_805D7B68;
 extern u32 lbl_805D7B6C;
 extern u32 lbl_805D7B70;
-void TLobby__sub_8042422C(void);
-void TLobby__sub_80423E80(void);
+s32 TLobby__sub_8042422C(void);
+s32 TLobby__sub_80423E80(void);
 s32 TLobby__sub_80423C04(void);
+
+void TLobby__sub_80423298(void) {
+    s32 now;
+    s32 elapsed;
+    u32 secs;
+    lbl_805D7BA0 = 0;
+    if (lbl_805D4820 == 1) {
+        TLobby__sub_8042422C();
+        return;
+    }
+    if (lbl_805D4820 == 2) {
+        TLobby__sub_80423E80();
+        return;
+    }
+    if (lbl_805D4820 == 6) {
+        TLobby__sub_80423C04();
+        return;
+    }
+    if ((lbl_805D4820 != 3 && lbl_805D4820 != 4 && lbl_805D4820 != 5) || lbl_805D7B64 == 0xFFFFFFFF) {
+        return;
+    }
+    TLobby::get_time_ms(&now);
+    elapsed = now - lbl_805D7B60;
+    lbl_805D7B60 = now;
+    lbl_805D7B5C += elapsed;
+    secs = lbl_805D7B5C / 1000;
+    lbl_805D7B70 += secs;
+    lbl_805D7B5C %= 1000;
+    if (lbl_805D7B70 >= lbl_805D7B64) {
+        if (lbl_805D7B18 > -1) {
+            TLobby__sub_80421B3C(lbl_805D7B18);
+            lbl_805D7B18 = -1;
+        }
+        lbl_805D4820 = -1;
+        lbl_805D7BA0 = 9;
+        return;
+    }
+    if (lbl_805D4820 != 5 && lbl_805D7B70 >= lbl_805D7B6C) {
+        lbl_805D4820 = 5;
+        lbl_805D7B0C = 0;
+    }
+    if (lbl_805D4820 != 4 && lbl_805D4820 != 5 && lbl_805D7B70 >= lbl_805D7B68) {
+        lbl_805D4820 = 4;
+        lbl_805D7B0C = 0;
+    }
+    if (lbl_805D4820 == 4) {
+        TLobby__sub_80423E80();
+        return;
+    }
+    if (lbl_805D4820 == 5) {
+        TLobby__sub_80423E80();
+    }
+}
 
 extern s32 lbl_805D7B2C;
 extern s32 lbl_805D7B30;
@@ -1276,7 +1333,7 @@ s32 TLobby::build_dhcp_release() {
     p += 6;
     *p++ = 0x36;
     *p++ = 4;
-    NetMemcpy(p, lbl_805D7B24, 4);
+    NetMemcpy(p, &lbl_805D7B24, 4);
     p += 4;
     len = NetStringLength((const char*)dhcp_hostname);
     if (len != 0) {
@@ -1327,7 +1384,7 @@ s32 TLobby::dhcp_build_packet() {
     if (lbl_805D4820 != 4 && lbl_805D4820 != 5) {
         *p++ = 0x36;
         *p++ = 4;
-        NetMemcpy(p, lbl_805D7B24, 4);
+        NetMemcpy(p, &lbl_805D7B24, 4);
         p += 4;
     }
     if (lbl_805D7B58 != 0) {
@@ -1410,6 +1467,12 @@ s32 TLobby::build_dhcp_discover_packet() {
 extern s16 lbl_805D7B08;
 extern s32 lbl_805D7B14;
 extern s32 lbl_805D7B74;
+extern s32 lbl_805D7B84;
+extern s32 lbl_805D7B88;
+extern s32 lbl_805D7B8C;
+extern s32 lbl_805D7B90;
+extern u32 lbl_805D7B94;
+extern volatile s32 lbl_805D7B10;
 extern u32 lbl_805D7B98;
 extern s32 lbl_805D7B9C;
 extern u8 lbl_805C1E00[];
@@ -1485,6 +1548,231 @@ s32 TLobby__sub_80423C04(void) {
                 lbl_805D7B0C = 0;
                 TLobby__sub_80425288(0xF, 0, NULL);
                 TLobby__sub_80425288(0xE, 0, NULL);
+            }
+        }
+        break;
+    }
+    return lbl_805D4820;
+}
+
+s32 TLobby__sub_80423E80(void) {
+    s32 now;
+    s32 size;
+    UdpBuf_80421BAC buf;
+    u32 dst[5];
+    u32 src[5];
+    s32 len;
+    s16 sock;
+    s32 server;
+    TLobby::get_time_ms(&now);
+    switch (lbl_805D7B0C) {
+    case 0:
+        lbl_805D7B50 = now;
+        if (lbl_805D4820 == 2) {
+            lbl_805D7B90 = lbl_805D7B74;
+        }
+        if (TLobby__sub_80424FE0() != 0) {
+            break;
+        }
+        lbl_805D7B0C = 1;
+    case 1:
+        len = ((TLobby *)lbl_805C1E00)->dhcp_build_packet();
+        lbl_805D7B10 = 0;
+        if (lbl_805D4820 == 4) {
+            server = lbl_805D7B24;
+        } else {
+            server = -1;
+        }
+        src[0] = 4;
+        dst[0] = 4;
+        src[1] = 0;
+        dst[1] = server;
+        sock = lbl_805D7B18;
+        size = len > 300 ? len : 300;
+        buf.len = (s16)size;
+        buf.data = (s32)&lbl_805C1E00;
+        if (TUdpSocket__sub_80421BAC(sock, src, dst, 0x43, NULL, 1, &buf) < 0) {
+            TLobby__sub_80421B3C(lbl_805D7B18);
+            lbl_805D7B18 = -1;
+            if (lbl_805D4820 == 1 || lbl_805D4820 == 2 || lbl_805D4820 == 6) {
+                lbl_805D7B14 = TLobby__sub_804250A8(0);
+            }
+            lbl_805D7BA0 = 5;
+            lbl_805D7B0C = -1;
+            lbl_805D4820 = -2;
+        } else {
+            lbl_805D7B8C = now;
+            if (lbl_805D4820 == 4) {
+                u32 remain = lbl_805D7B6C - lbl_805D7B70;
+                if (remain >= 0x78) {
+                    u32 wait = remain / 2;
+                    lbl_805D7B94 = wait * 1000;
+                } else {
+                    lbl_805D7B94 = 0;
+                }
+            } else if (lbl_805D4820 == 5) {
+                u32 remain = lbl_805D7B64 - lbl_805D7B70;
+                if (remain >= 0x78) {
+                    u32 wait = remain / 2;
+                    lbl_805D7B94 = wait * 1000;
+                } else {
+                    lbl_805D7B94 = 0;
+                }
+            }
+            lbl_805D7B0C = 2;
+        }
+        break;
+    case 2:
+        if (lbl_805D7B10 != 0) {
+            if (lbl_805D4820 == 4 || lbl_805D4820 == 5) {
+                ((TLobby *)(lbl_805C1E00 + 0x5DC + 0xEC))->parse_dhcp_lease_times();
+                lbl_805D7B70 = 0;
+            }
+            TLobby__sub_80421B3C(lbl_805D7B18);
+            lbl_805D7B18 = -1;
+            if (lbl_805D4820 == 1 || lbl_805D4820 == 2 || lbl_805D4820 == 6) {
+                lbl_805D7B14 = TLobby__sub_804250A8(0);
+            }
+            TLobby__sub_80423440(lbl_805C1E00 + 0x5DC);
+            lbl_805D7B0C = 0;
+            lbl_805D4820 = 3;
+        } else if (lbl_805D4820 == 2) {
+            u32 elapsed = now - lbl_805D7B8C;
+            if (elapsed >= 0xBB8) {
+                lbl_805D7B90 = lbl_805D7B90 - 1;
+                if (lbl_805D7B90 <= 0) {
+                    TLobby__sub_80421B3C(lbl_805D7B18);
+                    lbl_805D7B18 = -1;
+                    if (lbl_805D4820 == 1 || lbl_805D4820 == 2 || lbl_805D4820 == 6) {
+                        lbl_805D7B14 = TLobby__sub_804250A8(0);
+                    }
+                    lbl_805D4820 = -1;
+                    lbl_805D7B0C = -1;
+                    lbl_805D7BA0 = 7;
+                } else {
+                    lbl_805D7B0C = 1;
+                }
+            }
+        } else if (lbl_805D4820 == 4) {
+            if (lbl_805D7B94 != 0 && (u32)(now - lbl_805D7B8C) >= lbl_805D7B94) {
+                lbl_805D7B0C = 1;
+            } else {
+                lbl_805D7BA0 = 8;
+            }
+        } else if (lbl_805D4820 == 5) {
+            if (lbl_805D7B94 != 0 && (u32)(now - lbl_805D7B8C) >= lbl_805D7B94) {
+                lbl_805D7B0C = 1;
+            } else {
+                lbl_805D7BA0 = 9;
+            }
+        }
+        break;
+    }
+    return lbl_805D4820;
+}
+
+s32 TLobby__sub_8042422C(void) {
+    s32 now;
+    P_8042315C opt;
+    P_8042315C opt_retry;
+    u32 bind_addr[5];
+    s32 size;
+    UdpBuf_80421BAC buf;
+    u32 dst[5];
+    u32 src[5];
+    s32 len;
+    s16 sock;
+    u32 server;
+    u32 client;
+    u32 any;
+    TLobby::get_time_ms(&now);
+    switch (lbl_805D7B0C) {
+    case 0:
+        TLobby__sub_80421B3C(lbl_805D7B18);
+        lbl_805D7B18 = -1;
+        if (lbl_805D4820 == 1 || lbl_805D4820 == 2 || lbl_805D4820 == 6) {
+            lbl_805D7B14 = TLobby__sub_804250A8(0);
+        }
+        opt.type = 4;
+        opt.a = 0;
+        opt.b = -1;
+        opt.c = -1;
+        if (TLobby__sub_8042315C(lbl_805D7B08, &opt) != 0) {
+            TLobby__sub_80423064(lbl_805D7B08, 4);
+            opt_retry.type = 4;
+            opt_retry.a = 0;
+            opt_retry.b = -1;
+            opt_retry.c = -1;
+            if (TLobby__sub_8042315C(lbl_805D7B08, &opt_retry) != 0) {
+                lbl_805D7B0C = -1;
+                lbl_805D4820 = -2;
+                lbl_805D7BA0 = 3;
+                break;
+            }
+        }
+        lbl_805D7B14 = 1;
+        any = 0;
+        bind_addr[0] = 4;
+        bind_addr[1] = any;
+        sock = TUdpSocket__sub_80421DEC(0, 0x44, bind_addr, 0x43, 0, dhcp_handle_reply__6TLobbyFsPv);
+        lbl_805D7B18 = sock;
+        if (sock < 0) {
+            TLobby__sub_80423064(lbl_805D7B08, 4);
+            lbl_805D7B14 = 0;
+            lbl_805D7B0C = -1;
+            lbl_805D4820 = -2;
+            lbl_805D7BA0 = 4;
+            break;
+        }
+        lbl_805D7B0C = 1;
+        lbl_805D7B88 = lbl_805D7B74;
+    case 1:
+        len = ((TLobby *)lbl_805C1E00)->build_dhcp_discover_packet();
+        client = 0;
+        server = 0xFFFFFFFF;
+        src[0] = 4;
+        dst[0] = 4;
+        lbl_805D7B10 = 0;
+        src[1] = client;
+        dst[1] = server;
+        sock = lbl_805D7B18;
+        size = len > 300 ? len : 300;
+        buf.len = (s16)size;
+        buf.data = (s32)&lbl_805C1E00;
+        if (TUdpSocket__sub_80421BAC(sock, src, dst, 0x43, NULL, 1, &buf) < 0) {
+            TLobby__sub_80421B3C(lbl_805D7B18);
+            lbl_805D7B18 = -1;
+            if (lbl_805D4820 == 1 || lbl_805D4820 == 2 || lbl_805D4820 == 6) {
+                lbl_805D7B14 = TLobby__sub_804250A8(0);
+            }
+            lbl_805D7BA0 = 5;
+            lbl_805D7B0C = -1;
+            lbl_805D4820 = -2;
+        } else {
+            lbl_805D7B84 = now;
+            lbl_805D7B0C = 2;
+        }
+        break;
+    case 2:
+        if (lbl_805D7B10 != 0) {
+            lbl_805D7B0C = 0;
+            lbl_805D4820 = 2;
+        } else {
+            u32 elapsed = now - lbl_805D7B84;
+            if (elapsed >= 0xBB8) {
+            lbl_805D7B88 = lbl_805D7B88 - 1;
+            if (lbl_805D7B88 <= 0) {
+                TLobby__sub_80421B3C(lbl_805D7B18);
+                lbl_805D7B18 = -1;
+                if (lbl_805D4820 == 1 || lbl_805D4820 == 2 || lbl_805D4820 == 6) {
+                    lbl_805D7B14 = TLobby__sub_804250A8(0);
+                }
+                lbl_805D4820 = -1;
+                lbl_805D7B0C = -1;
+                lbl_805D7BA0 = 6;
+            } else {
+                lbl_805D7B0C = 1;
+            }
             }
         }
         break;
