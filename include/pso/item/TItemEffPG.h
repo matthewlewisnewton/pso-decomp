@@ -6,6 +6,7 @@
 #include "pso/item/TUnk_804E355C.h"
 
 struct TItemEffPG : public TUnk_804E355C {
+    TItemEffPG(TObject *parent, void *params);
     virtual ~TItemEffPG();
     virtual s32 vfunc_7();
     u8 unk_C4[0x4];

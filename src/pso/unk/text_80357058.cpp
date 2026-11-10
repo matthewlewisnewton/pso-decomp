@@ -6,7 +6,6 @@
 #include "pso/object/TObject_80019A50.h"
 #include "pso/object/TObject_8001A448.h"
 #include "pso/render/render_util.h"
-#include "pso/unk/text_802E4A4C.h"
 #include "pso/unk/text_80357058.h"
 
 #include "pso/item/TUnk_804E355C.h"
@@ -19,8 +18,6 @@
 #include "pso/player/TObjPlayer.h"
 
 
-struct RecoveredGlobal_80357548___vt__20TItemEffOrgaFlowShot { s32 value; u8 remaining[0x1C]; };
-typedef char RecoveredGlobal_80357548___vt__20TItemEffOrgaFlowShot_size[sizeof(RecoveredGlobal_80357548___vt__20TItemEffOrgaFlowShot) == 0x20 ? 1 : -1];
 
 struct B_80357058 { u8 hdr[4]; u8 d[0x40]; u8 tail[8+1]; };
 
@@ -51,7 +48,6 @@ extern "C" {
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 f32 normalize_vector(void *);
-extern s32 __vt__20TItemEffOrgaFlowShot[];
 extern s32 TItemEffOrgaFlowShot__name;
 extern const f32 lbl_805E0038;
 extern const f32 lbl_805E003C;
@@ -67,7 +63,6 @@ void handle_6xAD_olga_flow_subordinate_boss_actions(Pkt_803570E4 *pkt);
 s32 has_game_join_id__13TUnk_804E355CFv();
 extern const f32 lbl_805E0030;
 extern const f32 lbl_805E0034;
-void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 }
 
@@ -195,9 +190,9 @@ void TItemEffOrgaFlowShot::update_position_from_velocity() {
     temp_f2 = lbl_805E0028 * *(f32 *)&this->m_190;
     this->m_40 = temp_f2;
     *(f32 *)((s8 *)arg0 + 0x44) = (f32) (lbl_805E002C + *(f32 *)&this->m_194);
-    this->m_24 = (f32) ((this->m_17c * temp_f2) + this->m_114);
-    *(f32 *)&this->m_28 = (f32) *(f32 *)&this->unk_118;
-    *(f32 *)&this->unk_2C = (f32) ((this->m_184 * temp_f2) + this->m_11c);
+    this->position.x = (f32) ((this->m_17c * temp_f2) + this->m_114);
+    this->position.y = (f32) *(f32 *)&this->unk_118;
+    this->position.z = (f32) ((this->m_184 * temp_f2) + this->m_11c);
 }
 #pragma pop
 
@@ -216,9 +211,10 @@ void TItemEffOrgaFlowShot::render() {
     TParticleCtrl::end_effect_render();
 }
 
-void run_task__20TItemEffOrgaFlowShotFv(u8 *item_eff_orga_flow_shot) {
+void TItemEffOrgaFlowShot::run_task() {
     s32 temp_r3;
     s32 i;
+    u8 *item_eff_orga_flow_shot = (u8 *)this;
     if (has_game_join_id__13TUnk_804E355CFv() != 0) {
         ((TUnk_804E355C *)item_eff_orga_flow_shot)->check_hits();
     } else {
@@ -243,20 +239,12 @@ void run_task__20TItemEffOrgaFlowShotFv(u8 *item_eff_orga_flow_shot) {
     ((TItemEffOrgaFlowShot *)item_eff_orga_flow_shot)->update_position_from_velocity();
 }
 
-void *__dt__20TItemEffOrgaFlowShotFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__20TItemEffOrgaFlowShot;
-        ((TUnk_804E355C *)arg0)->destroy_attack_collision(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TItemEffOrgaFlowShot::~TItemEffOrgaFlowShot() {}
 
-u8 *TItemEffOrgaFlowShot__ct(TItemEffOrgaFlowShot *item_eff_orga_flow_shot, s32 arg1, u8 *arg2) {
-    construct_attack_collision((u8 *)item_eff_orga_flow_shot, arg1, arg2);
-    *(s32 **)((s8 *)item_eff_orga_flow_shot + 0x18) = &(*(RecoveredGlobal_80357548___vt__20TItemEffOrgaFlowShot *)&__vt__20TItemEffOrgaFlowShot).value;
+TItemEffOrgaFlowShot::TItemEffOrgaFlowShot(TObject *parent, void *params)
+    : TUnk_804E355C(parent, params) {
+    TItemEffOrgaFlowShot *item_eff_orga_flow_shot = this;
+    u8 *arg2 = (u8 *)params;
     *(s32 *)((s8 *)item_eff_orga_flow_shot + 0) = (s32) TItemEffOrgaFlowShot__name;
     *(s32 *)((s8 *)item_eff_orga_flow_shot + 0xC0) = 0;
     item_eff_orga_flow_shot->m_48 = 1;
@@ -294,13 +282,8 @@ u8 *TItemEffOrgaFlowShot__ct(TItemEffOrgaFlowShot *item_eff_orga_flow_shot, s32 
     item_eff_orga_flow_shot->m_160 = 0x408840;
     item_eff_orga_flow_shot->update_segments();
     item_eff_orga_flow_shot->update_position_from_velocity();
-    return (u8 *)item_eff_orga_flow_shot;
 }
 
 void TItemEffOrgaFlowShot::create(void *arg0, void *arg1) {
-    void *o;
-    o = __nw__7TObjectFUl(0x1A0);
-    if (o != NULL) {
-        TItemEffOrgaFlowShot__ct((TItemEffOrgaFlowShot *)((u8 *)o), (s32)((s32)arg0), (u8 *)((u8 *)arg1));
-    }
+    new TItemEffOrgaFlowShot((TObject *)arg0, arg1);
 }
