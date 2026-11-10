@@ -607,6 +607,20 @@ the class destructor emits it. [Historical evidence](evidence/conversion-pool-co
 |---|---|---|
 | `pso/misc/TLobby_80228154.cpp` | `mw_version` GC/1.3.2 | Adapted from upstream [#208](https://github.com/zeroz41/pso-decomp/pull/208), `ae797d392`, which links the unit exact under GC/1.3.2. `TLobby__sub_80228154` (`0x80228154`, sprite frame draw) is plain C++: no asm, casts or pragmas. Under GC/2.6 the unit's `.text` is 1720 bytes instead of 1732 (the sprite draw's frame and flag tests come out shorter); under GC/1.3.2 every section and relocation is identical to upstream's linked object. The unit's other functions are unchanged fork code. Build with the port compiler. |
 
+
+The recovered sprite draw retains three bounded native interfaces. `SpriteColor_80228154`
+uses the GameCube's big-endian byte order and the native compiler's union representation
+when reading its packed color; a port must form the ARGB integer explicitly rather than
+reuse that byte overlay on a little-endian host. The existing caller in
+`TLobby_801E2F94.cpp` still declares its first argument and unused result as `s32`,
+where this definition takes a sprite pointer and returns `void`; those declarations
+need a shared typed boundary before a 64-bit port. The existing
+`draw_textured_quad_at_depth` renderer indexes eight floats through a `void *`,
+while this caller supplies the first member of a contiguous eight-float quad struct.
+That native layout matches, but a port should give both sides one shared representation
+instead of relying on indexing across struct members. These source-interface limitations
+are not cleared by the exact native object or DOL checks.
+
 ## 6. Approved regressions
 
 None on main.
