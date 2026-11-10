@@ -447,3 +447,12 @@ The unknown trailing word remains an explicit original-only input, with no
 padding assumption or coverage loss. Callback invocation and copy-helper views
 stay qualified. Raw Base/Addition calls fall to 20 across eleven units; all
 other technical holds persist.
+
+
+The [CustomSelect native-code recovery](window-custom-select-native-code.md)
+adds the exact native Addition chain, ordinary-new producer and 24-byte compiler
+table while preserving both early returns and the uninitialized child slots.
+The partial-initialization safety hold remains explicit. Complete owner/producer
+texts, conversion/jump data and original prefix/suffix providers remain exact.
+Raw calls fall to 18 across ten units, and the unused Addition constructor alias
+leaves the ABI header, which now contains three bindings. Other holds persist.

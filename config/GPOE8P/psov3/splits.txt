@@ -9001,6 +9001,7 @@ pso/misc/TWindowSubCustomEquip.cpp:
 pso/misc/TWindowSubCustomSelect.cpp:
 	.text       start:0x802772B8 end:0x80277C70
 	.rodata     start:0x8044F808 end:0x8044F818
+	.data       start:0x804D1550 end:0x804D1568
 
 pso/misc/TWindowSubEquip.cpp:
 	.text       start:0x80277C70 end:0x80277D3C

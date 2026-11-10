@@ -5,6 +5,7 @@
 #include "pso/misc/TWindowAddition.h"
 
 struct TWindowSubCustomSelect : public TWindowAddition {
+    TWindowSubCustomSelect(s32 client);
     virtual ~TWindowSubCustomSelect();
     virtual void render();
     u8 m_70;
@@ -27,12 +28,6 @@ struct TWindowSubCustomSelect : public TWindowAddition {
 };
 
 typedef char TWindowSubCustomSelect_size[sizeof(TWindowSubCustomSelect) == 0x84 ? 1 : -1];
-
-extern "C" {
-u8 *TWindowSubCustomSelect__ct(TWindowSubCustomSelect *arg0, s32 arg1);
-void *__dt__22TWindowSubCustomSelectFv(void *arg0, s16 arg1);
-void render__22TWindowSubCustomSelectFv(TWindowSubCustomSelect *arg0);
-}
 
 typedef char TWindowSubCustomSelect_fields_begin[offsetof(TWindowSubCustomSelect, m_70) == 0x70 ? 1 : -1];
 

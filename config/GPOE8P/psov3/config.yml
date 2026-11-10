@@ -2662,6 +2662,7 @@ force_active:
   - __dt__22TObjFogCollisionSwitchFv
   - __dt__22TQuestVmDownLoadServerFv
   - __dt__22TWindowLoadItemTextureFv
+  - __dt__22TWindowSubCustomSelectFv
   - __dt__22TWindowSubShortCutListFv
   - __dt__22TWindowSubTradeMessageFv
   - __dt__23TAdDialingMessageWindowFv
@@ -3311,6 +3312,7 @@ force_active:
   - __vt__22TObjFogCollisionSwitch
   - __vt__22TQuestVmDownLoadServer
   - __vt__22TWindowLoadItemTexture
+  - __vt__22TWindowSubCustomSelect
   - __vt__22TWindowSubShortCutList
   - __vt__22TWindowSubTradeMessage
   - __vt__23TAdDialingMessageWindow
@@ -14364,6 +14366,7 @@ force_active:
   - render__22TObjEneMe1GiGueMissileFv
   - render__22TObjEneSlimeTailAttackFv
   - render__22TWindowLoadItemTextureFv
+  - render__22TWindowSubCustomSelectFv
   - render__22TWindowSubShortCutListFv
   - render__22TWindowSubTradeMessageFv
   - render__23TAdDialingMessageWindowFv
@@ -15093,6 +15096,7 @@ force_active:
   - run_task__22TObjFogCollisionSwitchFv
   - run_task__22TQuestVmDownLoadServerFv
   - run_task__22TWindowLoadItemTextureFv
+  - run_task__22TWindowSubCustomSelectFv
   - run_task__22TWindowSubShortCutListFv
   - run_task__22TWindowSubTradeMessageFv
   - run_task__23TBoss6Demo21_TYPE2_DEADFv

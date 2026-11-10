@@ -159,10 +159,7 @@ void TUnk_804D1160::run_task() {
         }
         break;
     case 3:
-        p = __nw__7TObjectFUl(0x84);
-        if (p != NULL) {
-            p = TWindowSubCustomSelect__ct((TWindowSubCustomSelect *)((u8 *)p), this->m_20);
-        }
+        p = new TWindowSubCustomSelect(this->m_20);
         self->f2c = p;
         TWindowSubEquip__sub_80263AF8((u8 *)self->f24, 1);
         set_depth__11TWindowBaseFf(self->f2c);

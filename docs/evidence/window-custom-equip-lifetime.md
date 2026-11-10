@@ -64,6 +64,12 @@ current evidence does not establish a complete lifetime for those paths.
 No extra stores or assumption of per-allocation heap zeroing is added. The
 existing CustomSelect constructor/destructor and all its text remain unchanged.
 
+The later [CustomSelect native-code recovery](window-custom-select-native-code.md)
+reproduces the native constructor/destructor, ordinary-new producer and compiler
+table. It preserves these early returns and uninitialized slots exactly. The
+partial-initialization safety hold above remains unresolved; native code and
+table recovery do not establish safe destruction on every path.
+
 ## Descriptor, compiler table and original data
 
 The constructor input at [804D1488,804D149C) has extent 212/188, order
