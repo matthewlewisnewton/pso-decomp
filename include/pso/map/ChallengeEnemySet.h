@@ -63,8 +63,8 @@ extern s32 challenge_event_count;
 extern u8 *challenge_action_buffer;
 extern s32 challenge_action_size;
 extern s32 challenge_event_source_size;
-
-void TLobby__sub_80209D34(s32 floor);
 }
+
+void build_challenge_enemy_set(s32 floor);
 
 #endif

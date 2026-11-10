@@ -29,7 +29,7 @@ void init_buffers__6TLobbyFii(s32 id, s32 arg1) {
         challenge_event_count = 0;
         challenge_action_buffer = static_cast<u8 *>(TQuestVmDownLoadServer::alloc(ChallengeCommandBufferSize));
         challenge_action_size = 0;
-        TLobby__sub_80209D34(id);
+        build_challenge_enemy_set(id);
         TAdSinglePlyChrSelectGC::safe_free((u32)challenge_action_buffer);
         TAdSinglePlyChrSelectGC::safe_free(reinterpret_cast<u32>(challenge_event_buffer));
         challenge_event_buffer = NULL;

@@ -16,7 +16,7 @@ typedef char ChallengeEnemyPlacementSize[sizeof(SpawnRecord_8020A9C4) == 0x48 ? 
 typedef char ChallengeEnemyRoomOffset[offsetof(SpawnRecord_8020A9C4, room) == 0x0C ? 1 : -1];
 typedef char ChallengeEnemyWaveOffset[offsetof(SpawnRecord_8020A9C4, wave) == 0x0E ? 1 : -1];
 
-extern "C" void TLobby__sub_80209D34(s32 floor) {
+void build_challenge_enemy_set(s32 floor) {
     // Declaration order keeps the native register allocation across the two loops.
     s32 enemyOffset;
     ChallengeRandomEvent *nextEvent;
