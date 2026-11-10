@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "pso/misc/TLobby.h"
+#include "pso/unk/text_803D2F1C.h"
 
 #pragma readonly_strings on
 
@@ -105,7 +106,6 @@ int memcmp(const void *, const void *, unsigned long);
 unsigned long strlen(const char *);
 char *cri_copyright_string = "(c)CRI";
 s32 parse_aix_header__6TLobbyFPviPv(u8 *arg0, s32 arg1, Out_803CDEC8 *arg2);
-void TLobby__sub_803D3130(Chunk_803CDB0C *, s32, Chunk_803CDB0C *, Chunk_803CDB0C *);
 void *memcpy(void *, const void *, u32);
 
 #pragma dont_inline off

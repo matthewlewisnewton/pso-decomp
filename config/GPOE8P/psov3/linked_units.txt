@@ -1162,6 +1162,7 @@ pso/misc/TLobby_8036A37C.cpp
 pso/misc/TLobby_8036B204.cpp
 pso/misc/TLobby_8036DBC4.cpp
 pso/misc/TLobby_8036F81C.cpp
+pso/misc/TLobby_803BFE50.cpp
 pso/misc/TLobby_803C45E4.cpp
 pso/misc/TLobby_803C4698.cpp
 pso/misc/TLobby_803CBE88.cpp
@@ -2128,6 +2129,7 @@ pso/object/TObjDoor_801F3754.cpp
 pso/object/TObjEZBoneRotBase.cpp
 pso/object/TObjEZBoneRotPlayer.cpp
 pso/object/TObjEZRopeBase.cpp
+pso/object/TObjEZRopeSimulation.cpp
 pso/object/TObjEnvSoundGlobal.cpp
 pso/object/TObjEvtCollision.cpp
 pso/object/TObjFish_8001ED90.cpp
@@ -2277,7 +2279,6 @@ pso/player/TObjPlayer_800D8FDC.cpp
 pso/player/TObjPlayer_800DCC90.cpp
 pso/player/TObjPlayer_800E80A4.cpp
 pso/player/TObjPlayer_800F0810.cpp
-pso/player/TObjPlayer_800FEFCC.cpp
 pso/player/TObjPlayer_800FFA88.cpp
 pso/player/TObjPlayer_80104860.cpp
 pso/player/TObjPlayer_80105874.cpp

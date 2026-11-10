@@ -56,6 +56,7 @@ force_active:
   - Dolphin_GXLoadTexObjPreLoaded
   - Down
   - EXIClearInterrupts
+  - EXIGetID
   - EmitterShutdown
   - ErrorTable
   - EventHandler
@@ -695,6 +696,9 @@ force_active:
   - TLobby__sub_803362A4
   - TLobby__sub_8034C1D0
   - TLobby__sub_8036B424
+  - TLobby__sub_803C0238
+  - TLobby__sub_803C0628
+  - TLobby__sub_803C133C
   - TLobby__sub_803C4698
   - TLobby__sub_803CBE40
   - TLobby__sub_803CE2A0
@@ -4977,6 +4981,7 @@ force_active:
   - controller_default_pad_state
   - controller_device_id_table
   - conversation_camera_obstructed__FP16FollowControllerl
+  - convert_pcm_u8_to_s16__6TLobbyFv
   - convert_quest_object_rows
   - convert_serial_hex_to_decimal__22TAdEnterSerialAccessGCFi
   - copySavedX__12TBoss1DragonFPi
@@ -8031,6 +8036,7 @@ force_active:
   - lbl_805470AC
   - lbl_80549748
   - lbl_8054AB48
+  - lbl_80570AC0
   - lbl_8057FFD0
   - lbl_80581330
   - lbl_8058DC00
@@ -16203,6 +16209,7 @@ force_active:
   - sub_800F8250__13TUnk_80499988Ff
   - sub_800FEC40__17TObjEZBoneRotBaseFPUc
   - sub_800FED0C__17TObjEZBoneRotBaseFv
+  - sub_800FF580__14TObjEZRopeBaseFP3Vecf
   - sub_80140F44__11TMapCsnCtrlFv
   - sub_80156A68__14TObjCollidableFv
   - sub_80158604__13TObjMapObjectFv
