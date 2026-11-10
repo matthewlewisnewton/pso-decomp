@@ -2,22 +2,21 @@
 #define PSO_ITEM_TUNK_804E355C_H
 #include "types.h"
 #include "pso/TObject.h"
+#include <dolphin/mtx/GeoTypes.h>
 
 class TUnk_804E355C : public TObject {
 public:
+    TUnk_804E355C(TObject *parent, void *params);
     virtual ~TUnk_804E355C();
     void check_hits();
     s32 try_add_hit_target(void *);
     virtual void vfunc_6(s32 *);
-    void *destroy_attack_collision(s16);
     u8 has_game_join_id();
     s32 resolve_attack_col_hit(u8 *);
     u8 unk_1C[0x4];
     s32 m_20;
-    f32 m_24;
-    float m_28;
-    u8 unk_2C[0x4];
-    float m_30;
+    Vec position;
+    s32 facing_yaw;
     u8 unk_34[0x4];
     f32 m_38;
     u8 unk_3C[0x4];

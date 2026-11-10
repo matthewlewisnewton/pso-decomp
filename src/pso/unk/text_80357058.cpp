@@ -195,9 +195,9 @@ void TItemEffOrgaFlowShot::update_position_from_velocity() {
     temp_f2 = lbl_805E0028 * *(f32 *)&this->m_190;
     this->m_40 = temp_f2;
     *(f32 *)((s8 *)arg0 + 0x44) = (f32) (lbl_805E002C + *(f32 *)&this->m_194);
-    this->m_24 = (f32) ((this->m_17c * temp_f2) + this->m_114);
-    *(f32 *)&this->m_28 = (f32) *(f32 *)&this->unk_118;
-    *(f32 *)&this->unk_2C = (f32) ((this->m_184 * temp_f2) + this->m_11c);
+    this->position.x = (f32) ((this->m_17c * temp_f2) + this->m_114);
+    this->position.y = (f32) *(f32 *)&this->unk_118;
+    this->position.z = (f32) ((this->m_184 * temp_f2) + this->m_11c);
 }
 #pragma pop
 
@@ -246,7 +246,7 @@ void run_task__20TItemEffOrgaFlowShotFv(u8 *item_eff_orga_flow_shot) {
 void *__dt__20TItemEffOrgaFlowShotFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__20TItemEffOrgaFlowShot;
-        ((TUnk_804E355C *)arg0)->destroy_attack_collision(0);
+        __dt__13TUnk_804E355CFv((TUnk_804E355C *)arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -255,7 +255,7 @@ void *__dt__20TItemEffOrgaFlowShotFv(void *arg0, s16 arg1) {
 }
 
 u8 *TItemEffOrgaFlowShot__ct(TItemEffOrgaFlowShot *item_eff_orga_flow_shot, s32 arg1, u8 *arg2) {
-    construct_attack_collision((u8 *)item_eff_orga_flow_shot, arg1, arg2);
+    __ct__13TUnk_804E355CFP7TObjectPv(item_eff_orga_flow_shot, (TObject *)arg1, arg2);
     *(s32 **)((s8 *)item_eff_orga_flow_shot + 0x18) = &(*(RecoveredGlobal_80357548___vt__20TItemEffOrgaFlowShot *)&__vt__20TItemEffOrgaFlowShot).value;
     *(s32 *)((s8 *)item_eff_orga_flow_shot + 0) = (s32) TItemEffOrgaFlowShot__name;
     *(s32 *)((s8 *)item_eff_orga_flow_shot + 0xC0) = 0;

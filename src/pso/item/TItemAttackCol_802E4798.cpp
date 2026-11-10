@@ -20,8 +20,6 @@ void TObjPlayer__sub_801542F4(s32 a);
 void TObjPlayer__sub_8015431C(u8 *arg0);
 void reset_global_table(void);
 Hit_802E4798 *get_attack_entry__16TObjOnlineEndingFi(int);
-void __dl__7TObjectFPv(void *);
-void __dt__7TObjectFv(void *, int);
 
 s32 TUnk_804E355C::try_add_hit_target(void *arg1_arg) {
     Hit_802E4798 *arg1 = (Hit_802E4798 *)arg1_arg;
@@ -65,8 +63,6 @@ s32 TUnk_804E355C::try_add_hit_target(void *arg1_arg) {
 
 void TItemAttackCol::copy_pos(void* q) { *(u32 *)&this->m_name = *(u32*)((char*)q + 0x0); *(u32 *)&this->m_flags = *(u32*)((char*)q + 0x4); }
 
-extern s32 lbl_804E355C[];
-
 void TUnk_804E355C::check_hits() {
     s32 i;
     Hit_802E4798 *e;
@@ -94,15 +90,6 @@ void TUnk_804E355C::check_hits() {
     reset_global_table();
 }
 
-void *TUnk_804E355C::destroy_attack_collision(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = lbl_804E355C;
-        __dt__7TObjectFv(this, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(this);
-        }
-    }
-    return this;
 }
 
-}
+TUnk_804E355C::~TUnk_804E355C() {}

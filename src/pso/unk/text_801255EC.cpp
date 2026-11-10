@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/player/TUnk_804A2548.h"
 #include "pso/unk/text_801255EC.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/item/TItem.h"
@@ -43,7 +44,6 @@ void spawn_faust_hit_explosion(s32 arg0, s32 arg1) {
 extern "C" {
 void *TObjPlayer__sub_802E449C(void *a0);
 void *__nw__7TObjectFUl(u32);
-s32 construct_explosion_collider__13TUnk_804A2548Fv(void *, TObject *, void *);
 extern TObject *tl_05;
 }
 

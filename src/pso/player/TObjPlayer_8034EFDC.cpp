@@ -1,6 +1,7 @@
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
+#include "pso/player/TUnk_804A2548.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/system/vector.h"
 #include "pso/item/TItem.h"
@@ -132,7 +133,6 @@ extern const f32 lbl_805DFDF8;
 void launch_rappys_fan_slicer__10TObjPlayerFPv(u8 *weapon);
 
 void *find_entity_by_id(s32);
-s32 construct_explosion_collider__13TUnk_804A2548Fv(void *, s32, void *);
 void *__nw__7TObjectFUl(u32);
 s32 create_fire_explosion_effect(void *, void *, s32, s32, f32);
 void *TObjPlayer__sub_802E449C(void *a0);
@@ -297,7 +297,7 @@ s32 TObjPlayer::spawn_fire_explosion(u32 a0, s32 a1) {
     info.f10 = 0xA;
     o = __nw__7TObjectFUl(0xC8);
     if (o != NULL) {
-        construct_explosion_collider__13TUnk_804A2548Fv(o, tl_05, &info);
+        construct_explosion_collider__13TUnk_804A2548Fv(o, (TObject *)tl_05, &info);
     }
     o = __nw__7TObjectFUl(0x64);
     if (o != NULL) {

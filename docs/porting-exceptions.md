@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `1a9c290489e`, 2026-11-10)
+## Summary (regenerated after merging main `b3062dc640`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `1a9c290489e` (2026-11-10). Assembly is counted as source lines;
+after merging main `b3062dc640` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,776 | 877 |
-| Per-unit compiler overrides in `configure.py` | 188 | 188 |
+| CodeWarrior pragmas (excluding push/pop) | 5,777 | 878 |
+| Per-unit compiler overrides in `configure.py` | 189 | 189 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -101,6 +101,22 @@ MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
 check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
+
+### Item attack collider
+
+`TItemAttackCol::TItemAttackCol` at `0x802E40AC` uses a scoped
+`opt_lifetimes off` and three `__memcpy` sites for the StarLight setup.
+The 20-byte default record is copied as two pairs of words and a final
+`alpha_step` word. A plain aggregate copy gives the loop different
+registers and moves its tail relative to the color conversions. Reusing the
+scale temporary for width with lifetimes disabled reproduces the original
+floating-point register and conversion order. The GameCube branch keeps the
+copy cursors as integer addresses and forms pointers only for words inside the
+two records. Other builds use the ordinary aggregate copy in the same body.
+
+The unit's named effect and angle constants use CodeWarrior section placement
+to retain their `.rodata` and `.sdata2` addresses and direct relocations. A
+port can use ordinary constants and omit the section attributes and pragma.
 
 ### Dark Falz demo 4
 
@@ -510,6 +526,14 @@ cast stays a cast.
 | File | Functions | What | Why | Port should |
 |---|---|---|---|---|
 | `src/pso/unk/text_8034A090.cpp` | `TAdLoadQuestPrtTxtGC::TAdLoadQuestPrtTxtGC` (`0x8034A254`, 892 bytes) | unit `configure.py` override `-fp_contract on` | The constructor's three particle layouts contract `scale * index + base` into `fmadds` (case 0 at ctor+0x120, `ec 1d d8 3a`; the same form in cases 1 and 2). With the flag the unit is 1452/1452 code, 4/4 functions, `.rodata` 8 and `.data` 36. Without it those three functions and both data sections stay 100%, and the constructor falls to 93.32% and grows from 892 to 908 bytes (separate `fmul`/`fadd`). No `-inline` change was needed. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`). | Keep fused multiply-add, or accept the float differences. |
+
+### `TItemAttackCol_802E4798.cpp` vtable alignment
+
+The base collider destructor emits its native vtable at `0x804E355C`,
+immediately after the derived vtable. CodeWarrior declares eight-byte
+`.data` alignment. The unit uses `cw_align: .data=4` to retain the
+four-byte boundary in the ELF and CodeWarrior metadata. A port can use its
+default vtable placement.
 
 ### `TCheckMemoryCard.cpp` section placement
 

@@ -576,6 +576,7 @@ pso/item/ChallengeRangerLoadouts.cpp
 pso/item/SRankSlicerWeapons.cpp
 pso/item/SpecialProjectileWeapons.cpp
 pso/item/TItem.cpp
+pso/item/TItemAttackCol.cpp
 pso/item/TItemAttackCol_802E4798.cpp
 pso/item/TItemAttacker.cpp
 pso/item/TItemBuff.cpp

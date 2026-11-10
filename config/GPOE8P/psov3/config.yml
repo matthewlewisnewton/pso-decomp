@@ -1930,6 +1930,7 @@ force_active:
   - __ct__14TChCrEffCtrlPlFP7TObject
   - __ct__14TChCrTagPlBackFv
   - __ct__14TFontSmallTaskFv
+  - __ct__14TItemAttackColFP7TObjectP24ItemAttackColliderParams
   - __ct__14TItemEffHeavenFP7TObjectP10TObjPlayerUsl
   - __ct__14TItemEffNeedleFP7TObjectP5TItemUsl
   - __ct__14TItemProShieldFP7TObjectPUc
@@ -2332,6 +2333,7 @@ force_active:
   - __dt__14TChCrTagPlBackFv
   - __dt__14TEnemyTaskListFv
   - __dt__14TFontSmallTaskFv
+  - __dt__14TItemAttackColFv
   - __dt__14TItemEffHeavenFv
   - __dt__14TItemEffNeedleFv
   - __dt__14TItemEffShieldFv
@@ -2945,6 +2947,7 @@ force_active:
   - __vt__14TEnemyTaskList
   - __vt__14TFontSmallHelp
   - __vt__14TFontSmallTask
+  - __vt__14TItemAttackCol
   - __vt__14TItemEffHeaven
   - __vt__14TItemEffNeedle
   - __vt__14TItemEquipBase
@@ -3366,6 +3369,7 @@ force_active:
   - add_synchro__8MagStatsFl
   - add_target_in_cone__15TObjEneMe1GiGueFP9TObjChara
   - add_target_in_front_arc__16TObjEneNanoDragoFP9TObjChara
+  - add_to_active_list__14TItemAttackColFPv
   - add_token__6TLobbyFPCc
   - add_unique_pair_entry__10TObjPlayerFUll
   - add_weapon_stat_bonuses__9TItemDataFlPslPsl
@@ -7470,6 +7474,9 @@ force_active:
   - lbl_80471CE0
   - lbl_80471CE8
   - lbl_80471D70
+  - lbl_80472998
+  - lbl_804729A8
+  - lbl_804729C0
   - lbl_80472C28
   - lbl_80472C38
   - lbl_80472C48
@@ -7848,6 +7855,7 @@ force_active:
   - lbl_804E286C
   - lbl_804E28A0
   - lbl_804E2B90
+  - lbl_804E3530
   - lbl_804E3A38
   - lbl_804E3B60
   - lbl_804E4BB4
@@ -8083,6 +8091,7 @@ force_active:
   - lbl_805D3E60
   - lbl_805D3E90
   - lbl_805D3F08
+  - lbl_805D3F88
   - lbl_805D3FB0
   - lbl_805D3FF8
   - lbl_805D4168
@@ -8622,6 +8631,12 @@ force_active:
   - lbl_805DE130
   - lbl_805DE4BC
   - lbl_805DE620
+  - lbl_805DE910
+  - lbl_805DE918
+  - lbl_805DE91C
+  - lbl_805DE920
+  - lbl_805DE924
+  - lbl_805DE928
   - lbl_805DF2E4
   - lbl_805DF3AC
   - lbl_805DF3B0
@@ -8943,6 +8958,7 @@ force_active:
   - move_toward_dest_with_detour__14TObjEneIllGillFv
   - move_toward_target__15TObjEneDelDepthFv
   - move_update__11TBoss4Type2Fv
+  - move_with_collision__14TItemAttackColFPv
   - multi_chg_game_mode_entry_table
   - multi_chg_game_mode_text_table_a
   - multi_chg_game_mode_text_table_b
@@ -14100,6 +14116,7 @@ force_active:
   - render__14TChCrEffTagStrFv
   - render__14TChCrTagPlBackFv
   - render__14TFontSmallTaskFv
+  - render__14TItemAttackColFv
   - render__14TOAirconCave01Fv
   - render__14TOAirconCave02Fv
   - render__14TOKeyAncient01Fv
@@ -14774,6 +14791,7 @@ force_active:
   - run_task__14TChCrEffTagStrFv
   - run_task__14TEnemyTaskListFv
   - run_task__14TFontSmallTaskFv
+  - run_task__14TItemAttackColFv
   - run_task__14TItemEffHeavenFv
   - run_task__14TOKeyAncient03Fv
   - run_task__14TOKeyMachine01Fv
@@ -15527,6 +15545,7 @@ force_active:
   - shark_zero
   - shed_armor__15TObjEneGyaranzoFv
   - shield_table__14TItemProShield
+  - shift_collision_bounds__14TItemAttackColFv
   - shift_position_history__13TBoss5GryphonFv
   - shift_queue_push_next__15TObjBoss2TunnelFPv
   - shinowa_mirage_model_init_data
@@ -17638,6 +17657,7 @@ force_active:
   - vfunc_6__12TNeedleShootFv
   - vfunc_6__12TODoorCave01FPsl
   - vfunc_6__12TQuestListVMFll
+  - vfunc_6__14TItemAttackColFPl
   - vfunc_6__14TOTrapSeabed01FPsl
   - vfunc_6__15TODoorAncient08FPsl
   - vfunc_6__15TODoorAncient09FPsl
@@ -17656,6 +17676,7 @@ force_active:
   - vfunc_6__9TTecZaruaFPv
   - vfunc_79__15TBoss3VoloptP02FPl
   - vfunc_7__10TTecDebandFPv
+  - vfunc_7__14TItemAttackColFv
   - vfunc_7__17TAdExNetConfirmGCFv
   - vfunc_7__17TAdLicAgreementGCFv
   - vfunc_7__18TAdAgreementBaseGCFv
