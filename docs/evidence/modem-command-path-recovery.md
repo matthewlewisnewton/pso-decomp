@@ -252,3 +252,49 @@ with six recovered non-exact bodies and five missing bodies. A passing full
 DOL is not evidence that those held bodies are source-linked. The branch stays
 draft; neither callback cleanup nor matching gains resolves its storage,
 remaining data-layout or frame-recovery holds.
+
+## Receive preparation and completion
+
+The next increment reconstructs `0x8042BF6C` (440 original bytes) and
+`0x8042C124` (448 original bytes). It refines the already allocated receive
+region after the transmit prefix using its original 0x40-byte clear and all
+original accesses, including the callback at receive+0x3C. The unknown f10,
+f14, f34 and f38 flags retain provisional names. Assertions constrain the
+receive size, offset within the unchanged allocation and callback offset.
+The final four already allocated bytes remain unclassified inherited storage;
+no new padding object, alignment directive or ownership assertion is added.
+
+The preparer sets the transfer length, clears the old immediate/DMA slices,
+partitions the receive buffer into immediate head/tail and complete 32-byte DMA
+lines, sends modem command 0x28 and drains the immediate head. It starts a DMA
+with the correctly typed completion callback when a body exists, otherwise
+calls that callback directly with zero/null SDK arguments. It does not
+pre-invalidate the receive body or import upstream's unused EXISelect status
+local.
+
+The completion drains the tail in at most four-byte immediate reads, decrementing
+its counter by four, invalidates a completed DMA body and clears body_length,
+then advances received count and the buffer by the transfer length. It
+preserves deselect, interrupt-mask restore and EXI unlock before handling the
+client callback. In contrast to the send callback, it clears the accumulated
+received count **after** the client callback returns. This original ordering
+is preserved, including its reentrancy implications.
+
+The clean preparer is 98.281815% fuzzy and 444 emitted bytes versus 440
+original bytes. Besides its frame difference it materializes one additional
+receive-buffer field address and allocates registers differently. The
+completion is 99.90179% fuzzy at the original 448-byte length, with only stack
+immediates different. A bounded alternative that captures the receive buffer
+as a real local value emitted 440 bytes but scored 96.09091%; it was discarded.
+No unused local, raw offset alias, pragma or layout attribute is added to force
+these bodies exact. The two existing new exact routines and all earlier exact
+functions remain unchanged.
+
+A public [Dolphin modem implementation](https://github.com/dolphin-emu/dolphin/blob/master/Source/Core/Core/HW/EXI/EXI_DeviceModem.cpp)
+corroborates the command/packet FIFO and register protocol. Its
+[header](https://github.com/dolphin-emu/dolphin/blob/master/Source/Core/Core/HW/EXI/EXI_DeviceModem.h)
+explicitly derives register names from PSO reverse engineering. It therefore
+does not authenticate an original helper or dead-local/frame organization.
+No Dolphin code is copied or adapted here. The six earlier stack-layout holds
+remain unresolved; a bounded public-source search did not supply independent
+original-source evidence that would justify the rejected unused locals.
