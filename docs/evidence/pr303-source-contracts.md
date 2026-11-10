@@ -1445,3 +1445,37 @@ fold/provider choices remain visible. Seven actual-source characterization
 cases still pass after the merge. Original behavior, including the documented
 bugs, is retained. The reset-status mismatch and metadata restriction remain;
 no hardening or speculative ABI change is introduced.
+
+
+## Spatial-audio and ADXF main refresh
+
+Verify remote head `9f798d728` and no competing owner, then integrate main
+`fffd67d0c35e1fdaf17880c563739750e7c35813`. GitHub reports a real dirty conflict,
+not merely a pending calculation. Source merges automatically. Join both sides
+of the retention-list conflicts (new spatial-audio functions/data plus the
+existing character-buffer helper/cursor); no entry is dropped. Preserve main's
+ADXF/spatial-audio source, SDK declarations, compiler settings and generic
+pragma-register prose, together with the prior branch contracts. Regenerate
+inventory to 5,772 pragmas in 878 files and 190 per-unit overrides. No DHCP,
+callback, reset-status or characterization-test change is made.
+
+Fresh capacity-gated main and candidate builds reproduce the original DOL
+SHA-1. A new pinned main report/build/check/provider/provenance seal is available
+locally for independent reuse. Full comparison passes with the existing +88
+data bytes, zero new functions/code and no losses: all 3,593 linked units exact
+and 18,300 retention entries without drift. Actual branch inputs are 3,593 source
+and 1,354 original fallbacks; main has 3,594 source and 1,356 fallbacks. Prior
+branch folds and original-only accounting remain explicit and unchanged.
+
+Nine of the ten incoming complete source objects are raw byte-identical to
+fresh main. `TLobby_802409AC.o` is not whole-object identical: its `.debug` gains
+36 bytes in three DWARF1 records and `.rela.debug` gains two references (24
+bytes), with corresponding debug-reference shifts. Independent section/record
+review finds all other payloads identical, including both text sections, all
+allocated data, symbols, string tables, compiler metadata and every non-debug
+relocation. The unit's retained source declarations affect debug type interning;
+this debug-only difference is disclosed rather than normalized away or called
+whole-object equality. All 19 saved contract-object comparisons remain raw
+byte-identical, including relocations. Seven actual-source characterization
+cases, inventory and whitespace pass. Keep original behavior and bugs, the
+metadata restriction and all documented interface holds; keep draft.
