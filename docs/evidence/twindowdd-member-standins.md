@@ -127,3 +127,10 @@ bytes, +52 matched data bytes, +1 linked unit, no regressions. All six
 shortcut-unit functions, 1,536 code bytes and 52 data bytes match. The DOL
 is byte-identical to the original; retention and exception-inventory checks
 also pass.
+
+The final draft was subsequently merged with main
+`429adf7441d7a9b404b3c37251d5a8d50cad6a15`, preserving its typed
+`TWindowDrawContext` renderer declaration and this PR's `measure_text_entry`
+calls. The full gate was rerun against a fresh baseline of that main commit.
+Matt explicitly chose to keep the PR draft pending a fully matching formatter
+recovery; the legacy interface is not approved as a temporary exception.

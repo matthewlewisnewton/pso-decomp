@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `00c484c57b38`, 2026-11-10)
+## Summary (regenerated after merging main `429adf7441d7`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `00c484c57b38` (2026-11-10). Assembly is counted as source lines;
+after merging main `429adf7441d7` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,778 | 879 |
-| Per-unit compiler overrides in `configure.py` | 189 | 189 |
+| CodeWarrior pragmas (excluding push/pop) | 5,780 | 880 |
+| Per-unit compiler overrides in `configure.py` | 190 | 190 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -89,8 +89,14 @@ preserve the graph's exported constants and format strings. See
 [download graph recovery](evidence/download-graph-recovery.md) for the
 compiler and data layout evidence.
 
-5,778 pragmas in 879 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1143, `inline_depth` 1035, `fp_contract` 880, `auto_inline` 833,
+The word-select row renderer at `0x80341674` in `TWindowDD_80341A08.cpp` uses
+a scoped `fp_contract on` for the scaled row and highlight positions and
+the clipped texture coordinates. With contraction disabled, GC/2.6 emits
+separate multiply and add/subtract instructions in those expressions. Ports
+that need the original rounding should fuse those operations.
+
+5,780 pragmas in 880 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1143, `inline_depth` 1035, `fp_contract` 881, `auto_inline` 833,
 `opt_common_subs` 611, `scheduling` 263, `opt_propagation` 240,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
@@ -119,6 +125,22 @@ For kind zero the emitted load reads the separator's final zero byte at
 `0x805DD34B`, one byte before the table. The portable branch handles
 zero explicitly so it can use independent objects and stay within the
 array bounds.
+
+### Item attack collider
+
+`TItemAttackCol::TItemAttackCol` at `0x802E40AC` uses a scoped
+`opt_lifetimes off` and three `__memcpy` sites for the StarLight setup.
+The 20-byte default record is copied as two pairs of words and a final
+`alpha_step` word. A plain aggregate copy gives the loop different
+registers and moves its tail relative to the color conversions. Reusing the
+scale temporary for width with lifetimes disabled reproduces the original
+floating-point register and conversion order. The GameCube branch keeps the
+copy cursors as integer addresses and forms pointers only for words inside the
+two records. Other builds use the ordinary aggregate copy in the same body.
+
+The unit's named effect and angle constants use CodeWarrior section placement
+to retain their `.rodata` and `.sdata2` addresses and direct relocations. A
+port can use ordinary constants and omit the section attributes and pragma.
 
 ### Ground collision debug hook
 
@@ -284,7 +306,7 @@ and the same function body.
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-189 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+190 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -565,6 +587,14 @@ cast stays a cast.
 | File | Functions | What | Why | Port should |
 |---|---|---|---|---|
 | `src/pso/unk/text_8034A090.cpp` | `TAdLoadQuestPrtTxtGC::TAdLoadQuestPrtTxtGC` (`0x8034A254`, 892 bytes) | unit `configure.py` override `-fp_contract on` | The constructor's three particle layouts contract `scale * index + base` into `fmadds` (case 0 at ctor+0x120, `ec 1d d8 3a`; the same form in cases 1 and 2). With the flag the unit is 1452/1452 code, 4/4 functions, `.rodata` 8 and `.data` 36. Without it those three functions and both data sections stay 100%, and the constructor falls to 93.32% and grows from 892 to 908 bytes (separate `fmul`/`fadd`). No `-inline` change was needed. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`). | Keep fused multiply-add, or accept the float differences. |
+
+### `TItemAttackCol_802E4798.cpp` vtable alignment
+
+The base collider destructor emits its native vtable at `0x804E355C`,
+immediately after the derived vtable. CodeWarrior declares eight-byte
+`.data` alignment. The unit uses `cw_align: .data=4` to retain the
+four-byte boundary in the ELF and CodeWarrior metadata. A port can use its
+default vtable placement.
 
 ### `TCheckMemoryCard.cpp` section placement
 

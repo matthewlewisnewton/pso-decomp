@@ -11,9 +11,11 @@
 #include "pso/misc/TWindowHelpItem.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TUnk_804CFA28.h"
+#include "pso/system/GinjaMaterialState.h"
+#include "pso/unk/text_803D619C.h"
 
 extern "C" {
-void TWindowDD__sub_80341674(TWindowDD_WS_Word *, u8 *);
+void TWindowDD__sub_80341674(TWindowDD_WS_Word *, TWindowDrawContext *);
 void draw_visible_window_entries(TWindowDD_WS_Word *, TWindowDDWordEntryList *, TWindowKeyBoardSoft *);
 extern const s32 TWindowDD__data_805DFC14;
 extern const s32 lbl_805DFC18;
@@ -29,7 +31,7 @@ void TWindowDD_WS_Word::render() {
     s32 j;
     entry = (TWindowKeyBoardSoft *)TWindowDD::draw_default_entry((s32)self);
     self->calc_inner_rect((u8 *)entry);
-    TWindowDD__sub_80341674(self, (u8 *)entry);
+    TWindowDD__sub_80341674(self, entry);
     if (self->m_8c != 0) {
         self->m_8c = 0;
         idx = self->m_68 - self->m_6c;
@@ -54,6 +56,149 @@ void TWindowDD_WS_Word::render() {
     draw_visible_window_entries(self, (TWindowDDWordEntryList *)&self->m_24, entry);
 }
 
+namespace {
+
+struct WordRowVertex {
+    f32 x, y, depth;
+    f32 u, v;
+    u32 color;
+};
+
+typedef char WordRowVertexSize[sizeof(WordRowVertex) == 0x18 ? 1 : -1];
+
+} // namespace
+
+extern "C" {
+extern GinjaTextureList *lbl_805D63F0;
+extern const f32 lbl_805DFCA4;
+extern const f32 lbl_805DFCAC;
+extern const f32 TWindowDD__data_805DFCA8;
+extern const f32 TWindowDD__data_805DFB18;
+extern const f32 TWindowDD__data_805DFB20;
+extern const f32 lbl_805DFB40;
+extern const f32 lbl_805DFB44;
+}
+
+#pragma push
+#pragma fp_contract on
+void TWindowDD__sub_80341674(TWindowDD_WS_Word *self, TWindowDrawContext *context) {
+    WordRowVertex vertices[8];
+    // The shared TWindowDD draw helpers operate on this vertex buffer.
+    WordRowVertex *vertex;
+    f32 next_y;
+    f32 center;
+    f32 scale;
+    f32 top_v;
+    f32 y;
+    f32 bottom_v;
+    f32 fraction;
+    f32 first_height;
+    f32 bottom;
+    f32 top;
+    f32 bottom_edge;
+    f32 row_height;
+    u32 texture_id = lbl_805D63F0->entries[2].texture->surface->id;
+    if (context->open_tick < 0) {
+        return;
+    }
+    center = lbl_805DFCA4 * self->m_4c + self->m_44;
+    f32 depth = TWindowDD__sub_80348AD4(self->m_54, TWindowDD__data_805DFCA8);
+    reinterpret_cast<TWindowDD *>(vertices)->reset_entries(depth, -1);
+    s32 point_table = self->point_table_index;
+    reinterpret_cast<TWindowDD *>(vertices)->copy_point_table(point_table);
+    TWindowDD__sub_80348A2C(context, vertices);
+
+    scale = context->scale[1];
+    s32 rows = self->visible_row_count;
+    top = -(lbl_805DFCA4 * self->m_4c);
+    y = top * scale + center;
+    bottom_edge = top + TWindowDD__data_805DFB20;
+    next_y = bottom_edge * scale + center;
+    if (self->point_table_index == 0) {
+        top_v = lbl_805DFB40;
+        bottom_v = top_v + TWindowDD__data_805DFB20;
+    } else {
+        top_v = lbl_805DFB44;
+        bottom_v = top_v + TWindowDD__data_805DFB20;
+    }
+    top_v *= TWindowDD__data_805DFB18;
+    bottom_v *= TWindowDD__data_805DFB18;
+    fraction = TWindowDD__data_805DFB20 * fn_803D6308(
+        -self->scroll_offset / TWindowDD__data_805DFB20);
+    // A fractional scroll leaves a clipped row at each end of the list.
+    if (TWindowDD__data_805DFCA8 != fraction) {
+        rows = self->visible_row_count - 1;
+        if (fraction < TWindowDD__data_805DFCA8) {
+            first_height = fraction + TWindowDD__data_805DFB20;
+        } else {
+            first_height = fraction;
+            fraction -= TWindowDD__data_805DFB20;
+        }
+        bottom = first_height * scale + y;
+        vertex = vertices;
+        for (s32 i = 0; i < 4; ++i, vertex += 2) {
+            vertex[0].y = y;
+            vertex[0].v = bottom_v - first_height * TWindowDD__data_805DFB18;
+            vertex[1].y = bottom;
+            vertex[1].v = bottom_v;
+        }
+        reinterpret_cast<TWindowDD *>(vertices)->draw_transformed_primitive((void *)8, (void *)texture_id, (void *)1);
+        y = bottom;
+    }
+    if (rows > 0) {
+        row_height = TWindowDD__data_805DFB20 * scale;
+        vertex = vertices;
+        for (s32 i = 0; i < 4; ++i, vertex += 2) {
+            vertex[0].v = top_v;
+            vertex[1].v = bottom_v;
+        }
+        for (s32 i = 0; i < rows; ++i) {
+            next_y = y + row_height;
+            vertex = vertices;
+            for (s32 i = 0; i < 4; ++i, vertex += 2) {
+                vertex[0].y = y;
+                vertex[1].y = next_y;
+            }
+            reinterpret_cast<TWindowDD *>(vertices)->draw_transformed_primitive((void *)8, (void *)texture_id, (void *)1);
+            y = next_y;
+        }
+    }
+    if (TWindowDD__data_805DFCA8 != fraction) {
+        top = lbl_805DFCA4 * self->m_4c;
+        bottom = top * scale + center;
+        vertex = vertices;
+        for (s32 i = 0; i < 4; ++i, vertex += 2) {
+            vertex[0].y = next_y;
+            vertex[0].v = top_v;
+            vertex[1].y = bottom;
+            vertex[1].v = top_v - fraction * TWindowDD__data_805DFB18;
+        }
+        reinterpret_cast<TWindowDD *>(vertices)->draw_transformed_primitive((void *)8, (void *)texture_id, (void *)1);
+    }
+    // The selection highlight uses a separate point table and depth bias.
+    if (self->m_74 > 0 && self->sub_80342254()) {
+        depth = TWindowDD__sub_80348AD4(self->m_54, lbl_805DFCAC);
+        reinterpret_cast<TWindowDD *>(vertices)->reset_entries(depth, -1);
+        reinterpret_cast<TWindowDD *>(vertices)->copy_point_table(1);
+        TWindowDD__sub_80348A2C(context, vertices);
+
+        f32 selected_row = (f32)self->m_6c;
+        f32 first_row_y = -(lbl_805DFCA4 * self->m_4c);
+        y = selected_row * TWindowDD__data_805DFB20 + first_row_y;
+        scale = context->scale[1];
+        bottom_edge = y + TWindowDD__data_805DFB20;
+        y = y * scale + center;
+        next_y = bottom_edge * scale + center;
+        vertex = vertices;
+        for (s32 i = 0; i < 4; ++i) {
+            vertex++->y = y;
+            vertex++->y = next_y;
+        }
+        reinterpret_cast<TWindowDD *>(vertices)->draw_transformed_primitive((void *)8, (void *)texture_id, (void *)1);
+    }
+}
+#pragma pop
+
 #define sub_80341AC0__17TWindowDD_WS_WordFv ((s32 (*)(void))sub_80341AC0__17TWindowDD_WS_WordFv)
 
 s32 TWindowDD_WS_Word::can_scroll(s32 arg1) {
@@ -65,7 +210,7 @@ s32 TWindowDD_WS_Word::can_scroll(s32 arg1) {
     if (sub_80341AC0__17TWindowDD_WS_WordFv() == 0) {
         return 0;
     }
-    temp_r4 = *(s32 *)((s8 *)this + 0x78);
+    temp_r4 = this->visible_row_count;
     temp_r5 = temp_r4 / 2;
     if (arg1 > 0) {
         temp_r0 = *(s32 *)((s8 *)this + 0x6C);
@@ -84,7 +229,7 @@ s32 TWindowDD_WS_Word::can_scroll(s32 arg1) {
 #undef sub_80341AC0__17TWindowDD_WS_WordFv
 
 s32 TWindowDD_WS_Word::sub_80341AC0() {
-    return this->m_74 > *(s32 *)((s8 *)((u8 *)this) + 0x78);
+    return this->m_74 > this->visible_row_count;
 }
 
 void TWindowDD__sub_80341AE0(u8 *arg0) {
