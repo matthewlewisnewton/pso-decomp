@@ -412,3 +412,12 @@ the post-call flag reload and child guards remain exact. All eleven selected
 complete source objects and their relocation/data provenance are preserved.
 No lifetime, complete Soft identity, source activation or metric gain is claimed;
 the renderer and remaining technical holds persist.
+
+
+The [composer flag-value follow-up](window-composer-input-flag-values.md)
+recovers four actual composer methods operating on word 0xB4 and all fourteen
+observed calls, including two internal calls. The compound methods retain their
+base call and subsequent word reload/update. All five complete selected source
+objects and their relocation/data provenance remain exact. Soft outer owners,
+adjacent record/language helpers and all lifetime/constant/provider holds remain
+qualified; no source activation or metric gain is claimed.

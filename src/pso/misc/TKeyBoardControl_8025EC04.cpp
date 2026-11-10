@@ -550,7 +550,7 @@ void TWindowKeyBoardHard::update_modifier_flags() {
 void TWindowKeyBoardHard::enable_keyboard_led() {
     if ((u32) m_70 != 0U) {
         m_60 = (s32) (m_60 | 0x1000);
-        TKeyBoardControl__sub_8025CBC0((void *)(m_70));
+        ((TWindowKeyBoardBase *)m_70)->set_input_flags_212();
         fn_8025FF8C(this);
     }
 }
@@ -558,7 +558,7 @@ void TWindowKeyBoardHard::enable_keyboard_led() {
 void TWindowKeyBoardHard::enable_kana_led() {
     if ((u32) m_70 != 0U) {
         m_60 = (s32) (m_60 | 0x800);
-        TKeyBoardControl__sub_8025CBCC((u8 *)(m_70));
+        ((TWindowKeyBoardBase *)m_70)->set_input_flags_112();
         fn_8025FF8C(this);
     }
 }
@@ -566,7 +566,7 @@ void TWindowKeyBoardHard::enable_kana_led() {
 void TWindowKeyBoardHard::enable_caps_led() {
     if ((u32) m_70 != 0U) {
         m_60 = (s32) (m_60 | 0x400);
-        TKeyBoardControl__sub_8025CC04((u8 *)(m_70));
+        ((TWindowKeyBoardBase *)m_70)->set_input_flags_92();
         fn_8025FF8C(this);
     }
 }
