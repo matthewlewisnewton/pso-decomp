@@ -33,8 +33,6 @@ CsnHit *csnVector(const Vec *from, const Vec *to, u32 mask);
 
 extern "C" {
 void TObjPlayer__sub_80079108(void);
-void TObjPlayer__sub_8007910C(void);
-void TObjPlayer__sub_80079110(void);
 void TObjPlayer__sub_80079114(void);
 s32 TObjPlayer__sub_80079118(s32 *_w0);
 void TObjPlayer__sub_8007911C(void);
