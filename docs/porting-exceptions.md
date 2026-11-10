@@ -104,6 +104,19 @@ small float differences without FMA).
 | `src/pso/object/TObjDFDemo4.cpp` | Constructor at `0x8004F6AC` | Weak linkage for the strip-node table | With strong linkage CodeWarrior pools the strip table and both camera initializers under a shared `.rodata` base. Weak linkage preserves the original direct relocations and keeps the shared `.data` base for the motion tables and vtable. | Use the same const table with ordinary linkage. |
 | `configure.py` | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | The two eight-byte afterimage index tables use normal data addressing. The class-name pointer still uses small data. | Use ordinary arrays and a string pointer. |
 
+### `request_network_info_load` frame and instruction ordering
+
+`src/pso/network/NetworkInfoRequests.cpp` uses scoped `scheduling off` and
+`peephole off` pragmas and an MWCC-only 32-byte alignment attribute on its
+first parameter. The pragmas reproduce the original instruction order and
+switch lowering; the attribute reproduces its aligned frame. This is a
+code-generation device, not evidence that the channel value requires alignment
+or that the original source used an aligned parameter. The original and the
+compiled function both pass the channel in the same register and do not access
+an aligned stack object. A port should ignore these settings and use the plain
+`s32` parameter and function body. See
+[the comparison](evidence/network-info-request-frame.md).
+
 ### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
 
 | File | Function | What | Why | Port should |
