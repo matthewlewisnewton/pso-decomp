@@ -1,7 +1,7 @@
 # Quest-download cache relocation and observed entry gates
 
 `sub_803E8924` (`0x803E8924`, 504 original bytes) is now defined as partial
-C++: **97.70635%, 508 compiled bytes** in both the standard report and the
+C++: **98.10317%, 504 compiled bytes** in both the standard report and the
 relocation-sensitive probe. It adds no exact function or source-linked coverage.
 The existing `void(s32 cachedId)` boundary remains provisional.
 
@@ -25,17 +25,23 @@ bucket/node index. It changes neither node lifetimes nor ownership. It preserves
 [the source-page reservation witness](quest-download-cache-lifecycle.md) and adds
 no null guard, repair policy, fictitious object, padding or pragma.
 
-Four ordinary count/lifetime forms were measured. The retained signed count
-scores 97.70635%; decoding length before borrowing the original pointer is
-unchanged. An unsigned count and a separate remaining-count variable each score
-97.269844%. All compile to 508 bytes and preserve the previous exact functions
-and five partial scores. Stack/name-buffer placement, register allocation and
-an extra count transfer remain different; these bounded results do not show
-that exact source is impossible.
+The current refinement assigns the genuinely reused decoded length directly in
+the existing capacity expression. It preserves the `u16` decode, comparison,
+rotation call, reservation, second source-page check and forward byte-copy order.
+The length remains available for reservation and copying; no dummy value, extra
+owner or new type is introduced. This improves the previous 97.70635% / 508-byte
+body to 98.10317% / 504 bytes. Register/stack allocation and equivalent pointer
+copy instructions still differ, so the function remains partial.
+
+At the earlier 97.70635% checkpoint, four ordinary count/lifetime forms were
+measured. Decoding before borrowing the original pointer was unchanged; an
+unsigned count and a separate remaining-count variable each scored 97.269844%.
+Those earlier forms all compiled to 508 bytes. They were not repeated for this
+condition-assignment refinement.
 
 ## Continuous comparison with recovered relocation
 
-The private harness now executes recovered relocation on the candidate side,
+The original 79-case private checkpoint executed recovered relocation on the candidate side,
 with the original instructions on the native side. Its 79 cases retain the
 previous 73 lifecycle cases, including 160 mixed relocation calls, producer
 snapshot reloads, capacity reuse and the source-page reservation/reuse witness.
@@ -51,6 +57,19 @@ with handle minus one return minus three. These controls prove those guards'
 behavior; they do not establish that the enabled state occurs in the game.
 The tests remain bounded, with hooked string/seek/read providers, rather than
 full-provider or exhaustive reachability proofs.
+
+The current private 528-case run re-executes the refined relocation body with
+recovered replacement, loader, initializer, rotation and primary-page removal.
+It retains continuous relocation/page-reuse sequences and the source-page
+reservation witness, plus independent packet, name-index and direct reload
+boundary checks. The same bounded-provider and reachability limitations apply.
+Candidate object SHA-256:
+`0b2bdfa07ef1f14269a2a2d6c1a8970662b4538584de7a7267282a97ea038ede`.
+All 168 modeled compiled provider functions bind to the native build. The other
+167 provider bodies, all 16 frontend functions, all 159 exact functions and the
+eight other partial scores are preserved; allocated noncode bytes, object layout
+and relocations are checked separately. The unit remains 159/173 exact, five
+undefined and nine partial, unlinked.
 
 ## Observed ordinary flow versus lower-level witnesses
 

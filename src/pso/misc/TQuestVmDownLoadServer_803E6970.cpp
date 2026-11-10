@@ -1514,8 +1514,7 @@ void TQuestVmDownLoadServer__sub_803E8924(s32 id) {
     }
     source = lbl_80591EC8 + sourcePage * 0x400 + (s16)(id & 0xFFF);
     original = source;
-    length = (u16)(source[0] + (source[1] << 8));
-    if (lbl_805D7870 > lbl_805D786C - length - 2) {
+    if (lbl_805D7870 > lbl_805D786C - (length = (u16)(source[0] + (source[1] << 8))) - 2) {
         TQuestVmDownLoadServer__sub_803E95BC();
     }
     destination = lbl_805D7870;
