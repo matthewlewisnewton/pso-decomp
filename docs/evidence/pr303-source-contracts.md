@@ -1631,3 +1631,50 @@ fallbacks; main has 3,596 and 1,353. Seven actual-source characterization cases,
 inventory and whitespace pass. Seal the unchanged-main provenance packet for
 independently verified reuse. Keep draft, original bugs and all prior ABI and
 metadata restrictions.
+
+
+## Actual-source ACK/request/parser characterization
+
+Build an independent original-free fixture from the current definitions,
+rather than copying the separately reported ACK-chain results or importing its
+unavailable harness. The new
+[`test_dhcp_ack_chain_characterization.py`](../../tools/tests/test_dhcp_ack_chain_characterization.py)
+extracts six complete functions: the reply callback and option scanner/setter
+from `NetworkPacketRuntime.cpp`, the lease parser from the same unit, and the
+configuration parser and request step from `text_80421620.cpp`. Extraction
+requires each definition's opening brace, excluding forward declarations.
+Actual packet/buffer/prefix/option record declarations are extracted too.
+Independent UTF-8 body hashes agree for all six functions at `9dfa3c5be`.
+
+The fixture allocates complete 1,500-byte messages and all synthetic option
+storage. It initializes scratch with a historical ACK carrying lease 222 and
+the persistent reply with a different historical lease 111. It emulates an
+eight-byte logical receipt into the buffer returned by actual callback event
+zero, then invokes actual event one. For states 2, 4 and 5 the callback accepts
+using the scratch tail and copies exactly eight bytes into the reply. All
+1,492 subsequent reply bytes are unchanged; no lease globals are applied yet.
+Calling the actual request step at its reply-wait phase then traverses the
+actual configuration/lease parsers, scanner and setter. It applies lease 111,
+renewal 55, rebinding 95, start 100 and expiry 211. States 4/5 call the lease
+parser twice (before configuration and inside it); state 2 calls it once.
+Assert the corresponding clock-call counts, socket close, mode transition,
+bound-state transition and phase-specific elapsed-lease behavior.
+
+A positive control performs a fully allocated 1,500-byte synthetic receipt in
+each state and applies lease 222, renewal 111, rebinding 193 and expiry 322.
+This distinguishes receipt history from the persistent stale tail rather than
+merely asserting one fixed fixture result. A separate event-zero case verifies
+signed lengths 0, 1, 239, 1,500, 1,600 and -1 remain unchanged. Oversized and
+negative cases are never copied or delivered to event one. Unexercised send
+and open paths abort in the fixture instead of silently supplying success.
+
+This is host-observed logic with synthetic histories, host-word option values,
+an explicitly configured option table and stubbed clocks/socket services. It
+does not execute the outer OS timer, network ingress, fragment dispatcher or
+native callback ABI, and it proves neither reachability, exploitability nor
+safety. Compiler permissive mode admits the original scanner's pointer-word
+casts and unexecuted send-branch casts on a 64-bit host. No original assets or
+proprietary compiler are needed. Five new cases complement the original seven;
+game code, headers, build configuration and all bugs/ABI/metadata holds are
+unchanged. Prior native validation remains attached to unchanged native inputs
+at `9dfa3c5be`; no old receipt is relabeled as a new native build.
