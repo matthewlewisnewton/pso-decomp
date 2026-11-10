@@ -1298,3 +1298,26 @@ have zero metric, function, coverage or retention drift. Against sealed main
 losses, all 3,588 linked units exact and 17,833 retention entries without drift.
 Host tests pass. Regenerate the exception inventory for shifted source lines;
 its counts remain unchanged. Keep draft and the metadata restriction.
+
+
+## Main integration for rope collision and ADX decoding
+
+Integrate main `1a18b4bd7577af4ee367317064e020d1f91ce5a8` into reviewed receive-prefix
+head `ac0a1995b`. Source, headers and configuration merge automatically; only
+exception documents conflict. Preserve main's rope collision and ADX decoding
+recovery, retain the existing branch contracts in TLobby.h, regenerate the
+inventory, and synchronize curated counts (5,767 pragmas in 877 files; 189
+per-unit overrides). No received-prefix, DHCP, callback or metadata hold changes.
+
+A single fresh capacity-gated main baseline is sealed locally with report,
+successful build/check receipts, ordered providers, exact graph/config snapshots
+and tool/compiler hashes for independently verified reuse. Main and candidate
+reproduce the original DOL SHA-1. Full no-loss comparison passes with the
+existing +88 data bytes, zero new functions/code and no losses. All 3,589 branch
+linked units are exact and all 17,840 retention entries have zero drift.
+Main has 3,590 linked units; the prior branch fold explains the difference.
+All ten incoming complete source objects are byte-identical to fresh main,
+and every saved receive-prefix, slot/reset/completion and allocator-wrapper
+object comparison remains raw byte-identical, including relocations. Actual
+branch inputs are 3,589 source and 1,357 original fallback objects. Host tests,
+exception inventory and whitespace pass. Keep draft and all existing holds.
