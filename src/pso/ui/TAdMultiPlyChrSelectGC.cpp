@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
+#include "pso/ui/TAdChrSelPlyPlateGC.h"
 
 struct RecoveredGlobal_802DFF0C___vt__22TAdMultiPlyChrSelectGC {
     s32 value;
@@ -221,8 +222,7 @@ void TAdMultiPlyChrSelectGC__sub_802E0024(O_802E0024 *self, s32 v) {
 
 s32 TAdMultiPlyChrSelectGC::get_card_index() { return *(s32*)((char*)this + 0x4e8); }
 
-    extern int ad_chr_sel_ply_plate_instance;
-int TAdMultiPlyChrSelectGC::get_card_instance() {  return ad_chr_sel_ply_plate_instance; }
+int TAdMultiPlyChrSelectGC::get_card_instance() { return reinterpret_cast<s32>(ad_chr_sel_ply_plate_instance); }
 
 s32 TAdMultiPlyChrSelectGC::get_selection() { return *(s32*)((char*)this + 0x4f8); }
 

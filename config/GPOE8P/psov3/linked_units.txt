@@ -1980,6 +1980,7 @@ pso/misc/pso_date.cpp
 pso/network/NetworkDispatcher.cpp
 pso/network/NetworkInfoCodec.cpp
 pso/network/NetworkInfoLoader.cpp
+pso/network/NetworkInfoRequests.cpp
 pso/network/NetworkMessageTransport.cpp
 pso/network/NetworkPacketRuntime.cpp
 pso/network/NetworkTransport.cpp
@@ -2644,6 +2645,7 @@ pso/ui/TAdChrSelSlotGC.cpp
 pso/ui/TAdDialingGC.cpp
 pso/ui/TAdDialingGC_801A4C90.cpp
 pso/ui/TAdDialingGC_80328210.cpp
+pso/ui/TAdDialingGC_80328B20.cpp
 pso/ui/TAdDialingGC_80328DB0.cpp
 pso/ui/TAdDialingGC_80328E50.cpp
 pso/ui/TAdDialingGC_80328E90.cpp
@@ -2777,7 +2779,6 @@ pso/ui/TAdSinglePlyChrSelectGC_802E13C8.cpp
 pso/ui/TAdSinglePlyChrSelectGC_802E3AE4.cpp
 pso/ui/TAdSinglePlyChrSelectGC_80336054.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8033A8EC.cpp
-pso/ui/TAdSinglePlyChrSelectGC_8033C640.cpp
 pso/ui/TAdSnAkPassConfirmGC.cpp
 pso/ui/TAdSoniclogo.cpp
 pso/ui/TAdSoniclogo_8001C1C4.cpp
@@ -2837,9 +2838,6 @@ pso/unk/text_8003AFBC.cpp
 pso/unk/text_80049FD8.cpp
 pso/unk/text_8004AA04.cpp
 pso/unk/text_8004D9A8.cpp
-pso/unk/text_8004F1FC.cpp
-pso/unk/text_8004F2A8.cpp
-pso/unk/text_8004F5F8.cpp
 pso/unk/text_80050050.cpp
 pso/unk/text_80050134.cpp
 pso/unk/text_800502FC.cpp
