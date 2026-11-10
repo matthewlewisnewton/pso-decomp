@@ -376,6 +376,10 @@ s32 get_bml_model(void *, s32);
 s32 TObjFish__sub_8001EDB0(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
 
+// Keep the named zero load separate from the power reload, as in the original.
+// See docs/porting-exceptions.md for the scoped compiler-setting evidence.
+#pragma push
+#pragma opt_common_subs off
 TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine((TObject *)tl_05) {
     TObjPlayer *owner_player;
     s32 floor;
@@ -408,9 +412,7 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine(
                 attack.power = lbl_805DB86C * area_scale *
                                (lbl_805DB870 * (lbl_805DB878 * owner_player->get_actor_level_index() + lbl_805DB874));
             }
-            // Read through the address to keep the clamp's zero load separate
-            // from the later stores during CodeWarrior's CSE pass.
-            if (attack.power < *(const f32 *)&lbl_805DB85C) {
+            if (attack.power < lbl_805DB85C) {
                 attack.power = lbl_805DB85C;
             }
             break;
@@ -483,6 +485,7 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine(
         queue_destruction();
     }
 }
+#pragma pop
 
 s32 TOMine::is_target_in_list(void *obj) {
     TOMine *self = this;

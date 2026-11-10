@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `00c484c57b38`, 2026-11-10)
+## Summary (regenerated after merging main `59dfc7117a7e`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `00c484c57b38` (2026-11-10). Assembly is counted as source lines;
+after merging main `59dfc7117a7e` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,777 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,778 | 880 |
 | Per-unit compiler overrides in `configure.py` | 189 | 189 |
 | Approved regressions | 0 | 0 |
 
@@ -95,9 +95,9 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,777 pragmas in 879 files; per-file table in the generated file. Main kinds:
+5,778 pragmas in 880 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1143, `inline_depth` 1035, `fp_contract` 880, `auto_inline` 833,
-`opt_common_subs` 611, `scheduling` 263, `opt_propagation` 239,
+`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 239,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -444,13 +444,21 @@ functions above change, from 98.82% (1076 bytes) / 97.81% (296) / 95.60%
 is byte-identical either way. Those multiply-adds compile as `fmuls`+`fadds`
 when `-fp_contract` is omitted and `fmadds` when it is on.
 
-The constructor clamp at `0x80170068` reads `lbl_805DB85C` through its
-address. A direct reference makes CodeWarrior share the load during common
-subexpression elimination and swap the two floating-point registers
-(99.91%). The address form keeps the power reload in `f1` and the zero in
-`f0`. The `__declspec(section ".sdata2")` definition follows the last use
-so CodeWarrior keeps the named loads. Both `text_8016F1C0.cpp` and
-`TOMine.cpp` reference that same exported zero.
+The constructor clamp at `0x80170068` uses an ordinary named comparison
+and assignment, `if (attack.power < lbl_805DB85C) attack.power = lbl_805DB85C`.
+Scoped `opt_common_subs off` around the constructor preserves the original
+register allocation without an address cast. With the default CSE setting,
+the same source swaps the compare's `f0`/`f1` (99.91%). A `0.0f` literal for
+both the comparison and assignment matches the instructions but adds a
+second four-byte zero to `.sdata2`, failing the original-DOL hash.
+
+| Symbol / unit | Construct | Reason | Port action |
+| --- | --- | --- | --- |
+| `TOMineTrap::TOMineTrap` (`0x80170068`), `pso/misc/TOMineTrap_8016F6F8.cpp` | Scoped `#pragma opt_common_subs off` | The ordinary named clamp matches all constructor instructions with CSE disabled; the whole object retains its 6,132 code bytes, 8 `.rodata` bytes and single 4-byte shared zero. This is a matching setting, not proof of the original compiler option. | Drop the pragma; keep the ordinary comparison and assignment. |
+
+The `__declspec(section ".sdata2")` definition follows the last use so
+CodeWarrior keeps the named loads. Both `text_8016F1C0.cpp` and `TOMine.cpp`
+reference that same exported zero.
 
 The unit's four-byte `.sdata2` starts at `0x805DB85C`. CodeWarrior gives
 the section eight-byte alignment by default. The existing `cw_align` build
