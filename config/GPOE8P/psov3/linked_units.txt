@@ -2778,7 +2778,6 @@ pso/ui/TAdSinglePlyChrSelectGC_802E13C8.cpp
 pso/ui/TAdSinglePlyChrSelectGC_802E3AE4.cpp
 pso/ui/TAdSinglePlyChrSelectGC_80336054.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8033A8EC.cpp
-pso/ui/TAdSinglePlyChrSelectGC_8033C640.cpp
 pso/ui/TAdSnAkPassConfirmGC.cpp
 pso/ui/TAdSoniclogo.cpp
 pso/ui/TAdSoniclogo_8001C1C4.cpp
