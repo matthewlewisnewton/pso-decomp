@@ -2632,6 +2632,7 @@ force_active:
   - __dt__20TWindowChoiceSettingFv
   - __dt__20TWindowMessageScrollFv
   - __dt__20TWindowSubQuestBoardFv
+  - __dt__20TWindowSubStatusDispFv
   - __dt__21TAdMultiChgGameModeGCFv
   - __dt__21TAdMultiSelGameModeGCFv
   - __dt__21TBoss1DragonEffBreathFv
@@ -3282,6 +3283,7 @@ force_active:
   - __vt__20TQuadSpriteSclColRot
   - __vt__20TWindowChoiceSetting
   - __vt__20TWindowMessageScroll
+  - __vt__20TWindowSubStatusDisp
   - __vt__21TAdMultiChgGameModeGC
   - __vt__21TAdMultiSelGameModeGC
   - __vt__21TBoss1DragonEffBreath
@@ -14346,6 +14348,7 @@ force_active:
   - render__20TQuadSpriteSclColRotFv
   - render__20TWindowChoiceSettingFv
   - render__20TWindowSubQuestBoardFv
+  - render__20TWindowSubStatusDispFv
   - render__21TAdMultiChgGameModeGCFv
   - render__21TAdMultiSelGameModeGCFv
   - render__21TBoss1DragonEffBreathFv
@@ -15069,6 +15072,7 @@ force_active:
   - run_task__20TWindowChoiceSettingFv
   - run_task__20TWindowMessageScrollFv
   - run_task__20TWindowSubQuestBoardFv
+  - run_task__20TWindowSubStatusDispFv
   - run_task__21TAdMultiChgGameModeGCFv
   - run_task__21TAdMultiSelGameModeGCFv
   - run_task__21TBoss1DragonEffBreathFv

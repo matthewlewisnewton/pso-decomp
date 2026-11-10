@@ -9153,7 +9153,7 @@ pso/unk/text_8027FD88.cpp:
 
 pso/misc/TWindowSubStatusDisp_80281198.cpp:
 	.text       start:0x80281198 end:0x80281814
-	.data       start:0x804D1AE8 end:0x804D2B20
+	.data       start:0x804D1AE8 end:0x804D2B48
 	.sbss       start:0x805D6488 end:0x805D6490
 
 pso/misc/TWindowSubSymbolChat_80281814.cpp:

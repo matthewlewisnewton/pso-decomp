@@ -465,3 +465,12 @@ compiled objects, relocations, data and selected providers remain unchanged.
 A fresh 608-byte DD renderer probe still differs in 37 words and is not activated
 or published. No coverage gain is claimed; the independent renderer, arithmetic,
 ownership, initialization and original-provider holds remain.
+
+
+The [0x74-byte status-display recovery](window-status-display-native-lifetime.md)
+recovers its genuine Base lifetime and two ordinary-new producers. The complete
+1660/164/2332-byte objects and targets remain original-exact. A newly evidenced
+borrowed four-pointer array and natural compiler table add 40 linked data bytes;
+the following original 32 bytes remain intact. The incomplete consumer retains
+its full original provider. Raw calls fall to 16 across nine units, with three
+shared bindings and all other technical holds retained.
