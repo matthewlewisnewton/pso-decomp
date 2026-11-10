@@ -23,6 +23,7 @@ guides.
 - [DD descendant virtual slot](dd-descendant-slot-evidence.md)
 - [DD scaled random receiver](dd-scaled-random-evidence.md)
 - [Dead-spot effect wrapper](dead-spot-e4-evidence.md)
+- [Download graph recovery](download-graph-recovery.md)
 - [Scale-15 dead-spot position](dead-spot-scale15-evidence.md)
 - [Enemy experience and drop wrappers](enemy-death-award-evidence.md)
 - [Equipment requirement match and link limit](equip-requirements-match.md)
