@@ -1,3 +1,4 @@
+#include "pso/misc/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowMessage.h"
@@ -40,7 +41,6 @@
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/unk/text_8024AB98.h"
 #include "pso/misc/TWindowSubComCard_80265410.h"
-#include "pso/unk/text_80131ADC.h"
 #include "pso/unk/text_8026CB5C.h"
 #include "pso/map/FloorArea.h"
 
@@ -280,9 +280,9 @@ TObjItemNameEntry::TObjItemNameEntry(TObject *parent) : TObject(parent) {
     }
     m_1c = (void *)keyboard;
     if (m_1c != NULL) {
-        ((TWindowMakeTeam *)m_1c)->set_sub_position((u8 *)get_window_layout_position(0xBF));
-        fn_80131ADC((u8 *)m_1c, (u8 *)get_window_layout_position(0xC0));
-        fn_80131B18((u8 *)m_1c, (u8 *)fn_8026CB5C());
+        ((TKeyBoardControl *)m_1c)->set_composer_position((u8 *)get_window_layout_position(0xBF));
+        ((TKeyBoardControl *)m_1c)->set_soft_keyboard_position((u8 *)get_window_layout_position(0xC0));
+        ((TKeyBoardControl *)m_1c)->set_hard_keyboard_position((u8 *)fn_8026CB5C());
     }
     m_20 = check_room_seq_4__16TAdChrSelASlotGCFl(get_window_layout_position(0x56), 1);
     if (m_20 != NULL) {

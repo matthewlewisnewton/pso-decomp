@@ -52,7 +52,7 @@ s32 TWindowSubInformationBoard::open_keyboard(s32 arg0) {
         keyboard = TKeyBoardControl__ct(keyboard, arg0, 0xC6, 5, 4, local_client_id);
     }
     get_keyboard_field_6c__15TWindowMakeTeamFv(keyboard, TLobby::get_card_window_field());
-    ((TWindowMakeTeam *)keyboard)->set_sub_position((u8 *)(get_window_layout_position(0xBB)));
+    ((TKeyBoardControl *)keyboard)->set_composer_position((u8 *)(get_window_layout_position(0xBB)));
     ((TKeyBoardControl *)keyboard)->set_keyboard_flag62_bit2();
     ((TWindowSubComCard *)keyboard)->destroy_keyboard();
     return keyboard;

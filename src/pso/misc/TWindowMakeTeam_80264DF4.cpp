@@ -86,7 +86,7 @@ void TWindowMakeTeam::run_task() {
             kb = TKeyBoardControl__ct(kb, self, 0xE, 0, 4, local_client_id);
         }
         self->keyboard = kb;
-        ((TWindowMakeTeam *)(self->keyboard))->set_sub_position((u8 *)(get_window_layout_position(0xCB)));
+        ((TKeyBoardControl *)(self->keyboard))->set_composer_position((u8 *)(get_window_layout_position(0xCB)));
         ((TKeyBoardControl *)self->keyboard)->set_keyboard_depth(lbl_805DD144);
         update_chat_window(self->keyboard);
         get_keyboard_field_6c__15TWindowMakeTeamFv(self->keyboard, self->name);
@@ -115,7 +115,7 @@ void TWindowMakeTeam::run_task() {
             kb = TKeyBoardControl__ct(kb, self, 0x10, 0, 0, local_client_id);
         }
         self->keyboard = kb;
-        ((TWindowMakeTeam *)(self->keyboard))->set_sub_position((u8 *)(get_window_layout_position(0xCC)));
+        ((TKeyBoardControl *)(self->keyboard))->set_composer_position((u8 *)(get_window_layout_position(0xCC)));
         ((TKeyBoardControl *)self->keyboard)->set_keyboard_depth(lbl_805DD144);
         get_keyboard_field_6c__15TWindowMakeTeamFv(self->keyboard, self->comment);
         ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(NULL, 1);

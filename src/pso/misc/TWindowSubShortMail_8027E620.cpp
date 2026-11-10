@@ -197,7 +197,7 @@ s32 create_keyboard__19TWindowSubShortMailFv(void) {
         var_r31 = TKeyBoardControl__ct(var_r31, tl_00, 0xC6, 5, 4, local_client_id);
     }
     update_chat_window((void *)var_r31);
-    ((TWindowMakeTeam *)var_r31)->set_sub_position((u8 *)(get_window_layout_position(0xBB)));
+    ((TKeyBoardControl *)var_r31)->set_composer_position((u8 *)(get_window_layout_position(0xBB)));
     ((TKeyBoardControl *)var_r31)->set_keyboard_flag62_bit2();
     ((TWindowSubComCard *)var_r31)->destroy_keyboard();
     return var_r31;
@@ -481,7 +481,7 @@ void TWindowSubShortMail::run_task() {
         if (o->w5c == NULL) {
             o->w5c = ((void * (*)()) create_keyboard__19TWindowSubShortMailFv)();
         }
-        ((TWindowSubShortMail *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBB)));
+        ((TKeyBoardControl *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBB)));
         free_menu_object(o->w5c);
         ((TWindowSubShortMail *)(o->w5c))->hide_window();
         o->state = 0xC;
@@ -493,7 +493,7 @@ void TWindowSubShortMail::run_task() {
         }
         break;
     case 13:
-        ((TWindowSubShortMail *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBC)));
+        ((TKeyBoardControl *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBC)));
         TWindowSubShortMail__sub_80131998(o->w5c);
         o->w50 = ((void * (*)(void *, s32)) open_confirm_prompt__19TWindowSubShortMailFPvi)(o, o->f20);
         o->state = 0xE;
@@ -581,7 +581,7 @@ void TWindowSubShortMail::run_task() {
             o->w5c = ((void * (*)()) create_keyboard__19TWindowSubShortMailFv)();
             get_keyboard_field_6c__15TWindowMakeTeamFv(o->w5c, ((void * (*)()) get_card_window_area__6TLobbyFv)());
         }
-        ((TWindowSubShortMail *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBB)));
+        ((TKeyBoardControl *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBB)));
         free_menu_object(o->w5c);
         ((TWindowSubShortMail *)(o->w5c))->hide_window();
         o->state = 0x19;
@@ -593,7 +593,7 @@ void TWindowSubShortMail::run_task() {
         }
         break;
     case 26:
-        ((TWindowSubShortMail *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBC)));
+        ((TKeyBoardControl *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBC)));
         TWindowSubShortMail__sub_80131998(o->w5c);
         if (o->w50 == NULL) {
             o->w50 = ((void * (*)(void *)) open_delete_confirm_dialog__19TWindowSubShortMailFv)(o);

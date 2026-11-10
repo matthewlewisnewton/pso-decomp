@@ -340,7 +340,7 @@ s32 create_keyboard__17TWindowSubComCardFii(s32 arg0, s32 arg1) {
         keyboard = TKeyBoardControl__ct(keyboard, arg0, 0xC6, 3, 4, local_client_id);
     }
     get_keyboard_field_6c__15TWindowMakeTeamFv(keyboard, get_card_entry_data__17TWindowSubComCardFv(arg1));
-    ((TWindowMakeTeam *)keyboard)->set_sub_position((u8 *)(get_window_layout_position(0xBB)));
+    ((TKeyBoardControl *)keyboard)->set_composer_position((u8 *)(get_window_layout_position(0xBB)));
     ((TKeyBoardControl *)keyboard)->set_keyboard_flag62_bit2();
     ((TWindowSubComCard *)keyboard)->destroy_keyboard();
     return keyboard;
@@ -356,7 +356,7 @@ s32 create_keyboard__17TWindowSubComCardFi(s32 arg0) {
         keyboard = TKeyBoardControl__ct(keyboard, arg0, 0xC6, 3, 4, local_client_id);
     }
     get_keyboard_field_6c__15TWindowMakeTeamFv(keyboard, get_kbd_ptr__14TWindowComCardFv(keyboard_mode));
-    ((TWindowMakeTeam *)keyboard)->set_sub_position((u8 *)(get_window_layout_position(0xBB)));
+    ((TKeyBoardControl *)keyboard)->set_composer_position((u8 *)(get_window_layout_position(0xBB)));
     ((TKeyBoardControl *)keyboard)->set_keyboard_flag62_bit2();
     ((TWindowSubComCard *)keyboard)->destroy_keyboard();
     return keyboard;
@@ -1289,7 +1289,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
         if ((u32) window_sub_com_card->m_80 == 0U) {
             window_sub_com_card->m_80 = create_keyboard__19TWindowSubShortMailFv();
         }
-        ((TWindowSubShortMail *)(window_sub_com_card->m_80))->set_position((void *)(get_window_layout_position(0xBB)));
+        ((TKeyBoardControl *)(window_sub_com_card->m_80))->set_position((void *)(get_window_layout_position(0xBB)));
         free_menu_object((void *)window_sub_com_card->m_80);
         ((TWindowSubShortMail *)(window_sub_com_card->m_80))->hide_window();
         window_sub_com_card->m_1c = 0x22U;
@@ -1304,7 +1304,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
         }
         break;
     case 0x23:
-        ((TWindowSubShortMail *)(window_sub_com_card->m_80))->set_position((void *)(get_window_layout_position(0xBC)));
+        ((TKeyBoardControl *)(window_sub_com_card->m_80))->set_position((void *)(get_window_layout_position(0xBC)));
         TWindowSubShortMail__sub_80131998((void *)window_sub_com_card->m_80);
         window_sub_com_card->m_70 = open_confirm_prompt__19TWindowSubShortMailFPvi((window_sub_com_card), (window_sub_com_card->m_20));
         window_sub_com_card->m_1c = 0x24U;
