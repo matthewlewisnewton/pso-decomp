@@ -609,3 +609,38 @@ retains its original fallback. All 181 accessor-using source files include
 the canonical header. Host vector and item-factory tests, inventory and
 whitespace pass. Keep draft with the remaining documented interfaces and
 stale metadata; no formal approval or main merge is performed.
+
+
+## Dialing rectangle main advance during publication
+
+After the reviewed `e94c94e4c1b072d4186b3cc955b654a01dd534b4` push, GitHub
+still reported conflicts and listed no CI run. A fresh fetch established that
+main had advanced during publication to
+`8d2b58ef2fdf777456fff67f24438826860f8a1d` (#378 dialing rectangle).
+Integrate it rather than attributing the conflict to a source-validation or
+metadata failure. Only the exception documents conflict; keep both sides'
+records and regenerate inventory (5,769 pragmas, 876 files, 182 overrides).
+No additional manual source fix is made. Main's typed dialing/rectangle
+interfaces, all previous BML/DHCP repairs and the demo 4 pointer fields remain.
+
+Both capacity-gated builds reproduce original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Main passes against preserved
+`3ee5a151c`, and the continuation passes against fresh main `8d2b58ef2`:
+
+| Measure | Main | Continuation | Delta |
+|---|---:|---:|---:|
+| Exact functions | 27,398 | 27,398 | 0 |
+| Matched code bytes | 4,203,884 | 4,203,884 | 0 |
+| Matched data bytes | 1,470,691 | 1,470,779 | +88 |
+| Complete code bytes | 3,708,520 | 3,708,520 | 0 |
+| Complete data bytes | 1,186,259 | 1,186,347 | +88 |
+| Linked units | 3,583 | 3,582 | -1 |
+
+No exact function, data/code address, linked range or padding is lost against
+fresh main. All 3,582 linked units are exact; 17,726 retention entries pass
+without drift. Dialing rectangle 4/4, demo 4 7/7, DHCP 42/42 and packet runtime
+24/24 remain exact and use compiled source inputs; TCP retains original
+fallback. All 181 accessor-using sources remain canonical. Host vector and
+item-factory tests, inventory and whitespace pass. No technical probe,
+failed metadata write, formal approval or main merge is repeated/performed.
+Keep draft with the documented remaining interfaces and stale metadata.

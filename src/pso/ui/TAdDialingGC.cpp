@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/ui/TAdDialingGC.h"
+#include "pso/ui/TAdDialingGC_80328B20.h"
 
 struct RecoveredGlobal_80328D50___vt__12TAdDialingGC {
     s32 value;
@@ -12,7 +13,6 @@ void __dl__7TObjectFPv(s32);
 extern RecoveredGlobal_80328D50___vt__12TAdDialingGC __vt__12TAdDialingGC;
 extern s32 TAdDialingGC__instance;
 u8 *__dt__12TAdDialingGCFv(u8 *arg0, s16 arg1);
-int TAdDialingGC__sub_80328B20(void*);
 
 void TAdDialingGC::render() { TAdDialingGC__sub_80328B20(this); render_if_flag_set(); draw_if_flag_set(); update(); }
 
