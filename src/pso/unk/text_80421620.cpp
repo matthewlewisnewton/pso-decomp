@@ -1234,7 +1234,6 @@ extern s32 *lbl_805D7B40;
 extern s32 *lbl_805D7B44;
 extern s32 *lbl_805D7B48;
 extern s32 lbl_805D7B80;
-s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out);
 
 s32 TLobby__sub_80423440(BootpPacket *hdr) {
     u8 *opts = (u8 *)&hdr->cookie;

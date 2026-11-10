@@ -57,6 +57,11 @@ typedef char DhcpClientBuffers_size[sizeof(DhcpClientBuffers) == 0x1194 ? 1 : -1
 // length; this interface does not add bounds validation.
 extern "C" void dhcp_parse_lease_times(u8 *cookie_and_options);
 
+// Native callers consume a word-sized option length (0..255).
+// Zero also reports no match.
+// The scanner still receives no packet length.
+extern "C" s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *cookie_and_options, u8 tag, u8 **value);
+
 extern DhcpClientBuffers lbl_805C1E00;
 extern volatile s32 dhcp_state;
 extern volatile s32 dhcp_reply_received;

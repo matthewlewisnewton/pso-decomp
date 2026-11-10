@@ -481,3 +481,46 @@ claimed recovered. All 180 accessor consumers retain the canonical header.
 Host vector and item-factory tests, exception inventory and whitespace pass.
 Keep draft with inherited interface limitations; the failed metadata write
 is not retried.
+
+
+## Shared DHCP option-length return contract
+
+On reviewed head `2f2e34a814effd03440f235583491d4077b6d5f9` and main
+`4e784e247d991f1fb25766fc80923242a9ba469a`, audit every source occurrence
+and original call reference to `find_dhcp_option__6TLobbyFPvUcPv` at
+`0x80424830`. Only packet runtime and the DHCP unit call it: eight calls in
+the lease parser/reply callback and five in the configuration parser, 13 total.
+No competing worker was changing these files. Earlier evidence recorded the
+inconsistent return declarations but no rejected canonical-word probe.
+
+The definition previously returned `u8`, with a file-scope `u8` declaration;
+all 13 calls used `s32` declarations, including two block-scope shadows.
+Every return path produces either zero or `len`, loaded from one unsigned
+byte. Thus every result is representable in `s32`, including lengths above
+127 without sign extension. The native code returns that byte-loaded value
+in the integer result register, and callers compare/copy the word result.
+A zero result also reports no match; it does not distinguish that case from
+a matched zero-length option. This evidence supports a consistent word return
+without asserting that machine code uniquely proves the original C type.
+
+Declare the existing C-linkage symbol once in `DhcpClient.h`, returning `s32`,
+and make the definition return `s32`. Remove the redundant file/block local
+declarations in both units. The tag, byte-pointer input and output pointer,
+local `u8 len`, byte loads, loop, stores, symbol identity and all call sites
+remain unchanged. No parameter, length contract, conversion adapter, cast,
+pragma, padding or compiler override is added. Both callers already include
+the shared header. The option scanner's missing input length and unchecked
+native scan behavior remain unresolved; no packet-validation improvement is
+claimed. Dispatcher/reset-status and TCP interfaces are untouched.
+
+The capacity-gated probe reproduces the original DOL hash, and both complete
+compiled source objects (`NetworkPacketRuntime` and `text_80421620`) compare
+byte-for-byte equal to their pre-probe objects, including metadata and
+relocations. The 108-byte scanner remains exact. Complete units stay packet
+runtime 24/24 and DHCP 42/42 with exact code/data and compiled source inputs.
+Full incremental checks show zero metric/coverage/retention changes; only
+shared declarations and source consistency improve. The generated exception
+inventory changes only the existing DHCP address-mask hit's line number.
+The branch's comparison with main still has +88 data bytes and zero new
+functions/code; main owns the prior DHCP matches. Keep draft with the other
+documented interfaces and stale metadata. No metadata write is retried.

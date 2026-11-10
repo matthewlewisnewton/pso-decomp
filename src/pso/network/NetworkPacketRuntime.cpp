@@ -111,7 +111,6 @@ typedef struct Tbl_804267F0 {
 } Tbl_804267F0;
 
 s16 TLobby__sub_804262CC(void *);
-u8 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out);
 s32 TLobby__sub_80421B3C(s32);
 s32 TLobby__sub_804250A8(s32);
 s16 TLobby__sub_80422F70(s16 iface, void *buf, s32 len, void *out);
@@ -161,7 +160,6 @@ extern u32 dhcp_lease_start;
 extern u32 dhcp_lease_expiry;
 
 void dhcp_parse_lease_times(u8 *arg0) {
-    s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out);
     u8 *p;
     s32 v;
     s32 w;
@@ -212,7 +210,7 @@ s32 TLobby__sub_8042474C(void *lease, void *renew, void *rebind) {
     return -1;
 }
 
-u8 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out) {
+s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out) {
     u8 *base = p;
     u8 t;
     u8 len;
@@ -270,7 +268,6 @@ s32 TLobby::validate_slot_buffers(s32 arg0, void *arg1, void *arg2, void *arg3) 
 #pragma opt_propagation off
 s32 dhcp_handle_reply__6TLobbyFsPv(s16 arg0, u8 *record) {
     Arg_804249F0 *arg1 = (Arg_804249F0 *)record;
-    s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out);
     DhcpClientBuffers *g = &lbl_805C1E00;
     BootpPacket *pk;
     u8 *q;
