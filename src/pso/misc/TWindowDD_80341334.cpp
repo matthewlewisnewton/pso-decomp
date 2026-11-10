@@ -79,7 +79,8 @@ u8 *TWindowDD__sub_8034138C(u8 *arg0, s32 arg1, s32 arg2, s32 str, s32 arg4) {
     window_help_item = (u8 *)(((TWindowBase *)arg0)->get_array_entry(0));
     if (window_help_item != NULL) {
         set_text_entry_string((window_help_item), (str), 0x80);
-        ((TWindowHelpItem *)window_help_item)->m_8 = (f32) lbl_805DFC94;
+        // get_array_entry returned an entry prefix, not a HelpItem window.
+        *(f32 *)(window_help_item + 8) = (f32)lbl_805DFC94;
         *(f32 *)((s8 *)window_help_item + 0xC) = (f32) lbl_805DFC94;
         refresh_status_display__9TWindowDDFv((int)window_help_item);
         ((TWindowHelpItem *)window_help_item)->reset_float_field();

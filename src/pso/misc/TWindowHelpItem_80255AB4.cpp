@@ -1,5 +1,6 @@
 #include "pso/misc/PageIndicator_8026CB44.h"
 #include "pso/misc/WindowConstructorAbi.h"
+#include "pso/misc/WindowLayoutDescriptor.h"
 #include "types.h"
 #include "pso/unk/text_80263A20.h"
 #include "pso/misc/TWindowHelpItem_80255AB4.h"
@@ -18,12 +19,14 @@
 
 extern "C" {
 extern u8 *text_language_group_table;
-extern void *__vt__15TWindowHelpItem[];
+extern WindowLayoutDescriptor window_help_item_parameters;
 extern s32 TWindowHelpItem__object_vtable[];
-extern u32 window_help_item_class_name;
+extern const char *window_help_item_class_name;
 extern TWindowHelpItem::CallbackWords __ptmf_null;
 extern const f32 lbl_805DCE10;
 void call_if_split_screen(void *self, s32 idx);
+// Existing two-float copy entry; target is the position prefix, not a PartsSet.
+void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *destination, void *source);
 
 s32 draw_visible_window_entries(void *, void *, int);
 void __dl__7TObjectFPv(void *);
@@ -83,7 +86,7 @@ void TWindowHelpItem::update_display() {
 
 void *TWindowHelpItem::dt(s16 arg1) {
     if (this != NULL) {
-        this->m_vtable18 = TWindowHelpItem__object_vtable;
+        this->legacy_vptr = TWindowHelpItem__object_vtable;
         delete_if_allocated((void *)(this->m_64), 1);
         __dt__11TWindowBaseFv((TWindowBase *)(this), 0);
         if (arg1 > 0) {
@@ -97,14 +100,14 @@ void *TWindowHelpItem::dt(s16 arg1) {
 TWindowHelpItem::TWindowHelpItem(void *pos, u16 idx) {
     TWindowHelpItem *self = this;
     void *p;
-    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)self), (u8 *)((u8 *)__vt__15TWindowHelpItem), (s16)((s16)idx), (u8 *)((u8 *)pos));
-    self->m_vtable18 = ((s32 *)&TWindowHelpItem__object_vtable);
-    self->m_00 = window_help_item_class_name;
-    ((TWindowSubSymbolChatPartsSet *)((u8 *)self + 0x30))->copy_vec2(pos);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)self), (u8 *)&window_help_item_parameters, (s16)((s16)idx), (u8 *)((u8 *)pos));
+    self->legacy_vptr = ((s32 *)&TWindowHelpItem__object_vtable);
+    self->m_name = window_help_item_class_name;
+    copy_vec2__28TWindowSubSymbolChatPartsSetFPv(&self->m_30, pos);
     ((TWindowBase *)self)->save_position();
     self->m_60 = 0;
     p = new PageIndicator_8026CB44(0, 3, self->m_20);
-    self->m_64 = (u32)p;
+    self->m_64 = (PageIndicator_8026CB44 *)p;
     self->m_68 = 0;
     self->m_6c = 0;
     self->m_70 = 0;

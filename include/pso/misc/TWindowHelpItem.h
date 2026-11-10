@@ -3,6 +3,9 @@
 
 #include "types.h"
 #include "pso/TObject.h"
+#include <stddef.h>
+
+struct PageIndicator_8026CB44;
 
 struct TWindowHelpItem
 {
@@ -11,25 +14,22 @@ struct TWindowHelpItem
     void init_text(void *);
     void sub_80255E24();
     void set_flag60_bit4();
-    u32 m_00;
-    u8 unk_4[0x4];
-    f32 m_8;
-    u8 unk_C[0x4];
-    s32 m_10;
-    u8 unk_14[0x4];
-    void *m_vtable18;
-    u8 _pad1C[0x4];
+    // Legacy Base image; genuine inheritance is held on constructor codegen.
+    const char *m_name;
+    u8 legacy_04[0x14];
+    void *legacy_vptr;
+    u8 legacy_1c[0x4];
     s16 m_20;
     u8 _pad22[0x2];
-    void* m_24;
-    u8 unk_28[0x4];
+    void *m_24;
+    u8 legacy_28[0x4];
     s32 m_2c;
-    void* m_30;
-    u8 unk_34[0x28];
+    f32 m_30;
+    u8 legacy_34[0x28];
     s32 m_5c;
     u8 m_60;
     u8 _pad61[0x3];
-    u32 m_64;
+    PageIndicator_8026CB44 *m_64;
     u32 m_68;
     u32 m_6c;
     u32 m_70;
@@ -70,6 +70,13 @@ struct TWindowHelpItem
     void format_description_with_price();
     void refresh_copied_items();
 };
+
+typedef char HelpItem_name[offsetof(TWindowHelpItem, m_name) == 0 ? 1 : -1];
+typedef char HelpItem_legacy_vptr[offsetof(TWindowHelpItem, legacy_vptr) == 0x18 ? 1 : -1];
+typedef char HelpItem_position[offsetof(TWindowHelpItem, m_30) == 0x30 ? 1 : -1];
+typedef char HelpItem_page[offsetof(TWindowHelpItem, m_64) == 0x64 ? 1 : -1];
+typedef char HelpItem_callback[offsetof(TWindowHelpItem, m_callback) == 0xB0 ? 1 : -1];
+typedef char HelpItem_callback_size[sizeof(TWindowHelpItem::CallbackWords) == 12 ? 1 : -1];
 
 typedef char TWindowHelpItem_size_check[sizeof(TWindowHelpItem) == 0xBC ? 1 : -1];
 #endif

@@ -118,7 +118,8 @@ void update_palette_item_count_label(TWindowHelpItem *window_help_item, u8 *arg1
     *(s32 *)((s8 *)window_help_item + 0x1C) = *(s32 *)((s8 *)arg1 + 0x2C);
     *(s32 *)((s8 *)window_help_item + 0x20) = v;
     draw_right_aligned_number(window_help_item);
-    window_help_item->m_8 = lbl_805DCA2C * *(f32 *)((s8 *)window_help_item + 0x10) + (*(f32 *)((s8 *)arg1 + 8) - lbl_805DCA28);
+    // Legacy entry receiver: this float is not a TObject/Base member.
+    *(f32 *)((u8 *)window_help_item + 8) = lbl_805DCA2C * *(f32 *)((s8 *)window_help_item + 0x10) + (*(f32 *)((s8 *)arg1 + 8) - lbl_805DCA28);
     *(f32 *)((s8 *)window_help_item + 0xC) = *(f32 *)((s8 *)arg1 + 0xC) - lbl_805DCA30;
 }
 #pragma pop
