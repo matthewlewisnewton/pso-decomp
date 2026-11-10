@@ -2251,11 +2251,9 @@ pso/object/TObjEZBoneRotBase.cpp:
 pso/object/TObjEZBoneRotPlayer.cpp:
 	.text       start:0x800FEE2C end:0x800FEFCC
 
-pso/player/TObjPlayer_800FEFCC.cpp:
-	.text       start:0x800FEFCC end:0x800FF580
-
-pso/unk/text_800FF580.cpp:
-	.text       start:0x800FF580 end:0x800FF9B8
+pso/object/TObjEZRopeSimulation.cpp:
+	.text       start:0x800FEFCC end:0x800FF9B8
+	.sdata2     start:0x805DAA58 end:0x805DAA68
 
 pso/object/TObjEZRopeBase.cpp:
 	.text       start:0x800FF9B8 end:0x800FFA88
