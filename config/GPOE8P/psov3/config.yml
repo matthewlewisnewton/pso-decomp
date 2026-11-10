@@ -1973,6 +1973,7 @@ force_active:
   - __ct__16TAdChrSelASlotGCFP7TObjectl
   - __ct__16TAdGuideButtonGCFP7TObject
   - __ct__16TBoss3VoloptCoreFP7TObjectPv
+  - __ct__16TCheckMemoryCardFP7TObjectPvPvPv
   - __ct__16TEffIndirectCtrlFlP7TObject
   - __ct__16TGenGuildCardTagFRC16TGenGuildCardTag
   - __ct__16TLobbyEventThemeFv

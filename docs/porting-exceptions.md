@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (dispatcher integrated with main `12cc95ca7`, 2026-11-10)
+## Summary (regenerated after merging main `c23775bb4`, 2026-11-09)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after dispatcher integration with PPP/session main `12cc95ca7` (2026-11-10). Assembly is counted as source lines;
+after merging main `c23775bb4` (2026-11-09). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,773 | 877 |
-| Per-unit compiler overrides in `configure.py` | 178 | 178 |
+| CodeWarrior pragmas (excluding push/pop) | 5,772 | 877 |
+| Per-unit compiler overrides in `configure.py` | 182 | 182 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -207,6 +207,24 @@ Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
 
+### `pso/ui/TAdDialingGC_80328B20.cpp` with GC/1.3.2
+
+GC/1.3.2 preserves the 59-instruction sequence of `draw_dialing_rectangle`
+at `0x80328B24`. With the same source, GC/2.6 reuses coordinate loads and
+sums across the vertex writes and emits 49 instructions. The older compiler
+also matches the other three functions with the default game flags.
+
+The four coordinate pairs at `0x804767A8..0x804767C8` stay in the existing
+original read-only data contribution. Assigning them to this split would
+reverse its order relative to the dialing constructor's string and create a
+link-order cycle. The single referenced float at `0x805DF6F8` belongs to this
+split. The following zero word has no reference and stays with the original
+data.
+
+A port can use its regular compiler. Bind the legacy
+`draw_tri_fan_2d__14TObjCMHairMenuFllf` entry to the renderer that takes a
+`ColorLineList`, and supply the four coordinate pairs as typed constants.
+
 ### `pso/unk/text_80049FD8.cpp` and the Vol Opt debris initializer
 
 GC/2.0 interleaves the BML resource and model-table loads with the final
@@ -219,7 +237,6 @@ The local initializer emits the 76-byte template at `0x80436748`. The
 original relocations to this template come from `fn_80049FD8`, and the split
 maps it to the compiler's local `@13` symbol. Ports can use the default
 compiler.
-
 ### `pso/misc/TLobby_8001EF5C.cpp`: `-inline on`
 
 `init_from_id_lists` at `0x8002058C` (size `0x30C`) contains the
@@ -412,6 +429,25 @@ cast stays a cast.
 | File | Functions | What | Why | Port should |
 |---|---|---|---|---|
 | `src/pso/unk/text_8034A090.cpp` | `TAdLoadQuestPrtTxtGC::TAdLoadQuestPrtTxtGC` (`0x8034A254`, 892 bytes) | unit `configure.py` override `-fp_contract on` | The constructor's three particle layouts contract `scale * index + base` into `fmadds` (case 0 at ctor+0x120, `ec 1d d8 3a`; the same form in cases 1 and 2). With the flag the unit is 1452/1452 code, 4/4 functions, `.rodata` 8 and `.data` 36. Without it those three functions and both data sections stay 100%, and the constructor falls to 93.32% and grows from 892 to 908 bytes (separate `fmul`/`fadd`). No `-inline` change was needed. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`). | Keep fused multiply-add, or accept the float differences. |
+
+### `TCheckMemoryCard.cpp` section placement
+
+The native static initializer at `0x8033C69C` computes the card-menu position and layout
+height, then initializes four pairs of `TCheckMemoryCard` member callbacks. CodeWarrior
+emits the eight member-pointer templates between the menu position and the callback
+table. The card vtable follows at `0x804EF9A0`. The initializer's text follows the card
+methods and character-select factory, so a separate initializer unit would impose
+opposite object orders in `.data` and `.text`. The combined unit preserves both orders,
+as in the [calendar conversion fold](evidence/calendar-conversion-evidence.md).
+
+- `-sdata 4` keeps the eight-byte menu position in `.data`, ahead of the callback
+  templates, and retains the four-byte height in `.sbss`. With the default threshold,
+  the menu position goes into `.sdata` and the initializer uses different offsets.
+- `cw_align: .rodata=4` preserves the start of the two float pairs at `0x80477DB4`.
+  CodeWarrior otherwise declares eight-byte section alignment. The existing
+  `cw_comment_align.py` rule adjusts the ELF and CodeWarrior alignment metadata.
+
+A port can use the C++ initializers and its normal section layout.
 
 ### `TOTrapAncient01.cpp` unit overrides ([#221](https://github.com/matthewlewisnewton/pso-decomp/pull/221))
 
