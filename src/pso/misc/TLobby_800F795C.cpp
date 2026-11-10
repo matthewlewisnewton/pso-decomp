@@ -200,7 +200,6 @@ s32 load_current_floor_resources(void) {
 extern "C" {
 
 void load_resources__12TBoss1DragonFv();
-void TBoss8Dragon__sub_80065C90();
 void TObjEneBalClaw__sub_8008D924();
 void TObjPlayer__sub_800A2DCC();
 void TObjEneMerillLia__sub_800D6D64();
@@ -601,7 +600,7 @@ FloorResourceCallbacks floor_resource_callbacks_selectors_28_29[14] = {
 FloorResourceCallbacks floor_resource_callbacks_selector_30[4] = {
     { load_corpse_mark_resource, TObjPlayer::destroy_static_lobby },
     { TObjEneDD::create_instance, TObjEneDD::release_resource },
-    { TBoss8Dragon__sub_80065C90, TBoss5Gryphon::cleanup },
+    { load_boss5_gryphon_resources, TBoss5Gryphon::cleanup },
     { 0, 0 },
 };
 
