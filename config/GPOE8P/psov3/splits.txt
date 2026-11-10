@@ -438,6 +438,7 @@ pso/boss/TUnk_80484AFC.cpp:
 
 pso/unk/text_80049FD8.cpp:
 	.text       start:0x80049FD8 end:0x8004A0AC
+	.rodata     start:0x80436748 end:0x80436794
 
 pso/object/TObjVoloptPillar.cpp:
 	.text       start:0x8004A0AC end:0x8004A634
