@@ -122,6 +122,18 @@ qualification without a source word, semantic-padding claim or weakened check.
 The new Word source activation and UV contract qualification remain valid; no
 window lifetime/provider hold changes in this item refresh.
 
+The next main `c822df035d` folds time-setting source (#410). All fifteen
+upstream path patches and window recoveries remain preserved; the two retention
+append conflicts retain both the existing native window and new calendar names.
+Clean main, focused and continuation gated builds preserve the original DOL.
+The continuation has 3599 exact linked units and 18563 retention names without
+drift; the lower unit count reflects the fold, not linked-address loss. Prior B,
+refreshed A and fresh-main acceptance pass, as do strict raw data-range checks
+with no new coverage, exact-data or linked-data loss. Word and UV original-byte,
+relocation and provider qualifications remain intact. Upstream receives the
+additional exact initializer, 1592 matched/linked code and 168 matched/linked data
+bytes. All previously recorded source-quality and historical coverage holds stay.
+
 ## Current tried/blocked index
 
 | Area | Established result | Remaining evidence / hold |
