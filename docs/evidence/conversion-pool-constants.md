@@ -174,9 +174,12 @@ unreferenced; it is `scope:local` and that unit is linked too.
 unit still does not link: its compiled object references `lbl_805DD7F8`, and
 the other missing symbols stay exported until each one has a definition.
 
-`link_units.py scan` still recognizes biases inside units that fail for other
-reasons. On this tree that is `TObjPlayer__data_80447130` (signed) in
-`TObjPlayer_801C7430`, which also fails its `.sdata2` size and data score.
+`TObjPlayer_801C7430` now links with its compiler-generated signed bias
+`TObjPlayer__data_80447130`. Using the five unit-owned floats as C++ literals
+lets GC/2.6 emit the original 20-byte `.sdata2` pool in order and reuse those
+entries for loads that already used literals. The split marks the bias and
+the five floats local after checking that no other object refers to them.
+
 `lbl_8043FFE0` in `TNpcPlayer` and `lbl_80440390` / `lbl_804403A0` in
 `TOBoss4Rock_801589E8` are now `scope:local`; `TNpcPlayer` links and the
 remaining `TOBoss4Rock` unit fails for reasons other than the bias.
