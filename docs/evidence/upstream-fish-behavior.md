@@ -45,7 +45,12 @@ it adds no fish implementation change or fish output-layout steering.
 After that publication, main advanced through the Vol Opt debris and Canadin
 recoveries. The final refresh waits for the stable progress-table head
 `b2a90ff1eabedf275aaed6cc16acbbd3e8b4a36c` and preserves those current-main
-changes and their existing compiler/mapping settings without changing fish code. The old zero-argument
+changes and their existing compiler/mapping settings without changing fish code.
+The subsequent refresh integrates stable main
+`25b4001837b8bdc46666d2ad736a7148a411f978`, including the Dark Falz demo,
+memory-card, dialing rectangle, character-select plate, network and Moja
+recoveries. Fish source, header and compiler settings remain unchanged.
+The old zero-argument
 `draw_ginja_object()` declaration depended on the preceding model getter leaving
 its return value in r3. The renderer now passes that model explicitly and uses
 the shared Ginja, motion draw, BML getter and matrix declarations. Its visibility
@@ -75,8 +80,8 @@ These are inherited limitations, not evidence that all original class/interface
 ownership has been recovered. Matching completeness alone does not resolve them.
 No assembly, intrinsic, hardware access or new emission pragma is introduced by
 the follow-up. Existing `-pool off`, FMA and inline settings remain as documented
-above; the final inventory after main synchronization is 5,773 pragmas in 877 files
-and 180 unit overrides, including main's existing dispatcher/TCP and Vol Opt
+above; the final inventory after main synchronization is 5,774 pragmas in 877 files
+and 184 unit overrides, including current main's existing compiler and mapping
 settings. The refresh introduces no additional fish compiler setting.
 
 ## Validation
@@ -84,31 +89,40 @@ settings. The refresh introduces no additional fish compiler setting.
 The initial recovery was validated against the base above. The shared-interface
 correction is separately compared against the freshly built PR-plus-current-main
 baseline `c3a77888e3c4e14bed709b60db8f6870f3ee1063`. The final integration is
-also checked against independently built unchanged main `b2a90ff1e`; both build
+also checked against independently built unchanged main `25b4001837`; both build
 and retention checks pass, and the subsequent synchronization loses no exact
 function or linked range. The earlier `65b21c210` synchronization inherited four
-zero padding bytes removed from report coverage by main's unit folding; the
-later synchronizations remove no further coverage. Canadin consolidation changes
-unit counts without losing address coverage, as checked against the previously
-published head `03c1430e3f`. The original DOL
+zero padding bytes removed from report coverage by main's unit folding. Canadin
+consolidation changes unit counts without losing address coverage, as checked
+against the previously published head `03c1430e3f`. The `25b4001837` refresh
+inherits eight further zero-padding bytes leaving coverage from main's unit
+folding: four bytes each in `.sdata` at `0x805D2794` and `0x805D279C`.
+The comparison against previous published head `953770c4c8` loses no exact
+function, live code/data address or linked range; the comparison against
+unchanged current main loses no padding either. The original DOL
 still matches. Full build
 and `tools/check_pr.py` pass with original DOL SHA-1
-`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Against current main `b2a90ff1e`,
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Against current main `25b4001837`,
 no exact function, code/data address, linked range or padding is lost. All nine functions (4,704 bytes) and all 1,404
-data bytes are exact. Retention adds 45 names and removes none.
+data bytes are exact. Independent comparison verifies the four allocated section
+payloads, sizes and alignment and all 302 normalized relocations. This is not
+whole-ELF identity: the compiled `.sdata2` has inherited writable flags where the
+split original is read-only. All 3,584 linked units are exact. Retention lists
+17,771 names with zero drift; the PR adds 45 names to current main and removes
+none. All 268 tooling tests pass.
 
-Gains against current main `b2a90ff1e` (the interface correction itself has
+Gains against current main `25b4001837` (the interface correction itself has
 no metric loss or gain against its PR-plus-main baseline):
 
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
-| Exact functions | 27,396 | 27,397 | 1 |
-| Exact code bytes | 4,203,136 | 4,205,180 | 2,044 |
-| Exact data bytes | 1,470,455 | 1,470,527 | 72 |
-| Linked code bytes | 3,707,636 | 3,712,340 | 4,704 |
-| Linked data bytes | 1,186,023 | 1,187,427 | 1,404 |
-| Linked units | 3,585 | 3,586 | 1 |
+| Exact functions | 27,403 | 27,404 | 1 |
+| Exact code bytes | 4,205,596 | 4,207,640 | 2,044 |
+| Exact data bytes | 1,471,723 | 1,471,795 | 72 |
+| Linked code bytes | 3,710,492 | 3,715,196 | 4,704 |
+| Linked data bytes | 1,187,291 | 1,188,695 | 1,404 |
+| Linked units | 3,583 | 3,584 | 1 |
 
-Actual ordered linker inputs: 3,586 source objects and 1,383 fallbacks;
+Actual ordered linker inputs: 3,584 source objects and 1,375 fallbacks;
 SHA-256 of newline-delimited paths including the final newline:
-`c6c63601c08b7ddc94eaca899b4e8e24c15775bda4dfc36def38a3b266613e5b`.
+`5db423c94d531d83d8ce88dc427635c9e3e8e4a0c3cbfbfee3c830c0656e897c`.

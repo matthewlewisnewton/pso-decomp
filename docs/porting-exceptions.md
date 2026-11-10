@@ -204,7 +204,7 @@ an aligned stack object. A port should ignore these settings and use the plain
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-180 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+184 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
