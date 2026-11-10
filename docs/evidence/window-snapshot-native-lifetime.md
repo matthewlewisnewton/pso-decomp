@@ -75,16 +75,18 @@ other standing holds remain; PR stays draft.
 
 ## Current main integration
 
-Fork main advanced to `51cdb60cbd219fe302bea6a004144c70ba85c40f` during final
-review and is integrated by merge `7ce5df2c8f6e1f98d0fdeb902a34235adcb44bd1`.
-The separate Vol Opt pillar change adds 212 matched/linked code bytes, 76
-matched/linked data bytes, one exact function and one linked unit. Those gains
-are main's contribution; Snapshot contributes only its 24 data bytes.
+Fork main `b2a90ff1eabedf275aaed6cc16acbbd3e8b4a36c` is integrated by merge
+`ad86811834a049aecd8452341745343843c0631a`. Main's Vol Opt pillar and Canadin
+changes together contribute 812 matched/linked code bytes, 88 matched/linked
+data bytes and two exact functions relative to published da05. Those are main's
+gains; Snapshot contributes only its 24 data bytes. Main's Canadin source fold
+reduces the source-bearing inventory by four and linked-unit inventory by three
+relative to the pillar checkpoint, without losing linked addresses.
 
 Both isolated builds reproduce the original DOL hash. check_pr against published
-da05 and freshly built main51 passes. Totals are now 27,396 exact functions and
-3,590 exact linked units, with 3,653 source-bearing units and clean retention at
-17,856. Combined deltas versus fresh main remain +600 matched code, +1220 linked
+da05 and freshly built mainb2 passes. Totals are now 27,397 exact functions and
+3,587 exact linked units, with 3,649 source-bearing units and clean retention at
+17,862. Combined deltas versus fresh main remain +600 matched code, +1220 linked
 code, +1496 matched data and +1452 linked data bytes. Port inventory and all
 Snapshot/WS_Word/protected-original provenance checks pass again. No additional
 window interface, ownership claim or technical exception is introduced by this
