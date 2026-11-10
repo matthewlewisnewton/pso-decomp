@@ -145,3 +145,10 @@ address-coverage delta; all 3590 linked units remain exact and retention is clea
 at 17968 entries. Comparisons against refreshed focused #402 and main b3062dc640
 also pass. Port inventory and independent read-only review pass. Only these
 evidence notes and the current blocker index are published from this probe.
+
+The later [serialized-layout recovery](window-action-palette-layout.md) derives
+the 332-byte record schema from the actual dispatcher and initializers and
+recovers it with the following 20-byte descriptor. Their bytes and six pointer
+relocations match without changing existing function matches or providers.
+The common-owner and caller-conversion holds above remain; no contiguous-owner
+or width-contract probe is repeated by that data-only recovery.

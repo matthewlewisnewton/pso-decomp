@@ -8,6 +8,7 @@
 #include "pso/misc/TWindowDD.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/WindowLayoutDescriptor.h"
 #include <stddef.h>
 
 typedef char palette_children_offset[offsetof(TWindowActionPalette, m_24) == 0x24 ? 1 : -1];
@@ -55,7 +56,7 @@ extern u8 controller_input_state[];
 s32 get_window_layout_position(s32);
 void *__construct_array(void *, void *, void *, u32, u32);
 s32 init_gc_tag(s32 arg0);
-extern u8 twindow_action_palette_layout[];
+extern WindowLayoutDescriptor twindow_action_palette_layout;
 extern u32 __vt__20TWindowActionPalette[6];
 void __dl__7TObjectFPv(void *);
 extern const char *lbl_805D3870;
@@ -299,7 +300,7 @@ extern "C" u8 *__dt__20TWindowActionPaletteFv(u8 *self, s16 delete_flag) {
     return self;
 }
 TWindowActionPalette::TWindowActionPalette(s32 slot)
-    : TWindowBase(twindow_action_palette_layout, (s16)slot, (u8 *)get_window_layout_position(0x1F)) {
+    : TWindowBase((u8 *)&twindow_action_palette_layout, (s16)slot, (u8 *)get_window_layout_position(0x1F)) {
     __construct_array(resources, (void *)init_gc_tag, (void *)TPlyDispConfig::free_if_valid, 4, 3);
     m_name = lbl_805D3870;
     if (TCameraCtrl::get_camera_id() > 2) {

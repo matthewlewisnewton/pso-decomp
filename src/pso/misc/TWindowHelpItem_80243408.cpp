@@ -5,6 +5,9 @@
 #include "pso/misc/TWindowHelpItem.h"
 #include "pso/boss/TBoss8Dragon.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/misc/WindowLayoutDescriptor.h"
+#include "pso/system/GinjaMaterialState.h"
+#include <stddef.h>
 
 struct Base_80243464 { char pad[0x18]; };
 struct VObj_80243464 : Base_80243464 {
@@ -150,6 +153,71 @@ UV_80243630 lbl_804CDE10[8] = {
     {0.0f, 0.0f}, {100.0f, 129.0f}, {100.0f, 172.0f}, {200.0f, 129.0f},
     {200.0f, 172.0f}, {100.0f, 86.0f}, {100.0f, 86.0f}, {50.0f, 0.0f},
 };
+
+// Serialized inputs consumed by init_window_layout_entries. These are layout
+// records, not the allocated sprite/number entry objects.
+struct PaletteScaledSpriteLayout {
+    u32 kind;
+    f32 position[2];
+    f32 extent[2];
+    f32 texture_pixels[2];
+    f32 depth;
+    u32 color;
+    GinjaTextureList **texture_list;
+    u32 mode;
+    u32 flags;
+};
+
+struct PaletteNumberLayout {
+    u32 kind;
+    f32 position[2];
+    f32 depth;
+    u32 color;
+    u32 flags;
+    s32 value;
+};
+
+struct PaletteEntryLayouts {
+    u32 entries_per_repeat;
+    u32 repeat_count;
+    PaletteScaledSpriteLayout panel;
+    PaletteScaledSpriteLayout bank_panel;
+    PaletteScaledSpriteLayout slot0_icon;
+    PaletteNumberLayout slot0_count;
+    PaletteScaledSpriteLayout slot1_icon;
+    PaletteNumberLayout slot1_count;
+    PaletteScaledSpriteLayout slot2_icon;
+    PaletteNumberLayout slot2_count;
+};
+
+typedef char PaletteScaledSpriteLayout_size[sizeof(PaletteScaledSpriteLayout) == 0x30 ? 1 : -1];
+typedef char PaletteScaledSpriteLayout_texture[offsetof(PaletteScaledSpriteLayout, texture_list) == 0x24 ? 1 : -1];
+typedef char PaletteScaledSpriteLayout_flags[offsetof(PaletteScaledSpriteLayout, flags) == 0x2C ? 1 : -1];
+typedef char PaletteNumberLayout_size[sizeof(PaletteNumberLayout) == 0x1C ? 1 : -1];
+typedef char PaletteNumberLayout_value[offsetof(PaletteNumberLayout, value) == 0x18 ? 1 : -1];
+typedef char PaletteEntryLayouts_size[sizeof(PaletteEntryLayouts) == 0x14C ? 1 : -1];
+typedef char PaletteEntryLayouts_first[offsetof(PaletteEntryLayouts, panel) == 8 ? 1 : -1];
+typedef char PaletteEntryLayouts_slot0[offsetof(PaletteEntryLayouts, slot0_icon) == 0x68 ? 1 : -1];
+typedef char PaletteEntryLayouts_last[offsetof(PaletteEntryLayouts, slot2_count) == 0x130 ? 1 : -1];
+
+extern "C" GinjaTextureList *lbl_805D63F0;
+
+PaletteEntryLayouts lbl_804CDE50 = {
+    8, 1,
+    {6, {45.0f, 53.0f}, {91.0f, 54.0f}, {92.0f, 0.0f}, 0.4f, 0xFF666666, &lbl_805D63F0, 0, 0x14},
+    {6, {13.0f, 0.0f}, {91.0f, 54.0f}, {0.0f, 0.0f}, 0.4f, 0xFFFFFFFF, &lbl_805D63F0, 0, 0x14},
+    {6, {50.0f, 32.0f}, {50.0f, 43.0f}, {150.0f, 86.0f}, 0.4f, 0xFFFFFFFF, &lbl_805D63F0, 4, 0x14},
+    {4, {79.0f, 85.0f}, 0.5f, 0xFFFFFFFF, 6, 0},
+    {6, {94.0f, 6.0f}, {50.0f, 43.0f}, {150.0f, 86.0f}, 0.4f, 0xFFFFFFFF, &lbl_805D63F0, 4, 0x14},
+    {4, {34.0f, 60.0f}, 0.5f, 0xFFFFFFFF, 6, 0},
+    {6, {6.0f, 58.0f}, {50.0f, 43.0f}, {150.0f, 86.0f}, 0.4f, 0xFFFFFFFF, &lbl_805D63F0, 4, 0x14},
+    {4, {124.0f, 60.0f}, 0.5f, 0xFFFFFFFF, 6, 0}
+};
+
+WindowLayoutDescriptor twindow_action_palette_layout = {
+    {150.0f, 107.0f}, 50000.0f, &lbl_804CDE50, 0xB28
+};
+
 void draw_action_palette_icon(Icon_80243630 *icon, u16 group, u16 index) {
     UV_80243630 *row;
     switch (group) {
