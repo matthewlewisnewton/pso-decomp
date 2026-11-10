@@ -14,8 +14,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-struct Win_8027FD9C { u8 pad[0x60]; s16 f60; u8 pad2[6]; s32 f68; };
-
 struct VBase_18_eecf68 { char pad[0x18]; };
 
 struct VObj_18_eecf68 : VBase_18_eecf68 {
@@ -73,7 +71,6 @@ s32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 TLobby__sub_801C2614();
 void *get_array_entry__11TWindowBaseFi(void *, s32);
 void init_window_layout_entries(void *, const void *, s32);
-s8 get_type__20TWindowSubStatusDispFv(int);
 void *get_player_by_client_id(s32 i);
 void vt11__20TWindowSubStatusDispFv(Wn_80280F14 *arg0);
 }
@@ -99,21 +96,19 @@ void fn_8027FD88(void* p, f32 a, f32 b) { *(f32*)((char*)p + 0x6c) = a; *(f32*)(
 void fn_8027FD94(void* p, s16 v) { *(s16*)((char*)p + 0x62) = v; }
 
 s32 TWindowSubStatusDisp::get_display_mode() {
-    Win_8027FD9C *arg0 = (Win_8027FD9C *)this;
     s32 r;
-    if (arg0->f60 == 2) {
-        s8 t = get_type__20TWindowSubStatusDispFv(arg0->f68);
+    if (m_60 == 2) {
+        s8 t = m_68->get_type();
         r = 3;
         if (t == 2) r = 2;
         return r;
     }
-    return get_type__20TWindowSubStatusDispFv(arg0->f68) != 2 ? 1 : 0;
+    return m_68->get_type() != 2 ? 1 : 0;
 }
 
 void TWindowSubStatusDisp::vt16() {  }
 
 
-typedef struct Win_8027FD9C Win_8027FD9C;
 void vt5__20TWindowSubStatusDispFv(u8 *arg0) {
   s32 type;
   s32 n;
@@ -166,14 +161,11 @@ void vt5__20TWindowSubStatusDispFv(u8 *arg0) {
 void TWindowSubStatusDisp::vt15() {  }
 
 void TWindowSubStatusDisp::init_challenge_records_page() {
-    // Declaring this entry first preserves CodeWarrior's register allocation.
-    TUnk_804CFA28 *last_time_value;
-
     if ((f32)m_5c > TWindowSubStatusDisp__data_805DD708) {
         m_5c = 7;
     }
     init_window_layout_entries(&m_24, TWindowSubStatusDisp__rank_time_records_layout, m_20);
-    reinterpret_cast<TWindowSubStatusDisp *>(m_68)->get_type();
+    m_68->get_type();
 
     enum { RecordEntryHidden = 2 };
     enum RecordSlot { First = 0, Second = 1, AlternateFirst = 2, AlternateSecond = 3 };
@@ -267,20 +259,20 @@ void TWindowSubStatusDisp::init_challenge_records_page() {
 
     title = (TUnk_804CFA28 *)get_array_entry(13);
     spacer = (TUnk_804CFA28 *)get_array_entry(14);
-    last_time_value = (TUnk_804CFA28 *)get_array_entry(15);
+    value = (TUnk_804CFA28 *)get_array_entry(15);
     time = TWindowSubStatusDisp__sub_80071988((m_20 & 0xFFFFL), slot);
     if (time == 0) {
         title->flags |= RecordEntryHidden;
         spacer->flags |= RecordEntryHidden;
-        last_time_value->flags |= RecordEntryHidden;
+        value->flags |= RecordEntryHidden;
     } else {
         title->flags &= ~RecordEntryHidden;
         spacer->flags &= ~RecordEntryHidden;
-        last_time_value->flags &= ~RecordEntryHidden;
+        value->flags &= ~RecordEntryHidden;
         set_text_entry_string((u8 *)title, (u32)get_message_10(0x96), 0);
         text_builder_reset();
         append_play_time(time);
-        set_text_entry_string((u8 *)last_time_value, (u32)get_shared_text_buffer(), 0x20);
+        set_text_entry_string((u8 *)value, (u32)get_shared_text_buffer(), 0x20);
     }
 }
 
