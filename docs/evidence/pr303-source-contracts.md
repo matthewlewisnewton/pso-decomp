@@ -682,3 +682,26 @@ inventory and whitespace pass. The interrupted build-service request was
 verified not to have created its processes; validation resumed through the
 same capacity wrapper after recovery. Keep draft with the documented
 remaining interfaces and stale metadata; no metadata write is retried.
+
+
+## Character-select plate and network-info main refresh
+
+Merge main `4ae3511286473eb94ba91236c37e94f7b0475109` into reviewed head
+`3b92a510ba9b3c697a38d647850dc2b462f3748f`. The remote head is unchanged
+and no competing #303 owner is active. Only the generated exception inventory
+conflicts. Keep incoming character-select/network-info records alongside the
+existing branch entries and regenerate: 5,771 pragmas, 876 files, 183 overrides.
+No source conflict repair or existing interface hold is changed.
+
+Both capacity-gated builds reproduce the original DOL hash. Main's full
+comparison with preserved `4618606af` and the continuation's full comparison
+with fresh main pass. Against main: 27,402 exact functions and 4,204,908 matched
+code bytes are unchanged; matched data is 1,471,075 (+88), complete code
+3,709,656 (unchanged), complete data 1,186,643 (+88). No exact function, data,
+linked range, address or padding coverage is lost. All 3,582 linked units and
+17,739 retention entries pass. Character-select plate 38/38, network-info
+requests 2/2, DHCP 42/42 and packet runtime 24/24 remain exact and source-linked;
+TCP retains original fallback. All 181 model consumers remain canonical.
+Host tests, inventory and whitespace pass. This checkpoint synchronizes main
+before any new bounded interface probe; it does not claim a predicate or
+volatility repair. Keep draft and preserve the metadata hold.
