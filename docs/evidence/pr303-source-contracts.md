@@ -835,3 +835,36 @@ Host vector/item-factory tests, generated inventory and whitespace pass.
 This is synchronization, not a new interface probe. Lengthless scanning,
 allocator/output-pointer questions and the failed-metadata-write hold remain
 bounded as documented above. Keep draft pending exact-head review and CI.
+
+
+## Gryphon reconciliation through main `545f2e729`
+
+Refresh reviewed head `499d57b29` against main
+`545f2e729fcff6175f2b83ddf741fd2ea870951c`, which integrates the Gal Gryphon
+resource loader and folds its source ranges into `Boss5GryphonBehavior`.
+No competing branch owner is active. Resolve the retention-list conflict by
+keeping both the existing Falz buffer and all new Gryphon entries. Preserve
+main's loader, source split, globals, canonical motion accessor and typed
+resource/texture globals. Preserve this branch's canonical `NJS_OBJECT *`
+BML model accessor; convert its result explicitly only at the existing
+integer-valued particle attachment boundary. Remove redundant resource casts
+now that main provides the typed resource global. No local incompatible
+accessor prototype or function-pointer cast is restored. All 181 source
+accessor users still include the canonical BML header.
+
+Fresh capacity-gated builds of exact main and the candidate reproduce original
+DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All four overlapping
+Gryphon objects compare byte-for-byte to fresh main, including metadata and
+relocations: behavior 168/168, shock wave 6/6, snarl 7/7 and tornado 4/4, all
+exact code/data and linked from compiled source. Full fresh-main comparison
+passes with zero new exact functions/code, the existing +88 matched/linked
+data bytes, and no losses. All 3,583 linked units and 17,796 retention entries
+pass with no drift; main has 3,584 linked units because of the existing branch
+fold. Host tests, inventory and whitespace pass. Inventory totals are unchanged.
+The DHCP scanner/lease parser/volatile and selection predicate source repairs
+are unchanged from the reviewed parent.
+
+This reconciliation carries main's recovery without attributing its new match
+to this branch. Lengthless scanning, allocator/output-pointer questions and
+metadata holds remain unchanged. No exhausted probe or held write is retried.
+Keep draft pending exact-head review and CI.

@@ -1,3 +1,5 @@
+#include "pso/object/TObjFish_8001ED90.h"
+#include "pso/boss/TBoss5Gryphon.h"
 #include "pso/system/BmlResource.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/misc/PersistentSound.h"
@@ -43,13 +45,10 @@ void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__20TBoss5GryphonTornado[];
 extern s32 lbl_805D4398;
 extern const f32 lbl_805DFFA8;
-s32 get_bml_motion(s32, s32);
 void TBoss8Dragon__sub_800640A4(s32, Vec_80355570 *);
 void attach_particle_model(void *, s32, s32, s32, s32, f32);
 void add_radar_scaled_marker(Vec_80355570 *, s32, s32, s32, f32);
 
-extern s32 boss5_gryphon_bml_resource;
-extern s32 boss5_gryphon_texture_list;
 extern s32 *gryphon_tornado_particle_id_table;
 extern const f32 lbl_805D8D48;
 extern const f32 lbl_805DFFAC;
@@ -93,7 +92,7 @@ void TBoss5GryphonTornado::run_task() {
         if (o->p54 == NULL) {
             o->p54 = spawn_continuous_particle_effect_with_flags(&o->pos, gryphon_tornado_particle_id_table[1], 0x40);
             if (o->p54 != NULL) {
-                attach_particle_model(o->p54, (s32)get_bml_model((BmlResource *)boss5_gryphon_bml_resource, 0), boss5_gryphon_texture_list, get_bml_motion(boss5_gryphon_bml_resource, 0), 0, lbl_805DFFAC);
+                attach_particle_model(o->p54, (s32)get_bml_model(boss5_gryphon_bml_resource, 0), (s32)boss5_gryphon_texture_list, (s32)get_bml_motion(boss5_gryphon_bml_resource, 0), 0, lbl_805DFFAC);
             }
         }
         if (o->p58 == NULL) {

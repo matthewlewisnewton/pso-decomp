@@ -1,3 +1,6 @@
+#include "pso/object/TObjFish_8001ED90.h"
+#include "pso/boss/TBoss8Dragon_8005D700.h"
+#include "pso/boss/TBoss5Gryphon.h"
 #include "pso/system/BmlResource.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/system/SoundEffect.h"
@@ -13,18 +16,14 @@
 #include "pso/TParticleCtrl.h"
 
 extern "C" {
-s32 TBoss8Dragon__sub_8005D700(void *self);
 extern u8 lbl_80437F40[];
 extern void *gryphon_shockwave_particle_ids_ptr;
-s32 get_bml_motion(s32, s32);
 s32 attach_particle_model(s32, s32, s32, s32, s32, f32);
 s32 spawn_particle_effect_with_flags(void *, s32, s32);
 u32 spawn_continuous_particle_effect_with_flags(void *, s32, s32);
 
 s32 eval_bezier_curve__12TBoss8DragonFPviiPvf(void *, s32, s32, void *, f32);
 s32 spawn_gryphon_tornado(s32, s32, void *, u16);
-extern s32 boss5_gryphon_bml_resource;
-extern s32 boss5_gryphon_texture_list;
 extern const f32 lbl_805D8EE8;
 s32 vec3_add_to(void *, s32);
 s32 subtract_vector(void *, void *);
@@ -62,7 +61,7 @@ void TBoss5GryphonShockWave::run_task() {
     case 2:
         particle_effect_with_flags = spawn_particle_effect_with_flags((u8 *)&this->m_2c, *(s32 *)((s8 *)(*(u8 * *)&gryphon_shockwave_particle_ids_ptr) + 4), 0x40);
         if (particle_effect_with_flags != 0) {
-            attach_particle_model(particle_effect_with_flags, (s32)get_bml_model((BmlResource *)boss5_gryphon_bml_resource, 0), boss5_gryphon_texture_list, get_bml_motion(boss5_gryphon_bml_resource, 0), 0, lbl_805D8EE8);
+            attach_particle_model(particle_effect_with_flags, (s32)get_bml_model(boss5_gryphon_bml_resource, 0), (s32)boss5_gryphon_texture_list, (s32)get_bml_motion(boss5_gryphon_bml_resource, 0), 0, lbl_805D8EE8);
         }
         spawn_particle_effect_with_flags((u8 *)&this->m_2c, *(s32 *)((s8 *)(*(u8 * *)&gryphon_shockwave_particle_ids_ptr) + 8), 0x40);
         play_sound_effect(0x40033C13, (const Vec *)((u8 *)&this->m_2c), 0, 0);
@@ -107,7 +106,7 @@ TBoss5GryphonShockWave::TBoss5GryphonShockWave(TObject *arg1_parent, s32 arg2, u
 
 void TBoss8Dragon__sub_80066A4C(void) {  }
 void TBoss8Dragon::set_default_on_state0() {
-    switch (TBoss8Dragon__sub_8005D700(this)) {
+    switch (TBoss8Dragon__sub_8005D700()) {
     case 0:
         gryphon_shockwave_particle_ids_ptr = lbl_80437F40;
         break;
