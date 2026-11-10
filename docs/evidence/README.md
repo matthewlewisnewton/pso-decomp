@@ -39,6 +39,8 @@ guides.
 - [Locked-cache matrix stack base](locked-cache-matrix-stack.md)
 - [Matrix copy and concatenation](matrix-copy-concat-evidence.md)
 - [MatrixVector hand-written kernels](matrixvector-asm-kernels-evidence.md)
+- [Moja constructor: compiler tracing and replacement of the scaled-index workaround](moja-compiler-tracing.md)
+- [Moja constructor: initial alternatives and constant-pool investigation](moja-constructor-index-investigation.md)
 - [Motion drawing and model callbacks](motion-draw-callback-evidence.md)
 - [Motion table setters](motion-table-setter-evidence.md)
 - [MusyX assembly and scalar fallbacks](musyx-asm-fallbacks.md)
