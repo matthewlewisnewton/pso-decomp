@@ -51,20 +51,44 @@ text/data relocations remain unchanged from b42f. No source activation, data
 provider, original remainder, compiler control or synthetic table is introduced.
 
 The existing retention entry follows the 16-byte helper's native symbol rename;
-retention remains clean at 17,882 and port inventory passes unchanged. The
+retention was clean at 17,882 before the final main integration below. Port inventory passes. The
 capacity-gated full build preserves DOL SHA-1
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. check_pr passes against published
 b42f with zero metric/coverage/address delta and two catalog renames, and against
 separately built main `25b4001837b8bdc46666d2ad736a7148a411f978`.
 
 Earlier composer flags, copy/text, Snapshot, WS_Word and protected-original
-checks pass again. CMName retains its original provider and existing differences.
+checks pass again after integration. CMName retains its original provider and existing differences.
 The original 1,044-byte helper and WS_Word's full original3,412 provider/missing916
-renderer remain intact. Totals remain 27,404 exact functions, 3,585 exact linked
-units and 3,641 source-bearing units; combined PR deltas and the fourteen
-qualified four-byte alignment ranges remain unchanged.
+renderer remain intact. Before final main integration, totals were 27,404 exact
+functions, 3,585 exact linked units and 3,641 source-bearing units. The Chat
+family itself contributes zero metric or activation delta.
 
 Raw Base/Addition calls remain 22 across 12 units and four shared bindings.
 The remaining record, capacity, CMName, constructor ABI, lifetime, constant,
 table-order and ownership holds are not closed by this source-fidelity step.
 The PR stays draft.
+
+
+## Final main integration
+
+Main advanced to `1d44ff77407036f1f410190b6e07de7fe1bce979` at the publication
+check and is integrated by merge `2119afa3a367dcb7a6364d0a71565b91d0eb536e`.
+One conflict in text_8032AACC preserves main's typed draw_selection_plate and
+SelectionPlateColor contract together with this PR's native Control text-copy
+call. Serial's automatic merge retains both sets of source corrections. No old
+keyboard or plate alias is restored.
+
+Both isolated baseline and integrated full builds preserve the original DOL hash.
+All three Chat source objects, the affected serial/password copy/flag families,
+Snapshot, WS_Word and protected-original provenance checks pass again. Retention
+is clean at 17,730 on fresh main and 17,886 on the branch; port inventory passes.
+check_pr against published b42f and fresh main1d passes with no regression.
+
+Main contributes +316 matched code, +1368 linked code, +16 matched data and
++40 linked data bytes, one exact function and one linked unit. Those gains are
+attributed to main, not this wrapper recovery. Final totals are 27,405 exact
+functions, 3,586 exact linked units and 3,641 source-bearing units. Combined PR
+deltas versus fresh main remain +600 matched code, +1220 linked code, +1496
+matched data and +1452 linked data bytes. The fourteen qualified alignment gaps
+and all remaining technical holds are unchanged.

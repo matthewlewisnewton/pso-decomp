@@ -95,3 +95,15 @@ task-global and wider ownership/interface holds remain. PR stays draft.
 Integrated main is `12cc95ca737a3a8757c17f45df06a9af4821d872`. Combined deltas
 remain +600 matched code, +1220 linked code, +1448 matched data and +1404 linked
 data bytes. The fourteen qualified four-byte alignment gaps are unchanged.
+
+
+## Remaining text inventory
+
+A read-only address inventory against main1d44 identifies the entire 800-byte
+difference between original10712 and compiled9912 Fukidasi text as the absent
+function catalogued draw_name_plate__15TWindowFukidasiFv at 80251EC8. The current
+source declares and calls it but does not define its body. Its signature/name is
+still historical; this inventory does not assign a new native owner or interface.
+Recovering that renderer is a concrete next investigation, with GC byte/relocation,
+constant ownership and complete-link proof still required. The original full
+provider, destruction/table-order and initializer ABI holds remain unchanged.
