@@ -2584,6 +2584,7 @@ force_active:
   - __dt__19TObjStendGlassLobbyFv
   - __dt__19TQuestListChallengeFv
   - __dt__19TWindowDD_WS_StringFv
+  - __dt__19TWindowKeyBoardBaseFv
   - __dt__19TWindowMenuMainMenuFv
   - __dt__19TWindowMessageYesNoFv
   - __dt__19TWindowSoundBalanceFv
@@ -3228,6 +3229,7 @@ force_active:
   - __vt__19TQuestListChallenge
   - __vt__19TTecPlayerInfluence
   - __vt__19TWindowDD_WS_String
+  - __vt__19TWindowKeyBoardBase
   - __vt__19TWindowMenuMainMenu
   - __vt__19TWindowMessageYesNo
   - __vt__19TWindowSimpleStatus
@@ -14267,6 +14269,7 @@ force_active:
   - render__19TObjEneEpsilonGuardFv
   - render__19TObjStendGlassLobbyFv
   - render__19TTecPlayerInfluenceFv
+  - render__19TWindowKeyBoardBaseFv
   - render__19TWindowMenuIconLineFv
   - render__19TWindowMenuMainMenuFv
   - render__19TWindowMessageYesNoFv
@@ -14978,6 +14981,7 @@ force_active:
   - run_task__19TObjStendGlassLobbyFv
   - run_task__19TPlayerBattleCtrl4PFv
   - run_task__19TTecPlayerInfluenceFv
+  - run_task__19TWindowKeyBoardBaseFv
   - run_task__19TWindowMenuMainMenuFv
   - run_task__19TWindowMessageYesNoFv
   - run_task__19TWindowSimpleStatusFv

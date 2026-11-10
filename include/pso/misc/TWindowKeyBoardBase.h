@@ -5,6 +5,7 @@
 #include "pso/misc/TWindowBase.h"
 
 struct TWindowKeyBoardBase : public TWindowBase {
+    TWindowKeyBoardBase();
     virtual ~TWindowKeyBoardBase();
     void init_keyboard_text_field(u32, u32);
     void sub_8025E6DC(u8 *);
@@ -15,7 +16,7 @@ struct TWindowKeyBoardBase : public TWindowBase {
     u16 m_60;
     u16 m_62;
     u8 _pad64[0x1];
-    u8 m_65;
+    s8 m_65;
     u8 _pad66[0x2];
     u32 m_68;
     u16 *m_6c;
@@ -37,9 +38,10 @@ struct TWindowKeyBoardBase : public TWindowBase {
     u32 m_b4;
     virtual void render();
     virtual void run_task();
-    s32 *init_text_buffer_holder();
     void insert_character(u16 arg1);
 };
 
+typedef char KeyboardBase_holder_span[offsetof(TWindowKeyBoardBase, m_84) - offsetof(TWindowKeyBoardBase, m_6c) == 0x18 ? 1 : -1];
+typedef char KeyboardBase_second_holder_span[offsetof(TWindowKeyBoardBase, m_9c) - offsetof(TWindowKeyBoardBase, m_84) == 0x18 ? 1 : -1];
 typedef char TWindowKeyBoardBase_size[sizeof(TWindowKeyBoardBase) == 0xB8 ? 1 : -1];
 #endif
