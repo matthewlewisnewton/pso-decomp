@@ -51,6 +51,18 @@ exact. Retention, port inventories and protected-provider checks are clean.
 Main contributes all refresh gains; no new window recovery is claimed by it.
 The previous ownership, constant, initialization and original-provider holds stay.
 
+The next ordinary stack refresh integrates main
+`f0f05f3afe56fd2b71e9dc1fe946e2fa03c84b86` through focused head
+`42400454b31cfb205c70af923da166d716892dbc`. Main's Moja/ground-collision recovery,
+typed-header removals and documented qualifications remain intact. The continuation
+implementation/configuration patch is unchanged across all 318 paths compared
+with published `2ebd3d4259` against its preceding focused base. Historical evidence,
+attribution, the exact ComCard render recovery and all protected providers stay.
+Separate main/A/B gated builds preserve the original DOL hash. B retains the same
++492 linked code and +1604 matched/+1560 linked data contribution versus A;
+all 3591 linked units are exact. Upstream gains are attributed to main, with no
+new window coverage or lifted hold from this refresh.
+
 ## Current tried/blocked index
 
 | Area | Established result | Remaining evidence / hold |
@@ -85,17 +97,20 @@ remaining constant, lifetime, callback, initializer and ownership qualifications
 
 ## Validation and publication rules
 
-The final continuation must pass full capacity-gated compilation/linkage and the
-original DOL hash; checks against both focused A and the preserved #268 report;
-all linked-unit/relocation/retention/port gates; and independent review. Its source,
-configuration and original evidence files must preserve the snapshot, with only
-the explicitly reviewed ten-path upstream integration above as differences.
+The continuation remains subject to full capacity-gated compilation/linkage and
+the original DOL hash, comparisons against focused A and its prior published head,
+all linked-unit/relocation/retention/port gates, and independent review. The initial
+split was also checked against the preserved #268 snapshot. Later qualified main
+integrations and source recoveries are recorded above and in their family notes;
+the initial ten-path integration is not the complete refreshed-tree difference.
 The fourteen existing qualified four-byte tails retain their prior qualification.
 Upstream Falz independently adds its qualified four-byte tail at 804EFA04; the
-split introduces no tail or regression exception. Against old #268, the accepted
-upstream gain is +296 matched/+1628 linked code and +252 matched/+272 linked data.
+split introduces no tail or regression exception. At initial publication, the
+accepted upstream gain against old #268 was +296 matched/+1628 linked code and
++252 matched/+272 linked data.
 All 3637 compiled objects initially matched the old snapshot; after the upstream
 integration, 3636 remain byte-identical and only the accepted Fish unit differs.
+Those object counts describe the initial publication, not subsequent refreshes.
 Against focused A, B adds +492 linked code and +1604 matched/+1560 linked data,
 with no exact-function or meaningful-data/address loss.
 

@@ -74,3 +74,13 @@ function, meaningful-data or linked-address loss. The focused delta stays
 +600 matched/+728 linked code and zero data; all 3589 linked units are exact.
 Retention and port checks are clean. Later integration gains are attributed to
 main, not new GuildWarning recovery. All standing draft boundaries remain.
+
+The next ordinary integration refresh uses main
+`f0f05f3afe56fd2b71e9dc1fe946e2fa03c84b86`, retaining its Moja constructor and
+ground-collision recovery, typed-header corrections and documented qualifications.
+The focused implementation/configuration delta is identical to the preceding
+published delta across all 30 paths. Separate main and focused gated builds
+reproduce the original DOL hash; fresh-main and prior-head checks pass with no
+regression. The focused contribution remains +600 matched/+728 linked code,
+zero data and one exact function/source-linked unit, with 3590 linked units
+exact. Evidence, attribution and all draft boundaries remain intact.
