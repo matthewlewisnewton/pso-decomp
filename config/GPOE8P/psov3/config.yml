@@ -102,6 +102,8 @@ force_active:
   - NetApplyConnectionConfig__FPUc
   - NetIPv6CPCancelTimer__Fl
   - NetIPv6CPParseConfigureOption
+  - NetRunProtocolDispatchLoop
+  - NetRunTimerDispatchLoop
   - NumHeaps
   - OSExitThread
   - OSNotifyLink

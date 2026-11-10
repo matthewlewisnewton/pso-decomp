@@ -15,10 +15,11 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (fish synchronization on main `12cc95ca7`, 2026-11-10)
+## Summary (fish synchronization on main `4e784e247`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after fish synchronization on main `12cc95ca7` (2026-11-10). Assembly is counted as source lines;
+after fish synchronization on dispatcher main `4e784e247` (2026-11-10). Assembly is counted as source lines;
+
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +27,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,771 | 875 |
-| Per-unit compiler overrides in `configure.py` | 177 | 177 |
+| CodeWarrior pragmas (excluding push/pop) | 5,773 | 877 |
+| Per-unit compiler overrides in `configure.py` | 179 | 179 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -83,8 +84,8 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,771 pragmas in 875 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 837,
+5,773 pragmas in 877 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1146, `inline_depth` 1038, `fp_contract` 877, `auto_inline` 837,
 `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237,
 `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56,
 `defer_codegen` 53, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
@@ -173,9 +174,16 @@ small float differences without FMA).
 | `src/pso/misc/TKeyBoardControl.cpp` | Keyboard glyph/tab and key-frame drawing | Existing scoped `pool_data off` and `fp_contract` pragmas, provisional receiver/layout views and explicit mangled helper names | Native table references, floating-point instructions and class boundaries; see [the evidence](evidence/upstream-keyboard-control.md). The existing `opt_loop_invariants off` is removed. | Drop optimizer steering, preserve required floating-point semantics, and consolidate keyboard/rendering types. |
 | `src/pso/misc/TWindowSubStatusDisp_8024FBA8.cpp` | Font-code mapper declaration | Existing wide input declaration remains `s32`, while the shared mapper interface takes `u16`; return type is corrected to `u16` | Narrowing the caller declaration changes original instruction selection. The new glyph-drawing signature is consistent in all callers, but this neighboring legacy boundary remains unresolved. | Use the shared narrow mapper interface and explicit character decoding; do not preserve the declaration discrepancy. |
 
+### Dispatcher extraction using upstream #213/#215 boundaries
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/network/NetworkDispatcher.cpp` | All 12 dispatcher functions | Four existing pragma lines (`opt_common_subs on` x3, `pool_data off` x1), inherited `-opt nocse`, 32-bit handles and provisional `TLobby`/`TUdpSocket` wrappers; reset status and thread-creation callback/return declarations remain inconsistent across units | Extracts the fork's already-exact dispatcher and its 248-byte BSS so it can link. The follow-up replaces reset/shutdown/handler overlays with the shared state and names both thread handles without changing native objects. The reset callee now explicitly returns `s32`, but the incompatible DHCP caller is retained after a type-correct probe changed its frame and result copy; this is not a completed ABI repair. See [upstream-dispatcher.md](evidence/upstream-dispatcher.md). | Remove compiler-only steering and recover explicit dispatcher/OS contracts with portable handle types, validating callers and callees together. |
+| `src/pso/network/TcpProtocol.cpp` | Extracted TCP range; still unlinked | Inherited `-opt nocse`; 24 moved pragma lines plus explicit `dont_inline off` and `inline_depth(4)` that previously carried into this range from earlier source | Without the ambient settings, timer callbacks `8041A3CC` / `8041A5B4` have different stack frames and `8041D584` no longer inlines its segment-removal helper. Scores are 99.78432%, 99.916664% and 65.69705%; restoring the settings retains all 40 previously exact TCP functions. Existing raw views, local ABI redeclarations and provisional members remain unresolved. | Remove compiler steering; unify TCP layouts and callback/status interfaces. This extraction does not claim the five still-unmatched TCP functions as recovered. |
+
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-177 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+179 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
