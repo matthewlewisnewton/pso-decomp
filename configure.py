@@ -918,6 +918,9 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         "pso/misc/TLobby_803FC178.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/misc/TLobby_804048E8.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/misc/TLobby_804050DC.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
+        # Extracted from TLobby_804050DC; preserve its compiler/CSE settings.
+        "pso/network/NetworkDispatcher.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
+        "pso/network/TcpProtocol.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
     }),
     # The modem driver (AT command strings).
     ("modem", 0x8042BF48, "GC/1.2.5", cflags_middleware, {}),
