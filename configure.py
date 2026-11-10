@@ -429,6 +429,9 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Keep the eight-byte menu positions in .data with the state table.
+    # The calendar x coordinate uses a fused multiply-add.
+    "pso/menu/TAdTimeSetGC.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-fp_contract on")},
     # Upstream #208: fused scale/corner arithmetic; deferred emission puts the
     # compiler vtable before the constructor switch table; class string is rodata.
     "pso/misc/TPlayerFootStamp.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-inline off,deferred", "-str reuse,readonly")},
