@@ -139,3 +139,8 @@ The unit is **159/173 exact, five undefined and nine partial, unlinked**.
 The later [named search sentinel decision](quest-download-search-evidence.md)
 does not clear shared-storage holds or the earlier
 [reachability caveats](quest-download-cache-relocation.md).
+
+The later [token-format follow-up](quest-download-token-format.md) records two
+new low-byte lookup-key adapter measurements. Both regressed this consumer and
+were rejected. Its separate read-only dictionary-type improvement leaves the
+frontend scratch lifetime and all shared-storage holds unresolved.

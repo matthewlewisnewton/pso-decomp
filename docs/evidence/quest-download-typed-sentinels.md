@@ -66,11 +66,13 @@ remains 0x8C0 bytes. No storage is enlarged, overlapped or given a new owner.
 
 ## Retained boundary and validation limits
 
-`sub_803EA9E8` remains original code. The finder and its original dictionary
-table still have the provisional `Ent_803E9DE0` source declaration. Its four
-fields match the observed token format, but this change does not certify the
-producer/table's canonical C++ type, lifetime or ownership. No interface or
-unrecovered body is invented to make that boundary appear complete.
+`sub_803EA9E8` remains original code. The original pointer-slot checkpoint kept
+the private `Ent_803E9DE0` dictionary declaration. The later
+[canonical token view](quest-download-token-format.md) unifies that observed
+four-byte format and makes the table/finder/slot/search borrows read-only.
+The dictionary's source owner, lifetime and original C++ identity remain
+unrecovered; no definition, interface or unrecovered body is invented to make
+that boundary appear complete.
 
 Both steps receive a full native build and main/previous-head no-loss checks.
 The typed-name step preserves complete provider/frontend/buffer object files.

@@ -166,7 +166,6 @@ struct Buf_803E82AC {
 
 struct Out_803E8C2C { s16 a; s16 id; s16 len; s16 pre; u8 pad[4]; u8 *ent; };
 
-struct Ent_803E9DE0 { u8 a; u8 b; u8 off; u8 d; };
 
 typedef Req_803EEF2C Msg_803E9190;
 
@@ -305,9 +304,9 @@ s32 TQuestVmDownLoadServer__sub_803E8C2C(char *arg0, s16 arg1, Out_803E8C2C *arg
 void TQuestVmDownLoadServer__sub_803EFF20(u8 *data, s32 a1, s32 a2, s32 *best, u8 *dst, s32 flags);
 extern const char ask_header_signature[];
 extern const s16 quest_download_lz_match_index_table[];
-extern Ent_803E9DE0 quest_download_lz_match_entry_table[];
+extern const QuestDownloadMatchToken quest_download_lz_match_entry_table[];
 extern u8 lbl_8047F0F8[];
-Ent_803E9DE0 *find_longest_match_entry__22TQuestVmDownLoadServerFPviPv(u8 *arg0, s32 arg1, s32 *arg2);
+const QuestDownloadMatchToken *find_longest_match_entry__22TQuestVmDownLoadServerFPviPv(u8 *arg0, s32 arg1, s32 *arg2);
 void build_message_packet__22TQuestVmDownLoadServerFPviPvUc(u8 *arg0, s32 arg1, Msg_803E9190 *arg2, u8 arg3);
 s32 lookup_name_entry__22TQuestVmDownLoadServerFPvsPv(char *arg0, s16 arg1, Out_803E8B1C *arg2);
 extern u8 lbl_8047E898[];
@@ -2144,12 +2143,12 @@ s32 TQuestVmDownLoadServer::is_download_cmd_allowed(u8 arg0) {
     }
 }
 
-Ent_803E9DE0 *find_longest_match_entry__22TQuestVmDownLoadServerFPviPv(u8 *arg0, s32 arg1, s32 *arg2) {
+const QuestDownloadMatchToken *find_longest_match_entry__22TQuestVmDownLoadServerFPviPv(u8 *arg0, s32 arg1, s32 *arg2) {
     u8 *s;
     u8 *a;
     s32 k;
     s32 rem;
-    Ent_803E9DE0 *p;
+    const QuestDownloadMatchToken *p;
     s32 m;
     s32 best = 1;
     u8 c = arg0[0];
@@ -2174,7 +2173,7 @@ Ent_803E9DE0 *find_longest_match_entry__22TQuestVmDownLoadServerFPviPv(u8 *arg0,
             }
             if (rem == 0) {
                 if (lbl_805D7888 >= 3) {
-                    return (Ent_803E9DE0 *)-1;
+                    return QUEST_DOWNLOAD_MATCH_TOKENS_UNAVAILABLE;
                 }
                 break;
             }
@@ -2297,7 +2296,7 @@ inline s32 IsNameChar_803E9A74(u8 c) {
 // covers the empty-slot single-byte case. The walk runs backwards by the
 // token's signed link count.
 QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 beg, s32 end, u8 a, u8 b) {
-    QuestDownloadMatchToken *t;
+    const QuestDownloadMatchToken *t;
     QuestDownloadSegment *result;
     QuestDownloadSegment *seg;
     QuestDownloadSegment *sub;

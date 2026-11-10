@@ -80,10 +80,10 @@ struct QuestDownloadQueueNode {
     QuestDownloadQueueNode *next;
 };
 
-#define QUEST_DOWNLOAD_MATCH_TOKENS_UNAVAILABLE ((QuestDownloadMatchToken *)0xFFFFFFFFU)
+#define QUEST_DOWNLOAD_MATCH_TOKENS_UNAVAILABLE ((const QuestDownloadMatchToken *)0xFFFFFFFFU)
 
 struct QuestDownloadSlot {
-    QuestDownloadMatchToken *tokens;
+    const QuestDownloadMatchToken *tokens;
     QuestDownloadItemNode *items;
     QuestDownloadEntryNode *entryHead;
     QuestDownloadTextNode *textHead;
