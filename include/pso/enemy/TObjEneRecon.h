@@ -62,6 +62,7 @@ struct TObjEneRecon : public TObjEneDD_ST {
     u16 alloc_child_id();
     u8 is_anim_6();
     void handle_death_state(s32 arg1);
+    void spawn_death_debris();
     void handle_action_state(s32 arg1);
     void update_state(s32 arg1);
     void handle_state(s32 arg1);

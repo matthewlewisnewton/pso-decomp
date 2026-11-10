@@ -522,6 +522,17 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # GC/2.0 interleaves the BML model-table load with the debris initializer's
     # copy tail. Map the original template to CodeWarrior's local aggregate.
     "pso/unk/text_80049FD8.cpp": {"mw_version": "GC/2.0", "symbol_mappings": {"volopt_pillar_chip_params": "@13"}},
+    # GC/2.0 schedules the model and position loads across the aggregate copy
+    # tails. Disabling pooling keeps the three original debris templates.
+    "pso/unk/text_8031EF14.cpp": {
+        "mw_version": "GC/2.0",
+        "cflags": _switch(cflags_pso, "-pooldata=off"),
+        "symbol_mappings": {
+            "recon_death_debris_model_3_params": "@67",
+            "recon_death_debris_model_4_params": "@68",
+            "recon_death_debris_model_5_params": "@69",
+        },
+    },
     # One unit, written last-defined first: the vtable and the late helpers
     # precede the early ones in .text. -fp_contract on: draw_name_labels'
     # half-width nudge and the drop placement fuse multiply-adds.
