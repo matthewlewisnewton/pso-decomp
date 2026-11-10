@@ -35,7 +35,10 @@ signed 16-bit angle wrapping if identical behavior is required.
 The follow-up integrates fork main `387621104107ed1ff8c650bf2f50ef00c6859ba4`
 and fixes the recovered renderer's actual call interfaces. It subsequently
 synchronizes with main `65b21c210ae980e9d2fe4aef1a3314ed84df1ddd`, preserving
-the keyboard and technique recoveries and their folded-unit configuration. The old zero-argument
+the keyboard and technique recoveries and their folded-unit configuration.
+The later synchronization with main `12cc95ca737a3a8757c17f45df06a9af4821d872`
+retains the PPP/session recovery and its exception rows. Fish source, declarations
+and compiler settings are unchanged by these synchronization merges. The old zero-argument
 `draw_ginja_object()` declaration depended on the preceding model getter leaving
 its return value in r3. The renderer now passes that model explicitly and uses
 the shared Ginja, motion draw, BML getter and matrix declarations. Its visibility
@@ -73,27 +76,29 @@ and 177 unit overrides.
 The initial recovery was validated against the base above. The shared-interface
 correction is separately compared against the freshly built PR-plus-current-main
 baseline `c3a77888e3c4e14bed709b60db8f6870f3ee1063`. The final integration is
-also checked against a separately built unchanged main `65b21c210`; both build
+also checked against independently built unchanged main `12cc95ca7`; both build
 and retention checks pass, and the subsequent synchronization loses no exact
-function or linked range. Main's unit folding removes four zero padding bytes
-from report coverage; the original DOL still matches. Full build
+function or linked range. The earlier `65b21c210` synchronization inherited four
+zero padding bytes removed from report coverage by main's unit folding; the
+latest `12cc95ca7` synchronization removes no further coverage. The original DOL
+still matches. Full build
 and `tools/check_pr.py` pass with original DOL SHA-1
-`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Against current main `65b21c210`,
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Against current main `12cc95ca7`,
 no exact function, code/data address, linked range or padding is lost. All nine functions (4,704 bytes) and all 1,404
 data bytes are exact. Retention adds 45 names and removes none.
 
-Gains against current main `65b21c210` (the interface correction itself has
+Gains against current main `12cc95ca7` (the interface correction itself has
 no metric loss or gain against its PR-plus-main baseline):
 
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
-| Exact functions | 27,392 | 27,393 | 1 |
-| Exact code bytes | 4,199,532 | 4,201,576 | 2,044 |
+| Exact functions | 27,394 | 27,395 | 1 |
+| Exact code bytes | 4,202,324 | 4,204,368 | 2,044 |
 | Exact data bytes | 1,470,367 | 1,470,439 | 72 |
-| Linked code bytes | 3,699,992 | 3,704,696 | 4,704 |
-| Linked data bytes | 1,185,151 | 1,186,555 | 1,404 |
-| Linked units | 3,585 | 3,586 | 1 |
+| Linked code bytes | 3,704,816 | 3,709,520 | 4,704 |
+| Linked data bytes | 1,185,687 | 1,187,091 | 1,404 |
+| Linked units | 3,586 | 3,587 | 1 |
 
-Actual ordered linker inputs: 3,586 source objects and 1,383 fallbacks;
+Actual ordered linker inputs: 3,587 source objects and 1,382 fallbacks;
 SHA-256 of newline-delimited paths including the final newline:
-`201a0d61c9a96a998b9bb188641a57580e8093e48a9918331aaf120c964287a8`.
+`cca4ac273c8510e4c60ead20d5d2b4226890bc9b7849deb8d947e817f09d467d`.
