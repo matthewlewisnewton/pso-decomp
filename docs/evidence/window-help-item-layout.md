@@ -127,3 +127,7 @@ introduced. Combined PR deltas versus fresh main remain +600 matched code,
 existing fourteen qualified four-byte alignment gaps. Source raw Base/Addition
 binding use remains 38 calls across 19 units. These prerequisites do not lift
 any native-lifetime, callback, constant or ownership hold.
+
+The final main synchronization is `12cc95ca737a3a8757c17f45df06a9af4821d872`.
+It changes only README.md from the validated 7e25e5b529 baseline; source,
+configuration, object inputs and all validation metrics are unchanged.
