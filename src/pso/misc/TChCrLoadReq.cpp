@@ -3,7 +3,7 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.h"
 #include "pso/misc/TChCrLoadReq.h"
 #include "pso/misc/TCharaMaking.h"
-#include "pso/misc/TLobby_8028D714.h"
+#include "pso/misc/CharacterLoadBuffer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
 #pragma push

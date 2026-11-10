@@ -1321,3 +1321,35 @@ and every saved receive-prefix, slot/reset/completion and allocator-wrapper
 object comparison remains raw byte-identical, including relocations. Actual
 branch inputs are 3,589 source and 1,357 original fallback objects. Host tests,
 exception inventory and whitespace pass. Keep draft and all existing holds.
+
+
+## Reset returns the shared native address word
+
+With the allocation globals, cursors and related buffer API already expressed
+as native `u32` words, the reset helper still returned `s32` and read the extended
+base through `*(s32 *)&chr_select_load_buffer`. Audit this separately from the
+held network dispatcher reset-status interface. At 0x8028D788 and 0x8028D7B4,
+the native reset computes an address in r3, stores that same word in the cursor
+array and returns it. The absent-base path returns zero; both source/native
+callers discard the result. Both allocation producers already explicitly convert
+allocated pointers to unsigned address words.
+
+Use one `u32 TLobby__sub_8028D738(s32 slot)` declaration in
+`CharacterLoadBuffer.h` and include it directly at both callers. Remove the old
+signed declaration from `TLobby_8028D714.h`. The defining function uses one
+unsigned address variable and direct unsigned word arithmetic, eliminating the
+signed global overlay. Preserve the signed slot/index variables, `slot < 4`
+branch, call to `TLobby__sub_8028D7D0`, and its current lack of enforcement.
+This recovers a shared native representation, not an original pointer typedef
+or class owner. No new slot bound, guard, pointer arithmetic, allocation behavior,
+export name or provider is introduced.
+
+The capacity-gated build reproduces the original DOL SHA-1. All three complete
+affected objects, including both callers, are raw byte-identical with unchanged
+symbols and relocations. All 3,663 recorded compiled-object hashes and ordered
+linker inputs are unchanged (3,589 source; 1,357 original fallback). Incremental
+checks have zero metric, function, coverage or retention drift; full comparison
+with sealed main `1a18b4bd7` retains the existing +88 data bytes, zero new
+functions/code, no losses, all 3,589 linked units exact and 17,840 retention
+entries without drift. Host tests, inventory and whitespace pass. Keep draft;
+DHCP extent, callback ABI, network reset-status and metadata holds remain.

@@ -2,7 +2,7 @@
 #include "pso/misc/TLobby_801E2F94.h"
 #include "pso/menu/TChCrLoadGmNjReq.h"
 #include "pso/TChCrLoadGmNjReq.h"
-#include "pso/misc/TLobby_8028D714.h"
+#include "pso/misc/CharacterLoadBuffer.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_8028D5D4.h"

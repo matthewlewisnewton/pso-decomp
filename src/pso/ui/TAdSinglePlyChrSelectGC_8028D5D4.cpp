@@ -55,23 +55,22 @@ u32 advance_character_load_buffer(s32 slot, s32 size) {
 
 void *get_character_load_buffer(s32 slot) { return (void *)advance_character_load_buffer(slot, 0); }
 
-s32 TLobby__sub_8028D738(s32 i) {
-    s32 temp_r3;
-    s32 temp_r3_2;
-    s32 temp_r4;
-    if ((u32) chr_select_load_buffer_base == 0U) {
-        return 0;
+u32 TLobby__sub_8028D738(s32 slot) {
+    u32 address;
+    s32 extended_slot;
+    if (chr_select_load_buffer_base == 0U) {
+        return 0U;
     }
-    TLobby__sub_8028D7D0(i);
-    if (i < 4) {
-        temp_r3_2 = chr_select_load_buffer_base + (i * 0xA000);
-        lbl_80518850[i] = temp_r3_2;
-        return temp_r3_2;
+    TLobby__sub_8028D7D0(slot);
+    if (slot < 4) {
+        address = chr_select_load_buffer_base + (u32)slot * 0xA000U;
+        lbl_80518850[slot] = address;
+        return address;
     }
-    temp_r4 = i - 4;
-    temp_r3 = (*(s32 *)&chr_select_load_buffer) + (temp_r4 * 0xA000);
-    chr_select_load_buffer_table[temp_r4] = temp_r3;
-    return temp_r3;
+    extended_slot = slot - 4;
+    address = chr_select_load_buffer + (u32)extended_slot * 0xA000U;
+    chr_select_load_buffer_table[extended_slot] = address;
+    return address;
 }
 
 void TLobby__sub_8028D7D0(s32 i) {
