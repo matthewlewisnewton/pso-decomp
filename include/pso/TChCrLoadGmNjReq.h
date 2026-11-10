@@ -10,9 +10,9 @@ struct BmlResource;
 class TChCrLoadGmNjReq : public TObject {
 public:
  u8 unk_1C[0x4];
- void * m_20; // 0x20
+ s32 completion_mask; // 0x20
  s32 load_slot; // 0x24
- void * m_28; // 0x28
+ u32 *completion_flags; // 0x28; borrowed from the request owner
  s32 load_state; // 0x2C
  char name_buffer[0x30]; // 0x30; fixed-size copy, not necessarily terminated
  void *model_ids; // 0x60
@@ -32,6 +32,8 @@ public:
 };
 
 typedef char TChCrLoadGmNjReq_size[sizeof(TChCrLoadGmNjReq) == 0x78 ? 1 : -1];
+typedef char TChCrLoadGmNjReq_completion_mask_offset[offsetof(TChCrLoadGmNjReq, completion_mask) == 0x20 ? 1 : -1];
+typedef char TChCrLoadGmNjReq_completion_flags_offset[offsetof(TChCrLoadGmNjReq, completion_flags) == 0x28 ? 1 : -1];
 typedef char TChCrLoadGmNjReq_load_slot_offset[offsetof(TChCrLoadGmNjReq, load_slot) == 0x24 ? 1 : -1];
 typedef char TChCrLoadGmNjReq_load_state_offset[offsetof(TChCrLoadGmNjReq, load_state) == 0x2C ? 1 : -1];
 typedef char TChCrLoadGmNjReq_name_buffer_offset[offsetof(TChCrLoadGmNjReq, name_buffer) == 0x30 ? 1 : -1];

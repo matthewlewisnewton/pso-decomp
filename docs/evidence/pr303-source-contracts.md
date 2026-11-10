@@ -1145,3 +1145,54 @@ All six slot/task objects still pass the complete ELF comparison with only
 the four intentional export names normalized. Host tests, inventory and
 whitespace pass. No additional technical probe, source workaround or exception
 is introduced. Keep draft and the previously documented holds.
+
+
+## Character-load reset, address words and completion contracts
+
+After the numeric-slot/owner repair, audit the remaining character-load
+interfaces against every source and native reference. The reset helper at
+0x8028D738 consumes only the numeric slot in r3, and its shared declaration and
+definition already agree on `s32(s32)`. Both callers ignore the result. In
+`TChCrLoadReq::reset_request`, r4 is a residual appearance-table offset, not a
+second argument read by the callee. Include the existing shared header and
+remove that false second parameter and local `void(s32, s32)` declaration.
+All three complete affected/caller objects remain byte-identical.
+
+The two buffer globals have only two source units of use. Their native storage
+is four bytes; allocation sizes are 0x28000 and 0x50000, and cursor addition,
+end comparisons and failure behavior use unsigned 32-bit address arithmetic.
+Declare both globals once as `u32` in `CharacterLoadBuffer.h`, remove conflicting
+local pointer/word declarations, and make allocation-to-word conversion explicit
+at both producers. Remove redundant word-to-pointer-to-word conversions at the
+existing `safe_free(u32)` callers. This is a shared native representation, not a
+claim to recover an original pointer typedef. Keep the cursor arithmetic and
+pre-check advance unchanged: replacing these operations with pointer arithmetic
+would require unsupported allocation-range assumptions on failed requests.
+`safe_free`'s inherited no-argument `xfree` source declaration is separate debt;
+this change does not claim to repair that implementation.
+
+The texture-request unit contains two calls to TObject destruction. The native
+callee consumes only r3, sets object flags at +4 and has no return-value
+contract. Use its existing shared `void(void *)` header and direct calls, removing
+the incompatible function cast, local `s32(void *, int, int)` declaration and
+fake extra arguments. The model-request method in that same unit belongs to
+`TChCrLoadGmNjReq`. All four producer records pass a signed completion mask at
++0xC and a borrowed `u32 *` flags word at +0x10; its constructor stores those at
++0x20 and +0x28. Give those two actual fields truthful types and assert offsets.
+After the existing release/store operations, the natural
+`*completion_flags &= ~completion_mask` followed by destruction expresses the
+native `lwz/andc/stw` sequence. Add no ownership or synchronization promise and
+preserve the release, flag-store and destruction order.
+
+The capacity-gated native build passes and reproduces original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. All seven complete objects affected by
+the adjacent probes, including both allocation/cursor units, the constructor,
+texture/update method and all slot-task callers, are raw byte-identical; code,
+data, symbols, metadata and relocations therefore agree without normalization.
+All 3,662 compiled source objects are unchanged by those probes. Combined
+incremental checks against the pre-reset report show no metric, coverage,
+function, provider or retention changes: all 3,587 linked units are exact and
+17,812 retention entries have zero drift. Host tests, exception inventory and
+whitespace pass. No new compiler pragma, wrapper, dummy argument or steering
+local is introduced. The DHCP extent gap, dispatcher callback contracts and
+allocator/free internals remain bounded separately. Keep draft.

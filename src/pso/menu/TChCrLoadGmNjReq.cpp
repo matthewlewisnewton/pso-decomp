@@ -47,9 +47,9 @@ void *TChCrLoadGmNjReq__ct(void *ch_cr_load_gm_nj_req, void *arg1, void *arg2) {
     *(s32 **)((s8 *)ch_cr_load_gm_nj_req + 0x18) = __vt__16TChCrLoadGmNjReq;
     ((TChCrLoadGmNjReq *)ch_cr_load_gm_nj_req)->m_name = lbl_805D3B58;
     self->load_slot = *(s32 *)((s8 *)arg2 + 0x8);
-    ((TChCrLoadGmNjReq *)ch_cr_load_gm_nj_req)->m_28 = *(void **)((s8 *)arg2 + 0x10);
+    self->completion_flags = *(u32 **)((s8 *)arg2 + 0x10);
     *(void **)((s8 *)ch_cr_load_gm_nj_req + 0x1C) = *(void **)((s8 *)arg2 + 0x4);
-    ((TChCrLoadGmNjReq *)ch_cr_load_gm_nj_req)->m_20 = *(void **)((s8 *)arg2 + 0xC);
+    self->completion_mask = *(s32 *)((s8 *)arg2 + 0xC);
     strncpy(self->name_buffer, *(void **)((s8 *)arg2 + 0x0), 48);
     ((TChCrLoadGmNjReq *)ch_cr_load_gm_nj_req)->model_ids = self->name_buffer;
     *(u32 *)((s8 *)ch_cr_load_gm_nj_req + 0x64) = 0;

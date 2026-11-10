@@ -14,8 +14,6 @@ s32 is_selection_done__23TAdSinglePlyChrSelectGCFPv(void *arg0) {
 extern "C" {
 u32 lbl_80518850[4];
 u32 chr_select_load_buffer_table[8];
-extern u32 chr_select_load_buffer_base;
-extern u32 chr_select_load_buffer;
 s32 TAdSinglePlyChrSelectGC::get_result() {
     if (is_selection_done__23TAdSinglePlyChrSelectGCFPv(this) != 0) {
         return this->m_28;
@@ -86,14 +84,14 @@ void TLobby__sub_8028D7D0(s32 i) {
 
 void TLobby::free_single_player_chr_select() {
     if (((u32) chr_select_load_buffer_base != 0U) && ((u32) chr_select_load_buffer != 0U)) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)((void*)((void*)chr_select_load_buffer)));
+        TAdSinglePlyChrSelectGC::safe_free(chr_select_load_buffer);
         chr_select_load_buffer = 0U;
     }
 }
 
 void TLobby::alloc_download_server() {
     if (((u32) chr_select_load_buffer_base != 0U) && ((u32) chr_select_load_buffer == 0U)) {
-        chr_select_load_buffer = (s32)TQuestVmDownLoadServer::alloc(0x50000);
+        chr_select_load_buffer = (u32)TQuestVmDownLoadServer::alloc(0x50000);
         if ((u32) chr_select_load_buffer == 0U) {
             return;
         }
@@ -102,7 +100,7 @@ void TLobby::alloc_download_server() {
 
 void TLobby::free_chr_select_singleton() {
     if ((u32) chr_select_load_buffer_base != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)((void*)((void*)chr_select_load_buffer_base)));
+        TAdSinglePlyChrSelectGC::safe_free(chr_select_load_buffer_base);
         chr_select_load_buffer_base = 0U;
     }
 }
