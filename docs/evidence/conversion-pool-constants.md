@@ -5,6 +5,15 @@ This records how the original executable shares the two integer-to-double
 biases, what this compiler can and cannot reproduce, and how the link tools
 treat the symbols decomp-toolkit exports for them.
 
+## Current status after technique recovery (2026-11-09)
+
+The TTecCtrl fold on main base `224eb99838471c243b20c305eddac75e7ff76c8f`
+retires the per-unit `name_pool_symbols.py` hook described below. The original
+cross-split readers now share one source object; both conversion biases are
+compiler-generated locals, and the object links without rewriting symbols.
+The remaining sections record the earlier split investigation, not a current
+requirement to retain that hook. See [technique recovery](upstream-technique-control.md).
+
 ## The two values
 
 PowerPC has no integer-to-double instruction. GC/2.6 builds a double whose
