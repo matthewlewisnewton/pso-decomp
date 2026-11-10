@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (dispatcher integrated with main `65b21c210`, 2026-11-10)
+## Summary (dispatcher integrated with main `12cc95ca7`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after dispatcher integration with keyboard/technique main `65b21c210` (2026-11-10). Assembly is counted as source lines;
+after dispatcher integration with PPP/session main `12cc95ca7` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -158,6 +158,13 @@ small float differences without FMA).
 | File | Scope | What remains | Port should |
 |---|---|---|---|
 | `src/pso/unk/text_80421620.cpp` | DHCP timer/request/discovery and previously exact code now linked | Provisional class wrappers on packet buffers, fixed reply/options offsets, 32-bit pointer/callback words, native byte-order and volatile-state assumptions; existing optimizer steering and release-frame padding. The new callback header makes callback declarations consistent. See [evidence](evidence/dhcp-focused-recovery.md). | Use shared typed packet/state definitions, explicit byte order and length checks, pointer-sized handles and appropriate synchronization; remove optimizer-only constraints. |
+
+### PPP/session control recovered from upstream #213/#215
+
+| File | Function / scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_803FAEA0.cpp` | `TLobby__sub_803FB358` | Redundant base initialization and otherwise-unused `new_var` assignment | Simplifying the native temporary pattern changes the base register (99.882355%); [evidence](evidence/upstream-ppp-session.md). | Use a typed protocol/status copy and remove matching-only temporaries. |
+| `src/pso/misc/TLobby_803FAEA0.cpp` | Connection routine and previously exact code now linked | Bounded session views, raw status offsets, native-endian words, 32-bit addresses, notification macros/goto and 36 existing pragma lines | Existing native representation/emission constraints; new status helper declarations and definitions are consistent. No new pragma or compiler override. | Consolidate layouts and signatures, use portable handles and explicit byte order, preserve callback timing and remove optimizer steering. |
 
 ### Keyboard control recovered from upstream #208
 

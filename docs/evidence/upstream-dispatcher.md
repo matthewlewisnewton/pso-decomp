@@ -1,9 +1,10 @@
 # Link the network dispatcher independently
 
-Base: validated fork main `65b21c210ae980e9d2fe4aef1a3314ed84df1ddd`, including
-DHCP #371, keyboard #372 and technique #373. Revalidated after main advanced
-through `387621104107ed1ff8c650bf2f50ef00c6859ba4` and
-`f892b2e3ac77834f6250df75066d82c420197e44` from the original
+Base: validated fork main `12cc95ca737a3a8757c17f45df06a9af4821d872`, including
+DHCP #371, keyboard #372, technique #373 and PPP/session #374. Previous validated
+bases include `387621104107ed1ff8c650bf2f50ef00c6859ba4`,
+`f892b2e3ac77834f6250df75066d82c420197e44` and
+`65b21c210ae980e9d2fe4aef1a3314ed84df1ddd`, following the original
 `224eb99838471c243b20c305eddac75e7ff76c8f` baseline.
 Reference: upstream's network split in [#213](https://github.com/zeroz41/pso-decomp/pull/213)
 and typed follow-up [#215](https://github.com/zeroz41/pso-decomp/pull/215),
@@ -90,7 +91,8 @@ The initial check found fork main `387621104107ed1ff8c650bf2f50ef00c6859ba4`
 already included in the original PR head `205d83303ed37d03efba67768825b867c4c77b2e`.
 Main then advanced through keyboard commit
 `f892b2e3ac77834f6250df75066d82c420197e44` to technique/progress commit
-`65b21c210ae980e9d2fe4aef1a3314ed84df1ddd`; both are merged into this branch. The dispatcher is already fully exact and
+`65b21c210ae980e9d2fe4aef1a3314ed84df1ddd`, followed by PPP/session main
+`12cc95ca737a3a8757c17f45df06a9af4821d872`; all are merged into this branch. The dispatcher is already fully exact and
 linked, so this follow-up improves source quality rather than claiming new
 recovered bytes.
 
@@ -138,21 +140,21 @@ no compiler exception counts or link inputs.
 
 ## Current-main integration
 
-Built unchanged keyboard main `f892b2e3ac77834f6250df75066d82c420197e44` in a
-second isolated worktree, then updated that baseline to technique/progress main
-`65b21c210ae980e9d2fe4aef1a3314ed84df1ddd`. Both full native builds, retention
-checks, original-DOL hashes and `tools/check_pr.py` pass. Merged those commits into
-the dispatcher branch; source changes do not overlap. Resolved the two keyboard
-exception-register conflicts by retaining both keyboard and dispatcher rows and
-regenerating the inventory. Technique rows also remain intact. The shared split,
-symbol, linkset, compiler and retention changes merge without losing entries.
+Built unchanged main `12cc95ca737a3a8757c17f45df06a9af4821d872` in the separate
+baseline worktree, retaining the earlier keyboard/technique baseline reports.
+The native build, retention check, original-DOL hash, exception inventory and
+`tools/check_pr.py` pass. Merged that main into the dispatcher branch. The only
+conflict was the exception-register summary; both the new PPP/session section
+and the existing keyboard, technique and dispatcher entries are retained, with
+the inventory regenerated. No dispatcher or DHCP source change was needed.
 
 Reconfigured with fresh split objects and built the combined tree. Full native
 build and no-loss checks pass against both validated main and the original PR head.
-The actual final linker edge contains 3,586 source objects and 1,384 fallbacks:
-dispatcher and DHCP are source inputs; the incomplete prefix and TCP remain
-fallback inputs. README stays on merged-main coverage. This integration does not
-change the four complete network source objects validated above.
+The actual final linker edge contains 3,587 source objects and 1,383 fallbacks:
+dispatcher, DHCP and PPP/session are source inputs; the incomplete prefix and TCP
+remain fallback inputs. README stays on merged-main coverage. All four complete
+network source objects validated above remain byte-identical after this merge,
+including the documented, unresolved DHCP/dispatcher ABI boundary.
 
 The comparison to the original PR head inherits main's four-byte alignment-padding
 coverage reduction at `.sdata2 0x805DC7EC`, documented with the technique conversion
@@ -172,12 +174,12 @@ an actual linker input.
 
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
-| Exact functions | 27,392 | 27,392 | 0 |
-| Exact code bytes | 4,199,532 | 4,199,532 | 0 |
+| Exact functions | 27,394 | 27,394 | 0 |
+| Exact code bytes | 4,202,324 | 4,202,324 | 0 |
 | Exact data bytes | 1,470,367 | 1,470,367 | 0 |
-| Linked code bytes | 3,699,992 | 3,702,000 | 2,008 |
-| Linked data bytes | 1,185,151 | 1,185,399 | 248 |
-| Linked units | 3,585 | 3,586 | 1 |
+| Linked code bytes | 3,704,816 | 3,706,824 | 2,008 |
+| Linked data bytes | 1,185,687 | 1,185,935 | 248 |
+| Linked units | 3,586 | 3,587 | 1 |
 
 Total functions, code and data are unchanged; the unit count increases from
 4,968 to 4,970. There are no lost exact or linked functions/data ranges and
