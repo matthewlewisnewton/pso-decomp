@@ -2146,6 +2146,7 @@ force_active:
   - __dt__11TObjDFDemoFFPvs
   - __dt__11TObjDFJisinFv
   - __dt__11TObjDFYutaiFv
+  - __dt__11TObjEneMojaFv
   - __dt__11TObjInfoColFv
   - __dt__11TPlayerSoulFv
   - __dt__11TSetManagerFv
@@ -2761,6 +2762,7 @@ force_active:
   - __vt__11TObjDFDemoF
   - __vt__11TObjDFJisin
   - __vt__11TObjDFYutai
+  - __vt__11TObjEneMoja
   - __vt__11TObjInfoCol
   - __vt__11TObjMesBase
   - __vt__11TObjNpcMoja
@@ -8831,6 +8833,13 @@ force_active:
   - modem_ring_response
   - modem_tone_dial_command
   - moja_action_table
+  - moja_enemy_collision_body
+  - moja_enemy_movement_parameters
+  - moja_enemy_standard_descriptor
+  - moja_enemy_standard_motion_names
+  - moja_enemy_ultimate_descriptor
+  - moja_enemy_ultimate_model_names
+  - moja_enemy_ultimate_motion_names
   - monument_ancient01_collision_body
   - monument_ancient02_collision_parts
   - morfos_archive_filename
@@ -14577,6 +14586,7 @@ force_active:
   - run_task__11TObjDFDemo4Fv
   - run_task__11TObjDFDemo5Fv
   - run_task__11TObjDFJisinFv
+  - run_task__11TObjEneMojaFv
   - run_task__11TObjInfoColFv
   - run_task__11TPlayerSoulFv
   - run_task__11TSetManagerFv
@@ -16537,10 +16547,7 @@ force_active:
   - update_animation_frame__13TObjEneMe1GeeFv
   - update_animation_nodes__15TObjEneMe1GiGueFv
   - update_appear__11TBoss4Type3Fv
-  - update_appearance_drop__11TObjEneMojaFv
-  - update_appearance_jump__11TObjEneMojaFv
   - update_appearance_state__12TBoss1DragonFUl
-  - update_approach_state__11TObjEneMojaFv
   - update_attachment__14TItemEffNeedleFv
   - update_attachment__18TItemEffNeedleBaseFv
   - update_attack__14TObjEnePanBARAFv
@@ -16551,7 +16558,6 @@ force_active:
   - update_attack_countdown_reset__11TBoss6Type1Fv
   - update_attack_distance_state__18TObjEneBalClawClawFv
   - update_attack_effect__16TObjEneDellBiterFv
-  - update_attack_jump__11TObjEneMojaFv
   - update_attack_parameters__16TObjEneNanoDragoFv
   - update_attack_pattern__19TObjEneEpsilonGuardFPv
   - update_attack_state__11TBoss6Type1Fv
@@ -16677,7 +16683,6 @@ force_active:
   - update_death_fall__14TObjEneIllGillFv
   - update_death_sequence__14TObjEneGibblesFv
   - update_death_sequence__15TBoss3VoloptP02Fv
-  - update_death_state__11TObjEneMojaFv
   - update_death_state__12TBoss1DragonFv
   - update_default__14TObjEneBm5WolfFv
   - update_demo__11TOFenceBaseFv
@@ -16806,7 +16811,6 @@ force_active:
   - update_go_up__11TBoss4Type3Fv
   - update_goal_checks__13TUnk_804B8E18FUs
   - update_ground_check__15TObjEneDelDepthFv
-  - update_ground_effect__10TObjPlayerFv
   - update_ground_effects__13TBoss5GryphonFv
   - update_ground_fall__13TUnk_8049442CFPlf
   - update_ground_lightning_attack__13TBoss5GryphonFl
@@ -16835,7 +16839,6 @@ force_active:
   - update_idle__14TObjEneIllGillFv
   - update_idle__15TObjEneMe1GiGueFv
   - update_idle_action__8TItemMagFv
-  - update_idle_state__11TObjEneMojaFv
   - update_idle_state__12TObjEneLappyFPv
   - update_idle_state__13TBoss5GryphonFUl
   - update_idle_state__16TObjEneNanoDragoFv
@@ -16852,7 +16855,6 @@ force_active:
   - update_intro_cutscene__12TBoss3VoloptFv
   - update_intro_demo__14TBoss4DarkFalzFv
   - update_intro_phase__19TPlayerBattleCtrl4PFv
-  - update_invincibility__10TObjPlayerFv
   - update_invincibility_action__8TItemMagFv
   - update_invuln_timer__12TObjEneLappyFv
   - update_inward_orbit_point__13TUnk_804F166CFv
@@ -17030,7 +17032,6 @@ force_active:
   - update_proximity_state__16TObjEneNanoDragoFv
   - update_pulse_state__10TBoss2MineFv
   - update_pulse_value__17TOSensorAncient01Fv
-  - update_punch_attack__11TObjEneMojaFPv
   - update_radar_markers__11TBoss4Type3Fv
   - update_ramp_timer__11TBoss6Type2Fv
   - update_random_shake__14TBoss6PlotFalzFPv
@@ -17211,7 +17212,6 @@ force_active:
   - update_target_y__11TWindowMenuFv
   - update_technique_by_phase__11TTecGiBartaFv
   - update_technique_by_state__9TTecBartaFv
-  - update_technique_state__11TObjEneMojaFPv
   - update_techniques__15TObjEneMe1GiGueFv
   - update_text_color_transition
   - update_tick__15TObjEneSlimeOneFv

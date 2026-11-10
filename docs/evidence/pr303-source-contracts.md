@@ -705,3 +705,25 @@ TCP retains original fallback. All 181 model consumers remain canonical.
 Host tests, inventory and whitespace pass. This checkpoint synchronizes main
 before any new bounded interface probe; it does not claim a predicate or
 volatility repair. Keep draft and preserve the metadata hold.
+
+
+## Moja main checkpoint before predicate work
+
+After the reviewed `61be011207223474b8e85fec0423e5ab55384a5c` checkpoint,
+main advanced to `3c9a6a9719f80438125926bd90a368fd57e0951d`. Publish the
+reviewed checkpoint as intermediate draft progress, then integrate Moja.
+Only exception documents conflict; preserve both sides and regenerate inventory
+(5,771 pragmas, 876 files, 184 overrides). No source repair or predicate probe
+is included yet. Existing scanner, lease-parser, model and interface holds
+remain unchanged.
+
+Both capacity-gated builds reproduce the original DOL hash. Main's comparison
+with preserved `4ae351128` and the branch's comparison with fresh main pass.
+The branch has 27,403 exact functions and 4,205,596 matched code bytes (both
+unchanged against main), 1,471,811 matched data bytes (+88), 3,710,492 complete
+code bytes (unchanged), and 1,187,379 complete data bytes (+88). There are no
+regressions or data/address/link/padding losses. All 3,582 linked units and
+17,739 retention entries pass; Moja 5/5 and the DHCP/packet runtime units are
+exact and source-linked. Host tests, inventory and whitespace pass. This is
+the separately validated baseline for a subsequent bounded predicate probe;
+no metadata hold is retried and the PR stays draft.
