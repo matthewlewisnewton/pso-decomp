@@ -15003,7 +15003,7 @@ force_active:
   - run_attack_stage3_phase__10TObjPlayerFis
   - run_confirm_message_loop__15TObjBoss2TunnelFv
   - run_connect_sequence__6TLobbyFv
-  - run_current_thread_callback__6TLobbyFv
+  - run_current_thread_callback__6TLobbyFPv
   - run_death_state_phase__10TObjPlayerFis
   - run_default_state__12TBoss8DragonFv
   - run_demo_task__16TObjEneNanoDragoFv

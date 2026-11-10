@@ -759,7 +759,7 @@ struct TLobby : public TObject {
     static void resume_thread(s32 thread);
     void cancel_thread_if_running();
     static void deactivate_entry_by_key(u32 key);
-    static s32 run_current_thread_callback();
+    static void *run_current_thread_callback(void *);
     s16 check_connection_status();
     static s32 clear_flag_bit4(s32 arg0, u8 *arg1);
     void init_net_state_entry();

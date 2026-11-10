@@ -1765,3 +1765,49 @@ are 3,596 source and 1,348 original fallbacks; main has 3,597 and 1,350.
 All twelve actual-source DHCP characterization cases pass unchanged. Seal the
 unchanged-main packet for independently verified reuse, keep draft and retain
 all source/ABI/metadata holds.
+
+
+## SDK thread-entry adapter with a concrete callback contract
+
+At published checkpoint `e2bd1b66a`, version-specific AVE searches add no
+aligned raw registration provider or authentic internal reset declaration.
+Choose a separately evidenced SDK boundary rather than repeat either rejected
+reset-status probe. `TLobby__sub_803F9B94` passes
+`TLobby::run_current_thread_callback` to `OSCreateThread` through an incompatible
+function-pointer cast. The supplied SDK header requires `void *(*)(void *)`;
+the implementation places its parameter in saved r3 and installs
+`OSExitThread` as the return target. Native creation passes NULL. The entry
+immediately overwrites incoming r3 with `OSGetCurrentThread` and explicitly
+returns zero at both exits. These are concrete SDK and native observations,
+not an inferred AVE callback convention.
+
+Change just this SDK entry to `void *TLobby::run_current_thread_callback(void *)`,
+with an unnamed unused parameter and NULL results. Remove the creator's
+function-pointer cast. Preserve record lookup, the internal `e->fn(e)` call,
+thread-creator status and every other operation. Inventory finds only the
+shared declaration, creator reference and definition, plus one symbol-map and
+one retention entry. Update the signature-driven symbol spelling from
+`run_current_thread_callback__6TLobbyFv` to
+`run_current_thread_callback__6TLobbyFPv`, retaining original address
+`0x803F9C78` and size `0x7C`. This corrects the SDK entry contract, not the
+separate internal callback/provider typing, raw-IP contract or reset status.
+
+The capacity-gated native build reproduces the original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Only `NetworkRuntime.o` changes
+among 3,665 compiled source objects; all other 3,664 objects remain raw
+byte-identical. That one object is not raw-equal: independent byte accounting
+finds exactly the audited symbol-name change, 58 mechanically shifted symbol
+string offsets, the associated string-section size/placement and one fewer
+zero padding byte. ELF header, every other symbol field/index, all other
+section payloads, code/data and both raw relocation sections are identical.
+No unrelated debug/metadata difference is normalized away. The complete
+comparison normalizes only this name and its mechanical string offsets.
+
+Ordered linker inputs are unchanged and still select the compiled runtime
+provider: 3,596 source inputs and 1,348 original fallbacks. Full fresh-main
+comparison passes with all 3,596 linked units exact, 18,407 retention entries
+without drift, existing +88 data bytes, no new code/functions and no losses.
+All twelve DHCP characterization cases pass unchanged; inventory and
+whitespace pass. No compiler option, pragma, padding, artificial argument or
+counter lifetime is changed. The unused parameter is the SDK's actual entry
+argument. Keep draft and all other ABI/metadata holds.
