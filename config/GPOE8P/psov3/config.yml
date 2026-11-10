@@ -2416,6 +2416,7 @@ force_active:
   - __dt__15TWindowHelpItemFv
   - __dt__15TWindowQuantityFv
   - __dt__15TWindowShortCutFv
+  - __dt__15TWindowSnapShotFv
   - __dt__15TWindowUserSortFv
   - __dt__16TAdChrSelASlotGCFv
   - __dt__16TAdChrSelBSlotGCFv
@@ -3062,6 +3063,7 @@ force_active:
   - __vt__15TWindowHelpItem
   - __vt__15TWindowQuantity
   - __vt__15TWindowShortCut
+  - __vt__15TWindowSnapShot
   - __vt__15TWindowUserSort
   - __vt__16TAdChrSelASlotGC
   - __vt__16TAdGuideButtonGC
@@ -14154,6 +14156,7 @@ force_active:
   - render__15TWindowHelpItemFv
   - render__15TWindowQuantityFv
   - render__15TWindowShortCutFv
+  - render__15TWindowSnapShotFv
   - render__15TWindowUserSortFv
   - render__16TAdChrSelASlotGCFv
   - render__16TAdGuideButtonGCFv
@@ -14846,6 +14849,7 @@ force_active:
   - run_task__15TWindowHelpItemFv
   - run_task__15TWindowQuantityFv
   - run_task__15TWindowShortCutFv
+  - run_task__15TWindowSnapShotFv
   - run_task__15TWindowUserSortFv
   - run_task__16TAdChrSelASlotGCFv
   - run_task__16TAdGuideButtonGCFv

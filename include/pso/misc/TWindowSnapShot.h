@@ -5,6 +5,7 @@
 #include "pso/misc/TWindowBase.h"
 
 struct TWindowSnapShot : public TWindowBase {
+    TWindowSnapShot(void *position);
     virtual ~TWindowSnapShot();
     virtual void render();
     u8 m_60;
@@ -14,13 +15,5 @@ struct TWindowSnapShot : public TWindowBase {
 };
 
 typedef char TWindowSnapShot_size[sizeof(TWindowSnapShot) == 0x64 ? 1 : -1];
-
-extern "C" {
-u8 *TWindowSnapShot__ct(TWindowSnapShot *arg0, s32 arg1);
-void *__dt__15TWindowSnapShotFv(void *arg0, s16 arg1);
-}
-extern "C" {
-void render__15TWindowSnapShotFv(u8 *arg0);
-}
 
 #endif

@@ -9943,6 +9943,7 @@ pso/misc/TWindowSnapShot_802A7D68.cpp:
 
 pso/misc/TWindowSnapShot.cpp:
 	.text       start:0x802A7DDC end:0x802A8140
+	.data       start:0x804DDEC8 end:0x804DDEE0
 
 pso/effect/TEffIndirectCtrl.cpp:
 	.text       start:0x802A8140 end:0x802A9588

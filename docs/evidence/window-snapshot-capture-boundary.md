@@ -64,3 +64,11 @@ Raw Base/Addition calls remain 24 across 13 units. All previous holds, including
 WS_Word's 916-byte rendering body and native constructor difference, remain.
 PR stays draft. Native window recovery requires its own complete code/data/link
 proof; this boundary alone does not establish it.
+
+## Later window recovery
+
+The [native window follow-up](window-snapshot-native-lifetime.md) supplies that
+separate proof and supersedes only the window lifetime/table hold above. It
+refines the original 752-byte window data provider into an unchanged original
+728-byte prefix and a compiler-owned 24-byte table. Capture storage, its original
+16-byte table, raw allocation/dispatch lifetime and word-address holds remain.
