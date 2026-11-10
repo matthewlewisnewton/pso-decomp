@@ -272,3 +272,58 @@ The next useful lead needs a genuine GC/2.6 source-generated boundary that
 reuses the existing condition, survives both scheduling passes, and then
 loses only a legitimate branch. Another local-variable permutation, extra
 comparison, dead case or scheduling override is not evidence for that lead.
+
+## Ownership and ABI provenance (2026-11-10)
+
+The helper labels are project history, not recovered original C++ symbols.
+Commit [`72055d994148a1933beb4b99c1036f1665b4bcf3`](https://github.com/matthewlewisnewton/pso-decomp/commit/72055d994148a1933beb4b99c1036f1665b4bcf3)
+renamed the placeholder `TObjPlayer__sub_802A3DAC` to
+`is_hit_receivable_target__10TObjPlayerFiUi`. Later mechanical conversion
+commit [`f93243677ad7ce6987336efa1528d4df575b3182`](https://github.com/matthewlewisnewton/pso-decomp/commit/f93243677ad7ce6987336efa1528d4df575b3182)
+introduced the static `TObjPlayer` declaration. The collector at `0x802A41CC`
+became a `TObjPlayer` member in mechanical conversion commit
+[`236691930f476231ba118d9f84e8fff0250aa923`](https://github.com/matthewlewisnewton/pso-decomp/commit/236691930f476231ba118d9f84e8fff0250aa923).
+These names and conversions cannot independently establish original class
+ownership, parameter spelling or static/member ABI. In particular, the
+project-assigned `FlUl` spelling is not a reason to reject an alternative
+ownership model without inspecting its actual call contract.
+
+A scan of direct relative `bl` instructions in the original PsoV3 DOL's
+text sections produced the following call sites. Addresses are original;
+function descriptions use current project labels. This audit used the
+source/configuration of `fc32e17695475276fbb27f83593590ac9da8e433`.
+
+| Target | Direct call sites |
+| --- | --- |
+| Clear contacts, `0x802A3D68` | `0x802A3E10`, `0x802A4004`, `0x802A41F4` (the three collectors) |
+| Predicate, `0x802A3DAC` | `0x802A44F8` (the dispatcher) |
+| Collector, `0x802A3DE8` | `0x802A44C8` (the dispatcher) |
+| Collector, `0x802A3FDC` | `0x802A44B4` (the dispatcher) |
+| Collector, `0x802A41CC` | `0x802A44A4` (the dispatcher) |
+| Dispatcher, `0x802A445C` | `0x802A4CA0` (needle task), `0x802CE410` (GiGue missile task) |
+
+Both dispatcher callers are modeled as `TNeedleShoot`-derived projectiles
+and pass the projectile plus the existing second argument. The collectors
+use the first input's collision-body pointer at `0x68`, position at `0x6C`,
+and data at `0xA0`, and call the projectile motion-data helper. The adjacent
+`TNeedleShoot` construction/destruction code allocates and releases a
+collision body at `0x68` and initializes position at `0x6C`. This supports
+a projectile-oriented operational contract; casting the projectile to
+`TObjPlayer` in the current collector call does not establish player
+ownership. The predicate ignores its first incoming register and checks
+the actor supplied in the second, so those reads alone cannot distinguish
+a member with one explicit argument from a static/free function with an
+unused first argument.
+
+This is a bounded direct-call audit, not a scan of all possible indirect
+references. No original map was located in the extracted-originals and
+Downloads trees inspected for this pass. Current generated split objects,
+linker scripts and project labels are not independent original translation-
+unit provenance. Adjacency across `0x802A3D68` through `0x802A4540` therefore
+does not justify a new unit split or a compiler override.
+
+The operational receiver evidence is useful for a future ownership repair,
+but the original member/static choice, class interface and unit boundary
+remain provisional. This audit changes no source declaration or argument,
+does not repeat the one-argument-member scheduling probe, and does not
+claim a matching dispatcher.
