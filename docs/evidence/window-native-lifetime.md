@@ -394,3 +394,11 @@ The 64/16-byte bodies and all three complete selected source objects remain
 exact. This resolves that wrapper's receiver/forwarding qualification while
 preserving the Soft construction path and all remaining lifetime, constant,
 record and ownership holds. No match metric or source activation gain is claimed.
+
+
+The [balloon name-plate reconstruction](window-balloon-nameplate-reconstruction.md)
+adds the previously absent renderer from GC evidence, with the actual balloon and
+context inputs. The new800-byte body remains non-exact; all31 prior functions,
+resolved targets and data are preserved, and original executable selection remains.
+No compiler control, table/provider claim, metric gain or history split is added.
+Exactness, constants, renderer ABI and prior lifetime/ownership holds stay explicit.

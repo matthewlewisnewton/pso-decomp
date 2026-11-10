@@ -107,3 +107,12 @@ still historical; this inventory does not assign a new native owner or interface
 Recovering that renderer is a concrete next investigation, with GC byte/relocation,
 constant ownership and complete-link proof still required. The original full
 provider, destruction/table-order and initializer ABI holds remain unchanged.
+
+
+The [name-plate reconstruction follow-up](window-balloon-nameplate-reconstruction.md)
+adds that missing GC-derived source body and its actual balloon/context contract.
+It compiles to800 bytes but remains non-exact, with139 differing instruction
+words. All31 prior functions and their targets/data remain unchanged; the full
+original executable provider stays selected. Constant, initializer ABI and
+destruction/table-order holds remain active. The earlier absent-function inventory
+therefore describes the starting checkpoint, not the new compiled source extent.
