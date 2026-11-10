@@ -1,6 +1,7 @@
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/UdpRuntime.h"
 #include "pso/network/DhcpClient.h"
+#include "pso/network/NetworkReceiveCallback.h"
 #include "pso/network/SocketEvents.h"
 #include "types.h"
 #include "pso/misc/TLobby.h"
@@ -492,7 +493,7 @@ s16 TUdpSocket__sub_80421BAC(s32 h, u32 *src, u32 *dst, u16 port, u32 *opt, s8 n
     return r;
 }
 
-s16 TUdpSocket__sub_80421DEC(void *src, s32 sport, void *dst, s32 dport, s32 arg4, s32 (*cb)(s16, void *)) {
+s16 TUdpSocket__sub_80421DEC(void *src, s32 sport, void *dst, s32 dport, s32 arg4, NetworkReceiveCallback cb) {
     u8 any[0x14];
     s16 h;
     s16 r;
@@ -1717,7 +1718,7 @@ s32 TLobby__sub_8042422C(void) {
         any = 0;
         bind_addr[0] = 4;
         bind_addr[1] = any;
-        sock = TUdpSocket__sub_80421DEC(0, 0x44, bind_addr, 0x43, 0, TLobby::dhcp_handle_reply);
+        sock = TUdpSocket__sub_80421DEC(0, 0x44, bind_addr, 0x43, 0, dhcp_handle_reply__6TLobbyFsPv);
         dhcp_socket = sock;
         if (sock < 0) {
             TLobby__sub_80423064(lbl_805D7B08, 4);

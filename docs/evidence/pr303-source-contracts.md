@@ -257,3 +257,59 @@ and data increase by 12,220 and 4,888 bytes. All 3,586 linked units are exact;
 retention has 17,672 entries with no missing/stale entries. PPPoE remains
 20/20 and message transport 26/26, exact and linked. Host vector and item-
 factory tests pass. The failed metadata write is not retried by this refresh.
+
+
+## Focused DHCP main refresh
+
+This continuation merges main `387621104107ed1ff8c650bf2f50ef00c6859ba4`
+into prior PR head `4ba2964bdcec61fdb3f5c674b2b0fcc14db7dd75`. No competing
+active #303 owner was found; the remote head was unchanged. Main commit
+`7d20a0e818ef6c8aae1c7c03dfa44e48933bcae1` extracts the three DHCP bodies
+from this draft. They are now main's matches, so this continuation claims
+**zero new exact functions and zero new matched code bytes** against main.
+The shared DHCP layout, canonical BML interfaces, source fixes and unit folds
+remain relevant; the draft is not closed or declared review-ready.
+
+The overlapping DHCP conflicts retain this branch's single `DhcpClientBuffers`
+layout, `DhcpMessage` methods, names and volatile state contracts. Main's new
+`NetworkReceiveCallback` header is retained and used by the UDP opening helper,
+its declaration, the callback definition and both callers. The callback takes
+`u8 *record` and decodes the existing protocol record inside its body. The
+DHCP discovery caller now names that shared C-linkage callback directly; its
+unused, incompatible `TLobby::dhcp_handle_reply(s16, void *)` alias declaration
+is removed. No function-pointer cast, fabricated receiver or duplicate local
+callback prototype is introduced. Main's `TTcpSocket` callback changes remain.
+The existing exact thread-state function order from this branch is preserved.
+
+Retention metadata keeps the branch's renamed message builders rather than
+main's superseded TLobby spellings. Fresh exact-split inputs confirm 17,672
+entries with none missing or stale. The exception inventory is regenerated;
+only the existing address-class-mask hit's line number changes. No new pragma,
+assembly, compiler override or matching exception is added by this refresh.
+
+Both isolated builds reproduce original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Main's linkage/retention checks
+pass, and the continuation's complete `check_pr.py` passes against freshly
+built main:
+
+| Measure | Main `387621104` | Continuation | Delta |
+|---|---:|---:|---:|
+| Exact functions | 27,389 | 27,389 | 0 |
+| Matched code bytes | 4,191,812 | 4,191,812 | 0 |
+| Matched data bytes | 1,470,159 | 1,470,247 | +88 |
+| Complete code bytes | 3,685,784 | 3,685,784 | 0 |
+| Complete data bytes | 1,184,043 | 1,184,131 | +88 |
+| Linked units | 3,587 | 3,586 | -1 |
+
+There are no regressions or code/data/function/address-coverage losses. The
+unit-count reduction reflects the two existing Falz/character-select folds
+and the float source unit, not dropped linked ranges. All 3,586 linked units
+are exact. DHCP stays 42/42, packet runtime 24/24 and TCP socket 28/28, with
+all code/data exact and actual source linker inputs. The affected Falz,
+character-select and model-demo units likewise link from source. All 180
+model-accessor consumers still include the canonical header. Host vector and
+item-factory callback tests, whitespace and port-inventory checks pass.
+
+The earlier failed title/body update is not retried. Keep draft pending
+metadata reconciliation and current-head readiness review. Inherited integer
+storage and opaque protocol/parser boundaries remain documented limitations.
