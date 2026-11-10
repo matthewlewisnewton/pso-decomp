@@ -61,6 +61,10 @@ Synchronization with main `9dcde8562fbd176110243274f18215c3cbbbc19a`
 retains the network-config lifecycle and photon-blast recovery, including their
 shared interfaces, ntInf profile boundary and documented network compiler
 exception. Fish source, header and compiler settings remain unchanged.
+The following refresh integrates main
+`78a6f8fae432ad941677d392d332273e1079603b`, preserving the Recon debris
+recovery and its documented compiler, pooling and symbol-mapping settings.
+Fish source, header and settings are unchanged by this integration as well.
 The old zero-argument
 `draw_ginja_object()` declaration depended on the preceding model getter leaving
 its return value in r3. The renderer now passes that model explicitly and uses
@@ -115,7 +119,7 @@ ownership has been recovered. Matching completeness alone does not resolve them.
 No assembly, intrinsic, hardware access or new emission pragma is introduced by
 the follow-up. Existing `-pool off`, FMA and inline settings remain as documented
 above; the final inventory after main synchronization is 5,776 pragmas in 877 files
-and 186 unit overrides, including current main's existing compiler and mapping
+and 187 unit overrides, including current main's existing compiler and mapping
 settings. The refresh introduces no additional fish compiler setting.
 
 ### Why native lifetime remains held
@@ -147,7 +151,7 @@ is included in this follow-up.
 The initial recovery was validated against the base above. The shared-interface
 correction is separately compared against the freshly built PR-plus-current-main
 baseline `c3a77888e3c4e14bed709b60db8f6870f3ee1063`. The final integration is
-also checked against independently built unchanged main `9dcde8562`; both build
+also checked against independently built unchanged main `78a6f8fae`; both build
 and retention checks pass, and the subsequent synchronization loses no exact
 function or linked range. The earlier `65b21c210` synchronization inherited four
 zero padding bytes removed from report coverage by main's unit folding. Canadin
@@ -158,33 +162,33 @@ folding: four bytes each in `.sdata` at `0x805D2794` and `0x805D279C`.
 That comparison against previous published head `953770c4c8` loses no exact
 function, live code/data address or linked range. The `545f2e729` refresh
 inherited a one-unit linked-count reduction from Gryphon consolidation without
-address coverage loss. The latest refresh against `9dcde8562` loses no matching,
+address coverage loss. The latest refresh against `78a6f8fae` loses no matching,
 code/data/link coverage or padding compared with either unchanged main or
-previous published head `14fd4404a3`. Its compiled fish
+previous published head `525a724974`. Its compiled fish
 object is byte-identical to the previous compiled object. The original DOL
 still matches. Full build
 and `tools/check_pr.py` pass with original DOL SHA-1
-`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Against current main `9dcde8562`,
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Against current main `78a6f8fae`,
 no exact function, code/data address, linked range or padding is lost. All nine functions (4,704 bytes) and all 1,404
 data bytes are exact. Independent comparison verifies the four allocated section
 payloads, sizes and alignment and all 302 normalized relocations. This is not
 whole-ELF identity: the compiled `.sdata2` has inherited writable flags where the
-split original is read-only. All 3,585 linked units are exact. Retention lists
+split original is read-only. All 3,586 linked units are exact. Retention lists
 17,831 names with zero drift; the PR adds 45 names to current main and removes
 none. All 268 tooling tests pass.
 
-Gains against current main `9dcde8562` (the interface correction itself has
+Gains against current main `78a6f8fae` (the interface correction itself has
 no metric loss or gain against its PR-plus-main baseline):
 
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
-| Exact functions | 27,408 | 27,409 | 1 |
-| Exact code bytes | 4,207,712 | 4,209,756 | 2,044 |
-| Exact data bytes | 1,472,039 | 1,472,111 | 72 |
-| Linked code bytes | 3,718,804 | 3,723,508 | 4,704 |
-| Linked data bytes | 1,187,631 | 1,189,035 | 1,404 |
-| Linked units | 3,584 | 3,585 | 1 |
+| Exact functions | 27,409 | 27,410 | 1 |
+| Exact code bytes | 4,208,172 | 4,210,216 | 2,044 |
+| Exact data bytes | 1,472,267 | 1,472,339 | 72 |
+| Linked code bytes | 3,719,924 | 3,724,628 | 4,704 |
+| Linked data bytes | 1,187,859 | 1,189,263 | 1,404 |
+| Linked units | 3,585 | 3,586 | 1 |
 
-Actual ordered linker inputs: 3,585 source objects and 1,369 fallbacks;
+Actual ordered linker inputs: 3,586 source objects and 1,369 fallbacks;
 SHA-256 of newline-delimited paths including the final newline:
-`6cba6e97ae4c8f73f8caaffab8d453760602e41761c710f62dd8c45649120e3d`.
+`08cc4ca22282a897fcd6a6abf7145cce07a927bab9ea9d86f324d6cf4127d219`.
