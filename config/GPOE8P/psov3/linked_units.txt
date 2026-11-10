@@ -2126,6 +2126,7 @@ pso/object/TObjEnvSoundGlobal.cpp
 pso/object/TObjEvtCollision.cpp
 pso/object/TObjFish_8001ED90.cpp
 pso/object/TObjFish_800E2FFC.cpp
+pso/object/TObjFish_8033CCC8.cpp
 pso/object/TObjFogCollision.cpp
 pso/object/TObjFogCollisionPoison.cpp
 pso/object/TObjFogCollisionSwitch.cpp

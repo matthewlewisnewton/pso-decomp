@@ -2078,6 +2078,7 @@ force_active:
   - __ct__22TObjEneMe3SinowZoaRealFP7TObjectPv
   - __ct__22TObjEneSlimeTailAttackFP7TObjectPC3VeclP15TObjEneSlimeOne
   - __ct__22TQuestVmDownLoadServerFP7TObject
+  - __ct__23TBoss6Demo11_TYPE1_DEADFP14TBoss6PlotFalzPC3Vec
   - __ct__23TObjEneMe1CanadinLeaderFP7TObjectPv
   - __ct__23TObjEneMe3ShinowaMirageFP7TObjectP17TObjEneMe3Shinowall
   - __ct__23TObjOnlineEndingHexLineFv
@@ -2636,6 +2637,7 @@ force_active:
   - __dt__22TQuestVmDownLoadServerFv
   - __dt__22TWindowSubTradeMessageFv
   - __dt__23TAdDialingMessageWindowFv
+  - __dt__23TBoss6Demo11_TYPE1_DEADFv
   - __dt__23TBoss6Demo21_TYPE2_DEADFv
   - __dt__23TObjEneMe1CanadinLeaderFv
   - __dt__23TObjEneMe3ShinowaMirageFv
@@ -3246,6 +3248,7 @@ force_active:
   - __vt__22TQuestVmDownLoadServer
   - __vt__22TWindowSubTradeMessage
   - __vt__23TAdDialingMessageWindow
+  - __vt__23TBoss6Demo11_TYPE1_DEAD
   - __vt__23TBoss6Demo21_TYPE2_DEAD
   - __vt__23TObjEneMe1CanadinLeader
   - __vt__23TObjEneMe3ShinowaMirage
@@ -5874,6 +5877,7 @@ force_active:
   - fire_attack_b__14TObjEneEpsilonFllf
   - fire_attack_c__14TObjEneEpsilonFllf
   - fire_zonde_at_players__15TBoss3VoloptP01Fv
+  - fish_spawn_entry_table
   - fixed_npc_camera_destination_table
   - flanking_state__14TObjEneBm5WolfFl
   - floor_bin_file_size
@@ -7520,6 +7524,10 @@ force_active:
   - lbl_80477DEC
   - lbl_80477E30
   - lbl_80477E3C
+  - lbl_80477E48
+  - lbl_80477E60
+  - lbl_80477EC0
+  - lbl_80477ECC
   - lbl_80478088
   - lbl_804780A0
   - lbl_804780AC
@@ -8091,6 +8099,7 @@ force_active:
   - lbl_805D4198
   - lbl_805D41B0
   - lbl_805D4220
+  - lbl_805D42A0
   - lbl_805D42D8
   - lbl_805D4350
   - lbl_805D4368
@@ -14312,6 +14321,7 @@ force_active:
   - render__22TObjEneSlimeTailAttackFv
   - render__22TWindowSubTradeMessageFv
   - render__23TAdDialingMessageWindowFv
+  - render__23TBoss6Demo11_TYPE1_DEADFv
   - render__23TBoss6Demo21_TYPE2_DEADFv
   - render__23TObjEneMe3ShinowaMirageFv
   - render__23TObjOnlineEndingHexLineFv
@@ -14372,6 +14382,7 @@ force_active:
   - render_equipped__14TItemProShieldFv
   - render_equipped__8TItemMagFv
   - render_equipped_shadow__8TItemMagFv
+  - render_fade_model__23TBoss6Demo11_TYPE1_DEADFv
   - render_flags
   - render_following_owner__5TItemFv
   - render_geometry__9TMainTaskFv
@@ -15003,6 +15014,7 @@ force_active:
   - run_task__22TObjFogCollisionSwitchFv
   - run_task__22TQuestVmDownLoadServerFv
   - run_task__22TWindowSubTradeMessageFv
+  - run_task__23TBoss6Demo11_TYPE1_DEADFv
   - run_task__23TBoss6Demo21_TYPE2_DEADFv
   - run_task__23TObjEneMe1CanadinLeaderFv
   - run_task__23TObjEneMe3ShinowaMirageFv

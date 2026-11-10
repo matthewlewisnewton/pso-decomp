@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (merged main `78a6f8fae`, 2026-11-10)
+## Summary (merged main `30d8a1266`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `78a6f8fae` (2026-11-10). Assembly is counted as source lines;
+after merging main `30d8a1266` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -27,7 +27,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,773 | 876 |
-| Per-unit compiler overrides in `configure.py` | 187 | 187 |
+| Per-unit compiler overrides in `configure.py` | 188 | 188 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -109,6 +109,13 @@ small float differences without FMA).
 | `src/pso/object/TObjDFDemo4.cpp` | Translation unit | `readonly_strings on` and `defer_codegen on` | Places the class name in `.rodata` and emits the seven functions in reverse definition order. Deferred generation also places the camera initializers before the signed conversion constant. | Use ordinary string and function definitions. |
 | `src/pso/object/TObjDFDemo4.cpp` | Constructor at `0x8004F6AC` | Weak linkage for the strip-node table | With strong linkage CodeWarrior pools the strip table and both camera initializers under a shared `.rodata` base. Weak linkage preserves the original direct relocations and keeps the shared `.data` base for the motion tables and vtable. | Use the same const table with ordinary linkage. |
 | `configure.py` | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | The two eight-byte afterimage index tables use normal data addressing. The class-name pointer still uses small data. | Use ordinary arrays and a string pointer. |
+
+### Dark Falz Type 1 death cutscene
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `configure.py` | `pso/object/TObjFish_8033CCC8.cpp` | `-inline off,deferred` and reverse definition order | The constructor shares a `.data` base at `0x804EF9D8` for the motion indices, origin at +8 and compiler-generated vtable at +0x14. Immediate emission addresses the vtable separately. Deferred emission also places the signed conversion constant after the read-only tables. | Use ordinary C++ definitions and compiler-generated virtual dispatch. |
+| `src/pso/object/TObjFish_8033CCC8.cpp` | Constructor at `0x8033D1AC` and its data | CodeWarrior section placement and weak linkage for the three read-only capture and camera tables | The motion indices are eight bytes and need normal `.data` addressing to share the constructor's base. Weak linkage gives the three capture and camera tables direct relocations, matching the original's independent address loads. | Use ordinary definitions and linkage for the same tables. |
 
 ### `request_network_info_load` frame and instruction ordering
 

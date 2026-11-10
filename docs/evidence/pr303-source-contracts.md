@@ -990,3 +990,39 @@ spelling and the slot-validation helper do not prove an enforced range. Do not
 substitute a guessed class or add bounds. This broader caller/task audit remains
 separate from the completed three-slot repair. The metadata hold is unchanged;
 keep draft pending exact-head review and hosted checks.
+
+
+## Current-main Falz integration after the DHCP contract checkpoint
+
+Publish the independently reviewed DHCP contract checkpoint `adc1a464e`,
+then integrate main `30d8a1266113d69d2d36bee04bf054f85866ce45`, which advanced
+during that work with the Falz Type 1 death-cutscene recovery. Only exception
+summary documents conflict; retain main's new evidence and regenerate totals
+(5,773 pragmas, 876 files, 188 overrides). DHCP repair source files are unchanged.
+
+The first combined build exposes the newly recovered Falz model record's
+integer `object` field: it cannot accept this branch's canonical `NJS_OBJECT *`
+return. All uses are assignment from that accessor and the two model-drawing
+calls. Make the field `NJS_OBJECT *` and pass it directly to drawing. Keep the
+existing texture word and archive-accessor boundaries; do not restore a false
+model getter or hide the new field mismatch with an integer conversion. The
+existing native class-size assertion remains 0x90. All 182 source model-getter
+consumers include the canonical header.
+
+A fresh capacity-gated native main build is sealed locally with its report,
+check/link receipts, original DOL verification, exact configuration/graph text
+snapshots and tool/compiler hashes for reuse. The corrected candidate's gated
+build also reproduces original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Its complete Falz object is
+byte-identical to fresh main, including metadata and relocations; the unit
+remains 6/6 exact code/data and source-linked. All three DHCP repair objects
+remain byte-identical to the saved pre-repair objects as well. Full fresh-main
+comparison passes: zero new functions/code, existing +88 data bytes and no
+losses, 3,585 exact linked units and 17,811 retention entries without drift.
+Main has 3,586 linked units because of the existing branch fold. Host tests,
+inventory and whitespace pass. No new steering or original-provider change.
+
+The output/status contract repair remains the substantive checkpoint; no Falz
+match credit is attributed beyond main. Scanner length, allocator/task ownership,
+adjacent legacy APIs and the metadata restriction remain bounded as above.
+Keep draft pending current-head independent review and hosted checks.
