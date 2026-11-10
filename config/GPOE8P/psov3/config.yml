@@ -2554,6 +2554,7 @@ force_active:
   - __dt__18TWindowMessagePageFv
   - __dt__19TAdChrSelPlyPlateGCFv
   - __dt__19TAdGameStartShineGCFv
+  - __dt__19TAdSelectGameModeGCFv
   - __dt__19TAdTrialAgreementGCFv
   - __dt__19TBoss1DragonColli_CFv
   - __dt__19TBoss3VoloptMonitorFv
@@ -3168,6 +3169,7 @@ force_active:
   - __vt__19TAdChrSelPlyPlateGC
   - __vt__19TAdGameStartShineGC
   - __vt__19TAdPlyChrSelPlateGC
+  - __vt__19TAdSelectGameModeGC
   - __vt__19TAdTrialAgreementGC
   - __vt__19TBoss1DragonColli_C
   - __vt__19TBoss3VoloptMonitor
@@ -14201,6 +14203,7 @@ force_active:
   - render__18TWindowMessagePageFv
   - render__19TAdChrSelPlyPlateGCFv
   - render__19TAdGameStartShineGCFv
+  - render__19TAdSelectGameModeGCFv
   - render__19TBoss1DragonColli_CFv
   - render__19TBoss3VoloptMonitorFv
   - render__19TBoss8DragonColli_CFv
@@ -14876,6 +14879,7 @@ force_active:
   - run_task__18TWindowMessagePageFv
   - run_task__19TAdChrSelPlyPlateGCFv
   - run_task__19TAdGameStartShineGCFv
+  - run_task__19TAdSelectGameModeGCFv
   - run_task__19TAdTrialAgreementGCFv
   - run_task__19TBoss3VoloptMonitorFv
   - run_task__19THunterGuildWarningFv

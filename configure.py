@@ -448,6 +448,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
     # GC/1.3.2 preserves the per-vertex coordinate loads and store order.
     "pso/ui/TAdDialingGC_80328B20.cpp": {"mw_version": "GC/1.3.2"},
+    # The selection plate has the same GC/1.3.2 vertex schedule and fuses its depth offset.
+    "pso/ui/TAdSelectGameModeGC_802C4748.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-fp_contract on")},
     # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
     # with -fp_contract on (all three tunnel units), so the flag belongs on the
     # unit rather than as per-function pragmas left over from the split units.

@@ -2753,6 +2753,7 @@ pso/ui/TAdSelectCurGC_802AEA38.cpp
 pso/ui/TAdSelectCurGC_802AED98.cpp
 pso/ui/TAdSelectGameModeGC.cpp
 pso/ui/TAdSelectGameModeGC_801A2F7C.cpp
+pso/ui/TAdSelectGameModeGC_802C4748.cpp
 pso/ui/TAdSelectTxtGC.cpp
 pso/ui/TAdSelectTxtSubGC.cpp
 pso/ui/TAdSinglePlyChrSelectGC.cpp
