@@ -991,7 +991,7 @@ void TWindowKeyBoardSoft::run_task() {
     s32 temp_r3;
 
     if ((u32) *(u32 *)((s8 *)this + 0x6C) != 0U) {
-        if ((sub_80244994__11TWindowBaseFv() != 0) && (((TKeyBoardControl *)(*(u32 *)((s8 *)this + 0x6C)))->is_key_active() == 0)) {
+        if ((sub_80244994__11TWindowBaseFv() != 0) && (((TWindowKeyBoardBase *)(*(u32 *)((s8 *)this + 0x6C)))->is_key_active() == 0)) {
             temp_r3 = is_player_input_active(*(s16 *)((s8 *)this + 0x20));
             handle_page_cycle_input(temp_r3);
             TWindowKeyBoardSoft__sub_80260E30(this, temp_r3);

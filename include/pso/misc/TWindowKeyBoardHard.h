@@ -31,6 +31,9 @@ struct TWindowKeyBoardHard : public TWindowBase {
     void enable_keyboard_led();
     void enable_kana_led();
     void enable_caps_led();
+    void set_flag60_bit200();
+    void clear_flag60_bit200();
+    int is_key_held();
     virtual void render();
     static s32 test_card_flag(s32 arg1, s32 arg2);
     static void set_card_window_flags(void *arg0, s32 arg1, s32 arg2);

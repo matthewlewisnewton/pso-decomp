@@ -99,7 +99,7 @@ void run_task__16TKeyBoardControlFv(TKeyBoardControl *key_board_control) {
                 window_request_show(*(void **)((s8 *)key_board_control + 0x28));
             }
         }
-    } else if (((s32)((TKeyBoardControl *)(key_board_control->m_24))->is_key_held()) == 0) {
+    } else if (((s32)((TWindowKeyBoardHard *)(key_board_control->m_24))->is_key_held()) == 0) {
         key_board_control->m_1c = (u16) (key_board_control->m_1c | 1);
         if ((u32) key_board_control->m_28 != 0U) {
             ((TWindowLockOn *)(*(void **)((s8 *)key_board_control + 0x28)))->request_close();
@@ -134,7 +134,7 @@ TKeyBoardControl *TKeyBoardControl__ct(TKeyBoardControl *self, TObject *parent, 
     o = new TWindowKeyBoardBase;
     self->m_20 = (u32)o;
     ((TWindowKeyBoardBase *)self->m_20)->init_keyboard_text_field(arg2, arg3);
-    ((TKeyBoardControl *)self->m_20)->set_flag62_bit8();
+    ((TWindowKeyBoardBase *)self->m_20)->set_flag62_bit8();
     o = new TWindowKeyBoardHard((TWindowKeyBoardBase *)self->m_20);
     self->m_24 = (u32)o;
     TKeyBoardControl__sub_8025EC04((u8 *)self->m_24);
@@ -178,13 +178,13 @@ TKeyBoardControl *TKeyBoardControl__ct(TKeyBoardControl *self, TObject *parent, 
 
 void TKeyBoardControl__sub_80131F5C(void) {  }
 void TKeyBoardControl__sub_80131F60(void) {  }
-void TKeyBoardControl::set_flag60_bit200() { *(u32*)((char*)this + 0x60) |= 0x200; }
-void TKeyBoardControl::clear_flag60_bit200() { *(u32*)((char*)this + 0x60) &= 0xfffffdff; }
-int TKeyBoardControl::is_key_held() { return (*(u32*)((char*)this + 0x60) >> 8) & 0x1; }
+void TWindowKeyBoardHard::set_flag60_bit200() { m_60 |= 0x200; }
+void TWindowKeyBoardHard::clear_flag60_bit200() { m_60 &= 0xfffffdff; }
+int TWindowKeyBoardHard::is_key_held() { return (m_60 >> 8) & 0x1; }
 void TKeyBoardControl::set_flag62_bit2() { *(u16*)((char*)this + 0x62) |= 0x2; }
 int TKeyBoardControl::is_active() { return (*(u16*)((char*)this + 0x60) >> 5) & 0x1; }
-int TKeyBoardControl::is_key_active() { return *(u16*)((char*)this + 0x60) & 0x1; }
-void TKeyBoardControl::set_flag62_bit8() { *(u16*)((char*)this + 0x62) |= 0x8; }
+int TWindowKeyBoardBase::is_key_active() { return m_60 & 0x1; }
+void TWindowKeyBoardBase::set_flag62_bit8() { m_62 |= 0x8; }
 
 typedef char RecoveredGlobal_801320CC_TKeyBoardControl__data_80506270_size[sizeof(RecoveredGlobal_801320CC_TKeyBoardControl__data_80506270) == 0xB0 ? 1 : -1];
 

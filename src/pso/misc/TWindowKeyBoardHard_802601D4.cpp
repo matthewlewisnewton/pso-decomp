@@ -5,6 +5,7 @@
 #include "pso/misc/TKeyBoardControl.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowKeyBoardHard.h"
+#include "pso/misc/TWindowKeyBoardBase.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/ui/Language.h"
 
@@ -34,7 +35,7 @@ void TWindowKeyBoardHard::run_task() {
     void *temp_r3;
 
     if ((void *) this->m_70 != NULL) {
-        if ((is_key_active__19TWindowKeyBoardHardFv() == 0) && (((TKeyBoardControl *)(this->m_70))->is_key_active() == 0)) {
+        if ((is_key_active__19TWindowKeyBoardHardFv() == 0) && (((TWindowKeyBoardBase *)(this->m_70))->is_key_active() == 0)) {
             if (has_non_modifier_key__16TKeyBoardControlFv(this) != 0) {
                 if (current_language == LANGUAGE_JAPANESE) {
                     this->m_68 = 0x3C;

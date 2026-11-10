@@ -162,7 +162,7 @@ s32 TWindowChat::submit_keyboard_input() {
         ((TWindowChat *)arg0)->set_input_active();
         return 1;
     }
-    if (((TKeyBoardControl *)(this->composer))->is_key_active() == 0) {
+    if (((TWindowKeyBoardBase *)(this->composer))->is_key_active() == 0) {
         return 0;
     }
     ((TWindowChat *)arg0)->set_active_flag();
@@ -194,7 +194,7 @@ void TWindowChat::update() {
         }
         reset_input__11TWindowChatFv((int)this->composer);
         this->close_all_children();
-        ((TKeyBoardControl *)(this->hardKeyboard))->set_flag60_bit200();
+        ((TWindowKeyBoardHard *)(this->hardKeyboard))->set_flag60_bit200();
     }
 }
 
@@ -205,7 +205,7 @@ void TWindowChat::open_input() {
         TWindowChat__sub_80247DFC((u8 *)arg0);
         ((TWindowChat *)arg0)->flags = (u16) (((TWindowChat *)arg0)->flags & 0xFFFE);
         ((TWindowChat *)arg0)->flags = (u16) (((TWindowChat *)arg0)->flags | 2);
-        ((TKeyBoardControl *)(*(s32 *)((s8 *)arg0 + 0x28)))->clear_flag60_bit200();
+        ((TWindowKeyBoardHard *)(*(s32 *)((s8 *)arg0 + 0x28)))->clear_flag60_bit200();
         ((TWindowChat*)(arg0))->open_next_input_window();
     }
 }
@@ -348,7 +348,7 @@ void TWindowChat::handle_chat_input() {
       }
     }
     else
-      if ((((TKeyBoardControl *)((int) ((RecoveredFields_8024775C_arg0 *) arg0)->field_28))->is_key_held() == 0) || ((((TWindowChat *)arg0)->sub_80247EC0() != 0) && (TWindowShortListCtrl__check_controller_button((void *)((void *) (((u8 *) (&(*(RecoveredGlobal_8024775C_lbl_8050E208 *)&controller_input_state).value)) + 0x20)), 0x200) != 0)))
+      if ((((TWindowKeyBoardHard *)((int) ((RecoveredFields_8024775C_arg0 *) arg0)->field_28))->is_key_held() == 0) || ((((TWindowChat *)arg0)->sub_80247EC0() != 0) && (TWindowShortListCtrl__check_controller_button((void *)((void *) (((u8 *) (&(*(RecoveredGlobal_8024775C_lbl_8050E208 *)&controller_input_state).value)) + 0x20)), 0x200) != 0)))
     {
       if ((((TWindowChat *)arg0)->sub_80247EC0() != 0) && (TWindowShortListCtrl__check_controller_button((void *)((void *) (((u8 *) (&(*(RecoveredGlobal_8024775C_lbl_8050E208 *)&controller_input_state).value)) + 0x20)), 0x200) != 0))
       {

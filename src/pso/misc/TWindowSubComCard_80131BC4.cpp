@@ -1,6 +1,7 @@
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TKeyBoardControl.h"
+#include "pso/misc/TWindowKeyBoardBase.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowMakeTeam.h"
@@ -19,6 +20,6 @@ s32 TWindowSubComCard::realloc_buffer() {
 }
 
 int TWindowSubComCard::is_keyboard_active() { return ((TKeyBoardControl *)(this->m_20))->is_active(); }
-int TWindowSubComCard::update_keyboard() { return ((TKeyBoardControl *)(this->m_20))->is_key_active(); }
+int TWindowSubComCard::update_keyboard() { return ((TWindowKeyBoardBase *)(this->m_20))->is_key_active(); }
 
 }
