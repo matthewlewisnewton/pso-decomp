@@ -1,6 +1,11 @@
 #include "types.h"
+#include "pso/TMainTask.h"
+#include "pso/TObjChip.h"
+#include "pso/enemy/TObjEneRecobox.h"
 #include "pso/enemy/TObjEneRecon.h"
 #include "pso/enemy/TObjEneDD.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/unk/text_80087278.h"
 struct Obj_8031EF14 { u8 pad[0x410]; s32 count; u8 pad2[4]; u16 ids[6]; };
 
 struct Obj_8031F0F0 { u8 pad[0x410]; s32 count; u8 pad2[4]; u16 ids[6]; };
@@ -73,4 +78,34 @@ s32 TObjEneRecon::is_below_child_limit(u16 arg1) {
     return n < 2;
 }
 
+}
+
+void TObjEneRecon::spawn_death_debris() {
+    BmlResource *resource = TObjEneRecobox__static_instance;
+
+    // All three debris models share the texture list in model entry 3.
+    const TObjChipParams first = {
+        {0.5f, 0.07f, 0.26f}, {position.x, position.y, position.z},
+        {5.0f, 5.0f, 5.0f}, {0x400, 0x100, 0x400}, {5, 50},
+        {position.y, 0.6f}, resource->models[3].model, resource->models[3].m_c, 20,
+    };
+
+    const TObjChipParams second = {
+        {0.5f, 0.07f, 0.26f}, {position.x, position.y, position.z},
+        {4.0f, 4.5f, 4.0f}, {0x200, 0x100, 0x200}, {6, 50},
+        {position.y, 0.5f}, resource->models[4].model, resource->models[3].m_c, 20,
+    };
+
+    const TObjChipParams third = {
+        {0.5f, 0.07f, 0.26f}, {position.x, position.y, position.z},
+        {4.0f, 4.5f, 4.0f}, {0x200, 0x100, 0x200}, {6, 50},
+        {position.y, 0.5f}, resource->models[5].model, resource->models[3].m_c, 20,
+    };
+
+    spawn_particle_effect_with_flags(&position, 0x45, 0x40);
+    spawn_particle_effect_with_flags(&position, 0x46, 0x40);
+    // The constructor copies its parameters and retains no pointer to them.
+    new TObjChip(tl_05, const_cast<TObjChipParams *>(&first));
+    new TObjChip(tl_05, const_cast<TObjChipParams *>(&second));
+    new TObjChip(tl_05, const_cast<TObjChipParams *>(&third));
 }
