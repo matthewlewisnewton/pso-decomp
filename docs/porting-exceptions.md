@@ -458,11 +458,17 @@ Source construct MWCC accepts and standard C++ does not:
 |---|---|---|---|---|
 | `pso/unk/text_801D40D4.cpp`, `pso/player/TObjPlayer_801D5220.cpp`, `pso/player/TPlyItem.cpp`, `pso/player/TObjPlayer_801D4CB8.cpp` | inventory walks (`TObjPlayer__sub_801D4368`, the `TItemList` walks, `destroy_subobjects_recursive`) | unit switch `-inline noauto` | `m_down` / `m_next` are `TObject *`. The slots are `TItemList`. `TItemList::link_down` / `link_next` are class-body inline and hold the one downcast. `-inline noauto` folds each call to `lwz` of `+0x14` / `+0xC`, the same bytes as the old cast. `-inline off` leaves a `bl` and grows the walks (`TObjPlayer__sub_801D4368` `0x248` → `0x278`). `-inline auto` also inlines unmarked `TObjPlayer__sub_801D4730` into `sort_by_key`, so it is not used. Every other function in these objects is unchanged versus `-inline off`. Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) (`-inline auto`); this repo's `TWindowMainMenu_802AD538.cpp` (`-inline noauto,level=1`). | Drop the switch and the accessors; a downcast at the walk is the portable spelling. |
 
-### `TTecCtrl_8022C444.cpp`: name a referenced conversion pool ([issue #233](https://github.com/matthewlewisnewton/pso-decomp/issues/233))
+### Technique controller recovered from upstream #208
 
-| Unit | Symbols | What | Why | Port should |
-|---|---|---|---|---|
-| `pso/misc/TTecCtrl_8022C444.cpp` | `get_technique_caster_flags`'s unsigned bias, `lbl_8044D078` | per-unit `post_object: tools/name_pool_symbols.py`; after MWCC it renames the emitted local `@N` `.rodata` object to `lbl_8044D078` and makes it global | The original split exports the 8-byte unsigned `2^52` bias and `TTecCtrl` loads it across units. Per-file MWCC emits the bias as a local pool object, and source cannot reuse that slot: a named global used by value gets a second pool copy. The post-process changes only the symbol name and binding, not the section bytes or relocations; the object then matches the split's 8-byte `.rodata`, the unit links, and the DOL keeps its original hash. The script refuses a bias with no matching local pool at the split's section and offset. Evidence: [conversion-pool-constants.md](evidence/conversion-pool-constants.md). | Drop the hook; keep the cast. The symbol name has no semantic meaning to a port. |
+| Unit / scope | What | Why | Port should |
+|---|---|---|---|
+| `pso/misc/TTecCtrl.cpp` | `-fp_contract on`, `-inline on,deferred`; existing scoped `opt_propagation off` in the folded charge-light function | Fused parameter scaling, inline global-load order and vtable/switch-table emission order reproduce the native object. [Evidence](evidence/upstream-technique-control.md). | Drop optimizer steering; retain fused arithmetic if identical floating-point results are needed. |
+| Parameter calculator and folded native interfaces | Provisional `pad_*` parameter fields, TTecAnti receiver cast over parameter storage, explicit mangled names, legacy actor/light function-pointer casts and raw offset views | Existing interface/layout assumptions from upstream and the fork remain bounded native recovery debt. | Use typed parameter copy/free functions, consolidate actor/light signatures and recover field meanings. |
+
+The former `TTecCtrl_8022C444.cpp` conversion-pool post-process is retired.
+Folding its readers into one object allows the compiler to emit local biases
+without symbol rewriting. The old hand-written TTecCtrl vtable is also removed;
+the class destructor emits it. [Historical evidence](evidence/conversion-pool-constants.md).
 
 ### Footprint unit recovered from upstream #208
 

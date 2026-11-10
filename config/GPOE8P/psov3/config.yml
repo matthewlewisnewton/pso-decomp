@@ -2653,6 +2653,7 @@ force_active:
   - __dt__8TOKurageFv
   - __dt__8TObjRainFv
   - __dt__8TPlyItemFv
+  - __dt__8TTecCtrlFv
   - __dt__9TAdBackGCFv
   - __dt__9TAdFadeGCFv
   - __dt__9TBoss2FinFv
@@ -3264,6 +3265,7 @@ force_active:
   - __vt__8TObjChip
   - __vt__8TObjRain
   - __vt__8TPlyItem
+  - __vt__8TTecCtrl
   - __vt__9TAdBackGC
   - __vt__9TAdFadeGC
   - __vt__9TBoss2Fin
@@ -6036,7 +6038,6 @@ force_active:
   - fn_80214254
   - fn_80223B98
   - fn_80223C28
-  - fn_8022F164
   - fn_80235078
   - fn_8024450C
   - fn_80248324
@@ -6407,6 +6408,7 @@ force_active:
   - get_table_entry_by_clamped_index__10TObjPlayerFv
   - get_table_value__19TAdPlyPltAnimCtrlGCFi
   - get_target_position__11TCameraCtrlFv
+  - get_technique_base_params
   - get_texlist__23TObjSeabedSuisoBrakableFi
   - get_total_materials_used__Fl
   - get_type__15TFontSmallLobbyFPv
@@ -7888,6 +7890,8 @@ force_active:
   - lbl_80514CF0
   - lbl_80514D40
   - lbl_80514F58
+  - lbl_80515F90
+  - lbl_80515FBC
   - lbl_8051607C
   - lbl_805162EC
   - lbl_80517BEC
@@ -14229,6 +14233,7 @@ force_active:
   - render__8TOSensorFv
   - render__8TObjDoorFPv
   - render__8TObjRainFv
+  - render__8TTecCtrlFv
   - render__9TAdBackGCFv
   - render__9TAdFadeGCFv
   - render__9TBoss2FinFv
@@ -14917,6 +14922,7 @@ force_active:
   - run_task__8TOKeyColFv
   - run_task__8TOKurageFv
   - run_task__8TObjRainFv
+  - run_task__8TTecCtrlFv
   - run_task__9TAdBackGCFv
   - run_task__9TAdFadeGCFv
   - run_task__9TBoss2FinFv
