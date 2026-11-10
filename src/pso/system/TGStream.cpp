@@ -29,7 +29,6 @@ s32 read_checked_align__6TLobbyFPvlPv(void *);
 s32 strcmp(const void *, const void *);
 s32 strlen(char *);
 s32 strncpy(char *, char *, s32);
-s32 TLobby__sub_803CC578(void *, s32, s32);
 extern u8 gstream_sector_buffer[];
 extern GslArchiveEntry gsl_archive_entries[256];
 extern char gsl_archive_filename[32];
@@ -395,7 +394,7 @@ TGStreamPrefix *open__8TGStreamFPvPvi(TGStreamPrefix *g_stream_prefix, void *fil
     g_stream_prefix->archive_entry = find_gsl_entry(file, 1);
     if ((void *) g_stream_prefix->archive_entry != NULL) {
         g_stream_prefix->adxf_handle = TItemDrop__gsl_adxf_handle;
-        TLobby__sub_803CC578(g_stream_prefix->adxf_handle, g_stream_prefix->archive_entry->archive_offset, 0);
+        ADXF_Seek(g_stream_prefix->adxf_handle, g_stream_prefix->archive_entry->archive_offset, 0);
         gstream_file_size = g_stream_prefix->archive_entry->file_size;
         ((s32 (*)(void *, void *, s32))strncpy)(g_stream_prefix, g_stream_prefix->archive_entry, 0x20);
     } else {
