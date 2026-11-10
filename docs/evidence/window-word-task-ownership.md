@@ -94,3 +94,9 @@ It retains the full original provider and explains the evidence needed before
 another probe. Its shared-helper audit also corrects WS_String's local raw buffer
 from 188 to 192 bytes, covering the reset helper's final color store without
 changing the compiled object or asserting a complete rendering interface.
+
+The later [accepted upstream Word integration](window-word-main-stack-integration.md)
+qualifies merged #407 on current main, preserves the native task/fields and shared
+raw reset contract, and activates the complete exact Word unit. This supersedes
+this historical missing-renderer/original-provider hold; native Word lifetime,
+DD's independent renderer and the other recorded interface holds remain separate.

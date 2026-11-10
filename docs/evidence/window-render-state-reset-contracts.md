@@ -112,3 +112,9 @@ hold, nameplate's 139-word difference and original provider, CustomSelect's
 partial-initialization safety, callbacks, constants, ownership and protected
 remainders retain their holds. The raw window ABI inventory remains 18 calls
 across ten units and three bindings. The PR stays draft.
+
+The later [accepted upstream Word integration](window-word-main-stack-integration.md)
+qualifies merged #407 on current main, preserves the native task/fields and shared
+raw reset contract, and activates the complete exact Word unit. This supersedes
+this historical missing-renderer/original-provider hold; native Word lifetime,
+DD's independent renderer and the other recorded interface holds remain separate.

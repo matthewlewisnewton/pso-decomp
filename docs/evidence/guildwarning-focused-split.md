@@ -111,3 +111,16 @@ this refresh introduces no window control or new lifetime exception. Validation
 compares the rebuilt stack with its preceding verified heads; the 12a3368673
 fresh-main certificate remains the earlier baseline certificate, not a claim
 of a separate new-main build. Existing historical coverage and ABI holds remain.
+
+The next refresh integrates main `59dfc7117a7e2cd251b65f1b435e66a9bf174618`
+and its accepted #407 Word-select renderer. All ten upstream path patches and
+the focused implementation/configuration delta are preserved. Main and focused
+capacity-gated builds reproduce the original DOL. Against freshly rebuilt main,
+the focused contribution remains one exact function, +600 matched / +728 linked
+code bytes and zero data/address loss; all 3598 linked units are exact. The
+prior-head comparison attributes +916 matched / +3412 linked code and eight
+linked data bytes to upstream Word recovery. Retention has 18296 names with no
+drift and port inventory passes. The inherited renderer arithmetic/control and
+raw-buffer helper qualifications are preserved. The continuation reconciles its
+existing native Word task/field and raw reset contracts separately; no global
+lifetime or factory hold is lifted by this main refresh.

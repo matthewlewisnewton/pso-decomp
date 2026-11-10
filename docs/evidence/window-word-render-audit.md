@@ -106,3 +106,9 @@ future integration must preserve those established changes, independently qualif
 the arithmetic mechanism and all affected objects/targets, and coordinate with
 the active owner. The original Word provider and lifetime/constant/interface
 holds remain selected and unchanged here.
+
+The later [accepted upstream Word integration](window-word-main-stack-integration.md)
+qualifies merged #407 on current main, preserves the native task/fields and shared
+raw reset contract, and activates the complete exact Word unit. This supersedes
+this historical missing-renderer/original-provider hold; native Word lifetime,
+DD's independent renderer and the other recorded interface holds remain separate.

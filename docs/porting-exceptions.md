@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,776 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,777 | 879 |
 | Per-unit compiler overrides in `configure.py` | 189 | 189 |
 | Approved regressions | 0 | 0 |
 
@@ -89,8 +89,14 @@ preserve the graph's exported constants and format strings. See
 [download graph recovery](evidence/download-graph-recovery.md) for the
 compiler and data layout evidence.
 
-5,776 pragmas in 879 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1143, `inline_depth` 1035, `fp_contract` 879, `auto_inline` 833,
+The word-select row renderer at `0x80341674` in `TWindowDD_80341A08.cpp` uses
+a scoped `fp_contract on` for the scaled row and highlight positions and
+the clipped texture coordinates. With contraction disabled, GC/2.6 emits
+separate multiply and add/subtract instructions in those expressions. Ports
+that need the original rounding should fuse those operations.
+
+5,777 pragmas in 879 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1143, `inline_depth` 1035, `fp_contract` 880, `auto_inline` 833,
 `opt_common_subs` 611, `scheduling` 263, `opt_propagation` 239,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation

@@ -92,6 +92,16 @@ The source-quality repair has zero metric gain; the refresh's additional exact
 function and particle code/data gains belong to upstream. All existing holds and
 historical coverage qualifications remain.
 
+The stack now integrates main `59dfc7117a` through focused head `0ac063a04c`.
+The [Word integration](window-word-main-stack-integration.md) qualifies the exact
+upstream 916-byte renderer and complete 3412-byte source-linked unit while
+preserving this continuation's native task, field types and raw reset contract.
+This supersedes the historical missing-Word-renderer/provider hold. Native Word
+construction/destruction/table and other buffer/interface holds remain separate.
+Fresh main/A/B builds preserve the original DOL; 3599 continuation units are exact
+and retention has 18465 names with no drift. Original #420/PageIndicator and
+save-flag client recoveries are preserved.
+
 ## Current tried/blocked index
 
 | Area | Established result | Remaining evidence / hold |
@@ -101,7 +111,7 @@ historical coverage qualifications remain.
 | Basic ComCard | Native constructor and exact native render body; coherent cleanup/table probe | Unknown trailing word ownership prevents regression-free activation; no padding/object invention or four-byte waiver |
 | ActionPalette | Native construction, exact retained methods and 352-byte typed layout recovery | Contiguous icon/light/table probe changed icon and two caller objects; still needs common UV/table/jump ownership and conversion-contract evidence |
 | DD renderer | Shared begin/forward/reset contracts established | 608-byte probe remains 37 words different; needs value-lifetime/quad evidence; original provider retained |
-| Word renderer/lifetime | Task/scroll ownership established; shared buffer extent corrected | 916-byte renderer arithmetic and constructor data-base differences unresolved; original provider retained |
+| Word renderer/lifetime | Upstream exact 916-byte renderer and complete 3412-byte unit source-linked; native task/fields/raw reset preserved | Native constructor data-base arrangement, deleting/table lifetime and broader buffer/helper interfaces remain held |
 | Nameplate | Ordinary reconstructed 800-byte body and helper evidence | Nonexact arithmetic/register result; original full provider retained |
 | ScrollBar / ChallengeResult / follower | Bounded native probes and contracts recorded | Constant-pool/data-base/producer differences; no repeated scheduling variants |
 | SymbolChat Parts | Existing exact compiled functions | Constant ownership prevents source linkage; original provider retained |
@@ -115,8 +125,8 @@ member-body recovery without lifting destructor/table or unknown-word holds.
 The [Palette note](window-action-palette-construction.md) records the rejected
 contiguous-owner probe and its stop condition; the later [serialized-layout recovery](window-action-palette-layout.md)
 resolves its opaque record schema without changing providers or coverage. The [Word audit](window-word-render-audit.md)
-also distinguishes separate PR #407's reported recovery from this continuation's
-unchanged original provider and compiler-control/interface holds.
+retains the historical #407 assessment; the later [combined integration](window-word-main-stack-integration.md)
+supersedes that provider hold after full qualification while preserving distinct lifetime/interface holds.
 
 The [bounded Status/ComCard audit](window-status-page-com-card-blocker-audit.md)
 records explicit stop conditions. Do not repeat those probes absent new evidence.
