@@ -78,3 +78,10 @@ linked code, +1496 matched data and +1452 linked data bytes. Hard input, previou
 flag-body refinements, Snapshot, WS_Word and protected-original provenance pass
 again, including the original1044 helper and WS_Word's original3412 provider with
 its missing916-byte renderer. All other documented holds remain; PR stays draft.
+
+## Later typed depth forwarding
+
+The [depth follow-up](window-keyboard-depth-forwarding.md) supplies the separate
+float/result-use evidence for the adjacent 36-byte forwarder. It recovers only
+that Control helper and its two callers, superseding its float-forwarding hold.
+Other legacy depth views, outer wrappers and lifetime/renderer holds remain.
