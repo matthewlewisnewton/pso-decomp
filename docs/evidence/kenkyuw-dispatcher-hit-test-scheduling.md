@@ -736,3 +736,92 @@ three-pcode hit block is therefore eligible for the second scheduler again.
 Merely deleting such a copy cannot be assumed to preserve the first pass's
 order. A distinct surviving boundary or another demonstrated mechanism is
 still needed; these checks do not assert that all source forms are excluded.
+
+### Conditional lvalues and implicit null adjustments
+
+Two bounded controls audited whether a language-generated boundary could
+fit the real collection-failure path without adding artificial control flow.
+Both used the same stock GC/2.6 compiler and flags recorded above. Every
+final trace was independently re-encoded and matched the corresponding
+normal compiler function byte for byte.
+
+The [conditional-lvalue control](kenkyuw-conditional-lvalue-control.cpp)
+collects a nullable event, reports a miss on failure, and otherwise binds a
+pointer reference to one of two genuine receiver slots. Both slots are
+observable choices. The callback can replace or clear the selected slot,
+so the function must read that same slot again after the call. Its 144 host
+cases check null collection, both slot choices, null/nonnull receivers,
+accept/reject results, replacement/clearing, and the untouched other slot.
+Build the host check with `-DKENKYUW_WITNESS_HOST_CHECK`.
+
+The frontend does have a scalar conditional-lvalue path separate from the
+aggregate conditional-expression path. In
+[`CExpr_LValue`](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/frontend/CExpr2.c),
+`ECOND` arms that are compatible indirect lvalues become a conditional of
+their addresses, wrapped in an indirection. Binding the reference therefore
+selects a slot address rather than selecting the pointer value in that slot.
+The 124-byte control retains that distinction through allocation and both
+schedulers:
+
+```text
+    cmpi cr0,r31,0
+    bt   cr0,2,B8
+B7: addi r31,r30,4
+    b    B9
+B8: mr   r31,r30
+B9: lwz  r3,0(r31)
+    lwz  r4,0(r4)
+    bl   inspect_slot
+    ... later reload r3 from 0(r31) on acceptance ...
+```
+
+Final branch optimization changes nothing. The real selection branch,
+nonzero slot offset and receiver load remain. Function text SHA-256:
+`b645a6b92f0e895bd648aaab8aebaeb6ddfe7f2b1be335f93148dda284d7133e`.
+PSO's null-list arm calls the miss callback and exits; it supplies no second
+receiver slot for the hit call. Its receiver argument is the projectile
+value itself, not a pointer loaded from a selected slot. A reference cannot
+use a null-list dereference as its other arm. This control therefore does
+not justify a full-unit conditional-lvalue candidate.
+
+The [base-conversion control](kenkyuw-null-adjustment-control.cpp) contrasts
+an ordinary zero-offset primary base with a genuine nonzero secondary base.
+Four host cases check null preservation and nonnull object addresses. The
+primary conversion emits only `blr` (4 bytes). The secondary conversion
+emits 16 bytes:
+
+```text
+    cmplwi r3,0
+    beqlr
+    addi   r3,r3,4
+    blr
+```
+
+Before final branch optimization the conditional targets the return block;
+the late pass rewrites it to a conditional return. The comparison and real
+adjustment remain, as required to preserve null. Secondary function SHA-256:
+`88385080181aa960359611757a5aa9ee1498e03d7651b4e0edaa9dba959eae4c`.
+
+An additional header-backed compile used the actual declaration, with no
+replacement layout:
+
+```cpp
+#include "pso/misc/TNeedleShoot.h"
+extern "C" TObject *convert_projectile_base(TNeedleShoot *p) { return p; }
+```
+
+That function also emits only `blr`, SHA-256
+`f332ea5b5437103cbb6f1508679da89eec9288ad775c96c439a17fccabe3de8e`.
+In [`CClass_AccessPathCast`](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/frontend/CClass.c)
+the nonvirtual adjustment is conditional on a nonzero base offset;
+[`CExpr_SafeClassPointerCast`](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/frontend/CExpr.c)
+does not create `ENULLCHECK` when the cast leaves the expression unchanged.
+The actual `TNeedleShoot : TObject` conversion offers no such boundary.
+The diagnostic secondary-base layout is not evidence for PSO ownership or
+layout and was not transplanted into the unit.
+
+Neither control supplies a source-faithful split for the target pair. No
+full-unit candidate, production signature, compiler flag or link-provider
+change followed from this audit. The exact two-instruction scheduling
+blocker remains; the earlier genuine late-branch witness remains valid
+within its demonstrated receiver-lifetime conditions.
