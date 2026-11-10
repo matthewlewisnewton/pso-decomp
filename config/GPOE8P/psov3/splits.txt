@@ -8951,6 +8951,7 @@ pso/misc/TWindowSubStatusDisp_8026F6DC.cpp:
 
 pso/misc/TWindowSimpleStatus.cpp:
 	.text       start:0x80270514 end:0x80270748
+	.data       start:0x804D0CB0 end:0x804D0CDC
 
 pso/misc/TWindowSoundBalance.cpp:
 	.text       start:0x80270748 end:0x80270F14
@@ -8960,6 +8961,7 @@ pso/misc/TWindowSoundBalance.cpp:
 pso/misc/TWindowStatus.cpp:
 	.text       start:0x80270F14 end:0x80271400
 	.rodata     start:0x8044F658 end:0x8044F660
+	.data       start:0x804D0F78 end:0x804D0FA4
 	.sdata2     start:0x805DD438 end:0x805DD470
 
 pso/unk/text_80271400.cpp:
@@ -10987,6 +10989,7 @@ pso/enemy/DelDepthConstants.cpp:
 pso/misc/TWindowPartyStatus.cpp:
 	.text       start:0x8030C090 end:0x8030C340
 	.rodata     start:0x804757F0 end:0x80475808
+	.data       start:0x804E7808 end:0x804E7834
 	.sdata      start:0x805D40F8 end:0x805D4100
 
 pso/unk/text_8030C340.cpp:

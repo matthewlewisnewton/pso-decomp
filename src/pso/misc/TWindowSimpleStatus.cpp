@@ -1,4 +1,4 @@
-#include "pso/misc/WindowConstructorAbi.h"
+#include "pso/misc/WindowLayoutDescriptor.h"
 #include "types.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TWindowSubStatusDisp_8026F6DC.h"
@@ -7,28 +7,17 @@
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowSubComCard.h"
 
-struct SS_802705D8 { u8 pad0[0x18]; void *vt; u8 pad1c[0x64 - 0x1c]; void *w[4]; };
-
-struct SS_80270668 { s32 f0; u8 pad4[0x14]; void *vt; s16 f1c; s16 f1e; s16 f20; u8 pad22[0x36]; f32 f58; u8 pad5c[4]; s32 f60; s32 w[5]; };
-
 extern "C" {
-s32 draw_default_entry__9TWindowDDFl();
 s32 draw_visible_window_entries(void *, void *, int);
-void __dl__7TObjectFPv(void *);
-extern u8 __vt__19TWindowSimpleStatus[];
-u8 *__dt__19TWindowSimpleStatusFv(SS_802705D8 *arg0, s16 arg1);
-extern s32 TWindowSimpleStatus__name;
+extern const char *TWindowSimpleStatus__name;
 extern const f32 lbl_805DD3EC;
-SS_80270668 *TWindowSimpleStatus__ct(SS_80270668 *arg0, void *arg1, s32 arg2, void *arg3);
 s32 get_window_layout_position(s32);
-void *__nw__7TObjectFUl(int);
 s32 update_hp_tp_level__20TWindowSubStatusDispFv();
 
-void render__19TWindowSimpleStatusFv(s32 arg0) {
-    s32 ctx;
-    ctx = draw_default_entry__9TWindowDDFl();
-    ((TWindowSimpleStatus *)arg0)->draw_background((u8 *)ctx);
-    draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), (int)ctx);
+void TWindowSimpleStatus::render() {
+    s32 context = TWindowDD::draw_default_entry((s32)this);
+    draw_background((u8 *)context);
+    draw_visible_window_entries(this, (u8 *)this + 0x24, context);
 }
 
 void TWindowSimpleStatus::run_task() {
@@ -43,47 +32,34 @@ void TWindowSimpleStatus::run_task() {
     ((TWindowSimpleStatus *)arg0)->apply_random_shake();
 }
 
-extern unsigned char simple_status_window_layout[];
+extern u8 lbl_804D0B58[];
+WindowLayoutDescriptor simple_status_window_layout = {
+    {153.0f, 50.0f}, 50100.0f, lbl_804D0B58, 0xB28
+};
 
-u8 *__dt__19TWindowSimpleStatusFv(SS_802705D8 *arg0, s16 arg1) {
-    s32 i;
-    if (arg0 != NULL) {
-        arg0->vt = __vt__19TWindowSimpleStatus;
-        for (i = 0; i < 4; i++) {
-            if (arg0->w[i] != NULL) {
-                ((TWindowBase *)(arg0->w[i]))->close();
-                arg0->w[i] = NULL;
-            }
-        }
-        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
+TWindowSimpleStatus::~TWindowSimpleStatus() {
+    // Original cleanup closes four although icon refresh manages five slots.
+    for (s32 i = 0; i < 4; i++) {
+        if (icon_windows[i] != NULL) {
+            icon_windows[i]->close();
+            icon_windows[i] = NULL;
         }
     }
-    return (u8 *)arg0;
 }
 
-SS_80270668 *TWindowSimpleStatus__ct(SS_80270668 *arg0, void *arg1, s32 arg2, void *arg3) {
-    s32 i;
-    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)arg3), (s16)((s16)arg2), (u8 *)((u8 *)arg1));
-    arg0->vt = __vt__19TWindowSimpleStatus;
-    arg0->f0 = TWindowSimpleStatus__name;
-    arg0->f20 = arg2;
-    arg0->f60 = 0;
-    arg0->f58 = lbl_805DD3EC;
-    for (i = 0; i < 5; i++) {
-        arg0->w[i] = 0;
+TWindowSimpleStatus::TWindowSimpleStatus(void *position, s32 client, u8 *descriptor)
+    : TWindowBase(descriptor, (s16)client, (u8 *)position) {
+    m_name = TWindowSimpleStatus__name;
+    m_20 = client;
+    m_60 = 0;
+    m_58 = lbl_805DD3EC;
+    for (s32 i = 0; i < 5; i++) {
+        icon_windows[i] = NULL;
     }
-    return arg0;
 }
 
-void *TWindowSimpleStatus::create(void *arg1) {
-    void *o;
-    o = __nw__7TObjectFUl(0x78);
-    if (o != NULL) {
-        o = TWindowSimpleStatus__ct((SS_80270668 *)(o), (void *)this, (s32)arg1, (void *)simple_status_window_layout);
-    }
-    return o;
+TWindowSimpleStatus *TWindowSimpleStatus::create(void *position, s32 client) {
+    return new TWindowSimpleStatus(position, client, (u8 *)&simple_status_window_layout);
 }
 
 }

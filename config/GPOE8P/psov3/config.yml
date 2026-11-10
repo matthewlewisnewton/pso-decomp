@@ -2294,6 +2294,7 @@ force_active:
   - __dt__13TUnk_804F3640Fv
   - __dt__13TUnk_804F3A20Fv
   - __dt__13TWindowLockOnFv
+  - __dt__13TWindowStatusFv
   - __dt__13TWindowSubLogFv
   - __dt__14CreationCameraFv
   - __dt__14TAdFloorLoadGCFv
@@ -2544,6 +2545,7 @@ force_active:
   - __dt__18TWindowEffectLightFv
   - __dt__18TWindowInputNumberFv
   - __dt__18TWindowMessagePageFv
+  - __dt__18TWindowPartyStatusFv
   - __dt__18TWindowSubItemListFv
   - __dt__19TAdGameStartShineGCFv
   - __dt__19TAdTrialAgreementGCFv
@@ -2928,6 +2930,7 @@ force_active:
   - __vt__13TUnk_804F3A20
   - __vt__13TWindowLockOn
   - __vt__13TWindowMeseta
+  - __vt__13TWindowStatus
   - __vt__13TWindowSubLog
   - __vt__14CreationCamera
   - __vt__14TAdEnterBaseGC
@@ -3182,6 +3185,7 @@ force_active:
   - __vt__18TWindowEffectLight
   - __vt__18TWindowInputNumber
   - __vt__18TWindowMessagePage
+  - __vt__18TWindowPartyStatus
   - __vt__18TWindowSubItemList
   - __vt__19MaterialOpacityFade
   - __vt__19TAdGameStartShineGC
@@ -3205,6 +3209,7 @@ force_active:
   - __vt__19TTecPlayerInfluence
   - __vt__19TWindowMenuMainMenu
   - __vt__19TWindowMessageYesNo
+  - __vt__19TWindowSimpleStatus
   - __vt__19TWindowSoundBalance
   - __vt__19TWindowSubEquipKind
   - __vt__19TWindowSubEquipList
@@ -14021,6 +14026,7 @@ force_active:
   - render__13TUnk_804F0BF0Fv
   - render__13TUnk_804F1280Fv
   - render__13TWindowLockOnFv
+  - render__13TWindowStatusFv
   - render__13TWindowSubLogFv
   - render__14TAdFloorLoadGCFv
   - render__14TAdGameStartGCFv
@@ -14205,6 +14211,7 @@ force_active:
   - render__18TWindowEffectLightFv
   - render__18TWindowInputNumberFv
   - render__18TWindowMessagePageFv
+  - render__18TWindowPartyStatusFv
   - render__18TWindowSubItemListFv
   - render__19TAdGameStartShineGCFv
   - render__19TBoss1DragonColli_CFv
@@ -14221,6 +14228,7 @@ force_active:
   - render__19TWindowMenuIconLineFv
   - render__19TWindowMenuMainMenuFv
   - render__19TWindowMessageYesNoFv
+  - render__19TWindowSimpleStatusFv
   - render__19TWindowSoundBalanceFv
   - render__19TWindowSubEquipKindFv
   - render__19TWindowSubEquipListFv
@@ -14713,6 +14721,7 @@ force_active:
   - run_task__13TUnk_804F3A20Fv
   - run_task__13TWindowLockOnFv
   - run_task__13TWindowMesetaFv
+  - run_task__13TWindowStatusFv
   - run_task__13TWindowSubLogFv
   - run_task__14CreationCameraFv
   - run_task__14TAdEnterBaseGCFv
@@ -14905,6 +14914,7 @@ force_active:
   - run_task__18TWindowEffectLightFv
   - run_task__18TWindowInputNumberFv
   - run_task__18TWindowMessagePageFv
+  - run_task__18TWindowPartyStatusFv
   - run_task__18TWindowSubItemListFv
   - run_task__19TAdGameStartShineGCFv
   - run_task__19TAdTrialAgreementGCFv
@@ -14925,6 +14935,7 @@ force_active:
   - run_task__19TTecPlayerInfluenceFv
   - run_task__19TWindowMenuMainMenuFv
   - run_task__19TWindowMessageYesNoFv
+  - run_task__19TWindowSimpleStatusFv
   - run_task__19TWindowSoundBalanceFv
   - run_task__19TWindowSubEquipKindFv
   - run_task__19TWindowSubEquipListFv
@@ -15528,6 +15539,7 @@ force_active:
   - shuffle_p01_order__12TBoss3VoloptFv
   - shuffle_shop_pool__FPv
   - signal_alarm_queue__6TLobbyFPv
+  - simple_status_window_layout
   - single_ply_quest_download_server
   - sinow_zoa_alternate_position
   - sinow_zoa_attack_parameters

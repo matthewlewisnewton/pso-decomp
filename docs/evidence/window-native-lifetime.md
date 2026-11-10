@@ -322,6 +322,15 @@ record interfaces stay qualified. The protected 1,044-byte setup helper stays
 original input. Descriptor/compiler table add 44 bytes while preserving the
 original entry prefix and following table/tail suffix, without new controls.
 
+The [status-family recovery](window-status-family-lifetime.md) adds native
+SimpleStatus, Status and PartyStatus chains with their actual factories,
+without another raw base-lifetime binding. Five real icon slots replace the
+opaque tail, while the original destructor's four-slot cleanup asymmetry
+remains held. Three descriptor/compiler-table claims add 132 bytes. Proven
+Status data refines the earlier 532-byte SoundBalance suffix into a 484-byte
+original prefix, 44 source bytes and four alignment bytes; PartyStatus adds
+another four-byte alignment gap. All unknown original bytes remain intact.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

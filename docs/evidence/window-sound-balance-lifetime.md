@@ -115,3 +115,12 @@ task-global word 805D5D94, Snapshot separation and broader ownership/interface
 holds remain. SubStatusDisp's adjoining 16-byte data at 804D2B20 is not
 speculatively assigned to enable its native table. The PR stays draft and
 must not be marked ready or merged.
+
+## Later supported refinement
+
+The [status-family recovery](window-status-family-lifetime.md) subsequently
+recovers Status's descriptor/table inside the original 532-byte suffix described
+above. Its active inventory is now 484 original bytes, 44 source-owned bytes
+and four naturally aligned zero bytes, with full resolved range equality.
+The earlier whole-532-byte original-input claim describes this checkpoint,
+not the later refined linkset.

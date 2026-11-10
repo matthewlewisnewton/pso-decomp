@@ -1225,3 +1225,11 @@ heading release. The 1,044-byte setup helper remains original input under its
 qualified machine ABI, with broader record/child interfaces held. Native
 descriptor/table emission preserves original entry and following table/tail
 inputs without new controls or manual padding.
+
+[Status-family lifetime recovery](evidence/window-status-family-lifetime.md)
+removes SimpleStatus's raw Base pair and the derived raw SimpleStatus chains.
+Word contracts and genuine factories are shared; existing FP/string/propagation
+controls remain. The original five-slot refresh versus four-slot destructor
+asymmetry stays explicit and unresolved. Three native descriptor/table claims
+refine original data with two qualified natural alignment gaps; no compiler
+control, padding definition or manual table is added.
