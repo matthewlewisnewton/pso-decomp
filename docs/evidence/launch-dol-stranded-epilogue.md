@@ -94,6 +94,52 @@ precedent. The SDK's configured compiler is GC/1.2.5n, versus the GC/2.6
 LaunchDol probe, so these controls do not establish identical compiler
 settings or original source between the two loaders.
 
+## Original metadata and stored-address checks
+
+The original exception index does not supply the missing ownership boundary.
+Both pinned DOLs have a null-terminated exception registration record with
+the following half-open ranges. These values were read from the original
+inputs, not from a reconstructed ELF or compiler probe.
+
+| Executable | Registration record | Exception index | Records | Registered code range |
+|---|---|---|---|---|
+| `PsoV3.dol` | `0x8000F704` | `0x8000EC60..0x8000F704` | 227 | `0x8039667C..0x803BFE50` |
+| `main.dol` | `0x8000E75C` | `0x8000E660..0x8000E75C` | 21 | `0x8000E780..0x8002BB8C` |
+
+Every index record has a positive function size, is ordered by function
+address, stays within its registration's code range and points into its
+original exception-table section. Neither registration nor any index record
+overlaps the corresponding loader/restore range in the earlier table.
+Consequently, this metadata cannot distinguish the current 312-byte loader
+boundary from a 332-byte owning-frame interpretation. Absence of an exception
+entry does not establish that either extent is the original source function.
+
+A separate scan found no four-byte-aligned, big-endian address word in any
+initialized DOL data section pointing anywhere into the loader/restore span:
+219,888 words checked in the game and 7,984 in the boot executable. This
+narrows the search for a stored absolute entry address, including an entry
+into the restore. It does not exclude computed or relative addresses,
+unaligned storage, addresses constructed by instructions, runtime writes or
+indirect entry. It is not an additional proof that the restore is unreachable.
+
+To reproduce these bounded checks, first verify the two SHA-1s above. Map
+virtual addresses to file offsets using the DOL header's seven text and
+eleven data offset/address/size entries. At each registration address, read
+four big-endian words as index start, index end, code start and code size;
+the following four words are zero. Walk the index in 12-byte records
+containing function start, function size and exception-table address. Check
+the ranges and ordering before testing overlap. Then walk only populated
+data sections at virtual addresses divisible by four and test each unsigned
+word against the corresponding half-open loader/restore range. Do not scan
+file padding or invent contents for uninitialized storage.
+
+DTK 1.8.4 (`a0c455e46cab58e1d2e0885623f85089ff0499db`)'s unconfigured
+`dol info` analysis also rejects both originals
+as an unpaired epilogue, at `0x8042EA04` and `0x80035698` respectively. This is
+a limitation of inferred function slicing, not original boundary metadata or
+a reason to remove `skip_cfa_ranges`. The configured exact build remains the
+validation path.
+
 ## Comparison record and reproduction limits
 
 The historical comparison procedure is preserved at immutable commit
