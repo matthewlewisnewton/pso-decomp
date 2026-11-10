@@ -109,10 +109,8 @@ struct TWindowDD
     void reset_selection();
     void update_selected_id();
     static void build_player_word_lists();
-    static void open(s32 arg0, s32 arg1);
     static u8 is_id_in_special_range(s16 id);
     static s32 classify_id(s16 arg0);
-    static s32 get_player_battle_flag_state(u16 arg0);
     void format_type6_message(s32 arg1, void *arg2);
     static s32 is_state_zero_unless_0x2C8(s32 arg0);
     void destroy_menu_entry(s32 arg1);
@@ -139,7 +137,6 @@ struct TWindowDD
     void set_state();
     void close_all_windows();
     static s32 can_append_chars(s32 arg0, s32 *arg1);
-    static void update_state();
     void append_prompt_newline(s32 *arg1);
     static s32 clamp_range_5FA_682(s16 arg0);
     static s32 clamp_range_2C9_552(s16 arg0);
