@@ -392,6 +392,25 @@ cast stays a cast.
 |---|---|---|---|---|
 | `src/pso/unk/text_8034A090.cpp` | `TAdLoadQuestPrtTxtGC::TAdLoadQuestPrtTxtGC` (`0x8034A254`, 892 bytes) | unit `configure.py` override `-fp_contract on` | The constructor's three particle layouts contract `scale * index + base` into `fmadds` (case 0 at ctor+0x120, `ec 1d d8 3a`; the same form in cases 1 and 2). With the flag the unit is 1452/1452 code, 4/4 functions, `.rodata` 8 and `.data` 36. Without it those three functions and both data sections stay 100%, and the constructor falls to 93.32% and grows from 892 to 908 bytes (separate `fmul`/`fadd`). No `-inline` change was needed. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`). | Keep fused multiply-add, or accept the float differences. |
 
+### `TCheckMemoryCard.cpp` section placement
+
+The native static initializer at `0x8033C69C` computes the card-menu position and layout
+height, then initializes four pairs of `TCheckMemoryCard` member callbacks. CodeWarrior
+emits the eight member-pointer templates between the menu position and the callback
+table. The card vtable follows at `0x804EF9A0`. The initializer's text follows the card
+methods and character-select factory, so a separate initializer unit would impose
+opposite object orders in `.data` and `.text`. The combined unit preserves both orders,
+as in the [calendar conversion fold](evidence/calendar-conversion-evidence.md).
+
+- `-sdata 4` keeps the eight-byte menu position in `.data`, ahead of the callback
+  templates, and retains the four-byte height in `.sbss`. With the default threshold,
+  the menu position goes into `.sdata` and the initializer uses different offsets.
+- `cw_align: .rodata=4` preserves the start of the two float pairs at `0x80477DB4`.
+  CodeWarrior otherwise declares eight-byte section alignment. The existing
+  `cw_comment_align.py` rule adjusts the ELF and CodeWarrior alignment metadata.
+
+A port can use the C++ initializers and its normal section layout.
+
 ### `TOTrapAncient01.cpp` unit overrides ([#221](https://github.com/matthewlewisnewton/pso-decomp/pull/221))
 
 | File | Functions | What | Why | Port should |

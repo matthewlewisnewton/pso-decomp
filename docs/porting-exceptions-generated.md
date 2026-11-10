@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
 | pragma | 5773 | 877 |
-| configure.py per-unit override | 178 | 178 |
+| configure.py per-unit override | 179 | 179 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 877, `auto_inline` 837, `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 53, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -238,6 +238,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1146, `inline_depth` 1038,
 | `pso/boss/TObjBoss2Tunnel_8003B138.cpp` | `-fp_contract on` | Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact with -fp_contract on (all three tunnel units), so the flag belongs on the unit rather than as per-function pragmas left over from the split units. |
 | `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `(multi-line entry; see configure.py)` | Deferred, with definitions in reverse address order: the ctor's function-local static and guard precede run_task's table guard in .sbss, as in the original (docs/porting-exceptions.md section 5). .sbss starts at 0x805D696C and .sdata2 at 0x805DECCC, both only 4-aligned. mwld takes alignment from the CodeWarrior comment record, which GC/2.6 writes as 8, so the pool and every later sda21 offset shift by 4. cw_align rewrites that record after compile. -sdata 4 does not. |
 | `pso/boss/TObjBoss2Tunnel.cpp` | `-inline off,deferred, -pool off, -sdata 4, -fp_contract on` | Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is needed (docs/porting-exceptions.md section 5). |
+| `pso/misc/TCheckMemoryCard.cpp` | `(multi-line entry; see configure.py)` | The memory-card menu position precedes the callback templates in .data. Its two read-only layout inputs begin at a four-byte-aligned address. |
 | `pso/boss/TBoss4DarkFalz_8004C93C.cpp` | `-inline deferred, -sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOTrapSeabed01.cpp` | `-inline deferred` | Reverse definitions with deferred generation: the weak copies of TOTrap's inline slots are generated first, so their 1.0/0.0 head .sdata2 as in the original pool, and clamp_params_and_init inlines its clamp helpers. |
 | `pso/misc/TOTrapAncient02.cpp` | `-inline deferred, -fp_contract on` | Reverse definitions with deferred generation: the native TOTrapAncient02R vtable is emitted before the switch table that follows it in .data, and the .sdata2 pool keeps its original order. Unit -fp_contract on replaces the per-function pragmas: the constructors, calc_trap_count and the R vfunc_81 fuse multiply-adds. |
