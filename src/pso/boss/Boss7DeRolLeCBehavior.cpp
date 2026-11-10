@@ -3515,8 +3515,8 @@ void TBoss7DeRolLeC::advance_action_sequence() {
     s32 var_r4;
     do {
         var_r30 = 0;
-        this->m_6d0 = (this->m_6d0 + 1);
-        var_r4 = *(s32 *)((s8 *)(*(s32 *)((s8 *)((u8 *)(&(*(RecoveredGlobal_802EC7F0_lbl_804E3C2C *)&lbl_804E3C2C).value) + (game_difficulty_selection * 4)) + 0) + (this->m_6d0 * 8)) + 0);
+        this->action_sequence_index = (this->action_sequence_index + 1);
+        var_r4 = *(s32 *)((s8 *)(*(s32 *)((s8 *)((u8 *)(&(*(RecoveredGlobal_802EC7F0_lbl_804E3C2C *)&lbl_804E3C2C).value) + (game_difficulty_selection * 4)) + 0) + (this->action_sequence_index * 8)) + 0);
         switch (var_r4) {
         case 0x1E:
             if (calc_elapsed_scaled__9TObjEneDDFv(this) > lbl_805DEA10) {
@@ -3583,7 +3583,7 @@ void TBoss7DeRolLeC::advance_action_sequence() {
             break;
         case 0x45:
             var_r30 = 1;
-            this->m_6d0 = 1;
+            this->action_sequence_index = 1;
             break;
         }
     } while (var_r30 != 0);
@@ -3639,7 +3639,7 @@ u8 TBoss7DeRolLeC::sub_802ECB10() {
     s32 var_r4;
 
     var_r4 = 0;
-    if (((s32) this->m_718 <= 0) && !(*(s32 *)((s8 *)this + 0x628) & 4)) {
+    if (((s32) this->m_6fc <= 0) && !(*(s32 *)((s8 *)this + 0x628) & 4)) {
         var_r4 = 1;
     }
     return (u8)var_r4;
@@ -4121,7 +4121,7 @@ void TBoss7DeRolLeC::set_state_and_send(s32 arg1) {
         TBoss7Joint__sub_802EE800(&pa);
         pa.a = this->entity_id;
         pa.b = arg1;
-        pa.c = (s16)this->m_6d0;
+        pa.c = (s16)this->action_sequence_index;
         pa.d = this->target_entity_id;
         ((TBoss7Joint *)(&pa))->broadcast_state();
         return;
@@ -4129,7 +4129,7 @@ void TBoss7DeRolLeC::set_state_and_send(s32 arg1) {
     TBoss7Joint__sub_802EE7B8(&pb);
     pb.a = this->entity_id;
     pb.b = arg1;
-    pb.c = (s16)this->m_6d0;
+    pb.c = (s16)this->action_sequence_index;
     ((TBoss7Joint *)(&pb))->update_and_send_60();
 }
 
@@ -4184,13 +4184,13 @@ void TBoss7DeRolLeC::vfunc_62() {
     s32 temp_r4;
     temp_r4 = this->hpmax - this->hp;
     if (*(s32 *)((s8 *)arg0 + 0x628) & 8) {
-        this->m_718 = (s32) (this->m_718 - temp_r4);
+        this->m_6fc = (s32) (this->m_6fc - temp_r4);
         TObjFish__sub_802EC468((int) (*(s32 *)&this->bodies + 0x1C), lbl_805DEA44, lbl_805DEA48);
         TObjFish::set_effect_target_position(arg0, (void *)0x3B213, arg0 + 0x50C);
     } else {
-        this->m_71c = (s32) (this->m_71c - temp_r4);
-        if ((s32) this->m_71c < 0) {
-            this->m_71c = 0;
+        this->m_700 = (s32) (this->m_700 - temp_r4);
+        if ((s32) this->m_700 < 0) {
+            this->m_700 = 0;
             ((TObjFish *)arg0)->set_hooked_effect_target();
         }
     }

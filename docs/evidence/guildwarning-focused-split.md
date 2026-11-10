@@ -84,3 +84,21 @@ reproduce the original DOL hash; fresh-main and prior-head checks pass with no
 regression. The focused contribution remains +600 matched/+728 linked code,
 zero data and one exact function/source-linked unit, with 3590 linked units
 exact. Evidence, attribution and all draft boundaries remain intact.
+
+The subsequent refresh integrates main
+`12a3368673103f37dfd3710886ce24a4e19c6783`, including the accepted Status-page
+recovery. The focused implementation/configuration patch remains identical
+across all 30 paths. The gated build and fresh-main checks preserve the original
+DOL hash and +600 matched/+728 linked code contribution, zero data delta and
+3596 exact linked units. Existing evidence, attribution and draft holds remain.
+
+Coverage qualification: compared with the earlier f0f05f3afe baseline, main and
+this refresh both omit the same four-byte BSS span at 8051857C and four-byte
+sdata2 span at 805DAA54. A strict view without the report tool's padding
+allowance records those eight inherited bytes leaving coverage; it is not a
+strict historical no-loss pass. The ordinary current-metadata check labels the
+gaps as alignment padding, but this does not independently establish the BSS
+word's purpose. The BSS change originates in main's TLobby guild-card recovery,
+not GuildWarning or the Status-page change. Fresh-main acceptance establishes
+zero additional loss. No source word, padding definition, tool change or new
+regression exception is introduced to conceal the inherited difference.

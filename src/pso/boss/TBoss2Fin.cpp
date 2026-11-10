@@ -4,24 +4,11 @@
 #include "pso/TObjEZRopeBase.h"
 #include "pso/object/TObjFish.h"
 #include "types.h"
-#include <stddef.h>
 
 struct G_800367C4;
-struct Stack_800365C8 {
-    s32 sp8;
-    s32 spC;
-    s32 sp10;
-};
-struct RecoveredGlobal_800365C8_lbl_80435A44 {
-    s32 value;
-    u8 remaining[0x8];
-};
-struct Vec_800363B4 { f32 x, y, z; };
-struct Seg_800363B4 { s8 n; u8 pad1[0xF]; void *model1; void *model2; };
-struct Ang_800363B4 { s32 yaw; u8 pad4[0xC]; };
 extern "C" {
 extern const f32 lbl_805D8458;
-extern RecoveredGlobal_800365C8_lbl_80435A44 lbl_80435A44;
+extern const Vec lbl_80435A44;
 f32 fabs_float(f32);
 f32 atan2_float(f32, f32);
 f32 get_scale_factor__10TObjPlayerFv(f32);
@@ -46,22 +33,21 @@ extern const f32 lbl_805D8454;
 }
 
 void TBoss2Fin::render() {
-    u8 *arg0 = (u8*)this;
-    Seg_800363B4 *seg;
-    Ang_800363B4 *ang;
-    Vec_800363B4 *pt;
+    RopeSegment *seg;
+    RopeAnchor *ang;
+    Vec *pt;
     s32 j;
     s32 yaw;
-    Vec_800363B4 v;
+    Vec v;
     set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)lbl_805D4BA4 + 0x42C)) + 0x2C)));
-    seg = *(Seg_800363B4 * *)&this->m_20;
-    ang = *(Ang_800363B4 **)((s8 *)arg0 + 0x24);
-    pt = *(Vec_800363B4 * *)&this->m_2c;
-    for (; seg->n >= 2; pt++, seg++, ang++) {
-        for (j = seg->n - 1; j > 0; j--, pt++) {
+    seg = segments;
+    ang = anchors;
+    pt = points;
+    for (; seg->point_count >= 2; pt++, seg++, ang++) {
+        for (j = seg->point_count - 1; j > 0; j--, pt++) {
             push_matrix();
             translate_matrix_vec3((u8 *)(0), (u8 *)pt);
-            VecCopy((Vec *)&v, (const Vec *)(pt + 1));
+            VecCopy(&v, pt + 1);
             subtract_vector(&v, pt);
             if (TBoss2Fin__data_805D8450 == vector_length(&v)) {
                 v.x = TBoss2Fin__data_805D8450;
@@ -81,11 +67,11 @@ void TBoss2Fin::render() {
             scale_matrix(0, lbl_805D8260, lbl_805D8260, lbl_805D8260);
             rotate_matrix_x(0, -0x4000);
             if (j == 1) {
-                if (seg->model2 != NULL) {
-                    draw_chunk_object(seg->model2);
+                if (seg->end_model != NULL) {
+                    draw_chunk_object(seg->end_model);
                 }
-            } else if (seg->model1 != NULL) {
-                draw_chunk_object(seg->model1);
+            } else if (seg->segment_model != NULL) {
+                draw_chunk_object(seg->segment_model);
             }
             pop_matrix();
             pop_matrix();
@@ -95,16 +81,9 @@ void TBoss2Fin::render() {
 }
 
 void TBoss2Fin::run_task() {
-    s32 arg0 = (s32)this;
-    typedef char sp8_offset[(offsetof(Stack_800365C8, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_800365C8, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_800365C8, sp10) == 0x8) ? 1 : -1];
-    Stack_800365C8 stack;
-    ((TBoss2Fin *)arg0)->init_link_points();
-    stack.sp8 = *(s32 *)((s8 *)&lbl_80435A44.value + 0);
-    stack.spC = *(s32 *)((s8 *)&lbl_80435A44.value + 4);
-    stack.sp10 = *(s32 *)((s8 *)&lbl_80435A44.value + 8);
-    ((TObjEZRopeBase *)arg0)->sub_800FF788((void *)&stack.sp8);
+    init_link_points();
+    Vec offset = lbl_80435A44;
+    sub_800FF788(&offset);
 }
 
 void TBoss2Fin::init_link_points() {
@@ -123,27 +102,23 @@ void TBoss2Fin::init_link_points() {
 
 TBoss2Fin::~TBoss2Fin() {}
 
-struct E_800367C4 { s8 type; f32 a; f32 b; f32 c; s32 d; s32 e; };
-
-struct In_800367C4 { u8 pad[0x8]; s32 f8; u8 pad2[0xC]; s32 f18; };
+struct In_800367C4 { u8 pad[0x8]; void *end_model; u8 pad2[0xC]; void *segment_model; };
 
 struct G_800367C4 { u8 pad[0x42c]; In_800367C4 *in; };
-
-struct Rec_80036718 { f32 a, b, c, d; };
 
 struct Obj_80036718 {
     s32 f0;
     u8 pad4[0x14];
     void *vt;
     u8 pad1c[0x30 - 0x1C];
-    u8 f30[0x20];
-    Rec_80036718 recs[3];
+    RopeAnchor anchors[2];
+    RopeCollisionSphere spheres[3];
     s32 f80;
     s32 f84;
 };
 
 extern "C" {
-extern E_800367C4 lbl_804FE590[];
+extern RopeSegment lbl_804FE590[];
 extern const f32 lbl_805D8460;
 void *TObjEZRopeBase__ct(void *);
 extern u8 __vt__9TBoss2Fin[];
@@ -154,39 +129,39 @@ void TBoss2Fin__sub_800367C0(void);
 
 Obj_80036718 *__ct__9TBoss2FinFv(Obj_80036718 *self, s32 arg1, s32 arg2, s32 arg3) {
     s32 i;
-    Rec_80036718 *p;
+    RopeCollisionSphere *p;
     TObjEZRopeBase__ct(self);
     self->vt = __vt__9TBoss2Fin;
     self->f0 = TBoss2Fin__name;
     self->f80 = arg2;
     self->f84 = arg3;
-    p = self->recs;
+    p = self->spheres;
     for (i = 0; i < 2; i++, p++) {
-        p->a = lbl_805D845C;
-        p->b = TBoss2Fin__data_805D8450;
-        p->c = TBoss2Fin__data_805D8450;
-        p->d = TBoss2Fin__data_805D8450;
+        p->radius = lbl_805D845C;
+        p->center.x = TBoss2Fin__data_805D8450;
+        p->center.y = TBoss2Fin__data_805D8450;
+        p->center.z = TBoss2Fin__data_805D8450;
     }
-    p->a = lbl_805D8454;
+    p->radius = lbl_805D8454;
     ((TBoss2Fin *)self)->init_link_points();
-    ((TObjEZRopeBase *)self)->sub_800FF8CC((void *)((u8 *)&lbl_804FE590), (void *)self->f30, (s32)self->recs);
+    ((TBoss2Fin *)self)->sub_800FF8CC(lbl_804FE590, self->anchors, self->spheres);
     return self;
 }
 
 void TBoss2Fin__sub_800367C0(void) {  }
 void TBoss2Fin::init_effect_table() {
-    E_800367C4 *p = lbl_804FE590;
+    RopeSegment *p = lbl_804FE590;
     s32 i;
     for (i = 0; i < 2; i++) {
-        p->type = 6;
-        p->a = TBoss2Fin__data_805D8450;
-        p->b = TBoss2Fin__data_805D8450;
-        p->c = lbl_805D8460;
-        p->d = lbl_805D4BA4->in->f18;
-        p->e = lbl_805D4BA4->in->f8;
+        p->point_count = 6;
+        p->step.x = TBoss2Fin__data_805D8450;
+        p->step.y = TBoss2Fin__data_805D8450;
+        p->step.z = lbl_805D8460;
+        p->segment_model = lbl_805D4BA4->in->segment_model;
+        p->end_model = lbl_805D4BA4->in->end_model;
         p++;
     }
-    p->type = -1;
+    p->point_count = -1;
 }
 
 }
