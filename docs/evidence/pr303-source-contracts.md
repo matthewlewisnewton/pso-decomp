@@ -313,3 +313,44 @@ item-factory callback tests, whitespace and port-inventory checks pass.
 The earlier failed title/body update is not retried. Keep draft pending
 metadata reconciliation and current-head readiness review. Inherited integer
 storage and opaque protocol/parser boundaries remain documented limitations.
+
+
+## Keyboard and technique main refresh
+
+Merge main `65b21c210ae980e9d2fe4aef1a3314ed84df1ddd` into prior reviewed
+head `6c7b18984553da59229f1dbdaf589f8f8853a564`. The remote head was unchanged
+and no other active owner was working on #303. Only the exception register
+and generated inventory conflicted. Keep main's keyboard/technique entries
+and retirement of the technique conversion-pool hook, together with this
+branch's Falz override and DHCP volatile-state explanation. Regeneration
+reports 5,768 pragmas in 874 files and 177 compiler overrides. There are no
+manual source resolutions, new assembly or new compiler exceptions here.
+The dispatcher reset-status signature investigated separately for #376 is
+unchanged; this refresh does not duplicate that repair.
+
+Both baseline and continuation builds ran through the existing build-capacity
+wrapper in exclusive legacy mode, honoring its shared coordination paths.
+Both reproduce original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Complete `check_pr.py` checks
+pass against the fresh main report, including retention from current splits.
+
+| Measure | Main `65b21c210` | Continuation | Delta |
+|---|---:|---:|---:|
+| Exact functions | 27,392 | 27,392 | 0 |
+| Matched code bytes | 4,199,532 | 4,199,532 | 0 |
+| Matched data bytes | 1,470,367 | 1,470,455 | +88 |
+| Complete code bytes | 3,699,992 | 3,699,992 | 0 |
+| Complete data bytes | 1,185,151 | 1,185,239 | +88 |
+| Linked units | 3,585 | 3,584 | -1 |
+
+No function, code/data address, linked range or padding is lost. The unit
+count difference remains the existing two folds plus float unit. All 3,584
+linked units are exact. Technique controller is 21/21, keyboard control
+30/30, soft keyboard 27/27, DHCP 42/42 and packet runtime 24/24; their code,
+data and actual source linker inputs are exact. Retention has 17,707 entries,
+none missing or stale. All 180 accessor consumers retain the canonical
+header; host vector and item-factory tests, whitespace and the port inventory
+pass. Main owns the three DHCP matches already, so this continuation receives
+zero new function/code credit. The source-contract repairs and folds remain
+relevant. Keep draft with the previously documented interface limitations;
+the earlier failed title/body write is not retried.

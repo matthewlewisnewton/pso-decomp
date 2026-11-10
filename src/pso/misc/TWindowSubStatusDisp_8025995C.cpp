@@ -24,8 +24,8 @@ u8 get_small_font_glyph_width();
 s32 TWindowSubStatusDisp__sub_800FC248(s32);
 s32 build_small_font_glyph_quad(s32, Pos_80259A84 *);
 s32 render_forward__20TWindowSubStatusDispFPv();
-s32 set_glyph_quad_extents(s32, Pos_80259A84 *);
-s32 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(s32, Pos_80259A84 *, s32);
+void set_glyph_quad_extents(u8, u8 *);
+u8 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(u16 glyph, void *quad, s32 color);
 s32 end_render_forward__20TWindowSubStatusDispFPv();
 void begin_screen_draw(s32 arg0);
 s32 draw_textured_quad_at_depth(Pos_80259A84 *, f32);
@@ -72,7 +72,7 @@ void render_numeric_digit_entries(u8 *arg0, TWindowDrawContext *window_key_board
   s32 n;
   s32 mode;
   s32 g;
-  s32 r;
+  u8 r;
   u8 d;
   f32 w;
   f32 h;
@@ -118,7 +118,7 @@ void render_numeric_digit_entries(u8 *arg0, TWindowDrawContext *window_key_board
           pos.y = y;
           x -= (u8) r;
           pos.x = x;
-          set_glyph_quad_extents(r, &pos);
+          set_glyph_quad_extents(r, (u8 *)&pos);
           break;
       }
       case 1:

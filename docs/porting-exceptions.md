@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `18207f986`, 2026-11-09)
+## Summary (merged main `65b21c210`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `18207f986` (2026-11-09). Assembly is counted as source lines;
+after merging main `65b21c210` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,769 | 875 |
+| CodeWarrior pragmas (excluding push/pop) | 5,768 | 874 |
 | Per-unit compiler overrides in `configure.py` | 177 | 177 |
 | Approved regressions | 0 | 0 |
 
@@ -83,7 +83,7 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,769 pragmas in 875 files; per-file table in the generated file. Main kinds:
+5,768 pragmas in 874 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1144, `inline_depth` 1036, `fp_contract` 876, `auto_inline` 837,
 `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237,
 `readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56,
@@ -158,6 +158,13 @@ small float differences without FMA).
 | File | Scope | What remains | Port should |
 |---|---|---|---|
 | `src/pso/unk/text_80421620.cpp` | DHCP timer/request/discovery and previously exact code now linked | Provisional class wrappers on packet buffers, fixed reply/options offsets, 32-bit pointer/callback words, native byte-order and volatile-state assumptions; existing optimizer steering and release-frame padding. The new callback header makes callback declarations consistent. See [evidence](evidence/dhcp-focused-recovery.md). | Use shared typed packet/state definitions, explicit byte order and length checks, pointer-sized handles and appropriate synchronization; remove optimizer-only constraints. |
+
+### Keyboard control recovered from upstream #208
+
+| File | Function / scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TKeyBoardControl.cpp` | Keyboard glyph/tab and key-frame drawing | Existing scoped `pool_data off` and `fp_contract` pragmas, provisional receiver/layout views and explicit mangled helper names | Native table references, floating-point instructions and class boundaries; see [the evidence](evidence/upstream-keyboard-control.md). The existing `opt_loop_invariants off` is removed. | Drop optimizer steering, preserve required floating-point semantics, and consolidate keyboard/rendering types. |
+| `src/pso/misc/TWindowSubStatusDisp_8024FBA8.cpp` | Font-code mapper declaration | Existing wide input declaration remains `s32`, while the shared mapper interface takes `u16`; return type is corrected to `u16` | Narrowing the caller declaration changes original instruction selection. The new glyph-drawing signature is consistent in all callers, but this neighboring legacy boundary remains unresolved. | Use the shared narrow mapper interface and explicit character decoding; do not preserve the declaration discrepancy. |
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
@@ -460,11 +467,17 @@ Source construct MWCC accepts and standard C++ does not:
 
 `dhcp_state` is `volatile s32`. The timer callback `TLobby__sub_80423298` (`0x80423298`) and `dhcp_handle_reply` (`0x80424A48`) write it, and `TLobby__sub_80424CF4` stores 6 then reloads it before any call (`lwz` at `0x80424D1C` while r3 still holds 6). A port declares that object `volatile` and does not cache it across those calls. This is portable C++; it is not an MWCC pragma or a `*(volatile s32 *)&` pun.
 
-### `TTecCtrl_8022C444.cpp`: name a referenced conversion pool ([issue #233](https://github.com/matthewlewisnewton/pso-decomp/issues/233))
+### Technique controller recovered from upstream #208
 
-| Unit | Symbols | What | Why | Port should |
-|---|---|---|---|---|
-| `pso/misc/TTecCtrl_8022C444.cpp` | `get_technique_caster_flags`'s unsigned bias, `lbl_8044D078` | per-unit `post_object: tools/name_pool_symbols.py`; after MWCC it renames the emitted local `@N` `.rodata` object to `lbl_8044D078` and makes it global | The original split exports the 8-byte unsigned `2^52` bias and `TTecCtrl` loads it across units. Per-file MWCC emits the bias as a local pool object, and source cannot reuse that slot: a named global used by value gets a second pool copy. The post-process changes only the symbol name and binding, not the section bytes or relocations; the object then matches the split's 8-byte `.rodata`, the unit links, and the DOL keeps its original hash. The script refuses a bias with no matching local pool at the split's section and offset. Evidence: [conversion-pool-constants.md](evidence/conversion-pool-constants.md). | Drop the hook; keep the cast. The symbol name has no semantic meaning to a port. |
+| Unit / scope | What | Why | Port should |
+|---|---|---|---|
+| `pso/misc/TTecCtrl.cpp` | `-fp_contract on`, `-inline on,deferred`; existing scoped `opt_propagation off` in the folded charge-light function | Fused parameter scaling, inline global-load order and vtable/switch-table emission order reproduce the native object. [Evidence](evidence/upstream-technique-control.md). | Drop optimizer steering; retain fused arithmetic if identical floating-point results are needed. |
+| Parameter calculator and folded native interfaces | Provisional `pad_*` parameter fields, TTecAnti receiver cast over parameter storage, explicit mangled names, legacy actor/light function-pointer casts and raw offset views | Existing interface/layout assumptions from upstream and the fork remain bounded native recovery debt. | Use typed parameter copy/free functions, consolidate actor/light signatures and recover field meanings. |
+
+The former `TTecCtrl_8022C444.cpp` conversion-pool post-process is retired.
+Folding its readers into one object allows the compiler to emit local biases
+without symbol rewriting. The old hand-written TTecCtrl vtable is also removed;
+the class destructor emits it. [Historical evidence](evidence/conversion-pool-constants.md).
 
 ### Footprint unit recovered from upstream #208
 
