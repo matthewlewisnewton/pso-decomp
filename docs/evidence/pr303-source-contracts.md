@@ -1508,3 +1508,47 @@ spatial-audio objects retain their previous hashes, so the previously disclosed
 debug-only difference versus main is unchanged. Seven actual-source
 characterization cases, inventory and whitespace pass. Preserve original
 behavior, bugs and all; keep draft and all interface/metadata restrictions.
+
+
+## Shared DHCP option-setter contract
+
+After the status-record refresh at `21d6fda9b`, audit
+`TLobby__sub_80425288` at `0x80425288`. Its existing definition and local
+packet-runtime declaration use `s32(s16, s16, void *)`; the request-step unit
+instead declares `void(s32, s32, void *)`. Put the definition's existing
+contract in `DhcpClient.h` and remove both local declarations. Do not rename
+the function, change its body, add conversions or change any caller.
+
+All 24 original direct calls correspond to the two source units: lease/reply
+handling and the configuration, reset and hostname paths. Each source caller
+discards the result. The definition returns `0` for a table ID match and `-1`
+otherwise; it can return success without copying when the matched kind is not
+handled. IDs are representable constants. Lengths are constants, the existing
+explicit `(s16)n` scanner result or the existing `(u16)length` hostname value,
+after its original low-16-bit checks restrict it to 1 through 31. Preserve both
+explicit casts and those checks, including their narrowing behavior. No source
+address-taken reference or aligned literal target pointer appears in the
+inspected source/DOL. The only matching low-half address construction belongs
+to unrelated `container_jung_spawn_params` at `0x80445288`. This inventory does
+not prove that arbitrary computed indirect calls are impossible or recover the
+original declaration's spelling.
+
+The shared contract preserves fixed table-size copies, string termination,
+null-value presence/clear behavior and the `0`/`-1` result. It adds no received
+length or bounds contract. Native gated build reproduces the original DOL
+SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All three header consumers
+(`NetworkPacketRuntime`, `text_80421620` and `TLobby_801461EC`) are complete
+raw-byte-identical to their saved pre-change objects, including symbols and
+relocations, without normalization. All seven actual-source characterization
+cases pass unchanged. The full pinned-main comparison still passes: 3,594
+exact linked units, 18,301 retention entries without drift, existing +88 data
+bytes, zero new code/functions and no losses. Ordered linker providers remain
+unchanged at 3,594 source inputs and 1,353 original fallbacks. Inventory changes
+only the shifted source-line reference; no pragmas or compiler options change.
+
+The separately reported synthetic ACK/request/parser chain is not imported:
+its remote reproducer is unavailable in this checkout, and an independent
+fixture review is needed before adding characterization. Existing tests remain
+scoped to host-observed scanner/setter behavior rather than ingress or exploit
+proof. Raw-callback and reset-status holds remain; no failed ABI probe is
+repeated, no silent hardening is introduced and the PR remains draft.

@@ -154,7 +154,6 @@ s32 tcp_create__Fv(void);
 s32 TLobby__sub_80421B3C(s32 a);
 s32 mark_connection_closed__6TLobbyFs(s32);
 s32 tcp_delete__Fs(s32 a);
-void TLobby__sub_80425288(s32, s32, void *);
 extern volatile s32 lbl_805D7BA0;
 s32 TLobby__sub_8042455C(void *a);
 s16 TLobby__sub_8041DE1C(s16, s16, u32 *);

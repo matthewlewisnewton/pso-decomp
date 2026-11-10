@@ -141,7 +141,6 @@ s32 TLobby::get_task_count() {
     return dhcp_state;
 }
 
-s32 TLobby__sub_80425288(s16, s16, void *);
 extern u32 dhcp_lease_time;
 extern u32 dhcp_renewal_time;
 extern u32 dhcp_rebinding_time;

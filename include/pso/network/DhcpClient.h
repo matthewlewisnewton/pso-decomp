@@ -62,6 +62,10 @@ extern "C" void dhcp_parse_lease_times(u8 *cookie_and_options);
 // The scanner still receives no packet length.
 extern "C" s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *cookie_and_options, u8 tag, u8 **value);
 
+// Returns 0 for a known option ID, -1 otherwise. The legacy setter copies the
+// table's fixed size; len controls string termination or clearing, not a bound.
+extern "C" s32 TLobby__sub_80425288(s16 id, s16 len, void *value);
+
 // Reply configuration writes one address, subnet-mask and broadcast word.
 extern "C" s16 TLobby__sub_80424D58(s16 iface, s32 arg1, s32 arg2, void *arg3,
                                    s32 *address, s32 *netmask, s32 *broadcast, s32 arg7);
