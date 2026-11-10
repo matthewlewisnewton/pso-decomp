@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (fish synchronization on main `fffd67d0c3`, 2026-11-10)
+## Summary (fish synchronization on main `12a3368673`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after fish synchronization on main `fffd67d0c3` (2026-11-10). Assembly is counted as source lines;
+after fish synchronization on main `12a3368673` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -89,8 +89,12 @@ preserve the graph's exported constants and format strings. See
 [download graph recovery](evidence/download-graph-recovery.md) for the
 compiler and data layout evidence.
 
-CodeWarrior pragmas reproduce the original code generation and emission order.
-The generated inventory lists the counts by pragma and file.
+5,775 pragmas in 879 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1143, `inline_depth` 1035, `fp_contract` 878, `auto_inline` 833,
+`opt_common_subs` 611, `scheduling` 263, `opt_propagation` 239,
+`readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
+`defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
+and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
 MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and

@@ -2,7 +2,6 @@
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowBase.h"
 extern "C" {
-s8 get_type__20TWindowSubStatusDispFv(s32);
 extern "C" u8 lbl_805DD6E0[];
 extern "C" u8 lbl_805DD6E4[];
 extern "C" u8 lbl_805DD6E8[];
@@ -272,7 +271,7 @@ extern const f32 lbl_805DD70C;
 SD_80281760 *TWindowSubStatusDisp__ct(SD_80281760 *arg0, s32 arg1);
 void *get_player_by_client_id(s32 i);
 s32 draw_visible_window_entries(void *, void *, s32);
-s32 draw_list_page_indicator(s32, s32);
+s32 draw_list_page_indicator(PageIndicator *, s32);
 void __dl__7TObjectFPv(void *);
 void destroy_window_base__9TWindowDDFs(void *, int);
 }
@@ -283,23 +282,23 @@ void TWindowSubStatusDisp::dispatch_page_init() {
         &TWindowSubStatusDisp::vt0, &TWindowSubStatusDisp::vt1, &TWindowSubStatusDisp::vt2,
     };
     static void (TWindowSubStatusDisp::*page1[4])() = {
-        &TWindowSubStatusDisp::vt3, &TWindowSubStatusDisp::vt4, &TWindowSubStatusDisp::vt5,
+        &TWindowSubStatusDisp::vt3, &TWindowSubStatusDisp::init_challenge_records_page, &TWindowSubStatusDisp::vt5,
         &TWindowSubStatusDisp::vt5,
     };
     static void (TWindowSubStatusDisp::*page2[4])() = {
-        &TWindowSubStatusDisp::vt7, &TWindowSubStatusDisp::vt4, &TWindowSubStatusDisp::vt5,
+        &TWindowSubStatusDisp::vt7, &TWindowSubStatusDisp::init_challenge_records_page, &TWindowSubStatusDisp::vt5,
         &TWindowSubStatusDisp::vt5,
     };
 
     switch (m_60) {
     case 0:
-        (this->*page0[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page0[m_68->get_type()])();
         break;
     case 1:
-        (this->*page1[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page1[m_68->get_type()])();
         break;
     case 2:
-        (this->*page2[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page2[m_68->get_type()])();
         break;
     }
 }
@@ -319,13 +318,13 @@ void TWindowSubStatusDisp::dispatch_page_update() {
 
     switch (m_60) {
     case 0:
-        (this->*page0[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page0[m_68->get_type()])();
         break;
     case 1:
-        (this->*page1[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page1[m_68->get_type()])();
         break;
     case 2:
-        (this->*page2[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page2[m_68->get_type()])();
         break;
     }
 }
@@ -367,7 +366,7 @@ void TWindowSubStatusDisp::run_task() {
 void *TWindowSubStatusDisp::dt(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = __vt__20TWindowSubStatusDisp;
-        delete_if_allocated(this->m_68, 1);
+        delete_if_allocated((s32)this->m_68, 1);
         destroy_window_base__9TWindowDDFs(this, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);

@@ -9101,7 +9101,7 @@ pso/misc/TWindowSubShortMail_8027E620.cpp:
 pso/unk/text_8027FCE4.cpp:
 	.text       start:0x8027FCE4 end:0x8027FD88
 
-pso/unk/text_8027FD88.cpp:
+pso/misc/TWindowSubStatusDispPages.cpp:
 	.text       start:0x8027FD88 end:0x80281198
 	.rodata     start:0x8044FB00 end:0x8044FB08
 
