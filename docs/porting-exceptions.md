@@ -102,6 +102,15 @@ check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
 
+### Ground collision debug hook
+
+In `src/pso/map/CsnQuery.cpp`, CodeWarrior leaves the selected contact pointer
+unset until a contact slot is written. The original call to
+`TObjPlayer__sub_8007910C` can occur before any slot is written, and the hook
+consists of a return instruction. The matching build preserves the original
+register state at that call. The portable branch initializes the debug pointer
+to null.
+
 ### Dark Falz demo 4
 
 | File | Scope | What | Why | Port should |
