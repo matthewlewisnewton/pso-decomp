@@ -97,8 +97,11 @@ bounded comparison, not proof that no clean source organization can match.
 The unit stays unlinked and incomplete. A passing DOL hash does not score these
 unlinked candidate bodies: their runtime bytes still come from the original.
 
-The remaining eight missing bodies, the four frame mismatches, the undefined
-22-entry command-prefix table and inherited raw state views are follow-up work.
+The remaining modem bodies, frame mismatches, unit-local data layout and
+inherited raw state views are follow-up work. The 22-entry command-prefix table
+is external data at `0x804FDA78`, immediately beyond this unit's owned
+`[0x804FDA20, 0x804FDA78)` data range. Its external reference is not a missing
+unit-local definition or a reason to extend this unit's ownership.
 The original modem initializer independently clears a 0x2C-byte send record at
 `0x805D1DD0` and a 0x40-byte receive record at `0x805D1DFC`; that supports later
 typed transfer-state recovery. The existing initializer's padding devices and
@@ -131,3 +134,81 @@ The three renamed native member symbols keep their original addresses and
 extents. Linked-unit and generated retention checks pass with no drift. The
 porting-exception inventory and changed-line whitespace checks pass; all 268
 source-tool tests pass. No new exception is introduced.
+
+
+## Transmit-state continuation
+
+The next increment recovers `0x8042DE20` (300 bytes, exact),
+`0x8042DF4C` (568 bytes, 99.92254% fuzzy) and `0x8042E184` (412 bytes,
+99.85437% fuzzy). The latter two retain only stack-immediate differences. The
+first increment's four frame mismatches remain unchanged. Five other modem
+bodies remain absent; the complete unit is still unlinked and incomplete.
+
+The first 0x2C bytes of the existing `modem_exi_state` allocation are now a
+`ModemSendState`: busy flag, current data pointer, remaining and total lengths,
+immediate head and tail pointers/counts, DMA body pointer/count, and completion
+callback. Original `0x8042DD70`, `0x8042DE20` and `0x8042DF4C` accesses and the
+initializer's independent 0x2C-byte clear constrain those fields. Size and
+callback-offset assertions verify the native record view.
+
+`0x8042DD70` now uses those actual fields rather than writing outside
+`modem_connection_info` through casts. Its shared API takes a buffer pointer,
+length and `void (*)(s32)` callback. The transport retains its existing
+address-word queue field, converted once at this explicit buffer boundary;
+there is no callback-to-integer conversion. All 116 bytes of this previously
+exact routine remain exact, as does its source-linked transport caller.
+
+`0x8042DE20` limits a transfer to the remaining modem FIFO space, updates the
+remaining count, separates immediate head/tail bytes from complete 32-byte DMA
+cache lines, stores the body cache range, and sends command `0x68`. Ordinary
+address-width `size_t` expressions express the alignment operations. Introducing
+inline helper functions for these expressions was a 96.26667% candidate with
+different frame/register allocation; the direct expressions match without any
+padding, alignment attribute, dummy local or optimizer change. The alignment
+calculation uses the native DMA/cache contract, not an arbitrary object-address
+transformation. A port must use its target's DMA/cache facilities.
+
+The completion callback drains immediate head bytes, starts DMA and returns for
+its second phase, drains the tail, deselects, updates the interrupt mask and
+unlocks EXI. Head/tail counters decrease by four, even for a shorter last
+transfer. It clears busy/data and the saved callback before calling the client
+with the original total length. The callback-active flag is set only around
+that call. It does not assert lock ownership: EXI is already unlocked, and the
+client may reenter the modem API. `0x8042E184` deliberately returns zero when
+the transport may start a send; its original signed/unsigned comparisons and
+callback-context lock suppression are preserved.
+
+`EXIImm` copies immediate write bytes into the hardware data register before
+returning, as shown by `libs/dolphin/src/exi/EXIBios.c`; the asynchronous
+completion therefore does not retain the stack command's address.
+
+### Preserved storage and ownership hold
+
+Only the proven transmit prefix is typed in this increment. The existing
+0x70-byte `modem_exi_state` allocation and symbol extent remain unchanged; its
+remaining 0x44 bytes are explicitly opaque inherited storage. This is a
+provisional binary interface, not authentication of an original combined
+source object or discovery of another field.
+
+The original initializer separately clears a 0x40-byte receive region at
+`0x805D1DFC`, ending at `0x805D1E3C`. The next linked SDK `Ecb` allocation starts
+at `0x805D1E40` and its original and compiled `.bss` sections both require
+eight-byte alignment. That is strong evidence for a four-byte alignment tail.
+It does not by itself resolve the existing allocation's source ownership.
+Replacing it with two independent records would reduce the report's original
+BSS extent by four bytes under the current extraction and strict no-loss
+accounting. No special suffix field, standalone padding object, artificial unit,
+new alignment directive or weaker guard is introduced to hide that uncertainty.
+Full storage/source-link readiness remains held pending a justified ownership
+and accounting resolution.
+
+### Continued validation
+
+The continuation's fresh capacity-gated native build reproduces the original
+DOL. Relative to main, exact functions are 27,414 -> 27,416 and exact code bytes
+are 4,212,112 -> 4,212,772 (+660); relative to the first published checkpoint,
+the increment adds one exact function and 300 bytes. All data, source-linked
+coverage and unit counts are unchanged. ModemRuntime is 14/25 exact functions
+and its original 0x120-byte BSS coverage is unchanged. The complete current-main
+comparison and the incremental comparison both retain every byte in all nine
+strict coverage/exactness/link categories. This remains partial progress.

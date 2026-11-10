@@ -5,7 +5,8 @@
 #include "dolphin/os/OSContext.h"
 
 extern "C" {
-s32 TAdSinglePlyChrSelectGC__sub_8042DD70(s32 arg0, s32 arg1, s32 arg2);
+s32 TAdSinglePlyChrSelectGC__sub_8042DD70(u8 *data, s32 length, void (*callback)(s32));
+s32 TAdSinglePlyChrSelectGC__sub_8042E184(void);
 void TAdSinglePlyChrSelectGC__sub_8042DDE4(s32 channel, OSContext *context);
 void TAdSinglePlyChrSelectGC__sub_8042D6A4(char *command);
 s32 TAdSinglePlyChrSelectGC__sub_8042CD64(void);

@@ -150,7 +150,6 @@ extern u8 run_net_thread_loop__6TLobbyFv[];
 s16 TLobby__sub_803F96AC(void *);
 s16 TLobby__sub_803F9B94(void *, void *);
 void TLobby__sub_803F7A90(void);
-s32 TAdSinglePlyChrSelectGC__sub_8042E184(void);
 }
 extern s32 TLobby__queue_timeout_remaining;
 void subtract_network_queue_timeout(s32 arg0);
@@ -419,7 +418,7 @@ void TLobby::queue_thread_main() {
         TLobby__queue_timeout_remaining = p->b;
         for (;;) {
             if (TAdSinglePlyChrSelectGC__sub_8042E184() == 0) {
-                if (TAdSinglePlyChrSelectGC__sub_8042DD70((s32)p->a, (s32)p->b, (s32)subtract_network_queue_timeout) == 1) {
+                if (TAdSinglePlyChrSelectGC__sub_8042DD70((u8 *)p->a, p->b, subtract_network_queue_timeout) == 1) {
                     break;
                 }
             }

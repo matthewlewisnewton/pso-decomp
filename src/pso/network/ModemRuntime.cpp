@@ -7,6 +7,8 @@
 #include "dolphin/os/OSInterrupt.h"
 #include "dolphin/os/OSThread.h"
 #include "dolphin/os/OSReset.h"
+#include "dolphin/os/OSCache.h"
+#include <stddef.h>
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TUdpSocket.h"
@@ -35,24 +37,30 @@ struct RecoveredGlobal_8042E768_lbl_805D1D20 {
     char compression[6];
 };
 
-struct ModemExiState {
-    s32 f0;
-    s32 f4;
-    s32 f8;
-    s32 fC;
-    u8 pad_10[0x18];
-    s32 f28;
-    u8 pad_2C[0x10];
-    s32 f3C;
-    s32 f40;
-    s32 f44;
-    u8 pad_48[0x10];
-    s32 f58;
-    s32 f5C;
-    s32 f60;
-    s32 f64;
-    u8 pad_68[8];
+// The initializer clears these first 0x2C bytes independently. The remaining
+// storage keeps the inherited allocation extent; its original ownership is unresolved.
+struct ModemSendState {
+    s32 busy;
+    u8 *data;
+    s32 remaining;
+    s32 length;
+    u8 *head;
+    s32 head_length;
+    u8 *body;
+    s32 body_length;
+    u8 *tail;
+    s32 tail_length;
+    void (*callback)(s32 length);
 };
+
+struct ModemExiState {
+    ModemSendState send;
+    u8 remaining_storage[0x44];
+};
+
+typedef char ModemSendState_size[sizeof(ModemSendState) == 0x2C ? 1 : -1];
+typedef char ModemExiState_size[sizeof(ModemExiState) == 0x70 ? 1 : -1];
+typedef char ModemSendState_callback_offset[offsetof(ModemSendState, callback) == 0x28 ? 1 : -1];
 
 struct ModemResponseState {
     void (*callback)(s32 result);
@@ -73,10 +81,7 @@ struct RecoveredGlobal_80428360_lbl_805CFC20 {
     u8 remaining[0xE1E];
 };
 
-struct RecoveredGlobal_8042DD70_lbl_805D1D20 {
-    s32 value;
-    u8 remaining[0x18];
-};
+
 
 typedef struct Names_8042E57C {
     char *name[6];
@@ -122,6 +127,7 @@ extern u8 TLobby__pppoe_message_queue[0xA0];
 extern u8 lbl_805CF380[0x48];
 extern OSThreadQueue lbl_805D7CA0;
 void TAdSinglePlyChrSelectGC__sub_8042DE20(void);
+void TAdSinglePlyChrSelectGC__sub_8042DF4C(s32 channel, OSContext *context);
 static RecoveredGlobal_8042E768_lbl_805D1D20 modem_connection_info;
 static ModemResponseState modem_command_response_state;
 int atoi(const char *);
@@ -201,6 +207,13 @@ void TAdSinglePlyChrSelectGC::wake_load_thread(s32, OSContext *) {
 static OSResetFunctionInfo modem_reset_function_info = {
     TAdSinglePlyChrSelectGC::send_modem_hangup, 127
 };
+
+static inline s32 ModemMin(s32 a, s32 b) {
+    if (a < b) {
+        return a;
+    }
+    return b;
+}
 
 // The modem uses EXI channel 0, device 2. Register reads send a
 // two-byte command and receive one byte; bit 0x40 selects a write.
@@ -494,20 +507,19 @@ void TAdSinglePlyChrSelectGC__sub_8042D604(void) {
 
 #pragma push
 #pragma opt_common_subs off
-typedef char RecoveredGlobal_8042DD70_lbl_805D1D20_size[sizeof(RecoveredGlobal_8042DD70_lbl_805D1D20) == 0x1C ? 1 : -1];
-s32 TAdSinglePlyChrSelectGC__sub_8042DD70(s32 arg0, s32 arg1, s32 arg2) {
-    if ((s32) *(s32 *)((s8 *)(&(*(RecoveredGlobal_8042DD70_lbl_805D1D20 *)&modem_connection_info).value) + 0xB0) != 0) {
+s32 TAdSinglePlyChrSelectGC__sub_8042DD70(u8 *data, s32 length, void (*callback)(s32)) {
+    if (modem_exi_state.send.busy != 0) {
         return -4;
     }
-    if ((s32) lbl_805D7C98 != 3) {
+    if (lbl_805D7C98 != 3) {
         return -7;
     }
-    *(s32 *)((s8 *)(&(*(RecoveredGlobal_8042DD70_lbl_805D1D20 *)&modem_connection_info).value) + 0xB0) = 1;
-    *(s32 *)((s8 *)(&(*(RecoveredGlobal_8042DD70_lbl_805D1D20 *)&modem_connection_info).value) + 0xB4) = arg0;
-    *(s32 *)((s8 *)(&(*(RecoveredGlobal_8042DD70_lbl_805D1D20 *)&modem_connection_info).value) + 0xBC) = arg1;
-    *(s32 *)((s8 *)(&(*(RecoveredGlobal_8042DD70_lbl_805D1D20 *)&modem_connection_info).value) + 0xB8) = arg1;
-    *(s32 *)((s8 *)(&(*(RecoveredGlobal_8042DD70_lbl_805D1D20 *)&modem_connection_info).value) + 0xD8) = arg2;
-    TAdSinglePlyChrSelectGC__sub_8042DDE4(0, 0);
+    modem_exi_state.send.busy = 1;
+    modem_exi_state.send.data = data;
+    modem_exi_state.send.length = length;
+    modem_exi_state.send.remaining = length;
+    modem_exi_state.send.callback = callback;
+    TAdSinglePlyChrSelectGC__sub_8042DDE4(0, NULL);
     return 1;
 }
 #pragma pop
@@ -516,6 +528,114 @@ void TAdSinglePlyChrSelectGC__sub_8042DDE4(s32, OSContext *) {
     if (EXILock(0, 2U, TAdSinglePlyChrSelectGC__sub_8042DDE4) != 0) {
         TAdSinglePlyChrSelectGC__sub_8042DE20();
     }
+}
+
+void TAdSinglePlyChrSelectGC__sub_8042DE20(void) {
+    s32 length;
+    u8 *data;
+    u8 *body;
+    u8 *tail;
+    s32 max;
+    u32 cmd;
+
+    data = modem_exi_state.send.data;
+    max = 0x201 - lbl_805D7C90.f2;
+    length = modem_exi_state.send.remaining;
+    if (length >= max) {
+        length = max;
+    }
+    modem_exi_state.send.remaining -= length;
+    modem_exi_state.send.tail = NULL;
+    modem_exi_state.send.body = NULL;
+    modem_exi_state.send.head = NULL;
+    modem_exi_state.send.tail_length = 0;
+    modem_exi_state.send.body_length = 0;
+    modem_exi_state.send.head_length = 0;
+    // DMA uses complete 32-byte cache lines between the immediate transfers.
+    body = (u8 *)(((size_t)data + 31) & ~(size_t)31);
+    tail = (u8 *)((size_t)(data + length) & ~(size_t)31);
+    if (body >= tail) {
+        modem_exi_state.send.head = data;
+        modem_exi_state.send.head_length = length;
+    } else {
+        if (data != body) {
+            modem_exi_state.send.head = data;
+            modem_exi_state.send.head_length = body - data;
+        }
+        modem_exi_state.send.body = body;
+        modem_exi_state.send.body_length = tail - body;
+        DCStoreRange(modem_exi_state.send.body, modem_exi_state.send.body_length);
+        if (tail < data + length) {
+            modem_exi_state.send.tail = tail;
+            modem_exi_state.send.tail_length = (data + length) - tail;
+        }
+    }
+    EXISelect(0, 2, 4);
+    cmd = 0x68000000 | ((u16)length << 8);
+    EXIImm(0, &cmd, 4, EXI_WRITE, TAdSinglePlyChrSelectGC__sub_8042DF4C);
+}
+
+void TAdSinglePlyChrSelectGC__sub_8042DF4C(s32 chan, OSContext *context) {
+    s32 offset;
+    s32 count;
+    void (*callback)(s32);
+
+    for (offset = 0; modem_exi_state.send.head_length > 0; modem_exi_state.send.head_length -= 4) {
+        count = ModemMin(modem_exi_state.send.head_length, 4);
+        EXIImm(0, modem_exi_state.send.head + offset, count, EXI_WRITE, NULL);
+        EXISync(0);
+        offset += 4;
+    }
+    if (modem_exi_state.send.body_length > 0) {
+        EXIDma(0, modem_exi_state.send.body, modem_exi_state.send.body_length, EXI_WRITE,
+               TAdSinglePlyChrSelectGC__sub_8042DF4C);
+        modem_exi_state.send.body_length = 0;
+        return;
+    }
+    for (offset = 0; modem_exi_state.send.tail_length > 0; modem_exi_state.send.tail_length -= 4) {
+        count = ModemMin(modem_exi_state.send.tail_length, 4);
+        EXIImm(0, modem_exi_state.send.tail + offset, count, EXI_WRITE, NULL);
+        EXISync(0);
+        offset += 4;
+    }
+    EXIDeselect(0);
+    if (modem_exi_state.send.remaining > 0) {
+        modem_exi_state.send.data += 0x201 - lbl_805D7C90.f2;
+        lbl_805D7C90.f4 |= 0x10;
+    } else {
+        modem_exi_state.send.busy = 0;
+        modem_exi_state.send.data = NULL;
+        lbl_805D7C90.f4 &= ~0x10;
+    }
+    ModemWriteRegister(1, lbl_805D7C90.f4);
+    EXIUnlock(0);
+    if (modem_exi_state.send.remaining == 0 && modem_exi_state.send.callback != NULL) {
+        callback = modem_exi_state.send.callback;
+        modem_exi_state.send.callback = NULL;
+        lbl_805D7C9C = 1;
+        callback(modem_exi_state.send.length);
+        lbl_805D7C9C = 0;
+    }
+}
+
+s32 TAdSinglePlyChrSelectGC__sub_8042E184(void) {
+    u16 space;
+
+    if (modem_exi_state.send.busy == 1) {
+        return 1;
+    }
+    if (lbl_805D7C9C == 0) {
+        ModemLockExi();
+    }
+    space = ModemReadRegister(9) << 8;
+    space += ModemReadRegister(0xA);
+    if (lbl_805D7C9C == 0) {
+        EXIUnlock(0);
+    }
+    if (space < lbl_805D7C90.f2) {
+        return 0;
+    }
+    return 1;
 }
 
 typedef char RecoveredGlobal_8042E768_lbl_805D1D20_size[sizeof(RecoveredGlobal_8042E768_lbl_805D1D20) == 0x1C ? 1 : -1];
