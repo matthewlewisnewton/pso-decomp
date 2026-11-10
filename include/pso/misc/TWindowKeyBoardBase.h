@@ -15,6 +15,8 @@ struct TWindowKeyBoardBase : public TWindowBase {
     bool sub_8025CB10();
     int is_key_active();
     void set_flag62_bit8();
+    void set_flag62_bit2();
+    int is_active();
     u16 m_60;
     u16 m_62;
     u8 _pad64[0x1];

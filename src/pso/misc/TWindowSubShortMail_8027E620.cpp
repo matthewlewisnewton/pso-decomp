@@ -1,3 +1,4 @@
+#include "pso/misc/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowMessage.h"
@@ -197,7 +198,7 @@ s32 create_keyboard__19TWindowSubShortMailFv(void) {
     }
     update_chat_window((void *)var_r31);
     ((TWindowMakeTeam *)var_r31)->set_sub_position((u8 *)(get_window_layout_position(0xBB)));
-    ((TWindowMakeTeam *)var_r31)->set_keyboard_flag62_bit2();
+    ((TKeyBoardControl *)var_r31)->set_keyboard_flag62_bit2();
     ((TWindowSubComCard *)var_r31)->destroy_keyboard();
     return var_r31;
 }

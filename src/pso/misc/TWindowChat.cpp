@@ -157,7 +157,7 @@ s32 TWindowChat::submit_keyboard_input() {
     if (kb == 0U) {
         return 0;
     }
-    if (((TKeyBoardControl *)kb)->is_active() != 0) {
+    if (((TWindowKeyBoardBase *)kb)->is_active() != 0) {
         reset_input__11TWindowChatFv((int)this->composer);
         ((TWindowChat *)arg0)->set_input_active();
         return 1;
