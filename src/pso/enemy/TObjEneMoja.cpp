@@ -2,6 +2,8 @@
 #include "pso/system/ArrayAllocation.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEneMoja.h"
+#include "pso/TObjControl.h"
+#include "pso/unk/TUnk_80494968.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/npc/NpcAnimationBinding.h"
 #include "pso/npc/NpcModelRegistry.h"
@@ -101,13 +103,83 @@ s32 minimap_render_dot(void *, int, int, int, f32);
 s32 get_current_floor();
 TObjChara *get_enemy_entity(u16);
 TObjPlayer *get_player_by_client_id(s32);
-void *__ct__11TObjControlFP7TObject(void *, void *);
-void *TObjEneMoja__ct(void *, void *, void *);
-void *__nw__7TObjectFUl(int);
-extern void *tl_04;
+extern TObject *tl_04;
+extern const char *TObjEneMoja__name;
+extern const f32 moja_technique_chance_offset;
+extern const f32 moja_jump_chance_offset;
 }
 
 // CodeWarrior emits these definitions in reverse order with deferred code generation.
+// Keep the shared clamp bounds as small-data loads in the original registers.
+#pragma push
+#pragma opt_common_subs off
+TObjEneMoja::TObjEneMoja(TObject *parent, void *set_data) : TObjEnemy(parent) {
+    m_name = TObjEneMoja__name;
+    apply_set_data(set_data);
+    initialize_position_copies();
+    mode = 0;
+    phase = 0;
+
+    {
+        techniqueChance = moja_technique_chance_offset + parameters[1];
+        f32 chance = techniqueChance;
+        if (chance < lbl_805D9BD8) {
+            techniqueChance = lbl_805D9BD8;
+        } else if (lbl_805D9BDC < chance) {
+            techniqueChance = lbl_805D9BDC;
+        }
+    }
+    {
+        jumpChance = moja_jump_chance_offset + parameters[2];
+        f32 chance = jumpChance;
+        if (chance < lbl_805D9BD8) {
+            jumpChance = lbl_805D9BD8;
+        } else if (lbl_805D9BDC < chance) {
+            jumpChance = lbl_805D9BDC;
+        }
+    }
+
+    clamp_appearance_parameter();
+    select_rare_variant();
+    subtype = 1;
+    action_table = moja_enemy_actions;
+    set_action_table(action_table);
+    motion_list = lbl_805D50D8->motions;
+    requested_action = 0;
+    set_animation(requested_action);
+    set_field_b8(requested_action);
+    init_collision_body_parts(this, &moja_enemy_collision_body, 1);
+
+    attack = 0;
+    const size_t kind = variant;
+    // Materialize the scaled index shared by the base and resistance tables.
+    const size_t variant_offset = kind * sizeof(*lbl_805D50C8);
+    bind_enemy_combat_stats(
+        reinterpret_cast<u8 *>(lbl_805D50C8[variant_offset / sizeof(*lbl_805D50C8)]),
+        reinterpret_cast<u8 *>(lbl_805D50CC[3 * kind + attack]),
+        reinterpret_cast<u8 *>(lbl_805D50D0[variant_offset / sizeof(*lbl_805D50D0)]));
+    movementParameters = &moja_enemy_movement_parameters[variant];
+    referenceHp = hp;
+    update_prev_position();
+    copy_body_to_center();
+    register_object_by_id();
+    resetTimer = 0;
+    timer = resetTimer;
+    unused_37C = 0;
+    attackSequence = -1;
+    roar = 1;
+    add_flags_2e4(1);
+    actorFlags |= 0x40000;
+    sinkOffset = lbl_805D9BD8;
+    effect = TUnk_80494968::create(0xff303030, 0x0a303030);
+    for (s32 i = 0; i < 4; ++i) {
+        fades[i].activate_and_dispatch();
+    }
+    clear_lobby_object_state();
+}
+
+#pragma pop
+
 TObjEneMoja::~TObjEneMoja() {
     if (effect != NULL) {
         effect->queue_destruction();
@@ -194,17 +266,8 @@ void TObjEneMoja::free_resources() {
 }
 
 void *TObjEneMoja::create(void *arg0) {
-    void *o;
-    void *o2;
-    o = __nw__7TObjectFUl(0x20);
-    if (o != NULL) {
-        o = __ct__11TObjControlFP7TObject(o, tl_04);
-    }
-    o2 = __nw__7TObjectFUl(0x40C);
-    if (o2 != NULL) {
-        o2 = TObjEneMoja__ct(o2, o, arg0);
-    }
-    return o2;
+    TObjControl *control = new TObjControl(tl_04);
+    return new TObjEneMoja(control, arg0);
 }
 
 void TObjEneMoja::run_task() {
@@ -283,4 +346,10 @@ void TObjEneMoja::run_task() {
     dot_phase = this->m_2b4;
     this->m_2b4 = dot_phase + lbl_805D9BDC;
     minimap_render_dot(&this->position, -0x5DB4, 1, 0, dot_phase);
+}
+
+// Definitions follow their use so CodeWarrior references the named small-data entries.
+extern "C" {
+extern const f32 moja_technique_chance_offset = 0.3f;
+extern const f32 moja_jump_chance_offset = 0.6f;
 }

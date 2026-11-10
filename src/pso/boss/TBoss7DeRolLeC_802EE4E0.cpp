@@ -45,8 +45,6 @@ extern TBoss7DeRolLeC *boss7_joint_state;
 extern u8 *lbl_805D693C;
 extern s32 lbl_805D6940;
 extern const f32 lbl_805DEA10;
-void *TBoss7DeRolLeC__ct(void *, void *, void *);
-void *__nw__7TObjectFUl(int);
 
 extern void *tl_04;
 
@@ -60,9 +58,9 @@ void TBoss7DeRolLeC::run_exit_callbacks() {
 }
 
 void *TBoss7DeRolLeC::create(void *arg0) {
-    void *o = __nw__7TObjectFUl(0x7D4);
+    TBoss7DeRolLeC *o = static_cast<TBoss7DeRolLeC *>(TObject::operator new(sizeof(TBoss7DeRolLeC)));
     if (o != NULL) {
-        o = TBoss7DeRolLeC__ct(o, tl_04, arg0);
+        o = TBoss7DeRolLeC__ct(o, static_cast<TObject *>(tl_04), arg0);
     }
     return o;
 }

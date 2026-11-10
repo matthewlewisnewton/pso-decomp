@@ -22,7 +22,7 @@ struct Ent_801E4874 {
     u8 pad[8];
 };
 
-extern u8 *TLanguage__read_cursor;
+u8 *TLanguage__read_cursor;
 extern "C" {
 u8 *TQuestVmDownLoadServer__sub_8007EBDC(s32, s32);
 u8 *alloc__22TQuestVmDownLoadServerFUl();
