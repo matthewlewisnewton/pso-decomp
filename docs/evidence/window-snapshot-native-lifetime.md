@@ -5,6 +5,7 @@ This follows the capture boundary checkpoint
 Base construction/destruction, its actual renderer/task and a compiler-owned
 24-byte table. OptionCtrl's sole 0x64-byte window producer uses ordinary new.
 The separate opaque 0x40-byte capture allocation is not a window-owned resource.
+The native implementation checkpoint is `aa4150ccb3694e340917a81b277198512c03b4b9`.
 
 ## Supported window lifetime
 
@@ -63,10 +64,28 @@ protected-original checks pass, including the original 1044-byte setup helper
 and WS_Word's complete original3412 provider with its missing916-byte renderer.
 No compiler control or additional technical exception is introduced.
 
-Fork main remains `4e784e247d991f1fb25766fc80923242a9ba469a`. Fresh-main check_pr
+At the native implementation checkpoint, fork main was
+`4e784e247d991f1fb25766fc80923242a9ba469a`. Fresh-main check_pr
 passes with combined +600 matched code, +1220 linked code, +1496 matched data
 and +1452 linked data bytes. Totals remain 27,395 exact functions, 3,589 exact
 linked units and 3,653 source-bearing units. The fourteen previously qualified
 four-byte alignment ranges are unchanged. Raw Base/Addition calls fall to 22
 across 12 units. Capture lifetime, WS_Word, ownership/interface/constant and all
 other standing holds remain; PR stays draft.
+
+## Current main integration
+
+Fork main advanced to `51cdb60cbd219fe302bea6a004144c70ba85c40f` during final
+review and is integrated by merge `7ce5df2c8f6e1f98d0fdeb902a34235adcb44bd1`.
+The separate Vol Opt pillar change adds 212 matched/linked code bytes, 76
+matched/linked data bytes, one exact function and one linked unit. Those gains
+are main's contribution; Snapshot contributes only its 24 data bytes.
+
+Both isolated builds reproduce the original DOL hash. check_pr against published
+da05 and freshly built main51 passes. Totals are now 27,396 exact functions and
+3,590 exact linked units, with 3,653 source-bearing units and clean retention at
+17,856. Combined deltas versus fresh main remain +600 matched code, +1220 linked
+code, +1496 matched data and +1452 linked data bytes. Port inventory and all
+Snapshot/WS_Word/protected-original provenance checks pass again. No additional
+window interface, ownership claim or technical exception is introduced by this
+integration; all remaining holds above stay in force.
