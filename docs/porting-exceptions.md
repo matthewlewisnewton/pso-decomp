@@ -514,7 +514,7 @@ The loader at `0x800AF56C` uses a shared `.data` base for the two BML descriptor
 
 The Moja vtable at `0x804919BC` lies between those tables and the `run_task` switch table at `0x80491B08`. Moving only the resource tables into the loader creates a cycle because the code for `run_task` precedes the loader while its switch table follows the resource tables. The consolidated unit owns both tables and generates the vtable from the real destructor. Immediate compilation puts the switch table before the vtable. Reverse definitions with `-inline off,deferred` preserve both the function order and the original data order.
 
-Ports can drop the compiler switch. The two existing render and target-acquisition bodies in `TObjPlayer_800ACA60.cpp` still use explicit receivers. Define them as ordinary members of `TObjEneMoja` on a compiler with different C++ mangling.
+Ports can drop the compiler switch. The render and target-acquisition bodies in `TObjPlayer_800ACA60.cpp` are ordinary `TObjEneMoja` members (`render`, and `vfunc_28` — the `TObjChara` override name for acquire_target).
 
 ### `TBoss8Dragon.cpp`: `-inline off,deferred` ([#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302))
 

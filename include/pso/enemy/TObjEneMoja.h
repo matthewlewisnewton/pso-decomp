@@ -15,7 +15,7 @@ struct MojaCollisionState {
 struct TObjEneMoja : public TObjEnemy {
     virtual ~TObjEneMoja();
     static void load_resources();
-    virtual void vfunc_28(); // Acquire a target through the TObjChara slot.
+    virtual void vfunc_28(); // acquire_target: must keep this name to override TObjChara::vfunc_28.
     virtual s32 update_action_hold_status();
     virtual s32 update_movement_status();
     virtual void vfunc_58();

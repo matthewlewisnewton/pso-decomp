@@ -258,6 +258,8 @@ void TObjEneMoja::run_task() {
             update_attack_jump__11TObjEneMojaFv(reinterpret_cast<Obj_800ACFE8 *>(self));
             break;
         case 7:
+            // Pre-existing: these two TObjPlayer helpers operate on the shared
+            // TObjChara/TObjMotion layout, not a player instance.
             reinterpret_cast<TObjPlayer *>(self)->update_invincibility();
             break;
         case 8:

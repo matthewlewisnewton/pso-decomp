@@ -1436,8 +1436,7 @@ s32 TObjEneMoja::update_action_hold_status() {
     }
     return 0;
 }
-// CodeWarrior vtable entry points with an explicit receiver.
-extern "C" void vfunc_28__11TObjEneMojaFv(u8 *arg0) {
+void TObjEneMoja::vfunc_28() {
     s32 best_id;
     s32 i;
     s32 id;
@@ -1446,58 +1445,58 @@ extern "C" void vfunc_28__11TObjEneMojaFv(u8 *arg0) {
     f32 d;
     TObjPlayer *q;
     u16 tid;
-    if (((TObjEneMoja *)arg0)->appearance != 1 && ((((TObjEneMoja *)arg0)->mode != 0 && ((TObjEneMoja *)arg0)->target == NULL) || ((TObjEneMoja *)(arg0))->is_actor_cadence_frame(0x1E) != 0)) {
-        if (obj_testFlags30__14TObjCollidableFUl(arg0, 0x10) != 0) {
+    if (this->appearance != 1 && ((this->mode != 0 && this->target == NULL) || this->is_actor_cadence_frame(0x1E) != 0)) {
+        if (obj_testFlags30__14TObjCollidableFUl(this, 0x10) != 0) {
             i = 0;
             best_id = 0xFFFF;
             Vec_800AEE54 v = *(Vec_800AEE54 *)lbl_8043B0B4;
-            best = *(f32 *)((s8 *)(((TObjEneMoja *)arg0)->movementParameters) + 0) * *(f32 *)((s8 *)(((TObjEneMoja *)arg0)->movementParameters) + 0);
+            best = *(f32 *)((s8 *)(this->movementParameters) + 0) * *(f32 *)((s8 *)(this->movementParameters) + 0);
             for (; i < registered_player_count + lbl_805D5870; i++) {
                 p = get_player_data__10TObjPlayerFi(i);
                 if (p == NULL) {
                     break;
                 }
                 id = get_entity_id(p);
-                if ((u16)id < 0x4000 && (u16)id != ((TObjEneMoja *)arg0)->entity_id && !(*(s32 *)((s8 *)p + 0x30) & 0x02000800)) {
+                if ((u16)id < 0x4000 && (u16)id != this->entity_id && !(*(s32 *)((s8 *)p + 0x30) & 0x02000800)) {
                     f32 xx;
                     f32 zz;
                     VecCopy((Vec *)&v, (const Vec *)(p + 0x2FC));
-                    subtract_vector(&v, arg0 + 0x2FC);
+                    subtract_vector(&v, &this->body_center_position);
                     xx = v.x * v.x;
                     zz = v.z * v.z;
                     d = xx + zz;
-                    if (d < best && check_path_obstructed(arg0, p + 0x2FC) != 1 && csnVector(arg0 + 0x2FC, p + 0x2FC, -1) == 0U) {
+                    if (d < best && check_path_obstructed(this, p + 0x2FC) != 1 && csnVector(&this->body_center_position, p + 0x2FC, -1) == 0U) {
                         best_id = id;
                         best = d;
                     }
                 }
             }
-            ((TObjEneMoja *)arg0)->targetId = best_id;
+            this->targetId = best_id;
         } else {
-            ((TObjEneMoja *)arg0)->targetId = find_nearest_visible_player(arg0, 0, *(f32 *)((s8 *)(((TObjEneMoja *)arg0)->movementParameters) + 0));
+            this->targetId = find_nearest_visible_player(this, 0, *(f32 *)((s8 *)(this->movementParameters) + 0));
         }
-        tid = ((TObjEneMoja *)arg0)->targetId;
+        tid = this->targetId;
         if (tid < 0x1000U) {
             q = get_player_by_client_id(tid);
             if (q != NULL) {
                 if (q->get_floor() == get_current_floor()) {
-                    ((TObjEneMoja *)arg0)->target = q;
+                    this->target = q;
                     return;
                 }
             }
-            ((TObjEneMoja *)arg0)->target = NULL;
+            this->target = NULL;
             return;
         }
         if (tid < 0x4000U) {
-            ((TObjEneMoja *)arg0)->target = get_enemy_entity(tid);
+            this->target = get_enemy_entity(tid);
             return;
         }
-        ((TObjEneMoja *)arg0)->targetId = 0xFFFFU;
-        ((TObjEneMoja *)arg0)->target = NULL;
+        this->targetId = 0xFFFFU;
+        this->target = NULL;
     }
 }
 
-extern "C" void render__11TObjEneMojaFv(u8 *arg0) {
+void TObjEneMoja::render() {
     Vec pos;
     Fade_800AF080 *fade;
     s32 cam;
@@ -1508,23 +1507,23 @@ extern "C" void render__11TObjEneMojaFv(u8 *arg0) {
     if (is_split_screen() != 0) {
         cam = get_camera_mode__11TCameraCtrlFv();
     }
-    vis = ((Ene_800AF080 *)arg0)->m9(lbl_805D9C50, lbl_805D9C54, lbl_805D9BF0);
+    vis = ((Ene_800AF080 *)this)->m9(lbl_805D9C50, lbl_805D9C54, lbl_805D9BF0);
     if (vis == 0) {
         return;
     }
-    select_actor_lighting(arg0);
-    set_current_texture_list((GinjaTextureList *)(((TObjEneMoja *)arg0)->texlist));
+    select_actor_lighting(this);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     id = model_render_flags;
-    fade = &((Body_800AF080 *)arg0)->fades[cam];
+    fade = &((Body_800AF080 *)this)->fades[cam];
     saved_model_render_flags = id;
     saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
     saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
     model_render_flags = id | 1;
     update__15RenderFadeStateFv(fade, chunk_polygon_flags_or_mask, chunk_polygon_flags_and_mask, id);
     draw = 1;
-    if (((RenderFadeState *)fade)->updateFromCamera((const f32*)(arg0 + 0x38)) == 1) {
+    if (((RenderFadeState *)fade)->updateFromCamera((const f32 *)&this->position) == 1) {
         fade->m6();
-        if (defer_render__7TObjectFv(arg0) != 0) {
+        if (defer_render__7TObjectFv(this) != 0) {
             draw = 0;
         } else {
             model_render_flags &= ~1;
@@ -1533,17 +1532,17 @@ extern "C" void render__11TObjEneMojaFv(u8 *arg0) {
     if (draw != 0) {
         set_motion_packed_rotation();
         push_matrix();
-        translate_matrix(0, lbl_805D9BD8, ((TObjEneMoja *)arg0)->sinkOffset, lbl_805D9BD8);
-        post_translate_matrix(arg0 + 0x38);
-        rotate_matrix_y(0, (int)(((TObjEneMoja *)arg0)->rotation.yaw));
+        translate_matrix(0, lbl_805D9BD8, this->sinkOffset, lbl_805D9BD8);
+        post_translate_matrix(&this->position);
+        rotate_matrix_y(0, (int)(this->rotation.yaw));
         if (check_demo_mode() == 1) {
-            draw_chunk_object(*(s32 *)((s8 *)arg0 + 0x34));
+            draw_chunk_object((s32)this->model);
         } else {
             TObjPlayer::toggle_particle_effect();
             if (vis == 1) {
-                ((TObjMotion *)arg0)->draw();
+                ((TObjMotion *)this)->draw();
             } else {
-                ((TObjEnemy *)arg0)->draw_motion_model();
+                ((TObjEnemy *)this)->draw_motion_model();
             }
             TParticleCtrl::end_effect_render();
         }
@@ -1551,14 +1550,14 @@ extern "C" void render__11TObjEneMojaFv(u8 *arg0) {
         clear_motion_packed_rotation();
     }
     model_render_flags &= ~1;
-    if (((RenderFadeState *)fade)->updateFromCamera((const f32*)(arg0 + 0x38)) == 1) {
+    if (((RenderFadeState *)fade)->updateFromCamera((const f32 *)&this->position) == 1) {
         fade->m7();
     }
     chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
     chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
     model_render_flags = saved_model_render_flags;
     restore_scene_lighting(saved_chunk_polygon_flags_or_mask, saved_chunk_polygon_flags_and_mask);
-    switch (((TObjEneMoja *)arg0)->mode) {
+    switch (this->mode) {
     case 0:
     case 1:
     case 9:
@@ -1567,7 +1566,7 @@ extern "C" void render__11TObjEneMojaFv(u8 *arg0) {
         pos.x = lbl_805D9C58;
         pos.y = lbl_805D9BDC;
         pos.z = lbl_805D9C58;
-        ((TObjEnemy *)(arg0))->draw_ground_shadow(&pos, 0);
+        ((TObjEnemy *)this)->draw_ground_shadow(&pos, 0);
         break;
     }
 }
