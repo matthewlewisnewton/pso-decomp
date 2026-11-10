@@ -95,5 +95,6 @@ checkpoint; historical tests from the frozen stack are not substituted for
 this new run.
 
 The containing unit remains incomplete and unlinked. This input recovery
-does **not** clear the separate search pointer-sentinel decision documented
-in [quest-download-search-evidence.md](quest-download-search-evidence.md).
+did **not** resolve the then-pending search pointer-sentinel decision. The later
+[named macro decision](quest-download-search-evidence.md) is separate from the
+shared-storage and input-boundary limitations retained here.

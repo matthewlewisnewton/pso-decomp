@@ -44,28 +44,62 @@ form puts its `li 0` fallthrough in the original's place. `IsX_803E9FFC` inlines
 into the first pass with its own local `jumptable_804FCA54` copy, exactly as
 it does into `sub_803E9FFC` (`jumptable_804FCBB0`).
 
-## Sentinel spelling
+## Named sentinel word
 
-The original returns `li r3, -1` from three sites: the empty-range path when
-`lbl_805D7888 >= 3`, the all-ones slot status, and the propagated recursion
-failure (which first frees the accumulated list through `sub_803ECE5C`).
-A standalone probe confirmed `return ((T *)-1)` compiles to a bare
-`li r3, -1` with no stack traffic, and the recovery spells it once as a
-named constant used at the three failure returns:
+The original returns `li r3, -1` from three search sites: the empty-range path
+when `lbl_805D7888 >= 3`, the all-ones token-slot status, and propagated recursion
+failure after freeing this frame's accumulated list through `sub_803ECE5C`.
+The recovered caller chain tests that native 32-bit word before traversing a
+returned list.
+
+On 2026-11-10, Matt replied to the concrete sentinel question: “A macro with
+that constant seems reasonable”. The recovery now gives the observed word one
+name, shared only by the search and its two caller stages:
 
 ```c
-#define QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED ((QuestDownloadSegment *)-1)
+#define QUEST_DOWNLOAD_LIST_SENTINEL_WORD 0xFFFFFFFFU
 ```
 
-with `if ((t = quest_download_slot_chain_table[beg].tokens) ==
-(QuestDownloadMatchToken *)-1)` for the slot status and the existing
-`(u32)sub == 0xFFFFFFFFU` word test on the recursion result, the same
-word-test its matched caller `sub_803E9FFC` already uses. This belongs to
-the pointer-sentinel spelling family Matt rejected on 2026-11-04. The
-concrete spelling above still requires his explicit sign-off. A matching
-compiler result does not clear that decision: PR #366 must remain draft
-until the gate is resolved. Leaving the search undefined remains an option
-if this spelling is not approved.
+The three search failure returns explicitly convert the word to
+`QuestDownloadSegment *`; the token-slot check converts it to
+`QuestDownloadMatchToken *`; and `sub_803E9FFC` propagates it through its existing
+`void *` return boundary. The recursive result, wrapper result and
+`sub_803EA1A8` consumer checks compare their existing 32-bit views with the same
+macro. All-ones `slot->items` means unavailable input and is skipped, whereas an
+all-ones generated result is propagated failure. The macro is undefined before
+`build_item_list`, leaving unrelated ID sentinels and integer status returns
+outside its scope.
+
+| Value | Preserved native meaning |
+|---|---|
+| `0xFFFFFFFF` pointer/result word | Search/list failure, or unavailable slot input as described above |
+| `NULL` | Empty result or allocation exhaustion; these remain indistinguishable |
+| Other returned pointer | List whose nodes may be traversed and released |
+
+Matt's reply resolves the earlier requested decision about using a named macro
+for this observed constant. It does not establish the original source spelling,
+a portable integer-to-pointer representation, or approval of unrelated pointer
+casts. These conversions intentionally preserve the existing 32-bit PPC ABI.
+Ownership, shared-storage, unchecked-input and lifecycle/reachability limitations
+remain unchanged, and the unit remains incomplete and unlinked.
+
+Historically, the 2026-11-04 pointer-sentinel family was rejected. The initial
+recovery used `QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED` as a typed `(T *)-1` macro
+while that decision remained pending. Matching output alone did not resolve it;
+the present change follows Matt's later macro direction and uses the explicit
+unsigned word consistently through the caller chain.
+
+The macro checkpoint preserves the complete provider object byte-for-byte
+(SHA-256 `22752cb218bdba3d7392a4506abdf15e494734223c38622c9e902ecab5885230`)
+and the complete frontend object. All 168 compiled provider bodies, 16 frontend
+bodies, allocated data/layout/relocations and all 173 provider report entries
+are unchanged. The search remains 876/876, its wrapper 428/428 and its downstream
+consumer 476/476, all 100%. Native contract review verifies the three failure
+returns, cleanup before recursive propagation, null allocation results and the
+consumer's separate integer failure path. Full native build, no-loss comparisons,
+exception-register check and independent exact-head review accompany publication.
+No new runtime execution or matching/linkage gain is claimed for a spelling-only
+change. The unit remains 159/173 exact, five undefined and nine partial, unlinked.
 
 ## Register allocation findings
 
@@ -148,7 +182,7 @@ The native slot producer calls `find_longest_match_entry` at `0x803EAA50`,
 rejects an all-ones result, and on success stores the length at slot+0x18
 and the actual token pointer at slot+0. The slot word is not an index or a
 length-based handle. These observations justify preserving three states;
-they do not approve any pointer-sentinel spelling.
+they establish the representation contract, independently of Matt's later macro decision above.
 
 Six private cast-free slot-check variants were compiled with the unchanged
 GC/1.2.5 profile. They retained the other exact functions but reduced the
@@ -158,8 +192,8 @@ the pointer first provides less semantic improvement. Two four-byte union
 result variants also regressed the exact `sub_803E9FFC` caller: the factory
 form scored 90.84475% for the search and 96.40187% for the caller; the
 constructor form scored 91.87215% and 91.57944%. Neither is an adopted repair
-or proof of a portable result representation. No tested alternative clears
-the explicit sign-off gate, and the tests are not an impossibility proof.
+or proof of a portable result representation. Those experiments did not resolve the then-pending spelling decision; the
+later macro direction is recorded above. The tests are not an impossibility proof.
 
 ## Entry-merger live ranges
 

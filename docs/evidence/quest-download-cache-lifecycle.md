@@ -198,7 +198,8 @@ Original instructions, objects and interpreter inputs remain private; the note
 publishes provenance summaries and hashes.
 The unit remains incomplete and unlinked. Full provider behavior, every reachable
 producer transition, malformed-image safety and exactness remain unproved. The
-[search sentinel gate](quest-download-search-evidence.md) remains in force.
+[named search sentinel decision](quest-download-search-evidence.md) does not
+clear these lifecycle or ownership limitations.
 
 The later [relocation and entry-gate audit](quest-download-cache-relocation.md)
 recovers `8924` and bounds these lower-level witnesses against the observed

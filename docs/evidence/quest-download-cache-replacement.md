@@ -110,8 +110,9 @@ enclosing owner or clear the request/input alias preconditions.
 The unit remains 159/173 exact, five undefined and nine partial, unlinked.
 The [observed entry gates and fixed-image caveats](quest-download-cache-relocation.md)
 still apply: no enabled shipped mutation route was demonstrated. Lower-level
-counterexamples are not claims of shipped failures. The search pointer-sentinel
-sign-off remains unresolved.
+counterexamples are not claims of shipped failures. The later
+[named search sentinel decision](quest-download-search-evidence.md) does not
+clear these ownership or lifecycle limitations.
 
 The [primary-page remover continuation](quest-download-primary-removal.md)
 shares the existing request type with its real frontend producer. Former local

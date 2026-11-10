@@ -154,6 +154,7 @@ does not turn lower-level witnesses into claims of shipped failures. Earlier
 [reachability caveats](quest-download-cache-relocation.md) still apply.
 
 The unit remains **159/173 exact, five undefined and nine partial, unlinked**.
-The separate search pointer-sentinel sign-off remains unresolved.
+The later [named search sentinel decision](quest-download-search-evidence.md)
+does not clear the separate ownership, bounds or lifecycle limitations.
 The separate [byte-consumer recovery](quest-download-byte-conversion.md) defines
 `EDF64` as a partial without clearing the frontend producer's lifetime hold.

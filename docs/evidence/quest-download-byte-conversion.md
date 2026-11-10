@@ -136,5 +136,6 @@ Existing 159 exact provider functions, eight prior partial scores and all 16
 frontend functions are preserved. Native build/no-loss checks, allocated-data
 and relocation comparisons and exact-head source review accompany publication.
 The unit is **159/173 exact, five undefined and nine partial, unlinked**.
-The search pointer-sentinel decision, shared-storage holds and earlier
-[reachability caveats](quest-download-cache-relocation.md) remain unresolved.
+The later [named search sentinel decision](quest-download-search-evidence.md)
+does not clear shared-storage holds or the earlier
+[reachability caveats](quest-download-cache-relocation.md).
