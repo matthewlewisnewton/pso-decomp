@@ -27,7 +27,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,774 | 877 |
-| Per-unit compiler overrides in `configure.py` | 184 | 184 |
+| Per-unit compiler overrides in `configure.py` | 185 | 185 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
