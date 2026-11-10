@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5775 | 877 |
+| pragma | 5776 | 877 |
 | configure.py per-unit override | 186 | 186 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 878, `auto_inline` 836, `opt_common_subs` 609, `scheduling` 262, `opt_propagation` 237, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 878, `auto_inline` 836, `opt_common_subs` 609, `scheduling` 263, `opt_propagation` 237, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -953,6 +953,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/misc/TeneFakeTecThunderEff.cpp` | fp_contract×4 |
 | `src/pso/misc/pso_date.cpp` | opt_propagation×2, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/network/ModemRuntime.cpp` | dont_inline×3, inline_depth×2, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
+| `src/pso/network/NetworkConfigLifecycle.cpp` | scheduling×1, peephole×1 |
 | `src/pso/network/NetworkDispatcher.cpp` | opt_common_subs×3, pool_data×1 |
 | `src/pso/network/NetworkInfoCodec.cpp` | scheduling×15, peephole×13, optimization_level×11, use_lmw_stmw×3 |
 | `src/pso/network/NetworkInfoLoader.cpp` | scheduling×8, peephole×1, optimization_level×1 |
@@ -1143,7 +1144,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/ui/TAdPlayerLoadGC_801E0C30.cpp` | fp_contract×1 |
 | `src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp` | opt_propagation×10, opt_strength_reduction×2 |
 | `src/pso/ui/TAdPlayerLoadGC_803F339C.cpp` | opt_dead_assignments×1, optimize_for_size×1 |
-| `src/pso/ui/TAdPlayerLoadGC_803F3CF4.cpp` | peephole×1 |
 | `src/pso/ui/TAdPlyPltAnimGC.cpp` | fp_contract×4 |
 | `src/pso/ui/TAdPlyStatusGC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/TAdPlyStatusGC_802E1128.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, fp_contract×1 |
