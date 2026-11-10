@@ -1,8 +1,10 @@
 # Link the network dispatcher independently
 
-Base: fork `f892b2e3ac77834f6250df75066d82c420197e44`, including DHCP #371
-and keyboard #372. Revalidated after main advanced through `387621104107ed1ff8c650bf2f50ef00c6859ba4`
-from the original `224eb99838471c243b20c305eddac75e7ff76c8f` baseline.
+Base: validated fork main `65b21c210ae980e9d2fe4aef1a3314ed84df1ddd`, including
+DHCP #371, keyboard #372 and technique #373. Revalidated after main advanced
+through `387621104107ed1ff8c650bf2f50ef00c6859ba4` and
+`f892b2e3ac77834f6250df75066d82c420197e44` from the original
+`224eb99838471c243b20c305eddac75e7ff76c8f` baseline.
 Reference: upstream's network split in [#213](https://github.com/zeroz41/pso-decomp/pull/213)
 and typed follow-up [#215](https://github.com/zeroz41/pso-decomp/pull/215),
 checked at upstream `dd7a1a2d6e200a69462fff12172ff35aaa460c93`.
@@ -86,8 +88,9 @@ Remaining inherited constraints are recorded in section 4 of the
 
 The initial check found fork main `387621104107ed1ff8c650bf2f50ef00c6859ba4`
 already included in the original PR head `205d83303ed37d03efba67768825b867c4c77b2e`.
-Main then advanced to keyboard commit `f892b2e3ac77834f6250df75066d82c420197e44`;
-that commit is merged into this branch. The dispatcher is already fully exact and
+Main then advanced through keyboard commit
+`f892b2e3ac77834f6250df75066d82c420197e44` to technique/progress commit
+`65b21c210ae980e9d2fe4aef1a3314ed84df1ddd`; both are merged into this branch. The dispatcher is already fully exact and
 linked, so this follow-up improves source quality rather than claiming new
 recovered bytes.
 
@@ -135,19 +138,27 @@ no compiler exception counts or link inputs.
 
 ## Current-main integration
 
-Build unchanged `f892b2e3ac77834f6250df75066d82c420197e44` in a second isolated
-worktree and save its report. Its full native build, retention check, original-DOL
-hash and `tools/check_pr.py` pass. Merge that main into the dispatcher branch;
-source changes do not overlap. Resolve the two exception-register conflicts by
-retaining both the keyboard and dispatcher rows and regenerating the inventory.
-The shared split, symbol, linkset and retention changes merge without losing rows.
+Built unchanged keyboard main `f892b2e3ac77834f6250df75066d82c420197e44` in a
+second isolated worktree, then updated that baseline to technique/progress main
+`65b21c210ae980e9d2fe4aef1a3314ed84df1ddd`. Both full native builds, retention
+checks, original-DOL hashes and `tools/check_pr.py` pass. Merged those commits into
+the dispatcher branch; source changes do not overlap. Resolved the two keyboard
+exception-register conflicts by retaining both keyboard and dispatcher rows and
+regenerating the inventory. Technique rows also remain intact. The shared split,
+symbol, linkset, compiler and retention changes merge without losing entries.
 
-Reconfigure with fresh split objects and build the combined tree. Full native
-build and no-loss checks pass against both current main and the original PR head.
-The actual final linker edge contains 3,588 source objects and 1,385 fallbacks:
+Reconfigured with fresh split objects and built the combined tree. Full native
+build and no-loss checks pass against both validated main and the original PR head.
+The actual final linker edge contains 3,586 source objects and 1,384 fallbacks:
 dispatcher and DHCP are source inputs; the incomplete prefix and TCP remain
 fallback inputs. README stays on merged-main coverage. This integration does not
 change the four complete network source objects validated above.
+
+The comparison to the original PR head inherits main's four-byte alignment-padding
+coverage reduction at `.sdata2 0x805DC7EC`, documented with the technique conversion
+pool recovery. `report_delta.py --check` accepts it as zero-filled alignment padding;
+no exact function, data object or linked range is lost. The dispatcher-only
+comparison to validated main has no padding loss.
 
 ## Validation
 
@@ -161,15 +172,15 @@ an actual linker input.
 
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
-| Exact functions | 27,391 | 27,391 | 0 |
-| Exact code bytes | 4,194,488 | 4,194,488 | 0 |
-| Exact data bytes | 1,470,255 | 1,470,255 | 0 |
-| Linked code bytes | 3,694,452 | 3,696,460 | 2,008 |
-| Linked data bytes | 1,185,039 | 1,185,287 | 248 |
-| Linked units | 3,587 | 3,588 | 1 |
+| Exact functions | 27,392 | 27,392 | 0 |
+| Exact code bytes | 4,199,532 | 4,199,532 | 0 |
+| Exact data bytes | 1,470,367 | 1,470,367 | 0 |
+| Linked code bytes | 3,699,992 | 3,702,000 | 2,008 |
+| Linked data bytes | 1,185,151 | 1,185,399 | 248 |
+| Linked units | 3,585 | 3,586 | 1 |
 
 Total functions, code and data are unchanged; the unit count increases from
-4,971 to 4,973. There are no lost exact or linked functions/data ranges and
+4,968 to 4,970. There are no lost exact or linked functions/data ranges and
 no alignment-padding loss. The scanner adds only the dispatcher and two
 retention entries (`NetRunProtocolDispatchLoop`, `NetRunTimerDispatchLoop`),
 removing none. README coverage remains tied to merged main.
