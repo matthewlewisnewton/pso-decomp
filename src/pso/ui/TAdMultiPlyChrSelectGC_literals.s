@@ -1,5 +1,5 @@
 /* Literal pool preceding TAdChrSelPlyPlateGC's two local .sdata2 constants.
-   These globals are shared with the adjacent, separately split ctor. */
+   The plate constructor and its update/render helpers share this pool. */
 .section .sdata2
 .balign 4
 .global lbl_805DE560
