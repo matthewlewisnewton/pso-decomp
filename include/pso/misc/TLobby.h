@@ -540,7 +540,6 @@ struct TLobby : public TObject {
     static void run_step_5210();
     static void flush_update();
     static void shutdown_cleanup();
-    static void invalidate_cache();
     s32 get_scroll_offset();
     void set_flag_4(s8 arg1);
     void set_client_slot(s8 arg1);
@@ -1085,10 +1084,7 @@ struct TLobby : public TObject {
     static void clear_net_buffer_1680();
     static void clear_buffer_1680();
     static s32 write_zero_padded_block(void *arg0p);
-    void set_field_10_and_notify(s32 arg1);
-    void set_buffer(void **arg1);
     void update_stream_read();
-    void set_scroll_position(s32 arg1);
     void set_coords(s32 arg1, s32 arg2);
     static void si_get_type_async();
     static s32 clear_buffer_a00();
