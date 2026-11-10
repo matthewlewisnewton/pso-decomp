@@ -1,3 +1,4 @@
+#include "pso/network/ModemRuntime.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/NetworkTransport.h"
 
@@ -104,7 +105,6 @@ extern s16 network_link_status_cache;
 extern s32 lbl_805D7BB8;
 extern u32 lbl_805D7BBC;
 extern u32 lbl_805D7BC0;
-void TAdSinglePlyChrSelectGC__sub_8042DDE4(int, int);
 s32 OSSendMessage(void *mq, void *msg, s32 flags);
 extern u8 lbl_805CF380[];
 extern s32 network_message_pending_count;
@@ -712,7 +712,6 @@ typedef char RecoveredGlobal_8042839C_lbl_805D0A40_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_8042DD70_lbl_805D1D20_size[sizeof(RecoveredGlobal_8042DD70_lbl_805D1D20) == 0x1C ? 1 : -1];
 #pragma pop
 
-void TAdSinglePlyChrSelectGC__sub_8042DDE4(int _w0, int _w1);
 }
 
 typedef char RecoveredGlobal_8042E768_lbl_805D1D20_size[sizeof(RecoveredGlobal_8042E768_lbl_805D1D20) == 0x1C ? 1 : -1];

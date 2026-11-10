@@ -539,7 +539,7 @@ s16 TLobby__sub_803FAEDC(LoginCfg_803FAEDC *cfg) {
         NetMemcpy(buf, cfg->user, len);
         buf[len] = 0;
     }
-    if (TLobby::map_state_to_code((s32)*pname, cfg->state) < 0) {
+    if (TLobby::map_state_to_code((const char *)*pname, cfg->state) < 0) {
         return 1;
     }
     return 0;
@@ -864,7 +864,6 @@ typedef struct LobbyPkt_803FB7A4 {
 #define LOBBY_NOTIFY() do { if (g->cb != NULL) { TUdpSocket::unlock_mutex(lbl_805C18A0.value); g->cb(lbl_805D7A82, 0); TLobby::lock_mutex(lbl_805C18A0.value); } } while (0)
 #define LOBBY_ABORT(code, st) do { lbl_805D7A82 = (code); lbl_805D7A8A = (st); LOBBY_NOTIFY(); return 0; } while (0)
 s16 TLobby__sub_80403D28(s32, s16, s16, s16, s16, s16, char *, s16);
-s32 TLobby__sub_803F7E50(s32, s32, s32, s32, s32);
 s32 TLobby__sub_803F8090(void);
 s16 TLobby__sub_80403C60(u8 *);
 s16 TLobby__sub_80403BA8(u8 *, u8 *, s32);
