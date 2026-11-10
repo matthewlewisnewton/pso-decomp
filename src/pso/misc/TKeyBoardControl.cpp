@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/WindowConstructorAbi.h"
@@ -118,8 +119,6 @@ f32 TWindowKeyBoardSoft__sub_802614DC(u8 *, u8 *, f32, f32, f32, f32);
 void TWindowKeyBoardSoft__sub_802616BC(TWindowKeyBoardSoft *, TWindowKeyBoardSoft *);
 void reset_gauge__20TWindowSubStatusDispFPv(s32);
 s32 end_render_forward__20TWindowSubStatusDispFPv();
-void render_forward__20TWindowSubStatusDispFPv();
-void begin_render__20TWindowSubStatusDispFl();
 u16 map_char_to_font_code(u16);
 u8 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(u16, void *, s32);
 void set_glyph_quad_extents(u8, void *);
@@ -708,7 +707,7 @@ void TWindowKeyBoardSoft__sub_802616BC(TWindowKeyBoardSoft *self, TWindowKeyBoar
     }
     end_render_forward__20TWindowSubStatusDispFPv();
     begin_screen_draw(1);
-    render_forward__20TWindowSubStatusDispFPv();
+    TWindowSubStatusDisp::render_forward();
     set_draw_texture_and_color(0, 0xFF999999);
 
     key = calc_key_index__19TWindowKeyBoardSoftFiii(self, 2, 0);
@@ -727,7 +726,7 @@ void TWindowKeyBoardSoft__sub_802616BC(TWindowKeyBoardSoft *self, TWindowKeyBoar
             draw_textured_quad_at_depth((f32 *)&q, depth);
         }
     }
-    begin_render__20TWindowSubStatusDispFl();
+    TWindowSubStatusDisp::begin_render();
     set_draw_texture_and_color(3, 0xFF999999);
 
     tab_x = TWindowKeyBoardSoft__sub_802606E0(self);

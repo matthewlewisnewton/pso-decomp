@@ -5,6 +5,7 @@
 #include "pso/misc/TUnk_804EFBAC.h"
 
 #include "types.h"
+#include "pso/misc/WindowVertexBufferAbi.h"
 
 struct RecoveredGlobal_80340508_lbl_8050E208
 {
@@ -38,13 +39,13 @@ void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 int update_fade__11TWindowBaseFv(void*);
 
-void TWindowDD::reset_entries(f32 v) {
-    E_803403F8 *p = (E_803403F8 *)this;
+void reset_entries__9TWindowDDFf(void *storage, s32 unused_word, f32 depth) {
+    E_803403F8 *p = (E_803403F8 *)storage;
     s32 i;
     for (i = 0; i < 8; i++) {
         p->a = lbl_805DFC30;
         p->b = lbl_805DFC30;
-        p->c = v;
+        p->c = depth;
         p->d = lbl_805DFC30;
         p->e = lbl_805DFC30;
         p->f = -1;

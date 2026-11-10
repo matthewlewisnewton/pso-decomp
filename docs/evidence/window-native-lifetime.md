@@ -456,3 +456,12 @@ The partial-initialization safety hold remains explicit. Complete owner/producer
 texts, conversion/jump data and original prefix/suffix providers remain exact.
 Raw calls fall to 18 across ten units, and the unused Addition constructor alias
 leaves the ABI header, which now contains three bindings. Other holds persist.
+
+
+The [shared render-state/reset recovery](window-render-state-reset-contracts.md)
+establishes consistent no-argument state helpers and an explicit raw reset ABI
+with an unexplained unused word and required float depth. All thirteen affected
+compiled objects, relocations, data and selected providers remain unchanged.
+A fresh 608-byte DD renderer probe still differs in 37 words and is not activated
+or published. No coverage gain is claimed; the independent renderer, arithmetic,
+ownership, initialization and original-provider holds remain.

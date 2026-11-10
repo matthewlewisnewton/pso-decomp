@@ -125,3 +125,6 @@ Current totals are 27,406 exact functions, 3,587 exact linked units and 3,641
 source-bearing units. Combined PR deltas versus fresh main remain +600 matched
 code, +1220 linked code, +1496 matched data and +1452 linked data bytes. All
 fourteen qualified alignment gaps and remaining technical holds are unchanged.
+
+
+The later [shared state/reset recovery](window-render-state-reset-contracts.md) establishes consistent no-argument begin/forward state helpers across the active callers. It supersedes that input-contract qualification only; historical ownership, the other state helpers, all 139 differing words and the original provider remain held.

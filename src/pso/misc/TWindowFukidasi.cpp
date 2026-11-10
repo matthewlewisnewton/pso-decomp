@@ -235,7 +235,6 @@ void clear_flag_20__13TUnk_804CF0B8Fv();
 s32 fn_80252CBC(void);
 void draw_visible_window_entries(void *, void *, View_80252764 *);
 s32 get_name_text_width(void *);
-void render_forward__20TWindowSubStatusDispFPv();
 void apply_context_transform_to_rect(TWindowDrawContext *, f32 *);
 void draw_textured_quad_at_depth(void *, f32);
 void set_text_draw_params(TWindowDrawContext *, s32, s32, f32, f32);
@@ -1078,7 +1077,7 @@ void TUnk_804CF0B8::draw_name_plate(TWindowDrawContext *ctx, u32 color) {
         pos[1] = ctx->y - TWindowFukidasi__data_805DCD1C;
         depth = TWindowFukidasi__data_805DCD4C / (lbl_805DCD64 + ctx->depth);
         begin_screen_draw(1);
-        render_forward__20TWindowSubStatusDispFPv();
+        TWindowSubStatusDisp::render_forward();
         set_draw_texture_and_color(0, plateColor);
 
         quad[0] = pos[0];

@@ -78,3 +78,6 @@ check_pr comparisons pass with zero new metric, rename or activation delta.
 Retention is clean at 17,895 and port inventory passes. Main remains integrated
 at `4bec40d6cca74a85e91c848ea2d9f25425a313ad`. The nameplate original-provider
 hold and all other existing technical holds persist; the PR remains draft.
+
+
+The later [shared state/reset recovery](window-render-state-reset-contracts.md) establishes the observed unused reset word and explicit float depth through one shared raw ABI, plus no-argument begin/forward state helpers. This supplies new contract evidence without resolving Word's fused arithmetic or changing its provider. One separate DD renderer probe remains nonexact by 37 words; no additional matching claim follows.
