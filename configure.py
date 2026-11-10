@@ -429,6 +429,9 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Keep the eight-byte menu positions in .data with the state table.
+    # The calendar x coordinate uses a fused multiply-add.
+    "pso/menu/TAdTimeSetGC.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-fp_contract on")},
     # Keep the compiler-generated guild-card initializer ahead of its constructor and accessors.
     "pso/misc/TLobby_802409AC.cpp": {"cflags": _switch(cflags_pso, "-sym on")},
     # Upstream #208: fused scale/corner arithmetic; deferred emission puts the

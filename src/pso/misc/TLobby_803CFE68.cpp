@@ -1,14 +1,13 @@
 #include "types.h"
+#include "pso/unk/text_803CE568.h"
 #include "pso/misc/TLobby_803CFE68.h"
 #include "pso/misc/TLobby.h"
 
-extern s32 (*cvfs_completion_callback)(s32);
 
-extern s32 lbl_805D75FC;
 
-void TLobby::call_callback() {
-    if (((s32 (*)(s32)) cvfs_completion_callback) != NULL) {
-        cvfs_completion_callback(lbl_805D75FC);
+void cvfs_forward_error(s32, const char *message, s32 handle) {
+    if (cvfs_completion_callback != NULL) {
+        cvfs_completion_callback(lbl_805D75FC, message, handle);
     }
 }
 
