@@ -10,6 +10,7 @@
 #include "pso/misc/TUnk_8048E790.h"
 
 #include "types.h"
+#include "pso/system/ModelDrawContext.h"
 #include "pso/misc/TParticleCtrl_80327D30.h"
 #include "pso/player/TObjPlayer_80083594.h"
 #pragma inline_depth(1)
@@ -171,7 +172,6 @@ s32 push_matrix(f32);
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
 s32 draw_ginja_object(u32);
-s32 draw_ginja_model_with_motion(u32, u32, f32);
 extern u8 *camera_ctrl_instance;
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
@@ -276,7 +276,7 @@ void *TParticleCtrl::alloc_child_particle(void *arg1, void *arg2, void *arg3) {
 }
 void TUnk_8048E790::retire_orbit_particle() {
     u8 *arg0 = (u8 *)this;
-    if (this->m_58 >= TParticleCtrl__data_805D9528) {
+    if (this->age >= TParticleCtrl__data_805D9528) {
         queue_destruction__7TObjectFv((arg0));
     }
 }
@@ -290,18 +290,18 @@ void TUnk_8048E790::render() {
     s32 temp_r4;
     u16 temp_r3;
     if (all_parents_unqueued_for_destruction__7TObjectFv() != 0) {
-        temp_f3 = *(f32 *)((s8 *)this->m_20 + 0x70) * cos_table_lookup(this->m_dc);
+        temp_f3 = *(f32 *)((s8 *)this->param + 0x70) * cos_table_lookup(this->m_dc);
         this->m_88 = (f32) (this->m_28 * (TParticleCtrl__data_805D9528 + temp_f3));
-        *(f32 *)((s8 *)arg0 + 0x8C) = (f32) (*(f32 *)&this->unk_2C * (TParticleCtrl__data_805D9528 - temp_f3));
+        *(f32 *)((s8 *)arg0 + 0x8C) = (f32) (this->unk_2C * (TParticleCtrl__data_805D9528 - temp_f3));
         this->m_88 = (f32) (this->m_88 * this->m_a4);
         *(f32 *)((s8 *)arg0 + 0x8C) = (f32) (*(f32 *)((s8 *)arg0 + 0x8C) * *(f32 *)((s8 *)arg0 + 0xA8));
         temp_r3 = *(u16 *)((s8 *)arg0 + 0x24);
         if (temp_r3 & 0x200) {
             if (((is_split_screen() == 0) || !(*(u16 *)((s8 *)arg0 + 0x24) & 0x400)) && ((u32) *(u32 *)&this->unk_B4 != 0U) && ((u32) this->m_b0 != 0U)) {
-                sp8.x = this->m_70 + *(f32 *)&this->unk_7C;
-                sp8.y = *(f32 *)&this->unk_74 + this->m_80;
-                sp8.z = this->m_78 + *(f32 *)&this->unk_84;
-                push_matrix(this->m_78);
+                sp8.x = this->pos.x + this->attach.x;
+                sp8.y = this->pos.y + this->attach.y;
+                sp8.z = this->pos.z + this->attach.z;
+                push_matrix(this->pos.z);
                 post_translate_matrix(&sp8);
                 temp_f1_2 = this->m_88;
                 scale_matrix(0, temp_f1_2, temp_f1_2, temp_f1_2);
@@ -332,8 +332,8 @@ void TUnk_8048E790::render() {
                 }
                 set_current_texture_list((GinjaTextureList *)(*(u32 *)&this->unk_B4));
                 set_draw_list_mask(3);
-                if ((u32) this->m_b8 != 0U) {
-                    draw_ginja_model_with_motion(this->m_b0, this->m_b8, *(f32 *)&this->unk_BC);
+                if (this->motion != NULL) {
+                    draw_ginja_model_with_motion(reinterpret_cast<void *>(this->m_b0), this->motion, this->motion_frame);
                 } else {
                     draw_ginja_object(this->m_b0);
                 }
@@ -349,7 +349,7 @@ void TUnk_8048E790::render() {
                 ((TUnk_8048E728 *)arg0)->draw_particle_refraction_quad();
                 return;
             }
-            if (*(u8 *)((s8 *)this->m_20 + 0x88) & 0x20) {
+            if (*(u8 *)((s8 *)this->param + 0x88) & 0x20) {
                 append_node_to_tail__13TParticleCtrlFPvPv(((s32 *)((u8 *)&TParticleCtrl__data_80511F70 + 0xD8))[*(u16 *)((s8 *)arg0 + 0x1C)], arg0 + 0x6C);
                 return;
             }
