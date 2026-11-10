@@ -1,3 +1,4 @@
+#include "pso/misc/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
@@ -32,7 +33,6 @@ void *TKeyBoardControl__ct(void *, void *, s32, s32, s32, s32);
 extern s32 local_client_id;
 void *get_window_layout_position(s32);
 extern const f32 lbl_805DD144;
-void get_lobby_field_20__15TWindowMakeTeamFv(void *, f32);
 void get_keyboard_field_6c__15TWindowMakeTeamFv(void *, char *);
 char *realloc_buffer__17TWindowSubComCardFv(void *);
 char *get_shared_text_buffer(void);
@@ -87,7 +87,7 @@ void TWindowMakeTeam::run_task() {
         }
         self->keyboard = kb;
         ((TWindowMakeTeam *)(self->keyboard))->set_sub_position((u8 *)(get_window_layout_position(0xCB)));
-        get_lobby_field_20__15TWindowMakeTeamFv(self->keyboard, lbl_805DD144);
+        ((TKeyBoardControl *)self->keyboard)->set_keyboard_depth(lbl_805DD144);
         update_chat_window(self->keyboard);
         get_keyboard_field_6c__15TWindowMakeTeamFv(self->keyboard, self->name);
         ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(NULL, 0);
@@ -116,7 +116,7 @@ void TWindowMakeTeam::run_task() {
         }
         self->keyboard = kb;
         ((TWindowMakeTeam *)(self->keyboard))->set_sub_position((u8 *)(get_window_layout_position(0xCC)));
-        get_lobby_field_20__15TWindowMakeTeamFv(self->keyboard, lbl_805DD144);
+        ((TKeyBoardControl *)self->keyboard)->set_keyboard_depth(lbl_805DD144);
         get_keyboard_field_6c__15TWindowMakeTeamFv(self->keyboard, self->comment);
         ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(NULL, 1);
         this->m_1c = 6;

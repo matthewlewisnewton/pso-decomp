@@ -28,7 +28,6 @@ struct TWindowMakeTeam : public TObject {
     void update_ok_button();
     s32 create_status_menu_window();
     s32 create_entry_menu_window();
-    int get_lobby_field_20();
     void set_sub_position(u8 *arg1);
     int get_keyboard_field_6c();
     static s32 create_menu();
