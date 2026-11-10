@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (2026-11-10)
+## Summary (regenerated after merging main `1a18b4bd7577`, 2026-11-10)
 
-Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md).
-Assembly is counted as source lines;
+Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
+after merging main `1a18b4bd7577` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,773 | 877 |
+| CodeWarrior pragmas (excluding push/pop) | 5,766 | 877 |
 | Per-unit compiler overrides in `configure.py` | 189 | 189 |
 | Approved regressions | 0 | 0 |
 
@@ -110,6 +110,15 @@ unset until a contact slot is written. The original call to
 consists of a return instruction. The matching build preserves the original
 register state at that call. The portable branch initializes the debug pointer
 to null.
+
+### ADX stream decode at `0x803C0238`
+
+`src/pso/misc/TLobby_803BFE50.cpp` extends its existing inlining scope to the
+input preparation, output publication, and format-specific counter update.
+Under GC/2.6, flattening those phases into the caller changes the saved
+register allocation. The chunk declaration order within the output helper
+also places the two descriptors at stack offsets 8 and 16. Ports can use the
+same helpers with ordinary inlining and native pointer-sized handles.
 
 ### Dark Falz demo 4
 
