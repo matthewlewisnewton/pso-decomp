@@ -2411,6 +2411,7 @@ force_active:
   - __dt__15TObjSuisouLobbyFv
   - __dt__15TPlyOnCountOverFv
   - __dt__15TWindowCtrlMainFv
+  - __dt__15TWindowHelpItemFv
   - __dt__15TWindowQuantityFv
   - __dt__15TWindowShortCutFv
   - __dt__15TWindowUserSortFv
@@ -3052,6 +3053,7 @@ force_active:
   - __vt__15TShopWindowBase
   - __vt__15TWindowAddition
   - __vt__15TWindowCtrlMain
+  - __vt__15TWindowHelpItem
   - __vt__15TWindowQuantity
   - __vt__15TWindowShortCut
   - __vt__15TWindowUserSort
@@ -14138,6 +14140,7 @@ force_active:
   - render__15TObjSuisouLobbyFv
   - render__15TPlyPhotonChairFPvPv
   - render__15TWindowCtrlMainFv
+  - render__15TWindowHelpItemFv
   - render__15TWindowQuantityFv
   - render__15TWindowShortCutFv
   - render__15TWindowUserSortFv
@@ -14827,6 +14830,7 @@ force_active:
   - run_task__15TObjSoloPlayWinFv
   - run_task__15TObjSuisouLobbyFv
   - run_task__15TWindowCtrlMainFv
+  - run_task__15TWindowHelpItemFv
   - run_task__15TWindowQuantityFv
   - run_task__15TWindowShortCutFv
   - run_task__15TWindowUserSortFv

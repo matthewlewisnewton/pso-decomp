@@ -2,31 +2,21 @@
 #define PSO_MISC_TWINDOWHELPITEM_H
 
 #include "types.h"
-#include "pso/TObject.h"
+#include "pso/misc/TWindowBase.h"
 #include <stddef.h>
 
 struct PageIndicator_8026CB44;
 
-struct TWindowHelpItem
+struct TWindowHelpItem : public TWindowBase
 {
+    virtual ~TWindowHelpItem();
+    virtual void render();
+    virtual void run_task();
     void sub_802534B0();
     void update_tech_disk_details();
     void init_text(void *);
     void sub_80255E24();
     void set_flag60_bit4();
-    // Legacy Base image; genuine inheritance is held on constructor codegen.
-    const char *m_name;
-    u8 legacy_04[0x14];
-    void *legacy_vptr;
-    u8 legacy_1c[0x4];
-    s16 m_20;
-    u8 _pad22[0x2];
-    void *m_24;
-    u8 legacy_28[0x4];
-    s32 m_2c;
-    f32 m_30;
-    u8 legacy_34[0x28];
-    s32 m_5c;
     u8 m_60;
     u8 _pad61[0x3];
     PageIndicator_8026CB44 *m_64;
@@ -41,7 +31,6 @@ struct TWindowHelpItem
     f32 m_ac;
     struct CallbackWords { u32 words[3]; } m_callback;
 
-    static void *operator new(unsigned long size) { return TObject::operator new(size); }
     TWindowHelpItem(void *position, u16 index);
     void set_flag0_bit2();
     static void set_help_text(s32 arg0, s32 arg1);
@@ -55,8 +44,6 @@ struct TWindowHelpItem
     void set_displayed_item_data(void* a1, void* a2);
     void set_items_and_refresh(void* a1, void* a2);
     void update_cursor_selection();
-    void update_display();
-    void *dt(s16 arg1);
     void set_flag0_bit20();
     void update_visible_flags();
     static void draw_number_value(void *entry, f32 *pos, s32 value, s32 color, s32 percent);
@@ -72,7 +59,6 @@ struct TWindowHelpItem
 };
 
 typedef char HelpItem_name[offsetof(TWindowHelpItem, m_name) == 0 ? 1 : -1];
-typedef char HelpItem_legacy_vptr[offsetof(TWindowHelpItem, legacy_vptr) == 0x18 ? 1 : -1];
 typedef char HelpItem_position[offsetof(TWindowHelpItem, m_30) == 0x30 ? 1 : -1];
 typedef char HelpItem_page[offsetof(TWindowHelpItem, m_64) == 0x64 ? 1 : -1];
 typedef char HelpItem_callback[offsetof(TWindowHelpItem, m_callback) == 0xB0 ? 1 : -1];

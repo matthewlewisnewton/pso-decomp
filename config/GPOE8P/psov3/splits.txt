@@ -8511,6 +8511,7 @@ pso/unk/text_80255A38.cpp:
 
 pso/misc/TWindowHelpItem_80255AB4.cpp:
 	.text       start:0x80255AB4 end:0x80255DF4
+	.data       start:0x804CF8B0 end:0x804CF8C8
 
 pso/misc/TWindowSubStatusDisp_80255DF4.cpp:
 	.text       start:0x80255DF4 end:0x80255E14
