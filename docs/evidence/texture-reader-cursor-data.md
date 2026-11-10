@@ -1,6 +1,8 @@
 # Texture reader cursor storage
 
-Baseline: fork main `f0f05f3afe56fd2b71e9dc1fe946e2fa03c84b86`.
+Baseline: fork main `1a18b4bd7577af4ee367317064e020d1f91ce5a8`.
+The initial source investigation used `f0f05f3afe`; current-base validation
+also includes the subsequent rope and ADX recoveries.
 Reference: upstream `8c507b2dacae5428291a823c3868ca486419660c`,
 `src/pso/system/TLanguage_801E4874.cpp` and its split/symbol metadata.
 Upstream #196 and #198 are already ancestors of this fork baseline; this is
@@ -36,13 +38,13 @@ reader unit stays linked, and the adjacent original word stays original.
 
 ## Progress-category distinction
 
-Global raw coverage retains all 1,761,227 data bytes. The explicit
+Global raw coverage retains all 1,761,223 data bytes. The explicit
 `original_unclaimed_805D5E5C` hold remains unclassified in the current
 reporting tool: it assigns source-less automatic data pools to `game`, but
 has no per-unit category override for explicit source-less holds. Therefore
-the game-category data denominator changes from 1,720,434 to 1,720,430 bytes,
-while its matched data rises from 1,431,790 to 1,431,794 and linked data from
-1,147,446 to 1,147,450. The game percentage change includes this four-byte
+the game-category data denominator changes from 1,720,430 to 1,720,426 bytes,
+while its matched data rises from 1,431,806 to 1,431,810 and linked data from
+1,149,958 to 1,149,962. The game percentage change includes this four-byte
 reclassification and must not be presented as additional recovery.
 
 The four unclassified bytes remain unmatched, original-provided and included
@@ -58,8 +60,8 @@ The measured source gain remains exactly four bytes.
   jobs. Both reproduce DOL SHA-1
   `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 - `tools/check_pr.py --no-build` passes against the fresh unchanged-main
-  report. Matched data rises from 1,472,559 to 1,472,563 bytes; source-linked
-  data rises from 1,188,215 to 1,188,219. Code, function and total data
+  report. Matched data rises from 1,472,575 to 1,472,579 bytes; source-linked
+  data rises from 1,190,727 to 1,190,731. Code, function and total data
   counts are unchanged, as are source-bearing and linked-unit counts. The
   explicit original-only hold adds one raw report unit. The retention list adds only
   `TLanguage__read_cursor`; the linked-unit list does not change.
