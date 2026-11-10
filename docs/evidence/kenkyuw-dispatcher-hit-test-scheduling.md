@@ -476,3 +476,110 @@ contract. The witness therefore reopens a concrete allocation/join lead,
 but no dispatcher permutation was compiled from it without such a mapping.
 The dispatcher, its 96.49123% result, unit split and unlinked hold remain
 unchanged. No compiler override or technical exception is proposed.
+
+### Receiver lifetime adaptation and collector controls
+
+A bounded follow-up tested the receiver/list distinction rather than
+assuming that the small witness transfers to PSO. The existing direct-call
+audit identifies the two projectile callers. In the original dispatcher,
+`r30` retains that projectile and `r31` retains the collector result. The
+predicate may call an external actor routine, so the later actor/body reads
+must remain after it. The projectile is then needed for the body store and
+virtual hit callback. Neither pointer can simply be discarded at the
+predicate boundary. The miss callback's result is ignored; no receiver
+return value was assumed or introduced for it.
+
+One full-unit candidate shortened only a meaningful nullable receiver's
+lifetime. It selected the receiver before the null/miss decision, used it
+only as the predicate's first argument, and retained the original `self`
+for subsequent work:
+
+```cpp
+TNeedleShoot *receiver = list != 0 ? self : 0;
+if (receiver == 0) {
+    self->vfunc_6();
+} else if (TObjPlayer::is_hit_receivable_target(
+               (s32)receiver, (u32)list->actors[0]) != 0) {
+    // Original post-call actor reload, null guard, body store and hit callback.
+    // These still use the original self, not receiver.
+}
+```
+
+For a valid projectile, a null list selects null and invokes exactly the
+original miss path; a nonnull list selects the unchanged projectile and
+passes the original predicate arguments. All later reads/calls remain in
+their original order. A host model generated from the original and candidate
+bodies compared 192 cases: zero/nonzero `m_68`, mode 1, mode 2, two default
+selectors, null/non-null lists and actors, hit/no-hit results,
+and mutations that clear or replace the actor during the predicate. It
+also changed the contact body during that call, checking the required
+post-call reloads. Host pointer transport was widened solely for the host
+model; the compiled candidate kept the target headers and ABI unchanged.
+
+The candidate was rejected: the dispatcher grew from 228 to 244 bytes and
+matched only 89.29825%. Its source SHA-256 was
+`cea83cd48227f0b946b1ffe08f041f8e91548c937320664d2449264a5a6b45ed`,
+based on the production source at PR head `73b6a2c25`. The other nine
+functions remained exact. Allocation did remove the predicate block's
+argument copy, but the earlier selection remained:
+
+```text
+B16: mr    r3,r30
+     b     B18
+B17: li    r3,0
+B18: cmpli cr0,r3,0
+     bf    cr0,2,B21
+     ... original miss callback and exit ...
+B21: lwz   r4,0(r31)
+     bl    is_hit_receivable_target
+```
+
+The zero-valued arm is nonempty, and the receiver comparison is real in
+the emitted code. The second-scheduler and final-branch dumps are identical.
+Thus this formulation gets the receiver setup out of the call block but
+does not produce the empty arm needed by the successful witness. Removing
+the extra zero/comparison by assertion, type punning or a new contract is
+not an established solution.
+
+Two separate, semantically defined controls isolated the collecting call
+and post-check lifetimes. Adding collection/miss handling to the small API
+while not retaining its event after delivery produced 112 bytes. Its event
+stayed in `r3`, so loading the event argument before restoring `r3` was a
+real data dependency. That differs from PSO's saved list. The refined
+[collector/lifetime control](kenkyuw-collected-receiver-control.cpp)
+re-reads the event after the check, updates the active receiver, and returns
+the configured fallback. It therefore retains the active receiver, fallback
+and collected event for their actual subsequent uses. It passes 144 host
+cases, including null collection
+and post-check event mutation, and produces a 144-byte function. Both
+receiver-selection arms retain real copies (`mr r3,r29` / `mr r3,r28` in
+this control), so its final branch pass also deletes nothing. Neither
+control is proposed PSO source or a changed PSO interface.
+
+The full-unit candidate and both controls were authenticated against the
+ordinary compiler output: re-encoding their final trace instructions,
+including physical branch displacements and record bits, reproduces every
+function byte emitted by the normal GC/2.6 runner. This is stronger than
+checking only the visible move/load pair. The refined control's `.text`
+SHA-256 is
+`1304756b5fa2ad3a8f1b4cd6424aed1bfbc1ca57c1df58261146edd839b697e8`;
+its complete source file's SHA-256 is
+`5e05963c8d30e7d2a19aa1fcdd4dc0316a4e2514a2a5a31dd0d73753a4eccd8b`.
+The same host-check command above works with this control's filename.
+
+The ordinary stock full-unit compile also reproduced the last validated
+production object's complete text and relocations. The candidate's nine
+sibling bodies matched the original provider byte for byte; all other
+allocated sections were unchanged. All 120 relocation targets, types and
+addends were retained. Only the dispatcher's predicate relocation moved,
+from unit `.text` offset `0x900` to `0x910`. The stock compiled `.text` still
+differed
+from the original provider only at the known two instruction words.
+
+No candidate was installed or activated. The generated link graph still
+selects the original `obj/pso/npc/TObjNpcKenkyuW.o` provider. The small
+same-flags witness remains valid evidence of a possible compiler mechanism,
+but these measurements do not supply a truthful way to obtain its empty
+arm with PSO's actual receiver/list lifetimes. This is a bounded negative
+result, not a proof excluding every C++ formulation. The production
+dispatcher remains at 96.49123%, with all scheduling and link holds intact.
