@@ -203,7 +203,7 @@ an aligned stack object. A port should ignore these settings and use the plain
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-169 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+170 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -266,6 +266,21 @@ The local initializer emits the 76-byte template at `0x80436748`. The
 original relocations to this template come from `fn_80049FD8`, and the split
 maps it to the compiler's local `@13` symbol. Ports can use the default
 compiler.
+
+### `pso/unk/text_8031EF14.cpp` with GC/2.0 and `-pooldata=off`
+
+`TObjEneRecon::spawn_death_debris` at `0x8031F1A8` is called by Recon's
+death-state handler and reads three models from the shared Recobox BML
+resource. As in the Vol Opt initializer, GC/2.0 schedules the model and
+position loads across the tails of the aggregate copies. Explicit copies of
+named templates and GC/2.6's schedule differ from the original.
+
+The three local aggregates generate the 228 bytes at
+`0x804762F0..0x804763D4`. The debris function supplies all references to
+these records. Disabling pooling keeps the two identical templates separate,
+and the symbol mappings associate each original record with its compiler
+local. Ports can use their regular compiler and allow pooling.
+
 ### `pso/misc/TLobby_8001EF5C.cpp`: `-inline on`
 
 `init_from_id_lists` at `0x8002058C` (size `0x30C`) contains the

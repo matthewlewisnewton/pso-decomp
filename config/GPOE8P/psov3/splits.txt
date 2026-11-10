@@ -11110,6 +11110,7 @@ pso/enemy/TObjEneRecon_8031EF00.cpp:
 
 pso/unk/text_8031EF14.cpp:
 	.text       start:0x8031EF14 end:0x8031F374
+	.rodata     start:0x804762F0 end:0x804763D4
 
 pso/enemy/TObjEneRecon_8031F374.cpp:
 	.text       start:0x8031F374 end:0x8031F408
