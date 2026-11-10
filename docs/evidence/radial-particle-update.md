@@ -182,3 +182,30 @@ interface boundaries described above. They do not establish complete
 source-clean lifetime recovery or constitute merge/approval readiness.
 Upstream #243/#244 attribution is retained. No original input or private
 build artifact is published.
+
+### Current-main validation on 2026-11-10
+
+The follow-up at `bd98781c897a748bf9154df0a594012fdb179848` has identical
+contents to `544e363f805a8cdeba907ba3fe373785d79ac514` in all seven affected
+particle headers and source files. It resolves the three bounded source-quality
+findings without another C++ change. The earlier lifetime and interface limits
+above still apply.
+
+A fresh locked `ninja -j2` on main
+`79768ce7da340723a8b6b559bca32fbdd705a5b2` supplied the comparison report.
+After merging that documentation-only main update normally, the candidate's
+locked native build and `tools/check_pr.py` pass against that report:
+
+- Original and rebuilt DOL SHA-1: `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
+- Zero exact-function, matched-data, linked-function or linked-data regressions;
+  one new exact function, `run_task__13TUnk_8048E7A8Fv` at `0x8008B590`.
+- +1,384 matched code bytes, +56 matched data bytes, +4,220 linked code bytes,
+  +64 linked data bytes and +1 linked unit; total address coverage unchanged.
+- All 3,591 linked units exact; 17,830 retention entries with no drift.
+- All seven sibling/owner objects listed above retain their allocated bytes,
+  sizes, alignment, exports and normalized relocation destinations versus main.
+- The radial object retains the SHA-256 recorded above: all nine functions,
+  4,220 code bytes and 64 data bytes exact.
+- Generated exception inventory, changed-line whitespace, Python compilation
+  and all 268 source tests pass. The curated pragma counts are refreshed;
+  no C++ spelling, pragma, compiler override or exception row is added here.
