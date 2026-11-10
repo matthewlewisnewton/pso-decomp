@@ -26,6 +26,11 @@ struct TWindowKeyBoardHard : public TWindowBase {
     u32 m_6c;
     u32 m_70;
     void release_keyboard();
+    s32 translate_key_char(u8 key, u16 *output);
+    s32 get_input_mode();
+    void enable_keyboard_led();
+    void enable_kana_led();
+    void enable_caps_led();
     virtual void render();
     static s32 test_card_flag(s32 arg1, s32 arg2);
     static void set_card_window_flags(void *arg0, s32 arg1, s32 arg2);

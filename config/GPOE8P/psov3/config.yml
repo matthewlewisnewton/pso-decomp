@@ -6402,7 +6402,7 @@ force_active:
   - get_indirect_source_pixels
   - get_indirect_tile_coord
   - get_input_mode__11TWindowChatFv
-  - get_input_mode__16TKeyBoardControlFv
+  - get_input_mode__19TWindowKeyBoardHardFv
   - get_instance_count__14TBoss4DarkFalzFv
   - get_int_parameter__15TObjEneMe1GiGueFl
   - get_jungle_rock_texture_resource
@@ -16539,7 +16539,7 @@ force_active:
   - trade_proposal_state_handlers
   - transfer_to_town__9TObjLukerFv
   - transform_vertex_list__18TObjTailsTailsMoveFv
-  - translate_key_char__16TKeyBoardControlFPvUcPUs
+  - translate_key_char__19TWindowKeyBoardHardFUcPUs
   - translate_view_negated__11TCameraCtrlFfff
   - trap_ancient02_collision_body
   - trap_ancient02_resources
