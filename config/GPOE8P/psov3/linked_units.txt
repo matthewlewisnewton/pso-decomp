@@ -1982,6 +1982,7 @@ pso/misc/pso_date.cpp
 pso/network/NetworkDispatcher.cpp
 pso/network/NetworkInfoCodec.cpp
 pso/network/NetworkInfoLoader.cpp
+pso/network/NetworkInfoRequests.cpp
 pso/network/NetworkMessageTransport.cpp
 pso/network/NetworkPacketRuntime.cpp
 pso/network/NetworkTransport.cpp

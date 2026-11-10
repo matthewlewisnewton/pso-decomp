@@ -581,20 +581,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/item/TObjContainerItem.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TContainerAncient01.cpp": {"mw_version": "GC/1.3.2"},
     "pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp": {"mw_version": "GC/1.3.2"},
-    # Four depth/UV multiply-adds contract, so -fp_contract on replaces the old
-    # per-function pragmas. -inline on inlines only clamped_active_slot
-    # and mark_grid_cell_occupied; -inline auto also inlines eight unmarked
-    # calls and those functions stop matching. See
-    # docs/evidence/chr-select-slot-clamp-inline.md.
-    # The eight compiler-pool globals before this unit's owned 0.53 / 1/256
-    # literals are defined by TAdMultiPlyChrSelectGC_literals.s, including the
-    # 16.0 conversion constant shared with the separately split ctor.
+    # Deferred generation shares one .data base for the plate constructor's
+    # native vtable and ready-tag arrays. Keep explicit inlining and the four
+    # depth/UV multiply-adds from the existing plate methods.
     "pso/ui/TAdChrSelPlyPlateGC.cpp": {
-        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on"),
-        "symbol_mappings": {
-            "@102": "lbl_805DE580",
-            "@175": "TAdMultiPlyChrSelectGC__data_805DE584",
-        },
+        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on,deferred"),
     },
     "pso/misc/TQuestVmDownLoadServer.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/misc/TCameraCtrl.cpp": {"mw_version": "GC/1.3.2"},

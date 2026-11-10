@@ -97,12 +97,38 @@ The two-step `s32 (*sel)[3] = self->sel;` that older heads used in `5688` is no
 longer needed: with the typed tables, the plain `self->sel[player][f4EC]` gives
 the original integer code.
 
-## Folded ownership (#250)
+## Earlier fold (#250)
 
 The folded unit owns `.data 0x804E0A48-0x804E0B10` and only the eight bytes
 `.sdata2 0x805DE580-0x805DE588`: the local 0.53 constant and the 1/256
 reciprocal. Earlier pool entries remain externs in the preceding unit. The
 source retains #214's `alpha`, `home[4][3]`/`ox`/`oy`, and
 `mark_grid_cell_occupied` forms. All 36 functions, 7400 code bytes and 848
-data bytes match; the unit links from source. The ctor at `0x802C6DD4`
-remains a separate unmatched unit.
+data bytes match; the unit links from source. The constructor at `0x802C6DD4` remained a separate unmatched unit in #250.
+
+## Constructor and factory
+
+The factory at `0x802C6F20` passes the task layer and a two-float screen position.
+The constructor calls `TObject(TObject *)`, copies the position to offset `0x4A4`,
+initializes three columns of each player's selection and cursor state, and resets the
+ready-tag and slot tables. The constructor and destructor store the same vtable
+address. Its slots resolve to the plate destructor, `run_task`, `render`, and the
+inherited `TObject::render_shadows`.
+
+Immediate emission matches the loop bodies but addresses the vtable and the two
+ready-tag arrays separately. The original loads a single `.data` base at
+`0x804E0A48` before calling the base constructor. The vtable and both arrays are
+then base-relative at `+0xC8`, `+0x98`, and `+0xA8`. Deferred emission recovers
+that base, as in the earlier plate experiment (`78c6cf717c`) and the
+[TBoss8Dragon recovery](https://github.com/matthewlewisnewton/pso-decomp/pull/302).
+Keeping the active player in a local passes the same word to the slot helper
+after storing it in the plate, avoiding a second load.
+
+The plate retains explicit inlining with `-inline on,deferred` and its existing
+`-fp_contract on`. Enabling deferred emission on ascending definitions matched
+the constructor but reversed the function order and exchanged the two
+`.sdata2` literals. Reversing the definitions restores both orders. String
+pooling and explicit `-pooldata on` did not affect the constructor difference.
+The resulting object covers all 38 functions and owns 7,836 bytes of code and
+900 bytes of data across five sections. The class-name pointer occupies four
+bytes in `.sdata`. The next four bytes are alignment padding.

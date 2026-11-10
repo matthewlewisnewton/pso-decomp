@@ -141,6 +141,7 @@ force_active:
   - TAdChrSelBSlotGC__sub_8030F228
   - TAdChrSelBSlotGC__sub_8030F2E4
   - TAdChrSelBSlotGC__sub_8030F3A0
+  - TAdChrSelPlyPlateGC_name
   - TAdChrSelSlotGC__sub_802C754C
   - TAdDialingGC__sub_803284F8
   - TAdDialingMessageWindow__name
@@ -168,12 +169,14 @@ force_active:
   - TAdGuideTxtGC__class_name
   - TAdMultiChgGameModeGC__sub_8036DE10
   - TAdMultiChgGameModeGC__sub_8036E19C
+  - TAdMultiPlyChrSelectGC__data_804E0A48
   - TAdMultiPlyChrSelectGC__data_804E0A68
   - TAdMultiPlyChrSelectGC__data_804E0AE0
   - TAdMultiPlyChrSelectGC__data_804E0AF0
   - TAdMultiPlyChrSelectGC__selected_slot_order
   - TAdMultiPlyChrSelectGC__sub_802C50EC
   - TAdMultiPlyChrSelectGC__sub_802C522C
+  - TAdMultiPlyChrSelectGC__sub_802C5F1C
   - TAdMultiPlyChrSelectGC__sub_803367E8
   - TAdMultiSaveGC__sub_802FF170
   - TAdMultiSaveGC__sub_802FF1F4
@@ -2038,6 +2041,7 @@ force_active:
   - __ct__18TWindowEffectLightFPvsUl
   - __ct__18TWindowMessagePageFlll
   - __ct__18TWindowSubItemListFPvl
+  - __ct__19TAdChrSelPlyPlateGCFP7TObjectPC24TAdChrSelPlyPlateGCPoint
   - __ct__19TBoss3VoloptMonitorFP7TObjectPv
   - __ct__19TOChatSensorCaptureFP7TObject
   - __ct__19TOComputerMachine01FPv
@@ -2569,6 +2573,7 @@ force_active:
   - __dt__18TWindowMessagePageFv
   - __dt__18TWindowPartyStatusFv
   - __dt__18TWindowSubItemListFv
+  - __dt__19TAdChrSelPlyPlateGCFv
   - __dt__19TAdGameStartShineGCFv
   - __dt__19TAdTrialAgreementGCFv
   - __dt__19TBoss1DragonColli_CFv
@@ -3219,6 +3224,7 @@ force_active:
   - __vt__18TWindowPartyStatus
   - __vt__18TWindowSubItemList
   - __vt__19MaterialOpacityFade
+  - __vt__19TAdChrSelPlyPlateGC
   - __vt__19TAdGameStartShineGC
   - __vt__19TAdPlyChrSelPlateGC
   - __vt__19TAdTrialAgreementGC
@@ -5567,7 +5573,7 @@ force_active:
   - draw_selected_bar__11TWindowMenuFPUc
   - draw_selected_entry__20TWindowSubSymbolChatFv
   - draw_selected_part_cursor__28TWindowSubSymbolChatPartsSetFi
-  - draw_selection_cursors__22TAdMultiPlyChrSelectGCFv
+  - draw_selection_cursors__19TAdChrSelPlyPlateGCFv
   - draw_serial_chars__22TAdEnterSerialAccessGCFl
   - draw_serial_plates__22TAdEnterSerialAccessGCFv
   - draw_serial_separators__22TAdEnterSerialAccessGCFv
@@ -7484,6 +7490,7 @@ force_active:
   - lbl_8046FC8C
   - lbl_8046FCA0
   - lbl_80471CE0
+  - lbl_80471CE8
   - lbl_80471D70
   - lbl_80472C28
   - lbl_80472C38
@@ -8137,6 +8144,8 @@ force_active:
   - lbl_805D6440
   - lbl_805D64A8
   - lbl_805D64AC
+  - lbl_805D67D0
+  - lbl_805D67D4
   - lbl_805D6800
   - lbl_805D6804
   - lbl_805D6808
@@ -14276,6 +14285,7 @@ force_active:
   - render__18TWindowMessagePageFv
   - render__18TWindowPartyStatusFv
   - render__18TWindowSubItemListFv
+  - render__19TAdChrSelPlyPlateGCFv
   - render__19TAdGameStartShineGCFv
   - render__19TBoss1DragonColli_CFv
   - render__19TBoss3VoloptMonitorFv
@@ -14536,6 +14546,7 @@ force_active:
   - reset_segment_points__14TBoss2TentacleFv
   - reset_selection__21TWindowSubCustomEquipFv
   - reset_slime_tail_node_index
+  - reset_slot_selection_table__22TAdMultiPlyChrSelectGCFv
   - reset_sound_events__10TObjCameraFv
   - reset_sound_group_fade__6TLobbyFv
   - reset_spawn_after_hold__15TObjEneMe1GiGueFv
@@ -14985,6 +14996,7 @@ force_active:
   - run_task__18TWindowMessagePageFv
   - run_task__18TWindowPartyStatusFv
   - run_task__18TWindowSubItemListFv
+  - run_task__19TAdChrSelPlyPlateGCFv
   - run_task__19TAdGameStartShineGCFv
   - run_task__19TAdTrialAgreementGCFv
   - run_task__19TBoss3VoloptMonitorFv
