@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
 | pragma | 5776 | 877 |
-| configure.py per-unit override | 186 | 186 |
+| configure.py per-unit override | 187 | 187 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 878, `auto_inline` 836, `opt_common_subs` 609, `scheduling` 263, `opt_propagation` 237, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -258,6 +258,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `pso/enemy/TObjEneMoja.cpp` | `-inline off,deferred` | Deferred emission puts the Moja vtable before the run_task switch table. |
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
 | `pso/unk/text_80049FD8.cpp` | `GC/2.0` | GC/2.0 interleaves the BML model-table load with the debris initializer's copy tail. Map the original template to CodeWarrior's local aggregate. |
+| `pso/unk/text_8031EF14.cpp` | `(multi-line entry; see configure.py)` | GC/2.0 schedules the model and position loads across the aggregate copy tails. Disabling pooling keeps the three original debris templates. |
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
 | `pso/misc/TOBoss4.cpp` | `-fp_contract on, -str reuse,readonly, -sdata 4, -inline deferred` | Vol Opt scenery is one TU. Deferred emission puts TOBoss4Rock::run_task first; -sdata 4 keeps the 8-byte motion-name array in .data. |
 | `pso/boss/TBoss6Rock.cpp` | `-fp_contract on, -str reuse,readonly, -inline off,deferred` | Dark Falz rocks are one TU, written last-defined first. -fp_contract on fuses the fall and spin multiply-adds. |
