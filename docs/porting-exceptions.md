@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `9dcde8562fb`, 2026-11-10)
+## Summary (regenerated after merging main `5f837b43888a`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `9dcde8562fb` (2026-11-10). Assembly is counted as source lines;
+after merging main `5f837b43888a` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,776 | 877 |
-| Per-unit compiler overrides in `configure.py` | 186 | 186 |
+| CodeWarrior pragmas (excluding push/pop) | 5,775 | 879 |
+| Per-unit compiler overrides in `configure.py` | 189 | 189 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -89,18 +89,32 @@ preserve the graph's exported constants and format strings. See
 [download graph recovery](evidence/download-graph-recovery.md) for the
 compiler and data layout evidence.
 
-5,773 pragmas in 877 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1146, `inline_depth` 1038, `fp_contract` 877, `auto_inline` 837,
-`opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237,
-`readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56,
-`defer_codegen` 53, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
-and emission order; individual pragmas generally carry no recorded reason.
+CodeWarrior pragmas reproduce the original code generation and emission order.
+The generated inventory lists the counts by pragma and file.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
 MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
 check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
+
+### Ground collision debug hook
+
+In `src/pso/map/CsnQuery.cpp`, CodeWarrior leaves the selected contact pointer
+unset until a contact slot is written. The original call to
+`TObjPlayer__sub_8007910C` can occur before any slot is written, and the hook
+consists of a return instruction. The matching build preserves the original
+register state at that call. The portable branch initializes the debug pointer
+to null.
+
+### ADX stream decode at `0x803C0238`
+
+`src/pso/misc/TLobby_803BFE50.cpp` extends its existing inlining scope to the
+input preparation, output publication, and format-specific counter update.
+Under GC/2.6, flattening those phases into the caller changes the saved
+register allocation. The chunk declaration order within the output helper
+also places the two descriptors at stack offsets 8 and 16. Ports can use the
+same helpers with ordinary inlining and native pointer-sized handles.
 
 ### Dark Falz demo 4
 
@@ -109,6 +123,20 @@ small float differences without FMA).
 | `src/pso/object/TObjDFDemo4.cpp` | Translation unit | `readonly_strings on` and `defer_codegen on` | Places the class name in `.rodata` and emits the seven functions in reverse definition order. Deferred generation also places the camera initializers before the signed conversion constant. | Use ordinary string and function definitions. |
 | `src/pso/object/TObjDFDemo4.cpp` | Constructor at `0x8004F6AC` | Weak linkage for the strip-node table | With strong linkage CodeWarrior pools the strip table and both camera initializers under a shared `.rodata` base. Weak linkage preserves the original direct relocations and keeps the shared `.data` base for the motion tables and vtable. | Use the same const table with ordinary linkage. |
 | `configure.py` | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | The two eight-byte afterimage index tables use normal data addressing. The class-name pointer still uses small data. | Use ordinary arrays and a string pointer. |
+
+### Lobby spatial audio and guild-card startup
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_802409AC.cpp` | `calc_sound_spatial_params` at `0x80241C84` | Scoped `opt_propagation off` and `opt_lifetimes off` | Keeping the quarter-turn adjustments separate preserves the angle instruction order. The lifetime setting preserves the register assignment and operand order of the surround add at `0x80241F2C`. The direct signed-byte conversion emits the original pan truncation and sign extension. | Drop the pragmas and preserve the float evaluation and integer truncation. |
+| `configure.py` | `pso/misc/TLobby_802409AC.cpp` | `-sym on` and source-private tail header | CodeWarrior emits the startup routine at `0x8024287C` at the end of the first text contribution and places the record constructor and two accessors in the following contribution. Without source-file sections, the compiler puts the startup routine after all three functions. | Use the ordinary C++ globals and constructor. The source-file sections preserve the GameCube link order. |
+
+### Dark Falz Type 1 death cutscene
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `configure.py` | `pso/object/TObjFish_8033CCC8.cpp` | `-inline off,deferred` and reverse definition order | The constructor shares a `.data` base at `0x804EF9D8` for the motion indices, origin at +8 and compiler-generated vtable at +0x14. Immediate emission addresses the vtable separately. Deferred emission also places the signed conversion constant after the read-only tables. | Use ordinary C++ definitions and compiler-generated virtual dispatch. |
+| `src/pso/object/TObjFish_8033CCC8.cpp` | Constructor at `0x8033D1AC` and its data | CodeWarrior section placement and weak linkage for the three read-only capture and camera tables | The motion indices are eight bytes and need normal `.data` addressing to share the constructor's base. Weak linkage gives the three capture and camera tables direct relocations, matching the original's independent address loads. | Use ordinary definitions and linkage for the same tables. |
 
 ### `request_network_info_load` frame and instruction ordering
 
@@ -136,11 +164,23 @@ places the initializer with the adjacent network-config update and teardown
 routines under the existing ntInf profile. Ports use the plain `s32` parameter
 and the same function body.
 
+### Barba Ray constructor at `0x802EDE90`
+
+| File | What | Why | Port should |
+|---|---|---|---|
+| `src/pso/unk/text_802EDE90.cpp` | Scoped `opt_common_subs off`, `opt_propagation off`, and `opt_lifetimes off` | With CSE enabled the vector resets share a computed address instead of using indexed stores (96.78%, 1,600 bytes). Propagation reloads the data-bank address before installing the vtable (99.21%, 1,624 bytes). Lifetime splitting changes register allocation for the part and matrix loops (99.53%, 1,616 bytes). The three pragmas together preserve all 1,616 bytes with the existing unit flags. | Drop the optimizer pragmas. Keep the initialization order and use the target compiler's ordinary constructor and virtual dispatch when porting the rest of the class. |
+
 ### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
 
 | File | Function | What | Why | Port should |
 |---|---|---|---|---|
 | `src/pso/boss/TBoss6Type2_802BE588.cpp` | `TBoss6Type2::sub_802BEC28` | one `#pragma opt_common_subs off` | Approved by Matt on 2026-11-04. Without it, common-subexpression elimination hoists the load of `lbl_805DE4E0` (0.0f) from `.text+0x6ec` to `.text+0x6c8` and renumbers the int-to-float temps, so the function is the same length and not the same bytes. Writing the ratio as `1.0f - (float)m_460 / (float)unk_45C` clamped to [0, 1] reproduces the instructions, but MWCC pools those literals as new local `.sdata2` instead of `R_PPC_EMB_SDA21` to `lbl_805DE4E4` / `lbl_805DE4E0` (the unclaimed blob `0x805DE4D8..0x805DE4F8`). `fp_contract on` is not part of this exception: removing it leaves the object identical. | Drop the pragma. The value is that clamped ratio; a port does not need MWCC's load schedule. |
+
+### Approved: `TObjEneMoja` constructor scaled-offset lookup ([#394](https://github.com/matthewlewisnewton/pso-decomp/pull/394))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/enemy/TObjEneMoja.cpp` | `__ct__11TObjEneMojaFP7TObjectPv` (`0x800AF8B0`) | Scoped `#pragma opt_common_subs off` and the scaled-offset spelling `variant_offset = kind * sizeof(*lbl_805D50C8)` / `table[variant_offset / sizeof(*lbl_805D50C8)]` (and the same for `lbl_805D50D0`) | Approved by Matt on 2026-11-10 ~8:27 AM PT: "Yes, approve #394's scaled-offset lookup with a porting-exceptions register row." With CSE enabled, the two probability clamps use different floating-point registers. Literal bounds reproduce the instructions but create a second pair of constants at different addresses from the shared bounds at `0x805D9BD8` and `0x805D9BDC`. The scaled-offset form is required for the table loads: `table[kind]`, `table[variant]`, typed temps, a C-style cast and local table pointers all reach 99.84% (same 632-byte size) because of an r7/r8 swap around `lwz r7, lbl_805D50C8` / `slwi r8,r5,2` / `lwzx`. `*(table + kind)` reaches 98.28%. A true struct array does not fit: `load_resources` allocates two separate pointer tables. The constructor's two exclusive offsets at `0x805D9C60` and `0x805D9C64` are defined after use to retain their named relocations. | Drop the pragma, clamp to `[0.0f, 1.0f]`, and index the two tables directly with the variant. |
 
 ### Approved: `TEF_LensFlare::render` ([#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272))
 
@@ -222,7 +262,7 @@ and the same function body.
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-186 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+189 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -572,7 +612,7 @@ Linking `TObjBoss2Tunnel_802F2070.cpp` also needs `cw_align` (`.sbss=4 .sdata2=4
 
 The loader at `0x800AF56C` uses a shared `.data` base for the two BML descriptors, action table and collision body. With a single external struct view, CodeWarrior folds two subobject offsets into their loads and emits a 680-byte function. Defining the individual tables in the same translation unit restores the two address instructions and the original 688 bytes.
 
-The Moja vtable at `0x804919BC` lies between those tables and the `run_task` switch table at `0x80491B08`. Moving only the resource tables into the loader creates a cycle because the code for `run_task` precedes the loader while its switch table follows the resource tables. The consolidated unit owns both tables and generates the vtable from the real destructor. Immediate compilation puts the switch table before the vtable. Reverse definitions with `-inline off,deferred` preserve both the function order and the original data order.
+The Moja vtable at `0x804919BC` lies between those tables and the `run_task` switch table at `0x80491B08`. Moving only the resource tables into the loader creates a cycle because the code for `run_task` precedes the loader while its switch table follows the resource tables. The consolidated unit owns both tables and generates the vtable from the real destructor. Immediate compilation puts the switch table before the vtable. Reverse definitions with `-inline off,deferred` preserve both the function order and the original data order. The adjacent constructor uses the same `.data` base at `0x80491828` for the vtable, action table, collision body and movement table, so it joins this unit.
 
 Ports can drop the compiler switch. The render and target-acquisition bodies in `TObjPlayer_800ACA60.cpp` are ordinary `TObjEneMoja` members (`render`, and `vfunc_28` — the `TObjChara` override name for acquire_target).
 
@@ -628,6 +668,26 @@ the class destructor emits it. [Historical evidence](evidence/conversion-pool-co
 | Unit | Compiler settings | Reason and port action |
 |---|---|---|
 | `pso/misc/TPlayerFootStamp.cpp` | `-fp_contract on`, `-inline off,deferred`, `-str reuse,readonly` | Adapted from upstream [#208](https://github.com/zeroz41/pso-decomp/pull/208), `ae797d392`. Removing fusion drops the constructor to 90.710144%; removing deferred emission changes function/vtable/switch/constant order (`.data` 33.333332%, `.sdata2` 14.285715%); writable strings move the class name (`.rodata` 95.38461%, `.sdata` 50%). All settings together give an exact, linked unit. A port can drop the flags, retaining explicit fused arithmetic if its results are required. [Evidence and remaining API boundaries](evidence/upstream-footstamp.md). |
+
+### Sprite frame draw recovered from upstream #208
+
+| Unit | Compiler settings | Reason and port action |
+|---|---|---|
+| `pso/misc/TLobby_80228154.cpp` | `mw_version` GC/1.3.2 | Adapted from upstream [#208](https://github.com/zeroz41/pso-decomp/pull/208), `ae797d392`, which links the unit exact under GC/1.3.2. `TLobby__sub_80228154` (`0x80228154`, sprite frame draw) is plain C++: no asm, casts or pragmas. Under GC/2.6 the unit's `.text` is 1720 bytes instead of 1732 (the sprite draw's frame and flag tests come out shorter); under GC/1.3.2 every section and relocation is identical to upstream's linked object. The unit's other functions are unchanged fork code. Build with the port compiler. |
+
+
+The recovered sprite draw retains three bounded native interfaces. `SpriteColor_80228154`
+uses the GameCube's big-endian byte order and the native compiler's union representation
+when reading its packed color; a port must form the ARGB integer explicitly rather than
+reuse that byte overlay on a little-endian host. The existing caller in
+`TLobby_801E2F94.cpp` still declares its first argument and unused result as `s32`,
+where this definition takes a sprite pointer and returns `void`; those declarations
+need a shared typed boundary before a 64-bit port. The existing
+`draw_textured_quad_at_depth` renderer indexes eight floats through a `void *`,
+while this caller supplies the first member of a contiguous eight-float quad struct.
+That native layout matches, but a port should give both sides one shared representation
+instead of relying on indexing across struct members. These source-interface limitations
+are not cleared by the exact native object or DOL checks.
 
 ## 6. Approved regressions
 

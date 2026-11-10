@@ -429,6 +429,8 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Keep the compiler-generated guild-card initializer ahead of its constructor and accessors.
+    "pso/misc/TLobby_802409AC.cpp": {"cflags": _switch(cflags_pso, "-sym on")},
     # Upstream #208: fused scale/corner arithmetic; deferred emission puts the
     # compiler vtable before the constructor switch table; class string is rodata.
     "pso/misc/TPlayerFootStamp.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-inline off,deferred", "-str reuse,readonly")},
@@ -500,6 +502,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/object/TObjDFDemo1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Keep both 8-byte afterimage tables out of .sdata in the demo constructor.
     "pso/object/TObjDFDemo4.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
+    # Deferred emission groups the Falz cutscene's motion indices, origin and vtable.
+    "pso/object/TObjFish_8033CCC8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.
     "pso/enemy/TObjEneRe2Flower_800C3E14.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
@@ -608,6 +612,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TCameraCtrl.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TKeyBoardControl_8025EC04.cpp": {"mw_version": "GC/1.3.2"},
     "pso/menu/TAdMultiOkGC.cpp": {"mw_version": "GC/1.3.2"},
+    # TLobby_80228154: its sprite draw keeps the frame size and flag tests only under 1.3.2
+    # (upstream zeroz41/pso-decomp #208).
+    "pso/misc/TLobby_80228154.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TLobby_802A5120.cpp": {"mw_version": "GC/1.3.2"},
     "pso/unk/text_8032B318.cpp": {"mw_version": "GC/1.3.2"},
     # The player hit-vector snapshot needs 1.3.2's const-input copy scheduling.

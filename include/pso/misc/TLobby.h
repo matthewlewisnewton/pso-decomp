@@ -302,14 +302,11 @@ struct TLobby : public TObject {
     static void create_heap_8000();
     void *free_boss4rock(s16 arg1);
     static void append_swapped_u32(s32 *arg0);
-    void append_entity_entry();
-    static u32 clamp_min_drop(u32 arg0);
+    static u32 clamp_min_drop(u32 minimum, u32 limit);
     static void free_boss4rock();
     void bswap_quad_word();
     void bswap_vec3();
     void swap_header_endian();
-    void bswap();
-    void swap_endian_header();
     static void init_sub_objects();
     int rebuild_entry();
     int init_sub_state();
@@ -512,7 +509,7 @@ struct TLobby : public TObject {
     s32 get_field_28();
     s16 get_slot();
     s32 get_packet_flag_for_state();
-    s16 get_field_a8();
+    s32 get_field_a8();
     s32 get_field_0x3c();
     void clear_record();
     s32 is_spsd_header();
@@ -543,7 +540,6 @@ struct TLobby : public TObject {
     static void run_step_5210();
     static void flush_update();
     static void shutdown_cleanup();
-    static void invalidate_cache();
     s32 get_scroll_offset();
     void set_flag_4(s8 arg1);
     void set_client_slot(s8 arg1);
@@ -1088,10 +1084,7 @@ struct TLobby : public TObject {
     static void clear_net_buffer_1680();
     static void clear_buffer_1680();
     static s32 write_zero_padded_block(void *arg0p);
-    void set_field_10_and_notify(s32 arg1);
-    void set_buffer(void **arg1);
     void update_stream_read();
-    void set_scroll_position(s32 arg1);
     void set_coords(s32 arg1, s32 arg2);
     static void si_get_type_async();
     static s32 clear_buffer_a00();
