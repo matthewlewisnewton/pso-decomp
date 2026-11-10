@@ -1,6 +1,7 @@
 #ifndef PSO_SYSTEM_GCCI_REQUESTS_H
 #define PSO_SYSTEM_GCCI_REQUESTS_H
 #include "types.h"
+#include "pso/system/CvFsDeviceCallbacks.h"
 #include <stddef.h>
 #include <dolphin/dvd.h>
 
@@ -40,4 +41,8 @@ typedef char GcciRequestCommandBlock[offsetof(DVDFileInfo, cb) == 0 ? 1 : -1];
 typedef char GcciRequestDvdLength[offsetof(DVDFileInfo, length) == 0x34 ? 1 : -1];
 typedef char GcciStatusSize[sizeof(GcciStatus) == 12 ? 1 : -1];
 typedef char GcciStatusState[offsetof(GcciStatus, state) == 4 ? 1 : -1];
+extern "C" {
+CvFsOpenFunction TLobby__sub_803D08E0;
+}
+
 #endif
