@@ -151,15 +151,13 @@ TObjEneMoja::TObjEneMoja(TObject *parent, void *set_data) : TObjEnemy(parent) {
     init_collision_body_parts(this, &moja_enemy_collision_body, 1);
 
     attack = 0;
-    // Both pointer tables use the same byte stride. Keeping the shared offset
-    // preserves register allocation; see docs/evidence/moja-compiler-tracing.md.
-    const size_t variant_offset = variant * sizeof(*lbl_805D50C8);
+    const size_t kind = variant;
+    // Materialize the scaled index shared by the base and resistance tables.
+    const size_t variant_offset = kind * sizeof(*lbl_805D50C8);
     bind_enemy_combat_stats(
-        reinterpret_cast<u8 *>(*reinterpret_cast<BattleBaseStats **>(
-            reinterpret_cast<u8 *>(lbl_805D50C8) + variant_offset)),
-        reinterpret_cast<u8 *>(lbl_805D50CC[attack + variant * 3]),
-        reinterpret_cast<u8 *>(*reinterpret_cast<ActorParamBlock **>(
-            reinterpret_cast<u8 *>(lbl_805D50D0) + variant_offset)));
+        reinterpret_cast<u8 *>(lbl_805D50C8[variant_offset / sizeof(*lbl_805D50C8)]),
+        reinterpret_cast<u8 *>(lbl_805D50CC[3 * kind + attack]),
+        reinterpret_cast<u8 *>(lbl_805D50D0[variant_offset / sizeof(*lbl_805D50D0)]));
     movementParameters = &moja_enemy_movement_parameters[variant];
     referenceHp = hp;
     update_prev_position();
