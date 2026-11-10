@@ -2,7 +2,9 @@
 #include "types.h"
 #include "pso/ui/TAdDialingMessageWindow.h"
 
+#include "pso/misc/TLobby_801E2F94.h"
 #include "pso/object/TObject_80019A50.h"
+#include "pso/ui/TAdDialingGC_80328B20.h"
 #include "pso/ui/TAdDrawLineCtrl.h"
 #include "pso/ui/TUnk_804F3428.h"
 
@@ -15,9 +17,8 @@ struct VObj_8036A248_8036A174 : Base_8036A248_8036A174 { virtual void m0(int); }
 extern "C" {
 const char *TAdDialingMessageWindow__name = "TAdDialingMessageWindow";
 
-void TAdDialingGC__sub_80328B24(const f32 *, const f32 *);
-const f32 lbl_8047A400[2] = {0.0f, 28.0f};
-const f32 lbl_8047A408[2] = {640.0f, 84.0f};
+const ColorLineVertex lbl_8047A400 = {0.0f, 28.0f};
+const ColorLineVertex lbl_8047A408 = {640.0f, 84.0f};
 extern const f32 lbl_805E0364;
 extern const f32 lbl_805E0368;
 void __ct__7TObjectFP7TObject(void *, void *);
@@ -31,7 +32,7 @@ void TAdDialingMessageWindow::run_child_tasks() { void* m = *(void* *)&this->m_2
 
 void TAdDialingMessageWindow::render() {
     if (this->m_1c & 1) {
-        TAdDialingGC__sub_80328B24(lbl_8047A400, lbl_8047A408);
+        draw_dialing_rectangle(&lbl_8047A400, &lbl_8047A408);
         if ((u32) this->m_20 != 0U) {
             ((TAdSinglePlyChrSelectGC *)(this->m_20))->render_status_disp(lbl_805E0364, lbl_805E0368);
         }
