@@ -1991,6 +1991,7 @@ force_active:
   - __ct__10TBoss6RockFP7TObjectl
   - __ct__10TItemEffPGFP7TObjectPv
   - __ct__10TItemMoneyFP7TObjectP9TItemData
+  - __ct__10TOMineTrapFP10TObjPlayerss
   - __ct__10TObjCameraFP7TObjectPv
   - __ct__11TBoss4ZanzoFv
   - __ct__11TBoss6Type1FP7TObjectP15Boss6Type1Spawn
@@ -5449,6 +5450,7 @@ force_active:
   - current_floor_area_type
   - cursor_action_priority_table
   - curvecmp
+  - cvfs_entry_table
   - cycle_list_page__20TWindowShortListCtrlFv
   - cycle_spectate_target__11TCameraCtrlFv
   - damage_hp__10TObjPlayerFii
@@ -6144,6 +6146,7 @@ force_active:
   - find_strongest_player__12TBoss3VoloptFv
   - find_support_technique_contact__FPviPvPv
   - find_table_entry_id
+  - find_target_in_range__10TOMineTrapFv
   - find_target_player__16TOTrapAncient02RFv
   - find_target_player__6TOMineFv
   - find_target_pos__11TBoss4Type2FPvPv
@@ -6517,6 +6520,7 @@ force_active:
   - freeze_shell_hold__13TUnk_8048E1A4Fv
   - frozen_shooter_ct__FPUcPUcl
   - frozen_shooter_freeze_hit__FiPUc
+  - fs_default_device_name
   - fs_obj_do_doa01_a_model_names
   - fs_obj_do_doa01_a_motion_names
   - fs_obj_do_doa01_model_names
@@ -7514,6 +7518,7 @@ force_active:
   - is_target_in_attack_range__14TObjEneIllGillFv
   - is_target_in_attack_range__16TBoss3VoloptCoreFv
   - is_target_in_front_range__9TBoss6MagFv
+  - is_target_in_list__6TOMineFPv
   - is_target_in_range__11TObjInfoColFf
   - is_target_in_range__18TObjEneMe3SinowZoaFv
   - is_target_line_clear__10TNpcPlayerFPvUs
@@ -8368,6 +8373,7 @@ force_active:
   - lbl_80570AC0
   - lbl_8057FFD0
   - lbl_80581330
+  - lbl_80581A30
   - lbl_8058DC00
   - lbl_8058DD88
   - lbl_805A9008
@@ -16048,6 +16054,7 @@ force_active:
   - shuffle_event_entries__FP17EventShuffleTable
   - shuffle_p01_order__12TBoss3VoloptFv
   - shuffle_shop_pool__FPv
+  - si_type_info_table
   - signal_alarm_queue__6TLobbyFPv
   - single_ply_quest_download_server
   - sinow_zoa_alternate_position
@@ -16673,6 +16680,7 @@ force_active:
   - sub_80168398__13TUnk_804B2578Fv
   - sub_80168488__13TUnk_804B2578Fv
   - sub_801688C0__13TUnk_804B2578Fv
+  - sub_8017070C__6TOMineFv
   - sub_8018355C__28TObjCity_Season_FireWorkCtrlFv
   - sub_80183C38__25TObjCity_Season_SonicAdv2Fv
   - sub_8018A688__20TContainerAncient01RFv
@@ -16904,6 +16912,7 @@ force_active:
   - sync_hp__9TBoss6MagFv
   - sync_hp_apply_damage__9TBoss6MagFv
   - sync_players__10TObjPlayerFv
+  - sync_position__10TOMineTrapFv
   - sync_state__10TObjPlayerFi
   - sync_state__14TObjEneGibblesFv
   - synthAddJob

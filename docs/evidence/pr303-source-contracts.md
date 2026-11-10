@@ -1811,3 +1811,36 @@ All twelve DHCP characterization cases pass unchanged; inventory and
 whitespace pass. No compiler option, pragma, padding, artificial argument or
 counter lifetime is changed. The unused parameter is the SDK's actual entry
 argument. Keep draft and all other ABI/metadata holds.
+
+
+## Modem, CVFS and mine-trap integration after the SDK checkpoint
+
+Publish the independently reviewed SDK-entry repair as `c0e5064f7`, then
+integrate main `c9af971c23960f6d0b86a132f4899a8217528545`. Retain merged
+#413's partial modem recovery and its ownership/matching limits, #421's CVFS
+query/open recovery, #416's mine-trap recovery and the intervening evidence.
+All source/configuration merges automatically, including the shared SDK
+declaration and EXI declarations. Resolve only the exception-register conflicts
+by regeneration. Counts become 5,772 pragmas in 879 files and 192 per-unit
+overrides; retain main's explanatory prose. No held raw, reset-status or
+internal thread-provider contract is changed.
+
+Fresh capacity-gated main and candidate builds reproduce the original DOL.
+The SDK-corrected runtime object is raw-identical to published `c0e5064f7` and
+still equals fresh main after only its independently audited symbol rename.
+Eleven of twelve incoming source objects are raw-identical to fresh main;
+packet runtime retains its prior reviewed branch hash. Of nineteen saved
+contract comparisons, eighteen are raw-identical; runtime differs only by
+that same audited SDK-entry name. Across all 3,665 compiled source objects,
+ten hashes change relative to the pre-SDK checkpoint: the SDK runtime and nine
+objects that exactly match fresh main. No other compiled object changes.
+
+Full comparison passes with 3,598 exact linked units, 18,416 retention entries
+without drift, existing +88 data bytes, zero new functions/code and no losses.
+Actual providers are 3,598 source inputs and 1,347 original fallbacks; main has
+3,599 and 1,349. The compiled SDK runtime is selected, while modem still uses
+its original provider: no whole-modem matching or source-link gain is claimed.
+All twelve DHCP characterization cases and both modem host-test cases pass.
+Seal unchanged-main report/build/check/provider/tool provenance for verified
+reuse. Preserve original behavior, bugs and all; keep draft and every remaining
+ABI/metadata hold.

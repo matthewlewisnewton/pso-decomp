@@ -1,5 +1,6 @@
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/NetworkTransport.h"
+#include "pso/network/ModemRuntime.h"
 
 #include "types.h"
 #include "pso/misc/TLobby.h"
@@ -149,9 +150,6 @@ extern u8 run_net_thread_loop__6TLobbyFv[];
 s16 TLobby__sub_803F96AC(void *);
 s16 TLobby__sub_803F9B94(void *, void *);
 void TLobby__sub_803F7A90(void);
-s32 TAdSinglePlyChrSelectGC__sub_8042DD70(s32 arg0, s32 arg1, s32 arg2);
-s32 TAdSinglePlyChrSelectGC__sub_8042E184(void);
-s32 TAdSinglePlyChrSelectGC__sub_8042E320(s32, s32, void *);
 }
 extern s32 TLobby__queue_timeout_remaining;
 void subtract_network_queue_timeout(s32 arg0);
@@ -166,8 +164,6 @@ Q_803F7AF4 *get_next_send_chunk__6TLobbyFv(void);
 s32 OSIsThreadSuspended(s32);
 extern s32 lobby_ring_buffer_write_pos;
 s16 TLobby__sub_804281DC(void *);
-s32 TAdSinglePlyChrSelectGC__sub_8042CEF8(char *);
-void TAdSinglePlyChrSelectGC__sub_8042E488(s32);
 extern u8 pppoe_discovery_name_storage[2][256];
 s32 TLobby__sub_803F8314(A_803F8314 *arg0);
 u32 layout_buffers__6TLobbyFPUcPUc(u8 *, u32, u32);
@@ -176,9 +172,6 @@ extern u32 net_transport_buffer_ptr_b;
 s32 TLobby__sub_803F8470(u8 *data, s32 size);
 extern u8 lobby_net_config_block[];
 extern T_803F86C0 lbl_805D7A50;
-s32 TAdSinglePlyChrSelectGC__sub_8042D49C(int);
-s32 TLobby__sub_803F7E50(s32 arg0, s32 arg1, s32 arg2, s32 n, s32 p);
-s32 TAdSinglePlyChrSelectGC__sub_8042D7E0(void *);
 s32 TLobby__sub_803F812C(u16 arg0, void *arg1, u16 *arg2);
 s32 TLobby__sub_803F8D24(Info_803F861C *);
 s32 TLobby__sub_803F861C(Info_803F861C *arg0);
@@ -423,7 +416,7 @@ void TLobby::queue_thread_main() {
         TLobby__queue_timeout_remaining = p->b;
         for (;;) {
             if (TAdSinglePlyChrSelectGC__sub_8042E184() == 0) {
-                if (TAdSinglePlyChrSelectGC__sub_8042DD70((s32)p->a, (s32)p->b, (s32)subtract_network_queue_timeout) == 1) {
+                if (TAdSinglePlyChrSelectGC__sub_8042DD70((u8 *)p->a, p->b, subtract_network_queue_timeout) == 1) {
                     break;
                 }
             }
@@ -534,7 +527,7 @@ s16 TLobby::map_state_to_mode_id() {
     }
 }
 
-s32 TLobby::map_state_to_code(s32 arg0, s16 arg1) {
+s32 TLobby::map_state_to_code(const char *number, s16 arg1) {
     s32 v;
     switch (arg1) {
     case 0:
@@ -547,7 +540,7 @@ s32 TLobby::map_state_to_code(s32 arg0, s16 arg1) {
         return -1;
     }
     lobby_map_state_code = 4;
-    if (TAdSinglePlyChrSelectGC__sub_8042E320(arg0, v, (void *)set_lobby_map_state_code) != 1) {
+    if (TAdSinglePlyChrSelectGC__sub_8042E320(number, v, set_lobby_map_state_code) != 1) {
         return -1;
     }
     return 0;
@@ -595,11 +588,12 @@ s32 TLobby__sub_803F7E50(s32 arg0, s32 arg1, s32 arg2, s32 n, s32 p) {
         return -1;
     }
     while (n != 0) {
-        len = NetStringLength((const char*)p);
+        len = NetStringLength((const char *)p);
         if (len > 0x3FU) {
             return -1;
         }
-        r = TAdSinglePlyChrSelectGC__sub_8042D49C(p);
+        // This existing boundary still transports a native address word.
+        r = TAdSinglePlyChrSelectGC__sub_8042D49C((char *)p);
         if (r != 1 && r != -8) {
             return -1;
         }
@@ -662,7 +656,7 @@ s32 TLobby__sub_803F812C(u16 arg0, void *lobby, u16 *arg2) {
             }
         }
     } else {
-        s32 r = TAdSinglePlyChrSelectGC__sub_8042D7E0(lobby);
+        s32 r = TAdSinglePlyChrSelectGC__sub_8042D7E0((u8 *)lobby);
         if (r < 0) {
             *arg2 = 0;
         } else {

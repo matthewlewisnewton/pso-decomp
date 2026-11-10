@@ -1,3 +1,4 @@
+#include "pso/network/ModemRuntime.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/NetworkDispatch.h"
 #include "pso/network/NetworkPacketPool.h"
@@ -90,7 +91,6 @@ extern u8 TLobby__pppoe_message_queue[0xA0];
 extern u8 lbl_805CF380[0x48];
 extern "C" {
 extern u32 lbl_805D7BA8;
-void TAdSinglePlyChrSelectGC__sub_8042DDE4(int, int);
 extern u8 lobby_net_channel_table[];
 extern u8 lbl_805CF380[];
 extern u8 TLobby__pppoe_message_queue[];
@@ -753,7 +753,6 @@ typedef char RecoveredGlobal_8042839C_lbl_805D0A40_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_8042DD70_lbl_805D1D20_size[sizeof(RecoveredGlobal_8042DD70_lbl_805D1D20) == 0x1C ? 1 : -1];
 #pragma pop
 
-void TAdSinglePlyChrSelectGC__sub_8042DDE4(int _w0, int _w1);
 }
 
 typedef char RecoveredGlobal_8042E768_lbl_805D1D20_size[sizeof(RecoveredGlobal_8042E768_lbl_805D1D20) == 0x1C ? 1 : -1];

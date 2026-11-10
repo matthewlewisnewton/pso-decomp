@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5771 | 878 |
+| pragma | 5772 | 879 |
 | configure.py per-unit override | 192 | 192 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1141, `inline_depth` 1033, `fp_contract` 878, `auto_inline` 832, `opt_common_subs` 611, `scheduling` 263, `opt_propagation` 239, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1141, `inline_depth` 1033, `fp_contract` 878, `auto_inline` 832, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 239, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -316,7 +316,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1141, `inline_depth` 1033,
 | `pso/misc/TOBiwaMushi.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly, -sdata 4` | TItem.cpp is written from its last function back (deferred code generation; the data keeps source order) and built with GC/2.0, like the struct-copy units above. The dragonfly base and its cave subclass: vtables come out subclass first. |
 | `pso/misc/TODragonflyCave01.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TODragonflyMachine01.cpp` | `-fp_contract on, -str reuse,readonly, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
-| `pso/misc/TOMineTrap_8016F6F8.cpp` | `-inline on, -fp_contract on` | Three fmadds in the original text, and nowhere else in the unit: __ct__10TOMineTrap at 0x80170058 (fmadds f2,f3,f4,f2), follow_target at 0x80170B9C (fmadds f0,f1,f0,f2), update_float_height at 0x80170D30 (fmadds f0,f3,f1,f0). No fmsubs. The same expressions are fmuls+fadds when the flag is omitted. Every other function, including run_task, is byte-identical with the flag off, and .rodata stays exact. -inline on expands run_task's mode-4 strike helpers (strike_actor, strike_player, strike_enemy); no other function in the unit changes. See docs/porting-exceptions.md. |
+| `pso/misc/TOMineTrap_8016F6F8.cpp` | `-inline on, -fp_contract on` | Three fmadds in the original text, and nowhere else in the unit: __ct__10TOMineTrap at 0x80170058 (fmadds f2,f3,f4,f2), follow_target at 0x80170B9C (fmadds f0,f1,f0,f2), update_float_height at 0x80170D30 (fmadds f0,f3,f1,f0). No fmsubs. The same expressions are fmuls+fadds when the flag is omitted. Every other function, including run_task, is byte-identical with the flag off, and .rodata stays exact. -inline on expands run_task's mode-4 strike helpers (strike_actor, strike_player, strike_enemy); no other function in the unit changes. The shared zero starts at 0x805DB85C. Keep its original four-byte alignment. |
 | `pso/item/TItem.cpp` | `GC/2.0, -inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/item/TItemProArmor.cpp` | `-inline off,deferred` | TItemProArmor.cpp, TItemProShield.cpp and TItemProUnit.cpp are written from their last function back (deferred code generation, which also puts each vtable before the switch tables). |
 | `pso/misc/TODoorBase.cpp` | `-inline off,deferred` | TODoorBase's vtable precedes its switch tables: deferred, written from its last function back. |
@@ -780,6 +780,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1141, `inline_depth` 1033,
 | `src/pso/misc/TOMineIcon01.cpp` | fp_contract×1 |
 | `src/pso/misc/TOMineIcon02.cpp` | fp_contract×1 |
 | `src/pso/misc/TOMineIcon04.cpp` | fp_contract×1 |
+| `src/pso/misc/TOMineTrap_8016F6F8.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TOQuestTalkBase.cpp` | fp_contract×1 |
 | `src/pso/misc/TORockCave.cpp` | readonly_strings×1 |
 | `src/pso/misc/TORockCaveBrakable.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |

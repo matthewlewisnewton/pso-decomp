@@ -4,16 +4,52 @@ Date: 2026-11-10. Follow-up to the
 [first index investigation](moja-constructor-index-investigation.md), using the
 same immutable PR 394 head `2484bc5ae9d6042a06d935a27663696d7d2bb99e`, fresh
 original-object split, CodeWarrior GC/2.6, and isolated investigation worktree.
-This records the investigation before production integration; the source and
-current checks establish whether a candidate has since landed.
+The investigation sections below record the original experiments. The subsequent
+integration checkpoint records the byte-offset candidate's complete linked
+validation. PR #418 retains these findings only; production source keeps the
+approved scaled-offset lookup and its existing porting-exceptions entry.
+
+## Byte-offset candidate integration checkpoint
+
+The candidate tested in commit
+`58b8f6356d6379238e0d4fa0d7b0c572bd7b29e2` applied the minimal byte-offset form,
+retaining the existing clamps and compiler flags. The independent field-clamp
+and inline-helper candidates were not included in that change.
+
+That validation used baseline code at
+`1a18b4bd7577af4ee367317064e020d1f91ce5a8`; the documentation-only base
+`79768ce7da340723a8b6b559bca32fbdd705a5b2` has identical build inputs. Both the
+unchanged baseline and replacement passed `python3 tools/check_pr.py`, using
+fresh split objects/configuration and the pinned toolchain:
+
+- Rebuilt DOL SHA-1: `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
+- All 3,590 linked units remain exact; force-active additions/removals: 0/0.
+- Exact functions: 27,416 → 27,416; matched code: 4,213,640 → 4,213,640 bytes;
+  matched data: 1,472,575 → 1,472,575 bytes.
+- Linked code: 3,737,624 → 3,737,624 bytes; linked data:
+  1,190,727 → 1,190,727 bytes. No coverage or denominator changes.
+- Moja's owned section bytes, allocated sizes/alignment, function order,
+  defined globals, and resolved relocations equal the baseline.
+- `python3 tools/list_port_exceptions.py --check` and `git diff --check` pass.
+
+These are historical results for the candidate, not a new validation run or
+approval of its source form. [Review of PR #418](https://github.com/matthewlewisnewton/pso-decomp/pull/418#pullrequestreview-5847939484)
+identified byte-address traversal as a different register-allocation workaround,
+with no coverage gain, which the candidate's exception entry did not record.
+The PR therefore restores the approved scaled-offset source and exception entry
+unchanged from base `79768ce7da340723a8b6b559bca32fbdd705a5b2`. Only this evidence
+document changes relative to that base; byte-address traversal remains an
+experimental candidate requiring explicit approval and a complete register
+entry before production use.
 
 ## Findings and recommendation
 
-There is now a **complete-unit matching replacement for the multiply/divide
+There is a **complete-unit matching candidate for the multiply/divide
 round trip**: compute the byte offset once and actually use it as a byte offset.
-It needs no compiler-flag change. It still uses low-level pointer casts and the
-existing CSE pragma; it is a better explanation of the intermediate value, not
-proof that the original source used byte addressing.
+It needs no compiler-flag change, but still uses low-level pointer casts and the
+existing CSE pragma to preserve register allocation. Matching output does not
+establish that the original source used byte addressing or justify replacing
+the approved workaround with this form.
 
 The compiler traces explain both obstacles to ordinary indexing. The shared
 offset's virtual-register identity controls the r7/r8 result. Named clamp bounds
@@ -22,9 +58,10 @@ strongest route to removing both workarounds remains recovery of the earlier
 Moja functions and their shared literal pool.
 
 An independent cleanup also matches: compare the probability fields directly
-instead of copying them into two `chance` locals. Candidate patches are prepared
-under ignored `build/`; no production source, configuration, split, or PR was
-changed. This round did not perform a full-game link or `check_pr.py`.
+instead of copying them into two `chance` locals. The research round prepared
+candidate patches under ignored `build/` and did not change production source,
+configuration, splits, or a PR. It stopped at object comparisons; the subsequent
+full-game integration check is recorded above.
 
 ## What the original compiler actually does
 
@@ -141,7 +178,7 @@ allocated sizes/alignment, function order, defined globals, and resolved
 relocations all agree. All six functions match the fresh original target;
 `.text` is 2,204 bytes, `.data` 776, and `.sdata2` 8. The minimal candidate was
 also independently replayed with the recorded production compiler command.
-Integration would still require the repository's normal linked validation.
+These research checks preceded the complete linked validation recorded above.
 
 ## Reproducing the method
 
