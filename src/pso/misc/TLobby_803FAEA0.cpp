@@ -2,6 +2,7 @@
 #include "pso/misc/TLobby.h"
 
 #include "types.h"
+#include "pso/network/NetSessionLayout.h"
 #include "pso/protocol/NetworkRuntime.h"
 
 struct Self_803FD85C;
@@ -511,7 +512,7 @@ struct LoginCfg_803FAEDC {
 struct H_803FB120 { u8 pad[0x28]; u8 *name; u8 pad2C[0x20]; void *v4C; };
 extern H_803FB120 lobby_net_session_state;
 
-s32 TLobby__sub_803FAEDC(LoginCfg_803FAEDC *cfg) {
+s16 TLobby__sub_803FAEDC(LoginCfg_803FAEDC *cfg) {
     u32 plen;
     u8 *p;
     u8 **pname = &lobby_net_session_state.name;
@@ -690,6 +691,61 @@ s32 TLobby__sub_803FB280(u8 *cfg) {
     }
     return -1;
 }
+
+extern s32 lbl_805D7BDC;
+s32 TLobby__sub_803FB358(NetStatus_803FB358 *status)
+{
+  u8 *p = (u8 *)status;
+  u8 *base = *((u8 (*)[]) ((u8 *) lbl_805C0038));
+  u8 *b;
+  u32 *new_var;
+  u8 *q;
+  u8 *a;
+  u32 v0;
+  u32 v1;
+  TLobby::lock_mutex(lbl_805C18A0.value);
+  base = *((u8 (*)[]) ((u8 *) lbl_805C0038));
+  q = base + 0xd4;
+  a = *((u8 **) (base + 0x104));
+  b = *((u8 **) (base + 0x9c));
+  if (base[0x6c] == 5)
+  {
+    *((s16 *) (p + 0)) = 1;
+  }
+  else
+  {
+    *((s16 *) (p + 0)) = 0;
+  }
+  *((u32 *) (p + 0x10)) = *((u32 *) (b + 0x8));
+  *(new_var = (u32 *) (p + 0x14)) = *((u32 *) (b + 0xc));
+  *((u32 *) (p + 0x18)) = *((u32 *) (b + 0x18));
+  *((u32 *) (p + 0x1c)) = *((u32 *) (b + 0x1c));
+  *((u32 *) (p + 0x20)) = *((u32 *) (b + 0x64));
+  *((u32 *) (p + 0x24)) = *((u32 *) (b + 0x68));
+  if (q[0] == 5)
+  {
+    *((s16 *) (p + 2)) = 1;
+  }
+  else
+  {
+    *((s16 *) (p + 2)) = 0;
+  }
+  v0 = *((u32 *) (a + 0x8));
+  v1 = *((u32 *) (a + 0xc));
+  NetMemcpy(p + 0x28, &v0, 4);
+  NetMemcpy(p + 0x2c, &v1, 4);
+  v0 = *((u32 *) (a + 0x10));
+  v1 = *((u32 *) (a + 0x14));
+  NetMemcpy(p + 0x30, &v0, 4);
+  NetMemcpy(p + 0x34, &v1, 4);
+  *((s16 *) (p + 4)) = *((s16 *) (&lbl_805D7A8A));
+  *((s32 *) (p + 8)) = lbl_805D7BDC;
+  *((s16 *) (p + 6)) = *((s16 *) (&lbl_805D7A82));
+  *((s16 *) (p + 0xc)) = *((s16 *) (&lbl_805D7A84));
+  TUdpSocket::unlock_mutex(lbl_805C18A0.value);
+  return 0;
+}
+
 }
 
 s16 NetApplyConnectionConfig(u8 *arg0) {
@@ -740,9 +796,7 @@ s16 NetApplyConnectionConfig(u8 *arg0) {
 }
 extern "C" {
 
-s16 TLobby::get_remaining(s32 arg0) {
-    return lbl_805D7A78 - arg0;
-}
+
 
 typedef char RecoveredGlobal_803FC178_lbl_805C02D0_size[sizeof(RecoveredGlobal_803FC178_lbl_805C02D0) == 0x40 ? 1 : -1];
 
@@ -796,6 +850,248 @@ s32 TLobby__sub_803FB6A0(void) {
     lbl_805D7A8A = 0;
     return 0;
 }
+
+typedef struct LobbyPkt_803FB7A4 {
+    s32 a;
+    u16 b;
+    u16 c;
+    s32 d;
+    u16 e;
+    u16 f;
+    s32 g;
+    s32 h;
+} LobbyPkt_803FB7A4;
+#define LOBBY_NOTIFY() do { if (g->cb != NULL) { TUdpSocket::unlock_mutex(lbl_805C18A0.value); g->cb(lbl_805D7A82, 0); TLobby::lock_mutex(lbl_805C18A0.value); } } while (0)
+#define LOBBY_ABORT(code, st) do { lbl_805D7A82 = (code); lbl_805D7A8A = (st); LOBBY_NOTIFY(); return 0; } while (0)
+s16 TLobby__sub_80403D28(s32, s16, s16, s16, s16, s16, char *, s16);
+s32 TLobby__sub_803F7E50(s32, s32, s32, s32, s32);
+s32 TLobby__sub_803F8090(void);
+s16 TLobby__sub_80403C60(u8 *);
+s16 TLobby__sub_80403BA8(u8 *, u8 *, s32);
+s16 TLobby__sub_80403B04(u8 *, u8 *, s32);
+s32 TLobby__sub_804038F4(s32, s32, s32);
+s32 TLobby__sub_804039C8(s16, s32, s32, s32, s32, s32, s32);
+s16 TLobby__sub_80403864(void);
+s16 wait_for_connection__6TLobbyFPv(Conn_804004DC *);
+s32 TLobby__sub_803FB7A4(void) {
+    extern s32 lbl_805D7A94;
+    extern s16 lbl_805D7A80;
+    extern s32 lbl_805D7AA0;
+    extern s32 lbl_805D7BD8;
+    NetSession *g = (NetSession *)&lbl_805BFF68;
+    LobbyPkt_803FB7A4 pkt;
+    s16 r29;
+    s16 ok;
+    s16 mode;
+    s32 timeout;
+    s32 t1;
+    s32 t0;
+    s16 rc;
+    s16 ret;
+    s32 flag;
+    s16 h2;
+
+    lbl_805D7A88 = 0;
+    lbl_805D7A8A = 2;
+    TLobby::get_time_ms(&lbl_805D7A94);
+    lbl_805D7A84 = 1;
+    rc = TLobby__sub_80403D28(0, 0, g->h80, g->h7E, g->h7C, 1, g->modem.s48, g->flags & 4);
+    if (rc != 0 || lbl_805D7A86 != 0) {
+        if (lbl_805D7A86 != 0) {
+            lbl_805D7A82 = 0xd;
+        } else {
+            lbl_805D7A82 = 1;
+        }
+        lbl_805D7A8A = 8;
+        LOBBY_NOTIFY();
+        return 0;
+    }
+    if (!(g->flags & 4)) {
+        if (g->req.has_arg == 1 && (s16)TLobby::send_atx_command_mode(0) != 0) {
+            LOBBY_ABORT(1, 8);
+        }
+        if (g->modem.h0 != 0) {
+            rc = TLobby__sub_803F7E50(g->modem.w4C, g->modem.w50, g->modem.w54, g->modem.init_count, (s32)g->modem.init_command);
+        } else {
+            rc = TLobby__sub_803F7E50(0, 0, 0, 0, 0);
+        }
+        if (rc != 0) {
+            LOBBY_ABORT(1, 8);
+        }
+        if (g->flags & 2) {
+            lbl_805D7A8A = 0xa;
+            goto L242;
+        }
+        if (g->modem.h2 != 0) {
+            ret = TLobby__sub_803FAEDC((LoginCfg_803FAEDC *)g);
+            if (ret != 0) {
+                LOBBY_ABORT(ret, 8);
+            }
+        }
+    }
+    if (g->modem.h4 != 0) {
+        timeout = g->req.timeout * 1000;
+        TLobby::get_time_ms(&t0);
+        for (;;) {
+            if ((u16)TLobby__sub_803F8090() != 0) {
+                break;
+            }
+            if (!(g->flags & 4)) {
+                ret = TLobby::map_state_to_mode_id();
+                if (ret >= 0) {
+                    if (ret == 0) {
+                        break;
+                    }
+                    LOBBY_ABORT(ret, 8);
+                }
+            }
+            TLobby::get_time_ms(&t1);
+            flag = lbl_805D7A86;
+            if ((s16)flag != 0 || (u32)(t1 - t0) > (u32)timeout) {
+                if ((s16)flag != 0) {
+                    lbl_805D7A82 = 0xd;
+                } else {
+                    lbl_805D7A82 = 0xc;
+                }
+                lbl_805D7A8A = 8;
+                LOBBY_NOTIFY();
+                return 0;
+            }
+            TUdpSocket::unlock_mutex(lbl_805C18A0.value);
+            TLobby__sub_803F97E8(100);
+            TLobby::lock_mutex(lbl_805C18A0.value);
+        }
+    }
+L242:
+    if (g->flags & 2) {
+        lbl_805D7A8A = 0xa;
+        while (lbl_805D7A8A == 0xa) {
+            TUdpSocket::unlock_mutex(lbl_805C18A0.value);
+            TLobby__sub_803F97E8(100);
+            TLobby::process_expired_timers();
+            TLobby::lock_mutex(lbl_805C18A0.value);
+        }
+        if (lbl_805D7A8A != 1) {
+            if (g->cb != NULL) {
+                TUdpSocket::unlock_mutex(lbl_805C18A0.value);
+                lbl_805D7A82 = 1;
+                g->cb(lbl_805D7A82, 0);
+                TLobby::lock_mutex(lbl_805C18A0.value);
+            }
+            return 0;
+        }
+    }
+    TUdpSocket::unlock_mutex(lbl_805C18A0.value);
+    TLobby__sub_803F97E8(500);
+    TLobby::lock_mutex(lbl_805C18A0.value);
+    lbl_805D7A8A = 3;
+    lbl_805D7A80 = 0;
+    TLobby::get_time_ms(&g->connect_ms);
+    lbl_805D7A78 = 0;
+    if (g->flags & 4) {
+        pkt.a = -1;
+        pkt.b = 1;
+        pkt.e = 0x5AE;
+        mode = 1;
+        pkt.f = 1;
+    } else {
+        pkt.a = 0xA0000;
+        pkt.b = g->uA0;
+        pkt.e = g->mtu;
+        pkt.f = g->uA2;
+        mode = g->hA4;
+    }
+    pkt.c = g->h98;
+    pkt.d = g->start_tick;
+    pkt.g = (s32)g->user;
+    pkt.h = (s32)g->password;
+    if (TLobby__sub_80403C60((u8 *)&pkt) != 0) {
+        LOBBY_ABORT(5, 8);
+    }
+    h2 = g->h2;
+    if (h2 == 6 || h2 == 0) {
+        TLobby__sub_804038F4(0, (s32)g->bufC0, (s32)g->bufC8);
+    }
+    TLobby__sub_804039C8(mode, g->wA8, g->wAC, g->wB0, g->wB4, g->wB8, g->wBC);
+    lbl_805D7AA0 = 0;
+    ok = 0;
+    switch (g->h98 & 0x7f) {
+    default:
+        ok = 1;
+        break;
+    case 0:
+        rc = TLobby__sub_80403BA8((u8 *)g->user, (u8 *)g->password, 0x80);
+        if (rc != 0) {
+            LOBBY_NOTIFY();
+            return 0;
+        }
+        ok = 1;
+        break;
+    case 2:
+        rc = TLobby__sub_80403B04((u8 *)g->user, (u8 *)g->password, 0x82);
+        if (rc != 0) {
+            LOBBY_NOTIFY();
+            return 0;
+        }
+        ok = 1;
+        break;
+    case 4:
+        if (lbl_805D7A78 == 0) {
+            ok = 1;
+            break;
+        }
+        for (r29 = 0; r29 < 2; r29++) {
+            u16 st = lbl_805D7A78;
+            if (st == 0x80) {
+                rc = TLobby__sub_80403BA8((u8 *)g->user, (u8 *)g->password, st);
+                if (rc == 0) {
+                    ok = 1;
+                    break;
+                }
+                if (rc != -18) {
+                    LOBBY_NOTIFY();
+                    return 0;
+                }
+            } else if (st == 0x82) {
+                rc = TLobby__sub_80403B04((u8 *)g->user, (u8 *)g->password, st);
+                if (rc == 0) {
+                    ok = 1;
+                    break;
+                }
+                if (rc != -18) {
+                    LOBBY_NOTIFY();
+                    return 0;
+                }
+            } else {
+                LOBBY_ABORT(6, 8);
+            }
+            if (wait_for_connection__6TLobbyFPv((Conn_804004DC *)(lbl_805C0038 + 4)) != 0) {
+                LOBBY_ABORT(0xc, 8);
+            }
+        }
+        break;
+    }
+    if (ok == 0) {
+        LOBBY_ABORT(6, 8);
+    }
+    if (TLobby__sub_80403864() != 0) {
+        LOBBY_ABORT(7, 8);
+    }
+    lbl_805D7A8A = 4;
+    if (g->cb != NULL) {
+        TUdpSocket::unlock_mutex(lbl_805C18A0.value);
+        g->cb(0, lbl_805D7BD8);
+        TLobby::lock_mutex(lbl_805C18A0.value);
+    }
+    return 0;
+}
+#undef LOBBY_NOTIFY
+#undef LOBBY_ABORT
+
+s16 TLobby::get_remaining(s32 arg0) {
+    return lbl_805D7A78 - arg0;
+}
+
 
 }
 
