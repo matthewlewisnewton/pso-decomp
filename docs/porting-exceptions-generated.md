@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5770 | 878 |
+| pragma | 5772 | 878 |
 | configure.py per-unit override | 188 | 188 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1143, `inline_depth` 1035, `fp_contract` 878, `auto_inline` 833, `opt_common_subs` 610, `scheduling` 263, `opt_propagation` 237, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1143, `inline_depth` 1035, `fp_contract` 879, `auto_inline` 833, `opt_common_subs` 610, `scheduling` 263, `opt_propagation` 238, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -936,7 +936,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1143, `inline_depth` 1035,
 | `src/pso/misc/TWindowSubStatusDisp_8025B050.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowSubStatusDisp_8025B4A0.cpp` | readonly_strings×1, fp_contract×1 |
 | `src/pso/misc/TWindowSubStatusDisp_802671F0.cpp` | fp_contract×3 |
-| `src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp` | fp_contract×1 |
+| `src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp` | fp_contract×2, opt_propagation×1 |
 | `src/pso/misc/TWindowSubStatusDisp_8026F6DC.cpp` | fp_contract×3, opt_common_subs×1 |
 | `src/pso/misc/TWindowSubStatusDisp_80281198.cpp` | defer_codegen×2 |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp` | fp_contract×1 |

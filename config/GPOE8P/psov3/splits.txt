@@ -8866,6 +8866,7 @@ pso/misc/TShopJudgmentItemWindow_8026DF00.cpp:
 
 pso/misc/TWindowSubStatusDisp_8026DFE8.cpp:
 	.text       start:0x8026DFE8 end:0x8026E5E8
+	.sdata2     start:0x805DD348 end:0x805DD37C
 
 pso/misc/TWindowShortCut.cpp:
 	.text       start:0x8026E5E8 end:0x8026E7DC

@@ -102,6 +102,22 @@ check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
 
+### Shortcut preview at `0x8026E1D4`
+
+`TWindowShortCut::initialize_preview` uses scoped `fp_contract on` for the
+fused coordinate calculations and `opt_propagation off` to preserve the
+saved-register allocation across the entry and formatter calls. Keep fused
+subtraction if exact float results matter on a port. Drop the optimizer
+pragma on other compilers.
+
+The thirteen `__declspec(section ".sdata2")` definitions in
+`TWindowSubStatusDisp_8026DFE8.cpp` put the separator, icon table and
+preview constants at `0x805DD348..0x805DD37C`. CodeWarrior places these
+named constants in writable small data without the declarations. The
+original kind-zero lookup reads the separator's final zero byte. Ports
+can place the constants normally and use the explicit zero entry in the
+portable branch.
+
 ### Ground collision debug hook
 
 In `src/pso/map/CsnQuery.cpp`, CodeWarrior leaves the selected contact pointer
