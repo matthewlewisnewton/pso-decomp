@@ -254,11 +254,54 @@ to the direct named-operand assembly candidate. This encapsulation did not
 improve the emitted result and is not a replacement implementation. No helper
 phase trace was collected, so identical internal decisions are not claimed.
 
-The comparison identifies an earlier compiler decision to investigate; it
-does not establish which assembly effect causes it, recover an original
-interface or authorize expression/register steering. No experimental source,
-private compiler dump or binary is added here. The exact original provider,
-symbol extents and strict accounting remain in force.
+This initial comparison alone did not identify the assembly effect causing
+the gate. The follow-up below isolates that stock-compiler decision; neither
+comparison recovers an original interface or authorizes expression/register
+steering. No experimental source, private compiler dump or binary is added
+here. The exact original provider, symbol extents and strict accounting remain
+in force.
+
+### Isolating the frontend assembly gate
+
+A second passive observation of the same two frozen inputs follows the stock
+executable's assembly-effect checks and optimizer gates. The executable,
+sources and flags are unchanged. Both observations ran to compiler exit zero;
+for each input, the complete stock, untraced-emulator and debugger-observed
+objects are byte-identical and agree with the saved candidate's allocated
+output. A transient occupied debugger port stopped the initial combined job
+before its second observation; that input completed in a separate gated job.
+
+Both inputs have optimization level four and the assembly-aware optimization
+option already enabled. In the named-operand candidate:
+
+| Observed statement | Effect barrier byte | Unmodeled-flow byte | Disable gate after statement |
+|---|---:|---:|---:|
+| `mtlr entry` | 0 | 0 | 0 |
+| Nonlinking `blr` | 0 | 1 | 1 |
+
+The stock executable tests the option at `0x46D51C`, obtains the effect header,
+and tests bytes zero and three at `0x46D531` and `0x46D537`. The `blr` takes
+the effect-triggered store at `0x46D53E`, setting byte `0x5EB394` to one.
+The option-disabled path at `0x46D547` is not taken. This distinguishes a
+specific branch effect from a blanket prohibition of assembly optimization.
+
+At the main optimizer gate (`0x42E041`), that byte remains one for the
+assembly candidate and zero for the call control. The control enters the
+main optimization region, reaches lifetime splitting (`0x42E39A`) and enters
+expression regeneration (`0x42E3E1`); the assembly candidate skips all three.
+Its prefix AST already differs immediately after the IRO optimizer returns,
+before the later simple cleanup. The public reconstruction's
+`DisableDueToAsm` description is therefore consistent with an observed stock
+decision, rather than being the sole basis for the diagnosis.
+
+The nonlinking indirect transfer is an actual control-flow boundary. Clearing
+the gate, supplying false label/call effects or replacing it with a linking
+transfer would not establish an equivalent source solution. No such change
+was tested or adopted. These observations explain this candidate's optimizer
+path; even the call control's exact prefix does not authenticate the original
+game's source, flags or pass sequence. A source recovery still needs a
+semantically justified representation and the unchanged ownership/accounting
+checks.
 
 ## Comparison record and reproduction limits
 
