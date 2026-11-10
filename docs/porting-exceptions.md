@@ -111,6 +111,15 @@ consists of a return instruction. The matching build preserves the original
 register state at that call. The portable branch initializes the debug pointer
 to null.
 
+### ADX stream decode at `0x803C0238`
+
+`src/pso/misc/TLobby_803BFE50.cpp` extends its existing inlining scope to the
+input preparation, output publication, and format-specific counter update.
+Under GC/2.6, flattening those phases into the caller changes the saved
+register allocation. The chunk declaration order within the output helper
+also places the two descriptors at stack offsets 8 and 16. Ports can use the
+same helpers with ordinary inlining and native pointer-sized handles.
+
 ### Dark Falz demo 4
 
 | File | Scope | What | Why | Port should |
