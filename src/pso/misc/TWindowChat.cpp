@@ -1,6 +1,7 @@
 #include "pso/misc/TWindowChat.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
+#include "pso/misc/TWindowKeyBoardHard.h"
 #include "pso/misc/TKeyBoardControl_8025EC04.h"
 #include "pso/misc/TWindowKeyBoardHard_802601D4.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -490,10 +491,7 @@ TWindowChat::TWindowChat(TObject *object, void *arg2) : TObject(object) {
     o = new TWindowKeyBoardBase;
     this->composer = o;
     ((TWindowKeyBoardBase *)((u8 *)this->composer))->init_keyboard_text_field(200, 2);
-    o2 = ((void *)__nw__7TObjectFUl(0x74));
-    if (o2 != NULL) {
-        o2 = TWindowKeyBoardHard__ct((TWindowKeyBoardHard *)((u8 *)o2), (s32)this->composer);
-    }
+    o2 = new TWindowKeyBoardHard((TWindowKeyBoardBase *)composer);
     this->hardKeyboard = o2;
     *(u32 *)((s8 *)this + 0x24) = 0;
     *(u32 *)((s8 *)this + 0x2C) = 0;

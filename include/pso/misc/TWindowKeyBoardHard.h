@@ -4,7 +4,10 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 
+struct TWindowKeyBoardBase;
+
 struct TWindowKeyBoardHard : public TWindowBase {
+    TWindowKeyBoardHard(TWindowKeyBoardBase *composer);
     virtual ~TWindowKeyBoardHard();
     void draw_status_text(void *);
     void update_modifier_flags();

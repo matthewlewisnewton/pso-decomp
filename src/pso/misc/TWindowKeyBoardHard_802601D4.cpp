@@ -22,7 +22,7 @@ extern "C" {
 s32 get_window_layout_position(int);
 extern RecoveredGlobal_80260304_lbl_804CFAD0 lbl_804CFAD0;
 extern s32 __vt__19TWindowKeyBoardHard[];
-extern s32 TWindowKeyBoardHard__name;
+extern const char *TWindowKeyBoardHard__name;
 s32 is_key_active__19TWindowKeyBoardHardFv();
 void __dl__7TObjectFPv(void *);
 s32 initialize_subwindow__9TWindowDDFv(void *);
@@ -70,19 +70,18 @@ void *__dt__19TWindowKeyBoardHardFv(void *arg0, s16 arg1) {
 }
 typedef char RecoveredGlobal_80260304_lbl_804CFAD0_size[sizeof(RecoveredGlobal_80260304_lbl_804CFAD0) == 0x14 ? 1 : -1];
 typedef char RecoveredGlobal_80260304___vt__19TWindowKeyBoardHard_size[sizeof(RecoveredGlobal_80260304___vt__19TWindowKeyBoardHard) == 0x1C ? 1 : -1];
-u8 *TWindowKeyBoardHard__ct(TWindowKeyBoardHard *window_key_board_hard, s32 arg1) {
-    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)window_key_board_hard), (u8 *)((u8 *)&lbl_804CFAD0.value), (s16)((s16)(4)), (u8 *)((u8 *)(get_window_layout_position(0xB9))));
-    *(s32 **)((s8 *)window_key_board_hard + 0x18) = &(*(RecoveredGlobal_80260304___vt__19TWindowKeyBoardHard *)&__vt__19TWindowKeyBoardHard).value;
-    *(s32 *)((s8 *)window_key_board_hard + 0) = (s32) TWindowKeyBoardHard__name;
-    window_key_board_hard->m_60 = 0;
-    window_key_board_hard->m_70 = arg1;
-    window_key_board_hard->m_64 = 0;
-    window_key_board_hard->m_68 = 0;
-    window_key_board_hard->m_6c = 7;
-    window_key_board_hard->release_keyboard();
-    return (u8 *)window_key_board_hard;
+TWindowKeyBoardHard::TWindowKeyBoardHard(TWindowKeyBoardBase *composer)
+    : TWindowBase((u8 *)&lbl_804CFAD0.value, 4,
+                  (u8 *)get_window_layout_position(0xB9)) {
+    m_name = TWindowKeyBoardHard__name;
+    m_60 = 0;
+    m_70 = (u32)composer;
+    m_64 = 0;
+    m_68 = 0;
+    m_6c = 7;
+    release_keyboard();
 }
 
 extern char lbl_8044F0A8[];
-s32 TWindowKeyBoardHard__name = (s32)lbl_8044F0A8;
+const char *TWindowKeyBoardHard__name = lbl_8044F0A8;
 }

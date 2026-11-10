@@ -13,6 +13,7 @@
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
+#include "pso/misc/TWindowKeyBoardHard.h"
 #include "pso/misc/TWindowKeyBoardHard_802601D4.h"
 #include "pso/misc/TWindowKeyBoardSoft_80261440.h"
 #include "pso/misc/TKeyBoardControl_8025CB70.h"
@@ -134,10 +135,7 @@ TKeyBoardControl *TKeyBoardControl__ct(TKeyBoardControl *self, TObject *parent, 
     self->m_20 = (u32)o;
     ((TWindowKeyBoardBase *)self->m_20)->init_keyboard_text_field(arg2, arg3);
     ((TKeyBoardControl *)self->m_20)->set_flag62_bit8();
-    o = __nw__7TObjectFUl(0x74);
-    if (o != NULL) {
-        o = TWindowKeyBoardHard__ct((TWindowKeyBoardHard *)o, self->m_20);
-    }
+    o = new TWindowKeyBoardHard((TWindowKeyBoardBase *)self->m_20);
     self->m_24 = (u32)o;
     TKeyBoardControl__sub_8025EC04((u8 *)self->m_24);
     o = __nw__7TObjectFUl(0x70);
