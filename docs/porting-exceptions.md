@@ -89,8 +89,8 @@ preserve the graph's exported constants and format strings. See
 [download graph recovery](evidence/download-graph-recovery.md) for the
 compiler and data layout evidence.
 
-5,777 pragmas in 878 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1145, `inline_depth` 1037, `fp_contract` 878, `auto_inline` 836,
+5,770 pragmas in 878 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1143, `inline_depth` 1035, `fp_contract` 878, `auto_inline` 833,
 `opt_common_subs` 610, `scheduling` 263, `opt_propagation` 237,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
