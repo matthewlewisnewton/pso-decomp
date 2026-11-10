@@ -28,7 +28,6 @@ struct TWindowSubShortMail : public TObject {
     u32 m_54;
     u32 m_58;
     u32 m_5c;
-    void hide_window();
     static s32 is_active();
     void close();
     void update_mail_count();

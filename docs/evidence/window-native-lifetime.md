@@ -402,3 +402,13 @@ context inputs. The new800-byte body remains non-exact; all31 prior functions,
 resolved targets and data are preserved, and original executable selection remains.
 No compiler control, table/provider claim, metric gain or history split is added.
 Exactness, constants, renderer ABI and prior lifetime/ownership holds stay explicit.
+
+
+The [Base close/Control flag follow-up](window-base-close-control-flags.md)
+recovers Base's generic close-request helper and Control's two halfword-mask-4
+methods, replacing false LockOn/ShortMail receiver claims at all twenty and six
+observed calls. Base close delegates without a downcast; Hard-before-Soft order,
+the post-call flag reload and child guards remain exact. All eleven selected
+complete source objects and their relocation/data provenance are preserved.
+No lifetime, complete Soft identity, source activation or metric gain is claimed;
+the renderer and remaining technical holds persist.

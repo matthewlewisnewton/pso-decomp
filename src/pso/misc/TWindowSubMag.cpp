@@ -467,7 +467,7 @@ void TWindowSubMag::run_task(void *arg0) {
             self->card = NULL;
         }
         if (self->help != NULL) {
-            ((TWindowLockOn *)(self->help))->request_close();
+            ((TWindowBase *)(self->help))->request_close();
             ((TWindowSubMag *)(self->help))->set_flag60_bit8();
             ((TWindowHelpItem *)(self->help))->set_flag60_bit4();
         }

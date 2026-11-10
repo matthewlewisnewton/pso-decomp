@@ -1,38 +1,31 @@
 #include "types.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
-#include "pso/misc/TWindowSubShortMail_80131998.h"
+#include "pso/misc/TKeyBoardControl.h"
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowKeyBoardHard.h"
-#include "pso/misc/TWindowLockOn.h"
-#include "pso/misc/TWindowSubShortMail.h"
-#include "pso/misc/TLobby.h"
-#include "pso/misc/TWindowMakeTeam.h"
-#include "pso/misc/TWindowSubTradeMain.h"
+#include "pso/misc/TWindowSubComCard_80244774.h"
 
-void TWindowSubShortMail__sub_80131998(void *arg0) {
-    u16 temp_r3;
-
-    temp_r3 = *(u16 *)((s8 *)arg0 + 0x1C);
-    if (!(temp_r3 & 4)) {
-        *(u16 *)((s8 *)arg0 + 0x1C) = (u16) (temp_r3 | 4);
-        if ((u32) *(u32 *)((s8 *)arg0 + 0x24) != 0U) {
-            ((TWindowKeyBoardHard *)(*(void **)((s8 *)arg0 + 0x24)))->set_flag60_bit200();
+void TKeyBoardControl::set_flag1c_bit4() {
+    u16 flags = m_1c;
+    if (!(flags & 4)) {
+        m_1c = (u16)(flags | 4);
+        if (m_24 != 0U) {
+            ((TWindowKeyBoardHard *)m_24)->set_flag60_bit200();
         }
-        if ((u32) *(u32 *)((s8 *)arg0 + 0x28) != 0U) {
-            ((TWindowLockOn *)(*(void **)((s8 *)arg0 + 0x28)))->request_close();
+        if (m_28 != 0U) {
+            ((TWindowBase *)m_28)->request_close();
         }
     }
 }
-void TWindowSubShortMail::hide_window() {
-    u16 temp_r3;
 
-    temp_r3 = *(u16 *)((s8 *)this + 0x1C);
-    if (temp_r3 & 4) {
-        *(u16 *)((s8 *)this + 0x1C) = (u16) (temp_r3 & 0xFFFFFFFB);
-        if ((u32) this->m_24 != 0U) {
-            ((TWindowKeyBoardHard *)(this->m_24))->clear_flag60_bit200();
+void TKeyBoardControl::clear_flag1c_bit4() {
+    u16 flags = m_1c;
+    if (flags & 4) {
+        m_1c = (u16)(flags & 0xFFFFFFFB);
+        if (m_24 != 0U) {
+            ((TWindowKeyBoardHard *)m_24)->clear_flag60_bit200();
         }
-        if (!(*(u16 *)((s8 *)this + 0x1C) & 1) && ((u32) this->m_28 != 0U)) {
-            window_request_show(*(void * *)&this->m_28);
+        if (!(m_1c & 1) && m_28 != 0U) {
+            window_request_show((void *)m_28);
         }
     }
 }

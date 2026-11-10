@@ -102,7 +102,7 @@ void run_task__16TKeyBoardControlFv(TKeyBoardControl *key_board_control) {
     } else if (((s32)((TWindowKeyBoardHard *)(key_board_control->m_24))->is_key_held()) == 0) {
         key_board_control->m_1c = (u16) (key_board_control->m_1c | 1);
         if ((u32) key_board_control->m_28 != 0U) {
-            ((TWindowLockOn *)(*(void **)((s8 *)key_board_control + 0x28)))->request_close();
+            ((TWindowBase *)(*(void **)((s8 *)key_board_control + 0x28)))->request_close();
         }
     }
 }

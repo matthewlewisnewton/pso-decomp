@@ -78,7 +78,7 @@ Win_802649C0 *TWindowMainMenu__ct(Win_802649C0 *arg0, void *arg1, s32 arg2);
 s32 is_split_screen();
 
 void TWindowMainMenu4P::show_child_window() { if (m_1c != NULL) { window_request_show(m_1c); m_1c->update_scaled_position(); } }
-void TWindowMainMenu::update_trade_submenu() { void* m = *(void**)((char*)this + 0x1c); if (m) ((TWindowLockOn *)m)->request_close(); }
+void TWindowMainMenu::update_trade_submenu() { void* m = *(void**)((char*)this + 0x1c); if (m) ((TWindowBase *)m)->request_close(); }
 void TWindowMainMenu::update_submenu() {
     if (m_1c != NULL) {
         m_1c->park_selection();

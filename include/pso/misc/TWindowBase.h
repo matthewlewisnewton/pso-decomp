@@ -16,6 +16,7 @@ public:
     void draw_message_frame_row(void *, void *);
     void resort_window_order();
     void close();
+    void request_close();
     void set_depth(f32 depth);
     void calc_inner_rect(u8 *);
     void sub_8026CC28();

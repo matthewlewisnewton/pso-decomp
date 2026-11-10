@@ -338,7 +338,6 @@ void *send_cmd_133__17TWindowSubComCardFv(void);
 void *send_command__17TWindowSubComCardFi(s32);
 void update_display_value__17TWindowSubComCardFUiUiPv(u32 arg0, u32 arg1, s32 *arg2);
 s32 TWindowSubShortMail__sub_8007B834(void *);
-void TWindowSubShortMail__sub_80131998(void *);
 void TWindowSubShortMail__sub_8027E620(void *p);
 }
 s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
@@ -480,7 +479,7 @@ void TWindowSubShortMail::run_task() {
         }
         ((TKeyBoardControl *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBB)));
         ((TKeyBoardControl *)(o->w5c))->clear_keyboard_flag60_bit1();
-        ((TWindowSubShortMail *)(o->w5c))->hide_window();
+        ((TKeyBoardControl *)o->w5c)->clear_flag1c_bit4();
         o->state = 0xC;
     case 12:
         if (((TKeyBoardControl *)(o->w5c))->is_keyboard_active() != 0) {
@@ -491,7 +490,7 @@ void TWindowSubShortMail::run_task() {
         break;
     case 13:
         ((TKeyBoardControl *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBC)));
-        TWindowSubShortMail__sub_80131998(o->w5c);
+        ((TKeyBoardControl *)o->w5c)->set_flag1c_bit4();
         o->w50 = ((void * (*)(void *, s32)) open_confirm_prompt__19TWindowSubShortMailFPvi)(o, o->f20);
         o->state = 0xE;
     case 14:
@@ -580,7 +579,7 @@ void TWindowSubShortMail::run_task() {
         }
         ((TKeyBoardControl *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBB)));
         ((TKeyBoardControl *)(o->w5c))->clear_keyboard_flag60_bit1();
-        ((TWindowSubShortMail *)(o->w5c))->hide_window();
+        ((TKeyBoardControl *)o->w5c)->clear_flag1c_bit4();
         o->state = 0x19;
     case 25:
         if (((TKeyBoardControl *)(o->w5c))->is_keyboard_active() != 0) {
@@ -591,7 +590,7 @@ void TWindowSubShortMail::run_task() {
         break;
     case 26:
         ((TKeyBoardControl *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBC)));
-        TWindowSubShortMail__sub_80131998(o->w5c);
+        ((TKeyBoardControl *)o->w5c)->set_flag1c_bit4();
         if (o->w50 == NULL) {
             o->w50 = ((void * (*)(void *)) open_delete_confirm_dialog__19TWindowSubShortMailFv)(o);
         }

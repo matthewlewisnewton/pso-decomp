@@ -142,7 +142,7 @@ void TWindowCtrl::update_short_list_request() {
 void TWindowCtrl::show_active_window() {
     if ((u32) this->m_2c != 0U) {
         if (is_visible() != 0) {
-            ((TWindowLockOn *)(this->m_2c))->request_close();
+            ((TWindowBase *)(this->m_2c))->request_close();
             return;
         }
         window_request_show((void *)this->m_2c);
@@ -235,7 +235,7 @@ void TWindowCtrl::update_child_window_visibility() {
     if (((u32) this->m_34 != 0U) && (((TWindowCtrl *)((void *) this->m_34))->is_flag_2_set() == 0)) {
         temp_r31 = get_player_by_client_id(this->m_24);
         if ((get_active_menu() != 0) || (((TWindowCtrl *)arg0)->is_visible() != 0) || (((TWindowCtrl *)arg0)->is_enabled() != 0) || (temp_r31 == 0U)) {
-            ((TWindowLockOn *)(this->m_34))->request_close();
+            ((TWindowBase *)(this->m_34))->request_close();
             return;
         }
         window_request_show((void *)this->m_34);
@@ -246,7 +246,7 @@ void TWindowCtrl::update_trade_window_visibility() {
     u8 *arg0 = (u8 *)this;
     if (((u32) this->m_30 != 0U) && (((TWindowCtrl *)((void *) this->m_30))->is_flag_2_set() == 0)) {
         if ((get_player_by_client_id(this->m_24) == 0U) || (((TWindowCtrl *)arg0)->is_visible() != 0) || (TWindowCtrl__sub_8024C7F8(arg0) != 0) || ((is_split_screen() != 0) && (get_active_menu() != 0))) {
-            ((TWindowLockOn *)(this->m_30))->request_close();
+            ((TWindowBase *)(this->m_30))->request_close();
             return;
         }
         window_request_show((void *)this->m_30);

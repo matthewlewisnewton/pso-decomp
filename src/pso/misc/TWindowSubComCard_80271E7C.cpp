@@ -679,7 +679,6 @@ void queue_destruction__7TObjectFv(void *arg0);
 s32 TWindowSubComCard__sub_800778B4(void *, int);
 void TWindowSubComCard__sub_8007AF10(s32 arg0);
 s32 update_press__17TWindowSubComCardFv(int);
-void TWindowSubShortMail__sub_80131998(void *arg0);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
@@ -1043,7 +1042,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
             window_sub_com_card->m_74 = ((u32 (*)(int))send_command__17TWindowSubComCardFi)(window_sub_com_card->m_24);
         }
         fn_80244958(window_sub_com_card->m_6c, (int) (get_window_layout_position(0x99)));
-        ((TWindowLockOn *)(window_sub_com_card->m_6c))->request_close();
+        ((TWindowBase *)(window_sub_com_card->m_6c))->request_close();
         ((TWindowSubComCard *)(window_sub_com_card->m_84))->clear_flag_and_release();
         window_sub_com_card->m_1c = 0xCU;
     case 0xC:
@@ -1051,7 +1050,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
         window_sub_com_card->set_card_index((int) (((TWindowMenu *)window_sub_com_card->m_84)->get_selected_value()));
         if (TWindowShortListCtrl__check_controller_button((void *) ((u8 *)controller_input_state + 0x20), 0x400) != 0) {
             if (((TWindowBase *)(window_sub_com_card->m_6c))->sub_80244994() != 0) {
-                ((TWindowLockOn *)(window_sub_com_card->m_6c))->request_close();
+                ((TWindowBase *)(window_sub_com_card->m_6c))->request_close();
             } else {
                 window_request_show((void *)window_sub_com_card->m_6c);
             }
@@ -1290,7 +1289,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
         }
         ((TKeyBoardControl *)(window_sub_com_card->m_80))->set_position((void *)(get_window_layout_position(0xBB)));
         ((TKeyBoardControl *)((void *)window_sub_com_card->m_80))->clear_keyboard_flag60_bit1();
-        ((TWindowSubShortMail *)(window_sub_com_card->m_80))->hide_window();
+        ((TKeyBoardControl *)window_sub_com_card->m_80)->clear_flag1c_bit4();
         window_sub_com_card->m_1c = 0x22U;
     case 0x22:
         if (((TKeyBoardControl *)(window_sub_com_card->m_80))->is_keyboard_active() != 0) {
@@ -1304,7 +1303,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
         break;
     case 0x23:
         ((TKeyBoardControl *)(window_sub_com_card->m_80))->set_position((void *)(get_window_layout_position(0xBC)));
-        TWindowSubShortMail__sub_80131998((void *)window_sub_com_card->m_80);
+        ((TKeyBoardControl *)window_sub_com_card->m_80)->set_flag1c_bit4();
         window_sub_com_card->m_70 = open_confirm_prompt__19TWindowSubShortMailFPvi((window_sub_com_card), (window_sub_com_card->m_20));
         window_sub_com_card->m_1c = 0x24U;
     case 0x24:

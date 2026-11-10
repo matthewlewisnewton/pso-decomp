@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowBase.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024B7D4.h"
 #include "pso/misc/TWindowCtrl.h"
@@ -95,7 +96,7 @@ extern s32 local_client_id;
 void TWindowCtrl__sub_8024B9C0(void *arg0) {
     if ((u32) *(u32 *)((s8 *)arg0 + 0x30) != 0U) {
         if (is_slot_visible__11TWindowCtrlFv(local_client_id) != 0) {
-            ((TWindowLockOn *)(*(u32 *)((s8 *)arg0 + 0x30)))->request_close();
+            ((TWindowBase *)(*(u32 *)((s8 *)arg0 + 0x30)))->request_close();
             return;
         }
         window_request_show((void *)(*(u32 *)((s8 *)arg0 + 0x30)));
@@ -105,7 +106,7 @@ void TWindowCtrl__sub_8024B9C0(void *arg0) {
 void TWindowCtrl::update_trade_window() {
     if ((u32) this->m_34 != 0U) {
         if ((is_slot_visible__11TWindowCtrlFv(local_client_id) != 0) || (TWindowCtrl__sub_8024B000(this, local_client_id) != 0) || ((is_split_screen() != 0) && (TRaderMapCore::is_active() == 0))) {
-            ((TWindowLockOn *)(this->m_34))->request_close();
+            ((TWindowBase *)(this->m_34))->request_close();
             return;
         }
         window_request_show((void *)this->m_34);
@@ -284,7 +285,7 @@ void TWindowCtrl::update_party_status_rows() {
                 is_script_controlled__10TObjPlayerFv(pl) != 0 ||
                 (obj_isState3_324__9TObjCharaFv(pl) != 0 &&
                  (((TObjPlayer *)pl)->get_field_828() != 0 || ((TNpcPlayer *)pl)->get_action_flags() == 0xFFFF))) {
-                ((TWindowLockOn *)w)->request_close();
+                ((TWindowBase *)w)->request_close();
             } else {
                 window_request_show(w);
                 if (w->y != y) {
