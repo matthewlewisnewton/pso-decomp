@@ -476,8 +476,6 @@ pso/enemy/TObjEneLappy.cpp
 pso/enemy/TObjEneLappy_800F5DE0.cpp
 pso/enemy/TObjEneMe1Canadin.cpp
 pso/enemy/TObjEneMe1CanadinLeader.cpp
-pso/enemy/TObjEneMe1CanadinLeader_8009F4A0.cpp
-pso/enemy/TObjEneMe1Canadin_8009F504.cpp
 pso/enemy/TObjEneMe1Gee.cpp
 pso/enemy/TObjEneMe1Gee_802A4BB8.cpp
 pso/enemy/TObjEneMe1GiGue.cpp
@@ -2834,11 +2832,9 @@ pso/unk/text_8002C190.cpp
 pso/unk/text_8002E090.cpp
 pso/unk/text_8002E174.cpp
 pso/unk/text_8003AFBC.cpp
+pso/unk/text_80049FD8.cpp
 pso/unk/text_8004AA04.cpp
 pso/unk/text_8004D9A8.cpp
-pso/unk/text_8004F1FC.cpp
-pso/unk/text_8004F2A8.cpp
-pso/unk/text_8004F5F8.cpp
 pso/unk/text_80050050.cpp
 pso/unk/text_80050134.cpp
 pso/unk/text_800502FC.cpp
@@ -2893,7 +2889,6 @@ pso/unk/text_80090464.cpp
 pso/unk/text_80090488.cpp
 pso/unk/text_80092AE0.cpp
 pso/unk/text_80092B10.cpp
-pso/unk/text_8009F410.cpp
 pso/unk/text_800A01C0.cpp
 pso/unk/text_800A02AC.cpp
 pso/unk/text_800A0798.cpp

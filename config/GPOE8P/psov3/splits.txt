@@ -438,6 +438,7 @@ pso/boss/TUnk_80484AFC.cpp:
 
 pso/unk/text_80049FD8.cpp:
 	.text       start:0x80049FD8 end:0x8004A0AC
+	.rodata     start:0x80436748 end:0x80436794
 
 pso/object/TObjVoloptPillar.cpp:
 	.text       start:0x8004A0AC end:0x8004A634
@@ -510,22 +511,12 @@ pso/object/TObjDFDemo3.cpp:
 	.sdata      start:0x805D2790 end:0x805D2794
 	.sdata2     start:0x805D89D0 end:0x805D89EC
 
-pso/unk/text_8004F1FC.cpp:
-	.text       start:0x8004F1FC end:0x8004F2A8
-
-pso/unk/text_8004F2A8.cpp:
-	.text       start:0x8004F2A8 end:0x8004F5F8
-	.rodata     start:0x80437410 end:0x80437418
-	.sdata2     start:0x805D89F0 end:0x805D89F4
-
-pso/unk/text_8004F5F8.cpp:
-	.text       start:0x8004F5F8 end:0x8004F6AC
-
-pso/unk/text_8004F6AC.cpp:
-	.text       start:0x8004F6AC end:0x8004F8AC
-
 pso/object/TObjDFDemo4.cpp:
-	.text       start:0x8004F8AC end:0x8004F904
+	.text       start:0x8004F1FC end:0x8004F904
+	.rodata     start:0x804373B8 end:0x80437418
+	.data       start:0x80485720 end:0x80485798
+	.sdata      start:0x805D2798 end:0x805D279C
+	.sdata2     start:0x805D89F0 end:0x805D8A08
 
 pso/object/TObjDFDemo5.cpp:
 	.text       start:0x8004F904 end:0x80050050
@@ -1494,23 +1485,11 @@ pso/enemy/BringerEffects.cpp:
 	.sdata2     start:0x805D9850 end:0x805D9888
 
 pso/enemy/TObjEneMe1Canadin.cpp:
-	.text       start:0x8009AB4C end:0x8009F410
+	.text       start:0x8009AB4C end:0x8009F7AC
 	.rodata     start:0x8043A390 end:0x8043A398
 	.data       start:0x8048FEB0 end:0x80490410
-	.bss        start:0x80500930 end:0x80500960
+	.bss        start:0x80500930 end:0x8050096C
 	.sdata2     start:0x805D98C0 end:0x805D98D0
-
-pso/unk/text_8009F410.cpp:
-	.text       start:0x8009F410 end:0x8009F4A0
-
-pso/enemy/TObjEneMe1CanadinLeader_8009F4A0.cpp:
-	.text       start:0x8009F4A0 end:0x8009F504
-
-pso/enemy/TObjEneMe1Canadin_8009F504.cpp:
-	.text       start:0x8009F504 end:0x8009F554
-
-pso/unk/text_8009F554.cpp:
-	.text       start:0x8009F554 end:0x8009F7AC
 
 pso/enemy/CanadinEffects.cpp:
 	.text       start:0x8009F7AC end:0x800A01C0

@@ -492,6 +492,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/TOTrapAncient01.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-pooldata=off", "-opt nolifetimes")},
     # Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4).
     "pso/object/TObjDFDemo1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
+    # Keep both 8-byte afterimage tables out of .sdata in the demo constructor.
+    "pso/object/TObjDFDemo4.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.
     "pso/enemy/TObjEneRe2Flower_800C3E14.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
@@ -509,6 +511,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # TObjChip: render's colour template sits after draw_chips' in .rodata
     # while render comes first in .text, so the source runs backwards.
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # GC/2.0 interleaves the BML model-table load with the debris initializer's
+    # copy tail. Map the original template to CodeWarrior's local aggregate.
+    "pso/unk/text_80049FD8.cpp": {"mw_version": "GC/2.0", "symbol_mappings": {"volopt_pillar_chip_params": "@13"}},
     # One unit, written last-defined first: the vtable and the late helpers
     # precede the early ones in .text. -fp_contract on: draw_name_labels'
     # half-width nudge and the drop placement fuse multiply-adds.
