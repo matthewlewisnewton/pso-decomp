@@ -46,16 +46,16 @@ extern const f32 lbl_805D9BEC;
 extern const f32 lbl_805D9BF0;
 extern const f32 lbl_805D9BF4;
 extern const f32 lbl_805D9BF8;
-void TObjPlayer::clamp_stat_354() {
+void TObjEneMoja::clamp_appearance_parameter() {
     extern f32 lbl_805D9BD8;
     extern f32 lbl_805D9BDC;
     f32 lo = lbl_805D9BD8;
-    if (this->m_354 < lo) {
-        this->m_354 = lo;
-    } else if (lbl_805D9BDC < this->m_354) {
-        this->m_354 = (f32) lbl_805D9BDC;
+    if (parameters[0] < lo) {
+        parameters[0] = lo;
+    } else if (lbl_805D9BDC < parameters[0]) {
+        parameters[0] = lbl_805D9BDC;
     }
-    *(s32 *)&this->m_374 = (s32) this->m_354;
+    appearance = static_cast<s32>(parameters[0]);
 }
 void TObjEneMoja::select_rare_variant() {
     u8 *arg0 = (u8 *)this;

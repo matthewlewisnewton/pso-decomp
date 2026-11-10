@@ -1413,6 +1413,13 @@ force_active:
   - TObjPlayer__sub_8001951C
   - TObjPlayer__sub_8002ECC4
   - TObjPlayer__sub_8002ED48
+  - TObjPlayer__sub_80079108
+  - TObjPlayer__sub_8007910C
+  - TObjPlayer__sub_80079110
+  - TObjPlayer__sub_80079114
+  - TObjPlayer__sub_80079120
+  - TObjPlayer__sub_80079124
+  - TObjPlayer__sub_80079DE0
   - TObjPlayer__sub_80082C30
   - TObjPlayer__sub_80083F9C
   - TObjPlayer__sub_80083FA4
@@ -1852,6 +1859,7 @@ force_active:
   - __ct__11TObjDFDemo1FP7TObjectPC3Vecl
   - __ct__11TObjDFDemo4FP7TObjectPC3Vecl
   - __ct__11TObjDFDemo5FP7TObjectPC3Vecl
+  - __ct__11TObjEneMojaFP7TObjectPv
   - __ct__11TPlayerSoulFP7TObjectUs
   - __ct__12CursorActionFv
   - __ct__12Ent_801D4744Fv
@@ -4416,6 +4424,7 @@ force_active:
   - calc_rotated_vector__16TObjEneBm5GibonUFPviPvPv
   - calc_scale__18TWindowEffectLightFv
   - calc_segment_uvs__25TBoss5GryphonLightningEffFPv
+  - calc_segment_xz_distance_sq
   - calc_shock_chance__FP10TObjPlayerP10TObjPlayerP10TObjPlayer
   - calc_slot_offset_position__10TObjPlayerFPviPvPv
   - calc_small_font_scale__Fv
@@ -4626,6 +4635,7 @@ force_active:
   - check_hits__22TObjEneSlimeTailAttackFv
   - check_hold_player__14TOTrapSeabed01Fv
   - check_in_range__23TObjEneMe3ShinowaMirageFPv
+  - check_line_hits_walls__10TObjPlayerFPvPviPv
   - check_load_state__16TAdChrSelASlotGCFv
   - check_local_player_in_range__12TObjRaderColFPv
   - check_low_hp_transition__16TObjEneDellBiterFv
@@ -5059,6 +5069,7 @@ force_active:
   - copy_vec_array__11TBoss6Type2Fv
   - copy_view_params__11TCameraCtrlFii
   - copy_view_state__11TCameraCtrlFl
+  - copy_wall_polygon__10TObjPlayerFPUc
   - copy_with_guild_card_tag__13TPlyRecvLoginFPl
   - countModelNodes__12TBoss1DragonFP15DragonModelNode
   - count_active_items__19TWindowMenuMainMenuFv
@@ -5735,6 +5746,7 @@ force_active:
   - epsilon_guard_camera_step
   - epsilon_guard_params
   - eval_piecewise_curve__15TObjBoss2TunnelFP14PiecewiseCurvef
+  - evaluate_ground_triangles
   - evict_lowest_key_floor_item__Fl
   - evolve_by_level__8TItemMagFv
   - evolve_first_form__8TItemMagFv
@@ -7050,6 +7062,7 @@ force_active:
   - interp_position_between_nodes__11TBoss4Type3Fv
   - interpolate_along_curve__18TObjTailsTailsMoveFPf
   - interpolate_motion_quaternion_keys__FUlUllf
+  - intersect_wall_triangle_one_sided
   - invoke_callback_16C_and_destroy__23TShopJudgmentItemWindowFv
   - invoke_callback_170_and_destroy__23TShopJudgmentItemWindowFv
   - invoke_callback_174_and_destroy__23TShopJudgmentItemWindowFv
@@ -8903,10 +8916,13 @@ force_active:
   - moja_enemy_collision_body
   - moja_enemy_movement_parameters
   - moja_enemy_standard_descriptor
+  - moja_enemy_standard_model_names
   - moja_enemy_standard_motion_names
   - moja_enemy_ultimate_descriptor
   - moja_enemy_ultimate_model_names
   - moja_enemy_ultimate_motion_names
+  - moja_jump_chance_offset
+  - moja_technique_chance_offset
   - monument_ancient01_collision_body
   - monument_ancient02_collision_parts
   - morfos_archive_filename
@@ -13752,6 +13768,7 @@ force_active:
   - prepare_heavy_attack_particles__FPUc
   - prepare_save_data__23TAdSinglePlyChrSelectGCFv
   - prepare_tool_purchase__19TShopItemListWindowFv
+  - prepare_wall_query_polygons__FPvfl
   - present_frame_and_wait_vsync__Fv
   - process_download_entry__12TQuestListVMFv
   - process_enemy_drop_request__Flsisiff
@@ -13787,6 +13804,7 @@ force_active:
   - query_battle_state__17TWindowReturnCityFv
   - query_default__12TBoss8DragonFv
   - query_status_field__20TWindowSubStatusDispFPvSc
+  - query_wall_segment__FPvPvPvl
   - quest_bgm_area_filename_table
   - quest_bgm_carnaval_filename
   - quest_bgm_chu_f_filename
@@ -13945,6 +13963,7 @@ force_active:
   - recv_vm_download__9TProtocolFR6packet
   - recv_vm_download_head__9TProtocolFR6packet
   - ref_counted_load_buffer
+  - refill_csn_candidate_cache
   - refill_gstream_buffer__FP10AdxfHandle
   - reflect_velocity_off_collision__13TUnk_804B8E18FPvPv
   - refresh__14TWindowSubItemFv
@@ -15129,8 +15148,10 @@ force_active:
   - select_attack_target__18TObjEneRe4SorcererFiff
   - select_camera_controller__Fl
   - select_death_direction__14TObjEneBm5WolfFPvPv
+  - select_deepest_wall_ray
   - select_farthest_visible_player__16TObjEneDellBiterFv
   - select_forward_target__12TBoss1DragonFPv
+  - select_ground_query_groups__FP9CsnVectorUl
   - select_item_icon__20TWindowSubStatusDispFPviUcUci
   - select_lobby_pigeon_model__13TUnk_804E0898Fv
   - select_melee_contact_body__16TOTrapAncient02RFPvf
