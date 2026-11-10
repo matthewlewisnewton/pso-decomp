@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `12a336867310`, 2026-11-10)
+## Summary (regenerated after merging main `59dfc7117a7e`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `12a336867310` (2026-11-10). Assembly is counted as source lines;
+after merging main `59dfc7117a7e` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,776 | 880 |
+| CodeWarrior pragmas (excluding push/pop) | 5,778 | 880 |
 | Per-unit compiler overrides in `configure.py` | 190 | 190 |
 | Approved regressions | 0 | 0 |
 
@@ -89,8 +89,14 @@ preserve the graph's exported constants and format strings. See
 [download graph recovery](evidence/download-graph-recovery.md) for the
 compiler and data layout evidence.
 
-5,776 pragmas in 880 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1143, `inline_depth` 1035, `fp_contract` 878, `auto_inline` 833,
+The word-select row renderer at `0x80341674` in `TWindowDD_80341A08.cpp` uses
+a scoped `fp_contract on` for the scaled row and highlight positions and
+the clipped texture coordinates. With contraction disabled, GC/2.6 emits
+separate multiply and add/subtract instructions in those expressions. Ports
+that need the original rounding should fuse those operations.
+
+5,778 pragmas in 880 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1143, `inline_depth` 1035, `fp_contract` 880, `auto_inline` 833,
 `opt_common_subs` 611, `scheduling` 263, `opt_propagation` 239,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
@@ -1318,3 +1324,9 @@ in the generated table once merged.
 This callback boundary is documented for review; it does not add assembly,
 steering pragmas, per-unit compiler switches or link-check exceptions. The
 mechanical inventory does not currently enumerate function-pointer conversions.
+
+### Radial particle interpolation and colour packing
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/ParticleRadial.cpp`, `TUnk_8048E7A8::run_task` at `0x8008B590` | New scoped `fp_contract on`; big-endian ARGB byte writes into a `u32` through `unsigned char` | The original's twelve channel interpolations are `fmadds`. Without the new contraction scope the routine is 94.10405%; with it all 1,384 bytes match. Existing constructor scopes are unchanged. The colour representation reproduces four native byte stores and one packed-word load without inactive-union aliasing. See [source, type and arithmetic evidence](evidence/radial-particle-update.md). New compiler control remains subject to independent source-quality review before publication. | Use single-rounded `fmaf` interpolation when native rounding is required. On little-endian hosts, pack the converted channels explicitly as `(a << 24) | (r << 16) | (g << 8) | b`. |
