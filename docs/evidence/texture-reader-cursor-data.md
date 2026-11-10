@@ -34,6 +34,23 @@ no newly matched function or code byte, no newly linked code byte, and no
 change to total code/data/function address coverage. The already linked
 reader unit stays linked, and the adjacent original word stays original.
 
+## Progress-category distinction
+
+Global raw coverage retains all 1,761,227 data bytes. The explicit
+`original_unclaimed_805D5E5C` hold remains unclassified in the current
+reporting tool: it assigns source-less automatic data pools to `game`, but
+has no per-unit category override for explicit source-less holds. Therefore
+the game-category data denominator changes from 1,720,434 to 1,720,430 bytes,
+while its matched data rises from 1,431,790 to 1,431,794 and linked data from
+1,147,446 to 1,147,450. The game percentage change includes this four-byte
+reclassification and must not be presented as additional recovery.
+
+The four unclassified bytes remain unmatched, original-provided and included
+in the global total and strict raw-address coverage checks. Preserving their
+old category would require a reporting-tool change or an artificial source
+configuration entry; neither is introduced in this narrowly scoped recovery.
+The measured source gain remains exactly four bytes.
+
 ## Validation
 
 - Unchanged baseline and candidate full native builds used the pinned installed
