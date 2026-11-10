@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `1d44ff774`, 2026-11-09)
+## Summary (regenerated after merging main `9dcde8562fb`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `1d44ff774` (2026-11-09). Assembly is counted as source lines;
+after merging main `9dcde8562fb` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,775 | 877 |
-| Per-unit compiler overrides in `configure.py` | 185 | 185 |
+| CodeWarrior pragmas (excluding push/pop) | 5,776 | 877 |
+| Per-unit compiler overrides in `configure.py` | 186 | 186 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -123,6 +123,19 @@ an aligned stack object. A port should ignore these settings and use the plain
 `s32` parameter and function body. See
 [the comparison](evidence/network-info-request-frame.md).
 
+### Network config initializer at `0x803F3BF8`
+
+`src/pso/network/NetworkConfigLifecycle.cpp` uses a scoped `scheduling off`
+pragma and an MWCC-only 32-byte alignment attribute on the first parameter.
+The pragma preserves the status and allocation-state stores before their
+following comparisons. The attribute gives GC/2.6 the original 64-byte aligned
+frame, with the arguments in the same registers and no accesses to aligned
+locals. GC/1.2.5 emits an ordinary frame for the same source, while GC/2.6
+changes all nine preceding card-loading functions. The provisional split now
+places the initializer with the adjacent network-config update and teardown
+routines under the existing ntInf profile. Ports use the plain `s32` parameter
+and the same function body.
+
 ### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
 
 | File | Function | What | Why | Port should |
@@ -209,7 +222,7 @@ an aligned stack object. A port should ignore these settings and use the plain
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-169 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+186 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -272,6 +285,21 @@ The local initializer emits the 76-byte template at `0x80436748`. The
 original relocations to this template come from `fn_80049FD8`, and the split
 maps it to the compiler's local `@13` symbol. Ports can use the default
 compiler.
+
+### `pso/unk/text_8031EF14.cpp` with GC/2.0 and `-pooldata=off`
+
+`TObjEneRecon::spawn_death_debris` at `0x8031F1A8` is called by Recon's
+death-state handler and reads three models from the shared Recobox BML
+resource. As in the Vol Opt initializer, GC/2.0 schedules the model and
+position loads across the tails of the aggregate copies. Explicit copies of
+named templates and GC/2.6's schedule differ from the original.
+
+The three local aggregates generate the 228 bytes at
+`0x804762F0..0x804763D4`. The debris function supplies all references to
+these records. Disabling pooling keeps the two identical templates separate,
+and the symbol mappings associate each original record with its compiler
+local. Ports can use their regular compiler and allow pooling.
+
 ### `pso/unk/text_8007ECF0.cpp` with GC/1.3.2
 
 GC/1.3.2 matches the border pass in `fn_8007F27C` at `0x8007F27C`, where
