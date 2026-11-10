@@ -4,8 +4,13 @@
 #include "types.h"
 
 struct AdxStreamFile;
+struct AdxDecoderFormatView {
+    u8 reserved[0xA8];
+    s16 format;
+};
 
 extern "C" {
+void TLobby__sub_803C34F4(AdxDecoderFormatView *decoder);
 s32 get_field_14__6TLobbyFv(AdxStreamFile *file);
 s32 get_file_offset_relative__6TLobbyFv(AdxStreamFile *file);
 s32 set_scroll_offset__6TLobbyFl(AdxStreamFile *file, s32 offset);
