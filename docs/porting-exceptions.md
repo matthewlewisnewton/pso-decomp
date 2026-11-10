@@ -110,6 +110,13 @@ small float differences without FMA).
 | `src/pso/object/TObjDFDemo4.cpp` | Constructor at `0x8004F6AC` | Weak linkage for the strip-node table | With strong linkage CodeWarrior pools the strip table and both camera initializers under a shared `.rodata` base. Weak linkage preserves the original direct relocations and keeps the shared `.data` base for the motion tables and vtable. | Use the same const table with ordinary linkage. |
 | `configure.py` | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | The two eight-byte afterimage index tables use normal data addressing. The class-name pointer still uses small data. | Use ordinary arrays and a string pointer. |
 
+### Lobby spatial audio and guild-card startup
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_802409AC.cpp` | `calc_sound_spatial_params` at `0x80241C84` | Scoped `opt_propagation off` and `opt_lifetimes off` | Keeping the quarter-turn adjustments separate preserves the angle instruction order. The lifetime setting preserves the register assignment and operand order of the surround add at `0x80241F2C`. The direct signed-byte conversion emits the original pan truncation and sign extension. | Drop the pragmas and preserve the float evaluation and integer truncation. |
+| `configure.py` | `pso/misc/TLobby_802409AC.cpp` | `-sym on` and source-private tail header | CodeWarrior emits the startup routine at `0x8024287C` at the end of the first text contribution and places the record constructor and two accessors in the following contribution. Without source-file sections, the compiler puts the startup routine after all three functions. | Use the ordinary C++ globals and constructor. The source-file sections preserve the GameCube link order. |
+
 ### Dark Falz Type 1 death cutscene
 
 | File | Scope | What | Why | Port should |
