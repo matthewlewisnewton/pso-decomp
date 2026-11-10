@@ -429,6 +429,9 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Keep the eight-byte menu positions in .data with the state table.
+    # The calendar x coordinate uses a fused multiply-add.
+    "pso/menu/TAdTimeSetGC.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-fp_contract on")},
     # Keep the compiler-generated guild-card initializer ahead of its constructor and accessors.
     "pso/misc/TLobby_802409AC.cpp": {"cflags": _switch(cflags_pso, "-sym on")},
     # Upstream #208: fused scale/corner arithmetic; deferred emission puts the
@@ -697,8 +700,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # byte-identical with the flag off, and .rodata stays exact.
     # -inline on expands run_task's mode-4 strike helpers (strike_actor,
     # strike_player, strike_enemy); no other function in the unit changes.
-    # See docs/porting-exceptions.md.
-    "pso/misc/TOMineTrap_8016F6F8.cpp": {"cflags": _switch(cflags_pso, "-inline on", "-fp_contract on")},
+    # The shared zero starts at 0x805DB85C. Keep its original four-byte alignment.
+    "pso/misc/TOMineTrap_8016F6F8.cpp": {"cflags": _switch(cflags_pso, "-inline on", "-fp_contract on"), "cw_align": ".sdata2=4"},
     "pso/item/TItem.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TItemProArmor.cpp, TItemProShield.cpp and TItemProUnit.cpp are written
     # from their last function back (deferred code generation, which also puts

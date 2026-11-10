@@ -10405,20 +10405,14 @@ pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.cpp:
 pso/unk/text_802E10D8.cpp:
 	.text       start:0x802E10D8 end:0x802E1128
 
-pso/ui/TAdPlyStatusGC_802E1128.cpp:
-	.text       start:0x802E1128 end:0x802E13C8
-	.rodata     start:0x80472980 end:0x80472988
-
-pso/ui/TAdSinglePlyChrSelectGC_802E13C8.cpp:
-	.text       start:0x802E13C8 end:0x802E32E8
-
 pso/menu/TAdTimeSetGC.cpp:
-	.text       start:0x802E32E8 end:0x802E34AC
-	.data       start:0x804E3040 end:0x804E352C
-
-pso/unk/text_802E34AC.cpp:
-	.text       start:0x802E34AC end:0x802E3AE4
+	.text       start:0x802E1128 end:0x802E3AE4
 	.ctors      start:0x80433FD0 end:0x80433FD4
+	.rodata     start:0x80472920 end:0x80472998
+	.data       start:0x804E3040 end:0x804E352C
+	.sdata      start:0x805D3F80 end:0x805D3F88
+	.sbss       start:0x805D68E0 end:0x805D68E4
+	.sdata2     start:0x805DE8E8 end:0x805DE910
 
 pso/ui/TAdSinglePlyChrSelectGC_802E3AE4.cpp:
 	.text       start:0x802E3AE4 end:0x802E3AF4
@@ -13460,7 +13454,9 @@ pso/misc/TLobby_803CE478.cpp:
 
 pso/unk/text_803CE568.cpp:
 	.text       start:0x803CE568 end:0x803CFE68
+	.rodata     start:0x8047CF30 end:0x8047DAB4
 	.bss        start:0x80581A30 end:0x80581EA8
+	.sdata2     start:0x805E0DA0 end:0x805E0DAC
 
 pso/misc/TLobby_803CFE68.cpp:
 	.text       start:0x803CFE68 end:0x803CFEA0
