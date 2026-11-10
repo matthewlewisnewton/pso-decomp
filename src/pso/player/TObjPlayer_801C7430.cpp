@@ -1,3 +1,4 @@
+#include "pso/misc/ActionPaletteTagAbi.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/math/ScratchVectorStorage.h"
@@ -4402,8 +4403,8 @@ void TObjPlayer::update_cursor(s32 parameter) {
 
     temp_r3 = this->m_424;
     if ((temp_r3 != 0U) && (canSetMenuCursorAction(temp_r3 + 0x520, this, 3, (u8) parameter) != 0)) {
-        ((TWindowActionPalette *)(this->m_424 + 0x520))->set_mode(3);
-        ((TWindowActionPalette *)(this->m_424 + 0x520))->set_slot((u8) parameter);
+        set_mode__20TWindowActionPaletteFUc((void *)(this->m_424 + 0x520), 3);
+        set_slot__20TWindowActionPaletteFUc((void *)(this->m_424 + 0x520), (u8) parameter);
         TMainCursor__sub_8013DFC4((u8 *)(this->m_424 + 0x520));
     }
 }
