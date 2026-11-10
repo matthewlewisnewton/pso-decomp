@@ -173,6 +173,48 @@ a limitation of inferred function slicing, not original boundary metadata or
 a reason to remove `skip_cfa_ranges`. The configured exact build remains the
 validation path.
 
+## Synthetic DTK control
+
+[The standalone generator](../../tools/repro_dtk_bclr_restore.py) reproduces
+an orphaned restore using only constructed PowerPC instructions and DOL
+metadata. It requires no game input, compiler, emulator or target execution:
+
+```sh
+python3 tools/repro_dtk_bclr_restore.py --dtk /path/to/dtk-1.8.4
+```
+
+Use a fresh output directory, or select one with `--out-dir`. The default is
+ignored `build/dtk-bclr-repro`; it contains the two synthetic images, analyzer
+logs and `result.json`. The script checks the DTK version/revision and records
+its executable hash. No generated binary is committed.
+
+Both fixtures have the same saved frame, an LR handoff, a 20-byte restore and
+a trailing leaf function. Their sole difference is the branch link bit at
+file offset `0x51F`, XOR one. With DTK 1.8.4 at the revision above:
+
+| Handoff | `dol info` result | Following restore |
+|---|---|---|
+| Nonlinking `blr` | Exit 1, unpaired epilogue at `0x81001028` | Analyzed separately at `0x81001020..0x81001034` |
+| Linking `blrl` | Exit 0 | Reached through the modeled call fallthrough |
+
+Both emit the same warning about missing SDA bases, which the fixture does
+not need. The single-bit control isolates branch treatment from frame bytes,
+section layout and metadata.
+
+The pinned [VM implementation](https://github.com/encounter/decomp-toolkit/blob/a0c455e46cab58e1d2e0885623f85089ff0499db/src/analysis/vm.rs#L402-L457)
+classifies a branch through LR as a return target. An unconditional nonlinking
+case becomes a jump to that target, whereas a linking case also models a
+return-site path. The [slice analyzer](https://github.com/encounter/decomp-toolkit/blob/a0c455e46cab58e1d2e0885623f85089ff0499db/src/analysis/slices.rs#L360-L362)
+ends the return block immediately after the branch. Its later
+[frame-pairing check](https://github.com/encounter/decomp-toolkit/blob/a0c455e46cab58e1d2e0885623f85089ff0499db/src/analysis/slices.rs#L588-L595)
+rejects the separately encountered restore without a prologue.
+
+This establishes a mechanism for the tool diagnostic, not PSO's original
+function extent, translation unit or compiler provenance. The linking control
+changes runtime semantics and is not a candidate handoff replacement. No game
+symbol, split, provider, address, coverage rule or `skip_cfa_ranges` entry is
+changed on the strength of this reproduction.
+
 ## Comparison record and reproduction limits
 
 The historical comparison procedure is preserved at immutable commit
