@@ -5,7 +5,40 @@ The range remains unmatched, with its address and ownership hold preserved.
 Narrowed #284 at `d70369041672d5c881d895dc0a27b96f612e4b0c` contains the
 DOL header view and caller conversion; it removes the experimental C++
 loader and its per-unit compiler override. This document does not restore
-either one. The active provider and compiler settings remain those of main.
+either one. The active LaunchDol provider and compiler settings remain those
+of main.
+
+## Separate source linkage for the modem initializer
+
+The existing `init_modem_check_params` function at `0x8042EA10` starts after
+the preceding frame restore. It has its own entry, prologue and return,
+and its 196-byte C++ implementation was already exact. Previously the build
+selected the original object for both functions because their combined
+216-byte unit included the unmatched restore.
+
+The split now keeps `text_8042E9FC.cpp` as an original-only 20-byte range
+and moves the unchanged initializer body to `text_8042EA10.cpp`, selected
+from source. This is a provisional extraction at an existing function
+boundary, not a claim to have recovered an original translation unit.
+Neither function's symbol, address or size changes. The LaunchDol provider,
+its 312-byte extent and `skip_cfa_ranges` remain unchanged. No source body
+or assembly is supplied for the restore.
+
+The fresh initializer object has one allocated section, `.text`, of 196
+bytes with alignment four. Its complete text, function extent, global
+definitions and all 18 text relocations match the fresh original split.
+They also agree with the previous original object after subtracting the
+20-byte leading offset. The original-only split retains those first 20
+bytes unchanged. Compiler metadata sections are not claimed byte-identical.
+The initializer inherits the existing ntUtl compiler profile without an
+override, pragma, new interface or source-body change.
+
+This activation adds 196 source-linked code bytes and one linked unit;
+it adds no newly matched function or code byte. Both original function
+addresses and full extents remain in strict coverage. Across the same
+216-byte span, 196 bytes are matched and source-linked, and 20 remain
+unmatched and original-provided. This is partial progress, not completion
+of the epilogue or transfer recovery.
 
 The earlier investigation at `5de7fd190c109955b36aebabc6d47b428fa8fc7c`,
 refreshed at `5b639174d431c7bcbe1c1d007f9998a0a60ec09f`, compared an
@@ -170,6 +203,8 @@ implementation; subsequent transfer work remains a separate held follow-up.
 A future ownership correction needs an explicit coverage-accounting plan.
 Simply widening the existing symbol would remove the currently reported
 function address at `0x8042E9FC` and fail the repository's address/no-loss gate;
-it would not solve the historical probe's three differing transfer words. No symbols,
-splits, linkage selection, assembly exceptions or coverage rules were changed
-for this investigation, and no new matching bytes are claimed.
+it would not solve the historical probe's three differing transfer words. The
+initializer extraction above preserves both symbol starts and extents while
+changing only the split boundary and source selection for its existing body.
+It does not correct ownership of the restore or change assembly exceptions
+or coverage rules. No new matching bytes are claimed.
