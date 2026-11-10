@@ -155,6 +155,8 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
     void run_task();
     void setup_enemy();
     static void *create(void *arg0);
+    static void load_resources();
+    static void free_resources();
 };
 
 typedef char TObjEneMe1Canadin_size[sizeof(TObjEneMe1Canadin) == 0x4CC ? 1 : -1];

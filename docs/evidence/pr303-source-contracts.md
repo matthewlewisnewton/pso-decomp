@@ -524,3 +524,38 @@ inventory changes only the existing DHCP address-mask hit's line number.
 The branch's comparison with main still has +88 data bytes and zero new
 functions/code; main owns the prior DHCP matches. Keep draft with the other
 documented interfaces and stale metadata. No metadata write is retried.
+
+
+## Canadin and debris main refresh
+
+Merge main `b2a90ff1eabedf275aaed6cc16acbbd3e8b4a36c` into reviewed head
+`460ce612da6407609f4460e14c47447f49a7f980`. The remote head is unchanged;
+no competing #303 owner is active. Main supplies the Canadin loader/folds and
+Vol Opt pillar debris unit. Only the two exception documents conflict.
+Preserve incoming records and this branch's entries; regenerate inventory
+(5,770 pragmas in 876 files, 180 compiler overrides). No manual source
+resolution or repeated technical probe is included. Shared scanner word-return,
+free lease-parser, DHCP/BML contracts and existing interface holds are unchanged.
+All 180 model-accessor consumers still include the canonical header.
+
+Both capacity-gated builds reproduce original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Main passes full checks against
+preserved main `4e784e247`; the continuation passes against fresh main:
+
+| Measure | Main `b2a90ff1e` | Continuation | Delta |
+|---|---:|---:|---:|
+| Exact functions | 27,396 | 27,396 | 0 |
+| Matched code bytes | 4,203,136 | 4,203,136 | 0 |
+| Matched data bytes | 1,470,455 | 1,470,543 | +88 |
+| Complete code bytes | 3,707,636 | 3,707,636 | 0 |
+| Complete data bytes | 1,186,023 | 1,186,111 | +88 |
+| Linked units | 3,585 | 3,584 | -1 |
+
+No exact function, code/data address, linked range or padding is lost. All
+3,584 linked units are exact; retention has 17,719 names with no missing/stale
+entries. Canadin is 101/101, debris 1/1, dispatcher 12/12, DHCP 42/42 and
+packet runtime 24/24, all exact code/data and compiled source linker inputs.
+TCP remains 40/45 and on original fallback. Unit-count reductions from folding
+are structural; no linked ranges are lost. Host vector and item-factory tests,
+exception inventory and whitespace pass. Keep draft with the existing native
+interface limitations and stale metadata; no previously failed write is retried.

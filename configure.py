@@ -505,6 +505,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # TObjChip: render's colour template sits after draw_chips' in .rodata
     # while render comes first in .text, so the source runs backwards.
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # GC/2.0 interleaves the BML model-table load with the debris initializer's
+    # copy tail. Map the original template to CodeWarrior's local aggregate.
+    "pso/unk/text_80049FD8.cpp": {"mw_version": "GC/2.0", "symbol_mappings": {"volopt_pillar_chip_params": "@13"}},
     # One unit, written last-defined first: the vtable and the late helpers
     # precede the early ones in .text. -fp_contract on: draw_name_labels'
     # half-width nudge and the drop placement fuse multiply-adds.

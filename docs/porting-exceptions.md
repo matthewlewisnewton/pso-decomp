@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (merged main `4e784e247`, 2026-11-10)
+## Summary (merged main `b2a90ff1e`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `4e784e247` (2026-11-10). Assembly is counted as source lines;
+after merging main `b2a90ff1e` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -27,7 +27,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,770 | 876 |
-| Per-unit compiler overrides in `configure.py` | 179 | 179 |
+| Per-unit compiler overrides in `configure.py` | 180 | 180 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -199,6 +199,19 @@ use their own compiler versions as recorded there.
 Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
+
+### `pso/unk/text_80049FD8.cpp` and the Vol Opt debris initializer
+
+GC/2.0 interleaves the BML resource and model-table loads with the final
+load and store of the initializer copy. It loads all three
+position components before storing them. GC/2.6 groups the copy tail and
+interleaves the position loads and stores. The same GC/2.0 aggregate pattern
+is used for debris in `TOExplosiveMachine.cpp` and `TOTrapAncient01.cpp`.
+
+The local initializer emits the 76-byte template at `0x80436748`. The
+original relocations to this template come from `fn_80049FD8`, and the split
+maps it to the compiler's local `@13` symbol. Ports can use the default
+compiler.
 
 ### `pso/misc/TLobby_8001EF5C.cpp`: `-inline on`
 
