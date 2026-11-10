@@ -36,6 +36,14 @@
 #include "pso/enemy/TObjEneMe1Gee.h"
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/object/TObjFish.h"
+#include "pso/enemy/BattleParameters.h"
+#include "pso/misc/TBreakUpMdl.h"
+#include "pso/npc/NpcAnimationBinding.h"
+#include "pso/npc/NpcModelRegistry.h"
+#include "pso/player/TObjPlayer_800F0810.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/EnemyBmlResource.h"
+#include "pso/system/NinjaUtil.h"
 
 extern "C" {
 s32 defer_render__7TObjectFv(void *);
@@ -48,7 +56,7 @@ s32 post_translate_matrix(void *);
 void fn_8009BD00(NJS_OBJECT *);
 extern s32 lbl_8043A268[];
 extern s32 lbl_8043A274[];
-extern u32 lbl_805D4FD4;
+extern u32 canadin_render_node_index;
 extern s32 TObjEneMe1Canadin__render_point_cursor;
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
@@ -99,7 +107,6 @@ void * __dt__26TObjEneDf2Bringer_Eff_RushFv(void *arg0, s16 arg1);
 
 void TObjEneEpsilon__sub_800B92AC(u8 *arg0, s32 arg1, f32 farg0);
 s32 set_target_player__12TObjEneDD_STFPv(void *);
-void reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 s32 transform_point_to_view(void *, int);
 s32 update_camera_sequence__9TObjEneDDFv();
 void initialize_enemy_state__9TObjEneDDFl(void *, s32);
@@ -127,15 +134,14 @@ extern const f32 TObjEneMe1Canadin__data_805D98AC;
 extern NJS_ARGB canadin_formation_fade_start_color;
 extern CanadinActionParameters canadin_behavior_params;
 extern CanadinActionParameters canadin_projectile_param_block;
-extern f32 lbl_80500960[4];
 extern void *TObjEneMe1Canadin__class_name;
-extern BmlResource *lbl_805D4FD0;
-extern void *lbl_805D4FDC;
-extern s32 lbl_805D4FE0;
-extern s32 *lbl_805D4FE4;
-extern s32 *lbl_805D4FE8;
-extern s32 *lbl_805D4FEC;
-extern s32 *lbl_805D4FF0;
+extern BmlResource *canadin_resources;
+extern TUnk_8048FA00 *canadin_leader_breakup_model;
+extern TUnk_8048FA00 *canadin_follower_breakup_model;
+extern s32 *canadin_leader_node3_color;
+extern s32 *canadin_leader_node2_color;
+extern s32 *canadin_follower_node3_color;
+extern s32 *canadin_follower_node2_color;
 extern const f32 lbl_805D9890;
 extern const f32 lbl_805D9894;
 extern const f32 lbl_805D989C;
@@ -239,14 +245,11 @@ s8 *canadin_leader_fade_sequence_table[5] = {
     (s8 *)lbl_8043A2F8, (s8 *)lbl_8043A308
 };
 
-u32 lbl_80500930[3];
-u32 lbl_8050093C[3];
-u32 lbl_80500948[3];
-u32 lbl_80500954[3];
-#define lbl_80500930 ((s32 *)lbl_80500930)
-#define lbl_8050093C ((s32 *)lbl_8050093C)
-#define lbl_80500948 ((s32 *)lbl_80500948)
-#define lbl_80500954 ((s32 *)lbl_80500954)
+BattleBaseStats *canadin_base_stats[3];
+AttackParams *canadin_attack_params[3];
+ActorParamBlock *canadin_resistance_params[3];
+BattleMovementParams *canadin_movement_params[3];
+Vec canadin_render_point;
 
 void *__dt__26TObjEneDf2Bringer_Eff_RushFv(void *arg0, s16 arg1);
 
@@ -255,6 +258,103 @@ extern s32 TObjEneMe1CanadinLeader__class_name;
 }
 u8 * construct_bringer_rush_effect(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, f32 farg0);
 u8 *construct_bringer_rush_effect(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, f32 farg0);
+
+struct CanadinModelIds {
+    s16 ids[2];
+};
+
+extern "C" {
+extern const s32 canadin_base_stat_indices[3];
+extern const s32 canadin_attack_param_indices[3];
+extern const s32 canadin_resistance_param_indices[3];
+extern const s32 canadin_movement_param_indices[3];
+extern const NpcAnimationBinding canadin_npc_animation_template;
+extern const char canadin_v2_archive_filename[];
+extern const CanadinModelIds canadin_npc_model_ids;
+extern const f32 lbl_805D9930;
+
+// The legacy entry point constructs a 0x10-byte breakup model in caller-supplied storage.
+TUnk_8048FA00 *init_from_model__11TBreakUpMdlFl(TUnk_8048FA00 *object, s32 model);
+
+// Deferred code generation emits this block in reverse definition order.
+void TObjEneMe1Canadin::load_resources() {
+    canadin_render_point.x = lbl_805D9898;
+    canadin_render_point.y = lbl_805D9898;
+    canadin_render_point.z = lbl_805D9898;
+
+    if (TObjEneDD::check_v2_mode()) {
+        canadin_resources = load_enemy_bml_resource_named(&bm_ene_me1_mb_resource_descriptor, canadin_v2_archive_filename);
+    } else {
+        canadin_resources = load_enemy_bml_resource(&bm_ene_me1_mb_resource_descriptor);
+    }
+
+    for (s32 i = 0; i < 3; ++i) {
+        canadin_base_stats[i] = get_battle_base_stats(canadin_base_stat_indices[i]);
+        canadin_attack_params[i] = get_battle_attack_params(canadin_attack_param_indices[i]);
+        canadin_resistance_params[i] = get_battle_resistance_params(canadin_resistance_param_indices[i]);
+        canadin_movement_params[i] = get_battle_movement_params(canadin_movement_param_indices[i]);
+    }
+
+    canadin_render_node_index = 0;
+    TUnk_8048FA00 *breakup = static_cast<TUnk_8048FA00 *>(::operator new(sizeof(TUnk_8048FA00)));
+    if (breakup != NULL) {
+        breakup = init_from_model__11TBreakUpMdlFl(breakup, canadin_resources->models[1].model);
+    }
+    canadin_leader_breakup_model = breakup;
+    breakup = static_cast<TUnk_8048FA00 *>(::operator new(sizeof(TUnk_8048FA00)));
+    if (breakup != NULL) {
+        breakup = init_from_model__11TBreakUpMdlFl(breakup, canadin_resources->models[0].model);
+    }
+    canadin_follower_breakup_model = breakup;
+
+    // Skip the two halfwords before the packed polygon colors.
+    s32 leader = canadin_resources->models[1].model;
+    NJS_OBJECT *node = reinterpret_cast<NJS_OBJECT *>(find_model_node(leader, 3));
+    canadin_leader_node3_color = reinterpret_cast<s32 *>(static_cast<NJS_CNK_MODEL *>(node->model)->polygon_list + 2);
+    node = reinterpret_cast<NJS_OBJECT *>(find_model_node(leader, 2));
+    canadin_leader_node2_color = reinterpret_cast<s32 *>(static_cast<NJS_CNK_MODEL *>(node->model)->polygon_list + 2);
+
+    s32 follower = canadin_resources->models[0].model;
+    node = reinterpret_cast<NJS_OBJECT *>(find_model_node(follower, 3));
+    canadin_follower_node3_color = reinterpret_cast<s32 *>(static_cast<NJS_CNK_MODEL *>(node->model)->polygon_list + 2);
+    node = reinterpret_cast<NJS_OBJECT *>(find_model_node(follower, 2));
+    canadin_follower_node2_color = reinterpret_cast<s32 *>(static_cast<NJS_CNK_MODEL *>(node->model)->polygon_list + 2);
+
+    TObjPlayer__sub_800F0928();
+    CanadinModelIds model_ids = canadin_npc_model_ids;
+    NpcAnimationBinding animation = canadin_npc_animation_template;
+    animation.motions = canadin_resources->motions;
+    for (s32 i = 0; i < 2; ++i) {
+        NpcModelRegistry::register_animated_chunk(model_ids.ids[i],
+            reinterpret_cast<void *>(canadin_resources->models[i].model),
+            reinterpret_cast<void *>(canadin_resources->models[1].m_c),
+            &animation, lbl_805D9930, lbl_805D98A4);
+    }
+}
+
+void *TObjEneMe1Canadin::create(void *arg0) {
+    return new TObjEneMe1Canadin((TObject *)tl_04, arg0, 0);
+}
+
+TObjEneMe1Canadin *TObjEneMe1CanadinLeader::create_canadin(TObjEneMe1Canadin *leader, Vec *position, s32 id, s32 index) {
+    return new TObjEneMe1Canadin((TObject *)tl_04, leader, position, id, index);
+}
+
+void TObjEneMe1Canadin::free_resources() {
+    if (canadin_follower_breakup_model != NULL) {
+        delete canadin_follower_breakup_model;
+        canadin_follower_breakup_model = NULL;
+    }
+    if (canadin_leader_breakup_model != NULL) {
+        delete canadin_leader_breakup_model;
+        canadin_leader_breakup_model = NULL;
+    }
+    if (canadin_resources != NULL) {
+        delete canadin_resources;
+        canadin_resources = NULL;
+    }
+}
+}
 
 extern "C" {
 TObjEneMe1Canadin::TObjEneMe1Canadin(TObject *parent, void *set_data, s32 kind)
@@ -293,11 +393,11 @@ void TObjEneMe1Canadin::setup_enemy() {
     this->vfunc_106();
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, &lbl_8048FECC, 1);
     ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)lbl_8048FF30);
-    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)lbl_805D4FD0->motions);
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)canadin_resources->motions);
     requested_action = 0;
     ((TObjMotion *)arg0)->set_animation(requested_action);
     ((TObjMotion *)arg0)->set_field_b8(requested_action);
-    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, lbl_80500930[m_3c4], lbl_8050093C[m_3c4], lbl_80500948[m_3c4]);
+    reset_hp(canadin_base_stats[m_3c4], canadin_attack_params[m_3c4], canadin_resistance_params[m_3c4]);
     this->check_state_flag_4();
     movementParameters = &canadin_setup_param_block;
     initialize_enemy_state__9TObjEneDDFl(arg0, 0x1C);
@@ -306,7 +406,7 @@ void TObjEneMe1Canadin::setup_enemy() {
     this->enemy_init_validate_period(0x2D);
     this->set_active();
     actorFlags |= 0x01000000;
-    m_468 = (CanadinParameters *)lbl_80500954[m_3c4];
+    m_468 = (CanadinParameters *)canadin_movement_params[m_3c4];
     m_3cc.reset_color();
     m_3e8 = lbl_805D9928;
     m_3ec = lbl_805D98A4;
@@ -427,8 +527,8 @@ void TObjEneMe1Canadin::update_by_field_0x354() {
 }
 
 void TObjEneMe1Canadin::vfunc_106() {
-    model = (void *)lbl_805D4FD0->models[0].model;
-    texlist = lbl_805D4FD0->models[1].m_c;
+    model = (void *)canadin_resources->models[0].model;
+    texlist = canadin_resources->models[1].m_c;
 }
 
 #pragma push
@@ -693,8 +793,8 @@ void TObjEneMe1Canadin::pack_color_rgba() {
 }
 
 void TObjEneMe1Canadin::vfunc_113() {
-    *lbl_805D4FEC = m_4b4;
-    *lbl_805D4FF0 = m_4b4;
+    *canadin_follower_node3_color = m_4b4;
+    *canadin_follower_node2_color = m_4b4;
 }
 
 int TObjEneMe1Canadin::vfunc_109() { return 1; }
@@ -1783,7 +1883,7 @@ void TObjEneMe1Canadin::vfunc_112(s32 arg1) {
             m_3c0 = (TObjEneMe1Canadin *)find_entity_by_id(m_4c8);
             m_3c0->vfunc_117((TObjEneMe1Canadin *)arg0);
         }
-        TBoss3Volopt::create_breakup_mdl(lbl_805D4FE0, 0, (s32)((int) (texlist)), (s32)(body_center()), (s32)((int) (this->rotation.yaw)));
+        TBoss3Volopt::create_breakup_mdl((s32)canadin_follower_breakup_model, 0, (s32)((int) (texlist)), (s32)(body_center()), (s32)((int) (this->rotation.yaw)));
         m_3c8 = (s32) (m_3c8 | 0x400000);
         VecCopy((Vec *)(&stack), (const Vec *)(body_center()));
         temp_f1 = stack.y;
@@ -1851,14 +1951,14 @@ void fn_8009BD00(NJS_OBJECT *) {
     s32 pos;
     s32 temp_r5;
     s32 temp_r5_2;
-    switch (lbl_805D4FD4) {
+    switch (canadin_render_node_index) {
     case 2:
     case 3:
         push_matrix();
         update_camera_sequence__9TObjEneDDFv();
         temp_r5 = TObjEneMe1Canadin__render_point_cursor;
         TObjEneMe1Canadin__render_point_cursor = temp_r5 + 0xC;
-        matrix_mult_vec(0, lbl_80500960, temp_r5);
+        matrix_mult_vec(0, &canadin_render_point, temp_r5);
         temp_r4 = TObjEneMe1Canadin__render_point_cursor;
         temp_r5_2 = temp_r4;
         TObjEneMe1Canadin__render_point_cursor = temp_r4 + 0xC;
@@ -1870,10 +1970,10 @@ void fn_8009BD00(NJS_OBJECT *) {
     case 14:
         pos = TObjEneMe1Canadin__render_point_cursor;
         TObjEneMe1Canadin__render_point_cursor = pos + 0xC;
-        transform_point_to_view(lbl_80500960, pos);
+        transform_point_to_view(&canadin_render_point, pos);
         break;
     }
-    lbl_805D4FD4 += 1;
+    canadin_render_node_index += 1;
 }
 
 void TObjEneMe1Canadin::render() {
@@ -1919,7 +2019,7 @@ void TObjEneMe1Canadin::render() {
         }
         if (var_r29 != 0) {
             if ((s16) mode != 0xA) {
-                lbl_805D4FD4 = 0;
+                canadin_render_node_index = 0;
                 TObjEneMe1Canadin__render_point_cursor = (s32)(&m_414[0]);
                 VecCopy((Vec *)(&m_414[3]), (const Vec *)(lbl_8043A268));
                 VecCopy((Vec *)(&m_414[1]), (const Vec *)(lbl_8043A274));
@@ -1932,7 +2032,7 @@ void TObjEneMe1Canadin::render() {
                 set_chunk_model_node_callback(NULL);
             } else {
                 rotate_matrix_z(0, (int) (this->rotation.roll));
-                lbl_805D4FD4 = -1;
+                canadin_render_node_index = -1;
                 TObjEneMe1Canadin__render_point_cursor = (s32)(&m_414[0]);
                 VecCopy((Vec *)(&m_414[3]), (const Vec *)(lbl_8043A268));
                 VecCopy((Vec *)(&m_414[1]), (const Vec *)(lbl_8043A274));
@@ -2026,8 +2126,8 @@ void TObjEneMe1CanadinLeader::run_task() {
 
 void TObjEneMe1CanadinLeader::vfunc_106() {
     void *arg0 = this;
-    model = (void *)lbl_805D4FD0->models[1].model;
-    texlist = lbl_805D4FD0->models[1].m_c;
+    model = (void *)canadin_resources->models[1].model;
+    texlist = canadin_resources->models[1].m_c;
 }
 
 void TObjEneMe1CanadinLeader::vfunc_105() {
@@ -2142,8 +2242,8 @@ int TObjEneMe1CanadinLeader::vfunc_116(TObjChara *) {
 
 void TObjEneMe1CanadinLeader::vfunc_113() {
     void *arg0 = this;
-    *lbl_805D4FE4 = m_4b4;
-    *lbl_805D4FE8 = m_4b4;
+    *canadin_leader_node3_color = m_4b4;
+    *canadin_leader_node2_color = m_4b4;
 }
 
 int TObjEneMe1CanadinLeader::vfunc_109() {
@@ -2322,7 +2422,7 @@ void TObjEneMe1CanadinLeader::vfunc_112(s32 mode) {
     self = (TObjEneMe1CanadinLeader *)obj;
     switch (mode) {
     case 4:
-        TBoss3Volopt::create_breakup_mdl((s32)lbl_805D4FDC, 0, (s32)self->texlist, (s32)self->body_center(), (s32)self->rotation.yaw);
+        TBoss3Volopt::create_breakup_mdl((s32)canadin_leader_breakup_model, 0, (s32)self->texlist, (s32)self->body_center(), (s32)self->rotation.yaw);
         for (i = 0; i < self->m_4d0; i++) {
             self->m_4d4[i]->set_flag3c8_bit20();
         }

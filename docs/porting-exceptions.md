@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (dispatcher integrated with main `12cc95ca7`, 2026-11-10)
+## Summary (regenerated after merging main `3ee5a151c`, 2026-11-09)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after dispatcher integration with PPP/session main `12cc95ca7` (2026-11-10). Assembly is counted as source lines;
+after merging main `3ee5a151c` (2026-11-09). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,773 | 877 |
-| Per-unit compiler overrides in `configure.py` | 178 | 178 |
+| CodeWarrior pragmas (excluding push/pop) | 5,772 | 877 |
+| Per-unit compiler overrides in `configure.py` | 181 | 181 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -95,6 +95,14 @@ MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
 check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
+
+### Dark Falz demo 4
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/object/TObjDFDemo4.cpp` | Translation unit | `readonly_strings on` and `defer_codegen on` | Places the class name in `.rodata` and emits the seven functions in reverse definition order. Deferred generation also places the camera initializers before the signed conversion constant. | Use ordinary string and function definitions. |
+| `src/pso/object/TObjDFDemo4.cpp` | Constructor at `0x8004F6AC` | Weak linkage for the strip-node table | With strong linkage CodeWarrior pools the strip table and both camera initializers under a shared `.rodata` base. Weak linkage preserves the original direct relocations and keeps the shared `.data` base for the motion tables and vtable. | Use the same const table with ordinary linkage. |
+| `configure.py` | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | The two eight-byte afterimage index tables use normal data addressing. The class-name pointer still uses small data. | Use ordinary arrays and a string pointer. |
 
 ### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
 
@@ -182,7 +190,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-167 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+168 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -217,6 +225,18 @@ A port can use its regular compiler. Bind the legacy
 `draw_tri_fan_2d__14TObjCMHairMenuFllf` entry to the renderer that takes a
 `ColorLineList`, and supply the four coordinate pairs as typed constants.
 
+### `pso/unk/text_80049FD8.cpp` and the Vol Opt debris initializer
+
+GC/2.0 interleaves the BML resource and model-table loads with the final
+load and store of the initializer copy. It loads all three
+position components before storing them. GC/2.6 groups the copy tail and
+interleaves the position loads and stores. The same GC/2.0 aggregate pattern
+is used for debris in `TOExplosiveMachine.cpp` and `TOTrapAncient01.cpp`.
+
+The local initializer emits the 76-byte template at `0x80436748`. The
+original relocations to this template come from `fn_80049FD8`, and the split
+maps it to the compiler's local `@13` symbol. Ports can use the default
+compiler.
 ### `pso/misc/TLobby_8001EF5C.cpp`: `-inline on`
 
 `init_from_id_lists` at `0x8002058C` (size `0x30C`) contains the
