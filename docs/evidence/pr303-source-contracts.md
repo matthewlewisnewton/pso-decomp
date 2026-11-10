@@ -1562,7 +1562,9 @@ protocol-state and raw-table symbol extents, including the IPv4 table's full
 0x350 bytes: no pointer word appears. A preceding-`lis` scan through `addi`,
 `ori` and D-form memory accesses finds the twelve known state/table address
 constructions, without an instruction-distance cutoff or a new interior
-address. Follow observed native aliases and helper escapes independently.
+address in that syntactic search. The later multi-step search below supersedes
+this count for the full aggregate symbol extent. Follow observed native aliases
+and helper escapes independently.
 Shutdown helpers `0x803F87DC` and `0x803F892C` are return-only stubs. IPv6
 receive's table-interior addresses reach only read-only address-test/comparison
 helpers (`0x80414A0C`, `0x80414B54` and `NetMemcmp`). The additional references
@@ -1678,3 +1680,88 @@ proprietary compiler are needed. Five new cases complement the original seven;
 game code, headers, build configuration and all bugs/ABI/metadata holds are
 unchanged. Prior native validation remains attached to unchanged native inputs
 at `9dfa3c5be`; no old receipt is relabeled as a new native build.
+
+
+## Multi-step raw aliases and version-gated reset research
+
+Actively extend the earlier address search to straight-line basic blocks with
+register-copy and multi-step constant propagation. Direct branch targets and
+post-branch instructions start new blocks; calls, branches and unsupported
+operations discard tracked constants. Handle `lis`/`addis`, `addi`, `ori`/`oris`,
+register OR/copies, addition and D-form memory accesses, with destination
+clobbers. This remains a bounded search: it does not propagate through memory,
+across blocks/calls, through indexed accesses or arbitrary arithmetic.
+
+The new search finds 24 hits with fifteen roots, including three previously
+missed constructions at `0x803F8980`, `0x803F8988` and `0x803F898C`. They derive
+addresses from `lobby_net_config_block` plus offsets and enter the tail of the
+0x350-byte `lbl_805B4F84` aggregate. Native counts, initialization and later
+strides support this region partition:
+
+| Region | Half-open native interval | Count and stride |
+|---|---|---|
+| Raw callback entry | `805B4F84..805B4FA0` | 1 × 0x1C |
+| Alias pool | `805B4FA0..805B5078` | 9 × 0x18 |
+| Interfaces | `805B5078..805B50CC` | 3 × 0x1C |
+| Routes | `805B50CC..805B52D4` | 26 × 0x14 |
+
+The three new pointers target these neighboring arrays, not the count-one raw
+entry. Interface activation at `0x8040F4C8` writes interface+0; raw receive
+tests raw-entry+4. Preserve the native interface initializer's clear size of
+3 × 0x14 despite the later 0x1C stride. An alias-interior helper call and
+returned route pointers have further escapes; this investigation does not
+claim those complete transitive graphs are closed. The regions establish
+native partition metadata, not historical C++ ownership or a declaration
+rewrite. In particular, the current configuration-base declaration does not
+span these derived tail addresses; do not invent a larger source object to
+justify its existing address arithmetic.
+
+Native startup independently establishes SDA2 `0x805DFD00` and SDA
+`0x805DA600`. Neither direct signed-16-bit displacement range reaches the
+inspected state/table regions. This closes that specific omitted address form,
+not modified bases, computed pointers, external writes or callback ABI proof.
+The corrected root count and repeatable metadata-only analyzer are retained
+locally; no original bytes or disassembly are published.
+
+Pin comparable-source retrieval to the actual GC library identity: original
+DOL version metadata identifies AVE-TCPv6.0 for GC 1.16.1, build October 23,
+2002 at 17:47:54, SDK `12Dec2001Patch3`, Release 2.0. The previously named
+`pso-gc-reference` resolves to
+[mrb0nk500/pso-gc](https://gitlab.com/mrb0nk500/pso-gc/-/blob/c904f9d4f1055330f437845ee5a323a9646e8686/src/pso/TTcpSocket.cpp)
+at `c904f9d4f1055330f437845ee5a323a9646e8686`. Its short TCP declarations are
+followed by empty matching stubs; it supplies reconstructed caller evidence,
+not the missing AVE library header. The pinned Dreamcast v2 reference's
+[TCP initializer](https://github.com/finalbillybong/pso_ver2_dc_decomp/blob/ff6f8e088f4040d38d9b674147789f49a2d48aef/src/sdk/shc_tcp_init_8c203e70.c)
+and [UDP implementation](https://github.com/finalbillybong/pso_ver2_dc_decomp/blob/ff6f8e088f4040d38d9b674147789f49a2d48aef/src/sdk/shc_udp_8c3c4a30.c)
+have different initialization/delivery structures and do not align this GC
+startup/reset family. No ABI probe follows from these new leads. A declaration
+or provider from this identified GC version, aligned by the paired startup and
+cleanup fingerprints, is a precise next retrieval target. Raw activation and
+reset-status holds remain, with original bugs and characterization preserved.
+
+
+## Word-select, item-collision and time-set main refresh
+
+Verify published head `99c7889e4` and integrate main
+`c822df035d80ae71b693865d06874f9f69f60b97`. Preserve its word-select renderer,
+item-collision recovery, time-set class ownership, typed declarations, retained
+providers and accounting. Source/configuration merge automatically. Resolve
+the two exception-register conflicts with regenerated inventory, generic prose
+and main's row-renderer contraction explanation. Counts become 5,771 pragmas
+in 878 files and 192 per-unit overrides. No DHCP, raw callback, reset signature
+or characterization implementation changes are made. Check #413's live patch:
+its overlap remains EXI declarations; leave modem ownership and code with it.
+
+Fresh capacity-gated main and candidate builds reproduce the original DOL.
+All sixteen incoming complete source objects match fresh main raw bytes;
+nineteen saved contract-object comparisons remain identical. Of 424 recorded
+consumers of the changed headers, 419 match fresh main raw bytes. The other
+five retain their historical validated branch hashes: load-texture request,
+the two branch character-select units, lobby-pigeon path and packet runtime.
+Do not call those five whole-object equal to main. The full fresh-main check
+passes with 3,596 exact linked units, 18,407 retention entries without drift,
+existing +88 data bytes, no new functions/code and no losses. Actual providers
+are 3,596 source and 1,348 original fallbacks; main has 3,597 and 1,350.
+All twelve actual-source DHCP characterization cases pass unchanged. Seal the
+unchanged-main packet for independently verified reuse, keep draft and retain
+all source/ABI/metadata holds.
