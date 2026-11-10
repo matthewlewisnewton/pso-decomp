@@ -73,6 +73,14 @@ retained; fresh-main acceptance and the fourteen established window-gap
 qualifications are separate. Existing provider, data, lifetime and ABI holds
 remain. Earlier checkpoint metrics above are historical.
 
+The [save-record flag contract recovery](window-save-flag-client-contracts.md)
+removes four false Hard keyboard member receivers and two lookup calls that
+implicitly depended on the live client register. Explicit word forwarding and
+the actual lookup definition preserve all affected objects, ordered linker
+inputs and coverage. The same-symbol legacy declarations and pointer-shaped
+setter view remain qualified; this is bounded source-quality progress with no
+new match or source-link gain.
+
 ## Current tried/blocked index
 
 | Area | Established result | Remaining evidence / hold |
