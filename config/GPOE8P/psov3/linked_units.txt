@@ -959,6 +959,7 @@ pso/misc/THunterGuildWarning_80211700.cpp
 pso/misc/THunterGuildWarning_8021170C.cpp
 pso/misc/TJudgmentSequence.cpp
 pso/misc/TJudgmentSequence_8021E4C4.cpp
+pso/misc/TKeyBoardControl.cpp
 pso/misc/TKeyBoardControl_8000F764.cpp
 pso/misc/TKeyBoardControl_80131C58.cpp
 pso/misc/TKeyBoardControl_801A57C4.cpp
@@ -1746,7 +1747,6 @@ pso/misc/TWindowKeyBoardSoft_80080798.cpp
 pso/misc/TWindowKeyBoardSoft_80228BEC.cpp
 pso/misc/TWindowKeyBoardSoft_8024E68C.cpp
 pso/misc/TWindowKeyBoardSoft_8025B85C.cpp
-pso/misc/TWindowKeyBoardSoft_80261440.cpp
 pso/misc/TWindowKeyBoardSoft_803E6610.cpp
 pso/misc/TWindowLoadItemTexture.cpp
 pso/misc/TWindowLockOn_800F5DD8.cpp

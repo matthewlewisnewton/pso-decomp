@@ -1,7 +1,8 @@
 # Link the network dispatcher independently
 
-Base: fork `387621104107ed1ff8c650bf2f50ef00c6859ba4`, including DHCP #371.
-Revalidated after main advanced from the original `224eb99838471c243b20c305eddac75e7ff76c8f` baseline.
+Base: fork `f892b2e3ac77834f6250df75066d82c420197e44`, including DHCP #371
+and keyboard #372. Revalidated after main advanced through `387621104107ed1ff8c650bf2f50ef00c6859ba4`
+from the original `224eb99838471c243b20c305eddac75e7ff76c8f` baseline.
 Reference: upstream's network split in [#213](https://github.com/zeroz41/pso-decomp/pull/213)
 and typed follow-up [#215](https://github.com/zeroz41/pso-decomp/pull/215),
 checked at upstream `dd7a1a2d6e200a69462fff12172ff35aaa460c93`.
@@ -56,7 +57,8 @@ An extraction without those settings loses three prior matches:
 Restoring the settings preserves every previously exact function. TCP has 24
 moved pragma lines plus those two explicit lines; the dispatcher has four
 moved pragma lines (`opt_common_subs` x3, `pool_data` x1). The generated
-inventory becomes 5,774 pragma lines in 878 files and 178 unit overrides.
+inventory after integrating keyboard main is 5,773 pragma lines in 877 files
+and 178 unit overrides.
 No assembly, intrinsic or hardware access is added. The historical section 7
 upstream catch-up register stays at 521 entries.
 
@@ -82,10 +84,12 @@ Remaining inherited constraints are recorded in section 4 of the
 
 ## Typed dispatcher follow-up (2026-11-10)
 
-The fork main is still `387621104107ed1ff8c650bf2f50ef00c6859ba4`, already
-an ancestor of the original PR head `205d83303ed37d03efba67768825b867c4c77b2e`;
-no main integration is needed. The dispatcher is already fully exact and linked,
-so this follow-up improves source quality rather than claiming new recovered bytes.
+The initial check found fork main `387621104107ed1ff8c650bf2f50ef00c6859ba4`
+already included in the original PR head `205d83303ed37d03efba67768825b867c4c77b2e`.
+Main then advanced to keyboard commit `f892b2e3ac77834f6250df75066d82c420197e44`;
+that commit is merged into this branch. The dispatcher is already fully exact and
+linked, so this follow-up improves source quality rather than claiming new
+recovered bytes.
 
 - Replace the reset/shutdown per-function state views and the handler-release
   overlay with `NetworkDispatchState` and its existing handler records. Remove
@@ -129,6 +133,22 @@ No exact function, data, linked range, padding coverage or retention entry is lo
 The cleanup adds no linked bytes beyond the extraction totals below and changes
 no compiler exception counts or link inputs.
 
+## Current-main integration
+
+Build unchanged `f892b2e3ac77834f6250df75066d82c420197e44` in a second isolated
+worktree and save its report. Its full native build, retention check, original-DOL
+hash and `tools/check_pr.py` pass. Merge that main into the dispatcher branch;
+source changes do not overlap. Resolve the two exception-register conflicts by
+retaining both the keyboard and dispatcher rows and regenerating the inventory.
+The shared split, symbol, linkset and retention changes merge without losing rows.
+
+Reconfigure with fresh split objects and build the combined tree. Full native
+build and no-loss checks pass against both current main and the original PR head.
+The actual final linker edge contains 3,588 source objects and 1,385 fallbacks:
+dispatcher and DHCP are source inputs; the incomplete prefix and TCP remain
+fallback inputs. README stays on merged-main coverage. This integration does not
+change the four complete network source objects validated above.
+
 ## Validation
 
 Built unchanged base and saved its report; retention passed before editing.
@@ -141,15 +161,15 @@ an actual linker input.
 
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
-| Exact functions | 27,389 | 27,389 | 0 |
-| Exact code bytes | 4,191,812 | 4,191,812 | 0 |
-| Exact data bytes | 1,470,159 | 1,470,159 | 0 |
-| Linked code bytes | 3,685,784 | 3,687,792 | 2,008 |
-| Linked data bytes | 1,184,043 | 1,184,291 | 248 |
+| Exact functions | 27,391 | 27,391 | 0 |
+| Exact code bytes | 4,194,488 | 4,194,488 | 0 |
+| Exact data bytes | 1,470,255 | 1,470,255 | 0 |
+| Linked code bytes | 3,694,452 | 3,696,460 | 2,008 |
+| Linked data bytes | 1,185,039 | 1,185,287 | 248 |
 | Linked units | 3,587 | 3,588 | 1 |
 
 Total functions, code and data are unchanged; the unit count increases from
-4,973 to 4,975. There are no lost exact or linked functions/data ranges and
+4,971 to 4,973. There are no lost exact or linked functions/data ranges and
 no alignment-padding loss. The scanner adds only the dispatcher and two
 retention entries (`NetRunProtocolDispatchLoop`, `NetRunTimerDispatchLoop`),
 removing none. README coverage remains tied to merged main.
