@@ -2,21 +2,17 @@
 #include "pso/item/TUnk_804E355C.h"
 #include "pso/system/vector.h"
 
-struct RecoveredGlobal_802E4A4C_lbl_804E355C { s32 value; u8 remaining[0x18]; };
-typedef char RecoveredGlobal_802E4A4C_lbl_804E355C_size[sizeof(RecoveredGlobal_802E4A4C_lbl_804E355C) == 0x1C ? 1 : -1];
-
 extern "C" {
 s32 memset(void *, int, int);
 s32 get_type__10TObjPlayerFPv(void *);
 void *get_player_by_client_id(s32 i);
-s32 __ct__7TObjectFP7TObject(void *, void *);
-extern RecoveredGlobal_802E4A4C_lbl_804E355C lbl_804E355C;
 extern const f32 lbl_805DE914;
-u8 *construct_attack_collision(u8 *arg0, s32 arg1, u8 *arg2);
-u8 *construct_attack_collision(u8 *arg0, s32 arg1, u8 *arg2) {
+}
+
+TUnk_804E355C::TUnk_804E355C(TObject *parent, void *params) : TObject(parent) {
     u32 player;
-    __ct__7TObjectFP7TObject((void *)arg0, (void *)arg1);
-    *(s32 **)((s8 *)arg0 + 0x18) = &lbl_804E355C.value;
+    u8 *arg0 = (u8 *)this;
+    u8 *arg2 = (u8 *)params;
     *(f32 *)((s8 *)arg0 + 0x34) = (f32) lbl_805DE914;
     ((TUnk_804E355C *)arg0)->m_38 = (f32) lbl_805DE914;
     *(f32 *)((s8 *)arg0 + 0x3C) = (f32) lbl_805DE914;
@@ -30,7 +26,7 @@ u8 *construct_attack_collision(u8 *arg0, s32 arg1, u8 *arg2) {
     *(f32 *)((s8 *)arg0 + 0x5C) = (f32) lbl_805DE914;
     *(u8 **)((s8 *)arg0 + 0x1C) = (unsigned char *) (arg0 + 0x34);
     ((TUnk_804E355C *)arg0)->m_20 = 1;
-    VecCopy((Vec *)(arg0 + 0x24), (const Vec *)(arg2));
+    VecCopy(&position, (const Vec *)arg2);
     memset(arg0 + 0x60, 0, 0x40);
     ((TUnk_804E355C *)arg0)->m_a0 = 0;
     ((TUnk_804E355C *)arg0)->m_a4 = (s32) *(s32 *)((s8 *)arg2 + 0x10);
@@ -51,7 +47,4 @@ u8 *construct_attack_collision(u8 *arg0, s32 arg1, u8 *arg2) {
     } else {
         ((TUnk_804E355C *)arg0)->m_bc = 0;
     }
-    return arg0;
-}
-
 }

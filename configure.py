@@ -429,6 +429,9 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Keep the eight-byte menu positions in .data with the state table.
+    # The calendar x coordinate uses a fused multiply-add.
+    "pso/menu/TAdTimeSetGC.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-fp_contract on")},
     # Keep the compiler-generated guild-card initializer ahead of its constructor and accessors.
     "pso/misc/TLobby_802409AC.cpp": {"cflags": _switch(cflags_pso, "-sym on")},
     # Upstream #208: fused scale/corner arithmetic; deferred emission puts the
@@ -472,6 +475,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
     # needed (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
+    # The base collider's vtable follows the derived vtable at 0x804E355C.
+    "pso/item/TItemAttackCol_802E4798.cpp": {"cw_align": ".data=4"},
     # The memory-card menu position precedes the callback templates in .data.
     # Its two read-only layout inputs begin at a four-byte-aligned address.
     "pso/misc/TCheckMemoryCard.cpp": {
