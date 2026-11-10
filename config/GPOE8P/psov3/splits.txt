@@ -632,19 +632,14 @@ pso/boss/TBoss8Dragon_8005D860.cpp:
 	.text       start:0x8005D860 end:0x8005D880
 
 pso/boss/Boss5GryphonBehavior.cpp:
-	.text       start:0x8005D880 end:0x80065BC0
+	.text       start:0x8005D880 end:0x80066128
+	.ctors      start:0x80433F44 end:0x80433F48
 	.rodata     start:0x80437EB8 end:0x80437EC0
 	.data       start:0x80487848 end:0x80488668
 	.bss        start:0x804FF5A0 end:0x804FF5E8
-	.sbss       start:0x805D4DC0 end:0x805D4DC8
+	.sdata      start:0x805D27F8 end:0x805D2800
+	.sbss       start:0x805D4D90 end:0x805D4DC8
 	.sdata2     start:0x805D8D70 end:0x805D8E28
-
-pso/boss/TBoss5Gryphon.cpp:
-	.text       start:0x80065BC0 end:0x80065C90
-
-pso/boss/TBoss8Dragon_80065C90.cpp:
-	.text       start:0x80065C90 end:0x80066128
-	.ctors      start:0x80433F44 end:0x80433F48
 
 pso/boss/TBoss5GryphonColli.cpp:
 	.text       start:0x80066128 end:0x80066540
@@ -1128,7 +1123,7 @@ pso/misc/TQuestVmDownLoadServer_8007EBDC.cpp:
 
 pso/unk/text_8007ECF0.cpp:
 	.text       start:0x8007ECF0 end:0x8007F4B8
-	.rodata     start:0x80438AC8 end:0x80438AE0
+	.rodata     start:0x80438A98 end:0x80438AF8
 	.sdata2     start:0x805D9298 end:0x805D92C0
 
 pso/unk/text_8007F4B8.cpp:
