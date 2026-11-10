@@ -5,9 +5,14 @@
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowDD.h"
 
-struct Src_80348A9C { f32 x; f32 y; };
+struct Src_80348A9C { f32 u; f32 v; };
 
-struct Dst_80348A9C { u8 pad[0xc]; f32 x; f32 y; u8 pad2[4]; };
+struct Dst_80348A9C { u8 pad[0xc]; f32 u; f32 v; u8 pad2[4]; };
+
+typedef char VertexUvPairSize[sizeof(Src_80348A9C) == 8 ? 1 : -1];
+typedef char VertexUvDestinationStride[sizeof(Dst_80348A9C) == 24 ? 1 : -1];
+typedef char VertexUvDestinationU[offsetof(Dst_80348A9C, u) == 12 ? 1 : -1];
+typedef char VertexUvDestinationV[offsetof(Dst_80348A9C, v) == 16 ? 1 : -1];
 
 struct A_803489B8 { u8 pad0[4]; f32 f4; u8 pad8[4]; f32 fC; u8 pad10[0x1C]; f32 f2C; };
 
@@ -55,7 +60,7 @@ void TWindowDD_WS_String::draw(s32 arg1, s32 idx, f32 farg0) {
     temp_r31 = TWindowDD::get_draw_count((void **)(lbl_805D63F0));
     f32 depth = TWindowDD__sub_80348AD4(*(f32 *)&(this->m_54), farg0);
     reset_entries__9TWindowDDFf(&sp8, -1, depth);
-    ((TWindowDD *)(&sp8))->copy_point_table(idx);
+    copy_vertex_uv_table(&sp8, idx);
     TWindowDD__sub_80348A2C((void *)arg1, &sp8);
     TWindowDD__sub_803489B8((A_803489B8 *)(arg1), (B_803489B8 *)(&sp8), 0);
     ((TWindowDD *)(&sp8))->draw_transformed_primitive((void*)8, (void*)temp_r31, (void*)1);
@@ -124,13 +129,13 @@ void TWindowDD__sub_80348A2C(void *arg0, void *arg1) {
   *((f32 *) new_var2) = temp_f4;
 }
 
-void TWindowDD::copy_point_table(s32 idx) {
-    Dst_80348A9C *self = (Dst_80348A9C *)this;
+void copy_vertex_uv_table(void *storage, s32 idx) {
+    Dst_80348A9C *self = (Dst_80348A9C *)storage;
     s32 i;
     Src_80348A9C *s = TWindowDD__data_805434E8[idx];
     for (i = 0; i < 8; i++) {
-        self->x = s->x;
-        self->y = s->y;
+        self->u = s->u;
+        self->v = s->v;
         s++;
         self++;
     }

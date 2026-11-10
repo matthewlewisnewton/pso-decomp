@@ -102,6 +102,14 @@ Fresh main/A/B builds preserve the original DOL; 3599 continuation units are exa
 and retention has 18465 names with no drift. Original #420/PageIndicator and
 save-flag client recoveries are preserved.
 
+The next [raw UV helper recovery](window-vertex-uv-contract.md) removes three
+false window receivers from Word/String's vertex buffers. Original stores and
+the lower texture-coordinate consumer establish eight UV pairs at offsets12/16
+with stride24. The shared free contract preserves all bytes/targets, bank storage,
+ordered providers and coverage. Raw aliasing/lifetime, unchecked table index and
+other draw/helper interfaces remain qualified; no native window lifetime is
+inferred from this buffer operation.
+
 ## Current tried/blocked index
 
 | Area | Established result | Remaining evidence / hold |

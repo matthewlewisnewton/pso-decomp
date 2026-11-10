@@ -106,7 +106,7 @@ void TWindowDD__sub_80341674(TWindowDD_WS_Word *self, TWindowDrawContext *contex
     f32 depth = TWindowDD__sub_80348AD4(self->m_54, TWindowDD__data_805DFCA8);
     reset_entries__9TWindowDDFf(vertices, -1, depth);
     s32 point_table = self->point_table_index;
-    reinterpret_cast<TWindowDD *>(vertices)->copy_point_table(point_table);
+    copy_vertex_uv_table(vertices, point_table);
     TWindowDD__sub_80348A2C(context, vertices);
 
     scale = context->scale[1];
@@ -180,7 +180,7 @@ void TWindowDD__sub_80341674(TWindowDD_WS_Word *self, TWindowDrawContext *contex
     if (self->m_74 > 0 && self->sub_80342254()) {
         depth = TWindowDD__sub_80348AD4(self->m_54, lbl_805DFCAC);
         reset_entries__9TWindowDDFf(vertices, -1, depth);
-        reinterpret_cast<TWindowDD *>(vertices)->copy_point_table(1);
+        copy_vertex_uv_table(vertices, 1);
         TWindowDD__sub_80348A2C(context, vertices);
 
         f32 selected_row = (f32)self->m_6c;

@@ -144,7 +144,6 @@ struct TWindowDD
     s32 count_chars_since_newline(s32 *len);
     static void append_char(s8 arg0, s32 arg1, s32 *arg2);
     static void append_string(s32 arg0, s32 arg1, s32 *arg2);
-    void copy_point_table(s32 idx);
     static s32 get_draw_count(void **arg0);
     static s32 get_entry(s32 arg0);
     int handle_word_select();
