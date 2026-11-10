@@ -25,8 +25,6 @@ void TLobby__sub_801E3CF0(u32 *p);
 s32 TLobby__sub_801E3E9C(s32 id, s32 name, s32 arg2);
 void camera_renderer_setup_nop(void);
 void draw_color_lines(ColorLineList *lines, s32 n, s32 flags, f32 scale);
-// The historical symbol names a menu class, but the callee consumes this list.
-void draw_tri_fan_2d__14TObjCMHairMenuFllf(ColorLineList *lines, s32 count, s32 flags, f32 scale);
 void reset_line_width(void);
 void set_line_width(int a0);
 }

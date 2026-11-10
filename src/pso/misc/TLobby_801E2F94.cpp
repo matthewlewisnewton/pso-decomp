@@ -241,7 +241,7 @@ void ColorLineList::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
     u32 x;
     u32 *p;
     if (!(flags & 2)) {
-        draw_tri_fan_2d__14TObjCMHairMenuFllf(this, n, flags, scale);
+        ((TObjCMHairMenu *)this)->draw_tri_fan_2d(n, flags, scale);
         return;
     }
     p = colors;
@@ -250,7 +250,7 @@ void ColorLineList::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
         *p = (x << 8) | (x >> 24);
         p++;
     }
-    draw_tri_fan_2d__14TObjCMHairMenuFllf(this, n, flags, scale);
+    ((TObjCMHairMenu *)this)->draw_tri_fan_2d(n, flags, scale);
     {
     u32 *q = colors;
     u32 y;
@@ -261,7 +261,8 @@ void ColorLineList::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
     }
     }
 }
-void draw_tri_fan_2d__14TObjCMHairMenuFllf(ColorLineList *self, s32 count, s32 flags, f32 scale) {
+void TObjCMHairMenu::draw_tri_fan_2d(s32 count, s32 flags, f32 scale) {
+    ColorLineList *self = (ColorLineList *)this;
     ColorLineList tmp;
     ColorLineVertex v[2];
     u32 c[2];
