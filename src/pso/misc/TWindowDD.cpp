@@ -36,13 +36,14 @@ void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 int update_fade__11TWindowBaseFv(void*);
 
-void TWindowDD::reset_entries(f32 v) {
+// Original callers pass opaque white. The implementation always uses that color.
+void TWindowDD::reset_entries(f32 depth, s32) {
     E_803403F8 *p = (E_803403F8 *)this;
     s32 i;
     for (i = 0; i < 8; i++) {
         p->a = lbl_805DFC30;
         p->b = lbl_805DFC30;
-        p->c = v;
+        p->c = depth;
         p->d = lbl_805DFC30;
         p->e = lbl_805DFC30;
         p->f = -1;

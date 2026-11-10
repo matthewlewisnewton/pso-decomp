@@ -89,6 +89,12 @@ preserve the graph's exported constants and format strings. See
 [download graph recovery](evidence/download-graph-recovery.md) for the
 compiler and data layout evidence.
 
+The word-select row renderer at `0x80341674` in `TWindowDD_80341A08.cpp` uses
+a scoped `fp_contract on` for the scaled row and highlight positions and
+the clipped texture coordinates. With contraction disabled, GC/2.6 emits
+separate multiply and add/subtract instructions in those expressions. Ports
+that need the original rounding should fuse those operations.
+
 5,773 pragmas in 877 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 877, `auto_inline` 837,
 `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237,
