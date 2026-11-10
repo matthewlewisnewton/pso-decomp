@@ -14,10 +14,12 @@ class TWindowDD_WS_Word : public TWindowBase {
 public:
     virtual ~TWindowDD_WS_Word();
     virtual void render();
+    virtual void run_task();
+    void add_scroll_offset(int offset);
     s32 sub_80341AC0();
     s32 can_scroll(s32);
     void *destroy(s16);
-    u8 sub_80342268();
+    s32 sub_80342268();
     s32 sub_80342254();
     s32 m_60;
     u8 unk_64[0x4];
@@ -25,10 +27,11 @@ public:
     s32 m_6c;
     u8 unk_70[0x4];
     s32 m_74;
-    u8 unk_78[0x4];
+    s32 m_78;
     s32 m_7c;
     void * m_80;
-    u8 unk_84[0x8];
+    f32 m_84;
+    f32 m_88;
     s32 m_8c;
 };
 typedef char TWindowDD_WS_Word_size[sizeof(TWindowDD_WS_Word) == 0x90 ? 1 : -1];

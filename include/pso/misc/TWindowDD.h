@@ -82,7 +82,6 @@ struct TWindowDD
     void set_first_entry_text(u32 arg1);
     void set_mode_2();
     void reset_cursor();
-    void handle_scroll_input();
     void init_and_mark_field8C();
     void free_child();
     void init_child(void* a1);
@@ -95,7 +94,6 @@ struct TWindowDD
     s32 update_if_field28_set();
     void get_cursor_pos(u8 *arg1);
     s32 get_field_68();
-    void add_scroll_offset(int a1);
     void enter_state_19();
     void enter_state_18();
     void enter_state_9();
