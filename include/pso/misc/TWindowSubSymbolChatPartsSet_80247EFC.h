@@ -8,7 +8,6 @@ void TWindowSubSymbolChatPartsSet__sub_802482B8(s32 arg0, s32 arg1);
 void TWindowSubSymbolChat__sub_802483F0(int a0, void *a1);
 void fn_802483C8(void *arg0, u8 _w1);
 void get_parts_entry__28TWindowSubSymbolChatPartsSetFii(s32 arg0, s32 arg1);
-void render__17TWindowChatSymbolFv(u8 *arg0);
 }
 int set_symbol_chat_face_sprite(void *arg0, u8 b);
 extern "C" {

@@ -69,7 +69,6 @@ void TWindowSubSymbolChat__sub_80281840(Win_80281840 *arg0);
 s32 TKeyBoardControl__ct(s32, void *, s32, s32, s32, s32);
 s32 TWindowSubComCard__sub_80265660(s32, s32);
 s32 align_menu_entry_positions(s32);
-s32 TWindowSubSymbolChatPartsSet__ct(s32, s32, s16, s32 *, s32 *);
 s32 __nw__7TObjectFUl(int);
 
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
@@ -316,13 +315,7 @@ s32 create_menu__20TWindowSubSymbolChatFPv(void *window_sub_symbol_chat) {
 }
 
 s32 TWindowSubSymbolChat::create_parts_set() {
-    s32 var_r31;
-
-    var_r31 = __nw__7TObjectFUl(0x98);
-    if (var_r31 != 0) {
-        var_r31 = TWindowSubSymbolChatPartsSet__ct(var_r31, get_window_layout_position(0x7D), this->m_1e, &TWindowSubSymbolChat__data_805D6498, &TWindowSubSymbolChat__data_805D649C);
-    }
-    return var_r31;
+    return (s32)new TWindowSubSymbolChatPartsSet((void *)get_window_layout_position(0x7D), m_1e, &TWindowSubSymbolChat__data_805D6498, &TWindowSubSymbolChat__data_805D649C);
 }
 
 s32 TWindowSubSymbolChat::create_parts() {
@@ -471,12 +464,7 @@ s32 TWindowSubSymbolChat::create_symbol_list_card() {
 }
 
 s32 TWindowSubSymbolChat::create_chat_symbol_window(s32 arg0, s32 arg1) {
-    s32 window_chat_symbol;
-    window_chat_symbol = __nw__7TObjectFUl(0x68);
-    if (window_chat_symbol != 0) {
-        window_chat_symbol = (s32)TWindowChatSymbol__ct((TWindowChatSymbol *)((u8 *)window_chat_symbol), (((s32)get_window_layout_position(arg1 + 0x7B))), (s32)lbl_8044FB20);
-    }
-    return window_chat_symbol;
+    return (s32)new TWindowChatSymbol((void *)get_window_layout_position(arg1 + 0x7B), lbl_8044FB20);
 }
 
 void TWindowSubSymbolChat::render() {  }
