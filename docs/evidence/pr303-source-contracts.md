@@ -809,3 +809,29 @@ steering, a new algorithm or synchronization mechanism. Lengthless scanning,
 allocator conventions and broader output-pointer APIs remain separate; no
 length/type contract is guessed for them. Keep draft with the other documented
 limits and metadata hold. No held write is retried.
+
+
+## Main refresh through `4bec40d6c`
+
+Refresh reviewed head `4f029010a` against main
+`4bec40d6cca74a85e91c848ea2d9f25425a313ad`. Only the generated and curated
+exception-register summaries conflict. Regenerate the inventory, update its
+summary counts, and retain main's download-graph and selection-plate evidence.
+All source/config changes merge automatically. Main's LaunchDol recovery,
+download graph and menu units remain unchanged; no main-owned compiler
+exception, external handoff hold or source boundary is weakened. The DHCP
+shared volatile contract, scanner return repair, lease parser and selection
+predicate sources are unchanged from the reviewed parent.
+
+Fresh capacity-gated native builds of main and this candidate both reproduce
+original DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Full comparison
+against that freshly built main passes: zero new exact functions or code,
++88 matched and linked data bytes, no function/data/coverage loss, all 3,584
+linked units exact and 17,752 retention entries without drift. Main has
+3,585 linked units; the existing fold accounts for the one-unit structural
+difference. Seven existing symbol renames remain; they are not new matches.
+Host vector/item-factory tests, generated inventory and whitespace pass.
+
+This is synchronization, not a new interface probe. Lengthless scanning,
+allocator/output-pointer questions and the failed-metadata-write hold remain
+bounded as documented above. Keep draft pending exact-head review and CI.
