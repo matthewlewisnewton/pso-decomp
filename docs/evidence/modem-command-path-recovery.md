@@ -1,6 +1,6 @@
 # Modem command-path recovery
 
-Current validation base: `00c484c57b38bc7f112016860e9faa628c7b49e9`.
+Current validation base: `59dfc7117a7e2cd251b65f1b435e66a9bf174618`.
 The unit has 25 recovered bodies, 14 exact functions, and remains unlinked.
 The PR is reviewed as partial source recovery. Complete native matching and
 source linking remain follow-up work; the historical draft checkpoints below
@@ -497,10 +497,10 @@ from the reviewed control checkpoint; no gain is attributed to merging main.
 
 ## Review preparation against current main
 
-Merge `3bb58cfd7fd61c3e2afb19e7cf3ab7669cb2741e` integrates fork main
-`00c484c57b38bc7f112016860e9faa628c7b49e9` without conflicts. Main's radial
-particle recovery, source-link entry, shared declarations and retention changes
-are preserved. The only subsequent production-source edit explains the modem
+Merge `4ba4f3118b8513109ce3fa94c9bb09a4e287337f` integrates fork main
+`59dfc7117a7e2cd251b65f1b435e66a9bf174618` without conflicts. Main's radial
+particle and word-select recovery, source-link entries, shared declarations and
+retention changes are preserved. The only production-source edit in this review pass explains the modem
 dispatcher's intentional lock retention for transfer branches and unsupported
 highest status bits; it changes no behavior.
 
@@ -520,16 +520,16 @@ the shared exclusive capacity gate, with Ninja `-j2`. Both reproduce DOL SHA-1
 
 | Measure | Current main | Candidate | Change |
 | --- | ---: | ---: | ---: |
-| Exact functions | 27,422 | 27,424 | +2 |
-| Exact code bytes | 4,220,300 | 4,220,960 | +660 |
+| Exact functions | 27,423 | 27,425 | +2 |
+| Exact code bytes | 4,221,216 | 4,221,876 | +660 |
 | Exact data bytes | 1,472,695 | 1,472,695 | 0 |
-| Source-linked code bytes | 3,811,440 | 3,811,440 | 0 |
-| Source-linked data bytes | 1,194,063 | 1,194,063 | 0 |
-| Linked units | 3,596 | 3,596 | 0 |
+| Source-linked code bytes | 3,814,852 | 3,814,852 | 0 |
+| Source-linked data bytes | 1,194,071 | 1,194,071 | 0 |
+| Linked units | 3,597 | 3,597 | 0 |
 
 Unfiltered original-address comparison preserves all nine code/data/function
-coverage, exactness and source-link categories. All 3,596 linked units and
-18,291 retention entries pass. All 270 source-tool tests, Python syntax,
+coverage, exactness and source-link categories. All 3,597 linked units and
+18,296 generated retention entries pass. All 270 source-tool tests, Python syntax,
 porting-exception inventory and changed-line whitespace checks pass. No new
 porting exception is introduced.
 
