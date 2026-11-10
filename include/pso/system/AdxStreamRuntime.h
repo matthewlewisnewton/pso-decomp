@@ -4,6 +4,7 @@
 #include "types.h"
 
 struct AdxStreamFile;
+struct SjRingBuffer;
 struct AdxDecoderFormatView {
     u8 reserved[0xA8];
     s16 format;
@@ -15,6 +16,12 @@ s32 get_field_14__6TLobbyFv(AdxStreamFile *file);
 s32 get_file_offset_relative__6TLobbyFv(AdxStreamFile *file);
 s32 set_scroll_offset__6TLobbyFl(AdxStreamFile *file, s32 offset);
 s32 init_stream_position__6TLobbyFv(AdxStreamFile *file);
+// Keep the linked symbol names while using the stream-file receiver.
+void set_field_10_and_notify__6TLobbyFl(AdxStreamFile *file, s32 offset);
+void set_scroll_position__6TLobbyFl(AdxStreamFile *file, s32 sector);
+void set_buffer__6TLobbyFPPv(AdxStreamFile *file, SjRingBuffer *buffer);
+AdxStreamFile *TLobby__sub_803C8CDC(const char *name, s32 mode, s32 arg);
+AdxStreamFile *adxstm_open_fname_range__6TLobbyFPviiii(const char *name, s32 mode, s32 off, s32 nsect, s32 arg);
 }
 
 extern "C" {

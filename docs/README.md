@@ -18,6 +18,10 @@ including historical checkpoints and work in progress. They record the scope and
 validation at the time of each investigation; they are not a current status report.
 Consult the source and current checks before relying on an old result.
 
+The [Moja compiler-tracing case study](evidence/moja-compiler-tracing.md) explains
+how frontend temporaries, register allocation, and constant-pool emission exposed
+a matching replacement for redundant index arithmetic.
+
 ## Porting exceptions
 
 The [porting exceptions register](porting-exceptions.md) lists every asm body,

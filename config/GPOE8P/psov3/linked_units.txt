@@ -832,6 +832,7 @@ pso/misc/EndingSceneTables.cpp
 pso/misc/GbaDownloadRuntime.cpp
 pso/misc/KeyboardCharacterMaps.cpp
 pso/misc/MaterialOpacityFade.cpp
+pso/misc/ParticleRadial.cpp
 pso/misc/PhotonBlastSummon.cpp
 pso/misc/QuestDownloadBuffers.cpp
 pso/misc/RenderFadeState.cpp
@@ -1115,6 +1116,7 @@ pso/misc/TLobby_80228154.cpp
 pso/misc/TLobby_80228818.cpp
 pso/misc/TLobby_80228C84.cpp
 pso/misc/TLobby_8023F734.cpp
+pso/misc/TLobby_802409AC.cpp
 pso/misc/TLobby_80242910.cpp
 pso/misc/TLobby_80243370.cpp
 pso/misc/TLobby_8024A148.cpp
@@ -1695,6 +1697,7 @@ pso/misc/TWindowDD_80246F8C.cpp
 pso/misc/TWindowDD_80340EA8.cpp
 pso/misc/TWindowDD_803411E8.cpp
 pso/misc/TWindowDD_80341334.cpp
+pso/misc/TWindowDD_80341A08.cpp
 pso/misc/TWindowDD_80342254.cpp
 pso/misc/TWindowDD_803424EC.cpp
 pso/misc/TWindowDD_80342554.cpp
@@ -1893,6 +1896,7 @@ pso/misc/TWindowSubShortMail_80246CB8.cpp
 pso/misc/TWindowSubShortMail_8027E620.cpp
 pso/misc/TWindowSubShortMail_802A571C.cpp
 pso/misc/TWindowSubStatusDisp.cpp
+pso/misc/TWindowSubStatusDispPages.cpp
 pso/misc/TWindowSubStatusDisp_8006F044.cpp
 pso/misc/TWindowSubStatusDisp_80071774.cpp
 pso/misc/TWindowSubStatusDisp_80077760.cpp
@@ -2513,6 +2517,7 @@ pso/player/TObjPlayer_801C1FF8.cpp
 pso/player/TObjPlayer_801C5558.cpp
 pso/player/TObjPlayer_801C5AB8.cpp
 pso/player/TObjPlayer_801C721C.cpp
+pso/player/TObjPlayer_801C7430.cpp
 pso/player/TObjPlayer_801D3554.cpp
 pso/player/TObjPlayer_801D4890.cpp
 pso/player/TObjPlayer_801D4CB8.cpp
@@ -3431,6 +3436,7 @@ pso/unk/text_802E4A4C.cpp
 pso/unk/text_802E52AC.cpp
 pso/unk/text_802E62A4.cpp
 pso/unk/text_802EDCF0.cpp
+pso/unk/text_802EDE90.cpp
 pso/unk/text_802F0E24.cpp
 pso/unk/text_802F0F04.cpp
 pso/unk/text_802F190C.cpp
@@ -3530,6 +3536,7 @@ pso/unk/text_803CBCA0.cpp
 pso/unk/text_803CBCF8.cpp
 pso/unk/text_803CC070.cpp
 pso/unk/text_803CC134.cpp
+pso/unk/text_803CC294.cpp
 pso/unk/text_803CD840.cpp
 pso/unk/text_803CE1D8.cpp
 pso/unk/text_803CE1F4.cpp

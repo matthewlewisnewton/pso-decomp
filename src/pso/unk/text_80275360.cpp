@@ -13,7 +13,7 @@ void TWindowSubComCardList__sub_80275360(TWindowSubComCardList *list) {
     s32 msg;
 
     list->reset_entries();
-    index = ((TWindowSubStatusDisp *)list->m_8c)->get_type();
+    index = ((PageIndicator *)list->m_8c)->get_type();
     index *= 7;
     for (n = 0; n < 7; n++, index++) {
         if (index >= (s32)list->m_98) {
