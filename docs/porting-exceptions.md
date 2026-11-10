@@ -425,22 +425,19 @@ functions above change, from 98.82% (1076 bytes) / 97.81% (296) / 95.60%
 is byte-identical either way. Those multiply-adds compile as `fmuls`+`fadds`
 when `-fp_contract` is omitted and `fmadds` when it is on.
 
-The constructor clamp (`0x80170068`) is written `attack.power < 0.0f`.
-`lbl_805DB85C` is that `0.0f`. Loaded by name, it is an `extern const`, so
-the frontend CSE pass puts it in a temp numbered below the reload of
-`attack.power` and the compare swaps `f0`/`f1` (99.91%). A literal is not
-shared, so the reload is `f1` and the constant is `f0`, which is the
-original. That literal is the unit's only `.sdata2` entry. The split claims
-`0x805DB85C`-`0x805DB860` (`align:4`), the address of `lbl_805DB85C`. The
-other uses in this file still name the symbol, and both relocations resolve
-there. Defining `lbl_805DB85C = 0.0f` in the file does not do this: MWCC
-inlines the const, so every use becomes a second pool slot 4 bytes after
-the exported symbol, and `receive_physical_attack` and
-`receive_weapon_special_attack` leave exact. The compiled `.sdata2` section
-is 8-aligned and `0x805DB85C` is not, and the pool symbol is the compiler's
-`@252` rather than `lbl_805DB85C`, which `text_8016F1C0.cpp` and `TOMine.cpp`
-still reference. The unit therefore matches (38/38 functions, `.text`,
-`.rodata` and `.sdata2`) and is not linked.
+The constructor clamp at `0x80170068` reads `lbl_805DB85C` through its
+address. A direct reference makes CodeWarrior share the load during common
+subexpression elimination and swap the two floating-point registers
+(99.91%). The address form keeps the power reload in `f1` and the zero in
+`f0`. The `__declspec(section ".sdata2")` definition follows the last use
+so CodeWarrior keeps the named loads. Both `text_8016F1C0.cpp` and
+`TOMine.cpp` reference that same exported zero.
+
+The unit's four-byte `.sdata2` starts at `0x805DB85C`. CodeWarrior gives
+the section eight-byte alignment by default. The existing `cw_align` build
+step sets the ELF and linker comment alignment to four, keeping the original
+address. Ports can compare directly against zero and use ordinary alignment
+for the shared constant.
 
 `follow_target` and `update_float_height` are exact on main through
 function-local `fp_contract` pragmas. This PR removes those pragmas; the unit
