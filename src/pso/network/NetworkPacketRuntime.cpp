@@ -3,6 +3,7 @@
 #include "pso/network/NetworkPacketPool.h"
 #include <stddef.h>
 #include "pso/network/NetworkTransport.h"
+#include "pso/network/NetworkReceiveCallback.h"
 
 #include "types.h"
 #include "pso/misc/TLobby.h"
@@ -166,9 +167,7 @@ struct DhcpOption_804FD948 {
 };
 extern DhcpOption_804FD948 lbl_804FD948[12];
 void TLobby__sub_803F97E8(s32);
-s16 TUdpSocket__sub_80421DEC(void *, int, void *, int, int, s32 (*)(s16, Arg_804249F0 *));
 s32 TLobby__sub_80424DCC(s16, s32, s32, void *, void *, void *, void *, s32);
-s32 dhcp_handle_reply__6TLobbyFsPv(s16 arg0, Arg_804249F0 *arg1);
 extern void *lbl_805D7B40;
 extern void *lbl_805D7B44;
 extern void *lbl_805D7B48;
@@ -296,7 +295,8 @@ s32 TLobby::validate_slot_buffers(s32 arg0, void *arg1, void *arg2, void *arg3) 
 
 #pragma push
 #pragma opt_propagation off
-s32 dhcp_handle_reply__6TLobbyFsPv(s16 arg0, Arg_804249F0 *arg1) {
+s32 dhcp_handle_reply__6TLobbyFsPv(s16 arg0, u8 *record) {
+    Arg_804249F0 *arg1 = (Arg_804249F0 *)record;
     s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out);
     G_804249F0 *g = &lbl_805C1E00;
     Pkt_804249F0 *pk;

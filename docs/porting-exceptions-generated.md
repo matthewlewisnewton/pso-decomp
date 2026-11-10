@@ -224,7 +224,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/unk/text_803E2D70.cpp:954` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
 | `src/pso/unk/text_803E2D70.cpp:955` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
 | `src/pso/unk/text_803E2D70.cpp:956` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_80421620.cpp:1196` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
+| `src/pso/unk/text_80421620.cpp:1253` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
 
 ## configure.py per-unit compiler overrides
 
