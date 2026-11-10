@@ -2422,6 +2422,7 @@ force_active:
   - __dt__15TObjSoloPlayWinFv
   - __dt__15TObjSuisouLobbyFv
   - __dt__15TPlyOnCountOverFv
+  - __dt__15TWindowCallBackFv
   - __dt__15TWindowCtrlMainFv
   - __dt__15TWindowHelpItemFv
   - __dt__15TWindowQuantityFv
@@ -3073,6 +3074,7 @@ force_active:
   - __vt__15TObjSuisouLobby
   - __vt__15TShopWindowBase
   - __vt__15TWindowAddition
+  - __vt__15TWindowCallBack
   - __vt__15TWindowCtrlMain
   - __vt__15TWindowHelpItem
   - __vt__15TWindowQuantity
@@ -4813,6 +4815,7 @@ force_active:
   - clear_field2A0__22TQuestVmDownLoadServerFv
   - clear_field_d8__14TOTrapChainSawFv
   - clear_flag4c_bit8__13TWindowSubLogFv
+  - clear_flag60_bit1__19TWindowKeyBoardBaseFv
   - clear_flag60_bit8__13TWindowSubMagFv
   - clear_flag70_bit80__19TWindowSubTechniqueFv
   - clear_flag_04000000__10TObjPlayerFv
@@ -6140,7 +6143,6 @@ force_active:
   - fn_801E0018
   - fn_801E0C08
   - fn_801E2AC8
-  - clear_flag60_bit1__19TWindowKeyBoardBaseFv
   - fn_801F9030
   - fn_80214058
   - fn_80214254
@@ -14195,6 +14197,7 @@ force_active:
   - render__15TObjLiveMonitorFv
   - render__15TObjSuisouLobbyFv
   - render__15TPlyPhotonChairFPvPv
+  - render__15TWindowCallBackFv
   - render__15TWindowCtrlMainFv
   - render__15TWindowHelpItemFv
   - render__15TWindowQuantityFv
@@ -14893,6 +14896,7 @@ force_active:
   - run_task__15TObjLiveMonitorFv
   - run_task__15TObjSoloPlayWinFv
   - run_task__15TObjSuisouLobbyFv
+  - run_task__15TWindowCallBackFv
   - run_task__15TWindowCtrlMainFv
   - run_task__15TWindowHelpItemFv
   - run_task__15TWindowQuantityFv
@@ -17880,6 +17884,7 @@ force_active:
   - warp_nearby_players__14TBoss6PlotFalzFv
   - warp_player__12TObjWarpBossFl
   - window_break_in_layout
+  - window_callback_base_params
   - window_chat_symbol_settings
   - window_chat_type_name_pointer
   - window_deposit_layout

@@ -437,3 +437,13 @@ writes 192. The enlarged raw extent produces an identical object file. One
 ordinary missing-Word-renderer reconstruction remains nonexact and was restored;
 its arithmetic and helper evidence are recorded as a concrete stop condition.
 The full original Word provider and all existing holds remain selected/qualified.
+
+
+The [CallBack lifetime recovery](window-callback-native-lifetime.md) replaces
+the conflicting flat class and raw constructor/destructor with the actual
+Base-derived lifetime and ordinary-new factory. Both complete texts remain
+exact; the adjacent descriptor and compiler table add 44 linked data bytes.
+The unknown trailing word remains an explicit original-only input, with no
+padding assumption or coverage loss. Callback invocation and copy-helper views
+stay qualified. Raw Base/Addition calls fall to 20 across eleven units; all
+other technical holds persist.
