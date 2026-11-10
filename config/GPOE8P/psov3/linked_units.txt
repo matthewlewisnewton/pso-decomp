@@ -1981,6 +1981,7 @@ pso/misc/pso_const_ids3.cpp
 pso/misc/pso_const_ids4.cpp
 pso/misc/pso_const_ids5.cpp
 pso/misc/pso_date.cpp
+pso/network/NetworkDispatcher.cpp
 pso/network/NetworkInfoCodec.cpp
 pso/network/NetworkInfoLoader.cpp
 pso/network/NetworkMessageTransport.cpp
