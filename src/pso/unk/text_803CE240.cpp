@@ -4,6 +4,7 @@
 // This unit retains a separate provisional backend boundary.
 struct AdxStreamFile;
 extern "C" s32 set_scroll_offset__6TLobbyFl(AdxStreamFile *file, s32 offset);
+extern "C" void set_scroll_position__6TLobbyFl(AdxStreamFile *file, s32 sector);
 
 struct VObj_803C9E38;
 
@@ -57,7 +58,7 @@ void TLobby__sub_803CE2A0(Ent_803CE240 *ent) {
         if (TLobby__sub_803CE1F4(lobby) == 2) {
             lobby->get_entry_pair(ent->f1B0 = ent->f1B4, &a, &b);
             set_scroll_offset__6TLobbyFl((AdxStreamFile *)ent->stream, (long long)(a / 2048));
-            ent->stream->set_scroll_position((a + b) / 2048);
+            set_scroll_position__6TLobbyFl((AdxStreamFile *)ent->stream, (a + b) / 2048);
             ent->stream->set_coords((s32)update_scroll__6TLobbyFv, (s32)ent);
             lobby->set_client_slot(0);
             if ((s32)ent->f1A8 == 1 || (s32)ent->f1A9 == 1) {

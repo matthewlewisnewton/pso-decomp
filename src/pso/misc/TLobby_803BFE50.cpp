@@ -1,6 +1,8 @@
 #include "types.h"
 #include "pso/system/SjRingBuffer.h"
 #include "pso/misc/TLobby.h"
+#include "pso/system/AdxStreamRuntime.h"
+#include "pso/unk/text_803D2F1C.h"
 
 struct RecoveredGlobal_803C0B08_lbl_80570AC0 {
     s32 value;
@@ -95,32 +97,50 @@ struct Snd_803C0BE8 {
 struct Rec_803C0018 { u8 state; u8 pad[0x9B]; };
 
 struct AudioStreamSource;
-struct AudioStreamChunk { void *data; s32 size; };
 
 struct AudioStreamSourceVtable {
     void *pad[6];
-    void (*lock)(AudioStreamSource *, s32, s32, AudioStreamChunk *);
-    void (*unlock)(AudioStreamSource *, s32, AudioStreamChunk *);
-    void (*f20)(AudioStreamSource *, s32, AudioStreamChunk *);
+    void (*lock)(AudioStreamSource *, s32, s32, SjChunk *);
+    void (*unlock)(AudioStreamSource *, s32, SjChunk *);
+    void (*put)(AudioStreamSource *, s32, SjChunk *);
+    s32 (*get_available)(AudioStreamSource *, s32);
 };
 
 struct AudioStreamSource { AudioStreamSourceVtable *vt; };
 
 struct AudioStreamInputState {
-    s8 f0; s8 state; u8 f2; s8 f3; u32 f4; AudioStreamSource *f8;
-    SjRingBuffer *rings[4];
-    u8 pad_1c[0x2C - 0x1C];
-    s32 f2c; s32 f30; s32 f34; s32 f38; s32 f3c; s32 f40; s32 f44;
-    s32 f48; s32 f4c; s32 f50; s32 f54;
-    u8 f58[0x40]; s32 f98;
+    s8 in_use;
+    s8 state;
+    u8 channel_count;
+    s8 end_when_empty;
+    u32 decoder_handle;
+    AudioStreamSource *source;
+    SjRingBuffer *rings[2];
+    SjChunk input_chunk;
+    SjChunk output_chunks[2];
+    s32 decoded_samples;
+    s32 decoded_bytes;
+    s32 decode_position;
+    s32 max_decode_samples;
+    s32 trap_position;
+    s32 trap_samples;
+    s32 trap_bytes;
+    void (*trap_callback)(void *);
+    void *trap_context;
+    void (*output_callback)(void *, s32, u8 *, s32);
+    void *output_context;
+    u8 header[0x40];
+    s32 header_size;
 };
+
+typedef char AudioStreamInputStateSize[sizeof(AudioStreamInputState) == 0x9C ? 1 : -1];
 
 extern "C" {
 void TLobby__sub_803BFE58(u8 *arg0);
 void TLobby__sub_803BFEE8(u8 *arg0);
 s32 TLobby__sub_803C3ABC(u8 *arg0);
 s32 TLobby__sub_803C3AC4(u8 *arg0);
-s32 TLobby__sub_803C3B38(int);
+s32 TLobby__sub_803C3B38(u8 *);
 s32 TLobby__sub_803C3B44(u8 *arg0);
 s32 get_field_a8__6TLobbyFv(int);
 void TLobby__sub_803BFFC0(u8 *arg0);
@@ -142,9 +162,10 @@ extern s32 lbl_805E0CB8;
 void TLobby__sub_803C0628(void *arg0_, s32 *arg1, s32 *arg2, s32 *arg3);
 void EXIGetID(Snd_803C0BE8 *arg0);
 void GXFlush(void);
-s32 TLobby__sub_803C0238();
+void TLobby__sub_803C0238(AudioStreamInputState *);
+void TLobby__sub_803C3A04(u8 *);
+void TLobby__sub_803C3984(u8 *);
 s32 TLobby__sub_803C3B68(s32 arg0, u16 *hdr, s32 size);
-void TLobby__sub_803D3130(s32 arg0, s32 arg1, u8 *arg2, u8 *arg3);
 void *memcpy(void *, const void *, u32);
 void process_audio_stream_input(AudioStreamInputState *arg0);
 u32 alloc_record__6TLobbyFiiii(s32 channels, u8 *buffer, s32 size, s32 total);
@@ -186,7 +207,7 @@ void TLobby::send_packet_by_id_2() {
 }
 void TLobby::send_with_offset4() {
     u8 *arg0 = (u8 *)this;
-    TLobby__sub_803C3B38((int) (*(s32 *)((s8 *)arg0 + 4)));
+    TLobby__sub_803C3B38(*(u8 **)(arg0 + 4));
 }
 void TLobby::notify_field_4() {
     u8 *arg0 = (u8 *)this;
@@ -234,10 +255,10 @@ void GXFlush(void) {
 #pragma inline_depth(4)
 #pragma dont_inline off
 inline void parse_audio_stream_input_header(AudioStreamInputState *arg0) {
-    AudioStreamChunk b;
-    AudioStreamChunk b2;
-    AudioStreamSource *s = arg0->f8;
-    s32 h = arg0->f4;
+    SjChunk b;
+    SjChunk b2;
+    AudioStreamSource *s = arg0->source;
+    s32 h = arg0->decoder_handle;
     s32 n;
     s->vt->lock(s, 1, 0x1000, &b);
     if (b.size < 0x10) {
@@ -249,29 +270,131 @@ inline void parse_audio_stream_input_header(AudioStreamInputState *arg0) {
         s->vt->unlock(s, 1, &b);
         return;
     }
-    arg0->f98 = n;
+    arg0->header_size = n;
     if (get_field_a8__6TLobbyFv(h) == 4) {
-        arg0->f3 = 1;
+        arg0->end_when_empty = 1;
     }
     if (get_field_a8__6TLobbyFv(h) == 2) {
-        memcpy(arg0->f58, b.data, b.size < 0x40 ? b.size : 0x40);
+        memcpy(arg0->header, b.data, b.size < 0x40 ? b.size : 0x40);
     }
     if (get_field_a8__6TLobbyFv(h) == 10) {
         s->vt->unlock(s, 1, &b);
     } else {
-        TLobby__sub_803D3130((s32)&b, (s32)n, (u8 *)&b, (u8 *)&b2);
-        s->vt->f20(s, 0, &b);
+        TLobby__sub_803D3130(&b, n, &b, &b2);
+        s->vt->put(s, 0, &b);
         s->vt->unlock(s, 1, &b2);
     }
     arg0->state = 2;
 }
 void process_audio_stream_input(AudioStreamInputState *arg0) {
     if (arg0->state == 2) {
-        TLobby__sub_803C0238();
+        TLobby__sub_803C0238(arg0);
     } else if (arg0->state == 1) {
         parse_audio_stream_input_header(arg0);
     }
 }
+
+static inline void prepare_decode(AudioStreamInputState *stream) {
+    TLobby *input_decoder = (TLobby *)stream->decoder_handle;
+    AudioStreamSource *source = stream->source;
+    if (stream->end_when_empty == 1 && source->vt->get_available(source, 1) == 0) {
+        stream->state = 3;
+    } else {
+        source->vt->lock(source, 1, 0x7FFFFFFF, &stream->input_chunk);
+        // An ADX footer ends the stream before the next block is submitted.
+        if (input_decoder->get_field_a8() == 0 && stream->input_chunk.size >= 2 &&
+            (u16)*(s16 *)stream->input_chunk.data == 0x8001) {
+            stream->state = 3;
+            source->vt->unlock(source, 1, &stream->input_chunk);
+        } else if (stream->decode_position >= TLobby__sub_803C3ABC((u8 *)stream->decoder_handle)) {
+            stream->state = 3;
+            source->vt->unlock(source, 1, &stream->input_chunk);
+        } else {
+            int minimum = TLobby__sub_803C3AC4((u8 *)stream->decoder_handle);
+            SjRingBuffer *ring = stream->rings[0];
+            int room = ring->interface->get_available(ring, 0);
+            if (room / 2 < minimum) {
+                source->vt->unlock(source, 1, &stream->input_chunk);
+            } else {
+                if (input_decoder->get_field_a8() == 10) {
+                    source->vt->unlock(source, 1, &stream->input_chunk);
+                }
+                input_decoder->init_scroll((s32)stream->input_chunk.data, stream->input_chunk.size);
+                TLobby__sub_803C3A04((u8 *)input_decoder);
+            }
+        }
+    }
+}
+
+static inline void publish_decode(AudioStreamInputState *stream) {
+    // This declaration order gives CodeWarrior the original saved registers and chunk slots.
+    s32 written;
+    SjChunk used;
+    SjChunk unused;
+    AudioStreamSource *source = stream->source;
+    TLobby *output_decoder = (TLobby *)stream->decoder_handle;
+    s32 samples = TLobby__sub_803C3ABC((u8 *)output_decoder);
+    s32 input_bytes = output_decoder->get_field_0xa4();
+    s32 decoded_samples = output_decoder->get_field_a0();
+    samples -= stream->decode_position;
+    written = samples;
+    if (decoded_samples < samples) {
+        written = decoded_samples;
+    }
+
+    TLobby__sub_803D3130(&stream->input_chunk, input_bytes, &used, &unused);
+    source->vt->put(source, 0, &used);
+    source->vt->unlock(source, 1, &unused);
+
+    s32 channel;
+    for (channel = 0; channel < TLobby__sub_803C3B38((u8 *)stream->decoder_handle); ++channel) {
+        TLobby__sub_803D3130(&stream->output_chunks[channel], written * 2, &used, &unused);
+        if (stream->output_callback != NULL) {
+            stream->output_callback(stream->output_context, channel, used.data, used.size);
+        }
+        stream->rings[channel]->interface->put_chunk(stream->rings[channel], 1, &used);
+        stream->rings[channel]->interface->unget_chunk(stream->rings[channel], 0, &unused);
+    }
+    stream->decoded_samples += written;
+    stream->decoded_bytes += input_bytes;
+    stream->decode_position += written;
+    stream->trap_samples += written;
+    stream->trap_bytes += input_bytes;
+    if (stream->trap_position >= 0 && stream->trap_samples >= stream->trap_position && stream->trap_callback != NULL) {
+        stream->trap_callback(stream->trap_context);
+    }
+    TLobby__sub_803C3984((u8 *)output_decoder);
+}
+
+static inline void advance_decode(AudioStreamInputState *stream) {
+    TLobby *output_decoder = (TLobby *)stream->decoder_handle;
+    s32 remaining = TLobby__sub_803C3ABC((u8 *)output_decoder);
+    int input_bytes = output_decoder->get_field_0xa4();
+    s32 decoded_samples = output_decoder->get_field_a0();
+    remaining -= stream->decode_position;
+    decoded_samples = decoded_samples < remaining ? decoded_samples : remaining;
+    stream->decoded_samples += decoded_samples;
+    stream->decoded_bytes += input_bytes;
+    stream->decode_position += decoded_samples;
+}
+
+void TLobby__sub_803C0238(AudioStreamInputState *stream) {
+    TLobby *decoder = (TLobby *)stream->decoder_handle;
+    if (decoder->get_entry_id() == 0) {
+        prepare_decode(stream);
+    }
+
+    TLobby__sub_803C34F4(reinterpret_cast<AdxDecoderFormatView *>(decoder));
+    if (decoder->get_entry_id() == 3) {
+        publish_decode(stream);
+    }
+
+    // Format 10 also updates the counters outside the output-ring path.
+    if (reinterpret_cast<const AdxDecoderFormatView *>(decoder)->format == 10) {
+        advance_decode(stream);
+    }
+}
+
 #pragma pop
 
 void TLobby__sub_803C0628(void *arg0_, s32 *arg1, s32 *arg2, s32 *arg3) {
@@ -281,7 +404,7 @@ void TLobby__sub_803C0628(void *arg0_, s32 *arg1, s32 *arg2, s32 *arg3) {
     s32 t;
     s32 v;
     h = (s32)arg0->objs[0];
-    for (i = 0; i < ((s32)TLobby__sub_803C3B38(arg0->f4)); i++) {
+    for (i = 0; i < TLobby__sub_803C3B38((u8 *)arg0->f4); i++) {
         arg0->objs[i]->vt->fn18(arg0->objs[i], 0, 0x4000, &arg0->recs[i]);
     }
     *arg1 = (arg0->recs[0].a - (s32)sj_ring_buffer_get_buffer((SjRingBuffer*)h)) / 2;
@@ -351,7 +474,7 @@ AudioStreamInputState *TLobby__sub_803C0848(AudioStreamSource *source, s32 chann
     SjRingBuffer *ring = rings[0];
     s32 size;
     for (i = 0; i < 0x10; i++) {
-        if (((AudioStreamInputState *)&lbl_80570AC0)[i].f0 == 0) {
+        if (((AudioStreamInputState *)&lbl_80570AC0)[i].in_use == 0) {
             break;
         }
     }
@@ -361,31 +484,31 @@ AudioStreamInputState *TLobby__sub_803C0848(AudioStreamSource *source, s32 chann
     st = &((AudioStreamInputState *)&lbl_80570AC0)[i];
     buffer = sj_ring_buffer_get_buffer(ring);
     size = sj_ring_buffer_get_buffer_size(ring) / 2;
-    st->f4 = alloc_record__6TLobbyFiiii(channels, buffer, size, size + sj_ring_buffer_get_extra_buffer_size(ring) / 2);
-    if (st->f4 == 0) {
+    st->decoder_handle = alloc_record__6TLobbyFiiii(channels, buffer, size, size + sj_ring_buffer_get_extra_buffer_size(ring) / 2);
+    if (st->decoder_handle == 0) {
         return NULL;
     }
-    TLobby__sub_803C3B5C(st->f4, TLobby__sub_803C0628, st);
-    st->f8 = source;
-    st->f2 = channels;
+    TLobby__sub_803C3B5C(st->decoder_handle, TLobby__sub_803C0628, st);
+    st->source = source;
+    st->channel_count = channels;
     for (i = 0; i < channels; i++) {
         st->rings[i] = rings[i];
     }
     st->state = 0;
-    st->f98 = 0;
-    st->f2c = 0;
-    st->f30 = 0;
-    st->f34 = 0;
-    st->f38 = 0x7FFFFFFF;
-    st->f3c = -1;
-    st->f40 = 0;
-    st->f44 = 0;
-    st->f3 = 0;
-    st->f48 = 0;
-    st->f4c = 0;
-    st->f50 = 0;
-    st->f54 = 0;
-    st->f0 = 1;
+    st->header_size = 0;
+    st->decoded_samples = 0;
+    st->decoded_bytes = 0;
+    st->decode_position = 0;
+    st->max_decode_samples = 0x7FFFFFFF;
+    st->trap_position = -1;
+    st->trap_samples = 0;
+    st->trap_bytes = 0;
+    st->end_when_empty = 0;
+    st->trap_callback = NULL;
+    st->trap_context = NULL;
+    st->output_callback = NULL;
+    st->output_context = NULL;
+    st->in_use = 1;
     return st;
 }
 

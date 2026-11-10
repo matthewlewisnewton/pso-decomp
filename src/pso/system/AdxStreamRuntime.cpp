@@ -2,8 +2,11 @@
 #include <dolphin/os/OSThread.h>
 #include "pso/misc/TLobby.h"
 #undef PSO_SDK_COMPACT_MATH
+#include "pso/system/AdxStreamRuntime.h"
 #include "pso/system/AdxmThreadStorage.h"
 #include "pso/system/LscStream.h"
+#include "pso/system/SjRingBuffer.h"
+#include "pso/unk/text_803D2F1C.h"
 
 #include "types.h"
 
@@ -80,7 +83,6 @@ struct PointerRecords_803C5E78_var_r31 { u8 bytes[0x2D0]; };
 struct PointerRecords_803C8610_var_r31 { u8 bytes[0x40]; };
 
 extern "C" {
-s32 TLobby__sub_803D3130(void *, s32, Pair_803C8678 *, Pair_803C8678 *);
 extern s32 tlobby_stream_read_retry_limit;
 extern s32 lbl_805D7558;
 s32 memset(void *, int, int);
@@ -116,12 +118,17 @@ struct AdxStreamFile {
     s8 b1;
     s8 b2;
     u8 pad3;
-    s32 arg;
+    union {
+        s32 arg;
+        SjRingBuffer *buffer;
+    };
     u32 handle;
     s32 fC;
     s32 f10;
     s32 size;
-    u8 pad18[0x14];
+    s32 read_chunk_size;
+    s32 read_threshold;
+    u8 pad20[0xC];
     s32 f2C;
     s32 sectors;
     s32 field34;
@@ -130,22 +137,7 @@ struct AdxStreamFile {
 typedef char AdxStreamFile_size[sizeof(AdxStreamFile) == 0x40 ? 1 : -1];
 typedef char AdxStreamFile_field34_offset[offsetof(AdxStreamFile, field34) == 0x34 ? 1 : -1];
 
-struct Strm_803C5B50;
-struct S_803C6138;
-struct Buf_803C5B50 { void *data; s32 size; };
-
-struct VT_803C5B50 {
-    void *pad[3];
-    void (*dtor)(Strm_803C5B50 *);
-    void *pad10[2];
-    void (*lock)(Strm_803C5B50 *, s32, s32, Buf_803C5B50 *);
-    void (*unlock)(Strm_803C5B50 *, s32, Buf_803C5B50 *);
-    void (*commit)(Strm_803C5B50 *, s32, Buf_803C5B50 *);
-};
-
-struct Strm_803C5B50 { VT_803C5B50 *vt; };
-
-struct Obj_803C5B50 { u8 pad_0[0x14]; Strm_803C5B50 *f14; };
+struct Obj_803C5B50 { u8 pad_0[0x14]; SjRingBuffer *f14; };
 
 struct Strm_803C7C10;
 struct Buf_803C7C10 { void *data; s32 size; };
@@ -237,16 +229,13 @@ AdxStreamFile *TLobby__sub_803C8BAC(const char *name, s32 arg);
 s32 TLobby__sub_803CE568(void);
 extern s32 adx_stream_fname_slot_count;
 extern s32 adx_stream_request_base_index;
-AdxStreamFile *TLobby__sub_803C8CDC(const char *name, s32 mode, s32 arg);
 extern char lbl_8047C600[];
 AdxStreamFile *adxstm_open_fname_range_ex_rt__6TLobbyFPviiii(const char *name, s32 mode, s32 off, s32 nsect, s32 arg);
 extern char lbl_8047C660[];
-AdxStreamFile *adxstm_open_fname_range__6TLobbyFPviiii(const char *name, s32 mode, s32 off, s32 nsect, s32 arg);
 void TLobby__sub_803C60F0(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
 void TLobby__sub_803C610C(u8 *arg0);
 void TLobby__sub_803C6118(u8 *arg0);
-u8 *TLobby__sub_803C61C4(s32, Strm_803C5B50 **, Strm_803C5B50 *);
-Strm_803C5B50 *sj_ring_buffer_create(void *, s32, s32);
+u8 *TLobby__sub_803C61C4(s32, SjRingBuffer **, SjRingBuffer *);
 void *memcpy(void *, const void *, u32);
 extern u8 adx_stream_ring_buffer_storage[];
 extern u8 adx_stream_ring_buffer[];
@@ -294,11 +283,11 @@ void TLobby::forward_notify_error(s32 arg0, s32 arg1) {
 }
 
 void TLobby__sub_803C5B50(Obj_803C5B50 *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    Strm_803C5B50 *arr[2];
-    Buf_803C5B50 b1;
-    Buf_803C5B50 b2;
-    Strm_803C5B50 *src;
-    Strm_803C5B50 *dst;
+    SjRingBuffer *arr[2];
+    SjChunk b1;
+    SjChunk b2;
+    SjRingBuffer *src;
+    SjRingBuffer *dst;
     u8 *ctx;
     TLobby::clear_buffer_1680();
     src = sj_ring_buffer_create(adx_stream_ring_buffer, 0x400, 0);
@@ -309,24 +298,24 @@ void TLobby__sub_803C5B50(Obj_803C5B50 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     TLobby__sub_803C60F0(ctx, arg1, arg2, arg3);
     TLobby__sub_803C6118(ctx);
     TLobby__sub_803C5E78();
-    src->vt->lock(src, 1, 0x400, &b1);
+    src->interface->get_chunk(src, 1, 0x400, &b1);
     if (b1.size == 0) {
         for (;;) {
         }
     }
-    dst->vt->lock(dst, 0, b1.size, &b2);
+    dst->interface->get_chunk(dst, 0, b1.size, &b2);
     if (b2.size < b1.size) {
         for (;;) {
         }
     }
     memcpy(b2.data, b1.data, b1.size);
-    src->vt->commit(src, 0, &b1);
-    dst->vt->commit(dst, 1, &b2);
+    src->interface->put_chunk(src, 0, &b1);
+    dst->interface->put_chunk(dst, 1, &b2);
     TLobby__sub_803C610C(ctx);
     TLobby__sub_803C6138((S_803C6138 *)ctx);
-    src->vt->dtor(src);
-    arr[1]->vt->dtor(arr[1]);
-    arr[0]->vt->dtor(arr[0]);
+    src->interface->destroy(src);
+    arr[1]->interface->destroy(arr[1]);
+    arr[0]->interface->destroy(arr[0]);
     TLobby::clear_net_buffer_1680();
 }
 
@@ -749,25 +738,21 @@ s32 adx_write_encoded_blocks(Obj_803C7C10 *arg0) {
 }
 #pragma pop
 
-void TLobby::set_field_10_and_notify(s32 up) {
-    *(s32 *)&this->m_up = up;
-    ((TLobby *)(this->m_prev))->cv_fs_seek((int)this->m_up, 0);
-    ((TLobby *)(this->m_prev))->cv_fs_tell();
+void set_field_10_and_notify__6TLobbyFl(AdxStreamFile *file, s32 offset) {
+    file->f10 = offset;
+    ((TLobby *)file->handle)->cv_fs_seek(file->f10, 0);
+    ((TLobby *)file->handle)->cv_fs_tell();
 }
 
 void TLobby__sub_803C8514(u8 *arg0, s32 arg1) {
     *(s32 *)((s8 *)arg0 + 0x14) = (s32) (arg1 << 0xB);
 }
 
-void TLobby::set_buffer(void **flags) {
-    s32 temp_r3;
-    u8 *temp_r5;
-
-    *(void ** *)&this->m_flags = flags;
-    temp_r5 = (unsigned char *) (*flags);
-    temp_r3 = (*(s32 (**)(void **, s32, void *))((s8 *)temp_r5 + 0x24))(flags, 0, temp_r5);
-    *(s32 *)((s8 *)((u8 *)this) + 0x18) = temp_r3;
-    *(s32 *)((s8 *)((u8 *)this) + 0x1C) = temp_r3;
+void set_buffer__6TLobbyFPPv(AdxStreamFile *file, SjRingBuffer *buffer) {
+    file->buffer = buffer;
+    s32 available = buffer->interface->get_available(buffer, 0);
+    file->read_chunk_size = available;
+    file->read_threshold = available;
 }
 
 extern "C" s32 get_field_14__6TLobbyFv(AdxStreamFile *file) {
@@ -909,12 +894,12 @@ void TLobby::update_stream_read() {
 }
 #pragma pop
 
-void TLobby::set_scroll_position(s32 arg1) {
-    if (arg1 >= 0) {
-        *(s32 *)((s8 *)((u8 *)this) + 0x30) = arg1;
+void set_scroll_position__6TLobbyFl(AdxStreamFile *file, s32 sector) {
+    if (sector >= 0) {
+        file->sectors = sector;
         return;
     }
-    *(s32 *)((s8 *)((u8 *)this) + 0x30) = (s32) ((s32) (*(s32 *)&this->m_down + 0x7FF) / 2048);
+    file->sectors = (file->size + 0x7FF) / 2048;
 }
 
 void TLobby::set_coords(s32 arg1, s32 arg2) {
@@ -1975,7 +1960,7 @@ void configure_audio_stream_output(Stream_803C9FCC *self) {
     s32 v;
     Stream_803C9FCC *pp;
     set_range__6TLobbyFPvii((u8 *)self->f8, self->f3e << 11, self->f3c << 11);
-    ((TLobby *)(self->f8))->set_scroll_position(0x19);
+    set_scroll_position__6TLobbyFl((AdxStreamFile *)self->f8, 0x19);
     init_stream_position__6TLobbyFv((AdxStreamFile *)self->f8);
     v = self->f10;
     pp = self;
@@ -2301,7 +2286,7 @@ void TLobby__sub_803CAB38(Strm_803CAB38 *self) {
                 pages = (x + 0x7FF) / 0x800;
                 self->f50 = self->f50 % 0x800;
                 self->f8c = pages;
-                ((TLobby *)(self->f8))->set_scroll_position(pages);
+                set_scroll_position__6TLobbyFl((AdxStreamFile *)self->f8, pages);
                 ((TLobby *)(self->f8))->set_coords((s32)((void *)TLobby__sub_803CB194), (s32)arg0);
             }
             s32 e = dispatch_field4_event__6TLobbyFv(t);
@@ -2312,7 +2297,7 @@ void TLobby__sub_803CAB38(Strm_803CAB38 *self) {
             TLobby__sub_803BFFFC((u8 *)t, (s32)adxt_trap_entry_update__6TLobbyFPv, (s32)arg0);
         } else {
             if (self->f8 != NULL) {
-                ((TLobby *)(self->f8))->set_scroll_position(0x7FFFFFFF);
+                set_scroll_position__6TLobbyFl((AdxStreamFile *)self->f8, 0x7FFFFFFF);
             }
             set_field_3c__6TLobbyFl(t, send_packet_by_id__6TLobbyFv(t));
             set_field_44__6TLobbyFl(t, 0);
@@ -2489,7 +2474,7 @@ void TLobby__sub_803CB194(u8 *arg0) {
     temp_r3 = send_with_offset4_alt__6TLobbyFv((int) (*(s32 *)((s8 *)arg0 + 4)));
     if ((s8) *(u8 *)((s8 *)arg0 + 0x6C) == 0) {
         set_field_3c__6TLobbyFl((int) (*(s32 *)((s8 *)arg0 + 4)), -1);
-        ((TLobby *)(*(u8 **)((s8 *)arg0 + 8)))->set_scroll_position(0x7FFFFFFF);
+        set_scroll_position__6TLobbyFl(*(AdxStreamFile **)(arg0 + 8), 0x7FFFFFFF);
         return;
     }
     set_scroll_offset__6TLobbyFl((AdxStreamFile *)lobby, temp_r3 / 2048);

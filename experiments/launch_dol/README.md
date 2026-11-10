@@ -10,7 +10,7 @@ whole-function generated assembly provider.
 The prerequisite header/type recovery from PR #284 at immutable commit
 `d70369041672d5c881d895dc0a27b96f612e4b0c` is now merged into main via
 `b96d4c294f9f8ef84756fc394c9b042e0f36bfa9`. This refresh integrates main
-`78a6f8fae432ad941677d392d332273e1079603b`. Relative to that main, no
+`fffd67d0c35e1fdaf17880c563739750e7c35813`. Relative to that main, no
 production source, compiler profile, symbols, splits, retention or linkset
 is changed by this experiment.
 The body is preserved from historical commit

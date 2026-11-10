@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+class TUserAns;
+
 extern "C" {
 void TLobby__sub_8023F754(s32 arg0, s32 arg1);
 s32 TLobby__sub_8023F880(s32 arg0);
@@ -15,7 +17,6 @@ void TLobby__sub_80241A0C(void);
 void TLobby__sub_802422EC(void *arg0, void *arg1);
 void TLobby__sub_8024259C(s32 arg0);
 void TLobby__sub_8024285C(void *p);
-void *TLobby__sub_802428C4(void *p);
 s32 TLobby__sub_802428F8(void *p);
 s32 advance_rng__6TLobbyFPv(void *arg0);
 char *build_text_from_comma_list__6TLobbyFPv(char *list);
@@ -23,11 +24,10 @@ s32 resolve_sound_effect_bank(struct Owner_8023FBBC *owner, s32 kind, s32 bank, 
 s32 start_voice_fade(struct Voice_80241FD8 *v, s32 step);
 void clamp_field9c__6TLobbyFPvf(void *arg0, f32 farg0);
 void clamp_params__6TLobbyFPv(void *arg0);
-void construct_entry_arrays__6TLobbyFv(void);
 void fade_out_sound_slot(s32 slot, s32 step);
 void fade_voice_channels__6TLobbyFi(s32 arg0);
 void find_and_load_com_card__6TLobbyFUi(u32 arg0);
-int forward_8024273C__6TLobbyFPv(void *p);
+void forward_8024273C__6TLobbyFPv(TUserAns &response);
 int get_com_card_data__6TLobbyFv(void);
 void *get_com_card_entry__6TLobbyFi(int a0);
 s32 get_field_0x280__6TLobbyFPv(void *p);
@@ -75,17 +75,14 @@ void TLobby__sub_80241A0C(void);
 void TLobby__sub_802422EC(void *arg0, void *arg1);
 void TLobby__sub_8024259C(s32 arg0);
 void TLobby__sub_8024285C(void *p);
-void *TLobby__sub_802428C4(void *p);
 s32 TLobby__sub_802428F8(void *p);
 s32 advance_rng__6TLobbyFPv(void *arg0);
 s32 alloc_looping_sound_slot(u32 id, s32 actor, const void *position, s32 base, s32 flags);
 s32 alloc_one_shot_sound_slot(u32 id, const void *position, s32 base, s32 flags);
 char *build_text_from_comma_list__6TLobbyFPv(char *list);
-void construct_entry_arrays__6TLobbyFv(void);
 void fade_out_sound_slot(s32 slot, s32 step);
 void fade_voice_channels__6TLobbyFi(s32 arg0);
 void find_and_load_com_card__6TLobbyFUi(u32 arg0);
-int forward_8024273C__6TLobbyFPv(void *p);
 int get_com_card_data__6TLobbyFv(void);
 void *get_com_card_entry__6TLobbyFi(int a0);
 s32 get_field_0x280__6TLobbyFPv(void *p);
