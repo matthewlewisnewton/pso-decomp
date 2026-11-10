@@ -87,3 +87,10 @@ Raw Base/Addition calls remain 24 across 13 units. Combined PR deltas against
 fresh main remain +600 matched code, +1220 linked code, +1472 matched data and
 +1428 linked data bytes. All other ownership/interface/constant/destruction holds
 remain; PR stays draft.
+
+The [renderer/vertex-storage audit](window-word-render-audit.md) records one
+ordinary reconstruction of the missing body and its nonexact arithmetic result.
+It retains the full original provider and explains the evidence needed before
+another probe. Its shared-helper audit also corrects WS_String's local raw buffer
+from 188 to 192 bytes, covering the reset helper's final color store without
+changing the compiled object or asserting a complete rendering interface.

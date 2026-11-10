@@ -27,7 +27,8 @@ extern const f32 lbl_805DFB5C;
 extern const f32 lbl_805DFCD4;
 extern const f32 TWindowDD__data_805DFB20;
 void TWindowDD__sub_803489B8(A_803489B8 *arg0, B_803489B8 *arg1, s32 arg2);
-typedef struct { char pad[0xBC]; } Buf;
+// Eight 24-byte vertices, including the last color word at offset 0xBC.
+typedef struct { char pad[0xC0]; } Buf;
 
 s32 reset_entries__9TWindowDDFf(Buf *, s32);
 s32 strlen();

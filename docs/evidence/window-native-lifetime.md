@@ -429,3 +429,11 @@ and Hard's own methods. Word widths, child guards, composer forwarding and
 language-specific state updates remain exact across all four complete selected
 source objects. The adjacent language helper, no-argument query and all lifetime,
 record, Soft and table/provider holds remain qualified; no metric gain is claimed.
+
+
+The [Word renderer/vertex-storage audit](window-word-render-audit.md) fixes a
+source-selected String draw buffer that declared 188 bytes while its reset helper
+writes 192. The enlarged raw extent produces an identical object file. One
+ordinary missing-Word-renderer reconstruction remains nonexact and was restored;
+its arithmetic and helper evidence are recorded as a concrete stop condition.
+The full original Word provider and all existing holds remain selected/qualified.
