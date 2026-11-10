@@ -292,6 +292,21 @@ The local initializer emits the 76-byte template at `0x80436748`. The
 original relocations to this template come from `fn_80049FD8`, and the split
 maps it to the compiler's local `@13` symbol. Ports can use the default
 compiler.
+
+### `pso/unk/text_8031EF14.cpp` with GC/2.0 and `-pooldata=off`
+
+`TObjEneRecon::spawn_death_debris` at `0x8031F1A8` is called by Recon's
+death-state handler and reads three models from the shared Recobox BML
+resource. As in the Vol Opt initializer, GC/2.0 schedules the model and
+position loads across the tails of the aggregate copies. Explicit copies of
+named templates and GC/2.6's schedule differ from the original.
+
+The three local aggregates generate the 228 bytes at
+`0x804762F0..0x804763D4`. The debris function supplies all references to
+these records. Disabling pooling keeps the two identical templates separate,
+and the symbol mappings associate each original record with its compiler
+local. Ports can use their regular compiler and allow pooling.
+
 ### `pso/unk/text_8007ECF0.cpp` with GC/1.3.2
 
 GC/1.3.2 matches the border pass in `fn_8007F27C` at `0x8007F27C`, where
