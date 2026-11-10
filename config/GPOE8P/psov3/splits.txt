@@ -7193,7 +7193,7 @@ pso/unk/text_80209C58.cpp:
 pso/misc/TLobby_80209CF8.cpp:
 	.text       start:0x80209CF8 end:0x80209D34
 
-pso/unk/text_80209D34.cpp:
+pso/map/ChallengeEnemySet.cpp:
 	.text       start:0x80209D34 end:0x8020A188
 
 pso/misc/TLobby_8020A188.cpp:
@@ -7725,7 +7725,9 @@ pso/misc/TLobby_80227AA0.cpp:
 pso/misc/TLobby_80228154.cpp:
 	.text       start:0x80228154 end:0x80228818
 	.ctors      start:0x80433FA8 end:0x80433FAC
+	.rodata     start:0x8044C9F0 end:0x8044C9F8
 	.bss        start:0x80515BA0 end:0x80515BC8
+	.sdata2     start:0x805DC770 end:0x805DC788
 
 pso/misc/TLobby_80228818.cpp:
 	.text       start:0x80228818 end:0x80228BEC
