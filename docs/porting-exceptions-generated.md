@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
 | pragma | 5773 | 876 |
-| configure.py per-unit override | 188 | 188 |
+| configure.py per-unit override | 189 | 189 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1144, `inline_depth` 1036, `fp_contract` 877, `auto_inline` 836, `opt_common_subs` 609, `scheduling` 263, `opt_propagation` 237, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -283,6 +283,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1144, `inline_depth` 1036,
 | `pso/misc/TCameraCtrl.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TKeyBoardControl_8025EC04.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/menu/TAdMultiOkGC.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TLobby_80228154.cpp` | `GC/1.3.2` | TLobby_80228154: its sprite draw keeps the frame size and flag tests only under 1.3.2 (upstream zeroz41/pso-decomp #208). |
 | `pso/misc/TLobby_802A5120.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/unk/text_8032B318.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/player/TObjPlayer_802D5B78.cpp` | `GC/1.3.2` | The player hit-vector snapshot needs 1.3.2's const-input copy scheduling. |

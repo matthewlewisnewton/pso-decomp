@@ -1120,3 +1120,28 @@ those producers and registrations together before changing that interface.
 The reset-helper extra-argument contract, native pointer/address-word globals,
 other legacy callback interfaces and metadata restriction remain held. Keep
 draft pending final exact-head review and hosted checks.
+
+
+## Current-main integration after the slot-ownership checkpoint
+
+Publish reviewed checkpoint `8a4b57975`, then integrate main
+`b3062dc640fa3ab9463269dca4e80fa057df5ec7`, which advanced during the audit
+with the sprite and challenge-enemy-set work. Only exception documents conflict.
+Retain main's source/configuration changes and evidence; regenerate summary
+totals to 5,773 pragmas in 876 files and 189 overrides. The repaired request-task,
+slot helper and release-helper source files are unchanged from the checkpoint.
+The automatic TLobby header merge retains main's unrelated API cleanup and the
+reviewed removal of the false allocator members.
+
+Fresh capacity-gated main and candidate builds reproduce the original DOL
+SHA-1. A reusable main seal preserves report/check/link receipts, exact graph/
+configuration text and tool/compiler hashes locally. Full comparison against
+that main passes: zero new functions/code, the existing +88 data bytes, no
+losses, all 3,587 linked units exact and 17,812 retention entries without drift.
+Main has 3,588 linked units; the existing branch fold explains the difference.
+Both incoming complete objects compare byte-for-byte with fresh main:
+`ChallengeEnemySet` 1/1 and sprite 8/8, exact code/data and source-linked.
+All six slot/task objects still pass the complete ELF comparison with only
+the four intentional export names normalized. Host tests, inventory and
+whitespace pass. No additional technical probe, source workaround or exception
+is introduced. Keep draft and the previously documented holds.

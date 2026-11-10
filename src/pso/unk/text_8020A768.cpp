@@ -16,7 +16,6 @@ struct Name_8020A834 { char s[0x20]; };
 
 extern "C" {
 s32 read_disc_file(Name_8020A768 *, void *);
-void reserve_enemy_set_actor_ids(struct SpawnRecord_8020A9C4 *, s32, s32);
 void init_floor_enemy_count__6TLobbyFlPUcUl(s32, Ent_8020A768 *, s32);
 extern u8 lbl_8044BBA8[];
 extern Ent_8020A768 *TLobby__map_set_file_buffer;
@@ -111,16 +110,6 @@ void load_map_set_data(s32 idx, s32 arg1) {
     copy_name((s32)&lbl_805DC624);
 }
 
-struct SpawnRecord_8020A9C4 {
-    s16 type;
-    u16 flags;
-    s16 index;
-    s16 children;
-    u16 reserved;
-    s16 actor_id;
-    u8 pad[0x48 - 0xC];
-};
-
 struct Rec_8020AA94 {
     u8 pad0[4];
     s16 f4;
@@ -131,7 +120,6 @@ struct Rec_8020AA94 {
 
 extern "C" {
 s32 get_enemy_factory_child_count(s32, SpawnRecord_8020A9C4 *);
-void reserve_enemy_set_actor_ids(SpawnRecord_8020A9C4 *arg0, s32 arg1, s32 arg2);
 s32 find_floor_object_factory__6TLobbyFlPs(void *, Rec_8020AA94 *);
 void reserve_enemy_set_actor_ids(SpawnRecord_8020A9C4 *arg0, s32 arg1, s32 arg2) {
     SpawnRecord_8020A9C4 *r;
