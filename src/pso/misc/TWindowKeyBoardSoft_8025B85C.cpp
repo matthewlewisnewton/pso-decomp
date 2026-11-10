@@ -43,7 +43,6 @@ void TWindowKeyBoardSoft__sub_8025DBDC(void *, s32);
 extern s32 lbl_805DD030;
 extern s32 lbl_805DD034;
 s32 TWindowKeyBoardSoft__sub_8025D7FC();
-void export_keyboard_text(Base_8025C974 *base, char *out);
 
 s32 is_alnum__19TWindowKeyBoardSoftFUs(u16 arg0) {
     if ((s32) arg0 < 0x30) {
@@ -638,7 +637,8 @@ s32 TWindowKeyBoardSoft::commit_composition_text() {
 }
 #pragma pop
 
-void export_keyboard_text(Base_8025C974 *base, char *out) {
+void TWindowKeyBoardBase::export_text(char *out) {
+    Base_8025C974 *base = (Base_8025C974 *)this;
     u32 a = 0;
     u32 b = 0;
     u32 c = 0;
@@ -669,7 +669,7 @@ void export_keyboard_text(Base_8025C974 *base, char *out) {
     *out = 0;
 }
 
-s32 TWindowKeyBoardSoft::measure_text_overflow() {
+s32 TWindowKeyBoardBase::get_text_buffer_size() {
     Base_8025C974 *arg0 = (Base_8025C974 *)this;
     u32 a = 0;
     u32 b = 0;

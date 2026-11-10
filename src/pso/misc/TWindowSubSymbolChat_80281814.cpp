@@ -958,12 +958,12 @@ void TWindowSubSymbolChat::run_task() {
         this->m_58 = ((TWindowSubSymbolChat *)arg0)->create_keyboard_control();
         this->m_1c = 0x29U;
     case 41:
-        if (((TWindowSubComCard *)(this->m_58))->is_keyboard_active() != 0) {
+        if (((TKeyBoardControl *)(this->m_58))->is_keyboard_active() != 0) {
             this->m_1c = 4U;
             return;
         }
-        if (((TWindowSubComCard *)(this->m_58))->update_keyboard() != 0) {
-            temp_r3_2 = ((TWindowSubComCard *)(this->m_58))->realloc_buffer();
+        if (((TKeyBoardControl *)(this->m_58))->is_key_active() != 0) {
+            temp_r3_2 = (s32)((TKeyBoardControl *)(this->m_58))->allocate_text_copy();
             ((TWindowSubSymbolChat *)(this->m_28))->set_entry_name((void *)temp_r3_2);
             ::operator delete[]((void *)temp_r3_2);
             this->m_1c = 4U;

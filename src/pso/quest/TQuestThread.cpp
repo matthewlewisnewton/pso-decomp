@@ -243,8 +243,8 @@ void TObjItemNameEntry::set_entered_name(const char *name) {
 s32 TObjItemNameEntry::process_keyboard_input() {
     s32 text;
 
-    if (m_1c != NULL && ((TWindowSubComCard *)m_1c)->update_keyboard() != 0) {
-        text = ((TWindowSubComCard *)m_1c)->realloc_buffer();
+    if (m_1c != NULL && ((TKeyBoardControl *)m_1c)->is_key_active() != 0) {
+        text = (s32)((TKeyBoardControl *)m_1c)->allocate_text_copy();
         if (strcmp((const char *)text, "") == 0) {
             ::operator delete[]((void *)text);
             free_menu_object(m_1c);

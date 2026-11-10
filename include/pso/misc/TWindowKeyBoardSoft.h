@@ -96,7 +96,6 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     void update_input_state2();
     void init();
     s32 commit_composition_text();
-    s32 measure_text_overflow();
     int is_key_state_2();
     void run_task();
     s32 dispatch_by_index();

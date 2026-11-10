@@ -1,3 +1,4 @@
+#include "pso/misc/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
@@ -20,7 +21,6 @@ struct Word_8032AC24 { s32 v; };
 struct Arg_8032AC24 { f32 x, y; u8 pad[8]; };
 
 extern "C" {
-char *realloc_buffer__17TWindowSubComCardFv(void *);
 void fn_8025DE10(void *arg0, void *arg1);
 void TAdEnterSerialAccessGC__sub_802C4B64(void *, void *, void *, int);
 void __dt__19TAdPlyChrSelPlateGCFv(void *, int);
@@ -52,7 +52,7 @@ void draw_masked_password_field(s32 arg0) {
         __ct__19TAdPlyChrSelPlateGCFv(&plate, tl_clipout, &p1);
         Word_8032AACC w = lbl_805DF76C;
         TAdEnterSerialAccessGC__sub_802C4B64(&plate, lbl_80477210, &w, 0);
-        str = realloc_buffer__17TWindowSubComCardFv(password_entry_keyboard_control);
+        str = ((TKeyBoardControl *)password_entry_keyboard_control)->allocate_text_copy();
         len = strlen(str);
         ::operator delete[](str);
         memset(buf, 0, 0x80);

@@ -566,8 +566,8 @@ void TObjCMName::run_task() {
         if ((fade += 0.16666667f) > 1.0f) {
             fade = 1.0f;
         }
-        if (((TWindowSubComCard *)keyboard)->update_keyboard() != 0) {
-            buf = (char *)((TWindowSubComCard *)keyboard)->realloc_buffer();
+        if (((TKeyBoardControl *)keyboard)->is_key_active() != 0) {
+            buf = (char *)((TKeyBoardControl *)keyboard)->allocate_text_copy();
             sound = 0x53704;
             strncpy(name, buf, 12);
             name[12] = 0;

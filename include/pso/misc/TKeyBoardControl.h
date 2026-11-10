@@ -19,6 +19,9 @@ struct TKeyBoardControl : public TObject {
     void set_keyboard_flag62_bit2();
     void set_keyboard_depth(f32 depth);
     void set_text(char *text);
+    char *allocate_text_copy();
+    int is_keyboard_active();
+    int is_key_active();
     void set_position(void *position);
     void set_composer_position(u8 *position);
     void set_soft_keyboard_position(u8 *position);

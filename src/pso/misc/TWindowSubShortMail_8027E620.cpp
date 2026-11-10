@@ -46,7 +46,6 @@ int get_card_entry__17TWindowSubComCardFi();
 void TWindowSubShortMail__sub_8027FAD0(u8 *);
 s32 get_card_window_area__6TLobbyFv();
 void * get_mail_ptr__19TWindowSubShortMailFPv(void *);
-s32 realloc_buffer__17TWindowSubComCardFv(s32);
 s32 check_room_seq_4__16TAdChrSelASlotGCFl(s32, s32);
 s32 get_main_phase();
 s32 draw_card_icon__17TWindowSubComCardFll(s32, s32, s32);
@@ -82,7 +81,7 @@ void TWindowSubShortMail::close() {
     s32 temp_r30;
     s32 var_r29;
 
-    temp_r31 = realloc_buffer__17TWindowSubComCardFv(this->m_5c);
+    temp_r31 = (s32)((TKeyBoardControl *)this->m_5c)->allocate_text_copy();
     TWindowSubComCard::mask_profanity_words((char *)temp_r31, (char *)get_shared_text_buffer());
     send_simple_mail__6TLobbyFiPv(this->m_2c, (void *)(get_shared_text_buffer()));
     ::operator delete[]((void *)temp_r31);
@@ -485,9 +484,9 @@ void TWindowSubShortMail::run_task() {
         ((TWindowSubShortMail *)(o->w5c))->hide_window();
         o->state = 0xC;
     case 12:
-        if (((TWindowSubComCard *)(o->w5c))->is_keyboard_active() != 0) {
+        if (((TKeyBoardControl *)(o->w5c))->is_keyboard_active() != 0) {
             o->state = 1;
-        } else if (((TWindowSubComCard *)(o->w5c))->update_keyboard() != 0) {
+        } else if (((TKeyBoardControl *)(o->w5c))->is_key_active() != 0) {
             o->state = 0xD;
         }
         break;
@@ -585,9 +584,9 @@ void TWindowSubShortMail::run_task() {
         ((TWindowSubShortMail *)(o->w5c))->hide_window();
         o->state = 0x19;
     case 25:
-        if (((TWindowSubComCard *)(o->w5c))->is_keyboard_active() != 0) {
+        if (((TKeyBoardControl *)(o->w5c))->is_keyboard_active() != 0) {
             o->state = 1;
-        } else if (((TWindowSubComCard *)(o->w5c))->update_keyboard() != 0) {
+        } else if (((TKeyBoardControl *)(o->w5c))->is_key_active() != 0) {
             o->state = 0x1A;
         }
         break;
@@ -603,7 +602,7 @@ void TWindowSubShortMail::run_task() {
             o->state = 0x18;
         } else if (((TWindowMessageYesNo *)(o->w50))->is_child_visible() != 0) {
             if (((TWindowSubComCard *)(o->w50))->get_slot_or_neg1() == 0) {
-                void *b = ((void * (*)(void *)) realloc_buffer__17TWindowSubComCardFv)(o->w5c);
+                void *b = ((TKeyBoardControl *)o->w5c)->allocate_text_copy();
                 ((TLobby *)b)->set_short_mail_text();
                 ::operator delete[](b);
                 o->state = 1;

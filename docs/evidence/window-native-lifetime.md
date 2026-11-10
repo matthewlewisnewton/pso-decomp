@@ -364,3 +364,13 @@ relocations and allocated sections; no new source/data activation is claimed.
 The remaining 22 raw Base/Addition calls across 12 units and other lifetime,
 constant, callback/renderer, producer/global ownership and original-remainder
 holds persist. Latest main25b400 is separately built and integrated; PR stays draft.
+
+
+The [keyboard copy/query follow-up](window-keyboard-copy-query-contracts.md)
+recovers three actual Control members and composer sizing/export, including all
+44 outer calls and Chat's separate export. Fresh allocation, integer query widths,
+retained versus temporary result ownership and original failure/truncation behavior
+are preserved. Complete text/relocation/provider checks pass for fourteen selected
+source objects; held CMName remains original-selected. No match/data activation
+or capacity/record-identity claim is added, and all remaining lifetime and ownership
+holds persist.

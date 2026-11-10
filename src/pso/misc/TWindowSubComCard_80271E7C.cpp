@@ -149,7 +149,7 @@ void TWindowSubComCard::sub_802721D8() {
   s32 temp_r30;
   u8 *lobby;
   u8 *temp_r31;
-  temp_r30 = ((TWindowSubComCard *)(*((u8 **) (((s8 *) ((u8 *)this)) + 0x80))))->realloc_buffer();
+  temp_r30 = (s32)((TKeyBoardControl *)(*((u8 **) (((s8 *) ((u8 *)this)) + 0x80))))->allocate_text_copy();
   lobby = (u8 *) ((u8* (*)(void))get_selected_guild_card_record)();
   TWindowSubComCard::mask_profanity_words((char *)temp_r30, (char *)get_shared_text_buffer());
   new_var = get_shared_text_buffer();
@@ -1011,12 +1011,12 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
         window_sub_com_card->m_80 = ((u32 (*)(void*))create_keyboard__17TWindowSubComCardFi)((void *)window_sub_com_card);
         window_sub_com_card->m_1c = 0xAU;
     case 0xA:
-        if (((TWindowSubComCard *)(window_sub_com_card->m_80))->is_keyboard_active() != 0) {
+        if (((TKeyBoardControl *)(window_sub_com_card->m_80))->is_keyboard_active() != 0) {
             window_sub_com_card->m_1c = 1U;
             return;
         }
-        if (((TWindowSubComCard *)(window_sub_com_card->m_80))->update_keyboard() != 0) {
-            temp_r29 = ((TWindowSubComCard *)(window_sub_com_card->m_80))->realloc_buffer();
+        if (((TKeyBoardControl *)(window_sub_com_card->m_80))->is_key_active() != 0) {
+            temp_r29 = (s32)((TKeyBoardControl *)(window_sub_com_card->m_80))->allocate_text_copy();
             TWindowSubComCard::mask_profanity_words((char *)temp_r29, (char *)get_shared_text_buffer());
             keyboard_mode = TWindowSubComCard::get_keyboard_mode();
             ((TWindowSubComCard *)keyboard_mode)->set_text((void *)(((s32 (*)(void))get_shared_text_buffer)()));
@@ -1138,12 +1138,12 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
         window_sub_com_card->m_80 = ((u32 (*)(void*, int))create_keyboard__17TWindowSubComCardFii)((void *)window_sub_com_card, window_sub_com_card->m_24);
         window_sub_com_card->m_1c = 0x14U;
     case 0x14:
-        if (((TWindowSubComCard *)(window_sub_com_card->m_80))->is_keyboard_active() != 0) {
+        if (((TKeyBoardControl *)(window_sub_com_card->m_80))->is_keyboard_active() != 0) {
             window_sub_com_card->m_1c = 1U;
             return;
         }
-        if (((TWindowSubComCard *)(window_sub_com_card->m_80))->update_keyboard() != 0) {
-            temp_r29 = ((TWindowSubComCard *)(window_sub_com_card->m_80))->realloc_buffer();
+        if (((TKeyBoardControl *)(window_sub_com_card->m_80))->is_key_active() != 0) {
+            temp_r29 = (s32)((TKeyBoardControl *)(window_sub_com_card->m_80))->allocate_text_copy();
             TWindowSubComCard::mask_profanity_words((char *)temp_r29, (char *)get_shared_text_buffer());
             ((TWindowSubComCard *)(window_sub_com_card->m_24))->set_card_text((int) (((s32 (*)(void))get_shared_text_buffer)()));
             ::operator delete[]((void *)temp_r29);
@@ -1293,11 +1293,11 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
         ((TWindowSubShortMail *)(window_sub_com_card->m_80))->hide_window();
         window_sub_com_card->m_1c = 0x22U;
     case 0x22:
-        if (((TWindowSubComCard *)(window_sub_com_card->m_80))->is_keyboard_active() != 0) {
+        if (((TKeyBoardControl *)(window_sub_com_card->m_80))->is_keyboard_active() != 0) {
             window_sub_com_card->m_1c = 1U;
             return;
         }
-        if (((TWindowSubComCard *)(window_sub_com_card->m_80))->update_keyboard() != 0) {
+        if (((TKeyBoardControl *)(window_sub_com_card->m_80))->is_key_active() != 0) {
             window_sub_com_card->m_1c = 0x23U;
             return;
         }

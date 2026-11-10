@@ -9,6 +9,8 @@ struct TWindowKeyBoardBase : public TWindowBase {
     virtual ~TWindowKeyBoardBase();
     void init_keyboard_text_field(u32, u32);
     void set_text(char *text);
+    void export_text(char *out);
+    s32 get_text_buffer_size();
     void sub_8025E6DC(u8 *);
     void draw_wrapped_text(void *, void *);
     void draw_text_glyphs(void *, void *);
