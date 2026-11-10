@@ -1479,3 +1479,32 @@ whole-object equality. All 19 saved contract-object comparisons remain raw
 byte-identical, including relocations. Seven actual-source characterization
 cases, inventory and whitespace pass. Keep original behavior and bugs, the
 metadata restriction and all documented interface holds; keep draft.
+
+
+## Status-record main refresh
+
+Verify clean remote head `1e3f20261`, main
+`12a3368673103f37dfd3710886ce24a4e19c6783`, and no competing #303 owner. Merge
+main's #420 status-record/PageIndicator recovery. Source, renamed unit and
+retention configuration merge automatically; only the exception summary
+conflicts. Update its pinned-main label, retain the generic inventory prose
+instead of importing main-only counts, and preserve the unchanged branch
+inventory (5,772 pragmas in 878 files; 190 overrides). No DHCP/network header,
+characterization test, runtime behavior or ABI hold changes.
+
+Build unchanged main once through shared gated capacity and seal its report,
+build/check/provider receipts, graph/config snapshots and tool hashes for
+independently verified reuse. Main and candidate reproduce the original DOL.
+Full no-loss checks pass with the existing +88 data bytes, zero new functions/
+code and no losses: all 3,594 branch linked units exact and 18,301 retention
+entries without drift. Main has 3,595 source inputs and 1,355 original
+fallbacks; branch inputs are 3,594 and 1,353, retaining prior folds/providers.
+The renamed status-pages source object is selected and the old unit provider is
+absent from the actual linker edge.
+
+All ten incoming complete objects and all 19 saved contract-object comparisons
+are byte-identical to their references, including relocations. Both current
+spatial-audio objects retain their previous hashes, so the previously disclosed
+debug-only difference versus main is unchanged. Seven actual-source
+characterization cases, inventory and whitespace pass. Preserve original
+behavior, bugs and all; keep draft and all interface/metadata restrictions.

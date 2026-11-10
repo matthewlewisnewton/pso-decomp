@@ -6626,6 +6626,7 @@ force_active:
   - get_defeat_params__14TBoss4DarkFalzFPvPvPvPv
   - get_demo2_params__14TBoss4DarkFalzFPUsPUsPUs
   - get_destroy_event_obj__6TLobbyFv
+  - get_display_mode__20TWindowSubStatusDispFv
   - get_dist__10TObjPlayerFv
   - get_distance_to_local_player_xz__13TObjTombstoneFv
   - get_dominant_stats__8TItemMagFv
