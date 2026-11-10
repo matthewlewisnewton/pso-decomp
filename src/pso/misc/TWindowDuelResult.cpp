@@ -257,7 +257,7 @@ s32 TWindowDuelResult__sub_8024F3CC(void *arg0_) {
     static PT tbl[2] = { &TWindowDuelResult::sub_8024F094, &TWindowDuelResult::sub_8024EF40 };
     TWindowDuelResult *w = (TWindowDuelResult *)arg0;
     ((TWindowSubStatusDisp *)(arg0 + 0x24))->destroy_all_items();
-    s8 t = ((TWindowSubStatusDisp *)(*(s32 *)(arg0 + 0x68)))->get_type();
+    s8 t = (*(PageIndicator **)(arg0 + 0x68))->get_type();
     (w->*tbl[t])();
     TWindowDuelResult__sub_8024F330(arg0);
 }
@@ -267,7 +267,7 @@ s32 TWindowDuelResult__sub_8024F330(void *arg0_) {
     typedef void (TWindowDuelResult::*PT)();
     static PT tbl[2] = { &TWindowDuelResult::sub_8024F090, &TWindowDuelResult::sub_8024EF3C };
     TWindowDuelResult *w = (TWindowDuelResult *)arg0;
-    s8 t = ((TWindowSubStatusDisp *)(*(s32 *)(arg0 + 0x68)))->get_type();
+    s8 t = (*(PageIndicator **)(arg0 + 0x68))->get_type();
     (w->*tbl[t])();
 }
 #pragma defer_codegen off

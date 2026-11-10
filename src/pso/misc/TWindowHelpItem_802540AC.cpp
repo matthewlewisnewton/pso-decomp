@@ -217,7 +217,6 @@ struct T_80255440 {
 
 extern "C" {
 s32 is_wrapped__9TItemDataFPv(void *);
-s8 get_type__20TWindowSubStatusDispFv(s32);
 extern s8 lbl_805D6448;
 extern s8 lbl_805D6449;
 extern s8 lbl_805D644A;
@@ -1026,7 +1025,7 @@ void TWindowHelpItem::dispatch_item_help() {
         self->pmf = 0;
         return;
     }
-    type = get_type__20TWindowSubStatusDispFv(self->entry);
+    type = ((PageIndicator *)self->entry)->get_type();
     self->flags |= 2;
     ((TWindowHelpItem *)self)->sub_80255E24();
     if (self->item == NULL) {
