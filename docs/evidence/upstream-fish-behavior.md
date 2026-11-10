@@ -30,35 +30,63 @@ renderer; no pragma is added. Ports can drop pool/inline steering and should
 preserve required float contraction, the double-precision angle conversion and
 signed 16-bit angle wrapping if identical behavior is required.
 
+## Shared-interface correction on current main
+
+The follow-up integrates fork main `387621104107ed1ff8c650bf2f50ef00c6859ba4`
+and fixes the recovered renderer's actual call interfaces. The old zero-argument
+`draw_ginja_object()` declaration depended on the preceding model getter leaving
+its return value in r3. The renderer now passes that model explicitly and uses
+the shared Ginja, motion draw, BML getter and matrix declarations. Its visibility
+call uses the real base-class virtual declaration rather than a synthetic class.
+`update_state` returns a full-register integer result, preserving the native
+`cmpwi` call contract without a function-pointer cast or low-byte test.
+
+Resource ownership uses `BmlResource *`; camera reads use the shared,
+offset-asserted `TCameraCtrl::position`. Five 0x30-byte area records contain
+terminated filename lists and `BmlResourceDescriptor` fields, including real
+16-bit model/motion counts. This replaces pointer slots holding packed integers.
+Size and descriptor-offset assertions preserve the original object layout.
+The existing lifetime wrappers now pass the parent explicitly to the verified
+base-constructor ABI and use the declared object allocator/deallocator and school
+initializer directly. No new compiler option, pragma or output-layout steering
+is added by this interface correction.
+
 ## Remaining inherited debt
 
-This change preserves the already-exact resource/rendering code, including its
-hand-written vtable and constructor/destructor wrappers, provisional raw views,
-function-pointer casts and 32-bit resource handles. These are pre-existing
-matching shortcuts newly selected from source, not newly recovered class or
-vtable evidence. A port should use normal class lifetime/virtual dispatch and
-consistent typed resource/render interfaces. The new update itself uses typed
-fields and shared helper interfaces. No assembly, intrinsic or hardware access
-is introduced. The mechanical inventory remains 5,772 pragmas in 876 files;
-configured overrides increase from 176 to 177. Section 5 records this scope;
-section 7's historical import inventory remains unchanged.
+The hand-written vtable and constructor/destructor wrappers remain unchanged in
+structure, including manual vptr writes, and still block treating this as clean
+native lifetime/virtual-dispatch recovery. The renderer and initializer also
+retain separate raw entry views, and some shared model/texture getters and heap
+helpers carry legacy 32-bit address values. The explicit conversions at those
+shared boundaries need pointer-sized types and target heap services in a port.
+These are inherited limitations, not evidence that all original class/interface
+ownership has been recovered. Matching completeness alone does not resolve them.
+No assembly, intrinsic, hardware access or new emission pragma is introduced by
+the follow-up. Existing `-pool off`, FMA and inline settings remain as documented
+above; the inventory stays 5,772 pragmas in 876 files and 177 unit overrides.
 
 ## Validation
 
-Current-main build, baseline and retention passed before editing. Full build
+The initial recovery was validated against the base above. The shared-interface
+correction is separately compared against the freshly built PR-plus-current-main
+baseline `c3a77888e3c4e14bed709b60db8f6870f3ee1063`. Full build
 and `tools/check_pr.py` pass with original DOL SHA-1
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`; no exact function, code/data address,
 linked range or padding is lost. All nine functions (4,704 bytes) and all 1,404
 data bytes are exact. Retention adds 45 names and removes none.
 
+Gains against current main `387621104` (the interface correction itself has
+no metric loss or gain against its PR-plus-main baseline):
+
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
-| Exact functions | 27,386 | 27,387 | 1 |
-| Exact code bytes | 4,189,632 | 4,191,676 | 2,044 |
+| Exact functions | 27,389 | 27,390 | 1 |
+| Exact code bytes | 4,191,812 | 4,193,856 | 2,044 |
 | Exact data bytes | 1,470,159 | 1,470,231 | 72 |
-| Linked code bytes | 3,673,564 | 3,678,268 | 4,704 |
-| Linked data bytes | 1,179,243 | 1,180,647 | 1,404 |
-| Linked units | 3,586 | 3,587 | 1 |
+| Linked code bytes | 3,685,784 | 3,690,488 | 4,704 |
+| Linked data bytes | 1,184,043 | 1,185,447 | 1,404 |
+| Linked units | 3,587 | 3,588 | 1 |
 
-Actual ordered linker inputs: 3,587 source objects and 1,387 fallbacks;
-SHA-256 `79ecb4ded139711b86bbe548670f2c6e3cf888f79bbe8ef6f8aba45ff8512bdc`.
+Actual ordered linker inputs: 3,588 source objects and 1,386 fallbacks;
+SHA-256 of newline-delimited paths including the final newline:
+`583955b43f0ab71cb5e9a02cf04fb1a9f001ad518fbe5e8ec26c3027d4f1b67f`.
