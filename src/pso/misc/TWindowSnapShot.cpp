@@ -5,6 +5,7 @@
 #include "pso/misc/TLobby_80132ED0.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSnapShot.h"
+#include "pso/misc/SnapshotCaptureAbi.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowDuelResult.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -54,9 +55,9 @@ extern s32 TWindowSnapShot__name;
 
 void __dl__7TObjectFPv(void *);
 
-void TWindowSnapShot::free_shared_instance() {
+void free_shared_instance__15TWindowSnapShotFv() {
     struct VObj_802A7DDC *o;
-    ((TWindowSnapShot *)shared_snapshot_capture)->update_both();
+    update_both__15TWindowSnapShotFv((SnapshotCaptureStorage *)shared_snapshot_capture);
     o = (struct VObj_802A7DDC *)shared_snapshot_capture;
     if (o != NULL) {
         o->m0(1);
@@ -74,19 +75,19 @@ s32 load_player_motion_data(void) {
     temp_r3 = (int)::operator new(0x40);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (((TWindowSnapShot *)temp_r3)->init_and_reset());
+        var_r0 = (long) (init_and_reset__15TWindowSnapShotFv((SnapshotCaptureStorage *)temp_r3));
     }
     (*(u8 * *)&shared_snapshot_capture) = (unsigned char *) ((void *) var_r0);
     if ((u32) var_r0 == 0U) {
         return 0;
     }
-    ((TWindowSnapShot *)var_r0)->start_capture(player_motion_data_filename_ptr);
+    start_capture__15TWindowSnapShotFPCv((SnapshotCaptureStorage *)var_r0, player_motion_data_filename_ptr);
     return 1;
 }
 
-s32 TWindowSnapShot::get_size() { return *(s32 *)&this->m_name; }
-s32 TWindowSnapShot::get_field_8() { return *(s32 *)&this->m_prev; }
-int TWindowSnapShot::get_height() { return 600; }
+s32 get_size__15TWindowSnapShotFv(SnapshotCaptureStorage *capture) { return *(s32 *)capture; }
+s32 get_field_8__15TWindowSnapShotFv(SnapshotCaptureStorage *capture) { return *(s32 *)((u8 *)capture + 8); }
+int get_height__15TWindowSnapShotFv() { return 600; }
 
 const char *TWindowSnapShot__sub_802A7EAC(void) {  return player_motion_data_filename_ptr; }
 
