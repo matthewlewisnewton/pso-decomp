@@ -332,7 +332,9 @@ claim a matching dispatcher.
 
 The three collector calls at `0x802A3E10`, `0x802A4004` and `0x802A41F4`
 pass their projectile in `r3` to the reset at `0x802A3D68`. The reset body
-does not consume that incoming value. The previous source declared a
+does not consume that incoming value: each caller restores `r3` from its
+saved projectile after `VecCopy`, while the reset immediately overwrites
+incoming `r3` with zero. The previous source declared a
 zero-argument function, then cast it to a different function-pointer type
 at each call to pass the extra argument. That represents an incompatible
 source-level call even though it produced the desired register setup.
@@ -352,3 +354,17 @@ does not change the dispatcher or either of its caller arguments. The
 acceptance criteria remain unchanged: preserve every exact function and
 the complete compiled unit text, pass the full build and address-based
 incremental/main comparisons, and retain the unlinked dispatcher hold.
+
+Validation of the repair passed. All loadable object sections were
+byte-identical to the pre-repair object, including the complete 2,376-byte
+`.text` section (SHA-256
+`8ee6b7fff5cce454ab810a1823c1d976f34b2a8d3ed224b9f2c3069e78a517aa`).
+All 120 relocations were identical after mapping only the old reset label
+to the new one. The reset and the other eight exact functions remain 100%;
+the dispatcher remains 96.49123%. The full build reproduced the original
+DOL hash. `check_pr.py` against the pre-repair PR report and the address-
+based comparison against main `387621104107ed1ff8c650bf2f50ef00c6859ba4`
+both reported zero regressions and zero new exact functions. All 3,587
+linked units remained exact, retention metadata had no drift, and the
+porting-exception inventory check passed. No compiler setting or unit
+boundary changed, and the dispatcher remains unlinked.
