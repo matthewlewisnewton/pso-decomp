@@ -4842,6 +4842,7 @@ force_active:
   - check_purchase_eligibility__19TShopItemListWindowFv
   - check_purchase_eligibility__20TShopArmorListWindowFv
   - check_purchase_eligibility__24TShopEquipmentListWindowFv
+  - check_radial_particle_retire__13TUnk_8048E7A8Fv
   - check_reopen_return_city_window__10TObjPlayerFv
   - check_return_to_leader__10TNpcPlayerFv
   - check_ring_action__10TObjPlayerFv
@@ -5147,6 +5148,7 @@ force_active:
   - construct_panzer_faust__FPUcPUcl
   - construct_particle_obj__13TParticleCtrlFll
   - construct_placement_search_base__FPUcPUcPUcPUcSc
+  - construct_radial_particle__FPUcPUcPUclUss
   - construct_rappys_fan__13TUnk_804F0908FlPv
   - construct_s_rank_j_cutter_weapon__FPvlPv
   - construct_s_rank_slicer_weapon__FPvlPv
@@ -6616,6 +6618,7 @@ force_active:
   - get_defeat_params__14TBoss4DarkFalzFPvPvPvPv
   - get_demo2_params__14TBoss4DarkFalzFPUsPUsPUs
   - get_destroy_event_obj__6TLobbyFv
+  - get_display_mode__20TWindowSubStatusDispFv
   - get_dist__10TObjPlayerFv
   - get_distance_to_local_player_xz__13TObjTombstoneFv
   - get_dominant_stats__8TItemMagFv
@@ -7238,6 +7241,7 @@ force_active:
   - init_projection_state__11TCameraCtrlFv
   - init_proto1_adx__14TBoss6PlotFalzFv
   - init_queue_from_start__15TObjBoss2TunnelFv
+  - init_random_particle__13TParticleCtrlFPUcPUcl
   - init_range__11TBoss6Type2Fv
   - init_range_zero_global__6TLobbyFv
   - init_rare_item_data__9TItemDropFPvPv

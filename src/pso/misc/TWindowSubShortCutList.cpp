@@ -23,7 +23,6 @@ extern s32 TWindowSubShortCutList__class_name;
 extern s32 local_client_id;
 void *TWindowSubShortCutList__ct(void *arg0, void *arg1, void *arg2);
 s32 get_shared_text_buffer();
-s8 get_type__20TWindowSubStatusDispFv(s32);
 s32 clamp_selection_to_valid_entry__20TShopArmorListWindowFv(void *);
 s32 save_cursor_selection__20TShopArmorListWindowFv();
 s32 reset_list__19TWindowMenuIconLineFv(void *);
@@ -44,7 +43,7 @@ void TWindowSubShortCutList::refresh_entries() {
     s32 var_r29;
     save_cursor_selection__20TShopArmorListWindowFv();
     reset_list__19TWindowMenuIconLineFv(this);
-    var_r29 = get_type__20TWindowSubStatusDispFv(this->m_88);
+    var_r29 = ((PageIndicator *)this->m_88)->get_type();
     var_r30 = 0;
     var_r29 *= 4;
     do {
