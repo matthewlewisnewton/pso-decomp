@@ -179,9 +179,8 @@ s32 TLobby__sub_80421A50(s32, s32, s32);
 s8 func_801A5E54__Fv();
 s32 send_and_handle__6TLobbyFv();
 void xfree__FPv(void*);
-int xmalloc__FUl(void);
 
-    extern int lbl_805D56C8;
+    extern void *lbl_805D56C8;
     extern short lbl_805D56CE;
     extern int keyboard_buffer_cursor;
 struct PhoneNumber {
@@ -213,7 +212,13 @@ extern s32 lbl_805D5714;
 #define lbl_8050CCE8 (*(RecoveredGlobal_80146CB8_lbl_8050CCE8 *)lbl_8050CCE8)
 #define lbl_8050CE14 (*(RecoveredGlobal_80146D44_lbl_8050CE14 *)lbl_8050CE14)
 
-void TLobby::init_keyboard_buffer() { keyboard_buffer_cursor = 0; lbl_805D56CE = 0; lbl_805D56C8 = 0; get_network_config_buffer_size((s32)((void*)0)); lbl_805D56C8 = xmalloc__FUl(); TLobby__sub_80145A94(); }
+void TLobby::init_keyboard_buffer() {
+    keyboard_buffer_cursor = 0;
+    lbl_805D56CE = 0;
+    lbl_805D56C8 = NULL;
+    lbl_805D56C8 = xmalloc(get_network_config_buffer_size(0));
+    TLobby__sub_80145A94();
+}
 
 s32 TLobby::poll_connect() {
     s32 var_r31;

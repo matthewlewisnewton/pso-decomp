@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5775 | 877 |
-| configure.py per-unit override | 185 | 185 |
+| pragma | 5776 | 877 |
+| configure.py per-unit override | 186 | 186 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 878, `auto_inline` 836, `opt_common_subs` 609, `scheduling` 262, `opt_propagation` 237, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 878, `auto_inline` 836, `opt_common_subs` 609, `scheduling` 263, `opt_propagation` 237, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -258,6 +258,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `pso/enemy/TObjEneMoja.cpp` | `-inline off,deferred` | Deferred emission puts the Moja vtable before the run_task switch table. |
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
 | `pso/unk/text_80049FD8.cpp` | `GC/2.0` | GC/2.0 interleaves the BML model-table load with the debris initializer's copy tail. Map the original template to CodeWarrior's local aggregate. |
+| `pso/unk/text_8031EF14.cpp` | `(multi-line entry; see configure.py)` | GC/2.0 schedules the model and position loads across the aggregate copy tails. Disabling pooling keeps the three original debris templates. |
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
 | `pso/misc/TOBoss4.cpp` | `-fp_contract on, -str reuse,readonly, -sdata 4, -inline deferred` | Vol Opt scenery is one TU. Deferred emission puts TOBoss4Rock::run_task first; -sdata 4 keeps the 8-byte motion-name array in .data. |
 | `pso/boss/TBoss6Rock.cpp` | `-fp_contract on, -str reuse,readonly, -inline off,deferred` | Dark Falz rocks are one TU, written last-defined first. -fp_contract on fuses the fall and spin multiply-adds. |
@@ -952,6 +953,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/misc/TeneFakeTecThunderEff.cpp` | fp_contract×4 |
 | `src/pso/misc/pso_date.cpp` | opt_propagation×2, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/network/ModemRuntime.cpp` | dont_inline×3, inline_depth×2, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
+| `src/pso/network/NetworkConfigLifecycle.cpp` | scheduling×1, peephole×1 |
 | `src/pso/network/NetworkDispatcher.cpp` | opt_common_subs×3, pool_data×1 |
 | `src/pso/network/NetworkInfoCodec.cpp` | scheduling×15, peephole×13, optimization_level×11, use_lmw_stmw×3 |
 | `src/pso/network/NetworkInfoLoader.cpp` | scheduling×8, peephole×1, optimization_level×1 |
@@ -1142,7 +1144,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/ui/TAdPlayerLoadGC_801E0C30.cpp` | fp_contract×1 |
 | `src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp` | opt_propagation×10, opt_strength_reduction×2 |
 | `src/pso/ui/TAdPlayerLoadGC_803F339C.cpp` | opt_dead_assignments×1, optimize_for_size×1 |
-| `src/pso/ui/TAdPlayerLoadGC_803F3CF4.cpp` | peephole×1 |
 | `src/pso/ui/TAdPlyPltAnimGC.cpp` | fp_contract×4 |
 | `src/pso/ui/TAdPlyStatusGC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/TAdPlyStatusGC_802E1128.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, fp_contract×1 |
