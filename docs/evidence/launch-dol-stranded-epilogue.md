@@ -1,41 +1,47 @@
 # LaunchDol's stranded epilogue
 
-Investigation first performed on source head
-`5de7fd190c109955b36aebabc6d47b428fa8fc7c`, and refreshed against #284 at
-`5b639174d431c7bcbe1c1d007f9998a0a60ec09f`, narrows the ownership question
-for `0x8042E9FC..0x8042EA0F`. The restore is
-already reproducible as the ordinary C++ LaunchDol's epilogue. Its isolated
-function representation is the remaining bookkeeping boundary; a standalone
-prologue-less C function is not established by these bytes.
+This records bounded ownership evidence for `0x8042E9FC..0x8042EA0F`.
+The range remains unmatched, with its address and ownership hold preserved.
+Narrowed #284 at `d70369041672d5c881d895dc0a27b96f612e4b0c` contains the
+DOL header view and caller conversion; it removes the experimental C++
+loader and its per-unit compiler override. This document does not restore
+either one. The active provider and compiler settings remain those of main.
 
-## Ordinary compiler output
+The earlier investigation at `5de7fd190c109955b36aebabc6d47b428fa8fc7c`,
+refreshed at `5b639174d431c7bcbe1c1d007f9998a0a60ec09f`, compared an
+experimental C++ frame with this restore. Matching suffix bytes do not
+recover an independently callable function or establish behavior equivalence.
 
-The [#284 fallback](launch-dol-cpp-recovery.md) was compiled independently,
-keeping `__MWERKS__` defined but selecting only its C++ branch in an ignored
-temporary source file. No production source, symbols or build inputs were
-replaced. With GC/2.6 and the unit's existing
-`-O4,p -use_lmw_stmw on -inline auto -opt nocse,nostrength,noprop` settings:
+## Historical experimental compiler output
 
-- The compiler emits one 332-byte (`0x14C`) LaunchDol function.
-- Its first 296 bytes match the original LaunchDol prefix.
-- Its last 20 bytes, at function offset `0x138`, exactly match the beginning
+The historical candidate remains inspectable at immutable commit
+[`a9eab37139ef10f53e3e9baf4f8d2dd1ade395aa`](https://github.com/matthewlewisnewton/pso-decomp/blob/a9eab37139ef10f53e3e9baf4f8d2dd1ade395aa/src/pso/unk/text_8042E8C4.cpp).
+Only its C++ branch was selected in an ignored temporary source, retaining
+`__MWERKS__` for target types and intrinsics. The experiment used GC/2.6 with
+`-O4,p -use_lmw_stmw on -inline auto -opt nocse,nostrength,noprop`.
+Those are historical experiment settings, not an active per-unit override.
+
+- The compiler emitted one 332-byte (`0x14C`) LaunchDol function.
+- Its first 296 bytes matched the original LaunchDol prefix.
+- Its last 20 bytes, at function offset `0x138`, exactly matched the beginning
   of the adjacent original `text_8042E9FC` split.
-- All ten `.text` relocation records match the original LaunchDol records;
-  neither compared restore range contains a relocation. MWCC's separate
-  metadata relocation section is not part of this comparison.
+- All ten `.text` relocation records matched the original LaunchDol records;
+  neither compared restore range contained a relocation. MWCC's separate
+  metadata relocation section was not part of this comparison.
 - Comparing that 332-byte C++ function with original LaunchDol plus the
-  following restore leaves three differing instruction words, at offsets
+  following restore left three differing instruction words, at offsets
   `0x128`, `0x130` and `0x134`. These are the entry transfer already
   investigated in #284; no further tail-call spellings were tested here.
   The initial probe also differed at `0x12C`; #284's reviewed change to load
-  the entry before `__isync()` removes that difference. The current 332-byte
+  the entry before `__isync()` removed that difference. The 332-byte
   output, prefix, suffix and relocation comparisons were reproduced against
-  the refreshed base.
+  the historical base named above.
 
-Thus the old 74.14% experiment's different restore register is not a current
-obstacle. The current C++ frame already has the required r26-through-r31
-save/restore and 0x20-byte stack allocation. This does not make the current
-312-byte LaunchDol symbol or the separate pad function an exact C++ match.
+Thus the older 74.14% experiment's different restore register did not remain
+an obstacle in the later experiment. Its frame had the required
+r26-through-r31 save/restore and 0x20-byte stack allocation. This was a
+93.39744% experimental comparison, not an exact 312-byte LaunchDol function,
+working host fallback, behavior-equivalence proof or independent pad recovery.
 
 ## A second copy on the same disc
 
@@ -88,30 +94,16 @@ precedent. The SDK's configured compiler is GC/1.2.5n, versus the GC/2.6
 LaunchDol probe, so these controls do not establish identical compiler
 settings or original source between the two loaders.
 
-## Reproducing the useful comparison
+## Comparison record and reproduction limits
 
-Use a fresh normal game build and compile the temporary fallback as described
-in [the C++ reproduction](launch-dol-cpp-recovery.md). With its object saved
-as `build/epilogue-probe-r2/LaunchDolCpp.o`, compare sections without publishing
-the original bytes:
-
-```python
-from pathlib import Path
-import sys
-sys.path.insert(0, "tools")
-from link_units import elf_section_bytes
-
-cpp = elf_section_bytes(Path("build/epilogue-probe-r2/LaunchDolCpp.o"), ".text")
-loader = elf_section_bytes(Path("build/GPOE8P/obj/pso/unk/text_8042E8C4.o"), ".text")
-following = elf_section_bytes(Path("build/GPOE8P/obj/pso/unk/text_8042E9FC.o"), ".text")
-assert len(cpp) == 0x14C and len(loader) == 0x138
-assert cpp[:0x128] == loader[:0x128]
-assert cpp[0x138:0x14C] == following[:0x14]
-target = loader + following[:0x14]
-assert [i for i in range(0, 0x14C, 4) if cpp[i:i+4] != target[i:i+4]] == [
-    0x128, 0x130, 0x134,
-]
-```
+The historical comparison procedure is preserved at immutable commit
+[`7bb5e50e5e3a36dcee05c71bb802be5f45c12168`](https://github.com/matthewlewisnewton/pso-decomp/blob/7bb5e50e5e3a36dcee05c71bb802be5f45c12168/docs/evidence/launch-dol-stranded-epilogue.md).
+The current checkout has no experimental C++ loader branch or unit override
+to select. Its acceptance build uses the unchanged exact provider. Historical
+probe instructions do not authorize restoring that implementation or flags;
+future source experiments require a distinct evidenced transfer facility or
+authentic original-toolchain evidence as described in the
+[narrowed recovery follow-up](launch-dol-cpp-recovery.md).
 
 For the second-copy comparison, extract only `sys/main.dol` from the local
 disc into an ignored directory with `dtk vfs cp`; the container path syntax
@@ -123,14 +115,15 @@ relative branch-and-link. Retain the final jump and restore in the comparison.
 
 ## Consequences for recovery
 
-The useful direction is one coordinated LaunchDol recovery with #284. Its
-ordinary C++ frame already generates the restore; the unresolved transfer
-precedes it. Searching for a separate C implementation of the five restore
-words loses that owning-frame context.
+The evidence supports investigating the restore in the preceding loader's
+owning-frame context, rather than searching for an unrelated standalone C
+function. The historical frame comparison did not solve the preceding
+transfer. Narrowed #284 is a header-view change, not a completed loader
+implementation; subsequent transfer work remains a separate held follow-up.
 
 A future ownership correction needs an explicit coverage-accounting plan.
 Simply widening the existing symbol would remove the currently reported
 function address at `0x8042E9FC` and fail the repository's address/no-loss gate;
-it would not solve the three differing transfer instructions. No symbols,
+it would not solve the historical probe's three differing transfer words. No symbols,
 splits, linkage selection, assembly exceptions or coverage rules were changed
 for this investigation, and no new matching bytes are claimed.

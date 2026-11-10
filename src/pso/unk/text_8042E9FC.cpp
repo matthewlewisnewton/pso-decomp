@@ -13,8 +13,8 @@ extern char lbl_80480270[];
 // LaunchDol's final jump starts at 0x8042E9EC; symbols.txt ends the
 // function at 0x8042E9FC (start 0x8042E8C4, size 0x138).
 // init_modem_check_params starts at 0x8042EA10, and
-// skip_cfa_ranges covers the gap. The C++ LaunchDol probe emits this
-// restore exactly at +0x138, but it is not a standalone C function.
+// skip_cfa_ranges covers the gap. A historical C++ probe emitted this
+// restore exactly at +0x138; that did not recover a standalone C function.
 // See docs/evidence/launch-dol-stranded-epilogue.md; keep it unmatched here.
 s32 TAdTrialModemChkGC::init_modem_check_params() {
     if ((s32) lbl_805D7CA8 == 0) {
