@@ -463,10 +463,10 @@ s32 TLobby__sub_803F778C(void *);
 extern RecoveredGlobal_80402B60_lbl_805C0620 lbl_805C0620;
 s32 TLobby__sub_803F811C(s16 *arg0);
 s32 TLobby__sub_804036FC(u8 *arg0);
-s32 TLobby__sub_80403DA8(s16 a0, s16 a1, s16 a2, s16 a3, s16 a4, char *name, s16 pppoe);
+s16 TLobby__sub_80403DA8(s16 a0, s16 a1, s16 a2, s16 a3, s16 a4, char *name, s16 pppoe);
 s32 TLobby__sub_804062A0(s16);
 extern RecoveredGlobal_80403D28_lbl_805C0638 lbl_805C0638;
-s32 TLobby__sub_80403D28(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, char *arg6, s16 arg7);
+s16 TLobby__sub_80403D28(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, char *arg6, s16 arg7);
 extern s32 lobby_timer_list_head;
 s16 reset_network_timer_list(void);
 void TLobby__sub_803F8A08(void *);
@@ -505,7 +505,7 @@ extern s32 lbl_8047FEC8[];
 void TLobby__sub_803FF384(u8 *arg0);
 void TLobby__sub_803F97E8(int);
 extern u8 lbl_8047FE3C[];
-s32 wait_for_connection__6TLobbyFPv(Conn_804004DC *c);
+s16 wait_for_connection__6TLobbyFPv(Conn_804004DC *c);
 void NetMemcpy(void * _w0, void * _w1, int _w2);
 extern Names_80403168 lbl_805C04D8;
 s32 TLobby__sub_80403168(u8 *arg0, u8 *arg1, u8 *arg2);
@@ -513,12 +513,12 @@ s16 TLobby__sub_803FC1CC(Conn_804004DC *c, s32 timeout);
 s32 TLobby__sub_803FC684(u8 *, u8 *, u8 *);
 extern u8 lbl_805C0038[];
 extern s16 lbl_805D7A7C;
-s32 TLobby__sub_80403B04(u8 *arg0, u8 *arg1, s32 arg2);
+s16 TLobby__sub_80403B04(u8 *arg0, u8 *arg1, s32 arg2);
 s16 TLobby__sub_80402BB4(u8 *, s32);
 extern s32 lbl_805D7A90;
 extern s16 lbl_805D7A80;
 extern s16 lbl_805D7A82;
-s32 TLobby__sub_80403BA8(u8 *arg0, u8 *arg1, s32 arg2);
+s16 TLobby__sub_80403BA8(u8 *arg0, u8 *arg1, s32 arg2);
 s16 TLobby__sub_80401BCC(void *src, void *dst, u16 n);
 extern u8 lcp_read_value_buffer[4];
 extern u8 lobby_read_byte_buffer[1];
@@ -2267,7 +2267,7 @@ void TLobby__sub_80400338(B_803FADA0 **pbuf, Opt_80400338 *opt, s32 type, s32 le
     buf->len += len;
 }
 
-s32 wait_for_connection__6TLobbyFPv(Conn_804004DC *c) {
+s16 wait_for_connection__6TLobbyFPv(Conn_804004DC *c) {
     RecoveredGlobal_804050DC_lbl_805C18A0 *g;
     u8 *sub;
     sub = c->sub;
@@ -3408,7 +3408,7 @@ s32 TLobby__sub_804037F0(void) {
 
 s16 TLobby__sub_803FED78(u8 *);
 
-s32 TLobby__sub_80403864(void) {
+s16 TLobby__sub_80403864(void) {
     u8 *g = lbl_805C0038;
     u8 *p = g + 0xD4;
     s16 st = lbl_805D7A7C;
@@ -3491,7 +3491,7 @@ s32 TLobby__sub_804039C8(s16 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 a
     return 0;
 }
 
-s32 TLobby__sub_80403B04(u8 *arg0, u8 *arg1, s32 arg2) {
+s16 TLobby__sub_80403B04(u8 *arg0, u8 *arg1, s32 arg2) {
     u8 *g = lbl_805C0038;
     u8 *c = g + 0xA0;
     s16 r;
@@ -3512,7 +3512,7 @@ s32 TLobby__sub_80403B04(u8 *arg0, u8 *arg1, s32 arg2) {
     return 0;
 }
 
-s32 TLobby__sub_80403BA8(u8 *arg0, u8 *arg1, s32 arg2) {
+s16 TLobby__sub_80403BA8(u8 *arg0, u8 *arg1, s32 arg2) {
     u8 *g = lbl_805C0038;
     u8 *c = g + 0x38;
     s16 r;
@@ -3539,7 +3539,7 @@ s32 TLobby__sub_80403BA8(u8 *arg0, u8 *arg1, s32 arg2) {
 void TLobby__sub_803F808C(void);
 s16 TLobby__sub_80400744(int, void *);
 
-s32 TLobby__sub_80403C60(u8 *arg0) {
+s16 TLobby__sub_80403C60(u8 *arg0) {
     s16 wait_for_connection__6TLobbyFPv(int);
     u8 *temp_r31;
     u8 *var_r3;
@@ -3570,8 +3570,8 @@ s32 TLobby__sub_80403C60(u8 *arg0) {
     return 0;
 }
 
-s32 TLobby__sub_80403D28(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, char *arg6, s16 arg7) {
-    s32 temp_r31;
+s16 TLobby__sub_80403D28(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, char *arg6, s16 arg7) {
+    s16 temp_r31;
     s16 i;
     for (i = 0; i < 8; i++) {
         *(s8 *)((s8 *)(&lbl_805C0638.value) + i * 0x14) = 0;
@@ -3598,7 +3598,7 @@ s32 TLobby__sub_803F8314(Cfg_80403DA8 *cfg);
 extern s16 lbl_805D7A7E;
 }
 
-s32 TLobby__sub_80403DA8(s16 a0, s16 a1, s16 a2, s16 a3, s16 a4, char *name, s16 pppoe) {
+s16 TLobby__sub_80403DA8(s16 a0, s16 a1, s16 a2, s16 a3, s16 a4, char *name, s16 pppoe) {
     Cfg_80403DA8 cfg;
     cfg.f0 = (a0 == 0) ? 0 : (a0 == 1) ? 1 : 0;
     cfg.f4 = (a1 == 0) ? 2 : (a1 == 1) ? 1 : (a1 == 2) ? 0 : 2;
