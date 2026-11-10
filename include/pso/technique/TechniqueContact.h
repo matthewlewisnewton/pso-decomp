@@ -4,6 +4,12 @@
 
 struct TechniqueContactActor;
 struct TechniqueContactBody;
+struct TNeedleShoot;
+
+// All three collector callers pass the projectile; the reset body ignores it.
+// This is a provisional ABI boundary, not recovered original class ownership.
+extern "C" void clear_technique_contacts(TNeedleShoot *projectile);
+
 struct TechniqueContactList {
     TechniqueContactActor* actors[16];
     TechniqueContactBody* bodies[16];

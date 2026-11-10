@@ -327,3 +327,28 @@ but the original member/static choice, class interface and unit boundary
 remain provisional. This audit changes no source declaration or argument,
 does not repeat the one-argument-member scheduling probe, and does not
 claim a matching dispatcher.
+
+### Provisional reset-call boundary
+
+The three collector calls at `0x802A3E10`, `0x802A4004` and `0x802A41F4`
+pass their projectile in `r3` to the reset at `0x802A3D68`. The reset body
+does not consume that incoming value. The previous source declared a
+zero-argument function, then cast it to a different function-pointer type
+at each call to pass the extra argument. That represents an incompatible
+source-level call even though it produced the desired register setup.
+
+The reset now has the neutral free-function boundary
+`void clear_technique_contacts(TNeedleShoot *)`, with the unused parameter
+explicit in its definition and its declaration in `TechniqueContact.h`.
+The project-assigned hand-mangled label is renamed at the same original
+address; no address range or translation-unit split changes. All three
+collectors make an ordinary call through that shared declaration instead
+of casting the function type. The existing private receiver views remain
+provisional, as does the unrelated player-class collector declaration.
+
+This repairs the observed call contract without claiming the original
+source used a free function, a static member or an instance member. It
+does not change the dispatcher or either of its caller arguments. The
+acceptance criteria remain unchanged: preserve every exact function and
+the complete compiled unit text, pass the full build and address-based
+incremental/main comparisons, and retain the unlinked dispatcher hold.
