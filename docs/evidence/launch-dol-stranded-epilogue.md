@@ -251,7 +251,8 @@ into an ordinary C++ inline helper, rather than the previously tested
 function-level assembly helper. With unchanged flags, Wibo and retrowin32
 produced identical complete objects, and its full 320-byte text was identical
 to the direct named-operand assembly candidate. This encapsulation did not
-isolate the frontend effect and is not a replacement implementation.
+improve the emitted result and is not a replacement implementation. No helper
+phase trace was collected, so identical internal decisions are not claimed.
 
 The comparison identifies an earlier compiler decision to investigate; it
 does not establish which assembly effect causes it, recover an original
