@@ -644,3 +644,41 @@ fallback. All 181 accessor-using sources remain canonical. Host vector and
 item-factory tests, inventory and whitespace pass. No technical probe,
 failed metadata write, formal approval or main merge is repeated/performed.
 Keep draft with the documented remaining interfaces and stale metadata.
+
+
+## Memory-card main advance caught by ancestor guard
+
+The pre-push ancestor guard for the README-only checkpoint
+`6a3dd8fdd9606ed709d10cfd59a0c8afb7eabf8b` stopped before executing its
+push: main advanced to `4618606af4bec0db175a176d9fadabd098936a04` with
+#379 memory-card layout recovery. The already reviewed `f61b80410` progress
+was preserved remotely. Integrate this source snapshot; only exception
+documents conflict. Retain both branches' records and regenerate inventory
+(5,769 pragmas, 876 files, 183 overrides). No additional source correction
+or technical probe is made. The scanner, lease parser, model-pointer repairs,
+canonical BML consumers and remaining interface holds remain unchanged.
+
+Both capacity-gated builds reproduce original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Main passes full checks against
+the preserved `8d2b58ef2` report (the intervening `c23775bb4` changes only
+README, with identical source/build inputs). The continuation passes against
+fresh main `4618606af`:
+
+| Measure | Main | Continuation | Delta |
+|---|---:|---:|---:|
+| Exact functions | 27,399 | 27,399 | 0 |
+| Matched code bytes | 4,204,184 | 4,204,184 | 0 |
+| Matched data bytes | 1,470,935 | 1,471,023 | +88 |
+| Complete code bytes | 3,708,820 | 3,708,820 | 0 |
+| Complete data bytes | 1,186,503 | 1,186,591 | +88 |
+| Linked units | 3,582 | 3,581 | -1 |
+
+There are no regressions or data/code/address/link/padding losses against
+fresh main. All 3,581 linked units are exact; 17,727 retention names pass
+without drift. Memory-card 7/7, demo 4 7/7, DHCP 42/42 and packet runtime
+24/24 use exact compiled source inputs; TCP retains original fallback.
+All 181 accessor users remain canonical. Host vector and item-factory tests,
+inventory and whitespace pass. The interrupted build-service request was
+verified not to have created its processes; validation resumed through the
+same capacity wrapper after recovery. Keep draft with the documented
+remaining interfaces and stale metadata; no metadata write is retried.

@@ -466,6 +466,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
     # needed (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
+    # The memory-card menu position precedes the callback templates in .data.
+    # Its two read-only layout inputs begin at a four-byte-aligned address.
+    "pso/misc/TCheckMemoryCard.cpp": {
+        "cflags": _switch(cflags_pso, "-sdata 4"),
+        "cw_align": ".rodata=4",
+    },
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
     # The Falz shadow draw contracts t*t*t into fnmsubs and the tint into fmadds.
     "pso/boss/TBoss4ZakoDraw.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on")},
