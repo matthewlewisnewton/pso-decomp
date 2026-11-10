@@ -157,3 +157,39 @@ The matching field clarification passes the full DOL hash, check_pr against
 and protected-remainder provenance. Native HelpItem's separate 24-byte data
 gain remains intact. Current main remains 12cc95ca737a3a8757c17f45df06a9af4821d872.
 Parts and all unrelated ownership/interface holds remain; PR remains draft.
+
+## Upstream #196/#198 ownership check
+
+Following continuation checkpoint `0f17a7a216751f820458e06c890d389861463700`,
+the independent data-worker report was reconciled with exact upstream revisions
+before considering any source activation. It confirms the same eighteen missing
+float exports, not a new function, size or alignment recovery opportunity.
+
+[Upstream #196](https://github.com/zeroz41/pso-decomp/pull/196), inspected at
+`90435282423e1e8011e74b7cb6a33c79e9eef561`, moves the Parts source and its
+include paths from misc to ui/chat. Its split-unit name changes, but text, rodata
+and sdata2 ranges do not. It adds no definition for the named 32.0f export and
+does not change any of the eighteen float symbol scopes.
+
+[Upstream #198](https://github.com/zeroz41/pso-decomp/pull/198), inspected at
+`77dfb3c5b82b070cf5a8fbcee15a7a4f05f2594d`, retains the identical Parts source
+blob `8d86b3211f372526659c1c9ccafd2d5fa48fafa2`. Its adjacent PartsSet folding
+does not move or claim this unit's constants. Both heads retain
+`extern const f32 lbl_805DD7F8` and the corresponding helper load; the 18 floats
+at [805DD7C8,805DD810) remain exported four-byte objects. The conversion-bias
+range is unchanged as well. This supplies no new local-pool or exported-object
+ownership evidence.
+
+The current compiled Parts object still has an undefined lbl_805DD7F8. Matching
+local section bytes and twenty matching functions do not define that symbol.
+The earlier absence of external original-object references does not erase this
+real compiled-source dependency. Source linkage needs a source-correct named
+definition/export, or independently supported local ownership that removes the
+dependency while preserving every affected section, instruction and relocation.
+Neither upstream revision provides that mechanism.
+
+Independent read-only review confirms this assessment. No constant-placement
+probe is repeated, no float is localized, no symbol scope or linked-unit list is
+changed, and the selected original provider remains intact. This check adds no
+coverage or readiness claim and leaves every lifetime/interface/constant hold in
+place. The preceding gated DOL, no-loss and provider qualification is unchanged.
