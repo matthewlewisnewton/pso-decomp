@@ -1,6 +1,7 @@
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/misc/TWindowSubSymbolChatParts.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_802A5748.h"
 #include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
@@ -69,7 +70,6 @@ s32 TKeyBoardControl__ct(s32, void *, s32, s32, s32, s32);
 s32 TWindowSubComCard__sub_80265660(s32, s32);
 s32 align_menu_entry_positions(s32);
 s32 TWindowSubSymbolChatPartsSet__ct(s32, s32, s16, s32 *, s32 *);
-s32 TWindowSubSymbolChatParts__ct(s32, s32, s32 *, s32 *);
 s32 __nw__7TObjectFUl(int);
 
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
@@ -328,10 +328,8 @@ s32 TWindowSubSymbolChat::create_parts_set() {
 s32 TWindowSubSymbolChat::create_parts() {
     s32 var_r31;
 
-    var_r31 = __nw__7TObjectFUl(0x90);
-    if (var_r31 != 0) {
-        var_r31 = TWindowSubSymbolChatParts__ct(var_r31, get_window_layout_position(0x7D), &TWindowSubSymbolChat__data_805D6498, &TWindowSubSymbolChat__data_805D649C);
-    }
+    var_r31 = (s32)new TWindowSubSymbolChatParts((void *)get_window_layout_position(0x7D),
+        &TWindowSubSymbolChat__data_805D6498, &TWindowSubSymbolChat__data_805D649C);
     return var_r31;
 }
 
