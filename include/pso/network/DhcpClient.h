@@ -52,6 +52,11 @@ typedef char DhcpClientBuffers_reply[offsetof(DhcpClientBuffers, reply) == 0x5DC
 typedef char DhcpClientBuffers_received[offsetof(DhcpClientBuffers, received) == 0xBB8 ? 1 : -1];
 typedef char DhcpClientBuffers_size[sizeof(DhcpClientBuffers) == 0x1194 ? 1 : -1];
 
+// Reads the DHCP magic cookie followed by lease/renewal/rebinding options.
+// The byte record starts at the cookie. The existing scanner has no input
+// length; this interface does not add bounds validation.
+extern "C" void dhcp_parse_lease_times(u8 *cookie_and_options);
+
 extern DhcpClientBuffers lbl_805C1E00;
 extern volatile s32 dhcp_state;
 extern volatile s32 dhcp_reply_received;

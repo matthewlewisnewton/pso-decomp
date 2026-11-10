@@ -354,3 +354,51 @@ pass. Main owns the three DHCP matches already, so this continuation receives
 zero new function/code credit. The source-contract repairs and folds remain
 relevant. Keep draft with the previously documented interface limitations;
 the earlier failed title/body write is not retried.
+
+
+## DHCP lease parser packet interface
+
+Starting from reviewed PR head
+`a01e5955163b0ddf8a802ef95c3089e29fa77aad` on main
+`65b21c210ae980e9d2fe4aef1a3314ed84df1ddd`, replace the false
+`TLobby::parse_dhcp_lease_times()` receiver with the shared C-linkage function
+`dhcp_parse_lease_times(u8 *cookie_and_options)` in `DhcpClient.h`.
+The definition at `0x804245E4` immediately treated `this` as bytes and never
+read a TLobby field. Both callers pass DHCP cookie/options storage: the
+configuration parser at `0x80423440` passes its cookie byte cursor, and the
+renew/rebind step at `0x80423E80` passes the accepted reply's cookie. The
+shared BOOTP layout asserts cookie offset `0xEC`. Options `0x33`, `0x3A`
+and `0x3B` supply lease, renewal and rebinding times; no lobby ownership is
+supported by these operations.
+
+Both callers now use that shared declaration directly. Remove the unused
+TLobby member declaration and its packet-to-object casts, and name the
+existing address `dhcp_parse_lease_times` in symbol metadata. The parser's
+algorithm and native pointer argument remain unchanged; no adapter,
+function-pointer cast, padding or steering is introduced. The parser stays
+360 bytes exact, its configuration caller 680 bytes exact and request caller
+940 bytes exact. Complete caller/callee units remain DHCP 42/42 and packet
+runtime 24/24, with exact code/data and compiled source linker inputs.
+
+This bounded change does not claim bounded packet decoding: the existing
+option scanner has no input-length argument. Its local return declarations
+also remain inconsistent (`s32` callers versus `u8` definition), a separate
+inherited interface to investigate with full matching checks. Cookie stores,
+native address words and other provisional accessors remain. The separately
+owned #376 dispatcher reset-status repair is untouched.
+
+The full build reproduces the original DOL hash. Incremental checks against
+`a01e59551` show zero changes to matched functions, code/data, linkage and
+coverage; only this one function name changes. Fresh-main checks retain the
+branch's +88 matched/linked data bytes, zero new functions/code and no losses.
+All 3,584 linked units and 17,707 retention entries pass. No port-exception
+inventory change is introduced.
+
+The branch retains source-level value after main extracted its three DHCP
+matches: shared DHCP packet/buffer/volatile-state contracts, the new truthful
+lease-parser interface, canonical BML declarations across 180 consumers and
+the repaired calls, consistent float object declarations, and the existing
+Falz/character-select folds. The 88 data bytes remain unique. Those source
+repairs are not superseded by main's focused DHCP extraction. This does not
+make all provisional interfaces complete or the stale PR metadata current;
+keep draft and do not close the PR as stale.

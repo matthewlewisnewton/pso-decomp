@@ -160,8 +160,7 @@ extern u32 dhcp_rebinding_time;
 extern u32 dhcp_lease_start;
 extern u32 dhcp_lease_expiry;
 
-void TLobby::parse_dhcp_lease_times() {
-    u8 *arg0 = (u8 *)this;
+void dhcp_parse_lease_times(u8 *arg0) {
     s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out);
     u8 *p;
     s32 v;

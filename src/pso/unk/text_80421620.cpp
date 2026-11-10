@@ -1279,7 +1279,7 @@ s32 TLobby__sub_80423440(BootpPacket *hdr) {
         *lbl_805D7B48 = lbl_805D7B30;
         lbl_805D7B48 = NULL;
     }
-    ((TLobby *)opts)->parse_dhcp_lease_times();
+    dhcp_parse_lease_times(opts);
     n = find_dhcp_option__6TLobbyFPvUcPv(opts, 0xF, &p);
     if (n != 0) {
         TLobby__sub_80425288(3, (s16)n, p);
@@ -1629,7 +1629,7 @@ s32 TLobby__sub_80423E80(void) {
     case 2:
         if (dhcp_reply_received != 0) {
             if (dhcp_state == 4 || dhcp_state == 5) {
-                ((TLobby *)&lbl_805C1E00.reply.hdr.cookie)->parse_dhcp_lease_times();
+                dhcp_parse_lease_times((u8 *)&lbl_805C1E00.reply.hdr.cookie);
                 dhcp_lease_elapsed = 0;
             }
             TLobby__sub_80421B3C(dhcp_socket);
