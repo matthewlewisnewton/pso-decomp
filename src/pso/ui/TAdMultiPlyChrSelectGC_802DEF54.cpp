@@ -4,7 +4,7 @@
 #include "pso/ui/TAdChrSelASlotGC.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802D50A0.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.h"
-#include "pso/unk/text_802C6DD4.h"
+#include "pso/ui/TAdChrSelPlyPlateGC.h"
 #include "pso/misc/TLobby_80132ED0.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
@@ -24,7 +24,7 @@
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-struct V2_802DF9B4 { f32 x, y; };
+typedef TAdChrSelPlyPlateGCPoint V2_802DF9B4;
 
 struct I2_802DF9B4 { s32 a, b; };
 
@@ -46,7 +46,7 @@ extern u8 lbl_80472808[];
 extern I2_802DF9B4 lbl_80472828[];
 extern Blk_802DF9B4 multi_chr_select_layout_table[];
 extern V2_802DF9B4 lbl_80472848[];
-extern s32 tl_02;
+extern TObject *tl_02;
 extern s32 tl_clipout;
 extern s32 TAdMultiPlyChrSelectGC__data_805DE898;
 s32 TWindowShortListCtrl__check_controller_button(void *, s32, s32);
@@ -469,7 +469,7 @@ void TAdMultiPlyChrSelectGC::create_widgets() {
     V2_802DF9B4 v = lbl_80472848[0];
     v.x = multi_chr_select_widget_layout[0].x;
     v.y = multi_chr_select_widget_layout[0].y;
-    this->m_5c = (s32)fn_802C6F20(tl_02, (s32)&v);
+    this->m_5c = (s32)fn_802C6F20(tl_02, &v);
     TAdMultiPlyChrSelectGC::get_move_effect(tl_clipout);
 }
 
