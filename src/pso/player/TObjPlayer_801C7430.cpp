@@ -1621,7 +1621,7 @@ void add_photon_blast_charge(u8 *arg0, f32 farg0);
 void create_technique_charge_light(u32 kind, void *owner);
 void release_photon_blast_requests(void *registry);
 extern "C" {
-u8 * find_by_section_id__10TObjPlayerFl(void *, int);
+u8 * find_by_section_id__10TObjPlayerFUs(void *, u16);
 s32 find_first_valid_target_id__10TObjPlayerFv(void*);
 void TObjPlayer__sub_80312E98(void *, s32);
 s32 append_photon_blast_request(u32, s32, s32);
@@ -3954,9 +3954,9 @@ void TObjPlayer::create_photon_blast_party_effects(s32 arg0) {
     }
 }
 
-u8 *TObjPlayer::find_photon_blast_by_section_id(s32 arg0) {
+u8 *TObjPlayer::find_photon_blast_by_section_id(u16 client) {
     if ((void *) TObjPlayer__shared_photon_blast_state != NULL) {
-        return find_by_section_id__10TObjPlayerFl(TObjPlayer__shared_photon_blast_state, arg0);
+        return find_by_section_id__10TObjPlayerFUs(TObjPlayer__shared_photon_blast_state, client);
     }
     return NULL;
 }
@@ -4221,7 +4221,7 @@ void TObjPlayer::enter_photon_blast_action() {
     *(s16 *)(arg0 + 0x328) = 0;
     set_action_state__10TObjPlayerFPvss(arg0, 9, query_equip__10TObjPlayerFv(arg0));
     ((TObjPlayer *)arg0)->set_state_flags(0x80);
-    TObjPlayer::start_photon_blast(((TFontSmallLobby *)(arg0 + 0x4AC))->get_valid_index(), ((s32 (*)(void *))get_entity_id)(arg0));
+    TObjPlayer::start_photon_blast(((TFontSmallLobby *)(arg0 + 0x4AC))->get_valid_index(), static_cast<u16>(get_entity_id(arg0)));
 }
 
 void handle_6x49_execute_photon_blast(void *arg0) {
