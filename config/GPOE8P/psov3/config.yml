@@ -15360,7 +15360,7 @@ force_active:
   - set_field_8__15TPlyPhotonChairFl
   - set_fields_24_34_from_global__17TObjEneDarkGunnerFPv
   - set_fields_554__11TBoss6Type2Fv
-  - set_flag1e_bit80__18TWindowSubShortCutFv
+  - set_flag1e_bit80__11TWindowChatFv
   - set_flag3c8_bit20__17TObjEneMe1CanadinFv
   - set_flag3c8_bit2__13TObjEneMe1GeeFv
   - set_flag3c8_bit40__13TObjEneMe1GeeFv

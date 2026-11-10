@@ -178,8 +178,8 @@ void TWindowSubShortCut::run_task() {
             void *chat = new TWindowChat((TObject *)arg0, (u8 *)&this->m_40);
             *(void * *)&this->m_38 = chat;
             ((TWindowChat *)(this->m_38))->set_keyboard_flag62_bit4();
-            ((TWindowSubShortCut *)(this->m_38))->close_and_clear_flag();
-            ((TWindowSubShortCut *)(this->m_38))->set_flag1e_bit80();
+            ((TWindowChat *)(this->m_38))->close_and_clear_flag();
+            ((TWindowChat *)(this->m_38))->set_flag1e_bit80();
         }
         this->m_1c = 6U;
     case 6:
@@ -278,4 +278,4 @@ TWindowSubShortCut::TWindowSubShortCut(TObject *object, void *arg2) : TObject(ob
     this->m_1c = 0;
 }
 
-void TWindowSubShortCut::set_flag1e_bit80() { this->m_1e |= 0x80; }
+void TWindowChat::set_flag1e_bit80() { flags |= 0x80; }

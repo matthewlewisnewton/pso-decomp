@@ -90,3 +90,11 @@ Raw Base/Addition calls remain 22 across 12 units and four shared bindings.
 Record identity/capacity/storage aliasing, CMName activation, remaining lifetimes,
 Parts constants, ChoiceSetting producer, task-global word and wider callback,
 renderer/depth and ownership interfaces retain their holds. PR stays draft.
+
+
+## Later Chat close/reopen qualification
+
+The [Chat follow-up](window-chat-reopen-contract.md) establishes the two remaining
+historical SubShortCut helper receivers and genuine void close/open forwarding.
+Their 64/16-byte bodies and complete objects remain exact. The child-lifetime
+and wider interface holds inside Chat's unchanged callees remain active.

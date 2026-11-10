@@ -32,6 +32,8 @@ public:
 public:
     void reset_input();
     void set_keyboard_flag62_bit4();
+    void close_and_clear_flag();
+    void set_flag1e_bit80();
     void update();
     void handle_input();
     void handle_chat_input();

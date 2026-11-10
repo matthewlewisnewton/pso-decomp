@@ -385,3 +385,12 @@ resolved text/data targets remain exact against their qualified baselines.
 The adjacent ShortCut close/reopen, Soft word setter, Control show/hide and
 remaining lifetime/ownership interfaces retain their holds; no metric or source
 activation gain is claimed.
+
+
+The [Chat close/reopen follow-up](window-chat-reopen-contract.md) recovers the
+two remaining helper receivers passed immediately after new TWindowChat, uses
+the existing native void close/open members and retains both halfword masks.
+The 64/16-byte bodies and all three complete selected source objects remain
+exact. This resolves that wrapper's receiver/forwarding qualification while
+preserving the Soft construction path and all remaining lifetime, constant,
+record and ownership holds. No match metric or source activation gain is claimed.
