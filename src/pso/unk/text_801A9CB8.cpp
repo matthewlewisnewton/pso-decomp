@@ -32,11 +32,6 @@
 extern "C" {
 s32 restore_player_cameras();
 void release_photon_blast_player_holds(u16 *holds);
-
-// These legacy symbols read the leading halfword of a slot and recipient
-// record respectively. Neither receiver is a live TObjPlayer.
-u16 get_section_id__10TObjPlayerFv(PhotonBlastSlot *slot);
-u16 get_entity_type__10TObjPlayerFv(u8 *recipient);
 }
 
 void reset_cameras_to_actor(void *actor, s32 arg1);
@@ -97,7 +92,7 @@ TUnk_804C349C::TUnk_804C349C(s32 client, PhotonBlastSlot *slots, const s32 *coun
             break;
         }
         kinds[i] = TObjPlayer__sub_80313114(slots->data);
-        participants[i] = get_section_id__10TObjPlayerFv(slots);
+        participants[i] = ((TObjPlayer *)slots)->get_section_id();
     }
 
     owner = get_player_by_client_id(client);
@@ -137,9 +132,9 @@ TUnk_804C349C::TUnk_804C349C(s32 client, PhotonBlastSlot *slots, const s32 *coun
         u8 *recipient = TObjPlayer::find_photon_blast_by_section_id(get_entity_id(owner));
         if (recipient != NULL) {
             for (s32 i = 0; i < 4; i++) {
-                if (get_entity_type__10TObjPlayerFv(recipient) != 0xFFFF
-                    && get_entity_type__10TObjPlayerFv(recipient) != owner_client_id) {
-                    recipients[i] = get_entity_type__10TObjPlayerFv(recipient);
+                if (((TObjPlayer *)recipient)->get_entity_type() != 0xFFFF
+                    && ((TObjPlayer *)recipient)->get_entity_type() != owner_client_id) {
+                    recipients[i] = ((TObjPlayer *)recipient)->get_entity_type();
                 }
                 recipient += 4;
             }
