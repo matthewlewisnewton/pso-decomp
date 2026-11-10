@@ -114,9 +114,11 @@ The thirteen `__declspec(section ".sdata2")` definitions in
 `TWindowSubStatusDisp_8026DFE8.cpp` put the separator, icon table and
 preview constants at `0x805DD348..0x805DD37C`. CodeWarrior places these
 named constants in writable small data without the declarations. The
-original kind-zero lookup reads the separator's final zero byte. Ports
-can place the constants normally and use the explicit zero entry in the
-portable branch.
+matching CodeWarrior build indexes the icon table with `kind - 1`.
+For kind zero the emitted load reads the separator's final zero byte at
+`0x805DD34B`, one byte before the table. The portable branch handles
+zero explicitly so it can use independent objects and stay within the
+array bounds.
 
 ### Ground collision debug hook
 

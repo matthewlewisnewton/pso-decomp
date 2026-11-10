@@ -178,10 +178,9 @@ void TWindowShortCut::initialize_preview(s32 index, s32 *shortcut) {
     set_sprite_uv_from_pixels(detail_icon, detail_origin->u, detail_origin->v);
     set_text_entry_string(kind_label, (u32)TWindowSubStatusDisp::get_message_10(0xC5), 0);
     set_text_entry_string(kind_name, (u32)TWindowSubStatusDisp::get_message_10(0xC0 + kind), 0);
-    // Kind zero reads the separator's last byte in the GameCube layout.
 #ifdef __MWERKS__
-    const s32 kind_sprite_id = *reinterpret_cast<const u8 *>(
-        kind + (reinterpret_cast<u32>(shortcut_kind_sprites) - 1));
+    // The GameCube lookup for kind zero reads the separator's trailing zero.
+    const s32 kind_sprite_id = shortcut_kind_sprites[kind - 1];
 #else
     const s32 kind_sprite_id = kind == SHORTCUT_EMPTY ? 0 : shortcut_kind_sprites[kind - 1];
 #endif
