@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (merged main `12a336867`, 2026-11-10)
+## Summary (merged main `00c484c57`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `12a336867` (2026-11-10). Assembly is counted as source lines;
+after merging main `00c484c57` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,772 | 878 |
+| CodeWarrior pragmas (excluding push/pop) | 5,773 | 878 |
 | Per-unit compiler overrides in `configure.py` | 190 | 190 |
 | Approved regressions | 0 | 0 |
 
@@ -1299,3 +1299,9 @@ in the generated table once merged.
 This callback boundary is documented for review; it does not add assembly,
 steering pragmas, per-unit compiler switches or link-check exceptions. The
 mechanical inventory does not currently enumerate function-pointer conversions.
+
+### Radial particle interpolation and colour packing
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/ParticleRadial.cpp`, `TUnk_8048E7A8::run_task` at `0x8008B590` | New scoped `fp_contract on`; big-endian ARGB byte writes into a `u32` through `unsigned char` | The original's twelve channel interpolations are `fmadds`. Without the new contraction scope the routine is 94.10405%; with it all 1,384 bytes match. Existing constructor scopes are unchanged. The colour representation reproduces four native byte stores and one packed-word load without inactive-union aliasing. See [source, type and arithmetic evidence](evidence/radial-particle-update.md). New compiler control remains subject to independent source-quality review before publication. | Use single-rounded `fmaf` interpolation when native rounding is required. On little-endian hosts, pack the converted channels explicitly as `(a << 24) | (r << 16) | (g << 8) | b`. |

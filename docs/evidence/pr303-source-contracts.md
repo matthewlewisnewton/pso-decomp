@@ -1552,3 +1552,82 @@ fixture review is needed before adding characterization. Existing tests remain
 scoped to host-observed scanner/setter behavior rather than ingress or exploit
 proof. Raw-callback and reset-status holds remain; no failed ABI probe is
 repeated, no silent hardening is introduced and the PR remains draft.
+
+
+## New evidence search beyond the callback and status holds
+
+Extend the raw-table investigation beyond source-global names. Scan every byte
+offset of initialized non-text sections for words into the complete IPv4/IPv6
+protocol-state and raw-table symbol extents, including the IPv4 table's full
+0x350 bytes: no pointer word appears. A preceding-`lis` scan through `addi`,
+`ori` and D-form memory accesses finds the twelve known state/table address
+constructions, without an instruction-distance cutoff or a new interior
+address. Follow observed native aliases and helper escapes independently.
+Shutdown helpers `0x803F87DC` and `0x803F892C` are return-only stubs. IPv6
+receive's table-interior addresses reach only read-only address-test/comparison
+helpers (`0x80414A0C`, `0x80414B54` and `NetMemcmp`). The additional references
+at `0x80410BA8`, `0x80410D6C` and `0x804117C4` access the state's transmit
+header, fragment-ID counter and hop limit; they do not write the callback table.
+IPv4 transmit similarly aliases its state-local header. This closes the
+observed helper/alias paths, not arbitrary instruction sequences, externally
+computed pointers or runtime memory corruption. No concrete activation writer
+or raw callback target is established.
+
+Investigate comparable source using a structural alignment gate rather than
+only reconstructed PSO names. At Nintendont commit
+`c683db301c941a64e6fe5cef6ac079bd1a726074`, its
+[AVE fingerprints](https://github.com/FIX94/Nintendont/blob/c683db301c941a64e6fe5cef6ac079bd1a726074/kernel/patches.c#L485)
+and [pattern algorithm](https://github.com/FIX94/Nintendont/blob/c683db301c941a64e6fe5cef6ac079bd1a726074/kernel/Patch.c#L1201)
+match the startup and cleanup pair in the local original DOL. In tuple order
+(length to first return, loads, stores, calls, branches, moves), startup
+`0x80421674` yields `(0x16C, 11, 4, 26, 16, 2)` and cleanup `0x80421620`
+yields `(0x50, 3, 2, 13, 0, 2)`. The reset wrapper does not match either.
+This independently aligns the AVE startup family; it does not recover a
+declaration. Nintendont's `int` replacement is handwritten socket emulation,
+so its return type is not evidence for PSO's original type.
+
+At public T4 research-archive commit
+`82153d44e6aacb82843db4cb90265abefad1a577`, the
+[GameCube caller](https://github.com/pnill/T4_Research/blob/82153d44e6aacb82843db4cb90265abefad1a577/TNT/NetSpine/NetworkCore/Src/GameCube/Dol_SockImp.c#L134)
+assigns `avetcp_init()` to `AT_SINT16` and checks for a negative result.
+Its [UDP receiver](https://github.com/pnill/T4_Research/blob/82153d44e6aacb82843db4cb90265abefad1a577/TNT/NetSpine/NetworkCore/Src/GameCube/Dol_SockImp.c#L713)
+has signed-halfword result/event types and an `AT_UDP_PRM` record, with the
+same request-buffer/completion phases. The repository includes neither the
+referenced `avetcp.h` nor the library implementation, and archive provenance
+does not independently establish original authorship. It supports a family
+comparison, not a byte-layout or raw-IP prototype claim. Follow-up indexed code
+search for `AT_UDP_PRM` finds only this archive's two files; no matching public
+AVE header is located by the bounded search.
+
+The local startup family also includes word-defined `NetTCPInit`,
+`init_ucb_entries`, `NetIPv6Init` and `NetIPv6InitNeighborDiscovery`, each
+short-declared by the startup caller. The three initially targeted helpers
+(`reset_socket_table`, `init_ipv4_interfaces`, `init_packet_fragment_pools`)
+unconditionally return zero; their sole observed native calls test the signed
+low halfword. These observations do not distinguish original return spelling.
+No ABI probe is repeated. A provenance-backed AVE declaration or a new
+distinguishing provider/call site remains the next useful target; this search
+records new alignments and alias evidence rather than treating absence as proof.
+
+
+## Particle-main refresh after the setter checkpoint
+
+After publishing the independently reviewed setter repair `140421a2b`, main
+advances to `00c484c57b38bc7f112016860e9faa628c7b49e9` with the particle-radial
+recovery. Source/configuration merge automatically. Resolve only the two
+exception-register conflicts by regenerating the inventory and retaining its
+generic prose and current-main label. Counts become 5,773 pragmas in 878 files
+and 190 per-unit overrides. Preserve main's particle source/definitions,
+provider and retention recovery and every existing branch contract/test/hold.
+
+Fresh capacity-gated main and candidate builds reproduce the original DOL.
+All four incoming source objects and all eight recorded consumers of the
+changed particle headers match fresh main byte-for-byte. The three setter
+header-consumer objects retain their reviewed hashes, including relocations.
+The full pinned-main comparison passes: 3,595 exact linked units and 18,304
+retention entries without drift; existing +88 data bytes, no new functions/code
+and no losses. Actual branch providers are 3,595 source and 1,351 original
+fallbacks; main has 3,596 and 1,353. Seven actual-source characterization cases,
+inventory and whitespace pass. Seal the unchanged-main provenance packet for
+independently verified reuse. Keep draft, original bugs and all prior ABI and
+metadata restrictions.
