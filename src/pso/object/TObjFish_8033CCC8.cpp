@@ -36,8 +36,6 @@ struct DeathClassTag {
 
 extern "C" {
 extern s32 lbl_804DF614[];
-// The legacy symbol's receiver is the Falz plot controller at this call site.
-s32 get_phase__8TObjFishFv(TBoss6PlotFalz *);
 
 extern const char lbl_80477E48[];
 extern const ParticleWindow fish_spawn_entry_table[];
@@ -192,7 +190,7 @@ void TBoss6Demo11_TYPE1_DEAD::run_task() {
         break;
     }
     elapsed++;
-    if (elapsed >= 0x101 || get_phase__8TObjFishFv(plot) != 3) {
+    if (elapsed >= 0x101 || ((TObjFish *)plot)->get_phase() != 3) {
         queue_destruction__7TObjectFv(this);
     }
 }
