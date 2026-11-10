@@ -7195,7 +7195,7 @@ pso/unk/text_80209C58.cpp:
 pso/misc/TLobby_80209CF8.cpp:
 	.text       start:0x80209CF8 end:0x80209D34
 
-pso/unk/text_80209D34.cpp:
+pso/map/ChallengeEnemySet.cpp:
 	.text       start:0x80209D34 end:0x8020A188
 
 pso/misc/TLobby_8020A188.cpp:
