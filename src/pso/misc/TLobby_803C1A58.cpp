@@ -36,8 +36,6 @@ struct Strm_803C1A8C {
     s32 bytes;
 };
 
-struct Obj_803C34F4 { u8 pad[0xA8]; s16 state; };
-
 struct Obj_803C3ACC { u8 pad[0xA8]; s16 state; s16 sub; };
 
 struct Hdl_803C43A8 {
@@ -150,7 +148,6 @@ extern s32 lbl_805E0CD8;
 void TLobby__sub_803C19D8(void *);
 void TLobby__sub_803C3570(void *);
 void TLobby__sub_803C40D0(void *);
-void TLobby__sub_803C34F4(Obj_803C34F4 *arg0);
 s32 DVDReadPrio(void *, void *, void *);
 s32 TLobby__sub_803C44C0(Hdr_803C44C0 *hdr, s32 arg1, s16 *arg2, s8 *arg3, s8 *arg4, s8 *arg5, s8 *arg6, s32 *arg7, s32 *arg8, s32 *arg9, s16 *arg10);
 u8 *TLobby__sub_803C2388(u8 *, s32 *, s32 *, s32 *, s32 *);
@@ -549,8 +546,8 @@ s32 TLobby::is_snd_header() {
     return 0;
 }
 
-void TLobby__sub_803C34F4(Obj_803C34F4 *lobby) {
-    s16 s = lobby->state;
+void TLobby__sub_803C34F4(AdxDecoderFormatView *lobby) {
+    s16 s = lobby->format;
     if (s == 0) {
         TLobby__sub_803C3570(lobby);
     } else if (s == 10) {
@@ -673,23 +670,15 @@ s32 TLobby::get_packet_flag_for_state() {
     return 0x10;
 }
 
-s8 TLobby__sub_803C3B38(u8 *arg0) {
-  s8 *new_var3;
-  unsigned int new_var2;
-  s8 *new_var4;
-  u8 new_var;
-  new_var4 = (s8 *) arg0;
-  new_var3 = 0xE + new_var4;
-  new_var = (*((u8 *) new_var3)) & 0xFFFFFFFFFFFFFFFFu;
-  ;
-  return (s8) (new_var & 0xFF);
+s32 TLobby__sub_803C3B38(u8 *arg0) {
+    return reinterpret_cast<const s8 *>(arg0)[0xE];
 }
 
 s32 TLobby__sub_803C3B44(u8 *arg0) {
     return *(s32 *)((s8 *)arg0 + 0x14);
 }
 
-s16 TLobby::get_field_a8() {
+s32 TLobby::get_field_a8() {
     u8 *arg0 = (u8 *)this;
     return *(s16 *)((s8 *)arg0 + 0xA8);
 }
