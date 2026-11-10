@@ -2,6 +2,7 @@
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 #include "pso/TAdPlyChrSelPlateGC.h"
 #include "pso/TMainTask.h"
+#include "pso/misc/TLobby_801E2F94.h"
 #include "pso/system/ModelDrawContext.h"
 
 typedef struct V_802C4DD0 { s32 x, y; } V_802C4DD0;
@@ -14,19 +15,15 @@ typedef struct S_802C4DD0 {
     s32 f224;
 } S_802C4DD0;
 
-typedef struct V_802C4E38 { f32 x, y; } V_802C4E38;
-
-typedef struct Q_802C4E38 { u8 b[4]; } Q_802C4E38;
-
 typedef struct S_802C4E38 {
     u8 pad0[0x1C];
-    V_802C4E38 v1C[32];
-    V_802C4E38 v11C[32];
+    ColorLineVertex v1C[32];
+    ColorLineVertex v11C[32];
     s32 pad21C[2];
     s32 f224;
     s32 a[32];
     f32 fl[32];
-    Q_802C4E38 c[32];
+    SelectionPlateColor c[32];
     u8 col[4];
     s32 f3AC;
 } S_802C4E38;
@@ -35,7 +32,6 @@ extern "C" {
 extern const f32 lbl_805DE548;
 extern const f32 lbl_805DE54C;
 void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(f32 *destination, const f32 *source);
-void TAdEnterSerialAccessGC__sub_802C4B64(void *, void *, Q_802C4E38, int);
 extern const f32 lbl_805DE550;
 extern const f32 lbl_805DE554;
 extern const f32 lbl_805DE558;
@@ -49,9 +45,9 @@ void TAdPlyChrSelPlateGC::render() {
         set_color_blending_mode(1, 10);
         for (i = 0; i < self->f224; i++) {
             if (self->a[i] != 0) {
-                V_802C4E38 *pos = &self->v1C[0];
-                Q_802C4E38 col = self->c[i];
-                TAdEnterSerialAccessGC__sub_802C4B64(this, pos + i, col, i);
+                ColorLineVertex *pos = &self->v1C[0];
+                SelectionPlateColor col = self->c[i];
+                draw_selection_plate(this, pos + i, col, i);
             }
         }
         set_color_blending_mode(0, 8);

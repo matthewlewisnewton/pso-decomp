@@ -1,5 +1,7 @@
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
+#include "pso/TAdPlyChrSelPlateGC.h"
+#include "pso/misc/TLobby_801E2F94.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
 #include "pso/unk/text_8032AACC.h"
 #include "pso/ui/TAdEnterSerialAccessGC.h"
@@ -9,35 +11,30 @@ struct Pos_8032AACC { f32 x, y; };
 
 struct Plate_8032AACC { u8 data[0x3B4]; };
 
-struct Word_8032AACC { s32 v; };
-
 struct Arg_8032AACC { f32 x, y; u8 pad[8]; };
 
 struct Plate_8032AC24 { u8 data[0x3B4]; };
-
-struct Word_8032AC24 { s32 v; };
 
 struct Arg_8032AC24 { f32 x, y; u8 pad[8]; };
 
 extern "C" {
 char *realloc_buffer__17TWindowSubComCardFv(void *);
 void fn_8025DE10(void *arg0, void *arg1);
-void TAdEnterSerialAccessGC__sub_802C4B64(void *, void *, void *, int);
 void __dt__19TAdPlyChrSelPlateGCFv(void *, int);
 void *__ct__19TAdPlyChrSelPlateGCFv(void *, s32, void *);
 void *memset(void *, int, u32);
 s32 strlen(const char *);
 }
-extern u8 lbl_80477210[];
+extern ColorLineVertex lbl_80477210[];
 extern f32 lbl_80477218[];
 extern f32 lbl_80477220[];
 extern s32 tl_clipout;
 extern void *password_entry_keyboard_control;
-extern Word_8032AACC lbl_805DF76C;
+extern SelectionPlateColor lbl_805DF76C;
 extern char lbl_805DF774[4];
-extern u8 lbl_80477200[];
+extern ColorLineVertex lbl_80477200[];
 extern const f32 lbl_80477208[];
-extern Word_8032AC24 lbl_805DF768;
+extern SelectionPlateColor lbl_805DF768;
 void draw_masked_password_field(s32 arg0) {
     char buf[0x80];
     Plate_8032AACC plate;
@@ -50,8 +47,7 @@ void draw_masked_password_field(s32 arg0) {
         p1.x = lbl_80477218[0];
         p1.y = lbl_80477218[1];
         __ct__19TAdPlyChrSelPlateGCFv(&plate, tl_clipout, &p1);
-        Word_8032AACC w = lbl_805DF76C;
-        TAdEnterSerialAccessGC__sub_802C4B64(&plate, lbl_80477210, &w, 0);
+        draw_selection_plate(&plate, lbl_80477210, lbl_805DF76C, 0);
         str = realloc_buffer__17TWindowSubComCardFv(password_entry_keyboard_control);
         len = strlen(str);
         ::operator delete[](str);
@@ -78,7 +74,6 @@ void fn_8032AC24(void) {
     p1.x = src[0];
     p1.y = src[1];
     __ct__19TAdPlyChrSelPlateGCFv(&plate, tl_clipout, &p1);
-    Word_8032AC24 w = lbl_805DF768;
-    TAdEnterSerialAccessGC__sub_802C4B64(&plate, lbl_80477200, &w, 0);
+    draw_selection_plate(&plate, lbl_80477200, lbl_805DF768, 0);
     __dt__19TAdPlyChrSelPlateGCFv(&plate, -1);
 }
