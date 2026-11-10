@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5773 | 879 |
-| configure.py per-unit override | 189 | 189 |
+| pragma | 5775 | 879 |
+| configure.py per-unit override | 190 | 190 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1143, `inline_depth` 1035, `fp_contract` 878, `auto_inline` 833, `opt_common_subs` 611, `scheduling` 263, `opt_propagation` 238, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1143, `inline_depth` 1035, `fp_contract` 878, `auto_inline` 833, `opt_common_subs` 611, `scheduling` 263, `opt_propagation` 239, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 22, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -230,6 +230,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1143, `inline_depth` 1035,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/misc/TLobby_802409AC.cpp` | `-sym on` | Keep the compiler-generated guild-card initializer ahead of its constructor and accessors. |
 | `pso/misc/TPlayerFootStamp.cpp` | `-fp_contract on, -inline off,deferred, -str reuse,readonly` | Upstream #208: fused scale/corner arithmetic; deferred emission puts the compiler vtable before the constructor switch table; class string is rodata. |
 | `pso/player/TObjPlayer_801542CC.cpp` | `-fp_contract on` | TObjPlayer__sub_8015434C fuses offset*sin+pos (fmadds at 0x80154408) and offset*cos+pos (fmadds at 0x8015442C). The same flag leaves every other function in this unit unchanged, including resolve_actor_sphere_contact's (x*x)+(z*z) as fmuls+fadds. resolve_player_box_contact's fmadds at 0x8015532C and 0x8015533C already come from that function's pragma. Precedent: dtk-template's GC/Wii base flags use -fp_contract on (https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209). |
 | `pso/boss/TBoss6PlotFalz_802B0228.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #183: the Falz plot table TU is built with deferred inlining (its state actions come out in reverse table order). |
@@ -734,7 +735,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1143, `inline_depth` 1035,
 | `src/pso/misc/TLobby_80228154.cpp` | fp_contract×1 |
 | `src/pso/misc/TLobby_80228818.cpp` | opt_propagation×1 |
 | `src/pso/misc/TLobby_8023F734.cpp` | opt_common_subs×3, opt_propagation×3, opt_dead_assignments×3, readonly_strings×1, fp_contract×1 |
-| `src/pso/misc/TLobby_802409AC.cpp` | fp_contract×1, inline_depth×1, auto_inline×1, dont_inline×1 |
+| `src/pso/misc/TLobby_802409AC.cpp` | opt_propagation×1, opt_lifetimes×1, fp_contract×1, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobby_80291D94.cpp` | inline_depth×3, auto_inline×3, dont_inline×3, fp_contract×1 |
 | `src/pso/misc/TLobby_802A0F3C.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobby_802A5120.cpp` | readonly_strings×1 |
