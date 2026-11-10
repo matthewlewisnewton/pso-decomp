@@ -29,7 +29,6 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,771 | 875 |
 | Per-unit compiler overrides in `configure.py` | 177 | 177 |
-
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly

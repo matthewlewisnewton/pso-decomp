@@ -78,8 +78,8 @@ and retention checks pass, and the subsequent synchronization loses no exact
 function or linked range. Main's unit folding removes four zero padding bytes
 from report coverage; the original DOL still matches. Full build
 and `tools/check_pr.py` pass with original DOL SHA-1
-`0d85744b51d7379efb025a943d0cd5aaae2191a3`; no exact function, code/data address,
-linked range or padding is lost. All nine functions (4,704 bytes) and all 1,404
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Against current main `65b21c210`,
+no exact function, code/data address, linked range or padding is lost. All nine functions (4,704 bytes) and all 1,404
 data bytes are exact. Retention adds 45 names and removes none.
 
 Gains against current main `65b21c210` (the interface correction itself has
