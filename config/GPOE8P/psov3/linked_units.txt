@@ -1977,6 +1977,7 @@ pso/misc/pso_const_ids3.cpp
 pso/misc/pso_const_ids4.cpp
 pso/misc/pso_const_ids5.cpp
 pso/misc/pso_date.cpp
+pso/network/NetworkConfigLifecycle.cpp
 pso/network/NetworkDispatcher.cpp
 pso/network/NetworkInfoCodec.cpp
 pso/network/NetworkInfoLoader.cpp
@@ -2730,7 +2731,7 @@ pso/ui/TAdPlayerLoadGC_80076BBC.cpp
 pso/ui/TAdPlayerLoadGC_800F9EF8.cpp
 pso/ui/TAdPlayerLoadGC_801E0C30.cpp
 pso/ui/TAdPlayerLoadGC_8033BB14.cpp
-pso/ui/TAdPlayerLoadGC_803F3CF4.cpp
+pso/ui/TAdPlayerLoadGC_803F339C.cpp
 pso/ui/TAdPlyPltAnimCtrlGC.cpp
 pso/ui/TAdPlyPltAnimGC.cpp
 pso/ui/TAdPlyPltAnimGC_80356190.cpp
