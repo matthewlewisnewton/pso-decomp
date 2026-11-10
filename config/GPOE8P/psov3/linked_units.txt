@@ -2838,9 +2838,6 @@ pso/unk/text_8003AFBC.cpp
 pso/unk/text_80049FD8.cpp
 pso/unk/text_8004AA04.cpp
 pso/unk/text_8004D9A8.cpp
-pso/unk/text_8004F1FC.cpp
-pso/unk/text_8004F2A8.cpp
-pso/unk/text_8004F5F8.cpp
 pso/unk/text_80050050.cpp
 pso/unk/text_80050134.cpp
 pso/unk/text_800502FC.cpp

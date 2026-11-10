@@ -96,6 +96,14 @@ check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
 
+### Dark Falz demo 4
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/object/TObjDFDemo4.cpp` | Translation unit | `readonly_strings on` and `defer_codegen on` | Places the class name in `.rodata` and emits the seven functions in reverse definition order. Deferred generation also places the camera initializers before the signed conversion constant. | Use ordinary string and function definitions. |
+| `src/pso/object/TObjDFDemo4.cpp` | Constructor at `0x8004F6AC` | Weak linkage for the strip-node table | With strong linkage CodeWarrior pools the strip table and both camera initializers under a shared `.rodata` base. Weak linkage preserves the original direct relocations and keeps the shared `.data` base for the motion tables and vtable. | Use the same const table with ordinary linkage. |
+| `configure.py` | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | The two eight-byte afterimage index tables use normal data addressing. The class-name pointer still uses small data. | Use ordinary arrays and a string pointer. |
+
 ### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
 
 | File | Function | What | Why | Port should |
