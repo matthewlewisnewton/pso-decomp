@@ -402,3 +402,39 @@ Falz/character-select folds. The 88 data bytes remain unique. Those source
 repairs are not superseded by main's focused DHCP extraction. This does not
 make all provisional interfaces complete or the stale PR metadata current;
 keep draft and do not close the PR as stale.
+
+
+## PPP session main refresh
+
+Merge main `12cc95ca737a3a8757c17f45df06a9af4821d872` into reviewed head
+`ab7da74eb5d300ccb50eee4dc74bd163e4a37821`. The remote head was unchanged
+and no competing active #303 owner was found. Main brings #374 PPP/session
+control. Resolve only retention metadata and the exception summary: keep the
+four new live retention names once each and preserve both sides' exception
+records. Fresh-split retention checks pass. No source conflict or manual
+source repair is included. The shared `s16 map_state_to_mode_id` declaration
+and definition merge consistently. Shared DHCP/BML contracts and the free
+lease parser remain intact. #376 dispatcher/reset-status work is unchanged.
+
+Both isolated builds use the existing exclusive capacity wrapper and reproduce
+original DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Main's
+full checks pass against preserved main `65b21c210`; the continuation's full
+checks pass against fresh main `12cc95ca7`:
+
+| Measure | Main | Continuation | Delta |
+|---|---:|---:|---:|
+| Exact functions | 27,394 | 27,394 | 0 |
+| Matched code bytes | 4,202,324 | 4,202,324 | 0 |
+| Matched data bytes | 1,470,367 | 1,470,455 | +88 |
+| Complete code bytes | 3,704,816 | 3,704,816 | 0 |
+| Complete data bytes | 1,185,687 | 1,185,775 | +88 |
+| Linked units | 3,586 | 3,585 | -1 |
+
+No function, data/code address, linked range or padding is lost. All 3,585
+linked units are exact; retention has 17,711 names with no missing/stale
+entry. The session unit is 16/16, transport 39/39, DHCP 42/42 and packet
+runtime 24/24, all exact code/data and linked from compiled source. All 180
+model-accessor consumers retain the canonical header. Host vector and item-
+factory tests, inventory and whitespace pass. No extra match credit is
+claimed for the DHCP functions already in main. Keep draft with existing
+interface limitations. The failed metadata update is not retried.
