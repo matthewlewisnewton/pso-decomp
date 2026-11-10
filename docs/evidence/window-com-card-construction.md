@@ -83,3 +83,8 @@ The subsequent [bounded blocker audit](window-status-page-com-card-blocker-audit
 finds exact basic native cleanup and a coherent data partition, but the original
 trailing word's ownership prevents a regression-free activation. The probe is
 private and this checkpoint's complete source/data provider remains restored.
+
+The subsequent [native render-body recovery](window-com-card-render-member.md)
+uses the established draw-context receiver contract and actual Base members.
+Its entire compiled object is byte-identical. The manual table, deleting wrapper,
+unknown word and follower boundaries remain held and unchanged.

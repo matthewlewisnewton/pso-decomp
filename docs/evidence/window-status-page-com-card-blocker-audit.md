@@ -97,3 +97,8 @@ bindings. DD/Word/nameplate original providers, incomplete status consumers,
 protected remainders, and all lifetime/ownership/constant/initialization holds
 remain. No exhausted renderer probe is repeated. The PR stays draft and the
 proposed PR split remains pending its separate decision.
+
+A later [standalone render-body recovery](window-com-card-render-member.md)
+reproduces the entire ComCard object using the established explicit receiver
+contract. It does not activate the held data partition or establish ownership
+of the trailing word; the partition stop condition above remains unchanged.

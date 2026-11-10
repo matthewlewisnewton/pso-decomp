@@ -24,6 +24,7 @@ struct RecoveredGlobal_80249BA8___vt__14TWindowComCard {
 extern "C" {
 s32 draw_default_entry__9TWindowDDFl();
 s32 draw_visible_window_entries(void *, void *, int);
+// Existing manual-table ABI entry; body is the native render member below.
 void render__14TWindowComCardFv(s32 arg0);
 s32 TWindowSubComCard__sub_8007B070(s32);
 void *__nw__7TObjectFUl(int);
@@ -132,11 +133,10 @@ s32 TWindowSubComCard::create_com_card_window(s32 position) {
     return (s32)new TWindowComCard((void *)position, keyboard_mode);
 }
 
-void render__14TWindowComCardFv(s32 arg0) {
-    s32 temp_r3;
-    temp_r3 = draw_default_entry__9TWindowDDFl();
-    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
-    draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), (int)temp_r3);
+void TWindowComCard::render() {
+    s32 context = TWindowDD::draw_default_entry((s32)this);
+    draw_window_frame((void *)context);
+    draw_visible_window_entries(this, &m_24, context);
 }
 
 void run_task__14TWindowComCardFv(void* p) { initialize_subwindow__9TWindowDDFv(p); ((TWindowBase *)p)->update_fade(); ((TWindowBase *)p)->update_window_entry_list((char*)p + 0x24); }
