@@ -42,8 +42,9 @@ reader unit stays linked, and the adjacent original word stays original.
   `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 - `tools/check_pr.py --no-build` passes against the fresh unchanged-main
   report. Matched data rises from 1,472,559 to 1,472,563 bytes; source-linked
-  data rises from 1,188,215 to 1,188,219. Code, function, unit and total data
-  counts are unchanged. The generated retention list adds only
+  data rises from 1,188,215 to 1,188,219. Code, function and total data
+  counts are unchanged, as are source-bearing and linked-unit counts. The
+  explicit original-only hold adds one raw report unit. The retention list adds only
   `TLanguage__read_cursor`; the linked-unit list does not change.
 - A strict raw-report comparison, without the ordinary padding-loss allowance,
   retains all code/data/function address coverage, exactness and source-linked
