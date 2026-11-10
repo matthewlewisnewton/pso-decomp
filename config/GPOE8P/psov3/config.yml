@@ -5488,6 +5488,7 @@ force_active:
   - draw_object_tree__14TOTrapSeabed01FP10NJS_OBJECT
   - draw_object_tree_recursive__FPv
   - draw_outline_quad__18TWindowEffectLightFl
+  - draw_outlined_string_right_aligned__14TObjWarpStringFPviiPv
   - draw_palette_cells__22TWindowSubCustomSelectFi
   - draw_part_motions__11TBoss6Type1Fv
   - draw_photon_blast_fan
@@ -5954,6 +5955,7 @@ force_active:
   - fn_80063714__13TBoss5GryphonFv
   - fn_80074E04
   - fn_800779FC
+  - fn_8007F3F8
   - fn_8007F560
   - fn_8007FE78
   - fn_8008FC0C__18TObjEneBalClawBodyFv
@@ -7218,6 +7220,10 @@ force_active:
   - lbl_804373A4
   - lbl_80438528
   - lbl_80438534
+  - lbl_80438AB4
+  - lbl_80438AD8
+  - lbl_80438AE0
+  - lbl_80438AEC
   - lbl_80438E40
   - lbl_80439494
   - lbl_804394A4
@@ -8240,6 +8246,9 @@ force_active:
   - lbl_805D8E1C
   - lbl_805D8E20
   - lbl_805D8E24
+  - lbl_805D92A0
+  - lbl_805D92A4
+  - lbl_805D92AC
   - lbl_805D9D70
   - lbl_805D9D88
   - lbl_805D9D90

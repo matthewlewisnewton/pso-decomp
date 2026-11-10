@@ -2,6 +2,7 @@
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_8007ECF0.h"
 #include "pso/misc/TDLGraph.h"
+#include "pso/misc/TLobby_801E2F94.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/render/render_util.h"
@@ -19,9 +20,8 @@ void __dl__7TObjectFPv(s32);
 extern RecoveredGlobal_8007F77C___vt__8TDLGraph __vt__8TDLGraph;
 extern s32 TDLGraph__graph_object;
 void TCameraCtrl__sub_80068EF0(void);
-void fn_8007F27C(TDLGraph_8007F66C *self, void *a, void *b);
-extern u8 lbl_80438AA4[];
-extern u8 lbl_80438AAC[];
+extern const ColorLineVertex lbl_80438AA4;
+extern const ColorLineVertex lbl_80438AAC;
 extern const f32 lbl_805D92CC;
 extern const f32 lbl_805D92D0;
 extern const f32 lbl_805D92D4;
@@ -34,7 +34,7 @@ void TDLGraph::render() {
     TDLGraph_8007F66C *self = (TDLGraph_8007F66C *)this;
     set_default_alpha_blend();
     TCameraCtrl::restore_full_screen_view();
-    fn_8007F27C(self, lbl_80438AA4, lbl_80438AAC);
+    fn_8007F27C(this, &lbl_80438AA4, &lbl_80438AAC);
     ((TDLGraph *)self)->draw_countdown_timer(lbl_805D92CC, lbl_805D92D0);
     ((TDLGraph *)self)->draw_percent_text(lbl_805D92D4, lbl_805D92D0);
     TCameraCtrl__sub_80068EF0();

@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `4ae351128`, 2026-11-09)
+## Summary (regenerated after merging main `1d44ff774`, 2026-11-09)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `4ae351128` (2026-11-09). Assembly is counted as source lines;
+after merging main `1d44ff774` (2026-11-09). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,774 | 877 |
-| Per-unit compiler overrides in `configure.py` | 185 | 185 |
+| CodeWarrior pragmas (excluding push/pop) | 5,775 | 877 |
+| Per-unit compiler overrides in `configure.py` | 186 | 186 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -82,6 +82,12 @@ route through the GX abstraction of the target renderer (call `GXPosition3f32`
 etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
+
+The download graph unit uses a scoped `fp_contract on` for the filled edge in
+`fn_8007F27C`. Its section declarations and one four-byte string alignment
+preserve the graph's exported constants and format strings. See
+[download graph recovery](evidence/download-graph-recovery.md) for the
+compiler and data layout evidence.
 
 5,773 pragmas in 877 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1146, `inline_depth` 1038, `fp_contract` 877, `auto_inline` 837,
@@ -266,6 +272,16 @@ The local initializer emits the 76-byte template at `0x80436748`. The
 original relocations to this template come from `fn_80049FD8`, and the split
 maps it to the compiler's local `@13` symbol. Ports can use the default
 compiler.
+### `pso/unk/text_8007ECF0.cpp` with GC/1.3.2
+
+GC/1.3.2 matches the border pass in `fn_8007F27C` at `0x8007F27C`, where
+the original loads the two-pixel margin before the first coordinate and
+interleaves the fan descriptor copy with the edge arithmetic. GC/2.6
+schedules the first coordinate load ahead of the margin with the same source.
+The dialing rectangle unit uses GC/1.3.2 for a similar scheduling difference.
+A port can use its regular compiler and preserve the fused filled-edge
+calculation and the legacy renderer ABI.
+
 ### `pso/misc/TLobby_8001EF5C.cpp`: `-inline on`
 
 `init_from_id_lists` at `0x8002058C` (size `0x30C`) contains the
