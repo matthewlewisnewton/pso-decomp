@@ -5,6 +5,9 @@
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 
+struct BmlResource;
+extern "C" BmlResource *TObjEneRecobox__static_instance;
+
 struct TObjEneRecobox : public TObjEneDD_ST {
     virtual ~TObjEneRecobox();
     virtual void run_task();

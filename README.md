@@ -11,14 +11,14 @@ Nothing from the game is included here. You need your own copy of the game to bu
 <!-- progress-table -->
 | | Matched | Linked |
 |:--|--:|--:|
-| Code | 96.63% (4,206,584 of 4,353,092) | 85.34% (3,715,028 of 4,353,092) |
-| Data | 83.57% (1,471,935 of 1,761,231) | 67.43% (1,187,527 of 1,761,231) |
-| Functions | 99.40% (27,406 of 27,572) | |
-| Units | | 72.33% (3,584 of 4,955) |
+| Code | 96.67% (4,208,172 of 4,353,092) | 85.45% (3,719,924 of 4,353,092) |
+| Data | 83.59% (1,472,267 of 1,761,231) | 67.44% (1,187,859 of 1,761,231) |
+| Functions | 99.41% (27,409 of 27,572) | |
+| Units | | 72.37% (3,585 of 4,954) |
 <!-- /progress-table -->
 
 Measured on `PsoV3.dol` on 2026-11-10 at validated source commit
-[`1fb8e86d3b`](https://github.com/matthewlewisnewton/pso-decomp/commit/1fb8e86d3bf534c779d40682dba7e21f4fb24e52).
+[`e4380c5411`](https://github.com/matthewlewisnewton/pso-decomp/commit/e4380c5411fdf2fd832ee994c9c7e0dc621f0a45).
 The README-only publication commit records the measurements of its parent source tree.
 A function is matched when it compiles to the original's exact bytes. Code, data and
 units are linked when the build takes them from compiled source instead of the original. Data includes `.bss`.

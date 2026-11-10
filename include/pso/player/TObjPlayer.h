@@ -836,7 +836,7 @@ struct TObjPlayer : public TObjChara {
     void complete_guard_reaction();
     static void select_hit_action(s32 arg0);
     static void create_photon_blast_party_effects(s32 arg0);
-    static u8 *find_photon_blast_by_section_id(s32 arg0);
+    static u8 *find_photon_blast_by_section_id(u16 client);
     static s32 get_current_target_id();
     static void update_photon_blast_state();
     static void apply_photon_blast(s32 arg0, s32 arg1);
@@ -1269,7 +1269,7 @@ struct TObjPlayer : public TObjChara {
     void reset_tech_state();
     static void load_lobby_pigeon_resource();
     void *create_object_by_type();
-    void *find_by_section_id(s32 section);
+    void *find_by_section_id(u16 section);
     void create_party_effects(s32 id);
     u16 find_first_valid_target_id();
     void process_all_elements();
@@ -1320,7 +1320,7 @@ struct TObjPlayer : public TObjChara {
     u16 get_uid();
     static u32 spawn_shot_effect(s32 arg0, s32 arg1, s32 arg2, f32 farg0);
     void clear_rico_ring_flag();
-    static void start_photon_blast(s32 arg0, u16 arg1);
+    static void start_photon_blast(s32 kind, s32 client);
     s32 init_arrays();
     s32 get_card_window_field_244();
     void init_local_pad_binding();
