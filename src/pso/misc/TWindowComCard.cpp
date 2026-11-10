@@ -1,3 +1,4 @@
+#include "pso/misc/ComCardEntryAbi.h"
 #include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/TObject.h"
@@ -28,8 +29,7 @@ s32 TWindowSubComCard__sub_8007B070(s32);
 void *__nw__7TObjectFUl(int);
 extern s32 local_client_id;
 s32 update_com_card_display(s32, s32);
-extern s32 lbl_805D38C0;
-u8 *TWindowComCard__ct(u8 *arg0, s32 arg1, s32 arg2);
+extern const char *lbl_805D38C0;
 void TWindowComCard__sub_80249920(s32 arg0, s32 arg1, s32 arg2);
 u8 TWindowComCard__sub_80249C18(void* p);
 u8 TWindowComCard__sub_80249C20(void* p);
@@ -111,63 +111,25 @@ void TWindowComCard::set_display_value(s32 arg1, s32 arg2) {
     }
 }
 
-u8 *TWindowComCard::create_for_card(s32 arg0, s32 arg1, s32 arg2) {
-    s32 var_r30;
-    s32 var_r31;
-    s32 var_r4;
-    s32 var_r5;
-    u8 *window_dd;
-    u8 *var_r0;
-    u8 *var_r3;
-    var_r30 = arg0;
-    if (arg1 < 0) {
-        var_r3 = NULL;
-        return NULL;
-    }
-    var_r3 = (u8 *)((void *)0x60);
-    var_r31 = arg2 + (arg1 * 0x90);
-    window_dd = (u8 *)(((u8 *)__nw__7TObjectFUl(0x60)));
-    var_r0 = window_dd;
-    if (var_r0 != NULL) {
-        var_r4 = var_r30;
-        var_r5 = var_r31;
-        var_r0 = (u8 *)(((u8 *)TWindowComCard__ct(window_dd, var_r4, var_r5)));
-    }
-    var_r3 = var_r0;
-    return var_r3;
+u8 *TWindowComCard::create_for_card(s32 position, s32 index, s32 records) {
+    if (index < 0) return NULL;
+    s32 data = records + index * 0x90;
+    return (u8 *)new TWindowComCard((void *)position, data);
 }
 
-void *TWindowComCard::create(void *arg0, void *arg1) {
-    void *x0;
-    void *o;
-    x0 = (void *)get_card_entry__17TWindowSubComCardFi((s32)arg1);
-    if (x0 == NULL) {
-        return NULL;
-    }
-    o = __nw__7TObjectFUl(0x60);
-    if (o != NULL) {
-        o = TWindowComCard__ct((u8 *)o, (s32)arg0, (s32)x0);
-    }
-    return o;
+void *TWindowComCard::create(void *position, void *index) {
+    void *entry = (void *)get_card_entry__17TWindowSubComCardFi((s32)index);
+    if (entry == NULL) return NULL;
+    return new TWindowComCard(position, (s32)entry);
 }
 
-s32 TWindowSubComCard::create_com_card_window(s32 arg0) {
-    s32 keyboard_mode;
-    s32 window_dd;
-    s32 var_r0;
-    keyboard_mode = TWindowSubComCard::get_keyboard_mode();
-    if (keyboard_mode == 0) {
-        return 0;
-    }
+s32 TWindowSubComCard::create_com_card_window(s32 position) {
+    s32 keyboard_mode = TWindowSubComCard::get_keyboard_mode();
+    if (keyboard_mode == 0) return 0;
     if (TWindowSubComCard__sub_8007B070(keyboard_mode) != 0) {
         ((TWindowSubComCard *)keyboard_mode)->clear_and_init((void *)local_client_id);
     }
-    window_dd = ((s32)__nw__7TObjectFUl(0x60));
-    var_r0 = window_dd;
-    if (var_r0 != 0) {
-        var_r0 = ((s32)TWindowComCard__ct((u8 *)window_dd, (s32)arg0, (s32)keyboard_mode));
-    }
-    return var_r0;
+    return (s32)new TWindowComCard((void *)position, keyboard_mode);
 }
 
 void render__14TWindowComCardFv(s32 arg0) {
@@ -192,12 +154,10 @@ void *__dt__14TWindowComCardFv(void *arg0, s16 arg1) {
 
 typedef char RecoveredGlobal_80249BA8_lbl_804CE8D0_size[sizeof(RecoveredGlobal_80249BA8_lbl_804CE8D0) == 0x14 ? 1 : -1];
 typedef char RecoveredGlobal_80249BA8___vt__14TWindowComCard_size[sizeof(RecoveredGlobal_80249BA8___vt__14TWindowComCard) == 0x1C ? 1 : -1];
-u8 *TWindowComCard__ct(u8 *window_dd, s32 arg1, s32 arg2) {
-    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)window_dd), (u8 *)((u8 *)((s32) &TWindowComCard__window_desc.value)), (s16)((s16)4), (u8 *)((u8 *)arg1));
-    *(s32 **)((s8 *)window_dd + 0x18) = (s32 *)__vt__14TWindowComCard;
-    *(s32 *)((s8 *)window_dd + 0) = (s32) lbl_805D38C0;
-    update_com_card_display((s32)(window_dd + 0x24), arg2);
-    return window_dd;
+TWindowComCard::TWindowComCard(void *position, s32 data)
+    : TWindowBase((u8 *)&TWindowComCard__window_desc.value, 4, (u8 *)position) {
+    m_name = lbl_805D38C0;
+    update_com_card_display((s32)&m_24, data);
 }
 
 void*TWindowComCard::get_kbd_ptr() { return (char*)this + 0x20; }
@@ -215,21 +175,21 @@ void set_sprite_uv_from_pixels(u8 *arg0, f32 farg0, f32 farg1);
 
 extern u8 com_card_help_panel_rect_table[];
 
-void TWindowComCard::set_help_mode(s32 arg1) {
+extern "C" void set_help_mode__14TWindowComCardFl(void *entry, s32 arg1) {
     void *temp_r4;
 
     if (arg1 == 0xE) {
-        *(u16 *)&this->m_name = (u16) (*(u16 *)&this->m_name | 2);
+        *(u16 *)entry = (u16) (*(u16 *)entry | 2);
         return;
     }
-    *(u16 *)&this->m_name = (u16) (*(u16 *)&this->m_name & 0xFFFFFFFD);
+    *(u16 *)entry = (u16) (*(u16 *)entry & 0xFFFFFFFD);
     if (arg1 < 0xA) {
-        this->m_34 = 1;
+        *(s32 *)((u8 *)entry + 0x34) = 1;
     } else {
-        this->m_34 = 2;
+        *(s32 *)((u8 *)entry + 0x34) = 2;
     }
     temp_r4 = com_card_help_panel_rect_table + (arg1 * 8);
-    set_sprite_uv_from_pixels((u8 *)this, *(f32 *)((s8 *)temp_r4 + 0), *(f32 *)((s8 *)temp_r4 + 4));
+    set_sprite_uv_from_pixels((u8 *)entry, *(f32 *)((s8 *)temp_r4 + 0), *(f32 *)((s8 *)temp_r4 + 4));
 }
 
 void*TWindowComCard::get_card_name_ptr() { return (char*)this + 0xa; }
@@ -261,12 +221,12 @@ s32 get_status_effect_icon_index(u32 arg0) {
 }
 extern "C" {
 
-void TWindowComCard::set_selected_index(s32 arg1) {
+void TUnk_804CE964::set_selected_index(s32 arg1) {
     s32 temp;
     if ((s32) *(s32 *)((s8 *)this + 0x70) != arg1) {
         *(s32 *)((s8 *)this + 0x70) = arg1;
         temp = (s32)this->get_array_entry(0);
-        ((TWindowComCard *)temp)->set_help_mode(*(s32 *)((s8 *)this + 0x70));
+        set_help_mode__14TWindowComCardFl((void *)temp, *(s32 *)((s8 *)this + 0x70));
     }
 }
 
@@ -362,7 +322,7 @@ Win_80249ED8 *TWindowComCard__sub_80249ED8(Win_80249ED8 *o, Parent_80249ED8 *par
     o->x = lbl_805DCBD0 * (f32)o->col + (o->parent->x + o->ofs.x);
     o->y = o->parent->y + o->ofs.y;
     ((TWindowBase *)o)->save_position();
-    ((TWindowComCard *)((s32)((TWindowBase *)o)->get_array_entry(0)))->set_help_mode(mode);
+    set_help_mode__14TWindowComCardFl(((TWindowBase *)o)->get_array_entry(0), mode);
     return o;
 }
 #pragma pop

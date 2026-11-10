@@ -1654,7 +1654,6 @@ force_active:
   - TWindowActionPalette__sub_801C1C20
   - TWindowChat__sub_80247D50
   - TWindowChat__sub_80247DAC
-  - TWindowComCard__ct
   - TWindowComCard__sub_80249E80
   - TWindowComCard__window_desc
   - TWindowComCard__window_desc_b
@@ -1935,6 +1934,7 @@ force_active:
   - __ct__14TObjEnePanBARAFP7TObjectPvl
   - __ct__14TObjEnePanarmsFP7TObjectPv
   - __ct__14TObjWarpStringFv
+  - __ct__14TWindowComCardFPvl
   - __ct__15TAdDrawLineCtrlFP7TObjectPvf
   - __ct__15TBoss3VoloptP01FP7TObjectPv
   - __ct__15TBoss3VoloptP02FP7TObjectPv

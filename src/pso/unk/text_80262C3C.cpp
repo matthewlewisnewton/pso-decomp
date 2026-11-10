@@ -1,3 +1,4 @@
+#include "pso/misc/ComCardEntryAbi.h"
 #include "types.h"
 #include "pso/item/TItem.h"
 #include "pso/misc/TWindowHelpItem_8025A60C.h"
@@ -249,7 +250,7 @@ void TWindowLockOn::refresh_enemy_statuses() {
     i = 0;
     do {
         mode = get_status_effect_icon_index(obj_getArrWord_254(ent, i));
-        ((TWindowComCard *)(this->get_array_entry(i + 3)))->set_help_mode(mode);
+        set_help_mode__14TWindowComCardFl(this->get_array_entry(i + 3), mode);
         i++;
     } while (i < 4);
     {
