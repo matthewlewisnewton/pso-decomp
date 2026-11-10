@@ -303,6 +303,73 @@ game's source, flags or pass sequence. A source recovery still needs a
 semantically justified representation and the unchanged ownership/accounting
 checks.
 
+### Isolating reassociation and lifetime splitting
+
+A further passive trace reads the control's IRO expression graph in 53
+snapshots at existing phase boundaries. It does not enable the internal dump
+option or invoke compiler routines from the debugger. A second observation
+brackets the relevant original calls directly. Both complete objects remain
+byte-identical to the saved 332-byte control and ordinary stock/emulator
+outputs; sources, options and compiler state are unchanged.
+
+The first selected address changes occur at the existing
+`MoveInvarianceInAddressExpr` checkpoints. The direct observation isolates
+them across `0x4A5CEF` (call to `0x4A4E20`) and its return at `0x4A5CF4`:
+
+| Invocation | Before | After |
+|---|---|---|
+| First loop | `(image + field) + (i << 2)` for `0x48`, `0x90` | `(image + (i << 2)) + field` |
+| Second loop | Same form for `0x64`, `0xAC` | Same constants-last form |
+
+The same routine is also called at `0x4A630F`, returning at `0x4A6314`; those
+calls do not further change the selected shapes. Observer labels such as
+"vector" and "motion" are aliases, not authenticated stock function names.
+The conclusion rests on the call boundaries and actual expression changes.
+
+At every bracket, loop-invariant optimization is one, strength reduction zero
+and frontend common-subexpression optimization zero. Thus the observed
+reassociation runs with the latter two options already disabled. This agrees
+with the public reconstruction's [loop-address rewriter](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/optimizer/IroLoop.c#L2391),
+which places constant addends last. That reference supports interpretation;
+the stock observations establish the change in this input.
+
+A separate bracket, from entry at `0x45DC70` to return at `0x42E39F`, isolates
+the second loop's index changing from shared temporary `@26` to `@42`. Its
+address-expression association stays unchanged across that call. These are
+distinct frontend transformations, preceding register allocation and frame
+construction. The reader bounds list/tree traversal, handles operand nodes
+as original ENode leaves, and compares expression shapes rather than mutable
+node indices. Its first broad trace selected only shifts; the focused trace
+also captures the initial multiplication by four, avoiding an inference from
+an empty selection before shift lowering.
+
+This identifies where this control acquires the prefix structure missing
+from the assembly candidate. It does not justify manually reproducing the
+optimizer's arithmetic, adding liveness or changing its flags. A genuine
+source solution must retain the nonlinking transfer's behavior and pass the
+same ownership and address-accounting checks.
+
+### Bounded code-reference ownership check
+
+A separate read-only scan of the authenticated original game examines its
+two populated text sections: 1,088,320 aligned words, including 215,460 raw
+direct-branch encodings. No decoded direct `b`/`bc` target enters
+`[0x8042E9FC, 0x8042EA10)`. Among 4,633 exactly adjacent `lis` plus `addi` or
+`ori` address constructions, none constructs an address in that range.
+No exactly adjacent linking branch-to-next, `mflr`, `addi` construction was
+found.
+Original-free positive and negative decoder controls include signed and
+absolute branches, both address-construction forms and `addi`'s special r0
+base behavior.
+
+This scans raw section words, not a recovered control-flow graph, and is
+separate from the earlier initialized-data pointer scan. It does not exclude
+nonadjacent constructions, general arithmetic, relative/SDA tables, runtime
+writes or other indirect transfers. It supplies no original source boundary
+or ownership proof. A useful next ownership check is conservative constant
+tracking within basic blocks that materialize LR/CTR destinations, retaining
+unknown values at calls and control-flow boundaries.
+
 ## Comparison record and reproduction limits
 
 The historical comparison procedure is preserved at immutable commit
