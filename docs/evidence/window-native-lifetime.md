@@ -331,6 +331,15 @@ Status data refines the earlier 532-byte SoundBalance suffix into a 484-byte
 original prefix, 44 source bytes and four alignment bytes; PartyStatus adds
 another four-byte alignment gap. All unknown original bytes remain intact.
 
+The [SymbolChatParts checkpoint](window-symbol-parts-lifetime.md) recovers
+matching native source, typed borrowed state and genuine producer/receiver
+interfaces. The executable still takes this unit from its original object:
+its own external 32.0f reference blocks safe constant localization. No new
+source-linked data/code or completed executable lifetime is claimed. The
+matched 44-byte data split refines the earlier Help suffix into 156 original
+prefix bytes, original target data and four qualified alignment bytes. Current
+keyboard/technique main is merged with the relocated Base ABI fixes retained.
+
 The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration

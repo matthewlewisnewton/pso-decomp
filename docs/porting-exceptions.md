@@ -1246,3 +1246,11 @@ controls remain. The original five-slot refresh versus four-slot destructor
 asymmetry stays explicit and unresolved. Three native descriptor/table claims
 refine original data with two qualified natural alignment gaps; no compiler
 control, padding definition or manual table is added.
+
+[SymbolChatParts compiled lifetime checkpoint](evidence/window-symbol-parts-lifetime.md)
+removes a raw Addition pair from the matching source, retaining the generic
+Scroll/opaque heading protocols. Actual executable input remains original:
+the own 32.0f external reference blocks constant localization, and literal,
+normal definition and actual-member probes did not establish a matching source
+link. No section control, padding or alternate binding is introduced. This is
+compiled-source progress without a claimed executable source-link gain.

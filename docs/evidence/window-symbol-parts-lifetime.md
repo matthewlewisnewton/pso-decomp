@@ -93,3 +93,44 @@ checkpoint passes: +44 matched data, zero linked-code/data gain, unchanged
 four-byte alignment gap is separately reported. Retention remains clean at
 17,792 names. Final publication additionally requires current-main integration,
 fresh-baseline comparison, selected-input provenance and immutable-head review.
+
+## Final current-main integration and verification
+
+Current main `65b21c210ae980e9d2fe4aef1a3314ed84df1ddd` is merged. Its
+keyboard recovery deleted the old soft-keyboard unit after folding the code
+into TKeyBoardControl. The merge retains that deletion and carries this PR's
+two explicit Base ABI corrections into the new owner. Its entire 9096-byte
+text matches the current-main original and remains source input once. Existing
+main types and compiler qualifications are preserved.
+
+Both the separate fresh-main baseline and integrated branch reproduce the
+original DOL hash. Address-based check_pr passes against the prior published
+checkpoint, retaining main's three new exact functions and linked code/data
+gains. Current totals are 27,393 exact functions and 3,587 exact linked units;
+unit-count reduction comes from main's folding, with no linked-address loss.
+Retention passes at 17,827 names and the port inventory is current.
+
+This family alone adds 44 matched data bytes and no linked code/data bytes.
+The original Parts object is selected once, the native compiled object is
+absent from the actual executable inputs, and its still-undefined 32.0f label
+is supplied by that original provider. Compiled text 4620, rodata 8, sdata2 72
+and descriptor/table 44 bytes match their original ranges. The producer's
+8084-byte text remains identical and source-linked once. No constant scope
+localization or linked-unit addition is applied.
+
+Actual linker input and raw/resolved range checks preserve the new 156-byte
+original Help prefix, selected original target data, protected 1044-byte setup
+helper and all other retained original pieces exactly once. The following
+PartsSet source .data is 24 bytes, alignment eight; the new 2E04..2E08 gap is
+zero in original and rebuilt DOLs. A scan of 4968 active current-main original
+objects/249768 relocations finds no catalog-addressed target into that gap,
+and no symbol starts there. Against current main there are now 14 qualified
+four-byte gaps/56 bytes for the combined PR; main's own new sdata2 gap is
+shared by the baseline and is not charged to this family.
+
+Compared with fresh main, combined PR deltas are +600 matched code, +1220
+linked code, +1308 matched data and +1264 linked data bytes. Source raw
+Base/Addition binding use falls to 38 calls across 19 units (16 Base and three
+Addition pairs), while the four shared bindings remain. Those source counts
+do not imply that Parts is now taken from compiled source. The constant link
+blocker and every prior ownership/interface hold remain active.

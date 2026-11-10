@@ -145,3 +145,13 @@ original 1,044-byte text remainder [8026E1D4,8026E5E8) is still selected
 exactly once, with unchanged unrelocated and resolved bytes. ChoiceSetting's
 unknown 0x7C producer, task-global word 805D5D94 and broader ownership/interface
 holds remain. The PR stays draft and must not be marked ready or merged.
+
+## Later SymbolChatParts refinement
+
+The [SymbolChatParts checkpoint](window-symbol-parts-lifetime.md) refines the
+original 204-byte suffix described above into a 156-byte original prefix,
+44 bytes provided by the selected original Parts object with matching compiled
+source, and four naturally aligned zero bytes. Parts itself remains unlinked
+from source because of its constant-reference hold. The earlier whole-204-byte
+original-input inventory describes that earlier checkpoint; resolved bytes
+across the full range remain unchanged.
