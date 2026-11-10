@@ -2630,6 +2630,7 @@ force_active:
   - __dt__21TObjEneMe3ShinowaRealFv
   - __dt__21TObjEneSlimeWaterBombFv
   - __dt__21TWindowSubAreaMapDispFv
+  - __dt__21TWindowSubComCardListFv
   - __dt__21TWindowSubCustomEquipFv
   - __dt__21TeneFakeTecThunderEffFv
   - __dt__22TAdEnterSerialAccessGCFv
@@ -2790,6 +2791,7 @@ force_active:
   - __vt__11TWindowBase
   - __vt__11TWindowChat
   - __vt__11TWindowCost
+  - __vt__11TWindowMenu
   - __vt__11TWindowRoom
   - __vt__12TAdBackTxtGC
   - __vt__12TAdMultiOkGC
@@ -3270,6 +3272,7 @@ force_active:
   - __vt__21TObjEneMe3ShinowaReal
   - __vt__21TObjEneSlimeWaterBomb
   - __vt__21TWindowSubAreaMapDisp
+  - __vt__21TWindowSubComCardList
   - __vt__21TWindowSubCustomEquip
   - __vt__21TeneFakeTecThunderEff
   - __vt__22TAdEnterSerialAccessGC
@@ -13990,6 +13993,7 @@ force_active:
   - render__11TObjDFDemo5Fv
   - render__11TTecRaZondeFv
   - render__11TWindowChatFv
+  - render__11TWindowMenuFv
   - render__12TAdBackTxtGCFv
   - render__12TAdMultiOkGCFv
   - render__12TAdSoniclogoFv
@@ -14294,6 +14298,7 @@ force_active:
   - render__21TObjEneRe2Flower_BombFv
   - render__21TObjEneSlimeWaterBombFv
   - render__21TWindowSubAreaMapDispFv
+  - render__21TWindowSubComCardListFv
   - render__21TWindowSubCustomEquipFv
   - render__21TeneFakeTecThunderEffFv
   - render__22TAdEnterSerialAccessGCFPv
@@ -15010,6 +15015,7 @@ force_active:
   - run_task__21TObjEneRe2Flower_BombFv
   - run_task__21TObjEneSlimeWaterBombFv
   - run_task__21TWindowSubAreaMapDispFv
+  - run_task__21TWindowSubComCardListFv
   - run_task__21TWindowSubCustomEquipFv
   - run_task__21TeneFakeTecThunderEffFv
   - run_task__22TAdEnterSerialAccessGCFv

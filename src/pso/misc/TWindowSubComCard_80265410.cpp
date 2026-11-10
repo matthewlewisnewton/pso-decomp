@@ -1,5 +1,4 @@
 #include "pso/misc/Scroll_8026D790.h"
-#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/SoundEffect.h"
@@ -124,9 +123,6 @@ void fn_80266378(s32 arg0);
 u8 * create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
 u8 * init_shop_judgment_window(void* p);
 s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2);
-void render__11TWindowMenuFv(TWindowMenu *arg0);
-void * __dt__11TWindowMenuFv(void *arg0, s16 arg1);
-u8 * TWindowMenu__ct(u8 *arg0, u32 arg1, s32 arg2, s32 arg3);
 u8 test_menu_flag__11TWindowMenuFv(u8 *arg0);
 s32 clamp_list_scroll_offset(int, void *, void *);
 s32 draw_window_scrollbar(s32, s32, void *);
@@ -138,12 +134,11 @@ void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 void set_text_entry_string(u8 *arg0, u32 str, s32 arg2);
 void update_chat_window(void* p);
 s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-extern s32 __vt__11TWindowMenu[];
 extern const f64 lbl_8044F330;
 extern RecoveredGlobal_80266378_lbl_804D05A8 lbl_804D05A8;
 extern u8 lbl_804D05CC[];
 extern s8 controller_input_state[];
-extern s32 lbl_805D3960;
+extern const char *lbl_805D3960;
 extern s32 actor_frame_tick;
 extern const f32 lbl_805DD148;
 extern const f32 lbl_805DD14C;
@@ -685,15 +680,8 @@ u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3) {
 u8 * init_shop_judgment_window(void* p) { return create_yes_no_window((s32)p, 4, (u32)(0), (u32)(0)); }
 
 s32 create_window_menu(s32 arg0, s32 arg1, s32 arg2) {
-    s32 temp_r3;
-    s32 var_r0;
     ((s32 (*)(void *))fn_80266378)((void *)arg1);
-    temp_r3 = __nw__7TObjectFUl(0x8C);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = ((s32 (*)(int, void *, void *, void *))TWindowMenu__ct)((int)temp_r3, (void *)arg1, (void *)arg2, (void *)arg0);
-    }
-    return var_r0;
+    return (s32)new TWindowMenu((u32)arg1, arg2, (void *)arg0);
 }
 
 void TAdChrSelASlotGC::check_room_seq_4(s32 arg1) {
@@ -744,7 +732,8 @@ void TWindowMenu::render_selected_entry(s32 window_key_board_soft) {
     }
 }
 
-void render__11TWindowMenuFv(TWindowMenu *arg0) {
+void TWindowMenu::render() {
+    TWindowMenu *arg0 = this;
     s32 window_key_board_soft;
 
     window_key_board_soft = (s32)get_draw_context__11TWindowBaseFPv(arg0);
@@ -817,43 +806,31 @@ void TWindowMenu::run_task() {
     ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
 }
 
-void *__dt__11TWindowMenuFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TWindowMenu;
-        fn_8026D9D0((void *)((s32)(*(void **)((s8 *)arg0 + 0x84))), (s16)1);
-        TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x88)), (s16)1);
-        ::operator delete[](*(void **)((s8 *)arg0 + 0x80));
-        __dt__15TWindowAdditionFv((TWindowAddition *)(arg0), 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TWindowMenu::~TWindowMenu() {
+    fn_8026D9D0((void *)m_84, 1);
+    TWindowSubStatusDisp::destroy_status_display((s32)m_88, 1);
+    ::operator delete[]((void *)m_80);
 }
 
-u8 *TWindowMenu__ct(u8 *window_menu, u32 arg1, s32 arg2, s32 arg3) {
-    u32 i;
-    u8 *p;
-    __ct__15TWindowAdditionFPUcsPUc((TWindowAddition *)(window_menu), (u8 *)(lbl_804D05CC), (s16)(arg2), (u8 *)(arg3));
-    *(void **)(window_menu + 0x18) = ((s32 *)&__vt__11TWindowMenu);
-    *(s32 *)window_menu = lbl_805D3960;
-    *(s16 *)(window_menu + 0x72) = 0;
-    *(s16 *)(window_menu + 0x74) = 0;
-    *(u16 *)(window_menu + 0x76) = arg1;
-    *(s16 *)(window_menu + 0x78) = 0;
-    *(s16 *)(window_menu + 0x70) = 0;
-    *(s16 *)(window_menu + 0x20) = arg2;
-    ((TWindowMenu *)window_menu)->reset_selection();
-    *(u8 **)(window_menu + 0x80) = (u8 *)::operator new[](arg1 * 8);
-    p = *(u8 **)(window_menu + 0x80);
-    for (i = 0; i < arg1; i++) {
-        *(s32 *)p = 0;
-        *(s32 *)(p + 4) = 0;
-        p += 8;
+TWindowMenu::TWindowMenu(u32 count, s32 client, void *position)
+    : TWindowAddition((u8 *)lbl_804D05CC, (s16)client, (u8 *)position) {
+    m_name = lbl_805D3960;
+    m_72 = 0;
+    m_74 = 0;
+    m_76 = (u16)count;
+    m_78 = 0;
+    m_70 = 0;
+    m_20 = (s16)client;
+    reset_selection();
+    m_80 = (u32)::operator new[](count * 8);
+    u8 *entry = (u8 *)m_80;
+    for (u32 i = 0; i < count; i++) {
+        *(s32 *)entry = 0;
+        *(s32 *)(entry + 4) = 0;
+        entry += 8;
     }
-    *(s32 *)(window_menu + 0x88) = 0;
-    *(s32 *)(window_menu + 0x84) = 0;
-    return window_menu;
+    m_88 = 0;
+    m_84 = 0;
 }
 
 void Scroll_8026D790::copy_position(void *pair) {
