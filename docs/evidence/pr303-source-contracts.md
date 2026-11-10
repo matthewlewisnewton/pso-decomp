@@ -1034,3 +1034,89 @@ Merge that publication too. Its complete diff is README-only; source,
 configuration, tools, splits and build/link inputs are identical to the
 freshly built baseline. README is not a Ninja input, so the native and
 regression validation above remains applicable without a redundant build.
+
+
+## Numeric load-slot API and request-task ownership
+
+Start at reviewed head `0b3db2fb6` on main `1a9c29048`. All four model-load
+request records store a signed slot in their `ctx` word at +8. The request
+constructor copies it to +0x24 in the 0x78-byte `TChCrLoadGmNjReq`; it is not
+a lobby address. Native allocator r3 is used only as a numeric index, while r4
+is a signed size. The zero-size wrapper simply forwards that index. All native
+and source calls reconcile: two cursor-get callers, one direct advance caller
+and the wrapper's advance call, with no additional address-taken reference.
+
+Replace the two false TLobby methods with shared C-linkage functions
+`advance_character_load_buffer(s32 slot, s32 size)` returning the existing
+32-bit address word and `get_character_load_buffer(s32 slot)` returning the
+existing pointer. Preserve every unsigned address operation, signed slot/size
+comparison, array index, allocation size, store, return and validation call.
+The existing validation helper's void early returns do not enforce bounds;
+no new guard or assumed valid slot range is introduced. Original buffer
+providers and native address-word representation remain unchanged.
+
+The native task dispatcher passes its unchanged request `this` to 0x8028C650,
+which then passes the same pointer to 0x8028C8E0. Move those two methods from
+`TAdSinglePlyChrSelectGC` to their real `TChCrLoadGmNjReq` owner. Declare
+its signed slot at +0x24, state at +0x2C, fixed character copy at +0x30, claimed
+word at +0x6C and signed lifetime counter at +0x70. The 48-byte copy does not
+guarantee NUL termination. Assert these offsets and the existing 0x78 size.
+Replace the constructor/release helper's fake field overlays with these actual
+fields. Pass the real task explicitly for dispatch and queued destruction, and
+pass the incoming parent explicitly to base construction as native r4 already
+does. Both allocator callers now pass a numeric slot directly. The texture
+unit's unrelated inherited destruction declarations/cast remain separate; this
+change adds the canonical destruction header only to the menu task dispatcher.
+The existing character-selection layout is otherwise left unchanged.
+
+Naturally emitted symbols and symbol metadata change only four exports:
+`start_character_load_task` and `try_acquire_slot` gain the correct task owner;
+the two buffer helpers gain the free-function names above. No new hand-mangled
+stand-in, adapter, assembly, padding or compiler steering is introduced.
+
+The first capacity-gated candidate build reproduces original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. All six edited units remain exact
+code/data and source-linked: texture/update 12/12, load starter 1/1, request task
+4/4, release helper 1/1, slot acquisition unit 14/14 and folded cursor unit 9/9.
+Complete ELF comparisons cover sections, section metadata, normalized string
+tables, symbols and every relocation, canonicalizing only the four export
+renames. All six match. Five raw objects differ only because of those names;
+all other 3,580 compiled objects are byte-identical. The set of 3,585 compiled
+source inputs and 1,362 selected original inputs is unchanged, with no provider
+substitution. Full incremental checks show zero metric/coverage/retention
+changes and precisely four function renames. All 3,585 linked units and 17,811
+retention entries pass without drift. Verified-main comparison retains +88
+data bytes, zero new functions/code and no losses. Host tests, inventory and
+whitespace pass.
+
+## Received-length audit: exact remaining evidence gap
+
+Trace all native/source producers and parser calls without changing behavior.
+UDP input 0x80420DE4 removes eight header bytes from packet totals/fragments;
+the loaded UDP `len` field does not establish the callback extent. Producer
+0x80421F10 constructs a stack record with handle/flags +0, signed 16-bit length
++2 and destination +4. It computes packet total minus first-fragment length
+and narrows with `sth`. Dispatcher 0x80421FB8 allows event 0 to reduce length,
+clamps against the original signed length, copies fragments to the supplied
+destination, then invokes event 1. Zero-length/NULL checks are not DHCP bounds.
+
+DHCP event 0 supplies scratch at +0xBB8 without capping length to 1500. ACK
+states 2/4/5 copy exactly the record length into reply at +0x5DC and retain only
+bytes plus a flag. No accepted-reply extent or tail clear is present. The timer
+later passes only a pointer to configuration/lease parsing. All references are
+accounted for: 13 scanner calls, two lease-parser callers and one configuration
+caller. The scanner's signed `base - cursor` comparison is not a forward bound;
+tag/length reads and the callback's header reads lack an established minimum.
+
+There is no persisted accepted-reply extent, parser length argument or proven
+end-to-end DHCP payload range to propagate. Region capacity, signed field width,
+packet-pool capacity and outgoing packet size do not provide that evidence.
+Adding storage, bounds or guards would alter native behavior, so no such probe
+is attempted. A shared eight-byte receive prefix is a possible separate source
+cleanup, but the dispatcher also serves raw IPv4/IPv6 producers 0x80421938 and
+0x80421AD8 with different tails and an incompatible local callback cast. Audit
+those producers and registrations together before changing that interface.
+
+The reset-helper extra-argument contract, native pointer/address-word globals,
+other legacy callback interfaces and metadata restriction remain held. Keep
+draft pending final exact-head review and hosted checks.

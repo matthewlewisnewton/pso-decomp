@@ -5,6 +5,7 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC_8001ED80.h"
 #include "pso/TChCrLoadGmNjReq.h"
 #include "pso/misc/TLobby.h"
+#include "pso/misc/CharacterLoadBuffer.h"
 #include "pso/misc/TChCrLoadAfsTextureReq.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
@@ -234,7 +235,7 @@ void TChCrLoadGmNjReq::update_model_load() {
         }
         loaded = (BmlResource *)::operator new(0x440);
         if (loaded != NULL) {
-            loaded = init_from_id_lists(loaded, 6, &this->model_ids, &this->motion_ids, 0, 0, this->lobby->start_load_default());
+            loaded = init_from_id_lists(loaded, 6, &this->model_ids, &this->motion_ids, 0, 0, get_character_load_buffer(this->load_slot));
         }
         this->loaded_bml = loaded;
         if (loaded != NULL) {
@@ -244,7 +245,7 @@ void TChCrLoadGmNjReq::update_model_load() {
         bml_model = (u32)get_bml_model(this->loaded_bml, 0);
         **(u32 **)((s8 *)((u8 *)this) + 0x1C) = bml_model;
         if (bml_model != 0U) {
-            ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)))->alloc_load_buffer((int) (TLobby__sub_8001ED88((void *)(*(u32 *)((s8 *)((u8 *)this) + 0x68)))));
+            advance_character_load_buffer(this->load_slot, TLobby__sub_8001ED88(this->loaded_bml));
             delete (BmlResource *)((int) (*(u32 *)((s8 *)((u8 *)this) + 0x68)));
             *(u32 *)((s8 *)((u8 *)this) + 0x68) = 0U;
             sub_8028C8A8();

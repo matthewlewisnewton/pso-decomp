@@ -381,7 +381,6 @@ struct TLobby : public TObject {
     void set_field_90(s32 v);
     static void send_packet(s32 arg0, s32 arg1);
     static void free_shared_objects();
-    void *start_load_default();
     static void free_single_player_chr_select();
     static void alloc_download_server();
     static void free_chr_select_singleton();
@@ -791,7 +790,6 @@ struct TLobby : public TObject {
     s32 get_battle_ctrl_default();
     static s32 find_free_chat_log_slot();
     static void apply_menu_cursor_selection();
-    u32 alloc_load_buffer(s32 arg1);
     static void reset_leader_selection_static();
     static u8 *get_stage_table_entry(s32 arg0, s32 arg1);
     static s32 get_online_result_value();

@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/misc/TLobby_801E2F94.h"
 #include "pso/menu/TChCrLoadGmNjReq.h"
+#include "pso/TChCrLoadGmNjReq.h"
 #include "pso/misc/TLobby_8028D714.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.h"
@@ -96,18 +97,18 @@ extern s32 chr_select_preview_base_offset_table[];
 
 extern s32 chr_select_slot_state;
 
-s32 TAdSinglePlyChrSelectGC::try_acquire_slot() {
+s32 TChCrLoadGmNjReq::try_acquire_slot() {
     if (((s32) chr_select_slot_state < 0) || ((s32) chr_select_slot_state > 1)) {
         return 0;
     }
-    if ((s32) *(s32 *)((s8 *)this + 0x6C) != 0) {
+    if (slot_claimed != 0) {
         return 0;
     }
     if ((s32) chr_select_slot_state >= 1) {
         return 0;
     }
     chr_select_slot_state += 1;
-    *(s32 *)((s8 *)this + 0x6C) = 1;
+    slot_claimed = 1;
     return 1;
 }
 
