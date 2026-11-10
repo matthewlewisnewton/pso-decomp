@@ -927,8 +927,9 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         "pso/misc/TKeyBoardControl_803F0C50.cpp": {"mw_version": "GC/1.2.5n"},
         "pso/unk/text_803F1804.cpp": {"mw_version": "GC/1.2.5n"},
     }),
-    # ntInf ("Ver 1.17.00 Build:Jul 9 2002").
-    ("ntinf", 0x803F3CF4, "GC/2.6", cflags_middleware, {
+    # ntInf ("Ver 1.17.00 Build:Jul 9 2002"). The config initializer at
+    # 0x803F3BF8 matches this profile, while the preceding card code matches GC/1.2.5.
+    ("ntinf", 0x803F3BF8, "GC/2.6", cflags_middleware, {
         "pso/unk/text_803F4D84.cpp": {"cflags": _switch(cflags_middleware, "-O2", "-use_lmw_stmw off")},
     }),
     # ACCESS AVE-TCP ("avetcp.a Ver.1.16.1 Oct 23 2002"); its PPP files were

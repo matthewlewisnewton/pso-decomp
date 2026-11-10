@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `545f2e729fc`, 2026-11-10)
+## Summary (regenerated after merging main `9dcde8562fb`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `545f2e729fc` (2026-11-10). Assembly is counted as source lines;
+after merging main `9dcde8562fb` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,775 | 877 |
+| CodeWarrior pragmas (excluding push/pop) | 5,776 | 877 |
 | Per-unit compiler overrides in `configure.py` | 186 | 186 |
 | Approved regressions | 0 | 0 |
 
@@ -122,6 +122,19 @@ compiled function both pass the channel in the same register and do not access
 an aligned stack object. A port should ignore these settings and use the plain
 `s32` parameter and function body. See
 [the comparison](evidence/network-info-request-frame.md).
+
+### Network config initializer at `0x803F3BF8`
+
+`src/pso/network/NetworkConfigLifecycle.cpp` uses a scoped `scheduling off`
+pragma and an MWCC-only 32-byte alignment attribute on the first parameter.
+The pragma preserves the status and allocation-state stores before their
+following comparisons. The attribute gives GC/2.6 the original 64-byte aligned
+frame, with the arguments in the same registers and no accesses to aligned
+locals. GC/1.2.5 emits an ordinary frame for the same source, while GC/2.6
+changes all nine preceding card-loading functions. The provisional split now
+places the initializer with the adjacent network-config update and teardown
+routines under the existing ntInf profile. Ports use the plain `s32` parameter
+and the same function body.
 
 ### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
 

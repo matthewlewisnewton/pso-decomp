@@ -23,7 +23,7 @@ struct TPhotonMagicSquare : public TObjBase {
     u32 m_cc;
     virtual void render();
     virtual void run_task();
-    u8 *construct_at_owner(s32 arg1, s32 arg2, s32 arg3);
+    u8 *construct_at_owner(TObject *parent, s32 kind, s32 client);
 };
 
 typedef char TPhotonMagicSquare_size[sizeof(TPhotonMagicSquare) == 0xD0 ? 1 : -1];

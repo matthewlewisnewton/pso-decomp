@@ -6199,14 +6199,8 @@ pso/player/TObjPlayer_801A9BAC.cpp:
 	.text       start:0x801A9BAC end:0x801A9CB8
 
 pso/unk/text_801A9CB8.cpp:
-	.text       start:0x801A9CB8 end:0x801AA220
-
-pso/player/TObjPlayer_801AA220.cpp:
-	.text       start:0x801AA220 end:0x801AA3B4
-
-pso/unk/text_801AA3B4.cpp:
-	.text       start:0x801AA3B4 end:0x801AA508
-	.data       start:0x804C33C8 end:0x804C344C
+	.text       start:0x801A9CB8 end:0x801AA508
+	.data       start:0x804C33C8 end:0x804C34B4
 
 pso/player/TObjPlayer_801AA508.cpp:
 	.text       start:0x801AA508 end:0x801AA584
@@ -13834,10 +13828,10 @@ pso/ui/TAdPlayerLoadGC_803F18B8.cpp:
 	.bss        start:0x805A28C0 end:0x805A5F00
 
 pso/ui/TAdPlayerLoadGC_803F339C.cpp:
-	.text       start:0x803F339C end:0x803F3CF4
+	.text       start:0x803F339C end:0x803F3BF8
 
-pso/ui/TAdPlayerLoadGC_803F3CF4.cpp:
-	.text       start:0x803F3CF4 end:0x803F3DD4
+pso/network/NetworkConfigLifecycle.cpp:
+	.text       start:0x803F3BF8 end:0x803F3DD4
 
 pso/network/NetworkInfoRequests.cpp:
 	.text       start:0x803F3DD4 end:0x803F3F64
