@@ -81,3 +81,11 @@ protected-original provenance pass again, including the original 1044-byte helpe
 and WS_Word's original3412 provider/916-byte rendering body. Raw Base/Addition
 calls remain 22 across 12 units. All remaining ownership, lifetime, renderer,
 constant and interface holds remain; PR stays draft.
+
+## Later status/setter qualification
+
+The [status protocol follow-up](window-keyboard-status-protocol.md) supplies the
+additional receiver and return-use evidence for the two adjacent helpers above.
+It recovers their composer owner and the actual Control setter wrapper's observed
+void protocol. This supersedes only those adjacent query/setter holds; the other
+legacy wrappers, float-forwarding, table, lifetime and wider interface holds stay.
