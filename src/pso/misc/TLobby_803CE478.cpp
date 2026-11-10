@@ -23,15 +23,13 @@ void TLobby::update_scroll() {
     }
 }
 
-extern u32 cvfs_completion_callback;
-extern s32 lbl_805D75FC;
 
-void TLobby__sub_803CE544(u32 arg0, s32 arg1) {
-    if (arg0 == 0U) {
-        cvfs_completion_callback = 0U;
+void cvFsEntryErrFunc(CvFsErrorCallback callback, s32 context) {
+    if (callback == NULL) {
+        cvfs_completion_callback = NULL;
         lbl_805D75FC = 0;
         return;
     }
-    cvfs_completion_callback = arg0;
-    lbl_805D75FC = arg1;
+    cvfs_completion_callback = callback;
+    lbl_805D75FC = context;
 }

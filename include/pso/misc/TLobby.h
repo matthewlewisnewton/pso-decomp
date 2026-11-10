@@ -546,7 +546,6 @@ struct TLobby : public TObject {
     void set_client_slot(s8 arg1);
     static void update_scroll_impl();
     void update_scroll();
-    static void call_callback();
     static void set_callback(u32 arg0, s32 arg1);
     static void notify_dvd_read();
     static void enter_lock();

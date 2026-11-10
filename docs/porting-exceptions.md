@@ -680,6 +680,15 @@ That native layout matches, but a port should give both sides one shared represe
 instead of relying on indexing across struct members. These source-interface limitations
 are not cleared by the exact native object or DOL checks.
 
+### CVFS path/device helper inlining
+
+`pso/unk/text_803CE568.cpp` retains its existing file-level `dont_inline off`
+and `inline_depth(4)` controls. The recovered path splitter, default-device
+lookup, prefix handling and handle allocation now share that established scope.
+No unit flags, scheduling controls or intrinsics are added. Ordinary C++ inline
+helpers are sufficient for a port; their grouping reproduces the original CRI
+inlining and native pool-register lifetimes for the matching build.
+
 ## 6. Approved regressions
 
 None on main.

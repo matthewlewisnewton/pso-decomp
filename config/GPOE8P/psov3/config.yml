@@ -5202,6 +5202,7 @@ force_active:
   - current_floor_area_type
   - cursor_action_priority_table
   - curvecmp
+  - cvfs_entry_table
   - cycle_list_page__20TWindowShortListCtrlFv
   - cycle_spectate_target__11TCameraCtrlFv
   - damage_hp__10TObjPlayerFii
@@ -6240,6 +6241,7 @@ force_active:
   - freeze_shell_hold__13TUnk_8048E1A4Fv
   - frozen_shooter_ct__FPUcPUcl
   - frozen_shooter_freeze_hit__FiPUc
+  - fs_default_device_name
   - fs_obj_do_doa01_a_model_names
   - fs_obj_do_doa01_a_motion_names
   - fs_obj_do_doa01_model_names
@@ -8026,6 +8028,7 @@ force_active:
   - lbl_80570AC0
   - lbl_8057FFD0
   - lbl_80581330
+  - lbl_80581A30
   - lbl_8058DC00
   - lbl_8058DD88
   - lbl_805A9008
@@ -15584,6 +15587,7 @@ force_active:
   - shuffle_event_entries__FP17EventShuffleTable
   - shuffle_p01_order__12TBoss3VoloptFv
   - shuffle_shop_pool__FPv
+  - si_type_info_table
   - signal_alarm_queue__6TLobbyFPv
   - single_ply_quest_download_server
   - sinow_zoa_alternate_position
