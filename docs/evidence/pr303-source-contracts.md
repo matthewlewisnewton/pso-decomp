@@ -727,3 +727,44 @@ regressions or data/address/link/padding losses. All 3,582 linked units and
 exact and source-linked. Host tests, inventory and whitespace pass. This is
 the separately validated baseline for a subsequent bounded predicate probe;
 no metadata hold is retried and the PR stays draft.
+
+
+## Character-select predicate word return and explicit receiver
+
+On separately synchronized checkpoint
+`84c74a4a72e61d0c21737ae034fc880d3b3ee3bf`, the predicate
+`is_selection_done__23TAdSinglePlyChrSelectGCFPv` at `0x8028D5D4` and its
+shared header return `u8`, while the other caller redeclares `s32(void *)`.
+`get_result` at `0x8028D5E8` calls it through an incompatible no-argument
+`s32 (*)()` cast. Repository history/evidence records this as inherited debt;
+no rejected probe for this specific repair was found. All source/original
+references are the predicate definition and two caller sites. No overlapping
+worker is changing these units.
+
+Both native consumers compare the whole result word. The predicate returns
+only zero or one: it tests the existing signed word at opaque input offset
+`0x2C` for equality to two, retaining the explicit `u8` normalization. In
+`get_result`, incoming r3 remains the receiver through the predicate call at
+`0x8028D5FC`. This supports one shared `s32(void *)` declaration and a direct
+`is_selection_done(this)` call. It does not prove the predicate's input is a
+specific class. Preserve `void *`, the byte-normalized expression, symbol,
+raw field view and all algorithmic behavior. Replace the second unit's local
+prototype with the shared header and remove the function-pointer cast.
+
+The capacity-gated build reproduces the original DOL SHA-1. Both complete
+compiled objects compare byte-for-byte with the preserved pre-probe objects,
+including metadata and relocations. The predicate remains 20 bytes exact and
+`get_result` 64 bytes exact. Their complete unit stays 9/9 and the other caller
+unit 14/14, with all code/data exact and actual compiled source linker inputs.
+Full incremental checks have zero metric, name, retention or coverage changes.
+Fresh-main checks preserve +88 data bytes, zero new functions/code and no
+losses. All 3,582 linked units and 17,739 retention entries pass. Host tests,
+exception inventory and whitespace pass; no new compiler construct is added.
+
+The no-argument predicate call/return mismatch is resolved. The separate
+allocator receiver-as-index convention, DHCP bounds and other native protocol
+interfaces remain documented debt. No length contract is invented. The
+volatility candidate at `lbl_805D7B0C` was not probed: its remaining plain
+read/store need their own scheduling/observability proof. Output-pointer
+families B40/B44/B48 require broader API tracing and are not guessed here.
+The metadata hold is unchanged; keep draft pending current-head review/CI.

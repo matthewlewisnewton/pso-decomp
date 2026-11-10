@@ -4,6 +4,7 @@
 #include "pso/misc/TLobby_8028D714.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.h"
+#include "pso/ui/TAdSinglePlyChrSelectGC_8028D5D4.h"
 #include "pso/misc/TChCrLoadReq.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/TChCrLoadAfs.h"
@@ -86,7 +87,6 @@ struct Sel_8028CD18 {
 };
 
 extern "C" {
-s32 is_selection_done__23TAdSinglePlyChrSelectGCFPv(void *);
 void start_preview_loads__23TAdSinglePlyChrSelectGCFPv(Gc_8028CB6C *arg0);
 void *create__22TChCrLoadAfsTextureReqFPvPv(void *arg0, void *arg1);
 s32 is_node_tree_valid(u32, s32);

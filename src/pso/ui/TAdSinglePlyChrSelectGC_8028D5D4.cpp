@@ -1,7 +1,7 @@
 #include "types.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_8028D5D4.h"
 
-u8 is_selection_done__23TAdSinglePlyChrSelectGCFPv(void *arg0) {
+s32 is_selection_done__23TAdSinglePlyChrSelectGCFPv(void *arg0) {
     return (u8) (*(s32 *)((s8 *)arg0 + 0x2C) == 2);
 }
 
@@ -16,7 +16,7 @@ u32 chr_select_load_buffer_table[8];
 extern u32 chr_select_load_buffer_base;
 extern u32 chr_select_load_buffer;
 s32 TAdSinglePlyChrSelectGC::get_result() {
-    if (((s32 (*)())is_selection_done__23TAdSinglePlyChrSelectGCFPv)() != 0) {
+    if (is_selection_done__23TAdSinglePlyChrSelectGCFPv(this) != 0) {
         return this->m_28;
     }
     return 0;
