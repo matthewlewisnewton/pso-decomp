@@ -616,6 +616,104 @@ void TAdSinglePlyChrSelectGC__sub_8042D604(void) {
     EXIUnlock(0);
 }
 
+s32 TAdSinglePlyChrSelectGC__sub_8042D7E0(u8 *buf) {
+    u8 *head;
+    u8 *body;
+    u8 *tail;
+    s32 head_len;
+    s32 body_len;
+    s32 tail_len;
+    u8 *body_end;
+    u8 *head_end;
+    u32 cmd;
+    s32 len;
+    s32 count;
+
+    if (modem_exi_state.receive.f14 != 0) {
+        return -5;
+    }
+    if (modem_exi_state.receive.f34 == 0) {
+        if (modem_exi_state.receive.f38 == 0) {
+            return 0;
+        }
+        ModemLockExi();
+    } else {
+        modem_exi_state.receive.f34 = 0;
+        modem_exi_state.receive.f38 = 0;
+        ModemLockExi();
+        lbl_805D7C90.f4 |= 0x20;
+        ModemWriteRegister(0x01, lbl_805D7C90.f4);
+        ModemWriteRegister(0x13, 0);
+        ModemWriteRegister(0x10, 0);
+        ModemWriteRegister(0x11, 1);
+    }
+    modem_exi_state.receive.f38 = 0;
+
+    len = ModemReadRegister(0x0B) << 8;
+    len += ModemReadRegister(0x0C);
+    if (len == 0) {
+        EXIUnlock(0);
+        return 0;
+    }
+
+    cmd = 0x28000000 | ((len << 8) & 0xFFFF00);
+    EXISelect(0, 2, 4);
+    EXIImm(0, &cmd, 4, EXI_WRITE, NULL);
+    EXISync(0);
+
+    head_end = (u8 *)(((size_t)buf + 31) & ~(size_t)31);
+    body_end = (u8 *)((size_t)(buf + len) & ~(size_t)31);
+    tail = NULL;
+    body = NULL;
+    head = NULL;
+    tail_len = 0;
+    body_len = 0;
+    head_len = 0;
+    if (head_end >= body_end) {
+        head = buf;
+        head_len = len;
+    } else {
+        if (buf != head_end) {
+            head = buf;
+            head_len = head_end - buf;
+        }
+        body = head_end;
+        body_len = body_end - head_end;
+        if (body_end < buf + len) {
+            tail = body_end;
+            tail_len = (buf + len) - body_end;
+        }
+    }
+
+    while (head_len > 0) {
+        count = head_len > 4 ? 4 : head_len;
+        EXIImm(0, head, count, EXI_READ, NULL);
+        EXISync(0);
+        head_len -= 4;
+        head += 4;
+    }
+    if (body_len > 0) {
+        EXIDma(0, body, body_len, EXI_READ, NULL);
+        EXISync(0);
+    }
+    while (tail_len > 0) {
+        count = tail_len > 4 ? 4 : tail_len;
+        EXIImm(0, tail, count, EXI_READ, NULL);
+        EXISync(0);
+        tail_len -= 4;
+        tail += 4;
+    }
+    if (body_len > 0) {
+        DCInvalidateRange(body, body_len);
+    }
+    EXIDeselect(0);
+
+    lbl_805D7C90.f4 |= 0x20;
+    ModemWriteRegister(0x01, lbl_805D7C90.f4);
+    EXIUnlock(0);
+    return len;
+}
+
 #pragma push
 #pragma opt_common_subs off
 s32 TAdSinglePlyChrSelectGC__sub_8042DD70(u8 *data, s32 length, void (*callback)(s32)) {

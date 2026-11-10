@@ -173,7 +173,6 @@ extern u32 net_transport_buffer_ptr_b;
 s32 TLobby__sub_803F8470(u8 *data, s32 size);
 extern u8 lobby_net_config_block[];
 extern T_803F86C0 lbl_805D7A50;
-s32 TAdSinglePlyChrSelectGC__sub_8042D7E0(void *);
 s32 TLobby__sub_803F812C(u16 arg0, void *arg1, u16 *arg2);
 s32 TLobby__sub_803F8D24(Info_803F861C *);
 s32 TLobby__sub_803F861C(Info_803F861C *arg0);
@@ -658,7 +657,7 @@ s32 TLobby__sub_803F812C(u16 arg0, void *lobby, u16 *arg2) {
             }
         }
     } else {
-        s32 r = TAdSinglePlyChrSelectGC__sub_8042D7E0(lobby);
+        s32 r = TAdSinglePlyChrSelectGC__sub_8042D7E0((u8 *)lobby);
         if (r < 0) {
             *arg2 = 0;
         } else {

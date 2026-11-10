@@ -1,5 +1,8 @@
 # Modem command-path recovery
 
+Current validation base: `fffd67d0c35e1fdaf17880c563739750e7c35813`.
+The unit has 23 recovered bodies, 14 exact functions, and remains unlinked.
+
 Initial base: fork main `f0f05f3afe56fd2b71e9dc1fe946e2fa03c84b86`.
 Reference: upstream `8c507b2dacae5428291a823c3868ca486419660c`, including
 network C recovery #213 (`76d99c974ba4897eca428c505be1af4d4f6ec124`) and
@@ -298,3 +301,71 @@ does not authenticate an original helper or dead-local/frame organization.
 No Dolphin code is copied or adapted here. The six earlier stack-layout holds
 remain unresolved; a bounded public-source search did not supply independent
 original-source evidence that would justify the rejected unused locals.
+
+
+## Synchronous receive and current validation
+
+The same receive increment adds `0x8042D7E0`, 1,424 original bytes, with a
+shared byte-buffer declaration and one explicit conversion at the transport's
+existing generic buffer boundary. It retains the early busy/no-data returns,
+first-entry flag clears before locking, register setup order and the clearing
+of f38 after lock acquisition. It does not change unrelated register shadows.
+An empty modem FIFO only unlocks and returns zero. For data, it uses immediate
+head/tail reads and synchronous DMA with a null completion callback followed by
+`EXISync`. It invalidates only the completed DMA body after all reads, then
+deselects, restores the interrupt mask, unlocks and returns the original length.
+It neither calls the asynchronous completion nor updates asynchronous receive
+progress. No bounds check or callback-context lock suppression absent from the
+original is introduced.
+
+The synchronous body is 99.9073% fuzzy at the original 1,424-byte length.
+All 33 differing instruction operands are stack immediates; control flow and
+call targets agree. This is a ninth recovered non-exact body, not a new exact
+match. The initial two new exact routines and all pre-existing exact routines
+remain exact. The only absent bodies are the modem interrupt dispatcher at
+`0x8042C2E4` and initializer at `0x8042CEF8`.
+
+`tools/tests/test_modem_receive.py` compiles the actual current receive bodies
+and record declarations with synthetic device stubs. Eight scenarios cover
+async head/DMA/tail completion, callback-visible state mutation and post-callback
+reset, immediate-only completion,
+early busy/no-data exits, empty FIFO, first-entry register ordering and shadow
+preservation, and synchronous DMA/cache ordering, including mixed immediate/DMA reads,
+without async-state changes.
+The fixture uses 32-bit scalar types with host pointers: it checks semantics
+and call ordering, not target record layout, native frame matching or real
+hardware. The test is explicitly skipped if no host C++ compiler is available;
+it executes and passes in this validation environment. No original game inputs
+or copied emulator code are needed for this test.
+
+The branch merges exact current main
+`fffd67d0c35e1fdaf17880c563739750e7c35813` after independently authenticating
+the shared baseline's clean tracked sources, tool/compiler hashes, generated
+configuration and ordered input list. The candidate has its own capacity-gated
+native build; no duplicate main build is used. The native DOL, `check_pr.py`,
+all nine strict interval categories, linked units, retention and exception
+inventory checks pass against that baseline.
+
+| Measure | Current main | Candidate | Change |
+| --- | ---: | ---: | ---: |
+| Exact functions | 27,420 | 27,422 | +2 |
+| Exact code bytes | 4,217,568 | 4,218,228 | +660 |
+| Exact data bytes | 1,472,639 | 1,472,639 | 0 |
+| Source-linked code bytes | 3,802,084 | 3,802,084 | 0 |
+| Source-linked data bytes | 1,193,991 | 1,193,991 | 0 |
+| Linked units | 3,594 | 3,594 | 0 |
+
+The new receive bodies add no exact or source-linked bytes yet. All modem
+storage extents remain unchanged. Separately, the main update after 1a18
+removes four bytes at `[0x8051857C, 0x80518580)` from the spatial-audio unit's
+reported BSS range. Those bytes were counted exact in the earlier report;
+this inherited main accounting change is not attributed to modem recovery.
+The exact-current-main comparison loses no coverage or exactness.
+
+Readiness remains held on the nine non-exact recovered bodies, two absent
+bodies, incomplete unit-local data layout and unresolved storage/interface
+ownership. No dummy locals, newly invented padding ownership, raw offset
+aliases, new intrinsic, compiler profile or optimizer changes are introduced.
+
+All 269 source-tool tests pass in this environment, including the eight-scenario
+receive semantics fixture. The native layout and matching holds remain separate.
