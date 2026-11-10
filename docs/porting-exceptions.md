@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `4ae351128`, 2026-11-09)
+## Summary (regenerated after merging main `1d44ff774`, 2026-11-09)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `4ae351128` (2026-11-09). Assembly is counted as source lines;
+after merging main `1d44ff774` (2026-11-09). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,774 | 877 |
-| Per-unit compiler overrides in `configure.py` | 183 | 183 |
+| CodeWarrior pragmas (excluding push/pop) | 5,775 | 877 |
+| Per-unit compiler overrides in `configure.py` | 185 | 185 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -209,7 +209,7 @@ an aligned stack object. A port should ignore these settings and use the plain
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-168 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+169 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -243,6 +243,22 @@ data.
 A port can use its regular compiler. Bind the legacy
 `draw_tri_fan_2d__14TObjCMHairMenuFllf` entry to the renderer that takes a
 `ColorLineList`, and supply the four coordinate pairs as typed constants.
+
+### `pso/ui/TAdSelectGameModeGC_802C4748.cpp` with GC/1.3.2 and `-fp_contract on`
+
+`draw_selection_plate` at `0x802C4B64` uses the caller's position and the two
+floats at plate offsets `0x21C` and `0x220` to build a four-vertex fan. The
+character-select, serial-entry, and password-entry callers pass the same
+four-byte color by value. GC/1.3.2 preserves the coordinate load schedule,
+as in the dialing rectangle. Assigning the vertex pointer before the color
+pointer reproduces the original register allocation. The depth expression
+fuses the index adjustment and base depth in the `fmadds` at `0x802C4C84`.
+The unsigned conversion bias and two float literals supply the new
+`.rodata` and `.sdata2` contributions.
+
+A port can use its regular compiler and call the renderer through a
+`ColorLineList` interface. Preserve the fused depth calculation if the port
+requires identical rounding.
 
 ### `pso/unk/text_80049FD8.cpp` and the Vol Opt debris initializer
 
