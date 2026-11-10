@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5776 | 877 |
-| configure.py per-unit override | 187 | 187 |
+| pragma | 5777 | 878 |
+| configure.py per-unit override | 189 | 189 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 878, `auto_inline` 836, `opt_common_subs` 609, `scheduling` 263, `opt_propagation` 237, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 878, `auto_inline` 836, `opt_common_subs` 610, `scheduling` 263, `opt_propagation` 237, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -248,6 +248,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `pso/misc/TOTrapAncient01.cpp` | `GC/2.0, -inline off,deferred, -fp_contract on, -str reuse,readonly, -pooldata=off, -opt nolifetimes` | GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris positions before storing them (GC/2.6 interleaves them: 91.09%). Reverse definitions and deferred generation place the native trap vtable before its switch tables while preserving the original function order. Contracted FP keeps the constructor and render exact (98.86% and 97.66% without it). -opt nolifetimes keeps render exact (99.42% without it). -pooldata=off keeps play_sounds' copy prologue (94.54% without it); read-only strings keep the .rodata/.data/.sdata layout. |
 | `pso/object/TObjDFDemo1.cpp` | `-sdata 4` | Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4). |
 | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | Keep both 8-byte afterimage tables out of .sdata in the demo constructor. |
+| `pso/object/TObjFish_8033CCC8.cpp` | `-inline off,deferred` | Deferred emission groups the Falz cutscene's motion indices, origin and vtable. |
 | `pso/enemy/TObjEneBalClawBody_80090178.cpp` | `-inline deferred, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneRe2Flower_800C3E14.cpp` | `-inline off,deferred` | Deferred generation preserves the flower vtable before its dispatch table. |
 | `pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -281,6 +282,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `pso/misc/TCameraCtrl.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TKeyBoardControl_8025EC04.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/menu/TAdMultiOkGC.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TLobby_80228154.cpp` | `GC/1.3.2` | TLobby_80228154: its sprite draw keeps the frame size and flag tests only under 1.3.2 (upstream zeroz41/pso-decomp #208). |
 | `pso/misc/TLobby_802A5120.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/unk/text_8032B318.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/player/TObjPlayer_802D5B78.cpp` | `GC/1.3.2` | The player hit-vector snapshot needs 1.3.2's const-input copy scheduling. |
@@ -580,6 +582,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/enemy/TObjEneMe3Stelth.cpp` | fp_contract×6, opt_propagation×1 |
 | `src/pso/enemy/TObjEneMe3Stelth_800F0AE4.cpp` | readonly_strings×1 |
 | `src/pso/enemy/TObjEneMerillLia.cpp` | opt_common_subs×2, defer_codegen×1, opt_loop_invariants×1, fp_contract×1 |
+| `src/pso/enemy/TObjEneMoja.cpp` | opt_common_subs×1 |
 | `src/pso/enemy/TObjEneMorfos.cpp` | opt_common_subs×3, defer_codegen×1, opt_propagation×1, fp_contract×1 |
 | `src/pso/enemy/TObjEneMorfosArm_80335218.cpp` | readonly_strings×1 |
 | `src/pso/enemy/TObjEneMorfos_80337500.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |

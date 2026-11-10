@@ -1,24 +1,21 @@
-#include "types.h"
+#include "pso/map/ChallengeEnemySet.h"
 #include "pso/system/byteswap.h"
 #include "pso/misc/TLobby.h"
-
-extern u8 *lbl_805D60C4;
-extern s32 lbl_805D60C8;
 
 void TLobby::append_swapped_u32(s32 *arg0) {
     s32 sp8;
 
-    if (lbl_805D60C4 != NULL) {
+    if (challenge_action_buffer != NULL) {
         sp8 = *arg0;
         bswap_32((u32 *)&sp8);
-        move_data(lbl_805D60C4 + lbl_805D60C8, &sp8, 4);
-        lbl_805D60C8 += 4;
+        move_data(challenge_action_buffer + challenge_action_size, &sp8, 4);
+        challenge_action_size += 4;
     }
 }
 
-void TLobby::append_entity_entry() {
-    if (lbl_805D60C4 != NULL) {
-        move_data(lbl_805D60C4 + lbl_805D60C8, this, 1);
-        lbl_805D60C8 += 1;
+void ChallengeEventCommand::append() const {
+    if (challenge_action_buffer != NULL) {
+        move_data(challenge_action_buffer + challenge_action_size, &opcode, 1);
+        challenge_action_size += 1;
     }
 }

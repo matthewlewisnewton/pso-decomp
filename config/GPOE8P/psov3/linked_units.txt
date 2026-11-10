@@ -803,6 +803,8 @@ pso/item/TUnk_804F0FF0.cpp
 pso/item/TUnk_804F28E0.cpp
 pso/item/WeaponAttackActions.cpp
 pso/item/WeaponSpecialSelection.cpp
+pso/map/ChallengeEnemySet.cpp
+pso/map/CsnQuery.cpp
 pso/map/FloorArea_8029E764.cpp
 pso/map/FloorLifecycleTables.cpp
 pso/math/MatrixTransforms.cpp
@@ -1109,6 +1111,7 @@ pso/misc/TLobby_80226070.cpp
 pso/misc/TLobby_802268F4.cpp
 pso/misc/TLobby_80227A2C.cpp
 pso/misc/TLobby_80227AA0.cpp
+pso/misc/TLobby_80228154.cpp
 pso/misc/TLobby_80228818.cpp
 pso/misc/TLobby_80228C84.cpp
 pso/misc/TLobby_8023F734.cpp
@@ -2128,6 +2131,7 @@ pso/object/TObjEvtCollision.cpp
 pso/object/TObjFish.cpp
 pso/object/TObjFish_8001ED90.cpp
 pso/object/TObjFish_800E2FFC.cpp
+pso/object/TObjFish_8033CCC8.cpp
 pso/object/TObjFogCollision.cpp
 pso/object/TObjFogCollisionPoison.cpp
 pso/object/TObjFogCollisionSwitch.cpp

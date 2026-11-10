@@ -4,6 +4,7 @@
 #include "pso/map/CsnQuery.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/object/TObjMapCsn.h"
+#include "pso/render/render_util.h"
 
 #pragma inline_depth(1)
 #pragma auto_inline off
@@ -75,6 +76,24 @@ struct Face_800798A0 {
     Vec_800798A0 n;
 };
 
+// The collision model stores one 0x24-byte triangle per entry.
+struct CsnTriangle {
+    u16 indices[3];
+    u16 flags;
+    Vec normal;
+    Vec center;
+    f32 radius;
+};
+
+struct CsnModel {
+    u8 unknown_00[4];
+    const Vec *vertices;
+    s32 triangle_count;
+    const CsnTriangle *triangles;
+};
+
+typedef char CsnTriangleSize[sizeof(CsnTriangle) == 0x24 ? 1 : -1];
+
 struct M_80079C64 { u8 pad[4]; f32 x; f32 y; f32 z; f32 rad; u32 flags; };
 
 struct P_80079C64 { f32 x; f32 y; f32 z; };
@@ -124,7 +143,7 @@ void TObjPlayer__sub_80079108(void);
 s32 TObjPlayer__sub_80079118(s32 *);
 void TObjPlayer__sub_8007911C(void);
 void TObjPlayer__sub_80079120(s32);
-s32 evaluate_ground_triangles(s32, s32, u32 *);
+s32 evaluate_ground_triangles(Vec *origin, u32 mask, CsnGroup *const *groups);
 extern s32 lbl_804389CC[];
 s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2);
 s32 TObjPlayer__sub_80079118(s32 * _w0);
@@ -152,7 +171,10 @@ extern Vec_800798A0 lbl_8050BF40;
 extern Vec_800798A0 lbl_8050BF60;
 extern s32 csn_query_hit_count;
 extern const f32 lbl_805D91F0;
+extern const f32 lbl_805D91F4;
+extern const f32 lbl_805D91F8;
 extern const f32 lbl_805D91FC;
+extern const f32 lbl_805D9200;
 extern const f32 lbl_805D9208;
 extern const f32 lbl_805D920C;
 CsnGroup **get_data_ptr__10TObjMapCsnFv();
@@ -162,8 +184,6 @@ void TObjPlayer__sub_80079114(void);
 f32 vector_length(void *);
 Wall_8007A138 *query_collision_segment_groups(Vec_8007A138 *a, Vec_8007A138 *b, u32 mask);
 s32 calc_segment_xz_distance_sq(Vec_8007A138 *c, Vec_8007A138 *o, Vec_8007A138 *e, Vec_8007A138 *d, f32 radius, f32 hsq, f32 inv);
-void TObjPlayer__sub_8007910C(void);
-void TObjPlayer__sub_80079110(void);
 
 typedef char RecoveredGlobal_800790F0_lbl_804F5800_size[sizeof(RecoveredGlobal_800790F0_lbl_804F5800) == 0x100 ? 1 : -1];
 s32 get_csn_group_flags(u8 arg0) {
@@ -171,8 +191,8 @@ s32 get_csn_group_flags(u8 arg0) {
 }
 
 void TObjPlayer__sub_80079108(void) {  }
-void TObjPlayer__sub_8007910C(void) {  }
-void TObjPlayer__sub_80079110(void) {  }
+void TObjPlayer__sub_8007910C(const CsnContact *, const NJS_ARGB *) {  }
+void TObjPlayer__sub_80079110(const CsnHit *) {  }
 void TObjPlayer__sub_80079114(void) {  }
 s32 TObjPlayer__sub_80079118(s32 * _w0) {  }
 void TObjPlayer__sub_8007911C(void) {  }
@@ -219,14 +239,148 @@ s32 calc_segment_xz_distance_sq(Vec_8007A138 *c, Vec_8007A138 *o, Vec_8007A138 *
 extern s32 lbl_80438988[];
 void *query_prepared_wall_polygons(void *self);
 extern s32 lbl_804389A8[];
-void vsub(void *, void *, void *);
 extern E_80079580 *wall_query_scene_buffer;
 extern f32 csn_query_nearest_hit_t;
 extern s32 wall_query_hit_result;
-extern const f32 lbl_805D91F4;
 s32 query_wall_segment(void *arg0, void *arg1, void *arg2, s32 arg3);
 CsnGroup *select_ground_query_groups(CsnVector *arg0, u32 arg1);
 s32 prepare_wall_query_polygons(void *arg0, f32 r, s32 mask);
+
+static inline void store_ground_contact(CsnContact *contact, f32 x, f32 y, f32 z,
+                                        f32 t, f32 nx, f32 ny, f32 nz, const CsnTriangle *triangle) {
+    contact->point.x = x;
+    contact->point.y = lbl_805D91F8 * t + y;
+    contact->point.z = z;
+    contact->normal.x = nx;
+    contact->normal.y = ny;
+    contact->normal.z = nz;
+    contact->flags = triangle->flags;
+}
+
+extern "C" s32 evaluate_ground_triangles(Vec *origin, u32 mask, CsnGroup *const *groups) {
+    Vec direction;
+    u32 mask_10;
+    u32 mask_04;
+    u32 mask_02;
+    u32 mask_08;
+    u32 ground_mask;
+    s32 i;
+    s32 count;
+    const Vec *vertices;
+    const CsnTriangle *triangle;
+    CsnContact *contacts;
+    // The original leaves this register untouched until a contact is stored.
+    // The only read before a store can be the call to the empty debug hook.
+#ifdef __MWERKS__
+    CsnContact *selected;
+#else
+    CsnContact *selected = NULL;
+#endif
+    CsnHit &result = lbl_80500140;
+    result.hit = 0;
+    contacts = result.contact;
+    lbl_8050BF60.x = origin->x;
+    lbl_8050BF60.y = lbl_805D91F8 + origin->y;
+    lbl_8050BF60.z = origin->z;
+    f32 nearest = lbl_805D91F4;
+    vsub(origin, &lbl_8050BF60, &direction);
+
+    f32 x = origin->x;
+    f32 y = origin->y;
+    f32 z = origin->z;
+    mask_10 = mask & 0x10;
+    mask_04 = mask & 0x4;
+    mask_02 = mask & 0x2;
+    mask_08 = mask & 0x8;
+    ground_mask = mask & ~0x1E;
+
+    for (; *groups != NULL; ++groups) {
+        CsnModel *model = (*groups)->model;
+        i = 0;
+        count = model->triangle_count;
+        triangle = model->triangles;
+        vertices = model->vertices;
+        for (; i < count; ++i, ++triangle) {
+            f32 bx, ax, az, bz;
+            u16 flags = triangle->flags;
+            if (!(flags & mask)) {
+                continue;
+            }
+            f32 dz = triangle->center.z;
+            f32 dx = triangle->center.x;
+            f32 radius = triangle->radius;
+            dx -= x;
+            dz -= z;
+            radius *= radius;
+            if (dx * dx + dz * dz > radius) {
+                continue;
+            }
+            f32 ny = triangle->normal.y;
+            if (ny < lbl_805D91FC) {
+                continue;
+            }
+            const Vec *a = &vertices[triangle->indices[0]];
+            const Vec *b = &vertices[triangle->indices[1]];
+            const Vec *c = &vertices[triangle->indices[2]];
+            if (a->y > y && b->y > y && c->y > y) {
+                continue;
+            }
+            az = a->z - z;
+            bx = b->x - x;
+            ax = a->x - x;
+            bz = b->z - z;
+            // The signed edge tests use the triangle winding in the XZ plane.
+            if (az * bx - ax * bz < lbl_805D9200) {
+                continue;
+            }
+            f32 cx = c->x - x;
+            f32 cz = c->z - z;
+            if (bz * cx - bx * cz < lbl_805D9200) {
+                continue;
+            }
+            if (cz * ax - cx * az < lbl_805D9200) {
+                continue;
+            }
+            f32 ay = a->y - y;
+            f32 nx = triangle->normal.x;
+            f32 nz = triangle->normal.z;
+            // Keep the negation in the contracted dot product before division.
+            f32 plane = -(az * nz + (ax * nx + ay * ny));
+            f32 t = -(plane / (lbl_805D91F8 * ny));
+            // Slot zero keeps the nearest ground hit. The remaining slots
+            // keep the last hit for their respective surface bits.
+            if (mask_10 && (flags & 0x10)) {
+                result.hit |= 0x10;
+                selected = &contacts[1];
+                store_ground_contact(selected, x, y, z, t, nx, ny, nz, triangle);
+            }
+            if (mask_04 && (triangle->flags & 0x4)) {
+                result.hit |= 0x4;
+                selected = &contacts[2];
+                store_ground_contact(selected, x, y, z, t, nx, ny, nz, triangle);
+            }
+            if (mask_02 && (triangle->flags & 0x2)) {
+                result.hit |= 0x2;
+                selected = &contacts[3];
+                store_ground_contact(selected, x, y, z, t, nx, ny, nz, triangle);
+            }
+            if (mask_08 && (triangle->flags & 0x8)) {
+                result.hit |= 0x8;
+                selected = &contacts[4];
+                store_ground_contact(selected, x, y, z, t, nx, ny, nz, triangle);
+            }
+            if ((triangle->flags & ground_mask) && t < nearest) {
+                result.hit |= 1;
+                nearest = t;
+                selected = contacts;
+                store_ground_contact(selected, x, y, z, t, nx, ny, nz, triangle);
+            }
+            TObjPlayer__sub_80079110(&result);
+            TObjPlayer__sub_8007910C(selected, &debug_color_blue);
+        }
+    }
+    return result.hit & 1;
+}
 #pragma pop
 
 s32 query_wall_segment(void *arg0, void *arg1, void *arg2, s32 arg3) {
@@ -717,16 +871,16 @@ s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2) {
     if ((u32) *arg1 == 0U) {
         if (((u32)refill_csn_candidate_cache((P_80079C64 *)(arg0), (M_80079C64 **)(arg1), arg2)) == 0U) {
             var_r31 = NULL;
-        } else if (evaluate_ground_triangles((s32)arg0, arg2, arg1) == 0) {
+        } else if (evaluate_ground_triangles(arg0, arg2, (CsnGroup *const *)arg1) == 0) {
             var_r31 = NULL;
         }
     } else {
-        if (evaluate_ground_triangles((s32)arg0, arg2, arg1) != 0) {
+        if (evaluate_ground_triangles(arg0, arg2, (CsnGroup *const *)arg1) != 0) {
             goto done;
         }
         if (((u32)refill_csn_candidate_cache((P_80079C64 *)(arg0), (M_80079C64 **)(arg1), arg2)) == 0U) {
             var_r31 = NULL;
-        } else if (evaluate_ground_triangles((s32)arg0, arg2, arg1) == 0) {
+        } else if (evaluate_ground_triangles(arg0, arg2, (CsnGroup *const *)arg1) == 0) {
             var_r31 = NULL;
         }
     }
@@ -742,7 +896,7 @@ CsnHit *csnVecterUnder(const Vec *origin, u32 mask) {
     var_r31 = &lbl_80500140;
     if (((u32)select_ground_query_groups((CsnVector *)(origin), mask)) == 0U) {
         var_r31 = 0;
-    } else if (evaluate_ground_triangles((s32)origin, mask, lbl_804FFD40) == 0) {
+    } else if (evaluate_ground_triangles(const_cast<Vec *>(origin), mask, (CsnGroup *const *)lbl_804FFD40) == 0) {
         var_r31 = 0;
     }
     TObjPlayer__sub_80079118(lbl_804389E8);
