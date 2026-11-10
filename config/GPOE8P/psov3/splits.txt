@@ -6955,6 +6955,10 @@ pso/player/TObjPlayer_801E483C.cpp:
 
 pso/misc/TLanguage_801E4874.cpp:
 	.text       start:0x801E4874 end:0x801E4BCC
+	.sbss       start:0x805D5E58 end:0x805D5E5C
+
+original_unclaimed_805D5E5C:
+	.sbss       start:0x805D5E5C end:0x805D5E60 align:4
 
 pso/unk/text_801E4BCC.cpp:
 	.text       start:0x801E4BCC end:0x801E4CF0

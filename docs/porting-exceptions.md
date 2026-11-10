@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `1a18b4bd7577`, 2026-11-10)
+## Summary (regenerated after merging main `5f837b43888a`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `1a18b4bd7577` (2026-11-10). Assembly is counted as source lines;
+after merging main `5f837b43888a` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,771 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,774 | 880 |
 | Per-unit compiler overrides in `configure.py` | 189 | 189 |
 | Approved regressions | 0 | 0 |
 
@@ -176,6 +176,12 @@ changes all nine preceding card-loading functions. The provisional split now
 places the initializer with the adjacent network-config update and teardown
 routines under the existing ntInf profile. Ports use the plain `s32` parameter
 and the same function body.
+
+### Barba Ray constructor at `0x802EDE90`
+
+| File | What | Why | Port should |
+|---|---|---|---|
+| `src/pso/unk/text_802EDE90.cpp` | Scoped `opt_common_subs off`, `opt_propagation off`, and `opt_lifetimes off` | With CSE enabled the vector resets share a computed address instead of using indexed stores (96.78%, 1,600 bytes). Propagation reloads the data-bank address before installing the vtable (99.21%, 1,624 bytes). Lifetime splitting changes register allocation for the part and matrix loops (99.53%, 1,616 bytes). The three pragmas together preserve all 1,616 bytes with the existing unit flags. | Drop the optimizer pragmas. Keep the initialization order and use the target compiler's ordinary constructor and virtual dispatch when porting the rest of the class. |
 
 ### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
 
