@@ -152,7 +152,7 @@ typedef struct Obj_8004C940 {
     u8 pad2d8[0x380 - 0x2D8];
     s32 f380;
     u8 pad384[0x39C - 0x384];
-    Vec_8004C940 pos;
+    Vec pos;
     s32 f3a8;
 } Obj_8004C940;
 
@@ -523,7 +523,8 @@ void TBoss4DarkFalz::sub_8004C7E8() {
 
 void TBoss4DarkFalz::init_state() {
     freeze_all_players__14TBoss4DarkFalzFPv(this);
-    TObjDFDemo4::create(this, (void *)((char *)this + 924), *(void **)((s8 *)this + 0x3A8));
+    Obj_8004C940 *boss = (Obj_8004C940 *)this;
+    TObjDFDemo4::create(this, &boss->pos, boss->f3a8);
     play_area_music((char *)lbl_80437298);
     *(u32 *)((s8 *)this + 0x380) = 114;
 }

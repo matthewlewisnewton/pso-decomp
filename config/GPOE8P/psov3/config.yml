@@ -1837,6 +1837,7 @@ force_active:
   - __ct__11TOBoss4RockFPv
   - __ct__11TOKeyCave01FP7TObjectPv
   - __ct__11TObjDFDemo1FP7TObjectPC3Vecl
+  - __ct__11TObjDFDemo4FP7TObjectPC3Vecl
   - __ct__11TObjDFDemo5FP7TObjectPC3Vecl
   - __ct__11TPlayerSoulFP7TObjectUs
   - __ct__12CursorActionFv
@@ -2009,6 +2010,8 @@ force_active:
   - __ct__17TOSensorAncient01FP7TObjectPv
   - __ct__17TOSensorGeneral01FP7TObjectPv
   - __ct__17TObjEneBm3FlyNestFP7TObjectP14EnemySetRecord
+  - __ct__17TObjEneMe1CanadinFP7TObjectP17TObjEneMe1CanadinP3Vecll
+  - __ct__17TObjEneMe1CanadinFP7TObjectPvl
   - __ct__17TObjEneMe3ShinowaFP7TObject
   - __ct__17TObjItemNameEntryFP7TObject
   - __ct__17TObjParticleLobbyFP7TObjectPv
@@ -2131,6 +2134,7 @@ force_active:
   - __dt__11TObjDFDemo1Fv
   - __dt__11TObjDFDemo2Fv
   - __dt__11TObjDFDemo3Fv
+  - __dt__11TObjDFDemo4Fv
   - __dt__11TObjDFDemo5Fv
   - __dt__11TObjDFDemoFFPvs
   - __dt__11TObjDFJisinFv
@@ -2744,6 +2748,7 @@ force_active:
   - __vt__11TObjDFDemo1
   - __vt__11TObjDFDemo2
   - __vt__11TObjDFDemo3
+  - __vt__11TObjDFDemo4
   - __vt__11TObjDFDemo5
   - __vt__11TObjDFDemoF
   - __vt__11TObjDFJisin
@@ -3823,6 +3828,7 @@ force_active:
   - bm_ene_me1_gee_resource_descriptor
   - bm_ene_me1_mb_model_names
   - bm_ene_me1_mb_motion_names
+  - bm_ene_me1_mb_resource_descriptor
   - bm_ene_me3_shinowa_model_names
   - bm_ene_me3_shinowa_motion_names
   - bm_ene_morfos_low_model_names
@@ -4380,6 +4386,8 @@ force_active:
   - can_start_win_timer__15TObjSoloPlayWinFv
   - can_trigger__15TBoss3VoloptP02Fv
   - can_warp__11TObjMapWarpFlUs
+  - canadin_attack_params
+  - canadin_base_stats
   - canadin_discharge_motion_scale
   - canadin_effect_negative_one
   - canadin_effect_zero
@@ -4387,7 +4395,10 @@ force_active:
   - canadin_light_width_cutoff
   - canadin_light_width_decay
   - canadin_line_initial_phase_range
+  - canadin_movement_params
   - canadin_random_scale
+  - canadin_render_point
+  - canadin_resistance_params
   - canadin_setup_param_block
   - cancel_fade_state__15TObjEneGyaranzoFv
   - cancel_trade_for_member_out_of_range__Fl
@@ -5039,6 +5050,7 @@ force_active:
   - create_backgrounds__23TAdSinglePlyChrSelectGCFPv
   - create_backgrounds__9TSaveChCrFv
   - create_buy_list_windows__24TShopEquipmentListWindowFPv
+  - create_canadin__23TObjEneMe1CanadinLeaderFP17TObjEneMe1CanadinP3Vecll
   - create_cane_if_ready__10TObjPlayerFlPv
   - create_card_action_window__17TWindowSubComCardFv
   - create_ch_cr_tag_occ_header__FPv
@@ -5241,6 +5253,7 @@ force_active:
   - destroy_sub_objects__15TBoss3VoloptP02Fv
   - destroy_subobjects_recursive__9TItemListFv
   - detect_device_type__16TKeyBoardControlFl
+  - dfdemo4_strip_nodes
   - dhcp_build_packet__6TLobbyFv
   - dimedian_action_table
   - dimedian_appear_motion_filename
@@ -5369,6 +5382,7 @@ force_active:
   - draw__18TWindowPartyStatusFv
   - draw_active_beam__11TObjDoorKeyFv
   - draw_actor_model__10TObjPlayerFPv
+  - draw_afterimages__11TObjDFDemo4Fv
   - draw_agreement_text__18TAdAgreementBaseGCFv
   - draw_animated_beam__18TObjLazerFenceNormFv
   - draw_area_chunk_objects__10TObjPlayerFv
@@ -5380,6 +5394,7 @@ force_active:
   - draw_background__18TWindowPartyStatusFPUc
   - draw_blend_motion_tree
   - draw_blob_shadows__22TObjEneSlimeTailAttackFv
+  - draw_body__11TObjDFDemo4Fv
   - draw_body__13TBoss5GryphonFv
   - draw_body_models__11TBoss6Type2Fv
   - draw_bottom_bar__20TWindowSubStatusDispFv
@@ -7837,9 +7852,6 @@ force_active:
   - lbl_804FF67C
   - lbl_804FF82C
   - lbl_805007C8
-  - lbl_8050093C
-  - lbl_80500948
-  - lbl_80500954
   - lbl_805009A0
   - lbl_805009A8
   - lbl_805009B0
@@ -13918,6 +13930,7 @@ force_active:
   - render__11TObjDFDemo1Fv
   - render__11TObjDFDemo2Fv
   - render__11TObjDFDemo3Fv
+  - render__11TObjDFDemo4Fv
   - render__11TObjDFDemo5Fv
   - render__11TTecRaZondeFv
   - render__11TWindowChatFv
@@ -14536,6 +14549,7 @@ force_active:
   - run_task__11TObjDFDemo1Fv
   - run_task__11TObjDFDemo2Fv
   - run_task__11TObjDFDemo3Fv
+  - run_task__11TObjDFDemo4Fv
   - run_task__11TObjDFDemo5Fv
   - run_task__11TObjDFJisinFv
   - run_task__11TObjInfoColFv
@@ -15980,7 +15994,6 @@ force_active:
   - sub_8004D098__14TBoss4DarkFalzFv
   - sub_8004D29C__14TBoss4DarkFalzFv
   - sub_8004E068__11TObjDFDemo1Fv
-  - sub_8004F2A8__11TObjDFDemo4Fv
   - sub_80056998__11TBoss4Type2Fv
   - sub_80056F90__11TBoss4Type2Fll
   - sub_80056FEC__11TBoss4Type2Fl
