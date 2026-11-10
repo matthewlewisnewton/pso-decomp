@@ -438,3 +438,46 @@ model-accessor consumers retain the canonical header. Host vector and item-
 factory tests, inventory and whitespace pass. No extra match credit is
 claimed for the DHCP functions already in main. Keep draft with existing
 interface limitations. The failed metadata update is not retried.
+
+
+## Dispatcher/TCP main refresh
+
+Merge main `4e784e247d991f1fb25766fc80923242a9ba469a` into reviewed head
+`bf5c46ee64a00d7f4e3884b12810b635e85dc411`. The remote head was unchanged
+and no other active #303 owner was found. Main now contains the reviewed
+#376 dispatcher/TCP extraction and typed dispatcher-state cleanup. Only the
+two exception documents conflict. Retain main's new dispatcher/TCP records
+and the existing Falz/DHCP entries, then regenerate the inventory: 5,770
+pragmas in 876 files and 179 compiler overrides. No manual source resolution
+or new exception beyond main is introduced. The shared DHCP/BML contracts
+and free lease parser remain unchanged.
+
+The canonical dispatcher reset now forwards `s32` status, while the native
+DHCP caller's `s16(int)` boundary is deliberately retained with main's
+explanation and rejected-probe evidence. This merge does not claim to finish
+that ABI repair or override #376's reviewed scope. The dispatcher thread
+handles and reset clear range retain main's shared typed state and assertions.
+
+Both builds ran through the existing exclusive capacity wrapper and reproduce
+original DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Main passes
+full checks against preserved main `12cc95ca7`; the continuation passes full
+checks against fresh main `4e784e247`:
+
+| Measure | Main | Continuation | Delta |
+|---|---:|---:|---:|
+| Exact functions | 27,394 | 27,394 | 0 |
+| Matched code bytes | 4,202,324 | 4,202,324 | 0 |
+| Matched data bytes | 1,470,367 | 1,470,455 | +88 |
+| Complete code bytes | 3,706,824 | 3,706,824 | 0 |
+| Complete data bytes | 1,185,935 | 1,186,023 | +88 |
+| Linked units | 3,587 | 3,586 | -1 |
+
+No exact function, code/data address, linked range or padding is lost. All
+3,586 linked units are exact; retention has 17,713 names with no missing/stale
+entry. Dispatcher 12/12, DHCP 42/42 and packet runtime 24/24 remain exact
+code/data and actual source linker inputs. The incomplete TCP unit remains
+40/45 and the prefix 243/281, both on original-object fallback; neither is
+claimed recovered. All 180 accessor consumers retain the canonical header.
+Host vector and item-factory tests, exception inventory and whitespace pass.
+Keep draft with inherited interface limitations; the failed metadata write
+is not retried.

@@ -7,6 +7,10 @@
 typedef void (*NetTimerCallback)(void);
 
 extern "C" {
+void TLobby__sub_80419A00(void);
+s32 TLobby__sub_80419A34(void);
+s32 TLobby__sub_80419A7C(void);
+s16 NetInitializeDispatcher(void);
 s32 NetRegisterTimer(s32 period, s16 locked, NetTimerCallback fn);
 s32 NetUnregisterTimer(NetTimerCallback fn);
 }
@@ -29,7 +33,8 @@ struct NetTimerRecord {
 struct NetworkDispatchState {
     s32 lock_handle;
     s32 queue_handle;
-    u8 unknown_08[8];
+    u32 protocol_thread_handle;
+    u32 timer_thread_handle;
     s32 interval;
     NetProtocolHandlerEntry handlers[3];
     NetTimerRecord timers[10];
@@ -57,9 +62,12 @@ NET_DISPATCH_OFFSET(NetTimerRecord, next, 0x0C);
 NET_DISPATCH_OFFSET(NetTimerRecord, fn, 0x10);
 NET_DISPATCH_OFFSET(NetworkDispatchState, lock_handle, 0x00);
 NET_DISPATCH_OFFSET(NetworkDispatchState, queue_handle, 0x04);
+NET_DISPATCH_OFFSET(NetworkDispatchState, protocol_thread_handle, 0x08);
+NET_DISPATCH_OFFSET(NetworkDispatchState, timer_thread_handle, 0x0C);
 NET_DISPATCH_OFFSET(NetworkDispatchState, interval, 0x10);
 NET_DISPATCH_OFFSET(NetworkDispatchState, handlers, 0x14);
 NET_DISPATCH_OFFSET(NetworkDispatchState, timers, 0x2C);
+NET_DISPATCH_OFFSET(NetworkDispatchState, unknown_F4, 0xF4);
 NET_DISPATCH_OFFSET(NetProtocolMessage, first, 0x00);
 NET_DISPATCH_OFFSET(NetProtocolMessage, second, 0x02);
 NET_DISPATCH_OFFSET(NetProtocolMessage, protocol, 0x04);

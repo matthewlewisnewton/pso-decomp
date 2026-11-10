@@ -13918,9 +13918,17 @@ pso/misc/TLobby_804048E8.cpp:
 	.bss        start:0x805C06D8 end:0x805C1AD8
 
 pso/misc/TLobby_804050DC.cpp:
-	.text       start:0x804050DC end:0x8041ED8C
+	.text       start:0x804050DC end:0x80419A00
 	.data       start:0x804FD80C end:0x804FD890
-	.bss        start:0x805C1AD8 end:0x805C1DF0
+	.bss        start:0x805C1AD8 end:0x805C1C50
+
+pso/network/NetworkDispatcher.cpp:
+	.text       start:0x80419A00 end:0x8041A1D8
+	.bss        start:0x805C1C50 end:0x805C1D48
+
+pso/network/TcpProtocol.cpp:
+	.text       start:0x8041A1D8 end:0x8041ED8C
+	.bss        start:0x805C1D48 end:0x805C1DF0
 
 pso/network/SocketProtocolRuntime.cpp:
 	.text       start:0x8041ED8C end:0x80421620
