@@ -141,3 +141,13 @@ is not an independent semantic ownership proof. No word, padding object, reporti
 change or regression waiver is introduced. This interval is separate from the
 earlier eight-byte BSS/sdata2 qualification. All prior factory/lifetime holds
 remain, and the native-build certificates retain their exact source baselines.
+
+Main `c822df035d80ae71b693865d06874f9f69f60b97` subsequently brings the
+time-setting fold (#410) and progress update. All fifteen upstream path patches
+and the focused delta are preserved. The gated build and prior-head checks pass:
+3598 linked units remain exact and retention has 18394 names with no drift.
+The fold accounts for the lower unit count; original function and data addresses
+are retained. Its +1592 matched/linked code and +168 matched/linked data bytes
+and one newly exact initializer belong to upstream. The strict raw interval
+comparison introduces no additional coverage, exact-data or linked-data loss.
+Existing lifetime, raw helper and historical coverage qualifications remain.
