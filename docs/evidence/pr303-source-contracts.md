@@ -1218,3 +1218,34 @@ saved checkpoint objects. All three incoming Moja, collision-query and player
 objects are raw byte-identical to fresh main. Host tests, inventory and
 whitespace pass. The DHCP length, callback and allocator implementation holds
 remain separate; keep draft and the metadata restriction.
+
+
+## Explicit allocation/free wrapper arguments
+
+The preceding address-word cleanup exposes one additional bounded wrapper
+mismatch at 0x8007EB94..0x8007EBDC. `memory.h` already declares
+`void *xmalloc(u32)` and `void xfree(void *)`, consistent with their definitions.
+Native global `operator new` forwards its size in r3 directly to xmalloc.
+Native `safe_free` compares its address in r3 with zero and, if nonzero, calls
+xfree with that same r3. The free implementation then forwards the pointer and
+supplies allocator context in r4.
+
+Include the existing memory header and remove the false local
+`int xmalloc__FUl(void *)` and no-argument `s32 xfree__FPv()` declarations.
+Global new now returns `xmalloc(size)` directly. Keep `safe_free(u32 address)`'s
+public address-word interface and original null check, spelling the actual
+call as `xfree((void *)address)`. The conversion is the explicit existing native
+word/pointer boundary. No allocation size, allocator, provider, failure rule,
+exception behavior or ownership promise changes.
+
+The capacity-gated native build passes, reproducing the original DOL SHA-1.
+The complete wrapper object is raw byte-identical, including both functions,
+all metadata/symbols and every relocation. All ordered source and original link
+inputs are unchanged (3,588 source; 1,360 fallback). Incremental validation has
+zero metric, coverage, function or retention drift. Against sealed main
+`f0f05f3af`, the existing +88 data bytes, zero new functions/code and no-loss
+result remain: 3,588 exact linked units and 17,833 valid retention entries.
+The direct wrapper mismatch is resolved; this does not infer wider allocator
+ownership or rewrite unrelated address-word APIs. DHCP extent propagation and
+broader dispatcher callback contracts remain separate, and metadata is still
+held. Keep draft pending current checks and final review.
