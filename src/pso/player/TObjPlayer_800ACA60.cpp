@@ -515,12 +515,9 @@ s32 subtract_vector(void *, void *);
 extern s32 lbl_8043B0B4[];
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
-void acquire_target__11TObjEneMojaFPv(u8 *arg0);
 
 void update_attack_jump__11TObjEneMojaFv(Obj_800ACFE8 *);
 struct Moja_800AE450;
-s32 submit_cursor_candidate(void *, int);
-s32 minimap_render_dot(void *, int, int, int, f32);
 extern const f32 lbl_805D9BDC;
 
 f32 calc_xz_distance_sq(void *, void *, Vec_800AE18C *);
@@ -576,7 +573,6 @@ extern s32 model_render_flags;
 extern const f32 lbl_805D9C50;
 extern const f32 lbl_805D9C54;
 extern const f32 lbl_805D9C58;
-void render__11TObjEneMojaFv(u8 *arg0);
 
 s32 approach_angle_limited(s32, s32, s32);
 
@@ -1440,7 +1436,8 @@ s32 TObjEneMoja::update_action_hold_status() {
     }
     return 0;
 }
-void acquire_target__11TObjEneMojaFPv(u8 *arg0) {
+// CodeWarrior vtable entry points with an explicit receiver.
+extern "C" void vfunc_28__11TObjEneMojaFv(u8 *arg0) {
     s32 best_id;
     s32 i;
     s32 id;
@@ -1500,7 +1497,7 @@ void acquire_target__11TObjEneMojaFPv(u8 *arg0) {
     }
 }
 
-void render__11TObjEneMojaFv(u8 *arg0) {
+extern "C" void render__11TObjEneMojaFv(u8 *arg0) {
     Vec pos;
     Fade_800AF080 *fade;
     s32 cam;
@@ -1573,82 +1570,4 @@ void render__11TObjEneMojaFv(u8 *arg0) {
         ((TObjEnemy *)(arg0))->draw_ground_shadow(&pos, 0);
         break;
     }
-}
-
-void TObjEneMoja::run_task() {
-    u8 *arg0 = (u8 *)this;
-    f32 temp_f1;
-    s16 temp_r0;
-    s32 temp_r30;
-    u16 temp_r3;
-    TObjPlayer *temp_r3_2;
-    TObjChara *temp_r4;
-    if (check_demo_mode() == 1) {
-        fn_800ACA0C();
-        return;
-    }
-    temp_r3 = this->targetId;
-    if (temp_r3 < 0x1000U) {
-        temp_r3_2 = get_player_by_client_id(temp_r3);
-        if (temp_r3_2 != NULL) {
-            if (temp_r3_2->get_floor() == get_current_floor()) {
-                this->target = temp_r3_2;
-                goto done;
-            }
-        }
-        this->target = NULL;
-    done:;
-    } else if (temp_r3 < 0x4000U) {
-        this->target = get_enemy_entity(temp_r3);
-    } else {
-        this->targetId = 0xFFFFU;
-        this->target = NULL;
-    }
-    {
-        switch (this->mode) {
-        case 0:
-            update_idle_state();
-            break;
-        case 1:
-            update_appearance_jump__11TObjEneMojaFv((Moja_800AE7F4 *)(arg0));
-            break;
-        case 2:
-            update_appearance_drop__11TObjEneMojaFv((Moja_800AE450 *)((Moja_800AE450 *) (arg0)));
-            break;
-        case 3:
-            update_approach_state();
-            break;
-        case 4:
-            TObjEneMoja::update_punch_attack(arg0);
-            break;
-        case 5:
-            TObjEneMoja::update_technique_state(arg0);
-            break;
-        case 6:
-            update_attack_jump__11TObjEneMojaFv((Obj_800ACFE8 *) (arg0));
-            break;
-        case 7:
-            ((TObjPlayer *)arg0)->update_invincibility();
-            break;
-        case 8:
-            ((TObjPlayer *)arg0)->update_ground_effect();
-            break;
-        case 9:
-            update_death_state();
-            break;
-        }
-    }
-    ((TObjEnemy *)arg0)->update_prev_position();
-    copy_body_to_center();
-    submit_cursor_candidate(arg0, -1);
-    temp_r4 = this->target;
-    if ((temp_r4 != NULL) && (temp_r4->actorFlags & 0x02000800)) {
-        this->attackSequence = -1;
-        (this->timer) = 0;
-        (this->actorFlags) = (s32) ((this->actorFlags) & 0xFFDFFFFF);
-        this->target = NULL;
-    }
-    temp_f1 = this->m_2b4;
-    this->m_2b4 = (f32) (temp_f1 + lbl_805D9BDC);
-    minimap_render_dot((u8 *)&this->position, -0x5DB4, 1, 0, temp_f1);
 }

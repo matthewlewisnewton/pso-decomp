@@ -2,6 +2,7 @@
 #define PSO_ENEMY_TOBJENEMOJA_H
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/misc/RenderFadeState.h"
 
 struct MojaBattleStat {
     u8 unknown_00[0x18];
@@ -13,7 +14,8 @@ struct MojaCollisionState {
 };
 struct TObjEneMoja : public TObjEnemy {
     virtual ~TObjEneMoja();
-    void load_resources();
+    static void load_resources();
+    virtual void vfunc_28(); // Acquire a target through the TObjChara slot.
     virtual s32 update_action_hold_status();
     virtual s32 update_movement_status();
     virtual void vfunc_58();
@@ -23,7 +25,7 @@ struct TObjEneMoja : public TObjEnemy {
     virtual void vfunc_61();
     virtual void vfunc_62();
     virtual void vfunc_63();
-    void render();
+    virtual void render();
     void bindModel(int index);
     s32 appearance;
     f32 jumpSpeed;
@@ -34,7 +36,8 @@ struct TObjEneMoja : public TObjEnemy {
     f32 sinkOffset;
     f32 techniqueChance;
     f32 jumpChance;
-    u8 unknown_398[0x74];
+    TObject *effect;
+    RenderFadeState fades[4];
     static void *create(void *arg0);
     static void free_resources();
     void fn_800ACA0C();
@@ -45,7 +48,7 @@ struct TObjEneMoja : public TObjEnemy {
     static s32 update_punch_attack(void *self_800ADAAC);
     s32 update_approach_state();
     void update_idle_state();
-    void run_task();
+    virtual void run_task();
 };
 typedef char MojaSize[(sizeof(TObjEneMoja)==0x40C)?1:-1];
 #include <stddef.h>
@@ -53,5 +56,7 @@ typedef char MojaSize[(sizeof(TObjEneMoja)==0x40C)?1:-1];
 MOJA_OFFSET(appearance,0x374);
 MOJA_OFFSET(attackSequence,0x384);
 MOJA_OFFSET(roar,0x388);
+MOJA_OFFSET(effect,0x398);
+MOJA_OFFSET(fades,0x39C);
 #undef MOJA_OFFSET
 #endif
