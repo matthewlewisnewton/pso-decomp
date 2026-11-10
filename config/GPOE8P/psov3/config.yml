@@ -531,8 +531,6 @@ force_active:
   - TItemEffNeedleBase__class_name
   - TItemEffNeedlePos__class_name
   - TItemEffNeedle__class_name
-  - TItemEffOrgaFlowShot__ct
-  - TItemEffPG__ct
   - TItemEffectWeapon__class_name
   - TItemEquipBase__sub_80119100
   - TItemEquipBase__sub_80119168
@@ -1840,6 +1838,7 @@ force_active:
   - __atexit_funcs
   - __console_exit
   - __ct__10TBoss6RockFP7TObjectl
+  - __ct__10TItemEffPGFP7TObjectPv
   - __ct__10TItemMoneyFP7TObjectP9TItemData
   - __ct__10TObjCameraFP7TObjectPv
   - __ct__11TBoss4ZanzoFv
@@ -1926,6 +1925,7 @@ force_active:
   - __ct__13TUnk_804CC800FP3VeclllP7TObjectUc
   - __ct__13TUnk_804E4BF0FP7TObjectPv
   - __ct__13TUnk_804E6FA8FP7TObjectPUc
+  - __ct__13TUnk_804F0C08FP7TObjectPvPv
   - __ct__13TUnk_804F0C48FP7TObjectPUc
   - __ct__13TUnk_804F0D1CFP7TObjectUl
   - __ct__13TUnk_804F0D34FP7TObjectPUc
@@ -2067,6 +2067,7 @@ force_active:
   - __ct__20TAdLoadQuestPrtTxtGCFP7TObjectl
   - __ct__20TBoss3VoloptHiraisinFP7TObjectPv
   - __ct__20TEffStarLight2D_BaseFP7TObjectPv
+  - __ct__20TItemEffOrgaFlowShotFP7TObjectPv
   - __ct__20TItemReverseTechCtrlFP7TObject
   - __ct__20TODragonflyMachine01FPv
   - __ct__20TOExplosiveMachine01FPv
@@ -2290,6 +2291,7 @@ force_active:
   - __dt__13TUnk_804A0AA8Fv
   - __dt__13TUnk_804A204CFv
   - __dt__13TUnk_804A2164Fv
+  - __dt__13TUnk_804A2548Fv
   - __dt__13TUnk_804A4020Fv
   - __dt__13TUnk_804A4238Fv
   - __dt__13TUnk_804A4338Fv
@@ -2316,6 +2318,7 @@ force_active:
   - __dt__13TUnk_804EF130Fv
   - __dt__13TUnk_804EFA88Fv
   - __dt__13TUnk_804F0BF0Fv
+  - __dt__13TUnk_804F0C08Fv
   - __dt__13TUnk_804F0C48Fv
   - __dt__13TUnk_804F0D1CFv
   - __dt__13TUnk_804F0D34Fv
@@ -2600,6 +2603,7 @@ force_active:
   - __dt__20TBoss5GryphonTornadoFv
   - __dt__20TBoss7TentacleNeedleFv
   - __dt__20TEffStarLight2D_BaseFv
+  - __dt__20TItemEffOrgaFlowShotFv
   - __dt__20TItemReverseTechCtrlFv
   - __dt__20TODragonflyMachine01Fv
   - __dt__20TOExplosiveMachine01Fv
@@ -2737,6 +2741,7 @@ force_active:
   - __vt__10TBoss6Tube
   - __vt__10TDPBShower
   - __vt__10TEndingPic
+  - __vt__10TItemEffPG
   - __vt__10TItemMoney
   - __vt__10TItemShoot
   - __vt__10TItemTimer
@@ -3215,6 +3220,7 @@ force_active:
   - __vt__20TBoss7TentacleNeedle
   - __vt__20TContainerAncient01R
   - __vt__20TEffStarLight2D_Base
+  - __vt__20TItemEffOrgaFlowShot
   - __vt__20TItemReverseTechCtrl
   - __vt__20TODragonflyMachine01
   - __vt__20TOExplosiveMachine01
@@ -7028,7 +7034,6 @@ force_active:
   - init_work__11TBoss6Type1Fv
   - init_zeroed_object__10TObjPlayerFv
   - initialize__13TUnk_804A05C8FP15TItemHeapObjectUsll
-  - initialize__13TUnk_804F0C08FPvPvPv
   - initialize__16TItemWeaponRifleFlPUc
   - initialize_battle__19TPlayerBattleCtrl4PFv
   - initialize_behavior_parameters__13TObjEneMorfosFv
@@ -14322,6 +14327,7 @@ force_active:
   - render__20TBoss7TentacleNeedleFv
   - render__20TContainerAncient01RFv
   - render__20TEffStarLight2D_BaseFv
+  - render__20TItemEffOrgaFlowShotFv
   - render__20TODragonflyMachine01Fv
   - render__20TObjEneDarkGunCenterFv
   - render__20TObjLiveMonitorSmallFv
@@ -15007,6 +15013,7 @@ force_active:
   - run_task__20TBoss7TentacleNeedleFv
   - run_task__20TContainerAncient01RFv
   - run_task__20TEffStarLight2D_BaseFv
+  - run_task__20TItemEffOrgaFlowShotFv
   - run_task__20TItemReverseTechCtrlFv
   - run_task__20TODragonflyMachine01Fv
   - run_task__20TObjChallenge4PRetryFv
@@ -17696,7 +17703,9 @@ force_active:
   - vfunc_6__9TTecJelinFPv
   - vfunc_6__9TTecZaruaFPv
   - vfunc_79__15TBoss3VoloptP02FPl
+  - vfunc_7__10TItemEffPGFv
   - vfunc_7__10TTecDebandFPv
+  - vfunc_7__13TUnk_804F0C08Fv
   - vfunc_7__14TItemAttackColFv
   - vfunc_7__17TAdExNetConfirmGCFv
   - vfunc_7__17TAdLicAgreementGCFv

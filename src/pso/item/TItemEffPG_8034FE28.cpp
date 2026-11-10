@@ -7,7 +7,6 @@
 
 #include "pso/object/TObject_80019A50.h"
 #include "pso/object/TObject_8001A448.h"
-#include "pso/unk/text_802E4A4C.h"
 #include "pso/item/TUnk_804E355C.h"
 #include "pso/item/TItemEffPG.h"
 #include "pso/item/TItemAttackCol.h"
@@ -22,21 +21,13 @@ extern "C" {
 
 void *__nw__7TObjectFUl(int);
 
-extern s32 lbl_804F0C08[];
-
-void *TUnk_804F0C08::initialize(void *arg1, void *arg2, void *arg3) {
-    TItemEffPG__ct((u8 *)this, (s32)arg1, (u8 *)arg2);
-    *(s32 **)((s8 *)this + 0x18) = lbl_804F0C08;
-    *(void * *)&this->unk_D4 = arg3;
-    return this;
+TUnk_804F0C08::TUnk_804F0C08(TObject *parent, void *params, void *duration)
+    : TItemEffPG(parent, params) {
+    *(void **)&unk_D4 = duration;
 }
 
 void create__10TItemEffPGFPvPvPv(void *arg0, void *parent, void *item) {
-    void *o;
-    o = __nw__7TObjectFUl(0xD8);
-    if (o != NULL) {
-        ((TUnk_804F0C08 *)o)->initialize(arg0, parent, item);
-    }
+    new TUnk_804F0C08((TObject *)arg0, parent, item);
 }
 
 }
@@ -53,17 +44,13 @@ s32 TItemEffPG::vfunc_7() {
     return 1;
 }
 
-struct RecoveredGlobal_8035007C___vt__10TItemEffPG { s32 value; u8 remaining[0x1C]; };
-typedef char RecoveredGlobal_8035007C___vt__10TItemEffPG_size[sizeof(RecoveredGlobal_8035007C___vt__10TItemEffPG) == 0x20 ? 1 : -1];
 
 extern "C" {
 void *__nw__7TObjectFUl(int);
-extern s32 __vt__10TItemEffPG[];
 extern const char *lbl_805D4350;
 extern const float lbl_805DFE14;
 extern const f32 lbl_805DFE18;
 int TObjPlayer__sub_802E451C(void);
-void __dl__7TObjectFPv(void *);
 s32 has_game_join_id__13TUnk_804E355CFv();
 
 void TItemEffPG::run_task() {
@@ -101,45 +88,31 @@ void TItemEffPG::run_task() {
     }
 }
 
-void *__dt__10TItemEffPGFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__10TItemEffPG;
-        __dt__13TUnk_804E355CFv((TUnk_804E355C *)arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TItemEffPG::~TItemEffPG() {}
 
-u8 *TItemEffPG__ct(u8 *item_eff_pg, s32 arg1, u8 *arg2) {
+TItemEffPG::TItemEffPG(TObject *parent, void *params)
+    : TUnk_804E355C(parent, params) {
+    u8 *arg2 = (u8 *)params;
     s32 temp_r3;
     s32 var_r0;
-    __ct__13TUnk_804E355CFP7TObjectPv((TItemEffPG *)item_eff_pg, (TObject *)arg1, arg2);
-    *(s32 **)((s8 *)item_eff_pg + 0x18) = &(*(RecoveredGlobal_8035007C___vt__10TItemEffPG *)&__vt__10TItemEffPG).value;
-    *(s32 *)((s8 *)item_eff_pg + 0) = (s32) ((s32)lbl_805D4350);
-    *(f32 *)((s8 *)item_eff_pg + 0xC4) = (f32) *(f32 *)((s8 *)arg2 + 0x28);
-    if ((*(const f32 *)&lbl_805DFE14) < *(f32 *)((s8 *)item_eff_pg + 0xC4)) {
-        *(f32 *)((s8 *)item_eff_pg + 0xC4) = (f32) (*(const f32 *)&lbl_805DFE14);
+    *(s32 *)((s8 *)this + 0) = (s32) ((s32)lbl_805D4350);
+    *(f32 *)((s8 *)this + 0xC4) = (f32) *(f32 *)((s8 *)arg2 + 0x28);
+    if ((*(const f32 *)&lbl_805DFE14) < *(f32 *)((s8 *)this + 0xC4)) {
+        *(f32 *)((s8 *)this + 0xC4) = (f32) (*(const f32 *)&lbl_805DFE14);
     }
-    ((TItemEffPG *)item_eff_pg)->m_c8 = (f32) *(f32 *)((s8 *)arg2 + 0x30);
-    ((TItemEffPG *)item_eff_pg)->m_cc = (f32) *(f32 *)((s8 *)arg2 + 0x2C);
-    *(f32 *)((s8 *)item_eff_pg + 0xB0) = (f32) (*(f32 *)((s8 *)item_eff_pg + 0xB0) * lbl_805DFE18);
+    ((TItemEffPG *)this)->m_c8 = (f32) *(f32 *)((s8 *)arg2 + 0x30);
+    ((TItemEffPG *)this)->m_cc = (f32) *(f32 *)((s8 *)arg2 + 0x2C);
+    *(f32 *)((s8 *)this + 0xB0) = (f32) (*(f32 *)((s8 *)this + 0xB0) * lbl_805DFE18);
     temp_r3 = ((s32)__nw__7TObjectFUl(0x68));
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (s32)TItemEffPG__visual_ct((u8 *)temp_r3, (u8 *)item_eff_pg, (u8 *)arg2);
+        var_r0 = (s32)TItemEffPG__visual_ct((u8 *)temp_r3, (u8 *)this, (u8 *)arg2);
     }
-    ((TItemEffPG *)item_eff_pg)->m_d0 = var_r0;
-    return item_eff_pg;
+    ((TItemEffPG *)this)->m_d0 = var_r0;
 }
 
 void TItemEffPG::create(void *arg0, void *arg1) {
-    void *o;
-    o = __nw__7TObjectFUl(0xD4);
-    if (o != NULL) {
-        TItemEffPG__ct((u8 *)o, (s32)arg0, (u8 *)arg1);
-    }
+    new TItemEffPG((TObject *)arg0, arg1);
 }
 
     extern const float lbl_805DFE1C;

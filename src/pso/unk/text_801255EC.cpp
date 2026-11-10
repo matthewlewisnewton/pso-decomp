@@ -55,10 +55,7 @@ s32 spawn_faust_explosion(u32 a0, const Vec &pos) {
         ((TObjPlayer *)a0)->fill_status_info(&info);
         VecCopy(&info.pos, &pos);
         info.f10 = 0xA;
-        o = __nw__7TObjectFUl(0xC8);
-        if (o != NULL) {
-            construct_explosion_collider__13TUnk_804A2548Fv(o, tl_05, &info);
-        }
+        new TUnk_804A2548(tl_05, &info);
         create_timed_particle_emitter(&info, 0x17F, 0, 10);
     } else {
         Vec v = pos;

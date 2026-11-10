@@ -37,10 +37,7 @@ s32 spawn_fire_explosion_at(u32 a0, s32 a1) {
     ((TObjPlayer *)a0)->fill_status_info(&info);
     VecCopy((Vec *)&info, (const Vec *)a1);
     info.f10 = 0xA;
-    o = __nw__7TObjectFUl(0xC8);
-    if (o != NULL) {
-        construct_explosion_collider__13TUnk_804A2548Fv(o, (TObject *)tl_05, &info);
-    }
+    new TUnk_804A2548((TObject *)tl_05, &info);
     o = __nw__7TObjectFUl(0x64);
     if (o != NULL) {
         ((s32 (*)(f32, void *, void *, s32, s32))create_fire_explosion_effect)(lbl_805DF0B8, o, &info, 0, tl_particle);

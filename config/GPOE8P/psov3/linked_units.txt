@@ -798,6 +798,7 @@ pso/item/TUnk_804A68C8.cpp
 pso/item/TUnk_804A6AD8.cpp
 pso/item/TUnk_804A6BD0.cpp
 pso/item/TUnk_804E6FA8.cpp
+pso/item/TUnk_804F0C08.cpp
 pso/item/TUnk_804F0C48.cpp
 pso/item/TUnk_804F0D34.cpp
 pso/item/TUnk_804F0FF0.cpp
