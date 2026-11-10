@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (fish synchronization on main `4bec40d6c`, 2026-11-10)
+## Summary (fish synchronization on main `545f2e729`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after fish synchronization on main `4bec40d6c` (2026-11-10). Assembly is counted as source lines;
+after fish synchronization on main `545f2e729` (2026-11-10). Assembly is counted as source lines;
 
 the generated file counts each `asm` line and its `orig_asm` include separately.
 

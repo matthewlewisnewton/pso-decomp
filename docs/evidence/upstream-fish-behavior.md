@@ -54,6 +54,9 @@ After the shared-entry/renderer cleanup below, synchronization with main
 `4bec40d6cca74a85e91c848ea2d9f25425a313ad` retains the download graph,
 game-mode selection and partial LaunchDol header/caller work. It preserves the
 shared fish record and native renderer without changing fish source or settings.
+The later synchronization with main
+`545f2e729fcff6175f2b83ddf741fd2ea870951c` retains the Gal Gryphon loader
+recovery and unit consolidation, again without changing fish source or settings.
 The old zero-argument
 `draw_ginja_object()` declaration depended on the preceding model getter leaving
 its return value in r3. The renderer now passes that model explicitly and uses
@@ -140,7 +143,7 @@ is included in this follow-up.
 The initial recovery was validated against the base above. The shared-interface
 correction is separately compared against the freshly built PR-plus-current-main
 baseline `c3a77888e3c4e14bed709b60db8f6870f3ee1063`. The final integration is
-also checked against independently built unchanged main `4bec40d6c`; both build
+also checked against independently built unchanged main `545f2e729`; both build
 and retention checks pass, and the subsequent synchronization loses no exact
 function or linked range. The earlier `65b21c210` synchronization inherited four
 zero padding bytes removed from report coverage by main's unit folding. Canadin
@@ -150,32 +153,34 @@ inherits eight further zero-padding bytes leaving coverage from main's unit
 folding: four bytes each in `.sdata` at `0x805D2794` and `0x805D279C`.
 That comparison against previous published head `953770c4c8` loses no exact
 function, live code/data address or linked range. The latest refresh against
-`4bec40d6c` loses no matching, code/data/link coverage or padding compared with
-either unchanged main or previous published head `dd56934219`. Its compiled fish
+`545f2e729` loses no matching, code/data/link coverage or padding compared with
+either unchanged main or previous published head `d36b2fd324`. Gryphon
+consolidation reduces the linked-unit count by one without losing address
+coverage. Its compiled fish
 object is byte-identical to the previous compiled object. The original DOL
 still matches. Full build
 and `tools/check_pr.py` pass with original DOL SHA-1
-`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Against current main `4bec40d6c`,
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Against current main `545f2e729`,
 no exact function, code/data address, linked range or padding is lost. All nine functions (4,704 bytes) and all 1,404
 data bytes are exact. Independent comparison verifies the four allocated section
 payloads, sizes and alignment and all 302 normalized relocations. This is not
 whole-ELF identity: the compiled `.sdata2` has inherited writable flags where the
-split original is read-only. All 3,586 linked units are exact. Retention lists
-17,784 names with zero drift; the PR adds 45 names to current main and removes
+split original is read-only. All 3,585 linked units are exact. Retention lists
+17,828 names with zero drift; the PR adds 45 names to current main and removes
 none. All 268 tooling tests pass.
 
-Gains against current main `4bec40d6c` (the interface correction itself has
+Gains against current main `545f2e729` (the interface correction itself has
 no metric loss or gain against its PR-plus-main baseline):
 
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
-| Exact functions | 27,405 | 27,406 | 1 |
-| Exact code bytes | 4,206,292 | 4,208,336 | 2,044 |
-| Exact data bytes | 1,471,875 | 1,471,947 | 72 |
-| Linked code bytes | 3,713,852 | 3,718,556 | 4,704 |
-| Linked data bytes | 1,187,467 | 1,188,871 | 1,404 |
-| Linked units | 3,585 | 3,586 | 1 |
+| Exact functions | 27,406 | 27,407 | 1 |
+| Exact code bytes | 4,206,584 | 4,208,628 | 2,044 |
+| Exact data bytes | 1,471,935 | 1,472,007 | 72 |
+| Linked code bytes | 3,715,028 | 3,719,732 | 4,704 |
+| Linked data bytes | 1,187,527 | 1,188,931 | 1,404 |
+| Linked units | 3,584 | 3,585 | 1 |
 
-Actual ordered linker inputs: 3,586 source objects and 1,373 fallbacks;
+Actual ordered linker inputs: 3,585 source objects and 1,371 fallbacks;
 SHA-256 of newline-delimited paths including the final newline:
-`fb8968677e8f49603e0098c4b2bebcd4c443d5b47f5bc90179cff4bf44e935ff`.
+`190731316485e614a765aaa17166f2eb9c67a187ccb69133d02fe46d129a2171`.
