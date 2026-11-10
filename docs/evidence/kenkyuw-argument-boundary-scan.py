@@ -14,6 +14,8 @@ import argparse,struct,json,re,bisect,hashlib
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--repo',type=Path,default=Path(__file__).resolve().parents[2])
 parser.add_argument('--output',type=Path,help='Write JSON here instead of stdout')
+parser.add_argument('--include-narrow-loads',action='store_true',
+                    help='Also consider lbz, lhz and lha argument loads')
 args=parser.parse_args()
 repo=args.repo.resolve()
 
@@ -81,6 +83,7 @@ for line in logical:
         key,val=line.strip().split('=',1);current[key.strip()]=val.strip()
 control=rules['build/GPOE8P/src/pso/npc/TObjNpcKenkyuW.o']
 reference_flags=' '.join(control['cflags'].split())
+allowed_loads=(32,34,40,42) if args.include_narrow_loads else (32,)
 rows=[];units=functions=0
 for name,rule in rules.items():
     if not name.startswith('build/GPOE8P/src/') or not name.endswith('.o'): continue
@@ -117,13 +120,13 @@ for name,rule in rules.items():
             src=a>>21&31;dst=a>>16&31;rb=a>>11&31
             if a>>26!=31 or (a>>1&1023)!=444 or a&1 or src!=rb or not 3<=dst<=10:continue
             ld=b>>21&31;base=b>>16&31
-            if b>>26!=32 or not 3<=ld<=10 or ld==dst or src==ld or base==dst:continue
+            if b>>26 not in allowed_loads or not 3<=ld<=10 or ld==dst or src==ld or base==dst:continue
             if c&0xfc000003!=0x48000001:continue
             block=ordered[bisect.bisect_right(ordered,offset)-1]
             before=words[block//4:offset//4]
             source=rule['build'].split(': mwcc ',1)[1].split(' | ',1)[0].strip()
             row={'unit':name,'source':source,'symbol':fn,'offset':hex(offset),
-                 'move_destination':dst,'move_source':src,'load_destination':ld,'load_base':base,
+                 'move_destination':dst,'move_source':src,'load_destination':ld,'load_base':base,'load_opcode':b>>26,
                  'branch_target':offset in targets,'block_start':hex(block),
                  'preceding_in_block':len(before),'preceding_store':any(is_store(w)for w in before),
                  'call_target':reloc.get(offset+8,('unknown',))[3] if offset+8 in reloc else 'local call'}

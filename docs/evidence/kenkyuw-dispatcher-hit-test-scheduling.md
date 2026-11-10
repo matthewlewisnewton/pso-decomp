@@ -677,3 +677,62 @@ known external entry calls, with no external direct branch into
 supplies no evidence for an alternate external entry or a different split
 boundary; it does not exclude indirect entries. The original provider and
 all source, ABI, compiler and activation holds remain unchanged.
+
+### Call-lowering and nonnull receiver-contract controls
+
+The address-dependency example suggested checking whether a known callback
+could temporarily retain call/address setup and later become a direct call.
+In the inspected compiler, [`call_function`](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/optimizer/FunctionCalls.c)
+chooses `branch_subroutine` versus `branch_subroutine_indirect_ctr` during
+initial code generation, before either scheduler. No later CTR-call to
+direct-call rewrite was identified. This supplies no evidence for a late
+callback boundary, so no function-pointer alias permutations were compiled.
+
+The survey was also extended to byte and halfword GPR argument loads, whose
+modeled load latency is the same. `--include-narrow-loads` on the published
+scanner finds 154 triples: the original 147 word loads plus two `lhz` and
+five `lha` cases, with no direct branch-entry triple. This is a bounded
+extension of the existing-code search, not a new same-shape source witness.
+
+A [nonnull receiver-reference control](kenkyuw-nonnull-receiver-control.cpp)
+then tested the actual valid-object precondition separately from pointer
+spelling. This independent API takes a valid receiver by reference, collects
+a nullable event, selects either that receiver or null, handles a miss, and
+otherwise checks the event before re-reading it and updating the receiver.
+The nullable test is meaningful because collection can fail. No production
+parameter type, ABI, helper declaration or source body was changed.
+
+The control passed 36 host comparisons against the direct null-list form,
+including post-check changes to event code/body and observable miss effects.
+Under the same GC/2.6 flags it emitted 128 bytes. The nonnull reference
+contract did not remove the zero-valued selection arm or the subsequent
+receiver comparison. After allocation the relevant blocks still contain:
+
+```text
+B4: mr    r3,r30
+    b     B6
+B5: li    r3,0
+B6: cmpli cr0,r3,0
+    bf    cr0,2,B9
+    ... miss call and exit ...
+B9: lwz   r4,0(r31)
+    bl    check_event
+```
+
+The second-scheduler and final-branch dumps are identical. Re-encoding the
+final trace reproduces every byte from the normal compiler runner; the
+documented fixture also independently emits that same `.text`, SHA-256
+`2f13bc06d6ce7c26ebdef2a53b560896081a0d6eb1cf4f91c57f07c5f7efc163`.
+Thus a source-valid nonnull receiver contract alone does not supply the
+missing empty arm under these settings. No production reference-signature
+variant was attempted on the strength of this negative control.
+
+Finally, the pass chronology rules out a simple stale-scheduling explanation
+for an address copy removed during allocation. The allocator's coalesced-move
+removal in [`Coloring.c`](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/backend/Coloring.c)
+calls `deletepcode`. That routine in [`PCode.c`](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/backend/PCode.c)
+clears the containing block's `fScheduled` flag. An otherwise unchanged
+three-pcode hit block is therefore eligible for the second scheduler again.
+Merely deleting such a copy cannot be assumed to preserve the first pass's
+order. A distinct surviving boundary or another demonstrated mechanism is
+still needed; these checks do not assert that all source forms are excluded.
