@@ -532,8 +532,6 @@ force_active:
   - TItemEffNeedleBase__class_name
   - TItemEffNeedlePos__class_name
   - TItemEffNeedle__class_name
-  - TItemEffOrgaFlowShot__ct
-  - TItemEffPG__ct
   - TItemEffectWeapon__class_name
   - TItemEquipBase__sub_80119100
   - TItemEquipBase__sub_80119168
@@ -1979,6 +1977,7 @@ force_active:
   - __atexit_funcs
   - __console_exit
   - __ct__10TBoss6RockFP7TObjectl
+  - __ct__10TItemEffPGFP7TObjectPv
   - __ct__10TItemMoneyFP7TObjectP9TItemData
   - __ct__10TObjCameraFP7TObjectPv
   - __ct__11TBoss4ZanzoFv
@@ -2066,6 +2065,7 @@ force_active:
   - __ct__13TUnk_804CC800FP3VeclllP7TObjectUc
   - __ct__13TUnk_804E4BF0FP7TObjectPv
   - __ct__13TUnk_804E6FA8FP7TObjectPUc
+  - __ct__13TUnk_804F0C08FP7TObjectPvPv
   - __ct__13TUnk_804F0C48FP7TObjectPUc
   - __ct__13TUnk_804F0D1CFP7TObjectUl
   - __ct__13TUnk_804F0D34FP7TObjectPUc
@@ -2079,6 +2079,7 @@ force_active:
   - __ct__14TChCrEffCtrlPlFP7TObject
   - __ct__14TChCrTagPlBackFv
   - __ct__14TFontSmallTaskFv
+  - __ct__14TItemAttackColFP7TObjectP24ItemAttackColliderParams
   - __ct__14TItemEffHeavenFP7TObjectP10TObjPlayerUsl
   - __ct__14TItemEffNeedleFP7TObjectP5TItemUsl
   - __ct__14TItemProShieldFP7TObjectPUc
@@ -2214,6 +2215,7 @@ force_active:
   - __ct__20TAdLoadQuestPrtTxtGCFP7TObjectl
   - __ct__20TBoss3VoloptHiraisinFP7TObjectPv
   - __ct__20TEffStarLight2D_BaseFP7TObjectPv
+  - __ct__20TItemEffOrgaFlowShotFP7TObjectPv
   - __ct__20TItemReverseTechCtrlFP7TObject
   - __ct__20TODragonflyMachine01FPv
   - __ct__20TOExplosiveMachine01FPv
@@ -2441,6 +2443,7 @@ force_active:
   - __dt__13TUnk_804A0AA8Fv
   - __dt__13TUnk_804A204CFv
   - __dt__13TUnk_804A2164Fv
+  - __dt__13TUnk_804A2548Fv
   - __dt__13TUnk_804A4020Fv
   - __dt__13TUnk_804A4238Fv
   - __dt__13TUnk_804A4338Fv
@@ -2470,6 +2473,7 @@ force_active:
   - __dt__13TUnk_804EF4E0Fv
   - __dt__13TUnk_804EFA88Fv
   - __dt__13TUnk_804F0BF0Fv
+  - __dt__13TUnk_804F0C08Fv
   - __dt__13TUnk_804F0C48Fv
   - __dt__13TUnk_804F0D1CFv
   - __dt__13TUnk_804F0D34Fv
@@ -2497,6 +2501,7 @@ force_active:
   - __dt__14TChCrTagPlBackFv
   - __dt__14TEnemyTaskListFv
   - __dt__14TFontSmallTaskFv
+  - __dt__14TItemAttackColFv
   - __dt__14TItemEffHeavenFv
   - __dt__14TItemEffNeedleFv
   - __dt__14TItemEffShieldFv
@@ -2775,6 +2780,7 @@ force_active:
   - __dt__20TBoss5GryphonTornadoFv
   - __dt__20TBoss7TentacleNeedleFv
   - __dt__20TEffStarLight2D_BaseFv
+  - __dt__20TItemEffOrgaFlowShotFv
   - __dt__20TItemReverseTechCtrlFv
   - __dt__20TODragonflyMachine01Fv
   - __dt__20TOExplosiveMachine01Fv
@@ -2923,6 +2929,7 @@ force_active:
   - __vt__10TBoss6Tube
   - __vt__10TDPBShower
   - __vt__10TEndingPic
+  - __vt__10TItemEffPG
   - __vt__10TItemMoney
   - __vt__10TItemShoot
   - __vt__10TItemTimer
@@ -3150,6 +3157,7 @@ force_active:
   - __vt__14TEnemyTaskList
   - __vt__14TFontSmallHelp
   - __vt__14TFontSmallTask
+  - __vt__14TItemAttackCol
   - __vt__14TItemEffHeaven
   - __vt__14TItemEffNeedle
   - __vt__14TItemEquipBase
@@ -3432,6 +3440,7 @@ force_active:
   - __vt__20TBoss7TentacleNeedle
   - __vt__20TContainerAncient01R
   - __vt__20TEffStarLight2D_Base
+  - __vt__20TItemEffOrgaFlowShot
   - __vt__20TItemReverseTechCtrl
   - __vt__20TODragonflyMachine01
   - __vt__20TOExplosiveMachine01
@@ -3606,6 +3615,7 @@ force_active:
   - add_synchro__8MagStatsFl
   - add_target_in_cone__15TObjEneMe1GiGueFP9TObjChara
   - add_target_in_front_arc__16TObjEneNanoDragoFP9TObjChara
+  - add_to_active_list__14TItemAttackColFPv
   - add_token__6TLobbyFPCc
   - add_unique_pair_entry__10TObjPlayerFUll
   - add_weapon_stat_bonuses__9TItemDataFlPslPsl
@@ -7403,7 +7413,6 @@ force_active:
   - init_work__11TBoss6Type1Fv
   - init_zeroed_object__10TObjPlayerFv
   - initialize__13TUnk_804A05C8FP15TItemHeapObjectUsll
-  - initialize__13TUnk_804F0C08FPvPvPv
   - initialize__16TItemWeaponRifleFlPUc
   - initialize_battle__19TPlayerBattleCtrl4PFv
   - initialize_behavior_parameters__13TObjEneMorfosFv
@@ -7866,6 +7875,9 @@ force_active:
   - lbl_80471CE0
   - lbl_80471CE8
   - lbl_80471D70
+  - lbl_80472998
+  - lbl_804729A8
+  - lbl_804729C0
   - lbl_80472C28
   - lbl_80472C38
   - lbl_80472C48
@@ -8246,6 +8258,7 @@ force_active:
   - lbl_804E286C
   - lbl_804E28A0
   - lbl_804E2B90
+  - lbl_804E3530
   - lbl_804E3A38
   - lbl_804E3B60
   - lbl_804E4BB4
@@ -8483,6 +8496,7 @@ force_active:
   - lbl_805D3E60
   - lbl_805D3E90
   - lbl_805D3F08
+  - lbl_805D3F88
   - lbl_805D3FB0
   - lbl_805D3FF8
   - lbl_805D4168
@@ -9022,6 +9036,12 @@ force_active:
   - lbl_805DE130
   - lbl_805DE4BC
   - lbl_805DE620
+  - lbl_805DE910
+  - lbl_805DE918
+  - lbl_805DE91C
+  - lbl_805DE920
+  - lbl_805DE924
+  - lbl_805DE928
   - lbl_805DF2E4
   - lbl_805DF3AC
   - lbl_805DF3B0
@@ -9346,6 +9366,7 @@ force_active:
   - move_toward_dest_with_detour__14TObjEneIllGillFv
   - move_toward_target__15TObjEneDelDepthFv
   - move_update__11TBoss4Type2Fv
+  - move_with_collision__14TItemAttackColFPv
   - multi_chg_game_mode_entry_table
   - multi_chg_game_mode_text_table_a
   - multi_chg_game_mode_text_table_b
@@ -14528,6 +14549,7 @@ force_active:
   - render__14TChCrEffTagStrFv
   - render__14TChCrTagPlBackFv
   - render__14TFontSmallTaskFv
+  - render__14TItemAttackColFv
   - render__14TOAirconCave01Fv
   - render__14TOAirconCave02Fv
   - render__14TOKeyAncient01Fv
@@ -14735,6 +14757,7 @@ force_active:
   - render__20TBoss7TentacleNeedleFv
   - render__20TContainerAncient01RFv
   - render__20TEffStarLight2D_BaseFv
+  - render__20TItemEffOrgaFlowShotFv
   - render__20TODragonflyMachine01Fv
   - render__20TObjEneDarkGunCenterFv
   - render__20TObjLiveMonitorSmallFv
@@ -15266,6 +15289,7 @@ force_active:
   - run_task__14TChCrEffTagStrFv
   - run_task__14TEnemyTaskListFv
   - run_task__14TFontSmallTaskFv
+  - run_task__14TItemAttackColFv
   - run_task__14TItemEffHeavenFv
   - run_task__14TOKeyAncient03Fv
   - run_task__14TOKeyMachine01Fv
@@ -15482,6 +15506,7 @@ force_active:
   - run_task__20TBoss7TentacleNeedleFv
   - run_task__20TContainerAncient01RFv
   - run_task__20TEffStarLight2D_BaseFv
+  - run_task__20TItemEffOrgaFlowShotFv
   - run_task__20TItemReverseTechCtrlFv
   - run_task__20TODragonflyMachine01Fv
   - run_task__20TObjChallenge4PRetryFv
@@ -16109,6 +16134,7 @@ force_active:
   - shed_armor__15TObjEneGyaranzoFv
   - shield_attack__10TObjPlayerFPv
   - shield_table__14TItemProShield
+  - shift_collision_bounds__14TItemAttackColFv
   - shift_position_history__13TBoss5GryphonFv
   - shift_queue_push_next__15TObjBoss2TunnelFPv
   - shinowa_mirage_model_init_data
@@ -18296,6 +18322,7 @@ force_active:
   - vfunc_6__12TNeedleShootFv
   - vfunc_6__12TODoorCave01FPsl
   - vfunc_6__12TQuestListVMFll
+  - vfunc_6__14TItemAttackColFPl
   - vfunc_6__14TOTrapSeabed01FPsl
   - vfunc_6__15TODoorAncient08FPsl
   - vfunc_6__15TODoorAncient09FPsl
@@ -18313,7 +18340,10 @@ force_active:
   - vfunc_6__9TTecJelinFPv
   - vfunc_6__9TTecZaruaFPv
   - vfunc_79__15TBoss3VoloptP02FPl
+  - vfunc_7__10TItemEffPGFv
   - vfunc_7__10TTecDebandFPv
+  - vfunc_7__13TUnk_804F0C08Fv
+  - vfunc_7__14TItemAttackColFv
   - vfunc_7__17TAdExNetConfirmGCFv
   - vfunc_7__17TAdLicAgreementGCFv
   - vfunc_7__18TAdAgreementBaseGCFv

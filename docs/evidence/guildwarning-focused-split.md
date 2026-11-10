@@ -124,3 +124,20 @@ drift and port inventory passes. The inherited renderer arithmetic/control and
 raw-buffer helper qualifications are preserved. The continuation reconciles its
 existing native Word task/field and raw reset contracts separately; no global
 lifetime or factory hold is lifted by this main refresh.
+
+The later merge through main `696b464b2984af9e65875a8055408e7d16784c51` includes
+item-attack collider recovery #408 followed by the progress table update; it is
+not a documentation-only main delta. All thirty upstream path patches and the
+focused implementation/configuration delta remain preserved. The focused gated
+build and prior-head acceptance pass, with 3600 exact linked units and 18326
+retention names. The additional exact function, +936 matched / +2892 linked code
+and +272 matched/linked data bytes are upstream item gains.
+
+This integration also inherits main's four-byte data coverage gap at
+[804E352C,804E3530). It leaves neither previously exact nor linked data coverage;
+a strict raw coverage view still records the four bytes rather than silently
+calling a historical no-loss pass. The existing report's padding classification
+is not an independent semantic ownership proof. No word, padding object, reporting
+change or regression waiver is introduced. This interval is separate from the
+earlier eight-byte BSS/sdata2 qualification. All prior factory/lifetime holds
+remain, and the native-build certificates retain their exact source baselines.

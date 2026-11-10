@@ -110,6 +110,18 @@ ordered providers and coverage. Raw aliasing/lifetime, unchecked table index and
 other draw/helper interfaces remain qualified; no native window lifetime is
 inferred from this buffer operation.
 
+The subsequent main `696b464b29` contains item-attack collider recovery #408
+and the progress table update, not only documentation. All thirty upstream path
+patches and the continuation's window work remain intact. Independent clean-main,
+focused and continuation gated builds retain the original DOL, with 3601 exact
+continuation units and retention18495. Comparisons against prior B, refreshed A
+and clean main pass. The strict interval audit explicitly retains the same four
+upstream raw data coverage bytes at [804E352C,804E3530) in main, A and B; no exact
+or linked data range is lost. This supplements the earlier eight-byte historical
+qualification without a source word, semantic-padding claim or weakened check.
+The new Word source activation and UV contract qualification remain valid; no
+window lifetime/provider hold changes in this item refresh.
+
 ## Current tried/blocked index
 
 | Area | Established result | Remaining evidence / hold |
