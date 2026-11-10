@@ -167,6 +167,8 @@ s16 TUdpSocket__sub_8041118C();
 s16 TLobby__sub_80415690();
 s16 NetIPv6InitNeighborDiscovery();
 s16 init_packet_fragment_pools__6TLobbyFv();
+// Native caller ABI: the dispatcher defines s32 (void). A shared declaration
+// changes the status copy and stack frame; see docs/evidence/upstream-dispatcher.md.
 s16 TLobby__sub_80419A34(int);
 s16 NetInitializeDispatcher();
 s16 NetTCPInit();
