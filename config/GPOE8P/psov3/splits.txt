@@ -1128,7 +1128,7 @@ pso/misc/TQuestVmDownLoadServer_8007EBDC.cpp:
 
 pso/unk/text_8007ECF0.cpp:
 	.text       start:0x8007ECF0 end:0x8007F4B8
-	.rodata     start:0x80438AC8 end:0x80438AE0
+	.rodata     start:0x80438A98 end:0x80438AF8
 	.sdata2     start:0x805D9298 end:0x805D92C0
 
 pso/unk/text_8007F4B8.cpp:
