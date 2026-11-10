@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5779 | 878 |
+| pragma | 5772 | 878 |
 | configure.py per-unit override | 189 | 189 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 878, `auto_inline` 836, `opt_common_subs` 610, `scheduling` 263, `opt_propagation` 238, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1143, `inline_depth` 1035, `fp_contract` 878, `auto_inline` 833, `opt_common_subs` 610, `scheduling` 263, `opt_propagation` 238, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 21, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -1023,6 +1023,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/object/TObjDoaEx01.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/object/TObjDoor_8018E358.cpp` | fp_contract×2, opt_common_subs×1 |
 | `src/pso/object/TObjEZRopeBase.cpp` | force_active×1 |
+| `src/pso/object/TObjEZRopeSimulation.cpp` | inline_depth×1, dont_inline×1 |
 | `src/pso/object/TObjEnvSoundGlobal.cpp` | opt_common_subs×1 |
 | `src/pso/object/TObjFish.cpp` | fp_contract×2, dont_inline×1, inline_depth×1 |
 | `src/pso/object/TObjFogCollisionSwitch.cpp` | readonly_strings×1, defer_codegen×1 |
@@ -1074,7 +1075,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/player/TObjPlayer_800ACA60.cpp` | dont_inline×2, inline_depth×2, fp_contract×1, opt_common_subs×1 |
 | `src/pso/player/TObjPlayer_800BBE90.cpp` | fp_contract×2 |
 | `src/pso/player/TObjPlayer_800F0810.cpp` | opt_common_subs×3, opt_propagation×3 |
-| `src/pso/player/TObjPlayer_800FEFCC.cpp` | inline_depth×3, auto_inline×3, dont_inline×3 |
 | `src/pso/player/TObjPlayer_80109344.cpp` | opt_propagation×1 |
 | `src/pso/player/TObjPlayer_801542CC.cpp` | inline_depth×2, auto_inline×2, dont_inline×2, fp_contract×1 |
 | `src/pso/player/TObjPlayer_80178150.cpp` | opt_common_subs×1, opt_propagation×1 |

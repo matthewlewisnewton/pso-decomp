@@ -15,17 +15,18 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `f0f05f3afe56`, 2026-11-10)
+## Summary (regenerated after merging main `1a18b4bd7577`, 2026-11-10)
 
-These counts match the generated inventory for this tree. The assembly count
-includes each `asm` line and its `orig_asm` include separately.
+Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
+after merging main `1a18b4bd7577` (2026-11-10). Assembly is counted as source lines;
+the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,779 | 878 |
+| CodeWarrior pragmas (excluding push/pop) | 5,772 | 878 |
 | Per-unit compiler overrides in `configure.py` | 189 | 189 |
 | Approved regressions | 0 | 0 |
 
@@ -105,6 +106,15 @@ unset until a contact slot is written. The original call to
 consists of a return instruction. The matching build preserves the original
 register state at that call. The portable branch initializes the debug pointer
 to null.
+
+### ADX stream decode at `0x803C0238`
+
+`src/pso/misc/TLobby_803BFE50.cpp` extends its existing inlining scope to the
+input preparation, output publication, and format-specific counter update.
+Under GC/2.6, flattening those phases into the caller changes the saved
+register allocation. The chunk declaration order within the output helper
+also places the two descriptors at stack offsets 8 and 16. Ports can use the
+same helpers with ordinary inlining and native pointer-sized handles.
 
 ### Dark Falz demo 4
 
@@ -246,7 +256,7 @@ and the same function body.
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-188 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+189 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
