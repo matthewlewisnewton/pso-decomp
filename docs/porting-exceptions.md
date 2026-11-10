@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `696b464b2984`, 2026-11-10)
+## Summary (regenerated after merging main `c1fb4aa04461`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `696b464b2984` (2026-11-10). Assembly is counted as source lines;
+after merging main `c1fb4aa04461` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,774 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,775 | 880 |
 | Per-unit compiler overrides in `configure.py` | 191 | 191 |
 | Approved regressions | 0 | 0 |
 
@@ -95,9 +95,9 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,774 pragmas in 879 files; per-file table in the generated file. Main kinds:
+5,775 pragmas in 880 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1142, `inline_depth` 1034, `fp_contract` 879, `auto_inline` 832,
-`opt_common_subs` 611, `scheduling` 263, `opt_propagation` 239,
+`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 239,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -477,22 +477,27 @@ functions above change, from 98.82% (1076 bytes) / 97.81% (296) / 95.60%
 is byte-identical either way. Those multiply-adds compile as `fmuls`+`fadds`
 when `-fp_contract` is omitted and `fmadds` when it is on.
 
-The constructor clamp (`0x80170068`) is written `attack.power < 0.0f`.
-`lbl_805DB85C` is that `0.0f`. Loaded by name, it is an `extern const`, so
-the frontend CSE pass puts it in a temp numbered below the reload of
-`attack.power` and the compare swaps `f0`/`f1` (99.91%). A literal is not
-shared, so the reload is `f1` and the constant is `f0`, which is the
-original. That literal is the unit's only `.sdata2` entry. The split claims
-`0x805DB85C`-`0x805DB860` (`align:4`), the address of `lbl_805DB85C`. The
-other uses in this file still name the symbol, and both relocations resolve
-there. Defining `lbl_805DB85C = 0.0f` in the file does not do this: MWCC
-inlines the const, so every use becomes a second pool slot 4 bytes after
-the exported symbol, and `receive_physical_attack` and
-`receive_weapon_special_attack` leave exact. The compiled `.sdata2` section
-is 8-aligned and `0x805DB85C` is not, and the pool symbol is the compiler's
-`@252` rather than `lbl_805DB85C`, which `text_8016F1C0.cpp` and `TOMine.cpp`
-still reference. The unit therefore matches (38/38 functions, `.text`,
-`.rodata` and `.sdata2`) and is not linked.
+The constructor clamp at `0x80170068` uses an ordinary named comparison
+and assignment, `if (attack.power < lbl_805DB85C) attack.power = lbl_805DB85C`.
+Scoped `opt_common_subs off` around the constructor preserves the original
+register allocation without an address cast. With the default CSE setting,
+the same source swaps the compare's `f0`/`f1` (99.91%). A `0.0f` literal for
+both the comparison and assignment matches the instructions but adds a
+second four-byte zero to `.sdata2`, failing the original-DOL hash.
+
+| Symbol / unit | Construct | Reason | Port action |
+| --- | --- | --- | --- |
+| `TOMineTrap::TOMineTrap` (`0x80170068`), `pso/misc/TOMineTrap_8016F6F8.cpp` | Scoped `#pragma opt_common_subs off` | The ordinary named clamp matches all constructor instructions with CSE disabled; the whole object retains its 6,132 code bytes, 8 `.rodata` bytes and single 4-byte shared zero. This is a matching setting, not proof of the original compiler option. | Drop the pragma; keep the ordinary comparison and assignment. |
+
+The `__declspec(section ".sdata2")` definition follows the last use so
+CodeWarrior keeps the named loads. Both `text_8016F1C0.cpp` and `TOMine.cpp`
+reference that same exported zero.
+
+The unit's four-byte `.sdata2` starts at `0x805DB85C`. CodeWarrior gives
+the section eight-byte alignment by default. The existing `cw_align` build
+step sets the ELF and linker comment alignment to four, keeping the original
+address. Ports can compare directly against zero and use ordinary alignment
+for the shared constant.
 
 `follow_target` and `update_float_height` are exact on main through
 function-local `fp_contract` pragmas. This PR removes those pragmas; the unit
