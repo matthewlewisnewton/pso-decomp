@@ -123,6 +123,12 @@ an aligned stack object. A port should ignore these settings and use the plain
 |---|---|---|---|---|
 | `src/pso/boss/TBoss6Type2_802BE588.cpp` | `TBoss6Type2::sub_802BEC28` | one `#pragma opt_common_subs off` | Approved by Matt on 2026-11-04. Without it, common-subexpression elimination hoists the load of `lbl_805DE4E0` (0.0f) from `.text+0x6ec` to `.text+0x6c8` and renumbers the int-to-float temps, so the function is the same length and not the same bytes. Writing the ratio as `1.0f - (float)m_460 / (float)unk_45C` clamped to [0, 1] reproduces the instructions, but MWCC pools those literals as new local `.sdata2` instead of `R_PPC_EMB_SDA21` to `lbl_805DE4E4` / `lbl_805DE4E0` (the unclaimed blob `0x805DE4D8..0x805DE4F8`). `fp_contract on` is not part of this exception: removing it leaves the object identical. | Drop the pragma. The value is that clamped ratio; a port does not need MWCC's load schedule. |
 
+### `TObjEneMoja` constructor
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/enemy/TObjEneMoja.cpp` | Constructor at `0x800AF8B0` | One scoped `#pragma opt_common_subs off` and an explicit scaled variant index | With CSE enabled, the two probability clamps use different floating-point registers. Literal bounds reproduce the instructions but create a second pair of constants at different addresses from the shared bounds at `0x805D9BD8` and `0x805D9BDC`. With CSE disabled, the explicit scaled index preserves the register shared by the base and resistance table lookups. The constructor's two exclusive offsets at `0x805D9C60` and `0x805D9C64` are defined after use to retain their named relocations. | Drop the pragma, clamp to `[0.0f, 1.0f]`, and index the two tables directly with the variant. |
+
 ### Approved: `TEF_LensFlare::render` ([#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272))
 
 | File | Function | What | Why | Port should |
@@ -512,7 +518,7 @@ Linking `TObjBoss2Tunnel_802F2070.cpp` also needs `cw_align` (`.sbss=4 .sdata2=4
 
 The loader at `0x800AF56C` uses a shared `.data` base for the two BML descriptors, action table and collision body. With a single external struct view, CodeWarrior folds two subobject offsets into their loads and emits a 680-byte function. Defining the individual tables in the same translation unit restores the two address instructions and the original 688 bytes.
 
-The Moja vtable at `0x804919BC` lies between those tables and the `run_task` switch table at `0x80491B08`. Moving only the resource tables into the loader creates a cycle because the code for `run_task` precedes the loader while its switch table follows the resource tables. The consolidated unit owns both tables and generates the vtable from the real destructor. Immediate compilation puts the switch table before the vtable. Reverse definitions with `-inline off,deferred` preserve both the function order and the original data order.
+The Moja vtable at `0x804919BC` lies between those tables and the `run_task` switch table at `0x80491B08`. Moving only the resource tables into the loader creates a cycle because the code for `run_task` precedes the loader while its switch table follows the resource tables. The consolidated unit owns both tables and generates the vtable from the real destructor. Immediate compilation puts the switch table before the vtable. Reverse definitions with `-inline off,deferred` preserve both the function order and the original data order. The adjacent constructor uses the same `.data` base at `0x80491828` for the vtable, action table, collision body and movement table, so it joins this unit.
 
 Ports can drop the compiler switch. The render and target-acquisition bodies in `TObjPlayer_800ACA60.cpp` are ordinary `TObjEneMoja` members (`render`, and `vfunc_28` — the `TObjChara` override name for acquire_target).
 
