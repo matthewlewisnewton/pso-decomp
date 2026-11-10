@@ -102,6 +102,12 @@ check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
 
+### Radial particle update
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/ParticleRadial.cpp` | `TUnk_8048E7A8::run_task` (`0x8008B590`) | Scoped `#pragma fp_contract on` and a typed view of the existing particle slots | The channel calculations fuse the age-scaled rate and base color before clamping. The view follows the original field offsets and preserves the shared particle class layout. | Keep the fused operations where float results must match. Use the port's native particle layout and pack the color explicitly as ARGB. |
+
 ### Ground collision debug hook
 
 In `src/pso/map/CsnQuery.cpp`, CodeWarrior leaves the selected contact pointer
