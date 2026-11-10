@@ -1,3 +1,4 @@
+#include "pso/misc/TextEntryMeasurement.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowBase.h"
 
@@ -89,7 +90,6 @@ extern const f32 lbl_805DFC28;
 void TWindowDD__sub_80347E04(W_80347E04 *arg0, s32 arg1);
 s32 update_state__9TWindowDDFv(void *, u32, u16);
 E_80347CC8 *get_array_entry__11TWindowBaseFi(void *, s32);
-s32 refresh_status_display__9TWindowDDFv(void *);
 extern s32 local_client_id;
 extern u32 TWindowDD__work_buffer;
 extern const f32 TWindowDD__data_805DFB58;
@@ -483,7 +483,7 @@ void TWindowDD__sub_80347CC8(W_80347CC8 *arg0, void *window_dd) {
     if (s != NULL) {
         e = get_array_entry__11TWindowBaseFi(s, 0);
         if (e != NULL) {
-            refresh_status_display__9TWindowDDFv(e);
+            measure_text_entry(e);
             x = 10.0f + e->f10;
             if (x >= 580.0f) {
                 e->f8 = 580.0f - e->f10;

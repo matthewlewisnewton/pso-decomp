@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `f0f05f3afe56`, 2026-11-10)
+## Summary (regenerated for shortcut preview recovery, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `f0f05f3afe56` (2026-11-10). Assembly is counted as source lines;
+for shortcut preview recovery (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,770 | 878 |
+| CodeWarrior pragmas (excluding push/pop) | 5,772 | 878 |
 | Per-unit compiler overrides in `configure.py` | 188 | 188 |
 | Approved regressions | 0 | 0 |
 
@@ -89,11 +89,11 @@ preserve the graph's exported constants and format strings. See
 [download graph recovery](evidence/download-graph-recovery.md) for the
 compiler and data layout evidence.
 
-5,773 pragmas in 877 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1146, `inline_depth` 1038, `fp_contract` 877, `auto_inline` 837,
-`opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237,
-`readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56,
-`defer_codegen` 53, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
+5,772 pragmas in 878 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1143, `inline_depth` 1035, `fp_contract` 879, `auto_inline` 833,
+`opt_common_subs` 610, `scheduling` 263, `opt_propagation` 238,
+`readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
+`defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer

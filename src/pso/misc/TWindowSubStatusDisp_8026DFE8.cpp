@@ -1,3 +1,4 @@
+#include "pso/misc/TextEntryMeasurement.h"
 #include "pso/misc/TLobby_8001D6A0.h"
 #include "pso/misc/TLobby_8026B06C.h"
 #include "pso/misc/TWindowChat.h"
@@ -140,7 +141,6 @@ extern const f32 shortcut_symbol_preview_height;
 
 extern "C" {
 void measure_message_text_width(void *entry, f32 max_width);
-void refresh_status_display__9TWindowDDFv(void *entry);
 void update_state__9TWindowDDFv(s32 *words, s32 *buffer, u16 player);
 }
 
@@ -215,7 +215,7 @@ void TWindowShortCut::initialize_preview(s32 index, s32 *shortcut) {
         s32 *words = shortcut + 1;
         update_state__9TWindowDDFv(words, buffer, player);
         set_text_entry_string(reinterpret_cast<u8 *>(preview), (u32)get_shared_text_buffer(), 0);
-        refresh_status_display__9TWindowDDFv(preview);
+        measure_text_entry(preview);
 
         preview->flags |= 2;
         size.x = shortcut_preview_width_bias + (shortcut_preview_horizontal_padding + preview->width);
