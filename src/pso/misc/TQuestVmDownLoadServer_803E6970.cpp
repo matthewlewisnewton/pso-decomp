@@ -2266,6 +2266,9 @@ inline s32 IsX_803E9FFC(u8 arg0) {
 // NULL remains an empty or allocation-exhausted list, not this failure. See
 // docs/evidence/quest-download-search-evidence.md.
 #define QUEST_DOWNLOAD_LIST_SENTINEL_WORD 0xFFFFFFFFU
+#define QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED ((QuestDownloadSegment *)QUEST_DOWNLOAD_LIST_SENTINEL_WORD)
+#define QUEST_DOWNLOAD_ENTRY_LIST_FAILED ((QuestDownloadEntryNode *)QUEST_DOWNLOAD_LIST_SENTINEL_WORD)
+#define QUEST_DOWNLOAD_ITEM_LIST_UNAVAILABLE ((QuestDownloadItemNode *)QUEST_DOWNLOAD_LIST_SENTINEL_WORD)
 // The quest download name character class. The original lowers this sparse
 // switch behind an explicit range guard at the head of the slot search.
 inline s32 IsNameChar_803E9A74(u8 c) {
@@ -2306,10 +2309,10 @@ QuestDownloadSegment *TQuestVmDownLoadServer__sub_803E9A74(s32 beg, s32 end, u8 
         if (lbl_805D7888 < 3) {
             return NULL;
         }
-        return (QuestDownloadSegment *)QUEST_DOWNLOAD_LIST_SENTINEL_WORD;
+        return QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED;
     }
-    if ((t = quest_download_slot_chain_table[beg].tokens) == (QuestDownloadMatchToken *)QUEST_DOWNLOAD_LIST_SENTINEL_WORD) {
-        return (QuestDownloadSegment *)QUEST_DOWNLOAD_LIST_SENTINEL_WORD;
+    if ((t = quest_download_slot_chain_table[beg].tokens) == QUEST_DOWNLOAD_MATCH_TOKENS_UNAVAILABLE) {
+        return QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED;
     }
     if (t == NULL) {
         if (IsNameChar_803E9A74(lbl_805A0470.bytes[beg]) != 0) {
@@ -2362,9 +2365,9 @@ advance:
         }
         off = lbl_8047F0F8[t->off];
         sub = TQuestVmDownLoadServer__sub_803E9A74(beg + off, end, t->a, t->b);
-        if ((u32)sub == QUEST_DOWNLOAD_LIST_SENTINEL_WORD) {
+        if (sub == QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED) {
             TQuestVmDownLoadServer__sub_803ECE5C(result);
-            return (QuestDownloadSegment *)QUEST_DOWNLOAD_LIST_SENTINEL_WORD;
+            return QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED;
         }
         if (sub != NULL) {
             for (walk = sub; ; walk = walk->next) {
@@ -2399,8 +2402,8 @@ void *TQuestVmDownLoadServer__sub_803E9FFC(s32 arg0, s32 arg1, QuestDownloadItem
     tail = NULL;
     pos = arg0 + off;
     s = TQuestVmDownLoadServer__sub_803E9A74(pos, arg1, t->a, t->b);
-    if ((u32)s == QUEST_DOWNLOAD_LIST_SENTINEL_WORD) {
-        return (void *)QUEST_DOWNLOAD_LIST_SENTINEL_WORD;
+    if (s == QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED) {
+        return QUEST_DOWNLOAD_ENTRY_LIST_FAILED;
     }
     for (first = s; s != NULL; s = s->next) {
         o = (QuestDownloadEntryNode *)TQuestVmDownLoadServer__sub_803ECF48();
@@ -2469,10 +2472,10 @@ s32 TQuestVmDownLoadServer__sub_803EA1A8(s32 index, s32 limit) {
     QuestDownloadEntryNode *head;
     u8 *text;
     s32 pos;
-    if (reinterpret_cast<u32>(slot->items) != QUEST_DOWNLOAD_LIST_SENTINEL_WORD) {
+    if (slot->items != QUEST_DOWNLOAD_ITEM_LIST_UNAVAILABLE) {
         for (item = slot->items; item != NULL; item = item->next) {
             result = static_cast<QuestDownloadEntryNode *>(TQuestVmDownLoadServer__sub_803E9FFC(index, limit, item));
-            if (reinterpret_cast<u32>(result) == QUEST_DOWNLOAD_LIST_SENTINEL_WORD) {
+            if (result == QUEST_DOWNLOAD_ENTRY_LIST_FAILED) {
                 if (slot->entryHead != NULL) {
                     TQuestVmDownLoadServer__sub_803ECD8C(slot->entryHead);
                     slot->entryHead = NULL;
@@ -2490,7 +2493,7 @@ s32 TQuestVmDownLoadServer__sub_803EA1A8(s32 index, s32 limit) {
         }
     }
     result = static_cast<QuestDownloadEntryNode *>(TQuestVmDownLoadServer__sub_803E9FFC(index, limit, &lbl_8047F8A8));
-    if (reinterpret_cast<u32>(result) == QUEST_DOWNLOAD_LIST_SENTINEL_WORD) {
+    if (result == QUEST_DOWNLOAD_ENTRY_LIST_FAILED) {
         if (slot->entryHead != NULL) {
             TQuestVmDownLoadServer__sub_803ECD8C(slot->entryHead);
             slot->entryHead = NULL;
@@ -2533,6 +2536,9 @@ s32 TQuestVmDownLoadServer__sub_803EA1A8(s32 index, s32 limit) {
 
 #pragma pop
 
+#undef QUEST_DOWNLOAD_SEGMENT_SCAN_FAILED
+#undef QUEST_DOWNLOAD_ENTRY_LIST_FAILED
+#undef QUEST_DOWNLOAD_ITEM_LIST_UNAVAILABLE
 #undef QUEST_DOWNLOAD_LIST_SENTINEL_WORD
 
 QuestDownloadItemNode *build_item_list__22TQuestVmDownLoadServerFiPv(s32 arg0, Hdr_803EA384 *arg1) {
@@ -2597,7 +2603,7 @@ s32 TQuestVmDownLoadServer::count_leading_entries(s32 i, s32 end) {
 
 void TQuestVmDownLoadServer__sub_803EADD4(QuestDownloadSlot *arg0, s32 arg1) {
     if (arg1 == 0) {
-        arg0->status = 0xFFFFFFFFU;
+        arg0->tokens = QUEST_DOWNLOAD_MATCH_TOKENS_UNAVAILABLE;
         arg0->x18 = -1;
         if ((u32)arg0->items != 0xFFFFFFFF) {
             release_node_chain__22TQuestVmDownLoadServerFPv((QuestDownloadItemNode *)(arg0->items));
@@ -2657,7 +2663,7 @@ void TQuestVmDownLoadServer::init_entries() {
     QuestDownloadSlot *p;
 
     for (p = (QuestDownloadSlot *)quest_download_slot_chain_table; p < (QuestDownloadSlot *)quest_download_slot_chain_table + 80; p++) {
-        p->status = 0xFFFFFFFFU;
+        p->tokens = QUEST_DOWNLOAD_MATCH_TOKENS_UNAVAILABLE;
         p->items = 0;
         p->entryHead = 0;
         p->textHead = 0;

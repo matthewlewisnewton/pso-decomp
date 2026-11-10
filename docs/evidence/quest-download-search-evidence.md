@@ -60,15 +60,17 @@ name, shared only by the search and its two caller stages:
 #define QUEST_DOWNLOAD_LIST_SENTINEL_WORD 0xFFFFFFFFU
 ```
 
-The three search failure returns explicitly convert the word to
-`QuestDownloadSegment *`; the token-slot check converts it to
-`QuestDownloadMatchToken *`; and `sub_803E9FFC` propagates it through its existing
-`void *` return boundary. The recursive result, wrapper result and
-`sub_803EA1A8` consumer checks compare their existing 32-bit views with the same
-macro. All-ones `slot->items` means unavailable input and is skipped, whereas an
-all-ones generated result is propagated failure. The macro is undefined before
-`build_item_list`, leaving unrelated ID sentinels and integer status returns
-outside its scope.
+The current [typed-sentinel continuation](quest-download-typed-sentinels.md)
+gives segment failure, entry failure, unavailable item input and unavailable
+match tokens their own pointer-typed names. The search and both caller stages
+compare pointers directly. The existing generator `void *` boundary remains,
+with ordinary conversion of the typed entry-failure pointer on return.
+All-ones `slot->items` still skips unavailable input, whereas an all-ones
+generated result still propagates failure. The slot now consistently stores
+its token pointer, including its named unavailable value, instead of writing
+an integer union arm and later reading a pointer arm. Result/item macros remain
+local to the cluster; the token name is shared with reset and initialization.
+Unrelated ID sentinels and integer status returns remain outside this change.
 
 | Value | Preserved native meaning |
 |---|---|
@@ -89,9 +91,11 @@ while that decision remained pending. Matching output alone did not resolve it;
 the present change follows Matt's later macro direction and uses the explicit
 unsigned word consistently through the caller chain.
 
-The macro checkpoint preserves the complete provider object byte-for-byte
+The earlier named-word checkpoint preserved the complete provider object byte-for-byte
 (SHA-256 `22752cb218bdba3d7392a4506abdf15e494734223c38622c9e902ecab5885230`)
-and the complete frontend object. All 168 compiled provider bodies, 16 frontend
+and the complete frontend object. The typed continuation preserves allocated
+bytes and relocation targets, with compiler anonymous names renumbered only.
+All 168 compiled provider bodies, 16 frontend
 bodies, allocated data/layout/relocations and all 173 provider report entries
 are unchanged. The search remains 876/876, its wrapper 428/428 and its downstream
 consumer 476/476, all 100%. Native contract review verifies the three failure

@@ -8,8 +8,8 @@ struct QuestDownloadTextNode;
 struct QuestDownloadEntryNode;
 struct QuestDownloadItemNode;
 
-// Dictionary record stored through slot+0. The same word is all-ones until
-// the producer writes the pointer; reset stores that status as an integer.
+// Dictionary record referenced by slot+0. All-ones denotes unavailable
+// tokens; NULL and a dictionary pointer are the other observed native states.
 struct QuestDownloadMatchToken {
     u8 a;
     u8 b;
@@ -80,11 +80,10 @@ struct QuestDownloadQueueNode {
     QuestDownloadQueueNode *next;
 };
 
+#define QUEST_DOWNLOAD_MATCH_TOKENS_UNAVAILABLE ((QuestDownloadMatchToken *)0xFFFFFFFFU)
+
 struct QuestDownloadSlot {
-    union {
-        u32 status;
-        QuestDownloadMatchToken *tokens;
-    };
+    QuestDownloadMatchToken *tokens;
     QuestDownloadItemNode *items;
     QuestDownloadEntryNode *entryHead;
     QuestDownloadTextNode *textHead;
@@ -125,8 +124,8 @@ QUEST_RECORD_CHECK(QuestItem_extent, sizeof(QuestDownloadItemNode) == 0x10);
 QUEST_RECORD_CHECK(QuestQueue_extent, sizeof(QuestDownloadQueueNode) == 0x10);
 QUEST_RECORD_CHECK(QuestToken_extent, sizeof(QuestDownloadMatchToken) == 4);
 QUEST_RECORD_CHECK(QuestSlot_extent, sizeof(QuestDownloadSlot) == 0x1C);
-QUEST_RECORD_CHECK(QuestSlot_status_offset, offsetof(QuestDownloadSlot, status) == 0);
 QUEST_RECORD_CHECK(QuestSlot_tokens_offset, offsetof(QuestDownloadSlot, tokens) == 0);
+QUEST_RECORD_CHECK(QuestSlot_items_offset, offsetof(QuestDownloadSlot, items) == 4);
 QUEST_RECORD_CHECK(QuestSlot_entry_offset, offsetof(QuestDownloadSlot, entryHead) == 8);
 QUEST_RECORD_CHECK(QuestSlot_text_offset, offsetof(QuestDownloadSlot, textHead) == 0xC);
 QUEST_RECORD_CHECK(QuestRequest_extent, sizeof(Req_803EEF2C) == 0x10);
