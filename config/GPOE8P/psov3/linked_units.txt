@@ -1895,6 +1895,7 @@ pso/misc/TWindowSubShortMail_80246CB8.cpp
 pso/misc/TWindowSubShortMail_8027E620.cpp
 pso/misc/TWindowSubShortMail_802A571C.cpp
 pso/misc/TWindowSubStatusDisp.cpp
+pso/misc/TWindowSubStatusDispPages.cpp
 pso/misc/TWindowSubStatusDisp_8006F044.cpp
 pso/misc/TWindowSubStatusDisp_80071774.cpp
 pso/misc/TWindowSubStatusDisp_80077760.cpp
