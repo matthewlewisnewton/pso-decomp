@@ -24,9 +24,7 @@ struct RecoveredGlobal_80421844_lbl_805C1C50 {
 #include <stddef.h>
 #include "pso/misc/TUdpSocket.h"
 struct Stack_80421AD8 {
-    s16 sp1C;
-    s16 sp1E;
-    s32 sp20;
+    NetworkReceivePrefix receive;
     s32 sp24;
     s32 sp28;
 };
@@ -61,11 +59,25 @@ struct G_804229F8 { s32 f0; };
 
 struct O_80421938 { u8 pad0[8]; s32 f8; s16 fC; };
 
-struct Stack_80421938 { s16 flags; s16 len; s32 zero; u8 src[0x10]; u8 dst[0x10]; };
+struct Stack_80421938 { NetworkReceivePrefix receive; u8 src[0x10]; u8 dst[0x10]; };
 
 struct O_80421F10 { u8 pad0[8]; s32 f8; s16 fC; };
 
-struct Stack_80421F10 { s16 flags; s16 len; s32 zero; u8 src[0x14]; u8 dst[0x14]; s16 port; };
+struct Stack_80421F10 { NetworkReceivePrefix receive; u8 src[0x14]; u8 dst[0x14]; s16 port; };
+
+typedef char Stack_80421AD8_receive_offset[offsetof(Stack_80421AD8, receive) == 0 ? 1 : -1];
+typedef char Stack_80421AD8_src_offset[offsetof(Stack_80421AD8, sp24) == 8 ? 1 : -1];
+typedef char Stack_80421AD8_dst_offset[offsetof(Stack_80421AD8, sp28) == 0xC ? 1 : -1];
+typedef char Stack_80421AD8_size[sizeof(Stack_80421AD8) == 0x10 ? 1 : -1];
+typedef char Stack_80421938_receive_offset[offsetof(Stack_80421938, receive) == 0 ? 1 : -1];
+typedef char Stack_80421938_src_offset[offsetof(Stack_80421938, src) == 8 ? 1 : -1];
+typedef char Stack_80421938_dst_offset[offsetof(Stack_80421938, dst) == 0x18 ? 1 : -1];
+typedef char Stack_80421938_size[sizeof(Stack_80421938) == 0x28 ? 1 : -1];
+typedef char Stack_80421F10_receive_offset[offsetof(Stack_80421F10, receive) == 0 ? 1 : -1];
+typedef char Stack_80421F10_src_offset[offsetof(Stack_80421F10, src) == 8 ? 1 : -1];
+typedef char Stack_80421F10_dst_offset[offsetof(Stack_80421F10, dst) == 0x1C ? 1 : -1];
+typedef char Stack_80421F10_port_offset[offsetof(Stack_80421F10, port) == 0x30 ? 1 : -1];
+typedef char Stack_80421F10_size[sizeof(Stack_80421F10) == 0x34 ? 1 : -1];
 
 struct S_804220A0 {
     u8 pad0[0x1FC]; s32 f1FC; u8 pad200[0xAC]; u8 flags; u8 count; s16 f2AE; u8 pad2B0[4]; u8 flags2; u8 pad2B5[0x544 - 0x2B5];
@@ -360,9 +372,9 @@ typedef char RecoveredGlobal_804219D0_lbl_805C1C50_size[sizeof(RecoveredGlobal_8
 
 s32 TLobby__sub_80421938(O_80421938 *o, void *src, void *dst, void *cb, s32 flags) {
     Stack_80421938 s;
-    s.flags = flags | 0xC00;
-    s.len = o->f8 - o->fC;
-    s.zero = 0;
+    s.receive.flags = flags | 0xC00;
+    s.receive.length = o->f8 - o->fC;
+    s.receive.buffer = NULL;
     NetMemcpy(s.src, src, 0x10);
     NetMemcpy(s.dst, dst, 0x10);
     if (cb != NULL) {
@@ -391,19 +403,14 @@ s32 TLobby__sub_80421A50(s32 arg0, s32 arg1, s32 arg2) {
 
 s32 TLobby__sub_80421AD8(u8 *arg0, s32 arg1, s32 arg2, u32 arg3, s32 arg4) {
     struct Fields_arg0 { u8 pad_0[8]; s32 field_8; s16 field_C; };
-    typedef char sp1C_offset[(offsetof(Stack_80421AD8, sp1C) == 0x0) ? 1 : -1];
-    typedef char sp1E_offset[(offsetof(Stack_80421AD8, sp1E) == 0x2) ? 1 : -1];
-    typedef char sp20_offset[(offsetof(Stack_80421AD8, sp20) == 0x4) ? 1 : -1];
-    typedef char sp24_offset[(offsetof(Stack_80421AD8, sp24) == 0x8) ? 1 : -1];
-    typedef char sp28_offset[(offsetof(Stack_80421AD8, sp28) == 0xC) ? 1 : -1];
     Stack_80421AD8 stack;
-    stack.sp1C = arg4 | 0x800;
-    stack.sp1E = ((Fields_arg0*)arg0)->field_8 - ((Fields_arg0*)arg0)->field_C;
-    stack.sp20 = 0;
+    stack.receive.flags = arg4 | 0x800;
+    stack.receive.length = ((Fields_arg0*)arg0)->field_8 - ((Fields_arg0*)arg0)->field_C;
+    stack.receive.buffer = NULL;
     stack.sp24 = arg1;
     stack.sp28 = arg2;
     if (arg3 != 0U) {
-        TLobby__sub_80421FB8((void *)arg3, &stack.sp1C, (void *)arg0);
+        TLobby__sub_80421FB8((void *)arg3, &stack, (void *)arg0);
     }
     return 0;
 }
@@ -534,9 +541,9 @@ s16 TUdpSocket__sub_80421DEC(void *src, s32 sport, void *dst, s32 dport, s32 arg
 
 s32 TLobby__sub_80421F10(O_80421F10 *o, void *src, void *dst, s16 port, void *cb, s32 flags) {
     Stack_80421F10 s;
-    s.flags = flags | 0x400;
-    s.len = o->f8 - o->fC;
-    s.zero = 0;
+    s.receive.flags = flags | 0x400;
+    s.receive.length = o->f8 - o->fC;
+    s.receive.buffer = NULL;
     NetMemcpy(s.src, src, 0x14);
     NetMemcpy(s.dst, dst, 0x14);
     s.port = port;
@@ -547,9 +554,8 @@ s32 TLobby__sub_80421F10(O_80421F10 *o, void *src, void *dst, s16 port, void *cb
 }
 
 struct PktSeg_80421FB8 { s16 len; u8 pad2[2]; u8 data[8]; };
-struct PktHdr_80421FB8 { s16 flags; s16 len; u8 *buf; };
 struct PktBuf_80421FB8 { u8 pad0[0xC]; PktSeg_80421FB8 seg[8]; };
-typedef s16 (*PktCb_80421FB8)(s32, PktHdr_80421FB8 *);
+typedef s16 (*PktCb_80421FB8)(s32, NetworkReceivePrefix *);
 void TLobby__sub_80406FD8(void *, void *, s32);
 void TLobby__sub_80406EB8(void *, u32);
 
@@ -559,20 +565,20 @@ void TLobby__sub_80421FB8(void *cb, void *hdr_, void *o_) {
     s16 len;
     s32 pkt[2];
     s16 chunk;
-    PktHdr_80421FB8 *hdr;
+    NetworkReceivePrefix *hdr;
     PktBuf_80421FB8 *o;
-    hdr = (PktHdr_80421FB8 *)hdr_;
+    hdr = (NetworkReceivePrefix *)hdr_;
     o = (PktBuf_80421FB8 *)o_;
-    len = hdr->len;
+    len = hdr->length;
     if (((PktCb_80421FB8)cb)(0, hdr) == 0) {
-        if (hdr->len >= len) {
-            hdr->len = len;
+        if (hdr->length >= len) {
+            hdr->length = len;
         }
-        len = hdr->len;
-        if (len == 0 || hdr->buf == NULL) {
+        len = hdr->length;
+        if (len == 0 || hdr->buffer == NULL) {
             return;
         }
-        buf = hdr->buf;
+        buf = hdr->buffer;
         ((TLobby *)pkt)->init_packet_header((s32)buf);
         for (i = 1; len > 0; i++) {
             if (len > o->seg[i].len) {

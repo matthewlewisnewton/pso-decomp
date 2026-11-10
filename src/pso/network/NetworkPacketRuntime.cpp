@@ -11,12 +11,6 @@
 #include "pso/misc/TUdpSocket.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-struct Arg_804249F0 {
-    u8 pad0[2];
-    s16 len;
-    void *p;
-};
-
 struct RecoveredGlobal_80428374_lbl_805D0A40 {
     s32 value;
     u8 remaining[0x5C];
@@ -262,14 +256,14 @@ s32 TLobby::validate_slot_buffers(s32 arg0, void *arg1, void *arg2, void *arg3) 
 #pragma push
 #pragma opt_propagation off
 s32 dhcp_handle_reply__6TLobbyFsPv(s16 arg0, u8 *record) {
-    Arg_804249F0 *arg1 = (Arg_804249F0 *)record;
+    NetworkReceivePrefix *arg1 = (NetworkReceivePrefix *)record;
     DhcpClientBuffers *g = &lbl_805C1E00;
     BootpPacket *pk;
     u8 *q;
     u8 *p;
 
     if (arg0 == 0) {
-        arg1->p = &g->received.hdr;
+        arg1->buffer = (u8 *)&g->received.hdr;
         return 0;
     }
     pk = &g->received.hdr;
@@ -302,21 +296,21 @@ s32 dhcp_handle_reply__6TLobbyFsPv(s16 arg0, u8 *record) {
         break;
     case 2:
         if (dhcp_reply_received == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 5) {
-            NetMemcpy(&g->reply, pk, arg1->len);
+            NetMemcpy(&g->reply, pk, arg1->length);
             dhcp_reply_received = 1;
         }
         break;
     case 4:
         if (dhcp_reply_received == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 5 &&
             lbl_805D7B28 == pk->yiaddr) {
-            NetMemcpy(&g->reply, pk, arg1->len);
+            NetMemcpy(&g->reply, pk, arg1->length);
             dhcp_reply_received = 1;
         }
         break;
     case 5:
         if (dhcp_reply_received == 0 && find_dhcp_option__6TLobbyFPvUcPv(q, 0x35, &p) == 1 && *p == 5 &&
             lbl_805D7B28 == pk->yiaddr) {
-            NetMemcpy(&g->reply, pk, arg1->len);
+            NetMemcpy(&g->reply, pk, arg1->length);
             dhcp_reply_received = 1;
         }
         break;

@@ -1249,3 +1249,52 @@ The direct wrapper mismatch is resolved; this does not infer wider allocator
 ownership or rewrite unrelated address-word APIs. DHCP extent propagation and
 broader dispatcher callback contracts remain separate, and metadata is still
 held. Keep draft pending current checks and final review.
+
+
+## Shared receive prefix across UDP and raw IP
+
+Audit the receive contract across all three native producer paths rather than
+inferring a DHCP-only callback layout. Raw IPv4 at 0x80421AD8, raw IPv6 at
+0x80421938 and UDP at 0x80421F10 all construct an eight-byte prefix: signed
+16-bit selector/flags at +0, signed 16-bit length at +2, destination pointer at
++4. Their tails differ: IPv4 has two address words (record size 0x10), IPv6 has
+two 16-byte addresses (size 0x28), and UDP has two 20-byte NetworkAddress records
+plus a port at +0x30 (size 0x34). The UDP record-copy helper copies 0x32 bytes of
+meaningful fields, so copying only the common prefix would lose metadata.
+
+Define `NetworkReceivePrefix` once with offset/size assertions. Embed an actual
+first-member prefix in every producer record and assert every tail offset and
+complete size. Pass the complete producer records through the existing void
+record interface; the dispatcher interprets their initial member through the
+shared prefix. Use the same prefix view in DHCP, replacing its separate padded
+record overlay. The signed length, buffer assignment, all address/port stores,
+clamping and fragment-copy sequence are unchanged. Callback byte-pointer
+exports, registration address words and the full UDP record-copy helper stay
+unchanged. No symbol rename or compiler steering is needed.
+
+The dispatcher at 0x80421FE8 executes `extsh.` on the event-0 return. Replacing
+its short-result view with an unconverted full-word result would change a value
+such as 0x10000 from accepted to rejected. Both known callback implementations
+also narrow their event argument. Keep the existing callback/result interfaces
+while their broader contracts remain unproven. Raw IPv4 delivery loads a
+callback from table +0x10, stride 0x1C (0x8040E288); raw IPv6 uses +0x28, stride
+0x34 (0x80410510). The available source and registrations do not establish one
+canonical C++ function type for every raw callback implementation. This prefix
+repair neither claims to resolve that ABI debt nor guesses a callback type.
+
+The accepted DHCP extent still is not persisted before pointer-only parsing.
+The shared signed field is not a minimum packet size or an input bound; no
+length guard, tail clear, added storage or receive behavior is introduced.
+The EXI declaration reserved for separate modem work is preserved exactly, and
+ModemRuntime, NetworkMessageTransport and SocketProtocolRuntime are unedited.
+
+Final capacity-gated native validation reproduces original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. All four saved complete network
+objects are raw byte-identical, including metadata/symbols and relocations;
+all 3,662 compiled source objects have unchanged hashes. Ordered linker inputs
+are unchanged (3,588 source; 1,360 original fallback). Incremental full checks
+have zero metric, function, coverage or retention drift. Against sealed main
+`f0f05f3af`, retain the existing +88 data bytes, zero new functions/code, no
+losses, all 3,588 linked units exact and 17,833 retention entries without drift.
+Host tests pass. Regenerate the exception inventory for shifted source lines;
+its counts remain unchanged. Keep draft and the metadata restriction.
