@@ -151,3 +151,14 @@ are retained. Its +1592 matched/linked code and +168 matched/linked data bytes
 and one newly exact initializer belong to upstream. The strict raw interval
 comparison introduces no additional coverage, exact-data or linked-data loss.
 Existing lifetime, raw helper and historical coverage qualifications remain.
+
+The next integration uses main `c9af971c23960f6d0b86a132f4899a8217528545`,
+including merged CvFs/modem and MineTrap work beyond the earlier c1fb4aa0
+checkpoint. All thirty-six upstream path patches and the focused delta are
+preserved. The focused gated build and prior-head acceptance pass with 3600
+exact linked units and retention18403 without drift. Fresh-main comparison
+retains the same one exact function, +600 matched / +728 linked code and zero
+data/address loss. The new five exact functions, 4680 matched / 12532 linked
+code and 2960 matched / 4116 linked data bytes versus the previous focused head
+belong to upstream. Strict raw data, exact-data and linked-data ranges introduce
+no additional loss. Existing lifetime and historical coverage qualifications stay.

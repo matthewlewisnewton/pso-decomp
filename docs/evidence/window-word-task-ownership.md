@@ -100,3 +100,9 @@ qualifies merged #407 on current main, preserves the native task/fields and shar
 raw reset contract, and activates the complete exact Word unit. This supersedes
 this historical missing-renderer/original-provider hold; native Word lifetime,
 DD's independent renderer and the other recorded interface holds remain separate.
+
+The later [destructor/table isolation](window-word-destructor-isolation.md)
+retains the C initializer while testing only native destruction/table ownership.
+It still grows that initializer by eight bytes, so the hold includes compiler
+table/data grouping independently of native constructor spelling. The failed
+candidate is fully restored; the note records the required next evidence.

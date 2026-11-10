@@ -134,6 +134,26 @@ relocation and provider qualifications remain intact. Upstream receives the
 additional exact initializer, 1592 matched/linked code and 168 matched/linked data
 bytes. All previously recorded source-quality and historical coverage holds stay.
 
+The [Word destructor/table isolation](window-word-destructor-isolation.md)
+tests a new partial route while retaining the legacy C initializer. Destructor116,
+data88/table24 and factory92 components match, but compiler-table emission grows
+even that retained initializer148 to156 and owner664 to672; the original DOL gate
+fails. Every candidate implementation/configuration change is restored and the
+published objects rebuilt identically. This narrows the data-grouping evidence
+needed before another lifetime test; it lifts no hold and introduces no variant.
+
+The next integration uses main `c9af971c23960f6d0b86a132f4899a8217528545`,
+including CvFs/modem and MineTrap beyond the requested c1fb4aa0 checkpoint.
+All thirty-six upstream path patches, existing window implementation and evidence
+are preserved. Clean main, focused and continuation gated builds retain the
+original DOL; the continuation has 3601 exact linked units and retention18572
+without drift. Prior B, refreshed A and fresh-main comparisons pass. The five new
+exact functions, 4680 matched / 12532 linked code and 2960 matched / 4116 linked
+data bytes versus prior B belong to upstream. Strict data-range checks add no
+coverage, exact-data or linked-data loss. The fourteen existing window tails and
+all historical qualifications stay. The rejected Word isolation remains restored;
+no lifetime, ownership or original-provider hold is lifted by this refresh.
+
 ## Current tried/blocked index
 
 | Area | Established result | Remaining evidence / hold |
@@ -143,7 +163,7 @@ bytes. All previously recorded source-quality and historical coverage holds stay
 | Basic ComCard | Native constructor and exact native render body; coherent cleanup/table probe | Unknown trailing word ownership prevents regression-free activation; no padding/object invention or four-byte waiver |
 | ActionPalette | Native construction, exact retained methods and 352-byte typed layout recovery | Contiguous icon/light/table probe changed icon and two caller objects; still needs common UV/table/jump ownership and conversion-contract evidence |
 | DD renderer | Shared begin/forward/reset contracts established | 608-byte probe remains 37 words different; needs value-lifetime/quad evidence; original provider retained |
-| Word renderer/lifetime | Upstream exact 916-byte renderer and complete 3412-byte unit source-linked; native task/fields/raw reset preserved | Native constructor data-base arrangement, deleting/table lifetime and broader buffer/helper interfaces remain held |
+| Word renderer/lifetime | Upstream exact 916-byte renderer and complete 3412-byte unit source-linked; native task/fields/raw reset preserved | Native constructor and isolated destructor/table emission both break initializer data-base sharing; broader buffer/helper and raw lifetime holds remain |
 | Nameplate | Ordinary reconstructed 800-byte body and helper evidence | Nonexact arithmetic/register result; original full provider retained |
 | ScrollBar / ChallengeResult / follower | Bounded native probes and contracts recorded | Constant-pool/data-base/producer differences; no repeated scheduling variants |
 | SymbolChat Parts | Existing exact compiled functions | Constant ownership prevents source linkage; original provider retained |
