@@ -1,10 +1,10 @@
 #include "types.h"
 #include "pso/unk/text_8014618C.h"
 #include "pso/unk/text_803F4D84.h"
+#include "pso/network/NetworkConfigLifecycle.h"
 #include "pso/network/NetworkInfoLoader.h"
 #include "pso/network/NetworkInfoRequests.h"
 #include "pso/ui/TAdPlayerLoadGC_803F18B8.h"
-#include "pso/ui/TAdPlayerLoadGC_803F3CF4.h"
 #include "pso/unk/text_80145A94.h"
 #include "pso/unk/text_8042EE4C.h"
 #include "pso/system/main_loop.h"
@@ -18,11 +18,10 @@ struct Buf_80145A94 { s32 hdr; s8 name[0xA0]; s8 x[0x270 - 0xA4]; };
 extern "C" {
 s32 TAdPlayerLoadGC__sub_803F2F1C();
 s32 TAdPlayerLoadGC__sub_803F31D8();
-s32 TLobby__sub_803F3BF8(int, s32, u32);
 s32 memset(void *, int, int);
 extern s32 lbl_8043F3E8[];
 extern s16 disc_error_code;
-extern s32 lbl_805D56C8;
+extern void *lbl_805D56C8;
 extern u16 lbl_805D56CC;
 extern u16 lbl_805D56CE;
 s32 TLobby__sub_80145A94(void) {

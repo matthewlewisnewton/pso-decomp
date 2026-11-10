@@ -13833,10 +13833,10 @@ pso/ui/TAdPlayerLoadGC_803F18B8.cpp:
 	.bss        start:0x805A28C0 end:0x805A5F00
 
 pso/ui/TAdPlayerLoadGC_803F339C.cpp:
-	.text       start:0x803F339C end:0x803F3CF4
+	.text       start:0x803F339C end:0x803F3BF8
 
-pso/ui/TAdPlayerLoadGC_803F3CF4.cpp:
-	.text       start:0x803F3CF4 end:0x803F3DD4
+pso/network/NetworkConfigLifecycle.cpp:
+	.text       start:0x803F3BF8 end:0x803F3DD4
 
 pso/network/NetworkInfoRequests.cpp:
 	.text       start:0x803F3DD4 end:0x803F3F64
