@@ -4,24 +4,39 @@
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 
+class ModelNodePositionCapture;
+class TParticleCtrl;
+struct AnimationMotion;
+struct NJS_OBJECT;
+
+struct TObjDFDemo4Part {
+    NJS_OBJECT *model;
+    s32 texlist;
+    AnimationMotion *motion;
+};
+
 struct TObjDFDemo4 : public TObjBase {
+    TObjDFDemo4(TObject *parent, const Vec *position, s32 angle);
     virtual ~TObjDFDemo4();
-    void sub_8004F2A8();
-    void sub_8004F1FC();
+    void draw_afterimages();
+    void draw_body();
     virtual void render();
     virtual void run_task();
-    void* m_90;
-    u8 _pad94[0x54];
+    // State shared by the legacy strip initialization, scrolling and release helpers.
+    u8 strips[0x14];
+    TParticleCtrl *particle_emitters[2];
+    TObjDFDemo4Part afterimages[2];
+    TObjDFDemo4Part body_parts[3];
     Vec camera_position;
-    u32 m_f4;
-    u32 m_f8;
-    u8 _padFC[0x4];
-    u32 m_100;
-    void* m_104;
-    static void *create(void *arg0, void *arg1, void *arg2);
-    u8 unk_108[0x14];
+    s32 angle;
+    s32 timer;
+    f32 frame;
+    ModelNodePositionCapture *node_capture;
+    Vec emitter_positions[2];
+
+    static TObjDFDemo4 *create(TObject *parent, const Vec *position, s32 angle);
 };
 
 typedef char TObjDFDemo4_size[sizeof(TObjDFDemo4) == 0x11C ? 1 : -1];
-typedef char TObjDFDemo4_camera_position_offset[offsetof(TObjDFDemo4, camera_position)==0xe8?1:-1];
+typedef char TObjDFDemo4_camera_position_offset[offsetof(TObjDFDemo4, camera_position) == 0xE8 ? 1 : -1];
 #endif

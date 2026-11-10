@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (merged main `b2a90ff1e`, 2026-11-10)
+## Summary (merged main `3ee5a151c`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `b2a90ff1e` (2026-11-10). Assembly is counted as source lines;
+after merging main `3ee5a151c` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,770 | 876 |
-| Per-unit compiler overrides in `configure.py` | 180 | 180 |
+| CodeWarrior pragmas (excluding push/pop) | 5,769 | 876 |
+| Per-unit compiler overrides in `configure.py` | 181 | 181 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -83,11 +83,11 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
-5,770 pragmas in 876 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1145, `inline_depth` 1037, `fp_contract` 876, `auto_inline` 837,
+5,769 pragmas in 876 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1144, `inline_depth` 1036, `fp_contract` 876, `auto_inline` 836,
 `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237,
-`readonly_strings` 205, `peephole` 103, `optimization_level` 88, `bool` 56,
-`defer_codegen` 53, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
+`readonly_strings` 206, `peephole` 103, `optimization_level` 88, `bool` 56,
+`defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -95,6 +95,14 @@ MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
 check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
+
+### Dark Falz demo 4
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/object/TObjDFDemo4.cpp` | Translation unit | `readonly_strings on` and `defer_codegen on` | Places the class name in `.rodata` and emits the seven functions in reverse definition order. Deferred generation also places the camera initializers before the signed conversion constant. | Use ordinary string and function definitions. |
+| `src/pso/object/TObjDFDemo4.cpp` | Constructor at `0x8004F6AC` | Weak linkage for the strip-node table | With strong linkage CodeWarrior pools the strip table and both camera initializers under a shared `.rodata` base. Weak linkage preserves the original direct relocations and keeps the shared `.data` base for the motion tables and vtable. | Use the same const table with ordinary linkage. |
+| `configure.py` | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | The two eight-byte afterimage index tables use normal data addressing. The class-name pointer still uses small data. | Use ordinary arrays and a string pointer. |
 
 ### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
 

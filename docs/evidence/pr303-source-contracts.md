@@ -559,3 +559,53 @@ TCP remains 40/45 and on original fallback. Unit-count reductions from folding
 are structural; no linked ranges are lost. Host vector and item-factory tests,
 exception inventory and whitespace pass. Keep draft with the existing native
 interface limitations and stale metadata; no previously failed write is retried.
+
+
+## Demo 4 main refresh after pre-push advance
+
+Before publishing the validated Canadin/debris refresh, main advanced again
+to `3ee5a151c72efc2763fb72e1d8deaae26e9aade2` (Dark Falz demo 4 recovery).
+Integrate it into the unpublished Canadin checkpoint
+`b3bbaf6314e3e63f7afd30861bf9d2c1c048746f`; the stale exception-summary
+sentence found during that checkpoint's review is corrected there. The remote
+PR remains `460ce612da6407609f4460e14c47447f49a7f980` with no competing owner.
+
+Retention conflict resolution keeps the live `dfdemo4_strip_nodes` entry and
+omits main's superseded `dhcp_build_packet__6TLobbyFv` spelling; this branch
+already retains its shared `DhcpMessage::build_request` name. Regenerate the
+exception inventory (5,769 pragmas, 876 files, 181 compiler overrides), keeping
+both branches' entries. No assembly, pragma or override beyond main is added.
+
+Incoming `TObjDFDemo4Part::model` was an integer. Both constructor loops assign
+the canonical `NJS_OBJECT *` model accessor, and the only reads pass those
+fields to `draw_model_motion`. Use `NJS_OBJECT *` storage, matching the existing
+demo 5 repair, and remove the two redundant draw casts. The native class size
+assertion remains `0x11C`. The strip-node table's separate `s32 model` selector
+and provisional texture-list words are unchanged. This preserves the typed
+accessor contract rather than restoring incompatible local prototypes or
+concealing it with integer casts. Scanner, lease-parser and other holds remain
+unchanged; no earlier technical probe or failed metadata write is repeated.
+
+Both new capacity-gated builds reproduce original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Main's full comparison with
+preserved `b2a90ff1e` passes. Its fold removes only two four-byte zero-alignment
+coverage ranges at `.sdata 0x805D2794` and `0x805D279C`, accepted by the checker;
+no original data object or linked range is lost. Against fresh main:
+
+| Measure | Main `3ee5a151c` | Continuation | Delta |
+|---|---:|---:|---:|
+| Exact functions | 27,397 | 27,397 | 0 |
+| Matched code bytes | 4,203,648 | 4,203,648 | 0 |
+| Matched data bytes | 1,470,687 | 1,470,775 | +88 |
+| Complete code bytes | 3,708,148 | 3,708,148 | 0 |
+| Complete data bytes | 1,186,255 | 1,186,343 | +88 |
+| Linked units | 3,582 | 3,581 | -1 |
+
+There are no regressions or code/data/address/link/padding losses against
+fresh main. All 3,581 linked units are exact; retention has 17,726 entries,
+none missing or stale. Demo 4 is 7/7, Canadin 101/101, DHCP 42/42 and packet
+runtime 24/24 with exact code/data and actual compiled source inputs. TCP
+retains its original fallback. All 181 accessor-using source files include
+the canonical header. Host vector and item-factory tests, inventory and
+whitespace pass. Keep draft with the remaining documented interfaces and
+stale metadata; no formal approval or main merge is performed.
