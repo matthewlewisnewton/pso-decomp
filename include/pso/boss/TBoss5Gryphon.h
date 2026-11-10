@@ -8,6 +8,14 @@
 #include <stddef.h>
 
 class TBoss5GryphonDemo;
+struct BmlResource;
+struct GinjaTextureList;
+
+extern "C" {
+void load_boss5_gryphon_resources();
+extern BmlResource *boss5_gryphon_bml_resource;
+extern GinjaTextureList *boss5_gryphon_texture_list;
+}
 
 typedef G_GalGryphonBossAction Boss5GryphonMotionEntry;
 
