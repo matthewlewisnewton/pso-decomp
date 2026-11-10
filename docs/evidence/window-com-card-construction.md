@@ -78,3 +78,8 @@ Only the basic raw constructor boundary is removed: 25 Base/Addition calls
 remain across 13 source units, with the same four shared bindings. Follower,
 Palette/Balloon destruction/table integration, ScrollBar, Parts, ChoiceSetting,
 task-global and wider interface/ownership holds remain. PR stays draft.
+
+The subsequent [bounded blocker audit](window-status-page-com-card-blocker-audit.md)
+finds exact basic native cleanup and a coherent data partition, but the original
+trailing word's ownership prevents a regression-free activation. The probe is
+private and this checkpoint's complete source/data provider remains restored.

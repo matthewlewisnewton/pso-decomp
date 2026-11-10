@@ -91,3 +91,8 @@ versus main are +600 matched code, +1220 linked code, +1604 matched data and
 The incomplete consumer, remaining lifetime/ownership/callback/constant and
 initialization holds, DD/Word/nameplate original providers and protected
 remainders remain. The PR stays draft; no split or history rewrite is made.
+
+The subsequent [bounded blocker audit](window-status-page-com-card-blocker-audit.md)
+records one reconstruction of the missing 1348-byte consumer page. Its 1344-byte
+result preserves prior functions and call order but is not activated. The full
+original consumer and the unchecked rank-index qualification remain intact.
