@@ -18,6 +18,7 @@ struct TKeyBoardControl : public TObject {
     void release_input();
     void set_keyboard_flag62_bit2();
     void set_keyboard_depth(f32 depth);
+    void set_text(char *text);
     void set_position(void *position);
     void set_composer_position(u8 *position);
     void set_soft_keyboard_position(u8 *position);

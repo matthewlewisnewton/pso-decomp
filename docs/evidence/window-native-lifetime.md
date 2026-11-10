@@ -352,3 +352,15 @@ The standing draft hold is retained for review of the remaining legacy ABI
 boundary and historical interface holds. This recovery resolves the measured native
 constructor, client-width, default-construction, and emitted-table integration
 problems; it does not claim that every historical hold in the PR body is closed.
+
+
+The [keyboard text-forwarding follow-up](window-keyboard-text-forwarding.md)
+recovers the observed nine-call Control/composer text protocol. Both native
+36-byte wrappers take their text argument explicitly; the lower 224-byte setter
+retains its historical C export with a raw embedded-record receiver. Complete
+record identity, capacity/storage aliasing, broader Soft interfaces and CMName
+activation remain qualified. All changed objects preserve their complete text,
+relocations and allocated sections; no new source/data activation is claimed.
+The remaining 22 raw Base/Addition calls across 12 units and other lifetime,
+constant, callback/renderer, producer/global ownership and original-remainder
+holds persist. Latest main25b400 is separately built and integrated; PR stays draft.

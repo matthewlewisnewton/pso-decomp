@@ -382,7 +382,6 @@ s32 get_creation_sprite_id__14TObjCMMainMenuFl(int);
 void fn_802947A8(void);
 int TObjCMName__sub_802948F4(TObjCMName *, char *);
 TKeyBoardControl *TKeyBoardControl__ct(void *, TObject *, s32, s32, s32, s32);
-int get_keyboard_field_6c__15TWindowMakeTeamFv(TKeyBoardControl *, char *);
 void * create__10TObjCMNameFPv(void *arg0);
 void * __ct__10TObjCMNameFv(void *arg0);
 void * create__16TObjCMProportionFPv(void *arg0);
@@ -548,7 +547,7 @@ void TObjCMName::run_task() {
                 kb = TKeyBoardControl__ct(kb, this, 12, 0, 0, TChCrEffCtrlPl::get_clamped_player_index());
             }
             keyboard = kb;
-            get_keyboard_field_6c__15TWindowMakeTeamFv(keyboard, (char *)appearance->name);
+            keyboard->set_text((char *)appearance->name);
             scale = TObjCMMainMenu::get_scale();
             pos[0] = 148.0f;
             pos[1] = 137.0f * scale;

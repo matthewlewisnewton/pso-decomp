@@ -33,7 +33,6 @@ void *TKeyBoardControl__ct(void *, void *, s32, s32, s32, s32);
 extern s32 local_client_id;
 void *get_window_layout_position(s32);
 extern const f32 lbl_805DD144;
-void get_keyboard_field_6c__15TWindowMakeTeamFv(void *, char *);
 char *realloc_buffer__17TWindowSubComCardFv(void *);
 char *get_shared_text_buffer(void);
 s32 measure_string_len__20TWindowSubStatusDispFv(char *);
@@ -89,7 +88,7 @@ void TWindowMakeTeam::run_task() {
         ((TKeyBoardControl *)(self->keyboard))->set_composer_position((u8 *)(get_window_layout_position(0xCB)));
         ((TKeyBoardControl *)self->keyboard)->set_keyboard_depth(lbl_805DD144);
         update_chat_window(self->keyboard);
-        get_keyboard_field_6c__15TWindowMakeTeamFv(self->keyboard, self->name);
+        ((TKeyBoardControl *)self->keyboard)->set_text(self->name);
         ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(NULL, 0);
         this->m_1c = 4;
     }
@@ -117,7 +116,7 @@ void TWindowMakeTeam::run_task() {
         self->keyboard = kb;
         ((TKeyBoardControl *)(self->keyboard))->set_composer_position((u8 *)(get_window_layout_position(0xCC)));
         ((TKeyBoardControl *)self->keyboard)->set_keyboard_depth(lbl_805DD144);
-        get_keyboard_field_6c__15TWindowMakeTeamFv(self->keyboard, self->comment);
+        ((TKeyBoardControl *)self->keyboard)->set_text(self->comment);
         ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(NULL, 1);
         this->m_1c = 6;
     }

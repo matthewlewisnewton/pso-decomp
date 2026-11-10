@@ -89,3 +89,12 @@ depth/status, Snapshot, WS_Word and protected-original checks pass again, includ
 the original1044 helper and WS_Word's original3412 provider/missing916 renderer.
 Raw Base/Addition calls remain 22 across 12 units. All remaining documented holds
 remain; PR stays draft.
+
+## Later text-forwarding qualification
+
+The [text-forwarding follow-up](window-keyboard-text-forwarding.md) establishes
+both 36-byte forwarding contracts and all nine caller arguments/results from
+original reference/callee evidence. It replaces the historical text-getter views
+with native void Control/composer members and an explicit lower raw-record ABI.
+Complete text-record identity, capacity/storage aliasing, Soft-window recovery
+and CMName activation remain held. The position operations above are unchanged.

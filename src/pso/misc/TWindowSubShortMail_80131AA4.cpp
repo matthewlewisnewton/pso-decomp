@@ -2,8 +2,6 @@
 #include "pso/misc/TKeyBoardControl.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
 #include "pso/misc/TWindowBase.h"
-#include "pso/misc/TWindowMakeTeam.h"
-#include "pso/misc/TWindowKeyBoardSoft.h"
 
 void TKeyBoardControl::set_position(void *position) {
     ((TWindowKeyBoardBase *)m_20)->m_30 = *(f32 *)position - 4.0f;
@@ -29,4 +27,4 @@ void TKeyBoardControl::set_composer_position(u8 *position) {
     ((TWindowKeyBoardBase *)m_20)->save_position();
 }
 
-int TWindowMakeTeam::get_keyboard_field_6c() { return ((TWindowKeyBoardSoft *)(this->m_20))->get_field_6c(); }
+void TKeyBoardControl::set_text(char *text) { ((TWindowKeyBoardBase *)m_20)->set_text(text); }

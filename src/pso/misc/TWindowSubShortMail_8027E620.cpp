@@ -347,7 +347,6 @@ s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 extern const f32 lbl_805DD6D8;
 void remove_short_mail_by_id(u32 id);
 extern "C" {
-void get_keyboard_field_6c__15TWindowMakeTeamFv(void *, void *);
 struct VObj_8027FBF0_Base_8027fbf0_8027E620 { char pad[0x18]; };
 struct VObj_8027FBF0_8027E620 : VObj_8027FBF0_Base_8027fbf0_8027E620 {
     virtual void m0();
@@ -579,7 +578,7 @@ void TWindowSubShortMail::run_task() {
         if (o->w40 != NULL) { ((TWindowBase *)o->w40)->close(); o->w40 = NULL; }
         if (o->w5c == NULL) {
             o->w5c = ((void * (*)()) create_keyboard__19TWindowSubShortMailFv)();
-            get_keyboard_field_6c__15TWindowMakeTeamFv(o->w5c, ((void * (*)()) get_card_window_area__6TLobbyFv)());
+            ((TKeyBoardControl *)o->w5c)->set_text((char *)((void * (*)()) get_card_window_area__6TLobbyFv)());
         }
         ((TKeyBoardControl *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBB)));
         free_menu_object(o->w5c);

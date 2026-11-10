@@ -310,7 +310,6 @@ void update_selection__17TWindowSubComCardFiii(s32 arg0, s32 arg1, s32 arg2);
 s32 TKeyBoardControl__ct(s32, s32, s32, s32, s32, s32);
 s32 __nw__7TObjectFUl(s32);
 s32 get_kbd_ptr__14TWindowComCardFv(s32);
-s32 get_keyboard_field_6c__15TWindowMakeTeamFv(s32, s32);
 s32 set_depth__11TWindowBaseFf(f32);
 
 void update_selection__17TWindowSubComCardFiii(s32 arg0, s32 arg1, s32 arg2) {
@@ -339,7 +338,7 @@ s32 create_keyboard__17TWindowSubComCardFii(s32 arg0, s32 arg1) {
     if (keyboard != 0) {
         keyboard = TKeyBoardControl__ct(keyboard, arg0, 0xC6, 3, 4, local_client_id);
     }
-    get_keyboard_field_6c__15TWindowMakeTeamFv(keyboard, get_card_entry_data__17TWindowSubComCardFv(arg1));
+    ((TKeyBoardControl *)keyboard)->set_text((char *)get_card_entry_data__17TWindowSubComCardFv(arg1));
     ((TKeyBoardControl *)keyboard)->set_composer_position((u8 *)(get_window_layout_position(0xBB)));
     ((TKeyBoardControl *)keyboard)->set_keyboard_flag62_bit2();
     ((TWindowSubComCard *)keyboard)->destroy_keyboard();
@@ -355,7 +354,7 @@ s32 create_keyboard__17TWindowSubComCardFi(s32 arg0) {
     if (keyboard != 0) {
         keyboard = TKeyBoardControl__ct(keyboard, arg0, 0xC6, 3, 4, local_client_id);
     }
-    get_keyboard_field_6c__15TWindowMakeTeamFv(keyboard, get_kbd_ptr__14TWindowComCardFv(keyboard_mode));
+    ((TKeyBoardControl *)keyboard)->set_text((char *)get_kbd_ptr__14TWindowComCardFv(keyboard_mode));
     ((TKeyBoardControl *)keyboard)->set_composer_position((u8 *)(get_window_layout_position(0xBB)));
     ((TKeyBoardControl *)keyboard)->set_keyboard_flag62_bit2();
     ((TWindowSubComCard *)keyboard)->destroy_keyboard();

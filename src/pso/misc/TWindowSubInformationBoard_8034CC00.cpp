@@ -20,7 +20,6 @@ s32 TKeyBoardControl__ct(s32, s32, s32, s32, s32, s32);
 s32 get_info_board_ptr__6TLobbyFv();
 s32 get_window_layout_position(s32);
 s32 __nw__7TObjectFUl(s32);
-s32 get_keyboard_field_6c__15TWindowMakeTeamFv(s32, s32);
 
 void TWindowSubInformationBoard::set_page(s32 arg1) {
     s32 temp_r3;
@@ -51,7 +50,7 @@ s32 TWindowSubInformationBoard::open_keyboard(s32 arg0) {
     if (keyboard != 0) {
         keyboard = TKeyBoardControl__ct(keyboard, arg0, 0xC6, 5, 4, local_client_id);
     }
-    get_keyboard_field_6c__15TWindowMakeTeamFv(keyboard, TLobby::get_card_window_field());
+    ((TKeyBoardControl *)keyboard)->set_text((char *)TLobby::get_card_window_field());
     ((TKeyBoardControl *)keyboard)->set_composer_position((u8 *)(get_window_layout_position(0xBB)));
     ((TKeyBoardControl *)keyboard)->set_keyboard_flag62_bit2();
     ((TWindowSubComCard *)keyboard)->destroy_keyboard();
