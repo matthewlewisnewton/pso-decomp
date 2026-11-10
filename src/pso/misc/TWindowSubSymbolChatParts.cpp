@@ -383,16 +383,16 @@ extern const f32 lbl_805DD7F8;
 void fn_802857C4(Win_802857C4 *arg0, Rect_802857C4 *ctx) {
     s32 i;
     s32 j;
-    f32 *e0;
+    Part_80285314 *e0;
     s32 row;
-    f32 *e1;
+    Part_80285314 *e1;
     f32 y;
     f32 off;
     f32 x;
     f32 h;
     row = 0;
-    e1 = (f32 *)((TWindowBase *)arg0)->get_array_entry(1);
-    e0 = (f32 *)((TWindowBase *)arg0)->get_array_entry(0);
+    e1 = (Part_80285314 *)((TWindowBase *)arg0)->get_array_entry(1);
+    e0 = (Part_80285314 *)((TWindowBase *)arg0)->get_array_entry(0);
     h = lbl_805DD7F8;
     for (i = 0; i < arg0->count; row++) {
         off = 40.0f * (f32)row;
@@ -404,10 +404,10 @@ void fn_802857C4(Win_802857C4 *arg0, Rect_802857C4 *ctx) {
             x = 9.0f + off;
             for (j = 0; j < 4; j++, i++) {
                 if (i >= arg0->count) break;
-                e0[2] = 40.0f * (f32)j + 10.0f;
-                e0[3] = x;
-                e1[2] = 16.0f + e0[2];
-                e1[3] = 16.0f + e0[3];
+                e0->x = 40.0f * (f32)j + 10.0f;
+                e0->y = x;
+                e1->x = 16.0f + e0->x;
+                e1->y = 16.0f + e0->y;
                 TWindowSubSymbolChatPartsSet::set_part_sprite(e1, (s16)i, *arg0->p7C, *arg0->p80);
                 draw_visible_window_entries(arg0, arg0->sub, ctx);
             }

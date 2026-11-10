@@ -134,3 +134,26 @@ Base/Addition binding use falls to 38 calls across 19 units (16 Base and three
 Addition pairs), while the four shared bindings remain. Those source counts
 do not imply that Parts is now taken from compiled source. The constant link
 blocker and every prior ownership/interface hold remain active.
+
+## Controlled entry-field follow-up
+
+After native HelpItem checkpoint `36c7adffe9b13c125922bd3dbf56b6a7f06f86fe`,
+the Parts draw helper uses this unit's existing Part_80285314 view for entry
+x/y at 0x08/0x0C instead of indexing a float pointer. The C helper receiver,
+context, count and argument contracts are retained. With the extern constant
+as control, every compiled section byte and all text/data/sdata2/rodata
+relocation records are unchanged from the published matching object.
+
+A second, isolated probe substituted the 32.0f literal after this field-only
+control passed. Its helper remains 484 bytes and the unit 4620 text bytes,
+but eleven instruction words differ through floating-point register allocation.
+The constant pool size remains unchanged. The type reconstruction therefore
+does not resolve the constant export/source-link blocker. The literal probe is
+not activated; the extern reference and selected original provider remain.
+No constant-placement permutations or compiler scheduling controls are added.
+
+The matching field clarification passes the full DOL hash, check_pr against
+36c7adffe9 (zero metric delta), unchanged port/retention checks, selected-input
+and protected-remainder provenance. Native HelpItem's separate 24-byte data
+gain remains intact. Current main remains 12cc95ca737a3a8757c17f45df06a9af4821d872.
+Parts and all unrelated ownership/interface holds remain; PR remains draft.
