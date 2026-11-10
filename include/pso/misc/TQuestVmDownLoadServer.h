@@ -100,7 +100,6 @@ public:
     static s32 seek_or_reopen(int arg0);
     static s32 find_file_info_index();
     void set_file_info_name();
-    u32 aram_read_thunk(u32 arg1, int _w2);
     static void unescape_copy_string(u8 *arg0, u8 *arg1, u8 *arg2);
     static s32 count_entries_until_terminator(const u8 *p, const u8 *end);
     static void copy_sjis_string(u8 *arg0, u8 *arg1);
@@ -134,7 +133,6 @@ public:
 public:
     void encrypt_download_data(s32 size);
     static void unshuffle_and_decrypt(void *data, s32 size);
-    s32 find_name_index();
 };
 typedef char TQuestVmDownLoadServer_size_check[sizeof(TQuestVmDownLoadServer) == 0x2A4 ? 1 : -1];
 
