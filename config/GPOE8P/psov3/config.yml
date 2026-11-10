@@ -6136,7 +6136,7 @@ force_active:
   - fn_801E0018
   - fn_801E0C08
   - fn_801E2AC8
-  - fn_801F6520
+  - clear_flag60_bit1__19TWindowKeyBoardBaseFv
   - fn_801F9030
   - fn_80214058
   - fn_80214254

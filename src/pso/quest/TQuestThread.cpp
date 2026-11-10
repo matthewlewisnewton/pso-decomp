@@ -1,4 +1,5 @@
 #include "pso/misc/TKeyBoardControl.h"
+#include "pso/misc/TWindowKeyBoardBase.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowMessage.h"
@@ -66,7 +67,6 @@ s32 get_cursor_value__19TWindowMenuIconLineFv(void *);
 void TWindowHelpItem__set_displayed_item_by_id(void *, s32);
 u32 TKeyBoardControl__ct(void *, void *, s32, s32, s32, s32);
 void TQuestThread__sub_801F5D88(void);
-void fn_801F6520(void *p);
 void __dt__16TObjItemOKWindowFv();
 void __dt__18TObjItemNameSelectFv();
 void __dt__17TObjItemNameEntryFv();
@@ -247,11 +247,11 @@ s32 TObjItemNameEntry::process_keyboard_input() {
         text = (s32)((TKeyBoardControl *)m_1c)->allocate_text_copy();
         if (strcmp((const char *)text, "") == 0) {
             ::operator delete[]((void *)text);
-            free_menu_object(m_1c);
+            ((TKeyBoardControl *)(m_1c))->clear_keyboard_flag60_bit1();
             return 0;
         }
         if (TWindowSubComCard::contains_profanity((char *)text) != 0) {
-            free_menu_object(m_1c);
+            ((TKeyBoardControl *)(m_1c))->clear_keyboard_flag60_bit1();
             ::operator delete[]((void *)text);
             return 0;
         }
@@ -848,14 +848,14 @@ void TObjItemNameSelect::set_selection_index(int index) { item_name_selection_in
 
 void TQuestThread::queue_destruction(void *obj) { queue_destruction__7TObjectFv(obj); }
 
-void free_menu_object(void *window) {
-    void *menu = *(void **)((u8 *)window + 0x20);
-    if (menu != NULL) {
-        fn_801F6520(menu);
+void TKeyBoardControl::clear_keyboard_flag60_bit1() {
+    TWindowKeyBoardBase *composer = (TWindowKeyBoardBase *)m_20;
+    if (composer != NULL) {
+        composer->clear_flag60_bit1();
     }
 }
 
-void fn_801F6520(void *p) { *(u16 *)((u8 *)p + 0x60) &= 0xfffe; }
+void TWindowKeyBoardBase::clear_flag60_bit1() { m_60 &= 0xfffe; }
 
 u32 TQuestListVM::get_quest_size() { return decompression_capacity; }
 

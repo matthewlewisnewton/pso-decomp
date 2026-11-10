@@ -1289,7 +1289,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
             window_sub_com_card->m_80 = create_keyboard__19TWindowSubShortMailFv();
         }
         ((TKeyBoardControl *)(window_sub_com_card->m_80))->set_position((void *)(get_window_layout_position(0xBB)));
-        free_menu_object((void *)window_sub_com_card->m_80);
+        ((TKeyBoardControl *)((void *)window_sub_com_card->m_80))->clear_keyboard_flag60_bit1();
         ((TWindowSubShortMail *)(window_sub_com_card->m_80))->hide_window();
         window_sub_com_card->m_1c = 0x22U;
     case 0x22:

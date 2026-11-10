@@ -149,7 +149,7 @@ void update_password_input__18TAdEnterPasswordGCFPv(Pw_8032B6A0 *self) {
     {
       if ((TWindowShortListCtrl__check_controller_button(controller_physical_port_bank + 0x20, 2) != 0) || (test_flag_4c__23TAdSinglePlyChrSelectGCFv(controller_input_state + 0x160, 2) != 0))
       {
-        free_menu_object(password_entry_keyboard_control);
+        ((TKeyBoardControl *)(password_entry_keyboard_control))->clear_keyboard_flag60_bit1();
         self->f38 = 0;
         if (self->serial != 0)
         {
@@ -159,7 +159,7 @@ void update_password_input__18TAdEnterPasswordGCFPv(Pw_8032B6A0 *self) {
       else
         if (forward_input__22TAdEnterSerialAccessGCFPv(self, 2, buf) == 0)
       {
-        free_menu_object(password_entry_keyboard_control);
+        ((TKeyBoardControl *)(password_entry_keyboard_control))->clear_keyboard_flag60_bit1();
         play_sound_effect(0x53F06, 0, 0, 0);
       }
       else

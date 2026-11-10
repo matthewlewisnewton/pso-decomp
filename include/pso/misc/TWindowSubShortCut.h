@@ -27,7 +27,6 @@ struct TWindowSubShortCut : public TObject {
     virtual void run_task();
     void set_flag1e_bit80();
     void close_and_clear_flag();
-    void free_icon();
     u8 unk_44[0x1C];
     u8 m_60;
     u8 unk_61[0x33];

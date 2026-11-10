@@ -17,6 +17,5 @@ int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int 
 s32 get_selected_entry__11TWindowMenuFv(u8 *arg0);
 u8 *init_shop_judgment_window(void *p);
 }
-void update_chat_window(void *p);
 
 #endif

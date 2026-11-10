@@ -86,7 +86,7 @@ void TWindowMakeTeam::run_task() {
         self->keyboard = kb;
         ((TKeyBoardControl *)(self->keyboard))->set_composer_position((u8 *)(get_window_layout_position(0xCB)));
         ((TKeyBoardControl *)self->keyboard)->set_keyboard_depth(lbl_805DD144);
-        update_chat_window(self->keyboard);
+        ((TKeyBoardControl *)(self->keyboard))->set_keyboard_flag62_bit4();
         ((TKeyBoardControl *)self->keyboard)->set_text(self->name);
         ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(NULL, 0);
         this->m_1c = 4;

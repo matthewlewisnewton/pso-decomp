@@ -64,7 +64,7 @@ u32 TAdEnterSerialAccessGC::create_keyboard_control(s32 arg0, s32 arg1) {
         ((TKeyBoardControl *)kb)->set_text((char *)get_serial_text__22TAdEnterSerialAccessGCFii(arg0, arg1));
     }
     if (arg1 != 3) {
-        update_chat_window(kb);
+        ((TKeyBoardControl *)(kb))->set_keyboard_flag62_bit4();
     }
     return (u32)kb;
 }

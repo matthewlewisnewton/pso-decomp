@@ -71,7 +71,6 @@ s32 __nw__7TObjectFUl(s32);
 u8 *fn_80267F38(s32 arg0, s32 arg1, s32 arg2, s16 arg3);
 int get_flag_bit0__6TLobbyFv(void);
 }
-void update_chat_window(void *p);
 
 void TWindowSubShortMail__sub_8027E620(void* p) { ((TWindowMenuIconLine *)(*(void**)((char*)p + 0x38)))->get_cursor_value(); get_card_entry__17TWindowSubComCardFi(); send_find_user_self_tag__6TLobbyFi(*(void**)((char*)p + 0x2c)); }
 
@@ -195,7 +194,7 @@ s32 create_keyboard__19TWindowSubShortMailFv(void) {
     if (var_r31 != 0) {
         var_r31 = TKeyBoardControl__ct(var_r31, tl_00, 0xC6, 5, 4, local_client_id);
     }
-    update_chat_window((void *)var_r31);
+    ((TKeyBoardControl *)((void *)var_r31))->set_keyboard_flag62_bit4();
     ((TKeyBoardControl *)var_r31)->set_composer_position((u8 *)(get_window_layout_position(0xBB)));
     ((TKeyBoardControl *)var_r31)->set_keyboard_flag62_bit2();
     ((TWindowSubComCard *)var_r31)->destroy_keyboard();
@@ -480,7 +479,7 @@ void TWindowSubShortMail::run_task() {
             o->w5c = ((void * (*)()) create_keyboard__19TWindowSubShortMailFv)();
         }
         ((TKeyBoardControl *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBB)));
-        free_menu_object(o->w5c);
+        ((TKeyBoardControl *)(o->w5c))->clear_keyboard_flag60_bit1();
         ((TWindowSubShortMail *)(o->w5c))->hide_window();
         o->state = 0xC;
     case 12:
@@ -580,7 +579,7 @@ void TWindowSubShortMail::run_task() {
             ((TKeyBoardControl *)o->w5c)->set_text((char *)((void * (*)()) get_card_window_area__6TLobbyFv)());
         }
         ((TKeyBoardControl *)(o->w5c))->set_position(((void *)((s32 (*)(int)) get_window_layout_position)(0xBB)));
-        free_menu_object(o->w5c);
+        ((TKeyBoardControl *)(o->w5c))->clear_keyboard_flag60_bit1();
         ((TWindowSubShortMail *)(o->w5c))->hide_window();
         o->state = 0x19;
     case 25:

@@ -561,7 +561,7 @@ void TAdEnterSerialAccessGC__sub_80321B28(u8 *ad_enter_serial_access_gc, int arg
     }
     if ((((TKeyBoardControl *)TAdEnterSerialAccessGC__keyboard_control)->is_key_active() != 0) && (forward_input__22TAdEnterSerialAccessGCFPv((void *) ad_enter_serial_access_gc, (void *) arg1, (int) temp_r30) == 0))
     {
-      free_menu_object((void *)TAdEnterSerialAccessGC__keyboard_control);
+      ((TKeyBoardControl *)((void *)TAdEnterSerialAccessGC__keyboard_control))->clear_keyboard_flag60_bit1();
       play_sound_effect(0x53F06, 0, 0, 0);
     }
   }

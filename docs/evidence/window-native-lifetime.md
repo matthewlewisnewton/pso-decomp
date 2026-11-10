@@ -374,3 +374,14 @@ are preserved. Complete text/relocation/provider checks pass for fourteen select
 source objects; held CMName remains original-selected. No match/data activation
 or capacity/record-identity claim is added, and all remaining lifetime and ownership
 holds persist.
+
+
+The [composer flag-forwarding follow-up](window-keyboard-composer-flag-forwarding.md)
+recovers two halfword flag leaves, their actual Control wrappers and a separate
+Chat wrapper previously named as a SubShortCut icon operation. All fifteen outer
+calls retain their composer-null guards and flag behavior; no object or buffer
+is freed by these helpers. Thirteen complete selected source objects and all
+resolved text/data targets remain exact against their qualified baselines.
+The adjacent ShortCut close/reopen, Soft word setter, Control show/hide and
+remaining lifetime/ownership interfaces retain their holds; no metric or source
+activation gain is claimed.

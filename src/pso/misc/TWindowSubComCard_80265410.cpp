@@ -1,3 +1,5 @@
+#include "pso/misc/TKeyBoardControl.h"
+#include "pso/misc/TWindowKeyBoardBase.h"
 #include "pso/misc/Scroll_8026D790.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/misc/TWindowDrawContext.h"
@@ -109,7 +111,6 @@ void __dl__7TObjectFPv(void *);
 s32 __nw__7TObjectFUl(int);
 void * get_field_20__17TWindowSubComCardFv(void *e);
 void refresh_status_display__9TWindowDDFv(void *);
-void TWindowChat__sub_80247D2C(void *p);
 s32 is_window_display_enabled();
 s32 draw_visible_window_entries(void *, void *, s32);
 void measure_message_text_width(Ent_80265C30 *e, f32 x);
@@ -132,7 +133,6 @@ s32 construct_type1_heading__20TWindowSubStatusDispFll(s32, s32, s32);
 struct TWindowDrawContext;
 void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 void set_text_entry_string(u8 *arg0, u32 str, s32 arg2);
-void update_chat_window(void* p);
 s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 extern const f64 lbl_8044F330;
 extern RecoveredGlobal_80266378_lbl_804D05A8 lbl_804D05A8;
@@ -152,7 +152,7 @@ extern const f32 lbl_805DD170;
 extern const f32 lbl_805DD174;
 extern const f32 lbl_805DD178;
 
-void update_chat_window(void* p) { void* m = *(void**)((char*)p + 0x20); if (m) TWindowChat__sub_80247D2C(m); }
+void TKeyBoardControl::set_keyboard_flag62_bit4() { TWindowKeyBoardBase *composer = (TWindowKeyBoardBase *)m_20; if (composer) composer->set_flag62_bit4(); }
 
 int TWindowSubComCard::get_flag() { return (*(u16*)((char*)this + 0x70) >> 2) & 0x1; }
 

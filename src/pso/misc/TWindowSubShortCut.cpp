@@ -177,7 +177,7 @@ void TWindowSubShortCut::run_task() {
         if ((u32) this->m_38 == 0U) {
             void *chat = new TWindowChat((TObject *)arg0, (u8 *)&this->m_40);
             *(void * *)&this->m_38 = chat;
-            ((TWindowSubShortCut *)(this->m_38))->free_icon();
+            ((TWindowChat *)(this->m_38))->set_keyboard_flag62_bit4();
             ((TWindowSubShortCut *)(this->m_38))->close_and_clear_flag();
             ((TWindowSubShortCut *)(this->m_38))->set_flag1e_bit80();
         }

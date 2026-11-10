@@ -1,10 +1,11 @@
+#include "pso/misc/TWindowChat.h"
+#include "pso/misc/TWindowKeyBoardBase.h"
 #include "types.h"
 #include "pso/misc/TWindowSubShortCut.h"
 
 extern "C" {
 
 s32 open_next_input_window__11TWindowChatFv(void *);
-void TWindowChat__sub_80247D2C(void *p);
 s32 close_all_children__11TWindowChatFv();
 
 void TWindowSubShortCut::close_and_clear_flag() {
@@ -13,6 +14,6 @@ void TWindowSubShortCut::close_and_clear_flag() {
     open_next_input_window__11TWindowChatFv(this);
 }
 
-void TWindowSubShortCut::free_icon() { void* m = *(void* *)&this->m_20; if (m) TWindowChat__sub_80247D2C(m); }
+void TWindowChat::set_keyboard_flag62_bit4() { TWindowKeyBoardBase *keyboard = (TWindowKeyBoardBase *)composer; if (keyboard) keyboard->set_flag62_bit4(); }
 
 }

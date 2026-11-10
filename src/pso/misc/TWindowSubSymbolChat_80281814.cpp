@@ -78,7 +78,6 @@ s32 get_keyboard_ptr__20TWindowSubSymbolChatFv(s32);
 s32 refresh_parts__20TWindowSubSymbolChatFv();
 s32 refresh_with_default_list__20TWindowSubStatusDispFll(s32, s32 *);
 }
-void update_chat_window(void *p);
 
 extern void *TWindowSubSymbolChat__instance;
 
@@ -239,7 +238,7 @@ s32 TWindowSubSymbolChat::create_keyboard_control() {
     if (keyboard != 0) {
         keyboard = TKeyBoardControl__ct(keyboard, this, 0x90, 1, 4, local_client_id);
     }
-    update_chat_window((void *)keyboard);
+    ((TKeyBoardControl *)((void *)keyboard))->set_keyboard_flag62_bit4();
     ((TKeyBoardControl *)keyboard)->set_text((char *)get_keyboard_ptr__20TWindowSubSymbolChatFv(this->m_28));
     ((TKeyBoardControl *)keyboard)->set_composer_position((u8 *)(get_window_layout_position(0xBB)));
     ((TKeyBoardControl *)keyboard)->set_keyboard_flag62_bit2();

@@ -82,7 +82,6 @@ s32 get_window_layout_position(int);
 s32 TWindowDD__ct(int, void *, void *);
 void *__dt__11TWindowChatFv(void *, s16);
 void *__dt__11TWindowChatFv(void *arg0, s16 arg1);
-void TWindowChat__sub_80247D2C(void* p);
 s32 TWindowChat__sub_80247D50(u8 *arg0);
 int TWindowChat__sub_80247DAC(void* p);
 void TWindowChat__sub_80247DFC(u8 *arg0);
@@ -500,7 +499,7 @@ TWindowChat::TWindowChat(TObject *object, void *arg2) : TObject(object) {
     this->open_next_input_window();
 }
 
-void TWindowChat__sub_80247D2C(void* p) { *(u16*)((char*)p + 0x62) |= 0x4; }
+void TWindowKeyBoardBase::set_flag62_bit4() { m_62 |= 0x4; }
 
 u8 TWindowChat::get_input_mode() { return *(u8*)((char*)this + 0x65); }
 

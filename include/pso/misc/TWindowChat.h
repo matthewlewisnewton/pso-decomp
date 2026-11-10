@@ -31,6 +31,7 @@ public:
     void* result;
 public:
     void reset_input();
+    void set_keyboard_flag62_bit4();
     void update();
     void handle_input();
     void handle_chat_input();
