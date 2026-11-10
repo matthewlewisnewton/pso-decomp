@@ -632,19 +632,14 @@ pso/boss/TBoss8Dragon_8005D860.cpp:
 	.text       start:0x8005D860 end:0x8005D880
 
 pso/boss/Boss5GryphonBehavior.cpp:
-	.text       start:0x8005D880 end:0x80065BC0
+	.text       start:0x8005D880 end:0x80066128
+	.ctors      start:0x80433F44 end:0x80433F48
 	.rodata     start:0x80437EB8 end:0x80437EC0
 	.data       start:0x80487848 end:0x80488668
 	.bss        start:0x804FF5A0 end:0x804FF5E8
-	.sbss       start:0x805D4DC0 end:0x805D4DC8
+	.sdata      start:0x805D27F8 end:0x805D2800
+	.sbss       start:0x805D4D90 end:0x805D4DC8
 	.sdata2     start:0x805D8D70 end:0x805D8E28
-
-pso/boss/TBoss5Gryphon.cpp:
-	.text       start:0x80065BC0 end:0x80065C90
-
-pso/boss/TBoss8Dragon_80065C90.cpp:
-	.text       start:0x80065C90 end:0x80066128
-	.ctors      start:0x80433F44 end:0x80433F48
 
 pso/boss/TBoss5GryphonColli.cpp:
 	.text       start:0x80066128 end:0x80066540
@@ -1128,7 +1123,7 @@ pso/misc/TQuestVmDownLoadServer_8007EBDC.cpp:
 
 pso/unk/text_8007ECF0.cpp:
 	.text       start:0x8007ECF0 end:0x8007F4B8
-	.rodata     start:0x80438AC8 end:0x80438AE0
+	.rodata     start:0x80438A98 end:0x80438AF8
 	.sdata2     start:0x805D9298 end:0x805D92C0
 
 pso/unk/text_8007F4B8.cpp:
@@ -6202,14 +6197,8 @@ pso/player/TObjPlayer_801A9BAC.cpp:
 	.text       start:0x801A9BAC end:0x801A9CB8
 
 pso/unk/text_801A9CB8.cpp:
-	.text       start:0x801A9CB8 end:0x801AA220
-
-pso/player/TObjPlayer_801AA220.cpp:
-	.text       start:0x801AA220 end:0x801AA3B4
-
-pso/unk/text_801AA3B4.cpp:
-	.text       start:0x801AA3B4 end:0x801AA508
-	.data       start:0x804C33C8 end:0x804C344C
+	.text       start:0x801A9CB8 end:0x801AA508
+	.data       start:0x804C33C8 end:0x804C34B4
 
 pso/player/TObjPlayer_801AA508.cpp:
 	.text       start:0x801AA508 end:0x801AA584
@@ -11108,6 +11097,7 @@ pso/enemy/TObjEneRecon_8031EF00.cpp:
 
 pso/unk/text_8031EF14.cpp:
 	.text       start:0x8031EF14 end:0x8031F374
+	.rodata     start:0x804762F0 end:0x804763D4
 
 pso/enemy/TObjEneRecon_8031F374.cpp:
 	.text       start:0x8031F374 end:0x8031F408
@@ -11659,8 +11649,10 @@ pso/boss/Boss6Type1Appearance.cpp:
 
 pso/object/TObjFish_8033CCC8.cpp:
 	.text       start:0x8033CCC8 end:0x8033D324
-	.rodata     start:0x80477F08 end:0x80477F10
-	.sdata2     start:0x805DFA64 end:0x805DFA70
+	.rodata     start:0x80477E48 end:0x80477F10
+	.data       start:0x804EF9D8 end:0x804EFA04
+	.sdata      start:0x805D42A0 end:0x805D42A8
+	.sdata2     start:0x805DFA58 end:0x805DFA6C
 
 pso/boss/Boss6Type2Appearance.cpp:
 	.text       start:0x8033D324 end:0x8033DCD8
@@ -13836,10 +13828,10 @@ pso/ui/TAdPlayerLoadGC_803F18B8.cpp:
 	.bss        start:0x805A28C0 end:0x805A5F00
 
 pso/ui/TAdPlayerLoadGC_803F339C.cpp:
-	.text       start:0x803F339C end:0x803F3CF4
+	.text       start:0x803F339C end:0x803F3BF8
 
-pso/ui/TAdPlayerLoadGC_803F3CF4.cpp:
-	.text       start:0x803F3CF4 end:0x803F3DD4
+pso/network/NetworkConfigLifecycle.cpp:
+	.text       start:0x803F3BF8 end:0x803F3DD4
 
 pso/network/NetworkInfoRequests.cpp:
 	.text       start:0x803F3DD4 end:0x803F3F64

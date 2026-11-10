@@ -144,7 +144,6 @@ Obj_8031FE14 * fn_8031FE14(Obj_8031FE14 *arg0, s16 arg1);
 void __destroy_arr(void *, void *, int, int);
 void __construct_array(void *, void *, void *, int, int);
 
-extern u8 *TObjEneRecobox__static_instance;
 extern s32 TObjEneRecobox_name_ref;
 extern s32 recobox_boss_register_id;
 extern s32 lbl_805D6B14;

@@ -448,6 +448,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
     # GC/1.3.2 preserves the per-vertex coordinate loads and store order.
     "pso/ui/TAdDialingGC_80328B20.cpp": {"mw_version": "GC/1.3.2"},
+    # The download graph's border pass keeps GC/1.3.2 load scheduling.
+    "pso/unk/text_8007ECF0.cpp": {"mw_version": "GC/1.3.2"},
     # The selection plate has the same GC/1.3.2 vertex schedule and fuses its depth offset.
     "pso/ui/TAdSelectGameModeGC_802C4748.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-fp_contract on")},
     # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
@@ -498,6 +500,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/object/TObjDFDemo1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Keep both 8-byte afterimage tables out of .sdata in the demo constructor.
     "pso/object/TObjDFDemo4.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
+    # Deferred emission groups the Falz cutscene's motion indices, origin and vtable.
+    "pso/object/TObjFish_8033CCC8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
     # Deferred generation preserves the flower vtable before its dispatch table.
     "pso/enemy/TObjEneRe2Flower_800C3E14.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
@@ -520,6 +524,17 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # GC/2.0 interleaves the BML model-table load with the debris initializer's
     # copy tail. Map the original template to CodeWarrior's local aggregate.
     "pso/unk/text_80049FD8.cpp": {"mw_version": "GC/2.0", "symbol_mappings": {"volopt_pillar_chip_params": "@13"}},
+    # GC/2.0 schedules the model and position loads across the aggregate copy
+    # tails. Disabling pooling keeps the three original debris templates.
+    "pso/unk/text_8031EF14.cpp": {
+        "mw_version": "GC/2.0",
+        "cflags": _switch(cflags_pso, "-pooldata=off"),
+        "symbol_mappings": {
+            "recon_death_debris_model_3_params": "@67",
+            "recon_death_debris_model_4_params": "@68",
+            "recon_death_debris_model_5_params": "@69",
+        },
+    },
     # One unit, written last-defined first: the vtable and the late helpers
     # precede the early ones in .text. -fp_contract on: draw_name_labels'
     # half-width nudge and the drop placement fuse multiply-adds.
@@ -914,8 +929,9 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         "pso/misc/TKeyBoardControl_803F0C50.cpp": {"mw_version": "GC/1.2.5n"},
         "pso/unk/text_803F1804.cpp": {"mw_version": "GC/1.2.5n"},
     }),
-    # ntInf ("Ver 1.17.00 Build:Jul 9 2002").
-    ("ntinf", 0x803F3CF4, "GC/2.6", cflags_middleware, {
+    # ntInf ("Ver 1.17.00 Build:Jul 9 2002"). The config initializer at
+    # 0x803F3BF8 matches this profile, while the preceding card code matches GC/1.2.5.
+    ("ntinf", 0x803F3BF8, "GC/2.6", cflags_middleware, {
         "pso/unk/text_803F4D84.cpp": {"cflags": _switch(cflags_middleware, "-O2", "-use_lmw_stmw off")},
     }),
     # ACCESS AVE-TCP ("avetcp.a Ver.1.16.1 Oct 23 2002"); its PPP files were
