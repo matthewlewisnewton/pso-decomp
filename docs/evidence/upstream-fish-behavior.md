@@ -88,6 +88,10 @@ The subsequent refresh integrates main
 and ADXF file-I/O recoveries, their shared declarations and mappings, and the
 spatial unit's documented `-sym on` setting. Fish source, header and settings
 remain unchanged.
+The next refresh integrates main
+`12a3368673103f37dfd3710886ce24a4e19c6783`, preserving #420's challenge-records
+page recovery, real `PageIndicator` type and corrected status-display callers.
+Fish source, header and settings remain unchanged.
 The old zero-argument
 `draw_ginja_object()` declaration depended on the preceding model getter leaving
 its return value in r3. The renderer now passes that model explicitly and uses
@@ -174,7 +178,7 @@ is included in this follow-up.
 The initial recovery was validated against the base above. The shared-interface
 correction is separately compared against the freshly built PR-plus-current-main
 baseline `c3a77888e3c4e14bed709b60db8f6870f3ee1063`. The final integration is
-also checked against independently built unchanged main `fffd67d0c3`; both build
+also checked against independently built unchanged main `12a3368673`; both build
 and retention checks pass, and the subsequent synchronization loses no exact
 function or linked range. The earlier `65b21c210` synchronization inherited four
 zero padding bytes removed from report coverage by main's unit folding. Canadin
@@ -202,12 +206,16 @@ The refresh against main `5f837b4388` loses no exact function, live
 code/data address, linked range or padding compared with unchanged main or
 previous published head `be2ea66712`. The compiled fish object remains
 byte-identical to that head as well.
-The latest refresh against main `fffd67d0c3` loses no exact function, live
+The refresh against main `fffd67d0c3` loses no exact function, live
 code/data address, linked range or padding compared with unchanged main. Against
 previous published head `be2ea66712`, it inherits four permitted zero-padding
 bytes leaving `.bss` coverage at `0x8051857C` from main's spatial-audio unit
 update. No exact function, live data or linked range is lost. The compiled fish
 object remains byte-identical.
+The latest refresh against main `12a3368673` loses no exact function, live
+code/data address, linked range or padding compared with unchanged main or
+previous published head `b0382e1f94`. The compiled fish object remains
+byte-identical to that head.
 
 The original DOL still matches. The full native build and `tools/check_pr.py`
 pass with original DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
@@ -215,22 +223,22 @@ All nine fish functions (4,704 bytes) and all 1,404 data bytes are exact.
 Independent comparison verifies the four allocated section payloads, sizes and
 alignment and all 302 normalized relocations. This is not whole-ELF identity:
 the compiled `.sdata2` has inherited writable flags where the split original is
-read-only. All 3,595 linked units are exact. Retention lists 18,332 names with
+read-only. All 3,596 linked units are exact. Retention lists 18,333 names with
 zero drift; the PR adds 45 names to current main and removes none. All 268
 tooling tests pass.
 
-Gains against current main `fffd67d0c3` (the interface correction itself has
+Gains against current main `12a3368673` (the interface correction itself has
 no metric loss or gain against its PR-plus-main baseline):
 
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
-| Exact functions | 27,420 | 27,421 | 1 |
-| Exact code bytes | 4,217,568 | 4,219,612 | 2,044 |
+| Exact functions | 27,421 | 27,422 | 1 |
+| Exact code bytes | 4,218,916 | 4,220,960 | 2,044 |
 | Exact data bytes | 1,472,639 | 1,472,711 | 72 |
-| Linked code bytes | 3,802,084 | 3,806,788 | 4,704 |
-| Linked data bytes | 1,193,991 | 1,195,395 | 1,404 |
-| Linked units | 3,594 | 3,595 | 1 |
+| Linked code bytes | 3,807,220 | 3,811,924 | 4,704 |
+| Linked data bytes | 1,193,999 | 1,195,403 | 1,404 |
+| Linked units | 3,595 | 3,596 | 1 |
 
-Actual ordered linker inputs: 3,595 source objects and 1,356 fallbacks;
+Actual ordered linker inputs: 3,596 source objects and 1,355 fallbacks;
 SHA-256 of newline-delimited paths including the final newline:
-`b27c4e3f430887e3fe08726517443b077d6562e02a490174f5884ccb996734c3`.
+`a8d9682724e1af9859f34f8cfbd435ef3312f99f5cd1d2646aae1ba74a47b949`.
