@@ -17,7 +17,6 @@
 #include "pso/render/render_util.h"
 #include "pso/system/vector.h"
 #include "pso/player/TUnk_804F0AF8.h"
-#include "pso/item/TUnk_804F0C08.h"
 
 #include "pso/item/TItemEffPG.h"
 #include "pso/TParticleCtrl.h"
@@ -183,28 +182,3 @@ u8 *TItemEffPG__visual_ct(u8 *arg0, u8 *arg1, u8 *arg2) {
     ((TUnk_804F0BF0 *)arg0)->m_58 = 0;
     return arg0;
 }
-
-s32 TUnk_804F0C08::vfunc_7() {
-    s32 temp_r4;
-
-    temp_r4 = *(s32 *)((s8 *)this + 0xD4);
-    if (temp_r4 > 0) {
-        *(s32 *)((s8 *)this + 0xD4) = (temp_r4 - 1);
-        return 1;
-    }
-    return 0;
-}
-
-extern s32 lbl_804F0C08[];
-
-void *TUnk_804F0C08::destroy(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = lbl_804F0C08;
-        __dt__10TItemEffPGFv(this, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(this);
-        }
-    }
-    return this;
-}
-
