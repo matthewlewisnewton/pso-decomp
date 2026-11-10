@@ -1845,6 +1845,7 @@ force_active:
   - __ct__11TObjDFDemo1FP7TObjectPC3Vecl
   - __ct__11TObjDFDemo4FP7TObjectPC3Vecl
   - __ct__11TObjDFDemo5FP7TObjectPC3Vecl
+  - __ct__11TObjEneMojaFP7TObjectPv
   - __ct__11TPlayerSoulFP7TObjectUs
   - __ct__12CursorActionFv
   - __ct__12Ent_801D4744Fv
@@ -8888,10 +8889,13 @@ force_active:
   - moja_enemy_collision_body
   - moja_enemy_movement_parameters
   - moja_enemy_standard_descriptor
+  - moja_enemy_standard_model_names
   - moja_enemy_standard_motion_names
   - moja_enemy_ultimate_descriptor
   - moja_enemy_ultimate_model_names
   - moja_enemy_ultimate_motion_names
+  - moja_jump_chance_offset
+  - moja_technique_chance_offset
   - monument_ancient01_collision_body
   - monument_ancient02_collision_parts
   - morfos_archive_filename
