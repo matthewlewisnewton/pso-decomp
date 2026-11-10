@@ -60,11 +60,12 @@ tie rule rather than guessing at it:
 | `(self, list->actors[0])` (the real call) | load hoisted |
 | `(self, self->m_1c)` (the default case) | load hoisted |
 
-Two loads tie and keep source order; a copy can never tie with a load. This
-also explains the survey finding that every `mr r3` / independent `lwz r4` /
-`bl` site elsewhere in this DOL has a store in front of the pair: a store
-that may alias serialises the load behind it (`serialize_load` /
-`serialize_store`), and the copy fills the freed slot. Adding
+In this three-pcode call block, two loads tie and keep source order, while
+the copy cannot tie with the load. A preceding store that may alias can
+instead serialise the load (`serialize_load` / `serialize_store`), letting
+the copy fill the freed slot. The earlier survey's broader claim that every
+such pair requires a preceding store was incorrect; the corrected boundary
+survey below records a real address-dependency example. Adding
 `self->m_38 = 1` before the call reproduces that exactly
 (`mr r3,r30` / `stw r0,56(r30)` / `lwz r4,0(r31)` / `bl`), at the cost of a
 store the original does not have.
@@ -583,3 +584,96 @@ but these measurements do not supply a truthful way to obtain its empty
 arm with PSO's actual receiver/list lifetimes. This is a bounded negative
 result, not a proof excluding every C++ formulation. The production
 dispatcher remains at 96.49123%, with all scheduling and link holds intact.
+
+### Expanded boundary survey and array-reference test
+
+The next bounded investigation corrected two limitations in the earlier
+machine-code survey. It now treats instructions following calls and all
+direct/indirect branch forms as block starts, rather than looking backward
+only to a branch target. It also surveys independent `mr` / `lwz` / direct
+call triples across argument registers `r3` through `r10`. A load that reads
+the move's source register is allowed (both read it); a load whose base is
+overwritten by the move, or whose destination overwrites the move's source,
+is excluded. Record-form moves are excluded. Relocated calls are not
+mistaken for branches to their own placeholder displacement.
+
+The [read-only scanner](kenkyuw-argument-boundary-scan.py) reproduces the
+survey on an existing build:
+
+```sh
+python3 docs/evidence/kenkyuw-argument-boundary-scan.py --output /tmp/kenkyuw-survey.json
+```
+
+On the source build underlying PR head `5268a15bf` (validated main base
+`fffd67d0c`), 3,096 units and 19,583 function symbols matched the dispatcher's
+GC/2.6 version and complete command flags. The scanner found 147 independent
+triples. None began at a direct branch target. Of the 93 without a preceding
+store since the nearest decoded block boundary, 90 had an earlier load.
+Of the remaining three, two had a real address add and one had a longer
+address construction. Indirect jump-table destinations are not recovered.
+Source pragmas and scheduling causes require separate validation; these counts are candidate
+classification, not proof of matching settings inside every function.
+
+A real exact source example was then compiled and traced under the same
+flags: [`init_model_node_tables`](../../src/pso/unk/text_8004AA04.cpp).
+Its indexed record lookup `r = &arg1[i]` produces this four-pcode block:
+
+```text
+add  r25,r31,r28
+mr   r3,r27
+lwz  r4,0(r25)
+bl   get_bml_model
+```
+
+The order is present after the first scheduler and survives the second.
+There is no late deletion or change to this block. This is consistent with
+the compiler's two-instruction issue model: the address add is selected,
+its dependent load cannot issue at the same scheduler clock, and the
+independent move can fill that clock's other issue slot. The next clock
+can issue the load. The real address operation remains in the output, so
+this does not supply the dispatcher's isolated three-pcode shape.
+
+The normal compilation reproduced the cached and original provider's whole
+396-byte unit text, including this 272-byte function. Re-encoding the final
+trace reproduced all 272 native bytes. Function SHA-256:
+`11c4d4248582a905dbfa5221d5c86ff9a29f4d9223d684ad41685e222655c290`;
+source file SHA-256:
+`9cf0830e8a9f8504cb21fb727304db7dbe0c8a59559cc34252a3157b5acd3bfa`.
+Only two early-return branch targets were threaded by final branch cleanup;
+the argument block did not change. Thus a preceding store is not the only
+real source mechanism, but the demonstrated alternative needs an address
+calculation absent from the target dispatcher.
+
+One truthful source test checked whether binding the actual first contact
+array can retain such an address/boundary without adding arithmetic. Inside
+the existing nonnull-list arm it bound:
+
+```cpp
+TechniqueContactActor *(&contact_actors)[16] = list->actors;
+```
+
+Both predicate input and post-call actor reload then used `contact_actors[0]`.
+This references the original array; it does not cache an actor across the
+predicate. The compiler rejected the initially const-qualified array
+reference before code generation. The supported exact array-reference type
+above passed all 192 original/candidate host cases, including mutations
+during the predicate, and compiled successfully without any flag change.
+
+This test was rejected as a matching lead: even the initial backend dump
+already has only `mr`, `lwz`, `bl` in the hit-call block. No address operation
+or extra block survives to scheduling. The first scheduler reverses the
+pair as before; final branch cleanup changes nothing. The entire compiled
+unit text and all 120 relocations are byte-identical to production, with
+the same nine exact siblings and 228-byte dispatcher at 96.49123%. The
+final trace independently re-encodes every native dispatcher byte. Candidate
+source SHA-256:
+`c141122fad1b554b459a11efd1e2b66289281da4d1a7495345d32e862eb08826`.
+No further array-view permutations were run or retained.
+
+Finally, an expanded direct-entry audit decoded `B`, `BL`, `BC` and `BCL`
+targets in all seven original DOL text sections. It found only the two
+known external entry calls, with no external direct branch into
+`0x802A445C..0x802A4540`. The branch into the hit setup is internal. This
+supplies no evidence for an alternate external entry or a different split
+boundary; it does not exclude indirect entries. The original provider and
+all source, ABI, compiler and activation holds remain unchanged.
