@@ -99,6 +99,7 @@ force_active:
   - L2GlobalInvalidate
   - LastState
   - LowPrecisionHandler
+  - NetApplyConnectionConfig__FPUc
   - NetIPv6CPCancelTimer__Fl
   - NetIPv6CPParseConfigureOption
   - NumHeaps
@@ -706,6 +707,8 @@ force_active:
   - TLobby__sub_803FABDC
   - TLobby__sub_803FACD8
   - TLobby__sub_803FADA0
+  - TLobby__sub_803FAEDC
+  - TLobby__sub_803FB358
   - TLobby__sub_80421FB8
   - TLobby__sub_80423440
   - TLobby__sub_80423C04
@@ -7948,6 +7951,7 @@ force_active:
   - lbl_805B94BC
   - lbl_805B9534
   - lbl_805BA5C0
+  - lbl_805BFF68
   - lbl_805C06D8
   - lbl_805C0710
   - lbl_805C0FD0
