@@ -1,16 +1,16 @@
 #include "types.h"
 #include "pso/unk/text_803CE568.h"
+#include "pso/system/CvFsDeviceCallbacks.h"
 #include "pso/misc/TLobby.h"
 
 struct Ent_803CF958 { u32 a; char name[12]; };
 
 struct CvFsDevVtbl {
     u8 pad0[8];
-    s32 (*get_file_size)(char *);
+    CvFsGetFileSizeFunction *get_file_size;
     u8 padC[4];
-    void *(*open)(char *, s32, s32);
-    void (*close)(void *);
-    u8 pad18[0x5C - 0x18];
+    CvFsOpenFunction *open;
+    u8 pad14[0x5C - 0x14];
     s32 (*get_file_size_ex)(char *, s32);
     s32 (*query)(s32, s32, s32, s32);
 };

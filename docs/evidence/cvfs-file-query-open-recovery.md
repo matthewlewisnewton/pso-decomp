@@ -1,6 +1,6 @@
 # CVFS file query and open recovery
 
-The independent base is fork main `1a18b4bd7577af4ee367317064e020d1f91ce5a8`.
+The independent base is fork main `12a3368673103f37dfd3710886ce24a4e19c6783`.
 The existing `pso/unk/text_803CE568.cpp` text and BSS boundaries are retained.
 This work does not authenticate a different original translation-unit boundary.
 
@@ -35,6 +35,51 @@ The remaining legacy `TLobby` wrappers and `SIGetTypeAsync` name are not claimed
 as recovered class ownership or cleaned interfaces. No missing initialization
 routine is invented.
 
+## Device callback contract correction
+
+The initial recovery's device view was not source-compatible with the actual
+DVD callbacks: its size slot took `char *` while the DVD definition took
+`const char *`, and its open slot returned `void *` while the DVD definition
+returned `GcciRequest *`. Matching instructions did not validate those calls.
+The MFS table exposed the same issue: its size definition returned `u32` and
+its open definition returned `MfciFileEntry *`.
+
+`CvFsDeviceCallbacks.h` now supplies shared function types, used by the CVFS
+slots and the backend declarations themselves:
+
+- Size: `s32 (char *)`. CVFS supplies its mutable local path copy. The DVD
+  definition accepts that same pointer type and still only reads the name.
+- Open: `void * (const char *, s32, s32)`. Both backends retain typed internal
+  request records and return them through the standard object-pointer-to-void
+  conversion. There is no adapter or function-pointer cast.
+
+The signed MFS size declaration is the existing signed CVFS return-word
+contract, not a change to parsing or error handling. The complete MFS ELF is
+unchanged, including its return word for high-bit parsed values. It does not
+gain the DVD backend's `0x7FFFFFFF` size clamp. The DVD path still performs its
+open/close checks; the MFS parser still reports malformed names and continues.
+The shared types do not unify those behaviors. Every backend body retains its original control flow, including its existing error paths and
+continuation behavior. No bounds or validation bug is repaired here.
+
+The original tables at `0x804F9D98` (DVD) and `0x804FA020` (MFS) each bind these
+callbacks at offsets `0x08` and `0x10`. A census of all 4,951 active original
+objects finds exactly those four data relocations and no direct text caller of
+the four implementations. Both complete original table providers retain their
+allocated contents and resolved relocations.
+
+Across all 3,635 compiled units, 3,630 whole ELFs equal the current-main build;
+that includes the entire MFS backend. The other changed control objects, apart
+from the recovered CVFS unit, have identical allocated contents, flags, sizes,
+alignments, definition addresses/extents and resolved relocations. Those checks
+cover the DVD backend's 136 relocations, ADX runtime's 526, setter unit's 11 and
+forwarder unit's two. The DVD size symbol changes only its parameter spelling
+in the project metadata; its original address and extent stay unchanged.
+
+The bounded CVFS view leaves unused device slots opaque. Existing getter,
+shutdown and legacy `TLobby` interfaces outside these two callback contracts
+remain held; this correction is not a claim that the entire middleware API is
+source-clean.
+
 ## Native diagnostic data
 
 The complete catalog is 86 ordinary named constant character arrays, including
@@ -58,7 +103,7 @@ extents where a live named literal is defined. The intervening catalog spans
 retain local labels. Localization followed a census of every active original
 object, including unlinked objects, rather than source text alone. Before the
 fold, only this code unit and its original version-pointer provider referred to
-the catalog. After the fold, the 4,950-object inventory contains no other-object
+the catalog. After the fold, the 4,951-object inventory contains no other-object
 reference into the claimed catalog, small-data constants or handle storage.
 The latter census examined 249,573 other-object relocations.
 
@@ -94,12 +139,12 @@ configuration and local original inputs.
 
 Against that base:
 
-- Exact functions: 27,416 to 27,419, a gain of three.
-- Matched code: 4,213,640 to 4,217,660, a gain of 4,020 bytes.
-- Matched data: 1,472,575 to 1,475,535, a gain of 2,960 bytes.
-- Source-linked code: 3,737,624 to 3,744,024, a gain of 6,400 bytes.
-- Source-linked data: 1,190,727 to 1,194,831, a gain of 4,104 bytes.
-- Linked units: 3,590 to 3,591. Every linked unit remains exact.
+- Exact functions: 27,421 to 27,424, a gain of three.
+- Matched code: 4,218,916 to 4,222,936, a gain of 4,020 bytes.
+- Matched data: 1,472,639 to 1,475,599, a gain of 2,960 bytes.
+- Source-linked code: 3,807,220 to 3,813,620, a gain of 6,400 bytes.
+- Source-linked data: 1,193,999 to 1,198,103, a gain of 4,104 bytes.
+- Linked units: 3,595 to 3,596. Every linked unit remains exact.
 - Total code, data and function counts are unchanged. There are no regressions.
 
 All thirteen functions and all four allocated sections score 100%. An independent
@@ -112,7 +157,7 @@ adds its four existing BSS exports.
 There is one disclosed ELF representation difference: the DTK split marks
 `.sdata2` allocated/read-only (`A`), while the native compiler emits allocated/
 writable (`WA`). A census of the sealed current main finds the same difference
-in 540 already-linked units, including `TAdADXlogo` and `TBoss2Tentacle`.
+in 542 already-linked units, including `TAdADXlogo` and `TBoss2Tentacle`.
 Changing the version pointer's volatile spelling does not change it. No compiler
 control or object patch is added to force ELF flags. This is not whole-ELF byte
 identity; payloads, relocations, final addresses and DOL bytes are the checks.
