@@ -1,6 +1,6 @@
 # Modem command-path recovery
 
-Current validation base: `fffd67d0c35e1fdaf17880c563739750e7c35813`.
+Current validation base: `12a3368673103f37dfd3710886ce24a4e19c6783`.
 The unit has 25 recovered bodies, 14 exact functions, and remains unlinked.
 
 Initial base: fork main `f0f05f3afe56fd2b71e9dc1fe946e2fa03c84b86`.
@@ -453,3 +453,41 @@ Readiness is now held on 11 non-exact bodies, the original helper/frame and
 buffer declaration evidence, the final two data-bank bytes, unresolved storage
 and interface ownership, and whole-unit source linking. Having all bodies
 present is not equivalent to a matched or ready unit.
+
+
+## Pinned 12a main integration
+
+The branch cleanly integrates newer main
+`12a3368673103f37dfd3710886ce24a4e19c6783` after the reviewed control-path
+checkpoint. Main's status-display recovery, PageIndicator declarations, split
+ownership, linked-unit entry and retention changes are preserved. The modem
+production bodies and both host fixtures are byte-identical across the merge.
+
+The shared baseline is independently authenticated against its exact clean
+commit, all 7,202 tracked Git blobs, 137 tool/compiler hashes, generated graph
+snapshots, original/native DOL hashes and 4,950 ordered linker inputs. It has
+3,595 source inputs and 1,355 original fallback inputs. Only this candidate
+receives another capacity-gated native build; the shared baseline is not
+rebuilt. The candidate reproduces the original DOL SHA-1.
+
+| Measure | Pinned 12a main | Candidate | Change |
+| --- | ---: | ---: | ---: |
+| Exact functions | 27,421 | 27,423 | +2 |
+| Exact code bytes | 4,218,916 | 4,219,576 | +660 |
+| Exact data bytes | 1,472,639 | 1,472,639 | 0 |
+| Source-linked code bytes | 3,807,220 | 3,807,220 | 0 |
+| Source-linked data bytes | 1,193,999 | 1,193,999 | 0 |
+| Linked units | 3,595 | 3,595 | 0 |
+
+The complete modem recovery remains 14/25 exact functions. All 25 bodies are
+present, but the 11 mismatches and the previously documented capacity,
+layout/ownership and source-linking holds are unchanged. This integration
+does not turn host semantic tests or an original-fallback DOL into native
+matching credit.
+
+
+The integration's `check_pr`, strict nine-category no-loss comparisons against
+both pinned main and the published control checkpoint, all 3,595 linked units,
+18,288 retention entries, exception inventory and whitespace checks pass.
+All 270 source-tool tests pass. The rebuilt modem object comparison is unchanged
+from the reviewed control checkpoint; no gain is attributed to merging main.
