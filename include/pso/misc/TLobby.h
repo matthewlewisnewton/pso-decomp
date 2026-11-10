@@ -741,7 +741,7 @@ struct TLobby : public TObject {
     static void queue_thread_main();
     static s32 write_ring_buffer(u8 *src, s32 len);
     static s16 map_state_to_mode_id();
-    static s32 map_state_to_code(s32 arg0, s16 arg1);
+    static s32 map_state_to_code(const char *number, s16 mode);
     static s32 send_atx_command_mode(s32 arg0);
     u32 compute_range_end(s32 arg1, u32 arg2);
     s32 validate_and_store_net_params();
