@@ -42,7 +42,6 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     void select_next();
     void update();
     void convert_input_text();
-    void set_text_from_string(char *s);
     s32 is_buffer_blank();
     s32 apply_dakuten_to_last_char();
     s32 is_buffer_blank_checked();
@@ -95,10 +94,8 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     void vt21();
     void handle_backspace();
     void update_input_state2();
-    int get_field_6c();
     void init();
     s32 commit_composition_text();
-    s32 measure_text_overflow();
     int is_key_state_2();
     void run_task();
     s32 dispatch_by_index();

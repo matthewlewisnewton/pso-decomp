@@ -6,7 +6,6 @@
 
 extern "C" {
 
-void *__nw__7TObjectFUl(int);
 
 extern void *TWindowSubQuestBoard__class_name;
 
@@ -16,10 +15,7 @@ TWindowSubQuestBoard::TWindowSubQuestBoard(TObject *object, void *arg2) : TObjec
     *(void * *)&this->m_name = TWindowSubQuestBoard__class_name;
     *(void **)((s8 *)this + 0x24) = object;
     *(void **)((s8 *)this + 0x20) = arg2;
-    o = __nw__7TObjectFUl(0x68);
-    if (o != NULL) {
-        o = TWindowSubQuestBoardSelect__ct((TWindowSubQuestBoardSelect *)((u8 *)o));
-    }
+    o = new TWindowSubQuestBoardSelect();
     *(void **)((s8 *)this + 0x28) = o;
     this->quest_thread_board = NULL;
     this->m_1c = 0;

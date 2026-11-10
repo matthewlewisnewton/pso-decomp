@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowBreakIn.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/unk/text_8030C340.h"
@@ -56,7 +57,6 @@ TWindowCtrl_8024C160 *__dt__11TWindowCtrlFv(TWindowCtrl_8024C160 *self, s16 flag
 s32 is_split_screen();
 void *__nw__7TObjectFUl(u32);
 void __ct__7TObjectFP7TObject(void *);
-void *TWindowBreakIn__ct(void *);
 void *__ct__11TWindowChatFP7TObjectPv(void *, s32, void *);
 void *__ct__17TWindowCtrlPlayerFP7TObjectl(void *, void *, s32);
 extern s32 lbl_805D38C8;
@@ -155,11 +155,7 @@ TWindowCtrl_8024C308 *TWindowCtrl__ct(TWindowCtrl_8024C308 *self) {
     for (i = 0; i < 4; i++) {
         self->wins84[i] = NULL;
     }
-    p = __nw__7TObjectFUl(0x60);
-    if (p != NULL) {
-        p = TWindowBreakIn__ct(p);
-    }
-    self->f2C = p;
+    self->f2C = new TWindowBreakIn;
     if (is_split_screen() == 0) {
         p = __nw__7TObjectFUl(0x3C);
         if (p != NULL) {

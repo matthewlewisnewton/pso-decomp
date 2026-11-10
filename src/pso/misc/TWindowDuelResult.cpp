@@ -1,6 +1,6 @@
+#include "pso/misc/PageIndicator_8026CB44.h"
 #include "types.h"
 #include "pso/TObject.h"
-#include "pso/misc/TWindowSubComCardList_8026CB08.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TLobby.h"
@@ -10,12 +10,12 @@
 
 #pragma readonly_strings on
 
-struct RecoveredGlobal_8024F5B0___vt__17TWindowDuelResult {
+struct RecoveredGlobal_8024F5B0_window_duel_result_descriptor {
     s32 value;
-    u8 remaining[0x70];
+    u8 remaining[0x10];
 };
 
-struct RecoveredGlobal_8024F5B0_lbl_804CF020 {
+struct RecoveredGlobal_8024F5B0___vt__17TWindowDuelResult {
     s32 value;
     u8 remaining[0x14];
 };
@@ -35,12 +35,7 @@ typedef struct Win_8024F094 {
     u8 sub[4];
 } Win_8024F094;
 
-struct TWindowDuelResult {
-    void sub_8024F094();
-    void sub_8024EF40();
-    void sub_8024F090();
-    void sub_8024EF3C();
-};
+#include "pso/misc/TWindowDuelResult.h"
 
 extern "C" {
 const char *window_duel_result_class_name = "TWindowDuelResult";
@@ -48,15 +43,11 @@ const char *window_duel_result_class_name = "TWindowDuelResult";
 
 extern "C" {
 s32 draw_visible_window_entries(void *, void *, int);
-s32 draw_list_page_indicator(int, int);
-void draw_window__17TWindowDuelResultFPv(u8 *arg0);
-s32 construct_base__9TWindowDDFPUcsPUc(void *, void *, void *, int);
+void render__17TWindowDuelResultFv(u8 *arg0);
 s32 TWindowDuelResult__sub_8024F3CC(void *);
-u8 *init__21TWindowSubComCardListFiii(void *, s32, s32, s32);
 s32 get_window_layout_position(int);
 
 extern const char *window_duel_result_class_name;
-u8 *TWindowDuelResult__ct(u8 *arg0, s16 arg1);
 s32 get_localized_text_entry(int, int);
 void *get_player_by_client_id(s32 i);
 s32 TWindowDuelResult__sub_801C19AC(f32 *arg0);
@@ -77,10 +68,9 @@ extern u8 lobby_rule_settings[];
 void sub_8024F094__17TWindowDuelResultFv(Win_8024F094 *self);
 void sub_8024F090__17TWindowDuelResultFv(void);
 void sub_8024EF3C__17TWindowDuelResultFv(void);
-void *destroy__17TWindowDuelResultFPvs(void *arg0, s16 arg1);
-void update__17TWindowDuelResultFPv(u8 *arg0);
+void *__dt__17TWindowDuelResultFv(void *arg0, s16 arg1);
+void run_task__17TWindowDuelResultFv(u8 *arg0);
 s32 TWindowDuelResult__sub_8024F330(void *);
-s32 handle_list_page_flip_input(s32);
 void __dl__7TObjectFPv(void *);
 
 extern "C" u8 lbl_805D63F0[];
@@ -154,13 +144,13 @@ void *duel_result_window_layout_table[119] = {
     (void *)0x3, (void *)0x42b00000, (void *)0x43040000, (void *)0x3f000000,
     (void *)0xffffffff, (void *)0x100, (void *)0x0,
 };
-void *__vt__17TWindowDuelResult[5] = {
+void *window_duel_result_descriptor[5] = {
     (void *)0x43c20000, (void *)0x43240000, (void *)0x47437b00, (void *)0x0,
     (void *)0x3,
 };
 #define TWindowDuelResult__layout_entries ((u8 *)TWindowDuelResult__layout_entries)
 #define duel_result_window_layout_table ((u8 *)duel_result_window_layout_table)
-#define __vt__17TWindowDuelResult (*(RecoveredGlobal_8024F5B0___vt__17TWindowDuelResult *)__vt__17TWindowDuelResult)
+#define window_duel_result_descriptor (*(RecoveredGlobal_8024F5B0_window_duel_result_descriptor *)window_duel_result_descriptor)
 
 void sub_8024EF3C__17TWindowDuelResultFv(void) {  }
 
@@ -272,19 +262,19 @@ s32 TWindowDuelResult__sub_8024F330(void *arg0_) {
 }
 #pragma defer_codegen off
 
-void draw_window__17TWindowDuelResultFPv(u8 *arg0) {
-    s32 temp_r3;
-    temp_r3 = ((TWindowBase *)arg0)->setup_window_draw_context((s32)(arg0 + 0x60));
-    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
-    draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
-    draw_list_page_indicator((int) (*(s32 *)((s8 *)arg0 + 0x68)), temp_r3);
+void TWindowDuelResult::render() {
+    s32 context = setup_window_draw_context((s32)&m_60);
+    draw_window_frame((void *)context);
+    draw_visible_window_entries(this, &m_24, context);
+    draw_list_page_indicator((PageIndicator_8026CB44 *)m_68, (TWindowDrawContext *)(context));
 }
 
-void update__17TWindowDuelResultFPv(u8 *arg0_) {
+void TWindowDuelResult::run_task() {
+    u8 *arg0_ = (u8 *)this;
     if (!(*(s32 *)((s8 *)arg0_ + 0x2C) & 2)) {
         *(s32 *)((s8 *)arg0_ + 0x5C) = 0x01000000;
     }
-    if (handle_list_page_flip_input(*(s32 *)((s8 *)arg0_ + 0x68)) != 0) {
+    if (handle_list_page_flip_input((PageIndicator_8026CB44 *)(*(s32 *)((s8 *)arg0_ + 0x68))) != 0) {
         TWindowDuelResult__sub_8024F3CC(arg0_);
     }
     TWindowDuelResult__sub_8024F330(arg0_);
@@ -292,49 +282,27 @@ void update__17TWindowDuelResultFPv(u8 *arg0_) {
     ((TWindowBase *)arg0_)->update_window_entry_list(arg0_ + 0x24);
 }
 
-extern "C" void render_shadows__7TObjectFv();
-void *lbl_804CF020[6] = {
-    (void *)0x0, (void *)0x0, (void *)&destroy__17TWindowDuelResultFPvs, (void *)&update__17TWindowDuelResultFPv,
-    (void *)&draw_window__17TWindowDuelResultFPv, (void *)&render_shadows__7TObjectFv,
-};
-#define lbl_804CF020 ((s32 *)lbl_804CF020)
 
-void *destroy__17TWindowDuelResultFPvs(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = lbl_804CF020;
-        delete_if_allocated((s32)(*(void **)((s8 *)arg0 + 0x68)), 1);
-        ((TWindowDD *)arg0)->destroy_window_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TWindowDuelResult::~TWindowDuelResult() {
+    delete_if_allocated((void *)m_68, 1);
 }
-typedef char RecoveredGlobal_8024F5B0___vt__17TWindowDuelResult_size[sizeof(RecoveredGlobal_8024F5B0___vt__17TWindowDuelResult) == 0x74 ? 1 : -1];
-typedef char RecoveredGlobal_8024F5B0_lbl_804CF020_size[sizeof(RecoveredGlobal_8024F5B0_lbl_804CF020) == 0x18 ? 1 : -1];
-u8 *TWindowDuelResult__ct(u8 *arg0_, s16 arg1) {
-    u8 *temp_r3;
-    u8 *var_r0;
-    construct_base__9TWindowDDFPUcsPUc((void *)arg0_, &__vt__17TWindowDuelResult.value, (void *)arg1, (int) (get_window_layout_position(0x24)));
-    *(s32 **)((s8 *)arg0_ + 0x18) = &(*(RecoveredGlobal_8024F5B0_lbl_804CF020 *)lbl_804CF020).value;
-    *(s32 *)((s8 *)arg0_ + 0) = (s32) ((s32)window_duel_result_class_name);
-    temp_r3 = (u8 *)((int)::operator new(0xC));
-    var_r0 = temp_r3;
-    if (var_r0 != NULL) {
-        var_r0 = (u8 *)(init__21TWindowSubComCardListFiii(temp_r3, 0, 2, (s32) *(s16 *)((s8 *)arg0_ + 0x20)));
-    }
-    *(u8 **)((s8 *)arg0_ + 0x68) = var_r0;
+typedef char RecoveredGlobal_8024F5B0_window_duel_result_descriptor_size[sizeof(RecoveredGlobal_8024F5B0_window_duel_result_descriptor) == 0x14 ? 1 : -1];
+typedef char RecoveredGlobal_8024F5B0___vt__17TWindowDuelResult_size[sizeof(RecoveredGlobal_8024F5B0___vt__17TWindowDuelResult) == 0x18 ? 1 : -1];
+TWindowDuelResult::TWindowDuelResult(s32 arg1)
+    : TWindowBase((u8 *)&window_duel_result_descriptor.value, (s16)arg1, (u8 *)get_window_layout_position(0x24)) {
+    *(s32 *)((s8 *)((u8 *)this) + 0) = (s32) ((s32)window_duel_result_class_name);
+    m_68 = (u32)new PageIndicator_8026CB44(0, 2, m_20);
     if (TCameraCtrl::get_camera_id() > 2) {
-        *(f32 *)((s8 *)arg0_ + 0x60) = (f32) (0.8f);
-        *(f32 *)((s8 *)arg0_ + 0x64) = (f32) (0.8f);
+        *(f32 *)((s8 *)((u8 *)this) + 0x60) = (f32) (0.8f);
+        *(f32 *)((s8 *)((u8 *)this) + 0x64) = (f32) (0.8f);
     } else if (TCameraCtrl::get_camera_id() == 2) {
-        *(f32 *)((s8 *)arg0_ + 0x60) = (f32) (1.0f);
-        *(f32 *)((s8 *)arg0_ + 0x64) = (f32) (1.0f);
+        *(f32 *)((s8 *)((u8 *)this) + 0x60) = (f32) (1.0f);
+        *(f32 *)((s8 *)((u8 *)this) + 0x64) = (f32) (1.0f);
     } else {
-        *(f32 *)((s8 *)arg0_ + 0x60) = (f32) (1.0f);
-        *(f32 *)((s8 *)arg0_ + 0x64) = (f32) (1.0f);
+        *(f32 *)((s8 *)((u8 *)this) + 0x60) = (f32) (1.0f);
+        *(f32 *)((s8 *)((u8 *)this) + 0x64) = (f32) (1.0f);
     }
-    TWindowDuelResult__sub_8024F3CC(arg0_);
-    return arg0_;
+    TWindowDuelResult__sub_8024F3CC(((u8 *)this));
+
 }
 }

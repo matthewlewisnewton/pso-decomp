@@ -23,7 +23,6 @@ struct TWindowFukidasi
     void sync_display_pos();
     s32 approach(f32 farg0);
     void get_boundary_offset(s32 angle, f32 *out);
-    void run_task();
     void find_balloon_overlap_for(s32 arg1);
     void rearm_balloon(s32 arg1);
 };

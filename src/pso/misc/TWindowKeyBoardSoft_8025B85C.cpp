@@ -4,6 +4,7 @@
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
 #include "pso/misc/TWindowSubStatusDisp_80228F5C.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
+#include "pso/misc/KeyboardTextAbi.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowChat.h"
 #include "pso/misc/TWindowSubComCard.h"
@@ -42,8 +43,6 @@ void TWindowKeyBoardSoft__sub_8025DBDC(void *, s32);
 extern s32 lbl_805DD030;
 extern s32 lbl_805DD034;
 s32 TWindowKeyBoardSoft__sub_8025D7FC();
-void export_keyboard_text(Base_8025C974 *base, char *out);
-int set_text_from_string__19TWindowKeyBoardSoftFPc(void*);
 
 s32 is_alnum__19TWindowKeyBoardSoftFUs(u16 arg0) {
     if ((s32) arg0 < 0x30) {
@@ -527,7 +526,7 @@ void TWindowKeyBoardSoft__sub_8025C51C(u8 *window_key_board_soft, s32 arg1) {
     }
 }
 
-int TWindowKeyBoardSoft::get_field_6c() { return set_text_from_string__19TWindowKeyBoardSoftFPc((char*)this + 0x6c); }
+void TWindowKeyBoardBase::set_text(char *text) { set_text_from_string__19TWindowKeyBoardSoftFPc(&m_6c, text); }
 
 void TWindowKeyBoardBase::insert_character(u16 arg1) {
     s32 f;
@@ -638,7 +637,8 @@ s32 TWindowKeyBoardSoft::commit_composition_text() {
 }
 #pragma pop
 
-void export_keyboard_text(Base_8025C974 *base, char *out) {
+void TWindowKeyBoardBase::export_text(char *out) {
+    Base_8025C974 *base = (Base_8025C974 *)this;
     u32 a = 0;
     u32 b = 0;
     u32 c = 0;
@@ -669,7 +669,7 @@ void export_keyboard_text(Base_8025C974 *base, char *out) {
     *out = 0;
 }
 
-s32 TWindowKeyBoardSoft::measure_text_overflow() {
+s32 TWindowKeyBoardBase::get_text_buffer_size() {
     Base_8025C974 *arg0 = (Base_8025C974 *)this;
     u32 a = 0;
     u32 b = 0;

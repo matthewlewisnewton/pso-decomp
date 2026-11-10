@@ -230,16 +230,20 @@ void set_color__13TUnk_804CF0B8FUs(void *arg0, u16 arg1);
 void open__15TWindowFukidasiFPvPvi(u8 *arg0, u32 *arg1, s32 arg2);
 void set_text__15TWindowFukidasiFPvii(u8 *arg0, s32 arg1, s32 arg2);
 void init_flags__15TWindowFukidasiFPvi(void *arg0, s32 arg1);
-void draw_name_plate__15TWindowFukidasiFv(void *, View_80252764 *, u32);
 void TWindowFukidasi__sub_80252C38(void *p);
 void clear_flag_20__13TUnk_804CF0B8Fv();
 s32 fn_80252CBC(void);
 void draw_visible_window_entries(void *, void *, View_80252764 *);
+s32 get_name_text_width(void *);
+void apply_context_transform_to_rect(TWindowDrawContext *, f32 *);
+void draw_textured_quad_at_depth(void *, f32);
+void set_text_draw_params(TWindowDrawContext *, s32, s32, f32, f32);
 s32 init_window_layout_entries(void *, void *, int);
 s32 reset_float_field__15TWindowHelpItemFv();
 s32 measure_message_text_width(int, f32);
 }
 void set_text_entry_string(u8 *arg0, u32 str, s32 arg2);
+s32 draw_small_font_string_clipped(f32 *, const char *, u32, f32);
 extern "C" {
 s32 strcmp(s32, s32);
 s32 strncpy(s32, s32, s32);
@@ -281,6 +285,20 @@ extern const f32 lbl_805DCD44;
 extern const f32 lbl_805DCD48;
 extern const f32 lbl_805DCD50;
 extern const f32 lbl_805DCD58;
+extern const f32 lbl_805DCD10;
+extern const f32 lbl_805DCD54;
+extern const f32 lbl_805DCD5C;
+extern const f32 lbl_805DCD60;
+extern const f32 lbl_805DCD64;
+extern const f32 lbl_805DCD68;
+extern const f32 lbl_805DCD6C;
+extern const f32 lbl_805DCD70;
+extern const f32 lbl_805DCD74;
+extern const f32 lbl_805DCD7C;
+extern const f32 lbl_805DCD80;
+extern const f32 lbl_805DCD84;
+extern const f32 lbl_805DCD88;
+extern const f32 lbl_805DCD8C;
 extern const f32 lbl_805DCD78;
 extern const f32 lbl_805DCD90;
 extern const f32 lbl_805DCD94;
@@ -1038,6 +1056,79 @@ void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
     this->clear_flag2c_bit100();
 }
 
+void TUnk_804CF0B8::draw_name_plate(TWindowDrawContext *ctx, u32 color) {
+    f32 pos[2];
+    f32 quad[8];
+    f32 width;
+    f32 depth;
+    u32 alpha;
+    u32 plateColor;
+
+    if (name != NULL && ctx->open_tick >= 0) {
+        width = (f32)(u32)get_name_text_width(name);
+        if (ctx->open_tick < 6) {
+            alpha = (s32)(lbl_805DCD5C * (ctx->open_tick * 255));
+        } else {
+            alpha = 255;
+        }
+        alpha <<= 24;
+        plateColor = alpha | (color & 0x00FFFFFF);
+        pos[0] = ctx->x - lbl_805DCD60;
+        pos[1] = ctx->y - TWindowFukidasi__data_805DCD1C;
+        depth = TWindowFukidasi__data_805DCD4C / (lbl_805DCD64 + ctx->depth);
+        begin_screen_draw(1);
+        TWindowSubStatusDisp::render_forward();
+        set_draw_texture_and_color(0, plateColor);
+
+        quad[0] = pos[0];
+        quad[1] = pos[1];
+        quad[2] = lbl_805DCD68 + pos[0];
+        quad[3] = lbl_805DCD10 + pos[1];
+        quad[4] = lbl_805DCD6C;
+        quad[5] = lbl_805DCD70;
+        quad[6] = lbl_805DCD74;
+        quad[7] = TWindowFukidasi__data_805DCCE8;
+        apply_context_transform_to_rect(ctx, quad);
+        draw_textured_quad_at_depth(quad, depth);
+
+        if (width < TWindowFukidasi__data_805DCCFC) {
+            quad[0] = lbl_805DCD78 + ((TWindowFukidasi__data_805DCCFC + pos[0]) - lbl_805DCD68);
+        } else {
+            quad[0] = lbl_805DCD78 + ((pos[0] + width) - lbl_805DCD68);
+        }
+        quad[1] = pos[1];
+        quad[2] = lbl_805DCD68 + quad[0];
+        quad[3] = lbl_805DCD10 + pos[1];
+        quad[4] = lbl_805DCD7C;
+        quad[5] = lbl_805DCD70;
+        quad[6] = lbl_805DCD80;
+        quad[7] = TWindowFukidasi__data_805DCCE8;
+        apply_context_transform_to_rect(ctx, quad);
+        draw_textured_quad_at_depth(quad, depth);
+
+        if (width > TWindowFukidasi__data_805DCCFC) {
+            quad[0] = lbl_805DCD68 + pos[0];
+            quad[1] = pos[1];
+            quad[2] = lbl_805DCD78 + ((pos[0] + width) - lbl_805DCD68);
+            quad[3] = lbl_805DCD10 + pos[1];
+            quad[4] = lbl_805DCD74;
+            quad[5] = lbl_805DCD70;
+            quad[6] = lbl_805DCD7C;
+            quad[7] = TWindowFukidasi__data_805DCCE8;
+            apply_context_transform_to_rect(ctx, quad);
+            draw_textured_quad_at_depth(quad, depth);
+        }
+        TWindowSubStatusDisp::get_player();
+        pos[0] += lbl_805DCD84;
+        if (width < TWindowFukidasi__data_805DCCFC) {
+            pos[0] += TWindowFukidasi__data_805DCD0C * (TWindowFukidasi__data_805DCCFC - width);
+        }
+        pos[1] += TWindowFukidasi__data_805DCD28;
+        set_text_draw_params(ctx, 0, 1, TWindowFukidasi__data_805DCD4C / (lbl_805DCD88 + ctx->depth), lbl_805DCD8C);
+        draw_small_font_string_clipped(pos, name, alpha, lbl_805DCD54);
+    }
+}
+
 #pragma push
 #pragma fp_contract on
 void TUnk_804CF0B8::draw_tail(void *view, u32 color, f32 *off, f32 depth) {
@@ -1204,12 +1295,13 @@ void TUnk_804CF0B8::render() {
     ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->draw_tail(v, ((Fuki_80252764 *)this)->color, off, lbl_805DCD90 + ((Fuki_80252764 *)this)->f54);
     if (((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->is_active() != 0) {
         draw_visible_window_entries(((Fuki_80252764 *)this), ((Fuki_80252764 *)this)->f24, v);
-        draw_name_plate__15TWindowFukidasiFv(((Fuki_80252764 *)this), v, ((Fuki_80252764 *)this)->color);
+        draw_name_plate((TWindowDrawContext *)v, ((Fuki_80252764 *)this)->color);
     }
 }
 #pragma pop
 
-void TWindowFukidasi::run_task() {
+// Actual balloon owner; the surrounding legacy Fukidasi helper views remain qualified.
+void TUnk_804CF0B8::run_task() {
     u8 *arg0 = (u8 *)this;
   switch (*((u8 *) (((s8 *) arg0) + 0x70)))
   {
@@ -1220,11 +1312,11 @@ void TWindowFukidasi::run_task() {
       ((TUnk_804CF0B8 *)arg0)->set_flag2c_bit100();
       *((u8 *) (((s8 *) arg0) + 0x70)) = 2U;
     case 2:
-      if (approach(TWindowFukidasi__data_805DCCE8) != 0)
+      if (((TWindowFukidasi *)this)->approach(TWindowFukidasi__data_805DCCE8) != 0)
     {
       *((u8 *) (((s8 *) arg0) + 0x70)) = 3U;
     }
-      sync_display_pos();
+      ((TWindowFukidasi *)this)->sync_display_pos();
       break;
     case 3:
       TWindowFukidasi__sub_80252C38(arg0);
@@ -1249,11 +1341,11 @@ void TWindowFukidasi::run_task() {
       ((TUnk_804CF0B8 *)arg0)->set_flag2c_bit100();
       *((u8 *) (((s8 *) arg0) + 0x70)) = 6U;
     case 6:
-      if (approach(TWindowFukidasi__data_805DCD0C) != 0)
+      if (((TWindowFukidasi *)this)->approach(TWindowFukidasi__data_805DCD0C) != 0)
     {
       *((u8 *) (((s8 *) arg0) + 0x70)) = 1U;
     }
-      sync_display_pos();
+      ((TWindowFukidasi *)this)->sync_display_pos();
       break;
     case 7:
       ((TUnk_804CF0B8 *)arg0)->clear_flag();
@@ -1262,11 +1354,11 @@ void TWindowFukidasi::run_task() {
       *((u8 *) (((s8 *) arg0) + 0x71)) = (u8) ((*((u8 *) (((s8 *) arg0) + 0x71))) | 0x10);
       *((u8 *) (((s8 *) arg0) + 0x70)) = 8U;
     case 8:
-      if (approach(TWindowFukidasi__data_805DCD30) != 0)
+      if (((TWindowFukidasi *)this)->approach(TWindowFukidasi__data_805DCD30) != 0)
     {
       *((u8 *) (((s8 *) arg0) + 0x70)) = 9U;
     }
-      sync_display_pos();
+      ((TWindowFukidasi *)this)->sync_display_pos();
       break;
     case 9:
       queue_destruction__7TObjectFv(arg0);

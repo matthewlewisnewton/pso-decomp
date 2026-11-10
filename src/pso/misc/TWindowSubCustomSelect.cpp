@@ -1,3 +1,4 @@
+#include "pso/misc/Scroll_8026D790.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -57,13 +58,10 @@ extern const f32 lbl_805DD5E4;
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
 s32 get_message_10__20TWindowSubStatusDispFl(int);
 void *get_player_by_client_id(s32 i);
-s32 construct_with_parent__15TWindowAdditionFPv(void *, void *, s16, s32);
 s32 get_window_layout_position(int);
-void *reset_selection__20TWindowSubStatusDispFv(void *, Pos_80277AEC *);
 extern u8 custom_select_organic_action_table[];
 extern u8 custom_select_android_action_table[];
 extern u8 TWindowSubCustomSelect__window_settings[];
-extern s32 __vt__22TWindowSubCustomSelect[];
 extern s32 TWindowSubCustomSelect__class_name;
 extern const f32 lbl_805DD5E8;
 extern const f32 lbl_805DD5EC;
@@ -220,7 +218,8 @@ void TWindowSubCustomSelect::draw_palette_cells(int ctx) {
 }
 #pragma pop
 
-void render__22TWindowSubCustomSelectFv(TWindowSubCustomSelect *window_sub_custom_select) {
+void TWindowSubCustomSelect::render() {
+    TWindowSubCustomSelect *window_sub_custom_select = this;
     s32 temp_r3;
     temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(window_sub_custom_select);
     ((TWindowBase *)window_sub_custom_select)->draw_window_frame((void *)temp_r3);
@@ -252,74 +251,62 @@ void TWindowSubCustomSelect::run_task() {
     update_list_scroll();
     if ((f32) *(s32 *)&this->m_5c >= lbl_805DD5E4) {
         ((TWindowSubStatusDisp *)(*(s32 *)&this->m_7c))->update_subwindow();
-        ((TWindowSubStatusDisp *)(*(s32 *)&this->m_80))->increment_counter();
+        fn_8026D9C0((void *)(*(s32 *)&this->m_80));
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
     ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
     *(s32 *)&this->m_74 = (s32) (*(s32 *)&this->m_74 + 1);
 }
 
-void *__dt__22TWindowSubCustomSelectFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__22TWindowSubCustomSelect;
-        TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)arg0 + 0x80)), (s16)1);
-        TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x7C)), (s16)1);
-        ((TWindowAddition *)arg0)->destroy_window(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TWindowSubCustomSelect::~TWindowSubCustomSelect() {
+    fn_8026D9D0((void *)m_80, (s16)1);
+    TWindowSubStatusDisp::destroy_status_display((s32)m_7c, (s16)1);
 }
 #pragma push
 #pragma fp_contract on
 #pragma fp_contract on
-u8 *TWindowSubCustomSelect__ct(TWindowSubCustomSelect *window_sub_custom_select, s32 arg1) {
+TWindowSubCustomSelect::TWindowSubCustomSelect(s32 client)
+    : TWindowAddition((u8 *)TWindowSubCustomSelect__window_settings, (s16)client,
+                      (u8 *)get_window_layout_position(0x10)) {
     Pos_80277AEC pos;
     Big_80277AEC *p;
     Sub_80277AEC *q;
     Ent_80277AEC *e;
     void *o;
-    construct_with_parent__15TWindowAdditionFPv(window_sub_custom_select, TWindowSubCustomSelect__window_settings, arg1, get_window_layout_position(0x10));
-    *(s32 **)((s8 *)window_sub_custom_select + 0x18) = __vt__22TWindowSubCustomSelect;
-    *(s32 *)((s8 *)window_sub_custom_select + 0) = TWindowSubCustomSelect__class_name;
-    window_sub_custom_select->m_20 = arg1;
-    p = (Big_80277AEC *)get_player_by_client_id(window_sub_custom_select->m_20);
+    m_name = (const char *)TWindowSubCustomSelect__class_name;
+    m_20 = client;
+    p = (Big_80277AEC *)get_player_by_client_id(this->m_20);
     if (p == NULL) {
-        return (u8 *)window_sub_custom_select;
+        return;
     }
     q = &p->sub;
     if (q == NULL) {
-        return (u8 *)window_sub_custom_select;
+        return;
     }
     if (q->flags & 0x10) {
-        *(u8 **)((s8 *)window_sub_custom_select + 0x78) = custom_select_android_action_table;
+        *(u8 **)((s8 *)this + 0x78) = custom_select_android_action_table;
     } else {
-        *(u8 **)((s8 *)window_sub_custom_select + 0x78) = custom_select_organic_action_table;
+        *(u8 **)((s8 *)this + 0x78) = custom_select_organic_action_table;
     }
-    window_sub_custom_select->m_73 = 0;
-    window_sub_custom_select->m_70 = 0;
-    window_sub_custom_select->m_71 = 0;
-    window_sub_custom_select->m_74 = 0;
-    e = *(Ent_80277AEC **)((s8 *)window_sub_custom_select + 0x78);
-    window_sub_custom_select->m_72 = 0;
+    this->m_73 = 0;
+    this->m_70 = 0;
+    this->m_71 = 0;
+    this->m_74 = 0;
+    e = *(Ent_80277AEC **)((s8 *)this + 0x78);
+    this->m_72 = 0;
     while (e->id != 8) {
         e++;
-        (window_sub_custom_select->m_72)++;
+        (this->m_72)++;
     }
     o = ::operator new(0x24);
     if (o != NULL) {
-        o = ((TWindowSubStatusDisp *)o)->construct_type1_heading(get_message_10__20TWindowSubStatusDispFl(0x22), window_sub_custom_select->m_20);
+        o = ((TWindowSubStatusDisp *)o)->construct_type1_heading(get_message_10__20TWindowSubStatusDispFl(0x22), this->m_20);
     }
-    *(void **)((s8 *)window_sub_custom_select + 0x7C) = o;
+    *(void **)((s8 *)this + 0x7C) = o;
     pos.x = lbl_805DD5E8;
-    pos.y = TWindowSubCustomSelect__data_805DD5B0 * (f32)(s8)window_sub_custom_select->m_72 + lbl_805DD5EC;
-    o = ::operator new(0xC);
-    if (o != NULL) {
-        o = reset_selection__20TWindowSubStatusDispFv(o, &pos);
-    }
-    *(void **)((s8 *)window_sub_custom_select + 0x80) = o;
-    return (u8 *)window_sub_custom_select;
+    pos.y = TWindowSubCustomSelect__data_805DD5B0 * (f32)(s8)this->m_72 + lbl_805DD5EC;
+    *(void **)((s8 *)this + 0x80) = new Scroll_8026D790(&pos);
+    return;
 }
 #pragma pop
 

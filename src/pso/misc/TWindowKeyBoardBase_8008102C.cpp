@@ -53,8 +53,8 @@ u32 *destroy__19TWindowKeyBoardBaseFPvs(u32 *arg0, s16 arg1) {
 
 extern s32 local_client_id;
 
-s32 *TWindowKeyBoardBase::init_text_buffer_holder() {
-    s32 *arg0 = (s32 *)this;
+extern "C" s32 *init_text_buffer_holder__19TWindowKeyBoardBaseFv(void *storage) {
+    s32 *arg0 = (s32 *)storage;
     *arg0 = 0;
     init_keyboard_text_buffer((u8 *)arg0, (u32)(0U), (u32)(0U));
     return arg0;

@@ -1,3 +1,5 @@
+#include "pso/misc/TWindowBase.h"
+#include "pso/misc/WindowConstructorAbi.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/TObject.h"
@@ -34,7 +36,7 @@ extern "C" {
 void render__17TWindowDD_WS_WordFv();
 }
 extern "C" {
-void handle_scroll_input__9TWindowDDFv();
+void run_task__17TWindowDD_WS_WordFv();
 }
 extern "C" {
 void render_shadows__7TObjectFv();
@@ -53,7 +55,7 @@ void *lbl_804EFC7C[5] = {
     (void *)0x3,
 };
 void *lbl_804EFC90[6] = {
-    (void *)0x0, (void *)0x0, (void *)&destroy__17TWindowDD_WS_WordFs, (void *)&handle_scroll_input__9TWindowDDFv,
+    (void *)0x0, (void *)0x0, (void *)&destroy__17TWindowDD_WS_WordFs, (void *)&run_task__17TWindowDD_WS_WordFv,
     (void *)&render__17TWindowDD_WS_WordFv, (void *)&render_shadows__7TObjectFv,
 };
 #define TWindowDD__data_804EFC50 (*(RecoveredGlobal_80342384_TWindowDD__data_804EFC50 *)TWindowDD__data_804EFC50)
@@ -64,7 +66,7 @@ s32 TWindowDD_WS_Word::sub_80342254() {
     return !(self->m_60 & 1);
 }
 
-u8 TWindowDD_WS_Word::sub_80342268() {
+s32 TWindowDD_WS_Word::sub_80342268() {
     TWindowDD_WS_Word *self = this;
     return !(self->m_60 & 1);
 }
@@ -73,7 +75,7 @@ void *TWindowDD_WS_Word::destroy(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804EFC90;
         if (this->m_80 != NULL) { ::operator delete[](this->m_80); this->m_80 = 0; }
-        ((TWindowDD *)this)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(this), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
         }
@@ -86,7 +88,7 @@ s32 TWindowDD__sub_803422F0(int a0, void *a1, void *a2) {
 #define arg1 ((s32)a1)
 #define arg2 ((s32)a2)
     s32 v;
-    ((TWindowDD *)arg0)->construct_base((u8 *)lbl_804EFC7C, (s16)4, (u8 *)lbl_804EFC74);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)lbl_804EFC7C), (s16)((s16)4), (u8 *)((u8 *)lbl_804EFC74));
     arg0->f18 = lbl_804EFC90;
     v = lbl_805D42E0;
     arg0->f0 = v;

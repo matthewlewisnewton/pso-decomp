@@ -4,25 +4,18 @@
 #include "pso/misc/TCameraCtrl.h"
 
 #include "types.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
+#include "pso/misc/TWindowSubStatusDisp.h"
 
 extern "C" {
 
-s32 TWindowCost__ct(s32, s32, s32, s32);
-s32 get_message_10__20TWindowSubStatusDispFl(s32);
-s32 __nw__7TObjectFUl(s32);
-s32 get_window_layout_position(s32);
 
-s32 create_cost_window(s32 arg0) {
-    s32 var_r30;
-
+TWindowCost *create_cost_window(s32 client) {
     if (TCameraCtrl::get_camera_id() <= 2) {
-        return 0;
+        return NULL;
     }
-    var_r30 = __nw__7TObjectFUl(0x74);
-    if (var_r30 != 0) {
-        var_r30 = TWindowCost__ct(var_r30, get_window_layout_position(0x59), arg0, get_message_10__20TWindowSubStatusDispFl(0x109));
-    }
-    return var_r30;
+    return new TWindowCost(get_window_layout_position(0x59), client,
+        (s32)TWindowSubStatusDisp::get_message_10(0x109));
 }
 
 }

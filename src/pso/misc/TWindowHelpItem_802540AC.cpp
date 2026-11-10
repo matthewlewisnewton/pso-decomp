@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/WindowLayoutDescriptor.h"
 #include "pso/misc/TLobby_80132ED0.h"
 #include "pso/misc/TWindowHelpItem_802531A0.h"
 #include "pso/misc/TWindowHelpItem_802540AC.h"
@@ -377,9 +378,8 @@ void *TWindowHelpItem__description_text_layout[9] = {
     (void *)0x0, (void *)0x3f000000, (void *)0xffffffff, (void *)0x0,
     (void *)0x0,
 };
-void *__vt__15TWindowHelpItem[5] = {
-    (void *)0x43640000, (void *)0x43380000, (void *)0x4717f400, (void *)0x0,
-    (void *)0x3,
+WindowLayoutDescriptor window_help_item_parameters = {
+    {228.0f, 184.0f}, 38900.0f, NULL, 3
 };
 void *lbl_804CF6F4[3] = {
     (void *)0x0, (void *)0xffffffff, (void *)&TWindowHelpItem__vt0,

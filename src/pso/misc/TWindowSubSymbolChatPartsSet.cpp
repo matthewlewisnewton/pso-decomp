@@ -46,31 +46,6 @@ typedef struct T_8028642C {
     s32 *f84;
 } T_8028642C;
 
-typedef struct T_802869BC {
-    s32 f0;
-    u8 pad4[0x18 - 0x4];
-    void *vt;
-    u8 pad1c[0x20 - 0x1C];
-    s16 f20;
-    u8 pad22[0x2C - 0x22];
-    u32 f2c;
-    u8 pad30[0x68 - 0x30];
-    s8 f68;
-    u8 pad69;
-    s16 f6a;
-    s16 f6c;
-    s16 f6e;
-    s32 f70;
-    u8 pad74[0x7C - 0x74];
-    s32 f7c;
-    s32 f80;
-    u8 pad84[0x88 - 0x84];
-    void *f88;
-    f32 f8c;
-    f32 f90;
-    f32 f94;
-} T_802869BC;
-
 struct V2_80286120 { f32 x, y; };
 
 struct Pt_80286120 { u8 pad[8]; f32 f8; f32 fc; };
@@ -93,12 +68,11 @@ s32 update_visibility__28TWindowSubSymbolChatPartsSetFv(void *, s16);
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 extern u8 lbl_8044FC30[];
 extern s32 __vt__28TWindowSubSymbolChatPartsSet[];
-extern s32 TWindowSubSymbolChatPartsSet__name;
+extern const char *TWindowSubSymbolChatPartsSet__name;
 extern const f32 lbl_805DD824;
 extern const f32 lbl_805DD828;
 extern const f32 lbl_805DD82C;
 extern const f32 lbl_805DD830;
-T_802869BC *TWindowSubSymbolChatPartsSet__ct(T_802869BC *self, void *parent, s16 arg2, s32 arg3, s32 arg4);
 void TWindowSubSymbolChatFaceType__sub_80283C84(void *, void *, f32, f32);
 extern const f32 lbl_805DD814;
 extern const f32 lbl_805DD818;
@@ -315,29 +289,25 @@ TWindowSubSymbolChatPartsSet::~TWindowSubSymbolChatPartsSet() {
     TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)this + 0x88)), (s16)1);
 }
 
-T_802869BC *TWindowSubSymbolChatPartsSet__ct(T_802869BC *self, void *parent, s16 arg2, s32 arg3, s32 arg4) {
-    void *h;
-    TWindowChatSymbol__ct((TWindowChatSymbol *)((u8 *)self), (s32)parent, (s32)lbl_8044FC30);
-    self->vt = ((s32 *)&__vt__28TWindowSubSymbolChatPartsSet);
-    self->f0 = TWindowSubSymbolChatPartsSet__name;
-    ((TWindowBase *)self)->set_depth(lbl_805DD824);
-    self->f68 = 0;
-    self->f6a = 0;
-    self->f6c = 0;
-    self->f6e = arg2;
-    self->f70 = 0;
-    self->f7c = arg3;
-    self->f80 = arg4;
-    h = ::operator new(0x24);
-    if (h != 0) {
-        h = ((TWindowSubStatusDisp *)h)->construct_type1_heading(get_message_10__20TWindowSubStatusDispFl(0x34), self->f20);
+TWindowSubSymbolChatPartsSet::TWindowSubSymbolChatPartsSet(void *position, s16 index, s32 *first, s32 *second)
+    : TWindowChatSymbol(position, lbl_8044FC30) {
+    m_name = TWindowSubSymbolChatPartsSet__name;
+    set_depth(lbl_805DD824);
+    m_68 = 0;
+    m_6a = 0;
+    m_6c = 0;
+    m_6e = index;
+    m_70 = 0;
+    m_7c = first;
+    m_80 = second;
+    void *heading = ::operator new(0x24);
+    if (heading != NULL) {
+        heading = ((TWindowSubStatusDisp *)heading)->construct_type1_heading(get_message_10__20TWindowSubStatusDispFl(0x34), m_20);
     }
-    self->f88 = h;
-    self->f8c = lbl_805DD828;
-    self->f90 = lbl_805DD82C;
-    self->f94 = lbl_805DD830;
-    self->f2c |= 0x40;
-    ((TWindowSubSymbolChatPartsSet *)self)->set_selection(TWindowSubSymbolChat::get_instance());
-    return self;
+    m_88 = heading;
+    m_8c = lbl_805DD828;
+    m_90 = lbl_805DD82C;
+    m_94 = lbl_805DD830;
+    m_2c |= 0x40;
+    set_selection(TWindowSubSymbolChat::get_instance());
 }
-
