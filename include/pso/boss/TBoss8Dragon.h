@@ -156,7 +156,7 @@ struct TBoss8Dragon : public TObjEneDD_ST
     int query_default();
     void copy_spawn_params(G_GalGryphonBossActions_6xA0 *cmd);
     static s32 spawn_ground_lightning(TObject *parent, const Vec *source, s32 direction);
-    void set_default_on_state0();
+    static void set_default_on_state0();
     static void update_camera_script(NJS_OBJECT *);
     void calc_velocity_from_angle();
     f32 clamp_step_in_radius(f32 a, f32 b, f32 s);

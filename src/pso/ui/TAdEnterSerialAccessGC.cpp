@@ -4,8 +4,10 @@
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/TMainTask.h"
+#include "pso/TAdPlyChrSelPlateGC.h"
 #include "pso/TObject.h"
 #include "pso/misc/TLobby_80132ED0.h"
+#include "pso/misc/TLobby_801E2F94.h"
 #include "pso/quest/TQuestThread.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
@@ -138,11 +140,7 @@ struct RecoveredGlobal_80321B28_TAdEnterSerialAccessGC__data_804764E8;
 
 typedef struct Plate_803214C4 { u8 pad[0x3B4]; } Plate_803214C4;
 
-typedef struct Vec2_803214C4 { f32 x; f32 y; } Vec2_803214C4;
-
 typedef struct Rect_803214C4 { f32 x; f32 y; f32 w; f32 h; } Rect_803214C4;
-
-typedef struct Col_803214C4 { u32 v; } Col_803214C4;
 
 struct Pos_80321358 { f32 x, y; };
 
@@ -196,12 +194,11 @@ void *__ct__14TAdSelectCurGCFv(void *, TObject *, void *, void *);
 extern u8 lbl_804764F8[];
 extern s32 __vt__22TAdEnterSerialAccessGC[];
 extern s32 TAdEnterSerialAccessGC__name;
-void TAdEnterSerialAccessGC__sub_802C4B64(void *, void *, Col_803214C4, int);
 void __dt__19TAdPlyChrSelPlateGCFv(void *, int);
 void *__ct__19TAdPlyChrSelPlateGCFv(void *, TObject *, void *);
-extern Vec2_803214C4 lbl_80476548[];
-extern Vec2_803214C4 serial_plate_position_table[];
-extern Col_803214C4 lbl_805DF4D8;
+extern ColorLineVertex lbl_80476548[];
+extern ColorLineVertex serial_plate_position_table[];
+extern SelectionPlateColor lbl_805DF4D8;
 extern const f32 lbl_805DF4F4;
 extern const f32 lbl_805DF4F8;
 extern const f32 lbl_805DF4FC;
@@ -299,22 +296,22 @@ void TAdEnterSerialAccessGC::draw_serial_plates() {
     pb.y = lbl_805DF4F8;
     __ct__19TAdPlyChrSelPlateGCFv(&b, tl_clipout, &pb);
     {
-        Vec2_803214C4 pos = lbl_80476548[0];
-        Col_803214C4 c = lbl_805DF4D8;
+        ColorLineVertex pos = lbl_80476548[0];
+        SelectionPlateColor c = lbl_805DF4D8;
         switch (TAdEnterSerialAccessGC__input_state) {
         case 3:
             break;
         case 2:
-            TAdEnterSerialAccessGC__sub_802C4B64(&b, &serial_plate_position_table[0], c, 0);
+            draw_selection_plate(&b, &serial_plate_position_table[0], c, 0);
             for (i = 0; i < 2; i++) {
-                TAdEnterSerialAccessGC__sub_802C4B64(&a, &serial_plate_position_table[i + 1], c, 0);
+                draw_selection_plate(&a, &serial_plate_position_table[i + 1], c, 0);
             }
             TAdEnterSerialAccessGC::draw_serial_separators();
             break;
         case 4:
             for (i = 0; i < 3; i++) {
                 pos.x = lbl_805DF504 * (f32)i + lbl_805DF500;
-                TAdEnterSerialAccessGC__sub_802C4B64(&a, &pos, c, 0);
+                draw_selection_plate(&a, &pos, c, 0);
             }
             TAdEnterSerialAccessGC::draw_serial_separators();
             break;
