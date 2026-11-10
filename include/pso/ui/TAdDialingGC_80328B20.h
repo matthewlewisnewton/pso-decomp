@@ -1,16 +1,12 @@
 #ifndef PSO_UI_TADDIALINGGC_80328B20_H
 #define PSO_UI_TADDIALINGGC_80328B20_H
 
-#include "types.h"
+class TAdDialingGC;
+struct ColorLineVertex;
 
 extern "C" {
-void TAdDialingGC__sub_80328B20(void);
+void TAdDialingGC__sub_80328B20(TAdDialingGC *dialing);
+void draw_dialing_rectangle(const ColorLineVertex *origin, const ColorLineVertex *extent);
 }
-
-// --- C functions defined in TAdDialingGC_80328B20.cpp ---
-extern "C" {
-void TAdDialingGC__sub_80328B20(void);
-}
-// --- end of C functions
 
 #endif

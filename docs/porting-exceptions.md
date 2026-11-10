@@ -207,6 +207,24 @@ Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
 
+### `pso/ui/TAdDialingGC_80328B20.cpp` with GC/1.3.2
+
+GC/1.3.2 preserves the 59-instruction sequence of `draw_dialing_rectangle`
+at `0x80328B24`. With the same source, GC/2.6 reuses coordinate loads and
+sums across the vertex writes and emits 49 instructions. The older compiler
+also matches the other three functions with the default game flags.
+
+The four coordinate pairs at `0x804767A8..0x804767C8` stay in the existing
+original read-only data contribution. Assigning them to this split would
+reverse its order relative to the dialing constructor's string and create a
+link-order cycle. The single referenced float at `0x805DF6F8` belongs to this
+split. The following zero word has no reference and stays with the original
+data.
+
+A port can use its regular compiler. Bind the legacy
+`draw_tri_fan_2d__14TObjCMHairMenuFllf` entry to the renderer that takes a
+`ColorLineList`, and supply the four coordinate pairs as typed constants.
+
 ### `pso/unk/text_80049FD8.cpp` and the Vol Opt debris initializer
 
 GC/2.0 interleaves the BML resource and model-table loads with the final
@@ -219,7 +237,6 @@ The local initializer emits the 76-byte template at `0x80436748`. The
 original relocations to this template come from `fn_80049FD8`, and the split
 maps it to the compiler's local `@13` symbol. Ports can use the default
 compiler.
-
 ### `pso/misc/TLobby_8001EF5C.cpp`: `-inline on`
 
 `init_from_id_lists` at `0x8002058C` (size `0x30C`) contains the

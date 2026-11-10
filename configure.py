@@ -446,6 +446,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
+    # GC/1.3.2 preserves the per-vertex coordinate loads and store order.
+    "pso/ui/TAdDialingGC_80328B20.cpp": {"mw_version": "GC/1.3.2"},
     # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
     # with -fp_contract on (all three tunnel units), so the flag belongs on the
     # unit rather than as per-function pragmas left over from the split units.

@@ -2643,6 +2643,7 @@ pso/ui/TAdChrSelSlotGC.cpp
 pso/ui/TAdDialingGC.cpp
 pso/ui/TAdDialingGC_801A4C90.cpp
 pso/ui/TAdDialingGC_80328210.cpp
+pso/ui/TAdDialingGC_80328B20.cpp
 pso/ui/TAdDialingGC_80328DB0.cpp
 pso/ui/TAdDialingGC_80328E50.cpp
 pso/ui/TAdDialingGC_80328E90.cpp
