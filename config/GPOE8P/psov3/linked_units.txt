@@ -804,6 +804,7 @@ pso/item/TUnk_804F28E0.cpp
 pso/item/WeaponAttackActions.cpp
 pso/item/WeaponSpecialSelection.cpp
 pso/map/ChallengeEnemySet.cpp
+pso/map/CsnQuery.cpp
 pso/map/FloorArea_8029E764.cpp
 pso/map/FloorLifecycleTables.cpp
 pso/math/MatrixTransforms.cpp

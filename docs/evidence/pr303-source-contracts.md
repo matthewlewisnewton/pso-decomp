@@ -1196,3 +1196,25 @@ function, provider or retention changes: all 3,587 linked units are exact and
 whitespace pass. No new compiler pragma, wrapper, dummy argument or steering
 local is introduced. The DHCP extent gap, dispatcher callback contracts and
 allocator/free internals remain bounded separately. Keep draft.
+
+
+## Main integration after the reset/address/completion checkpoint
+
+Publish the independently reviewed contract checkpoint `b68b6afb9`, then merge
+main `f0f05f3afe56fd2b71e9dc1fe946e2fa03c84b86`. The source/configuration merge
+is automatic; reconcile only exception documents and regenerate the inventory
+(5,774 pragmas in 877 files; 189 per-unit overrides). Preserve main's Moja
+constructor and collision-query recovery, including source-provider selections.
+
+Fresh capacity-gated main and candidate builds reproduce the original DOL
+SHA-1. The sealed main report, successful build/check receipts, ordered inputs,
+configuration/graph snapshots and compiler/tool hashes are independently
+verified. Against that exact baseline, full checks pass with zero new functions,
+zero code delta, the existing +88 data bytes and no losses. All 3,588 branch
+linked units are exact; all 17,833 retention entries have zero drift. Main has
+3,589 linked units, with the branch's existing fold explaining the difference.
+The eight repaired/related complete objects remain raw byte-identical to their
+saved checkpoint objects. All three incoming Moja, collision-query and player
+objects are raw byte-identical to fresh main. Host tests, inventory and
+whitespace pass. The DHCP length, callback and allocator implementation holds
+remain separate; keep draft and the metadata restriction.

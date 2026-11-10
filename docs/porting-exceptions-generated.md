@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5773 | 876 |
+| pragma | 5774 | 877 |
 | configure.py per-unit override | 189 | 189 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1144, `inline_depth` 1036, `fp_contract` 877, `auto_inline` 836, `opt_common_subs` 609, `scheduling` 263, `opt_propagation` 237, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1144, `inline_depth` 1036, `fp_contract` 877, `auto_inline` 836, `opt_common_subs` 610, `scheduling` 263, `opt_propagation` 237, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -581,6 +581,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1144, `inline_depth` 1036,
 | `src/pso/enemy/TObjEneMe3Stelth.cpp` | fp_contract×6, opt_propagation×1 |
 | `src/pso/enemy/TObjEneMe3Stelth_800F0AE4.cpp` | readonly_strings×1 |
 | `src/pso/enemy/TObjEneMerillLia.cpp` | opt_common_subs×2, defer_codegen×1, opt_loop_invariants×1, fp_contract×1 |
+| `src/pso/enemy/TObjEneMoja.cpp` | opt_common_subs×1 |
 | `src/pso/enemy/TObjEneMorfos.cpp` | opt_common_subs×3, defer_codegen×1, opt_propagation×1, fp_contract×1 |
 | `src/pso/enemy/TObjEneMorfosArm_80335218.cpp` | readonly_strings×1 |
 | `src/pso/enemy/TObjEneMorfos_80337500.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |

@@ -13,6 +13,7 @@ struct MojaCollisionState {
     s32 flags;
 };
 struct TObjEneMoja : public TObjEnemy {
+    TObjEneMoja(TObject *parent, void *set_data);
     virtual ~TObjEneMoja();
     static void load_resources();
     virtual void vfunc_28(); // acquire_target: must keep this name to override TObjChara::vfunc_28.
@@ -42,6 +43,7 @@ struct TObjEneMoja : public TObjEnemy {
     static void free_resources();
     void fn_800ACA0C();
     s32 calc_technique_level();
+    void clamp_appearance_parameter();
     void select_rare_variant();
     void update_death_state();
     static s32 update_technique_state(void *self_800AD3D8);
