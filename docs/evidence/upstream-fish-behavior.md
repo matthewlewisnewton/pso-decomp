@@ -83,6 +83,11 @@ source linkage, Barba Ray constructor and compiler constraints, texture-reader
 cursor definition and its original-only neighboring data word, and Moja evidence
 updates. Main's player initializer retention entry and this fish initializer
 entry are both retained. Fish source, header and settings remain unchanged.
+The subsequent refresh integrates main
+`fffd67d0c35e1fdaf17880c563739750e7c35813`, preserving the spatial-audio
+and ADXF file-I/O recoveries, their shared declarations and mappings, and the
+spatial unit's documented `-sym on` setting. Fish source, header and settings
+remain unchanged.
 The old zero-argument
 `draw_ginja_object()` declaration depended on the preceding model getter leaving
 its return value in r3. The renderer now passes that model explicitly and uses
@@ -136,8 +141,8 @@ These are inherited limitations, not evidence that all original class/interface
 ownership has been recovered. Matching completeness alone does not resolve them.
 No assembly, intrinsic, hardware access or new emission pragma is introduced by
 the follow-up. Existing `-pool off`, FMA and inline settings remain as documented
-above; the final inventory after main synchronization is 5,773 pragmas in 879 files
-and 189 unit overrides, including current main's existing compiler and mapping
+above; the final inventory after main synchronization is 5,775 pragmas in 879 files
+and 190 unit overrides, including current main's existing compiler and mapping
 settings. The refresh introduces no additional fish compiler setting.
 
 ### Why native lifetime remains held
@@ -169,7 +174,7 @@ is included in this follow-up.
 The initial recovery was validated against the base above. The shared-interface
 correction is separately compared against the freshly built PR-plus-current-main
 baseline `c3a77888e3c4e14bed709b60db8f6870f3ee1063`. The final integration is
-also checked against independently built unchanged main `5f837b4388`; both build
+also checked against independently built unchanged main `fffd67d0c3`; both build
 and retention checks pass, and the subsequent synchronization loses no exact
 function or linked range. The earlier `65b21c210` synchronization inherited four
 zero padding bytes removed from report coverage by main's unit folding. Canadin
@@ -193,10 +198,16 @@ Compared with previous published head `62cba4efef`, it inherits four permitted
 zero-padding bytes leaving `.sdata2` coverage at `0x805DAA54` from main's rope
 unit consolidation. No exact function, live data or linked range is lost.
 The compiled fish object remains byte-identical to that previous head.
-The latest refresh against main `5f837b4388` loses no exact function, live
+The refresh against main `5f837b4388` loses no exact function, live
 code/data address, linked range or padding compared with unchanged main or
 previous published head `be2ea66712`. The compiled fish object remains
 byte-identical to that head as well.
+The latest refresh against main `fffd67d0c3` loses no exact function, live
+code/data address, linked range or padding compared with unchanged main. Against
+previous published head `be2ea66712`, it inherits four permitted zero-padding
+bytes leaving `.bss` coverage at `0x8051857C` from main's spatial-audio unit
+update. No exact function, live data or linked range is lost. The compiled fish
+object remains byte-identical.
 
 The original DOL still matches. The full native build and `tools/check_pr.py`
 pass with original DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
@@ -204,22 +215,22 @@ All nine fish functions (4,704 bytes) and all 1,404 data bytes are exact.
 Independent comparison verifies the four allocated section payloads, sizes and
 alignment and all 302 normalized relocations. This is not whole-ELF identity:
 the compiled `.sdata2` has inherited writable flags where the split original is
-read-only. All 3,593 linked units are exact. Retention lists 18,308 names with
+read-only. All 3,595 linked units are exact. Retention lists 18,332 names with
 zero drift; the PR adds 45 names to current main and removes none. All 268
 tooling tests pass.
 
-Gains against current main `5f837b4388` (the interface correction itself has
+Gains against current main `fffd67d0c3` (the interface correction itself has
 no metric loss or gain against its PR-plus-main baseline):
 
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
-| Exact functions | 27,417 | 27,418 | 1 |
-| Exact code bytes | 4,215,256 | 4,217,300 | 2,044 |
-| Exact data bytes | 1,472,599 | 1,472,671 | 72 |
-| Linked code bytes | 3,788,568 | 3,793,272 | 4,704 |
-| Linked data bytes | 1,191,687 | 1,193,091 | 1,404 |
-| Linked units | 3,592 | 3,593 | 1 |
+| Exact functions | 27,420 | 27,421 | 1 |
+| Exact code bytes | 4,217,568 | 4,219,612 | 2,044 |
+| Exact data bytes | 1,472,639 | 1,472,711 | 72 |
+| Linked code bytes | 3,802,084 | 3,806,788 | 4,704 |
+| Linked data bytes | 1,193,991 | 1,195,395 | 1,404 |
+| Linked units | 3,594 | 3,595 | 1 |
 
-Actual ordered linker inputs: 3,593 source objects and 1,358 fallbacks;
+Actual ordered linker inputs: 3,595 source objects and 1,356 fallbacks;
 SHA-256 of newline-delimited paths including the final newline:
-`226e5846043629f9b5bbccda56e8e727a7eb33b51029e5b1885d1e822c25a4c3`.
+`b27c4e3f430887e3fe08726517443b077d6562e02a490174f5884ccb996734c3`.
