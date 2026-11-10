@@ -4965,7 +4965,7 @@ u16 TLobby__sub_8040D8F0(u8 *arg0, u8 *arg1, s8 arg2, u8 *pkt, s16 flag) {
 struct Ent_8040D95C { u8 pad0[2]; s16 f2; u8 pad4[2]; s16 f6; u8 pad8[4]; s32 fC; };
 struct In_8040D95C { s32 type; s32 f4; };
 struct Out_8040D95C { s32 type; u32 f4; };
-s32 TLobby__sub_8040EF50(void *, s32, s32);
+s32 TLobby__sub_8040EF50(u32 *out, u32 dst, s16 idx);
 s32 TLobby__sub_80411F1C(u8 *, u8 *, s16);
 s32 select_source_address__6TLobbyFPvPv(Out_8040D95C *arg0, In_8040D95C *arg1) {
     Ent_8040D95C *e;
@@ -5316,6 +5316,41 @@ s16 TLobby__sub_8040EF00(s16 arg0) {
     return ((Fields_temp_r3*)temp_r3)->field_4;
 }
 #pragma pop
+
+// Select a source on the destination's subnet from an interface or its aliases.
+// The existing IPv4 table view is provisional; original class ownership is unknown.
+// Conditional assignments and separate candidate locals retain the native register allocation.
+s32 TLobby__sub_8040EF50(u32 *out, u32 dst, s16 idx) {
+    Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
+    Ipv4Iface *ifc;
+    s16 count;
+    u32 addr;
+    u32 alias_addr;
+    s16 i;
+    Ipv4Alias *alias;
+
+    if (idx < 0 || idx >= g->nifaces) {
+        return -6;
+    }
+    if ((ifc = g->ifaces + idx)->state == 1) {
+        if ((ifc->mask & (addr = ifc->addr)) == (ifc->mask & dst)) {
+            *out = addr;
+            return 0;
+        }
+        alias = ifc->aliases;
+        i = 0;
+        count = g->max_aliases;
+        while (alias != NULL && i < count) {
+            if ((alias->mask & (alias_addr = alias->addr)) == (alias->mask & dst)) {
+                *out = alias_addr;
+                return 0;
+            }
+            alias = alias->next;
+            i++;
+        }
+    }
+    return -6;
+}
 
 s32 TLobby__sub_8040F00C(s16 idx, NetBufferRef *out, s16 len, s32 arg3) {
     s16 TLobby__sub_80409EB0(s16 arg0, s32 arg1);

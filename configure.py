@@ -446,6 +446,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
+    # GC/1.3.2 preserves the per-vertex coordinate loads and store order.
+    "pso/ui/TAdDialingGC_80328B20.cpp": {"mw_version": "GC/1.3.2"},
     # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
     # with -fp_contract on (all three tunnel units), so the flag belongs on the
     # unit rather than as per-function pragmas left over from the split units.
@@ -464,6 +466,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
     # needed (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
+    # The memory-card menu position precedes the callback templates in .data.
+    # Its two read-only layout inputs begin at a four-byte-aligned address.
+    "pso/misc/TCheckMemoryCard.cpp": {
+        "cflags": _switch(cflags_pso, "-sdata 4"),
+        "cw_align": ".rodata=4",
+    },
     "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},
     # Reverse definitions with deferred generation: the weak copies of TOTrap's
     # inline slots are generated first, so their 1.0/0.0 head .sdata2 as in the
@@ -502,6 +510,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Native private header sections preserve initializer and helper emission order.
     "pso/enemy/TObjEnePanarms.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4", "-sym on")},
     "pso/enemy/TObjEneDelDepth.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Deferred emission puts the Moja vtable before the run_task switch table.
+    "pso/enemy/TObjEneMoja.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TObjChip: render's colour template sits after draw_chips' in .rodata
     # while render comes first in .text, so the source runs backwards.
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
@@ -573,20 +583,11 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/item/TObjContainerItem.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TContainerAncient01.cpp": {"mw_version": "GC/1.3.2"},
     "pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp": {"mw_version": "GC/1.3.2"},
-    # Four depth/UV multiply-adds contract, so -fp_contract on replaces the old
-    # per-function pragmas. -inline on inlines only clamped_active_slot
-    # and mark_grid_cell_occupied; -inline auto also inlines eight unmarked
-    # calls and those functions stop matching. See
-    # docs/evidence/chr-select-slot-clamp-inline.md.
-    # The eight compiler-pool globals before this unit's owned 0.53 / 1/256
-    # literals are defined by TAdMultiPlyChrSelectGC_literals.s, including the
-    # 16.0 conversion constant shared with the separately split ctor.
+    # Deferred generation shares one .data base for the plate constructor's
+    # native vtable and ready-tag arrays. Keep explicit inlining and the four
+    # depth/UV multiply-adds from the existing plate methods.
     "pso/ui/TAdChrSelPlyPlateGC.cpp": {
-        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on"),
-        "symbol_mappings": {
-            "@102": "lbl_805DE580",
-            "@175": "TAdMultiPlyChrSelectGC__data_805DE584",
-        },
+        "cflags": _switch(cflags_pso, "-fp_contract on", "-inline on,deferred"),
     },
     "pso/misc/TQuestVmDownLoadServer.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline deferred")},
     "pso/misc/TCameraCtrl.cpp": {"mw_version": "GC/1.3.2"},

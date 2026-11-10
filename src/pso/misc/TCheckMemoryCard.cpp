@@ -2,6 +2,7 @@
 #include "pso/misc/TCheckMemoryCardState.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
+#include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
 struct Base_8033C4E0_8033C420 { char pad[0x18]; };
 struct VObj_8033C4E0_8033C420 : Base_8033C4E0_8033C420 { virtual void m0(int); };
@@ -55,3 +56,25 @@ TCheckMemoryCard::TCheckMemoryCard(TObject *object, void *arg2, void *arg3, void
 void *fn_8033C5E4(TObject *parent, void *arg1, void *arg2) {
     return new TCheckMemoryCard(parent, arg1, arg2, (void *)1);
 }
+
+void *TAdSinglePlyChrSelectGC::create_check_memory_card(void *arg0, void *arg1, void *arg2) {
+    void *o;
+    o = new TCheckMemoryCard((TObject *)arg0, (void *)arg1, (void *)arg2, (void *)0);
+    return o;
+}
+
+const CheckMemoryCardPosition lbl_80477DB4 = {46.0f, 131.0f};
+const CheckMemoryCardPosition lbl_80477DBC = {548.0f, 220.0f};
+
+const CheckMemoryCardPosition lbl_804EF8D8 = {
+    20.0f + lbl_80477DB4.x,
+    10.0f + (lbl_80477DB4.y + lbl_80477DBC.y),
+};
+const f32 lbl_805D6D98 = lbl_80477DBC.x - 40.0f;
+
+CheckMemoryCardActionPair lbl_804EF940[4] = {
+    {&TCheckMemoryCard::close_and_update_display, &TCheckMemoryCard::update_display_state},
+    {&TCheckMemoryCard::fn_8033C19C, &TCheckMemoryCard::fn_8033C198},
+    {&TCheckMemoryCard::fn_8033C178, &TCheckMemoryCard::poll_card_status},
+    {&TCheckMemoryCard::init_from_keyboard_state, &TCheckMemoryCard::handle_menu_selection},
+};

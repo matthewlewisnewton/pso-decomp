@@ -19,7 +19,6 @@ extern "C" {
 s32 TAdPlayerLoadGC__sub_803F2F1C();
 s32 TAdPlayerLoadGC__sub_803F31D8();
 s32 TLobby__sub_803F3BF8(int, s32, u32);
-s32 request_network_info_load(s32, void *);
 s32 memset(void *, int, int);
 extern s32 lbl_8043F3E8[];
 extern s16 disc_error_code;

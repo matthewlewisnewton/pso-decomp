@@ -1588,15 +1588,12 @@ pso/enemy/TObjEneShark.cpp:
 	.sdata2     start:0x805D9BA0 end:0x805D9BD8
 
 pso/player/TObjPlayer_800ACA60.cpp:
-	.text       start:0x800ACA60 end:0x800AF450
+	.text       start:0x800ACA60 end:0x800AF28C
 	.rodata     start:0x8043B0C0 end:0x8043B0C8
-	.data       start:0x80491B08 end:0x80491B30
 
 pso/enemy/TObjEneMoja.cpp:
-	.text       start:0x800AF450 end:0x800AF56C
-
-pso/unk/text_800AF56C.cpp:
-	.text       start:0x800AF56C end:0x800AF8B0
+	.text       start:0x800AF28C end:0x800AF8B0
+	.data       start:0x80491828 end:0x80491B30
 
 pso/unk/text_800AF8B0.cpp:
 	.text       start:0x800AF8B0 end:0x800AFB28
@@ -10144,13 +10141,12 @@ pso/menu/TAdPlyChrSelPlateGC.cpp:
 	.data       start:0x804E0A30 end:0x804E0A48
 
 pso/ui/TAdChrSelPlyPlateGC.cpp:
-	.text       start:0x802C50EC end:0x802C6DD4
+	.text       start:0x802C50EC end:0x802C6F88
 	.rodata     start:0x80471A88 end:0x80471D08
-	.data       start:0x804E0A48 end:0x804E0B10
+	.data       start:0x804E0A48 end:0x804E0B28
+	.sdata      start:0x805D3EE0 end:0x805D3EE4
+	.sbss       start:0x805D67D0 end:0x805D67E8
 	.sdata2     start:0x805DE580 end:0x805DE588
-
-pso/unk/text_802C6DD4.cpp:
-	.text       start:0x802C6DD4 end:0x802C6F88
 
 pso/ui/TAdMultiPlyChrSelectGC_802C6F88.cpp:
 	.text       start:0x802C6F88 end:0x802C70AC
@@ -11313,6 +11309,7 @@ pso/ui/TAdDialingGC_80328210.cpp:
 
 pso/ui/TAdDialingGC_80328B20.cpp:
 	.text       start:0x80328B20 end:0x80328C94
+	.sdata2     start:0x805DF6F8 end:0x805DF6FC
 
 pso/ui/TAdDialingGC.cpp:
 	.text       start:0x80328C94 end:0x80328DB0
@@ -11646,15 +11643,12 @@ pso/misc/TWindowSubComCard_8033C2E8.cpp:
 	.text       start:0x8033C2E8 end:0x8033C420
 
 pso/misc/TCheckMemoryCard.cpp:
-	.text       start:0x8033C420 end:0x8033C640
-	.data       start:0x804EF9A0 end:0x804EF9B8
-
-pso/ui/TAdSinglePlyChrSelectGC_8033C640.cpp:
-	.text       start:0x8033C640 end:0x8033C69C
-
-pso/unk/text_8033C69C.cpp:
-	.text       start:0x8033C69C end:0x8033C7C8
+	.text       start:0x8033C420 end:0x8033C7C8
 	.ctors      start:0x80433FF8 end:0x80433FFC
+	.rodata     start:0x80477DB4 end:0x80477DC4 align:4
+	.data       start:0x804EF8D8 end:0x804EF9B8
+	.sbss       start:0x805D6D98 end:0x805D6DA0
+	.sdata2     start:0x805DFA38 end:0x805DFA48
 
 pso/boss/Boss6Type1Appearance.cpp:
 	.text       start:0x8033C7C8 end:0x8033CCC8

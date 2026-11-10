@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5772 | 877 |
-| configure.py per-unit override | 180 | 180 |
+| pragma | 5774 | 877 |
+| configure.py per-unit override | 183 | 183 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 836, `opt_common_subs` 609, `scheduling` 261, `opt_propagation` 237, `readonly_strings` 206, `peephole` 103, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037, `fp_contract` 877, `auto_inline` 836, `opt_common_subs` 609, `scheduling` 262, `opt_propagation` 237, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 20, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -235,9 +235,11 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `pso/boss/TBoss6PlotFalz_802B0228.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #183: the Falz plot table TU is built with deferred inlining (its state actions come out in reverse table order). |
 | `pso/boss/TBoss6EmptyWarp_802B0E2C.cpp` | `-str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/pso_date.cpp` | `GC/1.3.2` | Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md. |
+| `pso/ui/TAdDialingGC_80328B20.cpp` | `GC/1.3.2` | GC/1.3.2 preserves the per-vertex coordinate loads and store order. |
 | `pso/boss/TObjBoss2Tunnel_8003B138.cpp` | `-fp_contract on` | Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact with -fp_contract on (all three tunnel units), so the flag belongs on the unit rather than as per-function pragmas left over from the split units. |
 | `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `(multi-line entry; see configure.py)` | Deferred, with definitions in reverse address order: the ctor's function-local static and guard precede run_task's table guard in .sbss, as in the original (docs/porting-exceptions.md section 5). .sbss starts at 0x805D696C and .sdata2 at 0x805DECCC, both only 4-aligned. mwld takes alignment from the CodeWarrior comment record, which GC/2.6 writes as 8, so the pool and every later sda21 offset shift by 4. cw_align rewrites that record after compile. -sdata 4 does not. |
 | `pso/boss/TObjBoss2Tunnel.cpp` | `-inline off,deferred, -pool off, -sdata 4, -fp_contract on` | Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is needed (docs/porting-exceptions.md section 5). |
+| `pso/misc/TCheckMemoryCard.cpp` | `(multi-line entry; see configure.py)` | The memory-card menu position precedes the callback templates in .data. Its two read-only layout inputs begin at a four-byte-aligned address. |
 | `pso/boss/TBoss4DarkFalz_8004C93C.cpp` | `-inline deferred, -sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOTrapSeabed01.cpp` | `-inline deferred` | Reverse definitions with deferred generation: the weak copies of TOTrap's inline slots are generated first, so their 1.0/0.0 head .sdata2 as in the original pool, and clamp_params_and_init inlines its clamp helpers. |
 | `pso/misc/TOTrapAncient02.cpp` | `-inline deferred, -fp_contract on` | Reverse definitions with deferred generation: the native TOTrapAncient02R vtable is emitted before the switch table that follows it in .data, and the .sdata2 pool keeps its original order. Unit -fp_contract on replaces the per-function pragmas: the constructors, calc_trap_count and the R vfunc_81 fuse multiply-adds. |
@@ -251,6 +253,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `pso/enemy/TObjEneDubchik.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190 commit 9c4e9ea1d: TObjEneDubchik is written from its last function back. -inline off,deferred emits that order (the vtable lands before the switch tables). -str reuse,readonly keeps the motion-name pool in .rodata. These are upstream's own flags for this unit. |
 | `pso/enemy/TObjEnePanarms.cpp` | `-inline deferred, -sdata 4, -sym on` | Native private header sections preserve initializer and helper emission order. |
 | `pso/enemy/TObjEneDelDepth.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/enemy/TObjEneMoja.cpp` | `-inline off,deferred` | Deferred emission puts the Moja vtable before the run_task switch table. |
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
 | `pso/unk/text_80049FD8.cpp` | `GC/2.0` | GC/2.0 interleaves the BML model-table load with the debris initializer's copy tail. Map the original template to CodeWarrior's local aggregate. |
 | `pso/object/TObjTombstone.cpp` | `-inline off,deferred, -fp_contract on, -str reuse,readonly` | One unit, written last-defined first: the vtable and the late helpers precede the early ones in .text. -fp_contract on: draw_name_labels' half-width nudge and the drop placement fuse multiply-adds. -str reuse,readonly: the literals live in this unit's .rodata. |
@@ -270,7 +273,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `pso/item/TObjContainerItem.cpp` | `GC/1.3.2` | The two below also schedule the by-value DirectAttackPayload read of their receive_direct_attack overrides only the way 1.3.2 does. |
 | `pso/misc/TContainerAncient01.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
-| `pso/ui/TAdChrSelPlyPlateGC.cpp` | `(multi-line entry; see configure.py)` | Four depth/UV multiply-adds contract, so -fp_contract on replaces the old per-function pragmas. -inline on inlines only clamped_active_slot and mark_grid_cell_occupied; -inline auto also inlines eight unmarked calls and those functions stop matching. See docs/evidence/chr-select-slot-clamp-inline.md. The eight compiler-pool globals before this unit's owned 0.53 / 1/256 literals are defined by TAdMultiPlyChrSelectGC_literals.s, including the 16.0 conversion constant shared with the separately split ctor. |
+| `pso/ui/TAdChrSelPlyPlateGC.cpp` | `(multi-line entry; see configure.py)` | Deferred generation shares one .data base for the plate constructor's native vtable and ready-tag arrays. Keep explicit inlining and the four depth/UV multiply-adds from the existing plate methods. |
 | `pso/misc/TQuestVmDownLoadServer.cpp` | `GC/1.3.2, -inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TCameraCtrl.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TKeyBoardControl_8025EC04.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -950,7 +953,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1145, `inline_depth` 1037,
 | `src/pso/network/NetworkDispatcher.cpp` | opt_common_subs×3, pool_data×1 |
 | `src/pso/network/NetworkInfoCodec.cpp` | scheduling×15, peephole×13, optimization_level×11, use_lmw_stmw×3 |
 | `src/pso/network/NetworkInfoLoader.cpp` | scheduling×8, peephole×1, optimization_level×1 |
-| `src/pso/network/NetworkInfoRequests.cpp` | scheduling×1 |
+| `src/pso/network/NetworkInfoRequests.cpp` | scheduling×2, peephole×1 |
 | `src/pso/network/NetworkMessageTransport.cpp` | dont_inline×4, inline_depth×3, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/network/NetworkPacketRuntime.cpp` | dont_inline×4, inline_depth×3, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/network/NetworkTransport.cpp` | opt_common_subs×3, optimization_level×1 |
