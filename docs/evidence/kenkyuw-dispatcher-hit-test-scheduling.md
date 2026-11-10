@@ -368,3 +368,111 @@ both reported zero regressions and zero new exact functions. All 3,587
 linked units remained exact, retention metadata had no drift, and the
 porting-exception inventory check passed. No compiler setting or unit
 boundary changed, and the dispatcher remains unlinked.
+
+## Small same-flags late-branch witness (2026-11-10)
+
+Active investigation found a small, source-defined witness for a genuine
+late-deleted branch between an argument move and an independent argument
+load. It does not depend on a long block, an aggregate copy, different
+flags, assembly, a dummy condition or a changed calling convention.
+The [standalone fixture](kenkyuw-late-branch-receiver-witness.cpp) delivers
+an event to one of two receivers and returns the configured fallback for
+subsequent work. Both destination choices and the returned pointer are
+observable results of this deliberately small API; it is not proposed PSO
+source or evidence of PSO's original ABI.
+
+```cpp
+Receiver *dispatch_and_get_fallback(
+    Receiver *active, const Event *event, Receiver *fallback, int use_fallback) {
+    Receiver *receiver = use_fallback ? fallback : active;
+    deliver_event(receiver, event->code);
+    return fallback;
+}
+```
+
+The shipped GC/2.6 executable had SHA-256
+`316e2a98236c23f3fc902243b157eaebf8ef2ad6edb88cfd632a15b6676fa9a8`.
+The fixture used the same unit flags, including `-O4,s -inline off`:
+
+```text
+-nodefaults -proc gekko -align powerpc -enum int -fp hardware
+-Cpp_exceptions off -RTTI off -str reuse -maxerrors 1 -nosyspath
+-char signed -use_lmw_stmw on -O4,s -inline off -sdata2 4 -lang=c++
+```
+
+The compiler traces explain the boundary rather than inferring it from
+the final instruction order. After the first scheduler, the true arm
+contains a virtual-register copy and a branch to the join; the false arm
+also contains a copy. The join contains `lwz`, argument copy, `bl`, in
+the scheduler's usual load-first order. Register allocation must retain
+the original fallback across the call because the function returns it.
+It allocates that pointer to `r31`, while the selected receiver uses `r3`.
+The false arm's copy from the incoming active receiver becomes a self-copy
+and disappears. The join's argument copy also disappears. The nonempty
+true arm and the now-empty false arm remain distinct blocks.
+
+After the second scheduler, the relevant blocks are:
+
+```text
+B3:  mr   r3,r31
+     b    B5
+B4:  [empty]
+B5:  lwz  r4,0(r4)
+     bl   deliver_event
+```
+
+After `optimizefinalbranches`, the complete dump changes by exactly one
+instruction: the `b B5` is deleted. No comparison, move, load or store is
+removed at that stage. The emitted sequence is consequently:
+
+```text
+0x1c  mr   r3,r31
+0x20  lwz  r4,0(r4)
+0x24  bl   deliver_event
+```
+
+The move and load are independent: the move reads `r31` and writes `r3`,
+while the load reads and writes `r4`. The second scheduler sees separate
+blocks of two pcodes each and does not combine them. The early block merger
+cannot remove `b B5`: its next logical block is the empty `B4`, while its
+target is `B5`. Final assembly can see that both labels have the same
+physical address. The debugger captures
+were taken after scheduler one (`0x433E0C`), register allocation
+(`0x433EAB`), scheduler two (`0x434063`), and final branch optimization
+(`0x4EB166`), using the same local debugger extension described above.
+
+Independent compilation through the normal `wibo` runner produced a
+64-byte `.text`, SHA-256
+`a3328a8f6f0ba15be3f0f4fd8ca46a03533761117ef47286e6138c10e549623e`,
+with those three words at the stated offsets. The fixture's optional host
+check verifies exactly one delivery, the selected destination, unchanged
+inputs and the returned fallback over 20 cases (five code values and
+four zero/nonzero selectors). It can be run with:
+
+```sh
+c++ -std=c++98 -Wall -Wextra -pedantic -DKENKYUW_WITNESS_HOST_CHECK \
+    docs/evidence/kenkyuw-late-branch-receiver-witness.cpp -o /tmp/kenkyuw-witness
+/tmp/kenkyuw-witness
+```
+
+The complete fixture file's SHA-256 is
+`a6e71011925c9d6422eb84b98111401e551b70f03f7797ab66e0eb95a7209fb1`.
+
+Two precursor fixtures help bound the mechanism. Selecting the receiver
+and nullable event code independently left two comparisons. Selecting
+between two receivers without retaining the fallback after the call let
+allocation reuse the first arm's register; the other arm's copy remained,
+so there was no late-deleted branch. Neither precursor was a dispatcher
+candidate, and neither is retained as production source.
+
+This reaches the same-compiler, same-flags witness threshold. It does not
+yet provide a source-correct PSO adaptation. The fixture's empty false arm
+depends on the active receiver still arriving in `r3`; PSO's collectors
+instead return the contact list in `r3`, while its projectile survives in
+`r30`. PSO's null-list arm calls `vfunc_6` and exits rather than delivering
+to a second receiver. Introducing another receiver, a new return contract,
+an extra comparison or a dummy lifetime use would not preserve that source
+contract. The witness therefore reopens a concrete allocation/join lead,
+but no dispatcher permutation was compiled from it without such a mapping.
+The dispatcher, its 96.49123% result, unit split and unlinked hold remain
+unchanged. No compiler override or technical exception is proposed.
