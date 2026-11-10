@@ -63,12 +63,22 @@ Separate main/A/B gated builds preserve the original DOL hash. B retains the sam
 all 3591 linked units are exact. Upstream gains are attributed to main, with no
 new window coverage or lifted hold from this refresh.
 
+The next refresh integrates main `12a3368673` through focused head `d2b34bd267`.
+The [Status/PageIndicator integration](window-status-page-stack-integration.md)
+records the combined exact upstream Pages recovery and canonical twelve-byte
+page type, all six producers and fifteen getter calls, preserved native Status
+lifetime/table and the unchanged rank-index qualification. All 3597 linked units
+are exact. The strict historical eight-byte upstream coverage loss is explicitly
+retained; fresh-main acceptance and the fourteen established window-gap
+qualifications are separate. Existing provider, data, lifetime and ABI holds
+remain. Earlier checkpoint metrics above are historical.
+
 ## Current tried/blocked index
 
 | Area | Established result | Remaining evidence / hold |
 | --- | --- | --- |
 | Base/Addition and recovered descendants | Native chains, tables and observed widths; most factories use ordinary new | Sixteen raw calls across nine units; three shared bindings; no invented default lifetime |
-| Status display | Native 0x74-byte lifetime, two producers, borrowed table and compiler table exact | Incomplete consumer stays original; vt4 probe 1344 vs 1348 needs independent value-lifetime evidence; unchecked rank index remains qualified |
+| Status display | Native 0x74-byte lifetime/table preserved; upstream exact 5136-byte Pages integrated with canonical PageIndicator | Unchecked rank index remains qualified; historical 1344-byte probe superseded by reviewed upstream recovery |
 | Basic ComCard | Native constructor and exact native render body; coherent cleanup/table probe | Unknown trailing word ownership prevents regression-free activation; no padding/object invention or four-byte waiver |
 | ActionPalette | Native construction, exact retained methods and 352-byte typed layout recovery | Contiguous icon/light/table probe changed icon and two caller objects; still needs common UV/table/jump ownership and conversion-contract evidence |
 | DD renderer | Shared begin/forward/reset contracts established | 608-byte probe remains 37 words different; needs value-lifetime/quad evidence; original provider retained |

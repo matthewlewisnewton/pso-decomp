@@ -2,6 +2,7 @@
 #define PSO_MISC_TWINDOWSUBSTATUSDISP_H
 
 #include "types.h"
+#include "pso/misc/PageIndicator.h"
 #include <stddef.h>
 #include "pso/misc/TWindowBase.h"
 
@@ -14,7 +15,7 @@ struct TWindowSubStatusDisp : public TWindowBase {
     s16 m_60;
     u16 m_62;
     u32 m_64;
-    u32 m_68;
+    PageIndicator *m_68;
     f32 scale_x;
     f32 scale_y;
 
@@ -22,7 +23,7 @@ struct TWindowSubStatusDisp : public TWindowBase {
     void vt1();
     void vt2();
     void vt3();
-    void vt4();
+    void init_challenge_records_page();
     void vt5();
     void vt7();
     void vt11();
@@ -64,7 +65,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     static void dispatch_without_flags(s32 arg1, s32 arg2, s32 arg3);
     static void *refresh_with_default_list(s32 a, s32 b);
     int is_flag_4_set();
-    s8 get_type();
     void set_input_mode(u8 v);
     s16 get_item_type();
     s16 get_field_2F8();

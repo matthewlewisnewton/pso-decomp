@@ -102,3 +102,8 @@ A later [standalone render-body recovery](window-com-card-render-member.md)
 reproduces the entire ComCard object using the established explicit receiver
 contract. It does not activate the held data partition or establish ownership
 of the trailing word; the partition stop condition above remains unchanged.
+
+The later [Status/PageIndicator integration](window-status-page-stack-integration.md)
+records upstream #420's reviewed exact initializer and the combined current-main
+build. That supersedes this historical missing-page probe/provider hold, while
+the unchecked rank index and all ComCard word/table ownership holds remain.

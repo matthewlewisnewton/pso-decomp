@@ -4,6 +4,18 @@
 #include "types.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 
+struct ControllerInputContext;
+struct TBoss7Joint;
+class AreaAttackHistory;
+class TBoss7LaserLight;
+class TBoss7Tentacle;
+class TUnk_804F1C58;
+
+struct Boss7FloatBlock {
+    u32 active;
+    f32 values[7];
+};
+
 struct TBoss7DeRolLeC : public TObjEneDD_ST {
     virtual ~TBoss7DeRolLeC();
     void update_projectile_spawns();
@@ -31,22 +43,22 @@ struct TBoss7DeRolLeC : public TObjEneDD_ST {
     void apply_paralysis();
     void apply_poison_status();
     void vfunc_28();
-    u8 unk_3C0[0x244];
-    u32 m_620;
-    u32 m_624;
-    u32 m_628;
+    CollisionBody collision_body;
+    Vec segment_positions[20];
+    Vec tentacle_positions[4];
+    Vec recent_positions[3];
+    Vec joint_positions[10];
+    u8 unknown_5a8[0x50];
+    TBoss7Joint *joints[10];
+    BattleMovementParams *movement;
+    ControllerInputContext *controller;
+    u32 flags;
     u32 m_62c;
-    void* m_630;
-    u8 _pad634[0x1C];
-    void* m_650;
-    u8 _pad654[0x1C];
-    void* m_670;
-    u8 _pad674[0x1C];
-    void* m_690;
-    u8 _pad694[0x18];
+    Boss7FloatBlock float_blocks[3];
+    TObject tentacle_root;
     u32 m_6ac;
     u32 m_6b0;
-    u32 m_6b4;
+    u32 action_sequence_index;
     u32 m_6b8;
     u32 m_6bc;
     u32 m_6c0;
@@ -54,19 +66,19 @@ struct TBoss7DeRolLeC : public TObjEneDD_ST {
     u32 m_6c8;
     u32 m_6cc;
     u32 m_6d0;
-    u32 m_6d4;
-    u32 m_6d8;
-    u8 _pad6DC[0x1C];
+    Mtx34 *segment_matrices;
+    Mtx34 *tentacle_matrices;
+    TBoss7Tentacle *tentacles[4];
+    Vec m_6ec;
     u32 m_6f8;
     u32 m_6fc;
     u32 m_700;
     u32 m_704;
-    u32 m_708;
-    void* m_70c;
-    u8 _pad710[0x8];
-    u32 m_718;
-    u32 m_71c;
-    u32 m_720;
+    TBoss7LaserLight *laser_light;
+    Vec laser_position;
+    AreaAttackHistory *attack_history;
+    TObject *m_71c;
+    TObject *m_720;
     u32 m_724;
     u32 m_728;
     u32 m_72c;
@@ -75,23 +87,29 @@ struct TBoss7DeRolLeC : public TObjEneDD_ST {
     u32 m_738;
     u32 m_73c;
     u32 m_740;
-    u8 _pad744[0x40];
-    u32 m_784;
-    u8 _pad788[0x18];
+    f32 m_744[16];
+    TObject *m_784;
+    TObject *effects[6];
     u32 m_7a0;
-    u32 m_7a4;
+    TObject *effect_root;
     u32 m_7a8;
-    u32 m_7ac;
+    TUnk_804F1C58 *matrix_cache;
     u32 m_7b0;
-    u8 _pad7B4[0x18];
+    f32 m_7b4[6];
     u16 m_7cc;
     u16 m_7ce;
     u16 m_7d0;
     u16 m_7d2;
+
     static void run_exit_callbacks();
     static void *create(void *arg0);
-    u8 unk_7B8[0x1C];
 };
 
 typedef char TBoss7DeRolLeC_size[sizeof(TBoss7DeRolLeC) == 0x7D4 ? 1 : -1];
+typedef char TBoss7DeRolLeC_collision_body_offset[offsetof(TBoss7DeRolLeC, collision_body) == 0x3C0 ? 1 : -1];
+typedef char TBoss7DeRolLeC_tentacle_root_offset[offsetof(TBoss7DeRolLeC, tentacle_root) == 0x690 ? 1 : -1];
+typedef char TBoss7DeRolLeC_action_sequence_offset[offsetof(TBoss7DeRolLeC, action_sequence_index) == 0x6B4 ? 1 : -1];
+typedef char TBoss7DeRolLeC_matrix_cache_offset[offsetof(TBoss7DeRolLeC, matrix_cache) == 0x7AC ? 1 : -1];
+extern "C" TBoss7DeRolLeC *TBoss7DeRolLeC__ct(TBoss7DeRolLeC *boss, TObject *parent, void *set_data);
+
 #endif

@@ -1,4 +1,4 @@
-#include "pso/misc/PageIndicator_8026CB44.h"
+#include "pso/misc/PageIndicator.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowMessage.h"

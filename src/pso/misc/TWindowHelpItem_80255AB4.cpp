@@ -1,4 +1,4 @@
-#include "pso/misc/PageIndicator_8026CB44.h"
+#include "pso/misc/PageIndicator.h"
 #include "pso/misc/WindowLayoutDescriptor.h"
 #include "types.h"
 #include "pso/unk/text_80263A20.h"
@@ -61,11 +61,11 @@ void TWindowHelpItem::run_task() {
     }
     if ((this->m_60 & 1) && (((TWindowBase *)arg0)->sub_80244994() != 0) && !(this->m_2c & 4)) {
         if (!(this->m_60 & 4)) {
-            if (handle_list_page_flip_input((PageIndicator_8026CB44 *)(this->m_64)) != 0) {
+            if (handle_list_page_flip_input((PageIndicator *)(this->m_64)) != 0) {
                 ((TWindowHelpItem *)arg0)->dispatch_item_help();
             }
         } else {
-            decay_page_arrow_offset((PageIndicator_8026CB44 *)(this->m_64));
+            decay_page_arrow_offset((PageIndicator *)(this->m_64));
         }
         ((TWindowHelpItem *)arg0)->invoke_callback_pmf();
     }
@@ -88,7 +88,7 @@ TWindowHelpItem::TWindowHelpItem(void *pos, u16 idx)
     copy_vec2__28TWindowSubSymbolChatPartsSetFPv(&m_30, pos);
     save_position();
     m_60 = 0;
-    m_64 = new PageIndicator_8026CB44(0, 3, m_20);
+    m_64 = new PageIndicator(0, 3, m_20);
     m_68 = 0;
     m_6c = 0;
     m_70 = 0;

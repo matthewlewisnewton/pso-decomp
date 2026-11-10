@@ -1,4 +1,4 @@
-#include "pso/misc/PageIndicator_8026CB44.h"
+#include "pso/misc/PageIndicator.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -247,7 +247,7 @@ s32 TWindowDuelResult__sub_8024F3CC(void *arg0_) {
     static PT tbl[2] = { &TWindowDuelResult::sub_8024F094, &TWindowDuelResult::sub_8024EF40 };
     TWindowDuelResult *w = (TWindowDuelResult *)arg0;
     ((TWindowSubStatusDisp *)(arg0 + 0x24))->destroy_all_items();
-    s8 t = ((TWindowSubStatusDisp *)(*(s32 *)(arg0 + 0x68)))->get_type();
+    s8 t = (*(PageIndicator **)(arg0 + 0x68))->get_type();
     (w->*tbl[t])();
     TWindowDuelResult__sub_8024F330(arg0);
 }
@@ -257,7 +257,7 @@ s32 TWindowDuelResult__sub_8024F330(void *arg0_) {
     typedef void (TWindowDuelResult::*PT)();
     static PT tbl[2] = { &TWindowDuelResult::sub_8024F090, &TWindowDuelResult::sub_8024EF3C };
     TWindowDuelResult *w = (TWindowDuelResult *)arg0;
-    s8 t = ((TWindowSubStatusDisp *)(*(s32 *)(arg0 + 0x68)))->get_type();
+    s8 t = (*(PageIndicator **)(arg0 + 0x68))->get_type();
     (w->*tbl[t])();
 }
 #pragma defer_codegen off
@@ -266,7 +266,7 @@ void TWindowDuelResult::render() {
     s32 context = setup_window_draw_context((s32)&m_60);
     draw_window_frame((void *)context);
     draw_visible_window_entries(this, &m_24, context);
-    draw_list_page_indicator((PageIndicator_8026CB44 *)m_68, (TWindowDrawContext *)(context));
+    draw_list_page_indicator((PageIndicator *)m_68, (TWindowDrawContext *)(context));
 }
 
 void TWindowDuelResult::run_task() {
@@ -274,7 +274,7 @@ void TWindowDuelResult::run_task() {
     if (!(*(s32 *)((s8 *)arg0_ + 0x2C) & 2)) {
         *(s32 *)((s8 *)arg0_ + 0x5C) = 0x01000000;
     }
-    if (handle_list_page_flip_input((PageIndicator_8026CB44 *)(*(s32 *)((s8 *)arg0_ + 0x68))) != 0) {
+    if (handle_list_page_flip_input((PageIndicator *)(*(s32 *)((s8 *)arg0_ + 0x68))) != 0) {
         TWindowDuelResult__sub_8024F3CC(arg0_);
     }
     TWindowDuelResult__sub_8024F330(arg0_);
@@ -291,7 +291,7 @@ typedef char RecoveredGlobal_8024F5B0___vt__17TWindowDuelResult_size[sizeof(Reco
 TWindowDuelResult::TWindowDuelResult(s32 arg1)
     : TWindowBase((u8 *)&window_duel_result_descriptor.value, (s16)arg1, (u8 *)get_window_layout_position(0x24)) {
     *(s32 *)((s8 *)((u8 *)this) + 0) = (s32) ((s32)window_duel_result_class_name);
-    m_68 = (u32)new PageIndicator_8026CB44(0, 2, m_20);
+    m_68 = (u32)new PageIndicator(0, 2, m_20);
     if (TCameraCtrl::get_camera_id() > 2) {
         *(f32 *)((s8 *)((u8 *)this) + 0x60) = (f32) (0.8f);
         *(f32 *)((s8 *)((u8 *)this) + 0x64) = (f32) (0.8f);

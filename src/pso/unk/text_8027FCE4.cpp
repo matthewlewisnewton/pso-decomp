@@ -1,7 +1,7 @@
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "types.h"
 #include "pso/unk/text_8027FCE4.h"
-#include "pso/unk/text_8027FD88.h"
+#include "pso/misc/TWindowSubStatusDispPages.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TUnk_804D1AD0.h"

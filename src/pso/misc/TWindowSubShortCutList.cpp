@@ -1,4 +1,4 @@
-#include "pso/misc/PageIndicator_8026CB44.h"
+#include "pso/misc/PageIndicator.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
@@ -17,7 +17,6 @@ s32 get_shared_text_buffer();
 s32 fn_80076BC4(s32 *);
 int get_chat_shortcut(s32 arg0);
 s32 get_symbol_chat_data__20TWindowSubSymbolChatFv();
-s8 get_type__20TWindowSubStatusDispFv(s32);
 s32 clamp_selection_to_valid_entry__20TShopArmorListWindowFv(void *);
 s32 save_cursor_selection__20TShopArmorListWindowFv();
 s32 reset_list__19TWindowMenuIconLineFv(void *);
@@ -32,7 +31,7 @@ void TWindowSubShortCutList::refresh_entries() {
     s32 var_r29;
     save_cursor_selection__20TShopArmorListWindowFv();
     reset_list__19TWindowMenuIconLineFv(this);
-    var_r29 = get_type__20TWindowSubStatusDispFv(this->m_88);
+    var_r29 = ((PageIndicator *)this->m_88)->get_type();
     var_r30 = 0;
     var_r29 *= 4;
     do {
@@ -79,13 +78,13 @@ void TWindowSubShortCutList::render() {
         forward_render__20TWindowSubStatusDispFv(*(u32 *)((s8 *)this + 0x80), temp_r3);
     }
     if ((u32) this->m_88 != 0U) {
-        draw_list_page_indicator((PageIndicator_8026CB44 *)(this->m_88), (TWindowDrawContext *)(temp_r3));
+        draw_list_page_indicator((PageIndicator *)(this->m_88), (TWindowDrawContext *)(temp_r3));
     }
 }
 
 void TWindowSubShortCutList::run_task() {
     TWindowMenuIconLine::run_task();
-    if ((is_decided() == 0) && (handle_list_page_flip_input((PageIndicator_8026CB44 *)(this->m_88)) != 0)) {
+    if ((is_decided() == 0) && (handle_list_page_flip_input((PageIndicator *)(this->m_88)) != 0)) {
         refresh_entries();
     }
 }
@@ -102,7 +101,7 @@ TWindowSubShortCutList::TWindowSubShortCutList(void *position, s32 selection)
     row = selection / 4;
     col = selection % 4;
     ensure_status_display((s32)TWindowSubStatusDisp::get_message_10(0x2D));
-    m_88 = (u32)new PageIndicator_8026CB44((s8)row, 5, local_client_id);
+    m_88 = (u32)new PageIndicator((s8)row, 5, local_client_id);
     set_flag70_bit10();
     refresh_entries();
     set_cursor_index((s16)col);

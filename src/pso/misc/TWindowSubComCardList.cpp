@@ -1,4 +1,4 @@
-#include "pso/misc/PageIndicator_8026CB44.h"
+#include "pso/misc/PageIndicator.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/misc/TWindowMessage.h"
@@ -49,13 +49,13 @@ void TWindowSubComCardList::render() {
         forward_render__20TWindowSubStatusDispFv(arg0->m_88, temp_r3);
     }
     if ((u32) arg0->m_8c != 0U) {
-        draw_list_page_indicator((PageIndicator_8026CB44 *)(arg0->m_8c), (TWindowDrawContext *)(temp_r3));
+        draw_list_page_indicator((PageIndicator *)(arg0->m_8c), (TWindowDrawContext *)(temp_r3));
     }
 }
 
 void TWindowSubComCardList::run_task() {
     TWindowMenu::run_task();
-    if ((is_decided() == 0) && (handle_list_page_flip_input((PageIndicator_8026CB44 *)(this->m_8c)) != 0)) {
+    if ((is_decided() == 0) && (handle_list_page_flip_input((PageIndicator *)(this->m_8c)) != 0)) {
         set_selected_index(0);
         TWindowSubComCardList__sub_80275360(this);
     }
@@ -70,7 +70,7 @@ TWindowSubComCardList::TWindowSubComCardList(void *position)
     m_name = TWindowSubComCardList__class_name;
     s32 pages = TWindowSubStatusDisp::round_away_from_zero((f32)TWindowSubComCard::count_active_cards() / 7.0f);
     if (pages <= 0) pages = 1;
-    m_8c = (u32)new PageIndicator_8026CB44(0, (s8)pages, local_client_id);
+    m_8c = (u32)new PageIndicator(0, (s8)pages, local_client_id);
     m_90 = 0;
     m_94 = get_card_entry__17TWindowSubComCardFi(0);
     m_98 = 0xD2;
@@ -87,7 +87,7 @@ TWindowSubComCardList::TWindowSubComCardList(void *position, s32 records, s32 co
     m_name = TWindowSubComCardList__class_name;
     s32 pages = TWindowSubStatusDisp::round_away_from_zero((f32)count_leading_active__17TWindowSubComCardFPvi(records, count) / 7.0f);
     if (pages <= 0) pages = 1;
-    m_8c = (u32)new PageIndicator_8026CB44(0, (s8)pages, local_client_id);
+    m_8c = (u32)new PageIndicator(0, (s8)pages, local_client_id);
     m_90 = records;
     m_94 = 0;
     m_98 = count;

@@ -10,7 +10,7 @@
 #include "pso/object/TObjFish.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/quest/TQuestListVM_8007EAF8.h"
-#include "pso/misc/PageIndicator_8026CB44.h"
+#include "pso/misc/PageIndicator.h"
 #include "pso/misc/TWindowDrawContext.h"
 
 struct Stack_8026C708
@@ -106,7 +106,7 @@ s32 fn_8026C7C0(void *arg0, s8 arg1) {
 #pragma push
 #pragma fp_contract on
 #pragma readonly_strings on
-void draw_list_page_indicator(PageIndicator_8026CB44 *self, TWindowDrawContext *r) {
+void draw_list_page_indicator(PageIndicator *self, TWindowDrawContext *r) {
     Vec2_8026C800 pos;
     f32 scale;
     if (r->open_tick < 0) {
@@ -118,8 +118,8 @@ void draw_list_page_indicator(PageIndicator_8026CB44 *self, TWindowDrawContext *
     begin_screen_draw(1);
     set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0, -1);
-    fn_8026C708((u8 *)r, (f32)(4e+01f + pos.x), (f32)(2.0f + pos.y), (f32)scale, (f32)self->phase);
-    fn_8026C664((u8 *)r, (f32)(pos.x - 69.0f), (f32)(2.0f + pos.y), (f32)scale, (f32)self->phase);
+    fn_8026C708((u8 *)r, (f32)(4e+01f + pos.x), (f32)(2.0f + pos.y), (f32)scale, (f32)self->arrow_offset);
+    fn_8026C664((u8 *)r, (f32)(pos.x - 69.0f), (f32)(2.0f + pos.y), (f32)scale, (f32)self->arrow_offset);
     TWindowSubStatusDisp::get_player();
     set_text_draw_params((s32)r, 0, 1, (f32)scale, (f32)1e+05f);
     text_builder_reset();
@@ -141,8 +141,8 @@ extern "C" {
 
 #pragma push
 #pragma fp_contract on
-void decay_page_arrow_offset(PageIndicator_8026CB44 *o) {
-    o->phase -= 0.15f * o->phase;
+void decay_page_arrow_offset(PageIndicator *o) {
+    o->arrow_offset -= 0.15f * o->arrow_offset;
 }
 #pragma pop
 
@@ -158,12 +158,12 @@ s32 TWindowShortListCtrl__check_controller_button(void *, u32);
 
 extern Pad_8026C9DC controller_input_state[];
 
-s32 handle_list_page_flip_input(PageIndicator_8026CB44 *arg0) {
+s32 handle_list_page_flip_input(PageIndicator *arg0) {
     void *pad;
     s8 cur;
     decay_page_arrow_offset(arg0);
     cur = arg0->page;
-    pad = controller_input_state[is_player_input_active(arg0->port)].buttons;
+    pad = controller_input_state[is_player_input_active(arg0->input_port)].buttons;
     if (TWindowShortListCtrl__check_controller_button(pad, 0x30000) == 0) {
         return 0;
     }
@@ -185,9 +185,9 @@ s32 handle_list_page_flip_input(PageIndicator_8026CB44 *arg0) {
     }
     arg0->page = cur;
     if (TWindowShortListCtrl__check_controller_button(pad, 0x10000) != 0) {
-        arg0->phase = 1e+01f;
+        arg0->arrow_offset = 1e+01f;
     } else {
-        arg0->phase = (-1e+01f);
+        arg0->arrow_offset = (-1e+01f);
     }
     return 1;
 }
@@ -201,9 +201,9 @@ void *delete_if_allocated(void *storage, s16 release) {
     return storage;
 }
 
-PageIndicator_8026CB44::PageIndicator_8026CB44(s8 current, s8 pages, s32 client) {
+PageIndicator::PageIndicator(s8 current, s8 pages, s32 client) {
     page = current;
     count = pages;
-    port = client;
-    phase = 0.0f;
+    input_port = client;
+    arrow_offset = 0.0f;
 }

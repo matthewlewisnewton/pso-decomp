@@ -5,7 +5,7 @@
 #include "pso/misc/TWindowBase.h"
 #include <stddef.h>
 
-struct PageIndicator_8026CB44;
+struct PageIndicator;
 
 struct TWindowHelpItem : public TWindowBase
 {
@@ -19,7 +19,7 @@ struct TWindowHelpItem : public TWindowBase
     void set_flag60_bit4();
     u8 m_60;
     u8 _pad61[0x3];
-    PageIndicator_8026CB44 *m_64;
+    PageIndicator *m_64;
     u32 m_68;
     u32 m_6c;
     u32 m_70;

@@ -2,6 +2,7 @@
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/quest/TQuestThread.h"
+#include "pso/misc/LobbyGuildCardRecord.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/map/FloorArea.h"
 #pragma push
@@ -1860,12 +1861,6 @@ TWindowSubComCard::TWindowSubComCard(TObject *object, void *arg2) : TObject(obje
     this->m_1c = 0;
 }
 
-struct RecoveredGlobal_80275228_lbl_80517EE0 {
-    s32 value;
-    u8 remaining[0xB8];
-};
-
-extern RecoveredGlobal_80275228_lbl_80517EE0 selected_guild_card_record;
 extern "C" {
 void fn_80247ED8(void *p);
 
@@ -1875,9 +1870,8 @@ void TWindowSubComCard::set_com_param(s32 arg1) {
 }
 }
 
-typedef char RecoveredGlobal_80275228_lbl_80517EE0_size[sizeof(RecoveredGlobal_80275228_lbl_80517EE0) == 0xBC ? 1 : -1];
 s32 *get_selected_guild_card_record(void) {
-    return &selected_guild_card_record.value;
+    return &selected_guild_card_record.id;
 }
 
 void*TWindowSubComCard::get_card_data_ptr() { return (char*)this + 0x3b; }

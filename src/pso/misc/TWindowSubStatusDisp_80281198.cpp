@@ -1,9 +1,8 @@
-#include "pso/misc/PageIndicator_8026CB44.h"
+#include "pso/misc/PageIndicator.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowBase.h"
 extern "C" {
-s8 get_type__20TWindowSubStatusDispFv(s32);
 extern "C" u8 lbl_805DD6E0[];
 extern "C" u8 lbl_805DD6E4[];
 extern "C" u8 lbl_805DD6E8[];
@@ -276,23 +275,23 @@ void TWindowSubStatusDisp::dispatch_page_init() {
         &TWindowSubStatusDisp::vt0, &TWindowSubStatusDisp::vt1, &TWindowSubStatusDisp::vt2,
     };
     static void (TWindowSubStatusDisp::*page1[4])() = {
-        &TWindowSubStatusDisp::vt3, &TWindowSubStatusDisp::vt4, &TWindowSubStatusDisp::vt5,
+        &TWindowSubStatusDisp::vt3, &TWindowSubStatusDisp::init_challenge_records_page, &TWindowSubStatusDisp::vt5,
         &TWindowSubStatusDisp::vt5,
     };
     static void (TWindowSubStatusDisp::*page2[4])() = {
-        &TWindowSubStatusDisp::vt7, &TWindowSubStatusDisp::vt4, &TWindowSubStatusDisp::vt5,
+        &TWindowSubStatusDisp::vt7, &TWindowSubStatusDisp::init_challenge_records_page, &TWindowSubStatusDisp::vt5,
         &TWindowSubStatusDisp::vt5,
     };
 
     switch (m_60) {
     case 0:
-        (this->*page0[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page0[m_68->get_type()])();
         break;
     case 1:
-        (this->*page1[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page1[m_68->get_type()])();
         break;
     case 2:
-        (this->*page2[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page2[m_68->get_type()])();
         break;
     }
 }
@@ -312,13 +311,13 @@ void TWindowSubStatusDisp::dispatch_page_update() {
 
     switch (m_60) {
     case 0:
-        (this->*page0[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page0[m_68->get_type()])();
         break;
     case 1:
-        (this->*page1[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page1[m_68->get_type()])();
         break;
     case 2:
-        (this->*page2[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page2[m_68->get_type()])();
         break;
     }
 }
@@ -332,7 +331,7 @@ void TWindowSubStatusDisp::render() {
         temp_r3 = this->setup_window_draw_context((s32)(((u8 *)this) + 0x6C));
         draw_window_frame((void *)temp_r3);
         draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
-        draw_list_page_indicator((PageIndicator_8026CB44 *)(this->m_68), (TWindowDrawContext *)(temp_r3));
+        draw_list_page_indicator(m_68, (TWindowDrawContext *)(temp_r3));
     }
 }
 
@@ -342,12 +341,12 @@ void TWindowSubStatusDisp::run_task() {
   {
     *(s32 *)&arg0->m_5c = 0x01000000;
   }
-  if ((handle_list_page_flip_input((PageIndicator_8026CB44 *)((int) (*(s32 *)&arg0->m_68))) != 0) || ((arg0->m_60) != ((s16) (*(s16 *)&arg0->m_62))))
+  if ((handle_list_page_flip_input(arg0->m_68) != 0) || ((arg0->m_60) != ((s16) (*(s16 *)&arg0->m_62))))
   {
     if ((arg0->m_60) != (*(s16 *)&arg0->m_62))
     {
       arg0->m_60 = *(s16 *)&arg0->m_62;
-      fn_8026C7AC((void *)(*(s32 *)&arg0->m_68), ((s8) (*((u8 *) (((s8 *) (((u8 *)&lbl_805DD6F4) + (arg0->m_60))) + 0)))));
+      fn_8026C7AC(arg0->m_68, ((s8) (*((u8 *) (((s8 *) (((u8 *)&lbl_805DD6F4) + (arg0->m_60))) + 0)))));
     }
     ((TWindowSubStatusDisp *)(((u8 *) arg0) + 0x24))->destroy_all_items();
     arg0->dispatch_page_init();
@@ -378,6 +377,6 @@ TWindowSubStatusDisp::TWindowSubStatusDisp(s32 client)
     m_62 = m_60;
     scale_x = lbl_805DD70C;
     scale_y = lbl_805DD70C;
-    m_68 = (u32)new PageIndicator_8026CB44(0, 3, client);
+    m_68 = new PageIndicator(0, 3, client);
     dispatch_page_init();
 }

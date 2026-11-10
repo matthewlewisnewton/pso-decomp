@@ -3591,7 +3591,7 @@ void handle_quest_download_chunk__6TLobbyFv();
 void begin_file_download__16TQuestListOnlineFv();
 void copy_quest_list_data__16TQuestListOnlineFv();
 void try_close__6TLobbyFPv();
-void forward_8024273C__6TLobbyFPv();
+void forward_8024273C__6TLobbyFPv(class TUserAns &response);
 void handle_trade_received_items();
 extern u8 __vt__6TLobby[];
 extern s32 lobby_class_name;
