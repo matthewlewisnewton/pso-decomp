@@ -1,7 +1,7 @@
 # Modem command-path recovery
 
 Current validation base: `fffd67d0c35e1fdaf17880c563739750e7c35813`.
-The unit has 23 recovered bodies, 14 exact functions, and remains unlinked.
+The unit has 25 recovered bodies, 14 exact functions, and remains unlinked.
 
 Initial base: fork main `f0f05f3afe56fd2b71e9dc1fe946e2fa03c84b86`.
 Reference: upstream `8c507b2dacae5428291a823c3868ca486419660c`, including
@@ -369,3 +369,87 @@ aliases, new intrinsic, compiler profile or optimizer changes are introduced.
 
 All 269 source-tool tests pass in this environment, including the eight-scenario
 receive semantics fixture. The native layout and matching holds remain separate.
+
+
+## Interrupt dispatch and initialization
+
+The next increment reconstructs both remaining absent bodies, without adding
+an intrinsic or importing upstream's dummy stack locals. All 25 bodies now
+have source, but only 14 are exact; this is still a partial, unlinked recovery.
+
+The interrupt dispatcher at `0x8042C2E4` reads register 2 under an EXI lock,
+intersects it with the existing shadow mask and handles only the highest set
+bit. An ordinary bounded scan on the already nonzero byte expresses that
+priority without `__cntlzw`. The four handled bits are 0x10 (transmit), 0x20
+(receive availability), 0x40 (receive length) and 0x02 (AT response). It does
+not process every pending bit. The original edge behavior is retained: an
+unsupported highest bit returns after disabling the hardware interrupt mask,
+without unlocking. The zero-masked-status path unlocks without disabling the
+mask. Transmit and active receive branches transfer the lock to their existing
+completion paths rather than unlocking early.
+
+The AT-response branch drains the actual FIFO count in chunks up to four,
+parses the response, restores the mask and unlocks before delivering a result.
+It clears done before the client callback, sets the callback-active flag around
+the call and retains the response callback pointer, unlike the one-shot send
+and receive callbacks. No new append bounds clamp is introduced. The portable
+priority scan changes the dispatch instructions and register allocation. The
+dispatcher emits 1,572 bytes versus 1,524 original bytes and is 95.91863% fuzzy.
+This is not an exact-match gain.
+
+The initializer at `0x8042CEF8` acquires EXI before initializing the shadow
+registers and thread queue. It separately clears the proven 0x1C connection,
+0x40 receive and 0x2C send records. It resets only done and length in the
+response record, preserving its callback, result, FIFO count and buffer. The
+four inherited unclassified bytes and the unused shadow bytes remain untouched.
+Typed field assignments replace upstream's cross-field pointer-update aliases.
+
+It probes the device at frequency zero and preserves the initialized connection
+state on an ID mismatch, unlocking and returning -1. A matching 0x02020000 ID
+allows the 0x8000 reset command at frequency four, followed by the original
+register writes and five AT-command/wait pairs. All five wait results remain
+ignored. Mask enable follows the final wait, followed by SDK-typed callback
+registration on channel 2, reset-hook registration and EXI unlock. Channel 2
+for the callback is the original behavior, despite data transfers on channel
+0/device 2. The shared initializer declaration replaces the direct caller's
+local duplicate without changing its C ABI.
+
+Its real used command buffer retains the upstream reference's 0x88 capacity
+as an explicitly provisional choice. The original stack buffer accesses do
+not authenticate that declaration or capacity. The capacity is not adjusted
+to reproduce a frame. No dummy array, unused result, alignment attribute,
+compiler setting or padding object is added. The body emits the original
+1,444-byte extent and is 99.869804% fuzzy in the project report;
+stack offsets still differ. The direct object comparison also exposes literal
+bank relocation associations at the same 0x40/0x4C offsets.
+
+Ordinary emission of its two used command literals restores the first 86
+bytes of the owned 88-byte `.data` bank with the original bytes and reset-hook
+relocation. Both sections retain eight-byte alignment. The compiled bank ends
+at 86 bytes while the split bank includes two further zero bytes. Those bytes
+remain an honest data-layout hold; no invented tail object or enlarged string
+array is added to claim them. Thus the report gains no exact-data bytes yet.
+The setup prefix strings at 0x805D489C, 0x805D48A4 and 0x805D48B0 remain external
+and their symbol extents are not pulled into this unit.
+
+The extracted-source host control fixture exhausts all 65,536 status/mask
+pairs and checks lock failure, unsupported priorities, receive delegation and
+capacity clamping, AT FIFO chunking and callback retention. Initializer tests
+cover device-ID failure, original state preservation, ignored wait failures
+and cross-group setup/command/mask/hook ordering. Like the receive fixture,
+these synthetic stubs check semantics and ordering, not target ABI, actual
+hardware or native frame matching.
+
+The candidate's capacity-gated native build still reproduces the original DOL
+hash against authenticated main `fffd67d0c35e1fdaf17880c563739750e7c35813`.
+`check_pr.py`, all nine strict no-loss categories against both main and the
+previous receive checkpoint, linked-unit/retention, exception inventory and
+whitespace checks pass. The 270 source-tool tests include both host fixtures.
+No existing exact function is lost; the total gain remains two functions and
+660 exact code bytes, with no exact-data or source-link gain. The original
+modem fallback is still the actual linker input.
+
+Readiness is now held on 11 non-exact bodies, the original helper/frame and
+buffer declaration evidence, the final two data-bank bytes, unresolved storage
+and interface ownership, and whole-unit source linking. Having all bodies
+present is not equivalent to a matched or ready unit.

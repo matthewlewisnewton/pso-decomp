@@ -164,7 +164,6 @@ Q_803F7AF4 *get_next_send_chunk__6TLobbyFv(void);
 s32 OSIsThreadSuspended(s32);
 extern s32 lobby_ring_buffer_write_pos;
 s16 TLobby__sub_804281DC(void *);
-s32 TAdSinglePlyChrSelectGC__sub_8042CEF8(char *);
 extern u8 pppoe_discovery_name_storage[2][256];
 s32 TLobby__sub_803F8314(A_803F8314 *arg0);
 u32 layout_buffers__6TLobbyFPUcPUc(u8 *, u32, u32);
