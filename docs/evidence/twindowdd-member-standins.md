@@ -95,3 +95,35 @@ The wider probes were not installed in the source tree. The unresolved
 formatter is not presented as a mergeable fix. A further natural recovery or
 Matt's explicit decision about a matching exception is needed; this change
 does not add an exception or rely on one.
+
+## Current-main integration and further probes (2026-11-10)
+
+Merged fork main `00c484c57b38bc7f112016860e9faa628c7b49e9`. The
+shortcut-list conflict keeps main's `PageIndicator::get_type()` call and
+this PR's corrected text and symbol-preview interfaces. Regenerated the
+porting inventory from the merged sources.
+
+A further coordinated probe used a shared 12-byte word-select record and
+free functions for the dispatcher, localized formatters and player-gender
+lookup. The dispatcher, opening helper, German and English formatters,
+Japanese formatter and gender lookup remained exact with full-width player
+arguments. The French formatter at `0x80344980` scored 98.270775%: its
+instruction count and operations remained the same, but saved registers
+changed. (The earlier probe table called this the Japanese formatter;
+mode 3 is French, as `Language.h` records.) The caller at `0x80347CC8`
+scored 99.81132%, moving its incoming record through r6 instead of r5.
+
+Natural count/index types, local scopes, independent zero initialization,
+and explicit record/player/buffer locals did not restore both matches.
+Scoped propagation, common-subexpression, scheduling, lifetime and dead-
+assignment options also failed. These probes are not installed; no new
+compiler exception or loss of exact functions is accepted by this change.
+The remaining legacy formatter boundary still requires recovery or an
+explicit maintainer decision before the PR is marked ready.
+
+The retained integration passes `tools/check_pr.py` against a freshly built
+baseline of the main commit above: +1 exact function, +1,044 matched code
+bytes, +52 matched data bytes, +1 linked unit, no regressions. All six
+shortcut-unit functions, 1,536 code bytes and 52 data bytes match. The DOL
+is byte-identical to the original; retention and exception-inventory checks
+also pass.
