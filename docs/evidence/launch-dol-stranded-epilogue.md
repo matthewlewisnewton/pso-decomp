@@ -366,9 +366,67 @@ This scans raw section words, not a recovered control-flow graph, and is
 separate from the earlier initialized-data pointer scan. It does not exclude
 nonadjacent constructions, general arithmetic, relative/SDA tables, runtime
 writes or other indirect transfers. It supplies no original source boundary
-or ownership proof. A useful next ownership check is conservative constant
-tracking within basic blocks that materialize LR/CTR destinations, retaining
-unknown values at calls and control-flow boundaries.
+or ownership proof. The follow-up below extends this check to bounded local
+constant tracking, retaining unknown values at calls and control boundaries.
+
+### Conservative LR/CTR constant tracking
+
+[The standalone audit](../../tools/audit_loader_indirect_targets.py) reads the
+authenticated original DOL and a native report used only for declared block
+boundaries. It requires the existing 312-, 20- and 196-byte function extents;
+those declarations are reset points, not authenticated ownership evidence.
+Run from the repository root with a fresh output directory:
+
+```sh
+python3 -m unittest tools.tests.test_loader_indirect_targets
+python3 tools/audit_loader_indirect_targets.py --report build/GPOE8P/report.json
+```
+
+The default output is ignored `build/loader-indirect-targets`. `result.json`
+records input/tool hashes, counts and scope; `events.json` records metadata
+for SPR assignments and indirect-branch encodings. No binary is generated.
+
+All register facts start unknown at declared function starts/ends, direct
+branch targets and control-flow fallthrough boundaries. Every call/control
+boundary clears all facts; no predecessor facts are joined and no return
+address is assumed. Only a small explicit 32-bit instruction whitelist
+propagates constants. Memory loads produce unknowns, updating forms invalidate
+their base, and unsupported instructions clear every fact. Provenance beyond
+32 contributing instructions becomes unknown. Newly resolved text targets
+become reset points and require recomputation, discarding preliminary claims.
+No newly discovered reset point was needed in this run.
+
+The decoder follows the [PowerPC instruction reference](https://www.nxp.com/docs/en/user-guide/MPCFPE_AD_R1.pdf)
+for LR/CTR targets, split SPR fields and register effects. It reads the
+pre-instruction target, masks its low two bits, rejects unsupported reserved
+branch fields and rejects CTR-decrement branch-to-CTR forms. Twenty-three
+original-free tests cover known nonadjacent constructions, register aliases,
+r0 semantics, signed arithmetic, loads/updates, unsupported barriers,
+control boundaries, leader refinement, linking branches and provenance limits.
+Independent review found and corrected the reserved-field check before the
+final evidence run; that run and its complete metadata were independently
+recomputed without changing the game or compiler.
+
+The same 1,088,320 text words produce 29,949 LR-branch and 5,498 CTR-branch
+encodings. One local constant target resolves: the linking transfer at
+`0x8000C0CC` to `InitMetroTRK` at `0x80395930`. This is a syntactic target,
+not proof of execution. The other **35,446 indirect transfers remain
+unresolved**. The 1,012 known SPR assignments include CTR loop counts; they
+must not all be interpreted as function addresses. No resolved assignment
+value or indirect-branch target enters the 20-byte restore range.
+
+| Held transfer | Last local LR assignment | Source of its unknown value |
+|---|---|---|
+| Loader jump at `0x8042E9F8` | `0x8042E9F4` | r0 loaded at `0x8042E9EC`, from memory offset `0xE0` through r26 |
+| Restore return at `0x8042EA0C` | `0x8042EA04` | r0 loaded at `0x8042EA00`, from stack offset `0x24` |
+
+Last-writer locations are metadata, never invented values. The remaining
+unknowns include memory/table values, unsupported operations and unmodeled
+indirect entries into the middle of a syntactic region. Raw words may be
+unreachable or noncode. This is not a complete CFG or an indirect-entry
+exclusion proof. The restore remains consistent with the preceding saved
+frame, but this analysis does not authenticate ownership or a new source
+handoff and authorizes no symbol, provider or accounting change.
 
 ## Comparison record and reproduction limits
 
