@@ -1,3 +1,4 @@
+#include "pso/misc/TUnk_804CFA28.h"
 #include "types.h"
 #include "pso/misc/TLobby_80132ED0.h"
 #include "pso/misc/TWindowSubStatusDisp_80071774.h"
@@ -5,7 +6,7 @@
 #include "pso/misc/TWindowSubStatusDisp_80228F5C.h"
 #include "pso/player/TObjPlayer_800A7764.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_801FBF54.h"
-#include "pso/unk/text_8027FD88.h"
+#include "pso/misc/TWindowSubStatusDispPages.h"
 #include "pso/player/TObjChara.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowHelpItem.h"
@@ -71,13 +72,15 @@ extern "C" {
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 TLobby__sub_801C2614();
 void *get_array_entry__11TWindowBaseFi(void *, s32);
-s32 init_window_layout_entries(void *, s32 *, s16);
+void init_window_layout_entries(void *, const void *, s32);
 s8 get_type__20TWindowSubStatusDispFv(int);
 void *get_player_by_client_id(s32 i);
 void vt11__20TWindowSubStatusDispFv(Wn_80280F14 *arg0);
 }
 void set_text_entry_string(u8 *arg0, u32 str, s32 arg2);
 extern s32 TWindowSubStatusDisp__record_summary_layout[];
+extern void *TWindowSubStatusDisp__rank_time_records_layout[];
+extern const char *lbl_804D2B20[4];
 extern const f32 TWindowSubStatusDisp__data_805DD708;
 extern s32 TWindowSubStatusDisp__resistance_layout[];
 extern s32 TWindowSubStatusDisp__stat_page_layout[];
@@ -86,7 +89,7 @@ extern s32 TWindowSubStatusDisp__summary_page_layout[];
 extern "C" {
 s32 build_player_class_stat_template(s32 arg0, s32 arg1);
 s32 build_player_equipment_requirement_stats(int, void *);
-s32 get_shared_text_buffer();
+s32 *get_shared_text_buffer();
 s32 get_layout_id__20TWindowSubStatusDispFv(s32);
 extern s32 status_disp_vt5_message_ids[];
 extern s32 TWindowSubStatusDisp__numbered_times_layout[];
@@ -108,6 +111,7 @@ s32 TWindowSubStatusDisp::get_display_mode() {
 }
 
 void TWindowSubStatusDisp::vt16() {  }
+
 
 typedef struct Win_8027FD9C Win_8027FD9C;
 void vt5__20TWindowSubStatusDispFv(u8 *arg0) {
@@ -151,7 +155,7 @@ void vt5__20TWindowSubStatusDispFv(u8 *arg0) {
         append_padded_number(i + 1, 2);
         text_builder_append((u8 *)lbl_805DD6E4);
         TWindowSubStatusDisp::append_play_time(r);
-        set_text_entry_string((u8 *)e, get_shared_text_buffer(), 0x20);
+        set_text_entry_string((u8 *)e, (u32)get_shared_text_buffer(), 0x20);
       }
     }
     i++;
@@ -160,6 +164,126 @@ void vt5__20TWindowSubStatusDispFv(u8 *arg0) {
 }
 
 void TWindowSubStatusDisp::vt15() {  }
+
+void TWindowSubStatusDisp::init_challenge_records_page() {
+    // Declaring this entry first preserves CodeWarrior's register allocation.
+    TUnk_804CFA28 *last_time_value;
+
+    if ((f32)m_5c > TWindowSubStatusDisp__data_805DD708) {
+        m_5c = 7;
+    }
+    init_window_layout_entries(&m_24, TWindowSubStatusDisp__rank_time_records_layout, m_20);
+    reinterpret_cast<TWindowSubStatusDisp *>(m_68)->get_type();
+
+    enum { RecordEntryHidden = 2 };
+    enum RecordSlot { First = 0, Second = 1, AlternateFirst = 2, AlternateSecond = 3 };
+    const RecordSlot heading_slot = m_60 == 2 ? AlternateFirst : First;
+    s32 slot = heading_slot;
+    TUnk_804CFA28 *title = (TUnk_804CFA28 *)get_array_entry(0);
+    if (heading_slot == First) {
+        set_text_entry_string((u8 *)title, (u32)get_message_10(0x90), 0);
+    } else {
+        set_text_entry_string((u8 *)title, (u32)get_message_10(0x93), 0);
+    }
+
+    title = (TUnk_804CFA28 *)get_array_entry(1);
+    TUnk_804CFA28 *spacer = (TUnk_804CFA28 *)get_array_entry(2);
+    TUnk_804CFA28 *value = (TUnk_804CFA28 *)get_array_entry(3);
+    const char *name = (const char *)get_status_window((m_20 & 0xFFFFL));
+    if (slot != First || name == NULL || *name == '\0') {
+        title->flags |= RecordEntryHidden;
+        spacer->flags |= RecordEntryHidden;
+        value->flags |= RecordEntryHidden;
+    } else {
+        title->flags &= ~RecordEntryHidden;
+        spacer->flags &= ~RecordEntryHidden;
+        value->flags &= ~RecordEntryHidden;
+        set_text_entry_string((u8 *)title, (u32)get_message_10(0x9B), 0);
+        set_text_entry_string((u8 *)value, (u32)name, 0x20);
+        value->color = get_status_index((m_20 & 0xFFFFL));
+    }
+
+    title = (TUnk_804CFA28 *)get_array_entry(4);
+    spacer = (TUnk_804CFA28 *)get_array_entry(5);
+    value = (TUnk_804CFA28 *)get_array_entry(6);
+    s32 rank = TWindowSubStatusDisp__sub_80071868((u16)m_20, slot);
+    if (rank == 0) {
+        title->flags |= RecordEntryHidden;
+        spacer->flags |= RecordEntryHidden;
+        value->flags |= RecordEntryHidden;
+    } else {
+        title->flags &= ~RecordEntryHidden;
+        spacer->flags &= ~RecordEntryHidden;
+        value->flags &= ~RecordEntryHidden;
+        if (slot == First) {
+            set_text_entry_string((u8 *)title, (u32)get_message_10(0x98), 0);
+        } else {
+            set_text_entry_string((u8 *)title, (u32)get_message_10(0x9A), 0);
+        }
+        set_text_entry_string((u8 *)value, (u32)lbl_804D2B20[rank], 0);
+    }
+
+    title = (TUnk_804CFA28 *)get_array_entry(7);
+    spacer = (TUnk_804CFA28 *)get_array_entry(8);
+    value = (TUnk_804CFA28 *)get_array_entry(9);
+    s32 time = TWindowSubStatusDisp__sub_80071988((m_20 & 0xFFFFL), slot);
+    if (time == 0) {
+        title->flags |= RecordEntryHidden;
+        spacer->flags |= RecordEntryHidden;
+        value->flags |= RecordEntryHidden;
+    } else {
+        title->flags &= ~RecordEntryHidden;
+        spacer->flags &= ~RecordEntryHidden;
+        value->flags &= ~RecordEntryHidden;
+        if (slot == First) {
+            set_text_entry_string((u8 *)title, (u32)get_message_10(0x95), 0);
+        } else {
+            set_text_entry_string((u8 *)title, (u32)get_message_10(0x97), 0);
+        }
+        text_builder_reset();
+        append_play_time(time);
+        set_text_entry_string((u8 *)value, (u32)get_shared_text_buffer(), 0x20);
+    }
+
+    slot = Second;
+    if (m_60 == 2) {
+        slot = AlternateSecond;
+    }
+    title = (TUnk_804CFA28 *)get_array_entry(10);
+    spacer = (TUnk_804CFA28 *)get_array_entry(11);
+    value = (TUnk_804CFA28 *)get_array_entry(12);
+    rank = TWindowSubStatusDisp__sub_80071868((m_20 & 0xFFFFL), slot);
+    if (rank == 0) {
+        title->flags |= RecordEntryHidden;
+        spacer->flags |= RecordEntryHidden;
+        value->flags |= RecordEntryHidden;
+    } else {
+        title->flags &= ~RecordEntryHidden;
+        spacer->flags &= ~RecordEntryHidden;
+        value->flags &= ~RecordEntryHidden;
+        set_text_entry_string((u8 *)title, (u32)get_message_10(0x99), 0);
+        set_text_entry_string((u8 *)value, (u32)lbl_804D2B20[rank], 0);
+    }
+
+    title = (TUnk_804CFA28 *)get_array_entry(13);
+    spacer = (TUnk_804CFA28 *)get_array_entry(14);
+    last_time_value = (TUnk_804CFA28 *)get_array_entry(15);
+    time = TWindowSubStatusDisp__sub_80071988((m_20 & 0xFFFFL), slot);
+    if (time == 0) {
+        title->flags |= RecordEntryHidden;
+        spacer->flags |= RecordEntryHidden;
+        last_time_value->flags |= RecordEntryHidden;
+    } else {
+        title->flags &= ~RecordEntryHidden;
+        spacer->flags &= ~RecordEntryHidden;
+        last_time_value->flags &= ~RecordEntryHidden;
+        set_text_entry_string((u8 *)title, (u32)get_message_10(0x96), 0);
+        text_builder_reset();
+        append_play_time(time);
+        set_text_entry_string((u8 *)last_time_value, (u32)get_shared_text_buffer(), 0x20);
+    }
+}
+
 
 void TWindowSubStatusDisp::vt18() {  }
 

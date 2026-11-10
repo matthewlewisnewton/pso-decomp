@@ -283,11 +283,11 @@ void TWindowSubStatusDisp::dispatch_page_init() {
         &TWindowSubStatusDisp::vt0, &TWindowSubStatusDisp::vt1, &TWindowSubStatusDisp::vt2,
     };
     static void (TWindowSubStatusDisp::*page1[4])() = {
-        &TWindowSubStatusDisp::vt3, &TWindowSubStatusDisp::vt4, &TWindowSubStatusDisp::vt5,
+        &TWindowSubStatusDisp::vt3, &TWindowSubStatusDisp::init_challenge_records_page, &TWindowSubStatusDisp::vt5,
         &TWindowSubStatusDisp::vt5,
     };
     static void (TWindowSubStatusDisp::*page2[4])() = {
-        &TWindowSubStatusDisp::vt7, &TWindowSubStatusDisp::vt4, &TWindowSubStatusDisp::vt5,
+        &TWindowSubStatusDisp::vt7, &TWindowSubStatusDisp::init_challenge_records_page, &TWindowSubStatusDisp::vt5,
         &TWindowSubStatusDisp::vt5,
     };
 

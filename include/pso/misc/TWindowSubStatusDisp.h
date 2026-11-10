@@ -21,7 +21,7 @@ struct TWindowSubStatusDisp : public TWindowBase {
     void vt1();
     void vt2();
     void vt3();
-    void vt4();
+    void init_challenge_records_page();
     void vt5();
     void vt7();
     void vt11();
