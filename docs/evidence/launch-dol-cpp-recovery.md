@@ -91,3 +91,17 @@ control-transfer facility or authentic original-toolchain evidence first.
 Neither the synthesized comment nor a cosmetic call spelling supplies that
 lead. No new assembly, compiler override, symbol widening or coverage change
 is justified by these findings.
+
+## External reboot handoff comparisons
+
+The pinned Dolphin `OSReboot.c` implementations in
+[Melee](https://github.com/doldecomp/melee/blob/2f8eab8ebd7a2d25541e125abfa246defe1bacec/libs/dolphin/src/dolphin/os/OSReboot.c#L30-L43)
+and
+[Sunshine](https://github.com/doldecomp/sms/blob/4b2fd238058bf70822ca226e17f02879a7a46eb4/libs/dolphin/src/os/OSReboot.c#L28-L41)
+declare `Run` as an assembly function. Both synchronize and transfer through
+LR before a later frame-release/return sequence. This is consistent with the
+loader handoff and stranded-epilogue interpretation here, but it is an analogy,
+not evidence of PSO's original source spelling or a C++ control-transfer
+facility. These examples do not resolve the three differing instructions or
+justify changing the transfer hold, compiler, assembly policy or #285 boundary.
+No source or compiler experiment follows from this comparison alone.
