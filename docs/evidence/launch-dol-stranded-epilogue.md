@@ -215,6 +215,50 @@ changes runtime semantics and is not a candidate handoff replacement. No game
 symbol, split, provider, address, coverage rule or `skip_cfa_ranges` entry is
 changed on the strength of this reproduction.
 
+## Stock-compiler phase comparison
+
+A bounded comparison of the historical 332-byte C++ call control and a
+320-byte named-operand inline-assembly handoff localizes their first prefix
+divergence to frontend optimization. Both use the same frozen GC/2.6 compiler
+and historical flags; no compiler state, register assignment, liveness or
+production build input was changed. The compiler executable's SHA-256 is
+`316e2a98236c23f3fc902243b157eaebf8ef2ad6edb88cfd632a15b6676fa9a8`.
+
+For each input, ordinary Wibo compilation, untraced retrowin32 compilation and
+passive debugger observation produced byte-identical complete objects. Their
+allocated sections, function sizes, globals and text relocations also agree
+with the saved candidate. The call-control debugger reported a closed remote
+connection after its final continuation; the compiler nevertheless exited
+successfully and emitted the complete object, authenticated separately. The
+assembly-candidate observer handled that EOF and completed normally. These
+checks authenticate the observed outputs, not the original game's source.
+
+- Initial frontend ASTs agree throughout the prefix; only the expected call
+  versus assembly tail differs.
+- After frontend optimization, the array-address expression associations and
+  second-loop lifetime splits differ. Initial backend code already uses
+  offset addition plus indexed loads for the call control, versus
+  base-plus-index addresses and displacement loads for the assembly candidate.
+- Backend common-subexpression elimination shares that base. The two loops
+  lose one and two instructions respectively, accounting for the 12-byte
+  prefix shortening before register allocation or scheduling.
+- Register dependencies then differ, while both candidates retain the same
+  0x20-byte frame and r26–r31 save/restore. Changing the frame or assigning a
+  different register would not address the first divergence.
+
+One distinct source-based test moved the target-specific assembly statement
+into an ordinary C++ inline helper, rather than the previously tested
+function-level assembly helper. With unchanged flags, Wibo and retrowin32
+produced identical complete objects, and its full 320-byte text was identical
+to the direct named-operand assembly candidate. This encapsulation did not
+isolate the frontend effect and is not a replacement implementation.
+
+The comparison identifies an earlier compiler decision to investigate; it
+does not establish which assembly effect causes it, recover an original
+interface or authorize expression/register steering. No experimental source,
+private compiler dump or binary is added here. The exact original provider,
+symbol extents and strict accounting remain in force.
+
 ## Comparison record and reproduction limits
 
 The historical comparison procedure is preserved at immutable commit
