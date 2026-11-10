@@ -1,6 +1,7 @@
 #ifndef PSO_SYSTEM_MFCI_H
 #define PSO_SYSTEM_MFCI_H
 #include "types.h"
+#include "pso/system/CvFsDeviceCallbacks.h"
 
 struct MfciFileEntry {
     s8 used;
@@ -30,8 +31,8 @@ typedef char MfciRequestSizeOffset[offsetof(MfciFileEntry, request_size) == 0x34
 s32 mfci_get_position(MfciFileEntry* file);
 s32 mfci_seek(MfciFileEntry* file, s32 sectors, s32 origin);
 void mfci_close(MfciFileEntry* file);
-MfciFileEntry* mfci_open(const char* name, s32 entry, s32 mode);
-u32 mfci_parse_file_size(char* name);
+CvFsOpenFunction mfci_open;
+CvFsGetFileSizeFunction mfci_parse_file_size;
 
 extern "C" {
 MfciFileEntry *find_free_803D4058(void);

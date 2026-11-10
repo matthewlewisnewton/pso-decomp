@@ -212,7 +212,7 @@ inline MfciFileEntry *find_free_803D4058(void) {
     }
     return r;
 }
-MfciFileEntry *mfci_open(const char *name, s32 arg1, s32 mode) {
+void *mfci_open(const char *name, s32 arg1, s32 mode) {
     char *base = lbl_8047DF90;
     MfciFileEntry *f;
     if (name == 0) {
@@ -263,7 +263,7 @@ MfciFileEntry *mfci_open(const char *name, s32 arg1, s32 mode) {
 }
 #pragma pop
 
-u32 mfci_parse_file_size(char *s) {
+s32 mfci_parse_file_size(char *s) {
     u32 lo;
     if (strlen(s) != 17) {
         sprintf(mfci_error_message_buffer, lbl_8047E04C, s);
@@ -278,6 +278,7 @@ u32 mfci_parse_file_size(char *s) {
         }
     }
     parse_803D4290(s, 0, &lo);
+    // CVFS consumes this same parsed word through its signed-size callback.
     return lo;
 }
 #pragma pop

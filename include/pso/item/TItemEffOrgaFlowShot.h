@@ -5,6 +5,7 @@
 #include "pso/item/TUnk_804E355C.h"
 
 struct TItemEffOrgaFlowShot : public TUnk_804E355C {
+    TItemEffOrgaFlowShot(TObject *parent, void *params);
     virtual ~TItemEffOrgaFlowShot();
     virtual void run_task();
     void* m_c4;

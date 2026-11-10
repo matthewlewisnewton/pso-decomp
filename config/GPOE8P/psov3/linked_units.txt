@@ -576,6 +576,7 @@ pso/item/ChallengeRangerLoadouts.cpp
 pso/item/SRankSlicerWeapons.cpp
 pso/item/SpecialProjectileWeapons.cpp
 pso/item/TItem.cpp
+pso/item/TItemAttackCol.cpp
 pso/item/TItemAttackCol_802E4798.cpp
 pso/item/TItemAttacker.cpp
 pso/item/TItemBuff.cpp
@@ -797,6 +798,7 @@ pso/item/TUnk_804A68C8.cpp
 pso/item/TUnk_804A6AD8.cpp
 pso/item/TUnk_804A6BD0.cpp
 pso/item/TUnk_804E6FA8.cpp
+pso/item/TUnk_804F0C08.cpp
 pso/item/TUnk_804F0C48.cpp
 pso/item/TUnk_804F0D34.cpp
 pso/item/TUnk_804F0FF0.cpp
@@ -832,6 +834,7 @@ pso/misc/EndingSceneTables.cpp
 pso/misc/GbaDownloadRuntime.cpp
 pso/misc/KeyboardCharacterMaps.cpp
 pso/misc/MaterialOpacityFade.cpp
+pso/misc/ParticleRadial.cpp
 pso/misc/PhotonBlastSummon.cpp
 pso/misc/QuestDownloadBuffers.cpp
 pso/misc/RenderFadeState.cpp
@@ -1358,6 +1361,7 @@ pso/misc/TOMineTrap.cpp
 pso/misc/TOMineTrapDisp.cpp
 pso/misc/TOMineTrapDisp_8016EDC8.cpp
 pso/misc/TOMineTrap_8016ED9C.cpp
+pso/misc/TOMineTrap_8016F6F8.cpp
 pso/misc/TOMonitorMachine01.cpp
 pso/misc/TOMonumentAncient01.cpp
 pso/misc/TOMonumentAncient02.cpp
@@ -1695,6 +1699,7 @@ pso/misc/TWindowDD_80246F8C.cpp
 pso/misc/TWindowDD_80340EA8.cpp
 pso/misc/TWindowDD_803411E8.cpp
 pso/misc/TWindowDD_80341334.cpp
+pso/misc/TWindowDD_80341A08.cpp
 pso/misc/TWindowDD_80342254.cpp
 pso/misc/TWindowDD_803424EC.cpp
 pso/misc/TWindowDD_80342554.cpp
@@ -1893,6 +1898,7 @@ pso/misc/TWindowSubShortMail_80246CB8.cpp
 pso/misc/TWindowSubShortMail_8027E620.cpp
 pso/misc/TWindowSubShortMail_802A571C.cpp
 pso/misc/TWindowSubStatusDisp.cpp
+pso/misc/TWindowSubStatusDispPages.cpp
 pso/misc/TWindowSubStatusDisp_8006F044.cpp
 pso/misc/TWindowSubStatusDisp_80071774.cpp
 pso/misc/TWindowSubStatusDisp_80077760.cpp
@@ -2741,7 +2747,6 @@ pso/ui/TAdPlyPltAnimCtrlGC.cpp
 pso/ui/TAdPlyPltAnimGC.cpp
 pso/ui/TAdPlyPltAnimGC_80356190.cpp
 pso/ui/TAdPlyStatusGC.cpp
-pso/ui/TAdPlyStatusGC_802E1128.cpp
 pso/ui/TAdPlyStatusGC_8033FD48.cpp
 pso/ui/TAdPsoPassSaveGC.cpp
 pso/ui/TAdRayGC.cpp
@@ -2781,7 +2786,6 @@ pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8028D5D4.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8029A914.cpp
 pso/ui/TAdSinglePlyChrSelectGC_802D3AB8.cpp
-pso/ui/TAdSinglePlyChrSelectGC_802E13C8.cpp
 pso/ui/TAdSinglePlyChrSelectGC_802E3AE4.cpp
 pso/ui/TAdSinglePlyChrSelectGC_80336054.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8033A8EC.cpp
@@ -3537,6 +3541,7 @@ pso/unk/text_803CD840.cpp
 pso/unk/text_803CE1D8.cpp
 pso/unk/text_803CE1F4.cpp
 pso/unk/text_803CE240.cpp
+pso/unk/text_803CE568.cpp
 pso/unk/text_803CFEA0.cpp
 pso/unk/text_803D0C34.cpp
 pso/unk/text_803D2F1C.cpp
