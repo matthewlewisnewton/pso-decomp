@@ -126,6 +126,14 @@ existing `s16` status local was rejected: `init_network_stack` fell to
 97.608696%, its frame grew from `0x10` to `0x18`, and the result copy gained
 sign extension. The caller is retained unchanged, with an explanatory comment.
 This partial callee correction does **not** repair the cross-unit mismatch.
+
+A later #303 audit proved the runtime reset returns only -1 or 0 and has one
+signed-16 consumer. A separate bounded shared `s16(void)` contract probe was
+semantically sound, but also rejected: the wrapper gained a sign extension and
+the caller's frame grew from 0x10 to 0x18. It failed original-DOL validation and
+was fully restored, with all four complete network objects byte-identical.
+No compensating return-type, counter-lifetime, padding or compiler-steering
+variant was added. See [the #303 audit](pr303-source-contracts.md).
 Consolidating that boundary requires a separate caller/callee recovery that
 preserves both complete objects; no frame padding or compiler steering is added.
 

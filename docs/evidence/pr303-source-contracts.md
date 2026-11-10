@@ -1353,3 +1353,69 @@ with sealed main `1a18b4bd7` retains the existing +88 data bytes, zero new
 functions/code, no losses, all 3,589 linked units exact and 17,840 retention
 entries without drift. Host tests, inventory and whitespace pass. Keep draft;
 DHCP extent, callback ABI, network reset-status and metadata holds remain.
+
+
+## Match legacy DHCP behavior, including its bugs
+
+The matching target is the original behavior, including apparent bugs. Keep
+hardening ideas separate from the exact path. The missing accepted-reply extent,
+unchecked scanner and fixed-size option copy are documented legacy behavior;
+this PR does not silently add length fields, input guards or tail clears.
+
+A new bounded ingress audit does not supply a hidden DHCP size invariant.
+Ethernet ingress rejects individual frames above 1514 bytes, but IPv4 reassembly
+can combine up to eight fragments using two 0x2000 pools. Two ordinary fragment
+payloads of 1480 and 1000 bytes fit those resources and yield 2472 bytes after
+UDP-header removal. That is a resource-feasibility example, not an exploit or an
+end-to-end DHCP demonstration. IPv4 checks header size/version/checksum and that
+declared total length covers the IP header, without proving total length fits
+the received bytes. UDP copies its eight-byte header and subtracts it without an
+established BOOTP minimum. Neither frame MTU nor allocation capacity proves
+`BOOTP minimum <= DHCP payload <= 1500`; no such bound is inserted here.
+
+Add original-free host characterization tests in
+`tools/tests/test_dhcp_legacy_characterization.py`. They compile the actual
+checked-in scanner, option-setter and option-record definitions, not rewritten
+copies of their algorithms. Fully allocated fixtures cover padding/end markers,
+zero/255 option lengths, stale bytes after a logical short copy, an advertised
+value spanning old bytes, scanning beyond the purported forward limit,
+fixed-table-size option copies/string termination and NULL-value clear rules.
+All seven cases pass, as does the full 275-test tool suite. GCC permissive mode
+is used only in this host harness to admit the original explicit 32-bit address
+casts on a 64-bit host. The fixtures stay within allocated arrays. These tests
+characterize host-observed logic and byte persistence; they do not prove native ABI,
+ingress safety, the complete ACK/timer handshake, or an exploitable packet.
+No game source, native build graph or selected provider changes for these tests.
+
+## Raw callback target audit and rejected reset-status probe
+
+The raw-callback audit now closes the inspected registration graph. IPv4 config
+0x803F8930 installs BSS table 0x805B4F84 with one entry; IPv6 config 0x803F87E0
+installs 0x805B38A0 with one entry. Their sole callers are protocol initialization.
+Initialization explicitly clears the active flags at 0x8040DE04/0x8040FFAC;
+receive dispatch requires the flag to equal one before loading callback words.
+No raw registration writer, concrete callback address or address-taking data
+edge was found in this DOL/source graph. The exposed UDP registration path
+creates/binds/connects a UDP entry and cannot populate either raw table. These
+are dormant library paths in the inspected graph, not proof of a canonical ABI
+for hypothetical providers or arbitrary external code writing their BSS.
+
+Separately, exhaustive native runtime-reset returns are only -1 or 0, and the
+sole wrapper consumer interprets signed 16-bit status. That supported one new,
+bounded shared `s16(void)` wrapper/header/caller probe without claiming the
+historical typedef. Source-quality review passed. Native validation rejected it:
+the wrapper gained a sign-extension instruction (four code bytes), while the
+caller retained its instruction body but grew its frame from 0x10 to 0x18.
+The original-DOL check failed. Fully restore the candidate rather than add
+padding, casts, compiler pragmas, change the underlying return type or rewrite
+counter lifetimes to compensate. The reset-status mismatch remains documented.
+
+The restoration build reproduces original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Dispatcher, startup caller, runtime
+and packet-runtime complete objects are byte-identical to their saved versions,
+including relocations; independent review verifies restoration. Main
+`79768ce7d` adds only Moja documentation to validated native main `1a18b4bd7`.
+The documentation merge is published; prior native validation remains scoped to
+unchanged source/configuration inputs, with no old receipt relabeled as a new
+build. Keep draft and the metadata restriction. Any DHCP hardening remains a
+separate behavior-changing project, not an exact-match repair.
