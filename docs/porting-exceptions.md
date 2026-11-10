@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (network runtime recovery on main `fe6cdb141`, 2026-11-09)
+## Summary (dispatcher extraction from main `387621104`, 2026-11-09)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after network runtime recovery on main `fe6cdb141` (2026-11-09). Assembly is counted as source lines;
+after dispatcher extraction from main `387621104` (2026-11-09). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,772 | 876 |
-| Per-unit compiler overrides in `configure.py` | 176 | 176 |
+| CodeWarrior pragmas (excluding push/pop) | 5,774 | 878 |
+| Per-unit compiler overrides in `configure.py` | 178 | 178 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -158,6 +158,13 @@ small float differences without FMA).
 | File | Scope | What remains | Port should |
 |---|---|---|---|
 | `src/pso/unk/text_80421620.cpp` | DHCP timer/request/discovery and previously exact code now linked | Provisional class wrappers on packet buffers, fixed reply/options offsets, 32-bit pointer/callback words, native byte-order and volatile-state assumptions; existing optimizer steering and release-frame padding. The new callback header makes callback declarations consistent. See [evidence](evidence/dhcp-focused-recovery.md). | Use shared typed packet/state definitions, explicit byte order and length checks, pointer-sized handles and appropriate synchronization; remove optimizer-only constraints. |
+
+### Dispatcher extraction using upstream #213/#215 boundaries
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/network/NetworkDispatcher.cpp` | All 12 dispatcher functions | Four existing pragma lines (`opt_common_subs on` x3, `pool_data off` x1), inherited `-opt nocse`, overlapping reset/shutdown/handler views, 32-bit handles and provisional `TLobby`/`TUdpSocket` wrappers | Extracts the fork's already-exact dispatcher and its 248-byte BSS so it can link. The bounded legacy interface debt and source/link evidence are recorded in [upstream-dispatcher.md](evidence/upstream-dispatcher.md). | Remove compiler-only steering, consolidate the state views and use explicit dispatcher/OS interfaces with portable handle types. |
+| `src/pso/network/TcpProtocol.cpp` | Extracted TCP range; still unlinked | Inherited `-opt nocse`; 24 moved pragma lines plus explicit `dont_inline off` and `inline_depth(4)` that previously carried into this range from earlier source | Without the ambient settings, timer callbacks `8041A3CC` / `8041A5B4` have different stack frames and `8041D584` no longer inlines its segment-removal helper. Scores are 99.78432%, 99.916664% and 65.69705%; restoring the settings retains all 40 previously exact TCP functions. Existing raw views, local ABI redeclarations and provisional members remain unresolved. | Remove compiler steering; unify TCP layouts and callback/status interfaces. This extraction does not claim the five still-unmatched TCP functions as recovered. |
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
