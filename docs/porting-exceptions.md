@@ -182,7 +182,7 @@ small float differences without FMA).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-167 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+168 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -198,6 +198,19 @@ use their own compiler versions as recorded there.
 Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
+
+### `pso/unk/text_80049FD8.cpp` and the Vol Opt debris initializer
+
+GC/2.0 interleaves the BML resource and model-table loads with the final
+load and store of the initializer copy. It loads all three
+position components before storing them. GC/2.6 groups the copy tail and
+interleaves the position loads and stores. The same GC/2.0 aggregate pattern
+is used for debris in `TOExplosiveMachine.cpp` and `TOTrapAncient01.cpp`.
+
+The local initializer emits the 76-byte template at `0x80436748`. The
+original relocations to this template come from `fn_80049FD8`, and the split
+maps it to the compiler's local `@13` symbol. Ports can use the default
+compiler.
 
 ### `pso/misc/TLobby_8001EF5C.cpp`: `-inline on`
 
