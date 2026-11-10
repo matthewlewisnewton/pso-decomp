@@ -7820,21 +7820,13 @@ pso/unk/text_8022BE64.cpp:
 	.rodata     start:0x8044CDF0 end:0x8044CDF8
 	.data       start:0x804CC148 end:0x804CC170
 
-pso/misc/TTecCtrl_8022C444.cpp:
-	.text       start:0x8022C444 end:0x8022C6C4
-	.rodata     start:0x8044D078 end:0x8044D080
-
-pso/player/TObjPlayer_8022C6C4.cpp:
-	.text       start:0x8022C6C4 end:0x8022DBC0
-	.data       start:0x804CC510 end:0x804CC6F0
-
 pso/misc/TTecCtrl.cpp:
-	.text       start:0x8022DBC0 end:0x8022F164
-
-pso/unk/text_8022F164.cpp:
-	.text       start:0x8022F164 end:0x8022F1C0
+	.text       start:0x8022C444 end:0x8022F1C0
 	.ctors      start:0x80433FB0 end:0x80433FB4
+	.rodata     start:0x8044D078 end:0x8044D088
+	.data       start:0x804CC510 end:0x804CC73C
 	.bss        start:0x80515F90 end:0x80516140
+	.sdata2     start:0x805DC7D0 end:0x805DC7EC
 
 pso/item/TItemEquipBase_8022F1C0.cpp:
 	.text       start:0x8022F1C0 end:0x8022F258
@@ -8631,14 +8623,11 @@ pso/misc/TWindowKeyBoardHard_8026038C.cpp:
 	.text       start:0x8026038C end:0x80260450
 
 pso/misc/TKeyBoardControl.cpp:
-	.text       start:0x80260450 end:0x8026262C
+	.text       start:0x80260450 end:0x802627D8
 	.rodata     start:0x8044F110 end:0x8044F268
 	.data       start:0x804CFDE0 end:0x804D0004
 	.sbss       start:0x805D6458 end:0x805D6460
-	.sdata2     start:0x805DD078 end:0x805DD0C8
-
-pso/misc/TWindowKeyBoardSoft_80261440.cpp:
-	.text       start:0x8026262C end:0x802627D8
+	.sdata2     start:0x805DD078 end:0x805DD0D8
 
 pso/misc/TWindowSubMag_802627D8.cpp:
 	.text       start:0x802627D8 end:0x802628C0

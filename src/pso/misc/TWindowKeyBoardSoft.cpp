@@ -30,8 +30,8 @@ extern "C" {
 s32 strnlen__19TWindowKeyBoardSoftFPScUl(void *, u32);
 s32 strncpy(s32 *, u8 *, s32);
 void set_glyph_quad_extents(u8, void *);
-s32 map_char_to_font_code(u16);
-u8 get_font_char_advance(s32);
+u16 map_char_to_font_code(u16 code);
+u8 get_font_char_advance(u16);
 void apply_context_transform_to_rect(void *, void *);
 extern u32 lbl_804CFA84[];
 extern const f32 lbl_805DD048;
@@ -112,7 +112,7 @@ struct Quad_8025E350 {
     f32 uv[4];
 };
 
-u8 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(s32, void *, s32);
+u8 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(u16 glyph, void *quad, s32 color);
 s32 end_render_forward__20TWindowSubStatusDispFPv();
 s32 fn_8025CE00(void *, u8 *);
 void TWindowKeyBoardSoft__sub_8025CF50(void *, int, int);
@@ -909,7 +909,7 @@ void TWindowKeyBoardBase::draw_wrapped_text(void *arg1, void *arg2) {
 void TWindowSubStatusDisp__sub_8025E530(TWindowKeyBoardBase *self, TWindowKeyBoardSoft *box, f32 *cursor, u16 *text, u32 count, s32 scaled) {
     Quad_8025E350 q;
     f32 depth;
-    s32 code;
+    u16 code;
     u16 ch;
     u8 adv;
 
