@@ -162,3 +162,13 @@ data/address loss. The new five exact functions, 4680 matched / 12532 linked
 code and 2960 matched / 4116 linked data bytes versus the previous focused head
 belong to upstream. Strict raw data, exact-data and linked-data ranges introduce
 no additional loss. Existing lifetime and historical coverage qualifications stay.
+
+The subsequent integration uses main `baa0b4e482921446c794fcbb2ccb798d2d05a7fa`
+and merged quest-download recovery #366. All fifteen incoming path patches and
+the focused source/configuration delta remain intact. Clean-main and focused gated
+builds retain the original DOL. The upstream change adds one exact function and
+876 matched code bytes, with no linked-code/data gain; partial quest routines
+keep their original provider and qualifications. Focused acceptance retains 3600
+exact linked units, retention18403, the same +600 matched / +728 linked code
+contribution and zero new strict raw/exact/linked data-range loss. No lifetime or
+historical coverage qualification changes.
