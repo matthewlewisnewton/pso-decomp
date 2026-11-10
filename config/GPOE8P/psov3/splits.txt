@@ -1128,7 +1128,7 @@ pso/misc/TQuestVmDownLoadServer_8007EBDC.cpp:
 
 pso/unk/text_8007ECF0.cpp:
 	.text       start:0x8007ECF0 end:0x8007F4B8
-	.rodata     start:0x80438AC8 end:0x80438AE0
+	.rodata     start:0x80438A98 end:0x80438AF8
 	.sdata2     start:0x805D9298 end:0x805D92C0
 
 pso/unk/text_8007F4B8.cpp:
@@ -10103,9 +10103,6 @@ pso/object/LobbyPigeonPath.cpp:
 	.rodata     start:0x80471968 end:0x80471978
 	.sdata2     start:0x805DE4F8 end:0x805DE528
 
-pso/ui/TAdMultiPlyChrSelectGC_literals.s:
-	.sdata2     start:0x805DE560 end:0x805DE580
-
 pso/ui/TAdStorySelectGC_802C3284.cpp:
 	.text       start:0x802C3284 end:0x802C367C
 	.data       start:0x804E0A00 end:0x804E0A18
@@ -10130,7 +10127,12 @@ pso/player/TObjPlayer_802C422C.cpp:
 
 pso/ui/TAdSelectGameModeGC_802C4748.cpp:
 	.text       start:0x802C4748 end:0x802C4CA0
+	.rodata     start:0x80471A78 end:0x80471A80
 	.data       start:0x804E0A18 end:0x804E0A30
+	.sdata2     start:0x805DE540 end:0x805DE548
+
+pso/ui/TAdMultiPlyChrSelectGC_literals.s:
+	.sdata2     start:0x805DE560 end:0x805DE580
 
 pso/menu/TAdPlyChrSelPlateGC_802C4CA0.cpp:
 	.text       start:0x802C4CA0 end:0x802C4FE8

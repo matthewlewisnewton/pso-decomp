@@ -5,6 +5,13 @@
 #include "pso/unk/text_8007ECF0.h"
 #include "pso/misc/TDLGraph.h"
 #include "pso/TObjWarpString.h"
+#include "pso/misc/TLobby_801E2F94.h"
+#include "pso/TObjCMHairMenu.h"
+
+#include <stdio.h>
+
+typedef ColorLineVertex GraphPoint;
+typedef ColorLineList GraphFan;
 
 struct E_8007F3F8 { s32 a; f32 f; };
 
@@ -23,17 +30,27 @@ struct Obj_8007F0E4 {
 };
 
 s32 fn_8007F4B8(void *, s32, f32);
-int sprintf(s8 *, const char *, ...);
 
+extern const GraphFan lbl_80438AB4;
+extern const f32 lbl_805D92A8, lbl_805D92B4, lbl_805D92B8;
 extern const char lbl_80438AD8[];
-extern char lbl_80438AE0[];
-extern char lbl_80438AEC[];
+extern const char lbl_80438AE0[];
+extern const char lbl_80438AEC[];
 extern const f32 lbl_805D9298;
 extern const f32 lbl_805D929C;
 extern const f32 lbl_805D92A0;
 extern const f32 lbl_805D92A4;
 extern const f32 lbl_805D92AC;
 extern const f32 lbl_805D92B0;
+
+namespace GraphTemplateData {
+extern "C" {
+__declspec(section ".rodata") extern const char TDLGraph__class_name_string[] = "TDLGraph";
+__declspec(section ".rodata") extern const GraphPoint lbl_80438AA4 = { 473.0f, 440.0f };
+__declspec(section ".rodata") extern const GraphPoint lbl_80438AAC = { 142.0f, 8.0f };
+__declspec(section ".rodata") extern const GraphFan lbl_80438AB4 = { 0, 0, 0, 4 };
+}
+}
 
 #pragma push
 #pragma opt_common_subs off
@@ -85,43 +102,58 @@ void fn_8007ECF0(u8 *arg0, s32 arg1, s32 arg2) {
 }
 #pragma pop
 
-s32 draw_outlined_string_right_aligned__14TObjWarpStringFPviiPv(void *arg0, s32 x0, s32 y0, s8 *str) {
+// The separate C-linkage scope keeps later reads from folding into duplicate
+// compiler literals while retaining the original exported pool symbols.
+namespace GraphConstants {
+extern "C" {
+__declspec(section ".sdata2") extern const f32 lbl_805D9298 = 0.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805D929C = 1.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805D92A0 = 30.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805D92A4 = 1800.0f;
+}
+}
+
+void draw_outlined_string_right_aligned__14TObjWarpStringFPviiPv(void *, s32 x0, s32 y0, char *str) {
     f32 x;
     f32 y;
     f32 xr;
     f32 yb;
 
-    x = (f32)(u32)(x0 - calc_text_width((char *)str));
+    x = (f32)(u32)(x0 - calc_text_width(str));
     y = (f32)y0;
-    draw_menu_text(x - 2.0f, y - 2.0f, (const char *)str, 0xFF000000);
-    draw_menu_text(x, y - 2.0f, (const char *)str, 0xFF000000);
+    draw_menu_text(x - 2.0f, y - 2.0f, str, 0xFF000000);
+    draw_menu_text(x, y - 2.0f, str, 0xFF000000);
     xr = 2.0f + x;
-    draw_menu_text(xr, y - 2.0f, (const char *)str, 0xFF000000);
-    draw_menu_text(x - 2.0f, y, (const char *)str, 0xFF000000);
-    draw_menu_text(xr, y, (const char *)str, 0xFF000000);
+    draw_menu_text(xr, y - 2.0f, str, 0xFF000000);
+    draw_menu_text(x - 2.0f, y, str, 0xFF000000);
+    draw_menu_text(xr, y, str, 0xFF000000);
     yb = 2.0f + y;
-    draw_menu_text(x - 2.0f, yb, (const char *)str, 0xFF000000);
-    draw_menu_text(x, yb, (const char *)str, 0xFF000000);
-    draw_menu_text(xr, yb, (const char *)str, 0xFF000000);
-    draw_menu_text(x, y, (const char *)str, 0xFFFFFFFF);
+    draw_menu_text(x - 2.0f, yb, str, 0xFF000000);
+    draw_menu_text(x, yb, str, 0xFF000000);
+    draw_menu_text(xr, yb, str, 0xFF000000);
+    draw_menu_text(x, y, str, 0xFFFFFFFF);
 }
 
 void TDLGraph::draw_percent_text(f32 farg0, f32 farg1) {
-    s8 sp8;
+    char text[8];
     s32 var_r5;
 
     if (this->m_20 & 2) {
-        sp8 = 0;
-        var_r5 = (s32) (lbl_805D92AC * *(f32 *)&this->_pad1C);
+        text[0] = '\0';
+        var_r5 = (s32) (lbl_805D92AC * this->progress);
         if (var_r5 < 0) {
             var_r5 = 0;
         } else if (var_r5 > 0x64) {
             var_r5 = 0x64;
         }
-        sprintf(&sp8, lbl_80438AD8, var_r5);
-        draw_outlined_string_right_aligned__14TObjWarpStringFPviiPv(this, (s32) farg0, (s32) farg1, &sp8);
+        sprintf(text, lbl_80438AD8, var_r5);
+        draw_outlined_string_right_aligned__14TObjWarpStringFPviiPv(this, (s32) farg0, (s32) farg1, text);
     }
 }
+
+__declspec(section ".sdata2") extern const f32 lbl_805D92AC = 100.0f;
+
+__declspec(section ".rodata") extern const char lbl_80438AD8[] = "%3d%";
 
 void TDLGraph::draw_countdown_timer(f32 x, f32 y) {
     Obj_8007F0E4 *self = (Obj_8007F0E4 *)this;
@@ -145,12 +177,12 @@ void TDLGraph::draw_countdown_timer(f32 x, f32 y) {
     secs = (t / 30) % 60;
     frac = (t % 30) / 3;
     if (mins > 0) {
-        ((int (*)(char *, const char *, ...))sprintf)(buf, lbl_80438AE0, mins, secs, frac);
+        sprintf(buf, lbl_80438AE0, mins, secs, frac);
     } else {
-        ((int (*)(char *, const char *, ...))sprintf)(buf, lbl_80438AEC, secs, frac);
+        sprintf(buf, lbl_80438AEC, secs, frac);
     }
-    ((s32 (*)(void *, s32, s32, char *))draw_outlined_string_right_aligned__14TObjWarpStringFPviiPv)(self, (s32)x, (s32)y, buf);
-    if (self->f30 > 0 && self->f24 - self->f30 > 0x4B && self->f1C > lbl_805D92B0) {
+    draw_outlined_string_right_aligned__14TObjWarpStringFPviiPv(self, (s32)x, (s32)y, buf);
+    if (self->f30 > 0 && self->f24 - self->f30 > 0x4B && self->f1C > 1e-5f) {
         k = lbl_805D929C;
         r = k / self->f1C;
         r -= k;
@@ -164,6 +196,41 @@ void TDLGraph::draw_countdown_timer(f32 x, f32 y) {
         self->time--;
     }
 }
+
+__declspec(section ".rodata") extern const char lbl_80438AE0[] ATTRIBUTE_ALIGN(4) = "%d\"%02d.%d ";
+
+#pragma push
+#pragma fp_contract on
+void fn_8007F27C(TDLGraph *graph, const GraphPoint *position, const GraphPoint *size) {
+    GraphPoint vertices[4];
+    u32 colors[4];
+    GraphFan fan = lbl_80438AB4;
+    const f32 margin = 2.0f;
+    fan.verts = vertices;
+    fan.colors = colors;
+    colors[0] = colors[1] = colors[2] = colors[3] = 0xff;
+    vertices[0].x = vertices[3].x = position->x - margin;
+    vertices[1].x = vertices[2].x = margin + (position->x + size->x);
+    vertices[0].y = vertices[1].y = position->y - margin;
+    vertices[2].y = vertices[3].y = margin + (position->y + size->y);
+    ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 2, -2.0f);
+
+    colors[0] = colors[1] = colors[2] = colors[3] = graph->bar_color;
+    vertices[0].x = vertices[3].x = position->x;
+    vertices[1].x = vertices[2].x = size->x * graph->progress + position->x;
+    vertices[0].y = vertices[1].y = position->y;
+    vertices[2].y = vertices[3].y = size->y + position->y;
+    ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 2, lbl_805D92B8);
+
+    colors[0] = colors[1] = colors[2] = colors[3] = graph->m_38;
+    vertices[0].x = vertices[3].x = size->x + position->x;
+    ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 2, lbl_805D92B8);
+}
+
+#pragma pop
+
+__declspec(section ".sdata2") extern const f32 lbl_805D92B8 = -1.0f;
+
 s32 fn_8007F3F8(O_8007F3F8 *arg0, f32 farg0) {
     f32 sum;
     f32 df;
@@ -172,7 +239,7 @@ s32 fn_8007F3F8(O_8007F3F8 *arg0, f32 farg0) {
     if (arg0->count < 9) {
         return -1;
     }
-    sum = 0.0f;
+    sum = lbl_805D9298;
     for (i = 0; i < 3; i++) {
         da = (f32)(arg0->e[i].a - arg0->e[i + 1].a);
         df = arg0->e[i].f - arg0->e[i + 1].f;
@@ -182,7 +249,10 @@ s32 fn_8007F3F8(O_8007F3F8 *arg0, f32 farg0) {
         sum += da / df;
     }
     sum /= 3.0f;
-    return (s32)((1.0f - farg0) * sum);
+    f32 remaining = lbl_805D929C - farg0;
+    return (s32)(remaining * sum);
 }
+
+__declspec(section ".rodata") extern const char lbl_80438AEC[] = "%d.%d ";
 
 }
