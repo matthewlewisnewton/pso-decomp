@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,692 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,693 | 879 |
 | Per-unit compiler overrides in `configure.py` | 192 | 192 |
 | Approved regressions | 0 | 0 |
 
@@ -96,6 +96,15 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
+The character-creation shape coefficient function in
+`src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp` uses a scoped
+`opt_propagation off` and ordered scalar declarations to preserve the original
+GC/2.6 register allocation. The two recovered blending bodies use the existing
+`fp_contract on` scope for fused arithmetic. Ports may drop the propagation
+pragma and declaration-order constraint; retain fused operations when original
+rounding is required. See [shape blending evidence](evidence/creation-shape-blending.md).
+
+
 The download graph unit uses a scoped `fp_contract on` for the filled edge in
 `fn_8007F27C`. Its section declarations and one four-byte string alignment
 preserve the graph's exported constants and format strings. See
@@ -108,9 +117,9 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,692 pragmas in 879 files; per-file table in the generated file. Main kinds:
+5,693 pragmas in 879 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802,
-`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 241,
+`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 242,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.

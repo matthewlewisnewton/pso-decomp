@@ -1,6 +1,7 @@
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/render/render_util.h"
 #include "pso/misc/CharacterAppearanceTables.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/BmlResource.h"
@@ -32,7 +33,9 @@ s32 find_shape_triangle_region(u8 *arg0);
 TChCrLoadAfsTextureReq *create_ch_cr_load_afs_texture_req(void *figure, void *list, void *slot, void *index);
 extern "C" {
 void calc_shape_region_coefficients(void *point);
-void blend_shape_chunk_vertices(void);
+s32 blend_shape_chunk_vertices(void);
+f32 vector_length(const Vec *);
+f32 normalize_vector(Vec *);
 }
 struct CreationShapeModel { u8 pad[8]; f32 center[3]; };
 struct CreationShapeNode { u32 eval_flags; CreationShapeModel *model; f32 pos[3]; s32 ang[3]; f32 scl[3]; };
@@ -54,6 +57,7 @@ CreationModelPart creation_hair_model_parts[10];
 CreationModelPart creation_cap_model_parts[10];
 CreationModelPart creation_head_model_parts[5];
 __declspec(section ".data") u32 creation_models_ready;
+extern "C" { s32 creation_resource_ready_state; }
 #pragma common reset
 extern "C" {
 s32 is_entry_equal__23TAdSinglePlyChrSelectGCFPvPv(void *, void *);
@@ -309,59 +313,12 @@ extern "C" {
 void TCharaMaking__bind_head_shape_nodes(CharacterAppearanceFields *appearance, void *model);
 void TCharaMaking__bind_body_shape_nodes(CharacterAppearanceFields *appearance, void *model);
 void *TCMCharacter__ct(void *arg0, void *arg1);
-extern void* creation_region_sample_index_table[24]; extern void* lbl_804D400C[18]; extern void* lbl_804D4054[21];
-#define creation_region_sample_index_table ((s32 *)creation_region_sample_index_table)
+extern s32 creation_region_sample_index_table[24];
+extern CreationShapePoint lbl_804D400C[9];
+extern void* lbl_804D4054[21];
 #define lbl_804D4054 ((s32 *)lbl_804D4054)
+// Deferred emission reverses definitions; retain original object address order.
 #pragma defer_codegen on
-}
-
-void TCMCharacter::reset_model_parts() {
-    for (s32 i = 0; i < 10; i++) {
-        creation_hair_model_parts[i].present = creation_cap_model_parts[i].present = 0;
-    }
-    for (s32 i = 0; i < 5; i++) {
-        creation_head_model_parts[i].present = 0;
-    }
-    creation_models_ready = 0;
-}
-
-s32 TCMCharacter::bind_model_parts(u32 *selected, const char **names, CreationModelPart *parts,
-                                 s32 part, s32 model_index) {
-    *selected = 0;
-    if (names == NULL) {
-        return model_index;
-    }
-    CharacterAppearanceFields *appearance = (CharacterAppearanceFields *)creation_player_character;
-    s32 count = class_appearance_table[((TCharaMaking *)creation_player_character)->get_display_index()].counts[part];
-    if (count == 0) {
-        count = 1;
-    }
-    s32 i = 0;
-    while (i < count) {
-        if (*names == NULL) {
-            parts->present = 0;
-            parts->model = 0;
-        } else {
-            parts->present = 1;
-            parts->model = get_bml_model((BmlResource *)chara_select_preview_resource, model_index++);
-        }
-        i++;
-        names++;
-        parts++;
-    }
-    chara_select_head_node = parts[(&appearance->costume)[part]].model;
-    return model_index;
-}
-
-void TCMCharacter::load_model_parts() {
-    TCharaMaking *appearance = (TCharaMaking *)creation_player_character;
-    CharacterClassAppearance *entry = &class_appearance_table[((TCharaMaking *)creation_player_character)->get_display_index()];
-    creation_models_ready = 1;
-    model = (void *)get_bml_model((BmlResource *)chara_select_preview_resource, 0);
-    s32 next = bind_model_parts(&chara_select_hair_node_b, entry->capModels, creation_cap_model_parts, 4, 1);
-    next = bind_model_parts(&chara_select_hair_node_a, entry->hairModels, creation_hair_model_parts, 4, next);
-    bind_model_parts(&chara_select_head_node, entry->headModels, creation_head_model_parts, 3, next);
-    appearance->get_display_index();
 }
 
 extern "C" {
@@ -449,6 +406,55 @@ void TAdSinglePlyChrSelectGC::init_entry_tables(void* _w0) {
         TAdSinglePlyChrSelectGC__sub_80290884(&creation_head_model_parts[i], &lbl_80451CD0);
     }
 }
+void TCMCharacter::load_model_parts() {
+    TCharaMaking *appearance = (TCharaMaking *)creation_player_character;
+    CharacterClassAppearance *entry = &class_appearance_table[((TCharaMaking *)creation_player_character)->get_display_index()];
+    creation_models_ready = 1;
+    model = (void *)get_bml_model((BmlResource *)chara_select_preview_resource, 0);
+    s32 next = bind_model_parts(&chara_select_hair_node_b, entry->capModels, creation_cap_model_parts, 4, 1);
+    next = bind_model_parts(&chara_select_hair_node_a, entry->hairModels, creation_hair_model_parts, 4, next);
+    bind_model_parts(&chara_select_head_node, entry->headModels, creation_head_model_parts, 3, next);
+    appearance->get_display_index();
+}
+
+s32 TCMCharacter::bind_model_parts(u32 *selected, const char **names, CreationModelPart *parts,
+                                 s32 part, s32 model_index) {
+    *selected = 0;
+    if (names == NULL) {
+        return model_index;
+    }
+    CharacterAppearanceFields *appearance = (CharacterAppearanceFields *)creation_player_character;
+    s32 count = class_appearance_table[((TCharaMaking *)creation_player_character)->get_display_index()].counts[part];
+    if (count == 0) {
+        count = 1;
+    }
+    s32 i = 0;
+    while (i < count) {
+        if (*names == NULL) {
+            parts->present = 0;
+            parts->model = 0;
+        } else {
+            parts->present = 1;
+            parts->model = get_bml_model((BmlResource *)chara_select_preview_resource, model_index++);
+        }
+        i++;
+        names++;
+        parts++;
+    }
+    chara_select_head_node = parts[(&appearance->costume)[part]].model;
+    return model_index;
+}
+
+void TCMCharacter::reset_model_parts() {
+    for (s32 i = 0; i < 10; i++) {
+        creation_hair_model_parts[i].present = creation_cap_model_parts[i].present = 0;
+    }
+    for (s32 i = 0; i < 5; i++) {
+        creation_head_model_parts[i].present = 0;
+    }
+    creation_models_ready = 0;
+}
+
 u8 TAdSinglePlyChrSelectGC::is_active() {
     return (u8) (char_select_active_flag == 1);
 }
@@ -573,23 +579,16 @@ void TCMCharacter::run_task() {
     (this->*modes[char_select_active_flag])();
 }
 
-#undef creation_region_sample_index_table
 #undef lbl_804D4054
 
-void *creation_region_sample_index_table[24] = {
-    (void *)0x1, (void *)0x3, (void *)0x0, (void *)0x0,
-    (void *)0x4, (void *)0x3, (void *)0x3, (void *)0x5,
-    (void *)0x4, (void *)0x1, (void *)0x3, (void *)0x2,
-    (void *)0x2, (void *)0x6, (void *)0x3, (void *)0x3,
-    (void *)0x5, (void *)0x6, (void *)0x2, (void *)0x6,
-    (void *)0x7, (void *)0x8, (void *)0x7, (void *)0x2,
+s32 creation_region_sample_index_table[24] = {
+    1, 3, 0, 0, 4, 3, 3, 5, 4, 1, 3, 2,
+    2, 6, 3, 3, 5, 6, 2, 6, 7, 8, 7, 2,
 };
-void *lbl_804D400C[18] = {
-    (void *)0x0, (void *)0x0, (void *)0x3eaaaaab, (void *)0x0,
-    (void *)0x3f2aaaab, (void *)0x0, (void *)0x3eaaaaab, (void *)0x3f000000,
-    (void *)0x0, (void *)0x3f800000, (void *)0x3eaaaaab, (void *)0x3f800000,
-    (void *)0x3f2aaaab, (void *)0x3f800000, (void *)0x3f800000, (void *)0x3f800000,
-    (void *)0x3f800000, (void *)0x0,
+CreationShapePoint lbl_804D400C[9] = {
+    {0.0f, 0.0f}, {1.0f / 3.0f, 0.0f}, {2.0f / 3.0f, 0.0f},
+    {1.0f / 3.0f, 0.5f}, {0.0f, 1.0f}, {1.0f / 3.0f, 1.0f},
+    {2.0f / 3.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
 };
 void *lbl_804D4054[21] = {
     (void *)0x0, (void *)0x0, (void *)&TAdSinglePlyChrSelectGC__sub_802908CC, (void *)&run_task__12TCMCharacterFv,
@@ -600,7 +599,6 @@ void *lbl_804D4054[21] = {
     (void *)0x0,
 };
 
-#define creation_region_sample_index_table ((s32 *)creation_region_sample_index_table)
 #define lbl_804D4054 ((s32 *)lbl_804D4054)
 
 void TCMCharacter::apply_character_appearance() {
@@ -808,10 +806,122 @@ void TAdSinglePlyChrSelectGC::get_sorted_region_samples(s32 *samples) {
 }
 #pragma push
 #pragma fp_contract on
+#pragma push
+#pragma opt_propagation off
+// Keep these scalar live ranges and declaration order: GC/2.6 otherwise
+// changes the FPR allocation. See docs/evidence/creation-shape-blending.md.
+void calc_shape_region_coefficients(void *point) {
+    CreationShapePoint *p = (CreationShapePoint *)point;
+    s32 region = find_shape_triangle_region((u8 *)point);
+    creation_shape_blend.region = region;
+    s32 a = creation_region_sample_index_table[region * 3];
+    f32 px, x2, x0, py, y2, dx, sx, sy, wc, y1, y0, slope, dy, wb;
+
+    x0 = lbl_804D400C[a].width;
+    y0 = lbl_804D400C[a].height;
+    x2 = lbl_804D400C[creation_region_sample_index_table[region * 3 + 2]].width;
+    y2 = lbl_804D400C[creation_region_sample_index_table[region * 3 + 2]].height;
+    y1 = lbl_804D400C[creation_region_sample_index_table[region * 3 + 1]].height;
+    px = p->width;
+    py = p->height;
+    dx = px - x0;
+    sx = x2 - x0;
+    sy = y1 - y0;
+    slope = y2 - y0;
+    wc = dx / sx;
+    dy = py - y0;
+    wb = (dy - slope * wc) / sy;
+    creation_shape_blend.weights[2] = wc;
+    creation_shape_blend.weights[1] = wb;
+    creation_shape_blend.weights[0] = lbl_805DD944 - (wb + wc);
+}
+#pragma pop
+
 s32 clear_creation_shape_eval_masks(f32 *dst, const f32 *a, const f32 *b, const f32 *c) {
     s32 i;
     for (i = 0; i < 3; i++) {
         *dst++ = creation_shape_blend.weights[2] * *c++ + (creation_shape_blend.weights[0] * *a++ + creation_shape_blend.weights[1] * *b++);
+    }
+    return 1;
+}
+
+s32 TAdSinglePlyChrSelectGC::map_button_code(s32 arg0) {
+    switch (arg0) {
+    case 0x29:
+        return 3;
+    case 0x2C:
+        return 4;
+    case 0xFF:
+        return -1;
+    default:
+        return -2;
+    }
+}
+
+s32 blend_shape_chunk_vertices(void) {
+    CreationModelNodeState *state = creation_shape_blend.destination;
+    // The original retains this three-iteration counted loop.
+    for (s32 i = 0; i < 3; i++) {
+    }
+    u32 *a, *b, *c, *dst;
+    dst = (u32 *)((NJS_CNK_MODEL *)((NJS_OBJECT *)state->node)->model)->vertex_list;
+    a = (u32 *)((NJS_CNK_MODEL *)((NJS_OBJECT *)creation_shape_blend.sources[0]->node)->model)->vertex_list;
+    b = (u32 *)((NJS_CNK_MODEL *)((NJS_OBJECT *)creation_shape_blend.sources[1]->node)->model)->vertex_list;
+    c = (u32 *)((NJS_CNK_MODEL *)((NJS_OBJECT *)creation_shape_blend.sources[2]->node)->model)->vertex_list;
+    for (s32 chunks = 1000; chunks > 0; chunks--) {
+        s32 extra = TAdSinglePlyChrSelectGC::map_button_code(*dst & 0xFF);
+        if (extra < 0) {
+            break;
+        }
+        s32 count = dst[1] >> 16;
+        dst += 2;
+        a += 2;
+        b += 2;
+        c += 2;
+        for (; count > 0; count--) {
+            for (s32 i = 3; i > 0; i--) {
+                *dst++ = f32_bits(creation_shape_blend.weights[2] * bits_to_f32(*c++) +
+                    (creation_shape_blend.weights[0] * bits_to_f32(*a++) +
+                     creation_shape_blend.weights[1] * bits_to_f32(*b++)));
+            }
+            s32 remaining = extra;
+            if (remaining >= 3) {
+                Vec normal;
+                normal.x = creation_shape_blend.weights[2] * bits_to_f32(c[0]) +
+                    (creation_shape_blend.weights[0] * bits_to_f32(a[0]) + creation_shape_blend.weights[1] * bits_to_f32(b[0]));
+                normal.y = creation_shape_blend.weights[2] * bits_to_f32(c[1]) +
+                    (creation_shape_blend.weights[0] * bits_to_f32(a[1]) + creation_shape_blend.weights[1] * bits_to_f32(b[1]));
+                // Advance the three source cursors with the last component;
+                // this preserves their scheduling across the normalization calls.
+                normal.z = creation_shape_blend.weights[2] * bits_to_f32((c += 3)[-1]) +
+                    (creation_shape_blend.weights[0] * bits_to_f32((a += 3)[-1]) + creation_shape_blend.weights[1] * bits_to_f32((b += 3)[-1]));
+                if (lbl_805DD940 != vector_length(&normal)) {
+                    normalize_vector(&normal);
+                }
+                dst[0] = f32_bits(normal.x);
+                dst[1] = f32_bits(normal.y);
+                dst[2] = f32_bits(normal.z);
+                dst += 3;
+                remaining -= 3;
+            }
+            if (remaining >= 1) {
+                // Blend the upper-half weight, preserving the destination index.
+                f32 wa = (s32)(*a++ >> 16);
+                f32 wb = (s32)(*b++ >> 16);
+                f32 wc = (s32)(*c++ >> 16);
+                s32 weight = creation_shape_blend.weights[2] * wc +
+                    (creation_shape_blend.weights[0] * wa + creation_shape_blend.weights[1] * wb);
+                *dst = (*dst & 0xFFFF) | ((u32)weight << 16);
+                dst++;
+                remaining--;
+            }
+            if (remaining > 0) {
+                dst += remaining;
+                a += remaining;
+                b += remaining;
+                c += remaining;
+            }
+        }
     }
     return 1;
 }
@@ -901,18 +1011,6 @@ void blend_creation_proportion_shapes(void *point) {
 }
 #pragma pop
 
-s32 TAdSinglePlyChrSelectGC::map_button_code(s32 arg0) {
-    switch (arg0) {
-    case 0x29:
-        return 3;
-    case 0x2C:
-        return 4;
-    case 0xFF:
-        return -1;
-    default:
-        return -2;
-    }
-}
 s32 TAdSinglePlyChrSelectGC::count_remaining_slots() {
     CreationTextureCacheEntry *p;
     s32 n;
