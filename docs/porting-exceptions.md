@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,778 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,692 | 879 |
 | Per-unit compiler overrides in `configure.py` | 192 | 192 |
 | Approved regressions | 0 | 0 |
 
@@ -108,8 +108,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,779 pragmas in 879 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1142, `inline_depth` 1034, `fp_contract` 880, `auto_inline` 832,
+5,692 pragmas in 879 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802,
 `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 241,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
@@ -166,6 +166,22 @@ two records. Other builds use the ordinary aggregate copy in the same body.
 The unit's named effect and angle constants use CodeWarrior section placement
 to retain their `.rodata` and `.sdata2` addresses and direct relocations. A
 port can use ordinary constants and omit the section attributes and pragma.
+
+### Orbit particle update and constant tail
+
+`src/pso/misc/ParticleOrbit.cpp` scopes `fp_contract on` to
+`TUnk_8048E790::run_task` at `0x8008A080` for its fused orbit and color
+calculations. It places the final eight-byte `lbl_805D9550` scalar object
+in `.sdata2` with `__declspec(section)`; ordinary array placement changes
+the initializer addressing and layout. The native packed color is written
+through unsigned bytes of a live word. See
+[orbit particle recovery](evidence/orbit-particle-recovery.md) for the
+source alternatives, compiler tracing, and complete-object checks.
+
+Port should: drop the inlining and section annotations, preserve fused
+floating-point calculations where native rounding is required, and pack
+0xAARRGGBB explicitly on little-endian targets. No new optimizer steering
+pragma remains in this unit.
 
 ### Ground collision debug hook
 
