@@ -53,17 +53,8 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     s32 check_text_overflow(u16 *arg1);
     void reset_state();
     static s32 strnlen(s8 *str, u32 max);
-    void scale_point_about_pivot(f32 *q);
-    void set_open_tick(s32 arg1);
-    void set_bounds(f32 a, f32 b, f32 c, f32 d);
-    void shrink_clip_right();
-    void animate_scale();
     void adjust_pos_for_split_screen(s32 arg1);
-    static TWindowKeyBoardSoft *open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags);
-    static u32 get_or_create_instance();
-    static u32 free_singleton(u32 arg0, s16 arg1);
     static Vec2_8024EC34 *get_viewport_offset(int view);
-    u32 init_layout();
     s32 get_state();
     void update_input_state();
     void sub_8025B928();

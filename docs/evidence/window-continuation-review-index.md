@@ -223,6 +223,13 @@ compiler-control qualifications remain explicit.
 
 ## Current tried/blocked index
 
+The [draw-context owner repair](window-draw-context-owner.md) moves nine existing
+singleton/geometry operations from Soft keyboard labels to the actual 0x4C context.
+All six complete objects preserve payloads and targets after the documented export
+renames; the explicit animation receiver matches original. Raw singleton transport,
+remaining mixed Soft/composer/context views and actual Soft lifetime stay qualified.
+There is no metric gain or lifecycle-hold clearance.
+
 The [separate readiness assessment](window-continuation-readiness.md) distinguishes
 the focused partial PR from this broader continuation. The focused settings-helper
 repair is retained through all six native caller units without changing their

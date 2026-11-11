@@ -7400,7 +7400,7 @@ force_active:
   - init_kind_params__18TObjSeabedSuiso_CHFv
   - init_launch_angles__10TTecSlicerFPlPll
   - init_layout__17TWindowSubComCardFv
-  - init_layout__19TWindowKeyBoardSoftFv
+  - init_layout__18TWindowDrawContextFv
   - init_layout_constants__9TWindowDDFv
   - init_layout_entries__9TWindowDDFv
   - init_level_stats__14TObjEneDubchikFl

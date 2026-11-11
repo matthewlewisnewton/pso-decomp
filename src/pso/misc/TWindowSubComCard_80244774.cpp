@@ -148,7 +148,6 @@ Win_80244DFC * find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv(Win_80244DFC
 s32 sub_80246948__11TWindowBaseFv();
 int TWindowFukidasi__sub_8024695C(void *p);
 s32 TWindowCtrlMain__sub_8024CE24();
-s32 animate_scale__19TWindowKeyBoardSoftFv();
 s32 init_window_layout_entries(void *, int, int);
 s32 sub_8026CC28__11TWindowBaseFv();
 s32 resort_window_order__11TWindowBaseFv(void *);
@@ -302,11 +301,11 @@ void window_request_show(void *object) {
 }
 
 s32 TWindowBase::setup_window_draw_context(s32 arg1) {
-    TWindowKeyBoardSoft *window;
+    TWindowDrawContext *window;
     s32 var_r4;
-    window = TWindowKeyBoardSoft::open_singleton(&m_40, &m_48, (f32 *)arg1, m_54, m_2c);
+    window = TWindowDrawContext::open_singleton(&m_40, &m_48, (f32 *)arg1, m_54, m_2c);
     if (m_2c & 0x40) {
-        animate_scale__19TWindowKeyBoardSoftFv();
+        window->animate_scale();
     }
     if (m_2c & 0x80) {
         window->shrink_clip_right();
