@@ -622,6 +622,106 @@ authenticated call-site state or authorized runtime observation could settle
 those predicates; the current controlled runs cannot. All original providers,
 function extents and strict accounting holds remain in place.
 
+## Launch attachments and the read-wait scene roots
+
+The next bounded trace distinguishes the main task tree from the restricted
+traversal in `TLobby::run_frame`. The exact
+[main-task initializer](../../src/pso/object/TObject.cpp) creates the layer
+roots with `new TObject(this)`: they are siblings under the main task, not
+ancestors implied by the macro grouping names. The exact
+[read-wait frame](../../src/pso/misc/TLobby_800F9DA0.cpp) selects:
+
+| Traversal | Directly selected roots |
+|---|---|
+| Task updates | `tl_su`, `tl_camera`, `tl_07`, `tl_particle` |
+| Rendering | `tl_su`, `tl_07`, `tl_particle` |
+| Conditional updates/rendering | `tl_fade`, when its controller pointer is nonzero and its ancestry is not queued for destruction |
+
+It does not directly traverse `tl_00`, `tl_01`, `tl_03`, `tl_04`,
+`tl_particlemodel` or `tl_clipout`. This narrows the previous callback model;
+it does not establish the contents of any selected root at a retail launch.
+Platform/deferred-work calls around these traversals can also affect state.
+
+Known launch attachments are consistent with this separation:
+
+- The [mode-selection launch task](../../src/pso/misc/TWindowShortListCtrl_801A4FC0.cpp),
+  `TUnk_804C2298`, attaches to `tl_00`. Its
+  [state-8 task path](../../src/pso/unk/text_801A4D30.cpp) calls the selection
+  helper before advancing state and requesting the scene change. Its original
+  vtable at `0x804C2298` points to that task and an empty render method.
+- The [mode-scene factory](../../src/pso/ui/TAdMultiChgGameModeGC_8023EAC4.cpp)
+  passes `tl_01` to the trial-check constructor in case 22. The
+  [logo path](../../src/pso/misc/TLogo.cpp) passes its logo object as parent;
+  the inspected logo construction sites pass `tl_01` to that logo constructor.
+  Original constructor code forwards incoming r4 through the trial/warning
+  chain, and through the logo constructor, to the original TObject constructor.
+  Several reconstructed declarations omit that parameter, so these are
+  object/register-flow observations, not authentication of a new C++ interface.
+
+Thus these known construction paths do not place the launch task directly
+under a selected read-wait root. This helps exclude straightforward recursive
+redispatch of that same task through those attachments. It does not exclude
+other callers, reparenting, other children or arbitrary indirect entries.
+
+There is nevertheless a concrete compatible cache-writer path in the
+selected layers: [TEffect's constructor](../../src/pso/effect/TEffect.cpp)
+attaches to `tl_particle`; `TEffClitical` derives through that constructor.
+Its original vtable at `0x8048E2E8` selects the exact
+[`TEffClitical::render`](../../src/pso/effect/TEffClitical.cpp) at `0x80082308`,
+which calls `draw_chunk_object`. The
+[chunk traversal](../../src/pso/unk/text_803E2D70.cpp) supplies
+`draw_chunk_vertices_cached` as its model callback. This is a source/object
+path admitted by the selected root, conditional on a live effect node,
+render flags, resources and traversal conditions. No such node is observed
+at the modem launch. Cleanup routines exist, including deletion of layer
+children; their existence alone does not prove they dominate every launch or
+that callbacks cannot populate a selected layer afterwards.
+In particular, `delete_layer_children` clears `tl_07` and `tl_particle` but
+does not clear the selected persistent `tl_su` root. That one cleanup call
+therefore cannot by itself establish an empty set of read-wait tasks.
+
+The original traversal also exposes a useful flag distinction.
+`TObject::render_nodes` checks each **child's** `DISALLOW_RENDER` bit before
+dispatching that child and descending. It does not check the receiver root's
+own bit. Likewise `run_tasks` checks child update flags rather than the
+directly selected root's flags. Consequently, a root disabled in a normal
+main-tree pass is not by that fact excluded when `run_frame` calls its
+traversal directly. A child render-disable flag does prune its descendants.
+The separately checked fade-controller ancestry remains a real gate.
+
+The [scene-root probe](../../tools/probe_loader_scene_roots.py) executes the
+original frame, TObject constructors, traversals, empty virtual methods and
+fade gate over a deliberately synthetic TObject-only tree. Six independently
+checkable cases cover ordinary selection, root suspend/render flags, child
+render blocking, child update suspension, a present fade controller and a
+queued controller ancestor. The roots and children are attached by the
+original constructor, and virtual calls use its original TObject vtable.
+The controls assert the complete ordered update/render receiver lists.
+In particular, root flags `0x14` leave direct child dispatch unchanged,
+whereas child `0x10` removes rendering of that child and its grandchild.
+Inherited setup runs the prior size-getter/cache-setter binding controls;
+the scene phase then replaces the allowlist with its ten scene ranges and
+eight explicit platform boundaries. It performs no effect rendering or cache
+write during that phase. Its platform calls
+are explicit zero-return models, with the prior probe's stated ABI limits;
+they do not reconstruct a retail task tree or hardware behavior.
+
+With the same pinned private DOL and emulator dependency, reproduce with:
+
+```sh
+python3 tools/probe_loader_scene_roots.py --dol PRIVATE/PsoV3.dol --output build/scene-roots.json
+```
+
+The narrowed conclusion is that the known launcher attachments are outside
+the direct wait-frame traversal, while `tl_particle` admits a genuine
+cache-writing class path and root flags alone do not exclude it. Missing
+evidence is the selected layers' live children, child flags and resource/cache
+state at each launch, including effects of surrounding callbacks and cleanup.
+A useful next source trace is to test cleanup dominance, persistent `tl_su`
+tasks and constructors that can repopulate selected roots between scene entry
+and the read.
+The runtime header word and all restore-ownership holds remain unresolved.
+
 ## Comparison record and reproduction limits
 
 The historical comparison procedure is preserved at immutable commit
