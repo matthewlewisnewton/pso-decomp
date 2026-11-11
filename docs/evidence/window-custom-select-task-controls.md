@@ -133,3 +133,15 @@ loss.
 All 22 controls and the protected provider/preview checks replay successfully.
 There is no window/player/task source change or lifecycle hold clearance.
 Current receipts are in `pr403-refresh967/` and `pr403-main967` baseline files.
+
+The consolidated runtime/network main batch at
+`22d4a12036d094aad9d1bdb500be72907c1c85b4` is also integrated without conflicts.
+All nonshared incoming source blobs match main; none changes the inspected
+window/player/task-root code. Fresh main and combined gated builds pass in
+90.60 and 35.51 seconds with the original DOL. Acceptance passes against both
+main and prior B with 3611 exact linked units and 18821 retention names. Strict
+prior-B losses are empty; the same fourteen qualified tails remain against main
+without exact/linked loss. All original controls, Message/Palette identities,
+Parts/balloon qualifications and protected preview/remainder checks pass again.
+No local lifecycle source/profile experiment or hold clearance follows from this
+refresh. Current receipts are in `pr403-refresh22d/` and `pr403-main22d` files.

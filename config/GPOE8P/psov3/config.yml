@@ -6743,11 +6743,16 @@ force_active:
   - game_state_load
   - gather_player_contacts__10TObjPlayerFUlll
   - gba_joyboot_transfer_callback__Fll
+  - gcrna_aligned_audio_storage
+  - gcrna_audio_allocation
+  - gcrna_audio_buffer_count
   - gcrna_audio_buffers
   - gcrna_error_callback
   - gcrna_error_context
   - gcrna_error_text
+  - gcrna_init_count
   - gcrna_stream_callback
+  - gcrna_uses_caller_buffer
   - gcrna_version_pointer
   - gee_breakup_model
   - gee_cached_model_node
@@ -8845,6 +8850,8 @@ force_active:
   - lbl_805D7508
   - lbl_805D750C
   - lbl_805D75F0
+  - lbl_805D7688
+  - lbl_805D7694
   - lbl_805D7D3C
   - lbl_805D7DF0
   - lbl_805D7DF4
