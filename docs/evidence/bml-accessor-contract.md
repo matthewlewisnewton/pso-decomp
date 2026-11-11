@@ -130,3 +130,29 @@ Four changed consumers (`Boss7DeRolLeCBehavior`, `TBoss4Type1`,
 additional header-dependent objects (`TBoss2DeRolLe` and
 `TObjPlayer_801AF2F0`) also remain original-backed. Their compiled objects
 are compared too; a successful linked DOL alone would not validate them.
+
+### Refresh on pinned main
+
+Published head `ee2d8660d3719234fb3cbd34b05757f550a7f717` is preserved in
+history. Main `5bba9c44adebc1cfa019def85e1f39f6da340ef0` was merged without
+changing the BML source, header, test or symbol edits. The timer, speech-balloon
+and focused GuildWarning changes are inherited from main, not additional BML
+scope. Later main changes are not included in this validation.
+
+A separate authenticated clean-main build and the refreshed candidate both
+produce the original DOL SHA-1. The current-main comparison has zero losses
+or gains: 27,440 exact functions, 4,238,432 matched code bytes, 1,477,407 matched
+data bytes, 3,874,412 complete code bytes, 1,354,403 complete data bytes and
+3,608 linked units. Ordered providers remain 3,608 source / 1,338 fallback;
+retention regenerates unchanged at 18,602 entries. Exception inventory is
+unchanged. All 3,632 compiled objects and the 407 affected dependency-graph
+objects pass the same complete-section/symbol/relocation comparison,
+including section flags, with only the previously described label changes.
+
+The published-head comparison also passes address-based no-loss. Its gains
+of two exact functions, 1,400 matched code bytes, 212 matched data bytes and
+two linked units come from main, not this accessor extraction. The refreshed
+tooling suite (309 tests), build-capacity suite (29 tests), all four portable
+behavior executables and their address/undefined-behavior sanitizer builds
+pass again. The new validation worktree and its build outputs are frozen
+separately from the preserved previous refresh snapshot.
