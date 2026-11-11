@@ -183,6 +183,15 @@ reproduces all original owned sections and 80 normalized relocations. Word sourc
 profile, providers and metrics remain unchanged. This supplies a genuine native
 mechanism precedent, not Word-specific original profile evidence or activation.
 
+The [Word-specific profile audit and diagnostic](window-word-specific-context-control.md)
+find no native profile provenance in the bounded fork/upstream search. The one
+frozen-source deferred control defines the table early and completes the group,
+but leaves the raw initializer152 versus original148, owner668 versus664 and
+changed function order/actual table and ctors targets. All six other bodies and
+relative targets, raw data88 and five normalized data references remain exact.
+Timing is a contributor, not a sufficient repair. No source/profile or hold
+changes are activated, and no subsequent binding/order variant is attempted.
+
 ## Current tried/blocked index
 
 | Area | Established result | Remaining evidence / hold |
@@ -192,7 +201,7 @@ mechanism precedent, not Word-specific original profile evidence or activation.
 | Basic ComCard | Native constructor and exact native render body; coherent cleanup/table probe | Unknown trailing word ownership prevents regression-free activation; no padding/object invention or four-byte waiver |
 | ActionPalette | Native construction, exact retained methods and 352-byte typed layout recovery | Contiguous icon/light/table probe changed icon and two caller objects; still needs common UV/table/jump ownership and conversion-contract evidence |
 | DD renderer | Shared begin/forward/reset contracts established | 608-byte probe remains 37 words different; needs value-lifetime/quad evidence; original provider retained |
-| Word renderer/lifetime | Upstream exact 916-byte renderer and complete 3412-byte unit source-linked; native task/fields/raw reset preserved | Compiler trace identifies late table definition and incomplete pool group; needs independently justified source/profile evidence, with native lifetime and broader buffer/helper holds retained |
+| Word renderer/lifetime | Upstream exact 916-byte renderer and complete 3412-byte unit source-linked; native task/fields/raw reset preserved | Deferred diagnostic completes group but raw initializer remains152/148 and ordering fails; binding/lowering and native construction context remain unproved |
 | Nameplate | Ordinary reconstructed 800-byte body and helper evidence | Nonexact arithmetic/register result; original full provider retained |
 | ScrollBar / ChallengeResult / follower | Bounded native probes and contracts recorded | Constant-pool/data-base/producer differences; no repeated scheduling variants |
 | SymbolChat Parts | Existing exact compiled functions | Constant ownership prevents source linkage; original provider retained |

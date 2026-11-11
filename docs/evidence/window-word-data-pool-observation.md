@@ -127,3 +127,10 @@ Fish/Falz production profile defines its real table before function generation;
 the same-source immediate control defines it afterward and loses the three-object
 pool. This corroborates the mechanism without establishing Word's own original
 profile or authorizing a flag/source change.
+
+The later [Word-specific context audit/control](window-word-specific-context-control.md)
+finds no native Word profile provenance in the inspected history/upstream snapshot.
+One fixed-source deferred diagnostic makes the real table available and completes
+the group, but the raw initializer remains 152 versus148 bytes and function order
+changes. This confirms timing contributes to the frozen mismatch without proving
+sufficiency or qualifying activation. Binding/lowering remains unresolved.
