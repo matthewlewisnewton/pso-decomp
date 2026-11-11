@@ -6,6 +6,7 @@
 #include "pso/item/TItemData.h"
 #include "pso/system/Adxf.h"
 #include "pso/system/CvFsDeviceCallbacks.h"
+#include "pso/network/ExiSendCompletion.h"
 
 struct TItemList;
 
@@ -681,7 +682,7 @@ struct TLobby : public TObject {
     static void exi_write(s32 arg0, s32 arg1, s32 arg2);
     static void start_exi_dma_read(u16 arg0);
     static void start_exi_dma_write(s32 chan, void *ctx);
-    static void start_exi_send(s32 arg0, s32 arg1, s32 arg2);
+    static void start_exi_send(s32 arg0, s32 arg1, ExiSendCompletionCallback arg2);
     static s32 exi_start_send_dma(int, int);
     void copy_6_byte_config();
     void copy_mac_address();
