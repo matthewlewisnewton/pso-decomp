@@ -2036,3 +2036,12 @@ leaves every compiled object and the original DOL unchanged, with no-loss,
 retention and fourteen-test checks passing. All getter writes, diagnostic
 precedence, null handling and accepted-state zero results remain intact.
 Only that declaration is repaired; adjacent interfaces and all other holds stay.
+
+The separate [router-output audit](pr303-dhcp-router-output.md) keeps its unread
+first argument opaque and in place. Eight type-factor controls support the
+shared short-result/word-output declaration; a negative omitted-argument control
+changes native code, so that form is never a production candidate. The accepted
+signature-only repair leaves all 3,665 object hashes and the original DOL
+unchanged, with no-loss/retention/fourteen-test checks passing. Getter writes,
+diagnostics and zero results after active-state getter failure remain intact.
+The lease declaration and all adjacent/failed-probe/metadata holds are preserved.

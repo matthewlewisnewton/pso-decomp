@@ -70,6 +70,10 @@ extern "C" s32 TLobby__sub_80425288(s16 id, s16 len, void *value);
 // In active states the result stays zero even when option diagnostics are set.
 extern "C" s16 TLobby__sub_8042474C(s32 *lease, s32 *renew, s32 *rebind);
 
+// Copies one router word to an optional destination; arg0 remains opaque.
+// Active-state getter failure sets diagnostics while the result stays zero.
+extern "C" s16 TLobby__sub_8042489C(void *arg0, s32 *out);
+
 // Reply configuration writes one address, subnet-mask and broadcast word.
 extern "C" s16 TLobby__sub_80424D58(s16 iface, s32 arg1, s32 arg2, void *arg3,
                                    s32 *address, s32 *netmask, s32 *broadcast, s32 arg7);

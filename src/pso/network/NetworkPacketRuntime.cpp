@@ -216,7 +216,7 @@ s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out) {
     return 0;
 }
 
-s32 TLobby__sub_8042489C(void *, void *out) {
+s16 TLobby__sub_8042489C(void *, s32 *out) {
     lbl_805D7BA0 = 0;
     if (dhcp_state != 3 && dhcp_state != 4 && dhcp_state != 5) {
         lbl_805D7BA0 = 2;

@@ -154,7 +154,6 @@ struct Info_80146D7C {
 extern "C" {
 void fn_80147A60(int a0);
 s16 TLobby__sub_8042455C(void *);
-s16 TLobby__sub_8042489C(void *, void *);
 s16 validate_slot_buffers__6TLobbyFlPvPvPv(void *, void *, void *, void *);
 s16 TLobby__sub_80424E44(s16);
 extern s32 lbl_805D56E8;
