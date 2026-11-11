@@ -1,5 +1,61 @@
 # Technique dispatcher hit-test argument order (MWCC instruction scheduler)
 
+## Current status after the 2026-11-10 integration
+
+The local continuation merges fork main
+`08c178922fb8da57f44c2d9fc4efb5ebdecf05b4` into PR head
+`d38c8f913c2b6083ec79aefcc78e0703ebfd3515`; the integration commit is
+`5065ff0ed013677459087f02baf243ad5eef2da1`. The only conflict was the first
+include: both `TOBJECT_OUT_OF_LINE_HELPERS` and main's `BmlResource.h`
+include are retained, with the macro preceding the includes.
+
+The dispatcher is still 96.49123%, nine siblings are exact, and exact unit
+code is still 2,148/2,376 bytes. The unit remains unlinked. The PR stays
+draft until the dispatcher is exact; no partial-recovery completion or
+compiler/assembly exception is proposed.
+
+Fresh separate main and integrated-PR builds generated their own split
+objects and configuration from the local original inputs. Both full
+`ninja -j2` builds passed under the exclusive legacy build gate and produced
+DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The capacity wrapper's
+preparation audit rejected the newer generated `mwcc_post` rule; it was not
+modified or relabeled as a passing audit. The exclusive builds retained the
+shared gate for their entire invocation instead. The generated graph has no
+active `mwcc_post` edge; its small-data alignment edges use the existing
+reviewed `cw_comment_align.py` script.
+
+Against the fresh pinned-main report, `check_pr.py --no-build` passed:
+
+- Matched functions: 27,444 -> 27,444; exact code: 4,241,872 -> 4,241,872 bytes.
+- Matched data: 1,477,679 -> 1,477,679 bytes; complete code/data unchanged.
+- No lost address coverage, no regressions, and no new exact functions.
+- All 3,610 linked units remain exact; no new link candidates.
+- Retention: 18,650 entries, zero additions/removals or stale entries.
+- The porting-exception inventory and changed-line whitespace checks pass.
+
+A fresh private source-link diagnostic substituted only the KenkyuW source
+object in the actual ordered 4,944-input link command. It again differs in
+exactly the eight bytes at `0x802A44F0..0x802A44F7`, with diagnostic DOL
+SHA-1 `d61c4fd1d8e938620c55a2b30ebfc66f7c05db7c`. Thus main integration has
+introduced no new diagnostic link/layout failure, and normal linking still
+does not repair the instruction pair. Canonical linking continues to use
+`build/GPOE8P/obj/pso/npc/TObjNpcKenkyuW.o`.
+
+Diagnostic provenance (SHA-256):
+
+- Ordered canonical input path/hash digest:
+  `b6c44378bb49841558b2c1cf7cb56caa4165e6c642c8c46eb3643e8b05e292c8`.
+- Source object:
+  `0e1f68e081a2c6c0c766172d4b9fbbbd6beae651193e0d8d77d0d19c577648f5`.
+- Original split object:
+  `150c4a8209a8b67289d264907be703ed56c34a8e0b3f5f39b84f74241e517e77`.
+- Linker script:
+  `f3c779659814183ee260935b48d2c19a13e4debad27184cd132b571589a9c045`.
+
+The original build/compiler-ownership uncertainties described below remain.
+There is no independent final-head review yet. Read the latest bounded
+probes at the end before repeating source or compiler-control experiments.
+
 Base: fork `main` `d27f62054`, branch `decomp-tobjnpc-kenkyuw` (PR
 [#318](https://github.com/matthewlewisnewton/pso-decomp/pull/318)). Unit
 `pso/npc/TObjNpcKenkyuW.cpp`, function `TObjPlayer__sub_802A445C`
@@ -984,3 +1040,49 @@ lead emerges, the discriminating trace should record the target block's
 immediately around `peepholemergeblocks(TRUE)` and `peepholeoptimizepcode`.
 No such lead was established by this survey, so no artificial narrow cast,
 dummy definition or new target source permutation was compiled.
+
+## 2026-11-10 bounded follow-up probes
+
+All probes were private complete-unit compilations with the stock GC/2.6
+executable and current headers. The production source, settings and linkset
+were not changed by these experiments. The stock compilation reproduces
+unit text SHA-256
+`8ee6b7fff5cce454ab810a1823c1d976f34b2a8d3ed224b9f2c3069e78a517aa`
+and differs from the original text only at dispatcher offsets `0x94/0x98`.
+
+A genuine two-case `switch (list == 0)` for miss/hit handling emits 252
+bytes, with extra Boolean materialization/dispatch; it is not an improvement.
+Another test made the failed collector's returned null pointer the nullable
+receiver's false arm, instead of an integer-zero literal. This specifically
+checked whether the collector's incoming `r3` value could produce the empty
+arm of the earlier late-branch witness. Typed conditional forms emit 244
+bytes; statement-based `void *` forms emit 240 bytes. Their selections,
+comparisons and copies remain. None provides the required disappearing arm.
+
+A separate diagnostic explored defined source sequencing with scoped
+`scheduling off`. The stock body then has the original predicate pair but
+reverses the default call's argument pair (`0x64/0x68`) and the callback's
+receiver-move/contact-body-store pair (`0xB8/0xBC`). Merely naming the source
+and contact-body values, introducing a receiver reference, or sequencing the
+store in a callback argument does not solve the complete function.
+
+One narrower result is new: a default-case local
+`void *source = (void *)self->m_1c`, combined with scoped `scheduling off`
+and `opt_propagation off`, produces a 228-byte function whose only differing
+words are now the callback pair at `0xB8/0xBC`. Complete unit text SHA-256:
+`1076f2b3d2378455b1ef154825ddd46e8ae3b8a2d321e8a93e381c4f22dc068b`.
+This is a different two-word mismatch, not an exact result or evidence of
+the original compiler settings. The source local alone and the corresponding
+lifetime/common-subexpression controls retain both reversed pairs.
+
+Attempts to sequence the body store inside the virtual-call argument emit
+232 bytes with an extra actor stack store and larger frame. Register/const
+local controls do not remove it. Inline contact-application helpers, with
+both receiver-first and body-first parameter orders, retain the callback
+pair. No scheduler, propagation, inlining or ABI exception is installed.
+
+The candidate comparisons above inspect the complete emitted function and
+unit text; they are not activation validation. A future exact candidate must
+also preserve siblings, relocations and data, authenticate its final link
+inputs, reproduce the original DOL when source-linked, pass the final-head
+checks, and receive independent review before being considered complete.
