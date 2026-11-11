@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 84 | 55 |
 | hardware | 69 | 13 |
-| pragma | 5711 | 881 |
+| pragma | 5718 | 881 |
 | configure.py per-unit override | 194 | 194 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1111, `inline_depth` 1004, `fp_contract` 884, `auto_inline` 802, `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 55, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 28, `optimize_for_size` 27, `opt_lifetimes` 26, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 55, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 30, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -1157,7 +1157,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1111, `inline_depth` 1004,
 | `src/pso/ui/TAdMultiPlyChrSelectGC_802DEF54.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/TAdPlayerLoadGC.cpp` | opt_common_subs×1 |
 | `src/pso/ui/TAdPlayerLoadGC_801E0C30.cpp` | fp_contract×1 |
-| `src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp` | opt_propagation×10, opt_strength_reduction×2 |
+| `src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp` | opt_propagation×10, opt_lifetimes×4, opt_strength_reduction×2, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/TAdPlayerLoadGC_803F339C.cpp` | opt_dead_assignments×1, optimize_for_size×1 |
 | `src/pso/ui/TAdPlyPltAnimGC.cpp` | fp_contract×4 |
 | `src/pso/ui/TAdPlyStatusGC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |

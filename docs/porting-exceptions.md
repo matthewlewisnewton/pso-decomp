@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 84 | 55 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,711 | 881 |
+| CodeWarrior pragmas (excluding push/pop) | 5,718 | 881 |
 | Per-unit compiler overrides in `configure.py` | 194 | 194 |
 | Approved regressions | 0 | 0 |
 
@@ -167,8 +167,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,711 pragmas in 881 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1111, `inline_depth` 1004, `fp_contract` 884, `auto_inline` 802,
+5,718 pragmas in 881 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1112, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803,
 `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 55, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
@@ -1549,3 +1549,14 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | Same source, footer at `0x802979BC` | Scoped `opt_lifetimes off`, with existing floating-point contraction | Keeps the footer's fade and text-position values in the native registers; all 348 bytes match. Hair rendering needs no new optimizer override: ordinary compound alpha updates, shared scalar lifetimes, and quad construction reproduce all 1,840 bytes. | Remove the optimizer control; preserve floating-point contraction when identical rounding matters. |
 | Same source, three late scalar constants | MWCC-only `extern const` declarations followed by `static const` definitions, plus existing explicit data-section annotations | Defining the `0.4f` fade step and two color masks after their readers preserves lazy native constant-pool order and loads. Standard-linkage definitions are supplied for other compilers. This follows the `TBoss6Type1.cpp` constant-pool precedent. | Move ordinary constant definitions before use and remove native section annotations. |
 | Same source, hair color alpha | Native byte-three write to a packed RGBA word | Reproduces the original `stb` and unsigned-byte float conversion. The non-MWCC branch updates the low alpha byte numerically, independent of host byte order. | Keep the numerical masked update. |
+
+### Memory-card request snapshots
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp`, request steps at `0x803F2240`, `0x803F2610`, `0x803F282C`, `0x803F2A4C` | Scoped `inline_depth(2)`, `auto_inline off`, `dont_inline off`, and `opt_lifetimes` controls; one-word `CardChannel` snapshots | With the existing propagation control, inline channel reads/completion helpers and explicit snapshot lifetimes reproduce all 2,704 newly recovered instruction bytes. The value objects carry channel IDs, not file-record indices; they introduce no alternate view of a record. | Drop the compiler controls and retain ordinary value snapshots and the restore/completion sequence. No special object layout is required for these local values in a port. |
+| Same request steps, `read_card_channel` | Read the existing `s32` channel through a volatile-qualified lvalue | The native steps reload the channel after publishing CARD results and before disk-ID restoration. Qualification preserves those read boundaries without changing the shared record type or asserting another object at that address. This is a matching constraint, not evidence of concurrent channel writes. | Define how request steps, callbacks and bulk record resets are serialized before coalescing these reads. Volatile supplies neither atomicity nor synchronization. |
+
+The SDK includes use the existing `PSO_SDK_COMPACT_MATH` header mode so unused
+square-root inlines do not emit 32 bytes of static constants outside this unit's
+owned sections. A port can use its ordinary SDK/math declarations.
