@@ -81,8 +81,8 @@ neither does this bounded trace prove the menu remains runnable in that phase.
 
 ## Verification and remaining proof
 
-Twenty-two additional individual production functions compare exactly with
-original body bytes and function-relative resolved targets. The original-object
+This follow-up compares twenty-two individual production functions exactly
+with original body bytes and function-relative resolved targets. The original-object
 controls additionally verify receiver loads/call order for the layer helpers,
 parent-register forwarding, the explicit popup traversal, and the PMF record,
 relocation and 16-byte leaf operation. Earlier nineteen-function evidence is
@@ -102,3 +102,23 @@ UI failure. Current evidence proves neither a reachable failure nor universal
 safety. Presumed zeroed heap, visual fade, the post-rebuild callback and the wrong
 layer's pause bit do not fill the gap. Word, ComCard, balloon, Parts provenance,
 opaque ownership and all other standing holds remain intact.
+
+## Subsequent accepted-main refresh
+
+While this evidence was being published, main advanced to
+`ead31005e05c515068799f79935dca70ea241206` with Dragon recovery. Its twelve
+incoming paths are preserved; none changes the inspected window/player/task-root
+source. Evidence commit `1f6a94213308b13364be8d2676f9d5a3b13386f4` retains the
+preceding documentation-only output-identity claim on its stated baseline.
+
+Separate fresh-current-main and combined gated builds pass in 84.80 and 8.34
+seconds with the original DOL hash. Replayed controls retain all 22 exact
+individual bodies/targets and the same receiver, ordering and PMF findings.
+Acceptance against current main and prior B passes with 3609 exact linked units
+and 18792 retention names without drift. Strict prior-B raw/exact/linked losses
+are empty; the same fourteen qualified four-byte window tails remain against
+main without exact/linked loss. Historical main coverage qualifications remain.
+The Message/Palette objects, exact balloon and Parts provider qualifications,
+protected original remainders and 1044-byte preview remain intact. No lifecycle
+hypothesis is activated and no hold is lifted. Private refresh receipts are in
+`pr403-refreshead/`; frozen-head independent review remains a publication gate.

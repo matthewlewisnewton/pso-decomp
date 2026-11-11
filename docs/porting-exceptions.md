@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,698 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,699 | 879 |
 | Per-unit compiler overrides in `configure.py` | 193 | 193 |
 | Approved regressions | 0 | 0 |
 
@@ -96,6 +96,15 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
+`pso/boss/TBoss8Dragon_8002CC48.cpp` uses guarded `defer_codegen on/off`
+around its reversed first twelve definitions to preserve both native vtable
+offsets and scalar emission order. The initializer at `0x8002D5F8` uses scoped
+`opt_propagation off` with a named grid width so backend dead-load cleanup runs
+before instruction scheduling. A guarded `.sdata2` attribute preserves the named
+16.0 default scale's pool position. See [the unit evidence](evidence/dragon-ground-grid-recovery.md).
+Ports should drop these emission/optimizer controls and the section attribute;
+keep the ordinary C++ grid construction, UV calculations, and native vtables.
+
 The name-plate renderer at `0x80251EC8` in `TWindowFukidasi.cpp` uses scoped
 `opt_propagation off`, `opt_common_subs off`, and `opt_lifetimes off` with
 its `fp_contract on` scope. The controls retain the separate text/background
@@ -124,11 +133,11 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,698 pragmas in 879 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 883, `auto_inline` 802,
-`opt_common_subs` 613, `scheduling` 263, `opt_propagation` 243,
+5,699 pragmas in 879 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 881, `auto_inline` 802,
+`opt_common_subs` 613, `scheduling` 263, `opt_propagation` 244,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
-`defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
+`defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
