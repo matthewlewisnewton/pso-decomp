@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/TObject.h"
 
+struct TechniqueContactBody;
+
 struct TNeedleShoot : public TObject {
     virtual ~TNeedleShoot();
     virtual int vfunc_6();
@@ -18,7 +20,7 @@ struct TNeedleShoot : public TObject {
     u8 unk_30[0x4];
     u16 m_34;
     u8 _pad36[0x2];
-    u32 m_38;
+    TechniqueContactBody *m_38;
     void* m_3c;
     u8 _pad40[0x10];
     u32 m_50;
