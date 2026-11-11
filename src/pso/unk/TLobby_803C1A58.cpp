@@ -1,4 +1,5 @@
 #include "types.h"
+#include <stddef.h>
 #include "pso/unk/TLobby_803C4698.h"
 #include "pso/unk/TLobby_803BFE50.h"
 #include "pso/unk/TLobby_803C1A58.h"
@@ -44,6 +45,62 @@ struct Strm_803C1A8C {
 struct Obj_803C34F4 { u8 pad[0xA8]; s16 state; };
 
 struct Obj_803C3ACC { u8 pad[0xA8]; s16 state; s16 sub; };
+
+// Partial transfer record; the decoder retains the shared legacy TLobby API.
+struct AdxBlockTransferView {
+    u8 reserved0[4];
+    s32 state;
+    TLobby *decoder;
+    u8 reservedC[0x40 - 0xC];
+    s32 wrap_samples;
+    s32 right_channel_offset;
+    u8 reserved48[8];
+    u8 *source;
+    s32 source_blocks;
+    s32 channels;
+    s32 bytes_per_frame;
+    s32 samples_per_block;
+    s16 *buffer;
+    s32 buffer_samples;
+    s32 channel_stride;
+    s32 position;
+    s32 available;
+    s32 remaining;
+    u8 reserved7C[0xC];
+    void (*read)(s32, s32 *, s32 *, s32 *);
+    s32 read_context;
+    void (*done)(s32, s32, s32);
+    s32 done_context;
+    u8 reserved98[8];
+    s32 samples;
+    s32 bytes;
+};
+
+#define CHECK_TRANSFER_OFFSET(field, offset) \
+    typedef char AdxBlockTransfer_##field[(offsetof(AdxBlockTransferView, field) == offset) ? 1 : -1]
+CHECK_TRANSFER_OFFSET(state, 0x04);
+CHECK_TRANSFER_OFFSET(decoder, 0x08);
+CHECK_TRANSFER_OFFSET(wrap_samples, 0x40);
+CHECK_TRANSFER_OFFSET(right_channel_offset, 0x44);
+CHECK_TRANSFER_OFFSET(source, 0x50);
+CHECK_TRANSFER_OFFSET(source_blocks, 0x54);
+CHECK_TRANSFER_OFFSET(channels, 0x58);
+CHECK_TRANSFER_OFFSET(bytes_per_frame, 0x5C);
+CHECK_TRANSFER_OFFSET(samples_per_block, 0x60);
+CHECK_TRANSFER_OFFSET(buffer, 0x64);
+CHECK_TRANSFER_OFFSET(buffer_samples, 0x68);
+CHECK_TRANSFER_OFFSET(channel_stride, 0x6C);
+CHECK_TRANSFER_OFFSET(position, 0x70);
+CHECK_TRANSFER_OFFSET(available, 0x74);
+CHECK_TRANSFER_OFFSET(remaining, 0x78);
+CHECK_TRANSFER_OFFSET(read, 0x88);
+CHECK_TRANSFER_OFFSET(read_context, 0x8C);
+CHECK_TRANSFER_OFFSET(done, 0x90);
+CHECK_TRANSFER_OFFSET(done_context, 0x94);
+CHECK_TRANSFER_OFFSET(samples, 0xA0);
+CHECK_TRANSFER_OFFSET(bytes, 0xA4);
+#undef CHECK_TRANSFER_OFFSET
+typedef char AdxBlockTransfer_size[(sizeof(AdxBlockTransferView) == 0xA8) ? 1 : -1];
 
 struct Hdl_803C43A8 {
     u8 pad0[2];
@@ -153,7 +210,7 @@ extern s32 lbl_805E0CC8;
 extern s32 lbl_805E0CD0;
 extern s32 lbl_805E0CD8;
 void TLobby__sub_803C19D8(void *);
-void TLobby__sub_803C3570(Strm_803C1A8C *o);
+void TLobby__sub_803C3570(void *context);
 void TLobby__sub_803C40D0(void *);
 void TLobby__sub_803C34F4(Obj_803C34F4 *arg0);
 s32 DVDReadPrio(void *, void *, void *);
@@ -356,14 +413,17 @@ s32 TLobby::is_aiff_header() {
 }
 
 // Little-endian reads of big-endian header fields, swapped in place afterwards.
-#define READ_LE32(b) ((b)[0] | ((b)[1] << 8) | ((b)[2] << 16) | ((b)[3] << 24))
-#define SWAP32(x) ((((x) >> 24) & 0xFF) | (((x) >> 8) & 0xFF00) | (((x) << 8) & 0xFF0000) | ((x) << 24))
+#define READ_LE32(b) ((b)[0] | ((b)[1] << 8) | ((b)[2] << 16) | ((int)((u32)(b)[3] << 24)))
+#define SWAP32(x) ((((x) >> 24) & 0xFF) | (((x) >> 8) & 0xFF00) | (((u32)(x) << 8) & 0xFF0000) | ((u32)(x) << 24))
 #define READ_LE16(b) ((u16)(b)[0] | ((u16)(b)[1] << 8))
 #define SWAP16(x) ((((x) >> 8) & 0xFF) | (((x) << 8) & 0xFF00))
 
+#pragma push
 // Walks the chunks of an AIFF ("FORM"/"AIFF") header, whose fields are big-endian: COMM gives
 // the format, SSND the start of the sample data, which is returned (NULL if not an AIFF).
 // (inferred name: parse_aiff_header)
+#pragma opt_propagation off
+#pragma opt_common_subs off
 u8 *TLobby__sub_803C2388(u8 *hdr, s32 *rate, s32 *channels, s32 *bits, s32 *frames) {
     u8 *p;
     u8 *end;
@@ -371,10 +431,8 @@ u8 *TLobby__sub_803C2388(u8 *hdr, s32 *rate, s32 *channels, s32 *bits, s32 *fram
     s32 have_comm;
     s32 have_ssnd;
     u32 magic;
-    u32 form_size;
+    s32 form_size;
     u32 type;
-    u32 id;
-    u32 size;
     u32 offset;
     u16 exponent;
     u16 mantissa;
@@ -393,18 +451,19 @@ u8 *TLobby__sub_803C2388(u8 *hdr, s32 *rate, s32 *channels, s32 *bits, s32 *fram
     if (type != 0x46464941) {
         return NULL;
     }
-    end = p + (form_size - 4);
+    s32 chunk_bytes = form_size - 4;
+    end = p + chunk_bytes;
     while (p < end) {
-        id = READ_LE32(p);
-        size = READ_LE32(p + 4);
-        size = SWAP32(size);
+        magic = READ_LE32(p);
+        form_size = READ_LE32(p + 4);
+        form_size = SWAP32(form_size);
         p += 8;
-        switch (id) {
+        switch (magic) {
         case 0x4D4D4F43:
             if (have_comm) {
                 break;
             }
-            if ((s32)size < 18) {
+            if ((s32)form_size < 18) {
                 return NULL;
             }
             have_comm = 1;
@@ -438,12 +497,14 @@ u8 *TLobby__sub_803C2388(u8 *hdr, s32 *rate, s32 *channels, s32 *bits, s32 *fram
             }
             break;
         default:
-            p += (size + 1) & ~1;
+            p += (form_size + 1) & ~1;
             break;
         }
     }
     return data;
 }
+
+#pragma pop
 
 void TLobby::dispatch_by_state() {
     u8 *arg0 = (u8 *)this;
@@ -716,7 +777,7 @@ u8 *fn_803C32EC(u8 *hdr, s32 size, s32 *rate, s32 *channels, s32 *bits, s32 *sam
 void TLobby__sub_803C34F4(Obj_803C34F4 *lobby) {
     s16 s = lobby->state;
     if (s == 0) {
-        TLobby__sub_803C3570((Strm_803C1A8C *)lobby);
+        TLobby__sub_803C3570(lobby);
     } else if (s == 10) {
         TLobby__sub_803C19D8(lobby);
     } else if (s == 2) {
@@ -730,108 +791,115 @@ void TLobby__sub_803C34F4(Obj_803C34F4 *lobby) {
     }
 }
 
-void TLobby__sub_803C3570(Strm_803C1A8C *o) {
-    if (o->state == 1 && ((TLobby *)(o->id))->get_client_count() == 0) {
-        s32 blk;
-        s32 end;
-        s32 pos;
-        s32 len;
-        s32 room;
-        s32 rem;
-        s32 avail;
-        s32 n;
-        o->read(o->readArg, &o->pos, &o->avail, &o->x78);
-        blk = o->block_samples;
-        end = (o->x78 + blk - 1) / blk;
-        avail = o->avail;
-        pos = o->pos;
-        len = o->bufLen;
-        room = (blk + (len - pos) - 1) / blk;
-        rem = (blk - 1) - (o->x78 + blk - 1) % blk;
-        n = o->maxLen / o->stream_channels;
-        if (end < room && pos + room * blk - rem < len) {
-            room++;
-        }
-        if (o->x78 < avail) {
-            avail += rem;
-        }
-        if (n > avail / blk) {
-            n = avail / blk;
-        }
-        if (n > end) {
-            n = end;
-        }
-        if (n > room) {
-            n = room;
-        }
-        if (o->stream_channels == 2) {
-            TLobby *lobby = (TLobby *)o->id;
-            s16 *dst = o->buf + o->pos;
-            lobby->post_request((s32)o->src, n * 2, (s32)dst, (s32)(dst + o->rOff));
-            TLobby__sub_803CB4A4((u8 *)lobby);
+#pragma push
+#pragma opt_common_subs off
+#pragma opt_lifetimes off
+#pragma opt_propagation off
+void TLobby__sub_803C3570(void *context) {
+    s32 completed_tail;
+    int aligned_blocks;
+    s32 frame_bytes;
+    s32 completed_block;
+    AdxBlockTransferView *stream = (AdxBlockTransferView *)context;
+    if (stream->state == 1 && stream->decoder->get_client_count() == 0) {
+        s32 until_wrap;
+        s32 tail;
+        s32 channels;
+        s32 source_blocks;
+        s32 count;
+        s32 block;
+        s32 position;
+        s32 available;
+        s32 blocks;
+        s32 pending;
+        s32 rounded;
+        s32 capacity;
+        s32 available_blocks;
+        stream->read(stream->read_context, &stream->position, &stream->available, &stream->remaining);
+        block = stream->samples_per_block;
+        pending = stream->remaining;
+        position = stream->position;
+        capacity = stream->buffer_samples;
+        available = stream->available;
+        source_blocks = stream->source_blocks;
+        channels = stream->channels;
+        count = source_blocks / channels;
+        rounded = block - 1;
+        tail = rounded;
+        rounded = pending + rounded;
+        blocks = rounded / block;
+        s32 space = capacity - position - 1;
+        tail -= rounded % block;
+        space = block + space;
+        aligned_blocks = space / block;
+        until_wrap = aligned_blocks;
+        s32 wrap_span = aligned_blocks * block;
+        if (blocks < aligned_blocks && position + wrap_span - tail < capacity) ++until_wrap;
+        if (pending < available) available += tail;
+        available_blocks = available / block;
+        if (count > available_blocks) count = available_blocks;
+        if (count > blocks) count = blocks;
+        if (count > until_wrap) count = until_wrap;
+        if (stream->channels == 2) {
+            TLobby *decoder = stream->decoder;
+            s16 *left = stream->buffer;
+            left += stream->position;
+            decoder->post_request((s32)stream->source, count * 2, (s32)left, (s32)(left + stream->channel_stride));
+            TLobby__sub_803CB4A4((u8 *)decoder);
         } else {
-            TLobby *lobby = (TLobby *)o->id;
-            lobby->try_post_command((s32)o->src, n, (s32)(o->buf + o->pos));
-            TLobby__sub_803CB4A4((u8 *)lobby);
+            TLobby *decoder = stream->decoder;
+            decoder->try_post_command((s32)stream->source, count, (s32)(stream->buffer + stream->position));
+            TLobby__sub_803CB4A4((u8 *)decoder);
         }
-        o->state = 2;
+        stream->state = 2;
     }
-    if (o->state == 2) {
-        ((TLobby *)(o->id))->update_receive_check();
-        if (((TLobby *)(o->id))->get_client_count() == 3) {
-            s32 rOff;
-            s32 size;
-            s32 pos;
-            s16 *buf;
-            s32 rem;
-            s32 width;
-            s32 blk;
-            s32 last;
-            blk = o->block_samples;
-            width = o->sample_bytes;
-            pos = o->pos;
-            last = o->x78 + blk - 1;
-            rem = (blk - 1) - last % blk;
-            buf = o->buf;
-            size = o->wrap_len;
-            rOff = o->wrap_offset;
-            s32 got = ((TLobby *)(o->id))->get_size();
-            s32 n = got * blk / o->stream_channels;
-            if (last / blk * o->stream_channels <= got) {
-                n -= rem;
-            }
-            o->n = n;
-            pos += n;
-            o->bytes = got * width;
-            if (pos >= size) {
-                s32 i;
-                s16 *dst;
-                s16 *src;
-                pos -= size;
-                if (o->stream_channels == 2) {
-                    dst = buf;
-                    src = buf + size;
-                    for (i = pos; i > 0; i--) {
-                        *dst++ = *src++;
-                    }
-                    src = buf + (rOff + size);
-                    dst = buf + rOff;
-                    for (i = pos; i > 0; i--) {
-                        *dst++ = *src++;
-                    }
+    if (stream->state == 2) {
+        stream->decoder->update_receive_check();
+        if (stream->decoder->get_client_count() == 3) {
+            s32 rounded;
+            s32 right;
+            s32 wrap;
+            s32 position;
+            s16 *buffer;
+            completed_block = stream->samples_per_block;
+            rounded = completed_block - 1;
+            rounded = stream->remaining + rounded;
+            completed_tail = (completed_block - 1) - rounded % completed_block;
+            frame_bytes = stream->bytes_per_frame;
+            position = stream->position;
+            buffer = stream->buffer;
+            wrap = stream->wrap_samples;
+            right = stream->right_channel_offset;
+            s32 count = stream->decoder->get_size();
+            s32 blocks = rounded / completed_block;
+            s32 channels = stream->channels;
+            s32 samples = (count * completed_block) / channels;
+            if (blocks * channels <= count) samples -= completed_tail;
+            stream->samples = samples;
+            stream->bytes = count * frame_bytes;
+            position += samples;
+            if (position >= wrap) {
+                position -= wrap;
+                if (stream->channels == 2) {
+                    s16 *dst = buffer;
+                    s16 *src = buffer + wrap;
+                    s32 n;
+                    for (n = position; n > 0; --n) *dst++ = *src++;
+                    src = buffer + (right + wrap);
+                    dst = buffer + right;
+                    for (n = position; n > 0; --n) *dst++ = *src++;
                 } else {
-                    src = buf + size;
-                    for (i = pos; i > 0; i--) {
-                        *buf++ = *src++;
-                    }
+                    s16 *src = buffer + wrap;
+                    for (s32 n = position; n > 0; --n) *buffer++ = *src++;
                 }
             }
-            ((TLobby *)(o->id))->reset_field_0C();
-            o->done(o->doneArg, o->bytes, o->n);
-            o->state = 3;
+            stream->decoder->reset_field_0C();
+            stream->done(stream->done_context, stream->bytes, stream->samples);
+            stream->state = 3;
         }
     }
 }
+#pragma pop
 
 s32 TLobby::get_field_a0() {
     u8 *arg0 = (u8 *)this;

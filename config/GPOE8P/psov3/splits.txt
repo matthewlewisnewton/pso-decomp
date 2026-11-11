@@ -2244,7 +2244,7 @@ pso/unk/text_80104F4C.cpp:
 
 pso/unk/text_80104FCC.cpp:
 	.text       start:0x80104FCC end:0x801057A8
-	.data       start:0x8049EEFC end:0x8049EF54
+	.data       start:0x8049EED8 end:0x8049EF54
 
 pso/unk/text_801057A8.cpp:
 	.text       start:0x801057A8 end:0x80105874
@@ -12450,7 +12450,7 @@ pso/render/GinjaModelQueue.cpp:
 pso/render/GinjaMaterial.cpp:
 	.text       start:0x803DB470 end:0x803DC82C
 	.data       start:0x804FC540 end:0x804FC668
-	.sdata2     start:0x805E0F6C end:0x805E0F80
+	.sdata2     start:0x805E0F68 end:0x805E0F7C
 
 pso/enemy/stelth/TObjEneMe3Stelth_803DC82C.cpp:
 	.text       start:0x803DC82C end:0x803DC834

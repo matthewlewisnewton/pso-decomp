@@ -1024,6 +1024,8 @@ pso/unk/TLobby_8036A37C.cpp
 pso/unk/TLobby_8036B204.cpp
 pso/ui/window/TWindowSubStatusDisp_8036D774.cpp
 pso/unk/TLobby_8036F81C.cpp
+pso/unk/TLobby_803BFE50.cpp
+pso/unk/TLobby_803C1A58.cpp
 pso/unk/TLobby_803C45E4.cpp
 pso/unk/TLobby_803C4698.cpp
 pso/unk/TLobby_803CBE88.cpp
@@ -2132,6 +2134,7 @@ pso/render/ChunkTextureStripCollector.cpp
 pso/object/city/CityTraffic.cpp
 pso/system/data/FlagWord.cpp
 pso/render/GinjaModelQueue.cpp
+pso/render/GinjaMaterial.cpp
 pso/audio/LscStream.cpp
 pso/audio/LscServer.cpp
 pso/render/MaterialAlphaCompare.cpp
@@ -2419,6 +2422,7 @@ pso/unk/text_800FD930.cpp
 pso/unk/text_800FFE04.cpp
 pso/unk/text_80103674.cpp
 pso/unk/text_80104F4C.cpp
+pso/unk/text_80104FCC.cpp
 pso/unk/text_801057A8.cpp
 pso/effect/item/TItemEffEquip_80108860.cpp
 pso/unk/text_801094D8.cpp

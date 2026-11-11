@@ -99,6 +99,9 @@ void GXSetChanMatColor(s32, C_803DB9A0);
 void convert_color_f32_to_u8(const F_803DB9A0 *, C_803DB9A0 *);
 void convert_color_u8_to_f32(const C_803DB9A0 *, F_803DB9A0 *);
 extern F_803DB9A0 model_material_color;
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
 extern const C_803DB9A0 lbl_805E0F68;
 void traverse_model_node_tree(void *, void *);
 void GXSetChanCtrl(s32,s32,s32,s32,s32,s32,s32);
@@ -376,6 +379,11 @@ void ginja_set_alpha_compare(s32 ref) {
 #pragma pop
 
 
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+const C_803DB9A0 lbl_805E0F68 = {0, 0, 0, 127};
+
 extern GinjaSceneState *current_render_context;
 // Each handler gets the parameter's value and the bits that changed (update_ginja_cached_parameter).
 typedef void (*GinjaParameterHandler)(u32 value, u32 changed);
@@ -442,12 +450,12 @@ void apply_ginja_material_params(GinjaDrawRecord *record) {
                     if ((model_render_flags & 0x20) && model_material_color.r != 0.0f) {
                         opaque = 0;
                     }
-                    surface = current_render_context->textures->entries[texture].texture->surface;
+                    const u32 &format = current_render_context->textures->entries[texture].texture->surface->format;
                     GXSetZCompLoc(0);
                     if (opaque) {
                         GXSetZMode(1, 3, 0);
                         ginja_set_alpha_compare(0);
-                    } else if (surface->format == 14) {
+                    } else if (format == 14) {
                         GXSetZCompLoc(0);
                         GXSetZMode(1, 3, 1);
                         ginja_set_alpha_compare(0);

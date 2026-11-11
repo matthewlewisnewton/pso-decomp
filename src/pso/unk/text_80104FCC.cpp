@@ -11,6 +11,12 @@
 #include "pso/player/TObjPlayer_8011C000.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
+#include "pso/item/armor/TItemProArmor.h"
+#include "pso/item/armor/TItemProShield.h"
+#include "pso/item/armor/TItemProUnit.h"
+#include "pso/item/mag/TItemMag.h"
+#include "pso/item/TItemObject.h"
+#include "pso/item/TItemMoney.h"
 
 struct Blk_8010542C { u32 w[4]; };
 struct Item_8010542C { u32 a; Blk_8010542C b; };
@@ -80,13 +86,9 @@ struct Obj_80105538 {
 };
 
 extern "C" {
-typedef s32 (*Fn_8010542C)(void *);
-extern Fn_8010542C item_create_fn_table[];
-struct In_801054E0 { u8 pad0; u8 idx; };
-typedef s32 (*Fn_801054E0)(In_801054E0 *);
-struct E_801054E0 { Fn_801054E0 fn; };
-extern E_801054E0 item_pro_create_fn_table[];
-s32 TLobby__sub_801054E0(In_801054E0 *arg0);
+typedef TItem *(*ItemCreateFunction)(u8 *item);
+TItem *create_weapon_for_item(u8 *item);
+TItem *TLobby__sub_801054E0(u8 *item);
 void *get_player_by_client_id(s32);
 s32 get_current_floor(void);
 s32 TObjPlayer__sub_80104840(s32);
@@ -105,6 +107,18 @@ void send_6x60_standard_drop_item_request(Obj_80105538 *self);
 
 }
 
+
+// Item factories by item type, then the armor/shield/unit factories by subtype.
+ItemCreateFunction item_pro_create_fn_table[4] = {
+    NULL, TItemProArmor::create, TItemProShield::create, TItemProUnit::create,
+};
+ItemCreateFunction item_create_fn_table[5] = {
+    create_weapon_for_item,
+    TLobby__sub_801054E0,
+    TItemMag::create,
+    TItemObject::create_tool,
+    (ItemCreateFunction)TItemMoney::create,
+};
 
 extern "C" s32 obj_isState3_324__9TObjCharaFv(void *);
 extern "C" s32 is_script_controlled__10TObjPlayerFv(void *);
@@ -354,7 +368,7 @@ u8 roll_weapon_special_channel15(u8 arg0) { return roll_weapon_special_for_stars
 
 TItem *construct_item(TItemData *data) {
     Item_8010542C *src = (Item_8010542C *)data;
-    Fn_8010542C fn;
+    ItemCreateFunction fn;
     if (src != 0) {
         Item_8010542C item = *src;
         ((TItemData *)&item)->decode_from_network();
@@ -363,7 +377,7 @@ TItem *construct_item(TItemData *data) {
                 fn = item_create_fn_table[*(u8 *)src];
                 if (fn != 0) {
                     observe_item_id(item.b.w[2]);
-                    return (TItem *)fn(&item);
+                    return fn((u8 *)&item);
                 }
             }
         }
@@ -373,11 +387,11 @@ TItem *construct_item(TItemData *data) {
 
 extern "C" {
 
-s32 TLobby__sub_801054E0(In_801054E0 *arg0) {
-    if (arg0 != 0) {
-        if (arg0->idx < 4) {
-            if (item_pro_create_fn_table[arg0->idx].fn != 0) {
-                return item_pro_create_fn_table[arg0->idx].fn(arg0);
+TItem *TLobby__sub_801054E0(u8 *item) {
+    if (item != 0) {
+        if (item[1] < 4) {
+            if (item_pro_create_fn_table[item[1]] != 0) {
+                return item_pro_create_fn_table[item[1]](item);
             }
         }
     }
