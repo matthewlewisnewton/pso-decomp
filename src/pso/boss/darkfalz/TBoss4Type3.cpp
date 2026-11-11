@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/effect/TUnk_80494968.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -174,7 +175,6 @@ f32 vector_length(void *);
 s32 subtract_vector(void *, void *);
 s32 normalize_vector(void *);
 f64 atan2_float(f32, f32);
-u8 * dispatch_shared_handler_a__6TLobbyFl(s32);
 s32 pick_random_target_player__11TBoss4Type3Fv(void);
 s32 TBoss4Type3__sub_8005254C(u16);
 struct Stack_80055918
@@ -382,7 +382,6 @@ int get_player_data__10TObjPlayerFi(int a0);
 u16 get_entity_id(void *);
 s32 is_split_screen();
 void queue_destruction__7TObjectFv(void *);
-s16 * register_boss__6TLobbyFl(s32);
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
@@ -835,7 +834,7 @@ void TObjBs4CutAtk::run_task() {
             Dmg_8005B218 d;
             id = *(s32 *)&this->m_up;
             d.type = 0;
-            d.val = *register_boss__6TLobbyFl(0x38);
+            d.val = *(s16 *)get_battle_base_stats(0x38);
             {
                 Dmg_8005B218 t = d;
                 p->m21(id, &t, 0, -1, -1);
@@ -891,7 +890,7 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
     VecCopy__FP3VecPC3Vec(self->v2FC, self->v38);
     self->f308 = self->f30C = self->f310 = 0.0f;
     self->f2A8 = 0;
-    ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)((int)register_boss__6TLobbyFl(0x38)), (u8 *)(TLobby::dispatch_shared_handler_b(0x38)), (u8 *)(TLobby::register_object(0x38)));
+    ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)((int)get_battle_base_stats(0x38)), (u8 *)(get_battle_attack_params(0x38)), (u8 *)(get_battle_resistance_params(0x38)));
     self->f33E = self->f3E4 = self->f32C;
     ((TBoss3Volopt *)self)->reset_photon_effect();
     ((TObjEnemy *)self)->set_param(0x2F);
@@ -917,7 +916,7 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
     init_model_node_tables(self->f378, (void *)boss4_type3_model_node_specs, 2);
     self->f3D4 = self->f32C;
     self->f3CC = 0;
-    self->f3D0 = *(s32 *)(dispatch_shared_handler_a__6TLobbyFl(0x38) + 0x24);
+    self->f3D0 = *(s32 *)((u8 *)get_battle_movement_params(0x38) + 0x24);
     self->f3B0 = 1.0f;
     self->f3B4 = 0;
     self->f3A4 = 0x10;
@@ -1871,7 +1870,7 @@ void TBoss4Type3::update_homing() {
         }
         o->f52c = 0;
     }
-    n = *(s32 *)(dispatch_shared_handler_a__6TLobbyFl(0x38) + 0x20);
+    n = *(s32 *)((u8 *)get_battle_movement_params(0x38) + 0x20);
     if (n < 1 || n > 8) {
         n = 4;
     }
@@ -1930,7 +1929,7 @@ void TBoss4Type3::update_light_magic() {
         }
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x398) == 0x45) {
-        r29 = *(s32 *)(dispatch_shared_handler_a__6TLobbyFl(0x38) + 0x18);
+        r29 = *(s32 *)((u8 *)get_battle_movement_params(0x38) + 0x18);
         for (i = 0; i < 4; i++) {
             if (TBoss4Type3__sub_8005254C(i) != 0) {
                 ((TObjPlayer *)(&g))->construct_target_cursor_records();
@@ -1971,7 +1970,7 @@ void TBoss4Type3::update_dark_magic() {
     f32 s;
     o = (O_80058848 *)this;
     if (o->f398 == 0x46) {
-        r30 = *(s32 *)(dispatch_shared_handler_a__6TLobbyFl(0x38) + 0x1C);
+        r30 = *(s32 *)((u8 *)get_battle_movement_params(0x38) + 0x1C);
         for (i = 0; i < TLobby::get_game_mode(); i++) {
             p = ((s32 (*)(s32))get_player_by_client_id)(i);
             if (TBoss4Type3__sub_8005254C(i) != 0) {

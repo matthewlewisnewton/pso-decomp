@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/enemy/BattleParameters.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/canadin/TObjEneMe1Canadin.h"
 #include "pso/system/task/TMainTask.h"
@@ -1770,10 +1771,10 @@ void TObjEneMe1Canadin::load_resources() {
         lbl_805D4FD0 = (BmlResource *)load_enemy_bml_resource((u8 *)bm_ene_me1_mb_resource_descriptor);
     }
     for (i = 0; i < 3; i++) {
-        lbl_80500930[i] = (s32)TLobby::register_boss(lbl_8043A180[i]);
-        lbl_8050093C[i] = (s32)TLobby::dispatch_shared_handler_b(lbl_8043A18C[i]);
-        lbl_80500948[i] = (s32)TLobby::register_object(lbl_8043A198[i]);
-        lbl_80500954[i] = (s32)TLobby::dispatch_shared_handler_a(lbl_8043A1A4[i]);
+        lbl_80500930[i] = (s32)get_battle_base_stats(lbl_8043A180[i]);
+        lbl_8050093C[i] = (s32)get_battle_attack_params(lbl_8043A18C[i]);
+        lbl_80500948[i] = (s32)get_battle_resistance_params(lbl_8043A198[i]);
+        lbl_80500954[i] = (s32)get_battle_movement_params(lbl_8043A1A4[i]);
     }
     lbl_805D4FD4 = 0;
     p = ::operator new(0x10);

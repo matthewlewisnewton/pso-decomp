@@ -4,6 +4,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include <stdlib.h>
+#include "pso/enemy/BattleParameters.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/boss/olgaflow/Boss6Type2Data.h"
 #include "pso/boss/olgaflow/TBoss6PlotFalz.h"
@@ -90,7 +91,7 @@ void TBoss6Rock::load_resources() {
     for (i = 0; i < 32; i++) {
         TBoss6Rock__instance_table[i] = NULL;
     }
-    lbl_805D6EFC = *(f32 *)((u8 *)TLobby::dispatch_shared_handler_a(0x2C) + 0xC);
+    lbl_805D6EFC = *(f32 *)((u8 *)get_battle_movement_params(0x2C) + 0xC);
     if (lbl_805D6EFC < 1) {
         lbl_805D6EFC = 20;
     }

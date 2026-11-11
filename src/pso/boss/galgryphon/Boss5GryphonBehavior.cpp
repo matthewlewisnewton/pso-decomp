@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -5151,16 +5152,16 @@ void load_boss5_gryphon_resources(void) {
     boss5_gryphon_render_flags = 0;
     boss5_gryphon_instance = NULL;
     for (s32 i = 0; i < 1; i++) {
-        boss5_gryphon_base_params[i] = (s32)TLobby::register_boss(boss5_gryphon_base_param_ids[i]);
+        boss5_gryphon_base_params[i] = (s32)get_battle_base_stats(boss5_gryphon_base_param_ids[i]);
     }
     for (s32 i = 0; i < 5; i++) {
-        boss5_gryphon_attack_params[i] = (s32)TLobby::dispatch_shared_handler_b(boss5_gryphon_attack_param_ids[i]);
+        boss5_gryphon_attack_params[i] = (s32)get_battle_attack_params(boss5_gryphon_attack_param_ids[i]);
     }
     for (s32 i = 0; i < 1; i++) {
-        boss5_gryphon_resistance_params[i] = (s32)TLobby::register_object(boss5_gryphon_resistance_param_ids[i]);
+        boss5_gryphon_resistance_params[i] = (s32)get_battle_resistance_params(boss5_gryphon_resistance_param_ids[i]);
     }
     for (s32 i = 0; i < 3; i++) {
-        boss5_gryphon_behavior_params[i] = TLobby::dispatch_shared_handler_a(boss5_gryphon_behavior_param_ids[i]);
+        boss5_gryphon_behavior_params[i] = get_battle_movement_params(boss5_gryphon_behavior_param_ids[i]);
     }
     TWindowCtrl::init_all_slots();
     TBoss8Dragon::set_default_on_state0();

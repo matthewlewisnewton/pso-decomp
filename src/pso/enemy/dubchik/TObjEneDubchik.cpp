@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/enemy/BattleParameters.h"
 #include "pso/render/TUnk_80494938.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/player/PlayerAttackParams.h"
@@ -141,10 +142,6 @@ Res_800AA82C *dubchik_resource;
 NJS_TEXLIST *dubchik_texlist;
 NJS_TEXLIST *dubchik_variant_texlist;
 
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 s32 get_bml_motion(void *, int);
 void *load_resource_from_descriptor(void *, int, void *, int, int, int);
 void TObjPlayer__sub_800A4294(void);
@@ -594,10 +591,10 @@ extern "C" void TObjPlayer__sub_800AA82C(void) {
     t[1] = (s32)p;
     ((SampledMotionPoints *)t[1])->sample_two_nodes((NJS_OBJECT *)get_bml_model((BmlResource *)dubchik_resource, 0), (NJS_MOTION *)get_bml_motion(dubchik_resource, 7), 0x2E, 0x32);
     for (i = 0; i < 2; i++) {
-        ((s32 *)lbl_805009A0)[i] = register_boss__6TLobbyFl(i + 0x1B);
-        lbl_805009A8[i] = dispatch_shared_handler_b__6TLobbyFl(i + 0x1B);
-        lbl_805009B0[i] = register_object__6TLobbyFl(i + 0x1B);
-        lbl_805009B8[i] = dispatch_shared_handler_a__6TLobbyFl(i + 0x1B);
+        ((s32 *)lbl_805009A0)[i] = (s32)get_battle_base_stats(i + 0x1B);
+        lbl_805009A8[i] = (s32)get_battle_attack_params(i + 0x1B);
+        lbl_805009B0[i] = (s32)get_battle_resistance_params(i + 0x1B);
+        lbl_805009B8[i] = (s32)get_battle_movement_params(i + 0x1B);
     }
     mdl = dubchik_resource->mdl->f8;
     for (i = 0; i < 3; i++) {

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/PadRumble.h"
 #include "pso/player/TObjPlayer.h"
@@ -640,7 +641,7 @@ void TBoss4Type2__sub_80054DA8(TBoss4Type2 *boss) {
     f32 power;
     Vec_80053914 pos;
 
-    power = (f32)((TBoss4Type2Params *)TLobby::dispatch_shared_handler_a(0x36))->power;
+    power = (f32)((TBoss4Type2Params *)get_battle_movement_params(0x36))->power;
     spot = (Vec_80053914 *)&TBoss4Type2__tenchu_furu_array;
     for (i = 0; i < 0x40; i++) {
         TParticleCtrl *effect = (TParticleCtrl *)spawn_particle_effect(spot, lbl_80485B08[i & 1]);
@@ -705,7 +706,7 @@ TBoss4Type1::TBoss4Type1(TObject *parent, s32 *params) : TObjEnemy(parent) {
     VecCopy((Vec *)&m_2fc, &position);
     x_speed = y_speed = m_310 = lbl_805D8B20;
     target = 0;
-    bind_enemy_combat_stats((u8 *)TLobby::register_boss(0x36), (u8 *)TLobby::dispatch_shared_handler_b(0x36), (u8 *)TLobby::register_object(0x36));
+    bind_enemy_combat_stats((u8 *)get_battle_base_stats(0x36), (u8 *)get_battle_attack_params(0x36), (u8 *)get_battle_resistance_params(0x36));
     referenceHp = hp;
     ((TBoss3Volopt *)this)->reset_photon_effect();
     set_param(0x2F);
@@ -725,12 +726,12 @@ TBoss4Type1::TBoss4Type1(TObject *parent, s32 *params) : TObjEnemy(parent) {
     unk_3a0 = 0;
     unk_3ac = 1;
     unk_3a8 = 1;
-    move_frames = ((TBoss4Type2Params *)TLobby::dispatch_shared_handler_a(0x36))->move_seconds;
+    move_frames = ((TBoss4Type2Params *)get_battle_movement_params(0x36))->move_seconds;
     if (move_frames < 1 || move_frames > 60) {
         move_frames = 25;
     }
     move_frames = (f32)move_frames * lbl_805D8B78;
-    unk_3c4 = ((TBoss4Type2Params *)TLobby::dispatch_shared_handler_a(0x39))->rafoie_level;
+    unk_3c4 = ((TBoss4Type2Params *)get_battle_movement_params(0x39))->rafoie_level;
     if (unk_3c4 < 1) {
         unk_3c4 = 1;
     } else if (unk_3c4 > 6) {
@@ -1579,10 +1580,10 @@ void TBoss4Type2::update_tech_charge() {
         }
         play_sound_effect(0x4003A813, (u8 *)this + 0x38, 0, 1);
         if (idx == 0) {
-            TBoss4Type2Params *params = (TBoss4Type2Params *)TLobby::dispatch_shared_handler_a(0x36);
+            TBoss4Type2Params *params = (TBoss4Type2Params *)get_battle_movement_params(0x36);
             create__11TTecRaBartaFPvPvPvPv(this, (u8 *)this + 0x3B8, (u8 *)this + 0x3B8, (void *)params->rabarta_level);
         } else {
-            TBoss4Type2Params *params = (TBoss4Type2Params *)TLobby::dispatch_shared_handler_a(0x36);
+            TBoss4Type2Params *params = (TBoss4Type2Params *)get_battle_movement_params(0x36);
             ((TTecRaFoie *)this)->create((u8 *)this + 0x3B8, (u8 *)this + 0x3B8, (void *)params->rafoie_level);
         }
         start_pad_rumble_all(0xC0, 0xF);

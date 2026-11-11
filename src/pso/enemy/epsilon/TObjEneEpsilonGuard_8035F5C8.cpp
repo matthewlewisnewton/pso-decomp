@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/enemy/BattleParameters.h"
 #include "pso/render/TUnk_80494938.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
@@ -556,7 +557,7 @@ s32 update_linked_position__12TObjEneDD_STFf(f32);
 
 extern TObject *tl_04;
 
-// The shared table TLobby::dispatch_shared_handler_a(0x23) returns for the body.
+// The shared table get_battle_movement_params(0x23) returns for the body.
 struct EpsilonBodySharedParams {
     u8 pad_00[0x20];
     s32 m_20;

@@ -1,6 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/boss/goldragon/TBoss8Dragon_80065C90.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/map/CsnQuery.h"
 #include "pso/unk/text_80087278.h"
 #include "pso/object/base/TObjMotion.h"
@@ -52,9 +53,9 @@
 #include "pso/math/AngleLookup.h"
 #include "pso/render/render_util.h"
 
-// load_resources fills these per kind (0 and 1) from TLobby::register_boss,
-// TLobby::dispatch_shared_handler_b, TLobby::register_object and
-// TLobby::dispatch_shared_handler_a.
+// load_resources fills these per kind (0 and 1) from get_battle_base_stats,
+// get_battle_attack_params, get_battle_resistance_params and
+// get_battle_movement_params.
 Vec lbl_80542FB0;
 s32 lbl_80542FBC[2];
 s32 lbl_80542FC4[2];
@@ -1597,16 +1598,16 @@ void TObjEneMe3SinowZoa::load_resources() {
         TObjEneMe3SinowZoa__alternate_texture_list.textures[i].texaddr = TObjEneMe3SinowZoa__alternate_texture_list.textures[i + 3].texaddr;
     }
     for (i = 0; i < 2; i++) {
-        lbl_80542FBC[i] = (s32)TLobby::register_boss(lbl_80475E0C[i]);
+        lbl_80542FBC[i] = (s32)get_battle_base_stats(lbl_80475E0C[i]);
     }
     for (i = 0; i < 2; i++) {
-        lbl_80542FC4[i] = (s32)TLobby::dispatch_shared_handler_b(lbl_80475E14[i]);
+        lbl_80542FC4[i] = (s32)get_battle_attack_params(lbl_80475E14[i]);
     }
     for (i = 0; i < 2; i++) {
-        lbl_80542FCC[i] = (s32)TLobby::register_object(lbl_80475E1C[i]);
+        lbl_80542FCC[i] = (s32)get_battle_resistance_params(lbl_80475E1C[i]);
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3SinowZoa__kind_param_tbls[i] = (f32 *)TLobby::dispatch_shared_handler_a(lbl_80475E24[i]);
+        TObjEneMe3SinowZoa__kind_param_tbls[i] = (f32 *)get_battle_movement_params(lbl_80475E24[i]);
     }
     params = TObjEneMe3SinowZoa__kind_param_tbls[0];
     set_entry_value_clamped(7, params[3]);

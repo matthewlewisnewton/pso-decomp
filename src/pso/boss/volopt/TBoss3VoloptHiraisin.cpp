@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/boss/volopt/TBoss3VoloptHiraisin.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
@@ -328,10 +329,10 @@ void TBoss3VoloptHiraisin::init_models() {
         breakup = init_from_model__11TBreakUpMdlFl(breakup, get_bml_model(volopt_hiraisin_resources, 0x10));
     }
     volopt_hiraisin_breakup_model = breakup;
-    volopt_hiraisin_stats = TLobby::register_boss(0x24);
-    volopt_hiraisin_stats_b = TLobby::dispatch_shared_handler_b(0x24);
-    volopt_hiraisin_object_params = TLobby::register_object(0x24);
-    volopt_hiraisin_stat_table = TLobby::dispatch_shared_handler_a(0x24);
+    volopt_hiraisin_stats = get_battle_base_stats(0x24);
+    volopt_hiraisin_stats_b = get_battle_attack_params(0x24);
+    volopt_hiraisin_object_params = get_battle_resistance_params(0x24);
+    volopt_hiraisin_stat_table = get_battle_movement_params(0x24);
 }
 
 void *TBoss3VoloptHiraisin::create(void *set_data) {

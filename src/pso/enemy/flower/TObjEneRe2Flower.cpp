@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/flower/TObjEneRe2Flower_Bomb.h"
 #include "pso/enemy/dd/TObjEneDD.h"
@@ -85,7 +86,7 @@ extern const s32 lbl_8043BA94[3];
 extern const s32 lbl_8043BAA0[3];
 
 extern const char *lbl_805D2A48; // "TObjEneRe2Flower"
-extern void *lbl_805D5170;       // TLobby::dispatch_shared_handler_a's block for the variant
+extern void *lbl_805D5170;       // get_battle_movement_params's block for the variant
 extern BmlResource *lbl_805D5174;
 extern s32 lbl_805D5178;
 extern s32 lbl_805D517C;
@@ -243,10 +244,10 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData) : TObjEneDD_S
     } else {
         variant = 0;
     }
-    reset_hp((u8 *)TLobby::register_boss(lbl_8043BA7C[variant]),
-             (u8 *)TLobby::dispatch_shared_handler_b(lbl_8043BA88[variant]),
-             (u8 *)TLobby::register_object(lbl_8043BA94[variant]));
-    lbl_805D5170 = TLobby::dispatch_shared_handler_a(lbl_8043BAA0[variant]);
+    reset_hp((u8 *)get_battle_base_stats(lbl_8043BA7C[variant]),
+             (u8 *)get_battle_attack_params(lbl_8043BA88[variant]),
+             (u8 *)get_battle_resistance_params(lbl_8043BA94[variant]));
+    lbl_805D5170 = get_battle_movement_params(lbl_8043BAA0[variant]);
     if (get_flag_11()) {
         set_state_8();
     } else {

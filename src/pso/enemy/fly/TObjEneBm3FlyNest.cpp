@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -739,10 +740,6 @@ struct Bodies_800B41E8 { u8 pad0[0xC]; NJS_TEXLIST *textures; u8 pad1[0x18 - 0x1
 
 
 void queue_destruction__7TObjectFv(void *);
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 void free_bin_model_request(void*, int);
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 get_flag_b4__9TObjEneDDFv(void *);
@@ -1958,10 +1955,10 @@ void TObjEneBm3FlyNest::load_resources() {
     } else {
         lbl_805D5108 = load_enemy_bml_resource((u8 *)&bm3_fly_nest_resource_desc);
     }
-    lbl_805D50F8 = register_boss__6TLobbyFl(1);
-    lbl_805D50FC = dispatch_shared_handler_b__6TLobbyFl(1);
-    lbl_805D5100 = register_object__6TLobbyFl(1);
-    lbl_805D5104 = dispatch_shared_handler_a__6TLobbyFl(1);
+    lbl_805D50F8 = (s32)get_battle_base_stats(1);
+    lbl_805D50FC = (s32)get_battle_attack_params(1);
+    lbl_805D5100 = (s32)get_battle_resistance_params(1);
+    lbl_805D5104 = (s32)get_battle_movement_params(1);
     TObjEneBm3Fly::load_resources();
     TObjEneBm3FlyNest::init_vertex_table();
     {

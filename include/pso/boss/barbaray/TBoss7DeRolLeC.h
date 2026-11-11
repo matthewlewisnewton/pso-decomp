@@ -2,6 +2,7 @@
 #define PSO_BOSS_BARBARAY_TBOSS7DEROLLEC_H
 
 #include "types.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 #include "pso/system/task/TObject.h"
 #include "pso/boss/derolle/TUnk_80036250.h"
@@ -15,7 +16,7 @@ class TBoss7LaserLight;
 class AreaAttackHistory;
 class TUnk_804F1C58;
 
-// Boss parameter block 15 from TLobby::dispatch_shared_handler_a.
+// Boss parameter block 15 from get_battle_movement_params.
 struct TBoss7DeRolLeCParams {
     u8 pad_00[0x18];
     s32 unk_18;
@@ -65,7 +66,7 @@ struct TBoss7DeRolLeC : public TObjEneDD_ST {
     s32 unk_5A8[10];              // read by TObjPlayer__sub_802E7EA0
     s32 unk_5D0[10];
     TBoss7Joint *unk_5F8[10];
-    TBoss7DeRolLeCParams *unk_620; // TLobby::dispatch_shared_handler_a(15)
+    TBoss7DeRolLeCParams *unk_620; // get_battle_movement_params(15)
     ControllerInputContext *unk_624; // controller_input_state.controllers[1]
     s32 unk_628;                  // state flags (0x4, 0x8, 0x40, 0x80, 0x8000 tested)
     s32 unk_62C;
