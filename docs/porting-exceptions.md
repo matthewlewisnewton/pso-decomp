@@ -1517,3 +1517,15 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | Scope | Construct | Evidence and reason | Port action |
 |---|---|---|---|
 | `src/pso/npc/TObjNpcKenkyuW.cpp`, `TObjPlayer__sub_802A445C` at `0x802A445C` | Scoped `scheduling off` and `global_optimizer off` | Preserve the original argument setup and the contact-load/receiver-copy/contact-store order. The explicit `void*` value conversion in the comma expression avoids an addressable temporary and retains the original 16-byte frame. All 228 bytes and the full 2,376-byte unit match. See [compiler and comparison evidence](evidence/kenkyuw-dispatcher-continuation.md). | Drop the compiler controls. The contact assignment can be a separate statement before the virtual call; retain the actor value passed to that call. |
+
+
+### Memory-card request snapshots
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp`, request steps at `0x803F2240`, `0x803F2610`, `0x803F282C`, `0x803F2A4C` | Scoped `inline_depth(2)`, `auto_inline off`, `dont_inline off`, and `opt_lifetimes` controls; one-word `CardChannel` snapshots | With the existing propagation control, inline channel reads/completion helpers and explicit snapshot lifetimes reproduce all 2,704 newly recovered instruction bytes. The value objects carry channel IDs, not file-record indices; they introduce no alternate view of a record. | Drop the compiler controls and retain ordinary value snapshots and the restore/completion sequence. No special object layout is required for these local values in a port. |
+| Same request steps, `read_card_channel` | Read the existing `s32` channel through a volatile-qualified lvalue | The native steps reload the channel after publishing CARD results and before disk-ID restoration. Qualification preserves those read boundaries without changing the shared record type or asserting another object at that address. This is a matching constraint, not evidence of concurrent channel writes. | Define how request steps, callbacks and bulk record resets are serialized before coalescing these reads. Volatile supplies neither atomicity nor synchronization. |
+
+The SDK includes use the existing `PSO_SDK_COMPACT_MATH` header mode so unused
+square-root inlines do not emit 32 bytes of static constants outside this unit's
+owned sections. A port can use its ordinary SDK/math declarations.

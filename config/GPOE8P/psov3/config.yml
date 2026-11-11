@@ -189,6 +189,12 @@ force_active:
   - TAdPlayerLoadGC__network_info_payload_buffer
   - TAdPlayerLoadGC__sub_801E101C
   - TAdPlayerLoadGC__sub_801E26DC
+  - TAdPlayerLoadGC__sub_803F1908
+  - TAdPlayerLoadGC__sub_803F2240
+  - TAdPlayerLoadGC__sub_803F2610
+  - TAdPlayerLoadGC__sub_803F2A4C
+  - TAdPlayerLoadGC__sub_803F2CD0
+  - TAdPlayerLoadGC__sub_803F2D20
   - TAdPlyPltAnimCtrlGC__ct
   - TAdPlyPltAnimCtrlGC__sub_80355168
   - TAdPlyPltAnimGC__ct
@@ -1761,6 +1767,7 @@ force_active:
   - TRKPPCAccessFPRegister
   - TRKPositionFile
   - TRKPostInterruptEvent
+  - TRKSuppAccessFile
   - TRK__write_aram
   - TRK_mainError
   - TRaderMapCore__floor_discovery_table
@@ -8537,6 +8544,8 @@ force_active:
   - lbl_80581A30
   - lbl_8058DC00
   - lbl_8058DD88
+  - lbl_805A28C0
+  - lbl_805A5ED0
   - lbl_805A9008
   - lbl_805A9A90
   - lbl_805A9AF0
@@ -15135,6 +15144,7 @@ force_active:
   - reset_segment_points__14TBoss2TentacleFv
   - reset_selection__21TWindowSubCustomEquipFv
   - reset_slime_tail_node_index
+  - reset_slot_entry__15TAdPlayerLoadGCFl
   - reset_slot_selection_table__22TAdMultiPlyChrSelectGCFv
   - reset_sound_events__10TObjCameraFv
   - reset_sound_group_fade__6TLobbyFv
@@ -16789,6 +16799,7 @@ force_active:
   - step_ground_technique_projectile
   - step_line__23TObjOnlineEndingHexLineFv
   - step_placement_search__13TUnk_804C4498Fv
+  - step_set_attributes__15TAdPlayerLoadGCFl
   - stop__13TUnk_804A7478Fv
   - stop_adx_audio__14TBoss6PlotFalzFv
   - stop_effect__14TItemEquipBaseFUl
@@ -17486,7 +17497,9 @@ force_active:
   - update_capture__14TObjVoloptCageFv
   - update_card_confirm__16TAdChrSelBSlotGCFPv
   - update_card_confirm_selection__21TAdMultiChgGameModeGCFv
+  - update_card_delete__15TAdPlayerLoadGCFl
   - update_card_list_window__6TLobbyFv
+  - update_card_rename__15TAdPlayerLoadGCFl
   - update_card_select__16TAdChrSelBSlotGCFPv
   - update_center_position__16TObjEneBm5GibonUFv
   - update_center_position__19TObjEneEpsilonGuardFv
