@@ -1949,6 +1949,7 @@ pso/misc/TWindowSubSymbolChat.cpp
 pso/misc/TWindowSubSymbolChatFaceType.cpp
 pso/misc/TWindowSubSymbolChatFaceType_80283A70.cpp
 pso/misc/TWindowSubSymbolChatHelp.cpp
+pso/misc/TWindowSubSymbolChatParts.cpp
 pso/misc/TWindowSubSymbolChatPartsSet.cpp
 pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.cpp
 pso/misc/TWindowSubSymbolChat_80076F88.cpp
