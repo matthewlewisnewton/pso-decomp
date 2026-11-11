@@ -102,7 +102,7 @@ s32 EXISelect(s32, u32, s32);
 s32 EXISync(s32);
 s32 EXIImmEx(s32, s32, s32, s32);
 extern s32 exi_send_started_flag;
-extern s32 lbl_805D7C54;
+extern ExiSendCompletionCallback lbl_805D7C54;
 extern s32 lbl_805D7C7C;
 extern s32 exi_send_size;
 s32 memcpy(void *, void *, int);
@@ -228,7 +228,7 @@ void TLobby__sub_80429AC8(void) {
     TLobby__sub_80429648();
 }
 
-void TLobby::start_exi_send(s32 arg0, s32 arg1, s32 arg2) {
+void TLobby::start_exi_send(s32 arg0, s32 arg1, ExiSendCompletionCallback arg2) {
     s32 var_r3;
     s32 var_r4;
     lbl_805D7C7C = arg0;

@@ -8,12 +8,12 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 46 | 12 |
-| intrinsic | 83 | 54 |
+| intrinsic | 84 | 55 |
 | hardware | 69 | 13 |
-| pragma | 5717 | 880 |
-| configure.py per-unit override | 193 | 193 |
+| pragma | 5718 | 881 |
+| configure.py per-unit override | 194 | 194 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1113, `inline_depth` 1005, `fp_contract` 882, `auto_inline` 803, `opt_common_subs` 616, `scheduling` 264, `opt_propagation` 248, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 29, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 55, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 30, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -101,10 +101,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1113, `inline_depth` 1005,
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:542` | `__cntlzw` |
 | `src/pso/misc/TRaderMapCore_8030A808.cpp:9` | `__cntlzw` |
 | `src/pso/misc/TWindowDD_8034725C.cpp:338` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:331` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:432` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:489` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:565` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:332` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:433` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:490` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:566` | `__cntlzw` |
 | `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:71` | `__cntlzw` |
 | `src/pso/misc/TWindowMainMenu_802AD538.cpp:282` | `__cntlzw` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:32` | `__rlwinm` |
@@ -115,6 +115,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1113, `inline_depth` 1005,
 | `src/pso/misc/TWindowSubItem.cpp:359` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
+| `src/pso/network/ModemRuntime.cpp:363` | `__cntlzw` |
 | `src/pso/object/TObjCMMainMenu_8028D9A8.cpp:108` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
@@ -240,6 +241,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1113, `inline_depth` 1005,
 | `pso/boss/TBoss6EmptyWarp_802B0E2C.cpp` | `-str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/pso_date.cpp` | `GC/1.3.2` | Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md. |
 | `pso/misc/TWindowFukidasi.cpp` | `(multi-line entry; see configure.py)` | The balloon float pool begins at 0x805DCD0C, which is four-byte aligned. |
+| `pso/object/TObjCMName.cpp` | `-sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/ui/TAdDialingGC_80328B20.cpp` | `GC/1.3.2` | GC/1.3.2 preserves the per-vertex coordinate loads and store order. |
 | `pso/unk/text_8007ECF0.cpp` | `GC/1.3.2` | The download graph's border pass keeps GC/1.3.2 load scheduling. |
 | `pso/ui/TAdSelectGameModeGC_802C4748.cpp` | `GC/1.3.2, -fp_contract on` | The selection plate has the same GC/1.3.2 vertex schedule and fuses its depth offset. |
@@ -883,7 +885,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1113, `inline_depth` 1005,
 | `src/pso/misc/TWindowDD_803411E8.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowDD_80341334.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowDD_80341A08.cpp` | fp_contract×3 |
-| `src/pso/misc/TWindowDD_803430BC.cpp` | opt_common_subs×2, optimization_level×1 |
+| `src/pso/misc/TWindowDD_803430BC.cpp` | optimization_level×1, opt_common_subs×1 |
+| `src/pso/misc/TWindowDD_8034435C.cpp` | opt_common_subs×2, dont_inline×1, inline_depth×1 |
 | `src/pso/misc/TWindowDD_8034725C.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowDD_803488A8.cpp` | fp_contract×3 |
 | `src/pso/misc/TWindowDeposit.cpp` | opt_common_subs×1, opt_propagation×1, opt_dead_assignments×1 |
@@ -963,7 +966,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1113, `inline_depth` 1005,
 | `src/pso/misc/TWindowTradeRequest_802E0170.cpp` | fp_contract×1 |
 | `src/pso/misc/TeneFakeTecThunderEff.cpp` | fp_contract×4 |
 | `src/pso/misc/pso_date.cpp` | opt_propagation×2, inline_depth×1, auto_inline×1, dont_inline×1 |
-| `src/pso/network/ModemRuntime.cpp` | dont_inline×3, inline_depth×2, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
+| `src/pso/network/ModemRuntime.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/network/NetworkConfigLifecycle.cpp` | scheduling×1, peephole×1 |
 | `src/pso/network/NetworkDispatcher.cpp` | opt_common_subs×3, pool_data×1 |
 | `src/pso/network/NetworkInfoCodec.cpp` | scheduling×15, peephole×13, optimization_level×11, use_lmw_stmw×3 |
@@ -1015,7 +1018,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1113, `inline_depth` 1005,
 | `src/pso/object/TObjCGrass.cpp` | fp_contract×1 |
 | `src/pso/object/TObjCMIcon_80299488.cpp` | common×2, fp_contract×1 |
 | `src/pso/object/TObjCMMainMenu_8028EA88.cpp` | readonly_strings×1 |
-| `src/pso/object/TObjCMName.cpp` | fp_contract×13, opt_common_subs×4, defer_codegen×2, opt_loop_invariants×1 |
+| `src/pso/object/TObjCMName.cpp` | fp_contract×15, opt_common_subs×4, defer_codegen×1, opt_lifetimes×1, opt_loop_invariants×1 |
 | `src/pso/object/TObjCMProportion_80298FAC.cpp` | fp_contract×1 |
 | `src/pso/object/TObjCamera.cpp` | readonly_strings×1, fp_contract×1 |
 | `src/pso/object/TObjChip.cpp` | fp_contract×4, inline_depth×1, auto_inline×1, dont_inline×1, readonly_strings×1 |
