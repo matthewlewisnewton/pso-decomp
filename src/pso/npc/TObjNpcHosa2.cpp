@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/unk/text_8014B8A4.h"
@@ -32,7 +33,6 @@ struct RecoveredGlobal_802FED58___vt__12TObjNpcHosa2 {
 extern "C" {
 extern u32 TObjNpcHosa2__shared_model_resource;
 s32 TObjFish__sub_8001EDB0(int, int);
-s32 get_bml_model(int, int);
 extern s32 __vt__12TObjNpcHosa2[];
 extern const char *TObjNpcHosa2__name;
 void __dl__7TObjectFPv(void *);
@@ -69,7 +69,7 @@ u8 *TObjNpcHosa2__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcHosa2__name;
     ((TObjNpcHosa2 *)(player))->apply_set_data((void *)arg2);
     ((TObjChara *)player)->initialize_position_copies();
-    *(s32 *)((s8 *)player + 0x34) = get_bml_model((int) ((*(s32 *)&TObjNpcHosa2__shared_model_resource)), 0);
+    *(s32 *)((s8 *)player + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&TObjNpcHosa2__shared_model_resource)), 0);
     ((TObjNpcHosa2 *)player)->texlist = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TObjNpcHosa2__shared_model_resource)), 0);
     ((TObjNpcBase *)player)->setup_common();
     return player;

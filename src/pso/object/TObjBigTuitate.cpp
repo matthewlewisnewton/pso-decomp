@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -53,7 +54,6 @@ struct ByteBlock_3C { u8 bytes[0x3c]; };
 extern "C" {
 void __ct__15RenderFadeStateFv(void *);
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 s32 isFading__15RenderFadeStateCFv(void *);
 s32 matrix_mult_vec(int, void *, void *);
 void rotate_matrix_y(int, int);
@@ -101,7 +101,7 @@ void TObjBigTuitate::render() {
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
-    get_bml_model((*(s32 *)&TObjBigTuitate__bml_resource), 0);
+    (s32)get_bml_model((BmlResource *)(*(s32 *)&TObjBigTuitate__bml_resource), 0);
     draw_ginja_object();
     pop_matrix();
     if (fading != 0) {
@@ -220,7 +220,6 @@ struct Vec_8019ADA0 { f32 x, y, z; };
 
 extern "C" {
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 s32 isFading__15RenderFadeStateCFv(void *);
 s32 matrix_mult_vec(int, void *, void *);
 void rotate_matrix_y(int, int);
@@ -268,7 +267,7 @@ void TObjTuitate::render() {
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
-    get_bml_model((*(s32 *)&TObjTuitate__bml_resource), 0);
+    (s32)get_bml_model((BmlResource *)(*(s32 *)&TObjTuitate__bml_resource), 0);
     draw_ginja_object();
     pop_matrix();
     if (fading != 0) {

@@ -7,6 +7,7 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ansi_fp.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/buffer_io.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/direct_io.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/file_io.c
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mbstring.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mem.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mem_funcs.c
@@ -313,6 +314,7 @@ pso/boss/TBoss8DragonDemo.cpp
 pso/boss/TBoss8DragonEffBreath.cpp
 pso/boss/TBoss8DragonEffBullet.cpp
 pso/boss/TBoss8DragonEffTail.cpp
+pso/boss/TBoss8Dragon_8002CC48.cpp
 pso/boss/TBoss8Dragon_8005D6F4.cpp
 pso/boss/TBoss8Dragon_8005D700.cpp
 pso/boss/TBoss8Dragon_8005D708.cpp
@@ -1168,6 +1170,7 @@ pso/misc/TLobby_8036B204.cpp
 pso/misc/TLobby_8036DBC4.cpp
 pso/misc/TLobby_8036F81C.cpp
 pso/misc/TLobby_803BFE50.cpp
+pso/misc/TLobby_803C1A58.cpp
 pso/misc/TLobby_803C45E4.cpp
 pso/misc/TLobby_803C4698.cpp
 pso/misc/TLobby_803CBE88.cpp

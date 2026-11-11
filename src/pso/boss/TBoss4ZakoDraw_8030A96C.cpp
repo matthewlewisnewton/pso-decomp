@@ -1,3 +1,6 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/TBoss4ZakoDraw.h"
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 void set_constant_material(const NJS_ARGB *color);
@@ -32,7 +35,6 @@ struct Tbl_8030AC7C { s32 count; Ent_8030AC7C ents[96]; u8 pad[0x784 - 4 - 96 * 
 
 extern "C" {
 s32 is_split_screen();
-u8 *get_bml_model(s32, s32);
 s32 set_viewport_scissor__11TCameraCtrlFiPv(int, int);
 void TObjPlayer__sub_8030A9B0();
 extern RecoveredGlobal_8030ABF4_TCameraCtrl__data_804FF634 TCameraCtrl__data_804FF634;
@@ -42,7 +44,6 @@ extern s32 TBoss4ZakoDraw__rotation_phase;
 void TCameraCtrl__sub_8030ABF4(void);
 extern RecoveredGlobal_8030ABF4_lbl_80541E58 boss4_zako_draw_buffers;
 extern s32 TBoss4ZakoDraw__draw_buffer_index;
-u8 *get_bml_model(s32, s32);
 void TObjPlayer__sub_80052390(f32);
 void rotate_matrix_y(int, int);
 void rotate_matrix_x(int, int);
@@ -82,20 +83,13 @@ extern const f32 lbl_805DF144;
 extern const f32 lbl_805DF148;
 extern const f32 lbl_805DF14C;
 
-extern "C" {
+extern const char *TBoss4ZakoDraw__class_name;
 
-void *__ct__14TBoss4ZakoDrawFv(void *arg0);
-void __ct__7TObjectFP7TObject(void *);
-
-extern s32 __vt__14TBoss4ZakoDraw[];
-extern void *TBoss4ZakoDraw__class_name;
-
-void *__ct__14TBoss4ZakoDrawFv(void *object) {
-    __ct__7TObjectFP7TObject(object);
-    *(s32 **)((s8 *)object + 0x18) = __vt__14TBoss4ZakoDraw;
-    *(void **)((s8 *)object + 0x0) = TBoss4ZakoDraw__class_name;
-    return object;
+TBoss4ZakoDraw::TBoss4ZakoDraw(TObject *parent) : TObject(parent) {
+    m_name = TBoss4ZakoDraw__class_name;
 }
+
+extern "C" {
 typedef char RecoveredGlobal_8030ABF4_TCameraCtrl__data_804FF634_size[sizeof(RecoveredGlobal_8030ABF4_TCameraCtrl__data_804FF634) == 0x48 ? 1 : -1];
 typedef char RecoveredGlobal_8030ABF4_lbl_80541E58_size[sizeof(RecoveredGlobal_8030ABF4_lbl_80541E58) == 0xF08 ? 1 : -1];
 
@@ -164,7 +158,7 @@ void TObjPlayer::draw_area_chunk_objects() {
     Ent_8030AB48 *p = t->ents;
     s32 r31;
     s32 i;
-    r31 = ((s32)get_bml_model((s32)(TBoss4Uro::get_instance_count()), 8));
+    r31 = ((s32)get_bml_model(TBoss4Uro::get_instance_count(), 8));
     TObjPlayer__sub_80052390(lbl_805DF148);
     set_current_texture_list((GinjaTextureList *)(falz_zako_texture_list));
     for (i = 0; i < t->count; i++, p++) {

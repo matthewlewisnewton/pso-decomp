@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundSlotPitch.h"
 #include "pso/misc/ParticleFactory.h"
@@ -134,7 +135,6 @@ struct Obj_80230CFC {
 
 extern "C" {
 void *get_bml_motion(void *, u32);
-void *get_bml_model(void *, u32);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 void matrix_mult_vec(s32, void *, void *);
 void rotate_matrix_y(s32, s32);
@@ -248,7 +248,7 @@ void TTecGiBarta::create_particles() {
                 ((TParticleCtrl *)emitter)->set_scale(TTecGiBarta__emitter_profile_table[shot->band].rows[i].scale, TTecGiBarta__emitter_profile_table[shot->band].rows[i].scale);
             }
             if (TTecGiBarta__emitter_profile_table[shot->band].rows[i].flags & 0x20) {
-                attach_particle_model((u8 *)emitter, (s32)(get_bml_model(technique_effect_bml, (u16)(TTecGiBarta__emitter_profile_table[shot->band].rows[i].flags >> 16))), (s32)lbl_805D63B0, (s32)NULL, 0, (f32)lbl_805DC804);
+                attach_particle_model((u8 *)emitter, (s32)((void *)get_bml_model((BmlResource *)technique_effect_bml, (u16)(TTecGiBarta__emitter_profile_table[shot->band].rows[i].flags >> 16))), (s32)lbl_805D63B0, (s32)NULL, 0, (f32)lbl_805DC804);
             }
         }
         shot->emitters[i] = emitter;
@@ -262,19 +262,19 @@ void TTecGiBarta::create_particles() {
         if (src != NULL) {
             emitter = spawn_particle_effect((const Vec *)(src + 0x38), 0x18B);
             if (emitter != NULL) {
-                attach_particle_model((u8 *)emitter, (s32)(get_bml_model(technique_effect_bml, 6)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 2)), 0, (f32)lbl_805DC804);
+                attach_particle_model((u8 *)emitter, (s32)((void *)get_bml_model((BmlResource *)technique_effect_bml, 6)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 2)), 0, (f32)lbl_805DC804);
             }
             emitter = create_timed_particle_emitter(src + 0x38, 0x18B, 5, 1);
             if (emitter != NULL) {
-                attach_particle_model((u8 *)emitter, (s32)(get_bml_model(technique_effect_bml, 7)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 2)), 0, (f32)lbl_805DC804);
+                attach_particle_model((u8 *)emitter, (s32)((void *)get_bml_model((BmlResource *)technique_effect_bml, 7)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 2)), 0, (f32)lbl_805DC804);
             }
             emitter = create_timed_particle_emitter(src + 0x38, 0x18B, 10, 1);
             if (emitter != NULL) {
-                attach_particle_model((u8 *)emitter, (s32)(get_bml_model(technique_effect_bml, 8)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 2)), 0, (f32)lbl_805DC804);
+                attach_particle_model((u8 *)emitter, (s32)((void *)get_bml_model((BmlResource *)technique_effect_bml, 8)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 2)), 0, (f32)lbl_805DC804);
             }
             emitter = create_timed_particle_emitter(src + 0x38, 0x18F, 20, 1);
             if (emitter != NULL) {
-                attach_particle_model((u8 *)emitter, (s32)(get_bml_model(technique_effect_bml, 5)), (s32)lbl_805D63B0, (s32)NULL, 0, (f32)lbl_805DC804);
+                attach_particle_model((u8 *)emitter, (s32)((void *)get_bml_model((BmlResource *)technique_effect_bml, 5)), (s32)lbl_805D63B0, (s32)NULL, 0, (f32)lbl_805DC804);
             }
         }
     }

@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/npc/TObjNpcSoutokufu.h"
@@ -32,7 +33,6 @@ struct RecoveredGlobal_802894A8___vt__13TObjNpcKenkyu {
 
 extern "C" {
 s32 TObjFish__sub_8001EDB0(int, int);
-s32 get_bml_model(int, int);
 extern s32 __vt__13TObjNpcKenkyu[];
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
@@ -73,7 +73,7 @@ u8 *TObjNpcKenkyu__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcKenkyu__name;
     ((TObjNpcKenkyu *)(player))->apply_set_data((void *)arg2);
     ((TObjChara *)player)->initialize_position_copies();
-    *(s32 *)((s8 *)player + 0x34) = get_bml_model((int) ((*(s32 *)&TObjNpcKenkyu__static_model)), 0);
+    *(s32 *)((s8 *)player + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&TObjNpcKenkyu__static_model)), 0);
     ((TObjNpcKenkyu *)player)->texlist = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TObjNpcKenkyu__static_model)), 0);
     ((TObjNpcBase *)player)->setup_common();
     return player;

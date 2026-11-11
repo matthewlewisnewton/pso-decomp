@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/NinjaUtil.h"
@@ -89,7 +90,6 @@ extern u8 lbl_8046605C[];
 extern u32 TODoorLabo__model_archive;
 extern u32 TODoorLaboNormal__green_texture_list;
 extern u32 TODoorLaboNormal__red_texture_list;
-s32 get_bml_model(s32, s32);
 extern s32 lbl_80465FF8[];
 extern s32 TODoorLabo__bml_resource;
 Door_8029FAE4 *TODoorLabo__ct(Door_8029FAE4 *arg0);
@@ -98,7 +98,7 @@ void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
 void *__dt__19TODoorFourLightBaseFv(void *arg0, s16 arg1);
 
-void TODoorLaboNormal::init_field_d4() { this->m_d4 = get_bml_model(TODoorLabo__model_archive, 0); }
+void TODoorLaboNormal::init_field_d4() { this->m_d4 = (s32)get_bml_model((BmlResource *)TODoorLabo__model_archive, 0); }
 
 s32 TODoorLaboNormal__vt20(void) {
     return TODoorLaboNormal__green_texture_list;
@@ -181,7 +181,7 @@ void TODoorLabo::init_model_by_type() {
     if (*(s32 *)&this->set_params[1] > 1) {
         *(s32 *)&this->set_params[1] = 1;
     }
-    *(s32 *)&this->m_d4 = get_bml_model(TODoorLabo__bml_resource, tbl[*(s32 *)&this->set_params[1]]);
+    *(s32 *)&this->m_d4 = (s32)get_bml_model((BmlResource *)TODoorLabo__bml_resource, tbl[*(s32 *)&this->set_params[1]]);
 }
 
 s32 TODoorLabo__vt20(void) {
@@ -319,7 +319,7 @@ u8 *TODoorFourLightSeabedU__ct(u8 *arg0) {
     init_collision_body_parts(arg0, labo_door_collision_body_parts, 1);
     ((TObjCollidable *)arg0)->refresh_collision_body_centers();
     ((TObjPlayer *)arg0)->register_object_by_id();
-    self->fD4 = get_bml_model((s32)seabed_four_light_door_bml_resource, 0);
+    self->fD4 = (s32)get_bml_model((BmlResource *)seabed_four_light_door_bml_resource, 0);
     self->infoBC = (Info_8029FD70 *)get_bml_motion((s32)seabed_four_light_door_bml_resource, 0);
     self->fB4 = (f32)self->infoBC->v4 - lbl_805DDDB8;
     self->fB8 = lbl_805DDDBC;
@@ -437,7 +437,7 @@ u8 *TODoorFourLightSeabed__ct(u8 *arg0) {
     init_collision_body_parts(arg0, labo_door_collision_body_parts, 1);
     ((TObjCollidable *)arg0)->refresh_collision_body_centers();
     ((TObjPlayer *)arg0)->register_object_by_id();
-    self->fD4 = get_bml_model(door_labo_bml_resource, 0);
+    self->fD4 = (s32)get_bml_model((BmlResource *)door_labo_bml_resource, 0);
     self->infoBC = (Info_802A0068 *)get_bml_motion(door_labo_bml_resource, 0);
     self->fB4 = (f32)self->infoBC->v4 - lbl_805DDDB8;
     self->fB8 = lbl_805DDDBC;

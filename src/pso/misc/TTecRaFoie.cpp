@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/SoundSlotPitch.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -88,8 +89,6 @@ u16 get_entity_id(void *);
 void construct_area_technique_base(void *, void *, void *, void *, int);
 #define construct_area_technique_base ((void (*)(void *, void *, void *, void *, void *))construct_area_technique_base)
 s32 is_split_screen();
-void get_bml_model(void *, s32);
-#define get_bml_model ((void * (*)(void *, int))get_bml_model)
 void attach_particle_model(void *, void *, void *, int, int, f32);
 
 s32 is_parents_unqueued__9TTecLukerFUl();
@@ -199,7 +198,7 @@ void TTecRaFoie::vfunc_8(void *) {
         } else {
             emitter = spawn_particle_effect((const Vec *)(&self->target), 0x1A);
             if (emitter != NULL) {
-                attach_particle_model(emitter, get_bml_model(technique_effect_bml, 9), lbl_805D63B0, 0, 1, (1.0f));
+                attach_particle_model(emitter, get_bml_model((BmlResource *)technique_effect_bml, 9), lbl_805D63B0, 0, 1, (1.0f));
             }
         }
         spawn_particle_effect((const Vec *)(&self->target), 0x3A);
@@ -213,7 +212,7 @@ void TTecRaFoie::vfunc_8(void *) {
             spawn_particle_effect((const Vec *)(&point), 0x39);
             emitter = spawn_particle_effect((const Vec *)(&point), 0x1A);
             if (emitter != NULL) {
-                attach_particle_model(emitter, get_bml_model(technique_effect_bml, 9), lbl_805D63B0, 0, 1, (1.0f));
+                attach_particle_model(emitter, get_bml_model((BmlResource *)technique_effect_bml, 9), lbl_805D63B0, 0, 1, (1.0f));
             }
         }
     }
@@ -221,7 +220,6 @@ void TTecRaFoie::vfunc_8(void *) {
 
 }
 
-#undef get_bml_model
 #undef construct_area_technique_base
 #undef __dl__7TObjectFPv
 #undef is_valid_and_active__10TObjPlayerFUl
@@ -377,7 +375,7 @@ void TUnk_804CCB28::render() {
     set_current_texture_list((GinjaTextureList *)(lbl_805D63B0));
     set_cull_back();
     set_draw_list_mask(3);
-    get_bml_model(technique_effect_bml, 0xB);
+    get_bml_model((BmlResource *)technique_effect_bml, 0xB);
     draw_ginja_object();
     restore_draw_list_mask();
     set_cull_none();

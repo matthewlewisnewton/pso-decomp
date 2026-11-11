@@ -19,7 +19,7 @@
 
 extern "C" {
 AnimationMotion *get_bml_motion(BmlResource *resource, s32 index);
-void draw_ginja_model_with_motion(s32 model, AnimationMotion *motion, f32 frame);
+void draw_ginja_model_with_motion(void *model, AnimationMotion *motion, f32 frame);
 }
 
 __declspec(section ".data") const char *bm_obj_lobby_bell_model_names[3] = { "lobby_obj_bell_D8_yane.gj", "lobby_obj_bell_VN_null1.gj", NULL };
@@ -41,7 +41,7 @@ void TObjWeddingLobby::render() {
         if (fade_state != 3) {
             scale_matrix(NULL, fade_scale, 1.0f, fade_scale);
         }
-        draw_ginja_object((void *)get_bml_model(resource_bundle, 0));
+        draw_ginja_object(get_bml_model(resource_bundle, 0));
         draw_ginja_model_with_motion(get_bml_model(resource_bundle, 1), get_bml_motion(resource_bundle, 0), animation_frame);
         pop_matrix();
         TParticleCtrl::end_effect_render();

@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/render/render_util.h"
@@ -51,7 +52,6 @@ s32 pop_matrix();
 s32 post_translate_matrix(void *);
 void draw_ginja_model(void * model);
 s32 TObjFish__sub_8001EDB0(void *, int);
-s32 get_bml_model(void *, int);
 s32 init_collision_body_parts(void *, void *, int);
 u8 *init_container_base(u8 *arg0, s32 arg1, s32 arg2);
 extern RecoveredGlobal_8015BD68_lbl_804B00C8 TOContainerAncientEnemy__collision_body_params;
@@ -104,14 +104,14 @@ void TOContainerAncientEnemy::vfunc_79() {
         a.y = self->y;
         a.z = self->z;
         a.f38 = self->y;
-        a.f40 = get_bml_model((void *)ancient_container_resource_bundle, 1);
+        a.f40 = (s32)get_bml_model((BmlResource *)ancient_container_resource_bundle, 1);
         a.f44 = TObjFish__sub_8001EDB0((void *)ancient_container_resource_bundle, 1);
         Spawn_8015B94C b = ancient_enemy_break_debris_desc_b;
         b.x = self->x;
         b.y = self->y;
         b.z = self->z;
         b.f38 = self->y;
-        b.f40 = get_bml_model((void *)ancient_container_resource_bundle, 2);
+        b.f40 = (s32)get_bml_model((BmlResource *)ancient_container_resource_bundle, 2);
         b.f44 = TObjFish__sub_8001EDB0((void *)ancient_container_resource_bundle, 2);
         if (check_value_equals__7TObjectFPCc(self, lbl_805D2F10) != 0) {
             a.f44 = ancient_container_fragment_texture_lists->a;
@@ -231,7 +231,7 @@ u8 *TOContainerAncientEnemy__ct(u8 *arg0, s32 arg1) {
     VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x38));
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
     *(f32 *)((s8 *)arg0 + 0x78) = (f32) (*(f32 *)((s8 *)arg0 + 0x78) + *(f32 *)((s8 *)&TOContainerAncientEnemy__collision_body_params.value + 4));
-    *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model((void *) ((*(s32 *)&ancient_container_resource_bundle)), 0);
+    *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&ancient_container_resource_bundle)), 0);
     ((TOContainerAncientEnemy *)arg0)->texlist = TObjFish__sub_8001EDB0((void *) ((*(s32 *)&ancient_container_resource_bundle)), 0);
     return arg0;
 }

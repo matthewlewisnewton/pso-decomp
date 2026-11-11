@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/math/MatrixTransforms.h"
@@ -9,7 +10,6 @@
 
 extern "C" {
 s32 TObjFish__sub_8001EDB0(u32, s32);
-s32 get_bml_model(u32, s32);
 s32 scale_matrix(s32, f32, f32, f32);
 s32 push_matrix();
 extern u32 TObjEneRecon__recobox_static_instance;
@@ -19,7 +19,7 @@ void TObjEneRecon::render_shadows() {
   if (((u32) TObjEneRecon__recobox_static_instance) != 0U)
   {
     s32 temp_r30;
-    bml_model = get_bml_model(TObjEneRecon__recobox_static_instance, 2);
+    bml_model = (s32)get_bml_model((BmlResource *)TObjEneRecon__recobox_static_instance, 2);
     temp_r30 = TObjFish__sub_8001EDB0(TObjEneRecon__recobox_static_instance, 2);
     push_matrix();
     translate_matrix(0, *((f32 *) (((s8 *) this) + 0x38)), *((f32 *) (((s8 *) this) + 0x3C)), *((f32 *) (((s8 *) this) + 0x40)));

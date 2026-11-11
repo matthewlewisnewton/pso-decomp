@@ -435,7 +435,7 @@ s32 TCMCharacter::bind_model_parts(u32 *selected, const char **names, CreationMo
             parts->model = 0;
         } else {
             parts->present = 1;
-            parts->model = get_bml_model((BmlResource *)chara_select_preview_resource, model_index++);
+            parts->model = (u32)get_bml_model((BmlResource *)chara_select_preview_resource, model_index++);
         }
         i++;
         names++;

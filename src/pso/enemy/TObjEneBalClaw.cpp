@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -180,7 +181,6 @@ extern void *lbl_805D4F28[];
 extern void *lbl_805D4F2C[];
 extern void *lbl_805D4F30[];
 extern void *lbl_805D4F34[];
-u32 get_bml_model(u32, s32);
 
 void TObjEneBalClaw__sub_8008D924(void) {
     Ent_8008D68C *e;
@@ -210,7 +210,7 @@ void TObjEneBalClaw__sub_8008D924(void) {
     }
     for (m = 0; m < 7; m++) {
         e = &balclaw_parts[m];
-        e->plist = ((BalClawObject *)find_model_node(get_bml_model(lbl_805D4F20, e->model_index), e->part_index))->model->plist;
+        e->plist = ((BalClawObject *)find_model_node(((u32)get_bml_model((BmlResource *)lbl_805D4F20, e->model_index)), e->part_index))->model->plist;
     }
     for (n = 0; n < 2; n++) {
         lbl_805007A8[n] = get_battle_base_stats(31);

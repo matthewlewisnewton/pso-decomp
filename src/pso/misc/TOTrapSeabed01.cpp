@@ -170,7 +170,7 @@ SeabedTrapFragmentSpawn seabed_trap_fragment_spawns[6] = {
 TOTrapSeabed01::TOTrapSeabed01(TObject *parent, void *creator) : TOTrap(parent, creator) {
     m_name = TOTrapSeabed01_class_name;
     apply_object_set_data(creator);
-    model = (void *)get_bml_model(TOTrapSeabed01__bml_resource, 0);
+    model = get_bml_model(TOTrapSeabed01__bml_resource, 0);
     current_motion = (NJS_MOTION *)get_bml_motion(TOTrapSeabed01__bml_resource, 0);
     play_speed = 1.0f;
     frame = 0.0f;
@@ -208,7 +208,7 @@ void TOTrapSeabed01::vfunc_6(s16 *arg1, s32 arg2) {
 void TOTrapSeabed01::load_resources() {
     TOTrapSeabed01__bml_resource = new BmlResource(5, &seabed_trap_resource_descriptor, 0, 0, NULL);
     TOTrapSeabed01__texture_file = load_gvm_texture_file(lbl_804720E8);
-    NJS_OBJECT *n = find_object_node((NJS_OBJECT *)get_bml_model(TOTrapSeabed01__bml_resource, 0), 5);
+    NJS_OBJECT *n = find_object_node(get_bml_model(TOTrapSeabed01__bml_resource, 0), 5);
     GinjaTextureList *t = TOTrapSeabed01__texture_file;
     TOTrapSeabed01__ginja_model = n;
     lbl_805D681C = 0;
@@ -447,7 +447,7 @@ void TOTrapSeabed01::play_sounds() {
     for (i = 0; i < 6; i++) {
         e = &seabed_trap_fragment_spawns[i];
         VecCopy(&p.pos, &e->pos);
-        p.model = get_bml_model(TOTrapSeabed01__bml_resource, e->id);
+        p.model = (s32)get_bml_model(TOTrapSeabed01__bml_resource, e->id);
         p.arg = e->arg;
         new TObjSuisoChip(this, &p);
         Vec v = p.pos;
