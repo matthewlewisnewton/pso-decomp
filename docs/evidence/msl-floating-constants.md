@@ -28,14 +28,14 @@ there is no new function match or source-linked code gain.
 
 ## Validation
 
-The comparison base is `cda82a7aad7de1bf9b86470002df3f68d1c8c039`.
+The comparison base is `5bba9c44adebc1cfa019def85e1f39f6da340ef0`.
 
 - Serialized native builds reproduce original DOL SHA-1
   `0d85744b51d7379efb025a943d0cd5aaae2191a3`. `check_pr.py` passes with no
   function, code, data, linked or address-coverage loss.
-- Matched and linked data each gain 40 bytes. Matched functions remain 27,438,
-  matched code 4,237,032 bytes and source-linked code 3,862,972 bytes. Linked
-  units increase from 3,606 to 3,607.
+- Matched and linked data each gain 40 bytes. Matched functions remain 27,440,
+  matched code 4,238,432 bytes and source-linked code 3,874,412 bytes. Linked
+  units increase from 3,608 to 3,609.
 - Of 3,632 existing active objects, 3,630 remain raw-identical, including
   `render_util_tail`. All allocated sections of the two remaining consumer
   objects are byte-identical; their 241 and 147 relocations are identical
@@ -43,8 +43,8 @@ The comparison base is `cda82a7aad7de1bf9b86470002df3f68d1c8c039`.
   contains just the exact 40-byte `.sdata` section.
 - The sole linker-provider replacement is the original automatic data object
   at `0x805D4600` with compiled `float.c`. Remaining input order is unchanged:
-  3,607 source inputs and 1,339 original fallback inputs.
-- Fresh retention generation leaves all 18,575 entries unchanged. The generated
+  3,609 source inputs and 1,337 original fallback inputs.
+- Fresh retention generation leaves all 18,602 entries unchanged. The generated
   port-exception inventory is unchanged; no new exception is introduced.
 - All 306 original-free host tests pass. Portable `make -C ports/tests run`
   and `make -C ports/tests sanitize` pass with AddressSanitizer and UBSan enabled.
