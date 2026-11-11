@@ -1,3 +1,5 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/TBoss4ZakoDraw.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
@@ -81,20 +83,13 @@ extern const f32 lbl_805DF144;
 extern const f32 lbl_805DF148;
 extern const f32 lbl_805DF14C;
 
-extern "C" {
+extern const char *TBoss4ZakoDraw__class_name;
 
-void *__ct__14TBoss4ZakoDrawFv(void *arg0);
-void __ct__7TObjectFP7TObject(void *);
-
-extern s32 __vt__14TBoss4ZakoDraw[];
-extern void *TBoss4ZakoDraw__class_name;
-
-void *__ct__14TBoss4ZakoDrawFv(void *object) {
-    __ct__7TObjectFP7TObject(object);
-    *(s32 **)((s8 *)object + 0x18) = __vt__14TBoss4ZakoDraw;
-    *(void **)((s8 *)object + 0x0) = TBoss4ZakoDraw__class_name;
-    return object;
+TBoss4ZakoDraw::TBoss4ZakoDraw(TObject *parent) : TObject(parent) {
+    m_name = TBoss4ZakoDraw__class_name;
 }
+
+extern "C" {
 typedef char RecoveredGlobal_8030ABF4_TCameraCtrl__data_804FF634_size[sizeof(RecoveredGlobal_8030ABF4_TCameraCtrl__data_804FF634) == 0x48 ? 1 : -1];
 typedef char RecoveredGlobal_8030ABF4_lbl_80541E58_size[sizeof(RecoveredGlobal_8030ABF4_lbl_80541E58) == 0xF08 ? 1 : -1];
 
