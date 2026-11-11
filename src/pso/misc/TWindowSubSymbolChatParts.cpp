@@ -377,9 +377,9 @@ void fn_802855C4(Win_802857C4 *self, Rect_802857C4 *ctx) {
 
 #pragma push
 #pragma fp_contract on
-
-extern const f32 lbl_805DD7F8;
-
+// Disabling propagation preserves the original FPR lifetimes for the
+// row-height literal, which shares this unit's 32.0f pool entry.
+#pragma opt_propagation off
 void fn_802857C4(Win_802857C4 *arg0, Rect_802857C4 *ctx) {
     s32 i;
     s32 j;
@@ -393,7 +393,7 @@ void fn_802857C4(Win_802857C4 *arg0, Rect_802857C4 *ctx) {
     row = 0;
     e1 = (Part_80285314 *)((TWindowBase *)arg0)->get_array_entry(1);
     e0 = (Part_80285314 *)((TWindowBase *)arg0)->get_array_entry(0);
-    h = lbl_805DD7F8;
+    h = 32.0f;
     for (i = 0; i < arg0->count; row++) {
         off = 40.0f * (f32)row;
         y = ctx->y;

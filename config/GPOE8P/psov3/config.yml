@@ -2859,6 +2859,7 @@ force_active:
   - __dt__25TObjCityMainWarpChallengeFv
   - __dt__25TObjEneDellBiter_Eff_RushFv
   - __dt__25TObjEneMe1Canadin_EffLineFv
+  - __dt__25TWindowSubSymbolChatPartsFv
   - __dt__26TBoss5GryphonLightningHornFv
   - __dt__26TBoss5GryphonLightningWingFv
   - __dt__26TObjEneBm3FlyNest_CarryFlyFv
@@ -3516,6 +3517,7 @@ force_active:
   - __vt__25TObjCityMainWarpChallenge
   - __vt__25TObjEneDellBiter_Eff_Rush
   - __vt__25TObjEneMe1Canadin_EffLine
+  - __vt__25TWindowSubSymbolChatParts
   - __vt__26TBoss5GryphonLightningHorn
   - __vt__26TBoss5GryphonLightningWing
   - __vt__26TObjEneBm3FlyNest_CarryFly
@@ -3614,6 +3616,7 @@ force_active:
   - add_mag_stat_bonuses__9TItemDataFv
   - add_meseta_purpose_actions__14TWindowSubItemFll
   - add_mind__8MagStatsFs
+  - add_part__25TWindowSubSymbolChatPartsFv
   - add_photon_blast__8MagStatsFUc
   - add_pow__8MagStatsFs
   - add_scroll_offset__17TWindowDD_WS_WordFi
@@ -5238,6 +5241,7 @@ force_active:
   - construct__9TTecJelinFPviiii
   - construct_agito__13TUnk_804A3070FlPv
   - construct_area__11TTecRaBartaFPvPvPv
+  - construct_ballistic_particle__FPvPvPvPvlUss
   - construct_cane_weapon__FPUcPUcPUc
   - construct_card_tags__17TWindowGetComCardFv
   - construct_card_window_array__23TAdSinglePlyChrSelectGCFPv
@@ -6495,6 +6499,11 @@ force_active:
   - fn_8025CE00
   - fn_80262C2C
   - fn_80271848
+  - fn_80284C04
+  - fn_80284FB8
+  - fn_80285314
+  - fn_802855C4
+  - fn_802857C4
   - fn_8028DBC4
   - fn_80293D84
   - fn_802A5C7C
@@ -6948,6 +6957,7 @@ force_active:
   - handle_6x91_update_state__15TOAttackableColFv
   - handle_6xa4_action__15Boss6FlowActionFP3Vec
   - handle_action__10TNpcPlayerFl
+  - handle_add__25TWindowSubSymbolChatPartsFv
   - handle_amount_confirm__19TShopItemListWindowFv
   - handle_appear__17TObjEneBm3FlyNestFl
   - handle_battle_result__6TLobbyFii
@@ -6961,6 +6971,7 @@ force_active:
   - handle_cancel__19TWindowSubMagPhotonFv
   - handle_cancel__21TWindowSubCustomEquipFv
   - handle_cancel__22TWindowSubCustomSelectFv
+  - handle_cancel__25TWindowSubSymbolChatPartsFv
   - handle_cancel__26TWindowSubQuestBoardSelectFv
   - handle_cancel__28TWindowSubSymbolChatPartsSetFv
   - handle_challenge_retry_confirm__18TObjChallengeRetryFv
@@ -7346,6 +7357,7 @@ force_active:
   - init_params_from_table__15TObjEneGyaranzoFv
   - init_particle_effect__10TObjPlayerFv
   - init_particle_obj__13TParticleCtrlFll
+  - init_particle_random_spread__13TUnk_8048E778FPvPvPv
   - init_parts__11TBoss6Type1Fv
   - init_parts__11TBoss6Type2FPv
   - init_parts__13TObjTombstoneFv
@@ -8751,6 +8763,7 @@ force_active:
   - lbl_805D92A0
   - lbl_805D92A4
   - lbl_805D92AC
+  - lbl_805D9520
   - lbl_805D9D70
   - lbl_805D9D88
   - lbl_805D9D90
@@ -14845,6 +14858,7 @@ force_active:
   - render__25TObjCityMainWarpChallengeFv
   - render__25TObjEneDellBiter_Eff_RushFv
   - render__25TObjEneMe1Canadin_EffLineFv
+  - render__25TWindowSubSymbolChatPartsFv
   - render__26TBoss5GryphonLightningHornFv
   - render__26TBoss5GryphonLightningWingFv
   - render__26TObjEneBm3FlyNest_CarryFlyFv
@@ -15093,6 +15107,7 @@ force_active:
   - restore_from_linked_object__14TObjEnePanBARAFv
   - restore_target_player_state__11TBoss6Type2Fv
   - resume_challenge_result_processing__FPv
+  - retire_ballistic_particle_if_done__13TUnk_8048E778Fv
   - retire_lobby_player__6TLobbyFii
   - retry_selection_value_table
   - return_home_if_target_lost__13TObjEneMe1GeeFv
@@ -15609,6 +15624,7 @@ force_active:
   - run_task__25TObjCityMainWarpChallengeFv
   - run_task__25TObjEneDellBiter_Eff_RushFv
   - run_task__25TObjEneMe1Canadin_EffLineFv
+  - run_task__25TWindowSubSymbolChatPartsFv
   - run_task__26TBoss5GryphonLightningHornFv
   - run_task__26TBoss5GryphonLightningWingFv
   - run_task__26TObjEneBm3FlyNest_CarryFlyFv
@@ -16903,6 +16919,8 @@ force_active:
   - sub_8027D230__26TWindowSubQuestBoardSelectFv
   - sub_80281C60__20TWindowSubSymbolChatFv
   - sub_80281CC4__20TWindowSubSymbolChatFv
+  - sub_80285054__25TWindowSubSymbolChatPartsFv
+  - sub_80285274__25TWindowSubSymbolChatPartsFPUc
   - sub_80288BE4__19TQuestListChallengeFv
   - sub_8028B940__12TChCrLoadAfsFv
   - sub_8028B944__12TChCrLoadAfsFv
@@ -17079,6 +17097,7 @@ force_active:
   - symbol_chat_part_size_table
   - symbol_chat_part_uv_table
   - symbol_chat_parts_color_table
+  - symbol_chat_parts_window_layout
   - sync_body_position__13TObjEneMe1GeeFv
   - sync_field10_from_child__15TPlyPhotonChairFv
   - sync_hp__9TBoss6MagFv

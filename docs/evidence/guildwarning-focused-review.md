@@ -87,3 +87,18 @@ exact and linked data-range losses are empty. All six repaired compiler objects
 remain byte-identical across this refresh. The focused contribution stays one
 exact function, 600 matched/728 linked code and no additional data loss. The
 scope-specific review conclusion and draft/technical qualifications above stay.
+
+## Subsequent accepted-main refresh
+
+The stack also includes main
+`e9b77fcfdcc2335c9a5a92886826022c80505e67`, which adds accepted Parts and
+ballistic source linkage. Focused GuildWarning and repaired helper source are
+unchanged. The incoming Parts propagation scope is inherited as a documented
+matching constraint; this does not prove original compiler-control provenance
+or clear the continuation's ownership and interface holds.
+
+A separate fresh-main build passes in 80.77 seconds; the focused rebuild passes
+in 4.12 seconds, both with the original DOL hash. Acceptance against fresh main
+and prior A passes with 3604 exact linked units, 18441 retention names and no
+strict raw/exact/linked data-range loss. The focused contribution remains
+600 matched/728 linked code. No new local compiler control is introduced.

@@ -272,7 +272,7 @@ remain unqualified; no Parts import or probe is activated.
 | Word renderer/lifetime | Upstream exact 916-byte renderer and complete 3412-byte unit source-linked; fixed-source native diagnostic matches all seven bodies/relative targets including constructor148 | Diagnostic order and actual table/startup destinations fail; source/context organization and helper/storage qualifications remain held |
 | Nameplate | Ordinary reconstructed 800-byte body and helper evidence | Nonexact arithmetic/register result; original full provider retained |
 | ScrollBar / ChallengeResult / follower | Bounded native probes and contracts recorded | Constant-pool/data-base/producer differences; no repeated scheduling variants |
-| SymbolChat Parts | Exact production compiled functions; current census has no external resolved pool targets; bounded literal/off diagnostic matches 20 bodies/198 resolved relocations | Eighteen production exports still absent; original control context and safe source activation unproved; original provider retained |
+| SymbolChat Parts | Accepted-main literal/localization integration source-links native owner after current census and full byte/target/provider validation; historical export blocker superseded | Original propagation-control/source provenance and portable interface/ownership qualifications remain; [integration](window-parts-accepted-main-integration.md) |
 | ChoiceSetting / globals | Observed layout and accesses retained | Actual 0x7C producer and task-global ownership unproved; no inferred padding |
 | CustomSelect | Native code/table exact | Early-return child initialization safety remains unresolved |
 | CallBack / headings / capture / CMName | Bounded receiver and storage evidence recorded | Mixed callback signatures, opaque child ownership and original-provider/interface holds remain |
@@ -319,3 +319,10 @@ hold or delete the original branch. Close #268 as superseded only after both
 replacement drafts are published, cross-linked, and their heads, bases, diffs,
 CI and preservation have been checked. A pending or failing CI check is not a
 verified replacement publication.
+
+The [accepted-main Parts integration](window-parts-accepted-main-integration.md)
+supersedes only the former missing-export/original-provider blocker after combined
+validation. Historical diagnostic and no-import statements above describe their
+then-current heads. Original compiler-control provenance, ownership and remaining
+interface holds stay explicit. The current review assessment remains separate
+from the focused PR and does not mark either draft ready.

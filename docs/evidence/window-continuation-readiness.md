@@ -26,7 +26,7 @@ repair, and matching original bytes alone does not resolve them.
 | CustomSelect | Native constructor can return before child slots; destructor reads those slots | Producer/lifecycle guarantee excluding the null-player path, or a separately justified safety change; heap zeroing cannot be assumed |
 | Word | Native diagnostic matches component bodies; actual order/table/startup destinations still differ | Independently supported source/compilation organization and whole-owner placement/link proof |
 | ComCard | Native construction/render bodies; trailing word remains source-owned in current provider | Ownership of 804CE914..804CE918 without inventing padding or losing four covered bytes |
-| Parts | Exact compiled methods; private literal/control case matches | Independent control/source provenance plus safe export/provider qualification; no repeated profile survey |
+| Parts | Accepted main literal/localization integration supersedes the earlier export/original-provider blocker after combined validation | Original propagation-control provenance and portable ownership/interfaces remain unproved; no new profile inference |
 | Callback/tag/heading/capture interfaces | Bounded receiver and target-ABI observations, including Palette | Actual storage, callback signatures and producer/ownership guarantees; byte equality is not complete portable typing |
 
 Original-provider and other retained interfaces, numeric-input byte-return,
@@ -82,3 +82,19 @@ Private allocator/original-reference and refresh evidence is in
 in `pr402-message-settings-contract/`. Original binaries, objects and raw
 disassembly are not published. Independent source and frozen-head review remain
 publication gates. Neither draft is merged, formally approved or marked ready.
+
+## Accepted Parts linkage supersedes the earlier provider blocker
+
+Main `e9b77fcfdcc2335c9a5a92886826022c80505e67` incorporates Parts linkage
+with a literal and the explicitly documented scoped propagation constraint.
+This refresh carries that accepted context into the continuation while retaining
+its native constructor/destructor, Scroll and typed-entry work and native
+44-byte descriptor/table. No additional control or source-order probe is made.
+The original pragma/source provenance remains unproved; accepted linkage does
+not establish portable object typing or clear other lifetime/interface holds.
+
+The combined current-object and provider validation is recorded in
+[the integration note](window-parts-accepted-main-integration.md). That result
+supersedes historical claims of a still-active eighteen-export/original-provider
+blocker, preserving those historical probes as evidence. Word, ComCard and
+CustomSelect holds remain unchanged.

@@ -834,6 +834,7 @@ pso/misc/EndingSceneTables.cpp
 pso/misc/GbaDownloadRuntime.cpp
 pso/misc/KeyboardCharacterMaps.cpp
 pso/misc/MaterialOpacityFade.cpp
+pso/misc/ParticleBallistic.cpp
 pso/misc/ParticleRadial.cpp
 pso/misc/PhotonBlastSummon.cpp
 pso/misc/QuestDownloadBuffers.cpp
@@ -1950,6 +1951,7 @@ pso/misc/TWindowSubSymbolChat.cpp
 pso/misc/TWindowSubSymbolChatFaceType.cpp
 pso/misc/TWindowSubSymbolChatFaceType_80283A70.cpp
 pso/misc/TWindowSubSymbolChatHelp.cpp
+pso/misc/TWindowSubSymbolChatParts.cpp
 pso/misc/TWindowSubSymbolChatPartsSet.cpp
 pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.cpp
 pso/misc/TWindowSubSymbolChat_80076F88.cpp
