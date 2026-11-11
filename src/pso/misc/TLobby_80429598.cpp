@@ -89,9 +89,6 @@ typedef struct Ent_80427D40 {
     u8 rest[0xE14 - 0x10];
 } Ent_80427D40;
 
-extern u8 lbl_805CF240[0xA0];
-extern u8 TLobby__pppoe_message_queue[0xA0];
-extern u8 lbl_805CF380[0x48];
 extern RecoveredGlobal_80427D0C_lbl_805CFC20 lobby_pppoe_slot_table;
 u8 lbl_805D0AA0[0x80];
 u8 exi_dma_buffer[0x600];
@@ -119,8 +116,6 @@ extern s32 lbl_805D7C44;
 extern s32 lbl_805D7C48;
 s32 EXILock(s32, u32, u32);
 s32 EXIUnlock(s32);
-extern u8 lbl_805CF380[];
-extern u8 TLobby__pppoe_message_queue[];
 typedef struct Ent_804267F0 {
     s16 count;
     u8 id[6];
@@ -131,7 +126,6 @@ typedef struct Tbl_804267F0 {
     Ent_804267F0 ent[6];
 } Tbl_804267F0;
 
-extern u8 lbl_805CF240[];
 s32 EXIDma(s32, void *, s32, u32, void *);
 extern s32 exi_dma_read_length;
 extern u32 exi_dma_write_length;
