@@ -88,7 +88,7 @@ extern s32 lbl_805D2A28;
 u32 TObjCGrass_bml_resource;
 extern s32 tl_06;
 u8 *TObjCGrass__ct(Grass_800B8EFC *self, u8 *arg1, s32 arg2, s32 arg3);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 
 struct Stack_800B8DC4 {
     s32 sp8;
@@ -96,7 +96,7 @@ struct Stack_800B8DC4 {
     s32 sp10;
     s32 sp14;
 };
-u8 *load_resource_from_descriptor(void *, s32, s32 *, s32, s32, s32);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, s32 *, s32, s32, s32);
 u8 *load_enemy_bml_resource_named(s32 *, s32 *);
 struct RecoveredGlobal_800B8DC4_lbl_8043B628 {
     s32 value;
@@ -182,7 +182,7 @@ void TObjCGrass::run_task() {
 
 void TObjCGrass::release_global_805D5130() {
     if ((u32) TObjCGrass_bml_resource != 0U) {
-        free_bin_model_request((void*)TObjCGrass_bml_resource, 1);
+        __dt__11BmlResourceFv((void*)TObjCGrass_bml_resource, 1);
         TObjCGrass_bml_resource = 0U;
     }
 }
@@ -200,7 +200,7 @@ void TObjCGrass::load_resources() {
         temp_r3 = (u8 *)((int)::operator new(0x440));
         var_r0 = temp_r3;
         if (var_r0 != NULL) {
-            var_r0 = (u8 *)(load_resource_from_descriptor(temp_r3, 1, &bm_ene_cgrass_resource_descriptor.value, 0, 0, 0));
+            var_r0 = (u8 *)(__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(temp_r3, 1, &bm_ene_cgrass_resource_descriptor.value, 0, 0, 0));
         }
         TObjCGrass_bml_resource = (u32) var_r0;
     }

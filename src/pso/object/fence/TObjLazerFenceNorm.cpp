@@ -107,9 +107,9 @@ struct TObjLazerFenceNorm_80192CCC {
     Motion_80192CCC *motion;
 };
 
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 release_texture_list(void*);
-void *load_resource_from_descriptor(void *, int, BmlResourceDescriptor *, int, int, int);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, int, BmlResourceDescriptor *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
 
 }
@@ -129,7 +129,7 @@ void load_lazer_fence_norm_resources(void) {
     case AREA_TOWER:
         obj = ::operator new(0x440);
         if (obj != 0) {
-            obj = load_resource_from_descriptor(obj, 5, &lazer_fence_norm_episode2_resource_descriptor, 0, 0, 0);
+            obj = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(obj, 5, &lazer_fence_norm_episode2_resource_descriptor, 0, 0, 0);
         }
         lazer_fence_norm_bml_resource = (s32)obj;
         lazer_fence_norm_texture_list = (s32)load_gvm_texture_file((s32)"fe_obj_lazer2_2.gvm");
@@ -137,7 +137,7 @@ void load_lazer_fence_norm_resources(void) {
     default:
         obj = ::operator new(0x440);
         if (obj != 0) {
-            obj = load_resource_from_descriptor(obj, 5, &lazer_fence_norm_episode1_resource_descriptor, 0, 0, 0);
+            obj = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(obj, 5, &lazer_fence_norm_episode1_resource_descriptor, 0, 0, 0);
         }
         lazer_fence_norm_bml_resource = (s32)obj;
         lazer_fence_norm_texture_list = (s32)load_gvm_texture_file((s32)"fe_obj_lazer2.gvm");
@@ -148,7 +148,7 @@ void load_lazer_fence_norm_resources(void) {
 
 void TObjLazerFenceNorm::free_resources() {
     if ((u32) lazer_fence_norm_bml_resource != 0U) {
-        free_bin_model_request((void*)lazer_fence_norm_bml_resource, 1);
+        __dt__11BmlResourceFv((void*)lazer_fence_norm_bml_resource, 1);
         lazer_fence_norm_bml_resource = 0U;
     }
     if ((u32) lazer_fence_norm_texture_list != 0U) {

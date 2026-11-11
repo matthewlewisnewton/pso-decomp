@@ -162,7 +162,7 @@ void *TODragonflyMachine01::create(void *set_data) {
 
 void TODragonflyMachine01::unload_static_data() {
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        __dt__11BmlResourceFv(model_resource, 1);
         model_resource = NULL;
     }
 }
@@ -171,7 +171,7 @@ void TODragonflyMachine01::load_resources() {
     BmlResource *resource;
     resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_mekatombo_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_mekatombo_resource_descriptor, 0, 0, 0);
     }
     model_resource = resource;
     node_index = 0;

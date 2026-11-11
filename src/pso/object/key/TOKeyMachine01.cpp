@@ -213,7 +213,7 @@ void TOKeyMachine01::free_statics() {
         }
     }
     if (TOKeyMachine01__resource_bundle != NULL) {
-        free_bin_model_request(TOKeyMachine01__resource_bundle, 1);
+        __dt__11BmlResourceFv(TOKeyMachine01__resource_bundle, 1);
         TOKeyMachine01__resource_bundle = NULL;
     }
 }
@@ -221,7 +221,7 @@ void TOKeyMachine01::free_statics() {
 void TOKeyMachine01::load_assets() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_ki_doa_panel_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_ki_doa_panel_resource_descriptor, 0, 0, 0);
     }
     TOKeyMachine01__resource_bundle = resource;
     TOKeyMachine01__texture_lists = (s32 *)::operator new[](8);

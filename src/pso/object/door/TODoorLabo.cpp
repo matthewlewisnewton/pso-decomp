@@ -81,7 +81,7 @@ extern s32 __vt__10TODoorLabo[];
 extern s32 door_labo_normal_class_name;
 extern s32 odoor_labo_class_name;
 Self_8029F7E0 *TODoorLaboNormal__ct(Self_8029F7E0 *self);
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
+s32 __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(s32, int, void *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_80466040[];
 extern u8 lbl_8046605C[];
@@ -93,7 +93,7 @@ s32 get_bml_model(s32, s32);
 extern s32 lbl_80465FF8[];
 extern s32 TODoorLabo__bml_resource;
 Door_8029FAE4 *TODoorLabo__ct(Door_8029FAE4 *arg0);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 release_texture_list(void*);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
@@ -158,7 +158,7 @@ void TODoorLabo::free_resources() {
         TODoorLaboNormal__green_texture_list = 0U;
     }
     if ((u32) TODoorLabo__model_archive != 0U) {
-        free_bin_model_request((void*)TODoorLabo__model_archive, 1);
+        __dt__11BmlResourceFv((void*)TODoorLabo__model_archive, 1);
         TODoorLabo__model_archive = 0U;
     }
 }
@@ -168,7 +168,7 @@ extern s32 TODoorLabo__green_texture_list;
 void TODoorLabo::load_resources() {
     s32 r = (int)::operator new(0x440);
     if (r != 0) {
-        r = load_resource_from_descriptor(r, 5, &labo_door_resource_descriptor_2, 0, 0, 0);
+        r = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 5, &labo_door_resource_descriptor_2, 0, 0, 0);
     }
     (*(s32 *)&TODoorLabo__model_archive) = r;
     (*(s32 *)&TODoorLaboNormal__green_texture_list) = (s32)load_gvm_texture_file((s32)lbl_80466040);
@@ -248,7 +248,7 @@ void TAdSinglePlyChrSelectGC::free_all_resources() {
         TODoorLabo__green_texture_list = 0U;
     }
     if ((u32) TODoorLabo__bml_resource != 0U) {
-        free_bin_model_request((void*)TODoorLabo__bml_resource, 1);
+        __dt__11BmlResourceFv((void*)TODoorLabo__bml_resource, 1);
         TODoorLabo__bml_resource = 0U;
     }
 }
@@ -260,7 +260,7 @@ extern u8 lbl_80466090[];
 void load_labo_door_resources(void) {
     s32 r = (int)::operator new(0x440);
     if (r != 0) {
-        r = load_resource_from_descriptor(r, 5, &labo_door_resource_descriptor, 0, 0, 0);
+        r = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 5, &labo_door_resource_descriptor, 0, 0, 0);
     }
     TODoorLabo__bml_resource = r;
     TODoorLabo__green_texture_list = (s32)load_gvm_texture_file((s32)lbl_80466074);
@@ -360,7 +360,7 @@ void TLobby::free_global_buffers() {
         seabed_four_light_door_textures = 0U;
     }
     if ((u32) seabed_four_light_door_bml_resource != 0U) {
-        free_bin_model_request((void*)seabed_four_light_door_bml_resource, 1);
+        __dt__11BmlResourceFv((void*)seabed_four_light_door_bml_resource, 1);
         seabed_four_light_door_bml_resource = 0U;
     }
 }
@@ -373,7 +373,7 @@ void TLanguage__sub_8029FF0C(void) {
     case AREA_SEABED_UPPER:
         var_r0 = (int)::operator new(0x440);
         if (var_r0 != 0) {
-            var_r0 = load_resource_from_descriptor(var_r0, 5, bm_o_door_seabed01_u_resource_descriptor, 0, 0, 0);
+            var_r0 = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(var_r0, 5, bm_o_door_seabed01_u_resource_descriptor, 0, 0, 0);
         }
         seabed_four_light_door_bml_resource = var_r0;
         seabed_four_light_door_textures = (s32)load_gvm_texture_file((s32)lbl_804660AC);
@@ -382,7 +382,7 @@ void TLanguage__sub_8029FF0C(void) {
     case AREA_SEABED_LOWER:
         var_r0_2 = (int)::operator new(0x440);
         if (var_r0_2 != 0) {
-            var_r0_2 = load_resource_from_descriptor(var_r0_2, 5, bm_o_door_seabed01_u_resource_descriptor, 0, 0, 0);
+            var_r0_2 = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(var_r0_2, 5, bm_o_door_seabed01_u_resource_descriptor, 0, 0, 0);
         }
         seabed_four_light_door_bml_resource = var_r0_2;
         seabed_four_light_door_textures = (s32)load_gvm_texture_file((s32)lbl_804660DC);
@@ -485,7 +485,7 @@ void TLobby::free_chr_select_slots() {
         lbl_805D6604 = 0U;
     }
     if ((u32) door_labo_bml_resource != 0U) {
-        free_bin_model_request((void*)door_labo_bml_resource, 1);
+        __dt__11BmlResourceFv((void*)door_labo_bml_resource, 1);
         door_labo_bml_resource = 0U;
     }
 }
@@ -499,7 +499,7 @@ void TLanguage__sub_802A0204(void) {
     case AREA_SEABED_UPPER:
         var_r0 = (int)::operator new(0x440);
         if (var_r0 != 0) {
-            var_r0 = load_resource_from_descriptor(var_r0, 5, bm_o_door_seabed01_resource_descriptor, 0, 0, 0);
+            var_r0 = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(var_r0, 5, bm_o_door_seabed01_resource_descriptor, 0, 0, 0);
         }
         door_labo_bml_resource = var_r0;
         lbl_805D6604 = (u32)load_gvm_texture_file((s32)lbl_80466118);
@@ -508,7 +508,7 @@ void TLanguage__sub_802A0204(void) {
     case AREA_SEABED_LOWER:
         var_r0_2 = (int)::operator new(0x440);
         if (var_r0_2 != 0) {
-            var_r0_2 = load_resource_from_descriptor(var_r0_2, 5, bm_o_door_seabed01_resource_descriptor, 0, 0, 0);
+            var_r0_2 = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(var_r0_2, 5, bm_o_door_seabed01_resource_descriptor, 0, 0, 0);
         }
         door_labo_bml_resource = var_r0_2;
         lbl_805D6604 = (u32)load_gvm_texture_file((s32)lbl_80466150);

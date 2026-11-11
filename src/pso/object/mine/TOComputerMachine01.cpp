@@ -83,7 +83,7 @@ void TOComputerMachine01::unload_resources() {
         screen_meshes[i] = NULL;
     }
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        __dt__11BmlResourceFv(model_resource, 1);
         model_resource = NULL;
     }
 }
@@ -92,7 +92,7 @@ void TOComputerMachine01::load_resources() {
     NJS_OBJECT *screen;
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_kenkyu_com_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_kenkyu_com_resource_descriptor, 0, 0, 0);
     }
     model_resource = resource;
     screen = ((NJS_OBJECT *)resource->models->model)->child;

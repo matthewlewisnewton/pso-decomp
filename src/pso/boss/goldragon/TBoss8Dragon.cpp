@@ -1447,7 +1447,7 @@ struct Cam_802FDC1C { s32 f0; f32 *p4; f32 *p8; };
 
 int get_player_data__10TObjPlayerFi(int a0);
 s32 get_current_floor();
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void TBoss1Dragon__sub_80027A80(u8 *arg0, u8 *arg1);
 s32 set_frames__15ProtectionTimerFl(void *, int);
 s32 spawn_particle_effect_with_flags(void *, void *, int);
@@ -7264,7 +7264,7 @@ void TBoss8Dragon::free_static() {
         (*(u32 *)&TBoss8Dragon__data_805D69A8) = 0U;
     }
     if ((u32) TBoss8Dragon__data_805D6988 != 0U) {
-        free_bin_model_request((void*)TBoss8Dragon__data_805D6988, 1);
+        __dt__11BmlResourceFv((void*)TBoss8Dragon__data_805D6988, 1);
         TBoss8Dragon__data_805D6988 = 0U;
     }
 }

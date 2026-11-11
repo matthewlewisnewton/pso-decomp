@@ -178,7 +178,7 @@ void *TOMonumentAncient02::create(void *set_data) {
 
 void TOMonumentAncient02::free_shared_data() {
     if (TOMonumentAncient02__bml_resource != NULL) {
-        free_bin_model_request(TOMonumentAncient02__bml_resource, 1);
+        __dt__11BmlResourceFv(TOMonumentAncient02__bml_resource, 1);
         TOMonumentAncient02__bml_resource = NULL;
     }
 }
@@ -189,21 +189,21 @@ void TOMonumentAncient02::load_resources() {
     default:
         resource = (BmlResource *)::operator new(0x440);
         if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_fs_obj_o_monument01_resource_descriptor, 0, 0, 0);
+            resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 5, &bm_fs_obj_o_monument01_resource_descriptor, 0, 0, 0);
         }
         TOMonumentAncient02__bml_resource = resource;
         break;
     case AREA_CAVE2:
         resource = (BmlResource *)::operator new(0x440);
         if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_fs_obj_o_monument02_resource_descriptor, 0, 0, 0);
+            resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 5, &bm_fs_obj_o_monument02_resource_descriptor, 0, 0, 0);
         }
         TOMonumentAncient02__bml_resource = resource;
         break;
     case AREA_MINE2:
         resource = (BmlResource *)::operator new(0x440);
         if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_fs_obj_o_monument03_resource_descriptor, 0, 0, 0);
+            resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 5, &bm_fs_obj_o_monument03_resource_descriptor, 0, 0, 0);
         }
         TOMonumentAncient02__bml_resource = resource;
         break;

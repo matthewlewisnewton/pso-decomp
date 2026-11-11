@@ -60,7 +60,7 @@ void *TOCapsuleAncient01::create(void *set_data) {
 
 void TOCapsuleAncient01::unload_resources() {
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        __dt__11BmlResourceFv(model_resource, 1);
         model_resource = NULL;
     }
 }
@@ -68,7 +68,7 @@ void TOCapsuleAncient01::unload_resources() {
 void TOCapsuleAncient01::load_resources() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fe_obj_o_capsule01_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fe_obj_o_capsule01_resource_descriptor, 0, 0, 0);
     }
     model_resource = resource;
 }

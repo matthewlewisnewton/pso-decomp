@@ -677,7 +677,7 @@ struct Obj_800BB88C {
     f32 f354[5]; s32 f368; s32 f36c;
 };
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern const f32 TObjEneDD__data_805D9E8C;
 s32 subtractive_rng_seed(void *, int);
 s32 vfunc_79__9TObjEnemyFPl();
@@ -810,7 +810,7 @@ s32 load_enemy_bml_resource(u8 *arg0) {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, arg0, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 1, arg0, 0, 0, 0));
     }
     return var_r0;
 }

@@ -76,7 +76,7 @@ TOBarrierEnergy01::~TOBarrierEnergy01() {
 void TOBarrierEnergy01::load_resources() {
     BmlResource *archive = (BmlResource *)::operator new(0x440);
     if (archive != NULL) {
-        archive = load_resource_from_descriptor(archive, 1, &bm_fs_obj_lazerguard_resource_descriptor, 0, 0, 0);
+        archive = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(archive, 1, &bm_fs_obj_lazerguard_resource_descriptor, 0, 0, 0);
     }
     barrier_energy_shared_bml_archive = archive;
     barrier_energy_model = (void *)get_bml_model(archive, 0);
@@ -95,7 +95,7 @@ void TOBarrierEnergy01::free_resources() {
         }
     }
     if (barrier_energy_shared_bml_archive != NULL) {
-        free_bin_model_request(barrier_energy_shared_bml_archive, 1);
+        __dt__11BmlResourceFv(barrier_energy_shared_bml_archive, 1);
         barrier_energy_shared_bml_archive = NULL;
     }
 }

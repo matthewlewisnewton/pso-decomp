@@ -70,7 +70,7 @@ s32 update_movement_status__9TObjCharaFv();
 s32 update_movement_status__12TObjEneSaverFv(u8 *arg0);
 s32 update_action_hold_status__9TObjCharaFv();
 s32 update_action_hold_status__12TObjEneSaverFv(u8 *arg0);
-void *load_resource_from_descriptor(void *, int, void *, int, int, int);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, int, void *, int, int, int);
 extern void *bm_ene_df1_saver_model_names[2];
 extern void *bm_ene_df1_saver_motion_names[12];
 RecoveredGlobal_800A6BE0_lbl_80500978 lbl_80500978;
@@ -1494,7 +1494,7 @@ extern s32 model_render_flags;
 #define get_floor__10TObjPlayerFv ((s32 (*)(int))(get_floor__10TObjPlayerFv))
 #define get_player_by_client_id ((u8* (*)(u16))(get_player_by_client_id))
 void * create_ene_saver(void *arg0);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 s32 lerp_angle_half__Fll(s32, s32);
 s32 obj_setFlags30(void *, int);
@@ -2032,7 +2032,7 @@ void TObjPlayer::free_resources() {
         (*(u32 *)&lbl_805D506C) = 0U;
     }
     if ((u32) saver_bml_resource != 0U) {
-        free_bin_model_request((void*)saver_bml_resource, 1);
+        __dt__11BmlResourceFv((void*)saver_bml_resource, 1);
         saver_bml_resource = 0U;
     }
 }
@@ -2045,7 +2045,7 @@ void initialize_saver_resources(void) {
     void *r;
     r = ::operator new(0x440);
     if (r != NULL) {
-        r = load_resource_from_descriptor(r, 1, bm_ene_df1_saver_resource_descriptor, 0, 0, 0);
+        r = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 1, bm_ene_df1_saver_resource_descriptor, 0, 0, 0);
     }
     saver_bml_resource = (u32)r;
     lbl_805D5054 = *(s32 *)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)((u8 *)((Res_800A715C *)r)->sub) + 8)) + 0x2C)) + 0x30)) + 4)) + 4);

@@ -466,7 +466,7 @@ void *TObjOnlineEnding__ct(void *arg0, void *parent) {
 #pragma pop
 #undef SELF
 
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void *TObjOnlineEnding__ct(void *, void *);
 
 void *TObjOnlineEnding::create(void *arg0) {
@@ -479,7 +479,7 @@ void *TObjOnlineEnding::create(void *arg0) {
 
 void TBoss4DarkFalz::free_global_instance() {
     if ((u32) lbl_805D68F4 != 0U) {
-        free_bin_model_request((void*)lbl_805D68F4, 1);
+        __dt__11BmlResourceFv((void*)lbl_805D68F4, 1);
         lbl_805D68F4 = 0U;
     }
 }
@@ -487,7 +487,7 @@ void TBoss4DarkFalz::free_global_instance() {
 }
 
 extern "C" {
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
+s32 __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(s32, int, void *, int, int, int);
 extern u32 lbl_805D68F4;
 
 void fn_802E52AC() {
@@ -495,7 +495,7 @@ void fn_802E52AC() {
     if (lbl_805D68F4 == 0) {
         r = (int)::operator new(0x440);
         if (r != 0) {
-            r = load_resource_from_descriptor(r, 5, lbl_804E35E8, 0, 0, 0);
+            r = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 5, lbl_804E35E8, 0, 0, 0);
         }
         lbl_805D68F4 = r;
         if (lbl_805D68F4 == 0) {

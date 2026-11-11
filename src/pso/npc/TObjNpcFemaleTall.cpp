@@ -26,7 +26,7 @@ void *TObjNpcFemaleTall__create(void *set_data) {
 
 void TObjNpcFemaleTall::destroy_instance() {
     if (TObjNpcFemaleTall__instance != NULL) {
-        free_bin_model_request(TObjNpcFemaleTall__instance, 1);
+        __dt__11BmlResourceFv(TObjNpcFemaleTall__instance, 1);
         TObjNpcFemaleTall__instance = NULL;
     }
 }
@@ -35,7 +35,7 @@ void TObjNpcFemaleTall::load_resource_instance() {
     void *memory = ::operator new(0x440);
     BmlResource *resource = (BmlResource *)memory;
     if (memory != NULL) {
-        resource = load_resource_from_descriptor(memory, 1, &bm_n_etw_i_body_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(memory, 1, &bm_n_etw_i_body_resource_descriptor, 0, 0, 0);
     }
     TObjNpcFemaleTall__instance = resource;
 }

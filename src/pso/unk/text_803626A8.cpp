@@ -185,7 +185,7 @@ s16 get_validated_attack_stage(u8 *arg0);
 extern s32 knuckle_marker_joint_table[];
 void s_rank_knuckle_marker(T_80362C80 *arg0);
 Node_803627DC *get_bml_model(void *, int);
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, int, void *, int, int, int);
 s32 TObjPlayer__sub_800F0928(void *);
 extern Quad_803627DC lbl_80479FAC;
 f32 lbl_80543A18[3];
@@ -204,7 +204,7 @@ extern u8 *lbl_805D6FA8;
 extern const f32 lbl_805E0248;
 extern const f32 lbl_805E024C;
 extern const f32 lbl_805E0250;
-void free_bin_model_request(void *, int);
+void __dt__11BmlResourceFv(void *, int);
 void *__dt__13TUnk_804F26E0Fv(void *arg0, s16 arg1);
 void __construct_array(void *, void *, void *, int, int);
 void *__dt__13TUnk_804A4948Fv(void *arg0, s16 arg1);
@@ -243,7 +243,7 @@ void TObjEneEpsilonGuard::free_shared_resources() {
         (*(V_8036274C * *)&lbl_805D6FA8) = NULL;
     }
     if ((*(u32 *)&lbl_805D6FA0) != 0) {
-        free_bin_model_request((void *)(*(u32 *)&lbl_805D6FA0), 1);
+        __dt__11BmlResourceFv((void *)(*(u32 *)&lbl_805D6FA0), 1);
         (*(u32 *)&lbl_805D6FA0) = 0;
     }
 }
@@ -255,7 +255,7 @@ void TObjEneEpsilonGuard::load_assets() {
     lbl_80543A18[2] = lbl_805E0248;
     p = (u8 *)::operator new(0x440);
     if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, &TObjEneEpsilonGuard__resource_descriptor, 0, 0, 0);
+        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &TObjEneEpsilonGuard__resource_descriptor, 0, 0, 0);
     }
     lbl_805D6FA0 = p;
     p = (u8 *)::operator new(0x10);

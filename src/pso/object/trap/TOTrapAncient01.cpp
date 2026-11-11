@@ -480,7 +480,7 @@ void *TOTrapAncient01::create() {
 
 void TOTrapAncient01::release_static_resource() {
     if (TOTrapAncient01__bml_resource != NULL) {
-        free_bin_model_request(TOTrapAncient01__bml_resource, 1);
+        __dt__11BmlResourceFv(TOTrapAncient01__bml_resource, 1);
         TOTrapAncient01__bml_resource = NULL;
     }
 }
@@ -488,7 +488,7 @@ void TOTrapAncient01::release_static_resource() {
 void TOTrapAncient01::load_resources() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_o_trap_ancient01_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_o_trap_ancient01_resource_descriptor, 0, 0, 0);
     }
     TOTrapAncient01__bml_resource = resource;
     TMotorcycle::add_entry(0x39, get_bml_model(TOTrapAncient01__bml_resource, 3), TObjFish__sub_8001EDB0(resource, 3), lbl_805DBA5C, TOTrapAncient01__data_805DBA4C);

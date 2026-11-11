@@ -1990,7 +1990,7 @@ s32 VecCopy__FP3VecPC3Vec(void *, void *);
 Player_800951AC * get_player_data__10TObjPlayerFi(s32);
 u16 get_entity_id(void *);
 void queue_destruction__7TObjectFv(void *);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 u32 csnLookAt(void *, void *);
 void state_patrol__16TObjEneRe7BeruraFPvi(void *arg0, s32 arg1);
 void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1);
@@ -2748,7 +2748,7 @@ void TObjEneRe7Berura::destroy_children() {
         re7_berura_static_buffer = 0U;
     }
     if ((u32) TObjEneRe7Berura__shared_resource != 0U) {
-        free_bin_model_request((void*)TObjEneRe7Berura__shared_resource, 1);
+        __dt__11BmlResourceFv((void*)TObjEneRe7Berura__shared_resource, 1);
         TObjEneRe7Berura__shared_resource = 0U;
     }
 }

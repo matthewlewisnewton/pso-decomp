@@ -67,7 +67,7 @@ void init_creation_menu_scene(void) {
     p = (void *)new TWindowCtrlMain();
     p = ::operator new(0x440);
     if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, &creation_menu_resource_descriptor, 0, 0, 0);
+        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &creation_menu_resource_descriptor, 0, 0, 0);
     }
     creation_menu_main_obj = p;
     if (p != NULL) {

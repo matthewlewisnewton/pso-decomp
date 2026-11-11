@@ -750,7 +750,7 @@ struct Sorc_800F0118 {
 
 s32 VecCopy__FP3VecPC3Vec(void *, void *);
 void queue_destruction__7TObjectFv(void *arg0);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void fn_80044330(void *);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
 s32 TObjPlayer__sub_800A04F0(void *);
@@ -2407,7 +2407,7 @@ void TObjEneRe4Sorcerer::free_bits() {
     }
     TObjEneRe4Bit__sub_800EDAB0();
     if ((u32) sorcerer_bml_resource != 0U) {
-        free_bin_model_request((void*)sorcerer_bml_resource, 1);
+        __dt__11BmlResourceFv((void*)sorcerer_bml_resource, 1);
         sorcerer_bml_resource = 0U;
     }
 }

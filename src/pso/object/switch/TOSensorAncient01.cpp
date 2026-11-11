@@ -149,7 +149,7 @@ void TOSensorAncient01::destroy() {
         }
     }
     if (sensor_ancient01_model_resource != NULL) {
-        free_bin_model_request(sensor_ancient01_model_resource, 1);
+        __dt__11BmlResourceFv(sensor_ancient01_model_resource, 1);
         sensor_ancient01_model_resource = NULL;
     }
 }
@@ -157,7 +157,7 @@ void TOSensorAncient01::destroy() {
 void TOSensorAncient01::load_resources() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &TOSensorAncient01__resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &TOSensorAncient01__resource_descriptor, 0, 0, 0);
     }
     sensor_ancient01_model_resource = resource;
     ancient_sensor_resource_pair_table = (TOSensorAncient01Textures *)::operator new[](0x10);

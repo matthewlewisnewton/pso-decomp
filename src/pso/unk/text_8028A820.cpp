@@ -3,7 +3,7 @@
 #include "pso/unk/text_8028A820.h"
 #include "pso/map/FloorArea.h"
 extern "C" {
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 }
 extern u8 bm_obj_door_ruins_resource_descriptor[];
 extern u8 bm_obj_door_space_resource_descriptor[];
@@ -18,7 +18,7 @@ void load_green_door_resources(void) {
     case AREA_VR_TEMPLE_BETA:
         p = ::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, bm_obj_door_ruins_resource_descriptor, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, bm_obj_door_ruins_resource_descriptor, 0, 0, 0);
         }
         green_door_bml_resource = p;
         green_door_texture_handle = load_gvm_texture_file((s32)"obj_door_ruins_green.gvm");
@@ -27,7 +27,7 @@ void load_green_door_resources(void) {
     case AREA_VR_SPACESHIP_BETA:
         p = ::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, bm_obj_door_space_resource_descriptor, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, bm_obj_door_space_resource_descriptor, 0, 0, 0);
         }
         green_door_bml_resource = p;
         green_door_texture_handle = load_gvm_texture_file((s32)"obj_door_space_green.gvm");

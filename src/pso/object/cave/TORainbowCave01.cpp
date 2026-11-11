@@ -94,7 +94,7 @@ void *TORainbowCave01::create(void *set_data) {
 
 void TORainbowCave01::free_static_data() {
     if (TORainbowCave01__bml_resource != NULL) {
-        free_bin_model_request(TORainbowCave01__bml_resource, 1);
+        __dt__11BmlResourceFv(TORainbowCave01__bml_resource, 1);
         TORainbowCave01__bml_resource = NULL;
     }
 }
@@ -102,7 +102,7 @@ void TORainbowCave01::free_static_data() {
 void TORainbowCave01::load_resource_instance() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &abeniji_fe_obj001_niji_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &abeniji_fe_obj001_niji_resource_descriptor, 0, 0, 0);
     }
     TORainbowCave01__bml_resource = resource;
 }

@@ -381,12 +381,12 @@ void __dl__7TObjectFPv(void *);
 void __destroy_arr(void *, void *, int, int);
 extern u8 __dt__15RenderFadeStateFv[];
 O_80092724 *TObjPlayer__sub_80092724(O_80092724 *arg0, s16 arg1);
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, int, void *, int, int, int);
 u8 *load_enemy_bml_resource_named(void *, void *);
 extern Ids_8009241C lbl_80439D68[];
 extern Quad_8009241C lbl_80439D70[];
 extern s32 lbl_80439D80[];
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void *__nw__7TObjectFUl(int);
 
@@ -623,7 +623,7 @@ void free_boss4_rock_pool(void) {
         beast_claw_trail_instance = 0U;
     }
     if ((u32) ene_beast_bml_resource != 0U) {
-        free_bin_model_request((void*)ene_beast_bml_resource, 1);
+        __dt__11BmlResourceFv((void*)ene_beast_bml_resource, 1);
         ene_beast_bml_resource = 0U;
     }
 }
@@ -642,7 +642,7 @@ void TObjEneBeast::load_resources() {
     } else {
         p = (u8 *)::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, beast_resource_descriptor, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, beast_resource_descriptor, 0, 0, 0);
         }
         ene_beast_bml_resource = (u32)p;
         ((Ent_8009241C *)beast_collision_body_table)[0].radius = 7.0f;

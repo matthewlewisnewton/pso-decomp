@@ -211,7 +211,7 @@ void TODragonflyCave01::load_resources() {
     default:
         resource = (BmlResource *)::operator new(0x440);
         if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_tombo_resource_descriptor, 0, 0, 0);
+            resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_tombo_resource_descriptor, 0, 0, 0);
         }
         model_resource = resource;
         break;
@@ -220,7 +220,7 @@ void TODragonflyCave01::load_resources() {
     case AREA_VR_SPACESHIP_BETA:
         resource = (BmlResource *)::operator new(0x440);
         if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &fs_obj_ex_entombo_resource_descriptor, 0, 0, 0);
+            resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &fs_obj_ex_entombo_resource_descriptor, 0, 0, 0);
         }
         model_resource = resource;
         break;
@@ -229,7 +229,7 @@ void TODragonflyCave01::load_resources() {
 
 void TODragonflyCave01::release_static_instance() {
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        __dt__11BmlResourceFv(model_resource, 1);
         model_resource = NULL;
     }
 }

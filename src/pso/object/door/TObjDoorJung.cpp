@@ -73,7 +73,7 @@ s32 post_translate_matrix(void *);
 extern s32 actor_frame_tick;
 
 void *__dt__12TObjDoorJungFv(void *arg0, s16 arg1);
-s32 free_bin_model_request(void *, s16);
+s32 __dt__11BmlResourceFv(void *, s16);
 s32 free_collision_body_parts(void *);
 s32 minimap_render_gate(void *, s32, u16, s32, s32);
 s32 __dl__7TObjectFPv(void *);
@@ -84,12 +84,12 @@ void TObjDoorJung::free_buffers() {
         TObjDoorJung__door_scene_buffer = NULL;
     }
     if (TObjDoorJung__resource_handle != NULL) {
-        free_bin_model_request(TObjDoorJung__resource_handle, 1);
+        __dt__11BmlResourceFv(TObjDoorJung__resource_handle, 1);
         TObjDoorJung__resource_handle = NULL;
     }
 }
 
-s32 load_resource_from_descriptor(s32 buffer, s32 kind, void *descriptor, s32 a3, s32 a4, s32 a5);
+s32 __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(s32 buffer, s32 kind, void *descriptor, s32 a3, s32 a4, s32 a5);
 s32 TObjFish__sub_8001EDB0(void *bml, s32 index);
 
 void TObjDoorJung__sub_8018F4AC(void) {
@@ -100,7 +100,7 @@ void TObjDoorJung__sub_8018F4AC(void) {
 
     handle = (int)::operator new(0x440);
     if (handle != 0) {
-        handle = load_resource_from_descriptor(handle, 5, &bm_obj_beamdoa_resource_descriptor, 0, 0, 0);
+        handle = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(handle, 5, &bm_obj_beamdoa_resource_descriptor, 0, 0, 0);
     }
     TObjDoorJung__resource_handle = (void *)handle;
     lbl_805D5BD4 = TObjFish__sub_8001EDB0(TObjDoorJung__resource_handle, 0);

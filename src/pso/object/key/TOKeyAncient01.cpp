@@ -77,7 +77,7 @@ void TOKeyAncient01::free_shared_resources() {
         }
     }
     if (TOKeyAncient01__shared_resource_object != NULL) {
-        free_bin_model_request(TOKeyAncient01__shared_resource_object, 1);
+        __dt__11BmlResourceFv(TOKeyAncient01__shared_resource_object, 1);
         TOKeyAncient01__shared_resource_object = NULL;
     }
 }
@@ -85,7 +85,7 @@ void TOKeyAncient01::free_shared_resources() {
 void TOKeyAncient01::load_resources() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fd_obj_n_switch_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fd_obj_n_switch_resource_descriptor, 0, 0, 0);
     }
     TOKeyAncient01__shared_resource_object = resource;
     TOKeyAncient01__texture_lists = (s32 *)::operator new[](0x10);

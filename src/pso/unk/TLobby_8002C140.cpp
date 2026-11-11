@@ -4,7 +4,7 @@
 
 extern "C" {
 
-s32 free_bin_model_request(s32, s32);
+s32 __dt__11BmlResourceFv(s32, s32);
 s32 release_texture_list(void*);
 
 extern s32 lbl_805D4B50;
@@ -16,7 +16,7 @@ void TLobby::free_char_select() {
         TAdSinglePlyChrSelectGC::safe_free(dragon_common_texture_list);
         dragon_common_texture_list = 0U;
     }
-    free_bin_model_request(lbl_805D4B50, 1);
+    __dt__11BmlResourceFv(lbl_805D4B50, 1);
     lbl_805D4B50 = 0;
 }
 

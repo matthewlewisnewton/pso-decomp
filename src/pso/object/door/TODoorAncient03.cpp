@@ -69,7 +69,7 @@ TODoorAncient03::~TODoorAncient03() {
 void TODoorAncient03::load_resources() {
     BmlResource *archive = (BmlResource *)::operator new(0x440);
     if (archive != NULL) {
-        archive = load_resource_from_descriptor(archive, 1, &bm_fe_obj_o_door03l_resource_descriptor, 0, 0, 0);
+        archive = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(archive, 1, &bm_fe_obj_o_door03l_resource_descriptor, 0, 0, 0);
     }
     door_ancient03_archive = archive;
     s32 *texlists = (s32 *)::operator new[](2 * sizeof(s32));
@@ -87,7 +87,7 @@ void TODoorAncient03::free_resources() {
         }
     }
     if (door_ancient03_archive != NULL) {
-        free_bin_model_request(door_ancient03_archive, 1);
+        __dt__11BmlResourceFv(door_ancient03_archive, 1);
         door_ancient03_archive = NULL;
     }
 }

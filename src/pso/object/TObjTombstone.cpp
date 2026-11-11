@@ -44,8 +44,8 @@ f32 xyz_distance(void *, void *);
 extern s32 TLobby__designated_client_id;
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void free_bin_model_request(void *, int);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
+void __dt__11BmlResourceFv(void *, int);
 // TCameraCtrl.h declares these short; the callers here take an int (no extsh).
 s32 get_screen_width__11TCameraCtrlFv();
 s32 get_screen_height__11TCameraCtrlFv();
@@ -113,7 +113,7 @@ void TObjTombstone::load_resources() {
         mem = (int)::operator new(0x440);
         res = mem;
         if (res != 0) {
-            res = (long)load_resource_from_descriptor((void *)mem, 1, &tombstone_resource_descriptor, 0, 0, 0);
+            res = (long)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *)mem, 1, &tombstone_resource_descriptor, 0, 0, 0);
         }
         TObjTombstone__shared_resource_object = res;
         TObjTombstone::reset_matrix();
@@ -122,7 +122,7 @@ void TObjTombstone::load_resources() {
 
 void TObjTombstone::destroy() {
     if (TObjTombstone__shared_resource_object != 0U) {
-        free_bin_model_request((void *)TObjTombstone__shared_resource_object, 1);
+        __dt__11BmlResourceFv((void *)TObjTombstone__shared_resource_object, 1);
         TObjTombstone__shared_resource_object = 0U;
         TObjTombstone::reset_matrix();
     }

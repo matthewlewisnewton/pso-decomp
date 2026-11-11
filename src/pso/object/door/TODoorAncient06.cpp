@@ -98,7 +98,7 @@ void TODoorAncient06::destroy() {
         }
     }
     if (bml_resource != NULL) {
-        free_bin_model_request(bml_resource, 1);
+        __dt__11BmlResourceFv(bml_resource, 1);
         bml_resource = NULL;
     }
 }
@@ -106,7 +106,7 @@ void TODoorAncient06::destroy() {
 void TODoorAncient06::load_resources() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &door_ancient_567_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &door_ancient_567_resource_descriptor, 0, 0, 0);
     }
     bml_resource = resource;
     texture_lists = (s32 *)::operator new[](8);

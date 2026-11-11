@@ -131,7 +131,7 @@ void TOKeyAncient02::free_static() {
         }
     }
     if (TOKeyAncient02__model_archive != NULL) {
-        free_bin_model_request(TOKeyAncient02__model_archive, 1);
+        __dt__11BmlResourceFv(TOKeyAncient02__model_archive, 1);
         TOKeyAncient02__model_archive = NULL;
     }
     TOKeyAncient02__glass_model = NULL;
@@ -140,7 +140,7 @@ void TOKeyAncient02::free_static() {
 void TOKeyAncient02::load_resources() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_o_doorswitch01_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_o_doorswitch01_resource_descriptor, 0, 0, 0);
     }
     TOKeyAncient02__model_archive = resource;
     TOKeyAncient02__texture_lists = (s32 *)::operator new[](8);

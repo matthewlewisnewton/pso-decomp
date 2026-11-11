@@ -5116,11 +5116,11 @@ void TBoss5Gryphon::cleanup() {
         boss5_gryphon_texture_list = 0U;
     }
     if ((u32) boss5_gryphon_bml_resource != 0U) {
-        free_bin_model_request((void *)boss5_gryphon_bml_resource, 1);
+        __dt__11BmlResourceFv((void *)boss5_gryphon_bml_resource, 1);
         boss5_gryphon_bml_resource = 0U;
     }
     if ((u32) boss5_gryphon_body_bml_resource != 0U) {
-        free_bin_model_request((void *)boss5_gryphon_body_bml_resource, 1);
+        __dt__11BmlResourceFv((void *)boss5_gryphon_body_bml_resource, 1);
         boss5_gryphon_body_bml_resource = 0U;
     }
 }

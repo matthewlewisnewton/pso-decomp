@@ -143,8 +143,8 @@ struct NanoDragoAnimationBinding {
 };
 
 extern "C" void obj_setFlags30(void *, u32);
-extern "C" void free_bin_model_request(void*, int);
-extern "C" u8 * load_resource_from_descriptor(void *, s32, s32 *, s32, s32, s32);
+extern "C" void __dt__11BmlResourceFv(void*, int);
+extern "C" u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, s32 *, s32, s32, s32);
 extern "C" s32 find_active_entity_by_id(int);
 
 extern "C" void TObjPlayer__sub_800DC444(void);
@@ -300,7 +300,7 @@ void TObjEneNanoDrago::load_resources() {
     storage = (u8 *)((int)::operator new(0x440));
     resource = storage;
     if (resource != NULL) {
-        resource = (u8 *)(load_resource_from_descriptor(storage, 1, (s32 *)&bm_ene_nanodrago_resource_descriptor, 0, 0, 0));
+        resource = (u8 *)(__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(storage, 1, (s32 *)&bm_ene_nanodrago_resource_descriptor, 0, 0, 0));
     }
     nano_drago_entry_params_resource = (BmlResource *)resource;
     lbl_805D5248 = (s32)get_battle_base_stats(0x1A);
@@ -314,7 +314,7 @@ void TObjEneNanoDrago::load_resources() {
 }
 void TObjEneNanoDrago::free_resources() {
     if ((u32) nano_drago_entry_params_resource != 0U) {
-        free_bin_model_request((void*)nano_drago_entry_params_resource, 1);
+        __dt__11BmlResourceFv((void*)nano_drago_entry_params_resource, 1);
         nano_drago_entry_params_resource = NULL;
     }
 }

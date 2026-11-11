@@ -248,14 +248,14 @@ void TObjHashi::load_shared_resource() {
     void *p = ::operator new(0x440);
     BmlResource *resource = (BmlResource *)p;
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(p, 1, &fe_obj_hashi_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &fe_obj_hashi_resource_descriptor, 0, 0, 0);
     }
     bml_resource = resource;
 }
 
 void TObjHashi::unload_static_data() {
     if (bml_resource != NULL) {
-        free_bin_model_request(bml_resource, 1);
+        __dt__11BmlResourceFv(bml_resource, 1);
         bml_resource = NULL;
     }
 }
@@ -286,14 +286,14 @@ void TObjHashiVersus1::load_shared_resource() {
     void *p = ::operator new(0x440);
     BmlResource *resource = (BmlResource *)p;
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(p, 1, &fe_obj306_hashi_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &fe_obj306_hashi_resource_descriptor, 0, 0, 0);
     }
     bml_resource = resource;
 }
 
 void TObjHashiVersus1::unload_static_data() {
     if (bml_resource != NULL) {
-        free_bin_model_request(bml_resource, 1);
+        __dt__11BmlResourceFv(bml_resource, 1);
         bml_resource = NULL;
     }
 }
@@ -325,14 +325,14 @@ void TObjHashiVersus2::load_shared_resource() {
     void *p = ::operator new(0x440);
     BmlResource *resource = (BmlResource *)p;
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(p, 1, &fe_obj321_hashi_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &fe_obj321_hashi_resource_descriptor, 0, 0, 0);
     }
     bml_resource = resource;
 }
 
 void TObjHashiVersus2::unload_static_data() {
     if (bml_resource != NULL) {
-        free_bin_model_request(bml_resource, 1);
+        __dt__11BmlResourceFv(bml_resource, 1);
         bml_resource = NULL;
     }
 }

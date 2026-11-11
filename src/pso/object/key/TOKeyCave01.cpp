@@ -223,7 +223,7 @@ void TOKeyCave01::free_objects() {
         }
     }
     if (TOKeyCave01__resource_bundle != NULL) {
-        free_bin_model_request(TOKeyCave01__resource_bundle, 1);
+        __dt__11BmlResourceFv(TOKeyCave01__resource_bundle, 1);
         TOKeyCave01__resource_bundle = NULL;
     }
 }
@@ -235,7 +235,7 @@ void TOKeyCave01::load_resources() {
     if (TContainerAncient01::is_global_state_in_table() == 1 || area == AREA_SEABED_UPPER || area == AREA_SEABED_LOWER) {
         resource = (BmlResource *)::operator new(0x440);
         if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &fs_obj_key_jungle_resource_descriptor, 0, 0, 0);
+            resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &fs_obj_key_jungle_resource_descriptor, 0, 0, 0);
         }
         TOKeyCave01__resource_bundle = resource;
         TOKeyCave01__texture_lists = (s32 *)::operator new[](8);
@@ -246,7 +246,7 @@ void TOKeyCave01::load_resources() {
     }
     resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_do_doa_panel_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_do_doa_panel_resource_descriptor, 0, 0, 0);
     }
     TOKeyCave01__resource_bundle = resource;
     TOKeyCave01__texture_lists = (s32 *)::operator new[](8);

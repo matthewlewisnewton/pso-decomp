@@ -74,14 +74,14 @@ TOMekaFish00::~TOMekaFish00() {}
 void TOMekaFish00::load_shared_resource() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_obj_meka_fish_0_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_obj_meka_fish_0_resource_descriptor, 0, 0, 0);
     }
     model_resource = resource;
 }
 
 void TOMekaFish00::release_static_instance() {
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        __dt__11BmlResourceFv(model_resource, 1);
         model_resource = NULL;
     }
 }
@@ -113,14 +113,14 @@ TOMekaFish01::~TOMekaFish01() {}
 void TOMekaFish01::load_shared_resource() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_obj_meka_fish_1_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_obj_meka_fish_1_resource_descriptor, 0, 0, 0);
     }
     model_resource = resource;
 }
 
 void TOMekaFish01::free_static_data() {
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        __dt__11BmlResourceFv(model_resource, 1);
         model_resource = NULL;
     }
 }
@@ -152,14 +152,14 @@ TOBiwaMushi::~TOBiwaMushi() {}
 void TOBiwaMushi::load_resource_instance() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_obj_jungle_biwamushi_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_obj_jungle_biwamushi_resource_descriptor, 0, 0, 0);
     }
     model_resource = resource;
 }
 
 void TOBiwaMushi::free_shared_data() {
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        __dt__11BmlResourceFv(model_resource, 1);
         model_resource = NULL;
     }
 }

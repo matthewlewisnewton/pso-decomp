@@ -221,7 +221,7 @@ void *TOHealGeneral::create(void *set_data) {
 
 void TOHealGeneral::unload_resources() {
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        __dt__11BmlResourceFv(model_resource, 1);
         model_resource = NULL;
     }
 }
@@ -240,14 +240,14 @@ void TOHealGeneral::load_resources() {
     case AREA_TOWER:
         resource = (BmlResource *)::operator new(0x440);
         if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &fe_obj_kaifuku_moto_2_resource_descriptor, 0, 0, 0);
+            resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &fe_obj_kaifuku_moto_2_resource_descriptor, 0, 0, 0);
         }
         model_resource = resource;
         return;
     }
     resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fe_obj_kaifuku_moto_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fe_obj_kaifuku_moto_resource_descriptor, 0, 0, 0);
     }
     model_resource = resource;
 }

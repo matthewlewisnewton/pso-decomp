@@ -53,8 +53,8 @@ s32 set_current_texture_list();
 void __dl__7TObjectFPv(void *);
 extern s32 TObjFish__area_event_stage;
 u8 update_state__8TObjFishFv(void *arg0);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void free_bin_model_request(void*, int);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
+void __dt__11BmlResourceFv(void*, int);
 
 u8 TObjFish::update_state() {
     if ((s32) TObjFish__area_event_stage == 0) {
@@ -489,7 +489,7 @@ u8 *TObjFish__create(u8 *arg0);
 s32 __ct__8TObjBaseFP7TObject();
 extern s32 lbl_805D3D58;
 u8 *TObjFish__ct(u8 *arg0, s32 arg1, u8 *arg2);
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 void *__dt__8TObjFishFv(void *arg0, s16 arg1);
 
 void *__dt__8TObjFishFv(void *arg0, s16 arg1) {
@@ -550,7 +550,7 @@ u8 *TObjFish__create(u8 *arg0) {
 
 void TObjFish::free_resource() {
     if ((u32) (*(u32 *)&TObjFish__area_bml_resource) != 0U) {
-        free_bin_model_request((void*)(*(u32 *)&TObjFish__area_bml_resource), 1);
+        __dt__11BmlResourceFv((void*)(*(u32 *)&TObjFish__area_bml_resource), 1);
         (*(u32 *)&TObjFish__area_bml_resource) = 0U;
     }
 }
@@ -649,7 +649,7 @@ void TObjFish::load_area_resource() {
         TObjFish__area_event_stage = 1;
         p = (u8 *)::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, base + 0x50, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, base + 0x50, 0, 0, 0);
         }
         (*(u32 *)&TObjFish__area_bml_resource) = (u32)p;
         break;
@@ -658,7 +658,7 @@ void TObjFish::load_area_resource() {
         TObjFish__area_event_stage = 2;
         p = (u8 *)::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, base + 0x80, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, base + 0x80, 0, 0, 0);
         }
         (*(u32 *)&TObjFish__area_bml_resource) = (u32)p;
         break;
@@ -666,7 +666,7 @@ void TObjFish::load_area_resource() {
         TObjFish__area_event_stage = 3;
         p = (u8 *)::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, base + 0xB0, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, base + 0xB0, 0, 0, 0);
         }
         (*(u32 *)&TObjFish__area_bml_resource) = (u32)p;
         break;
@@ -674,7 +674,7 @@ void TObjFish::load_area_resource() {
         TObjFish__area_event_stage = 4;
         p = (u8 *)::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, base + 0xE0, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, base + 0xE0, 0, 0, 0);
         }
         (*(u32 *)&TObjFish__area_bml_resource) = (u32)p;
         break;
@@ -683,7 +683,7 @@ void TObjFish::load_area_resource() {
         TObjFish__area_event_stage = 0;
         p = (u8 *)::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, base + 0x20, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, base + 0x20, 0, 0, 0);
         }
         (*(u32 *)&TObjFish__area_bml_resource) = (u32)p;
         break;

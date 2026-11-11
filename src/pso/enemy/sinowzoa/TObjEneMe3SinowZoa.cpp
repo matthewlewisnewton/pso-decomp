@@ -1543,7 +1543,7 @@ extern const f32 lbl_805DF370;
 
 extern "C" {
 extern const f32 lbl_805DF38C;
-s32 free_bin_model_request(u32, s32);
+s32 __dt__11BmlResourceFv(u32, s32);
 
 }
 
@@ -1667,7 +1667,7 @@ void TObjEneMe3SinowZoa::free_resources() {
         TObjEneMe3SinowZoa__alternate_texture_list.textures = NULL;
     }
     if (TObjEneMe3SinowZoa__bml_resource != 0) {
-        free_bin_model_request((u32)TObjEneMe3SinowZoa__bml_resource, 1);
+        __dt__11BmlResourceFv((u32)TObjEneMe3SinowZoa__bml_resource, 1);
         TObjEneMe3SinowZoa__bml_resource = NULL;
     }
 }

@@ -19,7 +19,7 @@ extern const char lbl_804449F0[];
 extern const char lbl_80444A00[];
 extern const char lbl_80444A10[];
 extern const char *labo_map_warp_dest_name_table_b[];
-void free_bin_model_request(void *, s32);
+void __dt__11BmlResourceFv(void *, s32);
 extern int city_season_easter_egg_model_table[];
 extern int city_season_xmas_model_table[];
 extern void *lbl_805D5B34;
@@ -68,7 +68,7 @@ void TLobby::free_buffers() {
         lbl_805D5B48 = NULL;
     }
     if (lbl_805D5B38 != NULL) {
-        free_bin_model_request(lbl_805D5B38, 1);
+        __dt__11BmlResourceFv(lbl_805D5B38, 1);
         lbl_805D5B38 = NULL;
     }
     lbl_805D5B44 = 0;
@@ -80,7 +80,7 @@ void TLobby::free_buffers() {
     }
     for (i = 5; i >= 0; i--) {
         if ((u32)city_season_easter_egg_model_table[i] != 0) {
-            free_bin_model_request((void *)city_season_easter_egg_model_table[i], 1);
+            __dt__11BmlResourceFv((void *)city_season_easter_egg_model_table[i], 1);
         }
         city_season_easter_egg_model_table[i] = 0;
         city_season_xmas_model_table[i] = 0;
@@ -89,7 +89,7 @@ void TLobby::free_buffers() {
 
 extern "C" s32 get_main_phase(void);
 extern "C" extern u8 lbl_804B5E80[];
-extern "C" void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+extern "C" void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern "C" void clear_global_array__6TLobbyFPv();
 
 extern "C" void TLobby__sub_80184DF4(void) {
@@ -130,7 +130,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
         if (tmp != NULL) {
             void **d = (void **)(obj + 0x15c);
             d += lbl_805D5B30;
-            tmp = (u8 *)load_resource_from_descriptor(tmp, 1, *d, 0, 0, 0);
+            tmp = (u8 *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(tmp, 1, *d, 0, 0, 0);
         }
         off = lbl_805D5B30 * 4;
         *(s32 *)((u8 *)city_season_easter_egg_model_table + off) = (int)tmp;
@@ -166,7 +166,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
     if (lbl_805D5B30 == 2) {
         u8 *r = (u8 *)::operator new(0x440);
         if (r != NULL) {
-            r = (u8 *)load_resource_from_descriptor(r, 1, obj + 0x130, 0, 0, 0);
+            r = (u8 *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 1, obj + 0x130, 0, 0, 0);
         }
         obj = r;
         lbl_805D5B3C = *(s32 *)(*(u8 **)(r + 0x42c) + 8);
@@ -174,7 +174,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
     } else if (lbl_805D5B30 == 4) {
         u8 *r = (u8 *)::operator new(0x440);
         if (r != NULL) {
-            r = (u8 *)load_resource_from_descriptor(r, 1, obj + 0x14c, 0, 0, 0);
+            r = (u8 *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 1, obj + 0x14c, 0, 0, 0);
         }
         obj = r;
         lbl_805D5B3C = *(s32 *)(*(u8 **)(r + 0x42c) + 8);
@@ -182,7 +182,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
     } else {
         u8 *r = (u8 *)::operator new(0x440);
         if (r != NULL) {
-            r = (u8 *)load_resource_from_descriptor(r, 1, obj + 0x114, 0, 0, 0);
+            r = (u8 *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 1, obj + 0x114, 0, 0, 0);
         }
         obj = r;
         lbl_805D5B3C = *(s32 *)(*(u8 **)(r + 0x42c) + 8);

@@ -795,7 +795,7 @@ struct RecoveredGlobal_800EBC28___vt__12TObjEneSlime {
 extern "C" {
 s32 __ct__9TObjEnemyFP7TObject(void *);
 extern s32 __vt__12TObjEneSlime[];
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void __dl__7TObjectFPv(void *);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 
@@ -815,7 +815,7 @@ typedef char RecoveredGlobal_800EBC28___vt__12TObjEneSlime_size[sizeof(Recovered
 
 extern "C" {
 
-void *load_resource_from_descriptor(void *, s32, s32 *, s32, s32, s32);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, s32 *, s32, s32, s32);
 
 
 
@@ -894,7 +894,7 @@ void TObjEneSlime::spawn_pair() {
 
     temp_r4 = ::operator new(0x440);
     if (temp_r4 != NULL) {
-        temp_r4 = load_resource_from_descriptor(temp_r4, 1, (s32 *)slime_pair_resource_descriptor, 0, 0, 0);
+        temp_r4 = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(temp_r4, 1, (s32 *)slime_pair_resource_descriptor, 0, 0, 0);
     }
     slime_bml_resource = temp_r4;
     temp_r5 = *(void **)((s8 *)temp_r4 + 0x42C);
@@ -905,7 +905,7 @@ void TObjEneSlime::spawn_pair() {
 
 void TObjEneSlime::free_instance() {
     if ((u32) slime_bml_resource != 0U) {
-        free_bin_model_request((void*)slime_bml_resource, 1);
+        __dt__11BmlResourceFv((void*)slime_bml_resource, 1);
         slime_bml_resource = 0U;
     }
 }

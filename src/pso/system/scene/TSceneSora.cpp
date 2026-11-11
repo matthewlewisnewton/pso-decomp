@@ -48,7 +48,7 @@ struct Ent_80207478 { s32 f0; char *name; };
 struct Res_80207478 { void *buf; s32 n; };
 
 extern "C" {
-u8 * free_bin_model_request(void *, s16);
+u8 * __dt__11BmlResourceFv(void *, s16);
 extern s32 TSceneSora__sky_active_flag;
 extern s32 TSceneSora__instance;
 extern u32 TSceneSora__sky_bml_resource;
@@ -161,7 +161,7 @@ void TSceneSora::create_instance() {
 void TSceneSora__sub_80207430(void) {
     TSceneSora__sky_active_flag = 1;
     if ((void *) (*(u8 * *)&TSceneSora__sky_bml_resource) != NULL) {
-        free_bin_model_request((*(u8 * *)&TSceneSora__sky_bml_resource), 1);
+        __dt__11BmlResourceFv((*(u8 * *)&TSceneSora__sky_bml_resource), 1);
         (*(u8 * *)&TSceneSora__sky_bml_resource) = NULL;
     }
     TSceneSora__instance = 0;

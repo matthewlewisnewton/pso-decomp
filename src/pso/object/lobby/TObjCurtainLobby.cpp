@@ -91,7 +91,7 @@ void *TObjCurtainLobby::create(void *set_data) {
 
 void TObjCurtainLobby::free_resources() {
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        __dt__11BmlResourceFv(model_resource, 1);
         model_resource = NULL;
     }
 }
@@ -99,7 +99,7 @@ void TObjCurtainLobby::free_resources() {
 void TObjCurtainLobby::load_resources() {
     void *resource = ::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &bm_obj_lobby_curtain_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 5, &bm_obj_lobby_curtain_resource_descriptor, 0, 0, 0);
     }
     model_resource = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();

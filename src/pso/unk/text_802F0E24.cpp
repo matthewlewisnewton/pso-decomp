@@ -20,8 +20,8 @@ struct BmlResource {
 
 extern "C" {
 void release_texture_list(void *);
-void free_bin_model_request(void *, int);
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+void __dt__11BmlResourceFv(void *, int);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 }
 
 #pragma readonly_strings on
@@ -78,7 +78,7 @@ void free_boss7_common_resources(void) {
         release_texture_list(boss7_common_texture_list);
         boss7_common_texture_list = 0;
     }
-    free_bin_model_request(boss7_common_bml_resource, 1);
+    __dt__11BmlResourceFv(boss7_common_bml_resource, 1);
     boss7_common_bml_resource = 0;
 }
 
@@ -87,7 +87,7 @@ void load_boss7_common_resources(void) {
 
     p = ::operator new(0x440);
     if (p != NULL) {
-        p = load_resource_from_descriptor(p, 5, &boss7_common_resource_descriptor, 0, 0, 0);
+        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, &boss7_common_resource_descriptor, 0, 0, 0);
     }
 
     boss7_common_bml_resource = p;

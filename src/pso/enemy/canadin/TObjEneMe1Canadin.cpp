@@ -1822,7 +1822,7 @@ void TObjEneMe1Canadin::free_resources() {
         lbl_805D4FDC = NULL;
     }
     if (lbl_805D4FD0 != NULL) {
-        free_bin_model_request(lbl_805D4FD0, 1);
+        __dt__11BmlResourceFv(lbl_805D4FD0, 1);
         lbl_805D4FD0 = NULL;
     }
 }

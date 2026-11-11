@@ -491,7 +491,7 @@ void TObjEneMoja::load_resources() {
     case 3: {
         void *memory = ::operator new(0x440);
         if (memory != NULL) {
-            memory = load_resource_from_descriptor(memory, 1, &lbl_804918B8, 0, 0, 0);
+            memory = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(memory, 1, &lbl_804918B8, 0, 0, 0);
         }
         lbl_805D50D8 = (BmlResource *)memory;
         break;
@@ -499,7 +499,7 @@ void TObjEneMoja::load_resources() {
     default: {
         void *memory = ::operator new(0x440);
         if (memory != NULL) {
-            memory = load_resource_from_descriptor(memory, 1, &lbl_80491868, 0, 0, 0);
+            memory = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(memory, 1, &lbl_80491868, 0, 0, 0);
         }
         lbl_805D50D8 = (BmlResource *)memory;
         break;
@@ -561,7 +561,7 @@ void TObjEneMoja::free_resources() {
         lbl_805D50DC = NULL;
     }
     if (lbl_805D50D8 != NULL) {
-        free_bin_model_request(lbl_805D50D8, 1);
+        __dt__11BmlResourceFv(lbl_805D50D8, 1);
         lbl_805D50D8 = NULL;
     }
 }

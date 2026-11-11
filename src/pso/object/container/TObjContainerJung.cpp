@@ -116,7 +116,7 @@ struct Pkt_8018CB44 { u16 a; u16 b; s32 c; s32 d; s32 e; };
 
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern s32 local_client_id;
 
 void TObjContainerJungEnemy::vfunc_6(s16 *arg1, s32 arg2) {
@@ -519,7 +519,7 @@ struct Obj_8018D4DC {
 extern "C" {
 u8 * get_bml_model(void *, int);
 s32 TObjFish__sub_8001EDB0(void *, s32);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 u32 init_collision_body_parts(void *, s32, s32);
 u8 * init_container_base(void *, s32);
 
@@ -533,7 +533,7 @@ extern "C" {
 void *__nw__7TObjectFUl(int);
 extern void *tl_05;
 void TObjContainerJung__vt77(const Obj_8018D4DC *self);
-s32 free_bin_model_request(s32, s32);
+s32 __dt__11BmlResourceFv(s32, s32);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
 
@@ -557,7 +557,7 @@ void *TObjContainerJung::create(void *arg0) {
 }
 
 void TObjContainerJung::release() {
-    free_bin_model_request(TObjContainerJung__bml_model_resource, 1);
+    __dt__11BmlResourceFv(TObjContainerJung__bml_model_resource, 1);
     TObjContainerJung__bml_model_resource = 0;
     TObjContainerJung__bml_aux_handle = 0;
 }
@@ -568,7 +568,7 @@ void TObjContainerJung::load_resources() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &TObjContainerJung__resource_descriptor, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 5, &TObjContainerJung__resource_descriptor, 0, 0, 0));
     }
     (*(u8 * *)&TObjContainerJung__bml_model_resource) = (unsigned char *) ((void *) var_r0);
     TObjContainerJung__bml_aux_handle = TObjFish__sub_8001EDB0((void *) var_r0, 0);
@@ -716,7 +716,7 @@ u8 *TObjContainerJungEx::get_model(s32 index) {
 
 void TObjContainerJungEx::free_data() {
     if (TObjContainerJungEx__resource_bundle != NULL) {
-        free_bin_model_request((s32)TObjContainerJungEx__resource_bundle, 1);
+        __dt__11BmlResourceFv((s32)TObjContainerJungEx__resource_bundle, 1);
         TObjContainerJungEx__resource_bundle = NULL;
     }
 }
@@ -725,7 +725,7 @@ void TObjContainerJungEx::load_resource_instance() {
     void *memory = ::operator new(0x440);
     void *bundle = memory;
     if (bundle != NULL) {
-        bundle = load_resource_from_descriptor(memory, 5, &fe_obj_hako02_resource_descriptor, 0, 0, 0);
+        bundle = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(memory, 5, &fe_obj_hako02_resource_descriptor, 0, 0, 0);
     }
     TObjContainerJungEx__resource_bundle = bundle;
 }

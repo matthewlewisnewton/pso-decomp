@@ -214,7 +214,7 @@ extern "C" {
 
 extern "C" {
 
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void __ct__8TObjBaseFP7TObject(void *);
 void *__nw__7TObjectFUl(int);
 
@@ -240,13 +240,13 @@ void *TButterfly__create(void *arg0) {
 
 void TButterfly::destroy_instance() {
     if ((u32) butterfly_bml_resource != 0U) {
-        free_bin_model_request((void*)butterfly_bml_resource, 1);
+        __dt__11BmlResourceFv((void*)butterfly_bml_resource, 1);
         butterfly_bml_resource = 0U;
     }
 }
 
 extern BmlResourceDescriptor bm_o_abe_butterfly_resource_descriptor;
-u8 *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
 
 void TButterfly::load_resources() {
     void *resource;
@@ -254,7 +254,7 @@ void TButterfly::load_resources() {
     resource = ::operator new(0x440);
     loaded = (u32)resource;
     if (loaded != 0) {
-        loaded = (u32)load_resource_from_descriptor(resource, 1, &bm_o_abe_butterfly_resource_descriptor, 0, 0, 0);
+        loaded = (u32)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_o_abe_butterfly_resource_descriptor, 0, 0, 0);
     }
     butterfly_bml_resource = loaded;
 }

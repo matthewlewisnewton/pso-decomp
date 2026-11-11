@@ -31,9 +31,9 @@ struct RecoveredGlobal_8014AC6C___vt__19TObjNpcGovernorBase {
 
 extern void *tl_04;
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern s32 __vt__19TObjNpcGovernorBase[];
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
@@ -54,7 +54,7 @@ void * TObjNpcGovernorBase__create(void *arg0) {
 
 void TObjNpcGovernorBase::free_shared_data() {
     if ((u32) TObjNpcGovernorBase__shared_resource != 0U) {
-        free_bin_model_request((void*)TObjNpcGovernorBase__shared_resource, 1);
+        __dt__11BmlResourceFv((void*)TObjNpcGovernorBase__shared_resource, 1);
         TObjNpcGovernorBase__shared_resource = 0U;
     }
 }
@@ -65,7 +65,7 @@ void TObjNpcGovernorBase::load_shared_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_soutoku_i_body_resource_descriptor, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 1, &bm_n_soutoku_i_body_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&TObjNpcGovernorBase__shared_resource) = var_r0;
 }

@@ -60,7 +60,7 @@ void *TOKeyJungleMain::create(void *set_data) {
 
 void TOKeyJungleMain::release_static_resource() {
     if (TOKeyJungleMain__static_model_resource != NULL) {
-        free_bin_model_request(TOKeyJungleMain__static_model_resource, 1);
+        __dt__11BmlResourceFv(TOKeyJungleMain__static_model_resource, 1);
         TOKeyJungleMain__static_model_resource = NULL;
     }
 }
@@ -69,7 +69,7 @@ void TOKeyJungleMain::load_static_resource() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
 
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &bm_obj_jungle_mkey_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 5, &bm_obj_jungle_mkey_resource_descriptor, 0, 0, 0);
     }
     TOKeyJungleMain__static_model_resource = resource;
 }

@@ -108,15 +108,15 @@ struct RecoveredGlobal_8030B708___vt__14TObjLiveCamera {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8030B658_lbl_804E76C0 bm_obj_boss8_monitor_resource_descriptor;
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 __vt__14TObjLiveCamera[];
 extern s32 TObjLiveCamera__class_name;
-int free_bin_model_request(void*, void*);
+int __dt__11BmlResourceFv(void*, void*);
 void __dl__7TObjectFPv(void *);
 
-void TObjLiveCamera__sub_8030B630(void) { free_bin_model_request((void*)live_monitor_shared_resource, (void*)1); }
+void TObjLiveCamera__sub_8030B630(void) { __dt__11BmlResourceFv((void*)live_monitor_shared_resource, (void*)1); }
 
 void TObjLiveCamera::load_static_resource() {
     s32 temp_r3;
@@ -124,7 +124,7 @@ void TObjLiveCamera::load_static_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_obj_boss8_monitor_resource_descriptor.value, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 5, &bm_obj_boss8_monitor_resource_descriptor.value, 0, 0, 0));
     }
     (*(s32 *)&live_monitor_shared_resource) = var_r0;
 }

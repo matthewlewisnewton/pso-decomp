@@ -121,7 +121,7 @@ struct Vec_80190020 { f32 x, y, z; };
 extern "C" {
 void debug_draw_key_id__5TOKeyFv();
 s32 get_bml_model(s32, int);
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
+s32 __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(s32, int, void *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
 void scroll_ginja_mesh_uvs(void *, int, int, int, int);
 void PPCSync();
@@ -134,7 +134,7 @@ extern s32 model_render_flags;
 s32 init_key__5TOKeyFPv(void *, void *);
 void *__ct__5TOKeyFP7TObject(TOKey *arg0);
 extern s32 __vt__11TObjDoorKey[];
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 int update_armed_switch__5TOKeyFv(void*);
 s32 __dl__7TObjectFPv(void *);
 void *__dt__5TOKeyFv(void *arg0, s16 arg1);
@@ -318,7 +318,7 @@ void *TObjDoorKey__create(void *arg0) {
 
 void TObjDoorKey::free_key() {
     if ((u32) door_key_resource_handle != 0U) {
-        free_bin_model_request((void*)door_key_resource_handle, 1);
+        __dt__11BmlResourceFv((void*)door_key_resource_handle, 1);
         door_key_resource_handle = 0U;
     }
     TObjPlayer::free_if_valid(TObjDoorKey__texture_handle);
@@ -329,7 +329,7 @@ void TObjDoorKey::free_key() {
 void TObjDoorKey::load_resources() {
     s32 r = (int)::operator new(0x440);
     if (r != 0) {
-        r = load_resource_from_descriptor(r, 5, &TObjDoorKey__resource_descriptor, 0, 0, 0);
+        r = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 5, &TObjDoorKey__resource_descriptor, 0, 0, 0);
     }
     (*(s32 *)&door_key_resource_handle) = r;
     TObjDoorKey__texture_handle = (s32)load_gvm_texture_file((s32)"fe_obj_switch.gvm");

@@ -28,7 +28,7 @@ void *TObjNpcMaleChild__create(void *set_data) {
 
 void TObjNpcMaleChild::release_static_instance() {
     if (TObjNpcMaleChild__shared_model_resource != NULL) {
-        free_bin_model_request(TObjNpcMaleChild__shared_model_resource, 1);
+        __dt__11BmlResourceFv(TObjNpcMaleChild__shared_model_resource, 1);
         TObjNpcMaleChild__shared_model_resource = NULL;
     }
 }
@@ -37,7 +37,7 @@ void TObjNpcMaleChild::load_shared_resource() {
     void *memory = ::operator new(0x440);
     BmlResource *resource = (BmlResource *)memory;
     if (memory != NULL) {
-        resource = load_resource_from_descriptor(memory, 1, &bm_n_ecm_i_body_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(memory, 1, &bm_n_ecm_i_body_resource_descriptor, 0, 0, 0);
     }
     TObjNpcMaleChild__shared_model_resource = resource;
 }

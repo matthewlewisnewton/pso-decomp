@@ -138,7 +138,7 @@ void TOMonitorMachine01::reset_static_state() {
         TOMonitorMachine01__scroll_meshes[i] = NULL;
     }
     if (TOMonitorMachine01__bml_resource != NULL) {
-        free_bin_model_request(TOMonitorMachine01__bml_resource, 1);
+        __dt__11BmlResourceFv(TOMonitorMachine01__bml_resource, 1);
         TOMonitorMachine01__bml_resource = NULL;
     }
 }
@@ -147,7 +147,7 @@ void TOMonitorMachine01::load_resources() {
     NJS_OBJECT *screen;
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_monitor_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_monitor_resource_descriptor, 0, 0, 0);
     }
     TOMonitorMachine01__bml_resource = resource;
     screen = ((NJS_OBJECT *)resource->models[0].model)->child->sibling->sibling;

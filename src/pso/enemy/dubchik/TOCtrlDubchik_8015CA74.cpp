@@ -130,7 +130,7 @@ struct A_8015C9D4 { u8 pad[0x1C]; Vec pos; };
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
 s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8015D314_lbl_804B0A10 bm_fs_obj_zombie_con_resource_descriptor;
 extern u32 TOCtrlDubchik__shared_resource;
 s32 try_start_action__9TObjCharaFll(void *, void *, void *);
@@ -150,7 +150,7 @@ void dubchik_start_dying(u8 *arg0);
 f32 receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(void *, s32, Pair_8015D518, void *, s32, s32);
 f32 TOCtrlDubchik__vt21(TOCtrlDubchik *arg0, s32 arg1, Pair_8015D518 arg2, void *arg3);
 void *__dt__13TOCtrlDubchikFv(void *arg0, s16 arg1);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 free_collision_body_parts(void *);
 s32 select_melee_contact_body__9TObjCharaFPvf();
 s32 __dl__7TObjectFPv(void *);
@@ -395,7 +395,7 @@ void *TOCtrlDubchik::create(void *arg0) {
 
 void TOCtrlDubchik::destroy_instance() {
     if ((u32) TOCtrlDubchik__shared_resource != 0U) {
-        free_bin_model_request((void*)TOCtrlDubchik__shared_resource, 1);
+        __dt__11BmlResourceFv((void*)TOCtrlDubchik__shared_resource, 1);
         TOCtrlDubchik__shared_resource = 0U;
     }
 }
@@ -406,7 +406,7 @@ void TOCtrlDubchik::load_shared_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_fs_obj_zombie_con_resource_descriptor.value, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 1, &bm_fs_obj_zombie_con_resource_descriptor.value, 0, 0, 0));
     }
     (*(s32 *)&TOCtrlDubchik__shared_resource) = var_r0;
 }

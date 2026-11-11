@@ -42,19 +42,19 @@ struct PhotonBlastChain_801AA424 {
 };
 
 extern "C" {
-void free_bin_model_request(u32, int);
+void __dt__11BmlResourceFv(u32, int);
 void call_funcs_reverse__6TLobbyFPvUi(void *, int);
 extern u8 photon_blast_load_callback_table[];
 extern u32 photon_blast_donation_flags[];
 extern u32 photon_blast_shared_resource;
 extern struct PhotonBlastChain_801AA424 photon_blast_sequence_table[];
-u8 *load_resource_from_descriptor(u8 *, int, void *, int, int, int);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(u8 *, int, void *, int, int, int);
 s32 run_load_callback_table(void *, int);
 void TObjPlayer__sub_801AA3B4(void) {
     s32 i;
     call_funcs_reverse__6TLobbyFPvUi(photon_blast_load_callback_table, 0x50);
     if (photon_blast_shared_resource != 0U) {
-        free_bin_model_request(photon_blast_shared_resource, 1);
+        __dt__11BmlResourceFv(photon_blast_shared_resource, 1);
         photon_blast_shared_resource = 0U;
     }
     for (i = 0; i < 4; i++) {
@@ -79,7 +79,7 @@ void load_photon_blast_resources(void) {
     s32 i;
     p = (u8 *)::operator new(0x440);
     if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, &photon_blast_resource_descriptor, 0, 0, 0);
+        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &photon_blast_resource_descriptor, 0, 0, 0);
     }
     photon_blast_shared_resource = (u32) p;
     run_load_callback_table(photon_blast_load_callback_table, 0x50);

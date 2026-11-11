@@ -1328,7 +1328,7 @@ struct Boss_802AC7E4 { u8 pad[0x37C]; u8 mode; };
 
 extern "C" {
 s32 query_teammate_state__9TObjEneDDFv();
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 void fn_802E52AC(void);
 void TItemEffOrgaFlowShot__sub_80357210(void);
 void TLobby__sub_8036DDE8(void);
@@ -1348,7 +1348,7 @@ void handle_6xA3_olga_flow_boss_actions(Msg_802AC7E4 *m);
 s32 __ct__9TObjEnemyFP7TObject();
 s32 TBoss6PlotFalz__ct(s32, s32, s32);
 void TItemEffOrgaFlowShot__sub_80357204(void);
-int free_bin_model_request(void*, void*);
+int __dt__11BmlResourceFv(void*, void*);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
 
@@ -1519,7 +1519,7 @@ s32 TBoss6PlotFalz__ct(s32 self, s32 arg1, s32 arg2) {
 #pragma pop
 #undef arg0
 
-void TBoss6PlotFalz::free_all() { TBoss4DarkFalz::free_global_instance(); TBoss6Tube::free_resources(); TBoss6Rock::free_data(); TItemEffOrgaFlowShot__sub_80357204(); free_bin_model_request((void*)obj_fish_count, (void*)1); obj_fish_count = 0; }
+void TBoss6PlotFalz::free_all() { TBoss4DarkFalz::free_global_instance(); TBoss6Tube::free_resources(); TBoss6Rock::free_data(); TItemEffOrgaFlowShot__sub_80357204(); __dt__11BmlResourceFv((void*)obj_fish_count, (void*)1); obj_fish_count = 0; }
 
 extern s32 tl_04;
 
@@ -1529,7 +1529,7 @@ void TBoss6PlotFalz::load_resources() {
     temp_r3 = (s32)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &boss6_plot_falz_resource_descriptor, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 5, &boss6_plot_falz_resource_descriptor, 0, 0, 0));
     }
     (*(u8 * *)&obj_fish_count) = (unsigned char *) ((void *) var_r0);
     if ((u32) var_r0 != 0U) {

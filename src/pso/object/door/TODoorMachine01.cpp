@@ -225,7 +225,7 @@ void TODoorMachine01::destroy() {
         }
     }
     if (bml_resource != NULL) {
-        free_bin_model_request(bml_resource, 1);
+        __dt__11BmlResourceFv(bml_resource, 1);
         bml_resource = NULL;
     }
 }
@@ -236,14 +236,14 @@ void TODoorMachine01::load_resources() {
     if (enable_v2_features == 1 && TLobby::is_online_ready() != 0) {
         resource = (BmlResource *)::operator new(0x440);
         if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &door_machine01_a_resource_descriptor, 0, 0, 0);
+            resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &door_machine01_a_resource_descriptor, 0, 0, 0);
         }
         bml_resource = resource;
         texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_ki_doa_r_a.gvm");
     } else {
         resource = (BmlResource *)::operator new(0x440);
         if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &door_machine01_resource_descriptor, 0, 0, 0);
+            resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &door_machine01_resource_descriptor, 0, 0, 0);
         }
         bml_resource = resource;
         texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_ki_doa_r.gvm");

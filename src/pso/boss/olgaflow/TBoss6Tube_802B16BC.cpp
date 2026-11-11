@@ -4,12 +4,12 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 extern "C" {
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
+s32 __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(s32, int, void *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 boss06_tube_dat_resource_descriptor[];
 extern u32 boss6_tube_bml_resource;
 extern u32 boss6_tube_texture_list;
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 release_texture_list(void*);
 void *__nw__7TObjectFUl(int);
 
@@ -23,7 +23,7 @@ void *TBoss6Tube::create(void *arg0) {
 
 void TBoss6Tube::free_resources() {
     if ((u32) boss6_tube_bml_resource != 0U) {
-        free_bin_model_request((void*)boss6_tube_bml_resource, 1);
+        __dt__11BmlResourceFv((void*)boss6_tube_bml_resource, 1);
         boss6_tube_bml_resource = 0U;
     }
     if ((u32) boss6_tube_texture_list != 0U) {
@@ -38,7 +38,7 @@ void TBoss6Tube::load_resources() {
     TBoss6Tube::reset_state();
     r = (int)::operator new(0x440);
     if (r != 0) {
-        r = load_resource_from_descriptor(r, 5, boss06_tube_dat_resource_descriptor, 0, 0, 0);
+        r = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 5, boss06_tube_dat_resource_descriptor, 0, 0, 0);
     }
     boss6_tube_bml_resource = r;
     boss6_tube_texture_list = (u32)load_gvm_texture_file((s32)"boss06_tube_dat.gvm");

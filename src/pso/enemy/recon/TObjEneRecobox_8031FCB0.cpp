@@ -495,13 +495,13 @@ u32 TObjEneRecobox::remap_area_sound_id(u32 arg0) {
 int TObjEneRecobox__sub_803201D0(void) {  return (*(int *)&TObjEneRecobox__static_instance); }
 
 void *TObjEneRecobox__create(void *arg0);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void *__nw__7TObjectFUl(int);
 
 void TObjEneRecobox::release_static_instance() {
     TObjEneRecon::release_static_instance();
     if ((u32) (*(u32 *)&TObjEneRecobox__static_instance) != 0U) {
-        free_bin_model_request((void*)(*(u32 *)&TObjEneRecobox__static_instance), 1);
+        __dt__11BmlResourceFv((void*)(*(u32 *)&TObjEneRecobox__static_instance), 1);
         (*(u32 *)&TObjEneRecobox__static_instance) = 0U;
     }
 }

@@ -238,7 +238,7 @@ s32 check_path_obstructed(void *, Vec_800A1D70 *);
 f32 atan2_float(f32, f32);
 int TObjFish__sub_8001EDB0(void*, void*);
 int get_bml_model(void*);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void * __dt__13TUnk_80490470Fv(void *, s16);
 s32 trigger_targets_action__10TObjPlayerFv();
 u8 * TObjEneDarkGunCenter__ct(u8 *arg0, s32 arg1, s32 arg2);
@@ -1581,7 +1581,7 @@ void *TObjPlayer::create_instance(void *arg0) {
 
 void TObjPlayer::cleanup_effects() {
     if ((u32) player_effect_bml_resource != 0U) {
-        free_bin_model_request((void*)player_effect_bml_resource, 1);
+        __dt__11BmlResourceFv((void*)player_effect_bml_resource, 1);
         player_effect_bml_resource = 0U;
     }
     if ((u32) TObjPlayer__effect_resource != 0U) {
@@ -1595,7 +1595,7 @@ void TObjPlayer::cleanup_effects() {
 extern "C" {
 extern s32 lbl_805D5024;
 extern s32 lbl_805D5028;
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 void load_darkgunner_effect_resources();
 }
 
@@ -1605,7 +1605,7 @@ void load_darkgunner_effect_resources() {
     s32 i;
     void *res = (void *)::operator new(0x440);
     if (res != NULL) {
-        res = load_resource_from_descriptor(res, 1, bm_ene_darkgunner_resource_descriptor, 0, 0, 0);
+        res = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(res, 1, bm_ene_darkgunner_resource_descriptor, 0, 0, 0);
     }
     player_effect_bml_resource = (u32)res;
     TObjPlayer__shadow_chunk_object = ((s32 (*)(void *, s32))get_bml_model)((void *)player_effect_bml_resource, 0);

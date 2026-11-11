@@ -89,7 +89,7 @@ void *TOHangerMachine01::create(void *set_data) {
 
 void TOHangerMachine01::free_static_model() {
     if (TOHangerMachine01__bml_resource != NULL) {
-        free_bin_model_request(TOHangerMachine01__bml_resource, 1);
+        __dt__11BmlResourceFv(TOHangerMachine01__bml_resource, 1);
         TOHangerMachine01__bml_resource = NULL;
     }
 }
@@ -97,7 +97,7 @@ void TOHangerMachine01::free_static_model() {
 void TOHangerMachine01::load_shared_resource() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_hanger_moto_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_hanger_moto_resource_descriptor, 0, 0, 0);
     }
     TOHangerMachine01__bml_resource = resource;
 }

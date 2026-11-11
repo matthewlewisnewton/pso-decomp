@@ -3,13 +3,13 @@
 
 extern "C" {
 
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 
 extern u32 lobby_pigeon_bml_archive;
 
 void TObjPlayer::free_static_instance() {
     if ((u32) lobby_pigeon_bml_archive != 0U) {
-        free_bin_model_request((void*)lobby_pigeon_bml_archive, 1);
+        __dt__11BmlResourceFv((void*)lobby_pigeon_bml_archive, 1);
         lobby_pigeon_bml_archive = 0U;
     }
 }

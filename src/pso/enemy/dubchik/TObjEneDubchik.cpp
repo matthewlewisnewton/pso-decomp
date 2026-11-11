@@ -135,7 +135,7 @@ s32 render_anim_model_at_pos__15TObjEnemyCustomFv();
 void *__nw__7TObjectFUl(int);
 void TObjPlayer__sub_800A8FB4(void *arg0_);
 
-void free_bin_model_request(void *, s32);
+void __dt__11BmlResourceFv(void *, s32);
 extern s32 lbl_80500AF0[];
 extern s32 lbl_80500AF8[];
 struct Res_800AA82C;
@@ -144,7 +144,7 @@ NJS_TEXLIST *dubchik_texlist;
 NJS_TEXLIST *dubchik_variant_texlist;
 
 s32 get_bml_motion(void *, int);
-void *load_resource_from_descriptor(void *, int, void *, int, int, int);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, int, void *, int, int, int);
 void TObjPlayer__sub_800A4294(void);
 Res_800AA82C *load_enemy_bml_resource_named(BmlResourceDescriptor *, const char *);
 u8 *load_gvm_texture_file(s32 arg0);
@@ -556,7 +556,7 @@ extern "C" void TObjPlayer__sub_800AA82C(void) {
     } else {
         p = ::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &bm_ene_dubchik_resource_descriptor, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, &bm_ene_dubchik_resource_descriptor, 0, 0, 0);
         }
         dubchik_resource = (Res_800AA82C *)p;
     }
@@ -623,7 +623,7 @@ void TObjPlayer::free_effect_resources() {
         breakup_model_ptr = NULL;
     }
     if (dubchik_resource != NULL) {
-        free_bin_model_request(dubchik_resource, 1);
+        __dt__11BmlResourceFv(dubchik_resource, 1);
         dubchik_resource = NULL;
     }
     dubchik_texlist = NULL;

@@ -45,7 +45,7 @@ struct VObj_801710E4 : VBase_801710E4 {
 struct Obj_80171278 { s32 f00; u8 pad0[0x14]; u32 vptr; u8 pad1[0x14]; u32 flags30; u8 pad2[0x30C]; s32 f340; u8 pad3[8]; f32 f34C; f32 f350; s32 f354; f32 f358; u16 f35C; u8 pad4[2]; f32 f360; f32 f364; f32 f368; f32 f36C; s32 f370; };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_801711D0_lbl_804B2F2C mine_resource_desc;
 extern u32 lbl_805D5A50;
 u16 find_nearest_visible_player(void *, int, f32);
@@ -63,7 +63,7 @@ extern s32 TOMine__name;
 extern const f32 lbl_805DB85C;
 Obj_80171278 *TOMine__ct(Obj_80171278 *arg0);
 void *__dt__6TOMineFv(void *arg0, s16 arg1);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 int submit_target_to_player_cursor(void*);
 void __dl__7TObjectFPv(void *);
 
@@ -152,7 +152,7 @@ void TOMine::render() {
 
 void TOMine::free_instance() {
     if ((u32) lbl_805D5A50 != 0U) {
-        free_bin_model_request((void*)lbl_805D5A50, 1);
+        __dt__11BmlResourceFv((void*)lbl_805D5A50, 1);
         lbl_805D5A50 = 0U;
     }
 }
@@ -163,7 +163,7 @@ void TOMine::load_static_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &mine_resource_desc.value, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 1, &mine_resource_desc.value, 0, 0, 0));
     }
     (*(s32 *)&lbl_805D5A50) = var_r0;
 }

@@ -92,7 +92,7 @@ void *TOCakeshopCave01::create(void *set_data) {
 
 void TOCakeshopCave01::release_static_resource() {
     if (TOCakeshopCave01__model_resource != NULL) {
-        free_bin_model_request(TOCakeshopCave01__model_resource, 1);
+        __dt__11BmlResourceFv(TOCakeshopCave01__model_resource, 1);
         TOCakeshopCave01__model_resource = NULL;
     }
 }
@@ -100,7 +100,7 @@ void TOCakeshopCave01::release_static_resource() {
 void TOCakeshopCave01::load_shared_resource() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_cakeya_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_cakeya_resource_descriptor, 0, 0, 0);
     }
     TOCakeshopCave01__model_resource = resource;
 }

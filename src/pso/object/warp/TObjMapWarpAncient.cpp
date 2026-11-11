@@ -277,7 +277,7 @@ void TObjMapWarpAncient::run_task() {
 
 extern "C" {
 
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 TObjGoalWarpAncient__sub_8017D2D4(int);
 s32 TObjMapWarp__ct();
 void __dl__7TObjectFPv(void *);
@@ -320,7 +320,7 @@ void TObjMapWarpAncient::free_globals() {
     TObjPlayer::free_if_valid(goal_warp_ancient_gvm_texture);
     goal_warp_ancient_gvm_texture = 0;
     if ((u32) ancient_warp_shared_resource != 0U) {
-        free_bin_model_request((void*)ancient_warp_shared_resource, 1);
+        __dt__11BmlResourceFv((void*)ancient_warp_shared_resource, 1);
         ancient_warp_shared_resource = 0U;
     }
 }
@@ -331,7 +331,7 @@ void TObjMapWarpAncient::free_globals() {
 #include "pso/system/TLanguage_801E4874.h"
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 int get_bml_motion(void*, void*);
 int TObjFish__sub_8001EDB0(void*, void*);
 int get_bml_model(void*, void*);
@@ -342,7 +342,7 @@ void TObjGoalWarpAncient::load_resources() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 0x1, &bm_o_warp_ancient_resource_descriptor, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 0x1, &bm_o_warp_ancient_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&ancient_warp_shared_resource) = var_r0;
     (*(u8 * *)&goal_warp_ancient_gvm_texture) = load_gvm_texture_file((s32)"de_obj2_swarp_beam_r.gvm");

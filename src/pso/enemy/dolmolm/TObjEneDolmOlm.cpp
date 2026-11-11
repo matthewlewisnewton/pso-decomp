@@ -467,7 +467,7 @@ s32 select_enemy_destination(void *, void *, int);
 s32 copy_position_if_valid__10TObjPlayerFii(void *, void *);
 s32 enemy_turn_toward_dest(void *, s32);
 s32 test_elt_flag__13TUnk_80493450Fll(void *, int, int);
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, int, void *, int, int, int);
 extern u32 dolm_olm_combat_stat_id_pair;
 extern u32 TObjEneDolmOlm__shared_handler_ids;
 extern u32 TObjEneDolmOlm__registered_object_ids;
@@ -480,7 +480,7 @@ void vfunc_101__14TObjEneDolmOlmFv(void);
 void request_stand_action__14TObjEneDolmOlmFv(void* p);
 void vfunc_100__14TObjEneDolmOlmFv(void *arg0);
 void vfunc_58__14TObjEneDolmOlmFv(void *arg0);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 u8 *__ct__14TObjEneDolmOlmFll(u8 *, s32, s32);
 void *__nw__7TObjectFUl(int);
@@ -953,13 +953,13 @@ void TObjEneDolmOlm::load_shared_resources() {
     if (is_split_screen() != 0) {
         p = (u8 *)::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, lbl_804E67B8, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_804E67B8, 0, 0, 0);
         }
         TObjEneDolmOlm__resource_bundle = (u32) p;
     } else {
         p = (u8 *)::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, lbl_804E6774, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_804E6774, 0, 0, 0);
         }
         TObjEneDolmOlm__resource_bundle = (u32) p;
     }
@@ -1019,7 +1019,7 @@ void TObjEneDolmOlm::free_shared_resources() {
         TObjEneDolmOlm__data_805D6A14 = 0U;
     }
     if ((u32) TObjEneDolmOlm__resource_bundle != 0U) {
-        free_bin_model_request((void*)TObjEneDolmOlm__resource_bundle, 1);
+        __dt__11BmlResourceFv((void*)TObjEneDolmOlm__resource_bundle, 1);
         TObjEneDolmOlm__resource_bundle = 0U;
     }
 }

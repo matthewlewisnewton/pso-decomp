@@ -92,9 +92,9 @@ extern s32 TAdRicoRing__resource_bundle;
 int post_translate_matrix(void*);
 int push_matrix(void*);
 int push_matrix(void*);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8001BE80_lbl_804809C0 TAdRicoRingCtrl__resource_descriptor;
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void *__nw__7TObjectFUl(int);
 }
 
@@ -106,14 +106,14 @@ void TAdRicoRingCtrl::load_static_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &TAdRicoRingCtrl__resource_descriptor.value, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 1, &TAdRicoRingCtrl__resource_descriptor.value, 0, 0, 0));
     }
     (*(s32 *)&TAdRicoRing__resource_bundle) = var_r0;
 }
 
 void TAdRicoRingCtrl::release_global_805D4A00() {
     if ((u32) TAdRicoRing__resource_bundle != 0U) {
-        free_bin_model_request((void*)TAdRicoRing__resource_bundle, 1);
+        __dt__11BmlResourceFv((void*)TAdRicoRing__resource_bundle, 1);
         TAdRicoRing__resource_bundle = 0U;
     }
 }

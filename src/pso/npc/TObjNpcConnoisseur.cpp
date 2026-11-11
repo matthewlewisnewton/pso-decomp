@@ -66,7 +66,7 @@ void *__nw__7TObjectFUl(int);
 
 void TObjNpcConnoisseur::destroy_instance() {
     if ((u32) TObjNpcConnoisseur__instance != 0U) {
-        free_bin_model_request((void*)TObjNpcConnoisseur__instance, 1);
+        __dt__11BmlResourceFv((void*)TObjNpcConnoisseur__instance, 1);
         TObjNpcConnoisseur__instance = 0U;
     }
 }
@@ -76,7 +76,7 @@ void TObjNpcConnoisseur::load_section_motion() {
     lbl_805D5748 = ((TFontSmallTask *)TLobby__data_805011D8)->get_task_id();
     o = ::operator new(0x440);
     if (o != 0) {
-        o = load_resource_from_descriptor(o, 1, tekker_descriptor_selector_table[lbl_805D5748], 0, 0, 0);
+        o = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(o, 1, tekker_descriptor_selector_table[lbl_805D5748], 0, 0, 0);
     }
     TObjNpcConnoisseur__instance = (u32)o;
 }

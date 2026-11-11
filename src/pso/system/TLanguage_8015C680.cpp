@@ -48,7 +48,7 @@ struct Obj_8015C88C {
 extern "C" {
 extern const f32 lbl_805DB398;
 extern const f32 lbl_805DB39C;
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 u8 *load_gvm_texture_file(s32 arg0);
 extern char lbl_8044083C[];
 extern char lbl_80440850[];
@@ -70,7 +70,7 @@ void TLanguage::load_container_fragment_textures() {
         (area == AREA_BATTLE1 || area == AREA_VR_SPACESHIP_ALPHA || area == AREA_VR_SPACESHIP_BETA || area == AREA_GOL_DRAGON)) {
         p = ::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, tbl + 0x50, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, tbl + 0x50, 0, 0, 0);
         }
         ancient_container_resource_bundle = p;
         ancient_container_fragment_texture_lists = (u32 *)::operator new[](0xC);
@@ -81,7 +81,7 @@ void TLanguage::load_container_fragment_textures() {
                (area == AREA_BATTLE2 || area == AREA_VR_TEMPLE_ALPHA || area == AREA_VR_TEMPLE_BETA || area == AREA_BARBA_RAY)) {
         p = ::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, tbl + 0x30, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, tbl + 0x30, 0, 0, 0);
         }
         ancient_container_resource_bundle = p;
         ancient_container_fragment_texture_lists = (u32 *)::operator new[](0xC);
@@ -91,7 +91,7 @@ void TLanguage::load_container_fragment_textures() {
     } else {
         p = ::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, tbl + 0x10, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, tbl + 0x10, 0, 0, 0);
         }
         ancient_container_resource_bundle = p;
         ancient_container_fragment_texture_lists = (u32 *)::operator new[](0xC);

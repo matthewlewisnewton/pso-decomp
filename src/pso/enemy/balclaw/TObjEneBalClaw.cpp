@@ -80,7 +80,7 @@ struct Obj_8008D79C { u8 pad0[0x388]; s32 flags; u8 pad38C[0x3B8 - 0x38C]; s32 f
 extern "C" {
 extern s32 balclaw_last_shared_update_frame;
 extern s32 actor_frame_tick;
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void __dl__7TObjectFPv(void *);
 void *__dt__15TObjEnemyCustomFv(void *arg0, s16 arg1);
 
@@ -162,7 +162,7 @@ void TObjEneBalClaw::vfunc_62() {
 
 void TObjEneBalClaw::release_global_805D4F20() {
     if ((u32) lbl_805D4F20 != 0U) {
-        free_bin_model_request((void*)lbl_805D4F20, 1);
+        __dt__11BmlResourceFv((void*)lbl_805D4F20, 1);
         lbl_805D4F20 = 0U;
     }
 }
@@ -176,7 +176,7 @@ extern void *lbl_805D4F28[];
 extern void *lbl_805D4F2C[];
 extern void *lbl_805D4F30[];
 extern void *lbl_805D4F34[];
-u8 *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
 u32 get_bml_model(u32, s32);
 
 void TObjEneBalClaw__sub_8008D924(void) {
@@ -192,7 +192,7 @@ void TObjEneBalClaw__sub_8008D924(void) {
     s32 n;
     p = (u8 *)::operator new(0x440);
     if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, &balclaw_resource_descriptor, 0, 0, 0);
+        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &balclaw_resource_descriptor, 0, 0, 0);
     }
     lbl_805D4F20 = (u32)p;
     model = ((BalClawResource *)p)->models[1].model;

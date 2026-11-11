@@ -149,7 +149,7 @@ struct RecoveredGlobal_8022F068_lbl_804CC934 {
 };
 
 extern "C" {
-u8 * free_bin_model_request(void *, s16);
+u8 * __dt__11BmlResourceFv(void *, s16);
 s32 release_texture_list(void *, s32);
 extern RecoveredGlobal_8022F068_lbl_804CC934 technique_ringwave_texture_list;
 extern u8 *technique_effect_bml;
@@ -157,7 +157,7 @@ extern void **lbl_805D63B0;
 extern u8 technique_resource_descriptor[];
 extern u8 lbl_8044D088[];
 extern u8 lbl_8044D094[];
-u8 *load_resource_from_descriptor(u8 *, s32, void *, s32, s32, s32);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(u8 *, s32, void *, s32, s32, s32);
 u8 *load_gvm_texture_file(s32 arg0);
 void bind_gvm_texture_list(void *, void *);
 void reset_telepipe_visit_counts(void);
@@ -207,7 +207,7 @@ typedef char RecoveredGlobal_8022F068_lbl_804CC934_size[sizeof(RecoveredGlobal_8
 void load_technique_resources(void) {
     u8 *p = (u8 *)::operator new(0x440);
     if (p != 0) {
-        p = load_resource_from_descriptor(p, 1, technique_resource_descriptor, 0, 0, 0);
+        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, technique_resource_descriptor, 0, 0, 0);
     }
     technique_effect_bml = p;
     lbl_805D63B0 = (void **)load_gvm_texture_file((s32)lbl_8044D088);
@@ -230,7 +230,7 @@ void TLobby__sub_8022F068(void) {
         lbl_805D63B0 = NULL;
     }
     if ((void *) technique_effect_bml != NULL) {
-        free_bin_model_request(technique_effect_bml, 1);
+        __dt__11BmlResourceFv(technique_effect_bml, 1);
     }
     technique_effect_bml = NULL;
 }

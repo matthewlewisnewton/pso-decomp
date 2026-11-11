@@ -11,10 +11,10 @@ struct RecoveredGlobal_802EE4E0_lbl_804E3C5C {
 
 
 extern "C" {
-u8 * free_bin_model_request(void *, s16);
+u8 * __dt__11BmlResourceFv(void *, s16);
 void call_funcs_reverse__6TLobbyFPvUi(s32, u32);
 extern RecoveredGlobal_802EE4E0_lbl_804E3C5C lbl_804E3C5C;
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 void run_load_callback_table(void *, int);
 extern s32 lbl_804E3D1C[];
 extern const f32 lbl_805DEA10;
@@ -24,7 +24,7 @@ typedef char RecoveredGlobal_802EE4E0_lbl_804E3C5C_size[sizeof(RecoveredGlobal_8
 void TBoss7DeRolLeC::run_exit_callbacks() {
     call_funcs_reverse__6TLobbyFPvUi((s32) &lbl_804E3C5C.value, 0x30U);
     if ((void *) lbl_805D6918 != NULL) {
-        free_bin_model_request(lbl_805D6918, 1);
+        __dt__11BmlResourceFv(lbl_805D6918, 1);
         lbl_805D6918 = NULL;
     }
 }
@@ -37,7 +37,7 @@ void TObjPlayer__sub_802EE574(void) {
     u8 *p;
     p = (u8 *)::operator new(0x440);
     if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, lbl_804E3D1C, 0, 0, 0);
+        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_804E3D1C, 0, 0, 0);
     }
     lbl_805D6918 = p;
     boss7_derolle_c_motion_id = 0;

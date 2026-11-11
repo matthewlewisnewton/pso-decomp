@@ -28,7 +28,7 @@ void *TObjNpcMaleMacho__create(void *set_data) {
 
 void TObjNpcMaleMacho::close_dialog_window() {
     if (TObjNpcMaleMacho__static_model_resource != NULL) {
-        free_bin_model_request(TObjNpcMaleMacho__static_model_resource, 1);
+        __dt__11BmlResourceFv(TObjNpcMaleMacho__static_model_resource, 1);
         TObjNpcMaleMacho__static_model_resource = NULL;
     }
 }
@@ -37,7 +37,7 @@ void TObjNpcMaleMacho::load_static_resource() {
     void *memory = ::operator new(0x440);
     BmlResource *resource = (BmlResource *)memory;
     if (memory != NULL) {
-        resource = load_resource_from_descriptor(memory, 1, &bm_n_emm_i_body_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(memory, 1, &bm_n_emm_i_body_resource_descriptor, 0, 0, 0);
     }
     TObjNpcMaleMacho__static_model_resource = resource;
 }

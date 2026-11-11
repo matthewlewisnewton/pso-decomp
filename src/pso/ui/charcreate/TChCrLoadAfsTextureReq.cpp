@@ -55,7 +55,7 @@ public:
 extern "C" {
 s32 queue_destruction__7TObjectFv(void *, int, int);
 u32 get_bml_model(int, int);
-s32 free_bin_model_request(int, int);
+s32 __dt__11BmlResourceFv(int, int);
 u32 init_bin_model_request(int, int, void *, void *, int, int, int);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__22TChCrLoadAfsTextureReq[];
@@ -236,7 +236,7 @@ void TLobby::update_model_load() {
     *(s32 *)((s8 *)((u8 *)this) + 0x74) = temp_r0;
     if (temp_r0 < 0) {
         if ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x68) != 0U) {
-            free_bin_model_request((int) *(u32 *)((s8 *)((u8 *)this) + 0x68), 1);
+            __dt__11BmlResourceFv((int) *(u32 *)((s8 *)((u8 *)this) + 0x68), 1);
         } else {
             return;
         }
@@ -253,7 +253,7 @@ void TLobby::update_model_load() {
         **(u32 **)((s8 *)((u8 *)this) + 0x1C) = bml_model;
         if (bml_model != 0U) {
             ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)))->alloc_load_buffer((int) (TLobby__sub_8001ED88((void *)(*(u32 *)((s8 *)((u8 *)this) + 0x68)))));
-            free_bin_model_request((int) (*(u32 *)((s8 *)((u8 *)this) + 0x68)), 1);
+            __dt__11BmlResourceFv((int) (*(u32 *)((s8 *)((u8 *)this) + 0x68)), 1);
             *(u32 *)((s8 *)((u8 *)this) + 0x68) = 0U;
             ((TChCrLoadGmNjReq *)((u8 *)this))->sub_8028C8A8();
             temp_r5 = *(s32 **)((s8 *)((u8 *)this) + 0x28);

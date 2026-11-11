@@ -63,12 +63,12 @@ struct RecoveredGlobal_8013D91C_main_task {
 };
 
 extern "C" {
-u8 * free_bin_model_request(void *, s16);
+u8 * __dt__11BmlResourceFv(void *, s16);
 extern u8 *lock_on_cursor_bml_resource;
 extern s32 lock_on_cursor_model;
 extern s32 TLockOnCursor__target_cursor_model;
 s32 get_bml_model(void *, s32);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8013DC38_lbl_804A7140 target_cursor_resource_descriptor;
 extern s32 main_cursor_model;
 void load_target_cursor_models(void);
@@ -198,7 +198,7 @@ void TLockOnCursor::reset_and_spawn_cursors() {
 
 void TLockOnCursor::free_cursor_resources() {
     if ((void *) lock_on_cursor_bml_resource != NULL) {
-        free_bin_model_request(lock_on_cursor_bml_resource, 1);
+        __dt__11BmlResourceFv(lock_on_cursor_bml_resource, 1);
         lock_on_cursor_bml_resource = NULL;
     }
     lock_on_cursor_model = 0;
@@ -212,7 +212,7 @@ void load_target_cursor_models(void) {
         temp_r3 = (int)::operator new(0x440);
         var_r0 = temp_r3;
         if (var_r0 != 0) {
-            var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &target_cursor_resource_descriptor.value, 0, 0, 0));
+            var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 5, &target_cursor_resource_descriptor.value, 0, 0, 0));
         }
         lock_on_cursor_bml_resource = (unsigned char *) ((void *) var_r0);
         if ((u32) var_r0 != 0U) {

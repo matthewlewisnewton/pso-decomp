@@ -34,7 +34,7 @@ void *TOAirconCave02::create(void *set_data) {
 
 void TOAirconCave02::release_static_resource() {
     if (TOAirconCave02__bml_resource != NULL) {
-        free_bin_model_request(TOAirconCave02__bml_resource, 1);
+        __dt__11BmlResourceFv(TOAirconCave02__bml_resource, 1);
         TOAirconCave02__bml_resource = NULL;
     }
 }
@@ -43,7 +43,7 @@ void TOAirconCave02::load_shared_resource() {
     void *memory = ::operator new(0x440);
     BmlResource *resource = (BmlResource *)memory;
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(memory, 1, &TOAirconCave02__shared_resource_desc, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(memory, 1, &TOAirconCave02__shared_resource_desc, 0, 0, 0);
     }
     TOAirconCave02__bml_resource = resource;
 }

@@ -48,11 +48,11 @@ s32 __ct__8TObjBaseFP7TObject(void *);
 extern s32 __vt__9TKomorebi[];
 extern const char *komorebi_class_name;
 extern u32 TKomorebi__resource_bundle;
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern s32 komorebi_last_uv_update_frame;
 s32 get_bml_motion(s32, s32);
 extern s32 lazer_fence_norm_bml_resource;
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 scroll_ginja_mesh_uvs(s32, s32, s32, s32, s32);
 s32 post_translate_matrix(void *);
 s32 scale_matrix(s32, f32, f32, f32);
@@ -119,7 +119,7 @@ void *TKomorebi__create(void *arg0) {
 
 void TKomorebi::free_static() {
     if ((u32) TKomorebi__resource_bundle != 0U) {
-        free_bin_model_request((void*)TKomorebi__resource_bundle, 1);
+        __dt__11BmlResourceFv((void*)TKomorebi__resource_bundle, 1);
         TKomorebi__resource_bundle = 0U;
     }
     komorebi_last_uv_update_frame = 0;
@@ -127,7 +127,7 @@ void TKomorebi::free_static() {
 void TKomorebi::load_resources() {
     u8 *p = (u8 *)::operator new(0x440);
     if (p != 0) {
-        p = load_resource_from_descriptor(p, 1, &TKomorebi__resource_descriptor, 0, 0, 0);
+        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &TKomorebi__resource_descriptor, 0, 0, 0);
     }
     TKomorebi__resource_bundle = (u32)p;
     komorebi_last_uv_update_frame = 0;

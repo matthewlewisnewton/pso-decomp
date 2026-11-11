@@ -28,7 +28,7 @@ void *TObjNpcMaleDwarf__create(void *set_data) {
 
 void TObjNpcMaleDwarf::unload_static_data() {
     if (TObjNpcMaleDwarf__shared_model_resource != NULL) {
-        free_bin_model_request(TObjNpcMaleDwarf__shared_model_resource, 1);
+        __dt__11BmlResourceFv(TObjNpcMaleDwarf__shared_model_resource, 1);
         TObjNpcMaleDwarf__shared_model_resource = NULL;
     }
 }
@@ -37,7 +37,7 @@ void TObjNpcMaleDwarf::load_shared_resource() {
     void *memory = ::operator new(0x440);
     BmlResource *resource = (BmlResource *)memory;
     if (memory != NULL) {
-        resource = load_resource_from_descriptor(memory, 1, &bm_n_efsm_i_body_3_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(memory, 1, &bm_n_efsm_i_body_3_resource_descriptor, 0, 0, 0);
     }
     TObjNpcMaleDwarf__shared_model_resource = resource;
 }

@@ -1449,10 +1449,10 @@ __declspec(section ".data") s32 lappy_object_handles[2];
 __declspec(section ".data") s32 lappy_variant_speed_ptr_table[2];
 #define lbl_80492F28 ((s32 *)lbl_80492F28)
 
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 release_texture_list(void*);
 s32 get_main_phase();
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
+s32 __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(s32, int, void *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_8043BA28[];
 extern u8 lbl_8043BA44[];
@@ -1471,7 +1471,7 @@ void TLobby::cleanup_handles() {
         (*(u32 *)&rappy_alternate_texture_list) = 0U;
     }
     if ((u32) (*(u32 *)&rappy_bml_resource) != 0U) {
-        free_bin_model_request((void*)(*(u32 *)&rappy_bml_resource), 1);
+        __dt__11BmlResourceFv((void*)(*(u32 *)&rappy_bml_resource), 1);
         (*(u32 *)&rappy_bml_resource) = 0U;
     }
 }
@@ -1491,13 +1491,13 @@ void TObjEneLappy::load_resources() {
             if (rare) {
                 p = (int)::operator new(0x440);
                 if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492E08, 0, 0, 0);
+                    p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_80492E08, 0, 0, 0);
                 }
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
                 p = (int)::operator new(0x440);
                 if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492DC0, 0, 0, 0);
+                    p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_80492DC0, 0, 0, 0);
                 }
                 (*(u32 *)&rappy_bml_resource) = p;
             }
@@ -1507,13 +1507,13 @@ void TObjEneLappy::load_resources() {
             if (rare) {
                 p = (int)::operator new(0x440);
                 if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492CE8, 0, 0, 0);
+                    p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_80492CE8, 0, 0, 0);
                 }
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
                 p = (int)::operator new(0x440);
                 if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492CA0, 0, 0, 0);
+                    p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_80492CA0, 0, 0, 0);
                 }
                 (*(u32 *)&rappy_bml_resource) = p;
             }
@@ -1523,13 +1523,13 @@ void TObjEneLappy::load_resources() {
             if (rare) {
                 p = (int)::operator new(0x440);
                 if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492D78, 0, 0, 0);
+                    p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_80492D78, 0, 0, 0);
                 }
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
                 p = (int)::operator new(0x440);
                 if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492D30, 0, 0, 0);
+                    p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_80492D30, 0, 0, 0);
                 }
                 (*(u32 *)&rappy_bml_resource) = p;
             }
@@ -1539,13 +1539,13 @@ void TObjEneLappy::load_resources() {
             if (rare) {
                 p = (int)::operator new(0x440);
                 if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492C58, 0, 0, 0);
+                    p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_80492C58, 0, 0, 0);
                 }
                 (*(u32 *)&rappy_bml_resource) = p;
             } else {
                 p = (int)::operator new(0x440);
                 if (p != 0) {
-                    p = load_resource_from_descriptor(p, 1, lbl_80492C10, 0, 0, 0);
+                    p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_80492C10, 0, 0, 0);
                 }
                 (*(u32 *)&rappy_bml_resource) = p;
             }
@@ -1556,13 +1556,13 @@ void TObjEneLappy::load_resources() {
         if (rare) {
             p = (int)::operator new(0x440);
             if (p != 0) {
-                p = load_resource_from_descriptor(p, 1, lbl_80492C58, 0, 0, 0);
+                p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_80492C58, 0, 0, 0);
             }
             (*(u32 *)&rappy_bml_resource) = p;
         } else {
             p = (int)::operator new(0x440);
             if (p != 0) {
-                p = load_resource_from_descriptor(p, 1, lbl_80492C10, 0, 0, 0);
+                p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, lbl_80492C10, 0, 0, 0);
             }
             (*(u32 *)&rappy_bml_resource) = p;
         }

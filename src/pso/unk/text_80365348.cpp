@@ -4,16 +4,16 @@
 typedef struct Ent_803653A4 { s32 id; s32 arg; } Ent_803653A4;
 
 extern "C" {
-void free_bin_model_request(void *, int);
+void __dt__11BmlResourceFv(void *, int);
 extern u32 labo_design_object_table[];
-void *load_resource_from_descriptor(void *, s32, s32, s32, s32, s32);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, s32, s32, s32, s32);
 }
 extern Ent_803653A4 lbl_804F2C08[];
 void free_object_table(void) {
     s32 i;
     for (i = 5; i >= 0; i--) {
         if (labo_design_object_table[i] != 0) {
-            free_bin_model_request((void *)labo_design_object_table[i], 1);
+            __dt__11BmlResourceFv((void *)labo_design_object_table[i], 1);
             labo_design_object_table[i] = 0;
         }
     }
@@ -31,7 +31,7 @@ void load_labo_design_object_table(void) {
         while (e->id != -1) {
             p = ::operator new(0x440);
             if (p != NULL) {
-                p = load_resource_from_descriptor(p, 5, e->arg, 0, 0, 0);
+                p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, e->arg, 0, 0, 0);
             }
             labo_design_object_table[e->id] = (u32)p;
             e++;

@@ -30,20 +30,20 @@ struct RecoveredGlobal_802A3B00___vt__11TObjNpcHosa {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 
 s32 TObjFish__sub_8001EDB0(int, int);
 s32 get_bml_model(int, int);
 extern s32 __vt__11TObjNpcHosa[];
 extern const char *TObjNpcHosa__name;
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
 void TObjNpcHosa::destroy_static_instance() {
     if ((u32) TObjNpcHosa__static_model_resource != 0U) {
-        free_bin_model_request((void*)TObjNpcHosa__static_model_resource, 1);
+        __dt__11BmlResourceFv((void*)TObjNpcHosa__static_model_resource, 1);
         TObjNpcHosa__static_model_resource = 0U;
     }
 }
@@ -54,7 +54,7 @@ void TObjNpcHosa::load_static_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &npc_hosa_resource_descriptor, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 1, &npc_hosa_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&TObjNpcHosa__static_model_resource) = var_r0;
 }

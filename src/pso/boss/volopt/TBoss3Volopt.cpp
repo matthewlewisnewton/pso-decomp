@@ -423,13 +423,13 @@ void TBoss3Volopt::load_resources() {
     if (v2 != 0) {
         resource = ::operator new(0x440);
         if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_boss3_volopt_ap_resource_descriptor, 0, 0, 0);
+            resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 5, &bm_boss3_volopt_ap_resource_descriptor, 0, 0, 0);
         }
         boss3_volopt_resources = (BmlResource *)resource;
     } else {
         resource = ::operator new(0x440);
         if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_boss3_volopt_resource_descriptor, 0, 0, 0);
+            resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 5, &bm_boss3_volopt_resource_descriptor, 0, 0, 0);
         }
         boss3_volopt_resources = (BmlResource *)resource;
     }
@@ -454,7 +454,7 @@ void TBoss3Volopt::load_resources() {
 void TBoss3Volopt::free_parts() {
     TObjVoloptCage::destroy();
     if (boss3_volopt_resources != NULL) {
-        free_bin_model_request(boss3_volopt_resources, 1);
+        __dt__11BmlResourceFv(boss3_volopt_resources, 1);
         boss3_volopt_resources = NULL;
     }
     TBoss3VoloptP01::destroy();

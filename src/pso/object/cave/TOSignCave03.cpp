@@ -103,7 +103,7 @@ void *TOSignCave03::create(void *set_data) {
 
 void TOSignCave03::release_static_resource() {
     if (TOSignCave03__bml_resource != NULL) {
-        free_bin_model_request(TOSignCave03__bml_resource, 1);
+        __dt__11BmlResourceFv(TOSignCave03__bml_resource, 1);
         TOSignCave03__bml_resource = NULL;
     }
 }
@@ -111,7 +111,7 @@ void TOSignCave03::release_static_resource() {
 void TOSignCave03::load_shared_resource() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_dokanban03_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_dokanban03_resource_descriptor, 0, 0, 0);
     }
     TOSignCave03__bml_resource = resource;
 }

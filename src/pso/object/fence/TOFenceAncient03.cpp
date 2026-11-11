@@ -66,7 +66,7 @@ void TOFenceAncient03::unload_resources() {
         }
     }
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        __dt__11BmlResourceFv(model_resource, 1);
         model_resource = NULL;
     }
 }
@@ -74,7 +74,7 @@ void TOFenceAncient03::unload_resources() {
 void TOFenceAncient03::load_resources() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fd_obj_n_saku_4x4_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fd_obj_n_saku_4x4_resource_descriptor, 0, 0, 0);
     }
     model_resource = resource;
     s32 *lists = (s32 *)::operator new[](4 * sizeof(s32));

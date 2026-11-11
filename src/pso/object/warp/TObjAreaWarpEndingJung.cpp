@@ -559,7 +559,7 @@ struct VObj_8019DA54_8019D964 : Base_8019DA54_8019D964 {
     virtual void m12(); virtual void m13();
 };
 
-s32 free_bin_model_request(s32, s32);
+s32 __dt__11BmlResourceFv(s32, s32);
 s32 release_texture_list(void*);
 
 extern s32 forest_warp_bml_resource;
@@ -576,7 +576,7 @@ void TObjWarpBase::free_globals() {
         TAdSinglePlyChrSelectGC::safe_free(forest_warp_texture_list);
         forest_warp_texture_list = 0U;
     }
-    free_bin_model_request(forest_warp_bml_resource, 1);
+    __dt__11BmlResourceFv(forest_warp_bml_resource, 1);
     forest_warp_bml_resource = 0;
 }
 

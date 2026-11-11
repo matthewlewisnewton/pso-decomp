@@ -206,7 +206,7 @@ void *TObjEneRe2Flower::create(void *arg0) {
 void TObjEneRe2Flower::destroy_instance() {
     TObjPlayer__sub_800C4D44();
     if (lbl_805D5174 != NULL) {
-        free_bin_model_request(lbl_805D5174, 1);
+        __dt__11BmlResourceFv(lbl_805D5174, 1);
         lbl_805D5174 = NULL;
     }
 }

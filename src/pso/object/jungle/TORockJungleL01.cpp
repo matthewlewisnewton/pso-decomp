@@ -511,7 +511,7 @@ extern s32 __vt__15TORockJungleS01[];
 extern s32 TORockJungleS01__name;
 
 u32 TORockJungleS01__texture_resource;
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_804658EC[];
 extern u8 lbl_80465904[];
@@ -522,7 +522,7 @@ extern Offs_8029C7DC lbl_8046581C;
 extern Spawn_8029C7DC lbl_80465828;
 extern u8 identity_matrix[];
 s32 play_sound_effect(s32, s32, s32, s32);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 release_texture_list(void*);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
@@ -630,7 +630,7 @@ void TORockJungleS01::free_globals() {
         TORockJungleS01__texture_resource = 0U;
     }
     if ((u32) TORockJungleS01__bml_resource != 0U) {
-        free_bin_model_request((void*)TORockJungleS01__bml_resource, 1);
+        __dt__11BmlResourceFv((void*)TORockJungleS01__bml_resource, 1);
         TORockJungleS01__bml_resource = 0U;
     }
 }
@@ -638,7 +638,7 @@ void TORockJungleS01::load_resources() {
     void *o;
     o = ::operator new(0x440);
     if (o != NULL) {
-        o = load_resource_from_descriptor(o, 1, TORockJungleS01_resource_descriptor, 0, 0, 0);
+        o = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(o, 1, TORockJungleS01_resource_descriptor, 0, 0, 0);
     }
     TORockJungleS01__bml_resource = (u32)o;
     switch (get_current_floor_area()) {

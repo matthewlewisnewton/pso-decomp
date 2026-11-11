@@ -1465,7 +1465,7 @@ void TLobby::free_chr_select_slot() {
         lbl_805D5B8C = 0U;
     }
     if ((u32) container_breakup_model_archive != 0U) {
-        free_bin_model_request(container_breakup_model_archive, 1);
+        __dt__11BmlResourceFv(container_breakup_model_archive, 1);
         container_breakup_model_archive = NULL;
     }
 }
@@ -1478,7 +1478,7 @@ void TLobby::load_console_resources() {
     case AREA_OLGA_FLOW:
         p = ::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &bm_obj_seabed_con_rare_resource_descriptor, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, &bm_obj_seabed_con_rare_resource_descriptor, 0, 0, 0);
         }
         container_breakup_model_archive = (BmlResource *)p;
         lbl_805D5B8C = (u32)load_gvm_texture_file((s32)seabed_rare_console_texture_filename);
@@ -1487,7 +1487,7 @@ void TLobby::load_console_resources() {
     default:
         p = ::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &fe_obj_con_hahen1_resource_descriptor, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, &fe_obj_con_hahen1_resource_descriptor, 0, 0, 0);
         }
         container_breakup_model_archive = (BmlResource *)p;
         lbl_805D5B8C = (u32)load_gvm_texture_file((s32)lbl_80444F48);
@@ -1504,7 +1504,7 @@ void TLobby::free_char_select_resources() {
         lbl_805D5B7C = 0U;
     }
     if ((u32) lbl_805D5B78 != 0U) {
-        free_bin_model_request(lbl_805D5B78, 1);
+        __dt__11BmlResourceFv(lbl_805D5B78, 1);
         lbl_805D5B78 = NULL;
     }
 }
@@ -1522,7 +1522,7 @@ void load_forest_box_resources(void) {
     case AREA_OLGA_FLOW:
         bundle = (void *)::operator new(0x440);
         if (bundle != NULL) {
-            bundle = load_resource_from_descriptor(bundle, 5, &bm_obj_seabed_con_resource_descriptor, 0, 0, 0);
+            bundle = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(bundle, 5, &bm_obj_seabed_con_resource_descriptor, 0, 0, 0);
         }
         lbl_805D5B78 = (BmlResource *)bundle;
         lbl_805D5B7C = (s32)load_gvm_texture_file((s32)lbl_80444F58);
@@ -1536,7 +1536,7 @@ void load_forest_box_resources(void) {
     default:
         bundle = (void *)::operator new(0x440);
         if (bundle != NULL) {
-            bundle = load_resource_from_descriptor(bundle, 5, &fe_obj_hako01_hahen02_resource_descriptor, 0, 0, 0);
+            bundle = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(bundle, 5, &fe_obj_hako01_hahen02_resource_descriptor, 0, 0, 0);
         }
         lbl_805D5B78 = (BmlResource *)bundle;
         lbl_805D5B7C = TLobby::is_online_ready() != 0 ? (s32)load_gvm_texture_file((s32)lbl_80444F6C) : (s32)load_gvm_texture_file((s32)lbl_80444F80);

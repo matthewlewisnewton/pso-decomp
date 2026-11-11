@@ -144,13 +144,13 @@ void TObjPlayer::spawn_dead_spot(s32 point, s32 selector, s32 delay, f32 farg0) 
 extern const f32 lbl_805DA3D8;
 extern s32 player_particle_effect_enabled;
 extern u8 corpse_mark_resource_descriptor[];
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void free_bin_model_request(void*, int);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
+void __dt__11BmlResourceFv(void*, int);
 void set_chunk_material_override_pair(s32 arg0, s32 arg1);
 
 void TObjPlayer::destroy_static_lobby() {
     if ((u32) (*(u32 *)&player_corpse_mark_resource) != 0U) {
-        free_bin_model_request((void*)(*(u32 *)&player_corpse_mark_resource), 1);
+        __dt__11BmlResourceFv((void*)(*(u32 *)&player_corpse_mark_resource), 1);
         (*(u32 *)&player_corpse_mark_resource) = 0U;
     }
 }
@@ -161,7 +161,7 @@ extern s32 model_render_flags;
 void load_corpse_mark_resource(void) {
     u8 *p = (u8 *)::operator new(0x440);
     if (p != 0) {
-        p = load_resource_from_descriptor(p, 1, corpse_mark_resource_descriptor, 0, 0, 0);
+        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, corpse_mark_resource_descriptor, 0, 0, 0);
     }
     (*(u32 *)&player_corpse_mark_resource) = (u32)p;
     player_particle_effect_enabled = 1;

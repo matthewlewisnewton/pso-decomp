@@ -93,7 +93,7 @@ void *TObjWeddingLobby::create(void *set_data) {
 
 void TObjWeddingLobby::free_resources() {
     if (resource_bundle != NULL) {
-        free_bin_model_request(resource_bundle, 1);
+        __dt__11BmlResourceFv(resource_bundle, 1);
         resource_bundle = NULL;
     }
 }
@@ -101,7 +101,7 @@ void TObjWeddingLobby::free_resources() {
 void TObjWeddingLobby::load_resources() {
     void *resource = ::operator new(0x440);
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &bm_obj_lobby_bell_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 5, &bm_obj_lobby_bell_resource_descriptor, 0, 0, 0);
     }
     resource_bundle = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();

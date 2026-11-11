@@ -4,7 +4,7 @@
 
 extern "C" {
 
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 release_texture_list(void*);
 
 extern u32 green_door_bml_resource;
@@ -17,7 +17,7 @@ void TLobby::free_shared_objects() {
         green_door_texture_handle = 0U;
     }
     if ((u32) green_door_bml_resource != 0U) {
-        free_bin_model_request((void*)green_door_bml_resource, 1);
+        __dt__11BmlResourceFv((void*)green_door_bml_resource, 1);
         green_door_bml_resource = 0U;
     }
 }

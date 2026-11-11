@@ -183,8 +183,8 @@ extern "C" {
 
 s32 memset(void *, int, int);
 void * get_bml_motion(s32, s32);
-void free_bin_model_request(void*, int);
-Big_8016775C * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+void __dt__11BmlResourceFv(void*, int);
+Big_8016775C * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 void * __dt__27TOHangceilingCave01KeyQuickFv(void *arg0, s16 arg1);
 u8 * TOHangceilingCave01KeyQuick__ct(u8 *arg0, s32 arg1);
 void * __dt__22TOHangceilingCave01KeyFv(void *arg0, s16 arg1);
@@ -803,7 +803,7 @@ void TOHangceilingCave01::destroy_instance() {
         }
     }
     if ((u32) TOHangceilingCave01__model_archive != 0U) {
-        free_bin_model_request((void*)TOHangceilingCave01__model_archive, 1);
+        __dt__11BmlResourceFv((void*)TOHangceilingCave01__model_archive, 1);
         TOHangceilingCave01__model_archive = 0U;
     }
 }
@@ -826,7 +826,7 @@ void load_turiten_singo_resources(void) {
     case AREA_VR_TEMPLE_BETA:
         p = ::operator new(0x440);
         if (p != 0) {
-            p = ((void *(*)(void *, int, void *, int, int, int))load_resource_from_descriptor)(p, 5, &turiten_singo_resource_descriptor, 0, 0, 0);
+            p = ((void *(*)(void *, int, void *, int, int, int))__ct__11BmlResourceFlP21BmlResourceDescriptorllPv)(p, 5, &turiten_singo_resource_descriptor, 0, 0, 0);
         }
         (*(void **)&TOHangceilingCave01__model_archive) = p;
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists) = (Buf_80168AA8 *)::operator new[](0xC);
@@ -841,7 +841,7 @@ void load_turiten_singo_resources(void) {
     default:
         p = ::operator new(0x440);
         if (p != 0) {
-            p = ((void *(*)(void *, int, void *, int, int, int))load_resource_from_descriptor)(p, 5, &fe_obj_turiten_moto_resource_descriptor, 0, 0, 0);
+            p = ((void *(*)(void *, int, void *, int, int, int))__ct__11BmlResourceFlP21BmlResourceDescriptorllPv)(p, 5, &fe_obj_turiten_moto_resource_descriptor, 0, 0, 0);
         }
         (*(void **)&TOHangceilingCave01__model_archive) = p;
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists) = (Buf_80168AA8 *)::operator new[](0xC);
