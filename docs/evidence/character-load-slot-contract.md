@@ -1,7 +1,7 @@
 # Character-load slots and request ownership
 
 This independent extraction is based on fork main
-`cda82a7aad7de1bf9b86470002df3f68d1c8c039`, taking the character-load portion of
+`5bba9c44adebc1cfa019def85e1f39f6da340ef0`, taking the character-load portion of
 [PR #303 at `3ed9b21ae`](https://github.com/matthewlewisnewton/pso-decomp/tree/3ed9b21ae3d8b887e18642e3e561063fb1eb2c98).
 It does not change the BML return contract or networking interfaces.
 
@@ -55,8 +55,8 @@ are included.
 
 The coordinated native build reproduces the original DOL SHA-1
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`; address-based `check_pr.py` passes.
-Matched functions remain 27,438, matched code 4,237,032 bytes and matched data
-1,477,195 bytes. Linked code/data remain 3,862,972/1,354,111 bytes. There is no
+Matched functions remain 27,440, matched code 4,238,432 bytes and matched data
+1,477,407 bytes. Linked code/data remain 3,874,412/1,354,403 bytes. There is no
 new function, byte or linked-address coverage claim. Four export names change;
 one already-linked fragment disappears through the fold.
 
@@ -70,10 +70,16 @@ its complete allocated sections and relocation records equal the fresh original
 split. Compiler comment/string-table changes from the fold are not hidden.
 
 The actual ordered linker inputs equal main minus the removed source fragment:
-3,605 source providers and 1,340 unchanged original fallbacks. Fresh generated
+3,607 source providers and 1,338 unchanged original fallbacks. Fresh generated
 retention adds only `TLobby__sub_8028D7D0`, `lbl_80518850` and
 `chr_select_load_buffer_table`, now referenced within the same object, with no
-removals. All 18,578 retention entries pass. Python syntax, 306 synthetic tool
-tests, portable behavior, ASan/UBSan, 32-bit header/layout checks and exception
-inventory checks pass. No compiler setting or pragma is added; the generated
+removals. All 18,605 retention entries pass. Python syntax, 306 synthetic tool
+tests, existing portable behavior and ASan/UBSan suites, 32-bit header/layout
+checks and exception inventory checks pass. No compiler setting or pragma is added; the generated
 inventory changes only one existing intrinsic's line number.
+
+The #437 refresh preserves reviewed head `a84a5d3f1778cd81c571730a66f0ce78a8877a95`
+in history and integrates the pinned main without changing any character-load source.
+The main-only recovery gains belong to the integrated changes, not this extraction.
+Existing portable suites are not new character-load runtime characterization and
+do not establish 64-bit safety.
