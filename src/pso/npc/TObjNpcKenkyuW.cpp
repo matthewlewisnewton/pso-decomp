@@ -6,7 +6,6 @@
 #include "pso/object/TObjMotion.h"
 #include "pso/unk/text_8014B8A4.h"
 #include "pso/npc/TObjNpcKenkyuW.h"
-#include "pso/misc/TNeedleShoot.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/npc/TUnk_804A9F50.h"

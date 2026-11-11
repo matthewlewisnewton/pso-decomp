@@ -74,7 +74,7 @@ guides.
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)
 - [TBoss6Type1 `.sdata2` integer constants](tboss6type1-sdata2-constants.md)
 - [TChCrTagPlGraphic vtable emission](tchcrtagplgraphic-vtable-evidence.md)
-- [Technique dispatcher hit-test argument order](kenkyuw-dispatcher-hit-test-scheduling.md)
+- [Technique-contact call boundaries](kenkyuw-dispatcher-hit-test-scheduling.md)
 - [Texture input and runtime surface](texture-input-evidence.md)
 - [`vec3_add_to` paired-single exception](vec3-add-to-paired-single.md)
 - [Vector helper contracts](vector-helper-evidence.md)

@@ -5098,7 +5098,7 @@ force_active:
   - clear_state_flags_when_done__13TObjEneRe4BitFv
   - clear_state_if_flag80__10TObjPlayerFl
   - clear_status_bit6__10TObjPlayerFPv
-  - clear_technique_contacts__10TObjPlayerFv
+  - clear_technique_contacts
   - clear_thread_state__12TQuestThreadFv
   - clear_work__12TBoss1DragonFi
   - clear_work_buffer
