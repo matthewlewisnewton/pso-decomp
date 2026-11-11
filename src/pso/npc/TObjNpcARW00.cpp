@@ -55,7 +55,7 @@ void __dl__7TObjectFPv(void *);
 void TObjNpcARW00::free_resources() {
     if ((u32) TObjNpcARW00__gvm_texture_handle != 0U) {
         release_texture_list((void*)TObjNpcARW00__gvm_texture_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjNpcARW00__gvm_texture_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcARW00__gvm_texture_handle);
         TObjNpcARW00__gvm_texture_handle = 0U;
     }
     if ((u32) TObjNpcARW00__static_model != 0U) {

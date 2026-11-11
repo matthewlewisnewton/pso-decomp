@@ -215,7 +215,7 @@ void TLobby::shutdown_buffers() {
     }
     TLobby::dec_ref_and_shutdown();
     if (lbl_805D62EC != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free(lbl_805D62EC);
+        TAdSinglePlyChrSelectGC::safe_free((void *)lbl_805D62EC);
     }
 }
 

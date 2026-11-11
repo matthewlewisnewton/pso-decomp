@@ -218,7 +218,7 @@ EffTail_8002C06C *TBoss8DragonEffTail__ct(EffTail_8002C06C *arg0, s32 arg1, s32 
 void TBoss8DragonEffTail::free_statics() {
     if ((u32) dragon_tail_gvm_texture_handle != 0U) {
         release_texture_list((void*)dragon_tail_gvm_texture_handle);
-        TAdSinglePlyChrSelectGC::safe_free(dragon_tail_gvm_texture_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)dragon_tail_gvm_texture_handle);
         dragon_tail_gvm_texture_handle = 0U;
     }
     delete (BmlResource *)(boss8_eff_tail_bml_resource);

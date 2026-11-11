@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/TAdRicoRing.h"
@@ -21,7 +22,6 @@ extern "C" {
 volatile int test_flags_any(void *, s32);
 extern const f32 lbl_805D7E4C;
 extern const f32 lbl_805D7E54;
-s32 TObjFish__sub_8001EDB0(void *, int);
 s32 __ct__7TObjectFP7TObject();
 extern RecoveredGlobal_8001BD0C___vt__11TAdRicoRing __vt__11TAdRicoRing;
 extern s32 TAdRicoRing__class_name;
@@ -94,7 +94,7 @@ u8 *__ct__11TAdRicoRingFv(u8 *arg0) {
     __ct__8FlagWordFv((arg0 + 0x2C));
     *(s32 *)((s8 *)arg0 + 0) = (s32) TAdRicoRing__class_name;
     *(s32 *)((s8 *)arg0 + 0x4C) = (s32)get_bml_model((BmlResource *)TAdRicoRing__resource_bundle, 0);
-    *(s32 *)((s8 *)arg0 + 0x50) = TObjFish__sub_8001EDB0((void *)TAdRicoRing__resource_bundle, 0);
+    *(s32 *)((s8 *)arg0 + 0x50) = (s32)TObjFish__sub_8001EDB0((BmlResource *)TAdRicoRing__resource_bundle, 0);
     *(f32 *)((s8 *)arg0 + 0x28) = (f32) lbl_805D7E4C;
     *(f32 *)((s8 *)arg0 + 0x24) = (f32) lbl_805D7E4C;
     *(f32 *)((s8 *)arg0 + 0x20) = (f32) lbl_805D7E4C;

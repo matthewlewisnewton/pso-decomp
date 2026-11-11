@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
@@ -292,7 +293,6 @@ u16 get_entity_id(void *);
 f32 atan2_float(f32 y, f32 x);
 
 s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
 void fn_8004AA04(void *);
 s32 TBoss4DarkFalz__sub_8004AF5C(s32, s16 *, s16 *);
 void TBoss4DarkFalz__sub_8004B4F0(void *, void *);
@@ -1484,7 +1484,7 @@ void TBoss4Type1::draw_parts() {
     s32 a;
     set_motion_packed_rotation();
     for (i = 0; i < 6; i++) {
-        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(*(s32 *)((s8 *)arg0 + 0x390), lbl_80485EB0[i])));
+        set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)((s8 *)arg0 + 0x390)), (s32)(lbl_80485EB0[i]))));
         switch (i) {
         case 2:
         case 3:

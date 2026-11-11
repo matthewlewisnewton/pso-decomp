@@ -80,7 +80,7 @@ void TLobby::load_ask_dictionary() {
     aram = Dolphin_ARAlloc(aligned);
     data = set_stream_and_load_file__6TLobbyFPCv(lbl_8044F098);
     TLobby::aram_transfer_sync(3, data, aram, aligned);
-    TAdSinglePlyChrSelectGC::safe_free(data);
+    TAdSinglePlyChrSelectGC::safe_free((void *)data);
     TQuestVmDownLoadServer__sub_803F0C04(aram, size, 3, 1, 0x2710);
     TQuestVmDownLoadServer__sub_803F09A4();
 }

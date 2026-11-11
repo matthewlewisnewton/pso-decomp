@@ -110,7 +110,7 @@ TOComputerMachine01::TOComputerMachine01(void *set_data) : TOQuestTalkBase(tl_05
     m_name = class_name;
     apply_object_set_data(set_data);
     model = (void *)model_resource->models->model;
-    texlist = model_resource->models->m_c;
+    texlist = (s32)model_resource->models->m_c;
     view_range = 500.0f;
     model_radius = 50.0f;
     actorFlags |= 0x40000000;

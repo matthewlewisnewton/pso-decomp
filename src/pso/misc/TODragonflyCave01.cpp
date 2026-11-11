@@ -189,7 +189,7 @@ TODragonflyCave01::TODragonflyCave01(void *set_data) {
     m_name = class_name;
     apply_object_set_data(set_data);
     model = (void *)model_resource->models->model;
-    texlist = model_resource->models->m_c;
+    texlist = (s32)model_resource->models->m_c;
     motion = model_resource->motions->motion;
     animation_end_frame = (f32)motion->frameCount - 1.0f;
     animation_step = 1.1f;

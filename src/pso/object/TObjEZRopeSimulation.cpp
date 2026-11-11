@@ -66,9 +66,9 @@ extern s32 __vt__21TObjHMS_EZRope_Player[];
 void *__dt__21TObjHMS_EZRope_PlayerFv(TObjHMS_EZRope_Player *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__21TObjHMS_EZRope_Player;
-        if (arg0->m_3c != NULL) { TAdSinglePlyChrSelectGC::safe_free((u32)arg0->m_3c); *(s32 *)((s8 *)arg0 + 0x3C) = 0; }
-        if (*(void **)((s8 *)arg0 + 0x40) != NULL) { TAdSinglePlyChrSelectGC::safe_free((u32)(*(void **)((s8 *)arg0 + 0x40))); *(s32 *)((s8 *)arg0 + 0x40) = 0; }
-        if (arg0->m_44 != NULL) { TAdSinglePlyChrSelectGC::safe_free((u32)arg0->m_44); *(s32 *)((s8 *)arg0 + 0x44) = 0; }
+        if (arg0->m_3c != NULL) { TAdSinglePlyChrSelectGC::safe_free((void *)arg0->m_3c); *(s32 *)((s8 *)arg0 + 0x3C) = 0; }
+        if (*(void **)((s8 *)arg0 + 0x40) != NULL) { TAdSinglePlyChrSelectGC::safe_free((void *)(*(void **)((s8 *)arg0 + 0x40))); *(s32 *)((s8 *)arg0 + 0x40) = 0; }
+        if (arg0->m_44 != NULL) { TAdSinglePlyChrSelectGC::safe_free((void *)arg0->m_44); *(s32 *)((s8 *)arg0 + 0x44) = 0; }
         __dt__14TObjEZRopeBaseFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);

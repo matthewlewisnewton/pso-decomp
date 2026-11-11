@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -55,7 +56,7 @@ TOMekaFish00::TOMekaFish00(void *set_data) {
     m_name = class_name;
     apply_object_set_data(set_data);
     model = (void *)get_bml_model(model_resource, 0);
-    texlist = TObjFish__sub_8001EDB0(model_resource, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)model_resource, 0);
     motion = get_bml_motion(model_resource, 0);
     animation_end_frame = (f32)motion->frameCount - 1.0f;
     animation_step = 1.1f;
@@ -91,7 +92,7 @@ TOMekaFish01::TOMekaFish01(void *set_data) {
     m_name = class_name;
     apply_object_set_data(set_data);
     model = (void *)get_bml_model(model_resource, 0);
-    texlist = TObjFish__sub_8001EDB0(model_resource, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)model_resource, 0);
     motion = get_bml_motion(model_resource, 0);
     animation_end_frame = (f32)motion->frameCount - 1.0f;
     animation_step = 1.1f;
@@ -127,7 +128,7 @@ TOBiwaMushi::TOBiwaMushi(void *set_data) {
     m_name = class_name;
     apply_object_set_data(set_data);
     model = (void *)get_bml_model(model_resource, 0);
-    texlist = TObjFish__sub_8001EDB0(model_resource, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)model_resource, 0);
     motion = get_bml_motion(model_resource, 0);
     animation_end_frame = (f32)motion->frameCount - 1.0f;
     animation_step = 1.1f;

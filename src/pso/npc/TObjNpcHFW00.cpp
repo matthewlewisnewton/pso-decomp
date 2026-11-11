@@ -73,7 +73,7 @@ void * TObjNpcHFW01__create(void *arg0) {
 void TObjNpcHFW01::free_static_resources() {
     if ((u32) TObjNpcHFW01__texture_handle != 0U) {
         release_texture_list((void*)TObjNpcHFW01__texture_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjNpcHFW01__texture_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcHFW01__texture_handle);
         TObjNpcHFW01__texture_handle = 0U;
     }
     if ((u32) TObjNpcHFW01__resource_node != 0U) {

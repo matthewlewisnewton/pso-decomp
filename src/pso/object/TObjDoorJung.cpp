@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -92,8 +93,6 @@ struct DoorJungPartNames {
 };
 extern const DoorJungPartNames lbl_80445640;
 extern u8 bm_obj_beamdoa_resource_descriptor[];
-s32 TObjFish__sub_8001EDB0(void *bml, s32 index);
-
 void TObjDoorJung__sub_8018F4AC(void) {
     s32 handle;
     Node_8018F4AC *model;
@@ -102,7 +101,7 @@ void TObjDoorJung__sub_8018F4AC(void) {
 
     handle = (int)new BmlResource(5, (BmlResourceDescriptor *)(bm_obj_beamdoa_resource_descriptor), 0, 0, (void *)(0));
     TObjDoorJung__resource_handle = (void *)handle;
-    lbl_805D5BD4 = TObjFish__sub_8001EDB0(TObjDoorJung__resource_handle, 0);
+    lbl_805D5BD4 = (s32)TObjFish__sub_8001EDB0((BmlResource *)TObjDoorJung__resource_handle, 0);
     model = ((Node_8018F4AC *)get_bml_model((BmlResource *)TObjDoorJung__resource_handle, 1));
     node = model->child;
     TObjDoorJung__child_table[0] = node->model;

@@ -38,8 +38,20 @@ notes remain historical; the final preservation/build checks govern this split.
 
 ## Current-main refresh
 
-Latest validation covers main `d6fc686573510cc9612beb6a2d71576ad685301c`
-with #402 already merged and #403 targeting main. The BML/Zako/DHCP and subsequent
+Latest validation covers main `1e8cf6d437b6ac2216d5cf41f3c296950f6d819e`
+with #402 already merged and #403 targeting main. The
+[CMName/current-main integration](window-main1e8-cmname-integration.md) preserves
+accepted CMName and both formatter providers, shared primitive/heap/BML/network/
+scissor/contact interfaces, and the five recovered keyboard calls. All 71 CMName
+functions, stored data and actual table/startup targets match original; its old
+incomplete-provider qualification is historical. Source/compiler provenance,
+borrowed callbacks, record capacity and all other stated lifetime/ownership
+holds remain. Fresh-main/combined builds and both no-loss comparisons pass:
+3618 exact linked units and 19006 retention names without drift. The combined
+continuation remains draft.
+
+The preceding validation covered main `d6fc686573510cc9612beb6a2d71576ad685301c`.
+The BML/Zako/DHCP and subsequent
 character-load/SDK changes are preserved, including the accepted unit fold.
 The [DD/main integration](window-dd-main-integration.md) additionally preserves
 accepted selection/scrollbar rendering and KenkyuW recovery. Fresh-main/combined
@@ -305,7 +317,8 @@ remain unqualified; no Parts import or probe is activated.
 | SymbolChat Parts | Accepted-main literal/localization integration source-links native owner after current census and full byte/target/provider validation; historical export blocker superseded | Original propagation-control/source provenance and portable interface/ownership qualifications remain; [integration](window-parts-accepted-main-integration.md) |
 | ChoiceSetting / globals | Observed layout and accesses retained | Actual 0x7C producer and task-global ownership unproved; no inferred padding |
 | CustomSelect | Native code/table; original-exact lifecycle, task controls and stored-client/exit-dispatch audit | Four reload routes establish deletion-before-replay; returned phase 15 transitions dispatch controller-before-player cleanup, with typed shutdown flag access; ordinary-menu valid-session removal and stored-generation ordering remain unproved; [phase exit](window-custom-select-phase-exit.md), [session controls](window-custom-select-session-deferral.md), [client identity](window-custom-select-client-identity.md), [lifecycle](window-custom-select-player-lifecycle.md) and [task controls](window-custom-select-task-controls.md) |
-| CallBack / headings / capture / CMName | Bounded receiver and storage evidence recorded | Mixed callback signatures, opaque child ownership and original-provider/interface holds remain |
+| CMName | [Accepted complete provider plus five recovered keyboard calls](window-main1e8-cmname-integration.md); all 71 functions and actual targets exact | Original-profile provenance, record capacity/aliasing and wider interfaces remain qualified; menu PMFs do not resolve borrowed window callbacks |
+| CallBack / headings / capture | Bounded receiver and storage evidence recorded | Mixed callback signatures, opaque child ownership and remaining original-provider/interface holds persist |
 | SimpleStatus children | Five constructed/managed slots; [registration/conditional closure](window-com-card-follower-lifetime.md), [phase/origin/root controls](window-com-card-close-phase-control.md), [scene shutdown callback ordering](window-controller-callback-order.md) | Original destructor cleans four; alternate replacement/phase reachability, callback reentrancy, asynchronous lifetime and destructor-slot validity remain held; bounded teardown conclusions retain their stated conditions |
 
 The [ComCard render note](window-com-card-render-member.md) records the byte-identical

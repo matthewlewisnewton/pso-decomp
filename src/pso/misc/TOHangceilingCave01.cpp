@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/player/demo_mode.h"
@@ -799,7 +800,6 @@ void TOHangceilingCave01::destroy_instance() {
 }
 
 struct Buf_80168AA8 { s32 a; s32 b; s32 c; };
-s32 TObjFish__sub_8001EDB0(void *, int);
 }
 extern u8 fe_obj_turiten_moto_resource_descriptor[];
 extern u8 turiten_singo_resource_descriptor[];
@@ -822,7 +822,7 @@ void load_turiten_singo_resources(void) {
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists) = (Buf_80168AA8 *)::operator new[](0xC);
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->b = 0;
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->a = 0;
-        (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->c = TObjFish__sub_8001EDB0((*(void **)&TOHangceilingCave01__model_archive), 0);
+        (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->c = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(void **)&TOHangceilingCave01__model_archive), 0);
         lbl_805D59D8 = 0;
         (*(s32 *)&TOHangceilingCave01__model_root) = 0;
         turiten_singo_key_model_index = 0;
@@ -834,7 +834,7 @@ void load_turiten_singo_resources(void) {
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists) = (Buf_80168AA8 *)::operator new[](0xC);
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->a = (s32)load_gvm_texture_file((s32)lbl_80441858);
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->b = (s32)load_gvm_texture_file((s32)lbl_80441874);
-        (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->c = TObjFish__sub_8001EDB0((*(void **)&TOHangceilingCave01__model_archive), 1);
+        (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->c = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(void **)&TOHangceilingCave01__model_archive), 1);
         (*(s32 *)&TOHangceilingCave01__model_root) = (s32)get_bml_model((BmlResource *)(*(void **)&TOHangceilingCave01__model_archive), 2);
         turiten_singo_key_model_index = 1;
         hanging_ceiling_motion_index = 0;

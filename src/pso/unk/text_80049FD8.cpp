@@ -15,8 +15,8 @@ void fn_80049FD8(TObjVoloptPillar *pillar) {
         {0x400, 0x100, 0x400},
         {4, 60},
         {0.0f, 1.0f},
-        boss3_volopt_resources->models[debris_model_index].model,
-        boss3_volopt_resources->models[debris_model_index].m_c,
+        (s32)boss3_volopt_resources->models[debris_model_index].model,
+        (s32)boss3_volopt_resources->models[debris_model_index].m_c,
         2,
     };
 

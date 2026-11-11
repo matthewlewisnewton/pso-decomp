@@ -453,6 +453,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
     # The balloon float pool begins at 0x805DCD0C, which is four-byte aligned.
     "pso/misc/TWindowFukidasi.cpp": {"cw_align": ".sdata2=4"},
+    "pso/object/TObjCMName.cpp": {"cflags": _switch(cflags_pso, "-sym on"), "cw_align": ".sdata2=4"},
     # GC/1.3.2 preserves the per-vertex coordinate loads and store order.
     "pso/ui/TAdDialingGC_80328B20.cpp": {"mw_version": "GC/1.3.2"},
     # The download graph's border pass keeps GC/1.3.2 load scheduling.
@@ -653,6 +654,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Upstream #190: this file is written in reverse so deferred codegen emits
     # address order, and the readonly string pool places the constants.
     "pso/misc/TNpcPlayer.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
+    # Upstream #240: fish update loads each table/conversion constant directly.
+    "pso/object/TObjFish.cpp": {"cflags": _switch(cflags_pso, "-pool off")},
     # Native FMA in parameter scaling; deferred emission places the vtable before
     # four switch tables. Explicit inline helpers retain the global-load order.
     "pso/misc/TTecCtrl.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-inline on,deferred")},

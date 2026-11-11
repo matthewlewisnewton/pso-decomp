@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -1083,7 +1084,6 @@ void run_task__19TObjEneEpsilonGuardFv(u8 *arg0);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 s32 get_bml_motion(void *, int);
-s32 TObjFish__sub_8001EDB0(void *, int);
 s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int);
@@ -1353,7 +1353,7 @@ void TObjEneEpsilonGuard::init_model_and_state() {
 
     ((TObjEneDD *)arg0)->init_position_vectors();
     *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model((BmlResource *)lbl_805D6FA0, 2);
-    *(s32 *)((s8 *)arg0 + 0x24) = TObjFish__sub_8001EDB0(lbl_805D6FA0, 0);
+    *(s32 *)((s8 *)arg0 + 0x24) = (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D6FA0, 0);
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, TObjEneEpsilonGuard__model_desc, 1);
     ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)lbl_804F2024));
     ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)lbl_805D6FA0 + 0x430)));

@@ -1,5 +1,11 @@
 # Native window construction and table ownership
 
+The later [current-main CMName integration](window-main1e8-cmname-integration.md)
+qualifies the complete accepted provider while preserving this continuation's
+keyboard contracts. References below to incomplete CMName source/provider
+remain historical; original-profile, borrowed callback, record-capacity and
+other stated lifetime/ownership holds are unchanged.
+
 This continues PR #268 from the validated shared-prefix checkpoint
 `b3fa2a885cfba859c3ba2f63c286b01f65a0070c`, on main
 `6daa19a11db97b1b8222fd2665eba485ed3a74a4`. The final integration normally

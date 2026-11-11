@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/TBoss7Tentacle.h"
 #include "pso/boss/Boss7DeRolLeCBehavior.h"
 #include "pso/boss/TBoss7DeRolLeC.h"
@@ -79,7 +80,7 @@ extern "C" TBoss7DeRolLeC *TBoss7DeRolLeC__ct(TBoss7DeRolLeC *boss, TObject *par
     }
     boss->init_position_vectors();
     boss->model = reinterpret_cast<void *>(get_bml_model(lbl_805D6918, 0));
-    boss->texlist = TObjFish__sub_8001EDB0(lbl_805D6918, 0);
+    boss->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D6918, 0);
     TObjPlayer__sub_802E7EA0(boss);
     copy_collision_body(&boss->collision_body, &lbl_80473C3C);
     boss->set_collision_body(&boss->collision_body);

@@ -818,7 +818,7 @@ u8 *__dt__18TCheckRoomSequenceFv(u8 *arg0, s16 arg1) {
         close_window__18TCheckRoomSequenceFPv((TCheckRoomSequence_8020F070 *)arg0);
         TCheckRoomSequence__slot_active_flags[sub_8022397C__15TShopWindowBaseFv(arg0)] = 0;
         if (*(u32 *)((s8 *)arg0 + 0x30) != 0) {
-            TAdSinglePlyChrSelectGC::safe_free(*(s32 *)((s8 *)arg0 + 0x30));
+            TAdSinglePlyChrSelectGC::safe_free((void *)*(s32 *)((s8 *)arg0 + 0x30));
             *(s32 *)((s8 *)arg0 + 0x30) = 0;
         }
         __dt__13TShopSequenceFv(arg0, 0);

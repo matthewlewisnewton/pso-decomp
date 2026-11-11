@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -24,7 +25,6 @@ typedef char RecoveredGlobal_8016EB3C_lbl_804B2EC4_size[sizeof(RecoveredGlobal_8
 struct RecoveredGlobal_8016EC04___vt__16TOLightMachine01 { s32 value; u8 remaining[0x30]; };
 
 extern "C" {
-s32 TObjFish__sub_8001EDB0(void *, s32);
 extern RecoveredGlobal_8016EB3C_lbl_804B2EC4 light_machine01_resource_desc;
 extern u32 TOLightMachine01__shared_bml_archive;
 extern s32 light_machine_ginja_model_handle;
@@ -100,7 +100,7 @@ void TOLightMachine01::load_assets() {
     var_r0 = temp_r3;
     (*(u8 * *)&TOLightMachine01__shared_bml_archive) = (unsigned char *) ((void *) var_r0);
     light_machine_ginja_model_handle = (s32)get_bml_model((BmlResource *)var_r0, 0);
-    light_machine_ginja_param = TObjFish__sub_8001EDB0((*(u8 * *)&TOLightMachine01__shared_bml_archive), 0);
+    light_machine_ginja_param = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(u8 * *)&TOLightMachine01__shared_bml_archive), 0);
 }
 
 void *__dt__16TOLightMachine01Fv(void *arg0, s16 arg1) {
@@ -121,7 +121,7 @@ u8 *TOLightMachine01__ct(TOLightMachine01 *light_machine01, s32 arg1) {
     *(s32 *)((s8 *)light_machine01 + 0) = (s32) TOLightMachine01__name;
     ((TOLightMachine01 *)(light_machine01))->apply_object_set_data((void *)arg1);
     light_machine01->model = ((u8 *)get_bml_model((BmlResource *)((*(s32 *)&TOLightMachine01__shared_bml_archive)), 1));
-    light_machine01->texlist = TObjFish__sub_8001EDB0((void *)((int) ((*(s32 *)&TOLightMachine01__shared_bml_archive))), 1);
+    light_machine01->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&TOLightMachine01__shared_bml_archive), 1);
     *(f32 *)((s8 *)light_machine01 + 0x90) = (f32) lbl_805DB82C;
     light_machine01->m_94 = (f32) *(f32 *)((s8 *)(*(void **)((s8 *)light_machine01->model + 4)) + 0x14);
     light_machine01->actorFlags = (s32) (light_machine01->actorFlags | 0x40000000);

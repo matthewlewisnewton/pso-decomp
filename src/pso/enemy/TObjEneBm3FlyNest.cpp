@@ -381,7 +381,7 @@ TObjEneBm3FlyNest::TObjEneBm3FlyNest(TObject *parent, EnemySetRecord *set_data)
     invoke_initialization_hook(set_data);
     init_position_vectors();
     model = (void *)nest_resources->models[1].model;
-    texlist = nest_resources->models[0].m_c;
+    texlist = (s32)nest_resources->models[0].m_c;
     init_model(&bm3_flynest_collider_params, 1);
     body_center_position.y = (20.0f) + position.y;
     vfunc_88();

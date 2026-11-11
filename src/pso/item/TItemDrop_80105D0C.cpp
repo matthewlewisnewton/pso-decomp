@@ -1084,9 +1084,9 @@ u8 *TItemDrop__sub_80107840(u8 *arg0, s16 arg1) {
     var_r31 = (int) (((TItemDrop *)arg0)->m_1c);
     TItemDrop__sub_8010F168((void *)var_r31, 1);
     ((TItemDrop *)arg0)->m_1c = 0;
-    TAdSinglePlyChrSelectGC::safe_free((int) TItemDrop__relocatable_load_buffer);
+    TAdSinglePlyChrSelectGC::safe_free((void *)TItemDrop__relocatable_load_buffer);
     TItemDrop__relocatable_load_buffer = 0;
-    TAdSinglePlyChrSelectGC::safe_free((int) TItemDrop__second_relocatable_load_buffer);
+    TAdSinglePlyChrSelectGC::safe_free((void *)TItemDrop__second_relocatable_load_buffer);
     var_r31 = 0;
     var_r30 = 0;
     TItemDrop__second_relocatable_load_buffer = 0;

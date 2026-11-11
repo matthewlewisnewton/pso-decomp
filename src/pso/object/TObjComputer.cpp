@@ -216,7 +216,7 @@ void *TObjComputer::create() {
 void TObjComputer::free_resources() {
     if ((u32) TObjComputer__texture_gvm_handle != 0U) {
         release_texture_list((void*)TObjComputer__texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjComputer__texture_gvm_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjComputer__texture_gvm_handle);
         TObjComputer__texture_gvm_handle = 0U;
     }
     if ((u32) TObjComputer__model_archive != 0U) {

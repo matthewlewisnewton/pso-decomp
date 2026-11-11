@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/misc/SampledMotionPoints.h"
@@ -451,7 +452,6 @@ void * get_player_data__10TObjPlayerFi(s32 i);
 u16 get_entity_id(void *);
 s32 is_split_screen();
 s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 fn_80044330(void *);
 void fn_8004AA04(void *);
 s32 pick_random_target_player__11TBoss4Type3Fv(void);
@@ -1185,7 +1185,7 @@ void TBoss4Type2::spawn_afterimages() {
     z.f24 = 0.0f;
     z.f28 = 10;
     for (i = 0; i < 2; i++) {
-        z.f10 = TObjFish__sub_8001EDB0(((Obj_8005676C *)this)->f390, boss4_zanzo_bml_index_table[i]);
+        z.f10 = (s32)TObjFish__sub_8001EDB0((BmlResource *)(((Obj_8005676C *)this)->f390), (s32)(boss4_zanzo_bml_index_table[i]));
         z.f14 = (s32)get_bml_model((BmlResource *)((Obj_8005676C *)this)->f390, boss4_zanzo_bml_index_table[i]);
         z.f18 = get_bml_motion(((Obj_8005676C *)this)->f390, ((Row_8005676C *)&TBoss4Type2__attack_pattern_table)[((Obj_8005676C *)this)->f3c8].c[i]);
         TBoss4Type2::create_zanzo(this, &z);
@@ -1489,7 +1489,7 @@ void TUnk_80486924::draw_hanger() {
     s32 i;
     set_motion_packed_rotation();
     for (i = 0; i < 2; i++) {
-        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(arg0->f390, boss4_zanzo_bml_index_table[i])));
+        set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(arg0->f390), (s32)(boss4_zanzo_bml_index_table[i]))));
         switch (i) {
         case 1:
             model_render_flags |= 0x20000;

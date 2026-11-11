@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
@@ -109,8 +110,6 @@ f32 project_point_onto_line(void *, void *, void *);
 f32 xyz_distance(const void *, const void *);
 f32 vec3_add_to(void *, const void *);
 void TBoss6Type1__sub_802B6C30(TBoss6Type1 *self);
-s32 TObjFish__sub_8001EDB0(s32, s32);
-
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 // init_collision_body_parts copies these 7 spheres in TBoss6Type1__ct.
 CollisionBody lbl_804DF4E0[7] = {
@@ -781,7 +780,7 @@ void TBoss6Type1::draw_part_motions() {
     set_motion_packed_rotation();
     for (i = 0; i < 2; i++) {
         id = lbl_804DF614[i];
-        p = TObjFish__sub_8001EDB0(this->m_3fc, lbl_804DF614[i]);
+        p = (s32)TObjFish__sub_8001EDB0((BmlResource *)(this->m_3fc), (s32)(lbl_804DF614[i]));
         id = (s32)get_bml_model((BmlResource *)this->m_3fc, id);
         cb = this->draw_callback_lists[i];
         a = &this->anims[i];
@@ -1596,7 +1595,7 @@ void TBoss6Type1::reset_param() {
 // Draws bml model 0 at sound_pos, turned to face the viewing player and scaled by m_4dc.
 void TBoss6Type1__sub_802B626C(TBoss6Type1 *boss) {
     if (boss->m_4dc != 0.0f) {
-        s32 fish = TObjFish__sub_8001EDB0(boss->m_3fc, 0);
+        s32 fish = (s32)TObjFish__sub_8001EDB0((BmlResource *)(boss->m_3fc), 0);
         s32 model = (s32)get_bml_model((BmlResource *)boss->m_3fc, 0);
         s32 pitch = 0;
         Vec pos = boss->node_positions_578[7].v;

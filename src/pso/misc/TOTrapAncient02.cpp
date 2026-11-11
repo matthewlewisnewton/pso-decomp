@@ -166,7 +166,7 @@ TOTrapAncient02::TOTrapAncient02(TObject *parent, void *creator) : TOTrap(parent
     this->initialize_position_copies();
     this->calc_attach_pos();
     this->model = (void *)TOTrapAncient02__shared_resource->models->model;
-    this->texlist = TOTrapAncient02__shared_resource->models->m_c;
+    this->texlist = (s32)TOTrapAncient02__shared_resource->models->m_c;
     this->mode = 0;
     this->phase = 0;
     this->range = 0.5f * this->scale.x + 30.0f;
@@ -529,7 +529,7 @@ TOTrapAncient02R::TOTrapAncient02R(TObject *parent, void *creator) : TOTrapAncie
     this->initialize_position_copies();
     this->calc_attach_pos();
     this->model = (void *)TOTrapAncient02__shared_resource->models->model;
-    this->texlist = TOTrapAncient02__shared_resource->models->m_c;
+    this->texlist = (s32)TOTrapAncient02__shared_resource->models->m_c;
     this->mode = 0;
     this->phase = 0;
     this->range = 0.5f * this->scale.x + 30.0f;

@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "types.h"
 #include "pso/misc/TCineCtrl.h"
 #include "pso/system/ModelDrawContext.h"
@@ -62,7 +63,7 @@ void TCineCtrl::render() {
         vl.pos[6] = TCineCtrl__data_805D91D0;
         vl.pos[7] = this->m_20;
         vl.col[3] = *(u32 *)((s8 *)arg0 + 0x24);
-        ((TObjCMHairMenu *)(&vl))->draw_tri_fan_2d(4U, 0x16, lbl_805D91D8);
+        ((ColorLineList *)(&vl))->draw_tri_fan_2d(4U, 0x16, lbl_805D91D8);
         vl.pos[0] = TCineCtrl__data_805D91D0;
         vl.pos[1] = lbl_805D91DC - this->m_20;
         vl.col[0] = *(u32 *)((s8 *)arg0 + 0x24);
@@ -75,7 +76,7 @@ void TCineCtrl::render() {
         vl.pos[6] = TCineCtrl__data_805D91D0;
         vl.pos[7] = lbl_805D91DC;
         vl.col[3] = *(u32 *)((s8 *)arg0 + 0x24);
-        ((TObjCMHairMenu *)(&vl))->draw_tri_fan_2d(4U, 0x16, lbl_805D91D8);
+        ((ColorLineList *)(&vl))->draw_tri_fan_2d(4U, 0x16, lbl_805D91D8);
         TCameraCtrl__sub_80068EF0();
     }
 }

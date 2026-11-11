@@ -319,7 +319,7 @@ void TObjEneDellBiter::init_params() {
     s32 i;
     init_position_vectors();
     model = (void *)((BmlResource *)TObjEneDellBiter__shared_model_resource)->models->model;
-    texlist = ((BmlResource *)TObjEneDellBiter__shared_model_resource)->models->m_c;
+    texlist = (s32)((BmlResource *)TObjEneDellBiter__shared_model_resource)->models->m_c;
     init_model((CollisionBody *)lbl_804E6B8C, 1);
     bodies->flags |= 0x400000;
     set_action_table((TObjMotionAction *)((s32)&dell_biter_param_table));

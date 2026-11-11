@@ -720,7 +720,7 @@ TUnk_804C8678::~TUnk_804C8678() {
     } else {
         quest_area_manager = NULL;
     }
-    TAdSinglePlyChrSelectGC::safe_free(script);
+    TAdSinglePlyChrSelectGC::safe_free((void *)script);
 }
 
 void TQuestThread::destroy_quest_obj() {

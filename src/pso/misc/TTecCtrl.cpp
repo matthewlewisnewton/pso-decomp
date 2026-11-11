@@ -226,7 +226,7 @@ void TLobby__sub_8022F068(void) {
         if ((u32) *(u32 *)((s8 *)temp_r4 + 8) != 0U) {
             release_texture_list(lbl_805D63B0, (s32) temp_r4);
         }
-        TAdSinglePlyChrSelectGC::safe_free((u32) lbl_805D63B0);
+        TAdSinglePlyChrSelectGC::safe_free((void *)lbl_805D63B0);
         lbl_805D63B0 = NULL;
     }
     if ((void *) technique_effect_bml != NULL) {

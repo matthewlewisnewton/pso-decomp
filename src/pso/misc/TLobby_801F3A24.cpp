@@ -43,7 +43,7 @@ void refresh_quest_list__6TLobbyFi(const void *name) {
         if (temp_r3 != 0) {
             read_disc_file(name, temp_r3);
             rebuild_all__6TLobbyFi(temp_r3);
-            TAdSinglePlyChrSelectGC::safe_free(temp_r3);
+            TAdSinglePlyChrSelectGC::safe_free((void *)temp_r3);
         }
     }
 }
@@ -380,7 +380,7 @@ void open_session__6TLobbyFi(const void *name) {
             populate_quest_floor_sets();
             TLobby::init_id_tables();
             TLobby__data_805D6134 = 1;
-            TAdSinglePlyChrSelectGC::safe_free(TLobby__data_805D5EE0);
+            TAdSinglePlyChrSelectGC::safe_free((void *)TLobby__data_805D5EE0);
             TLobby__data_805D5EE0 = 0;
         }
     }
