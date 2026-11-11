@@ -102,3 +102,38 @@ in 4.12 seconds, both with the original DOL hash. Acceptance against fresh main
 and prior A passes with 3604 exact linked units, 18441 retention names and no
 strict raw/exact/linked data-range loss. The focused contribution remains
 600 matched/728 linked code. No new local compiler control is introduced.
+
+## Current-main refresh and readiness scope
+
+Main `cda82a7aad7de1bf9b86470002df3f68d1c8c039` adds accepted Orbit,
+Ginja material and creation-shape work. No focused GuildWarning/settings-helper
+source changes are needed. Incoming source and nonshared documentation are
+preserved; shared symbols, split/link/retention and exception records coexist.
+The six repaired Message objects remain byte-identical.
+
+The separate fresh-main build passes in 85.97 seconds and focused A in 8.77
+seconds with the original DOL hash. Acceptance against fresh main and prior A
+passes with 3607 exact linked units and 18575 retention names without drift.
+The focused contribution remains 600 matched/728 linked code. Strict raw,
+exact and linked losses against fresh main are empty. Against prior A the only
+raw loss is 805E0F7C..805E0F80, exactly the same four-byte Ginja tail interval
+removed by unchanged new main, with no exact/linked loss. Main documents it as
+zero alignment; this refresh does not add an independent original-object
+ownership or semantic-padding claim. The twelve earlier historical coverage
+bytes remain separately qualified; this inherited interval is four more.
+
+Independent focused source review still finds no newly introduced blocking
+defect. The old GuildWarning note's no-ready narrative concerns the broader
+#268 construction/lifetime checkpoint, which the split note identifies as
+historical. Native Message/Addition/Base recovery is assigned to the separate
+continuation. That historical note alone does not establish a distinct current
+user prohibition on focused #402: verified user history authorizes workers to
+mark suitable PRs ready, and no more-specific #402 prohibition was found.
+This resolves the interpretation of that note, not universal lifetime safety.
+All inherited layout-word/result, raw storage/lifetime and original indexing/
+allocation preconditions remain explicit. #403's substantive holds stay.
+
+The scoped result supports focused technical review once final-head validation
+and review are confirmed. Draft status is left unchanged in this refresh; no
+merge or formal approval is performed. Private receipts and range results are
+in pr402-refreshcda files and the shared pr403-maincda baseline.
