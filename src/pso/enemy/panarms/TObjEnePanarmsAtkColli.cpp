@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/panarms/TObjEnePanarmsAtkColli.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/system/vector.h"
@@ -412,7 +413,7 @@ void *TObjEnePanarmsAtkColli__ct(Obj_800E37E4 *arg0, void *parent, void *arg2, v
     self->f384 = 0;
     self->f388 = 0;
     ((TObjEnemy *)self)->set_param(0x15);
-    self->f38C = ((f32 *)TLobby::dispatch_shared_handler_a(0x31))[TObjEnePanarmsAtkColli__type_index_table[self->type]];
+    self->f38C = ((f32 *)get_battle_movement_params(0x31))[TObjEnePanarmsAtkColli__type_index_table[self->type]];
     if (self->f38C < 0.0f) {
         self->f38C = 0.0f;
     }

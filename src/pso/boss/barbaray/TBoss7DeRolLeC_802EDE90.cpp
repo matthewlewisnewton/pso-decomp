@@ -4,6 +4,7 @@
 #include "pso/boss/barbaray/TBoss7Tentacle.h"
 #include "pso/boss/barbaray/TBoss7LaserLight.h"
 #include "pso/enemy/AttackTargetHistory.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/unk/TLobby.h"
 #include "pso/unk/TUnk_804F1C58.h"
 #include "pso/system/BmlResource.h"
@@ -29,8 +30,8 @@ TBoss7DeRolLeC::TBoss7DeRolLeC(TObject *parent, void *set_data) : TObjEneDD_ST(p
     if (boss7_joint_state == 0) {
         boss7_joint_state = (u32)this;
     }
-    reset_hp((u8 *)TLobby::register_boss(15), (u8 *)TLobby::dispatch_shared_handler_b(15), (u8 *)TLobby::register_object(15));
-    unk_620 = (TBoss7DeRolLeCParams *)TLobby::dispatch_shared_handler_a(15);
+    reset_hp((u8 *)get_battle_base_stats(15), (u8 *)get_battle_attack_params(15), (u8 *)get_battle_resistance_params(15));
+    unk_620 = (TBoss7DeRolLeCParams *)get_battle_movement_params(15);
     invoke_initialization_hook(set_data);
     unk_628 = 0;
     if (exchange_object_state((s32)&flags, 1) && (flags & 0x12008) == 0x12008) {

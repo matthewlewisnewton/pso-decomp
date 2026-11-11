@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/object/TObjControl.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -141,10 +142,6 @@ struct NanoDragoAnimationBinding {
 };
 
 extern "C" void obj_setFlags30(void *, u32);
-extern "C" s32 dispatch_shared_handler_a__6TLobbyFl(int);
-extern "C" s32 register_object__6TLobbyFl(int);
-extern "C" s32 dispatch_shared_handler_b__6TLobbyFl(int);
-extern "C" s32 register_boss__6TLobbyFl(int);
 extern "C" void free_bin_model_request(void*, int);
 extern "C" u8 * load_resource_from_descriptor(void *, s32, s32 *, s32, s32, s32);
 extern "C" s32 find_active_entity_by_id(int);
@@ -305,10 +302,10 @@ void TObjEneNanoDrago::load_resources() {
         resource = (u8 *)(load_resource_from_descriptor(storage, 1, (s32 *)&bm_ene_nanodrago_resource_descriptor, 0, 0, 0));
     }
     nano_drago_entry_params_resource = (BmlResource *)resource;
-    lbl_805D5248 = register_boss__6TLobbyFl(0x1A);
-    lbl_805D524C = dispatch_shared_handler_b__6TLobbyFl(0x1A);
-    lbl_805D5250 = register_object__6TLobbyFl(0x1A);
-    lbl_805D5254 = dispatch_shared_handler_a__6TLobbyFl(0x1A);
+    lbl_805D5248 = (s32)get_battle_base_stats(0x1A);
+    lbl_805D524C = (s32)get_battle_attack_params(0x1A);
+    lbl_805D5250 = (s32)get_battle_resistance_params(0x1A);
+    lbl_805D5254 = (s32)get_battle_movement_params(0x1A);
     binding = nano_drago_anim_binding;
     binding.motions = nano_drago_entry_params_resource->motions;
     modelEntries = nano_drago_entry_params_resource->models;

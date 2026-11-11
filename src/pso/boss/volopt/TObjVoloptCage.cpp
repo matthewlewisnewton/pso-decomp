@@ -5,6 +5,7 @@
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
 #include "pso/boss/volopt/TBoss3VoloptHiraisin.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/effect/TBreakUpMdl.h"
 #include "pso/unk/TLobby.h"
@@ -190,8 +191,8 @@ void TObjVoloptCage::init_break_model() {
         model = (TBreakUpMdl *)model->init_from_model(volopt_cage_model);
     }
     volopt_cage_breakup_model = (TBreakUpMdlPieces *)model;
-    volopt_cage_combat_stats = TLobby::register_boss(0x26);
-    volopt_cage_params = (VoloptCageParams *)TLobby::dispatch_shared_handler_a(0x26);
+    volopt_cage_combat_stats = get_battle_base_stats(0x26);
+    volopt_cage_params = (VoloptCageParams *)get_battle_movement_params(0x26);
 }
 
 void TObjVoloptCage::render() {

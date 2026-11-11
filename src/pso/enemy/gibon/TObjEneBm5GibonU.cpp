@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
@@ -222,10 +223,6 @@ void turn_toward_angle__16TObjEneBm5GibonUFPvi(Ene_800D0FDC *arg0, s32 arg1);
 s32 approach_angle_limited(s32, s32, s32);
 s32 play_sound_effect(void *, void *, s32, s32);
 void TObjEneBm5GibonU__sub_800CEBD8(u8 *arg0, s32 arg1);
-s32 dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
 u8 *load_enemy_bml_resource(void *);
 extern const s32 lbl_8043BF30[];
 extern const s32 lbl_8043BF38[];
@@ -4678,10 +4675,10 @@ void TObjEneBm5GibonU::load_resources() {
     v[1] = 0.0f;
     v[2] = 0.0f;
     for (i = 0; i < 2; i++) {
-        ((u32 *)&(*(G_800D1D14 *)&TObjEneBm5GibonU__data_80500E78))[i] = register_boss__6TLobbyFl(lbl_8043BF30[i]);
-        lbl_80500E80[i] = dispatch_shared_handler_b__6TLobbyFl(lbl_8043BF38[i]);
-        lbl_80500E88[i] = register_object__6TLobbyFl(lbl_8043BF40[i]);
-        lbl_80500E90[i] = dispatch_shared_handler_a__6TLobbyFl(lbl_8043BF48[i]);
+        ((u32 *)&(*(G_800D1D14 *)&TObjEneBm5GibonU__data_80500E78))[i] = (u32)get_battle_base_stats(lbl_8043BF30[i]);
+        lbl_80500E80[i] = (u32)get_battle_attack_params(lbl_8043BF38[i]);
+        lbl_80500E88[i] = (u32)get_battle_resistance_params(lbl_8043BF40[i]);
+        lbl_80500E90[i] = (u32)get_battle_movement_params(lbl_8043BF48[i]);
     }
     sp.a = TObjEneBm5GibonU__spawn_params.a;
     sp.b = TObjEneBm5GibonU__spawn_params.b;

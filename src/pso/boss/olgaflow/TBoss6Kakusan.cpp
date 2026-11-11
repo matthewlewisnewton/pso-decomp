@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/boss/olgaflow/TBoss6Kakusan.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/system/vector.h"
 
 #include "pso/boss/olgaflow/TBoss6Type1.h"
@@ -267,12 +268,12 @@ u8 *TBoss6Kakusan__ct(u8 *boss6_kakusan, TObject *parent, Vec *pos, Vec *dir, u1
     }
     VecCopy((Vec *)(boss6_kakusan + 0x30), pos);
     VecCopy((Vec *)(boss6_kakusan + 0x48), (const Vec *)(boss6_kakusan + 0x30));
-    temp_f2 = *(f32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x2B)) + 4);
+    temp_f2 = *(f32 *)((s8 *)(get_battle_movement_params(0x2B)) + 4);
     ((TBoss6Kakusan *)boss6_kakusan)->m_1c = (s32) temp_f2;
     if (0.0f == temp_f2) {
         ((TBoss6Kakusan *)boss6_kakusan)->m_1c = 0x14;
     }
-    ((TBoss6Kakusan *)boss6_kakusan)->m_28 = (f32) *(f32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x2F)) + 0x10);
+    ((TBoss6Kakusan *)boss6_kakusan)->m_28 = (f32) *(f32 *)((s8 *)(get_battle_movement_params(0x2F)) + 0x10);
     if (((TBoss6Kakusan *)boss6_kakusan)->m_28 < 0.0f) {
         ((TBoss6Kakusan *)boss6_kakusan)->m_28 = 0.0f;
     }

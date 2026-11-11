@@ -1,4 +1,5 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/NinjaTypes.h"
@@ -4235,7 +4236,7 @@ void TObjFish__sub_802ED4AC(u8 *arg0, s32 arg1) {
 }
 
 s32 TBoss7Joint_get_shell_max_hp(void) {
-    return *(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0xF)) + 0x1C);
+    return *(s32 *)((s8 *)(get_battle_movement_params(0xF)) + 0x1C);
 }
 
 }
@@ -4343,9 +4344,6 @@ struct PktB_802ED62C { u8 hdr[2]; u16 a; s16 b; s16 c; };
 struct Elem_802ED73C { u8 pad0[0x18]; s32 flags; u8 pad1C[0x2C - 0x1C]; };
 
 extern "C" {
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
 s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, s32, s32, s32);
 void TBoss7PhotonBullet__sub_802ED5A0(void *arg0, int arg1);
 s32 update_local_colliders_from_world(void *, void *);
@@ -4354,7 +4352,7 @@ s32 add_radar_scaled_marker(void *, int, int, int, f32);
 s32 submit_default_cursor_candidate__9TObjEnemyFv(void *);
 
 f32 TBoss7PhotonBullet::get_target_pos_y() {
-    return *(f32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0xF)) + 4);
+    return *(f32 *)((s8 *)(get_battle_movement_params(0xF)) + 4);
 }
 
 
@@ -4378,7 +4376,7 @@ void TBoss7PhotonBullet__sub_802ED5A0(void *arg0, int arg1) {
         v = 0x11;
         break;
     }
-    reload_stats_keep_hp_tp__9TObjEneDDFv(arg0, register_boss__6TLobbyFl(0xF), dispatch_shared_handler_b__6TLobbyFl(v), register_object__6TLobbyFl(0xF));
+    reload_stats_keep_hp_tp__9TObjEneDDFv(arg0, (s32)get_battle_base_stats(0xF), (s32)get_battle_attack_params(v), (s32)get_battle_resistance_params(0xF));
 }
 
 void TBoss7DeRolLeC::set_state_and_send(s32 arg1) {

@@ -1,4 +1,5 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/shinowa/TObjEneMe3Shinowa.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
@@ -4390,16 +4391,16 @@ void load_shinowa_mirage_resources() {
         lbl_80500FEC.textures[i + 3].texaddr = lbl_80500FEC.textures[i].texaddr;
     }
     for (s32 j = 0; j < 2; j++) {
-        lbl_80500FCC[j] = (s32)TLobby::register_boss(lbl_8043CE1C[j]);
+        lbl_80500FCC[j] = (s32)get_battle_base_stats(lbl_8043CE1C[j]);
     }
     for (s32 j = 0; j < 2; j++) {
-        lbl_80500FD4[j] = (s32)TLobby::dispatch_shared_handler_b(lbl_8043CE24[j]);
+        lbl_80500FD4[j] = (s32)get_battle_attack_params(lbl_8043CE24[j]);
     }
     for (s32 j = 0; j < 2; j++) {
-        lbl_80500FDC[j] = (s32)TLobby::register_object(lbl_8043CE2C[j]);
+        lbl_80500FDC[j] = (s32)get_battle_resistance_params(lbl_8043CE2C[j]);
     }
     for (s32 j = 0; j < 2; j++) {
-        TObjEneMe3ShinowaMirage__mirage_info_table[j] = (Info_800E6F0C *)TLobby::dispatch_shared_handler_a(lbl_8043CE34[j]);
+        TObjEneMe3ShinowaMirage__mirage_info_table[j] = (Info_800E6F0C *)get_battle_movement_params(lbl_8043CE34[j]);
     }
     info = TObjEneMe3ShinowaMirage__mirage_info_table[0];
     TObjEneMe3ShinowaMirage::set_slot_min_clamped_value(6, info->unk_C);

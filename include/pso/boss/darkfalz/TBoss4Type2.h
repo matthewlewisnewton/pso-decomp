@@ -2,8 +2,9 @@
 #define PSO_BOSS_DARKFALZ_TBOSS4TYPE2_H
 
 #include "types.h"
+#include "pso/enemy/BattleParameters.h"
 
-/* Boss parameter block 0x36 from TLobby::dispatch_shared_handler_a (read by TBoss4Type1.cpp and
+/* Boss parameter block 0x36 from get_battle_movement_params (read by TBoss4Type1.cpp and
  * TObjDFHorming). move_seconds is clamped to 1..60 and scaled by 30.0 into a frame count; the two
  * levels are the 4th (level) argument of the Ra Barta / Ra Foie create calls; power is cast to f32. */
 struct TBoss4Type2Params

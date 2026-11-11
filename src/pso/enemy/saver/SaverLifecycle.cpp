@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
@@ -67,9 +68,6 @@ s32 update_movement_status__9TObjCharaFv();
 s32 update_movement_status__12TObjEneSaverFv(u8 *arg0);
 s32 update_action_hold_status__9TObjCharaFv();
 s32 update_action_hold_status__12TObjEneSaverFv(u8 *arg0);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 void *load_resource_from_descriptor(void *, int, void *, int, int, int);
 void *mem_alloc(u32 size);
 extern void *bm_ene_df1_saver_model_names[2];
@@ -2070,12 +2068,12 @@ void initialize_saver_resources(void) {
     dir.y = dir.z = 0.0f;
     ((SampledMotionPoints *)lbl_805D506C)->sample_node_offsets((NJS_OBJECT *)RES->sub->f8, (NJS_MOTION *)(RES->ents[saver_action_table[3].motion].b), 0x19, (const Vec *)&pos, (const Vec *)&dir);
     player_object_ptr_array = (s32 *)mem_alloc(0xC);
-    saver_boss_stat_handle = register_boss__6TLobbyFl(0x52);
-    player_object_ptr_array[0] = dispatch_shared_handler_b__6TLobbyFl(0x57);
-    player_object_ptr_array[2] = dispatch_shared_handler_b__6TLobbyFl(0x58);
-    player_object_ptr_array[1] = dispatch_shared_handler_b__6TLobbyFl(0x59);
-    saver_object_stat_handle = register_object__6TLobbyFl(0x51);
-    lbl_805D504C = (f32 *)TLobby::dispatch_shared_handler_a(0x51);
+    saver_boss_stat_handle = (s32)get_battle_base_stats(0x52);
+    player_object_ptr_array[0] = (s32)get_battle_attack_params(0x57);
+    player_object_ptr_array[2] = (s32)get_battle_attack_params(0x58);
+    player_object_ptr_array[1] = (s32)get_battle_attack_params(0x59);
+    saver_object_stat_handle = (s32)get_battle_resistance_params(0x51);
+    lbl_805D504C = (f32 *)get_battle_movement_params(0x51);
     Init_800A715C init = saver_init_binding_desc;
     init.motions = (s32)RES->ents;
     TLobby::spawn_npc_enemy((s16)0x1A, (s32)RES->sub->f8, RES->sub->texlist, &init, (f32)saver_collision_body_part_table[3], (f32)0.0f);

@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -214,9 +215,6 @@ s32 add_radar_scaled_marker(void *, int, int, int, f32);
 s32 vfunc_94__9TObjEneDDFv(void *);
 s32 vfunc_93__9TObjEneDDFv(void *);
 extern const f32 lbl_805D8258;
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
 s32 TBoss2Joint_get_shell_max_hp(void);
 void reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
@@ -330,9 +328,9 @@ void reload_stats_keep_hp_tp__9TObjEneDDFv(void *, int, int, int);
 s32 TBoss2Joint::vfunc_104(f32) {
     m_38c |= 1;
     reload_stats_keep_hp_tp__9TObjEneDDFv(this,
-        register_boss__6TLobbyFl(((Ent_80036ACC *)&TBoss2Joint__param_table)->b),
-        dispatch_shared_handler_b__6TLobbyFl(((Ent_80036ACC *)lbl_80482A58)->b),
-        register_object__6TLobbyFl(((Ent_80036ACC *)lbl_80482A60)->b));
+        (s32)get_battle_base_stats(((Ent_80036ACC *)&TBoss2Joint__param_table)->b),
+        (s32)get_battle_attack_params(((Ent_80036ACC *)lbl_80482A58)->b),
+        (s32)get_battle_resistance_params(((Ent_80036ACC *)lbl_80482A60)->b));
     hp = 0x4E20;
     hpmax = 0x4E20;
     new TUnk_804820A8(this, &position);
@@ -427,7 +425,7 @@ s32 TBoss2Joint::init_params() {
     self->unk34 = 0;
     self->unk24 = 0;
     init_model__9TObjEneDDFP13CollisionBodyl(self, prm->unk34, 1);
-    reset_hp__9TObjEneDDFPUcPUcPUc(self, register_boss__6TLobbyFl(prm->unk0), dispatch_shared_handler_b__6TLobbyFl(prm->unk8), register_object__6TLobbyFl(prm->unk10));
+    reset_hp__9TObjEneDDFPUcPUcPUc(self, (s32)get_battle_base_stats(prm->unk0), (s32)get_battle_attack_params(prm->unk8), (s32)get_battle_resistance_params(prm->unk10));
     self->hp32C = 0x4E20;
     self->hp2B8 = 0x4E20;
     ((TObjEneDD *)self)->check_state_flag_2();
