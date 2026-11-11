@@ -3,10 +3,16 @@
 
 #include "types.h"
 
+// Thread keys carry native address bits; they are four-byte opaque words.
+typedef u32 NetThreadHandle;
+
 void NetYieldThread(void);
 void NetIPv6CPCancelTimer(s32 timer);
 
 extern "C" {
+extern NetThreadHandle queue_thread_handle;
+extern NetThreadHandle lobby_message_thread_handle;
+
 void NetStoreTick(s32* tick);
 void NetStoreCurrentThread(s32* thread);
 void NetSuspendCurrentThread(void);

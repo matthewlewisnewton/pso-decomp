@@ -713,7 +713,6 @@ struct TLobby : public TObject {
     void add_status_disp_entry(s32 arg1, s32 arg2);
     static void reset_message_thread();
     static void update_exi_status();
-    s32 post_message(s32 arg1, s32 arg2, s32 arg3);
     static void message_thread_loop();
     static void clear_message_entry_wrapper(s32 arg0);
     static u16 recv_pppoe_message(s32 *arg0, u16 *arg1);
@@ -761,7 +760,7 @@ struct TLobby : public TObject {
     static void resume_thread(s32 thread);
     void cancel_thread_if_running();
     static void deactivate_entry_by_key(u32 key);
-    static s32 run_current_thread_callback();
+    static void *run_current_thread_callback(void *);
     s16 check_connection_status();
     static s32 clear_flag_bit4(s32 arg0, u8 *arg1);
     void init_net_state_entry();
