@@ -108,9 +108,9 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,778 pragmas in 879 files; per-file table in the generated file. Main kinds:
+5,779 pragmas in 879 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1142, `inline_depth` 1034, `fp_contract` 880, `auto_inline` 832,
-`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 240,
+`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 241,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -120,6 +120,18 @@ MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
 check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
+
+### Symbol-chat part-grid rendering
+
+`fn_802857C4` at `0x802857C4` in `TWindowSubSymbolChatParts.cpp` uses
+scoped `opt_propagation off` to preserve the row-height load and floating-point
+register lifetimes with a `32.0f` literal. With propagation enabled, eleven
+register operands differ at 99.421486%. The literal shares the unit's existing
+pool entry and resolves the former undefined constant reference, allowing the
+complete unit to link. This is a measured matching constraint, not evidence of
+an original pragma. Ports can drop propagation steering and retain the same
+literal and arithmetic. The existing `fp_contract on` scope is unchanged.
+See [the unit evidence](evidence/symbol-chat-parts-recovery-evidence.md).
 
 ### Shortcut preview at `0x8026E1D4`
 
@@ -1398,3 +1410,11 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | Scope | Construct | Evidence and reason | Port action |
 |---|---|---|---|
 | `src/pso/misc/ParticleRadial.cpp`, `TUnk_8048E7A8::run_task` at `0x8008B590` | New scoped `fp_contract on`; big-endian ARGB byte writes into a `u32` through `unsigned char` | The original's twelve channel interpolations are `fmadds`. Without the new contraction scope the routine is 94.10405%; with it all 1,384 bytes match. Existing constructor scopes are unchanged. The colour representation reproduces four native byte stores and one packed-word load without inactive-union aliasing. See [source, type and arithmetic evidence](evidence/radial-particle-update.md). New compiler control remains subject to independent source-quality review before publication. | Use single-rounded `fmaf` interpolation when native rounding is required. On little-endian hosts, pack the converted channels explicitly as `(a << 24) | (r << 16) | (g << 8) | b`. |
+
+### Ballistic particle update and constant layout
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/ParticleBallistic.cpp`, update at `0x800888E8` | Scoped `fp_contract on`; big-endian ARGB byte writes into a live `u32` | The original has fused bounce and colour interpolation. The recovered update matches all 2,060 bytes, using the radial particle's clamp and local-value layout. [Recovery evidence](evidence/ballistic-particle-recovery.md). | Preserve required single rounding with `fmaf`; pack converted ARGB channels explicitly on little-endian hosts. |
+| Same file, renderer at `0x800890F4` | Scoped `pool_data off` | With all owned constants defined, ordinary pooling shares a `.rodata` base and changes the renderer to 1,412 bytes / 94.68715%. Independent addresses reproduce the original 1,432 bytes exactly. Late definitions preserve instructions but put the constants in the wrong section order. | Drop the layout control; keep the ordinary constant values. |
+| Same file, `lbl_805D9520` | MWCC-only `.sdata2` placement for the existing two-float object | Retains the angular range and trailing zero in the original eight-byte object, instead of a four-byte literal. | Use the ordinary const array; the section annotation is guarded for MWCC. |
