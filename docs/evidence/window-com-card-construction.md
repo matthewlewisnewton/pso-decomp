@@ -88,3 +88,9 @@ The subsequent [native render-body recovery](window-com-card-render-member.md)
 uses the established draw-context receiver contract and actual Base members.
 Its entire compiled object is byte-identical. The manual table, deleting wrapper,
 unknown word and follower boundaries remain held and unchanged.
+
+The subsequent [follower registration control](window-com-card-follower-lifetime.md)
+distinguishes its viewport-root task parent from its borrowed SimpleStatus
+pointer. It rules out recursive SimpleStatus child deletion as an explanation
+for the omitted fifth close in these construction paths, without claiming a
+reachable failure or changing the original cleanup.

@@ -306,7 +306,7 @@ remain unqualified; no Parts import or probe is activated.
 | ChoiceSetting / globals | Observed layout and accesses retained | Actual 0x7C producer and task-global ownership unproved; no inferred padding |
 | CustomSelect | Native code/table; original-exact lifecycle, task controls and stored-client/exit-dispatch audit | Four reload routes establish deletion-before-replay; returned phase 15 transitions dispatch controller-before-player cleanup, with typed shutdown flag access; ordinary-menu valid-session removal and stored-generation ordering remain unproved; [phase exit](window-custom-select-phase-exit.md), [session controls](window-custom-select-session-deferral.md), [client identity](window-custom-select-client-identity.md), [lifecycle](window-custom-select-player-lifecycle.md) and [task controls](window-custom-select-task-controls.md) |
 | CallBack / headings / capture / CMName | Bounded receiver and storage evidence recorded | Mixed callback signatures, opaque child ownership and original-provider/interface holds remain |
-| SimpleStatus children | Five constructed/managed slots evidenced | Original destructor cleans four; asymmetry preserved, not silently fixed |
+| SimpleStatus children | Five constructed/managed slots; [follower task parent is a viewport root, separate from its borrowed window](window-com-card-follower-lifetime.md) | Original destructor cleans four; later root/reparent/closure ordering remains unproved; asymmetry preserved |
 
 The [ComCard render note](window-com-card-render-member.md) records the byte-identical
 member-body recovery without lifting destructor/table or unknown-word holds.
