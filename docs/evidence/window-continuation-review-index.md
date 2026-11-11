@@ -38,7 +38,15 @@ notes remain historical; the final preservation/build checks govern this split.
 
 ## Current-main refresh
 
-Latest validation covers main `1e8cf6d437b6ac2216d5cf41f3c296950f6d819e`
+Latest native validation covers main `554d21699c873ccf9be1b2268eba37cd3a32e48b`.
+The [runtime/main integration](window-main554d-runtime-integration.md) preserves
+accepted EXI/ADX/LaserLight providers, the explicit frame receiver, every window
+hold and the runner-provided Ninja fix. Fresh-main and combined original-DOL
+builds, both strict no-loss comparisons, actual relocation/provider checks and
+affected host/sanitizer tests pass: 3626 exact linked units and 19114 retention
+names without drift. This continuation remains draft with substantive holds.
+
+The preceding validation covers main `1e8cf6d437b6ac2216d5cf41f3c296950f6d819e`
 with #402 already merged and #403 targeting main. The
 [CMName/current-main integration](window-main1e8-cmname-integration.md) preserves
 accepted CMName and both formatter providers, shared primitive/heap/BML/network/

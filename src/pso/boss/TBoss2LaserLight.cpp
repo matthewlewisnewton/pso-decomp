@@ -7,7 +7,9 @@
 #include "pso/object/TObjLight.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-// TBoss2Joint references this constant immediately before the laser constants.
+// TBoss2Joint also reads this value, so it remains an exported definition.
+// The remaining constants are literals: deferred emission lays out the complete
+// pool in original order without duplicating named and compiler-generated entries.
 __declspec(section ".sdata2") extern const f32 lbl_805D8498 = 5.0f;
 
 struct V3_80037264 { f32 x, y, z; };
@@ -33,10 +35,6 @@ struct Obj_800372F0 {
 extern "C" {
 s32 noop_laser__23TAdSinglePlyChrSelectGCFv(void *);
 s32 TAdSinglePlyChrSelectGC__sub_80133508(void *);
-extern const f32 lbl_805D84A8;
-extern const f32 lbl_805D84AC;
-extern const f32 lbl_805D84B0;
-extern const f32 lbl_805D84B4;
 extern const char *lbl_805D26C8;
 extern void *__vt__16TBoss2LaserLight[];
 void __ct__7TObjectFP7TObject(TObject *self, TObject *parent);
@@ -61,10 +59,10 @@ extern "C" TBoss2LaserLight *TBoss2LaserLight__ct(TBoss2LaserLight *self, TObjec
     self->m_1c = arg2;
     self->m_20 = 0;
     self->m_24 = 0;
-    p->position[0] = lbl_805D84AC;
-    p->position[1] = lbl_805D84AC;
-    p->f30 = lbl_805D84B0;
-    p->f34 = lbl_805D84B4;
+    p->position[0] = 1.0f;
+    p->position[1] = 1.0f;
+    p->f30 = 0.2f;
+    p->f34 = 2.0f;
     p->f38 = 0.0f;
     p->f3C = 0.0f;
     self->m_40 = TObjLight::alloc_light_slot();
@@ -117,7 +115,7 @@ void TBoss2LaserLight::run_task() {
             self->state = 2;
         }
         self->f38 = v;
-        self->f3C = lbl_805D84A8 + v;
+        self->f3C = 40.0f + v;
         ((TAdSinglePlyChrSelectGC *)(self->light))->forward_to_field_0x14(&self->f38);
         ((TAdSinglePlyChrSelectGC *)(self->light))->set_vec3((void*)self->f1C);
         break;
@@ -133,7 +131,7 @@ void TBoss2LaserLight::run_task() {
             noop_laser__23TAdSinglePlyChrSelectGCFv(self->light);
         }
         self->f38 = v;
-        self->f3C = lbl_805D84A8 + v;
+        self->f3C = 40.0f + v;
         ((TAdSinglePlyChrSelectGC *)(self->light))->forward_to_field_0x14(&self->f38);
         ((TAdSinglePlyChrSelectGC *)(self->light))->set_vec3((void*)self->f1C);
         break;
