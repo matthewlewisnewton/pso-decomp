@@ -1075,6 +1075,7 @@ pso/ui/window/TMessageBox.cpp
 pso/object/TMotorcycle.cpp
 pso/object/TMotorcycle_802D712C.cpp
 pso/system/movie/TMovie.cpp
+pso/system/movie/TMovie_80143988.cpp
 pso/system/movie/TMovie_80143BBC.cpp
 pso/system/movie/TMovie_80143C00.cpp
 pso/system/movie/TMovie_80143C94.cpp
@@ -1734,6 +1735,7 @@ pso/system/data/pso_const_ids7.cpp
 pso/system/data/pso_date.cpp
 pso/network/NetworkInfoCodec.cpp
 pso/network/NetworkInfoLoader.cpp
+pso/network/NetworkInfoRequests.cpp
 pso/network/NetworkMessageTransport.c
 pso/network/NetworkPacketRuntime.c
 pso/network/NetworkTransport.c
@@ -2325,6 +2327,7 @@ pso/ui/frontend/TAdDrawLineCtrl_80019B78.cpp
 pso/unk/text_8001A3BC.cpp
 pso/unk/text_8001C388.cpp
 pso/unk/text_8002B164.cpp
+pso/unk/text_80049FD8.cpp
 pso/unk/text_8004AA04.cpp
 pso/unk/text_8004D9A8.cpp
 pso/boss/darkfalz/TObjDFDemo4_8004F1FC.cpp
