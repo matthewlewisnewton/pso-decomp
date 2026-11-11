@@ -5,7 +5,7 @@ Behavior reference: upstream #240, `dd7a1a2d6e200a69462fff12172ff35aaa460c93`,
 `src/pso/object/ambient/TObjFish.cpp` and its entry layout.
 Native lifetime/global follow-up base: `cbe750b9197533f64ff472f00467a4776181b97a`.
 Shared pointer-API follow-up base: `754117ce13cb8508a711f4d8abc37494a805df64`.
-Combined validation base: fork main `08c178922fb8da57f44c2d9fc4efb5ebdecf05b4`.
+Combined validation base: fork main `d6fc686573510cc9612beb6a2d71576ad685301c`.
 
 ## Behavior and shared interfaces
 
@@ -106,8 +106,9 @@ The native full build reproduces original DOL SHA-1
 the current-main and previous-published-head baselines above. Address-based comparison loses no exact
 function, live data or linked range against either baseline. No padding is lost
 against either baseline. Constructor and heap-release symbol renames are compared
-by original address. The pointer-API follow-up preserves all coverage totals
-relative to its published-head baseline.
+by original address. Before current-main integration, the pointer-API follow-up preserves all coverage
+totals relative to its published-head baseline. The final integration adds main's
+TWindowDD and KenkyuW recoveries; no coverage is lost.
 
 All nine Fish functions (4,704 bytes) and 1,416 data bytes match and link from
 source. The six allocated sections match in payload, size and alignment,
@@ -123,17 +124,17 @@ lifetime, all three globals and the scoped emission setting. Against fork main:
 
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
-| Exact functions | 27,444 | 27,445 | 1 |
-| Exact code bytes | 4,241,872 | 4,243,916 | 2,044 |
-| Exact data bytes | 1,477,679 | 1,477,763 | 84 |
-| Linked code bytes | 3,890,476 | 3,895,180 | 4,704 |
-| Linked data bytes | 1,357,627 | 1,359,043 | 1,416 |
-| Linked units | 3,610 | 3,611 | 1 |
+| Exact functions | 27,447 | 27,448 | 1 |
+| Exact code bytes | 4,243,592 | 4,245,636 | 2,044 |
+| Exact data bytes | 1,477,731 | 1,477,815 | 84 |
+| Linked code bytes | 3,895,588 | 3,900,292 | 4,704 |
+| Linked data bytes | 1,357,695 | 1,359,111 | 1,416 |
+| Linked units | 3,612 | 3,613 | 1 |
 
 The native-lifetime/global change adds the three owned globals, their class-name
 string and the native constructor, and removes the superseded constructor name
 relative to pre-lifetime head `cbe750b919`: +5/-1. With current-main integration,
-the retention list has 18,699 names and zero drift, +49/-0 versus pinned main.
+the retention list has 18,712 names and zero drift, +49/-0 versus pinned main.
 The heap-release parameter correction renames its mapped symbol from `FUl` to
 `FPv`; it requires no retention change.
 These changes follow the exact regenerated original-object inventory; no
