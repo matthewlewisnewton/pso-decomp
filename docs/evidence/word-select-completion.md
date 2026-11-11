@@ -56,7 +56,7 @@ by four bytes while all 432 table bytes become exact and source-linked.
 ## Validation
 
 Initial recovery base: `5bba9c44adebc1cfa019def85e1f39f6da340ef0`.
-Publication base: `08c178922fb8da57f44c2d9fc4efb5ebdecf05b4`.
+Publication base: `d6fc686573510cc9612beb6a2d71576ad685301c`.
 The unchanged publication base passes its full build and retention check.
 The initial recovery passed the address-based no-loss check before rebasing.
 Final checks compare the publication base and the saved complete pre-rebase
@@ -68,5 +68,8 @@ compiled source objects. The full linked build reproduces original DOL
 SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 
 `tools/check_pr.py --no-build` passes after the full native linked build; all
-3,612 linked units pass. The generated retention change adds four word-select
+3,614 linked units pass. The generated retention change adds four word-select
 symbols and removes none. Both selected groups are 100% exact and linked.
+
+The explicit no-prefix `case 2` retains the original nested switch tree,
+including its otherwise redundant branch beside the default case.

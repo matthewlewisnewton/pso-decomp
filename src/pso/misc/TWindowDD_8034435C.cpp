@@ -889,6 +889,7 @@ s32 format_word_select_spanish(WordSelectMessage *src, char *buffer, s32 player)
                 case 3: wordId = 0x69D; break;
                 }
                 break;
+            // Category 2 and unrecognized categories have no prefix.
             case 2:
             default:
                 hasPrefix = 0;
