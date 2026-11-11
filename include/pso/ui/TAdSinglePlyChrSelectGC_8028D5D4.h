@@ -4,7 +4,7 @@
 #include "types.h"
 
 extern "C" {
-u8 is_selection_done__23TAdSinglePlyChrSelectGCFPv(void *arg0);
+s32 is_selection_done__23TAdSinglePlyChrSelectGCFPv(void *arg0);
 }
 
 #endif
