@@ -1,5 +1,12 @@
 # LaunchDol's stranded epilogue
 
+The sections below record the original-only recovery investigation through
+`ce59a0aabbdf4375f3d53bbac4017750741add12`. A subsequent
+[native retention candidate](loader-restore-retention.md) reproduces the exact
+link using a generated assembly exception. That proposal requires explicit
+approval, including its departure from the scalar-fallback rule; it does not
+resolve the ownership or behavioral uncertainties recorded here.
+
 This records bounded ownership evidence for `0x8042E9FC..0x8042EA0F`.
 The range remains unmatched, with its address and ownership hold preserved.
 Narrowed #284 at `d70369041672d5c881d895dc0a27b96f612e4b0c` contains the

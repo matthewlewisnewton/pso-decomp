@@ -1,5 +1,15 @@
-// The original-only range 0x8042E9FC..0x8042EA10 retains LaunchDol's
-// stranded frame restore. Its function address and 20-byte extent remain
-// unresolved; do not select this unit from source or add an asm body.
-// init_modem_check_params begins at 0x8042EA10 in text_8042EA10.cpp.
-// See docs/evidence/launch-dol-stranded-epilogue.md.
+// Native reconstruction of the restore at 0x8042E9FC..0x8042EA10.
+// This local fragment is not a separately callable C++ operation. Preserve
+// its existing symbol/extent without asserting an original source boundary.
+// The native linker otherwise discards it because no relocation names it.
+// See docs/evidence/loader-restore-retention.md for the exception and port plan.
+#ifdef __MWERKS__
+#pragma push
+#pragma force_active on
+extern "C" {
+static asm void pad_03_8042E9FC_text(void) {
+#include "orig_asm/pso/unk/text_8042E9FC/pad_03_8042E9FC_text.inc"
+}
+}
+#pragma pop
+#endif
