@@ -38,7 +38,16 @@ notes remain historical; the final preservation/build checks govern this split.
 
 ## Current-main refresh
 
-Latest native validation covers main `554d21699c873ccf9be1b2268eba37cd3a32e48b`.
+Latest native validation covers main `5146327538ef67c0077c30664309f9cd48fabc86`.
+The [draw-line/Gol Dragon integration](window-main5146-draw-line-integration.md)
+preserves accepted providers, typed callers, original-DOL bytes and all holds.
+DrawLine's resource/private-root facts do not resolve the held window producers,
+callbacks or session ordering; Gol Dragon supplies no Word-specific provenance.
+Both strict comparisons pass: 3622 exact linked units, 19351 retention names
+without drift, protected objects/providers intact and 346 local tool tests plus
+portable behavior/sanitizers passing. The continuation remains draft.
+
+The preceding native validation covers main `554d21699c873ccf9be1b2268eba37cd3a32e48b`.
 The [runtime/main integration](window-main554d-runtime-integration.md) preserves
 accepted EXI/ADX/LaserLight providers, the explicit frame receiver, every window
 hold and the runner-provided Ninja fix. Fresh-main and combined original-DOL

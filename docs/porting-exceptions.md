@@ -1604,6 +1604,19 @@ owned sections. A port can use its ordinary SDK/math declarations.
 | Native ADX runtime boundary | Existing legacy `TLobby` entry names, bounded record views, pointer/integer handle and callback casts, OS thread entry casts and volatile flags; inherited floating-point contraction in decoder and playback helpers | These are retained native ABI obligations. New encoder records use size/offset assertions and the shared SJ interface; stream-file callers share one recovered record definition. No assembly or hardware access is added. | Replace native handle words and thread casts with typed platform interfaces, provide synchronization for shared flags, and preserve fused rounding where required. |
 | `src/pso/system/AdxEncoder.cpp`, residual magnitude | MWCC `__abs` through `ADXENC_ABS`, with a compiled scalar conditional fallback on other compilers | A scalar sign-mask helper scores 99.816666% and a conditional helper 98.76667% in `fn_803C8020`; the native intrinsic retains the original repeated absolute-value sequences. The input is a signed 16-bit residual, so negation fits in `s32`. | Use the scalar fallback. |
 
+### Complete Gol Dragon behavior unit
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/boss/TBoss8Dragon.cpp`: `fn_802F7B70`, `fn_802F89F8`, `TBoss8Dragon__sub_802FBFA4` | Three scoped `opt_common_subs off` settings; `fp_contract on` in the recovered state handler | Preserve native fused arithmetic and the original floating-point load lifetimes and register operands with the owned named constants. Propagation-only and lifetime-only trials did not fix these differences. The last helper also uses explicit acceleration and velocity intermediates to preserve the fused multiply-add operand order. See [complete-unit evidence](evidence/gol-dragon-complete-unit.md). | Drop the optimizer controls; retain the arithmetic and fused rounding where required. |
+| Same unit, complete object | Descending function definitions under the existing GC/2.0 `-inline off,deferred` settings; the three Bezier arrays follow the dispatcher's local static table in source | Reproduces native function, member-pointer initializer, runtime table, vtable and switch-table placement. No new compiler override, inline helper, hand-written member-pointer table or vtable is introduced. | Use ordinary C++ member pointers and compiler-generated virtual dispatch; source and emitted order need not agree. |
+
+### Complete draw-line component
+
+`src/pso/ui/DrawLine.cpp` uses GC/2.6 `-inline off,deferred` with reverse definitions to preserve the original function order and the compiler-generated controller/task vtables. Unit `-fp_contract on` replaces the task constructor's existing pragma and preserves its fused length calculation. Immediate emission with ascending definitions preserves instructions but reverses the two vtables; reverse/deferred emission preserves all code and symbolic data relocations.
+
+The four named float constants are declared with a guarded `.sdata2` placement attribute and defined after their uses. Their original order is `1.0, 0.0, -1.0, 0.5`. Literal-only probes instead emit `0.0, -1.0, 1.0, 0.5`; defining named constants before their uses also introduces anonymous duplicates. The guard becomes empty outside MWCC. A port can keep the ordinary constant definitions, use its normal compiler settings, and ignore definition order and section placement. No assembly or hand-written vtables are used.
+
 ## 9. Window lifetime entry points for legacy raw-storage functions
 
 `include/pso/misc/WindowConstructorAbi.h` is a bounded MWCC ABI interface for
