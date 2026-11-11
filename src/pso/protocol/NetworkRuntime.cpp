@@ -428,7 +428,7 @@ s32 TLobby__sub_803F9B94(void (*func)(Ent_803F9B48 *), u32 *out) {
         return -1;
     }
     base[i].func = func;
-    if (OSCreateThread(&lbl_805D7A6C[i].thread, (void *(*)(void *))TLobby::run_current_thread_callback, NULL,
+    if (OSCreateThread(&lbl_805D7A6C[i].thread, TLobby::run_current_thread_callback, NULL,
                        lbl_805D7A6C[i].stack + lbl_805D7A6C[i].stack_size, lbl_805D7A6C[i].stack_size,
                        lbl_805D4810, 1) == 1) {
         lbl_805D7A6C[i].active = 1;
@@ -438,7 +438,7 @@ s32 TLobby__sub_803F9B94(void (*func)(Ent_803F9B48 *), u32 *out) {
     return -1;
 }
 
-s32 TLobby::run_current_thread_callback() {
+void *TLobby::run_current_thread_callback(void *) {
     u32 key = (u32)OSGetCurrentThread();
     Ent_803F9C78 *p;
     u16 n = lbl_805D7A68;
@@ -450,13 +450,13 @@ s32 TLobby::run_current_thread_callback() {
         p++;
     }
     if (i >= n) {
-        return 0;
+        return NULL;
     }
     {
         Ent_803F9C78 *e = &base[i];
         e->fn(e);
     }
-    return 0;
+    return NULL;
 }
 
 s32 NetSetDefaultThreadPriority(s32 arg0) {

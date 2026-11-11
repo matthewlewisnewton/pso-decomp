@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,704 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,710 | 880 |
 | Per-unit compiler overrides in `configure.py` | 193 | 193 |
 | Approved regressions | 0 | 0 |
 
@@ -96,6 +96,18 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
+The two renderers at `0x8034055C` and `0x80340A78` in `TWindowDD.cpp`
+use scoped `opt_propagation off` and ordered scalar declarations to retain
+independent coordinate and texture values. The scrollbar also disables common
+subexpression elimination and enables `fp_contract` for its native fused edge
+calculations. Ports may drop the optimizer controls and declaration-order
+constraint; preserve fused arithmetic where native rounding is required. The
+`.ctors` declaration registers `init_layout_constants` at the original startup
+position; a port should call that initializer during equivalent UI startup.
+The draw-buffer helpers retain their existing native link names at a bounded
+ABI interface rather than casting vertex buffers to window objects; ports
+should map those legacy names to the corresponding shared draw operations.
+
 `pso/boss/TBoss8Dragon_8002CC48.cpp` uses guarded `defer_codegen on/off`
 around its reversed first twelve definitions to preserve both native vtable
 offsets and scalar emission order. The initializer at `0x8002D5F8` uses scoped
@@ -133,9 +145,9 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,704 pragmas in 879 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 881, `auto_inline` 802,
-`opt_common_subs` 615, `scheduling` 263, `opt_propagation` 246,
+5,710 pragmas in 880 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802,
+`opt_common_subs` 616, `scheduling` 264, `opt_propagation` 248,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -1499,3 +1511,9 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 |---|---|---|---|
 | `src/pso/misc/TLobby_803C1A58.cpp`, `TLobby__sub_803C2388` | Scoped `opt_propagation off`, `opt_common_subs off` | Preserve the original byte-swap/load sequence and chunk traversal; all 624 bytes match. [Recovery evidence](evidence/audio-formats-and-adx-transfer.md). | Drop these compiler controls; retain explicit endian decoding and original parsing behavior, or harden input validation as a separate behavioral change. |
 | Same file, `TLobby__sub_803C3570` | Scoped `opt_common_subs off`, `opt_lifetimes off`, `opt_propagation off`; existing decoder API passes pointers through `s32` | The two-phase block transfer needs the original saved-register lifetimes and arithmetic/load ordering; all 1,028 bytes match. The bounded record and shared legacy decoder interface are documented in the recovery evidence. | Drop the compiler controls, use fixed-width scalar fields and typed pointer arguments at the decoder boundary. Ordinary sample-copy loops remain C++. |
+
+### Technique-contact dispatcher evaluation order
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/npc/TObjNpcKenkyuW.cpp`, `TNeedleShoot::check_actor_contacts` at `0x802A445C` | Scoped `scheduling off` and `global_optimizer off` | Preserve the original argument setup and the contact-load/receiver-copy/contact-store order. The explicit pointer value conversion in the comma expression avoids an addressable temporary and retains the original 16-byte frame. All 228 bytes and the full 2,376-byte unit match. See [compiler and comparison evidence](evidence/kenkyuw-dispatcher-continuation.md). | Drop the compiler controls. The contact assignment can be a separate statement before the virtual call; retain the actor value passed to that call. |

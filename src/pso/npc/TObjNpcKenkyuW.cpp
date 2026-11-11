@@ -250,6 +250,9 @@ TechniqueContactList *TNeedleShoot::collect_technique_contacts(void *src) {
 
 // The callers are TNeedleShoot subclasses. The unused argument remains part
 // of their existing call interface; contact mode is stored in m_b0.
+#pragma push
+#pragma scheduling off
+#pragma global_optimizer off
 void TNeedleShoot::check_actor_contacts(s32 ignored) {
     TechniqueContactList *contacts;
     if (m_68 == 0) {
@@ -263,19 +266,23 @@ void TNeedleShoot::check_actor_contacts(s32 ignored) {
     case 2:
         contacts = fn_802A3FDC((void *)m_1c);
         break;
-    default:
-        contacts = fn_802A3DE8((void *)m_1c);
+    default: {
+        void *source = (void *)m_1c;
+        contacts = fn_802A3DE8(source);
         break;
+    }
     }
     if (contacts == NULL) {
         vfunc_6();
     } else if (is_hit_receivable_target(contacts->actors[0])) {
         TechniqueContactActor *target = contacts->actors[0];
         if (target != NULL) {
-            contact_body = contacts->bodies[0];
-            vfunc_9(target);
+            TechniqueContactBody *body = contacts->bodies[0];
+            // A pointer value conversion avoids an addressable comma temporary.
+            vfunc_9((contact_body = body, static_cast<TechniqueContactActor *>(target)));
         }
     }
 }
+#pragma pop
 
 }

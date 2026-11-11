@@ -5,6 +5,8 @@
 #include "pso/technique/TechniqueContact.h"
 #include "pso/TObject.h"
 
+struct TechniqueContactBody;
+
 struct TNeedleShoot : public TObject {
     virtual ~TNeedleShoot();
     void clear_technique_contacts();

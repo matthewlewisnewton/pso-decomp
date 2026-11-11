@@ -696,6 +696,7 @@ force_active:
   - TLobby__sub_80241A0C
   - TLobby__sub_802422EC
   - TLobby__sub_8024273C
+  - TLobby__sub_8028D7D0
   - TLobby__sub_80292AB4
   - TLobby__sub_80292BB8
   - TLobby__sub_80292DA0
@@ -1651,6 +1652,8 @@ force_active:
   - TObjPlayer__sub_801D9C34
   - TObjPlayer__sub_8023E034
   - TObjPlayer__sub_802A1588
+  - fn_802A3DE8__12TNeedleShootFPv
+  - fn_802A3FDC__12TNeedleShootFPv
   - TObjPlayer__sub_802A83F4
   - TObjPlayer__sub_802A841C
   - TObjPlayer__sub_802C19E8
@@ -1841,6 +1844,9 @@ force_active:
   - TWindowCtrlSub__name
   - TWindowCtrl__sub_8024DAAC
   - TWindowCtrl__sub_8026D4E8
+  - TWindowDD__layout_constant_pair
+  - TWindowDD__layout_constants
+  - TWindowDD__sub_8034055C
   - TWindowDD__sub_80340FA8
   - TWindowDD__sub_8034138C
   - TWindowDD__sub_803414DC
@@ -2489,6 +2495,7 @@ force_active:
   - __dt__13TUnk_804EEF80Fv
   - __dt__13TUnk_804EF130Fv
   - __dt__13TUnk_804EFA88Fv
+  - __dt__13TUnk_804EFBACFv
   - __dt__13TUnk_804F0BF0Fv
   - __dt__13TUnk_804F0C08Fv
   - __dt__13TUnk_804F0C48Fv
@@ -4545,7 +4552,6 @@ force_active:
   - build_dead_list_window__15TObjDeadListWinFv
   - build_default_save_file__23TAdSinglePlyChrSelectGCFv
   - build_discover__11DhcpMessageFv
-  - build_release__11DhcpMessageFv
   - build_door_collision_triangles__18TObjCityDoor_LobbyFv
   - build_download_list__12TQuestListVMFv
   - build_ethernet_frame_header__6TLobbyFPvPvUsUcUsUs
@@ -4556,6 +4562,8 @@ force_active:
   - build_name_text__13TObjTombstoneFv
   - build_node_records__11TBreakUpMdlFPUcl
   - build_packet_header__10TObjPlayerFv
+  - build_release__11DhcpMessageFv
+  - build_request__11DhcpMessageFv
   - build_result_text__13TObjResultWinFv
   - build_save_file__23TAdSinglePlyChrSelectGCFv
   - build_selection_summary__12TAdTimeSetGCFv
@@ -4945,6 +4953,7 @@ force_active:
   - chr_select_a_slot_entry
   - chr_select_b_slot_entry
   - chr_select_buffer_ptr_table
+  - chr_select_load_buffer_table
   - circle_arena__13TBoss5GryphonFl
   - circle_destination__13TObjEneBm3FlyFl
   - circling_state__14TObjEneBm5WolfFl
@@ -5089,6 +5098,7 @@ force_active:
   - clear_state_flags_when_done__13TObjEneRe4BitFv
   - clear_state_if_flag80__10TObjPlayerFl
   - clear_status_bit6__10TObjPlayerFPv
+  - clear_technique_contacts__12TNeedleShootFv
   - clear_thread_state__12TQuestThreadFv
   - clear_work__12TBoss1DragonFi
   - clear_work_buffer
@@ -5170,6 +5180,7 @@ force_active:
   - collect_targets__15TObjEneMe1GiGueFv
   - collect_targets_in_arc__15TBoss3VoloptP02Fv
   - collect_targets_in_front__15TBoss3VoloptP02Fv
+  - collect_technique_contacts__12TNeedleShootFPv
   - commit_composition_text__19TWindowKeyBoardSoftFv
   - complete_and_destroy__13TOCtrlDubchikFv
   - complete_fall_reaction__10TObjPlayerFv
@@ -5229,6 +5240,7 @@ force_active:
   - construct_soul_eater_weapon__FPUcPUcl
   - construct_targeted__10TTecRaFoieFPvPvPvPvi
   - construct_tec_barta_facing__FP9TTecBartaPvPvPvPv
+  - construct_variant_a__9TWindowDDFPv
   - construct_variant_b__9TWindowDDFPv
   - construct_weapon_casing__10TObjPlayerFPUcPUcPUcPUcPUc
   - construct_with_index__22TObjFogCollisionPoisonFPUcl
@@ -5625,7 +5637,6 @@ force_active:
   - destroy_subobjects_recursive__9TItemListFv
   - detect_device_type__16TKeyBoardControlFl
   - dfdemo4_strip_nodes
-  - build_request__11DhcpMessageFv
   - dimedian_action_table
   - dimedian_appear_motion_filename
   - dimedian_attack_left_motion_filename
@@ -7307,6 +7318,7 @@ force_active:
   - init_launch_angles__10TTecSlicerFPlPll
   - init_layout__17TWindowSubComCardFv
   - init_layout__19TWindowKeyBoardSoftFv
+  - init_layout_constants__9TWindowDDFv
   - init_layout_entries__9TWindowDDFv
   - init_level_stats__14TObjEneDubchikFl
   - init_light__9TObjLightFi
@@ -7543,6 +7555,7 @@ force_active:
   - is_flag_set__6TLobbyFPv
   - is_grounded__10TObjPlayerFv
   - is_growth_inactive__11TItemMagSubFv
+  - is_hit_receivable_target__12TNeedleShootFP21TechniqueContactActor
   - is_id_out_of_range__6TLobbyFi
   - is_in_state_13__14TObjEnePanBARAFv
   - is_in_state_14__14TObjEnePanBARAFv
@@ -8394,6 +8407,7 @@ force_active:
   - lbl_804EF1DC
   - lbl_804EF3A4
   - lbl_804EF658
+  - lbl_804EFBAC
   - lbl_804EFBC8
   - lbl_804EFBD0
   - lbl_804EFBE4
@@ -8492,6 +8506,7 @@ force_active:
   - lbl_80517BEC
   - lbl_80517E44
   - lbl_80517F9C
+  - lbl_80518850
   - lbl_80540B64
   - lbl_80540B70
   - lbl_80540B88
@@ -14297,7 +14312,7 @@ force_active:
   - populate_sub_item_list
   - pose_player__15TEndingPicStageF17player_class_typeSc
   - post_aram_request__16TAdWarningBaseGCFii
-  - post_message__6TLobbyFlll
+  - post_network_queue_message
   - ppp_ipv6cp_protocol_state
   - pppoe_discovery_name_storage
   - prepare_death__10TObjPlayerFv
@@ -15201,7 +15216,7 @@ force_active:
   - run_attack_stage3_phase__10TObjPlayerFis
   - run_confirm_message_loop__15TObjBoss2TunnelFv
   - run_connect_sequence__6TLobbyFv
-  - run_current_thread_callback__6TLobbyFv
+  - run_current_thread_callback__6TLobbyFPv
   - run_death_state_phase__10TObjPlayerFis
   - run_default_state__12TBoss8DragonFv
   - run_demo_task__16TObjEneNanoDragoFv
@@ -17602,6 +17617,7 @@ force_active:
   - update_door_switch_state__15TODoorAncient08Fv
   - update_door_switch_state__15TODoorAncient09Fv
   - update_door_switch_state__15TODoorMachine01Fv
+  - update_draw__9TWindowDDFPv
   - update_drop__18TObjEneBalClawClawFPv
   - update_drop__20TBoss3VoloptHiraisinFv
   - update_duel_end_effect

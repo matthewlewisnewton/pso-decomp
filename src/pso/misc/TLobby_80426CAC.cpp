@@ -114,12 +114,7 @@ typedef char PppoeSlot_rx_frame_offset[offsetof(Ent_80427D40, rx_frame) == 0x826
 typedef char PppoeSlot_rx_frame_len_offset[offsetof(Ent_80427D40, rx_frame_len) == 0xE10 ? 1 : -1];
 
 extern "C" {
-extern u8 lbl_805CF240[0xA0];
-extern u8 TLobby__pppoe_message_queue[0xA0];
-extern u8 lbl_805CF380[0x48];
 RecoveredGlobal_80427D0C_lbl_805CFC20 lobby_pppoe_slot_table;
-extern u8 lbl_805CF380[];
-extern u8 TLobby__pppoe_message_queue[];
 typedef struct Ent_804267F0 {
     s16 count;
     u8 id[6];
@@ -130,7 +125,6 @@ typedef struct Tbl_804267F0 {
     Ent_804267F0 ent[6];
 } Tbl_804267F0;
 
-extern u8 lbl_805CF240[];
 
 Ent_80427D40 *TLobby__sub_80427C6C(s32 arg0, u16 arg1);
 s16 TLobby__sub_8042787C(Ent_80427D40 *e, u8 *p, u16 len);

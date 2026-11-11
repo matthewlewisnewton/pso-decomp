@@ -86,14 +86,9 @@ struct Obj_80426998 { u8 pad[0x36]; s16 count; Rec_80426998 recs[5]; };
 
 NetworkPacketBufferDescriptor network_packet_buffer_descriptors[NETWORK_PACKET_BUFFER_COUNT];
 u8 network_packet_buffers[NETWORK_PACKET_BUFFER_COUNT][NETWORK_PACKET_BUFFER_BYTES];
-extern u8 lbl_805CF240[0xA0];
-extern u8 TLobby__pppoe_message_queue[0xA0];
-extern u8 lbl_805CF380[0x48];
 extern "C" {
 extern u32 lbl_805D7BA8;
 extern u8 lobby_net_channel_table[];
-extern u8 lbl_805CF380[];
-extern u8 TLobby__pppoe_message_queue[];
 typedef struct Ent_804267F0 {
     s16 count;
     u8 id[6];
@@ -115,7 +110,6 @@ void TLobby__sub_80423298(void);
 extern s32 lbl_805D7B14;
 extern s16 dhcp_socket;
 void TLobby__sub_80424CA8(void);
-extern u8 lbl_805CF240[];
 s32 TLobby__sub_804251C0(s16, void *);
 extern volatile s32 lbl_805D7BA0;
 

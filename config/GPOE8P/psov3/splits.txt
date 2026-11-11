@@ -9336,11 +9336,8 @@ pso/unk/text_8028D490.cpp:
 	.text       start:0x8028D490 end:0x8028D5D4
 
 pso/ui/TAdSinglePlyChrSelectGC_8028D5D4.cpp:
-	.text       start:0x8028D5D4 end:0x8028D714
+	.text       start:0x8028D5D4 end:0x8028D8B8
 	.bss        start:0x80518850 end:0x80518880
-
-pso/misc/TLobby_8028D714.cpp:
-	.text       start:0x8028D714 end:0x8028D8B8
 
 pso/unk/text_8028D8B8.cpp:
 	.text       start:0x8028D8B8 end:0x8028D9A8
@@ -11710,7 +11707,7 @@ pso/misc/TWindowDD.cpp:
 	.text       start:0x803403F8 end:0x80340EA8
 	.ctors      start:0x80434000 end:0x80434004
 	.rodata     start:0x804785D8 end:0x804785E0
-	.data       start:0x804EFB90 end:0x804EFB98
+	.data       start:0x804EFB90 end:0x804EFBC8
 
 pso/misc/TWindowDD_80340EA8.cpp:
 	.text       start:0x80340EA8 end:0x803411E8
