@@ -1201,7 +1201,8 @@ void TLobby__sub_80423298(void) {
         return;
     }
     TLobby::get_time_ms(&now);
-    elapsed = now - dhcp_last_tick_ms;
+    // Keep the original modulo-2^32 tick subtraction across the signed boundary.
+    elapsed = (u32)now - (u32)dhcp_last_tick_ms;
     dhcp_last_tick_ms = now;
     dhcp_elapsed_ms += elapsed;
     secs = dhcp_elapsed_ms / 1000;
