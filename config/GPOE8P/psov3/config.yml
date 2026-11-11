@@ -7237,6 +7237,7 @@ force_active:
   - init_offset_vectors__13TUnk_804EDD20Fv
   - init_offsets_object__13TUnk_804EDD20Fv
   - init_open_state__14TObjEnePanBARAFv
+  - init_orbit_sprite_particle__FPUcPUcPUcPUclUss
   - init_override_params__Fv
   - init_packet_9a__10TObjPlayerFv
   - init_parameters__9TTecBartaFv
@@ -7282,6 +7283,7 @@ force_active:
   - init_proto1_adx__14TBoss6PlotFalzFv
   - init_queue_from_start__15TObjBoss2TunnelFv
   - init_random_particle__13TParticleCtrlFPUcPUcl
+  - init_random_particle__13TUnk_8048E790FPvPvPvPv
   - init_range__11TBoss6Type2Fv
   - init_range_zero_global__6TLobbyFv
   - init_rare_item_data__9TItemDropFPvPv
@@ -8668,6 +8670,7 @@ force_active:
   - lbl_805D92A0
   - lbl_805D92A4
   - lbl_805D92AC
+  - lbl_805D9550
   - lbl_805D9D70
   - lbl_805D9D88
   - lbl_805D9D90
@@ -14973,6 +14976,7 @@ force_active:
   - restore_target_player_state__11TBoss6Type2Fv
   - resume_challenge_result_processing__FPv
   - retire_lobby_player__6TLobbyFii
+  - retire_orbit_particle__13TUnk_8048E790Fv
   - retry_selection_value_table
   - return_home_if_target_lost__13TObjEneMe1GeeFv
   - return_to_city_after_defeat__Fv
