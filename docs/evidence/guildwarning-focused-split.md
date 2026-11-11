@@ -1,5 +1,11 @@
 # Focused GuildWarning replacement for PR #268
 
+The [focused review assessment](guildwarning-focused-review.md) separates this
+partial scope's introduced behavior from inherited boundaries. A bounded follow-up
+unifies the size-copy helper across six callers without changing complete objects
+or coverage. The historical incompatible-helper statements below describe earlier
+checkpoints; factory layout/result storage and raw lifetime qualifications remain.
+
 This draft reconstructs the validated `6daa19a11..74966a46e` GuildWarning slice
 as hunks on current main `1a9c290489ea7a20edaf5f960e57bfffef5a5e14`. It does not import
 old whole-file window implementations. The paired continuation is initially
