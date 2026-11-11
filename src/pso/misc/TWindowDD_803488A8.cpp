@@ -4,7 +4,7 @@
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowDD.h"
 
-struct Src_80348A9C { f32 x; f32 y; };
+typedef WindowTexturePoint Src_80348A9C;
 
 struct Dst_80348A9C { u8 pad[0xc]; f32 x; f32 y; u8 pad2[4]; };
 
@@ -127,8 +127,8 @@ void TWindowDD::copy_point_table(s32 idx) {
     s32 i;
     Src_80348A9C *s = TWindowDD__data_805434E8[idx];
     for (i = 0; i < 8; i++) {
-        self->x = s->x;
-        self->y = s->y;
+        self->x = s->u;
+        self->y = s->v;
         s++;
         self++;
     }
