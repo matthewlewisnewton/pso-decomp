@@ -1206,6 +1206,7 @@ pso/misc/TLobby_803FAEA0.cpp
 pso/misc/TLobby_804048E8.cpp
 pso/misc/TLobby_80426CAC.cpp
 pso/misc/TLobby_80428374.cpp
+pso/misc/TLobby_80429598.cpp
 pso/misc/TLockOnCursor.cpp
 pso/misc/TLockOnCursor_8013D91C.cpp
 pso/misc/TLockOnCursor_8013E0D0.cpp

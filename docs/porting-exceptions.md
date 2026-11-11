@@ -24,9 +24,9 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 84 | 55 |
+| MWCC intrinsics | 87 | 56 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,719 | 881 |
+| CodeWarrior pragmas (excluding push/pop) | 5,714 | 881 |
 | Per-unit compiler overrides in `configure.py` | 195 | 195 |
 | Approved regressions | 0 | 0 |
 
@@ -85,6 +85,16 @@ a count-leading-zeros helper (`__builtin_clz` with a zero check, returns 32 for 
 redundant but harmless); `__rlwinm` → shift/rotate + mask; `__builtin_va_info` →
 standard `va_start`.
 
+### EXI Ethernet driver
+
+`src/pso/misc/TLobby_80429598.cpp` uses guarded `__lhbrx`, `__rlwinm` and
+`__cntlzw` for the receive-page swap, register-command mask and highest-bit
+interrupt dispatch. The mask's backend temporary identity is required for the
+844-byte receiver match. Its non-MWERKS branch calls the scalar byte-swap,
+mask and zero-safe leading-zero helpers in
+`ports/include/pso/port/ExiEthernetFallbacks.h`; the host tests exercise these
+same helpers. See [recovery and validation](evidence/exi-ethernet-unit.md).
+
 ## 3. Direct hardware access
 
 13 files write the GX write-gather pipe at `0xCC008000` directly (inlined
@@ -94,7 +104,22 @@ Reason not recorded per site; it mirrors the SDK's inline GX macros. Port should
 route through the GX abstraction of the target renderer (call `GXPosition3f32`
 etc. or their port equivalents) instead of the fixed address.
 
+The EXI Ethernet initializer in `src/pso/misc/TLobby_80429598.cpp` clears
+bit 31 of the SI register at `0xCC00643C` through `__SIRegs[15]`. The native
+mapped-register header is guarded. A port supplies the guest register view and
+EXI/OS backend; the scalar bit helpers alone do not implement the driver.
+
 ## 4. CodeWarrior pragmas
+
+The EXI Ethernet receiver in `src/pso/misc/TLobby_80429598.cpp` uses scoped
+`opt_propagation off`, helper inlining and ordered volatile snapshot/publication
+accesses to preserve the original descriptor copy and callback lifetimes.
+Four guarded unused byte arrays retain the observed native 0x50-byte frame;
+they are a matching workaround, not evidence of original source declarations
+or wire-record fields. A port omits these MWCC-only slots and pragmas and
+provides its own callback synchronization. [Measured constraints and scalar
+fallbacks](evidence/exi-ethernet-unit.md) record the native and portable limits.
+
 
 The Spanish formatter in `src/pso/misc/TWindowDD_8034435C.cpp` uses scoped
 `dont_inline off` and `inline_depth(1)` to inline its separator/form helper.

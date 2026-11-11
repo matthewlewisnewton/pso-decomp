@@ -683,7 +683,7 @@ struct TLobby : public TObject {
     static void start_exi_dma_read(u16 arg0);
     static void start_exi_dma_write(s32 chan, void *ctx);
     static void start_exi_send(s32 arg0, s32 arg1, ExiSendCompletionCallback arg2);
-    static s32 exi_start_send_dma(int, int);
+    static void exi_start_send_dma(int, int);
     void copy_6_byte_config();
     void copy_mac_address();
     s32 poll_exi_status();
