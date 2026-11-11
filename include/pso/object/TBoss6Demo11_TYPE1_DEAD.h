@@ -5,6 +5,7 @@
 #include "pso/system/vector.h"
 
 struct AnimationMotion;
+struct NJS_OBJECT;
 class ModelNodePositionCapture;
 class TParticleCtrl;
 struct TBoss6PlotFalz;
@@ -18,7 +19,7 @@ public:
     virtual void run_task();
 
     struct Model {
-        s32 object;
+        NJS_OBJECT *object;
         s32 textures;
         AnimationMotion *motion;
     };

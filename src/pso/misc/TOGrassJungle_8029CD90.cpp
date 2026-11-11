@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -34,7 +35,6 @@ struct VObj_8029CD90 : Base_8029CD90 {
 
 s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
-s32 get_bml_model(s32, s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 void __dl__7TObjectFPv(void *);
@@ -51,7 +51,7 @@ void TOGrassJungle::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation.yaw);
-        get_bml_model(TOGrassJungle__bml_resource, this->m_90);
+        (s32)get_bml_model((BmlResource *)TOGrassJungle__bml_resource, this->m_90);
         draw_ginja_object();
         pop_matrix();
     }

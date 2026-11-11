@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -85,7 +86,6 @@ f32 sin_table_lookup(int);
 s32 post_translate_matrix(void *);
 void free_collision_body_parts(void *);
 s32 TObjFish__sub_8001EDB0(void *, int);
-s32 get_bml_model(void *, int);
 s32 draw_chunk_object();
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 push_matrix();
@@ -129,7 +129,7 @@ void TObjGyaranzoMissile::render() {
     rotate_matrix_y(0, this->rotation.yaw);
     translate_matrix(0, 0.0f, (f32) (this->wobble_height * sin_table_lookup((int) this->wobble_phase)), 0.0f);
     model_render_flags &= 0xFFFFFBFF;
-    get_bml_model((void *)gyaranzo_bml_resource, 6);
+    (s32)get_bml_model((BmlResource *)gyaranzo_bml_resource, 6);
     draw_chunk_object();
     pop_matrix();
 }

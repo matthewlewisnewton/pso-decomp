@@ -7,6 +7,7 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ansi_fp.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/buffer_io.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/direct_io.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/file_io.c
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mbstring.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mem.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mem_funcs.c
@@ -313,6 +314,7 @@ pso/boss/TBoss8DragonDemo.cpp
 pso/boss/TBoss8DragonEffBreath.cpp
 pso/boss/TBoss8DragonEffBullet.cpp
 pso/boss/TBoss8DragonEffTail.cpp
+pso/boss/TBoss8Dragon_8002CC48.cpp
 pso/boss/TBoss8Dragon_8005D6F4.cpp
 pso/boss/TBoss8Dragon_8005D700.cpp
 pso/boss/TBoss8Dragon_8005D708.cpp
@@ -834,6 +836,8 @@ pso/misc/EndingSceneTables.cpp
 pso/misc/GbaDownloadRuntime.cpp
 pso/misc/KeyboardCharacterMaps.cpp
 pso/misc/MaterialOpacityFade.cpp
+pso/misc/ParticleBallistic.cpp
+pso/misc/ParticleOrbit.cpp
 pso/misc/ParticleRadial.cpp
 pso/misc/PhotonBlastSummon.cpp
 pso/misc/QuestDownloadBuffers.cpp
@@ -959,6 +963,7 @@ pso/misc/THunterGuildWarning_80211690.cpp
 pso/misc/THunterGuildWarning_802116EC.cpp
 pso/misc/THunterGuildWarning_80211700.cpp
 pso/misc/THunterGuildWarning_8021170C.cpp
+pso/misc/THunterGuildWarning_80211718.cpp
 pso/misc/TJudgmentSequence.cpp
 pso/misc/TJudgmentSequence_8021E4C4.cpp
 pso/misc/TKeyBoardControl.cpp
@@ -1126,7 +1131,6 @@ pso/misc/TLobby_8026B06C.cpp
 pso/misc/TLobby_8026DE30.cpp
 pso/misc/TLobby_80271E48.cpp
 pso/misc/TLobby_8028A7C8.cpp
-pso/misc/TLobby_8028D714.cpp
 pso/misc/TLobby_8028EA28.cpp
 pso/misc/TLobby_80291D94.cpp
 pso/misc/TLobby_80299A60.cpp
@@ -1165,6 +1169,7 @@ pso/misc/TLobby_8036B204.cpp
 pso/misc/TLobby_8036DBC4.cpp
 pso/misc/TLobby_8036F81C.cpp
 pso/misc/TLobby_803BFE50.cpp
+pso/misc/TLobby_803C1A58.cpp
 pso/misc/TLobby_803C45E4.cpp
 pso/misc/TLobby_803C4698.cpp
 pso/misc/TLobby_803CBE88.cpp
@@ -1728,6 +1733,7 @@ pso/misc/TWindowDuelResult_801C2528.cpp
 pso/misc/TWindowEffectLight.cpp
 pso/misc/TWindowEffectParty.cpp
 pso/misc/TWindowEffectParty_8024F690.cpp
+pso/misc/TWindowFukidasi.cpp
 pso/misc/TWindowFukidasi_80252AE4.cpp
 pso/misc/TWindowFukidasi_80252B74.cpp
 pso/misc/TWindowFukidasi_80252BF8.cpp
@@ -1933,6 +1939,7 @@ pso/misc/TWindowSubStatusDisp_802671F0.cpp
 pso/misc/TWindowSubStatusDisp_80268488.cpp
 pso/misc/TWindowSubStatusDisp_80268738.cpp
 pso/misc/TWindowSubStatusDisp_8026CE3C.cpp
+pso/misc/TWindowSubStatusDisp_8026DFE8.cpp
 pso/misc/TWindowSubStatusDisp_8026F6DC.cpp
 pso/misc/TWindowSubStatusDisp_80281198.cpp
 pso/misc/TWindowSubStatusDisp_80287570.cpp
@@ -1948,6 +1955,7 @@ pso/misc/TWindowSubSymbolChat.cpp
 pso/misc/TWindowSubSymbolChatFaceType.cpp
 pso/misc/TWindowSubSymbolChatFaceType_80283A70.cpp
 pso/misc/TWindowSubSymbolChatHelp.cpp
+pso/misc/TWindowSubSymbolChatParts.cpp
 pso/misc/TWindowSubSymbolChatPartsSet.cpp
 pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.cpp
 pso/misc/TWindowSubSymbolChat_80076F88.cpp
@@ -2613,6 +2621,7 @@ pso/system/ChunkMaterialState.cpp
 pso/system/ChunkTextureStripCollector.cpp
 pso/system/CityTraffic.cpp
 pso/system/FlagWord.cpp
+pso/system/GinjaMaterial.cpp
 pso/system/GinjaModelQueue.cpp
 pso/system/ItemEffects.cpp
 pso/system/LscServer.cpp
@@ -2784,6 +2793,7 @@ pso/ui/TAdSinglePlyChrSelectGC_80243218.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8028C650.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8028D5D4.cpp
+pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp
 pso/ui/TAdSinglePlyChrSelectGC_8029A914.cpp
 pso/ui/TAdSinglePlyChrSelectGC_802D3AB8.cpp
 pso/ui/TAdSinglePlyChrSelectGC_802E3AE4.cpp
@@ -3308,7 +3318,6 @@ pso/unk/text_8023F1B8.cpp
 pso/unk/text_8023F3F8.cpp
 pso/unk/text_8023F660.cpp
 pso/unk/text_802432F0.cpp
-pso/unk/text_802437C4.cpp
 pso/unk/text_80244238.cpp
 pso/unk/text_8024450C.cpp
 pso/unk/text_80246CE8.cpp
@@ -3593,6 +3602,8 @@ pso/unk/text_803F4D10.cpp
 pso/unk/text_803F4D84.cpp
 pso/unk/text_80421620.cpp
 pso/unk/text_8042E8C4.cpp
+pso/unk/text_8042E9FC.cpp
+pso/unk/text_8042EA10.cpp
 pso/unk/text_8042EAD4.cpp
 pso/unk/text_8042EE4C.cpp
 si/SIBios.c

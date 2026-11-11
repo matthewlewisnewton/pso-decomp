@@ -15,19 +15,19 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `c1fb4aa04461`, 2026-11-10)
+## Summary (including approved native restore exception, 2026-11-11 UTC)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `c1fb4aa04461` (2026-11-10). Assembly is counted as source lines;
+for this source tree. Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
+| Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,775 | 880 |
-| Per-unit compiler overrides in `configure.py` | 191 | 191 |
+| CodeWarrior pragmas (excluding push/pop) | 5,704 | 879 |
+| Per-unit compiler overrides in `configure.py` | 193 | 193 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -47,6 +47,19 @@ asm always has an entry in this register.
 | `src/pso/unk/text_803D8910.cpp` | `vec3_add_to` | hand-written `asm void` under `#ifdef __MWERKS__`; scalar add in the `#else` | In-place paired-single add (`psq_l`/`ps_add`/`psq_st`, z with W=1) at 0x803D8910 that CW 2.6 cannot emit from C. Matt confirmed this exception in the [#128 approval](#approval-for-the-ginja-vector-kernels). Evidence: [vec3-add-to-paired-single.md](evidence/vec3-add-to-paired-single.md). | Compile the scalar add fallback. |
 | `src/pso/unk/text_803D8910.cpp`, `src/pso/unk/text_803D96A8.cpp` | `vec3_dot`, `vec3_cross`, `normalize_vector` | standard `orig_asm` body from the disc under `#ifdef __MWERKS__`; scalar C/C++ in the `#else` | GC/2.6 did not reproduce the register allocation and load order of `vec3_dot` (0x803D89C0). The typed intrinsics also insert an extra rounding step when reproducing the estimate sequence in `vec3_cross` (0x803D8A18) and `normalize_vector` (0x803D97B4). Matt approved these three disc-generated bodies in the [#128 approval](#approval-for-the-ginja-vector-kernels). Evidence: [vec3-add-to-paired-single.md](evidence/vec3-add-to-paired-single.md). | Compile the scalar C/C++ fallback. |
 | `src/pso/unk/text_803E2D70.cpp` | `transform_chunk_vertices_pos_normal` | hand-written `asm void` under `#ifdef __MWERKS__` | One-time asm exception approved by Matt on 2026-11-04 ([#281](https://github.com/matthewlewisnewton/pso-decomp/pull/281)): SDK `PSMTXROMultVecArray`-style paired-single code (`psq_l`/`ps_madds*`/`psq_stu`) that MWCC cannot emit from C; other GameCube decomps keep it as asm. Evidence: [docs/evidence/paired-single-sdk-asm.md](evidence/paired-single-sdk-asm.md). | Use the scalar C++ `#else` fallback that ships with it. |
+| `src/pso/unk/text_8042E9FC.cpp` | `pad_03_8042E9FC_text` | Disc-generated local assembly and scoped `force_active`, guarded by `__MWERKS__` | Approved for [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) with the portable behavior condition below. Retention reproduces exact native linkage without invented references. | Compile `step_loader_restore` in the `#else` and dispatch it against guest state; see `ports/include/pso/port/LoaderTransfer.h`. |
+| `src/pso/unk/text_8042E8C4.cpp` | `LaunchDol` handoff | Existing generated native assembly; new scalar handoff handler in the `#else` | Preserve the nonlinking LR transfer and live guest frame. | Use `step_loader_handoff` for the final four instructions; the remaining relocation/reset body still requires platform implementation or PPC execution. |
+
+### Loader restore approval
+
+Matt approved PR #285's generated 20-byte restore and scoped `force_active` on
+2026-11-11 UTC, conditional on portable builds having a path to identical
+behavior. Both loader source units now compile scalar handoff/restore handlers
+in their non-Metrowerks branches. The portable execution backend supplies guest
+memory, instruction synchronization and dispatch; this is not a full host loader.
+The pragma retains a local fragment otherwise discarded by the native linker.
+Original source ownership remains provisional. See [native and portable
+validation](evidence/loader-restore-retention.md).
 
 ### Approval for the Ginja vector kernels
 
@@ -83,6 +96,31 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
+`pso/boss/TBoss8Dragon_8002CC48.cpp` uses guarded `defer_codegen on/off`
+around its reversed first twelve definitions to preserve both native vtable
+offsets and scalar emission order. The initializer at `0x8002D5F8` uses scoped
+`opt_propagation off` with a named grid width so backend dead-load cleanup runs
+before instruction scheduling. A guarded `.sdata2` attribute preserves the named
+16.0 default scale's pool position. See [the unit evidence](evidence/dragon-ground-grid-recovery.md).
+Ports should drop these emission/optimizer controls and the section attribute;
+keep the ordinary C++ grid construction, UV calculations, and native vtables.
+
+The name-plate renderer at `0x80251EC8` in `TWindowFukidasi.cpp` uses scoped
+`opt_propagation off`, `opt_common_subs off`, and `opt_lifetimes off` with
+its `fp_contract on` scope. The controls retain the separate text/background
+colors and quad-coordinate registers across drawing calls. Ports can drop
+the optimizer controls; preserve fused arithmetic when native rounding is
+required. See [the unit evidence](evidence/fukidasi-name-plate-recovery.md).
+
+The character-creation shape coefficient function in
+`src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp` uses a scoped
+`opt_propagation off` and ordered scalar declarations to preserve the original
+GC/2.6 register allocation. The two recovered blending bodies use the existing
+`fp_contract on` scope for fused arithmetic. Ports may drop the propagation
+pragma and declaration-order constraint; retain fused operations when original
+rounding is required. See [shape blending evidence](evidence/creation-shape-blending.md).
+
+
 The download graph unit uses a scoped `fp_contract on` for the filled edge in
 `fn_8007F27C`. Its section declarations and one four-byte string alignment
 preserve the graph's exported constants and format strings. See
@@ -95,11 +133,11 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,775 pragmas in 880 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1142, `inline_depth` 1034, `fp_contract` 879, `auto_inline` 832,
-`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 239,
+5,704 pragmas in 879 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 881, `auto_inline` 802,
+`opt_common_subs` 615, `scheduling` 263, `opt_propagation` 246,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
-`defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
+`defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -107,6 +145,36 @@ MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
 check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
+
+### Symbol-chat part-grid rendering
+
+`fn_802857C4` at `0x802857C4` in `TWindowSubSymbolChatParts.cpp` uses
+scoped `opt_propagation off` to preserve the row-height load and floating-point
+register lifetimes with a `32.0f` literal. With propagation enabled, eleven
+register operands differ at 99.421486%. The literal shares the unit's existing
+pool entry and resolves the former undefined constant reference, allowing the
+complete unit to link. This is a measured matching constraint, not evidence of
+an original pragma. Ports can drop propagation steering and retain the same
+literal and arithmetic. The existing `fp_contract on` scope is unchanged.
+See [the unit evidence](evidence/symbol-chat-parts-recovery-evidence.md).
+
+### Shortcut preview at `0x8026E1D4`
+
+`TWindowShortCut::initialize_preview` uses scoped `fp_contract on` for the
+fused coordinate calculations and `opt_propagation off` to preserve the
+saved-register allocation across the entry and formatter calls. Keep fused
+subtraction if exact float results matter on a port. Drop the optimizer
+pragma on other compilers.
+
+The thirteen `__declspec(section ".sdata2")` definitions in
+`TWindowSubStatusDisp_8026DFE8.cpp` put the separator, icon table and
+preview constants at `0x805DD348..0x805DD37C`. CodeWarrior places these
+named constants in writable small data without the declarations. The
+matching CodeWarrior build indexes the icon table with `kind - 1`.
+For kind zero the emitted load reads the separator's final zero byte at
+`0x805DD34B`, one byte before the table. The portable branch handles
+zero explicitly so it can use independent objects and stay within the
+array bounds.
 
 ### Item attack collider
 
@@ -124,6 +192,22 @@ The unit's named effect and angle constants use CodeWarrior section placement
 to retain their `.rodata` and `.sdata2` addresses and direct relocations. A
 port can use ordinary constants and omit the section attributes and pragma.
 
+### Orbit particle update and constant tail
+
+`src/pso/misc/ParticleOrbit.cpp` scopes `fp_contract on` to
+`TUnk_8048E790::run_task` at `0x8008A080` for its fused orbit and color
+calculations. It places the final eight-byte `lbl_805D9550` scalar object
+in `.sdata2` with `__declspec(section)`; ordinary array placement changes
+the initializer addressing and layout. The native packed color is written
+through unsigned bytes of a live word. See
+[orbit particle recovery](evidence/orbit-particle-recovery.md) for the
+source alternatives, compiler tracing, and complete-object checks.
+
+Port should: drop the inlining and section annotations, preserve fused
+floating-point calculations where native rounding is required, and pack
+0xAARRGGBB explicitly on little-endian targets. No new optimizer steering
+pragma remains in this unit.
+
 ### Ground collision debug hook
 
 In `src/pso/map/CsnQuery.cpp`, CodeWarrior leaves the selected contact pointer
@@ -133,6 +217,30 @@ consists of a return instruction. The matching build preserves the original
 register state at that call. The portable branch initializes the debug pointer
 to null.
 
+### Ginja material dispatch
+
+`src/pso/system/GinjaMaterial.cpp` adds scoped `use_lmw_stmw off` for
+`apply_ginja_material_params` (`0x803DBE1C`), preserving the original save/restore
+helpers. Its format-field reference preserves the surface address across the
+GX call and the subsequent field-read timing; an ordinary pointer changes eight
+register operands. Ports can retain the reference or use an ordinary surface
+pointer and omit the pragma.
+
+The fallback RGBA aggregate at `0x805E0F68` uses a guarded `.sdata2` section
+attribute. Its definition sits after the consuming material-color function
+and before the dispatcher's float literals, preserving the named load and
+small-constant order/alignment. Ports can use the ordinary constant without
+the section attribute or definition-order constraint.
+
+The native parameter table calls heterogeneous one- and two-word handlers
+through the two-word MWCC ABI. `GinjaParameterHandler.h` restores each entry's
+actual function type on other compilers; ports must keep that typed dispatch.
+Native draw/matrix callbacks retain pre-existing unspecified return-register
+paths, while portable branches explicitly return zero. The shared draw-callback
+interface remains provisional. Existing raw GX declarations, layout views,
+callback casts and pragmas also become source-linked with this unit; they still
+need consolidation for a port. See [the recovery evidence](evidence/ginja-material-recovery.md).
+
 ### ADX stream decode at `0x803C0238`
 
 `src/pso/misc/TLobby_803BFE50.cpp` extends its existing inlining scope to the
@@ -141,6 +249,13 @@ Under GC/2.6, flattening those phases into the caller changes the saved
 register allocation. The chunk declaration order within the output helper
 also places the two descriptors at stack offsets 8 and 16. Ports can use the
 same helpers with ordinary inlining and native pointer-sized handles.
+
+### Action palette
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `configure.py` | `pso/misc/TWindowActionPalette.cpp` | `-inline off,deferred` with reversed definitions | Places the compiler-generated vtable at `.data+0x308` before the icon switch table at `+0x320`, while retaining the original function order. See [unit evidence](evidence/action-palette-unit.md). | Use ordinary function ordering and compiler-generated virtual dispatch. |
+| `src/pso/misc/TWindowActionPalette.cpp` | Frame, slot-light position, and count-label position | Scoped `fp_contract on` | Preserves the existing fused coordinate arithmetic when the three fragments are consolidated. | Preserve fused float rounding when exact original positioning is required. |
 
 ### Dark Falz demo 4
 
@@ -288,7 +403,7 @@ and the same function body.
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-191 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+193 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -304,6 +419,16 @@ use their own compiler versions as recorded there.
 Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
+
+### Speech-balloon constant alignment
+
+`pso/misc/TWindowFukidasi.cpp` uses `cw_align: .sdata2=4`. Its float pool
+starts at `0x805DCD0C`; GC/2.6 otherwise requests eight-byte alignment in
+both ELF and its CodeWarrior comment record. The existing alignment tool
+changes those records without changing code, constants or relocations.
+Ports can drop this object-layout override and use normal float alignment.
+The compatible pointer reads of four materialized constants avoid duplicate
+MWCC literal-pool entries; a port can read those constants directly.
 
 ### Time setting and calendar startup
 
@@ -1333,7 +1458,6 @@ entry when the PR merges.
 
 | PR | Exception | Status / reason |
 |---|---|---|
-| [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295) | `inline_depth(2)` (main's existing region uses depth 1) on `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | The nested `flags & 1` group walk only inlines at depth 2, which is required for both page-fit expansions in `sub_803EC284` to match. A port can drop the pragma and keep the scalar loop. |
@@ -1361,3 +1485,17 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | Scope | Construct | Evidence and reason | Port action |
 |---|---|---|---|
 | `src/pso/misc/ParticleRadial.cpp`, `TUnk_8048E7A8::run_task` at `0x8008B590` | New scoped `fp_contract on`; big-endian ARGB byte writes into a `u32` through `unsigned char` | The original's twelve channel interpolations are `fmadds`. Without the new contraction scope the routine is 94.10405%; with it all 1,384 bytes match. Existing constructor scopes are unchanged. The colour representation reproduces four native byte stores and one packed-word load without inactive-union aliasing. See [source, type and arithmetic evidence](evidence/radial-particle-update.md). New compiler control remains subject to independent source-quality review before publication. | Use single-rounded `fmaf` interpolation when native rounding is required. On little-endian hosts, pack the converted channels explicitly as `(a << 24) | (r << 16) | (g << 8) | b`. |
+
+### Ballistic particle update and constant layout
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/ParticleBallistic.cpp`, update at `0x800888E8` | Scoped `fp_contract on`; big-endian ARGB byte writes into a live `u32` | The original has fused bounce and colour interpolation. The recovered update matches all 2,060 bytes, using the radial particle's clamp and local-value layout. [Recovery evidence](evidence/ballistic-particle-recovery.md). | Preserve required single rounding with `fmaf`; pack converted ARGB channels explicitly on little-endian hosts. |
+| Same file, renderer at `0x800890F4` | Scoped `pool_data off` | With all owned constants defined, ordinary pooling shares a `.rodata` base and changes the renderer to 1,412 bytes / 94.68715%. Independent addresses reproduce the original 1,432 bytes exactly. Late definitions preserve instructions but put the constants in the wrong section order. | Drop the layout control; keep the ordinary constant values. |
+| Same file, `lbl_805D9520` | MWCC-only `.sdata2` placement for the existing two-float object | Retains the angular range and trailing zero in the original eight-byte object, instead of a four-byte literal. | Use the ordinary const array; the section annotation is guarded for MWCC. |
+### AIFF parsing and ADX block transfer
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/TLobby_803C1A58.cpp`, `TLobby__sub_803C2388` | Scoped `opt_propagation off`, `opt_common_subs off` | Preserve the original byte-swap/load sequence and chunk traversal; all 624 bytes match. [Recovery evidence](evidence/audio-formats-and-adx-transfer.md). | Drop these compiler controls; retain explicit endian decoding and original parsing behavior, or harden input validation as a separate behavioral change. |
+| Same file, `TLobby__sub_803C3570` | Scoped `opt_common_subs off`, `opt_lifetimes off`, `opt_propagation off`; existing decoder API passes pointers through `s32` | The two-phase block transfer needs the original saved-register lifetimes and arithmetic/load ordering; all 1,028 bytes match. The bounded record and shared legacy decoder interface are documented in the recovery evidence. | Drop the compiler controls, use fixed-width scalar fields and typed pointer arguments at the decoder boundary. Ordinary sample-copy loops remain C++. |

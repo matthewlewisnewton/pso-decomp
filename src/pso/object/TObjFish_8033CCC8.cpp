@@ -217,10 +217,10 @@ void TBoss6Demo11_TYPE1_DEAD::render_fade_model() {
         set_motion_packed_rotation();
         post_translate_matrix(&origin.x);
         set_current_texture_list(reinterpret_cast<GinjaTextureList *>(models[0].textures));
-        draw_model_motion(reinterpret_cast<void *>(models[0].object), models[0].motion, frame);
+        draw_model_motion(models[0].object, models[0].motion, frame);
         set_current_texture_list(reinterpret_cast<GinjaTextureList *>(models[1].textures));
         capture->install();
-        draw_model_motion(reinterpret_cast<void *>(models[1].object), models[1].motion, frame);
+        draw_model_motion(models[1].object, models[1].motion, frame);
         capture->clear();
         clear_motion_packed_rotation();
         pop_matrix();

@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
@@ -1290,7 +1291,7 @@ void TObjEneDelDepthBomb::render() {
         this->queue_destruction();
         return;
     }
-    s32 model = get_bml_model(data, 2);
+    NJS_OBJECT *model = get_bml_model(data, 2);
     s32 texture = TObjFish__sub_8001EDB0((u8 *)data, 2);
     push_matrix();
     post_translate_matrix(&position);

@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -25,7 +26,6 @@ struct Vec_8018BEE4 { f32 x, y, z; };
 
 extern "C" {
 void __ct__15RenderFadeStateFv(void *);
-s32 get_bml_model(int, int);
 s32 init_collision_body_parts(void *, void *, int);
 
 f32 xyz_distance_squared(u8 *arg0, u8 *arg1);
@@ -132,13 +132,13 @@ void render__16TObjContainerIdoFv(u8 *container_ido) {
         post_translate_matrix(container_ido + 0xC0);
         rotate_matrix_y(0, ((TObjContainerIdo *)container_ido)->rotation.yaw);
         rotate_matrix_x(0, *(s32 *)((s8 *)container_ido + 0x5C));
-        draw_ginja_object((void *)get_bml_model(TObjContainerIdo__model_resource, 0));
+        draw_ginja_object((void *)get_bml_model((BmlResource *)TObjContainerIdo__model_resource, 0));
         pop_matrix();
         push_matrix();
         post_translate_matrix(container_ido + 0x38);
         rotate_matrix_y(0, ((TObjContainerIdo *)container_ido)->rotation.yaw);
         rotate_matrix_x(0, *(s32 *)((s8 *)container_ido + 0x5C));
-        draw_ginja_object((void *)get_bml_model(TObjContainerIdo__model_resource, 1));
+        draw_ginja_object((void *)get_bml_model((BmlResource *)TObjContainerIdo__model_resource, 1));
         pop_matrix();
         if (var_r31 != 0) {
             ((VMem_8018C06C*)(container_ido + 0xF0))->m7();

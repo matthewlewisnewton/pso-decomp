@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -195,7 +196,6 @@ void s_rank_knuckle_marker(T_80362C80 *arg0);
 
 
 
-Node_803627DC *get_bml_model(void *, int);
 s32 TObjPlayer__sub_800F0928(void *);
 extern Quad_803627DC lbl_80479FAC;
 extern f32 lbl_80543A18[3];
@@ -266,12 +266,12 @@ void TObjEneEpsilonGuard::load_assets() {
     lbl_805D6FA0 = p;
     p = (u8 *)::operator new(0x10);
     if (p != NULL) {
-        p = ((TBreakUpMdl *)p)->init_from_model((s32)(get_bml_model(lbl_805D6FA0, 5)));
+        p = ((TBreakUpMdl *)p)->init_from_model((s32)(((Node_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 5))));
     }
     lbl_805D6FA4 = p;
     p = (u8 *)::operator new(0x10);
     if (p != NULL) {
-        p = ((TBreakUpMdl *)p)->init_from_model((s32)(get_bml_model(lbl_805D6FA0, 6)));
+        p = ((TBreakUpMdl *)p)->init_from_model((s32)(((Node_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 6))));
     }
     lbl_805D6FA8 = p;
     lbl_805D6F80 = (s32)get_battle_base_stats(0x23);
@@ -282,15 +282,15 @@ void TObjEneEpsilonGuard::load_assets() {
     epsilon_guard_shared_handler_b = (s32)get_battle_attack_params(0x24);
     epsilon_guard_registered_object_handle = (s32)get_battle_resistance_params(0x24);
     TObjEneEpsilonGuard__movement_params = (s32)get_battle_movement_params(0x24);
-    epsilon_guard_part_color_table[0] = get_bml_model(lbl_805D6FA0, 0)->child->leaf->v;
-    epsilon_guard_part_color_table[1] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->child->leaf->v;
-    epsilon_guard_part_color_table[2] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->next->child->leaf->v;
-    epsilon_guard_part_color_table[3] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->next->next->child->leaf->v;
-    epsilon_guard_part_color_table[4] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->next->next->next->child->leaf->v;
-    epsilon_guard_part_color_table[5] = get_bml_model(lbl_805D6FA0, 1)->child->leaf->v;
-    epsilon_guard_part_color_table[6] = get_bml_model(lbl_805D6FA0, 2)->child->leaf->v;
-    epsilon_guard_part_color_table[8] = get_bml_model(lbl_805D6FA0, 3)->leaf->v;
-    epsilon_guard_part_color_table[7] = get_bml_model(lbl_805D6FA0, 4)->leaf->v;
+    epsilon_guard_part_color_table[0] = ((Node_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 0))->child->leaf->v;
+    epsilon_guard_part_color_table[1] = ((Node_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 0))->child->next->child->child->next->child->child->next->next->child->leaf->v;
+    epsilon_guard_part_color_table[2] = ((Node_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 0))->child->next->child->child->next->child->child->next->next->next->child->leaf->v;
+    epsilon_guard_part_color_table[3] = ((Node_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 0))->child->next->child->child->next->child->child->next->next->next->next->child->leaf->v;
+    epsilon_guard_part_color_table[4] = ((Node_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 0))->child->next->child->child->next->child->child->next->next->next->next->next->child->leaf->v;
+    epsilon_guard_part_color_table[5] = ((Node_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 1))->child->leaf->v;
+    epsilon_guard_part_color_table[6] = ((Node_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 2))->child->leaf->v;
+    epsilon_guard_part_color_table[8] = ((Node_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 3))->leaf->v;
+    epsilon_guard_part_color_table[7] = ((Node_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 4))->leaf->v;
     TObjPlayer__sub_800F0928(epsilon_guard_part_color_table);
     {
         Quad_803627DC q = lbl_80479FAC;

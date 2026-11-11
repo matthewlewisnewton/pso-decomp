@@ -379,7 +379,6 @@ struct TLobby : public TObject {
     void set_field_90(s32 v);
     static void send_packet(s32 arg0, s32 arg1);
     static void free_shared_objects();
-    void *start_load_default();
     static void free_single_player_chr_select();
     static void alloc_download_server();
     static void free_chr_select_singleton();
@@ -713,7 +712,6 @@ struct TLobby : public TObject {
     void add_status_disp_entry(s32 arg1, s32 arg2);
     static void reset_message_thread();
     static void update_exi_status();
-    s32 post_message(s32 arg1, s32 arg2, s32 arg3);
     static void message_thread_loop();
     static void clear_message_entry_wrapper(s32 arg0);
     static u16 recv_pppoe_message(s32 *arg0, u16 *arg1);
@@ -727,8 +725,6 @@ struct TLobby : public TObject {
     static s16 query_link_status();
     static s32 set_connect_mode(s32 arg0);
     static s32 get_task_count();
-    void parse_dhcp_lease_times();
-    static s32 validate_slot_buffers(s32 arg0, void *arg1, void *arg2, void *arg3);
     static void release_entry_by_id(u32 arg0);
     static u8 *find_entry_by_address(s32 arg0);
     static void cancel_alarm_a();
@@ -761,7 +757,7 @@ struct TLobby : public TObject {
     static void resume_thread(s32 thread);
     void cancel_thread_if_running();
     static void deactivate_entry_by_key(u32 key);
-    static s32 run_current_thread_callback();
+    static void *run_current_thread_callback(void *);
     s16 check_connection_status();
     static s32 clear_flag_bit4(s32 arg0, u8 *arg1);
     void init_net_state_entry();
@@ -788,7 +784,6 @@ struct TLobby : public TObject {
     s32 get_battle_ctrl_default();
     static s32 find_free_chat_log_slot();
     static void apply_menu_cursor_selection();
-    u32 alloc_load_buffer(s32 arg1);
     static void reset_leader_selection_static();
     static u8 *get_stage_table_entry(s32 arg0, s32 arg1);
     static s32 get_online_result_value();
@@ -1110,9 +1105,6 @@ struct TLobby : public TObject {
     void move_trade_item_amount(u32 arg1, s32 arg2);
     void set_stream_frequency(s32 rate);
     s32 copy_current_entry_name(s32 len);
-    s32 build_dhcp_release();
-    s32 dhcp_build_packet();
-    s32 build_dhcp_discover_packet();
     void capture_chat_sensor();
     static void parse_message_tag();
     static void append_unit_list_name();

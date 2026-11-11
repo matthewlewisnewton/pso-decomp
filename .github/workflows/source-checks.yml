@@ -43,6 +43,11 @@ jobs:
           PSO_TEST_NINJA: /usr/bin/ninja
         run: python3 -m unittest discover -s tools/tests -p 'test_*.py' -v
 
+      - name: Portable behavior
+        run: |
+          make -C ports/tests run
+          make -C ports/tests sanitize
+
       - name: Changed-line whitespace
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}

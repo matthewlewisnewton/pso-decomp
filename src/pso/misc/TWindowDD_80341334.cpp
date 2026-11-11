@@ -1,3 +1,4 @@
+#include "pso/misc/TextEntryMeasurement.h"
 #include "types.h"
 #include "pso/misc/TWindowDD_80341334.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
@@ -41,7 +42,6 @@ struct RecoveredGlobal_8034146C_TWindowDD__data_804EFC24 {
 };
 
 extern "C" {
-s32 refresh_status_display__9TWindowDDFv(int);
 extern RecoveredGlobal_8034138C_TWindowDD__data_804EFC24 TWindowDD__data_804EFC24;
 extern s32 lbl_804EFC38[];
 extern const char *lbl_805D42D8;
@@ -80,7 +80,7 @@ u8 *TWindowDD__sub_8034138C(u8 *arg0, s32 arg1, s32 arg2, s32 str, s32 arg4) {
         set_text_entry_string((window_help_item), (str), 0x80);
         ((TWindowHelpItem *)window_help_item)->m_8 = (f32) lbl_805DFC94;
         *(f32 *)((s8 *)window_help_item + 0xC) = (f32) lbl_805DFC94;
-        refresh_status_display__9TWindowDDFv((int)window_help_item);
+        measure_text_entry(window_help_item);
         ((TWindowHelpItem *)window_help_item)->reset_float_field();
     }
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x60);

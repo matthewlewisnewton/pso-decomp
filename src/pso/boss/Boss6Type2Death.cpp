@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/CurrentTextureList.h"
@@ -73,7 +74,6 @@ void push_matrix();
 void post_translate_matrix(void *);
 s32 get_bml_motion(void *, int);
 s32 TObjFish__sub_8001EDB0(void *, int);
-s32 get_bml_model(void *, int);
 
 void __ct__7TObjectFP7TObject(void *);
 void *get_fish_count__8TObjFishFv(void);
@@ -404,16 +404,16 @@ void *TBoss6Demo21_TYPE2_DEAD__ct(void *arg0p, void *arg1, void *arg2) {
     }
     vec3_add_to(arg0 + 0x58, &v);
     void *count = get_fish_count__8TObjFishFv();
-    *(s32 *)((s8 *)arg0 + 0x1C) = get_bml_model(count, 4);
+    *(s32 *)((s8 *)arg0 + 0x1C) = (s32)get_bml_model((BmlResource *)count, 4);
     *(s32 *)((s8 *)arg0 + 0x20) = TObjFish__sub_8001EDB0(count, 4);
     ((TBoss6Type1 *)arg0)->texlist = get_bml_motion(count, 7);
-    *(s32 *)((s8 *)arg0 + 0x28) = get_bml_model(count, 5);
+    *(s32 *)((s8 *)arg0 + 0x28) = (s32)get_bml_model((BmlResource *)count, 5);
     *(s32 *)((s8 *)arg0 + 0x2C) = TObjFish__sub_8001EDB0(count, 5);
     ((TBoss6Type1 *)arg0)->actorFlags = get_bml_motion(count, 7);
-    *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(count, 8);
+    *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model((BmlResource *)count, 8);
     *(s32 *)((s8 *)arg0 + 0x38) = TObjFish__sub_8001EDB0(count, 8);
     *(s32 *)((s8 *)arg0 + 0x3C) = get_bml_motion(count, 8);
-    *(s32 *)((s8 *)arg0 + 0x40) = get_bml_model(count, 0xD);
+    *(s32 *)((s8 *)arg0 + 0x40) = (s32)get_bml_model((BmlResource *)count, 0xD);
     *(s32 *)&((TBoss6Type1 *)arg0)->prev_position.x = TObjFish__sub_8001EDB0(count, 0xD);
     *(s32 *)&((TBoss6Type1 *)arg0)->prev_position.y = get_bml_motion(count, 0x3D);
     *(s32 *)&((TBoss6Type1 *)arg0)->scale.z = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type2_death_effect_desc_a), (Vec *)((arg0 + 0x64)));

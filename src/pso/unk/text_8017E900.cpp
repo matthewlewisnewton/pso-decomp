@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/misc/TButterfly.h"
@@ -10,7 +11,6 @@ s32 post_translate_matrix(void *);
 s32 rotate_matrix_y(int, int);
 s32 rotate_matrix_x(int, int);
 s32 get_bml_motion(void *, s32);
-s32 get_bml_model(void *, s32);
 s32 draw_ginja_model_with_motion(s32, s32, f32);
 extern void *butterfly_bml_resource;
 void TButterfly::draw_model() {
@@ -19,7 +19,7 @@ void TButterfly::draw_model() {
     post_translate_matrix(self->pos);
     rotate_matrix_y(0, this->rotation.yaw);
     rotate_matrix_x(0, -0x2000);
-    draw_ginja_model_with_motion(get_bml_model(butterfly_bml_resource, 0), get_bml_motion(butterfly_bml_resource, 0), self->fa8);
+    draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)butterfly_bml_resource, 0), get_bml_motion(butterfly_bml_resource, 0), self->fa8);
     pop_matrix();
 }
 

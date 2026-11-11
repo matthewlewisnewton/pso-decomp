@@ -48,7 +48,6 @@ s32 __dl__7TObjectFPv(void *);
 extern RecoveredGlobal_801FB430___vt__13TRaderMapCore __vt__13TRaderMapCore;
 extern s32 TRaderMapCore__instance;
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
-s32 init_map_ptr__13TRaderMapCoreFv(void *, int);
 s32 fn_803D64F8(void *);
 extern f32 lbl_805D35F0;
 extern f32 lbl_805D35FC;
@@ -137,9 +136,9 @@ Core_801FB490 *TRaderMapCore__ct(Core_801FB490 *arg0, void *parent) {
     __ct__8TObjBaseFP7TObject(arg0, parent);
     arg0->vt = &__vt__13TRaderMapCore.value;
     arg0->f0 = rader_map_core_name_ptr;
-    arg0->f178 = init_map_ptr__13TRaderMapCoreFv(&arg0->f90, 2);
-    arg0->f17c = init_map_ptr__13TRaderMapCoreFv(&arg0->f90, 0);
-    arg0->f180 = init_map_ptr__13TRaderMapCoreFv(&arg0->f90, 1);
+    arg0->f178 = (s32)TRaderMapCore::init_map_ptr(&arg0->f90, 2);
+    arg0->f17c = (s32)TRaderMapCore::init_map_ptr(&arg0->f90, 0);
+    arg0->f180 = (s32)TRaderMapCore::init_map_ptr(&arg0->f90, 1);
     for (i = 0; i < 3; i++) {
         g = &TRaderMapCore__map_view_state[i];
         fn_803D64F8(g);

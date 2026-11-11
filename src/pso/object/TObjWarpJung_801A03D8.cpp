@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/object/TObjWarpJung_801A03D8.h"
 #include "pso/object/TObjWarpJung.h"
@@ -9,10 +10,9 @@ extern s32 warp_jung_beam_entry_index;
 extern s32 lbl_805D5CC0;
 s32 scroll_ginja_mesh_uvs(s32, s32, s32, u16, s32);
 int draw_ginja_object(void);
-int get_bml_model(void*, void*);
 
     extern int TObjWarpJung__beam_bml_resource;
-void TObjWarpJung::render_warp(void* a0) { get_bml_model((void*)TObjWarpJung__beam_bml_resource, a0); draw_ginja_object(); }
+void TObjWarpJung::render_warp(void* a0) { (int)get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, (s32)a0); draw_ginja_object(); }
 
 extern s32 actor_frame_tick;
 extern s32 lbl_805D5CB4;

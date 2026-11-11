@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -21,7 +22,6 @@ extern "C" {
 extern u32 ancient_container_resource_bundle;
 extern u32 ancient_container_fragment_texture_lists;
 s32 TObjFish__sub_8001EDB0(void *, int);
-s32 get_bml_model(void *, int);
 s32 init_collision_body_parts(void *, void *, int);
 }
 extern RecoveredGlobal_8015C534_lbl_804B00C8 TOContainerAncientEnemy__collision_body_params;
@@ -40,7 +40,7 @@ u8 *init_ancient_container(u8 *arg0, s32 arg1) {
     VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x38));
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
     *(f32 *)((s8 *)arg0 + 0x78) = (f32) (*(f32 *)((s8 *)arg0 + 0x78) + *(f32 *)((s8 *)&TOContainerAncientEnemy__collision_body_params.value + 4));
-    *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model((void *) ((*(s32 *)&ancient_container_resource_bundle)), 0);
+    *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&ancient_container_resource_bundle)), 0);
     ((TUnk_804B08BC *)arg0)->texlist = TObjFish__sub_8001EDB0((void *) ((*(s32 *)&ancient_container_resource_bundle)), 0);
     return arg0;
 }

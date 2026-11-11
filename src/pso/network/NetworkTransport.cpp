@@ -1,6 +1,8 @@
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/NetworkTransport.h"
 #include "pso/network/ModemRuntime.h"
+#include "dolphin/os/OSThread.h"
+#include <stddef.h>
 
 #include "types.h"
 #include "pso/misc/TLobby.h"
@@ -35,12 +37,11 @@ struct RecoveredGlobal_803F79C0_lbl_805A9008 {
 
 struct RecoveredGlobal_803F7A30_lbl_805C18A0 {
     s32 value;
-    u8 remaining[0xC];
+    NetThreadHandle thread_handle;
+    u8 remaining[8];
 };
 
 struct E_803F7684 { u32 key; s32 val; };
-
-struct P_803F7A90 { s32 a; s32 b; };
 
 struct Q_803F7AF4 { s32 a; s32 b; };
 
@@ -127,7 +128,6 @@ void TLobby__sub_803F97E8(s32);
 s32 TLobby__sub_80428094(s16);
 void TAdSinglePlyChrSelectGC__sub_8042D604(void);
 extern s16 net_slot_id;
-extern s32 queue_thread_handle;
 extern u32 TLobby__send_ring_mutex;
 extern s16 network_pppoe_transport_enabled;
 void TLobby__sub_803F8238(void);
@@ -161,7 +161,6 @@ extern s32 lobby_send_ring_pending_bytes;
 extern Q_803F7AF4 TLobby__next_send_chunk;
 extern s32 lobby_send_chunk_size;
 Q_803F7AF4 *get_next_send_chunk__6TLobbyFv(void);
-s32 OSIsThreadSuspended(s32);
 extern s32 lobby_ring_buffer_write_pos;
 s16 TLobby__sub_804281DC(void *);
 extern u8 pppoe_discovery_name_storage[2][256];
@@ -390,6 +389,7 @@ void TLobby::init_net_buffer_desc() {
 }
 
 typedef char RecoveredGlobal_803F7A30_lbl_805C18A0_size[sizeof(RecoveredGlobal_803F7A30_lbl_805C18A0) == 0x10 ? 1 : -1];
+typedef char NetworkTransport_thread_handle_offset[offsetof(RecoveredGlobal_803F7A30_lbl_805C18A0, thread_handle) == 4 ? 1 : -1];
 void TLobby::stop_network_thread() {
     TLobby::lock_mutex((int) (*(s32 *)((s8 *)&lbl_805C18A0.value + 0)));
     ((TLobby *)(*(s32 *)((s8 *)&lbl_805C18A0.value + 4)))->cancel_thread_if_running();
@@ -399,10 +399,11 @@ void TLobby::stop_network_thread() {
 }
 
 void TLobby__sub_803F7A90(void) {
-    if (TLobby__sub_803F96AC(((P_803F7A90 *)&lbl_805C18A0)) < 0 || TLobby__sub_803F9B94(run_net_thread_loop__6TLobbyFv, &((P_803F7A90 *)&lbl_805C18A0)[0].b) < 0) {
+    if (TLobby__sub_803F96AC(&lbl_805C18A0.value) < 0 ||
+        TLobby__sub_803F9B94(run_net_thread_loop__6TLobbyFv, &lbl_805C18A0.thread_handle) < 0) {
         return;
     }
-    NetResumeThread(((P_803F7A90 *)&lbl_805C18A0)[0].b);
+    NetResumeThread(lbl_805C18A0.thread_handle);
 }
 
 void TLobby::queue_thread_main() {
@@ -471,7 +472,7 @@ s32 TLobby::write_ring_buffer(u8 *src, s32 len) {
     TLobby::lock_mutex(TLobby__send_ring_mutex);
     if (lobby_ring_buffer_size - lobby_send_ring_pending_bytes < len) {
         TUdpSocket::unlock_mutex(TLobby__send_ring_mutex);
-        if (OSIsThreadSuspended(thread) == 1) {
+        if (OSIsThreadSuspended((OSThread *)thread) == 1) {
             TLobby::resume_thread(queue_thread_handle);
         }
         return 0;
@@ -489,7 +490,7 @@ s32 TLobby::write_ring_buffer(u8 *src, s32 len) {
     }
     lobby_send_ring_pending_bytes += len;
     TUdpSocket::unlock_mutex(TLobby__send_ring_mutex);
-    if (OSIsThreadSuspended(thread) == 1) {
+    if (OSIsThreadSuspended((OSThread *)thread) == 1) {
         TLobby::resume_thread(queue_thread_handle);
     }
     return 1;
@@ -705,7 +706,7 @@ loop_3:
         }
     } else {
         ((TLobby *)queue_thread_handle)->cancel_thread_if_running();
-        TLobby::deactivate_entry_by_key((u32) queue_thread_handle);
+        TLobby::deactivate_entry_by_key(queue_thread_handle);
         NetReleaseMutex(TLobby__send_ring_mutex);
 block_10:
         if ((u32) (((TAdSinglePlyChrSelectGC *)0U)->copy_default_and_get_state() - 2) <= 1U) {

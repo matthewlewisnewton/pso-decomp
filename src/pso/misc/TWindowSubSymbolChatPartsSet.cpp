@@ -89,7 +89,6 @@ void *get_parts_entry__28TWindowSubSymbolChatPartsSetFl(void *, s32);
 void *get_parts_entry__28TWindowSubSymbolChatPartsSetFii(void *, s32);
 s32 is_flag_set__11TLoadingCurFv(void *, s32);
 s32 is_on_current_screen__11TCameraCtrlFv(void *, s32);
-s32 update_visibility__28TWindowSubSymbolChatPartsSetFv(void *, s16);
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 extern u8 lbl_8044FC30[];
 extern s32 __vt__28TWindowSubSymbolChatPartsSet[];
@@ -252,7 +251,7 @@ void TWindowSubSymbolChatPartsSet::handle_cursor_input() {
             }
             temp_r4 = w->x;
             w->f74 = temp_r4 + w->y * 2;
-            update_visibility__28TWindowSubSymbolChatPartsSetFv(this, temp_r4);
+            update_visibility();
             break;
         }
     }
