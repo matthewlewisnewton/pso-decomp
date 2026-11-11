@@ -899,10 +899,10 @@ conflicting declarations, indirect encodings and graph cutoff.
 Independent source inspection likewise finds no explicit loading-controller
 clear/restart/instance assignment in the 30 release callback bodies. The
 nested title-release table at `0x804EE58C` has four release functions that
-are original one-instruction returns. Important effects nevertheless remain
-indirect: window cleanup virtually deletes several global controllers and
-releases viewport slots; another callback invokes a virtual heap method;
-item-loader cleanup destroys a resource object. Secondary save-data cleanup
+are original one-instruction returns. Window cleanup virtually deletes several
+global controllers and releases viewport slots. The chat-log cleanup calls
+fixed `THeap` methods directly; the resource-file destructor is also fixed.
+Their allocation and lifetime contracts still matter. Secondary save-data cleanup
 uses an array-destruction helper with fixed callback `0x801FC8B4`, for seven
 elements of size `0x2798`, then optionally deletes storage. That immediate
 callback target is known; its destructor/allocator effects still need tracing.
@@ -922,6 +922,105 @@ targets and lifetime/alias contracts of those specific release operations,
 together with code that completes or restarts `TLoadCtrl` during the relevant
 resource callbacks. No production interface, provider, function extent,
 indirect target or coverage rule changes here.
+
+## Release target and loading-lifetime contracts
+
+Further original-object checks resolve several immediate targets in that
+release inventory. In particular, the earlier description of chat-log heap
+dispatch as virtual was incorrect: original `fn_8026AC50` has direct
+`R_PPC_REL24` references to `heap_free__5THeapFPv` at offsets `0x34` and `0x58`,
+and a direct `THeap` destructor call at `0x6C`. The current header and exact
+implementation likewise have no virtual heap method.
+
+| Release lane | Resolved immediate operation | Remaining contract |
+|---|---|---|
+| [Chat log](../../src/pso/unk/text_8026AC50.cpp) | Free nonnull line/last-line blocks through its `THeap`, destroy heap and clear globals | Live heap, valid owned blocks/free-list and underlying allocator effects |
+| [Item resource](../../src/pso/item/TItemLoad_8010FDF0.cpp) | Nonvirtual `RelocatedFile` destructor deletes `buffer`; deleting form also deletes the object | Valid object/buffer lifetime and allocator ownership; relocated root is not traversed here |
+| Save data | Fixed seven-element character-array destruction followed by optional storage deletion | Valid array storage and allocator effects, rather than callback targets derived from element values |
+| [Window roots](../../src/pso/misc/TWindowCtrlMain.cpp) | Virtual deletion, with immediate types constrained by the inspected constructors | Actual live types, aliases, descendants and reentrancy/rebinding history |
+
+The character-array lane can be narrowed further. Original `__destroy_arr`
+passes **-1** as each callback's second argument. The fixed chain is seven
+character callbacks, each destroying its display configuration; two inner
+configuration ranges each destroy two arrays of four leaves. This reaches
+**112** `TPlyDispConfig::free_if_valid` callbacks through 29 array-helper
+entries. The original leaf only calls delete for a positive second argument;
+on this path it returns without reading a stored element value. This excludes
+an element-selected callback target on that specific path. Outer buffer
+deletion still occurs, so the whole release is not a no-op.
+
+The [release-contract probe](../../tools/probe_loader_release_contracts.py)
+executes the original release/heap/array instructions with explicit disjoint
+storage fixtures and logical allocator boundaries. Poisoned, unmapped values
+inside the character slots do not get dereferenced. Keep-storage, null-array
+and positive-leaf-delete controls distinguish the argument gate from a stubbed
+no-op. Resource-file controls observe the buffer and object deletion boundaries,
+the null guard and repeated cleanup. Populated/empty chat-heap controls execute
+the original constructor, allocator and free-list coalescing, checking the
+single restored free block before the modeled `xfree`. A second cleanup does
+not issue another free. These are chosen valid storage/ownership fixtures;
+the allocator hooks do not prove effects of actual game allocations or aliases.
+
+For windows, the inspected `TWindowCtrlMain` constructor creates a detached
+generic TObject root. Its misleadingly named `TWindowCtrlMain__instance` and
+the six viewport nodes are also allocated as **TObject**, not as loading
+controllers. The other globals are constructed as `TWindowCtrlScreen`,
+`TWindowCtrlSub` and `TWindowCtrlClipOut`. Under that construction and valid
+lifetime contract, their immediate destructor entries are constrained:
+
+| Constructor-established type | Original destructor entry |
+|---|---|
+| TObject | `0x8022AA70` |
+| TWindowCtrlScreen | `0x8024CAD0` |
+| TWindowCtrlSub | `0x8024C9B8` |
+| TWindowCtrlClipOut | `0x8024C8E8` |
+
+The probe checks the four original vtable slots, not runtime objects.
+TObject destruction can still dispatch descendant destructors. Pointer
+rebinding, stale aliases, descendants and effects of releasing storage are
+not excluded by the immediate-type table. The inspected loading constructor
+normally attaches to `tl_su`; that fact alone is not a program-wide proof
+that it can never become reachable through another subtree.
+
+A separate lifetime constraint affects a possible restart. Original
+`TLoadCtrl::cleanup_scene` queues its current controller and clears the
+global instance immediately. The destructor later queues **whichever fade
+pointer is globally current**, clears that slot, and clears any nonzero
+instance without comparing it to the object being destroyed. The TObject
+constructor appends siblings; `run_tasks` saves the next sibling before
+deleting a queued node. Therefore ordering matters if a new controller is
+published before that old queued node is drained.
+
+Three controlled sequences execute original constructors, cleanup, queue
+traversal, destructor and task body:
+
+| Chosen ordering | Observed fixture state |
+|---|---|
+| Queue/clear A, then drain A without restart | A is deleted; no current controller remains |
+| Queue/clear A, construct/publish B and a new fade, then drain A | A's destructor clears B's global gate and queues B's fade; B remains a live sibling but its task body leaves its tick at zero |
+| Queue/clear and drain A, then construct/publish B | B's global gate/fade remain and its first task call increments its tick to one |
+
+This is a chosen sequential ordering constraint, not an observed retail bug.
+The probe publishes an actually constructed B at a chosen restart point;
+it does not execute the full `start_loading` call and its resource callbacks.
+The new fade uses an explicit base-node-only constructor model. Camera/audio/
+platform helpers and frees are modeled boundaries. Tick one stops before
+the child-spawn threshold of two, so it does not demonstrate repopulation.
+Clearing the global suppresses the task body; the separate possibility of
+existing descendants remains. Eleven release/lifetime controls independently
+pass, in addition to the existing original-free analysis tests.
+
+```sh
+python3 tools/probe_loader_release_contracts.py --dol PRIVATE/PsoV3.dol --output build/release-contracts.json
+```
+
+The immediate heap, resource and array targets are now substantially more
+specific. A surviving phase-19 request still does not establish their live
+arguments or the order of controller completion/restart. The next useful
+bounded trace is the window subtrees' construction/reparenting and the calls
+that serialize queued-controller destruction with a later `start_loading`.
+No retail state, source-correct handoff or restore ownership is inferred;
+all original providers, function extents and accounting gates remain intact.
 
 ## Comparison record and reproduction limits
 
