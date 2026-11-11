@@ -61,8 +61,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1143, `inline_depth` 1035,
 | `src/pso/unk/text_803D96A8.cpp:204` | `asm void post_translate_matrix(const f32 *v) {` |
 | `src/pso/unk/text_803D96A8.cpp:205` | `#include "orig_asm/pso/unk/text_803D96A8/post_translate_matrix.inc"` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
-| `src/pso/unk/text_8042E8C4.cpp:28` | `asm void LaunchDol(register void* dol) {` |
-| `src/pso/unk/text_8042E8C4.cpp:29` | `#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"` |
+| `src/pso/unk/text_8042E8C4.cpp:20` | `asm void LaunchDol(register ModemLaunchContext *ctx) {` |
+| `src/pso/unk/text_8042E8C4.cpp:21` | `#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"` |
 
 ## MWCC intrinsics
 

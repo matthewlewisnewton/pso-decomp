@@ -14,14 +14,15 @@
 extern u8 launch_record[] AT_ADDRESS(0x80003100);
 
 static inline void LaunchDolInline(ModemLaunchContext *ctx) {
+    // Regrouping these locals changes GC/2.6 register allocation; see README.md.
     u32 offset;
-    u8 *src;
+    const u8 *src;
     u32 offset2;
-    u8 *src2;
-    u8 *rec = launch_record;
-    u32 raw_size = ctx->payload_size + 0x132;
-    u32 size = raw_size & ~0x1Fu;
-    DolImageHeader *image = ctx->field_104;
+    const u8 *src2;
+    u8 *const rec = launch_record;
+    const u32 raw_size = ctx->payload_size + 0x132;
+    const u32 size = raw_size & ~0x1Fu;
+    const DolImageHeader *const image = ctx->field_104;
     u32 i;
     void *dest;
     u32 length;
@@ -42,7 +43,7 @@ static inline void LaunchDolInline(ModemLaunchContext *ctx) {
         if (offset == zero) {
             break;
         }
-        src = reinterpret_cast<u8 *>(image) + offset;
+        src = reinterpret_cast<const u8 *>(image) + offset;
         memmove(dest, src, length);
         DCStoreRange(dest, length);
         ICInvalidateRange(dest, length);
@@ -55,7 +56,7 @@ static inline void LaunchDolInline(ModemLaunchContext *ctx) {
         if (offset2 == zero) {
             break;
         }
-        src2 = reinterpret_cast<u8 *>(image) + offset2;
+        src2 = reinterpret_cast<const u8 *>(image) + offset2;
         memmove(dest, src2, length);
         DCStoreRange(dest, length);
     }

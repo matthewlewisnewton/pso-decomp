@@ -1,6 +1,6 @@
 # Experimental LaunchDol C++ candidate
 
-This is the incomplete source candidate removed from PR #284, preserved for
+This develops the incomplete source candidate removed from PR #284 for
 research. It is excluded from the production build and guarded by an explicit
 `PSO_LAUNCH_DOL_EXPERIMENT` opt-in plus the target compiler check. Do not link
 its object into the game, execute it as a replacement loader, or treat it as a
@@ -10,12 +10,13 @@ whole-function generated assembly provider.
 The prerequisite header/type recovery from PR #284 at immutable commit
 `d70369041672d5c881d895dc0a27b96f612e4b0c` is now merged into main via
 `b96d4c294f9f8ef84756fc394c9b042e0f36bfa9`. This refresh integrates main
-`fffd67d0c35e1fdaf17880c563739750e7c35813`. Relative to that main, no
-production source, compiler profile, symbols, splits, retention or linkset
-is changed by this experiment.
-The body is preserved from historical commit
-`a9eab37139ef10f53e3e9baf4f8d2dd1ade395aa`; only the compile guard and
-warning comments are new.
+`fffd67d0c35e1fdaf17880c563739750e7c35813`. The continuation shares the typed
+`LaunchDol(ModemLaunchContext *)` declaration between the production provider,
+caller and experiment, and uses the existing SDK/memory headers in the provider.
+Compiler profiles, symbols, splits, retention and the linkset remain unchanged.
+The experimental body derives from historical commit
+`a9eab37139ef10f53e3e9baf4f8d2dd1ade395aa`; its pointers and size intermediates
+now express their constness. The explicit opt-in and warning comments remain.
 
 ## Known mismatch and semantic limits
 
@@ -37,6 +38,26 @@ The final 20 bytes of the compiled candidate match the stranded restore at
 change its ownership, permit widening LaunchDol or create a linkable unit.
 The transfer/address/ownership holds remain in place. No new assembly,
 production compiler override or accounting change is proposed.
+
+## Source cleanup constraints
+
+The const-correct cleanup preserves all 332 code bytes and all ten relocations
+of the previous candidate at `51a7496f2a242e9acf521fa870cb9864f8b8ac16`.
+This is equality with the incomplete candidate, not a full match to the target.
+The header and section-copy sources are read-only views. This does not promise
+that the underlying image storage is immutable across memory and SDK calls.
+
+Moving offset/source temporaries into loop scope changes nonvolatile-register
+allocation under the existing probe profile. Replacing the `zero` temporary
+with a literal also changes the comparisons and shortens the loops. Those
+cleanups were rejected because they lose the exact prefix. The retained inline
+wrapper and declaration arrangement are reproduction constraints, not evidence
+of the original source spelling. No transfer or compiler-option sweep was added.
+
+Production already links this unit through its generated assembly provider.
+That existing linkage must not be reported as recovery of the experimental C++.
+An exact prefix cannot be linked separately without changing the function's
+boundary and the repository's recovery accounting.
 
 ## Reproducing the comparison
 
