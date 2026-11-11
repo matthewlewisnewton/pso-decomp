@@ -1,0 +1,86 @@
+{
+  "schema": "zako-material-state-research-v1",
+  "status": "held; evidence only; negative native experiment",
+  "baseline_commit": "345ac133c05f9f825331c770d42b2c537a958d71",
+  "baseline_native_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "baseline_seal_sha256": "7a991f9cad38e4702ec37f15415902bd366e9b50c84ab16549696220e7933fbd",
+  "original_pr303_commit": "3ed9b21ae3d8b887e18642e3e561063fb1eb2c98",
+  "source_patch_published": false,
+  "production_source_changed": false,
+  "experiment_source_sha256": "6979bd670584f37a22fc81b167d1ba43586b98be06d0c53391b2616b907c493e",
+  "experiment_patch_sha256": "7aada3ac460ef7ec9677fd1cbc86f5dd26da98df08b2ee4ad1288bc8027b32e1",
+  "reference_closure": {
+    "callee_address": "0x803DED78",
+    "callee_bytes": 12,
+    "direct_entry_calls": 62,
+    "containing_functions": 52,
+    "rel24_entry_relocations": 62,
+    "interior_direct_branches": 0,
+    "aligned_data_pointers": 0,
+    "original_objects": 4944,
+    "historical_prototype_proven": false,
+    "limits": "Static original ELF references and DOL direct/conditional branches plus aligned data words; not arbitrary runtime-generated targets."
+  },
+  "experiment": {
+    "native_checksum": "fail",
+    "built_dol_sha1": "15bbceacbe4f01483c5b4add58770a997f918273",
+    "changed_dol_bytes": 7,
+    "changed_instruction_addresses": [
+      "0x8030a9d0",
+      "0x8030a9d8",
+      "0x8030a9e0",
+      "0x8030a9e8",
+      "0x8030a9ec",
+      "0x8030a9f4",
+      "0x8030a9f8"
+    ],
+    "shadow_bytes": 408,
+    "shadow_objdiff_match_percent": 99.65686,
+    "check_pr_no_build": "fail",
+    "matched_functions_delta": -1,
+    "matched_code_delta": -408,
+    "matched_data_delta": 0,
+    "new_matching_or_linking_gains": 0
+  },
+  "complete_object_audit": {
+    "source_objects": 3632,
+    "original_objects": 4944,
+    "changed_source_objects": 1,
+    "changed_original_objects": 0,
+    "relocations_symbols_section_order_size_alignment_flags_and_bss_unchanged": true,
+    "normalizations": [],
+    "source_providers": 3610,
+    "fallback_providers": 1334,
+    "ordered_providers_unchanged": true,
+    "retention_entries": 18650,
+    "retention_check": "pass"
+  },
+  "host_characterization": {
+    "normal": "pass",
+    "asan_ubsan": "pass",
+    "states_each": 10000,
+    "global_backup_replacement_before_restore": "covered",
+    "scope": "Actual experimental setup/restore excerpts with helper stub, not whole renderer or native matching.",
+    "ubsan_errors_fatal": true
+  },
+  "source_and_tools": {
+    "native_controls_changed": false,
+    "original_input_files": 659,
+    "tools_and_original_inputs_identical_to_authenticated_baseline": true
+  },
+  "private_receipt_sha256": {
+    "material-call-inventory.json": "0b020898219c5edcde2a38c542b93feb06ec1b5a57ca889bb7a915fe92fe01fa",
+    "material-reference-closure.json": "65f4432b667e7c9e3313a6e59a048847e167770844f29a7ddb4273cd4e5e27d6",
+    "material-state-traces.json": "b57bfcc970956c5eae2b6ba492c4c606af131d6db1fedec1f624520b53400fe2",
+    "snapshot-experiment-plan.json": "7cb60bc94ce575523471b53fde0c6adea77cc3bd76073bda73a5c26f815149c3",
+    "snapshot-native-build.json": "4ed9e5d0fc2e17cc5dfb87d4580c1486043cab3bc1b8ba8e77501252f31b87f7",
+    "snapshot-complete-object-audit.json": "f109617b3b59c0eaf1c677fa976385b6863c5990e547a152aece88f85828f9c8",
+    "snapshot-dol-delta.json": "b4d59e2f69f46de08b0038158caef2c5e3d80f9e6a140685a5c0393d08e7b245",
+    "snapshot-check.json": "cec717fb3e4a091afd5498d77b96622c58baa1ef375288b8f4012c0895d6689a",
+    "snapshot-host-characterization.json": "1e4e36d818e1af1d11efb603c258b57b1c7fcde7d3a638125945325c60169330",
+    "public-probe-sanitize-fatal.json": "a3390838c5ca8ad4311e07b0681f8eb7499969b08d57db45434aa235d16524fb",
+    "public-probe-normal-final.json": "351e9ac254cdffd53798435826cd753e51c28fd6c13c372bf9540f2bb5a5f2d6",
+    "public-probe-production-negative-control.json": "4a274475d54cfcffe7a3d4bf6e967f2f72569c6abfbd449b526b24e963b2d1e7"
+  },
+  "remaining_hold": "No supported source-correct matching helper call or typed-unit fold established. New experiments require materially new source evidence; no invented wider API or compiler steering."
+}
