@@ -8,8 +8,8 @@ struct QuestDownloadTextNode;
 struct QuestDownloadEntryNode;
 struct QuestDownloadItemNode;
 
-// Dictionary record stored through slot+0. The same word is all-ones until
-// the producer writes the pointer; reset stores that status as an integer.
+// Dictionary record referenced by slot+0. All-ones denotes unavailable
+// tokens; NULL and a dictionary pointer are the other observed native states.
 struct QuestDownloadMatchToken {
     u8 a;
     u8 b;
@@ -80,11 +80,10 @@ struct QuestDownloadQueueNode {
     QuestDownloadQueueNode *next;
 };
 
+#define QUEST_DOWNLOAD_MATCH_TOKENS_UNAVAILABLE ((const QuestDownloadMatchToken *)0xFFFFFFFFU)
+
 struct QuestDownloadSlot {
-    union {
-        u32 status;
-        QuestDownloadMatchToken *tokens;
-    };
+    const QuestDownloadMatchToken *tokens;
     QuestDownloadItemNode *items;
     QuestDownloadEntryNode *entryHead;
     QuestDownloadTextNode *textHead;
@@ -96,6 +95,17 @@ struct QuestDownloadSlot {
     s8 x18;
     s8 x19;
     u8 reserved_1a[2];
+};
+
+// Shared native request created by the frontend and consumed by byte-page/cache APIs.
+struct Req_803EEF2C {
+    char *name;
+    s16 len;
+    u8 pad6;
+    u8 x7;
+    u8 x8;
+    u8 pad9[3];
+    u8 *text;
 };
 
 #define QUEST_RECORD_CHECK(name, condition) typedef char name[(condition) ? 1 : -1]
@@ -114,15 +124,24 @@ QUEST_RECORD_CHECK(QuestItem_extent, sizeof(QuestDownloadItemNode) == 0x10);
 QUEST_RECORD_CHECK(QuestQueue_extent, sizeof(QuestDownloadQueueNode) == 0x10);
 QUEST_RECORD_CHECK(QuestToken_extent, sizeof(QuestDownloadMatchToken) == 4);
 QUEST_RECORD_CHECK(QuestSlot_extent, sizeof(QuestDownloadSlot) == 0x1C);
-QUEST_RECORD_CHECK(QuestSlot_status_offset, offsetof(QuestDownloadSlot, status) == 0);
 QUEST_RECORD_CHECK(QuestSlot_tokens_offset, offsetof(QuestDownloadSlot, tokens) == 0);
+QUEST_RECORD_CHECK(QuestSlot_items_offset, offsetof(QuestDownloadSlot, items) == 4);
 QUEST_RECORD_CHECK(QuestSlot_entry_offset, offsetof(QuestDownloadSlot, entryHead) == 8);
 QUEST_RECORD_CHECK(QuestSlot_text_offset, offsetof(QuestDownloadSlot, textHead) == 0xC);
+QUEST_RECORD_CHECK(QuestRequest_extent, sizeof(Req_803EEF2C) == 0x10);
+QUEST_RECORD_CHECK(QuestRequest_name, offsetof(Req_803EEF2C, name) == 0);
+QUEST_RECORD_CHECK(QuestRequest_pad6, offsetof(Req_803EEF2C, pad6) == 6);
+QUEST_RECORD_CHECK(QuestRequest_len, offsetof(Req_803EEF2C, len) == 4);
+QUEST_RECORD_CHECK(QuestRequest_kind, offsetof(Req_803EEF2C, x7) == 7);
+QUEST_RECORD_CHECK(QuestRequest_extra, offsetof(Req_803EEF2C, x8) == 8);
+QUEST_RECORD_CHECK(QuestRequest_text, offsetof(Req_803EEF2C, text) == 0xC);
 #undef QUEST_RECORD_CHECK
 
 extern "C" {
 // Defined by QuestDownloadBuffers.cpp. The pointed-to nodes are not in this array.
 extern QuestDownloadSlot quest_download_slot_chain_table[80];
+s32 TQuestVmDownLoadServer__sub_803EF208(Req_803EEF2C *);
+s32 TQuestVmDownLoadServer__sub_803EF538(Req_803EEF2C *);
 s32 calc_entry_cost__22TQuestVmDownLoadServerFPvPv(QuestDownloadEntryPrefix *, QuestDownloadEntryPrefix *);
 s32 TQuestVmDownLoadServer__sub_803ED84C(QuestDownloadEntryNode *, s32, s32);
 s32 calc_item_entry_cost__22TQuestVmDownLoadServerFUcUcl(QuestDownloadEntryPrefix *, u8, u8, s32);

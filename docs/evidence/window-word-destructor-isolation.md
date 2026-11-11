@@ -76,3 +76,10 @@ or optimizer variant is attempted without such evidence.
 The native Word constructor, destructor/table and raw initializer lifetime holds
 remain. The complete matched Word renderer, native task, raw reset/UV helpers,
 other original providers and all prior coverage qualifications remain intact.
+
+The subsequent [data-pool observation](window-word-data-pool-observation.md)
+resolves the immediate compiler-mechanism question for the frozen pair: the
+compiler table is undefined during function generation, so only two eligible
+metadata objects reach the pool rather than the manual table's three. Final class
+cleanup defines the real table afterward. This narrows the missing evidence but
+does not qualify a source or profile change, activation or lifetime claim.
