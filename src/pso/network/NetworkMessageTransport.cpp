@@ -1,6 +1,7 @@
 #include "pso/network/ModemRuntime.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/NetworkTransport.h"
+#include "pso/network/NetworkTimer.h"
 #include "pso/network/NetworkPacketPool.h"
 
 #include "types.h"
@@ -95,7 +96,6 @@ struct Obj_80426998 { u8 pad[0x36]; s16 count; Rec_80426998 recs[5]; };
 extern "C" {
 s32 OSInitMessageQueue(void *, void *, int);
 s16 TLobby__sub_803F9B94(void *, void *);
-void NetRegisterTimer(int, int, void (*)(void));
 s32 TLobby__sub_8042AAA0(void *);
 u8 lbl_805CF240[0xA0];
 u8 TLobby__pppoe_message_queue[0xA0];
@@ -128,7 +128,6 @@ extern s32 lbl_805D7BB0;
 s16 TLobby__sub_804262CC(void *);
 s32 TLobby__sub_80426B88(s16 arg0);
 extern s32 lbl_805D7BC8;
-void NetUnregisterTimer(void *);
 extern u8 lbl_805CF240[];
 s32 TLobby__sub_8042558C(void *);
 extern u8 lbl_805E1190[6];
@@ -156,7 +155,7 @@ void TLobby::reset_message_thread() {
         TLobby::deactivate_entry_by_key((u32)((void *)lobby_message_thread_handle));
         lobby_message_thread_handle = 0;
     }
-    NetUnregisterTimer((void *)TLobby::update_exi_status);
+    NetUnregisterTimer(TLobby::update_exi_status);
     network_link_status_cache = -1;
     lbl_805D7BB8 = 0;
     lbl_805D7BBC = 0;
