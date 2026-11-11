@@ -5,6 +5,12 @@ The unchanged baseline was configured, split, compiled and linked in a fresh
 worktree using the pinned tools and the original disc inputs. Its DOL hash and
 retention checks passed before source changes.
 
+Final integration uses current fork main
+`8c973b965d` (including the draw-line component). That exact base was also
+configured, split, compiled and checked in a separate fresh worktree. Both its
+unchanged checks and the integrated candidate's incremental `check_pr.py` checks
+pass; linked units increase from 3,621 to 3,622.
+
 ## Recovered behavior and interfaces
 
 `pso/boss/TBoss8Dragon.cpp` contains 141 functions at
@@ -64,7 +70,8 @@ Matching instruction bytes did not initially match switch relocations. Twelve
 handlers' no-op events pointed to an earlier equivalent return block. Moving
 only their `default` labels to the final switch exit preserved the instructions
 and corrected all 58 differing table relocations. All 664 `.data` relocations
-then agreed with the original.
+then agreed with the original. The final `.text` also has identical raw bytes
+and all 1,760 symbolic relocations agree.
 
 The final float work compared default optimization, propagation disabled,
 common-subexpression elimination disabled, lifetime optimization disabled and
