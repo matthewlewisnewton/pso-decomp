@@ -2005,3 +2005,12 @@ and fourteen host tests pass. The regenerated original reference has a separatel
 documented string-order change and is not claimed whole-object equal. No shared
 historical API or singleton contract is inferred; adjacency and all other private
 ABI/metadata holds remain.
+
+The later direct-queue adjacency control and descriptor-lookup repair are also
+recorded in that evidence. The direct reference changes native instructions and
+is rejected/restored without variants. The separate shared descriptor-return
+declaration matches its existing producer and all three native callers; its
+caller conversions preserve address bits and expose descriptor byte views.
+All 3,665 compiled objects remain raw-identical, original DOL/no-loss/retention
+and fourteen host tests pass, and no new matching gain is claimed. Adjacency,
+other allocator/output-pointer questions, private ABI and metadata holds remain.

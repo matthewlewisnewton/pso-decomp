@@ -127,3 +127,60 @@ This repairs the fake receiver for this owner-local helper and its three observe
 calls. Cross-object adjacency, historical shared-declaration uncertainty, private
 creator/raw callback/reset ABI restrictions and the metadata hold remain. Keep
 draft; no other hold is cleared by this probe.
+
+## Direct queue-reference control
+
+Test one natural adjacency repair after the explicit-parameter checkpoint:
+replace the dispatcher byte view with `OSMessageQueue *mq =
+&TLobby__pppoe_message_queue.queue`, and pass `mq` directly at the same three
+calls. Direct SDK references in the accepted initializer make this a credible
+compiler control, without assuming an aggregate owner for separate globals.
+All other arguments, branches, fields and helper behavior remain unchanged.
+
+Native validation rejects this one form. The dispatcher grows from 0x348 to
+0x34C bytes. Its queue HA/LO relocation target changes from `lbl_805CF240` to
+`TLobby__pppoe_message_queue`, with receiver/register setup changes and shifted
+subsequent relocations. Only the owner changes among 3,665 compiled objects;
+the DOL SHA-1 becomes `e1602266e859a1875dd307031c612d45b94cb0c0`.
+Independent review confirms the failure. Restore the saved source exactly and
+rebuild; all 3,665 objects and the original DOL return to their prior bytes.
+No alternate lifetime, aggregate, alias, pragma or compensating expression is
+tested. The adjacency hold remains. The rejected source is not published.
+
+## Shared descriptor lookup declaration
+
+A separate producer/caller audit finds a narrower contract mismatch:
+`TLobby__sub_804256B8` is defined as
+`NetworkPacketBufferDescriptor *(u32 address)`, while message transport locally
+declares `u8 *(s32)`. The producer locks, searches the 32 active descriptors by
+unsigned address range, unlocks, and returns either the descriptor or null.
+Existing native size/field assertions establish its 12-byte record, with the
+queued-length word at +4 and the actual packet-data pointer at +8.
+
+Original split objects contain exactly three references, all zero-addend
+`R_PPC_REL24` calls in message transport, at object offsets 0x138, 0x924 and
+0xBE8. These correspond to the posting helper's selector-zero path,
+`post_send_message`, and `queue_timeout_message`. Share the producer's existing
+declaration, with C linkage only for that function, in `NetworkPacketPool.h`.
+Include that header in the caller and remove the incompatible local declaration.
+Convert signed address words explicitly to `u32`, retaining their native bits,
+and expose the returned descriptor as a `u8 *` byte view at the existing byte
+accesses. This view is descriptor storage, not the packet data at its +8 field.
+
+No implementation, lookup range, lock timing, null behavior, descriptor write,
+allocation API, callback or source configuration changes. The other allocator
+declarations and `find_entry_by_address` remain separate interfaces. No bounds
+or ownership invariant is invented, and the adjacency control is fully restored.
+
+The first lookup-declaration probe passes. Owner, provider and runtime complete
+objects are raw byte-identical to saved references, without normalization; all
+3,665 compiled-object hashes are unchanged. The DOL retains original SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Incremental comparison has zero
+metric/coverage/retention drift. Full sealed-main no-loss comparison passes with
+3,599 exact linked units, 18,428 retention entries without drift, existing +88
+data bytes and no new function/code gain or loss. Ordered providers remain
+3,599 source inputs and 1,347 original fallbacks. All fourteen host tests pass.
+Independent source and native review passes; final exact-head review remains
+the publication gate. Only this lookup declaration mismatch is repaired.
+Adjacency, other allocator/output-pointer questions, private ABI and metadata
+holds remain. Keep draft.
