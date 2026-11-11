@@ -2,6 +2,7 @@
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/dd/TObjEneDD_800BB804.h"
 #include "pso/enemy/recon/TObjEneRecobox_8031E88C.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/system/vector.h"
@@ -196,7 +197,7 @@ void TObjEneRecobox::draw_with_debug_info() {
         debug_printf_at(pack_debug_text_position(0, 5), lbl_80476440);
     }
     if (((VObj_18_26a62c *)(arg0))->m8(TObjEneRecon__data_805DF438, lbl_805DF43C) != 0) {
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -282,7 +283,7 @@ block_18:
                 }
 block_23:
                 ((TObjEneDD *)arg0)->update_secondary_light();
-                TObjFish::set_global_param((int) (((TObjEneRecobox *)arg0)->texlist));
+                set_current_texture_list((GinjaTextureList *)((int) (((TObjEneRecobox *)arg0)->texlist)));
                 push_matrix();
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_y(0, (int) (((TObjEneRecobox *)arg0)->rotation_y));

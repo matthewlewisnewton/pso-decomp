@@ -4,6 +4,7 @@
 #include "pso/object/switch/TSwitch.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/render/ModelDrawContext.h"
@@ -85,7 +86,7 @@ void TOFenceBase::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (is_open == 0) {
             draw_ginja_model_with_motion(model, motion, animation_frame);
         } else {

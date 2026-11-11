@@ -7,6 +7,7 @@
 #include "pso/object/TObjHashi.h"
 #include "pso/object/TObjHashiVersus1.h"
 #include "pso/object/TObjHashiVersus2.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/object/switch/TSwitch.h"
@@ -170,7 +171,7 @@ void TObjHashiBase::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (motion != NULL) {
             draw_model_motion(model, motion, animation_frame);
         } else {

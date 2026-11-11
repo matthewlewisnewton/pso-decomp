@@ -2,6 +2,7 @@
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/effect/particle/ParticleOrbit.h"
 #include "pso/render/render_util.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/math/AngleLookup.h"
@@ -471,7 +472,7 @@ void TUnk_8048E790::render() {
                         ((TUnk_8048E728 *)arg0)->apply_particle_model_fade_color(0);
                     }
                 }
-                TObjFish::set_global_param(*(u32 *)&this->unk_B4);
+                set_current_texture_list((GinjaTextureList *)(*(u32 *)&this->unk_B4));
                 set_draw_list_mask(3);
                 if ((u32) this->motion != 0U) {
                     draw_ginja_model_with_motion(this->m_b0, this->motion, this->motion_frame);

@@ -191,7 +191,7 @@ s32 get_game_play_mode();
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
-s32 set_global_param__8TObjFishFl(s32);
+s32 set_current_texture_list(s32);
 s32 draw_ginja_object(s32);
 s32 draw_ginja_model_with_motion(s32, s32, f32);
 
@@ -253,7 +253,7 @@ void TObjLaboMapWarp::render() {
 
     if (((VObj_80185248 *)arg0)->m8(lbl_805DBC80, lbl_805DBC84) != 0) {
         TObjFish__sub_8001EDB0(TObjLaboMapWarp__resource_bundle, 1);
-        ((s32 (*)(void))set_global_param__8TObjFishFl)();
+        ((s32 (*)(void))set_current_texture_list)();
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -378,7 +378,7 @@ void TObjCityMapWarp::slot4C() {
 void TObjCityMapWarp::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj_8018574C*)arg0)->m8(lbl_805DBC80, lbl_805DBC84) != 0) {
-        set_global_param__8TObjFishFl(city_common_texture_list);
+        set_current_texture_list(city_common_texture_list);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -481,7 +481,7 @@ void TObjCityAreaWarp::render() { if (is_main_phase_15__9TObjEneDDFv() != 0) { d
 void TObjCityAreaWarp::do_warp() {
     u8 *arg0 = (u8 *)this;
     if (((VObj80185B58_80185AFC *) arg0)->m8(lbl_805DBC80, lbl_805DBC84) != 0) {
-        set_global_param__8TObjFishFl(city_common_texture_list);
+        set_current_texture_list(city_common_texture_list);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -564,7 +564,7 @@ void TObjCityMainWarp::debug_print_area_num() {
 void TObjCityMainWarp::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj80185EC8_80185EC8 *) arg0)->m8(lbl_805DBC80, lbl_805DBC98) != 0) {
-        set_global_param__8TObjFishFl(city_common_texture_list);
+        set_current_texture_list(city_common_texture_list);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

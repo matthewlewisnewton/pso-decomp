@@ -1,5 +1,6 @@
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby_801E43E4.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -1341,7 +1342,7 @@ void TBoss6Type1::draw_part_motions() {
         cb = arg0->draw_callback_lists[i];
         a = &arg0->anim[i];
         if (cb != 0) {
-            TObjFish::set_global_param(p);
+            set_current_texture_list((GinjaTextureList *)(p));
             if (0.0f == a->blend) {
                 ((TObjFish *)cb)->set_draw_callback_list();
                 draw_model_motion((void *)id, (void *)a->id, a->t);
@@ -2197,7 +2198,7 @@ void TBoss6Type1__sub_802B626C(TBoss6Type1 *boss) {
         rotate_matrix_x(0, pitch);
         rotate_matrix_z(0, 0);
         scale_matrix(0, width, 1.0f, height);
-        TObjFish::set_global_param(fish);
+        set_current_texture_list((GinjaTextureList *)(fish));
         draw_chunk_object((void *)model);
         pop_matrix();
     }

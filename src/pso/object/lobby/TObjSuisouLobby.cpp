@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/object/lobby/TObjSuisouLobby.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
@@ -34,7 +35,7 @@ void TObjSuisouLobby::demo_step() {}
 void TObjSuisouLobby::render() {
     if (fade_state != 0 && (u32)texlist != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);

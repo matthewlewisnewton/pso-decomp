@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/render/render_util.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TObject.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/vector.h"
@@ -203,7 +204,7 @@ void TObjCityDoor_Lobby::render() { if (is_phase_e__9TObjEneDDFPv(this) != 0) { 
 void TObjCityDoor_Lobby::process_lobby_action_14() {
     u8 *arg0 = (u8 *)this;
     if (((VObj_80181AE8 *)arg0)->m8(lbl_805DBBE0, lbl_805DBBE4) != 0) {
-        TObjFish::set_global_param((*(s32 *)&city_common_texture_list));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)&city_common_texture_list)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -491,7 +492,7 @@ extern const f32 lbl_805DBBF4;
 void TObjCityDoor_Med::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj_80181ff4 *)arg0)->m20() != 0) {
-        TObjFish::set_global_param(city_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -592,7 +593,7 @@ void render__17TObjCityDoor_WarpFv(void* o);
 
 void TObjCityDoor_Warp::render() {
  if(((CityDoorProbe*)this)->visible()!=0) {
-  TObjFish::set_global_param(city_common_texture_list);push_matrix();
+  set_current_texture_list((GinjaTextureList *)(city_common_texture_list));push_matrix();
   post_translate_matrix((u8*)this+0x38);rotate_matrix_y(0,F(this,s32,0x60));
   draw_ginja_model_with_motion(get_city_common_model(9),get_city_common_motion(8),F(this,f32,0xB4));
   draw_ginja_model_with_motion(get_city_common_model(10),get_city_common_motion(9),F(this,f32,0xB4));
@@ -740,7 +741,7 @@ void TObjCityDoor_Guild::render() {
     u8 *arg0 = (u8 *)this;
 
     if (((VObj_8018257c_8018245C *)arg0)->m20() != 0) {
-        TObjFish::set_global_param(city_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -829,7 +830,7 @@ void *TObjCityDoor_Guild__ct(void *o, void *parent, void *set) {
 void TObjCityDoor_Shop::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj_8018274C_8018262C *)arg0)->m20() != 0) {
-        TObjFish::set_global_param(city_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(city_common_texture_list));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

@@ -2,6 +2,7 @@
 #include "types.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/recon/TObjEneRecon_8029E89C.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/enemy/recon/TObjEneRecon.h"
 #include "pso/enemy/recon/TObjEneRecobox.h"
@@ -18,7 +19,7 @@ s32 push_matrix();
 s32 TObjEneRecobox::render_trap_model_if_visible() {
     if (get_mode__11TCameraCtrlFPv(((s32 *)&main_task)) & 0x20) {
         if (push_reflection_matrix((Vec *)(((u8 *)this) + 0x3E4)) != 0) {
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             push_matrix();
             post_translate_matrix((void *) (((u8 *)this) + 0x38));
             rotate_matrix_y(0, this->rotation_y);

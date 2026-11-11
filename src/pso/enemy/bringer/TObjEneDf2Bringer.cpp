@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 #include "pso/enemy/bringer/TObjEneDf2Bringer.h"
@@ -83,7 +84,7 @@ void TObjEneDf2Bringer::vfunc_105() {
         Vec v = lbl_8043A0E0;
         ((TObjEneDD *)(self))->draw_ground_shadow(&v, 0);
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param((s32)self->texlist);
+        set_current_texture_list((GinjaTextureList *)((s32)self->texlist));
         push_matrix();
         post_translate_matrix(self->pos);
         rotate_matrix_y(0, self->f60);
@@ -2929,7 +2930,7 @@ void render__17TObjEneDf2BringerFv(u8 *arg0) {
             }
         }
         scroll_strip_uvs(TObjEneDf2Bringer__uv_scroll_buffer, (s16) *(s32 *)((s8 *)arg0 + 0x4A8), 0);
-        TObjFish::set_global_param((s32)S->f24);
+        set_current_texture_list((GinjaTextureList *)((s32)S->f24));
         {
             Ent_800972B0 *e = *S->f24;
             temp_r27 = *(s32 *)((s8 *)e + 0x14);

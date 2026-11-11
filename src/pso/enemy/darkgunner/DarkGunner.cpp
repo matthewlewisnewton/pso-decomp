@@ -10,6 +10,7 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/darkgunner/TObjEneDarkGunner.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/math/MatrixTransforms.h"
@@ -929,9 +930,9 @@ void TObjPlayer::render_shadow() {
     s32 arg0 = (s32)this;
     if (this->obj_testFlags30(0x800) == 0) {
         if (is_flag_set_388_bit26() == 0) {
-            TObjFish::set_global_param(lbl_805D5014);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5014));
         } else {
-            TObjFish::set_global_param(lbl_805D5018);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5018));
         }
         push_matrix();
         post_translate_matrix(arg0 + 0x3B4);
@@ -1039,9 +1040,9 @@ void TObjPlayer__sub_800A1978(VObj_18_800A28A4 *self) {
                 color.g = s;
                 color.b = s;
                 set_constant_material((const NJS_ARGB *)&color);
-                TObjFish::set_global_param(TObjPlayer__effect_resource);
+                set_current_texture_list((GinjaTextureList *)(TObjPlayer__effect_resource));
             } else {
-                TObjFish::set_global_param(self->texture);
+                set_current_texture_list((GinjaTextureList *)(self->texture));
             }
             if (self->flags & 4) {
                 if (self->fade.has_visible_opacity() != 0) {

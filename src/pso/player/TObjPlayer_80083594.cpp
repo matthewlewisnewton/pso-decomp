@@ -1,5 +1,6 @@
 #pragma readonly_strings on
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 
 struct GXColor_80083B8C { u8 r, g, b, a; };
@@ -142,7 +143,7 @@ void TObjPlayer__sub_80082C30(void) {
     typedef char sp20_offset[(offsetof(Stack_80082C30, sp20) == 0x18) ? 1 : -1];
     typedef char sp24_offset[(offsetof(Stack_80082C30, sp24) == 0x1C) ? 1 : -1];
     Stack_80082C30 stack;
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0, -1);
     begin_screen_draw(1);
     stack.sp8 = lbl_805D93C0;
@@ -290,7 +291,7 @@ void TCameraCtrl::copy_position_vectors(void *first, void *second) {
 
 void TCameraCtrl::update_single_screen() {
     if ((is_split_screen() == 0) && ((u32) camera_render_target_singleton != 0U)) {
-        TObjFish::set_global_param(camera_render_target_singleton + 0x1C);
+        set_current_texture_list((GinjaTextureList *)(camera_render_target_singleton + 0x1C));
         load_list_texture(0, 0, 0, 0);
     }
 }
@@ -568,7 +569,7 @@ void TObjPlayer::setup_tev_stage() {
         GXSetTevOrder(1, 1, 1, 4);
         GXSetTevOp(1, 2);
         TObjPlayer::set_tex_coord_gen(1, 0, 0, 0x1E);
-        TObjFish::set_global_param((s32)&shared_capture_texture_list);
+        set_current_texture_list((GinjaTextureList *)((s32)&shared_capture_texture_list));
         load_list_texture(0, 0, 0, 1);
         model_render_flags |= 0x80000;
         set_ginja_post_tev_stage_count(1);
@@ -585,7 +586,7 @@ void setup_particle_tev(s32 arg0) {
             GXSetTevOp(1, 1);
         }
         TObjPlayer::set_tex_coord_gen(1, 0, 0, 0x1E);
-        TObjFish::set_global_param((s32)&shared_capture_texture_list);
+        set_current_texture_list((GinjaTextureList *)((s32)&shared_capture_texture_list));
         load_list_texture(0, 0, 0, 1);
         model_render_flags |= 0x80000;
         set_ginja_post_tev_stage_count(1);
@@ -799,7 +800,7 @@ extern const f32 lbl_805D9444;
 
 void TObjPlayer::draw_if_all_ready() {
     if ((is_split_screen() == 0) && (TObjPlayer::check_all_players_ready() != 0)) {
-        TObjFish::set_global_param((s32)lbl_8048E5C8);
+        set_current_texture_list((GinjaTextureList *)((s32)lbl_8048E5C8));
         load_list_texture(0, 0, 0, 1);
     }
 }
@@ -947,7 +948,7 @@ void TObjPlayer::draw_screen_quad(u32 arg0, s32 arg1, f32 farg0) {
     u32 temp_r31;
     void *temp_r4;
     void *temp_r4_2;
-    TObjFish::set_global_param((s32)((s32 *)&shared_capture_texture_list));
+    set_current_texture_list((GinjaTextureList *)((s32)((s32 *)&shared_capture_texture_list)));
     if (arg1 != 0) {
         temp_r4 = shared_capture_texture_list.a->b->c;
         *(s32 *)((s8 *)temp_r4 + 0x10) = 0x100;
@@ -1001,7 +1002,7 @@ void TObjPlayer::draw_textured_screen_quad(u32 arg0, f32 *arg1, f32 *arg2, s32 a
     u32 temp_r31;
     void *temp_r4;
     void *temp_r4_2;
-    TObjFish::set_global_param((s32)((s32 *)&shared_capture_texture_list));
+    set_current_texture_list((GinjaTextureList *)((s32)((s32 *)&shared_capture_texture_list)));
     if (arg3 != 0) {
         temp_r4 = (*(G_800842A4 *)&shared_capture_texture_list).a->b->c;
         *(s32 *)((s8 *)temp_r4 + 0x10) = 0x100;
@@ -1047,7 +1048,7 @@ void TObjPlayer::draw_textured_screen_quad(u32 arg0, f32 *arg1, f32 *arg2, s32 a
 }
 
 void TObjPlayer__sub_80084500(void) {
-    TObjFish::set_global_param((s32)((s32 *)(((u8 *)&shared_capture_texture_list))));
+    set_current_texture_list((GinjaTextureList *)((s32)((s32 *)(((u8 *)&shared_capture_texture_list)))));
     load_list_texture(0, 0, 0, 0);
 }
 

@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/boss/goldragon/TBoss8Dragon_8036AEF8.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/system/memory.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -82,7 +83,7 @@ void TBoss8Dragon__sub_8036B088(void) {
     TParticleCtrl::begin_effect_render();
     TCameraCtrl::restore_full_screen_view();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(5, -1);
     o[0] = (545.0f);
     o[1] = (3.9e+02f);

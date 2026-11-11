@@ -5,6 +5,7 @@
 #include "pso/map/CsnQuery.h"
 #include "pso/object/TObjControl.h"
 #include "pso/render/reflection.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/object/base/TObjChara.h"
@@ -1295,7 +1296,7 @@ void TObjEneDelDepthBomb::render() {
     push_matrix();
     post_translate_matrix(&position);
     rotate_matrix_zyx(0, rotation_x, rotation_y, rotation_z);
-    TObjFish::set_global_param(texture);
+    set_current_texture_list((GinjaTextureList *)(texture));
     draw_chunk_object((void *)model);
     pop_matrix();
     push_matrix();

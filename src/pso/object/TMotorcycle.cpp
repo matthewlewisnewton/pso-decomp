@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/render/render_util.h"
 
@@ -73,7 +74,7 @@ void TMotorcycle::render() {
     if ((TMainTask::get_render_pass() != 1) && (((VObj_18_26a62c *)(arg0))->m8(400.0f, 50.0f) != 0)) {
         set_draw_list_mask(3);
         if ((u32) TMotorcycle__texture_list != 0U) {
-            TObjFish::set_global_param((s32) TMotorcycle__texture_list);
+            set_current_texture_list((GinjaTextureList *)((s32) TMotorcycle__texture_list));
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_yxz(0, (*(s32 *)&this->rotation_x), (this->rotation_y), (this->rotation_z));

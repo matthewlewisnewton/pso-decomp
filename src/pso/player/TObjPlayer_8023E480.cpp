@@ -35,7 +35,7 @@ extern s32 lbl_805D63C0;
 extern s32 lbl_805D63C4;
 int release_texture_list();
 s32 load_texture_list();
-int set_global_param__8TObjFishFl();
+int set_current_texture_list();
 
 }
 
@@ -43,7 +43,7 @@ s32 set_texlist(u32 texlist) {
     if (texlist == 0U) {
         return 0;
     }
-    set_global_param__8TObjFishFl();
+    set_current_texture_list();
     return 1;
 }
 

@@ -7,6 +7,7 @@
 #include "pso/boss/volopt/TBoss3VoloptHiraisin.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/effect/TBreakUpMdl.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/system/task/TObject_8001A448.h"
@@ -196,7 +197,7 @@ void TObjVoloptCage::init_break_model() {
 
 void TObjVoloptCage::render() {
     if (update_object_view_visibility(400.0f, 40.0f) != 0) {
-        TObjFish::set_global_param(volopt_cage_textures);
+        set_current_texture_list((GinjaTextureList *)(volopt_cage_textures));
         push_matrix();
         model_render_flags &= ~0x400;
         post_translate_matrix(&position);

@@ -3,6 +3,7 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -1533,7 +1534,7 @@ void draw_with_fade__19TObjEneEpsilonGuardFPvi(u8 *arg0, s32 arg1) {
         return;
     }
     ((TObjEneDD *)arg0)->update_secondary_light();
-    TObjFish::set_global_param(((TObjEneDD_ST *)arg0)->texlist);
+    set_current_texture_list((GinjaTextureList *)(((TObjEneDD_ST *)arg0)->texlist));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     translate_matrix(0, 0.0f, 24.0f, 0.0f);
@@ -1584,7 +1585,7 @@ void TObjEneEpsilonBody::render_body_effect() {
         rotate_matrix_y(0, (int) (this->rotation_y));
         temp_f1 = this->m_4f8;
         scale_matrix(0, temp_f1, 1.0f, temp_f1);
-        TObjFish::set_global_param((int) (this->texlist));
+        set_current_texture_list((GinjaTextureList *)((int) (this->texlist)));
         TObjPlayer::toggle_particle_effect();
         get_bml_model(lbl_805D6FA0, 4);
         draw_chunk_object();

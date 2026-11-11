@@ -27,7 +27,7 @@ void free_bin_model_request(void *, int);
 AnimationMotion *get_bml_motion(u32, int);
 s32 get_bml_model(u32, int);
 void TObjFish__sub_8001EDB0(u32, int);
-void set_global_param__8TObjFishFl();
+void set_current_texture_list();
 void get_camera_ctrl__9TObjEneDDFv(const Vec *, Vec *);
 }
 
@@ -133,7 +133,7 @@ void TObjCamera::render() {
     s32 i;
     if (update_object_view_visibility(400.0f, 20.0f) != 0) {
         TObjFish__sub_8001EDB0(model_resource, 0);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list();
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(0, rotation_y);

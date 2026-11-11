@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/enemy/dolmolm/TObjEneDolmOlm.h"
 #include "pso/render/reflection.h"
@@ -1115,7 +1116,7 @@ void TObjEneDolmOlm::render() {
     if (vis != 0 && ((TObjEneDolmOlm *)arg0)->render_model_if_visible() == 0) {
     select_actor_lighting(arg0);
     model_render_flags |= 1;
-    TObjFish::set_global_param(arg0->f24);
+    set_current_texture_list((GinjaTextureList *)(arg0->f24));
     push_matrix();
     translate_matrix(0, 0.0f, arg0->f380, 0.0f);
     post_translate_matrix(arg0->pos);
@@ -1195,7 +1196,7 @@ void TObjEneDolmOlm::render() {
 s32 TObjEneDolmOlm::render_model_if_visible() {
     if (get_mode__11TCameraCtrlFPv(((s32 *)&main_task)) & 0x20) {
         if (push_reflection_matrix((Vec *)(((u8 *)this) + 0x3D8)) != 0) {
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             push_matrix();
             post_translate_matrix((void *) (((u8 *)this) + 0x38));
             rotate_matrix_y(0, this->rotation_y);

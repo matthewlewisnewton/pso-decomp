@@ -3,6 +3,7 @@
 #include "pso/object/trap/TOExplosiveMachine01.h"
 #include "pso/object/trap/TOExplosiveMachine02.h"
 #include "pso/object/trap/TOExplosiveMachine03.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/unk/TLobby.h"
 #include "pso/object/TObjChip.h"
@@ -100,7 +101,7 @@ void TOExplosiveMachine::render() {
         push_matrix();
         post_translate_matrix(&position);
         rotate_matrix_y(0, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         draw_ginja_object(model);
         pop_matrix();
     }

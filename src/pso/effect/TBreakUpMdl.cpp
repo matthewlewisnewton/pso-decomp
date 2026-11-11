@@ -1,4 +1,5 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include "pso/effect/TBreakUpMdl.h"
@@ -141,7 +142,7 @@ void TBreakUpMdl::render() {
     Part_8009680C *part;
     s32 i;
     if (self->texlist != 0) {
-        TObjFish::set_global_param((s32)self->texlist);
+        set_current_texture_list((GinjaTextureList *)((s32)self->texlist));
     }
     saved_model_render_flags = model_render_flags;
     if (self->alpha < 1.0f) {

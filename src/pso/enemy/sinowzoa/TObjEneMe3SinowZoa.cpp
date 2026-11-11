@@ -2,6 +2,7 @@
 #include "types.h"
 #include "pso/boss/goldragon/TBoss8Dragon_80065C90.h"
 #include "pso/map/CsnQuery.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_80087278.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/system/vector.h"
@@ -3215,7 +3216,7 @@ void TObjEneMe3SinowZoa::render() {
             TObjEneDD::clear_global_flag_400();
         }
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param(*(s32 *)(((u8 *)this) + 0x24));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(((u8 *)this) + 0x24)));
         for (i = 0; i < 3; i++) {
             if (TObjEneMe3SinowZoa__material_color_pointers[i] != NULL) {
                 *TObjEneMe3SinowZoa__material_color_pointers[i] = o->f3F8;
@@ -3272,7 +3273,7 @@ extern "C" {
 s32 TObjEneMe3SinowZoa::render_model_if_visible() {
     if (get_mode__11TCameraCtrlFPv(((s32 *)&main_task)) & 0x20) {
         if (push_reflection_matrix((Vec *)(((u8 *)this) + 0x3D4)) != 0) {
-            TObjFish::set_global_param((int) (*(s32 *)((s8 *)((u8 *)this) + 0x24)));
+            set_current_texture_list((GinjaTextureList *)((int) (*(s32 *)((s8 *)((u8 *)this) + 0x24))));
             push_matrix();
             post_translate_matrix((void *) (((u8 *)this) + 0x38));
             translate_matrix(0, TObjEneMe3SinowZoa__data_805DF31C, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x3E4)), TObjEneMe3SinowZoa__data_805DF31C);
@@ -3315,7 +3316,7 @@ void TObjEneMe3SinowZoa::vfunc_115() {
     }
     flag = sub_8031A454__18TObjEneMe3SinowZoaFv(arg0);
     if (arg0->m8(lbl_805DF318, TObjEneMe3SinowZoa__data_805DF2F0) != 0) {
-        TObjFish::set_global_param((s32)arg0->mdl);
+        set_current_texture_list((GinjaTextureList *)((s32)arg0->mdl));
         TObjPlayer::toggle_particle_effect();
         if (flag != 0) {
             Part_803173D0 *parts = arg0->mdl->parts;

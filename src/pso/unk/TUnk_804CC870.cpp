@@ -4,6 +4,7 @@
 #include "pso/effect/TEffect.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/render/render_util.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/TUnk_804CC870.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -254,7 +255,7 @@ void TUnk_804CC870::render() {
     post_translate_matrix(arg0->f20);
     scale_matrix(0, arg0->pos.x, arg0->pos.y, arg0->pos.z);
     translate_matrix(0, 0.0f, 1e+01f, 0.0f);
-    TObjFish::set_global_param((s32)lbl_804CC868);
+    set_current_texture_list((GinjaTextureList *)((s32)lbl_804CC868));
     get_bml_model(technique_effect_bml, 10);
     draw_ginja_object();
     pop_matrix();

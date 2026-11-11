@@ -21,6 +21,7 @@
 #include "pso/object/cave/TORockCaveBL02.h"
 #include "pso/object/cave/TORockCaveBL03.h"
 #include "pso/object/TObjChip.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/map/FloorArea.h"
 #include "pso/object/switch/TSwitch.h"
@@ -179,7 +180,7 @@ void TORockCave::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         draw_ginja_object(model);
         pop_matrix();
         vfunc_15();
@@ -197,7 +198,7 @@ void TORockCaveSimple::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         draw_ginja_object(model);
         pop_matrix();
     }

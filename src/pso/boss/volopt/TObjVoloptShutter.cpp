@@ -1,6 +1,7 @@
 #pragma readonly_strings on
 
 #include "pso/boss/volopt/TObjVoloptShutter.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/math/MatrixTransforms.h"
@@ -61,7 +62,7 @@ void TObjVoloptShutter::update_shutter_state() {
 
 void TObjVoloptShutter::render() {
     TObjPlayer::toggle_particle_effect();
-    TObjFish::set_global_param(volopt_shutter_global_param);
+    set_current_texture_list((GinjaTextureList *)(volopt_shutter_global_param));
     push_matrix();
     model_render_flags &= ~0x400;
     rotate_matrix_y(0, rotation_y);

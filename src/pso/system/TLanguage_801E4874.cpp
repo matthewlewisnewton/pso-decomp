@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/TLanguage_801E4874.h"
 #include "pso/system/byteswap.h"
 #include "pso/system/TLanguage.h"
@@ -134,7 +135,7 @@ s32 TLanguage::read_u16_le() {
 
 void update_texture_wave_image(void *wave) {
     if ((is_split_screen() == 0) || (TCameraCtrl::get_camera_no() == 0)) {
-        TObjFish::set_global_param(*(s32 *)((s8 *)wave + 0x3C));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)wave + 0x3C)));
         ((VObj_801E4B68_801E4874 *)wave)->m0();
         distort_texture_wave_image(wave);
     }

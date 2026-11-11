@@ -3,6 +3,7 @@
 #include "pso/player/TObjPlayer_80052374.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/boss/darkfalz/TObjDFJisin.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/boss/darkfalz/TObjDFTenchuFuru.h"
@@ -49,20 +50,20 @@ void TObjPlayer::draw_player_model_by_client(u16 arg0, s32 arg1, f32 farg0, f32 
     if (farg1 < lbl_805D8A34) {
         TObjPlayer__sub_80052390(farg1);
     }
-    TObjFish::set_global_param((s32)g);
+    set_current_texture_list((GinjaTextureList *)((s32)g));
     TObjDFTenchuFuru::register_callback();
     draw_model_motion((void *)f, (void *)arg1, farg0);
     TObjDFTenchuFuru__sub_80051A7C();
     if (d != 0) {
         push_matrix_from((u8 *)df_captured_matrix_pair + 0x30);
-        TObjFish::set_global_param((s32)e);
+        set_current_texture_list((GinjaTextureList *)((s32)e));
         draw_chunk_object((void *)d);
         pop_matrix();
     }
     if (a != 0) {
         TCharaMaking::enable_making();
         push_matrix_from(df_captured_matrix_pair);
-        TObjFish::set_global_param((s32)c);
+        set_current_texture_list((GinjaTextureList *)((s32)c));
         draw_chunk_object((void *)a);
         pop_matrix();
         TCharaMaking::clear_flag_bit0();
@@ -73,7 +74,7 @@ void TObjPlayer::draw_player_model_by_client(u16 arg0, s32 arg1, f32 farg0, f32 
     if (b != 0) {
         TCharaMaking::enable_making();
         push_matrix_from(df_captured_matrix_pair);
-        TObjFish::set_global_param((s32)c);
+        set_current_texture_list((GinjaTextureList *)((s32)c));
         TCharaMaking__draw_colored_hair(b, p + 0x85C, 0, farg1);
         pop_matrix();
         TCharaMaking::clear_flag_bit0();

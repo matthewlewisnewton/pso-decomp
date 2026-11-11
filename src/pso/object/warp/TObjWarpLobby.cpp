@@ -2,6 +2,7 @@
 #include "pso/object/warp/TObjWarpLobby.h"
 #include "pso/object/warp/TObjWarpJungMain.h"
 #include "pso/npc/TObjNpcEnemy.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/network/TPlyJoinLobbyEntry.h"
 #include "pso/ui/window/TWindowSubComCard_80244774.h"
@@ -118,7 +119,7 @@ void TObjWarpLobby::open_lobby_menu() {
 void TObjWarpLobby::render() {
     u8 *arg0 = (u8 *)this;
     if (((s32) *(s32 *)((s8 *)arg0 + 0xCC) != 0) && (((WarpLobbyVObj_801A07F8*)arg0)->m8(4e+02f, 2e+01f) != 0)) {
-        TObjFish::set_global_param(lbl_805D5CCC);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D5CCC));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

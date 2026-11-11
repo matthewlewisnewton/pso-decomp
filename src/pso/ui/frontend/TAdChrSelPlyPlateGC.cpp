@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/keyboard/TKeyBoardControl_803DE9C4.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/render/ModelDrawContext.h"
@@ -863,7 +864,7 @@ void TAdChrSelPlyPlateGC::draw_selection_cursors() {
                 set_color_blending_mode(0, 8);
                 set_color_blending_mode(1, 0xA);
                 begin_screen_draw(1);
-                TObjFish::set_global_param(lbl_805D67D4);
+                set_current_texture_list((GinjaTextureList *)(lbl_805D67D4));
                 set_draw_texture_and_color(0, self->sel[i][j]);
                 draw_textured_quad_at_depth(self->r324, 0.53f);
                 draw_textured_quad_at_depth(self->r344, 0.53f);
@@ -885,7 +886,7 @@ void TAdMultiPlyChrSelectGC__sub_802C522C(s32 arg0) {
         if (multi_ply_chr_select_tag_shown[i] == 1) {
             s32 alpha = (s32)(255.0f * multi_ply_chr_select_tag_alpha[i] + 0.5f);
             begin_screen_draw(1);
-            TObjFish::set_global_param(lbl_805D67D0);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D67D0));
             set_draw_texture_and_color(0, (alpha << 24) | 0xFFFFFF);
             draw_textured_quad_at_depth(&self->quad[i + 4][0].x, 0.54f);
             TWindowSubStatusDisp::get_player();
@@ -905,7 +906,7 @@ void TAdMultiPlyChrSelectGC__sub_802C50EC(s32 arg0) {
     for (i = 0; i < 4; i++) {
         if (multi_ply_chr_select_tag_shown[i] == 1) {
             begin_screen_draw(1);
-            TObjFish::set_global_param(lbl_805D67D0);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D67D0));
             set_draw_texture_and_color(0, ((s32)(255.0f * multi_ply_chr_select_tag_alpha[i] + 0.5f) << 24) | 0xFFFFFF);
             q.u0 = self->quad[i + 4][0].u0;
             q.u1 = self->quad[i + 4][0].u1;

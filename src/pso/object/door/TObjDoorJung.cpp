@@ -6,6 +6,7 @@
 #include "pso/object/door/TODoorBase.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/object/door/TODoorAncient01.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/scene/TScene.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
@@ -171,7 +172,7 @@ void TObjDoorJung::render() {
                 free_children__12TObjDoorJungFPv(TObjDoorJung__child_table[j], lbl_805D5BE8);
             }
         }
-        TObjFish::set_global_param((s32)((void *)lbl_805D5BD4));
+        set_current_texture_list((GinjaTextureList *)((s32)((void *)lbl_805D5BD4)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

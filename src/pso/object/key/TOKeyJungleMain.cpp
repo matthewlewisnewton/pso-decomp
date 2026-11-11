@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/TLevelSelect.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/system/task/TObject.h"
@@ -90,7 +91,7 @@ void TOKeyJungleMain::render() {
     if (update_object_view_visibility(view_range, model_radius) == 1) {
         switch (is_on) {
         case 0:
-            TObjFish::set_global_param(TObjFish__sub_8001EDB0(TOKeyJungleMain__static_model_resource, 1));
+            set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TOKeyJungleMain__static_model_resource, 1)));
             push_matrix();
             post_translate_matrix(&position.x);
             rotate_matrix_y(0, rotation_y);
@@ -98,7 +99,7 @@ void TOKeyJungleMain::render() {
             pop_matrix();
             return;
         case 1:
-            TObjFish::set_global_param(TObjFish__sub_8001EDB0(TOKeyJungleMain__static_model_resource, 1));
+            set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TOKeyJungleMain__static_model_resource, 1)));
             push_matrix();
             post_translate_matrix(&position.x);
             rotate_matrix_y(0, rotation_y);

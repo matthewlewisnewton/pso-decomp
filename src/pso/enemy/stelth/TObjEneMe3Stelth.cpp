@@ -2,6 +2,7 @@
 #include "types.h"
 #include "pso/boss/goldragon/TBoss8Dragon_80065C90.h"
 #include "pso/map/CsnQuery.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_80087278.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/system/vector.h"
@@ -879,7 +880,6 @@ s32 get_target_info__9TObjEneDDFv(void *);
 #define sub_800F4850__16TObjEneMe3StelthFv ((s32 (*)(void *))sub_800F4850__16TObjEneMe3StelthFv)
 #define get_node_world_y__16TObjEneMe3StelthFv ((f32 (*)(void *))get_node_world_y__16TObjEneMe3StelthFv)
 extern "C" {
-s32 set_global_param__8TObjFishFl(void *);
 }
 extern "C" {
 #define TObjEneMe3Stelth__material_color_pointers ((u32 * *)&TObjEneMe3Stelth__material_color_pointers)
@@ -915,7 +915,7 @@ void TObjEneMe3Stelth::draw_with_debug_info() {
     }
     flag = sub_800F47D4__16TObjEneMe3StelthFv(arg0);
     if (arg0->m8(lbl_805DA83C, TObjEneMe3Stelth__data_805DA808) != 0) {
-        set_global_param__8TObjFishFl(arg0->mdl);
+        set_current_texture_list((GinjaTextureList *)(arg0->mdl));
         TObjPlayer::toggle_particle_effect();
         if (flag != 0) {
             Part_800F18C8 *parts = arg0->mdl->parts;
@@ -1132,7 +1132,6 @@ s32 is_main_phase_15__9TObjEneDDFv();
 s32 draw_ginja_motion_model__10TObjMotionFv(void *);
 s32 defer_render__7TObjectFv(void *);
 s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
-#define set_global_param__8TObjFishFl ((s32 (*)(s32))set_global_param__8TObjFishFl)
 #define TObjEneMe3Stelth__material_color_pointers ((s32 * *)&TObjEneMe3Stelth__material_color_pointers)
 extern const f32 lbl_805D9E84;
 extern const f32 lbl_805D9E88;
@@ -1201,7 +1200,7 @@ void TObjEneMe3Stelth::render() {
                 set_chunk_material_override_pair(0xFF00, 0x800);
             }
             if (draw != 0) {
-                set_global_param__8TObjFishFl(F(s32, 0x24));
+                set_current_texture_list((GinjaTextureList *)(F(s32, 0x24)));
                 push_matrix();
                 post_translate_matrix(&this->position.x);
                 translate_matrix(0, TObjEneMe3Stelth__data_805DA840, F(f32, 0x3D4), TObjEneMe3Stelth__data_805DA840);
@@ -1240,7 +1239,7 @@ void TObjEneMe3Stelth::render() {
                 set_constant_material(&c);
                 set_color_blend_mode(1, 4, 5, 0);
             }
-            set_global_param__8TObjFishFl(F(s32, 0x24));
+            set_current_texture_list((GinjaTextureList *)(F(s32, 0x24)));
             for (i = 0; i < 3; i++) {
                 if (TObjEneMe3Stelth__material_color_pointers[i] != 0) {
                     *TObjEneMe3Stelth__material_color_pointers[i] = F(s32, 0x3E8);
@@ -1283,7 +1282,6 @@ void TObjEneMe3Stelth::render() {
     TParticleCtrl::end_effect_render();
 }
 
-#undef set_global_param__8TObjFishFl
 #undef TObjEneMe3Stelth__material_color_pointers
 #undef sub_800F47D4__16TObjEneMe3StelthFv
 void TObjEneMe3Stelth::add_instance() { load_projection_tex_matrix(*(int *)&stelth_projection_texture_handle); (*(int *)&TObjEneMe3Stelth__render_node_index) = ((*(int *)&TObjEneMe3Stelth__render_node_index) + 0x1); }

@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "pso/effect/TDuelEffectNumber_80080460.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/effect/TDuelEffectString.h"
@@ -52,7 +53,7 @@ void render__17TDuelEffectStringFv(u8 *duel_effect_number) {
     temp_r31 = __cvt_fp2unsigned(4278190080.0f * sp8) | 0xFF0000 | 0xFFFF;
     set_additive_blend();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(6, temp_r31);
     switch (*(s32 *)((s8 *)duel_effect_number + 0x24)) {
     case 0:

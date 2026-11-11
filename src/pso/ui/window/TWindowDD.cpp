@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/window/TWindowDD.h"
 #include "pso/system/task/TObject.h"
 #include "pso/ui/window/TUnk_804EFBAC.h"
@@ -413,7 +414,7 @@ void TWindowDD__sub_80340A78(TWindowDD_WS_ScrollBar *self) {
     ((TWindowDD *)verts)->draw_transformed_primitive((void *)8, (void *)tex, (void *)1);
 
     z = TWindowDD__sub_80348AD4(self->pad_54, 0.1f);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     begin_screen_draw(1);
     set_draw_texture_and_color(0, -1);
 

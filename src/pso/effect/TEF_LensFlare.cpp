@@ -6,6 +6,7 @@
 #include "pso/math/MatrixVector.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/render/render_util.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/task/TMainTask.h"
@@ -152,7 +153,7 @@ void TEF_LensFlare::render() {
                 VecCopy(&sprite.pos, &at);
                 sprite.scale_x = sprite.scale_y = 20.0f * s;
                 begin_screen_draw(1);
-                TObjFish::set_global_param(lbl_804C5820[15].param);
+                set_current_texture_list((GinjaTextureList *)(lbl_804C5820[15].param));
                 set_draw_texture_and_color(lbl_804C5820[15].tex, -1);
                 w = lbl_804C5820[15].sx * (2.0f * sprite.scale_x);
                 h = lbl_804C5820[15].sy * (2.0f * sprite.scale_y);
@@ -190,7 +191,7 @@ void TEF_LensFlare::render() {
                 VecCopy(&sprite.pos, &at);
                 sprite.scale_x = sprite.scale_y = 1.0f;
                 begin_screen_draw(1);
-                TObjFish::set_global_param(lbl_804C5820[9].param);
+                set_current_texture_list((GinjaTextureList *)(lbl_804C5820[9].param));
                 set_draw_texture_and_color(lbl_804C5820[9].tex, -1);
                 w = lbl_804C5820[9].sx * (2.0f * sprite.scale_x);
                 h = lbl_804C5820[9].sy * (2.0f * sprite.scale_y);
@@ -227,7 +228,7 @@ void TEF_LensFlare::render() {
                 VecCopy(&sprite.pos, &at);
                 sprite.scale_x = sprite.scale_y = size;
                 begin_screen_draw(1);
-                TObjFish::set_global_param(lbl_804C5820[e->sprite].param);
+                set_current_texture_list((GinjaTextureList *)(lbl_804C5820[e->sprite].param));
                 set_draw_texture_and_color(lbl_804C5820[e->sprite].tex, -1);
                 w = lbl_804C5820[e->sprite].sx * (2.0f * sprite.scale_x);
                 h = lbl_804C5820[e->sprite].sy * (2.0f * sprite.scale_y);

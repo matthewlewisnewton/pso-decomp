@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/effect/TKomorebi.h"
 #include "pso/render/GinjaMaterial.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
@@ -74,7 +75,7 @@ void TKomorebi::render() {
             komorebi_last_uv_update_frame = actor_frame_tick;
         }
         push_matrix();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_yxz(0, *(s32 *)&this->rotation_x, this->rotation_y, this->rotation_z);
         temp_f1 = this->scale.z;

@@ -1,5 +1,6 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/sorcerer/TObjEneRe4Bit.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/player/TObjPlayer_801542CC.h"
@@ -1131,7 +1132,7 @@ void render__13TObjEneRe4BitFv(Bit_800ECA40 *self) {
     m = *self->x24;
     saved = m->x2C;
     m->x2C = m->ents[self->idx].c;
-    TObjFish::set_global_param((s32)self->x24);
+    set_current_texture_list((GinjaTextureList *)((s32)self->x24));
     saved_model_render_flags = model_render_flags;
     TObjEneDD::clear_global_flag_400();
     TObjPlayer::toggle_particle_effect();

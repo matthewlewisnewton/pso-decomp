@@ -66,7 +66,7 @@ u8 *TSceneSora__ct(TSceneSora *arg0, s32 _w1);
 s32 draw_ginja_model_with_motion(int, int, f32);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
-s32 set_global_param__8TObjFishFl();
+s32 set_current_texture_list();
 void *get_current_floor();
 u32 init_bin_model_request(void *, int, Res_80207478 *, Res_80207478 *, int, int, int);
 s32 lookup_scene_object__6TLobbyFPv(void *, Ref_80207478 *);
@@ -85,7 +85,7 @@ void TSceneSora::render() {
     if ((s32) TSceneSora__sky_active_flag != 0) {
         TParticleCtrl::begin_effect_render();
         TObjFish__sub_8001EDB0((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list();
         push_matrix();
         rotate_matrix_y(0, this->rotation_y);
         if ((u32) this->m_94 != 0U) {

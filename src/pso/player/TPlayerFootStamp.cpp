@@ -11,6 +11,7 @@
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/render/GinjaTexture.h"
 #include "pso/render/render_util.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/task/TMainTask.h"
@@ -294,7 +295,7 @@ void TPlayerFootStamp::render() {
     if (horizontal_distance_squared(&position, (const Vec *)&camera_ctrl_instance->pos_x) < 22500.0f) {
         saved_model_render_flags = model_render_flags;
         set_default_alpha_blend();
-        TObjFish::set_global_param(player_footstamp_texture_gvm_handle);
+        set_current_texture_list((GinjaTextureList *)(player_footstamp_texture_gvm_handle));
         set_texture_num(texture);
         set_depth_buffer_settings_1();
         draw_particle_strip(verts, (void *)4, (void *)1);

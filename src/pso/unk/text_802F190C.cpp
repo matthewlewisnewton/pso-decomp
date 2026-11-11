@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TObject.h"
 #include "pso/render/render_util.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -59,7 +60,7 @@ void draw_particle_effect(void* a0) {
     set_draw_list_mask((u32)((void*)3));
 
     TParticleCtrl::begin_effect_render();
-    TObjFish::set_global_param(boss7_common_texture_list);
+    set_current_texture_list((GinjaTextureList *)(boss7_common_texture_list));
     set_motion_packed_rotation();
 
     draw_ginja_model_with_motion((void*)(*(int*)((char*)a0 + 0x1c)), (void*)(*(int*)((char*)a0 + 0x20)), *(float*)((char*)a0 + 0x28));

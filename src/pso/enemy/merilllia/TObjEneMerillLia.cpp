@@ -6,6 +6,7 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/merilllia/TObjEneMerillLia.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -1496,7 +1497,7 @@ void TObjEneMerillLia::render() {
   {
     saved_model_render_flags = model_render_flags;
     select_actor_lighting((s32)this);
-    TObjFish::set_global_param((int) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_24);
+    set_current_texture_list((GinjaTextureList *)((int) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_24));
     push_matrix();
     translate_matrix(0, (f32) TObjEneMerillLia__data_805DA300, (f32) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_380, (f32) TObjEneMerillLia__data_805DA300);
     post_translate_matrix(((u8 *)this) + 0x38);

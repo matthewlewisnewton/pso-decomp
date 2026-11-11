@@ -4,6 +4,7 @@
 #include "pso/npc/TObjNpcFemaleBase.h"
 #include "pso/npc/TObjNpcMoja.h"
 #include "pso/math/MatrixVector.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/enemy/berura/TObjEneRe7Berura.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -281,7 +282,7 @@ void TObjPlayer::draw_if_visible() {
     u8 *arg0 = (u8 *)this;
     if ((((VObj_8014C610 *)arg0)->m8(*(f32 *)&this->unk_398, *(f32 *)((s8 *)arg0 + 0x39C)) != 0) && ((s32) *(s32 *)&this->unk_390 == 1)) {
         model_render_flags |= 1;
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix_from(0);
         translate_matrix_vec3((u8 *)(0), (u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

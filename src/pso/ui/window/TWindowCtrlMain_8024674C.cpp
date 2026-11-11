@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/window/TWindowCtrlMain_8024674C.h"
 #include "pso/ui/chat/TWindowSubShortMail_80246CB8.h"
 #include "pso/player/TObjPlayer_8023E480.h"
@@ -56,7 +57,7 @@ void load_hud_palette_textures(void) {
     TLobby::tmp_buf_release((const char *)lbl_8044E658);
     TLobby__sub_8023E554((s32)lbl_8044E758, (s32)f256_hyouji_texlist);
     lbl_805D63F0 = (u32)f256_hyouji_texlist;
-    TObjFish::set_global_param((s32)((void *)f256_hyouji_texlist));
+    set_current_texture_list((GinjaTextureList *)((s32)((void *)f256_hyouji_texlist)));
     TLanguage::set_entry_index(0, 0x40);
     TLanguage::set_entry_index(1, 0x41);
     TLanguage::set_entry_index(2, 0x42);

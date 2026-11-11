@@ -82,7 +82,7 @@ s32 get_bml_model(void *, int);
 s32 draw_chunk_object();
 s32 push_matrix();
 void __dl__7TObjectFPv(void *);
-s32 set_global_param__8TObjFishFl();
+s32 set_current_texture_list();
 
 extern s32 model_render_flags;
 
@@ -116,7 +116,7 @@ void TObjGyaranzoMissile::sub_800D47B4() {
 
 void TObjGyaranzoMissile::render() {
     TObjFish__sub_8001EDB0((void *)gyaranzo_bml_resource, 6);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list();
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_x(0, (int)this->rotation_x);

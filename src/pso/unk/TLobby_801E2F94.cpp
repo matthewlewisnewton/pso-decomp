@@ -1,6 +1,7 @@
 #include "pso/animation/MotionContext.h"
 #include "pso/render/DebugFont.h"
 #include "pso/render/render_util.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby_801E2F94.h"
 #include "pso/player/TObjPlayer_803E21B8.h"
 #include "pso/enemy/sorcerer/TObjEneRe4Sorcerer_801E3F14.h"
@@ -49,7 +50,7 @@ void TObjPlayer::draw_shadow_quad(s32 arg1, s32 flags) {
     f32 ey, ex, cx, cy, z;
     f32 u0, v0, u1, v1;
 
-    TObjFish::set_global_param(self->param);
+    set_current_texture_list((GinjaTextureList *)(self->param));
     set_texture_num(self->rect->tex);
     u0 = 0.01f;
     u1 = 0.99f;

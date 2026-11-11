@@ -1,6 +1,7 @@
 #include "pso/render/ChunkMaterialState.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/data/FlagWord.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/system/PadRumble.h"
@@ -7477,7 +7478,7 @@ void TObjPlayer::draw_head_attachments() {
     if ((u32) this->m_8b4 != 0U) {
         this->get_item_ptr(0x3A);
         ((s32 (*)(void))push_matrix_from)();
-        TObjFish::set_global_param((s32)((void *) (((u8 *)this) + 0xB88)));
+        set_current_texture_list((GinjaTextureList *)((s32)((void *) (((u8 *)this) + 0xB88))));
         if (this->m_flags & 0x400) {
             set_shadow_material_state();
         }
@@ -7488,7 +7489,7 @@ void TObjPlayer::draw_head_attachments() {
     if ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x8B0) != 0U) {
         this->get_item_ptr(0x3B);
         ((s32 (*)(void))push_matrix_from)();
-        TObjFish::set_global_param((s32)((void *) (((u8 *)this) + 0xA1C)));
+        set_current_texture_list((GinjaTextureList *)((s32)((void *) (((u8 *)this) + 0xA1C))));
         if (this->m_flags & 0x400) {
             set_shadow_material_state();
         }
@@ -7501,7 +7502,7 @@ void TObjPlayer::draw_head_attachments() {
     if ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x8AC) != 0U) {
         this->get_item_ptr(0x3B);
         ((s32 (*)(void))push_matrix_from)();
-        TObjFish::set_global_param((s32)((void *) (((u8 *)this) + 0xA1C)));
+        set_current_texture_list((GinjaTextureList *)((s32)((void *) (((u8 *)this) + 0xA1C))));
         var_r31 = 0;
         if (this->m_flags & 0x400) {
             var_r31 = 1;
@@ -7538,7 +7539,7 @@ void draw_body__10TObjPlayerFPvi(u8 *player, s32 arg1) {
         set_chunk_material_override_pair(-1, 0x800);
         set_shadow_material_state();
     }
-    TObjFish::set_global_param((s32)(player + 0xCF4));
+    set_current_texture_list((GinjaTextureList *)((s32)(player + 0xCF4)));
     set_motion_packed_rotation();
     if (arg1 == 2) {
         ((TObjPlayer *)player)->motion_flags = (s32) (((TObjPlayer *)player)->motion_flags | 0x400);

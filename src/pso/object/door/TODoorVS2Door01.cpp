@@ -1,5 +1,6 @@
 #include "pso/object/door/TODoorVS2Door01.h"
 
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/system/task/TObject.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -76,7 +77,7 @@ void TODoorVS2Door01::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texture_lists[door_flags & 1]);
+        set_current_texture_list((GinjaTextureList *)(texture_lists[door_flags & 1]));
         node = (NJS_OBJECT *)model;
         post_translate_matrix(node->pos);
         push_matrix();

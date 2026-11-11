@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8000F764.h"
 #include "pso/object/trap/TOTrap_801791EC.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -444,7 +445,7 @@ void render__15TOTrapAncient01Fv(Trap_80179B8C *self) {
             v.z = lbl_805DBA60 * (lbl_805DBA64 * (f32)rand()) - lbl_805DBA68;
             post_translate_matrix(&v.x);
         }
-        TObjFish::set_global_param(self->f24);
+        set_current_texture_list((GinjaTextureList *)(self->f24));
         n = self->model;
         push_matrix();
         translate_matrix(0, TOTrapAncient01__data_805DBA4C, self->f6C, TOTrapAncient01__data_805DBA4C);

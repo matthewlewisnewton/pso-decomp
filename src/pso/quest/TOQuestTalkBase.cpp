@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/quest/TOQuestTalkBase.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/system/task/TObject.h"
 #include "pso/camera/TCameraCtrl_8006CC30.h"
@@ -166,7 +167,7 @@ void TOQuestTalkBase::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (active == 1) {
             if (motion != NULL) {
                 draw_model_motion(model, motion, animation_frame);

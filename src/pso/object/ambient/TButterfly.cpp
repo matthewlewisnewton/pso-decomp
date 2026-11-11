@@ -38,7 +38,7 @@ void rotate_vector_by_matrix(void *, Vec_8017EA74 *, Vec_8017EA74 *);
 extern u8 identity_matrix[];
 s32 TObjFish__sub_8001EDB0(s32, s32);
 void __dl__7TObjectFPv(void *);
-s32 set_global_param__8TObjFishFl();
+s32 set_current_texture_list();
 
 void TButterfly::init_motion() {
     u8 *arg0 = (u8 *)this;
@@ -59,7 +59,7 @@ extern s32 butterfly_bml_resource;
 void TButterfly::render() {
     if (((VObj_8017E978*)this)->m8((4e+02f), (2e+01f)) != 0) {
         TObjFish__sub_8001EDB0(butterfly_bml_resource, 0);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list();
         draw_model();
     }
 }

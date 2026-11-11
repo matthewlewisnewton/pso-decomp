@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/frontend/TAdGameStartLineGC.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
@@ -12,7 +13,7 @@ extern void *lbl_805D6C18;
 #pragma fp_contract on
 void TAdGameStartLineGC::fn_80320DE8() {
     begin_screen_draw(1);
-    TObjFish::set_global_param((s32)lbl_805D6C18);
+    set_current_texture_list((GinjaTextureList *)((s32)lbl_805D6C18));
     set_draw_texture_and_color(0, m_158);
     for (u32 i = 0; i < 4; i++) {
         draw_textured_quad_at_depth(&cur[i].x0, 0.0001f * i + 0.795f);

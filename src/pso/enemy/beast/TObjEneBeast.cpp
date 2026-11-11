@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/effect/TUnk_80494968.h"
 #include "types.h"
@@ -32,7 +33,6 @@ s32 draw_chunk_object(s32);
 s32 restore_scene_lighting();
 s32 select_actor_lighting(void *);
 s32 push_matrix();
-s32 set_global_param__8TObjFishFl(s32);
 s32 defer_render__7TObjectFv(void *);
 extern s32 model_render_flags;
 }
@@ -278,7 +278,7 @@ void render__12TObjEneBeastFPv(Obj_8009211C *o) {
     }
     saved_model_render_flags = model_render_flags;
     select_actor_lighting(o);
-    set_global_param__8TObjFishFl(o->f24);
+    set_current_texture_list((GinjaTextureList *)(o->f24));
     push_matrix();
     translate_matrix(0, 0.0f, o->f380, 0.0f);
     post_translate_matrix(o->f38);
@@ -338,7 +338,6 @@ void render__12TObjEneBeastFPv(Obj_8009211C *o) {
 #undef obj_setFlags30
 #undef play_sound_effect
 #undef translate_matrix
-#undef set_global_param__8TObjFishFl
 #undef draw_chunk_object
 #undef update_if_active__15TObjEnemyCustomFl
 #undef TObjEneBalClawClaw__sub_800914A4

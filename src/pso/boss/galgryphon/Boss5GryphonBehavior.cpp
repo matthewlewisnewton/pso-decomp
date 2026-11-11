@@ -1,6 +1,7 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby_801E2F94.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/EnemyStateEvent.h"
@@ -1348,7 +1349,7 @@ s32 TBoss8Dragon__sub_8005DC0C(Obj_8005DC0C *arg0) {
 
 void TBoss5Gryphon::render_with_fade(s32 arg1) {
     RenderFadeState *fade;
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     TObjEneDD::clear_global_flag_400();
     saved_model_render_flags = model_render_flags;
     set_material_alpha_compare_reference(0);

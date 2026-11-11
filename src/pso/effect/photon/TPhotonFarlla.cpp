@@ -1,3 +1,4 @@
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 
 const char *TPhotonFarlla__class_name = "TPhotonFarlla";
@@ -93,7 +94,7 @@ void TPhotonFarlla::render() {
     if (this->m_1a0 != 0) {
         scroll_strip_uvs(farlla_photon_blast_model_buffers, self->f14C, 0);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
         rotate_matrix_y(0, this->rotation_y);
