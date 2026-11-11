@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Read-only candidate survey for the KenkyuW argument-order investigation.
 
-Filters build.ninja units by the dispatcher's compiler version and exact command
-flags, then scans .text for independent move/load/direct-call triples.
+Filters build.ninja units by the dispatcher's compiler version and, by default,
+exact command flags, then scans .text for independent move/load/direct-call triples.
 The original provider uses the corresponding original split objects; configured
 flags select the cohort but do not establish the original compiler's provenance.
 Source pragmas and actual scheduling causes still require separate validation.
@@ -20,6 +20,8 @@ parser.add_argument('--include-narrow-loads',action='store_true',
                     help='Also consider lbz, lhz and lha argument loads')
 parser.add_argument('--provider',choices=('source','original'),default='source',
                     help='Scan compiled source objects or corresponding original split objects')
+parser.add_argument('--flag-scope',choices=('exact','all-gc26'),default='exact',
+                    help='Require dispatcher flags or classify every configured GC/2.6 flag group')
 args=parser.parse_args()
 repo=args.repo.resolve()
 
@@ -89,13 +91,21 @@ control=rules['build/GPOE8P/src/pso/npc/TObjNpcKenkyuW.o']
 reference_flags=' '.join(control['cflags'].split())
 allowed_loads=(32,34,40,42) if args.include_narrow_loads else (32,)
 rows=[];units=functions=0
+flag_groups={};missing_objects=[]
 corpus=hashlib.sha256()
 for name,rule in rules.items():
     if not name.startswith('build/GPOE8P/src/') or not name.endswith('.o'): continue
-    if rule.get('mw_version')!='GC/2.6' or ' '.join(rule.get('cflags','').split())!=reference_flags: continue
+    flags=' '.join(rule.get('cflags','').split())
+    if rule.get('mw_version')!='GC/2.6': continue
+    if args.flag_scope=='exact' and flags!=reference_flags: continue
     object_name=name.replace('/src/','/obj/',1) if args.provider=='original' else name
     path=repo/object_name
-    if not path.exists():continue
+    if not path.exists():
+        missing_objects.append(object_name)
+        continue
+    group=flag_groups.setdefault(flags,{'units':0,'functions':0,'sites':0,
+                                      'branch_entry_sites':0,'zero_prefix_sites':0})
+    group['units']+=1
     corpus.update(object_name.encode()+b'\0'+hashlib.sha256(path.read_bytes()).digest())
     units+=1
     sections,symbols,relocs,allocated=elf(path)
@@ -106,6 +116,7 @@ for name,rule in rules.items():
         start,size=s[1:3]
         if s[3]&15!=2 or not size or start+size>len(data):continue
         functions+=1
+        group['functions']+=1
         starts={start};targets=set()
         for offset in range(start,start+size,4):
             w=words[offset//4];op=w>>26
@@ -134,12 +145,17 @@ for name,rule in rules.items():
             source=rule['build'].split(': mwcc ',1)[1].split(' | ',1)[0].strip()
             row={'unit':object_name,'source':source,'symbol':fn,'offset':hex(offset),
                  'function_offset':hex(offset-start),
+                 'compiler':'GC/2.6','flags':flags,'dispatcher_flags':flags==reference_flags,
                  'move_destination':dst,'move_source':src,'load_destination':ld,'load_base':base,'load_opcode':b>>26,
                  'branch_target':offset in targets,'block_start':hex(block),
                  'preceding_in_block':len(before),'preceding_store':any(is_store(w)for w in before),
                  'call_target':reloc.get(offset+8,('unknown',))[3] if offset+8 in reloc else 'local call'}
             rows.append(row)
+            group['sites']+=1
+            group['branch_entry_sites']+=int(row['branch_target'])
+            group['zero_prefix_sites']+=int(not row['preceding_in_block'])
 summary={'compiler':'GC/2.6','flags':reference_flags,'object_provider':args.provider,
+         'flag_scope':args.flag_scope,'flag_groups':flag_groups,'missing_objects':missing_objects,
          'object_corpus_sha256':corpus.hexdigest(),'units':units,'functions':functions,'sites':len(rows),
          'no_preceding_store':sum(not r['preceding_store'] for r in rows),'rows':rows}
 summary['build_ninja_sha256']=hashlib.sha256((repo/'build.ninja').read_bytes()).hexdigest()

@@ -906,3 +906,81 @@ must preserve all 57 target instructions, nine siblings and relocations and
 pass a real source link with the original DOL hash. This audit identifies no
 further productive source compile under the current model; it does not
 prove that every source-level solution is impossible.
+
+### Cross-flag GC/2.6 cohort check
+
+The exact-flags survey excluded some GC/2.6 units because of floating-point
+contraction, debug symbols, small-data settings, string pooling or inlining
+options. Those exclusions alone do not establish a different GPR argument
+scheduler. A second read-only pass therefore included every configured
+GC/2.6 source-object rule, classifying sites by the complete flags rather
+than assuming that any option difference explains the instruction order:
+
+```sh
+python3 docs/evidence/kenkyuw-argument-boundary-scan.py \
+  --flag-scope all-gc26 --include-narrow-loads --provider source \
+  --output all-gc26-source.json
+python3 docs/evidence/kenkyuw-argument-boundary-scan.py \
+  --flag-scope all-gc26 --include-narrow-loads --provider original \
+  --output all-gc26-original.json
+```
+
+On the same `baa0b4e4` main/`3f3b6b202` PR snapshot this covers 3,399 objects
+in 43 full-flags groups, with no missing objects. The source survey contains
+23,918 eligible function symbols and 190 triples; the original survey
+contains 23,972 eligible function symbols and 195 triples. Relative to the
+exact-flags cohort this adds 306 objects, 4,423/4,547 source/original function
+symbols and 36/39 triples. The scanner records each site's compiler, full
+flags, dispatcher-flags equality, and per-flags object/function/site counts.
+
+Only the group configured with `-O3,p -inline off -opt nopeephole` contributes
+new zero-prefix or direct-branch-entry sites:
+
+| Function | Function offset | Calls | Present in |
+| --- | --- | --- | --- |
+| `load_nj_chunk_model_resource` | `0x218` | `move_data` | Source and original; direct branch target |
+| `load_nj_chunk_model_resource` | `0x224` | `DCFlushRange` | Source and original; immediately after the preceding call |
+| `dispatch_chunk_polygon_list` | `0xC0` | `apply_chunk_texture_command` | Original only; conditional fallthrough |
+
+The polygon unit explicitly has global `#pragma scheduling off`, so that
+site supplies no same-settings source witness. The resource-loader function
+has no function-scoped scheduling override. Its unchanged complete unit was
+compiled privately first with its configured flags: the entire `.text` and
+all relocations reproduced the cached source object, and the 1,104-byte
+loader is 100% exact in the existing report. One further diagnostic compile
+used precisely the dispatcher flags, including `-O4,s -inline off -sdata2 4`,
+with the real headers and unchanged source. Both new triples became
+load-first. Around the cache flush:
+
+```text
+configured:       mr  r3,r30       dispatcher flags: lwz r4,12(r1)
+                  lwz r4,12(r1)                      mr  r3,r30
+                  bl  DCFlushRange                    bl  DCFlushRange
+```
+
+The loader becomes 1,056 bytes under dispatcher flags; function text SHA-256
+`a2f7ffc482f4c63c88b3acb58b5e8d1786ab4697940ab0fedf35598020f1728c`.
+The unchanged unit source SHA-256 is
+`0ebc7062a433c4d90e958f2c7cc84674e406863c3373ecb3ea62d13882cce03f`.
+No source edit, flag change or link-provider change was made in the project.
+The additional cohort therefore supplies no source lead that survives the
+required flags; no new dispatcher permutation or full-unit candidate follows.
+Indirect jump-table destinations and original build provenance remain the
+same bounded-survey limitations described above.
+
+Finally, the verified delete/insert invalidation paths must not be generalized
+to every pcode mutation. In the inspected compiler,
+[`change_opcode` and `change_num_operands`](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/backend/PCodeInfo.c)
+do not clear `fScheduled`; neither does `appendpcode`. The in-place
+`EXTSB`/`EXTSH`/`RLWINM` to `MR` rewrites in
+[`adjustforward`](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/backend/Peephole.c)
+require preceding genuine narrow-value definitions, absent from the target's
+pointer-valued argument setup. The post-color merger's append path follows
+deletion of the predecessor's terminal branch when such a branch is present;
+that deletion clears its scheduled flag. These facts narrow the hypothesis
+without proving all possible stale-state cases impossible. If a real source
+lead emerges, the discriminating trace should record the target block's
+`pcodeCount`, `fScheduled`, instruction identities and predecessor links
+immediately around `peepholemergeblocks(TRUE)` and `peepholeoptimizepcode`.
+No such lead was established by this survey, so no artificial narrow cast,
+dummy definition or new target source permutation was compiled.
