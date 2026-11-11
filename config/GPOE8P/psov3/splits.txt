@@ -9496,7 +9496,7 @@ pso/object/TObjCMName.cpp:
 	.text       start:0x802948F4 end:0x80298F38
 	.ctors      start:0x80433FC0 end:0x80433FC4
 	.rodata     start:0x80465140 end:0x80465150
-	.data       start:0x804DB950 end:0x804DBD48
+	.data       start:0x804DB950 end:0x804DBDC0
 	.bss        start:0x80540988 end:0x805409C8
 	.sbss       start:0x805D65A0 end:0x805D65A8
 	.sdata2     start:0x805DDA6C end:0x805DDC20

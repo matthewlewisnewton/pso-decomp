@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "pso/render/ColorCopy.h"
 #pragma push
 
@@ -72,7 +73,7 @@ void TAdChrMoveEffectGC::sub_80348E34() {
                 desc.pos[7] = *(f32 *)((s8 *)e + 0x48);
                 copy_color_bytes(desc.col + 12, src);
                 desc.col[15] = *(u8 *)((s8 *)e + 0x50);
-                ((TObjCMHairMenu *)(&desc))->draw_tri_fan_2d(4, 7, lbl_805DFCEC * (f32)i + lbl_805DFCE8);
+                ((ColorLineList *)(&desc))->draw_tri_fan_2d(4, 7, lbl_805DFCEC * (f32)i + lbl_805DFCE8);
             }
         }
     }
