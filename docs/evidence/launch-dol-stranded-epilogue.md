@@ -902,9 +902,12 @@ nested title-release table at `0x804EE58C` has four release functions that
 are original one-instruction returns. Important effects nevertheless remain
 indirect: window cleanup virtually deletes several global controllers and
 releases viewport slots; another callback invokes a virtual heap method;
-item-loader cleanup destroys a resource object; secondary save-data cleanup
-invokes another callback. Their targets, aliases and state must be established
-before claiming that loading work survives, is cleared or is restarted.
+item-loader cleanup destroys a resource object. Secondary save-data cleanup
+uses an array-destruction helper with fixed callback `0x801FC8B4`, for seven
+elements of size `0x2798`, then optionally deletes storage. That immediate
+callback target is known; its destructor/allocator effects still need tracing.
+The remaining dynamic targets, aliases and state must be established before
+claiming that loading work survives, is cleared or is restarted.
 
 ```sh
 python3 -m unittest tools.tests.test_loader_phase_requests
