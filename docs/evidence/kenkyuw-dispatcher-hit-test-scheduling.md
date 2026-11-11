@@ -56,7 +56,7 @@ The original build/compiler-ownership uncertainties described below remain.
 There is no independent final-head review yet. Read the latest bounded
 probes at the end before repeating source or compiler-control experiments.
 
-Base: fork `main` `d27f62054`, branch `decomp-tobjnpc-kenkyuw` (PR
+Original investigation base: fork `main` `d27f62054`, branch `decomp-tobjnpc-kenkyuw` (PR
 [#318](https://github.com/matthewlewisnewton/pso-decomp/pull/318)). Unit
 `pso/npc/TObjNpcKenkyuW.cpp`, function `TObjPlayer__sub_802A445C`
 (`0x802A445C`, 228 bytes). Unit flags are the defaults (`GC/2.6`, `-O4,s`,
@@ -80,8 +80,11 @@ shape hoists the load:
 The 55 other instructions, both relocations, the `.text` size and every
 other block match. The default switch case in the same function
 (`lwz r4,28(r30)` / `mr r3,r30` / `bl TObjPlayer__sub_802A3DE8`) has the same
-dependency structure and is load-first in *both* builds, so the original was
-scheduled; only the hit-test block escaped scheduling.
+dependency structure and is load-first in *both* builds. This explains why
+turning scheduling off on the current body changes other pairs; it does not
+independently establish the original source order or compiler settings. The
+later source-local/propagation control also emits that default pair load-first
+with scheduling off, while still failing the complete function.
 
 ## Why a three-instruction block is always load-first
 
