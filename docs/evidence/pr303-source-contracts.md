@@ -1938,3 +1938,52 @@ select 3,599 source providers and 1,347 original fallbacks. All fourteen
 DHCP/modem characterization tests, exception-inventory freshness and whitespace
 checks pass. Original behavior, existing bugs, original providers, the SDK
 entry repair, and all raw/reset/creator ABI and metadata holds remain intact.
+
+## Discriminating compiler controls and the SDK message-queue boundary
+
+The standalone [network ABI controls](../../tools/probes/network_abi/README.md)
+reproduce the rejected shared-contract differences without editing game code.
+Four external status declarations/conversions under each actual transport and
+dispatcher profile isolate the redundant sign extension. The faithful initializer
+reproduces the accepted/rejected 260/268-byte functions. Two callback controls
+reproduce both 124-byte trampolines, including the three changed instruction
+slots. Complete function bytes and relocation tuples agree with their respective
+references after explicitly mapping synthetic external names. These are
+function-level controls, not whole-object equality or historical ABI proof.
+They explain the earlier failure without clearing any private creator/raw/reset
+restriction or proposing a compensating type, parameter or lifetime variant.
+
+That audit identifies a separate authentic SDK boundary. Message transport
+declares `OSInitMessageQueue` as returning `s32` with opaque pointer parameters,
+and declares send/receive with incompatible local types. The supplied SDK header
+declares a void initializer, `BOOL` send/receive results, `OSMessageQueue *` queue
+parameters, and `OSMessage *` receive destinations. SDK initialization and all
+native source users establish three concrete records: a 0x20-byte queue followed
+by 32, 32, or 10 four-byte message slots, at `0x805CF240`, `0x805CF2E0`, and
+`0x805CF380`. Their native extents are 0xA0, 0xA0, and 0x48. Original split-object
+queue references belong only to message transport; five other source units
+contain repeated unused byte-array declarations.
+
+Use the genuine SDK header and actual queue/message records, preserving names,
+order and linkage. Assert message width, both record sizes, queue offset zero
+and message-array offset 0x20. Pass actual members to initialization and queue
+operations; receive through `OSMessage` locals and convert the opaque payload
+only where its existing byte/record fields are consumed. Remove the incompatible
+SDK prototypes and all unused declarations in the five other units. The legacy
+`post_message` receiver gets an explicit SDK queue-pointer conversion at its
+proven boundary. Its three native callers still use the original adjacent-queue
+byte view; neither the fake receiver nor cross-object adjacency is claimed fixed.
+Queue capacities, flags, return comparisons, message zero, callbacks, payload
+offsets and timing remain unchanged. Modem bodies and all private APIs remain
+untouched.
+
+The one reviewed SDK probe passes native validation with original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. All six complete affected objects
+are raw byte-identical to their saved references, including metadata and
+relocations. None of the 3,665 compiled-object hashes changes. Full sealed-main
+no-loss comparison passes: 3,599 exact linked units, 18,428 retention entries
+without drift, existing +88 data bytes, and no new function/code gain or loss.
+All fourteen DHCP/modem host tests pass. Independent source and complete-object
+review passes. This repairs SDK declarations and storage while preserving
+original behavior and every creator/raw/reset/receiver/adjacency/metadata hold.
+Keep draft.
