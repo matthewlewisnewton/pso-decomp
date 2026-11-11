@@ -5154,6 +5154,7 @@ force_active:
   - construct__9TTecJelinFPviiii
   - construct_agito__13TUnk_804A3070FlPv
   - construct_area__11TTecRaBartaFPvPvPv
+  - construct_ballistic_particle__FPvPvPvPvlUss
   - construct_cane_weapon__FPUcPUcPUc
   - construct_card_tags__17TWindowGetComCardFv
   - construct_card_window_array__23TAdSinglePlyChrSelectGCFPv
@@ -7265,6 +7266,7 @@ force_active:
   - init_params_from_table__15TObjEneGyaranzoFv
   - init_particle_effect__10TObjPlayerFv
   - init_particle_obj__13TParticleCtrlFll
+  - init_particle_random_spread__13TUnk_8048E778FPvPvPv
   - init_parts__11TBoss6Type1Fv
   - init_parts__11TBoss6Type2FPv
   - init_parts__13TObjTombstoneFv
@@ -8668,6 +8670,7 @@ force_active:
   - lbl_805D92A0
   - lbl_805D92A4
   - lbl_805D92AC
+  - lbl_805D9520
   - lbl_805D9D70
   - lbl_805D9D88
   - lbl_805D9D90
@@ -14972,6 +14975,7 @@ force_active:
   - restore_from_linked_object__14TObjEnePanBARAFv
   - restore_target_player_state__11TBoss6Type2Fv
   - resume_challenge_result_processing__FPv
+  - retire_ballistic_particle_if_done__13TUnk_8048E778Fv
   - retire_lobby_player__6TLobbyFii
   - retry_selection_value_table
   - return_home_if_target_lost__13TObjEneMe1GeeFv

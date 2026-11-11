@@ -10,6 +10,7 @@ guides.
 - [Action-palette unit](action-palette-unit.md)
 - [Box-drop directive](box-drop-directive-evidence.md)
 - [Item-drop packet and payload contracts](item-drop-packet-contract.md)
+- [Ballistic particle recovery](ballistic-particle-recovery.md)
 - [Battle parameter tables](battle-parameter-evidence.md)
 - [Cast-technique (6x47) register allocation](cast-technique-6x47-register-allocation.md)
 - [Actor position layout guards](chara-position-layout-evidence.md)

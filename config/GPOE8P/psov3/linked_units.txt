@@ -834,6 +834,7 @@ pso/misc/EndingSceneTables.cpp
 pso/misc/GbaDownloadRuntime.cpp
 pso/misc/KeyboardCharacterMaps.cpp
 pso/misc/MaterialOpacityFade.cpp
+pso/misc/ParticleBallistic.cpp
 pso/misc/ParticleRadial.cpp
 pso/misc/PhotonBlastSummon.cpp
 pso/misc/QuestDownloadBuffers.cpp
