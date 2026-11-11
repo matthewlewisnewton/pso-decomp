@@ -1,4 +1,5 @@
 #include "pso/network/ModemRuntime.h"
+#include "pso/network/NetworkMessageTransport.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/NetworkTransport.h"
 #include "pso/network/NetworkTimer.h"
@@ -224,7 +225,7 @@ void TLobby::message_thread_loop() {
         n = *(s32 *)((u8 *)spC + 4);
         id = *(s32 *)((u8 *)spC + 8);
         if (n > 0) {
-            TLobby::start_exi_send(id, n, (s32)TLobby__sub_80425D88);
+            TLobby::start_exi_send(id, n, TLobby__sub_80425D88);
             OSReceiveMessage(&lbl_805CF380.queue, &sp8, 1);
             network_message_pending_count -= 1;
         }
@@ -430,11 +431,11 @@ s16 TLobby__sub_80426440(void) {
     return 0;
 }
 
-s16 TLobby::post_send_message(u16 arg1) {
+s16 post_send_message(u8 *frame, u16 arg1) {
     s32 temp_r3;
     u8 *msg;
     u8 pad[8];
-    s32 arg0 = (s32)this;
+    s32 arg0 = (s32)frame;
     temp_r3 = TLobby__sub_8042558C((void *)arg1);
     if (temp_r3 == 0) {
         return -1;

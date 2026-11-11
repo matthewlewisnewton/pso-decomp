@@ -1714,6 +1714,8 @@ pso/misc/TWindowDD_80342AA0.cpp
 pso/misc/TWindowDD_80342BB4.cpp
 pso/misc/TWindowDD_80342C9C.cpp
 pso/misc/TWindowDD_80342E40.cpp
+pso/misc/TWindowDD_803430BC.cpp
+pso/misc/TWindowDD_8034435C.cpp
 pso/misc/TWindowDD_80346A84.cpp
 pso/misc/TWindowDD_80346F48.cpp
 pso/misc/TWindowDD_803471C0.cpp
@@ -1996,6 +1998,7 @@ pso/misc/pso_const_ids3.cpp
 pso/misc/pso_const_ids4.cpp
 pso/misc/pso_const_ids5.cpp
 pso/misc/pso_date.cpp
+pso/network/ModemRuntime.cpp
 pso/network/NetworkConfigLifecycle.cpp
 pso/network/NetworkDispatcher.cpp
 pso/network/NetworkInfoCodec.cpp
@@ -2112,6 +2115,7 @@ pso/object/TObjCMIcon_802999C4.cpp
 pso/object/TObjCMMainMenu_8028D9A8.cpp
 pso/object/TObjCMMainMenu_8028EA88.cpp
 pso/object/TObjCMMainMenu_8029427C.cpp
+pso/object/TObjCMName.cpp
 pso/object/TObjCMProportion_80298FAC.cpp
 pso/object/TObjCamera.cpp
 pso/object/TObjChip.cpp
@@ -2754,6 +2758,7 @@ pso/ui/TAdPlayerLoadGC_80076BBC.cpp
 pso/ui/TAdPlayerLoadGC_800F9EF8.cpp
 pso/ui/TAdPlayerLoadGC_801E0C30.cpp
 pso/ui/TAdPlayerLoadGC_8033BB14.cpp
+pso/ui/TAdPlayerLoadGC_803F18B8.cpp
 pso/ui/TAdPlayerLoadGC_803F339C.cpp
 pso/ui/TAdPlyPltAnimCtrlGC.cpp
 pso/ui/TAdPlyPltAnimGC.cpp

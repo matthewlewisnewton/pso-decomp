@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "pso/render/TriangleFan3D.h"
 #include "pso/TMath.h"
 #include "types.h"
@@ -178,7 +179,7 @@ void TAdRicoRingCtrl::render() {
         for (i = 0; i < 4; i++) {
             lbl_804FE138[i] = cnt;
         }
-        ((TObjCMHairMenu *)args)->draw_tri_fan_2d(4, 6, lbl_805D7E68);
+        ((ColorLineList *)args)->draw_tri_fan_2d(4, 6, lbl_805D7E68);
     }
 }
 #pragma pop

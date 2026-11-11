@@ -15,7 +15,7 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary
+## Summary (including approved native restore exception, 2026-11-11 UTC)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
 for this source tree. Assembly is counted as source lines;
@@ -24,10 +24,10 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 83 | 54 |
+| MWCC intrinsics | 84 | 55 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,711 | 880 |
-| Per-unit compiler overrides in `configure.py` | 194 | 194 |
+| CodeWarrior pragmas (excluding push/pop) | 5,719 | 881 |
+| Per-unit compiler overrides in `configure.py` | 195 | 195 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -96,6 +96,28 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
+The Spanish formatter in `src/pso/misc/TWindowDD_8034435C.cpp` uses scoped
+`dont_inline off` and `inline_depth(1)` to inline its separator/form helper.
+This preserves the selected word across separator formatting and reproduces
+the original register allocation. The extracted lookup/formatter group also
+retains the `opt_common_subs off` setting inherited from the former combined
+source. Ports can drop these controls and keep the C++ helper and lookups.
+See [word-select completion evidence](evidence/word-select-completion.md).
+
+`pso/network/ModemRuntime.cpp` retains three levels of explicit inlining for
+its nested EXI and AT-command helpers. GC/1.2.5's inlined result locals and
+command-object lifetimes reproduce the native frames; selection and setup
+results remain ignored where the original ignores them. The initializer uses
+the character representation of eight-byte-aligned `u64` storage for its used
+0x88-byte command buffer. This reproduces its native placement without a dummy
+padding object; the original text-capacity declaration remains unknown.
+The interrupt dispatcher guards `__cntlzw` with `__MWERKS__` and supplies an
+ordinary C++ leading-zero-count fallback, exercised by the exhaustive host
+status/mask fixture. Ports should use the fallback and drop the inlining
+controls; preserve transaction, cache, lock and callback ordering. The two
+12-byte setup-command records preserve their observed stride and full data
+extent; their zero-filled record tails are part of those records.
+
 The two renderers at `0x8034055C` and `0x80340A78` in `TWindowDD.cpp`
 use scoped `opt_propagation off` and ordered scalar declarations to retain
 independent coordinate and texture values. The scrollbar also disables common
@@ -145,11 +167,11 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,711 pragmas in 880 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802,
-`opt_common_subs` 616, `scheduling` 264, `opt_propagation` 248,
+5,719 pragmas in 881 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1112, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803,
+`opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
-`defer_codegen` 57, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
+`defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -1525,3 +1547,24 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | Scope | Construct | Evidence and reason | Port action |
 |---|---|---|---|
 | `src/pso/npc/TObjNpcKenkyuW.cpp`, `TObjPlayer__sub_802A445C` at `0x802A445C` | Scoped `scheduling off` and `global_optimizer off` | Preserve the original argument setup and the contact-load/receiver-copy/contact-store order. The explicit `void*` value conversion in the comma expression avoids an addressable temporary and retains the original 16-byte frame. All 228 bytes and the full 2,376-byte unit match. See [compiler and comparison evidence](evidence/kenkyuw-dispatcher-continuation.md). | Drop the compiler controls. The contact assignment can be a separate statement before the virtual call; retain the actor value passed to that call. |
+
+
+### Character-creation menus (`TObjCMName.cpp`)
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/object/TObjCMName.cpp`, `configure.py` | Deferred generation with reversed definitions; `-sym on`, private `TObjCMNameTail.h`, `.sdata2=4` alignment | Reproduces all 71 functions, native member-pointer initialization, and five compiler-generated vtables. The initializer at `0x80298DE0` precedes `get_creation_pad` at `0x80298F08`; a separate source-file text contribution preserves that order. The complete `.sdata2` starts at `0x805DDA6C`, on a four-byte boundary. Follows the existing compiler-emission, Dark Falz initializer, and Panarms PMF recovery precedents. | Use ordinary definitions and member pointers; remove native section/debug-layout controls and the private-header arrangement. |
+| Same source, footer at `0x802979BC` | Scoped `opt_lifetimes off`, with existing floating-point contraction | Keeps the footer's fade and text-position values in the native registers; all 348 bytes match. Hair rendering needs no new optimizer override: ordinary compound alpha updates, shared scalar lifetimes, and quad construction reproduce all 1,840 bytes. | Remove the optimizer control; preserve floating-point contraction when identical rounding matters. |
+| Same source, three late scalar constants | MWCC-only `extern const` declarations followed by `static const` definitions, plus existing explicit data-section annotations | Defining the `0.4f` fade step and two color masks after their readers preserves lazy native constant-pool order and loads. Standard-linkage definitions are supplied for other compilers. This follows the `TBoss6Type1.cpp` constant-pool precedent. | Move ordinary constant definitions before use and remove native section annotations. |
+| Same source, hair color alpha | Native byte-three write to a packed RGBA word | Reproduces the original `stb` and unsigned-byte float conversion. The non-MWCC branch updates the low alpha byte numerically, independent of host byte order. | Keep the numerical masked update. |
+
+### Memory-card request snapshots
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp`, request steps at `0x803F2240`, `0x803F2610`, `0x803F282C`, `0x803F2A4C` | Scoped `inline_depth(2)`, `auto_inline off`, `dont_inline off`, and `opt_lifetimes` controls; one-word `CardChannel` snapshots | With the existing propagation control, inline channel reads/completion helpers and explicit snapshot lifetimes reproduce all 2,704 newly recovered instruction bytes. The value objects carry channel IDs, not file-record indices; they introduce no alternate view of a record. | Drop the compiler controls and retain ordinary value snapshots and the restore/completion sequence. No special object layout is required for these local values in a port. |
+| Same request steps, `read_card_channel` | Read the existing `s32` channel through a volatile-qualified lvalue | The native steps reload the channel after publishing CARD results and before disk-ID restoration. Qualification preserves those read boundaries without changing the shared record type or asserting another object at that address. This is a matching constraint, not evidence of concurrent channel writes. | Define how request steps, callbacks and bulk record resets are serialized before coalescing these reads. Volatile supplies neither atomicity nor synchronization. |
+
+The SDK includes use the existing `PSO_SDK_COMPACT_MATH` header mode so unused
+square-root inlines do not emit 32 bytes of static constants outside this unit's
+owned sections. A port can use its ordinary SDK/math declarations.

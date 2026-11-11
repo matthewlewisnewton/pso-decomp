@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "types.h"
 #include "pso/TAdBackGC.h"
 #include "pso/TObjCMHairMenu.h"
@@ -30,5 +31,5 @@ void TAdBackGC::sub_8029A6EC() {
     fan.pos[6] = lbl_805DDC60;
     fan.pos[7] = lbl_805DDC58;
     fan.col[3] = 0xFF;
-    ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 3, *(f32 *)((u8 *)this + 0x1C) - lbl_805DDC64);
+    ((ColorLineList *)&fan)->draw_tri_fan_2d(4, 3, *(f32 *)((u8 *)this + 0x1C) - lbl_805DDC64);
 }
