@@ -64,6 +64,7 @@ guides.
 - [Persistent positional sound](persistent-sound-evidence.md)
 - [Player target-candidate evidence (work in progress)](player-target-candidate-evidence.md)
 - [Projectile entity-ID contract](pr100-projectile-id.md)
+- [Quest-download display recovery](quest-download-display-recovery.md)
 - [Quest-download input records and partial text append](quest-download-input-records.md)
 - [Quest-download cache-page rotation (partial)](quest-download-cache-rotation.md)
 - [Quest-download cache lifecycle and partial loader/initializer](quest-download-cache-lifecycle.md)

@@ -2987,6 +2987,94 @@ inline s32 Conv_803EBA98(s32 start, s32 arg1, QuestDownloadTextNode *arg2, u16 *
     b += n;
     return n + TQuestVmDownLoadServer__sub_803E6970((s32)(start + arg2->payload.head.length), (s32)(lim - arg2->payload.head.length), b, 0);
 }
+// Keep these display helpers in the existing depth-one converter region.
+// The readonly length reference avoids an additional by-value inline argument
+// temporary in GC/1.2.5. See the display-recovery evidence for native checks.
+inline s32 display_convert_text(s32 start, const s32 &length, QuestDownloadTextNode *head, u16 *out) {
+    QuestDownloadTextNode *part;
+    s32 written;
+    u16 *data;
+    s32 count;
+    s32 begin;
+    data = out;
+    count = length;
+    begin = start;
+    if (head == NULL || (head->flags & 0x80)) {
+        return TQuestVmDownLoadServer__sub_803E6970(begin, count, data, 0);
+    }
+    part = head;
+    written = 0;
+    for (;;) {
+        written += TQuestVmDownLoadServer__sub_803EC95C(data + written, reinterpret_cast<u8 *>(part) + 1, 6);
+        if (!(part->flags & 1)) break;
+        part = part->next;
+    }
+    data += written;
+    return written + TQuestVmDownLoadServer__sub_803E6970((s32)(begin + head->payload.head.length),
+        (s32)(count - head->payload.head.length), data, 0);
+}
+extern u8 lbl_80596258[12];
+extern u8 lbl_805D7894[4];
+extern u8 lbl_805E10D0[4];
+inline s32 display_group_count(QuestDownloadTextNode *p) {
+    s32 n = 0;
+    while (p != NULL) {
+        while (p->flags & 1) p = p->next;
+        p = p->next;
+        n++;
+    }
+    return n;
+}
+inline QuestDownloadTextNode *display_next_group(QuestDownloadTextNode *p) {
+    while (p->flags & 1) p = p->next;
+    return p->next;
+}
+void TQuestVmDownLoadServer__sub_803EB4D4(void) {
+    u8 *digit;
+    s32 index;
+    QuestDownloadTextNode *node;
+    s32 written;
+    s32 count;
+    s32 value;
+    u16 *line;
+    s32 n;
+    u16 *pad;
+    digit = lbl_80596258 + 5;
+    count = display_group_count(lbl_805D78A0);
+    count -= lbl_805D7898;
+    count -= 1;
+    if (count < 0) count = 0;
+    if ((value = count / 100) != 0) *digit++ = value + '0';
+    else *digit++ = ' ';
+    count %= 100;
+    if ((value = count / 10) != 0 || (u32)digit[-1] != ' ') *digit++ = value + '0';
+    else *digit++ = ' ';
+    count %= 10;
+    *digit = count + '0';
+    TQuestVmDownLoadServer__sub_803EC95C(lbl_805A0340, lbl_80596258, 0);
+    node = lbl_805D78A0;
+    written = 9;
+    index = 0;
+    while (index < lbl_805D789C) {
+        line = lbl_805A0340 + written;
+        lbl_805D7894[2] = index + '1';
+        written += TQuestVmDownLoadServer__sub_803EC95C(line, lbl_805D7894, 0);
+        line = lbl_805A0340 + written;
+        n = display_convert_text(lbl_805D78F0, lbl_805D78EC, node, line);
+        if (index == lbl_805D7898) TQuestVmDownLoadServer__sub_803ECA1C(line, n, 7);
+        else TQuestVmDownLoadServer__sub_803ECA1C(line, n, 0);
+        written += n;
+        if ((node = display_next_group(node)) == NULL) break;
+        index++;
+    }
+    pad = lbl_805A0340 + written;
+    while (written < lbl_805D78A4) {
+        TQuestVmDownLoadServer__sub_803EC95C(pad, lbl_805E10D0, 0);
+        pad++;
+        written++;
+    }
+}
+
 inline QuestDownloadTextNode *Next_803EBA98(QuestDownloadTextNode *p) {
     while (p->flags & 1) {
         p = p->next;
