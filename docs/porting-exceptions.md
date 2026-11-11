@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,703 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,704 | 879 |
 | Per-unit compiler overrides in `configure.py` | 193 | 193 |
 | Approved regressions | 0 | 0 |
 
@@ -96,6 +96,15 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
+`pso/boss/TBoss8Dragon_8002CC48.cpp` uses guarded `defer_codegen on/off`
+around its reversed first twelve definitions to preserve both native vtable
+offsets and scalar emission order. The initializer at `0x8002D5F8` uses scoped
+`opt_propagation off` with a named grid width so backend dead-load cleanup runs
+before instruction scheduling. A guarded `.sdata2` attribute preserves the named
+16.0 default scale's pool position. See [the unit evidence](evidence/dragon-ground-grid-recovery.md).
+Ports should drop these emission/optimizer controls and the section attribute;
+keep the ordinary C++ grid construction, UV calculations, and native vtables.
+
 The name-plate renderer at `0x80251EC8` in `TWindowFukidasi.cpp` uses scoped
 `opt_propagation off`, `opt_common_subs off`, and `opt_lifetimes off` with
 its `fp_contract on` scope. The controls retain the separate text/background
@@ -124,11 +133,11 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,703 pragmas in 879 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 883, `auto_inline` 802,
-`opt_common_subs` 615, `scheduling` 263, `opt_propagation` 245,
+5,704 pragmas in 879 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 881, `auto_inline` 802,
+`opt_common_subs` 615, `scheduling` 263, `opt_propagation` 246,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
-`defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
+`defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -1484,7 +1493,6 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | `src/pso/misc/ParticleBallistic.cpp`, update at `0x800888E8` | Scoped `fp_contract on`; big-endian ARGB byte writes into a live `u32` | The original has fused bounce and colour interpolation. The recovered update matches all 2,060 bytes, using the radial particle's clamp and local-value layout. [Recovery evidence](evidence/ballistic-particle-recovery.md). | Preserve required single rounding with `fmaf`; pack converted ARGB channels explicitly on little-endian hosts. |
 | Same file, renderer at `0x800890F4` | Scoped `pool_data off` | With all owned constants defined, ordinary pooling shares a `.rodata` base and changes the renderer to 1,412 bytes / 94.68715%. Independent addresses reproduce the original 1,432 bytes exactly. Late definitions preserve instructions but put the constants in the wrong section order. | Drop the layout control; keep the ordinary constant values. |
 | Same file, `lbl_805D9520` | MWCC-only `.sdata2` placement for the existing two-float object | Retains the angular range and trailing zero in the original eight-byte object, instead of a four-byte literal. | Use the ordinary const array; the section annotation is guarded for MWCC. |
-
 ### AIFF parsing and ADX block transfer
 
 | Scope | Construct | Evidence and reason | Port action |
