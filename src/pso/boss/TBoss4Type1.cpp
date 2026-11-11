@@ -13,6 +13,7 @@
 #include "pso/object/TObjMotion.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/boss/TBoss4Type1.h"
+#include "pso/TObjControl.h"
 #include "pso/misc/TLobby.h"
 extern "C" void has_flag_0x800__9TObjCharaFv();
 extern "C" void test_flag30_512__9TObjCharaFv();
@@ -20,6 +21,8 @@ extern "C" void test_flag_1000__9TObjCharaFv();
 extern "C" void test_flag_256__9TObjCharaFv();
 
 #include <stddef.h>
+#include <stdlib.h>
+#include "pso/network/client_id.h"
 #include "pso/boss/TBoss4Type2.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
@@ -49,7 +52,6 @@ int push_matrix(void);
 int pop_matrix(void);
 extern const f32 lbl_805D8B20;
 extern const f32 lbl_805D8B24;
-extern const f32 lbl_805D8B28;
 extern const f32 lbl_805D8B2C;
 extern const f32 lbl_805D8B30;
 extern const f32 lbl_805D8B34;
@@ -198,14 +200,13 @@ struct Boss_800542B0 {
     void *items[13];
 };
 
-typedef void (Boss_800542B0::*Act_800542B0)();
-
+/* One state of the TBoss4Type2 state machine (same shape as the TBoss4Zanzo.cpp table). */
 struct Entry_800542B0 {
     u8 *f0;
     s32 f4;
-    Act_800542B0 enter;
-    Act_800542B0 a;
-    Act_800542B0 b;
+    void (TBoss4Type1::*enter)();
+    void (TBoss4Type1::*update_idle)();
+    void (TBoss4Type1::*update)();
 };
 
 struct RecoveredGlobal_8005455C_lbl_80485EC8 {
@@ -234,18 +235,7 @@ typedef char RecoveredGlobal_80054530_lbl_80485EC8_size[sizeof(RecoveredGlobal_8
 
 typedef char RecoveredGlobal_8005455C_lbl_80485EC8_size[sizeof(RecoveredGlobal_8005455C_lbl_80485EC8) == 0x1E0 ? 1 : -1];
 
-struct S_80054938 {
-    u8 pad0[0x18];
-    void *vt;
-    u8 pad1c[0x378 - 0x1c];
-    u8 f378[0x1c];
-    s32 f394;
-    u8 pad398[0x3f8 - 0x398];
-    void *parts[13];
-    void *fx[3];
-    u8 pad438[0x480 - 0x438];
-    void *f480;
-};
+
 
 struct RecoveredGlobal_80054F6C_lbl_804FF2A0 {
     s32 value;
@@ -296,41 +286,17 @@ s32 TObjFish__sub_8001EDB0(s32, s32);
 void fn_8004AA04(void *);
 s32 TBoss4DarkFalz__sub_8004AF5C(s32, s16 *, s16 *);
 void TBoss4DarkFalz__sub_8004B4F0(void *, void *);
-void TBoss4DarkFalz__sub_8004D990(s32);
+s32 TBoss4DarkFalz__sub_8004D990(u8 *);
 void *create__16TObjDFBeamCursorFPvPv(void *arg0, void *arg1);
 s32 TBoss4Type3__sub_8005254C(u16);
-void TBoss4Type2__sub_800525AC(u8 *arg0);
-void TBoss4Type2__sub_800528B8(void *arg0);
-void init_timer__11TBoss4Type2FPv(u8 *arg0);
-void update_tech_charge__11TBoss4Type2FPv(u8 *arg0);
-void update_scale_state__11TBoss4Type2FPv(void *arg0);
-void init_child_and_set_timer__11TBoss4Type2FPv(void *arg0);
-void update_attack_countdown__11TBoss4Type2FPv(u8 *arg0);
-void update_state__11TBoss4Type2FPv(void *arg0);
-void set_motion_for_state__11TBoss4Type2FPv(TBoss4Type2 *arg0);
-void tick_countdown_set_state7__11TBoss4Type2FPv(TBoss4Type2 *arg0);
-void update_spawn_uro__14TBoss4DarkFalzFPv(Obj_80052CDC *arg0);
-void tick_state_398_timer__11TBoss4Type2FPv(TBoss4Type2 *arg0);
-void TBoss4Type2__sub_80052EE8(void);
-void TBoss4Type2__sub_80052EEC(void* p);
-void update_state_transition__11TBoss4Type2FPv(void* p);
-void TBoss4Type2__sub_8005307C(void* p);
-void update_flag800_state__11TBoss4Type2FPv(void *arg0);
-void check_state_if_idle__11TBoss4Type2FPv(void* p);
-void TBoss4Type2__sub_800531BC(void* p);
-void TBoss4Type2__sub_80053504(TBoss4Type2 *arg0);
+void TBoss4Type2__sub_80053504(TBoss4Type1 *arg0);
 void TBoss4Type2__sub_800535A8(Boss_800535A8 *arg0);
 void pick_target_position__13TRaderMapCoreFPvPv(O_80053914 *self, Vec_80053914 *out);
-f32 calc_wave_offset__11TBoss4Type2Ff(f32 farg0);
 void set_pos_from_scaled_offset__11TBoss4Type2FPvPvPv(S_80054224 *o, void *src, V_80054224 *in);
 u8 * TBoss4Type2__sub_80054384(void *self, s32 i, s32 j);
-void render_and_update_effects__10TObjPlayerFPv(void* p);
-void request_state_3__11TBoss4Type2FPv(TBoss4Type2 *arg0);
-void fn_800548E4(u8 *arg0);
-S_80054938 * __dt__11TBoss4Type1Fv(S_80054938 *o, s16 flag);
-void TBoss4Type2__sub_80054DA8(TBoss4Type2 *boss);
-void create_all_tenchu_furu__11TBoss4Type2Fi(s32 arg0);
-s32 TBoss4Type2__sub_80054FC0(void *, f32);
+void TBoss4Type2__sub_80054DA8(TBoss4Type1 *boss);
+void create_all_tenchu_furu__11TBoss4Type2Fi(TBoss4Type1 *arg0);
+void TBoss4Type2__sub_80054FC0(void *, f32);
 void TBoss4Type2__sub_80055300(void);
 Vec_80053E40 * get_position_ptr__10TObjPlayerFv(void *);
 void * create__9TBoss4UroFi(Params_80052CDC *);
@@ -418,9 +384,6 @@ struct S_80052E10 {
     u8 pad3cc[4];
     s32 f3d0;
 };
-extern "C" void start_motion_for_index__11TBoss4Type2FPv(S_80052E10 *o);
-extern "C" void TBoss4Type2__sub_80052EF8(O_80052EF8 *o);
-extern "C" void TBoss4Type2__sub_800530C0(Obj_800530C0 *arg0);
 extern "C" u8 lbl_8043750C[];
 extern "C" u8 lbl_80437514[];
 extern "C" u8 lbl_80437520[];
@@ -437,40 +400,19 @@ void *lbl_80485AE0[10] = {
     (void *)0x40000000, (void *)0x41c80000, (void *)0x3f000000, (void *)0x3f000000,
     (void *)0x3f000000, (void *)0x3f000000,
 };
-void *lbl_80485B08[80] = {
-    (void *)0xfb, (void *)0xfc, (void *)0x0, (void *)0xffffffff,
-    (void *)&TBoss4Type2__sub_800531BC, (void *)0x0, (void *)0xffffffff, (void *)&check_state_if_idle__11TBoss4Type2FPv,
-    (void *)0x0, (void *)0xffffffff, (void *)&TBoss4Type2__sub_800530C0, (void *)0x0,
-    (void *)0xffffffff, (void *)&update_flag800_state__11TBoss4Type2FPv, (void *)0x0, (void *)0xffffffff,
-    (void *)&TBoss4Type2__sub_8005307C, (void *)0x0, (void *)0xffffffff, (void *)&update_state_transition__11TBoss4Type2FPv,
-    (void *)0x0, (void *)0xffffffff, (void *)&TBoss4Type2__sub_80052EF8, (void *)0x0,
-    (void *)0xffffffff, (void *)&TBoss4Type2__sub_80052EEC, (void *)0x0, (void *)0xffffffff,
-    (void *)&TBoss4Type2__sub_80052EE8, (void *)0x0, (void *)0xffffffff, (void *)&tick_state_398_timer__11TBoss4Type2FPv,
-    (void *)0x0, (void *)0xffffffff, (void *)&start_motion_for_index__11TBoss4Type2FPv, (void *)0x0,
-    (void *)0xffffffff, (void *)&update_spawn_uro__14TBoss4DarkFalzFPv, (void *)0x0, (void *)0xffffffff,
-    (void *)&start_motion_for_index__11TBoss4Type2FPv, (void *)0x0, (void *)0xffffffff, (void *)&tick_countdown_set_state7__11TBoss4Type2FPv,
-    (void *)0x0, (void *)0xffffffff, (void *)&set_motion_for_state__11TBoss4Type2FPv, (void *)0x0,
-    (void *)0xffffffff, (void *)&update_state__11TBoss4Type2FPv, (void *)0x0, (void *)0xffffffff,
-    (void *)&update_attack_countdown__11TBoss4Type2FPv, (void *)0x0, (void *)0xffffffff, (void *)&init_child_and_set_timer__11TBoss4Type2FPv,
-    (void *)0x0, (void *)0xffffffff, (void *)&update_scale_state__11TBoss4Type2FPv, (void *)0x0,
-    (void *)0xffffffff, (void *)&update_tech_charge__11TBoss4Type2FPv, (void *)0x0, (void *)0xffffffff,
-    (void *)&init_child_and_set_timer__11TBoss4Type2FPv, (void *)0x0, (void *)0xffffffff, (void *)&update_scale_state__11TBoss4Type2FPv,
-    (void *)0x0, (void *)0xffffffff, (void *)&update_tech_charge__11TBoss4Type2FPv, (void *)0x0,
-    (void *)0xffffffff, (void *)&init_timer__11TBoss4Type2FPv, (void *)0x0, (void *)0xffffffff,
-    (void *)&TBoss4Type2__sub_800528B8, (void *)0x0, (void *)0xffffffff, (void *)&TBoss4Type2__sub_800525AC,
-};
+s32 lbl_80485B08[2] = { 0xFB, 0xFC };
 Entry_800542B0 lbl_80485C48[11] = {
-    { lbl_8043750C, 0, 0, 0, 0 },
-    { lbl_80437514, 0, 0, 0, 0 },
-    { lbl_80437520, 0, 0, 0, 0 },
-    { lbl_8043752C, 1, 0, 0, 0 },
+    { lbl_8043750C, 0, &TBoss4Type1::sub_800531BC, &TBoss4Type1::check_state_if_idle, &TBoss4Type1::sub_800530C0 },
+    { lbl_80437514, 0, 0, &TBoss4Type1::update_flag800_state, 0 },
+    { lbl_80437520, 0, &TBoss4Type1::sub_8005307C, &TBoss4Type1::update_state_transition, &TBoss4Type1::sub_80052EF8 },
+    { lbl_8043752C, 1, &TBoss4Type1::sub_80052EEC, &TBoss4Type1::sub_80052EE8, &TBoss4Type1::tick_state_398_timer },
     { lbl_80437534, -1, 0, 0, 0 },
-    { lbl_80437540, 2, 0, 0, 0 },
-    { lbl_8043754C, 2, 0, 0, 0 },
-    { lbl_80437558, 4, 0, 0, 0 },
-    { lbl_80437560, 11, 0, 0, 0 },
-    { lbl_80437568, 12, 0, 0, 0 },
-    { lbl_80437570, 13, 0, 0, 0 },
+    { lbl_80437540, 2, &TBoss4Type1::start_motion_for_index, 0, &TBoss4Type1::update_spawn_uro },
+    { lbl_8043754C, 2, &TBoss4Type1::start_motion_for_index, 0, &TBoss4Type1::tick_countdown_set_state7 },
+    { lbl_80437558, 4, &TBoss4Type1::set_motion_for_state, &TBoss4Type1::update_state, &TBoss4Type1::update_attack_countdown },
+    { lbl_80437560, 11, &TBoss4Type1::init_child_and_set_timer, &TBoss4Type1::update_scale_state, &TBoss4Type1::update_tech_charge },
+    { lbl_80437568, 12, &TBoss4Type1::init_child_and_set_timer, &TBoss4Type1::update_scale_state, &TBoss4Type1::update_tech_charge },
+    { lbl_80437570, 13, &TBoss4Type1::init_timer, &TBoss4Type1::sub_800528B8, &TBoss4Type1::sub_800525AC },
 };
 void *lbl_80485E2C[33] = {
     (void *)0x43070000, (void *)0x41c80000, (void *)0x0, (void *)0x41f00000,
@@ -564,105 +506,7 @@ void *lbl_80486200[6] = {
     (void *)0x43020000, (void *)0x0, (void *)0x0, (void *)0x43020000,
     (void *)0xc3020000, (void *)0x0,
 };
-extern "C" void vfunc_6__8TObjBaseFPsl();
-extern "C" void vfunc_29__9TObjCharaFv();
-extern "C" void recalc_stats__9TObjCharaFv();
-extern "C" void vfunc_28__9TObjCharaFv();
-extern "C" void consume_timer_field__9TObjCharaFl();
-extern "C" void vfunc_67__9TObjCharaFf();
-extern "C" void vfunc_66__9TObjCharaFv();
-extern "C" void get_anim_node_position__9TObjCharaFlP3Vec();
-extern "C" void vfunc_61__9TObjCharaFv();
-extern "C" void vfunc_60__9TObjCharaFv();
-extern "C" void vfunc_59__9TObjCharaFv();
-extern "C" void vfunc_58__9TObjCharaFv();
-extern "C" void vfunc_43__9TObjCharaFv();
-extern "C" void vfunc_18__9TObjCharaFPUc();
-extern "C" void interact__14TObjCollidableFl();
-extern "C" void TObjPlayer__sub_80055678();
-extern "C" void TObjPlayer__sub_8005567C();
-extern "C" void TObjPlayer__sub_80055680();
-extern "C" void TObjPlayer__sub_80055684();
-extern "C" void TObjPlayer__sub_80055688();
-extern "C" void TObjPlayer__sub_8005568C();
-extern "C" void TObjPlayer__sub_80055690();
-extern "C" void vfunc_74__9TObjEnemyFl();
-extern "C" void add_actor_exp__9TObjCharaFl();
-extern "C" void apply_action_hold_status__9TObjCharaFf();
-extern "C" void apply_anti_technique__9TObjCharaFl();
-extern "C" void apply_attack_stat_status__9TObjCharaFPv();
-extern "C" void apply_hit_message_flags__9TObjEnemyFPv();
-extern "C" void apply_knockback_from_attacker__9TObjCharaFPUcf();
-extern "C" void apply_object_set_data__8TObjBaseFPv();
-extern "C" void apply_set_data__9TObjEnemyFPv();
-extern "C" void apply_switch_attack__9TObjCharaFv();
-extern "C" void calc_distance_accuracy_penalty__9TObjCharaFPvPvPvf();
-extern "C" void vfunc_79__9TObjEnemyFPl();
-extern "C" void classify_actor_view_detail__8TObjBaseFfff();
-extern "C" void clear_all_status_effects__9TObjCharaFv();
-extern "C" void cure_paralysis__9TObjCharaFv();
-extern "C" void cure_poison_ailment__9TObjCharaFv();
-extern "C" void enemy_spawn_jellen_effect__9TObjCharaFv();
-extern "C" void enemy_spawn_zalure_effect__9TObjCharaFv();
-extern "C" void vfunc_78__9TObjCharaFl();
-extern "C" void vfunc_77__9TObjCharaFv();
-extern "C" void vfunc_76__9TObjCharaFf();
-extern "C" void vfunc_75__9TObjCharaFf();
-extern "C" void clear_lobby_object_state__9TObjEnemyFv();
-extern "C" void get_center__9TObjCharaFv();
-extern "C" void get_actor_level_index__9TObjCharaFv();
-extern "C" void get_name__9TObjEnemyFv();
-extern "C" void get_pos__9TObjCharaFl();
-extern "C" void is_actor_cadence_frame__9TObjCharaFl();
-extern "C" void is_target_in_attack_range__9TObjCharaFv();
-extern "C" void receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll();
-extern "C" void receive_physical_attack__9TObjCharaFPvf();
-extern "C" void receive_weapon_special_attack__9TObjCharaFPvPv();
-extern "C" void apply_defense_stat_status__9TObjCharaFPv();
-extern "C" void render_shadows__9TObjEnemyFv(u8 *arg0);
-extern "C" void reset_motion_fields__9TObjCharaFv();
-extern "C" void reset_pose__9TObjCharaFv();
-extern "C" void roll_physical_accuracy__9TObjCharaFPvlf();
-extern "C" void select_melee_contact_body__9TObjCharaFPvf();
-extern "C" void trigger_switch_attack__9TObjCharaFv(s32 arg0);
-extern "C" void try_start_action__9TObjCharaFll();
-extern "C" void update_action_hold_status__9TObjCharaFv();
-extern "C" s32 vfunc_37__9TObjCharaFv(u8 *arg0);
-extern "C" void update_actor_ground_y__9TObjCharaFv();
-extern "C" s32 update_attack_stat_status__9TObjCharaFv(u8 *arg0);
-extern "C" s32 update_defense_stat_status__9TObjCharaFv(u8 *arg0);
-extern "C" void update_flag30_timer__9TObjCharaFv();
-extern "C" void update_movement_status__9TObjCharaFv();
-extern "C" void update_object_view_visibility__8TObjBaseFff();
-extern "C" void update_poison_status__9TObjCharaFv();
-extern "C" void update_shock_clock__9TObjCharaFv();
-void TBoss4Type2__sub_80054738(Obj_80054738 *self);
-void *boss4_type2_state_motion_index_table[3] = {
-    (void *)0x4, (void *)0x7, (void *)0xa,
-};
-void *__vt__11TBoss4Type1[83] = {
-    (void *)0x0, (void *)0x0, (void *)&__dt__11TBoss4Type1Fv, (void *)&TBoss4Type2__sub_80054738,
-    (void *)&render_and_update_effects__10TObjPlayerFPv, (void *)&render_shadows__9TObjEnemyFv, (void *)&vfunc_6__8TObjBaseFPsl, (void *)&apply_object_set_data__8TObjBaseFPv,
-    (void *)&reset_motion_fields__9TObjCharaFv, (void *)&get_center__9TObjCharaFv, (void *)&update_object_view_visibility__8TObjBaseFff, (void *)&classify_actor_view_detail__8TObjBaseFfff,
-    (void *)&get_name__9TObjEnemyFv, (void *)&interact__14TObjCollidableFl, (void *)&add_actor_exp__9TObjCharaFl, (void *)&consume_timer_field__9TObjCharaFl,
-    (void *)&get_actor_level_index__9TObjCharaFv, (void *)&update_actor_ground_y__9TObjCharaFv, (void *)&vfunc_18__9TObjCharaFPUc, (void *)&is_actor_cadence_frame__9TObjCharaFl,
-    (void *)&select_melee_contact_body__9TObjCharaFPvf, (void *)&calc_distance_accuracy_penalty__9TObjCharaFPvPvPvf, (void *)&receive_physical_attack__9TObjCharaFPvf, (void *)&receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll,
-    (void *)&receive_weapon_special_attack__9TObjCharaFPvPv, (void *)&apply_knockback_from_attacker__9TObjCharaFPUcf, (void *)&try_start_action__9TObjCharaFll, (void *)&roll_physical_accuracy__9TObjCharaFPvlf,
-    (void *)&vfunc_28__9TObjCharaFv, (void *)&vfunc_29__9TObjCharaFv, (void *)&is_target_in_attack_range__9TObjCharaFv, (void *)&test_flag_256__9TObjCharaFv,
-    (void *)&test_flag30_512__9TObjCharaFv, (void *)&has_flag_0x800__9TObjCharaFv, (void *)&test_flag_1000__9TObjCharaFv, (void *)&update_poison_status__9TObjCharaFv,
-    (void *)&update_action_hold_status__9TObjCharaFv, (void *)&vfunc_37__9TObjCharaFv, (void *)&update_flag30_timer__9TObjCharaFv, (void *)&update_movement_status__9TObjCharaFv,
-    (void *)&update_shock_clock__9TObjCharaFv, (void *)&update_attack_stat_status__9TObjCharaFv, (void *)&update_defense_stat_status__9TObjCharaFv, (void *)&vfunc_43__9TObjCharaFv,
-    (void *)&TObjPlayer__sub_80055678, (void *)&TObjPlayer__sub_8005567C, (void *)&TObjPlayer__sub_80055680, (void *)&TObjPlayer__sub_80055684,
-    (void *)&TObjPlayer__sub_80055688, (void *)&TObjPlayer__sub_8005568C, (void *)&TObjPlayer__sub_80055690, (void *)&apply_attack_stat_status__9TObjCharaFPv,
-    (void *)&apply_defense_stat_status__9TObjCharaFPv, (void *)&cure_poison_ailment__9TObjCharaFv, (void *)&cure_paralysis__9TObjCharaFv, (void *)&clear_all_status_effects__9TObjCharaFv,
-    (void *)&apply_action_hold_status__9TObjCharaFf, (void *)&apply_anti_technique__9TObjCharaFl, (void *)&vfunc_58__9TObjCharaFv, (void *)&vfunc_59__9TObjCharaFv,
-    (void *)&vfunc_60__9TObjCharaFv, (void *)&vfunc_61__9TObjCharaFv, (void *)&fn_800548E4, (void *)&request_state_3__11TBoss4Type2FPv,
-    (void *)&reset_pose__9TObjCharaFv, (void *)&get_anim_node_position__9TObjCharaFlP3Vec, (void *)&vfunc_66__9TObjCharaFv, (void *)&vfunc_67__9TObjCharaFf,
-    (void *)&get_pos__9TObjCharaFl, (void *)&apply_switch_attack__9TObjCharaFv, (void *)&enemy_spawn_jellen_effect__9TObjCharaFv, (void *)&trigger_switch_attack__9TObjCharaFv,
-    (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
-    (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEnemyFPl,
-    (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv,
-};
+void *boss4_type2_state_motion_index_table[3] = { (void *)4, (void *)7, (void *)10 };
 #define lbl_80485AE0 ((u8 *)lbl_80485AE0)
 #define lbl_80485EB0 ((s32 *)lbl_80485EB0)
 #define boss4_type1_motion_states (*(RecoveredGlobal_80054530_lbl_80485EC8 *)boss4_type1_motion_states)
@@ -672,9 +516,8 @@ void *__vt__11TBoss4Type1[83] = {
 #define boss4_type1_vec_table ((Vec_80053440 *)boss4_type1_vec_table)
 #define boss4_type2_motion_vec_table ((Vec_80052EF8 *)boss4_type2_motion_vec_table)
 #define boss4_type2_state_motion_index_table (*(RecoveredGlobal_80052C58_lbl_80486218 *)boss4_type2_state_motion_index_table)
-#define __vt__11TBoss4Type1 ((u8 *)__vt__11TBoss4Type1)
 
-void TBoss4Type2__sub_800525AC(u8 *boss4_type2) {
+void TBoss4Type1::sub_800525AC() {
     f32 temp_f1;
     f32 temp_f1_2;
     s32 temp_r0;
@@ -699,342 +542,355 @@ void TBoss4Type2__sub_800525AC(u8 *boss4_type2) {
     u32 temp_r3_9;
     u8 *temp_r31;
     u8 *temp_r30;
-    temp_r31 = (boss4_type2 + 0x484);
-    temp_r30 = (boss4_type2 + 0x490);
-    temp_r0 = *(s32 *)((s8 *)boss4_type2 + 0x398);
+    temp_r31 = (u8 *)this + 0x484;
+    temp_r30 = (u8 *)this + 0x490;
+    temp_r0 = *(s32 *)((s8 *)this + 0x398);
     if (temp_r0 == 6) {
-        ((s32 (*)(void))create_all_tenchu_furu__11TBoss4Type2Fi)();
+        create_all_tenchu_furu__11TBoss4Type2Fi(this);
     } else if (temp_r0 == 1) {
-        TBoss4Type2__sub_80054DA8((TBoss4Type2 *)boss4_type2);
+        TBoss4Type2__sub_80054DA8(this);
     }
-    if ((s32) *(s32 *)((s8 *)boss4_type2 + 0x3E4) == 0xD) {
-        temp_f1 = *(f32 *)((s8 *)boss4_type2 + 0x3E8);
+    if ((s32) *(s32 *)((s8 *)this + 0x3E4) == 0xD) {
+        temp_f1 = *(f32 *)((s8 *)this + 0x3E8);
         if (temp_f1 > lbl_805D8AF8) {
-            temp_r3 = *(u32 *)((s8 *)boss4_type2 + 0x41C);
+            temp_r3 = *(u32 *)((s8 *)this + 0x41C);
             if (temp_r3 != 0) {
                 TParticleCtrl::release((void *)temp_r3);
-                *(u32 *)((s8 *)boss4_type2 + 0x41C) = 0U;
+                *(u32 *)((s8 *)this + 0x41C) = 0U;
             }
-            temp_r3_2 = *(u32 *)((s8 *)boss4_type2 + 0x424);
+            temp_r3_2 = *(u32 *)((s8 *)this + 0x424);
             if (temp_r3_2 != 0) {
                 TParticleCtrl::release((void *)temp_r3_2);
-                *(u32 *)((s8 *)boss4_type2 + 0x424) = 0U;
+                *(u32 *)((s8 *)this + 0x424) = 0U;
             }
         } else if (temp_f1 >= lbl_805D8AFC) {
-            if ((u32) *(u32 *)((s8 *)boss4_type2 + 0x41C) == 0) {
+            if ((u32) *(u32 *)((s8 *)this + 0x41C) == 0) {
                 temp_r3_3 = (u32)create_particle_emitter((temp_r31), 0x142);
-                *(u32 *)((s8 *)boss4_type2 + 0x41C) = temp_r3_3;
+                *(u32 *)((s8 *)this + 0x41C) = temp_r3_3;
                 if (temp_r3_3 != 0) {
-                    ((TParticleCtrl *)((void *) *(u32 *)((s8 *)boss4_type2 + 0x41C)))->set_flags(0x40U);
+                    ((TParticleCtrl *)((void *) *(u32 *)((s8 *)this + 0x41C)))->set_flags(0x40U);
                 }
             }
-            if ((u32) *(u32 *)((s8 *)boss4_type2 + 0x424) == 0) {
+            if ((u32) *(u32 *)((s8 *)this + 0x424) == 0) {
                 temp_r3_4 = (u32)create_particle_emitter((temp_r30), 0x142);
-                *(u32 *)((s8 *)boss4_type2 + 0x424) = temp_r3_4;
+                *(u32 *)((s8 *)this + 0x424) = temp_r3_4;
                 if (temp_r3_4 != 0) {
-                    ((TParticleCtrl *)((void *) *(u32 *)((s8 *)boss4_type2 + 0x424)))->set_flags(0x40U);
+                    ((TParticleCtrl *)((void *) *(u32 *)((s8 *)this + 0x424)))->set_flags(0x40U);
                 }
             }
         }
-        temp_r3_5 = *(u32 *)((s8 *)boss4_type2 + 0x41C);
+        temp_r3_5 = *(u32 *)((s8 *)this + 0x41C);
         if (temp_r3_5 != 0) {
             ((TParticleCtrl *)temp_r3_5)->set_position(temp_r31);
         }
-        temp_r3_6 = *(u32 *)((s8 *)boss4_type2 + 0x424);
+        temp_r3_6 = *(u32 *)((s8 *)this + 0x424);
         if (temp_r3_6 != 0) {
             ((TParticleCtrl *)temp_r3_6)->set_position(temp_r30);
         }
     }
-    if ((s32) *(s32 *)((s8 *)boss4_type2 + 0x3E4) == 0xE) {
-        temp_f1_2 = *(f32 *)((s8 *)boss4_type2 + 0x3E8);
+    if ((s32) *(s32 *)((s8 *)this + 0x3E4) == 0xE) {
+        temp_f1_2 = *(f32 *)((s8 *)this + 0x3E8);
         if (temp_f1_2 > lbl_805D8B00) {
-            temp_r3_7 = *(u32 *)((s8 *)boss4_type2 + 0x41C);
+            temp_r3_7 = *(u32 *)((s8 *)this + 0x41C);
             if (temp_r3_7 != 0) {
                 TParticleCtrl::release((void *)temp_r3_7);
-                *(u32 *)((s8 *)boss4_type2 + 0x41C) = 0U;
+                *(u32 *)((s8 *)this + 0x41C) = 0U;
             }
-            temp_r3_8 = *(u32 *)((s8 *)boss4_type2 + 0x420);
+            temp_r3_8 = *(u32 *)((s8 *)this + 0x420);
             if (temp_r3_8 != 0) {
                 TParticleCtrl::release((void *)temp_r3_8);
-                *(u32 *)((s8 *)boss4_type2 + 0x420) = 0U;
+                *(u32 *)((s8 *)this + 0x420) = 0U;
             }
-            temp_r3_9 = *(u32 *)((s8 *)boss4_type2 + 0x424);
+            temp_r3_9 = *(u32 *)((s8 *)this + 0x424);
             if (temp_r3_9 != 0) {
                 TParticleCtrl::release((void *)temp_r3_9);
-                *(u32 *)((s8 *)boss4_type2 + 0x424) = 0U;
+                *(u32 *)((s8 *)this + 0x424) = 0U;
             }
-            temp_r3_10 = *(u32 *)((s8 *)boss4_type2 + 0x428);
+            temp_r3_10 = *(u32 *)((s8 *)this + 0x428);
             if (temp_r3_10 != 0) {
                 TParticleCtrl::release((void *)temp_r3_10);
-                *(u32 *)((s8 *)boss4_type2 + 0x428) = 0U;
+                *(u32 *)((s8 *)this + 0x428) = 0U;
             }
         } else if (temp_f1_2 >= lbl_805D8B04) {
-            if ((u32) *(u32 *)((s8 *)boss4_type2 + 0x41C) == 0) {
+            if ((u32) *(u32 *)((s8 *)this + 0x41C) == 0) {
                 particle_emitter = (u32)create_particle_emitter((temp_r31), 0x13A);
-                *(u32 *)((s8 *)boss4_type2 + 0x41C) = particle_emitter;
+                *(u32 *)((s8 *)this + 0x41C) = particle_emitter;
                 if (particle_emitter != 0) {
-                    ((TParticleCtrl *)((void *) *(u32 *)((s8 *)boss4_type2 + 0x41C)))->set_flags(0x40U);
+                    ((TParticleCtrl *)((void *) *(u32 *)((s8 *)this + 0x41C)))->set_flags(0x40U);
                 }
-                play_sound_effect(0x40039717, (const Vec *)(boss4_type2 + 0x38), 0, 1);
+                play_sound_effect(0x40039717, (const Vec *)((u8 *)this + 0x38), 0, 1);
             }
-            if ((u32) *(u32 *)((s8 *)boss4_type2 + 0x420) == 0) {
+            if ((u32) *(u32 *)((s8 *)this + 0x420) == 0) {
                 temp_r3_12 = (u32)create_particle_emitter((temp_r31), 0x13B);
-                *(u32 *)((s8 *)boss4_type2 + 0x420) = temp_r3_12;
+                *(u32 *)((s8 *)this + 0x420) = temp_r3_12;
                 if (temp_r3_12 != 0) {
-                    ((TParticleCtrl *)((void *) *(u32 *)((s8 *)boss4_type2 + 0x420)))->set_flags(0x40U);
+                    ((TParticleCtrl *)((void *) *(u32 *)((s8 *)this + 0x420)))->set_flags(0x40U);
                 }
             }
-            if ((u32) *(u32 *)((s8 *)boss4_type2 + 0x424) == 0) {
+            if ((u32) *(u32 *)((s8 *)this + 0x424) == 0) {
                 temp_r3_13 = (u32)create_particle_emitter((temp_r30), 0x13A);
-                *(u32 *)((s8 *)boss4_type2 + 0x424) = temp_r3_13;
+                *(u32 *)((s8 *)this + 0x424) = temp_r3_13;
                 if (temp_r3_13 != 0) {
-                    ((TParticleCtrl *)((void *) *(u32 *)((s8 *)boss4_type2 + 0x424)))->set_flags(0x40U);
+                    ((TParticleCtrl *)((void *) *(u32 *)((s8 *)this + 0x424)))->set_flags(0x40U);
                 }
             }
-            if ((u32) *(u32 *)((s8 *)boss4_type2 + 0x428) == 0) {
+            if ((u32) *(u32 *)((s8 *)this + 0x428) == 0) {
                 temp_r3_14 = (u32)create_particle_emitter((temp_r30), 0x13B);
-                *(u32 *)((s8 *)boss4_type2 + 0x428) = temp_r3_14;
+                *(u32 *)((s8 *)this + 0x428) = temp_r3_14;
                 if (temp_r3_14 != 0) {
-                    ((TParticleCtrl *)((void *) *(u32 *)((s8 *)boss4_type2 + 0x428)))->set_flags(0x40U);
+                    ((TParticleCtrl *)((void *) *(u32 *)((s8 *)this + 0x428)))->set_flags(0x40U);
                 }
             }
         }
-        temp_r3_15 = *(u32 *)((s8 *)boss4_type2 + 0x41C);
+        temp_r3_15 = *(u32 *)((s8 *)this + 0x41C);
         if (temp_r3_15 != 0) {
             ((TParticleCtrl *)temp_r3_15)->set_position(temp_r31);
         }
-        temp_r3_16 = *(u32 *)((s8 *)boss4_type2 + 0x420);
+        temp_r3_16 = *(u32 *)((s8 *)this + 0x420);
         if (temp_r3_16 != 0) {
             ((TParticleCtrl *)temp_r3_16)->set_position(temp_r31);
         }
-        temp_r3_17 = *(u32 *)((s8 *)boss4_type2 + 0x424);
+        temp_r3_17 = *(u32 *)((s8 *)this + 0x424);
         if (temp_r3_17 != 0) {
             ((TParticleCtrl *)temp_r3_17)->set_position(temp_r30);
         }
-        temp_r3_18 = *(u32 *)((s8 *)boss4_type2 + 0x428);
+        temp_r3_18 = *(u32 *)((s8 *)this + 0x428);
         if (temp_r3_18 != 0) {
             ((TParticleCtrl *)temp_r3_18)->set_position(temp_r30);
         }
     }
-    temp_r0_2 = *(s32 *)((s8 *)boss4_type2 + 0x398) - 1;
-    *(s32 *)((s8 *)boss4_type2 + 0x398) = temp_r0_2;
+    temp_r0_2 = *(s32 *)((s8 *)this + 0x398) - 1;
+    *(s32 *)((s8 *)this + 0x398) = temp_r0_2;
     if (temp_r0_2 < 0) {
-        ((TBoss4Type2 *)boss4_type2)->set_state(1);
+        set_state(1);
     }
 }
 #pragma pop
 
-void TBoss4Type2__sub_800528B8(void *arg0) {
-    if ((s32) *(s32 *)((s8 *)arg0 + 0x398) == 0) {
-        if (((f32 (*)(void))random_ratio__9TObjCharaFv)() < lbl_805D8B08) {
-            ((s32 (*)(void *))TBoss4Type2__sub_800535A8)(arg0);
+void TBoss4Type1::sub_800528B8() {
+    if ((s32) *(s32 *)((s8 *)this + 0x398) == 0) {
+        if (random_ratio__9TObjCharaFv(this) < lbl_805D8B08) {
+            TBoss4Type2__sub_800535A8((Boss_800535A8 *)this);
             return;
         }
-        ((s32 (*)(void *))TBoss4Type2__sub_80053504)(arg0);
+        TBoss4Type2__sub_80053504(this);
     }
 }
 
-void init_timer__11TBoss4Type2FPv(u8 *arg0) {
-    TBoss4Type2__sub_80054FC0(arg0 + 0x38, lbl_805D8B0C);
-    *(s32 *)((s8 *)arg0 + 0x398) = 0x96;
+void TBoss4Type1::init_timer() {
+    TBoss4Type2__sub_80054FC0((u8 *)this + 0x38, lbl_805D8B0C);
+    *(s32 *)((s8 *)this + 0x398) = 0x96;
 }
 
-void update_tech_charge__11TBoss4Type2FPv(u8 *arg0) {
+void TBoss4Type1::update_tech_charge() {
     s32 idx;
     Ent_8005294C *ent;
     u32 r;
-    idx = *(s32 *)((s8 *)arg0 + 0x374) - 8;
-    ent = &((Obj_8005294C *)arg0)->ents[idx];
-    if (*(f32 *)((s8 *)arg0 + 0x3E8) > lbl_805D8B10) {
-        if (*(u32 *)((s8 *)arg0 + 0x418) != 0) {
-            TParticleCtrl::release((void *)*(u32 *)((s8 *)arg0 + 0x418));
-            *(u32 *)((s8 *)arg0 + 0x418) = 0;
+    idx = *(s32 *)((s8 *)this + 0x374) - 8;
+    ent = &((Obj_8005294C *)this)->ents[idx];
+    if (*(f32 *)((s8 *)this + 0x3E8) > lbl_805D8B10) {
+        if (*(u32 *)((s8 *)this + 0x418) != 0) {
+            TParticleCtrl::release((void *)*(u32 *)((s8 *)this + 0x418));
+            *(u32 *)((s8 *)this + 0x418) = 0;
         }
-    } else if (*(f32 *)((s8 *)arg0 + 0x3E8) >= lbl_805D8B14 && *(u32 *)((s8 *)arg0 + 0x418) == 0) {
-        if ((*(u32 *)((s8 *)arg0 + 0x418) = (u32)create_particle_emitter(ent, 0xF7)) != 0) {
-            ((TParticleCtrl *)((void *)*(u32 *)((s8 *)arg0 + 0x418)))->set_flags(0x40);
+    } else if (*(f32 *)((s8 *)this + 0x3E8) >= lbl_805D8B14 && *(u32 *)((s8 *)this + 0x418) == 0) {
+        if ((*(u32 *)((s8 *)this + 0x418) = (u32)create_particle_emitter(ent, 0xF7)) != 0) {
+            ((TParticleCtrl *)((void *)*(u32 *)((s8 *)this + 0x418)))->set_flags(0x40);
         }
     }
-    if (*(f32 *)((s8 *)arg0 + 0x3E8) >= lbl_805D8B14 && *(f32 *)((s8 *)arg0 + 0x3E8) <= lbl_805D8B10) {
-        play_persistent_sound((s32)(0x4003B512), (const void *)((s32)arg0), (const Vec *)((u32)(arg0 + 0x38)), 0, 1);
+    if (*(f32 *)((s8 *)((u8 *)this) + 0x3E8) >= lbl_805D8B14 && *(f32 *)((s8 *)((u8 *)this) + 0x3E8) <= lbl_805D8B10) {
+        play_persistent_sound((s32)(0x4003B512), (const void *)((s32)((u8 *)this)), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 1);
     }
-    if (*(s32 *)((s8 *)arg0 + 0x398) == 0x26) {
+    if (*(s32 *)((s8 *)((u8 *)this) + 0x398) == 0x26) {
         if ((r = (u32)spawn_particle_effect((const Vec *)(ent), 0xFD)) != 0) {
             ((TParticleCtrl *)r)->set_flags(0x40);
         }
-        play_sound_effect(0x4003A813, (const Vec *)(arg0 + 0x38), 0, 1);
+        play_sound_effect(0x4003A813, (const Vec *)(((u8 *)this) + 0x38), 0, 1);
         if (idx == 0) {
-            create__11TTecRaBartaFPvPvPvPv((void *)arg0, arg0 + 0x3B8, arg0 + 0x3B8, (void *)(*(s32 *)((s8 *)(((u8 *)get_battle_movement_params(0x36))) + 0x1C)));
+            BattleMovementParams *params = get_battle_movement_params(0x36);
+            create__11TTecRaBartaFPvPvPvPv(this, (u8 *)this + 0x3B8, (u8 *)this + 0x3B8, (void *)params->m_1c);
         } else {
-            ((TTecRaFoie *)arg0)->create(arg0 + 0x3B8, arg0 + 0x3B8, (void *)(*(s32 *)((s8 *)(((u8 *)get_battle_movement_params(0x36))) + 0x18)));
+            BattleMovementParams *params = get_battle_movement_params(0x36);
+            TTecRaFoie::create(this, (u8 *)this + 0x3B8, (u8 *)this + 0x3B8, (void *)params->m_18);
         }
         start_pad_rumble_all(0xC0, 0xF);
     }
-    if (--*(s32 *)((s8 *)arg0 + 0x398) < 0) {
-        ((TBoss4Type2 *)arg0)->set_state(1);
+    if (--*(s32 *)((s8 *)this + 0x398) < 0) {
+        set_state(1);
     }
 }
 
-void update_scale_state__11TBoss4Type2FPv(void *arg0) {
-    s32 sp8;
+void TBoss4Type1::update_scale_state() {
+    Vec_80053914 sp8;
     s32 var_r31;
 
-    if ((s32) *(s32 *)((s8 *)arg0 + 0x398) == 0) {
-        if (((f32 (*)(void))random_ratio__9TObjCharaFv)() < lbl_80437620[0]) {
-            ((s32 (*)(void *))TBoss4Type2__sub_80053504)(arg0);
+    if ((s32) *(s32 *)((s8 *)this + 0x398) == 0) {
+        if (random_ratio__9TObjCharaFv(this) < lbl_80437620[0]) {
+            TBoss4Type2__sub_80053504(this);
             return;
         }
         var_r31 = 8;
-        if ((s32) *(s32 *)((s8 *)arg0 + 0x374) == 8) {
+        if ((s32) *(s32 *)((s8 *)this + 0x374) == 8) {
             var_r31 = 9;
         }
-        ((s32 (*)(void *, s32 *))pick_target_position__13TRaderMapCoreFPvPv)(arg0, &sp8);
-        ((TRaderMapCore *)arg0)->set_map_position(&sp8);
-        ((TBoss4Type2 *)arg0)->send_state_to_target(var_r31);
+        pick_target_position__13TRaderMapCoreFPvPv((O_80053914 *)this, &sp8);
+        set_map_position(&sp8);
+        send_state_to_target(var_r31);
     }
 }
 
-void init_child_and_set_timer__11TBoss4Type2FPv(void *arg0) {
-    create__16TObjDFBeamCursorFPvPv(arg0, ((char *)arg0 + 952));
-    *(u32 *)((s8 *)arg0 + 0x398) = 75;
+void TBoss4Type1::init_child_and_set_timer() {
+    create__16TObjDFBeamCursorFPvPv(this, ((char *)this + 952));
+    *(u32 *)((s8 *)this + 0x398) = 75;
 }
 
-void update_attack_countdown__11TBoss4Type2FPv(u8 *boss4_type2) {
+void TBoss4Type1::update_attack_countdown() {
     s32 temp_r0;
-    if ((s32) *(s32 *)((s8 *)boss4_type2 + 0x398) == 0x2D) {
-        play_sound_effect(0x4003AD11, (const Vec *)((&((Foo *) boss4_type2)->arr[*(s32 *)((s8 *)boss4_type2 + 0x3A8)])), 0, 1);
+    if ((s32) *(s32 *)((s8 *)this + 0x398) == 0x2D) {
+        play_sound_effect(0x4003AD11, (const Vec *)((&((Foo *) this)->arr[*(s32 *)((s8 *)this + 0x3A8)])), 0, 1);
     }
-    temp_r0 = *(s32 *)((s8 *)boss4_type2 + 0x398) - 1;
-    *(s32 *)((s8 *)boss4_type2 + 0x398) = temp_r0;
+    temp_r0 = *(s32 *)((s8 *)this + 0x398) - 1;
+    *(s32 *)((s8 *)this + 0x398) = temp_r0;
     if (temp_r0 < 0) {
-        ((TBoss4Type2 *)boss4_type2)->set_state(1);
+        set_state(1);
     }
 }
 
-void update_state__11TBoss4Type2FPv(void *arg0) {
-    if ((s32) *(s32 *)((s8 *)arg0 + 0x398) == 0) {
-        if ((s32) *(s32 *)((s8 *)arg0 + 0x3A8) == 1) {
-            ((s32 (*)(void *))TBoss4Type2__sub_800535A8)(arg0);
+void TBoss4Type1::update_state() {
+    if ((s32) *(s32 *)((s8 *)this + 0x398) == 0) {
+        if ((s32) *(s32 *)((s8 *)this + 0x3A8) == 1) {
+            TBoss4Type2__sub_800535A8((Boss_800535A8 *)this);
             return;
         }
-        ((s32 (*)(void *))TBoss4Type2__sub_80053504)(arg0);
+        TBoss4Type2__sub_80053504(this);
     }
 }
 
-void set_motion_for_state__11TBoss4Type2FPv(TBoss4Type2 *boss4_type2) {
-    boss4_type2->set_motion_index(*(s32 *)((s8 *)&boss4_type2_state_motion_index_table.value + (*(s32 *)((s8 *)boss4_type2 + 0x3A8) * 4)));
-    *(s32 *)((s8 *)boss4_type2 + 0x398) = 0x3C;
+void TBoss4Type1::set_motion_for_state() {
+    set_motion_index(*(s32 *)((s8 *)&boss4_type2_state_motion_index_table.value + (*(s32 *)((s8 *)this + 0x3A8) * 4)));
+    *(s32 *)((s8 *)this + 0x398) = 0x3C;
 }
 
-void tick_countdown_set_state7__11TBoss4Type2FPv(TBoss4Type2 *boss4_type2) {
+void TBoss4Type1::tick_countdown_set_state7() {
     s32 temp_r0;
-    temp_r0 = *(s32 *)((s8 *)boss4_type2 + 0x398) - 1;
-    *(s32 *)((s8 *)boss4_type2 + 0x398) = temp_r0;
+    temp_r0 = *(s32 *)((s8 *)this + 0x398) - 1;
+    *(s32 *)((s8 *)this + 0x398) = temp_r0;
     if (temp_r0 < 0) {
-        *(s32 *)((s8 *)boss4_type2 + 0x3D0) = 5;
-        boss4_type2->set_state(7);
+        *(s32 *)((s8 *)this + 0x3D0) = 5;
+        set_state(7);
     }
 }
 
-void update_spawn_uro__14TBoss4DarkFalzFPv(Obj_80052CDC *arg0) {
+void TBoss4Type1::update_spawn_uro() {
     Params_80052CDC p;
     Spot_80052CDC *s;
     s32 t;
-    s = &arg0->spots[arg0->idx];
-    t = arg0->timer;
-    if (t < 0x106 && (t & 0x1F) == 0 && arg0->count < arg0->max) {
+    Obj_80052CDC *self = (Obj_80052CDC *)this;
+    s = &self->spots[self->idx];
+    t = self->timer;
+    if (t < 0x106 && (t & 0x1F) == 0 && self->count < self->max) {
         TBoss4DarkFalz__sub_8004B4F0(p.a, TBoss4DarkFalz__data_804FF1E8);
-        if (TBoss4DarkFalz__sub_8004AF5C(arg0->owner, p.a, &p.b) != 0) {
-            p.owner = arg0->owner;
+        if (TBoss4DarkFalz__sub_8004AF5C(self->owner, p.a, &p.b) != 0) {
+            p.owner = self->owner;
             p.c = 1;
             VecCopy__FP3VecPC3Vec(&p.pos, s);
             if (create__9TBoss4UroFi(&p) != NULL) {
                 spawn_particle_effect((const Vec *)(s), 0x7D);
                 play_sound_effect(0x4003A810, (const Vec *)(s), 0, 1);
-                arg0->count++;
+                self->count++;
             }
         }
     }
-    TBoss4DarkFalz__sub_8004D990(arg0->owner);
-    if (arg0->timer == 0x106) {
+    TBoss4DarkFalz__sub_8004D990((u8 *)self->owner);
+    if (self->timer == 0x106) {
         play_sound_effect(0x4003AD0F, (const Vec *)(s), 0, 1);
     }
-    if (--arg0->timer < 0) {
-        arg0->f3d0 = 5;
-        ((TBoss4Type2 *)arg0)->set_state(7);
+    if (--self->timer < 0) {
+        self->f3d0 = 5;
+        set_state(7);
     }
 }
 
-void start_motion_for_index__11TBoss4Type2FPv(S_80052E10 *o) {
-    ((TBoss4Type2 *)o)->set_motion_index(((s32 *)lbl_804861F4)[o->idx]);
-    o->f3c8 = 0;
-    ((TWindowSubSymbolChatPartsSet *)((u8 *)boss4_type1_xz_offset_table + 0x28))->copy_vec2(&((P2_80052E10 *)lbl_80486200)[o->idx]);
-    o->f3d0 = 6;
-    if (o->f374 == 5) {
-        o->f398 = 0x12C;
+void TBoss4Type1::start_motion_for_index() {
+    S_80052E10 *self = (S_80052E10 *)this;
+    set_motion_index(((s32 *)lbl_804861F4)[self->idx]);
+    self->f3c8 = 0;
+    ((TWindowSubSymbolChatPartsSet *)((u8 *)boss4_type1_xz_offset_table + 0x28))->copy_vec2(&((P2_80052E10 *)lbl_80486200)[self->idx]);
+    self->f3d0 = 6;
+    if (self->f374 == 5) {
+        self->f398 = 0x12C;
     } else {
-        o->f398 = 0x96;
+        self->f398 = 0x96;
     }
 }
 
 void TWindowSubSymbolChatPartsSet::copy_vec2(void* q) { *(f32*)((char*)this + 0x0) = *(f32*)((char*)q + 0x0); *(f32*)((char*)this + 0x4) = *(f32*)((char*)q + 0x4); }
 
-void tick_state_398_timer__11TBoss4Type2FPv(TBoss4Type2 *boss4_type2) {
+void TBoss4Type1::tick_state_398_timer() {
     s32 temp_r0;
-    temp_r0 = *(s32 *)((s8 *)boss4_type2 + 0x398) - 1;
-    *(s32 *)((s8 *)boss4_type2 + 0x398) = temp_r0;
+    temp_r0 = *(s32 *)((s8 *)this + 0x398) - 1;
+    *(s32 *)((s8 *)this + 0x398) = temp_r0;
     if (temp_r0 < 0) {
-        boss4_type2->set_state(4);
+        set_state(4);
     }
 }
 
-void TBoss4Type2__sub_80052EE8(void) {  }
+void TBoss4Type1::sub_80052EE8() {  }
 
-void TBoss4Type2__sub_80052EEC(void* p) { *(s32*)((char*)p + 0x398) = 75; }
+void TBoss4Type1::sub_80052EEC() { *(s32 *)((char *)this + 0x398) = 75; }
 
-void TBoss4Type2__sub_80052EF8(O_80052EF8 *o) {
-    s32 t;
+void TBoss4Type1::sub_80052EF8() {
+    O_80052EF8 *self = (O_80052EF8 *)this;
 
-    o->f39c = ((f32 (*)(void *, f32))calc_wave_offset__11TBoss4Type2Ff)(o, lbl_805D8B18 - (f32)o->f398 / (f32)o->f3cc);
+    self->f39c = calc_wave_offset(lbl_805D8B18 - (f32)self->f398 / (f32)self->f3cc);
     {
-        Vec_80052EF8 a = boss4_type2_motion_vec_table[o->f3a4];
-        Vec_80052EF8 b = boss4_type2_motion_vec_table[o->f3a0];
-        ((s32 (*)(void *, Vec_80052EF8 *, Vec_80052EF8 *))set_pos_from_scaled_offset__11TBoss4Type2FPvPvPv)(o, &a, &b);
+        Vec_80052EF8 a = boss4_type2_motion_vec_table[self->f3a4];
+        Vec_80052EF8 b = boss4_type2_motion_vec_table[self->f3a0];
+        set_pos_from_scaled_offset__11TBoss4Type2FPvPvPv((S_80054224 *)this, &a, (V_80054224 *)&b);
     }
-    ((TBoss4Type2 *)o)->calc_scaled_field(((s32 (*)(void *, s32, s32))TBoss4Type2__sub_80054384)(o, o->f3a4, o->f3ac), ((s32 (*)(void *, s32, s32))TBoss4Type2__sub_80054384)(o, o->f3a0, o->f3a8));
-    play_persistent_sound((s32)(0x4003A80D), (const void *)((s32)o), (const Vec *)((u32)o->f38), 0, 0);
-    if (--o->f398 < 0) {
-        o->f3a4 = o->f3a0;
-        o->f3ac = o->f3a8;
-        ((TBoss4Type2 *)o)->set_state(1);
+    calc_scaled_field((s32)TBoss4Type2__sub_80054384(this, self->f3a4, self->f3ac), (s32)TBoss4Type2__sub_80054384(this, self->f3a0, self->f3a8));
+    play_persistent_sound((s32)(0x4003A80D), (const void *)this, (const Vec *)((u32)self->f38), 0, 0);
+    if (--self->f398 < 0) {
+        self->f3a4 = self->f3a0;
+        self->f3ac = self->f3a8;
+        set_state(1);
     }
 }
 
-void update_state_transition__11TBoss4Type2FPv(void* p) { if (*(int*)((char*)p + 0x398) == 0) { ((TBoss4Type2 *)p)->check_state_transition(); } }
+void TBoss4Type1::update_state_transition() {
+    if (*(int *)((char *)this + 0x398) == 0) {
+        check_state_transition();
+    }
+}
 
-void TBoss4Type2__sub_8005307C(void* p) { *(u32*)((char*)p + 0x398) = *(u32*)((char*)p + 0x3cc); }
+void TBoss4Type1::sub_8005307C() { *(u32 *)((char *)this + 0x398) = *(u32 *)((char *)this + 0x3cc); }
 
-void update_flag800_state__11TBoss4Type2FPv(void *boss4_type2) {
-    if (*(s32 *)((s8 *)boss4_type2 + 0x30) & 0x800) {
-        ((TBoss4Type2 *)boss4_type2)->send_state_to_target(4);
+void TBoss4Type1::update_flag800_state() {
+    if (*(s32 *)((s8 *)this + 0x30) & 0x800) {
+        send_state_to_target(4);
         return;
     }
-    ((s32 (*)(void *))TBoss4Type2__sub_80053504)(boss4_type2);
+    TBoss4Type2__sub_80053504(this);
 }
 
-void TBoss4Type2__sub_800530C0(Obj_800530C0 *arg0) {
-    arg0->f39c = ((f32 (*)(void *, f32))calc_wave_offset__11TBoss4Type2Ff)(arg0, lbl_805D8B18 - (f32)arg0->timer / lbl_805D8B1C);
+void TBoss4Type1::sub_800530C0() {
+    Obj_800530C0 *self = (Obj_800530C0 *)this;
+    self->f39c = calc_wave_offset(lbl_805D8B18 - (f32)self->timer / lbl_805D8B1C);
     Vec_800530C0 a = lbl_80437604;
     Vec_800530C0 b = boss4_type2_effect_offset_vec_b;
-    ((void (*)(void *, Vec_800530C0 *, Vec_800530C0 *))set_pos_from_scaled_offset__11TBoss4Type2FPvPvPv)(arg0, &a, &b);
-    if (--arg0->timer < 0) {
-        ((TBoss4Type2 *)arg0)->set_state(1);
+    set_pos_from_scaled_offset__11TBoss4Type2FPvPvPv((S_80054224 *)this, &a, (V_80054224 *)&b);
+    if (--self->timer < 0) {
+        set_state(1);
     }
 }
 
-void check_state_if_idle__11TBoss4Type2FPv(void* p) { if (*(int*)((char*)p + 0x398) == 0) { ((TBoss4Type2 *)p)->check_state_transition(); } }
+void TBoss4Type1::check_state_if_idle() {
+    if (*(int *)((char *)this + 0x398) == 0) {
+        check_state_transition();
+    }
+}
 
-void TBoss4Type2__sub_800531BC(void* p) { *(s32*)((char*)p + 0x398) = 75; }
+void TBoss4Type1::sub_800531BC() { *(s32 *)((char *)this + 0x398) = 75; }
 
 #pragma push
 #pragma fp_contract on
@@ -1083,8 +939,8 @@ void TBoss4Type1::update_follow_camera_offsets() {
     {
         Vec_80053E40 a = lbl_804375EC;
         Vec_80053E40 b = lbl_804375F8;
-        if (best > lbl_805D8B28) {
-            best = lbl_805D8B28;
+        if (best > 40.42f) {
+            best = 40.42f;
         }
         t = best / 40.42f;
         if (t > lbl_805D8B20) {
@@ -1120,15 +976,15 @@ void TBoss4Type1::sub_80053440() {
     play_persistent_sound((s32)(0x4003BC0E), (const void *)((s32)arg0), (const Vec *)((u32)&arg0->pos), 0x40, 2);
 }
 
-void TBoss4Type2__sub_80053504(TBoss4Type2 *boss4_type2) {
+void TBoss4Type2__sub_80053504(TBoss4Type1 *boss4_type2) {
     s32 spC;
     s32 sp8;
     boss4_type2->calc_scale_slot_indices(&spC, &sp8);
     boss4_type2->send_darkfalz_code(2, spC, sp8);
 }
 
-void TBoss4Type2::check_state_transition() {
-    if (((s32 (*)(s32))TBoss4DarkFalz__sub_8004D990)(*(s32 *)((s8 *)this + 0x38C)) <= (s32) (0xC - *(s32 *)((s8 *)this + 0x3C4))) {
+void TBoss4Type1::check_state_transition() {
+    if (TBoss4DarkFalz__sub_8004D990((u8 *)owner) <= (s32) (0xC - *(s32 *)((s8 *)this + 0x3C4))) {
         send_state_to_target(5);
         return;
     }
@@ -1148,16 +1004,16 @@ void TBoss4Type2__sub_800535A8(Boss_800535A8 *arg0) {
         switch (r) {
         case 8:
         case 9:
-            ((void (*)(void *, void *))pick_target_position__13TRaderMapCoreFPvPv)(arg0, pos);
-            ((TRaderMapCore *)arg0)->set_map_position(pos);
-            ((TBoss4Type2 *)arg0)->send_state_to_target(r);
+            pick_target_position__13TRaderMapCoreFPvPv((O_80053914 *)arg0, (Vec_80053914 *)pos);
+            ((TBoss4Type1 *)arg0)->set_map_position(pos);
+            ((TBoss4Type1 *)arg0)->send_state_to_target(r);
             break;
         default:
-            ((TBoss4Type2 *)arg0)->send_state_to_target(0xA);
+            ((TBoss4Type1 *)arg0)->send_state_to_target(0xA);
             break;
         }
     } else {
-        ((TBoss4Type2 *)arg0)->check_state_transition();
+        ((TBoss4Type1 *)arg0)->check_state_transition();
     }
 }
 
@@ -1188,20 +1044,20 @@ void TBoss4Type1::sub_80053670() {
     var_r29 = 0;
     var_r28 = 0x25;
     do {
-        ((s32 (*)(Vec_80053914 *, Vec_80053914 *))VecCopy__FP3VecPC3Vec)((Vec_80053914 *)&stack.sp8, (Vec_80053914 *)(arg0 + 0x38));
+        VecCopy__FP3VecPC3Vec((Vec_80053914 *)&stack.sp8, (Vec_80053914 *)(arg0 + 0x38));
         stack.sp8 += (f32)(-var_r28) * temp_f30;
         stack.sp10 += (f32)var_r28 * temp_f29;
         add_radar_scaled_marker(&stack.sp8, -0x5DB4, 1, 1, lbl_805D8B44);
-        ((s32 (*)(Vec_80053914 *, Vec_80053914 *))VecCopy__FP3VecPC3Vec)((Vec_80053914 *)&stack.sp8, (Vec_80053914 *)(arg0 + 0x38));
+        VecCopy__FP3VecPC3Vec((Vec_80053914 *)&stack.sp8, (Vec_80053914 *)(arg0 + 0x38));
         stack.sp8 += (f32)var_r28 * temp_f29;
         stack.sp10 += (f32)var_r28 * temp_f30;
         add_radar_scaled_marker(&stack.sp8, -0x5DB4, 1, 1, lbl_805D8B44);
-        ((s32 (*)(Vec_80053914 *, Vec_80053914 *))VecCopy__FP3VecPC3Vec)((Vec_80053914 *)&stack.sp8, (Vec_80053914 *)(arg0 + 0x38));
+        VecCopy__FP3VecPC3Vec((Vec_80053914 *)&stack.sp8, (Vec_80053914 *)(arg0 + 0x38));
         stack.sp8 += (f32)var_r28 * temp_f30;
         stack.sp10 += (f32)(-var_r28) * temp_f29;
         add_radar_scaled_marker(&stack.sp8, -0x5DB4, 1, 1, lbl_805D8B44);
         if (var_r29 < 2) {
-            ((s32 (*)(Vec_80053914 *, Vec_80053914 *))VecCopy__FP3VecPC3Vec)((Vec_80053914 *)&stack.sp8, (Vec_80053914 *)(arg0 + 0x38));
+            VecCopy__FP3VecPC3Vec((Vec_80053914 *)&stack.sp8, (Vec_80053914 *)(arg0 + 0x38));
             stack.sp8 += (f32)(-var_r28) * temp_f29;
             stack.sp10 += (f32)(-var_r28) * temp_f30;
             add_radar_scaled_marker(&stack.sp8, -0x5DB4, 1, 1, lbl_805D8B44);
@@ -1241,12 +1097,12 @@ void pick_target_position__13TRaderMapCoreFPvPv(O_80053914 *self, Vec_80053914 *
             if (d <= lbl_805D8B4C && d > best) {
                 best = d;
                 found = p;
-                ((s32 (*)(Vec_80053914 *, Vec_80053914 *))VecCopy__FP3VecPC3Vec)(&res, &v);
+                VecCopy__FP3VecPC3Vec(&res, &v);
             }
         }
     }
     if (found != NULL) {
-        ((s32 (*)(Vec_80053914 *, Vec_80053914 *))VecCopy__FP3VecPC3Vec)(out, &res);
+        VecCopy__FP3VecPC3Vec(out, &res);
         return;
     }
     s = lbl_805D8B50 * random_ratio__9TObjCharaFv(self);
@@ -1260,14 +1116,14 @@ void pick_target_position__13TRaderMapCoreFPvPv(O_80053914 *self, Vec_80053914 *
 }
 #pragma pop
 
-void TRaderMapCore::set_map_position(void *arg1) {
+void TBoss4Type1::set_map_position(void *arg1) {
     *(s32 *)((s8 *)this + 0x3B0) = (s32) ((lbl_805D8B58 + *(f32 *)((s8 *)arg1 + 0)) / lbl_805D8B5C);
     *(s32 *)((s8 *)this + 0x3B4) = (s32) ((lbl_805D8B58 + *(f32 *)((s8 *)arg1 + 8)) / lbl_805D8B5C);
 }
 
 #pragma push
 #pragma fp_contract on
-void TBoss4Type2::calc_target_position() {
+void TBoss4Type1::calc_target_position() {
     Obj_80053AD4 *arg0 = (Obj_80053AD4 *)this;
     arg0->f3B8 = lbl_805D8B5C * (lbl_805D8B60 + (f32)arg0->i3B0) - lbl_805D8B58;
     arg0->f3BC = lbl_805D8B20;
@@ -1275,7 +1131,7 @@ void TBoss4Type2::calc_target_position() {
 }
 #pragma pop
 
-void TBoss4Type2::calc_scale_slot_indices(s32 *a, s32 *b) {
+void TBoss4Type1::calc_scale_slot_indices(s32 *a, s32 *b) {
     f32 s;
     s32 v;
     v = ((S_80053B48 *)this)->f3a0 + (s32)(lbl_805D8B64 * random_ratio__9TObjCharaFv(((S_80053B48 *)this)));
@@ -1294,7 +1150,7 @@ void TBoss4Type2::calc_scale_slot_indices(s32 *a, s32 *b) {
     }
 }
 
-void TBoss4Type2::apply_packed_state(u32 arg1) {
+void TBoss4Type1::apply_packed_state(u32 arg1) {
     s32 n;
     *(s32 *)((s8 *)this + 0x3A4) = (s32) ((arg1 >> 4U) & 3);
     *(s32 *)((s8 *)this + 0x3A0) = (s32) ((arg1 >> 6U) & 3);
@@ -1313,7 +1169,7 @@ void TBoss4Type2::apply_packed_state(u32 arg1) {
     set_state(n);
 }
 
-void TBoss4Type2::send_darkfalz_code(s32 arg1, s32 arg2, s32 arg3) {
+void TBoss4Type1::send_darkfalz_code(s32 arg1, s32 arg2, s32 arg3) {
     u8 *arg0 = (u8 *)this;
     u8 *boss4_dark_falz;
     boss4_dark_falz = (u8 *)(*(u8 **)((s8 *)arg0 + 0x38C));
@@ -1322,7 +1178,7 @@ void TBoss4Type2::send_darkfalz_code(s32 arg1, s32 arg2, s32 arg3) {
     }
 }
 
-void TBoss4Type2::send_state_to_target(s32 arg1) {
+void TBoss4Type1::send_state_to_target(s32 arg1) {
     Obj_80053CEC *self = (Obj_80053CEC *)this;
     if (self->target != 0) {
         ((TBoss4DarkFalz *)(self->target))->send_code_25_4((arg1 & 0xF) | ((self->f3a0 & 3) << 4) | ((self->f3a0 & 3) << 6) | ((self->f3a8 & 3) << 8) | ((self->f3a8 & 3) << 10) | ((self->f3b0 & 0xF) << 12) | ((self->f3b4 & 0xF) << 16));
@@ -1423,9 +1279,9 @@ void TBoss4Type1::push_players_out_of_colliders() {
                     VecCopy__FP3VecPC3Vec(&pos, &q);
                 }
             }
-            if (((f32 (*)(void *, void *))xyz_distance)(get_position_ptr__10TObjPlayerFv(pl), &pos) > lbl_805D8B20) {
+            if (xyz_distance((Vec_80053914 *)get_position_ptr__10TObjPlayerFv(pl), (Vec_80053914 *)&pos) > lbl_805D8B20) {
                 ((TObjBase *)pl)->set_position_from(&pos);
-                ((TBoss4DarkFalz *)pl)->save_position();
+                ((TObjBase *)pl)->save_previous_position();
                 ((TObjCollidable *)pl)->set_indexed_flags(0, 0x900000);
                 *(u32 *)(pl + 0x30) &= ~0x20;
             }
@@ -1433,25 +1289,25 @@ void TBoss4Type1::push_players_out_of_colliders() {
     }
 }
 
-f32 calc_wave_offset__11TBoss4Type2Ff(f32 farg0) {
+f32 TBoss4Type1::calc_wave_offset(f32 farg0) {
     return lbl_805D8B60 * (lbl_805D8B18 - cos_table_lookup((s32) (lbl_805D8B74 * farg0)));
 }
 
-void TBoss4Type2::calc_scaled_field(s32 arg1, s32 arg2) {
+void TBoss4Type1::calc_scaled_field(s32 arg1, s32 arg2) {
     *(s32 *)((s8 *)this + 0x60) = (s32) (arg1 + (s32) (*(f32 *)((s8 *)this + 0x39C) * (f32) angle_diff_s16(arg1, arg2)));
 }
 
 void set_pos_from_scaled_offset__11TBoss4Type2FPvPvPv(S_80054224 *o, void *src, V_80054224 *in) {
     V_80054224 v = *in;
-    ((void (*)(void *))subtract_vector)(&v);
+    subtract_vector((Vec_80053D4C *)&v, (Vec_80053D4C *)src);
     v.x *= o->f39c;
     v.y *= o->f39c;
     v.z *= o->f39c;
     VecCopy__FP3VecPC3Vec(&o->pos, src);
-    ((void (*)(void *, void *))vec3_add_to)(&o->pos, &v);
+    vec3_add_to((Vec_80053440 *)&o->pos, (Vec_80053440 *)&v);
 }
 
-void TBoss4Type2::set_state(s32 arg1) {
+void TBoss4Type1::set_state(s32 arg1) {
     s32 i;
     void **p;
 
@@ -1464,10 +1320,10 @@ void TBoss4Type2::set_state(s32 arg1) {
         }
     }
     ((Boss_800542B0 *)this)->f3d0 = 5;
-    ((TBoss4Type2 *)((Boss_800542B0 *)this))->set_motion_index(lbl_80485C48[((Boss_800542B0 *)this)->state].f4);
-    Act_800542B0 f = lbl_80485C48[((Boss_800542B0 *)this)->state].enter;
+    set_motion_index(lbl_80485C48[((Boss_800542B0 *)this)->state].f4);
+    void (TBoss4Type1::*f)() = lbl_80485C48[((Boss_800542B0 *)this)->state].enter;
     if (f) {
-        (((Boss_800542B0 *)this)->*f)();
+        (this->*f)();
     }
 }
 
@@ -1512,7 +1368,7 @@ void TBoss4Type1::draw_parts() {
 }
 #pragma pop
 
-void TBoss4Type2::set_motion_index(s32 arg1) {
+void TBoss4Type1::set_motion_index(s32 arg1) {
     u8 *arg0 = (u8 *)this;
     if (arg1 != -1) {
         *(s32 *)((s8 *)arg0 + 0x3E4) = arg1;
@@ -1566,21 +1422,22 @@ void TBoss4Type1::snapshot_position() {
     *(f32 *)((s8 *)arg0 + 0x300) = (f32) (*(f32 *)((s8 *)arg0 + 0x300) + lbl_805D8B24);
 }
 
-void render_and_update_effects__10TObjPlayerFPv(void* p) { ((TBoss4Type1 *)p)->push_players_out_of_colliders(); ((TBoss4Type1 *)p)->render_effects(); ((TBoss4Type1 *)p)->update_follow_camera_offsets(); }
+void TBoss4Type1::render() { push_players_out_of_colliders(); render_effects(); update_follow_camera_offsets(); }
 
 #pragma push
 #pragma opt_common_subs off
-void TBoss4Type2__sub_80054738(Obj_80054738 *self) {
-    Act_800542B0 act;
+void TBoss4Type1::run_task() {
+    Obj_80054738 *self = (Obj_80054738 *)this;
+    void (TBoss4Type1::*act)();
     if (((TBoss4DarkFalz *)(self->x38c))->is_field378_zero() != 0) {
-        act = lbl_80485C48[self->x374].a;
+        act = lbl_80485C48[self->x374].update_idle;
         if (act) {
-            (((Boss_800542B0 *)self)->*act)();
+            (this->*act)();
         }
     }
-    act = lbl_80485C48[self->x374].b;
+    act = lbl_80485C48[self->x374].update;
     if (act) {
-        (((Boss_800542B0 *)self)->*act)();
+        (this->*act)();
     }
     ((TBoss4Type1 *)self)->update_boss4_phase_timer();
     ((TBoss4Type1 *)self)->snapshot_position();
@@ -1600,7 +1457,8 @@ void TBoss4Type2__sub_80054738(Obj_80054738 *self) {
 }
 #pragma pop
 
-void request_state_3__11TBoss4Type2FPv(TBoss4Type2 *boss4_type2) {
+void TBoss4Type1::vfunc_63() {
+    TBoss4Type1 *boss4_type2 = this;
     s32 temp_r0;
 
     temp_r0 = *(s32 *)((s8 *)boss4_type2 + 0x374);
@@ -1609,199 +1467,192 @@ void request_state_3__11TBoss4Type2FPv(TBoss4Type2 *boss4_type2) {
     }
 }
 
-void fn_800548E4(u8 *arg0) {
+void TBoss4Type1::vfunc_62() {
+    u8 *arg0 = (u8 *)this;
     *(s32 *)((s8 *)arg0 + 0x30) = (s32) (*(s32 *)((s8 *)arg0 + 0x30) & 0xFFFFFDFF);
     *(s32 *)((s8 *)arg0 + 0x3D4) = 1;
     *(f32 *)((s8 *)arg0 + 0x3DC) = (f32) lbl_805D8B18;
     play_sound_effect(0x4003A822, (const Vec *)((arg0 + 0x38)), 0, 1);
 }
 
-S_80054938 *__dt__11TBoss4Type1Fv(S_80054938 *o, s16 flag) {
+TBoss4Type1::~TBoss4Type1() {
     s32 i;
     s32 j;
-    if (o != 0) {
-        o->vt = __vt__11TBoss4Type1;
-        fn_8004AA04(o->f378);
-        for (i = 0; i < 13; i++) {
-            if (o->parts[i] != 0) {
-                TParticleCtrl::release(o->parts[i]);
-                o->parts[i] = 0;
-            }
-        }
-        for (j = 0; j < 3; j++) {
-            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(o->fx[j]));
-            o->fx[j] = 0;
-        }
-        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(o->f480));
-        o->f480 = 0;
-        free_collision_body_parts(o);
-        o->f394 = 0;
-        __dt__9TObjEnemyFv((TObjEnemy *)o, 0);
-        if (flag > 0) {
-            __dl__7TObjectFPv(o);
+    fn_8004AA04(model_nodes);
+    for (i = 0; i < 13; i++) {
+        if (parts[i] != 0) {
+            TParticleCtrl::release(parts[i]);
+            parts[i] = 0;
         }
     }
-    return o;
+    for (j = 0; j < 3; j++) {
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)captures[j]);
+        captures[j] = 0;
+    }
+    ModelNodePositionCapture::destroy((ModelNodePositionCapture *)last_capture);
+    last_capture = 0;
+    free_collision_body_parts(this);
+    collision_body = 0;
 }
 
 }
-struct VBase_80054A1C { char pad[0x18]; };
-struct VObj_80054A1C : VBase_80054A1C {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3(); virtual void m4();
-    virtual void m5(); virtual void m6(); virtual void m7(); virtual void m8(); virtual void m9();
-    virtual void m10(); virtual void m11(); virtual void m12(); virtual void m13(); virtual void m14();
-    virtual void m15(); virtual void m16(); virtual void m17(); virtual void m18(); virtual void m19();
-    virtual void m20(); virtual void m21(); virtual void m22(); virtual void m23(); virtual void m24();
-    virtual void m25(); virtual void m26(); virtual void m27(); virtual void m28(); virtual void m29();
-    virtual void m30(); virtual void m31(); virtual void m32(); virtual void m33(); virtual void m34();
-    virtual void m35(); virtual void m36(); virtual void m37(); virtual void m38(); virtual void m39();
-    virtual void m40(); virtual void m41(); virtual void m42(); virtual void m43(); virtual void m44();
-    virtual void m45(); virtual void m46(); virtual void m47(); virtual void m48(); virtual void m49();
-    virtual void m50(); virtual void m51(); virtual void m52(); virtual void m53(); virtual void m54();
-    virtual void m55(); virtual void m56(); virtual void m57(); virtual void m58(); virtual void m59();
-    virtual void m60(); virtual void m61(); virtual void m62(); virtual void m63(); virtual void m64();
-    virtual void m65(); virtual void m66(); virtual void m67(); virtual void m68(); virtual void m69();
-    virtual void m70(); virtual void m71(); virtual void m72(); virtual void m73(); virtual void m74();
-    virtual void m75(); virtual void m76(); virtual void m77(); virtual void m78();
-    virtual void m79(void *);
-    virtual void m80();
-};
-
 extern "C" {
-struct Seg_80054A1C { u8 b[0x18]; };
-struct Self_80054A1C {
-    s32 f0;
-    u8 pad4[0x18 - 0x4];
-    void *vt;
-    u8 pad1c[0x24 - 0x1c];
-    s32 f24;
-    u8 pad28[0x34 - 0x28];
-    s32 f34;
-    u8 v38[0xC];
-    u8 v44[0xC];
-    u8 v50[0xC];
-    s32 f5C;
-    s32 f60;
-    u8 pad64[0x74 - 0x64];
-    u8 v74[0xC];
-    u8 pad80[0x2A8 - 0x80];
-    s32 f2A8;
-    u8 pad2ac[0x2FC - 0x2AC];
-    u8 v2FC[0xC];
-    f32 f308;
-    f32 f30C;
-    f32 f310;
-    u8 pad314[0x32C - 0x314];
-    s16 f32C;
-    u8 pad32e[0x33E - 0x32E];
-    s16 f33E;
-    u8 pad340[0x378 - 0x340];
-    u8 f378[0x38C - 0x378];
-    s32 f38C;
-    BmlResource *f390;
-    s32 f394;
-    u8 pad398[0x3A0 - 0x398];
-    s32 f3A0;
-    s32 f3A4;
-    s32 f3A8;
-    s32 f3AC;
-    u8 pad3b0[0x3C4 - 0x3B0];
-    s32 f3C4;
-    s32 f3C8;
-    s32 f3CC;
-    s32 f3D0;
-    s32 f3D4;
-    s32 f3D8;
-    f32 f3DC;
-    f32 f3E0;
-    u8 pad3e4[0x3EC - 0x3E4];
-    f32 f3EC;
-    u8 pad3f0[0x3F8 - 0x3F0];
-    s32 a3F8[13];
-    s32 a42C[3];
-    Seg_80054A1C a438[3];
-    s32 f480;
-    u8 v484[0xC];
-};
 
 void init_model_node_tables(void *, void *, int);
 s32 init_collision_body_parts(void *, void *, int);
 extern s32 boss4_type1_emitter_id_table[];
 extern u8 boss4_type1_model_node_table[];
-extern s32 TBoss4Type1__name;
+extern const char *TBoss4Type1__name;
 extern const f32 lbl_805D8B84;
-Self_80054A1C *TBoss4Type1__ct(Self_80054A1C *self, s32 arg1, s32 *arg2);
-#pragma push
-#pragma opt_loop_invariants off
-Self_80054A1C *TBoss4Type1__ct(Self_80054A1C *self, s32 parent, s32 *arg2) {
-    s32 i;
-    s32 j;
 
-    __ct__9TObjEnemyFP7TObject(self, (void*)parent);
-    self->vt = __vt__11TBoss4Type1;
-    self->f0 = TBoss4Type1__name;
-    ((TObjChara *)self)->add_flags_2e4(8);
-    self->f38C = arg2[0];
-    ((VObj_80054A1C *)self)->m79(arg2 + 1);
-    ((VObj_80054A1C *)self)->m80();
-    self->f390 = TBoss4Uro::get_instance_count();
-    self->f24 = 0;
-    self->f34 = 0;
-    VecCopy__FP3VecPC3Vec(self->v38, lbl_80486150);
-    self->f60 = 0;
-    ((void *(*)(void *, void *))VecCopy__FP3VecPC3Vec)(self->v44,
-        ((void *(*)(void *, void *))VecCopy__FP3VecPC3Vec)(self->v50,
-            ((void *(*)(void *, void *))VecCopy__FP3VecPC3Vec)(self->v74, self->v38)));
-    self->f394 = init_collision_body_parts(self, lbl_80485E2C, 3);
-    VecCopy__FP3VecPC3Vec(self->v2FC, self->v38);
-    self->f308 = self->f30C = self->f310 = lbl_805D8B20;
-    self->f2A8 = 0;
-    ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x36)), (u8 *)(get_battle_attack_params(0x36)), (u8 *)(get_battle_resistance_params(0x36)));
-    self->f33E = self->f32C;
-    ((TObjEnemy *)self)->register_by_id();
-    ((TObjEnemy *)self)->set_param(0x2F);
-    self->f3EC = lbl_805D8B84;
-    for (i = 0; i < 3; i++) {
-        self->a42C[i] = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(lbl_804860F0), (Vec *)(&self->a438[i]));
-    }
-    self->f480 = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(lbl_80486120), (Vec *)(self->v484));
-    for (j = 0; j < 8; j++) {
-        self->a3F8[j] = (s32)create_particle_emitter(self->v38, boss4_type1_emitter_id_table[j]);
-    }
-    for (; j < 13; j++) {
-        self->a3F8[j] = 0;
-    }
-    init_model_node_tables(self->f378, boss4_type1_model_node_table, 7);
-    self->f3A4 = 0;
-    self->f3A0 = 0;
-    self->f3AC = 1;
-    self->f3A8 = 1;
-    self->f3CC = *(f32 *)((u8 *)get_battle_movement_params(0x36));
-    if (self->f3CC < 1 || self->f3CC > 60) {
-        self->f3CC = 25;
-    }
-    self->f3CC = (f32)self->f3CC * lbl_805D8B78;
-    self->f3C4 = *(s32 *)(((u8 *)get_battle_movement_params(0x39)) + 0x18);
-    if (self->f3C4 < 1) {
-        self->f3C4 = 1;
-    } else if (self->f3C4 > 6) {
-        self->f3C4 = 6;
-    }
-    self->f3C8 = 0;
-    self->f3D0 = 5;
-    self->f3D4 = 0;
-    self->f3D8 = self->f32C / 2;
-    self->f3DC = lbl_805D8B20;
-    self->f3E0 = lbl_805D8B18;
-    ((TBoss4Type2 *)self)->set_state(0);
-    return self;
-}
-
-#pragma pop
 
 extern const f32 lbl_805D8B88;
 
-void TBoss4Type2__sub_80054DA8(TBoss4Type2 *boss) {
+
+
+
+extern const f32 lbl_805D8B8C;
+extern const f32 lbl_805D8B90;
+extern const f32 lbl_805D8B94;
+extern const f32 lbl_805D8B98;
+
+s32 is_split_screen();
+TObjPlayer *get_player_by_client_id(s32);
+
+
+// These definitions are reversed because deferred emission lets the constructor
+// address the compiler-generated vtable from the unit's shared data base.
+#pragma defer_codegen on
+
+void TBoss4Type2__sub_80055300(void) { TBoss4Type2__sub_80054FC0(0, lbl_805D8B20); }
+
+#pragma push
+#pragma fp_contract on
+void TBoss4Type2__sub_80054FC0(void *arg0, f32 arg1) {
+  u8 *out;
+  s32 total;
+  s32 cnt;
+  s32 i;
+  s32 k;
+  s32 ang;
+  s32 j;
+  u8 *arr[4];
+  s32 tries;
+  f32 f24;
+  Vec_80053914 w;
+  Vec_80053914 v;
+  out = (u8 *) (&TBoss4Type2__tenchu_furu_array);
+  for (total = 0; total < 0x40; total++, out += 0xc)
+  {
+    VecCopy__FP3VecPC3Vec((Vec_80053914 *) out, lbl_80485AE0);
+  }
+
+  total = 0;
+  out = (u8 *) (&TBoss4Type2__tenchu_furu_array);
+  cnt = 0;
+  if (is_split_screen())
+  {
+    cnt = TLobby::get_game_mode();
+    if (cnt > 4)
+    {
+      cnt = 4;
+    }
+    for (i = 0; i < cnt; i++)
+    {
+      arr[i] = (u8 *) get_player_data__10TObjPlayerFi(i);
+      if (arr[i] == 0)
+      {
+        break;
+      }
+    }
+
+  }
+  else
+  {
+    arr[0] = (u8 *) get_player_by_client_id(local_client_id);
+    if (arr[0] != 0)
+    {
+      cnt = 1;
+    }
+  }
+  f24 = lbl_805D8B8C;
+  for (k = 0; k < cnt; k++)
+  {
+    total++;
+    ((Vec_80053914 *) out)->x = *((f32 *) (arr[k] + 0x38));
+    ((Vec_80053914 *) out)->z = *((f32 *) (arr[k] + 0x40));
+    out += 0xc;
+    for (ang = 0, j = 0; j < 8; j++, ang += 0x2000)
+    {
+      ((Vec_80053914 *) out)->x = (*((f32 *) (arr[k] + 0x38))) + (f24 * sin_table_lookup(ang));
+      (*((Vec_80053914 *) out)).z = (*((f32 *) (arr[k] + 0x40))) + (f24 * cos_table_lookup(ang));
+      out += 0xc;
+      total++;
+    }
+
+  }
+
+  tries = 0;
+  while ((tries < 0x100) && (total < 0x40))
+  {
+    w.x = lbl_805D8B4C * ((lbl_805D8B90 * ((f32) rand())) - lbl_805D8B60);
+    w.z = lbl_805D8B4C * ((lbl_805D8B90 * ((f32) rand())) - lbl_805D8B60);
+    w.y = lbl_805D8B20;
+    if (((w.x * w.x) + (w.z * w.z)) >= lbl_805D8B94)
+    {
+      goto next;
+    }
+    if (arg0 != 0)
+    {
+      VecCopy__FP3VecPC3Vec(&v, arg0);
+      subtract_vector((Vec_80053D4C *) (&v), (Vec_80053D4C *) (&w));
+      v.y = lbl_805D8B20;
+      if (vector_length(&v) <= arg1)
+      {
+        goto next;
+      }
+    }
+    u8 *p;
+    s32 found;
+    s32 m;
+    found = 0;
+    p = (u8 *) (&TBoss4Type2__tenchu_furu_array);
+    for (m = 0; m < total; m++)
+    {
+      if (xyz_distance(&w, (Vec_80053914 *) p) <= lbl_805D8B98)
+      {
+        found = 1;
+        break;
+      }
+      p += 0xc;
+    }
+
+    if (found == 0)
+    {
+      ((Vec_80053914 *) out)->x = w.x;
+      ((Vec_80053914 *) out)->z = w.z;
+      out += 0xc;
+      total++;
+    }
+    next:
+    tries++;
+  }
+}
+#pragma pop
+
+void create_all_tenchu_furu__11TBoss4Type2Fi(TBoss4Type1 *arg0) {
+    s32 *var_r31;
+    s32 var_r30;
+    var_r30 = 0;
+    var_r31 = &TBoss4Type2__tenchu_furu_array.value;
+    do {
+        TObjDFTenchuFuru::create(arg0, (void *)var_r31);
+        var_r30 += 1;
+        var_r31 = (s32 *)((u8 *)var_r31 + (0xC));
+    } while (var_r30 < 0x40);
+}
+
+void TBoss4Type2__sub_80054DA8(TBoss4Type1 *boss) {
     Vec_80053914 *spot;
     s32 i;
     s32 n;
@@ -1854,32 +1705,58 @@ void TBoss4Type2__sub_80054DA8(TBoss4Type2 *boss) {
 }
 
 s32 TBoss4Type1::create(s32 arg0) {
-    s32 var_r31;
-    s32 var_r4;
+    return (s32)new TBoss4Type1(new TObjControl((TObject *)tl_04), (s32 *)arg0);
+}
 
-    var_r31 = __nw__7TObjectFUl(0x49C);
-    if (var_r31 != 0) {
-        var_r4 = __nw__7TObjectFUl(0x20);
-        if (var_r4 != 0) {
-            var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
-        }
-        var_r31 = ((s32 (*)(s32, s32, s32))TBoss4Type1__ct)(var_r31, var_r4, arg0);
+#pragma push
+#pragma opt_loop_invariants off
+TBoss4Type1::TBoss4Type1(TObject *parent, s32 *params) : TObjEnemy(parent) {
+    s32 i;
+    s32 j;
+    m_name = TBoss4Type1__name;
+    add_flags_2e4(8);
+    owner = (void *)params[0];
+    apply_set_data(params + 1);
+    clear_lobby_object_state();
+    uro = TBoss4Uro::get_instance_count();
+    texlist = 0;
+    model = 0;
+    VecCopy(&position, (const Vec *)lbl_80486150);
+    rotation.yaw = 0;
+    VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
+    collision_body = init_collision_body_parts(this, lbl_80485E2C, 3);
+    VecCopy(&body_center_position, &position);
+    movement_velocity.x = movement_velocity.y = movement_velocity.z = lbl_805D8B20;
+    target = 0;
+    bind_enemy_combat_stats((u8 *)get_battle_base_stats(0x36), (u8 *)get_battle_attack_params(0x36), (u8 *)get_battle_resistance_params(0x36));
+    referenceHp = hp;
+    register_by_id();
+    set_param(0x2F);
+    unk_3ec = lbl_805D8B84;
+    for (i = 0; i < 3; i++) {
+        captures[i] = ModelNodePositionCapture::create((ModelNodePositionEntry *)lbl_804860F0, capture_positions[i]);
     }
-    return var_r31;
+    last_capture = ModelNodePositionCapture::create((ModelNodePositionEntry *)lbl_80486120, last_capture_positions);
+    for (j = 0; j < 8; j++) parts[j] = create_particle_emitter(&position, boss4_type1_emitter_id_table[j]);
+    for (; j < 13; j++) parts[j] = 0;
+    init_model_node_tables(model_nodes, boss4_type1_model_node_table, 7);
+    unk_3a4 = 0;
+    unk_3a0 = 0;
+    unk_3ac = 1;
+    unk_3a8 = 1;
+    move_frames = get_battle_movement_params(0x36)->m_00;
+    if (move_frames < 1 || move_frames > 60) move_frames = 25;
+    move_frames = (f32)move_frames * lbl_805D8B78;
+    unk_3c4 = get_battle_movement_params(0x39)->m_18;
+    if (unk_3c4 < 1) unk_3c4 = 1;
+    else if (unk_3c4 > 6) unk_3c4 = 6;
+    unk_3c8 = 0;
+    unk_3d0 = 5;
+    unk_3d4 = 0;
+    unk_3d8 = hp / 2;
+    unk_3dc = lbl_805D8B20;
+    hp_ratio = lbl_805D8B18;
+    set_state(0);
 }
-
-void create_all_tenchu_furu__11TBoss4Type2Fi(s32 arg0) {
-    s32 *var_r31;
-    s32 var_r30;
-    var_r30 = 0;
-    var_r31 = &TBoss4Type2__tenchu_furu_array.value;
-    do {
-        ((TObjDFTenchuFuru *)arg0)->create((void *)var_r31);
-        var_r30 += 1;
-        var_r31 = (s32 *)((u8 *)var_r31 + (0xC));
-    } while (var_r30 < 0x40);
-}
-
-void TBoss4Type2__sub_80055300(void) { ((int (*)(s32, f32))TBoss4Type2__sub_80054FC0)(0, lbl_805D8B20); }
-
+#pragma pop
 }

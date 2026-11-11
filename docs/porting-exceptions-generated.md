@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5710 | 880 |
-| configure.py per-unit override | 193 | 193 |
+| pragma | 5712 | 880 |
+| configure.py per-unit override | 194 | 194 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802, `opt_common_subs` 616, `scheduling` 264, `opt_propagation` 248, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 28, `optimize_for_size` 27, `opt_lifetimes` 25, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004, `fp_contract` 883, `auto_inline` 802, `opt_common_subs` 616, `scheduling` 264, `opt_propagation` 248, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 57, `bool` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 28, `optimize_for_size` 27, `opt_lifetimes` 25, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -232,6 +232,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/boss/TBoss4Type1.cpp` | `-sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/menu/TAdTimeSetGC.cpp` | `-sdata 4, -fp_contract on` | Keep the eight-byte menu positions in .data with the state table. The calendar x coordinate uses a fused multiply-add. |
 | `pso/misc/TLobby_802409AC.cpp` | `-sym on` | Keep the compiler-generated guild-card initializer ahead of its constructor and accessors. |
 | `pso/misc/TPlayerFootStamp.cpp` | `-fp_contract on, -inline off,deferred, -str reuse,readonly` | Upstream #208: fused scale/corner arithmetic; deferred emission puts the compiler vtable before the constructor switch table; class string is rodata. |
@@ -477,7 +478,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004,
 | `src/pso/boss/TBoss3VoloptP01.cpp` | fp_contract×2, readonly_strings×1, opt_common_subs×1 |
 | `src/pso/boss/TBoss3VoloptP02.cpp` | fp_contract×6, opt_common_subs×4, opt_propagation×3, opt_dead_assignments×3, readonly_strings×1, opt_loop_invariants×1 |
 | `src/pso/boss/TBoss4DarkFalz_8004C93C.cpp` | fp_contract×4 |
-| `src/pso/boss/TBoss4Type1.cpp` | fp_contract×4, opt_propagation×2, opt_common_subs×2, opt_loop_invariants×1 |
+| `src/pso/boss/TBoss4Type1.cpp` | fp_contract×5, opt_propagation×2, opt_common_subs×2, defer_codegen×1, opt_loop_invariants×1 |
 | `src/pso/boss/TBoss4Type2_80086C44.cpp` | opt_propagation×1 |
 | `src/pso/boss/TBoss4Type2_800874F4.cpp` | inline_depth×16, auto_inline×16, dont_inline×16, readonly_strings×1, fp_contract×1 |
 | `src/pso/boss/TBoss4Type2_80340160.cpp` | opt_common_subs×1, opt_propagation×1 |
