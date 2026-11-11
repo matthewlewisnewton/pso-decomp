@@ -4,8 +4,8 @@
 
 This bounded extraction from PR #303 at
 `3ed9b21ae3d8b887e18642e3e561063fb1eb2c98` is stacked on BML PR #436,
-`ee2d8660d3719234fb3cbd34b05757f550a7f717`, whose fork-main base is
-`cda82a7aad7de1bf9b86470002df3f68d1c8c039`. It depends on that PR's canonical
+`33a7373c6a6f6408763a21ac213caa7336fde7ae`, whose pinned fork-main base is
+`5bba9c44adebc1cfa019def85e1f39f6da340ef0`. It depends on that PR's canonical
 `get_bml_model(BmlResource *, s32) -> NJS_OBJECT *` contract. Do not describe the
 combined stack as an independent main-based Zako change.
 
@@ -92,3 +92,36 @@ through the shared native build-capacity gate. Compare both the incremental Zako
 change and the combined BML/Zako tree by original address and complete object
 sections/relocations, not merely by final DOL checksum. Exact-head results and any
 subsequent base refresh are recorded in the PR description.
+
+### Pinned-main refresh
+
+The published Zako checkpoint `6be0cddd22e0ead5092c443ea282b675b6a59fc1`
+remains in history and in a separate frozen checkout/build. It used BML
+`ee2d8660d3719234fb3cbd34b05757f550a7f717` on main
+`cda82a7aad7de1bf9b86470002df3f68d1c8c039`. The refresh merges the BML
+prerequisite above without changing the five Zako source/header files or the
+initializer characterization. The symbol delta against BML remains only the
+constructor rename. Later main changes are outside this validation.
+
+The refreshed native build produces DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Full checks pass against both the
+BML prerequisite and clean pinned main, with zero new or lost exact functions,
+matched bytes, linked bytes or linked units. Both comparisons retain 27,440
+exact functions, 4,238,432 matched code bytes, 1,477,407 matched data bytes,
+3,874,412 linked code bytes, 1,354,403 linked data bytes and 3,608 linked units.
+The improvements since the old cda baseline belong to main, not this slice.
+
+All 3,632 compiled objects and 4,946 original split objects are compared,
+including allocated section bytes, size, alignment, flags and order, defined
+symbol properties/visibility and relocations. The incremental comparison uses
+only the constructor metadata rename. The combined comparison additionally
+allows BML's previously documented radar signature rename and three
+compiler-local labels at the same data locations. Ordered linker inputs remain
+3,608 source / 1,338 fallback. Retention regenerates without changes at 18,602
+entries; the exception inventory also remains unchanged.
+
+All 311 tooling tests, 29 build-capacity tests, four portable behavior programs
+and their address/undefined-behavior sanitizer builds pass again. The two
+actual-source initializer cases also pass under those sanitizers. These checks
+do not resolve the held full fold or the native-pointer/portability limits
+stated above.
