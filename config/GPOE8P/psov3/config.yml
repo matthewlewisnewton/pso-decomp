@@ -789,6 +789,11 @@ force_active:
   - TLobby__sub_80428DC8
   - TLobby__sub_80428EC0
   - TLobby__sub_804293B0
+  - TLobby__sub_80429648
+  - TLobby__sub_80429AC8
+  - TLobby__sub_80429B8C
+  - TLobby__sub_8042B434
+  - TLobby__sub_8042BA8C
   - TLobby_warp_menu_window
   - TLockOnCursor__sub_8013EBBC
   - TLockOnCursor__sub_8013EBE8
@@ -1679,8 +1684,6 @@ force_active:
   - TObjPlayer__sub_801D9C34
   - TObjPlayer__sub_8023E034
   - TObjPlayer__sub_802A1588
-  - fn_802A3DE8__12TNeedleShootFPv
-  - fn_802A3FDC__12TNeedleShootFPv
   - TObjPlayer__sub_802A83F4
   - TObjPlayer__sub_802A841C
   - TObjPlayer__sub_802C19E8
@@ -6157,6 +6160,10 @@ force_active:
   - exec_heal__22TMedicalCenterSequenceFv
   - exec_item_command__14TWindowSubItemFll
   - execute_action__13TObjEneBm3FlyFl
+  - exi_dma_buffer
+  - exi_dma_write_buffer
+  - exi_start_send_dma__6TLobbyFii
+  - exi_write__6TLobbyFlll
   - exit__22TShopEquipmentSequenceFPv
   - exit_death_state__10TObjPlayerFv
   - exit_fall_reaction__10TObjPlayerFPv
@@ -6563,6 +6570,8 @@ force_active:
   - fn_80293D84
   - fn_802972BC
   - fn_802972C0
+  - fn_802A3DE8__12TNeedleShootFPv
+  - fn_802A3FDC__12TNeedleShootFPv
   - fn_802A5C7C
   - fn_802A5CB8
   - fn_802A5CC4
@@ -8556,6 +8565,8 @@ force_active:
   - lbl_804F7130
   - lbl_804F7168
   - lbl_804F9E60
+  - lbl_804FD9F8
+  - lbl_804FDA04
   - lbl_804FE188
   - lbl_804FE194
   - lbl_804FE1B8
@@ -8693,6 +8704,7 @@ force_active:
   - lbl_805C1890
   - lbl_805CF240
   - lbl_805CF380
+  - lbl_805D0AA0
   - lbl_805D2780
   - lbl_805D27A0
   - lbl_805D27E8
@@ -16846,6 +16858,8 @@ force_active:
   - start_effect__14TBoss4DarkFalzFv
   - start_effect__14TItemEquipBaseFUlUl
   - start_entry_timer__6TLobbyFUsl
+  - start_exi_dma_read__6TLobbyFUs
+  - start_exi_dma_write__6TLobbyFlPv
   - start_fade__15TAdRicoRingCtrlFf
   - start_fade__9TAdFadeGCFPv
   - start_gba_joyboot__6TLobbyFv
@@ -18819,6 +18833,7 @@ force_active:
   - wait_next_idle__11TBoss4Type2Fv
   - wait_timeout_loop__FP12ModemRequest
   - wake_load_thread__23TAdSinglePlyChrSelectGCFlP9OSContext
+  - wake_network_thread__6TLobbyFv
   - wander_around__16TObjEneNanoDragoFP3Vecf
   - warp_boss_handle_window__12TObjWarpBossFv
   - warp_nearby_players__14TBoss6PlotFalzFv
