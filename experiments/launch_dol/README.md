@@ -1,71 +1,88 @@
-# Experimental LaunchDol C++ candidate
+# LaunchDol recovery experiments
 
-This develops the incomplete source candidate removed from PR #284 for
-research. It is excluded from the production build and guarded by an explicit
-`PSO_LAUNCH_DOL_EXPERIMENT` opt-in plus the target compiler check. Do not link
-its object into the game, execute it as a replacement loader, or treat it as a
-host fallback. Production `LaunchDol` continues to use its existing exact
-whole-function generated assembly provider.
+`LaunchDolHandoff.cpp` reproduces **all 332 bytes and ten call relocations**
+at `[0x8042E8C4, 0x8042EA10)` with stock GC/2.6 and the normal game compiler
+flags. The body is typed C++ with `__isync()` and a two-instruction assembly
+handoff: `mtlr entry; blr`. This is an exact target-specific candidate, not
+100% portable C++ recovery.
 
-The prerequisite header/type recovery from PR #284 at immutable commit
-`d70369041672d5c881d895dc0a27b96f612e4b0c` is now merged into main via
-`b96d4c294f9f8ef84756fc394c9b042e0f36bfa9`. This refresh integrates main
-`fffd67d0c35e1fdaf17880c563739750e7c35813`. The continuation shares the typed
-`LaunchDol(ModemLaunchContext *)` declaration between the production provider,
-caller and experiment, and uses the existing SDK/memory headers in the provider.
-Compiler profiles, symbols, splits, retention and the linkset remain unchanged.
-The experimental body derives from historical commit
-`a9eab37139ef10f53e3e9baf4f8d2dd1ade395aa`; its pointers and size intermediates
-now express their constness. The explicit opt-in and warning comments remain.
+The current `LaunchDol` symbol and unit end after 312 bytes at `0x8042E9FC`.
+The remaining 20 bytes belong to the next split and are tracked by #285.
+Consequently, the new candidate is **not a drop-in object for the current
+link graph**. It remains outside the production inventory, guarded by
+`PSO_LAUNCH_DOL_EXPERIMENT` and `__MWERKS__`. Production still uses its exact
+generated-assembly provider. No host fallback or runtime execution is claimed.
 
-## Known mismatch and semantic limits
+`LaunchDol.cpp` preserves the earlier C++-only comparison control. It emits
+the same size, but its entry load and linking CTR call differ from the
+original nonlinking LR transfer. It is not a behavior-equivalent fallback.
+The two files define the same symbol and must be compiled separately.
 
-The reproduced GC/2.6 comparison is **93.39744%**, with 332 emitted bytes
-against the 312-byte target symbol. The first 296 bytes and their 10
-relocations match. Three words differ across the combined loader/restore
-span: the entry register load at `0x128`, control-register transfer at
-`0x130`, and branch at `0x134`.
+## What made the handoff match
 
-The candidate makes a linking CTR call and then has a normal frame restore.
-The original makes a nonlinking LR transfer without restoring its frame.
-That is a known semantic difference, not merely a fuzzy-score discrepancy.
-Behavior equivalence has not been established; no host build or loader
-execution is claimed. Even its section-table and cache-operation handling is
-a source-recovery hypothesis, not an independently exercised loader.
+The new candidate uses the production `-O4,s -inline off -sdata2 4` profile.
+Three pragmas are scoped with `push`/`pop` around the helper and wrapper:
 
-The final 20 bytes of the compiled candidate match the stranded restore at
-`0x8042E9FC..0x8042EA0F`, tracked by #285. This does not recover that symbol,
-change its ownership, permit widening LaunchDol or create a linkable unit.
-The transfer/address/ownership holds remain in place. No new assembly,
-production compiler override or accounting change is proposed.
+| Pragma | Observed requirement |
+|---|---|
+| `dont_inline off` | Allows the explicitly inline helper to expand despite the unit's `-inline off`. |
+| `inline_depth(1)` | Restores the depth needed for that one expansion. Either inline pragma alone leaves an out-of-line helper. |
+| `global_optimizer off` | Bypasses frontend transformations that otherwise change the loop addresses and register allocation around the assembly branch. |
 
-## Source cleanup constraints
+`register void (*const entry)() = image->entry` lets MWCC select `r0` for the
+assembly operand. The compiler emits the load, prologue, loops and trailing
+20-byte restore; none is copied, sliced from an object or written in assembly.
+The assembly branch leaves the loader frame in place, exactly as the original
+instructions do. The subsequent compiler-generated restore is not a normal
+fallthrough successor of that branch. Its possible independent entry and
+original ownership are not established by byte equality.
 
-The const-correct cleanup preserves all 332 code bytes and all ten relocations
-of the previous candidate at `51a7496f2a242e9acf521fa870cb9864f8b8ac16`.
-This is equality with the incomplete candidate, not a full match to the target.
-The header and section-copy sources are read-only views. This does not promise
-that the underlying image storage is immutable across memory and SDK calls.
+This profile needs neither the control's `nocse,nostrength,noprop` switches
+nor a production compiler override. With the new pragma, both loops can share
+the offset temporary and use loop-local const source pointers. The retained
+shared index/destination/length/zero locals and separate `raw_size` expression
+matter to allocation. Moving those declarations into the loops, folding the
+size expression, or replacing `zero` with a literal loses the exact match.
+These are reproduction constraints, not recovered original source spelling.
 
-Moving offset/source temporaries into loop scope changes nonvolatile-register
-allocation under the existing probe profile. Replacing the `zero` temporary
-with a literal also changes the comparisons and shortens the loops. Those
-cleanups were rejected because they lose the exact prefix. The retained inline
-wrapper and declaration arrangement are reproduction constraints, not evidence
-of the original source spelling. No transfer or compiler-option sweep was added.
+## Comparison and isolated linkage
 
-Production already links this unit through its generated assembly provider.
-That existing linkage must not be reported as recovery of the experimental C++.
-An exact prefix cannot be linked separately without changing the function's
-boundary and the repository's recovery accounting.
+| Candidate | Emitted bytes | Comparison with current 312-byte symbol | Complete 332-byte native span |
+|---|---:|---:|---|
+| `LaunchDol.cpp`, historical probe flags | 332 | 93.39744% | Three different words |
+| `LaunchDolHandoff.cpp`, normal game flags | 332 | 93.589745% | Exact, including all ten relocations |
 
-## Reproducing the comparison
+The 93.589745% score includes the extent discrepancy. It must not be relabeled
+100% against the current 312-byte symbol. `verify.py` independently resolves
+the candidate's ten relative calls using the symbol manifest and compares the
+entire span directly with the SHA-1-pinned original DOL. The C++-only control
+fails at `0x8042E9EC`, `0x8042E9F4`, and `0x8042E9F8`, as expected.
 
-First configure and build normally with the pinned tools and original inputs.
-Use the GC/2.6 compiler through the normal wrapper, with its target include
-paths and flags below, to compile **only this file** into an ignored private
-output directory. The extra flags reproduce the historical probe; they are
-not installed in `configure.py` or a production build rule.
+A fresh isolated checkout of `94f7968bbe11c159e63806cece73b13c9bdac488`
+tested replacing the production provider with this body, changing the
+`LaunchDol` extent from `0x138` to `0x14C`, and moving the next split's start
+to the existing initializer entry at `0x8042EA10`. No code bytes were patched
+after compilation. The build linked the candidate and reproduced original DOL
+SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Linked-unit and retention
+checks passed without overrides.
+
+**That isolated trial fails the full PR check:** the old generated
+`pad_03_8042E9FC_text` function address disappears from function coverage and
+the total function count falls by one. Matched and source-linked code each
+increase by 20 bytes; total code/data and matched-function count are unchanged.
+The existing checker was not weakened. The trial's split/symbol changes are
+not part of this PR. This is evidence for a concrete boundary proposal, not
+an accepted ownership change. The newly separable initializer was not added
+to that trial's linkset; #285 handles its linkage separately.
+
+## Reproduce locally
+
+First build normally with the pinned tools and original inputs. Use the shared
+native-build capacity protocol in
+[`tools/local_build_capacity/PROTOCOL.md`](../../tools/local_build_capacity/PROTOCOL.md)
+for compiler probes. The following compile belongs inside that gate. Set the
+`PSO_` variables to your existing tools; GC/2.6 compiler SHA-1 must be
+`1110a7a9924a09a608967efdf79ecf09900344e7`.
 
 ```sh
 mkdir -p build/launch-dol-experiment
@@ -74,31 +91,37 @@ mkdir -p build/launch-dol-experiment
   -Cpp_exceptions off -RTTI off -str reuse -maxerrors 1 -nosyspath \
   -i build/GPOE8P/include -i include -i src -i libs/dolphin/include \
   -i libs/dolphin/include/dolphin -char signed -use_lmw_stmw on \
-  -O4,p -inline auto -lang=c++ -opt nocse,nostrength,noprop \
+  -O4,s -inline off -sdata2 4 -lang=c++ \
   -DPSO_LAUNCH_DOL_EXPERIMENT=1 \
-  -c experiments/launch_dol/LaunchDol.cpp \
-  -o build/launch-dol-experiment/LaunchDol.o
+  -c experiments/launch_dol/LaunchDolHandoff.cpp \
+  -o build/launch-dol-experiment/LaunchDolHandoff.o
+python3 experiments/launch_dol/verify.py \
+  build/launch-dol-experiment/LaunchDolHandoff.o
 "$PSO_OBJDIFF" diff \
   -1 build/GPOE8P/obj/pso/unk/text_8042E8C4.o \
-  -2 build/launch-dol-experiment/LaunchDol.o LaunchDol \
-  -o build/launch-dol-experiment/diff.json
+  -2 build/launch-dol-experiment/LaunchDolHandoff.o LaunchDol \
+  -o build/launch-dol-experiment/handoff-diff.json
 ```
 
-Set the three `PSO_` variables to your existing local tools. Follow the
-repository's shared-capacity protocol for native builds and probes. Keep
-objects, split originals, disassemblies and private build inputs local; this
-PR publishes source and summarized evidence only.
+For the historical control, compile `LaunchDol.cpp` separately, replacing
+`-O4,s -inline off -sdata2 4` with
+`-O4,p -inline auto -opt nocse,nostrength,noprop`. Its verifier exit status is
+1 because three words differ. Invalid inputs produce status 2. The verifier
+prints only metadata, never original instructions or assets. Keep objects,
+disassemblies, split originals and private inputs local.
 
-## Research gate and provenance
+## Scope and provenance
 
-Further experiments need a distinct, evidenced source-reachable transfer
-facility or authentic original-toolchain evidence. Ordinary call spellings,
-`noreturn` variants and computed-goto sweeps have not solved this boundary;
-the existing compiler audit supplies no demonstrated LR-write facility.
-Do not repeat those sweeps merely to vary syntax or force a score.
+The user authorized the Melee-style handoff experiment and subsequent pragma,
+compiler-option and C++ iteration. The earlier no-new-assembly research scope
+is superseded for this opt-in experiment. That authorization is not recorded
+as approval of a portable fallback, the #285 ownership change or an accounting
+exception. See the [exception register](../../docs/porting-exceptions.md).
 
-The original ntUtl version marker does not authenticate its compiler. DTK's
-split-object MW comment is synthesized, reconstructed maps/probe objects are
-not original build artifacts, and external SDK assembly decomps are analogies
-only. See [the provenance inventory and header view](../../docs/evidence/dol-header-view.md)
-and [the transfer follow-up](../../docs/evidence/launch-dol-cpp-recovery.md).
+The inline assembly uses a transfer mechanism analogous to
+[Melee's OSReboot](https://github.com/doldecomp/melee/blob/2f8eab8ebd7a2d25541e125abfa246defe1bacec/libs/dolphin/src/dolphin/os/OSReboot.c#L30-L43).
+That is not authenticated PSO source. The original compiler remains unknown;
+exact output from the pinned stock compiler establishes reproducibility, not
+historical authorship or original translation-unit boundaries. See the
+[follow-up evidence](../../docs/evidence/launch-dol-cpp-recovery.md) and
+[header/provenance record](../../docs/evidence/dol-header-view.md).

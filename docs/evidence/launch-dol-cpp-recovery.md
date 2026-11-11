@@ -1,5 +1,11 @@
 # LaunchDol recovery follow-up
 
+The latest handoff experiment reproduces the complete 332-byte loader/restore
+span with typed C++, three scoped pragmas, `__isync`, and two assembly
+instructions. See [the current experiment](../../experiments/launch_dol/README.md)
+and the continuation below. Earlier restrictions and mismatch descriptions in
+this document describe their historical scopes.
+
 PR #284 now carries only the validated DOL header view, launch-context field
 and caller conversion described in [DOL image header view](dol-header-view.md).
 The whole-function generated assembly body, compiler settings, symbols,
@@ -90,3 +96,69 @@ inventory checks pass. A fresh private probe retains the 93.39744% comparison;
 its first 296 bytes, ten relocations and their original DOL call targets agree.
 No loader execution or additional C++ linkage is claimed, and the experiment
 remains incomplete.
+
+## Authorized handoff and pragma continuation
+
+Following explicit user authorization to try the Melee-style handoff and to
+iterate on pragmas, compiler options and C++, `LaunchDolHandoff.cpp` now
+reproduces all 332 bytes at `[0x8042E8C4, 0x8042EA10)` and ten call relocations.
+The stock GC/2.6 compiler SHA-1 is
+`1110a7a9924a09a608967efdf79ecf09900344e7`. It uses the normal game flags,
+including `-O4,s -inline off -sdata2 4`, with scoped `dont_inline off`,
+`inline_depth(1)` and `global_optimizer off` around the inline helper and
+external wrapper. No compiler binary, branch-effect annotation, emitted
+instruction or relocation was patched.
+
+The decisive combination is disabling the frontend global optimizer and
+using a named `register` function-pointer operand for `mtlr`. Explicitly
+loading the image entry in assembly changes register allocation; retaining
+the source-level load lets MWCC place the operand in `r0`. `__isync()` supplies
+the synchronization instruction. Only `mtlr entry; blr` is hand assembly;
+the compiler generates the full preceding body and following restore.
+
+The reconstructed compiler at
+[`doldecomp/mweppc`, 919828d97d33d236da675824d43c5d57332afe74](https://github.com/doldecomp/mweppc/tree/919828d97d33d236da675824d43c5d57332afe74)
+helps explain the result: `CodeGen_GetAsmEffects` marks the indirect branch as
+unmodeled control flow, `IroLinearForm.c` sets `DisableDueToAsm`, and
+`COpt_Optimizer` skips the frontend IRO entry when `globaloptimizer` is off.
+The inferred distinction is bypassing the initial frontend transformations,
+which still run before ordinary assembly disables later passes. This source
+reading guides the experiment; the unmodified stock compiler's output and
+native-DOL comparison establish the measured result. It does not authenticate
+PSO's original compiler or source.
+
+The narrowed probes establish that either inline pragma alone leaves an
+out-of-line helper, while the two together work at depth one. The three
+historical `-opt` overrides are unnecessary. Shared offset locals, scoped
+const source pointers and const entry pointer preserve the match; loop-scoped
+index/destination/length variables, folded size arithmetic and literal-zero
+comparisons do not. The former direct C++ call remains available as a negative
+control, not a fallback.
+
+`experiments/launch_dol/verify.py` authenticates the original DOL, checks the
+candidate's complete allocated text extent and function definition, resolves
+all ten calls, and compares every word against the native range. It rejects
+the historical control at the three known transfer words. A fresh isolated
+integration links the candidate exactly after extending the function and
+moving the neighboring split's start to `0x8042EA10`; the full DOL hash agrees.
+The existing linked-unit and retention checks pass, but `check_pr.py` rejects
+the lost generated function start at `0x8042E9FC` and total-function delta -1.
+The trial changes no checker or waiver. Its +20 matched and source-linked
+bytes are a private boundary experiment, not published recovery gains.
+
+The production source, symbol extents, splits, compiler settings, linkset and
+retention remain unchanged in this continuation. The remaining integration
+decision is how to reconcile the generated trailing restore with #285's
+separate ownership and function accounting. Byte-exact code and successful
+linking do not independently establish original ownership, exclude indirect
+entry into the restore, or supply a portable scalar fallback. No runtime
+execution or 100% pure-C++ recovery is claimed.
+
+Validation of the published experiment: the unchanged production build passes
+`check_pr.py --no-build` against its fresh baseline, with zero match/link/coverage
+delta; exception inventory and whitespace checks pass. Eight private verifier
+controls pass: the exact candidate, rejection of the old linking-call control,
+separate prefix/handoff/restore/call-addend mutations, a truncated object and
+an incorrect original-input hash. The isolated integration differs in only the
+loader object among 3,635 common compiled source objects; the other 3,634 are
+byte-identical. These checks do not include a runtime loader execution.

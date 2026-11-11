@@ -61,13 +61,26 @@ for the earlier `vector_length` precedent.
 
 ## 2. MWCC intrinsics
 
-The research-only `experiments/launch_dol/LaunchDol.cpp` preserves the removed
-LaunchDol candidate's target cache calls, `__isync` and reserved-address
-anchor. It is explicitly opt-in, outside the production source inventory and
-link graph, and is not a working port fallback. Its private comparison flags
-do not add a production compiler override. A future port needs an independently
-validated loader/cache/handoff implementation; see the
-[experiment and its limits](../experiments/launch_dol/README.md).
+The research-only `experiments/launch_dol/LaunchDol.cpp` preserves the earlier
+LaunchDol candidate's target cache calls, `__isync` and reserved-address anchor.
+The separate `LaunchDolHandoff.cpp` adds a named-register `mtlr entry; blr`
+handoff and scoped `dont_inline off`, `inline_depth(1)` and
+`global_optimizer off` pragmas. Matt explicitly authorized the Melee-style
+handoff experiment and pragma/compiler/C++ iteration in the #393 work session
+on 2026-11-10. The pragmas permit the helper expansion under the ordinary game
+flags and bypass frontend transformations around the nonlinking branch. All
+332 bytes and ten relocations match the native loader/restore span; the
+current loader symbol owns only 312 bytes.
+
+Both files require explicit opt-in and MWCC, remain outside the production
+inventory/link graph, and are not port fallbacks. The C++-only control's
+linking entry call is not equivalent to the assembly handoff. This records an
+experimental exception, not approval for production assembly without a scalar
+fallback or for changing #285's ownership/accounting. A port needs an
+independently validated loader/cache/handoff implementation and can drop the
+code-generation pragmas. The generated inventory scans `src` and `include`,
+so this experimental exception is recorded here explicitly. See the
+[experiment, reproduction and isolated linkage limits](../experiments/launch_dol/README.md).
 
 `__cntlzw` (55), `__frsqrte` (11), `__fabsf` (6), `__fabs` (4), `__rlwinm` (4),
 `__abs` (1), `__builtin_va_info` (1); full list in the generated file. Reason: they
