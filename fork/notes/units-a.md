@@ -29,3 +29,21 @@
   other uses ("late definition keeps the named load in set_ginja_material_color" in the fork).
   Split changed to .sdata2 0x805E0F68-0x805E0F7C (0x805E0F7C..0F80 unowned padding);
   lbl_805E0F6C/70/74/78 made scope:local, lbl_805E0F78 size 8 -> 4.
+
+## pso/unk/text_80104FCC.cpp
+- Upstream could not link it: the .data split started at the jumptable (0x8049EEFC, not
+  8-byte aligned). The fork's split starts at 0x8049EED8 and the unit defines the two
+  factory tables there (item_pro_create_fn_table[4], item_create_fn_table[5], 0x24 bytes),
+  which puts the jumptable at 0x8049EEFC. No cw_align needed.
+- The tables must be defined before check_equip_requirements in the source; defined after
+  it, the compiler emits the jumptable first and the link differs (table references in
+  construct_item / 801054E0 then point at the wrong offsets and the DOL hash fails).
+- Fork comments: "These two factory tables precede this unit's generated restriction table."
+  and "The original callback table erases this factory's TItemData* argument to the record's
+  byte buffer" (TItemMoney::create takes TItemData*, so it is cast to ItemCreateFunction).
+- Ported with a local `typedef TItem *(*ItemCreateFunction)(u8 *)` (the fork has it in
+  include/pso/item/ItemCreateFunction.h, upstream does not) and a local declaration of
+  create_weapon_for_item(u8 *) returning TItem *, because upstream's header declares it as
+  s32(s32). TLobby__sub_801054E0 now returns TItem * and takes u8 *.
+- Only the check_equip_requirements rewrite from the fork was not taken: upstream's version
+  already matches.
