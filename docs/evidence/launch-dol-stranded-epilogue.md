@@ -1184,6 +1184,15 @@ and generator/parent-lifetime contracts must also be established. These
 cannot be replaced by the fixture's synthetic descriptors or a retail file
 entry address. Original providers, extents and accounting remain unchanged.
 
+The subsequent integration of main `f8a71fae8a` includes action-palette recovery
+and a changed symbol manifest. All required name/address/size bindings in the
+seven execution probes were compared against the earlier `e65f11ce6e`
+manifest and are identical. The shared probe and request-audit manifest pins
+now require SHA-256 `2987de0609254a30675f5c8300f88e02568cf34b704ffa951b882e8f259017d9`.
+The original DOL pin remains unchanged; earlier metadata stays associated
+with its earlier manifest. This updates input authentication, without changing
+any executed range or accepting an unverified symbol file.
+
 ```sh
 python3 tools/probe_loader_indicator_drain.py --dol PRIVATE/PsoV3.dol --output build/indicator-drain.json
 ```

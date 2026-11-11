@@ -18,7 +18,7 @@ except ModuleNotFoundError:
     from audit_loader_indirect_targets import direct_target, signed
 
 
-SYMBOLS_SHA256 = "ae4ee4705316c4f7102fe949b859a74d645cf2c8899e7168e5f87973de6c88a7"
+SYMBOLS_SHA256 = "2987de0609254a30675f5c8300f88e02568cf34b704ffa951b882e8f259017d9"
 SETTER, SDA, INSTANCE = 0x8000F9CC, 0x805DA600, 0x805D4A80
 CONTROLLERS = {0x8001C7A0: "destructor", 0x8001C828: "constructor",
                0x8001C8B8: "cleanup_scene", 0x8001C978: "start_loading"}
