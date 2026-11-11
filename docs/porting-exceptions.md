@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (merged main `96fda4ceb`, 2026-11-11)
+## Summary (merged main `f8a71fae8`, 2026-11-11)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `96fda4ceb` (2026-11-11). Assembly is counted as source lines;
+for this source tree. Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,774 | 879 |
-| Per-unit compiler overrides in `configure.py` | 192 | 192 |
+| CodeWarrior pragmas (excluding push/pop) | 5,774 | 877 |
+| Per-unit compiler overrides in `configure.py` | 193 | 193 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -155,6 +155,13 @@ Under GC/2.6, flattening those phases into the caller changes the saved
 register allocation. The chunk declaration order within the output helper
 also places the two descriptors at stack offsets 8 and 16. Ports can use the
 same helpers with ordinary inlining and native pointer-sized handles.
+
+### Action palette
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `configure.py` | `pso/misc/TWindowActionPalette.cpp` | `-inline off,deferred` with reversed definitions | Places the compiler-generated vtable at `.data+0x308` before the icon switch table at `+0x320`, while retaining the original function order. See [unit evidence](evidence/action-palette-unit.md). | Use ordinary function ordering and compiler-generated virtual dispatch. |
+| `src/pso/misc/TWindowActionPalette.cpp` | Frame, slot-light position, and count-label position | Scoped `fp_contract on` | Preserves the existing fused coordinate arithmetic when the three fragments are consolidated. | Preserve fused float rounding when exact original positioning is required. |
 
 ### Dark Falz demo 4
 

@@ -509,6 +509,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/object/TObjDFDemo1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Keep both 8-byte afterimage tables out of .sdata in the demo constructor.
     "pso/object/TObjDFDemo4.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
+    # Reverse definitions preserve the palette vtable before its icon switch table.
+    "pso/misc/TWindowActionPalette.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Deferred emission groups the Falz cutscene's motion indices, origin and vtable.
     "pso/object/TObjFish_8033CCC8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
