@@ -207,6 +207,13 @@ compiler-control qualifications remain explicit.
 
 ## Current tried/blocked index
 
+The [Parts export/provenance control](window-symbol-parts-propagation-control.md)
+audits upstream #243 and the current complete consumer census. One bounded
+four-case diagnostic isolates propagation: literal/off restores all 20 bodies and
+198 resolved relocations without the explicit 8.0f definition, while literal alone
+fails. Original control provenance remains unproved, so source, scopes, original
+provider and all holds remain unchanged. No candidate full-game pass is claimed.
+
 The [genuine Word construction control](window-word-native-vptr-control.md)
 replaces the raw initializer boundary in one fixed diagnostic source. Deferred
 generation matches all seven bodies/relative targets, including constructor148,
@@ -225,7 +232,7 @@ remain unqualified; no Parts import or probe is activated.
 | Word renderer/lifetime | Upstream exact 916-byte renderer and complete 3412-byte unit source-linked; fixed-source native diagnostic matches all seven bodies/relative targets including constructor148 | Diagnostic order and actual table/startup destinations fail; source/context organization and helper/storage qualifications remain held |
 | Nameplate | Ordinary reconstructed 800-byte body and helper evidence | Nonexact arithmetic/register result; original full provider retained |
 | ScrollBar / ChallengeResult / follower | Bounded native probes and contracts recorded | Constant-pool/data-base/producer differences; no repeated scheduling variants |
-| SymbolChat Parts | Existing exact compiled functions; new pinned upstream literal/control source identified | Eighteen exports still absent locally; ownership, external references and new control provenance unproved; original provider retained |
+| SymbolChat Parts | Exact production compiled functions; current census has no external resolved pool targets; bounded literal/off diagnostic matches 20 bodies/198 resolved relocations | Eighteen production exports still absent; original control context and safe source activation unproved; original provider retained |
 | ChoiceSetting / globals | Observed layout and accesses retained | Actual 0x7C producer and task-global ownership unproved; no inferred padding |
 | CustomSelect | Native code/table exact | Early-return child initialization safety remains unresolved |
 | CallBack / headings / capture / CMName | Bounded receiver and storage evidence recorded | Mixed callback signatures, opaque child ownership and original-provider/interface holds remain |

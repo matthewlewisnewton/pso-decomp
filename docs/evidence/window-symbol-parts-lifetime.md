@@ -1,5 +1,11 @@
 # SymbolChatParts compiled native lifetime; source-link hold retained
 
+Later follow-up: the [#243 provenance and propagation control](window-symbol-parts-propagation-control.md)
+qualifies a newer upstream source separately from the historical checks below.
+One fixed typed/native literal-plus-control scratch case matches all 20 bodies and
+198 resolved relocations, without upstream's explicit 8.0f placement. The control's
+original-context provenance remains unproved; no scope/provider change follows.
+
 This follows PR #268 checkpoint
 `4980c356083cd3a47c9666ff5da779dbb13b3d54`.
 
