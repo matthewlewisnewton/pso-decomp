@@ -24,9 +24,9 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 83 | 54 |
+| MWCC intrinsics | 84 | 55 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,710 | 880 |
+| CodeWarrior pragmas (excluding push/pop) | 5,709 | 881 |
 | Per-unit compiler overrides in `configure.py` | 193 | 193 |
 | Approved regressions | 0 | 0 |
 
@@ -96,6 +96,14 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
+The Spanish formatter in `src/pso/misc/TWindowDD_8034435C.cpp` uses scoped
+`dont_inline off` and `inline_depth(1)` to inline its separator/form helper.
+This preserves the selected word across separator formatting and reproduces
+the original register allocation. The extracted lookup/formatter group also
+retains the `opt_common_subs off` setting inherited from the former combined
+source. Ports can drop these controls and keep the C++ helper and lookups.
+See [word-select completion evidence](evidence/word-select-completion.md).
+
 `pso/network/ModemRuntime.cpp` retains three levels of explicit inlining for
 its nested EXI and AT-command helpers. GC/1.2.5's inlined result locals and
 command-object lifetimes reproduce the native frames; selection and setup
@@ -159,9 +167,9 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,710 pragmas in 880 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802,
-`opt_common_subs` 616, `scheduling` 264, `opt_propagation` 248,
+5,709 pragmas in 881 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1111, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802,
+`opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.

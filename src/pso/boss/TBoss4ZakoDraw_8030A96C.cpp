@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/TBoss4ZakoDraw.h"
+#include "pso/misc/TCameraCtrl.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
@@ -11,6 +12,7 @@ void set_constant_material(const NJS_ARGB *color);
 #include "pso/boss/TBoss4Zako.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/TBoss4Uro.h"
+#include "pso/boss/TBoss4ZakoTexture.h"
 #include "pso/object/TObjFish.h"
 
 struct RecoveredGlobal_8030ABF4_TCameraCtrl__data_804FF634 {
@@ -35,7 +37,6 @@ struct Tbl_8030AC7C { s32 count; Ent_8030AC7C ents[96]; u8 pad[0x784 - 4 - 96 * 
 
 extern "C" {
 s32 is_split_screen();
-s32 set_viewport_scissor__11TCameraCtrlFiPv(int, int);
 void TObjPlayer__sub_8030A9B0();
 extern RecoveredGlobal_8030ABF4_TCameraCtrl__data_804FF634 TCameraCtrl__data_804FF634;
 extern RecoveredGlobal_8030ABF4_lbl_80541E58 boss4_zako_draw_buffers;
@@ -52,7 +53,6 @@ void pop_matrix(void);
 void post_translate_matrix(void *);
 void draw_chunk_object(int);
 extern RecoveredGlobal_8030ABF4_lbl_80541E58 boss4_zako_draw_buffers;
-extern s32 falz_zako_texture_list;
 extern s32 TBoss4ZakoDraw__draw_buffer_index;
 extern const f32 lbl_805DF148;
 extern RecoveredGlobal_8030ABF4_lbl_80541E58 boss4_zako_draw_buffers;
@@ -160,7 +160,7 @@ void TObjPlayer::draw_area_chunk_objects() {
     s32 i;
     r31 = ((s32)get_bml_model(TBoss4Uro::get_instance_count(), 8));
     TObjPlayer__sub_80052390(lbl_805DF148);
-    set_current_texture_list((GinjaTextureList *)(falz_zako_texture_list));
+    set_current_texture_list(falz_zako_texture_list);
     for (i = 0; i < t->count; i++, p++) {
         push_matrix();
         post_translate_matrix(p);
@@ -185,7 +185,7 @@ void TCameraCtrl__sub_8030ABF4(void) {
         if (is_split_screen() == 0) {
             var_r4 = var_r31;
             var_r3 = (s32 *)((u8 *)((s32 *)2));
-            set_viewport_scissor__11TCameraCtrlFiPv(2, (int)var_r4);
+            TCameraCtrl::set_viewport_scissor(2, var_r4);
         }
         var_r4 = (u8 *)((void *)8);
         var_r3 = (s32 *)(*(s32 **)((s8 *)(get_bml_model(TBoss4Uro::get_instance_count(), 8)) + 0x2C));

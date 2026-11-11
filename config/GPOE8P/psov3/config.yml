@@ -1862,6 +1862,8 @@ force_active:
   - TWindowDD__sub_80341674
   - TWindowDD__sub_803422F0
   - TWindowDD__sub_803423E0
+  - TWindowDD__sub_803434F4
+  - TWindowDD__sub_8034694C
   - TWindowDD__sub_80346F30
   - TWindowDD__sub_80346FC0
   - TWindowDuelResult__layout_entries
@@ -14317,6 +14319,7 @@ force_active:
   - poll_load_status__12TAdTimeSetGCFv
   - poll_loaded_player__12TAdTimeSetGCFv
   - poll_quest_download__12TQuestListVMFv
+  - pop_menu_level__9TWindowDDFPv
   - populate_quest_floor_sets__Fv
   - populate_sub_item_list
   - pose_player__15TEndingPicStageF17player_class_typeSc
@@ -15250,6 +15253,7 @@ force_active:
   - run_single_view_frame__Fv
   - run_split_screen_frame__Fv
   - run_state__15TBoss3VoloptP02Fv
+  - run_state__9TWindowDDFPv
   - run_state_machine__15TBoss3VoloptP01Fv
   - run_switch_interaction_phase__10TObjPlayerFis
   - run_synced_state_handler__10TObjPlayerFv
