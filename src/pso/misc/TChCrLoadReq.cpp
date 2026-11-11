@@ -3,6 +3,7 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.h"
 #include "pso/misc/TChCrLoadReq.h"
 #include "pso/misc/TCharaMaking.h"
+#include "pso/misc/CharacterLoadBuffer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
 #pragma push
@@ -24,7 +25,6 @@ u16 get_entity_id(void *);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__12TChCrLoadReq[];
 u8 *TChCrLoadReq__sub_8028D360(TChCrLoadReq *arg0, s32 arg1);
-void TLobby__sub_8028D738(s32, s32);
 extern u8 class_appearance_table[];
 void *__ct__12TChCrLoadReqFP7TObjectPv(void *arg0, void *arg1, void *arg2);
 void *__dt__12TChCrLoadReqFv(void *arg0, s16 arg1);
@@ -79,7 +79,7 @@ void TChCrLoadReq::reset_request() {
     arg0->f58 = (s32)((u8 *)arg0->f48 + 8);
     t = ((TCharaMaking *)(arg0->f38))->get_display_index() * 0x2C;
     arg0->f5c = class_appearance_table + t;
-    TLobby__sub_8028D738(arg0->f40, t);
+    TLobby__sub_8028D738(arg0->f40);
     arg0->f44[0] = 0;
     arg0->f48->a4 = 0;
     arg0->f48->a0 = 0;
