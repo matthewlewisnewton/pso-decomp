@@ -1,5 +1,10 @@
 # ComCard native render body and explicit context receiver
 
+The later [follower/String context follow-up](window-draw-context-receivers.md)
+also forwards the distinct follower's existing window word to the shared helper.
+Its complete owner ELF remains identical; the trailing-word, follower lifetime
+and data-partition holds below are unchanged.
+
 This follows continuation #403's current-main refresh at `d4717a366a`, based on
 main `b3062dc640`. It recovers the existing 80-byte basic ComCard render body
 as the actual member, without activating the held destructor/table partition.

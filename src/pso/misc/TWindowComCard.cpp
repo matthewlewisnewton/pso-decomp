@@ -22,7 +22,6 @@ struct RecoveredGlobal_80249BA8___vt__14TWindowComCard {
 };
 
 extern "C" {
-s32 draw_default_entry__9TWindowDDFl();
 s32 draw_visible_window_entries(void *, void *, int);
 // Existing manual-table ABI entry; body is the native render member below.
 void render__14TWindowComCardFv(s32 arg0);
@@ -281,7 +280,7 @@ void request_active_window_close(void);
 
 void TUnk_804CE964::render() {
     s32 arg0 = (s32)this;
-    s8 *tmp = (s8 *)draw_default_entry__9TWindowDDFl();
+    s8 *tmp = (s8 *)TWindowDD::draw_default_entry(arg0);
     ((s32 (*)(s32, s32, s32))draw_visible_window_entries)(arg0, arg0 + 0x24, (s32)tmp);
 }
 

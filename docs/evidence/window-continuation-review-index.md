@@ -207,6 +207,13 @@ compiler-control qualifications remain explicit.
 
 ## Current tried/blocked index
 
+The [follower/String draw-context repair](window-draw-context-receivers.md)
+replaces two no-argument helper views with the already-established explicit window
+contract. Both complete ELFs, graph, report and DOL remain identical after full
+gated validation. A separate six-call numeric-input candidate fails at byte-return
+masking and remains private/inactive; no return-type or optimizer variant follows.
+The ComCard, Word, Parts and remaining lifetime/ownership holds stay unchanged.
+
 The [independent Parts profile audit](window-parts-control-provenance-audit.md)
 finds no original project metadata or neighbor setting that justifies its matching
 control. The distinct [selection accessor contract](window-word-selection-contract.md)

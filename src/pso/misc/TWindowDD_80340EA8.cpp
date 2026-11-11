@@ -14,7 +14,6 @@ s32 draw_visible_window_entries(s32, s32, void *, f32);
 int update_window_entry_list__11TWindowBaseFPv(void*, void*);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
-void *draw_default_entry__9TWindowDDFl();
 int update_fade__11TWindowBaseFv(void*);
 
 extern "C" void TWindowDD__sub_80340A78();
@@ -140,7 +139,7 @@ void TWindowDD_WS_String::render() {
     void *temp_r3;
     s32 arg0 = (s32)this;
 
-    temp_r3 = draw_default_entry__9TWindowDDFl();
+    temp_r3 = (void *)TWindowDD::draw_default_entry(arg0);
     ((TWindowBase *)arg0)->calc_inner_rect((u8 *)temp_r3);
     ((TWindowDD_WS_String *)arg0)->draw_entry_if_visible(temp_r3);
     ctx = *(f32 *)((s8 *)temp_r3 + 0x14);
