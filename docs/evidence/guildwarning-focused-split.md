@@ -184,3 +184,15 @@ the preceding focused head. Against fresh main the focused contribution remains
 raw/exact/linked data loss. The preview's inherited kind-zero cross-object lookup,
 allocation assumptions and explicit compiler controls retain their qualifications.
 This merge does not activate any Word lifetime/profile diagnostic.
+
+The next ordinary refresh integrates main
+`f8a71fae8a52f0bde1b956af4519061fe306cb30`, including its consolidated
+ActionPalette recovery. All seventeen upstream path changes and the focused
+implementation/configuration patch remain intact. Fresh-main and focused
+capacity-gated builds reproduce the original DOL. The focused branch has3600
+exact linked units and retention18427 without drift. Against fresh main its
+contribution stays +600 matched/+728 linked code and one exact function, with
+no strict raw/exact/linked data-range loss. Upstream supplies +956 linked code
+and +832 matched/linked data versus preceding focused head; the unit-count
+reduction reflects consolidation. Inherited compiler/context qualifications and
+all historical coverage qualifications remain; no window lifetime hold is lifted.
