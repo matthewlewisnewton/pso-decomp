@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (merged main `baa0b4e48`, 2026-11-11)
+## Summary (merged main `96fda4ceb`, 2026-11-11)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `baa0b4e48` (2026-11-11). Assembly is counted as source lines;
+after merging main `96fda4ceb` (2026-11-11). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,772 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,774 | 879 |
 | Per-unit compiler overrides in `configure.py` | 192 | 192 |
 | Approved regressions | 0 | 0 |
 
@@ -103,6 +103,24 @@ MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
 check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
+
+### Shortcut preview at `0x8026E1D4`
+
+`TWindowShortCut::initialize_preview` uses scoped `fp_contract on` for the
+fused coordinate calculations and `opt_propagation off` to preserve the
+saved-register allocation across the entry and formatter calls. Keep fused
+subtraction if exact float results matter on a port. Drop the optimizer
+pragma on other compilers.
+
+The thirteen `__declspec(section ".sdata2")` definitions in
+`TWindowSubStatusDisp_8026DFE8.cpp` put the separator, icon table and
+preview constants at `0x805DD348..0x805DD37C`. CodeWarrior places these
+named constants in writable small data without the declarations. The
+matching CodeWarrior build indexes the icon table with `kind - 1`.
+For kind zero the emitted load reads the separator's final zero byte at
+`0x805DD34B`, one byte before the table. The portable branch handles
+zero explicitly so it can use independent objects and stay within the
+array bounds.
 
 ### Item attack collider
 

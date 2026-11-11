@@ -1917,3 +1917,24 @@ functions/code and no losses. All fourteen DHCP/modem host tests, inventory
 and whitespace pass. The SDK entry repair, original behavior and bugs,
 remaining creator/raw/reset ABI restrictions and metadata hold are preserved.
 Keep draft.
+
+## Shortcut-preview main refresh after the thread-word checkpoint
+
+Integrate main `96fda4ceb06c7668891008d4d962568d86211ea0` after publishing the
+accepted storage/SDK checkpoint `ab6a5b4bfa1bdf7e9306c1565284615d2075af47`.
+Source and configuration merge without conflicts; reconcile the two exception
+inventories using the generated counts and retain main's UI recovery. This
+refresh does not reopen the rejected private creator contract.
+
+Fresh gated main and candidate builds both reproduce original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. All four complete network objects
+remain raw-identical to the pre-probe reference. Across 3,665 compiled objects,
+26 differ from that reference; every changed object is raw-identical to fresh
+main, accounting for the quest-download and shortcut-preview integrations.
+Full comparison against sealed unchanged main passes: 3,599 linked units are
+exact and 18,428 retention entries have zero drift. The existing +88 data bytes
+remain, with no new function/code gain or coverage loss. Ordered linker inputs
+select 3,599 source providers and 1,347 original fallbacks. All fourteen
+DHCP/modem characterization tests, exception-inventory freshness and whitespace
+checks pass. Original behavior, existing bugs, original providers, the SDK
+entry repair, and all raw/reset/creator ABI and metadata holds remain intact.
