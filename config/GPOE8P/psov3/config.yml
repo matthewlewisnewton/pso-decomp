@@ -1843,7 +1843,11 @@ force_active:
   - TWindowEffectLight__data_805DE0E4
   - TWindowEffectLight__sub_802AD040
   - TWindowEffectParty__name
+  - TWindowFukidasi__data_8044ED70
+  - TWindowFukidasi__data_805DCD30
   - TWindowFukidasi__sub_80249788
+  - TWindowFukidasi__sub_802505C0
+  - TWindowFukidasi__sub_80251790
   - TWindowGetComCard__sub_8007B60C
   - TWindowHelpItem__item_layout_entries
   - TWindowHelpItem__requirements_update_callback
@@ -3798,6 +3802,7 @@ force_active:
   - apply_velocity_if_free__10TObjPlayerFPv
   - apply_velocity_if_free__10TObjPlayerFl
   - apply_velocity_if_ready__10TObjPlayerFl
+  - approach__15TWindowFukidasiFf
   - approach_hover_y__17TObjEneMe1CanadinFf
   - approach_target__14CreationCameraFllff
   - approach_target__14TObjEneBm5WolfFPvf
@@ -4637,6 +4642,7 @@ force_active:
   - calc_spin_value__16TBoss3VoloptCoreFv
   - calc_target_vector__12TBoss1DragonFPv
   - calc_text_pos__10TAdTitleGCFlPUcl
+  - calc_text_size__13TUnk_804CF0B8FPf
   - calc_time_from_hms__6TLobbyFv
   - calc_trap_count__16TOTrapAncient02RFv
   - calc_tube_progress__10TBoss6TubeFl
@@ -4955,7 +4961,9 @@ force_active:
   - clamp_params__6TLobbyFPv
   - clamp_params_and_init__14TOTrapSeabed01Fv
   - clamp_partner_counter__Flls
+  - clamp_position__13TUnk_804CF0B8FPvf
   - clamp_state__12TObjDoorJungFv
+  - clamp_text_size__15TWindowFukidasiFPvPv
   - clamp_to_ground__14TBoss6GravBallFv
   - clamp_to_target_obstruction__11TCameraCtrlFv
   - clamp_trap_level_param__16TOTrapAncient02RFv
@@ -5743,7 +5751,9 @@ force_active:
   - draw_blob_shadows__22TObjEneSlimeTailAttackFv
   - draw_body__11TObjDFDemo4Fv
   - draw_body__13TBoss5GryphonFv
+  - draw_body__13TUnk_804CF0B8FPvUlPff
   - draw_body_models__11TBoss6Type2Fv
+  - draw_body_row__13TUnk_804CF0B8FPvPvffff
   - draw_bottom_bar__20TWindowSubStatusDispFv
   - draw_closed__8TObjDoorFPv
   - draw_closed_glow__8TObjDoorFPv
@@ -5817,6 +5827,7 @@ force_active:
   - draw_motion_node_list__10TObjPlayerFv
   - draw_motion_tree
   - draw_name_labels__13TObjTombstoneFv
+  - draw_name_plate__15TWindowFukidasiFv
   - draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECT
   - draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECTPA3_A4_f
   - draw_node_tree__18TObjLaboDesignBaseFiPv
@@ -5864,6 +5875,7 @@ force_active:
   - draw_tab__12TWindowTimerFll
   - draw_tag_sprite__12TChCrTagNameFPv
   - draw_tag_sprites__12TChCrTagNameFPv
+  - draw_tail__13TUnk_804CF0B8FPvUlPff
   - draw_text_glyphs__19TWindowKeyBoardBaseFPvPv
   - draw_tiled_background__20TWindowSubStatusDispFv
   - draw_title_background_pulse
@@ -6509,6 +6521,7 @@ force_active:
   - fn_803F1804
   - fn_803F4D10
   - fn_spawn_particle_f3_with_flags
+  - follow_anchor__13TUnk_804CF0B8Fv
   - forest_box_collision_body_parts
   - format_challenge_stage_times__23TAdSinglePlyChrSelectGCFll
   - format_dashed_serial__22TAdEnterSerialAccessGCFPUcUlPUl
@@ -6668,6 +6681,7 @@ force_active:
   - get_boss_warp_model
   - get_boss_warp_model_handle
   - get_boss_warp_motion
+  - get_boundary_offset__15TWindowFukidasiFlPf
   - get_buffer_size__15TWindowSnapShotFv
   - get_center__12TObjEneSaverFv
   - get_center__13TOHealGeneralFv
@@ -7230,6 +7244,7 @@ force_active:
   - init_field_4__10TObjPlayerFv
   - init_field_d4__16TODoorLaboNormalFv
   - init_fields__13TUnk_804F0AF8FlPv
+  - init_flags__15TWindowFukidasiFPvi
   - init_flags_vec4__10TObjPlayerFv
   - init_floor_encounter_sections__6TLobbyFv
   - init_follow_particle_ctrl__10TObjPlayerFv
@@ -7556,6 +7571,7 @@ force_active:
   - is_slot_active__14TShopGeneratorFi
   - is_sound_enabled
   - is_sound_enabled__12TObjEnvSoundFPvl
+  - is_speaker_far_or_offscreen__13TUnk_804CF0B8Fv
   - is_special_sound_id
   - is_sphere_visible__12TBoss1DragonFf
   - is_split_screen__10TObjPlayerFv
@@ -9058,6 +9074,8 @@ force_active:
   - lbl_805DC328
   - lbl_805DC8C4
   - lbl_805DCCA8
+  - lbl_805DCD10
+  - lbl_805DCD54
   - lbl_805DCEF0
   - lbl_805DCFAC
   - lbl_805DCFB0
@@ -9775,6 +9793,7 @@ force_active:
   - pick_wander_destination__16TObjEneBm5GibonUFPv
   - place_bank_slot_on_ring__21TWindowSubCustomEquipFll
   - place_players_in_warp_circle__Fv
+  - place_rect_at_head_or_slot__13TUnk_804CF0B8Fv
   - play_all_players_effect__6TLobbyFPv
   - play_ambient_loop_sound__17TOBarrierEnergy01Fv
   - play_animation_index__12TBoss8DragonFl
@@ -14255,6 +14274,7 @@ force_active:
   - process_lobby_action_14__18TObjCityDoor_LobbyFv
   - process_trade_target__10TObjPlayerFiPv
   - profanity_word_table
+  - project_anchor__13TUnk_804CF0B8FPfPf
   - project_step_to_ground__14TObjEneIllGillFl
   - project_to_ground__15TObjEneSlimeOneFv
   - project_to_screen__13TObjTombstoneFPvPfP3Vec
@@ -14461,6 +14481,7 @@ force_active:
   - refresh_palette_slots__21TWindowSubCustomEquipFv
   - refresh_players__10TObjPlayerFv
   - refresh_quest_list__6TLobbyFi
+  - refresh_rect_placement__15TWindowFukidasiFPv
   - refresh_split_screen_battle_alive_flags__FPv
   - refresh_submenu__15TWindowMainMenuFPv
   - refresh_target_marker__11TMainCursorFv
@@ -15091,6 +15112,7 @@ force_active:
   - resolve_theme_index__13TObjLobbyMainFv
   - resource_bundle__16TObjWeddingLobby
   - respond_to_body_contact__FPUcUlPUc
+  - rest_balloon__15TWindowFukidasiFv
   - restart_particle_effect__20TBoss7TentacleNeedleFv
   - restart_primary_sequence__12TBoss1DragonFv
   - restorePosition__12TBoss1DragonFv
@@ -15854,6 +15876,7 @@ force_active:
   - set_cmd_87__10TObjPlayerFv
   - set_code_43_6__10TObjPlayerFv
   - set_color__13TObjEneMe1GeeFPC8NJS_ARGB
+  - set_color__13TUnk_804CF0B8FUs
   - set_com_param__17TWindowSubComCardFl
   - set_cursor_color__11TMainCursorFlll
   - set_cursor_index_1__17TAdMultiConfirmGCFPv
@@ -16165,6 +16188,7 @@ force_active:
   - shift_collision_bounds__14TItemAttackColFv
   - shift_position_history__13TBoss5GryphonFv
   - shift_queue_push_next__15TObjBoss2TunnelFPv
+  - shift_rect_with_head__15TWindowFukidasiFPvPvPv
   - shinowa_mirage_model_init_data
   - shinowa_mirage_resource_descriptor
   - shop_tool_stock_table
@@ -16869,6 +16893,7 @@ force_active:
   - sub_8024EF40__17TWindowDuelResultFv
   - sub_8024F090__17TWindowDuelResultFv
   - sub_8024F094__17TWindowDuelResultFv
+  - sub_802504A8__13TUnk_804CF0B8Fv
   - sub_8025F2F8__19TWindowKeyBoardHardFUc
   - sub_8025F4A0__19TWindowKeyBoardHardFUc
   - sub_802605DC__19TWindowKeyBoardSoftFv
@@ -17062,6 +17087,7 @@ force_active:
   - symbol_chat_part_uv_table
   - symbol_chat_parts_color_table
   - sync_body_position__13TObjEneMe1GeeFv
+  - sync_display_pos__15TWindowFukidasiFv
   - sync_field10_from_child__15TPlyPhotonChairFv
   - sync_hp__9TBoss6MagFv
   - sync_hp_apply_damage__9TBoss6MagFv
@@ -17241,6 +17267,7 @@ force_active:
   - try_hit_target__13TUnk_80491460Fi
   - try_move_with_detour__14TObjEnePanBARAFP3Vec
   - try_open__11TObjDoaEx01Fv
+  - try_place_bubble__15TWindowFukidasiFPvPvPv
   - try_relocate_on_timer__15TObjEneDelDepthFv
   - try_run_effect_m6__18TObjEneMe3SinowZoaFv
   - try_run_effect_m7__18TObjEneMe3SinowZoaFv
