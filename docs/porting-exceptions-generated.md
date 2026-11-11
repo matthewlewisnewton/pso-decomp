@@ -10,8 +10,8 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 44 | 11 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5777 | 880 |
-| configure.py per-unit override | 192 | 192 |
+| pragma | 5777 | 878 |
+| configure.py per-unit override | 193 | 193 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1142, `inline_depth` 1034, `fp_contract` 880, `auto_inline` 832, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 240, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -251,6 +251,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1142, `inline_depth` 1034,
 | `pso/misc/TOTrapAncient01.cpp` | `GC/2.0, -inline off,deferred, -fp_contract on, -str reuse,readonly, -pooldata=off, -opt nolifetimes` | GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris positions before storing them (GC/2.6 interleaves them: 91.09%). Reverse definitions and deferred generation place the native trap vtable before its switch tables while preserving the original function order. Contracted FP keeps the constructor and render exact (98.86% and 97.66% without it). -opt nolifetimes keeps render exact (99.42% without it). -pooldata=off keeps play_sounds' copy prologue (94.54% without it); read-only strings keep the .rodata/.data/.sdata layout. |
 | `pso/object/TObjDFDemo1.cpp` | `-sdata 4` | Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4). |
 | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | Keep both 8-byte afterimage tables out of .sdata in the demo constructor. |
+| `pso/misc/TWindowActionPalette.cpp` | `-inline off,deferred` | Reverse definitions preserve the palette vtable before its icon switch table. |
 | `pso/object/TObjFish_8033CCC8.cpp` | `-inline off,deferred` | Deferred emission groups the Falz cutscene's motion indices, origin and vtable. |
 | `pso/enemy/TObjEneBalClawBody_80090178.cpp` | `-inline deferred, -sdata 4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/enemy/TObjEneRe2Flower_800C3E14.cpp` | `-inline off,deferred` | Deferred generation preserves the flower vtable before its dispatch table. |
@@ -863,7 +864,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1142, `inline_depth` 1034,
 | `src/pso/misc/TTecZonde.cpp` | fp_contract×1 |
 | `src/pso/misc/TTecZondeEff.cpp` | fp_contract×5 |
 | `src/pso/misc/TUserAns_801E0198.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
-| `src/pso/misc/TWindowActionPalette.cpp` | fp_contract×1 |
+| `src/pso/misc/TWindowActionPalette.cpp` | fp_contract×3 |
 | `src/pso/misc/TWindowActionPalette_801C1890.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TWindowBreakIn.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowChallengeResult.cpp` | readonly_strings×2 |
@@ -889,7 +890,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1142, `inline_depth` 1034,
 | `src/pso/misc/TWindowEffectParty.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowEffectParty_8024F690.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowFukidasi.cpp` | fp_contract×15 |
-| `src/pso/misc/TWindowHelpItem_80243408.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowHelpItem_802531A0.cpp` | inline_depth×4, auto_inline×4, dont_inline×4 |
 | `src/pso/misc/TWindowHelpItem_802540AC.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/misc/TWindowHelpItem_80255AB4.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -1226,7 +1226,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1142, `inline_depth` 1034,
 | `src/pso/unk/text_80231BF4.cpp` | opt_common_subs×3, fp_contract×1, opt_loop_invariants×1 |
 | `src/pso/unk/text_80236EE8.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/unk/text_8023A434.cpp` | opt_common_subs×1 |
-| `src/pso/unk/text_802437C4.cpp` | fp_contract×1 |
 | `src/pso/unk/text_80244238.cpp` | fp_contract×1 |
 | `src/pso/unk/text_8024450C.cpp` | fp_contract×2 |
 | `src/pso/unk/text_80249078.cpp` | fp_contract×1 |

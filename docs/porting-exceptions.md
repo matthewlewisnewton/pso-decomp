@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (fish synchronization on main `e65f11ce6e`, 2026-11-11)
+## Summary (fish synchronization on main `f8a71fae8a`, 2026-11-11)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after fish synchronization on main `e65f11ce6e` (2026-11-11). Assembly is counted as source lines;
+for this source tree. Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,777 | 880 |
-| Per-unit compiler overrides in `configure.py` | 192 | 192 |
+| CodeWarrior pragmas (excluding push/pop) | 5,777 | 878 |
+| Per-unit compiler overrides in `configure.py` | 193 | 193 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -95,7 +95,7 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,777 pragmas in 880 files; per-file table in the generated file. Main kinds:
+5,777 pragmas in 878 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1142, `inline_depth` 1034, `fp_contract` 880, `auto_inline` 832,
 `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 240,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
@@ -159,6 +159,13 @@ Under GC/2.6, flattening those phases into the caller changes the saved
 register allocation. The chunk declaration order within the output helper
 also places the two descriptors at stack offsets 8 and 16. Ports can use the
 same helpers with ordinary inlining and native pointer-sized handles.
+
+### Action palette
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `configure.py` | `pso/misc/TWindowActionPalette.cpp` | `-inline off,deferred` with reversed definitions | Places the compiler-generated vtable at `.data+0x308` before the icon switch table at `+0x320`, while retaining the original function order. See [unit evidence](evidence/action-palette-unit.md). | Use ordinary function ordering and compiler-generated virtual dispatch. |
+| `src/pso/misc/TWindowActionPalette.cpp` | Frame, slot-light position, and count-label position | Scoped `fp_contract on` | Preserves the existing fused coordinate arithmetic when the three fragments are consolidated. | Preserve fused float rounding when exact original positioning is required. |
 
 ### Dark Falz demo 4
 
@@ -306,7 +313,7 @@ and the same function body.
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-192 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+193 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
