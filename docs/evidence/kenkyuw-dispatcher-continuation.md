@@ -125,5 +125,11 @@ virtual hit callback.
 The same scoped compiler controls remain necessary. The comma expression now
 uses `static_cast<TechniqueContactActor *>(target)` to force a pointer value
 without discarding its type. A scratch build reproduced all ten exact
-functions, including the 228-byte dispatcher, before integration. Complete
-unit linkage, relocation and DOL checks are required for publication.
+functions, including the 228-byte dispatcher, before integration. The full gated build and `tools/check_pr.py --no-build` passed.
+All 2,376 allocated bytes and 110 relocations in allocated sections equal the
+original split object (the compiler also emits ten relocations in nonallocated
+`.mwcats.text` metadata). The actual 4,943-input ELF link selects
+`build/GPOE8P/src/pso/npc/TObjNpcKenkyuW.o` and excludes the original split.
+All 3,612 linked units remain exact; retention regeneration reports no additions
+or stale symbols, and the DOL SHA-1 remains
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`.
