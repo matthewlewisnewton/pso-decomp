@@ -1,3 +1,4 @@
+#include "pso/misc/SmallFontDrawing.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -26,7 +27,6 @@ struct Rect_802AD538 {
 extern "C" {
 s32 is_split_screen();
 int copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *, void *);
-void begin_render__20TWindowSubStatusDispFl(void);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
@@ -52,7 +52,7 @@ void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
     if (is_item_active() != 0 && fade > 0) {
         scale = -1.0f / (0.299f + w->depth);
         uv = &main_menu_label_uv_table[icon];
-        begin_render__20TWindowSubStatusDispFl();
+        bind_small_font_texture_list();
         switch (kind) {
         case 0:
             rgb = 0xFFFFFF;
