@@ -473,10 +473,10 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *setData, s32 index) : TObj
     apply_set_data(setData);
     // Same statements as TObjEnemy::clear_lobby_object_state (0x800F5D80); the original expands them here.
     PanBARAObjectState objectState;
-    if (exchange_object_state((s32)&objectState, 1) != 0) {
+    if (exchange_object_state((void *)(s32)&objectState, 1) != 0) {
         objectState.unk_0 = 0;
         objectState.unk_6 = 0;
-        exchange_object_state((s32)&objectState, 0);
+        exchange_object_state((void *)(s32)&objectState, 0);
     }
     m_380 = index;
     texlist = TObjFish__sub_8001EDB0(TObjEnePanarms__entry_params_resource, lbl_8043CD38[m_380]);

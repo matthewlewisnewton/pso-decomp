@@ -34,7 +34,7 @@ TBoss7DeRolLeC::TBoss7DeRolLeC(TObject *parent, void *set_data) : TObjEneDD_ST(p
     unk_620 = (TBoss7DeRolLeCParams *)get_battle_movement_params(15);
     invoke_initialization_hook(set_data);
     unk_628 = 0;
-    if (exchange_object_state((s32)&flags, 1) && (flags & 0x12008) == 0x12008) {
+    if (exchange_object_state((void *)&flags, 1) && (flags & 0x12008) == 0x12008) {
         unk_628 |= 0x8000;
     }
     init_position_vectors();

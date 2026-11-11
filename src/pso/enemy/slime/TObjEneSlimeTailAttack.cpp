@@ -271,7 +271,7 @@ struct Vec_800E9EFC { f32 x, y, z; };
 u16 find_nearest_visible_player(void *, void *, f32);
 void queue_destruction__7TObjectFv(void *);
 u8 * get_bml_motion(s32, s32);
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
+s32 exchange_object_state__9TObjEnemyFPvs(void *, void *, int);
 void transform_to_view__11TCameraCtrlFii(s32, s32);
 void TObjPlayer__sub_800E80C0(u8 *arg0);
 S_800E80E8 * TObjPlayer__sub_800E80E8(S_800E80E8 *dst, S_800E80E8 *src);
@@ -945,7 +945,7 @@ void TObjEneSlime::run_task() {
     if ((TObjPlayer::check_demo_mode() == 0) && (has_no_active_slot((O_800EB8DC *)this) != 0)) {
         sp8 = 0x800;
         send_6x0A_enemy_state(&sp8);
-        exchange_object_state((s32)&sp8, (s16)0);
+        exchange_object_state((void *)&sp8, (s16)0);
         ((VObj_800EBB18_800EB9F0 *)this)->m77(&sp8);
         send_entity_set_flags();
         queue_destruction__7TObjectFv(this);
@@ -1131,10 +1131,10 @@ u8 *init__15TObjEneSlimeOneFPviii(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjEneSlimeOne_class_name;
     ((TObjChara *)arg0)->add_flags_2e4(2);
     ((TObjEneSlimeOne *)(arg0))->apply_set_data((void *)arg3);
-    if (exchange_object_state__9TObjEnemyFls(arg0, &stack.sp8, 1) != 0) {
+    if (exchange_object_state__9TObjEnemyFPvs(arg0, &stack.sp8, 1) != 0) {
         stack.sp8 = 0;
         stack.spE = 0;
-        exchange_object_state__9TObjEnemyFls(arg0, &stack.sp8, 0);
+        exchange_object_state__9TObjEnemyFPvs(arg0, &stack.sp8, 0);
     }
     ((TObjEneSlimeOne *)arg0)->parent_slime = arg2;
     ((TObjEneSlimeOne *)arg0)->initialize_slime_instance_state();
@@ -1152,10 +1152,10 @@ u8 *TObjEneSlimeOne__ct(u8 *actor, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     *(s32 *)((s8 *)actor + 0) = (s32) TObjEneSlimeOne_class_name;
     ((TObjChara *)actor)->add_flags_2e4(2);
     ((TObjEneSlimeOne *)(actor))->apply_set_data((void *)arg3);
-    if (exchange_object_state__9TObjEnemyFls(actor, &stack.sp8, 1) != 0) {
+    if (exchange_object_state__9TObjEnemyFPvs(actor, &stack.sp8, 1) != 0) {
         stack.sp8 = 0;
         stack.spE = 0;
-        exchange_object_state__9TObjEnemyFls(actor, &stack.sp8, 0);
+        exchange_object_state__9TObjEnemyFPvs(actor, &stack.sp8, 0);
     }
     ((TObjEneSlimeOne *)actor)->parent_slime = arg2;
     VecCopy((Vec *)(actor + 0x3DC), (const Vec *)(arg4));
