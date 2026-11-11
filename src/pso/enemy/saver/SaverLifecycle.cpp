@@ -95,7 +95,7 @@ s32 __dl__7TObjectFPv(void *);
 extern void *TObjEneSaver__vtable[83];
 Obj_800A73F8 *__dt__12TObjEneSaverFv(Obj_800A73F8 *arg0, s16 arg1);
 void* get_center__12TObjEneSaverFv(void* p);
-void copy_position__20TBoss3VoloptHiraisinFv(s32 arg0);
+void copy_body_to_center__9TObjCharaFv(s32 arg0);
 s32 create__13TUnk_80494968FUlUl(u32, u32);
 void __ct__9TObjEnemyFP7TObject(void *, void *, void *);
 void init_collision_body_parts(void *, void *, s32);
@@ -1995,7 +1995,7 @@ void TObjEneSaver::run_task() {
         this->target = NULL;
     }
     this->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv((s32)this);
+    copy_body_to_center__9TObjCharaFv((s32)this);
     sub_800A435C__12TObjEneSaverFv(this);
     this->m_2b4 += 1.0f;
 }
@@ -2141,7 +2141,7 @@ u8 *TObjEneSaver__ct(TObjEneSaver *arg0, void *arg1, void *arg2) {
     arg0->movementParameters = (u8*)lbl_80490B28;
     arg0->referenceHp = arg0->hp;
     ((TObjEnemy *)arg0)->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv((s32)arg0);
+    copy_body_to_center__9TObjCharaFv((s32)arg0);
     initialize_enemy_photon_effect(arg0);
     *(s32 *)((s8 *)arg0 + 0x374) = 1;
     *(s32 *)((s8 *)arg0 + 0x38C) = 0;

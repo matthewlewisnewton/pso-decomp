@@ -330,7 +330,7 @@ s32 is_split_screen();
 void * get_bml_model(void *, int);
 void free_bin_model_request(void*, int);
 void * load_resource_from_descriptor(void *, int, char *, int, int, int);
-s32 check_player_flag1__6TLobbyFv();
+s32 check_player_flag1__10TObjPlayerFv();
 s32 free_collision_body_parts(void *);
 void init_collision_body_parts(void *, void *, s32);
 void *__dt__6TOTrapFv(void *arg0, s16 arg1);
@@ -954,7 +954,7 @@ void TOTrapAncient02::vfunc_82() {
                 self->timer = self->reset;
                 if (self->target != NULL && local_client_id == get_entity_id(self->target)) {
                     p = (s32)get_player_by_client_id(local_client_id);
-                    if (p != 0 && check_player_flag1__6TLobbyFv() != 0) {
+                    if (p != 0 && check_player_flag1__10TObjPlayerFv() != 0) {
                         TObjPlayer::send_code_45_1(p);
                     }
                 }

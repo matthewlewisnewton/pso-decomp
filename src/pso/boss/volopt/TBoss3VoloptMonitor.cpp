@@ -219,7 +219,7 @@ void TBoss3VoloptMonitor::init_params() {
     referenceHp = hp;
     set_param(0x2E);
     update_prev_position();
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    ((TObjEnemy *)this)->register_by_id();
     anim_frame = 8.0f * (3.0517578e-05f * (f32)rand());
     anim_timer = 3.0f * (3.0517578e-05f * (f32)rand());
     add_flags_2e4(4);
@@ -278,7 +278,7 @@ void TBoss3VoloptMonitor::run_task() {
     dispatch_state();
     update_prev_position();
     if (obj_testFlags30(0x800) == 0) {
-        ((TBoss3VoloptHiraisin *)this)->copy_position();
+        ((TObjChara *)this)->copy_body_to_center();
         submit_cursor_candidate(this, -1);
         minimap_render_dot(&position, -0x5DB4, 1, 0);
     }

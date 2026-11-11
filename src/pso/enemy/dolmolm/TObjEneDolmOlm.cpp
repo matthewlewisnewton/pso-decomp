@@ -400,7 +400,7 @@ extern RecoveredGlobal_80300FC0_lbl_8058D490 identity_matrix;
 void vfunc_94__14TObjEneDolmOlmFv(u8 *arg0);
 s32 check_path_obstructed(void *, void *);
 void check_path_ahead__14TObjEneDolmOlmFlf(u8 *arg0, s32 arg1, f32 farg0);
-s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
+s32 copy_body_to_center__9TObjCharaFv(void *);
 s32 submit_cursor_candidate(void *, int);
 s32 TObjEneDolmOlm__sub_80301C3C(void *);
 void run_task__14TObjEneDolmOlmFv(u8 *arg0);
@@ -899,7 +899,7 @@ TObjEneDolmOlm::TObjEneDolmOlm(s32 arg1, s32 arg2) : TUnk_80493450((TObject *)ar
     *(u8 * *)&this->movementParameters = (u8 *) lbl_804E6898 + *(s32 *)&this->variant * 0x1C;
     this->referenceHp = this->hp;
     this->advance_position();
-    copy_position__20TBoss3VoloptHiraisinFv(((u8 *)this));
+    copy_body_to_center__9TObjCharaFv(((u8 *)this));
     initialize_enemy_photon_effect(((u8 *)this));
     *(s32 *)&this->m_2ac = 182.04445f * (360.0f * ((f32 (*)(void *)) random_ratio__9TObjCharaFv)(((u8 *)this)));
     *(s16 *)&this->resetTimer = 0xF;
@@ -1090,7 +1090,7 @@ void TObjEneDolmOlm::run_task() {
     }
   }
   this->advance_position();
-  copy_position__20TBoss3VoloptHiraisinFv((void *) ((u8 *)this));
+  copy_body_to_center__9TObjCharaFv((void *) ((u8 *)this));
   submit_cursor_candidate((void *) this, -1);
   if (((RecoveredFields_8030247C_arg0 *) ((u8 *)this))->field_3E4 & 0x4000)
   {
@@ -1352,7 +1352,7 @@ s32 TObjEneDolmOlm__sub_8030177C(void *arg0_) {
             arg0->fb8 = 2;
         } else {
             Obj_8030177C *p = arg0->target;
-            if (((TLobby *)p)->check_player_flag1() != 0) {
+            if (((TObjPlayer *)p)->check_player_flag1() != 0) {
                 if (fabs_float(p->pos.y - arg0->pos.y) < 20.0f) {
                     arg0->f326 = 5;
                     arg0->f328 = 1;
@@ -1409,7 +1409,7 @@ s32 TObjEneDolmOlm__sub_8030177C(void *arg0_) {
                     Obj_8030177C *pl = (Obj_8030177C *)get_player_by_client_id((u16)a);
                     if (pl != 0 && is_locally_controlled__10TObjPlayerFPv(pl) != 0 &&
                         ((TObject *)pl)->all_parents_unqueued_for_destruction() != 0 &&
-                        obj_testFlags30__14TObjCollidableFUl(pl, 0x800) == 0 && ((TLobby *)pl)->check_player_flag1() == 0) {
+                        obj_testFlags30__14TObjCollidableFUl(pl, 0x800) == 0 && ((TObjPlayer *)pl)->check_player_flag1() == 0) {
                         TObjPlayer::play_effect((s32)pl, (s32)((s32)(30.0f * (f32)(*(Param_8030177C ** *)&TObjEneDolmOlm__behavior_params_by_variant)[arg0->kind]->power)), 2);
                     }
                 }

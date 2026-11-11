@@ -110,7 +110,7 @@ void TObjNpcBase::setup_common() {
     init_collision_body_parts(self, npc_base_collision_body_desc, 1);
     ((TObjPlayer *)self)->register_object_by_id();
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     this->apply_set_params(0, 1);
 }
 
@@ -609,7 +609,7 @@ void TObjNpcBase::update_conversation() {
             }
             if (F(void *, 0x2A8) != 0 && local_client_id == get_entity_id(F(void *, 0x2A8))) {
                 p = (u32) get_player_by_client_id(local_client_id);
-                if (p != 0 && ((TLobby *)p)->check_player_flag1() != 0) {
+                if (p != 0 && ((TObjPlayer *)p)->check_player_flag1() != 0) {
                     TObjPlayer::send_code_45_1((s32)((void *)p));
                 }
             }
@@ -945,7 +945,7 @@ void TObjNpcBase::run_task() {
   advance_animation();
   this->update_prev_position();
   new_var = ((u8 *)this);
-  ((TBoss3VoloptHiraisin *)new_var)->copy_position();
+  ((TObjChara *)new_var)->copy_body_to_center();
   if ((((s32)this->m_3a8) > 0) && (TRaderMapCore::is_not_split_screen() == 0))
   {
     submit_cursor_candidate((void *) this, -1);

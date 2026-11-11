@@ -501,7 +501,7 @@ TObjGrass::TObjGrass(TObject *parent, void *set_data) : TObjEnemy(parent) {
     movementParameters = &((E1C_800BF924 *)lbl_804929E4)[variant];
     referenceHp = hp;
     update_prev_position();
-    ((TBoss3VoloptHiraisin *)this)->copy_position();
+    ((TObjChara *)this)->copy_body_to_center();
     register_object_by_id();
     m_398 = (0.0f);
     mode = 0;
@@ -655,7 +655,7 @@ void TObjGrass::run_task() {
         this->target = NULL;
     }
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     submit_cursor_candidate(arg0, -1);
     this->m_2b4 += (1.0f);
 }
@@ -1111,7 +1111,7 @@ s32 TObjGrass::is_target_in_attack_range() {
     kind = get_entity_id(t);
     if (kind < 0x1000) {
         t = this->target;
-        if (((TLobby *)t)->check_player_flag1() == 1 || (enable_v2_features == 1 && obj_testFlags30__14TObjCollidableFUl(t, 0x20) != 0)) {
+        if (((TObjPlayer *)t)->check_player_flag1() == 1 || (enable_v2_features == 1 && obj_testFlags30__14TObjCollidableFUl(t, 0x20) != 0)) {
             T318 = TBL[0];
             if (IN_RANGE()) {
                 BIND(0)

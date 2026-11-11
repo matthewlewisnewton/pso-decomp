@@ -147,6 +147,7 @@ public:
     void log(const char *str);
     int  get_node_count();
     int  all_parents_unqueued_for_destruction();
+    BOOL check_value_equals(const char *name);
     int defer_render();
 public:
 };

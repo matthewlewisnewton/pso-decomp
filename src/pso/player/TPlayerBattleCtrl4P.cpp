@@ -129,7 +129,7 @@ f32 fn_801C19A4(void *);
 s32 TWindowDuelResult__sub_801C19AC(void *);
 
 void set_split_screen_battle_phase__19TPlayerBattleCtrl4PFl(u8 *arg0, s32 arg1);
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, int);
+s32 check_value_equals__7TObjectFPCc(void *, int);
 void queue_destruction__7TObjectFv(void *);
 extern s32 lbl_805D2A98;
 void destroy_matching_children__19TPlayerBattleCtrl4PFPvPv(void *self, Par_80311304 *p);
@@ -740,7 +740,7 @@ void destroy_matching_children__19TPlayerBattleCtrl4PFPvPv(void *self, Par_80311
     while (p->head != 0 && n != 0) {
         cur = n;
         n = cur->next;
-        if (check_value_equals__13TUnk_804B6C24Fl(cur, lbl_805D2A98) != 0) {
+        if (check_value_equals__7TObjectFPCc(cur, lbl_805D2A98) != 0) {
             queue_destruction__7TObjectFv(cur);
         } else {
             destroy_matching_children__19TPlayerBattleCtrl4PFPvPv(self, (Par_80311304 *)cur);
@@ -893,7 +893,7 @@ struct O_80311C2C { u8 pad[0x20]; void *w0; void *w1; u8 pad2[0x294 - 0x28]; Ids
 
 extern "C" {
 
-s32 check_player_flag1__6TLobbyFv();
+s32 check_player_flag1__10TObjPlayerFv();
 
 s32 set_state__19TPlayerBattleCtrl4PFv(void *, int);
 extern s32 lbl_80475BC4[];
@@ -1031,7 +1031,7 @@ void TPlayerBattleCtrl4P::close_rematch_menu() {
     }
     var_r31 = 0;
     do {
-        if ((((s32)get_player_by_client_id(var_r31)) != 0U) && (check_player_flag1__6TLobbyFv() != 0)) {
+        if ((((s32)get_player_by_client_id(var_r31)) != 0U) && (check_player_flag1__10TObjPlayerFv() != 0)) {
             send_code_45_to_window__19TPlayerBattleCtrl4PFPvii((this), ((u16) var_r31), 1);
         }
         var_r31 += 1;
@@ -1095,7 +1095,7 @@ void TPlayerBattleCtrl4P::open_result_windows() {
     player = ((s32)get_player_by_client_id(var_r31));
     if (player != 0)
     {
-      if (check_player_flag1__6TLobbyFv() == 0)
+      if (check_player_flag1__10TObjPlayerFv() == 0)
       {
         TPlayerBattleCtrl4P::remove_player((void *) ((s32)this), (int) ((u16) var_r31), 1);
       }

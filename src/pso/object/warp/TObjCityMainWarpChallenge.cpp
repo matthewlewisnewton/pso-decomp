@@ -278,7 +278,7 @@ void TObjCityMainWarp__sub_801875F8(TObjCityMainWarpChallenge *self) {
             ((THunterGuildSeqOffline *)self->player_list_window)->advance_matching_entries(self->player_in_range[j] != 0, j);
             color = 0xF0F0F0FF;
             if (self->state == 1 && (player = (TLobby *)get_player_by_client_id(j)) != NULL &&
-                player->check_player_flag1() != 0) {
+                ((TObjPlayer *)player)->check_player_flag1() != 0) {
                 color = 0xFFFF00FF;
             }
             fn_80248994(self->player_list_window, color, j);

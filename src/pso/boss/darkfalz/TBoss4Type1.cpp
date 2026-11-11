@@ -708,7 +708,7 @@ TBoss4Type1::TBoss4Type1(TObject *parent, s32 *params) : TObjEnemy(parent) {
     target = 0;
     bind_enemy_combat_stats((u8 *)get_battle_base_stats(0x36), (u8 *)get_battle_attack_params(0x36), (u8 *)get_battle_resistance_params(0x36));
     referenceHp = hp;
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    ((TObjEnemy *)this)->register_by_id();
     set_param(0x2F);
     unk_3ec = lbl_805D8B84;
     for (i = 0; i < 3; i++) {

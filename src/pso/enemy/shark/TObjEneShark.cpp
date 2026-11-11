@@ -997,7 +997,7 @@ void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2) {
     self->f350 = lbl_804915B4 + self->f334 * 0x1C;
     self->f33E = self->f32C;
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     initialize_enemy_photon_effect(self);
     self->f2AC = (s32)(182.04445f * (360.0f * random_ratio__9TObjCharaFv((s32)self)));
     self->f33A = 0xF;

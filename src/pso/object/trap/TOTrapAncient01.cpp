@@ -162,7 +162,7 @@ extern const f32 lbl_805DBA54;
 extern const f32 lbl_805DBA6C;
 extern const f32 lbl_805DBA74;
 VObj_801797D4 *get_battle_param__10TObjPlayerFi(s32);
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
+s32 check_value_equals__7TObjectFPCc(void *, s32);
 extern s32 lbl_805D3530;
 extern const f32 lbl_805DBA48;
 void update__15RenderFadeStateFv(void *);
@@ -193,7 +193,7 @@ void TOTrapAncient01::release_trapped_player() {
         if (target != NULL) {
             player = get_player_by_client_id(get_entity_id((TObjBase *)target));
             if (player != NULL) {
-                if (((TLobby *)player)->check_player_flag1() != 0) {
+                if (((TObjPlayer *)player)->check_player_flag1() != 0) {
                     TObjPlayer::send_code_45_1((s32)player);
                 }
                 obj_clear_flag30_20000(player);
@@ -202,7 +202,7 @@ void TOTrapAncient01::release_trapped_player() {
     } else if (target != NULL && local_client_id == get_entity_id((TObjBase *)target)) {
         player = get_player_by_client_id(local_client_id);
         if (player != NULL) {
-            if (((TLobby *)player)->check_player_flag1() != 0) {
+            if (((TObjPlayer *)player)->check_player_flag1() != 0) {
                 TObjPlayer::send_code_45_1((s32)player);
             }
             obj_clear_flag30_20000(player);
@@ -292,7 +292,7 @@ void TOTrapAncient01::vfunc_82() {
             if (obj_is_hit_receivable((u8 *)p) == 0) {
                 break;
             }
-            if (check_value_equals__13TUnk_804B6C24Fl(p, lbl_805D3530) == 0) {
+            if (check_value_equals__7TObjectFPCc(p, lbl_805D3530) == 0) {
                 break;
             }
             {

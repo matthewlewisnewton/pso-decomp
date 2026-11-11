@@ -307,7 +307,7 @@ void TBoss3VoloptHiraisin::run_task() {
         if (mode != 5) {
             m_300 -= 30.0f;
         }
-        copy_position();
+        copy_body_to_center();
         submit_cursor_candidate(this, -1);
         minimap_render_dot(&position, -0x5DB4, 1, 0);
         volopt_hiraisin_spin_node->rotation_y += 0x4000;
@@ -347,7 +347,7 @@ TBoss3VoloptHiraisin::~TBoss3VoloptHiraisin() {
 void TBoss3VoloptHiraisin::init_params() {
     VecCopy((Vec *)&m_2fc, &position);
     m_300 -= 30.0f;
-    copy_position();
+    copy_body_to_center();
     motion_list = volopt_hiraisin_resources->motions;
     action_table = volopt_hiraisin_motions;
     set_action_table((TObjMotionAction *)((s32)action_table));
@@ -362,7 +362,7 @@ void TBoss3VoloptHiraisin::init_params() {
     tp = tpmax;
     referenceHp = hp;
     set_param(0x2E);
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    ((TObjEnemy *)this)->register_by_id();
     load_params_from_table(0x10);
     sub_800C7860();
     add_flags_2e4(4);
@@ -389,7 +389,7 @@ TBoss3VoloptHiraisin::TBoss3VoloptHiraisin(TObject *parent, void *set_data) : TO
     init_params();
 }
 
-void TBoss3VoloptHiraisin::copy_position() {
+void TObjChara::copy_body_to_center() {
     VecCopy(&center, (Vec *)&m_2fc);
 }
 

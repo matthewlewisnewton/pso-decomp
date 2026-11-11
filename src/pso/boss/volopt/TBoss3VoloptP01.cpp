@@ -168,7 +168,7 @@ void TBoss3VoloptP01::init_params() {
     referenceHp = hp;
     set_param(0x2E);
     update_prev_position();
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    ((TObjEnemy *)this)->register_by_id();
     load_model(17);
     start_rise();
     ((TBoss3VoloptP01Collision *)bodies)->flags &= ~1;
@@ -241,7 +241,7 @@ void TBoss3VoloptP01::run_task() {
         y = m_300;
         m_300 = y + (18.0f + y_offset);
         ((TBoss3VoloptP01Collision *)bodies)->height = 18.0f + y_offset;
-        ((TBoss3VoloptHiraisin *)this)->copy_position();
+        ((TObjChara *)this)->copy_body_to_center();
         angle = pulse_angle;
         pulse_angle = angle + 0x400;
         clear_all_status_effects();

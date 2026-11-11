@@ -79,7 +79,7 @@ int bswap_header__6TLobbyFv(void*);
 int clear_player_status_flag__14TObjCollidableFlUl(void*, int, int);
 void queue_destruction__7TObjectFv(void *arg0);
 void *find_entity_by_id(u16 id);
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
+s32 check_value_equals__7TObjectFPCc(void *, s32);
 extern SetEntry_80157454 *quest_object_entries;
 
 void TOAttackableCol__sub_80157310(void * _w0) {  }
@@ -134,7 +134,7 @@ void handle_6x91_update_attackable_col_state(Msg_801575AC *msg) {
         if (msg->room != 0xFFFF && msg->room >= 0x4000) {
             col = (TOAttackableCol *)find_entity_by_id(msg->room);
             if (col != NULL) {
-                if (check_value_equals__13TUnk_804B6C24Fl(col, (s32)TOAttackableCol__name) != 0) {
+                if (check_value_equals__7TObjectFPCc(col, (s32)TOAttackableCol__name) != 0) {
                     SetEntry_80157454 saved;
                     switch (msg->state) {
                     case 0:

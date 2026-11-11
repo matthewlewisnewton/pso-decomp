@@ -922,7 +922,7 @@ s32 TObjEneIllGill::is_target_in_attack_range() {
         if (id < 0x1000) {
             s32 i;
             pl = this->target;
-            if (((TLobby *)pl)->check_player_flag1() == 1 || (enable_v2_features == 1 && ((TObjCollidable *)pl)->obj_testFlags30(0x20) != 0)) {
+            if (((TObjPlayer *)pl)->check_player_flag1() == 1 || (enable_v2_features == 1 && ((TObjCollidable *)pl)->obj_testFlags30(0x20) != 0)) {
                 this->m_318 = (u32)ill_gill_combat_parameter_variants[0];
                 if (dist <= (rad + ((AttackParams *)(this->m_318))->get_attack_range()) * (rad + ((AttackParams *)(this->m_318))->get_attack_range()) &&
                     ang <= ((AttackParams *)(this->m_318))->get_attack_angle()) {
@@ -1390,7 +1390,7 @@ void TObjEneIllGill::run_task() {
         o->target = NULL;
     }
     o->update_prev_position();
-    ((TBoss3VoloptHiraisin *)o)->copy_position();
+    ((TObjChara *)o)->copy_body_to_center();
     submit_cursor_candidate(o, -1);
     o->m_2b4 += TObjEneIllGill__data_805E02CC;
 }
@@ -1428,7 +1428,7 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
     this->add_flags_2e4(8);
     init_collision_body_parts(self, &illGillCollisionBody, 1);
     this->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     register_object_by_id();
     movementParameters = &illGillMovement;
     attackType = 0;

@@ -779,7 +779,7 @@ void TUnk_80493450::run_task() {
     }
   }
   ((TObjEnemy *)arg0)->update_prev_position();
-  ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+  ((TObjChara *)arg0)->copy_body_to_center();
   submit_cursor_candidate((void *) arg0, -1);
   this->m_2b4 += BEAST_FRAME_INCREMENT;
 }

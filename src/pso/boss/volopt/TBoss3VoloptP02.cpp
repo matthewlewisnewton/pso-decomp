@@ -270,7 +270,7 @@ void TBoss3VoloptP02::init_params() {
     referenceHp = hp;
     set_param(0x2E);
     update_prev_position();
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    ((TObjEnemy *)this)->register_by_id();
     load_params_from_table(0x13);
     for (i = 0; i < 4; i++) {
         arc_lines[i] = NULL;
@@ -432,7 +432,7 @@ void TBoss3VoloptP02::run_task() {
             }
             run_state();
             update_prev_position();
-            ((TBoss3VoloptHiraisin *)this)->copy_position();
+            ((TObjChara *)this)->copy_body_to_center();
             submit_cursor_candidate(this, -1);
             minimap_render_dot(&position, -0x5DB4, 1, 0);
             fade.update();
