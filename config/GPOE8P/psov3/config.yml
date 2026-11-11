@@ -2801,6 +2801,7 @@ force_active:
   - __dt__20TPlayerParticleOwnerFv
   - __dt__20TPlayerReadyCallbackFv
   - __dt__20TQuadSpriteSclColRotFv
+  - __dt__20TWindowActionPaletteFv
   - __dt__20TWindowChoiceSettingFv
   - __dt__20TWindowMessageScrollFv
   - __dt__20TWindowSubQuestBoardFv
@@ -3458,6 +3459,7 @@ force_active:
   - __vt__20TPlayerLevelFeedback
   - __vt__20TPlayerParticleOwner
   - __vt__20TQuadSpriteSclColRot
+  - __vt__20TWindowActionPalette
   - __vt__20TWindowChoiceSetting
   - __vt__20TWindowMessageScroll
   - __vt__20TWindowSubStatusDisp
@@ -3589,6 +3591,7 @@ force_active:
   - action__18TObjEneMe3SinowZoaFv
   - action__19TObjEneEpsilonGuardFPvi
   - action_destroy__18TObjEneEpsilonBodyFl
+  - action_palette_icon_uv_tables
   - activate_effect__8TItemMagFl
   - activate_immediately__13TObjEneMe1GeeFv
   - activate_mirage__23TObjEneMe3ShinowaMirageFl
@@ -6820,6 +6823,7 @@ force_active:
   - get_orbit_speed__16TBoss3VoloptCoreFl
   - get_pad_rumble_client__Fl
   - get_pad_rumble_effect_slots__Fv
+  - get_palette_item_amount
   - get_param__6TLobbyFv
   - get_param__8TFogCtrlFv
   - get_parameters__13TObjEneMorfosFv
@@ -8241,6 +8245,11 @@ force_active:
   - lbl_804C8A44
   - lbl_804C9C9C
   - lbl_804CB838
+  - lbl_804CDD40
+  - lbl_804CDDC8
+  - lbl_804CDDF8
+  - lbl_804CDE10
+  - lbl_804CDE50
   - lbl_804CE2B8
   - lbl_804CE820
   - lbl_804CE918
@@ -14795,6 +14804,7 @@ force_active:
   - render__20TObjEneDarkGunCenterFv
   - render__20TObjLiveMonitorSmallFv
   - render__20TQuadSpriteSclColRotFv
+  - render__20TWindowActionPaletteFv
   - render__20TWindowChoiceSettingFv
   - render__20TWindowSubQuestBoardFv
   - render__20TWindowSubStatusDispFv
@@ -15548,6 +15558,7 @@ force_active:
   - run_task__20TObjEneDarkGunCenterFv
   - run_task__20TObjLiveMonitorSmallFv
   - run_task__20TPlayerLevelFeedbackFv
+  - run_task__20TWindowActionPaletteFv
   - run_task__20TWindowChoiceSettingFv
   - run_task__20TWindowMessageScrollFv
   - run_task__20TWindowSubQuestBoardFv
@@ -17273,6 +17284,7 @@ force_active:
   - turn_toward_target__14TObjEneGibblesFv
   - turn_toward_target__14TObjEnePanarmsFl
   - tv_render_mode_obj
+  - twindow_action_palette_layout
   - udp_socket_slots
   - ultimate_area_gsl_filename_table
   - unicode_to_UTF8
@@ -17930,7 +17942,7 @@ force_active:
   - update_slot4__16TAdChrSelASlotGCFv
   - update_slot5__16TAdChrSelASlotGCFv
   - update_slot_display_flags__26TWindowSubQuestBoardSelectFv
-  - update_slot_icon__20TWindowActionPaletteFPviii
+  - update_slot_icon__20TWindowActionPaletteFPviiUs
   - update_slot_sprites__20TWindowActionPaletteFiiUs
   - update_slot_state__16TAdChrSelBSlotGCFPv
   - update_small_font2__10TObjPlayerFPv

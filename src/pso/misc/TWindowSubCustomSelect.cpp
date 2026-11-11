@@ -3,7 +3,7 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
-#include "pso/misc/TWindowHelpItem_80243408.h"
+#include "pso/misc/TWindowActionPalette.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TWindowSubCustomSelect.h"
