@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/enemy/BattleParameters.h"
@@ -196,7 +197,6 @@ union TypedVector_802BAA74 {
 };
 
 extern "C" {
-s32 get_bml_model(s32, s32);
 s32 submit_cursor_candidate(void *, int);
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
 
@@ -1148,8 +1148,8 @@ void TBoss6Type2::cache_fish_params() {
     ((s32 (*)(void))reset_fish_fields__11TBoss6Type2Fv)();
     *(s32 *)((s8 *)this + 0x560) = TObjFish__sub_8001EDB0(this->m_3fc, 0xB);
     *(s32 *)((s8 *)this + 0x564) = TObjFish__sub_8001EDB0(this->m_3fc, 0xA);
-    *(s32 *)((s8 *)this + 0x568) = get_bml_model(this->m_3fc, 0xB);
-    *(s32 *)((s8 *)this + 0x56C) = get_bml_model(this->m_3fc, 0xA);
+    *(s32 *)((s8 *)this + 0x568) = (s32)get_bml_model((BmlResource *)this->m_3fc, 0xB);
+    *(s32 *)((s8 *)this + 0x56C) = (s32)get_bml_model((BmlResource *)this->m_3fc, 0xA);
 }
 
 void TBoss6Type2__sub_802BA598(TBoss6Type2 *self, s32 elapsed, s32 duration) {
@@ -2565,7 +2565,7 @@ void TBoss6Type2::run_task() {
     ((TBoss6Type2 *)arg0)->sub_802BB498();
     ((TBoss6Type2 *)arg0)->sub_802BC124();
     ((Boss6ScrollStrips *)(arg0 + 0x768))->scroll_strips_uv(8, 0);
-    TObjPlayer__sub_8023DEE0((s16 *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)(find_model_node(get_bml_model(this->m_3fc, 1), 1)) + 4)) + 4)), 8, 0, 0);
+    TObjPlayer__sub_8023DEE0((s16 *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)(find_model_node((s32)get_bml_model((BmlResource *)this->m_3fc, 1), 1)) + 4)) + 4)), 8, 0, 0);
     ((TBoss6Type2 *)arg0)->sub_802BB554();
     copy_vec_array();
     if ((s32) this->m_418 != 0) {
@@ -3245,7 +3245,7 @@ s32 TBoss6Type2__ct(s32 arg0_, s32 parent, s32 arg2_) {
         Ent_802BE0D4 *e = &((Ents_802BE0D4 *)arg0)->ents[k];
         id = lbl_8047128C[k];
         e->a = TObjFish__sub_8001EDB0(*(s32 *)((s8 *)arg0 + 0x3FC), id);
-        e->b = get_bml_model(*(s32 *)((s8 *)arg0 + 0x3FC), id);
+        e->b = (s32)get_bml_model((BmlResource *)*(s32 *)((s8 *)arg0 + 0x3FC), id);
     }
     }
     ((TBoss6Type2 *)arg0)->init_motion_entries();

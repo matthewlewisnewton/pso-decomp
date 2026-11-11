@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/enemy/BattleParameters.h"
@@ -124,7 +125,7 @@ struct Self_8005AE60 {
     u8 pad340[0x378 - 0x340];
     u8 f378[0x38C - 0x378];
     s32 f38C;
-    s32 f390;
+    BmlResource *f390;
     s32 f394;
     u8 pad398[0x3A0 - 0x398];
     s32 f3A0;
@@ -386,9 +387,8 @@ u16 get_entity_id(void *);
 s32 is_split_screen();
 void queue_destruction__7TObjectFv(void *);
 
-s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
+s32 get_bml_motion(BmlResource *, s32);
+s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
 void fn_80044330(void *p);
 void fn_8004AA04(void *);
 void TObjPlayer__sub_80052390(f32 x);
@@ -909,7 +909,7 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
         self->a438[i] = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)((((void **)boss4_type3_effect_desc_ptr_table)[i])), (Vec *)(&self->a444[i]));
     }
     set_motion_packed_rotation();
-    model = get_bml_model(self->f390, ((s32 *)lbl_80486FB0)[0]);
+    model = (s32)get_bml_model(self->f390, ((s32 *)lbl_80486FB0)[0]);
     p = (s32)new SampledMotionPoints(2, 3.0f, 9.0f, 0.6f);
     *(s32 *)((u8 *)self + 0x51C) = p;
     ((SampledMotionPoints *)(*(s32 *)((u8 *)self + 0x51C)))->sample_two_nodes((NJS_OBJECT *)model, (NJS_MOTION *)get_bml_motion(self->f390, ((s32 *)&TBoss4Type3__anim_state_table)[0x44 / 4]), 0x16, 0x17);

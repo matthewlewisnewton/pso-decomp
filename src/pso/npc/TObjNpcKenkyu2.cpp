@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/npc/TObjNpcHosa2.h"
@@ -27,7 +28,6 @@ struct RecoveredGlobal_802FEB80___vt__14TObjNpcKenkyu2 {
 extern "C" {
 extern u32 TObjNpcKenkyu2__shared_model_resource;
 s32 TObjFish__sub_8001EDB0(int, int);
-s32 get_bml_model(int, int);
 extern s32 __vt__14TObjNpcKenkyu2[];
 extern const char *TObjNpcKenkyu2__name;
 void *__ct__11TObjControlFP7TObject(void *, void *);
@@ -69,7 +69,7 @@ u8 *TObjNpcKenkyu2__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcKenkyu2__name;
     ((TObjNpcKenkyu2 *)(player))->apply_set_data((void *)arg2);
     ((TObjChara *)player)->initialize_position_copies();
-    *(s32 *)((s8 *)player + 0x34) = get_bml_model((int) ((*(s32 *)&TObjNpcKenkyu2__shared_model_resource)), 0);
+    *(s32 *)((s8 *)player + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&TObjNpcKenkyu2__shared_model_resource)), 0);
     ((TObjNpcKenkyu2 *)player)->texlist = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TObjNpcKenkyu2__shared_model_resource)), 0);
     ((TObjNpcBase *)player)->setup_common();
     return player;

@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/item/TItemLoad.h"
@@ -42,7 +43,6 @@ extern s32 lbl_8049F43C[];
 Load_8011006C *init_buffer__9TItemLoadFPviii(Load_8011006C *self, s32 arg1, s32 arg2, s32 count);
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 
 void *TUnk_8049F42C::sub_80110010(s16 arg1) {
     if (this != NULL) {
@@ -90,13 +90,13 @@ void TItemLoad::get_data_entry(s32 arg0, s32 *arg1) {
 
 void TItemLoad::lookup_item_data(s32 arg0, s32 *bml_model) {
     if (bml_model != NULL) {
-        *bml_model = get_bml_model(TItemLoad__bml_resource, arg0);
+        *bml_model = (s32)get_bml_model((BmlResource *)TItemLoad__bml_resource, arg0);
     }
 }
 
 void TItemLoad::get_item_params(s32 *bml_model, s32 *arg1, s32 *bml_motion) {
     if ((bml_model != NULL) && (arg1 != NULL) && (bml_motion != NULL)) {
-        *bml_model = get_bml_model(TItemLoad__bml_resource, 1);
+        *bml_model = (s32)get_bml_model((BmlResource *)TItemLoad__bml_resource, 1);
         *arg1 = TObjFish__sub_8001EDB0(TItemLoad__bml_resource, 0);
         *bml_motion = get_bml_motion(TItemLoad__bml_resource, 0);
     }
@@ -104,7 +104,7 @@ void TItemLoad::get_item_params(s32 *bml_model, s32 *arg1, s32 *bml_motion) {
 
 void TItemLoad::get_model_ids(u8 arg0, s32 *bml_model, s32 *arg2) {
     if ((bml_model != NULL) && (arg2 != NULL)) {
-        *bml_model = get_bml_model(TItemLoad__bml_resource, arg0 + 2);
+        *bml_model = (s32)get_bml_model((BmlResource *)TItemLoad__bml_resource, arg0 + 2);
         *arg2 = TObjFish__sub_8001EDB0(TItemLoad__bml_resource, 0);
     }
 }

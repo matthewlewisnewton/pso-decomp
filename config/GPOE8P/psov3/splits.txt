@@ -226,6 +226,7 @@ pso/boss/TObjBoss1Floor.cpp:
 pso/boss/TBoss8Dragon_8002CC48.cpp:
 	.text       start:0x8002CC48 end:0x8002DF7C
 	.rodata     start:0x804355D0 end:0x804355D8
+	.data       start:0x80482048 end:0x80482078
 	.sdata2     start:0x805D8178 end:0x805D8200
 
 pso/boss/TObjBoss1Rock.cpp:
@@ -9377,11 +9378,11 @@ pso/unk/text_8028EC70.cpp:
 
 pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp:
 	.text       start:0x8028EF14 end:0x80290B3C
-	.rodata     start:0x804512A0 end:0x80451CD8
+	.rodata     start:0x804512A0 end:0x80451CE0
 	.data       start:0x804D3A08 end:0x804D40A8
 	.bss        start:0x8051C0E8 end:0x80540954
 	.sdata      start:0x805D3B70 end:0x805D3BC0
-	.sbss       start:0x805D655C end:0x805D6560
+	.sbss       start:0x805D6558 end:0x805D6560
 
 pso/misc/CharacterAppearanceTables.cpp:
 	.rodata     start:0x80451CE0 end:0x80464B48
@@ -12569,6 +12570,7 @@ os/OSMessage.c:
 
 os/OSMemory.c:
 	.text       start:0x8037340C end:0x803736EC
+	.data       start:0x804F4458 end:0x804F4468
 
 os/OSMutex.c:
 	.text       start:0x803736EC end:0x80373938
@@ -13024,6 +13026,9 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/string.c:
 	.text       start:0x8039D8E8 end:0x8039DDB4
 	.rodata     start:0x8047BBE8 end:0x8047BF78
 	.sdata      start:0x805D45F8 end:0x805D4600
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c:
+	.sdata      start:0x805D4600 end:0x805D4628
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c:
 	.text       start:0x8039DDB4 end:0x8039F6B0
@@ -13561,6 +13566,7 @@ pso/audio/GcrnaStream.cpp:
 	.rodata     start:0x8047E220 end:0x8047E3C8
 	.data       start:0x804FA088 end:0x804FA4EC
 	.bss        start:0x8058C0E0 end:0x8058C960
+	.sbss       start:0x805D7680 end:0x805D76A0
 	.sdata2     start:0x805E0DC8 end:0x805E0DCC
 
 original_padding_804FA4EC:
@@ -13681,7 +13687,7 @@ pso/system/GinjaModelQueue.cpp:
 pso/system/GinjaMaterial.cpp:
 	.text       start:0x803DB470 end:0x803DC82C
 	.data       start:0x804FC540 end:0x804FC668
-	.sdata2     start:0x805E0F6C end:0x805E0F80
+	.sdata2     start:0x805E0F68 end:0x805E0F7C
 
 pso/enemy/TObjEneMe3Stelth_803DC82C.cpp:
 	.text       start:0x803DC82C end:0x803DC834

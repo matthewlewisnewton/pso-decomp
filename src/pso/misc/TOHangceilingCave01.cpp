@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/player/demo_mode.h"
 #include "pso/misc/ParticleFactory.h"
@@ -799,7 +800,6 @@ void TOHangceilingCave01::destroy_instance() {
 
 struct Buf_80168AA8 { s32 a; s32 b; s32 c; };
 s32 TObjFish__sub_8001EDB0(void *, int);
-s32 get_bml_model(void *, int);
 }
 extern u8 fe_obj_turiten_moto_resource_descriptor[];
 extern u8 turiten_singo_resource_descriptor[];
@@ -835,7 +835,7 @@ void load_turiten_singo_resources(void) {
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->a = (s32)load_gvm_texture_file((s32)lbl_80441858);
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->b = (s32)load_gvm_texture_file((s32)lbl_80441874);
         (*(Buf_80168AA8 **)&turiten_singo_texture_lists)->c = TObjFish__sub_8001EDB0((*(void **)&TOHangceilingCave01__model_archive), 1);
-        (*(s32 *)&TOHangceilingCave01__model_root) = get_bml_model((*(void **)&TOHangceilingCave01__model_archive), 2);
+        (*(s32 *)&TOHangceilingCave01__model_root) = (s32)get_bml_model((BmlResource *)(*(void **)&TOHangceilingCave01__model_archive), 2);
         turiten_singo_key_model_index = 1;
         hanging_ceiling_motion_index = 0;
         break;
@@ -882,7 +882,7 @@ u8 *TOHangceilingCave01KeyQuick::init_base(s32 arg1, s32 arg2) {
     __ct__9TObjCharaFP7TObject(this);
     *(s32 **)((s8 *)((u8 *)this) + 0x18) = &(*(RecoveredGlobal_80168C6C_lbl_804B2578 *)&lbl_804B2578).value;
     this->apply_object_set_data((void *)arg2);
-    *(s32 *)&this->model = get_bml_model((void *)TOHangceilingCave01__model_archive, turiten_singo_key_model_index);
+    *(s32 *)&this->model = (s32)get_bml_model((BmlResource *)TOHangceilingCave01__model_archive, turiten_singo_key_model_index);
     this->current_motion = (NJS_MOTION *)get_bml_motion(TOHangceilingCave01__model_archive, hanging_ceiling_motion_index);
     init_collision_body_parts(this, &lbl_804B2174.value, 1);
     this->refresh_collision_body_centers();

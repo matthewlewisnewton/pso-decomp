@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlResourceClass.h"
@@ -141,7 +142,6 @@ void TPlyPhotonChair__sub_8035B56C(void* p, f32 v);
 extern u32 TPlyPhotonChair__shared_model_resource;
 s32 get_bml_motion(int, int);
 s32 TObjFish__sub_8001EDB0(int, int);
-s32 get_bml_model(int, int);
 s32 get_actor_section_id__15TPlyPhotonChairFv(int);
 s32 get_rader_map__11TMainCursorFv(void *, void *);
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
@@ -276,12 +276,12 @@ u8 *TPlyPhotonChair__ct(u8 *ply_photon_chair, s32 arg1, s32 parent) {
     }
     get_rader_map__11TMainCursorFv(ply_photon_chair + 0xD0, (void *) ((u8 *)&TPlyPhotonChair__section_id_color_table.value + (get_actor_section_id__15TPlyPhotonChairFv(player) * 0x10)));
     ((TPlyPhotonChair *)ply_photon_chair)->texlist = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TPlyPhotonChair__shared_model_resource)), 1);
-    ((TPlyPhotonChair *)(ply_photon_chair + 0x98))->set_type((s32)((int) (get_bml_model((int) ((*(s32 *)&TPlyPhotonChair__shared_model_resource)), 1))));
+    ((TPlyPhotonChair *)(ply_photon_chair + 0x98))->set_type((s32)((int) ((s32)get_bml_model((BmlResource *)((*(s32 *)&TPlyPhotonChair__shared_model_resource)), 1))));
     ((TPlyPhotonChair *)(ply_photon_chair + 0x98))->set_field_8((s32)((int) (get_bml_motion((int) ((*(s32 *)&TPlyPhotonChair__shared_model_resource)), 1))));
     ((TPlyPhotonChair *)(ply_photon_chair + 0x98))->sync_field10_from_child();
     TPlyPhotonChair__sub_8035B56C(ply_photon_chair + 0x98, 1.0f);
     ((TPlyPhotonChair *)(ply_photon_chair + 0x98))->set_state_ready();
-    ((TPlyPhotonChair *)(ply_photon_chair + 0xB4))->set_type((s32)((int) (get_bml_model((int) ((*(s32 *)&TPlyPhotonChair__shared_model_resource)), 0))));
+    ((TPlyPhotonChair *)(ply_photon_chair + 0xB4))->set_type((s32)((int) ((s32)get_bml_model((BmlResource *)((*(s32 *)&TPlyPhotonChair__shared_model_resource)), 0))));
     ((TPlyPhotonChair *)(ply_photon_chair + 0xB4))->set_field_8((s32)((int) (get_bml_motion((int) ((*(s32 *)&TPlyPhotonChair__shared_model_resource)), 0))));
     ((TPlyPhotonChair *)(ply_photon_chair + 0xB4))->sync_field10_from_child();
     TPlyPhotonChair__sub_8035B56C(ply_photon_chair + 0xB4, 1.0f);

@@ -72,9 +72,10 @@ No artificial loader unit is introduced. The loader is the only code reader of
 the resource table, and the constructor/destructor are the only vtable readers;
 these references establish no independent original source-file split. Existing
 `-pool off`, floating-point and inline settings remain. Ports can remove emission
-steering while retaining native class lifetime. Some shared model/texture getters
-and heap helpers still use 32-bit integer addresses; those bounded shared API
-limitations are unchanged and still need pointer-sized interfaces for a port.
+steering while retaining native class lifetime. The shared model getter now returns `NJS_OBJECT *`. The texture-list getter
+and heap helpers still use 32-bit integer addresses, and `BmlModelEntry::model`
+remains integer-backed; those shared storage/API boundaries still need
+pointer-sized interfaces for a port.
 
 ## Validation
 

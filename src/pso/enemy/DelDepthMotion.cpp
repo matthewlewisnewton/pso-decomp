@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/quest/TQuestListVM_8007EAF8.h"
@@ -17,7 +18,6 @@ struct DelDepthPairBinding { DelDepthModelMotion first, second; f32 speed; };
 extern "C" {
 s32 TObjFish__sub_8001EDB0(s32, int);
 s32 find_nearest_hittable_enemy__10TObjPlayerFiPvf(void *, void *, f32);
-s32 get_bml_model(s32, s32);
 u8 *get_bml_motion(s32, s32);
 DelDepthMotionBinding lbl_804E8760[] = {{4, 0.3f}, {4, 0.3f}, {2, 0.6f}, {3, 0.4f}};
 DelDepthPairBinding lbl_804E8780[] = {{{1, 1}, {0, 8}, 0.6f}, {{1, 0}, {0, 7}, 0.6f}};
@@ -133,7 +133,7 @@ void DelDepthMotion::set_motion(s32 arg1) {
     } else if (id < 0xA) {
         s32 data = (s32)TObjEneDelDepth::get_data();
         DelDepthMotionBinding *e = &lbl_804E8760[motion] - 6;
-        model = (void *)get_bml_model(data, 1);
+        model = (void *)get_bml_model((BmlResource *)data, 1);
         texture = TObjFish__sub_8001EDB0(data, 1);
         animation = (AnimationMotion *)get_bml_motion(data, e->motion);
         endFrame = animation->frameCount;
@@ -143,11 +143,11 @@ void DelDepthMotion::set_motion(s32 arg1) {
         s32 data = (s32)TObjEneDelDepth::get_data();
         DelDepthPairBinding *e = &lbl_804E8780[motion] - 10;
         DelDepthModelMotion *q;
-        model = (void *)get_bml_model(data, e->first.model);
+        model = (void *)get_bml_model((BmlResource *)data, e->first.model);
         texture = TObjFish__sub_8001EDB0(data, e->first.model);
         animation = (AnimationMotion *)get_bml_motion(data, e->first.motion);
         q = &e->second;
-        secondModel = (void *)get_bml_model(data, q->model);
+        secondModel = (void *)get_bml_model((BmlResource *)data, q->model);
         secondTexture = TObjFish__sub_8001EDB0(data, q->model);
         secondAnimation = (AnimationMotion *)get_bml_motion(data, q->motion);
         endFrame = secondAnimation->frameCount;

@@ -451,6 +451,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
+    # The balloon float pool begins at 0x805DCD0C, which is four-byte aligned.
+    "pso/misc/TWindowFukidasi.cpp": {"cw_align": ".sdata2=4"},
     # GC/1.3.2 preserves the per-vertex coordinate loads and store order.
     "pso/ui/TAdDialingGC_80328B20.cpp": {"mw_version": "GC/1.3.2"},
     # The download graph's border pass keeps GC/1.3.2 load scheduling.
@@ -1152,6 +1154,8 @@ if args.target == "psov3":
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/string.c",
                             mw_version="GC/2.6", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c",
+                            mw_version="GC/1.3", cflags=cflags_native_recovered),
+                Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c",
                             mw_version="GC/1.3", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/uart_console_io.c",
                             mw_version="GC/2.6", cflags=cflags_native_recovered),

@@ -79,7 +79,7 @@ TOBoss4Bird::TOBoss4Bird(void *set_data) {
     s32 i;
     m_name = class_name;
     apply_object_set_data(set_data);
-    model = (void *)get_bml_model(model_resource, 0);
+    model = get_bml_model(model_resource, 0);
     model_radius = ((GinjaModelBounds *)((NJS_OBJECT *)model)->model)->radius;
     texlist = TObjFish__sub_8001EDB0(model_resource, 0);
     motion = get_bml_motion(model_resource, 0);
@@ -189,7 +189,7 @@ void TOBoss4Bird::run_task() {
 TOBoss4Tower::TOBoss4Tower(void *set_data) {
     m_name = class_name;
     apply_object_set_data(set_data);
-    model = (void *)get_bml_model(model_resource, 5);
+    model = get_bml_model(model_resource, 5);
     model_radius = 60.0f;
     texlist = TObjFish__sub_8001EDB0(model_resource, 5);
 }
@@ -219,7 +219,7 @@ TOBoss4Rock::TOBoss4Rock(void *set_data) {
 
     m_name = class_name;
     apply_object_set_data(set_data);
-    this->model = (void *)get_bml_model(model_resource, 1);
+    this->model = get_bml_model(model_resource, 1);
     model_radius = ((GinjaModelBounds *)((NJS_OBJECT *)this->model)->model)->radius;
     texlist = TObjFish__sub_8001EDB0(model_resource, 1);
     spread = 50.0f + scale.x;
@@ -232,7 +232,7 @@ TOBoss4Rock::TOBoss4Rock(void *set_data) {
     } else if (count > 8) {
         count = 8;
     }
-    models = (s32 *)::operator new[](count * 4);
+    models = (NJS_OBJECT **)::operator new[](count * sizeof(NJS_OBJECT *));
     texlists = (s32 *)::operator new[](count * 4);
     positions = (Vec *)::operator new[](count * 0xC);
     speeds = (f32 *)::operator new[](count * 4);
@@ -293,7 +293,7 @@ void TOBoss4Rock::render() {
             rotate_matrix_z(NULL, rotations[i].z);
             rotate_matrix_x(NULL, rotations[i].x);
             rotate_matrix_y(NULL, rotations[i].y);
-            draw_ginja_object((void *)models[i]);
+            draw_ginja_object(models[i]);
             pop_matrix();
         }
         pop_matrix();

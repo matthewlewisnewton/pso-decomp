@@ -92,7 +92,7 @@ void TBoss5GryphonTornado::run_task() {
         if (o->p54 == NULL) {
             o->p54 = spawn_continuous_particle_effect_with_flags(&o->pos, gryphon_tornado_particle_id_table[1], 0x40);
             if (o->p54 != NULL) {
-                attach_particle_model(o->p54, get_bml_model(boss5_gryphon_bml_resource, 0), (s32)boss5_gryphon_texture_list, (s32)get_bml_motion(boss5_gryphon_bml_resource, 0), 0, lbl_805DFFAC);
+                attach_particle_model(o->p54, (s32)get_bml_model(boss5_gryphon_bml_resource, 0), (s32)boss5_gryphon_texture_list, (s32)get_bml_motion(boss5_gryphon_bml_resource, 0), 0, lbl_805DFFAC);
             }
         }
         if (o->p58 == NULL) {

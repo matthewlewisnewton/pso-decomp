@@ -7,9 +7,10 @@
 class ModelNodePositionCapture;
 class TParticleCtrl;
 struct AnimationMotion;
+struct NJS_OBJECT;
 
 struct TObjDFDemo4Part {
-    s32 model;
+    NJS_OBJECT *model;
     s32 texlist;
     AnimationMotion *motion;
 };

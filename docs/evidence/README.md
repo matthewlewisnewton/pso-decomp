@@ -7,6 +7,7 @@ limitations before applying its conclusions to current code.
 See the [documentation index](../README.md) for current contributor and operator
 guides.
 
+- [Audio header parsing and ADX block transfer](audio-formats-and-adx-transfer.md)
 - [Action-palette unit](action-palette-unit.md)
 - [Box-drop directive](box-drop-directive-evidence.md)
 - [Item-drop packet and payload contracts](item-drop-packet-contract.md)
@@ -26,12 +27,15 @@ guides.
 - [DD scaled random receiver](dd-scaled-random-evidence.md)
 - [Dead-spot effect wrapper](dead-spot-e4-evidence.md)
 - [Download graph recovery](download-graph-recovery.md)
+- [Dragon ground grid unit](dragon-ground-grid-recovery.md)
 - [Scale-15 dead-spot position](dead-spot-scale15-evidence.md)
 - [Enemy experience and drop wrappers](enemy-death-award-evidence.md)
 - [Equipment requirement match and link limit](equip-requirements-match.md)
 - [Empty enemy-call interfaces](enemy-empty-hooks-evidence.md)
 - [Floor-area sound wrappers](floor-area-sound-evidence.md)
+- [Speech-balloon name plate and complete unit](fukidasi-name-plate-recovery.md)
 - [Gee native recovery checkpoint](gee-native-recovery-evidence.md)
+- [Ginja material dispatcher and complete unit](ginja-material-recovery.md)
 - [Indirect texture scroll offset and copy propagation](indirect-scroll-offset-propagation.md)
 - [Indirect controller native observations (from #267)](indirect-controller-dispatcher.md)
 - [Keyboard constructor client argument](keyboard-constructor-abi-evidence.md)
@@ -48,6 +52,7 @@ guides.
 - [Negative fade phase](negative-fade-phase-evidence.md)
 - [Network-info request frame and switch](network-info-request-frame.md)
 - [Native Nest continuation](nest-native-recovery-evidence.md)
+- [Orbit particle unit recovery](orbit-particle-recovery.md)
 - [One-shot positional sound](one-shot-sound-evidence.md)
 - [Paired-single SDK assembly and MWCC (single no-asm exception)](paired-single-sdk-asm.md)
 - [`pack_movie_frame` unit `-opt` switches](pack-movie-frame-unit-flags.md)
