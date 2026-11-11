@@ -428,6 +428,110 @@ exclusion proof. The restore remains consistent with the preceding saved
 frame, but this analysis does not authenticate ownership or a new source
 handoff and authorizes no symbol, provider or accounting change.
 
+## Payload provenance and intervening writes
+
+The next investigation follows the memory word loaded at `0x8042E9EC`,
+without substituting a guessed value into the indirect-target analysis.
+The pinned original DOL contains these four direct branch-and-link encodings:
+
+| Call site | Target |
+|---|---|
+| `0x8007F8BC` | `launch_switcher_dol` at `0x8007F970` |
+| `0x8007FA08` | `fn_8042EBA4` at `0x8042EBA4` |
+| `0x8007FA7C` | `launch_switcher_dol` at `0x8007F970` |
+| `0x8042EBF8` | `LaunchDol` at `0x8042E8C4` |
+
+Scanning the original text encodings finds no other direct branches to these
+three entry addresses; aligned initialized-data words contain none of them.
+This does not exclude indirect callers, computed addresses, interior entries
+or unreachable encodings. The report marks the two forwarding functions,
+the read wrapper, `TGStream::read_whole_file`, `read_sectors_sync` and
+`find_gsl_entry` as exact and source-linked. Source names and report boundaries
+alone do not establish an original interface or complete call graph.
+
+The exact [caller](../../src/pso/unk/text_8007F8D0.cpp) queries the size of
+`lbl_80438D20`, reads it into `resource_decompress_buffer`, then forwards that
+buffer and the queried size. Reading the original literal authenticates this
+filename as **`switcher.dol`**. Its argument string is a separate launch
+argument. The [forwarding helper](../../src/pso/unk/text_8042EAD4.cpp) writes
+the buffer into context field `0x104`, the queried size into `0x100`, and
+`0x8000` into `payload_size`. Its copied path literal at `lbl_80480404` is
+**`iwanaga.dol`**, not the filename just read. Neither forwarding function
+checks a DOL header or the read result. The `SEGA` check elsewhere in the
+context setup concerns launch-record data, not validation of the image's
+entry word. No production declaration or behavior is changed by this audit.
+
+The authorized disc's `files/switcher.dol` was extracted privately without
+decompression. The same disc's `files/PsoV3.dol` equals the pinned game DOL.
+Only bounded metadata is recorded here:
+
+| Retail payload property | Observed value |
+|---|---|
+| File length | 204,480 bytes (`0x31EC0`) |
+| SHA-1 | `4b386d2c190b42b5bc3a0c42ec4d3bff08f6d048` |
+| SHA-256 | `b8febb6f6f0bf6fdb181d4b4c0506510cc0ce74ff83faaff39dded8d42b0156f` |
+| Header entry word | `0x806C5040`, inside its own first text range |
+| Active text sections | 2; first destination `0x806C5000` |
+| Active data sections | 6 |
+| BSS | `[0x806F6920, 0x806FDAA4)` |
+
+All eight populated file extents are in bounds. Their destination ranges
+and the BSS range avoid the held restore `[0x8042E9FC, 0x8042EA10)`.
+The loader stops each section loop at its first zero file offset; this
+payload has no populated slot after that terminator. BSS overlaps some
+initialized-data ranges, so the clear-before-copy ordering still matters.
+The helper's fixed `0x8000` field produces a launch-record copy of `0x8120`
+bytes to `[0x80003100, 0x8000B220)`; it is not the DOL file length.
+These are expected writes from an intact header, not a runtime alias proof:
+the entry is read after the record copy, reset call, BSS clear and section
+moves, and the runtime source-buffer address remains unknown.
+
+Several concrete predicates prevent treating the retail entry as a constant:
+
+- [The resource path](../../src/pso/system/TGStream.cpp) consults the active
+  GSL table by name before the disc-file fallback. A matching archive entry
+  can select a different source and metadata size. This establishes a possible
+  path, not that a retail archive actually shadows `switcher.dol`.
+- `read_whole_file` rejects a nonpositive size but performs no DOL header,
+  entry, section or destination check. The caller ignores its return value.
+  Its sector waits run `TLobby::run_frame`, which runs tasks and renders nodes.
+- [Startup](../../src/pso/misc/TKeyBoardControl_8000F764.cpp) allocates the
+  shared `0x80000` buffer and passes the same pointer to
+  `TObjPlayer__sub_803E492C`. That
+  [setter](../../src/pso/unk/text_803E2D70.cpp) installs it as
+  `chunk_vertex_cache_buffer`. Depending on flags and model/cache state,
+  `draw_chunk_vertices_cached` can copy or generate vertices into that alias.
+  This is an intervening-write candidate, not evidence that this particular
+  launch executes a clobber or reaches the restore.
+- For this file, the read performs 99 full sectors followed by a 1,728-byte
+  remainder. The remainder-sector wait can run callbacks after the initial
+  header-bearing read; the final remainder copy does not refresh that header.
+  The caller blacks the display and waits for `GXDrawDone` after the read.
+
+The new read-only [payload audit](../../tools/audit_loader_payload_provenance.py)
+pins both input hashes, reproduces the file-header and direct-reference
+metadata, and emits no original bytes. Its range checks are analyst checks;
+they are not checks performed by the game. Seven original-free controls cover
+an entry in text, a watched-range entry, section-loop termination at a hole,
+range endpoints, malformed extents/wraps, address alignment, output preservation
+and direct versus indirect branches. Existing outputs and symlinks are rejected.
+The payload metadata and original call references were independently
+recomputed. Reproduce locally with private inputs and an ignored output:
+
+```sh
+python3 -m unittest tools.tests.test_loader_payload_provenance
+python3 tools/audit_loader_payload_provenance.py --dol PRIVATE/PsoV3.dol --payload PRIVATE/switcher.dol --output build/payload-provenance.json
+```
+
+The retail entry discriminates the straightforward intact-disc path: it
+targets the payload's own text, not the held restore. It neither authenticates
+the restore's ownership nor resolves all runtime handoffs. A useful next
+experiment must establish the selected GSL/disc source and the buffer/cache
+state across the two read waits, or observe an authorized runtime trace of
+those predicates. A retail file hash alone cannot discharge them. No memory
+fact is seeded into the tracker and all unresolved indirect entries remain
+unknown.
+
 ## Comparison record and reproduction limits
 
 The historical comparison procedure is preserved at immutable commit
