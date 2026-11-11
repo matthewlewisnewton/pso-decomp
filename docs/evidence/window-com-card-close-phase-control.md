@@ -151,3 +151,10 @@ table entry. All inspected source providers occur once with originals absent;
 the DOL hash remains the one above. Independent review confirms the bounded
 chain and the separate destructor-access caveat. This is documentation-only
 evidence, with no new native build or hold clearance.
+
+The subsequent [controller callback-order audit](window-controller-callback-order.md)
+traces the separate shutdown helper to its two original scene-table entries.
+Both pair shutdown with adjacent reverse-order root release, and both inspected
+scene teardown callers first delete full layers. That bounded evidence does
+not establish standalone shutdown, reentrant-callback safety or destructor-slot
+validity.
