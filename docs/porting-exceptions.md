@@ -83,6 +83,15 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
+`pso/boss/TBoss8Dragon_8002CC48.cpp` uses guarded `defer_codegen on/off`
+around its reversed first twelve definitions to preserve both native vtable
+offsets and scalar emission order. The initializer at `0x8002D5F8` uses scoped
+`opt_propagation off` with a named grid width so backend dead-load cleanup runs
+before instruction scheduling. A guarded `.sdata2` attribute preserves the named
+16.0 default scale's pool position. See [the unit evidence](evidence/dragon-ground-grid-recovery.md).
+Ports should drop these emission/optimizer controls and the section attribute;
+keep the ordinary C++ grid construction, UV calculations, and native vtables.
+
 The download graph unit uses a scoped `fp_contract on` for the filled edge in
 `fn_8007F27C`. Its section declarations and one four-byte string alignment
 preserve the graph's exported constants and format strings. See

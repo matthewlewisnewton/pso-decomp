@@ -313,6 +313,7 @@ pso/boss/TBoss8DragonDemo.cpp
 pso/boss/TBoss8DragonEffBreath.cpp
 pso/boss/TBoss8DragonEffBullet.cpp
 pso/boss/TBoss8DragonEffTail.cpp
+pso/boss/TBoss8Dragon_8002CC48.cpp
 pso/boss/TBoss8Dragon_8005D6F4.cpp
 pso/boss/TBoss8Dragon_8005D700.cpp
 pso/boss/TBoss8Dragon_8005D708.cpp
