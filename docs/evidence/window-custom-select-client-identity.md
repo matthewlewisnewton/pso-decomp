@@ -89,3 +89,11 @@ comparisons and the same eight original calls. Its folded inventory now has 4961
 original and 3632 compiled objects, with 512552 relocation records. The earlier
 counts describe the pinned 829 baseline. No identity, valid-session or scheduling
 hold is cleared by that unrelated interface/fold change.
+
+
+The subsequent [session/deferral controls](window-custom-select-session-deferral.md)
+identify the original setters for the ping-only word and its conditional replay
+path. Four reload routes establish full layer deletion before setup/drain; join
+UI cleanup and current-local add exclusions provide distinct controls. These
+narrow the earlier unknown deferral context without proving ordinary menu-phase
+coverage, valid self-exit delivery or a universal stored-slot lifetime guarantee.
