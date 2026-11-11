@@ -327,7 +327,6 @@ struct TObjPlayer : public TObjChara {
     static void*get_item_pmt_record(int type, int id);
     static void*get_pmt_record_by_type_id(int type, int id);
     static void*get_pmt_record_by_index(int i);
-    static bool is_hit_receivable_target(s32 arg0, u32 arg1);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
     void draw_trail_strip(void *arg1, s32 arg2);
     static s32 is_any_teammate_in_state();
@@ -1300,7 +1299,6 @@ struct TObjPlayer : public TObjChara {
     static void clear_render_context();
     u8 *construct_freeze_shell(u8 *arg1, u8 *arg2);
     static void create_tec_zonde(void *arg0, void *arg1, void *arg2, void *arg3);
-    TechniqueContactList *collect_technique_contacts(void *src);
     static void *create_child_object(void *arg0);
     static void destroy_instance();
     static void load_kamome_resources();
