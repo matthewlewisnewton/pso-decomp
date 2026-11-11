@@ -84,3 +84,70 @@ executable or coverage change is claimed, and no new native build is required
 for this read-only control. Independent review confirms the timing contrast
 and its conditional scope. The ComCard trailing-word and conversion-pool,
 Word, CustomSelect and other previously documented holds remain unchanged.
+
+## Actual close origins and the bounded full-teardown route
+
+A subsequent read-only control starts at
+`8797b57725f78855ad661ab1c38685b28048a3ba` on the same main. It identifies
+two concrete controller-owned origins for a status close request:
+
+- TWindowCtrlPlayer's destructor closes its status pointer at 0x30, then clears
+  that pointer. This is the pointer populated by `create_status_window`.
+- TWindowCtrl's destructor closes its three party windows at 0x78 through
+  0x80, clears those pointers and queues tracked player controllers before
+  its TObject child cleanup. Its constructor populates those party slots.
+
+This identifies real original call sites rather than assuming an arbitrary
+external close. It is not an exhaustive receiver/alias census of every close
+or deletion operation.
+
+Full `TMainTask::delete_layer_children` processes tl_00 first, tl_01 third and
+tl_fadeafter last. TWindowCtrlMain's original constructor registers its TObject
+under tl_fadeafter; the original vtable's destructor entry at table +8 resolves
+to its actual destructor. That destructor saves the window root, clears its
+global, deletes the subcontrollers, releases all six viewport-root pointers
+and the shared instance, then deletes the saved root. TObject root destruction
+recursively deletes registered windows synchronously; it does not wait for
+their open/close counters.
+
+Consequently, under normal destruction-enabled registration and no reentrant
+task dispatch, this full-layer chain reaches the separately registered window
+storage before a subsequent ordinary task traversal. When it completes
+normally, the modeled seventh-pass follower task is excluded on this route.
+The four inspected reload routes and returned phase-15 scene cleanup invoke
+this full-layer helper. The original direct call order reaches deletion before
+later explicit main-task updates; scene cleanup has no direct main-task update.
+This extends the earlier controller-layer evidence to its actual window-root
+manager. It does not prove every controller removal follows that route or
+exclude transitive callback/reentrant processing within other helpers.
+
+There is a separate destructor-access limit. Sorting can put a follower before
+the status window during root deletion, while the status destructor still
+calls `close()` through its first four nonnull icon pointers. The follower's
+raw destructor does not visibly clear those owner slots. Destroying all siblings
+therefore does not establish slot validity, safe destructor accesses or normal
+completion of teardown. Excluding a later task visit is narrower than proving
+the entire teardown safe. No reachable invalid access is asserted here, and
+this observation does not authorize changing cleanup order or ownership.
+
+The constructor's replacement guard is weaker: TWindowCtrl queues the previous
+active controller if present, but does not itself delete the viewport roots.
+A complete original-reference scan finds one direct TWindowCtrl-constructor
+call, in `TLobby::create_tasks`, which constructs TWindowCtrlMain before it.
+The manager has five direct constructor callers, including four other scene
+initializers; it is not restricted to this game-task helper. Neither the
+replacement guard nor that local construction sequence proves that every
+replacement follows full teardown. The nearby `cleanup_game_objects` call
+performs game-object/item setup and is not a substitute for window-root deletion.
+Computed calls and all scene-table/session constraints are not excluded by
+this relocation census.
+
+The expanded original comparison now covers 46 bodies and their relative
+relocation targets across 20 units, including both controller cleanup paths,
+manager construction, full-layer deletion, task creation, the four reloads,
+scene cleanup and the game-object helper. The 4,960-original-object reference
+census separately checks the constructors and original manager destructor
+table entry. All inspected source providers occur once with originals absent;
+the DOL hash remains the one above. Independent review confirms the bounded
+chain and the separate destructor-access caveat. This is documentation-only
+evidence, with no new native build or hold clearance.

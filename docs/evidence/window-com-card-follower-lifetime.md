@@ -118,3 +118,6 @@ The subsequent [task-order and close-phase control](window-com-card-close-phase-
 compares opening and already-open followers under explicit scalar scheduling
 assumptions. It shows why five close requests alone are insufficient to prove
 borrowed-parent lifetime, without claiming a reachable game failure.
+Its subsequent actual-origin audit identifies controller destructor close sites
+and the full-layer window-root teardown chain, while separately preserving
+replacement, reentrant-dispatch and destructor-slot-validity qualifications.
