@@ -108,3 +108,25 @@ exception inventory, and full allocated-section/alignment/relocation
 comparison of affected objects. Tooling and portable behavior/sanitizer
 tests are additional checks, not a claim that the BML ABI is host-portable.
 No new pragma, compiler override, assembly or porting exception is introduced.
+
+On clean main `cda82a7aad7de1bf9b86470002df3f68d1c8c039`, the extracted
+candidate passes those checks with zero code/data/function/link coverage
+change: 27,438 exact functions, 4,237,032 matched code bytes, 1,477,195 matched
+data bytes, and 3,606 linked units. The ordered 3,606 source and 1,340 fallback
+link inputs are unchanged. Retention regenerates to the same 18,575 entries.
+The tooling suite passes 309 tests (including three source-contract checks),
+the build-capacity suite passes 29, and all four portable test executables
+pass normally and with address/undefined-behavior sanitizers.
+
+All 3,632 compiled objects were compared, including 407 objects depending
+on changed source or headers. Allocated section bytes, sizes, alignment,
+symbols and relocation targets agree after the radar metadata rename and
+three compiler-local constant label renumberings in `LobbyPigeonPath.o`.
+Those labels still name the same four-byte `.sdata2` objects at offsets
+`0x24`, `0x28` and `0x2C`; their contents and relocation positions do not move.
+
+Four changed consumers (`Boss7DeRolLeCBehavior`, `TBoss4Type1`,
+`TObjNpcKenkyuW` and `TObjFish`) remain original-backed, as on main. Two
+additional header-dependent objects (`TBoss2DeRolLe` and
+`TObjPlayer_801AF2F0`) also remain original-backed. Their compiled objects
+are compared too; a successful linked DOL alone would not validate them.
