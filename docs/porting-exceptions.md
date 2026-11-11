@@ -96,6 +96,20 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
+`pso/network/ModemRuntime.cpp` retains three levels of explicit inlining for
+its nested EXI and AT-command helpers. GC/1.2.5's inlined result locals and
+command-object lifetimes reproduce the native frames; selection and setup
+results remain ignored where the original ignores them. The initializer uses
+the character representation of eight-byte-aligned `u64` storage for its used
+0x88-byte command buffer. This reproduces its native placement without a dummy
+padding object; the original text-capacity declaration remains unknown.
+The interrupt dispatcher guards `__cntlzw` with `__MWERKS__` and supplies an
+ordinary C++ leading-zero-count fallback, exercised by the exhaustive host
+status/mask fixture. Ports should use the fallback and drop the inlining
+controls; preserve transaction, cache, lock and callback ordering. The two
+12-byte setup-command records preserve their observed stride and full data
+extent; their zero-filled record tails are part of those records.
+
 The two renderers at `0x8034055C` and `0x80340A78` in `TWindowDD.cpp`
 use scoped `opt_propagation off` and ordered scalar declarations to retain
 independent coordinate and texture values. The scrollbar also disables common

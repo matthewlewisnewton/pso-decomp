@@ -235,6 +235,15 @@ force_active:
   - TAdSinglePlyChrSelectGC__sub_8033B244
   - TAdSinglePlyChrSelectGC__sub_8033B5F0
   - TAdSinglePlyChrSelectGC__sub_8033B9E0
+  - TAdSinglePlyChrSelectGC__sub_8042BF6C
+  - TAdSinglePlyChrSelectGC__sub_8042C124
+  - TAdSinglePlyChrSelectGC__sub_8042C2E4
+  - TAdSinglePlyChrSelectGC__sub_8042C8D8
+  - TAdSinglePlyChrSelectGC__sub_8042CD64
+  - TAdSinglePlyChrSelectGC__sub_8042D6A4
+  - TAdSinglePlyChrSelectGC__sub_8042DDE4
+  - TAdSinglePlyChrSelectGC__sub_8042DE20
+  - TAdSinglePlyChrSelectGC__sub_8042DF4C
   - TAdTimeSetGC_class_name
   - TBGLightningCtrl__ct
   - TBGLightningCtrl__name
@@ -15844,6 +15853,7 @@ force_active:
   - send_head_pair_packet__10TObjPlayerFv
   - send_idle_return_event__10TObjPlayerFPvPvs
   - send_login3__9TProtocolFv
+  - send_modem_hangup__23TAdSinglePlyChrSelectGCFi
   - send_name__10TObjPlayerFv
   - send_name_and_state__10TObjPlayerFv
   - send_obj_position_event__17TItemSpecialEventFl
@@ -18650,6 +18660,7 @@ force_active:
   - wait_for_vi_retrace__Fv
   - wait_next_idle__11TBoss4Type2Fv
   - wait_timeout_loop__FP12ModemRequest
+  - wake_load_thread__23TAdSinglePlyChrSelectGCFlP9OSContext
   - wander_around__16TObjEneNanoDragoFP3Vecf
   - warp_boss_handle_window__12TObjWarpBossFv
   - warp_nearby_players__14TBoss6PlotFalzFv
