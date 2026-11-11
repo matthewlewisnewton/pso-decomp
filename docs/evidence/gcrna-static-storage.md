@@ -25,14 +25,14 @@ compiler settings, string directives and original behavior remain unchanged.
 
 ## Validation
 
-The comparison base is `cda82a7aad7de1bf9b86470002df3f68d1c8c039`.
+The comparison base is `5bba9c44adebc1cfa019def85e1f39f6da340ef0`.
 
 - Serialized native builds reproduce original DOL SHA-1
   `0d85744b51d7379efb025a943d0cd5aaae2191a3`. `check_pr.py` passes with no
   function, code, data, linked or address-coverage loss.
 - Matched and linked data each gain the 32-byte owned range, including padding.
-  Matched functions remain 27,438, matched code 4,237,032 bytes, source-linked
-  code 3,862,972 bytes and linked units 3,606. There is no new function or unit.
+  Matched functions remain 27,440, matched code 4,238,432 bytes, source-linked
+  code 3,874,412 bytes and linked units 3,608. There is no new function or unit.
 - All 3,631 other active compiled objects are raw-identical. GcrnaStream's five
   existing allocated sections and all 148 relocations are unchanged, without
   normalization. The new `.sbss` is 28 bytes of NOBITS storage at alignment 8,
@@ -42,11 +42,11 @@ The comparison base is `cda82a7aad7de1bf9b86470002df3f68d1c8c039`.
   alignment-padding check accepts the tail, and the final DOL proves that the
   linker reproduces the original address layout. Existing `.rodata` tail
   padding is unchanged and is not a new claim of this extraction.
-- Ordered linker paths and counts stay unchanged (3,606 source and 1,340
+- Ordered linker paths and counts stay unchanged (3,608 source and 1,338
   fallback inputs). The automatic original `.sbss` object at `0x805D7658`
   shrinks by 32 bytes while the existing Gcrna source object owns this range.
 - Regenerating retention from fresh candidate split objects adds exactly the
-  seven new definitions, changing 18,575 entries to 18,582, with no removals.
+  seven new definitions, changing 18,602 entries to 18,609, with no removals.
   Generated port-exception inventory is unchanged; no new exception is added.
 - All 306 original-free host tests pass. Portable `make -C ports/tests run`
   and `make -C ports/tests sanitize` pass with AddressSanitizer and UBSan enabled.
