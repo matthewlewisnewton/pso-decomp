@@ -146,15 +146,14 @@ Parts/balloon qualifications and protected preview/remainder checks pass again.
 No local lifecycle source/profile experiment or hold clearance follows from this
 refresh. Current receipts are in `pr403-refresh22d/` and `pr403-main22d` files.
 
-
 The subsequent BML/Zako/DHCP main `829806820f864516b12abff6bd439c4ad84392a1`
-is integrated cleanly across203 incoming paths. Nonshared incoming blobs match
+is integrated cleanly across 203 incoming paths. Nonshared incoming blobs match
 accepted main; shared symbol/configuration/exception inventories preserve both
-sets of required entries. Fresh main and combined gated builds pass in91.02 and
-39.73 seconds with the original DOL. Both acceptance comparisons pass with3611
-exact linked units and18821 retention names without drift. Strict prior-B losses
+sets of required entries. Fresh main and combined gated builds pass in 91.02 and
+39.73 seconds with the original DOL. Both acceptance comparisons pass with 3611
+exact linked units and 18821 retention names without drift. Strict prior-B losses
 remain empty; the same fourteen qualified four-byte window tails remain against
-main without exact/linked loss. All22 controls, six Message complete-ELF identities,
+main without exact/linked loss. All 22 controls, six Message complete-ELF identities,
 Palette identity, Parts/balloon qualifications and protected preview/remainder
 checks pass. Current receipts are in `pr403-refresh829/`.
 
@@ -163,3 +162,19 @@ adds original body/target and constructor-reference evidence. The inspected norm
 exit path has no local-client exclusion, but valid-session notification semantics
 and scheduling for the stored menu slot remain unproved. No reachable failure or
 hold clearance follows; no speculative game-source correction is activated.
+
+The next accepted-main refresh reaches
+`08c178922fb8da57f44c2d9fc4efb5ebdecf05b4` with the coordinated character-load
+and SDK thread/queue contracts. All 33 incoming paths are preserved, including the
+character-load fold; no inspected menu/task-root/removal source changes. Fresh
+main and combined gated builds pass in 85.81 and 31.17 seconds with the original
+DOL. Acceptance against both fresh main and prior B passes: 3610 linked units are
+exact and 18824 retention names have no drift. The one fewer linked unit reflects
+the accepted fold, with unchanged function/code/data totals versus prior B and no
+raw/exact/linked-data interval loss. The same fourteen qualified tails remain
+against fresh main without exact/linked loss. All 22 controls, the 18-function
+identity audit, Message/Palette objects, Parts/balloon qualifications and protected
+preview/remainders pass again. The current constructor census covers 4961 original
+and 3632 compiled objects, 512552 relocations, with the same eight original calls.
+Typed SDK interfaces do not establish new callback/task scheduling guarantees.
+Receipts are in `pr403-refresh08c/`; every technical hold stays intact.

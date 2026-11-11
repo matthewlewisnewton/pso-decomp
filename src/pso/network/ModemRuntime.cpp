@@ -148,9 +148,6 @@ typedef struct Ent_80427C6C {
 } Ent_80427C6C;
 
 extern "C" {
-extern u8 lbl_805CF240[0xA0];
-extern u8 TLobby__pppoe_message_queue[0xA0];
-extern u8 lbl_805CF380[0x48];
 extern OSThreadQueue lbl_805D7CA0;
 void TAdSinglePlyChrSelectGC__sub_8042BF6C(s32 length);
 void TAdSinglePlyChrSelectGC__sub_8042C2E4(s32 channel, OSContext *context);
@@ -173,8 +170,6 @@ extern char lbl_805D4920[5];
 extern char lbl_805D4928[7];
 extern char lbl_805D4930[5];
 extern char lbl_805D4938[7];
-extern u8 lbl_805CF380[];
-extern u8 TLobby__pppoe_message_queue[];
 typedef struct Ent_804267F0 {
     s16 count;
     u8 id[6];
@@ -185,7 +180,6 @@ typedef struct Tbl_804267F0 {
     Ent_804267F0 ent[6];
 } Tbl_804267F0;
 
-extern u8 lbl_805CF240[];
 char *strcat(char *, const char *);
 char *strcpy(char *, const char *);
 extern Names_8042E57C TAdSinglePlyChrSelectGC__modem_type_names;

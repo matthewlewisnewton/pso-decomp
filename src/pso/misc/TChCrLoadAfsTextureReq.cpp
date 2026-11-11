@@ -5,8 +5,10 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC_8001ED80.h"
 #include "pso/TChCrLoadGmNjReq.h"
 #include "pso/misc/TLobby.h"
+#include "pso/misc/CharacterLoadBuffer.h"
 #include "pso/misc/TChCrLoadAfsTextureReq.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/object/TObject_80019A50.h"
 
 struct RecoveredGlobal_8028C378___vt__22TChCrLoadAfsTextureReq {
     s32 value;
@@ -49,7 +51,6 @@ public:
 typedef void (Req_8028C090::*Handler_8028C090)();
 
 extern "C" {
-s32 queue_destruction__7TObjectFv(void *, int, int);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__22TChCrLoadAfsTextureReq[];
 extern void *lbl_805D3B50;
@@ -84,7 +85,7 @@ void run_task__22TChCrLoadAfsTextureReqFv(Req_8028C090 *arg0) {
         reinterpret_cast<Handler_8028C090>(&TChCrLoadAfsTextureReq::update_loading),
     };
     if (arg0->state < 0 || arg0->state >= 3) {
-        ((void (*)(void *))queue_destruction__7TObjectFv)(arg0);
+        queue_destruction__7TObjectFv(arg0);
         return;
     }
     (arg0->*tbl[arg0->state])();
@@ -219,9 +220,7 @@ f32 TLobby__sub_8028C50C(void) {
 #pragma push
 #pragma fp_contract on
 void TChCrLoadGmNjReq::update_model_load() {
-    s32 *temp_r5;
     s32 temp_r0;
-    s32 temp_r4;
     u32 bml_model;
     BmlResource *loaded;
     temp_r0 = this->load_timer - 1;
@@ -234,7 +233,7 @@ void TChCrLoadGmNjReq::update_model_load() {
         }
         loaded = (BmlResource *)::operator new(0x440);
         if (loaded != NULL) {
-            loaded = init_from_id_lists(loaded, 6, &this->model_ids, &this->motion_ids, 0, 0, this->lobby->start_load_default());
+            loaded = init_from_id_lists(loaded, 6, &this->model_ids, &this->motion_ids, 0, 0, get_character_load_buffer(this->load_slot));
         }
         this->loaded_bml = loaded;
         if (loaded != NULL) {
@@ -244,14 +243,12 @@ void TChCrLoadGmNjReq::update_model_load() {
         bml_model = (u32)get_bml_model(this->loaded_bml, 0);
         **(u32 **)((s8 *)((u8 *)this) + 0x1C) = bml_model;
         if (bml_model != 0U) {
-            ((TLobby *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)))->alloc_load_buffer((int) (TLobby__sub_8001ED88((void *)(*(u32 *)((s8 *)((u8 *)this) + 0x68)))));
+            advance_character_load_buffer(this->load_slot, TLobby__sub_8001ED88(this->loaded_bml));
             delete (BmlResource *)((int) (*(u32 *)((s8 *)((u8 *)this) + 0x68)));
             *(u32 *)((s8 *)((u8 *)this) + 0x68) = 0U;
             sub_8028C8A8();
-            temp_r5 = *(s32 **)((s8 *)((u8 *)this) + 0x28);
-            temp_r4 = *temp_r5;
-            *temp_r5 = temp_r4 & ~*(s32 *)((s8 *)((u8 *)this) + 0x20);
-            queue_destruction__7TObjectFv(this, (int)temp_r4, (int)temp_r5);
+            *completion_flags &= ~completion_mask;
+            queue_destruction__7TObjectFv(this);
         }
     }
 }

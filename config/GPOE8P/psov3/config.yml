@@ -696,6 +696,7 @@ force_active:
   - TLobby__sub_80241A0C
   - TLobby__sub_802422EC
   - TLobby__sub_8024273C
+  - TLobby__sub_8028D7D0
   - TLobby__sub_80292AB4
   - TLobby__sub_80292BB8
   - TLobby__sub_80292DA0
@@ -5030,6 +5031,7 @@ force_active:
   - chr_select_a_slot_entry
   - chr_select_b_slot_entry
   - chr_select_buffer_ptr_table
+  - chr_select_load_buffer_table
   - circle_arena__13TBoss5GryphonFl
   - circle_destination__13TObjEneBm3FlyFl
   - circling_state__14TObjEneBm5WolfFl
@@ -8577,6 +8579,7 @@ force_active:
   - lbl_80517BEC
   - lbl_80517E44
   - lbl_80517F9C
+  - lbl_80518850
   - lbl_80540B64
   - lbl_80540B70
   - lbl_80540B88
@@ -14382,7 +14385,7 @@ force_active:
   - populate_sub_item_list
   - pose_player__15TEndingPicStageF17player_class_typeSc
   - post_aram_request__16TAdWarningBaseGCFii
-  - post_message__6TLobbyFlll
+  - post_network_queue_message
   - ppp_ipv6cp_protocol_state
   - pppoe_discovery_name_storage
   - prepare_death__10TObjPlayerFv
@@ -15325,7 +15328,7 @@ force_active:
   - run_attack_stage3_phase__10TObjPlayerFis
   - run_confirm_message_loop__15TObjBoss2TunnelFv
   - run_connect_sequence__6TLobbyFv
-  - run_current_thread_callback__6TLobbyFv
+  - run_current_thread_callback__6TLobbyFPv
   - run_death_state_phase__10TObjPlayerFis
   - run_default_state__12TBoss8DragonFv
   - run_demo_task__16TObjEneNanoDragoFv

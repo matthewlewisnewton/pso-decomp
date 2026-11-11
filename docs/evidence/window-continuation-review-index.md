@@ -4,7 +4,7 @@ This draft continues the focused GuildWarning work. The initial base was
 `codex/guildwarning-focused-20261110`; focused PR #402 has since merged and
 continuation PR #403 now targets main. Historical stack checkpoints below retain
 their original bases and validation scope.
-The two-commit continuation keeps the coupled implementation/configuration graph
+The initial two-commit continuation keeps the coupled implementation/configuration graph
 atomic, then restores its evidence and attribution. It is not a claim of 100%
 completion or portable recovery of every historical ABI boundary.
 
@@ -37,6 +37,19 @@ implementation, not optional cleanup. Historical checkpoint metrics in family
 notes remain historical; the final preservation/build checks govern this split.
 
 ## Current-main refresh
+
+Latest validation covers main `08c178922fb8da57f44c2d9fc4efb5ebdecf05b4`
+with #402 already merged and #403 targeting main. The BML/Zako/DHCP and subsequent
+character-load/SDK changes are preserved, including the accepted unit fold.
+Fresh-main/combined original-DOL builds, no-loss comparisons, protected providers
+and object identities pass; 3610 linked units are exact and 18824 retention names
+have no drift. The [task-control record](window-custom-select-task-controls.md)
+records the two pinned validation contexts. The distinct
+[stored-client/exit-dispatch audit](window-custom-select-client-identity.md)
+narrows the missing lifecycle evidence to legitimate session semantics and
+teardown/deferral ordering for the stored menu slot. It establishes no reachable
+failure or new safety invariant. All substantive continuation holds remain.
+The following stack checkpoints retain their historical scope and metrics.
 
 The stack is refreshed through main `b3062dc640fa3ab9463269dca4e80fa057df5ec7`.
 The published commits remain intact, with one baseline integration commit per

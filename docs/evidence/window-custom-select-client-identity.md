@@ -10,8 +10,8 @@ with accepted main `829806820f864516b12abff6bd439c4ad84392a1` integrated.
 
 The active WindowCtrl producer passes `local_client_id` to the single-screen
 CtrlPlayer, or indices 0 through 3 for split-screen controllers. Original callers
-forward the stored client word through CtrlPlayer offset0x24, MainMenu offset0x54
-and the customize controller offset0x20 into CustomSelect's player lookup.
+forward the stored client word through CtrlPlayer offset 0x24, MainMenu offset 0x54
+and the customize controller offset 0x20 into CustomSelect's player lookup.
 MainMenu1P/4P still have incomplete C-named constructor interfaces: this is
 original register-forwarding evidence, not a recovered portable constructor ABI
 or clearance of the width/interface qualifications.
@@ -42,8 +42,8 @@ zero receiver adjustment, nonvirtual selector -1 and the expected target.
 The compiler's twelve-byte PMF constants are not asserted to be static sixteen-byte
 command-table entries in the original data section.
 
-Original receive code loads nullable callbacks at receiver offsets0xBC24 and
-0xBC1C. It copies the eight-byte exit payload and forwards signed client/leader
+Original receive code loads nullable callbacks at receiver offsets 0xBC24 and
+0xBC1C. It copies the eight-byte exit record and forwards signed client/leader
 bytes, plus disable-UDP for game exit. TLobby initialization installs
 `retire_lobby_player` at 0xBC24 and `remove_player` at 0xBC1C. The initializer's
 complete original body and resolved targets also match production.
@@ -82,3 +82,10 @@ applicable teardown/suspension path. This audit proves neither a reachable failu
 nor universal safety. CustomSelect's nonzeroing allocator and partial-initialization
 hold stays, as do Word, ComCard and all other standing technical holds. No source,
 compiler profile, provider or behavior change follows from this investigation.
+
+Replay after the accepted character-load/SDK refresh at main
+`08c178922fb8da57f44c2d9fc4efb5ebdecf05b4` retains all 18 original body/target
+comparisons and the same eight original calls. Its folded inventory now has 4961
+original and 3632 compiled objects, with 512552 relocation records. The earlier
+counts describe the pinned 829 baseline. No identity, valid-session or scheduling
+hold is cleared by that unrelated interface/fold change.

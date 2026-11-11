@@ -9378,11 +9378,8 @@ pso/unk/text_8028D490.cpp:
 	.text       start:0x8028D490 end:0x8028D5D4
 
 pso/ui/TAdSinglePlyChrSelectGC_8028D5D4.cpp:
-	.text       start:0x8028D5D4 end:0x8028D714
+	.text       start:0x8028D5D4 end:0x8028D8B8
 	.bss        start:0x80518850 end:0x80518880
-
-pso/misc/TLobby_8028D714.cpp:
-	.text       start:0x8028D714 end:0x8028D8B8
 
 pso/unk/text_8028D8B8.cpp:
 	.text       start:0x8028D8B8 end:0x8028D9A8
