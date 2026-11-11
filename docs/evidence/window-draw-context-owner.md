@@ -90,3 +90,11 @@ position/viewport helpers and text-record reset operations remain separate;
 no actual Soft-window construction/destruction or portable context lifetime is
 recovered here. All CustomSelect valid-session/lifetime, Word, ComCard, data,
 ownership and interface holds remain. The continuation stays draft.
+
+
+The later [context-argument cohort](window-draw-context-arguments.md) corrects the
+specific keyboard-render and scanline context labels highlighted above, including
+the key-frame helper's float-array view and Soft render's implicit draw receiver.
+Its separate proof preserves the first-receiver, raw helper, overlay inheritance
+and actual Soft lifetime qualifications. The nine-owner recovery and its pinned
+object/count statements above retain their original checkpoint scope.

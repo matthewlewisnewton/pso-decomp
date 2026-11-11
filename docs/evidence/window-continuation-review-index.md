@@ -230,6 +230,13 @@ renames; the explicit animation receiver matches original. Raw singleton transpo
 remaining mixed Soft/composer/context views and actual Soft lifetime stay qualified.
 There is no metric gain or lifecycle-hold clearance.
 
+The [render-context argument repair](window-draw-context-arguments.md) gives three
+keyboard helpers, the key-frame helper and the scanline helper their actual
+context argument type. Soft render explicitly passes its window to the shared
+draw-default helper. The two complete owners preserve all payloads and targets;
+only one pointer-type export and retention spelling change. Broader first-receiver,
+raw clipping/transform/scanline and actual Soft lifetime holds remain.
+
 The [separate readiness assessment](window-continuation-readiness.md) distinguishes
 the focused partial PR from this broader continuation. The focused settings-helper
 repair is retained through all six native caller units without changing their

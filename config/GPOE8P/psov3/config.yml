@@ -5917,7 +5917,7 @@ force_active:
   - draw_if_visible__15TObjEneDelDepthFv
   - draw_inactive_badge__11TObjDoorKeyFv
   - draw_item_labels__14TMainMenuEntryFP18TWindowDrawContext
-  - draw_key_frame__19TWindowKeyBoardSoftFPvPfffffUll
+  - draw_key_frame__19TWindowKeyBoardSoftFPvP18TWindowDrawContextffffUll
   - draw_label__16TAdGuideButtonGCFiPCc
   - draw_label_value__20TWindowSubStatusDispFPvPv
   - draw_laser_beam__13TLazerFenceSwFv
