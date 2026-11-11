@@ -228,7 +228,7 @@ s16 TLobby__sub_8042489C(void *, s32 *out) {
     return 0;
 }
 
-s32 TLobby::validate_slot_buffers(s32 arg0, void *arg1, void *arg2, void *arg3) {
+s16 dhcp_copy_domain_and_dns(void *arg0, char *arg1, s32 *arg2, s32 *arg3) {
     lbl_805D7BA0 = 0;
     if (dhcp_state != 3 && dhcp_state != 4 && dhcp_state != 5) {
         lbl_805D7BA0 = 2;

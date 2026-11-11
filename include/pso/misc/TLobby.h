@@ -725,7 +725,6 @@ struct TLobby : public TObject {
     static s16 query_link_status();
     static s32 set_connect_mode(s32 arg0);
     static s32 get_task_count();
-    static s32 validate_slot_buffers(s32 arg0, void *arg1, void *arg2, void *arg3);
     static void release_entry_by_id(u32 arg0);
     static u8 *find_entry_by_address(s32 arg0);
     static void cancel_alarm_a();

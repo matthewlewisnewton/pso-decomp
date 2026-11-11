@@ -74,6 +74,10 @@ extern "C" s16 TLobby__sub_8042474C(s32 *lease, s32 *renew, s32 *rebind);
 // Active-state getter failure sets diagnostics while the result stays zero.
 extern "C" s16 TLobby__sub_8042489C(void *arg0, s32 *out);
 
+// Copies the domain string and two DNS words; arg0 remains opaque.
+// The legacy string copy has no destination-bound parameter.
+extern "C" s16 dhcp_copy_domain_and_dns(void *arg0, char *domain, s32 *dns1, s32 *dns2);
+
 // Reply configuration writes one address, subnet-mask and broadcast word.
 extern "C" s16 TLobby__sub_80424D58(s16 iface, s32 arg1, s32 arg2, void *arg3,
                                    s32 *address, s32 *netmask, s32 *broadcast, s32 arg7);

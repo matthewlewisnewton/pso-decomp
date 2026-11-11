@@ -2045,3 +2045,14 @@ signature-only repair leaves all 3,665 object hashes and the original DOL
 unchanged, with no-loss/retention/fourteen-test checks passing. Getter writes,
 diagnostics and zero results after active-state getter failure remain intact.
 The lease declaration and all adjacent/failed-probe/metadata holds are preserved.
+
+The separate [domain/DNS output audit](pr303-dhcp-domain-dns.md) preserves all
+four explicit arguments of the formerly static method, with the unread first
+argument opaque. Twelve controls separate result width, output typing and
+ownership, including a rejected omitted-argument negative control. The shared
+short-result C helper uses a byte view of existing domain storage and two word
+outputs without changing its body, getter ordering or failure behavior. Both
+complete compiled objects agree under one audited export-name mapping; every
+other compiled object is raw-identical. Original-reference string ordering is
+qualified separately. Original-DOL/no-loss/retention/fourteen-test checks pass;
+lease/router repairs and every remaining hold stay intact.

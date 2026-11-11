@@ -154,7 +154,6 @@ struct Info_80146D7C {
 extern "C" {
 void fn_80147A60(int a0);
 s16 TLobby__sub_8042455C(void *);
-s16 validate_slot_buffers__6TLobbyFlPvPvPv(void *, void *, void *, void *);
 s16 TLobby__sub_80424E44(s16);
 extern s32 lbl_805D56E8;
 extern s32 lbl_805D56EC;
@@ -446,7 +445,7 @@ s32 TLobby__sub_801465C0(s32 *arg0) {
         return 0xC;
     }
     fn_80147A60(lbl_805D56EC);
-    return validate_slot_buffers__6TLobbyFlPvPvPv(lbl_8050C0C4, lbl_8050C684, &lobby_dns_server_addr, &lbl_805D56E0) != 0 ? 0xC : 0;
+    return dhcp_copy_domain_and_dns(lbl_8050C0C4, (char *)lbl_8050C684, &lobby_dns_server_addr, &lbl_805D56E0) != 0 ? 0xC : 0;
 }
 
 s32 TLobby__sub_801466F4(u32 arg0) {
