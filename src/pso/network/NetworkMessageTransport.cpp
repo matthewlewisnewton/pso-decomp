@@ -1,6 +1,7 @@
 #include "pso/network/ModemRuntime.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/NetworkTransport.h"
+#include "pso/network/NetworkPacketPool.h"
 
 #include "types.h"
 #include "pso/network/EthernetReceiveFilter.h"
@@ -128,13 +129,11 @@ s16 TLobby__sub_804262CC(void *);
 s32 TLobby__sub_80426B88(s16 arg0);
 extern s32 lbl_805D7BC8;
 void NetUnregisterTimer(void *);
-u8 *TLobby__sub_804256B8(s32);
 extern u8 lbl_805CF240[];
 s32 TLobby__sub_8042558C(void *);
 extern u8 lbl_805E1190[6];
 s16 TLobby__sub_80426660(u8 *arg0);
 s32 TLobby__sub_804089A8(s32, s32, void *, void *);
-s32 TLobby__sub_80425640(s32 len);
 s32 TLobby__sub_80426AAC(u16 key, s32 len);
 void forward_to_channel__6TLobbyFPv(void *frame, void *b);
 s16 TLobby__sub_80426440(void);
@@ -191,7 +190,7 @@ s32 TLobby::post_message(s32 arg1, s32 arg2, s32 arg3) {
     if (arg3 != 0) {
         p = TLobby::find_entry_by_address(arg1);
     } else {
-        p = TLobby__sub_804256B8(arg1);
+        p = (u8 *)TLobby__sub_804256B8((u32)arg1);
     }
     if (p != NULL) {
         *(s32 *)(p + 4) = arg2;
@@ -430,7 +429,7 @@ s16 TLobby::post_send_message(u16 arg1) {
         return -1;
     }
     NetMemcpy((void *)temp_r3, (void *)arg0, (int) (void *)arg1);
-    msg = (u8 *)(TLobby__sub_804256B8(temp_r3));
+    msg = (u8 *)(TLobby__sub_804256B8((u32)temp_r3));
     if (msg != NULL) {
         *(s32 *)((s8 *)msg + 4) = (s32) arg1;
         OSSendMessage((void *) (((s32 *)&lbl_805CF240)), msg, 0);
@@ -519,7 +518,7 @@ s32 TLobby::queue_timeout_message(s16 arg0, s32 arg1, s16 arg2) {
     if (arg0 != 0) {
         return -0x113;
     }
-    p = TLobby__sub_804256B8(arg1);
+    p = (u8 *)TLobby__sub_804256B8((u32)arg1);
     if (p != NULL) {
         *(s32 *)(p + 4) = v;
         OSSendMessage(lbl_805CF240, p, 0);
@@ -642,7 +641,7 @@ s32 TLobby__sub_80426AAC(u16 key, s32 len) {
                 ret = TLobby__sub_804089A8(0, 0, (void *)(len - 4), &hdr);
                 break;
             case 2:
-                ret = TLobby__sub_80425640(len);
+                ret = (s32)TLobby__sub_80425640((u32)len);
                 break;
             }
             break;
