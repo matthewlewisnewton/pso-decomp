@@ -4544,8 +4544,8 @@ force_active:
   - build_collision_box_corners
   - build_dead_list_window__15TObjDeadListWinFv
   - build_default_save_file__23TAdSinglePlyChrSelectGCFv
-  - build_dhcp_discover_packet__6TLobbyFv
-  - build_dhcp_release__6TLobbyFv
+  - build_discover__11DhcpMessageFv
+  - build_release__11DhcpMessageFv
   - build_door_collision_triangles__18TObjCityDoor_LobbyFv
   - build_download_list__12TQuestListVMFv
   - build_ethernet_frame_header__6TLobbyFPvPvUsUcUsUs
@@ -5625,7 +5625,7 @@ force_active:
   - destroy_subobjects_recursive__9TItemListFv
   - detect_device_type__16TKeyBoardControlFl
   - dfdemo4_strip_nodes
-  - dhcp_build_packet__6TLobbyFv
+  - build_request__11DhcpMessageFv
   - dimedian_action_table
   - dimedian_appear_motion_filename
   - dimedian_attack_left_motion_filename
