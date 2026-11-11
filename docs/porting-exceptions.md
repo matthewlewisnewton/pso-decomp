@@ -108,8 +108,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,779 pragmas in 879 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1142, `inline_depth` 1034, `fp_contract` 880, `auto_inline` 832,
+5,736 pragmas in 879 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1127, `inline_depth` 1019, `fp_contract` 881, `auto_inline` 817,
 `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 241,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
