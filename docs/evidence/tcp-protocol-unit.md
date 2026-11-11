@@ -7,6 +7,13 @@ native build reproduced the original DOL and passed the generated retention
 check before source changes. This is a development baseline, not final
 current-main PR acceptance.
 
+The branch was subsequently rebased onto `5146327538`. An untouched checkout
+of that commit rebuilt with the pinned tools and original inputs, reproduced
+the original DOL, and passed `tools/check_pr.py`. The rebased development branch
+also passes that check: three new exact functions, zero regressions, all 3,622
+linked units exact, and retention unchanged at 19,177 entries. TCP is still
+unlinked; these checks do not waive the two remaining exact-match requirements.
+
 The starting unit had 40 of 45 exact functions (9,756 code bytes). The current
 source has all 45 definitions and 43 exact functions (10,808 code bytes), with
 BSS still exact. The unit remains unlinked. Output `8041A9AC` and packet input
@@ -83,3 +90,15 @@ Scoped CSE/propagation and the inherited `-opt nocse`, `dont_inline off` and
 `inline_depth(4)` settings are native emission constraints. A port should
 remove these constraints, consolidate the record/API views and supply explicit
 TCP sequence arithmetic, byte order and pointer-sized runtime interfaces.
+
+## Native result-view debt
+
+The local route-send declaration retains the signed-short result view already
+used by the matched reset sender. Its current provider definition returns
+`s32`. Output and its native callers also retain the measured short-status
+normalization. A trial using a full-word route result with explicit short
+checks, and a full-word output result, changed output, reset, send and connect
+instructions. This is a bounded inherited interface discrepancy, not evidence
+that the provider has a different source-level signature. A port must give the
+provider and every caller one shared declaration and make the protocol status
+conversion explicit.
