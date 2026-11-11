@@ -61,8 +61,9 @@ No semantic-padding claim or regression waiver is added.
 
 The upstream gain versus preceding B is three exact functions, 1720 matched /
 5112 linked code bytes and 52 matched / 68 linked data bytes. These gains belong
-to accepted main. This continuation retains its existing 1604 matched/linked-data
-contribution against fresh main, without an additional local code gain.
+to accepted main. Against this fresh-main baseline the continuation retains 1604 matched / 1604
+linked data bytes, with no additional local code gain. Earlier 1560 linked-data
+comparisons in historical stack notes refer to their stated preceding bases.
 
 The six Message complete objects and Palette object remain identical. Parts,
 balloon, original remainders and 1044-byte preview qualifications all replay;
