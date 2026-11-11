@@ -274,7 +274,7 @@ remain unqualified; no Parts import or probe is activated.
 | ScrollBar / ChallengeResult / follower | Bounded native probes and contracts recorded | Constant-pool/data-base/producer differences; no repeated scheduling variants |
 | SymbolChat Parts | Accepted-main literal/localization integration source-links native owner after current census and full byte/target/provider validation; historical export blocker superseded | Original propagation-control/source provenance and portable interface/ownership qualifications remain; [integration](window-parts-accepted-main-integration.md) |
 | ChoiceSetting / globals | Observed layout and accesses retained | Actual 0x7C producer and task-global ownership unproved; no inferred padding |
-| CustomSelect | Native code/table and nineteen-function player/window lifecycle audit exact | Cross-root teardown/suspension before player-slot removal across task invocations unproved; [lifecycle evidence](window-custom-select-player-lifecycle.md) |
+| CustomSelect | Native code/table and nineteen-function player/window lifecycle audit exact | Relevant tl_00/tl_01 teardown/suspension before local-client player removal unproved; [lifecycle](window-custom-select-player-lifecycle.md) and [original task controls](window-custom-select-task-controls.md) |
 | CallBack / headings / capture / CMName | Bounded receiver and storage evidence recorded | Mixed callback signatures, opaque child ownership and original-provider/interface holds remain |
 | SimpleStatus children | Five constructed/managed slots evidenced | Original destructor cleans four; asymmetry preserved, not silently fixed |
 

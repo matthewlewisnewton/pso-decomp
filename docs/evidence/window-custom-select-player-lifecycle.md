@@ -1,5 +1,9 @@
 # CustomSelect player lifecycle: a narrowed, unresolved precondition
 
+The [task-root/teardown controls](window-custom-select-task-controls.md) resolve
+the distinct tl_00/tl_01 invocation paths and post-rebuild callback, while retaining
+this hold and the distinction between missing proof and demonstrated failure.
+
 This bounded investigation starts at continuation
 `4011a74909c618b1bedba71df05e5d71e3cf1154` and is qualified on main
 `5bba9c44adebc1cfa019def85e1f39f6da340ef0`. It changes no constructor,
