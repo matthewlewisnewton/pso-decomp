@@ -15,7 +15,7 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (fish synchronization on main `e9b77fcfdc`, 2026-11-11 UTC)
+## Summary
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
 for this source tree. Assembly is counted as source lines;
@@ -850,7 +850,7 @@ the class destructor emits it. [Historical evidence](evidence/conversion-pool-co
 |---|---|---|---|
 | `pso/object/TObjFish.cpp` | Upstream `-pool off`; existing FMA and inline pragmas | The update loads each table/conversion constant separately; pooling uses another saved register and changes the frame. [Evidence](evidence/upstream-fish-behavior.md). | Drop pool/inline steering; preserve required floating-point behavior. |
 | `src/pso/object/TObjFish.cpp`, final `load_area_resource` definition | Scoped `defer_codegen on`, restored at EOF after the linkage block | Native class lifetime emits the vtable at `.data+0xF0`; deferring the loader places its switch table at `+0x124`. Immediate emission reverses them. The final `pop` must follow the linkage block with no subsequent declarations. This replaces the hand-written vtable and manual lifetime/vptr writes. Approved by Matt on 2026-11-10. | Remove the emission pragmas and retain ordinary C++ constructors, destructor and compiler-generated virtual dispatch. |
-| Fish shared texture getter, model storage and heap helpers | Inherited 32-bit address-valued interfaces | The native lifetime and three owned globals are recovered, but the model getter is now pointer-typed but the texture getter, model-entry storage and heap boundaries still expose target-sized integer addresses. | Finish pointer-sized shared interfaces and target heap services. |
+| Fish shared texture getter, model storage and heap helpers | Inherited 32-bit address-valued interfaces | Native lifetime and the three globals are recovered, and the model getter is pointer-typed. The texture getter, model-entry storage and heap interfaces still use target-sized integer addresses. | Finish pointer-sized shared interfaces and target heap services. |
 
 ### Footprint unit recovered from upstream #208
 

@@ -72,9 +72,6 @@ typedef struct Ent_80427C6C {
     u8 rest[0xE10];
 } Ent_80427C6C;
 
-extern u8 lbl_805CF240[0xA0];
-extern u8 TLobby__pppoe_message_queue[0xA0];
-extern u8 lbl_805CF380[0x48];
 extern "C" {
 s32 TLobby__sub_803F77E0(void *);
 ModemSessionState lobby_net_session_state;
@@ -87,8 +84,6 @@ extern s32 lbl_805D7BF0;
 extern s32 lbl_805D7BF4;
 extern s32 lobby_buffer_pool_end;
 extern s32 lbl_805D7BFC;
-extern u8 lbl_805CF380[];
-extern u8 TLobby__pppoe_message_queue[];
 typedef struct Ent_804267F0 {
     s16 count;
     u8 id[6];
@@ -99,7 +94,6 @@ typedef struct Tbl_804267F0 {
     Ent_804267F0 ent[6];
 } Tbl_804267F0;
 
-extern u8 lbl_805CF240[];
 s32 TLobby__sub_803F97E8(int);
 extern void *lbl_805C18A0[];
 extern s16 lbl_805D7A86;
