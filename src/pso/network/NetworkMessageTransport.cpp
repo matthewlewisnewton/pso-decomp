@@ -225,7 +225,7 @@ void TLobby::message_thread_loop() {
         n = *(s32 *)((u8 *)spC + 4);
         id = *(s32 *)((u8 *)spC + 8);
         if (n > 0) {
-            TLobby::start_exi_send(id, n, (s32)TLobby__sub_80425D88);
+            TLobby::start_exi_send(id, n, TLobby__sub_80425D88);
             OSReceiveMessage(&lbl_805CF380.queue, &sp8, 1);
             network_message_pending_count -= 1;
         }
