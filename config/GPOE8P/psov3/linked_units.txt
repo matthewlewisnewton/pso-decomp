@@ -1734,6 +1734,7 @@ pso/system/data/pso_const_ids7.cpp
 pso/system/data/pso_date.cpp
 pso/network/NetworkInfoCodec.cpp
 pso/network/NetworkInfoLoader.cpp
+pso/network/NetworkInfoRequests.cpp
 pso/network/NetworkMessageTransport.c
 pso/network/NetworkPacketRuntime.c
 pso/network/NetworkTransport.c
