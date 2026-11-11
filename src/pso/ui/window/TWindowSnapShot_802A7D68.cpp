@@ -219,7 +219,7 @@ void TLobby::send_type2_event(s32 arg0, s32 arg1, s32 arg2) {
 
 extern "C" {
 
-int get_resource_file_size__6TLobbyFv(void);
+int get_resource_file_size__6TLobbyFPCv(void);
 int Dolphin_ARAlloc(void);
 
     extern int snapshot_aligned_buffer_size;
@@ -227,6 +227,6 @@ void TWindowSnapShot::init_default() { TLobby::aram_transfer_sync((s32)((void*)1
 
 void TWindowSnapShot__sub_802A7DA0(void) {  }
 
-void TWindowSnapShot::alloc_buffer() { TWindowSnapShot__sub_802A7EAC(); snapshot_aligned_buffer_size = ((get_resource_file_size__6TLobbyFv() + 0x1f) & 0xffffffe0); lbl_805D669C = Dolphin_ARAlloc(); }
+void TWindowSnapShot::alloc_buffer() { TWindowSnapShot__sub_802A7EAC(); snapshot_aligned_buffer_size = ((get_resource_file_size__6TLobbyFPCv() + 0x1f) & 0xffffffe0); lbl_805D669C = Dolphin_ARAlloc(); }
 
 }

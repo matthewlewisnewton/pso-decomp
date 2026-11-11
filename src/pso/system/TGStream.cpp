@@ -100,12 +100,12 @@ const char *ep2_multi_area_gsl_filename_table[13] = {
     jungle01_multi_gsl_path, jungle02_multi_gsl_path, jungle03_multi_gsl_path, jungle04_multi_gsl_path, jungle05_multi_gsl_path, seabed01_multi_gsl_path, seabed02_multi_gsl_path, empty_gsl_path, empty_gsl_path, empty_gsl_path, empty_gsl_path, jungle06_gsl_path, jungle07_gsl_path
 };
 
-s32 TLobby::get_resource_file_size() {
-    GslArchiveEntry *e = find_gsl_entry(this, 0);
+s32 TLobby::get_resource_file_size(const void *name) {
+    GslArchiveEntry *e = find_gsl_entry((void *)name, 0);
     if (e != NULL) {
         return e->file_size;
     }
-    return get_file_size__6TLobbyFv(this);
+    return get_file_size__6TLobbyFv((void *)name);
 }
 
 void load_area_gsl(void) {
@@ -144,7 +144,7 @@ s32 TGStream::load_file(s32 name) {
     return buf;
 }
 
-s32 TGStream::read_whole_file(s32 name, u8 *dst) {
+s32 TGStream::read_whole_file(const void *name, u8 *dst) {
     TGStream stream((void *)name, 1);
     s32 size;
     s32 n;

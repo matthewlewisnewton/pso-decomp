@@ -624,7 +624,7 @@ struct TLobby : public TObject {
     static void wait_for_lock_release();
     static void adxm_goto_mwidle_border();
     static void dec_ref_and_clear_buffer();
-    s32 get_resource_file_size();
+    static s32 get_resource_file_size(const void *name);
     static void read_data_sync(s32 arg0, s32 arg1, s32 arg2);
     s32 get_battle_ctrl_default();
     static s32 find_free_chat_log_slot();
@@ -792,7 +792,7 @@ struct TLobby : public TObject {
     static void load_font_texture();
     static void reset_state_byte();
     static s32 create_file_load_entry(s32 arg0, s32 arg1, u32 arg2, s32 arg3, void **arg4);
-    static s32 request_file_read(s32 arg0, s32 arg1, s32 *arg2, void **arg3);
+    static s32 request_file_read(const char *arg0, s32 arg1, s32 *arg2, void **arg3);
     static void reset_lobby_state();
     static void init_keyboard_buffer();
     static s32 poll_connect();

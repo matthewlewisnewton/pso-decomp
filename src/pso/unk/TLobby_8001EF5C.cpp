@@ -664,7 +664,7 @@ s32 TLobby::load_bin_model(s32 arg1, s32 arg2) {
     s32 size;
     ((Lobby_8001FD98 *)this)->entries[arg2].motion = NULL;
     ((Lobby_8001FD98 *)this)->entries[arg2].texture = NULL;
-    size = ((TLobby *)arg1)->get_resource_file_size();
+    size = TLobby::get_resource_file_size((const void *)arg1);
     if (size <= 0) {
         TLobby::debug_print("LoadBinModel: %s load failed.", arg1);
         return 0;
@@ -971,7 +971,7 @@ TBinModel *init_bin_model_request(TBinModel *self, s32 kind, u32 *models, u32 *m
             req.f8 = (s32 *)&self->ents16[i].b;
             req.fC = (Ctx_8001FA1C *)self;
             req.f10 = (s32)&self->ents16[i];
-            req.f14 = ((TLobby *)*p)->get_resource_file_size();
+            req.f14 = TLobby::get_resource_file_size((const void *)*p);
             create_named_entry__6TLobbyFiiUiiPv(*p, lobby_download_buffer, (u32)load_bin_model_callback, &req, (void **)&handle);
             TLobby__sub_8001EDD8(self, handle);
         }

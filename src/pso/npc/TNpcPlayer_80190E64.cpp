@@ -135,7 +135,7 @@ Npc_80190F3C *init_npc_player_char_loader(Npc_80190F3C *arg0, void *arg1, s32 ar
     arg0->f2C = 0;
     arg0->f38 = arg5;
     TNpcPlayer::ensure_rock_singleton();
-    TLobby::request_file_read((s32)"npcplayerchar.dat", (s32)npc_player_char_data_buffer, &arg0->f2C, (void **)0);
+    TLobby::request_file_read("npcplayerchar.dat", (s32)npc_player_char_data_buffer, &arg0->f2C, (void **)0);
     return arg0;
 }
 }
