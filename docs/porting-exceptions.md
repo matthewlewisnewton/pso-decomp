@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,710 | 880 |
-| Per-unit compiler overrides in `configure.py` | 193 | 193 |
+| CodeWarrior pragmas (excluding push/pop) | 5,712 | 880 |
+| Per-unit compiler overrides in `configure.py` | 194 | 194 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -1517,3 +1517,13 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | Scope | Construct | Evidence and reason | Port action |
 |---|---|---|---|
 | `src/pso/npc/TObjNpcKenkyuW.cpp`, `TObjPlayer__sub_802A445C` at `0x802A445C` | Scoped `scheduling off` and `global_optimizer off` | Preserve the original argument setup and the contact-load/receiver-copy/contact-store order. The explicit `void*` value conversion in the comma expression avoids an addressable temporary and retains the original 16-byte frame. All 228 bytes and the full 2,376-byte unit match. See [compiler and comparison evidence](evidence/kenkyuw-dispatcher-continuation.md). | Drop the compiler controls. The contact assignment can be a separate statement before the virtual call; retain the actor value passed to that call. |
+
+
+### Character-creation menus (`TObjCMName.cpp`)
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/object/TObjCMName.cpp`, `configure.py` | Deferred generation with reversed definitions; `-sym on`, private `TObjCMNameTail.h`, `.sdata2=4` alignment | Reproduces all 71 functions, native member-pointer initialization, and five compiler-generated vtables. The initializer at `0x80298DE0` precedes `get_creation_pad` at `0x80298F08`; a separate source-file text contribution preserves that order. The complete `.sdata2` starts at `0x805DDA6C`, on a four-byte boundary. Follows the existing compiler-emission, Dark Falz initializer, and Panarms PMF recovery precedents. | Use ordinary definitions and member pointers; remove native section/debug-layout controls and the private-header arrangement. |
+| Same source, footer at `0x802979BC` | Scoped `opt_lifetimes off`, with existing floating-point contraction | Keeps the footer's fade and text-position values in the native registers; all 348 bytes match. Hair rendering needs no new optimizer override: ordinary compound alpha updates, shared scalar lifetimes, and quad construction reproduce all 1,840 bytes. | Remove the optimizer control; preserve floating-point contraction when identical rounding matters. |
+| Same source, three late scalar constants | MWCC-only `extern const` declarations followed by `static const` definitions, plus existing explicit data-section annotations | Defining the `0.4f` fade step and two color masks after their readers preserves lazy native constant-pool order and loads. Standard-linkage definitions are supplied for other compilers. This follows the `TBoss6Type1.cpp` constant-pool precedent. | Move ordinary constant definitions before use and remove native section annotations. |
+| Same source, hair color alpha | Native byte-three write to a packed RGBA word | Reproduces the original `stb` and unsigned-byte float conversion. The non-MWCC branch updates the low alpha byte numerically, independent of host byte order. | Keep the numerical masked update. |
