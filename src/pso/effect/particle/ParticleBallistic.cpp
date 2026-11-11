@@ -163,6 +163,11 @@ s32 push_matrix(f32);
 s32 post_translate_matrix(void *);
 void rotate_vector_by_current_matrix(void *, void *);
 extern ParticleTexture *TParticleCtrl__data_80511F70[];
+// Eight-byte angular-range object in small data.
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805D9520[2];
 s32 is_particle_sprite_additive__13TUnk_8048E728Fv(void *, s32);
 s32 append_node_to_tail__13TParticleCtrlFPvPv(s32, void *);
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
@@ -244,7 +249,6 @@ extern const f32 TParticleCtrl__data_805D94E4;
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
-void TParticleCtrl::clear_active_flag() { *(u16*)((char*)this + 0x2c) &= 0xfffe; }
 
 u8 *create_ballistic_particle(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3, u16 arg4, s16 arg5) {
     u8 *temp_r3;
@@ -284,19 +288,8 @@ void TUnk_8048E778::retire_ballistic_particle_if_done() {
 #pragma push
 #pragma fp_contract on
 void TUnk_8048E778::run_task() {
-    NJS_COLOR col;
-    Vec toward_camera;
-    ParticleParam *p;
-    f32 t;
-    f32 fade_in;
-    f32 fade_out;
-    f32 alpha;
-    f32 r;
-    f32 g;
-    f32 b;
-    f32 tilt;
-    s32 frames;
-
+    f32 t[2]; // Age and opacity.
+    f32 ch[3]; // Red, green, blue.
     if (param->flags & 8) {
         if (age >= 0.5f) {
             approach_camera_vector(&pos, &origin, fabs_float(step.y));
@@ -306,7 +299,7 @@ void TUnk_8048E778::run_task() {
         }
     } else {
         if (flags & 2) {
-            push_matrix_from(&identity_matrix);
+            push_matrix_from(identity_matrix);
             rotate_matrix_x(0, unk_98);
             rotate_matrix_y(0, m_9c);
             rotate_matrix_z(0, unk_A0);
@@ -315,7 +308,7 @@ void TUnk_8048E778::run_task() {
         } else if (unk_98 == 0 && m_9c == 0 && unk_A0 == 0) {
             VecCopy(&velocity, &step);
         } else {
-            push_matrix_from(&identity_matrix);
+            push_matrix_from(identity_matrix);
             rotate_matrix_z(0, unk_A0);
             rotate_matrix_x(0, unk_98);
             rotate_matrix_y(0, m_9c);
@@ -324,10 +317,12 @@ void TUnk_8048E778::run_task() {
         }
         vec3_add_to(&pos, &velocity);
     }
-    p = param;
+    ParticleParam *p = param;
     if ((p->flags & 2) && origin.y > pos.y) {
-        step.y = p->unk_60 * (p->unk_3C * (3.0517578e-05f * rand()) + p->unk_34);
+        step.y = p->unk_60 * (p->unk_3C * (0.000030517578125f * (f32)rand()) + p->unk_34);
     }
+    f32 fade_in = 1.0f;
+    f32 fade_out = fade_in;
     step.x *= param->speed_decay;
     step.z *= param->speed_decay;
     step.y += param->gravity;
@@ -335,83 +330,80 @@ void TUnk_8048E778::run_task() {
     unk_2C *= param->scale_decay;
     age += age_rate;
     p = param;
-    t = age;
-    fade_in = 1.0f;
-    fade_out = 1.0f;
-    if (p->fade_in_end > t) {
-        fade_in = t * fade_in_scale;
+    t[0] = age;
+    if (p->fade_in_end > t[0]) {
+        fade_in = t[0] * fade_in_scale;
     }
-    if (1.0f - t < p->fade_out_start) {
-        fade_out = (1.0f - t) * fade_out_scale;
+    if (1.0f - t[0] < p->fade_out_start) {
+        fade_out = (1.0f - t[0]) * fade_out_scale;
     }
-    if (fade_in < fade_out) {
-        alpha = fade_in;
-    } else {
-        alpha = fade_out;
-    }
+    t[1] = fade_in < fade_out ? fade_in : fade_out;
+
     if (TParticleCtrl__data_80511F70[sprite_index]->sprites->flags & 1) {
         if (flags & 0x100) {
-            r = fade_particle_channel(p->color_rate[0] * t + color_base[0], alpha);
-            g = fade_particle_channel(p->color_rate[1] * t + color_base[1], alpha);
-            b = fade_particle_channel(p->color_rate[2] * t + color_base[2], alpha);
+            ch[0] = fade_particle_channel(p->color_rate[0] * t[0] + color_base[0], t[1]);
+            ch[1] = fade_particle_channel(p->color_rate[1] * t[0] + color_base[1], t[1]);
+            ch[2] = fade_particle_channel(p->color_rate[2] * t[0] + color_base[2], t[1]);
         } else {
-            r = fade_particle_channel(p->color_rate[0] * t + p->color_base[0], alpha);
-            g = fade_particle_channel(p->color_rate[1] * t + p->color_base[1], alpha);
-            b = fade_particle_channel(p->color_rate[2] * t + p->color_base[2], alpha);
+            ch[0] = fade_particle_channel(p->color_rate[0] * t[0] + p->color_base[0], t[1]);
+            ch[1] = fade_particle_channel(p->color_rate[1] * t[0] + p->color_base[1], t[1]);
+            ch[2] = fade_particle_channel(p->color_rate[2] * t[0] + p->color_base[2], t[1]);
         }
-        alpha = 1.0f;
+        t[1] = 1.0f;
     } else {
         if (flags & 0x100) {
-            r = clamp_particle_channel(p->color_rate[0] * t + color_base[0]);
-            g = clamp_particle_channel(p->color_rate[1] * t + color_base[1]);
-            b = clamp_particle_channel(p->color_rate[2] * t + color_base[2]);
+            ch[0] = clamp_particle_channel(p->color_rate[0] * t[0] + color_base[0]);
+            ch[1] = clamp_particle_channel(p->color_rate[1] * t[0] + color_base[1]);
+            ch[2] = clamp_particle_channel(p->color_rate[2] * t[0] + color_base[2]);
         } else {
-            r = clamp_particle_channel(p->color_rate[0] * t + p->color_base[0]);
-            g = clamp_particle_channel(p->color_rate[1] * t + p->color_base[1]);
-            b = clamp_particle_channel(p->color_rate[2] * t + p->color_base[2]);
+            ch[0] = clamp_particle_channel(p->color_rate[0] * t[0] + p->color_base[0]);
+            ch[1] = clamp_particle_channel(p->color_rate[1] * t[0] + p->color_base[1]);
+            ch[2] = clamp_particle_channel(p->color_rate[2] * t[0] + p->color_base[2]);
         }
     }
-    col.argb.a = 254.0f * alpha;
-    col.argb.r = 254.0f * r;
-    col.argb.g = 254.0f * g;
-    col.argb.b = 254.0f * b;
-    color = col.color;
-    p = param;
-    if (0.0f == p->gravity && 0.0f == p->unk_34 && 0.0f == p->unk_30) {
-        m_96 += (s32)(182.04445f * p->unk_60);
-    } else if (!(p->flags & 4)) {
-        tilt = step.y * (p->unk_64 * step.x);
-        if (fabs_float(tilt) > 20.0f) {
-            tilt = 20.0f;
+    // Big-endian ARGB bytes.
+    u32 packed;
+    reinterpret_cast<u8 *>(&packed)[0] = 254.0f * t[1];
+    reinterpret_cast<u8 *>(&packed)[1] = 254.0f * ch[0];
+    reinterpret_cast<u8 *>(&packed)[2] = 254.0f * ch[1];
+    reinterpret_cast<u8 *>(&packed)[3] = 254.0f * ch[2];
+    color = packed;
+    if (0.0f == param->gravity && 0.0f == param->unk_34 && 0.0f == param->unk_30) {
+        m_96 += (s32)(182.04445f * param->unk_60);
+    } else if (!(param->flags & 4)) {
+        f32 spin = step.y * (param->unk_64 * step.x);
+        if (fabs_float(spin) > 20.0f) {
+            spin = 20.0f;
         }
         if (speed < 0.0f) {
-            m_96 += (s32)(182.04445f * tilt);
+            m_96 += (s32)(182.04445f * spin);
         } else {
-            m_96 -= (s32)(182.04445f * tilt);
+            m_96 -= (s32)(182.04445f * spin);
         }
     }
-    frames = TParticleCtrl__data_80511F70[sprite_index]->sprites->frame_count;
+    s32 frames = TParticleCtrl__data_80511F70[sprite_index]->sprites->frame_count;
     if (param->flags & 0x10) {
-        frame = age * (frames - 1);
+        frame = (s32)(age * (f32)(frames - 1));
     } else {
-        frame++;
+        ++frame;
         if (frames <= frame) {
             frame = 0;
         }
     }
     if (flags & 0x10) {
-        TObjCollidable *target_obj = find_entity_by_id(target_id);
-        if (target_obj == NULL) {
+        TObjCollidable *target = find_entity_by_id(target_id);
+        if (target == NULL) {
             queue_destruction();
             return;
         }
-        Vec *center = (Vec *)target_obj->get_center();
+        Vec *center = static_cast<Vec *>(target->get_center());
         if (center != NULL) {
             if (flags & 0x20) {
-                offset_point_toward_camera((u8 *)center, (u8 *)&toward_camera, 8.0f);
-                attach.x = toward_camera.x - origin.x;
-                attach.y = toward_camera.y - origin.y;
-                attach.z = toward_camera.z - origin.z;
+                Vec point;
+                offset_point_toward_camera((u8 *)center, (u8 *)&point, 8.0f);
+                attach.x = point.x - origin.x;
+                attach.y = point.y - origin.y;
+                attach.z = point.z - origin.z;
             } else {
                 attach.x = center->x - origin.x;
                 attach.y = center->y - origin.y;
@@ -421,7 +413,7 @@ void TUnk_8048E778::run_task() {
     }
     motion_frame += unk_C0;
     if (motion != NULL && (f32)(motion->nbFrame - 1) <= motion_frame) {
-        motion_frame = motion->nbFrame - 1;
+        motion_frame = (f32)(motion->nbFrame - 1);
     }
     retire_ballistic_particle_if_done();
 }
@@ -639,12 +631,12 @@ u8 *construct_ballistic_particle(void *a0, void *a1, void *a2, void *a3, s32 arg
     p->field_40 = (d->field_3C * (3.0517578e-05f * (f32)rand())) + d->field_34;
     v = &p->field_3C;
     p->field_44 = 0.0f;
-    rotate_vec_xz(v, v, (s32)(182.04445f * (360.0f * (3.0517578e-05f * (f32)rand()))));
+    rotate_vec_xz(v, v, (s32)(182.04445f * (lbl_805D9520[0] * (3.0517578e-05f * (f32)rand()))));
     if (0.0f == d->field_54 && 0.0f == d->field_34 && 0.0f == d->field_30) {
         p->field_96 = 0;
         p->field_68 = 0.0f;
     } else {
-        p->field_96 = (s16)(182.04445f * (360.0f * (3.0517578e-05f * (f32)rand())));
+        p->field_96 = (s16)(182.04445f * (lbl_805D9520[0] * (3.0517578e-05f * (f32)rand())));
         p->field_68 = (3.0517578e-05f * (f32)rand()) - 0.5f;
     }
     if (p->field_24 & 0x2000) {
@@ -708,12 +700,12 @@ void *TUnk_8048E778::init_particle_random_spread(void *a1, void *a2, void *a3) {
     p->field_40 = (d->field_3C * (3.0517578e-05f * (f32)rand())) + d->field_34;
     v = &p->field_3C;
     p->field_44 = 0.0f;
-    rotate_vec_xz(v, v, (s32)(182.04445f * (360.0f * (3.0517578e-05f * (f32)rand()))));
+    rotate_vec_xz(v, v, (s32)(182.04445f * (lbl_805D9520[0] * (3.0517578e-05f * (f32)rand()))));
     if (0.0f == d->field_54 && 0.0f == d->field_34 && 0.0f == d->field_30) {
         p->field_96 = 0;
         p->field_68 = 0.0f;
     } else {
-        p->field_96 = (s16)(182.04445f * (360.0f * (3.0517578e-05f * (f32)rand())));
+        p->field_96 = (s16)(182.04445f * (lbl_805D9520[0] * (3.0517578e-05f * (f32)rand())));
         p->field_68 = (3.0517578e-05f * (f32)rand()) - 0.5f;
     }
     if (p->field_24 & 0x2000) {
@@ -722,3 +714,10 @@ void *TUnk_8048E778::init_particle_random_spread(void *a1, void *a2, void *a3) {
     return this;
 }
 #pragma pop
+
+extern "C" {
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+const f32 lbl_805D9520[2] = { 360.0f, 0.0f };
+}
