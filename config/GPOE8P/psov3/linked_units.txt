@@ -2055,6 +2055,7 @@ pso/npc/TObjNpcHosa.cpp
 pso/npc/TObjNpcHosa2.cpp
 pso/npc/TObjNpcKenkyu.cpp
 pso/npc/TObjNpcKenkyu2.cpp
+pso/npc/TObjNpcKenkyuW.cpp
 pso/npc/TObjNpcLappy.cpp
 pso/npc/TObjNpcLappy_8014B828.cpp
 pso/npc/TObjNpcLappy_8014B840.cpp
