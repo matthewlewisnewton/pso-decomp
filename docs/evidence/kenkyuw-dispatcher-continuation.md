@@ -1,23 +1,97 @@
-# TObjNpcKenkyuW dispatcher continuation
+# Needle contact interface and exact KenkyuW unit
 
-Base: `eef2806e17f2a5aaa291dc504213ff078ae43cb1`. The unit has nine exact
-functions and one missing 228-byte entry, `TObjPlayer__sub_802A445C`.
-The completed reconstruction matches all ten functions and enables source
-linkage for the unit. The source keeps its existing external name because ownership is
-provisional: the observed receiver layout is `TNeedleShoot`, not `TObjPlayer`.
+## Current scope and provenance
 
-The function destroys a projectile whose body is absent; otherwise it selects
-one of three contact collectors using the mode at +0xb0. An absent contact
-list invokes virtual slot +0x18. A receivable first actor stores its body at
-+0x38 and invokes slot +0x24 with that actor. The +0x38 field occupies existing
-padding and is typed as the observed contact-body pointer; the shared class size
-remains 0xbc.
+The canonical interface is the single typed `TNeedleShoot` API from
+[PR #453 at `5a260fbd6c189196c583278884b7f4d72cf10bf6`](https://github.com/matthewlewisnewton/pso-decomp/pull/453).
+Its baseline is fork main `d6fc686573510cc9612beb6a2d71576ad685301c`.
+Main already includes the exact, source-linked unit from
+[#443](https://github.com/matthewlewisnewton/pso-decomp/pull/443): implementation
+`b54ebadc4192bcaea393f799f39b43142dbb9fb2`, integrated head
+`1ae049cb12e8393aac83b0d493379265de581824`, merge
+`cb862cd99ef707159a73e33c302fdf753cdee5e1`.
+This continuation claims no new matching or linkage credit above that main.
 
-The original compares the hit-test result with `cmpwi r3,0`; its implementation
-returns integer 0 or 1. Declaring that result `s32` avoids the caller's bool
-narrowing (`clrlwi.`) and preserves the callee's exact instructions.
+[PR #318's immutable call-site evidence at `2a4cebc570d9a216160c47fb2d736856eedf7a31`](https://github.com/matthewlewisnewton/pso-decomp/blob/2a4cebc570d9a216160c47fb2d736856eedf7a31/docs/evidence/kenkyuw-dispatcher-hit-test-scheduling.md)
+records the two-input dispatcher and the reset's ignored receiver. Those
+observations are preserved below. Its provisional free-function declarations
+are not a second current API: the typed continuation already removes the
+incompatible calls and false player receiver without retaining wrappers or
+aliases. Do not merge the two heads mechanically or reintroduce either
+`TObjPlayer__sub_802A445C(TNeedleShoot *, s32)` or the global
+`clear_technique_contacts(TNeedleShoot *)` declaration.
 
-## Measured compiler constraints
+The six definitions remain in `src/pso/npc/TObjNpcKenkyuW.cpp`; method
+membership does not change the original split owner. Their names are descriptive
+reconstructions or address placeholders, not recovered original debug symbols.
+The reset and predicate ignore their incoming receiver. Their historical
+free/static/nonstatic ownership is therefore unresolved. Current ordinary
+nonvirtual members are supported by the actual `TNeedleShoot`-derived callers
+and preserve the observed receiver and argument registers; exact instructions
+corroborate behavior but do not establish original class ownership.
+
+## Observed call contracts
+
+| Entry | Current nonvirtual member | Original call and behavior |
+| --- | --- | --- |
+| `0x802A3D68` / 68 bytes | `void clear_technique_contacts()` | Calls at `0x802A3E10`, `0x802A4004`, and `0x802A41F4` pass the collector's projectile in `r3`. The body immediately overwrites that input, clears 16 actor pointers, 16 body pointers and count, and leaves the reserved word unchanged. No caller consumes a result. |
+| `0x802A3DAC` / 60 bytes | `s32 is_hit_receivable_target(TechniqueContactActor *)` | Call at `0x802A44F8` passes projectile in `r3` and actor in `r4`. The callee ignores the receiver and returns integer 0/1. The caller uses `cmpwi r3,0`; changing the result to `bool` introduces narrowing. |
+| `0x802A3DE8` / 500 bytes | `TechniqueContactList *fn_802A3DE8(void *)` | Default dispatcher call at `0x802A44C8` passes projectile in `r3` and its `+0x1c` source in `r4`. The collector reads projectile body/position/direction and can return null on obstruction. |
+| `0x802A3FDC` / 496 bytes | `TechniqueContactList *fn_802A3FDC(void *)` | Mode 2 call at `0x802A44B4` uses the same receiver/source convention; preserve its distinct game-mode range and flag/source-ID filters. |
+| `0x802A41CC` / 656 bytes | `TechniqueContactList *collect_technique_contacts(void *)` | Mode 1 call at `0x802A44A4` uses the same convention; preserve its source-entity-ID branch, player ranges and distinct flag filters. |
+| `0x802A445C` / 228 bytes | `void check_actor_contacts(s32 ignored)` | Calls at `0x802A4CA0` (needle task) and `0x802CE410` (GiGue missile task) pass projectile in `r3` and `1` in `r4`; neither consumes a result. The callee ignores its second input and dispatches on stored `+0xb0`. |
+
+Both dispatcher callers inherit `TNeedleShoot` and call its base constructor.
+The collector offsets are projectile `+0x68` collision body, `+0x6c` position,
+and `+0xa0` direction storage. The dispatcher destroys a projectile with no
+body, selects one of the three collectors, invokes virtual slot `+0x18` for a
+null list, and otherwise tests the first actor. It reloads that actor after the
+predicate, stores its associated body at `+0x38`, and invokes virtual slot
+`+0x24`. The unused integer's original purpose and spelling remain unknown.
+
+The shared `TechniqueContactList` remains 0x88 bytes at `0x80540A38`.
+`TechniqueContactBody *contact_body` names existing `+0x38` storage;
+`TNeedleShoot` remains 0xbc bytes and both derived callers remain 0xc4 bytes.
+Nonvirtual declarations do not alter virtual slot order. The opaque source,
+actor/body interfaces and existing vector views over `m_6c`/`m_a0` are bounded
+recovery, not a completed portable layout, lifetime or strict-aliasing audit.
+No speculative mode names, collector unification or layout changes are implied.
+
+Keep one symbol per original address. Relative to pinned main the five retained
+helper entries are renamed to their `TNeedleShoot` member symbols; the dispatcher
+was not retained and must not gain a redundant retention entry. Membership by
+original address and the 18,663-entry retention count remain unchanged. There is
+no split, linked-unit, native-flag or new compiler-exception change.
+
+## Prior exact-head validation
+
+The published #453 validation at `5a260fbd6c189196c583278884b7f4d72cf10bf6`
+records a full gated build and `tools/check_pr.py --no-build` PASS against the
+pinned main. All ten functions and 2,376 allocated bytes, plus 110 relocations
+in allocated sections, equal the original split. Ten further relocations are
+nonallocated `.mwcats.text` metadata: 120 total is not 120 allocated.
+The actual 4,943-input ELF link selects the compiled KenkyuW source object and
+excludes the original provider. All 3,612 linked units remain exact; retention
+and porting-inventory checks pass. The DOL SHA-1 is
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`.
+
+#318 independently records fresh full baseline/candidate builds, identical
+complete caller objects (444- and 1,160-byte text sections), and no address-based
+coverage loss. Its reset-only symbol mapping applies to #318, not this typed
+API. Cross-head comparison here must map all six approved member renames.
+The shared expected unit text SHA-256 is
+`255926540faf1e27d9d8508822c7107d6cd128133969c29dcb77481fe007c101`.
+Pinned-main totals are 27,447 exact functions, 4,243,592 matched code bytes,
+1,477,731 matched data bytes and 3,612 exact linked units.
+
+These immutable reports are provenance, not a substitute for validating a later
+candidate. Recheck live heads, rebuild the exact candidate and fresh baseline,
+verify complete affected objects, original DOL, retention and executed link
+inputs, and independently review source and native evidence before acceptance.
+The following experiments and #443 gains are historical; their 96.49123% or
+unlinked snapshots are neither current holds nor compiler-impossibility proof.
+
+## Historical compiler investigation
 
 The initial reconstruction was 96.49123%, 228 bytes, with the other nine functions
 exact. At the hit-test call the original emits `mr r3,r30` then `lwz r4,0(r31)`;
@@ -47,7 +121,7 @@ The earlier investigation is in the preserved `decomp-tobjnpc-kenkyuw` branch,
 `docs/evidence/kenkyuw-dispatcher-hit-test-scheduling.md`. Compiler research
 reference: https://github.com/doldecomp/mweppc . No external source was copied.
 
-## Matching solution
+## Matching solution retained from #443
 
 The complete `.text` section is 2,376 bytes and all ten functions match. The
 dispatcher uses scoped `scheduling off` and `global_optimizer off`; no assembly,
@@ -60,7 +134,9 @@ receiver copy, store, and virtual dispatch order. The right operand of the comma
 expression must be a value, `static_cast<void *>(actor)`: leaving it as the
 lvalue `actor` produces an otherwise unnecessary stack store and a 32-byte
 frame instead of the original 16-byte frame. Adding `register` alone does not
-remove the store. An explicit local for the default collector's source argument
+remove the store. The typed continuation uses
+`static_cast<TechniqueContactActor *>(target)` for the same pointer-value
+conversion without discarding its type. An explicit local for the default collector's source argument
 also preserves its observed load before the receiver copy.
 
 This was derived by reading the compiler's usage analysis:
@@ -78,10 +154,11 @@ conversion and register tests are retained under ignored
 `build/experiments/kenkyuw-continuation/` for local reproduction. The failed
 experiments above are historical measurements, not completion evidence.
 
-## Final validation
+## Historical #443 validation
 
-Validated against clean fork-main baseline
-`08c178922f` (the immutable full SHA is available in this branch's ancestry).
+The #443-era validation below used clean fork-main baseline
+`08c178922fb8da57f44c2d9fc4efb5ebdecf05b4`. Its gains and 3,611-unit total
+are historical, not incremental claims for the current continuation.
 Both that baseline and the source-linked candidate pass `tools/check_pr.py`.
 The candidate has one new exact function (+228 matched code bytes), one new
 linked unit (+2,376 complete code bytes), unchanged matched/complete data,
@@ -99,37 +176,3 @@ Regeneration also sorts the existing DHCP `build_release` and `build_request`
 entries into their normal alphabetical positions without changing membership.
 Baseline and candidate logs and the direct link-input query are retained with
 the ignored experiment artifacts.
-
-## Shared projectile contact API
-
-The typed continuation integrates fork main `d6fc686573510cc9612beb6a2d71576ad685301c`,
-which already contains the complete source-linked unit from PR #443. It claims
-no additional matching or linkage credit above that baseline.
-
-The dispatcher callers are `TObjEneMe1Gee_NEEDLE::run_task` and
-`TObjEneMe1GiGueMissile::run_task`, both on `TNeedleShoot` subclasses. Its
-collectors use the same projectile layout (`+0x68` collision body, `+0x6c`
-position, `+0xa0` direction and `+0xb0` contact mode). The contact helpers now
-share declarations on `TNeedleShoot`, replacing their incompatible
-`TObjPlayer` and local C declarations. The dispatcher keeps the callers'
-unused integer argument and returns `void`; the hit predicate retains its
-integer result. The reset is called as an ordinary member rather than through
-an incompatible function-pointer cast.
-
-The shared `TechniqueContactList` replaces the duplicate global overlay, and
-the verified body pointer at `+0x38` is named `contact_body`. This changes no
-object offsets or class size. The actor is reloaded after the hit predicate,
-as in the original, before storing its associated body and dispatching the
-virtual hit callback.
-
-The same scoped compiler controls remain necessary. The comma expression now
-uses `static_cast<TechniqueContactActor *>(target)` to force a pointer value
-without discarding its type. A scratch build reproduced all ten exact
-functions, including the 228-byte dispatcher, before integration. The full gated build and `tools/check_pr.py --no-build` passed.
-All 2,376 allocated bytes and 110 relocations in allocated sections equal the
-original split object (the compiler also emits ten relocations in nonallocated
-`.mwcats.text` metadata). The actual 4,943-input ELF link selects
-`build/GPOE8P/src/pso/npc/TObjNpcKenkyuW.o` and excludes the original split.
-All 3,612 linked units remain exact; retention regeneration reports no additions
-or stale symbols, and the DOL SHA-1 remains
-`0d85744b51d7379efb025a943d0cd5aaae2191a3`.

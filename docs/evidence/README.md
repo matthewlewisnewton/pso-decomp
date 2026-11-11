@@ -38,6 +38,7 @@ guides.
 - [Ginja material dispatcher and complete unit](ginja-material-recovery.md)
 - [Indirect texture scroll offset and copy propagation](indirect-scroll-offset-propagation.md)
 - [Indirect controller native observations (from #267)](indirect-controller-dispatcher.md)
+- [Needle contact interface and exact KenkyuW unit](kenkyuw-dispatcher-continuation.md)
 - [Keyboard constructor client argument](keyboard-constructor-abi-evidence.md)
 - [Soft keyboard unit recovery (WIP)](keyboard-control-recovery-wip.md)
 - [Main-phase predicate return](main-phase-predicate-evidence.md)
