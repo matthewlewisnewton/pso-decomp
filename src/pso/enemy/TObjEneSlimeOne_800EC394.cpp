@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -25,7 +26,6 @@ s32 find_nearest_hittable_enemy__10TObjPlayerFiPvf(void *, void *, f32);
 
 extern s8 slime_one_animation_end_initialized;
 extern f32 slime_one_animation_end_frame;
-s32 TObjFish__sub_8001EDB0(s32, s32);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 
 extern s32 slime_one_part_texture_index_table[];
@@ -80,7 +80,7 @@ void SlimeAnimationState::draw(s32 deferred) {
         return;
     }
     if (state < 7) {
-        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjEneSlimeOne::get_instance(), slime_one_part_texture_index_table[owner->get_attack_target()])));
+        set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(TObjEneSlimeOne::get_instance()), (s32)(slime_one_part_texture_index_table[owner->get_attack_target()]))));
         if (deferred != 0) {
             model_render_flags |= 0x400000;
             set_chunk_render_flags(1);
@@ -229,7 +229,7 @@ void SlimeAnimationState::set_state(s32 next_state) {
         SlimeShapeMotion *entry = slime_one_motion_state_table + state - 7;
         u32 id = slime_one_attack_target_id_table[owner->get_attack_target()];
         model = get_bml_model((BmlResource *)resource, id);
-        texture_list = TObjFish__sub_8001EDB0(resource, id);
+        texture_list = (s32)TObjFish__sub_8001EDB0((BmlResource *)resource, (s32)id);
         motion = (AnimationMotion *)get_bml_motion(resource, entry->motion);
         shape_motion = (AnimationMotion *)get_bml_motion(resource, entry->shape_motion);
         frame_count = motion->frameCount;
@@ -241,10 +241,10 @@ void SlimeAnimationState::set_state(s32 next_state) {
     s32 resource = TObjEneSlimeOne::get_instance();
     SlimePairedMotion *entry = &lbl_80496CB8[owner->get_attack_target()][index];
     model = get_bml_model((BmlResource *)resource, entry->model);
-    texture_list = TObjFish__sub_8001EDB0(resource, entry->model);
+    texture_list = (s32)TObjFish__sub_8001EDB0((BmlResource *)resource, (s32)(entry->model));
     motion = (AnimationMotion *)get_bml_motion(resource, entry->motion);
     second_model = get_bml_model((BmlResource *)resource, entry->second_model);
-    second_texture_list = TObjFish__sub_8001EDB0(resource, entry->second_model);
+    second_texture_list = (s32)TObjFish__sub_8001EDB0((BmlResource *)resource, (s32)(entry->second_model));
     second_motion = (AnimationMotion *)get_bml_motion(resource, entry->second_motion);
     frame_count = second_motion->frameCount;
     speed = entry->speed;

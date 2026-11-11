@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/CurrentTextureList.h"
 // The bridges: TObjHashiBase and its three set objects TObjHashi,
 // TObjHashiVersus1 and TObjHashiVersus2, and the packet 6x78 slot timers.
@@ -27,7 +28,6 @@
 extern "C" {
 // The BML resource loader and its deleting destructor (TLobby_8001EF5C) and
 // a model's texture list (TObjFish_8001ED90), still named after their units.
-s32 TObjFish__sub_8001EDB0(BmlResource *resource, s32 index);
 extern TCameraCtrl *camera_ctrl_instance;
 }
 
@@ -232,7 +232,7 @@ s32 TObjHashiBase::update_object_view_visibility(f32 depth, f32 radius) {
 TObjHashi::TObjHashi(TObject *parent, void *set_data) : TObjHashiBase(parent, set_data) {
     m_name = class_name;
     model = (void *)get_bml_model(bml_resource, 0);
-    texlist = TObjFish__sub_8001EDB0(bml_resource, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)bml_resource, 0);
     init_collision_body_parts(this, hashi_collision_bodies, 1);
     actorFlags |= 0x40000000;
     register_object_by_id();
@@ -266,7 +266,7 @@ TObjHashiVersus1::TObjHashiVersus1(TObject *parent, void *set_data) : TObjHashiB
     }
     riseSpeed = scale.y;
     model = (void *)get_bml_model(bml_resource, 0);
-    texlist = TObjFish__sub_8001EDB0(bml_resource, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)bml_resource, 0);
     init_collision_body_parts(this, hashi_versus1_collision_bodies, 2);
     actorFlags |= 0x40000000;
     register_object_by_id();
@@ -301,7 +301,7 @@ TObjHashiVersus2::TObjHashiVersus2(TObject *parent, void *set_data) : TObjHashiB
     riseSpeed = scale.y;
     model_radius = lbl_805DBE20;
     model = (void *)get_bml_model(bml_resource, 0);
-    texlist = TObjFish__sub_8001EDB0(bml_resource, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)bml_resource, 0);
     init_collision_body_parts(this, hashi_versus2_collision_bodies, 2);
     actorFlags |= 0x40000000;
     register_object_by_id();

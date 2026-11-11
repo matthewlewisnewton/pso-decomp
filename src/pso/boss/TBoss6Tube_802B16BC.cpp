@@ -28,7 +28,7 @@ void TBoss6Tube::free_resources() {
     }
     if ((u32) boss6_tube_texture_list != 0U) {
         release_texture_list((void*)boss6_tube_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(boss6_tube_texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)boss6_tube_texture_list);
         boss6_tube_texture_list = 0U;
     }
     TBoss6Tube::reset_state();

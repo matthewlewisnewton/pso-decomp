@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -26,6 +27,7 @@
 #include "pso/TParticleCtrl.h"
 #include "pso/misc/TOKey.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
+#include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/npc/TObjNpcEnemy.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
@@ -177,32 +179,32 @@ void TObjFish::render() {
             if (get_current_floor_area() == AREA_SEABED_UPPER) {
                 switch (f->anim) {
                 case 1:
-                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1)));
-                    draw_ginja_object((void *)get_bml_model(TObjFish__area_bml_resource, 1));
+                    set_current_texture_list(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1));
+                    draw_ginja_object(get_bml_model(TObjFish__area_bml_resource, 1));
                     break;
                 case 2:
-                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 2)));
-                    draw_ginja_object((void *)get_bml_model(TObjFish__area_bml_resource, 2));
+                    set_current_texture_list(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 2));
+                    draw_ginja_object(get_bml_model(TObjFish__area_bml_resource, 2));
                     break;
                 default:
-                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 0)));
-                    draw_ginja_object((void *)get_bml_model(TObjFish__area_bml_resource, 0));
+                    set_current_texture_list(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 0));
+                    draw_ginja_object(get_bml_model(TObjFish__area_bml_resource, 0));
                     break;
                 }
             } else {
                 set_motion_packed_rotation();
                 switch (f->anim) {
                 case 1:
-                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1)));
-                    draw_ginja_model_with_motion((void *)get_bml_model(TObjFish__area_bml_resource, 1), get_bml_motion(TObjFish__area_bml_resource, 1), f->frame);
+                    set_current_texture_list(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1));
+                    draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 1), get_bml_motion(TObjFish__area_bml_resource, 1), f->frame);
                     break;
                 case 2:
-                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 2)));
-                    draw_ginja_model_with_motion((void *)get_bml_model(TObjFish__area_bml_resource, 2), get_bml_motion(TObjFish__area_bml_resource, 2), f->frame);
+                    set_current_texture_list(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 2));
+                    draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 2), get_bml_motion(TObjFish__area_bml_resource, 2), f->frame);
                     break;
                 default:
-                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 0)));
-                    draw_ginja_model_with_motion((void *)get_bml_model(TObjFish__area_bml_resource, 0), get_bml_motion(TObjFish__area_bml_resource, 0), f->frame);
+                    set_current_texture_list(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 0));
+                    draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 0), get_bml_motion(TObjFish__area_bml_resource, 0), f->frame);
                     break;
                 }
                 clear_motion_packed_rotation();
@@ -413,7 +415,7 @@ s32 TObjFish::init_fish_school(void *arg1_arg, s32 arg2, s32 arg3) {
 extern "C" {
 TObjFish::~TObjFish() {
     if (m_a0 != NULL) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)m_a0);
+        TAdSinglePlyChrSelectGC::safe_free(m_a0);
         m_a0 = NULL;
     }
 }

@@ -4,8 +4,8 @@ Initial fork base: `224eb99838471c243b20c305eddac75e7ff76c8f`.
 Behavior reference: upstream #240, `dd7a1a2d6e200a69462fff12172ff35aaa460c93`,
 `src/pso/object/ambient/TObjFish.cpp` and its entry layout.
 Native lifetime/global follow-up base: `cbe750b9197533f64ff472f00467a4776181b97a`.
-Integration previous head: `0a5749d45439e7f81e16c19dedcaa619452b468d`.
-Combined validation base: fork main `345ac133c05f9f825331c770d42b2c537a958d71`.
+Shared pointer-API follow-up base: `754117ce13cb8508a711f4d8abc37494a805df64`.
+Combined validation base: fork main `08c178922fb8da57f44c2d9fc4efb5ebdecf05b4`.
 
 ## Behavior and shared interfaces
 
@@ -73,21 +73,41 @@ No artificial loader unit is introduced. The loader is the only code reader of
 the resource table, and the constructor/destructor are the only vtable readers;
 these references establish no independent original source-file split. Existing
 `-pool off`, floating-point and inline settings remain. Ports can remove emission
-steering while retaining native class lifetime. The shared model getter now returns `NJS_OBJECT *`. The texture-list getter
-and heap helpers still use 32-bit integer addresses, and `BmlModelEntry::model`
-remains integer-backed; those shared storage/API boundaries still need
-pointer-sized interfaces for a port.
+steering while retaining native class lifetime.
+
+## Shared pointer contracts
+
+`BmlModelEntry::model` is `NJS_OBJECT *`, and its texture-list field at +0xC is
+`GinjaTextureList *`. The model and texture accessors return those pointer types
+through canonical shared declarations. The model-entry size and both offsets are
+asserted for the native target. Loading and binding retain the same target layout.
+Fish passes these returned pointers directly to its renderer and texture selector.
+
+The release wrapper at `0x8007EBB4` takes `void *`: it checks for null and passes
+the unchanged allocation to `xfree`. Its inherited static class attribution is
+provisional; no original class ownership is claimed. The allocator at
+`0x8007EBFC` already returns `void *`. Fish's destructor now releases its typed
+entry pointer directly. All callers use the corrected release declaration; the
+symbol mapping follows the pointer parameter. The `free_data_file` forwarding
+wrapper and shared declarations now return `void`, matching the callee and both
+consumers, which discard the result. The signboard cleanup explicitly passes its
+buffer instead of relying on an unstated `r3` argument.
+
+Other recovered actors still store some addresses in target-sized integer fields,
+and parts of the BML loading/callback API retain provisional integer interfaces.
+Conversions at those existing boundaries remain explicit; this change does not
+claim a whole-project 64-bit port. The shared fields and APIs used directly by
+Fish no longer force pointer-to-integer round trips.
 
 ## Validation
 
 The native full build reproduces original DOL SHA-1
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. `tools/check_pr.py` is run against
-the current-main and integration-previous-head baselines above. Address-based comparison loses no exact
-function, live data or linked range against either baseline. Against the current
-main baseline no padding is lost. Against previous PR head `0a5749d454`, main's
-Ginja material consolidation removes four permitted zero-padding bytes from
-`.sdata2` coverage at `0x805E0F7C`; the linked DOL remains identical. The
-constructor's native-symbol rename is compared by original address.
+the current-main and previous-published-head baselines above. Address-based comparison loses no exact
+function, live data or linked range against either baseline. No padding is lost
+against either baseline. Constructor and heap-release symbol renames are compared
+by original address. The pointer-API follow-up preserves all coverage totals
+relative to its published-head baseline.
 
 All nine Fish functions (4,704 bytes) and 1,416 data bytes match and link from
 source. The six allocated sections match in payload, size and alignment,
@@ -114,14 +134,21 @@ The native-lifetime/global change adds the three owned globals, their class-name
 string and the native constructor, and removes the superseded constructor name
 relative to pre-lifetime head `cbe750b919`: +5/-1. With current-main integration,
 the retention list has 18,699 names and zero drift, +49/-0 versus pinned main.
-All other name changes relative to `0a5749d454` come from main's recoveries.
+The heap-release parameter correction renames its mapped symbol from `FUl` to
+`FPv`; it requires no retention change.
 These changes follow the exact regenerated original-object inventory; no
 unrelated retention normalization is included.
-Fish remains linked; other linked-unit changes in this refresh come from the
-current-main integration. Two additional original fallback fragments result from claiming live global ranges inside the
+Fish remains linked, and the pointer-API follow-up changes no linked-unit membership. Two additional original fallback fragments result from claiming live global ranges inside the
 previous autogenerated data owners; the adjacent unclaimed bytes are preserved.
 
 All gains are supported by the generated linker input list as well as objdiff.
 The exception inventory records the scoped deferred-loader setting and its
-portable alternative. The remaining integer-address shared APIs are a separate
-portability boundary, not an unresolved native Fish lifetime/vtable recovery.
+portable alternative. The direct shared pointer contracts are recovered; the remaining legacy actor
+and loading boundaries described above are separate portability work.
+
+The final standalone full native build is reused by `check_pr.py --no-build`
+against both pinned baselines. Complete allocated section payloads, sizes,
+alignment and normalized relocations also match for the BML getter and loader,
+heap release, data-file forwarding wrapper and signboard cleanup units. Tooling
+tests, Python syntax, portable behavior checks, ASan/UBSan, exception inventory
+and independent exact-head review are required before fork publication.

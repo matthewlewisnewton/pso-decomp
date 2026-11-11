@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -85,7 +86,6 @@ void *__dt__19TObjGyaranzoMissileFv(void *arg0, s16 arg1);
 f32 sin_table_lookup(int);
 s32 post_translate_matrix(void *);
 void free_collision_body_parts(void *);
-s32 TObjFish__sub_8001EDB0(void *, int);
 s32 draw_chunk_object();
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 push_matrix();
@@ -122,7 +122,7 @@ void TObjGyaranzoMissile::sub_800D47B4() {
 }
 
 void TObjGyaranzoMissile::render() {
-    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)gyaranzo_bml_resource, 6)));
+    set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)gyaranzo_bml_resource, 6)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_x(0, (int)this->rotation.pitch);

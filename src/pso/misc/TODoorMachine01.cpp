@@ -242,7 +242,7 @@ void TODoorMachine01::load_resources() {
         bml_resource = resource;
         texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_ki_doa_r.gvm");
     }
-    texture_lists[1] = bml_resource->models[0].m_c;
+    texture_lists[1] = (s32)bml_resource->models[0].m_c;
 }
 
 TODoorMachine01::~TODoorMachine01() {
@@ -254,7 +254,7 @@ TODoorMachine01::TODoorMachine01(TObject *parent, void *set_data) : TODoorBase(p
     m_name = door_machine01_class_name;
     apply_object_set_data(set_data);
     model = (void *)bml_resource->models[0].model;
-    texlist = bml_resource->models[0].m_c;
+    texlist = (s32)bml_resource->models[0].m_c;
     motion = bml_resource->motions[0].motion;
     animation_end_frame = (f32)motion->frameCount - 1.0f;
     animation_step = 0.5f;

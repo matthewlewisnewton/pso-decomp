@@ -40,7 +40,7 @@ NJS_OBJECT *TObjSeabedSuisoBrakable::model13_nodes[3];
 void TObjSeabedSuisoBrakable::free_static_resources() {
     if (texture_list != 0) {
         release_texture_list((GinjaTextureList *)texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)texture_list);
         texture_list = 0;
     }
     if (bml_resource != NULL) {

@@ -242,7 +242,7 @@ void __dl__7TObjectFPv(void *);
 void TODoorJungleMain::free_static_resources() {
     if ((u32) door_jungle_main_gvm_texture != 0U) {
         release_texture_list((void*)door_jungle_main_gvm_texture);
-        TAdSinglePlyChrSelectGC::safe_free(door_jungle_main_gvm_texture);
+        TAdSinglePlyChrSelectGC::safe_free((void *)door_jungle_main_gvm_texture);
         door_jungle_main_gvm_texture = 0U;
     }
     if ((u32) TODoorJungleMain__bml_resource != 0U) {

@@ -1543,7 +1543,7 @@ void TLobby::cleanup_handles() {
     if (TLobby::get_instance() == 0) {
         if ((u32) (*(u32 *)&rappy_alternate_texture_list) != 0U) {
             release_texture_list((void*)(*(u32 *)&rappy_alternate_texture_list));
-            TAdSinglePlyChrSelectGC::safe_free((*(u32 *)&rappy_alternate_texture_list));
+            TAdSinglePlyChrSelectGC::safe_free((void *)(*(u32 *)&rappy_alternate_texture_list));
             (*(u32 *)&rappy_alternate_texture_list) = 0U;
         }
     } else {

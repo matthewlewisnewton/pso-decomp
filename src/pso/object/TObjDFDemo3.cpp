@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/misc/ParticleFactory.h"
@@ -34,8 +35,6 @@ s32 push_matrix();
 s32 post_translate_matrix(void *);
 void render__11TObjDFDemo3Fv(u8 *arg0);
 s32 get_bml_motion(BmlResource *, s32);
-s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
-
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 }
 
@@ -210,7 +209,7 @@ u8 *TObjDFDemo3__ct(u8 *arg0, s32 parent, s32 arg2, s32 arg3) {
     *(s32 *)((s8 *)arg0 + 0xAC) = arg3;
     cnt = TBoss4Uro::get_instance_count();
     *(s32 *)((s8 *)arg0 + 0x94) = (s32)get_bml_model(cnt, 0x12);
-    *(s32 *)((s8 *)arg0 + 0x98) = TObjFish__sub_8001EDB0(cnt, 0x12);
+    *(s32 *)((s8 *)arg0 + 0x98) = (s32)TObjFish__sub_8001EDB0((BmlResource *)cnt, 0x12);
     *(s32 *)((s8 *)arg0 + 0x9C) = get_bml_motion(cnt, 0x45);
     *(f32 *)((s8 *)arg0 + 0xB4) = -1.0f;
     *(s32 *)((s8 *)arg0 + 0x90) = 0;

@@ -21,12 +21,12 @@ s32 release_texture_list(void*);
 void TLobby::free_chr_select_slots() {
     if ((u32) lbl_805D6608 != 0U) {
         release_texture_list((void*)lbl_805D6608);
-        TAdSinglePlyChrSelectGC::safe_free(lbl_805D6608);
+        TAdSinglePlyChrSelectGC::safe_free((void *)lbl_805D6608);
         lbl_805D6608 = 0U;
     }
     if ((u32) lbl_805D6604 != 0U) {
         release_texture_list((void*)lbl_805D6604);
-        TAdSinglePlyChrSelectGC::safe_free(lbl_805D6604);
+        TAdSinglePlyChrSelectGC::safe_free((void *)lbl_805D6604);
         lbl_805D6604 = 0U;
     }
     if ((u32) door_labo_bml_resource != 0U) {

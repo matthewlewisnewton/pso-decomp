@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -69,7 +70,7 @@ TOMonumentAncient01::TOMonumentAncient01(TObject *parent, void *set_data) : TOQu
     m_name = class_name;
     apply_object_set_data(set_data);
     model = (void *)get_bml_model(model_resource, 2);
-    texlist = TObjFish__sub_8001EDB0(model_resource, 2);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)model_resource, 2);
     init_collision_body_parts(this, &monument_ancient01_collision_body, 1);
     refresh_collision_body_centers();
     register_object_by_id();

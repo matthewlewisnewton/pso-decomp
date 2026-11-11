@@ -189,7 +189,7 @@ void TObjEneRe7Berura::load_static_resources() {
     berura_demo_flag = 0;
     re7_berura_demo_flag = 0;
     TObjEneRe7Berura__demo_target = 0;
-    m = r->models[0].model;
+    m = (s32)r->models[0].model;
     matrices = (Mtx34 *)::operator new[](34 * sizeof(Mtx34));
     berura_detached_matrices = matrices;
     TObjEneRe7Berura__detached_part_states[0].matrices = matrices;
@@ -229,7 +229,7 @@ void TObjEneRe7Berura::load_static_resources() {
     }
     berura_node_matrix_ptr_a = (s32 *)(((NJS_CNK_MODEL *)((NJS_OBJECT *)find_model_node(m, 2))->model)->polygon_list + 4);
     berura_node_matrix_ptr_b = ((NJS_CNK_MODEL *)((NJS_OBJECT *)find_model_node(m, 1))->model)->polygon_list + 4;
-    belra_uv_animation_buffer = new StripBufferPair(TObjEneRe7Berura__shared_resource->models[0].model, 2);
+    belra_uv_animation_buffer = new StripBufferPair((s32)TObjEneRe7Berura__shared_resource->models[0].model, 2);
     sampled = new SampledMotionPoints(4, lbl_805D9780, lbl_805D9784,
         TObjEneRe7Berura__data_805D9738);
     belra_trail_buffer = sampled;
@@ -305,7 +305,7 @@ void TObjEneRe7Berura::init_enemy() {
     s32 j;
     init_position_vectors();
     model = (void *)TObjEneRe7Berura__shared_resource->models[0].model;
-    texlist = TObjEneRe7Berura__shared_resource->models[0].m_c;
+    texlist = (s32)TObjEneRe7Berura__shared_resource->models[0].m_c;
     init_model(&TObjEneRe7Berura__collision_body_template, 1);
     set_action_table(TObjEneRe7Berura__animation_definitions);
     set_motion_list(TObjEneRe7Berura__shared_resource->motions);

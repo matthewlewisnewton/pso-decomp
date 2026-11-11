@@ -5959,7 +5959,7 @@ void TBoss1Dragon::requestActionRefresh() {
 
 void TBoss1Dragon::free_resources() {
     if ((u32) TBoss1Dragon__data_805D4B28 != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)((void*)TBoss1Dragon__data_805D4B28));
+        TAdSinglePlyChrSelectGC::safe_free((void *)((void*)TBoss1Dragon__data_805D4B28));
         TBoss1Dragon__data_805D4B28 = 0U;
     }
     if ((u32) TBoss1Dragon__data_805D4B08 != 0U) {

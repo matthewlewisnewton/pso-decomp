@@ -186,7 +186,7 @@ void TOKeyAncient03::load_resources() {
     TOKeyAncient03__model_archive = resource;
     textures = (s32 *)::operator new[](8);
     TOKeyAncient03__texture_variants = textures;
-    textures[0] = TOKeyAncient03__model_archive->models[0].m_c;
+    textures[0] = (s32)TOKeyAncient03__model_archive->models[0].m_c;
     TOKeyAncient03__texture_variants[1] = (s32)load_gvm_texture_file("fs_obj_o_doorpanelg.gvm");
 }
 

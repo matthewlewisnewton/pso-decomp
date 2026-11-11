@@ -648,7 +648,7 @@ void TParticleCtrl::free_all() {
     }
     if ((u32) TParticleCtrl__texture_list != 0U) {
         release_texture_list((void*)TParticleCtrl__texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(TParticleCtrl__texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TParticleCtrl__texture_list);
         TParticleCtrl__texture_list = 0U;
     }
 }

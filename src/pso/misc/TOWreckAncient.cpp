@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -48,7 +49,6 @@ extern RecoveredGlobal_8017DDA8_lbl_804B53D0 bm_o_wreck_ancient_resource_descrip
 extern u32 wreck_ancient_bml_resource;
 extern u32 wreck_ancient_brakable_bml_resource;
 s32 __ct__14TObjCollidableFP7TObject(void *, int);
-s32 TObjFish__sub_8001EDB0(void *, void *);
 extern s32 __vt__14TOWreckAncient[];
 extern s32 TOWreckAncient__name;
 extern s32 tl_05;
@@ -117,7 +117,7 @@ u8 *TOWreckAncient__ct(u8 *wreck_ancient, s32 arg1) {
     *(s32 **)((s8 *)wreck_ancient + 0x18) = &(*(RecoveredGlobal_8017DE94___vt__14TOWreckAncient *)&__vt__14TOWreckAncient).value;
     *(s32 *)((s8 *)wreck_ancient + 0) = (s32) TOWreckAncient__name;
     *(s32 *)((s8 *)wreck_ancient + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&wreck_ancient_bml_resource)), (s32)arg1);
-    ((TOWreckAncient *)wreck_ancient)->texlist = TObjFish__sub_8001EDB0((void *) ((*(s32 *)&wreck_ancient_bml_resource)), (void *)arg1);
+    ((TOWreckAncient *)wreck_ancient)->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&wreck_ancient_bml_resource), (s32)arg1);
     *(f32 *)((s8 *)wreck_ancient + 0xAC) = (f32) lbl_805DBAD0;
     ((TOWreckAncient *)wreck_ancient)->m_b0 = (f32) lbl_805DBAD4;
     return wreck_ancient;

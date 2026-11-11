@@ -1061,7 +1061,7 @@ void load_data_buffers(void) {
             if (boss2_tunnel_snapshot_buffer != NULL) {
                 memmove(boss2_tunnel_snapshot_buffer, (void *)temp_r30, temp_r31);
             }
-            TAdSinglePlyChrSelectGC::safe_free(temp_r30);
+            TAdSinglePlyChrSelectGC::safe_free((void *)temp_r30);
         }
     }
 }

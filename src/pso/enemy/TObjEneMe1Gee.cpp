@@ -306,7 +306,7 @@ void TObjEneMe1Gee::load_resources() {
         TObjEneMe1Gee__resource_bundle = load_enemy_bml_resource(&bm_ene_me1_gee_resource_descriptor);
     }
     TObjEneMe1Gee::cache_result_805D6660();
-    gee_cached_model_node = (NJS_OBJECT *)find_model_node(TObjEneMe1Gee__resource_bundle->models->model, 7);
+    gee_cached_model_node = (NJS_OBJECT *)find_model_node((s32)TObjEneMe1Gee__resource_bundle->models->model, 7);
     for (i = 0; i < 3; i++) {
         gee_base_stats[i] = get_battle_base_stats(lbl_8043BCD8[i]);
         gee_attack_params[i] = get_battle_attack_params(lbl_8043BCE4[i]);
@@ -316,15 +316,15 @@ void TObjEneMe1Gee::load_resources() {
     TObjEneMe1Gee__render_node_index = 0;
     p = (int)::operator new(0x10);
     if (p != 0) {
-        p = init_from_model__11TBreakUpMdlFl(p, TObjEneMe1Gee__resource_bundle->models->model);
+        p = init_from_model__11TBreakUpMdlFl(p, (s32)TObjEneMe1Gee__resource_bundle->models->model);
     }
     gee_swarm_breakup_model = (TUnk_8048FA00 *)p;
     p = (int)::operator new(0x10);
     if (p != 0) {
-        p = init_from_model__11TBreakUpMdlFl(p, TObjEneMe1Gee__resource_bundle->models->model);
+        p = init_from_model__11TBreakUpMdlFl(p, (s32)TObjEneMe1Gee__resource_bundle->models->model);
     }
     gee_breakup_model = (TUnk_8048FA00 *)p;
-    t = *(s32 *)((s8 *)(*(u8 **)((s8 *)(find_model_node(TObjEneMe1Gee__resource_bundle->models->model, 4)) + 4)) + 4);
+    t = *(s32 *)((s8 *)(*(u8 **)((s8 *)(find_model_node((s32)TObjEneMe1Gee__resource_bundle->models->model, 4)) + 4)) + 4);
     gee_model_packed_color = (u32 *)(t + 4);
     TObjPlayer__sub_800F0928();
     {
@@ -546,7 +546,7 @@ void TObjEneMe1Gee::apply_behavior_parameters() {
 
 void TObjEneMe1Gee::vfunc_106() {
     model = (void *)TObjEneMe1Gee__resource_bundle->models->model;
-    texlist = TObjEneMe1Gee__resource_bundle->models->m_c;
+    texlist = (s32)TObjEneMe1Gee__resource_bundle->models->m_c;
 }
 
 #pragma push
@@ -2114,7 +2114,7 @@ void TUnk_8049387C::run_task() {
 
 void TUnk_8049387C::vfunc_106() {
     model = (void *)TObjEneMe1Gee__resource_bundle->models->model;
-    texlist = TObjEneMe1Gee__resource_bundle->models->m_c;
+    texlist = (s32)TObjEneMe1Gee__resource_bundle->models->m_c;
 }
 
 void TUnk_8049387C::vfunc_105() {

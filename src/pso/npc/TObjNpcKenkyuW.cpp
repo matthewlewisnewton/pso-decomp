@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -76,7 +77,6 @@ struct Obj_802A3FDC {
 extern "C" {
 extern RecoveredGlobal_802A3C30_lbl_804DCE48 bm_npc_kenkyu_w_resource_descriptor;
 extern u32 TObjNpcKenkyuW__model_resource;
-s32 TObjFish__sub_8001EDB0(int, int);
 extern s32 __vt__14TObjNpcKenkyuW[];
 extern s32 TObjNpcKenkyuW__name;
 s32 obj_is_hit_receivable(void *);
@@ -125,7 +125,7 @@ u8 *TObjNpcKenkyuW__ct(u8 *player, s32 arg1, s32 arg2) {
     ((TObjNpcKenkyuW *)(player))->apply_set_data((void *)arg2);
     ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&TObjNpcKenkyuW__model_resource)), 0);
-    ((TObjNpcKenkyuW *)player)->texlist = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TObjNpcKenkyuW__model_resource)), 0);
+    ((TObjNpcKenkyuW *)player)->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&TObjNpcKenkyuW__model_resource), 0);
     ((TObjNpcBase *)player)->setup_common();
     return player;
 }

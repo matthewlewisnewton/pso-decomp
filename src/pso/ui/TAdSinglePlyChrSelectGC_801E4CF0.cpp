@@ -29,7 +29,7 @@ void *TAdSinglePlyChrSelectGC::destroy_and_free(s16 arg1) {
     if (this != NULL) {
         *(s32 * *)&this->unk_50 = lbl_804C57E0;
         release_texture_list(this->m_3c);
-        TAdSinglePlyChrSelectGC::safe_free(this->m_44);
+        TAdSinglePlyChrSelectGC::safe_free((void *)this->m_44);
         if (arg1 > 0) {
             ::operator delete(this);
         }

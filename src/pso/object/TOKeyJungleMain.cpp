@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -111,7 +112,6 @@ s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
 s32 draw_ginja_model_with_motion(s32, s32, f32);
 s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 
@@ -176,7 +176,7 @@ void render__15TOKeyJungleMainFv(TOKeyJungleMain *key_jungle_main) {
     if (((VObj_8029CF68 *)key_jungle_main)->m8(key_jungle_main->view_range, *(f32 *)((s8 *)key_jungle_main + 0xC4)) == 1) {
         switch (key_jungle_main->is_on) {
         case 0:
-            set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((*(s32 *)&TOKeyJungleMain__static_model_resource), 1)));
+            set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&TOKeyJungleMain__static_model_resource), 1)));
             push_matrix();
             post_translate_matrix((u8 *)key_jungle_main + 0x38);
             rotate_matrix_y(0, key_jungle_main->rotation.yaw);
@@ -185,7 +185,7 @@ void render__15TOKeyJungleMainFv(TOKeyJungleMain *key_jungle_main) {
             pop_matrix();
             return;
         case 1:
-            set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((*(s32 *)&TOKeyJungleMain__static_model_resource), 1)));
+            set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&TOKeyJungleMain__static_model_resource), 1)));
             push_matrix();
             post_translate_matrix((u8 *)key_jungle_main + 0x38);
             rotate_matrix_y(0, key_jungle_main->rotation.yaw);

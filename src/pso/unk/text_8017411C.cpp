@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/unk/text_8017411C.h"
@@ -16,7 +17,6 @@ struct RecoveredGlobal_8017411C___vt__14TORockCaveSL02 {
 };
 
 extern "C" {
-s32 TObjFish__sub_8001EDB0(void *, s32);
 u32 init_collision_body_parts(void *, s32, s32);
 void *TORockCaveSimple__ct(void *arg0);
 extern RecoveredGlobal_8017411C_lbl_804B3BA8 cave_rock_collision_body_templates;
@@ -32,7 +32,7 @@ u8 *TORockCaveSL02__ct(u8 *rock_cave_simple, s32 arg1) {
     *(s32 *)((s8 *)rock_cave_simple + 0) = (s32) lbl_805D312C;
     ((TORockCaveSL02 *)(rock_cave_simple))->apply_object_set_data((void *)arg1);
     *(s32 *)((s8 *)rock_cave_simple + 0x34) = (s32)get_bml_model((BmlResource *)cave_rock_resource_bundle, 3);
-    ((TORockCaveSL02 *)rock_cave_simple)->texlist = TObjFish__sub_8001EDB0(cave_rock_resource_bundle, 3);
+    ((TORockCaveSL02 *)rock_cave_simple)->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)cave_rock_resource_bundle, 3);
     ((TORockCaveSL02 *)rock_cave_simple)->m_b0 = (f32) lbl_805DB970;
     init_collision_body_parts(rock_cave_simple, (s32) ((u8 *)&cave_rock_collision_body_templates.value + 0x58), 1);
     ((TObjCollidable *)rock_cave_simple)->refresh_collision_body_centers();

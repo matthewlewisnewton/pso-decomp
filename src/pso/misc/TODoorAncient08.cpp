@@ -80,7 +80,7 @@ void TODoorAncient08::load_resources() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_ancient08_resource_descriptor), 0, 0, (void *)(0));
     bml_resource = resource;
     texture_lists = (s32 *)::operator new[](8);
-    texture_lists[0] = bml_resource->models[0].m_c;
+    texture_lists[0] = (s32)bml_resource->models[0].m_c;
     texture_lists[1] = (s32)load_gvm_texture_file("fs_obj_o_door06l_r.gvm");
 }
 
