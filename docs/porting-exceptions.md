@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,778 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,779 | 879 |
 | Per-unit compiler overrides in `configure.py` | 192 | 192 |
 | Approved regressions | 0 | 0 |
 
@@ -95,6 +95,15 @@ route through the GX abstraction of the target renderer (call `GXPosition3f32`
 etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
+
+The character-creation shape coefficient function in
+`src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp` uses a scoped
+`opt_propagation off` and ordered scalar declarations to preserve the original
+GC/2.6 register allocation. The two recovered blending bodies use the existing
+`fp_contract on` scope for fused arithmetic. Ports may drop the propagation
+pragma and declaration-order constraint; retain fused operations when original
+rounding is required. See [shape blending evidence](evidence/creation-shape-blending.md).
+
 
 The download graph unit uses a scoped `fp_contract on` for the filled edge in
 `fn_8007F27C`. Its section declarations and one four-byte string alignment
