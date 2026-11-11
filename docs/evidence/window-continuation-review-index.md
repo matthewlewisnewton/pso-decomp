@@ -174,6 +174,15 @@ remain versus A/main without exact/linked-data loss. Word/UV proofs, protected
 original providers and all historical qualifications remain unchanged. The new
 compiler observation changes documentation only and activates no lifetime probe.
 
+The [native-table compilation-context control](window-word-native-table-context.md)
+independently replays the already-recorded Fish/Falz class precedent. Its production
+profile defines the real table before generation and pools all three metadata
+objects; an otherwise identical immediate context defines the table afterward and
+leaves two eligible objects. Each trace/control ELF pair agrees; production
+reproduces all original owned sections and 80 normalized relocations. Word source,
+profile, providers and metrics remain unchanged. This supplies a genuine native
+mechanism precedent, not Word-specific original profile evidence or activation.
+
 ## Current tried/blocked index
 
 | Area | Established result | Remaining evidence / hold |

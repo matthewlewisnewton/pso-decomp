@@ -120,3 +120,10 @@ and original DOL. No deferred-generation flag, reordering, synthetic third
 reference, manual replacement table or new lifetime mechanism is authorized by
 these observations. The native Word constructor/destructor/table and raw lifetime
 holds remain; the matched renderer and shared helper recoveries are unchanged.
+
+The subsequent [native-table context control](window-word-native-table-context.md)
+finds and independently replays an already-recorded genuine class precedent. The
+Fish/Falz production profile defines its real table before function generation;
+the same-source immediate control defines it afterward and loses the three-object
+pool. This corroborates the mechanism without establishing Word's own original
+profile or authorizing a flag/source change.
