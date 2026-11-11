@@ -2067,3 +2067,13 @@ acceptance after narrowing. Every active complete compiled object is raw-identic
 original-DOL/no-loss/retention and seventeen-test checks pass. The audit records
 specific reopening evidence for the allocation, adjacency, raw callback, creator,
 reset and metadata holds; none is cleared or bypassed.
+
+The distinct [timer registry audit](pr303-network-timer-contract.md) traces ten
+registrations/removals each, concrete no-argument callback providers, native
+halfword selectors and callback stores/invocation. Eight isolated whole-TU
+controls preserve every raw byte. A timer-only header shares the existing API
+without importing held reset/state-overlay declarations; canonical caller forms
+retain native-word boundaries, guards, locking and results. The first candidate
+leaves all active complete compiled objects unchanged, with original-DOL,
+no-loss/retention and seventeen-test checks passing. Hostname behavior and all
+other private ABI, allocator, adjacency and metadata holds remain intact.
