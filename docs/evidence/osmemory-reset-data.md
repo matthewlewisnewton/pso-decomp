@@ -9,7 +9,7 @@ Existing SDK notices and third-party attribution remain unchanged.
 ## Ownership and behavior
 
 `os/OSMemory.c` already links on base
-`cda82a7aad7de1bf9b86470002df3f68d1c8c039`. Its initialization passes
+`5bba9c44adebc1cfa019def85e1f39f6da340ef0`. Its initialization passes
 `&ResetFunctionInfo` to `OSRegisterResetFunction`. The SDK's existing
 `OSResetFunctionInfo` declaration contains a callback, a 32-bit priority and two
 links. The record at `0x804F4458` has the `OnReset` callback, priority 127 and
@@ -28,7 +28,7 @@ function match or a newly linked unit.
   SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 - `check_pr.py` passes: matched and source-linked data each gain 16 bytes;
   matched functions, matched code and source-linked code are unchanged. All
-  3,606 linked units remain exact, with no address-coverage loss.
+  3,608 linked units remain exact, with no address-coverage loss.
 - Of 3,632 active compiled objects, 3,631 are raw-identical to base. OSMemory's
   complete existing allocated `.text` section is byte-identical. Its existing
   relocations are identical after mapping the two removed address-suffixed
@@ -39,9 +39,9 @@ function match or a newly linked unit.
   functions. The owned 736-byte `.text` range remains exact; no extra function
   coverage is claimed for those discarded contributions.
 - The only linker-input change is removal of the original 16-byte automatic
-  data object now owned by OSMemory: 3,606 compiled-source and 1,339 original
+  data object now owned by OSMemory: 3,608 compiled-source and 1,337 original
   fallback objects remain, in their original relative order. Retention was regenerated from fresh candidate split objects
-  and config: all 18,575 entries remain unchanged. Port-exception inventory is
+  and config: all 18,602 entries remain unchanged. Port-exception inventory is
   unchanged; this extraction introduces no exception.
 - All 306 original-free host tests pass. Portable `make -C ports/tests run`
   and `make -C ports/tests sanitize` pass with AddressSanitizer and UBSan enabled.
