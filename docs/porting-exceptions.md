@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,778 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,694 | 879 |
 | Per-unit compiler overrides in `configure.py` | 192 | 192 |
 | Approved regressions | 0 | 0 |
 
@@ -96,6 +96,15 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
+The character-creation shape coefficient function in
+`src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp` uses a scoped
+`opt_propagation off` and ordered scalar declarations to preserve the original
+GC/2.6 register allocation. The two recovered blending bodies use the existing
+`fp_contract on` scope for fused arithmetic. Ports may drop the propagation
+pragma and declaration-order constraint; retain fused operations when original
+rounding is required. See [shape blending evidence](evidence/creation-shape-blending.md).
+
+
 The download graph unit uses a scoped `fp_contract on` for the filled edge in
 `fn_8007F27C`. Its section declarations and one four-byte string alignment
 preserve the graph's exported constants and format strings. See
@@ -108,9 +117,9 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,779 pragmas in 879 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1142, `inline_depth` 1034, `fp_contract` 880, `auto_inline` 832,
-`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 241,
+5,694 pragmas in 879 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802,
+`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 242,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -167,6 +176,22 @@ The unit's named effect and angle constants use CodeWarrior section placement
 to retain their `.rodata` and `.sdata2` addresses and direct relocations. A
 port can use ordinary constants and omit the section attributes and pragma.
 
+### Orbit particle update and constant tail
+
+`src/pso/misc/ParticleOrbit.cpp` scopes `fp_contract on` to
+`TUnk_8048E790::run_task` at `0x8008A080` for its fused orbit and color
+calculations. It places the final eight-byte `lbl_805D9550` scalar object
+in `.sdata2` with `__declspec(section)`; ordinary array placement changes
+the initializer addressing and layout. The native packed color is written
+through unsigned bytes of a live word. See
+[orbit particle recovery](evidence/orbit-particle-recovery.md) for the
+source alternatives, compiler tracing, and complete-object checks.
+
+Port should: drop the inlining and section annotations, preserve fused
+floating-point calculations where native rounding is required, and pack
+0xAARRGGBB explicitly on little-endian targets. No new optimizer steering
+pragma remains in this unit.
+
 ### Ground collision debug hook
 
 In `src/pso/map/CsnQuery.cpp`, CodeWarrior leaves the selected contact pointer
@@ -175,6 +200,30 @@ unset until a contact slot is written. The original call to
 consists of a return instruction. The matching build preserves the original
 register state at that call. The portable branch initializes the debug pointer
 to null.
+
+### Ginja material dispatch
+
+`src/pso/system/GinjaMaterial.cpp` adds scoped `use_lmw_stmw off` for
+`apply_ginja_material_params` (`0x803DBE1C`), preserving the original save/restore
+helpers. Its format-field reference preserves the surface address across the
+GX call and the subsequent field-read timing; an ordinary pointer changes eight
+register operands. Ports can retain the reference or use an ordinary surface
+pointer and omit the pragma.
+
+The fallback RGBA aggregate at `0x805E0F68` uses a guarded `.sdata2` section
+attribute. Its definition sits after the consuming material-color function
+and before the dispatcher's float literals, preserving the named load and
+small-constant order/alignment. Ports can use the ordinary constant without
+the section attribute or definition-order constraint.
+
+The native parameter table calls heterogeneous one- and two-word handlers
+through the two-word MWCC ABI. `GinjaParameterHandler.h` restores each entry's
+actual function type on other compilers; ports must keep that typed dispatch.
+Native draw/matrix callbacks retain pre-existing unspecified return-register
+paths, while portable branches explicitly return zero. The shared draw-callback
+interface remains provisional. Existing raw GX declarations, layout views,
+callback casts and pragmas also become source-linked with this unit; they still
+need consolidation for a port. See [the recovery evidence](evidence/ginja-material-recovery.md).
 
 ### ADX stream decode at `0x803C0238`
 

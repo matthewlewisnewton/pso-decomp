@@ -4,7 +4,7 @@ This declaration-only change is extracted from the Codex-authored commit
 [`3ed9b21ae3d8b887e18642e3e561063fb1eb2c98`](https://github.com/matthewlewisnewton/pso-decomp/commit/3ed9b21ae3d8b887e18642e3e561063fb1eb2c98)
 in [PR #303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), with
 include placement adapted to independent main base
-`e9b77fcfdcc2335c9a5a92886826022c80505e67`.
+`cda82a7aad7de1bf9b86470002df3f68d1c8c039`.
 The [original timer audit](https://github.com/matthewlewisnewton/pso-decomp/blob/3ed9b21ae3d8b887e18642e3e561063fb1eb2c98/docs/evidence/pr303-network-timer-contract.md)
 records the source, native call-graph and whole-translation-unit control evidence.
 No other #303 source changes are prerequisites or included here.
@@ -18,7 +18,7 @@ Main already defines `NetRegisterTimer` at `0x80419E64` as
 main and from the extraction source. Their zero and -0x100 results are native
 words, and the timer loop calls the stored callback without arguments.
 
-A fresh scan of all 4,948 original objects in main's generated
+A fresh scan of all 4,946 original objects in main's generated
 `build/GPOE8P/config.json` finds ten references to each registry function.
 Every reference is a zero-addend `R_PPC_REL24` call. A separate direct-branch
 scan of the original DOL finds the same ten registrations and ten removals,
@@ -90,17 +90,19 @@ The original and built DOL SHA-1 is
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 3,632 active compiled objects
 are raw byte-identical between main and the candidate, including code, data,
 symbols, metadata and relocations, with no normalization. Ordered linker
-inputs remain 3,603 source objects and 1,345 original-object fallbacks.
+inputs remain 3,606 source objects and 1,340 original-object fallbacks.
 
 The gated native build and `tools/check_pr.py --no-build` pass against the
-fresh main report. Address-based coverage has no losses, all 3,603 linked
-units remain exact, and all 18,441 retention entries have zero drift.
-Matched functions remain 27,434, matched code 4,232,424 bytes and matched
-data 1,477,099 bytes, each with delta zero. This is a declaration correction,
+fresh main report. Address-based coverage has no losses, all 3,606 linked
+units remain exact, and all 18,575 retention entries have zero drift.
+Matched functions remain 27,438, matched code 4,237,032 bytes and matched
+data 1,477,195 bytes, each with delta zero. This is a declaration correction,
 not a matching or linking gain. The generated porting inventory changes only
 one existing source-line reference. All 306 existing `tools/tests` unit tests
 pass, including the modem state/order tests and address-coverage/retention
 validation tests. Host tests do not establish native ABI compatibility; the
 complete native object comparison provides that bounded check. Python syntax
 and both `make -C ports/tests run` and `make -C ports/tests sanitize` also pass,
-including the portable loader targets inherited from current main.
+including the portable loader and Ginja callback targets inherited from
+current main. All four current portable executables run with ASan/UBSan; no
+sanitizer checks are disabled.
