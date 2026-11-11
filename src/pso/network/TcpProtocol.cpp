@@ -490,6 +490,21 @@ s32 TLobby__sub_8041F914(NetPacket *, u32, TcpTcb *, TcpHdr *);
 s32 TLobby__sub_8041F11C(TcpTcb *);
 s32 TLobby__sub_80422AB8(s32, void (*)(s16, s16, s32, s32), s16, s32, s32, s32);
 void NetYieldOutsideDispatcherThread(void);
+
+// Native ABI exports: the legacy linker names do not establish C++ ownership.
+s32 get_score__6TLobbyFv(void *);
+s32 get_field_534__6TLobbyFv(void *);
+s32 get_queue_diff__6TLobbyFv(void *);
+s32 get_field_d8__6TLobbyFv(void *);
+void reset_slot_index__6TLobbyFv(void *);
+s32 close_if_open__6TLobbyFv(void *);
+void clear_position__6TLobbyFv(void *);
+s32 is_multicast_address__6TLobbyFs(void *, s16);
+s16 compare_sockaddr__6TLobbyFPUc(void *, u8 *);
+u8 *alloc_free_entry__6TLobbyFv(void);
+void release_entry__10TUdpSocketFv(void *);
+void set_value_and_enable__6TLobbyFl(NetBufferRef *, s32);
+
 s16 dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(NetPacket *, u8 *, u8 *, u8 *, u8 *, s32);
 
 s16 TLobby__sub_8041A9AC(void *connection);
@@ -867,7 +882,7 @@ s16 TLobby__sub_8041A9AC(void *connection) {
             }
         }
         if (len == 0) {
-            len = ((u32)((TLobby *)tp)->get_score() < (u32)win ? ((TLobby *)tp)->get_score() : win) - off;
+            len = ((u32)get_score__6TLobbyFv(tp) < (u32)win ? get_score__6TLobbyFv(tp) : win) - off;
         }
         t = tp->snd_cwnd - tp->f2F0;
         if (tp->f2F4 == tp->snd_una) {
@@ -880,7 +895,7 @@ s16 TLobby__sub_8041A9AC(void *connection) {
             len = t;
             sendalot = 0;
         }
-        if (off + len < ((TLobby *)tp)->get_score()) {
+        if (off + len < get_score__6TLobbyFv(tp)) {
             flags &= ~1;
         }
         if (len < 0) {
@@ -894,10 +909,10 @@ s16 TLobby__sub_8041A9AC(void *connection) {
             len = tp->maxseg;
             sendalot = 1;
         }
-        if ((s32)((tp->snd_nxt + len) - (tp->snd_una + ((TLobby *)tp)->get_score())) < 0) {
+        if ((s32)((tp->snd_nxt + len) - (tp->snd_una + get_score__6TLobbyFv(tp))) < 0) {
             flags &= ~1;
         }
-        recwin = ((TLobby *)tp)->get_queue_diff();
+        recwin = get_queue_diff__6TLobbyFv(tp);
         fin = flags & 1;
 
         if (fin != 0) {
@@ -925,9 +940,9 @@ s16 TLobby__sub_8041A9AC(void *connection) {
                 goto send;
             }
             if ((u32)tp->f204_b7 == 1) {
-                t = ((TLobby *)tp)->get_score();
+                t = get_score__6TLobbyFv(tp);
             } else {
-                t = ((u32)((TLobby *)tp)->get_score() < tp->f530) ? ((TLobby *)tp)->get_score() : tp->f530;
+                t = ((u32)get_score__6TLobbyFv(tp) < tp->f530) ? get_score__6TLobbyFv(tp) : tp->f530;
             }
             if ((idle != 0 || (tp->flags & 4)) && len + off >= t) {
                 goto send;
@@ -952,10 +967,10 @@ s16 TLobby__sub_8041A9AC(void *connection) {
                 goto send;
             }
         }
-        if (win * 2 >= ((TLobby *)tp)->get_field_534()) {
+        if (win * 2 >= get_field_534__6TLobbyFv(tp)) {
             goto send;
         }
-        if ((u32)((TLobby *)tp)->get_score() != 0 && tp->timers[0] == 0 && tp->timers[1] == 0) {
+        if ((u32)get_score__6TLobbyFv(tp) != 0 && tp->timers[0] == 0 && tp->timers[1] == 0) {
             tp->rxtshift = 0;
             t = ((tp->srtt >> 2) + tp->rttvar) >> 1;
             tp->timers[1] = t * ts->backoff[tp->rxtshift];
@@ -982,7 +997,7 @@ advertised_window = recwin;
         th->ack = tp->rcv_nxt;
         if (flags & 2) {
             tp->f2EC = 0;
-            ((TLobby *)tp)->reset_slot_index();
+            reset_slot_index__6TLobbyFv(tp);
             opt[0] = 2;
             optp = opt;
             opt[1] = 4;
@@ -1031,7 +1046,7 @@ advertised_window = recwin;
             sendalot = 1;
         }
         th->flags = flags;
-        if ((u32)advertised_window < ((u32)((TLobby *)tp)->get_field_534() >> 2) && (u32)advertised_window < tp->maxseg) {
+        if ((u32)advertised_window < ((u32)get_field_534__6TLobbyFv(tp) >> 2) && (u32)advertised_window < tp->maxseg) {
             advertised_window = 0;
         }
         if (advertised_window < (s32)(tp->rcv_adv - tp->rcv_nxt)) {
@@ -1047,14 +1062,14 @@ advertised_window = recwin;
         } else {
             tp->snd_up = tp->snd_una;
         }
-        if (len != 0 && off + len == ((TLobby *)tp)->get_score()) {
+        if (len != 0 && off + len == get_score__6TLobbyFv(tp)) {
             flags |= 8;
         }
         win = 0;
         th->sum = win;
         th->flags = flags;
         th->off = (((i + (s32)sizeof(TcpHdr)) >> 2) << 4) & 0xf0;
-        m = (NetPacket *)TLobby::alloc_free_entry();
+        m = (NetPacket *)alloc_free_entry__6TLobbyFv();
         if (m == 0) {
             return -0x101;
         }
@@ -1067,12 +1082,12 @@ advertised_window = recwin;
         if (optlen != 0) {
             m->total_bytes += optlen;
             m->fragments[m->fragment_count].length = optlen;
-            ((TLobby *)&m->fragments[m->fragment_count].buffer)->set_value_and_enable((s32)optp);
+            set_value_and_enable__6TLobbyFl(&m->fragments[m->fragment_count].buffer, (s32)optp);
             m->fragment_count++;
         }
         m->total_bytes += sizeof(TcpHdr);
         m->fragments[m->fragment_count].length = sizeof(TcpHdr);
-        ((TLobby *)&m->fragments[m->fragment_count].buffer)->set_value_and_enable((s32)th);
+        set_value_and_enable__6TLobbyFl(&m->fragments[m->fragment_count].buffer, (s32)th);
         m->fragment_count++;
         th->sum = TLobby__sub_8040D8F0(tp->local, tp->remote, 6, (u8 *)m, 1);
         if (tp->force == 0 || tp->timers[1] == 0) {
@@ -1115,7 +1130,7 @@ advertised_window = recwin;
         }
         {
             s16 rc = dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(m, tp->remote, tp->local, tp->f2D6, tp->f2DC, 6);
-            ((TUdpSocket *)m)->release_entry();
+            release_entry__10TUdpSocketFv(m);
             if (rc < 0) {
                 return rc;
             }
@@ -1206,7 +1221,7 @@ u8 *TLobby__sub_8041B5C0(void *connection) {
             NetDispatchSocketEvent(event.index, event.callback, 3, 3);
             tcb->flags |= 0x20;
         }
-        ((TLobby *)tcb)->close_if_open();
+        close_if_open__6TLobbyFv(tcb);
         TLobby__sub_8041EB74((u8 *)tcb);
         idx = tcb->listener;
         tmp = (u32)idx;
@@ -1389,7 +1404,7 @@ retry:
             if (*(s16 *)(ent + offsetof(TcpTcb, t_state)) == -1) {
                 continue;
             }
-            if (((TLobby *)(ent + offsetof(TcpTcb, remote)))->compare_sockaddr(a)) {
+            if (compare_sockaddr__6TLobbyFPUc(ent + offsetof(TcpTcb, remote), a)) {
                 continue;
             }
             if (*(u16 *)(ent + offsetof(TcpTcb, hdr.dport)) != hdr.sport) {
@@ -1415,7 +1430,7 @@ retry:
             if (*(u16 *)(ent + offsetof(TcpTcb, hdr.sport)) != hdr.dport) {
                 continue;
             }
-            if (((TLobby *)(ent + offsetof(TcpTcb, remote)))->compare_sockaddr(a)) {
+            if (compare_sockaddr__6TLobbyFPUc(ent + offsetof(TcpTcb, remote), a)) {
                 if (!is_addr_unspecified__6TLobbyFPv(ent + offsetof(TcpTcb, remote))) {
                     continue;
                 }
@@ -1458,7 +1473,7 @@ retry:
         if (!(kind & 2)) {
             goto drop;
         }
-        if ((s16)((TLobby *)(void *)b)->is_multicast_address(0) == 1) {
+        if ((s16)is_multicast_address__6TLobbyFs(b, 0) == 1) {
             goto drop;
         }
         ent_new = (u8 *)TLobby__sub_8041B774((Tcb_8041B774 *)found, (u16 *)ti, a, b);
@@ -1777,7 +1792,7 @@ s16 accepted_index = (s16)((TcpTcb *)ent_new - TCP_STATE.tcbs);
             }
             break;
         }
-        ((TLobby *)(void *)found)->reset_slot_index();
+        reset_slot_index__6TLobbyFv(found);
         *(s32 *)(found + offsetof(TcpTcb, f2F0)) = 0;
         *(u32 *)(found + offsetof(TcpTcb, f2F4)) = hdr.ack;
         if (found[offsetof(TcpTcb, dupacks)] > TCP_REXMTTHRESH && *(u32 *)(found + offsetof(TcpTcb, snd_cwnd)) > *(u32 *)(found + offsetof(TcpTcb, snd_ssthresh))) {
@@ -1840,7 +1855,7 @@ s16 accepted_index = (s16)((TcpTcb *)ent_new - TCP_STATE.tcbs);
             *(u32 *)(found + offsetof(TcpTcb, snd_cwnd)) = (u16)TCP_MIN((s32)(cw + incr), 0xFFFF);
         }
         {
-            s32 n = ((TLobby *)(void *)found)->get_score();
+            s32 n = get_score__6TLobbyFv(found);
 
             if (acked > n) {
                 ourfinisacked = 1;
@@ -1867,13 +1882,13 @@ s16 accepted_index = (s16)((TcpTcb *)ent_new - TCP_STATE.tcbs);
         case 7:
             if (ourfinisacked) {
                 *(s16 *)(found + offsetof(TcpTcb, t_state)) = 10;
-                if ((u32)((TLobby *)(void *)found)->get_score() == 0) {
-                    ((TLobby *)(void *)found)->close_if_open();
+                if ((u32)get_score__6TLobbyFv(found) == 0) {
+                    close_if_open__6TLobbyFv(found);
                 }
-                if ((u32)((TLobby *)(void *)found)->get_field_d8() == 0) {
+                if ((u32)get_field_d8__6TLobbyFv(found) == 0) {
                     TLobby__sub_8041EB74(found);
                 }
-                ((TLobby *)(void *)found)->clear_position();
+                clear_position__6TLobbyFv(found);
                 *(s16 *)(found + offsetof(TcpTcb, timers[3])) = 0x78;
             }
             break;
@@ -1905,7 +1920,7 @@ step6:
         changed = 1;
     }
     if ((kind & 0x20) && hdr.urp != 0 && !(found[offsetof(TcpTcb, flags)] & 0x08)) {
-        if ((u32)((TLobby *)(void *)found)->get_queue_diff() + hdr.urp > 0x10000) {
+        if ((u32)get_queue_diff__6TLobbyFv(found) + hdr.urp > 0x10000) {
             hdr.urp = 0;
             kind &= ~0x20;
         } else {
@@ -1963,13 +1978,13 @@ L1397:
         break;
     case 9:
         *(s16 *)(found + offsetof(TcpTcb, t_state)) = 10;
-        if ((u32)((TLobby *)(void *)found)->get_score() == 0) {
-            ((TLobby *)(void *)found)->close_if_open();
+        if ((u32)get_score__6TLobbyFv(found) == 0) {
+            close_if_open__6TLobbyFv(found);
         }
-        if ((u32)((TLobby *)(void *)found)->get_field_d8() == 0) {
+        if ((u32)get_field_d8__6TLobbyFv(found) == 0) {
             TLobby__sub_8041EB74(found);
         }
-        ((TLobby *)(void *)found)->clear_position();
+        clear_position__6TLobbyFv(found);
         *(s16 *)(found + offsetof(TcpTcb, timers[3])) = 0x78;
         break;
     case 10:
@@ -1994,7 +2009,7 @@ dropwithreset:
     if (kind & 4) {
         goto drop;
     }
-    if ((s16)((TLobby *)(void *)b)->is_multicast_address(0) == 1) {
+    if ((s16)is_multicast_address__6TLobbyFs(b, 0) == 1) {
         goto drop;
     }
     if (kind & 0x10) {

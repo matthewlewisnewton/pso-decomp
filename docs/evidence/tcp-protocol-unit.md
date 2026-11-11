@@ -26,7 +26,10 @@ adaptation is listed in `third_party/README.md`.
 The reconstructed control-block stride is `0x544`; the global state is
 `0xA8` bytes. These are bounded native record views, not evidence that the
 legacy `TLobby` and `TUdpSocket` names own TCP state or packet objects.
-Existing overlapping private views and 32-bit callback/address words remain
+The new output, close and input bodies call unresolved native exports through
+explicit C ABI declarations instead of casting TCP and packet records to
+legacy C++ classes. Their linker spellings remain provisional. Existing
+overlapping private views and 32-bit callback/address words remain
 interface debt. In particular the SACK lookahead at `0x320` overlaps the
 following accounting fields; the typed five-entry active array does not
 establish a separately allocated sixth active range.
