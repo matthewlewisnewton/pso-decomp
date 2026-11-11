@@ -11,6 +11,7 @@ void set_constant_material(const NJS_ARGB *color);
 #include "pso/boss/TBoss4Zako.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/TBoss4Uro.h"
+#include "pso/boss/TBoss4ZakoTexture.h"
 #include "pso/object/TObjFish.h"
 
 struct RecoveredGlobal_8030ABF4_TCameraCtrl__data_804FF634 {
@@ -52,7 +53,6 @@ void pop_matrix(void);
 void post_translate_matrix(void *);
 void draw_chunk_object(int);
 extern RecoveredGlobal_8030ABF4_lbl_80541E58 boss4_zako_draw_buffers;
-extern s32 falz_zako_texture_list;
 extern s32 TBoss4ZakoDraw__draw_buffer_index;
 extern const f32 lbl_805DF148;
 extern RecoveredGlobal_8030ABF4_lbl_80541E58 boss4_zako_draw_buffers;
@@ -160,7 +160,7 @@ void TObjPlayer::draw_area_chunk_objects() {
     s32 i;
     r31 = ((s32)get_bml_model(TBoss4Uro::get_instance_count(), 8));
     TObjPlayer__sub_80052390(lbl_805DF148);
-    set_current_texture_list((GinjaTextureList *)(falz_zako_texture_list));
+    set_current_texture_list(falz_zako_texture_list);
     for (i = 0; i < t->count; i++, p++) {
         push_matrix();
         post_translate_matrix(p);
