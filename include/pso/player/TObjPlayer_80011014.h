@@ -2,6 +2,7 @@
 #define PSO_PLAYER_TOBJPLAYER_80011014_H
 
 #include "types.h"
+#include "pso/system/RandomRatio.h"
 
 struct Vec;
 struct TObjEnemy;
@@ -25,7 +26,6 @@ void assign_slots_from_list(void *arg0, s32 arg1);
 f32 atan2_float(f32 y, f32 x);
 void attach_mine_trap__10TObjPlayerFiUi(s32 arg0, u32 arg1);
 f32 random_ratio__9TObjCharaFv(s32 arg0);
-f32 calc_random_ratio__10TObjPlayerFv(void);
 f32 calc_xz_distance_sq(TObjBase *actor, TObjBase *other, Vec *offset);
 s32 check_can_act__10TObjPlayerFii(s32 arg0, s32 arg1);
 s32 copy_position_if_valid__10TObjPlayerFii(s32 arg0, s32 arg1);

@@ -27,13 +27,13 @@ struct TBoss8DragonEffBullet : public TObject {
 typedef char TBoss8DragonEffBullet_size[sizeof(TBoss8DragonEffBullet) == 0x58 ? 1 : -1];
 
 extern "C" {
-u8 *TBoss8DragonEffBullet__ct(u8 *boss8_dragon_eff_bullet, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s16 arg5);
+u8 *TBoss8DragonEffBullet__ct(u8 *storage, void *parent, const void *source, const void *target, s32 mode, u16 owner);
 void *__dt__21TBoss8DragonEffBulletFv(void *arg0, s16 arg1);
 }
 
 // --- C functions defined in TBoss8DragonEffBullet.cpp ---
 extern "C" {
-u8 *TBoss8DragonEffBullet__ct(u8 *boss8_dragon_eff_bullet, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s16 arg5);
+u8 *TBoss8DragonEffBullet__ct(u8 *storage, void *parent, const void *source, const void *target, s32 mode, u16 owner);
 }
 // --- end of C functions
 
