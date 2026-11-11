@@ -1,6 +1,7 @@
 #include "pso/network/ModemRuntime.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/NetworkTransport.h"
+#include "pso/network/NetworkTimer.h"
 #include "dolphin/os/OSMessage.h"
 #include <stddef.h>
 
@@ -111,7 +112,6 @@ typedef char TransportMessageQueue10_messages_offset[offsetof(TransportMessageQu
 
 extern "C" {
 s16 TLobby__sub_803F9B94(void *, void *);
-void NetRegisterTimer(int, int, void (*)(void));
 s32 TLobby__sub_8042AAA0(void *);
 TransportMessageQueue32 lbl_805CF240;
 TransportMessageQueue32 TLobby__pppoe_message_queue;
@@ -139,7 +139,6 @@ extern s32 lbl_805D7BB0;
 s16 TLobby__sub_804262CC(void *);
 s32 TLobby__sub_80426B88(s16 arg0);
 extern s32 lbl_805D7BC8;
-void NetUnregisterTimer(void *);
 u8 *TLobby__sub_804256B8(s32);
 s32 TLobby__sub_8042558C(void *);
 extern u8 lbl_805E1190[6];
@@ -168,7 +167,7 @@ void TLobby::reset_message_thread() {
         TLobby::deactivate_entry_by_key(lobby_message_thread_handle);
         lobby_message_thread_handle = 0;
     }
-    NetUnregisterTimer((void *)TLobby::update_exi_status);
+    NetUnregisterTimer(TLobby::update_exi_status);
     network_link_status_cache = -1;
     lbl_805D7BB8 = 0;
     lbl_805D7BBC = 0;
