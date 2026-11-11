@@ -78,3 +78,53 @@ scheduled order, so it cannot match either routine byte-for-byte. Both
 functions remain at their current fuzzy scores rather than being replaced by
 hand-written assembly or a body that only improves the score by changing
 already-matched functions.
+
+
+## Complete-unit recovery
+
+The earlier conclusion records the limited source forms tested at that checkpoint.
+The completed implementation uses the existing `EffectGeometryParameters` record
+and preserves the runtime parameter table's mutability. Under MWCC, five
+four-byte `__memcpy` operations copy the twenty-byte template into a live record.
+Unsigned numerical cursors reproduce the original two eight-byte iterations and
+four-byte tail without forming pointers before either object. The mutable
+parameter-table pointer is loaded before the tail copy, then its power value
+overrides `field_4`. The other-compiler branch uses ordinary aggregate copying.
+This avoids accessing float storage through integer lvalues. The record and
+copy boundary follow the repository's typed Dragon attack parameters.
+
+The color update decomposes packing into unsigned channel values. Its first
+half-word swap retains one guarded `__rlwimi`; the other-compiler branch expresses
+the same insert with masks and shifts. This replaces two inherited unguarded
+inserts. Exhaustive byte-channel comparison covers the portable first-color
+result `(v / 4) << 16 | 0xff00 | v` for all 256 channel values.
+
+With GC/2.6 and the integrated unit flags, isolated full-unit variants reproduce
+these results against the split original:
+
+| Source form | Laser action `8002FE60` | Color update `80033684` |
+|---|---:|---:|
+| Completed implementation | 100% | 100% |
+| Ordinary aggregate copy in the laser action | 99.38865% | 100% |
+| Ordinary first-color masks in the MWCC path | 100% | 99.27273% |
+
+The constructor, destructor and five virtual overrides use the native class
+interface. The compiler emits the vtable; no hand-written table remains.
+Reverse definitions with `-inline off,deferred` place the vtable at
+`.data+0x3f8`, ahead of the switch tables. This follows the existing
+[compiler-emission investigation](compiler-emission-evidence.md).
+`-str reuse,readonly` places `deldeath.adx` in the owned `.rodata` pool.
+Scalar literals and expression ordering recover the full constant pool.
+These settings are matching constraints, not evidence of original source order.
+The existing provisional offset views and legacy helper interfaces remain;
+this change does not claim a complete typed layout for every boss field.
+
+Integration on fork main `c17ee9946c4d6887e37a01c390320bb25e9a793c`
+preserves the newer typed `TBoss2Fin` construction. All 110 functions,
+29,644 code bytes and 3,684 data bytes match. All five allocated sections
+have identical raw bytes, sizes and alignment; all 1,706 relocations into
+those sections have identical offsets, types and resolved target addresses.
+The 114 localized anonymous constants/string labels have no foreign consumers
+in the fresh 8,552-object compiled/original inventory. Splits are unchanged.
+The actual linker input is the compiled object, and the final DOL retains
+SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.

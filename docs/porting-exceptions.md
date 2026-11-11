@@ -1846,3 +1846,12 @@ constant descriptors and constructor. The existing `fp_contract on` scope in
 `run_task` preserves the three fused movement updates; a port needing the same
 rounding can use `fmaf` for those expressions. See the
 [unit evidence](evidence/gol-dragon-fireball-unit.md).
+
+
+## De Rol Le native class and copied attack parameters
+
+| Location | Construct | Matching constraint | Port treatment |
+|---|---|---|---|
+| `pso/boss/TBoss2DeRolLe.cpp` | `-inline off,deferred`, `-str reuse,readonly`; final `dont_inline off` / `inline_depth(4)` | Reverse source definitions emit all 110 functions in original text order and place the compiler-generated vtable before switch tables at `.data+0x3f8`. Readonly string emission keeps `deldeath.adx` after the conversion bias in the 32-byte rodata section. Deferred color helpers need the final inline depth. | Use the target compiler's normal function/vtable/string emission and ordinary inline helpers. |
+| `TBoss2DeRolLe__sub_8002FE60` (`0x8002FE60`) | MWCC `__memcpy` with bounded unsigned address cursors | Two eight-byte iterations and a four-byte tail copy the representation into a live `EffectGeometryParameters`. Loading the mutable battle-parameter pointer before the tail store preserves the original scheduling; declaring that shared pointer const would misrepresent its loader. Cursors may numerically precede an object, but a pointer is formed only at an aligned address inside its 20-byte record. No unrelated aggregate lvalue or float/word alias is used. | The compiled fallback uses ordinary typed aggregate initialization and the same power override. |
+| `update_pulsing_colors__13TBoss2DeRolLeFPv` (`0x80033684`) | First packed color's final `__rlwimi` | Portable masks match the other two half-word swaps. This insert preserves the first color's temporary allocation and all 440 original bytes. | The adjacent non-MWCC branch uses ordinary unsigned masks and shifts. |

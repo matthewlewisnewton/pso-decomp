@@ -8,12 +8,12 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 46 | 12 |
-| intrinsic | 93 | 58 |
+| intrinsic | 92 | 58 |
 | hardware | 69 | 13 |
-| pragma | 5871 | 884 |
-| configure.py per-unit override | 208 | 208 |
+| pragma | 5898 | 884 |
+| configure.py per-unit override | 209 | 209 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1154, `inline_depth` 1058, `fp_contract` 900, `auto_inline` 805, `opt_common_subs` 643, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_loop_invariants` 42, `opt_dead_assignments` 42, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -79,8 +79,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057,
 | `src/musyx/runtime/snd3d.c:273` | `__frsqrte` |
 | `src/musyx/runtime/snd_math.c:20` | `__frsqrte` |
 | `src/musyx/runtime/synth.c:145` | `__cntlzw` |
-| `src/pso/boss/TBoss2DeRolLe.cpp:3776` | `__rlwimi` |
-| `src/pso/boss/TBoss2DeRolLe.cpp:3777` | `__rlwimi` |
+| `src/pso/boss/TBoss2DeRolLe.cpp:4125` | `__rlwimi` |
 | `src/pso/boss/TBoss3VoloptCore.cpp:521` | `__abs` |
 | `src/pso/boss/TBoss7Crawfish.cpp:120` | `__cntlzw` |
 | `src/pso/enemy/TObjEneBalClawClaw.cpp:325` | `__cntlzw` |
@@ -245,6 +244,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057,
 | `pso/boss/TBoss4Type1.cpp` | `-sdata 4` | Keep the eight-byte effect-ID pair in .data beside the state table. |
 | `pso/object/TObjEZRopeSimulation.cpp` | `-inline deferred` | Reverse definitions reproduce both native rope vtables and function order. |
 | `pso/ui/DrawLine.cpp` | `-inline off,deferred, -fp_contract on` | Reverse definitions retain native function and vtable order. |
+| `pso/boss/TBoss2DeRolLe.cpp` | `-inline off,deferred, -str reuse,readonly` | Deferred definitions retain the native De Rol Le vtable before its switch tables. |
 | `pso/menu/TAdTimeSetGC.cpp` | `-sdata 4, -fp_contract on` | Keep the eight-byte menu positions in .data with the state table. The calendar x coordinate uses a fused multiply-add. |
 | `pso/misc/TLobby_802409AC.cpp` | `-sym on` | Keep the compiler-generated guild-card initializer ahead of its constructor and accessors. |
 | `pso/misc/TPlayerFootStamp.cpp` | `-fp_contract on, -inline off,deferred, -str reuse,readonly` | Upstream #208: fused scale/corner arithmetic; deferred emission puts the compiler vtable before the constructor switch table; class string is rodata. |
@@ -490,7 +490,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057,
 | `src/pso/boss/TBoss1Dragon.cpp` | fp_contract×24, inline_depth×7, auto_inline×7, dont_inline×7, opt_common_subs×7, readonly_strings×1, pool_data×1, scheduling×1, opt_loop_invariants×1, opt_propagation×1 |
 | `src/pso/boss/TBoss1DragonColli.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, scheduling×1 |
 | `src/pso/boss/TBoss1DragonEffBullet.cpp` | fp_contract×1 |
-| `src/pso/boss/TBoss2DeRolLe.cpp` | fp_contract×16, opt_common_subs×7, dont_inline×3, inline_depth×3, auto_inline×2, opt_loop_invariants×1 |
+| `src/pso/boss/TBoss2DeRolLe.cpp` | fp_contract×31, opt_common_subs×13, dont_inline×6, inline_depth×4, auto_inline×3, opt_loop_invariants×2 |
 | `src/pso/boss/TBoss2Joint.cpp` | fp_contract×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/boss/TBoss2LaserLight.cpp` | defer_codegen×1 |
 | `src/pso/boss/TBoss2Mine_800375C0.cpp` | fp_contract×4, inline_depth×1, auto_inline×1, dont_inline×1 |

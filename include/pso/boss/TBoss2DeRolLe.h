@@ -1,12 +1,19 @@
-struct NJS_OBJECT;
 #ifndef PSO_BOSS_TBOSS2DEROLLE_H
 #define PSO_BOSS_TBOSS2DEROLLE_H
+
+struct NJS_OBJECT;
 
 #include "types.h"
 #include "pso/enemy/TObjEneDD_ST.h"
 
 struct TBoss2DeRolLe : public TObjEneDD_ST {
+    TBoss2DeRolLe(TObject *parent, void *context);
     virtual ~TBoss2DeRolLe();
+    virtual void run_task();
+    virtual void dispatch_action(u32, s32);
+    virtual void vfunc_62();
+    virtual void vfunc_88();
+    virtual void vfunc_93();
     void reset_parts();
     void load_resources();
     void *create(void *);
@@ -73,7 +80,6 @@ struct TBoss2DeRolLe : public TObjEneDD_ST {
 
 typedef char TBoss2DeRolLe_size[sizeof(TBoss2DeRolLe) == 0x75C ? 1 : -1];
 extern "C" {
-void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2);
 void TBoss2DeRolLe__sub_8002FE60(void *arg0, u32 arg1);
 void TBoss2DeRolLe__sub_80030898(u8 *arg0, u32 arg1, s32 arg2);
 void TBoss2DeRolLe__sub_80030A38(u8 *arg0, u32 arg1);
@@ -99,12 +105,10 @@ u8 *__dt__13TBoss2DeRolLeFv(u8 *arg0, s16 arg1);
 void activate_laser_light__13TBoss2DeRolLeFPv(void *arg0);
 void advance_phase_wrap__13TBoss2DeRolLeFPv(u8 *arg0);
 s32 advance_scalar_motion_profile(void *arg0);
-void apply_damage_taken__13TBoss2DeRolLeFPv(TBoss2DeRolLe *arg0);
 void apply_hp_damage_with_sound__13TBoss2DeRolLeFPvi(u8 *arg0, s32 arg1);
 void backup_pos__13TBoss2DeRolLeFi(s32 arg0);
 void calc_offset_position__13TBoss2DeRolLeFPv(u8 *arg0);
 void *create__13TBoss2DeRolLeFPv(void *arg0);
-void dispatch_action__13TBoss2DeRolLeFiUii(s32 arg0, u32 arg1, s32 arg2);
 void emit_effect_and_step__13TBoss2DeRolLeFPvPv(void *arg0, void *arg1);
 void fn_8002F5AC(u8 *arg0);
 void forward_switch_phase_stats__13TBoss2DeRolLeFi(s32 arg0);
@@ -133,7 +137,6 @@ void render__13TBoss2DeRolLeFv(u8 *arg0);
 void render_body__13TBoss2DeRolLeFv(u8 *arg0);
 void reset_fields_3d0__13TBoss2DeRolLeFPv(void *p);
 void reset_parts__13TBoss2DeRolLeFv(void);
-void run_task__13TBoss2DeRolLeFPv(u8 *arg0);
 void send_6x13__13TBoss2DeRolLeFPv(void *p);
 void set_flags_play_sound__13TBoss2DeRolLeFPv(u8 *arg0);
 void set_move_direction__13TBoss2DeRolLeFPv(void *arg0);
@@ -150,8 +153,6 @@ void swap_endian__13TBoss2DeRolLeFPv(void *p);
 void switch_phase_stats__13TBoss2DeRolLeFPvPv(u8 *arg0, u8 *arg1);
 void update_and_send__13TBoss2DeRolLeFPv(void *p);
 void update_angle__13TBoss2DeRolLeFPv(void *arg0);
-void update_check__13TBoss2DeRolLeFPv(void *arg0);
-void update_colliders_from_offsets__13TBoss2DeRolLeFi(s32 arg0);
 u8 update_phase_is_done__13TBoss2DeRolLeFPv(u8 *arg0);
 void update_projectile_spawns__13TBoss2DeRolLeFPv(u8 *arg0);
 void update_pulsing_colors__13TBoss2DeRolLeFPv(u8 *arg0);

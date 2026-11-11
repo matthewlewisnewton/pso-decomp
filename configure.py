@@ -435,6 +435,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/object/TObjEZRopeSimulation.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # Reverse definitions retain native function and vtable order.
     "pso/ui/DrawLine.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    # Deferred definitions retain the native De Rol Le vtable before its switch tables.
+    "pso/boss/TBoss2DeRolLe.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     # Keep the eight-byte menu positions in .data with the state table.
     # The calendar x coordinate uses a fused multiply-add.
     "pso/menu/TAdTimeSetGC.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-fp_contract on")},
