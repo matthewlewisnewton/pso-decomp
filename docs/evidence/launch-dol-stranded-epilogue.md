@@ -722,6 +722,108 @@ tasks and constructors that can repopulate selected roots between scene entry
 and the read.
 The runtime header word and all restore-ownership holds remain unresolved.
 
+## Cleanup scope, phase dispatch and repopulation
+
+The cleanup trace adds an entry route beyond the preceding object-attachment
+analysis. The pinned original `main_phase_table` at `0x804805E0` contains
+22 records of three function pointers, ordered init/update/exit. **Phase 19
+directly selects `check_modem_result` as its update callback.** Its entry is
+the audio-stop wrapper at `0x803354E8`, its update is `0x803354A8`, and its
+exit at `0x803354A4` is an empty return. A trial-check object need not be
+redispatched through the task tree for this route to reach the modem helper.
+That observation does not establish which phase actually precedes a launch.
+
+The exact [main dispatcher](../../src/pso/player/TObjPlayer_80011014.cpp)
+calls the current init, caches its update pointer, loops while the result
+field is zero, then calls an exit before applying the normal next-phase
+assignment. It reloads the current-phase field for lookups: calling this the
+"old phase exit" assumes callbacks leave that field unchanged until the
+normal transition. Menu phases 2, 4, 6, 7, 9, 10, 11 and 13 share
+`fn_8023F3F8` as update and `TLobby::release_scene_resources` as exit.
+The original table selects offline teardown for phase 14 and online lobby
+cleanup for phase 15. Source names alone were not used to identify these
+original pointer values.
+
+There are several different cleanup scopes; they cannot be conflated:
+
+| Operation | Explicit tree/state effect in the inspected body |
+|---|---|
+| `TMainTask::delete_layer_children` | Deletes children of the listed layers, including camera, `tl_07` and `tl_particle`; does not delete `tl_su` children |
+| [Menu release](../../src/pso/unk/text_8023F1B8.cpp) | Calls that layer cleanup, reverse resource callbacks, particle-heap cleanup and resource-task cleanup; no direct `tl_su` deletion |
+| [Offline teardown](../../src/pso/unk/text_801A3014.cpp) | Additionally deletes `tl_su` children, followed by area/resource callbacks |
+| [Online lobby cleanup](../../src/pso/misc/TLobby_801A3C48.cpp) | Additionally deletes `tl_su` children, followed by other cleanup/callback work |
+| [`clear_resource_load_tasks`](../../src/pso/unk/text_800F9B84.cpp) | Deletes children of the separate resource-load root at `0x8050113C` |
+| [`TLoadCtrl::cleanup_scene`](../../src/pso/misc/TLoadCtrl.cpp) | Queues the current controller for destruction and clears its global instance, then performs mode/camera cleanup |
+
+"Persistent `tl_su`" therefore means surviving the **layer-only** cleanup,
+not surviving every teardown. Conversely, absence of a direct deletion in
+menu release does not prove that all its callback bodies preserve that root.
+Neither resource-task cleanup nor deletion of some named layer proves that
+every read-wait task has gone away.
+
+Ordering also limits cleanup-dominance claims. The known
+[`TUnk_804C2298` state-8 path](../../src/pso/unk/text_801A4D30.cpp) calls the
+launch-selection helper before setting state 9 and requesting the scene
+change. The same outer dispatcher's later phase exit cannot itself precede
+that nested launch. Another independently invoked cleanup remains possible.
+Within a menu phase, [the mode-frame update](../../src/pso/unk/text_8023F3F8.cpp)
+queues the old mode object and later invokes the mode factory; it does not
+call the full phase-release routine for each mode replacement.
+
+Selected roots can be repopulated after a cleanup. Both the inspected logo
+entry and [menu-scene entry](../../src/pso/unk/text_8023F1B8.cpp) create a
+camera and invoke
+[`TParticleCtrl::create_quad_sprites`](../../src/pso/misc/TParticleCtrl_801E5330.cpp)
+before later UI launch paths. The original definition table has 108 records
+of size `0x28`; the selector at `+0x24` is type 3 in 70 records and type 4 in
+38. The factory attempts allocations and constructs `TQuadSpriteSclCol` or
+`TQuadSpriteSclColRot` under `tl_particle`. Allocation success and continued
+liveness are separate predicates. These are quad-sprite classes, not
+`TEffClitical`; their presence does not establish the earlier cache-writing
+effect path or a payload clobber.
+
+There is also a conditional persistent-task route to new selected-layer
+children. `TLoadCtrl::start_loading` attaches a controller to `tl_su`.
+With the **global instance nonzero**, when that receiver's tick reaches two,
+mode 0 can construct `TNowLoading`. Its
+[loading indicators](../../src/pso/misc/TNowLoading.cpp), including
+[`TLoadingCur`](../../src/pso/misc/TLoadingCur.cpp), call
+[`fn_80086FE0`](../../src/pso/unk/text_80086FE0.cpp); the corresponding
+[`initialize_with_direction`](../../src/pso/boss/TBoss4Type2_800874F4.cpp)
+constructs particle objects under `tl_07`. This depends on controller flags,
+mode/tick, particle bounds and successful allocations. The global guard is
+nonzero, not equality between receiver and instance. Clearing it suppresses
+that task body's work; queuing the controller is a distinct traversal gate.
+A no-op parent task alone would not exclude descendants, since `run_tasks`
+can recurse into them. No active loading controller is observed at launch.
+
+The [phase-dispatch probe](../../tools/probe_loader_phase_cleanup.py) pins the
+original table and executes the original main dispatcher and phase-19
+callbacks over explicit synthetic phase/root state. Five cases cover direct
+phase-19 entry, chosen menu/offline/online predecessors, and a result flag
+that suppresses the update. Predecessor callback bodies are intercepted:
+the controls verify **table-selected callback order**, not cleanup effects.
+For the modeled predecessors, exit selection precedes phase-19 entry.
+With null fixture root globals, the original phase-19 update still reaches
+the modem-selection helper, where the probe stops. The negative control
+skips that update, executes the empty exit and reaches a modeled shutdown.
+No modem helper body, file read, loader or restore executes. Inherited setup
+and ABI limitations remain those of the earlier probes.
+
+```sh
+python3 tools/probe_loader_phase_cleanup.py --dol PRIVATE/PsoV3.dol --output build/phase-cleanup.json
+```
+
+These results replace a blanket clean-scene assumption with route-specific
+conditions. What remains missing is the actual predecessor/phase-request path,
+the effects of its release callbacks, and loading/quest/network task state
+after cleanup and any restart. A useful next bounded trace is the callers
+that request phase 19 and the resource callbacks on their exact predecessor
+paths, especially whether they discharge or recreate active `tl_su` work.
+Possible repopulation is not an observed retail callback, runtime header
+value or restore-ownership proof. Providers and address accounting remain
+unchanged.
+
 ## Comparison record and reproduction limits
 
 The historical comparison procedure is preserved at immutable commit
