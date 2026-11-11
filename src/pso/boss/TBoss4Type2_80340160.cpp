@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/PersistentSound.h"
 #include "types.h"
 #include "pso/misc/TOTrapAncient01_80226534.h"
@@ -77,7 +78,6 @@ void __ct__7TObjectFP7TObject(TObject *self, TObject *parent);
 extern const char *lbl_805D42C8;
 extern s32 lbl_804DF614[];
 extern s32 lbl_804EFB70[];
-s32 get_bml_model(s32 bml, s32 index);
 s32 TObjFish__sub_8001EDB0(s32 bml, s32 index);
 s32 get_bml_motion(s32 bml, s32 index);
 void fn_8034009C(TBoss6Demo15_TYPE2_WAIT *self);
@@ -99,7 +99,7 @@ void *TObjFish__sub_8034029C(TBoss6Demo15_TYPE2_WAIT *wait, TObjFish *fish) {
         {
             s32 t = lbl_804DF614[i];
             v = t;
-            self->parts[i].model = get_bml_model(bml, t);
+            self->parts[i].model = (s32)get_bml_model((BmlResource *)bml, t);
         }
         self->parts[i].model_aux = TObjFish__sub_8001EDB0(bml, v);
         self->parts[i].motion = get_bml_motion(bml, lbl_804EFB70[i]);

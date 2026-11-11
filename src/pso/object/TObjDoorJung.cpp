@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/GinjaMaterialState.h"
@@ -49,7 +50,6 @@ struct Node_8018F4AC {
     Node_8018F4AC *child;
     Node_8018F4AC *sibling;
 };
-Node_8018F4AC *get_bml_model(void *, int);
 void free_children__12TObjDoorJungFPv(s32, u16);
 void PPCSync();
 s32 rotate_matrix_y(int, int);
@@ -103,7 +103,7 @@ void TObjDoorJung__sub_8018F4AC(void) {
     handle = (int)new BmlResource(5, (BmlResourceDescriptor *)(bm_obj_beamdoa_resource_descriptor), 0, 0, (void *)(0));
     TObjDoorJung__resource_handle = (void *)handle;
     lbl_805D5BD4 = TObjFish__sub_8001EDB0(TObjDoorJung__resource_handle, 0);
-    model = get_bml_model(TObjDoorJung__resource_handle, 1);
+    model = ((Node_8018F4AC *)get_bml_model((BmlResource *)TObjDoorJung__resource_handle, 1));
     node = model->child;
     TObjDoorJung__child_table[0] = node->model;
     TObjDoorJung__child_table[1] = node->child->model;
@@ -175,9 +175,9 @@ void TObjDoorJung::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation.yaw);
-        draw_ginja_object(get_bml_model(TObjDoorJung__resource_handle, 0));
+        draw_ginja_object(((Node_8018F4AC *)get_bml_model((BmlResource *)TObjDoorJung__resource_handle, 0)));
         TParticleCtrl::begin_effect_render();
-        draw_ginja_object(get_bml_model(TObjDoorJung__resource_handle, 1));
+        draw_ginja_object(((Node_8018F4AC *)get_bml_model((BmlResource *)TObjDoorJung__resource_handle, 1)));
         TParticleCtrl::end_effect_render();
         pop_matrix();
     }

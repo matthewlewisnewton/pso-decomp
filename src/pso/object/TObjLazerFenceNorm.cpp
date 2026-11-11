@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -102,7 +103,6 @@ struct Ent_80192874 { u8 b[0x84]; };
 
 extern "C" {
 s32 get_bml_motion(s32, s32);
-Node_80192A3C *get_bml_model(s32, s32);
 extern s32 lazer_fence_norm_bml_resource;
 void init_collision_body_parts(void *, void *, s32);
 void __ct__14TObjCollidableFP7TObject(void *, void *);
@@ -196,12 +196,12 @@ void TObjLazerFenceNorm::select_models() {
     Node_80192A3C *node;
     s32 j;
     if (*(s32 *)&this->set_params[2] % 2 == 0) {
-        *(Node_80192A3C * *)&this->m_bc = get_bml_model(lazer_fence_norm_bml_resource, 1);
-        arg0->fC0 = get_bml_model(lazer_fence_norm_bml_resource, 0);
+        *(Node_80192A3C * *)&this->m_bc = ((Node_80192A3C *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 1));
+        arg0->fC0 = ((Node_80192A3C *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 0));
         this->m_c4 = get_bml_motion(lazer_fence_norm_bml_resource, 0);
     } else {
-        *(Node_80192A3C * *)&this->m_bc = get_bml_model(lazer_fence_norm_bml_resource, 3);
-        arg0->fC0 = get_bml_model(lazer_fence_norm_bml_resource, 2);
+        *(Node_80192A3C * *)&this->m_bc = ((Node_80192A3C *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 3));
+        arg0->fC0 = ((Node_80192A3C *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 2));
         this->m_c4 = get_bml_motion(lazer_fence_norm_bml_resource, 1);
     }
     for (j = 0; j < 4; j++) {

@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -49,7 +50,6 @@ struct Obj_8018DBCC {
 extern "C" {
 u8 * TObjFish__sub_8001EDB0(void *, int);
 extern u32 TObjContainerJungEx__resource_bundle;
-u8 * get_bml_model(void *, int);
 extern RecoveredGlobal_8018D9B0_lbl_804B7158 fe_obj_hako02_resource_descriptor;
 
 
@@ -62,7 +62,7 @@ u8 *TObjContainerJungEx__sub_8018D900(s32 arg0) {
 
 u8 *TObjContainerJungEx::get_model(s32 arg0) {
     if ((void *) (*(u8 * *)&TObjContainerJungEx__resource_bundle) != NULL) {
-        return get_bml_model((*(u8 * *)&TObjContainerJungEx__resource_bundle), arg0);
+        return (u8 *)get_bml_model((BmlResource *)(*(u8 * *)&TObjContainerJungEx__resource_bundle), arg0);
     }
     return NULL;
 }
@@ -267,7 +267,7 @@ s32 TObjDoaEx01::draw_object_tree(s32 arg1) {
 void TObjDoaEx01::try_open() {
     s32 bml_model;
 
-    bml_model = (s32)get_bml_model((void *)TObjDoaEx01__resource_bundle, 0);
+    bml_model = (s32)(u8 *)get_bml_model((BmlResource *)TObjDoaEx01__resource_bundle, 0);
     if (((TObjDoaEx01_VObj*)((u8 *)this))->m8(4e+02f, 2e+01f) != 0) {
         ((TObjDoorJung *)(*(s32 *)((s8 *)TObjDoaEx01__alpha_model_node + 4)))->free_children((void *)1);
         ((TObjDoorJung *)(*(s32 *)((s8 *)TObjDoaEx01__alpha_model_sibling + 4)))->free_children((void *)1);
@@ -286,7 +286,7 @@ void TObjDoaEx01::draw_model() {
     if (((VObj_18_26a62c *)(this))->m8(4e+02f, 2e+01f) != 0) {
         ((TObjDoorJung *)(*(s32 *)((s8 *)TObjDoaEx01__alpha_model_node + 4)))->free_children((void *)0);
         ((TObjDoorJung *)(*(s32 *)((s8 *)TObjDoaEx01__alpha_model_sibling + 4)))->free_children((void *)0);
-        temp_r31 = (s32)get_bml_model((void *)(TObjDoaEx01__resource_bundle), 0);
+        temp_r31 = (s32)(u8 *)get_bml_model((BmlResource *)(TObjDoaEx01__resource_bundle), 0);
         set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)(TObjDoaEx01__resource_bundle), 0)));
         push_matrix();
         post_translate_matrix((void *) (((u8 *)this) + 0x38));
@@ -294,7 +294,7 @@ void TObjDoaEx01::draw_model() {
         temp_f31 = this->animation_frame;
         if (temp_f31 > 0.0f) {
             temp_r31 = get_bml_motion((TObjDoaEx01__resource_bundle), 0);
-            draw_ginja_model_with_motion((s32)get_bml_model((void *)(TObjDoaEx01__resource_bundle), 0), temp_r31, temp_f31);
+            draw_ginja_model_with_motion((s32)(u8 *)get_bml_model((BmlResource *)(TObjDoaEx01__resource_bundle), 0), temp_r31, temp_f31);
         } else {
             this->draw_object_tree((temp_r31));
         }
@@ -408,7 +408,7 @@ void TObjDoaEx01::load_resources() {
     temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&TObjDoaEx01__resource_descriptor), 0, 0, (void *)(0));
     var_r0 = temp_r3;
     (*(u8 * *)&TObjDoaEx01__resource_bundle) = (unsigned char *) ((void *) var_r0);
-    temp_r3_2 = (u8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(get_bml_model((void *) var_r0, 0)) + 0x2C)) + 0x30)) + 0x2C)) + 0x2C));
+    temp_r3_2 = (u8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)((u8 *)get_bml_model((BmlResource *)var_r0, 0)) + 0x2C)) + 0x30)) + 0x2C)) + 0x2C));
     TObjDoaEx01__alpha_model_node = temp_r3_2;
     TObjDoaEx01__alpha_model_sibling = (u8 *)*(s32 *)((s8 *)temp_r3_2 + 0x30);
 }

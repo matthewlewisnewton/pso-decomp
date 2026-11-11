@@ -1,3 +1,4 @@
+struct BmlResource;
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/boss/TBoss4Zako.h"
@@ -319,7 +320,6 @@ extern "C" TObjEnemy *__ct__9TObjEnemyFP7TObject(void *, void *);
 struct O_8005D6B0 { u8 pad[0x374]; s32 f374; };
 
 
-s32 get_instance_count__9TBoss4UroFv();
 
 void *create_particle_emitter(void *pos, s32 id);
 s32 init_collision_body_parts(void *, void *, int);
@@ -346,6 +346,8 @@ extern const f32 lbl_805D8CD0, lbl_805D8CD8, lbl_805D8CE0, lbl_805D8D28, lbl_805
 
 u8 *VecCopy__FP3VecPC3Vec(void *, void *);
 void *get_player_by_client_id(s32);
+// This unit retains its legacy Uro overlay; the resource getter returns a pointer.
+BmlResource *get_instance_count__9TBoss4UroFv();
 void TBoss4Uro__sub_8005D6D4(void *arg0);
 void fn_8005D6E4(void *arg0);
 void *__dt__10TBoss4ZakoFv(void *, s16);
@@ -402,7 +404,7 @@ s32 TBoss4Zako__ct(s32 arg0, s32 parent, s32 arg2) {
     fn_8005D6E4((u8 *)*(s32 *)((s8 *)THIS + 0x378));
     ((TBoss3Volopt *)THIS)->apply_set_data((s32 *)arg2 + 1);
     ((TBoss3Volopt *)THIS)->clear_lobby_object_state();
-    *(s32 *)((s8 *)THIS + 0x380) = get_instance_count__9TBoss4UroFv();
+    *(s32 *)((s8 *)THIS + 0x380) = (s32)get_instance_count__9TBoss4UroFv();
     *(s32 *)((s8 *)THIS + 0x24) = 0;
     *(s32 *)((s8 *)THIS + 0x34) = 0;
     VecCopy__FP3VecPC3Vec(THIS + 0x44, VecCopy__FP3VecPC3Vec(THIS + 0x50, VecCopy__FP3VecPC3Vec(THIS + 0x74, THIS + 0x38)));

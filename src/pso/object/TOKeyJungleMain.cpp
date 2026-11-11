@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -114,7 +115,6 @@ s32 draw_ginja_object();
 s32 draw_ginja_model_with_motion(s32, s32, f32);
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 
@@ -184,7 +184,7 @@ void render__15TOKeyJungleMainFv(TOKeyJungleMain *key_jungle_main) {
             push_matrix();
             post_translate_matrix((u8 *)key_jungle_main + 0x38);
             rotate_matrix_y(0, key_jungle_main->rotation.yaw);
-            get_bml_model((*(s32 *)&TOKeyJungleMain__static_model_resource), 1);
+            (s32)get_bml_model((BmlResource *)(*(s32 *)&TOKeyJungleMain__static_model_resource), 1);
             draw_ginja_object();
             pop_matrix();
             return;
@@ -193,9 +193,9 @@ void render__15TOKeyJungleMainFv(TOKeyJungleMain *key_jungle_main) {
             push_matrix();
             post_translate_matrix((u8 *)key_jungle_main + 0x38);
             rotate_matrix_y(0, key_jungle_main->rotation.yaw);
-            draw_ginja_model_with_motion(get_bml_model((*(s32 *)&TOKeyJungleMain__static_model_resource), 1), get_bml_motion((*(s32 *)&TOKeyJungleMain__static_model_resource), 1), key_jungle_main->m_e8);
+            draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)(*(s32 *)&TOKeyJungleMain__static_model_resource), 1), get_bml_motion((*(s32 *)&TOKeyJungleMain__static_model_resource), 1), key_jungle_main->m_e8);
             TParticleCtrl::begin_effect_render();
-            draw_ginja_model_with_motion(get_bml_model((*(s32 *)&TOKeyJungleMain__static_model_resource), 0), get_bml_motion((*(s32 *)&TOKeyJungleMain__static_model_resource), 0), *(f32 *)((s8 *)key_jungle_main + 0xEC));
+            draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)(*(s32 *)&TOKeyJungleMain__static_model_resource), 0), get_bml_motion((*(s32 *)&TOKeyJungleMain__static_model_resource), 0), *(f32 *)((s8 *)key_jungle_main + 0xEC));
             TParticleCtrl::end_effect_render();
             pop_matrix();
             break;

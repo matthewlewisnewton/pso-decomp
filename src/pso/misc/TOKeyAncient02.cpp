@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -144,7 +145,7 @@ void TOKeyAncient02::load_resources() {
     TOKeyAncient02__texture_lists = (s32 *)::operator new[](8);
     TOKeyAncient02__texture_lists[0] = TObjFish__sub_8001EDB0(TOKeyAncient02__model_archive, 0);
     TOKeyAncient02__texture_lists[1] = (s32)load_gvm_texture_file("o_key_ancient02.gvm");
-    TOKeyAncient02__glass_model = (NJS_OBJECT *)get_bml_model(TOKeyAncient02__model_archive, 0);
+    TOKeyAncient02__glass_model = get_bml_model(TOKeyAncient02__model_archive, 0);
 }
 
 TOKeyAncient02::~TOKeyAncient02() {
