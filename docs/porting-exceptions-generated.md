@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5704 | 879 |
+| pragma | 5708 | 879 |
 | configure.py per-unit override | 193 | 193 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004, `fp_contract` 881, `auto_inline` 802, `opt_common_subs` 615, `scheduling` 263, `opt_propagation` 246, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 28, `optimize_for_size` 27, `opt_lifetimes` 25, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802, `opt_common_subs` 616, `scheduling` 263, `opt_propagation` 248, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 28, `optimize_for_size` 27, `opt_lifetimes` 25, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -879,7 +879,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004,
 | `src/pso/misc/TWindowCtrl_8024B1A0.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowCtrl_8024B7D4.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowCtrl_8024D960.cpp` | fp_contract×1, scheduling×1 |
-| `src/pso/misc/TWindowDD.cpp` | opt_dead_assignments×1, opt_common_subs×1 |
+| `src/pso/misc/TWindowDD.cpp` | opt_propagation×2, opt_common_subs×2, opt_dead_assignments×1, fp_contract×1 |
 | `src/pso/misc/TWindowDD_803411E8.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowDD_80341334.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowDD_80341A08.cpp` | fp_contract×3 |
