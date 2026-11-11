@@ -82,3 +82,48 @@ original DOL SHA-1 remains
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`; all prior SDK queue validations
 remain applicable because the audit changes documentation only. No new matching
 function, code or data gain is attributed to it. Keep draft.
+
+## Explicit queue-parameter probe
+
+After the audit, test one separately source-reviewed recovery: the owner-local
+C-linkage helper `post_network_queue_message(OSMessageQueue *, s32, s32, s32)`.
+Replace the implicit receiver with an explicit SDK queue parameter, remove the
+nonvirtual `TLobby` declaration, and rename only the configured export and its
+force-active entry. The address and size remain `0x80425C70` / 0x8C. The new name
+describes this recovery; it is not asserted to be a historical shared API.
+
+The body retains both lookup paths, all locals, the descriptor offset-four write,
+SDK send flag zero, result comparison and every return. All three calls retain
+the original `mq + 0xA0` byte-address expression and all three existing argument
+words, converting the queue address explicitly to `OSMessageQueue *`. No singleton
+specialization, selector removal, queue check, retry or rollback is introduced.
+No callback, allocator or private status contract changes.
+
+The first probe reproduces original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. The complete **compiled owner** ELF
+equals its saved reference after exactly one audited helper-name mapping. Section
+and symbol order/properties, all code/data/debug payloads and raw relocation
+bytes remain equal; only the renamed symbol's string offsets/length and necessary
+physical ELF placement differ. No instruction or relocation payload is normalized.
+The other 3,664 compiled objects are raw byte-identical.
+
+The regenerated **original-reference split object** is a separate comparison:
+its string table mechanically moves the renamed helper from string ordinal 27
+to 39. Its mapped symbol records/order and raw relocations agree, but its string
+order does not satisfy the strict complete-object comparison. Do not claim whole
+original-reference equality or broaden the compiled-owner normalization to hide
+this distinction. That reference object is not the selected compiled provider.
+
+Incremental report comparison has zero metric, coverage or retention drift, with
+only the helper rename. Full sealed-main comparison passes with 3,599 exact linked
+units, 18,428 retention entries without drift, existing +88 data bytes and no new
+function/code gain or loss. The ordered provider list remains 3,599 source inputs
+and 1,347 original fallbacks. All fourteen DHCP/modem host tests, inventory and
+whitespace checks pass. Independent source and complete-object review finds no
+remaining objection to the bounded receiver recovery, subject to final exact-head
+review.
+
+This repairs the fake receiver for this owner-local helper and its three observed
+calls. Cross-object adjacency, historical shared-declaration uncertainty, private
+creator/raw callback/reset ABI restrictions and the metadata hold remain. Keep
+draft; no other hold is cleared by this probe.

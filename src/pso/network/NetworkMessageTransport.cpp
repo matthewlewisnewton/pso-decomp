@@ -196,7 +196,7 @@ void TLobby::update_exi_status() {
     }
 }
 
-s32 TLobby::post_message(s32 arg1, s32 arg2, s32 arg3) {
+s32 post_network_queue_message(OSMessageQueue *queue, s32 arg1, s32 arg2, s32 arg3) {
     s32 ok;
     u8 *p;
     if (arg3 != 0) {
@@ -206,8 +206,7 @@ s32 TLobby::post_message(s32 arg1, s32 arg2, s32 arg3) {
     }
     if (p != NULL) {
         *(s32 *)(p + 4) = arg2;
-        // Native callers pass SDK queue storage through this legacy receiver.
-        ok = OSSendMessage((OSMessageQueue *)this, p, 0);
+        ok = OSSendMessage(queue, p, 0);
     } else {
         ok = 0;
     }
@@ -247,7 +246,7 @@ void dispatch_received_ethernet_frame(void *q, void *a, void *b);
 void dispatch_received_ethernet_frame(void *q, void *a, void *b) {
     s32 i;
     EthernetMulticastEntry *e;
-    // Retain the native adjacent-queue byte view; its receiver is a separate hold.
+    // Retain the native adjacent-queue byte view as a separate hold.
     u8 *mq = (u8 *)&lbl_805CF240;
     EthernetProtocolRegistration *r = self->protocols;
     u16 *key = &pkt->ether_type;
@@ -283,7 +282,7 @@ void dispatch_received_ethernet_frame(void *q, void *a, void *b) {
                 TLobby__sub_804089A8(0, 1, (u8 *)b - 4, a);
                 break;
             case 2:
-                ((TLobby *)(mq + 0xA0))->post_message((s32)a, (s32)((u8 *)b - 4), 1);
+                post_network_queue_message((OSMessageQueue *)(mq + 0xA0), (s32)a, (s32)((u8 *)b - 4), 1);
                 break;
             }
             return;
@@ -297,7 +296,7 @@ void dispatch_received_ethernet_frame(void *q, void *a, void *b) {
                     TLobby__sub_804089A8(0, 1, (u8 *)b - 4, a);
                     break;
                 case 2:
-                    ((TLobby *)(mq + 0xA0))->post_message((s32)a, (s32)((u8 *)b - 4), 1);
+                    post_network_queue_message((OSMessageQueue *)(mq + 0xA0), (s32)a, (s32)((u8 *)b - 4), 1);
                     break;
                 }
                 return;
@@ -329,7 +328,7 @@ void dispatch_received_ethernet_frame(void *q, void *a, void *b) {
         TLobby__sub_804089A8(0, 1, (u8 *)b - 4, a);
         break;
     case 2:
-        ((TLobby *)(mq + 0xA0))->post_message((s32)a, (s32)((u8 *)b - 4), 1);
+        post_network_queue_message((OSMessageQueue *)(mq + 0xA0), (s32)a, (s32)((u8 *)b - 4), 1);
         break;
     }
 }

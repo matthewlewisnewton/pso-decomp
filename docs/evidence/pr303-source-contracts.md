@@ -1994,3 +1994,14 @@ resolving its address from the original DOL and checking the initializer. The
 callee forwards that receiver to SDK send without dereferencing it. This is
 bounded evidence for a separate recovery, not a historical shared declaration
 or acceptance of an API change. Receiver/adjacency and all other holds remain.
+
+The separately reviewed explicit queue-parameter probe is recorded in that
+audit's follow-up section. It replaces this one fake receiver with an owner-local
+C-linkage SDK queue parameter, preserving all branches, arguments, failure
+operations and adjacent-queue byte addressing. Native validation passes: the
+complete compiled owner agrees under one audited export-name mapping, all other
+3,664 compiled objects remain raw-identical, and original DOL/no-loss/retention
+and fourteen host tests pass. The regenerated original reference has a separately
+documented string-order change and is not claimed whole-object equal. No shared
+historical API or singleton contract is inferred; adjacency and all other private
+ABI/metadata holds remain.
