@@ -207,6 +207,13 @@ compiler-control qualifications remain explicit.
 
 ## Current tried/blocked index
 
+The [native Palette destructor](window-palette-native-destruction.md) now uses the
+consolidated owner without separating its vtable and icon switch. All owned
+original bytes/targets remain exact; the sole ELF difference is a qualified local
+anonymous symbol spelling. Full build/report/provider/coverage checks pass.
+Raw Base/Addition calls fall to 15 across 8 units. Only the raw deleting-wrapper
+hold is resolved; callback/tag lifetime, reset, index and external ABI holds stay.
+
 The [Palette/current-main integration](window-palette-main-stack-integration.md)
 incorporates main f8a71fae while retaining the native Base chain, word constructor,
 tag ABI and typed layouts. The consolidated 3588/832 owner and all 198 resolved
@@ -248,10 +255,10 @@ remain unqualified; no Parts import or probe is activated.
 
 | Area | Established result | Remaining evidence / hold |
 | --- | --- | --- |
-| Base/Addition and recovered descendants | Native chains, tables and observed widths; most factories use ordinary new | Sixteen raw calls across nine units; three shared bindings; no invented default lifetime |
+| Base/Addition and recovered descendants | Native chains, tables and observed widths; most factories use ordinary new | Fifteen raw calls across eight units; three shared bindings; no invented default lifetime |
 | Status display | Native 0x74-byte lifetime/table preserved; upstream exact 5136-byte Pages integrated with canonical PageIndicator | Unchecked rank index remains qualified; historical 1344-byte probe superseded by reviewed upstream recovery |
 | Basic ComCard | Native constructor and exact native render body; coherent cleanup/table probe | Unknown trailing word ownership prevents regression-free activation; no padding/object invention or four-byte waiver |
-| ActionPalette | Native Base construction/tag/layout recovery retained in exact source-linked 3588-text/832-data consolidated owner; compiler table and icon jump targets exact | Raw deleting boundary, array callbacks, repeated first-tag reset, unchecked index and external entry/light/legacy caller ABI qualifications remain |
+| ActionPalette | Native Base construction and destruction, tag/layout recovery retained in exact source-linked 3588-text/832-data owner; compiler table and icon jump targets exact | Array callback/tag storage/lifetime, repeated first-tag reset, unchecked index and external entry/light/legacy caller ABI qualifications remain |
 | DD renderer | Shared begin/forward/reset contracts established | 608-byte probe remains 37 words different; needs value-lifetime/quad evidence; original provider retained |
 | Word renderer/lifetime | Upstream exact 916-byte renderer and complete 3412-byte unit source-linked; fixed-source native diagnostic matches all seven bodies/relative targets including constructor148 | Diagnostic order and actual table/startup destinations fail; source/context organization and helper/storage qualifications remain held |
 | Nameplate | Ordinary reconstructed 800-byte body and helper evidence | Nonexact arithmetic/register result; original full provider retained |

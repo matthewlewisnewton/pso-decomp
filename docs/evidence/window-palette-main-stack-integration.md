@@ -1,5 +1,10 @@
 # Consolidated Palette integration with the native Base chain
 
+The subsequent [native destructor follow-up](window-palette-native-destruction.md)
+uses this newly qualified common owner to resolve the raw deleting wrapper.
+The raw-destructor statements below describe this integration checkpoint;
+callback/tag storage, reset, index and external helper qualifications remain.
+
 This integrates main `f8a71fae8a52f0bde1b956af4519061fe306cb30` through focused
 head `be9e024f26698be013626a8591bd25150228825f`, following continuation
 `9cefcb0dd3079a9b3766467365927dc7d16e4260`. The published stack/history is

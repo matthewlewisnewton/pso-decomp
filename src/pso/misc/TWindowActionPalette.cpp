@@ -1,7 +1,6 @@
 #include "pso/system/GinjaMaterialState.h"
 #include "pso/misc/WindowLayoutDescriptor.h"
 #include "pso/misc/ActionPaletteTagAbi.h"
-#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/item/TItem.h"
 #include "pso/misc/TWindowSubStatusDisp_802598E4.h"
@@ -248,7 +247,6 @@ extern const f32 lbl_805DCA9C;
 s32 TObjPlayer__sub_80354C7C(s32);
 s32 setup_window_draw_context__11TWindowBaseFl(void *, void *);
 void draw_visible_window_entries(void *, void *, int);
-void __dl__7TObjectFPv(void *);
 void __destroy_arr(void *, void *, int, int);
 }
 void set_sprite_uv_from_pixels(u8 *arg0, f32 farg0, f32 farg1);
@@ -280,17 +278,8 @@ TWindowActionPalette::TWindowActionPalette(s32 slot)
     }
 }
 
-extern "C" u8 *__dt__20TWindowActionPaletteFv(u8 *self, s16 delete_flag) {
-    if (self != NULL) {
-        *(u32 **)(self + 0x18) = __vt__20TWindowActionPalette;
-        __destroy_arr(self + 0x60,
-                               (void *)TPlyDispConfig::free_if_valid, 4, 3);
-        __dt__11TWindowBaseFv((TWindowBase *)(self), 0);
-        if (delete_flag > 0) {
-            __dl__7TObjectFPv(self);
-        }
-    }
-    return self;
+TWindowActionPalette::~TWindowActionPalette() {
+    __destroy_arr(resources, (void *)TPlyDispConfig::free_if_valid, 4, 3);
 }
 
 void TWindowActionPalette::run_task() {

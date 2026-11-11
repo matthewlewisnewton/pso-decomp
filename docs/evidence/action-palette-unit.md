@@ -6,6 +6,8 @@ recovered Base-derived class, native constructor/task, free tag ABI and typed
 texture-list storage pointers. The raw-construction/intermediate-Base statements
 below describe the incoming main snapshot, not combined B. The raw destructor
 and remaining callback/entry/helper qualifications stay explicit in that note.
+The later [native destructor qualification](window-palette-native-destruction.md)
+also resolves that raw deleting boundary on B while retaining the other holds.
 
 Base: fork main `e65f11ce6ec99c006909422f81da1c0a46ac062e`.
 
