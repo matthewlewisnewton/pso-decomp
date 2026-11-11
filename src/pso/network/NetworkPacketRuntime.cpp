@@ -174,7 +174,7 @@ void dhcp_parse_lease_times(u8 *arg0) {
     }
 }
 
-s32 TLobby__sub_8042474C(void *lease, void *renew, void *rebind) {
+s16 TLobby__sub_8042474C(s32 *lease, s32 *renew, s32 *rebind) {
     lbl_805D7BA0 = 0;
     if (dhcp_state == 3 || dhcp_state == 4 || dhcp_state == 5) {
         if (TLobby__sub_804251C0(7, lease) != 0) {

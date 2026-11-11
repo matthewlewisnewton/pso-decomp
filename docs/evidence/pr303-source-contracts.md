@@ -2025,3 +2025,14 @@ with an explicit conversion. The subset leaves all 3,665 object hashes unchanged
 and passes original-DOL/no-loss/retention/fourteen-test checks. The locked caller
 and misc declaration remain restored and held, along with adjacency and the
 other private ABI/metadata restrictions.
+
+The distinct [synchronous lease-output audit](pr303-dhcp-lease-output.md) follows
+the completed reply-slot repair without reopening earlier failed migrations.
+The option table and sole native caller establish three four-byte destinations
+and short status consumption; the producer returns only literal zero/-1.
+Eight isolated controls separate output typing from result width and support
+one shared `s16(s32 *, s32 *, s32 *)` declaration. Its first native candidate
+leaves every compiled object and the original DOL unchanged, with no-loss,
+retention and fourteen-test checks passing. All getter writes, diagnostic
+precedence, null handling and accepted-state zero results remain intact.
+Only that declaration is repaired; adjacent interfaces and all other holds stay.
