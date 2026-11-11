@@ -162,3 +162,28 @@ separate prefix/handoff/restore/call-addend mutations, a truncated object and
 an incorrect original-input hash. The isolated integration differs in only the
 loader object among 3,635 common compiled source objects; the other 3,634 are
 byte-identical. These checks do not include a runtime loader execution.
+
+## Integration with the merged restore and portable path
+
+Main `0a85a72c1c` merged #285 while this experiment was being prepared. It links
+the separate restore with approved generated assembly/retention and supplies
+scalar guest-state handoff/restore handlers. This continuation preserves those
+handlers unchanged, while retaining the shared typed native `LaunchDol`
+interface and proper SDK declarations. The earlier isolated trial and its
++20-byte gains are against `94f7968bbe`, not this newer baseline: current main
+already matches and links the restore. Widening the loader would still require
+reconciling the separate function start and coverage accounting.
+
+The [portable contract](loader-restore-retention.md) now supplies the behavior
+path for the handoff and restore. It does not implement the earlier loader
+relocation/reset body, and the opt-in experiment is still target-only. This
+integration does not extend or replace the newly approved #285 exception.
+
+Fresh baseline and candidate builds both reproduce the original DOL SHA-1.
+All 3,632 common compiled source objects are byte-identical, and the complete
+parsed progress reports are equal. `check_pr.py --no-build` passes against
+that fresh main report with zero deltas; linked-unit, retention and exception
+checks pass. The target handoff probe remains exact across all 332 bytes and
+ten relocations under the integrated headers. Portable behavior and ASan/UBSan
+checks pass; the sanitizer run uses the normal host environment because
+LeakSanitizer cannot operate inside the ptrace-based execution sandbox.

@@ -17,15 +17,7 @@ extern RecoveredGlobal_803E5EFC_lbl_8058DD88 lbl_8058DD88;
 
 
 
-struct Req_803E5D20
-{
-  u8 *buf;
-  s16 len;
-  u8 a;
-  u8 code;
-  u8 b;
-  s32 x;
-};
+typedef Req_803EEF2C Req_803E5D20;
 
 extern "C" {
 s32 TQuestVmDownLoadServer__sub_803F0890(void);
@@ -51,7 +43,7 @@ extern s32 lbl_805D7898;
 s32 TQuestVmDownLoadServer__sub_803E9F54(s32 arg0);
 s32 TQuestVmDownLoadServer__sub_803EA9E8(int, int, int, int);
 s32 TQuestVmDownLoadServer__sub_803EDC20(u32);
-s32 TQuestVmDownLoadServer__sub_803EDF64(s16 *, s32, u16 *, s32 *);
+s32 TQuestVmDownLoadServer__sub_803EDF64(const u8 *, s32, u16 *, s32 *);
 extern s16 quest_download_text_buffer[0x200];
 void TQuestVmDownLoadServer__sub_803EE870(s32, s32);
 void TQuestVmDownLoadServer__sub_803EAE84(s32 arg0, s32 arg1, void *arg2);
@@ -256,7 +248,7 @@ s32 TQuestVmDownLoadServer__sub_803E5B94(s32 *arg0) {
     return 0;
 }
 
-typedef struct Req_803E5D20 Req_803E5D20;
+
 s32 TQuestVmDownLoadServer__sub_803E5D20(s32 *arg0) {
   s32 kind;
   s32 x;
@@ -317,12 +309,13 @@ s32 TQuestVmDownLoadServer__sub_803E5D20(s32 *arg0) {
     src += 2;
   }
   *dst = 0;
-  req.buf = lbl_8058DD38;
+  req.name = (char *)lbl_8058DD38;
   req.len = (s16) n;
-  req.a = 0;
-  req.code = code;
-  req.b = 0;
-  req.x = x;
+  req.pad6 = 0;
+  req.x7 = code;
+  req.x8 = 0;
+  // The packet word carries the borrowed native text address.
+  req.text = reinterpret_cast<u8 *>(x);
   if (kind == 30)
   {
     if (TQuestVmDownLoadServer__sub_803EF538(&req) == 3)
@@ -542,7 +535,7 @@ s32 TQuestVmDownLoadServer::convert_jis_to_sjis_string() {
     }
     p = quest_download_text_buffer;
     while (n > 0) {
-        r = TQuestVmDownLoadServer__sub_803EDF64(p, n, buf, &cnt);
+        r = TQuestVmDownLoadServer__sub_803EDF64(reinterpret_cast<const u8 *>(p), n, buf, &cnt);
         if (r <= 0) {
             if (r != -1) {
                 return (p - quest_download_text_buffer) + 1;

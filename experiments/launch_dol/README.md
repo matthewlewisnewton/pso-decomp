@@ -7,7 +7,9 @@ handoff: `mtlr entry; blr`. This is an exact target-specific candidate, not
 100% portable C++ recovery.
 
 The current `LaunchDol` symbol and unit end after 312 bytes at `0x8042E9FC`.
-The remaining 20 bytes belong to the next split and are tracked by #285.
+The remaining 20 bytes belong to the next split. Merged #285 now links that
+restore through approved generated assembly and supplies portable boundary
+handlers; its original ownership remains provisional.
 Consequently, the new candidate is **not a drop-in object for the current
 link graph**. It remains outside the production inventory, guarded by
 `PSO_LAUNCH_DOL_EXPERIMENT` and `__MWERKS__`. Production still uses its exact
@@ -73,7 +75,16 @@ increase by 20 bytes; total code/data and matched-function count are unchanged.
 The existing checker was not weakened. The trial's split/symbol changes are
 not part of this PR. This is evidence for a concrete boundary proposal, not
 an accepted ownership change. The newly separable initializer was not added
-to that trial's linkset; #285 handles its linkage separately.
+to that trial's linkset; merged #285 provides its linkage separately. The trial
+predates that merge and its +20-byte gains must not be applied to current main,
+where the restore is already matched and linked.
+
+The continuation integrates main `0a85a72c1c` and keeps #285's portable
+handoff/restore branches intact. The native provider retains the shared typed
+interface and SDK headers. The portable adapter supplies guest-state behavior
+for the nine handoff/restore instructions; it does not yet implement the entire
+relocation/reset body. See
+[the portable contract](../../docs/evidence/loader-restore-retention.md).
 
 ## Reproduce locally
 

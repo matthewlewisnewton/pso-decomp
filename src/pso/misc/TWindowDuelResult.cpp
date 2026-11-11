@@ -1,3 +1,4 @@
+#include "pso/misc/TextEntryMeasurement.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/misc/TWindowSubComCardList_8026CB08.h"
@@ -72,7 +73,6 @@ s32 text_builder_append(s32);
 void set_text_entry_string(u8 *arg0, u32 str, s32 arg2);
 void text_builder_reset(void);
 extern "C" {
-void refresh_status_display__9TWindowDDFv(void *);
 extern u8 lobby_rule_settings[];
 void sub_8024F094__17TWindowDuelResultFv(Win_8024F094 *self);
 void sub_8024F090__17TWindowDuelResultFv(void);
@@ -244,7 +244,7 @@ void sub_8024F094__17TWindowDuelResultFv(Win_8024F094 *self) {
             text_builder_reset();
             TWindowSubStatusDisp__sub_80228F5C(e->value);
             set_text_entry_string(d, (u32)((void *)get_shared_text_buffer(text_builder_append(get_localized_text_entry(0x10, 0xD)))), 0x20);
-            refresh_status_display__9TWindowDDFv(d);
+            measure_text_entry(d);
             *(f32 *)(d + 8) = (372.0f) - *(f32 *)(d + 0x10);
         }
     }
@@ -257,7 +257,7 @@ s32 TWindowDuelResult__sub_8024F3CC(void *arg0_) {
     static PT tbl[2] = { &TWindowDuelResult::sub_8024F094, &TWindowDuelResult::sub_8024EF40 };
     TWindowDuelResult *w = (TWindowDuelResult *)arg0;
     ((TWindowSubStatusDisp *)(arg0 + 0x24))->destroy_all_items();
-    s8 t = ((TWindowSubStatusDisp *)(*(s32 *)(arg0 + 0x68)))->get_type();
+    s8 t = (*(PageIndicator **)(arg0 + 0x68))->get_type();
     (w->*tbl[t])();
     TWindowDuelResult__sub_8024F330(arg0);
 }
@@ -267,7 +267,7 @@ s32 TWindowDuelResult__sub_8024F330(void *arg0_) {
     typedef void (TWindowDuelResult::*PT)();
     static PT tbl[2] = { &TWindowDuelResult::sub_8024F090, &TWindowDuelResult::sub_8024EF3C };
     TWindowDuelResult *w = (TWindowDuelResult *)arg0;
-    s8 t = ((TWindowSubStatusDisp *)(*(s32 *)(arg0 + 0x68)))->get_type();
+    s8 t = (*(PageIndicator **)(arg0 + 0x68))->get_type();
     (w->*tbl[t])();
 }
 #pragma defer_codegen off
