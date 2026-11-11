@@ -7,13 +7,13 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 44 | 11 |
+| asm | 46 | 12 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5733 | 878 |
+| pragma | 5692 | 879 |
 | configure.py per-unit override | 192 | 192 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019, `fp_contract` 881, `auto_inline` 817, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 240, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 241, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -61,8 +61,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019,
 | `src/pso/unk/text_803D96A8.cpp:204` | `asm void post_translate_matrix(const f32 *v) {` |
 | `src/pso/unk/text_803D96A8.cpp:205` | `#include "orig_asm/pso/unk/text_803D96A8/post_translate_matrix.inc"` |
 | `src/pso/unk/text_803E2D70.cpp:314` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
-| `src/pso/unk/text_8042E8C4.cpp:28` | `asm void LaunchDol(register void* dol) {` |
-| `src/pso/unk/text_8042E8C4.cpp:29` | `#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"` |
+| `src/pso/unk/text_8042E8C4.cpp:29` | `asm void LaunchDol(register void* dol) {` |
+| `src/pso/unk/text_8042E8C4.cpp:30` | `#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"` |
+| `src/pso/unk/text_8042E9FC.cpp:10` | `static asm void pad_03_8042E9FC_text(void) {` |
+| `src/pso/unk/text_8042E9FC.cpp:11` | `#include "orig_asm/pso/unk/text_8042E9FC/pad_03_8042E9FC_text.inc"` |
 
 ## MWCC intrinsics
 
@@ -660,7 +662,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019,
 | `src/pso/misc/ChallengeMode.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/misc/GbaDownloadRuntime.cpp` | fp_contract×1, optimization_level×1, dont_inline×1 |
 | `src/pso/misc/MaterialOpacityFade.cpp` | optimization_level×1, fp_contract×1 |
-| `src/pso/misc/ParticleBallistic.cpp` | inline_depth×16, auto_inline×16, dont_inline×16, fp_contract×2 |
+| `src/pso/misc/ParticleBallistic.cpp` | fp_contract×3, inline_depth×1, auto_inline×1, dont_inline×1, pool_data×1 |
 | `src/pso/misc/ParticleOrbit.cpp` | fp_contract×3, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/ParticleRadial.cpp` | inline_depth×16, auto_inline×16, dont_inline×16, fp_contract×3 |
 | `src/pso/misc/PhotonBlastSummon.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
@@ -950,7 +952,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019,
 | `src/pso/misc/TWindowSubStatusDisp_803DEE6C.cpp` | scheduling×6, peephole×4, opt_common_subs×2, optimize_for_size×1 |
 | `src/pso/misc/TWindowSubSymbolChat.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TWindowSubSymbolChatHelp.cpp` | fp_contract×3 |
-| `src/pso/misc/TWindowSubSymbolChatParts.cpp` | fp_contract×7 |
+| `src/pso/misc/TWindowSubSymbolChatParts.cpp` | fp_contract×7, opt_propagation×1 |
 | `src/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.cpp` | fp_contract×2, readonly_strings×1 |
 | `src/pso/misc/TWindowSubSymbolChat_80285E10.cpp` | opt_lifetimes×1, opt_loop_invariants×1 |
 | `src/pso/misc/TWindowSubTechnique.cpp` | fp_contract×1 |
@@ -1304,4 +1306,5 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019,
 | `src/pso/unk/text_803F4D10.cpp` | scheduling×2, peephole×2, optimization_level×2 |
 | `src/pso/unk/text_803F4D84.cpp` | peephole×20, scheduling×19, optimize_for_size×1 |
 | `src/pso/unk/text_80421620.cpp` | opt_common_subs×1 |
+| `src/pso/unk/text_8042E9FC.cpp` | force_active×1 |
 | `src/pso/unk/text_8042EAD4.cpp` | optimize_for_size×4 |
