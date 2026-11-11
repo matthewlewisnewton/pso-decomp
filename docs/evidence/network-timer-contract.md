@@ -4,7 +4,7 @@ This declaration-only change is extracted from the Codex-authored commit
 [`3ed9b21ae3d8b887e18642e3e561063fb1eb2c98`](https://github.com/matthewlewisnewton/pso-decomp/commit/3ed9b21ae3d8b887e18642e3e561063fb1eb2c98)
 in [PR #303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), with
 include placement adapted to independent main base
-`0a85a72c1c09598512363e6d375616ebd1d1b63e`.
+`e9b77fcfdcc2335c9a5a92886826022c80505e67`.
 The [original timer audit](https://github.com/matthewlewisnewton/pso-decomp/blob/3ed9b21ae3d8b887e18642e3e561063fb1eb2c98/docs/evidence/pr303-network-timer-contract.md)
 records the source, native call-graph and whole-translation-unit control evidence.
 No other #303 source changes are prerequisites or included here.
@@ -77,24 +77,26 @@ There are no new compiler controls, intrinsics, pragmas or exceptions.
 
 ## Independent-main validation
 
-Validation uses fresh isolated checkouts of the main base and candidate,
-fresh split objects and the existing pinned local tools. Both are built
-through the serialized native capacity gate. The main report, object hashes
-and linker-input provenance are sealed before the baseline checkout is
-changed. Neither original #303 outputs nor an older main build directory
-supplies the baseline.
+Validation uses isolated main and candidate checkouts and the existing
+pinned local tools. Current main is refreshed from authenticated previous
+validation outputs: regenerate current split objects and rebuild all changed
+inputs through the serialized native capacity gate. The main report, complete
+active object hashes and linker-input provenance are sealed before that
+checkout changes. The candidate independently rebuilds its changed inputs
+through the same gate, and every active object is compared with the current
+main seal. Original #303 outputs do not supply the baseline.
 
 The original and built DOL SHA-1 is
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 3,632 active compiled objects
 are raw byte-identical between main and the candidate, including code, data,
 symbols, metadata and relocations, with no normalization. Ordered linker
-inputs remain 3,601 source objects and 1,347 original-object fallbacks.
+inputs remain 3,603 source objects and 1,345 original-object fallbacks.
 
 The gated native build and `tools/check_pr.py --no-build` pass against the
-fresh main report. Address-based coverage has no losses, all 3,601 linked
-units remain exact, and all 18,427 retention entries have zero drift.
-Matched functions remain 27,433, matched code 4,230,364 bytes and matched
-data 1,476,979 bytes, each with delta zero. This is a declaration correction,
+fresh main report. Address-based coverage has no losses, all 3,603 linked
+units remain exact, and all 18,441 retention entries have zero drift.
+Matched functions remain 27,434, matched code 4,232,424 bytes and matched
+data 1,477,099 bytes, each with delta zero. This is a declaration correction,
 not a matching or linking gain. The generated porting inventory changes only
 one existing source-line reference. All 306 existing `tools/tests` unit tests
 pass, including the modem state/order tests and address-coverage/retention

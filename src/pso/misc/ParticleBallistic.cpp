@@ -1,3 +1,4 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/CurrentTextureList.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/boss/TObjBoss2Tunnel_8007E418.h"
@@ -11,6 +12,14 @@
 #include "pso/misc/TUnk_8048E778.h"
 
 #include "types.h"
+#include "pso/system/MatrixOps.h"
+#include "pso/system/ModelDrawContext.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/misc/CameraHelpers.h"
+#include "pso/misc/ParticleDefinition.h"
+#include "pso/unk/TUnk_804C57F0.h"
+#include "pso/player/TObjPlayer_801542CC.h"
+#include "pso/unk/text_8023601C.h"
 
 #include "pso/misc/TParticleCtrl_80327D30.h"
 #include "pso/player/TObjPlayer_80083594.h"
@@ -24,58 +33,6 @@ struct Stack_80088844 {
     f32 sp10;
 };
 
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-
-struct RecoveredGlobal_8008C21C_TParticleCtrl__data_80511F70 {
-    s32 value;
-    u8 remaining[0x1AC];
-};
-
-struct RecoveredGlobal_8008C21C_TParticleCtrl__data_80511F70;
 struct Fields0_800896E4 {
     u8 pad_0[0x18]; s32 *field_18; u16 field_1C; u8 pad_1E[6]; u16 field_24; s16 field_26;
     f32 field_28; f32 field_2C; f32 field_30; f32 field_34; f32 field_38; f32 field_3C; f32 field_40; f32 field_44;
@@ -140,119 +97,47 @@ struct Part_800890F4 {
 };
 
 extern "C" {
+// Retain the original eight-byte angular-range object in small data.
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805D9520[2];
 void *alloc_particle_memory(int);
-void queue_destruction__7TObjectFv(void *arg0);
 f32 vec_squared_length(u8 *arg0);
-extern const f32 TParticleCtrl__data_805D94F8;
-extern const f32 TParticleCtrl__data_805D94FC;
 extern s32 TParticleCtrl__data_8048E778[];
 s32 rand(void);
-extern RecoveredGlobal_8008C21C_TParticleCtrl__data_80511F70 TParticleCtrl__data_80511F70;
-s32 is_split_screen();
+extern void *TParticleCtrl__data_80511F70[0x6C];
 s32 is_particle_sprite_additive__13TUnk_8048E728Fv(void *, s32);
 s32 append_node_to_tail__13TParticleCtrlFPvPv(s32, void *);
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
-s32 scale_matrix(s32, f32, f32, f32);
 s32 rotate_matrix_y(s32, s32);
-s32 rotate_matrix_z(s32, s32);
-s32 rotate_matrix_x(s32, s32);
 s32 push_matrix(f32);
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
 s32 draw_ginja_object(u32);
-s32 draw_ginja_model_with_motion(u32, u32, f32);
 extern u8 *camera_ctrl_instance;
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
-f64 atan2_float(f32, f32);
 f32 vector_length(void *);
-extern const f32 TParticleCtrl__data_805D9500;
-extern const f32 TParticleCtrl__data_805D9504;
-extern const f32 TParticleCtrl__data_805D950C;
-extern const f32 lbl_805D9520;
 void restore_saved_depth_alpha_state();
 f32 vec3_dot(void *, void *);
 void project_world_to_screen(int, void *, void *);
 void push_matrix_from(void *);
 void rotate_vector_by_current_matrix(void *, void *);
-extern Vec_800890F4 lbl_804394E8;
-extern Vec_800890F4 lbl_804394F4;
-extern Vec_800890F4 lbl_80439500;
-extern Ang_800890F4 lbl_8043950C;
-extern const f64 lbl_80439528;
-extern u8 identity_matrix[];
-extern const f32 lbl_805D951C;
-void __ct__7TObjectFP7TObject(void *, void *);
+static const Vec_800890F4 ballistic_camera_horizontal = { 0.0f, 0.0f, -1.0f };
+static const Vec_800890F4 ballistic_camera_vertical = { 0.0f, 0.0f, -1.0f };
+static const Vec_800890F4 ballistic_forward = { 0.0f, 0.0f, 1.0f };
+static const Ang_800890F4 ballistic_zero_angles = { 0, 0, 0 };
 }
 void setup_particle_tev(s32 arg0);
 void load_projected_texture_matrix(f32 farg0);
 void direction_to_rotation_xz(u8 *arg0, s32 *arg1, s32 *arg2);
-extern void *__vt__13TParticleCtrl[];
-extern s32 TParticleCtrl__class_name_descriptor;
-extern void *tl_07;
-extern void *tl_clipout;
-extern const f32 TParticleCtrl__data_805D94E0;
-extern const f32 TParticleCtrl__data_805D94E4;
-
-#define COPY_PARTICLE_DIRECTION(particle, direction) do {                      \
-    s32 component;                                                             \
-    component = direction->x;                                                  \
-    particle->direction.x = component;                                         \
-    component = direction->z;                                                  \
-    particle->direction.z = component;                                         \
-    component = direction->y;                                                  \
-    particle->direction.y = component;                                         \
-} while (0)
-#define CLEAR_PARTICLE_DIRECTION(particle, unused) do {                        \
-    particle->direction.x = 0;                                                 \
-    particle->direction.y = 0;                                                 \
-    particle->direction.z = 0;                                                 \
-} while (0)
-
-#define INITIALIZE_PARTICLE(particle, position, particle_index, field30,       \
-                            field34, field38, use_self, particle_flags,        \
-                            direction_action, direction_source) do {           \
-    __ct__7TObjectFP7TObject(particle, tl_07);                                 \
-    particle->vtable = __vt__13TParticleCtrl;                                  \
-    particle->descriptor = TParticleCtrl__class_name_descriptor;                       \
-    particle->field4C = 0;                                                     \
-    particle->field50 = 0;                                                     \
-    particle->field54 = 0;                                                     \
-    particle->field48 = 0;                                                     \
-    particle->field40 = TParticleCtrl__data_805D94E4;                          \
-    particle->field44 = TParticleCtrl__data_805D94E4;                          \
-    particle->field1C = TParticleCtrl__data_805D94E0;                          \
-    particle->field20 = 0;                                                     \
-    particle->field24 = TParticleCtrl__data_805D94E4;                          \
-    particle->particle_index = particle_index;                                 \
-    VecCopy(&particle->position, position);                      \
-    particle->flags = particle_flags;                                          \
-    particle->field2E = 0xFFFF;                                                \
-    direction_action(particle, direction_source);                              \
-    particle->field30 = field30;                                               \
-    particle->field34 = field34;                                               \
-    particle->field38 = field38;                                               \
-    particle->field3C = 0;                                                     \
-    if (use_self != 0) {                                                       \
-        particle->owner = particle;                                            \
-    } else if (particle->flags & 0x800) {                                      \
-        if (particle->flags & 0x4000) {                                        \
-            particle->owner = tl_clipout;                                      \
-        } else {                                                               \
-            particle->owner = tl_07;                                           \
-        }                                                                      \
-    } else {                                                                   \
-        particle->owner = tl_07;                                               \
-    }                                                                          \
-} while (0)
 
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TOKeyMachine01.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
-
-void TParticleCtrl::clear_active_flag() { *(u16*)((char*)this + 0x2c) &= 0xfffe; }
 
 u8 *create_ballistic_particle(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3, u16 arg4, s16 arg5) {
     u8 *temp_r3;
@@ -279,16 +164,162 @@ void TUnk_8048E778::retire_ballistic_particle_if_done() {
         stack.sp8 = this->pos.x - this->origin.x;
         stack.spC = this->pos.y - *(f32 *)((s8 *)arg0 + 0x34);
         stack.sp10 = this->pos.z - this->origin.z;
-        if (TParticleCtrl__data_805D94F8 == vec_squared_length((u8 *)&stack.sp8)) {
-            queue_destruction__7TObjectFv((arg0));
+        if (0.0f == vec_squared_length((u8 *)&stack.sp8)) {
+            queue_destruction();
             return;
         }
     }
-    if (this->age >= TParticleCtrl__data_805D94FC) {
-        queue_destruction__7TObjectFv((arg0));
+    if (this->age >= 1.0f) {
+        queue_destruction();
     }
 }
 
+#pragma push
+// The update uses fused colour interpolation and a fused bounce impulse.
+#pragma fp_contract on
+inline f32 ballistic_channel(f32 value) {
+    return value < 0.0f ? 0.0f : (value < 1.0f ? value : 1.0f);
+}
+
+inline f32 fade_ballistic_channel(f32 value, f32 alpha) {
+    return value < 0.0f ? 0.0f : alpha * (value < 1.0f ? value : 1.0f);
+}
+
+void TUnk_8048E778::run_task() {
+    f32 t[2]; // Age and opacity; this grouping preserves native FPR allocation.
+    f32 ch[3]; // Red, green, blue.
+    if (param->flags & 8) {
+        if (age >= 0.5f) {
+            approach_camera_vector(&pos, &origin, fabs_float(step.y));
+        } else {
+            vec3_add_to(&pos, &step);
+            VecCopy(&velocity, &step);
+        }
+    } else {
+        if (flags & 2) {
+            push_matrix_from(identity_matrix);
+            rotate_matrix_x(0, unk_98);
+            rotate_matrix_y(0, m_9c);
+            rotate_matrix_z(0, unk_A0);
+            rotate_vector_by_current_matrix(&step, &velocity);
+            pop_matrix();
+        } else if (unk_98 == 0 && m_9c == 0 && unk_A0 == 0) {
+            VecCopy(&velocity, &step);
+        } else {
+            push_matrix_from(identity_matrix);
+            rotate_matrix_z(0, unk_A0);
+            rotate_matrix_x(0, unk_98);
+            rotate_matrix_y(0, m_9c);
+            rotate_vector_by_current_matrix(&step, &velocity);
+            pop_matrix();
+        }
+        vec3_add_to(&pos, &velocity);
+    }
+    ParticleParam *p = param;
+    if ((p->flags & 2) && origin.y > pos.y) {
+        step.y = p->unk_60 * (p->unk_3C * (0.000030517578125f * (f32)rand()) + p->unk_34);
+    }
+    f32 fade_in = 1.0f;
+    f32 fade_out = fade_in;
+    step.x *= param->speed_decay;
+    step.z *= param->speed_decay;
+    step.y += param->gravity;
+    m_28 *= param->scale_decay;
+    unk_2C *= param->scale_decay;
+    age += age_rate;
+    p = param;
+    t[0] = age;
+    if (p->fade_in_end > t[0]) {
+        fade_in = t[0] * fade_in_scale;
+    }
+    if (1.0f - t[0] < p->fade_out_start) {
+        fade_out = (1.0f - t[0]) * fade_out_scale;
+    }
+    t[1] = fade_in < fade_out ? fade_in : fade_out;
+
+    if (static_cast<ParticleDefinition *>(static_cast<TUnk_804C57F0 *>(TParticleCtrl__data_80511F70[sprite_index])->m_28)->flags & 1) {
+        if (flags & 0x100) {
+            ch[0] = fade_ballistic_channel(p->color_rate[0] * t[0] + color_base[0], t[1]);
+            ch[1] = fade_ballistic_channel(p->color_rate[1] * t[0] + color_base[1], t[1]);
+            ch[2] = fade_ballistic_channel(p->color_rate[2] * t[0] + color_base[2], t[1]);
+        } else {
+            ch[0] = fade_ballistic_channel(p->color_rate[0] * t[0] + p->color_base[0], t[1]);
+            ch[1] = fade_ballistic_channel(p->color_rate[1] * t[0] + p->color_base[1], t[1]);
+            ch[2] = fade_ballistic_channel(p->color_rate[2] * t[0] + p->color_base[2], t[1]);
+        }
+        t[1] = 1.0f;
+    } else {
+        if (flags & 0x100) {
+            ch[0] = ballistic_channel(p->color_rate[0] * t[0] + color_base[0]);
+            ch[1] = ballistic_channel(p->color_rate[1] * t[0] + color_base[1]);
+            ch[2] = ballistic_channel(p->color_rate[2] * t[0] + color_base[2]);
+        } else {
+            ch[0] = ballistic_channel(p->color_rate[0] * t[0] + p->color_base[0]);
+            ch[1] = ballistic_channel(p->color_rate[1] * t[0] + p->color_base[1]);
+            ch[2] = ballistic_channel(p->color_rate[2] * t[0] + p->color_base[2]);
+        }
+    }
+    // Native big-endian ARGB, using legal unsigned-byte access to a live word.
+    u32 packed;
+    reinterpret_cast<u8 *>(&packed)[0] = 254.0f * t[1];
+    reinterpret_cast<u8 *>(&packed)[1] = 254.0f * ch[0];
+    reinterpret_cast<u8 *>(&packed)[2] = 254.0f * ch[1];
+    reinterpret_cast<u8 *>(&packed)[3] = 254.0f * ch[2];
+    color = packed;
+    if (0.0f == param->gravity && 0.0f == param->unk_34 && 0.0f == param->unk_30) {
+        m_96 += (s32)(182.04445f * param->unk_60);
+    } else if (!(param->flags & 4)) {
+        f32 spin = step.y * (param->unk_64 * step.x);
+        if (fabs_float(spin) > 20.0f) {
+            spin = 20.0f;
+        }
+        if (speed < 0.0f) {
+            m_96 += (s32)(182.04445f * spin);
+        } else {
+            m_96 -= (s32)(182.04445f * spin);
+        }
+    }
+    s32 frames = static_cast<ParticleDefinition *>(static_cast<TUnk_804C57F0 *>(TParticleCtrl__data_80511F70[sprite_index])->m_28)->uv_count;
+    if (param->flags & 0x10) {
+        frame = (s32)(age * (f32)(frames - 1));
+    } else {
+        ++frame;
+        if (frames <= frame) {
+            frame = 0;
+        }
+    }
+    if (flags & 0x10) {
+        TObjCollidable *target = find_entity_by_id(target_id);
+        if (target == NULL) {
+            queue_destruction();
+            return;
+        }
+        Vec *center = static_cast<Vec *>(target->get_center());
+        if (center != NULL) {
+            if (flags & 0x20) {
+                Vec point;
+                offset_point_toward_camera((u8 *)center, (u8 *)&point, 8.0f);
+                attach.x = point.x - origin.x;
+                attach.y = point.y - origin.y;
+                attach.z = point.z - origin.z;
+            } else {
+                attach.x = center->x - origin.x;
+                attach.y = center->y - origin.y;
+                attach.z = center->z - origin.z;
+            }
+        }
+    }
+    motion_frame += motion_frame_step;
+    if (motion != NULL && (f32)(motion->nbFrame - 1) <= motion_frame) {
+        motion_frame = (f32)(motion->nbFrame - 1);
+    }
+    retire_ballistic_particle_if_done();
+}
+#pragma pop
+
+#pragma push
+// The original renderer addresses each initializer separately.
+#pragma pool_data off
 void TUnk_8048E778::render() {
     Part_800890F4 *p = (Part_800890F4 *)this;
     u16 flags;
@@ -317,13 +348,13 @@ void TUnk_8048E778::render() {
         project_world_to_screen(0, &b, &s1);
         s1.x -= s0.x;
         s1.y -= s0.y;
-        p->angle = lbl_80439528 * atan2_float(s1.y, s1.x);
+        p->angle = 10430.38043493439 * atan2_float(s1.y, s1.x);
         p->sw = p->def->sx * len;
         p->sh = p->def->sy * len;
     } else if (p->def->flags & 0x40) {
-        Vec_800890F4 a = lbl_804394E8;
-        Vec_800890F4 b = lbl_804394F4;
-        Vec_800890F4 c = lbl_80439500;
+        Vec_800890F4 a = ballistic_camera_horizontal;
+        Vec_800890F4 b = ballistic_camera_vertical;
+        Vec_800890F4 c = ballistic_forward;
         f32 d1;
         f32 d2;
         push_matrix_from(identity_matrix);
@@ -378,7 +409,7 @@ void TUnk_8048E778::render() {
         t.x = p->pos.x + p->ofs.x;
         t.y = p->pos.y + p->ofs.y;
         t.z = p->pos.z + p->ofs.z;
-        Ang_800890F4 r = lbl_8043950C;
+        Ang_800890F4 r = ballistic_zero_angles;
         direction_to_rotation_xz((u8 *)&p->vel, &r.x, &r.z);
         ((s32 (*)())push_matrix)();
         post_translate_matrix(&t);
@@ -394,7 +425,7 @@ void TUnk_8048E778::render() {
             rotate_matrix_y(0, p->angle);
         }
         if (p->flags & 0x400) {
-            load_projected_texture_matrix(lbl_805D951C);
+            load_projected_texture_matrix(1.33f);
         }
         TParticleCtrl::begin_effect_render();
         if (p->flags & 0x400) {
@@ -412,7 +443,7 @@ void TUnk_8048E778::render() {
         set_current_texture_list((GinjaTextureList *)(p->texlist));
         set_draw_list_mask(3);
         if (p->motion != 0) {
-            draw_ginja_model_with_motion(p->model, p->motion, p->frame);
+            draw_ginja_model_with_motion((void *)p->model, (void *)p->motion, p->frame);
         } else {
             draw_ginja_object(p->model);
         }
@@ -443,6 +474,8 @@ void TUnk_8048E778::render() {
     }
 }
 
+#pragma pop
+
 void *__dt__13TUnk_8048E778Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = TParticleCtrl__data_8048E778;
@@ -464,9 +497,9 @@ u8 *construct_ballistic_particle(void *a0, void *a1, void *a2, void *a3, s32 arg
     f32 *v;
     init_particle_base(a0, a1, arg4);
     p->field_18 = TParticleCtrl__data_8048E778;
-    p->field_C4 = TParticleCtrl__data_805D94F8;
-    p->field_C8 = TParticleCtrl__data_805D94F8;
-    p->field_CC = TParticleCtrl__data_805D94F8;
+    p->field_C4 = 0.0f;
+    p->field_C8 = 0.0f;
+    p->field_CC = 0.0f;
     p->field_24 = arg5;
     if (p->field_24 & 0x80) {
         p->field_95 = 1;
@@ -475,12 +508,12 @@ u8 *construct_ballistic_particle(void *a0, void *a1, void *a2, void *a3, s32 arg
     p->field_98 = c->field_0;
     p->field_9C = c->field_4;
     p->field_A0 = c->field_8;
-    p->field_70 = (d->field_18 * ((TParticleCtrl__data_805D9504 * (f32)rand()) - TParticleCtrl__data_805D9500)) + pos->field_0;
-    p->field_78 = (d->field_20 * ((TParticleCtrl__data_805D9504 * (f32)rand()) - TParticleCtrl__data_805D9500)) + pos->field_8;
+    p->field_70 = (d->field_18 * ((0.000030517578125f * (f32)rand()) - 0.5f)) + pos->field_0;
+    p->field_78 = (d->field_20 * ((0.000030517578125f * (f32)rand()) - 0.5f)) + pos->field_8;
     if (d->field_88 & 2) {
         p->field_74 = pos->field_4 + d->field_1C;
     } else {
-        p->field_74 = (d->field_1C * ((TParticleCtrl__data_805D9504 * (f32)rand()) - TParticleCtrl__data_805D9500)) + pos->field_4;
+        p->field_74 = (d->field_1C * ((0.000030517578125f * (f32)rand()) - 0.5f)) + pos->field_4;
     }
     p->field_30 = pos->field_0;
     p->field_38 = pos->field_8;
@@ -489,25 +522,25 @@ u8 *construct_ballistic_particle(void *a0, void *a1, void *a2, void *a3, s32 arg
     } else {
         p->field_34 = pos->field_4;
     }
-    p->field_28 = (d->field_28 * (TParticleCtrl__data_805D9504 * (f32)rand())) + d->field_24;
+    p->field_28 = (d->field_28 * (0.000030517578125f * (f32)rand())) + d->field_24;
     p->field_2C = p->field_28;
-    temp_r0 = (s32)(((f32)d->field_4C * (TParticleCtrl__data_805D9504 * (f32)rand())) + (f32)d->field_48);
+    temp_r0 = (s32)(((f32)d->field_4C * (0.000030517578125f * (f32)rand())) + (f32)d->field_48);
     if (d->field_88 & 1) {
-        p->field_5C = TParticleCtrl__data_805D94FC / (f32)((s32 **)(((void **)&TParticleCtrl__data_80511F70)[p->field_1C]))[0x28 / 4][0xC / 4];
+        p->field_5C = 1.0f / (f32)((s32 **)(((void **)&TParticleCtrl__data_80511F70)[p->field_1C]))[0x28 / 4][0xC / 4];
     } else {
-        p->field_5C = TParticleCtrl__data_805D94FC / (f32)temp_r0;
+        p->field_5C = 1.0f / (f32)temp_r0;
     }
-    p->field_3C = (d->field_38 * (TParticleCtrl__data_805D9504 * (f32)rand())) + d->field_30;
-    p->field_40 = (d->field_3C * (TParticleCtrl__data_805D9504 * (f32)rand())) + d->field_34;
+    p->field_3C = (d->field_38 * (0.000030517578125f * (f32)rand())) + d->field_30;
+    p->field_40 = (d->field_3C * (0.000030517578125f * (f32)rand())) + d->field_34;
     v = &p->field_3C;
-    p->field_44 = TParticleCtrl__data_805D94F8;
-    rotate_vec_xz(v, v, (s32)(TParticleCtrl__data_805D950C * (lbl_805D9520 * (TParticleCtrl__data_805D9504 * (f32)rand()))));
-    if (TParticleCtrl__data_805D94F8 == d->field_54 && TParticleCtrl__data_805D94F8 == d->field_34 && TParticleCtrl__data_805D94F8 == d->field_30) {
+    p->field_44 = 0.0f;
+    rotate_vec_xz(v, v, (s32)(182.04445f * (lbl_805D9520[0] * (0.000030517578125f * (f32)rand()))));
+    if (0.0f == d->field_54 && 0.0f == d->field_34 && 0.0f == d->field_30) {
         p->field_96 = 0;
-        p->field_68 = TParticleCtrl__data_805D94F8;
+        p->field_68 = 0.0f;
     } else {
-        p->field_96 = (s16)(TParticleCtrl__data_805D950C * (lbl_805D9520 * (TParticleCtrl__data_805D9504 * (f32)rand())));
-        p->field_68 = (TParticleCtrl__data_805D9504 * (f32)rand()) - TParticleCtrl__data_805D9500;
+        p->field_96 = (s16)(182.04445f * (lbl_805D9520[0] * (0.000030517578125f * (f32)rand())));
+        p->field_68 = (0.000030517578125f * (f32)rand()) - 0.5f;
     }
     if (p->field_24 & 0x2000) {
         request_indirect_effect(0x1F);
@@ -516,7 +549,6 @@ u8 *construct_ballistic_particle(void *a0, void *a1, void *a2, void *a3, s32 arg
 }
 #pragma pop
 
-struct RecoveredGlobal_8008C21C_TParticleCtrl__data_80511F70;
 struct BF0_80089B50 {
     u8 pad_0[0x18]; s32 *field_18; u16 field_1C; u8 pad_1E[6]; u16 field_24; s16 field_26;
     f32 field_28; f32 field_2C; f32 field_30; f32 field_34; f32 field_38; f32 field_3C; f32 field_40; f32 field_44;
@@ -541,15 +573,15 @@ void *TUnk_8048E778::init_particle_random_spread(void *a1, void *a2, void *a3) {
     f32 *v;
     init_particle_base(this, a1, (s32)a3);
     p->field_18 = TParticleCtrl__data_8048E778;
-    p->field_C4 = TParticleCtrl__data_805D94F8;
-    p->field_C8 = TParticleCtrl__data_805D94F8;
-    p->field_CC = TParticleCtrl__data_805D94F8;
-    p->field_70 = (d->field_18 * ((TParticleCtrl__data_805D9504 * (f32)rand()) - TParticleCtrl__data_805D9500)) + pos->field_0;
-    p->field_78 = (d->field_20 * ((TParticleCtrl__data_805D9504 * (f32)rand()) - TParticleCtrl__data_805D9500)) + pos->field_8;
+    p->field_C4 = 0.0f;
+    p->field_C8 = 0.0f;
+    p->field_CC = 0.0f;
+    p->field_70 = (d->field_18 * ((0.000030517578125f * (f32)rand()) - 0.5f)) + pos->field_0;
+    p->field_78 = (d->field_20 * ((0.000030517578125f * (f32)rand()) - 0.5f)) + pos->field_8;
     if (d->field_88 & 2) {
         p->field_74 = pos->field_4 + d->field_1C;
     } else {
-        p->field_74 = (d->field_1C * ((TParticleCtrl__data_805D9504 * (f32)rand()) - TParticleCtrl__data_805D9500)) + pos->field_4;
+        p->field_74 = (d->field_1C * ((0.000030517578125f * (f32)rand()) - 0.5f)) + pos->field_4;
     }
     p->field_30 = pos->field_0;
     p->field_38 = pos->field_8;
@@ -558,25 +590,25 @@ void *TUnk_8048E778::init_particle_random_spread(void *a1, void *a2, void *a3) {
     } else {
         p->field_34 = pos->field_4;
     }
-    p->field_28 = (d->field_28 * (TParticleCtrl__data_805D9504 * (f32)rand())) + d->field_24;
+    p->field_28 = (d->field_28 * (0.000030517578125f * (f32)rand())) + d->field_24;
     p->field_2C = p->field_28;
-    temp_r0 = (s32)(((f32)d->field_4C * (TParticleCtrl__data_805D9504 * (f32)rand())) + (f32)d->field_48);
+    temp_r0 = (s32)(((f32)d->field_4C * (0.000030517578125f * (f32)rand())) + (f32)d->field_48);
     if (d->field_88 & 1) {
-        p->field_5C = TParticleCtrl__data_805D94FC / (f32)((s32 **)(((void **)&TParticleCtrl__data_80511F70)[p->field_1C]))[0x28 / 4][0xC / 4];
+        p->field_5C = 1.0f / (f32)((s32 **)(((void **)&TParticleCtrl__data_80511F70)[p->field_1C]))[0x28 / 4][0xC / 4];
     } else {
-        p->field_5C = TParticleCtrl__data_805D94FC / (f32)temp_r0;
+        p->field_5C = 1.0f / (f32)temp_r0;
     }
-    p->field_3C = (d->field_38 * (TParticleCtrl__data_805D9504 * (f32)rand())) + d->field_30;
-    p->field_40 = (d->field_3C * (TParticleCtrl__data_805D9504 * (f32)rand())) + d->field_34;
+    p->field_3C = (d->field_38 * (0.000030517578125f * (f32)rand())) + d->field_30;
+    p->field_40 = (d->field_3C * (0.000030517578125f * (f32)rand())) + d->field_34;
     v = &p->field_3C;
-    p->field_44 = TParticleCtrl__data_805D94F8;
-    rotate_vec_xz(v, v, (s32)(TParticleCtrl__data_805D950C * (lbl_805D9520 * (TParticleCtrl__data_805D9504 * (f32)rand()))));
-    if (TParticleCtrl__data_805D94F8 == d->field_54 && TParticleCtrl__data_805D94F8 == d->field_34 && TParticleCtrl__data_805D94F8 == d->field_30) {
+    p->field_44 = 0.0f;
+    rotate_vec_xz(v, v, (s32)(182.04445f * (lbl_805D9520[0] * (0.000030517578125f * (f32)rand()))));
+    if (0.0f == d->field_54 && 0.0f == d->field_34 && 0.0f == d->field_30) {
         p->field_96 = 0;
-        p->field_68 = TParticleCtrl__data_805D94F8;
+        p->field_68 = 0.0f;
     } else {
-        p->field_96 = (s16)(TParticleCtrl__data_805D950C * (lbl_805D9520 * (TParticleCtrl__data_805D9504 * (f32)rand())));
-        p->field_68 = (TParticleCtrl__data_805D9504 * (f32)rand()) - TParticleCtrl__data_805D9500;
+        p->field_96 = (s16)(182.04445f * (lbl_805D9520[0] * (0.000030517578125f * (f32)rand())));
+        p->field_68 = (0.000030517578125f * (f32)rand()) - 0.5f;
     }
     if (p->field_24 & 0x2000) {
         request_indirect_effect(0x1F);
@@ -584,3 +616,10 @@ void *TUnk_8048E778::init_particle_random_spread(void *a1, void *a2, void *a3) {
     return this;
 }
 #pragma pop
+
+extern "C" {
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+const f32 lbl_805D9520[2] = { 360.0f, 0.0f };
+}
