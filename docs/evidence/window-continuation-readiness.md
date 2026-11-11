@@ -1,0 +1,84 @@
+# Continuation review assessment, separate from the focused PR
+
+This review starts from continuation
+`ab0c33f1b99a3b1b8b426b23261fb6839c279d6c`. Main advanced from f8a71fae
+to `0a85a72c1c09598512363e6d375616ebd1d1b63e` during the assessment. The
+stack refresh preserves that accepted loader recovery and the focused
+[settings-helper repair and review assessment](guildwarning-focused-review.md).
+Draft status and all remaining technical holds are retained.
+
+## Separate conclusions
+
+The focused PR can receive technical review on its bounded GuildWarning and
+shared-factory scope, without waiting for every continuation family. No newly
+introduced blocking defect was found there. Inherited raw storage/lifetime,
+layout/result transports and player/allocation preconditions remain qualified;
+this is not ready marking, approval or a claim of universal construction safety.
+
+The continuation is **not ready** as a completed native lifetime recovery. Its
+exact executable and linked coverage are strong validation, but genuine
+initialization, ownership and interface evidence gaps remain within its scope.
+They are not newly introduced by the latest Palette destructor or shared-helper
+repair, and matching original bytes alone does not resolve them.
+
+| Area | Current source evidence | Required next evidence |
+| --- | --- | --- |
+| CustomSelect | Native constructor can return before child slots; destructor reads those slots | Producer/lifecycle guarantee excluding the null-player path, or a separately justified safety change; heap zeroing cannot be assumed |
+| Word | Native diagnostic matches component bodies; actual order/table/startup destinations still differ | Independently supported source/compilation organization and whole-owner placement/link proof |
+| ComCard | Native construction/render bodies; trailing word remains source-owned in current provider | Ownership of 804CE914..804CE918 without inventing padding or losing four covered bytes |
+| Parts | Exact compiled methods; private literal/control case matches | Independent control/source provenance plus safe export/provider qualification; no repeated profile survey |
+| Callback/tag/heading/capture interfaces | Bounded receiver and target-ABI observations, including Palette | Actual storage, callback signatures and producer/ownership guarantees; byte equality is not complete portable typing |
+
+Original-provider and other retained interfaces, numeric-input byte-return,
+first-record reset and destructor asymmetries remain explicit in the
+[current index](window-continuation-review-index.md). This assessment does not
+turn every inherited debt into a new defect, or claim every listed gap is a
+demonstrated runtime failure.
+
+## Concrete CustomSelect allocation check
+
+The constructor's null-player return precedes initialization of the child slots
+at 0x7C/0x80; its destructor later releases them. The sole producer's existing
+selection flag is not a dominating positive player check. That earlier
+[partial-initialization hold](window-custom-select-native-code.md) remains.
+
+This review checks the allocator path against original code and relative resolved
+targets: TObject's 40-byte operator new calls `heap_alloc`, whose 124-byte body
+manages the free list and does not clear the returned payload. The separate
+68-byte `heap_zalloc` calls allocation and `memset`; TObject does not call it.
+The heap constructor's initial whole-pool clearing is not a per-allocation or
+reuse guarantee. These functions are original-exact in the current compiled
+objects. This rules out a presumed-zeroed-heap clearance of the hold, without
+proving that the bad lifecycle path actually occurs.
+
+No child zeroing, new guard, allocation change or matching workaround is added.
+The missing evidence is specifically the valid-player producer/lifecycle
+precondition, not another constructor code-generation variant.
+
+## Latest Palette and stack validation
+
+The native Palette constructor/destructor, complete 3588-text/832-data owner,
+all 14 functions and 198 resolved relocations remain qualified. The current object
+is byte-identical to the validated native-destructor artifact. Its earlier
+one-byte local anonymous label renumbering remains explicitly qualified; no new
+Palette source change or hold removal occurs in this review.
+
+The focused shared-helper repair is carried through all six continuation caller
+units while retaining their native Message, Page, Quest, Log, Scroll and
+Information construction. All six complete compiler objects remain byte-identical
+to the preceding continuation. The helper's incompatible function-pointer/return
+views are resolved; raw extent/destination storage and other factory interfaces
+remain qualified. No B-only lifetime work is imported into the focused PR.
+
+Fresh current-main, focused and continuation capacity-gated builds preserve
+original DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Current-head
+acceptance, linked-unit, retention and port checks and strict interval results
+are recorded with this refresh. The same fourteen qualified four-byte window
+tails remain versus A/main, with no new exact/linked-data loss. Historical
+coverage qualifications and all original/protected provider decisions remain.
+
+Private allocator/original-reference and refresh evidence is in
+`pr403-readiness-review/`; the focused helper's fixed-source test and census are
+in `pr402-message-settings-contract/`. Original binaries, objects and raw
+disassembly are not published. Independent source and frozen-head review remain
+publication gates. Neither draft is merged, formally approved or marked ready.

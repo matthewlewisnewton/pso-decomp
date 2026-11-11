@@ -1,5 +1,10 @@
 # CustomSelect native code with preserved initialization hold
 
+The later [readiness/allocator check](window-continuation-readiness.md) confirms
+the original-exact TObject allocation path uses heap_alloc, not heap_zalloc.
+Initial pool clearing supplies no reuse guarantee, so this hold remains; no
+runtime failure or producer-safety proof is inferred from that check alone.
+
 This follows PR #268 checkpoint `3cafc19119bce9d39e3f90133c5ecac20e5b8d1e`.
 CustomSelect now has native Addition construction/destruction and an ordinary-new
 producer. Its compiler table adds 24 matched and linked data bytes. This recovers

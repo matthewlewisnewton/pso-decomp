@@ -1,3 +1,4 @@
+#include "pso/misc/MessageWindowSettingsAbi.h"
 #include "types.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/unk/text_8026B260.h"
@@ -6,7 +7,6 @@
 
 extern "C" {
 s32 __nw__7TObjectFUl(int);
-s32 TLobby__sub_80269DA4(void *, int);
 int append_message_window_line(void *w, int text, int flags, int color);
 void TLobby::set_field_90(s32 v) { *(s32*)((char*)this + 0x90) = v; }
 }
@@ -24,6 +24,6 @@ int dispatch_message_window_text(void *w, int text, int flags) {
 }
 
 s32 create_quest_message_window_at(s32 arg0, s32 arg1) {
-    TLobby__sub_80269DA4((void *)arg1, 1);
+    TLobby__sub_80269DA4((const void *)arg1, 1);
     return (s32)new TWindowMessageQuest(arg0);
 }

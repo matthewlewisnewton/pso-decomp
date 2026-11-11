@@ -207,6 +207,15 @@ compiler-control qualifications remain explicit.
 
 ## Current tried/blocked index
 
+The [separate readiness assessment](window-continuation-readiness.md) distinguishes
+the focused partial PR from this broader continuation. The focused settings-helper
+repair is retained through all six native caller units without changing their
+complete objects. Palette's native progress remains exact; the continuation stays
+blocked by specific lifetime/ownership/interface evidence. Original-exact allocator
+inspection confirms TObject uses nonzeroing heap_alloc, preserving CustomSelect's
+early-return child-initialization hold. No speculative safety or matching change
+is introduced, and neither PR is marked ready.
+
 The [native Palette destructor](window-palette-native-destruction.md) now uses the
 consolidated owner without separating its vtable and icon switch. All owned
 original bytes/targets remain exact; the sole ELF difference is a qualified local

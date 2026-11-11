@@ -1,3 +1,4 @@
+#include "pso/misc/MessageWindowSettingsAbi.h"
 #include "types.h"
 #include "pso/misc/TWindowMessageLog_8026AA38.h"
 #include "pso/unk/text_8026A93C.h"
@@ -6,7 +7,6 @@
 
 extern "C" {
 u8 *__nw__7TObjectFUl(s32);
-s32 TLobby__sub_80269DA4(void *, int);
 s32 *get_shared_text_buffer(void);
 void text_builder_append(u8 *str);
 s32 *get_active_photon_object__17TWindowMessageLogFv(u16);
@@ -45,7 +45,7 @@ void post_chat_log_message(u16 arg0, s32 *shared_text_buffer) {
 }
 
 u8 *create_message_log_window(s32 arg0, s32 arg1, s32 arg2) {
-    TLobby__sub_80269DA4((void *)arg1, 0x1E);
+    TLobby__sub_80269DA4((const void *)arg1, 0x1E);
     return (u8 *)new TWindowMessageLog(arg0, arg2);
 }
 }
