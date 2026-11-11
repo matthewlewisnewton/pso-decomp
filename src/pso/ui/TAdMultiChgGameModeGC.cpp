@@ -185,7 +185,7 @@ Obj_802FFE58 *__ct__21TAdMultiChgGameModeGCFv(Obj_802FFE58 *self) {
         p = __ct__13TAdGuideTxtGCFv(p, self);
     }
     self->f28 = p;
-    create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)self, 0xF, (f32)lbl_805DEF38);
+    create_draw_line_ctrl(reinterpret_cast<TObject *>(self), 0xF, (f32)lbl_805DEF38);
     return self;
 }
 
