@@ -207,6 +207,14 @@ compiler-control qualifications remain explicit.
 
 ## Current tried/blocked index
 
+The [genuine Word construction control](window-word-native-vptr-control.md)
+replaces the raw initializer boundary in one fixed diagnostic source. Deferred
+generation matches all seven bodies/relative targets, including constructor148,
+and data88; actual order and table/startup destinations still fail. Production
+source/profile, helper qualifications and all holds stay. The note also identifies
+a new pinned upstream Parts source lead whose ownership and compiler controls
+remain unqualified; no Parts import or probe is activated.
+
 | Area | Established result | Remaining evidence / hold |
 | --- | --- | --- |
 | Base/Addition and recovered descendants | Native chains, tables and observed widths; most factories use ordinary new | Sixteen raw calls across nine units; three shared bindings; no invented default lifetime |
@@ -214,10 +222,10 @@ compiler-control qualifications remain explicit.
 | Basic ComCard | Native constructor and exact native render body; coherent cleanup/table probe | Unknown trailing word ownership prevents regression-free activation; no padding/object invention or four-byte waiver |
 | ActionPalette | Native construction, exact retained methods and 352-byte typed layout recovery | Contiguous icon/light/table probe changed icon and two caller objects; still needs common UV/table/jump ownership and conversion-contract evidence |
 | DD renderer | Shared begin/forward/reset contracts established | 608-byte probe remains 37 words different; needs value-lifetime/quad evidence; original provider retained |
-| Word renderer/lifetime | Upstream exact 916-byte renderer and complete 3412-byte unit source-linked; native task/fields/raw reset preserved | Deferred diagnostic completes group but raw initializer remains152/148 and ordering fails; binding/lowering and native construction context remain unproved |
+| Word renderer/lifetime | Upstream exact 916-byte renderer and complete 3412-byte unit source-linked; fixed-source native diagnostic matches all seven bodies/relative targets including constructor148 | Diagnostic order and actual table/startup destinations fail; source/context organization and helper/storage qualifications remain held |
 | Nameplate | Ordinary reconstructed 800-byte body and helper evidence | Nonexact arithmetic/register result; original full provider retained |
 | ScrollBar / ChallengeResult / follower | Bounded native probes and contracts recorded | Constant-pool/data-base/producer differences; no repeated scheduling variants |
-| SymbolChat Parts | Existing exact compiled functions | Constant ownership prevents source linkage; original provider retained |
+| SymbolChat Parts | Existing exact compiled functions; new pinned upstream literal/control source identified | Eighteen exports still absent locally; ownership, external references and new control provenance unproved; original provider retained |
 | ChoiceSetting / globals | Observed layout and accesses retained | Actual 0x7C producer and task-global ownership unproved; no inferred padding |
 | CustomSelect | Native code/table exact | Early-return child initialization safety remains unresolved |
 | CallBack / headings / capture / CMName | Bounded receiver and storage evidence recorded | Mixed callback signatures, opaque child ownership and original-provider/interface holds remain |

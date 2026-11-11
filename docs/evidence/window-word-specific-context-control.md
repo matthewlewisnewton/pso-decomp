@@ -124,6 +124,10 @@ The lane stops after this diagnostic, without source-order or binding variants.
 
 The C initializer still uses an explicit table-symbol transport boundary; the
 control does not test a genuine Word constructor's compiler-generated vptr store.
+The subsequent [native-construction control](window-word-native-vptr-control.md)
+tests that distinct boundary with one fixed source in both contexts. Its deferred
+constructor148 and all seven bodies/relative targets match, but reversed function
+order and actual table/startup destinations still prevent activation.
 Any future native-construction reconstruction must justify that source boundary
 and its compilation context independently, preserve the complete text/data/ctors
 and all callers, and pass full linked-original qualification and review. Timing
