@@ -2014,3 +2014,14 @@ caller conversions preserve address bits and expose descriptor byte views.
 All 3,665 compiled objects remain raw-identical, original DOL/no-loss/retention
 and fourteen host tests pass, and no new matching gain is claimed. Adjacency,
 other allocator/output-pointer questions, private ABI and metadata holds remain.
+
+The [allocation declaration audit](pr303-packet-allocation-contracts.md) closes
+the two locked-helper callers and one unlocked-helper caller against their
+existing producers. The combined typed migration fails native output and is
+fully restored without compensating variants. Its unchanged unlocked wrapper
+supports an independently reviewed subset: share only that producer's pointer
+return/unsigned-size declaration and preserve the wrapper's native-word result
+with an explicit conversion. The subset leaves all 3,665 object hashes unchanged
+and passes original-DOL/no-loss/retention/fourteen-test checks. The locked caller
+and misc declaration remain restored and held, along with adjacency and the
+other private ABI/metadata restrictions.

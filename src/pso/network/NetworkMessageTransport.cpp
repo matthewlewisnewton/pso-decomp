@@ -145,7 +145,6 @@ s32 TLobby__sub_8042558C(void *);
 extern u8 lbl_805E1190[6];
 s16 TLobby__sub_80426660(u8 *arg0);
 s32 TLobby__sub_804089A8(s32, s32, void *, void *);
-s32 TLobby__sub_80425640(s32 len);
 s32 TLobby__sub_80426AAC(u16 key, s32 len);
 void forward_to_channel__6TLobbyFPv(void *frame, void *b);
 s16 TLobby__sub_80426440(void);
@@ -654,7 +653,7 @@ s32 TLobby__sub_80426AAC(u16 key, s32 len) {
                 ret = TLobby__sub_804089A8(0, 0, (void *)(len - 4), &hdr);
                 break;
             case 2:
-                ret = TLobby__sub_80425640(len);
+                ret = (s32)TLobby__sub_80425640((u32)len);
                 break;
             }
             break;

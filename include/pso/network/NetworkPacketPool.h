@@ -9,6 +9,7 @@ struct NetworkPacketBufferDescriptor {
     u8 *data;
 };
 extern "C" {
+u8 *TLobby__sub_80425640(u32 size);
 NetworkPacketBufferDescriptor *TLobby__sub_804256B8(u32 address);
 }
 s16 initialize_network_packet_pool(void);
