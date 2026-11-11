@@ -8089,15 +8089,9 @@ pso/misc/TLobby_80243370.cpp:
 pso/misc/TKeyBoardControl_802433DC.cpp:
 	.text       start:0x802433DC end:0x80243408
 
-pso/misc/TWindowHelpItem_80243408.cpp:
-	.text       start:0x80243408 end:0x802437C4
-	.data       start:0x804CDCA8 end:0x804CDFE8
-
-pso/unk/text_802437C4.cpp:
-	.text       start:0x802437C4 end:0x8024391C
-
 pso/misc/TWindowActionPalette.cpp:
-	.text       start:0x8024391C end:0x8024420C
+	.text       start:0x80243408 end:0x8024420C
+	.data       start:0x804CDCA8 end:0x804CDFE8
 
 pso/misc/TWindowHelpItem.cpp:
 	.text       start:0x8024420C end:0x80244238
@@ -9384,11 +9378,11 @@ pso/unk/text_8028EC70.cpp:
 
 pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp:
 	.text       start:0x8028EF14 end:0x80290B3C
-	.rodata     start:0x804512A0 end:0x80451CD8
+	.rodata     start:0x804512A0 end:0x80451CE0
 	.data       start:0x804D3A08 end:0x804D40A8
 	.bss        start:0x8051C0E8 end:0x80540954
 	.sdata      start:0x805D3B70 end:0x805D3BC0
-	.sbss       start:0x805D655C end:0x805D6560
+	.sbss       start:0x805D6558 end:0x805D6560
 
 pso/misc/CharacterAppearanceTables.cpp:
 	.rodata     start:0x80451CE0 end:0x80464B48
@@ -13685,7 +13679,7 @@ pso/system/GinjaModelQueue.cpp:
 pso/system/GinjaMaterial.cpp:
 	.text       start:0x803DB470 end:0x803DC82C
 	.data       start:0x804FC540 end:0x804FC668
-	.sdata2     start:0x805E0F6C end:0x805E0F80
+	.sdata2     start:0x805E0F68 end:0x805E0F7C
 
 pso/enemy/TObjEneMe3Stelth_803DC82C.cpp:
 	.text       start:0x803DC82C end:0x803DC834
@@ -13951,7 +13945,10 @@ pso/unk/text_8042E8C4.cpp:
 	.text       start:0x8042E8C4 end:0x8042E9FC
 
 pso/unk/text_8042E9FC.cpp:
-	.text       start:0x8042E9FC end:0x8042EAD4
+	.text       start:0x8042E9FC end:0x8042EA10
+
+pso/unk/text_8042EA10.cpp:
+	.text       start:0x8042EA10 end:0x8042EAD4
 
 pso/unk/text_8042EAD4.cpp:
 	.text       start:0x8042EAD4 end:0x8042EE4C

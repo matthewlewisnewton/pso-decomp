@@ -7,8 +7,10 @@ limitations before applying its conclusions to current code.
 See the [documentation index](../README.md) for current contributor and operator
 guides.
 
+- [Action-palette unit](action-palette-unit.md)
 - [Box-drop directive](box-drop-directive-evidence.md)
 - [Item-drop packet and payload contracts](item-drop-packet-contract.md)
+- [Ballistic particle recovery](ballistic-particle-recovery.md)
 - [Battle parameter tables](battle-parameter-evidence.md)
 - [Cast-technique (6x47) register allocation](cast-technique-6x47-register-allocation.md)
 - [Actor position layout guards](chara-position-layout-evidence.md)
@@ -31,6 +33,7 @@ guides.
 - [Empty enemy-call interfaces](enemy-empty-hooks-evidence.md)
 - [Floor-area sound wrappers](floor-area-sound-evidence.md)
 - [Gee native recovery checkpoint](gee-native-recovery-evidence.md)
+- [Ginja material dispatcher and complete unit](ginja-material-recovery.md)
 - [Indirect texture scroll offset and copy propagation](indirect-scroll-offset-propagation.md)
 - [Indirect controller native observations (from #267)](indirect-controller-dispatcher.md)
 - [Keyboard constructor client argument](keyboard-constructor-abi-evidence.md)
@@ -47,6 +50,7 @@ guides.
 - [Negative fade phase](negative-fade-phase-evidence.md)
 - [Network-info request frame and switch](network-info-request-frame.md)
 - [Native Nest continuation](nest-native-recovery-evidence.md)
+- [Orbit particle unit recovery](orbit-particle-recovery.md)
 - [One-shot positional sound](one-shot-sound-evidence.md)
 - [Paired-single SDK assembly and MWCC (single no-asm exception)](paired-single-sdk-asm.md)
 - [`pack_movie_frame` unit `-opt` switches](pack-movie-frame-unit-flags.md)
@@ -64,7 +68,7 @@ guides.
 - [Quest-download byte-input conversion consumer (partial)](quest-download-byte-conversion.md)
 - [Quest-download canonical read-only token view](quest-download-token-format.md)
 - [Shared scratch vector storage](scratch-vector-evidence.md)
-- [Symbol chat parts recovery (WIP)](symbol-chat-parts-recovery-evidence.md)
+- [Symbol chat parts unit linkage](symbol-chat-parts-recovery-evidence.md)
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)
 - [TBoss6Type1 `.sdata2` integer constants](tboss6type1-sdata2-constants.md)
 - [TChCrTagPlGraphic vtable emission](tchcrtagplgraphic-vtable-evidence.md)

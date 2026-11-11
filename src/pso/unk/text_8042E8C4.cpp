@@ -1,3 +1,4 @@
+#ifdef __MWERKS__
 #include "types.h"
 
 // Reset-payload relocator: copies the header+image at `arg` to 0x80003100,
@@ -30,3 +31,29 @@ asm void LaunchDol(register void* dol) {
 }
 
 }
+#else
+#include <pso/port/LoaderTransfer.h>
+
+namespace pso { namespace port {
+bool step_loader_handoff(LoaderState& state, LoaderBackend& backend) {
+    switch (state.pc) {
+    case 0x8042E9ECu:
+        state.gpr[0] = backend.load_u32_be(uint32_t(state.gpr[26] + 0xE0u));
+        break;
+    case 0x8042E9F0u:
+        backend.synchronize_instructions();
+        break;
+    case 0x8042E9F4u:
+        state.lr = state.gpr[0];
+        break;
+    case 0x8042E9F8u:
+        state.pc = state.lr & ~uint32_t(3);
+        return true;
+    default:
+        return false;
+    }
+    state.pc += 4u;
+    return true;
+}
+} }
+#endif
