@@ -13364,21 +13364,65 @@ pso/misc/TLobby_803C45E4.cpp:
 	.text       start:0x803C45E4 end:0x803C4698
 
 pso/misc/TLobby_803C4698.cpp:
-	.text       start:0x803C4698 end:0x803C5AA0
+	.text       start:0x803C4698 end:0x803C5930
 	.rodata     start:0x8047C568 end:0x8047C5A8
 	.bss        start:0x80572000 end:0x80572120
 	.sdata2     start:0x805E0CE8 end:0x805E0D28
 
+pso/system/AdxtInit.cpp:
+	.text       start:0x803C5930 end:0x803C5B50
+	.rodata     start:0x8047C5A8 end:0x8047C5D8
+	.bss        start:0x80572120 end:0x80572BA0
+	.sdata      start:0x805D4658 end:0x805D465C
+	.sbss       start:0x805D7538 end:0x805D7544
+	.sdata2     start:0x805E0D30 end:0x805E0D34
+
 pso/system/AdxStreamRuntime.cpp:
-	.text       start:0x803C5AA0 end:0x803CBCA0
-	.bss        start:0x80572120 end:0x8057B7B0
+	.text       start:0x803C5B50 end:0x803C5E78
+	.bss        start:0x80572BA0 end:0x80573100
+
+pso/system/AdxEncoder.cpp:
+	.text       start:0x803C5E78 end:0x803C84D0
+	.bss        start:0x80573100 end:0x80575140
+	.sdata      start:0x805D4660 end:0x805D4668
+	.sdata2     start:0x805E0D38 end:0x805E0D50
+
+pso/system/AdxStream.cpp:
+	.text       start:0x803C84D0 end:0x803C90E4
+	.rodata     start:0x8047C600 end:0x8047C690
+	.bss        start:0x80575140 end:0x80575B40
+	.sdata      start:0x805D4668 end:0x805D4674
+	.sbss       start:0x805D7550 end:0x805D755C
+
+pso/system/AdxTalk.cpp:
+	.text       start:0x803C90E4 end:0x803CA774
+	.rodata     start:0x8047C690 end:0x8047C6C0
+	.sdata      start:0x805D4678 end:0x805D467C
+	.sbss       start:0x805D7560 end:0x805D7578
 	.sdata2     start:0x805E0D50 end:0x805E0D70
 
-pso/unk/text_803CBCA0.cpp:
-	.text       start:0x803CBCA0 end:0x803CBCF8
+pso/system/AdxtStart.cpp:
+	.text       start:0x803CA774 end:0x803CA8B4
+	.rodata     start:0x8047C6C0 end:0x8047C718
 
-pso/unk/text_803CBCF8.cpp:
-	.text       start:0x803CBCF8 end:0x803CBDE0
+pso/system/AdxtServer.cpp:
+	.text       start:0x803CA8B4 end:0x803CB384
+	.rodata     start:0x8047C718 end:0x8047C788
+	.sbss       start:0x805D7578 end:0x805D7584
+
+pso/system/AdxExpand.cpp:
+	.text       start:0x803CB384 end:0x803CB74C
+	.bss        start:0x80575B40 end:0x80575E80
+	.sbss       start:0x805D7588 end:0x805D758C
+
+pso/system/AdxManager.cpp:
+	.text       start:0x803CB74C end:0x803CBDE0
+	.rodata     start:0x8047C788 end:0x8047C7E8
+	.data       start:0x804F9D80 end:0x804F9D94
+	.bss        start:0x80575E80 end:0x8057B7B0
+	.sdata      start:0x805D4680 end:0x805D4688
+	.sbss       start:0x805D7590 end:0x805D75CC
+	.sdata2     start:0x805E0D70 end:0x805E0D7C
 
 pso/misc/TKeyBoardControl_803CBDE0.cpp:
 	.text       start:0x803CBDE0 end:0x803CBE88

@@ -2,9 +2,61 @@
 #define PSO_SYSTEM_ADXSTREAMRUNTIME_H
 
 #include "types.h"
+#include <stddef.h>
 
-struct AdxStreamFile;
+struct LscStream;
 struct SjRingBuffer;
+typedef struct Ent_803C9608 {
+    char state;
+    s8 stat;
+    u8 pad_2[0x4 - 0x2];
+    s32 f4;
+    u8 *f8;
+    s32 fC;
+    u8 pad_10[0x18 - 0x10];
+    SjRingBuffer *f18[2]; // one per channel; 2 is inferred (stereo), the code only proves the index
+    u8 pad_20[0x48 - 0x20];
+    s32 f48;
+    u8 pad_4C[0x60 - 0x4C];
+    s16 f60;
+    u8 pad_62[0x70 - 0x62];
+    s8 f70;
+    u8 f71;
+    s8 f72;
+    u8 pad_73[0x94 - 0x73];
+    LscStream *f94;
+    u8 pad_98[0x9C - 0x98];
+    s32 f9C;
+    s32 fA0;
+    u8 pad_A4[0xA8 - 0xA4];
+} Ent_803C9608;
+typedef char Ent_803C9608_size[sizeof(Ent_803C9608) == 0xA8 ? 1 : -1];
+
+struct AdxStreamFile {
+    s8 used;
+    s8 b1;
+    s8 b2;
+    u8 pad3;
+    union {
+        s32 arg;
+        SjRingBuffer *buffer;
+    };
+    u32 handle;
+    s32 fC;
+    s32 f10;
+    s32 size;
+    s32 read_chunk_size;
+    s32 read_threshold;
+    u8 pad20[0xC];
+    s32 f2C;
+    s32 sectors;
+    s32 field34;
+    u8 pad38[8];
+};
+typedef char AdxStreamFile_size[sizeof(AdxStreamFile) == 0x40 ? 1 : -1];
+typedef char AdxStreamFile_field34_offset[offsetof(AdxStreamFile, field34) == 0x34 ? 1 : -1];
+
+
 struct AdxDecoderFormatView {
     u8 reserved[0xA8];
     s16 format;
