@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -207,7 +208,7 @@ void TOKeyMachine01::free_statics() {
         TObjPlayer::free_if_valid(TOKeyMachine01__texture_lists[0]);
         TOKeyMachine01__texture_lists[0] = 0;
         if (TOKeyMachine01__texture_lists != NULL) {
-            mem_free(TOKeyMachine01__texture_lists);
+            ::operator delete[](TOKeyMachine01__texture_lists);
             TOKeyMachine01__texture_lists = NULL;
         }
     }
@@ -223,7 +224,7 @@ void TOKeyMachine01::load_assets() {
         resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_ki_doa_panel_resource_descriptor, 0, 0, 0);
     }
     TOKeyMachine01__resource_bundle = resource;
-    TOKeyMachine01__texture_lists = (s32 *)mem_alloc(8);
+    TOKeyMachine01__texture_lists = (s32 *)::operator new[](8);
     TOKeyMachine01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_ki_doa_panel_r.gvm");
     TOKeyMachine01__texture_lists[1] = TOKeyMachine01__resource_bundle->models[0].m_c;
 }

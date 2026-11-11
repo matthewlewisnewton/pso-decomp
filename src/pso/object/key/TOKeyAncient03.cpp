@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -167,7 +168,7 @@ void TOKeyAncient03::cleanup_refs() {
     if (TOKeyAncient03__texture_variants != NULL) {
         TObjPlayer::free_if_valid(TOKeyAncient03__texture_variants[1]);
         if (TOKeyAncient03__texture_variants != NULL) {
-            mem_free(TOKeyAncient03__texture_variants);
+            ::operator delete[](TOKeyAncient03__texture_variants);
             TOKeyAncient03__texture_variants = NULL;
         }
     }
@@ -184,7 +185,7 @@ void TOKeyAncient03::load_resources() {
         resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_o_doorpanel_resource_descriptor, 0, 0, 0);
     }
     TOKeyAncient03__model_archive = resource;
-    textures = (s32 *)mem_alloc(8);
+    textures = (s32 *)::operator new[](8);
     TOKeyAncient03__texture_variants = textures;
     textures[0] = TOKeyAncient03__model_archive->models[0].m_c;
     TOKeyAncient03__texture_variants[1] = (s32)load_gvm_texture_file((s32) "fs_obj_o_doorpanelg.gvm");

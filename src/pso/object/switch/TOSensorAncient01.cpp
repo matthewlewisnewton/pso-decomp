@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -143,7 +144,7 @@ void TOSensorAncient01::destroy() {
         TObjPlayer::free_if_valid(ancient_sensor_resource_pair_table[1].plain);
         TObjPlayer::free_if_valid(ancient_sensor_resource_pair_table[1].red);
         if (ancient_sensor_resource_pair_table != NULL) {
-            mem_free(ancient_sensor_resource_pair_table);
+            ::operator delete[](ancient_sensor_resource_pair_table);
             ancient_sensor_resource_pair_table = NULL;
         }
     }
@@ -159,7 +160,7 @@ void TOSensorAncient01::load_resources() {
         resource = load_resource_from_descriptor(resource, 1, &TOSensorAncient01__resource_descriptor, 0, 0, 0);
     }
     sensor_ancient01_model_resource = resource;
-    ancient_sensor_resource_pair_table = (TOSensorAncient01Textures *)mem_alloc(0x10);
+    ancient_sensor_resource_pair_table = (TOSensorAncient01Textures *)::operator new[](0x10);
     ancient_sensor_resource_pair_table[0].plain = sensor_ancient01_model_resource->models[0].m_c;
     ancient_sensor_resource_pair_table[0].red = (s32)load_gvm_texture_file((s32) "fs_obj_o_sensor01r.gvm");
     ancient_sensor_resource_pair_table[1].plain = (s32)load_gvm_texture_file((s32) "fs_obj_o_sensor02.gvm");

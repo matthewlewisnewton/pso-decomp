@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/task/TObject.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/vector.h"
@@ -35,7 +36,6 @@ struct O_802F31E4 {
 
 extern "C" {
 void set_all_flags__17TBoss8DragonColliFPv(O_802F3144 *self);
-void *mem_alloc(u32 size);
 u16 register_entity_by_id(void *ov);
 s32 __ct__14TObjCollidableFP7TObject(void *, void *);
 extern u8 boss8_collision_segment_desc[];
@@ -168,7 +168,7 @@ s32 init_collision_segments__17TBoss8DragonColliFiPviPvf(int arg0, void *arg1, i
     VecCopy((Vec *)self->pos, (const Vec *)arg3);
     self->f1c = TLobby::alloc_actor_ids(0);
     self->count = arg2;
-    self->elems = (E_802F31E4 *)mem_alloc(self->count * 0x2C);
+    self->elems = (E_802F31E4 *)::operator new[](self->count * 0x2C);
     step = 2.0f * scale;
     e = self->elems;
     zero = 0.0f;

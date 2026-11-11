@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlResource.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
 #include "pso/unk/TLobby_8001EF5C.h"
@@ -161,11 +162,9 @@ s32 load_gvm_texture_archive(s32, s32);
 s32 set_stream_state__6TLobbyFi(s32, s32);
 s32 create_file_load_entry__6TLobbyFllUllPPv(void *, s32, void *, void *, void *);
 s32 TLobby__sub_800F9FF4(s32);
-void mem_free(void *p);
 s32 release_texture_list(void *);
 Lobby_8001FE7C *free_bin_model_request(Lobby_8001FE7C *self, s16 del);
 u32 prs_decompress_buffer(s32 arg0, s32 arg1);
-void *mem_alloc(u32 size);
 char *strncpy(char *dest, const char *src, unsigned long num);
 extern u8 *resource_decompress_buffer;
 extern u8 bml_load_state;
@@ -705,11 +704,11 @@ Lobby_8001FE7C *free_bin_model_request(Lobby_8001FE7C *self, s16 del) {
                 ((TLobby *)self)->free_if_not_owner(self->ents16[i].b);
             }
         }
-        mem_free(self->ents16);
+        ::operator delete[](self->ents16);
         for (i = 0; i < self->nEnts8; i++) {
             ((TLobby *)self)->free_if_not_owner(self->ents8[i].data);
         }
-        mem_free(self->ents8);
+        ::operator delete[](self->ents8);
         if (del > 0) {
             ::operator delete(self);
         }
@@ -750,7 +749,7 @@ TBinModel *load_resource_from_descriptor(TBinModel *self, s32 kind, Desc_8002000
     self->nEnts16 = desc->n16;
     self->nEnts8 = desc->n8;
     if (self->nEnts16 > 0) {
-        self->ents16 = (BinModelSlot *)mem_alloc(self->nEnts16 * 16);
+        self->ents16 = (BinModelSlot *)::operator new[](self->nEnts16 * 16);
         for (s32 i = 0; i < self->nEnts16; i++) {
             self->ents16[i].flags = 0;
             self->ents16[i].a = NULL;
@@ -758,7 +757,7 @@ TBinModel *load_resource_from_descriptor(TBinModel *self, s32 kind, Desc_8002000
         }
     }
     if (self->nEnts8 > 0) {
-        self->ents8 = (BinMotionSlot *)mem_alloc(self->nEnts8 * 8);
+        self->ents8 = (BinMotionSlot *)::operator new[](self->nEnts8 * 8);
         for (s32 i = 0; i < self->nEnts8; i++) {
             self->ents8[i].data = NULL;
         }
@@ -939,7 +938,7 @@ TBinModel *init_bin_model_request(TBinModel *self, s32 kind, u32 *models, u32 *m
         self->nEnts16++;
     }
     if (self->nEnts16 > 0) {
-        self->ents16 = (BinModelSlot *)mem_alloc(self->nEnts16 * 16);
+        self->ents16 = (BinModelSlot *)::operator new[](self->nEnts16 * 16);
         for (s32 i = 0; i < self->nEnts16; i++) {
             self->ents16[i].flags = 0;
             self->ents16[i].a = NULL;
@@ -950,7 +949,7 @@ TBinModel *init_bin_model_request(TBinModel *self, s32 kind, u32 *models, u32 *m
         self->nEnts8++;
     }
     if (self->nEnts8 > 0) {
-        self->ents8 = (BinMotionSlot *)mem_alloc(self->nEnts8 * 8);
+        self->ents8 = (BinMotionSlot *)::operator new[](self->nEnts8 * 8);
         for (s32 i = 0; i < self->nEnts8; i++) {
             self->ents8[i].data = NULL;
         }

@@ -1,6 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/item/TItem.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8000F764.h"
 #include "pso/unk/TLobby_8030A6A8.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.h"
@@ -137,8 +138,6 @@ typedef struct Node_801D56D0 {
 } Node_801D56D0;
 extern "C" {
 u8 *get_ptr_4__10TObjPlayerFv();
-void mem_free(void *p);
-void *mem_alloc(u32 size);
 s32 __construct_new_array(void *, void *, int, int, int);
 void fn_801C1BA8(void *, void *);
 s32 fn_801D40D4(s32 arg0, Rec_801D40D4 *arg1, u8 *arg2);
@@ -627,7 +626,7 @@ extern "C" u8 *TObjPlayer__sub_801D46D4(u8 *arg0, s32 arg1) {
     s32 n;
     *(s32 *)arg0 = arg1;
     n = *(s32 *)arg0;
-    *(s32 *)(arg0 + 4) = __construct_new_array(mem_alloc((n * 8 + 0x10)), TObjPlayer__sub_801D4730, 0, 8, n);
+    *(s32 *)(arg0 + 4) = __construct_new_array(::operator new[]((n * 8 + 0x10)), TObjPlayer__sub_801D4730, 0, 8, n);
     return arg0;
 }
 
@@ -637,7 +636,7 @@ extern "C" u8 *TObjPlayer__sub_801D4678(u8 *arg0, s16 arg1) {
         q = *(u8 **)(arg0 + 4);
         if (q != NULL) {
             if (q != NULL) {
-                mem_free((q - 0x10));
+                ::operator delete[]((q - 0x10));
             }
         }
         if (arg1 > 0) {

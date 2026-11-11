@@ -2,6 +2,7 @@
 #include "types.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/render/MaterialColorFade.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/vector.h"
 #include "pso/player/TUnk_804E3BD8.h"
 #include "pso/player/TUnk_804E3BC0.h"
@@ -80,7 +81,6 @@ extern const f32 lbl_805DE9FC;
 extern const f32 lbl_805DEA00;
 extern const f32 lbl_805DEA04;
 s32 TObjPlayer__sub_802E76C8(u8 *arg0);
-void mem_free(void *p);
 void __dl__7TObjectFPv(void *);
 extern s32 __vt__13TUnk_804E3BD8[];
 u8 *__dt__13TUnk_804E3BD8Fv(u8 *arg0, s16 arg1);
@@ -133,7 +133,6 @@ void TObjPlayer__sub_802E75B8(void *, s32 *);
 s32 scale_matrix(int, f32, f32, f32);
 extern const f32 lbl_805DE9E4;
 void __ct__7TObjectFP7TObject(void *);
-void *mem_alloc(u32 size);
 
     extern int multiplay_texture_f512_handle;
 int TObjPlayer::get_instance() {  return multiplay_texture_f512_handle; }
@@ -351,13 +350,13 @@ void TUnk_804E3BD8::alloc_breakup_model(s32 arg1) {
     temp_r4 = *(s32 **)((s8 *)this + 0x1C);
     this->m_24 = (s32) *temp_r4;
     TObjPlayer__sub_802E75B8(this, temp_r4);
-    *(s32 *)&(this->unk_28) = (s32)mem_alloc(this->m_24 * 0x2C);
+    *(s32 *)&(this->unk_28) = (s32)::operator new[](this->m_24 * 0x2C);
 }
 }
 
 TUnk_804E3BD8::~TUnk_804E3BD8() {
     VObj_802E74E4 *temp_r3;
-    mem_free((void *)(*(s32 *)((s8 *)this + 0x28)));
+    ::operator delete[]((void *)(*(s32 *)((s8 *)this + 0x28)));
     temp_r3 = *(VObj_802E74E4 **)((s8 *)this + 0x1C);
     if (temp_r3 != NULL) {
         temp_r3->m0(1);

@@ -3,6 +3,7 @@
 #include "pso/boss/goldragon/TBoss8Dragon_80065C90.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/map/CsnQuery.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_80087278.h"
 #include "pso/object/base/TObjMotion.h"
@@ -4333,7 +4334,6 @@ struct VO_800F5324 : VB_800F5324 { virtual ~VO_800F5324(); };
 
 extern "C" {
 s32 free_bin_model_request(void *, s32);
-void mem_free(void *p);
 #define TObjEneMe3Stelth__alternate_texture_list ((void * *)&TObjEneMe3Stelth__alternate_texture_list)
 typedef struct RecoveredGlobal_8031B170_lbl_804E8880 RecoveredGlobal_8031B170_lbl_804E8880;
 typedef char RecoveredGlobal_8031B170_lbl_804E8880_size[((sizeof(RecoveredGlobal_8031B170_lbl_804E8880)) == 0xD0) ? (1) : (-1)];
@@ -4359,7 +4359,7 @@ void TObjEneMe3Stelth::free_shared_resources() {
         (*(VO_800F5324 **)&TObjEneMe3Stelth__breakup_model) = 0;
     }
     if (TObjEneMe3Stelth__alternate_texture_list[0] != 0) {
-        mem_free(TObjEneMe3Stelth__alternate_texture_list[0]);
+        ::operator delete[](TObjEneMe3Stelth__alternate_texture_list[0]);
         TObjEneMe3Stelth__alternate_texture_list[0] = 0;
     }
     if ((*(void **)&TObjEneMe3Stelth__bml_resource) != 0) {
@@ -4381,7 +4381,6 @@ struct Res_800F53E8 { u8 pad[0x42C]; u8 *f42C; struct Ent_800F53E8 *f430; };
 struct Tbl_800F53E8 { u8 pad[0x54]; s32 f54; u8 pad58[0xC]; s32 f64; };
 
 void *init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
-void *mem_alloc(u32 size);
 extern const f32 lbl_805DA8B0;
 extern const f32 lbl_805DA8B4;
 extern const f32 lbl_805DA8B8;
@@ -4407,7 +4406,7 @@ void TObjEneMe3Stelth::load_shared_resources() {
     src = *(Arr_800F53E8 **)(((Res_800F53E8 *)TObjEneMe3Stelth__bml_resource)->f42C + 0xC);
     n = src->n;
     TObjEneMe3Stelth__alternate_texture_list[1] = n;
-    TObjEneMe3Stelth__alternate_texture_list[0] = (s32)mem_alloc(n * 0xC);
+    TObjEneMe3Stelth__alternate_texture_list[0] = (s32)::operator new[](n * 0xC);
     for (i = 0; i < n; i++) {
         ((TObjPlayer *)(&((IV_800F53E8 *)TObjEneMe3Stelth__alternate_texture_list[0])[i]))->copy_vec3(&src->p[i]);
     }

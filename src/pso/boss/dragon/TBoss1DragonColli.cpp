@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/task/TObject.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/vector.h"
@@ -53,7 +54,6 @@ extern void *__vt__17TBoss1DragonColli[];
 extern s32 TBoss1DragonColli__name;
 u8 *TBoss1DragonColli__ct(u8 *arg0, s32 arg1);
 void set_elem_flags__17TBoss1DragonColliFPv(O_8002B42C *self);
-void *mem_alloc(u32 size);
 u16 register_entity_by_id(void *ov);
 s32 __ct__14TObjCollidableFP7TObject(void *, void *);
 extern CollisionBody TBoss1DragonColli_sphere_chain_desc;
@@ -183,7 +183,7 @@ s32 TBoss1DragonColli_C__ct(int arg0, void *arg1, int arg2, void *arg3, f32 scal
     VecCopy((Vec *)self->pos, (const Vec *)arg3);
     self->f1c = TLobby::alloc_actor_ids(0);
     self->count = arg2;
-    self->elems = (E_8002B4CC *)mem_alloc(self->count * 0x2C);
+    self->elems = (E_8002B4CC *)::operator new[](self->count * 0x2C);
     step = 2.0f * scale;
     e = self->elems;
     zero = 0.0f;

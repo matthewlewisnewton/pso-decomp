@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/render/NinjaUtil.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/object/base/TObjChara.h"
@@ -543,8 +544,6 @@ u16 get_entity_id(void *);
 s32 is_split_screen();
 void request_follow_camera_offsets(void *arg0, void *arg1, u16 arg2);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
-s32 mem_free(s32 *);
-s32 * mem_alloc(s32);
 s32 project_actor_to_ground(void *, void *, int);
 s32 __nw__7TObjectFUl(s32);
 int pick_random_active_player__14TBoss6PlotFalzFv(void*);
@@ -1393,7 +1392,7 @@ void TBoss6Type2::drop_random_rocks(s32 arg0, s32 arg1) {
     if (cnt > avail) {
         cnt = avail;
     }
-    buf = mem_alloc(cnt * 4);
+    buf = (s32 *)::operator new[](cnt * 4);
     step = (s32)(31.0f * (3.0517578e-05f * (f32)rand()));
     j = 0;
     for (k = 0; k < cnt; k++) {
@@ -1411,7 +1410,7 @@ void TBoss6Type2::drop_random_rocks(s32 arg0, s32 arg1) {
         avail_tbl[j] = 0;
     }
     TBoss6Type2__sub_80356E50(buf, cnt, arg1);
-    mem_free(buf);
+    ::operator delete[](buf);
     ((s32 (*)(int, void *, int, int))play_sound_effect)(0x4006AB1D, ((void *)&boss6_arena_center), 0, 1);
 }
 

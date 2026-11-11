@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -125,7 +126,7 @@ void TOKeyAncient02::free_static() {
     if (TOKeyAncient02__texture_lists != NULL) {
         TObjPlayer::free_if_valid(TOKeyAncient02__texture_lists[1]);
         if (TOKeyAncient02__texture_lists != NULL) {
-            mem_free(TOKeyAncient02__texture_lists);
+            ::operator delete[](TOKeyAncient02__texture_lists);
             TOKeyAncient02__texture_lists = NULL;
         }
     }
@@ -142,7 +143,7 @@ void TOKeyAncient02::load_resources() {
         resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_o_doorswitch01_resource_descriptor, 0, 0, 0);
     }
     TOKeyAncient02__model_archive = resource;
-    TOKeyAncient02__texture_lists = (s32 *)mem_alloc(8);
+    TOKeyAncient02__texture_lists = (s32 *)::operator new[](8);
     TOKeyAncient02__texture_lists[0] = TObjFish__sub_8001EDB0(TOKeyAncient02__model_archive, 0);
     TOKeyAncient02__texture_lists[1] = (s32)load_gvm_texture_file((s32) "o_key_ancient02.gvm");
     TOKeyAncient02__glass_model = (NJS_OBJECT *)get_bml_model(TOKeyAncient02__model_archive, 0);

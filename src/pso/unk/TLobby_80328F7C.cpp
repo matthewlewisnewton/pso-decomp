@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/data/FlagWord.h"
 #include "pso/unk/TLobby.h"
 #include "pso/player/TPlyPhotonChair.h"
@@ -378,7 +379,6 @@ int TUnk_804ED7D0::vfunc_7(s32, s32) {
 }
 
 s32 apply_player_flag_2__6TLobbyFv();
-void mem_free(void*);
 s32 set_flag_1_at_6c84__6TLobbyFv();
 
 int TUnk_804ED7D0::vfunc_6(s32, s32, s32) { return 1; }
@@ -397,16 +397,15 @@ int TUnk_804ED7D0::vfunc_5(s32) {
 
 void TLobby::free_singleton_805D6C80() {
     if ((u32) (*(u32 *)&lbl_805D6C80) != 0U) {
-        mem_free((void*)(*(u32 *)&lbl_805D6C80));
+        ::operator delete[]((void*)(*(u32 *)&lbl_805D6C80));
         (*(u32 *)&lbl_805D6C80) = 0U;
     }
 }
 
 void alloc_work_buffer__6TLobbyFv(void);
-void *mem_alloc(u32 size);
 
 void alloc_work_buffer__6TLobbyFv(void) {
-    lbl_805D6C80 = (s32)mem_alloc(0x1C0000);
+    lbl_805D6C80 = (s32)::operator new[](0x1C0000);
 }
 
 void *TLobby__sub_80329310(void *arg0, s16 arg1);

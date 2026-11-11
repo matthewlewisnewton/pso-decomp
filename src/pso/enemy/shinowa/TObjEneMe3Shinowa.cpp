@@ -1,6 +1,7 @@
 #include "pso/animation/MotionContext.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/shinowa/TObjEneMe3Shinowa.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
@@ -4312,7 +4313,6 @@ void *TObjEneMe3Shinowa__ct(void *ene_me3_shinowa, void *parent) {
 
 extern "C" {
 s32 free_bin_model_request(void *, s32);
-void mem_free(void *p);
 int create__21TObjEneMe3ShinowaRealFv(void*);
 
 void TObjEneMe3ShinowaMirage::set_slot_min_clamped_value(s32 arg0, f32 farg0) {
@@ -4340,7 +4340,7 @@ void TObjEneMe3ShinowaMirage::free_shared_resources() {
         TObjEneMe3ShinowaMirage__data_805D52A0 = 0;
     }
     if (lbl_80500FEC.textures != 0) {
-        mem_free(lbl_80500FEC.textures);
+        ::operator delete[](lbl_80500FEC.textures);
         lbl_80500FEC.textures = 0;
     }
     if (TObjEneMe3ShinowaMirage__data_805D5298 != 0) {
@@ -4351,7 +4351,6 @@ void TObjEneMe3ShinowaMirage::free_shared_resources() {
 
 int TObjEneMe3ShinowaMirage__sub_800E7B74(void* p) { return create__21TObjEneMe3ShinowaRealFv(p); }
 
-void *mem_alloc(u32 size);
 extern s32 lbl_8043CE1C[];
 extern s32 lbl_8043CE24[];
 extern s32 lbl_8043CE2C[];
@@ -4384,7 +4383,7 @@ void load_shinowa_mirage_resources() {
     src = (NJS_TEXLIST *)TObjEneMe3ShinowaMirage__data_805D5298->models->m_c;
     n = src->nbTexture;
     lbl_80500FEC.nbTexture = n;
-    lbl_80500FEC.textures = (NJS_TEXNAME *)mem_alloc(n * sizeof(NJS_TEXNAME));
+    lbl_80500FEC.textures = (NJS_TEXNAME *)::operator new[](n * sizeof(NJS_TEXNAME));
     for (i = 0; i < n; i++) {
         ((TObjPlayer *)&lbl_80500FEC.textures[i])->copy_vec3(&src->textures[i]);
     }

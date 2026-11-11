@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/MenuText.h"
 #include "pso/ui/window/TWindowSubStatusDisp_80144B14.h"
 #include "types.h"
@@ -15,7 +16,6 @@ struct VObj_801457A4 : Base_801457A4 {
 
 extern "C" {
 s32 release_texture_list(s32 *);
-void mem_free(void *p);
 extern s32 menu_font_texture_list[];
 extern s32 menu_font_glyph_data;
 extern s32 lbl_805D56B4;
@@ -33,8 +33,8 @@ void TAdSinglePlyChrSelectGC::free_resources() {
         menu_font_object->m0(1);
     }
     release_texture_list(menu_font_texture_list);
-    mem_free((void *)menu_font_glyph_table);
-    mem_free((void *)lbl_805D56B4);
+    ::operator delete[]((void *)menu_font_glyph_table);
+    ::operator delete[]((void *)lbl_805D56B4);
     TAdSinglePlyChrSelectGC::safe_free(menu_font_glyph_data);
 }
 #pragma pop

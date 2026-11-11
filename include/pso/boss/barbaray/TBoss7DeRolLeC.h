@@ -84,7 +84,7 @@ struct TBoss7DeRolLeC : public TObjEneDD_ST {
     s32 unk_6C8;
     s32 unk_6CC;
     s32 unk_6D0;
-    GC_Mtx *unk_6D4;                 // 12 matrices, mem_alloc'd by the ctor (freed by the destructor)
+    GC_Mtx *unk_6D4;                 // 12 matrices, allocated by the ctor (freed by the destructor)
     GC_Mtx *unk_6D8;                 // 4 matrices, one per tentacle root (freed by the destructor)
     TBoss7Tentacle *unk_6DC[4];   // released by the destructor
     Vec unk_6EC;
