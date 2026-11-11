@@ -4259,8 +4259,8 @@ void TObjEneMe3Shinowa::init_enemy() {
     self->f34 = TObjEneMe3ShinowaMirage__data_805D5298->models->model;
     init_model__9TObjEneDDFP13CollisionBodyl(self, ((void * *)shinowa_mirage_model_init_data), 1);
     self->fB0 = 0;
-    ((TObjMotion *)self)->set_field_d8((s32)shinowa_mirage_motion_param_table);
-    ((TObjMotion *)self)->set_field_dc((s32)TObjEneMe3ShinowaMirage__data_805D5298->motions);
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)shinowa_mirage_motion_param_table));
+    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)((s32)TObjEneMe3ShinowaMirage__data_805D5298->motions));
     self->fB8 = 0;
     ((TObjMotion *)self)->set_animation(self->fB8);
     ((TObjMotion *)self)->set_field_b8(self->fB8);

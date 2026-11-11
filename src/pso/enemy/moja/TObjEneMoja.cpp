@@ -449,7 +449,7 @@ TObjEneMoja::TObjEneMoja(TObject *parent, void *setData) : TObjEnemy(parent) {
     select_rare_variant();
     subtype = 1;
     action_table = lbl_804918C8;
-    set_field_d8((s32)action_table);
+    set_action_table((TObjMotionAction *)((s32)action_table));
     motion_list = lbl_805D50D8->motions;
     requested_action = 0;
     set_animation(requested_action);

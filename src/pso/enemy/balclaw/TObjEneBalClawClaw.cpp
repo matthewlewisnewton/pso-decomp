@@ -494,7 +494,7 @@ s32 TObjEneBalClawClaw__ct(void *arg0) {
     ((TObject *)self)->m_name = balclaw_claw_class_name;
     *(s32 *)((s8 *)self + 0xDC) = (s32)lbl_805D4F20->motions;
     *(u8 **)((s8 *)self + 0xD8) = (u8 *)balclaw_claw_model_node_desc;
-    ((TObjMotion *)self)->set_field_d8((s32)(*(u8 **)((s8 *)self + 0xD8)));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)(*(u8 **)((s8 *)self + 0xD8))));
     init_collision_body_parts(self, TObjEneBalClawClaw__collision_body_template, 1);
     *(s32 *)((s8 *)self + 0x368) = 0;
     *(u8 **)((s8 *)self + 0x350) = (u8 *)lbl_8048F100;

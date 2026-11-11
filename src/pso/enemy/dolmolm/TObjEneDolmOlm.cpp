@@ -889,7 +889,7 @@ TObjEneDolmOlm::TObjEneDolmOlm(s32 arg1, s32 arg2) : TUnk_80493450((TObject *)ar
     ((TObjPlayer *)this)->init_position_vectors();
     this->sub_80301148();
     *(void * *)&this->action_table = TObjEneDolmOlm__param_table;
-    ((TObjMotion *)this)->set_field_d8((s32)(*(void * *)&this->action_table));
+    ((TObjMotion *)this)->set_action_table((TObjMotionAction *)((s32)(*(void * *)&this->action_table)));
     *(s32 *)((s8 *)this + 0xDC) = *(s32 *)((s8 *)TObjEneDolmOlm__resource_bundle + 0x430);
     this->requested_action = 0;
     ((TObjMotion *)this)->set_animation(this->requested_action);

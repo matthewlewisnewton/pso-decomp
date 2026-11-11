@@ -287,8 +287,8 @@ TPhotonEstlla::TPhotonEstlla(u8 *arg1) : TUnk_804C3248() {
     }
     *(s32 *)((s8 *)this + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x98);
     this->texlist = *(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x9C);
-    ((TObjMotion *)this)->set_field_d8((s32) photon_estlla_param_table);
-    ((TObjMotion *)this)->set_field_dc(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430));
+    ((TObjMotion *)this)->set_action_table((TObjMotionAction *)((s32) photon_estlla_param_table));
+    ((TObjMotion *)this)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)photon_blast_shared_resource + 0x430)));
     this->requested_action = 1;
     ((TObjMotion *)this)->set_animation(this->requested_action);
     ((TObjMotion *)this)->set_field_b8(this->requested_action);

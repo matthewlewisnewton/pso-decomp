@@ -231,8 +231,8 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData) : TObjEneDD_S
     } else {
         init_model(lbl_80493094, 2);
     }
-    set_field_d8((s32)TObjEneRe2Flower__animation_descriptors);
-    set_field_dc((s32)lbl_805D5174->motions);
+    set_action_table((TObjMotionAction *)((s32)TObjEneRe2Flower__animation_descriptors));
+    set_motion_list((BmlMotionEntry *)((s32)lbl_805D5174->motions));
     requested_action = 1;
     set_animation(requested_action);
     set_field_b8(requested_action);

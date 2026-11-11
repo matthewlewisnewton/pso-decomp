@@ -339,8 +339,8 @@ TObjEnePanarms::TObjEnePanarms(TObject *parent, void *setData) : TObjEnemy(paren
     model = (void *)get_bml_model(TObjEnePanarms__entry_params_resource, 0);
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     collision_body_parts = init_collision_body_parts(this, panarms_collision_body, 1);
-    set_field_d8((s32)panarms_motion_param_table);
-    set_field_dc((s32)TObjEnePanarms__entry_params_resource->motions);
+    set_action_table((TObjMotionAction *)((s32)panarms_motion_param_table));
+    set_motion_list((BmlMotionEntry *)((s32)TObjEnePanarms__entry_params_resource->motions));
     set_animation(0);
     set_field_b8(0);
     VecCopy((Vec *)&m_2fc, &position);

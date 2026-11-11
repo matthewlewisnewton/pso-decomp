@@ -608,8 +608,8 @@ TObjEneEpsilonBody::TObjEneEpsilonBody(TObject *parent, void *set_data) : TObjEn
     flags |= 2;
     set_guard_state();
     texlist = TObjFish__sub_8001EDB0(lbl_805D6FA0, 0);
-    set_field_d8((s32)lbl_804F2230);
-    set_field_dc((s32)(lbl_805D6FA0)->motions);
+    set_action_table((TObjMotionAction *)((s32)lbl_804F2230));
+    set_motion_list((BmlMotionEntry *)((s32)(lbl_805D6FA0)->motions));
     set_animation(requested_action);
     set_field_b8(requested_action);
     reset_hp(lbl_805D6F80, lbl_805D6F84, lbl_805D6F88);
