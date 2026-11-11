@@ -123,7 +123,6 @@ struct TObjBoss2Tunnel : public TObject {
     static s32 decrement_packed_timer(u32 *arg0, s32 arg1);
     static void init_zako(Vec *v, void* a1, s32 _w2);
     static s16 turn_toward_angle_limited(s32 arg0, s32 cur, s32 target, s32 step, s32 limit);
-    s32 count_tree_nodes();
     static f32 calc_scaled_value(s32 arg0, f32 farg0);
     static void transform_vec_by_camera(void *unused, const Vec *src, Vec *dst);
     void render(void* a1);
