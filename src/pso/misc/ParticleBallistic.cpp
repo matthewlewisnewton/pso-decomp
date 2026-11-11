@@ -275,16 +275,16 @@ void *TParticleCtrl::create_random_spread(void *arg0, void *arg1, void *arg2) {
 void TUnk_8048E778::retire_ballistic_particle_if_done() {
     u8 *arg0 = (u8 *)this;
     Stack_80088844 stack;
-    if (*(u8 *)((s8 *)this->m_20 + 0x88) & 8) {
-        stack.sp8 = this->m_70 - this->m_30;
-        stack.spC = *(f32 *)&this->unk_74 - *(f32 *)((s8 *)arg0 + 0x34);
-        stack.sp10 = this->m_78 - this->m_38;
+    if (*(u8 *)((s8 *)this->param + 0x88) & 8) {
+        stack.sp8 = this->pos.x - this->origin.x;
+        stack.spC = this->pos.y - *(f32 *)((s8 *)arg0 + 0x34);
+        stack.sp10 = this->pos.z - this->origin.z;
         if (TParticleCtrl__data_805D94F8 == vec_squared_length((u8 *)&stack.sp8)) {
             queue_destruction__7TObjectFv((arg0));
             return;
         }
     }
-    if (this->m_58 >= TParticleCtrl__data_805D94FC) {
+    if (this->age >= TParticleCtrl__data_805D94FC) {
         queue_destruction__7TObjectFv((arg0));
     }
 }

@@ -401,7 +401,7 @@ inline GcciRequest *dvd_find_free_request(void) {
     return found;
 }
 
-GcciRequest *TLobby__sub_803D08E0(const char *name, s32 arg1, s32 mode) {
+void *TLobby__sub_803D08E0(const char *name, s32 arg1, s32 mode) {
     char *msg = lbl_8047DAB8;
     GcciRequest *r;
     s32 i;
@@ -463,7 +463,7 @@ GcciRequest *TLobby__sub_803D08E0(const char *name, s32 arg1, s32 mode) {
 #pragma pop
 
 typedef s32 (*RecoveredCallback_4873a87e26d6)(s32, s32 *, s32);
-s32 TLobby::get_dvd_file_size(const char *name) {
+s32 TLobby::get_dvd_file_size(char *name) {
     char *msg = lbl_8047DAB8;
     s32 size;
     u32 len;

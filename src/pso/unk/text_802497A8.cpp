@@ -1,3 +1,4 @@
+#include "pso/misc/TextEntryMeasurement.h"
 #include "types.h"
 #include "pso/misc/TWindowComCard.h"
 #include "pso/misc/TWindowDuelResult.h"
@@ -15,7 +16,6 @@ s8 TWindowSubComCard__sub_8007B6EC(void *);
 s32 TWindowSubComCard__sub_8007B6F4(void *);
 s32 get_com_card_list__6TLobbyFPv(void *);
 void TWindowSubStatusDisp__sub_80228F5C(int);
-void refresh_status_display__9TWindowDDFv(void *);
 s8 TWindowComCard__sub_80249C18(void *);
 s8 TWindowComCard__sub_80249C20(void *);
 }
@@ -67,7 +67,7 @@ void update_com_card_display(Win_802497A8 *arg0, void *arg1) {
             text_builder_reset();
             TWindowSubStatusDisp__sub_80228F5C(id);
             set_text_entry_string((u8 *)t4, (u32)((void *)get_shared_text_buffer()), 0x20);
-            refresh_status_display__9TWindowDDFv(t4);
+            measure_text_entry(t4);
             t4->x = lbl_805DCBCC - t4->w;
             t4->flags &= ~2;
         }

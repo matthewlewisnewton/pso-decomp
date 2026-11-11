@@ -61,7 +61,7 @@ struct TWindowDD
     u32 m_100;
     u32 m_104;
     void draw_transformed_primitive(void* a1, void* a2, void* a3);
-    void reset_entries(f32 v);
+    void reset_entries(f32 depth, s32 color);
     void set_quad_corners_scaled(f32 farg0, f32 farg1, f32 farg2);
     static s32 apply_both_choices(s32 arg0, s32 arg1);
     void set_clamped_page(s32 arg1);
@@ -77,7 +77,6 @@ struct TWindowDD
     int update_com_card();
     int initialize_subwindow();
     void *destroy_window_base(s16 arg1);
-    static void refresh_status_display();
     void init_window();
     void init_and_set_field50(void *arg1);
     void update_position(s32 arg1);
@@ -110,10 +109,8 @@ struct TWindowDD
     void reset_selection();
     void update_selected_id();
     static void build_player_word_lists();
-    static void open(s32 arg0, s32 arg1);
     static u8 is_id_in_special_range(s16 id);
     static s32 classify_id(s16 arg0);
-    static s32 get_player_battle_flag_state(u16 arg0);
     void format_type6_message(s32 arg1, void *arg2);
     static s32 is_state_zero_unless_0x2C8(s32 arg0);
     void destroy_menu_entry(s32 arg1);
@@ -140,7 +137,6 @@ struct TWindowDD
     void set_state();
     void close_all_windows();
     static s32 can_append_chars(s32 arg0, s32 *arg1);
-    static void update_state();
     void append_prompt_newline(s32 *arg1);
     static s32 clamp_range_5FA_682(s16 arg0);
     static s32 clamp_range_2C9_552(s16 arg0);
