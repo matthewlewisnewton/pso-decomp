@@ -84,3 +84,5 @@ guides.
 - [Window effect light recovery](window-effect-light-recovery-evidence.md)
 
 - [Word-select formatter completion and table grouping](word-select-completion.md)
+
+- [Quest-download unit completion investigation (in progress)](quest-download-unit-completion-wip.md)

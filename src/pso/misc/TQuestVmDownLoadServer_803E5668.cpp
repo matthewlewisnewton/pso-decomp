@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/QuestDownloadScratch.h"
 #include "pso/misc/QuestDownloadRecords.h"
 #include "pso/misc/TQuestVmDownLoadServer_803E5668.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
@@ -27,7 +28,7 @@ void TQuestVmDownLoadServer__sub_803E6ACC(s32 arg0);
 s32 TQuestVmDownLoadServer__sub_803F08E4(s8 *arg0);
 extern RecoveredGlobal_803E5EFC_lbl_8058DD88 lbl_8058DD88;
 u8 * TQuestVmDownLoadServer__sub_803EE828(void);
-s32 TQuestVmDownLoadServer__sub_803EE2F4(int, void *);
+void TQuestVmDownLoadServer__sub_803EE2F4(s32, s32);
 extern s32 lbl_805D78C0;
 s32 strcpy(int, int);
 s32 TQuestVmDownLoadServer__sub_803EBC88(int);
@@ -43,15 +44,13 @@ extern s32 lbl_805D7898;
 s32 TQuestVmDownLoadServer__sub_803E9F54(s32 arg0);
 s32 TQuestVmDownLoadServer__sub_803EA9E8(int, int, int, int);
 s32 TQuestVmDownLoadServer__sub_803EDC20(u32);
-s32 TQuestVmDownLoadServer__sub_803EDF64(const u8 *, s32, u16 *, s32 *);
-extern s16 quest_download_text_buffer[0x200];
+
 void TQuestVmDownLoadServer__sub_803EE870(s32, s32);
 void TQuestVmDownLoadServer__sub_803EAE84(s32 arg0, s32 arg1, void *arg2);
 extern char lbl_8047E68C[];
 extern u8 lbl_8058DC48[80];
 extern u8 lbl_8058DC98[80];
 extern u8 lbl_80591AC4[];
-extern u8 lbl_80596258[];
 extern s32 lbl_805D7820;
 extern u8 *lbl_805D7824;
 extern s32 lbl_805D7828;
@@ -238,7 +237,7 @@ s32 TQuestVmDownLoadServer__sub_803E5B94(s32 *arg0) {
     lbl_805D7848 = 0;
     quest_download_match_length_limit = 0x24;
     strcpy((int)lbl_805D7894, (int)(s32 *)"  1.");
-    strcpy((int)lbl_80596258, (int)lbl_8047E68C);
+    strcpy((int)lbl_80596258.text, (int)lbl_8047E68C);
     quest_download_server_state = 0;
     lbl_805D7844 = 0;
     lbl_805D7840 = 0;
@@ -403,7 +402,7 @@ s32 TQuestVmDownLoadServer__sub_803E60CC(s32 *arg0) {
         return -1;
     }
     temp_r31 = *(s32 *)((s8 *)arg0 + 0);
-    TQuestVmDownLoadServer__sub_803EE2F4(0, (void *)lbl_805D78C0);
+    TQuestVmDownLoadServer__sub_803EE2F4(0, lbl_805D78C0);
     strcpy(temp_r31, (int) (((s32)TQuestVmDownLoadServer__sub_803EE828())));
     TQuestVmDownLoadServer::init_buffer_pointers();
     lbl_805D7834 = 1;
@@ -508,6 +507,9 @@ s32 OSFillFPUContext(s32 *arg0) {
     lbl_805D7834 = 3;
     return count_chain_nodes__22TQuestVmDownLoadServerFv(quest_download_slot_chain_table[0].textHead);
 }
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(1)
 s32 TQuestVmDownLoadServer::convert_jis_to_sjis_string() {
     s32 *arg0 = (s32 *)this;
     u16 buf[4];
@@ -527,18 +529,19 @@ s32 TQuestVmDownLoadServer::convert_jis_to_sjis_string() {
     } else {
         flag = 0x4000;
     }
-    p = quest_download_text_buffer;
+    new (quest_download_text_buffer, quest_download_scratch_storage) QuestDownloadScratchWords;
+    p = reinterpret_cast<QuestDownloadScratchWords *>(quest_download_text_buffer)->values;
     n = 0;
-    while (*src != 0 && p < quest_download_text_buffer + 0x200) {
+    while (*src != 0 && p < reinterpret_cast<QuestDownloadScratchWords *>(quest_download_text_buffer)->values + 0x200) {
         *p++ = *src++ | flag;
         n++;
     }
-    p = quest_download_text_buffer;
+    p = reinterpret_cast<QuestDownloadScratchWords *>(quest_download_text_buffer)->values;
     while (n > 0) {
-        r = TQuestVmDownLoadServer__sub_803EDF64(reinterpret_cast<const u8 *>(p), n, buf, &cnt);
+        r = TQuestVmDownLoadServer__sub_803EDF64(reinterpret_cast<const u16 *>(p), n, buf, &cnt);
         if (r <= 0) {
             if (r != -1) {
-                return (p - quest_download_text_buffer) + 1;
+                return (p - reinterpret_cast<QuestDownloadScratchWords *>(quest_download_text_buffer)->values) + 1;
             }
             r = 1;
         }
@@ -558,6 +561,7 @@ s32 TQuestVmDownLoadServer::convert_jis_to_sjis_string() {
     *dst = 0;
     return 0;
 }
+#pragma pop
 
 }
 

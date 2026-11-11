@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 88 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5686 | 884 |
+| pragma | 5692 | 885 |
 | configure.py per-unit override | 204 | 204 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1091, `inline_depth` 993, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 30, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1094, `inline_depth` 996, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 30, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -447,6 +447,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1091, `inline_depth` 993, 
 | File | Pragmas |
 |---|---|
 | `include/pso/misc/QuestDownloadRecords.h` | options×1 |
+| `include/pso/misc/QuestDownloadScratch.h` | dont_inline×1, inline_depth×1 |
 | `src/musyx/runtime/Chorus/chorus_fx.c` | peephole×2, dont_inline×1, inline_depth×1, auto_inline×1 |
 | `src/musyx/runtime/StdReverb/reverb.c` | dont_inline×1, peephole×1 |
 | `src/musyx/runtime/hardware.c` | scheduling×1 |
@@ -845,8 +846,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1091, `inline_depth` 993, 
 | `src/pso/misc/TQuestListOnline.cpp` | optimization_level×1, dont_inline×1 |
 | `src/pso/misc/TQuestListOnline_80217464.cpp` | fp_contract×1 |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp` | opt_propagation×1 |
-| `src/pso/misc/TQuestVmDownLoadServer_803E5668.cpp` | readonly_strings×1 |
-| `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | inline_depth×40, dont_inline×39, opt_common_subs×7, opt_propagation×2, opt_lifetimes×1, opt_dead_assignments×1 |
+| `src/pso/misc/TQuestVmDownLoadServer_803E5668.cpp` | readonly_strings×1, dont_inline×1, inline_depth×1 |
+| `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | inline_depth×41, dont_inline×40, opt_common_subs×7, opt_propagation×2, opt_lifetimes×1, opt_dead_assignments×1 |
 | `src/pso/misc/TRaderMapCore.cpp` | fp_contract×2, opt_common_subs×1 |
 | `src/pso/misc/TRaderMapCore_801FB2B8.cpp` | fp_contract×1, opt_common_subs×1 |
 | `src/pso/misc/TRegister.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |

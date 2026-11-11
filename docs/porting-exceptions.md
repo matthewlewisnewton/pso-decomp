@@ -460,6 +460,26 @@ and the same function body.
 | `src/pso/network/NetworkDispatcher.cpp` | All 12 dispatcher functions | Four existing pragma lines (`opt_common_subs on` x3, `pool_data off` x1), inherited `-opt nocse`, 32-bit handles and provisional `TLobby`/`TUdpSocket` wrappers; reset status and thread-creation callback/return declarations remain inconsistent across units | Extracts the fork's already-exact dispatcher and its 248-byte BSS so it can link. The follow-up replaces reset/shutdown/handler overlays with the shared state and names both thread handles without changing native objects. The reset callee now explicitly returns `s32`, but the incompatible DHCP caller is retained after a type-correct probe changed its frame and result copy; this is not a completed ABI repair. See [upstream-dispatcher.md](evidence/upstream-dispatcher.md). | Remove compiler-only steering and recover explicit dispatcher/OS contracts with portable handle types, validating callers and callees together. |
 | `src/pso/network/TcpProtocol.cpp` | Extracted TCP range; still unlinked | Inherited `-opt nocse`; 24 moved pragma lines plus explicit `dont_inline off` and `inline_depth(4)` that previously carried into this range from earlier source | Without the ambient settings, timer callbacks `8041A3CC` / `8041A5B4` have different stack frames and `8041D584` no longer inlines its segment-removal helper. Scores are 99.78432%, 99.916664% and 65.69705%; restoring the settings retains all 40 previously exact TCP functions. Existing raw views, local ABI redeclarations and provisional members remain unresolved. | Remove compiler steering; unify TCP layouts and callback/status interfaces. This extraction does not claim the five still-unmatched TCP functions as recovered. |
 
+### Quest-download scratch storage and native workspace addressing
+
+`QuestDownloadScratch.h` declares the shared aligned byte storage consistently.
+The conversion producer and ID-list producer use tagged placement construction
+to begin complete halfword-array and ID-array objects before writing them.
+Scoped `dont_inline off` / `inline_depth(1)` regions inline the empty placement
+operator in the frontend conversion and request producer; a port can use the
+ordinary placement-new operator with the same storage and lifetime transitions.
+The scratch operator has its own tag, separate from the allocator-pool tag.
+
+The two recovered candidate routines retain the original workspace address and
+reach the following, separately owned slot array through native integer address
+arithmetic under `__MWERKS__`. The fallback accesses the real slot array directly.
+The display-prefix adapter likewise reaches the following scratch object only
+through native address arithmetic; ports name the real byte array.
+The workspace result remains a real member of the workspace object. These
+adapters do not assert a larger encompassing object or change the link map.
+The provider unit is still incomplete and unlinked; see
+[the completion investigation](evidence/quest-download-unit-completion-wip.md).
+
 ## 5. Per-unit compiler overrides (`configure.py`)
 
 195 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
