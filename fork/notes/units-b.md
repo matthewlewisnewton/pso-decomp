@@ -19,8 +19,4 @@
   split original (same symbols and sizes); the loss was at link time only.
 - Fix: `#pragma force_active on` around it, as the fork did. The two-unit split was not
   the cause; upstream's single unit is kept.
-- Fork comment on the function, moved here: the epilogue has no prologue, and no C
-  construct produces it (an empty function gives `blr`, a register-hungry one gives
-  prologue+stmw+epilogue, statement-level asm gets its own frame; 0/20 MWCC versions
-  emit the 20 bytes). The function-level asm from orig_asm is exact on 20/20.
-  `static` keeps the symbol local, as in the original object.
+- Upstream's own comment on the pad function is left as it was; only the pragma lines are new.
