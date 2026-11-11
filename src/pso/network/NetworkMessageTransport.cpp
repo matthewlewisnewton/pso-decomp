@@ -1,4 +1,5 @@
 #include "pso/network/ModemRuntime.h"
+#include "pso/network/NetworkMessageTransport.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/NetworkTransport.h"
 #include "pso/network/NetworkTimer.h"
@@ -430,11 +431,11 @@ s16 TLobby__sub_80426440(void) {
     return 0;
 }
 
-s16 TLobby::post_send_message(u16 arg1) {
+s16 post_send_message(u8 *frame, u16 arg1) {
     s32 temp_r3;
     u8 *msg;
     u8 pad[8];
-    s32 arg0 = (s32)this;
+    s32 arg0 = (s32)frame;
     temp_r3 = TLobby__sub_8042558C((void *)arg1);
     if (temp_r3 == 0) {
         return -1;
