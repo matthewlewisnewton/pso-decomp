@@ -405,7 +405,11 @@ force_active:
   - TBoss6Type2__sub_8032F2F0
   - TBoss6Type2__sub_803300C8
   - TBoss6Zanzo__sub_803205A0
+  - TBoss7DeRolLeC__handle_crawfish_spawn_state
   - TBoss7LaserLight_name
+  - TBoss7LaserPtcl__sub_802E8FCC
+  - TBoss7LaserPtcl__sub_802ECE28
+  - TBoss7PhotonBullet__sub_802ED5A0
   - TBoss7Tentacle__needle_offsets
   - TBoss7Tentacle__segment_offsets
   - TBoss7Tentacle__sub_802F0608
@@ -1314,6 +1318,34 @@ force_active:
   - TObjEnvSoundEx__ct
   - TObjEnvSound__ct
   - TObjEvtCollision__ct
+  - TObjFish__sub_802E7B40
+  - TObjFish__sub_802E7B94
+  - TObjFish__sub_802E7CC4
+  - TObjFish__sub_802E83E8
+  - TObjFish__sub_802E8528
+  - TObjFish__sub_802E8584
+  - TObjFish__sub_802E85E0
+  - TObjFish__sub_802E88F8
+  - TObjFish__sub_802E8990
+  - TObjFish__sub_802E8AD4
+  - TObjFish__sub_802E8E34
+  - TObjFish__sub_802E8EEC
+  - TObjFish__sub_802E9458
+  - TObjFish__sub_802E95F8
+  - TObjFish__sub_802E979C
+  - TObjFish__sub_802E9DBC
+  - TObjFish__sub_802EA4D8
+  - TObjFish__sub_802EAAC8
+  - TObjFish__sub_802EB270
+  - TObjFish__sub_802EB90C
+  - TObjFish__sub_802EBBC8
+  - TObjFish__sub_802EBE50
+  - TObjFish__sub_802EC32C
+  - TObjFish__sub_802ECBDC
+  - TObjFish__sub_802ECC44
+  - TObjFish__sub_802ECE90
+  - TObjFish__sub_802ED3E4
+  - TObjFish__sub_802ED4AC
   - TObjFish__sub_8034029C
   - TObjFogCollisionPoison__ct
   - TObjFogCollisionPoison__instances
@@ -1666,6 +1698,8 @@ force_active:
   - TObjPlayer__sub_802E75B8
   - TObjPlayer__sub_802E7640
   - TObjPlayer__sub_802E76C8
+  - TObjPlayer__sub_802E7F30
+  - TObjPlayer__sub_802E7FC0
   - TObjPlayer__sub_802ED984
   - TObjPlayer__sub_80307784
   - TObjPlayer__sub_8030A9B0
@@ -4471,6 +4505,7 @@ force_active:
   - boss6_type2_zero_vec3_block
   - boss7_common_resource_descriptor
   - boss7_dermt_slot_table
+  - boss7_laser_particle_params
   - boss7_tentacle_needle_target_state
   - boss8_collision_segment_desc
   - boss8_dragon_follow_camera_offsets
@@ -6514,6 +6549,9 @@ force_active:
   - fn_802D8E8C__14TObjEneGibblesFv
   - fn_802D9110__14TObjEneGibblesFv
   - fn_802E62A4
+  - fn_802EC52C
+  - fn_802EC9A4
+  - fn_802EC9F0
   - fn_80303538__16TObjEneDellBiterFv
   - fn_80303AA0__16TObjEneDellBiterFl
   - fn_80303BC0__16TObjEneDellBiterFl
@@ -6595,6 +6633,7 @@ force_active:
   - free_field_FC__23TAdSinglePlyChrSelectGCFv
   - free_if_not_in_arena__11BmlResourceFPv
   - free_item_pmt__Fv
+  - free_laser_light__15TBoss7LaserPtclFv
   - free_objects__6TLobbyFv
   - free_parts__13TBoss5GryphonFv
   - free_resources__14TObjEneIllGillFv
@@ -7014,6 +7053,7 @@ force_active:
   - handle_cursor_input__28TWindowSubSymbolChatPartsSetFv
   - handle_damage_taken__11TBoss4Type3Fv
   - handle_death_state__18TObjEneRe4SorcererFl
+  - handle_death_state__8TObjFishFUl
   - handle_decide__21TWindowSubCustomEquipFv
   - handle_decide__22TWindowSubCustomSelectFv
   - handle_decide__26TWindowSubQuestBoardSelectFv
@@ -7105,6 +7145,7 @@ force_active:
   - handle_state_substate__18TObjEneMe3SinowZoaFl
   - handle_takeoff_state__13TBoss5GryphonFl
   - handle_team_select__6TLobbyFv
+  - handle_tentacle_attack_state__8TObjFishFPvUii
   - handle_third_reward__18TChallenge4PResultFv
   - handle_toggle_input__24TWindowSubSymbolChatHelpFv
   - handle_tool_list_select__19TShopItemListWindowFPv
@@ -7512,6 +7553,7 @@ force_active:
   - is_active__15PadRumbleEffectFv
   - is_active__16TObjEneBm5GibonUFPv
   - is_aiff_header__6TLobbyFv
+  - is_all_parts_done__8TObjFishFv
   - is_alt_photon_blast_bank_empty__10TObjPlayerFPv
   - is_android_player
   - is_angle_in_range__16TObjEneMe3StelthFv
@@ -7953,6 +7995,16 @@ force_active:
   - lbl_80472C80
   - lbl_80472C90
   - lbl_80472C9C
+  - lbl_80472CB0
+  - lbl_80472D04
+  - lbl_80472D7C
+  - lbl_80473844
+  - lbl_804739AC
+  - lbl_804739D4
+  - lbl_80473F78
+  - lbl_80473F84
+  - lbl_80473F90
+  - lbl_80473F9C
   - lbl_80474F08
   - lbl_80474F1C
   - lbl_80474F34
@@ -9184,6 +9236,105 @@ force_active:
   - lbl_805DE920
   - lbl_805DE924
   - lbl_805DE928
+  - lbl_805DEA14
+  - lbl_805DEA18
+  - lbl_805DEA1C
+  - lbl_805DEA20
+  - lbl_805DEA24
+  - lbl_805DEA28
+  - lbl_805DEA2C
+  - lbl_805DEA34
+  - lbl_805DEA38
+  - lbl_805DEA3C
+  - lbl_805DEA40
+  - lbl_805DEA44
+  - lbl_805DEA48
+  - lbl_805DEA4C
+  - lbl_805DEA50
+  - lbl_805DEA54
+  - lbl_805DEA58
+  - lbl_805DEA5C
+  - lbl_805DEA60
+  - lbl_805DEA64
+  - lbl_805DEA68
+  - lbl_805DEA6C
+  - lbl_805DEA70
+  - lbl_805DEA74
+  - lbl_805DEA78
+  - lbl_805DEA7C
+  - lbl_805DEA80
+  - lbl_805DEA84
+  - lbl_805DEA88
+  - lbl_805DEA8C
+  - lbl_805DEA90
+  - lbl_805DEA94
+  - lbl_805DEA98
+  - lbl_805DEA9C
+  - lbl_805DEAA0
+  - lbl_805DEAA4
+  - lbl_805DEAA8
+  - lbl_805DEAAC
+  - lbl_805DEAB0
+  - lbl_805DEAB4
+  - lbl_805DEAB8
+  - lbl_805DEABC
+  - lbl_805DEAC0
+  - lbl_805DEAC4
+  - lbl_805DEAC8
+  - lbl_805DEACC
+  - lbl_805DEAD0
+  - lbl_805DEAD4
+  - lbl_805DEAD8
+  - lbl_805DEADC
+  - lbl_805DEAE0
+  - lbl_805DEAE4
+  - lbl_805DEAE8
+  - lbl_805DEAEC
+  - lbl_805DEAF0
+  - lbl_805DEAF4
+  - lbl_805DEAF8
+  - lbl_805DEAFC
+  - lbl_805DEB00
+  - lbl_805DEB04
+  - lbl_805DEB08
+  - lbl_805DEB0C
+  - lbl_805DEB10
+  - lbl_805DEB14
+  - lbl_805DEB18
+  - lbl_805DEB1C
+  - lbl_805DEB20
+  - lbl_805DEB24
+  - lbl_805DEB28
+  - lbl_805DEB2C
+  - lbl_805DEB30
+  - lbl_805DEB34
+  - lbl_805DEB38
+  - lbl_805DEB3C
+  - lbl_805DEB40
+  - lbl_805DEB44
+  - lbl_805DEB48
+  - lbl_805DEB4C
+  - lbl_805DEB50
+  - lbl_805DEB54
+  - lbl_805DEB58
+  - lbl_805DEB5C
+  - lbl_805DEB60
+  - lbl_805DEB64
+  - lbl_805DEB68
+  - lbl_805DEB6C
+  - lbl_805DEB70
+  - lbl_805DEB74
+  - lbl_805DEB78
+  - lbl_805DEB7C
+  - lbl_805DEB80
+  - lbl_805DEB84
+  - lbl_805DEB88
+  - lbl_805DEB8C
+  - lbl_805DEB90
+  - lbl_805DEB94
+  - lbl_805DEB98
+  - lbl_805DEB9C
+  - lbl_805DEBA0
   - lbl_805DF2E4
   - lbl_805DF3AC
   - lbl_805DF3B0
@@ -9845,6 +9996,7 @@ force_active:
   - photon_pilla_laser_offset_table
   - pick_random_destination__11TODragonflyFf
   - pick_random_entry__11TBoss6Type1FPll
+  - pick_random_target__8TObjFishFv
   - pick_remapped_list_value__11TBoss6Type1Flll
   - pick_wander_destination__16TObjEneBm5GibonUFPv
   - place_bank_slot_on_ring__21TWindowSubCustomEquipFll
@@ -14556,6 +14708,7 @@ force_active:
   - release_children__15TObjBoss2TunnelFPvf
   - release_control_lock__10TObjPlayerFPv
   - release_held_player__12TBoss1DragonFv
+  - release_laser_light__15TBoss7LaserPtclFPv
   - release_load_slot__12TChCrLoadAfsFv
   - release_model__8TItemMagFv
   - release_network_info_cipher_key__FPUl
@@ -15961,6 +16114,7 @@ force_active:
   - set_draw_mode__15TObjEneDelDepthFl
   - set_effect_pos_above_self__16TObjEneDellBiterFv
   - set_effect_pos_above_self__17TObjEneDf2BringerFv
+  - set_effect_target_position__8TObjFishFPvPvPv
   - set_elem_flags__17TBoss1DragonColliFPv
   - set_enemy_mode_0__22THunterGuildSeqOfflineFv
   - set_entered_name__17TObjItemNameEntryFPCc
@@ -16037,6 +16191,7 @@ force_active:
   - set_hit_cooldown_for_player__14TOTrapChainSawFPv
   - set_hit_flags_and_notify__19TBoss3VoloptMonitorFv
   - set_hold_flags__18TObjEneRe4SorcererFPv
+  - set_hooked_effect_target__8TObjFishFv
   - set_id__23TAdSinglePlyChrSelectGCFPvi
   - set_in_fighter__13TObjEneMe1GeeFv
   - set_index__9TLanguageFl
@@ -16138,12 +16293,14 @@ force_active:
   - set_state__16TAdChrSelASlotGCFv
   - set_state__21TAdMultiChgGameModeGCFl
   - set_state_after_message__12TQuestListVMFl
+  - set_state_and_send__14TBoss7DeRolLeCFl
   - set_state_by_distance__10TBoss2MineFl
   - set_state_by_timer__14TObjEneBm5WolfFi
   - set_state_flags_6__14TObjEnePanarmsFv
   - set_state_flags__18TObjEneRe4SorcererFPv
   - set_state_ready__15TPlyPhotonChairFv
   - set_subs_visible__8TItemMagFl
+  - set_swim_direction__8TObjFishFPv
   - set_symbol_chat_face_sprite__FPvUc
   - set_symbol_chat_parts__14TMainMenuEntryFP12TMainMenuRow
   - set_sync_data__11TBoss6Type1FPv
@@ -16638,10 +16795,12 @@ force_active:
   - spawn_needle__15TObjEneMe1GiGueFl
   - spawn_offset_particle__17TObjEneDf2BringerFPv
   - spawn_paralysis_feedback_effect__Fll
+  - spawn_particle_201__8TObjFishFii
   - spawn_particle_at_entity_slot__10TObjPlayerFllll
   - spawn_particle_emitters__9TTecMegidFv
   - spawn_particle_if_in_band__17TObjEneDf2BringerFPv
   - spawn_parts__12TBoss3VoloptFv
+  - spawn_pattern_crawfish__14TBoss7DeRolLeCFsP3VecP12CameraAnglesUl
   - spawn_periodic_particle__14TObjEnePanBARAFv
   - spawn_player_hit_effects__14TBoss6PlotFalzFv
   - spawn_player_tombstones2__6TLobbyFv
@@ -16664,6 +16823,7 @@ force_active:
   - spawn_trap__14TBoss4DarkFalzFv
   - spawn_trap_by_stat__9TBoss6MagFv
   - spawn_type1__14TBoss4DarkFalzFv
+  - spawn_via_trap__8TObjFishFlll
   - spawn_wave_ring_particles__15TBoss6SwordWaveFv
   - split_bit_index__15TBoss6SwordWaveFlUcPvPv
   - standing_state__14TObjEneBm5WolfFl
@@ -17335,6 +17495,7 @@ force_active:
   - try_spawn_child__12TObjEneSlimeFPv
   - try_spawn_ground_effect__16TObjEneMe3StelthFl
   - try_spawn_mirages__21TObjEneMe3ShinowaRealFv
+  - try_spawn_pattern_crawfish__14TBoss7DeRolLeCFll
   - try_start_action__16TOTrapAncient02RFll
   - try_start_action__20TContainerAncient01RFll
   - try_trigger_action__17TObjEneMe1CanadinFv
@@ -17426,10 +17587,12 @@ force_active:
   - update_angle__17TObjEneMe1CanadinFv
   - update_anim__8TObjDoorFPv
   - update_anim_action__10TObjPlayerFv
+  - update_anim_state__8TObjFishFv
   - update_animation_frame__13TObjEneMe1GeeFv
   - update_animation_nodes__15TObjEneMe1GiGueFv
   - update_appear__11TBoss4Type3Fv
   - update_appearance_state__12TBoss1DragonFUl
+  - update_attached_orientation__8TObjFishFv
   - update_attachment__14TItemEffNeedleFv
   - update_attachment__18TItemEffNeedleBaseFv
   - update_attack__14TObjEnePanBARAFv
@@ -17906,6 +18069,8 @@ force_active:
   - update_phase__11TBoss6Type1Fv
   - update_phase__14TBoss6PlotFalzFv
   - update_phase_motion__13TUnk_804E4B3CFv
+  - update_phase_rising__8TObjFishFv
+  - update_phase_settling__8TObjFishFv
   - update_phase_timer__11TBoss4Type2Fv
   - update_phase_timer__11TBoss4Type3Fv
   - update_photon_blast_action__10TObjPlayerFv
@@ -18111,6 +18276,7 @@ force_active:
   - update_switch_on__17TOSensorGeneral01Fv
   - update_switch_on__8TOKeyColFv
   - update_switch_on__8TOSensorFv
+  - update_tail_anim_state__8TObjFishFv
   - update_tail_attack_state__12TBoss1DragonFUl
   - update_target__11TBoss6Type2Fv
   - update_target__16TObjEneBm5GibonUFPv
@@ -18192,6 +18358,7 @@ force_active:
   - update_window_78__16TAdChrSelASlotGCFv
   - update_window_7c__16TAdChrSelASlotGCFv
   - update_with_default_state__14TObjEneBm5WolfFv
+  - update_wobble_angle__8TObjFishFv
   - update_yaw_animation__20TODragonflyMachine01Fv
   - upload_font_glyph__FUsPv
   - upload_glyph_if_needed__20TWindowSubStatusDispFUsPUcPPv

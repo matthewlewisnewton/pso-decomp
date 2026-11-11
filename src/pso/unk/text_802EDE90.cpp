@@ -1,5 +1,6 @@
 #include "pso/TBoss7Tentacle.h"
 #include "pso/boss/Boss7DeRolLeCBehavior.h"
+#include "pso/boss/Boss7StaticTables.h"
 #include "pso/boss/TBoss7DeRolLeC.h"
 #include "pso/boss/TBoss7Joint.h"
 #include "pso/boss/TBoss7LaserLight.h"
@@ -14,22 +15,11 @@
 #include "pso/unk/text_8035A860.h"
 
 namespace {
-// The constructor addresses these three records from the same .data base.
-struct Boss7ConstructorTables {
-    u8 leading_tables[0x9C];
-    u8 movement_data[0xA0];
-    TObjMotionAction first_action;
-    u8 before_vtable[0x118];
-    void *first_virtual_entry;
-};
-
 struct SavedEnemyState {
     u32 flags;
     u8 remaining[8];
 };
 
-typedef char Boss7ActionTable_offset[offsetof(Boss7ConstructorTables, first_action) == 0x13C ? 1 : -1];
-typedef char Boss7Vtable_offset[offsetof(Boss7ConstructorTables, first_virtual_entry) == 0x264 ? 1 : -1];
 }
 
 extern "C" {

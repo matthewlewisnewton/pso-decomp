@@ -41,13 +41,16 @@ struct NJS_OBJECT;
 #include "pso/boss/TBoss7TentacleNeedle.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/boss/TBoss7DeRolLeC.h"
+#include "pso/boss/Boss7StaticTables.h"
+#include "pso/boss/TBoss2DeRolLe.h"
+#include "pso/boss/TBoss7Crawfish_8030908C.h"
 #include "pso/TObject.h"
 #include "pso/system/vector.h"
 #include "pso/boss/TBoss7PhotonBullet_802EF26C.h"
 #include <stddef.h>
 
-// Action step of a De Rol Le C attack pattern: action id and its duration in
-// seconds (the timer compares against b * 30).
+// Action step of a De Rol Le C attack pattern: action id and its argument.
+// The action interprets b as a duration or a crawfish pattern index.
 struct Ent_802E88F8 { s32 a; s32 b; };
 
 // Attack/effect parameter record passed to TObjEneDD::emit_effect /
@@ -140,7 +143,7 @@ extern const Ent_802E88F8 lbl_8047353C[97] = {
     {62, 0}, {23, 0}, {24, 0}, {24, 0}, {24, 0}, {25, 0}, {61, 4}, {13, 0},
     {69, 0},
 };
-extern const s32 lbl_80473844[90] = {
+extern const s32 lbl_80473844[10][9] = {
     1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1,
     0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1,
     0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -232,7 +235,7 @@ extern const Vec lbl_80473F6C = {10000.0f, 10000.0f, 10000.0f};
 extern const Vec lbl_80473F78 = {0.0f, 0.0f, -600.0f};
 extern const Vec lbl_80473F84 = {0.0f, 0.0f, -275.0f};
 extern const Vec lbl_80473F90 = {0.0f, 0.0f, -520.0f};
-extern const Vec lbl_80473F9C = {0.0f, 0.0f, 0.0f};
+extern const CameraAngles lbl_80473F9C = {0, 0, 0};
 
 
 struct Vec_802E7888 { f32 x, y, z; };
@@ -276,7 +279,6 @@ void TObjFish::destroy_child() {
 }
 
 extern "C" {
-s32 TBoss7DeRolLeC__try_spawn_pattern_crawfish(void *, s32, s32);
 void TBoss7DeRolLeC__handle_crawfish_spawn_state(u8 *arg0, u32 arg1, s32 arg2);
 }
 
@@ -288,6 +290,7 @@ extern const f32 lbl_805DEA20[1];
 extern const f32 lbl_805DEA24[1];
 extern const f32 lbl_805DEA28[1];
 extern const f32 lbl_805DEA2C[1];
+extern const f32 lbl_805DEA30[1];
 extern const f32 lbl_805DEA34[1];
 extern const f32 lbl_805DEA38[1];
 extern const f32 lbl_805DEA3C[1];
@@ -388,7 +391,7 @@ extern const f32 lbl_805DEBA0[1];
 #define lbl_805DEA24 (lbl_805DEA24[0])
 #define lbl_805DEA28 (lbl_805DEA28[0])
 #define lbl_805DEA2C (lbl_805DEA2C[0])
-#define lbl_805DEA30 (20.0f)
+#define lbl_805DEA30 (lbl_805DEA30[0])
 #define lbl_805DEA34 (lbl_805DEA34[0])
 #define lbl_805DEA38 (lbl_805DEA38[0])
 #define lbl_805DEA3C (lbl_805DEA3C[0])
@@ -601,6 +604,81 @@ s16 TObjFish__sub_802E7CC4(void *self);
 
 struct Boss_802E7CC4 { u8 pad[0x7A4]; TObject *group; };
 
+// The setup consumer TObjEnemy::apply_set_data reads this complete 0x40-byte
+// record. Keep the three unknown header fields distinct from the entity id.
+struct Boss7CrawfishSetData {
+    s16 index;
+    s16 count;
+    s16 unknown_04;
+    u16 entity_id;
+    s16 floor;
+    s16 unknown_0a;
+    s16 unknown_0c;
+    s16 unknown_0e;
+    Vec position;
+    CameraAngles angles;
+    f32 parameters[5];
+    s16 unknown_3c;
+    s16 unknown_3e;
+};
+typedef char Boss7CrawfishSetData_size[sizeof(Boss7CrawfishSetData) == 0x40 ? 1 : -1];
+// The short-valued reference update retains the in-place signed narrowing.
+// A port can replace it with a scalar (s16)(slot + 11).
+struct CrawfishSlotOffset { s16 value; };
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(4)
+static inline void add_crawfish_slot_base(CrawfishSlotOffset &offset) {
+    offset.value += 11;
+    offset.value = (s16)offset.value;
+}
+#pragma pop
+
+extern "C" {
+extern Boss7PatternTables lbl_804E3C2C;
+extern s32 game_difficulty_selection;
+
+#pragma push
+#pragma opt_propagation off
+void TBoss7DeRolLeC::try_spawn_pattern_crawfish(s32 variant, s32 index) {
+    Boss7ConstructorTables *tables = &lbl_804E3BF0;
+    Ent_802E88F8 **actions;
+    Vec *positions;
+    u32 variant_offset;
+    Ent_802E88F8 *sequence;
+    u32 column_offset;
+    u32 difficulty_offset;
+    column_offset = index * sizeof(s32);
+    difficulty_offset = game_difficulty_selection * sizeof(Ent_802E88F8 *);
+    actions = tables->patterns.actions;
+    sequence = *reinterpret_cast<Ent_802E88F8 **>(reinterpret_cast<u8 *>(actions) + difficulty_offset);
+    s32 pattern = sequence[this->action_sequence_index].b;
+    s32 kind = *reinterpret_cast<const s32 *>(reinterpret_cast<const u8 *>(&lbl_80473844[pattern]) + column_offset);
+    if (kind != 0) {
+        variant_offset = variant * sizeof(void *);
+#ifdef __MWERKS__
+        // Preserve the table-base temporary rather than folding its field offset
+        // into the indexed load. The port uses ordinary array indexing.
+        s32 *yaws = *reinterpret_cast<s32 **>(
+            static_cast<size_t>(reinterpret_cast<u64>(tables->patterns.angles)) + variant_offset);
+#else
+        s32 *yaws = tables->patterns.angles[variant];
+#endif
+        s32 alternate = (kind == 1) ? 1 : 0;
+        CameraAngles angles = lbl_80473F9C;
+
+        Vec **locations = tables->patterns.positions;
+
+        positions = *reinterpret_cast<Vec **>(reinterpret_cast<u8 *>(locations) + variant_offset);
+        angles.yaw = *reinterpret_cast<const s32 *>(reinterpret_cast<const u8 *>(yaws) + column_offset);
+        // Keep lookup and call-argument lifetimes separate for native scheduling.
+        s16 selected_slot = TObjFish__sub_802E7CC4(this);
+        s16 slot = selected_slot;
+        this->spawn_pattern_crawfish(slot, &positions[index], &angles, alternate);
+    }
+}
+
+#pragma pop
 s16 TObjFish__sub_802E7CC4(void *self) {
     u8 used[36];
     u16 base;
@@ -617,6 +695,52 @@ s16 TObjFish__sub_802E7CC4(void *self) {
         }
     }
     return -1;
+}
+
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(4)
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+void TBoss7DeRolLeC::spawn_pattern_crawfish(s16 slot, Vec *position, CameraAngles *angles, u32 flags) {
+    Boss7CrawfishSetData setup;
+    u16 entity_id;
+    TObject *child;
+    if (this->effect_root != NULL && slot > 0) {
+        u16 base_id = get_entity_id(this);
+        CrawfishSlotOffset relative_id;
+        relative_id.value = slot;
+        add_crawfish_slot_base(relative_id);
+        entity_id = relative_id.value + base_id;
+        for (child = this->effect_root->m_down; child != NULL; child = child->m_next) {
+            if (entity_id == get_entity_id(child)) return;
+        }
+        setup.index = this->set_index + relative_id.value;
+        setup.count = 1;
+        setup.unknown_04 = 0;
+        setup.entity_id = entity_id;
+        setup.floor = this->room;
+        setup.unknown_0a = 0;
+        setup.unknown_0c = 0;
+        setup.unknown_0e = 0;
+        VecCopy(&setup.position, position);
+        copy_xyz(&setup.angles, angles);
+        if (flags & 1) setup.parameters[0] = lbl_805DEA10;
+        else setup.parameters[0] = lbl_805DEA18;
+        setup.parameters[1] = lbl_805DEA10;
+        setup.parameters[2] = lbl_805DEA10;
+        setup.parameters[3] = lbl_805DEA10;
+        setup.parameters[4] = lbl_805DEA10;
+        setup.unknown_3c = 0;
+        setup.unknown_3e = 0;
+        u8 *memory = (u8 *)TObject::operator new(0x3D0);
+        if (memory != NULL) {
+            TBoss7Crawfish__ct(memory, (s32)this->effect_root, (s32)&setup);
+        }
+    }
+}
+#pragma pop
+
 }
 
 
@@ -1434,7 +1558,7 @@ u8 *get_enemy_entity(u16 arg0);
 #define TObjFish__sub_802E7B40 ((s32 (*)(void *))TObjFish__sub_802E7B40)
 #define TObjFish__sub_802E7B94 ((s32 (*)(void *))TObjFish__sub_802E7B94)
 void TObjFish__sub_802E8AD4(Fish_802E8AD4* o, u32 k);
-void TObjFish__sub_802EC32C(void);
+void TObjFish__sub_802EC32C(void *);
 void TObjFish__sub_802EC468(s32 arg0, f32 farg0, f32 farg1);
 void TBoss7DeRolLeC__sub_802EC994(void* p);
 void fn_802EC9A4(void *arg0, void *arg1);
@@ -1445,7 +1569,7 @@ void TObjFish__sub_802ECC44(Fish_802ECC44 *self);
 s32 spawn_default_particle__8TObjFishFv(s32, s32);
 s32 TObjFish__sub_802F18E8(void *);
 
-extern Ent_802E88F8 *lbl_804E3C2C[];
+extern Boss7PatternTables lbl_804E3C2C;
 extern RecoveredGlobal_802EC468_lbl_804FF5E8 lbl_804FF5E8;
 
 struct Boss_802E83E8 { u8 pad[0x728]; s32 timer; s32 count; u8 pad730[0x7CC - 0x730]; u16 targets[4]; };
@@ -1582,7 +1706,7 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
         switch (self->state) {
         case 0:
             self->timer++;
-            if (self->timer > lbl_804E3C2C[game_difficulty_selection][self->f6B4].b * 0x1E) {
+            if (self->timer > lbl_804E3C2C.actions[game_difficulty_selection][self->f6B4].b * 0x1E) {
                 self->state = 1;
                 self->timer = 0;
                 self->fired = 0;
@@ -1649,7 +1773,7 @@ void TObjFish__sub_802E88F8(u8 *boss7_de_rol_le_c, u32 arg1) {
     s32 temp_r3;
     switch (arg1) {
     case 4:
-        *(s32 *)((s8 *)boss7_de_rol_le_c + 0x728) = lbl_804E3C2C[game_difficulty_selection][*(s32 *)((s8 *)boss7_de_rol_le_c + 0x6B4)].b * 0x1E;
+        *(s32 *)((s8 *)boss7_de_rol_le_c + 0x728) = lbl_804E3C2C.actions[game_difficulty_selection][*(s32 *)((s8 *)boss7_de_rol_le_c + 0x6B4)].b * 0x1E;
         return;
     case 0:
         ((TObjMotion *)boss7_de_rol_le_c)->advance_animation();
@@ -1710,7 +1834,7 @@ void TBoss7DeRolLeC__handle_crawfish_spawn_state(u8 *self, u32 event, s32 varian
         if (index < *(s32 *)((s8 *)self + 0x72C)) {
             if (*(s32 *)((s8 *)self + 0x730) <= 0) {
                 *(s32 *)((s8 *)self + 0x728) = index + 1;
-                TBoss7DeRolLeC__try_spawn_pattern_crawfish(self, variant, index);
+                ((TBoss7DeRolLeC *)self)->try_spawn_pattern_crawfish(variant, index);
                 *(s32 *)((s8 *)self + 0x730) = 5;
             } else {
                 (*(s32 *)((s8 *)self + 0x730))--;
@@ -1753,30 +1877,6 @@ void TObjFish__sub_802E8AD4(Fish_802E8AD4* o, u32 k) {
     }
 }
 
-#undef lbl_805DEA10
-__declspec(section ".sdata2") const f32 lbl_805DEA10[1] = { 0.0f };
-#define lbl_805DEA10 (lbl_805DEA10[0])
-#undef lbl_805DEA14
-__declspec(section ".sdata2") const f32 lbl_805DEA14[1] = { 0.5f };
-#define lbl_805DEA14 (lbl_805DEA14[0])
-#undef lbl_805DEA18
-__declspec(section ".sdata2") const f32 lbl_805DEA18[1] = { 1.0f };
-#define lbl_805DEA18 (lbl_805DEA18[0])
-#undef lbl_805DEA1C
-__declspec(section ".sdata2") const f32 lbl_805DEA1C[1] = { -35.0f };
-#define lbl_805DEA1C (lbl_805DEA1C[0])
-#undef lbl_805DEA20
-__declspec(section ".sdata2") const f32 lbl_805DEA20[1] = { 120.0f };
-#define lbl_805DEA20 (lbl_805DEA20[0])
-#undef lbl_805DEA24
-__declspec(section ".sdata2") const f32 lbl_805DEA24[1] = { -1.85f };
-#define lbl_805DEA24 (lbl_805DEA24[0])
-#undef lbl_805DEA28
-__declspec(section ".sdata2") const f32 lbl_805DEA28[1] = { 0.7f };
-#define lbl_805DEA28 (lbl_805DEA28[0])
-#undef lbl_805DEA2C
-__declspec(section ".sdata2") const f32 lbl_805DEA2C[1] = { 85.0f };
-#define lbl_805DEA2C (lbl_805DEA2C[0])
 void TObjFish::handle_death_state(u32 arg1) {
     Fish_802E8B50 *o = (Fish_802E8B50 *)this;
     CameraPlayback cam;
@@ -2119,7 +2219,6 @@ void TObjFish__sub_802E9458(u8 *arg0, u32 arg1) {
         if ((s16) *(s16 *)((s8 *)arg0 + 0xB8) == 0xF) {
             set_state_and_send__14TBoss7DeRolLeCFl(arg0, 0x18);
         }
-    default:
         return;
     case 9:
         if ((s16) *(s16 *)((s8 *)arg0 + 0xB8) == 0xF) {
@@ -2143,6 +2242,8 @@ void TObjFish__sub_802E9458(u8 *arg0, u32 arg1) {
             TObjFish::set_effect_target_position(arg0, (void *) (0x39905), arg0 + 0x50C);
         }
         break;
+    default:
+        break;
     }
 }
 #pragma pop
@@ -2164,7 +2265,6 @@ void TObjFish__sub_802E95F8(u8 *arg0, u32 arg1, s32 arg2) {
         if ((s32) *(s32 *)((s8 *)arg0 + 0x704) >= 3) {
             *(s32 *)((s8 *)arg0 + 0x704) = 0;
         }
-    default:
         return;
     case 2:
         if (((TObjEneDD *)arg0)->get_flag_b4() != 0) {
@@ -2199,6 +2299,8 @@ void TObjFish__sub_802E95F8(u8 *arg0, u32 arg1, s32 arg2) {
             }
             break;
         }
+        break;
+    default:
         break;
     }
 }
@@ -2591,7 +2693,7 @@ void TObjFish__sub_802E9DBC(u8 *arg0, u32 arg1, s32 arg2) {
             break;
         }
         case 5: {
-            f32 t = self->frame - 20.0f;
+            f32 t = self->frame - lbl_805DEA30;
             f32 t2;
             f32 d;
             self->x = self->f74C * t + self->f748;
@@ -2788,6 +2890,8 @@ void TObjFish__sub_802EA4D8(u8 *arg0, u32 arg1) {
 #pragma pop
 
 #define self ((Fish_802EAAC8 *) arg0)
+#pragma push
+#pragma opt_propagation off
 void TObjFish__sub_802EAAC8(u8 *arg0, u32 arg1, s32 arg2, s32 arg3) {
     switch (arg1) {
     case 4:
@@ -2928,7 +3032,9 @@ void TObjFish__sub_802EAAC8(u8 *arg0, u32 arg1, s32 arg2, s32 arg3) {
                     V_802EAAC8 v;
                     self->tick = 0;
                     ((void (*)(void *, void *)) VecCopy__FP3VecPC3Vec)(&v, &self->x);
-                    v.x = v.x + self->dir * (20.0f * random_ratio__9TObjCharaFv(self) + 20.0f);
+                    f32 ratio = random_ratio__9TObjCharaFv(self);
+                    f32 offset = lbl_805DEA30 * ratio + lbl_805DEA30;
+                    v.x = v.x + self->dir * offset;
                     v.y = lbl_805DEA60;
                     v.z = v.z + (lbl_805DEB54 * calc_elapsed_scaled__9TObjEneDDFv(self) + lbl_805DEA50);
                     ((void (*)(void *, void *)) spawn_particle_201__8TObjFishFii)(self, &v);
@@ -2988,7 +3094,169 @@ void TObjFish__sub_802EAAC8(u8 *arg0, u32 arg1, s32 arg2, s32 arg3) {
         break;
     }
 }
+#pragma pop
+
 #undef self
+#pragma pop
+
+#pragma push
+#pragma fp_contract on
+#pragma opt_common_subs off
+void TObjFish__sub_802EB270(u8 *arg0, u32 phase, s32 from, s32 to) {
+    TBoss7DeRolLeC *self = (TBoss7DeRolLeC *)arg0;
+    f32 z_speed, z_acceleration, speed, acceleration;
+    switch (phase) {
+    case 4: {
+        self->set_field_b8(1);
+        TObjFish__sub_802ECBDC((Fish_802ECBDC *)self);
+        self->flags &= ~4;
+        self->flags |= 0x100;
+        self->m_6c0 = from;
+        self->m_6c4 = to;
+        TObjFish__sub_802ED4AC(arg0, self->m_6c0);
+        self->m_728 = 0;
+        self->m_744[0] = self->position.x;
+        self->m_744[4] = self->position.y;
+        self->m_744[1] = self->position.z;
+        f32 delta = lbl_80472D04[self->m_6c4].x - lbl_80472D04[self->m_6c0].x;
+        if (lbl_805DEA10 < delta) self->m_744[2] = lbl_805DEA18;
+        else if (delta < lbl_805DEA10) self->m_744[2] = lbl_805DEA70;
+        else self->m_744[2] = lbl_805DEA10;
+        const u8 *y_column = reinterpret_cast<const u8 *>(&lbl_80472D04) + offsetof(Vec, y);
+        delta = *reinterpret_cast<const f32 *>(y_column + self->m_6c4 * sizeof(Vec)) - *reinterpret_cast<const f32 *>(y_column + self->m_6c0 * sizeof(Vec));
+        if (lbl_805DEA10 < delta) self->m_744[5] = lbl_805DEA18;
+        else if (delta < lbl_805DEA10) self->m_744[5] = lbl_805DEA70;
+        else self->m_744[5] = lbl_805DEA10;
+        const u8 *z_column = reinterpret_cast<const u8 *>(&lbl_80472D04) + offsetof(Vec, z);
+        delta = *reinterpret_cast<const f32 *>(z_column + self->m_6c4 * sizeof(Vec)) - *reinterpret_cast<const f32 *>(z_column + self->m_6c0 * sizeof(Vec));
+        if (lbl_805DEA10 < delta) self->m_744[3] = lbl_805DEA18;
+        else if (delta < lbl_805DEA10) self->m_744[3] = lbl_805DEA70;
+        else self->m_744[3] = lbl_805DEA10;
+        if ((s32)self->m_6c4 < 5) {
+            speed = lbl_805DEA58;
+            acceleration = lbl_805DEA78;
+            if (self->m_744[3] > lbl_805DEA10) {
+                z_acceleration = acceleration;
+                z_speed = lbl_805DEAA4;
+            } else {
+                z_speed = lbl_805DEA98;
+                z_acceleration = lbl_805DEA74;
+            }
+        } else {
+            speed = lbl_805DEA90;
+            acceleration = lbl_805DEB5C;
+            if (self->m_744[3] > lbl_805DEA10) {
+                z_acceleration = acceleration;
+                z_speed = lbl_805DEA50;
+            } else {
+                z_speed = lbl_805DEA54;
+                z_acceleration = lbl_805DEB60;
+            }
+        }
+        init_params__13TBoss2DeRolLeFPvfff((u8 *)&self->float_blocks[0], speed, fabs_float(lbl_80472D04[self->m_6c4].x - self->position.x), acceleration);
+        init_params__13TBoss2DeRolLeFPvfff((u8 *)&self->float_blocks[1], speed, fabs_float(*reinterpret_cast<const f32 *>(y_column + self->m_6c4 * sizeof(Vec)) - self->position.y), acceleration);
+        if (self->m_744[3] > lbl_805DEA10) {
+            init_params__13TBoss2DeRolLeFPvfff((u8 *)&self->float_blocks[2], z_speed, fabs_float(*reinterpret_cast<const f32 *>(z_column + self->m_6c4 * sizeof(Vec)) - self->position.z), z_acceleration);
+        } else {
+            set_move_params__13TBoss2DeRolLeFPvffff((u8 *)&self->float_blocks[2], z_speed, fabs_float(*reinterpret_cast<const f32 *>(z_column + self->m_6c4 * sizeof(Vec)) - self->position.z), z_acceleration, lbl_805DEB0C);
+        }
+        if (lbl_805DEA10 != self->m_744[3]) self->m_6c8 = 0;
+        else self->m_6c8 = 1;
+        self->m_6cc = 0;
+        if (self->m_744[3] > lbl_805DEA10) {
+            if (lbl_805DEA10 != self->m_744[2]) self->m_6d0 = 1;
+            else self->m_6d0 = 3;
+        } else {
+            if (lbl_805DEA10 != self->m_744[2]) self->m_6d0 = 0;
+            else self->m_6d0 = 2;
+        }
+        if (lbl_805DEA10 != self->m_744[5]) {
+            self->m_72c = 4;
+            if (self->m_744[5] > lbl_805DEA10) {
+                TObjFish__sub_802E7B40((Fish_802E7B40 *)self);
+                TObjFish::set_effect_target_position(self, (void *)0x39902, &self->recent_positions[0]);
+                self->flags &= ~0x400;
+            } else {
+                TObjFish__sub_802E7B94((Fish_802E7B94 *)self);
+                TObjFish::set_effect_target_position(self, (void *)0x39E01, &self->recent_positions[0]);
+                self->flags |= 0x400;
+            }
+        } else {
+            switch (self->m_6c0) {
+            case 1: case 6: self->m_72c = 2; break;
+            case 3: case 8: self->m_72c = 0; break;
+            default:
+                switch (self->m_6c4) {
+                case 1: case 6: self->m_72c = 1; break;
+                case 3: case 8: self->m_72c = 3; break;
+                default: self->m_72c = 3; break;
+                }
+                break;
+            }
+        }
+        }
+        // The initialization and completion notification share this phase.
+    case 2:
+        if ((s32)self->m_728 == 1) self->set_state_and_send(2);
+        break;
+    case 9:
+        if ((s32)self->m_728 == 1) {
+            if (self->flags & 0x800) {
+                self->flags &= ~0x800;
+                switch ((s32)self->m_6c4) {
+                case 0: self->set_state_and_send(15); break;
+                case 2: self->set_state_and_send(16); break;
+                default: self->advance_action_sequence(); break;
+                }
+            } else self->advance_action_sequence();
+        }
+        break;
+    case 0: {
+        s32 complete;
+        self->advance_animation();
+        TObjFish__sub_802EC32C(self);
+        complete = 0;
+        switch ((s32)self->m_72c) {
+        case 0:
+            complete = ((TObjFish *)self)->update_phase_rising();
+            break;
+        case 1:
+            complete = ((TObjFish *)self)->update_anim_state();
+            self->position.z = self->m_744[1] + self->float_blocks[2].values[5];
+            break;
+        case 2:
+            complete = ((TObjFish *)self)->update_phase_settling();
+            self->position.z = self->m_744[1] - self->float_blocks[2].values[5];
+            break;
+        case 3:
+            complete = ((TObjFish *)self)->update_tail_anim_state();
+            self->position.z = self->m_744[1] - self->float_blocks[2].values[5];
+            break;
+        case 4:
+            complete = 0;
+            if (((TObjFish *)self)->is_all_parts_done() != 0) {
+                self->play_speed += lbl_805DEA7C;
+                if (self->play_speed > lbl_805DEB64) complete = 1;
+            } else if (self->m_744[5] < lbl_805DEA10) {
+                self->play_speed = lbl_805DEB68;
+            }
+            self->position.z = self->m_744[1] - self->float_blocks[2].values[5];
+            break;
+        }
+        if (complete != 0) self->m_728 = 1;
+        self->position.x = self->float_blocks[0].values[5] * self->m_744[2] + self->m_744[0];
+        self->position.y = self->float_blocks[1].values[5] * self->m_744[5] + self->m_744[4];
+        self->position.z = self->float_blocks[2].values[5] * self->m_744[3] + self->m_744[1];
+        break;
+        }
+    case 5:
+        self->m_6c0 = self->m_6c4;
+        break;
+    case 1: case 3: case 6: case 7: case 8:
+        break;
+    }
+}
+
 #pragma pop
 
 #pragma push
@@ -3384,7 +3652,7 @@ void TObjFish::spawn_via_trap(s32 arg0, s32 arg1, s32 arg2) {
 
 void TObjFish::set_effect_target_position(void* p, void* a1, void* a2) { play_sound_effect((s32)(a1), (const Vec *)(a2), 0, 0); }
 
-void TObjFish__sub_802EC32C(void) {  }
+void TObjFish__sub_802EC32C(void *) {  }
 
 void TBoss7DeRolLeC::update_projectile_spawns() {
     u8 *arg0 = (u8 *)this;
@@ -3516,7 +3784,7 @@ void TBoss7DeRolLeC::advance_action_sequence() {
     do {
         var_r30 = 0;
         this->action_sequence_index = (this->action_sequence_index + 1);
-        var_r4 = *(s32 *)((s8 *)(*(s32 *)((s8 *)((u8 *)(&(*(RecoveredGlobal_802EC7F0_lbl_804E3C2C *)&lbl_804E3C2C).value) + (game_difficulty_selection * 4)) + 0) + (this->action_sequence_index * 8)) + 0);
+        var_r4 = lbl_804E3C2C.actions[game_difficulty_selection][this->action_sequence_index].a;
         switch (var_r4) {
         case 0x1E:
             if (calc_elapsed_scaled__9TObjEneDDFv(this) > lbl_805DEA10) {
@@ -3764,7 +4032,7 @@ s32 TBoss7Joint_get_shell_max_hp(void);
 
 #pragma push
 #pragma opt_common_subs off
-u8 TObjFish::update_phase_rising() {
+s32 TObjFish::update_phase_rising() {
     f32 var_f2;
     s32 var_r3;
     advance_scalar_motion_profile(((u8 *)this) + 0x630);
@@ -3799,13 +4067,13 @@ u8 TObjFish::update_phase_rising() {
     if (((s32) *(s32 *)((s8 *)((u8 *)this) + 0x6D0) == 4) && ((s32) *(s32 *)((s8 *)((u8 *)this) + 0x6CC) == 1)) {
         var_r3 = 1;
     }
-    return var_r3;
+    return (u8)var_r3;
 }
 #pragma pop
 
 #pragma push
 #pragma fp_contract on
-u8 TObjFish::update_tail_anim_state() {
+s32 TObjFish::update_tail_anim_state() {
     s32 var_r3;
     advance_scalar_motion_profile(((u8 *)this) + 0x670);
     if (((s32)advance_scalar_motion_profile(((u8 *)this) + 0x650)) == 3) {
@@ -4203,6 +4471,33 @@ void TBoss7DeRolLeC::vfunc_63() {  }
 void TBoss7DeRolLeC::vfunc_28() {  }
 
 #undef VecCopy__FP3VecPC3Vec
+#undef lbl_805DEA10
+__declspec(section ".sdata2") const f32 lbl_805DEA10[1] = { 0.0f };
+#define lbl_805DEA10 (lbl_805DEA10[0])
+#undef lbl_805DEA14
+__declspec(section ".sdata2") const f32 lbl_805DEA14[1] = { 0.5f };
+#define lbl_805DEA14 (lbl_805DEA14[0])
+#undef lbl_805DEA18
+__declspec(section ".sdata2") const f32 lbl_805DEA18[1] = { 1.0f };
+#define lbl_805DEA18 (lbl_805DEA18[0])
+#undef lbl_805DEA1C
+__declspec(section ".sdata2") const f32 lbl_805DEA1C[1] = { -35.0f };
+#define lbl_805DEA1C (lbl_805DEA1C[0])
+#undef lbl_805DEA20
+__declspec(section ".sdata2") const f32 lbl_805DEA20[1] = { 120.0f };
+#define lbl_805DEA20 (lbl_805DEA20[0])
+#undef lbl_805DEA24
+__declspec(section ".sdata2") const f32 lbl_805DEA24[1] = { -1.85f };
+#define lbl_805DEA24 (lbl_805DEA24[0])
+#undef lbl_805DEA28
+__declspec(section ".sdata2") const f32 lbl_805DEA28[1] = { 0.7f };
+#define lbl_805DEA28 (lbl_805DEA28[0])
+#undef lbl_805DEA2C
+__declspec(section ".sdata2") const f32 lbl_805DEA2C[1] = { 85.0f };
+#define lbl_805DEA2C (lbl_805DEA2C[0])
+#undef lbl_805DEA30
+__declspec(section ".sdata2") const f32 lbl_805DEA30[1] = { 20.0f };
+#define lbl_805DEA30 (lbl_805DEA30[0])
 #undef lbl_805DEA34
 __declspec(section ".sdata2") const f32 lbl_805DEA34[1] = { 123.0f };
 #define lbl_805DEA34 (lbl_805DEA34[0])
