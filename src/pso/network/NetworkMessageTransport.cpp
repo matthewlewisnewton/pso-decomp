@@ -99,7 +99,6 @@ s32 TLobby__sub_8042AAA0(void *);
 u8 lbl_805CF240[0xA0];
 u8 TLobby__pppoe_message_queue[0xA0];
 u8 lbl_805CF380[0x48];
-extern s32 lobby_message_thread_handle;
 extern u32 lbl_805D7BC4;
 extern s16 network_link_status_cache;
 extern s32 lbl_805D7BB8;
@@ -152,9 +151,9 @@ s16 TLobby__sub_80426440(void);
 u8 lobby_net_channel_table[0x858];
 
 void TLobby::reset_message_thread() {
-    if ((u32)lobby_message_thread_handle != 0) {
+    if (lobby_message_thread_handle != 0) {
         ((TLobby *)lobby_message_thread_handle)->cancel_thread_if_running();
-        TLobby::deactivate_entry_by_key((u32)((void *)lobby_message_thread_handle));
+        TLobby::deactivate_entry_by_key(lobby_message_thread_handle);
         lobby_message_thread_handle = 0;
     }
     NetUnregisterTimer((void *)TLobby::update_exi_status);
@@ -405,7 +404,7 @@ s16 TLobby__sub_804262CC(void *argp) {
     if (TLobby__sub_803F9B94((void *) (&TLobby::message_thread_loop), &lobby_message_thread_handle) < 0) {
         return -1;
     }
-    NetResumeThread((u32)lobby_message_thread_handle);
+    NetResumeThread(lobby_message_thread_handle);
     lbl_805D7BB0 = 1;
     network_link_status_cache = -1;
     lbl_805D7BB8 = 0;

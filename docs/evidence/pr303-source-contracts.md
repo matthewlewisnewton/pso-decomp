@@ -1844,3 +1844,76 @@ All twelve DHCP characterization cases and both modem host-test cases pass.
 Seal unchanged-main report/build/check/provider/tool provenance for verified
 reuse. Preserve original behavior, bugs and all; keep draft and every remaining
 ABI/metadata hold.
+
+
+## Thread handle storage and rejected shared-creator probe
+
+Verify published `2f3732215`, then merge quest-download main
+`baa0b4e482921446c794fcbb2ccb798d2d05a7fa` as `ef0a36ef4`. Recorded Ninja
+dependencies confirm this merge changes no native input of the four network
+objects used as the probe reference. Preserve both quest units and evidence.
+
+The creator writes one full key word only on success. Reset initializes that
+key to its slot's embedded `OSThread` address. Inventory closes five native
+creator call sites and their five existing no-argument providers. All callers
+immediately consume signed 16-bit status. The output destinations are the
+transport record at +4, two globals and two dispatcher fields. The globals
+are only loaded/stored, tested for zero or forwarded as opaque keys; no signed
+handle range test or arithmetic is found. Existing signed resume/query
+interfaces and pointer-based cancellation remain separate boundaries.
+
+One source-reviewed shared-contract probe retains the creator's `s32` result,
+uses a shared no-argument callback and coherent unsigned handle storage, and
+expresses the five existing short status consumptions explicitly. Native
+validation rejects it. Each explicit conversion adds a second sign extension:
+dispatcher initialization grows from 260 to 268 bytes; the three other caller
+functions grow from 100/300/372 to 104/304/376 bytes. The 124-byte trampoline
+changes three instruction slots, using a different offset/indexed-load sequence
+instead of forming the original record-address argument. This is code drift,
+not symbol or debug-only metadata. Preserve the rejected patch/objects and
+independent diagnosis locally, then fully restore the callback types, creator
+declarations, five status checks and `fn(e)`. Do not compensate with a return
+type, parameter, lifetime, register or compiler-setting variant. The rejected
+shared contract is not published or claimed repaired.
+
+The independently supported storage cleanup is separate. Define
+`NetThreadHandle` as the existing `u32` word type and share the two global
+declarations. Give the recovered 16-byte transport view an actual unsigned
+`thread_handle` at +4, with an offset assertion and its remaining eight bytes
+unchanged. Replace the secondary two-word overlay with that member and use
+direct word forwarding at the existing unsigned value APIs. The dispatcher
+fields already have this underlying type; the creator already stores `u32`.
+Keep every callback/status declaration and operation restored. This establishes
+coherent storage for all five outputs without claiming historical global
+ownership, a new private callback ABI or a new status width.
+
+
+## Typed SDK suspension query at the cached-handle boundary
+
+The same inventory exposes a concrete SDK consumer mismatch. Network transport
+locally declares `OSIsThreadSuspended` as `s32(s32)`, while the supplied SDK
+declares `BOOL(OSThread *)`. SDK implementation reads `thread->suspend` and
+returns TRUE/FALSE. Only two game calls exist, at `0x803F7C90` and
+`0x803F7D28`; both pass the same cached word from `queue_thread_handle`, whose
+producer supplies an embedded `OSThread` address.
+
+Include the actual SDK header, remove the incompatible local declaration and
+convert that cached word to `OSThread *` at both calls. Preserve its existing
+signed local, the read before locking, both `== 1` comparisons, subsequent
+global resume reads and every guard. No null check or reload is introduced.
+This is an explicit native-address-word conversion at a proven SDK boundary,
+not a private creator signature inferred from convention.
+
+Storage-only and storage-plus-SDK builds independently reproduce original DOL
+SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All four complete network
+objects are raw byte-identical to the pre-probe reference, including symbols,
+metadata and relocations; no normalization is used. Runtime and dispatcher
+sources are restored exactly. Across all 3,665 compiled objects, only main's
+two quest-download objects change, both raw-identical to fresh main. Actual
+ordered providers are unchanged: 3,598 source inputs and 1,347 original
+fallbacks. Full fresh-main comparison passes with all 3,598 linked units exact,
+18,416 retention entries without drift, existing +88 data bytes, no new
+functions/code and no losses. All fourteen DHCP/modem host tests, inventory
+and whitespace pass. The SDK entry repair, original behavior and bugs,
+remaining creator/raw/reset ABI restrictions and metadata hold are preserved.
+Keep draft.
