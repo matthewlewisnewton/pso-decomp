@@ -1232,6 +1232,7 @@ pso/effect/particle/TParticleCtrl_801D6B3C.cpp
 pso/effect/particle/TParticleCtrl_801D6B8C.cpp
 pso/effect/particle/TParticleCtrl_801E2EFC.cpp
 pso/effect/particle/TParticleCtrl_801E5330.cpp
+pso/effect/particle/ParticleBallistic.cpp
 pso/effect/particle/ParticleRadial.cpp
 pso/effect/particle/TParticleCtrl_80327D30.cpp
 pso/effect/particle/TParticleCtrl_803E29FC.cpp
