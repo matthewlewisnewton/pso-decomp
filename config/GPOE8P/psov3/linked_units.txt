@@ -2625,6 +2625,15 @@ pso/render/render_util.cpp
 pso/render/render_util_head.cpp
 pso/render/render_util_tail.cpp
 pso/slices/pso_carve_8020bf88.cpp
+pso/system/AdxEncoder.cpp
+pso/system/AdxExpand.cpp
+pso/system/AdxManager.cpp
+pso/system/AdxStream.cpp
+pso/system/AdxStreamRuntime.cpp
+pso/system/AdxTalk.cpp
+pso/system/AdxtInit.cpp
+pso/system/AdxtServer.cpp
+pso/system/AdxtStart.cpp
 pso/system/ChunkMaterialState.cpp
 pso/system/ChunkTextureStripCollector.cpp
 pso/system/CityTraffic.cpp
@@ -3550,8 +3559,6 @@ pso/unk/text_80396328.cpp
 pso/unk/text_8039739C.cpp
 pso/unk/text_803C1668.cpp
 pso/unk/text_803C1780.cpp
-pso/unk/text_803CBCA0.cpp
-pso/unk/text_803CBCF8.cpp
 pso/unk/text_803CC070.cpp
 pso/unk/text_803CC134.cpp
 pso/unk/text_803CC294.cpp

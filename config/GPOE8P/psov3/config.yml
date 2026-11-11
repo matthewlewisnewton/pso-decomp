@@ -741,7 +741,26 @@ force_active:
   - TLobby__sub_803C40D0
   - TLobby__sub_803C43A8
   - TLobby__sub_803C44C0
-  - TLobby__sub_803C4698
+  - TLobby__sub_803C5B50
+  - TLobby__sub_803C5E58
+  - TLobby__sub_803C5E68
+  - TLobby__sub_803C5ED4
+  - TLobby__sub_803C7DF0
+  - TLobby__sub_803C8594
+  - TLobby__sub_803C9104
+  - TLobby__sub_803C9350
+  - TLobby__sub_803C9358
+  - TLobby__sub_803C94D8
+  - TLobby__sub_803C96A8
+  - TLobby__sub_803C96B0
+  - TLobby__sub_803C96E0
+  - TLobby__sub_803C97F4
+  - TLobby__sub_803CAB38
+  - TLobby__sub_803CAEB4
+  - TLobby__sub_803CB194
+  - TLobby__sub_803CB7F8
+  - TLobby__sub_803CBA18
+  - TLobby__sub_803CBB14
   - TLobby__sub_803CBE40
   - TLobby__sub_803CE2A0
   - TLobby__sub_803D346C
@@ -794,6 +813,8 @@ force_active:
   - TLobby__sub_80429B8C
   - TLobby__sub_8042B434
   - TLobby__sub_8042BA8C
+  - TLobby__svm_cb_svr_handle
+  - TLobby_init_ref_count
   - TLobby_warp_menu_window
   - TLockOnCursor__sub_8013EBBC
   - TLockOnCursor__sub_8013EBE8
@@ -2034,6 +2055,7 @@ force_active:
   - __GXSetGenMode
   - __OSArenaHi
   - __OSArenaLo
+  - __OSCallResetFunctions
   - __OSDispatchInterrupt
   - __VIInit
   - __aborting
@@ -3698,9 +3720,30 @@ force_active:
   - advance_wrap_offset__13TUnk_804B2578Fv
   - adventure_map_variation_count_table
   - adx_channel_record_pool
+  - adx_decoder_channel_pool
+  - adx_encode_available_blocks
   - adx_error_message_buffer
+  - adx_get_data_start_offset
+  - adx_process_encoder_output
   - adx_signed_nibbles
+  - adx_stream_fname_slot_count
+  - adx_stream_read_requests
+  - adx_stream_request_base_index
+  - adx_stream_request_count_ex
+  - adx_stream_ring_buffer
+  - adx_stream_ring_buffer_storage
+  - adx_worker_thread_pending_callback
+  - adx_write_encoded_blocks
   - adxf_open_file_buffer
+  - adxm_busy_wait_stack
+  - adxm_busy_wait_thread
+  - adxm_goto_mwidle_border__6TLobbyFv
+  - adxm_vblank_stack
+  - adxm_vblank_thread
+  - adxm_worker_stack
+  - adxm_worker_thread
+  - adxt_set_out_pan__6TLobbyFls
+  - adxt_trap_entry_update__6TLobbyFPv
   - aim_toward_point__11TBoss6Type2FPv
   - alerted_state__14TObjEneBm5WolfFl
   - all_children_gone__18TObjEneEpsilonBodyFv
@@ -3790,6 +3833,7 @@ force_active:
   - apply_heal_to_target__13TOHealGeneralFv
   - apply_hit__15TOAttackableColFl
   - apply_hit_to_target__14TBoss7CrawfishFPvPv
+  - apply_if_v2__6TLobbyFv
   - apply_item_data__9TItemDropFPvPv
   - apply_item_flags__5TItemFP9TItemData
   - apply_knockback_from_attacker__20TContainerAncient01RFPUcf
@@ -3886,6 +3930,7 @@ force_active:
   - approach_target__16TObjEneBm5GibonUFf
   - approach_value__13TObjEneBm3FlyFff
   - approach_world_height__13TObjEneMe1GeeFf
+  - ar_alloc__6TLobbyFv
   - aramQueueCallback
   - are_all_players_in_range__12TObjWarpBossFv
   - are_all_selections_done__23TAdSinglePlyChrSelectGCFv
@@ -4947,6 +4992,7 @@ force_active:
   - check_object_in_view_cone__6TSceneFiPvPvPvi
   - check_open_trigger__20TContainerAncient01RFv
   - check_owner__13TObjTombstoneFv
+  - check_packet_header_8001__6TLobbyFPUslPl
   - check_page_cross__23TAdSinglePlyChrSelectGCFiiii
   - check_parts_visible__12TBoss1DragonFiPv
   - check_path_ahead__14TObjEneDolmOlmFlf
@@ -5101,8 +5147,6 @@ force_active:
   - clear_creation_shape_eval_masks__FPfPCfPCfPCf
   - clear_entry_flags__20TBoss5GryphonColli_CFv
   - clear_episode1_quest_availability__FPv
-  - clear_error_callback__6TLobbyFv
-  - clear_error_callback_state__6TLobbyFv
   - clear_field2A0__22TQuestVmDownLoadServerFv
   - clear_field_d8__14TOTrapChainSawFv
   - clear_flag4c_bit8__13TWindowSubLogFv
@@ -6626,6 +6670,8 @@ force_active:
   - fn_8035D49C
   - fn_8036A3CC
   - fn_803C32EC
+  - fn_803C8020
+  - fn_803CBCA0
   - fn_803DB15C
   - fn_803DD3C8
   - fn_803F1804
@@ -6652,6 +6698,7 @@ force_active:
   - forward_hit__16TObjEneBm5GibonUFPv
   - forward_hit_to_enemy_list__16TObjEneBm5GibonUFv
   - forward_hit_to_node_list__16TObjEneBm5GibonUFv
+  - forward_notify_error__6TLobbyFll
   - forward_return_arg__17TWindowSubComCardFi
   - forward_to_channel__6TLobbyFPv
   - forward_to_matching_card__17TWindowSubComCardFPvPvi
@@ -6960,6 +7007,7 @@ force_active:
   - get_state__12TBoss8DragonFv
   - get_state__17TOSymbolchatColliFv
   - get_state__19TBoss8DragonEffTailFv
+  - get_state_zero__6TLobbyFv
   - get_stats_atp_max__9TObjCharaFv
   - get_subcard_field1c__11TWindowChatFv
   - get_surface_contact_point__FPv
@@ -8564,6 +8612,7 @@ force_active:
   - lbl_804F7120
   - lbl_804F7130
   - lbl_804F7168
+  - lbl_804F9D80
   - lbl_804F9E60
   - lbl_804FD9F8
   - lbl_804FDA04
@@ -8782,6 +8831,10 @@ force_active:
   - lbl_805D4630
   - lbl_805D4638
   - lbl_805D4640
+  - lbl_805D4658
+  - lbl_805D4660
+  - lbl_805D4664
+  - lbl_805D4678
   - lbl_805D46C8
   - lbl_805D4AF0
   - lbl_805D4AF8
@@ -8916,6 +8969,32 @@ force_active:
   - lbl_805D7504
   - lbl_805D7508
   - lbl_805D750C
+  - lbl_805D7550
+  - lbl_805D7558
+  - lbl_805D7560
+  - lbl_805D7564
+  - lbl_805D7568
+  - lbl_805D756C
+  - lbl_805D7570
+  - lbl_805D7574
+  - lbl_805D7578
+  - lbl_805D757C
+  - lbl_805D7580
+  - lbl_805D7588
+  - lbl_805D7590
+  - lbl_805D7594
+  - lbl_805D7598
+  - lbl_805D759C
+  - lbl_805D75A0
+  - lbl_805D75A4
+  - lbl_805D75A8
+  - lbl_805D75AC
+  - lbl_805D75B0
+  - lbl_805D75B4
+  - lbl_805D75B8
+  - lbl_805D75BC
+  - lbl_805D75C4
+  - lbl_805D75C8
   - lbl_805D75F0
   - lbl_805D7688
   - lbl_805D7694
@@ -9369,6 +9448,10 @@ force_active:
   - lbl_805E03DC
   - lbl_805E03E0
   - lbl_805E03E4
+  - lbl_805E0D58
+  - lbl_805E0D5C
+  - lbl_805E0D60
+  - lbl_805E0D64
   - lbl_805E0F68
   - lens_flare_reflected_element_descriptors
   - lerp_follow_anchor__FP3VecP3VecPf
@@ -9470,6 +9553,7 @@ force_active:
   - lobby_texlist__16TObjWeddingLobby
   - lobby_texlist__19TObjStendGlassLobby
   - lobby_weapon_random_tables_ptr
+  - lobby_worker_thread_run_flag
   - log_printf_buffer
   - logo_load_callback_table
   - lookup_attack_marker__Flssl
@@ -9661,6 +9745,7 @@ force_active:
   - multi_confirm_texture_entries
   - multi_ply_chr_select_default_slot_table
   - multiplayer_controller_device_codes
+  - music_stream_afs_filename_buffer
   - nano_drago_bodies
   - nano_drago_movement
   - needs_movement__10TNpcPlayerFPvPvi
@@ -14467,6 +14552,7 @@ force_active:
   - prepare_wall_query_polygons__FPvfl
   - present_frame_and_wait_vsync__Fv
   - process_byteswapped_pcm_transfer
+  - process_connection_state__6TLobbyFv
   - process_download_entry__12TQuestListVMFv
   - process_enemy_drop_request__Flsisiff
   - process_key_input__19TWindowKeyBoardHardFUc
@@ -16272,6 +16358,7 @@ force_active:
   - set_random_timer__15TObjEneSlimeOneFll
   - set_rate_from_divisor__13TUnk_80490470Fl
   - set_rate_from_divisor__19MaterialOpacityFadeFl
+  - set_rate_mode__6TLobbyFl
   - set_result_flag__12TBoss1DragonFll
   - set_revived_state__10TObjPlayerFv
   - set_saved_attack_stage__10TObjPlayerFs
@@ -17448,6 +17535,7 @@ force_active:
   - tl_radermap_name
   - tl_su_name
   - tl_window_name
+  - tlobby_stream_read_retry_limit
   - to_le_uint16_t__FUs
   - toggle_effect_render__14TObjEneDolmOlmFP10NJS_OBJECT
   - toggle_selected_part__28TWindowSubSymbolChatPartsSetFv
@@ -18262,6 +18350,7 @@ force_active:
   - update_status_message__6TLobbyFPv
   - update_stream__15PSOV3EncryptionFv
   - update_stream_buffers__6TLobbyFv
+  - update_stream_read__6TLobbyFv
   - update_stretch_state__12TBoss1DragonFUl
   - update_sub_window__20TWindowSubSymbolChatFv
   - update_submenu__15TWindowMainMenuFv
@@ -18825,6 +18914,7 @@ force_active:
   - vt5__9TBoss4UroFv
   - vt6__9TBoss4UroFv
   - wait_aram_request__16TAdWarningBaseGCFv
+  - wait_for_lock_release__6TLobbyFv
   - wait_for_message__12TQuestListVMFv
   - wait_for_players__12TBoss1DragonFl
   - wait_for_players__13TBoss5GryphonFl
@@ -18847,6 +18937,8 @@ force_active:
   - wolf_stat_handle_b_table
   - worker_callback_flag_table
   - worker_callback_slots
+  - worker_thread_loop__6TLobbyFv
+  - write_adx_header__6TLobbyFPvPv
   - write_item_data__10TItemMoneyFP9TItemData
   - write_item_data__12TItemProUnitFP9TItemData
   - write_item_data__14TItemProShieldFP9TItemData
@@ -18858,6 +18950,7 @@ force_active:
   - write_quest_data_named__22TQuestVmDownLoadServerFv
   - write_ring_buffer__6TLobbyFPUcl
   - write_telepipe_record__FPUcUssPUcl
+  - write_zero_padded_block__6TLobbyFPv
   - yasminkov_2000h_ct__FPvll
   - yasminkov_7000v_ct__FPvlPv
   - yasminkov_9000m_eject_casing__13TUnk_804A6AD8Fll
