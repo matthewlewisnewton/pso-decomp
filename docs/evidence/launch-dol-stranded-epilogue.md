@@ -1118,6 +1118,76 @@ The original-provider and restore-ownership holds remain unchanged.
 python3 tools/probe_loader_window_teardown.py --dol PRIVATE/PsoV3.dol --output build/window-teardown.json
 ```
 
+## Known indicator references in the first read-wait frame
+
+The stronger positive discriminator after the teardown trace is whether the
+known indicator references are drained before a read-wait frame renders.
+An absence of recognized writes to an update-mask global would not establish
+its retail value or exclude aliases. The indicator destructor chain instead
+provides explicit operations and a frame-order predicate that can be tested.
+
+The [indicator-drain probe](../../tools/probe_loader_indicator_drain.py) runs
+the original loading constructor in mode zero and calls its original task
+body twice. Tick one allocates no indicator. Tick two constructs
+`TNowLoading`, its network indicator and cursor, and their particle controllers
+through the original factory and particle initializer. Original `VecCopy`
+instructions also execute. The fixture checks the resulting tree links,
+allocation order and reference identities: the network indicator stores five
+nonnull references, the cursor one, while `TNowLoading`'s own four reference
+fields remain zero. All six particle controllers attach under `tl_07` and
+have their own address in the initializer's owner field. Their original
+vtable render slot is the no-op `TObject::render`; their task body can generate
+other objects and must not be confused with that render slot.
+
+Original `cleanup_scene` queues the loader and clears the instance. During
+the original `run_frame`, SU traversal precedes camera, TL07 and particle
+updates, and all those updates precede rendering. Deleting the queued loader
+recursively deletes its indicator children. The original network destructor
+queues its five referenced controllers and the cursor destructor queues its
+one reference. TL07 traversal can therefore destroy those six later in the
+same frame, before even the SU render traversal starts.
+
+Four independently replayed controls distinguish the required contracts:
+
+| Chosen fixture after construction/cleanup | Known controllers destroyed before rendering |
+|---|---|
+| Valid references, destruction enabled | Six; loader and three indicator nodes also deleted |
+| Loader has `DISALLOW_DESTRUCTION` (`0x20`) | Zero; queue bit clears, loader/descendants survive, and the still-current fade remains eligible for the frame's fade passes |
+| One referenced particle controller has `DISALLOW_DESTRUCTION` | Five; that controller survives with its queue bit cleared |
+| One additional controller has no indicator reference | All six known references drain; the unrelated controller survives |
+
+The controls execute the original constructors, reference queues, destructor
+chain, frame and tree traversals. Logical frees are counted and checked for
+duplicates. Surviving task/render bodies are explicit boundary markers rather
+than simulated effect generators. In particular, the ordinary queued-loader
+case reaches no such surviving body. The protected-loader case retains six
+particle-task boundaries and the cursor-render boundary; the unrelated case
+retains its one particle-task boundary. The protected-particle case retains
+that node without invoking its task body in this first queue-processing pass.
+This is narrower than a claim that protected objects always stop updating.
+
+This experiment uses synthetic zero particle descriptors, a chosen pool limit
+and valid disjoint allocations. Rotation math uses chosen zero output angles;
+the fade is a base-node-only constructor model. Platform/resource helpers and
+surviving task/render effects remain modeled; logical frees do not reproduce
+allocator reuse. It directly invokes two loading ticks, not the full
+`start_loading` resource path or a retail menu history. Earlier-generated
+objects, changed ownership, stale aliases, different live types and unrelated
+cache writers remain outside the result. Nothing establishes the word later
+loaded at `0x8042E9EC` or original restore ownership.
+
+The missing discriminating evidence is now more specific: actual loader,
+descendant and controller flags/references when the first read wait begins,
+or an authenticated predecessor/callback trace that establishes them. For
+effects already generated before cleanup, the selected particle definitions
+and generator/parent-lifetime contracts must also be established. These
+cannot be replaced by the fixture's synthetic descriptors or a retail file
+entry address. Original providers, extents and accounting remain unchanged.
+
+```sh
+python3 tools/probe_loader_indicator_drain.py --dol PRIVATE/PsoV3.dol --output build/indicator-drain.json
+```
+
 ## Comparison record and reproduction limits
 
 The historical comparison procedure is preserved at immutable commit
