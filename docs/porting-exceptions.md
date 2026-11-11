@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,694 | 879 |
-| Per-unit compiler overrides in `configure.py` | 192 | 192 |
+| CodeWarrior pragmas (excluding push/pop) | 5,698 | 879 |
+| Per-unit compiler overrides in `configure.py` | 193 | 193 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -96,6 +96,13 @@ etc. or their port equivalents) instead of the fixed address.
 
 ## 4. CodeWarrior pragmas
 
+The name-plate renderer at `0x80251EC8` in `TWindowFukidasi.cpp` uses scoped
+`opt_propagation off`, `opt_common_subs off`, and `opt_lifetimes off` with
+its `fp_contract on` scope. The controls retain the separate text/background
+colors and quad-coordinate registers across drawing calls. Ports can drop
+the optimizer controls; preserve fused arithmetic when native rounding is
+required. See [the unit evidence](evidence/fukidasi-name-plate-recovery.md).
+
 The character-creation shape coefficient function in
 `src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp` uses a scoped
 `opt_propagation off` and ordered scalar declarations to preserve the original
@@ -117,9 +124,9 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,694 pragmas in 879 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802,
-`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 242,
+5,698 pragmas in 879 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1112, `inline_depth` 1004, `fp_contract` 883, `auto_inline` 802,
+`opt_common_subs` 613, `scheduling` 263, `opt_propagation` 243,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -387,7 +394,7 @@ and the same function body.
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-191 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+193 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -403,6 +410,16 @@ use their own compiler versions as recorded there.
 Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
+
+### Speech-balloon constant alignment
+
+`pso/misc/TWindowFukidasi.cpp` uses `cw_align: .sdata2=4`. Its float pool
+starts at `0x805DCD0C`; GC/2.6 otherwise requests eight-byte alignment in
+both ELF and its CodeWarrior comment record. The existing alignment tool
+changes those records without changing code, constants or relocations.
+Ports can drop this object-layout override and use normal float alignment.
+The compatible pointer reads of four materialized constants avoid duplicate
+MWCC literal-pool entries; a port can read those constants directly.
 
 ### Time setting and calendar startup
 

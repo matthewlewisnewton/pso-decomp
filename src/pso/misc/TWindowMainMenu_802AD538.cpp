@@ -1,3 +1,4 @@
+#include "pso/misc/SmallFontDrawing.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -51,7 +52,7 @@ void TMainMenuEntry::draw_item_labels(TWindowDrawContext *w) {
     if (is_item_active() != 0 && fade > 0) {
         scale = -1.0f / (0.299f + w->depth);
         uv = &main_menu_label_uv_table[icon];
-        TWindowSubStatusDisp::begin_render();
+        bind_small_font_texture_list();
         switch (kind) {
         case 0:
             rgb = 0xFFFFFF;

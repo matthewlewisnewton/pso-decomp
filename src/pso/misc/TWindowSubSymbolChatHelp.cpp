@@ -1,4 +1,5 @@
 #include "pso/misc/WindowLayoutDescriptor.h"
+#include "pso/misc/SmallFontDrawing.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
@@ -170,7 +171,7 @@ void TWindowSubSymbolChatHelp::draw_help_entries(void *arg1) {
         draw_color_palette((Win_8028429C *)(arg1));
         TWindowSubStatusDisp::get_player();
         begin_screen_draw(1);
-        TWindowSubStatusDisp::begin_render();
+        bind_small_font_texture_list();
         set_draw_texture_and_color(1, -1);
         draw_help_entry((Win_802844C8 *)(arg1), 0, -1);
         draw_help_entry((Win_802844C8 *)(arg1), 1, -1);

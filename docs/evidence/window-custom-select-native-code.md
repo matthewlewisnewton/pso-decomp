@@ -1,5 +1,10 @@
 # CustomSelect native code with preserved initialization hold
 
+The [player/window lifecycle audit](window-custom-select-player-lifecycle.md)
+narrows the missing proof to cross-root teardown/suspension across task updates;
+its nineteen original-function checks do not clear the initialization hold.
+
+
 The later [readiness/allocator check](window-continuation-readiness.md) confirms
 the original-exact TObject allocation path uses heap_alloc, not heap_zalloc.
 Initial pool clearing supplies no reuse guarantee, so this hold remains; no

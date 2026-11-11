@@ -1,3 +1,4 @@
+#include "pso/misc/SmallFontDrawing.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
@@ -72,7 +73,7 @@ s32 draw_small_font_string_clipped(f32 *pos, const char *s, u32 color, f32 width
     x = pos[0];
     y = pos[1];
     begin_screen_draw(1);
-    TWindowSubStatusDisp::render_forward();
+    begin_small_font_draw();
     set_draw_texture_and_color(0, color);
     while (*s != 0) {
         c = (u8)*s++;

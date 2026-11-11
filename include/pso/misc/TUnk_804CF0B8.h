@@ -12,7 +12,6 @@ public:
     virtual ~TUnk_804CF0B8();
     virtual void run_task();
     void draw_body(void *, u32, f32 *, f32);
-    void draw_name_plate(TWindowDrawContext *, u32);
     void draw_body_row(void *, void *, f32, f32, f32, f32);
     void draw_tail(void *, u32, f32 *, f32);
     void sub_80251DF0(s16, s32, s16, f32);

@@ -1,3 +1,4 @@
+#include "pso/misc/SmallFontDrawing.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_802598E4.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
@@ -97,7 +98,7 @@ void render_numeric_digit_entries(u8 *arg0, TWindowDrawContext *window_key_board
       break;
     case 1:
       begin_screen_draw(1);
-      TWindowSubStatusDisp::render_forward();
+      begin_small_font_draw();
       set_draw_texture_and_color(0, *((s32 *) (((s8 *) arg0) + 0x1C)));
       break;
   }

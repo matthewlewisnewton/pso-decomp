@@ -31,6 +31,7 @@ guides.
 - [Equipment requirement match and link limit](equip-requirements-match.md)
 - [Empty enemy-call interfaces](enemy-empty-hooks-evidence.md)
 - [Floor-area sound wrappers](floor-area-sound-evidence.md)
+- [Speech-balloon name plate and complete unit](fukidasi-name-plate-recovery.md)
 - [Gee native recovery checkpoint](gee-native-recovery-evidence.md)
 - [Ginja material dispatcher and complete unit](ginja-material-recovery.md)
 - [Indirect texture scroll offset and copy propagation](indirect-scroll-offset-propagation.md)

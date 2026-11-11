@@ -1,5 +1,10 @@
 # Balloon name-plate reconstruction: exactness hold retained
 
+The later [accepted-main integration](window-main-speech-balloon-integration.md)
+supersedes this historical nonexact/provider checkpoint with exact main recovery,
+while retaining native lifetime and compiler/interface qualifications.
+
+
 This follows PR #268 checkpoint `408486a9dd82f700bf43cc79cb35663df63b9964`.
 The formerly absent 800-byte name-plate renderer has a GameCube-derived source
 implementation. The implementation is independently reviewed against the original

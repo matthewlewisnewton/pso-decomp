@@ -270,11 +270,11 @@ remain unqualified; no Parts import or probe is activated.
 | ActionPalette | Native Base construction and destruction, tag/layout recovery retained in exact source-linked 3588-text/832-data owner; compiler table and icon jump targets exact | Array callback/tag storage/lifetime, repeated first-tag reset, unchecked index and external entry/light/legacy caller ABI qualifications remain |
 | DD renderer | Shared begin/forward/reset contracts established | 608-byte probe remains 37 words different; needs value-lifetime/quad evidence; original provider retained |
 | Word renderer/lifetime | Upstream exact 916-byte renderer and complete 3412-byte unit source-linked; fixed-source native diagnostic matches all seven bodies/relative targets including constructor148 | Diagnostic order and actual table/startup destinations fail; source/context organization and helper/storage qualifications remain held |
-| Nameplate | Ordinary reconstructed 800-byte body and helper evidence | Nonexact arithmetic/register result; original full provider retained |
+| Nameplate | Accepted exact main recovery and shared SmallFont contracts integrated with native task/lifetime; whole owner/prefix targets qualified | Original compiler provenance, legacy overlays and lifetime/helper interfaces remain; [integration](window-main-speech-balloon-integration.md) |
 | ScrollBar / ChallengeResult / follower | Bounded native probes and contracts recorded | Constant-pool/data-base/producer differences; no repeated scheduling variants |
 | SymbolChat Parts | Accepted-main literal/localization integration source-links native owner after current census and full byte/target/provider validation; historical export blocker superseded | Original propagation-control/source provenance and portable interface/ownership qualifications remain; [integration](window-parts-accepted-main-integration.md) |
 | ChoiceSetting / globals | Observed layout and accesses retained | Actual 0x7C producer and task-global ownership unproved; no inferred padding |
-| CustomSelect | Native code/table exact | Early-return child initialization safety remains unresolved |
+| CustomSelect | Native code/table and nineteen-function player/window lifecycle audit exact | Cross-root teardown/suspension before player-slot removal across task invocations unproved; [lifecycle evidence](window-custom-select-player-lifecycle.md) |
 | CallBack / headings / capture / CMName | Bounded receiver and storage evidence recorded | Mixed callback signatures, opaque child ownership and original-provider/interface holds remain |
 | SimpleStatus children | Five constructed/managed slots evidenced | Original destructor cleans four; asymmetry preserved, not silently fixed |
 

@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5694 | 879 |
-| configure.py per-unit override | 192 | 192 |
+| pragma | 5698 | 879 |
+| configure.py per-unit override | 193 | 193 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 242, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 28, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004, `fp_contract` 883, `auto_inline` 802, `opt_common_subs` 613, `scheduling` 263, `opt_propagation` 243, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 28, `optimize_for_size` 27, `opt_lifetimes` 24, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -101,12 +101,12 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004,
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:542` | `__cntlzw` |
 | `src/pso/misc/TRaderMapCore_8030A808.cpp:9` | `__cntlzw` |
 | `src/pso/misc/TWindowDD_8034725C.cpp:338` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:379` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:476` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:533` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:609` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:331` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:432` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:489` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:565` | `__cntlzw` |
 | `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:71` | `__cntlzw` |
-| `src/pso/misc/TWindowMainMenu_802AD538.cpp:281` | `__cntlzw` |
+| `src/pso/misc/TWindowMainMenu_802AD538.cpp:282` | `__cntlzw` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:32` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:33` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:43` | `__rlwinm` |
@@ -226,7 +226,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004,
 | `src/pso/unk/text_803E2D70.cpp:954` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
 | `src/pso/unk/text_803E2D70.cpp:955` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
 | `src/pso/unk/text_803E2D70.cpp:956` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_80421620.cpp:1255` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
+| `src/pso/unk/text_80421620.cpp:1254` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
 
 ## configure.py per-unit compiler overrides
 
@@ -239,6 +239,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004,
 | `pso/boss/TBoss6PlotFalz_802B0228.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #183: the Falz plot table TU is built with deferred inlining (its state actions come out in reverse table order). |
 | `pso/boss/TBoss6EmptyWarp_802B0E2C.cpp` | `-str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/pso_date.cpp` | `GC/1.3.2` | Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md. |
+| `pso/misc/TWindowFukidasi.cpp` | `(multi-line entry; see configure.py)` | The balloon float pool begins at 0x805DCD0C, which is four-byte aligned. |
 | `pso/ui/TAdDialingGC_80328B20.cpp` | `GC/1.3.2` | GC/1.3.2 preserves the per-vertex coordinate loads and store order. |
 | `pso/unk/text_8007ECF0.cpp` | `GC/1.3.2` | The download graph's border pass keeps GC/1.3.2 load scheduling. |
 | `pso/ui/TAdSelectGameModeGC_802C4748.cpp` | `GC/1.3.2, -fp_contract on` | The selection plate has the same GC/1.3.2 vertex schedule and fuses its depth offset. |
@@ -890,7 +891,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004,
 | `src/pso/misc/TWindowEffectLight.cpp` | defer_codegen×1, readonly_strings×1, fp_contract×1 |
 | `src/pso/misc/TWindowEffectParty.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowEffectParty_8024F690.cpp` | fp_contract×1 |
-| `src/pso/misc/TWindowFukidasi.cpp` | fp_contract×15 |
+| `src/pso/misc/TWindowFukidasi.cpp` | fp_contract×16, opt_propagation×1, opt_common_subs×1, opt_lifetimes×1 |
 | `src/pso/misc/TWindowHelpItem_802531A0.cpp` | inline_depth×4, auto_inline×4, dont_inline×4 |
 | `src/pso/misc/TWindowHelpItem_802540AC.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/misc/TWindowHelpItem_80255AB4.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |

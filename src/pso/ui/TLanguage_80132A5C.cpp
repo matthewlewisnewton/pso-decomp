@@ -1,3 +1,4 @@
+#include "pso/misc/SmallFontDrawing.h"
 #include "types.h"
 #include "pso/misc/TLobby_800F9690.h"
 #include "pso/misc/TLanguage.h"
@@ -118,7 +119,7 @@ void TLanguage::load_fonts(s32 language) {
             break;
     }
 
-    TWindowSubStatusDisp::begin_render();
+    bind_small_font_texture_list();
 
     TLanguage::set_entry_index(LANGUAGE_JAPANESE, 0x48);
     TLanguage::set_entry_index(LANGUAGE_GERMAN, 0x4B);

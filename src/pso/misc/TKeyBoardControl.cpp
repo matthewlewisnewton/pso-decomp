@@ -1,4 +1,5 @@
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/misc/SmallFontDrawing.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/WindowConstructorAbi.h"
@@ -707,7 +708,7 @@ void TWindowKeyBoardSoft__sub_802616BC(TWindowKeyBoardSoft *self, TWindowKeyBoar
     }
     end_render_forward__20TWindowSubStatusDispFPv();
     begin_screen_draw(1);
-    TWindowSubStatusDisp::render_forward();
+    begin_small_font_draw();
     set_draw_texture_and_color(0, 0xFF999999);
 
     key = calc_key_index__19TWindowKeyBoardSoftFiii(self, 2, 0);
@@ -726,7 +727,7 @@ void TWindowKeyBoardSoft__sub_802616BC(TWindowKeyBoardSoft *self, TWindowKeyBoar
             draw_textured_quad_at_depth((f32 *)&q, depth);
         }
     }
-    TWindowSubStatusDisp::begin_render();
+    bind_small_font_texture_list();
     set_draw_texture_and_color(3, 0xFF999999);
 
     tab_x = TWindowKeyBoardSoft__sub_802606E0(self);

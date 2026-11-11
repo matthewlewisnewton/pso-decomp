@@ -1,3 +1,4 @@
+#include "pso/misc/SmallFontDrawing.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/TFontSmallTask.h"
@@ -174,7 +175,7 @@ void TFontSmallTask::render() {
     }
     scale = ((f32 (*)(void *))calc_small_font_scale)(this);
     begin_screen_draw(1);
-    TWindowSubStatusDisp::render_forward();
+    begin_small_font_draw();
     while (*cursor != 0) {
         u8 c = *cursor++;
         u32 alpha;
