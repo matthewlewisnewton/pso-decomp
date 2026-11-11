@@ -3629,7 +3629,7 @@ void TObjEneMe1Canadin::render() {
                 TObjEneMe1Canadin__render_point_cursor = (s32)(arg0 + 0x414);
                 VecCopy((Vec *)(arg0 + 0x438), (const Vec *)(lbl_8043A268));
                 VecCopy((Vec *)(arg0 + 0x420), (const Vec *)(lbl_8043A274));
-                set_chunk_model_node_callback((s32)&fn_8009BD00);
+                set_chunk_model_node_callback((ChunkModelNodeCallback)&fn_8009BD00);
                 if (var_r30 == 1) {
                     ((TObjMotion *)arg0)->draw();
                 } else {
@@ -3642,7 +3642,7 @@ void TObjEneMe1Canadin::render() {
                 TObjEneMe1Canadin__render_point_cursor = (s32)(arg0 + 0x414);
                 VecCopy((Vec *)(arg0 + 0x438), (const Vec *)(lbl_8043A268));
                 VecCopy((Vec *)(arg0 + 0x420), (const Vec *)(lbl_8043A274));
-                set_chunk_model_node_callback((s32)&fn_8009BD00);
+                set_chunk_model_node_callback((ChunkModelNodeCallback)&fn_8009BD00);
                 ((TObjEneDD_ST *)arg0)->draw_with_alt_model((int) (*(s32 *)((s8 *)arg0 + 0x410)));
                 set_chunk_model_node_callback(NULL);
             }

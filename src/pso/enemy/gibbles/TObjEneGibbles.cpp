@@ -2421,7 +2421,7 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
         scale_matrix_vec3(0, (u8 *)arg0 + 0x68);
         TObjEneGibbles__render_node_index = 0;
         TObjEneGibbles__render_rotation_x = arg0->m_3bc;
-        set_chunk_model_node_callback((s32)((void *)gibbles_render_node_callback));
+        set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)gibbles_render_node_callback));
         TObjPlayer::toggle_particle_effect();
         switch (arg0->mode) {
         case 0:
@@ -2469,7 +2469,7 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
             break;
         }
         TParticleCtrl::end_effect_render();
-        set_chunk_model_node_callback((s32)NULL);
+        set_chunk_model_node_callback((ChunkModelNodeCallback)NULL);
         pop_matrix();
         restore_scene_lighting();
         if (!(arg0->m_374 & 1)) {

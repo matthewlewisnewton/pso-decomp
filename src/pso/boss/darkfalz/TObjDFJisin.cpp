@@ -946,7 +946,7 @@ void TObjDFTenchuFuru::capture_matrix_by_frame() {
 
 void TObjDFTenchuFuru__sub_80051A7C(void) { set_chunk_model_node_callback(0); }
 
-void TObjDFTenchuFuru::register_callback() { TObjDFTenchuFuru__matrix_node_index = 0; set_chunk_model_node_callback((s32)TObjDFTenchuFuru::capture_matrix_by_frame); }
+void TObjDFTenchuFuru::register_callback() { TObjDFTenchuFuru__matrix_node_index = 0; set_chunk_model_node_callback((ChunkModelNodeCallback)TObjDFTenchuFuru::capture_matrix_by_frame); }
 typedef char RecoveredGlobal_80051AD0_lbl_804858B4_size[sizeof(RecoveredGlobal_80051AD0_lbl_804858B4) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_80051AD0_lbl_804FF228_size[sizeof(RecoveredGlobal_80051AD0_lbl_804FF228) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_80051AD0_lbl_804FF234_size[sizeof(RecoveredGlobal_80051AD0_lbl_804FF234) == 0xC ? 1 : -1];

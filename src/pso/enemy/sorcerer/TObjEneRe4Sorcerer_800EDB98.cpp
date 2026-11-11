@@ -1241,7 +1241,7 @@ void render__18TObjEneRe4SorcererFv(u8 *ene_re7_berura) {
             TObjEneRe4Sorcerer__saved_render_flags = 0;
             TObjEneRe4Sorcerer__effect_render_scale = *(f32 *)((s8 *)ene_re7_berura + 0x3F8);
             (*(u8 * *)&re4_sorcerer_render_node_ptr) = ene_re7_berura + 0x3CC;
-            set_chunk_model_node_callback((s32)((void *)TObjEneRe4Sorcerer::step_effect_sequence));
+            set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjEneRe4Sorcerer::step_effect_sequence));
             model_render_flags |= 0x01000000;
             if (var_r28 == 1) {
                 ((TObjMotion *)ene_re7_berura)->draw();
@@ -1249,7 +1249,7 @@ void render__18TObjEneRe4SorcererFv(u8 *ene_re7_berura) {
                 ((TObjEnemy *)ene_re7_berura)->draw_motion_model();
             }
             model_render_flags &= 0xFEFFFFFF;
-            set_chunk_model_node_callback((s32)NULL);
+            set_chunk_model_node_callback((ChunkModelNodeCallback)NULL);
             pop_matrix();
         }
         if (*(s32 *)((s8 *)ene_re7_berura + 0x3C8) & 4) {

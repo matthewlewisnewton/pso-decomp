@@ -2990,7 +2990,7 @@ void TObjEneMe3ShinowaMirage::draw_model() {
             translate_matrix(0, 0.0f, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x3CC)), 0.0f);
             rotate_matrix_y(0, this->rotation_y);
             TObjEneMe3ShinowaMirage__render_node_index = 0;
-            set_chunk_model_node_callback((s32)((void *) (TObjEneMe3ShinowaMirage::advance_camera_ctrl_step)));
+            set_chunk_model_node_callback((ChunkModelNodeCallback)((void *) (TObjEneMe3ShinowaMirage::advance_camera_ctrl_step)));
             if (var_r31 == 1) {
                 ((TObjMotion *)((u8 *)this))->draw();
             } else {

@@ -432,7 +432,7 @@ void TObjEneShark::render() {
     }
     TObjPlayer::toggle_particle_effect();
     shark_render_node_index = 0;
-    set_chunk_model_node_callback((s32)((void *) TObjPlayer::update_particle_by_phase));
+    set_chunk_model_node_callback((ChunkModelNodeCallback)((void *) TObjPlayer::update_particle_by_phase));
     if ((*(s32 *)&this->m_390) == 1)
     {
       if (((VObj_14_800ABDD8 *) (arg0 + 0x3A8))->m8() != 0)

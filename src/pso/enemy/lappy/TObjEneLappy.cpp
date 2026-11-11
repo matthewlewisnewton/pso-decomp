@@ -1849,7 +1849,7 @@ void TObjEneRe2Flower::render() {
         m_3dc[1].y = lbl_805D9FB4;
         m_3dc[1].z = lbl_805D9FAC;
         scale_matrix(0, lbl_805D9FB8, lbl_805D9FB8, lbl_805D9FB8);
-        set_chunk_model_node_callback((s32)((void *)TObjPlayer::update_effect_sequence));
+        set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjPlayer::update_effect_sequence));
         if (mode == 8) {
             s32 c = (m_3d8 & 0xFF) << 16;
             lbl_805D5178 = -1;

@@ -123,7 +123,7 @@ void TODragonflyMachine01::render() {
         set_current_texture_list((GinjaTextureList *)(texlist));
         node_index = 0;
         node_yaw = animation_yaw;
-        set_chunk_model_node_callback((s32)&rotate_animated_node);
+        set_chunk_model_node_callback((ChunkModelNodeCallback)&rotate_animated_node);
         draw_ginja_model_with_motion(model, motion, animation_frame);
         set_chunk_model_node_callback(0);
         pop_matrix();

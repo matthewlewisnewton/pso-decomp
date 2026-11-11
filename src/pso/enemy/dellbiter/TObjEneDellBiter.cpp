@@ -1572,13 +1572,13 @@ void TObjEneDellBiter::render() {
             post_translate_matrix(&position);
             rotate_matrix_y(0, rotation_y);
             scale_matrix(0, 0.6f, 0.6f, 0.6f);
-            set_chunk_model_node_callback((s32)((void *)TObjEneDellBiter::step_demo_script));
+            set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjEneDellBiter::step_demo_script));
             if (vis == 1) {
                 this->draw();
             } else {
                 draw_motion_model();
             }
-            set_chunk_model_node_callback((s32)NULL);
+            set_chunk_model_node_callback((ChunkModelNodeCallback)NULL);
             pop_matrix();
         }
         if (flags & 2) {

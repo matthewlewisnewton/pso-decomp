@@ -218,7 +218,7 @@ s32 TObjMotion::calc_joint_matrices(NJS_MOTION *with, f32 at_frame, s32 matrices
     }
     set_motion_packed_rotation();
     player_joint_matrix_write_ptr = (Mtx34 *)matrices;
-    set_chunk_model_node_callback((s32)save_joint_matrix_callback);
+    set_chunk_model_node_callback((ChunkModelNodeCallback)save_joint_matrix_callback);
     draw_motion((NJS_OBJECT *)model, with, at_frame);
     set_chunk_model_node_callback(0);
     clear_motion_packed_rotation();
@@ -231,7 +231,7 @@ s32 TObjMotion::calc_joint_matrices(f32 at_frame) {
     }
     set_motion_packed_rotation();
     player_joint_matrix_write_ptr = anim_model_matrix_array;
-    set_chunk_model_node_callback((s32)save_joint_matrix_callback);
+    set_chunk_model_node_callback((ChunkModelNodeCallback)save_joint_matrix_callback);
     draw_motion((NJS_OBJECT *)model, current_motion, at_frame);
     set_chunk_model_node_callback(0);
     clear_motion_packed_rotation();
@@ -263,7 +263,7 @@ void save_joint_matrix_callback() {
 void TObjMotion::draw_saving_joints() {
     u32 flags;
     player_joint_matrix_write_ptr = (Mtx34 *)joint_matrices;
-    set_chunk_model_node_callback((s32)save_joint_matrix_callback);
+    set_chunk_model_node_callback((ChunkModelNodeCallback)save_joint_matrix_callback);
     flags = motion_flags;
     if ((flags & MOTION_BLENDING) && !(flags & MOTION_DRAW_UNBLENDED)) {
         draw_model_blend_motion(model, &blend, frame);
@@ -281,7 +281,7 @@ void TObjMotion::draw_saving_joints_checked() {
     matrices = (Mtx34 *)joint_matrices;
     if (matrices != NULL) {
         player_joint_matrix_write_ptr = matrices;
-        set_chunk_model_node_callback((s32)save_joint_matrix_callback);
+        set_chunk_model_node_callback((ChunkModelNodeCallback)save_joint_matrix_callback);
         flags = motion_flags;
         if ((flags & MOTION_BLENDING) && !(flags & MOTION_DRAW_UNBLENDED)) {
             draw_model_blend_motion(model, &blend, frame);
@@ -298,7 +298,7 @@ void TObjMotion::draw_motion_model() {
     if (motion_flags & MOTION_BLENDING) {
         draw_model_blend_motion(model, &blend, frame);
     } else {
-        set_chunk_model_node_callback(chunk_model_node_callback);
+        set_chunk_model_node_callback((ChunkModelNodeCallback)chunk_model_node_callback);
         draw_model_motion(model, current_motion, frame);
         set_chunk_model_node_callback(0);
     }
@@ -312,7 +312,7 @@ void TObjMotion::draw() {
     if (motion_flags & MOTION_BLENDING) {
         draw_model_blend_motion(model, &blend, frame);
     } else {
-        set_chunk_model_node_callback(chunk_model_node_callback);
+        set_chunk_model_node_callback((ChunkModelNodeCallback)chunk_model_node_callback);
         draw_model_motion(model, current_motion, frame);
         set_chunk_model_node_callback(0);
     }
