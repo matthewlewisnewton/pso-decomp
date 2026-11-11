@@ -532,6 +532,96 @@ those predicates. A retail file hash alone cannot discharge them. No memory
 fact is seeded into the tracker and all unresolved indirect entries remain
 unknown.
 
+## Controlled read-boundary execution
+
+The next discriminator tests the read/callback predicates against original
+machine code, with synthetic data and explicit external-call models. The
+[read-boundary probe](../../tools/probe_loader_read_boundaries.py) uses
+Unicorn 2.1.4 in 32-bit big-endian PPC mode. Both the original DOL hash and
+the checked symbol-inventory hash are pinned. It executes only an explicit
+allowlist of 17 original function ranges and stops at the entry to
+`fn_8042EBA4`; it never executes LaunchDol, seeds its indirect target or
+executes the held restore. An unknown code boundary or instruction bound
+fails the probe. Original input bytes remain private and unchanged.
+
+The executed ranges include the caller, size/read/open/lookup functions,
+pending-read setters/resetters, the cache-buffer setter and
+`draw_chunk_vertices_cached`. The latter two functions are individually
+exact in their current report but their combined unit remains original-
+provided; this investigation does not activate it. Device operations,
+standard memory/string helpers, display calls and the launch-argument helper
+are modeled boundaries. The full frame callback is replaced by a chosen
+invocation of the original cache-drawing function. No live task tree, device,
+allocator state or selected resource is reconstructed.
+Boundary returns clobber volatile GPRs while retaining CR/CTR/FPR state;
+this is a limited call model, not full ABI emulation. SDA bases come from the
+checked native linked ELF. Controls verify that the original size getter
+and cache setter access their intended fixture globals at those bases.
+
+The original sector-read object confirms this order: start the read; publish
+the pending handle/count/destination; poll for status **equal to 3**; call
+`TLobby::run_frame` for every other status; reset pending state after 3.
+The read-start return value is not inspected. The reconstructed source's
+one-argument declaration of `read_checked_align` omits its count/destination
+parameters; the original call retains both in r4/r5. The probe captures those
+actual PPC registers and introduces no production interface correction or
+assumption about a host compiler's calling convention.
+
+The caller captures the resource-buffer pointer in r30 and the initial size
+in r31 before `read_disc_file`; it forwards those saved values afterwards.
+The stream separately captures its selected handle in its local prefix.
+The pending-read fields and cache pointer/flags remain global. Consequently,
+rebinding the resource-buffer global alone would not redirect the pointer
+already captured by this caller; preservation of the pointed-to header and
+the selected handle's lifetime still require evidence. The source's
+`TLobby::flush_pending` can resubmit the recorded read when its retry flag
+is set, and then checks other registered reads. Those retry paths are not
+emulated by the controlled frame callback and remain additional state to
+establish for a real execution.
+
+Nine controls use synthetic 4,864-byte disc and 6,912-byte GSL images with
+distinct synthetic entry words. They produce these bounded results:
+
+| Chosen boundary conditions | Observed original-code behavior |
+|---|---|
+| Successful disc read, no frame callback | Forwards disc fixture's buffer and queried size |
+| Active matching GSL entry | Uses archive fixture and its size; no disc open |
+| Active GSL table without the name | Uses disc fallback |
+| Initial size query succeeds, read's later size query fails to open | Issues no sector read; still forwards the original queried size and stale buffer |
+| One callback during the remainder wait, cache replay aliases payload | Original cache function copies the synthetic replacement header; remainder copy leaves that word changed |
+| Same callback, `chunk_render_flags & 4` | Cache write is skipped; disc fixture's header remains |
+| Same callback, zero cached byte count | No cache copy; disc fixture's header remains |
+| Same callback, cache buffer points elsewhere | Alternate buffer changes; payload fixture's header remains |
+| Read-start returns failure and status stays noncomplete | Eight modeled frame calls, then a harness stop on the ninth status poll; no forwarding |
+
+The bounded-wait result is a harness stop, not a timeout or error branch in
+the game. The modeled status sequence is not asserted to occur on hardware.
+For the callback cases, the first full-sector transfer completes before the
+remainder wait and the callback occurs before its completion; these are
+chosen scheduling conditions. The actual frame machinery's ability to reach
+that cache operation during this launch remains unproved. The guard, empty
+cache and separate-buffer controls demonstrate why that state matters.
+The failure control also distinguishes the queried record size from a
+successful payload read; forwarding that size does not authenticate a header.
+
+All nine controls pass. The ordinary 30 original-free analysis tests remain
+separate: these nine cases additionally require the authorized private DOL
+and pinned emulator dependency. Reproduce in an ignored environment with
+`unicorn==2.1.4` installed:
+
+```sh
+python3 tools/probe_loader_read_boundaries.py --dol PRIVATE/PsoV3.dol --output build/read-boundaries.json
+```
+
+This provides reproducible counterexamples to assuming that file metadata,
+the read call or a frame wait alone preserves the header. It does not prove
+any chosen external outcome, an actual clobber, arbitrary indirect entry or
+restore ownership. The remaining discriminator is the **actual callback/task
+tree, cache pointer/flags/count and I/O outcomes at this launch**. An
+authenticated call-site state or authorized runtime observation could settle
+those predicates; the current controlled runs cannot. All original providers,
+function extents and strict accounting holds remain in place.
+
 ## Comparison record and reproduction limits
 
 The historical comparison procedure is preserved at immutable commit
