@@ -2156,7 +2156,7 @@ void TObjEneMe3ShinowaMirage::load_shared_resources() {
     lbl_80500FF4.x = TObjEneMe3ShinowaMirage__data_805DA5B8;
     lbl_80500FF4.y = TObjEneMe3ShinowaMirage__data_805DA5B8;
     lbl_80500FF4.z = TObjEneMe3ShinowaMirage__data_805DA5B8;
-    u32 root_model = TObjEneMe3ShinowaMirage__data_805D5298->models[0].model;
+    u32 root_model = (s32)TObjEneMe3ShinowaMirage__data_805D5298->models[0].model;
     NJS_CNK_MODEL *part = (NJS_CNK_MODEL *)((NJS_OBJECT *)find_model_node(root_model, 9))->model;
     lbl_80501000[0] = part ? (s32 *)(part->polygon_list + 2) : NULL;
     part = (NJS_CNK_MODEL *)((NJS_OBJECT *)find_model_node(root_model, 13))->model;
@@ -2165,7 +2165,7 @@ void TObjEneMe3ShinowaMirage::load_shared_resources() {
     if (part) lbl_80501000[2] = (s32 *)(part->polygon_list + 2); else lbl_80501000[2] = NULL;
     AnimationMotion *motion = TObjEneMe3ShinowaMirage__data_805D5298->motions[shinowa_mirage_motion_param_table[4].motion].motion;
     void *allocation = ::operator new(sizeof(TUnk_8048FA00));
-    if (allocation) allocation = init__11TBreakUpMdlFPviif(allocation, TObjEneMe3ShinowaMirage__data_805D5298->models[0].model, (s32)motion, (f32)(motion->frameCount - 1));
+    if (allocation) allocation = init__11TBreakUpMdlFPviif(allocation, (s32)TObjEneMe3ShinowaMirage__data_805D5298->models[0].model, (s32)motion, (f32)(motion->frameCount - 1));
     TObjEneMe3ShinowaMirage__data_805D52A0 = (TUnk_8048FA00 *)allocation;
     NJS_OBJECT *model = (NJS_OBJECT *)TObjEneMe3ShinowaMirage__data_805D5298->models[0].model;
     Vec position, offset;
@@ -2186,8 +2186,8 @@ void TObjEneMe3ShinowaMirage::load_shared_resources() {
     NpcAnimationBinding descriptor = lbl_8043CF84;
     const BmlResource *npc_resource = TObjEneMe3ShinowaMirage__data_805D5298;
     descriptor.motions = npc_resource->motions;
-    register_shinowa_npc(38, npc_resource->models[0].model, npc_resource->models[0].m_c, &descriptor);
-    register_shinowa_npc(39, TObjEneMe3ShinowaMirage__data_805D5298->models[0].model, (s32)&lbl_80500FEC, &descriptor);
+    register_shinowa_npc(38, (s32)npc_resource->models[0].model, (s32)npc_resource->models[0].m_c, &descriptor);
+    register_shinowa_npc(39, (s32)TObjEneMe3ShinowaMirage__data_805D5298->models[0].model, (s32)&lbl_80500FEC, &descriptor);
 }
 
 #pragma pop

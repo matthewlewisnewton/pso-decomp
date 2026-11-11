@@ -1426,7 +1426,7 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
     ((TObjChara *)self)->initialize_position_copies();
     apply_actor_gravity(self, 0, TObjEneIllGill__data_805E02BC);
     model = (void *)illGillResource->models->model;
-    texlist = illGillResource->models->m_c;
+    texlist = (s32)illGillResource->models->m_c;
     motion_list = illGillResource->motions;
     action_table = illGillActions;
     this->set_action_table((TObjMotionAction *)((s32)action_table));

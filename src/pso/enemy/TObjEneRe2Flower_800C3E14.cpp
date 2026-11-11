@@ -193,7 +193,7 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData)
     }
     init_position_vectors();
     model = (void *)((BmlResource *)lbl_805D5174)->models->model;
-    texlist = ((BmlResource *)lbl_805D5174)->models->m_c;
+    texlist = (s32)((BmlResource *)lbl_805D5174)->models->m_c;
     if (get_flag_11())
         init_model(flower_tower_collision_parts, 2);
     else

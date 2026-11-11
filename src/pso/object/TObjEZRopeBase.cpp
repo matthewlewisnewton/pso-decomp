@@ -20,7 +20,7 @@ void *__vt__21TObjHMS_EZRope_Player[6] = {
 #pragma pop
 
 TObjEZRopeBase::~TObjEZRopeBase() {
-    if (points != nullptr) { TAdSinglePlyChrSelectGC::safe_free((u32)points); points = nullptr; }
+    if (points != nullptr) { TAdSinglePlyChrSelectGC::safe_free((void *)points); points = nullptr; }
 }
 
 #include "types.h"

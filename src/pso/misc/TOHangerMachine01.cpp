@@ -109,7 +109,7 @@ TOHangerMachine01::TOHangerMachine01(void *set_data) : TObjMapObject(tl_05) {
     m_name = TOHangerMachine01__class_name;
     apply_object_set_data(set_data);
     model = (void *)TOHangerMachine01__bml_resource->models[0].model;
-    texlist = TOHangerMachine01__bml_resource->models[0].m_c;
+    texlist = (s32)TOHangerMachine01__bml_resource->models[0].m_c;
     view_range = 500.0f;
     model_radius = 50.0f;
     actorFlags |= 0x40000000;

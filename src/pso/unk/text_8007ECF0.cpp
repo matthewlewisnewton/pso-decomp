@@ -213,18 +213,18 @@ void fn_8007F27C(TDLGraph *graph, const GraphPoint *position, const GraphPoint *
     vertices[1].x = vertices[2].x = margin + (position->x + size->x);
     vertices[0].y = vertices[1].y = position->y - margin;
     vertices[2].y = vertices[3].y = margin + (position->y + size->y);
-    ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 2, -2.0f);
+    ((ColorLineList *)&fan)->draw_tri_fan_2d(4, 2, -2.0f);
 
     colors[0] = colors[1] = colors[2] = colors[3] = graph->bar_color;
     vertices[0].x = vertices[3].x = position->x;
     vertices[1].x = vertices[2].x = size->x * graph->progress + position->x;
     vertices[0].y = vertices[1].y = position->y;
     vertices[2].y = vertices[3].y = size->y + position->y;
-    ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 2, lbl_805D92B8);
+    ((ColorLineList *)&fan)->draw_tri_fan_2d(4, 2, lbl_805D92B8);
 
     colors[0] = colors[1] = colors[2] = colors[3] = graph->m_38;
     vertices[0].x = vertices[3].x = size->x + position->x;
-    ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 2, lbl_805D92B8);
+    ((ColorLineList *)&fan)->draw_tri_fan_2d(4, 2, lbl_805D92B8);
 }
 
 #pragma pop

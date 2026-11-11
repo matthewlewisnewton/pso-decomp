@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
 #include "pso/misc/ParticleFactory.h"
@@ -22,7 +23,6 @@ struct Init_80174CFC { u8 b[0x4C]; };
 struct Offs_80174CFC { Vec_80174CFC v[6]; };
 
 extern "C" {
-s32 TObjFish__sub_8001EDB0(void *, int);
 void *__nw__7TObjectFUl(u32);
 void vec3_add_to(void *, void *);
 void rotate_vector_by_matrix(int, void *, void *);
@@ -65,7 +65,7 @@ void TORockCaveBrakable::vfunc_16() {
         VecCopy((Vec *)&init.b[0xC], (const Vec *)&this->position);
         vec3_add_to(&init.b[0xC], &v);
         *(s32 *)((s8 *)&init + 0x40) = (s32)get_bml_model((BmlResource *)rock_cave_model_resource, i);
-        *(s32 *)((s8 *)&init + 0x44) = TObjFish__sub_8001EDB0(rock_cave_model_resource, i);
+        *(s32 *)((s8 *)&init + 0x44) = (s32)TObjFish__sub_8001EDB0((BmlResource *)rock_cave_model_resource, (s32)i);
         p = __nw__7TObjectFUl(0x234);
         if (p != NULL) {
             __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)p, (u8 *)tl_05, (u8 *)&init);

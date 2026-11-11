@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -32,7 +33,6 @@ struct RecoveredGlobal_802A3B00___vt__11TObjNpcHosa {
 };
 
 extern "C" {
-s32 TObjFish__sub_8001EDB0(int, int);
 extern s32 __vt__11TObjNpcHosa[];
 extern const char *TObjNpcHosa__name;
 void *__ct__11TObjControlFP7TObject(void *, void *);
@@ -75,7 +75,7 @@ u8 *TObjNpcHosa__ct(u8 *player, s32 arg1, s32 arg2) {
     ((TObjNpcHosa *)(player))->apply_set_data((void *)arg2);
     ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&TObjNpcHosa__static_model_resource)), 0);
-    ((TObjNpcHosa *)player)->texlist = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TObjNpcHosa__static_model_resource)), 0);
+    ((TObjNpcHosa *)player)->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&TObjNpcHosa__static_model_resource), 0);
     ((TObjNpcBase *)player)->setup_common();
     return player;
 }

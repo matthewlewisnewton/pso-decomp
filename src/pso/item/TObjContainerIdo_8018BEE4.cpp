@@ -323,7 +323,7 @@ void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
 void TObjContainerIdo::free_resources() {
     if ((u32) container_ido_texture_gvm_handle != 0U) {
         release_texture_list((void*)container_ido_texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(container_ido_texture_gvm_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)container_ido_texture_gvm_handle);
         container_ido_texture_gvm_handle = 0U;
     }
     if ((u32) TObjContainerIdo__model_resource != 0U) {

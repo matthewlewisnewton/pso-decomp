@@ -29,7 +29,7 @@ extern RecoveredGlobal_8019A9B8_lbl_804B8F60 obj_f_enemy_resource_descriptor;
 void TRaderMapCore::free_statics() {
     if (TRaderMapCore__data_805D5F4C != NULL) {
         release_texture_list(TRaderMapCore__data_805D5F4C);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TRaderMapCore__data_805D5F4C);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TRaderMapCore__data_805D5F4C);
         TRaderMapCore__data_805D5F4C = NULL;
     }
     if ((u32) TRaderMapCore__frame_model_resource != 0U) {

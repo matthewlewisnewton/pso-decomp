@@ -14,7 +14,7 @@ s32 release_texture_list(void*);
 void TLobby::free_char_select_singleton() {
     if ((u32) inazuma_texture_list != 0U) {
         release_texture_list((void*)inazuma_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(inazuma_texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)inazuma_texture_list);
         inazuma_texture_list = 0U;
     }
 }

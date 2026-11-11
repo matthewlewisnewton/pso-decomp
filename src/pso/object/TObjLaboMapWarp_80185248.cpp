@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -150,7 +151,6 @@ struct Obj_80185BE8 { u8 pad[0xC4]; f32 t; };
 extern "C" {
 
 s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
 int is_quest_active(void);
 s32 get_localized_text_entry(s32, s32);
 void run_task__15TObjLaboMapWarpFv(u8 *arg0);
@@ -249,7 +249,7 @@ void TObjLaboMapWarp::render() {
     s32 temp_r31;
 
     if (((VObj_80185248 *)arg0)->m8(lbl_805DBC80, lbl_805DBC84) != 0) {
-        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjLaboMapWarp__resource_bundle, 1)));
+        set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)TObjLaboMapWarp__resource_bundle, 1)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation.yaw);

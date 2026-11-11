@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -115,8 +116,6 @@ extern TObject *tl_04;
 extern const char *lbl_805D2AB8;
 extern const s32 lbl_8043CD38[];
 CollisionBody *init_collision_body_parts(TObjCollidable *, CollisionBody *, s32);
-s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
-
 extern TObjMotionAction lbl_80495524[];
 extern const char lbl_8043CD28[] = "TObjEnePanBARA";
 extern const s32 lbl_8043CD38[] = {1, 2};
@@ -206,7 +205,7 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *set_data, s32 part) : TObj
         exchange_object_state(&saved, 0);
     }
     part_index = part;
-    texlist = TObjFish__sub_8001EDB0((BmlResource *)TObjEnePanarms__entry_params_resource, lbl_8043CD38[part_index]);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)((BmlResource *)TObjEnePanarms__entry_params_resource), (s32)(lbl_8043CD38[part_index]));
     model = (void *)get_bml_model((BmlResource *)TObjEnePanarms__entry_params_resource, lbl_8043CD38[part_index]);
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     collision_body = init_collision_body_parts(this, lbl_80495458, 1);

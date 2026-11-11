@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
@@ -143,7 +144,7 @@ void TOKeyAncient02::load_resources() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fs_obj_o_doorswitch01_resource_descriptor), 0, 0, (void *)(0));
     TOKeyAncient02__model_archive = resource;
     TOKeyAncient02__texture_lists = (s32 *)::operator new[](8);
-    TOKeyAncient02__texture_lists[0] = TObjFish__sub_8001EDB0(TOKeyAncient02__model_archive, 0);
+    TOKeyAncient02__texture_lists[0] = (s32)TObjFish__sub_8001EDB0((BmlResource *)TOKeyAncient02__model_archive, 0);
     TOKeyAncient02__texture_lists[1] = (s32)load_gvm_texture_file("o_key_ancient02.gvm");
     TOKeyAncient02__glass_model = get_bml_model(TOKeyAncient02__model_archive, 0);
 }
@@ -158,7 +159,7 @@ TOKeyAncient02::TOKeyAncient02(TObject *parent, void *set_data) : TOKey(parent) 
     apply_object_set_data(set_data);
     init_switch_id();
     model = (void *)get_bml_model(TOKeyAncient02__model_archive, 1);
-    texlist = TObjFish__sub_8001EDB0(TOKeyAncient02__model_archive, 1);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)TOKeyAncient02__model_archive, 1);
     init_collision_body_parts(this, key_ancient02_collision_body, 1);
     refresh_collision_body_centers();
     register_object_by_id();

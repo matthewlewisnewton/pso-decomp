@@ -1295,7 +1295,7 @@ void TCameraCtrl::reset_viewport_scissor() {
     if (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069534_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 0x200) {
         *(s32 *)((s8 *)(&(*(RecoveredGlobal_80069534_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) = (s32) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069534_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 0xFFFFFDFF);
     }
-    set_viewport_scissor__11TCameraCtrlFiPv(0, (void *)&stack.sp8);
+    TCameraCtrl::set_viewport_scissor(0, (void *)&stack.sp8);
 }
 #pragma pop
 

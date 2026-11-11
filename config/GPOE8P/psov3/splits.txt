@@ -9496,7 +9496,7 @@ pso/object/TObjCMName.cpp:
 	.text       start:0x802948F4 end:0x80298F38
 	.ctors      start:0x80433FC0 end:0x80433FC4
 	.rodata     start:0x80465140 end:0x80465150
-	.data       start:0x804DB950 end:0x804DBD48
+	.data       start:0x804DB950 end:0x804DBDC0
 	.bss        start:0x80540988 end:0x805409C8
 	.sbss       start:0x805D65A0 end:0x805D65A8
 	.sdata2     start:0x805DDA6C end:0x805DDC20
@@ -9621,6 +9621,9 @@ pso/object/TObjFish.cpp:
 	.text       start:0x8029D504 end:0x8029E764
 	.rodata     start:0x80465A48 end:0x80465E08
 	.data       start:0x804DC640 end:0x804DC7B4
+	.sdata      start:0x805D3D58 end:0x805D3D5C
+	.sbss       start:0x805D65E8 end:0x805D65F0
+	.sdata2     start:0x805DDD40 end:0x805DDD88
 
 pso/map/FloorArea_8029E764.cpp:
 	.text       start:0x8029E764 end:0x8029E7BC
@@ -11754,8 +11757,12 @@ pso/misc/TWindowDD_80342E40.cpp:
 	.text       start:0x80342E40 end:0x803430BC
 
 pso/misc/TWindowDD_803430BC.cpp:
-	.text       start:0x803430BC end:0x80346A84
-	.data       start:0x804EFD68 end:0x804EFF1C
+	.text       start:0x803430BC end:0x8034435C
+	.data       start:0x804EFD68 end:0x804EFDBC
+
+pso/misc/TWindowDD_8034435C.cpp:
+	.text       start:0x8034435C end:0x80346A84
+	.data       start:0x804EFDC0 end:0x804EFF1C
 
 pso/misc/TWindowDD_80346A84.cpp:
 	.text       start:0x80346A84 end:0x80346F48

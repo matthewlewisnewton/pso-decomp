@@ -103,7 +103,7 @@ void *TMotorcycle::create() {
 void TMotorcycle::free_statics() {
     if ((u32) TMotorcycle__texture_list != 0U) {
         release_texture_list((void*)TMotorcycle__texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(TMotorcycle__texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TMotorcycle__texture_list);
         TMotorcycle__texture_list = 0U;
     }
     if ((u32) TMotorcycle__bml_resource != 0U) {

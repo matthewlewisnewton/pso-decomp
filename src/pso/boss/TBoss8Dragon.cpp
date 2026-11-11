@@ -6917,7 +6917,7 @@ void TBoss8Dragon__sub_802FD9D0(void) { (*(int *)&TBoss8Dragon__data_805D69B8) =
 
 void TBoss8Dragon::free_static() {
     if ((u32) (*(u32 *)&TBoss8Dragon__data_805D69A8) != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)((void*)(*(u32 *)&TBoss8Dragon__data_805D69A8)));
+        TAdSinglePlyChrSelectGC::safe_free((void *)((void*)(*(u32 *)&TBoss8Dragon__data_805D69A8)));
         (*(u32 *)&TBoss8Dragon__data_805D69A8) = 0U;
     }
     if ((u32) TBoss8Dragon__data_805D6988 != 0U) {
