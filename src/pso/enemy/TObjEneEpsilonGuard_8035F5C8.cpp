@@ -1554,13 +1554,13 @@ void TObjEneEpsilonBody::set_guard_state() {
     void *arg0 = (void *)this;
     if (this->m_438 & 2) {
         *(s16 *)((s8 *)arg0 + 0x43C) = 1;
-        *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(lbl_805D6FA0, 0);
+        *(NJS_OBJECT **)((s8 *)arg0 + 0x34) = get_bml_model(lbl_805D6FA0, 0);
         this->requested_action = 0;
         ((TObjCollidable *)arg0)->set_indexed_flags(1, 1);
         ((TObjCollidable *)arg0)->clear_player_status_flag(0, 1);
     } else {
         *(s16 *)((s8 *)arg0 + 0x43C) = 0;
-        *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(lbl_805D6FA0, 1);
+        *(NJS_OBJECT **)((s8 *)arg0 + 0x34) = get_bml_model(lbl_805D6FA0, 1);
         this->requested_action = 1;
         ((TObjCollidable *)arg0)->set_indexed_flags(0, 1);
         ((TObjCollidable *)arg0)->clear_player_status_flag(1, 1);

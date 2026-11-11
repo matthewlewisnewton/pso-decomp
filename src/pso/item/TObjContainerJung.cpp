@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/system/BmlResourceClass.h"
@@ -527,7 +528,6 @@ struct Obj_8018D4DC {
 };
 
 extern "C" {
-u8 * get_bml_model(void *, int);
 extern s32 TObjContainerJung__bml_model_resource;
 s32 TObjFish__sub_8001EDB0(void *, s32);
 extern RecoveredGlobal_8018D47C_lbl_804B7134 TObjContainerJung__resource_descriptor;
@@ -561,7 +561,7 @@ s32 TObjContainerJung__sub_8018D3B8(s32) {
 
 u8 *TObjContainerJung::get_model_by_index(s32 arg0) {
     if ((void *) (*(u8 * *)&TObjContainerJung__bml_model_resource) != NULL) {
-        return get_bml_model((*(u8 * *)&TObjContainerJung__bml_model_resource), arg0);
+        return (u8 *)get_bml_model((BmlResource *)(*(u8 * *)&TObjContainerJung__bml_model_resource), arg0);
     }
     return NULL;
 }
@@ -605,7 +605,7 @@ void TObjContainerJung__vt77(const Obj_8018D4DC *self) {
         a.pos.y = py;
         a.pos.z = pz;
         a.f38 = py;
-        a.f40 = (s32) get_bml_model((void *) TObjContainerJung__bml_model_resource, 1);
+        a.f40 = (s32) (u8 *)get_bml_model((BmlResource *)TObjContainerJung__bml_model_resource, 1);
         a.f44 = TObjContainerJung__bml_aux_handle;
         Spawn_8018D4DC b = container_jung_spawn_params;
         f32 qz;
@@ -618,7 +618,7 @@ void TObjContainerJung__vt77(const Obj_8018D4DC *self) {
         b.pos.y = qy;
         b.pos.z = qz;
         b.f38 = qy;
-        b.f40 = (s32) get_bml_model((void *) TObjContainerJung__bml_model_resource, 2);
+        b.f40 = (s32) (u8 *)get_bml_model((BmlResource *)TObjContainerJung__bml_model_resource, 2);
         b.f44 = TObjContainerJung__bml_aux_handle;
         spawn_particle_effect_with_flags((void *)&self->pos, 0x45, 0x40);
         spawn_particle_effect_with_flags((void *)&self->pos, 0x46, 0x40);
@@ -663,9 +663,9 @@ void TObjContainerJung::vfunc_81() {
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_y(0, this->rotation.yaw);
             scale_matrix(0, 0.85f, 0.85f, 0.85f);
-            draw_ginja_object((void *)get_bml_model(*(u8 **)&TObjContainerJung__bml_model_resource, 0));
+            draw_ginja_object((void *)(u8 *)get_bml_model((BmlResource *)*(u8 **)&TObjContainerJung__bml_model_resource, 0));
             TParticleCtrl::begin_effect_render();
-            draw_ginja_object((void *)get_bml_model(*(u8 **)&TObjContainerJung__bml_model_resource, 3));
+            draw_ginja_object((void *)(u8 *)get_bml_model((BmlResource *)*(u8 **)&TObjContainerJung__bml_model_resource, 3));
             TParticleCtrl::end_effect_render();
             pop_matrix();
             break;

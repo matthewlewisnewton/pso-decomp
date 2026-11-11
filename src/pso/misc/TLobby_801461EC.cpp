@@ -1,4 +1,4 @@
-#include "pso/network/DhcpAccessors.h"
+#include "pso/network/DhcpClient.h"
 #include "types.h"
 #include "pso/misc/TLobby.h"
 #include "pso/system/memory.h"
@@ -153,7 +153,6 @@ struct Info_80146D7C {
 
 extern "C" {
 void fn_80147A60(int a0);
-s16 TLobby__sub_80424D58(s16, s32, s32, void *, void *, s32 *, void *, s32);
 s16 TLobby__sub_80424E44(s16);
 extern s32 lbl_805D56E8;
 extern s32 lbl_805D56EC;

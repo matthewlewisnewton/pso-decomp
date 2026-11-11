@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -54,7 +55,6 @@ extern s32 model_render_flags;
 void __ct__9TObjCharaFP7TObject(void *, void *);
 void obj_setFlags30(void *, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 void activate_and_dispatch__15RenderFadeStateFv(void *, s32, f32);
 void init_collision_body_parts(void *, void *, s32);
 extern u8 ovs2wall01_collision_parts[];
@@ -158,7 +158,7 @@ void *TOVS2Wall01__ct(TOVS2Wall01 *arg0, void *arg1) {
     arg0->apply_object_set_data(arg1);
     ((TObjChara *)arg0)->calc_attach_pos();
     obj_setFlags30(arg0, 0x60000000);
-    *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(TOVS2Wall01__bml_resource, 6);
+    *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model((BmlResource *)TOVS2Wall01__bml_resource, 6);
     arg0->texlist = TObjFish__sub_8001EDB0(TOVS2Wall01__bml_resource, 6);
     init_collision_body_parts(arg0, ovs2wall01_collision_parts + 0x108, 1);
     ((TObjCollidable *)arg0)->set_indexed_flags(0, 0x08000000);

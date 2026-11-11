@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
 
+struct BmlResource;
+
 struct TBoss4Type3CollisionState {
     u8 unknown00[0x18]; u32 flags;
     u8 unknown1c[0xC]; f32 radius;
@@ -31,7 +33,7 @@ struct TBoss4Type3 : public TObjEnemy {
     void* m_378;
     u8 _pad37C[0x10];
     u32 m_38c;
-    s32 m_390;
+    BmlResource *m_390;
     TBoss4Type3CollisionState *m_394;
     s32 m_398;
     f32 m_39c;

@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
@@ -451,7 +452,6 @@ u16 get_entity_id(void *);
 s32 is_split_screen();
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 s32 fn_80044330(void *);
 void fn_8004AA04(void *);
 s32 pick_random_target_player__11TBoss4Type3Fv(void);
@@ -1186,7 +1186,7 @@ void TBoss4Type2::spawn_afterimages() {
     z.f28 = 10;
     for (i = 0; i < 2; i++) {
         z.f10 = TObjFish__sub_8001EDB0(((Obj_8005676C *)this)->f390, boss4_zanzo_bml_index_table[i]);
-        z.f14 = get_bml_model(((Obj_8005676C *)this)->f390, boss4_zanzo_bml_index_table[i]);
+        z.f14 = (s32)get_bml_model((BmlResource *)((Obj_8005676C *)this)->f390, boss4_zanzo_bml_index_table[i]);
         z.f18 = get_bml_motion(((Obj_8005676C *)this)->f390, ((Row_8005676C *)&TBoss4Type2__attack_pattern_table)[((Obj_8005676C *)this)->f3c8].c[i]);
         TBoss4Type2::create_zanzo(this, &z);
     }
@@ -1495,7 +1495,7 @@ void TUnk_80486924::draw_hanger() {
             model_render_flags |= 0x20000;
             TObjEneRe4Sorcerer__sub_801E3F1C(0.0f, arg0->f3c0);
             ((ModelNodePositionCapture *)(arg0->f44c))->install();
-            draw_model_motion((void *)get_bml_model(arg0->f390, boss4_zanzo_bml_index_table[i]),
+            draw_model_motion((void *)get_bml_model((BmlResource *)arg0->f390, boss4_zanzo_bml_index_table[i]),
                 (void *)get_bml_motion(arg0->f390, (s32)(((Row_80057270 *)&TBoss4Type2__attack_pattern_table)[arg0->f3c8].c[i])),
                 arg0->f3d0);
             ((ModelNodePositionCapture *)(arg0->f44c))->clear();
@@ -1503,7 +1503,7 @@ void TUnk_80486924::draw_hanger() {
             break;
         default:
             TBoss6PlotFalz__sub_802AC008(arg0->f3f0, arg0->f3f4);
-            draw_model_motion((void *)get_bml_model(arg0->f390, boss4_zanzo_bml_index_table[i]),
+            draw_model_motion((void *)get_bml_model((BmlResource *)arg0->f390, boss4_zanzo_bml_index_table[i]),
                 (void *)get_bml_motion(arg0->f390, (s32)(((Row_80057270 *)&TBoss4Type2__attack_pattern_table)[arg0->f3c8].c[i])),
                 arg0->f3d0);
             TBoss6PlotFalz::update_camera_target();
@@ -1679,7 +1679,7 @@ u8 *TBoss4Type2__ct(u8 *arg0, s32 parent, s32 *arg2) {
     *(s32 *)((s8 *)arg0 + 0x38C) = arg2[0];
     ((TUnk_80486924 *)arg0)->apply_set_data(arg2 + 1);
     ((TUnk_80486924 *)arg0)->clear_lobby_object_state();
-    *(s32 *)((s8 *)arg0 + 0x390) = TBoss4Uro::get_instance_count();
+    *(BmlResource **)((s8 *)arg0 + 0x390) = TBoss4Uro::get_instance_count();
     *(s32 *)((s8 *)arg0 + 0x24) = 0;
     *(s32 *)((s8 *)arg0 + 0x34) = 0;
     VecCopy((Vec *)(arg0 + 0x38), (const Vec *)boss4_type2_start_position);

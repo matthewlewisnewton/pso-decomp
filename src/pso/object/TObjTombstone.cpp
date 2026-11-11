@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 // TObject's helpers are out-of-line functions for this TU (run_task calls
 // TObject::queue_destruction, defined elsewhere).
@@ -47,7 +48,6 @@ f32 vector_length(const Vec *v);
 f32 vec3_dot(const Vec *a, const Vec *b);
 extern s32 TLobby__designated_client_id;
 s32 TObjFish__sub_8001EDB0(BmlResource *resource, s32 index);
-s32 get_bml_model(BmlResource *resource, s32 index);
 s32 PPCSync();
 u32 calc_text_width(const char *);
 void draw_menu_font_string(const char *, u32, s32, f32, f32, f32);

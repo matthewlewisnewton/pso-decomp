@@ -145,3 +145,21 @@ without exact/linked loss. All original controls, Message/Palette identities,
 Parts/balloon qualifications and protected preview/remainder checks pass again.
 No local lifecycle source/profile experiment or hold clearance follows from this
 refresh. Current receipts are in `pr403-refresh22d/` and `pr403-main22d` files.
+
+
+The subsequent BML/Zako/DHCP main `829806820f864516b12abff6bd439c4ad84392a1`
+is integrated cleanly across203 incoming paths. Nonshared incoming blobs match
+accepted main; shared symbol/configuration/exception inventories preserve both
+sets of required entries. Fresh main and combined gated builds pass in91.02 and
+39.73 seconds with the original DOL. Both acceptance comparisons pass with3611
+exact linked units and18821 retention names without drift. Strict prior-B losses
+remain empty; the same fourteen qualified four-byte window tails remain against
+main without exact/linked loss. All22 controls, six Message complete-ELF identities,
+Palette identity, Parts/balloon qualifications and protected preview/remainder
+checks pass. Current receipts are in `pr403-refresh829/`.
+
+The distinct [stored-client/exit-dispatch audit](window-custom-select-client-identity.md)
+adds original body/target and constructor-reference evidence. The inspected normal
+exit path has no local-client exclusion, but valid-session notification semantics
+and scheduling for the stored menu slot remain unproved. No reachable failure or
+hold clearance follows; no speculative game-source correction is activated.

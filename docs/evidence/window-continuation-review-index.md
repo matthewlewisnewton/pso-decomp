@@ -1,7 +1,9 @@
 # Window continuation: current review and blocker index
 
-This draft continues the focused GuildWarning branch
-`codex/guildwarning-focused-20261110`; its initial PR base is that branch.
+This draft continues the focused GuildWarning work. The initial base was
+`codex/guildwarning-focused-20261110`; focused PR #402 has since merged and
+continuation PR #403 now targets main. Historical stack checkpoints below retain
+their original bases and validation scope.
 The two-commit continuation keeps the coupled implementation/configuration graph
 atomic, then restores its evidence and attribution. It is not a claim of 100%
 completion or portable recovery of every historical ABI boundary.
@@ -274,7 +276,7 @@ remain unqualified; no Parts import or probe is activated.
 | ScrollBar / ChallengeResult / follower | Bounded native probes and contracts recorded | Constant-pool/data-base/producer differences; no repeated scheduling variants |
 | SymbolChat Parts | Accepted-main literal/localization integration source-links native owner after current census and full byte/target/provider validation; historical export blocker superseded | Original propagation-control/source provenance and portable interface/ownership qualifications remain; [integration](window-parts-accepted-main-integration.md) |
 | ChoiceSetting / globals | Observed layout and accesses retained | Actual 0x7C producer and task-global ownership unproved; no inferred padding |
-| CustomSelect | Native code/table and nineteen-function player/window lifecycle audit exact | Relevant tl_00/tl_01 teardown/suspension before local-client player removal unproved; [lifecycle](window-custom-select-player-lifecycle.md) and [original task controls](window-custom-select-task-controls.md) |
+| CustomSelect | Native code/table; original-exact lifecycle, task controls and stored-client/exit-dispatch audit | Valid-session removal and teardown/deferral ordering for the stored menu-owning slot remain unproved; [client identity](window-custom-select-client-identity.md), [lifecycle](window-custom-select-player-lifecycle.md) and [task controls](window-custom-select-task-controls.md) |
 | CallBack / headings / capture / CMName | Bounded receiver and storage evidence recorded | Mixed callback signatures, opaque child ownership and original-provider/interface holds remain |
 | SimpleStatus children | Five constructed/managed slots evidenced | Original destructor cleans four; asymmetry preserved, not silently fixed |
 
@@ -314,11 +316,12 @@ B retains +1604 matched/+1560 linked data. Main now links the previously additio
 492-byte prefix too. Earlier contribution counts above remain historical, and
 the existing exact-function/data/address and coverage qualifications remain.
 
-Both replacements stay draft. Do not merge, formally approve, mark ready, lift a
-hold or delete the original branch. Close #268 as superseded only after both
-replacement drafts are published, cross-linked, and their heads, bases, diffs,
-CI and preservation have been checked. A pending or failing CI check is not a
-verified replacement publication.
+The initial split required both replacements to remain draft until their scoped
+readiness gates were met and publication verified. That publication completed and
+#268 closed as superseded without deleting its branch/history. Focused #402 was
+subsequently reviewed and merged under separate authorization. This continuation
+#403 remains draft with its substantive holds; do not merge, formally approve,
+mark it ready or lift a hold merely because matching/CI checks pass.
 
 The [accepted-main Parts integration](window-parts-accepted-main-integration.md)
 supersedes only the former missing-export/original-provider blocker after combined

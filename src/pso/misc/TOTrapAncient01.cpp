@@ -92,7 +92,7 @@ TOTrapAncient01::TOTrapAncient01(TObject *parent, void *creator) : TOTrap(parent
     this->apply_object_set_data(creator);
     this->initialize_position_copies();
     this->calc_attach_pos();
-    this->model = (void *)get_bml_model(TOTrapAncient01__bml_resource.value, 3);
+    this->model = get_bml_model(TOTrapAncient01__bml_resource.value, 3);
     this->texlist = TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 3);
     this->mode = 0;
     this->range = 0.5f * this->scale.x + 30.0f;
@@ -140,7 +140,7 @@ TOTrapAncient01::~TOTrapAncient01() {
 
 void TOTrapAncient01::load_resources() {
   TOTrapAncient01__bml_resource.value = new BmlResource(1, &bm_o_trap_ancient01_resource_descriptor, 0, 0, NULL);
-  TMotorcycle::add_entry(0x39, get_bml_model(TOTrapAncient01__bml_resource.value, 3), TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 3), 20.0f, 0.0f);
+  TMotorcycle::add_entry(0x39, (s32)get_bml_model(TOTrapAncient01__bml_resource.value, 3), TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 3), 20.0f, 0.0f);
 }
 
 void TOTrapAncient01::release_static_resource() {
@@ -367,21 +367,21 @@ void TOTrapAncient01::play_sounds() {
         {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
         {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
         {position.y, 1.0f},
-        get_bml_model(TOTrapAncient01__bml_resource.value, 0),
+        (s32)get_bml_model(TOTrapAncient01__bml_resource.value, 0),
         TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 0), 22
     };
     const TObjChipParams b = {
         {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
         {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
         {position.y, 1.0f},
-        get_bml_model(TOTrapAncient01__bml_resource.value, 1),
+        (s32)get_bml_model(TOTrapAncient01__bml_resource.value, 1),
         TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 1), 22
     };
     const TObjChipParams c = {
         {0.5f, 0.03f, 0.15f}, {position.x, position.y, position.z},
         {3.0f, 5.0f, 3.0f}, {0x800, 0x100, 0x800}, {4, 30},
         {position.y, 1.0f},
-        get_bml_model(TOTrapAncient01__bml_resource.value, 2),
+        (s32)get_bml_model(TOTrapAncient01__bml_resource.value, 2),
         TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource.value, 2), 22
     };
     new TObjChip(tl_06, const_cast<TObjChipParams *>(&a));

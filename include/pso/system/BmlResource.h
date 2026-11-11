@@ -3,6 +3,8 @@
 
 #include "pso/system/BmlResourceClass.h"
 
-extern "C" s32 get_bml_model(BmlResource *resource, s32 index);
+struct NJS_OBJECT;
+
+extern "C" NJS_OBJECT *get_bml_model(BmlResource *resource, s32 index);
 
 #endif

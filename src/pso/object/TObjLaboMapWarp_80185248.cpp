@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -150,7 +151,6 @@ extern "C" {
 
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 int is_quest_active(void);
 s32 get_localized_text_entry(s32, s32);
 void run_task__15TObjLaboMapWarpFv(u8 *arg0);
@@ -254,14 +254,14 @@ void TObjLaboMapWarp::render() {
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation.yaw);
         if (is_field88_zero() != 0) {
-            get_bml_model(TObjLaboMapWarp__resource_bundle, 1);
+            (s32)get_bml_model((BmlResource *)TObjLaboMapWarp__resource_bundle, 1);
             ((s32 (*)(void))draw_ginja_object)();
             TParticleCtrl::begin_effect_render();
-            draw_ginja_model_with_motion(get_bml_model(TObjLaboMapWarp__resource_bundle, 0), get_bml_motion(TObjLaboMapWarp__resource_bundle, 0), *(f32 *)&this->unk_FC);
+            draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjLaboMapWarp__resource_bundle, 0), get_bml_motion(TObjLaboMapWarp__resource_bundle, 0), *(f32 *)&this->unk_FC);
             TParticleCtrl::end_effect_render();
         } else {
             TParticleCtrl::begin_effect_render();
-            draw_ginja_model_with_motion(get_bml_model(TObjLaboMapWarp__resource_bundle, 0), get_bml_motion(TObjLaboMapWarp__resource_bundle, 0), *(f32 *)&this->unk_FC);
+            draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjLaboMapWarp__resource_bundle, 0), get_bml_motion(TObjLaboMapWarp__resource_bundle, 0), *(f32 *)&this->unk_FC);
             TParticleCtrl::end_effect_render();
         }
         pop_matrix();

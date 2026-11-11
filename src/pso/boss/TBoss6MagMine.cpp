@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
@@ -139,7 +140,6 @@ void free_collision_body_parts(void *);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 int rotate_matrix_y(void*, void*);
 int push_matrix(void*);
 s32 pop_matrix(void);
@@ -171,7 +171,7 @@ void TUnk_804F322C::update_linked_state() {
 
     set_motion_packed_rotation();
     temp_r31 = TObjFish__sub_8001EDB0(*(s32 *)((s8 *)this + 0x374), 2);
-    bml_model = get_bml_model(*(s32 *)((s8 *)this + 0x374), 2);
+    bml_model = (s32)get_bml_model((BmlResource *)*(s32 *)((s8 *)this + 0x374), 2);
     bml_motion = get_bml_motion(*(s32 *)((s8 *)this + 0x374), 0);
     set_current_texture_list((GinjaTextureList *)(temp_r31));
     TBoss6PlotFalz__sub_802AC008(*(f32 *)((s8 *)this + 0x3A8), 0.0f);
