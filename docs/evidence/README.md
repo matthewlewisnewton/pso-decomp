@@ -43,6 +43,7 @@ guides.
 - [Keyboard constructor client argument](keyboard-constructor-abi-evidence.md)
 - [Soft keyboard unit recovery (WIP)](keyboard-control-recovery-wip.md)
 - [Main-phase predicate return](main-phase-predicate-evidence.md)
+- [Laser-light constant pool](laser-light-constant-pool.md)
 - [Locked-cache matrix stack base](locked-cache-matrix-stack.md)
 - [Matrix copy and concatenation](matrix-copy-concat-evidence.md)
 - [MatrixVector hand-written kernels](matrixvector-asm-kernels-evidence.md)
