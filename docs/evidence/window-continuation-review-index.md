@@ -207,6 +207,14 @@ compiler-control qualifications remain explicit.
 
 ## Current tried/blocked index
 
+The [independent Parts profile audit](window-parts-control-provenance-audit.md)
+finds no original project metadata or neighbor setting that justifies its matching
+control. The distinct [selection accessor contract](window-word-selection-contract.md)
+unifies conflicting declarations with the existing raw definition and preserves
+explicit short conversions. All seven complete ELFs, build graph, report and DOL
+remain unchanged after full gated validation. Parts and native Word lifetime/
+ordering/provider holds stay; no new match or linked coverage is claimed.
+
 The [Parts export/provenance control](window-symbol-parts-propagation-control.md)
 audits upstream #243 and the current complete consumer census. One bounded
 four-case diagnostic isolates propagation: literal/off restores all 20 bodies and

@@ -1,5 +1,9 @@
 # Parts float exports: provenance audit and bounded propagation control
 
+The later [independent project/neighbor audit](window-parts-control-provenance-audit.md)
+finds no retail provenance for the tested setting. No further control variant,
+localization or source-provider activation follows from this diagnostic.
+
 This follows the [native lifetime/export hold](window-symbol-parts-lifetime.md)
 and the new upstream lead recorded in the
 [Word control note](window-word-native-vptr-control.md). The verified clean stack
