@@ -1022,6 +1022,102 @@ that serialize queued-controller destruction with a later `start_loading`.
 No retail state, source-correct handoff or restore ownership is inferred;
 all original providers, function extents and accounting gates remain intact.
 
+## Window descendants and the queued-controller drain boundary
+
+The next trace distinguishes the detached window tree from its update driver
+and the manager that owns its cleanup. The inspected constructors attach the
+viewport/instance nodes under a detached `TObject(NULL)` root. A
+`TWindowCtrlSub` under `tl_01` drives that root's updates. Removing that driver
+alone therefore does not destroy the detached tree. However, the **complete**
+`TMainTask::delete_layer_children` also deletes `tl_fadeafter` children, including
+the normally attached `TWindowCtrlMain`. Its destructor deletes the detached
+tree and clears the window globals before the later `free_all_windows` release
+callback. These two cleanup scopes must not be confused.
+
+Known attachment helpers are more specific than their names suggest:
+
+- `TWindowDD::construct_base` obtains a viewport root through the split-aware
+  `TWindowCtrlMain__sub_8024CDB0`/`8024CDD0` getter before calling the base
+  `TObject` constructor. [Source](../../src/pso/misc/TWindowDD_8024662C.cpp).
+- `TWindowSubComCard::reparent_to_main_ctrl` at `0x80244888` calls getter
+  `0x8024CE24`, then `TObject::set_parent`. The getter returns the object at
+  `viewport_states + 0x8C`: **viewport slot five**, not the global instance.
+  Its inspected callers include card-dialog/window cleanup operations.
+  [Helper](../../src/pso/misc/TWindowSubComCard_80244774.cpp),
+  [dialog example](../../src/pso/misc/TWindowSubComCard_8033BDB0.cpp).
+- Other descendants can be attached through the global instance, for example
+  `TFontSmallHelp`. Their actual presence, descendants and lifetime are not
+  established by that constructor. [Source](../../src/pso/misc/TFontSmallHelp.cpp).
+
+The [window-teardown probe](../../tools/probe_loader_window_teardown.py)
+executes the original main dispatcher, chosen request action, menu update,
+menu exit, reverse release-table loop, layer cleanup, window constructors and
+destructors. Five controlled trees reach the original modem-helper boundary:
+
+| Chosen fixture | State at the helper boundary |
+|---|---|
+| Loading controller remains under `tl_su` | Window tree deleted; controller remains, no loading destructor called |
+| Controller deliberately reparented into viewport five | Window-tree destruction calls its loading destructor and clears the instance |
+| Menu task boundary queues controller through original `cleanup_scene`, without draining SU | Instance zero; queued SU controller remains undestroyed |
+| Same cleanup with a chosen direct SU drain | Controller already destroyed |
+| A base-node window fixture is moved into viewport five, then moved back out to SU | Escaped node survives window cleanup; the separate loading controller also survives |
+
+All five execute the thirty release-table callbacks in the original table
+order. Twenty-nine callback bodies are explicit no-effect models; only the
+window callback executes here. Snapshots show that the manager destructor has
+already completed tree deletion during layer cleanup before that callback
+starts. Eleven constructor allocations and each expected logical free are
+checked. The viewport-five helper runs over a base-node-only compatibility
+fixture. Reparenting a loading controller is a **generic countermodel**, not
+an authenticated source call or evidence that this attachment occurs in the
+game. Unknown actual descendants and aliases still prevent a preservation or
+destruction claim about the retail transition.
+
+The cleanup/restart question also has a distinct traversal gate. The original
+`TMainTask::run_task` applies `update_flags` to its child layers when they differ
+from `old_update_flags`, then calls `TObject::run_tasks` on the main parent.
+That traversal tests each child layer's flags before recursing. In contrast,
+the read-wait frame calls `tl_su->run_tasks()` **directly**; `run_tasks` tests
+its children, not its receiver's flags. Thus an explicit main-task tick after
+cleanup is a drain opportunity, rather than unconditional proof that queued
+SU descendants were destroyed.
+
+Three separate post-request controls execute the original main-task and
+traversal instructions. With SU as the first child and chosen `update_flags=1`,
+the main tick sets its pause flag `0x8` and leaves queued controller A alive.
+Calling the paused SU's `run_tasks` directly then destroys A while leaving
+the SU pause flag unchanged. A fresh queued controller is destroyed by the
+main traversal after `update_flags=0` resumes SU. These isolate receiver versus
+child gating; they are not a continued execution of the modem helper or proof
+that the chosen pause state is reachable during retail launch. The harness
+enables the emulated FPU so original window float-initializer instructions
+execute; it does not replace those instructions.
+
+The accompanying pinned original-text inventory finds seven direct branch
+encodings to `start_loading`, three to `poll_default`, twelve to
+`cleanup_scene`, and one to the loading constructor, all linked branches.
+These declarations belong to the loading wrapper and the inspected gameplay/
+lobby loading owners, rather than to the menu update/release bodies. The
+inventory retains declared owners and does not resolve indirect calls or
+branch conditions. Source inspection finds explicit cleanup followed by
+`main_task.run_task` on the normal paths in those owners. Two transfer-pending
+early returns and the online-lobby nonzero-handle branch do not contain an
+immediate drain after their cleanup call. `begin_frame` is empty. Intervening
+resource callbacks, layer flags and later paths must still be traced; no
+universal serialization or restart exclusion follows from this inventory.
+
+These controls retain synthetic factory, predicate and task effects, logical
+frees and platform/resource boundary models. Full `start_loading`, real
+allocations, arbitrary descendant classes and runtime callbacks are not
+executed. The useful next discriminator is how the relevant paths establish
+SU flags and queued-controller state before the first read wait, including
+the early-return paths and any callback that can publish a new controller.
+The original-provider and restore-ownership holds remain unchanged.
+
+```sh
+python3 tools/probe_loader_window_teardown.py --dol PRIVATE/PsoV3.dol --output build/window-teardown.json
+```
+
 ## Comparison record and reproduction limits
 
 The historical comparison procedure is preserved at immutable commit
