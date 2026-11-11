@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,710 | 880 |
+| CodeWarrior pragmas (excluding push/pop) | 5,711 | 880 |
 | Per-unit compiler overrides in `configure.py` | 193 | 193 |
 | Approved regressions | 0 | 0 |
 
@@ -145,9 +145,17 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,710 pragmas in 880 files; per-file table in the generated file. Main kinds:
+The Spanish word-select formatter at `0x80345608` in
+`src/pso/misc/TWindowDD_803430BC.cpp` uses scoped `opt_common_subs on`.
+The unit otherwise disables CSE. With a signed-short selected-word local and
+separate full-width agreement-table index, enabling CSE reproduces all 1,628
+bytes. Inheriting CSE off changes three case-4 instructions from `r30` to `r27`;
+casting the shared index instead introduces an extra sign extension. Ports can
+drop this optimizer setting and retain the signed word ID and table-index logic.
+
+5,711 pragmas in 880 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802,
-`opt_common_subs` 616, `scheduling` 264, `opt_propagation` 248,
+`opt_common_subs` 617, `scheduling` 264, `opt_propagation` 248,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
