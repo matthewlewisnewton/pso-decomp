@@ -20,8 +20,8 @@ extern "C" {
 s32 set_stream_and_load_file__6TLobbyFPCv(char *);
 extern char symbol_chat_default_data_filename[];
 
-void TWindowChat::open_symbol_chat(s32 *arg0) {
-    get_symbol_chat_preset(*arg0);
+u8 *TWindowChat::open_symbol_chat(s32 *arg0) {
+    return get_symbol_chat_preset(*arg0);
 }
 
 void TWindowSubSymbolChat::clear_entries() {

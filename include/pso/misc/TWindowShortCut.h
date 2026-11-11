@@ -4,15 +4,18 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 
+struct TWindowChatSymbol;
+
 struct TWindowShortCut : public TWindowBase {
     virtual ~TWindowShortCut();
     virtual void render();
     u32 m_60;
-    u32 m_64;
-    u32 m_68;
+    TWindowBase *text_preview;
+    TWindowChatSymbol *symbol_preview;
     u32 m_6c;
     u32 m_70;
     virtual void run_task();
+    void initialize_preview(s32 index, s32 *shortcut);
 };
 
 typedef char TWindowShortCut_size[sizeof(TWindowShortCut) == 0x74 ? 1 : -1];
