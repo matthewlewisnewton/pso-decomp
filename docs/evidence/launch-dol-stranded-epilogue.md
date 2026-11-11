@@ -2,10 +2,11 @@
 
 The sections below record the original-only recovery investigation through
 `ce59a0aabbdf4375f3d53bbac4017750741add12`. A subsequent
-[native retention candidate](loader-restore-retention.md) reproduces the exact
-link using a generated assembly exception. That proposal requires explicit
-approval, including its departure from the scalar-fallback rule; it does not
-resolve the ownership or behavioral uncertainties recorded here.
+[native retention fix](loader-restore-retention.md) reproduces the exact link
+using an approved generated assembly exception and a scoped retention pragma.
+Scalar handlers now preserve the machine boundary for portable execution
+backends. These additions supersede the original-only status below; they do not
+resolve the ownership or runtime uncertainties recorded here.
 
 This records bounded ownership evidence for `0x8042E9FC..0x8042EA0F`.
 The range remains unmatched, with its address and ownership hold preserved.

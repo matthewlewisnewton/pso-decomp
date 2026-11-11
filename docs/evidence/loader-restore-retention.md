@@ -1,6 +1,6 @@
 # Native loader restore retention
 
-## Proposed exception; approval pending
+## Approved native exception with a portable behavior path
 
 This candidate reconstructs and links the 20-byte range at
 `0x8042E9FC..0x8042EA10` using the existing disc-generated assembly mechanism
@@ -8,13 +8,12 @@ and a scoped `force_active` pragma. It preserves the local symbol, full extent,
 split boundaries, LaunchDol provider and initializer. No object patch, invented
 reference, symbol widening or coverage-rule change is used.
 
-The requested exception covers both the generated assembly and its retention
-pragma. It also requires an explicit porting decision: this fragment has no
-independent C calling convention, so a portable build omits it rather than
-compiling a fabricated empty C function. This does **not** satisfy the normal
-scalar-fallback rule. Approval of that specific departure is pending; the
-candidate must not be represented as approved or ready to merge on build
-evidence alone.
+Matt approved the generated assembly and scoped retention on 2026-11-11 UTC
+in the PR #285 working session, conditional on portable behavior: “Yes, as long
+as the portable builds have a path to the identical behavior”. The final source
+therefore includes scalar C++ handlers in the non-Metrowerks branches of both
+loader units. They execute the handoff and restore against explicit guest PPC
+state and a memory/execution backend; they do not use the host C++ frame.
 
 ## Controlled link experiment
 
@@ -58,15 +57,63 @@ With this exception, the restore and initializer span can be fully matched and
 linked: 20 bytes of generated assembly plus 196 bytes of existing C++. The
 restore is **not newly recovered C++**, and its inferred standalone function
 identity is not authenticated by this result. The existing 312-byte LaunchDol
-assembly provider is unchanged. Original transfer semantics, possible indirect
+native assembly provider is unchanged; its source now has a portable branch. Original transfer semantics, possible indirect
 entries and source ownership remain investigation topics.
 
-A port should implement the executable-launch operation through its platform
-backend. It must not call this frame fragment as a C function, synthesize a
-dummy return, or substitute an ordinary returning function-pointer call for
-the native nonlinking handoff. A host that executes original PPC code must
-preserve the original machine-state semantics instead of using this source
-omission as an emulation implementation. No functional host loader is claimed.
+### Portable integration contract
+
+`ports/include/pso/port/LoaderTransfer.h` defines the state and backend interface.
+Compile `text_8042E8C4.cpp` and `text_8042E9FC.cpp` without `__MWERKS__`, with
+`ports/include` on the include path. An execution dispatcher calls
+`step_loader_boundary(state, backend)` when the guest PC reaches this boundary,
+then dispatches the resulting PC. It returns false without effects for other
+or unaligned PCs. All nine instruction entries are supported individually.
+
+The scalar path preserves 32-bit wrapping, big-endian word values, six ordered
+callee-register loads, the saved LR load, stack restoration and LR branch
+masking. The handoff reads the current image entry from guest memory, invokes
+instruction synchronization, sets LR, and branches without restoring the frame
+or installing a new return address. Other registers remain unchanged.
+
+A port supplies address translation/access checks, instruction-stream
+synchronization (including translated-code invalidation where required), and
+execution at the resulting guest PC. It must retain the surrounding guest state;
+substituting an ordinary returning host function-pointer call is not equivalent.
+The backend owns faults; a failed operation must not return a fabricated word.
+PC advances only after a completed instruction. Partial `lmw` loads are visible
+if a later read fails. Precise hardware exception delivery, timing, concurrent
+memory changes and cache implementation are outside this adapter's contract.
+
+This provides an executable, tested path to equivalent completed-instruction
+behavior. It does not implement the earlier relocation/reset/cache body of
+LaunchDol or a complete host SDK. A full port must supply those platform
+operations or execute the original body in a PPC backend before this boundary.
+
+### Portable validation
+
+`make -C ports/tests run` and `make -C ports/tests sanitize` compile the actual
+game units' portable branches, test complete handoff and restore sequences,
+32-bit wrapping, ordered reads, unchanged state, unknown PCs and propagated
+load faults. Source-checks CI runs both commands without original data.
+
+The separate differential probe runs 128 deterministic states at each of the
+nine original instructions (1,152 passing cases) under pinned Unicorn 2.1.4,
+comparing all 32 GPRs, LR, CTR, CR, XER and PC against the compiled scalar path.
+It covers every interior entry, all target low bits and address wrapping.
+Original `lwz` read hooks are compared too. Unicorn omits `lmw` read hooks for
+some mapped addresses, so its resulting registers are compared in all cases
+while the scalar read order is also checked against the instruction contract.
+The synchronization callback is checked; an emulator does not validate the
+port backend's cache implementation. This is not a hardware or full-game run.
+
+Reproduce locally with a private hash-checked original (no binary is published):
+
+```sh
+make -C ports/tests run
+make -C ports/tests sanitize
+# In a temporary Python environment with unicorn==2.1.4:
+python tools/probe_loader_portable_boundaries.py --dol orig/GPOE8P/files/PsoV3.dol
+```
 
 Melee and Sunshine keep a handoff followed by frame restoration in their SDK
 `Run` assembly routines; Wind Waker uses a frameless assembly handoff helper.
@@ -96,8 +143,12 @@ The unchanged PR head also passes `check_pr.py` against checked main
 - The restore has 20 exact code bytes, alignment four, a local function symbol
   of size 20 and no code relocations. The initializer remains exact at its
   original address. The global retention check reports no additions/removals.
-- The 36 original-free loader-audit controls pass. The exception inventory and
-  changed-line whitespace checks pass.
+- All 306 source-tool tests pass, including the 36 original-free loader-audit
+  controls. Portable behavior and address/undefined-behavior sanitizer tests,
+  the 1,152 original-instruction comparisons, the exception inventory and
+  changed-line whitespace checks pass. The final native rebuild after adding
+  the portable branches reproduces the original DOL, with all 3,600 common
+  complete objects still byte-identical.
 
 Relative to the previous PR head this adds 20 matched/source-linked code bytes,
 one matched function and one linked unit. Relative to checked main, the whole
@@ -112,5 +163,5 @@ before applying the restore change. No failure was waived or guard changed.
 
 The historical [ownership and behavior investigation](launch-dol-stranded-epilogue.md)
 remains applicable within its stated limits; retention does not resolve those
-questions. This is implementation validation, not independent review, policy
-approval or merge admission.
+questions. Native and portable checks are implementation validation; they do
+not constitute independent review or a full-game portability claim.
