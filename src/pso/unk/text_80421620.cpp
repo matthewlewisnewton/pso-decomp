@@ -3,6 +3,7 @@
 #include "pso/network/UdpRuntime.h"
 #include "pso/network/SocketEvents.h"
 #include "pso/network/NetworkReceiveCallback.h"
+#include "pso/network/NetworkTimer.h"
 #include "types.h"
 #include "pso/misc/TLobby.h"
 
@@ -127,11 +128,9 @@ s32 TLobby__sub_8041A1D8(void);
 extern RecoveredGlobal_804217E4_lbl_805C1C50 network_dispatch_state;
 s32 TLobby__sub_804217E4(void);
 s32 TLobby__sub_80421814(void);
-s32 NetUnregisterTimer(void *);
 s32 TLobby__sub_80421844(s32 arg0);
 void TLobby__sub_80421FB8(void *, void *, void *);
 s32 TLobby__sub_80421AD8(u8 *arg0, s32 arg1, s32 arg2, u32 arg3, s32 arg4);
-s32 NetRegisterTimer(void *, int, void *);
 s32 TLobby__sub_804218AC(s32 arg0, s32 arg1);
 s32 TLobby__sub_8040F9CC(void *, void *, void *, int);
 s32 TLobby__sub_804219D0(s32 arg0, s32 arg1, s32 arg2);
@@ -333,7 +332,7 @@ s32 TLobby__sub_80421844(s32 arg0) {
         return -2;
     }
     TLobby::lock_mutex((int)((void *) ((*(RecoveredGlobal_80421844_lbl_805C1C50 *)&network_dispatch_state).value)));
-    temp_r31 = NetUnregisterTimer((void *)arg0);
+    temp_r31 = NetUnregisterTimer((NetTimerCallback)arg0);
     TUdpSocket::unlock_mutex((int)((void *) ((*(RecoveredGlobal_80421844_lbl_805C1C50 *)&network_dispatch_state).value)));
     return temp_r31;
 }
@@ -348,7 +347,7 @@ s32 TLobby__sub_804218AC(s32 arg0, s32 arg1) {
         return -2;
     }
     TLobby::lock_mutex((int)((void *) ((*(RecoveredGlobal_804218AC_lbl_805C1C50 *)&network_dispatch_state).value)));
-    temp_r31 = NetRegisterTimer((void *)arg1, 0, (void *)arg0);
+    temp_r31 = NetRegisterTimer(arg1, 0, (NetTimerCallback)arg0);
     TUdpSocket::unlock_mutex((int)((void *) ((*(RecoveredGlobal_804218AC_lbl_805C1C50 *)&network_dispatch_state).value)));
     return temp_r31;
 }
