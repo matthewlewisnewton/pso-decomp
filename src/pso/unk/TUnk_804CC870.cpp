@@ -4,6 +4,7 @@
 #include "pso/effect/TEffect.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/render/render_util.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/TUnk_804CC870.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -103,7 +104,6 @@ struct Ctl_80232C50 {
 };
 
 extern "C" {
-void mem_free(void *);
 void __ct__7TObjectFP7TObject(void *self, void *parent);
 extern u8 __vt__13TUnk_804CC870[];
 
@@ -131,7 +131,7 @@ TUnk_804CC888::~TUnk_804CC888() {
         }
     }
     stop_sound_request(((Obj_80232E0C *)this)->f20);
-    mem_free(((Obj_80232E0C *)this)->items);
+    ::operator delete[](((Obj_80232E0C *)this)->items);
 }
 
 void TUnk_804CC888::run_task() {
@@ -280,7 +280,6 @@ struct Task_80232EC0 {
 extern "C" {
 u16 get_entity_id(void *);
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
-void *mem_alloc(u32 size);
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 play_sound_effect(s32, void *, s32, s32);
 }
@@ -296,7 +295,7 @@ TUnk_804CC888::TUnk_804CC888(u8 *src, s32 level, TObject *parent) : TObject(pare
         ((Task_80232EC0 *)this)->level = 0x1E;
     }
     ((Task_80232EC0 *)this)->tier = TObjPlayer::get_level_tier(((Task_80232EC0 *)this)->level);
-    ((Task_80232EC0 *)this)->emitters = (u32 *)mem_alloc(grants_effect_emitter_table[((Task_80232EC0 *)this)->tier].count * 4);
+    ((Task_80232EC0 *)this)->emitters = (u32 *)::operator new[](grants_effect_emitter_table[((Task_80232EC0 *)this)->tier].count * 4);
     for (i = 0; i < grants_effect_emitter_table[((Task_80232EC0 *)this)->tier].count; i++) {
         ((Task_80232EC0 *)this)->emitters[i] = (u32)spawn_continuous_particle_effect_with_flags(((Task_80232EC0 *)this)->pos, grants_effect_emitter_table[((Task_80232EC0 *)this)->tier].parts[i].id, 0x10);
         if (((Task_80232EC0 *)this)->emitters[i] != 0) {

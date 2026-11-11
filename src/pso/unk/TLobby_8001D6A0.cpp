@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8000F764.h"
 #include "pso/unk/TLobby_8001D6A0.h"
 #include "pso/ui/window/TWindowSubStatusDisp_80228CC0.h"
@@ -303,8 +304,6 @@ struct File_8001DC30
 };
 s32 is_main_phase_15__9TObjEneDDFv(void);
 void read_disc_file(const char *, void *);
-void mem_free(void *);
-void *mem_alloc(u32 size);
 }
 extern const char lbl_80434A20[];
 extern const char lbl_80434A38[];
@@ -341,7 +340,7 @@ void load_battle_param_entry(void) {
       name = lbl_80434A6C;
     }
   }
-  file = (File_8001DC30 *) mem_alloc(0xF600);
+  file = (File_8001DC30 *) ::operator new[](0xF600);
   if (file != 0)
   {
     read_disc_file(name, file);
@@ -397,7 +396,7 @@ void load_battle_param_entry(void) {
       }
 
     }
-    mem_free(file);
+    ::operator delete[](file);
  ;
   }
 }
@@ -564,7 +563,6 @@ void set_difficulty__6TLobbyFi(s32 arg0) {
 extern u32 TLobby__battle_parameter_buffer;
 
 extern s32 game_difficulty_selection;
-void mem_free(void*);
 
 extern s32 enable_v2_features;
 
@@ -600,7 +598,7 @@ void TLobby::update_difficulty() {
 
 void TLobby::free_boss4_rock() {
     if ((u32) TLobby__battle_parameter_buffer != 0U) {
-        mem_free((void*)TLobby__battle_parameter_buffer);
+        ::operator delete[]((void*)TLobby__battle_parameter_buffer);
         TLobby__battle_parameter_buffer = 0U;
     }
     battle_param_stats = 0;
@@ -611,7 +609,7 @@ void TLobby::free_boss4_rock() {
 }
 
 void alloc_battle_param_tables(void) {
-    u8 *buf = (u8 *)mem_alloc(0x3d80);
+    u8 *buf = (u8 *)::operator new[](0x3d80);
     s32 i;
     for (i = 0; i < 0x3d80; i++) {
         buf[i] = 0;

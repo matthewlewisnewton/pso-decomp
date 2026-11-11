@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/text_80144AC8.h"
 #include "pso/unk/text_80145804.h"
 #include "pso/unk/TLobby.h"
@@ -35,7 +36,6 @@ typedef struct Glyph_80145804 {
 
 extern "C" {
 s32 set_stream_and_load_file__6TLobbyFi(void *);
-void *mem_alloc(u32);
 void *__nw__7TObjectFUl(u32);
 void set_texture_name(void *, void *, u32, u32);
 void load_texture_list(void *);
@@ -84,7 +84,7 @@ void load_menu_font(void) {
         *(menu_font_glyph_pixel_buffers + m) = menu_font_texture_list[0].ents[m].obj->img->pixels;
         clear_words_80145804(*(menu_font_glyph_pixel_buffers + m), 0x2000);
     }
-    lbl_805D56B4 = (s16 *)mem_alloc(0x100);
+    lbl_805D56B4 = (s16 *)::operator new[](0x100);
     clear_words_80145804((u32 *)lbl_805D56B4, 0x40);
     lbl_805D56B4[0] = 0xFFF;
     lbl_805D56B4[1] = 0x3FFF;
@@ -94,7 +94,7 @@ void load_menu_font(void) {
     for (i = 0; i < 2; i++) {
         TLanguage::set_entry_index(i, 0);
     }
-    g = (Glyph_80145804 *)mem_alloc(0xB40);
+    g = (Glyph_80145804 *)::operator new[](0xB40);
     menu_font_glyph_table = g;
     for (i = 0; i < 2; i++) {
         v = 0;

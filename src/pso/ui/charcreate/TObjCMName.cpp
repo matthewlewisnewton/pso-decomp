@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/MenuText.h"
 #include "pso/ui/charcreate/CreationInput.h"
 #include "types.h"
@@ -381,7 +382,6 @@ void fn_802947A8(void);
 int TObjCMName__sub_802948F4(TObjCMName *, char *);
 TKeyBoardControl *TKeyBoardControl__ct(void *, TObject *, s32, s32, s32, s32);
 int get_keyboard_field_6c__15TWindowMakeTeamFv(TKeyBoardControl *, char *);
-void mem_free(void *p);
 void * create__10TObjCMNameFPv(void *arg0);
 void * __ct__10TObjCMNameFv(void *arg0);
 void * create__16TObjCMProportionFPv(void *arg0);
@@ -565,7 +565,7 @@ void TObjCMName::run_task() {
             ((TObjCMMainMenu *)name)->copy_char_name();
             strncpy((char *)appearance->name, name, 12);
             appearance->name[12] = 0;
-            mem_free(buf);
+            ::operator delete[](buf);
             play_sound_effect(sound, 0, 0, 0);
             TObjCMMainMenu::clear_task_state();
             keyboard->queue_destruction();

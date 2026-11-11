@@ -1,5 +1,6 @@
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/technique/TTecGiFoie.h"
 extern "C" void *__dt__13TUnk_804CC148Fv(void *, s16);
 #include "pso/system/vector.h"
@@ -163,8 +164,6 @@ void queue_destruction__7TObjectFv(void *arg0);
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
 void *spawn_continuous_particle_with_direction(void *pos, void *dir, s32 id);
 f32 horizontal_distance_squared(void *, void *);
-void mem_free(void *);
-void *mem_alloc(u32 size);
 void * find_entity_by_id(u16);
 s32 is_technique_ready__8TTecCtrlFv();
 s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
@@ -223,7 +222,7 @@ u8 *__dt__13TUnk_804CC800Fv(Task_80231224 *task, s16 flag) {
                 queue_destruction__7TObjectFv(task->emitters[i]);
             }
         }
-        mem_free(task->emitters);
+        ::operator delete[](task->emitters);
         __dt__7TObjectFv(task, 0);
         if (flag > 0) {
             __dl__7TObjectFPv(task);
@@ -248,7 +247,7 @@ Task_802312E4 *construct_orbit__10TTecGiFoieFPvPviUciPvUc(Task_802312E4 *self, V
     self->single = single;
     if (self->single != 0) {
         Rot_802312E4 r;
-        self->emitters = (u32 *)mem_alloc(4);
+        self->emitters = (u32 *)::operator new[](4);
         r.x = 0;
         r.y = 0;
         r.z = 0x4000;
@@ -256,7 +255,7 @@ Task_802312E4 *construct_orbit__10TTecGiFoieFPvPviUciPvUc(Task_802312E4 *self, V
         self->x38 = TTecGiFoie__data_805DC81C;
     } else {
         s32 i;
-        self->emitters = (u32 *)mem_alloc(TTecGiFoie__emitter_profile_table[self->band].count * 4);
+        self->emitters = (u32 *)::operator new[](TTecGiFoie__emitter_profile_table[self->band].count * 4);
         for (i = 0; i < TTecGiFoie__emitter_profile_table[self->band].count; i++) {
             Rot_802312E4 r;
             Part_802312E4 *p;

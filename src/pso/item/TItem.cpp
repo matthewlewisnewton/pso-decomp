@@ -1,4 +1,5 @@
 #include "pso/network/protocol/protocol_types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/NinjaTypes.h"
 // TItem, the base of every item object, with the item registry, the item
 // packets (6x59/5A/5D/5E/61) and the item system's set-up. The data is
@@ -311,7 +312,7 @@ void __sinit_TItem_cpp() {
 
 void init_item_system() {
     item_registry_count = 0;
-    item_registry_sorted_entries = (TItem **)mem_alloc(0x1000);
+    item_registry_sorted_entries = (TItem **)::operator new[](0x1000);
     memset(item_registry_sorted_entries, 0, 0x1000);
     item_id_counters = new TItemIdCounters;
     TObjPlayer::alloc_and_init_object_b4();
@@ -329,7 +330,7 @@ void free_item_system() {
         item_id_counters = NULL;
     }
     if (item_registry_sorted_entries != NULL) {
-        mem_free(item_registry_sorted_entries);
+        ::operator delete[](item_registry_sorted_entries);
         item_registry_sorted_entries = NULL;
     }
     item_registry_count = 0;

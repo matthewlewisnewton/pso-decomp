@@ -6,6 +6,7 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/merilllia/TObjEneMerillLia.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/TLobby.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -1672,19 +1673,19 @@ extern const f32 lbl_805DA33C;
 
 void TObjEneMerillLia::destroy_rocks() {
     if ((u32) TObjEneMerillLia__rock_stats_table != 0U) {
-        mem_free((void*)TObjEneMerillLia__rock_stats_table);
+        ::operator delete[]((void*)TObjEneMerillLia__rock_stats_table);
         TObjEneMerillLia__rock_stats_table = 0U;
     }
     if ((u32) merill_lia_rock_buffer != 0U) {
-        mem_free((void*)merill_lia_rock_buffer);
+        ::operator delete[]((void*)merill_lia_rock_buffer);
         merill_lia_rock_buffer = 0U;
     }
     if ((u32) merill_lia_rock_aux_buffer != 0U) {
-        mem_free((void*)merill_lia_rock_aux_buffer);
+        ::operator delete[]((void*)merill_lia_rock_aux_buffer);
         merill_lia_rock_aux_buffer = 0U;
     }
     if ((u32) TObjEneMerillLia__rock_param_table != 0U) {
-        mem_free((void*)TObjEneMerillLia__rock_param_table);
+        ::operator delete[]((void*)TObjEneMerillLia__rock_param_table);
         TObjEneMerillLia__rock_param_table = 0U;
     }
     if ((u32) TObjEneMerillLia__entry_params_resource != 0U) {
@@ -1715,10 +1716,10 @@ void TObjEneMerillLia__sub_800D6D64(void) {
     ((CollisionPartRecord *)lbl_804946A4)[0].radius = lbl_805DA2F8;
     ((CollisionPartRecord *)lbl_804946A4)[1].radius = lbl_805DA2F8;
     ((CollisionPartRecord *)lbl_804946A4)[2].radius = lbl_805DA33C;
-    TObjEneMerillLia__rock_stats_table = (u32)mem_alloc(8);
-    merill_lia_rock_buffer = (u32)mem_alloc(8);
-    merill_lia_rock_aux_buffer = (u32)mem_alloc(8);
-    TObjEneMerillLia__rock_param_table = (u32)mem_alloc(8);
+    TObjEneMerillLia__rock_stats_table = (u32)::operator new[](8);
+    merill_lia_rock_buffer = (u32)::operator new[](8);
+    merill_lia_rock_aux_buffer = (u32)::operator new[](8);
+    TObjEneMerillLia__rock_param_table = (u32)::operator new[](8);
     ((void **)TObjEneMerillLia__rock_stats_table)[0] = TLobby::register_boss(75);
     ((void **)TObjEneMerillLia__rock_stats_table)[1] = TLobby::register_boss(76);
     ((void **)merill_lia_rock_buffer)[0] = TLobby::dispatch_shared_handler_b(78);

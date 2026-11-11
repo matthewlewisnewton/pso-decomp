@@ -9,6 +9,7 @@
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/gibbles/TObjEneGibbles.h"
 #include "pso/map/FloorArea.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/unk/text_80087278.h"
@@ -177,7 +178,6 @@ s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
 u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
-void *mem_alloc(u32 size);
 extern Spawn_802DB7C0 gibbles_resource_binding_desc;
 extern s32 gibbles_boss_stat_handle;
 extern s32 gibbles_combat_stats_handle;
@@ -347,7 +347,6 @@ void TObjPlayer__sub_800D93C4(s32 point, s32 delay);
 void * __ct__11TObjControlFP7TObject(void *, void *);
 s32 angle_diff_s16(s32, s32);
 s32 lerp_angle_half__Fll(s32, s32);
-void mem_free(void*);
 s32 get_room__8TObjBaseFv(void *);
 void TObjEneGibbles__sub_802D7E3C(void);
 void render_and_get_joint_pos__14TObjEneGibblesFPvii(u8 *arg0, s32 arg1, s32 arg2);
@@ -2580,7 +2579,7 @@ void *TObjEneGibbles::create(void *arg0) {
 
 void TObjEneGibbles::free_static() {
     if ((u32) gibbles_combat_stat_entries != 0U) {
-        mem_free((void*)gibbles_combat_stat_entries);
+        ::operator delete[]((void*)gibbles_combat_stat_entries);
         gibbles_combat_stat_entries = 0U;
     }
     if ((u32) TObjEneGibbles__resource_bundle != 0U) {
@@ -2606,7 +2605,7 @@ void TObjEneGibbles::load_resources() {
     }
     TObjEneGibbles__render_node_index = 0;
     TObjEneGibbles__render_rotation_x = 0;
-    gibbles_combat_stat_entries = (u32) mem_alloc(0xC);
+    gibbles_combat_stat_entries = (u32) ::operator new[](0xC);
     gibbles_boss_stat_handle = register_boss__6TLobbyFl(0x3D);
     ((s32 *) gibbles_combat_stat_entries)[0] = dispatch_shared_handler_b__6TLobbyFl(0x3D);
     ((s32 *) gibbles_combat_stat_entries)[2] = dispatch_shared_handler_b__6TLobbyFl(0x3E);

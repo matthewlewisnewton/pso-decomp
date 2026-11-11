@@ -4,6 +4,7 @@
 #undef PADV4
 #undef PAD5
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/text_803D96A8.h"
@@ -2031,8 +2032,6 @@ s32 load_enemy_bml_resource(u8 *arg0);
 s32 set_field_378__9TObjEneDDFl(void *, s32, s32);
 s32 create__13TUnk_80494968FUlUl(s32, s32);
 s32 angle_diff_s16(s32);
-void mem_free(void*);
-void *mem_alloc(u32 size);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
@@ -2748,7 +2747,7 @@ void TObjEneRe7Berura::destroy_children() {
         belra_uv_animation_buffer = 0U;
     }
     if ((u32) re7_berura_static_buffer != 0U) {
-        mem_free((void*)re7_berura_static_buffer);
+        ::operator delete[]((void*)re7_berura_static_buffer);
         re7_berura_static_buffer = 0U;
     }
     if ((u32) TObjEneRe7Berura__shared_resource != 0U) {
@@ -2796,7 +2795,7 @@ void TObjEneRe7Berura::load_static_resources() {
     re7_berura_demo_flag = 0;
     TObjEneRe7Berura__demo_target = 0;
     m = *(u32 *)(r->f42C + 8);
-    buf = (u8 *)mem_alloc(0x660);
+    buf = (u8 *)::operator new[](0x660);
     re7_berura_static_buffer = (u32)buf;
     TObjEneRe7Berura__detached_part_states[0].buf = buf;
     TObjEneRe7Berura__detached_part_states[1].buf = buf + 0x330;

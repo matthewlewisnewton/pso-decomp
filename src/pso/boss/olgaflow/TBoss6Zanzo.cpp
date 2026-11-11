@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/render/render_util.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/memory.h"
 #include "pso/boss/olgaflow/TBoss6Zanzo.h"
 #include "pso/boss/olgaflow/TBoss6Type1.h"
@@ -34,9 +35,7 @@ const char *TBoss6Zanzo__name = "TBoss6Zanzo";
 
 extern "C" {
 void VecCopy__FP3VecPC3Vec(void *, void *);
-void mem_free(void *);
 void run_task__11TBoss6ZanzoFv(Obj_803208CC *arg0);
-void *mem_alloc(u32 size);
 int set_depth_buffer_settings_1__Fv(void*);
 
 s32 fn_803204B0(void* p) { return *(s32*)((char*)p + 0x4); }
@@ -167,12 +166,12 @@ void run_task__11TBoss6ZanzoFv(Obj_803208CC *arg0) {
 TBoss6Zanzo::~TBoss6Zanzo() {
     Src_80320950 *p;
     Src_80320950 *end;
-    mem_free(((Obj_80320950 *)this)->last->p);
+    ::operator delete[](((Obj_80320950 *)this)->last->p);
     ::operator delete(((Obj_80320950 *)this)->last);
     for (p = ((Obj_80320950 *)this)->arr, end = p + ((Obj_80320950 *)this)->n; p < end; p++) {
-        mem_free(p->p);
+        ::operator delete[](p->p);
     }
-    mem_free(((Obj_80320950 *)this)->arr);
+    ::operator delete[](((Obj_80320950 *)this)->arr);
 }
 
 TBoss6Zanzo::TBoss6Zanzo(TObject *object, s32 arg2, s32 arg3) : TObject(object) {
@@ -187,12 +186,12 @@ TBoss6Zanzo::TBoss6Zanzo(TObject *object, s32 arg2, s32 arg3) : TObject(object) 
     if (((Obj_803209F0 *)this)->m < 2) {
         ((Obj_803209F0 *)this)->m = 2;
     }
-    ((Obj_803209F0 *)this)->arr = (Src_803209F0 *)mem_alloc(((Obj_803209F0 *)this)->m * 8);
+    ((Obj_803209F0 *)this)->arr = (Src_803209F0 *)::operator new[](((Obj_803209F0 *)this)->m * 8);
     for (p = ((Obj_803209F0 *)this)->arr, end = p + ((Obj_803209F0 *)this)->m; p < end; p++) {
         p->a = 0;
-        p->p = (u8 *)mem_alloc(((Obj_803209F0 *)this)->n * 0x10);
+        p->p = (u8 *)::operator new[](((Obj_803209F0 *)this)->n * 0x10);
     }
     ((Obj_803209F0 *)this)->last = (Src_803209F0 *)::operator new(8);
     ((Obj_803209F0 *)this)->last->a = 0;
-    ((Obj_803209F0 *)this)->last->p = (u8 *)mem_alloc(((Obj_803209F0 *)this)->n * 0x10);
+    ((Obj_803209F0 *)this)->last->p = (u8 *)::operator new[](((Obj_803209F0 *)this)->n * 0x10);
 }

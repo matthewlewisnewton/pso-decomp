@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -512,10 +513,10 @@ void TObjEneMoja::load_resources() {
     second.z = 0.0f;
     points->sample_node_offsets((NJS_OBJECT *)lbl_805D50D8->models[1].model,
         (NJS_MOTION *)lbl_805D50D8->motions[lbl_804918C8[3].motion].motion, 38, &first, &second);
-    lbl_805D50C8 = (void **)mem_alloc(8);
-    lbl_805D50CC = (void **)mem_alloc(0x18);
-    lbl_805D50D0 = (void **)mem_alloc(8);
-    lbl_805D50D4 = (void **)mem_alloc(8);
+    lbl_805D50C8 = (void **)::operator new[](8);
+    lbl_805D50CC = (void **)::operator new[](0x18);
+    lbl_805D50D0 = (void **)::operator new[](8);
+    lbl_805D50D4 = (void **)::operator new[](8);
     lbl_805D50C8[0] = TLobby::register_boss(0x49);
     lbl_805D50C8[1] = TLobby::register_boss(0x4A);
     lbl_805D50CC[0] = TLobby::dispatch_shared_handler_b(0x48);
@@ -538,19 +539,19 @@ void TObjEneMoja::load_resources() {
 
 void TObjEneMoja::free_resources() {
     if (lbl_805D50C8 != NULL) {
-        mem_free(lbl_805D50C8);
+        ::operator delete[](lbl_805D50C8);
         lbl_805D50C8 = NULL;
     }
     if (lbl_805D50CC != NULL) {
-        mem_free(lbl_805D50CC);
+        ::operator delete[](lbl_805D50CC);
         lbl_805D50CC = NULL;
     }
     if (lbl_805D50D0 != NULL) {
-        mem_free(lbl_805D50D0);
+        ::operator delete[](lbl_805D50D0);
         lbl_805D50D0 = NULL;
     }
     if (lbl_805D50D4 != NULL) {
-        mem_free(lbl_805D50D4);
+        ::operator delete[](lbl_805D50D4);
         lbl_805D50D4 = NULL;
     }
     if (lbl_805D50DC != NULL) {

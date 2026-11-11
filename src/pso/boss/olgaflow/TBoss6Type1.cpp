@@ -1,5 +1,6 @@
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/TLobby_801E43E4.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -2067,7 +2068,7 @@ void TBoss6Type1__sub_802B6504(TBoss6Type1 *boss) {
         step += 3;
         rings++;
     }
-    Vec *points = (Vec *)mem_alloc(total * sizeof(Vec));
+    Vec *points = (Vec *)::operator new[](total * sizeof(Vec));
     VecCopy(&points[0], &lbl_80470F84);
     if (total > 1 && rings > 0) {
         f32 spacing = 95.0f / rings;
@@ -2128,7 +2129,7 @@ void TBoss6Type1__sub_802B6504(TBoss6Type1 *boss) {
         heading = (i << 16) / count;
         boss->m_4e0++;
     }
-    mem_free(points);
+    ::operator delete[](points);
     if (boss->m_4e0 > 0) {
         play_sound_effect(0x4003B51B, &boss->position, 0, 0);
     }

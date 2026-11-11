@@ -4,6 +4,7 @@
 #include "pso/render/MaterialColorFade.h"
 #include "pso/npc/TNpcPlayer_8028B810.h"
 #include "pso/boss/galgryphon/TObjBoss5Pillar_8028B714.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/frontend/TAdMultiConfirmGC_802E03D0.h"
 #include "pso/ui/TUnk_804E3008.h"
 #include "pso/ui/charcreate/TChCrLoadAfs.h"
@@ -88,7 +89,6 @@ struct RecoveredGlobal_802E0B60_lbl_804E3008 {
 
 extern "C" {
 void *__dt__10TObjMotionFv(void *arg0, s16 arg1);
-void mem_free(void *p);
 s32 __dl__7TObjectFPv(void *);
 extern RecoveredGlobal_802E0B60_lbl_804E2F68 multi_chr_select_player_slot_table;
 extern RecoveredGlobal_802E0B60_lbl_804E3008 multi_chr_select_player_actor_ops;
@@ -237,7 +237,7 @@ u8 *__dt__13TUnk_804E3008Fv(u8 *arg0, s16 arg1) {
         }
         temp_r3 = *(u32 *)((s8 *)arg0 + 0xE0);
         if (temp_r3 != 0U) {
-            mem_free((void *)temp_r3);
+            ::operator delete[]((void *)temp_r3);
             *(u32 *)((s8 *)arg0 + 0xE0) = 0U;
         }
         temp_r3_2 = ((TUnk_804E3008 *)arg0)->m_170;

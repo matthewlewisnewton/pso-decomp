@@ -4,6 +4,7 @@
 #include "pso/boss/barbaray/TBoss7Tentacle.h"
 #include "pso/boss/barbaray/TBoss7LaserLight.h"
 #include "pso/enemy/AttackTargetHistory.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/TLobby.h"
 #include "pso/unk/TUnk_804F1C58.h"
 #include "pso/system/BmlResource.h"
@@ -17,7 +18,6 @@ extern const CollisionBody lbl_80473C3C;
 extern const Vec lbl_80473F6C;
 extern s32 lbl_804E3D1C[];
 extern u8 lbl_804E3C8C[];
-void *mem_alloc(u32 size);
 void fill_value_array(PointerBuffer *buffer);
 void TObjPlayer__sub_802E7EA0(void *arg0);
 }
@@ -70,7 +70,7 @@ TBoss7DeRolLeC::TBoss7DeRolLeC(TObject *parent, void *set_data) : TObjEneDD_ST(p
         unk_4DC[i].y = 0.0f;
         unk_4DC[i].z = 0.0f;
     }
-    unk_6D8 = (GC_Mtx *)mem_alloc(4 * sizeof(GC_Mtx));
+    unk_6D8 = (GC_Mtx *)::operator new[](4 * sizeof(GC_Mtx));
     for (s32 i = 0; i < 4; i++) {
         set_matrix_identity((u8 *)unk_6D8[i]);
         unk_6DC[i] = new TBoss7Tentacle(&unk_690, (s32)unk_6D8[i], i);
@@ -109,7 +109,7 @@ TBoss7DeRolLeC::TBoss7DeRolLeC(TObject *parent, void *set_data) : TObjEneDD_ST(p
         VecCopy(&unk_50C[i], &position);
     }
     unk_6BC = 0;
-    unk_6D4 = (GC_Mtx *)mem_alloc(12 * sizeof(GC_Mtx));
+    unk_6D4 = (GC_Mtx *)::operator new[](12 * sizeof(GC_Mtx));
     for (s32 i = 0; i < 12; i++) {
         set_matrix_identity((u8 *)unk_6D4[i]);
     }

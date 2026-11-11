@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/TUnk_804C3248.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/effect/photon/PhotonBlastSummon.h"
@@ -345,7 +346,7 @@ void TUnk_804C3248::update_photon_blast_attachments() {
     }
 }
 
-void TUnk_804C3248::free_photon() { void* m = *(void* *)&this->m_148; if (m) mem_free(m); }
+void TUnk_804C3248::free_photon() { void* m = *(void* *)&this->m_148; if (m) ::operator delete[](m); }
 
 void spawn_photon_blast_attachment_effects(struct Self_801A7680 *self, s32 kind) {
     s32 b;
@@ -360,7 +361,7 @@ void spawn_photon_blast_attachment_effects(struct Self_801A7680 *self, s32 kind)
     group = &photon_blast_attachment_table[kind];
     self->count = group->attachment_count;
     if (self->count != 0) {
-        self->effects = (struct Eff_801A7680 *)mem_alloc(self->count * sizeof(struct Eff_801A7680));
+        self->effects = (struct Eff_801A7680 *)::operator new[](self->count * sizeof(struct Eff_801A7680));
         defs = group->attachments;
         for (i = 0; i < self->count; i++) {
             s32 angles[3];

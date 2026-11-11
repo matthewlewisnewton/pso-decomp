@@ -2,6 +2,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/vector.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/unk/TLobby_801E43E4.h"
@@ -4853,7 +4854,6 @@ s32 __dt__7TObjectFv(void *, int);
 void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 __dt__17AreaAttackHistoryFv(s32 arg0, s16 arg1);
-void mem_free(void *p);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
 extern u8 __vt__13TBoss2DeRolLe[];
@@ -5079,7 +5079,7 @@ u8 *__dt__13TBoss2DeRolLeFv(u8 *arg0, s16 arg1) {
                 self->a740[i] = NULL;
             }
         }
-        mem_free((void *)self->x618);
+        ::operator delete[]((void *)self->x618);
         self->x618 = 0;
         if (self->x6CC != NULL) {
             queue_destruction__7TObjectFv(self->x6CC);
@@ -5117,7 +5117,7 @@ u8 *__dt__13TBoss2DeRolLeFv(u8 *arg0, s16 arg1) {
             queue_destruction__7TObjectFv(self->a620[i]);
             self->a620[i] = NULL;
         }
-        mem_free((void *)self->x61C);
+        ::operator delete[]((void *)self->x61C);
         free_collision_body_parts(self);
         if ((u32)TBoss2DeRolLe__instance == (u32)arg0) {
             TBoss2DeRolLe__instance = 0;
@@ -5250,7 +5250,6 @@ s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, void *);
 s32 invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 u8 *__ct__17AreaAttackHistoryFl(u8 *arg0, s32 arg1);
-Buf_8003563C *mem_alloc(int);
 void *__nw__7TObjectFUl(int);
 s32 __ct__7TObjectFP7TObject(void *, void *);
 s32 set_matrix_identity(void *);
@@ -5527,7 +5526,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
         self->v4E8[i].y = 0.0f;
         self->v4E8[i].z = 0.0f;
     }
-    self->f61C = mem_alloc(0xC0);
+    self->f61C = (Buf_8003563C *)::operator new[](0xC0);
     for (i = 0; i < 4; i++) {
         set_matrix_identity(&self->f61C[i]);
         p = __nw__7TObjectFUl(0x158);
@@ -5603,7 +5602,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     self->f60C = 1.0f;
     self->f610 = 1.0f;
     self->f614 = 1.0f;
-    self->f618 = mem_alloc(0x240);
+    self->f618 = (Buf_8003563C *)::operator new[](0x240);
     for (i = 0; i < 12; i++) {
         set_matrix_identity(&self->f618[i]);
     }

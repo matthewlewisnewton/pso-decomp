@@ -1,3 +1,4 @@
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/TLobby_801E43E4.h"
 #include "types.h"
 #include "pso/system/task/TObject.h"
@@ -403,7 +404,6 @@ u8 * csnVector(s32, s32, s32);
 s32 is_alive__8TObjBaseFv(void *);
 s32 find_active_entity_by_id(void *);
 f32 horizontal_distance_squared(void *, void *);
-void *mem_alloc(u32 size);
 void TNpcPlayer__sub_8014DC3C(void *, s32);
 void deliver_partner_chatter(Npc_8014E250 *self);
 void partner_compute_stalled_detour(u8 *self, Vec_8014E3B0 *from, Vec_8014E3B0 *to, Vec_8014E3B0 *d, Vec_8014E3B0 *out);
@@ -501,7 +501,6 @@ extern void *tl_05;
 
 void copy_player_visual_record(void *, void *);
 void bswap__15disp_data_part2Fv(s32 arg0);
-void mem_free(void *);
 extern s32 game_difficulty_selection;
 extern s32 TNpcPlayer__data_805D5864;
 
@@ -1903,7 +1902,7 @@ void __sinit_TNpcPlayer_cpp() {
 
 void TNpcPlayer::ensure_rock_singleton() {
     if ((u32) npc_player_char_data_buffer == 0U) {
-        npc_player_char_data_buffer = (u32)mem_alloc(0x1400);
+        npc_player_char_data_buffer = (u32)::operator new[](0x1400);
     }
 }
 
@@ -1920,7 +1919,7 @@ u8 *TNpcPlayer::build_npc_player_record(s32 arg0) {
         copy_player_visual_record(lbl_8050CF68, (u8 *)npc_player_char_data_buffer + arg0 * 0x50);
     }
     bswap__15disp_data_part2Fv((s32)lbl_8050CF68);
-    mem_free((void *)npc_player_char_data_buffer);
+    ::operator delete[]((void *)npc_player_char_data_buffer);
     mode = game_difficulty_selection;
     npc_player_char_data_buffer = 0;
     if (mode >= 0 && mode <= 2) {
@@ -1966,7 +1965,7 @@ u8 *load_npc_player_template(s32 index) {
     if (npc_player_char_data_buffer != 0U) {
         return NULL;
     }
-    npc_player_char_data_buffer = (u32)mem_alloc(0x1400);
+    npc_player_char_data_buffer = (u32)::operator new[](0x1400);
     if (TNpcPlayer__data_805D5864 != 0) {
         TNpcPlayer__data_805D5864 = 0;
         copy_player_visual_record(lbl_8050CF68, lbl_8050D3E0);
@@ -1975,7 +1974,7 @@ u8 *load_npc_player_template(s32 index) {
         copy_player_visual_record(lbl_8050CF68, (u8 *)npc_player_char_data_buffer + index * 0x50);
     }
     bswap__15disp_data_part2Fv((s32)lbl_8050CF68);
-    mem_free((void *)npc_player_char_data_buffer);
+    ::operator delete[]((void *)npc_player_char_data_buffer);
     mode = game_difficulty_selection;
     npc_player_char_data_buffer = 0;
     if (mode >= 0 && mode <= 2) {
