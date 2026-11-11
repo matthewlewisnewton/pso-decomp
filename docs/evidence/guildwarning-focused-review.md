@@ -71,3 +71,19 @@ published. Independent source and frozen-head review remain publication gates.
 The repair resolves only the helper's incompatible call/return views. Remaining
 factory storage/lifetime assumptions are retained; unrelated continuation holds
 do not become newly introduced defects in this focused partial PR.
+
+## Newer-main qualification
+
+Main advanced during this review to
+`0a85a72c1c09598512363e6d375616ebd1d1b63e`, the accepted loader restore and
+portable-transfer recovery. Its thirty path changes are preserved verbatim except
+the focused linked-unit addition. This does not overlap the helper repair or
+broaden the inherited loader retention authorization.
+
+Separate fresh-main and focused capacity-gated builds reproduce the original DOL;
+the focused rebuild takes 8.05 seconds. Acceptance against prior A and current
+main passes with 3602 exact linked units and 18427 retention names. Strict raw,
+exact and linked data-range losses are empty. All six repaired compiler objects
+remain byte-identical across this refresh. The focused contribution stays one
+exact function, 600 matched/728 linked code and no additional data loss. The
+scope-specific review conclusion and draft/technical qualifications above stay.
