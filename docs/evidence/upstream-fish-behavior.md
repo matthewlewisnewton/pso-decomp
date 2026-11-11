@@ -98,6 +98,12 @@ shortcut formatter, modem, CVFS, time-setting, item-collider, word-select,
 MineTrap and radial-particle recoveries and their shared interfaces. Fish source,
 header and compiler settings remain unchanged. Both the school resource table
 and the distinct Falz particle-table retention entries are preserved.
+The subsequent refresh integrates main
+`f8a71fae8a52f0bde1b956af4519061fe306cb30`, preserving the action-palette
+unit consolidation, its recovered layout/argument interfaces and documented
+deferred-emission setting. Fish source, header and compiler settings remain
+unchanged; the action-palette compiler evidence does not resolve Fish's
+separate native-lifetime ownership hold.
 The old zero-argument
 `draw_ginja_object()` declaration depended on the preceding model getter leaving
 its return value in r3. The renderer now passes that model explicitly and uses
@@ -151,8 +157,8 @@ These are inherited limitations, not evidence that all original class/interface
 ownership has been recovered. Matching completeness alone does not resolve them.
 No assembly, intrinsic, hardware access or new emission pragma is introduced by
 the follow-up. Existing `-pool off`, FMA and inline settings remain as documented
-above; the final inventory after main synchronization is 5,777 pragmas in 880 files
-and 192 unit overrides, including current main's existing compiler and mapping
+above; the final inventory after main synchronization is 5,777 pragmas in 878 files
+and 193 unit overrides, including current main's existing compiler and mapping
 settings. The refresh introduces no additional fish compiler setting.
 
 ### Why native lifetime remains held
@@ -179,7 +185,7 @@ declaration/header ownership that naturally emits the original order with the
 unchanged fish settings. No speculative unit split or source-order permutation
 is included in this follow-up. The bounded current-main feasibility check found
 no changes to Fish, its base lifetime declarations or `BmlResource` ownership
-interfaces between `12a3368673` and `e65f11ce6e`; those merged recoveries do not
+interfaces between `12a3368673` and `f8a71fae8a`; those merged recoveries do not
 supply the missing native-lifetime/source-boundary evidence.
 
 ## Validation
@@ -187,7 +193,7 @@ supply the missing native-lifetime/source-boundary evidence.
 The initial recovery was validated against the base above. The shared-interface
 correction is separately compared against the freshly built PR-plus-current-main
 baseline `c3a77888e3c4e14bed709b60db8f6870f3ee1063`. The final integration is
-also checked against independently built unchanged main `e65f11ce6e`; both build
+also checked against independently built unchanged main `f8a71fae8a`; both build
 and retention checks pass, and the subsequent synchronization loses no exact
 function or linked range. The earlier `65b21c210` synchronization inherited four
 zero padding bytes removed from report coverage by main's unit folding. Canadin
@@ -233,28 +239,36 @@ zero-padding bytes leaving `.data` coverage at `0x804E352C` from main's
 time-setting unit consolidation. No exact function, live data or linked range
 is lost. The compiled Fish object is byte-identical to that previous head.
 
+The refresh against main `f8a71fae8a` loses no exact function, live code/data
+address, linked range or padding compared with unchanged main or previous
+published head `4259519740`. Main's action-palette consolidation reduces the
+linked-unit count by one without losing address coverage. The compiled Fish
+object remains byte-identical to that head. The shared main baseline's exact
+source, graph, report, ordered inputs, original/built DOL and compiler/tool
+closure were independently verified before reuse.
+
 The original DOL still matches. The full native build and `tools/check_pr.py`
 pass with original DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 All nine fish functions (4,704 bytes) and all 1,404 data bytes are exact.
 Independent comparison verifies the four allocated section payloads, sizes and
 alignment and all 302 normalized relocations. This is not whole-ELF identity:
 the compiled `.sdata2` has inherited writable flags where the split original is
-read-only. All 3,601 linked units are exact. Retention lists 18,460 names with
+read-only. All 3,600 linked units are exact. Retention lists 18,472 names with
 zero drift; the PR adds 45 names to current main and removes none. All 270
 tooling tests pass.
 
-Gains against current main `e65f11ce6e` (the interface correction itself has
+Gains against current main `f8a71fae8a` (the interface correction itself has
 no metric loss or gain against its PR-plus-main baseline):
 
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
 | Exact functions | 27,432 | 27,433 | 1 |
 | Exact code bytes | 4,230,344 | 4,232,388 | 2,044 |
-| Exact data bytes | 1,476,147 | 1,476,219 | 72 |
-| Linked code bytes | 3,833,404 | 3,838,108 | 4,704 |
-| Linked data bytes | 1,198,679 | 1,200,083 | 1,404 |
-| Linked units | 3,600 | 3,601 | 1 |
+| Exact data bytes | 1,476,979 | 1,477,051 | 72 |
+| Linked code bytes | 3,834,360 | 3,839,064 | 4,704 |
+| Linked data bytes | 1,199,511 | 1,200,915 | 1,404 |
+| Linked units | 3,599 | 3,600 | 1 |
 
-Actual ordered linker inputs: 3,601 source objects and 1,349 fallbacks;
+Actual ordered linker inputs: 3,600 source objects and 1,348 fallbacks;
 SHA-256 of newline-delimited paths including the final newline:
-`f1d1b808cd776a2eb15f18fbcfcb1d5fa1bc9bf89fafeddf4cfeadcd1a8f8865`.
+`956e608b90a47ae1518e8deecdd3783a95f032977e307604fb7829ee2fd5b8f6`.
