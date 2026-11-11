@@ -38,12 +38,13 @@ notes remain historical; the final preservation/build checks govern this split.
 
 ## Current-main refresh
 
-Latest validation covers main `08c178922fb8da57f44c2d9fc4efb5ebdecf05b4`
+Latest validation covers main `d6fc686573510cc9612beb6a2d71576ad685301c`
 with #402 already merged and #403 targeting main. The BML/Zako/DHCP and subsequent
 character-load/SDK changes are preserved, including the accepted unit fold.
-Fresh-main/combined original-DOL builds, no-loss comparisons, protected providers
-and object identities pass; 3610 linked units are exact and 18824 retention names
-have no drift. The [task-control record](window-custom-select-task-controls.md)
+The [DD/main integration](window-dd-main-integration.md) additionally preserves
+accepted selection/scrollbar rendering and KenkyuW recovery. Fresh-main/combined
+original-DOL builds, no-loss comparisons, protected providers and object identities
+pass; 3612 linked units are exact and 18837 retention names have no drift. The [task-control record](window-custom-select-task-controls.md)
 records the two pinned validation contexts. The distinct
 [stored-client/exit-dispatch audit](window-custom-select-client-identity.md)
 narrows the missing lifecycle evidence to legitimate session semantics and
@@ -283,7 +284,7 @@ remain unqualified; no Parts import or probe is activated.
 | Status display | Native 0x74-byte lifetime/table preserved; upstream exact 5136-byte Pages integrated with canonical PageIndicator | Unchecked rank index remains qualified; historical 1344-byte probe superseded by reviewed upstream recovery |
 | Basic ComCard | Native constructor and exact native render body; coherent cleanup/table probe | Unknown trailing word ownership prevents regression-free activation; no padding/object invention or four-byte waiver |
 | ActionPalette | Native Base construction and destruction, tag/layout recovery retained in exact source-linked 3588-text/832-data owner; compiler table and icon jump targets exact | Array callback/tag storage/lifetime, repeated first-tag reset, unchecked index and external entry/light/legacy caller ABI qualifications remain |
-| DD renderer | Shared begin/forward/reset contracts established | 608-byte probe remains 37 words different; needs value-lifetime/quad evidence; original provider retained |
+| DD renderer | Accepted-main selection608/scrollbar884 and complete2736-byte owner exact/source-linked; shared reset/UV contracts retained | Old missing-renderer/provider hold superseded; native lifetime, legacy interfaces, raw storage and original compiler-profile qualifications remain; [integration](window-dd-main-integration.md) |
 | Word renderer/lifetime | Upstream exact 916-byte renderer and complete 3412-byte unit source-linked; fixed-source native diagnostic matches all seven bodies/relative targets including constructor148 | Diagnostic order and actual table/startup destinations fail; source/context organization and helper/storage qualifications remain held |
 | Nameplate | Accepted exact main recovery and shared SmallFont contracts integrated with native task/lifetime; whole owner/prefix targets qualified | Original compiler provenance, legacy overlays and lifetime/helper interfaces remain; [integration](window-main-speech-balloon-integration.md) |
 | ScrollBar / ChallengeResult / follower | Bounded native probes and contracts recorded | Constant-pool/data-base/producer differences; no repeated scheduling variants |

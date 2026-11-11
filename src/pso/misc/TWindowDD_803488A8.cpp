@@ -5,7 +5,7 @@
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowDD.h"
 
-struct Src_80348A9C { f32 u; f32 v; };
+typedef WindowTexturePoint Src_80348A9C;
 
 struct Dst_80348A9C { u8 pad[0xc]; f32 u; f32 v; u8 pad2[4]; };
 

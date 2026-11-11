@@ -1,4 +1,6 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
+#include "pso/misc/TNeedleShoot.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjMotion.h"
@@ -139,11 +141,12 @@ void clear_technique_contacts__10TObjPlayerFv() {
     (*(TechniqueContactList *)&technique_contact_list).count=0;
 }
 
-bool TObjPlayer::is_hit_receivable_target(s32 arg0, u32 arg1) {
+s32 TObjPlayer::is_hit_receivable_target(s32 arg0, u32 arg1) {
     if (arg1 == 0U) {
         return 0;
     }
-    return obj_is_hit_receivable((void *)arg1) != 0;
+    if (obj_is_hit_receivable((void *)arg1) != 0) return 1;
+    return 0;
 }
 #define L_802A3DE8 (*(TechniqueContactList *)&technique_contact_list)
 TechniqueContactList *TObjPlayer__sub_802A3DE8(Obj_802A3DE8 *self, void *src) {
@@ -292,4 +295,39 @@ TechniqueContactList *TObjPlayer::collect_technique_contacts(void *src) {
     return &L_802A41CC;
 }
 
+#pragma push
+#pragma scheduling off
+#pragma global_optimizer off
+void TObjPlayer__sub_802A445C(TNeedleShoot *self) {
+    TechniqueContactList *list;
+    if (self->m_68 == 0) {
+        self->TObject::queue_destruction();
+        return;
+    }
+    switch (self->m_b0) {
+    case 1:
+        list = ((TObjPlayer *)self)->collect_technique_contacts((void *)self->m_1c);
+        break;
+    case 2:
+        list = TObjPlayer__sub_802A3FDC((Obj_802A3FDC *)self, (void *)self->m_1c);
+        break;
+    default:
+        {
+            void *source = (void *)self->m_1c;
+            list = TObjPlayer__sub_802A3DE8((Obj_802A3DE8 *)self, source);
+        }
+        break;
+    }
+    if (!list) {
+        self->vfunc_6();
+    } else if (TObjPlayer::is_hit_receivable_target((s32)self, (u32)list->actors[0])) {
+        TechniqueContactActor *actor = list->actors[0];
+        if (actor) {
+            TechniqueContactBody *contact = list->bodies[0];
+            // The value conversion avoids an addressable comma-expression temporary.
+            self->vfunc_9((self->m_38 = contact, static_cast<void *>(actor)));
+        }
+    }
+}
+#pragma pop
 }

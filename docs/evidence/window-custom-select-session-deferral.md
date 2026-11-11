@@ -102,3 +102,10 @@ establish ordinary active-menu safety after replay or validate self-exit deliver
 CustomSelect's partial-initialization/nonzeroing-allocation hold, Word, ComCard,
 original-provider, ownership and interface holds remain. No reachable failure or
 universal safety result follows.
+
+
+The subsequent [DD/main integration](window-dd-main-integration.md) preserves all
+seventeen session controls on main `d6fc686573510cc9612beb6a2d71576ad685301c`.
+Its separate full-build/provider qualification changes the report and graph;
+the earlier documentation-only hash-identity statement applies to the pinned
+`94a4045114` checkpoint. No session/lifetime hold is lifted by the renderer work.
