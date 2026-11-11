@@ -122,3 +122,14 @@ The Message/Palette objects, exact balloon and Parts provider qualifications,
 protected original remainders and 1044-byte preview remain intact. No lifecycle
 hypothesis is activated and no hold is lifted. Private refresh receipts are in
 `pr403-refreshead/`; frozen-head independent review remains a publication gate.
+
+The later audio/ADX main `9675511ed4cba4ea24fbc101c41944f9019621b2` is also
+integrated after resolving only an appended exception-documentation conflict by
+preserving both sections. Fresh main and combined builds pass in 84.63 and 8.00
+seconds with the same original DOL. Both acceptance comparisons pass with 3610
+exact linked units and 18814 retention names; strict prior-B losses remain empty
+and the same fourteen qualified tails remain against main without exact/linked
+loss.
+All 22 controls and the protected provider/preview checks replay successfully.
+There is no window/player/task source change or lifecycle hold clearance.
+Current receipts are in `pr403-refresh967/` and `pr403-main967` baseline files.
