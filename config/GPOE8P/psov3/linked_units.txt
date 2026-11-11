@@ -3593,6 +3593,8 @@ pso/unk/text_803F4D10.cpp
 pso/unk/text_803F4D84.cpp
 pso/unk/text_80421620.cpp
 pso/unk/text_8042E8C4.cpp
+pso/unk/text_8042E9FC.cpp
+pso/unk/text_8042EA10.cpp
 pso/unk/text_8042EAD4.cpp
 pso/unk/text_8042EE4C.cpp
 si/SIBios.c

@@ -15,7 +15,7 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `c9af971c23`, 2026-11-10)
+## Summary (including approved native restore exception, 2026-11-11 UTC)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
 for this source tree. Assembly is counted as source lines;
@@ -23,10 +23,10 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
+| Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,777 | 878 |
+| CodeWarrior pragmas (excluding push/pop) | 5,778 | 879 |
 | Per-unit compiler overrides in `configure.py` | 192 | 192 |
 | Approved regressions | 0 | 0 |
 
@@ -47,6 +47,19 @@ asm always has an entry in this register.
 | `src/pso/unk/text_803D8910.cpp` | `vec3_add_to` | hand-written `asm void` under `#ifdef __MWERKS__`; scalar add in the `#else` | In-place paired-single add (`psq_l`/`ps_add`/`psq_st`, z with W=1) at 0x803D8910 that CW 2.6 cannot emit from C. Matt confirmed this exception in the [#128 approval](#approval-for-the-ginja-vector-kernels). Evidence: [vec3-add-to-paired-single.md](evidence/vec3-add-to-paired-single.md). | Compile the scalar add fallback. |
 | `src/pso/unk/text_803D8910.cpp`, `src/pso/unk/text_803D96A8.cpp` | `vec3_dot`, `vec3_cross`, `normalize_vector` | standard `orig_asm` body from the disc under `#ifdef __MWERKS__`; scalar C/C++ in the `#else` | GC/2.6 did not reproduce the register allocation and load order of `vec3_dot` (0x803D89C0). The typed intrinsics also insert an extra rounding step when reproducing the estimate sequence in `vec3_cross` (0x803D8A18) and `normalize_vector` (0x803D97B4). Matt approved these three disc-generated bodies in the [#128 approval](#approval-for-the-ginja-vector-kernels). Evidence: [vec3-add-to-paired-single.md](evidence/vec3-add-to-paired-single.md). | Compile the scalar C/C++ fallback. |
 | `src/pso/unk/text_803E2D70.cpp` | `transform_chunk_vertices_pos_normal` | hand-written `asm void` under `#ifdef __MWERKS__` | One-time asm exception approved by Matt on 2026-11-04 ([#281](https://github.com/matthewlewisnewton/pso-decomp/pull/281)): SDK `PSMTXROMultVecArray`-style paired-single code (`psq_l`/`ps_madds*`/`psq_stu`) that MWCC cannot emit from C; other GameCube decomps keep it as asm. Evidence: [docs/evidence/paired-single-sdk-asm.md](evidence/paired-single-sdk-asm.md). | Use the scalar C++ `#else` fallback that ships with it. |
+| `src/pso/unk/text_8042E9FC.cpp` | `pad_03_8042E9FC_text` | Disc-generated local assembly and scoped `force_active`, guarded by `__MWERKS__` | Approved for [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) with the portable behavior condition below. Retention reproduces exact native linkage without invented references. | Compile `step_loader_restore` in the `#else` and dispatch it against guest state; see `ports/include/pso/port/LoaderTransfer.h`. |
+| `src/pso/unk/text_8042E8C4.cpp` | `LaunchDol` handoff | Existing generated native assembly; new scalar handoff handler in the `#else` | Preserve the nonlinking LR transfer and live guest frame. | Use `step_loader_handoff` for the final four instructions; the remaining relocation/reset body still requires platform implementation or PPC execution. |
+
+### Loader restore approval
+
+Matt approved PR #285's generated 20-byte restore and scoped `force_active` on
+2026-11-11 UTC, conditional on portable builds having a path to identical
+behavior. Both loader source units now compile scalar handoff/restore handlers
+in their non-Metrowerks branches. The portable execution backend supplies guest
+memory, instruction synchronization and dispatch; this is not a full host loader.
+The pragma retains a local fragment otherwise discarded by the native linker.
+Original source ownership remains provisional. See [native and portable
+validation](evidence/loader-restore-retention.md).
 
 ### Approval for the Ginja vector kernels
 
@@ -95,7 +108,7 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,777 pragmas in 878 files; per-file table in the generated file. Main kinds:
+5,778 pragmas in 879 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1142, `inline_depth` 1034, `fp_contract` 880, `auto_inline` 832,
 `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 240,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
@@ -1358,7 +1371,6 @@ entry when the PR merges.
 
 | PR | Exception | Status / reason |
 |---|---|---|
-| [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) | `static asm void pad_03_8042E9FC_text` via `orig_asm` include (`src/pso/unk/text_8042E9FC.cpp`) | PR body: 5-word stranded epilogue; 0/60 C probes across 20 compilers reach it. **No approval recorded and no scalar fallback**; it needs one under the rule above. |
 | [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
 | [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
 | [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295) | `inline_depth(2)` (main's existing region uses depth 1) on `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | The nested `flags & 1` group walk only inlines at depth 2, which is required for both page-fit expansions in `sub_803EC284` to match. A port can drop the pragma and keep the scalar loop. |
