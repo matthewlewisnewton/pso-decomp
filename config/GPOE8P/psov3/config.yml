@@ -1848,6 +1848,8 @@ force_active:
   - TWindowDD__sub_80341674
   - TWindowDD__sub_803422F0
   - TWindowDD__sub_803423E0
+  - TWindowDD__sub_803434F4
+  - TWindowDD__sub_8034694C
   - TWindowDD__sub_80346F30
   - TWindowDD__sub_80346FC0
   - TWindowDuelResult__layout_entries
@@ -4546,7 +4548,6 @@ force_active:
   - build_dead_list_window__15TObjDeadListWinFv
   - build_default_save_file__23TAdSinglePlyChrSelectGCFv
   - build_discover__11DhcpMessageFv
-  - build_release__11DhcpMessageFv
   - build_door_collision_triangles__18TObjCityDoor_LobbyFv
   - build_download_list__12TQuestListVMFv
   - build_ethernet_frame_header__6TLobbyFPvPvUsUcUsUs
@@ -4557,6 +4558,8 @@ force_active:
   - build_name_text__13TObjTombstoneFv
   - build_node_records__11TBreakUpMdlFPUcl
   - build_packet_header__10TObjPlayerFv
+  - build_release__11DhcpMessageFv
+  - build_request__11DhcpMessageFv
   - build_result_text__13TObjResultWinFv
   - build_save_file__23TAdSinglePlyChrSelectGCFv
   - build_selection_summary__12TAdTimeSetGCFv
@@ -5627,7 +5630,6 @@ force_active:
   - destroy_subobjects_recursive__9TItemListFv
   - detect_device_type__16TKeyBoardControlFl
   - dfdemo4_strip_nodes
-  - build_request__11DhcpMessageFv
   - dimedian_action_table
   - dimedian_appear_motion_filename
   - dimedian_attack_left_motion_filename
@@ -14296,6 +14298,7 @@ force_active:
   - poll_load_status__12TAdTimeSetGCFv
   - poll_loaded_player__12TAdTimeSetGCFv
   - poll_quest_download__12TQuestListVMFv
+  - pop_menu_level__9TWindowDDFPv
   - populate_quest_floor_sets__Fv
   - populate_sub_item_list
   - pose_player__15TEndingPicStageF17player_class_typeSc
@@ -15229,6 +15232,7 @@ force_active:
   - run_single_view_frame__Fv
   - run_split_screen_frame__Fv
   - run_state__15TBoss3VoloptP02Fv
+  - run_state__9TWindowDDFPv
   - run_state_machine__15TBoss3VoloptP01Fv
   - run_switch_interaction_phase__10TObjPlayerFis
   - run_synced_state_handler__10TObjPlayerFv
