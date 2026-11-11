@@ -2,17 +2,14 @@
 #define PSO_NETWORK_NETWORK_DISPATCH_H
 
 #include "types.h"
+#include "pso/network/NetworkTimer.h"
 #include <stddef.h>
-
-typedef void (*NetTimerCallback)(void);
 
 extern "C" {
 void TLobby__sub_80419A00(void);
 s32 TLobby__sub_80419A34(void);
 s32 TLobby__sub_80419A7C(void);
 s16 NetInitializeDispatcher(void);
-s32 NetRegisterTimer(s32 period, s16 locked, NetTimerCallback fn);
-s32 NetUnregisterTimer(NetTimerCallback fn);
 }
 
 struct NetProtocolHandlerEntry {

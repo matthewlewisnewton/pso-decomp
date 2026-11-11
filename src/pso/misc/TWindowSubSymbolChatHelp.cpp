@@ -1,3 +1,4 @@
+#include "pso/misc/SmallFontDrawing.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
@@ -58,7 +59,6 @@ extern UV_802844C8 symbol_chat_help_entry_uv_table[];
 extern UV_802845EC symbol_chat_help_icon_uv_table[];
 void draw_help_icon__24TWindowSubSymbolChatHelpFiPvii(s32 arg0, Win_802845EC *arg1, s32 arg2, s32 arg3);
 void __dl__7TObjectFPv(void *);
-s32 begin_render__20TWindowSubStatusDispFl();
 int initialize_subwindow__9TWindowDDFv(void*);
 
 extern s32 lbl_805D63F0;
@@ -183,7 +183,7 @@ void TWindowSubSymbolChatHelp::draw_help_entries(void *arg1) {
         draw_color_palette((Win_8028429C *)(arg1));
         TWindowSubStatusDisp::get_player();
         begin_screen_draw(1);
-        begin_render__20TWindowSubStatusDispFl();
+        bind_small_font_texture_list();
         set_draw_texture_and_color(1, -1);
         draw_help_entry((Win_802844C8 *)(arg1), 0, -1);
         draw_help_entry((Win_802844C8 *)(arg1), 1, -1);

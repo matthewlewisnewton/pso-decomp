@@ -962,6 +962,7 @@ pso/misc/THunterGuildWarning_80211690.cpp
 pso/misc/THunterGuildWarning_802116EC.cpp
 pso/misc/THunterGuildWarning_80211700.cpp
 pso/misc/THunterGuildWarning_8021170C.cpp
+pso/misc/THunterGuildWarning_80211718.cpp
 pso/misc/TJudgmentSequence.cpp
 pso/misc/TJudgmentSequence_8021E4C4.cpp
 pso/misc/TKeyBoardControl.cpp
@@ -1731,6 +1732,7 @@ pso/misc/TWindowDuelResult_801C2528.cpp
 pso/misc/TWindowEffectLight.cpp
 pso/misc/TWindowEffectParty.cpp
 pso/misc/TWindowEffectParty_8024F690.cpp
+pso/misc/TWindowFukidasi.cpp
 pso/misc/TWindowFukidasi_80252AE4.cpp
 pso/misc/TWindowFukidasi_80252B74.cpp
 pso/misc/TWindowFukidasi_80252BF8.cpp
