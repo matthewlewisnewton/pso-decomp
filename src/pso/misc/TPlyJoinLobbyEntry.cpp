@@ -3,6 +3,7 @@
 #include "pso/misc/TWindowBase.h"
 #include "types.h"
 #include "pso/TObject.h"
+#include "pso/TSocket.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/TUnk_804A7008.h"
 #include "pso/system/date.h"
@@ -32,6 +33,9 @@
 #include "pso/ui/TAdScrollWinGC.h"
 #include "pso/ui/TWindowRoom.h"
 #include "pso/ui/Language.h"
+
+typedef char ProtocolInvalidPacketFlagOffset[offsetof(TSocket, m_is_invalid_packet) == 0x2A ? 1 : -1];
+typedef char ProtocolBufferClearedFlagOffset[offsetof(TSocket, m_buffer_cleared) == 0x2B ? 1 : -1];
 
 struct Entry_8013634C {
     u8 tag[8];
@@ -322,7 +326,6 @@ struct Pkt_80136C94 {
 
 typedef struct { u8 pad0[0xA]; char name[0x12]; } Ent_8013703C;
 
-s32 memcpy(void *, void *, int);
 void * memset(void *, int, u32);
 void mark_area_change_pending();
 u16 get_entity_id(void *);
@@ -2323,7 +2326,7 @@ void TLobby__sub_801384E4(void) {
                 TLobby__join_lobby_idle_timer = 0;
                 TLobby__data_805D5594 = 0xC;
                 if ((void *) TLobby__protocol_instance != NULL) {
-                    *(u8 *)((s8 *)TLobby__protocol_instance + 0x2A) = (u8) (*(u8 *)((s8 *)TLobby__protocol_instance + 0x2A) | 1);
+                    ((TSocket *)TLobby__protocol_instance)->m_is_invalid_packet |= 1;
                 }
             }
         } else {
@@ -2344,7 +2347,7 @@ void update_state__6TLobbyFv(void) {
                 TLobby__join_lobby_idle_timer = 0;
                 TLobby__data_805D5594 = 0xC;
                 if ((void *) TLobby__protocol_instance != NULL) {
-                    *(u8 *)((s8 *)TLobby__protocol_instance + 0x2A) = (u8) (*(u8 *)((s8 *)TLobby__protocol_instance + 0x2A) | 1);
+                    ((TSocket *)TLobby__protocol_instance)->m_is_invalid_packet |= 1;
                 }
             }
         } else {

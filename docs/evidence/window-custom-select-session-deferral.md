@@ -109,3 +109,10 @@ seventeen session controls on main `d6fc686573510cc9612beb6a2d71576ad685301c`.
 Its separate full-build/provider qualification changes the report and graph;
 the earlier documentation-only hash-identity statement applies to the pinned
 `94a4045114` checkpoint. No session/lifetime hold is lifted by the renderer work.
+
+
+The [socket/phase-exit follow-up](window-custom-select-phase-exit.md) distinguishes
+invalid-packet byte 0x2A from buffer readiness and proves the original phase 15
+exit-callback edge after a requested transition returns from its update loop.
+That conditional teardown route does not establish immediate cleanup at the
+request call or the valid-session notification contract for an active menu.
