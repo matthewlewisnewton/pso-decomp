@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 88 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5690 | 884 |
-| configure.py per-unit override | 204 | 204 |
+| pragma | 5689 | 883 |
+| configure.py per-unit override | 205 | 205 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1091, `inline_depth` 993, `fp_contract` 885, `auto_inline` 803, `opt_common_subs` 620, `scheduling` 264, `opt_propagation` 247, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 30, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1091, `inline_depth` 993, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 620, `scheduling` 264, `opt_propagation` 247, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 30, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -237,6 +237,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1091, `inline_depth` 993, 
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/ui/DrawLine.cpp` | `-inline off,deferred, -fp_contract on` | Reverse definitions retain native function and vtable order. |
 | `pso/menu/TAdTimeSetGC.cpp` | `-sdata 4, -fp_contract on` | Keep the eight-byte menu positions in .data with the state table. The calendar x coordinate uses a fused multiply-add. |
 | `pso/misc/TLobby_802409AC.cpp` | `-sym on` | Keep the compiler-generated guild-card initializer ahead of its constructor and accessors. |
 | `pso/misc/TPlayerFootStamp.cpp` | `-fp_contract on, -inline off,deferred, -str reuse,readonly` | Upstream #208: fused scale/corner arithmetic; deferred emission puts the compiler vtable before the constructor switch table; class string is rodata. |
@@ -1152,7 +1153,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1091, `inline_depth` 993, 
 | `src/pso/ui/TAdChrSelSlotGC.cpp` | fp_contract×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/ui/TAdDialingGC_80328DB0.cpp` | readonly_strings×1 |
 | `src/pso/ui/TAdDialingMessageWindow.cpp` | readonly_strings×1 |
-| `src/pso/ui/TAdDrawLineTask.cpp` | fp_contract×1 |
 | `src/pso/ui/TAdEnterPasswordGC.cpp` | explicit_zero_data×2 |
 | `src/pso/ui/TAdEnterSerialAccessGC.cpp` | readonly_strings×1, fp_contract×1, opt_common_subs×1 |
 | `src/pso/ui/TAdEp3Exist.cpp` | readonly_strings×1, opt_lifetimes×1 |
