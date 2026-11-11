@@ -2617,6 +2617,7 @@ pso/system/ChunkMaterialState.cpp
 pso/system/ChunkTextureStripCollector.cpp
 pso/system/CityTraffic.cpp
 pso/system/FlagWord.cpp
+pso/system/GinjaMaterial.cpp
 pso/system/GinjaModelQueue.cpp
 pso/system/ItemEffects.cpp
 pso/system/LscServer.cpp

@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,693 | 879 |
+| CodeWarrior pragmas (excluding push/pop) | 5,694 | 879 |
 | Per-unit compiler overrides in `configure.py` | 192 | 192 |
 | Approved regressions | 0 | 0 |
 
@@ -117,7 +117,7 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,693 pragmas in 879 files; per-file table in the generated file. Main kinds:
+5,694 pragmas in 879 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802,
 `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 242,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
@@ -200,6 +200,30 @@ unset until a contact slot is written. The original call to
 consists of a return instruction. The matching build preserves the original
 register state at that call. The portable branch initializes the debug pointer
 to null.
+
+### Ginja material dispatch
+
+`src/pso/system/GinjaMaterial.cpp` adds scoped `use_lmw_stmw off` for
+`apply_ginja_material_params` (`0x803DBE1C`), preserving the original save/restore
+helpers. Its format-field reference preserves the surface address across the
+GX call and the subsequent field-read timing; an ordinary pointer changes eight
+register operands. Ports can retain the reference or use an ordinary surface
+pointer and omit the pragma.
+
+The fallback RGBA aggregate at `0x805E0F68` uses a guarded `.sdata2` section
+attribute. Its definition sits after the consuming material-color function
+and before the dispatcher's float literals, preserving the named load and
+small-constant order/alignment. Ports can use the ordinary constant without
+the section attribute or definition-order constraint.
+
+The native parameter table calls heterogeneous one- and two-word handlers
+through the two-word MWCC ABI. `GinjaParameterHandler.h` restores each entry's
+actual function type on other compilers; ports must keep that typed dispatch.
+Native draw/matrix callbacks retain pre-existing unspecified return-register
+paths, while portable branches explicitly return zero. The shared draw-callback
+interface remains provisional. Existing raw GX declarations, layout views,
+callback casts and pragmas also become source-linked with this unit; they still
+need consolidation for a port. See [the recovery evidence](evidence/ginja-material-recovery.md).
 
 ### ADX stream decode at `0x803C0238`
 

@@ -32,6 +32,7 @@ guides.
 - [Empty enemy-call interfaces](enemy-empty-hooks-evidence.md)
 - [Floor-area sound wrappers](floor-area-sound-evidence.md)
 - [Gee native recovery checkpoint](gee-native-recovery-evidence.md)
+- [Ginja material dispatcher and complete unit](ginja-material-recovery.md)
 - [Indirect texture scroll offset and copy propagation](indirect-scroll-offset-propagation.md)
 - [Indirect controller native observations (from #267)](indirect-controller-dispatcher.md)
 - [Keyboard constructor client argument](keyboard-constructor-abi-evidence.md)
