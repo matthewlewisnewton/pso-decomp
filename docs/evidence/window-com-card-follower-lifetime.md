@@ -113,3 +113,8 @@ audit does not authorize extending the original loop. The follower's separate
 native-constructor conversion-pool mismatch and the basic ComCard trailing-word
 ownership/coverage hold remain unchanged. No prior constructor variant is
 repeated or activated.
+
+The subsequent [task-order and close-phase control](window-com-card-close-phase-control.md)
+compares opening and already-open followers under explicit scalar scheduling
+assumptions. It shows why five close requests alone are insufficient to prove
+borrowed-parent lifetime, without claiming a reachable game failure.
