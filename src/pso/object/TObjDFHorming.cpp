@@ -221,7 +221,6 @@ void TBoss4DarkFalz::push_players_out_of_zone(s32 arg0, s32 arg1) {
 #include "pso/boss/TBoss4Type3.h"
 #include "pso/object/TObjDFHorming.h"
 #include "pso/boss/TBoss4DarkFalz.h"
-#include "pso/boss/TBoss4ZakoDraw_8030AD38.h"
 #include "pso/enemy/TObjEnemy.h"
 
 extern "C" {
@@ -783,7 +782,6 @@ void TBoss4DarkFalz::update_roar_sound_timer() {
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/boss/TBoss4DarkFalz.h"
-#include "pso/boss/TBoss4ZakoDraw_8030AD38.h"
 #include "pso/boss/TBoss4Type2.h"
 #include "pso/boss/TBoss4Uro.h"
 #include "pso/misc/TLobby.h"
