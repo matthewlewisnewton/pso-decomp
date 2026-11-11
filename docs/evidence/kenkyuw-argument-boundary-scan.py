@@ -2,7 +2,9 @@
 """Read-only candidate survey for the KenkyuW argument-order investigation.
 
 Filters build.ninja units by the dispatcher's compiler version and exact command
-flags, then scans compiled .text for independent move/load/direct-call triples.
+flags, then scans .text for independent move/load/direct-call triples.
+The original provider uses the corresponding original split objects; configured
+flags select the cohort but do not establish the original compiler's provenance.
 Source pragmas and actual scheduling causes still require separate validation.
 Block boundaries use direct targets and branch/call fallthroughs; destinations
 of indirect jumps are not recovered from jump tables.
@@ -16,6 +18,8 @@ parser.add_argument('--repo',type=Path,default=Path(__file__).resolve().parents[
 parser.add_argument('--output',type=Path,help='Write JSON here instead of stdout')
 parser.add_argument('--include-narrow-loads',action='store_true',
                     help='Also consider lbz, lhz and lha argument loads')
+parser.add_argument('--provider',choices=('source','original'),default='source',
+                    help='Scan compiled source objects or corresponding original split objects')
 args=parser.parse_args()
 repo=args.repo.resolve()
 
@@ -85,11 +89,14 @@ control=rules['build/GPOE8P/src/pso/npc/TObjNpcKenkyuW.o']
 reference_flags=' '.join(control['cflags'].split())
 allowed_loads=(32,34,40,42) if args.include_narrow_loads else (32,)
 rows=[];units=functions=0
+corpus=hashlib.sha256()
 for name,rule in rules.items():
     if not name.startswith('build/GPOE8P/src/') or not name.endswith('.o'): continue
     if rule.get('mw_version')!='GC/2.6' or ' '.join(rule.get('cflags','').split())!=reference_flags: continue
-    path=repo/name
+    object_name=name.replace('/src/','/obj/',1) if args.provider=='original' else name
+    path=repo/object_name
     if not path.exists():continue
+    corpus.update(object_name.encode()+b'\0'+hashlib.sha256(path.read_bytes()).digest())
     units+=1
     sections,symbols,relocs,allocated=elf(path)
     if '.text' not in sections:continue
@@ -125,13 +132,15 @@ for name,rule in rules.items():
             block=ordered[bisect.bisect_right(ordered,offset)-1]
             before=words[block//4:offset//4]
             source=rule['build'].split(': mwcc ',1)[1].split(' | ',1)[0].strip()
-            row={'unit':name,'source':source,'symbol':fn,'offset':hex(offset),
+            row={'unit':object_name,'source':source,'symbol':fn,'offset':hex(offset),
+                 'function_offset':hex(offset-start),
                  'move_destination':dst,'move_source':src,'load_destination':ld,'load_base':base,'load_opcode':b>>26,
                  'branch_target':offset in targets,'block_start':hex(block),
                  'preceding_in_block':len(before),'preceding_store':any(is_store(w)for w in before),
                  'call_target':reloc.get(offset+8,('unknown',))[3] if offset+8 in reloc else 'local call'}
             rows.append(row)
-summary={'compiler':'GC/2.6','flags':reference_flags,'units':units,'functions':functions,'sites':len(rows),
+summary={'compiler':'GC/2.6','flags':reference_flags,'object_provider':args.provider,
+         'object_corpus_sha256':corpus.hexdigest(),'units':units,'functions':functions,'sites':len(rows),
          'no_preceding_store':sum(not r['preceding_store'] for r in rows),'rows':rows}
 summary['build_ninja_sha256']=hashlib.sha256((repo/'build.ninja').read_bytes()).hexdigest()
 report=repo/'build/GPOE8P/report.json'

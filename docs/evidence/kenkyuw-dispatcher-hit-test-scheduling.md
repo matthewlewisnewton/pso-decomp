@@ -825,3 +825,84 @@ full-unit candidate, production signature, compiler flag or link-provider
 change followed from this audit. The exact two-instruction scheduling
 blocker remains; the earlier genuine late-branch witness remains valid
 within its demonstrated receiver-lifetime conditions.
+
+### Original-object comparison and the remaining evidence threshold
+
+A further survey on main `baa0b4e482921446c794fcbb2ccb798d2d05a7fa`
+and PR source `b1bc33f98d47780831c17ee667af3cb020383977` closed a gap
+in the earlier comparison corpus: compiled source objects omit instruction
+patterns that remain unmatched. The scanner now accepts `--provider original`
+to inspect corresponding original split objects while selecting the same
+configured GC/2.6 command/flag cohort. This selection does not independently
+prove which compiler or pragmas originally produced those objects.
+
+```sh
+python3 docs/evidence/kenkyuw-argument-boundary-scan.py \
+  --include-narrow-loads --provider source --output source-boundaries.json
+python3 docs/evidence/kenkyuw-argument-boundary-scan.py \
+  --include-narrow-loads --provider original --output original-boundaries.json
+```
+
+Both surveys cover 3,093 objects. Source objects contain 19,495 eligible
+function symbols and 154 triples; original objects contain 19,425 eligible
+function symbols and 156 triples. These are symbol counts under the scanner's
+defined, nonzero-sized function filter, not a claim of identical function
+symbolization or recovered original translation units. All 154 source-site
+keys (source, symbol, function-relative offset and registers/load kind) also
+occur in the original survey. The only two original-only sites are:
+
+| Function | Function offset | Relevant original sequence |
+| --- | --- | --- |
+| `TWindowSubStatusDisp__sub_8026E1D4` | `0x3E8` | `stw r0,0x68(r31); mr r4,r20; lwz r3,0x68(r31); bl set_selection...` |
+| `TObjPlayer__sub_802A445C` | `0x94` | `mr r3,r30; lwz r4,0(r31); bl is_hit_receivable_target...` |
+
+The window site has a real preceding store to exactly the loaded field;
+it supplies no store-free scheduling witness. The dispatcher is the only
+original triple at a decoded direct branch target, and the only one with
+zero preceding instructions in its decoded block. Thus the original corpus
+adds no second comparable unresolved site to pursue. As before, indirect
+jump-table destinations are not reconstructed, source pragmas require a
+separate audit, and this is a bounded cohort rather than a universal result.
+The original input DOL still has the required SHA-1 recorded above.
+
+The scanner binds each run to an ordered digest of object paths and complete
+object hashes. For this snapshot the source corpus digest is
+`ec2df550be0d02c9a1e04691d401df3e1cb96e29de66cbbad410605e49f770fb`,
+and the original corpus digest is
+`c0bd299c61a835fae6233b3719f7011c73c5153278b3d518c0fb9f677326184c`.
+No compiler, binary, private object, or private report is published by the
+scanner, and it neither builds nor changes the selected provider.
+
+The alternative post-allocation load-to-copy route was also checked in
+[`ValueNumbering.c`](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/optimizer/ValueNumbering.c).
+`simpleload` and `pointerload` replace available loads by inserting a copy
+and deleting the old load; both operations clear `fScheduled` through the
+normal pcode mutation functions. This extends the earlier coalesced-copy
+audit: neither route demonstrates a stale scheduled flag that would let a
+new three-pcode move/load/call block evade the second scheduler. No source
+permutations were compiled on the strength of that unsupported explanation.
+
+The strongest demonstrated mechanism remains the genuine late-deleted
+branch witness, but its receiver-in-`r3` empty arm has not survived the real
+collector/lifetime conditions. Another generic conditional witness alone
+would not reopen the target search. Useful new evidence would be either:
+
+- A same-GC/2.6, same-flags truthful control whose preceding external
+  collector returns a nullable list in `r3`, whose miss path exits, and
+  whose receiver and list remain live for a post-predicate list reread and
+  receiver callback, while a genuine boundary separates the independent
+  move/load until after scheduler two. The stock-run authenticated trace
+  must show how that boundary disappears without extra comparisons,
+  argument calculations, loads, stores or copies remaining.
+- Independent original source/build or layout/ABI evidence that changes
+  those currently modeled lifetimes or the compiler provenance, together
+  with a reproducible explanation of the complete target sequence. Another
+  project-assigned helper name or an incompatible compiler's matching pair
+  is insufficient.
+
+Those are evidence requirements for a new experiment, not permission for a
+compiler override or fabricated semantics. An activation candidate still
+must preserve all 57 target instructions, nine siblings and relocations and
+pass a real source link with the original DOL hash. This audit identifies no
+further productive source compile under the current model; it does not
+prove that every source-level solution is impossible.
