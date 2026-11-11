@@ -7,6 +7,7 @@ limitations before applying its conclusions to current code.
 See the [documentation index](../README.md) for current contributor and operator
 guides.
 
+- [Audio header parsing and ADX block transfer](audio-formats-and-adx-transfer.md)
 - [Action-palette unit](action-palette-unit.md)
 - [Box-drop directive](box-drop-directive-evidence.md)
 - [Item-drop packet and payload contracts](item-drop-packet-contract.md)

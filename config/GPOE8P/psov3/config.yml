@@ -715,6 +715,14 @@ force_active:
   - TLobby__sub_803C0238
   - TLobby__sub_803C0628
   - TLobby__sub_803C133C
+  - TLobby__sub_803C2388
+  - TLobby__sub_803C2A00
+  - TLobby__sub_803C30E8
+  - TLobby__sub_803C3570
+  - TLobby__sub_803C4020
+  - TLobby__sub_803C40D0
+  - TLobby__sub_803C43A8
+  - TLobby__sub_803C44C0
   - TLobby__sub_803C4698
   - TLobby__sub_803CBE40
   - TLobby__sub_803CE2A0
@@ -1747,6 +1755,7 @@ force_active:
   - TRKPPCAccessFPRegister
   - TRKPositionFile
   - TRKPostInterruptEvent
+  - TRK__write_aram
   - TRK_mainError
   - TRaderMapCore__floor_discovery_table
   - TRaderMapCore__marker_buffer
@@ -3623,6 +3632,7 @@ force_active:
   - advance_when_load_done__12TAdTimeSetGCFv
   - advance_wrap_offset__13TUnk_804B2578Fv
   - adventure_map_variation_count_table
+  - adx_channel_record_pool
   - adx_error_message_buffer
   - adx_signed_nibbles
   - adxf_open_file_buffer
@@ -5248,6 +5258,7 @@ force_active:
   - copy_block__11TBoss6Type1FPvPv
   - copy_block__11TBoss6Type2FPvPv
   - copy_bone_positions__13TBoss5GryphonFv
+  - copy_byteswapped_pcm_samples__6TLobbyFv
   - copy_challenge_result_record__FP21ChallengeResultRecordPC21ChallengeResultRecord
   - copy_char_slot_data__23TAdSinglePlyChrSelectGCFPvPv
   - copy_character_data__23TAdSinglePlyChrSelectGCFPUc
@@ -5528,8 +5539,10 @@ force_active:
   - decode_params__14TOTrapChainSawFv
   - decode_params__17TOTrapChainSawKeyFv
   - decode_params__20TOTrapChainSawDamageFv
+  - decode_pcm8_stream__6TLobbyFv
   - decode_polar_position__15Boss6PolarBytesFP3Vec
   - decode_slot__6TLobbyFUi
+  - decode_stream_chunk__6TLobbyFv
   - decrypt_network_info_cipher_block__FPUlP22NetworkInfoCipherBlockP22NetworkInfoCipherBlock
   - decrypt_network_info_cipher_blocks__FPUlPUclPUc
   - decrypt_network_info_cipher_round__FPUlPUl
@@ -5645,6 +5658,7 @@ force_active:
   - dispatch_action__18TObjEneMe3SinowZoaFUll
   - dispatch_action_state__16TObjEneNanoDragoFv
   - dispatch_by_index__19TWindowKeyBoardSoftFv
+  - dispatch_by_state__6TLobbyFv
   - dispatch_callback__Fv
   - dispatch_fish_event__6TLobbyFPv
   - dispatch_if_active__17TObjEneMe3ShinowaFv
@@ -5654,6 +5668,7 @@ force_active:
   - dispatch_main_phase_153__12TBoss4ThanksFv
   - dispatch_material_animation__6TSceneFv
   - dispatch_mode__12TBoss3VoloptFv
+  - dispatch_network_state__6TLobbyFv
   - dispatch_page_init__20TWindowSubStatusDispFv
   - dispatch_page_update__20TWindowSubStatusDispFv
   - dispatch_photon_blast_action__10TObjPlayerFis
@@ -6516,6 +6531,7 @@ force_active:
   - fn_80351A14
   - fn_8035D49C
   - fn_8036A3CC
+  - fn_803C32EC
   - fn_803DB15C
   - fn_803DD3C8
   - fn_803F1804
@@ -6809,6 +6825,7 @@ force_active:
   - get_player_pos_in_arc__13TBoss5GryphonFPviiPvPv
   - get_pos_ptr__10TObjPlayerFv
   - get_ppp_password_buffer__Fv
+  - get_progress_info__6TLobbyFPvPvPvPv
   - get_quest_data__16TQuestListOnlineFv
   - get_quest_size__12TQuestListVMFv
   - get_quest_size__16TQuestListOnlineFv
@@ -7465,6 +7482,7 @@ force_active:
   - is_active__10TBoss6RockFv
   - is_active__15PadRumbleEffectFv
   - is_active__16TObjEneBm5GibonUFPv
+  - is_aiff_header__6TLobbyFv
   - is_alt_photon_blast_bank_empty__10TObjPlayerFPv
   - is_android_player
   - is_angle_in_range__16TObjEneMe3StelthFv
@@ -7569,12 +7587,14 @@ force_active:
   - is_sega_logo_done__Fi
   - is_signboard_texture_buffer_missing__Fv
   - is_slot_active__14TShopGeneratorFi
+  - is_snd_header__6TLobbyFv
   - is_sound_enabled
   - is_sound_enabled__12TObjEnvSoundFPvl
   - is_speaker_far_or_offscreen__13TUnk_804CF0B8Fv
   - is_special_sound_id
   - is_sphere_visible__12TBoss1DragonFf
   - is_split_screen__10TObjPlayerFv
+  - is_spsd_header__6TLobbyFv
   - is_stat_over_limit__6TLobbyFl
   - is_state_zero_unless_0x2C8__9TWindowDDFl
   - is_target_in_attack_range__12TObjEneSaverFv
@@ -9760,6 +9780,7 @@ force_active:
   - parse_packet__9TProtocolFv
   - parse_pad_event__16TKeyBoardControlFlUl
   - parse_r_index
+  - parse_stream_header__6TLobbyFPvPv
   - parse_tag_command__24TMessageWindowControllerFv
   - parse_tlv_records__6TLobbyFlPUcUs
   - particle_regular_bml_descriptor
@@ -14267,6 +14288,7 @@ force_active:
   - prepare_tool_purchase__19TShopItemListWindowFv
   - prepare_wall_query_polygons__FPvfl
   - present_frame_and_wait_vsync__Fv
+  - process_byteswapped_pcm_transfer
   - process_download_entry__12TQuestListVMFv
   - process_enemy_drop_request__Flsisiff
   - process_key_input__19TWindowKeyBoardHardFUc
