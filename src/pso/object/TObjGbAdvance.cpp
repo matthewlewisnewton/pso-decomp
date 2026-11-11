@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/object/TObjComputer.h"
@@ -24,7 +25,6 @@ extern RecoveredGlobal_80187F78_lbl_804B6280 gb_advance_collision_body_parts;
 extern s32 __vt__13TObjGbAdvance[];
 extern s32 lbl_805D32D0;
 u8 *TObjGbAdvance__ct(u8 *arg0, s32 arg1);
-s32 get_bml_model(void *, s32);
 void debug_printf_at(s32 id, const char *fmt, ...);
 extern char lbl_80444B48[];
 extern u32 TObjComputer__model_archive;
@@ -70,7 +70,7 @@ u8 *TObjGbAdvance__ct(u8 *arg0, s32 arg1) {
 void TObjComputer::debug_draw_label() {
     this->TObjMesBase::debug_draw_label();
     *(s32 *)&this->set_params[1] = *(s32 *)&this->set_params[1] % 2;
-    *(s32 *)&this->m_bc = get_bml_model((void *)TObjComputer__model_archive, TObjComputer__data_805DBCD8[*(s32 *)&this->set_params[1]]);
+    *(s32 *)&this->m_bc = (s32)get_bml_model((BmlResource *)TObjComputer__model_archive, TObjComputer__data_805DBCD8[*(s32 *)&this->set_params[1]]);
     TObjNpcEnemy::set_global_count(0xFF00FF);
     debug_printf_at(0x130021, lbl_80444B48);
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);

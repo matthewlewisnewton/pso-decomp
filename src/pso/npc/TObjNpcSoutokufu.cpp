@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/unk/text_8014B8A4.h"
@@ -43,7 +44,6 @@ struct Gl_80289710 { u8 pad[0x42C]; Ow_80289710 *owner; };
 
 extern "C" {
 s32 TObjFish__sub_8001EDB0(int, int);
-s32 get_bml_model(int, int);
 extern s32 __vt__16TObjNpcSoutokufu[];
 extern void *lbl_805D4DD8;
 void __dl__7TObjectFPv(void *);
@@ -83,7 +83,7 @@ u8 *TObjNpcSoutokufu__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcSoutokufu__name;
     ((TObjNpcSoutokufu *)(player))->apply_set_data((void *)arg2);
     ((TObjChara *)player)->initialize_position_copies();
-    *(s32 *)((s8 *)player + 0x34) = get_bml_model((int) ((*(s32 *)&TObjNpcSoutokufu__shared_model_resource)), 0);
+    *(s32 *)((s8 *)player + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&TObjNpcSoutokufu__shared_model_resource)), 0);
     ((TObjNpcSoutokufu *)player)->texlist = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TObjNpcSoutokufu__shared_model_resource)), 0);
     ((TObjNpcBase *)player)->setup_common();
     return player;

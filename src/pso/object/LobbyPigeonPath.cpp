@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
@@ -7,6 +8,7 @@
 
 #include "types.h"
 #include "pso/npc/NpcModelRegistry.h"
+#include "pso/npc/NpcAnimationBinding.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/TMainTask.h"
@@ -201,7 +203,6 @@ extern "C" {
 void vec3_add_to(void *, void *);
 u8 *TObjPathObj__ct(u8 *arg0, s32 arg1, s32 arg2);
 
-s32 get_bml_model(void *, s32);
 s32 get_bml_motion(void *, s32);
 
 s32 rand();
@@ -400,9 +401,7 @@ typedef struct RecoveredGlobal_802C27FC_lbl_80471848 RecoveredGlobal_802C27FC_lb
 
 typedef struct RecoveredGlobal_802C27FC_lbl_804E094C RecoveredGlobal_802C27FC_lbl_804E094C;
 
-struct Q_802C2958 { s32 a; s32 b; s32 c; s32 d; };
 
-struct Obj_802C2958 { u8 pad[0x430]; s32 f430; };
 
 struct Vec_802C2C48 { f32 x, y, z; };
 
@@ -522,7 +521,7 @@ void set_matrix_identity(u8 *arg0);
 s32 release_texture_list(void*);
 
 extern Entry_802C2C48 seabed_dolphin_path_profiles[];
-extern u8 seabed_dolphin_anim_binding[];
+extern NpcAnimationBinding seabed_dolphin_anim_binding;
 extern Entry_802C2548 jungle_ebi_path_profiles[];
 extern Entry_802C1E34 lobby_pigeon_path_parameters[];
 extern Entry_802C1660 jungle_seagull_path_profiles[];
@@ -650,7 +649,7 @@ LobbyPigeon* construct_lobby_pigeon(LobbyPigeon* self, void* parent, const void*
     self->vtable = ((void* *)&lobby_pigeon_vtable);
     ((TUnk_804E0898 *)self)->select_lobby_pigeon_model();
     self->scale = (1.0f);
-    self->model = ((void*)get_bml_model((void *)(lobby_pigeon_bml_archive), (s32)(self->modelIndex)));
+    self->model = ((void*)get_bml_model((BmlResource *)(lobby_pigeon_bml_archive), (s32)(self->modelIndex)));
     self->animation = ((void*)get_bml_motion((void *)(lobby_pigeon_bml_archive), 0));
     selector = self->movementSelector;
     if (selector < 0) movement = 0;
@@ -850,7 +849,7 @@ void *TObjPlayer__sub_802C19E8(void *arg0) {
 
     ((s32 (*)(void))TObjPathObj__ct)();
     *(s32 **)((s8 *)arg0 + 0x18) = jungle_seagull_vtable;
-    *(s32 *)((s8 *)arg0 + 0x98) = ((s32 (*)(s32, s32))get_bml_model)((*(s32 *)&lobby_kamome_model_resource), 0);
+    *(s32 *)((s8 *)arg0 + 0x98) = (s32)get_bml_model((BmlResource *)lobby_kamome_model_resource, 0);
     ((TUnk_804E08D4 *)arg0)->m_9c = ((s32 (*)(s32, s32))get_bml_motion)((*(s32 *)&lobby_kamome_model_resource), 0);
     temp_r3 = ((TUnk_804E08D4 *)arg0)->set_params[0];
     var_r0 = (temp_r3 < 0) ? 0 : (temp_r3 > 2) ? 2 : temp_r3;
@@ -1028,7 +1027,7 @@ u8 *TObjPlayer__sub_802C20E8(u8 *arg0, s32 arg1, const void* _w2) {
   s32 temp_r3;
   ((u8 * (*)(LobbyPigeon*, void*, const void*))TObjPathObj__ct)((LobbyPigeon*)(arg0), (void*)(arg1), (const void*)(_w2));
   *((s32 **) (((s8 *) arg0) + 0x18)) = &(*(RecoveredGlobal_802C20E8_lbl_804E0910 *)&lbl_804E0910).value;
-  *((s32 *) (((s8 *) arg0) + 0x98)) = get_bml_model((*(u8 * *)&jungle_bird_bml_resource), 0);
+  *((s32 *) (((s8 *) arg0) + 0x98)) = (s32)get_bml_model((BmlResource *)(*(u8 * *)&jungle_bird_bml_resource), 0);
   ((TUnk_804E0910 *)arg0)->m_9c = get_bml_motion((*(u8 * *)&jungle_bird_bml_resource), 0);
   temp_r3 = ((TUnk_804E0910 *)arg0)->set_params[0];
   if (temp_r3 < 0)
@@ -1238,7 +1237,7 @@ u8 *TObjPlayer__sub_802C27FC(u8 *arg0, s32 arg1, const void* _w2) {
   s32 temp_r3;
   ((u8 * (*)(LobbyPigeon*, void*, const void*))TObjPathObj__ct)((LobbyPigeon*)(arg0), (void*)(arg1), (const void*)(_w2));
   *((s32 **) (((s8 *) arg0) + 0x18)) = &(*(RecoveredGlobal_802C27FC_lbl_804E094C *)&lbl_804E094C).value;
-  *((s32 *) (((s8 *) arg0) + 0x98)) = get_bml_model((*(u8 * *)&jungle_ebi_model_resource), 0);
+  *((s32 *) (((s8 *) arg0) + 0x98)) = (s32)get_bml_model((BmlResource *)(*(u8 * *)&jungle_ebi_model_resource), 0);
   ((TUnk_804E094C *)arg0)->m_9c = get_bml_motion((*(u8 * *)&jungle_ebi_model_resource), 0);
   temp_r3 = ((TUnk_804E094C *)arg0)->set_params[0];
   if (temp_r3 < 0)
@@ -1282,12 +1281,14 @@ void TObjPlayer__sub_802C2900(void) {
 }
 
 void TObjPlayer::load_seabed_dolphin() {
-    Obj_802C2958 *o = (Obj_802C2958 *)new BmlResource(5, (BmlResourceDescriptor *)bm_obj_seabed_dolphin_resource_descriptor, 0, 0, NULL);
-    (*(Obj_802C2958 * *)&seabed_dolphin_bml_archive) = o;
+    BmlResource *resource = new BmlResource(5, (BmlResourceDescriptor *)bm_obj_seabed_dolphin_resource_descriptor, 0, 0, NULL);
+    seabed_dolphin_bml_archive = (u32)resource;
     seabed_dolphin_texture_handle = ((s32 (*)(void *))load_gvm_texture_file)(lbl_804719B8);
-    Q_802C2958 q = *(Q_802C2958 *)seabed_dolphin_anim_binding;
-    q.a = (*(Obj_802C2958 * *)&seabed_dolphin_bml_archive)->f430;
-    NpcModelRegistry::register_animated_chunk((s16)0x40, (void *)((s32)(((s32 (*)(void *, s32, s32, s32, s32, void *))get_bml_model)((*(Obj_802C2958 * *)&seabed_dolphin_bml_archive), 0, ((Q_802C2958 *)seabed_dolphin_anim_binding)->c, ((Q_802C2958 *)seabed_dolphin_anim_binding)->b, ((Q_802C2958 *)seabed_dolphin_anim_binding)->a, seabed_dolphin_anim_binding))), (void *)((s32)seabed_dolphin_texture_handle), (const NpcAnimationBinding *)((s32)(&q)), (f32)((16.0f)), (f32)((1e+01f)));
+    NpcAnimationBinding animation = seabed_dolphin_anim_binding;
+    animation.motions = ((BmlResource *)seabed_dolphin_bml_archive)->motions;
+    NpcModelRegistry::register_animated_chunk(0x40,
+        get_bml_model((BmlResource *)seabed_dolphin_bml_archive, 0),
+        (void *)seabed_dolphin_texture_handle, &animation, 16.0f, 10.0f);
 }
 
 s32 TUnk_804E0988::sub_802C2A10() {
@@ -1426,7 +1427,7 @@ u8 *TObjPlayer__sub_802C2F04(u8 *arg0, s32 arg1, const void* _w2) {
   s32 temp_r3;
   ((u8 * (*)(LobbyPigeon*, void*, const void*))TObjPathObj__ct)((LobbyPigeon*)(arg0), (void*)(arg1), (const void*)(_w2));
   *((s32 **) (((s8 *) arg0) + 0x18)) = &(*(RecoveredGlobal_802C2F04_lbl_804E0988 *)&seabed_dolphin_vtable).value;
-  *((s32 *) (((s8 *) arg0) + 0x98)) = get_bml_model((*(u8 * *)&seabed_dolphin_bml_archive), 0);
+  *((s32 *) (((s8 *) arg0) + 0x98)) = (s32)get_bml_model((BmlResource *)(*(u8 * *)&seabed_dolphin_bml_archive), 0);
   ((TUnk_804E0988 *)arg0)->m_9c = get_bml_motion((*(u8 * *)&seabed_dolphin_bml_archive), 5);
   temp_r3 = ((TUnk_804E0988 *)arg0)->set_params[0];
   if (temp_r3 < 0)

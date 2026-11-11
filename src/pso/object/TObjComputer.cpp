@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/render/render_util.h"
 #include "pso/system/BmlResourceClass.h"
@@ -104,7 +105,6 @@ extern s32 lbl_805D5B8C;
 void debug_printf_at(s32 id, const char *fmt, ...);
 extern char lbl_80444EF4[];
 extern const f32 lbl_805DBCF8;
-s32 get_bml_model(void *, s32);
 u32 init_collision_body_parts(void *, void *, s32);
 void *TObjMesBase__ct(TObjMesBase *arg0, s32 arg1, s32 arg2);
 extern s32 obj_computer_collision_body_parts[];
@@ -262,7 +262,7 @@ void *TObjComputer__ct(void *arg0, void *parent, void *row) {
         self->selector = 1;
     }
     if (TObjComputer__model_archive != 0U) {
-        self->model = (void *)get_bml_model((void *)TObjComputer__model_archive, TObjComputer__data_805DBCD8[self->selector]);
+        self->model = (void *)get_bml_model((BmlResource *)TObjComputer__model_archive, TObjComputer__data_805DBCD8[self->selector]);
     } else {
         queue_destruction__7TObjectFv(self);
         return self;

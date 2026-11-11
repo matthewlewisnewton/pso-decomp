@@ -195,7 +195,7 @@ void TObjDFDemo4::draw_afterimages() {
     rotate_matrix_y(0, angle);
     for (s32 i = 0; i < 2; i++) {
         set_current_texture_list((GinjaTextureList *)afterimages[i].texlist);
-        draw_model_motion((void *)afterimages[i].model, afterimages[i].motion, afterimage_frame);
+        draw_model_motion(afterimages[i].model, afterimages[i].motion, afterimage_frame);
     }
     clear_motion_packed_rotation();
     pop_matrix();
@@ -216,7 +216,7 @@ void TObjDFDemo4::draw_body() {
             if (i == 0) {
                 node_capture->install();
             }
-            draw_model_motion((void *)body_parts[i].model, body_parts[i].motion, frame);
+            draw_model_motion(body_parts[i].model, body_parts[i].motion, frame);
             if (i == 0) {
                 node_capture->clear();
             }

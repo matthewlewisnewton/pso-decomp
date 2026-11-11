@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
@@ -194,7 +195,6 @@ extern const f32 lbl_805DDCE4;
 extern const f32 lbl_805DDCE8;
 extern const f32 lbl_805DDCEC;
 extern const f32 lbl_805DDCF0;
-void *get_bml_model(u32, int);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix(void);
 s32 pop_matrix(void);
@@ -274,11 +274,11 @@ void TODoorJungleMain::render() {
         post_translate_matrix(self->xf);
         rotate_matrix_y(0, self->f60);
         if (self->flags & 1) {
-            draw_ginja_model_with_motion(get_bml_model(TODoorJungleMain__bml_resource, 3), self->fbc, self->fb4);
+            draw_ginja_model_with_motion((void *)get_bml_model((BmlResource *)TODoorJungleMain__bml_resource, 3), self->fbc, self->fb4);
         } else {
-            draw_ginja_object(get_bml_model(TODoorJungleMain__bml_resource, 3));
+            draw_ginja_object((void *)get_bml_model((BmlResource *)TODoorJungleMain__bml_resource, 3));
             for (i = 0; i < 3 - self->count; i++) {
-                draw_ginja_object(get_bml_model(TODoorJungleMain__bml_resource, ids.v[i]));
+                draw_ginja_object((void *)get_bml_model((BmlResource *)TODoorJungleMain__bml_resource, ids.v[i]));
             }
         }
         pop_matrix();

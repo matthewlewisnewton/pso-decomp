@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/FlagWord.h"
@@ -34,7 +35,6 @@ extern "C" {
 extern u8 *lock_on_cursor_bml_resource;
 extern s32 lock_on_cursor_model;
 extern s32 TLockOnCursor__target_cursor_model;
-s32 get_bml_model(void *, s32);
 extern RecoveredGlobal_8013DC38_lbl_804A7140 target_cursor_resource_descriptor;
 extern s32 main_cursor_model;
 void load_target_cursor_models(void);
@@ -179,9 +179,9 @@ void load_target_cursor_models(void) {
         var_r0 = temp_r3;
         lock_on_cursor_bml_resource = (unsigned char *) ((void *) var_r0);
         if ((u32) var_r0 != 0U) {
-            lock_on_cursor_model = get_bml_model((void *) var_r0, 0);
-            TLockOnCursor__target_cursor_model = get_bml_model(lock_on_cursor_bml_resource, 0);
-            main_cursor_model = get_bml_model(lock_on_cursor_bml_resource, 2);
+            lock_on_cursor_model = (s32)get_bml_model((BmlResource *)var_r0, 0);
+            TLockOnCursor__target_cursor_model = (s32)get_bml_model((BmlResource *)lock_on_cursor_bml_resource, 0);
+            main_cursor_model = (s32)get_bml_model((BmlResource *)lock_on_cursor_bml_resource, 2);
         }
     }
 }

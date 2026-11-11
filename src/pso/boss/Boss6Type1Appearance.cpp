@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/CurrentTextureList.h"
@@ -49,7 +50,6 @@ extern const f32 lbl_805DFA48;
 extern const f32 lbl_805DFA4C;
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 
 extern Vec lbl_80477DEC;
 extern s32 boss6_type1_appear_node_desc[];
@@ -188,7 +188,7 @@ TBoss6Demo10_TYPE1_APPEAR::TBoss6Demo10_TYPE1_APPEAR(TObject *parent) : TObject(
     {
       k = lbl_804DF614[i];
       k = k & 0xFFFFFFFFu;
-      ((Fish_8033CB4C *)this)->tbl[i].a = get_bml_model(n, k);
+      ((Fish_8033CB4C *)this)->tbl[i].a = (s32)get_bml_model((BmlResource *)n, k);
       ((Fish_8033CB4C *)this)->tbl[i].b = TObjFish__sub_8001EDB0(n, k);
       ((Fish_8033CB4C *)this)->tbl[i].c = get_bml_motion(n, boss6_type1_appear_motion_indices[i]);
     }

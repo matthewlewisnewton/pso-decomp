@@ -1,11 +1,11 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/boss/TBoss4DarkFalz.h"
 #include "pso/boss/TBoss4Uro.h"
 
 extern "C" {
 
-s32 TObjFish__sub_8001EDB0(s32, s32);
-void *get_bml_model(s32, s32);
+s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
 
 extern s32 falz_zako_texture_list;
 extern u32 falz_zako_chunk_model;
