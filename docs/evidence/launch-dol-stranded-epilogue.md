@@ -824,6 +824,102 @@ Possible repopulation is not an observed retail callback, runtime header
 value or restore-ownership proof. Providers and address accounting remain
 unchanged.
 
+## Phase-19 request survival and release callbacks
+
+The next trace follows request sites, rather than assuming that writing 19
+guarantees the next phase. In the inspected source, the PPP-entry constructor
+requests 19 when its account predicate fails; the external-network confirmation
+constructor does so under its outer flag predicates and failed account check.
+The known mode factory constructs those classes in modes 25 and 21. The
+title object's `open_keyboard` action, associated with the mode-0 title class,
+also requests 19. These are known construction/request paths, not observations
+of which path a retail launch takes or an exhaustive list of indirect calls.
+
+The original setter at `0x8000F9CC` writes only the pending phase at state
+`+0x04` and result flag 1 at `+0x10`; it leaves the current phase unchanged.
+The [bounded request audit](../../tools/audit_loader_phase_requests.py) finds
+43 direct branch encodings to that setter in the pinned original text. Two
+have an immediately preceding `li r3,19`, in the PPP and external-network
+constructors. The title action's setup is nonadjacent and is not silently
+counted by that deliberately narrow pattern. Even an adjacent instruction
+does not prove the register value on every possible entry path.
+
+The exact [normal menu update](../../src/pso/unk/text_8023F3F8.cpp) continues
+after the factory and task dispatch. When `TAdPlayerLoadGC::get_instance()`
+returns zero, a later predicate can invoke `fn_8000F92C`, which replaces the
+pending phase from state `+0x0C` and sets result 3. The following quest-readiness
+predicate can then call the setter with **0**. An earlier request for 19 can
+therefore be superseded in the same update. The getter's
+[actual implementation](../../src/pso/ui/TAdPlayerLoadGC_80076BBC.cpp) returns
+`card_load_sequence_state`; this is distinct from `TLoadCtrl__instance`.
+Names must not be used to equate those two guards.
+
+The [request-survival probe](../../tools/probe_loader_request_survival.py)
+executes the original main dispatcher, menu update, title action, request
+setter, queued-phase setter and card-state getter. At an explicitly modeled
+factory boundary it invokes the original title action with a synthetic
+receiver. This chooses request timing; it does not claim that the factory's
+real constructor performs that action or authenticate its input conditions.
+Main-task work, predecessor init/release bodies, platform calls and account/
+quest predicates remain explicit models. Four controls assert request order,
+phase/result snapshots, exit count and the eventual boundary:
+
+| Chosen predicates after the request | Controlled outcome |
+|---|---|
+| Card state zero; neither later override | Phase 19 update reaches the modem-helper boundary |
+| Card state zero; quest readiness true | Original setter sequence `[19, 0]`; menu exit then modeled shutdown |
+| Card state nonzero | Later override predicates are skipped; request 19 survives |
+| Card state zero; queued-phase override true, queued destination explicitly zero | Original queued setter changes result to 3 and next to 0; menu exit then modeled shutdown |
+
+All four controls pass and are independently replayable. They establish
+conditional survival/replacement in the selected original instructions, not
+real menu input, a particular predecessor, cleanup effects or a runtime header
+value. They stop before the modem helper or shutdown body. Earlier read,
+scene and phase controls remain separate fixtures rather than a claimed
+single retail execution.
+
+The release audit reads the actual callback pairs and records the 30 release
+pointers in the order used by menu release: the seven-entry table at
+`0x804CCE60` backwards, then the 23-entry table at `0x804CCDA8` backwards.
+It follows declared direct targets for at most four edges: 90 entries are
+visited, 88 of them have supported declarations, with no direct route to
+the loading-controller constructor/destructor/start/cleanup entries at that
+depth. This is a syntactic graph with a cutoff, not a complete call graph.
+Indirect-transfer encodings include possible returns and unresolved calls;
+they are not invented edges. Declarations do not authenticate ownership.
+
+The handled **integer D-form store encodings** using canonical r13 produce
+three syntactic writes overlapping `TLoadCtrl__instance`, attributed to its
+destructor, `cleanup_scene` and `start_loading`. Floating/paired-single,
+indexed, aliased and runtime writes are outside this scan. Absence of such
+an encoding in a callback does not prove its memory effects. Six new
+original-free controls exercise the pattern limits, partial-store overlap,
+conflicting declarations, indirect encodings and graph cutoff.
+
+Independent source inspection likewise finds no explicit loading-controller
+clear/restart/instance assignment in the 30 release callback bodies. The
+nested title-release table at `0x804EE58C` has four release functions that
+are original one-instruction returns. Important effects nevertheless remain
+indirect: window cleanup virtually deletes several global controllers and
+releases viewport slots; another callback invokes a virtual heap method;
+item-loader cleanup destroys a resource object; secondary save-data cleanup
+invokes another callback. Their targets, aliases and state must be established
+before claiming that loading work survives, is cleared or is restarted.
+
+```sh
+python3 -m unittest tools.tests.test_loader_phase_requests
+python3 tools/audit_loader_phase_requests.py --dol PRIVATE/PsoV3.dol --output build/phase-requests.json
+python3 tools/probe_loader_request_survival.py --dol PRIVATE/PsoV3.dol --output build/request-survival.json
+```
+
+This narrows the predecessor claim to known menu-request paths **whose pending
+request survives the rest of the update**. Actual predecessor and loading
+state remain unknown. A useful next bounded investigation is the dynamic
+targets and lifetime/alias contracts of those specific release operations,
+together with code that completes or restarts `TLoadCtrl` during the relevant
+resource callbacks. No production interface, provider, function extent,
+indirect target or coverage rule changes here.
+
 ## Comparison record and reproduction limits
 
 The historical comparison procedure is preserved at immutable commit
