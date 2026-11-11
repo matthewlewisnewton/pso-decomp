@@ -211,7 +211,7 @@ typedef char RecoveredGlobal_80428360_lbl_805CFC20_size[sizeof(RecoveredGlobal_8
 
 typedef char RecoveredGlobal_8042839C_lbl_805D0A40_size[sizeof(RecoveredGlobal_8042839C_lbl_805D0A40) == 0x60 ? 1 : -1];
 
-void TAdSinglePlyChrSelectGC::wake_load_thread() {
+void TAdSinglePlyChrSelectGC::wake_load_thread(s32 chan, OSContext *context) {
     OSWakeupThread(&lbl_805D7CA0);
 }
 
@@ -1175,7 +1175,7 @@ s32 TAdSinglePlyChrSelectGC::send_atx_command(s32 arg0) {
     return 1;
 }
 
-s32 TAdSinglePlyChrSelectGC::send_modem_hangup(s32 arg0) {
+s32 TAdSinglePlyChrSelectGC::send_modem_hangup(int arg0) {
     if ((arg0 == 0) && ((s32) lbl_805D7C98 == 3)) {
         lbl_805D7C98 = 1;
         if (EXILock(0, 2U, NULL) == 0) {

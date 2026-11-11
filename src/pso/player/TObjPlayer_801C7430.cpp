@@ -4625,7 +4625,7 @@ void TObjPlayer::enter_technique_cast() {
 void handle_6x47_cast_technique(u8* self) {
     void init_cast_technique_cmd__10TNpcPlayerFv(u8*);
     void byteswap_positions__10TNpcPlayerFv(u8*);
-    s32 validate_6x47_cast_technique__FPUc(u8*);
+    s32 validate_6x47_cast_technique__FP20G_CastTechnique_6x47(u8*);
     s32 reset_volopt_state__10TObjPlayerFv(void*);
     s32 test_action_mask__10TObjPlayerFl(void*, s32);
     s32 get_player_by_client_id(u16);
@@ -4654,7 +4654,7 @@ void handle_6x47_cast_technique(u8* self) {
     init_cast_technique_cmd__10TNpcPlayerFv(buf);
     TObjPlayer__sub_801D21CC(buf, self);
     byteswap_positions__10TNpcPlayerFv(buf);
-    if (validate_6x47_cast_technique__FPUc(buf) == 0) {
+    if (validate_6x47_cast_technique__FP20G_CastTechnique_6x47(buf) == 0) {
         return;
     }
     p = (u8*)get_player_by_client_id(*(u16*)(buf + 2));

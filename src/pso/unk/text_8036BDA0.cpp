@@ -4,8 +4,10 @@ s32 validate_subcommand_client(void *packet);
 }
 s32 validate_technique_parameters(void *parameters);
 s32 validate_cast_target_entry(void *entry);
-s32 validate_6x47_cast_technique(u8 *packet);
-s32 validate_6x47_cast_technique(u8 *packet) {
+struct G_CastTechnique_6x47;
+s32 validate_6x47_cast_technique(G_CastTechnique_6x47 *cast);
+s32 validate_6x47_cast_technique(G_CastTechnique_6x47 *cast) {
+    u8 *packet = (u8 *)cast;
     s32 i;
     if (validate_subcommand_client(packet) == 0) {
         return 0;
