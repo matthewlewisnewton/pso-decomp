@@ -1,3 +1,4 @@
+#include "pso/misc/TextEntryMeasurement.h"
 #include "pso/item/MagStats.h"
 #include "types.h"
 #include "pso/unk/text_80253974.h"
@@ -24,7 +25,6 @@ extern const f32 lbl_805DCDF0;
 s32 init_window_layout_entries(void *, void *, s16);
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 set_help_text__15TWindowHelpItemFUl(void *, s32);
-s32 refresh_status_display__9TWindowDDFv(void *);
 extern u8 lbl_804CF30C[];
 extern PM_80253D10 TWindowHelpItem__mag_growth_update_callback;
 extern const f32 lbl_805DCDF4;
@@ -119,7 +119,7 @@ void TWindowHelpItem__vt10(u8 *arg0) {
     ((TWindowHelpItem *)lv)->set_flag4_and_field1c(((MagStats *)(mag))->get_level());
     ((TWindowHelpItem *)sy)->set_flag4_and_field1c(((MagStats *)mag)->get_synchro());
     ((TWindowHelpItem *)iq)->set_flag4_and_field1c(((MagStats *)mag)->get_iq());
-    refresh_status_display__9TWindowDDFv((void *) up);
+    measure_text_entry((void *) up);
     *(f32 *)((s8 *)up + 8) = -(lbl_805DCDF8 * *(f32 *)((s8 *)up + 0x10) - lbl_805DCDF4);
     ((TWindowHelpItem *)up)->set_flag0_bit2();
     a = (s32)((TWindowBase *)arg0)->get_array_entry(3);
