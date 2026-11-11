@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5736 | 879 |
+| pragma | 5737 | 879 |
 | configure.py per-unit override | 193 | 193 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019, `fp_contract` 881, `auto_inline` 817, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 241, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019, `fp_contract` 881, `auto_inline` 817, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 241, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 55, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -1032,7 +1032,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019,
 | `src/pso/object/TObjEZRopeBase.cpp` | force_active×1 |
 | `src/pso/object/TObjEZRopeSimulation.cpp` | inline_depth×1, dont_inline×1 |
 | `src/pso/object/TObjEnvSoundGlobal.cpp` | opt_common_subs×1 |
-| `src/pso/object/TObjFish.cpp` | fp_contract×2, dont_inline×1, inline_depth×1 |
+| `src/pso/object/TObjFish.cpp` | fp_contract×2, dont_inline×1, inline_depth×1, defer_codegen×1 |
 | `src/pso/object/TObjFogCollisionSwitch.cpp` | readonly_strings×1, defer_codegen×1 |
 | `src/pso/object/TObjGrass.cpp` | opt_common_subs×3, readonly_strings×1, fp_contract×1 |
 | `src/pso/object/TObjGrassWeb.cpp` | fp_contract×1 |

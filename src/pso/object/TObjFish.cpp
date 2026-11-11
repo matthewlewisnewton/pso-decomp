@@ -35,9 +35,8 @@
 #include "pso/misc/TLobbyEventTheme.h"
 
 extern "C" {
-extern BmlResource *TObjFish__area_bml_resource;
-extern s32 TObjFish__area_event_stage;
-extern void* __vt__8TObjFish[];
+BmlResource *TObjFish__area_bml_resource;
+s32 TObjFish__area_event_stage;
 
 s32 TObjFish::update_state() {
     if ((s32) TObjFish__area_event_stage == 0) {
@@ -106,6 +105,7 @@ extern const char lbl_80465D58[] = "bm_sakana_obj_seabed2.bml";
 extern const f32 lbl_80465D74[5][3] = { { 1.0f, 1.0f, 1.0f }, { 0.4f, 0.4f, 0.4f }, { 0.4f, 0.4f, 0.4f }, { 0.4f, 0.4f, 0.4f }, { 0.0f, 0.0f, 0.0f } };
 extern const f32 lbl_80465DB0[5][3] = { { 30.0f, 30.0f, 30.0f }, { 5.0f, 20.0f, 30.0f }, { 5.0f, 5.0f, 5.0f }, { 30.0f, 30.0f, 30.0f }, { 30.0f, 30.0f, 30.0f } };
 extern const char lbl_80465DEC[] = "TObjFish";
+const char *TObjFish__class_name = lbl_80465DEC;
 #pragma pop
 }
 
@@ -411,66 +411,58 @@ s32 TObjFish::init_fish_school(void *arg1_arg, s32 arg2, s32 arg3) {
 
 
 extern "C" {
-u8 *TObjFish__create(u8 *arg0);
-TObjBase *__ct__8TObjBaseFP7TObject(TObjBase *self, TObject *parent);
-extern s32 lbl_805D3D58;
-u8 *TObjFish__ct(u8 *arg0, TObject *parent, u8 *arg2);
-void *__dt__8TObjFishFv(void *arg0, s16 arg1);
-
-void *__dt__8TObjFishFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = (s32 *)__vt__8TObjFish;
-        if (*(void **)((s8 *)arg0 + 0xA0) != NULL) { TAdSinglePlyChrSelectGC::safe_free((u32)(*(void **)((s8 *)arg0 + 0xA0))); ((TObjFish *)arg0)->m_a0 = 0; }
-        __dt__8TObjBaseFv(arg0, 0);
-        if (arg1 > 0) {
-            TObject::operator delete(arg0);
-        }
+TObjFish::~TObjFish() {
+    if (m_a0 != NULL) {
+        TAdSinglePlyChrSelectGC::safe_free((u32)m_a0);
+        m_a0 = NULL;
     }
-    return arg0;
 }
 
-u8 *TObjFish__ct(u8 *fish, TObject *parent, u8 *arg2) {
+// The placement record passed by object factory 0x220. Only these fields
+// are read by the fish constructor; the leading set metadata stays opaque.
+struct TObjFishSetData {
+    u8 metadata[0xC];
+    Vec position;
+    CameraAngles rotation;
+    Vec scale;
+    s32 counts[3];
+};
+typedef char TObjFishSetData_counts_offset[offsetof(TObjFishSetData, counts) == 0x30 ? 1 : -1];
+
+TObjFish::TObjFish(TObject *parent, void *set_data) : TObjBase(parent) {
+    TObjFishSetData *data = (TObjFishSetData *)set_data;
     f32 temp_f0;
     f32 var_f1;
-    __ct__8TObjBaseFP7TObject((TObjBase *)fish, parent);
-    *(s32 **)((s8 *)fish + 0x18) = (s32 *)__vt__8TObjFish;
-    *(s32 *)((s8 *)fish + 0) = (s32) lbl_805D3D58;
-    ((TObjFish *)fish)->m_a0 = 0;
-    VecCopy((Vec *)(fish + 0x38), (const Vec *)(arg2 + 0xC));
-    copy_xyz(fish + 0x5C, arg2 + 0x18);
-    VecCopy((Vec *)(fish + 0x68), (const Vec *)(arg2 + 0x24));
-    var_f1 = ((TObjFish *)fish)->scale.x;
-    temp_f0 = ((TObjFish *)fish)->scale.y;
+    m_name = TObjFish__class_name;
+    m_a0 = NULL;
+    VecCopy(&position, &data->position);
+    copy_xyz(&rotation, &data->rotation);
+    VecCopy(&scale, &data->scale);
+    var_f1 = scale.x;
+    temp_f0 = scale.y;
     if (var_f1 < temp_f0) {
         var_f1 = temp_f0;
     }
+    // The original compares scale.y twice here, rather than reading scale.z.
     if (var_f1 < temp_f0) {
         var_f1 = temp_f0;
     }
-    *(f32 *)((s8 *)fish + 0x9C) = var_f1;
-    ((TObjFish *)fish)->m_94 = *(s32 *)((s8 *)arg2 + 0x30) + *(s32 *)((s8 *)arg2 + 0x34) + *(s32 *)((s8 *)arg2 + 0x38);
-    ((TObjFish *)fish)->m_98 = 0;
-    if ((s32) ((TObjFish *)fish)->m_94 < 1) {
-        ((TObjFish *)fish)->m_94 = 1;
+    m_9c = var_f1;
+    m_94 = data->counts[0] + data->counts[1] + data->counts[2];
+    m_98 = 0;
+    if ((s32)m_94 < 1) {
+        m_94 = 1;
     }
-    if (((TObjFish *)fish)->init_fish_school(fish + 0x68, (int) (*(s32 *)((s8 *)arg2 + 0x30)), (int) (*(s32 *)((s8 *)arg2 + 0x34))) == 0) {
-        ((TObjFish *)fish)->queue_destruction();
+    if (init_fish_school(&scale, data->counts[0], data->counts[1]) == 0) {
+        queue_destruction();
     }
-    return fish;
 }
 
-u8 *TObjFish__create(u8 *arg0) {
-    u8 *fish;
-    u8 *var_r0;
+void *TObjFish__create(void *set_data) {
     if (is_split_screen() != 0) {
         return NULL;
     }
-    fish = (u8 *)TObject::operator new(sizeof(TObjFish));
-    var_r0 = fish;
-    if (var_r0 != NULL) {
-        var_r0 = (u8 *)(TObjFish__ct(fish, tl_05, arg0));
-    }
-    return var_r0;
+    return new TObjFish(tl_05, set_data);
 }
 
 void TObjFish::free_resource() {
@@ -479,16 +471,6 @@ void TObjFish::free_resource() {
         TObjFish__area_bml_resource = NULL;
     }
 }
-void vfunc_6__8TObjBaseFPsl();
-void get_name__8TObjBaseFv();
-void get_center__8TObjBaseFv();
-void apply_object_set_data__8TObjBaseFPv();
-void classify_actor_view_detail__8TObjBaseFfff();
-void render_shadows__7TObjectFv();
-void reset_motion_fields__8TObjBaseFv();
-void run_task__8TObjFishFv();
-void render__8TObjFishFv();
-void update_object_view_visibility__8TObjBaseFff();
 // Each area owns terminated model/motion name lists and a shared BML descriptor.
 struct TObjFishAreaResource {
     const char *models[4];
@@ -515,22 +497,9 @@ TObjFishAreaResource fish_resource_name_table[5] = {
       { lbl_80465D1C, lbl_80465D30, lbl_80465D44, NULL },
       { lbl_80465D58, fish_resource_name_table[4].models, fish_resource_name_table[4].motions, 3, 3 } },
 };
-void *__vt__8TObjFish[13] = {
-    0,
-    0,
-    (void *)__dt__8TObjFishFv,
-    (void *)run_task__8TObjFishFv,
-    (void *)render__8TObjFishFv,
-    (void *)render_shadows__7TObjectFv,
-    (void *)vfunc_6__8TObjBaseFPsl,
-    (void *)apply_object_set_data__8TObjBaseFPv,
-    (void *)reset_motion_fields__8TObjBaseFv,
-    (void *)get_center__8TObjBaseFv,
-    (void *)update_object_view_visibility__8TObjBaseFff,
-    (void *)classify_actor_view_detail__8TObjBaseFfff,
-    (void *)get_name__8TObjBaseFv,
-};
-
+// Defer the final loader until the native vtable has been emitted.
+#pragma push
+#pragma defer_codegen on
 void TObjFish::load_area_resource() {
     TObjFishAreaResource *base = fish_resource_name_table;
     BmlResource *p;
@@ -566,3 +535,6 @@ void TObjFish::load_area_resource() {
 }
 
 }
+
+// Keep this restoration at EOF: another declaration would emit the loader early.
+#pragma pop

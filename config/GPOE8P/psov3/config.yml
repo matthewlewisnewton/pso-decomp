@@ -1297,7 +1297,9 @@ force_active:
   - TObjEnvSoundEx__ct
   - TObjEnvSound__ct
   - TObjEvtCollision__ct
-  - TObjFish__ct
+  - TObjFish__area_bml_resource
+  - TObjFish__area_event_stage
+  - TObjFish__class_name
   - TObjFish__sub_8034029C
   - TObjFogCollisionPoison__ct
   - TObjFogCollisionPoison__instances
@@ -2259,6 +2261,7 @@ force_active:
   - __ct__8TItemMagFP7TObjectPUc
   - __ct__8TOKeyColFP7TObjectPv
   - __ct__8TOKurageFP7TObjectPv
+  - __ct__8TObjFishFP7TObjectPv
   - __ct__9TBoss6DPBFv
   - __ct__9TEffGuardFPC3Vec
   - __ct__9TMainTaskFv
@@ -7852,6 +7855,7 @@ force_active:
   - lbl_80465D58
   - lbl_80465D74
   - lbl_80465DB0
+  - lbl_80465DEC
   - lbl_804663F8
   - lbl_80466408
   - lbl_80466410

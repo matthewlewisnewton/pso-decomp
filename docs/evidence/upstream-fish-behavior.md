@@ -1,289 +1,117 @@
-# Fish behavior recovery
+# Fish behavior and native lifetime recovery
 
-Base: fork main `224eb99838471c243b20c305eddac75e7ff76c8f`.
-Reference: upstream #240, `dd7a1a2d6e200a69462fff12172ff35aaa460c93`,
+Initial fork base: `224eb99838471c243b20c305eddac75e7ff76c8f`.
+Behavior reference: upstream #240, `dd7a1a2d6e200a69462fff12172ff35aaa460c93`,
 `src/pso/object/ambient/TObjFish.cpp` and its entry layout.
+Native lifetime/global follow-up base: `cbe750b9197533f64ff472f00467a4776181b97a`.
+Combined validation base: fork main `e9b77fcfdcc2335c9a5a92886826022c80505e67`.
 
-Recover `TObjFish::run_task` at `0x8029D974` (2,044 bytes): movement, boundary
+## Behavior and shared interfaces
+
+`TObjFish::run_task` at `0x8029D974` (2,044 bytes) recovers movement, boundary
 reflection, player avoidance, target return, turning and animation advancement.
-Use the fork's shared actor lookup, math and client interfaces and its typed
-`rotation.yaw` field. The 0x44-byte fish entry has size/offset assertions, and
-`m_a0` is now its pointer. The two existing animation tables are expressed as
-five rows of three values with identical data.
+The renderer, update and initializer share the offset-asserted 0x44-byte
+`TObjFishEntry`. The school state at +0x90 is a signed halfword and the entry
+pointer at +0xA0 has its real type. The renderer is the native class override.
 
-## Constants and compiler constraints
+Shared draw/getter/matrix interfaces replace the previous zero-argument draw
+call that depended on a preceding getter leaving a value in r3. Visibility uses
+the real base-class virtual; `update_state` returns a full-register integer,
+preserving the original `cmpwi` call contract. Camera reads use the asserted
+`TCameraCtrl::position`. Five 0x30-byte resource records contain terminated model
+and motion filename lists and typed `BmlResourceDescriptor` fields, including
+16-bit counts. No vtable or packed-pointer resource descriptor is hand-written.
 
-Claim the native float pool `0x805DDD40..0x805DDD88` (72 bytes). Literals in the
-update, renderer and initializer reproduce that pool. The former separately
-named 10430.38043493439 double is removed because the compiler now emits it from
-the update's expressions. Keeping both definitions creates a duplicate eight
-bytes and shifts its symbol. The conversion bias and angle double remain in
-the existing `.rodata` range. Localization verified no outside readers before
-marking 20 compiler-generated constants local; no binary assets were copied.
+## Constants and existing compiler settings
 
-Retain upstream's unit-level `-pool off`: otherwise MWCC shares a rodata base
-register, saves an extra register and emits a 0xC0-byte frame rather than 0xB0.
-The update scores 90.8317% with pooling, and 100% with the original independent
-table/constant references. Existing `fp_contract on`, `dont_inline off` and
-`inline_depth(4)` pragmas cover the update as they cover the neighboring
-renderer; no pragma is added. Ports can drop pool/inline steering and should
-preserve required float contraction, the double-precision angle conversion and
-signed 16-bit angle wrapping if identical behavior is required.
+The native float pool is `0x805DDD40..0x805DDD88` (72 bytes). Update, renderer
+and initializer literals reproduce it. Keeping the former separately named
+10430.38043493439 double duplicates eight bytes and moves the compiler pool.
+The conversion bias and angle double remain in `.rodata`. Localization checked
+outside references before marking 20 compiler-generated constants local.
 
-## Shared-interface correction on current main
+The existing unit-level `-pool off` preserves independent table and constant
+references. Pooling adds a saved register and changes the update frame from
+0xB0 to 0xC0; the update scores 90.8317% instead of 100%. Existing
+`fp_contract on`, `dont_inline off` and `inline_depth(4)` settings are retained.
+Ports can drop pooling/inlining steering while preserving required float
+contraction, double-precision angle conversion and signed 16-bit angle wrapping.
 
-The follow-up integrates fork main `387621104107ed1ff8c650bf2f50ef00c6859ba4`
-and fixes the recovered renderer's actual call interfaces. It subsequently
-synchronizes with main `65b21c210ae980e9d2fe4aef1a3314ed84df1ddd`, preserving
-the keyboard and technique recoveries and their folded-unit configuration.
-The later synchronization with main `12cc95ca737a3a8757c17f45df06a9af4821d872`
-retains the PPP/session recovery and its exception rows. Fish source, declarations
-and compiler settings are unchanged by these synchronization merges.
-The synchronization with main `4e784e247d991f1fb25766fc80923242a9ba469a`
-also retains the dispatcher/TCP extraction and its existing compiler settings;
-it adds no fish implementation change or fish output-layout steering.
-After that publication, main advanced through the Vol Opt debris and Canadin
-recoveries. The final refresh waits for the stable progress-table head
-`b2a90ff1eabedf275aaed6cc16acbbd3e8b4a36c` and preserves those current-main
-changes and their existing compiler/mapping settings without changing fish code.
-The subsequent refresh integrates stable main
-`25b4001837b8bdc46666d2ad736a7148a411f978`, including the Dark Falz demo,
-memory-card, dialing rectangle, character-select plate, network and Moja
-recoveries. Fish source, header and compiler settings remain unchanged.
-After the shared-entry/renderer cleanup below, synchronization with main
-`4bec40d6cca74a85e91c848ea2d9f25425a313ad` retains the download graph,
-game-mode selection and partial LaunchDol header/caller work. It preserves the
-shared fish record and native renderer without changing fish source or settings.
-The later synchronization with main
-`545f2e729fcff6175f2b83ddf741fd2ea870951c` retains the Gal Gryphon loader
-recovery and unit consolidation, again without changing fish source or settings.
-Synchronization with main `9dcde8562fbd176110243274f18215c3cbbbc19a`
-retains the network-config lifecycle and photon-blast recovery, including their
-shared interfaces, ntInf profile boundary and documented network compiler
-exception. Fish source, header and compiler settings remain unchanged.
-The following refresh integrates main
-`78a6f8fae432ad941677d392d332273e1079603b`, preserving the Recon debris
-recovery and its documented compiler, pooling and symbol-mapping settings.
-Fish source, header and settings are unchanged by this integration as well.
-The next refresh integrates main
-`f0f05f3afe56fd2b71e9dc1fe946e2fa03c84b86`, retaining the Falz cutscene,
-TLobby carrier, Moja constructor, challenge enemy-set and ground-collision
-recoveries. The Falz unit's legacy filename `TObjFish_8033CCC8.cpp` does not
-make its compiler settings part of this Fish behavior unit. Its particle table
-`fish_spawn_entry_table` at `0x80477ED8` and this school's resource table
-`fish_resource_name_table` at `0x804DC640` are distinct; both retention rows are
-preserved. Fish source, header and settings are unchanged.
-The following refresh integrates stable main
-`1a18b4bd7577af4ee367317064e020d1f91ce5a8`, retaining the rope-collision
-simulation and ADX stream-decoder recoveries and their shared interfaces, folds
-and retention metadata. Fish source, header and settings remain unchanged.
-The next refresh integrates main
-`5f837b43888ac935b8a74fad20701c9195ee7338`, preserving the player-unit
-source linkage, Barba Ray constructor and compiler constraints, texture-reader
-cursor definition and its original-only neighboring data word, and Moja evidence
-updates. Main's player initializer retention entry and this fish initializer
-entry are both retained. Fish source, header and settings remain unchanged.
-The subsequent refresh integrates main
-`fffd67d0c35e1fdaf17880c563739750e7c35813`, preserving the spatial-audio
-and ADXF file-I/O recoveries, their shared declarations and mappings, and the
-spatial unit's documented `-sym on` setting. Fish source, header and settings
-remain unchanged.
-The next refresh integrates main
-`12a3368673103f37dfd3710886ce24a4e19c6783`, preserving #420's challenge-records
-page recovery, real `PageIndicator` type and corrected status-display callers.
-Fish source, header and settings remain unchanged.
-The next refresh integrates main
-`e65f11ce6ec99c006909422f81da1c0a46ac062e`, preserving the quest-download,
-shortcut formatter, modem, CVFS, time-setting, item-collider, word-select,
-MineTrap and radial-particle recoveries and their shared interfaces. Fish source,
-header and compiler settings remain unchanged. Both the school resource table
-and the distinct Falz particle-table retention entries are preserved.
-The subsequent refresh integrates main
-`f8a71fae8a52f0bde1b956af4519061fe306cb30`, preserving the action-palette
-unit consolidation, its recovered layout/argument interfaces and documented
-deferred-emission setting. Fish source, header and compiler settings remain
-unchanged; the action-palette compiler evidence does not resolve Fish's
-separate native-lifetime ownership hold.
-The next refresh integrates main
-`e9b77fcfdcc2335c9a5a92886826022c80505e67`, preserving the approved native
-loader-restore fragment and its portable handoff/restore handlers, the complete
-symbol-chat part-grid linkage, and the ballistic-particle recovery. Their
-exceptions and portability boundaries remain documented. Fish source, header
-and compiler settings remain unchanged.
-The old zero-argument
-`draw_ginja_object()` declaration depended on the preceding model getter leaving
-its return value in r3. The renderer now passes that model explicitly and uses
-the shared Ginja, motion draw, BML getter and matrix declarations. Its visibility
-call uses the real base-class virtual declaration rather than a synthetic class.
-`update_state` returns a full-register integer result, preserving the native
-`cmpwi` call contract without a function-pointer cast or low-byte test.
+## Native lifetime and owned globals
 
-Resource ownership uses `BmlResource *`; camera reads use the shared,
-offset-asserted `TCameraCtrl::position`. Five 0x30-byte area records contain
-terminated filename lists and `BmlResourceDescriptor` fields, including real
-16-bit model/motion counts. This replaces pointer slots holding packed integers.
-Size and descriptor-offset assertions preserve the original object layout.
-The existing lifetime wrappers now pass the parent explicitly to the verified
-base-constructor ABI and use the declared object allocator/deallocator and school
-initializer directly. No new compiler option, pragma or output-layout steering
-is added by this interface correction.
+The follow-up to `cbe750b9197533f64ff472f00467a4776181b97a` replaces the
+hand-written vtable, explicit vptr writes and lifetime wrappers with a native
+constructor, destructor and `new TObjFish` factory. The placement record uses
+its observed position, rotation, scale and count fields; its leading metadata
+remains opaque. The constructor name is mapped to its native ABI symbol.
 
-## Shared entry storage and renderer ownership
+Matt approved the scoped deferred-emission exception on 2026-11-10. The final
+resource loader is compiled with `defer_codegen on`; the pushed setting is
+restored at EOF, after the closing linkage block. Restoring it inside the block,
+or adding another declaration after the final restoration, emits the loader too
+early. The required `.data` order is resource table at +0, native vtable at +0xF0,
+and switch table at +0x124. Immediate compilation puts the switch table at +0xF0
+and vtable at +0x140. These objects have identical raw section bytes but different
+relocations, so byte comparison alone does not establish a match. The scoped
+control matches payloads, alignment and normalized relocations using the actual
+GC/2.6 compiler. Ordinary definition orders, header extraction, inline methods,
+construction placement and simple inline/template dependencies did not recover
+that order under unchanged settings. This bounded experiment does not prove
+that no other source arrangement can work or identify the historical source order.
 
-The follow-up to published head `98f946cd3b` removes the renderer's
-`Fish_8029D5C8` and initializer's `Ent_8029E170`/`Vec_8029E170` views. Both now
-use the same `TObjFishEntry` as `run_task`. The initializer allocates the
-`m_a0` array with a 0x44-byte stride and initializes the exact fields later read
-and updated by those two consumers. Size and offset assertions cover its target,
-velocity, yaw, frame, angle, animation, timer, visibility and return-mode fields.
-The school state at object offset `0x90` is a signed halfword member, matching
-the existing loads and stores. Signed count comparisons remain unchanged.
+The original object inventory has no outside code references to the resource
+table, the resource pointer, area state or class-name pointer. The two `.sbss`
+words at `0x805D65E8..0x805D65F0` are now defined as `BmlResource *` and `s32`
+in Fish. The class-name pointer at `0x805D3D58..0x805D3D5C` is a `const char *`
+pointing to the existing `TObjFish` string. Its old eight-byte synthetic symbol
+included an unreferenced trailing zero word; that word remains outside the
+claimed live pointer range. No second semantic field is invented. The zero word
+is probable alignment padding, rather than demonstrated class data.
 
-The renderer is now the declared `TObjFish::render` override, rather than a free
-function named after its mangled symbol. It uses the shared object position,
-rotation, count and entry-pointer members instead of the raw-offset macro.
-Initialization assigns the typed entry pointer directly, without accessing its
-slot through a pointer-to-pointer cast to an unrelated record type. The shared
-vector type also replaces the initializer's duplicate vector declaration.
-
-This is a source/interface improvement, not a matching gain. All nine functions,
-allocated section payloads and relocations remain exact with the existing fish
-settings and definition order. The inherited manual vtable still names ABI
-symbols, including the renderer, and is not a recovered native vtable.
-
-## Remaining inherited debt
-
-The hand-written vtable and constructor/destructor wrappers remain unchanged in
-structure, including manual vptr writes, and still block treating this as clean
-native lifetime/virtual-dispatch recovery. The duplicate entry views have been
-removed, but some shared model/texture getters and heap helpers still carry
-legacy 32-bit address values. The explicit conversions at those
-shared boundaries need pointer-sized types and target heap services in a port.
-These are inherited limitations, not evidence that all original class/interface
-ownership has been recovered. Matching completeness alone does not resolve them.
-No assembly, intrinsic, hardware access or new emission pragma is introduced by
-the follow-up. Existing `-pool off`, FMA and inline settings remain as documented
-above; the final inventory after main synchronization is 5,736 pragmas in 879 files
-and 193 unit overrides, including current main's existing compiler and mapping
-settings. The refresh introduces no additional fish compiler setting.
-
-### Why native lifetime remains held
-
-The earlier native-constructor/destructor experiment established the expected
-class lifetime operations and virtual slots. Under unchanged immediate emission,
-eight functions match, but the loader's data references and the complete data
-layout do not. The generated vtable starts at `.data+0x140`, after the switch
-table at `+0xF0`; the original requires the vtable at `+0xF0` and switch table at
-`+0x124`. The emission-pragma solution is not part of this PR.
-
-Further ownership review found direct vtable references in the constructor and
-destructor, while the resource-table references occur only in the final loader
-at `0x8029E5E8`. Unlike the Moja recovery, Fish has no demonstrated shared
-constructor/table/vtable anchor. A separate loader translation unit might avoid
-the emission conflict mechanically, but these references do not establish such
-an original boundary. The reconstructed split object's filename is not original
-debug or source-file evidence. Moja's documented deferred-emission setting does
-not supply a no-steering solution for Fish.
-
-Before trying another native-lifetime organization, the missing evidence is an
-independently supported object/source boundary or resource-table ownership, or
-declaration/header ownership that naturally emits the original order with the
-unchanged fish settings. No speculative unit split or source-order permutation
-is included in this follow-up. The bounded current-main feasibility check found
-no changes to Fish, its base lifetime declarations or `BmlResource` ownership
-interfaces between `12a3368673` and `e9b77fcfdc`; those merged recoveries do not
-supply the missing native-lifetime/source-boundary evidence.
+No artificial loader unit is introduced. The loader is the only code reader of
+the resource table, and the constructor/destructor are the only vtable readers;
+these references establish no independent original source-file split. Existing
+`-pool off`, floating-point and inline settings remain. Ports can remove emission
+steering while retaining native class lifetime. Some shared model/texture getters
+and heap helpers still use 32-bit integer addresses; those bounded shared API
+limitations are unchanged and still need pointer-sized interfaces for a port.
 
 ## Validation
 
-The initial recovery was validated against the base above. The shared-interface
-correction is separately compared against the freshly built PR-plus-current-main
-baseline `c3a77888e3c4e14bed709b60db8f6870f3ee1063`. The final integration is
-also checked against independently built unchanged main `e9b77fcfdc`; both build
-and retention checks pass, and the subsequent synchronization loses no exact
-function or linked range. The earlier `65b21c210` synchronization inherited four
-zero padding bytes removed from report coverage by main's unit folding. Canadin
-consolidation changes unit counts without losing address coverage, as checked
-against the previously published head `03c1430e3f`. The `25b4001837` refresh
-inherits eight further zero-padding bytes leaving coverage from main's unit
-folding: four bytes each in `.sdata` at `0x805D2794` and `0x805D279C`.
-That comparison against previous published head `953770c4c8` loses no exact
-function, live code/data address or linked range. The `545f2e729` refresh
-inherited a one-unit linked-count reduction from Gryphon consolidation without
-address coverage loss. The earlier refresh against `f0f05f3afe` loses no matching,
-live code/data/link coverage or padding compared with unchanged main. Compared
-with previous published head `ee08464abd`, it inherits four zero-padding bytes
-leaving `.data` coverage at `0x804EFA04` from main's Falz consolidation; no exact
-function, live data range or linked range is lost. Its compiled fish
-object was byte-identical to its predecessor.
+The native full build reproduces original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. `tools/check_pr.py` is run against
+both immutable baselines above. Address-based comparison loses no exact
+function, live data, linked range or padding against either baseline. The
+constructor's native-symbol rename is compared by original address.
 
-The refresh against main `1a18b4bd75` likewise loses no exact function,
-live code/data address, linked range or padding compared with unchanged main.
-Compared with previous published head `62cba4efef`, it inherits four permitted
-zero-padding bytes leaving `.sdata2` coverage at `0x805DAA54` from main's rope
-unit consolidation. No exact function, live data or linked range is lost.
-The compiled fish object remains byte-identical to that previous head.
-The refresh against main `5f837b4388` loses no exact function, live
-code/data address, linked range or padding compared with unchanged main or
-previous published head `be2ea66712`. The compiled fish object remains
-byte-identical to that head as well.
-The refresh against main `fffd67d0c3` loses no exact function, live
-code/data address, linked range or padding compared with unchanged main. Against
-previous published head `be2ea66712`, it inherits four permitted zero-padding
-bytes leaving `.bss` coverage at `0x8051857C` from main's spatial-audio unit
-update. No exact function, live data or linked range is lost. The compiled fish
-object remains byte-identical.
-The latest refresh against main `12a3368673` loses no exact function, live
-code/data address, linked range or padding compared with unchanged main or
-previous published head `b0382e1f94`. The compiled fish object remains
-byte-identical to that head.
+All nine Fish functions (4,704 bytes) and 1,416 data bytes match and link from
+source. The six allocated sections match in payload, size and alignment,
+including the four-byte `.sdata` pointer and eight-byte zero-filled `.sbss`.
+All 303 normalized relocations match. This is not whole-ELF identity: inherited
+`.sdata2` flags remain writable in the compiled object versus read-only in the
+reconstructed original object.
 
-The refresh against main `e65f11ce6e` loses no exact function, live code/data
-address, linked range or padding compared with freshly built unchanged main.
-Compared with previous published head `ecf33b9205`, it inherits four permitted
-zero-padding bytes leaving `.data` coverage at `0x804E352C` from main's
-time-setting unit consolidation. No exact function, live data or linked range
-is lost. The compiled Fish object is byte-identical to that previous head.
-
-The refresh against main `f8a71fae8a` loses no exact function, live code/data
-address, linked range or padding compared with unchanged main or previous
-published head `4259519740`. Main's action-palette consolidation reduces the
-linked-unit count by one without losing address coverage. The compiled Fish
-object remains byte-identical to that head. The shared main baseline's exact
-source, graph, report, ordered inputs, original/built DOL and compiler/tool
-closure were independently verified before reuse.
-
-The refresh against main `e9b77fcfdc` loses no exact function, live code/data
-address, linked range or padding compared with unchanged main or previous
-published head `1fbbd93d01`. The compiled Fish object is byte-identical to that
-head. Before reusing the shared main baseline, its exact tracked source, graph,
-report, ordered linker inputs, original/built DOL, compiler/tool closure and
-complete active source/original object inventories were independently verified.
-The inherited portable fallback tests also pass normally and with ASan/UBSan,
-including the loader transfer handlers.
-
-The original DOL still matches. The full native build and `tools/check_pr.py`
-pass with original DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
-All nine fish functions (4,704 bytes) and all 1,404 data bytes are exact.
-Independent comparison verifies the four allocated section payloads, sizes and
-alignment and all 302 normalized relocations. This is not whole-ELF identity:
-the compiled `.sdata2` has inherited writable flags where the split original is
-read-only. All 3,604 linked units are exact. Retention lists 18,486 names with
-zero drift; the PR adds 45 names to current main and removes none. All 306
-tooling tests pass.
-
-Gains against current main `e9b77fcfdc` (the interface correction itself has
-no metric loss or gain against its PR-plus-main baseline):
+Against previous PR head `cbe750b919`, the change adds 12 matched and linked data
+bytes, with no function/code-count or linked-unit change. Against fork main:
 
 | Measure | Before | After | Gain |
 |---|---:|---:|---:|
 | Exact functions | 27,434 | 27,435 | 1 |
 | Exact code bytes | 4,232,424 | 4,234,468 | 2,044 |
-| Exact data bytes | 1,477,099 | 1,477,171 | 72 |
+| Exact data bytes | 1,477,099 | 1,477,183 | 84 |
 | Linked code bytes | 3,845,340 | 3,850,044 | 4,704 |
-| Linked data bytes | 1,199,711 | 1,201,115 | 1,404 |
+| Linked data bytes | 1,199,711 | 1,201,127 | 1,416 |
 | Linked units | 3,603 | 3,604 | 1 |
 
-Actual ordered linker inputs: 3,604 source objects and 1,345 fallbacks;
-SHA-256 of newline-delimited paths including the final newline:
-`d1bbf8ef59d1e41aea36376c29a8a96c8e5701e71e3b28bad03dfde47dbd8726`.
+Retention adds the three owned globals, their class-name string and the native
+constructor, and removes the superseded constructor name relative to the prior
+head: +5/-1, 18,490 retained names. These changes follow the exact regenerated
+original-object inventory; no unrelated retention normalization is included.
+The linked unit set is unchanged from the previous PR head. Two additional
+original fallback fragments result from claiming live global ranges inside the
+previous autogenerated data owners; the adjacent unclaimed bytes are preserved.
+
+All gains are supported by the generated linker input list as well as objdiff.
+The exception inventory records the scoped deferred-loader setting and its
+portable alternative. The remaining integer-address shared APIs are a separate
+portability boundary, not an unresolved native Fish lifetime/vtable recovery.

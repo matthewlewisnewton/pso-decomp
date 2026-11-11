@@ -40,9 +40,6 @@ extern "C" {
 void * __nw__7TObjectFUl(int);
 void render__8TObjFishFv(u8 *arg0);
 s32 init_fish_school__8TObjFishFPvll(u8 *arg0, Vec_8029E170 *arg1, s32 arg2, s32 arg3);
-extern s32 TObjFish__area_bml_resource;
-extern void* __vt__8TObjFish[];
-extern void* fish_resource_name_table[];
 }
 
 struct Base_8029D3A4_8029CF68 { char pad[0x18]; };
@@ -125,7 +122,6 @@ void __dl__7TObjectFPv(void *);
 void *__dt__5TOKeyFv(void *arg0, s16 arg1);
 extern s32 __vt__15TOKeyJungleMain[];
 void *__dt__15TOKeyJungleMainFv(void *arg0, s16 arg1);
-extern s32 TObjFish__area_event_stage;
 u8 update_state__8TObjFishFv(void *arg0);
 extern const f32 lbl_805DDD38;
 extern const f32 lbl_805DDD3C;
