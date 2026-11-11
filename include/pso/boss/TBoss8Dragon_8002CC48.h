@@ -6,8 +6,10 @@
 struct Vec;
 
 extern "C" {
-s32 TBoss8Dragon__sub_8002DAEC(void *arg0);
-s32 TBoss8Dragon__sub_8002DB04(void *arg0);
+// Builds the dragon ground grids and per-vertex deformation records.
+void TBoss8Dragon__sub_8002D5F8(void);
+void *TBoss8Dragon__sub_8002DAEC(void *arg0);
+void *TBoss8Dragon__sub_8002DB04(void *arg0);
 u8 *TObjBoss1MokoHill_SoloM__ct(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3);
 void *TObjBoss1MokoHill_Solo__ct(void *arg0_, void *arg1, int arg2);
 void *destroy__12TBoss8DragonFPvs(void *arg0, s16 arg1);

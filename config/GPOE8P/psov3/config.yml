@@ -416,6 +416,8 @@ force_active:
   - TBoss7Tentacle__sub_802F0A2C
   - TBoss7Tentacle__sub_802F0A44
   - TBoss8DragonDemo__sub_802F2CC4
+  - TBoss8Dragon__sub_8002DAEC
+  - TBoss8Dragon__sub_8002DB04
   - TBoss8Dragon__sub_8005D9BC
   - TBoss8Dragon__sub_8005DC0C
   - TBoss8Dragon__sub_8005DF60
@@ -913,6 +915,7 @@ force_active:
   - TObjAreaWarpEndingJung__ct
   - TObjBgmCol__name
   - TObjBigTuitate__ct
+  - TObjBoss1MokoHill_Solo__ct
   - TObjBoss2CeilJunk__sub_8003A868
   - TObjBoss2DustCtrl__ct
   - TObjBoss2Tunnel__ct
@@ -2802,6 +2805,7 @@ force_active:
   - __dt__22TBoss5GryphonShockWaveFv
   - __dt__22TChCrTagInformationStrFv
   - __dt__22TChallenge4PItemSelectFv
+  - __dt__22TObjBoss1MokoHill_SoloFv
   - __dt__22TObjEneMe1GiGueBarrierFv
   - __dt__22TObjEneMe1GiGueMissileFv
   - __dt__22TObjEneMe3SinowZoaRealFv
@@ -2813,6 +2817,7 @@ force_active:
   - __dt__23TAdDialingMessageWindowFv
   - __dt__23TBoss6Demo11_TYPE1_DEADFv
   - __dt__23TBoss6Demo21_TYPE2_DEADFv
+  - __dt__23TObjBoss1MokoHill_SoloMFv
   - __dt__23TObjEneMe1CanadinLeaderFv
   - __dt__23TObjEneMe3ShinowaMirageFv
   - __dt__23TObjOnlineEndingHexLineFv
@@ -3416,6 +3421,7 @@ force_active:
   - __vt__22TBoss5GryphonShockWave
   - __vt__22TChCrTagInformationStr
   - __vt__22TChallenge4PItemSelect
+  - __vt__22TObjBoss1MokoHill_Solo
   - __vt__22TObjEneMe1GiGueBarrier
   - __vt__22TObjEneMe1GiGueMissile
   - __vt__22TObjEneMe3SinowZoaReal
@@ -3427,6 +3433,7 @@ force_active:
   - __vt__23TAdDialingMessageWindow
   - __vt__23TBoss6Demo11_TYPE1_DEAD
   - __vt__23TBoss6Demo21_TYPE2_DEAD
+  - __vt__23TObjBoss1MokoHill_SoloM
   - __vt__23TObjEneMe1CanadinLeader
   - __vt__23TObjEneMe3ShinowaMirage
   - __vt__23TObjOnlineEndingHexLine
@@ -3693,6 +3700,7 @@ force_active:
   - apply_custom_shield_bonus__9TItemDataFlP9TItemDataP9TItemDataP10EquipStatsl
   - apply_dakuten_to_last_char__19TWindowKeyBoardSoftFv
   - apply_damage_and_reset__10TObjPlayerFv
+  - apply_default_velocity_scale__FP3Vec
   - apply_defense_stat_status__13TObjEneRe4BitFPv
   - apply_direction_sign__11TBoss6Type2Ff
   - apply_drop_restrictions
@@ -3802,6 +3810,7 @@ force_active:
   - apply_velocity_if_free__10TObjPlayerFPv
   - apply_velocity_if_free__10TObjPlayerFl
   - apply_velocity_if_ready__10TObjPlayerFl
+  - apply_velocity_scale__FP3Vecff
   - approach__15TWindowFukidasiFf
   - approach_hover_y__17TObjEneMe1CanadinFf
   - approach_target__14CreationCameraFllff
@@ -5557,6 +5566,7 @@ force_active:
   - depth_buffer_settings
   - despawn_state__14TObjEneBm5WolfFl
   - destroy__12TBoss1DragonFPvs
+  - destroy__12TBoss8DragonFPvs
   - destroy__12TPhotonGollaFPvs
   - destroy__12TPhotonPillaFPvs
   - destroy__12T_OWEHMS_ExpFs
@@ -6838,6 +6848,7 @@ force_active:
   - get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv
   - get_split_screen_battle_timer_limit__FPUc
   - get_split_screen_character_save_record
+  - get_state__12TBoss8DragonFv
   - get_state__17TOSymbolchatColliFv
   - get_state__19TBoss8DragonEffTailFv
   - get_stats_atp_max__9TObjCharaFv
@@ -7254,6 +7265,7 @@ force_active:
   - init_from_table_entry__9TObjGrassFl
   - init_gauge_entry__20TWindowSubStatusDispFv
   - init_geometry__13TUnk_804B2578Fv
+  - init_grid_mesh__12TBoss8DragonFPviiiPv
   - init_gx_lighting_defaults__Fv
   - init_hall_boss_scene__14TBoss6PlotFalzFv
   - init_hanger__13TUnk_80486924Fv
@@ -8749,6 +8761,7 @@ force_active:
   - lbl_805D7E38
   - lbl_805D7E3C
   - lbl_805D7E40
+  - lbl_805D81D4
   - lbl_805D85A0
   - lbl_805D8D70
   - lbl_805D8D74
@@ -14860,6 +14873,7 @@ force_active:
   - render__23TAdDialingMessageWindowFv
   - render__23TBoss6Demo11_TYPE1_DEADFv
   - render__23TBoss6Demo21_TYPE2_DEADFv
+  - render__23TObjBoss1MokoHill_SoloMFv
   - render__23TObjEneMe3ShinowaMirageFv
   - render__23TObjOnlineEndingHexLineFv
   - render__23TObjSeabedSuisoBrakableFv
@@ -15581,6 +15595,7 @@ force_active:
   - run_task__22TBoss5GryphonShockWaveFv
   - run_task__22TChCrTagInformationStrFv
   - run_task__22TChallenge4PItemSelectFv
+  - run_task__22TObjBoss1MokoHill_SoloFv
   - run_task__22TObjEneMe1GiGueBarrierFv
   - run_task__22TObjEneMe1GiGueMissileFv
   - run_task__22TObjEneSlimeTailAttackFv
@@ -15590,6 +15605,7 @@ force_active:
   - run_task__22TWindowSubTradeMessageFv
   - run_task__23TBoss6Demo11_TYPE1_DEADFv
   - run_task__23TBoss6Demo21_TYPE2_DEADFv
+  - run_task__23TObjBoss1MokoHill_SoloMFv
   - run_task__23TObjEneMe1CanadinLeaderFv
   - run_task__23TObjEneMe3ShinowaMirageFv
   - run_task__23TObjOnlineEndingHexLineFv
