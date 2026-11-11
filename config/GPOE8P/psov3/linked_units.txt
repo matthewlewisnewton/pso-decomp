@@ -2245,6 +2245,7 @@ pso/ui/frontend/TAdPlayerLoadGC.cpp
 pso/ui/frontend/TAdPlayerLoadGC_80076BBC.cpp
 pso/ui/frontend/TAdPlayerLoadGC_800F9EF8.cpp
 pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp
+pso/ui/frontend/TAdPlayerLoadGC_803F339C.cpp
 pso/ui/frontend/TAdPlayerLoadGC_803F3CF4.cpp
 pso/ui/frontend/TAdPlyPltAnimCtrlGC.cpp
 pso/ui/frontend/TAdPlyPltAnimGC.cpp
