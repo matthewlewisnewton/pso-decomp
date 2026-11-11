@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/hud/TRaderMapCore.h"
 #include "pso/unk/TLobby.h"
 #include "pso/system/scene/TScene.h"
@@ -97,7 +98,7 @@ void TRaderMapCore::load_map_resources() {
 
 s32 TRaderMapCore::apply_compass_param(s32 *counter) {
     if ((u32) TRaderMapCore__data_805D5F4C != 0U) {
-        TObjFish::set_global_param((s32) TRaderMapCore__data_805D5F4C);
+        set_current_texture_list((GinjaTextureList *)((s32) TRaderMapCore__data_805D5F4C));
         return 1;
     }
     return -1;

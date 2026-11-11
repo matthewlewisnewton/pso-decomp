@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/charcreate/CharacterAppearanceTables.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/BmlResource.h"
@@ -688,11 +689,11 @@ void TAdSinglePlyChrSelectGC::draw_creation_figure() {
         push_matrix();
         translate_matrix_vec3(0, ((u8 *)this) + 0x38);
         rotate_matrix_y(0, creation_figure_rotation_y);
-        TObjFish::set_global_param((s32)((u8 *)char_select_current_entry + 0x460));
+        set_current_texture_list((GinjaTextureList *)((s32)((u8 *)char_select_current_entry + 0x460)));
         this->draw_player_model();
         ((TObjMotion *)((u8 *)this))->get_item_ptr(0x3A);
         push_matrix_from();
-        TObjFish::set_global_param((s32)((u8 *)char_select_current_entry + 0x2EC));
+        set_current_texture_list((GinjaTextureList *)((s32)((u8 *)char_select_current_entry + 0x2EC)));
         TObjPlayer::play_phase_transition_sound(creation_head_model_parts[*(s16 *)((s8 *)char_select_current_entry + 0xA)].model);
         pop_matrix();
         v = creation_cap_model_parts[*(s16 *)((s8 *)char_select_current_entry + 0xC)].model;
@@ -700,7 +701,7 @@ void TAdSinglePlyChrSelectGC::draw_creation_figure() {
             TCharaMaking::enable_making();
             ((TObjMotion *)((u8 *)this))->get_item_ptr(0x3B);
             push_matrix_from();
-            TObjFish::set_global_param((s32)((u8 *)char_select_current_entry + 0x178));
+            set_current_texture_list((GinjaTextureList *)((s32)((u8 *)char_select_current_entry + 0x178)));
             TObjPlayer::play_phase_transition_sound(v);
             pop_matrix();
             TCharaMaking::clear_flag_bit0();
@@ -710,7 +711,7 @@ void TAdSinglePlyChrSelectGC::draw_creation_figure() {
             TCharaMaking::enable_making();
             ((TObjMotion *)((u8 *)this))->get_item_ptr(0x3B);
             push_matrix_from();
-            TObjFish::set_global_param((s32)((u8 *)char_select_current_entry + 0x178));
+            set_current_texture_list((GinjaTextureList *)((s32)((u8 *)char_select_current_entry + 0x178)));
             TCharaMaking::setup_from_data(v, creation_player_character);
             pop_matrix();
             TCharaMaking::clear_flag_bit0();

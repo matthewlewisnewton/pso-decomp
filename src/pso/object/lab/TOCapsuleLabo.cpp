@@ -2,6 +2,7 @@
 #include "pso/object/lab/TOCapsuleLabo.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/network/TProtocol.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby_8030A6A8.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
@@ -58,7 +59,7 @@ void TOCapsuleLabo::render() {
     NJS_OBJECT *light;
     visible = update_object_view_visibility(view_range, model_radius);
     if (visible == 1) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (active == 1) {
             if (light_node != NULL) {
                 light_node->evalflags &= ~NJD_EVAL_HIDE;

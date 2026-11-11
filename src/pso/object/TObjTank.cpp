@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/object/TObjTank.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/TLanguage_801E4874.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
@@ -63,7 +64,7 @@ void TObjTank::render() {
     u8 *arg0 = (u8 *)this;
     void *p;
     if ((((VObj *)arg0)->m8(400.0f, 20.0f) != 0) && (p = (*(void * *)&TObjTank__texture_list))) {
-        TObjFish::set_global_param((u32)p);
+        set_current_texture_list((GinjaTextureList *)((u32)p));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

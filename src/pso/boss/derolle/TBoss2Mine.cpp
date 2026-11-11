@@ -1,5 +1,6 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/render/ChunkMaterialState.h"
 #include "types.h"
@@ -657,7 +658,7 @@ void TBoss2Mine::render() {
         Vec v = lbl_80435AD0;
         ((TObjEnemy *)self)->draw_ground_shadow(&v, 0);
     }
-    TObjFish::set_global_param((s32)self->f24);
+    set_current_texture_list((GinjaTextureList *)((s32)self->f24));
     saved_model_render_flags = model_render_flags;
     TObjEneDD::clear_global_flag_400();
     TObjPlayer::toggle_particle_effect();

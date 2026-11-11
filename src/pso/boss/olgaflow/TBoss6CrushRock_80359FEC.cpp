@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/unk/text_803D96A8.h"
@@ -19,7 +20,7 @@ int rotate_matrix_x(void*, void*);
 int rotate_matrix_y(void*, void*);
 int push_matrix(void);
 
-void TBoss6CrushRock::render() { if (is_falz_alive__15TBoss6CrushRockFv(this) != 0) { push_matrix(); post_translate_matrix((char*)this + 0x24); rotate_matrix_y((void*)0, *(void**)((char*)this + 0x40)); rotate_matrix_x((void*)0, *(void**)((char*)this + 0x3c)); rotate_matrix_z((void*)0, *(void**)((char*)this + 0x44)); TObjFish::set_global_param((s32)(*(void**)((char*)this + 0x20))); draw_ginja_object(*(void**)((char*)this + 0x1c)); pop_matrix(); } }
+void TBoss6CrushRock::render() { if (is_falz_alive__15TBoss6CrushRockFv(this) != 0) { push_matrix(); post_translate_matrix((char*)this + 0x24); rotate_matrix_y((void*)0, *(void**)((char*)this + 0x40)); rotate_matrix_x((void*)0, *(void**)((char*)this + 0x3c)); rotate_matrix_z((void*)0, *(void**)((char*)this + 0x44)); set_current_texture_list((GinjaTextureList *)((s32)(*(void**)((char*)this + 0x20)))); draw_ginja_object(*(void**)((char*)this + 0x1c)); pop_matrix(); } }
 #pragma push
 #pragma opt_common_subs off
 void TBoss6CrushRock::run_task() {

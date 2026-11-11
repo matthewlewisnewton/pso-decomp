@@ -4,6 +4,7 @@
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/render/reflection.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/math/AngleLookup.h"
@@ -897,7 +898,7 @@ int TObjEneMorfos::get_instance() {  return TObjEneMorfos__instance; }
 void TObjEneMorfos::draw_body() {
     u8 *arg0 = (u8 *)this;
     if (get_mode__11TCameraCtrlFPv((void *) (&(*(RecoveredGlobal_803326CC_main_task *)((s32 *)&main_task)).value)) & 0x200) {
-        TObjFish::set_global_param((int)((void *) (*(s32 *)((s8 *)(((RecoveredFields_803326CC_TObjEneMorfos__data_805D6D14 *)(*(u8 * *)&TObjEneMorfos__instance))->field_42C) + 0x2C))));
+        set_current_texture_list((GinjaTextureList *)((int)((void *) (*(s32 *)((s8 *)(((RecoveredFields_803326CC_TObjEneMorfos__data_805D6D14 *)(*(u8 * *)&TObjEneMorfos__instance))->field_42C) + 0x2C)))));
         push_matrix();
         post_translate_matrix(arg0 + 0x498);
         rotate_matrix_y(0, (int) (((RecoveredFields_803326CC_arg0 *)arg0)->field_60));
@@ -918,7 +919,7 @@ void TObjEneMorfos::draw_body() {
 s32 TObjEneMorfos::render_model_if_visible() {
     if (get_mode__11TCameraCtrlFPv((void *) (((s32 *)&main_task))) & 0x20) {
         if (push_reflection_matrix((Vec *)(((u8 *)this) + 0x3C8)) != 0) {
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             push_matrix();
             post_translate_matrix((void *) (((u8 *)this) + 0x38));
             rotate_matrix_y(0, this->rotation_y);
@@ -980,7 +981,7 @@ void TObjEneMorfos::render_part(s32 idx, s32 mode) {
     part = &self->parts[idx];
     update__15RenderFadeStateFv(part);
     vis = ((RenderFadeState *)part)->updateFromCamera((const f32*)(self->cam));
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     TObjPlayer::toggle_particle_effect();
     push_matrix();
     post_translate_matrix(self->pos);

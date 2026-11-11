@@ -9,6 +9,7 @@
 
 #include <stddef.h>
 #include "pso/player/TObjPlayer.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TObject.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
@@ -325,8 +326,8 @@ s32 TObjPlayer::get_action_priority() {
     return (s32)((u32)__cntlzw(3 - *(s16 *)((s8 *)this + 0xAE)) >> 5);
 }
 void TObjPlayer::draw_model_no_fog() {
-    TObjFish::set_global_param(dubchik_texlist);
-    TObjFish::set_global_param((*(s32 *)&this->action_table));
+    set_current_texture_list((GinjaTextureList *)(dubchik_texlist));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&this->action_table)));
     push_matrix();
     post_translate_matrix((u8 *)&this->blend.frame[1]);
     rotate_matrix_y(0, (*(s32 *)&this->frame));

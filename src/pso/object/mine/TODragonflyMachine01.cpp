@@ -4,6 +4,7 @@
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/BmlResourceLoader.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/render/GinjaModel.h"
 #include "pso/system/MatrixStack.h"
@@ -119,7 +120,7 @@ void TODragonflyMachine01::render() {
             rotate_matrix_y(NULL, rotation_y);
             break;
         }
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         node_index = 0;
         node_yaw = animation_yaw;
         set_chunk_model_node_callback((s32)&rotate_animated_node);

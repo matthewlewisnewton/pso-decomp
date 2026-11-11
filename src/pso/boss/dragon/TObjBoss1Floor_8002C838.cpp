@@ -3,6 +3,7 @@
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/boss/dragon/TObjBoss1Crater_8002C6B4.h"
 #include "pso/boss/dragon/TObjBoss1Floor_8002C838.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/unk/text_8002C190.h"
@@ -73,7 +74,7 @@ void render__14TObjBoss1FloorFv(void) {
         model_render_flags = 1;
         set_draw_list_mask(3);
         TObjPlayer::draw_if_all_ready();
-        TObjFish::set_global_param(dragon_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)(dragon_common_texture_list));
         temp_r31 = (unsigned char *) (*(void **)((s8 *)(*(void **)((s8 *)lbl_805D4B50 + 0x42C)) + 0x58));
         render_projected_shadow_receiver((u8 *)(temp_r31 + 8), (s32)(temp_r31 + 0x14));
         draw_ginja_model((*(s32 *)((s8 *)temp_r31 + 4)));

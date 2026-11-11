@@ -36,7 +36,7 @@ s32 draw_ginja_object();
 s32 rotate_matrix_x(int, int);
 s32 TObjFish__sub_8001EDB0(void *, int);
 s32 get_bml_model(void *, int);
-s32 set_global_param__8TObjFishFl();
+s32 set_current_texture_list();
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 
@@ -52,7 +52,7 @@ void TObjEneMe1Gee_NEEDLE::render() {
     rotate_matrix_y(0, this->m_a4);
     rotate_matrix_x(0, this->m_a0);
     TObjFish__sub_8001EDB0((void *)me1gee_cached_model_handle, 1);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list();
     get_bml_model((void *)me1gee_cached_model_handle, 1);
     draw_ginja_object();
     TParticleCtrl::end_effect_render();

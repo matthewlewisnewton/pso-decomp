@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/player/TObjPlayer_80011014.h"
 struct TObjGoalWarpAncient;
@@ -231,7 +232,7 @@ void TOVS2::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         draw_ginja_object((void *)(*(s32 *)&this->model));
         pop_matrix();
     }
@@ -403,7 +404,7 @@ void TOVS2Wall01::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         draw_ginja_object(this->model);
         pop_matrix();
         if (var_r31 != 0) {

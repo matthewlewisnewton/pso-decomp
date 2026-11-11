@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/window/TWindowSubStatusDisp_8036D774.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/render/render_util.h"
@@ -58,7 +59,7 @@ void TWindowSubStatusDisp::draw_tiled_background() {
     s32 j;
     f32 buf[8];
     begin_screen_draw(1);
-    TObjFish::set_global_param(TBGMulti__textures);
+    set_current_texture_list((GinjaTextureList *)(TBGMulti__textures));
     set_draw_texture_and_color(0, -1);
     i = 0;
     buf[4] = 0.5f;
@@ -92,7 +93,7 @@ void TWindowSubStatusDisp__sub_8036D994(void) {
     if (split_screen_hud_animation_frame <= 0x1E) {
         set_additive_blend();
         begin_screen_draw(1);
-        TObjFish::set_global_param(TBGMulti__textures);
+        set_current_texture_list((GinjaTextureList *)(TBGMulti__textures));
         set_draw_texture_and_color(0, -1);
         i = 0;
         buf[0] = 0.0f;
@@ -120,7 +121,7 @@ void TWindowSubStatusDisp::draw_bottom_bar() {
   f32 buffer_8[8];
   f32 temp_f31;
   begin_screen_draw(1);
-  TObjFish::set_global_param((s32)((void *) TBGMulti__textures));
+  set_current_texture_list((GinjaTextureList *)((s32)((void *) TBGMulti__textures)));
   set_draw_texture_and_color(0, -1);
   var_r31 = 0;
   ;
@@ -171,7 +172,6 @@ void TWindowSubStatusDisp::draw_split_screen_hud() {
 
 extern "C" {
 u8 *load_gvm_texture_file(s32 arg0);
-void set_global_param__8TObjFishFl();
 extern s32 split_screen_hud_animation_frame;
 s32 release_texture_list(void*);
 
@@ -189,7 +189,7 @@ void TBGMulti__ct(void) {
         TLanguage::draw_string((void *)"f128_gr.gvp", sp8, 0x4D);
         TLobby::tmp_buf_release("TBGMulti");
         (*(s32 *)&TBGMulti__textures) = (s32)load_gvm_texture_file((s32)"bg_multi.gvm");
-        set_global_param__8TObjFishFl();
+        ((s32 (*)())set_current_texture_list)();
         TLanguage::set_entry_index(0, 0x4D);
     }
     split_screen_hud_animation_frame = 0x384;

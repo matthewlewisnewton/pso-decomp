@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/object/lobby/TObjRainbowLobby.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/unk/TLobby.h"
@@ -29,7 +30,7 @@ BmlResource *TObjRainbowLobby::shared_model_resource;
 void TObjRainbowLobby::render() {
     if (state != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);

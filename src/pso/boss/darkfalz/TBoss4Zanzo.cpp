@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #pragma readonly_strings on
@@ -589,7 +590,7 @@ void render__11TBoss4ZanzoFv(u8 *arg0) {
         set_motion_packed_rotation();
         post_translate_matrix(arg0 + 0x1C);
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x28)));
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)arg0 + 0x2C)));
+        set_current_texture_list((GinjaTextureList *)((int) (*(s32 *)((s8 *)arg0 + 0x2C))));
         TObjPlayer__sub_80052390(temp_f31);
         draw_model_motion(*(void **)((s8 *)arg0 + 0x30), *(void **)((s8 *)arg0 + 0x34), *(f32 *)((s8 *)arg0 + 0x38));
         TObjPlayer::sync_player_globals();
@@ -1483,7 +1484,7 @@ void TUnk_80486924::draw_hanger() {
     s32 i;
     set_motion_packed_rotation();
     for (i = 0; i < 2; i++) {
-        TObjFish::set_global_param(TObjFish__sub_8001EDB0(arg0->f390, boss4_zanzo_bml_index_table[i]));
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(arg0->f390, boss4_zanzo_bml_index_table[i])));
         switch (i) {
         case 1:
             model_render_flags |= 0x20000;

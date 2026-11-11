@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/render/NinjaUtil.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/render/render_util.h"
 #include "pso/system/task/TObject.h"
@@ -1068,7 +1069,7 @@ void TOTrapAncient02::render_particle_chain() {
     temp_r31 = (unsigned char *) (this->model);
     translate_matrix(0, (f32) (*(f32 *)((s8 *)temp_r31 + 8)), (f32) (*(f32 *)((s8 *)temp_r31 + 0xC) + this->h344), (f32) (*(f32 *)((s8 *)temp_r31 + 0x10)));
     setup_particle_tev(0);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     load_projection_tex_matrix(0x38E);
     draw_ginja_model((*(s32 *)((s8 *)temp_r31 + 4)));
     reset_particle_tev();
@@ -1076,7 +1077,7 @@ void TOTrapAncient02::render_particle_chain() {
     temp_r31_2 = (unsigned char *) (*(void **)((s8 *)temp_r31 + 0x2C));
     translate_matrix(0, (f32) (*(f32 *)((s8 *)temp_r31_2 + 8)), (f32) (*(f32 *)((s8 *)temp_r31_2 + 0xC) + this->h348), (f32) (*(f32 *)((s8 *)temp_r31_2 + 0x10)));
     setup_particle_tev(0);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     load_projection_tex_matrix(0x38E);
     draw_ginja_model((*(s32 *)((s8 *)temp_r31_2 + 4)));
     reset_particle_tev();
@@ -1085,7 +1086,7 @@ void TOTrapAncient02::render_particle_chain() {
     temp_r31_3 = (unsigned char *) (*(void **)((s8 *)temp_r31_2 + 0x2C));
     post_translate_matrix(temp_r31_3 + 8);
     setup_particle_tev(1);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     load_projection_tex_matrix(0x38E);
     draw_ginja_model((*(s32 *)((s8 *)temp_r31_3 + 4)));
     reset_particle_tev();
@@ -1095,7 +1096,7 @@ void TOTrapAncient02::render_particle_chain() {
     post_translate_matrix(temp_r31_4 + 8);
     rotate_matrix_y(0, this->m_34c);
     setup_particle_tev(0);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     load_projection_tex_matrix(0x38E);
     draw_ginja_model((*(s32 *)((s8 *)temp_r31_4 + 4)));
     reset_particle_tev();
@@ -1112,7 +1113,7 @@ void TOTrapAncient02::draw_effect_chain() {
     u8 *temp_r31_4;
 
     push_matrix();
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)(this->texlist));
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);
     temp_r31 = (unsigned char *) (this->model);

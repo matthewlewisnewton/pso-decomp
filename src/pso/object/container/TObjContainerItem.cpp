@@ -1,4 +1,5 @@
 #include "pso/render/render_util.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/object/TObjComputer.h"
@@ -561,7 +562,7 @@ void TObjContainerAbeEnemy::vfunc_81() {
     if (container_breakup_model_archive != 0) {
         switch (this->mode) {
         case 0:
-            TObjFish::set_global_param(lbl_805D5B8C);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5B8C));
             push_matrix();
             post_translate_matrix(self->pos);
             rotate_matrix_y(0, this->rotation_y);
@@ -696,7 +697,7 @@ void TObjContainerBase::vfunc_81() {
     if (container_breakup_model_archive != 0) {
         switch (this->mode) {
         case 0:
-            TObjFish::set_global_param(lbl_805D5B8C);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5B8C));
             push_matrix();
             post_translate_matrix(self->pos);
             rotate_matrix_y(0, this->rotation_y);
@@ -826,7 +827,7 @@ void TObjContainerNoItem::vfunc_81() {
         case 1:
             break;
         case 0:
-        TObjFish::set_global_param(lbl_805D5B7C);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D5B7C));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -983,7 +984,7 @@ void TObjContainerEnemy::vfunc_81() {
     }
     switch (self->mode) {
     case 0:
-        TObjFish::set_global_param(lbl_805D5B7C);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D5B7C));
         push_matrix();
         post_translate_matrix(self->f38);
         rotate_matrix_y(0, self->f60);
@@ -1109,7 +1110,7 @@ void TObjContainerItem::vfunc_81() {
     if (lbl_805D5B78 != 0) {
         switch (self->state) {
         case 0:
-            TObjFish::set_global_param(lbl_805D5B7C);
+            set_current_texture_list((GinjaTextureList *)(lbl_805D5B7C));
             push_matrix();
             post_translate_matrix(self->pos);
             rotate_matrix_y(0, self->rot);

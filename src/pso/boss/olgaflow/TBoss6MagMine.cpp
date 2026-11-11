@@ -3,6 +3,7 @@
 #include "pso/enemy/TUnk_804F322C.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/boss/olgaflow/TBoss6Type1.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby.h"
 #include "pso/boss/olgaflow/TBoss6PlotFalz.h"
 #include "pso/object/base/TObjChara.h"
@@ -171,7 +172,7 @@ void TUnk_804F322C::update_linked_state() {
     temp_r31 = TObjFish__sub_8001EDB0(*(s32 *)((s8 *)this + 0x374), 2);
     bml_model = get_bml_model(*(s32 *)((s8 *)this + 0x374), 2);
     bml_motion = get_bml_motion(*(s32 *)((s8 *)this + 0x374), 0);
-    TObjFish::set_global_param(temp_r31);
+    set_current_texture_list((GinjaTextureList *)(temp_r31));
     TBoss6PlotFalz__sub_802AC008(*(f32 *)((s8 *)this + 0x3A8), 0.0f);
     draw_model_motion((void *)bml_model, (void *)bml_motion, *(f32 *)((s8 *)this + 0x398));
     TBoss6PlotFalz::update_camera_target();

@@ -6,6 +6,7 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
@@ -1846,7 +1847,7 @@ void TObjEneBm5GibonU::render_debug() {
     }
     if (self->m8(lbl_805DA180, TObjEneBm5GibonU__data_805DA184) != 0) {
         ((TObjEneDD *)(self))->draw_ground_shadow(0, 0);
-        TObjFish::set_global_param(self->f24);
+        set_current_texture_list((GinjaTextureList *)(self->f24));
         push_matrix();
         post_translate_matrix(&self->pos);
         rotate_matrix_y(0, self->rot_y);
@@ -1945,7 +1946,7 @@ void TObjEneBm5GibonU::render() {
                 pop_matrix();
             }
             this->update_secondary_light();
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             push_matrix();
             if (this->mode == 1 || this->mode == 2) {
                 ((Obj_800CD204 *)((u8 *)this))->sub.m6();

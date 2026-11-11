@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/text_801F43B4.h"
@@ -158,13 +159,13 @@ void TBoss6Thanks::render() {
     set_motion_packed_rotation();
     push_matrix();
     post_translate_matrix(TBoss6Thanks__data_80479BA8);
-    TObjFish::set_global_param(o->texture0);
+    set_current_texture_list((GinjaTextureList *)(o->texture0));
     scale_matrix(0, lbl_805E01A0, lbl_805E01A0, lbl_805E01A0);
     draw_model_motion(o->model0, o->motions[o->current_motion], o->frame0);
     pop_matrix();
     push_matrix();
     post_translate_matrix(TBoss6Thanks__data_80479BA8);
-    TObjFish::set_global_param(o->texture1);
+    set_current_texture_list((GinjaTextureList *)(o->texture1));
     scale_matrix(0, lbl_805E01A0, lbl_805E01A0, lbl_805E01A0);
     draw_model_motion(o->model1, o->motion1, o->frame1);
     pop_matrix();

@@ -5,6 +5,7 @@
 #undef PAD5
 #include "types.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/text_803D96A8.h"
@@ -76,7 +77,7 @@ void TObjEneRe7Berura::vfunc_105() {
             ((TObjEneDD *)(self))->draw_ground_shadow(&v, 0);
         }
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param(self->f24);
+        set_current_texture_list((GinjaTextureList *)(self->f24));
         push_matrix();
         post_translate_matrix(self->f38);
         rotate_matrix_y(0, self->f60);
@@ -465,7 +466,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
         fade = &o->fades[cam];
         update__15RenderFadeStateFv((void *)fade);
         cam = ((RenderFadeState *)fade)->updateFromCamera((const f32*)(&o->f2FC));
-        TObjFish::set_global_param(o->f24);
+        set_current_texture_list((GinjaTextureList *)(o->f24));
         push_matrix();
         post_translate_matrix(&o->pos);
         rotate_matrix_y(0, o->f60);
@@ -2039,7 +2040,6 @@ void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 void copy_matrix__10TObjPlayerFUlUl(int, void *);
 s32 concat_matrix__10TObjPlayerFUlUl(s32, s32);
-s32 set_global_param__8TObjFishFl(s32, void *);
 }
 void *destroy_buffer_pair(void *arg0, s16 arg1);
 void get_current_matrix(void *);
@@ -2458,7 +2458,7 @@ s32 get_field_3D4_shifted__16TObjEneRe7BeruraFPv(void *arg0) {
 void TObjEneRe7Berura::init_part(s32 arg0) {
     s32 *temp_r3;
 
-    set_global_param__8TObjFishFl(*(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TObjEneRe7Berura__shared_resource) + 0x42C)) + 0xC), (*(void * *)&TObjEneRe7Berura__shared_resource));
+    ((s32 (*)(s32, void *))set_current_texture_list)(*(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TObjEneRe7Berura__shared_resource) + 0x42C)) + 0xC), (*(void * *)&TObjEneRe7Berura__shared_resource));
     temp_r3 = (s32 *)((s8 *)((s32 *)TObjEneRe7Berura__detached_part_states) + (arg0 * 0x64));
     ((s32 (*)(void *, s32))set_data_and_draw_node_tree__16TObjEneRe7BeruraFii)((s32 *)((s8 *)temp_r3 + 0x20), *temp_r3);
 }

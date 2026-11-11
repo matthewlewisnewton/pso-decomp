@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/boss/galgryphon/TBoss5Gryphon.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -57,7 +58,7 @@ int TBoss5Gryphon::vfunc_105() {
     f32 f;
     s32 idx;
     if (((VObj_8005D708 *)this)->m8(lbl_805D8D4C, lbl_805D8D50) != 0) {
-        TObjFish::set_global_param(o->f24);
+        set_current_texture_list((GinjaTextureList *)(o->f24));
         push_matrix();
         post_translate_matrix((u8 *)this + 0x38);
         rotate_matrix_y(0, o->f60);

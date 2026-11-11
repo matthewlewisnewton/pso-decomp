@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/task/TObject.h"
@@ -891,7 +892,7 @@ void render__15TObjBoss2TunnelFv(u8 *arg0) {
         saved = f->c;
         f->c = f[sub_8003C21C__15TObjBoss2TunnelFv(o, lbl_805D4BEC)].c;
     }
-    TObjFish::set_global_param((s32)lbl_805D4BEC);
+    set_current_texture_list((GinjaTextureList *)((s32)lbl_805D4BEC));
     if (o->f24 == 0 || o->f24 == 1) {
         push_matrix();
         translate_matrix(0, (0.0f), (0.0f), -o->f60);

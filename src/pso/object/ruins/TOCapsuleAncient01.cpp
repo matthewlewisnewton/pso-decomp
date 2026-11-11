@@ -3,6 +3,7 @@
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/network/TProtocol.h"
 #include "pso/math/MatrixTransforms.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby_8030A6A8.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer_80011014.h"
@@ -35,7 +36,7 @@ void TOCapsuleAncient01::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         body = (NJS_OBJECT *)model;
         translate_matrix(0, body->pos[0], body->pos[1], body->pos[2]);
         draw_ginja_model((s32)body->model);

@@ -3,6 +3,7 @@
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/mericarol/TObjEneBm9Mericarol_802CE68C.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -179,7 +180,7 @@ void TObjEneBm9Mericarol::draw_color_variant() {
             (**(s32 ** *)&this->texlist)[8] = (**(s32 ** *)&this->texlist)[26];
             break;
         }
-        TObjFish::set_global_param((s32)(*(void * *)&this->texlist));
+        set_current_texture_list((GinjaTextureList *)((s32)(*(void * *)&this->texlist)));
         push_matrix();
         post_translate_matrix(((u8 *)this) + 0x38);
         rotate_matrix_y(0, this->rotation_y);
@@ -260,7 +261,7 @@ void TObjEneBm9Mericarol::render() {
         break;
     }
     saved_model_render_flags = model_render_flags;
-    TObjFish::set_global_param((s32)self->f24);
+    set_current_texture_list((GinjaTextureList *)((s32)self->f24));
     push_matrix();
     post_translate_matrix(self->pos);
     rotate_matrix_y(0, self->f60);

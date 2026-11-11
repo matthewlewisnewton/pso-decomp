@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/memory.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/unk/TUnk_804CF930.h"
@@ -208,7 +209,7 @@ void TWindowSubStatusDisp__sub_80257024(TUnk_804CF930 *self, TWindowKeyBoardSoft
     pos.y = ctx->inner_y + self->y;
     depth = -1.0f / (0.299f * self->depth + ctx->depth);
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(11, -1);
     if (self->flags & 8) {
         TWindowSubStatusDisp__sub_80256C40(self, ctx, &pos, depth);

@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
@@ -1864,7 +1865,7 @@ void TObjEneSaver::render() {
     v = ((VObj_800A6C54_b *)arg0)->m9(300.0f, 600.0f, 30.0f);
     if (v != 0) {
         select_actor_lighting((s32)arg0);
-        TObjFish::set_global_param(((TObjEneSaver *)arg0)->texlist);
+        set_current_texture_list((GinjaTextureList *)(((TObjEneSaver *)arg0)->texlist));
         push_matrix_from(NULL);
         translate_matrix_vec3(0, (u8 *)&this->position);
         rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation_y);

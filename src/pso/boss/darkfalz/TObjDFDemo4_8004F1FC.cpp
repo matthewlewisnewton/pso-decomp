@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/boss/darkfalz/TObjDFDemo4.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -24,7 +25,7 @@ void TObjDFDemo4::sub_8004F1FC() {
         var_r31 = 0;
         do {
             temp_r30 = arg0 + var_r31;
-            TObjFish::set_global_param((int) (*(s32 *)((s8 *)temp_r30 + 0xC8)));
+            set_current_texture_list((GinjaTextureList *)((int) (*(s32 *)((s8 *)temp_r30 + 0xC8))));
             if (var_r29 == 0) {
                 ((TObjFish *)(this->m_100))->set_draw_callback_list();
             }

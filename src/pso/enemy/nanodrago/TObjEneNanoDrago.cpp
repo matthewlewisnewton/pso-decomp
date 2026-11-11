@@ -12,6 +12,7 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/nanodrago/TObjEneNanoDrago.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/camera/TCameraCtrl.h"
@@ -440,7 +441,7 @@ void TObjEneNanoDrago::render() {
                 return;
             }
         }
-        TObjFish::set_global_param((int) (texlist));
+        set_current_texture_list((GinjaTextureList *)((int) (texlist)));
         select_actor_lighting(this);
         TObjPlayer::toggle_particle_effect();
         rendered = 1;

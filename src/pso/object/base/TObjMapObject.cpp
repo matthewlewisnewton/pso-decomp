@@ -6,6 +6,7 @@
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/player/TObjPlayer_803E4954.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D8F74.h"
@@ -69,7 +70,7 @@ void TObjMapObject::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         if (motion != NULL) {
             if (detail == 1) {
                 draw_model_motion(model, motion, animation_frame);

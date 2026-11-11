@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/gyaranzo/TObjEneGyaranzo.h"
 #include "pso/object/TUnk_8049442C.h"
@@ -168,7 +169,7 @@ void TUnk_8049442C::sub_800D4200() {
 
 void TUnk_8049442C::render() {
     u8 *arg0 = (u8 *)this;
-    TObjFish::set_global_param(*(s32 *)((s8 *)arg0 + 0xC8));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)arg0 + 0xC8)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->m_bc);

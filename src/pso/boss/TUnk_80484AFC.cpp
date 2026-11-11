@@ -5,6 +5,7 @@
 #include "pso/boss/volopt/TBoss3Volopt.h"
 #include "pso/boss/volopt/TBoss3VoloptP02.h"
 #include "pso/boss/darkfalz/TBoss4Type2.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/hud/TNowLoading.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/enemy/gyaranzo/TObjGyaranzoMissile.h"
@@ -73,7 +74,7 @@ void TUnk_80484AFC::explode_and_destroy() {
 }
 
 void TUnk_80484AFC::render() {
-    TObjFish::set_global_param(textures);
+    set_current_texture_list((GinjaTextureList *)(textures));
     push_matrix();
     post_translate_matrix(&position);
     rotate_matrix_x(0, rotation_x);

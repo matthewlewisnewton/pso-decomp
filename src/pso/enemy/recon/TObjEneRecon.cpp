@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/math/MatrixTransforms.h"
@@ -61,7 +62,7 @@ void TObjEneRecon::render_shadows() {
     translate_matrix(0, *((f32 *) (((s8 *) this) + 0x38)), *((f32 *) (((s8 *) this) + 0x3C)), *((f32 *) (((s8 *) this) + 0x40)));
     rotate_matrix_zyx(0, *((s32 *) (((s8 *) this) + 0x5C)), this->rotation_y, this->rotation_z);
     scale_matrix(0, lbl_805DF3B8, lbl_805DF3B8, lbl_805DF3B8);
-    TObjFish::set_global_param(temp_r30);
+    set_current_texture_list((GinjaTextureList *)(temp_r30));
     draw_chunk_object((void *)bml_model);
     pop_matrix();
   }
@@ -87,7 +88,7 @@ void TObjEneRecon::vfunc_106() {
     u8 *arg0 = (u8 *)this;
     if (((VObj800AFB60_8031bd64 *) arg0)->m8(lbl_805DF3BC, TObjEneRecon__data_805DF3C0) != 0) {
         ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -108,7 +109,7 @@ s32 get_mode__11TCameraCtrlFPv(void *);
 s32 TObjEneRecon::render_model_if_visible() {
     if (get_mode__11TCameraCtrlFPv(((s32 *)&main_task)) & 0x20) {
         if (push_reflection_matrix((Vec *)(((u8 *)this) + 0x41C)) != 0) {
-            TObjFish::set_global_param((int) (*(s32 *)((s8 *)((u8 *)this) + 0x24)));
+            set_current_texture_list((GinjaTextureList *)((int) (*(s32 *)((s8 *)((u8 *)this) + 0x24))));
             push_matrix();
             translate_matrix(0, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x38)), (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x448)), (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x40)));
             rotate_matrix_y(0, (int) (*(s32 *)((s8 *)((u8 *)this) + 0x60)));
@@ -299,7 +300,7 @@ void render__12TObjEneReconFv(u8 *ene_recon) {
                         ((TObjEneDD *)(ene_recon))->draw_ground_shadow(&v, 0);
                     }
                     ((TObjEneDD *)ene_recon)->update_secondary_light();
-                    TObjFish::set_global_param((int) (*(s32 *)((s8 *)ene_recon + 0x24)));
+                    set_current_texture_list((GinjaTextureList *)((int) (*(s32 *)((s8 *)ene_recon + 0x24))));
                     push_matrix();
                     translate_matrix(0, (f32) (*(f32 *)((s8 *)ene_recon + 0x38)), (f32) (*(f32 *)((s8 *)ene_recon + 0x448)), (f32) (*(f32 *)((s8 *)ene_recon + 0x40)));
                     rotate_matrix_y(0, (int) (*(s32 *)((s8 *)ene_recon + 0x60)));

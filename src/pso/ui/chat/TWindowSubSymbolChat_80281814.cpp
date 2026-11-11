@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/window/TWindowSubComCard_802A5748.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
@@ -102,7 +103,7 @@ void TWindowSubSymbolChat__sub_80281840(Win_80281840 *arg0) {
         }
         scale = (-1.0f) / get_scale__15TWindowCtrlMainFv(arg0->ctrl);
         begin_screen_draw(1);
-        TObjFish::set_global_param(lbl_805D63F0);
+        set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
         set_draw_texture_and_color(0, color);
         q.x = 482.0f;
         q.y = 344.0f;

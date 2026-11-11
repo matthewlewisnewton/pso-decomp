@@ -1,5 +1,6 @@
 #include "pso/effect/TEffClitical.h"
 #include "pso/render/MaterialColorFade.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/render/ChunkMaterialState.h"
 #include "pso/unk/text_80087278.h"
@@ -59,7 +60,7 @@ void TEffClitical::render() {
     set_constant_material((const NJS_ARGB *)((arg0 + 0x2C)));
     copy_anim_frame_to_slot((TextureFrameSlot *)&sp8);
     push_matrix();
-    TObjFish::set_global_param((s32)&clitical_texture_list);
+    set_current_texture_list((GinjaTextureList *)((s32)&clitical_texture_list));
     post_translate_matrix(arg0 + 0x20);
     rotate_matrix_y(0, (int) (*(s32 *)((s8 *)camera_ctrl_instance + 0x194)));
     scale_matrix(0, (f32) (*(f32 *)((s8 *)arg0 + 0x3C)), (f32) (*(f32 *)((s8 *)arg0 + 0x40)), (f32) (*(f32 *)((s8 *)arg0 + 0x44)));

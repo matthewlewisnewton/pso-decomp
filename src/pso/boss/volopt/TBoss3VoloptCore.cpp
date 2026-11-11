@@ -9,6 +9,7 @@
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/enemy/gyaranzo/TObjGyaranzoMissile.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/BmlResource.h"
@@ -261,7 +262,7 @@ void TBoss3VoloptCore::sub_80040558() {}
 
 void TBoss3VoloptCore::render() {
     if (!(actorFlags & 0x02000000) && update_object_view_visibility(400.0f, 40.0f) != 0) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         push_matrix();
         model_render_flags &= ~0x400;
         post_translate_matrix(&position.x);

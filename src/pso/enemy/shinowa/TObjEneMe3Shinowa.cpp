@@ -1,6 +1,7 @@
 #include "pso/animation/MotionContext.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/shinowa/TObjEneMe3Shinowa.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -2886,7 +2887,7 @@ void TObjEneMe3Shinowa::vfunc_118() {
     }
     gold = this->sub_800E6FE0();
     if (this->update_object_view_visibility(400.0f, 15.0f) != 0) {
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         TObjPlayer::toggle_particle_effect();
         if (gold != 0) {
             textures = ((NJS_TEXLIST *)this->texlist)->textures;
@@ -2968,7 +2969,7 @@ void TObjEneMe3ShinowaMirage::draw_model() {
     }
     if (var_r31 != 0) {
         this->update_player_state_default();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         this->update_secondary_light();
         saved_model_render_flags = model_render_flags;
         TObjEneDD::clear_global_flag_400();

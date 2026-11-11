@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/math/MatrixVector.h"
@@ -39,7 +40,7 @@ void TOKeyAncient02::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         object = (NJS_OBJECT *)model;
         push_matrix();
         post_translate_matrix(object->pos);
@@ -58,7 +59,7 @@ void TOKeyAncient02::render() {
         draw_ginja_model((s32)object->model);
         pop_matrix();
         pop_matrix();
-        TObjFish::set_global_param(TOKeyAncient02__texture_lists[is_on]);
+        set_current_texture_list((GinjaTextureList *)(TOKeyAncient02__texture_lists[is_on]));
         TParticleCtrl::begin_effect_render();
         object = TOKeyAncient02__glass_model;
         push_matrix();

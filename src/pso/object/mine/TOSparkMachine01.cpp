@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/object/mine/TOSparkMachine01.h"
 #include "pso/render/GinjaMaterial.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/object/mine/TOSparkMachine01.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -147,7 +148,7 @@ void TOSparkMachine01::render() {
         push_matrix();
         post_translate_matrix(self->m38);
         rotate_matrix_y(0, self->unk60);
-        TObjFish::set_global_param(self->unk24);
+        set_current_texture_list((GinjaTextureList *)(self->unk24));
         r = self->res;
         n = r->head;
         begin_effect_render__13TParticleCtrlFv(r);

@@ -802,7 +802,7 @@ f32 cos_table_lookup(int);
 s32 vec3_add_to(void *, void *);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
-void set_global_param__8TObjFishFl(s32);
+void set_current_texture_list(s32);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 
 void vfunc_6__8TObjBaseFPsl();
@@ -1031,7 +1031,7 @@ void TObjEneBm3FlyNest::render_with_state_debug() {
     if (((VObj_18_800B23A0 *)arg0)->m8(500.0f, 120.0f) != 0) {
         Vec v = lbl_8043B31C;
         ((TObjEneDD *)(arg0))->draw_ground_shadow(&v, 1);
-        set_global_param__8TObjFishFl(this->texlist);
+        set_current_texture_list(this->texlist);
         ((void (*)(void))push_matrix)();
         ((void (*)(void *))post_translate_matrix)(arg0 + 0x38);
         translate_matrix(0, 0.0f, -5.0f, 0.0f);
@@ -1105,7 +1105,7 @@ void TObjEneBm3FlyNest::render() {
             }
             if (draw != 0) {
                 this->update_secondary_light();
-                ((s32 (*)(int))set_global_param__8TObjFishFl)(self->f24);
+                ((s32 (*)(int))set_current_texture_list)(self->f24);
                 push_matrix();
                 lbl_805D510C = 0;
                 TObjEneBm3FlyNest_attachment_point_ptr = (NestAttachmentPoint *)&self->f3C8;
@@ -1970,7 +1970,7 @@ void TObjEneBm3FlyNest::load_resources() {
 }
 
 void TObjEneBm3FlyNest_CarryFly::render() {
-    ((s32 (*)(s32, void *))set_global_param__8TObjFishFl)(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 * *)&lbl_805D5108) + 0x42C)) + 0xC), (*(u8 * *)&lbl_805D5108));
+    ((s32 (*)(s32, void *))set_current_texture_list)(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 * *)&lbl_805D5108) + 0x42C)) + 0xC), (*(u8 * *)&lbl_805D5108));
     push_matrix();
     if (state == 0) {
         post_translate_matrix(origin);

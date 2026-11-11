@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/canadin/TObjEneMe1Canadin.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
@@ -3605,7 +3606,7 @@ void TObjEneMe1Canadin::render() {
             ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         }
         ((TObjEneDD *)arg0)->update_secondary_light();
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)arg0 + 0x24)));
+        set_current_texture_list((GinjaTextureList *)((int) (*(s32 *)((s8 *)arg0 + 0x24))));
         saved_model_render_flags = model_render_flags;
         TObjEneDD::clear_global_flag_400();
         TObjPlayer::toggle_particle_effect();
@@ -3687,7 +3688,7 @@ void TObjEneMe1Canadin::render_canadin_model_with_debug_type() {
     if (((VObj_18_26a62c *)(arg0))->m8(400.0f, 15.0f) != 0) {
         ((TObjEneDD *)(arg0))->draw_ground_shadow(0, 0);
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)arg0 + 0x24)));
+        set_current_texture_list((GinjaTextureList *)((int) (*(s32 *)((s8 *)arg0 + 0x24))));
         push_matrix();
         post_translate_matrix(arg0 + 0x38);
         rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x60)));

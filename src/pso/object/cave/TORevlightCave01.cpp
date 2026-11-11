@@ -1,5 +1,6 @@
 #include "types.h"
 #include <stdlib.h>
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/animation/ActorAnimationState.h"
@@ -37,7 +38,7 @@ void TORevlightCave01::render() {
         rotate_matrix_z(NULL, rotation_z);
         rotate_matrix_x(NULL, rotation_x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)(texlist));
         draw_ginja_model((s32)((NJS_OBJECT *)model)->model);
         rotate_matrix_y(NULL, spin_angle);
         draw_ginja_model((s32)((NJS_OBJECT *)model)->child->model);

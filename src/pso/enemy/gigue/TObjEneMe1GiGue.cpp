@@ -10,6 +10,7 @@
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/gigue/TObjEneMe1GiGue.h"
 #include "pso/map/FloorArea.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/math/AngleLookup.h"
@@ -1835,7 +1836,7 @@ void draw_model__15TObjEneMe1GiGueFPv(Obj_802CD058 *self) {
             return;
         }
     }
-    TObjFish::set_global_param(self->f24);
+    set_current_texture_list((GinjaTextureList *)(self->f24));
     select_actor_lighting((s32)self);
     TObjPlayer::toggle_particle_effect();
     ok = 1;

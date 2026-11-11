@@ -9,6 +9,7 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/gyaranzo/TObjEneGyaranzo.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
@@ -1470,7 +1471,7 @@ void TObjEneGyaranzo::render() {
                 }
             }
             TObjPlayer__sub_800D2E8C((Ene_800D2E8C *) (this));
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             select_actor_lighting(this);
             TObjPlayer::toggle_particle_effect();
             push_matrix();

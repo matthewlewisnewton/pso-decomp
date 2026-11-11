@@ -17,6 +17,7 @@
 #include "pso/player/TObjPlayer_80052374.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/BmlResource.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/render/NinjaUtil.h"
@@ -201,7 +202,7 @@ void TObjDFDemo1::draw_fading_model() {
     rotate_matrix_y(NULL, angle);
     max = 30.0f;
     for (i = 0; i < 6; i++) {
-        TObjFish::set_global_param(body_parts[i].texlist);
+        set_current_texture_list((GinjaTextureList *)(body_parts[i].texlist));
         f = frame;
         switch (i) {
         case 0:
@@ -264,7 +265,7 @@ void TObjDFDemo1::sub_8004E068() {
     post_translate_matrix(&pos.x);
     rotate_matrix_y(NULL, angle);
     for (j = 0; j < 2; j++) {
-        TObjFish::set_global_param(zanzo_parts[j].texlist);
+        set_current_texture_list((GinjaTextureList *)(zanzo_parts[j].texlist));
         draw_model_motion((void *)zanzo_parts[j].model, zanzo_parts[j].motion, frame);
     }
     clear_motion_packed_rotation();

@@ -3,6 +3,7 @@
 #include "pso/object/base/TObjMotion.h"
 #include "pso/object/door/TObjDoorJung.h"
 #include "pso/object/fence/TObjLazerFence4.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -117,7 +118,7 @@ void TObjLazerFence4::init_models() {
 }
 
 void TObjLazerFence4::draw() {
-    TObjFish::set_global_param((s32)lazer_fence_norm_texture_list);
+    set_current_texture_list((GinjaTextureList *)((s32)lazer_fence_norm_texture_list));
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
     rotate_matrix_y(0, *(void * *)&this->rotation_y);
@@ -141,7 +142,7 @@ void TObjLazerFence4::draw_model() {
     var_r31 += 4;
   }
   while (var_r30 < 0xC);
-  TObjFish::set_global_param((s32)((void *)((*(s32 *)&lazer_fence_norm_texture_list))));
+  set_current_texture_list((GinjaTextureList *)((s32)((void *)((*(s32 *)&lazer_fence_norm_texture_list)))));
   push_matrix();
   post_translate_matrix((u8 *)&this->position);
   rotate_matrix_y(0, (void *)this->rotation_y);

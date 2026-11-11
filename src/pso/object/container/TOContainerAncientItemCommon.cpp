@@ -2,6 +2,7 @@
 #include "pso/object/container/TOContainerAncientItemRare.h"
 #include "pso/player/TUnk_804B08BC.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_8015C048.h"
 #include "pso/unk/text_8015C534.h"
 #include "pso/unk/TLobby_8030A6A8.h"
@@ -221,7 +222,7 @@ void TUnk_804B08BC::vfunc_81() {
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_y(0, this->rotation_y);
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             temp_r31 = (unsigned char *) (this->model);
             push_matrix();
             post_translate_matrix(temp_r31 + 8);

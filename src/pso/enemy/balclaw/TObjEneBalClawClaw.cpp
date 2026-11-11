@@ -10,6 +10,7 @@
 #include "pso/enemy/balclaw/TObjEneBalClawClaw.h"
 #include "pso/object/TObjControl.h"
 #include "pso/object/base/TObjMotion.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 
@@ -165,7 +166,6 @@ s32 draw_chunk_object(s32);
 s32 restore_scene_lighting();
 s32 select_actor_lighting(void *);
 s32 push_matrix();
-s32 set_global_param__8TObjFishFl(s32);
 s32 defer_render__7TObjectFv(void *);
 
 extern s32 model_render_flags;
@@ -948,7 +948,7 @@ void TObjEneBalClawClaw::render() {
         temp_r3 = ((VA_80090950 *)arg0)->m9((1.2e+02f), (4e+02f), (1e+01f));
         if (temp_r3 != 0) {
             var_r30 = 1;
-            set_global_param__8TObjFishFl(this->texlist);
+            set_current_texture_list((GinjaTextureList *)(this->texlist));
             select_actor_lighting(arg0);
             TObjPlayer::toggle_particle_effect();
             push_matrix();

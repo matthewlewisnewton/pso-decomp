@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/system/vector.h"
 #include "pso/unk/TLobby.h"
@@ -583,7 +584,7 @@ void TUnk_804E0898::vfunc_14() {
                                         (s32)(self->path), (1.0f));
   if (self->phase == 0 || lobby_pigeon_lobby_type == 0)
     return;
-  TObjFish::set_global_param((s32)(lobby_pigeon_lobby_type));
+  set_current_texture_list((GinjaTextureList *)((s32)(lobby_pigeon_lobby_type)));
   push_matrix();
   post_translate_matrix((void *)(self->position));
   rotate_matrix_y(0, (s32)(self->facing));
@@ -816,7 +817,7 @@ void TUnk_804E08D4::vfunc_14() {
     if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
-    TObjFish::set_global_param((*(s32 *)&lobby_kamome_texture_gvm_handle));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&lobby_kamome_texture_gvm_handle)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);
@@ -1014,7 +1015,7 @@ void TUnk_804E0910::vfunc_14() {
     if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
-    TObjFish::set_global_param((*(s32 *)&lobby_pigeon_texture_gvm));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&lobby_pigeon_texture_gvm)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);
@@ -1228,7 +1229,7 @@ void TUnk_804E094C::vfunc_14() {
     if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
-    TObjFish::set_global_param((*(s32 *)&jungle_ebi_texture_gvm_handle));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)&jungle_ebi_texture_gvm_handle)));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);
@@ -1416,7 +1417,7 @@ void TUnk_804E0988::vfunc_14() {
     if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
-    TObjFish::set_global_param(seabed_dolphin_texture_handle);
+    set_current_texture_list((GinjaTextureList *)(seabed_dolphin_texture_handle));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_y(0, this->rotation_y);

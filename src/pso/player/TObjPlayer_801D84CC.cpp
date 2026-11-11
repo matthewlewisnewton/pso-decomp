@@ -3,6 +3,7 @@
 #include "pso/item/TItem.h"
 #include "pso/player/TPlyCharData.h"
 #include "pso/player/TUnk_804C4540.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/unk/TLobby.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -126,7 +127,7 @@ void TObjPlayer__sub_801D877C(u8 *arg0) {
         rotate_matrix_y(0, (int) (((TUnk_804C4540 *)arg0)->rotation_y));
         save_render_material_state((arg0 + 0x608));
         ((TObjPlayer *)arg0)->apply_material_color_override();
-        TObjFish::set_global_param((s32)(arg0 + 0xCF4));
+        set_current_texture_list((GinjaTextureList *)((s32)(arg0 + 0xCF4)));
         set_motion_packed_rotation();
         ((TObjPlayer *)arg0)->draw_saving_joints_checked();
         clear_motion_packed_rotation();

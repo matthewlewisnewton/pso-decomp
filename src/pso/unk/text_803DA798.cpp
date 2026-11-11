@@ -4,6 +4,7 @@
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/render/GinjaTexture.h"
+#include "pso/system/CurrentTextureList.h"
 struct RecoveredFields_803DA84C_arg0 {
     u8 unknown_0[0x14];
     u32 field_14;
@@ -72,8 +73,8 @@ extern s32 player_ref_entry_active_count;
 s32 TObjPlayer__sub_803DAA70(u32 arg0, u32 arg1, s32 *arg2);
 s32 TObjPlayer__sub_803DAC48(Obj_803DAB7C *arg0, s32 arg1, u32 arg2, u32 arg3, s32 *arg4, s32 *arg5);
 s32 TObjPlayer__sub_803DAE1C(s32 arg0, s32 arg1, u32 arg2);
-s32 TObjFish::set_global_param(s32 arg0) {
-    *(s32 *)((s8 *)current_render_context + 0x20) = arg0;
+s32 set_current_texture_list(GinjaTextureList *list) {
+    *(s32 *)((s8 *)current_render_context + 0x20) = (s32)list;
     return 1;
 }
 }

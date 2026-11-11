@@ -5,6 +5,7 @@
 #include "pso/math/MatrixVector.h"
 #include "pso/object/ambient/TObjLight_80133568.h"
 #include "pso/render/GinjaMaterial.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/object/base/TObjChara.h"
@@ -245,7 +246,7 @@ void TObjNpcEnemy::render() {
         if (((TObjNpcEnemy *)arg0)->sub_802D7444() != 0) {
             model_render_flags |= 1;
         }
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
         push_matrix_from(0);
         translate_matrix_vec3(0, ((u8 *)&this->position));
         temp_r4 = (unsigned char *) (this->m_3b8);

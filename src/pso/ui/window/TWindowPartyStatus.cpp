@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/ui/window/TWindowPartyStatus.h"
 #include "pso/ui/window/TWindowSimpleStatus.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -101,7 +102,7 @@ void TWindowPartyStatus::draw_background(u8 *arg1) {
     f32 temp_f6;
     temp_f31 = -1.0f / this->m_54;
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0xB, (*(s32 *)((s8 *)arg1 + 0x34)));
     temp_f2 = *(f32 *)((s8 *)arg1 + 0x10);
     stack.sp8 = temp_f2;

@@ -3,6 +3,7 @@
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800F0810.h"
 #include "pso/render/BlobShadow.h"
+#include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -656,7 +657,7 @@ void TObjEnePanBARA::render() {
     this->update_linked_effect();
 }
 
-void TObjEnePanBARA::draw() { ((int (*)(void*))push_matrix)(this); ((int (*)(void*))post_translate_matrix)((char*)this + 0x38); ((int (*)(void*, void*))rotate_matrix_y)((void*)0, *(void* *)&this->rotation_y); TObjFish::set_global_param((s32)(*(void* *)&this->texlist)); ((TObjFish *)(this->m_3dc))->set_draw_callback_list(); draw__10TObjMotionFv(this); ((int (*)(void*))clear_render_callback__8TObjFishFv)(this->m_3dc); ((int (*)(void))pop_matrix)(); }
+void TObjEnePanBARA::draw() { ((int (*)(void*))push_matrix)(this); ((int (*)(void*))post_translate_matrix)((char*)this + 0x38); ((int (*)(void*, void*))rotate_matrix_y)((void*)0, *(void* *)&this->rotation_y); set_current_texture_list((GinjaTextureList *)((s32)(*(void* *)&this->texlist))); ((TObjFish *)(this->m_3dc))->set_draw_callback_list(); draw__10TObjMotionFv(this); ((int (*)(void*))clear_render_callback__8TObjFishFv)(this->m_3dc); ((int (*)(void))pop_matrix)(); }
 
 void TObjEnePanBARA::update_linked_effect() {
     u8 *arg0 = (u8 *)this;
