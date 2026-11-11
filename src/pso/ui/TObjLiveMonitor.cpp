@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/boss/TBoss8Dragon_802F3638.h"
@@ -69,7 +70,6 @@ TObjLiveMonitor::~TObjLiveMonitor() {}
 extern "C" {
 
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 s32 __ct__7TObjectFP7TObject();
 
 extern s32 __vt__15TObjLiveMonitor[];
@@ -80,7 +80,7 @@ void *__ct__15TObjLiveMonitorFv(void *arg0) {
     __ct__7TObjectFP7TObject();
     *(s32 **)((s8 *)arg0 + 0x18) = (s32 *)__vt__15TObjLiveMonitor;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjLiveMonitor__name;
-    *(s32 *)((s8 *)arg0 + 0x1C) = get_bml_model(live_monitor_shared_resource, 1);
+    *(s32 *)((s8 *)arg0 + 0x1C) = (s32)get_bml_model((BmlResource *)live_monitor_shared_resource, 1);
     *(s32 *)((s8 *)arg0 + 0x20) = TObjFish__sub_8001EDB0(live_monitor_shared_resource, 0);
     *(s32 *)((s8 *)arg0 + 0x24) = 5;
     *(s32 *)((s8 *)arg0 + 0x28) = 0;

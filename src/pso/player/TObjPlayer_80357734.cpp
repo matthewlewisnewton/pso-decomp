@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/TTecZondeEff.h"
@@ -241,7 +242,6 @@ void TObjPlayer__sub_8035776C(void *arg0, void *arg1);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 s32 get_bml_motion(s32, s32);
-s32 get_bml_model(s32, s32);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 void __ct__11TItemWeaponFP7TObjectPUc(void *);
 s32 TObjPlayer__sub_802E451C();
@@ -750,7 +750,7 @@ void TObjPlayer::spawn_effect_by_type(s32 arg1, s32 arg2, s32 arg3) {
     if (arg3 == 1) {
         temp_a = (s32)create_timed_particle_emitter((void *)arg2, 0xBF, 0, 0xF);
         if (temp_a != 0) {
-            attach_particle_model((u8 *)temp_a, get_bml_model(technique_effect_bml, 0), lbl_805D63B0, get_bml_motion(technique_effect_bml, 0), 0, lbl_805E0084);
+            attach_particle_model((u8 *)temp_a, (s32)get_bml_model((BmlResource *)technique_effect_bml, 0), lbl_805D63B0, get_bml_motion(technique_effect_bml, 0), 0, lbl_805E0084);
         }
     }
 }
@@ -765,7 +765,7 @@ void TObjPlayer::spawn_hit_effect(s32 arg1, s32 arg2, s32 arg3) {
     if (arg3 == 1) {
         timed_particle_emitter = (s32)create_timed_particle_emitter((void *)arg2, 0x9A, 0, 0xF);
         if (timed_particle_emitter != 0) {
-            attach_particle_model((u8 *)timed_particle_emitter, get_bml_model(technique_effect_bml, 0), lbl_805D63B0, get_bml_motion(technique_effect_bml, 0), 0, lbl_805E0084);
+            attach_particle_model((u8 *)timed_particle_emitter, (s32)get_bml_model((BmlResource *)technique_effect_bml, 0), lbl_805D63B0, get_bml_motion(technique_effect_bml, 0), 0, lbl_805E0084);
         }
     }
 }

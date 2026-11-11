@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
@@ -372,7 +373,6 @@ extern const f32 lbl_805DB878;
 extern const f32 lbl_805DB87C;
 extern const f32 lbl_805DB880;
 extern void *mine_collision_body_parts[];
-s32 get_bml_model(void *, s32);
 s32 TObjFish__sub_8001EDB0(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
 
@@ -450,18 +450,18 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id) : TOMine(
         case 4:
         case 5:
         case 19:
-            model = (void *)get_bml_model(lbl_805D5A50, 4);
+            model = (void *)get_bml_model((BmlResource *)lbl_805D5A50, 4);
             texlist = TObjFish__sub_8001EDB0(lbl_805D5A50, 4);
-            m_374 = (u32)get_bml_model(lbl_805D5A50, 1);
+            m_374 = (u32)get_bml_model((BmlResource *)lbl_805D5A50, 1);
             m_378 = (u32)TObjFish__sub_8001EDB0(lbl_805D5A50, 1);
             break;
         case 15:
         case 16:
         case 17:
         case 18:
-            model = (void *)get_bml_model(lbl_805D5A50, 5);
+            model = (void *)get_bml_model((BmlResource *)lbl_805D5A50, 5);
             texlist = TObjFish__sub_8001EDB0(lbl_805D5A50, 5);
-            m_374 = (u32)get_bml_model(lbl_805D5A50, 0);
+            m_374 = (u32)get_bml_model((BmlResource *)lbl_805D5A50, 0);
             m_378 = (u32)TObjFish__sub_8001EDB0(lbl_805D5A50, 0);
             break;
         }

@@ -190,7 +190,8 @@ void TBoss6Rock::run_task() {
         break;
     }
     if (m_e4 != NULL) {
-        s32 model = get_bml_model(TBoss6Rock__data_805D6EF0, TBoss6Rock__data_80479258[m_b4].model_id);
+        // set_target's original ABI takes an integer model handle.
+        s32 model = (s32)get_bml_model(TBoss6Rock__data_805D6EF0, TBoss6Rock__data_80479258[m_b4].model_id);
         // The address is widened so MWCC emits the pointer adds before the bool.
         u64 pos = (s32)&position;
         m_e4->set_target(m_c4 != 0, (Vec *)(s32)pos, &rotation.pitch, (s32)TBoss6Rock__data_805D6EF4, model,
@@ -219,7 +220,7 @@ void TBoss6Rock::draw_model() {
     rotate_matrix_x(NULL, rotation.pitch);
     rotate_matrix_z(NULL, rotation.roll);
     set_current_texture_list(TBoss6Rock__data_805D6EF4);
-    draw_ginja_object((void *)get_bml_model(TBoss6Rock__data_805D6EF0, TBoss6Rock__data_80479258[m_b4].model_id));
+    draw_ginja_object(get_bml_model(TBoss6Rock__data_805D6EF0, TBoss6Rock__data_80479258[m_b4].model_id));
     pop_matrix();
 }
 

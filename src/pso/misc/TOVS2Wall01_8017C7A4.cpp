@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 struct TObjGoalWarpAncient;
@@ -28,7 +29,6 @@ struct RecoveredGlobal_8017C7DC_lbl_804B4EBC
 extern "C" {
 int take_hit__11TOVS2Wall01FPvUi(void*);
 s32 TObjFish__sub_8001EDB0(int, void *);
-u8 *get_bml_model(s32, s32);
 s32 init_collision_body_parts(void *, void *, int);
 extern RecoveredGlobal_8017C8EC_lbl_804B4ECC ovs2wall01_collision_parts;
 extern const char *lbl_805D31C4;
@@ -61,7 +61,7 @@ void TOVS2Wall01::load_resources() {
   var_r0 = temp_r3;
   (*(s32 *)&TOVS2Wall01__bml_resource) = var_r0;
   ;
-  TMotorcycle::add_entry(0x3A, (int) ((s32)get_bml_model((s32)((int) (*(s32 *)&TOVS2Wall01__bml_resource)), 5)), (int) TObjFish__sub_8001EDB0((int)((int) var_r0), (void *)(5)), (f32) lbl_805DBAB4, (f32) lbl_805DBAA8);
+  TMotorcycle::add_entry(0x3A, (int) ((s32)(u8 *)get_bml_model((BmlResource *)((int) (*(s32 *)&TOVS2Wall01__bml_resource)), 5)), (int) TObjFish__sub_8001EDB0((int)((int) var_r0), (void *)(5)), (f32) lbl_805DBAB4, (f32) lbl_805DBAA8);
 }
 
 }
@@ -94,7 +94,7 @@ void *__dt__5TOVS2Fv(void *self, s16 del) {
 TOVS2::TOVS2(void *set_data, s32 index) : TObjMapObject((TObject *)tl_05) {
     m_name = lbl_805D31C4;
     apply_object_set_data(set_data);
-    model = get_bml_model(TOVS2Wall01__bml_resource, index);
+    model = (u8 *)get_bml_model((BmlResource *)TOVS2Wall01__bml_resource, index);
     model_radius = lbl_805DBAB0 + *(f32 *)((s8 *)(*(void **)((s8 *)model + 4)) + 0x14);
     texlist = TObjFish__sub_8001EDB0(TOVS2Wall01__bml_resource, (void *)index);
     init_collision_body_parts(this, (void *)((u8 *)&ovs2wall01_collision_parts.value + (index * 0x2C)), 1);

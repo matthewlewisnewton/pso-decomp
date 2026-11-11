@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjAreaWarp.h"
@@ -28,7 +29,6 @@ struct VObj_18_8019FB8C : VBase_18_8019FB8C {
 };
 
 extern "C" {
-s32 get_bml_model(s32, s32);
 s32 free_children__12TObjDoorJungFPv(s32, u16);
 s32 scroll_ginja_mesh_uvs(s32, s32, s32, u16, s32);
 s32 PPCSync();
@@ -166,9 +166,9 @@ void TObjWarpJungMain::render() {
         push_matrix();
         post_translate_matrix((u8 *)arg0 + 0x38);
         rotate_matrix_y(0, *(s32 *)((s8 *)arg0 + 0x60));
-        draw_ginja_object((void *)(get_bml_model(TObjWarpJung__beam_bml_resource, 0)));
+        draw_ginja_object((void *)(get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, 0)));
         TParticleCtrl::begin_effect_render();
-        draw_ginja_model_with_motion(get_bml_model(TObjWarpJung__beam_bml_resource, 1), *(s32 *)&warp_jung_beam_motion, *(f32 *)((s8 *)arg0 + 0xC4));
+        draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, 1), *(s32 *)&warp_jung_beam_motion, *(f32 *)((s8 *)arg0 + 0xC4));
         TParticleCtrl::end_effect_render();
         pop_matrix();
     }
@@ -338,7 +338,7 @@ void TObjWarpJung::set_global_render_param() { set_current_texture_list((GinjaTe
 void TObjWarpJung::render_warp_effect(s32 arg0, s32 arg1) {
     s32 bml_model;
 
-    bml_model = get_bml_model(TObjWarpJung__beam_bml_resource, arg0);
+    bml_model = (s32)get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, arg0);
     draw_ginja_model_with_motion(bml_model, (*(s32 *)&warp_jung_beam_motion), (f32) arg1);
 }
 

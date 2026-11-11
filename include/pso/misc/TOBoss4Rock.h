@@ -5,6 +5,8 @@
 #include "pso/misc/TOBoss4.h"
 #include "pso/system/vector.h"
 
+struct NJS_OBJECT;
+
 struct TOBoss4RockAngles {
     s32 x;
     s32 y;
@@ -22,7 +24,7 @@ struct TOBoss4Rock : public TOBoss4 {
     static const char *class_name;
     f32 spread;  // horizontal range the rocks respawn in
     s32 count;   // 1-8, from set param 4
-    s32 *models;
+    NJS_OBJECT **models;
     s32 *texlists;
     Vec *positions;
     f32 *speeds;

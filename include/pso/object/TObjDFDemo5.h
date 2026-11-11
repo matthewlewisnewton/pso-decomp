@@ -7,10 +7,11 @@
 class TParticleCtrl;
 class ModelNodePositionCapture;
 struct AnimationMotion;
+struct NJS_OBJECT;
 
 // One model of the Dark Falz death scene: its model, texture list and motion.
 struct TObjDFDemo5Part {
-    s32 model;
+    NJS_OBJECT *model;
     s32 texlist;
     AnimationMotion *motion;
 };

@@ -7,6 +7,7 @@ limitations before applying its conclusions to current code.
 See the [documentation index](../README.md) for current contributor and operator
 guides.
 
+- [Audio header parsing and ADX block transfer](audio-formats-and-adx-transfer.md)
 - [Action-palette unit](action-palette-unit.md)
 - [Box-drop directive](box-drop-directive-evidence.md)
 - [Item-drop packet and payload contracts](item-drop-packet-contract.md)
@@ -26,6 +27,7 @@ guides.
 - [DD scaled random receiver](dd-scaled-random-evidence.md)
 - [Dead-spot effect wrapper](dead-spot-e4-evidence.md)
 - [Download graph recovery](download-graph-recovery.md)
+- [Dragon ground grid unit](dragon-ground-grid-recovery.md)
 - [Scale-15 dead-spot position](dead-spot-scale15-evidence.md)
 - [Enemy experience and drop wrappers](enemy-death-award-evidence.md)
 - [Equipment requirement match and link limit](equip-requirements-match.md)

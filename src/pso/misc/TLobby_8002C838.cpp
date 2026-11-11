@@ -15,6 +15,7 @@
 #include "pso/misc/TLobby.h"
 #include "pso/TMainTask.h"
 #include "pso/boss/TBoss8Dragon.h"
+#include "pso/boss/TBoss8Dragon_8002CC48.h"
 #include "pso/enemy/TObjEneDD.h"
 #include "pso/misc/TNowLoading.h"
 #include "pso/misc/TScene.h"
@@ -46,7 +47,6 @@ extern const f32 lbl_805D8174;
 void *get_player_by_client_id(s32 i);
 extern const f32 lbl_805D8170;
 void run_task__14TObjBoss1FloorFv(Floor_8002C968 *self);
-int TBoss8Dragon__sub_8002D5F8(void);
 void TObjBoss1Floor__sub_8002CB40(void);
 void TObjBoss1Floor__sub_8002CB78(void);
 void render_projected_shadow_receiver(u8 *arg0, s32 arg1);

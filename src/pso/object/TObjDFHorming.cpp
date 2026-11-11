@@ -800,7 +800,7 @@ typedef struct Msg_8004BFA4 {
 extern "C" {
 s32 query_teammate_state__9TObjEneDDFv();
 void fn_802E52AC(void);
-extern int darkfalz_dat_resource;
+extern BmlResource *darkfalz_dat_resource;
 void TBoss4Type2__sub_80056EA8(void *, s32);
 void TBoss4Type3__sub_80059DCC(void *, s32);
 u8 *get_enemy_entity(u16 arg0);
@@ -998,17 +998,15 @@ void handle_6x19_dark_falz_actions(Msg_8004BFA4 *arg0) {
     }
 }
 
-void TBoss4DarkFalz::cleanup_global() { TBoss4DarkFalz::free_global_instance(); TBoss4DarkFalz__sub_8030AD38(); delete (BmlResource *)((void*)darkfalz_dat_resource); darkfalz_dat_resource = 0; }
+void TBoss4DarkFalz::cleanup_global() { TBoss4DarkFalz::free_global_instance(); TBoss4DarkFalz__sub_8030AD38(); delete darkfalz_dat_resource; darkfalz_dat_resource = 0; }
 
 extern s32 tl_04;
 
 void TBoss4DarkFalz::load_resources() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&darkfalz_dat_resource_descriptor), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    (*(u8 * *)&darkfalz_dat_resource) = (unsigned char *) ((void *) var_r0);
-    if ((u32) var_r0 != 0U) {
+    BmlResource *loaded;
+    loaded = new BmlResource(5, &darkfalz_dat_resource_descriptor, 0, 0, (void *)0);
+    darkfalz_dat_resource = loaded;
+    if (loaded != 0) {
         TBoss4DarkFalz::init_uro_link();
         fn_802E52AC();
     }

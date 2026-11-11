@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -247,7 +248,6 @@ extern u32 boss_warp_resource_bundle;
 extern "C" {
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 extern s32 boss_warp_base_model;
 extern s32 warp_boss_model;
 extern s32 warp_boss_bml_motion;
@@ -1299,9 +1299,9 @@ void TObjFish::load_models() {
     if (area >= 8 && area <= 0xA) {
         r = (s32)new BmlResource(5, (BmlResourceDescriptor *)lbl_804B94D8, 0, 0, NULL);
         (*(s32 *)&boss_warp_resource_bundle) = r;
-        (*(s32 *)&boss_warp_base_model) = get_bml_model(r, 0);
-        (*(s32 *)&boss_warp_confirmation_model) = get_bml_model((*(s32 *)&boss_warp_resource_bundle), 2);
-        (*(s32 *)&warp_boss_model) = get_bml_model((*(s32 *)&boss_warp_resource_bundle), 1);
+        (*(s32 *)&boss_warp_base_model) = (s32)get_bml_model((BmlResource *)r, 0);
+        (*(s32 *)&boss_warp_confirmation_model) = (s32)get_bml_model((BmlResource *)(*(s32 *)&boss_warp_resource_bundle), 2);
+        (*(s32 *)&warp_boss_model) = (s32)get_bml_model((BmlResource *)(*(s32 *)&boss_warp_resource_bundle), 1);
         (*(s32 *)&warp_boss_motion) = get_bml_motion((*(s32 *)&boss_warp_resource_bundle), 1);
         (*(s32 *)&warp_boss_bml_motion) = get_bml_motion((*(s32 *)&boss_warp_resource_bundle), 0);
         (*(s32 *)&warp_boss_model_handle) = TObjFish__sub_8001EDB0((*(s32 *)&boss_warp_resource_bundle), 2);
@@ -1311,9 +1311,9 @@ void TObjFish::load_models() {
     if (TContainerAncient01::is_global_state_in_table() != 0 || area == AREA_SEABED_UPPER || area == AREA_SEABED_LOWER) {
         r = (s32)new BmlResource(5, (BmlResourceDescriptor *)lbl_804B94FC, 0, 0, NULL);
         (*(s32 *)&boss_warp_resource_bundle) = r;
-        (*(s32 *)&boss_warp_base_model) = get_bml_model(r, 0);
-        (*(s32 *)&boss_warp_confirmation_model) = get_bml_model((*(s32 *)&boss_warp_resource_bundle), 1);
-        (*(s32 *)&warp_boss_model) = get_bml_model((*(s32 *)&boss_warp_resource_bundle), 1);
+        (*(s32 *)&boss_warp_base_model) = (s32)get_bml_model((BmlResource *)r, 0);
+        (*(s32 *)&boss_warp_confirmation_model) = (s32)get_bml_model((BmlResource *)(*(s32 *)&boss_warp_resource_bundle), 1);
+        (*(s32 *)&warp_boss_model) = (s32)get_bml_model((BmlResource *)(*(s32 *)&boss_warp_resource_bundle), 1);
         (*(s32 *)&warp_boss_motion) = get_bml_motion((*(s32 *)&boss_warp_resource_bundle), 0);
         (*(s32 *)&warp_boss_bml_motion) = get_bml_motion((*(s32 *)&boss_warp_resource_bundle), 0);
         (*(s32 *)&warp_boss_model_handle) = TObjFish__sub_8001EDB0((*(s32 *)&boss_warp_resource_bundle), 0);
@@ -1322,9 +1322,9 @@ void TObjFish::load_models() {
     }
     r = (s32)new BmlResource(5, (BmlResourceDescriptor *)lbl_804B94AC, 0, 0, NULL);
     (*(s32 *)&boss_warp_resource_bundle) = r;
-    (*(s32 *)&boss_warp_base_model) = get_bml_model(r, 0);
-    (*(s32 *)&boss_warp_confirmation_model) = get_bml_model((*(s32 *)&boss_warp_resource_bundle), 2);
-    (*(s32 *)&warp_boss_model) = get_bml_model((*(s32 *)&boss_warp_resource_bundle), 1);
+    (*(s32 *)&boss_warp_base_model) = (s32)get_bml_model((BmlResource *)r, 0);
+    (*(s32 *)&boss_warp_confirmation_model) = (s32)get_bml_model((BmlResource *)(*(s32 *)&boss_warp_resource_bundle), 2);
+    (*(s32 *)&warp_boss_model) = (s32)get_bml_model((BmlResource *)(*(s32 *)&boss_warp_resource_bundle), 1);
     (*(s32 *)&warp_boss_motion) = get_bml_motion((*(s32 *)&boss_warp_resource_bundle), 1);
     (*(s32 *)&warp_boss_bml_motion) = get_bml_motion((*(s32 *)&boss_warp_resource_bundle), 0);
     (*(s32 *)&warp_boss_model_handle) = TObjFish__sub_8001EDB0((*(s32 *)&boss_warp_resource_bundle), 2);

@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -27,7 +28,6 @@ struct RecoveredGlobal_8019A880___vt__8TObjTank {
 };
 
 extern "C" {
-s32 get_bml_model(s32, s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
@@ -67,7 +67,7 @@ void TObjTank::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation.yaw);
-        get_bml_model((*(s32 *)&tank_bml_resource), 0);
+        (s32)get_bml_model((BmlResource *)(*(s32 *)&tank_bml_resource), 0);
         draw_ginja_object();
         pop_matrix();
     }

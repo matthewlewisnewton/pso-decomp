@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/object/TObjFish_8001ED90.h"
@@ -50,7 +51,6 @@ public:
 typedef void (Req_8028C090::*Handler_8028C090)();
 
 extern "C" {
-u32 get_bml_model(int, int);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__22TChCrLoadAfsTextureReq[];
 extern void *lbl_805D3B50;
@@ -240,7 +240,7 @@ void TChCrLoadGmNjReq::update_model_load() {
             this->load_timer = 0x12C;
         }
     } else if (fn_8001ED90(this->loaded_bml) != 0) {
-        bml_model = get_bml_model((int) (*(u32 *)((s8 *)((u8 *)this) + 0x68)), 0);
+        bml_model = (u32)get_bml_model(this->loaded_bml, 0);
         **(u32 **)((s8 *)((u8 *)this) + 0x1C) = bml_model;
         if (bml_model != 0U) {
             advance_character_load_buffer(this->load_slot, TLobby__sub_8001ED88(this->loaded_bml));
