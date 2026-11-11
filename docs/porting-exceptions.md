@@ -26,8 +26,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 84 | 55 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,718 | 881 |
-| Per-unit compiler overrides in `configure.py` | 194 | 194 |
+| CodeWarrior pragmas (excluding push/pop) | 5,719 | 881 |
+| Per-unit compiler overrides in `configure.py` | 195 | 195 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -167,11 +167,11 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,718 pragmas in 881 files; per-file table in the generated file. Main kinds:
+5,719 pragmas in 881 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1112, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803,
 `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
-`defer_codegen` 55, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
+`defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -877,6 +877,14 @@ The former `TTecCtrl_8022C444.cpp` conversion-pool post-process is retired.
 Folding its readers into one object allows the compiler to emit local biases
 without symbol rewriting. The old hand-written TTecCtrl vtable is also removed;
 the class destructor emits it. [Historical evidence](evidence/conversion-pool-constants.md).
+
+### Fish behavior recovered from upstream #240
+
+| Unit / scope | What | Why | Port should |
+|---|---|---|---|
+| `pso/object/TObjFish.cpp` | Upstream `-pool off`; existing FMA and inline pragmas | The update loads each table/conversion constant separately; pooling uses another saved register and changes the frame. [Evidence](evidence/upstream-fish-behavior.md). | Drop pool/inline steering; preserve required floating-point behavior. |
+| `src/pso/object/TObjFish.cpp`, final `load_area_resource` definition | Scoped `defer_codegen on`, restored at EOF after the linkage block | Native class lifetime emits the vtable at `.data+0xF0`; deferring the loader places its switch table at `+0x124`. Immediate emission reverses them. The final `pop` must follow the linkage block with no subsequent declarations. This replaces the hand-written vtable and manual lifetime/vptr writes. Approved by Matt on 2026-11-10. | Remove the emission pragmas and retain ordinary C++ constructors, destructor and compiler-generated virtual dispatch. |
+| Other consumers of the shared BML and heap interfaces | Inherited integer-held addresses at bounded legacy callers and loading callbacks | Fish uses pointer-typed model/texture storage, accessors, allocation and release. Other recovered actors retain explicit conversions at their existing target-sized fields and provisional loading interfaces. | Recover those actors and loading contracts separately; preserve the shared pointer APIs. |
 
 ### Footprint unit recovered from upstream #208
 

@@ -33,7 +33,7 @@ void *__nw__7TObjectFUl(int);
 void TObjNpcNHW00::free_static_resources() {
     if ((u32) TObjNpcNHW00__texture_gvm_handle != 0U) {
         release_texture_list((void*)TObjNpcNHW00__texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjNpcNHW00__texture_gvm_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcNHW00__texture_gvm_handle);
         TObjNpcNHW00__texture_gvm_handle = 0U;
     }
     if ((u32) TObjNpcNHW00__shared_named_model_object != 0U) {

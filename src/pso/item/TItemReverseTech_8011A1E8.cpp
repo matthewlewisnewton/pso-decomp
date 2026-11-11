@@ -119,7 +119,7 @@ void TItemReverseTech::load_textures() {
         }
         ::operator delete[]((void *)buf);
     }
-    TAdSinglePlyChrSelectGC::safe_free(file);
+    TAdSinglePlyChrSelectGC::safe_free((void *)file);
 }
 #pragma pop
 

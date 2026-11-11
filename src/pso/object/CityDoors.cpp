@@ -176,7 +176,7 @@ s32 release_texture_list(void*);
 void TLobby::free_map_resources() {
     if ((u32) city_common_texture_list != 0U) {
         release_texture_list((void*)city_common_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(city_common_texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)city_common_texture_list);
         city_common_texture_list = 0U;
     }
     delete (BmlResource *)((s32)city_common_model_archive);

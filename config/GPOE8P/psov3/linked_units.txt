@@ -2151,6 +2151,7 @@ pso/object/TObjEZRopeBase.cpp
 pso/object/TObjEZRopeSimulation.cpp
 pso/object/TObjEnvSoundGlobal.cpp
 pso/object/TObjEvtCollision.cpp
+pso/object/TObjFish.cpp
 pso/object/TObjFish_8001ED90.cpp
 pso/object/TObjFish_800E2FFC.cpp
 pso/object/TObjFish_8033CCC8.cpp

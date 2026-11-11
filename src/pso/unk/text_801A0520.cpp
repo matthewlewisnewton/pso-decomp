@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/GinjaMaterialState.h"
@@ -28,7 +29,6 @@ extern s32 warp_jung_beam_motion;
 extern s32 warp_jung_model_handle;
 extern s32 warp_jung_beam_models[6];
 s32 get_bml_motion(void *, s32);
-s32 TObjFish__sub_8001EDB0(void *, s32);
 }
 extern char lbl_80446718[];
 extern char lbl_80446728[];
@@ -54,7 +54,7 @@ void load_warp_beam_resources(void) {
     p = new BmlResource(5, (BmlResourceDescriptor *)(&jungle_warp_beam_resource_descriptor), 0, 0, (void *)(0));
     TObjWarpJung__beam_bml_resource = p;
     warp_jung_beam_motion = get_bml_motion(p, 0);
-    warp_jung_model_handle = TObjFish__sub_8001EDB0(TObjWarpJung__beam_bml_resource, 0);
+    warp_jung_model_handle = (s32)TObjFish__sub_8001EDB0((BmlResource *)TObjWarpJung__beam_bml_resource, 0);
     root = ((Node_801A0578 *)get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, 1))->child;
     warp_jung_beam_models[0] = root->child->f4;
     warp_jung_beam_models[1] = root->child->sibling->f4;

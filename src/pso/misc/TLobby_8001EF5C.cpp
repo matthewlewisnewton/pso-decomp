@@ -19,8 +19,8 @@ struct Lobby_8001FB6C { u8 pad[0x430]; struct Ent_8001FB6C *entries; };
 typedef struct Ent_8001FD98 {
     s32 flags;
     s32 unk4;
-    void *motion;
-    void *texture;
+    NJS_OBJECT *model;
+    GinjaTextureList *texture;
 } Ent_8001FD98;
 
 typedef struct Lobby_8001FD98 {
@@ -30,8 +30,8 @@ typedef struct Lobby_8001FD98 {
 
 struct Lobby_8001FA1C {
     void *f0;
-    s32 *f4;
-    s32 *f8;
+    NJS_OBJECT **f4;
+    GinjaTextureList **f8;
     BmlResource *fC;
     void *f10;
     u32 f14;
@@ -49,8 +49,8 @@ struct Stream_80020004 { u8 pad[0x30]; };
 typedef struct Ent_8001FBEC {
     s32 flags;
     s32 unk4;
-    s32 motion;
-    s32 texture;
+    NJS_OBJECT *model;
+    GinjaTextureList *texture;
 } Ent_8001FBEC;
 
 typedef struct Lobby_8001FBEC {
@@ -62,8 +62,8 @@ struct Lobby_8001FBEC;
 struct Ent_8001F128 {
     s32 flags;
     s32 unk4;
-    s32 motion;
-    u32 texture;
+    NJS_OBJECT *model;
+    GinjaTextureList *texture;
 };
 
 struct Rec_8001F128 { u8 pad0[0x20]; s32 size; u8 pad24[4]; s32 rawSize; u8 pad2C[0x14]; };
@@ -174,7 +174,7 @@ void BmlResource::load_texture_sub(void *arg1, s32 arg2) {
     if (size > 0x40000) {
         TLobby::debug_print(lbl_80434B04, buf);
     } else if (size > 0) {
-        load_gvm_texture_archive(lobby_download_buffer, models[arg2].m_c);
+        load_gvm_texture_archive(lobby_download_buffer, (s32)models[arg2].m_c);
         models[arg2].m_0 |= 1;
     } else {
         models[arg2].m_0 |= 2;
@@ -274,7 +274,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
                 if (p != 0) {
                     prs_decompress_buffer((s32)lobby_bml_read_buffer, p);
                     bind_bml_model((Lobby_8001FBEC *) self, bml_header_record_ptr->rawSize, self->nmodel++, p);
-                    TAdSinglePlyChrSelectGC::safe_free(p);
+                    TAdSinglePlyChrSelectGC::safe_free((void *)p);
                 } else {
                     TLobby::debug_print(lbl_80434BB0);
                 }
@@ -326,7 +326,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
                 if (p != 0) {
                     prs_decompress_buffer((s32)lobby_bml_read_buffer, p);
                     bind_bml_motion((Lobby_8001FB6C *) self, self->nmodel++, (void *) p);
-                    TAdSinglePlyChrSelectGC::safe_free(p);
+                    TAdSinglePlyChrSelectGC::safe_free((void *)p);
                 } else {
                     TLobby::debug_print(lbl_80434BD4);
                 }
@@ -412,7 +412,7 @@ void TLobby::free_chr_select_data() {
         bml_load_buffer = NULL;
     }
     TItemDrop__sub_800FE2D8();
-    TAdSinglePlyChrSelectGC::safe_free((u32)lobby_download_buffer);
+    TAdSinglePlyChrSelectGC::safe_free((void *)lobby_download_buffer);
     lobby_download_buffer = 0;
 }
 void TLobby::init_download_buffers() {
@@ -469,18 +469,18 @@ void load_bin_model_callback(Lobby_8001FA1C *self) {
     void *handle;
     s32 data;
     s32 r;
-    s32 *slot;
+    GinjaTextureList **slot;
     i = 0;
     while (i < self->f14) {
         data = ((s32 (*)(void *, u8 *, void *, void *))alloc_load_data__6TLobbyFPviii)(self->fC, lobby_download_buffer, &i, &tag);
         switch (tag) {
         case 0x4E4A544C:
             slot = self->f8;
-            *slot = data;
+            *slot = (GinjaTextureList *)data;
             params.a = self->fC;
             params.b = self->f10;
             change_file_extension__6TLobbyFPvPvPv((char *)name, (char *)self->f0, (char *)&lbl_805D7F10);
-            r = TLobby::create_file_load_entry(name, *slot, increment_ref_and_set_flag__6TLobbyFPv, &params, &handle);
+            r = TLobby::create_file_load_entry(name, (s32)*slot, increment_ref_and_set_flag__6TLobbyFPv, &params, &handle);
             if (r >= 0) {
                 TLobby__sub_8001EDD8(self->fC, handle);
                 self->fC->expected_textures++;
@@ -489,7 +489,7 @@ void load_bin_model_callback(Lobby_8001FA1C *self) {
             }
             break;
         case 0x4E4A434D:
-            *self->f4 = data;
+            *self->f4 = (NJS_OBJECT *)data;
             self->fC->loaded_models++;
             break;
         default:
@@ -519,17 +519,17 @@ s32 bind_bml_model(Lobby_8001FBEC *arg0, u32 arg1, s32 arg2, s32 arg3) {
     s32 data;
     u32 offset;
     s32 tag;
-    arg0->entries[arg2].motion = 0;
+    arg0->entries[arg2].model = 0;
     arg0->entries[arg2].texture = 0;
     offset = 0;
     while (offset < arg1) {
         data = ((s32 (*)(void *, s32, u32 *, s32 *))alloc_load_data__6TLobbyFPviii)(arg0, arg3, &offset, &tag);
         switch (tag) {
         case 0x4E4A434D:
-            arg0->entries[arg2].motion = data;
+            arg0->entries[arg2].model = (NJS_OBJECT *)data;
             break;
         case 0x4E4A544C:
-            arg0->entries[arg2].texture = data;
+            arg0->entries[arg2].texture = (GinjaTextureList *)data;
             break;
         default:
             TLobby::debug_print(lbl_80434CE8, tag);
@@ -565,7 +565,7 @@ s32 BmlResource::load_bin_motion(void *arg1, s32 arg2) {
 
 s32 BmlResource::load_bin_model(void *arg1, s32 arg2) {
     s32 size;
-    ((Lobby_8001FD98 *)this)->entries[arg2].motion = NULL;
+    ((Lobby_8001FD98 *)this)->entries[arg2].model = NULL;
     ((Lobby_8001FD98 *)this)->entries[arg2].texture = NULL;
     size = TLobby::get_resource_file_size(arg1);
     if (size <= 0) {
@@ -707,7 +707,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
                     align_gstream_read_offset(&st, blk);
                     disc_read_filename = lbl_805D2B10;
                     prs_decompress_buffer((s32)buf, (s32)resource_decompress_buffer);
-                    TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+                    TAdSinglePlyChrSelectGC::safe_free((void *)buf);
                     bind_bml_model((Lobby_8001FBEC *)(this), size, i, (s32)((s32)resource_decompress_buffer));
                 } else {
                     TLobby::debug_print(lbl_80434DF4, (s32)descriptor->archive_filename);
@@ -729,7 +729,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
                         ((TGStream *)(&st))->read_data(tbuf, tsize);
                         align_gstream_read_offset(&st, blk);
                         prs_decompress_buffer((s32)tbuf, (s32)resource_decompress_buffer);
-                        TAdSinglePlyChrSelectGC::safe_free((u32)tbuf);
+                        TAdSinglePlyChrSelectGC::safe_free((void *)tbuf);
                         if (load_gvm_texture_archive(resource_decompress_buffer, (s32)models[i].m_c) > 0) {
                             models[i].m_0 |= 1;
                         } else {
@@ -756,7 +756,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 arg3, 
                 ((TGStream *)(&st))->read_data(mb, sz);
                 align_gstream_read_offset(&st, blk);
                 prs_decompress_buffer((s32)mb, (s32)resource_decompress_buffer);
-                TAdSinglePlyChrSelectGC::safe_free((u32)mb);
+                TAdSinglePlyChrSelectGC::safe_free((void *)mb);
                 bind_bml_motion((struct Lobby_8001FB6C *)this, j, resource_decompress_buffer);
                 break;
             }

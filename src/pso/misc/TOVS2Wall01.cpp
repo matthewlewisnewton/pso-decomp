@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/object/TObjChip.h"
@@ -15,7 +16,6 @@ struct RecoveredGlobal_8017BC10_lbl_8044311C {
 };
 
 extern "C" {
-s32 TObjFish__sub_8001EDB0(int, void *);
 u32 __nw__7TObjectFUl(int);
 extern s32 TOVS2Wall01__bml_resource;
 extern RecoveredGlobal_8017BC10_lbl_8044311C vs2_wall_debris_desc;
@@ -52,7 +52,7 @@ void TOVS2Wall01::spawn_debris(s32 arg1) {
     (*(f32 *)(copy_storage_8017BC10.bytes + 0x14)) = this->body_center_position.z;
     (*(f32 *)(copy_storage_8017BC10.bytes + 0x38)) = *(f32 *)((s8 *)arg0 + 0x3C);
     (*(s32 *)(copy_storage_8017BC10.bytes + 0x40)) = (s32)get_bml_model((BmlResource *)TOVS2Wall01__bml_resource, (s32)arg1);
-    (*(s32 *)(copy_storage_8017BC10.bytes + 0x44)) = TObjFish__sub_8001EDB0((int)TOVS2Wall01__bml_resource, (void *)arg1);
+    (*(s32 *)(copy_storage_8017BC10.bytes + 0x44)) = (s32)TObjFish__sub_8001EDB0((BmlResource *)TOVS2Wall01__bml_resource, (s32)arg1);
     chip = (u8 *) __nw__7TObjectFUl(0x234);
     if (chip != NULL) {
         __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)chip, (u8 *)tl_05, (u8 *)((copy_storage_8017BC10.bytes)));

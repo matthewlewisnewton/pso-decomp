@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -65,7 +66,6 @@ void *create_instance__18TObjLaboDesignBaseFPv(void *arg0);
 void render__18TObjLaboDesignBaseFPv(u8 *arg0);
 void run_task__18TObjLaboDesignBaseFv(void);
 void free_collision_body_parts(void *);
-s32 TObjFish__sub_8001EDB0(int, int);
 s32 rotate_matrix_y(int, int);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
@@ -271,7 +271,7 @@ void draw_node_tree__18TObjLaboDesignBaseFiPv(s32 arg0, u8 *arg1) {
 }
 
 void render__18TObjLaboDesignBaseFPv(u8 *arg0) {
-    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((int) (*(s32 *)((s8 *)arg0 + 0xAC)), 0)));
+    set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)((s8 *)arg0 + 0xAC)), 0)));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x60)));

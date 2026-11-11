@@ -1338,6 +1338,9 @@ force_active:
   - TObjEnvSoundEx__ct
   - TObjEnvSound__ct
   - TObjEvtCollision__ct
+  - TObjFish__area_bml_resource
+  - TObjFish__area_event_stage
+  - TObjFish__class_name
   - TObjFish__sub_8034029C
   - TObjFogCollisionPoison__ct
   - TObjFogCollisionPoison__instances
@@ -2315,6 +2318,7 @@ force_active:
   - __ct__8TItemMagFP7TObjectPUc
   - __ct__8TOKeyColFP7TObjectPv
   - __ct__8TOKurageFP7TObjectPv
+  - __ct__8TObjFishFP7TObjectPv
   - __ct__9TBoss6DPBFv
   - __ct__9TEffGuardFPC3Vec
   - __ct__9TMainTaskFv
@@ -2908,6 +2912,7 @@ force_active:
   - __dt__8TItemMagFv
   - __dt__8TOKeyColFv
   - __dt__8TOKurageFv
+  - __dt__8TObjFishFv
   - __dt__8TObjRainFv
   - __dt__8TPlyItemFv
   - __dt__8TTecCtrlFv
@@ -3538,6 +3543,7 @@ force_active:
   - __vt__8TOSensor
   - __vt__8TObjBase
   - __vt__8TObjChip
+  - __vt__8TObjFish
   - __vt__8TObjRain
   - __vt__8TPlyItem
   - __vt__8TTecCtrl
@@ -6299,6 +6305,7 @@ force_active:
   - fire_attack_b__14TObjEneEpsilonFllf
   - fire_attack_c__14TObjEneEpsilonFllf
   - fire_zonde_at_players__15TBoss3VoloptP01Fv
+  - fish_resource_name_table
   - fish_spawn_entry_table
   - fixed_npc_camera_destination_table
   - flanking_state__14TObjEneBm5WolfFl
@@ -7349,6 +7356,7 @@ force_active:
   - init_field_4__10TObjPlayerFv
   - init_field_d4__16TODoorLaboNormalFv
   - init_fields__13TUnk_804F0AF8FlPv
+  - init_fish_school__8TObjFishFPvll
   - init_flags__15TWindowFukidasiFPvi
   - init_flags_vec4__10TObjPlayerFv
   - init_floor_encounter_sections__6TLobbyFv
@@ -7983,6 +7991,44 @@ force_active:
   - lbl_80450AA0
   - lbl_80450AB4
   - lbl_80451CD0
+  - lbl_80465A48
+  - lbl_80465A68
+  - lbl_80465A88
+  - lbl_80465AA8
+  - lbl_80465ACC
+  - lbl_80465AEC
+  - lbl_80465B0C
+  - lbl_80465B24
+  - lbl_80465B38
+  - lbl_80465B4C
+  - lbl_80465B60
+  - lbl_80465B74
+  - lbl_80465B88
+  - lbl_80465B9C
+  - lbl_80465BB8
+  - lbl_80465BCC
+  - lbl_80465BE0
+  - lbl_80465BF4
+  - lbl_80465C08
+  - lbl_80465C1C
+  - lbl_80465C30
+  - lbl_80465C4C
+  - lbl_80465C60
+  - lbl_80465C74
+  - lbl_80465C88
+  - lbl_80465C9C
+  - lbl_80465CB0
+  - lbl_80465CC4
+  - lbl_80465CE0
+  - lbl_80465CF4
+  - lbl_80465D08
+  - lbl_80465D1C
+  - lbl_80465D30
+  - lbl_80465D44
+  - lbl_80465D58
+  - lbl_80465D74
+  - lbl_80465DB0
+  - lbl_80465DEC
   - lbl_804663F8
   - lbl_80466408
   - lbl_80466410
@@ -15037,6 +15083,7 @@ force_active:
   - render__8TOKurageFv
   - render__8TOSensorFv
   - render__8TObjDoorFPv
+  - render__8TObjFishFv
   - render__8TObjRainFv
   - render__8TTecCtrlFv
   - render__9TAdBackGCFv
@@ -15781,6 +15828,7 @@ force_active:
   - run_task__8TEndingCFv
   - run_task__8TOKeyColFv
   - run_task__8TOKurageFv
+  - run_task__8TObjFishFv
   - run_task__8TObjRainFv
   - run_task__8TTecCtrlFv
   - run_task__9TAdBackGCFv
@@ -18180,6 +18228,7 @@ force_active:
   - update_state__6TLobbyFv
   - update_state__8TOKurageFv
   - update_state__8TObjDoorFv
+  - update_state__8TObjFishFv
   - update_state_action__18TObjEneMe3SinowZoaFl
   - update_state_display__12TAdDialingGCFv
   - update_state_drop__16TObjEneMe3StelthFl

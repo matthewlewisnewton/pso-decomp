@@ -29,7 +29,7 @@ s32 fn_802A1020(void) {
         if (file_integrity_table[i].size <= 1000000) {
             buf = set_stream_and_load_file__6TLobbyFPCv(file_integrity_table[i].file);
             if (buf == NULL) {
-                TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+                TAdSinglePlyChrSelectGC::safe_free((void *)buf);
                 lobby_cursor_active_flag = 0;
                 return 0;
             }
@@ -44,7 +44,7 @@ s32 fn_802A1020(void) {
                     }
                 }
             }
-            TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+            TAdSinglePlyChrSelectGC::safe_free((void *)buf);
             if (~crc != file_integrity_table[i].crc) {
                 lobby_cursor_active_flag = 1;
                 return 1;

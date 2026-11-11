@@ -152,7 +152,7 @@ void TBoss5GryphonSnarl__sub_80066E88() {
 void TLobby__sub_80066EC0(void) {
     if ((u32) boss5_common_texture_list != 0U) {
         release_texture_list((void*)boss5_common_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(boss5_common_texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)boss5_common_texture_list);
         boss5_common_texture_list = 0U;
     }
     delete (BmlResource *)(lbl_805D4DD8);

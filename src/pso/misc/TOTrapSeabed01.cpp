@@ -221,7 +221,7 @@ void TOTrapSeabed01::load_resources() {
 void TOTrapSeabed01::free_static_resources() {
     if (TOTrapSeabed01__texture_file != NULL) {
         release_texture_list(TOTrapSeabed01__texture_file);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TOTrapSeabed01__texture_file);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TOTrapSeabed01__texture_file);
         TOTrapSeabed01__texture_file = NULL;
     }
     if (TOTrapSeabed01__bml_resource != NULL) {

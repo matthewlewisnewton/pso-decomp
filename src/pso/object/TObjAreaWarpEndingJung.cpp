@@ -594,7 +594,7 @@ extern "C" {
 void TObjWarpBase::free_globals() {
     if ((u32) forest_warp_texture_list != 0U) {
         release_texture_list((void*)forest_warp_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(forest_warp_texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)forest_warp_texture_list);
         forest_warp_texture_list = 0U;
     }
     delete (BmlResource *)(forest_warp_bml_resource);

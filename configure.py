@@ -654,6 +654,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Upstream #190: this file is written in reverse so deferred codegen emits
     # address order, and the readonly string pool places the constants.
     "pso/misc/TNpcPlayer.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
+    # Upstream #240: fish update loads each table/conversion constant directly.
+    "pso/object/TObjFish.cpp": {"cflags": _switch(cflags_pso, "-pool off")},
     # Native FMA in parameter scaling; deferred emission places the vtable before
     # four switch tables. Explicit inline helpers retain the global-load order.
     "pso/misc/TTecCtrl.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-inline on,deferred")},

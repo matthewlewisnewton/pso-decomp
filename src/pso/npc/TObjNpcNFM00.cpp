@@ -76,7 +76,7 @@ void * TObjNpcNFM01__create(void *arg0) {
 void TObjNpcNFM01::free_resources() {
     if ((u32) TObjNpcNFM01__texture_handle != 0U) {
         release_texture_list((void*)TObjNpcNFM01__texture_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjNpcNFM01__texture_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcNFM01__texture_handle);
         TObjNpcNFM01__texture_handle = 0U;
     }
     if ((u32) TObjNpcNFM01__model_object != 0U) {

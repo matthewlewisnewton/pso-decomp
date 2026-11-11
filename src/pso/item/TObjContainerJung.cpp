@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/RenderFadeState.h"
@@ -529,7 +530,6 @@ struct Obj_8018D4DC {
 
 extern "C" {
 extern s32 TObjContainerJung__bml_model_resource;
-s32 TObjFish__sub_8001EDB0(void *, s32);
 extern RecoveredGlobal_8018D47C_lbl_804B7134 TObjContainerJung__resource_descriptor;
 extern s32 TObjContainerJung__bml_aux_handle;
 u32 init_collision_body_parts(void *, s32, s32);
@@ -586,7 +586,7 @@ void TObjContainerJung::load_resources() {
     temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&TObjContainerJung__resource_descriptor.value), 0, 0, (void *)(0));
     var_r0 = temp_r3;
     (*(u8 * *)&TObjContainerJung__bml_model_resource) = (unsigned char *) ((void *) var_r0);
-    TObjContainerJung__bml_aux_handle = TObjFish__sub_8001EDB0((void *) var_r0, 0);
+    TObjContainerJung__bml_aux_handle = (s32)TObjFish__sub_8001EDB0((BmlResource *)var_r0, 0);
 }
 
 #pragma push

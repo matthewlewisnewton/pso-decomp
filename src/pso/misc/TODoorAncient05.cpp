@@ -106,7 +106,7 @@ void TODoorAncient05::load_resources() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&door_ancient_567_resource_descriptor), 0, 0, (void *)(0));
     bml_resource = resource;
     texture_lists = (s32 *)::operator new[](8);
-    texture_lists[0] = bml_resource->models[0].m_c;
+    texture_lists[0] = (s32)bml_resource->models[0].m_c;
     texture_lists[1] = (s32)load_gvm_texture_file("fs_obj_door07_m_01_g.gvm");
     model_nodes = (NJS_OBJECT *)::operator new[](3 * sizeof(NJS_OBJECT));
     if (bml_resource != NULL && model_nodes != NULL) {

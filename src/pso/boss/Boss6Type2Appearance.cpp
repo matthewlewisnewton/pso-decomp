@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/ModelNodePositionCapture.h"
@@ -304,8 +305,6 @@ O_8033D9E4 *__dt__25TBoss6Demo20_TYPE2_APPEARFv(O_8033D9E4 *arg0, s16 arg1) {
 extern const f32 lbl_805DFA90;
 extern "C" {
 s32 get_bml_motion(int, int);
-s32 TObjFish__sub_8001EDB0(int, int);
-
 void __ct__7TObjectFP7TObject(void *);
 extern const u8 boss6_type2_appear_model_node_descriptors[];
 extern const Vec lbl_80478058;
@@ -345,17 +344,17 @@ u8 *TBoss6Demo20_TYPE2_APPEAR__ct(TBoss6Demo20_TYPE2_APPEAR *boss6_demo20_type2_
             v = t;
             self->t[i].a = (s32)get_bml_model((BmlResource *)count, t);
         }
-        self->t[i].b = TObjFish__sub_8001EDB0(count, v);
+        self->t[i].b = (s32)TObjFish__sub_8001EDB0((BmlResource *)count, (s32)v);
         self->t[i].c = get_bml_motion(count, boss6_type2_appear_motion_indices[i]);
     }
     boss6_demo20_type2_appear->m_bc = (s32)get_bml_model((BmlResource *)count, 4);
-    *(s32 *)((s8 *)boss6_demo20_type2_appear + 0xC0) = TObjFish__sub_8001EDB0(count, 4);
+    *(s32 *)((s8 *)boss6_demo20_type2_appear + 0xC0) = (s32)TObjFish__sub_8001EDB0((BmlResource *)count, 4);
     boss6_demo20_type2_appear->m_c4 = get_bml_motion(count, 0x20);
     *(s32 *)((s8 *)boss6_demo20_type2_appear + 0xC8) = (s32)get_bml_model((BmlResource *)count, 1);
-    boss6_demo20_type2_appear->m_cc = TObjFish__sub_8001EDB0(count, 1);
+    boss6_demo20_type2_appear->m_cc = (s32)TObjFish__sub_8001EDB0((BmlResource *)count, 1);
     *(s32 *)((s8 *)boss6_demo20_type2_appear + 0xD0) = get_bml_motion(count, 0x36);
     boss6_demo20_type2_appear->m_d4 = (s32)get_bml_model((BmlResource *)count, 0xC);
-    *(s32 *)((s8 *)boss6_demo20_type2_appear + 0xD8) = TObjFish__sub_8001EDB0(count, 0xC);
+    *(s32 *)((s8 *)boss6_demo20_type2_appear + 0xD8) = (s32)TObjFish__sub_8001EDB0((BmlResource *)count, 0xC);
     boss6_demo20_type2_appear->m_dc = get_bml_motion(count, 0x22);
     boss6_demo20_type2_appear->m_7c = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(boss6_type2_appear_model_node_descriptors), (Vec *)(((u8 *)boss6_demo20_type2_appear + 0x1C)));
     for (i = 0; i < 9; i++) {

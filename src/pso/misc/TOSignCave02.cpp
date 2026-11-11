@@ -103,7 +103,7 @@ TOSignCave02::TOSignCave02(TObject *parent, void *set_data) : TObjMapObject(pare
     m_name = TOSignCave02__class_name;
     apply_object_set_data(set_data);
     model = (void *)TOSignCave02__bml_resource->models[0].model;
-    texlist = TOSignCave02__bml_resource->models[0].m_c;
+    texlist = (s32)TOSignCave02__bml_resource->models[0].m_c;
     view_range = 500.0f;
     model_radius = 300.0f;
 }

@@ -113,7 +113,7 @@ TOCakeshopCave01::TOCakeshopCave01(void *set_data) : TObjMapObject(tl_05) {
     m_name = TOCakeshopCave01_class_name;
     apply_object_set_data(set_data);
     model = (void *)TOCakeshopCave01__model_resource->models[0].model;
-    texlist = TOCakeshopCave01__model_resource->models[0].m_c;
+    texlist = (s32)TOCakeshopCave01__model_resource->models[0].m_c;
     view_range = 500.0f;
     model_radius = 60.0f;
     actorFlags |= 0x40000000;

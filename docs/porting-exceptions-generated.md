@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 84 | 55 |
 | hardware | 69 | 13 |
-| pragma | 5718 | 881 |
-| configure.py per-unit override | 194 | 194 |
+| pragma | 5719 | 881 |
+| configure.py per-unit override | 195 | 195 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 55, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 30, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 30, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -304,6 +304,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1005,
 | `pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `-fp_contract on` | Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs (scale_point_about_pivot, apply_context_transform_to_rect, apply_window_closing_stretch, clip_textured_quad, init_text_window_layout). Unit -fp_contract on replaces the per-function pragmas. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/unk/text_8034A090.cpp` | `-fp_contract on` | Loading-text particle positions contract `scale * i + base` into fmadds (TAdLoadQuestPrtTxtGC ctor, cases 0/1/2). The other three functions have no contracted multiply. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/misc/TNpcPlayer.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190: this file is written in reverse so deferred codegen emits address order, and the readonly string pool places the constants. |
+| `pso/object/TObjFish.cpp` | `-pool off` | Upstream #240: fish update loads each table/conversion constant directly. |
 | `pso/misc/TTecCtrl.cpp` | `-fp_contract on, -inline on,deferred` | Native FMA in parameter scaling; deferred emission places the vtable before four switch tables. Explicit inline helpers retain the global-load order. |
 | `pso/boss/TBoss7LaserLight.cpp` | `-inline deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/boss/TBoss7TentacleNeedle.cpp` | `GC/2.0, -inline off,deferred, -fp_contract on` | Position jitter and the tentacle curve contract mul-add to fmadds, so this unit is built with -fp_contract on. -inline off,deferred emits functions and vtables in reverse source order: the Needle vtable then the Tentacle vtable, with .text still in address order. GC/2.0: the Needle constructor's const emitter copy. Before 2.5 a const local whose address escapes stays out of the worst-case alias set, so the three word loads of pos batch ahead of the stores; 2.6 interleaves. |
@@ -1036,7 +1037,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1005,
 | `src/pso/object/TObjEZRopeBase.cpp` | force_active×1 |
 | `src/pso/object/TObjEZRopeSimulation.cpp` | inline_depth×1, dont_inline×1 |
 | `src/pso/object/TObjEnvSoundGlobal.cpp` | opt_common_subs×1 |
-| `src/pso/object/TObjFish.cpp` | fp_contract×2, dont_inline×1, inline_depth×1 |
+| `src/pso/object/TObjFish.cpp` | fp_contract×2, dont_inline×1, inline_depth×1, defer_codegen×1 |
 | `src/pso/object/TObjFogCollisionSwitch.cpp` | readonly_strings×1, defer_codegen×1 |
 | `src/pso/object/TObjGrass.cpp` | opt_common_subs×3, readonly_strings×1, fp_contract×1 |
 | `src/pso/object/TObjGrassWeb.cpp` | fp_contract×1 |

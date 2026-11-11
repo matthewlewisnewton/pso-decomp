@@ -73,7 +73,7 @@ void * TObjNpcNFW00__create(void *arg0) {
 void TObjNpcNFW00::free_resources() {
     if ((u32) TObjNpcNFW00__texture_gvm_handle != 0U) {
         release_texture_list((void*)TObjNpcNFW00__texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjNpcNFW00__texture_gvm_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcNFW00__texture_gvm_handle);
         TObjNpcNFW00__texture_gvm_handle = 0U;
     }
     if ((u32) TObjNpcNFW00__named_object_resource != 0U) {
