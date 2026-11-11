@@ -1,3 +1,4 @@
+#include "pso/misc/TextEntryMeasurement.h"
 #include "pso/misc/TWindowBase.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
@@ -22,7 +23,6 @@ struct RoomTitleEntry {
 
 extern "C" {
 int get_array_entry__11TWindowBaseFi(void*, int);
-void refresh_status_display__9TWindowDDFv(void *);
 s32 get_window_layout_position(int);
 extern RecoveredGlobal_8026D674_lbl_804D08DC room_window_base_parameters;
 extern const char *TWindowRoom__class_name;
@@ -68,7 +68,7 @@ TWindowRoom::TWindowRoom(char *title)
     m_name = TWindowRoom__class_name;
     entry = (RoomTitleEntry *)get_array_entry(0);
     set_text_entry_string((u8 *)entry, (u32)title, 0x60);
-    refresh_status_display__9TWindowDDFv(entry);
+    measure_text_entry(entry);
     m_38 = lbl_805DD2F0 + (entry->positionX + entry->width);
     m_30 -= m_38;
     save_position();

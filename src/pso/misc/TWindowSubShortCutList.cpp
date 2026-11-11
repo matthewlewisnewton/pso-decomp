@@ -1,12 +1,15 @@
+#include "pso/misc/WordSelectMessage.h"
 #include "pso/misc/PageIndicator.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "types.h"
+#include "pso/unk/text_80076BC4.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowMenuIconLine.h"
 #include "pso/misc/TWindowSubShortCutList.h"
 #include "pso/misc/TWindowChat.h"
 #include "pso/misc/TWindowShortListCtrl.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/misc/TWindowSubSymbolChat.h"
 
 extern "C" {
 void TShopJudgmentItemWindow__sub_80267F9C(void *, int);
@@ -14,13 +17,9 @@ extern s32 lbl_8044FAA8[];
 extern const char *TWindowSubShortCutList__class_name;
 extern s32 local_client_id;
 s32 get_shared_text_buffer();
-s32 fn_80076BC4(s32 *);
-int get_chat_shortcut(s32 arg0);
-s32 get_symbol_chat_data__20TWindowSubSymbolChatFv();
 s32 clamp_selection_to_valid_entry__20TShopArmorListWindowFv(void *);
 s32 save_cursor_selection__20TShopArmorListWindowFv();
 s32 reset_list__19TWindowMenuIconLineFv(void *);
-s32 update_state__9TWindowDDFv(s32 *, s32, u16);
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 
@@ -41,20 +40,19 @@ void TWindowSubShortCutList::refresh_entries() {
             draw_entry(var_r29, 0x33, 0, var_r29);
             break;
         case 1:
-            temp_r0 = fn_80076BC4(chat_shortcut + 1);
+            temp_r0 = (s32)fn_80076BC4(chat_shortcut + 1);
             draw_entry(var_r29, 0x12, temp_r0, var_r29);
             break;
         case 2:
-            update_state__9TWindowDDFv(chat_shortcut + 1, get_shared_text_buffer(), (u16) local_client_id);
+            format_word_select_message((WordSelectMessage *)(chat_shortcut + 1), (char *)get_shared_text_buffer(), (u16) local_client_id);
             draw_entry(var_r29, 0x10, get_shared_text_buffer(), var_r29);
             break;
-        case 3:
-            TWindowChat::open_symbol_chat(chat_shortcut + 1);
-            {
-                s32 d = get_symbol_chat_data__20TWindowSubSymbolChatFv();
-                draw_entry(var_r29, 0x11, d, var_r29);
-            }
+        case 3: {
+            u8 *preset = TWindowChat::open_symbol_chat(chat_shortcut + 1);
+            u8 *name = reinterpret_cast<TWindowSubSymbolChat *>(preset)->get_symbol_chat_data();
+            draw_entry(var_r29, 0x11, (s32)name, var_r29);
             break;
+        }
         }
         var_r30 += 1;
         var_r29 += 1;

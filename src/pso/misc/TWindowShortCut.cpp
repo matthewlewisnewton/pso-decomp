@@ -1,6 +1,7 @@
 #include "pso/misc/WindowLayoutDescriptor.h"
 #include "types.h"
 #include "pso/misc/TWindowShortCut.h"
+#include "pso/misc/TWindowChatSymbol.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 
@@ -8,8 +9,6 @@ extern "C" {
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 forward_render__20TWindowSubStatusDispFv(void *, s32);
 void *construct_type1_heading__20TWindowSubStatusDispFll(void *storage, s32 text, s32 client);
-// Qualified legacy entry: its 1044-byte implementation remains original input.
-s32 TWindowSubStatusDisp__sub_8026E1D4(TWindowShortCut *, s32 index, void *shortcut);
 extern u8 lbl_804D0968[];
 WindowLayoutDescriptor window_short_cut_layout = {
     {405.0f, 188.0f}, 50100.0f, lbl_804D0968, 0x63
@@ -58,7 +57,7 @@ TWindowShortCut::TWindowShortCut(void *position, s32 index, void *shortcut)
     m_68 = NULL;
     m_6c = index;
     m_70 = shortcut;
-    TWindowSubStatusDisp__sub_8026E1D4(this, index, shortcut);
+    initialize_preview(index, (s32 *)shortcut);
 }
 
 }

@@ -1,3 +1,4 @@
+#include "pso/misc/TextEntryMeasurement.h"
 #include "pso/misc/WindowLayoutDescriptor.h"
 #include "types.h"
 #include "pso/misc/TWindowDD_80341334.h"
@@ -17,7 +18,6 @@ const char *lbl_805D42D8 = "TWindowDD_WS_String";
 
 
 extern "C" {
-s32 refresh_status_display__9TWindowDDFv(int);
 extern u8 lbl_804EFC00[];
 extern WindowLayoutDescriptor TWindowDD__data_804EFC24;
 void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *, void *);
@@ -41,7 +41,7 @@ TWindowDD_WS_String::TWindowDD_WS_String(void *position, void *size, s32 str, s3
         set_text_entry_string(entry, str, 0x80);
         *(f32 *)(entry + 8) = lbl_805DFC94;
         *(f32 *)(entry + 0xC) = lbl_805DFC94;
-        refresh_status_display__9TWindowDDFv((int)entry);
+        measure_text_entry(entry);
         ((TWindowHelpItem *)entry)->reset_float_field();
     }
     if ((m_mode == 1) || (m_mode == 3)) {

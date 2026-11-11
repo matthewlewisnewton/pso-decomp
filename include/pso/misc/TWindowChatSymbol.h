@@ -11,6 +11,8 @@ struct TWindowChatSymbol : public TWindowBase {
     u32 m_60;
     u32 m_64;
     virtual void run_task();
+    void set_selection(u32 preset);
+    void update_visibility();
 };
 
 typedef char TWindowChatSymbol_size[sizeof(TWindowChatSymbol) == 0x68 ? 1 : -1];

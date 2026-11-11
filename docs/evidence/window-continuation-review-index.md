@@ -192,6 +192,19 @@ relative targets, raw data88 and five normalized data references remain exact.
 Timing is a contributor, not a sufficient repair. No source/profile or hold
 changes are activated, and no subsequent binding/order variant is attempted.
 
+The [#415 stack reconciliation](window-shortcut-preview-main-stack-integration.md)
+integrates main `e65f11ce6e` without activating Word diagnostics. The protected
+1044 preview bytes now reproduce exactly as source beside the native492 prefix,
+28-byte table and52-byte pool; all99 owned relocation identities match. Native
+ShortCut/ChatSymbol construction and common Word/String measurement/formatter
+contracts coexist with unchanged reset/UV and original-provider holds. Fresh main,
+focused and continuation gated builds retain the original DOL. B has3601 exact
+units/retention18584, no new strict loss, and the same14 qualified window tails.
+Upstream contributes1044 matched/linked code and52 matched/linked data versus B.
+Current A/B code totals agree because main now also links the native prefix range;
+B retains1604 matched/1560 linked data. Preview bounds/allocation and inherited
+compiler-control qualifications remain explicit.
+
 ## Current tried/blocked index
 
 | Area | Established result | Remaining evidence / hold |
@@ -241,8 +254,10 @@ accepted upstream gain against old #268 was +296 matched/+1628 linked code and
 All 3637 compiled objects initially matched the old snapshot; after the upstream
 integration, 3636 remain byte-identical and only the accepted Fish unit differs.
 Those object counts describe the initial publication, not subsequent refreshes.
-Against focused A, B adds +492 linked code and +1604 matched/+1560 linked data,
-with no exact-function or meaningful-data/address loss.
+At the latest #415 integration, matched/linked code totals agree with focused A;
+B retains +1604 matched/+1560 linked data. Main now links the previously additional
+492-byte prefix too. Earlier contribution counts above remain historical, and
+the existing exact-function/data/address and coverage qualifications remain.
 
 Both replacements stay draft. Do not merge, formally approve, mark ready, lift a
 hold or delete the original branch. Close #268 as superseded only after both

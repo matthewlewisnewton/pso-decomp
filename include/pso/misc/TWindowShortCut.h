@@ -4,14 +4,17 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 
+struct TWindowChatSymbol;
+
 struct TWindowShortCut : public TWindowBase {
     TWindowShortCut(void *position, s32 index, void *shortcut);
     virtual ~TWindowShortCut();
     virtual void render();
     virtual void run_task();
+    void initialize_preview(s32 index, s32 *shortcut);
     void *m_60; // Owned opaque heading; legacy initializer/release protocol.
     TWindowBase *m_64; // Optional message window, released through close().
-    TWindowBase *m_68; // Optional symbol window, released through close().
+    TWindowChatSymbol *m_68; // Optional symbol window, released through close().
     s32 m_6c;
     void *m_70; // Borrowed shortcut record.
 };

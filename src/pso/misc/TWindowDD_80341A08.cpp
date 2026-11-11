@@ -1,3 +1,4 @@
+#include "pso/misc/TextEntryMeasurement.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowDD_WS_Word.h"
@@ -15,7 +16,6 @@
 #include "pso/unk/text_803D619C.h"
 
 extern "C" {
-int refresh_status_display__9TWindowDDFv(void *);
 void TWindowDD__sub_80341674(TWindowDD_WS_Word *, TWindowDrawContext *);
 void draw_visible_window_entries(TWindowDD_WS_Word *, TWindowDDWordEntryList *, TWindowKeyBoardSoft *);
 extern const s32 TWindowDD__data_805DFC14;
@@ -40,7 +40,7 @@ void TWindowDD_WS_Word::render() {
             item = (TUnk_804CFA28 *)self->get_array_entry(i);
             set_text_entry_string((u8 *)item, TWindowDD__sub_80348B70(((s16 *)self->m_80)[idx]), 0xC0);
             item->y = (f32)(i * 20);
-            refresh_status_display__9TWindowDDFv(item);
+            measure_text_entry(item);
             ((TWindowHelpItem *)item)->reset_float_field();
             item->color = TWindowDD__data_805DFC14;
         }
@@ -431,7 +431,7 @@ void TWindowDD::load_element_list() {
         ent = (Entry_80341FFC *)get_array_entry__11TWindowBaseFi(self, i);
         set_text_entry_string((u8 *)ent, TWindowDD__sub_80348B70((s16)self->buf[i]), 0xC0);
         ent->y = i * 20;
-        refresh_status_display__9TWindowDDFv(ent);
+        measure_text_entry(ent);
     }
 }
 

@@ -1,3 +1,4 @@
+#include "pso/misc/TextEntryMeasurement.h"
 #include "pso/misc/ComCardEntryAbi.h"
 #include "types.h"
 #include "pso/item/TItem.h"
@@ -142,7 +143,6 @@ void *find_entity_by_id(u16 id);
 s32 get_status_effect_icon_index(u32);
 extern "C" {
 u16 get_entity_id(void *);
-void refresh_status_display__9TWindowDDFv(void *);
 void init_window_layout_entries(void *, void *, int);
 f32 get_target_distance__13TWindowLockOnFv(s32);
 extern Cb_802634E8 lockon_photon_blast_marker_callback;
@@ -432,7 +432,7 @@ s32 TWindowLockOn__update_for_other_player(s32 a0, s32 a1) {
     id = get_entity_id(arg1);
     ((TWindowLockOn *)w)->update_for_player_index(id);
     ((TWindowHelpItem *)w)->reset_float_field();
-    refresh_status_display__9TWindowDDFv(w);
+    measure_text_entry(w);
     arg0->w = lbl_805DD124 + w->w;
     arg0->h = lbl_805DD128;
     arg0->w += TWindowLockOn__data_805DD110;

@@ -16179,6 +16179,18 @@ force_active:
   - shop_weapon_stock_generated_flags
   - shop_weapon_stock_level
   - shop_weapon_stock_target_counts
+  - shortcut_kind_sprites
+  - shortcut_preview_center_x
+  - shortcut_preview_center_y
+  - shortcut_preview_depth
+  - shortcut_preview_half
+  - shortcut_preview_height_bias
+  - shortcut_preview_horizontal_padding
+  - shortcut_preview_max_text_width
+  - shortcut_preview_vertical_padding
+  - shortcut_preview_width_bias
+  - shortcut_symbol_preview_height
+  - shortcut_symbol_preview_width
   - should_show_map__13TRaderMapCoreFv
   - should_show_warning__14TObjBagWarnWinFPv
   - show__5TItemFv

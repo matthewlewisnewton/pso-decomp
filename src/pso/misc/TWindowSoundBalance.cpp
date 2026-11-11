@@ -1,3 +1,4 @@
+#include "pso/misc/TextEntryMeasurement.h"
 #include "pso/misc/WindowLayoutDescriptor.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/ControllerInputState.h"
@@ -25,7 +26,6 @@ s32 TWindowShortListCtrl__check_controller_button(int, int);
 
 // Existing word-valued entry-field ABI; complete widget ownership remains provisional.
 s32 get_field_20__17TWindowSubComCardFv(void *entry);
-s32 refresh_status_display__9TWindowDDFv(u8 *);
 extern u8 lbl_804D0CE0[];
 WindowLayoutDescriptor window_sound_balance_settings = {
     {470.0f, 60.0f}, 50100.0f, lbl_804D0CE0, 3
@@ -178,10 +178,10 @@ TWindowSoundBalance::TWindowSoundBalance(void *position)
     sound_effect_gain = 1;
     e = (u8 *)get_array_entry(0);
     *(f32 *)(e + 8) = lbl_805DD414 - lbl_805DD418 * calc_text_width((char *)get_field_20__17TWindowSubComCardFv(e));
-    refresh_status_display__9TWindowDDFv(e);
+    measure_text_entry(e);
     e = (u8 *)get_array_entry(1);
     *(f32 *)(e + 8) = lbl_805DD414 - lbl_805DD418 * calc_text_width((char *)get_field_20__17TWindowSubComCardFv(e));
-    refresh_status_display__9TWindowDDFv(e);
+    measure_text_entry(e);
     st = (SoundBalanceSettings *)TAdSinglePlyChrSelectGC::get_global_state();
     if (st == NULL) {
         set_music_gain(0);

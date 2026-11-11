@@ -286,7 +286,7 @@ void TWindowSubSymbolChat::init_layout_entries(s32 player) {
     init_window_layout_entries((void *)arg0, &symbol_chat_layout_sprite_records.value, (void *)player);
 }
 
-void TWindowSubSymbolChatPartsSet::update_visibility() {
+void TWindowChatSymbol::update_visibility() {
     u8 *arg0 = (u8 *)this;
     if (((s32) this->m_64 == 0) && (((u32) this->m_60 == 0U) || (is_symbol_chat_preset_in_use((u32 *)this->m_60) == 0))) {
         disallow_rendering__7TObjectFv((TObject *)arg0);
@@ -296,7 +296,7 @@ void TWindowSubSymbolChatPartsSet::update_visibility() {
     set_symbol_chat_parts__20TWindowSubSymbolChatFiPv((s32)(arg0 + 0x24), (void *)(((TWindowSubSymbolChat *)(this->m_60))->get_data_ptr()));
 }
 
-void TWindowSubSymbolChatPartsSet::set_selection(u32 arg1) {
+void TWindowChatSymbol::set_selection(u32 arg1) {
     if ((u32) this->m_60 != arg1) {
         this->m_60 = arg1;
         update_visibility();

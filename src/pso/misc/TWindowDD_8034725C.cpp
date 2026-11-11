@@ -1,3 +1,5 @@
+#include "pso/misc/WordSelectMessage.h"
+#include "pso/misc/TextEntryMeasurement.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowBase.h"
 
@@ -87,9 +89,7 @@ extern const f32 lbl_805DFBE8;
 extern const f32 lbl_805DFBEC;
 extern const f32 lbl_805DFC28;
 void TWindowDD__sub_80347E04(W_80347E04 *arg0, s32 arg1);
-s32 update_state__9TWindowDDFv(void *, u32, u16);
 E_80347CC8 *get_array_entry__11TWindowBaseFi(void *, s32);
-s32 refresh_status_display__9TWindowDDFv(void *);
 extern s32 local_client_id;
 extern u32 TWindowDD__work_buffer;
 extern const f32 TWindowDD__data_805DFB58;
@@ -130,7 +130,7 @@ s32 TWindowDD::classify_id(s16 arg0) {
     return var_r3;
 }
 
-s32 TWindowDD::get_player_battle_flag_state(u16 arg0) {
+s32 word_select_player_gender(s32 arg0) {
     s32 temp_r3_2;
     void *player;
 
@@ -478,12 +478,12 @@ void TWindowDD__sub_80347CC8(W_80347CC8 *arg0, void *window_dd) {
     f32 c;
     f32 max;
     f32 f10;
-    update_state__9TWindowDDFv(window_dd, TWindowDD__work_buffer, local_client_id);
+    format_word_select_message((WordSelectMessage *)window_dd, (char *)TWindowDD__work_buffer, local_client_id & 0xFFFF);
     s = arg0->f70;
     if (s != NULL) {
         e = get_array_entry__11TWindowBaseFi(s, 0);
         if (e != NULL) {
-            refresh_status_display__9TWindowDDFv(e);
+            measure_text_entry(e);
             x = 10.0f + e->f10;
             if (x >= 580.0f) {
                 e->f8 = 580.0f - e->f10;

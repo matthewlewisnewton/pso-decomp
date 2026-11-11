@@ -15,10 +15,10 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (regenerated after merging main `c1fb4aa04461`, 2026-11-10)
+## Summary (regenerated after merging main `c9af971c23`, 2026-11-10)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-after merging main `c1fb4aa04461` (2026-11-10). Assembly is counted as source lines;
+after merging main `c9af971c23` (2026-11-10). Assembly is counted as source lines;
 the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 44 source lines | 11 |
 | MWCC intrinsics | 83 | 54 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,775 | 880 |
+| CodeWarrior pragmas (excluding push/pop) | 5,777 | 880 |
 | Per-unit compiler overrides in `configure.py` | 191 | 191 |
 | Approved regressions | 0 | 0 |
 
@@ -95,9 +95,9 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,775 pragmas in 880 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1142, `inline_depth` 1034, `fp_contract` 879, `auto_inline` 832,
-`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 239,
+5,777 pragmas in 880 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1142, `inline_depth` 1034, `fp_contract` 880, `auto_inline` 832,
+`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 240,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -107,6 +107,24 @@ MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
 check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
+
+### Shortcut preview at `0x8026E1D4`
+
+`TWindowShortCut::initialize_preview` uses scoped `fp_contract on` for the
+fused coordinate calculations and `opt_propagation off` to preserve the
+saved-register allocation across the entry and formatter calls. Keep fused
+subtraction if exact float results matter on a port. Drop the optimizer
+pragma on other compilers.
+
+The thirteen `__declspec(section ".sdata2")` definitions in
+`TWindowSubStatusDisp_8026DFE8.cpp` put the separator, icon table and
+preview constants at `0x805DD348..0x805DD37C`. CodeWarrior places these
+named constants in writable small data without the declarations. The
+matching CodeWarrior build indexes the icon table with `kind - 1`.
+For kind zero the emitted load reads the separator's final zero byte at
+`0x805DD34B`, one byte before the table. The portable branch handles
+zero explicitly so it can use independent objects and stay within the
+array bounds.
 
 ### Item attack collider
 
