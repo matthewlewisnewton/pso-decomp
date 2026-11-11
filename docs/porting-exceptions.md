@@ -1499,3 +1499,9 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 |---|---|---|---|
 | `src/pso/misc/TLobby_803C1A58.cpp`, `TLobby__sub_803C2388` | Scoped `opt_propagation off`, `opt_common_subs off` | Preserve the original byte-swap/load sequence and chunk traversal; all 624 bytes match. [Recovery evidence](evidence/audio-formats-and-adx-transfer.md). | Drop these compiler controls; retain explicit endian decoding and original parsing behavior, or harden input validation as a separate behavioral change. |
 | Same file, `TLobby__sub_803C3570` | Scoped `opt_common_subs off`, `opt_lifetimes off`, `opt_propagation off`; existing decoder API passes pointers through `s32` | The two-phase block transfer needs the original saved-register lifetimes and arithmetic/load ordering; all 1,028 bytes match. The bounded record and shared legacy decoder interface are documented in the recovery evidence. | Drop the compiler controls, use fixed-width scalar fields and typed pointer arguments at the decoder boundary. Ordinary sample-copy loops remain C++. |
+
+### Technique-contact dispatcher evaluation order
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/npc/TObjNpcKenkyuW.cpp`, `TObjPlayer__sub_802A445C` at `0x802A445C` | Scoped `scheduling off` and `global_optimizer off` | Preserve the original argument setup and the contact-load/receiver-copy/contact-store order. The explicit `void*` value conversion in the comma expression avoids an addressable temporary and retains the original 16-byte frame. All 228 bytes and the full 2,376-byte unit match. See [compiler and comparison evidence](evidence/kenkyuw-dispatcher-continuation.md). | Drop the compiler controls. The contact assignment can be a separate statement before the virtual call; retain the actor value passed to that call. |

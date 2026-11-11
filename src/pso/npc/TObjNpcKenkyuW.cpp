@@ -295,6 +295,9 @@ TechniqueContactList *TObjPlayer::collect_technique_contacts(void *src) {
     return &L_802A41CC;
 }
 
+#pragma push
+#pragma scheduling off
+#pragma global_optimizer off
 void TObjPlayer__sub_802A445C(TNeedleShoot *self) {
     TechniqueContactList *list;
     if (self->m_68 == 0) {
@@ -309,7 +312,10 @@ void TObjPlayer__sub_802A445C(TNeedleShoot *self) {
         list = TObjPlayer__sub_802A3FDC((Obj_802A3FDC *)self, (void *)self->m_1c);
         break;
     default:
-        list = TObjPlayer__sub_802A3DE8((Obj_802A3DE8 *)self, (void *)self->m_1c);
+        {
+            void *source = (void *)self->m_1c;
+            list = TObjPlayer__sub_802A3DE8((Obj_802A3DE8 *)self, source);
+        }
         break;
     }
     if (!list) {
@@ -317,10 +323,11 @@ void TObjPlayer__sub_802A445C(TNeedleShoot *self) {
     } else if (TObjPlayer::is_hit_receivable_target((s32)self, (u32)list->actors[0])) {
         TechniqueContactActor *actor = list->actors[0];
         if (actor) {
-            self->m_38 = (u32)list->bodies[0];
-            self->vfunc_9(actor);
+            TechniqueContactBody *contact = list->bodies[0];
+            // The value conversion avoids an addressable comma-expression temporary.
+            self->vfunc_9((self->m_38 = (u32)contact, static_cast<void *>(actor)));
         }
     }
 }
-
+#pragma pop
 }

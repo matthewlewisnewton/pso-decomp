@@ -2,8 +2,8 @@
 
 Base: `eef2806e17f2a5aaa291dc504213ff078ae43cb1`. The unit has nine exact
 functions and one missing 228-byte entry, `TObjPlayer__sub_802A445C`.
-This checkpoint reconstructs that entry in C++; it does not complete or link
-the unit. The source keeps its existing external name because ownership is
+The completed reconstruction matches all ten functions and enables source
+linkage for the unit. The source keeps its existing external name because ownership is
 provisional: the observed receiver layout is `TNeedleShoot`, not `TObjPlayer`.
 
 The function destroys a projectile whose body is absent; otherwise it selects
@@ -18,7 +18,7 @@ narrowing (`clrlwi.`) and preserves the callee's exact instructions.
 
 ## Measured compiler constraints
 
-The best reconstruction is 96.49123%, 228 bytes, with the other nine functions
+The initial reconstruction was 96.49123%, 228 bytes, with the other nine functions
 exact. At the hit-test call the original emits `mr r3,r30` then `lwz r4,0(r31)`;
 GC/2.6 schedules the load first. Relocations and function size agree.
 
@@ -46,8 +46,33 @@ The earlier investigation is in the preserved `decomp-tobjnpc-kenkyuw` branch,
 `docs/evidence/kenkyuw-dispatcher-hit-test-scheduling.md`. Compiler research
 reference: https://github.com/doldecomp/mweppc . No external source was copied.
 
-Experiment scripts, candidate sources and raw objdiff reports are retained in
-ignored `build/experiments/kenkyuw-continuation/`; `results.json` lists each
-compiled candidate. The checkpoint uses the best straightforward reconstruction
-without experimental pragmas. It must remain original-backed until all code and
-unit linkage pass the normal checks.
+## Matching solution
+
+The complete `.text` section is 2,376 bytes and all ten functions match. The
+dispatcher uses scoped `scheduling off` and `global_optimizer off`; no assembly,
+extra references, stores or no-op statements are introduced. Both settings are
+limited to this function and are recorded in the porting exceptions register.
+
+Disabling the global optimizer preserves the contact store within the virtual
+call argument. Loading the contact into a local first gives the observed load,
+receiver copy, store, and virtual dispatch order. The right operand of the comma
+expression must be a value, `static_cast<void *>(actor)`: leaving it as the
+lvalue `actor` produces an otherwise unnecessary stack store and a 32-byte
+frame instead of the original 16-byte frame. Adding `register` alone does not
+remove the store. An explicit local for the default collector's source argument
+also preserves its observed load before the receiver copy.
+
+This was derived by reading the compiler's usage analysis:
+[`checkexpression`](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/optimizer/COptimizer.c#L303)
+marks a local referenced by `EOBJREF` as non-register, whereas a direct
+`EINDIRECT(EOBJREF)` is a value use. The compiler's
+[`call_function`](https://github.com/doldecomp/mweppc/blob/919828d97d33d236da675824d43c5d57332afe74/src/compiler/optimizer/FunctionCalls.c#L617)
+then evaluates the register arguments before loading the virtual target. The
+source explanation is an inference from that code; the exact instruction,
+stack-frame and relocation results were measured with the pinned GC/2.6 binary.
+No compiler source was copied into this repository.
+
+The first 111 failed experiments and the subsequent global-optimizer, lvalue
+conversion and register tests are retained under ignored
+`build/experiments/kenkyuw-continuation/` for local reproduction. The failed
+experiments above are historical measurements, not completion evidence.
