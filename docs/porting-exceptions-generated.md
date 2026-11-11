@@ -8,12 +8,12 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 46 | 12 |
-| intrinsic | 83 | 54 |
+| intrinsic | 84 | 55 |
 | hardware | 69 | 13 |
-| pragma | 5713 | 881 |
+| pragma | 5709 | 881 |
 | configure.py per-unit override | 193 | 193 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1113, `inline_depth` 1005, `fp_contract` 882, `auto_inline` 802, `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 248, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 28, `optimize_for_size` 27, `opt_lifetimes` 25, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1111, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802, `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 28, `optimize_for_size` 27, `opt_lifetimes` 25, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -115,6 +115,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1113, `inline_depth` 1005,
 | `src/pso/misc/TWindowSubItem.cpp:359` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
+| `src/pso/network/ModemRuntime.cpp:363` | `__cntlzw` |
 | `src/pso/object/TObjCMMainMenu_8028D9A8.cpp:108` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
@@ -964,7 +965,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1113, `inline_depth` 1005,
 | `src/pso/misc/TWindowTradeRequest_802E0170.cpp` | fp_contract×1 |
 | `src/pso/misc/TeneFakeTecThunderEff.cpp` | fp_contract×4 |
 | `src/pso/misc/pso_date.cpp` | opt_propagation×2, inline_depth×1, auto_inline×1, dont_inline×1 |
-| `src/pso/network/ModemRuntime.cpp` | dont_inline×3, inline_depth×2, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
+| `src/pso/network/ModemRuntime.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/network/NetworkConfigLifecycle.cpp` | scheduling×1, peephole×1 |
 | `src/pso/network/NetworkDispatcher.cpp` | opt_common_subs×3, pool_data×1 |
 | `src/pso/network/NetworkInfoCodec.cpp` | scheduling×15, peephole×13, optimization_level×11, use_lmw_stmw×3 |
