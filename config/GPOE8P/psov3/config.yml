@@ -3531,6 +3531,7 @@ force_active:
   - add_mag_stat_bonuses__9TItemDataFv
   - add_meseta_purpose_actions__14TWindowSubItemFll
   - add_mind__8MagStatsFs
+  - add_part__25TWindowSubSymbolChatPartsFv
   - add_photon_blast__8MagStatsFUc
   - add_pow__8MagStatsFs
   - add_scroll_offset__9TWindowDDFi
@@ -6415,6 +6416,11 @@ force_active:
   - fn_8025CE00
   - fn_80262C2C
   - fn_80271848
+  - fn_80284C04
+  - fn_80284FB8
+  - fn_80285314
+  - fn_802855C4
+  - fn_802857C4
   - fn_8028DBC4
   - fn_80293D84
   - fn_802A5C7C
@@ -6868,6 +6874,7 @@ force_active:
   - handle_6x91_update_state__15TOAttackableColFv
   - handle_6xa4_action__15Boss6FlowActionFP3Vec
   - handle_action__10TNpcPlayerFl
+  - handle_add__25TWindowSubSymbolChatPartsFv
   - handle_amount_confirm__19TShopItemListWindowFv
   - handle_appear__17TObjEneBm3FlyNestFl
   - handle_battle_result__6TLobbyFii
@@ -6881,6 +6888,7 @@ force_active:
   - handle_cancel__19TWindowSubMagPhotonFv
   - handle_cancel__21TWindowSubCustomEquipFv
   - handle_cancel__22TWindowSubCustomSelectFv
+  - handle_cancel__25TWindowSubSymbolChatPartsFv
   - handle_cancel__26TWindowSubQuestBoardSelectFv
   - handle_cancel__28TWindowSubSymbolChatPartsSetFv
   - handle_challenge_retry_confirm__18TObjChallengeRetryFv
@@ -16746,6 +16754,8 @@ force_active:
   - sub_8027D230__26TWindowSubQuestBoardSelectFv
   - sub_80281C60__20TWindowSubSymbolChatFv
   - sub_80281CC4__20TWindowSubSymbolChatFv
+  - sub_80285054__25TWindowSubSymbolChatPartsFv
+  - sub_80285274__25TWindowSubSymbolChatPartsFPUc
   - sub_80288BE4__19TQuestListChallengeFv
   - sub_8028B940__12TChCrLoadAfsFv
   - sub_8028B944__12TChCrLoadAfsFv

@@ -108,9 +108,9 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,778 pragmas in 879 files; per-file table in the generated file. Main kinds:
+5,779 pragmas in 879 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1142, `inline_depth` 1034, `fp_contract` 880, `auto_inline` 832,
-`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 240,
+`opt_common_subs` 612, `scheduling` 263, `opt_propagation` 241,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
 `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -120,6 +120,18 @@ MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
 check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
+
+### Symbol-chat part-grid rendering
+
+`fn_802857C4` at `0x802857C4` in `TWindowSubSymbolChatParts.cpp` uses
+scoped `opt_propagation off` to preserve the row-height load and floating-point
+register lifetimes with a `32.0f` literal. With propagation enabled, eleven
+register operands differ at 99.421486%. The literal shares the unit's existing
+pool entry and resolves the former undefined constant reference, allowing the
+complete unit to link. This is a measured matching constraint, not evidence of
+an original pragma. Ports can drop propagation steering and retain the same
+literal and arithmetic. The existing `fp_contract on` scope is unchanged.
+See [the unit evidence](evidence/symbol-chat-parts-recovery-evidence.md).
 
 ### Shortcut preview at `0x8026E1D4`
 

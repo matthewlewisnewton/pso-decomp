@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5735 | 879 |
+| pragma | 5736 | 879 |
 | configure.py per-unit override | 192 | 192 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019, `fp_contract` 881, `auto_inline` 817, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 240, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019, `fp_contract` 881, `auto_inline` 817, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 241, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -952,7 +952,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019,
 | `src/pso/misc/TWindowSubStatusDisp_803DEE6C.cpp` | scheduling×6, peephole×4, opt_common_subs×2, optimize_for_size×1 |
 | `src/pso/misc/TWindowSubSymbolChat.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TWindowSubSymbolChatHelp.cpp` | fp_contract×3 |
-| `src/pso/misc/TWindowSubSymbolChatParts.cpp` | fp_contract×7 |
+| `src/pso/misc/TWindowSubSymbolChatParts.cpp` | fp_contract×7, opt_propagation×1 |
 | `src/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.cpp` | fp_contract×2, readonly_strings×1 |
 | `src/pso/misc/TWindowSubSymbolChat_80285E10.cpp` | opt_lifetimes×1, opt_loop_invariants×1 |
 | `src/pso/misc/TWindowSubTechnique.cpp` | fp_contract×1 |
