@@ -566,16 +566,6 @@ s32 add_radar_scaled_marker(void *, int, int, int, f32);
 }
 
 
-/* 6xA4: the Olga Flow boss action sent by send_6xA4_action. */
-struct OlgaFlowActionMsg {
-    u8 command;
-    u8 size;
-    u16 entity_id;
-    s8 action;
-    u8 action_args[3];
-    u8 sync_params[3];
-};
-
 struct T1_802B529C;
 struct Boss_802B5434;
 struct Boss_802B8EE0;
@@ -694,19 +684,19 @@ void build_6xA4_olga_flow_boss_actions(void* p) { *(u8*)((char*)p + 0x0) = 164; 
 #pragma pop
 #pragma push
 #pragma opt_propagation off
-void TBoss6Type1::step_and_send_60() { read_be16_field2(); send_subcommand((u8 *)this); }
+void OlgaFlowActionMsg::step_and_send_60() { read_be16_field2(); send_subcommand((u8 *)this); }
 #pragma pop
 #pragma push
 #pragma opt_propagation off
-void TBoss6Type1::read_be16_field2() { ((G_ClientIDHeader *)this)->bswap(); }
+void OlgaFlowActionMsg::read_be16_field2() { bswap(); }
 #pragma pop
 #pragma push
 #pragma opt_propagation off
-int TBoss6Type1::is_idle() { return this->m_374 == 0; }
+int TBoss6PlotFalz::is_idle() { return this->m_374 == 0; }
 #pragma pop
 #pragma push
 #pragma opt_propagation off
-void*TBoss6Type1::get_mag_mine_ptr() { return (char*)this + 0x388; }
+void *TBoss6PlotFalz::get_mag_mine_ptr() { return this->unk_388; }
 #pragma pop
 #pragma push
 #pragma opt_propagation off
@@ -740,7 +730,7 @@ void TBoss6Type1::apply_poison_status() {  }
 
 #pragma push
 #pragma opt_propagation off
-s32 TBoss6Type1::create(s32 arg2_) {
+s32 TBoss6Type1::create(Boss6Type1Spawn *arg2_) {
     s32 arg0_;
     s32 var_r4;
 
@@ -750,7 +740,7 @@ s32 TBoss6Type1::create(s32 arg2_) {
         if (var_r4 != 0) {
             var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
-        arg0_ = TBoss6Type1__ct(arg0_, var_r4, arg2_);
+        arg0_ = TBoss6Type1__ct(arg0_, var_r4, (s32)arg2_);
     }
     return arg0_;
 }
@@ -887,11 +877,11 @@ void send_flow_action_if_idle__11TBoss6Type1FPvc(TBoss6Type1 *boss6_type1, s8 ar
     typedef char sp8_offset[(offsetof(Stack_802B9204_boss6_1, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802B9204_boss6_1, spC) == 0x4) ? 1 : -1];
     Stack_802B9204_boss6_1 stack;
-    if (((s32)((TBoss6Type1 *)(boss6_type1->m_3f8))->is_idle()) != 0) {
+    if (((s32)((TBoss6PlotFalz *)(boss6_type1->m_3f8))->is_idle()) != 0) {
         build_6xA4_olga_flow_boss_actions(&stack.sp8);
         boss6_type1->set_sync_data(&stack.sp8);
         stack.spC = arg1;
-        ((TBoss6Type1 *)(&stack.sp8))->step_and_send_60();
+        ((OlgaFlowActionMsg *)(&stack.sp8))->step_and_send_60();
     }
 }
 #pragma pop
@@ -902,7 +892,7 @@ s32 TBoss6Type1::send_6xA4_action(s32 t, s32 *src) {
     Msg_802B9178 m;
     u8 *s;
     s32 i;
-    if (((TBoss6Type1 *)(this->m_3f8))->is_idle() != 0) {
+    if (((TBoss6PlotFalz *)(this->m_3f8))->is_idle() != 0) {
         build_6xA4_olga_flow_boss_actions(&m);
         set_sync_data(&m);
         m.b[4] = t;
@@ -910,7 +900,7 @@ s32 TBoss6Type1::send_6xA4_action(s32 t, s32 *src) {
         for (i = 1; i < 4; i++) {
             m.b[i + 4] = *s++;
         }
-        ((TBoss6Type1 *)(&m))->step_and_send_60();
+        ((OlgaFlowActionMsg *)(&m))->step_and_send_60();
     }
 }
 #pragma pop
@@ -1106,8 +1096,8 @@ void handle_6xA4_olga_flow_boss_actions(void *arg) {
     TBoss6Type1 *boss;
     s32 action;
 
-    ((TBoss6Type1 *)msg)->read_be16_field2();
-    boss = (TBoss6Type1 *)get_enemy_entity(msg->entity_id);
+    ((OlgaFlowActionMsg *)msg)->read_be16_field2();
+    boss = (TBoss6Type1 *)get_enemy_entity(msg->client_id);
     if (boss == NULL) {
         return;
     }
@@ -1154,7 +1144,7 @@ void TBoss6Type1::run_task() {
     if (a.action != 0) {
         (((Boss_802B865C *)this)->*a.action)();
     }
-    if (((TBoss6Type1 *)this->m_3f8)->is_idle() != 0) {
+    if (((TBoss6PlotFalz *)this->m_3f8)->is_idle() != 0) {
         a.words[0] = boss6_type1_action_table[this->m_374].idle[0];
         a.words[1] = boss6_type1_action_table[this->m_374].idle[1];
         a.words[2] = boss6_type1_action_table[this->m_374].idle[2];
@@ -2054,7 +2044,7 @@ void TBoss6Type1__sub_802B6504(TBoss6Type1 *boss) {
     s32 seed = boss->m_41c;
     TBoss6MineSetData set;
     boss->reset_fields_4e0();
-    TBoss4DarkFalz__sub_8004B4F0(&set, ((TBoss6Type1 *)boss->m_3f8)->get_mag_mine_ptr());
+    TBoss4DarkFalz__sub_8004B4F0(&set, ((TBoss6PlotFalz *)boss->m_3f8)->get_mag_mine_ptr());
     set.owner = boss;
     VecCopy(&set.origin, &boss->node_points[0]);
     VecCopy(&set.offset, &lbl_80470F84);

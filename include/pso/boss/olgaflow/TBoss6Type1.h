@@ -3,8 +3,18 @@
 #include "types.h"
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/network/protocol/protocol_types.h"
 
 struct Boss6EffectPoint { f32 x, y, z; };
+struct Boss6Type1Spawn;
+/* 6xA4: the Olga Flow boss action sent by send_6xA4_action. */
+struct OlgaFlowActionMsg : G_ClientIDHeader {
+    s8 action;
+    u8 action_args[3];
+    u8 sync_params[3];
+    void read_be16_field2();
+    void step_and_send_60();
+};
 // One of the two part-motion players at 0x444 (render blends prev_motion_id/prev_frame into
 // motion_id/frame by blend; names inferred from that use).
 struct Boss6PartMotion {
@@ -136,11 +146,7 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 send_6xA4_action(s32 t, s32 *src);
     void load_params(void *arg1);
     void set_sync_data(void *arg1);
-    static s32 create(s32 arg0);
-    void*get_mag_mine_ptr();
-    int is_idle();
-    void read_be16_field2();
-    void step_and_send_60();
+    static s32 create(Boss6Type1Spawn *spawn);
     void enter_flag800_state();
     void update_attack_countdown();
     void update_countdown_state();

@@ -18,13 +18,16 @@ struct TBoss6PlotFalz : public TObjEnemy {
     void set_visible_flag();
     void call_state_action();
     void sub_802AAC98();
+    int is_idle();
+    void *get_mag_mine_ptr();
     void vfunc_63();
-    u8 unk_374[0x4];
+    u32 m_374;
     s32 m_378;
     u8 m_37c;
     u8 unk_37D[0x3];
     u8 * m_380;
-    u8 unk_384[0x6];
+    u8 unk_384[0x4];
+    u8 unk_388[0x2];
     s16 m_38a;
     u8 unk_38C[0x28];
     u32 m_3cc;
