@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 84 | 55 |
 | hardware | 69 | 13 |
-| pragma | 5719 | 881 |
-| configure.py per-unit override | 195 | 195 |
+| pragma | 5723 | 881 |
+| configure.py per-unit override | 196 | 196 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 30, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1114, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 248, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 31, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -227,7 +227,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1005,
 | `src/pso/unk/text_803E2D70.cpp:954` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
 | `src/pso/unk/text_803E2D70.cpp:955` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
 | `src/pso/unk/text_803E2D70.cpp:956` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_80421620.cpp:1257` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
+| `src/pso/unk/text_80421620.cpp:1258` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
 
 ## configure.py per-unit compiler overrides
 
@@ -428,6 +428,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1005,
 | `pso/misc/TLobby_804050DC.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/network/NetworkDispatcher.cpp` | `-opt nocse` | Extracted from TLobby_804050DC; preserve its compiler/CSE settings. |
 | `pso/network/TcpProtocol.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/network/SocketProtocolRuntime.cpp` | `-inline on` | The reassembly range-removal helper must inline; other recovered bodies opt out. |
 
 ## CodeWarrior pragmas per file
 
@@ -976,7 +977,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1005,
 | `src/pso/network/NetworkMessageTransport.cpp` | dont_inline×4, inline_depth×3, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/network/NetworkPacketRuntime.cpp` | dont_inline×4, inline_depth×3, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/network/NetworkTransport.cpp` | opt_common_subs×3, optimization_level×1 |
-| `src/pso/network/SocketProtocolRuntime.cpp` | dont_inline×2, inline_depth×2, opt_dead_assignments×1 |
+| `src/pso/network/SocketProtocolRuntime.cpp` | dont_inline×4, inline_depth×2, opt_lifetimes×1, opt_propagation×1, opt_dead_assignments×1 |
 | `src/pso/network/TProtocol.cpp` | inline_depth×2, auto_inline×2, dont_inline×2, scheduling×2 |
 | `src/pso/network/TProtocol_801DA240.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/network/TTcpSocket.cpp` | readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1 |

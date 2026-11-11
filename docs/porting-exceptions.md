@@ -326,6 +326,16 @@ an aligned stack object. A port should ignore these settings and use the plain
 `s32` parameter and function body. See
 [the comparison](evidence/network-info-request-frame.md).
 
+### Socket protocol runtime
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `configure.py` | `pso/network/SocketProtocolRuntime.cpp` | `-inline on` | Inlines the reassembly range-removal helper without an extra emitted function. | Use the ordinary helper and target compiler settings. |
+| `src/pso/network/SocketProtocolRuntime.cpp` | Send ACK and segmentation at `0x8041FFF8` / `0x80420410` | Scoped `dont_inline`, `opt_lifetimes off`, and `opt_propagation off` | Preserve native call boundaries, register lifetimes, and the retained unreachable partial-fragment branch. | Drop optimizer steering; retain the signed halfword conversions. |
+| `src/pso/network/SocketProtocolRuntime.cpp` | Reassembly and send temporaries | Caller-owned eight-byte range value, unused eight-byte ACK frame area, ordered phase locals, and widened final `s64` length | Reproduce native frames and register assignment. Widening a signed 32-bit difference preserves its value but keeps the halfword store separate from extension. These are reconstruction constraints, not proof of original declarations. | Remove frame/type steering; use ordinary range values and bounded length arithmetic. |
+| `src/pso/network/SocketProtocolRuntime.cpp` | Reverse/shift/prepend fragment cursors | Integer native addresses and one corresponding unsigned halfword access | Prevent a final unused decrement from forming a C++ pointer before an array; retain native 16-bit store behavior. | Use indices or guest addresses with appropriate width and preserve halfword conversion. |
+| `src/pso/network/SocketProtocolRuntime.cpp`, `src/pso/network/TcpProtocol.cpp`, `src/pso/unk/text_80421620.cpp` | Newly source-linked unit and shared boundary | Existing partial runtime/UDP views, legacy ABI symbol names and slot/thread handle-width declarations | The shared TCP record and send callback are verified, but these remaining providers and class ownership are still provisional. [Evidence](evidence/socket-protocol-runtime.md). | Consolidate the remaining providers and use platform-independent handles and shared protocol records. |
+
 ### Network config initializer at `0x803F3BF8`
 
 `src/pso/network/NetworkConfigLifecycle.cpp` uses a scoped `scheduling off`

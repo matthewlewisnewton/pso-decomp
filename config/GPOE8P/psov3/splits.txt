@@ -13915,7 +13915,7 @@ pso/network/TcpProtocol.cpp:
 
 pso/network/SocketProtocolRuntime.cpp:
 	.text       start:0x8041ED8C end:0x80421620
-	.data       start:0x804FD890 end:0x804FD8F0
+	.data       start:0x804FD890 end:0x804FD948
 	.bss        start:0x805C1DF0 end:0x805C1E00
 
 pso/unk/text_80421620.cpp:
