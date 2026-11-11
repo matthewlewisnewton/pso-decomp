@@ -1987,3 +1987,10 @@ All fourteen DHCP/modem host tests pass. Independent source and complete-object
 review passes. This repairs SDK declarations and storage while preserving
 original behavior and every creator/raw/reset/receiver/adjacency/metadata hold.
 Keep draft.
+
+The subsequent [message-post receiver audit](pr303-post-message-receiver.md)
+closes the three observed native calls onto the PPPoE SDK queue, independently
+resolving its address from the original DOL and checking the initializer. The
+callee forwards that receiver to SDK send without dereferencing it. This is
+bounded evidence for a separate recovery, not a historical shared declaration
+or acceptance of an API change. Receiver/adjacency and all other holds remain.
