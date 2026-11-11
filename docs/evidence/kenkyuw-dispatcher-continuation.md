@@ -10,7 +10,8 @@ The function destroys a projectile whose body is absent; otherwise it selects
 one of three contact collectors using the mode at +0xb0. An absent contact
 list invokes virtual slot +0x18. A receivable first actor stores its body at
 +0x38 and invokes slot +0x24 with that actor. The +0x38 field occupies existing
-padding; the shared class size remains 0xbc.
+padding and is typed as the observed contact-body pointer; the shared class size
+remains 0xbc.
 
 The original compares the hit-test result with `cmpwi r3,0`; its implementation
 returns integer 0 or 1. Declaring that result `s32` avoids the caller's bool
@@ -76,3 +77,25 @@ The first 111 failed experiments and the subsequent global-optimizer, lvalue
 conversion and register tests are retained under ignored
 `build/experiments/kenkyuw-continuation/` for local reproduction. The failed
 experiments above are historical measurements, not completion evidence.
+
+## Final validation
+
+Validated against clean fork-main baseline
+`08c178922f` (the immutable full SHA is available in this branch's ancestry).
+Both that baseline and the source-linked candidate pass `tools/check_pr.py`.
+The candidate has one new exact function (+228 matched code bytes), one new
+linked unit (+2,376 complete code bytes), unchanged matched/complete data,
+and no exact-function, data or linkage regressions. All 3,611 linked units
+pass the linked-object check. The final DOL SHA-1 is
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`, identical to the original.
+
+The generated final Ninja link edge for `build/GPOE8P/psov3.elf` directly
+includes `build/GPOE8P/src/pso/npc/TObjNpcKenkyuW.o` and excludes its original
+split object. The report marks the unit complete with 10/10 functions and
+2,376/2,376 code bytes. Its split owns no allocated data sections.
+
+Generated retention adds five symbols from this unit and removes none.
+Regeneration also sorts the existing DHCP `build_release` and `build_request`
+entries into their normal alphabetical positions without changing membership.
+Baseline and candidate logs and the direct link-input query are retained with
+the ignored experiment artifacts.

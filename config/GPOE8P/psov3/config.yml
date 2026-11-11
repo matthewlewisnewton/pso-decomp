@@ -1652,6 +1652,8 @@ force_active:
   - TObjPlayer__sub_801D9C34
   - TObjPlayer__sub_8023E034
   - TObjPlayer__sub_802A1588
+  - TObjPlayer__sub_802A3DE8
+  - TObjPlayer__sub_802A3FDC
   - TObjPlayer__sub_802A83F4
   - TObjPlayer__sub_802A841C
   - TObjPlayer__sub_802C19E8
@@ -4546,7 +4548,6 @@ force_active:
   - build_dead_list_window__15TObjDeadListWinFv
   - build_default_save_file__23TAdSinglePlyChrSelectGCFv
   - build_discover__11DhcpMessageFv
-  - build_release__11DhcpMessageFv
   - build_door_collision_triangles__18TObjCityDoor_LobbyFv
   - build_download_list__12TQuestListVMFv
   - build_ethernet_frame_header__6TLobbyFPvPvUsUcUsUs
@@ -4557,6 +4558,8 @@ force_active:
   - build_name_text__13TObjTombstoneFv
   - build_node_records__11TBreakUpMdlFPUcl
   - build_packet_header__10TObjPlayerFv
+  - build_release__11DhcpMessageFv
+  - build_request__11DhcpMessageFv
   - build_result_text__13TObjResultWinFv
   - build_save_file__23TAdSinglePlyChrSelectGCFv
   - build_selection_summary__12TAdTimeSetGCFv
@@ -5091,6 +5094,7 @@ force_active:
   - clear_state_flags_when_done__13TObjEneRe4BitFv
   - clear_state_if_flag80__10TObjPlayerFl
   - clear_status_bit6__10TObjPlayerFPv
+  - clear_technique_contacts__10TObjPlayerFv
   - clear_thread_state__12TQuestThreadFv
   - clear_work__12TBoss1DragonFi
   - clear_work_buffer
@@ -5172,6 +5176,7 @@ force_active:
   - collect_targets__15TObjEneMe1GiGueFv
   - collect_targets_in_arc__15TBoss3VoloptP02Fv
   - collect_targets_in_front__15TBoss3VoloptP02Fv
+  - collect_technique_contacts__10TObjPlayerFPv
   - commit_composition_text__19TWindowKeyBoardSoftFv
   - complete_and_destroy__13TOCtrlDubchikFv
   - complete_fall_reaction__10TObjPlayerFv
@@ -5627,7 +5632,6 @@ force_active:
   - destroy_subobjects_recursive__9TItemListFv
   - detect_device_type__16TKeyBoardControlFl
   - dfdemo4_strip_nodes
-  - build_request__11DhcpMessageFv
   - dimedian_action_table
   - dimedian_appear_motion_filename
   - dimedian_attack_left_motion_filename
@@ -7545,6 +7549,7 @@ force_active:
   - is_flag_set__6TLobbyFPv
   - is_grounded__10TObjPlayerFv
   - is_growth_inactive__11TItemMagSubFv
+  - is_hit_receivable_target__10TObjPlayerFlUl
   - is_id_out_of_range__6TLobbyFi
   - is_in_state_13__14TObjEnePanBARAFv
   - is_in_state_14__14TObjEnePanBARAFv

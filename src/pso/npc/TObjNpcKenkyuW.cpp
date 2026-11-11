@@ -325,7 +325,7 @@ void TObjPlayer__sub_802A445C(TNeedleShoot *self) {
         if (actor) {
             TechniqueContactBody *contact = list->bodies[0];
             // The value conversion avoids an addressable comma-expression temporary.
-            self->vfunc_9((self->m_38 = (u32)contact, static_cast<void *>(actor)));
+            self->vfunc_9((self->m_38 = contact, static_cast<void *>(actor)));
         }
     }
 }
