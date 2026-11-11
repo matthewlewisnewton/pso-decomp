@@ -18,3 +18,14 @@
   fork's local declaration order and its `AdxBlockTransferView` layout view (replaces
   Strm_803C1A8C for this function only; Strm_803C1A8C still serves 803C2A00 and others).
   Fork comment: "Keep the high-byte shift unsigned while retaining the native int result."
+
+## pso/render/GinjaMaterial.cpp
+- apply_ginja_material_params (803DBE1C): the only change needed was holding the surface
+  format as a reference (`const u32 &format = ...->surface->format;`) across the
+  GXSetZCompLoc call in the 0x8000 branch, so the surface address stays in a register and
+  the format is read after the GX call. Fork comment pointed at
+  docs/evidence/ginja-material-recovery.md (fork-only).
+- Link: lbl_805E0F68 ({0,0,0,127}, C_803DB9A0) is defined in this unit, in .sdata2, after the
+  other uses ("late definition keeps the named load in set_ginja_material_color" in the fork).
+  Split changed to .sdata2 0x805E0F68-0x805E0F7C (0x805E0F7C..0F80 unowned padding);
+  lbl_805E0F6C/70/74/78 made scope:local, lbl_805E0F78 size 8 -> 4.
