@@ -3,9 +3,8 @@
 #include "pso/misc/TWindowCtrlMain.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowOptionCtrl.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
-
-struct V2_8026CBB8 { f32 x, y; };
 
 struct Node_8026CC28 { u8 p0[0xC]; Node_8026CC28 *fC; u8 p10[0x44]; f32 f54; };
 
@@ -27,19 +26,18 @@ struct Grp_8026CCA4 { u8 p0[0x14]; Node_8026CCA4 *head; };
 
 extern const f32 lbl_805DD2CC;
 s32 is_split_screen(void);
-extern V2_8026CBB8 window_layout_position_table[];
-extern V2_8026CBB8 lbl_80477890[];
+extern WindowLayoutPosition window_layout_position_table[];
+extern WindowLayoutPosition lbl_80477890[];
 extern unsigned char window_layout_rect_table[];
-V2_8026CBB8 *get_window_layout_position(s32 idx);
 s32 TWindowCtrlMain__sub_8024CE58(void);
 extern f32 window_depth_order_cursor;
 extern const f32 lbl_805DD2C8;
 void*TWindowOptionCtrl::get_option_entry(int a0) {  return (char*)window_layout_rect_table + a0 * 8; }
-V2_8026CBB8 *get_window_layout_position(s32 idx) {
+WindowLayoutPosition *get_window_layout_position(s32 idx) {
     if (is_split_screen() != 0) {
         return (TCameraCtrl::get_camera_id() == 2) ? &lbl_80477890[idx] : &window_layout_position_table[idx];
     }
-    return (V2_8026CBB8 *)((char *)window_layout_rect_table + idx * 8);
+    return (WindowLayoutPosition *)((char *)window_layout_rect_table + idx * 8);
 }
 void TWindowBase::sub_8026CC28() {
     Node_8026CC28 *n;
