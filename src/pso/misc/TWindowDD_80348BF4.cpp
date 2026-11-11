@@ -1,3 +1,4 @@
+#include "pso/misc/WordSelectMessage.h"
 #include "types.h"
 #include "pso/misc/TWindowDD_80348BF4.h"
 #include "pso/misc/TWindowDD.h"
@@ -16,6 +17,6 @@ void handle_6x74_word_select(u8 *arg0) {
             ((TWindowDD *)(arg0 + 4))->update_selected_id();
         }
         TWindowDD::build_player_word_lists();
-        TWindowDD::open((s32)(arg0 + 4), (s32)((int) (*(u16 *)((s8 *)arg0 + 2))));
+        show_word_select_message((WordSelectMessage *)(arg0 + 4), *(u16 *)(arg0 + 2));
     }
 }

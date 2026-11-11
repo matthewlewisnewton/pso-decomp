@@ -2,6 +2,7 @@
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowShortCut.h"
+#include "pso/misc/TWindowChatSymbol.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
@@ -22,7 +23,6 @@ s32 draw_visible_window_entries(void *, void *, int);
 s32 forward_render__20TWindowSubStatusDispFv(int, int);
 s32 construct_type1_heading__20TWindowSubStatusDispFll(s32, s32, s32);
 s32 get_message_10__20TWindowSubStatusDispFl(int);
-s32 TWindowSubStatusDisp__sub_8026E1D4(void *, void *, void *);
 extern RecoveredGlobal_8026E728_lbl_804D0AE0 window_short_cut_layout;
 extern s32 __vt__15TWindowShortCut[];
 extern s32 TWindowShortCut__name;
@@ -42,8 +42,15 @@ void TWindowShortCut::run_task() { ((TWindowSubStatusDisp *)(this->m_60))->updat
 void *__dt__15TWindowShortCutFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__15TWindowShortCut;
-        if (*(void **)((s8 *)arg0 + 0x68) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x68)))->close(); ((TWindowShortCut *)arg0)->m_68 = 0; }
-        if (*(void **)((s8 *)arg0 + 0x64) != NULL) { ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x64)))->close(); ((TWindowShortCut *)arg0)->m_64 = 0; }
+        TWindowShortCut *window = static_cast<TWindowShortCut *>(arg0);
+        if (window->symbol_preview != NULL) {
+            window->symbol_preview->close();
+            window->symbol_preview = NULL;
+        }
+        if (window->text_preview != NULL) {
+            window->text_preview->close();
+            window->text_preview = NULL;
+        }
         TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x60)), (s16)1);
         ((TWindowDD *)arg0)->destroy_window_base(0);
         if (arg1 > 0) {
@@ -64,11 +71,11 @@ u8 *TWindowShortCut__ct(TWindowShortCut *window_short_cut, s32 arg1, s32 arg2, s
         var_r31 = construct_type1_heading__20TWindowSubStatusDispFll(var_r31, get_message_10__20TWindowSubStatusDispFl(0x35), (s32) window_short_cut->m_20);
     }
     window_short_cut->m_60 = var_r31;
-    window_short_cut->m_64 = 0;
-    window_short_cut->m_68 = 0;
+    window_short_cut->text_preview = NULL;
+    window_short_cut->symbol_preview = NULL;
     window_short_cut->m_6c = arg2;
     window_short_cut->m_70 = arg3;
-    TWindowSubStatusDisp__sub_8026E1D4((void *)window_short_cut, (void *)arg2, (void *)arg3);
+    window_short_cut->initialize_preview(arg2, (s32 *)arg3);
     return (u8 *)window_short_cut;
 }
 

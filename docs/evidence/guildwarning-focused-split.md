@@ -172,3 +172,15 @@ keep their original provider and qualifications. Focused acceptance retains 3600
 exact linked units, retention18403, the same +600 matched / +728 linked code
 contribution and zero new strict raw/exact/linked data-range loss. No lifetime or
 historical coverage qualification changes.
+
+The next integration uses main `e65f11ce6ec99c006909422f81da1c0a46ac062e`
+and merged shortcut-preview/word-select boundary recovery #415. All forty-one
+upstream path patches and the focused source/configuration delta remain intact.
+Clean-main and focused gated builds retain the original DOL; acceptance has
+3601 exact linked units and retention18415 without drift. Upstream adds one
+exact 1044-byte preview, 1536 linked code and 52 matched/linked data bytes versus
+the preceding focused head. Against fresh main the focused contribution remains
++600 matched / +728 linked code, one exact function and zero additional strict
+raw/exact/linked data loss. The preview's inherited kind-zero cross-object lookup,
+allocation assumptions and explicit compiler controls retain their qualifications.
+This merge does not activate any Word lifetime/profile diagnostic.

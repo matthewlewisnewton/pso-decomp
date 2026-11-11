@@ -1,14 +1,11 @@
 #include "types.h"
-#include "pso/misc/TWindowDD.h"
+#include "pso/misc/TextEntryMeasurement.h"
 
 extern "C" {
-
-s32 measure_message_text_width(f32);
-
+void measure_message_text_width(void *entry, f32 max_width);
 extern const f32 lbl_805DCB70;
 
-void TWindowDD::refresh_status_display() {
-    measure_message_text_width(lbl_805DCB70);
+void measure_text_entry(void *entry) {
+    measure_message_text_width(entry, lbl_805DCB70);
 }
-
 }

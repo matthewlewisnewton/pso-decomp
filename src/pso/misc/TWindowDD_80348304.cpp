@@ -1,3 +1,5 @@
+#include "pso/misc/WordSelectMessage.h"
+#include "pso/ui/Language.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowDD_80348304.h"
@@ -26,11 +28,6 @@ s32 is_flag_set__6TLobbyFv();
 s32 TWindowDD__sub_8034435C();
 s32 TWindowDD__sub_80344568();
 s32 TWindowDD__sub_80344774();
-s32 format_message_text__9TWindowDDFPvPvUs();
-s32 format_german_message__9TWindowDDFPvPvUs();
-s32 TWindowDD__sub_80345608();
-s32 format_english_message__9TWindowDDFPvPvUs();
-s32 format_entry_text__9TWindowDDFPvPv();
 s32 TWindowDD__sub_80346434();
 s32 TWindowDD__sub_80346640();
 
@@ -137,23 +134,18 @@ s32 TWindowDD::can_append_chars(s32 arg0, s32 *arg1) {
     return (arg0 + t + 1) < 0x80;
 }
 
-void TWindowDD::update_state() {
+s32 format_word_select_message(WordSelectMessage *words, char *buffer, s32 player) {
     switch ((s32) TWindowDD__window_mode) {
-    case 0:
-        format_entry_text__9TWindowDDFPvPv();
-        return;
+    case LANGUAGE_JAPANESE:
+        return format_word_select_japanese(words, buffer);
     default:
-        format_english_message__9TWindowDDFPvPvUs();
-        return;
-    case 4:
-        TWindowDD__sub_80345608();
-        return;
-    case 2:
-        format_german_message__9TWindowDDFPvPvUs();
-        return;
-    case 3:
-        format_message_text__9TWindowDDFPvPvUs();
-        return;
+        return format_word_select_english(words, buffer, player);
+    case LANGUAGE_SPANISH:
+        return format_word_select_spanish(words, buffer, player);
+    case LANGUAGE_GERMAN:
+        return format_word_select_german(words, buffer, player);
+    case LANGUAGE_FRENCH:
+        return format_word_select_french(words, buffer, player);
     }
 }
 
