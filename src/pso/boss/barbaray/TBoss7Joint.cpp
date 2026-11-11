@@ -26,7 +26,7 @@ extern "C" {
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
 void initialize_enemy_state__9TObjEneDDFl(void *, s32);
 extern s32 __vt__11TBoss7Joint[];
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 extern s32 boss7_joint_params[];
 struct VOff_802EE9A4_arg0_802EE9A4 { char pad_0[0x2FC]; char f_2FC[1]; };
 
@@ -96,7 +96,7 @@ s32 TBoss7Joint::init_params() {
     copy_collision_body((CollisionBody *)(&((J_802EEB88 *)this)->sub), &lbl_80473FB8);
     set_collision_body(&((J_802EEB88 *)this)->sub);
     transform_part_positions();
-    reset_hp__9TObjEneDDFPUcPUcPUc(this, (s32)get_battle_base_stats(0x10), (s32)get_battle_attack_params(0xF), (s32)get_battle_resistance_params(0x10));
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this, (s32)get_battle_base_stats(0x10), (s32)get_battle_attack_params(0xF), (s32)get_battle_resistance_params(0x10));
     *(s16 *)((s8 *)this + 0x32C) = 0x4E20;
     *(s16 *)((s8 *)this + 0x2B8) = 0x4E20;
     check_state_flag_2();

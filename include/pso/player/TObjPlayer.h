@@ -269,8 +269,6 @@ struct TObjPlayer : public TObjChara {
     static void free_resources();
     void enter_state_8();
     void tick_freeze_state();
-    void update_death_breakup();
-    void dispatch_state_update();
     static void create_render_texture();
     // The photon blast gauge's charge, 0-100.
     s32 get_photon_blast_charge();
@@ -1218,7 +1216,6 @@ struct TObjPlayer : public TObjChara {
     static void notify_fish_obj(void* a0);
     static void draw_effect();
     void draw_trail_pair();
-    void update_aim_and_fire();
     void set_flag_and_notify();
     static void update_particle_by_phase();
     void draw_blob_shadows();

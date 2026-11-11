@@ -244,9 +244,9 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData) : TObjEneDD_S
     } else {
         variant = 0;
     }
-    reset_hp((u8 *)get_battle_base_stats(lbl_8043BA7C[variant]),
-             (u8 *)get_battle_attack_params(lbl_8043BA88[variant]),
-             (u8 *)get_battle_resistance_params(lbl_8043BA94[variant]));
+    reset_hp(get_battle_base_stats(lbl_8043BA7C[variant]),
+             get_battle_attack_params(lbl_8043BA88[variant]),
+             get_battle_resistance_params(lbl_8043BA94[variant]));
     lbl_805D5170 = get_battle_movement_params(lbl_8043BAA0[variant]);
     if (get_flag_11()) {
         set_state_8();

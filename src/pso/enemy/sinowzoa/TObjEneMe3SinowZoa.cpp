@@ -676,7 +676,7 @@ void enemy_turn_and_move_on_ground(u8 *arg0, s32 arg1, f32 farg0);
 extern "C" {
 int select_and_apply_target__12TObjEneDD_STFf(void*);
 s32 check_v2_mode__9TObjEneDDFv(s32, s32);
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 int vfunc_96__9TObjEneDDFv(void*);
 int vfunc_95__9TObjEneDDFv(void*);
@@ -1709,7 +1709,7 @@ void TObjEneMe3SinowZoaReal::init_enemy() {
     this->set_field_dc((int) (*(s32 *)((s8 *)TObjEneMe3SinowZoa__bml_resource + 0x430)));
     set_animation((*(s16 *)((s8 *)((u8 *)this) + 0xB8)));
     temp_r0 = *(s32 *)((s8 *)((u8 *)this) + 0x3C8);
-    reset_hp__9TObjEneDDFPUcPUcPUc((void *)this, lbl_80542FBC[temp_r0], lbl_80542FC4[temp_r0], lbl_80542FCC[temp_r0]);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock((void *)this, lbl_80542FBC[temp_r0], lbl_80542FC4[temp_r0], lbl_80542FCC[temp_r0]);
     this->check_state_flag_4();
     *(void **)((s8 *)((u8 *)this) + 0x350) = TObjEneMe3SinowZoa_init_params;
     *(f32 *)((s8 *)((u8 *)this) + 0x37C) = (f32) TObjEneMe3SinowZoa__data_805DF314;

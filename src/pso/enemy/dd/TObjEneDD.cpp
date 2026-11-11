@@ -6,6 +6,7 @@
 #include "pso/system/MatrixOps.h"
 #include "pso/render/render_util.h"
 #include "pso/math/MatrixTransforms.h"
+#include "pso/math/ViewPoint.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/math/AngleLookup.h"
 extern "C" {
@@ -1545,10 +1546,10 @@ void TObjEneDD::initialize_enemy_state(s32 parameter) {
 
 int TObjEneDD::update_camera_sequence() { return apply_split_screen_view_matrix__11TCameraCtrlFv(this); }
 
-int TObjEneDD::get_camera_ctrl() { return transform_to_view__11TCameraCtrlFii(this); }
+extern "C" void transform_point_to_view(const Vec *source, Vec *destination) { transform_to_view__11TCameraCtrlFii((void *)source); }
 
-void TObjEneDD::reset_hp(u8 *base_stats, u8 *attack_stats, u8 *resistance_stats) {
-    bind_enemy_combat_stats(base_stats, attack_stats, resistance_stats);
+void TObjEneDD::reset_hp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats) {
+    bind_enemy_combat_stats((u8 *)base_stats, (u8 *)attack_stats, (u8 *)resistance_stats);
     referenceHp = hp;
 }
 
