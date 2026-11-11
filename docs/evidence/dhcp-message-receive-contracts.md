@@ -4,8 +4,9 @@
 
 This is the remaining DHCP source-contract family from frozen PR #303 head
 `3ed9b21ae3d8b887e18642e3e561063fb1eb2c98`. It is explicitly stacked on
-PR #434, `309836d175006800bf2a5d221649f6910cb9598d`, which in turn starts at
-fork main `cda82a7aad7de1bf9b86470002df3f68d1c8c039`. `DhcpAccessors.h` and
+PR #434, `348d9bacbc640999d4bbdbf0c2491899d3e25c3c`, which is based on
+pinned fork main `5bba9c44adebc1cfa019def85e1f39f6da340ef0`. The initial
+extraction `23a1721a3` and correction `137eed032` remain in the history. `DhcpAccessors.h` and
 its setter, hostname, lease, router and domain contracts remain the unchanged
 prerequisite. `DhcpClient.h` includes that header rather than redeclaring them.
 
@@ -14,8 +15,9 @@ Original message/header work is by Matthew Lewis Newton, with the retained
 `2f90b2977176ad4a692d31c578352c0a8d4f0375` and
 `891d16a8f20ebeb0062411582efdf9fc23aeaa7a`. Shared-layout and later contract
 work is from Codex commits `3a74db95a`, `ab7da74eb`, `460ce612d`, `4f029010a`,
-`adc1a464e` and `ac0a1995b`. The actual-source characterization tests come
-unchanged from the frozen head. This extraction claims no newly recovered
+`adc1a464e` and `ac0a1995b`. Scanner/setter and ACK-chain characterization
+tests come unchanged from the frozen head. Timer boundary characterization
+is added for the source arithmetic correction below. This extraction claims no newly recovered
 function, code/data bytes, or source-linked unit: all native bodies already
 match and link on the baseline.
 
@@ -66,6 +68,29 @@ its sole caller's `extsh.` at 0x80146664 and results {-1, 0, 1}. Registration
 Unused opaque arguments stay opaque. This does not claim unique recovery of
 original typedefs.
 
+## Clock representation and unsigned differences
+
+The clock output API writes an s32, so shared last-tick storage is s32. The
+predecessor declared the stored tick as u32, however, so its subtraction used
+modulo-2^32 arithmetic before assigning the result to s32. The first extraction
+accidentally made both operands signed. Identical target instructions did not
+prove equivalent source semantics: crossing 0x7FFFFFFF to 0x80000000 introduced
+signed overflow rather than the predecessor's unsigned difference of one.
+
+The timer now explicitly converts both operands to u32 before subtraction.
+This preserves the original unsigned operation and subsequent signed-word
+assignment without changing native code, state handling or elapsed-time policy.
+It does not clamp a backwards tick or alter the accumulator's unsigned arithmetic.
+
+Four cases compile the actual `TLobby__sub_80423298` definition with synthetic
+clock/state services: the signed boundary plus second carry, full-word wrap,
+a longer span across the signed boundary, and the reverse-boundary observation.
+UBSan is enabled in this test by default, so an identical native subtract cannot
+hide the source regression. The exact frozen `23a1721a3` definition fails three
+of these cases with signed-overflow diagnostics; the corrected definition passes
+all four. The fixture checks the target-style signed-word conversion explicitly.
+This is a host source-arithmetic check, not a concurrency or clock-accuracy proof.
+
 ## Original behavior deliberately retained
 
 Event 0 provides scratch without capping the signed received length. The
@@ -90,11 +115,11 @@ endianness, ingress reachability, exploit, or safety proofs.
 
 The capacity-gated native build reproduces original DOL SHA-1
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Full PR checks against both
-immutable baselines have zero change to 27,438 matched functions, 4,237,032
-matched code bytes, 1,477,195 matched data bytes, 3,862,972 complete code
-bytes and 1,354,111 complete data bytes. All 3,606 linked units are exact;
-18,575 retention entries have no missing/stale entry. Splits and linkset are
-unchanged. Ordered linker providers remain 3,606 compiled and 1,340 original.
+immutable baselines have zero change to 27,440 matched functions, 4,238,432
+matched code bytes, 1,477,407 matched data bytes, 3,874,412 complete code
+bytes and 1,354,403 complete data bytes. All 3,608 linked units are exact;
+18,602 retention entries have no missing/stale entry. Splits and linkset are
+unchanged. Ordered linker providers remain 3,608 compiled and 1,338 original.
 
 All 3,632 active source objects and 4,946 active original objects are compared
 completely against both bases. Incrementally only two source objects differ,
@@ -110,13 +135,13 @@ parsing, blocking request and registration.
 
 NetworkPacketRuntime remains 24/24 functions, text_80421620 42/42, and the
 upstream lobby caller 40/40, each exact in code/data and source-linked. All
-321 host tests, four existing portable suites, and ASan/UBSan runs of both
-the 15 DHCP cases (including prerequisite hostname tests) and portable suites
-pass. Initial sandbox-only Wibo/LeakSanitizer execution failures were resolved
-by permitted native execution; no source workaround or disabled check was used.
+325 host tests, four existing portable suites, and ASan/UBSan runs of both
+the 19 DHCP cases (including prerequisite hostname and new timer tests) and
+portable suites pass. No sanitizer check was disabled.
 Generated exception inventory changes only an existing expression's line number.
 
-Timer-registry repairs, SDK thread/queue work and packet allocator contracts
+The timer-registry repair is inherited from pinned main; it is not part of
+this incremental slice. SDK thread/queue work and packet allocator contracts
 remain separate. This patch preserves queue declarations for that owner. The
 locked allocator, failed queue-adjacency probe, private creator/reset ABI and
 unresolved raw-IP callback contract stay held. No new pragma, assembly,
