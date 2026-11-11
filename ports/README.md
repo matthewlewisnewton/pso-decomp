@@ -21,6 +21,7 @@ GameCube-only layout asserts.
 | `tests/item_factory_callbacks.cpp` | Tests the typed item-factory callback path, including restoring the money factory's function type. |
 | `include/pso/port/LoaderTransfer.h` | Guest-state/backend interface for scalar loader handoff and restore handlers in the actual game units. |
 | `tests/loader_transfer.cpp` | Complete transfer, wraparound, preservation and fault propagation checks; stream interface for original-code differential validation. |
+| `tests/ginja_parameter_callbacks.cpp` | Tests the one- and two-argument material parameter callbacks through their actual function types. |
 | `tests/Makefile` | Builds and runs the tests. |
 
 ## Running
