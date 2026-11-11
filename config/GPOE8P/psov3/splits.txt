@@ -13678,7 +13678,7 @@ pso/system/GinjaModelQueue.cpp:
 pso/system/GinjaMaterial.cpp:
 	.text       start:0x803DB470 end:0x803DC82C
 	.data       start:0x804FC540 end:0x804FC668
-	.sdata2     start:0x805E0F6C end:0x805E0F80
+	.sdata2     start:0x805E0F68 end:0x805E0F7C
 
 pso/enemy/TObjEneMe3Stelth_803DC82C.cpp:
 	.text       start:0x803DC82C end:0x803DC834

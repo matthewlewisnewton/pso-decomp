@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5778 | 879 |
+| pragma | 5779 | 879 |
 | configure.py per-unit override | 192 | 192 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1142, `inline_depth` 1034, `fp_contract` 880, `auto_inline` 832, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 240, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1142, `inline_depth` 1034, `fp_contract` 880, `auto_inline` 832, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 240, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 35, `use_lmw_stmw` 28, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -1110,7 +1110,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1142, `inline_depth` 1034,
 | `src/pso/system/AdxStreamRuntime.cpp` | dont_inline×18, inline_depth×11, opt_propagation×2, fp_contract×2 |
 | `src/pso/system/ChunkMaterialState.cpp` | scheduling×3, use_lmw_stmw×1, optimize_for_size×1, inline_depth×1, auto_inline×1, dont_inline×1, peephole×1, opt_common_subs×1 |
 | `src/pso/system/CityTraffic.cpp` | opt_propagation×1 |
-| `src/pso/system/GinjaMaterial.cpp` | scheduling×12, peephole×10, use_lmw_stmw×1 |
+| `src/pso/system/GinjaMaterial.cpp` | scheduling×12, peephole×10, use_lmw_stmw×2 |
 | `src/pso/system/GinjaModelQueue.cpp` | scheduling×2, peephole×2, use_lmw_stmw×1 |
 | `src/pso/system/LscServer.cpp` | readonly_strings×1 |
 | `src/pso/system/LscStream.cpp` | dont_inline×2, inline_depth×2, readonly_strings×1, auto_inline×1 |
