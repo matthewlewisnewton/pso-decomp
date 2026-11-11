@@ -24,9 +24,9 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 87 | 56 |
+| MWCC intrinsics | 88 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,714 | 881 |
+| CodeWarrior pragmas (excluding push/pop) | 5,720 | 881 |
 | Per-unit compiler overrides in `configure.py` | 195 | 195 |
 | Approved regressions | 0 | 0 |
 
@@ -36,6 +36,19 @@ If assembly is approved, a scalar C/C++ equivalent ships next to it (Matt,
 2026-11-04). The asm is guarded for the GameCube/MWCC build (`#ifdef __MWERKS__`)
 and the scalar version is the compiled fallback, so a port builds the C. Approved
 asm always has an entry in this register.
+
+### TCP recovery under development
+
+`src/pso/network/TcpProtocol.cpp` currently remains unlinked. Its additional
+scoped optimizer constraints, inline flag lookup, guarded `__cntlzw` zero
+predicate and MWCC-only unused output-frame homes are recorded in
+[the TCP evidence](evidence/tcp-protocol-unit.md). The homes reproduce measured
+native compiler storage; they are not recovered TCP fields. A port removes the
+homes and optimizer steering and uses the scalar equality fallback. The new
+record views retain native 32-bit address/callback and overlapping-layout debt;
+consolidate those providers before claiming portable TCP interfaces. This entry
+does not grant assembly approval or claim completion of the two remaining
+functions.
 
 ## 1. Assembly
 
