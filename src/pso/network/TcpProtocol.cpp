@@ -782,11 +782,8 @@ void TLobby::clear_position() {
 #pragma opt_common_subs on
 #pragma opt_propagation off
 
-static inline s32 tcp_outflags(TcpState *state, s16 index) {return state->outflags[index];}
-
 s16 TLobby__sub_8041A9AC(void *connection) {
     TcpTcb *tp = (TcpTcb *)connection;
-    s32 advertised_window;
     TcpTcb *q;
     s32 lim;
     s32 sendalot;
@@ -871,7 +868,7 @@ s16 TLobby__sub_8041A9AC(void *connection) {
         } else {
             off = tp->snd_nxt - tp->snd_una;
         }
-        flags = tcp_outflags(ts, tp->t_state);
+        flags = ts->outflags[tp->t_state];
         win = tp->snd_wnd;
         if (tp->force != 0) {
             if (win == 0) {
@@ -966,9 +963,9 @@ s16 TLobby__sub_8041A9AC(void *connection) {
             if ((u32)win >= (u32)lim) {
                 goto send;
             }
-        }
-        if (win * 2 >= get_field_534__6TLobbyFv(tp)) {
-            goto send;
+            if (win * 2 >= get_field_534__6TLobbyFv(tp)) {
+                goto send;
+            }
         }
         if ((u32)get_score__6TLobbyFv(tp) != 0 && tp->timers[0] == 0 && tp->timers[1] == 0) {
             tp->rxtshift = 0;
@@ -986,7 +983,6 @@ s16 TLobby__sub_8041A9AC(void *connection) {
         return 0;
 
 send:
-advertised_window = recwin;
         if (fin != 0 && (tp->flags & 0x10) && tp->snd_nxt == tp->snd_max) {
             tp->snd_nxt = tp->snd_nxt - 1;
             off -= 1;
@@ -1046,16 +1042,16 @@ advertised_window = recwin;
             sendalot = 1;
         }
         th->flags = flags;
-        if ((u32)advertised_window < ((u32)get_field_534__6TLobbyFv(tp) >> 2) && (u32)advertised_window < tp->maxseg) {
-            advertised_window = 0;
+        if ((u32)recwin < ((u32)get_field_534__6TLobbyFv(tp) >> 2) && (u32)recwin < tp->maxseg) {
+            recwin = 0;
         }
-        if (advertised_window < (s32)(tp->rcv_adv - tp->rcv_nxt)) {
-            advertised_window = tp->rcv_adv - tp->rcv_nxt;
+        if (recwin < (s32)(tp->rcv_adv - tp->rcv_nxt)) {
+            recwin = tp->rcv_adv - tp->rcv_nxt;
         }
-        if ((u32)advertised_window > tp->f534) {
-            advertised_window = tp->f534;
+        if ((u32)recwin > tp->f534) {
+            recwin = tp->f534;
         }
-        th->win = advertised_window;
+        th->win = recwin;
         if ((s32)(tp->snd_up - tp->snd_nxt) > 0) {
             th->urp = tp->snd_up - tp->snd_nxt;
             flags |= 0x20;
@@ -1135,9 +1131,9 @@ advertised_window = recwin;
                 return rc;
             }
         }
-        if (advertised_window > 0) {
-            if ((s32)(tp->rcv_nxt + advertised_window - tp->rcv_adv) > 0) {
-                tp->rcv_adv = tp->rcv_nxt + advertised_window;
+        if (recwin > 0) {
+            if ((s32)(tp->rcv_nxt + recwin - tp->rcv_adv) > 0) {
+                tp->rcv_adv = tp->rcv_nxt + recwin;
             }
         }
         tp->flags &= ~1;
@@ -1149,6 +1145,7 @@ advertised_window = recwin;
     }
     return 0;
 }
+
 
 #pragma pop
 

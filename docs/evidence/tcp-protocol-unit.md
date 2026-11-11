@@ -44,7 +44,9 @@ establish a separately allocated sixth active range.
 The original assembly corrects two upstream draft boundaries: the options
 parser passes the TCP header to `8041D584`, and output passes both sequence
 endpoints to `8041D398`. Neither draft's omitted/misidentified argument is
-used as ABI evidence.
+used as ABI evidence. The raw draft also misplaced the no-send return inside
+the retransmit-counter condition; its corrected research variant returns before
+the send label when no send condition applies.
 
 Relevant prior investigations include
 [pack_movie_frame](pack-movie-frame-unit-flags.md),
@@ -68,9 +70,12 @@ acceptance comparisons use the unmodified pinned GC/1.2.5n executable.
   records with scoped common-subexpression optimization produces the native
   strength-reduced cursor. The typed indexed trial and the direct named cursor
   trial have different register assignments. Ordinary C mode does not fix them.
-- Output uses separate receive-space and advertised-window locals and an inline
-  flag lookup. Its SYN option fields and final padding use the distinct pointers
-  identified in the instructions. The remaining mismatches are register choices.
+- Output uses one receive-window workspace. Both update-threshold tests are
+  within the positive receive-space condition, as the target branch destination
+  requires. Its 650-instruction stream, including every branch destination, now
+  agrees apart from register choices. A previous phase split was removed after
+  this control-flow audit; an identical opcode list alone was insufficient.
+  The SYN option fields and final padding retain their distinct pointers.
 - Packet input's best candidate has the original instruction count and differs
   in two constant/address instruction positions. A complete compiler trace shows
   the target sequence through register allocation, frame generation and final
