@@ -1410,3 +1410,11 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | Scope | Construct | Evidence and reason | Port action |
 |---|---|---|---|
 | `src/pso/misc/ParticleRadial.cpp`, `TUnk_8048E7A8::run_task` at `0x8008B590` | New scoped `fp_contract on`; big-endian ARGB byte writes into a `u32` through `unsigned char` | The original's twelve channel interpolations are `fmadds`. Without the new contraction scope the routine is 94.10405%; with it all 1,384 bytes match. Existing constructor scopes are unchanged. The colour representation reproduces four native byte stores and one packed-word load without inactive-union aliasing. See [source, type and arithmetic evidence](evidence/radial-particle-update.md). New compiler control remains subject to independent source-quality review before publication. | Use single-rounded `fmaf` interpolation when native rounding is required. On little-endian hosts, pack the converted channels explicitly as `(a << 24) | (r << 16) | (g << 8) | b`. |
+
+### Ballistic particle update and constant layout
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/ParticleBallistic.cpp`, update at `0x800888E8` | Scoped `fp_contract on`; big-endian ARGB byte writes into a live `u32` | The original has fused bounce and colour interpolation. The recovered update matches all 2,060 bytes, using the radial particle's clamp and local-value layout. [Recovery evidence](evidence/ballistic-particle-recovery.md). | Preserve required single rounding with `fmaf`; pack converted ARGB channels explicitly on little-endian hosts. |
+| Same file, renderer at `0x800890F4` | Scoped `pool_data off` | With all owned constants defined, ordinary pooling shares a `.rodata` base and changes the renderer to 1,412 bytes / 94.68715%. Independent addresses reproduce the original 1,432 bytes exactly. Late definitions preserve instructions but put the constants in the wrong section order. | Drop the layout control; keep the ordinary constant values. |
+| Same file, `lbl_805D9520` | MWCC-only `.sdata2` placement for the existing two-float object | Retains the angular range and trailing zero in the original eight-byte object, instead of a four-byte literal. | Use the ordinary const array; the section annotation is guarded for MWCC. |
