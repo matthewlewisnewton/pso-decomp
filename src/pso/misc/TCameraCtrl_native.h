@@ -334,7 +334,6 @@ extern const f32 TCameraCtrl__data_805D8FD0;
 extern const f32 TCameraCtrl__data_805D8FD4;
 extern const f32 TCameraCtrl__data_805D8FD8;
 extern const f32 lbl_805D8FE4;
-s32 set_viewport_scissor__11TCameraCtrlFiPv(int, void *);
 extern RecoveredGlobal_80069534_lbl_804381BC camera_ctrl_scissor_default_vec;
 s32 activate_camera_mode(s32 arg0);
 bool TCameraCtrl__sub_800689F4(void);
