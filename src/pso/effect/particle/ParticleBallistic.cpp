@@ -288,7 +288,7 @@ void TUnk_8048E778::retire_ballistic_particle_if_done() {
 #pragma push
 #pragma fp_contract on
 void TUnk_8048E778::run_task() {
-    f32 t[2]; // Age and opacity; this grouping preserves native FPR allocation.
+    f32 t[2]; // Age and opacity.
     f32 ch[3]; // Red, green, blue.
     if (param->flags & 8) {
         if (age >= 0.5f) {
@@ -361,7 +361,7 @@ void TUnk_8048E778::run_task() {
             ch[2] = clamp_particle_channel(p->color_rate[2] * t[0] + p->color_base[2]);
         }
     }
-    // Native big-endian ARGB, using legal unsigned-byte access to a live word.
+    // Big-endian ARGB bytes.
     u32 packed;
     reinterpret_cast<u8 *>(&packed)[0] = 254.0f * t[1];
     reinterpret_cast<u8 *>(&packed)[1] = 254.0f * ch[0];
