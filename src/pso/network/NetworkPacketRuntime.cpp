@@ -1,3 +1,4 @@
+#include "pso/network/DhcpAccessors.h"
 #include "pso/network/ModemRuntime.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/NetworkDispatch.h"
@@ -179,7 +180,6 @@ s32 TLobby::get_task_count() {
     return lbl_805D4820;
 }
 
-s32 TLobby__sub_80425288(s16, s16, void *);
 extern u32 lbl_805D7B64;
 extern u32 lbl_805D7B68;
 extern u32 lbl_805D7B6C;
@@ -221,7 +221,7 @@ void TLobby::parse_dhcp_lease_times() {
     }
 }
 
-s32 TLobby__sub_8042474C(void *lease, void *renew, void *rebind) {
+s16 TLobby__sub_8042474C(s32 *lease, s32 *renew, s32 *rebind) {
     lbl_805D7BA0 = 0;
     if ((*(volatile s32 *)&lbl_805D4820) == 3 || (*(volatile s32 *)&lbl_805D4820) == 4 || (*(volatile s32 *)&lbl_805D4820) == 5) {
         if (TLobby__sub_804251C0(7, lease) != 0) {
@@ -263,7 +263,7 @@ u8 find_dhcp_option__6TLobbyFPvUcPv(u8 *p, u8 tag, u8 **out) {
     return 0;
 }
 
-s32 TLobby__sub_8042489C(void *, void *out) {
+s16 TLobby__sub_8042489C(void *, s32 *out) {
     lbl_805D7BA0 = 0;
     if ((*(volatile s32 *)&lbl_805D4820) != 3 && (*(volatile s32 *)&lbl_805D4820) != 4 && (*(volatile s32 *)&lbl_805D4820) != 5) {
         lbl_805D7BA0 = 2;
@@ -275,7 +275,7 @@ s32 TLobby__sub_8042489C(void *, void *out) {
     return 0;
 }
 
-s32 TLobby::validate_slot_buffers(s32 arg0, void *arg1, void *arg2, void *arg3) {
+s16 dhcp_copy_domain_and_dns(void *arg0, char *arg1, s32 *arg2, s32 *arg3) {
     lbl_805D7BA0 = 0;
     if ((*(volatile s32 *)&lbl_805D4820) != 3 && (*(volatile s32 *)&lbl_805D4820) != 4 && (*(volatile s32 *)&lbl_805D4820) != 5) {
         lbl_805D7BA0 = 2;
