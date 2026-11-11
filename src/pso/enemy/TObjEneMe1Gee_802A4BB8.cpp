@@ -25,7 +25,6 @@ struct RecoveredGlobal_802A4CC4_lbl_804DCFF8 {
 };
 
 extern "C" {
-s32 TObjPlayer__sub_802A445C(void *, s32);
 void *find_entity_by_id(u16 id);
 s32 update_lifetime__22TObjEneMe1GiGueMissileFv(void *);
 u16 get_entity_id(void *);
@@ -65,7 +64,7 @@ void TObjEneMe1Gee_NEEDLE::run_task() {
     if ((s32) this->m_b8 == 1) {
         update_position();
         update_lifetime__22TObjEneMe1GiGueMissileFv(this);
-        TObjPlayer__sub_802A445C(this, 1);
+        check_actor_contacts(1);
         return;
     }
     TNeedleShoot__sub_802A4668(this);

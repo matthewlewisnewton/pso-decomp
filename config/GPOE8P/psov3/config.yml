@@ -1679,8 +1679,8 @@ force_active:
   - TObjPlayer__sub_801D9C34
   - TObjPlayer__sub_8023E034
   - TObjPlayer__sub_802A1588
-  - TObjPlayer__sub_802A3DE8
-  - TObjPlayer__sub_802A3FDC
+  - fn_802A3DE8__12TNeedleShootFPv
+  - fn_802A3FDC__12TNeedleShootFPv
   - TObjPlayer__sub_802A83F4
   - TObjPlayer__sub_802A841C
   - TObjPlayer__sub_802C19E8
@@ -5148,7 +5148,7 @@ force_active:
   - clear_state_if_flag80__10TObjPlayerFl
   - clear_status_bit6__10TObjPlayerFPv
   - clear_task_state__14TObjCMMainMenuFv
-  - clear_technique_contacts__10TObjPlayerFv
+  - clear_technique_contacts__12TNeedleShootFv
   - clear_thread_state__12TQuestThreadFv
   - clear_work__12TBoss1DragonFi
   - clear_work_buffer
@@ -5230,7 +5230,7 @@ force_active:
   - collect_targets__15TObjEneMe1GiGueFv
   - collect_targets_in_arc__15TBoss3VoloptP02Fv
   - collect_targets_in_front__15TBoss3VoloptP02Fv
-  - collect_technique_contacts__10TObjPlayerFPv
+  - collect_technique_contacts__12TNeedleShootFPv
   - commit_composition_text__19TWindowKeyBoardSoftFv
   - complete_and_destroy__13TOCtrlDubchikFv
   - complete_fall_reaction__10TObjPlayerFv
@@ -7624,7 +7624,7 @@ force_active:
   - is_flag_set__6TLobbyFPv
   - is_grounded__10TObjPlayerFv
   - is_growth_inactive__11TItemMagSubFv
-  - is_hit_receivable_target__10TObjPlayerFlUl
+  - is_hit_receivable_target__12TNeedleShootFP21TechniqueContactActor
   - is_id_out_of_range__6TLobbyFi
   - is_in_state_13__14TObjEnePanBARAFv
   - is_in_state_14__14TObjEnePanBARAFv

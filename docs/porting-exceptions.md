@@ -437,7 +437,7 @@ and the same function body.
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-193 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+195 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -1546,7 +1546,7 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 
 | Scope | Construct | Evidence and reason | Port action |
 |---|---|---|---|
-| `src/pso/npc/TObjNpcKenkyuW.cpp`, `TObjPlayer__sub_802A445C` at `0x802A445C` | Scoped `scheduling off` and `global_optimizer off` | Preserve the original argument setup and the contact-load/receiver-copy/contact-store order. The explicit `void*` value conversion in the comma expression avoids an addressable temporary and retains the original 16-byte frame. All 228 bytes and the full 2,376-byte unit match. See [compiler and comparison evidence](evidence/kenkyuw-dispatcher-continuation.md). | Drop the compiler controls. The contact assignment can be a separate statement before the virtual call; retain the actor value passed to that call. |
+| `src/pso/npc/TObjNpcKenkyuW.cpp`, `TNeedleShoot::check_actor_contacts` at `0x802A445C` | Scoped `scheduling off` and `global_optimizer off` | Preserve the original argument setup and the contact-load/receiver-copy/contact-store order. The explicit pointer value conversion in the comma expression avoids an addressable temporary and retains the original 16-byte frame. All 228 bytes and the full 2,376-byte unit match. See [compiler and comparison evidence](evidence/kenkyuw-dispatcher-continuation.md). | Drop the compiler controls. The contact assignment can be a separate statement before the virtual call; retain the actor value passed to that call. |
 
 
 ### Character-creation menus (`TObjCMName.cpp`)
