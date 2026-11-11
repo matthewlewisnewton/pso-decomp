@@ -158,6 +158,12 @@ struct OVec_8008B060 { f32 x, y, z; };
 
 struct OIVec_8008B060 { s32 x, y, z; };
 
+// Eight-byte angular-range object in small data.
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805D9550[2];
+
 extern "C" {
 void *alloc_particle_memory(int);
 void queue_destruction__7TObjectFv(void *arg0);
@@ -243,9 +249,6 @@ extern const f32 TParticleCtrl__data_805D94E4;
 
 extern "C" {
 
-void clear_active_flag__13TParticleCtrlFv(void* p);
-
-void clear_active_flag__13TParticleCtrlFv(void* p) { *(u16*)((char*)p + 0x2c) &= 0xfffe; }
 u8 *create_orbit_particle(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3, u16 arg4, s16 arg5) {
     u8 *particle_memory;
     u8 *var_r0;
@@ -274,30 +277,16 @@ void TUnk_8048E790::retire_orbit_particle() {
 #pragma push
 #pragma fp_contract on
 void TUnk_8048E790::run_task() {
-    NJS_COLOR col;
-    Vec lift;
-    Vec ring;
-    Vec follow_lift;
-    ParticleParam *p;
-    f32 t;
-    f32 fade_in;
-    f32 fade_out;
-    f32 alpha;
-    f32 r;
-    f32 g;
-    f32 b;
-    f32 tilt;
-    s32 frames;
-
-    orbit_angle += (s32)(182.04445f * step.x);
+    Vec follow_offset, orbit, rise;
+    orbit_angle += (s32)(182.0444488525390625f * step.x);
     if (flags & 0x10) {
-        TObjCollidable *target_obj = find_entity_by_id(target_id);
-        if (target_obj == NULL) {
+        TObjCollidable *entity = find_entity_by_id(target_id);
+        if (entity == NULL) {
             queue_destruction();
             return;
         }
-        Vec *center = (Vec *)target_obj->get_center();
-        if (unk_98 != 0 && m_9c != 0 && unk_A0 != 0) {
+        Vec *center = (Vec *)entity->get_center();
+        if (unk_98 && m_9c && unk_A0) {
             attach.x = orbit_center_x - origin.x;
             attach.z = orbit_center_z - origin.z;
             pos.x = orbit_radius * cos_table_lookup(orbit_angle) + center->x;
@@ -309,115 +298,101 @@ void TUnk_8048E790::run_task() {
             pos.z = orbit_radius * sin_table_lookup(orbit_angle) + center->z;
             pos.y = center->y;
             orbit_height += step.y;
-            follow_lift.x = 0.0f;
-            follow_lift.z = 0.0f;
-            follow_lift.y = orbit_height;
-            push_matrix_from(&identity_matrix);
+            follow_offset.x = 0.0f;
+            follow_offset.z = 0.0f;
+            follow_offset.y = orbit_height;
+            push_matrix_from(identity_matrix);
             rotate_matrix_x(0, unk_98);
             rotate_matrix_y(0, m_9c);
             rotate_matrix_z(0, unk_A0);
-            rotate_vector_by_current_matrix(&follow_lift, &follow_lift);
+            rotate_vector_by_current_matrix(&follow_offset, &follow_offset);
             pop_matrix();
-            pos.x += follow_lift.x;
-            pos.y += follow_lift.y;
-            pos.z += follow_lift.z;
+            pos.x += follow_offset.x;
+            pos.y += follow_offset.y;
+            pos.z += follow_offset.z;
         }
-    } else if (unk_98 != 0 && m_9c != 0 && unk_A0 != 0) {
+    } else if (unk_98 && m_9c && unk_A0) {
         pos.x = orbit_radius * cos_table_lookup(orbit_angle) + orbit_center_x;
         pos.z = orbit_radius * sin_table_lookup(orbit_angle) + orbit_center_z;
     } else {
-        ring.x = orbit_radius * cos_table_lookup(orbit_angle);
-        ring.y = 0.0f;
-        ring.z = orbit_radius * sin_table_lookup(orbit_angle);
+        orbit.x = orbit_radius * cos_table_lookup(orbit_angle);
+        orbit.z = orbit_radius * sin_table_lookup(orbit_angle);
+        orbit.y = 0.0f;
         orbit_height += step.y;
-        lift.x = 0.0f;
-        lift.z = 0.0f;
-        lift.y = orbit_height;
-        push_matrix_from(&identity_matrix);
+        rise.x = 0.0f;
+        rise.z = 0.0f;
+        rise.y = orbit_height;
+        push_matrix_from(identity_matrix);
         rotate_matrix_x(0, unk_98);
         rotate_matrix_y(0, m_9c);
         rotate_matrix_z(0, unk_A0);
-        rotate_vector_by_current_matrix(&ring, &ring);
-        rotate_vector_by_current_matrix(&lift, &lift);
+        rotate_vector_by_current_matrix(&orbit, &orbit);
+        rotate_vector_by_current_matrix(&rise, &rise);
         pop_matrix();
-        pos.x = lift.x + (orbit_center_x + ring.x);
-        pos.z = lift.z + (orbit_center_z + ring.z);
-        pos.y = lift.y + (origin.y + ring.y);
+        pos.x = rise.x + (orbit_center_x + orbit.x);
+        pos.z = rise.z + (orbit_center_z + orbit.z);
+        pos.y = rise.y + (origin.y + orbit.y);
     }
-    if (unk_98 != 0 && m_9c != 0 && unk_A0 != 0) {
-        pos.y += step.y;
-    }
+    if (unk_98 && m_9c && unk_A0) pos.y += step.y;
     m_28 *= param->scale_decay;
     unk_2C *= param->scale_decay;
-    p = param;
-    t = age;
-    fade_in = 1.0f;
-    fade_out = 1.0f;
-    if (p->fade_in_end > t) {
-        fade_in = t * fade_in_scale;
-    }
-    if (1.0f - t < p->fade_out_start) {
-        fade_out = (1.0f - t) * fade_out_scale;
-    }
-    if (fade_in < fade_out) {
-        alpha = fade_in;
-    } else {
-        alpha = fade_out;
-    }
+    f32 envelope[2]; // [0] normalized age, [1] resulting opacity
+    f32 fade_in = 1.0f;
+    f32 fade_out = fade_in;
+    // This emitter variant uses +0x50/+0x38/+0x3C as its RGB rates.
+    ParticleParam *d = param;
+    envelope[0] = age;
+    if (d->fade_in_end > envelope[0]) fade_in = envelope[0] * fade_in_scale;
+    if (1.0f - envelope[0] < d->fade_out_start)
+        fade_out = (1.0f - envelope[0]) * fade_out_scale;
+    f32 channels[3]; // red, green, blue
+    envelope[1] = fade_in < fade_out ? fade_in : fade_out;
     if (TParticleCtrl__data_80511F70[sprite_index]->sprites->flags & 1) {
         if (flags & 0x100) {
-            r = fade_particle_channel(p->orbit_red_rate * t + color_base[0], alpha);
-            g = fade_particle_channel(p->unk_38 * t + color_base[1], alpha);
-            b = fade_particle_channel(p->unk_3C * t + color_base[2], alpha);
+            channels[0] = fade_particle_channel(d->orbit_red_rate * envelope[0] + color_base[0], envelope[1]);
+            channels[1] = fade_particle_channel(d->unk_38 * envelope[0] + color_base[1], envelope[1]);
+            channels[2] = fade_particle_channel(d->unk_3C * envelope[0] + color_base[2], envelope[1]);
         } else {
-            r = fade_particle_channel(p->orbit_red_rate * t + p->color_base[0], alpha);
-            g = fade_particle_channel(p->unk_38 * t + p->color_base[1], alpha);
-            b = fade_particle_channel(p->unk_3C * t + p->color_base[2], alpha);
+            channels[0] = fade_particle_channel(d->orbit_red_rate * envelope[0] + d->color_base[0], envelope[1]);
+            channels[1] = fade_particle_channel(d->unk_38 * envelope[0] + d->color_base[1], envelope[1]);
+            channels[2] = fade_particle_channel(d->unk_3C * envelope[0] + d->color_base[2], envelope[1]);
         }
-        alpha = 1.0f;
+        envelope[1] = 1.0f;
+    } else if (flags & 0x100) {
+        channels[0] = clamp_particle_channel(d->orbit_red_rate * envelope[0] + color_base[0]);
+        channels[1] = clamp_particle_channel(d->unk_38 * envelope[0] + color_base[1]);
+        channels[2] = clamp_particle_channel(d->unk_3C * envelope[0] + color_base[2]);
     } else {
-        if (flags & 0x100) {
-            r = clamp_particle_channel(p->orbit_red_rate * t + color_base[0]);
-            g = clamp_particle_channel(p->unk_38 * t + color_base[1]);
-            b = clamp_particle_channel(p->unk_3C * t + color_base[2]);
-        } else {
-            r = clamp_particle_channel(p->orbit_red_rate * t + p->color_base[0]);
-            g = clamp_particle_channel(p->unk_38 * t + p->color_base[1]);
-            b = clamp_particle_channel(p->unk_3C * t + p->color_base[2]);
-        }
+        channels[0] = clamp_particle_channel(d->orbit_red_rate * envelope[0] + d->color_base[0]);
+        channels[1] = clamp_particle_channel(d->unk_38 * envelope[0] + d->color_base[1]);
+        channels[2] = clamp_particle_channel(d->unk_3C * envelope[0] + d->color_base[2]);
     }
-    col.argb.a = 254.0f * alpha;
-    col.argb.r = 254.0f * r;
-    col.argb.g = 254.0f * g;
-    col.argb.b = 254.0f * b;
-    color = col.color;
-    m_dc += (s32)(182.04445f * param->orbit_spin_rate);
+    // Native ARGB bytes; a little-endian port must pack the four shifts.
+    u32 col;
+    reinterpret_cast<u8 *>(&col)[0] = (u8)(254.0f * envelope[1]);
+    reinterpret_cast<u8 *>(&col)[1] = (u8)(254.0f * channels[0]);
+    reinterpret_cast<u8 *>(&col)[2] = (u8)(254.0f * channels[1]);
+    reinterpret_cast<u8 *>(&col)[3] = (u8)(254.0f * channels[2]);
+    color = col;
+    m_dc += (s32)(182.0444488525390625f * param->orbit_spin_rate);
     age += age_rate;
-    tilt = 8.0f * step.x * step.y;
-    if (fabs_float(tilt) > 10.0f) {
-        tilt = 10.0f;
-    }
-    if (speed < 0.0f) {
-        m_96 += (s32)(182.04445f * tilt);
-    } else {
-        m_96 -= (s32)(182.04445f * tilt);
-    }
-    frames = TParticleCtrl__data_80511F70[sprite_index]->sprites->frame_count;
-    if (param->flags & 0x10) {
-        frame = age * (frames - 1);
-    } else {
+    f32 spin = (8.0f * step.x) * step.y;
+    if (fabs_float(spin) > 10.0f) spin = 10.0f;
+    if (speed < 0.0f)
+        m_96 += (s32)(182.0444488525390625f * spin);
+    else m_96 -= (s32)(182.0444488525390625f * spin);
+    s32 frames = TParticleCtrl__data_80511F70[sprite_index]->sprites->frame_count;
+    if (param->flags & 0x10) frame = (s32)(age * (f32)(frames - 1));
+    else {
         frame++;
-        if (frames <= frame) {
-            frame = 0;
-        }
+        if (frames <= frame) frame = 0;
     }
     m_28 *= m_a4;
     unk_2C *= unk_A8;
-    if (motion != NULL) {
+    if (motion) {
         motion_frame += unk_C0;
-        if ((f32)(motion->nbFrame - 1) <= motion_frame) {
-            motion_frame = motion->nbFrame - 1;
-        }
+        if ((f32)(motion->nbFrame - 1) <= motion_frame)
+            motion_frame = (f32)(motion->nbFrame - 1);
     }
     retire_orbit_particle();
 }
@@ -545,9 +520,9 @@ u8 *init_orbit_sprite_particle(u8 *object, u8 *arg1, u8 *arg2, u8 *arg3, s32 arg
     }
     o->f3C = d->f74 * (3.0517578e-05f * (f32)rand()) + d->f30;
     o->f40 = d->f68 * (3.0517578e-05f * (f32)rand()) + d->f34;
-    o->fD8 = (s32)(182.04445f * (360.0f * (3.0517578e-05f * (f32)rand())));
+    o->fD8 = (s32)(182.04445f * (lbl_805D9550[0] * (3.0517578e-05f * (f32)rand())));
     o->fD0 = d->f64 * (3.0517578e-05f * (f32)rand()) + d->f60;
-    o->fDC = (s32)(182.04445f * (360.0f * (3.0517578e-05f * (f32)rand())));
+    o->fDC = (s32)(182.04445f * (lbl_805D9550[0] * (3.0517578e-05f * (f32)rand())));
     o->f96 = o->fD8;
     o->f68 = (3.0517578e-05f * (f32)rand()) - 0.5f;
     o->fD4 = 0.0f;
@@ -588,9 +563,9 @@ void *TUnk_8048E790::init_random_particle(void *arg1, void *arg2, void *arg3, vo
     }
     o->f3C = d->f74 * (3.0517578e-05f * (f32)rand()) + d->f30;
     o->f40 = d->f68 * (3.0517578e-05f * (f32)rand()) + d->f34;
-    o->fD8 = (s32)(182.04445f * (360.0f * (3.0517578e-05f * (f32)rand())));
+    o->fD8 = (s32)(182.04445f * (lbl_805D9550[0] * (3.0517578e-05f * (f32)rand())));
     o->fD0 = d->f64 * (3.0517578e-05f * (f32)rand()) + d->f60;
-    o->fDC = (s32)(182.04445f * (360.0f * (3.0517578e-05f * (f32)rand())));
+    o->fDC = (s32)(182.04445f * (lbl_805D9550[0] * (3.0517578e-05f * (f32)rand())));
     o->f96 = o->fD8;
     o->f68 = (3.0517578e-05f * (f32)rand()) - 0.5f;
     o->fD4 = 0.0f;
@@ -600,3 +575,10 @@ void *TUnk_8048E790::init_random_particle(void *arg1, void *arg2, void *arg3, vo
     return this;
 }
 #pragma pop
+
+extern "C" {
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+const f32 lbl_805D9550[2] = { 360.0f, 0.0f };
+}
