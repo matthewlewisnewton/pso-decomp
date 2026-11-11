@@ -66,6 +66,10 @@ extern "C" s32 find_dhcp_option__6TLobbyFPvUcPv(u8 *cookie_and_options, u8 tag, 
 // table's fixed size; len controls string termination or clearing, not a bound.
 extern "C" s32 TLobby__sub_80425288(s16 id, s16 len, void *value);
 
+// Preserves the legacy 16-bit length checks and fixed-size option-table copy.
+// This does not establish a bounded string-copy contract.
+extern "C" s16 TLobby__sub_8042455C(char *hostname);
+
 // Copies the lease/renewal/rebinding words to optional borrowed destinations.
 // In active states the result stays zero even when option diagnostics are set.
 extern "C" s16 TLobby__sub_8042474C(s32 *lease, s32 *renew, s32 *rebind);

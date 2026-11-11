@@ -2056,3 +2056,14 @@ complete compiled objects agree under one audited export-name mapping; every
 other compiled object is raw-identical. Original-reference string ordering is
 qualified separately. Original-DOL/no-loss/retention/fourteen-test checks pass;
 lease/router repairs and every remaining hold stay intact.
+
+The distinct [hostname contract audit](pr303-dhcp-hostname.md) closes the one
+observed native call onto the original short-status consumer and string input.
+Nine controls separate result width, input representation and an explicitly
+negative full-width length-check change. The accepted shared short-result/byte
+pointer declaration preserves the whole body and all 16-bit checks. Three new
+actual-source host characterizations retain fixed-size copies and long-string
+acceptance after narrowing. Every active complete compiled object is raw-identical;
+original-DOL/no-loss/retention and seventeen-test checks pass. The audit records
+specific reopening evidence for the allocation, adjacency, raw callback, creator,
+reset and metadata holds; none is cleared or bypassed.

@@ -155,7 +155,6 @@ s32 TLobby__sub_80421B3C(s32 a);
 s32 mark_connection_closed__6TLobbyFs(s32);
 s32 tcp_delete__Fs(s32 a);
 extern volatile s32 lbl_805D7BA0;
-s32 TLobby__sub_8042455C(void *a);
 s16 TLobby__sub_8041DE1C(s16, s16, u32 *);
 void TLobby__sub_8041E590(s16);
 s32 get_tcp_stat__6TLobbyFsPsPsPlPl(int, void *, void *, void *, void *);
@@ -1786,7 +1785,7 @@ s32 TLobby__sub_8042422C(void) {
     return dhcp_state;
 }
 
-s32 TLobby__sub_8042455C(void *a) {
+s16 TLobby__sub_8042455C(char *a) {
     u32 length;
     lbl_805D7BA0 = 0;
     if (a == 0) {
