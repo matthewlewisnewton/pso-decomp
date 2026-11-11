@@ -1698,6 +1698,7 @@ pso/misc/TWindowCtrl_80269FB0.cpp
 pso/misc/TWindowCtrl_8026AD44.cpp
 pso/misc/TWindowCtrl_8026F6A4.cpp
 pso/misc/TWindowCtrl_80271DFC.cpp
+pso/misc/TWindowDD.cpp
 pso/misc/TWindowDD_8020C2DC.cpp
 pso/misc/TWindowDD_8024662C.cpp
 pso/misc/TWindowDD_80246F8C.cpp
@@ -2054,6 +2055,7 @@ pso/npc/TObjNpcHosa.cpp
 pso/npc/TObjNpcHosa2.cpp
 pso/npc/TObjNpcKenkyu.cpp
 pso/npc/TObjNpcKenkyu2.cpp
+pso/npc/TObjNpcKenkyuW.cpp
 pso/npc/TObjNpcLappy.cpp
 pso/npc/TObjNpcLappy_8014B828.cpp
 pso/npc/TObjNpcLappy_8014B840.cpp
