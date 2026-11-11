@@ -2134,6 +2134,7 @@ pso/render/ChunkTextureStripCollector.cpp
 pso/object/city/CityTraffic.cpp
 pso/system/data/FlagWord.cpp
 pso/render/GinjaModelQueue.cpp
+pso/render/GinjaMaterial.cpp
 pso/audio/LscStream.cpp
 pso/audio/LscServer.cpp
 pso/render/MaterialAlphaCompare.cpp
