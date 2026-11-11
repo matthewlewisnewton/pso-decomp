@@ -157,7 +157,7 @@ Self_802C3400 *__ct__16TAdStorySelectGCFv(Self_802C3400 *self, void *parent) {
     self->f20 = p;
     ((TAdMultiPlyChrSelectGC *)((s32)self->f20))->set_entry_value(0, get_localized_text_entry(0x14, 0));
     ((TAdMultiPlyChrSelectGC *)((s32)self->f20))->set_entry_value(1, get_localized_text_entry(0x14, 1));
-    create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)self, 0xA, (f32)lbl_805DE528);
+    create_draw_line_ctrl(reinterpret_cast<TObject *>(self), 0xA, (f32)lbl_805DE528);
     return self;
 }
 
