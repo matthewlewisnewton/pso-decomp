@@ -6653,7 +6653,7 @@ force_active:
   - forward_hit_to_enemy_list__16TObjEneBm5GibonUFv
   - forward_hit_to_node_list__16TObjEneBm5GibonUFv
   - forward_return_arg__17TWindowSubComCardFi
-  - forward_to_channel__6TLobbyFPv
+  - forward_to_channel
   - forward_to_matching_card__17TWindowSubComCardFPvPvi
   - fragmentinfo
   - frame_menu_selection__14CreationCameraFv
