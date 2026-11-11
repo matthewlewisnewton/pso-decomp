@@ -98,3 +98,32 @@ The combined current-object and provider validation is recorded in
 supersedes historical claims of a still-active eighteen-export/original-provider
 blocker, preserving those historical probes as evidence. Word, ComCard and
 CustomSelect holds remain unchanged.
+
+## Current-main cda82a7a stack refresh
+
+The focused parent is refreshed to main
+`cda82a7aad7de1bf9b86470002df3f68d1c8c039`; the continuation preserves that
+accepted Orbit/Ginja/creation-shape work. The sole retention-list conflict keeps
+both native-window and creation-shape entries. No continuation window source is
+changed. Message's six complete objects and the native Palette object remain
+byte-identical to their validated artifacts; Parts retains all four exact
+sections and 198 resolved targets with the existing flags/provenance qualification.
+A current census covers 4963 original and 3632 compiled objects, 512513
+relocations, no external pool targets and no undefined pool symbols.
+
+The gated combined build passes in 8.36 seconds with the original DOL hash.
+Acceptance against prior B, refreshed A and fresh main passes with 3607 exact
+linked units and 18749 retention names without drift. The fourteen qualified
+four-byte window tails remain against A/main without exact/linked-data loss.
+Against prior B the only new raw interval loss is 805E0F7C..805E0F80, exactly
+matching unchanged new main's Ginja tail change; no exact/linked loss occurs.
+Main documents zero alignment, without this refresh claiming independent
+semantic-padding proof. The twelve earlier historical main bytes remain
+qualified separately. Protected original remainders and the 1044-byte preview
+remain exact and selected once; port inventory and independent review are gates.
+
+The focused parent's reviewability does not clear this continuation's substantive
+Word, ComCard, CustomSelect, original compiler-provenance, ownership or interface
+holds. Their source and evidence remain intact. Draft status is unchanged; no
+merge or formal approval is performed. Private refresh receipts are in
+pr403-refreshcda with the shared pr403-maincda baseline.

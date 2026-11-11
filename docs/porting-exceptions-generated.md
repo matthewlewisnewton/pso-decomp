@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 83 | 54 |
 | hardware | 69 | 13 |
-| pragma | 5736 | 879 |
+| pragma | 5694 | 879 |
 | configure.py per-unit override | 192 | 192 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019, `fp_contract` 881, `auto_inline` 817, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 241, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 27, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1112, `inline_depth` 1004, `fp_contract` 882, `auto_inline` 802, `opt_common_subs` 612, `scheduling` 263, `opt_propagation` 242, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 54, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `use_lmw_stmw` 28, `optimize_for_size` 27, `opt_lifetimes` 23, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -663,7 +663,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019,
 | `src/pso/misc/GbaDownloadRuntime.cpp` | fp_contract×1, optimization_level×1, dont_inline×1 |
 | `src/pso/misc/MaterialOpacityFade.cpp` | optimization_level×1, fp_contract×1 |
 | `src/pso/misc/ParticleBallistic.cpp` | fp_contract×3, inline_depth×1, auto_inline×1, dont_inline×1, pool_data×1 |
-| `src/pso/misc/ParticleOrbit.cpp` | inline_depth×16, auto_inline×16, dont_inline×16, fp_contract×2 |
+| `src/pso/misc/ParticleOrbit.cpp` | fp_contract×3, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/ParticleRadial.cpp` | inline_depth×16, auto_inline×16, dont_inline×16, fp_contract×3 |
 | `src/pso/misc/PhotonBlastSummon.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/misc/RenderFadeState.cpp` | opt_common_subs×1 |
@@ -1110,7 +1110,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019,
 | `src/pso/system/AdxStreamRuntime.cpp` | dont_inline×18, inline_depth×11, opt_propagation×2, fp_contract×2 |
 | `src/pso/system/ChunkMaterialState.cpp` | scheduling×3, use_lmw_stmw×1, optimize_for_size×1, inline_depth×1, auto_inline×1, dont_inline×1, peephole×1, opt_common_subs×1 |
 | `src/pso/system/CityTraffic.cpp` | opt_propagation×1 |
-| `src/pso/system/GinjaMaterial.cpp` | scheduling×12, peephole×10, use_lmw_stmw×1 |
+| `src/pso/system/GinjaMaterial.cpp` | scheduling×12, peephole×10, use_lmw_stmw×2 |
 | `src/pso/system/GinjaModelQueue.cpp` | scheduling×2, peephole×2, use_lmw_stmw×1 |
 | `src/pso/system/LscServer.cpp` | readonly_strings×1 |
 | `src/pso/system/LscStream.cpp` | dont_inline×2, inline_depth×2, readonly_strings×1, auto_inline×1 |
@@ -1164,7 +1164,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1127, `inline_depth` 1019,
 | `src/pso/ui/TAdSinglePlyChrSelectGC_80145778.cpp` | fp_contract×1 |
 | `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp` | inline_depth×6, auto_inline×6, dont_inline×6, fp_contract×1, opt_common_subs×1 |
 | `src/pso/ui/TAdSinglePlyChrSelectGC_80202A68.cpp` | inline_depth×3, auto_inline×3, dont_inline×3 |
-| `src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp` | fp_contract×3, common×2, defer_codegen×2, opt_common_subs×2, scheduling×2, readonly_strings×1 |
+| `src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp` | fp_contract×3, common×2, defer_codegen×2, opt_common_subs×2, scheduling×2, readonly_strings×1, opt_propagation×1 |
 | `src/pso/ui/TAdTitleGC.cpp` | fp_contract×1, opt_common_subs×1 |
 | `src/pso/ui/TChallenge4PItemSelect.cpp` | defer_codegen×1 |
 | `src/pso/ui/TFontSmallTask.cpp` | fp_contract×2 |
