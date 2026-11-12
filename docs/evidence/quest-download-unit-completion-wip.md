@@ -82,15 +82,15 @@ GC/1.2.5 profile. Remaining functions are:
 | `803E8DA0` | 95.051544 | 780/776 |
 | `803EA9E8` | 96.88844 | 1004/1004 |
 | `803EDC20` | 94.46392 | 388/388 |
-| `803EE2F4` | 95.74847 | 644/652 |
-| `803F03B4` | 99.75903 | 332/332 |
+| `803EE2F4` | 98.65031 | 652/652 |
 
-The latest full build and `tools/check_pr.py` pass against the starting-main
-baseline: +8 exact functions, +5,260 matched code bytes, no exact-function,
-matched-data or source-linkage losses; all 3,626 linked units remain exact.
-The built DOL retains its original SHA-1. The new scoped placement inlining
-and native address boundaries are registered in `porting-exceptions.md`;
-the generated inventory is refreshed.
+The latest full build and `tools/check_pr.py` pass against main `5146327538`:
++10 exact functions, +6,488 matched code bytes and +1,744 matched data bytes,
+with no exact-function, matched-data or source-linkage losses. All 3,622 linked
+units remain exact and the built DOL retains its original SHA-1. The chosen
+unit has 169 of 173 functions exact; final source-link admission remains pending.
+The scoped compiler exceptions are registered in `porting-exceptions.md` and
+the generated inventory is current.
 
 A private PPC differential harness loads the verified executable, relocates
 only the recovered conversion routine to another address, and calls the actual
@@ -553,3 +553,20 @@ has an extra stack home; it is not the retained candidate. The compiler traces
 and the repo's `kenkyuw-dispatcher-continuation.md` temporary-lifetime case guided
 these checks. The whole-unit claim remains 168/173 exact and awaits the same five
 remaining matches and final source-link integration.
+
+
+## Header parser exact cursor update
+
+`803F03B4` now matches all 332 bytes. The input pointer itself advances to the
+first record using `cursor = cursor + cursor[2] + 3`, after computing the end
+pointer from the two-byte length. This replaces a separate local cursor and
+preserves the same pointer arithmetic and record traversal. No signature type,
+layout, compiler option, or helper behavior changes.
+
+The explicit addition assignment reproduces the native header temporary reuse;
+its compound-assignment counterpart did not. Probes of borrowed header values,
+separate offset helpers and cursor phases had retained the four differing
+register operands. Comparing those data-flow differences led to reusing the
+input parameter. All 168 previously exact functions remain exact. The full
+repository check passes with no linkage or coverage losses; four functions
+remain before complete-unit admission.

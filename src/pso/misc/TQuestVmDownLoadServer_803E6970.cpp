@@ -5823,11 +5823,11 @@ static inline s32 merge_duplicate_download_entry(Ent_803F03B4 *base, const Ent_8
 
 // The original's duplicate and encoded-text scans have separate cursor/result
 // handoffs. Keep their caller in this existing inline-helper region; see
-// docs/evidence/quest-download-pr295-sol61.md for the remaining header coloring.
-s32 TQuestVmDownLoadServer__sub_803F03B4(u8 *data, Ent_803F03B4 *ents, s32 n, s32 *max) {
+// docs/evidence/quest-download-unit-completion-wip.md for the cursor lifetime.
+s32 TQuestVmDownLoadServer__sub_803F03B4(u8 *cursor, Ent_803F03B4 *ents, s32 n, s32 *max) {
     Ent_803F03B4 *base = ents;
-    u8 *end = data + (u16)(data[0] + (data[1] << 8));
-    u8 *cursor = data + data[2] + 3;
+    u8 *end = cursor + (u16)(cursor[0] + (cursor[1] << 8));
+    cursor = cursor + cursor[2] + 3;
     ents += n;
     while (cursor < end) {
         u8 keyb;
