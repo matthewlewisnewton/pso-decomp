@@ -14,6 +14,11 @@ See [Soft native destruction/table ownership](window-soft-native-destruction.md)
 This supersedes only the Soft raw deleting-wrapper/table ownership hold; broader
 borrowed-lifetime and window-family holds remain.
 
+## Hard borrowed-composer typing checkpoint
+
+See [Hard composer field typing](window-hard-composer-typing.md).
+This narrows field typing only; the Hard destruction/table hold remains.
+
 ## Initial split preservation and review order
 
 Original PR #268 is preserved at `2b99de553e82eff0ab0bb70263c943bb68e23fb4`,

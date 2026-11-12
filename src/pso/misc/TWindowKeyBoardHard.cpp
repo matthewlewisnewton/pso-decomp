@@ -28,7 +28,7 @@ extern const f32 lbl_805DD06C;
 extern const f32 lbl_805DD070;
 s32 is_key_active__19TWindowKeyBoardHardFv();
 
-void TWindowKeyBoardHard::release_keyboard() { void* m = *(void* *)&this->m_70; if (m) TWindowKeyBoardHard__sub_8025CC48(m); }
+void TWindowKeyBoardHard::release_keyboard() { void* m = this->m_composer; if (m) TWindowKeyBoardHard__sub_8025CC48(m); }
 
 void TWindowKeyBoardHard::draw_status_text(void *ctx) {
     s32 flags;

@@ -24,7 +24,7 @@ struct TWindowKeyBoardHard : public TWindowBase {
     u32 m_64;
     u32 m_68;
     u32 m_6c;
-    u32 m_70;
+    TWindowKeyBoardBase *m_composer;
     void release_keyboard();
     void reset_input_state();
     void reset_composer_input_flags();

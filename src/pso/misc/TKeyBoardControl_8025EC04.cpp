@@ -109,7 +109,7 @@ s32 TWindowKeyBoardHard::translate_key_char(u8 arg1, u16 *arg2) {
     } else {
         shift = m_60 & 0x80;
     }
-    if (!(((TWindowKeyBoardBase *)m_70)->m_b4 & 1) || get_key_state__16TKeyBoardControlFPv(TKeyBoardControl__global_key_state) != 0) {
+    if (!(m_composer->m_b4 & 1) || get_key_state__16TKeyBoardControlFPv(TKeyBoardControl__global_key_state) != 0) {
         switch (get_key_state__16TKeyBoardControlFPv(TKeyBoardControl__global_key_state)) {
         case 0:
             if ((m_60 & 4) && current_language == LANGUAGE_JAPANESE) {
@@ -155,12 +155,12 @@ s32 TWindowKeyBoardHard::translate_key_char(u8 arg1, u16 *arg2) {
             }
             break;
         }
-        if (((TWindowKeyBoardBase *)m_70)->m_b4 & 1) {
+        if (m_composer->m_b4 & 1) {
             return ((m_60 >> 7) & 1) ? 2 : 0;
         }
         return 1;
     }
-    if (((TWindowKeyBoardBase *)m_70)->m_b4 & 2) {
+    if (m_composer->m_b4 & 2) {
         if (m_60 & 4) {
             *arg2 = keyboard_jp_symbol_map[arg1];
         } else if (shift != 0) {
@@ -170,7 +170,7 @@ s32 TWindowKeyBoardHard::translate_key_char(u8 arg1, u16 *arg2) {
         }
         return 1;
     }
-    if (((TWindowKeyBoardBase *)m_70)->m_b4 & 4) {
+    if (m_composer->m_b4 & 4) {
         if (TKeyBoardControl::is_printable_key(this, arg1) != 0) {
             if (m_60 & 4) {
                 *arg2 = keyboard_jp_symbol_map[arg1];
@@ -191,7 +191,7 @@ s32 TWindowKeyBoardHard::translate_key_char(u8 arg1, u16 *arg2) {
         return 1;
     }
         *arg2 = lookup_key_char(arg1);
-    if (!(((TWindowKeyBoardBase *)m_70)->m_b4 & 8)) {
+    if (!(m_composer->m_b4 & 8)) {
         return 1;
     }
     c = *arg2;
@@ -546,25 +546,25 @@ void TWindowKeyBoardHard::update_modifier_flags() {
 }
 
 void TWindowKeyBoardHard::enable_keyboard_led() {
-    if ((u32) m_70 != 0U) {
+    if (m_composer != NULL) {
         m_60 = (s32) (m_60 | 0x1000);
-        ((TWindowKeyBoardBase *)m_70)->set_input_flags_212();
+        m_composer->set_input_flags_212();
         reset_composer_input_flags();
     }
 }
 
 void TWindowKeyBoardHard::enable_kana_led() {
-    if ((u32) m_70 != 0U) {
+    if (m_composer != NULL) {
         m_60 = (s32) (m_60 | 0x800);
-        ((TWindowKeyBoardBase *)m_70)->set_input_flags_112();
+        m_composer->set_input_flags_112();
         reset_composer_input_flags();
     }
 }
 
 void TWindowKeyBoardHard::enable_caps_led() {
-    if ((u32) m_70 != 0U) {
+    if (m_composer != NULL) {
         m_60 = (s32) (m_60 | 0x400);
-        ((TWindowKeyBoardBase *)m_70)->set_input_flags_92();
+        m_composer->set_input_flags_92();
         reset_composer_input_flags();
     }
 }

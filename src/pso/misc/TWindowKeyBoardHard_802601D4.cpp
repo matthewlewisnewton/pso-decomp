@@ -34,17 +34,17 @@ void TWindowKeyBoardHard::run_task() {
     s32 temp_r3_2;
     void *temp_r3;
 
-    if ((void *) this->m_70 != NULL) {
-        if ((is_key_active__19TWindowKeyBoardHardFv() == 0) && (((TWindowKeyBoardBase *)(this->m_70))->is_key_active() == 0)) {
+    if (this->m_composer != NULL) {
+        if ((is_key_active__19TWindowKeyBoardHardFv() == 0) && (this->m_composer->is_key_active() == 0)) {
             if (has_non_modifier_key__16TKeyBoardControlFv(this) != 0) {
                 if (current_language == LANGUAGE_JAPANESE) {
                     this->m_68 = 0x3C;
                 }
                 this->m_60 = (s32) (this->m_60 & 0xFFFFFEFF);
-                temp_r3 = *(void * *)&this->m_70;
+                temp_r3 = this->m_composer;
                 *(s32 *)((s8 *)temp_r3 + 0xB4) = (s32) (*(s32 *)((s8 *)temp_r3 + 0xB4) & 0xFFFFFFBF);
                 if (!(this->m_60 & 0x40)) {
-                    TWindowKeyBoardHard__sub_8025CC48(*(void * *)&this->m_70);
+                    TWindowKeyBoardHard__sub_8025CC48(this->m_composer);
                 }
             }
             update_modifier_flags();
@@ -76,7 +76,7 @@ TWindowKeyBoardHard::TWindowKeyBoardHard(TWindowKeyBoardBase *composer)
                   (u8 *)get_window_layout_position(0xB9)) {
     m_name = TWindowKeyBoardHard__name;
     m_60 = 0;
-    m_70 = (u32)composer;
+    m_composer = composer;
     m_64 = 0;
     m_68 = 0;
     m_6c = 7;
