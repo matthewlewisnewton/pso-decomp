@@ -555,7 +555,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
     }
 }
 
-void TObjEneRe7Berura::advance_state() {
+void TObjEneRe7Berura::advance_state(NJS_OBJECT *) {
     switch ((s32) re7_berura_demo_state) {
     case 25:
         lbl_805D4F6C = model_render_flags;
@@ -568,7 +568,7 @@ void TObjEneRe7Berura::advance_state() {
     re7_berura_demo_state += 1;
 }
 
-void TObjEneRe7Berura::demo_frame_callback() {
+void TObjEneRe7Berura::demo_frame_callback(NJS_OBJECT *) {
     switch ((s32) re7_berura_demo_state) {
     case 0x2:
         lbl_805D4F6C = model_render_flags;
@@ -849,7 +849,7 @@ struct O_8009518C { u8 pad[0x3f4]; s32 idx; u8 pad2[0x418 - 0x3f8]; u32 flags[1]
 extern "C" {
 f32 atan2_float(f32 y, f32 x);
 s32 check_death_trigger__16TObjEneRe7BeruraFv();
-s32 is_over_limit__16TObjEneRe7BeruraFv(void *);
+s32 has_reached_turn_limit__16TObjEneRe7BeruraFv(void *);
 s32 TObjEneRe7Berura__sub_8009518C(O_8009518C *);
 extern const f32 TObjEneRe7Berura__data_805D9724;
 extern const f32 TObjEneRe7Berura__data_805D972C;
@@ -1092,7 +1092,7 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x3D4) = *(s32 *)((s8 *)arg0 + 0x3D4) + 1;
         *(s32 *)((s8 *)arg0 + 0x3C8) = -1;
         *(s32 *)((s8 *)arg0 + 0x3CC) = 0xC;
-        ((TObjEneRe7Berura *)arg0)->init_fields4B8();
+        ((TObjEneRe7Berura *)arg0)->reset_turn_limit();
         break;
     }
 }
@@ -1127,7 +1127,7 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {
                 ((TObjEneDD *)actor)->transition_enemy_state(8);
             } else if (*(f32 *)((s8 *)actor + 0x3AC) >= TObjEneRe7Berura__data_805D9740) {
                 ((TObjEneDD *)actor)->transition_enemy_state(4);
-            } else if (is_over_limit__16TObjEneRe7BeruraFv(actor) != 0) {
+            } else if (has_reached_turn_limit__16TObjEneRe7BeruraFv(actor) != 0) {
                 ((TObjEneDD *)actor)->transition_enemy_state(7);
             }
         }
@@ -1139,10 +1139,10 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {
             if (enemy_validate_retained_target(actor) != 0) {
                 ((TObjEneDD_ST *)actor)->enemy_copy_target_destination();
                 ((TObjEneDD *)actor)->update_velocity();
-                if (((TObjEneRe7Berura *)actor)->step_toward_target((s32) (10430.38043493439 * atan2_float(*(f32 *)((s8 *)actor + 0x3A0), *(f32 *)((s8 *)actor + 0x3A8))), 0x100) != 0) {
+                if (((TObjEneRe7Berura *)actor)->turn_toward_heading((s32) (10430.38043493439 * atan2_float(*(f32 *)((s8 *)actor + 0x3A0), *(f32 *)((s8 *)actor + 0x3A8))), 0x100) != 0) {
                     *(s32 *)((s8 *)actor + 0x4C0) = 1;
                     *(s16 *)((s8 *)actor + 0xB8) = 2;
-                    ((TObjEneRe7Berura *)actor)->init_fields4B8();
+                    ((TObjEneRe7Berura *)actor)->reset_turn_limit();
                     for (i = 0; i < 2; i++) {
                         ((TUnk_80494968 *)(((Timers_80093888 *)actor)->t[i]))->clear_segments();
                     }
@@ -1334,7 +1334,7 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {
                 ((TObjEneDD *)arg0)->transition_enemy_state(6);
             } else if ((s32) arg0->m_4c4 == 3) {
                 ((TObjEneDD *)arg0)->transition_enemy_state(5);
-            } else if (is_over_limit__16TObjEneRe7BeruraFv(arg0) != 0) {
+            } else if (has_reached_turn_limit__16TObjEneRe7BeruraFv(arg0) != 0) {
                 ((TObjEneDD *)arg0)->transition_enemy_state(7);
             }
         }
@@ -1357,11 +1357,11 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {
             }
             arg0->m_4c4 = 1;
         case 1:
-            if (arg0->step_toward_target((int) (*(s32 *)((s8 *)arg0 + 0x4C8)), 0x100) != 0) {
+            if (arg0->turn_toward_heading((int) (*(s32 *)((s8 *)arg0 + 0x4C8)), 0x100) != 0) {
                 arg0->m_4c4 = 2;
                 arg0->m_4d8 = sin_table_lookup((int) (arg0->rotation_y));
                 arg0->m_4e0 = cos_table_lookup((int) (arg0->rotation_y));
-                arg0->init_fields4B8();
+                arg0->reset_turn_limit();
             }
             ((TObjEneDD *)(arg0))->vfunc_102();
             break;
@@ -1377,7 +1377,7 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {
                     } else {
                         *(s32 *)((s8 *)arg0 + 0x4C8) = (s32) arg0->rotation_y;
                     }
-                    arg0->step_toward_target((int) (*(s32 *)((s8 *)arg0 + 0x4C8)), 0x100);
+                    arg0->turn_toward_heading((int) (*(s32 *)((s8 *)arg0 + 0x4C8)), 0x100);
                 }
             } else {
                 arg0->m_4d0 = (f32) (arg0->m_4d0 + lbl_805D9760);
@@ -1471,7 +1471,7 @@ void TObjEneRe7Berura__sub_80094624(u8 *ene_re7_berura, s32 arg1) {
         *(s32 *)((s8 *)ene_re7_berura + 0x3D4) = 1;
         ((Sub_80094624 *)(ene_re7_berura + 0x3D8))->s2(c);
         *(s32 *)((s8 *)ene_re7_berura + 0x3F4) = 1;
-        ((TObjEneRe7Berura *)ene_re7_berura)->init_fields4B8();
+        ((TObjEneRe7Berura *)ene_re7_berura)->reset_turn_limit();
         return;
     case 3:
         if (((TObjEneDD_ST *)ene_re7_berura)->update_linked_position(TObjEneRe7Berura__data_805D9724) != 0) {
@@ -2276,7 +2276,7 @@ void TObjEneRe7Berura::state_attack(s32 arg1) {
         set_field_378__9TObjEneDDFl(arg0, 3, temp_r5);
         start_negative_fade_phase__13TUnk_80490470Fv(arg0 + 0x3D8);
         ((TBoss3Volopt *)(arg0 + 0x38))->play_area_se_with_particle();
-        init_fields4B8();
+        reset_turn_limit();
         return;
     case 3:
         if (((V_Sub_80094994 *) (arg0 + 0x3D8))->m5() != 0) {
@@ -2402,7 +2402,7 @@ s32 TObjEneRe7Berura__sub_80094DB4(void *arg0) {
     return *(s32 *)((s8 *)arg0 + 0x3D4) * 0x96;
 }
 
-u8 TObjEneRe7Berura::is_over_limit() {
+u8 TObjEneRe7Berura::has_reached_turn_limit() {
     int var_r4;
     s32 temp_r5;
     s32 temp_r0;
@@ -2416,7 +2416,7 @@ u8 TObjEneRe7Berura::is_over_limit() {
     return (u8) var_r4;
 }
 
-s32 TObjEneRe7Berura::step_toward_target(s32 arg1, s32 arg2) {
+s32 TObjEneRe7Berura::turn_toward_heading(s32 arg1, s32 arg2) {
     s32 temp_r0;
     s32 temp_r0_2;
     s32 temp_r3;
@@ -2447,7 +2447,7 @@ s32 TObjEneRe7Berura::step_toward_target(s32 arg1, s32 arg2) {
     return var_r31;
 }
 
-void TObjEneRe7Berura::init_fields4B8() {
+void TObjEneRe7Berura::reset_turn_limit() {
     this->m_4b8 = ((s32 (*)(void))get_field_3D4_shifted__16TObjEneRe7BeruraFPv)();
     this->m_4bc = 0;
 }
@@ -2489,20 +2489,20 @@ void draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECT(void *arg0) {
     } while (var_r30 != NULL);
 }
 
-void TObjEneRe7Berura::apply_attack_params(int child, void *part) {
+void TObjEneRe7Berura::capture_part_matrices(NJS_OBJECT *root, BeruraDetachedPart *part) {
     Elem_800959F8 *e = (Elem_800959F8 *)part;
     TObjEneRe7Berura__node_matrix_cursor = (s32)e->buf;
     berura_attack_node_range_start = e->f4;
     berura_attack_node_range_end = e->f8;
     berura_attack_node_vec_ptr = (long)&e->ofs;
     push_matrix_from(identity_matrix);
-    collect_node_matrices((void *)child, 0);
+    collect_node_matrices(root, 0);
     pop_matrix();
 }
 
 #define V ((f32 *)berura_attack_node_vec_ptr)
 #define node ((Node_8009503C *)arg0)
-s32 TObjEneRe7Berura::collect_node_matrices(void *arg0, int idx) {
+s32 TObjEneRe7Berura::collect_node_matrices(NJS_OBJECT *arg0, s32 idx) {
     Mtx_8009503C m;
     u32 flags;
     do {
@@ -2531,10 +2531,10 @@ s32 TObjEneRe7Berura::collect_node_matrices(void *arg0, int idx) {
         }
         idx++;
         if (!(flags & 0x10)) {
-            idx = TObjEneRe7Berura::collect_node_matrices(node->child, idx);
+            idx = TObjEneRe7Berura::collect_node_matrices((NJS_OBJECT *)node->child, idx);
         }
         pop_matrix();
-        arg0 = node->next;
+        arg0 = (NJS_OBJECT *)node->next;
     } while (arg0 != NULL);
     return idx;
 }
@@ -2755,10 +2755,10 @@ void TObjEneRe7Berura::destroy_children() {
     }
 }
 
-void *TObjEneRe7Berura::create() {
+void *TObjEneRe7Berura::create(void *set_data) {
     void *o = __nw__7TObjectFUl(0x4E4);
     if (o != NULL) {
-        o = __ct__16TObjEneRe7BeruraFP7TObjectPv(o, tl_04, this);
+        o = __ct__16TObjEneRe7BeruraFP7TObjectPv(o, tl_04, set_data);
     }
     return o;
 }
@@ -2813,7 +2813,7 @@ void TObjEneRe7Berura::load_static_resources() {
         u8 *ent = RES->f430[TObjEneRe7Berura__animation_definitions[e->anim].f4].f4;
         set_motion_packed_rotation();
         bind_motion_context((NJS_MOTION *)ent, e->lo);
-        TObjEneRe7Berura::apply_attack_params(m, e);
+        TObjEneRe7Berura::capture_part_matrices((NJS_OBJECT *)m, (BeruraDetachedPart *)e);
         clear_motion_packed_rotation();
         e->f18 = (s32 *)find_model_node(m, e->f4);
         e->f1C = (s32 *)find_model_node(m, e->f8);

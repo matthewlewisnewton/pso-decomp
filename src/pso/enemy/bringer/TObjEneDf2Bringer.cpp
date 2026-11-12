@@ -193,7 +193,7 @@ void vfunc_28__17TObjEneDf2BringerFv(void);
 void run_task__17TObjEneDf2BringerFv(u8 *arg0);
 void * __ct__17TObjEneDf2BringerFP7TObjectPv(void *arg0, void *arg1, void *arg2);
 }
-void bringer_render_node_callback(void);
+void bringer_render_node_callback(NJS_OBJECT *);
 struct RecoveredGlobal_8031B170_lbl_804E8880
 {
   s32 value;
@@ -2856,7 +2856,7 @@ void TObjEneDf2Bringer__sub_80097620(u8 *arg0, s32 arg1) {
     }
 }
 
-void bringer_render_node_callback(void) {
+void bringer_render_node_callback(NJS_OBJECT *) {
     s32 pos;
     switch (TObjEneDf2Bringer__render_node_index) {
     case 8:

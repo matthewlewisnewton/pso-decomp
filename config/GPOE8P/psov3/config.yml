@@ -3801,7 +3801,7 @@ force_active:
   - advance_spawn_timer__14TObjEneBm5WolfFv
   - advance_state_4_to_5__17TObjEneMe1CanadinFv
   - advance_state_5_to_4__17TObjEneMe1CanadinFv
-  - advance_state__16TObjEneRe7BeruraFv
+  - advance_state__16TObjEneRe7BeruraFP10NJS_OBJECT
   - advance_text_entry_reveal__FPUc
   - advance_thanks_state__12TBoss4ThanksFv
   - advance_thanks_state__12TBoss6ThanksFv
@@ -3863,7 +3863,7 @@ force_active:
   - append_title_string__24TMessageWindowControllerFv
   - apply__16CameraViewParamsFv
   - apply_armor_effect_flags__13TItemProArmorFv
-  - apply_attack_params__16TObjEneRe7BeruraFiPv
+  - capture_part_matrices__16TObjEneRe7BeruraFP10NJS_OBJECTP18BeruraDetachedPart
   - apply_attack_stat_status__13TObjEneRe4BitFPv
   - apply_balance__19TWindowSoundBalanceFPv
   - apply_battle_ctrl_effect__Fi
@@ -4634,7 +4634,7 @@ force_active:
   - break_apart__15TObjEneMe1GiGueFv
   - break_rocks_in_wave__15TBoss6SwordWaveFv
   - bringer_init_params
-  - bringer_render_node_callback__Fv
+  - bringer_render_node_callback__FP10NJS_OBJECT
   - broadcast_state__15TOAttackableColFv
   - broadcast_to_players__6TLobbyFii
   - broadcast_values__15TBoss3VoloptP02Fv
@@ -5223,7 +5223,7 @@ force_active:
   - collect_body_contacts__10TObjPlayerFiPvPv
   - collect_candidate_players__12TBoss3VoloptFv
   - collect_hit_targets__12TPhotonGollaFPv
-  - collect_node_matrices__16TObjEneRe7BeruraFPvi
+  - collect_node_matrices__16TObjEneRe7BeruraFP10NJS_OBJECTl
   - collect_node_positions__11TBreakUpMdlFPUcl
   - collect_owner_events__8TItemMagFv
   - collect_plist_strips_by_texture__FPvPsl
@@ -5582,7 +5582,7 @@ force_active:
   - deliver_photon_blast_results_animated
   - deliver_target_hit__10TTecSlicerFv
   - dellbiter_demo_camera_vec
-  - demo_frame_callback__16TObjEneRe7BeruraFv
+  - demo_frame_callback__16TObjEneRe7BeruraFP10NJS_OBJECT
   - demo_step__13TObjLobbyMainFv
   - demo_step__15TObjSuisouLobbyFv
   - demo_step__16TObjCurtainLobbyFv

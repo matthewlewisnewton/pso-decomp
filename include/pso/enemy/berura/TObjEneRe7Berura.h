@@ -2,6 +2,9 @@
 #define PSO_ENEMY_BERURA_TOBJENERE7BERURA_H
 
 #include "types.h"
+
+struct NJS_OBJECT;
+struct BeruraDetachedPart;
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 
 struct TObjEneRe7Berura : public TObjEneDD_ST {
@@ -45,19 +48,19 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {
     void play_band_sound();
     void reload_stats_from_tables();
     void destroy_parts();
-    u8 is_over_limit();
-    s32 step_toward_target(s32 arg1, s32 arg2);
-    void init_fields4B8();
+    u8 has_reached_turn_limit();
+    s32 turn_toward_heading(s32 arg1, s32 arg2);
+    void reset_turn_limit();
     static void init_part(s32 arg0);
-    static void apply_attack_params(int child, void *part);
-    static s32 collect_node_matrices(void *arg0, int idx);
+    static void capture_part_matrices(NJS_OBJECT *root, BeruraDetachedPart *part);
+    static s32 collect_node_matrices(NJS_OBJECT *root, s32 index);
     void update_collision_center();
     void init_enemy();
     static void destroy_children();
-    void *create();
+    static void *create(void *set_data);
     static void load_static_resources();
-    static void advance_state();
-    static void demo_frame_callback();
+    static void advance_state(NJS_OBJECT *);
+    static void demo_frame_callback(NJS_OBJECT *);
     void run_flash_warning_state(s32 arg1);
     void handle_state(s32 arg1);
     static void *spawn_punch(void *arg0);
