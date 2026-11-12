@@ -23,7 +23,7 @@ extern "C" void test_flag30_512__9TObjCharaFv();
 extern "C" void test_flag_1000__9TObjCharaFv();
 #include "pso/system/vector.h"
 
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include <stddef.h>
 #include "pso/boss/darkfalz/TBoss4DarkFalz.h"
 #include "pso/enemy/lappy/TObjEneLappy.h"
@@ -1919,7 +1919,7 @@ void TObjEneGibbles::update_death_sequence() {
     case 0:
         this->phase = 1;
         this->requested_action = 5;
-        ((TUnk_80494938 *)((void *) (arg0 + 0x3C0)))->start_fade_in();
+        ((MaterialOpacityFade *)((void *) (arg0 + 0x3C0)))->start_fade_in();
         this->m_38c = (f32) lbl_805DE868;
         *(f32 *)&this->unk_390 = (f32) TObjEneGibbles__data_805DE830;
         apply_actor_gravity((TObjEnemy *)(arg0), (s32 *)(0), TObjEneGibbles__data_805DE7E4);
@@ -2605,7 +2605,7 @@ void TObjEneGibbles::load_resources() {
     NpcModelRegistry::register_animated_chunk((s16)0x44, (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneGibbles__resource_bundle + 0x42C)) + 8))), (void *)((NJS_TEXLIST *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneGibbles__resource_bundle + 0x42C)) + 0xC))), (const NpcAnimationBinding *)(&s), (f32)(((f32 *)lbl_804E296C)[3]), (f32)TObjEneGibbles__data_805DE7E4);
 }
 
-void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
+void *__dt__19MaterialOpacityFadeFv(void *arg0, s16 arg1);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
@@ -2642,7 +2642,7 @@ Gib_802DB920 *__dt__14TObjEneGibblesFv(Gib_802DB920 *self, s16 arg1) {
         }
         free_collision_body_parts(self);
         __destroy_arr((u8 *)self + 0x3DC, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
-        __dt__13TUnk_80494938Fv((u8 *)self + 0x3C0, -1);
+        __dt__19MaterialOpacityFadeFv((u8 *)self + 0x3C0, -1);
         __dt__9TObjEnemyFv((TObjEnemy *)self, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(self);
@@ -2656,7 +2656,7 @@ u8 *__ct__14TObjEneGibblesFP7TObjectPv(u8 *arg0, void *parent, s32 arg2) {
     void *p;
     __ct__9TObjEnemyFP7TObject(arg0, parent);
     *(void **)((s8 *)arg0 + 0x18) = (void *)__vt__14TObjEneGibbles;
-    __ct__13TUnk_80494938Fv((arg0 + 0x3C0));
+    __ct__19MaterialOpacityFadeFv((arg0 + 0x3C0));
     __construct_array(arg0 + 0x3DC, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D3F60;
     ((TObjEneGibbles *)arg0)->apply_set_data((void *)arg2);

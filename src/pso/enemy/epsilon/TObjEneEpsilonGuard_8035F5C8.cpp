@@ -1,6 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/BattleParameters.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -843,7 +843,7 @@ void TObjEneEpsilonGuard__sub_80361C70(u8 *arg0, s32 arg1) {
         temp_r4 = ((TObjEneEpsilonBody *)arg0)->flags;
         ((TObjEneEpsilonBody *)arg0)->flags = (s32) (temp_r4 & ~0x201);
         ((TObjEneEpsilonBody *)arg0)->set_guard_state();
-        ((TUnk_80494938 *)(arg0 + 0x4C0))->start_fade_in();
+        ((MaterialOpacityFade *)(arg0 + 0x4C0))->start_fade_in();
         break;
     case 3:
         if (((VObj_14_948132 *)(arg0 + (1216)))->m5() != 0) {

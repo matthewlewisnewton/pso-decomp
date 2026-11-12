@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/enemy/canadin/TObjEneMe1Canadin_EffLight.h"
 
 struct TObjEneMe1Canadin : public TObjEneDD_ST {
@@ -34,7 +34,7 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
     void vfunc_28();
     void render();
     u8 pad_374[0x58];
-    TUnk_80494938 fade;
+    MaterialOpacityFade fade;
     u8 pad_3E8[0x20];
     TObjEneMe1Canadin_EffLight *eff_light;  // created in setup_enemy, queued in the dtor
     u8 pad_40C[0x94];

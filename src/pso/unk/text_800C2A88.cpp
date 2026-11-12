@@ -7,6 +7,7 @@
 #include "pso/unk/text_800C2A88.h"
 #include "pso/unk/text_800C3A60.h"
 #include "pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"
 #include "pso/enemy/shinowa/TObjEneMe3ShinowaReal.h"
@@ -227,7 +228,7 @@ void fn_800C2AC4(u8 *arg0, int arg1) {
         {
           TObjPlayer::apply_effect_variant_a((s32)&stack.sp8, 0x32);
           fn_800D911C((Vec *)(&stack.sp8));
-          ((TObjEneMe3SinowZoa *)(arg0 + 0x3F4))->init_death_params();
+          ((MaterialOpacityFade *)(arg0 + 0x3F4))->start_fade_out();
         }
         else
         {

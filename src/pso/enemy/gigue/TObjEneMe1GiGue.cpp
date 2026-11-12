@@ -31,7 +31,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/enemy/gigue/TObjEneMe1GiGueMissile.h"
 #include "pso/camera/TCameraCtrl.h"
 
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include <stddef.h>
 #include "types.h"
 #include "pso/enemy/TUnk_804E14E8.h"
@@ -733,7 +733,7 @@ void init__15TObjEneMe1GiGueFPv(u8 *arg0) {
         *(s32 *)((s8 *)arg0 + 0x30) = temp_r4;
         *(s16 *)((s8 *)arg0 + 0xB8) = 0;
         play_area_sound_effect__12TBoss3VoloptFv(arg0 + 0x2FC, temp_r4);
-        ((TUnk_80494938 *)(arg0 + 0x3FC))->start_fade_in();
+        ((MaterialOpacityFade *)(arg0 + 0x3FC))->start_fade_in();
         *(s32 *)((s8 *)arg0 + 0x37C) = 1;
     case 1:
         ((TObjMotion *)arg0)->advance_animation();
@@ -2086,7 +2086,7 @@ void free_collision_body_parts(void *);
 void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 void *__dt__15TObjEnemyCustomFv(void *arg0, s16 arg1);
-void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
+void *__dt__19MaterialOpacityFadeFv(void *arg0, s16 arg1);
 s32 obj_setFlags30(void *, int);
 s32 __ct__15TObjEnemyCustomFP7TObject(void *, s32);
 }
@@ -2102,7 +2102,7 @@ void *deleting_dtor__15TObjEneMe1GiGueFPvs(void *arg0, s16 arg1) {
         *(void **)((s8 *)arg0 + 0x18) = lbl_804E135C;
         free_collision_body_parts(arg0);
         __dt__15RenderFadeStateFv((s8 *)arg0 + 0x418, -1);
-        __dt__13TUnk_80494938Fv((s8 *)arg0 + 0x3FC, -1);
+        __dt__19MaterialOpacityFadeFv((s8 *)arg0 + 0x3FC, -1);
         __dt__15TObjEnemyCustomFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -2114,7 +2114,7 @@ void *deleting_dtor__15TObjEneMe1GiGueFPvs(void *arg0, s16 arg1) {
 u8 *TObjEneMe1GiGue__ct(u8 *arg0, s32 enemy_custom, u8 *arg2) {
     __ct__15TObjEnemyCustomFP7TObject(arg0, enemy_custom);
     *(void **)((s8 *)arg0 + 0x18) = lbl_804E135C;
-    __ct__13TUnk_80494938Fv((arg0 + 0x3FC));
+    __ct__19MaterialOpacityFadeFv((arg0 + 0x3FC));
     __ct__15RenderFadeStateFv(((void *)(arg0 + 0x418)));
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D3F18;
     ((TObjEneMe1GiGue *)arg0)->apply_set_data(arg2);

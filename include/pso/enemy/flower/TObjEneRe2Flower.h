@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 
 struct TObjEneRe2Flower : public TObjEneDD_ST {
     TObjEneRe2Flower(TObject *parent, void *setData);
@@ -43,7 +43,7 @@ struct TObjEneRe2Flower : public TObjEneDD_ST {
     s32 m_3d4;
     s32 m_3d8;
     Vec m_3dc[2];
-    TUnk_80494938 m_3f4;
+    MaterialOpacityFade m_3f4;
     s32 m_410;
     s32 m_414;
     s32 m_418;

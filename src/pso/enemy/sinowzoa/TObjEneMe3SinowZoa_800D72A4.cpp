@@ -5,7 +5,7 @@
 #include "pso/system/memory.h"
 #include "pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 
 struct O_800D72A4 { u8 pad[0x18]; f32 f18; };
 
@@ -21,33 +21,33 @@ s32 TObjEneMe3SinowZoa__sub_800D72A4(O_800D72A4 *self) {
     return self->f18 > (*(const f32 *)&lbl_805DA348) && self->f18 < lbl_805DA34C;
 }
 
-s32 TUnk_80494938::has_visible_opacity() {
+s32 MaterialOpacityFade::has_visible_opacity() {
     return this->value > (*(const f32 *)&lbl_805DA348);
 }
 
-void TUnk_80494938::set_flags_and_apply_damage_color() { MaterialColorFade::set_flags_and_apply_damage_color(); set_chunk_blend(8448); }
+void MaterialOpacityFade::set_flags_and_apply_damage_color() { MaterialColorFade::set_flags_and_apply_damage_color(); set_chunk_blend(8448); }
 
-s32 TObjEneMe3SinowZoa::advance_timer(f32 farg0) {
-    *(f32 *)((s8 *)((u8 *)this) + 0x18) = (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x18) + *(f32 *)&this->m_up);
-    ((TUnk_80494938 *)((u8 *)this))->sub_800D741C();
+s32 MaterialOpacityFade::advance_to(f32 farg0) {
+    *(f32 *)((s8 *)((u8 *)this) + 0x18) = (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x18) + this->rate);
+    ((MaterialOpacityFade *)((u8 *)this))->update_alpha();
     return *(f32 *)((s8 *)((u8 *)this) + 0x18) >= farg0;
 }
 
-s32 TUnk_80494938::advance_toward_max() {
+s32 MaterialOpacityFade::advance_toward_max() {
     u8 *arg0 = (u8 *)this;
     this->value = (f32) ((this->value) + this->rate);
-    ((TUnk_80494938 *)arg0)->sub_800D741C();
+    ((MaterialOpacityFade *)arg0)->update_alpha();
     return this->value >= lbl_805DA34C;
 }
 
-s32 TUnk_80494938::decay_value_toward_floor() {
+s32 MaterialOpacityFade::decay_value_toward_floor() {
     u8 *arg0 = (u8 *)this;
     this->value = (f32) ((this->value) - this->rate);
-    ((TUnk_80494938 *)arg0)->sub_800D741C();
+    ((MaterialOpacityFade *)arg0)->update_alpha();
     return this->value <= (*(const f32 *)&lbl_805DA348);
 }
 
-void TUnk_80494938::sub_800D741C() {
+void MaterialOpacityFade::update_alpha() {
     f32 temp_f2;
     temp_f2 = this->value;
     if (temp_f2 <= (*(const f32 *)&lbl_805DA348)) {
@@ -66,12 +66,12 @@ void TUnk_80494938::sub_800D741C() {
 
 void TObjEneMe3SinowZoa::copy_position_vector(void* q) { *(f32*)((char*)this + 0x18) = *(f32*)((char*)q + 0x0); *(f32 *)&this->m_name = *(f32*)((char*)q + 0x0); *(f32 *)&this->m_flags = *(f32*)((char*)q + 0x4); *(f32 *)&this->m_prev = *(f32*)((char*)q + 0x8); *(f32 *)&this->m_next = *(f32*)((char*)q + 0xc); }
 
-void TUnk_80494938::reset_obstruction_fade() { this->value = lbl_805DA348; this->color.a = lbl_805DA350; this->color.r = lbl_805DA348; this->color.g = lbl_805DA348; this->color.b = lbl_805DA348; }
+void MaterialOpacityFade::reset_obstruction_fade() { this->value = lbl_805DA348; this->color.a = lbl_805DA350; this->color.r = lbl_805DA348; this->color.g = lbl_805DA348; this->color.b = lbl_805DA348; }
 
     extern const float lbl_805DA34C;
-void TUnk_80494938::reset_color() { this->value = lbl_805DA34C; this->color.a = lbl_805DA348; this->color.r = lbl_805DA348; this->color.g = lbl_805DA348; this->color.b = lbl_805DA348; }
+void MaterialOpacityFade::reset_color() { this->value = lbl_805DA34C; this->color.a = lbl_805DA348; this->color.r = lbl_805DA348; this->color.g = lbl_805DA348; this->color.b = lbl_805DA348; }
 
-void TObjEneMe3SinowZoa::set_field_10(f32 v) { *(f32 *)&this->m_up = v; }
+void MaterialOpacityFade::set_rate(f32 v) { this->rate = v; }
 
 }
 
@@ -88,13 +88,13 @@ extern const f32 lbl_805DA360;
 extern const f32 lbl_805DA350;
 extern const f32 lbl_805DA348;
 extern const f32 lbl_805DA35C;
-void TUnk_80494938::set_rate_from_divisor(s32 arg1) {
+void MaterialOpacityFade::set_rate_from_divisor(s32 arg1) {
     this->rate = (f32) (lbl_805DA34C / (f32) arg1);
 }
 
 #pragma push
 #pragma fp_contract on
-void TObjEneMe3SinowZoa::init_death_params() {
+void MaterialOpacityFade::start_fade_out() {
     ((V_800D7524 *)this)->m1(10);
     ((V_800D7524 *)this)->f18 = lbl_805DA35C * ((V_800D7524 *)this)->f10 + lbl_805DA34C;
     ((V_800D7524 *)this)->f0 = lbl_805DA354;
@@ -104,7 +104,7 @@ void TObjEneMe3SinowZoa::init_death_params() {
 }
 #pragma pop
 
-void TUnk_80494938::start_fade_in() {
+void MaterialOpacityFade::start_fade_in() {
     set_rate_from_divisor(10);
     value = -(lbl_805DA360 * rate);
     color.a = lbl_805DA350;
@@ -113,8 +113,8 @@ void TUnk_80494938::start_fade_in() {
     color.b = lbl_805DA348;
 }
 
-TUnk_80494938::~TUnk_80494938() {}
+MaterialOpacityFade::~MaterialOpacityFade() {}
 
-TUnk_80494938::TUnk_80494938() : value(lbl_805DA348) {}
+MaterialOpacityFade::MaterialOpacityFade() : value(lbl_805DA348) {}
 
 }

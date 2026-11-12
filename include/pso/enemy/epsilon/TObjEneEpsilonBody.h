@@ -2,7 +2,7 @@
 #define PSO_ENEMY_EPSILON_TOBJENEEPSILONBODY_H
 #include "types.h"
 #include "pso/enemy/epsilon/TObjEneEpsilon.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/vector.h"
 
@@ -55,7 +55,7 @@ public:
     Vec guard_position[4];    // per guard: the position it was spawned at
     NJS_ARGB color;  // 0x4A0: copied from lbl_80479CAC[color_index], written into the guard parts
     u8 pad_4B0[0x10];
-    TUnk_80494938 fade;
+    MaterialOpacityFade fade;
     u16 guard_ids[4];  // entity ids of the four TObjEneEpsilonGuard it spawns
     s32 action_step;   // 0x4E4: sub-step of the current action
     s32 action_timer;  // 0x4E8: per-action frame counter

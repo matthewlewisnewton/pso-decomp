@@ -40,7 +40,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/technique/TTecMegid.h"
 #include "pso/object/ambient/TObjFish.h"
 
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 
 struct Ene_800CCC6C;
 struct Ene_800D0FDC;
@@ -3658,7 +3658,7 @@ void TObjEneBm5GibonU__sub_800D02F8(Gibon_800D02F8 *g, s32 arg1) {
         enemy_clear_target__12TObjEneDD_STFUs(g);
         g->f478 = 0;
         VecCopy((Vec *)home, (const Vec *)g->pos);
-        ((TUnk_80494938 *)(&g->sub))->start_fade_in();
+        ((MaterialOpacityFade *)(&g->sub))->start_fade_in();
         ((TBoss3Volopt *)(g->pos))->play_area_sound_effect();
         break;
     case 3:
@@ -4397,7 +4397,7 @@ void TObjEneBm5GibonU__sub_800D1CF8(O_800D1CF8 *self);
 s32 __dt__16TObjEneBm5GibonUFis(s32 arg0, s16 arg1);
 void __register_global_object(void *obj, void *dtor, void *chain);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
+void *__dt__19MaterialOpacityFadeFv(void *arg0, s16 arg1);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
 void __destroy_arr(void *, void *, u32, u32);
@@ -4497,7 +4497,7 @@ Gibon_800D13B8 *TObjEneBm5GibonU__sub_800D13B8(Gibon_800D13B8 *arg0, s16 arg1) {
         }
         free_collision_body_parts(arg0);
         __destroy_arr(arg0->f3F4, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
-        __dt__13TUnk_80494938Fv(arg0->f3D8, -1);
+        __dt__19MaterialOpacityFadeFv(arg0->f3D8, -1);
         TObjEneBm5GibonU::destroy((s32)arg0->f3CC, -1);
         TObjEneBm5GibonU::destroy((s32)arg0->f3C0, -1);
         __dt__12TObjEneDD_STFv(arg0, 0);
@@ -4524,7 +4524,7 @@ u8 *TObjEneBm5GibonU__ct(u8 *ene_bm5_gibon_u, s32 arg1, s32 arg2) {
     *(u8 **)((s8 *)ene_bm5_gibon_u + 0x18) = lbl_80493F04;
     TObjEneBm5GibonU__sub_800D1CF8((O_800D1CF8 *)(ene_bm5_gibon_u + 0x3C0));
     TObjEneBm5GibonU__sub_800D1CF8((O_800D1CF8 *)(ene_bm5_gibon_u + 0x3CC));
-    __ct__13TUnk_80494938Fv((ene_bm5_gibon_u + 0x3D8));
+    __ct__19MaterialOpacityFadeFv((ene_bm5_gibon_u + 0x3D8));
     __construct_array(ene_bm5_gibon_u + 0x3F4, (void *)&__ct__15RenderFadeStateFv, (void *)&__dt__15RenderFadeStateFv, 0x1C, 4);
     ((TObjPlayer *)(ene_bm5_gibon_u + 0x4B0))->construct_target_cursor_records();
     *(s32 *)((s8 *)ene_bm5_gibon_u + 0) = lbl_805D2A70;

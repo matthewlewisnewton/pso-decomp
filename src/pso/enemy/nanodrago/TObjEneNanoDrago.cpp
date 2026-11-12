@@ -19,7 +19,7 @@
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/camera/TCameraCtrl.h"
 
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/SoundEffect.h"
@@ -1142,7 +1142,7 @@ void TObjEneNanoDrago::update_fade_in_state() {
         actorFlags = flags;
         requested_action = 0;
         play_area_sound_effect__12TBoss3VoloptFv((u8 *)(&m_2fc), flags);
-        ((TUnk_80494938 *)((u8 *)(&appearFade)))->start_fade_in();
+        ((MaterialOpacityFade *)((u8 *)(&appearFade)))->start_fade_in();
         state = 1;
     case 1:
         advance_animation();

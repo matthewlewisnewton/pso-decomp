@@ -38,7 +38,7 @@
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
 #include "pso/enemy/gee/TObjEneMe1Gee.h"
 #include "pso/enemy/berura/TObjEneRe7Berura.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/unk/TLobby.h"
 #include "pso/object/trap/TOTrapAncient02.h"
 #include "pso/system/scene/TScene.h"
@@ -824,7 +824,7 @@ void exec__16TObjEneMe3StelthFPvi(u8 *arg0, s32 arg1) {
                 }
                 break;
             case 1:
-                if (((TObjEneMe3SinowZoa *)(arg0 + 0x404))->advance_timer(0.2f) != 0) {
+                if (((MaterialOpacityFade *)(arg0 + 0x404))->advance_to(0.2f) != 0) {
                     *(s32 *)((s8 *)arg0 + 0x3CC) = (s32) (*(s32 *)((s8 *)arg0 + 0x3CC) & 0xFFFFFFF7);
                     *(s32 *)((s8 *)arg0 + 0x3C0) = 0;
                     *(s32 *)((s8 *)arg0 + 0x424) = 2;
@@ -3075,7 +3075,7 @@ void TObjEneMe3Stelth__sub_800F3FE4(u8 *ene_dd, s32 arg1) {
         set_field_378__9TObjEneDDFl(ene_dd, 0);
         ((TObjEneDD *)(ene_dd))->vfunc_95();
         *(s32 *)((s8 *)ene_dd + 0x3CC) = (s32) (*(s32 *)((s8 *)ene_dd + 0x3CC) | 7);
-        ((TUnk_80494938 *)(ene_dd + 0x404))->start_fade_in();
+        ((MaterialOpacityFade *)(ene_dd + 0x404))->start_fade_in();
         VecCopy((Vec *)(&stack.sp8), (const Vec *)(ene_dd + 0x38));
         temp_f1 = *(f32 *)((s8 *)ene_dd + 0x3D0);
         stack.spC = temp_f1 - TObjEneMe3Stelth__data_805DA824;
@@ -3161,7 +3161,7 @@ void TObjEneMe3Stelth::sub_800F42B8(s32 arg1) {
         this->vfunc_95();
         *(s32 *)((s8 *)arg0 + 0x3CC) &= ~2;
         *(s32 *)((s8 *)arg0 + 0x3CC) |= 5;
-        ((TUnk_80494938 *)(arg0 + 0x404))->start_fade_in();
+        ((MaterialOpacityFade *)(arg0 + 0x404))->start_fade_in();
         VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x38));
         t = *(f32 *)((s8 *)arg0 + 0x3D0);
         v.y = t - TObjEneMe3Stelth__data_805DA844;
@@ -4238,7 +4238,7 @@ void *__dt__16TObjEneMe3StelthFv(void *arg0, s16 arg1) {
         if (*(void **)((s8 *)arg0 + 0x444) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x444)); *(s32 *)((s8 *)arg0 + 0x444) = 0; }
         if (*(void **)((s8 *)arg0 + 0x448) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x448)); *(s32 *)((s8 *)arg0 + 0x448) = 0; }
         free_collision_body_parts((TObjCollidable *)arg0);
-        __dt__13TUnk_80494938Fv((s8 *)arg0 + 0x404, -1);
+        __dt__19MaterialOpacityFadeFv((s8 *)arg0 + 0x404, -1);
         __dt__12TObjEneDD_STFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -4316,7 +4316,7 @@ void TObjEneMe3StelthReal::init_common() {
 void *TObjEneMe3Stelth__ct(void *ene_me3_stelth) {
     __ct__12TObjEneDD_STFP7TObject(ene_me3_stelth);
     *(s32 **)((s8 *)ene_me3_stelth + 0x18) = __vt__16TObjEneMe3Stelth;
-    __ct__13TUnk_80494938Fv(((char *)ene_me3_stelth + 1028));
+    __ct__19MaterialOpacityFadeFv(((char *)ene_me3_stelth + 1028));
     ((TObjEneMe3Stelth *)ene_me3_stelth)->m_name = TObjEneMe3Stelth__class_name;
     return ene_me3_stelth;
 }

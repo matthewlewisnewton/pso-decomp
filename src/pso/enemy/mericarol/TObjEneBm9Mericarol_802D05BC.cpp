@@ -1,4 +1,4 @@
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "types.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 #include "pso/enemy/mericarol/TObjEneBm9Mericarol_802D05BC.h"
@@ -48,7 +48,7 @@ void TObjEneBm9Mericarol__sub_802D05BC(u8 *ene_dd_st, s32 arg1) {
         *(s32 *)((s8 *)ene_dd_st + 0x438) = (s32) (*(s32 *)((s8 *)ene_dd_st + 0x438) & 0xFFFFFFEF);
         ((TObjEneDD *)ene_dd_st)->set_field_378(2);
         enemy_clear_target__12TObjEneDD_STFUs(ene_dd_st);
-        ((TUnk_80494938 *)(ene_dd_st + 0x46C))->start_fade_in();
+        ((MaterialOpacityFade *)(ene_dd_st + 0x46C))->start_fade_in();
         ((TBoss3Volopt *)(ene_dd_st + 0x38))->play_area_sound_effect();
         return;
     case 3:

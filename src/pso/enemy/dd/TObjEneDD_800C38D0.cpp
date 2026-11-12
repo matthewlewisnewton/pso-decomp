@@ -1,4 +1,4 @@
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "types.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
@@ -28,7 +28,7 @@ void TObjEneDD::handle_state(s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x3C4) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C4) | 8);
         ((TObjEneDD *)arg0)->set_field_378(2);
         enemy_clear_target__12TObjEneDD_STFUs(arg0);
-        ((TUnk_80494938 *)(arg0 + 0x3F4))->start_fade_in();
+        ((MaterialOpacityFade *)(arg0 + 0x3F4))->start_fade_in();
         if (((TObjEneRe2Flower *)arg0)->get_flag_11() != 0) {
             ((TBoss3Volopt *)(arg0 + 0x38))->play_area_se_with_particle();
             return;

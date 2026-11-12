@@ -1,7 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/BattleParameters.h"
 #include "pso/npc/NpcModelRegistry.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/player/PlayerAttackParams.h"
@@ -1332,7 +1332,7 @@ extern "C" void TObjPlayer__sub_800A8E04(u8 *ene_me1_gi_gue) {
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->requested_action = 5;
         ((TObjMotion *)ene_me1_gi_gue)->advance_animation();
         play_area_sound_and_particles_a((s32)(ene_me1_gi_gue + 0x2FC));
-        ((TUnk_80494938 *)(ene_me1_gi_gue + 0x3B0))->start_fade_in();
+        ((MaterialOpacityFade *)(ene_me1_gi_gue + 0x3B0))->start_fade_in();
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->state = 1;
     case 1:
         if (((V_Sub *) (ene_me1_gi_gue + 0x3B0))->m5() == 1) {

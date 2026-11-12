@@ -24,7 +24,7 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/math/MatrixVector.h"
 extern "C" void render__15TObjIllGillKageFv();
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 
 #include "pso/boss/volopt/TBoss3Volopt.h"
 #include "pso/boss/darkfalz/TBoss4Type2.h"
@@ -1075,7 +1075,7 @@ void TObjEneIllGill::update_idle() {
     switch (this->phase) {
     case 0:
         obj_setFlags30(arg0, 0x04040000);
-        ((TUnk_80494938 *)(&this->fade))->start_fade_in();
+        ((MaterialOpacityFade *)(&this->fade))->start_fade_in();
         ((TBoss3Volopt *)(&position))->play_area_se_with_particle();
         this->phase = 1;
         break;

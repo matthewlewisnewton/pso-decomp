@@ -31,7 +31,7 @@ extern "C" void test_flag_1000__9TObjCharaFv();
 #include "pso/enemy/berura/TObjEneRe7Berura.h"
 #include "pso/object/ambient/TObjFish.h"
 
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 
 extern "C" void test_flag_256__13TUnk_80493450Fv();
 
@@ -322,7 +322,7 @@ void TObjEneShark::vfunc_83() {
     case 0:
     default:
         if (*(s32 *)&this->m_390 != 0) {
-            ((TUnk_80494938 *)((u8 *)arg0 + 0x3A8))->start_fade_in();
+            ((MaterialOpacityFade *)((u8 *)arg0 + 0x3A8))->start_fade_in();
             ((TBoss3Volopt *)(arg0->sub38))->play_area_sound_effect();
             *(s16 *)&this->m_328 = 1;
         } else {
@@ -567,7 +567,7 @@ extern s32 game_difficulty_selection;
 void *__dt__13TUnk_80493450Fv(void *arg0, s16 arg1);
 void free_collision_body_parts(void *);
 void __destroy_arr(void *, void *, int, int);
-void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
+void *__dt__19MaterialOpacityFadeFv(void *arg0, s16 arg1);
 extern u8 __dt__15RenderFadeStateFv[];
 O_800AC5EC *__dt__12TObjEneSharkFv(O_800AC5EC *arg0, s16 arg1);
 u8 *load_enemy_bml_resource_named(void *, void *);
@@ -870,7 +870,7 @@ O_800AC5EC *__dt__12TObjEneSharkFv(O_800AC5EC *arg0, s16 arg1) {
         ((TUnk_80493450 *)arg0)->unlink_enemy_group_relations();
         free_collision_body_parts(arg0);
         __destroy_arr((u8 *)arg0 + 0x3CC, __dt__15RenderFadeStateFv, 0x1C, 4);
-        __dt__13TUnk_80494938Fv((u8 *)arg0 + 0x3A8, -1);
+        __dt__19MaterialOpacityFadeFv((u8 *)arg0 + 0x3A8, -1);
         __dt__13TUnk_80493450Fv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -976,7 +976,7 @@ void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2) {
 
     ((void (*)(void *, void *))__ct__13TUnk_80493450FP7TObject)(self, arg1);
     *(void **)((u8 *)self + 0x18) = lbl_8049168C;
-    __ct__13TUnk_80494938Fv(((u8 *)arg0 + 0x3A8));
+    __ct__19MaterialOpacityFadeFv(((u8 *)arg0 + 0x3A8));
     __construct_array(self->f3CC, (void *)__ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)self = TObjEneShark_name_ref;
     self->m79(arg2);

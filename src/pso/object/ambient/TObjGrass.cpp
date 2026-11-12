@@ -18,7 +18,7 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/object/ambient/TObjGrass.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/map/FloorArea.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
@@ -864,7 +864,7 @@ void TObjGrass::update_ai(void *arg0) {
     switch (o->state) {
     case 0:
         obj_setFlags30(o, 0x04040000);
-        ((TUnk_80494938 *)(&o->sub))->start_fade_in();
+        ((MaterialOpacityFade *)(&o->sub))->start_fade_in();
         ((TBoss3Volopt *)(&o->pos))->play_area_sound_effect();
         o->state = 1;
         break;
