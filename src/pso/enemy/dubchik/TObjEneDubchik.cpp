@@ -209,7 +209,7 @@ struct Self_800AA334 { u8 pad[0x3B0]; VObj_14_fddec9 sub; };
 typedef struct Vec_800A9E9C { f32 x, y, z; } Vec_800A9E9C;
 
 extern "C" {
-void TBoss3Volopt__sub_800D8D88(s32 arg0);
+void play_area_sound_and_particles_a(s32 arg0);
 void TObjPlayer__sub_800A8E04(u8 *arg0);
 void obj_setFlags30(void *, u32);
 void dubchik_start_dying(u8 *arg0);
@@ -1330,7 +1330,7 @@ extern "C" void TObjPlayer__sub_800A8E04(u8 *ene_me1_gi_gue) {
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags = (((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags | 0x04000000);
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->requested_action = 5;
         ((TObjMotion *)ene_me1_gi_gue)->advance_animation();
-        TBoss3Volopt__sub_800D8D88((s32)(ene_me1_gi_gue + 0x2FC));
+        play_area_sound_and_particles_a((s32)(ene_me1_gi_gue + 0x2FC));
         ((TUnk_80494938 *)(ene_me1_gi_gue + 0x3B0))->start_fade_in();
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->state = 1;
     case 1:
@@ -1482,7 +1482,7 @@ extern "C" void dubchik_update_dying(u8 *arg0) {
       play_sound_effect(((TObjEnemy *)((void *) arg0))->remap_sound_for_area((s32)(0x4003AD16)), arg0 + 0x38, 0, 0);
     }
     TBoss3Volopt::create_breakup_mdl((s32)breakup_model_ptr, (s32)&lbl_80491260, (s32)((int) (*((s32 *) (((s8 *) arg0) + 0x24)))), (s32)(arg0 + 0x2FC), (s32)((int) (*((s32 *) (((s8 *) arg0) + 0x60)))));
-    ((TObjPlayer *)arg0)->refresh_lobby_state();
+    ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
     ((TObjEnemy *)arg0)->send_entity_set_flags();
     ((TObjPlayer *)(arg0 + 0x2FC))->trigger_dell_biter_events();
     obj_setFlags30((void *) arg0, 0x800);

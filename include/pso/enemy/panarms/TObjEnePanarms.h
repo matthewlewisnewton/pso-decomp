@@ -52,11 +52,9 @@ struct TObjEnePanarms : public TObjEnemy {
     s32 wait_frames; // state timer start value of the hidden wait
     int find_nearest_enemy_with_flag(s32 arg1, f32 farg0);
     static void spawn_npc_pair();
-    static int do_action_2(void* p);
     static s32 create_bara(void *setData, s32 index);
     static s32 create(s32 arg0);
     void init(s16 action);
-    int get_state_flag();
     void update_spin();
     void enter_down_state();
     void update_state_effect();

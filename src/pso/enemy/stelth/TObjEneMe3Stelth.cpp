@@ -2520,7 +2520,7 @@ struct VObj_18_347dfc : VBase_18_347dfc {
 extern const f32 lbl_805DA888;
 extern const f32 lbl_805DA88C;
 extern "C" {
-s32 TBoss3Volopt__sub_800D8D88(void *, f32);
+s32 play_area_sound_and_particles_a(void *, f32);
 void TObjEneMe3Stelth__sub_800F3FE4(u8 *arg0, s32 arg1);
 f32 *TBoss3Volopt__sub_800F059C(void *);
 extern const f32 lbl_805DA890;
@@ -3079,7 +3079,7 @@ void TObjEneMe3Stelth__sub_800F3FE4(u8 *ene_dd, s32 arg1) {
         VecCopy((Vec *)(&stack.sp8), (const Vec *)(ene_dd + 0x38));
         temp_f1 = *(f32 *)((s8 *)ene_dd + 0x3D0);
         stack.spC = temp_f1 - TObjEneMe3Stelth__data_805DA824;
-        TBoss3Volopt__sub_800D8D88(&stack.sp8, temp_f1);
+        play_area_sound_and_particles_a(&stack.sp8, temp_f1);
         break;
     case 3:
         if (((VObj_14_948132 *)(ene_dd + (1028)))->m5() != 0) {
@@ -3166,7 +3166,7 @@ void TObjEneMe3Stelth::sub_800F42B8(s32 arg1) {
         t = *(f32 *)((s8 *)arg0 + 0x3D0);
         v.y = t - TObjEneMe3Stelth__data_805DA844;
         if (*(s32 *)((s8 *)arg0 + 0x3C0) == 0) {
-            TBoss3Volopt__sub_800D8D88(&v, t);
+            play_area_sound_and_particles_a(&v, t);
         } else {
             create_timed_particle_emitter((u8 *)&this->position, 0x79, 0, 0xF);
         }

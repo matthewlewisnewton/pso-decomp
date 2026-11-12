@@ -459,7 +459,7 @@ struct Obj_800BB780 { u8 pad[0x30]; u32 flags; u8 pad1[0x70]; Part_800BB780 *par
 extern "C" {
 s32 is_alive__8TObjBaseFv(void *);
 int submit_cursor_candidate(void*, int);
-int refresh_lobby_state__10TObjPlayerFv(void*);
+int distribute_experience_and_request_drop__9TObjEnemyFv(void*);
 int send_entity_set_flags__9TObjEnemyFv(void*);
 }
 #include "types.h"
@@ -897,7 +897,7 @@ void TObjEneDD::clear_attack_receipts() {
 
 int TObjEneBm3Fly::was_hit_by_ranged() { return (this->m_2dc >> 1) & 0x1; }
 
-void TObjEnemy::refresh_and_send_entity_flags() { refresh_lobby_state__10TObjPlayerFv(this); send_entity_set_flags__9TObjEnemyFv(this); }
+void TObjEnemy::refresh_and_send_entity_flags() { distribute_experience_and_request_drop__9TObjEnemyFv(this); send_entity_set_flags__9TObjEnemyFv(this); }
 
 u16 enemy_nearest_visible_player_sq(u8 *arg0, f32 farg0) {
     f32 d;

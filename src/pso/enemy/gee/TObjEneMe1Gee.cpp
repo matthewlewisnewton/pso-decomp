@@ -320,7 +320,7 @@ void TUnk_8049387C::vfunc_112(s32 arg1) {
     case 4:
         create_breakup_mdl__12TBoss3VoloptFlllll(TObjEneMe1Gee__data_805D51C0, 0, *(s32 *)((s8 *)arg0 + 0x24), arg0 + 0x2FC, *(s32 *)((s8 *)arg0 + 0x60));
         *(s32 *)((s8 *)arg0 + 0x3C8) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C8) | 0x400000);
-        ((TObjPlayer *)arg0)->refresh_lobby_state();
+        ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
         return;
     case 0:
         if (this->vfunc_109() != 0) {
@@ -1877,7 +1877,7 @@ int TObjEneMe1Gee__sub_800CC2BC(void);
 void run_task__13TObjEneMe1GeeFv(u8 *arg0);
 void * __dt__13TObjEneMe1GeeFv(void *arg0, s16 arg1);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
-void TBoss3Volopt__sub_800D8D88(s32);
+void play_area_sound_and_particles_a(s32);
 void __dl__7TObjectFPv(void *);
 s32 push_matrix();
 
@@ -3137,7 +3137,7 @@ void TObjEneMe1Gee__sub_800CAFD8(u8 *ene_me1_gee, s32 arg1) {
         ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&stack.sp8, ene_me1_gee + 0x38);
         stack.spC += 150.0f;
         ((RecoveredFields_800CAFD8_arg0 *)ene_me1_gee)->field_3F8 = stack.spC;
-        TBoss3Volopt__sub_800D8D88((s32) &stack.sp8);
+        play_area_sound_and_particles_a((s32) &stack.sp8);
         ((TObjEneMe1Gee *)(ene_me1_gee))->vfunc_91();
         ((RecoveredFields_800CAFD8_arg0 *)ene_me1_gee)->field_434 = 0;
         return;

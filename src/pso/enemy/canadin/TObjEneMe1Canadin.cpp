@@ -1487,7 +1487,7 @@ void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
 u32 vfunc_101__9TObjEneDDFPUc();
 s32 collect_enemy_target_candidates(void *, Entry_8009E860 *);
 void clear_attack_receipts__9TObjEneDDFv();
-void TBoss3Volopt__sub_800D8D88(s32 arg0);
+void play_area_sound_and_particles_a(s32 arg0);
 s32 trigger_dell_biter_events__10TObjPlayerFv(void *, f32);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void __dt__7TObjectFv(void *, int);
@@ -2549,7 +2549,7 @@ void TObjEneMe1Canadin__sub_8009DE90(void *argv0, s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x3FC) = 4;
         *(s32 *)((s8 *)arg0 + 0x4B8) = 1;
         ((TUnk_80494938 *)(arg0 + 0x3CC))->start_fade_in();
-        TBoss3Volopt__sub_800D8D88((s32)(arg0 + 0x38));
+        play_area_sound_and_particles_a((s32)(arg0 + 0x38));
         return;
     case 3:
         if (((V_Sub_8009DE90 *) (arg0 + 0x3CC))->m5() != 0) {
@@ -4070,7 +4070,7 @@ void TObjEneMe1CanadinLeader::vfunc_112(s32 mode) {
         }
         self->flags3C8 |= 0x400000;
         play_sound_effect(0x4003B71D, self->pos2FC, 0, 0);
-        ((TObjPlayer *)self)->refresh_lobby_state();
+        ((TObjEnemy *)self)->distribute_experience_and_request_drop();
         break;
     case 0:
         if (vfunc_109() != 0) {

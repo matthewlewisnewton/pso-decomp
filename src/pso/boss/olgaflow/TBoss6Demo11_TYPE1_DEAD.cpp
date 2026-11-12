@@ -1,6 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/PadRumble.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/MatrixStack.h"
@@ -27,7 +28,7 @@ struct FishSpawnEntry {
     s32 point;
 };
 
-// One node of the list TObjFish__sub_800E3124 reads (node -1 ends it).
+// One node of the list create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec reads (node -1 ends it).
 struct EffectNodeDesc {
     s32 node;
     Vec offset;
@@ -67,7 +68,7 @@ TBoss6Demo11_TYPE1_DEAD::TBoss6Demo11_TYPE1_DEAD(TObject *parent, void *arg) : T
         parts[i].texture = TObjFish__sub_8001EDB0(resource, model_id);
         parts[i].motion = get_bml_motion(resource, lbl_804EF9D8[i]);
     }
-    node_effect = (TObjFish *)TObjFish__sub_800E3124((u8 *)lbl_80477E60, (s32)effect_points);
+    node_effect = (TObjFish *)create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec((u8 *)lbl_80477E60, (s32)effect_points);
     emitter = NULL;
     activate_camera_mode(5);
     set_scripted_camera_pose(&position, &position, &lbl_80477EC0);
@@ -79,7 +80,7 @@ TBoss6Demo11_TYPE1_DEAD::TBoss6Demo11_TYPE1_DEAD(TObject *parent, void *arg) : T
 TBoss6Demo11_TYPE1_DEAD::~TBoss6Demo11_TYPE1_DEAD() {
     restore_player_cameras();
     if (node_effect != NULL) {
-        TObjFish::init_state_1(node_effect);
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)node_effect);
         node_effect = NULL;
     }
     if (emitter != NULL) {
@@ -200,9 +201,9 @@ void TBoss6Demo11_TYPE1_DEAD::render_fade_model() {
         set_current_texture_list((GinjaTextureList *)(parts[0].texture));
         draw_model_motion((void *)parts[0].model, parts[0].motion, frame);
         set_current_texture_list((GinjaTextureList *)(parts[1].texture));
-        node_effect->set_draw_callback_list();
+        ((ModelNodePositionCapture *)node_effect)->install();
         draw_model_motion((void *)parts[1].model, parts[1].motion, frame);
-        node_effect->clear_render_callback();
+        ((ModelNodePositionCapture *)node_effect)->clear();
         clear_motion_packed_rotation();
         pop_matrix();
         if (fade < 1.0f) {

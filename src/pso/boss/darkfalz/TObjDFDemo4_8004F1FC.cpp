@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/boss/darkfalz/TObjDFDemo4.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -8,7 +9,7 @@
 #include "pso/unk/text_803D8F74.h"
 
 extern "C" {
-s32 clear_render_callback__8TObjFishFv(int);
+s32 clear__24ModelNodePositionCaptureFv(int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
 void TObjDFDemo4::sub_8004F1FC() {
@@ -27,11 +28,11 @@ void TObjDFDemo4::sub_8004F1FC() {
             temp_r30 = arg0 + var_r31;
             set_current_texture_list((GinjaTextureList *)((int) (*(s32 *)((s8 *)temp_r30 + 0xC8))));
             if (var_r29 == 0) {
-                ((TObjFish *)(this->m_100))->set_draw_callback_list();
+                ((ModelNodePositionCapture *)(this->m_100))->install();
             }
             draw_model_motion((void *)(*(s32 *)((s8 *)temp_r30 + 0xC4)), (void *)(*(s32 *)((s8 *)temp_r30 + 0xCC)), (f32) (*(f32 *)&this->_padFC));
             if (var_r29 == 0) {
-                clear_render_callback__8TObjFishFv(this->m_100);
+                clear__24ModelNodePositionCaptureFv(this->m_100);
             }
             var_r29 += 1;
             var_r31 += 0xC;

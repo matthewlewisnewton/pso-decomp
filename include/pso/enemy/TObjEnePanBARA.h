@@ -9,7 +9,7 @@
 // index (create_bara's second argument, the constructor's third).
 extern "C" {
 // Links a half to the body (0x39C) and to the other half (0x3A0).
-void TObjEnePanarms__sub_800E1C8C(void *arg0, s32 arg1, s32 arg2);
+void bind_parts__14TObjEnePanBARAFP14TObjEnePanarmsP14TObjEnePanBARA(void *arg0, s32 arg1, s32 arg2);
 }
 
 class TObjEnePanBARA : public TObjEnemy {
@@ -18,7 +18,7 @@ public:
     virtual ~TObjEnePanBARA();
     virtual void run_task();
     virtual void render();
-    void calc_part_position(u8 *, s32 *);
+    void calc_part_position(Vec *, s32 *);
     virtual void vfunc_63();
     virtual void vfunc_62();
     virtual void vfunc_61();
@@ -51,7 +51,9 @@ public:
     void init_state();
     void update_linked_effect();
     void draw();
-    int find_nearest_enemy_with_flag_alt_target(s32 arg1, f32 farg0);
+    int find_nearest_enemy_with_flag_alt_target(Vec *arg1, f32 farg0);
+    int get_state_flag();
+    int do_action_2();
     void attack_target_player(s32 arg1);
     // The state table's entries that have no name yet.
     void sub_800E10D0();

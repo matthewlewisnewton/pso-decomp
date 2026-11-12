@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
@@ -1662,7 +1663,7 @@ void TObjEneDolmOlm::vfunc_94() {
     rotate_vector_by_matrix(0, (void *)&stack.sp8, (void *)&stack.sp8);
     pop_matrix();
     vec3_add_to((void *)&stack.sp8, (void *)(arg0 + 0x38));
-    ((TObjPlayer *)(&stack.sp8))->spawn_ground_effect(0x23);
+    spawn_ground_effect((const Vec *)(&stack.sp8), 0x23);
     TObjPlayer__sub_800D92BC((void *)&stack.sp8, 0xF);
 }
 void TObjEneDolmOlm::vfunc_95() {

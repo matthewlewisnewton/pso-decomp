@@ -4,6 +4,7 @@
 #include "pso/object/ambient/TObjFish_800E2FFC.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/enemy/berura/TObjEneRe7Berura.h"
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 struct Entry_800E2FFC { s32 id; u8 data[0xC]; };
@@ -41,7 +42,7 @@ void TObjFish::draw_callback_transform_to_view() {
     TObjFish_draw_callback_state.counter++;
 }
 
-void TObjFish::set_draw_callback_list() {
+void ModelNodePositionCapture::install() {
     Arg_800E3074 *arg = (Arg_800E3074 *)this;
     (*(State_800E3074 *)&TObjFish_draw_callback_state).counter = 0;
     (*(State_800E3074 *)&TObjFish_draw_callback_state).list = arg->list;
@@ -63,11 +64,11 @@ s32 TObjFish::is_entry_table_valid() {
     return 1;
 }
 
-void TObjFish::init_state_1(void *arg0) {
-    TObjFish__sub_800E3188((s32)arg0, (s16)(1));
+void ModelNodePositionCapture::destroy(ModelNodePositionCapture *capture) {
+    TObjFish__sub_800E3188((s32)capture, (s16)(1));
 }
 
-s32 TObjFish__sub_800E3124(u8 *list, s32 vecs) {
+s32 create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec(u8 *list, s32 vecs) {
     s32 temp_r3;
     s32 var_r0;
     if (((TObjFish *)list)->is_entry_table_valid() != 0) {

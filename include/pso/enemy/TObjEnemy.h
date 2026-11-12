@@ -18,6 +18,7 @@ struct TObjEnemy : public TObjChara {
     s32 turn_toward_direction(s32 max_step, Vec *direction);
     void award_enemy_experience(s32);
     void distribute_experience();
+    void distribute_experience_and_request_drop();
     void send_6x9C_enemy_low_game_flags(s32);
     void sub_800A7798(f32);
     void draw_ground_shadow(const Vec *scale, s32 forceDraw);

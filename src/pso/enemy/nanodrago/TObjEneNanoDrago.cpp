@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/effect/GroundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/object/TObjControl.h"
 #include "pso/system/BmlResource.h"
@@ -102,7 +103,7 @@ extern "C" void calc_velocity_toward_destination(void *, Vec, Vec, f32);
 extern "C" s32 TObjPlayer__sub_800DC478(u8 *arg0, s32 arg1, f32 farg0);
 extern "C" void project_actor_to_ground(void *, void *, s32);
 extern "C" void TObjPlayer__sub_800D92BC(s32 point, s32 delay);
-extern "C" s32 refresh_lobby_state__10TObjPlayerFv();
+extern "C" s32 distribute_experience_and_request_drop__9TObjEnemyFv();
 
 #pragma push
 #pragma dont_inline off
@@ -975,7 +976,7 @@ void TObjEneNanoDrago::update_knockback_state() {
 void TObjEneNanoDrago::update_dying_state() {
     switch (state) {
     case 0:
-        refresh_lobby_state__10TObjPlayerFv();
+        distribute_experience_and_request_drop__9TObjEnemyFv();
         send_entity_set_flags();
         timer = 0x1E;
         play_sound_effect(0x4003A825, &position, 0, 0);
@@ -1014,7 +1015,7 @@ void TObjEneNanoDrago::update_dying_state() {
     case 3:
         timer = (s16) (timer - 1);
         if (timer <= 0) {
-            ((TObjPlayer *)(&position))->spawn_ground_effect(0x1E);
+            spawn_ground_effect((const Vec *)(&position), 0x1E);
             TObjPlayer__sub_800D92BC((s32)(&position), 0xF);
             state = 4;
             return;

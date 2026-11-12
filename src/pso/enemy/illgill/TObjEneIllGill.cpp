@@ -603,7 +603,7 @@ void TObjEneIllGill::vfunc_63() {
         bodies->flags = (s32) (bodies->flags & 0xFFFF7FFE);
         this->free_resources();
         spawn_particle_effect(&m_2fc, 0xF2);
-        ((TObjPlayer *)arg0)->refresh_lobby_state();
+        ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
         ((TObjEnemy *)arg0)->send_entity_set_flags();
     }
 }

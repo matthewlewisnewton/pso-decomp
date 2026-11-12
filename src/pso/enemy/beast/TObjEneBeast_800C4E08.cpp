@@ -161,7 +161,7 @@ void TUnk_80493450::beast_update_dead() {
         this->beast_retire_corpse();
     }
 }
-void TUnk_80493450::vfunc_63() { if (this->mode != 8) { this->mode = 8; this->requested_action = 8; unlink_enemy_group_relations__13TUnk_80493450Fv(this); clear_player_status_flag((s32)((void*)0), (u32)((void*)1)); ((TObjPlayer *)this)->refresh_lobby_state(); send_entity_set_flags__9TObjEnemyFv(this); } }
+void TUnk_80493450::vfunc_63() { if (this->mode != 8) { this->mode = 8; this->requested_action = 8; unlink_enemy_group_relations__13TUnk_80493450Fv(this); clear_player_status_flag((s32)((void*)0), (u32)((void*)1)); ((TObjEnemy *)this)->distribute_experience_and_request_drop(); send_entity_set_flags__9TObjEnemyFv(this); } }
 void TUnk_80493450::beast_update_hurt() {
     u8 *arg0 = (u8 *)this;
     Vec v;

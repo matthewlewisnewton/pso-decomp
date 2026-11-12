@@ -330,7 +330,7 @@ void *__nw__7TObjectFUl(int);
 extern s32 gyaranzo_missile_volley_end_time;
 void spawn_missile_volley__15TObjEneGyaranzoFv(u8 *arg0);
 void update_fade_state__15TObjEneGyaranzoFv(u8 *arg0);
-s32 TBoss3Volopt__sub_800D8D88(void *, s32);
+s32 play_area_sound_and_particles_a(void *, s32);
 
 void TObjEneGyaranzo::init_params_from_table() {
     *(f32 *)((s8 *)this->movementParameters + 4) = get_gyaranzo_missile_float_parameter(1);
@@ -349,7 +349,7 @@ void update_fade_state__15TObjEneGyaranzoFv(u8 *arg0) {
         temp_r4 = *(s32 *)((s8 *)arg0 + 0x30) | 0x04000000;
         *(s32 *)((s8 *)arg0 + 0x30) = temp_r4;
         *(s16 *)((s8 *)arg0 + 0xB8) = 0;
-        TBoss3Volopt__sub_800D8D88(arg0 + 0x2FC, temp_r4);
+        play_area_sound_and_particles_a(arg0 + 0x2FC, temp_r4);
         ((TUnk_80494938 *)(arg0 + 0x3D0))->start_fade_in();
         *(s32 *)((s8 *)arg0 + 0x37C) = 1;
     case 1:
@@ -1281,7 +1281,7 @@ void TObjEneGyaranzo::update_death_breakup() {
     switch (this->state) {
     case 0:
         this->requested_action = 4;
-        ((TObjPlayer *)arg0)->refresh_lobby_state();
+        ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
         arg0->timer = 0x5A;
         create_dead_spot__10TObjPlayerFllf(arg0->v2FC, 0x5A, lbl_805DA27C);
         create_dead_spot__10TObjPlayerFllf(arg0->v2FC, 0x5A, lbl_805DA27C);
