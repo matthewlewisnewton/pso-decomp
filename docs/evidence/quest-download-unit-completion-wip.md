@@ -424,3 +424,28 @@ relied on the prior call leaving its result in r3. All 16 neighboring functions
 remain exact, as do the same 167 functions in the claimed unit. The corrected
 interfaces slightly improve the still-partial input parser to 94.46392%; no
 additional function or source linkage is claimed in this step.
+
+## Fresh split-object layout experiment
+
+A private three-object grouping was rechecked against fresh original objects
+produced by the pinned `dtk dol split --no-update`, using this branch's original
+inputs and a private copy of the split configuration. The text boundaries are
+`803E6970..803E9A24`, `803E9A24..803ED0CC`, and `803ED0CC..803F0C50`.
+These cover the same 173 functions; the checked-in split and linkset remain
+unchanged while the six functions are still partial.
+
+The groups emit 156, 1,044, and 36 bytes of compiler-generated switch tables,
+all with normal eight-byte alignment. This reproduces the four-byte gaps at
+`804FC8F4..804FC8F8` and `804FCD0C..804FCD10`. The first group owns the glyph
+and signature constants; its 1,738 emitted bytes plus six trailing alignment
+bytes cover the original 1,744-byte read-only range. The pool belongs with the
+second group's initializer (40,000 BSS bytes); the final group owns the remaining
+9,336 BSS bytes. All these sections compare at 100% against the fresh splits.
+
+The function counts are 58/59, 58/59, and 51/55 exact, retaining all 167 exact
+functions. Comparing the second group to the old combined original object had
+shown a false candidate-builder difference from a synthetic `R_PPC_NONE`
+retention relocation; the freshly extracted second-group object resolves it.
+This is a layout experiment, not proof of original filenames or a completed
+source-link change. Source organization and complete linked validation remain
+required before publication.
