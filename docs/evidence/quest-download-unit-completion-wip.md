@@ -595,3 +595,33 @@ and name accumulation. Complete-unit source-link admission is still pending.
 The full repository check passes: +11 exact functions and +6,876 matched code
 bytes versus main, no coverage or source-linkage loss, unchanged retention,
 and the original DOL hash. All 3,622 currently linked units remain exact.
+
+
+## Three-function continuation and refreshed full source link
+
+The private three-group build now retains all 170 exact functions (58, 58 and
+54 in the three groups). Every grouped data and BSS section still compares at
+100%. A fresh stock-linker run includes all 173 function symbols and all eight
+owned BSS symbols, whose extents agree with the original object. Its diagnostics
+are byte-identical to the unchanged control link. This remains a private link
+experiment, not admission to the accepted linkset or an exact-DOL claim.
+
+For cache replacement, an inlined bucket value plus separate replacement and
+insertion link locals now gives a private 776-byte candidate at 99.948456%.
+Both scans, the write cursor, instruction ordering and stack frame agree; two
+arithmetic register operands still differ. The clean size helper keeps metadata
+width and the complete record size as separate, used values. Typed prefix
+reads, constructor/reference forms, caller versus inline arithmetic boundaries,
+integer types and optimizer controls have not yet closed those last operands.
+The shared lookup used by exact rebuild functions must remain unchanged when
+this candidate is integrated; its replacement lookup is separate.
+
+The accumulator's separate wide-buffer reassignment improves its private score
+to 98.895706% at the native size and frame. It passes the same 3,000-case
+controlled-boundary PowerPC differential harness. A selector cursor object
+increased fuzzy similarity but enlarged the frame, so it is not a better
+retained candidate. Bound-reference, const-contract and borrowed-cursor probes
+have not improved the native-frame selector. These experiments followed the
+[TWW register-allocation guidance](https://github.com/zeldaret/tww/blob/main/docs/regalloc.md)
+and compiler allocation/propagation traces; no instruction patch, physical
+register pin, extra linked object or changed shared ABI was introduced.
