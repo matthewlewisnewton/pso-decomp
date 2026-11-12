@@ -522,6 +522,8 @@ void TWindowDD__sub_80340A78(TWindowDD_WS_ScrollBar *self) {
 }
 #pragma pop
 
+__declspec(section ".ctors") static void *const windowdd_init_ref = (void *)TWindowDD::init_layout_constants;
+
 void TWindowDD::init() { initialize_subwindow(); update_fade__11TWindowBaseFv(this); }
 
 extern const f32 lbl_805DFC6C;
