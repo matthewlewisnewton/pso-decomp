@@ -49,7 +49,7 @@ TObjNpcMaleFat *TObjNpcMaleFat__ct(TObjNpcMaleFat *npc, TObjControl *control, vo
     *(s32 **)((u8 *)npc + 0x18) = __vt__14TObjNpcMaleFat;
     npc->m_name = TObjNpcMaleFat__name;
     npc->apply_set_data(set_data);
-    ((TObjPlayer *)npc)->init_position_vectors();
+    ((TObjChara *)npc)->initialize_position_copies();
     npc->model = (void *)TObjNpcMaleFat__static_model_resource->models->model;
     npc->texlist = TObjNpcMaleFat__static_model_resource->models->m_c;
     npc->setup_common();

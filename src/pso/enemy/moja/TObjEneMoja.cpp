@@ -430,7 +430,7 @@ static const s32 lbl_805D9BFC = 0x8001;
 TObjEneMoja::TObjEneMoja(TObject *parent, void *setData) : TObjEnemy(parent) {
     m_name = TObjEneMoja__name;
     apply_set_data(setData);
-    ((TObjPlayer *)this)->init_position_vectors();
+    ((TObjChara *)this)->initialize_position_copies();
     mode = 0;
     phase = 0;
     techniqueChance = 0.3f + parameters[1];

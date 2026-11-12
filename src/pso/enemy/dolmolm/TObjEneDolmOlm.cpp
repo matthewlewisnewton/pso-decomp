@@ -886,7 +886,7 @@ TObjEneDolmOlm::TObjEneDolmOlm(s32 arg1, s32 arg2) : TUnk_80493450((TObject *)ar
     __ct__13TUnk_80494938Fv((((u8 *)this) + 0x3A8));
     *(s32 *)((s8 *)this + 0) = obj_ene_dolm_olm_class_name;
     this->apply_set_data((void *)arg2);
-    ((TObjPlayer *)this)->init_position_vectors();
+    ((TObjChara *)this)->initialize_position_copies();
     this->sub_80301148();
     *(void * *)&this->action_table = TObjEneDolmOlm__param_table;
     ((TObjMotion *)this)->set_action_table((TObjMotionAction *)((s32)(*(void * *)&this->action_table)));

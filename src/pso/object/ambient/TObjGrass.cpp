@@ -474,7 +474,7 @@ TObjGrass::TObjGrass(TObject *parent, void *set_data) : TObjEnemy(parent) {
     s32 t;
     m_name = TObjGrass__class_name;
     apply_set_data(set_data);
-    ((TObjPlayer *)this)->init_position_vectors();
+    ((TObjChara *)this)->initialize_position_copies();
     apply_actor_gravity(this, 0, (0.0f));
     t = *(s32 *)((s8 *)TObjGrass__resource_bundle + 0x430);
     *(s32 *)&motion_list = t;

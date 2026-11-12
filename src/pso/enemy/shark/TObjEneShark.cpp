@@ -982,7 +982,7 @@ void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2) {
     __construct_array(self->f3CC, (void *)__ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)self = TObjEneShark_name_ref;
     self->m79(arg2);
-    ((TObjPlayer *)self)->init_position_vectors();
+    ((TObjChara *)self)->initialize_position_copies();
     self->f334 = self->f368;
     ((TObjEneShark *)self)->apply_clamped_mode_param();
     ((TObjEneShark *)self)->sub_800AC9DC(self->f368);

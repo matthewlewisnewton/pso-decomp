@@ -21,6 +21,7 @@ public:
     s32 is_in_fixed_pose();
     void calc_attach_pos();
     void copy_body_to_center();
+    void initialize_position_copies();
     void add_flags_2e4(u32);
     s16 get_stats_atp_max();
     s16 sub_800194C4();
