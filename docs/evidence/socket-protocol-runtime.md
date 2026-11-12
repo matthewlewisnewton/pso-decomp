@@ -20,8 +20,10 @@ merged with pinned fork main `5146327538ef67c0077c30664309f9cd48fabc86`,
 plus removal of one unused conflicting ACK declaration. This lineage retains
 the published `sack[6]` representation as an **unresolved source hold**. It does
 not include the later byte-copy repair. Its declaration cleanup and main merge
-have source-scoped review; fresh exact-descendant native gates are required
-before any intermediate publication. This is not a readiness claim.
+have source-scoped review. Fresh validation of descendant
+`c597ac3356934e15a99af39eb5cbc34ea9c9bcd9` is recorded below; final scoped
+review is still required before intermediate publication. This is not a
+readiness claim.
 
 The separate research checkpoint
 `80985201fd2bfc3fa72b718149f41b75338acafe` includes the five-range/adjacent-field
@@ -160,5 +162,72 @@ behavioral/sanitizer results against authenticated unchanged baselines.
 Function scores and raw byte equality alone do not resolve the source-truth
 blockers. The original DOL SHA-1 requirement remains
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. No current PASS or completion
-claim is made here for the intermediate source checkpoint `664b2d2` integrated
-with pinned main `51463275`; its actual descendant needs fresh native gates.
+source-completion claim is made for this intermediate. Fresh native results
+belong to exact descendant `c597ac33`, as recorded below.
+
+
+## Fresh narrow-intermediate validation
+
+Validated source/evidence head:
+`c597ac3356934e15a99af39eb5cbc34ea9c9bcd9`.
+Unchanged native baseline:
+`5146327538ef67c0077c30664309f9cd48fabc86`.
+External checkout-local gate:
+`57d92a7493b90020020c6d409d91aa42c1cb3ece`, wrapper SHA-256
+`7d68cc7603872846335f61abcbdc04c659ffa65ff7fb7169e3e10b5c371513d4`,
+profile SHA-256
+`9de9e5ae77e9f1601871109fbdec91b6f6772f75237ccf97d4474a97ba1c72c9`.
+Both roots received fresh exclusive preparation and independent exact-graph
+review before serial `--mode legacy --legacy-frozen --lane acceptance` builds.
+The baseline graph SHA-256 was
+`991b5249c7123a27b99172cddb4aea8eb6782e045ed7b838ec828bc73927c2c7`;
+the intermediate graph SHA-256 was
+`dcdf6b00b0e6d8cfe7ae8bf55135e3bb261b2a6681c674108683c2d3d95022fe`.
+No live wrapper, marker or compiler-output script was changed.
+
+The full native builds passed the original DOL SHA-1 check. The intermediate's
+fresh `tools/check_pr.py --no-build` passed against the freshly built baseline:
+four new exact functions, +5,324 matched code bytes, +88 matched data bytes,
++10,388 linked code bytes, +200 linked data bytes and one linked unit, with no
+regressions. Current comparison denominators stayed at 27,572 functions,
+4,353,092 code bytes and 1,761,176 data bytes. All 3,623 linked units were
+exact; retention listed 19,183 names with six additions, no removals and no
+metadata drift. The same 26 ignored `FORCEACTIVE` warning symbols occurred in
+baseline and intermediate logs; passing retention metadata does not erase them.
+
+The fresh socket source object is byte-identical to the authenticated object
+from published `7817d00`. The complete compiled `TcpProtocol.o`, callback
+provider `text_80421620.o` and declaration-cleanup `TLobby_804050DC.o` are
+byte-identical to unchanged main, including every section, symbol and
+relocation. The TCP source object's existing native mismatch remains: 40 of 45
+functions and 9,756 of 19,380 code bytes match. It remains unlinked, and no
+additional TCP recovery is claimed.
+
+Ordered provider manifests reconstructed with Ninja `compdb -x link` from each
+preserved executed frozen graph show 4,945 common input paths with identical
+hashes. Only the socket original/source provider and adjacent data-gap provider
+change. The original TCP object remains selected. These are graph-bound ordered
+link-input records, not retained physical linker response files.
+
+Address-based comparisons also passed against the authenticated historical
+`1e8cf6d` and original `ead31005` reports. Their data denominators differ from
+current main by 31 and 35 bytes respectively, reported as padding coverage:
+file-backed intervals contain original zero bytes; other intervals lie in the
+original DOL's BSS span. These differences predate this intermediate update;
+there is no denominator change against current main. They are disclosed rather
+than counted as recovered source data.
+
+Fresh host/tooling tests at `c597ac33`: 346 passed. The existing portable
+ASan/UBSan suite also passed with unchanged sanitizer settings. Neither suite
+establishes complete behavior/domain closure for the four socket bodies. The
+initial default-sandbox Wibo SIGSYS failure and LeakSanitizer ptrace failure
+were retained as environment failures; successful runs used normal reviewed
+escalation, without disabling checks. The separate 160-case byte-copy helper
+test belongs to failed `80985201`, not to this intermediate implementation.
+
+This evidence-only descendant changes no production source, compiler/tool code,
+configuration or test inputs from validated `c597ac33`; that equality must be
+bound in the final scoped review. No second native build is implied. The SACK
+view, ACK frame local, segmentation widening and broader source/behavior holds
+remain open, as do all five original PR303 network holds. This is a bounded
+draft update, not a complete or ready reconstruction.
