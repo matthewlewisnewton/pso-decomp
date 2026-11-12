@@ -6,7 +6,7 @@
 extern "C" {
 s32 play_sound_effect(int, void *, int, int);
 
-void fn_800D8830(void *owner, void *pos) {
+void play_floor_area_persistent_sound(void *owner, void *pos) {
     switch (get_current_floor_area()) {
     case AREA_CENTRAL_CONTROL_AREA:
     case AREA_JUNGLE_NORTH:
@@ -25,7 +25,7 @@ void fn_800D8830(void *owner, void *pos) {
     }
 }
 
-void fn_800D88E4(void *pos) {
+void play_floor_area_sound_effect(void *pos) {
     switch (get_current_floor_area()) {
     case AREA_CENTRAL_CONTROL_AREA:
     case AREA_JUNGLE_NORTH:

@@ -173,12 +173,12 @@ struct Shot_80356374 {
 
 extern "C" {
 extern s32 TBoss6SwordShot__name;
-u8 *TBoss6SwordShot__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0);
+u8 *__ct__15TBoss6SwordShotFP7TObjectPC3Veclf(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0);
 
 #pragma push
 #pragma opt_common_subs off
 #define self ((Shot_80356374 *)arg0)
-u8 *TBoss6SwordShot__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0) {
+u8 *__ct__15TBoss6SwordShotFP7TObjectPC3Veclf(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0) {
     f32 scale;
     f32 v;
     void *p;
@@ -219,7 +219,7 @@ TBoss6SwordShot *TBoss6SwordShot::create(TObject *owner, const Vec *pos, s32 wit
     temp_r3 = (u8 *)(__nw__7TObjectFUl(0x38));
     var_r0 = temp_r3;
     if (var_r0 != NULL) {
-        var_r0 = (u8 *)(TBoss6SwordShot__ct(temp_r3, (s32)owner, (s32)pos, with_particles, speed));
+        var_r0 = (u8 *)(__ct__15TBoss6SwordShotFP7TObjectPC3Veclf(temp_r3, (s32)owner, (s32)pos, with_particles, speed));
     }
     return (TBoss6SwordShot *)var_r0;
 }

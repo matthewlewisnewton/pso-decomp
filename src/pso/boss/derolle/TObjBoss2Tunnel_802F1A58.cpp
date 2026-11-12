@@ -583,7 +583,7 @@ void TUnk_804E4B3C::run_task() {
     sub_802F273C();
 }
 
-f32 lbl_804E4AA4[12] = {
+f32 boss2_tunnel_effect_tail[12] = {
     26.0f, -19.0f, 62.0f,
     -26.0f, -19.0f, 62.0f,
     26.0f, -19.0f, 0.0f,

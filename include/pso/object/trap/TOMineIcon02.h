@@ -16,7 +16,7 @@ struct TOMineIcon02 : public TOMine {
 typedef char TOMineIcon02_size[sizeof(TOMineIcon02) == 0x37C ? 1 : -1];
 
 extern "C" {
-void *TOMineIcon02__ct(void *arg0, void *arg1, void *arg2);
+void *__ct__12TOMineIcon02FP7TObjectPv(void *arg0, void *arg1, void *arg2);
 void *__dt__12TOMineIcon02Fv(void *arg0, s16 arg1);
 }
 

@@ -115,7 +115,7 @@ s32 TBoss8Dragon::spawn_attack_object(s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     Stack_802F3A48 stack;
     s32 temp_r3;
     s32 var_r0;
-    if (setup_attack_slot__12TBoss8DragonFiUiiiPv(arg0, arg1, arg2, arg4, (u8 *)&stack.sp8) != 0) {
+    if (setup_attack_slot__13TUnk_804E4BF0FP3VecllPUc(arg0, arg1, arg2, arg4, (u8 *)&stack.sp8) != 0) {
         temp_r3 = __nw__7TObjectFUl(0x8A4);
         var_r0 = temp_r3;
         if (var_r0 != 0) {

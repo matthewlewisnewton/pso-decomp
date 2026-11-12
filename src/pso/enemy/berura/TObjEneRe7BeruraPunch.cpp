@@ -71,7 +71,7 @@ struct Pair_80096150 { s32 a; s32 b; };
 extern "C" {
 
 u8 * csnVector(s32, s32, s32);
-s32 TObjEneRe7Berura__sub_80094D98();
+s32 clear_active_part_flag_2__16TObjEneRe7BeruraFv();
 
 void TObjEneRe7Berura__sub_80094C68(TObjEneRe7Berura *self);
 s32 refresh_collision_body_centers__14TObjCollidableFv(void *, void *, f32, f32);
@@ -182,7 +182,7 @@ void TObjEneRe7BeruraPunch::update_flight() {
     if ((var_r31 != 0) || (sub_80096150() != 0) || (this->m_114 > this->m_c8)) {
         this->m_b4 = 2;
         if (find_entity_by_id(this->m_b0) != NULL) {
-            TObjEneRe7Berura__sub_80094D98();
+            clear_active_part_flag_2__16TObjEneRe7BeruraFv();
         }
     }
 }

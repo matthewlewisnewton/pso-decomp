@@ -437,7 +437,7 @@ void handle_6x9C_set_enemy_low_game_flags_ultimate(Msg_800F62E0 *arg0);
 void handle_6x0A_update_enemy_state(Msg_800F6464 *arg0);
 void distribute_experience__9TObjEnemyFv(TObjPlayer_800F6B68 *self);
 void award_enemy_experience__9TObjEnemyFl(u8 *arg0, s32 arg1);
-void link_chain_nodes__10TObjPlayerFPvPvPv(void *arg0, Node_800F6E2C *arg1, Node_800F6E2C *arg2);
+void link_last_group_child__9TObjEnemyFP9TObjEnemyP9TObjEnemy(void *arg0, Node_800F6E2C *arg1, Node_800F6E2C *arg2);
 void apply_by_index__9TObjEnemyFs(s16, void *);
 void resume_update__7TObjectFv(void *arg0);
 s32 get_attack_credit_slot_count(void *);
@@ -854,7 +854,7 @@ void TObjEnemy::update_prev_position() {
 }
 #pragma pop
 
-void link_chain_nodes__10TObjPlayerFPvPvPv(void *arg0, Node_800F6E2C *arg1, Node_800F6E2C *arg2) {
+void link_last_group_child__9TObjEnemyFP9TObjEnemyP9TObjEnemy(void *arg0, Node_800F6E2C *arg1, Node_800F6E2C *arg2) {
     Node_800F6E2C *p = arg1->f34C;
     Node_800F6E2C *q = arg2->f34C;
     if (p != NULL) {

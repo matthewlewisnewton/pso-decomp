@@ -26,7 +26,7 @@ struct PL_80323544 { u8 pad[0x30]; u32 flags; u8 pad34[4]; Vec_80323544 pos; };
 
 extern "C" {
 P_80323348 *get_player_data__10TObjPlayerFi(s32);
-s32 is_state_1f__14TBoss6PlotFalzFUi();
+s32 is_state_1f__14TBoss6PlotFalzFP10TObjPlayer();
 f32 vector_length(void *);
 void subtract_vector(void *, void *);
 void normalize_vector(void *);
@@ -54,7 +54,7 @@ void TBoss6GravBall::clear_player_grav_flags() {
     s32 i;
     for (i = 0; i < n; i++) {
         P_80323348 *p = get_player_data__10TObjPlayerFi(i);
-        if (is_state_1f__14TBoss6PlotFalzFUi() != 0) {
+        if (is_state_1f__14TBoss6PlotFalzFP10TObjPlayer() != 0) {
             p->flags &= 0xFFFDFFFF;
         }
     }

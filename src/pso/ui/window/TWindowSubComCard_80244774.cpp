@@ -148,7 +148,7 @@ s32 sub_80246948__11TWindowBaseFv();
 int TWindowFukidasi__sub_8024695C(void *p);
 s32 TWindowCtrlMain__sub_8024CE24();
 s32 animate_scale__19TWindowKeyBoardSoftFv();
-s32 open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, void *, int, f32);
+s32 open_singleton__19TWindowKeyBoardSoftFPfPfPffi(void *, void *, void *, int, f32);
 s32 init_window_layout_entries(void *, int, int);
 s32 sub_8026CC28__11TWindowBaseFv();
 s32 resort_window_order__11TWindowBaseFv(void *);
@@ -305,7 +305,7 @@ void window_request_show(void *object) {
 s32 TWindowBase::setup_window_draw_context(s32 arg1) {
     s32 temp_r31;
     s32 var_r4;
-    temp_r31 = ((s32 (*)(void *, void *, void *, f32, int))open_singleton__19TWindowKeyBoardSoftFiiii)((void *) (((u8 *)this) + 0x40), (void *) (((u8 *)this) + 0x48), (void *)arg1, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x54)), (int) (*(s32 *)((s8 *)((u8 *)this) + 0x2C)));
+    temp_r31 = ((s32 (*)(void *, void *, void *, f32, int))open_singleton__19TWindowKeyBoardSoftFPfPfPffi)((void *) (((u8 *)this) + 0x40), (void *) (((u8 *)this) + 0x48), (void *)arg1, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x54)), (int) (*(s32 *)((s8 *)((u8 *)this) + 0x2C)));
     if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x40) {
         animate_scale__19TWindowKeyBoardSoftFv();
     }

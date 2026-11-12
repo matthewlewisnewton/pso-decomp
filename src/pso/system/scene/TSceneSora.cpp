@@ -69,7 +69,7 @@ s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 s32 set_current_texture_list();
 void *get_current_floor();
-u32 init_bin_model_request(void *, int, Res_80207478 *, Res_80207478 *, int, int, int);
+u32 init_from_id_lists__FP11BmlResourcelPPvPPvllPv(void *, int, Res_80207478 *, Res_80207478 *, int, int, int);
 s32 lookup_scene_object__6TLobbyFPv(void *, Ref_80207478 *);
 void *ADXF_Open(char *, int);
 extern char sky_model_ext_s_njm[];
@@ -211,7 +211,7 @@ void TSceneSora::load_sky_resources() {
         a.n = 0;
         o = (u32)(int)::operator new(0x440);
         if (o != 0) {
-            o = init_bin_model_request((void *)o, 1, &b, &a, 0, 0, 0);
+            o = init_from_id_lists__FP11BmlResourcelPPvPPvllPv((void *)o, 1, &b, &a, 0, 0, 0);
         }
         TSceneSora__sky_bml_resource = o;
         TSceneSora__sky_active_flag = 1;

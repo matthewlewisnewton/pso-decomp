@@ -271,7 +271,7 @@ Vec2_8024EC34 *get_viewport_offset__19TWindowKeyBoardSoftFi(s32 i) {
     return get_zero_vec2();
 }
 
-u32 open_singleton__19TWindowKeyBoardSoftFiiii(s32 pos, s32 size, s32 scale, s32 flags, u32 _w4, f32 depth) {
+u32 open_singleton__19TWindowKeyBoardSoftFPfPfPffi(s32 pos, s32 size, s32 scale, s32 flags, u32 _w4, f32 depth) {
     if ((u32) soft_keyboard_instance == 0U) {
         return 0U;
     }

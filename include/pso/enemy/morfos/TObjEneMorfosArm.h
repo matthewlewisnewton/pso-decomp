@@ -19,7 +19,7 @@ struct TObjEneMorfosArm : public TObjMotion {
 typedef char TObjEneMorfosArm_size[sizeof(TObjEneMorfosArm) == 0x104 ? 1 : -1];
 
 extern "C" {
-void TObjEneMorfosArm__sub_8033542C(void);
+void unload_static_data__16TObjEneMorfosArmFv(void);
 }
 
 #endif

@@ -203,10 +203,10 @@ void load_darkgunner_effect_resources();
 void load_resources__11TObjEneMojaFv();
 void TObjEneMerillLia__sub_800D6D64();
 
-void load_shinowa_mirage_resources();
+void load_shared_resources__23TObjEneMe3ShinowaMirageFv();
 void TBoss4Type3__sub_802D1130();
 void TBoss8Dragon__sub_802FDA78();
-void TObjEneMorfos__sub_803350AC();
+void load_resources__13TObjEneMorfosFv();
 
 FloorResourceCallbacks floor_resource_callbacks_selector_00[43] = {
     { load_ply_motion_npc_town, TObjNpcBase::free_static },
@@ -283,7 +283,7 @@ FloorResourceCallbacks floor_resource_callbacks_selector_03[10] = {
     { TObjEneDD::create_instance, TObjEneDD::release_resource },
     { TObjGrass::load_resources, TObjGrass::destroy_all },
     { TObjCGrass::load_resources, TObjCGrass::release_global_805D5130 },
-    { TObjPlayer__sub_800C44C4, TObjEneRe2Flower::destroy_instance },
+    { initialize_resources__16TObjEneRe2FlowerFv, TObjEneRe2Flower::destroy_instance },
     { TObjEneNanoDrago::load_resources, TObjEneNanoDrago::free_resources },
     { TLobby::load_shark_resources, TObjEneShark::free_resources },
     { TObjEnePanarms::load_and_spawn_npc, TObjEnePanarms::free_data },
@@ -296,7 +296,7 @@ FloorResourceCallbacks floor_resource_callbacks_selector_04[10] = {
     { TObjEneDD::create_instance, TObjEneDD::release_resource },
     { TObjGrass::load_resources, TObjGrass::destroy_all },
     { TObjCGrass::load_resources, TObjCGrass::release_global_805D5130 },
-    { TObjPlayer__sub_800C44C4, TObjEneRe2Flower::destroy_instance },
+    { initialize_resources__16TObjEneRe2FlowerFv, TObjEneRe2Flower::destroy_instance },
     { TObjEneNanoDrago::load_resources, TObjEneNanoDrago::free_resources },
     { TLobby::load_shark_resources, TObjEneShark::free_resources },
     { TObjEneSlime::spawn_pair, TObjEneSlime::free_instance },
@@ -307,7 +307,7 @@ FloorResourceCallbacks floor_resource_callbacks_selector_04[10] = {
 FloorResourceCallbacks floor_resource_callbacks_selector_05[12] = {
     { load_corpse_mark_resource, TObjPlayer::destroy_static_lobby },
     { TObjEneDD::create_instance, TObjEneDD::release_resource },
-    { TObjPlayer__sub_800C44C4, TObjEneRe2Flower::destroy_instance },
+    { initialize_resources__16TObjEneRe2FlowerFv, TObjEneRe2Flower::destroy_instance },
     { TObjEneNanoDrago::load_resources, TObjEneNanoDrago::free_resources },
     { TLobby::load_shark_resources, TObjEneShark::free_resources },
     { TObjEneSlime::spawn_pair, TObjEneSlime::free_instance },
@@ -324,7 +324,7 @@ FloorResourceCallbacks floor_resource_callbacks_selectors_06_07[9] = {
     { TObjEneDD::create_instance, TObjEneDD::release_resource },
     { TObjPlayer__sub_800AA82C, TObjPlayer::free_effect_resources },
     { TLobby::load_gyaranzo_resources, TObjEneGyaranzo::free_static_instances },
-    { load_shinowa_mirage_resources, TObjEneMe3ShinowaMirage::free_shared_resources },
+    { load_shared_resources__23TObjEneMe3ShinowaMirageFv, TObjEneMe3ShinowaMirage::free_shared_resources },
     { TObjEneMe1Canadin::load_resources, TObjEneMe1Canadin::free_resources },
     { TOCtrlDubchik::load_shared_resource, TOCtrlDubchik::destroy_instance },
     { reset_camera_override, restore_cameras_if_overridden },
@@ -435,7 +435,7 @@ FloorResourceCallbacks floor_resource_callbacks_selector_16[10] = {
     { TObjGrass::load_resources, TObjGrass::destroy_all },
     { TObjCGrass::load_resources, TObjCGrass::release_global_805D5130 },
     { TLobby::load_shark_resources, TObjEneShark::free_resources },
-    { load_shinowa_mirage_resources, TObjEneMe3ShinowaMirage::free_shared_resources },
+    { load_shared_resources__23TObjEneMe3ShinowaMirageFv, TObjEneMe3ShinowaMirage::free_shared_resources },
     { initialize_saver_resources, TObjPlayer::free_resources },
     { TObjEneDf2Bringer::load_resources, TObjEneDf2Bringer::free_resources },
     { 0, 0 },
@@ -448,7 +448,7 @@ FloorResourceCallbacks floor_resource_callbacks_selector_17[10] = {
     { TObjGrass::load_resources, TObjGrass::destroy_all },
     { TObjCGrass::load_resources, TObjCGrass::release_global_805D5130 },
     { TLobby::load_shark_resources, TObjEneShark::free_resources },
-    { load_shinowa_mirage_resources, TObjEneMe3ShinowaMirage::free_shared_resources },
+    { load_shared_resources__23TObjEneMe3ShinowaMirageFv, TObjEneMe3ShinowaMirage::free_shared_resources },
     { initialize_saver_resources, TObjPlayer::free_resources },
     { TObjEneDf2Bringer::load_resources, TObjEneDf2Bringer::free_resources },
     { 0, 0 },
@@ -517,7 +517,7 @@ FloorResourceCallbacks floor_resource_callbacks_selectors_19_20[11] = {
     { load_resources__11TObjEneMojaFv, TObjEneMoja::free_resources },
     { TObjGrass::load_resources, TObjGrass::destroy_all },
     { TObjCGrass::load_resources, TObjCGrass::release_global_805D5130 },
-    { TObjPlayer__sub_800C44C4, TObjEneRe2Flower::destroy_instance },
+    { initialize_resources__16TObjEneRe2FlowerFv, TObjEneRe2Flower::destroy_instance },
     { TObjEneBm3FlyNest::load_resources, TObjEneBm3FlyNest::free_fly },
     { TLobby::load_dimedian_resources, TObjEneDimedian::free_boss_objects },
     { TObjEneRe7Berura::load_static_resources, TObjEneRe7Berura::destroy_children },
@@ -570,7 +570,7 @@ FloorResourceCallbacks floor_resource_callbacks_selector_35[16] = {
     { TObjEneRecobox::load_resources, TObjEneRecobox::release_static_instance },
     { TObjEneDellBiter::load_resources, TObjEneDellBiter::destroy_static_instance },
     { TObjEneEpsilonGuard::load_assets, TObjEneEpsilonGuard::free_shared_resources },
-    { TObjPlayer__sub_800C44C4, TObjEneRe2Flower::destroy_instance },
+    { initialize_resources__16TObjEneRe2FlowerFv, TObjEneRe2Flower::destroy_instance },
     { TObjEneIllGill::load_shared_resources, TObjEneIllGill::free_effect },
     { load_ply_motion_npc_town, TObjNpcBase::free_static },
     { TObjNpcFemaleBase__sub_80149C7C, TObjNpcFemaleBase__sub_80149C64 },
@@ -584,7 +584,7 @@ FloorResourceCallbacks floor_resource_callbacks_selectors_28_29[14] = {
     { load_corpse_mark_resource, TObjPlayer::destroy_static_lobby },
     { TObjEneDD::create_instance, TObjEneDD::release_resource },
     { TObjEneDolmOlm::load_shared_resources, TObjEneDolmOlm::free_shared_resources },
-    { TObjEneMorfos__sub_803350AC, TObjEneMorfos::unload_static_data },
+    { load_resources__13TObjEneMorfosFv, TObjEneMorfos::unload_static_data },
     { TObjEneRecobox::load_resources, TObjEneRecobox::release_static_instance },
     { TObjEneMe3SinowZoa::load_resources, TObjEneMe3SinowZoa::free_resources },
     { TObjEneDelDepth::load_assets, TObjEneDelDepth::free_shared_data },

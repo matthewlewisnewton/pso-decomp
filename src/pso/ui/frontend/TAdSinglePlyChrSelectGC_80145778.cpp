@@ -18,7 +18,7 @@ extern "C" {
 s32 release_texture_list(s32 *);
 extern s32 menu_font_texture_list[];
 extern s32 menu_font_glyph_data;
-extern s32 lbl_805D56B4;
+extern s32 menu_font_palette;
 extern s32 menu_font_glyph_table;
 extern struct VObj_801457A4 *menu_font_object;
 void draw_menu_font_string(const char *s, s32 arg1, u32 flags, f32 x, f32 y, f32 scale);
@@ -34,7 +34,7 @@ void TAdSinglePlyChrSelectGC::free_resources() {
     }
     release_texture_list(menu_font_texture_list);
     ::operator delete[]((void *)menu_font_glyph_table);
-    ::operator delete[]((void *)lbl_805D56B4);
+    ::operator delete[]((void *)menu_font_palette);
     TAdSinglePlyChrSelectGC::safe_free(menu_font_glyph_data);
 }
 #pragma pop

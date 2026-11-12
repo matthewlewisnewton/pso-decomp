@@ -67,7 +67,7 @@ struct Pl_8033E0F0 {
 
 extern "C" {
 void *__nw__7TObjectFUl(int);
-s32 refresh_players_equipment__14TBoss6PlotFalzFPv();
+s32 refresh_players_equipment__14TBoss6PlotFalzFv();
 extern void *__vt__23TBoss6Demo21_TYPE2_DEAD[];
 void clear__24ModelNodePositionCaptureFv(int);
 void push_matrix();
@@ -87,7 +87,7 @@ void normalize_vector(void *);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 int get_player_data__10TObjPlayerFi(int a0);
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
-s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0);
+s32 is_state_1f__14TBoss6PlotFalzFP10TObjPlayer(u32 arg0);
 void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0);
 
 }
@@ -330,7 +330,7 @@ void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
         vec3_add_to(&c, lbl_804780B8);
         for (i = 0; i < n; i++) {
             Pl_8033E0F0 *p = (Pl_8033E0F0 *)get_player_data__10TObjPlayerFi(i);
-            if (is_locally_controlled__10TObjPlayerFPv(p) != 0 && is_state_1f__14TBoss6PlotFalzFUi((u32)p) != 0) {
+            if (is_locally_controlled__10TObjPlayerFPv(p) != 0 && is_state_1f__14TBoss6PlotFalzFP10TObjPlayer((u32)p) != 0) {
                 Vec_8033E0F0 d;
                 VecCopy((Vec *)&d, (const Vec *)&p->pos);
                 subtract_vector(&d, &c);
@@ -369,7 +369,7 @@ TBoss6Demo21_TYPE2_DEAD::~TBoss6Demo21_TYPE2_DEAD() {
         }
     }
     restore_player_cameras();
-    refresh_players_equipment__14TBoss6PlotFalzFPv();
+    refresh_players_equipment__14TBoss6PlotFalzFv();
     if (((O_8033E5A8 *)this)->f70 != NULL) {
         ModelNodePositionCapture::destroy((ModelNodePositionCapture *)((O_8033E5A8 *)this)->f70);
         ((O_8033E5A8 *)this)->f70 = NULL;

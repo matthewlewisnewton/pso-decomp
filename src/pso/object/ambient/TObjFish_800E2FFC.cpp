@@ -24,29 +24,29 @@ struct State_800E3074 { s32 counter; Entry_800E3074 *list; Param_800E3074 *param
 struct Arg_800E3074 { Entry_800E3074 *list; Param_800E3074 *params; };
 
 extern "C" {
-u8 * fn_800E31C4(void *, void *, s32);
-State_800E2FFC TObjFish_draw_callback_state;
+u8 * __ct__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec(void *, void *, s32);
+State_800E2FFC model_node_position_capture_state;
 void transform_to_view__11TCameraCtrlFii(s32 arg0, s32 arg1);
 
 void TObjFish::draw_callback_transform_to_view() {
-    Entry_800E2FFC *p = TObjFish_draw_callback_state.list;
-    Param_800E2FFC *q = TObjFish_draw_callback_state.params;
+    Entry_800E2FFC *p = model_node_position_capture_state.list;
+    Param_800E2FFC *q = model_node_position_capture_state.params;
     s32 id;
     while ((id = p->id) != -1) {
-        if (id == TObjFish_draw_callback_state.counter) {
+        if (id == model_node_position_capture_state.counter) {
             transform_to_view__11TCameraCtrlFii((s32)p->data, (s32)q);
         }
         p++;
         q++;
     }
-    TObjFish_draw_callback_state.counter++;
+    model_node_position_capture_state.counter++;
 }
 
 void ModelNodePositionCapture::install() {
     Arg_800E3074 *arg = (Arg_800E3074 *)this;
-    (*(State_800E3074 *)&TObjFish_draw_callback_state).counter = 0;
-    (*(State_800E3074 *)&TObjFish_draw_callback_state).list = arg->list;
-    (*(State_800E3074 *)&TObjFish_draw_callback_state).params = arg->params;
+    (*(State_800E3074 *)&model_node_position_capture_state).counter = 0;
+    (*(State_800E3074 *)&model_node_position_capture_state).list = arg->list;
+    (*(State_800E3074 *)&model_node_position_capture_state).params = arg->params;
     set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjFish::draw_callback_transform_to_view));
 }
 
@@ -65,7 +65,7 @@ s32 TObjFish::is_entry_table_valid() {
 }
 
 void ModelNodePositionCapture::destroy(ModelNodePositionCapture *capture) {
-    TObjFish__sub_800E3188((s32)capture, (s16)(1));
+    __dt__24ModelNodePositionCaptureFv((s32)capture, (s16)(1));
 }
 
 s32 create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec(u8 *list, s32 vecs) {
@@ -75,14 +75,14 @@ s32 create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec(u8 *list, 
         temp_r3 = (int)::operator new(8);
         var_r0 = temp_r3;
         if (var_r0 != 0) {
-            var_r0 = (long) (fn_800E31C4((void *) temp_r3, list, vecs));
+            var_r0 = (long) (__ct__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec((void *) temp_r3, list, vecs));
         }
         return var_r0;
     }
     return 0;
 }
 
-s32 TObjFish__sub_800E3188(s32 arg0, s16 arg1) {
+s32 __dt__24ModelNodePositionCaptureFv(s32 arg0, s16 arg1) {
     if ((arg0 != 0) && (arg1 > 0)) {
         __dl__FPv();
     }

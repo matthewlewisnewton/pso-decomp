@@ -76,7 +76,7 @@ s32 read_disc_file(const char *, void *);
 void set_texture_name(void *, void *, void *, s32);
 void load_texture_list(void *);
 void release_texture_list(void *);
-Ctrl_802A8B58 *TEffIndirectCtrl__ct(Ctrl_802A8B58 *self, s32 kind, void *parent);
+Ctrl_802A8B58 *__ct__16TEffIndirectCtrlFlP7TObject(Ctrl_802A8B58 *self, s32 kind, void *parent);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__16TEffIndirectCtrl[];
 E_802A9568 *get_indirect_recipe(s32 i);
@@ -405,7 +405,7 @@ void deform_indirect_texture_wave(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 ar
 }
 #pragma pop
 
-Ctrl_802A8B58 *TEffIndirectCtrl__ct(Ctrl_802A8B58 *self, s32 kind, void *parent) {
+Ctrl_802A8B58 *__ct__16TEffIndirectCtrlFlP7TObject(Ctrl_802A8B58 *self, s32 kind, void *parent) {
     u8 *tex;
     u8 k;
     __ct__7TObjectFP7TObject(self, parent);
@@ -602,7 +602,7 @@ void register_indirect_effect_ctrl(s32 kind) {
     if (find_indirect_effect_ctrl(kind) < 0 && indirect_effect_ctrl_count < 6) {
         p = (Ctrl_802A8B58 *)TObject::operator new(0x54);
         if (p != NULL) {
-            p = TEffIndirectCtrl__ct(p, kind, tl_01);
+            p = __ct__16TEffIndirectCtrlFlP7TObject(p, kind, tl_01);
         }
         indirect_effect_ctrl_table[indirect_effect_ctrl_count] = (TEffIndirectCtrl *)p;
         indirect_effect_ctrl_count++;

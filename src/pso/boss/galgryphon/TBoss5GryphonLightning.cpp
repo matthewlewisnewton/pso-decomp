@@ -43,7 +43,7 @@ int VecCopy__FP3VecPC3Vec(void *, void *);
 extern s32 __vt__22TBoss5GryphonLightning[];
 extern s32 lbl_805D4180;
 
-Self_80324F4C *TBoss5GryphonLightning__ct(Self_80324F4C *self, void *parent,
+Self_80324F4C *__ct__22TBoss5GryphonLightningFP7TObjectfPC3Vec(Self_80324F4C *self, void *parent,
                                           Vec_80324F4C *pos, f32 p_scale) {
     register s32 dpos, dlen;
     s32 i;

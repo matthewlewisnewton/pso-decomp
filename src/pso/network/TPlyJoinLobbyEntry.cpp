@@ -1513,10 +1513,10 @@ void handle_com_card__6TLobbyFv(void);
 void handle_create_game_window__6TLobbyFv(void);
 void update__6TLobbyFv(void);
 s32 reset_controller_input_state();
-s32 TLobby__sub_8013AD50(u32);
-s32 TLobby__sub_8013AD5C(u32);
-s8 TLobby__sub_8013AD6C(u32);
-s32 TLobby__sub_8013AD74(u32);
+s32 test_flag_1d_bit1__15TWindowMakeTeamFv(u32);
+s32 get_field_20__15TWindowMakeTeamFv(u32);
+s8 read_mode__15TWindowMakeTeamFv(u32);
+s32 test_flag_1d_bit0__15TWindowMakeTeamFv(u32);
 s32 TWindowMakeTeam__sub_80264B24(u32);
 s32 TWindowMakeTeam__sub_80264B38(u32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
@@ -1962,14 +1962,14 @@ void handle_create_game_window__6TLobbyFv(void) {
     s32 temp_r0;
 
     if ((u32) lobby_make_team_window != 0U) {
-        if (TLobby__sub_8013AD74(lobby_make_team_window) != 0) {
+        if (test_flag_1d_bit0__15TWindowMakeTeamFv(lobby_make_team_window) != 0) {
             temp_r3 = TWindowMakeTeam__sub_80264B38(lobby_make_team_window);
             if (temp_r3 != 0) {
                 temp_r30 = TWindowMakeTeam__sub_80264B24(lobby_make_team_window);
-                temp_r29 = TLobby__sub_8013AD6C(lobby_make_team_window) == 2;
+                temp_r29 = read_mode__15TWindowMakeTeamFv(lobby_make_team_window) == 2;
                 temp_r28 = is_enabled__15TWindowMakeTeamFv(lobby_make_team_window);
                 temp_r27 = get_mode__6TLobbyFv(lobby_make_team_window) == 1;
-                temp_r0 = TLobby__sub_8013AD5C(lobby_make_team_window);
+                temp_r0 = get_field_20__15TWindowMakeTeamFv(lobby_make_team_window);
                 send_create_game__9TProtocolFPcPcUcUcUcUc((*(s32 *)&(*(s32 *)&(*(s32 *)&(*(s32 *)&TLobby__protocol_instance)))), temp_r3, temp_r30, temp_r28, temp_r29, temp_r27, temp_r0);
                 ((s32 (*)())destroy_lobby_ui__6TLobbyFv)();
                 return;
@@ -1977,7 +1977,7 @@ void handle_create_game_window__6TLobbyFv(void) {
             close_all_windows__6TLobbyFv();
             return;
         }
-        if (TLobby__sub_8013AD50(lobby_make_team_window) != 0) {
+        if (test_flag_1d_bit1__15TWindowMakeTeamFv(lobby_make_team_window) != 0) {
             close_all_windows__6TLobbyFv();
         }
     }

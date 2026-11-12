@@ -186,10 +186,10 @@ f32 TObjPlayer__sub_8017A1A4(int, int);
 s32 send_6x2C_impose_hold(int, void *, int, int, f32);
 void *get_player_by_client_id(s32 i);
 extern s32 local_client_id;
-void check_hold_player__14TOTrapSeabed01FPv(u8 *arg0);
+void check_hold_player__14TOTrapSeabed01Fv(u8 *arg0);
 void vfunc_81__14TOTrapSeabed01Fv(u8 *arg0);
 s32 get_bml_model(int, int);
-u8 *copy_transform__8TObjChipFPvPv(u8 *arg0, u8 *arg1);
+u8 *copy_transform__8TObjChipFP19TObjChipSpawnParamsP14TObjChipParams(u8 *arg0, u8 *arg1);
 void *__nw__7TObjectFUl(int);
 s32 __ct__13TObjSuisoChipFP8TObjBaseP19TObjChipSpawnParams(void *, void *, void *);
 s32 matrix_mult_vec(void *, void *, void *);
@@ -198,30 +198,30 @@ extern u8 TOTrapSeabed01__transform_params[];
 extern SeabedTrapFragmentSpawn seabed_trap_fragment_spawns[];
 s32 TOTrapSeabed01__bml_resource;
 s32 TOTrapSeabed01__texture_file;
-void TOTrapSeabed01__vt83(Trap_802C9E3C *self);
+void play_sounds__14TOTrapSeabed01Fv(Trap_802C9E3C *self);
 s32 check_value_equals__7TObjectFPCc(void *, s32);
 s32 is_valid_and_active__10TObjPlayerFUl();
 extern s32 lbl_805D3530;
 s32 vfunc_67__14TOTrapSeabed01Ff(Trap_802C9F70 *self);
-void TOTrapSeabed01__vt20(s32 arg0, s32 arg1, f32 farg0);
+void receive_physical_attack__14TOTrapSeabed01FPvf(s32 arg0, s32 arg1, f32 farg0);
 s32 receive_physical_attack__6TOTrapFPvf(s32, s32, f32);
 s32 sub_802C9D38__14TOTrapSeabed01Fv();
 
-void TOTrapSeabed01__vt20(s32 arg0, s32 arg1, f32 farg0) {
+void receive_physical_attack__14TOTrapSeabed01FPvf(s32 arg0, s32 arg1, f32 farg0) {
     sub_802C9D38__14TOTrapSeabed01Fv();
     receive_physical_attack__6TOTrapFPvf(arg0, arg1, farg0);
 }
 
 u32 TOTrapSeabed01__ginja_model;
 
-void TOTrapSeabed01__vt83(Trap_802C9E3C *self) {
+void play_sounds__14TOTrapSeabed01Fv(Trap_802C9E3C *self) {
     Mtx_802C9E3C m;
     Params_802C9E3C p;
     SeabedTrapFragmentSpawn *e;
     s32 i;
     f32 y;
     void *o;
-    copy_transform__8TObjChipFPvPv((u8 *)&p, (u8 *)TOTrapSeabed01__transform_params);
+    copy_transform__8TObjChipFP19TObjChipSpawnParamsP14TObjChipParams((u8 *)&p, (u8 *)TOTrapSeabed01__transform_params);
     y = TOTrapSeabed01__data_805DE644;
     p.f44 = TOTrapSeabed01__texture_file;
     for (i = 0; i < 6; i++) {
@@ -267,7 +267,7 @@ int TOTrapSeabed01::vfunc_67(f32) {
 
 #pragma push
 #pragma fp_contract on
-void check_hold_player__14TOTrapSeabed01FPv(u8 *trap_seabed01) {
+void check_hold_player__14TOTrapSeabed01Fv(u8 *trap_seabed01) {
     f32 temp_f0;
     f32 temp_f31;
     u32 temp_r3;
@@ -323,7 +323,7 @@ void TOTrapSeabed01::vfunc_81() {
         ((TObjCollidable *)arg0)->clear_player_status_flag(0, 0x08001F04U);
         ((TObjCollidable *)arg0)->set_indexed_flags(0, 0x8003);
         ((TObjBase *)arg0)->obj_clearFlags30(0x40000U);
-        check_hold_player__14TOTrapSeabed01FPv(arg0);
+        check_hold_player__14TOTrapSeabed01Fv(arg0);
     }
 }
 
@@ -361,7 +361,7 @@ s32 push_matrix();
 s32 scale_current_matrix(void *);
 s32 post_translate_matrix(void *);
 s32 is_split_screen();
-s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
+s32 dispatch_input_to_instance__18TAdEnterPasswordGCFP7TObject(void *);
 void render__14TOTrapSeabed01Fv(S_802CA550 *arg0);
 s32 PPCSync();
 s32 scroll_ginja_mesh_uvs(int, int, int, void *, int);
@@ -459,7 +459,7 @@ void TOTrapSeabed01::draw() {
     }
 }
 void render__14TOTrapSeabed01Fv(S_802CA550 *arg0) {
-    if (TMainTask::get_render_pass() != 1 && (arg0->f34C == 0 || is_split_screen() != 0 || dispatch_input_to_instance__18TAdEnterPasswordGCFi(arg0) == 0) && arg0->f340 == 1) {
+    if (TMainTask::get_render_pass() != 1 && (arg0->f34C == 0 || is_split_screen() != 0 || dispatch_input_to_instance__18TAdEnterPasswordGCFP7TObject(arg0) == 0) && arg0->f340 == 1) {
         switch (arg0->f326) {
         case 0:
         case 1:
@@ -531,7 +531,7 @@ s32 __ct__6TOTrapFP7TObjectPv(void *);
 extern SeabedTrapCollisionBody seabed_trap_collision_body;
 extern void *__vt__14TOTrapSeabed01[];
 extern s32 TOTrapSeabed01_class_name;
-u8 *TOTrapSeabed01__ct(TOTrapSeabed01 *arg0, s32 arg1, s32 arg2);
+u8 *__ct__14TOTrapSeabed01FP7TObjectPv(TOTrapSeabed01 *arg0, s32 arg1, s32 arg2);
 u8 *load_gvm_texture_file(s32 arg0);
 extern SeabedTrapResourceDescriptor seabed_trap_resource_descriptor;
 
@@ -609,7 +609,7 @@ void TOTrapSeabed01::clamp_params_and_init() {
 void *TOTrapSeabed01::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x35C);
     if (o != NULL) {
-        o = TOTrapSeabed01__ct((TOTrapSeabed01 *)((u8 *)o), (s32)tl_05, (s32)arg0);
+        o = __ct__14TOTrapSeabed01FP7TObjectPv((TOTrapSeabed01 *)((u8 *)o), (s32)tl_05, (s32)arg0);
     }
     return o;
 }
@@ -669,7 +669,7 @@ void *__dt__14TOTrapSeabed01Fv(void *arg0, s16 arg1) {
     }
     return arg0;
 }
-u8 *TOTrapSeabed01__ct(TOTrapSeabed01 *trap_seabed01, s32 arg1, s32 arg2) {
+u8 *__ct__14TOTrapSeabed01FP7TObjectPv(TOTrapSeabed01 *trap_seabed01, s32 arg1, s32 arg2) {
     __ct__6TOTrapFP7TObjectPv(trap_seabed01);
     *(s32 **)((s8 *)trap_seabed01 + 0x18) = &(*(RecoveredGlobal_802CA9AC___vt__14TOTrapSeabed01 *)&__vt__14TOTrapSeabed01).value;
     *(s32 *)((s8 *)trap_seabed01 + 0) = (s32) TOTrapSeabed01_class_name;
@@ -808,7 +808,7 @@ void *__vt__14TOTrapSeabed01[91] = {
     (void *)&is_actor_cadence_frame__9TObjCharaFl,
     (void *)&select_melee_contact_body__6TOTrapFPvf,
     (void *)&calc_distance_accuracy_penalty__6TOTrapFPvPvPvf,
-    (void *)&TOTrapSeabed01__vt20,
+    (void *)&receive_physical_attack__14TOTrapSeabed01FPvf,
     (void *)&receive_direct_attack__6TOTrapFPv19DirectAttackPayloadPvll,
     (void *)&receive_weapon_special_attack__6TOTrapFPvPv,
     (void *)&apply_knockback_from_attacker__6TOTrapFPUcf,
@@ -871,7 +871,7 @@ void *__vt__14TOTrapSeabed01[91] = {
     (void *)&vfunc_82__14TOTrapSeabed01Fv,
     (void *)&is_any_player_matching_stat__6TOTrapFv,
     (void *)&vfunc_84__14TOTrapSeabed01Fv,
-    (void *)&TOTrapSeabed01__vt83,
+    (void *)&play_sounds__14TOTrapSeabed01Fv,
     (void *)&vfunc_86__6TOTrapFv,
     (void *)&vfunc_87__6TOTrapFf,
     (void *)&vfunc_88__6TOTrapFv,

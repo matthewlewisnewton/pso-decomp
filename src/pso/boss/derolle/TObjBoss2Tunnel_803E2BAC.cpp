@@ -13,7 +13,7 @@ struct Vtx_803E2BCC {
 
 extern "C" {
 s32 GXBegin(int, int, u16);
-void draw_projected_quads__15TObjBoss2TunnelFPvi(Vtx_803E2BCC *p, s32 n);
+void draw_projected_quads__15TObjBoss2TunnelFP15ProjectedVertexi(Vtx_803E2BCC *p, s32 n);
 
 void TObjBoss2Tunnel::reset_player_state() {
     TObjPlayer__sub_803E2248();
@@ -29,7 +29,7 @@ typedef union {
     f32 f32;
 } WGPipe_803E2BCC;
 #define GXWGFifo_803E2BCC (*(volatile WGPipe_803E2BCC *)0xCC008000)
-void draw_projected_quads__15TObjBoss2TunnelFPvi(Vtx_803E2BCC *p, s32 n) {
+void draw_projected_quads__15TObjBoss2TunnelFP15ProjectedVertexi(Vtx_803E2BCC *p, s32 n) {
     s32 i;
     f32 one;
     GXBegin(0x98, 4, n);

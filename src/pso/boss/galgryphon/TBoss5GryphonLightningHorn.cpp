@@ -29,7 +29,7 @@ typedef struct SlicerLaunchData_8012D9C8 {
 } SlicerLaunchData_8012D9C8;
 
 extern "C" {
-s32 TBoss5GryphonLightning__ct(f32);
+s32 __ct__22TBoss5GryphonLightningFP7TObjectfPC3Vec(f32);
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int, f32, f32);
 extern s32 __vt__26TBoss5GryphonLightningHorn[];
@@ -37,7 +37,7 @@ extern s32 lbl_805D41A0;
 extern const f32 lbl_805DF630;
 extern const f32 lbl_805DF634;
 extern const f32 lbl_805DF644;
-u8 *__ct__26TBoss5GryphonLightningHornFv(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
+u8 *__ct__26TBoss5GryphonLightningHornFP7TObjectPC3Vecl(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 __nw__7TObjectFUl(int);
 extern const f32 lbl_805D8D48;
 void init_slicer_launch_state(void *arg0);
@@ -92,14 +92,14 @@ s32 TBoss8Dragon::spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2) {
     allocation = __nw__7TObjectFUl(0xA8);
     effect = allocation;
     if (effect != 0) {
-        effect = (s32)__ct__26TBoss5GryphonLightningHornFv((u8*)allocation, arg0, (s32)&position, arg2);
+        effect = (s32)__ct__26TBoss5GryphonLightningHornFP7TObjectPC3Vecl((u8*)allocation, arg0, (s32)&position, arg2);
     }
     return effect;
 }
 
-u8 *__ct__26TBoss5GryphonLightningHornFv(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+u8 *__ct__26TBoss5GryphonLightningHornFP7TObjectPC3Vecl(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 temp_f1;
-    TBoss5GryphonLightning__ct(lbl_805DF644);
+    __ct__22TBoss5GryphonLightningFP7TObjectfPC3Vec(lbl_805DF644);
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__26TBoss5GryphonLightningHorn;
     *(s32 *)((s8 *)arg0 + 0) = (s32) lbl_805D41A0;
     *(s32 *)((s8 *)arg0 + 0xA4) = arg3;

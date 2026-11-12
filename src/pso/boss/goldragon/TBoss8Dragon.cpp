@@ -1573,7 +1573,7 @@ extern void *tl_04;
 extern "C" {
 }
 extern "C" {
-void calc_direct_attack_damage__12TBoss8DragonFPvPvPviii();
+void receive_direct_attack__12TBoss8DragonFPv19DirectAttackPayloadPvll();
 }
 extern "C" {
 void draw_motion_model__12TBoss8DragonFv();
@@ -2181,7 +2181,7 @@ void *__vt__12TBoss8Dragon[107] = {
     (void *)&TObjPlayer__sub_80018F64, (void *)&TObjPlayer__sub_80018F5C, (void *)&fn_801A2340, (void *)&fn_801A212C,
     (void *)&get_name__9TObjEnemyFv, (void *)&interact__14TObjCollidableFl, (void *)&TObjPlayer__sub_80011210, (void *)&consume_timer_field__9TObjCharaFl,
     (void *)&TObjPlayer__sub_8001119C, (void *)&TObjPlayer__sub_80018EE4, (void *)&vfunc_18__9TObjCharaFPUc, (void *)&TObjPlayer__sub_80011704,
-    (void *)&TObjPlayer__sub_80016454, (void *)&TObjPlayer__sub_80015DE8, (void *)&TObjPlayer__sub_80014108, (void *)&calc_direct_attack_damage__12TBoss8DragonFPvPvPviii,
+    (void *)&TObjPlayer__sub_80016454, (void *)&TObjPlayer__sub_80015DE8, (void *)&TObjPlayer__sub_80014108, (void *)&receive_direct_attack__12TBoss8DragonFPv19DirectAttackPayloadPvll,
     (void *)&TObjPlayer__sub_80011824, (void *)&TObjPlayer__sub_8001401C, (void *)&try_start_action__9TObjCharaFll, (void *)&TObjPlayer__sub_800162E0,
     (void *)&vfunc_28__12TBoss8DragonFv, (void *)&vfunc_29__9TObjCharaFv, (void *)&TObjPlayer__sub_8001745C, (void *)&test_flag_256__9TObjCharaFv,
     (void *)&test_flag30_512__9TObjCharaFv, (void *)&has_flag_0x800__9TObjCharaFv, (void *)&test_flag_1000__9TObjCharaFv, (void *)&TObjPlayer__sub_800171A0,

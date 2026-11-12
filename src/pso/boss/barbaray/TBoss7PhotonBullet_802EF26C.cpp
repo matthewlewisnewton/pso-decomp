@@ -143,7 +143,7 @@ void *__dt__18TBoss7PhotonBulletFv(void *arg0, s16 arg1) {
     }
     return arg0;
 }
-u8 *TBoss7PhotonBullet__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0) {
+u8 *__ct__18TBoss7PhotonBulletFP7TObjectP8TObjBasePC3VecPC3Vecf(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0) {
     __ct__13TUnk_804928CCFP7TObjectP8TObjBase((arg0), (arg1), (arg2));
     *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_802EF514___vt__18TBoss7PhotonBullet *)&__vt__18TBoss7PhotonBullet).value;
     *(const char **)((s8 *)arg0 + 0) = TBoss7PhotonBullet__name;
@@ -201,7 +201,7 @@ void TBoss7PhotonPad::run_task() {
         if (st != 0) {
             p = __nw__7TObjectFUl(0xF8);
             if (p != 0) {
-                ((s32 (*)(void *, void *, s32, s32, void *, f32))TBoss7PhotonBullet__ct)((void *)p, self->parent, st, self->unk1C, self->pos, 1.5f * boss7_photon_bullet_level_table[self->level].d);
+                ((s32 (*)(void *, void *, s32, s32, void *, f32))__ct__18TBoss7PhotonBulletFP7TObjectP8TObjBasePC3VecPC3Vecf)((void *)p, self->parent, st, self->unk1C, self->pos, 1.5f * boss7_photon_bullet_level_table[self->level].d);
             }
         }
         self->timer = boss7_photon_bullet_level_table[self->level].b;

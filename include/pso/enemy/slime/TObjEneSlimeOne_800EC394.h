@@ -5,8 +5,8 @@
 
 extern "C" {
 void TObjEneSlimeOne__sub_800EC470(void *p);
-s32 __dt__15TObjEneSlimeOneFis(s32 arg0, s16 arg1);
-void *fn_800ECA28(void *arg0, s32 arg1);
+s32 __dt__19SlimeAnimationStateFv(s32 arg0, s16 arg1);
+void *__ct__19SlimeAnimationStateFP15TObjEneSlimeOne(void *arg0, s32 arg1);
 }
 
 #endif

@@ -27,7 +27,7 @@ typedef char TBoss7TentacleNeedle_size[sizeof(TBoss7TentacleNeedle) == 0x7C ? 1 
 
 class TBoss7Tentacle;
 extern "C" {
-void TBoss7Tentacle__sub_802EF954(void *p);
+void finish_retract__20TBoss7TentacleNeedleFv(void *p);
 u8 TBoss7Tentacle__sub_802F0904(u8 *arg0);
 void TBoss7Tentacle__sub_802F0918(void *p);
 void TBoss7Tentacle__sub_802F09B4(void *p);
@@ -45,11 +45,11 @@ void TBoss7Tentacle__sub_802F0B80(void *p);
 void TObjPlayer__sub_802EFEC4(void);
 void TObjPlayer__sub_802F0D2C(void);
 void advance_needle_timer__20TBoss7TentacleNeedleFv(void *arg0);
-void damage_nearby_players__14TBoss7TentacleFPv(u8 *arg0);
+void damage_nearby_players__20TBoss7TentacleNeedleFv(u8 *arg0);
 void fn_802EFEA8(void);
 void render__14TBoss7TentacleFv(u8 *arg0);
 void run_task__14TBoss7TentacleFv(u8 *arg0);
-void update_retract_state__14TBoss7TentacleFPv(TBoss7Tentacle *arg0);
+void update_retract_state__20TBoss7TentacleNeedleFv(TBoss7Tentacle *arg0);
 }
 
 #endif

@@ -67,7 +67,7 @@ extern void *__vt__12TOMineIcon04[];
 extern s32 TOMineIcon04__name;
 extern s32 game_difficulty_selection;
 extern void *lbl_805D5A50;
-void *TOMineIcon04__ct(void *arg0, void *arg1, void *arg2);
+void *__ct__12TOMineIcon04FP7TObjectPv(void *arg0, void *arg1, void *arg2);
 int vfunc_82__12TOMineIcon04Fv(void* p);
 void vfunc_84__12TOMineIcon04Fv(void);
 void *__dt__12TOMineIcon04Fv(void *arg0, s16 arg1);
@@ -294,7 +294,7 @@ void TOMineIcon04::vfunc_80() {
 void *TOMineIcon04::create() {
     void *o = __nw__7TObjectFUl(0x37C);
     if (o != NULL) {
-        o = TOMineIcon04__ct(o, tl_05, this);
+        o = __ct__12TOMineIcon04FP7TObjectPv(o, tl_05, this);
     }
     return o;
 }
@@ -313,7 +313,7 @@ void *__dt__12TOMineIcon04Fv(void *arg0, s16 arg1) {
 }
 #pragma push
 #pragma fp_contract on
-void *TOMineIcon04__ct(void *arg0, void *arg1, void *arg2) {
+void *__ct__12TOMineIcon04FP7TObjectPv(void *arg0, void *arg1, void *arg2) {
     __ct__6TOMineFP7TObject(arg0, arg1, arg2);
 #define self ((Icon_80171E7C *)arg0)
     self->vt = ((void * *)&__vt__12TOMineIcon04);

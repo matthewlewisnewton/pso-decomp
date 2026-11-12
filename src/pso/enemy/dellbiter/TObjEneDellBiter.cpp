@@ -87,7 +87,7 @@ void enemy_set_target_id(void *, u16);
 s32 transform_point_to_view(void *, int);
 s32 pack_debug_text_position(s32, s32);
 s32 attack_target_history_add(s32, void *);
-void fn_800D8830(void *owner, void *pos);
+void play_floor_area_persistent_sound(void *owner, void *pos);
 s32 TObjEneGibbles__sub_800D8988(s32);
 f32 horizontal_distance_squared(void *, void *);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
@@ -594,7 +594,7 @@ s32 TObjEneDellBiter::fn_803059BC(const Vec *origin) {
 void TObjEneDellBiter::fn_8030591C() {
     if (is_passing_frame(0.0f) != 0 || is_passing_frame(8.0f) != 0) {
         if (fn_803059BC(&position) != 0) {
-            fn_800D8830(this, &position);
+            play_floor_area_persistent_sound(this, &position);
             return;
         }
         play_persistent_sound(((TObjEnemy *)(this))->remap_sound_for_area((s32)((void *)0x40039E13)), (s32)this, (u32)&position, 0, 0);

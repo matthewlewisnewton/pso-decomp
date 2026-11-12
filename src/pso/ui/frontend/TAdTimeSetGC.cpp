@@ -67,24 +67,24 @@ struct TAdTimeSetGCState {
 
 const char *TAdTimeSetGC_class_name = "TAdTimeSetGC";
 
-static const f32 time_set_message_size[2] = {540.0f, 260.0f};
+static const f32 time_set_dialog_size[2] = {540.0f, 260.0f};
 
 const char *T_ATS_DrawCalendar__name = "T_ATS_DrawCalendar";
 
 static const f32 time_set_message_pos[2] = {
-    0.5f * (640.0f - time_set_message_size[0]),
+    0.5f * (640.0f - time_set_dialog_size[0]),
     90.0f,
 };
-static const f32 time_set_menu_pos[2] = {
+static const f32 time_set_option_pos[2] = {
     20.0f + time_set_message_pos[0],
-    10.0f + (time_set_message_pos[1] + time_set_message_size[1]),
+    10.0f + (time_set_message_pos[1] + time_set_dialog_size[1]),
 };
-static const f32 time_set_menu_width = time_set_message_size[0] - 40.0f;
+static const f32 time_set_option_extent = time_set_dialog_size[0] - 40.0f;
 static const f32 time_set_calendar_pos[2] = {
-    time_set_message_pos[0] + 0.5f * time_set_message_size[0],
-    (time_set_message_pos[1] + time_set_message_size[1]) - 85.0f,
+    time_set_message_pos[0] + 0.5f * time_set_dialog_size[0],
+    (time_set_message_pos[1] + time_set_dialog_size[1]) - 85.0f,
 };
-static TAdTimeSetGCState time_set_state_table[25] = {
+static TAdTimeSetGCState time_set_state_actions[25] = {
     {&TAdTimeSetGC::rebuild_and_maybe_close, &TAdTimeSetGC::report_card_status},
     {&TAdTimeSetGC::sub_802E3038, &TAdTimeSetGC::ensure_system_file_loaded},
     {&TAdTimeSetGC::sub_802E2FEC, &TAdTimeSetGC::sub_802E2F88},
@@ -144,7 +144,7 @@ void TAdTimeSetGC::run_task() {
     if (load_status & 1) {
         change_state(0);
     }
-    TAdTimeSetGCState *entry = &time_set_state_table[state_index];
+    TAdTimeSetGCState *entry = &time_set_state_actions[state_index];
     void (TAdTimeSetGC::*run)() = entry->run;
     if (run != NULL) {
         (this->*run)();
@@ -717,7 +717,7 @@ void TAdTimeSetGC::init() {
 void TAdTimeSetGC::change_state(s32 new_state) {
     if (state_index != new_state) {
         state_index = new_state;
-        TAdTimeSetGCState *entry = &time_set_state_table[state_index];
+        TAdTimeSetGCState *entry = &time_set_state_actions[state_index];
         void (TAdTimeSetGC::*enter)() = entry->enter;
         if (enter != NULL) {
             (this->*enter)();
@@ -809,7 +809,7 @@ void TAdTimeSetGC::open_message_choice(u32 text, s32 sel, u32 first_text, u32 se
     if (message_window != NULL || menu_window != NULL) {
         return;
     }
-    message_window = update_window_mode_from_progress__6TLobbyFPv(time_set_message_pos, time_set_message_size);
+    message_window = update_window_mode_from_progress__6TLobbyFPv(time_set_message_pos, time_set_dialog_size);
     if (message_window == NULL) {
         return;
     }
@@ -820,7 +820,7 @@ void TAdTimeSetGC::open_message_choice(u32 text, s32 sel, u32 first_text, u32 se
     if (sel == -1) {
         return;
     }
-    menu_window = check_room_seq_4__16TAdChrSelASlotGCFl(time_set_menu_pos, 2);
+    menu_window = check_room_seq_4__16TAdChrSelASlotGCFl(time_set_option_pos, 2);
     if (message_window == NULL) {
         return;
     }
@@ -838,7 +838,7 @@ void TAdTimeSetGC::open_message_choice(u32 text, s32 sel, u32 first_text, u32 se
     } else {
         forward_trade_action_default__16TObjCityMainWarpFPviii(menu_window, entry_text, 5, 1);
     }
-    ((TWindowSubComCardList *)menu_window)->update_layout_height(time_set_menu_width);
+    ((TWindowSubComCardList *)menu_window)->update_layout_height(time_set_option_extent);
     align_menu_entry_positions(menu_window);
     if (sel == -2) {
         ((TWindowSubComCardList *)menu_window)->set_selected_index(0);

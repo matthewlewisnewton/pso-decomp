@@ -193,7 +193,7 @@ struct RecoveredFields_800E3970_arg0
 extern "C" {
 s32 set_flag_0x100__23TObjEneMe3ShinowaMirageFv();
 
-void TObjEneMe3ShinowaMirage__vt113(u8 *ene_me3_shinowa_mirage, s32 arg1) {
+void vfunc_115__23TObjEneMe3ShinowaMirageFl(u8 *ene_me3_shinowa_mirage, s32 arg1) {
   f32 temp_f1;
   long new_var;
   switch (arg1)
@@ -495,9 +495,9 @@ s32 transform_relative_position__9TObjEneDDFPv(void *, void *);
 s32 is_player_entity_id(u16);
 void *__dt__23TObjEneMe3ShinowaMirageFv(void *arg0, s16 arg1);
 s32 enemy_set_target_id(void *, u16);
-u8 *TObjEneMe3ShinowaMirage__ct(u8 *, void *, u8 *, void *, void *);
+u8 *__ct__23TObjEneMe3ShinowaMirageFP7TObjectP17TObjEneMe3Shinowall(u8 *, void *, u8 *, void *, void *);
 void fn_800E762C(void *);
-void *TObjEneMe3Shinowa__ct(void *, void *);
+void *__ct__17TObjEneMe3ShinowaFP7TObject(void *, void *);
 u16 TObjEneMe3ShinowaReal__sub_800E45CC(void *p);
 extern s32 lbl_805D2AD0;
 void __dl__7TObjectFPv(void *);
@@ -617,10 +617,10 @@ void *__dt__23TObjEneMe3ShinowaMirageFv(void *arg0, s16 arg1) {
 
 #define arg3 ((s16)(s32)a3)
 #define arg4 ((s16)(s32)a4)
-u8 *TObjEneMe3ShinowaMirage__ct(u8 *ene_me3_shinowa_mirage, void *ene_me3_shinowa, u8 *arg2, void *a3, void *a4) {
+u8 *__ct__23TObjEneMe3ShinowaMirageFP7TObjectP17TObjEneMe3Shinowall(u8 *ene_me3_shinowa_mirage, void *ene_me3_shinowa, u8 *arg2, void *a3, void *a4) {
     u8 *temp_r5;
 
-    TObjEneMe3Shinowa__ct(ene_me3_shinowa_mirage, ene_me3_shinowa);
+    __ct__17TObjEneMe3ShinowaFP7TObject(ene_me3_shinowa_mirage, ene_me3_shinowa);
     *(void ***)((s8 *)ene_me3_shinowa_mirage + 0x18) = __vt__23TObjEneMe3ShinowaMirage;
     *(s32 *)((s8 *)ene_me3_shinowa_mirage + 0) = (s32) lbl_805D2AD0;
     *(s16 *)((s8 *)ene_me3_shinowa_mirage + 0x42C) = get_entity_id((TObjBase *)arg2);
@@ -658,7 +658,7 @@ void *TObjEneMe3ShinowaMirage::create(void *arg1, void *arg2) {
     void *o;
     o = __nw__7TObjectFUl(0x440);
     if (o != NULL) {
-        o = TObjEneMe3ShinowaMirage__ct((u8 *)o, tl_04, (u8 *)this, arg1, arg2);
+        o = __ct__23TObjEneMe3ShinowaMirageFP7TObjectP17TObjEneMe3Shinowall((u8 *)o, tl_04, (u8 *)this, arg1, arg2);
     }
     return o;
 }
@@ -931,7 +931,7 @@ TObjEneMe3ShinowaMirage *create__23TObjEneMe3ShinowaMirageFPvPv(void *, s32, s32
 void invoke_initialization_hook__9TObjEneDDFPv(void *, void *);
 extern s32 TObjEneMe3ShinowaReal_class_name;
 extern s32 __vt__21TObjEneMe3ShinowaReal[];
-Obj_800E46D4 *TObjEneMe3ShinowaReal__ct(Obj_800E46D4 *arg0, void *arg1, void *arg2);
+Obj_800E46D4 *__ct__21TObjEneMe3ShinowaRealFP7TObjectPv(Obj_800E46D4 *arg0, void *arg1, void *arg2);
 void *__dt__21TObjEneMe3ShinowaRealFv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 void *__dt__17TObjEneMe3ShinowaFv(void *arg0, s16 arg1);
@@ -1004,9 +1004,9 @@ void *__dt__21TObjEneMe3ShinowaRealFv(void *arg0, s16 arg1) {
 
 extern void *tl_04;
 
-Obj_800E46D4 *TObjEneMe3ShinowaReal__ct(Obj_800E46D4 *arg0, void *ene_me3_shinowa, void *arg2) {
+Obj_800E46D4 *__ct__21TObjEneMe3ShinowaRealFP7TObjectPv(Obj_800E46D4 *arg0, void *ene_me3_shinowa, void *arg2) {
     s32 i;
-    TObjEneMe3Shinowa__ct(arg0, ene_me3_shinowa);
+    __ct__17TObjEneMe3ShinowaFP7TObject(arg0, ene_me3_shinowa);
     *(void **) ((u8 *) arg0 + 0x18) = ((u8 *)&__vt__21TObjEneMe3ShinowaReal);
     arg0->f0 = TObjEneMe3ShinowaReal_class_name;
     invoke_initialization_hook__9TObjEneDDFPv(arg0, arg2);
@@ -1025,7 +1025,7 @@ Obj_800E46D4 *TObjEneMe3ShinowaReal__ct(Obj_800E46D4 *arg0, void *ene_me3_shinow
 void *TObjEneMe3ShinowaReal::create() {
     void *o = __nw__7TObjectFUl(0x434);
     if (o != NULL) {
-        o = TObjEneMe3ShinowaReal__ct((Obj_800E46D4 *)(o), tl_04, this);
+        o = __ct__21TObjEneMe3ShinowaRealFP7TObjectPv((Obj_800E46D4 *)(o), tl_04, this);
     }
     return o;
 }
@@ -2416,7 +2416,7 @@ void TObjEneMe3ShinowaMirage__sub_800E54E8(void *, s32);
 void TObjEneMe3ShinowaMirage__sub_800E66FC(u8 *, s32);
 void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *arg0, s32 arg1);
 void action__17TObjEneMe3ShinowaFl(u8 *arg0, s32 arg1);
-void dispatch_action__23TObjEneMe3ShinowaMirageFPvUii(Obj_800E6DD8 *arg0, u32 arg1, s32 arg2);
+void dispatch_action__17TObjEneMe3ShinowaFUll(Obj_800E6DD8 *arg0, u32 arg1, s32 arg2);
 void TObjEneMe3ShinowaMirage__sub_800E6F0C(Obj_800E6F0C *self);
 int vfunc_104__17TObjEneMe3ShinowaFf(void* p);
 void vfunc_89__17TObjEneMe3ShinowaFv(void *arg0);
@@ -2446,9 +2446,9 @@ extern Vec lbl_8043CF94;
 // Per-variant parameter tables fetched from TLobby (TObjEneMe3Stelth names the same four
 // base/attack/resistance/behavior_params_by_variant).
 Vec TObjEneMe3ShinowaMirage__data_80500FC0;
-__declspec(section ".data") s32 lbl_80500FCC[2];
-__declspec(section ".data") s32 lbl_80500FD4[2];
-__declspec(section ".data") s32 lbl_80500FDC[2];
+__declspec(section ".data") s32 shinowa_base_stats[2];
+__declspec(section ".data") s32 shinowa_attack_stats[2];
+__declspec(section ".data") s32 shinowa_resistance_stats[2];
 __declspec(section ".data") Info_800E6F0C *TObjEneMe3ShinowaMirage__mirage_info_table[2];
 // Copy of the model's texture list (the mirage swaps the first three texture addresses).
 __declspec(section ".data") NJS_TEXLIST lbl_80500FEC;
@@ -2549,7 +2549,7 @@ extern "C" {
 void apply_effect_pair__23TObjEneMe3ShinowaMirageFv();
 }
 extern "C" {
-void TObjEneMe3ShinowaMirage__vt113(u8 *arg0, s32 arg1);
+void vfunc_115__23TObjEneMe3ShinowaMirageFl(u8 *arg0, s32 arg1);
 }
 extern "C" {
 void vfunc_62__23TObjEneMe3ShinowaMirageFv();
@@ -2855,14 +2855,14 @@ void *__vt__23TObjEneMe3ShinowaMirage[119] = {
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
     (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
-    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_action__23TObjEneMe3ShinowaMirageFPvUii,
+    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_action__17TObjEneMe3ShinowaFUll,
     (void *)&vfunc_88__17TObjEneMe3ShinowaFv, (void *)&vfunc_89__17TObjEneMe3ShinowaFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
     (void *)&vfunc_92__9TObjEneDDFv, (void *)&vfunc_93__9TObjEneDDFv, (void *)&vfunc_94__9TObjEneDDFv, (void *)&vfunc_95__9TObjEneDDFv,
     (void *)&vfunc_96__9TObjEneDDFv, (void *)&vfunc_97__9TObjEneDDFv, (void *)&vfunc_98__9TObjEneDDFv, (void *)&vfunc_99__9TObjEneDDFv,
     (void *)&vfunc_100__9TObjEneDDFv, (void *)&vfunc_101__9TObjEneDDFPUc, (void *)&vfunc_102__9TObjEneDDFv, (void *)&vfunc_103__9TObjEneDDFPUc,
     (void *)&vfunc_104__17TObjEneMe3ShinowaFf, (void *)&vfunc_105__23TObjEneMe3ShinowaMirageFv, (void *)&can_hit_same_target__23TObjEneMe3ShinowaMirageFv, (void *)&vfunc_107__23TObjEneMe3ShinowaMirageFv,
     (void *)&update_player_state_default__23TObjEneMe3ShinowaMirageFv, (void *)&update_effect__23TObjEneMe3ShinowaMirageFv, (void *)&dispatch_if_active__23TObjEneMe3ShinowaMirageFv, (void *)&vfunc_111__17TObjEneMe3ShinowaFv,
-    (void *)&apply_effect_pair__23TObjEneMe3ShinowaMirageFv, (void *)&action__17TObjEneMe3ShinowaFl, (void *)&vfunc_114__17TObjEneMe3ShinowaFl, (void *)&TObjEneMe3ShinowaMirage__vt113,
+    (void *)&apply_effect_pair__23TObjEneMe3ShinowaMirageFv, (void *)&action__17TObjEneMe3ShinowaFl, (void *)&vfunc_114__17TObjEneMe3ShinowaFl, (void *)&vfunc_115__23TObjEneMe3ShinowaMirageFl,
     (void *)&vfunc_116__17TObjEneMe3ShinowaFl, (void *)&update_mirage__17TObjEneMe3ShinowaFv, (void *)&vfunc_118__17TObjEneMe3ShinowaFv,
 };
 #define shinowa_mirage_model_init_data ((u8 *)shinowa_mirage_model_init_data)
@@ -3911,7 +3911,7 @@ void TObjEneMe3Shinowa::action(s32 arg1) {
     }
 }
 
-void dispatch_action__23TObjEneMe3ShinowaMirageFPvUii(Obj_800E6DD8 *arg0_, u32 arg1, s32 arg2) {
+void dispatch_action__17TObjEneMe3ShinowaFUll(Obj_800E6DD8 *arg0_, u32 arg1, s32 arg2) {
     switch (arg1) {
     case 0:
         arg0_->v111(arg2);
@@ -4301,7 +4301,7 @@ void TObjEneMe3Shinowa::init_enemy() {
 }
 #pragma pop
 
-void *TObjEneMe3Shinowa__ct(void *ene_me3_shinowa, void *parent) {
+void *__ct__17TObjEneMe3ShinowaFP7TObject(void *ene_me3_shinowa, void *parent) {
     __ct__12TObjEneDD_STFP7TObject(ene_me3_shinowa, parent);
     *(s32 **)((s8 *)ene_me3_shinowa + 0x18) = __vt__17TObjEneMe3Shinowa;
     __ct__19MaterialOpacityFadeFv(((char *)ene_me3_shinowa + 1000));
@@ -4361,7 +4361,7 @@ extern DelDepthAnimationBinding lbl_8043CF84;
 // Floor resource callback (inferred: load_shared_resources, the TObjEneMe3SinowZoa::load_resources twin):
 // loads the shared Shinowa BML, a texture-list copy for the mirage, the per-variant parameter tables,
 // the breakup model and the sampled claw-trail points.
-void load_shinowa_mirage_resources() {
+void load_shared_resources__23TObjEneMe3ShinowaMirageFv() {
     NJS_TEXLIST *src;
     s32 n;
     s32 i;
@@ -4392,13 +4392,13 @@ void load_shinowa_mirage_resources() {
         lbl_80500FEC.textures[i + 3].texaddr = lbl_80500FEC.textures[i].texaddr;
     }
     for (s32 j = 0; j < 2; j++) {
-        lbl_80500FCC[j] = (s32)get_battle_base_stats(lbl_8043CE1C[j]);
+        shinowa_base_stats[j] = (s32)get_battle_base_stats(lbl_8043CE1C[j]);
     }
     for (s32 j = 0; j < 2; j++) {
-        lbl_80500FD4[j] = (s32)get_battle_attack_params(lbl_8043CE24[j]);
+        shinowa_attack_stats[j] = (s32)get_battle_attack_params(lbl_8043CE24[j]);
     }
     for (s32 j = 0; j < 2; j++) {
-        lbl_80500FDC[j] = (s32)get_battle_resistance_params(lbl_8043CE2C[j]);
+        shinowa_resistance_stats[j] = (s32)get_battle_resistance_params(lbl_8043CE2C[j]);
     }
     for (s32 j = 0; j < 2; j++) {
         TObjEneMe3ShinowaMirage__mirage_info_table[j] = (Info_800E6F0C *)get_battle_movement_params(lbl_8043CE34[j]);

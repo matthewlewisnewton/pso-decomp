@@ -226,7 +226,7 @@ struct VObj_801809F0_801809B4 : Base_801809F0_801809B4 {
 };
 
 int vfunc_8__8TObjChipFv(void* p);
-u8 *copy_transform__8TObjChipFPvPv(u8 *arg0, u8 *arg1);
+u8 *copy_transform__8TObjChipFP19TObjChipSpawnParamsP14TObjChipParams(u8 *arg0, u8 *arg1);
 void render__8TObjChipFv(void *arg0);
 void run_task__8TObjChipFv(void *arg0);
 void queue_destruction__7TObjectFv(void *arg0);
@@ -244,7 +244,7 @@ typedef char RecoveredGlobal_80180BD4___vt__8TObjChip_size[sizeof(RecoveredGloba
 }
 
 extern "C" {
-u8 *copy_transform__8TObjChipFPvPv(u8 *arg0, u8 *arg1) {
+u8 *copy_transform__8TObjChipFP19TObjChipSpawnParamsP14TObjChipParams(u8 *arg0, u8 *arg1) {
     *(f32 *)((s8 *)arg0 + 0) = (f32) *(f32 *)((s8 *)arg1 + 0);
     *(f32 *)((s8 *)arg0 + 4) = (f32) *(f32 *)((s8 *)arg1 + 4);
     *(f32 *)((s8 *)arg0 + 8) = (f32) *(f32 *)((s8 *)arg1 + 8);

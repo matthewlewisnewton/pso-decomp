@@ -245,7 +245,7 @@ void *__dt__20TItemEffOrgaFlowShotFv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-u8 *TItemEffOrgaFlowShot__ct(TItemEffOrgaFlowShot *item_eff_orga_flow_shot, s32 arg1, u8 *arg2) {
+u8 *__ct__20TItemEffOrgaFlowShotFP7TObjectPv(TItemEffOrgaFlowShot *item_eff_orga_flow_shot, s32 arg1, u8 *arg2) {
     __ct__13TUnk_804E355CFP7TObjectPv((u8 *)item_eff_orga_flow_shot, arg1, arg2);
     *(s32 **)((s8 *)item_eff_orga_flow_shot + 0x18) = &(*(RecoveredGlobal_80357548___vt__20TItemEffOrgaFlowShot *)&__vt__20TItemEffOrgaFlowShot).value;
     *(s32 *)((s8 *)item_eff_orga_flow_shot + 0) = (s32) TItemEffOrgaFlowShot__name;
@@ -292,6 +292,6 @@ void TItemEffOrgaFlowShot::create(void *arg0, void *arg1) {
     void *o;
     o = __nw__7TObjectFUl(0x1A0);
     if (o != NULL) {
-        TItemEffOrgaFlowShot__ct((TItemEffOrgaFlowShot *)((u8 *)o), (s32)((s32)arg0), (u8 *)((u8 *)arg1));
+        __ct__20TItemEffOrgaFlowShotFP7TObjectPv((TItemEffOrgaFlowShot *)((u8 *)o), (s32)((s32)arg0), (u8 *)((u8 *)arg1));
     }
 }

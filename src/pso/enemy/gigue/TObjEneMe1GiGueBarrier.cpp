@@ -51,7 +51,7 @@ struct VObj_18_ca64a0 : VBase_18_ca64a0 {
 extern "C" {
 s32 is_active_state__22TObjEneMe1GiGueBarrierFv(int);
 u16 get_entity_id(void *);
-void TObjEneMe1GiGueBarrier__sub_802CABF4(void *p);
+void set_barrier_active__15TObjEneMe1GiGueFv(void *p);
 extern const char *TObjEneMe1GiGueBarrier__name;
 extern s32 TObjEneMe1GiGueBarrier__barrier_resource_object;
 s32 defer_render__7TObjectFv(void *);
@@ -141,7 +141,7 @@ TObjEneMe1GiGueBarrier::TObjEneMe1GiGueBarrier(TObject *parent, void *owner) : T
     VecCopy(&position, (const Vec *)((TObjEneMe1GiGueBarrier *)m_fc)->update_and_get_pos());
     rotation_y = ((TObjEneMe1GiGueBarrier *)m_fc)->get_timer();
     m_108 = ((TObjEneMe1GiGueBarrier *)m_fc)->get_field_44c();
-    TObjEneMe1GiGueBarrier__sub_802CABF4((void *)m_fc);
+    set_barrier_active__15TObjEneMe1GiGueFv((void *)m_fc);
     m_104 = 0;
     model = *(void **)(*(u8 **)(TObjEneMe1GiGueBarrier__barrier_resource_object + 0x42C) + 0x28);
     resource = *(u8 **)(TObjEneMe1GiGueBarrier__barrier_resource_object + 0x42C);

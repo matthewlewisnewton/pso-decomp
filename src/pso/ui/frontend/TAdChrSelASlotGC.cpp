@@ -62,7 +62,7 @@ u32 TAdChrSel__global_slot_data;
 u8 *get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(s32 arg0, s32 arg1);
 s32 __ct__19TAdPlyChrSelPlateGCFv(int, void *, void *);
 s32 __ct__15TAdChrSelSlotGCFP7TObject(int, void *);
-s32 __ct__20TAdChrSelMovePlateGCFv(int, void *);
+s32 __ct__20TAdChrSelMovePlateGCFP7TObject(int, void *);
 extern RecoveredGlobal_8030DE58_lbl_80475808 chr_sel_a_slot_plate_layout;
 extern RecoveredGlobal_8030DE58_lbl_80475848 chr_sel_a_slot_plate_layout_b;
 s32 push_plate_position__19TAdPlyChrSelPlateGCFv(int, void *);
@@ -777,7 +777,7 @@ void TAdChrSelASlotGC::create_children(s32 arg1) {
         temp_r3_5 = ((s32)__nw__7TObjectFUl(0x208));
         var_r0_5 = temp_r3_5;
         if (var_r0_5 != 0) {
-            var_r0_5 = __ct__20TAdChrSelMovePlateGCFv(temp_r3_5, arg0);
+            var_r0_5 = __ct__20TAdChrSelMovePlateGCFP7TObject(temp_r3_5, arg0);
         }
         *(s32 *)&this->unk_44 = var_r0_5;
         return;
@@ -800,7 +800,7 @@ void TAdChrSelASlotGC::create_children(s32 arg1) {
         temp_r3_11 = ((s32)__nw__7TObjectFUl(0x208));
         var_r0_11 = temp_r3_11;
         if (var_r0_11 != 0) {
-            var_r0_11 = __ct__20TAdChrSelMovePlateGCFv(temp_r3_11, arg0);
+            var_r0_11 = __ct__20TAdChrSelMovePlateGCFP7TObject(temp_r3_11, arg0);
         }
         *(s32 *)&this->unk_44 = var_r0_11;
         return;

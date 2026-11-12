@@ -906,7 +906,7 @@ extern s32 lbl_805D7564;
 struct SjMemoryBuffer;
 SjMemoryBuffer *sj_memory_buffer_create(void *arg0, s32 arg1);
 extern char adxt_start_mem_idx_stream_create_error[];
-void TLobby__sub_803CE544(void *, int);
+void cvFsEntryErrFunc(void *, int);
 void TLobby__sub_803CFAA8(const char *, void *, int);
 char *TLobby__sub_803D43B8(void);
 extern const char lbl_805E0D70[4];
@@ -2134,9 +2134,9 @@ void TLobby::clear_buffer_340() {
 }
 
 void TLobby__sub_803CB74C(s32 *arg0) {
-    TLobby__sub_803CE544((void *)TLobby__sub_803CB7F8, 0);
+    cvFsEntryErrFunc((void *)TLobby__sub_803CB7F8, 0);
     TLobby__sub_803CFAA8(lbl_805E0D70, (void *)TLobby__sub_803D43B8, 0);
-    TLobby__sub_803CE544((void *)TLobby__sub_803CB7F8, 0);
+    cvFsEntryErrFunc((void *)TLobby__sub_803CB7F8, 0);
     TLobby__sub_803CFAA8(lbl_805E0D74, (void *)initialize_dvd_file_driver, 0);
     ((TLobby *)lbl_805E0D74)->cvFsSetDefDev();
     if (arg0 != NULL) {

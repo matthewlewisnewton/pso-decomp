@@ -11,7 +11,7 @@
 // addresses each object on its own, so it did not compile them itself.
 
 extern "C" {
-extern const NJS_ARGB me3_stelth_offset_vec = {-0.8f, 0.0f, 0.0f, 0.0f};
+extern const NJS_ARGB stelth_fade_color = {-0.8f, 0.0f, 0.0f, 0.0f};
 extern const TBoss3VoloptBreakupParams me3_stelth_breakup_params = { 0x14, { 0.07f, 2.0f, 0.97f, 0.2f, 2.0f, 1.5f } };
 // TLobby kind ids, one list per TLobby table
 // TObjEneMe3Stelth::load_shared_resources registers them with.

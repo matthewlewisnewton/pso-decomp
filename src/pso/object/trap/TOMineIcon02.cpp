@@ -66,7 +66,7 @@ extern void *tl_05;
 void *TOMineIcon02::create() {
     void *o = __nw__7TObjectFUl(0x37C);
     if (o != NULL) {
-        o = TOMineIcon02__ct(o, tl_05, this);
+        o = __ct__12TOMineIcon02FP7TObjectPv(o, tl_05, this);
     }
     return o;
 }
@@ -86,7 +86,7 @@ void *__dt__12TOMineIcon02Fv(void *arg0, s16 arg1) {
 
 #pragma push
 #pragma fp_contract on
-void *TOMineIcon02__ct(void *arg0, void *arg1, void *arg2) {
+void *__ct__12TOMineIcon02FP7TObjectPv(void *arg0, void *arg1, void *arg2) {
     __ct__6TOMineFP7TObject(arg0, arg1, arg2);
 #define self ((Icon_801717C0 *)arg0)
     self->vt = ((void * *)&__vt__12TOMineIcon02);
