@@ -10106,9 +10106,6 @@ pso/ui/TAdSelectGameModeGC_802C4748.cpp:
 	.data       start:0x804E0A18 end:0x804E0A30
 	.sdata2     start:0x805DE540 end:0x805DE548
 
-pso/ui/TAdMultiPlyChrSelectGC_literals.s:
-	.sdata2     start:0x805DE560 end:0x805DE580
-
 pso/menu/TAdPlyChrSelPlateGC_802C4CA0.cpp:
 	.text       start:0x802C4CA0 end:0x802C4FE8
 	.rodata     start:0x80471A80 end:0x80471A88
@@ -10123,7 +10120,7 @@ pso/ui/TAdChrSelPlyPlateGC.cpp:
 	.data       start:0x804E0A48 end:0x804E0B28
 	.sdata      start:0x805D3EE0 end:0x805D3EE4
 	.sbss       start:0x805D67D0 end:0x805D67E8
-	.sdata2     start:0x805DE580 end:0x805DE588
+	.sdata2     start:0x805DE560 end:0x805DE588
 
 pso/ui/TAdMultiPlyChrSelectGC_802C6F88.cpp:
 	.text       start:0x802C6F88 end:0x802C70AC
