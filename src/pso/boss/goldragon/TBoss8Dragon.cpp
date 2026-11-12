@@ -1490,7 +1490,7 @@ void vfunc_61__12TBoss8DragonFv(void);
 void vfunc_62__12TBoss8DragonFv(void);
 void vfunc_63__12TBoss8DragonFv(void);
 void vfunc_28__12TBoss8DragonFv(void);
-u8 *TBoss8Dragon__ct(u8 *, void *, void *);
+u8 *__ct__12TBoss8DragonFP7TObjectPv(u8 *, void *, void *);
 void TBoss8Dragon__sub_802FD9D0(void);
 s32 eval_bezier_curve__12TBoss8DragonFPviiPvf(void *, int, int, void *, f32);
 void __destroy_arr(void *, void *, u32, u32);
@@ -1579,10 +1579,10 @@ extern "C" {
 void draw_motion_model__12TBoss8DragonFv();
 }
 extern "C" {
-int TBoss8Dragon__sub_802F4360(void *p);
+int vfunc_105__12TBoss8DragonFv(void *p);
 }
 extern "C" {
-void TBoss8Dragon__sub_802F4380();
+void render__12TBoss8DragonFv();
 }
 extern "C" {
 }
@@ -2189,7 +2189,7 @@ void *TBoss8Dragon__dive_height_curve[12] = {
 };
 void *__vt__12TBoss8Dragon[107] = {
     (void *)0x0, (void *)0x0, (void *)&__dt__12TBoss8DragonFv, (void *)&run_task__12TBoss8DragonFv,
-    (void *)&TBoss8Dragon__sub_802F4380, (void *)&render_shadows__12TBoss8DragonFv, (void *)&vfunc_6__8TObjBaseFPsl, (void *)&fn_801A1F48,
+    (void *)&render__12TBoss8DragonFv, (void *)&render_shadows__12TBoss8DragonFv, (void *)&vfunc_6__8TObjBaseFPsl, (void *)&fn_801A1F48,
     (void *)&TObjPlayer__sub_80018F64, (void *)&TObjPlayer__sub_80018F5C, (void *)&fn_801A2340, (void *)&fn_801A212C,
     (void *)&get_name__9TObjEnemyFv, (void *)&interact__14TObjCollidableFl, (void *)&TObjPlayer__sub_80011210, (void *)&consume_timer_field__9TObjCharaFl,
     (void *)&TObjPlayer__sub_8001119C, (void *)&TObjPlayer__sub_80018EE4, (void *)&vfunc_18__9TObjCharaFPUc, (void *)&TObjPlayer__sub_80011704,
@@ -2214,7 +2214,7 @@ void *__vt__12TBoss8Dragon[107] = {
     (void *)&vfunc_92__9TObjEneDDFv, (void *)&vfunc_93__9TObjEneDDFv, (void *)&vfunc_94__9TObjEneDDFv, (void *)&vfunc_95__9TObjEneDDFv,
     (void *)&vfunc_96__9TObjEneDDFv, (void *)&vfunc_97__9TObjEneDDFv, (void *)&vfunc_98__9TObjEneDDFv, (void *)&vfunc_99__9TObjEneDDFv,
     (void *)&vfunc_100__9TObjEneDDFv, (void *)&vfunc_101__9TObjEneDDFPUc, (void *)&vfunc_102__9TObjEneDDFv, (void *)&vfunc_103__9TObjEneDDFPUc,
-    (void *)&vfunc_104__12TObjEneDD_STFf, (void *)&TBoss8Dragon__sub_802F4360, (void *)&draw_motion_model__12TBoss8DragonFv,
+    (void *)&vfunc_104__12TObjEneDD_STFf, (void *)&vfunc_105__12TBoss8DragonFv, (void *)&draw_motion_model__12TBoss8DragonFv,
 };
 #define TBoss8Dragon__data_804E4C28 ((s32 *)TBoss8Dragon__data_804E4C28)
 #define boss8_dragon_bezier_points ((s32 *)boss8_dragon_bezier_points)
@@ -7132,7 +7132,7 @@ extern const f32 TBoss8Dragon__data_805DED60;
 #define lbl_804E4C3C ((u8 *)lbl_804E4C3C)
 #define lbl_804E4C58 ((u8 *)lbl_804E4C58)
 #define lbl_804E4E18 ((u8 *)lbl_804E4E18)
-u8 *TBoss8Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
+u8 *__ct__12TBoss8DragonFP7TObjectPv(u8 *arg0, void *arg1, void *arg2) {
     u32 sp8[4];
     s32 i;
     s32 j;
@@ -7359,7 +7359,7 @@ void TBoss8Dragon__sub_802FDA78(void) {
 void *TBoss8Dragon::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x8A4);
     if (o != NULL) {
-        o = TBoss8Dragon__ct((u8 *)o, tl_04, arg0);
+        o = __ct__12TBoss8DragonFP7TObjectPv((u8 *)o, tl_04, arg0);
     }
     return o;
 }

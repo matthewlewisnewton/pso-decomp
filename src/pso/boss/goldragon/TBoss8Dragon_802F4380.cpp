@@ -123,7 +123,7 @@ extern "C" {
 s32 get_mode__11TCameraCtrlFPv(void *);
 s32 defer_render__7TObjectFv(void *);
 
-void TBoss8Dragon__sub_802F4380(TBoss8Dragon *self) {
+void render__12TBoss8DragonFv(TBoss8Dragon *self) {
     s32 view = 0;
     u8 pos[0xC];
     if (check_demo_mode() != 0) {
