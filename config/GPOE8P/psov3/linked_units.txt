@@ -197,6 +197,7 @@ pso/audio/GcrnaStream.cpp
 pso/boss/galgryphon/Boss5GryphonActionScripts.cpp
 pso/boss/galgryphon/Boss5GryphonBehavior.cpp
 pso/boss/olgaflow/TBoss6Demo10_TYPE1_APPEAR.cpp
+pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp
 pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp
 pso/boss/olgaflow/Boss6Type2Data.cpp
 pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp
@@ -280,6 +281,7 @@ pso/boss/olgaflow/TBoss6Tube.cpp
 pso/boss/olgaflow/TBoss6Tube_802B1020.cpp
 pso/boss/olgaflow/TBoss6Tube_802B15F4.cpp
 pso/boss/olgaflow/TBoss6Tube_802B16BC.cpp
+pso/boss/olgaflow/TBoss6Type1.cpp
 pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp
 pso/boss/olgaflow/TBoss6Type1_80320AE0.cpp
 pso/boss/olgaflow/TBoss6Type1_80323DCC.cpp
@@ -292,6 +294,7 @@ pso/boss/olgaflow/TBoss6Type2_80336E6C.cpp
 pso/boss/olgaflow/TBoss6Type2_80356E50.cpp
 pso/boss/olgaflow/TBoss6Type2_8036A92C.cpp
 pso/boss/olgaflow/TBoss6Type2_8036DC80.cpp
+pso/boss/olgaflow/TBoss6Zanzo.cpp
 pso/boss/barbaray/TBoss7Crawfish.cpp
 pso/boss/barbaray/TBoss7Crawfish_80308C10.cpp
 pso/boss/barbaray/TBoss7Crawfish_80308C84.cpp
@@ -492,6 +495,7 @@ pso/enemy/recon/TObjEneRecobox_8031E88C.cpp
 pso/enemy/recon/TObjEneRecon_8031ED80.cpp
 pso/enemy/recon/TObjEneRecon_8031EDBC.cpp
 pso/enemy/recon/TObjEneRecon_8031EF00.cpp
+pso/unk/text_8031EF14.cpp
 pso/enemy/recon/TObjEneRecon_8031F374.cpp
 pso/enemy/recon/TObjEneRecon_8031F408.cpp
 pso/enemy/recon/TObjEneRecon_8031F4A8.cpp
@@ -1242,6 +1246,7 @@ pso/effect/particle/ParticleBallistic.cpp
 pso/effect/particle/ParticleRadial.cpp
 pso/effect/particle/TParticleCtrl_80327D30.cpp
 pso/effect/particle/TParticleCtrl_803E29FC.cpp
+pso/effect/photon/PhotonBlastSummon.cpp
 pso/effect/photon/TPhotonConcentrate.cpp
 pso/effect/photon/TPhotonEstlla.cpp
 pso/effect/photon/TPhotonFarlla.cpp
@@ -1378,6 +1383,7 @@ pso/technique/TTecDeband.cpp
 pso/technique/TTecFoie.cpp
 pso/technique/TTecFoie_802301EC.cpp
 pso/technique/TTecGiBarta.cpp
+pso/technique/TTecGiFoie.cpp
 pso/technique/TTecGiZonde.cpp
 pso/technique/TTecGiZonde_8023CDC4.cpp
 pso/technique/TTecGrants.cpp

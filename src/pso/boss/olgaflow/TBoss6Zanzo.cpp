@@ -93,14 +93,7 @@ void TBoss6Zanzo::draw_trail() {
     f32 step;
     f32 alpha;
     f32 prev_alpha;
-    f32 next_alpha;
     s32 drawn;
-    s32 i;
-    ZanzoTrailPoint *p;
-    u8 colors[4][4];
-    ZanzoQuad quad;
-    Vec positions[4];
-
     step = 1.0f / m_28;
     alpha = 1.0f;
     frame = (Src_80320534 *)m_1c;
@@ -113,31 +106,42 @@ void TBoss6Zanzo::draw_trail() {
             if (!drawn) {
                 prev_alpha = 0.0f;
             }
-            next_alpha = alpha;
+            f32 next_alpha = alpha;
             if (frame == end - 1 || frame[1].a == 0) {
                 next_alpha = 0.0f;
             }
+            u8 colors[4][4];
+            Vec positions[4];
+            ZanzoQuad quad;
             quad.colors = colors;
             quad.uvs = NULL;
             quad.count = 4;
             quad.positions = positions;
-            for (i = 0; i < m_24 - 1; i++) {
-                p = &((ZanzoTrailPoint *)prev->p)[i];
-                copy_color_bytes((void *)colors[0], p);
-                colors[0][3] = prev_alpha * p->color[3];
-                VecCopy__FP3VecPC3Vec(&positions[0], &p->pos);
-                p = (ZanzoTrailPoint *)prev->p + i + 1;
-                copy_color_bytes((void *)colors[1], p);
-                colors[1][3] = prev_alpha * p->color[3];
-                VecCopy__FP3VecPC3Vec(&positions[1], &p->pos);
-                p = (ZanzoTrailPoint *)frame->p + i + 1;
-                copy_color_bytes((void *)colors[2], p);
-                colors[2][3] = next_alpha * p->color[3];
-                VecCopy__FP3VecPC3Vec(&positions[2], &p->pos);
-                p = &((ZanzoTrailPoint *)frame->p)[i];
-                copy_color_bytes((void *)colors[3], p);
-                colors[3][3] = next_alpha * p->color[3];
-                VecCopy__FP3VecPC3Vec(&positions[3], &p->pos);
+            for (s32 i = 0; i < m_24 - 1; i++) {
+                {
+                    ZanzoTrailPoint *p = &((ZanzoTrailPoint *)prev->p)[i];
+                    copy_color_bytes((void *)colors[0], p);
+                    colors[0][3] = prev_alpha * p->color[3];
+                    VecCopy__FP3VecPC3Vec(&positions[0], &p->pos);
+                }
+                {
+                    ZanzoTrailPoint *p = (ZanzoTrailPoint *)prev->p + i + 1;
+                    copy_color_bytes((void *)colors[1], p);
+                    colors[1][3] = prev_alpha * p->color[3];
+                    VecCopy__FP3VecPC3Vec(&positions[1], &p->pos);
+                }
+                {
+                    ZanzoTrailPoint *p = (ZanzoTrailPoint *)frame->p + i + 1;
+                    copy_color_bytes((void *)colors[2], p);
+                    colors[2][3] = next_alpha * p->color[3];
+                    VecCopy__FP3VecPC3Vec(&positions[2], &p->pos);
+                }
+                {
+                    ZanzoTrailPoint *p = &((ZanzoTrailPoint *)frame->p)[i];
+                    copy_color_bytes((void *)colors[3], p);
+                    colors[3][3] = next_alpha * p->color[3];
+                    VecCopy__FP3VecPC3Vec(&positions[3], &p->pos);
+                }
                 draw_tri_fan_3d((TriangleFan3D *)&quad, 4, 7);
             }
             drawn = 1;

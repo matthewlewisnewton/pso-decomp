@@ -2,6 +2,7 @@
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/technique/TTecGiFoie.h"
+#include "pso/math/AngleLookup.h"
 extern "C" void *__dt__13TUnk_804CC148Fv(void *, s16);
 #include "pso/system/vector.h"
 #include "pso/effect/TUnk_804CC148.h"
@@ -124,6 +125,7 @@ struct Task_802312E4 {
     s8 x45;
     u8 x46;
     u8 single;
+    s32 x48;
 };
 
 typedef struct RecoveredGlobal_80231638___vt__10TTecGiFoie RecoveredGlobal_80231638___vt__10TTecGiFoie;
@@ -198,6 +200,18 @@ extern const f32 lbl_805DC810;
 extern const f32 lbl_805DC818;
 extern const f32 lbl_805DC820;
 extern const f32 lbl_805DC824;
+extern const f32 lbl_805DC814;
+extern const f64 lbl_8044D358;
+extern const f64 lbl_8044D360[];
+extern const f32 lbl_8044D338[3];
+extern const Vec lbl_8044D344;
+extern u8 identity_matrix[];
+void run_task__13TUnk_804CC800Fv(Task_802312E4 *self);
+s32 pop_matrix(void);
+void rotate_matrix_x(void *, s32);
+void rotate_vector_by_matrix(void *, const void *, void *);
+void direction_to_rotation_xz__FPUcPlPl(u8 *, s32 *, s32 *);
+f32 atan2_float(f32, f32);
 extern s32 tl_07;
 
 void TTecGiFoie::calc_params() {
@@ -210,6 +224,71 @@ void TTecGiFoie::calc_params() {
     ((RecoveredFields_80230D9C_arg0 *) arg0)->field_88 = (f32) (((RecoveredFields_80230D9C_arg0 *) arg0)->field_88 * (*((f32 *) (((s8 *)&lbl_804CC55C.value) + 8))));
   }
 }
+
+#pragma push
+#pragma fp_contract on
+#pragma opt_propagation off
+void run_task__13TUnk_804CC800Fv(Task_802312E4 *self) {
+    Rot_802312E4 direction;
+    s32 index;
+    switch (self->band) {
+    case 0: index = 0; break;
+    case 1: index = 1; break;
+    case 2: index = 2; break;
+    case 3: index = 0; break;
+    case 4: index = 1; break;
+    case 5: index = 2; break;
+    default: index = 0; break;
+    }
+    self->x40++;
+    if (self->x46 != 0) {
+        Vec offset;
+        self->x38 = self->x38 + lbl_8044D358;
+        self->x3c += 0x1C71;
+        offset.x = self->x38 * cos_table_lookup(self->x3c);
+        offset.z = self->x38 * sin_table_lookup(self->x3c);
+        offset.y = lbl_805DC810;
+        push_matrix_from(identity_matrix);
+        rotate_matrix_y(0, self->x48);
+        rotate_matrix_x(0, 0x4000);
+        rotate_vector_by_matrix((void *)0, &offset, &offset);
+        pop_matrix();
+        self->pos2.x = self->pos.x + offset.x;
+        self->pos2.y = self->pos.y + offset.y;
+        self->pos2.z = self->pos.z + offset.z;
+    } else {
+        self->x38 += lbl_805DC814;
+        self->x3c += (s32)(lbl_805DC818 * (f32)(self->band + 9));
+        self->pos2.y = self->pos.y + lbl_8044D338[index] * sin_table_lookup((s32)(lbl_805DC818 * (f32)(self->x40 * 15)));
+        self->pos2.x = self->pos.x + self->x38 * cos_table_lookup(self->x3c);
+        self->pos2.z = self->pos.z + self->x38 * sin_table_lookup(self->x3c);
+    }
+    if (self->single != 0) {
+        Vec offset = lbl_8044D344;
+        push_matrix_from(identity_matrix);
+        rotate_matrix_y(0, self->x48);
+        rotate_vector_by_matrix((void *)0, &offset, &offset);
+        pop_matrix();
+        direction.x = 0;
+        direction.y = 0;
+        direction.z = 0;
+        direction_to_rotation_xz__FPUcPlPl((u8 *)&offset, &direction.x, &direction.z);
+        ((TParticleCtrl *)self->emitters[0])->set_position(&self->pos2);
+        ((TParticleCtrl *)self->emitters[0])->set_direction(&direction);
+    } else {
+        direction.y = (s32)(lbl_8044D360[0] * atan2_float(self->pos2.x - self->pos.x, self->pos2.z - self->pos.z));
+        direction.z = 0x4000;
+        direction.x = direction.y - 0x8000;
+        s32 direction_y = 0;
+        direction.y = direction_y;
+        for (s32 emitter_index = 0; emitter_index < ((Profile_802312E4 *)TTecGiFoie__emitter_profile_table)[self->band].count; emitter_index++) {
+            ((TParticleCtrl *)self->emitters[emitter_index])->set_position(&self->pos2);
+            ((TParticleCtrl *)self->emitters[emitter_index])->set_direction(&direction);
+        }
+    }
+}
+
+#pragma pop
 
 u8 *__dt__13TUnk_804CC800Fv(Task_80231224 *task, s16 flag) {
     u32 i;

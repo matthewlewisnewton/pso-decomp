@@ -2913,3 +2913,13 @@ void TBoss6Type1::draw_model() {
 }
 }
 
+
+static const s8 lbl_805DE2C8[2] = {0x12, 10};
+static const s8 lbl_805DE2CC[2] = {0x12, -2};
+static const s32 lbl_805DE2D4 = 24;
+static const s32 lbl_805DE3A8 = 256;
+static const s32 lbl_805DE3AC = 64;
+static const s32 lbl_805DE3B0 = 20;
+static const s32 lbl_805DE3B4 = 20;
+static const s32 TBoss6Type1__data_805DE3C4 = 2;
+static const s32 lbl_805DE3C8 = 1;
