@@ -520,6 +520,7 @@ pso/weapon/TUnk_804A4338.cpp
 pso/weapon/SpecialProjectileWeapons.cpp
 pso/weapon/SpecialProjectileWeapons_80124760.cpp
 pso/item/TItem.cpp
+pso/weapon/TItemAttackCol.cpp
 pso/weapon/TItemAttackCol_802E4798.cpp
 pso/weapon/TItemAttacker.cpp
 pso/item/TItemBuff.cpp
