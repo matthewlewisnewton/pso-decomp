@@ -4,9 +4,9 @@
 #include "types.h"
 
 extern "C" {
-void TWindowSubStatusDisp__sub_80256BF8(void);
-void TWindowSubStatusDisp__sub_80256BFC(void);
-void *TWindowSubStatusDisp__sub_80257298(void *arg0, s16 arg1);
+void update__13TUnk_804CF918Fv(void);
+void render__13TUnk_804CF918FP18TWindowDrawContext(void);
+void *__dt__13TUnk_804CF930Fv(void *arg0, s16 arg1);
 }
 
 #endif

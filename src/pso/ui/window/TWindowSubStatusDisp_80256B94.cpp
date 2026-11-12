@@ -45,38 +45,38 @@ struct Quad_80256E0C { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 
 extern "C" {
 extern s32 lbl_804CF918[];
-void sub_80256BDC__13TUnk_804CF930Fl(void *self, s32 arg1);
+void __ct__13TUnk_804CF918Fs(void *self, s32 arg1);
 void calc_bar_width__13TUnk_804CF930Fv(struct Bar_80256C00 *bar);
 f32 fabs_float(f32);
 extern const f32 lbl_805DCE58;
 extern const f32 lbl_805DCECC;
-void step_gauge_bar_width(Gauge_802571B4 *g);
-s32 try_open__19TWindowKeyBoardSoftFii(void *, void *);
+void update__13TUnk_804CF930Fv(Gauge_802571B4 *g);
+s32 try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(void *, void *);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
-void TWindowSubStatusDisp__sub_80256BF8(void);
-void TWindowSubStatusDisp__sub_80256BFC(void);
-void *destroy__13TUnk_804CF930Fs(void *arg0, s16 arg1);
+void update__13TUnk_804CF918Fv(void);
+void render__13TUnk_804CF918FP18TWindowDrawContext(void);
+void *__dt__13TUnk_804CF918Fv(void *arg0, s16 arg1);
 
-void *TUnk_804CF930::destroy(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 4) = lbl_804CF918;
+void *__dt__13TUnk_804CF918Fv(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        *(s32 **)((s8 *)arg0 + 4) = lbl_804CF918;
         if (arg1 > 0) {
-            ::operator delete(this);
+            ::operator delete(arg0);
         }
     }
-    return this;
+    return arg0;
 }
 
 typedef char RecoveredGlobal_80256BDC_lbl_804CF918_size[sizeof(RecoveredGlobal_80256BDC_lbl_804CF918) == 0x18 ? 1 : -1];
-void TUnk_804CF930::sub_80256BDC(s32 arg1) {
-    u8 *arg0 = (u8 *)this;
+void __ct__13TUnk_804CF918Fs(void *self, s32 arg1) {
+    u8 *arg0 = (u8 *)self;
     *(s32 **)((s8 *)arg0 + 4) = &(*(RecoveredGlobal_80256BDC_lbl_804CF918 *)&lbl_804CF918).value;
     *(s16 *)((s8 *)arg0 + 0) = 0;
-    this->m_2 = arg1;
+    ((TUnk_804CF918 *)self)->m_2 = arg1;
 }
 
-void TWindowSubStatusDisp__sub_80256BF8(void) {  }
-void TWindowSubStatusDisp__sub_80256BFC(void) {  }
+void update__13TUnk_804CF918Fv(void) {  }
+void render__13TUnk_804CF918FP18TWindowDrawContext(void) {  }
 void TUnk_804CF930::calc_bar_width() {
     f32 target;
     f32 max = ((struct Bar_80256C00 *)this)->max;
@@ -101,7 +101,7 @@ void TWindowSubStatusDisp__sub_80256C40(TUnk_804CF930 *self, TWindowKeyBoardSoft
     q.v0 = 0.93359375f;
     q.u1 = 0.2265625f;
     q.v1 = 0.96875f;
-    if (try_open__19TWindowKeyBoardSoftFii(ctx, &q) != 0) {
+    if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(ctx, &q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, depth);
     }
     q.x0 = 20.0f + (-1.0f + pos->x);
@@ -112,7 +112,7 @@ void TWindowSubStatusDisp__sub_80256C40(TUnk_804CF930 *self, TWindowKeyBoardSoft
     q.v0 = 0.93359375f;
     q.u1 = 0.30859375f;
     q.v1 = 0.96875f;
-    if (try_open__19TWindowKeyBoardSoftFii(ctx, &q) != 0) {
+    if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(ctx, &q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, depth);
     }
     q.x0 = ((-1.0f + pos->x) + w) - 20.0f;
@@ -123,12 +123,12 @@ void TWindowSubStatusDisp__sub_80256C40(TUnk_804CF930 *self, TWindowKeyBoardSoft
     q.v0 = 0.93359375f;
     q.u1 = 0.48828125f;
     q.v1 = 0.96875f;
-    if (try_open__19TWindowKeyBoardSoftFii(ctx, &q) != 0) {
+    if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(ctx, &q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, depth);
     }
 }
 
-void TUnk_804CF930::draw_status_gauge_bar(void *ctx, void *pos_arg, f32 depth, f32 len) {
+void TUnk_804CF930::draw_status_gauge_bar(TWindowDrawContext *ctx, void *pos_arg, f32 depth, f32 len) {
     Pos_80256E0C *pos = (Pos_80256E0C *)pos_arg;
     Quad_80256E0C q;
     f32 w;
@@ -149,7 +149,7 @@ void TUnk_804CF930::draw_status_gauge_bar(void *ctx, void *pos_arg, f32 depth, f
     q.v0 = 0.1171875f;
     q.u1 = (230.0f + w) / 256.0f;
     q.v1 = 0.14453125f;
-    if (try_open__19TWindowKeyBoardSoftFii(ctx, &q) != 0) {
+    if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(ctx, &q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, depth);
     }
     if (len <= 4.0f) {
@@ -164,7 +164,7 @@ void TUnk_804CF930::draw_status_gauge_bar(void *ctx, void *pos_arg, f32 depth, f
     q.v0 = 0.1171875f;
     q.u1 = 0.97265625f;
     q.v1 = 0.14453125f;
-    if (try_open__19TWindowKeyBoardSoftFii(ctx, &q) != 0) {
+    if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(ctx, &q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, depth);
     }
     end = scale - 4.0f;
@@ -180,12 +180,12 @@ void TUnk_804CF930::draw_status_gauge_bar(void *ctx, void *pos_arg, f32 depth, f
     q.v0 = 0.1171875f;
     q.u1 = (252.0f + w) / 256.0f;
     q.v1 = 0.14453125f;
-    if (try_open__19TWindowKeyBoardSoftFii(ctx, &q) != 0) {
+    if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(ctx, &q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, depth);
     }
 }
 
-void TWindowSubStatusDisp__sub_80257024(TUnk_804CF930 *self, TWindowKeyBoardSoft *ctx) {
+void render__13TUnk_804CF930FP18TWindowDrawContext(TUnk_804CF930 *self, TWindowKeyBoardSoft *ctx) {
     Pos_80256E0C pos;
     f32 depth;
     f32 len;
@@ -216,12 +216,12 @@ void TWindowSubStatusDisp__sub_80257024(TUnk_804CF930 *self, TWindowKeyBoardSoft
     }
     if (avail > 0.0f) {
         set_constant_material_color(self->color);
-        self->draw_status_gauge_bar(ctx, &pos, depth, len);
+        self->draw_status_gauge_bar((TWindowDrawContext *)ctx, &pos, depth, len);
     }
     TWindowSubStatusDisp::get_player();
 }
 
-void step_gauge_bar_width(Gauge_802571B4 *g) {
+void update__13TUnk_804CF930Fv(Gauge_802571B4 *g) {
     f32 target;
     f32 diff;
     g->flags &= ~4;
@@ -241,15 +241,15 @@ void step_gauge_bar_width(Gauge_802571B4 *g) {
     }
 }
 
-void *TWindowSubStatusDisp__sub_80257298(void *arg0, s16 arg1);
-#define destroy__13TUnk_804CF930Fs ((s32 (*)(void *, s16))destroy__13TUnk_804CF930Fs)
+void *__dt__13TUnk_804CF930Fv(void *arg0, s16 arg1);
+#define __dt__13TUnk_804CF918Fv ((s32 (*)(void *, s16))__dt__13TUnk_804CF918Fv)
 
 extern s32 lbl_804CF930[];
 
-void *TWindowSubStatusDisp__sub_80257298(void *arg0, s16 arg1) {
+void *__dt__13TUnk_804CF930Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 4) = lbl_804CF930;
-        destroy__13TUnk_804CF930Fs(arg0, 0);
+        __dt__13TUnk_804CF918Fv(arg0, 0);
         if (arg1 > 0) {
             ::operator delete(arg0);
         }
@@ -257,9 +257,9 @@ void *TWindowSubStatusDisp__sub_80257298(void *arg0, s16 arg1) {
     return arg0;
 }
 
-#undef destroy__13TUnk_804CF930Fs
+#undef __dt__13TUnk_804CF918Fv
 
-#define draw_status_gauge_bar__13TUnk_804CF930FPvPvff ((s32 (*)(void *, void *, void *, f32, f32))draw_status_gauge_bar__13TUnk_804CF930FPvPvff)
+#define draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff ((s32 (*)(void *, void *, void *, f32, f32))draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff)
 struct RecoveredGlobal_80257B4C_lbl_804CF948 {
     s32 value;
     u8 remaining[0x14];
@@ -269,19 +269,19 @@ typedef char RecoveredGlobal_80257B4C_lbl_804CF948_size[sizeof(RecoveredGlobal_8
 
 typedef void *(*Ctor_80257D44)(void *, void *, s32);
 
-#define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
+#define __dt__13TUnk_804CF918Fv ((s32 (*)(s32, s32 *))__dt__13TUnk_804CF918Fv)
 #define calc_bar_width__13TUnk_804CF930Fv ((s32 (*)())calc_bar_width__13TUnk_804CF930Fv)
-#define step_gauge_bar_width ((void (*)(void *))step_gauge_bar_width)
+#define update__13TUnk_804CF930Fv ((void (*)(void *))update__13TUnk_804CF930Fv)
 
 #define lbl_804CF930 (*(unsigned char (*)[1])&lbl_804CF930)
 extern const float lbl_805DCE58;
 
-void*TUnk_804CF930::init_from(void*a1, int a2) { sub_80256BDC__13TUnk_804CF930Fl(this, a2); *(int*)((char*)this + 0x4) = (int)lbl_804CF930; *(float*)((char*)this + 0x1c) = lbl_805DCE58; *(float*)((char*)this + 0xc) = *(float*)((char*)a1 + 0x4); *(float*)((char*)this + 0x10) = *(float*)((char*)a1 + 0x8); *(float*)((char*)this + 0x8) = *(float*)((char*)a1 + 0xc); *(float*)((char*)this + 0x14) = *(float*)((char*)a1 + 0x18); *(int*)((char*)this + 0x18) = *(int*)((char*)a1 + 0x10); *(short*)((char*)this + 0x0) = *(int*)((char*)a1 + 0x14); *(float*)((char*)this + 0x20) = *(float*)((char*)a1 + 0x1c); *(float*)((char*)this + 0x24) = *(float*)((char*)a1 + 0x20); return this; }
+void *__ct__13TUnk_804CF930FPvs(void *self, void *a1, int a2) { __ct__13TUnk_804CF918Fs(self, a2); *(int*)((char*)self + 0x4) = (int)lbl_804CF930; *(float*)((char*)self + 0x1c) = lbl_805DCE58; *(float*)((char*)self + 0xc) = *(float*)((char*)a1 + 0x4); *(float*)((char*)self + 0x10) = *(float*)((char*)a1 + 0x8); *(float*)((char*)self + 0x8) = *(float*)((char*)a1 + 0xc); *(float*)((char*)self + 0x14) = *(float*)((char*)a1 + 0x18); *(int*)((char*)self + 0x18) = *(int*)((char*)a1 + 0x10); *(short*)((char*)self + 0x0) = *(int*)((char*)a1 + 0x14); *(float*)((char*)self + 0x20) = *(float*)((char*)a1 + 0x1c); *(float*)((char*)self + 0x24) = *(float*)((char*)a1 + 0x20); return self; }
 
 }
 
-#undef draw_status_gauge_bar__13TUnk_804CF930FPvPvff
-#undef destroy__13TUnk_804CF930Fs
+#undef draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff
+#undef __dt__13TUnk_804CF918Fv
 #undef calc_bar_width__13TUnk_804CF930Fv
-#undef step_gauge_bar_width
+#undef update__13TUnk_804CF930Fv
 #undef lbl_804CF930

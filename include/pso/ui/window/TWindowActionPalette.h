@@ -35,7 +35,7 @@ struct TWindowActionPalette {
     u8 unknown_6d[3];
     Scale scale;
     void set_bank_panel_art(unsigned short state);
-    static void update_slot_icon(void *arg0, int idx, int mode, int slot);
+    static void update_slot_icon(void *arg0, int idx, int mode, u16 slot);
     void update_slot_sprites(int idx, int mode, u16 slot);
     void draw_frame(int arg1);
     void set_slot(u8 v);

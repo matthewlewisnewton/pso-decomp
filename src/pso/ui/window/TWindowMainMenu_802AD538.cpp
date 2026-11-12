@@ -118,7 +118,7 @@ s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
 f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *);
 s32 is_window_reveal_complete__11TWindowBaseFv();
 s32 sub_80246948__11TWindowBaseFv();
-s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);
+s32 try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(s32 arg0, s32 arg1);
 Rect_802AE2B0 * open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, s32, f32, s32);
 s32 fn_8026CB68();
 void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, Win_802AD538 *w);
@@ -190,7 +190,7 @@ void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, Win_802AD538 *w) {
         r.v0 = uv->v / 256.0f;
         r.u1 = (98.0f + uv->u) / 256.0f;
         r.v1 = (16.0f + uv->v) / 256.0f;
-        if (try_open__19TWindowKeyBoardSoftFii((s32)w, (s32)&r) != 0) {
+        if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf((s32)w, (s32)&r) != 0) {
             draw_textured_quad_at_depth((f32 *)&r, scale);
         }
         TWindowSubStatusDisp::get_player();

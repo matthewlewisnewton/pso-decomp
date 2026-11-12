@@ -23,7 +23,7 @@ SoundBalanceSettings *get_global_state__23TAdSinglePlyChrSelectGCFv();
 u32 calc_text_width();
 u8 *get_array_entry__11TWindowBaseFi(void *, s32);
 s32 get_field_20__17TWindowSubComCardFv();
-s32 refresh_status_display__9TWindowDDFv(u8 *);
+s32 measure_text_entry(u8 *);
 extern s32 window_sound_balance_settings[];
 extern s32 __vt__19TWindowSoundBalance[];
 extern s32 TWindowSoundBalance__name;
@@ -181,11 +181,11 @@ u8 *TWindowSoundBalance__ct(u8 *arg0, s32 arg1) {
     e = get_array_entry__11TWindowBaseFi(arg0, 0);
     get_field_20__17TWindowSubComCardFv();
     *(f32 *)((s8 *)e + 8) = 231.0f - 0.5f * calc_text_width();
-    refresh_status_display__9TWindowDDFv(e);
+    measure_text_entry(e);
     e = get_array_entry__11TWindowBaseFi(arg0, 1);
     get_field_20__17TWindowSubComCardFv();
     *(f32 *)((s8 *)e + 8) = 231.0f - 0.5f * calc_text_width();
-    refresh_status_display__9TWindowDDFv(e);
+    measure_text_entry(e);
     st = get_global_state__23TAdSinglePlyChrSelectGCFv();
     if (st == 0) {
         ((TWindowSoundBalance *)arg0)->set_music_gain(0);

@@ -1204,11 +1204,11 @@ void TLobby__sub_8024285C(void* p) { reset_state_805D63DC__6TLobbyFv(p); }
 typedef char RecoveredGlobal_8024287C_lbl_80517EE0_size[sizeof(RecoveredGlobal_8024287C_lbl_80517EE0) == 0xBC ? 1 : -1];
 typedef char RecoveredGlobal_8024287C_lbl_80517F9C_size[sizeof(RecoveredGlobal_8024287C_lbl_80517F9C) == 0x5E4 ? 1 : -1];
 void construct_entry_arrays__6TLobbyFv(void) {
-    TLobby__sub_802428C4((void*)((void *) &selected_guild_card_record.value));
-    ((s32 (*)(s32 *, void *(*)(void *), s32, s32, s32))__construct_array)(&(*(RecoveredGlobal_8024287C_lbl_80517F9C *)&lbl_80517F9C).value, TLobby__sub_802428C4, 0, 0xBC, 8);
+    __ct__20LobbyGuildCardRecordFv((void*)((void *) &selected_guild_card_record.value));
+    ((s32 (*)(s32 *, void *(*)(void *), s32, s32, s32))__construct_array)(&(*(RecoveredGlobal_8024287C_lbl_80517F9C *)&lbl_80517F9C).value, __ct__20LobbyGuildCardRecordFv, 0, 0xBC, 8);
 }
 
-void* TLobby__sub_802428C4(void* p) { construct_guild_card_tag_array((char*)p + 0x58); return p; }
+void* __ct__20LobbyGuildCardRecordFv(void* p) { construct_guild_card_tag_array((char*)p + 0x58); return p; }
 s32 TLobby__sub_802428F8(void* p) { return *(s32*)((char*)p + 0x4); }
 
 int get_com_card_data__6TLobbyFv(void) {  return com_card_entry_count; }

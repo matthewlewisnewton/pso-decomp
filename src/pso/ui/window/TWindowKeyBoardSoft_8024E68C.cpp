@@ -175,7 +175,7 @@ s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(Win_8024E8E8 *w, Box_8024E8E8
 }
 #pragma pop
 
-s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1) {
+s32 try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(s32 arg0, s32 arg1) {
     if (clip_textured_quad__19TWindowKeyBoardSoftFPvPv((Win_8024E8E8 *)(arg0), (Box_8024E8E8 *)(arg1)) == 0) {
         return 0;
     }

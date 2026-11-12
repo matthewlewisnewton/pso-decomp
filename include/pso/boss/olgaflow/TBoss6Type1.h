@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
 
+struct Vec;
 struct Boss6EffectPoint { f32 x, y, z; };
 // One of the two part-motion players at 0x444 (render blends prev_motion_id/prev_frame into
 // motion_id/frame by blend; names inferred from that use).
@@ -76,7 +77,7 @@ struct TBoss6Type1 : public TObjEnemy {
     u8 unk_4EC[0x1C];
     s32 m_508;
     u8 unk_50C[0x6C];
-    // Model node positions, filled through the node callback list at 0x654 (TBoss6Type1__ct passes
+    // Model node positions, filled through the node callback list at 0x654 (__ct__11TBoss6Type1FP7TObjectP15Boss6Type1Spawn passes
     // this array to TObjFish__sub_800E3124); node 7 is where the boss's sounds play from.
     Vec node_points[8];
     Boss6EffectPoint trail_points[3];
@@ -96,12 +97,10 @@ struct TBoss6Type1 : public TObjEnemy {
     void interpolate_pos_to_target(s32 step, s32 total);
     void ease_toward_target(s32 a, s32 b);
     s32 count_matches(s32 arg1, s32 arg2);
-    static s32 pick_random_entry(s32 arg0, s32 arg1, s32 arg2);
-    static int rand_range_inclusive(s32 arg0, int arg1, int arg2);
+    s32 pick_random_entry(s32 *table, s32 n);
+    int rand_range_inclusive(int lo, int hi);
     s32 pick_remapped_list_value(s32 a, s32 b, s32 n);
-    void handle_6xa4_action(u8 * _w1);
-    void decode_polar_position(u8 *arg1);
-    static s32 request_jittered_camera(void *arg0, void *arg1, void *arg2, int arg3);
+    void request_jittered_camera(const Vec *eye, const Vec *target, int id);
     void request_default_jittered_camera();
     u8 is_timer_expired();
     void reset_fields_4e0();
@@ -111,7 +110,7 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 check_field4b0_threshold();
     int is_time_up();
     void set_flag_on_threshold();
-    static void set_part_default_value(int a0, void* a1);
+    void set_part_default_value(Vec *p);
     void init_parts();
     void reset_param();
     void decrease_field_clamped_min();
@@ -130,10 +129,9 @@ struct TBoss6Type1 : public TObjEnemy {
     void draw_part_motions();
     void set_motion_set(s32 arg1);
     void advance_animations();
-    void copy_transform(void* q);
     void render_shadows();
     void do_attack();
-    s32 send_6xA4_action(s32 t, s32 *src);
+    s32 send_6xA4_action(s32 t, void *args);
     void load_params(void *arg1);
     void set_sync_data(void *arg1);
     static s32 create(s32 arg0);

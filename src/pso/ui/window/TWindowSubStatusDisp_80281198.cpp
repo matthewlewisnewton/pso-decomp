@@ -2,7 +2,7 @@
 #include "pso/ui/window/TWindowDD.h"
 #include "pso/ui/window/TWindowBase.h"
 extern "C" {
-s8 get_type__20TWindowSubStatusDispFv(s32);
+s8 get_type__13PageIndicatorFv(s32);
 extern "C" u8 lbl_805DD6E0[];
 extern "C" u8 lbl_805DD6E4[];
 extern "C" u8 lbl_805DD6E8[];
@@ -283,23 +283,23 @@ void TWindowSubStatusDisp::dispatch_page_init() {
         &TWindowSubStatusDisp::vt0, &TWindowSubStatusDisp::vt1, &TWindowSubStatusDisp::vt2,
     };
     static void (TWindowSubStatusDisp::*page1[4])() = {
-        &TWindowSubStatusDisp::vt3, &TWindowSubStatusDisp::vt4, &TWindowSubStatusDisp::vt5,
+        &TWindowSubStatusDisp::vt3, &TWindowSubStatusDisp::init_challenge_records_page, &TWindowSubStatusDisp::vt5,
         &TWindowSubStatusDisp::vt5,
     };
     static void (TWindowSubStatusDisp::*page2[4])() = {
-        &TWindowSubStatusDisp::vt7, &TWindowSubStatusDisp::vt4, &TWindowSubStatusDisp::vt5,
+        &TWindowSubStatusDisp::vt7, &TWindowSubStatusDisp::init_challenge_records_page, &TWindowSubStatusDisp::vt5,
         &TWindowSubStatusDisp::vt5,
     };
 
     switch (m_60) {
     case 0:
-        (this->*page0[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page0[get_type__13PageIndicatorFv(m_68)])();
         break;
     case 1:
-        (this->*page1[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page1[get_type__13PageIndicatorFv(m_68)])();
         break;
     case 2:
-        (this->*page2[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page2[get_type__13PageIndicatorFv(m_68)])();
         break;
     }
 }
@@ -319,13 +319,13 @@ void TWindowSubStatusDisp::dispatch_page_update() {
 
     switch (m_60) {
     case 0:
-        (this->*page0[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page0[get_type__13PageIndicatorFv(m_68)])();
         break;
     case 1:
-        (this->*page1[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page1[get_type__13PageIndicatorFv(m_68)])();
         break;
     case 2:
-        (this->*page2[get_type__20TWindowSubStatusDispFv(m_68)])();
+        (this->*page2[get_type__13PageIndicatorFv(m_68)])();
         break;
     }
 }

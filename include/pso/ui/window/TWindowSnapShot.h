@@ -25,13 +25,13 @@ struct TWindowSnapShot : public TWindowBase {
     void reset();
     u8 *init_and_reset();
     void update_both();
-    s32 start_capture(s32 arg1);
+    s32 start_capture(const void *arg1);
     static int get_width();
     static void init_default();
     static void alloc_buffer();
     u8 unk_61[0x3];
     void free_buffer();
-    s32 open_stream(s32 arg1);
+    s32 open_stream(const void *arg1);
     void set_mode(s32 v);
     s32 get_buffer_size();
 };

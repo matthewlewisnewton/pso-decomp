@@ -64,11 +64,11 @@ s32 queue_destruction__7TObjectFv();
 
 extern "C" {
 
-void *TWindowEffectLight::create(void *arg0, void *arg1, void *arg2) {
+void *TWindowEffectLight::create(void *arg0, s16 arg1, u32 arg2) {
     void *o;
     o = __nw__7TObjectFUl(0x2C);
     if (o != NULL) {
-        o = ((void *(*)(void *, void *, void *, void *))__ct__18TWindowEffectLightFPvsUl)(o, arg0, arg1, arg2);
+        o = ((void *(*)(void *, void *, s16, u32))__ct__18TWindowEffectLightFPvsUl)(o, arg0, arg1, arg2);
     }
     return o;
 }

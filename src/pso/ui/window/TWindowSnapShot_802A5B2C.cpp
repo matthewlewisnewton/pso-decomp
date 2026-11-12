@@ -73,7 +73,7 @@ s32 alloc_buffer__15TWindowSnapShotFPv(TWindowSnapShot *window_snap_shot) {
     }
     return 1;
 }
-s32 TWindowSnapShot::open_stream(s32 arg1) {
+s32 TWindowSnapShot::open_stream(const void *arg1) {
     *(s32 *)&this->m_next = TGStream::read_whole_file((s32)arg1, (u8 *)(*(s32 *)&this->m_prev));
     if (TWindowSnapShot__sub_802A605C((u8 *)this) == 0) {
         set_mode(2);
@@ -119,12 +119,12 @@ u8 *TWindowSnapShot::init_and_reset() {
 }
 
 void TWindowSnapShot::update_both() { free_buffer(); reset(); }
-s32 TWindowSnapShot::start_capture(s32 arg1) {
+s32 TWindowSnapShot::start_capture(const void *arg1) {
     if (arg1 == 0) {
         set_mode(3);
         return 0;
     }
-    if (init__15TWindowSnapShotFPvi(this, arg1) == 0) {
+    if (init__15TWindowSnapShotFPvi(this, (s32)arg1) == 0) {
         return 0;
     }
     if (alloc_buffer__15TWindowSnapShotFPv(this) == 0) {

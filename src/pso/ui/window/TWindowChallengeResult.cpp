@@ -36,7 +36,7 @@ struct Win_80246DCC {
 };
 
 Entry_80246DCC *get_array_entry__11TWindowBaseFi(void *, s32);
-void refresh_status_display__9TWindowDDFv(Entry_80246DCC *);
+void measure_text_entry(Entry_80246DCC *);
 void draw_right_aligned_number(void);
 s32 get_window_layout_position(s32);
 extern const char lbl_8044E7BC[];
@@ -98,7 +98,7 @@ Win_80246DCC *TWindowChallengeResult__ct(Win_80246DCC *self, s32 str, s32 arg2, 
     for (i = 0; i < 3; i++) {
         e = get_array_entry__11TWindowBaseFi(self, i * 2);
         set_text_entry_string((u8 *)e, (u32)lbl_804CE2AC[i], 0);
-        refresh_status_display__9TWindowDDFv(e);
+        measure_text_entry(e);
         e->f8 = 233.0f - e->f10;
     }
     set_text_entry_string((u8 *)(get_array_entry__11TWindowBaseFi(self, 1)), str, 0x20);

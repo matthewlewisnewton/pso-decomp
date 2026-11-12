@@ -76,7 +76,7 @@ s32 load_player_motion_data(void) {
     if ((u32) var_r0 == 0U) {
         return 0;
     }
-    ((TWindowSnapShot *)var_r0)->start_capture((*(s32 *)&player_motion_data_filename_ptr));
+    ((TWindowSnapShot *)var_r0)->start_capture((const void *)(*(s32 *)&player_motion_data_filename_ptr));
     return 1;
 }
 

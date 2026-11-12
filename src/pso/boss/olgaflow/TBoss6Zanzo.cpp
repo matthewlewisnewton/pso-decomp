@@ -51,7 +51,7 @@ void TBoss6Type1::set_effect_points(f32 *a, u32 *b) {
     end = p + o->count;
     for (; p < end; p++, a2 += 3, b2++) {
         VecCopy__FP3VecPC3Vec(&p->v, a2);
-        ((TAdChrMoveEffectGC *)p)->copy4(b2);
+        copy_color_bytes((void *)p, b2);
     }
 }
 
@@ -122,19 +122,19 @@ void TBoss6Zanzo::sub_803205C4() {
             quad.positions = positions;
             for (i = 0; i < m_24 - 1; i++) {
                 p = &((ZanzoTrailPoint *)prev->p)[i];
-                ((TAdChrMoveEffectGC *)colors[0])->copy4(p);
+                copy_color_bytes((void *)colors[0], p);
                 colors[0][3] = prev_alpha * p->color[3];
                 VecCopy__FP3VecPC3Vec(&positions[0], &p->pos);
                 p = (ZanzoTrailPoint *)prev->p + i + 1;
-                ((TAdChrMoveEffectGC *)colors[1])->copy4(p);
+                copy_color_bytes((void *)colors[1], p);
                 colors[1][3] = prev_alpha * p->color[3];
                 VecCopy__FP3VecPC3Vec(&positions[1], &p->pos);
                 p = (ZanzoTrailPoint *)frame->p + i + 1;
-                ((TAdChrMoveEffectGC *)colors[2])->copy4(p);
+                copy_color_bytes((void *)colors[2], p);
                 colors[2][3] = next_alpha * p->color[3];
                 VecCopy__FP3VecPC3Vec(&positions[2], &p->pos);
                 p = &((ZanzoTrailPoint *)frame->p)[i];
-                ((TAdChrMoveEffectGC *)colors[3])->copy4(p);
+                copy_color_bytes((void *)colors[3], p);
                 colors[3][3] = next_alpha * p->color[3];
                 VecCopy__FP3VecPC3Vec(&positions[3], &p->pos);
                 ((TObjPlayer *)&quad)->draw_tri_fan_3d(4, 7);

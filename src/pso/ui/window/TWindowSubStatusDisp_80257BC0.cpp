@@ -46,11 +46,12 @@ struct Pos_80256E0C { f32 x; f32 y; };
 extern "C" {
 void calc_bar_width__13TUnk_804CF930Fv(struct Bar_80256C00 *bar);
 extern const f32 lbl_805DCE58;
-void step_gauge_bar_width(Gauge_802571B4 *g);
-void draw_status_gauge_bar__13TUnk_804CF930FPvPvff(Gauge_80256E0C *self, void *ctx, Pos_80256E0C *pos, f32 depth, f32 len);
-void *destroy__13TUnk_804CF930Fs(void *arg0, s16 arg1);
+void update__13TUnk_804CF930Fv(Gauge_802571B4 *g);
+void draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff(Gauge_80256E0C *self, void *ctx, Pos_80256E0C *pos, f32 depth, f32 len);
+void *__dt__13TUnk_804CF918Fv(void *arg0, s16 arg1);
+void __ct__13TUnk_804CF918Fs(void *self, s32 arg1);
 
-#define draw_status_gauge_bar__13TUnk_804CF930FPvPvff ((s32 (*)(void *, void *, void *, f32, f32))draw_status_gauge_bar__13TUnk_804CF930FPvPvff)
+#define draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff ((s32 (*)(void *, void *, void *, f32, f32))draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff)
 struct RecoveredGlobal_80257B4C_lbl_804CF948 {
     s32 value;
     u8 remaining[0x14];
@@ -100,10 +101,10 @@ typedef char RecoveredGlobal_80257B4C_lbl_804CF948_size[sizeof(RecoveredGlobal_8
 
 typedef void *(*Ctor_80257D44)(void *, void *, s32);
 
-#define destroy__13TUnk_804CF930Fs ((s32 (*)(s32, s32 *))destroy__13TUnk_804CF930Fs)
+#define __dt__13TUnk_804CF918Fv ((s32 (*)(s32, s32 *))__dt__13TUnk_804CF918Fv)
 #define calc_bar_width__13TUnk_804CF930Fv ((s32 (*)())calc_bar_width__13TUnk_804CF930Fv)
-#define step_gauge_bar_width ((void (*)(void *))step_gauge_bar_width)
-void* init_from__13TUnk_804CF930FPvi(void* a0, void* a1, int a2);
+#define update__13TUnk_804CF930Fv ((void (*)(void *))update__13TUnk_804CF930Fv)
+void* __ct__13TUnk_804CF930FPvs(void* a0, void* a1, int a2);
 u8 * init_layout_entry_copy__20TWindowSubStatusDispFPUc(u8 *arg0, u8 *arg1);
 void draw_visible_window_entries(void *self, List_80257BC0 *list, void *ctx);
 void init_window_layout_entries(List_80257D44 *self, Desc_80257D44 *desc, s32 arg2);
@@ -201,7 +202,7 @@ void init_window_layout_entries(List_80257D44 *self, Desc_80257D44 *desc, s32 ar
             case 1:
                 o = ::operator new(0x28);
                 if (o != NULL) {
-                    o = ((Ctor_80257D44)init_from__13TUnk_804CF930FPvi)(o, rec, arg2);
+                    o = ((Ctor_80257D44)__ct__13TUnk_804CF930FPvs)(o, rec, arg2);
                 }
                 *out = o;
                 rec += 0x24 / 4;
@@ -307,7 +308,7 @@ void TWindowSubStatusDisp__sub_80258054(void) {  }
 void *TWindowSubStatusDisp::deleting_destructor(s16 arg1) {
     if (this != NULL) {
         *(s32 * *)&this->m_flags = lbl_804CF998;
-        destroy__13TUnk_804CF930Fs((s32)this, 0);
+        __dt__13TUnk_804CF918Fv((s32)this, 0);
         if (arg1 > 0) {
             ::operator delete(this);
         }
@@ -316,10 +317,10 @@ void *TWindowSubStatusDisp::deleting_destructor(s16 arg1) {
 }
 }
 
-#undef draw_status_gauge_bar__13TUnk_804CF930FPvPvff
-#undef destroy__13TUnk_804CF930Fs
+#undef draw_status_gauge_bar__13TUnk_804CF930FP18TWindowDrawContextPvff
+#undef __dt__13TUnk_804CF918Fv
 #undef calc_bar_width__13TUnk_804CF930Fv
-#undef step_gauge_bar_width
+#undef update__13TUnk_804CF930Fv
 #undef lbl_804CF930
 
 
@@ -383,10 +384,10 @@ extern "C" {
 
 
     extern const float lbl_805DCEF8;
-void* reset_entry__20TWindowSubStatusDispFPv(void* a0, s32 _w1) { ((TUnk_804CF930 *)a0)->sub_80256BDC(_w1); *(int*)((char*)a0 + 0x4) = (int)lbl_804CF998; *(float*)((char*)a0 + 0x8) = lbl_805DCEF8; *(float*)((char*)a0 + 0xc) = lbl_805DCEF8; *(float*)((char*)a0 + 0x10) = lbl_805DCEF8; *(float*)((char*)a0 + 0x14) = lbl_805DCEF8; return a0; }
+void* reset_entry__20TWindowSubStatusDispFPv(void* a0, s32 _w1) { __ct__13TUnk_804CF918Fs(a0, _w1); *(int*)((char*)a0 + 0x4) = (int)lbl_804CF998; *(float*)((char*)a0 + 0x8) = lbl_805DCEF8; *(float*)((char*)a0 + 0xc) = lbl_805DCEF8; *(float*)((char*)a0 + 0x10) = lbl_805DCEF8; *(float*)((char*)a0 + 0x14) = lbl_805DCEF8; return a0; }
 
 u8 *TWindowSubStatusDisp::init_layout_entry_rect(u8 *arg1, s32 arg2) {
-    ((TUnk_804CF930 *)((u8 *)this))->sub_80256BDC(arg2);
+    __ct__13TUnk_804CF918Fs(this, arg2);
     *(s32 **)((s8 *)((u8 *)this) + 4) = lbl_804CF998;
     *(f32 *)((s8 *)((u8 *)this) + 8) = (f32) *(f32 *)((s8 *)arg1 + 4);
     *(f32 *)((s8 *)((u8 *)this) + 0xC) = (f32) *(f32 *)((s8 *)arg1 + 8);
@@ -1052,7 +1053,7 @@ extern s32 lbl_805D63F0;
 extern const f32 lbl_805DCF1C;
 void begin_screen_draw(s32 arg0);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
-s32 try_open__19TWindowKeyBoardSoftFii(s32, s32);
+s32 try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(s32, s32);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 
 void draw_item_list_icon(s32 win, u8 *pos, s32 icon, s32 style, f32 depth) {
@@ -1081,7 +1082,7 @@ void draw_item_list_icon(s32 win, u8 *pos, s32 icon, s32 style, f32 depth) {
         q.v[6] = edge * scale;
         edge = offset + entry[1];
         q.v[7] = edge * scale;
-        if (try_open__19TWindowKeyBoardSoftFii(win, (s32)&q) != 0) {
+        if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(win, (s32)&q) != 0) {
             draw_textured_quad_at_depth(q.v, depth);
         }
         TWindowSubStatusDisp::get_player();

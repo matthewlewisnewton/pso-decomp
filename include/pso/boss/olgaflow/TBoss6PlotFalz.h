@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
 
+struct TObjPlayer;
+
 extern "C" {
 s32 TBoss6PlotFalz__sub_802ABADC(void);
 // Nonzero when the game runs on Normal difficulty (game_difficulty_selection == 0).
@@ -36,7 +38,7 @@ struct TBoss6PlotFalz : public TObjEnemy {
     static s32 damage_player_hp(s32 arg0, u32 arg1);
     static s32 sort_active_players();
     static u16 pick_random_active_player();
-    s32 is_active();
+    static s32 is_active(TObjPlayer *player);
     void set_state_2();
     void reset_state();
     void activate_warp();
@@ -59,8 +61,6 @@ struct TBoss6PlotFalz : public TObjEnemy {
     static void update_camera_target();
     static void apply_fade_material_color(f32 farg0, f32 farg1, f32 farg2, f32 farg3);
     static int get_phase();
-    void scroll_strips_uv(s32 dx, s32 dy);
-    void free_buffer_pairs();
     static void freeze_all_players();
     void render();
     void run_task();

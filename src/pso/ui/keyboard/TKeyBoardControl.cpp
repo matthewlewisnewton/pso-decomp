@@ -40,6 +40,7 @@ struct Quad_80262038 {
 #include "pso/ui/window/TWindowEffectLight.h"
 #include "pso/ui/window/TWindowSubComCard.h"
 #include "pso/ui/window/TWindowSubMag.h"
+extern "C" void *create__18TWindowEffectLightFPvsUl(void *, void *, void *);
 
 // TWindowKeyBoardSoft ctor descriptor; first object of the TU .data (0x804CFDE0).
 WindowDescriptor soft_keyboard_window_and_action_data = { {307.0f, 161.0f}, 50040.0f, NULL, 0x803 };
@@ -614,7 +615,7 @@ void TWindowKeyBoardSoft::spawn_key_effect(s32 arg1, s32 arg2) {
         kind = 6;
         break;
     }
-    TWindowEffectLight::create(&pos, (void *)kind, (void *)local_client_id);
+    create__18TWindowEffectLightFPvsUl(&pos, (void *)kind, (void *)local_client_id);
 }
 #pragma pop
 

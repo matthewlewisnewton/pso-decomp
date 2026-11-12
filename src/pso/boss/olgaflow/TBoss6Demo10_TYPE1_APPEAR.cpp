@@ -10,6 +10,7 @@
 #include "pso/boss/olgaflow/TBoss6Demo10_TYPE1_APPEAR.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
 #include "pso/boss/darkfalz/TBoss4Type2.h"
+#include "pso/boss/olgaflow/Boss6ScrollStrips.h"
 #include "pso/boss/olgaflow/TBoss6PlotFalz.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/ui/hud/TNowLoading.h"
@@ -48,7 +49,7 @@ s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
 int set_scripted_camera_pose(void *, void *, void *);
-int build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
+int build_tables__17Boss6ScrollStripsFP14Boss6StripDescl(void *, void *, int);
 extern s32 lbl_80477DEC[];
 extern s32 boss6_type1_appear_node_desc[];
 extern s32 boss6_type1_appear_model_node_descriptors[];
@@ -95,7 +96,7 @@ void run_task__25TBoss6Demo10_TYPE1_APPEARFv(TBoss6Demo10_TYPE1_APPEAR *boss6_de
     if (temp_f1 > lbl_805DFA4C) {
         *(f32 *)((s8 *)boss6_demo10_type1_appear + 0x34) = (f32) lbl_805DFA4C;
     }
-    ((TBoss6PlotFalz *)((u8 *)boss6_demo10_type1_appear + 0x40))->scroll_strips_uv(8, 0);
+    ((Boss6ScrollStrips *)((u8 *)boss6_demo10_type1_appear + 0x40))->scroll_strips_uv(8, 0);
     if ((s32) boss6_demo10_type1_appear->m_38 == 0x78) {
         play_sound_effect(0x4003A105, 0, 0, 0);
     }
@@ -162,7 +163,7 @@ void run_task__25TBoss6Demo10_TYPE1_APPEARFv(TBoss6Demo10_TYPE1_APPEAR *boss6_de
 TBoss6Demo10_TYPE1_APPEAR::~TBoss6Demo10_TYPE1_APPEAR() {
     restore_player_cameras();
     refresh_players_equipment__14TBoss6PlotFalzFPv();
-    ((TBoss6PlotFalz *)(((u8 *)this) + 0x40))->free_buffer_pairs();
+    ((Boss6ScrollStrips *)(((u8 *)this) + 0x40))->free_buffer_pairs();
     if ((u32) this->m_60 != 0U) {
         TObjFish::init_state_1(*(void **)((s8 *)this + 0x60));
         this->m_60 = 0U;
@@ -194,7 +195,7 @@ TBoss6Demo10_TYPE1_APPEAR::TBoss6Demo10_TYPE1_APPEAR(TObject *parent) : TObject(
     }
     ((Fish_8033CB4C *)this)->x60 = TObjFish__sub_800E3124((u8 *)boss6_type1_appear_node_desc, (s32)(((Fish_8033CB4C *)this)->x54));
     ((Fish_8033CB4C *)this)->x64 = 0;
-    build_tables__14TBoss6PlotFalzFPvPvi(((Fish_8033CB4C *)this)->x40, boss6_type1_appear_model_node_descriptors, 2);
+    build_tables__17Boss6ScrollStripsFP14Boss6StripDescl(((Fish_8033CB4C *)this)->x40, boss6_type1_appear_model_node_descriptors, 2);
     activate_camera_mode(5);
     set_scripted_camera_pose(lbl_80477DEC, lbl_80477DEC, lbl_80477E30);
     ((TCameraCtrl *)lbl_80477E3C)->cache_target_and_forward(0x416C);
