@@ -488,7 +488,6 @@ s32 TLobby__sub_80420410(u32, u32, NetPacket *, TcpTcb *);
 s32 TLobby__sub_8041F204(NetPacket *, u16, TcpTcb *);
 s32 TLobby__sub_8041F914(NetPacket *, u32, TcpTcb *, TcpHdr *);
 s32 TLobby__sub_8041F11C(TcpTcb *);
-s32 TLobby__sub_80422AB8(s32, void (*)(s16, s16, s32, s32), s16, s32, s32, s32);
 void NetYieldOutsideDispatcherThread(void);
 
 // Native ABI exports: the legacy linker names do not establish C++ ownership.
@@ -1516,8 +1515,8 @@ retry:
         {
             *(u32 *)(ent_new + offsetof(TcpTcb, event_ctx)) = *(u32 *)(found + offsetof(TcpTcb, accept_ctx));
             *(u32 *)(found + offsetof(TcpTcb, accept_ctx)) = 0;
-            s16 listener_index = TCP_IDX(found);
-            s16 accepted_index = (s16)((TcpTcb *)ent_new - TCP_STATE.tcbs);
+            int listener_index = (TcpTcb *)found - TCP_STATE.tcbs;
+            int accepted_index = (TcpTcb *)ent_new - TCP_STATE.tcbs;
             TLobby__sub_80422AB8(listener_index,
                                  *(void (**)(s16, s16, s32, s32))(found + offsetof(TcpTcb, accept_cb)),
                                  accepted_index, (s32)(ent_new + offsetof(TcpTcb, remote)),

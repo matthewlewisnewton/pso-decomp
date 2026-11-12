@@ -40,15 +40,15 @@ asm always has an entry in this register.
 ### TCP recovery under development
 
 `src/pso/network/TcpProtocol.cpp` currently remains unlinked. Its additional
-scoped optimizer constraints, inline flag lookup, guarded `__cntlzw` zero
+scoped optimizer constraints, guarded `__cntlzw` zero
 predicate and MWCC-only unused output-frame homes are recorded in
 [the TCP evidence](evidence/tcp-protocol-unit.md). The homes reproduce measured
 native compiler storage; they are not recovered TCP fields. A port removes the
 homes and optimizer steering and uses the scalar equality fallback. The new
 record views retain native 32-bit address/callback and overlapping-layout debt;
 consolidate those providers before claiming portable TCP interfaces. This entry
-does not grant assembly approval or claim completion of the two remaining
-functions.
+does not grant assembly approval or claim completion of the remaining output
+function.
 
 ## 1. Assembly
 
