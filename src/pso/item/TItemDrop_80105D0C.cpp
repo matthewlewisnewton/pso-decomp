@@ -389,7 +389,7 @@ s32 __cvt_fp2unsigned(f32);
 extern const f32 lbl_805DAAD8;
 s32 item_drop_rng_below(s32 arg0, u32 arg1);
 u32 roll_channel_below__9TItemDropFPviUi(u8 *arg0, s32 arg1, u32 arg2);
-s32 calc_random_ratio__10TObjPlayerFv(void *);
+f32 calc_random_ratio__10TObjPlayerFv(void *);
 void roll_table_ratio__9TItemDropFPvUi(u8 *arg0, u32 arg1);
 s32 __dt__7TObjectFv(void *, int);
 void *TItemDrop__sub_8010F168(void *arg0, s16 arg1);

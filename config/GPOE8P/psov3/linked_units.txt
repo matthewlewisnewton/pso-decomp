@@ -309,6 +309,7 @@ pso/boss/TBoss7LaserPtcl.cpp
 pso/boss/TBoss7LaserPtcl_8035AE54.cpp
 pso/boss/TBoss7PhotonBullet_802EF26C.cpp
 pso/boss/TBoss7TentacleNeedle.cpp
+pso/boss/TBoss8Dragon.cpp
 pso/boss/TBoss8DragonColli.cpp
 pso/boss/TBoss8DragonDemo.cpp
 pso/boss/TBoss8DragonEffBreath.cpp
@@ -990,7 +991,6 @@ pso/misc/TLoadingCur.cpp
 pso/misc/TLoadingCur_801A6DE0.cpp
 pso/misc/TLobby.cpp
 pso/misc/TLobbyEventTheme.cpp
-pso/misc/TLobby_80019E24.cpp
 pso/misc/TLobby_8001D6A0.cpp
 pso/misc/TLobby_8001EF5C.cpp
 pso/misc/TLobby_8002C140.cpp
@@ -2661,6 +2661,7 @@ pso/system/TOChatSensorFolder.cpp
 pso/system/TODummyKeyCave01Sound.cpp
 pso/system/TOSwitchAttackSub.cpp
 pso/system/TSetEvtDestroy.cpp
+pso/ui/DrawLine.cpp
 pso/ui/TAdADXlogo.cpp
 pso/ui/TAdAgreementBaseGC.cpp
 pso/ui/TAdBackGC.cpp
@@ -2688,8 +2689,6 @@ pso/ui/TAdDialingGC_80328E50.cpp
 pso/ui/TAdDialingGC_80328E90.cpp
 pso/ui/TAdDialingMessageWindow.cpp
 pso/ui/TAdDialingMessageWindow_8036A064.cpp
-pso/ui/TAdDrawLineCtrl.cpp
-pso/ui/TAdDrawLineTask.cpp
 pso/ui/TAdEnterBaseGC.cpp
 pso/ui/TAdEnterBaseGC_8032B38C.cpp
 pso/ui/TAdEnterPPPPassGC.cpp
@@ -2863,9 +2862,6 @@ pso/unk/TUnk_804A5C18.cpp
 pso/unk/TUnk_804A6CC8.cpp
 pso/unk/TUnk_804CC870.cpp
 pso/unk/text_8000F740.cpp
-pso/unk/text_80019B78.cpp
-pso/unk/text_80019EB8.cpp
-pso/unk/text_8001A3BC.cpp
 pso/unk/text_8001B424.cpp
 pso/unk/text_8001C388.cpp
 pso/unk/text_8002B164.cpp

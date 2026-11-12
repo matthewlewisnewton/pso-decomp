@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 88 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5710 | 885 |
-| configure.py per-unit override | 204 | 204 |
+| pragma | 5713 | 884 |
+| configure.py per-unit override | 205 | 205 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1098, `inline_depth` 1002, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 621, `scheduling` 264, `opt_propagation` 248, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 58, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 31, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1098, `inline_depth` 1002, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 624, `scheduling` 264, `opt_propagation` 248, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 58, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 31, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -123,8 +123,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1098, `inline_depth` 1002,
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
 | `src/pso/object/TObjTombstone.cpp:427` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4890` | `__fabs` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4898` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4891` | `__fabs` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4899` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:303` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:2511` | `__cntlzw` |
@@ -237,6 +237,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1098, `inline_depth` 1002,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/ui/DrawLine.cpp` | `-inline off,deferred, -fp_contract on` | Reverse definitions retain native function and vtable order. |
 | `pso/menu/TAdTimeSetGC.cpp` | `-sdata 4, -fp_contract on` | Keep the eight-byte menu positions in .data with the state table. The calendar x coordinate uses a fused multiply-add. |
 | `pso/misc/TLobby_802409AC.cpp` | `-sym on` | Keep the compiler-generated guild-card initializer ahead of its constructor and accessors. |
 | `pso/misc/TPlayerFootStamp.cpp` | `-fp_contract on, -inline off,deferred, -str reuse,readonly` | Upstream #208: fused scale/corner arithmetic; deferred emission puts the compiler vtable before the constructor switch table; class string is rodata. |
@@ -531,7 +532,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1098, `inline_depth` 1002,
 | `src/pso/boss/TBoss7Joint.cpp` | opt_common_subs×1 |
 | `src/pso/boss/TBoss7LaserLight.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss7LaserPtcl.cpp` | fp_contract×2, dont_inline×1, inline_depth×1 |
-| `src/pso/boss/TBoss8Dragon.cpp` | fp_contract×20, opt_common_subs×3 |
+| `src/pso/boss/TBoss8Dragon.cpp` | fp_contract×21, opt_common_subs×6 |
 | `src/pso/boss/TBoss8DragonDemo.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss8DragonEffBullet.cpp` | fp_contract×1 |
 | `src/pso/boss/TBoss8Dragon_8002CC48.cpp` | fp_contract×3, defer_codegen×2, opt_propagation×1 |
@@ -1153,7 +1154,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1098, `inline_depth` 1002,
 | `src/pso/ui/TAdChrSelSlotGC.cpp` | fp_contract×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/ui/TAdDialingGC_80328DB0.cpp` | readonly_strings×1 |
 | `src/pso/ui/TAdDialingMessageWindow.cpp` | readonly_strings×1 |
-| `src/pso/ui/TAdDrawLineTask.cpp` | fp_contract×1 |
 | `src/pso/ui/TAdEnterPasswordGC.cpp` | explicit_zero_data×2 |
 | `src/pso/ui/TAdEnterSerialAccessGC.cpp` | readonly_strings×1, fp_contract×1, opt_common_subs×1 |
 | `src/pso/ui/TAdEp3Exist.cpp` | readonly_strings×1, opt_lifetimes×1 |

@@ -36,6 +36,7 @@ guides.
 - [Floor-area sound wrappers](floor-area-sound-evidence.md)
 - [Speech-balloon name plate and complete unit](fukidasi-name-plate-recovery.md)
 - [Gee native recovery checkpoint](gee-native-recovery-evidence.md)
+- [Complete Gol Dragon behavior unit](gol-dragon-complete-unit.md)
 - [Ginja material dispatcher and complete unit](ginja-material-recovery.md)
 - [Indirect texture scroll offset and copy propagation](indirect-scroll-offset-propagation.md)
 - [Indirect controller native observations (from #267)](indirect-controller-dispatcher.md)

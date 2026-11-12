@@ -1,3 +1,5 @@
+#include "pso/system/NinjaTypes.h"
+#include "pso/system/NinjaHierarchy.h"
 #include "types.h"
 #include "pso/system/MatrixStack.h"
 #include <string.h>
@@ -288,14 +290,14 @@ f32 TObjBoss2Tunnel::calc_scaled_value(s32 arg0, f32 farg0) {
     return (0.5f * farg0) / sin_table_lookup(arg0 / 2);
 }
 
-s32 TObjBoss2Tunnel::count_tree_nodes() {
+s32 count_model_tree_nodes(NJS_OBJECT *node) {
     s32 var_r31;
     var_r31 = 1;
-    if (m_2c != NULL) {
-        var_r31 = m_2c->count_tree_nodes() + 1;
+    if (node->child != NULL) {
+        var_r31 = count_model_tree_nodes(node->child) + 1;
     }
-    if (m_30 != NULL) {
-        var_r31 += m_30->count_tree_nodes();
+    if (node->sibling != NULL) {
+        var_r31 += count_model_tree_nodes(node->sibling);
     }
     return var_r31;
 }
