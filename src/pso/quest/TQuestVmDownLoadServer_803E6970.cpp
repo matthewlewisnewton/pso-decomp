@@ -2790,24 +2790,21 @@ void *TQuestVmDownLoadServer__sub_803E9FFC(s32 arg0, s32 arg1, Tok_803E9FFC *t) 
 #pragma pop
 
 #pragma push
-#pragma dont_inline off
-#pragma inline_depth(1)
-inline N_803E9FA4 *merge_sorted_nodes(N_803E9FA4 *head, N_803E9FA4 *list) {
-    N_803E9FA4 *n;
-    N_803E9FA4 *next;
-    for (n = list; n != NULL; n = next) {
-        next = n->next;
-        head = insert_sorted_node__22TQuestVmDownLoadServerFPvPv(head, n);
-    }
-    return head;
-}
+#pragma opt_propagation off
+#pragma opt_common_subs off
+#pragma opt_lifetimes off
 s32 TQuestVmDownLoadServer__sub_803EA1A8(s32 start, s32 end) {
     Obj_803EADD4 *e;
+    s32 offset = start * sizeof(Slot_803ED9AC);
+    N_803E9FA4 *next;
     Node_803ECDC4 *tok;
+    N_803E9FA4 *entry;
     N_803E9FA4 *list;
+    N_803E9FA4 *head;
     Out_803E9FFC *o;
-    s32 i;
-    e = (Obj_803EADD4 *)&quest_download_slot_chain_table[start];
+    u8 *text;
+    s32 pos;
+    e = (Obj_803EADD4 *)((u8 *)quest_download_slot_chain_table + offset);
     if ((u32)e->x4 != 0xFFFFFFFF) {
         for (tok = e->x4; tok != NULL; tok = tok->next) {
             list = (N_803E9FA4 *)TQuestVmDownLoadServer__sub_803E9FFC(start, end, (Tok_803E9FFC *)tok);
@@ -2819,7 +2816,12 @@ s32 TQuestVmDownLoadServer__sub_803EA1A8(s32 start, s32 end) {
                 return 0;
             }
             if (list != NULL) {
-                e->x8 = (Node_803ECD8C *)merge_sorted_nodes((N_803E9FA4 *)e->x8, list);
+                head = (N_803E9FA4 *)e->x8;
+                for (entry = list; entry != NULL; entry = next) {
+                    next = entry->next;
+                    head = insert_sorted_node__22TQuestVmDownLoadServerFPvPv(head, entry);
+                }
+                e->x8 = (Node_803ECD8C *)head;
             }
         }
     }
@@ -2832,19 +2834,30 @@ s32 TQuestVmDownLoadServer__sub_803EA1A8(s32 start, s32 end) {
         return 0;
     }
     if (list != NULL) {
-        quest_download_slot_chain_table[start].head = (Elem_803ED9AC *)merge_sorted_nodes((N_803E9FA4 *)quest_download_slot_chain_table[start].head, list);
+        u8 *member = (u8 *)quest_download_slot_chain_table + offset;
+        N_803E9FA4 **headp;
+        member += 8;
+        headp = (N_803E9FA4 **)member;
+        head = *headp;
+        for (entry = list; entry != NULL; entry = next) {
+            next = entry->next;
+            head = insert_sorted_node__22TQuestVmDownLoadServerFPvPv(head, entry);
+        }
+        *headp = head;
     }
     if (e->x8 == NULL) {
         o = (Out_803E9FFC *)TQuestVmDownLoadServer__sub_803ECF48();
         if (o == NULL) {
             return -1;
         }
-        for (i = start + 1; i < end; i++) {
-            if (!TQuestVmDownLoadServer::is_download_cmd_allowed(((u8 *)&quest_download_scratch_storage)[i])) {
+        pos = start + 1;
+        text = (u8 *)&quest_download_scratch_storage + pos;
+        for (; pos < end; text++, pos++) {
+            if (!TQuestVmDownLoadServer::is_download_cmd_allowed(*text)) {
                 break;
             }
         }
-        o->off = i - start;
+        o->off = pos - start;
         o->a = 0x28;
         o->b = 0;
         o->src = NULL;
