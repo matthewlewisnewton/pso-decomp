@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/math/AngleLookup.h"
@@ -1924,7 +1925,7 @@ void TObjEneRecon::load_resources() {
   stack.sp14 = *((s32 *) (((s8 *)&recon_anim_binding.value) + 0xC));
   stack.sp8 = ((RecoveredFields_8031E708_TObjEneRecon__data_805D6B00 *) TObjEneRecon__recobox_static_instance)->field_430;
   temp_r5 = (u8 *) ((RecoveredFields_8031E708_TObjEneRecon__data_805D6B00 *) TObjEneRecon__recobox_static_instance)->field_42C;
-  TLobby::spawn_npc_enemy((s16)(0xC), (s32)((int) ((RecoveredFields_8031E708_temp_r5 *) temp_r5)->field_8), ((RecoveredFields_8031E708_temp_r5 *) temp_r5)->texlist, &stack.sp8, TObjEneRecon__collision_body_template.radius, (f32)((f32) TObjEneRecon__data_805DF3C0));
+  NpcModelRegistry::register_animated_chunk((s16)(0xC), (void *)((s32)((int) ((RecoveredFields_8031E708_temp_r5 *) temp_r5)->field_8)), (void *)(((RecoveredFields_8031E708_temp_r5 *) temp_r5)->texlist), (const NpcAnimationBinding *)(&stack.sp8), TObjEneRecon__collision_body_template.radius, (f32)((f32) TObjEneRecon__data_805DF3C0));
 }
 
 }

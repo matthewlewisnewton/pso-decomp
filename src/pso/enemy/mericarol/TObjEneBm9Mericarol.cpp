@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -807,8 +808,7 @@ void TBoss4Type3__sub_802D1130(void) {
         SpawnPos_802D1130 pos = lbl_80472480;
         pair = (MotionPair_802D1130 *)((Res_802D0D3C *)lbl_805D6868)->f430;
         pos.motions = pair;
-        TLobby::spawn_npc_enemy(0x42, ((Res_802D0D3C *)lbl_805D6868)->f42C[2], (NJS_TEXLIST *)((Res_802D0D3C *)lbl_805D6868)->f42C[3], &pos,
-            *(f32 *)&lbl_804E1564[3], lbl_805DE70C);
+        NpcModelRegistry::register_animated_chunk(0x42, (void *)(((Res_802D0D3C *)lbl_805D6868)->f42C[2]), (void *)((NJS_TEXLIST *)((Res_802D0D3C *)lbl_805D6868)->f42C[3]), (const NpcAnimationBinding *)(&pos), *(f32 *)&lbl_804E1564[3], lbl_805DE70C);
     }
 }
 

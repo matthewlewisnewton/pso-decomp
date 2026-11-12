@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
@@ -558,7 +559,7 @@ void TObjGrass::load_resources() {
     {
     Quad_800BF66C q = grass_spawn_descriptor;
     q.a = (s32) ((Data_800BF66C *)TObjGrass__resource_bundle)->f430;
-    TLobby::spawn_npc_enemy((s16)0x35, (s32)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->f8), ((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->texlist, &q, (f32)((1e+01f)), (f32)((0.0f)));
+    NpcModelRegistry::register_animated_chunk((s16)0x35, (void *)((s32)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->f8)), (void *)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->texlist), (const NpcAnimationBinding *)(&q), (f32)((1e+01f)), (f32)((0.0f)));
     }
 }
 

@@ -1,5 +1,6 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/deldepth/DelDepthData.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/animation/ActorAnimationState.h"
 #include "types.h"
@@ -282,12 +283,12 @@ void TObjEneDelDepth::load_assets() {
     {
         DelDepthAnimationBinding info = deldepth_anim_binding;
         info.motions = TObjEneDelDepth__shared_resource->motions;
-        TLobby::spawn_npc_enemy((s16)0x47, TObjEneDelDepth__shared_resource->models[0].model, (NJS_TEXLIST *)TObjEneDelDepth__shared_resource->models[0].m_c, &info, TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
+        NpcModelRegistry::register_animated_chunk((s16)0x47, (void *)(TObjEneDelDepth__shared_resource->models[0].model), (void *)((NJS_TEXLIST *)TObjEneDelDepth__shared_resource->models[0].m_c), (const NpcAnimationBinding *)(&info), TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
     }
     {
         DelDepthAnimationBinding info = deldepth_anim_binding_b;
         info.motions = TObjEneDelDepth__shared_resource->motions;
-        TLobby::spawn_npc_enemy((s16)0x48, TObjEneDelDepth__shared_resource->models[1].model, (NJS_TEXLIST *)TObjEneDelDepth__shared_resource->models[1].m_c, &info, TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
+        NpcModelRegistry::register_animated_chunk((s16)0x48, (void *)(TObjEneDelDepth__shared_resource->models[1].model), (void *)((NJS_TEXLIST *)TObjEneDelDepth__shared_resource->models[1].m_c), (const NpcAnimationBinding *)(&info), TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
     }
     TObjEneDelDepth__tune_params = (DelDepthParameters *)get_battle_movement_params(0x30);
 }

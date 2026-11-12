@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
@@ -742,7 +743,7 @@ void *lbl_80494728[103] = {
 };
 #define lbl_80494728 ((s32 *)lbl_80494728)
 
-// The motion set TLobby::spawn_npc_enemy copies for each spawned part.
+// The motion set NpcModelRegistry::register_animated_chunk copies for each spawned part.
 struct NpcSpawnMotions { void *motions; void *actions; s32 initial_action; s32 counts; };
 
 // One 0x2C-byte record of the collision body table init_collision_body_parts reads.
@@ -1735,9 +1736,7 @@ void TObjEneMerillLia__sub_800D6D64(void) {
         NpcSpawnMotions motions = merill_lia_spawn_motions;
         motions.motions = ((BmlResource *)TObjEneMerillLia__entry_params_resource)->motions;
         for (i = 0; i < 2; i++) {
-            TLobby::spawn_npc_enemy(ids[i], ((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].model,
-                (NJS_TEXLIST *)((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].m_c, &motions,
-                ((CollisionPartRecord *)lbl_804946A4)[i].radius, TObjEneMerillLia__data_805DA300);
+            NpcModelRegistry::register_animated_chunk(ids[i], (void *)(((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].model), (void *)((NJS_TEXLIST *)((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].m_c), (const NpcAnimationBinding *)(&motions), ((CollisionPartRecord *)lbl_804946A4)[i].radius, TObjEneMerillLia__data_805DA300);
         }
     }
 }

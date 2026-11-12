@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/fly/TObjEneBm3Fly.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -2449,7 +2450,7 @@ void TObjEneBm3Fly::load_resources() {
     stack.sp14 = *(s32 *)((s8 *)&bm3_fly_resource_binding_desc.value + 0xC);
     stack.sp8 = *(s32 *)((s8 *)bm3_fly_nest_resources + 0x430);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)bm3_fly_nest_resources + 0x42C));
-    TLobby::spawn_npc_enemy((s16)(7), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 8))), (NJS_TEXLIST *)((int) (*(s32 *)((s8 *)temp_r5 + 0xC))), &stack.sp8, (f32)((f32) (*(f32 *)((s8 *)&bm3_fly_collider_params.value + 0xC))), (f32)((f32) ((15.0f))));
+    NpcModelRegistry::register_animated_chunk((s16)(7), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 8)))), (void *)((NJS_TEXLIST *)((int) (*(s32 *)((s8 *)temp_r5 + 0xC)))), (const NpcAnimationBinding *)(&stack.sp8), (f32)((f32) (*(f32 *)((s8 *)&bm3_fly_collider_params.value + 0xC))), (f32)((f32) ((15.0f))));
 }
 
 }

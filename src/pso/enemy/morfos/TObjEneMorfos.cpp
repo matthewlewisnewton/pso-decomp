@@ -2,6 +2,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/render/reflection.h"
 #include "pso/system/CurrentTextureList.h"
@@ -2230,9 +2231,7 @@ void TObjEneMorfos__sub_803350AC(void) {
     {
         SpawnDesc_803350AC desc = lbl_804775C8;
         desc.w[0] = ((ResMgr_803350AC *)TObjEneMorfos__instance)->f430;
-        TLobby::spawn_npc_enemy(0x4D, (s32)((ResMgr_803350AC *)TObjEneMorfos__instance)->res->f18,
-                                ((ResMgr_803350AC *)TObjEneMorfos__instance)->res->texlist, &desc,
-                                lbl_805DF880, TObjEneMorfos__data_805DF874);
+        NpcModelRegistry::register_animated_chunk(0x4D, (void *)((s32)((ResMgr_803350AC *)TObjEneMorfos__instance)->res->f18), (void *)(((ResMgr_803350AC *)TObjEneMorfos__instance)->res->texlist), (const NpcAnimationBinding *)(&desc), lbl_805DF880, TObjEneMorfos__data_805DF874);
     }
 }
 }

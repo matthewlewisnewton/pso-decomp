@@ -3,6 +3,7 @@
 #include "pso/boss/goldragon/TBoss8Dragon_80065C90.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/map/CsnQuery.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_80087278.h"
@@ -1646,10 +1647,10 @@ void TObjEneMe3SinowZoa::load_resources() {
         info.motions = TObjEneMe3SinowZoa__bml_resource->motions;
         DelDepthAnimationBinding info_b = lbl_80475FB8;
         info_b.motions = TObjEneMe3SinowZoa__bml_resource->motions;
-        TLobby::spawn_npc_enemy(0x49, TObjEneMe3SinowZoa__bml_resource->models->model, (NJS_TEXLIST *)TObjEneMe3SinowZoa__bml_resource->models->m_c, &info, TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
-        TLobby::spawn_npc_enemy(0x4A, TObjEneMe3SinowZoa__bml_resource->models->model, &TObjEneMe3SinowZoa__alternate_texture_list, &info, TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
-        TLobby::spawn_npc_enemy(0x4B, TObjEneMe3SinowZoa__bml_resource->models->model, (NJS_TEXLIST *)TObjEneMe3SinowZoa__bml_resource->models->m_c, &info_b, TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
-        TLobby::spawn_npc_enemy(0x4C, TObjEneMe3SinowZoa__bml_resource->models->model, &TObjEneMe3SinowZoa__alternate_texture_list, &info_b, TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
+        NpcModelRegistry::register_animated_chunk(0x49, (void *)(TObjEneMe3SinowZoa__bml_resource->models->model), (void *)((NJS_TEXLIST *)TObjEneMe3SinowZoa__bml_resource->models->m_c), (const NpcAnimationBinding *)(&info), TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
+        NpcModelRegistry::register_animated_chunk(0x4A, (void *)(TObjEneMe3SinowZoa__bml_resource->models->model), (void *)(&TObjEneMe3SinowZoa__alternate_texture_list), (const NpcAnimationBinding *)(&info), TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
+        NpcModelRegistry::register_animated_chunk(0x4B, (void *)(TObjEneMe3SinowZoa__bml_resource->models->model), (void *)((NJS_TEXLIST *)TObjEneMe3SinowZoa__bml_resource->models->m_c), (const NpcAnimationBinding *)(&info_b), TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
+        NpcModelRegistry::register_animated_chunk(0x4C, (void *)(TObjEneMe3SinowZoa__bml_resource->models->model), (void *)(&TObjEneMe3SinowZoa__alternate_texture_list), (const NpcAnimationBinding *)(&info_b), TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
     }
 }
 

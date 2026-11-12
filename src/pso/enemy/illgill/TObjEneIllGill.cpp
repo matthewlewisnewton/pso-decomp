@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -1505,7 +1506,7 @@ void TObjEneIllGill::load_shared_resources() {
         IllGillSharedMotionSetup pos = lbl_8047A318;
         resource = illGillResource;
         pos.motions = resource->motions;
-        TLobby::spawn_npc_enemy((s16)0x43, (s32)(resource->models->model), (NJS_TEXLIST *)(resource->models->m_c), &pos, illGillCollisionBody.radius, (f32)TObjEneIllGill__data_805E02BC);
+        NpcModelRegistry::register_animated_chunk((s16)0x43, (void *)((s32)(resource->models->model)), (void *)((NJS_TEXLIST *)(resource->models->m_c)), (const NpcAnimationBinding *)(&pos), illGillCollisionBody.radius, (f32)TObjEneIllGill__data_805E02BC);
     }
 }
 

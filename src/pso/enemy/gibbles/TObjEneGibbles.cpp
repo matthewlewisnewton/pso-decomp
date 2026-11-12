@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -2607,7 +2608,7 @@ void TObjEneGibbles::load_resources() {
     (*(s32 *)&TObjEneGibbles__ai_parameters) = (s32)get_battle_movement_params(0x3D);
     Spawn_802DB7C0 s = gibbles_resource_binding_desc;
     s.a = *(s32 *)((s8 *)TObjEneGibbles__resource_bundle + 0x430);
-    TLobby::spawn_npc_enemy((s16)0x44, (s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneGibbles__resource_bundle + 0x42C)) + 8)), (NJS_TEXLIST *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneGibbles__resource_bundle + 0x42C)) + 0xC)), &s, (f32)(((f32 *)lbl_804E296C)[3]), (f32)TObjEneGibbles__data_805DE7E4);
+    NpcModelRegistry::register_animated_chunk((s16)0x44, (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneGibbles__resource_bundle + 0x42C)) + 8))), (void *)((NJS_TEXLIST *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneGibbles__resource_bundle + 0x42C)) + 0xC))), (const NpcAnimationBinding *)(&s), (f32)(((f32 *)lbl_804E296C)[3]), (f32)TObjEneGibbles__data_805DE7E4);
 }
 
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);

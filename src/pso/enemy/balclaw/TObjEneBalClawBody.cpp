@@ -12,6 +12,7 @@
 #include "pso/enemy/berura/TObjEneRe7Berura.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
 #include "pso/boss/darkfalz/TBoss4Type2.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby.h"
 #include "pso/ui/hud/TNowLoading.h"
@@ -1581,7 +1582,7 @@ void TObjEneBalClawBody::vfunc_58() {
 void TObjEneBalClawBody::sub_8008DC90() {
 }
 
-// What TLobby::spawn_npc_enemy reads to set up a spawned Bal Claw.
+// What NpcModelRegistry::register_animated_chunk reads to set up a spawned Bal Claw.
 struct BalClawSpawnParams {
     BmlMotionEntry *motions;
     TObjMotionAction *actions;
@@ -1591,6 +1592,5 @@ struct BalClawSpawnParams {
 
 void TObjEneBalClawClaw::spawn_child_enemy() {
     BalClawSpawnParams params = {lbl_805D4F20->motions, balclaw_body_actions, 1, 0xC0000};
-    TLobby::spawn_npc_enemy(0x13, lbl_805D4F20->models[1].model, (NJS_TEXLIST *)lbl_805D4F20->models[1].m_c, &params,
-                            balclaw_body_collision.radius, 15.0f);
+    NpcModelRegistry::register_animated_chunk(0x13, (void *)(lbl_805D4F20->models[1].model), (void *)((NJS_TEXLIST *)lbl_805D4F20->models[1].m_c), (const NpcAnimationBinding *)(&params), balclaw_body_collision.radius, 15.0f);
 }

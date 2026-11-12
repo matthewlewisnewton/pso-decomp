@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
@@ -676,9 +677,7 @@ void TObjEneBeast::load_resources() {
         Quad_8009241C q = lbl_80439D70[0];
         q.a = (s32)((Data_8009241C *)ene_beast_bml_resource)->f430;
         for (i = 0; i < 3; i++) {
-            TLobby::spawn_npc_enemy(ids.id[i], ((Data_8009241C *)ene_beast_bml_resource)->f42c[i].f8,
-                                            ((Data_8009241C *)ene_beast_bml_resource)->f42c[i].texlist, &q,
-                                            ((Ent_8009241C *)beast_collision_body_table)[i].radius, 0.0f);
+            NpcModelRegistry::register_animated_chunk(ids.id[i], (void *)(((Data_8009241C *)ene_beast_bml_resource)->f42c[i].f8), (void *)(((Data_8009241C *)ene_beast_bml_resource)->f42c[i].texlist), (const NpcAnimationBinding *)(&q), ((Ent_8009241C *)beast_collision_body_table)[i].radius, 0.0f);
         }
     }
 }

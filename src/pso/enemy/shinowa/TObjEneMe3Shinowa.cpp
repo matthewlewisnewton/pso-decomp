@@ -1,6 +1,7 @@
 #include "pso/animation/MotionContext.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/shinowa/TObjEneMe3Shinowa.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
@@ -4471,8 +4472,8 @@ void load_shinowa_mirage_resources() {
     {
         DelDepthAnimationBinding binding = lbl_8043CF84;
         binding.motions = TObjEneMe3ShinowaMirage__data_805D5298->motions;
-        TLobby::spawn_npc_enemy(0x26, TObjEneMe3ShinowaMirage__data_805D5298->models->model, (NJS_TEXLIST *)TObjEneMe3ShinowaMirage__data_805D5298->models->m_c, &binding, 8.0f, 0.0f);
-        TLobby::spawn_npc_enemy(0x27, TObjEneMe3ShinowaMirage__data_805D5298->models->model, &lbl_80500FEC, &binding, 8.0f, 0.0f);
+        NpcModelRegistry::register_animated_chunk(0x26, (void *)(TObjEneMe3ShinowaMirage__data_805D5298->models->model), (void *)((NJS_TEXLIST *)TObjEneMe3ShinowaMirage__data_805D5298->models->m_c), (const NpcAnimationBinding *)(&binding), 8.0f, 0.0f);
+        NpcModelRegistry::register_animated_chunk(0x27, (void *)(TObjEneMe3ShinowaMirage__data_805D5298->models->model), (void *)(&lbl_80500FEC), (const NpcAnimationBinding *)(&binding), 8.0f, 0.0f);
     }
 }
 

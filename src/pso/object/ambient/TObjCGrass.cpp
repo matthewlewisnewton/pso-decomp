@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/object/ambient/TObjCGrass.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/system/ArrayAllocation.h"
@@ -210,7 +211,7 @@ void TObjCGrass::load_resources() {
     stack.sp14 = *(s32 *)((s8 *)&cgrass_anim_binding.value + 0xC);
     stack.sp8 = *(s32 *)((s8 *)TObjCGrass_bml_resource + 0x430);
     temp_r5 = (u8 *)(*(u8 **)((s8 *)TObjCGrass_bml_resource + 0x42C));
-    TLobby::spawn_npc_enemy((s16)(0x36), (s32)((int) (*(s32 *)((s8 *)temp_r5 + 8))), (NJS_TEXLIST *)((int) (*(s32 *)((s8 *)temp_r5 + 0xC))), &stack.sp8, 2.0f, 0.0f);
+    NpcModelRegistry::register_animated_chunk((s16)(0x36), (void *)((s32)((int) (*(s32 *)((s8 *)temp_r5 + 8)))), (void *)((NJS_TEXLIST *)((int) (*(s32 *)((s8 *)temp_r5 + 0xC)))), (const NpcAnimationBinding *)(&stack.sp8), 2.0f, 0.0f);
 }
 
 }

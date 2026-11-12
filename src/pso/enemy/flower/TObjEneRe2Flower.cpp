@@ -4,6 +4,7 @@
 #include "pso/enemy/flower/TObjEneRe2Flower_Bomb.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/object/base/TObjChara.h"
@@ -196,7 +197,7 @@ void TObjPlayer__sub_800C44C4(void) {
     stack.sp14 = *(s32 *)((s8 *)&lbl_8043BB90.value + 0xC);
     stack.sp8 = (s32)lbl_805D5174->motions;
     models = lbl_805D5174->models;
-    TLobby::spawn_npc_enemy(0x37, models->model, (NJS_TEXLIST *)models->m_c, &stack.sp8, lbl_805D9FBC, lbl_805D9FAC);
+    NpcModelRegistry::register_animated_chunk(0x37, (void *)(models->model), (void *)((NJS_TEXLIST *)models->m_c), (const NpcAnimationBinding *)(&stack.sp8), lbl_805D9FBC, lbl_805D9FAC);
 }
 
 void *TObjEneRe2Flower::create(void *arg0) {

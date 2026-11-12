@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/unk/text_8035B788.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/unk/TLobby.h"
@@ -31,12 +32,12 @@ void fn_8035B788(void) {
     {
         Rec_8035B788 r = lbl_804798CC;
         r.a = o->x430;
-        TLobby::spawn_npc_enemy((s16)0x11, o->x42c->x8, o->x42c->texlist, &r, 10.0f, 0.0f);
+        NpcModelRegistry::register_animated_chunk((s16)0x11, (void *)(o->x42c->x8), (void *)(o->x42c->texlist), (const NpcAnimationBinding *)(&r), 10.0f, 0.0f);
     }
     {
         Rec_8035B788 r = lbl_804798DC;
         r.a = lbl_805D6F50->x430;
-        TLobby::spawn_npc_enemy((s16)0x12, lbl_805D6F50->x42c->x8, lbl_805D6F50->x42c->texlist, &r, 10.0f, 0.0f);
+        NpcModelRegistry::register_animated_chunk((s16)0x12, (void *)(lbl_805D6F50->x42c->x8), (void *)(lbl_805D6F50->x42c->texlist), (const NpcAnimationBinding *)(&r), 10.0f, 0.0f);
     }
 }
 
