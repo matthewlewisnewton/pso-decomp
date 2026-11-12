@@ -1604,7 +1604,7 @@ struct Obj_802F7B70;
 extern "C" {
 }
 extern "C" {
-void TBoss8Dragon__sub_802FA4E4();
+void dispatch_action__12TBoss8DragonFUll();
 }
 extern "C" {
 void apply_poison_status__12TBoss8DragonFv();
@@ -2097,7 +2097,7 @@ extern "C" void state_breath_attack__12TBoss8DragonFUl();
 extern "C" void fn_802FA16C__12TBoss8DragonFUl();
 extern "C" void fn_802FA374__12TBoss8DragonFUl();
 extern "C" void fn_802FA478__12TBoss8DragonFUl();
-void *lbl_804E5014[288] = {
+void *lbl_804E5014[33] = {
     (void *)0x0, (void *)0x41300000, (void *)0x42200000, (void *)0x0,
     (void *)0x40a00000, (void *)0x420c0000, (void *)0x0, (void *)0x42480000,
     (void *)0x42700000, (void *)0x0, (void *)0x41a00000, (void *)0xc2f00000,
@@ -2106,71 +2106,59 @@ void *lbl_804E5014[288] = {
     (void *)0xc2a00000, (void *)0x0, (void *)0x42f00000, (void *)0x42480000,
     (void *)0x0, (void *)0x43960000, (void *)0xc1f00000, (void *)0x0,
     (void *)0x42200000, (void *)0x0, (void *)0x43960000, (void *)0x42f00000,
-    (void *)0x42480000, (void *)0x0, (void *)0xffffffff, (void *)&fn_802FA478__12TBoss8DragonFUl,
-    (void *)0x0, (void *)0xffffffff, (void *)&fn_802FA374__12TBoss8DragonFUl, (void *)0x0,
-    (void *)0xffffffff, (void *)&fn_802FA16C__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff,
-    (void *)&state_breath_attack__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff, (void *)&handle_tail_attack_state__12TBoss8DragonFUl,
-    (void *)0x0, (void *)0xffffffff, (void *)&fn_802F9850__12TBoss8DragonFUl, (void *)0x0,
-    (void *)0xffffffff, (void *)&state_turn_and_charge__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff,
-    (void *)&fn_802F8F88__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff, (void *)&fn_802F8578__12TBoss8DragonFUl,
-    (void *)0x0, (void *)0xffffffff, (void *)&fn_802F8270__12TBoss8DragonFUl, (void *)0x0,
-    (void *)0xffffffff, (void *)&fn_802F8578__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff,
-    (void *)&fn_802F8578__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff, (void *)&fn_802F8578__12TBoss8DragonFUl,
-    (void *)0x0, (void *)0xffffffff, (void *)&fn_802F8150__12TBoss8DragonFUl, (void *)0x0,
-    (void *)0xffffffff, (void *)&state_roar__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff,
-    (void *)&fn_802F7B70__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff, (void *)&fn_802F7B4C__12TBoss8DragonFUl,
-    (void *)0x0, (void *)0xffffffff, (void *)&action_17__12TBoss8DragonFUl, (void *)0x0,
-    (void *)0xffffffff, (void *)&fn_802F75C8__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff,
-    (void *)&handle_leap_state__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff, (void *)&fn_802F6838__12TBoss8DragonFUl,
-    (void *)0x0, (void *)0xffffffff, (void *)&fn_802F6708__12TBoss8DragonFUl, (void *)0x0,
-    (void *)0xffffffff, (void *)&fn_802F6618__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff,
-    (void *)&fn_802F645C__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff, (void *)&fn_802F610C__12TBoss8DragonFUl,
-    (void *)0x0, (void *)0xffffffff, (void *)&fn_802F5F64__12TBoss8DragonFUl, (void *)0x0,
-    (void *)0xffffffff, (void *)&fn_802F5CC8__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff,
-    (void *)&fn_802F5BA0__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff, (void *)&handle_walk_state__12TBoss8DragonFUl,
-    (void *)0x0, (void *)0xffffffff, (void *)&fn_802F4DD4__12TBoss8DragonFUl, (void *)0x0,
-    (void *)0xffffffff, (void *)&action__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff,
-    (void *)&update_wander_state__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff, (void *)&fn_802F89F8__12TBoss8DragonFUl,
-    (void *)0x0, (void *)0xffffffff, (void *)&handle_spiral_state__12TBoss8DragonFUl, (void *)0x0,
-    (void *)0xffffffff, (void *)&fn_802F57E4__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff,
-    (void *)&fn_802F5644__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff, (void *)&fn_802F5434__12TBoss8DragonFUl,
-    (void *)0x0, (void *)0xffffffff, (void *)&fn_802F51DC__12TBoss8DragonFUl, (void *)0x0,
-    (void *)0xffffffff, (void *)&fn_802F9A4C__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff,
-    (void *)&fn_802F87EC__12TBoss8DragonFUl, (void *)0x0, (void *)0xffffffff, (void *)&fn_802F4B90__12TBoss8DragonFUl,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
+    (void *)0x42480000,
 };
+void TBoss8Dragon::dispatch_action(u32 state, s32 reason) {
+    typedef void (TBoss8Dragon::*DragonAction)(u32);
+    static DragonAction actions[44] = {
+        (DragonAction)&TBoss8Dragon::fn_802FA478,
+        (DragonAction)&TBoss8Dragon::fn_802FA374,
+        (DragonAction)&TBoss8Dragon::fn_802FA16C,
+        (DragonAction)&TBoss8Dragon::state_breath_attack,
+        (DragonAction)&TBoss8Dragon::handle_tail_attack_state,
+        (DragonAction)&TBoss8Dragon::fn_802F9850,
+        (DragonAction)&TBoss8Dragon::state_turn_and_charge,
+        (DragonAction)&TBoss8Dragon::fn_802F8F88,
+        (DragonAction)&TBoss8Dragon::fn_802F8578,
+        (DragonAction)&TBoss8Dragon::fn_802F8270,
+        (DragonAction)&TBoss8Dragon::fn_802F8578,
+        (DragonAction)&TBoss8Dragon::fn_802F8578,
+        (DragonAction)&TBoss8Dragon::fn_802F8578,
+        (DragonAction)&TBoss8Dragon::fn_802F8150,
+        (DragonAction)&TBoss8Dragon::state_roar,
+        (DragonAction)&TBoss8Dragon::fn_802F7B70,
+        (DragonAction)&TBoss8Dragon::fn_802F7B4C,
+        (DragonAction)&TBoss8Dragon::action_17,
+        (DragonAction)&TBoss8Dragon::fn_802F75C8,
+        (DragonAction)&TBoss8Dragon::handle_leap_state,
+        0,
+        (DragonAction)&TBoss8Dragon::fn_802F6838,
+        (DragonAction)&TBoss8Dragon::fn_802F6708,
+        (DragonAction)&TBoss8Dragon::fn_802F6618,
+        (DragonAction)&TBoss8Dragon::fn_802F645C,
+        (DragonAction)&TBoss8Dragon::fn_802F610C,
+        (DragonAction)&TBoss8Dragon::fn_802F5F64,
+        (DragonAction)&TBoss8Dragon::fn_802F5CC8,
+        (DragonAction)&TBoss8Dragon::fn_802F5BA0,
+        (DragonAction)&TBoss8Dragon::handle_walk_state,
+        (DragonAction)&TBoss8Dragon::fn_802F4DD4,
+        (DragonAction)&TBoss8Dragon::action,
+        (DragonAction)&TBoss8Dragon::update_wander_state,
+        0,
+        0,
+        (DragonAction)&TBoss8Dragon::fn_802F89F8,
+        (DragonAction)&TBoss8Dragon::handle_spiral_state,
+        (DragonAction)&TBoss8Dragon::fn_802F57E4,
+        (DragonAction)&TBoss8Dragon::fn_802F5644,
+        (DragonAction)&TBoss8Dragon::fn_802F5434,
+        (DragonAction)&TBoss8Dragon::fn_802F51DC,
+        (DragonAction)&TBoss8Dragon::fn_802F9A4C,
+        (DragonAction)&TBoss8Dragon::fn_802F87EC,
+        (DragonAction)&TBoss8Dragon::fn_802F4B90,
+    };
+    DragonAction *action = actions + state;
+    if (*action != NULL) (this->**action)(reason);
+}
 void *boss8_dragon_bezier_points[16] = {
     (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
     (void *)0x0, (void *)0x438c0000, (void *)0x0, (void *)0x0,
@@ -2209,7 +2197,7 @@ void *__vt__12TBoss8Dragon[107] = {
     (void *)&TObjPlayer__sub_80010A84, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
     (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&TObjPlayer__sub_800F698C, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
-    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&TBoss8Dragon__sub_802FA4E4,
+    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_action__12TBoss8DragonFUll,
     (void *)&vfunc_88__12TBoss8DragonFv, (void *)&vfunc_89__9TObjEneDDFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
     (void *)&vfunc_92__9TObjEneDDFv, (void *)&vfunc_93__9TObjEneDDFv, (void *)&vfunc_94__9TObjEneDDFv, (void *)&vfunc_95__9TObjEneDDFv,
     (void *)&vfunc_96__9TObjEneDDFv, (void *)&vfunc_97__9TObjEneDDFv, (void *)&vfunc_98__9TObjEneDDFv, (void *)&vfunc_99__9TObjEneDDFv,
@@ -5856,6 +5844,7 @@ void TBoss8Dragon::fn_802FA478(u32 arg1) {
         return;
     }
 }
+
 
 s32 mask_flags__12TBoss8DragonFiii(s32 arg1, s32 arg2, s32 arg3) {
     s32 var_r31;

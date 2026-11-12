@@ -8,6 +8,7 @@ struct TBoss8Dragon
 {
     void sub_802F4098(u8 *);
     void vfunc_88();
+    void dispatch_action(u32 state, s32 reason);
     void fn_802F4B90(u32 arg1);
     void action(u32 arg1);
     void fn_802F4DD4(u32 arg1);
