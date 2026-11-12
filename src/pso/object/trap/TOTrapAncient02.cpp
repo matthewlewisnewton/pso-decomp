@@ -956,7 +956,7 @@ void TOTrapAncient02::vfunc_82() {
                 if (self->target != NULL && local_client_id == get_entity_id(self->target)) {
                     p = (s32)get_player_by_client_id(local_client_id);
                     if (p != 0 && check_player_flag1__6TLobbyFv() != 0) {
-                        TObjPlayer::send_code_45_1(p);
+                        TObjPlayer::send_code_45_1((TObjPlayer *)(p));
                     }
                 }
             }

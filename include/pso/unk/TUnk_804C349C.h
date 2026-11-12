@@ -6,6 +6,11 @@
 
 class TObjPlayer;
 
+// The admission code supplies four 0x18-byte entries to the sequence task.
+struct PhotonBlastSlot {
+    u8 data[0x18];
+};
+
 // The photon blast sequence task (vtable 0x804C349C): new'd by
 // admit_photon_blast_sequence with the owner's client id, the chained
 // players and their counts; run by step_photon_blast_sequence while
@@ -13,7 +18,7 @@ class TObjPlayer;
 // Field names are inferred from the functions that use them.
 class TUnk_804C349C : public TObject {
 public:
-    TUnk_804C349C(s32 owner_client_id, u8 *players, s32 *counts, s32 animated, s32 delay);
+    TUnk_804C349C(s32 owner_client_id, PhotonBlastSlot *slots, const s32 *counts, s32 animated, s32 delay);
     virtual ~TUnk_804C349C();
     void update_and_destroy();
     virtual void run_task();

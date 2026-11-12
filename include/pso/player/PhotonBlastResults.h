@@ -16,7 +16,7 @@ struct PhotonBlastChain {
 
 extern PhotonBlastChain photon_blast_sequence_table[4];
 
-void apply_photon_blast_action_hold(s32 arg0, s32 arg1, s32 arg2);
+void apply_photon_blast_action_hold(TUnk_804C349C *sequence, s32 arg1, s32 arg2);
 
 extern "C" {
 void deliver_photon_blast_results_animated(TUnk_804C349C *seq);

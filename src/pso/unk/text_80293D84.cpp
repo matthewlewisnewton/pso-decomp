@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/ColorLineList.h"
 #include "pso/unk/text_80293D84.h"
 #include "pso/ui/window/TWindowCtrlMain.h"
 #include "pso/ui/chat/TWindowSubSymbolChatPartsSet.h"
@@ -50,7 +51,7 @@ void fn_80293D84(void *arg0, void *arg1, u32 color, f32 scale, f32 alpha) {
     prim.start = 0;
     prim.count = 6;
     prim.pts = pts;
-    ((TWindowCtrlMain *)(&prim))->draw_strip_swap_color(6, 6, (-1.5f));
+    ((ColorLineList *)(&prim))->draw_strip_swap_color(6, 6, (-1.5f));
 }
 #pragma pop
 
@@ -114,7 +115,7 @@ void TChCrEffFade::draw_fade_strip(f32 farg0) {
     stack.sp10 = 0;
     stack.sp14 = 4;
     stack.sp8 = &chcr_eff_fade_strip_rect.value;
-    ((TWindowCtrlMain *)(&stack.sp8))->draw_strip_swap_color(4, 6, (-1.5f));
+    ((ColorLineList *)(&stack.sp8))->draw_strip_swap_color(4, 6, (-1.5f));
 }
 
 }

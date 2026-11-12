@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/SpriteDescriptor.h"
 #include "pso/object/mine/TOComputerMachine01_8023DD0C.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/player/TObjPlayer.h"
@@ -171,7 +172,7 @@ void TObjPlayer__sub_8023E034(void **arg0) {
 }
 #pragma push
 #pragma fp_contract on
-void TObjPlayer::draw_compass_sprite(s32 idx, s32 color, s32 flags, f32 z) {
+void SpriteDescriptor::draw_compass_sprite(s32 idx, s32 color, s32 flags, f32 z) {
     Self_8023E0FC *self = (Self_8023E0FC *)this;
     Vtx_8023E0FC v[4];
     Info_8023E0FC info;

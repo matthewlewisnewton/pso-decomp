@@ -3,6 +3,7 @@
 #include "pso/render/render_util.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby_801E2F94.h"
+#include "pso/render/TriangleFan3D.h"
 #include "pso/player/TObjPlayer_803E21B8.h"
 #include "pso/enemy/sorcerer/TObjEneRe4Sorcerer_801E3F14.h"
 #include "pso/unk/text_801E3F24.h"
@@ -245,7 +246,7 @@ void draw_line_list(Lines_801E341C *l, s32 n, u32 flags) {
 void reset_line_width(void) { current_line_width = 12; }
 
 void set_line_width(int a0) { current_line_width = a0; }
-void TWindowCtrlMain::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
+void ColorLineList::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
     s32 i;
     u32 x;
     u32 *p;
@@ -317,8 +318,8 @@ void TObjCMHairMenu::draw_tri_fan_2d(s32 count, s32 flags, f32 scale) {
     }
     TObjEneRe4Sorcerer__sub_801E3F20();
 }
-void TObjPlayer::draw_tri_fan_3d(s32 n, u32 flags) {
-    Tris_801E3784 *t = (Tris_801E3784 *)this;
+void draw_tri_fan_3d(TriangleFan3D *fan, s32 n, u32 flags) {
+    Tris_801E3784 *t = (Tris_801E3784 *)fan;
     Vec3_801E3784 *p;
     UV_801E3784 *uv;
     u32 *c;

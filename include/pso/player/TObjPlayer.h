@@ -297,9 +297,7 @@ struct TObjPlayer : public TObjChara {
     void clear_target_lock();
     static void init_matrix_stack(s32 arg0, s32 arg1);
     void draw_shadow_quad(s32 arg1, s32 flags);
-    void draw_tri_fan_3d(s32 n, u32 flags);
     static void render_tree(void *arg0);
-    void draw_compass_sprite(s32 idx, s32 color, s32 flags, f32 z);
     void init_vec_record();
     s32 get_entrance_id();
     void copy_efb_to_texture();
@@ -1243,7 +1241,7 @@ struct TObjPlayer : public TObjChara {
     u16 get_uid();
     static u32 spawn_shot_effect(s32 arg0, s32 arg1, s32 arg2, f32 farg0);
     void clear_rico_ring_flag();
-    static void start_photon_blast(s32 arg0, u16 arg1);
+    static void start_photon_blast(s32 kind, s32 client);
     s32 init_arrays();
     s32 get_card_window_field_244();
     void init_local_pad_binding();
@@ -1316,8 +1314,8 @@ struct TObjPlayer : public TObjChara {
     static s32 get_battle_ctrl_flag(u16 arg0);
     s32 is_outside_movement_hold(f32 *pos);
     static s32 draw_small_font(s32 arg0, void * _w1);
-    static void send_code_45_1(s32 arg0);
-    static void play_effect_default(int player, int effect);
+    static void send_code_45_1(TObjPlayer *player);
+    static void play_effect_default(TObjPlayer *player, s32 effect);
     static void play_effect(s32 arg0, s32 arg1, s32 arg2);
     s32 get_clamped_index();
     void apply_input_mode();

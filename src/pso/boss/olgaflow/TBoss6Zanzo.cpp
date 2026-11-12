@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/TriangleFan3D.h"
 #include "pso/render/render_util.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/memory.h"
@@ -137,7 +138,7 @@ void TBoss6Zanzo::sub_803205C4() {
                 ((TAdChrMoveEffectGC *)colors[3])->copy4(p);
                 colors[3][3] = next_alpha * p->color[3];
                 VecCopy__FP3VecPC3Vec(&positions[3], &p->pos);
-                ((TObjPlayer *)&quad)->draw_tri_fan_3d(4, 7);
+                draw_tri_fan_3d((TriangleFan3D *)&quad, 4, 7);
             }
             drawn = 1;
         }

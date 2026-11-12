@@ -226,7 +226,7 @@ u8 *construct_photon_magic_square_normal(u8 *photon_magic_square, s32 arg1, s32 
     return photon_magic_square;
 }
 
-u8 *TPhotonMagicSquare::construct_at_owner(s32 arg1, s32 arg2, s32 arg3) {
+u8 *TPhotonMagicSquare::construct_at_owner(TObject *parent, s32 arg2, s32 arg3) {
     s32 entity;
     __ct__8TObjBaseFP7TObject(this);
     *(s32 **)((s8 *)((u8 *)this) + 0x18) = &(*(RecoveredGlobal_801AD330___vt__18TPhotonMagicSquare *)&__vt__18TPhotonMagicSquare).value;

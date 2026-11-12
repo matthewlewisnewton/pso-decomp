@@ -188,10 +188,10 @@ void clear_trap_counts(s8 *arg0);
 
 void begin_player_keyboard_hold(s32 arg0);
 s32 obj_testFlags30__14TObjCollidableFUl(u32, s32);
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);
 s32 release_attached_resource__10TObjPlayerFv();
 void request_active_window_close(void);
-s32 send_code_45_1__10TObjPlayerFl();
+s32 send_code_45_1__10TObjPlayerFP10TObjPlayer();
 
 s32 TPlayerBattleCtrl4P::close_windows_on_button() {
     Ctl_8031012C *self = (Ctl_8031012C *)this;
@@ -508,7 +508,7 @@ void send_code_45_to_window__19TPlayerBattleCtrl4PFPvii(void *arg0, s32 arg1, s3
     temp_r31 = (u16)arg1;
     temp_r30 = arg2;
     if (get_player_by_client_id(temp_r31) != 0U) {
-        send_code_45_1__10TObjPlayerFl();
+        send_code_45_1__10TObjPlayerFP10TObjPlayer();
     }
     if (temp_r30 != 0) {
         end_player_keyboard_hold(temp_r31);
@@ -608,7 +608,7 @@ void TPlayerBattleCtrl4P::remove_player(void *arg0, u16 arg1, s32 arg2) {
     id = arg1;
     temp = get_player_by_client_id(id);
     if (temp != 0U) {
-        play_effect_default__10TObjPlayerFii(temp, -1);
+        play_effect_default__10TObjPlayerFP10TObjPlayerl(temp, -1);
     }
     if (arg2 != 0) {
         begin_player_keyboard_hold(id);
@@ -963,7 +963,7 @@ void TPlayerBattleCtrl4P::begin_battle_reload() {
     do {
         ret = get_player_by_client_id(var_r31);
         if (ret != 0U) {
-            play_effect_default__10TObjPlayerFii(ret, -1);
+            play_effect_default__10TObjPlayerFP10TObjPlayerl(ret, -1);
         }
         var_r31 += 1;
     } while (var_r31 < 4);

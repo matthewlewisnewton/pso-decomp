@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/ColorLineList.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TObject.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -636,7 +637,7 @@ void draw_menu_backdrop_gradients(s32 viewport_index) {
     verts[2].y = 480.0f;
     verts[3].x = 0.0f;
     verts[3].y = 480.0f;
-    ((TWindowCtrlMain *)(&poly))->draw_strip_swap_color(4, 22, -10.0f);
+    ((ColorLineList *)(&poly))->draw_strip_swap_color(4, 22, -10.0f);
 
     verts[0].x = 0.5f * s->field0C;
     verts[0].y = 480.0f - 0.5f * (480.0f - s->field18);
@@ -646,7 +647,7 @@ void draw_menu_backdrop_gradients(s32 viewport_index) {
     verts[2].y = 480.0f;
     verts[3].x = 0.5f * s->field0C;
     verts[3].y = 480.0f;
-    ((TWindowCtrlMain *)(&poly))->draw_strip_swap_color(4, 22, -10.0f);
+    ((ColorLineList *)(&poly))->draw_strip_swap_color(4, 22, -10.0f);
 
     colors[2] = 0;
     colors[3] = 0;
@@ -658,7 +659,7 @@ void draw_menu_backdrop_gradients(s32 viewport_index) {
     verts[2].y = 480.0f - 0.5f * (480.0f - s->field18);
     verts[3].x = s->field0C;
     verts[3].y = 0.0f;
-    ((TWindowCtrlMain *)(&poly))->draw_strip_swap_color(4, 22, -10.0f);
+    ((ColorLineList *)(&poly))->draw_strip_swap_color(4, 22, -10.0f);
 
     verts[0].x = 0.5f * s->field0C;
     verts[0].y = 480.0f - 0.5f * (480.0f - s->field18);
@@ -668,7 +669,7 @@ void draw_menu_backdrop_gradients(s32 viewport_index) {
     verts[2].y = s->field18;
     verts[3].x = 0.5f * s->field0C;
     verts[3].y = s->field18;
-    ((TWindowCtrlMain *)(&poly))->draw_strip_swap_color(4, 22, -10.0f);
+    ((ColorLineList *)(&poly))->draw_strip_swap_color(4, 22, -10.0f);
 
     begin_screen_draw(1);
     set_current_texture_list((GinjaTextureList *)((s32)lbl_805D63F0));

@@ -90,7 +90,7 @@ void TOTrap::vfunc_82() {
             if (v < 0x1000U) {
                 temp_r31 = (s32)get_player_by_client_id(v);
                 if ((is_locally_controlled__10TObjPlayerFPv(temp_r31) != 0) && (((TLobby *)temp_r31)->check_player_flag1() != 0)) {
-                    TObjPlayer::send_code_45_1(temp_r31);
+                    TObjPlayer::send_code_45_1((TObjPlayer *)(temp_r31));
                 }
             }
         }
@@ -181,7 +181,7 @@ f32 TOTrap::receive_physical_attack(void *arg1, f32) {
         temp_r3_2 = (s32)get_player_by_client_id(((int) ((s32) temp_r3)));
         if (((temp_r3_2 != 0) && (is_locally_controlled__10TObjPlayerFPv((int)((int) temp_r3_2)) != 0)) && (((TLobby *)((long long) temp_r3_2))->check_player_flag1() != 0))
         {
-          TObjPlayer::send_code_45_1((s32)((int) temp_r3_2));
+          TObjPlayer::send_code_45_1((TObjPlayer *)((s32)((int) temp_r3_2)));
         }
       }
     }

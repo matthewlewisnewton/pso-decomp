@@ -64,7 +64,7 @@ void clear_photon_blast_hits(void) {
     }
 }
 
-void queue_deferred_photon_blast_hit(u32 arg0, s32 arg1, s32 arg2) {
+void queue_deferred_photon_blast_hit(u32 arg0, s32 arg1, s32 arg2, f32 unused) {
     s32 found = 0;
     if (deferred_photon_blast_hit_count < 0x20) {
         const f32 *e = get_photon_blast_entry__10TObjPlayerFi(arg1);
@@ -114,8 +114,8 @@ void queue_deferred_photon_blast_support(void) {
     ((s32 (*)(f32))queue_deferred_photon_blast_hit)(1.0f);
 }
 
-void queue_photon_blast_support(void) {
-    ((s32 (*)(f32))queue_photon_blast_hit)(1.0f);
+void queue_photon_blast_support(u32 identity, s32 kind, s32 allow_duplicate) {
+    queue_photon_blast_hit(identity, kind, allow_duplicate, 1.0f);
 }
 typedef char RecoveredGlobal_801A7310_TCameraCtrl__data_804FF628_size[sizeof(RecoveredGlobal_801A7310_TCameraCtrl__data_804FF628) == 0xC ? 1 : -1];
 
@@ -267,7 +267,7 @@ void copy_effect_params(u8 *arg0, u8 *arg1) {
     *(ByteBlock_C *)((s32) arg0 + 0xC) = *(const ByteBlock_C *)((s32) arg1 + 0xC);
     *(s32 *)((s8 *)arg0 + 0x18) = (s32) *(s32 *)((s8 *)arg1 + 0x18);
 }
-void publish_photon_blast_joint_origins(void) {
+void publish_photon_blast_joint_origins(NJS_OBJECT *) {
     s32 i;
     for (i = 0; i < photon_blast_joint_origins->count; i++) {
         struct Node_801A7578 *node = &photon_blast_joint_origins->list[i];

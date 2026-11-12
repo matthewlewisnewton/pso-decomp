@@ -403,7 +403,7 @@ u8 *TODoorJungleMain__ct(TODoorJungleMain *arg0, s32 arg1, s32 arg2) {
     (*(f32 *)(copy_storage_8029B924.bytes + 0x28)) = 100.0f;
     (*(f32 *)(copy_storage_8029B924.bytes + 0x2C)) = 40.0f;
     (*(s32 *)(copy_storage_8029B924.bytes + 0x30)) = 2;
-    arg0->m_dc = TObjMapCsn::create((s32)copy_storage_8029B924.bytes);
+    arg0->m_dc = TObjMapCsn::create((void *)((s32)copy_storage_8029B924.bytes));
     return (u8 *)arg0;
 }
 

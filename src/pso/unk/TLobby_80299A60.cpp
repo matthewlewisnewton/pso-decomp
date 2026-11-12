@@ -187,7 +187,7 @@ s32 get_player_by_client_id(int);
 s32 TQuestVmDownLoadServer__sub_8006EF6C(s32);
 s32 get_window_layout_position(s32);
 void TObjPlayer__sub_8024ABDC(s32 arg0);
-void play_effect_default__10TObjPlayerFii(s32 arg0, s32 arg1);
+void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1);
 
 s32 TLobby::is_multi_ready() {
     if ((TLobby::get_challenge_mode_flag() != 0) || (TLobby__sub_80292F5C() <= 1)) {
@@ -240,7 +240,7 @@ void send_giveup_to_all_players__6TLobbyFv(void) {
     do {
         player = get_player_by_client_id(var_r31);
         if ((player != 0) && (check_player_flag1__6TLobbyFv() != 0)) {
-            TObjPlayer::send_code_45_1(player);
+            TObjPlayer::send_code_45_1((TObjPlayer *)(player));
         }
         ((TWindowCtrl *)var_r31)->unsuppress_slot();
         TLobby__sub_8024AC20(var_r31);
@@ -262,7 +262,7 @@ void play_effect_all_players__6TLobbyFPv(void*) {
         player = get_player_by_client_id(var_r31);
         if (player != 0) {
             if (check_player_flag1__6TLobbyFv() == 0) {
-                play_effect_default__10TObjPlayerFii(player, -1);
+                play_effect_default__10TObjPlayerFP10TObjPlayerl(player, -1);
             }
         }
         var_r31 += 1;
