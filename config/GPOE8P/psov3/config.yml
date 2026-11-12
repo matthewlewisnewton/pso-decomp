@@ -5745,7 +5745,7 @@ force_active:
   - door_vs2door01_resource_descriptor
   - dragon_boss1_render_color
   - dragon_breath_attack_params
-  - dragon_capture_node_points__Fv
+  - dragon_capture_node_points__FP10NJS_OBJECT
   - dragon_fireball_attack_params
   - dragon_fireball_impact_damage_params
   - dragon_fireball_particle_ids
