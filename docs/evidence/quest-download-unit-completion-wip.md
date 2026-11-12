@@ -734,3 +734,30 @@ orders, and equivalent integer and pointer expressions. Aggregate variants
 that changed the native frame were rejected. The accumulator's character
 buffer and cast-spelling trials did not improve its retained 99.386505%.
 No shared helper ABI or buffer declaration was changed for these experiments.
+
+The next trials covered real token-install and slot-cleanup helpers, argument
+snapshots, phase-local aggregates, following-entry preparation, equivalent loop
+forms and a whole-selection inline driver. Scheduler, peephole, pointer-analysis
+and dead-assignment controls did not improve the retained bodies. Accumulator
+copy/validation helpers and explicit buffer-role locals also did not improve
+99.386505%. These remain private experiments, not additional production
+compiler controls or recovered exact functions.
+
+An indexed token loop (`slot = first + tokenOffset`) compiles to the native
+instruction sequence and 80-byte frame at 99.203186%. Its 3,000-case native PPC
+comparison passes, including callback arguments, slot and node state, selection
+mode and preserved registers. It supplies a different valid search seed; the
+higher-scoring retained selector is unchanged. A separate aggregate-endpoint
+search reached that score with an index assignment expression, but rewriting
+the expression as a separate statement changed the frame to 88 bytes. Candidate
+cleanup therefore requires a fresh complete-object comparison.
+
+Another path disables CSE and reconstructs value reuse explicitly: distinct
+validation and pruning cursors, an entry-end snapshot, a separate consolidation
+index and a direct input limit for the group count. Loading the pruning head
+before forming its link restores the native instruction order. A fresh allocator
+capture and replay reproduce all 89 selected nodes. A modeled declaration order
+then compiles at 99.203186%, with the native instruction sequence and frame but
+remaining register differences. This is an alternative source investigation,
+not completion or admission of the unit; the branch still has 171 of 173 exact
+functions.
