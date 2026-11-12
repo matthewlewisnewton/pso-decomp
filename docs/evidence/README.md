@@ -65,6 +65,7 @@ guides.
 - [Persistent positional sound](persistent-sound-evidence.md)
 - [Player target-candidate evidence (work in progress)](player-target-candidate-evidence.md)
 - [Projectile entity-ID contract](pr100-projectile-id.md)
+- [Complete quest-download provider](quest-download-unit-completion.md)
 - [Quest-download display recovery](quest-download-display-recovery.md)
 - [Quest-download input records and partial text append](quest-download-input-records.md)
 - [Quest-download cache-page rotation (partial)](quest-download-cache-rotation.md)
@@ -85,5 +86,3 @@ guides.
 - [Window effect light recovery](window-effect-light-recovery-evidence.md)
 
 - [Word-select formatter completion and table grouping](word-select-completion.md)
-
-- [Quest-download unit completion investigation (in progress)](quest-download-unit-completion-wip.md)

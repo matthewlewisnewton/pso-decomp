@@ -1529,6 +1529,9 @@ pso/misc/TQuestVmDownLoadServer_801F9010.cpp
 pso/misc/TQuestVmDownLoadServer_8033BC88.cpp
 pso/misc/TQuestVmDownLoadServer_8033C22C.cpp
 pso/misc/TQuestVmDownLoadServer_803E5668.cpp
+pso/misc/TQuestVmDownLoadServer_803E6970.cpp
+pso/misc/TQuestVmDownLoadServer_803E9A24.cpp
+pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp
 pso/misc/TRaderMapCore.cpp
 pso/misc/TRaderMapCore_801A6CEC.cpp
 pso/misc/TRaderMapCore_801F3710.cpp

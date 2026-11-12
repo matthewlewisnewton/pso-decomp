@@ -2,7 +2,8 @@
 
 `TQuestVmDownLoadServer__sub_803EB4D4` at `0x803EB4D4` matches all 704
 original bytes with the unchanged GC/1.2.5 compiler and unit options.
-The containing provider unit remains incomplete and unlinked.
+The complete provider now matches and links from source; see
+[complete-unit validation](quest-download-unit-completion.md).
 
 The routine counts complete text-node groups, subtracts the current selection
 and one, and clamps the remaining count to zero. It writes three decimal
