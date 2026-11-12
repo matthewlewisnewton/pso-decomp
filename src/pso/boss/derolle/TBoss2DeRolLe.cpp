@@ -310,6 +310,8 @@ void *__vt__13TBoss2DeRolLe[107] = {
 #pragma pop
 
 #include <stddef.h>
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #pragma push
 
 typedef struct Vec_8002EA64 {
@@ -4927,7 +4929,6 @@ s32 TBoss2DeRolLe__sub_80034034(void *);
 void TBoss2Fin__sub_800367C0(void);
 void TBoss2Mine__sub_80038D84(void);
 void TBoss2Tentacle__sub_8003A0A8(void);
-void free_bin_model_request(void*, int);
 void TObjPlayer__sub_8002EB88(void);
 void __dl__FPv(void);
 void *__nw__7TObjectFUl(int);
@@ -5666,7 +5667,7 @@ void reset_parts__13TBoss2DeRolLeFv(void) {
     TBoss2Mine__sub_80038D84();
     TBoss2Tentacle__sub_8003A0A8();
     if ((u32) lbl_805D4BA4 != 0U) {
-        free_bin_model_request((void*)lbl_805D4BA4, 1);
+        delete (BmlResource *)(lbl_805D4BA4);
         lbl_805D4BA4 = 0U;
     }
 }

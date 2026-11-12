@@ -18,6 +18,7 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/render/GinjaMaterial.h"
+#include "pso/system/BmlResourceClass.h"
 
 struct Vec_8029B640 { s32 x, y, z; };
 struct Ids_8029B428 {
@@ -205,7 +206,7 @@ struct Door_8029B428 : VObj_8029B428 {
 extern "C" {
 u32 TODoorJungleMain__bml_resource;
 u32 door_jungle_main_gvm_texture;
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 u8 * load_gvm_texture_file(s32);
 s32 get_bml_motion(void *, s32);
 u32 init_collision_body_parts(void *, s32, s32);
@@ -239,7 +240,7 @@ s32 matrix_mult_vec(void *, void *, void *);
 #pragma pop
 
 void *__dt__16TODoorJungleMainFv(void *arg0, s16 arg1);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 release_texture_list(void*);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
@@ -251,7 +252,7 @@ void TODoorJungleMain::free_static_resources() {
         door_jungle_main_gvm_texture = 0U;
     }
     if ((u32) TODoorJungleMain__bml_resource != 0U) {
-        free_bin_model_request((void*)TODoorJungleMain__bml_resource, 1);
+        delete (BmlResource *)(TODoorJungleMain__bml_resource);
         TODoorJungleMain__bml_resource = 0U;
     }
 }
@@ -266,7 +267,7 @@ void TODoorJungleMain::load_resources() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 0x1, &bm_o_jungle_doormain_resource_descriptor, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 0x1, &bm_o_jungle_doormain_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&TODoorJungleMain__bml_resource) = var_r0;
     (*(u8 * *)&door_jungle_main_gvm_texture) = load_gvm_texture_file((s32) "o_jungle_doormain.gvm");

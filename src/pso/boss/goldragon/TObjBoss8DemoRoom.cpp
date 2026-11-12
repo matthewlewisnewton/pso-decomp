@@ -43,9 +43,9 @@ struct RecoveredGlobal_8036B6D0_lbl_804F3660 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_8036B6D0_lbl_804F3660_size[sizeof(RecoveredGlobal_8036B6D0_lbl_804F3660) == 0x10 ? 1 : -1];
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8036B6D0_lbl_804F3660 TObjBoss8DemoRoom__resource_desc;
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void __ct__7TObjectFP7TObject(void *);
 
 extern s32 __vt__17TObjBoss8DemoRoom[];
@@ -60,7 +60,7 @@ void *__ct__17TObjBoss8DemoRoomFv(void *boss8_demo_room) {
 
 void TObjBoss8DemoRoom::free_static_instance() {
     if (TObjBoss8DemoRoom__shared_resource_object != 0) {
-        free_bin_model_request(TObjBoss8DemoRoom__shared_resource_object, 1);
+        __dt__11BmlResourceFv(TObjBoss8DemoRoom__shared_resource_object, 1);
         TObjBoss8DemoRoom__shared_resource_object = 0;
     }
 }
@@ -71,7 +71,7 @@ void TObjBoss8DemoRoom::load_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &TObjBoss8DemoRoom__resource_desc.value, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 1, &TObjBoss8DemoRoom__resource_desc.value, 0, 0, 0));
     }
     TObjBoss8DemoRoom__shared_resource_object = (void *)var_r0;
 }

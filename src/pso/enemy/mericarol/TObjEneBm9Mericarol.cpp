@@ -29,6 +29,8 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/unk/TLobby.h"
 #include "pso/enemy/dd/TObjEneDD_800BB804.h"
 #include "pso/unk/text_802D1C84.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct SubBase { char pad[0x14]; };
 
@@ -177,7 +179,6 @@ void vfunc_63__19TObjEneBm9MericarolFv(void *arg0);
 void vfunc_62__19TObjEneBm9MericarolFv(void *arg0);
 void vfunc_88__19TObjEneBm9MericarolFv(void *arg0);
 s32 clear_attack_receipts__9TObjEneDDFv(void);
-void free_bin_model_request(void*, int);
 struct Obj_802D0D3C;
 Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *, void *, s32);
 void *__nw__7TObjectFUl(int);
@@ -740,7 +741,7 @@ void TObjEneBm9Mericarol::free_shared_instances() {
     }
     fn_802D1C84();
     if ((u32) lbl_805D6868 != 0U) {
-        free_bin_model_request((void*)lbl_805D6868, 1);
+        delete (BmlResource *)(lbl_805D6868);
         lbl_805D6868 = 0U;
     }
 }

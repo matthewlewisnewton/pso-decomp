@@ -17,6 +17,7 @@
 #include "pso/object/door/TODoorAncient01.h"
 #include "pso/map/FloorArea.h"
 #include "pso/system/SoundEffect.h"
+#include "pso/system/BmlResourceClass.h"
 
 __declspec(section ".data") const char *fs_obj_ex_doa01_model_names[2] = { "fs_obj_ex_doa01.gj", NULL };
 __declspec(section ".data") const char *fs_obj_ex_doa01_motion_names[2] = { "fs_obj_ex_doa01.njm", NULL };
@@ -303,12 +304,12 @@ struct RecoveredGlobal_8018E064___vt__11TObjDoaEx01 {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 s32 init_collision_body_parts(void *, void *, int);
 void *__ct__10TODoorBaseFP7TObject(void *a0);
 extern s32 __vt__11TObjDoaEx01[];
 
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
@@ -353,7 +354,7 @@ void *TObjDoaEx01__create(void *arg0) {
 
 void TObjDoaEx01::free_resource() {
     if ((u32) TObjDoaEx01__resource_bundle != 0U) {
-        free_bin_model_request((void*)TObjDoaEx01__resource_bundle, 1);
+        delete (BmlResource *)(TObjDoaEx01__resource_bundle);
         TObjDoaEx01__resource_bundle = 0U;
     }
 }
@@ -364,7 +365,7 @@ void TObjDoaEx01::load_resources() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &TObjDoaEx01__resource_descriptor, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 1, &TObjDoaEx01__resource_descriptor, 0, 0, 0));
     }
     (*(u8 * *)&TObjDoaEx01__resource_bundle) = (unsigned char *) ((void *) var_r0);
     temp_r3_2 = (u8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(get_bml_model((void *) var_r0, 0)) + 0x2C)) + 0x30)) + 0x2C)) + 0x2C));

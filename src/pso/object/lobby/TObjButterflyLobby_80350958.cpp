@@ -15,6 +15,7 @@
 #include "pso/unk/text_803D8F74.h"
 #include "pso/math/AngleLookup.h"
 #include <stdlib.h>
+#include "pso/system/BmlResourceClass.h"
 
 extern char lbl_80478D80[];
 extern char lbl_80478D98[];
@@ -300,7 +301,7 @@ s32 get_bml_model(void *, int);
 s32 __ct__8TObjBaseFP7TObject();
 extern s32 __vt__18TObjButterflyLobby[];
 extern s32 lbl_805D4360;
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
@@ -346,7 +347,7 @@ void *TObjButterflyLobby__create(void *arg0) {
 
 void TObjButterflyLobby::destroy_instance() {
     if ((u32) lobby_butterfly_bml_resource != 0U) {
-        free_bin_model_request((void*)lobby_butterfly_bml_resource, 1);
+        delete (BmlResource *)(lobby_butterfly_bml_resource);
         lobby_butterfly_bml_resource = 0U;
     }
 }
@@ -354,14 +355,14 @@ void TObjButterflyLobby::destroy_instance() {
 }
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 void load_lobby_butterfly_bml_resource(void) {
     s32 temp_r3;
     s32 var_r0;
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_butterfly_lobby_resource_descriptor, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 1, &bm_butterfly_lobby_resource_descriptor, 0, 0, 0));
     }
     lobby_butterfly_bml_resource = var_r0;
 }

@@ -16,7 +16,6 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/render/model_render_state.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/ChunkMaterialColor.h"
 #include "pso/render/ChunkMaterialState.h"
 #include "pso/render/GinjaMaterial.h"
@@ -34,6 +33,7 @@
 #include "pso/object/key/TOKey.h"
 #include "pso/object/key/TOKeyAncient01.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/system/BmlResourceClass.h"
 
 // One monument model per area: Cave 1 (default), Cave 2 and Mine 2.
 const char *bm_fs_obj_o_monument01_model_names[] = {"fs_obj_o_monument01.gj", NULL};
@@ -178,7 +178,7 @@ void *TOMonumentAncient02::create(void *set_data) {
 
 void TOMonumentAncient02::free_shared_data() {
     if (TOMonumentAncient02__bml_resource != NULL) {
-        free_bin_model_request(TOMonumentAncient02__bml_resource, 1);
+        delete TOMonumentAncient02__bml_resource;
         TOMonumentAncient02__bml_resource = NULL;
     }
 }
@@ -187,24 +187,15 @@ void TOMonumentAncient02::load_resources() {
     BmlResource *resource;
     switch (get_current_floor_area()) {
     default:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_fs_obj_o_monument01_resource_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(5, &bm_fs_obj_o_monument01_resource_descriptor, 0, 0, 0);
         TOMonumentAncient02__bml_resource = resource;
         break;
     case AREA_CAVE2:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_fs_obj_o_monument02_resource_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(5, &bm_fs_obj_o_monument02_resource_descriptor, 0, 0, 0);
         TOMonumentAncient02__bml_resource = resource;
         break;
     case AREA_MINE2:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_fs_obj_o_monument03_resource_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(5, &bm_fs_obj_o_monument03_resource_descriptor, 0, 0, 0);
         TOMonumentAncient02__bml_resource = resource;
         break;
     }

@@ -11,7 +11,7 @@ struct Stack_8035B6B0 {
 };
 
 extern "C" {
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 s32 register_animated_chunk__16NpcModelRegistryFsPvPvPC19NpcAnimationBindingff(int, int, int, void *, int, void *, f32, f32);
 }
 extern s32 chao_npc_spawn_descriptor[];
@@ -27,7 +27,7 @@ void load_and_spawn_chao_npc(void) {
     u8 *var_r9;
     var_r9 = (u8 *)((int)::operator new(0x440));
     if (var_r9 != NULL) {
-        var_r9 = (u8 *)(load_resource_from_descriptor(var_r9, 1, bm_ene_npc_chao_resource_descriptor, 0, 0, 0));
+        var_r9 = (u8 *)(__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(var_r9, 1, bm_ene_npc_chao_resource_descriptor, 0, 0, 0));
     }
     chao_npc_instance_handle = var_r9;
     stack.sp8 = *(s32 *)((s8 *)chao_npc_spawn_descriptor + 0);

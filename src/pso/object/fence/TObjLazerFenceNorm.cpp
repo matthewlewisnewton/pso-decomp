@@ -15,6 +15,7 @@
 #include "pso/map/FloorArea.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/player/TObjPlayer_801542CC.h"
+#include "pso/system/BmlResourceClass.h"
 
 extern "C" {
 __declspec(section ".data") const char *fe_obj_lazer2_4m_model_names[9] = {
@@ -107,9 +108,7 @@ struct TObjLazerFenceNorm_80192CCC {
     Motion_80192CCC *motion;
 };
 
-void free_bin_model_request(void*, int);
 s32 release_texture_list(void*);
-void *load_resource_from_descriptor(void *, int, BmlResourceDescriptor *, int, int, int);
 u8 *load_gvm_texture_file(s32 arg0);
 
 }
@@ -127,18 +126,12 @@ void load_lazer_fence_norm_resources(void) {
     case AREA_SEABED_LOWER:
     case AREA_SEASIDE_NIGHT:
     case AREA_TOWER:
-        obj = ::operator new(0x440);
-        if (obj != 0) {
-            obj = load_resource_from_descriptor(obj, 5, &lazer_fence_norm_episode2_resource_descriptor, 0, 0, 0);
-        }
+        obj = new BmlResource(5, &lazer_fence_norm_episode2_resource_descriptor, 0, 0, 0);
         lazer_fence_norm_bml_resource = (s32)obj;
         lazer_fence_norm_texture_list = (s32)load_gvm_texture_file((s32)"fe_obj_lazer2_2.gvm");
         break;
     default:
-        obj = ::operator new(0x440);
-        if (obj != 0) {
-            obj = load_resource_from_descriptor(obj, 5, &lazer_fence_norm_episode1_resource_descriptor, 0, 0, 0);
-        }
+        obj = new BmlResource(5, &lazer_fence_norm_episode1_resource_descriptor, 0, 0, 0);
         lazer_fence_norm_bml_resource = (s32)obj;
         lazer_fence_norm_texture_list = (s32)load_gvm_texture_file((s32)"fe_obj_lazer2.gvm");
         break;
@@ -148,7 +141,7 @@ void load_lazer_fence_norm_resources(void) {
 
 void TObjLazerFenceNorm::free_resources() {
     if ((u32) lazer_fence_norm_bml_resource != 0U) {
-        free_bin_model_request((void*)lazer_fence_norm_bml_resource, 1);
+        delete (BmlResource *)(lazer_fence_norm_bml_resource);
         lazer_fence_norm_bml_resource = 0U;
     }
     if ((u32) lazer_fence_norm_texture_list != 0U) {

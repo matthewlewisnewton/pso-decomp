@@ -22,7 +22,6 @@
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D8F74.h"
 #include <dolphin/base/PPCArch.h>
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
 
 // Written from its last function back: the unit is built -inline off,deferred
@@ -117,10 +116,7 @@ TObjLobbyMain::~TObjLobbyMain() {
 }
 
 void TObjLobbyMain::load_resources() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &bm_obj_lobby_main_resource_descriptor, 0, 0, 0);
-    }
+    void *resource = new BmlResource(5, &bm_obj_lobby_main_resource_descriptor, 0, 0, 0);
     model_resource = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();
     computer_screen_model = (NJS_CNK_MODEL *)((NJS_OBJECT *)get_bml_model(model_resource, 6))
@@ -132,7 +128,7 @@ void TObjLobbyMain::load_resources() {
 
 void TObjLobbyMain::free_resources() {
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        delete model_resource;
         model_resource = NULL;
     }
 }

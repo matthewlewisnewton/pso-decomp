@@ -173,6 +173,8 @@ s32 TObjEneRe4Sorcerer::vfunc_83() { if (((int (*)(void*))get_target_info__9TObj
 #include "pso/technique/TTecRaFoie.h"
 #include "pso/technique/TTecResta.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct VBase_14 { char pad[0x14]; };
 
@@ -751,7 +753,6 @@ struct Sorc_800F0118 {
 
 s32 VecCopy__FP3VecPC3Vec(void *, void *);
 void queue_destruction__7TObjectFv(void *arg0);
-void free_bin_model_request(void*, int);
 void fn_80044330(void *);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
 s32 TObjPlayer__sub_800A04F0(void *);
@@ -2408,7 +2409,7 @@ void TObjEneRe4Sorcerer::free_bits() {
     }
     TObjEneRe4Bit__sub_800EDAB0();
     if ((u32) sorcerer_bml_resource != 0U) {
-        free_bin_model_request((void*)sorcerer_bml_resource, 1);
+        delete (BmlResource *)(sorcerer_bml_resource);
         sorcerer_bml_resource = 0U;
     }
 }

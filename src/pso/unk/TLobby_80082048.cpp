@@ -21,6 +21,7 @@ typedef char RecoveredGlobal_80082080_lbl_8048E194_size[sizeof(RecoveredGlobal_8
 #include "pso/boss/darkfalz/TBoss4Type2.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/system/BmlResourceClass.h"
 struct RecoveredFields_8008213C_arg0 {
     u8 unknown_0[0x18];
     s32 * field_18;
@@ -63,7 +64,7 @@ struct RecoveredFields_8008213C_temp_r3 {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern u32 freeze_shell_bml_resource;
 s32 __ct__9TObjCharaFP7TObject(void *, void *);
 s16 get_entity_id(void *);
@@ -72,12 +73,12 @@ void *create_particle_emitter(void *pos, s32 id);
 extern s32 __vt__13TUnk_8048E1A4[];
 extern s32 tl_05;
 extern const f32 lbl_805D9378;
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void __dl__7TObjectFPv(void *);
 
 void TLobby::destroy_global_singleton() {
     if ((u32) freeze_shell_bml_resource != 0U) {
-        free_bin_model_request((void*)freeze_shell_bml_resource, 1);
+        delete (BmlResource *)(freeze_shell_bml_resource);
         freeze_shell_bml_resource = 0U;
     }
 }
@@ -88,7 +89,7 @@ void TLobby::load_freeze_ice_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &enemy_freeze_ice_resource_descriptor, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 5, &enemy_freeze_ice_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&freeze_shell_bml_resource) = var_r0;
 }

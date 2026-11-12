@@ -26,6 +26,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
 #include "pso/player/TObjPlayer_801542CC.h"
+#include "pso/system/BmlResourceClass.h"
 
 extern "C" { void rotate_matrix_y(int, void *); s32 pop_matrix(void); void draw_ginja_object(void *); s32 get_bml_motion(s32, s32); s32 get_bml_model(s32, s32); }
 extern s32 model_render_flags;
@@ -90,7 +91,6 @@ s32 init_key__5TOKeyFPv(void *, void *);
 void *__ct__5TOKeyFP7TObject(TOKey *arg0);
 extern s32 __vt__13TLazerFenceSw[];
 
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u8 *load_gvm_texture_file(s32 arg0);
 
 extern void *lazer_fence_switch_bml_resource;
@@ -100,7 +100,6 @@ extern s32 game_difficulty_selection;
 extern u8 lbl_80445CF0[];
 extern u8 lbl_80445D08[];
 extern u8 lbl_80445D20[];
-s32 free_bin_model_request(void *, s32);
 void *__dt__5TOKeyFv(void *arg0, s16 arg1);
 void *__ct__18CameraDistanceFadeFv(void *self);
 
@@ -276,7 +275,7 @@ void *TLazerFenceSw::create() {
 
 void TLazerFenceSw__sub_80193C5C(void) {
     if (lazer_fence_switch_bml_resource != 0) {
-        free_bin_model_request(lazer_fence_switch_bml_resource, 1);
+        delete (BmlResource *)(lazer_fence_switch_bml_resource);
         lazer_fence_switch_bml_resource = 0;
     }
     TObjPlayer::free_if_valid(TLazerFenceSw__texture_list);
@@ -294,17 +293,11 @@ void TLazerFenceSw::load_resources() {
     lazer_fence_switch_bml_resource = 0;
     area = get_current_floor_area();
     if (TContainerAncient01::is_global_state_in_table() == 1 || area == AREA_SEABED_UPPER || area == AREA_SEABED_LOWER) {
-        obj = ::operator new(0x440);
-        if (obj != NULL) {
-            obj = load_resource_from_descriptor(obj, 5, &fe_obj_switch_laz_j_resource_descriptor, 0, 0, 0);
-        }
+        obj = new BmlResource(5, &fe_obj_switch_laz_j_resource_descriptor, 0, 0, 0);
         lazer_fence_switch_bml_resource = obj;
         TLazerFenceSw__texture_list = (s32)load_gvm_texture_file((s32)lbl_80445CF0);
     } else {
-        obj = ::operator new(0x440);
-        if (obj != NULL) {
-            obj = load_resource_from_descriptor(obj, 5, &laser_fence_switch_resource_descriptor, 0, 0, 0);
-        }
+        obj = new BmlResource(5, &laser_fence_switch_resource_descriptor, 0, 0, 0);
         lazer_fence_switch_bml_resource = obj;
         if (game_difficulty_selection == 3) {
             TLazerFenceSw__texture_list = (s32)load_gvm_texture_file((s32)lbl_80445D08);

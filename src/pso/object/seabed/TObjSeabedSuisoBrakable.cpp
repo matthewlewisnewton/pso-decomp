@@ -44,7 +44,7 @@ void TObjSeabedSuisoBrakable::free_static_resources() {
         texture_list = 0;
     }
     if (bml_resource != NULL) {
-        free_bin_model_request(bml_resource, 1);
+        __dt__11BmlResourceFv(bml_resource, 1);
         bml_resource = NULL;
     }
 }
@@ -58,7 +58,7 @@ void TObjSeabedSuisoBrakable::load_resources() {
     case AREA_SEABED_LOWER: {
         p = ::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, &bm_obj_seabed_suiso_2_resource_descriptor, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &bm_obj_seabed_suiso_2_resource_descriptor, 0, 0, 0);
         }
         bml_resource = (BmlResource *)p;
         if ((texture_list = (u32)load_gvm_texture_file((s32)"obj_seabed_suiso_2.GVM")) != 0) {
@@ -73,7 +73,7 @@ void TObjSeabedSuisoBrakable::load_resources() {
     default: {
         p = ::operator new(0x440);
         if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, &bm_obj_seabed_suiso_resource_descriptor, 0, 0, 0);
+            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &bm_obj_seabed_suiso_resource_descriptor, 0, 0, 0);
         }
         bml_resource = (BmlResource *)p;
         if ((texture_list = (u32)load_gvm_texture_file((s32)"obj_seabed_suiso.GVM")) != 0) {

@@ -9,8 +9,8 @@
 // in `memory` (0x440 bytes from operator new) from a descriptor, and tears
 // one down again (del > 0 frees it).
 extern "C" {
-BmlResource *load_resource_from_descriptor(void *memory, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
-void free_bin_model_request(BmlResource *resource, s16 del);
+BmlResource *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *memory, s32 kind, BmlResourceDescriptor *descriptor, s32, s32, s32);
+void __dt__11BmlResourceFv(BmlResource *resource, s16 del);
 }
 
 #endif

@@ -36,6 +36,8 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/technique/TTecMegid.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/object/seabed/TObjSeabedSuisoBrakable.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct Vec_8017A3C0 { f32 x, y, z; };
 
@@ -329,8 +331,6 @@ u16 get_entity_id(void *);
 void obj_setFlags30(void *, u32);
 s32 is_split_screen();
 void * get_bml_model(void *, int);
-void free_bin_model_request(void*, int);
-void * load_resource_from_descriptor(void *, int, char *, int, int, int);
 s32 check_player_flag1__10TObjPlayerFv();
 s32 free_collision_body_parts(void *);
 void init_collision_body_parts(void *, void *, s32);
@@ -1167,7 +1167,7 @@ void *TOTrapAncient02::create(void *arg0) {
 
 void TOTrapAncient02::destroy_instance() {
     if ((u32) TOTrapAncient02__shared_resource != 0U) {
-        free_bin_model_request((void*)TOTrapAncient02__shared_resource, 1);
+        delete (BmlResource *)(TOTrapAncient02__shared_resource);
         TOTrapAncient02__shared_resource = 0U;
     }
 }
@@ -1178,10 +1178,7 @@ void TOTrapAncient02::load_resources() {
     switch (get_current_floor_area()) {
     case AREA_VR_TEMPLE_ALPHA:
     case AREA_VR_TEMPLE_BETA:
-        obj = ::operator new(0x440);
-        if (obj != 0) {
-            obj = load_resource_from_descriptor(obj, 1, base + 0x20, 0, 0, 0);
-        }
+        obj = new BmlResource(1, (BmlResourceDescriptor *)(base + 0x20), 0, 0, 0);
         TOTrapAncient02__shared_resource = (u32) obj;
         lbl_805D5AE0 = (u32)find_object_node((NJS_OBJECT *)get_bml_model(obj, 0), 2)->model;
         lbl_805D5AE4 = 2;
@@ -1196,20 +1193,14 @@ void TOTrapAncient02::load_resources() {
     case AREA_SEABED_LOWER:
     case AREA_SEASIDE_NIGHT:
     case AREA_TOWER:
-        obj = ::operator new(0x440);
-        if (obj != 0) {
-            obj = load_resource_from_descriptor(obj, 1, base + 0x38, 0, 0, 0);
-        }
+        obj = new BmlResource(1, (BmlResourceDescriptor *)(base + 0x38), 0, 0, 0);
         TOTrapAncient02__shared_resource = (u32) obj;
         lbl_805D5AE0 = (u32)find_object_node((NJS_OBJECT *)get_bml_model(obj, 0), 2)->model;
         lbl_805D5AE4 = 1;
         lbl_805D5ADC = 0;
         break;
     default:
-        obj = ::operator new(0x440);
-        if (obj != 0) {
-            obj = load_resource_from_descriptor(obj, 1, base + 8, 0, 0, 0);
-        }
+        obj = new BmlResource(1, (BmlResourceDescriptor *)(base + 8), 0, 0, 0);
         TOTrapAncient02__shared_resource = (u32) obj;
         lbl_805D5AE0 = *(u32 *)(*(u8 **)(*(u8 **)(*(u8 **)(*(u8 **)((u8 *)obj + 0x42C) + 8) + 0x2C) + 0x2C) + 4);
         lbl_805D5AE4 = 1;

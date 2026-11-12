@@ -18,6 +18,7 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/system/vector.h"
+#include "pso/system/BmlResourceClass.h"
 
 extern const char *bm_ply_photon_chair_model_names[3];
 extern const char *bm_ply_photon_chair_motion_names[3];
@@ -148,7 +149,7 @@ extern "C" {
 void *get_player_by_client_id(s32 i);
 s32 is_mounted__15TPlyPhotonChairFv();
 void TPlyPhotonChair__sub_8035B56C(void* p, f32 v);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern u32 TPlyPhotonChair__shared_model_resource;
 s32 get_bml_motion(int, int);
 s32 TObjFish__sub_8001EDB0(int, int);
@@ -164,7 +165,7 @@ int scale_current_matrix(void *);
 int post_translate_matrix(void *);
 int TPlyPhotonChair__sub_8035B520(void* p);
 void *__dt__15TPlyPhotonChairFv(void *arg0, s16 arg1);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void __dl__7TObjectFPv(void *);
 
 void TPlyPhotonChair::render() {
@@ -237,7 +238,7 @@ void TPlyPhotonChair::run_task() {
 
 void TPlyPhotonChair::free_static_model() {
     if ((u32) TPlyPhotonChair__shared_model_resource != 0U) {
-        free_bin_model_request((void*)TPlyPhotonChair__shared_model_resource, 1);
+        delete (BmlResource *)(TPlyPhotonChair__shared_model_resource);
         TPlyPhotonChair__shared_model_resource = 0U;
     }
 }
@@ -248,7 +249,7 @@ s32 TPlyPhotonChair::load_resources() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &photon_chair_resource_descriptor, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 5, &photon_chair_resource_descriptor, 0, 0, 0));
     }
     (*(u8 * *)&TPlyPhotonChair__shared_model_resource) = (unsigned char *) ((void *) var_r0);
     if ((u32) var_r0 == 0U) {
@@ -344,7 +345,7 @@ extern u32 chao_npc_instance_handle;
 
 void TPlyPhotonChair::free_instance() {
     if ((u32) chao_npc_instance_handle != 0U) {
-        free_bin_model_request((void*)chao_npc_instance_handle, 1);
+        delete (BmlResource *)(chao_npc_instance_handle);
         chao_npc_instance_handle = 0U;
     }
 }

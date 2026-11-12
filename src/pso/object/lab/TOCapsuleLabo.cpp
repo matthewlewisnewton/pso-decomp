@@ -9,11 +9,11 @@
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
 
 const char *bm_obj_labo_infocapsule_model_names[2] = { "obj_o_labo_infocapsule.gj", NULL };
 const char *bm_obj_labo_infocapsule_motion_names[1] = { NULL };
@@ -33,17 +33,14 @@ void *TOCapsuleLabo::create(void *set_data) {
 
 void TOCapsuleLabo::unload_resources() {
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        delete model_resource;
         model_resource = NULL;
     }
 }
 
 void TOCapsuleLabo::load_resources() {
     NJS_OBJECT *root;
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_obj_labo_infocapsule_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_obj_labo_infocapsule_resource_descriptor, 0, 0, 0);
     model_resource = resource;
     root = (NJS_OBJECT *)get_bml_model(resource, 0);
     if (root != NULL) {

@@ -208,7 +208,7 @@ u16 find_nearest_visible_player(void *, f32 *, f32);
 f64 atan2_float(f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
 f32 vector_length(void *);
-Obj_800DF634 *load_resource_from_descriptor(Obj_800DF634 *, s32, void *, s32, s32, s32);
+Obj_800DF634 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(Obj_800DF634 *, s32, void *, s32, s32, s32);
 s32 register_animated_chunk__16NpcModelRegistryFsPvPvPC19NpcAnimationBindingff(s32, s32, s32, void *, s32, const void *, f32, f32);
 f32 random_ratio__9TObjCharaFv(s32 arg0);
 void TObjEnePanarms__sub_800E1D38(void *arg0);
@@ -229,7 +229,7 @@ extern s32 __dt__15RenderFadeStateFv[];
 extern s32 __vt__14TObjEnePanarms[];
 u8 *__dt__14TObjEnePanarmsFv(u8 *arg0, s16 arg1);
 void TObjEnePanarms__sub_800DEEF8(void* p);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 int post_translate_matrix(void*);
 int rotate_matrix_y(void*, void*);
 int push_matrix(void*);
@@ -250,6 +250,7 @@ int clear__24ModelNodePositionCaptureFv(void*);
 typedef struct Stack_800DDFDC Stack_800DDFDC;
 
 #include "pso/render/RenderFadeState.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 // The camera-obstruction fade (vtable __vt__15RenderFadeState) keeps its vtable pointer at +0x14.
 struct VFade_800DEF5C {
@@ -312,7 +313,7 @@ s32 TObjEnePanarms::create(s32 setData) {
 void TObjEnePanarms::load_and_spawn_npc() {
     Obj_800DF634 *o = (Obj_800DF634 *) ::operator new(0x440);
     if (o != NULL) {
-        o = load_resource_from_descriptor(o, 1, lbl_80494F10, 0, 0, 0);
+        o = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(o, 1, lbl_80494F10, 0, 0, 0);
     }
     TObjEnePanarms__entry_params_resource = (BmlResource *)o;
     if (o != NULL) {
@@ -325,7 +326,7 @@ void TObjEnePanarms::load_and_spawn_npc() {
 
 void TObjEnePanarms::free_data() {
     if (TObjEnePanarms__entry_params_resource != NULL) {
-        free_bin_model_request((void*)TObjEnePanarms__entry_params_resource, 1);
+        delete TObjEnePanarms__entry_params_resource;
         TObjEnePanarms__entry_params_resource = NULL;
     }
 }

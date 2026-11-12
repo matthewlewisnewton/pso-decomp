@@ -15,8 +15,9 @@
 #include "pso/ui/charcreate/TObjCMMainMenu.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/ui/charcreate/TCharaMaking.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/unk/TLobby.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 #pragma readonly_strings on
 
@@ -65,10 +66,7 @@ void init_creation_menu_scene(void) {
     TKeyBoardControl__sub_80131F60();
     TWindowCtrlMain::reset_all((void*)1);
     p = (void *)new TWindowCtrlMain();
-    p = ::operator new(0x440);
-    if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, &creation_menu_resource_descriptor, 0, 0, 0);
-    }
+    p = new BmlResource(1, &creation_menu_resource_descriptor, 0, 0, 0);
     creation_menu_main_obj = p;
     if (p != NULL) {
         fn_80291178();

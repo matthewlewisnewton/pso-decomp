@@ -17,7 +17,6 @@
 #include "pso/animation/ActorAnimationState.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/render/GinjaUvScroll.h"
 #include "pso/system/MatrixStack.h"
@@ -345,7 +344,7 @@ s32 TObjWarpJung::update_warp_display() {
 
 void free_warp_jung_beam_resources(void) {
     s32 i;
-    free_bin_model_request(TObjWarpJung__beam_bml_resource, 1);
+    delete TObjWarpJung__beam_bml_resource;
     TObjWarpJung__beam_bml_resource = NULL;
     warp_jung_beam_motion = NULL;
     warp_jung_model_handle = 0;
@@ -356,10 +355,7 @@ void free_warp_jung_beam_resources(void) {
 
 void load_warp_beam_resources(void) {
     NJS_OBJECT *root;
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &jungle_warp_beam_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(5, &jungle_warp_beam_resource_descriptor, 0, 0, 0);
     TObjWarpJung__beam_bml_resource = resource;
     warp_jung_beam_motion = get_bml_motion(resource, 0);
     warp_jung_model_handle = TObjFish__sub_8001EDB0(TObjWarpJung__beam_bml_resource, 0);

@@ -24,6 +24,7 @@
 #include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/render/GinjaMaterial.h"
+#include "pso/system/BmlResourceClass.h"
 
 extern "C" {
 __declspec(section ".data") const char *fe_obj_hako_i_rail_model_names[3] = { "fe_obj_hako_i_rail.gj", "fe_obj_hako_ido.gj", NULL };
@@ -312,11 +313,11 @@ struct Ido_8018C7BC { u8 pad[0xCC]; s32 ids[4]; };
 
 extern "C" {
 extern u32 container_ido_texture_gvm_handle;
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 u8 * load_gvm_texture_file(s32);
 extern s32 __vt__16TObjContainerIdo[];
 void *__dt__16TObjContainerIdoFv(void *arg0, s16 arg1);
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 release_texture_list(void*);
 void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
 
@@ -327,7 +328,7 @@ void TObjContainerIdo::free_resources() {
         container_ido_texture_gvm_handle = 0U;
     }
     if ((u32) TObjContainerIdo__model_resource != 0U) {
-        free_bin_model_request((void*)TObjContainerIdo__model_resource, 1);
+        delete (BmlResource *)(TObjContainerIdo__model_resource);
         TObjContainerIdo__model_resource = 0U;
     }
 }
@@ -342,7 +343,7 @@ void TObjContainerIdo::load_resources() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &container_ido_resource_descriptor, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 5, &container_ido_resource_descriptor, 0, 0, 0));
     }
     (*(s32 *)&TObjContainerIdo__model_resource) = var_r0;
     (*(u8 * *)&container_ido_texture_gvm_handle) = load_gvm_texture_file((s32) "obj_containerido.GVM");

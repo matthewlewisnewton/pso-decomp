@@ -33,6 +33,8 @@ extern "C" void test_flag_1000__9TObjCharaFv();
 #include "pso/render/RenderFadeState.h"
 #include "pso/unk/TLobby.h"
 #include "pso/object/ambient/TObjFish.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 extern "C" TObjEnemy *__ct__9TObjEnemyFP7TObject(void *, void *);
 
 struct Vec_802D9EB4 { f32 x, y, z; };
@@ -172,7 +174,6 @@ extern f32 lbl_805DE80C;
 extern const f32 lbl_805DE814;
 extern const f32 lbl_805DE828;
 extern const f32 lbl_805DE82C;
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
 extern Spawn_802DB7C0 gibbles_resource_binding_desc;
 extern s32 gibbles_boss_stat_handle;
 extern s32 gibbles_combat_stats_handle;
@@ -333,7 +334,6 @@ s32 get_main_phase();
 f32 calc_distance_to_client__10TObjPlayerFlUsUl(void *, u16, Vec_802D8828 *);
 s32 obj_setFlags30(void *, int);
 s32 queue_destruction__7TObjectFv();
-void free_bin_model_request(void*, int);
 void TCameraCtrl__sub_8006A044(s32, f32);
 s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 rotate_xz_pair_by_angle(f32 *, f32 *, s32, f32);
@@ -2577,7 +2577,7 @@ void TObjEneGibbles::free_static() {
         gibbles_combat_stat_entries = 0U;
     }
     if ((u32) TObjEneGibbles__resource_bundle != 0U) {
-        free_bin_model_request((void*)TObjEneGibbles__resource_bundle, 1);
+        delete (BmlResource *)(TObjEneGibbles__resource_bundle);
         TObjEneGibbles__resource_bundle = 0U;
     }
 }
@@ -2585,16 +2585,10 @@ void TObjEneGibbles::free_static() {
 void TObjEneGibbles::load_resources() {
     u8 *p;
     if (is_split_screen() != 0) {
-        p = (u8 *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, lbl_804E28A0, 0, 0, 0);
-        }
+        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E28A0), 0, 0, 0);
         TObjEneGibbles__resource_bundle = (u32) p;
     } else {
-        p = (u8 *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, lbl_804E285C, 0, 0, 0);
-        }
+        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E285C), 0, 0, 0);
         TObjEneGibbles__resource_bundle = (u32) p;
     }
     TObjEneGibbles__render_node_index = 0;

@@ -22,6 +22,7 @@
 #include "pso/math/MatrixTransforms.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/math/MatrixVector.h"
+#include "pso/system/BmlResourceClass.h"
 
 struct RecoveredGlobal_8018289C_lbl_80443F4C
 {
@@ -158,7 +159,7 @@ struct VObj_80181AE8 : Base_80181AE8 {
 extern u8 *city_common_model_archive;
 extern s32 city_common_texture_list;
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 u8 * load_gvm_texture_file(s32);
 int is_phase_e__9TObjEneDDFPv(void*);
 void render__18TObjCityDoor_LobbyFv(void* p);
@@ -172,7 +173,7 @@ s32 draw_ginja_object();
 s32 push_matrix();
 extern const f32 lbl_805DBBE0;
 extern const f32 lbl_805DBBE4;
-s32 free_bin_model_request(s32, s32);
+s32 __dt__11BmlResourceFv(s32, s32);
 s32 release_texture_list(void*);
 
 void TLobby::free_map_resources() {
@@ -181,7 +182,7 @@ void TLobby::free_map_resources() {
         TAdSinglePlyChrSelectGC::safe_free(city_common_texture_list);
         city_common_texture_list = 0U;
     }
-    free_bin_model_request((s32)city_common_model_archive, 1);
+    delete (BmlResource *)((s32)city_common_model_archive);
     city_common_model_archive = 0;
 }
 }
@@ -194,7 +195,7 @@ void load_city_common_resources(void) {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_obj_city_common_resource_descriptor.value, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 5, &bm_obj_city_common_resource_descriptor.value, 0, 0, 0));
     }
     (*(s32 *)&city_common_model_archive) = var_r0;
     (*(u8 * *)&city_common_texture_list) = load_gvm_texture_file((s32)city_common_texture_filename);
@@ -897,6 +898,7 @@ u8 *TObjCityDoor_Shop__ct(u8 *city_door_shop, s32 arg1, s32 arg2) {
 }
 
 #include "pso/player/TObjPlayer.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct Base_80182A58_8018291C { char pad[0x18]; };
 struct VObj_80182A58_8018291C : Base_80182A58_8018291C {

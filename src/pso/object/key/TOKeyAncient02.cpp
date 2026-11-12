@@ -11,12 +11,13 @@
 #include "pso/object/ambient/TObjFish_8001ED90.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_801542CC.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/render/GinjaModel.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 const char *bm_fs_obj_o_doorswitch01_model_names[] = {"ds_obj_o_doorswitch01_glass.gj", "fs_obj_o_doorswitch01.gj", NULL};
 const char *bm_fs_obj_o_doorswitch01_motion_names[] = {NULL};
@@ -131,17 +132,14 @@ void TOKeyAncient02::free_static() {
         }
     }
     if (TOKeyAncient02__model_archive != NULL) {
-        free_bin_model_request(TOKeyAncient02__model_archive, 1);
+        delete TOKeyAncient02__model_archive;
         TOKeyAncient02__model_archive = NULL;
     }
     TOKeyAncient02__glass_model = NULL;
 }
 
 void TOKeyAncient02::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_o_doorswitch01_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_fs_obj_o_doorswitch01_resource_descriptor, 0, 0, 0);
     TOKeyAncient02__model_archive = resource;
     TOKeyAncient02__texture_lists = (s32 *)::operator new[](8);
     TOKeyAncient02__texture_lists[0] = TObjFish__sub_8001EDB0(TOKeyAncient02__model_archive, 0);

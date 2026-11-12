@@ -12,6 +12,7 @@
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/math/AngleLookup.h"
 #include <stdlib.h>
+#include "pso/system/BmlResourceClass.h"
 
 struct Base_8016E9F4_8016E998 { char pad[0x18]; };
 struct VObj_8016E9F4_8016E998 : Base_8016E9F4_8016E998 {
@@ -32,7 +33,7 @@ struct RecoveredGlobal_8016EC04___vt__16TOLightMachine01 { s32 value; u8 remaini
 extern "C" {
 s32 TObjFish__sub_8001EDB0(void *, s32);
 s32 get_bml_model(void *, s32);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern u32 TOLightMachine01__shared_bml_archive;
 extern s32 light_machine_ginja_model_handle;
 extern s32 light_machine_ginja_param;
@@ -40,7 +41,7 @@ s32 __ct__8TObjBaseFP7TObject(void *, int);
 extern s32 __vt__16TOLightMachine01[];
 extern s32 TOLightMachine01__name;
 extern s32 tl_05;
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 post_translate_matrix(void *);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
@@ -85,7 +86,7 @@ void *TOLightMachine01::create(void *arg0) {
 
 void TOLightMachine01::destroy_instance() {
     if ((u32) TOLightMachine01__shared_bml_archive != 0U) {
-        free_bin_model_request((void*)TOLightMachine01__shared_bml_archive, 1);
+        delete (BmlResource *)(TOLightMachine01__shared_bml_archive);
         TOLightMachine01__shared_bml_archive = 0U;
     }
 }
@@ -96,7 +97,7 @@ void TOLightMachine01::load_assets() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &light_machine01_resource_desc, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 1, &light_machine01_resource_desc, 0, 0, 0));
     }
     (*(u8 * *)&TOLightMachine01__shared_bml_archive) = (unsigned char *) ((void *) var_r0);
     light_machine_ginja_model_handle = get_bml_model((void *) var_r0, 0);

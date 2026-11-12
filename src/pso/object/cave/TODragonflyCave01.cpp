@@ -10,7 +10,6 @@
 #include "pso/render/GinjaModel.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/render/ModelDrawContext.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/math/MatrixTransforms.h"
@@ -209,19 +208,13 @@ void TODragonflyCave01::load_resources() {
 
     switch (get_current_floor_area()) {
     default:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_tombo_resource_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(1, &bm_fs_obj_tombo_resource_descriptor, 0, 0, 0);
         model_resource = resource;
         break;
     case AREA_BATTLE1:
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &fs_obj_ex_entombo_resource_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(1, &fs_obj_ex_entombo_resource_descriptor, 0, 0, 0);
         model_resource = resource;
         break;
     }
@@ -229,7 +222,7 @@ void TODragonflyCave01::load_resources() {
 
 void TODragonflyCave01::release_static_instance() {
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        delete model_resource;
         model_resource = NULL;
     }
 }

@@ -1094,12 +1094,12 @@ u8 *TOTrapChainSawKey::get_model(s32 arg0) {
 #include "types.h"
 
 extern "C" {
-void free_bin_model_request(void *, int);
+void __dt__11BmlResourceFv(void *, int);
 
 void TOTrapChainSaw::unload_static_data() {
     s32 i;
     if (lbl_805D6808 != NULL) {
-        free_bin_model_request(lbl_805D6808, 1);
+        __dt__11BmlResourceFv(lbl_805D6808, 1);
         lbl_805D6808 = NULL;
     }
     for (i = 0; i < 5; i++) {
@@ -1119,14 +1119,14 @@ void TOTrapChainSaw::unload_static_data() {
 #include "pso/object/trap/TOTrapChainSawDamage.h"
 
 extern "C" {
-void *load_resource_from_descriptor(void *, int, void *, int, int, int);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, int, void *, int, int, int);
 void TOTrapChainSaw::load_shared_resource() {
     void *p;
     s32 i;
     s32 h;
     p = ::operator new(0x440);
     if (p != NULL) {
-        p = load_resource_from_descriptor(p, 5, bm_obj_jungle_nokogiri_resource_descriptor, 0, 0, 0);
+        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, bm_obj_jungle_nokogiri_resource_descriptor, 0, 0, 0);
     }
     lbl_805D6808 = (u8 *)p;
     for (i = 0; i < 5; i++) {

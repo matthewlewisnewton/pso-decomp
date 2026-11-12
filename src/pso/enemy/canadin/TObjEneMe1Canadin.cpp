@@ -21,7 +21,6 @@
 #include "pso/effect/TBreakUpMdl.h"
 #include "pso/unk/TLobby.h"
 #include "pso/system/BmlResource.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/enemy/dd/TObjEneDD_800BB804.h"
 #include "pso/player/TObjPlayer_800F0810.h"
@@ -51,6 +50,7 @@
 #include "pso/unk/text_803E2D70.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 #define VIRT(n) virtual void m##n() = 0;
 #define F_8009C510(off) (*(f32 *)(arg0 + (off)))
@@ -1823,7 +1823,7 @@ void TObjEneMe1Canadin::free_resources() {
         lbl_805D4FDC = NULL;
     }
     if (lbl_805D4FD0 != NULL) {
-        free_bin_model_request(lbl_805D4FD0, 1);
+        delete (BmlResource *)(lbl_805D4FD0);
         lbl_805D4FD0 = NULL;
     }
 }

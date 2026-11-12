@@ -884,7 +884,6 @@ u8 *get_enemy_entity(u16 arg0);
 s32 angle_diff_s16(s32, s32);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void *init_base__13TUnk_80481B34Fv(void *arg0);
-void free_bin_model_request(void*, int);
 void __ct__13TUnk_804928CCFP7TObjectP8TObjBase(void *);
 s32 update_linked_position__12TObjEneDD_STFf(f32);
 void subtractive_rng_seed(void *, u32);
@@ -5514,6 +5513,7 @@ block_12:
 #include "pso/enemy/panarms/TObjEnePanarms.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/quest/TQuestVmDownLoadServer.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma inline_depth(1)
 #pragma auto_inline off
@@ -5881,7 +5881,7 @@ void TBoss1Dragon::free_resources() {
         TBoss1Dragon__data_805D4B28 = 0U;
     }
     if ((u32) TBoss1Dragon__data_805D4B08 != 0U) {
-        free_bin_model_request((void*)TBoss1Dragon__data_805D4B08, 1);
+        delete (BmlResource *)(TBoss1Dragon__data_805D4B08);
         TBoss1Dragon__data_805D4B08 = 0U;
     }
 }

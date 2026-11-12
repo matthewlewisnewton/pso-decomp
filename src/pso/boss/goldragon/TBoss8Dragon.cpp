@@ -47,6 +47,8 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/system/vector.h"
 #include "pso/enemy/dd/TObjEneDD_800BB804.h"
 #include "pso/quest/TQuestVmDownLoadServer.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct VBase_18 { char pad[0x18]; };
 
@@ -1447,7 +1449,6 @@ struct Cam_802FDC1C { s32 f0; f32 *p4; f32 *p8; };
 
 int get_player_data__10TObjPlayerFi(int a0);
 s32 get_current_floor();
-void free_bin_model_request(void*, int);
 void TBoss1Dragon__sub_80027A80(u8 *arg0, u8 *arg1);
 s32 set_frames__15ProtectionTimerFl(void *, int);
 s32 spawn_particle_effect_with_flags(void *, void *, int);
@@ -7264,7 +7265,7 @@ void TBoss8Dragon::free_static() {
         (*(u32 *)&TBoss8Dragon__data_805D69A8) = 0U;
     }
     if ((u32) TBoss8Dragon__data_805D6988 != 0U) {
-        free_bin_model_request((void*)TBoss8Dragon__data_805D6988, 1);
+        delete (BmlResource *)(TBoss8Dragon__data_805D6988);
         TBoss8Dragon__data_805D6988 = 0U;
     }
 }

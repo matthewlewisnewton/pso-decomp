@@ -47,10 +47,10 @@ extern void *lbl_804FE9C8[];
 extern void *lbl_805D4BEC;
 extern void *boss2_tunnel_instance;
 void release_texture_list(void *);
-void free_bin_model_request(void *, int);
+void __dt__11BmlResourceFv(void *, int);
 void *TObjBoss2CeilJunk__ct(void *, void *, void *);
 void *__nw__7TObjectFUl(int);
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 
 extern void *tl_05;
 
@@ -71,14 +71,14 @@ void TLobby__sub_8003A874(void) {
         lbl_804FE9C8[i] = 0;
     }
     release_texture_list(lbl_805D4BEC);
-    free_bin_model_request(boss2_tunnel_instance, 1);
+    __dt__11BmlResourceFv(boss2_tunnel_instance, 1);
     boss2_tunnel_instance = 0;
 }
 
 void load_boss2_common_resource(void) {
     void *p = (void *)::operator new(0x440);
     if (p != NULL) {
-        p = load_resource_from_descriptor(p, 5, &bm_obj_boss2_common_resource_descriptor, 0, 0, 0);
+        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, &bm_obj_boss2_common_resource_descriptor, 0, 0, 0);
     }
     boss2_tunnel_instance = p;
     lbl_805D4BEC = *(void **)(*(u8 **)((u8 *)p + 0x42C) + 0x6C);

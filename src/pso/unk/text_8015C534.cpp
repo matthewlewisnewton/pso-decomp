@@ -5,6 +5,8 @@
 #include "pso/player/TUnk_804B08BC.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct RecoveredGlobal_8015C534_lbl_804B00C8 {
     s32 value;
@@ -17,7 +19,6 @@ struct RecoveredGlobal_8015C534_lbl_804B08BC {
 };
 
 extern "C" {
-s32 free_bin_model_request(u32, int);
 extern u32 ancient_container_resource_bundle;
 extern u32 ancient_container_fragment_texture_lists;
 s32 TObjFish__sub_8001EDB0(void *, int);
@@ -68,7 +69,7 @@ void free_ancient_container_resources(void) {
     }
     p = ancient_container_resource_bundle;
     if (p != 0U) {
-        free_bin_model_request(p, 1);
+        delete (BmlResource *)(p);
         ancient_container_resource_bundle = 0U;
     }
 }

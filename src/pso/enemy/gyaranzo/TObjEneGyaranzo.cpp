@@ -715,8 +715,8 @@ struct Gy_800D3ED8 { u8 pad[0x3EC]; E_800D3ED8 e3EC[4]; };
 s32 is_split_screen();
 void queue_destruction__7TObjectFv(void *);
 s32 get_bml_motion(u32, int);
-s32 free_bin_model_request(u32, s32);
-u32 load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+s32 __dt__11BmlResourceFv(u32, s32);
+u32 __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 copy_body_to_center__9TObjCharaFv(void *);
 VObj_800D3BA0_800D3B38 * init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
@@ -1647,7 +1647,7 @@ void *TObjEneGyaranzo::create(void *arg0) {
 
 void TObjEneGyaranzo::free_static_instances() {
     if (gyaranzo_bml_resource != 0U) {
-        free_bin_model_request(gyaranzo_bml_resource, 1);
+        __dt__11BmlResourceFv(gyaranzo_bml_resource, 1);
         gyaranzo_bml_resource = 0U;
     }
     if ((*(struct VObj_800D3BA0_800D3B38 * *)&gyaranzo_breakup_model_obj) != 0) {
@@ -1668,7 +1668,7 @@ void TLobby::load_gyaranzo_resources() {
     } else {
         p = ::operator new(0x440);
         if (p != NULL) {
-            p = (void *)load_resource_from_descriptor(p, 5, bm_ene_gyaranzo_resource_descriptor, 0, 0, 0);
+            p = (void *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, bm_ene_gyaranzo_resource_descriptor, 0, 0, 0);
         }
         gyaranzo_bml_resource = (u32)p;
     }

@@ -37,6 +37,8 @@
 #include "pso/unk/text_803D853C.h"
 #include "pso/render/render_util.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 extern "C" {
 f64 atan2_float(f32, f32);
@@ -124,9 +126,7 @@ extern const f32 lbl_805DF2DC;
 
 extern "C" {
 s32 is_split_screen(void);
-BmlResource *load_resource_from_descriptor(BmlResource *, s32, const BmlResourceDescriptor *, s32, s32, s32);
 
-void free_bin_model_request(void*, int);
 
 extern "C" const char lbl_80475BD8[];
 extern "C" const char deldepth_model_name_swim_disc_nj[];
@@ -267,16 +267,10 @@ TObjEneDelDepth *TObjEneDelDepth::create(void *setData) {
 void TObjEneDelDepth::load_assets() {
 
     if (is_split_screen() != 0) {
-        BmlResource *p = (BmlResource *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, &lbl_804E8158, 0, 0, 0);
-        }
+        BmlResource *p = new BmlResource(1, &lbl_804E8158, 0, 0, 0);
         TObjEneDelDepth__shared_resource = p;
     } else {
-        BmlResource *p = (BmlResource *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, &lbl_804E8104, 0, 0, 0);
-        }
+        BmlResource *p = new BmlResource(1, &lbl_804E8104, 0, 0, 0);
         TObjEneDelDepth__shared_resource = p;
     }
 
@@ -295,7 +289,7 @@ void TObjEneDelDepth::load_assets() {
 
 void TObjEneDelDepth::free_shared_data() {
     if ((u32) TObjEneDelDepth__shared_resource != 0U) {
-        free_bin_model_request((void*)TObjEneDelDepth__shared_resource, 1);
+        delete TObjEneDelDepth__shared_resource;
         TObjEneDelDepth__shared_resource = NULL;
     }
 }

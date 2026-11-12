@@ -31,11 +31,11 @@ struct RecoveredGlobal_8029CE64___vt__13TOGrassJungle {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8029CD0C_lbl_8046598C lbl_8046598C;
 BmlResource *TOGrassJungle__bml_resource;
 u32 TOGrassJungle__grass_gvm_texture;
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 s32 release_texture_list(void*);
 void *__nw__7TObjectFUl(int);
 
@@ -56,7 +56,7 @@ void TOGrassJungle::release_static_instance() {
         TOGrassJungle__grass_gvm_texture = 0U;
     }
     if ((u32) TOGrassJungle__bml_resource != 0U) {
-        free_bin_model_request((void*)TOGrassJungle__bml_resource, 1);
+        delete TOGrassJungle__bml_resource;
         TOGrassJungle__bml_resource = 0U;
     }
 }
@@ -66,7 +66,7 @@ void TOGrassJungle::load_resources() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &ograss_jungle_resource_descriptor, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 1, &ograss_jungle_resource_descriptor, 0, 0, 0));
     }
     (*(u8 * *)&TOGrassJungle__bml_resource) = (unsigned char *) ((void *) var_r0);
     (*(u8 * *)&TOGrassJungle__grass_gvm_texture) = load_gvm_texture_file((s32) &lbl_8046598C.value);

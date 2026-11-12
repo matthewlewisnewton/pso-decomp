@@ -18,12 +18,13 @@
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
 extern "C" {
-u8 *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
-void free_bin_model_request(void *, int);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
+void __dt__11BmlResourceFv(void *, int);
 AnimationMotion *get_bml_motion(u32, int);
 s32 get_bml_model(u32, int);
 void TObjFish__sub_8001EDB0(u32, int);
@@ -219,7 +220,7 @@ void *TObjCamera::create(void *set_data) {
 
 void TObjCamera::free_resources() {
     if (model_resource != 0) {
-        free_bin_model_request((void *)model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = 0;
     }
 }
@@ -231,7 +232,7 @@ void TObjCamera::load_resources() {
     resource = ::operator new(0x440);
     loaded = (u32)resource;
     if (loaded != 0) {
-        loaded = (u32)load_resource_from_descriptor(resource, 1, &fe_obj_cam_resource_descriptor, 0, 0, 0);
+        loaded = (u32)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &fe_obj_cam_resource_descriptor, 0, 0, 0);
     }
     model_resource = loaded;
 }

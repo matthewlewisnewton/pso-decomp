@@ -4192,6 +4192,8 @@ void TObjEneBm5GibonU::sub_800D10A0() {
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h"
 #include "pso/enemy/panarms/TObjEnePanarms.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct RecoveredGlobal_800D184C_TObjEneBm5GibonU__data_80500EC4 {
     s32 value;
@@ -4413,7 +4415,6 @@ extern s32 lbl_805D2A70;
 u8 *TObjEneBm5GibonU__ct(u8 *arg0, s32 arg1, s32 arg2);
 void vfunc_61__16TObjEneBm5GibonUFv(void);
 void vfunc_28__16TObjEneBm5GibonUFv(void);
-void free_bin_model_request(void*, int);
 void __dl__FPv(void);
 
 void TObjEneBm5GibonU::vfunc_88() {
@@ -4643,7 +4644,7 @@ void TObjEneBm5GibonU::init_child_node() {
 
 void TObjEneBm5GibonU::release_static_resource() {
     if ((u32) (*(u32 *)&TObjEneBm5GibonU__model_archive) != 0U) {
-        free_bin_model_request((void*)(*(u32 *)&TObjEneBm5GibonU__model_archive), 1);
+        delete (BmlResource *)((*(u32 *)&TObjEneBm5GibonU__model_archive));
         (*(u32 *)&TObjEneBm5GibonU__model_archive) = 0U;
     }
 }

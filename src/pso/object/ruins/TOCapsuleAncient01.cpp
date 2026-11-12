@@ -9,11 +9,11 @@
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
 
 const char *bm_fe_obj_o_capsule01_model_names[2] = { "fe_obj_o_capsule01.gj", NULL };
 const char *bm_fe_obj_o_capsule01_motion_names[1] = { NULL };
@@ -60,16 +60,13 @@ void *TOCapsuleAncient01::create(void *set_data) {
 
 void TOCapsuleAncient01::unload_resources() {
     if (model_resource != NULL) {
-        free_bin_model_request(model_resource, 1);
+        delete model_resource;
         model_resource = NULL;
     }
 }
 
 void TOCapsuleAncient01::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fe_obj_o_capsule01_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_fe_obj_o_capsule01_resource_descriptor, 0, 0, 0);
     model_resource = resource;
 }
 

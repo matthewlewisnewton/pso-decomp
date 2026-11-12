@@ -25,6 +25,8 @@
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 extern "C" {
 s32 is_main_phase_15__9TObjEneDDFv();
@@ -156,8 +158,8 @@ extern "C" {
 s32 get_bml_motion(s32, s32);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 get_bml_model(s32, s32);
-void free_bin_model_request(void*, int);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+void __dt__11BmlResourceFv(void*, int);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 int is_quest_active(void);
 s32 get_localized_text_entry(s32, s32);
 void run_task__15TObjLaboMapWarpFv(u8 *arg0);
@@ -317,7 +319,7 @@ void TObjLaboMapWarp__vt13(TObjLaboMapWarp *labo_map_warp, s32 arg1) {
 
 void TObjLaboMapWarp::release_static_resource() {
     if ((u32) (*(u32 *)&TObjLaboMapWarp__resource_bundle) != 0U) {
-        free_bin_model_request((void*)(*(u32 *)&TObjLaboMapWarp__resource_bundle), 1);
+        delete (BmlResource *)((*(u32 *)&TObjLaboMapWarp__resource_bundle));
         (*(u32 *)&TObjLaboMapWarp__resource_bundle) = 0U;
     }
 }
@@ -328,7 +330,7 @@ void TObjLaboMapWarp::load_static_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_obj_warp_labo_resource_descriptor.value, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 5, &bm_obj_warp_labo_resource_descriptor.value, 0, 0, 0));
     }
     (*(s32 *)&TObjLaboMapWarp__resource_bundle) = var_r0;
 }

@@ -20,6 +20,8 @@
 #include "pso/system/MatrixStack.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 // The default constant-material colour (owner unit not split yet; 27 files
 // declare it with their own types, see the lane report).
@@ -173,7 +175,7 @@ void TOKeyAncient03::cleanup_refs() {
         }
     }
     if (TOKeyAncient03__model_archive != NULL) {
-        free_bin_model_request(TOKeyAncient03__model_archive, 1);
+        delete TOKeyAncient03__model_archive;
         TOKeyAncient03__model_archive = NULL;
     }
 }
@@ -182,7 +184,7 @@ void TOKeyAncient03::load_resources() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     s32 *textures;
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_o_doorpanel_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_o_doorpanel_resource_descriptor, 0, 0, 0);
     }
     TOKeyAncient03__model_archive = resource;
     textures = (s32 *)::operator new[](8);

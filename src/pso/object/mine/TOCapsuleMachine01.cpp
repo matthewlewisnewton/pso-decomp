@@ -11,6 +11,8 @@
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 // The game's frame counter (main's .sbss; no module header owns it yet).
 extern s32 actor_frame_tick;
@@ -58,7 +60,7 @@ void TOCapsuleMachine01::reset_static_state() {
     TOCapsuleMachine01__last_update_frame_tick = 0;
     lbl_805D58C4 = 0;
     if (TOCapsuleMachine01__model_resource != NULL) {
-        free_bin_model_request(TOCapsuleMachine01__model_resource, 1);
+        delete TOCapsuleMachine01__model_resource;
         TOCapsuleMachine01__model_resource = NULL;
     }
 }
@@ -67,7 +69,7 @@ void TOCapsuleMachine01::alloc_and_load_resource() {
     BmlResource *resource = (BmlResource *)::operator new(0x440);
     NJS_OBJECT *root;
     if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_cap_moto_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_cap_moto_resource_descriptor, 0, 0, 0);
     }
     TOCapsuleMachine01__model_resource = resource;
     root = (NJS_OBJECT *)resource->models[0].model;

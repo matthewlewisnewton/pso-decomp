@@ -1594,6 +1594,8 @@ extern "C" void test_flag_256__9TObjCharaFv();
 
 #include "pso/enemy/panarms/TObjEnePanarms.h"
 #include "pso/unk/TLobby.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 #define CAT2(a, b) a##b
 #define CAT(a, b) CAT2(a, b)
@@ -1991,7 +1993,6 @@ s32 VecCopy__FP3VecPC3Vec(void *, void *);
 Player_800951AC * get_player_data__10TObjPlayerFi(s32);
 u16 get_entity_id(void *);
 void queue_destruction__7TObjectFv(void *);
-void free_bin_model_request(void*, int);
 u32 csnLookAt(void *, void *);
 void state_patrol__16TObjEneRe7BeruraFPvi(void *arg0, s32 arg1);
 void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1);
@@ -2749,7 +2750,7 @@ void TObjEneRe7Berura::destroy_children() {
         re7_berura_static_buffer = 0U;
     }
     if ((u32) TObjEneRe7Berura__shared_resource != 0U) {
-        free_bin_model_request((void*)TObjEneRe7Berura__shared_resource, 1);
+        delete (BmlResource *)(TObjEneRe7Berura__shared_resource);
         TObjEneRe7Berura__shared_resource = 0U;
     }
 }

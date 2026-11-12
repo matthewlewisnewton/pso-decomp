@@ -27,13 +27,13 @@ struct RecoveredGlobal_802FF0D8_lbl_804E6570 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_802FF0D8_lbl_804E6570_size[sizeof(RecoveredGlobal_802FF0D8_lbl_804E6570) == 0x10 ? 1 : -1];
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
+u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_802FF0D8_lbl_804E6570 TAdMultiSaveGC__shared_resource_desc;
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 
 void TAdMultiSaveGC::free_window() {
     if ((u32) admultisave_shared_model_resource != 0U) {
-        free_bin_model_request((void*)admultisave_shared_model_resource, 1);
+        __dt__11BmlResourceFv((void*)admultisave_shared_model_resource, 1);
         admultisave_shared_model_resource = 0U;
     }
 }
@@ -44,7 +44,7 @@ void TAdMultiSaveGC::load_shared_resource() {
     temp_r3 = (int)::operator new(0x440);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &TAdMultiSaveGC__shared_resource_desc.value, 0, 0, 0));
+        var_r0 = (long) (__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *) temp_r3, 1, &TAdMultiSaveGC__shared_resource_desc.value, 0, 0, 0));
     }
     (*(s32 *)&admultisave_shared_model_resource) = var_r0;
 }

@@ -747,6 +747,8 @@ struct Vec_80097820 { f32 x, y, z; };
 #include "pso/enemy/TUnk_8048FE64.h"
 #include "pso/ui/hud/TNowLoading.h"
 #include "pso/object/ambient/TObjFish.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #pragma defer_codegen on
 struct VBase_18_d3b6b2 { char pad[0x18]; };
 
@@ -1552,7 +1554,6 @@ struct VObj_18_be4a70 : VBase_18_be4a70 {
 extern const f32 lbl_805D9844;
 extern "C" {
 void *__ct__17TObjEneDf2BringerFP7TObjectPv(void *arg0, void *arg1, void *arg2);
-void free_bin_model_request(void*, int);
 }
 #define transition_enemy_state__9TObjEneDDFl ((int (*)(void*, void*))transition_enemy_state__9TObjEneDDFl)
 extern "C" {
@@ -1776,7 +1777,7 @@ void TObjEneDf2Bringer::free_resources() {
         TObjEneDf2Bringer__trail_buffer = 0U;
     }
     if ((u32) TObjEneDf2Bringer__resource_bundle != 0U) {
-        free_bin_model_request((void*)TObjEneDf2Bringer__resource_bundle, 1);
+        delete (BmlResource *)(TObjEneDf2Bringer__resource_bundle);
         TObjEneDf2Bringer__resource_bundle = 0U;
     }
 }

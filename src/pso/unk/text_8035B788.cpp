@@ -4,6 +4,7 @@
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/unk/TLobby.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceClass.h"
 
 extern char lbl_80479870[];
 extern char lbl_80479884[];
@@ -19,15 +20,11 @@ struct Inner_8035B788 { u8 pad[8]; s32 x8; NJS_TEXLIST *texlist; };
 struct Obj_8035B788 { u8 pad[0x42C]; Inner_8035B788 *x42c; s32 x430; };
 
 extern "C" {
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern Rec_8035B788 lbl_804798CC;
 extern Rec_8035B788 lbl_804798DC;
 extern Obj_8035B788 *lbl_805D6F50;
 void fn_8035B788(void) {
-    Obj_8035B788 *o = (Obj_8035B788 *)::operator new(0x440);
-    if (o != NULL) {
-        o = (Obj_8035B788 *)load_resource_from_descriptor(o, 1, &nights_npc_resource_descriptor, 0, 0, 0);
-    }
+    Obj_8035B788 *o = (Obj_8035B788 *)new BmlResource(1, &nights_npc_resource_descriptor, 0, 0, 0);
     lbl_805D6F50 = o;
     {
         Rec_8035B788 r = lbl_804798CC;

@@ -28,7 +28,7 @@ void *TObjNpcNurseBase__create(void *set_data) {
 
 void TObjNpcNurseBase::free_shared_data() {
     if (TObjNpcNurseBase__shared_model_resource != NULL) {
-        free_bin_model_request(TObjNpcNurseBase__shared_model_resource, 1);
+        delete TObjNpcNurseBase__shared_model_resource;
         TObjNpcNurseBase__shared_model_resource = NULL;
     }
 }
@@ -37,7 +37,7 @@ void TObjNpcNurseBase::load_shared_data() {
     void *memory = ::operator new(0x440);
     BmlResource *resource = (BmlResource *)memory;
     if (memory != NULL) {
-        resource = load_resource_from_descriptor(memory, 1, &bm_n_nurse_i_body_resource_descriptor, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(memory, 1, &bm_n_nurse_i_body_resource_descriptor, 0, 0, 0);
     }
     TObjNpcNurseBase__shared_model_resource = resource;
 }

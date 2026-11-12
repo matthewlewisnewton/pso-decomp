@@ -28,7 +28,7 @@ void *TObjNpcSoldierBase__create(void *set_data) {
 
 void TObjNpcSoldierBase::release_static_instance() {
     if (TObjNpcSoldierBase__shared_model_resource != NULL) {
-        free_bin_model_request(TObjNpcSoldierBase__shared_model_resource, 1);
+        delete TObjNpcSoldierBase__shared_model_resource;
         TObjNpcSoldierBase__shared_model_resource = NULL;
     }
 }
@@ -37,7 +37,7 @@ void TObjNpcSoldierBase::load_shared_resource() {
     void *memory = ::operator new(0x440);
     BmlResource *resource = (BmlResource *)memory;
     if (memory != NULL) {
-        resource = load_resource_from_descriptor(memory, 1, &TObjNpcSoldierBase__body_resource_desc, 0, 0, 0);
+        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(memory, 1, &TObjNpcSoldierBase__body_resource_desc, 0, 0, 0);
     }
     TObjNpcSoldierBase__shared_model_resource = resource;
 }

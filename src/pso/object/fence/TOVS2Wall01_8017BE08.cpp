@@ -150,10 +150,10 @@ extern s32 __vt__12TOVS2Wreck01[];
 f32 take_hit__11TOVS2Wall01FPvUi(TOVS2Wall01 *self, void *attacker);
 extern void *tl_05;
 extern const f32 lbl_805DBAB0;
-s32 load_resource_from_descriptor(int, int, void *, int, int, int);
+s32 __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(int, int, void *, int, int, int);
 extern const f32 lbl_805DBAA8;
 extern const f32 lbl_805DBAB4;
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 u8 *TObjGoalWarpAncient__ct(TObjGoalWarpAncient *arg0, s32 arg1, s32 arg2);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
@@ -213,7 +213,7 @@ void TOVS2Wall01::load_resources() {
   var_r0 = temp_r3;
   if (var_r0 != 0)
   {
-    var_r0 = load_resource_from_descriptor((int) temp_r3, 1, &bm_o_vs2_resource_descriptor, 0, 0, 0);
+    var_r0 = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv((int) temp_r3, 1, &bm_o_vs2_resource_descriptor, 0, 0, 0);
   }
   (*(s32 *)&TOVS2Wall01__bml_resource) = var_r0;
   ;
@@ -221,7 +221,7 @@ void TOVS2Wall01::load_resources() {
 }
 void TOVS2Wall01::release_model() {
     if ((u32) TOVS2Wall01__bml_resource != 0U) {
-        free_bin_model_request((void*)TOVS2Wall01__bml_resource, 1);
+        delete TOVS2Wall01__bml_resource;
         TOVS2Wall01__bml_resource = 0U;
     }
 }

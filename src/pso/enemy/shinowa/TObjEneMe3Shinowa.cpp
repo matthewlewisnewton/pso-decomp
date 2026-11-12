@@ -63,6 +63,7 @@
 #include "pso/unk/TLobby.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/enemy/deldepth/DelDepthData.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct VBase_18_f56c51
 {
@@ -4313,7 +4314,6 @@ void *TObjEneMe3Shinowa__ct(void *ene_me3_shinowa, void *parent) {
 
 
 extern "C" {
-s32 free_bin_model_request(void *, s32);
 int create__21TObjEneMe3ShinowaRealFv(void*);
 
 void TObjEneMe3ShinowaMirage::set_slot_min_clamped_value(s32 arg0, f32 farg0) {
@@ -4345,7 +4345,7 @@ void TObjEneMe3ShinowaMirage::free_shared_resources() {
         lbl_80500FEC.textures = 0;
     }
     if (TObjEneMe3ShinowaMirage__data_805D5298 != 0) {
-        free_bin_model_request(TObjEneMe3ShinowaMirage__data_805D5298, 1);
+        delete TObjEneMe3ShinowaMirage__data_805D5298;
         TObjEneMe3ShinowaMirage__data_805D5298 = 0;
     }
 }

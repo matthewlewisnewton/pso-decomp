@@ -7,6 +7,7 @@
 #include "pso/unk/text_803D8F74.h"
 #include "pso/math/AngleLookup.h"
 #include <stdlib.h>
+#include "pso/system/BmlResourceClass.h"
 
 struct Base_8017E978 { char pad[0x18]; };
 struct VObj_8017E978 : Base_8017E978 { virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3(); virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7(); virtual s32 m8(f32, f32); };
@@ -214,7 +215,7 @@ extern "C" {
 
 extern "C" {
 
-void free_bin_model_request(void*, int);
+void __dt__11BmlResourceFv(void*, int);
 void __ct__8TObjBaseFP7TObject(void *);
 void *__nw__7TObjectFUl(int);
 
@@ -240,13 +241,13 @@ void *TButterfly__create(void *arg0) {
 
 void TButterfly::destroy_instance() {
     if ((u32) butterfly_bml_resource != 0U) {
-        free_bin_model_request((void*)butterfly_bml_resource, 1);
+        delete (BmlResource *)(butterfly_bml_resource);
         butterfly_bml_resource = 0U;
     }
 }
 
 extern BmlResourceDescriptor bm_o_abe_butterfly_resource_descriptor;
-u8 *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
+u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
 
 void TButterfly::load_resources() {
     void *resource;
@@ -254,7 +255,7 @@ void TButterfly::load_resources() {
     resource = ::operator new(0x440);
     loaded = (u32)resource;
     if (loaded != 0) {
-        loaded = (u32)load_resource_from_descriptor(resource, 1, &bm_o_abe_butterfly_resource_descriptor, 0, 0, 0);
+        loaded = (u32)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_o_abe_butterfly_resource_descriptor, 0, 0, 0);
     }
     butterfly_bml_resource = loaded;
 }

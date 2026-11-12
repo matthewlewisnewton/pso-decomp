@@ -31,7 +31,6 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/system/MatrixStack.h"
@@ -121,39 +120,21 @@ void TORockCave::load_resources() {
 
     switch (get_current_floor_area()) {
     case AREA_CAVE1:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &bm_o_rock_cave01_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(1, &bm_o_rock_cave01_descriptor, 0, 0, 0);
         cave_rock_resource_bundle = resource;
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &bm_fe_obj_rb_liwa_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(1, &bm_fe_obj_rb_liwa_descriptor, 0, 0, 0);
         rock_cave_model_resource = resource;
         break;
     case AREA_CAVE2:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &bm_o_rock_cave02_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(1, &bm_o_rock_cave02_descriptor, 0, 0, 0);
         cave_rock_resource_bundle = resource;
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &bm_fe_obj_rb2_liwa_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(1, &bm_fe_obj_rb2_liwa_descriptor, 0, 0, 0);
         rock_cave_model_resource = resource;
         break;
     case AREA_CAVE3:
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &bm_o_rock_cave03_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(1, &bm_o_rock_cave03_descriptor, 0, 0, 0);
         cave_rock_resource_bundle = resource;
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 1, &bm_fe_obj_rb3_liwa_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(1, &bm_fe_obj_rb3_liwa_descriptor, 0, 0, 0);
         rock_cave_model_resource = resource;
         break;
     default:
@@ -165,11 +146,11 @@ void TORockCave::load_resources() {
 
 void TORockCave::free_instances() {
     if (rock_cave_model_resource != NULL) {
-        free_bin_model_request(rock_cave_model_resource, 1);
+        delete rock_cave_model_resource;
         rock_cave_model_resource = NULL;
     }
     if (cave_rock_resource_bundle != NULL) {
-        free_bin_model_request(cave_rock_resource_bundle, 1);
+        delete cave_rock_resource_bundle;
         cave_rock_resource_bundle = NULL;
     }
 }
