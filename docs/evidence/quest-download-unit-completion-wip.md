@@ -79,7 +79,7 @@ GC/1.2.5 profile. Remaining functions are:
 
 | Native suffix/name | Match % | Compiled/original bytes |
 | --- | ---: | ---: |
-| `803EA9E8` | 99.28287 | 1004/1004 |
+| `803EA9E8` | 99.52191 | 1004/1004 |
 | `803EE2F4` | 99.386505 | 652/652 |
 
 The latest full build and `tools/check_pr.py` pass against main `5146327538`:
@@ -761,3 +761,26 @@ then compiles at 99.203186%, with the native instruction sequence and frame but
 remaining register differences. This is an alternative source investigation,
 not completion or admission of the unit; the branch still has 171 of 173 exact
 functions.
+
+
+The next selector refinement retains a selected-slot assignment expression,
+selection-boundary snapshot and signed initial-span snapshot. An intermediate
+aggregate version reached 99.50199% but enlarged the frame to 88 bytes; removing
+the endpoint aggregate and token-install alias restores the native 80-byte
+frame and improves the score to **99.52191%**. The native instruction sequence
+and 1,004-byte extent are unchanged. The remaining differences are 22 register
+operands in token initialization and consolidation. The 3,000-case native PPC
+comparison and complete `check_pr.py` checks pass with this retained source.
+These snapshots express real consumed values, but their assignment forms are
+matching constraints: equivalent separate statements change allocation.
+
+The compiler trace reproduces all 93 selected nodes for this refinement.
+Another 100,000 declaration-order model trials do not improve its remaining
+three value assignments. Typed cursor fields, reversed initialization orders,
+an inlined consolidation phase and optimization levels 2–4 were compiled as
+alternatives without a retained improvement. An explicit-reuse variant with
+borrowed workspace storage allows the model to reproduce the named native
+registers, but actual compilation still changes initialization scheduling and
+cursor uses; model agreement alone is not an exact source result. The whole
+unit remains at 171 of 173 exact functions and is not yet admitted or ready for
+the requested completion PR.

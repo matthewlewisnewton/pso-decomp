@@ -2854,12 +2854,15 @@ void TQuestVmDownLoadServer__sub_803EA9E8(s32 start, s32 inputEnd, s32 mode, s32
     u8 *tokenText;
     s32 groupEnd;
     QuestDownloadSlot *slot;
+    s32 savedSelectedEnd;
     u8 *text;
     QuestDownloadSlot *first;
     s32 selectedEnd;
+    QuestDownloadSlot *selectedSlot;
     s32 remaining;
     s32 pos;
     size_t workspaceAddress;
+    s8 initialSpan;
     QuestDownloadEntryNode *allocated;
     s32 next;
     QuestDownloadSlot *following;
@@ -2892,7 +2895,7 @@ void TQuestVmDownLoadServer__sub_803EA9E8(s32 start, s32 inputEnd, s32 mode, s32
     pos = start;
     selectedEnd = start + selectedLength;
     while (pos < inputEnd) {
-        slot = QUEST_WORKSPACE_SLOT(workspaceAddress, pos);
+        slot = (selectedSlot = QUEST_WORKSPACE_SLOT(workspaceAddress, pos));
         if (slot->x15 > 0) { pos += slot->x15; continue; }
         if (slot->items == NULL && TQuestVmDownLoadServer__sub_803EA428(pos, inputEnd) == 0) break;
         if (slot->entryHead == NULL && TQuestVmDownLoadServer__sub_803EA1A8(pos, inputEnd) == 0) break;
@@ -2923,7 +2926,7 @@ void TQuestVmDownLoadServer__sub_803EA9E8(s32 start, s32 inputEnd, s32 mode, s32
                 length = selectedLength;
                 goto chosen_length;
             }
-        } else if (pos == selectedEnd && lbl_805D7888 == 2) {
+        } else if (pos == (savedSelectedEnd = selectedEnd) && lbl_805D7888 == 2) {
             TQuestVmDownLoadServer::reset_slot_chain_timers(pos);
         }
         length = TQuestVmDownLoadServer::select_best_slot_entry(pos, inputEnd, -1);
@@ -2942,8 +2945,9 @@ chosen_length:
     }
     for (pos = start; pos < inputEnd; ) {
         slot = (walk = QUEST_WORKSPACE_SLOT(workspaceAddress, pos));
+        initialSpan = slot->x15;
         groupEnd = inputEnd;
-        covered = slot->x15;
+        covered = initialSpan;
 
         if (slot->x14 != 0) groupLength = covered;
         else {
