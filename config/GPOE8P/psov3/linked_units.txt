@@ -1241,6 +1241,7 @@ pso/effect/particle/ParticleBallistic.cpp
 pso/effect/particle/ParticleRadial.cpp
 pso/effect/particle/TParticleCtrl_80327D30.cpp
 pso/effect/particle/TParticleCtrl_803E29FC.cpp
+pso/effect/photon/PhotonBlastSummon.cpp
 pso/effect/photon/TPhotonConcentrate.cpp
 pso/effect/photon/TPhotonEstlla.cpp
 pso/effect/photon/TPhotonFarlla.cpp
