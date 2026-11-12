@@ -521,3 +521,35 @@ buffer. This checks symbol resolution and retention only. The five partial
 functions prevent an exact executable, and the accepted linkset and verified
 build output remain unchanged. Final admission still requires the fresh
 split/config retention workflow and complete original-DOL comparison.
+
+
+## Accumulator scalar lifetime checkpoint
+
+The `803EE2F4` candidate now compiles to the native 652-byte size and 104-byte
+stack frame, improving from 95.74847% to 98.65031%. Its instruction sequence
+agrees after register operands are abstracted; pointer-copy routing and register
+assignment still differ, so this is not an exact-function gain. All 168 existing
+exact functions remain exact. The name pointer is borrowed as a scalar value,
+the encoded string gets a separate character-pointer handoff for its length
+query, and the replacement length remains live through conversion and emission.
+The second conversion uses the shared wide-buffer address directly. Only the
+required depth-one inline and propagation controls remain in its scope.
+
+A private PowerPC differential run passed 3,000 randomized multi-entry cases.
+The native and recovered bodies both execute native `strlen` and `strncpy`;
+controlled callbacks model the six list/conversion/emission boundaries and log
+their arguments. Cases vary mode/state, selected slots, replacement versus
+append paths, embedded terminators, entry lengths, item metadata and initial
+name/encoded contents. Callback traces, emitted request contents, the name,
+encoded, wide and input buffers, stack pointer and nonvolatile registers agree.
+This is controlled-boundary behavioral evidence, not a full game execution or
+proof of exact code.
+
+Alternative measurements include 720 scalar declaration orders, const/register
+qualifiers on the older aggregate view, temporary-view value conversions, and
+borrowed header-offset/pointer and in-place-cursor forms for `803F03B4`. None
+produced another exact function. The aggregate view's higher fuzzy score still
+has an extra stack home; it is not the retained candidate. The compiler traces
+and the repo's `kenkyuw-dispatcher-continuation.md` temporary-lifetime case guided
+these checks. The whole-unit claim remains 168/173 exact and awaits the same five
+remaining matches and final source-link integration.
