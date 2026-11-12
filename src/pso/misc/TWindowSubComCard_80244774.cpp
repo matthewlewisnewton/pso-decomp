@@ -11,6 +11,7 @@
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/TObject.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
+#include "pso/misc/TWindowKeyBoardSoft_8024E68C.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
@@ -271,7 +272,6 @@ void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 void window_request_refresh(u8 *arg0);
 void window_request_show(void *arg0);
 bool is_balloon_overlapping(u8 *arg0, u8 *arg1, u8 *arg2);
-void apply_window_closing_stretch(u8 *arg0, int arg1);
 void window_request_refresh(u8 *arg0) {
     if (!((f32) *(s32 *)((s8 *)arg0 + 0x5C) >= 7.5f)) {
         *(s32 *)((s8 *)arg0 + 0x5C) = 7;
@@ -318,7 +318,7 @@ s32 TWindowBase::setup_window_draw_context(s32 arg1) {
         var_r4 = (s32) ((f32) var_r4 - 7.5f);
     }
     window->set_open_tick(var_r4);
-    apply_window_closing_stretch((u8 *)window, unk_22);
+    apply_window_closing_stretch(window, unk_22);
     return (s32)window;
 }
 

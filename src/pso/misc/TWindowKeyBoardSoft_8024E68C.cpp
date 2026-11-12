@@ -7,13 +7,6 @@
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-struct RecoveredFields_8024E754_arg0
-{
-  u8 unknown_0[0x28];
-  f32 field_28;
-  f32 field_2C;
-};
-
 struct Vec2_8024EC34 { f32 x; f32 y; };
 
 extern u32 soft_keyboard_instance;
@@ -39,7 +32,6 @@ extern const f32 lbl_805DCCA0;
 extern const f32 lbl_805DCCA4;
 u32 init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
 
-typedef struct RecoveredFields_8024E754_arg0 RecoveredFields_8024E754_arg0;
 void TWindowDrawContext::scale_point_about_pivot(f32 *q) {
     if (lbl_805DCC78 != scale[0]) {
         q[0] = scale[0] * (q[0] - pivot[0]) + pivot[0];
@@ -61,16 +53,13 @@ void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q) {
 }
 }
 
-void apply_window_closing_stretch(u8 *arg0, int arg1) {
+void apply_window_closing_stretch(TWindowDrawContext *context, int arg1) {
   f32 temp_f2;
-  RecoveredFields_8024E754_arg0 *new_var;
-  new_var = (RecoveredFields_8024E754_arg0 *) arg0;
   if (arg1 != 0)
   {
     temp_f2 = lbl_805DCC80;
-    ;
-    new_var->field_28 = (f32) (new_var->field_28 * ((lbl_805DCC7C * (temp_f2 * ((f32) arg1))) + (*(const f32 *)&lbl_805DCC78)));
-    new_var->field_2C = (f32) (new_var->field_2C * ((*(const f32 *)&lbl_805DCC78) - (temp_f2 * ((f32) arg1))));
+    context->scale[0] = (f32) (context->scale[0] * ((lbl_805DCC7C * (temp_f2 * ((f32) arg1))) + (*(const f32 *)&lbl_805DCC78)));
+    context->scale[1] = (f32) (context->scale[1] * ((*(const f32 *)&lbl_805DCC78) - (temp_f2 * ((f32) arg1))));
   }
 }
 
