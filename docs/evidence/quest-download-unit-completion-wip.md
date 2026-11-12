@@ -490,3 +490,23 @@ main `5146327538`: nine new exact functions and 6,156 additional matched code
 bytes, with no losses. All 3,622 previously linked units remain exact and the
 DOL hash passes. This brings the claimed unit to 168/173 exact functions; the
 five remaining routines and eventual complete source linkage remain in scope.
+
+
+## Shared-header layout check
+
+The three provisional objects were rebuilt with one shared internal header and
+separate ordinary C++ definition files, rather than three copies of the full
+source. Against fresh original splits, the groups preserve 58/59, 58/59 and
+52/55 exact functions: all 168 existing exact functions, including `803EDF64`.
+Every allocated data section remains exact. The claim still covers all 173
+functions and the complete original address span; the checked-in split and
+linkset have not changed during this private organization trial.
+
+The third group's BSS definitions must follow its function definitions under
+the current compiler profile. Placing those definitions first lets the compiler
+combine several named addresses through a common BSS base. That changes
+`803EE580`, `803EE718` and `803EE828`, even though the data bytes stay correct.
+Moving the actual definitions back after the functions preserves their native
+address loads and all three exact matches. No synthetic padding or invented
+aggregate is needed. The source organization still needs a final cleanup and
+full linkage validation after the five remaining functions match.
