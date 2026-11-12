@@ -1514,14 +1514,14 @@ retry:
             break;
         }
         {
-        *(u32 *)(ent_new + offsetof(TcpTcb, event_ctx)) = *(u32 *)(found + offsetof(TcpTcb, accept_ctx));
-        *(u32 *)(found + offsetof(TcpTcb, accept_ctx)) = 0;
-s16 listener_index = TCP_IDX(found);
-s16 accepted_index = (s16)((TcpTcb *)ent_new - TCP_STATE.tcbs);
-        TLobby__sub_80422AB8((s16)listener_index,
-                             *(void (**)(s16, s16, s32, s32))(found + offsetof(TcpTcb, accept_cb)),
-                             (s16)accepted_index, (s32)(ent_new + offsetof(TcpTcb, remote)),
-                             (s32)*(u16 *)(ent_new + offsetof(TcpTcb, hdr.sport)), (s32)*(u16 *)(ent_new + offsetof(TcpTcb, hdr.dport)));
+            *(u32 *)(ent_new + offsetof(TcpTcb, event_ctx)) = *(u32 *)(found + offsetof(TcpTcb, accept_ctx));
+            *(u32 *)(found + offsetof(TcpTcb, accept_ctx)) = 0;
+            s16 listener_index = TCP_IDX(found);
+            s16 accepted_index = (s16)((TcpTcb *)ent_new - TCP_STATE.tcbs);
+            TLobby__sub_80422AB8(listener_index,
+                                 *(void (**)(s16, s16, s32, s32))(found + offsetof(TcpTcb, accept_cb)),
+                                 accepted_index, (s32)(ent_new + offsetof(TcpTcb, remote)),
+                                 (s32)*(u16 *)(ent_new + offsetof(TcpTcb, hdr.sport)), (s32)*(u16 *)(ent_new + offsetof(TcpTcb, hdr.dport)));
         }
         found = ent_new;
         goto trimthenstep6;
@@ -1629,7 +1629,8 @@ s16 accepted_index = (s16)((TcpTcb *)ent_new - TCP_STATE.tcbs);
     }
     todrop = (hdr.seq + rem) - (*(u32 *)(found + offsetof(TcpTcb, rcv_nxt)) + *(u32 *)(found + offsetof(TcpTcb, rcv_wnd)));
     if (todrop > 0) {
-        if (todrop >= rem) {
+        u16 segment_bytes = rem;
+        if (todrop >= segment_bytes) {
             if ((kind & 2) && *(s16 *)(found + offsetof(TcpTcb, t_state)) == 10 && *(u32 *)(found + offsetof(TcpTcb, fD8)) == 0 &&
                 (s32)(hdr.seq - *(u32 *)(found + offsetof(TcpTcb, rcv_nxt))) > 0) {
                 flag = *(u32 *)(found + offsetof(TcpTcb, rcv_nxt)) + 0x1F400;

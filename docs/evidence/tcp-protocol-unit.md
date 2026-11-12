@@ -81,8 +81,9 @@ acceptance comparisons use the unmodified pinned GC/1.2.5n executable.
   ACK when no reassembly call is needed, and repeated FIN does not advance the
   receive sequence again. A signed-short option-length intermediate preserves
   the measured truncation. A short reassembly offset also preserves the native
-  narrowing boundary. Remaining differences are temporary-register choices and
-  two constant/address instruction positions. A complete compiler trace shows
+  narrowing boundary. A short snapshot of the remaining segment length at the
+  receive-window comparison removes the final temporary-register differences.
+  Only two constant/address instruction positions remain. A complete compiler trace shows
   the target sequence through register allocation, frame generation and final
   peephole optimization; the last scheduling pass exchanges those positions.
 
