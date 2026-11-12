@@ -373,7 +373,7 @@ void dispatch_state__12TObjEneReconFiUii(s32 ene_dd, u32 arg1, s32 arg2) {
 }
 
 void TObjEneRecobox::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->update_if_800BB858();
         return;
     }

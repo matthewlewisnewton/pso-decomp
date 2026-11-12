@@ -1941,7 +1941,7 @@ void TObjEneSaver::run_task() {
         lbl_805D5058 = actor_frame_tick;
         TObjPlayer__sub_8023DEE0((s16 *)lbl_805D5054, 0xE, 0, 0);
     }
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjPlayer__sub_800A42C0(this);
         return;
     }

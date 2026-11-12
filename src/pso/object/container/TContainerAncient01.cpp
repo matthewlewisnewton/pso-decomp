@@ -584,7 +584,7 @@ void TContainerAncient01R::render() {
         if ((s32) this->m_360 != 0) {
             scale_current_matrix((u8 *)&this->unk_364);
         }
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_ginja_object(this->model);
         } else {
             draw_ginja_model_with_motion(*(s32 *)&this->model, *(s32 *)&this->current_motion, this->frame);
@@ -596,7 +596,7 @@ void TContainerAncient01R::run_task() {
     u8 *arg0 = (u8 *)this;
     f32 temp_f1;
     f32 temp_f1_2;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if ((s32) this->m_360 == 0) {
             switch (this->mode) {
             case 0:
@@ -950,7 +950,7 @@ void TContainerAncient01::render() {
         if ((s32) this->m_35c != 0) {
             scale_current_matrix((u8 *)&this->m_360);
         }
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_ginja_object(this->model);
         } else {
             draw_ginja_model_with_motion(*(s32 *)&this->model, *(s32 *)&this->current_motion, this->frame);
@@ -962,7 +962,7 @@ void TContainerAncient01::run_task() {
     u8 *arg0 = (u8 *)this;
     f32 temp_f1;
     f32 temp_f1_2;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if ((s32) this->m_35c == 0) {
             switch (this->mode) {
             case 0:

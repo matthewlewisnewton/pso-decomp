@@ -285,7 +285,7 @@ void render__12TObjEneBeastFPv(Obj_8009211C *o) {
     translate_matrix(0, 0.0f, o->f380, 0.0f);
     post_translate_matrix(o->f38);
     rotate_matrix_y(0, o->f60);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object(o->f34);
     } else {
         TObjPlayer::toggle_particle_effect();

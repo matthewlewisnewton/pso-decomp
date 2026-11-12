@@ -1038,7 +1038,7 @@ void * TObjEneDolmOlm__create(void *arg0) {
 }
 void TObjEneDolmOlm::run_task() {
   s16 temp_r0;
-  if (TObjPlayer::check_demo_mode() == 1)
+  if (check_demo_mode() == 1)
   {
     (this->vfunc_101());
     return;
@@ -1117,7 +1117,7 @@ void TObjEneDolmOlm::render() {
     translate_matrix(0, 0.0f, arg0->f380, 0.0f);
     post_translate_matrix(arg0->pos);
     rotate_matrix_y(0, arg0->rotY);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object(arg0->model);
     } else {
         switch (arg0->state) {

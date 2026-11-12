@@ -5,9 +5,10 @@
 #include "pso/object/base/TObjMotion.h"
 
 struct TObjDFDemo4 : public TObjBase {
+    TObjDFDemo4(TObject *parent, const Vec *position, s32 angle);
     virtual ~TObjDFDemo4();
-    void sub_8004F2A8();
-    void sub_8004F1FC();
+    void draw_afterimages();
+    void draw_body();
     virtual void render();
     virtual void run_task();
     void* m_90;
@@ -19,7 +20,7 @@ struct TObjDFDemo4 : public TObjBase {
     u8 _padFC[0x4];
     u32 m_100;
     void* m_104;
-    static void *create(void *arg0, void *arg1, void *arg2);
+    static TObjDFDemo4 *create(TObject *parent, const Vec *position, s32 angle);
     u8 unk_108[0x14];
 };
 

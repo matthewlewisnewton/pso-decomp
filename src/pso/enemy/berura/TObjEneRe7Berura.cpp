@@ -428,7 +428,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
     s32 f2;
     s32 l3;
     s32 l4;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         o->v.m104();
         return;
     }
@@ -2618,7 +2618,7 @@ void TObjEneRe7Berura::vfunc_63() { if (this->mode != 11) { transition_enemy_sta
 void TObjEneRe7Berura::vfunc_28() {  }
 
 void run_task__16TObjEneRe7BeruraFv(TObjEneRe7Berura *ene_re7_berura) {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRe7Berura *)(ene_re7_berura))->vfunc_83();
         return;
     }

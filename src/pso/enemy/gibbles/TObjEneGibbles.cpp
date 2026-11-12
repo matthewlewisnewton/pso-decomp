@@ -2483,7 +2483,7 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
 void TObjEneGibbles::run_task() {
     s16 temp_r0;
     u8 *temp_r4;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((void (*)(u8 *))TObjEneGibbles__sub_802D7E3C)((u8 *)this);
         return;
     }

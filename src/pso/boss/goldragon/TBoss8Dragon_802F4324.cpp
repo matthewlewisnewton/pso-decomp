@@ -5,9 +5,9 @@
 
 extern "C" {
 
-int check_demo_mode__10TObjPlayerFv(void*);
+int check_demo_mode__Fv(void*);
 
-void TBoss8Dragon::render_shadows() { if (check_demo_mode__10TObjPlayerFv(this) == 0) { draw(); } }
+void TBoss8Dragon::render_shadows() { if (check_demo_mode__Fv(this) == 0) { draw(); } }
 int TBoss8Dragon__sub_802F4360(void* p) { return ((TObjEneDD *)p)->get_target_info(); }
 
 }

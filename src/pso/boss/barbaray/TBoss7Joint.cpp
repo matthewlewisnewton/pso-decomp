@@ -64,7 +64,7 @@ void TBoss7Joint::vfunc_62() {
 
 void TBoss7Joint::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         VecCopy((Vec *)(arg0 + 0x38), (const Vec *)((int) (*(s32 *)((s8 *)arg0 + 0x3C0))));
         this->vfunc_83();
         store_position();

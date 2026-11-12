@@ -1062,7 +1062,7 @@ void TObjEneBm3FlyNest::render() {
     s32 draw;
     Nest_800B264C *self = (Nest_800B264C *)this;
     f32 t;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->render_with_state_debug();
         return;
     }
@@ -1773,7 +1773,7 @@ void dispatch_state__17TObjEneBm3FlyNestFiUii(s32 arg0, u32 arg1, s32 arg2) {
 #pragma push
 #pragma fp_contract on
 void TObjEneBm3FlyNest::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18_p5 *)(this))->m102();
         return;
     }

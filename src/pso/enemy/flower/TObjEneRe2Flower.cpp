@@ -299,7 +299,7 @@ TObjEneRe2Flower::~TObjEneRe2Flower() {
 
 void TObjEneRe2Flower::run_task() {
     s16 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_105();
         return;
     }

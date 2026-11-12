@@ -11,7 +11,7 @@ extern "C" {
 s32 clear_render_callback__8TObjFishFv(int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
-void TObjDFDemo4::sub_8004F1FC() {
+void TObjDFDemo4::draw_body() {
     u8 *arg0 = (u8 *)this;
     s32 var_r31;
     u8 *temp_r30;

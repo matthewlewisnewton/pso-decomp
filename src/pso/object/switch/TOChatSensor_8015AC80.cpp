@@ -126,7 +126,7 @@ void TOChatSensor::init_params() {
 
 void TOChatSensor::render() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         NJS_ARGB color;
         color.a = 0.3f;
         color.r = 0.3f;

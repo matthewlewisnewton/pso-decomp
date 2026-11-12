@@ -209,7 +209,7 @@ void TObjEneBm9Mericarol::render() {
     s32 s1;
     s32 s2;
     Node_802CE8CC *n;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->draw_color_variant();
         return;
     }

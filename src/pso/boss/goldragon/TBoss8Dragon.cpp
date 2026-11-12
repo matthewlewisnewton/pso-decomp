@@ -6833,7 +6833,7 @@ void TBoss8Dragon::run_task() {
     s32 temp_r30_2;
     s32 i;
     s32 var_r30;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18 *)(arg0))->m103();
         return;
     }

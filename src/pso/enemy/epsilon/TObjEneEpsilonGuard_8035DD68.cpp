@@ -661,7 +661,7 @@ void render_with_fade__19TObjEneEpsilonGuardFPvi(u8 *ene_re7_berura, s32 arg1) {
 #pragma opt_common_subs off
 void TObjEneEpsilonGuard::render() {
     s32 detail;
-    if ((TObjPlayer::check_demo_mode() == 0) && !(actorFlags & 0x02000000)) {
+    if ((check_demo_mode() == 0) && !(actorFlags & 0x02000000)) {
         detail = 0;
         if (!(flags & 0x10)) {
             if (is_main_phase_15__9TObjEneDDFv() != 0) {

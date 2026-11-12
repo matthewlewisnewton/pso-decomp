@@ -2954,7 +2954,7 @@ void TObjEneMe3ShinowaMirage::draw_model() {
     s32 var_r31;
     s32 var_r30;
     s32 i;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_118();
         return;
     }
@@ -4218,7 +4218,7 @@ void TObjEneMe3Shinowa::vfunc_63() { if (this->mode != 13) { ((int (*)(void*, vo
 void TObjEneMe3Shinowa::vfunc_28() {  }
 
 void TObjEneMe3Shinowa::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->update_mirage();
         return;
     }

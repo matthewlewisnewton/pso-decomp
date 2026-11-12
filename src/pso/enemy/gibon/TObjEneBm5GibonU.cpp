@@ -1909,7 +1909,7 @@ void TObjEneBm5GibonU::render() {
     s32 cam;
     s32 vis;
     s32 fade;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((Obj_800CD204 *)((u8 *)this))->m104();
         return;
     }
@@ -4442,7 +4442,7 @@ void TObjEneBm5GibonU::run_task() {
     s16 temp_r0;
     s16 temp_r3_2;
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->render_debug();
         return;
     }

@@ -104,7 +104,7 @@ void *__vt__13TBoss6MagMine[11] = {
     (void *)0x0, (void *)0x0, (void *)0x0,
 };
 void vec3_add_to(void *, void *);
-s32 check_demo_mode__10TObjPlayerFv(void *);
+s32 check_demo_mode__Fv(void *);
 s32 query_teammate_state__9TObjEneDDFv();
 void add_radar_scaled_marker(void *, int, int, int, f32);
 void vt2__13TBoss6MagMineFv(u8 *arg0);
@@ -357,7 +357,7 @@ public:
 void TUnk_804F322C::run_task() {
     TBoss6MagMine_80368FA0 *self = (TBoss6MagMine_80368FA0 *)this;
     s32 color;
-    if (check_demo_mode__10TObjPlayerFv(self) != 0) {
+    if (check_demo_mode__Fv(self) != 0) {
         return;
     }
     if (TBoss6PlotFalz::is_boss_active() == 0) {

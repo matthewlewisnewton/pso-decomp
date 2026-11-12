@@ -1261,7 +1261,7 @@ void update_state__14TObjEneBm5WolfFPv(void *ene_bm5_wolf) {
 void TObjEneBm5Wolf::render() {
     Ang_800B4AD4 rot;
     s32 var_r31;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_800B4AD4 *)((u8 *)this))->m104();
         return;
     }
@@ -3466,7 +3466,7 @@ void TObjEneBm5Wolf::run_task() {
     s16 temp_r0;
     s16 temp_r3_2;
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18 *)(this))->m103();
         return;
     }

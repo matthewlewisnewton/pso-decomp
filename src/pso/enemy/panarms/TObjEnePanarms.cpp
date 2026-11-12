@@ -557,7 +557,7 @@ void TObjEnePanBARA::run_task() {
     Vec_800E2200 a;
     f32 s;
 
-    if (m_378 != 0 && TObjPlayer::check_demo_mode() != 0) {
+    if (m_378 != 0 && check_demo_mode() != 0) {
         TObjEnePanarms__sub_800E1C98(this, 0);
     }
     pad_3c8.x = ((Tgt_800E2200 *)m_3a0)->x - position.x;

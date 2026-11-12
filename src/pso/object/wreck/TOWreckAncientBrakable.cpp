@@ -116,7 +116,7 @@ void TOWreckAncientBrakable::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r0_2;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TOWreckAncientBrakable__sub_8017D444(arg0);
         return;
     }

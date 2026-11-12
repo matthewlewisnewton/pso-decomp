@@ -53,7 +53,7 @@ void TObjCurtainLobby::render() {
 }
 
 void TObjCurtainLobby::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         demo_step();
     }
     switch (state) {

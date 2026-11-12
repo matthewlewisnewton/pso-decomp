@@ -1950,7 +1950,7 @@ extern "C" {
 void TObjEneMe1Canadin::run_task() {
     u8 *arg0 = (u8 *)this;
     u8 *temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->update_if_ready();
         return;
     }
@@ -3588,7 +3588,7 @@ void TObjEneMe1Canadin::render() {
     s16 temp_r0_2;
     s32 var_r30;
     s32 var_r29;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18_8dc821 *)(arg0))->m113();
         return;
     }
@@ -3732,7 +3732,7 @@ TObjEneMe1CanadinLeader::~TObjEneMe1CanadinLeader() {
 
 extern "C" {
 void TObjEneMe1CanadinLeader::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         update_if_ready();
         return;
     }

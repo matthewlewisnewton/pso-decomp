@@ -213,7 +213,7 @@ TORockCaveBrakable::TORockCaveBrakable() {
 TORockCaveBrakable::~TORockCaveBrakable() {}
 
 void TORockCaveBrakable::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         vfunc_19();
         return;
     }
