@@ -449,3 +449,18 @@ retention relocation; the freshly extracted second-group object resolves it.
 This is a layout experiment, not proof of original filenames or a completed
 source-link change. Source organization and complete linked validation remain
 required before publication.
+
+## Current-main integration checkpoint
+
+Unchanged fork main `5146327538` was built in an isolated checkout with fresh
+split objects and compiled sources. Its full check passed, including original
+DOL SHA-1, 3,622 exact linked units, and all 19,177 retention entries. The lower
+unit count reflects upstream consolidation, not lost address coverage.
+
+Merge `e729b18b4c` incorporates that base. The integrated branch passes the full
+check against the saved main report: eight additional exact functions, 5,260
+additional matched code bytes, and 1,744 additional matched data bytes. A second
+address-based comparison against the complete pre-integration branch report
+also reports no regressions. The claimed unit still has six partial functions
+and remains unlinked; publication awaits their exact matches and integration
+of the validated data grouping.
