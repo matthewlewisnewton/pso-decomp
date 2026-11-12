@@ -25,6 +25,12 @@ See [composer input-mode receiver recovery](window-composer-input-mode.md).
 This removes the two Hard raw composer reads and false StatusDisp setter owner;
 Soft PMF and lifecycle/table qualifications remain.
 
+## Hard status context checkpoint
+
+See [Hard status context and composer flags](window-hard-status-context.md).
+The status renderer uses actual context/composer fields; legacy external ABI,
+compiler-control and Hard destruction/table holds remain.
+
 ## Initial split preservation and review order
 
 Original PR #268 is preserved at `2b99de553e82eff0ab0bb70263c943bb68e23fb4`,

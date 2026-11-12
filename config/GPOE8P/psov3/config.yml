@@ -6250,7 +6250,7 @@ force_active:
   - draw_slot_icons__15TAdChrSelSlotGCFv
   - draw_snapshot_capture_overlay
   - draw_split_screen_dividers__20TWindowSubStatusDispFv
-  - draw_status_text__19TWindowKeyBoardHardFPv
+  - draw_status_text__19TWindowKeyBoardHardFP18TWindowDrawContext
   - draw_status_window__14TAdPlyStatusGCFPvPv
   - draw_status_window__15TAdMcSelectMcGCFv
   - draw_stretched_segment__22TObjEneSlimeTailAttackFPvPvf

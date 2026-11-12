@@ -32,7 +32,7 @@ s32 has_non_modifier_key__16TKeyBoardControlFv(void *);
 
 void TWindowKeyBoardHard::run_task() {
     s32 temp_r3_2;
-    void *temp_r3;
+    TWindowKeyBoardBase *temp_r3;
 
     if (this->m_composer != NULL) {
         if ((is_key_active__19TWindowKeyBoardHardFv() == 0) && (this->m_composer->is_key_active() == 0)) {
@@ -42,7 +42,7 @@ void TWindowKeyBoardHard::run_task() {
                 }
                 this->m_60 = (s32) (this->m_60 & 0xFFFFFEFF);
                 temp_r3 = this->m_composer;
-                *(s32 *)((s8 *)temp_r3 + 0xB4) = (s32) (*(s32 *)((s8 *)temp_r3 + 0xB4) & 0xFFFFFFBF);
+                temp_r3->m_b4 = temp_r3->m_b4 & 0xFFFFFFBF;
                 if (!(this->m_60 & 0x40)) {
                     TWindowKeyBoardHard__sub_8025CC48(this->m_composer);
                 }
