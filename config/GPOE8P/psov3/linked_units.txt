@@ -494,6 +494,7 @@ pso/enemy/recon/TObjEneRecobox_8031E88C.cpp
 pso/enemy/recon/TObjEneRecon_8031ED80.cpp
 pso/enemy/recon/TObjEneRecon_8031EDBC.cpp
 pso/enemy/recon/TObjEneRecon_8031EF00.cpp
+pso/unk/text_8031EF14.cpp
 pso/enemy/recon/TObjEneRecon_8031F374.cpp
 pso/enemy/recon/TObjEneRecon_8031F408.cpp
 pso/enemy/recon/TObjEneRecon_8031F4A8.cpp

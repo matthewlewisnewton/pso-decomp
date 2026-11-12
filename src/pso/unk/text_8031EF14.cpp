@@ -1,6 +1,12 @@
 #include "types.h"
 #include "pso/enemy/recon/TObjEneRecon.h"
 #include "pso/enemy/dd/TObjEneDD.h"
+#include "pso/object/TObjChip.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/unk/text_80087278.h"
+extern "C" BmlResource *TObjEneRecobox__static_instance;
+
 struct Obj_8031EF14 { u8 pad[0x410]; s32 count; u8 pad2[4]; u16 ids[6]; };
 
 struct Obj_8031F0F0 { u8 pad[0x410]; s32 count; u8 pad2[4]; u16 ids[6]; };
@@ -71,6 +77,31 @@ s32 TObjEneRecon::is_below_child_limit(u16 arg1) {
         return n < 4;
     }
     return n < 2;
+}
+
+
+s32 TObjEneRecon::spawn_death_debris() {
+    BmlResource *resource = TObjEneRecobox__static_instance;
+    const TObjChipParams first = {
+        {0.5f, 0.07f, 0.26f}, {position.x, position.y, position.z},
+        {5.0f, 5.0f, 5.0f}, {0x400, 0x100, 0x400}, {5, 50},
+        {position.y, 0.6f}, resource->models[3].model, resource->models[3].m_c, 20,
+    };
+    const TObjChipParams second = {
+        {0.5f, 0.07f, 0.26f}, {position.x, position.y, position.z},
+        {4.0f, 4.5f, 4.0f}, {0x200, 0x100, 0x200}, {6, 50},
+        {position.y, 0.5f}, resource->models[4].model, resource->models[3].m_c, 20,
+    };
+    const TObjChipParams third = {
+        {0.5f, 0.07f, 0.26f}, {position.x, position.y, position.z},
+        {4.0f, 4.5f, 4.0f}, {0x200, 0x100, 0x200}, {6, 50},
+        {position.y, 0.5f}, resource->models[5].model, resource->models[3].m_c, 20,
+    };
+    spawn_particle_effect_with_flags(&position, 0x45, 0x40);
+    spawn_particle_effect_with_flags(&position, 0x46, 0x40);
+    new TObjChip((TObject *)tl_05, const_cast<TObjChipParams *>(&first));
+    new TObjChip((TObject *)tl_05, const_cast<TObjChipParams *>(&second));
+    new TObjChip((TObject *)tl_05, const_cast<TObjChipParams *>(&third));
 }
 
 }

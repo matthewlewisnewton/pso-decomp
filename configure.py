@@ -655,6 +655,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/galgryphon/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4")},
     "pso/enemy/gyaranzo/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0"},
     "pso/unk/text_80049FD8.cpp": {"mw_version": "GC/2.0"},
+    # GC/2.0 with pooling off: the three debris templates stay separate objects.
+    "pso/unk/text_8031EF14.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-pooldata=off")},
     "pso/object/trap/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
     "pso/enemy/slime/TObjEneSlimeTailAttack.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline on,deferred", "-fp_contract on", "-str reuse,readonly")},
     "pso/boss/goldragon/TBoss8Dragon.cpp": {"mw_version": "GC/2.0"},
