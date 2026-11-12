@@ -18960,6 +18960,10 @@ force_active:
 block_relocations:
   # 0x8000F513 inside lobby_font_texture_prs_data; would export MusyX hardware.c's @eti_8000F50C.
   - source: 0x8049C198
+  # Packed quest-download glyph bits, consumed by byte loads and bit masks.
+  # These words happen to equal code addresses; they are not pointers.
+  - source: 0x8047EB44
+  - source: 0x8047EC64
 
 # MetroTRK code templates are copied as data, so CFA does not discover their references.
 add_relocations:

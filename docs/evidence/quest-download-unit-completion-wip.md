@@ -274,3 +274,23 @@ This iteration used the GC/1.2.5 implementation in
 Compiler tracing was read-only; no compiler or generated binary was patched.
 Direct relocation-sensitive comparison confirms all 126 instructions, with
 165 of 173 functions now exact and the other eight unchanged.
+
+## Glyph-table relocation and symbol recovery
+
+The 0x6A8-byte read-only range at `8047EA28` contains the already defined
+`glyph_bits[0x3E0]`, `glyph_rows[0x72]` and `glyph_col[0x100]` arrays used by
+`803E7390`. Their boundaries are `8047EA28`, `8047EE08`, and `8047EFD0`.
+The consumer reads byte bits, four-byte row pairs and byte column indices;
+none of these arrays contains pointers. The packed words at `8047EB44` and
+`8047EC64` happen to equal code addresses, so the splitter had incorrectly
+created two `R_PPC_ADDR32` relocations there. Both sources are now explicitly
+blocked, following the existing font-data precedent in `config.yml`.
+
+The current generated split/report census supplied 8,594 split and compiled
+objects for the undefined-symbol audit. None refers externally to the old
+combined `lbl_8047EA28` label. The symbol inventory now identifies the three
+actual static arrays, matching their source linkage and extents. No asset
+bytes were added to source. The whole `.rodata` range now reports 100%, and
+the regenerated DOL retains the original SHA-1. The switch tables still have
+two internal alignment gaps to recover; function emission order also remains
+a separate whole-object requirement.
