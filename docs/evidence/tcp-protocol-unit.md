@@ -1,24 +1,19 @@
-# TCP protocol unit recovery (in progress)
+# TCP protocol unit recovery
 
-The selected unit owns text `8041A1D8..8041ED8C` (19,380 bytes) and BSS
-`805C1D48..805C1DF0` (168 bytes). Development started from fork main
-`37eab6e173f40350e82c51ea91babc0507fe0317` in an isolated worktree. Its fresh
-native build reproduced the original DOL and passed the generated retention
-check before source changes. This is a development baseline, not final
-current-main PR acceptance.
+The selected unit owns text `8041A1D8..8041ED8C` (19,380 bytes, 45 functions)
+and BSS `805C1D48..805C1DF0` (168 bytes). All 45 functions and the BSS match
+with the unmodified pinned GC/1.2.5n compiler. The complete unit is linked from
+C++ source; no assembly or patched compiler/object output is used.
 
-The branch was subsequently rebased onto `5146327538`. An untouched checkout
-of that commit rebuilt with the pinned tools and original inputs, reproduced
-the original DOL, and passed `tools/check_pr.py`. The rebased development branch
-also passes that check: four new exact functions, zero regressions, all 3,622
-linked units exact, and retention unchanged at 19,177 entries. TCP is still
-unlinked; these checks do not waive the remaining output exact-match requirement.
+Development started from fork main
+`37eab6e173f40350e82c51ea91babc0507fe0317` in an isolated worktree, then rebased
+onto `5146327538ef67c0077c30664309f9cd48fabc86`. An untouched checkout of that
+commit rebuilt with the pinned tools and original inputs, reproduced the
+original DOL, and passed `tools/check_pr.py`; its report is the final comparison
+baseline. The starting unit had 40 exact functions (9,756 code bytes).
 
-The starting unit had 40 of 45 exact functions (9,756 code bytes). The current
-source has all 45 definitions and 44 exact functions (16,780 code bytes), with
-BSS still exact. The unit remains unlinked. Output `8041A9AC` still requires an exact native match; function similarity is not
-claimed as recovered or source-linked code. Whole-object, source-link, DOL,
-no-regression and current-main checks remain required before publication.
+Final acceptance checks are recorded below. Function similarity alone is not
+used to establish whole-object ownership or source linkage.
 
 ## Investigation and provenance
 
@@ -57,7 +52,7 @@ The compiler pass logic was also inspected in `doldecomp/mweppc`.
 Auxiliary GC/1.2.5 debugger traces explain allocation and scheduling; all
 acceptance comparisons use the unmodified pinned GC/1.2.5n executable.
 
-## Exact bodies and remaining native constraints
+## Exact bodies and native constraints
 
 - Close `8041B5C0` is exact. Its local event record carries the handle and
   callback context through both publications and reproduces the native frame.
@@ -69,12 +64,12 @@ acceptance comparisons use the unmodified pinned GC/1.2.5n executable.
   records with scoped common-subexpression optimization produces the native
   strength-reduced cursor. The typed indexed trial and the direct named cursor
   trial have different register assignments. Ordinary C mode does not fix them.
-- Output uses one receive-window workspace. Both update-threshold tests are
-  within the positive receive-space condition, as the target branch destination
-  requires. Its 650-instruction stream, including every branch destination, now
-  agrees apart from register choices. A previous phase split was removed after
-  this control-flow audit; an identical opcode list alone was insufficient.
-  The SYN option fields and final padding retain their distinct pointers.
+- Output `8041A9AC` is exact (2,600 bytes). Both update-threshold tests stay
+  within the positive receive-space condition. A branch-destination audit
+  removed an incorrect phase split; an identical opcode list alone was
+  insufficient. SYN option fields and final padding retain distinct pointers.
+  A signed-word retransmission-result temporary preserves call timing and
+  value while producing the final native register allocation.
 - Packet input `8041B974` is exact (5,972 bytes). The branch audit corrected
   two upstream draft scopes: overlapping data still clears FIN and requests an
   ACK when no reassembly call is needed, and repeated FIN does not advance the
@@ -110,10 +105,30 @@ at `0x18`/`0x14`, and the nonvolatile save area at `0x3C`. They are compiler
 storage, neither read nor initialized, and do not claim original local fields.
 A port omits them. This follows the documented EXI frame-home precedent.
 
-Scoped CSE/propagation and the inherited `-opt nocse`, `dont_inline off` and
-`inline_depth(4)` settings are native emission constraints. A port should
-remove these constraints, consolidate the record/API views and supply explicit
-TCP sequence arithmetic, byte order and pointer-sized runtime interfaces.
+Output uses scoped CSE/propagation constraints, speed optimization, and disables
+loop-invariant motion, strength reduction and loop unrolling. Direct byte
+addressing of the state flags and a named fragment-length byte offset retain
+the native indexed loads/stores under those settings. A `u16` header-length
+workspace preserves the measured 20-byte header operations. Distinct SACK
+length and receive-window workspaces, and declaration ordering of uninitialized
+locals, reproduce allocation without binding physical registers. The connection
+index is ordinary subtraction of two pointers into the control-block array;
+the compiler emits the native constant division by its `0x544` element stride.
+
+The experiments first compiled C++ and C, then compared instruction operands,
+branch targets, frame layout and native compiler traces. Repo precedents above
+informed trials of inline helpers, scalar temporaries, scoped passes and frame
+homes. All optimizer-pass combinations tested with the older expression forms
+still differed; disabling the loop passes required the explicit indexed address
+forms before temporary lifetime and declaration-order trials reached an exact
+match. These are measured emission constraints, not a claim to the original
+source spelling or original pragma choices. No inline assembly, register-bound
+variables, or post-compile instruction edits are involved.
+
+The scoped settings and inherited `-opt nocse`, `dont_inline off` and
+`inline_depth(4)` are native emission constraints. A port should remove them,
+consolidate the record/API views and supply explicit TCP sequence arithmetic,
+byte order and pointer-sized runtime interfaces.
 
 ## Native result-view debt
 
@@ -126,3 +141,29 @@ instructions. This is a bounded inherited interface discrepancy, not evidence
 that the provider has a different source-level signature. A port must give the
 provider and every caller one shared declaration and make the protocol status
 conversion explicit.
+
+## Final native acceptance
+
+Against the independently rebuilt current-main baseline `5146327538`:
+
+- `tools/check_pr.py`: PASS, including the native build and original DOL SHA-1
+  `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
+- Five new exact functions, +9,624 matched code bytes, zero regressions.
+- Complete source-linked coverage gains the full 19,380 code bytes and 168 BSS
+  bytes; all 3,623 linked units are exact. No further unlinked exact candidates.
+- Whole-object checks pass for owned sections, global symbols, data layout,
+  section sizes/alignment and function order. Native instruction comparisons
+  include relocations; the final DOL hash checks the resolved linked result.
+- The independent unfiltered raw-report audit (`require_zero_loss`) finds zero
+  lost code/data/function ranges for coverage, exactness and source linkage.
+- Source-only checks pass: Python syntax, all 346 synthetic tool tests,
+  portable behavior tests and AddressSanitizer/UndefinedBehaviorSanitizer runs.
+  The generated porting-exceptions inventory is current and changed-line
+  whitespace checks pass. Portable tests cover their existing test targets;
+  TCP acceptance above is native binary verification.
+- Generated retention has 19,205 entries: all 19,177 main entries remain and
+  28 TCP symbols are added. `force-active --check` reports no drift.
+
+The shared accept-event provider remains exact across all 42 functions. Existing
+native layout and route-send result-view debt above remains explicit; binary
+acceptance does not claim a complete portable networking implementation.

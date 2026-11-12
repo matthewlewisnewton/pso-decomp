@@ -781,22 +781,31 @@ void TLobby::clear_position() {
 #pragma opt_common_subs on
 #pragma opt_propagation off
 
+#pragma optimize_for_size off
+static inline s32 tcp_connection_index(TcpTcb *entry, TcpTcb *first) {
+    return entry - first;
+}
+#pragma opt_loop_invariants off
+#pragma opt_strength_reduction off
+#pragma opt_unroll_loops off
 s16 TLobby__sub_8041A9AC(void *connection) {
     TcpTcb *tp = (TcpTcb *)connection;
     TcpTcb *q;
+    int fragment_length_offset;
+    u16 header_bytes;
     s32 lim;
     s32 sendalot;
     s32 avail;
     int win;
     s32 fin;
     s32 t;
-    s32 recwin;
     u8 *optp;
     u16 b;
-    int len;
-    TcpHdr *th = &tp->hdr;
-    s16 mss;
+    s32 retransmit_length;
     u8 *opt;
+    TcpHdr *th = &tp->hdr;
+    int len;
+    s16 mss;
     u16 optlen;
     NetPacket *m;
     s32 idle;
@@ -804,7 +813,9 @@ s16 TLobby__sub_8041A9AC(void *connection) {
     TcpState *ts = &tcp_protocol_state;
     int off;
     s32 flags;
+    s32 recwin;
     u16 i;
+    int sack_length;
 // Native compiler storage, not recovered TCP fields. See docs/evidence/tcp-protocol-unit.md.
 #ifdef __MWERKS__
     u32 native_high_homes[4];
@@ -822,7 +833,7 @@ s16 TLobby__sub_8041A9AC(void *connection) {
         return -1;
     }
     if (TLobby__sub_8040DA54(tp->remote, tp->local) == 0) {
-        NetDispatchSocketEvent((s16)(tp - ts->tcbs), tp->event_ctx, 3, 0xc);
+        NetDispatchSocketEvent((s16)tcp_connection_index(tp, ts->tcbs), tp->event_ctx, 3, 0xc);
         return -6;
     }
     mss = (s16)TLobby__sub_8040DC8C(tp->remote, tp->local);
@@ -857,7 +868,8 @@ s16 TLobby__sub_8041A9AC(void *connection) {
         sendalot = 0;
         len = 0;
         if (tp->f2F4 != tp->snd_una) {
-            len = TLobby__sub_8041D460((Tcb_8041D460 *)tp, &sack_start, &sack_end);
+            retransmit_length = TLobby__sub_8041D460((Tcb_8041D460 *)tp, &sack_start, &sack_end);
+            len = retransmit_length;
             if (len != 0) {
                 sendalot = 1;
                 off = sack_start - tp->snd_una;
@@ -867,7 +879,7 @@ s16 TLobby__sub_8041A9AC(void *connection) {
         } else {
             off = tp->snd_nxt - tp->snd_una;
         }
-        flags = ts->outflags[tp->t_state];
+        flags = *((u8 *)ts + ((s32)tp->t_state + offsetof(TcpState, outflags)));
         win = tp->snd_wnd;
         if (tp->force != 0) {
             if (win == 0) {
@@ -1014,7 +1026,7 @@ send:
             sackoff = optlen + 1;
             optp = opt;
             q = tp;
-            win = 2;
+            sack_length = 2;
             i = 0;
             optlen += 2;
             while (i < 5 && q->sack[0].start != q->sack[0].end && (s32)optlen + 8 <= 0x28) {
@@ -1023,11 +1035,11 @@ send:
                 NetMemcpy(optp + optlen, &tmp4, 4);
                 NetMemcpy(optp + (u16)(optlen + 4), &tmp4b, 4);
                 optlen += 8;
-                win += 8;
+                sack_length += 8;
                 q = (TcpTcb *)((u8 *)q + sizeof(TcpSeqRange));
                 i++;
             }
-            opt[sackoff] = (u8)win;
+            opt[sackoff] = (u8)sack_length;
         }
         while ((optlen % 4) != 0) {
             optp[optlen] = 1;
@@ -1076,12 +1088,17 @@ send:
         }
         if (optlen != 0) {
             m->total_bytes += optlen;
-            m->fragments[m->fragment_count].length = optlen;
+            fragment_length_offset = m->fragment_count * (s32)sizeof(NetPacketFragment)
+                + offsetof(NetPacket, fragments) + offsetof(NetPacketFragment, length);
+            *(s16 *)((u8 *)m + fragment_length_offset) = optlen;
             set_value_and_enable__6TLobbyFl(&m->fragments[m->fragment_count].buffer, (s32)optp);
             m->fragment_count++;
         }
-        m->total_bytes += sizeof(TcpHdr);
-        m->fragments[m->fragment_count].length = sizeof(TcpHdr);
+        header_bytes = sizeof(TcpHdr);
+        m->total_bytes += header_bytes;
+        fragment_length_offset = m->fragment_count * (s32)sizeof(NetPacketFragment)
+            + offsetof(NetPacket, fragments) + offsetof(NetPacketFragment, length);
+        *(s16 *)((u8 *)m + fragment_length_offset) = header_bytes;
         set_value_and_enable__6TLobbyFl(&m->fragments[m->fragment_count].buffer, (s32)th);
         m->fragment_count++;
         th->sum = TLobby__sub_8040D8F0(tp->local, tp->remote, 6, (u8 *)m, 1);
