@@ -1,3 +1,4 @@
+#define PSO_SDK_COMPACT_MATH
 #include "types.h"
 #include <string.h>
 #include <stdio.h>
@@ -5,6 +6,7 @@
 #include "pso/ui/frontend/TAdPlayerLoadGC.h"
 #include "dolphin/os.h"
 #include "dolphin/card.h"
+#undef PSO_SDK_COMPACT_MATH
 
 struct S_803F3328 { u8 pad0[4]; s32 state; CARDFileInfo file_info; CARDStat stat; };
 typedef struct Slot_803F3478 {
@@ -57,14 +59,18 @@ extern void *lbl_805D7960;
 // "%4d/%02d/%02d %02d:%02d:%02d" (.rodata, outside this unit's split)
 extern const char lbl_8047FD08[];
 void TAdPlayerLoadGC__sub_803F1908(s32 card_channel) {
-    u8 *disk_id;
-    s32 i;
-    s32 found;
     CARDStat stat;
     u8 company[2];
     u8 game_name[4];
     OSCalendarTime ct;
     char date[0x20];
+    u32 ticks_per_second;
+    u8 *disk_id;
+    char *slot_name;
+    u8 *stat_game_name;
+    u8 *stat_company;
+    s32 i;
+    s32 found;
 
     switch (TAdPlayerLoadGC__load_request_slots[card_channel].f48) {
     case 1:
@@ -128,12 +134,17 @@ void TAdPlayerLoadGC__sub_803F1908(s32 card_channel) {
                 memcpy(company, lbl_805E10F4, 2);
             }
             found = 0;
-            for (i = 0; i < 127; i++) {
+            i = 0;
+            slot_name = TAdPlayerLoadGC__load_request_slots[card_channel].name;
+            stat_game_name = (u8 *)stat.gameName;
+            stat_company = (u8 *)stat.company;
+            ticks_per_second = __OSBusClock / 4;
+            for (; i < 127; i++) {
                 if (CARDGetStatus(card_channel, i, &stat) >= 0) {
-                    OSTicksToCalendarTime(stat.time * (__OSBusClock / 4), &ct);
+                    OSTicksToCalendarTime(stat.time * ticks_per_second, &ct);
                     sprintf(date, lbl_8047FD08, ct.year, ct.mon + 1, ct.mday, ct.hour, ct.min, ct.sec);
-                    if (strcmp(stat.fileName, TAdPlayerLoadGC__load_request_slots[card_channel].name) == 0 &&
-                        memcmp(stat.gameName, game_name, 4) == 0 && memcmp(stat.company, company, 2) == 0) {
+                    if (strcmp(stat.fileName, slot_name) == 0 &&
+                        memcmp(stat_game_name, game_name, 4) == 0 && memcmp(stat_company, company, 2) == 0) {
                         found = 1;
                         break;
                     }
@@ -871,7 +882,7 @@ s32 TAdPlayerLoadGC__sub_803F31BC(void) {
 
 // lbl_8047FCD8: "mcFsGc Ver 1.10.00 Build:Sep 17 2002 20:22:41" (memory-card library version banner)
 extern const char lbl_8047FCD8[];
-static const char *const lbl_805E10E8 = lbl_8047FCD8;
+__declspec(section ".sdata2") extern const char *const lbl_805E10E8 = lbl_8047FCD8;
 extern const char *lbl_805D7954;
 
 s32 TAdPlayerLoadGC__sub_803F31D8(void *work_area) {

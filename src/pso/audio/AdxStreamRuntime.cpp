@@ -1648,6 +1648,7 @@ extern s32 lbl_805D7580;
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(4)
+#pragma opt_common_subs off
 // Inferred: CRI adxt_stat_prep (wait until every output SJ holds data, then start the RNA).
 inline void prep_803CA8B4(Ent_803C9608 *self) {
     s32 n;
@@ -2270,8 +2271,5 @@ void TLobby::adxm_goto_mwidle_border() {
     OSSetThreadPriority(&adxm_worker_thread, lbl_804F9D80.prio);
 }
 }
-
-RecoveredGlobal_803C90B0_lbl_80575140 adx_stream_read_requests;
-Ch_803CB5C4 adx_decoder_channel_pool[16];
 
 typedef char AdxmOriginalThreadSize[sizeof(OSThread)==0x310 ? 1 : -1];

@@ -12145,12 +12145,12 @@ pso/unk/text_803C5AA0.cpp:
 
 pso/audio/AdxEncoder.cpp:
 	.text       start:0x803C5E78 end:0x803C84D0
-	.bss        start:0x80573100 end:0x80575140
+	.bss        start:0x80573100 end:0x80575E80
 	.sdata2     start:0x805E0D40 end:0x805E0D50
 
 pso/audio/AdxStreamRuntime.cpp:
 	.text       start:0x803C84D0 end:0x803CBCA0
-	.bss        start:0x80575140 end:0x8057B7B0
+	.bss        start:0x80575E80 end:0x8057B7B0
 	.sdata2     start:0x805E0D50 end:0x805E0D70
 
 pso/unk/text_803CBCA0.cpp:
@@ -12235,8 +12235,9 @@ pso/unk/TLobby_803CE478.cpp:
 
 pso/unk/text_803CE568.cpp:
 	.text       start:0x803CE568 end:0x803CFE68
-	.rodata     start:0x8047CF30 end:0x8047DAB8
+	.rodata     start:0x8047CF30 end:0x8047DAB4
 	.bss        start:0x80581A30 end:0x80581EA8
+	.sdata2     start:0x805E0DA0 end:0x805E0DA4
 
 pso/unk/TLobby_803CFE68.cpp:
 	.text       start:0x803CFE68 end:0x803CFEA0
@@ -12629,6 +12630,7 @@ pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp:
 	.text       start:0x803F18B8 end:0x803F339C
 	.data       start:0x804FCD48 end:0x804FCE38
 	.bss        start:0x805A28C0 end:0x805A5F00
+	.sdata2     start:0x805E10E8 end:0x805E10EC
 
 pso/ui/frontend/TAdPlayerLoadGC_803F339C.cpp:
 	.text       start:0x803F339C end:0x803F3BF8

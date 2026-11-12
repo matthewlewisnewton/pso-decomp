@@ -396,6 +396,7 @@ pso/effect/TEffStarLight2D_Base.cpp
 pso/effect/TEffect.cpp
 pso/effect/TUnk_804CCC68.cpp
 pso/network/NetDispatcher.c
+pso/network/ModemRuntime.cpp
 pso/network/PSOV3Encryption.cpp
 pso/network/PSOV3EncryptionTCP.cpp
 pso/enemy/AreaSoundRemap.cpp
@@ -2152,6 +2153,8 @@ pso/object/city/CityTraffic.cpp
 pso/system/data/FlagWord.cpp
 pso/render/GinjaModelQueue.cpp
 pso/render/GinjaMaterial.cpp
+pso/audio/AdxEncoder.cpp
+pso/audio/AdxStreamRuntime.cpp
 pso/audio/LscStream.cpp
 pso/audio/LscServer.cpp
 pso/render/MaterialAlphaCompare.cpp
@@ -2266,6 +2269,7 @@ pso/ui/frontend/TAdPlayerLoadGC.cpp
 pso/ui/frontend/TAdPlayerLoadGC_80076BBC.cpp
 pso/ui/frontend/TAdPlayerLoadGC_800F9EF8.cpp
 pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp
+pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp
 pso/ui/frontend/TAdPlayerLoadGC_803F339C.cpp
 pso/ui/frontend/TAdPlayerLoadGC_803F3CF4.cpp
 pso/ui/frontend/TAdPlyPltAnimCtrlGC.cpp
@@ -2794,6 +2798,7 @@ pso/unk/text_803CD840.cpp
 pso/unk/text_803CE1D8.cpp
 pso/unk/text_803CE1F4.cpp
 pso/unk/text_803CE240.cpp
+pso/unk/text_803CE568.cpp
 pso/unk/text_803CFEA0.cpp
 pso/unk/text_803D2F1C.cpp
 pso/unk/text_803D39F8.cpp

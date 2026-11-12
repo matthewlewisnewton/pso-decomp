@@ -4114,12 +4114,50 @@ N_803EC09C *get_next_node__22TQuestVmDownLoadServerFPv(Q_803EC09C *p) {
 
 #pragma push
 #pragma dont_inline off
-#pragma inline_depth(1)
+#pragma inline_depth(2)
+inline Node_803EB794 *next_group_803EC284(Node_803EB794 *node) {
+    while (node->flags & 1) {
+        node = node->next;
+    }
+    return node->next;
+}
+inline s32 count_groups_803EC284(Node_803EB794 *head) {
+    Node_803EB794 *node;
+    s32 n;
+    s32 total;
+    s32 limit;
+    if (head == NULL) {
+        return 0;
+    }
+    node = head;
+    n = total = 0;
+    limit = lbl_805D78A4 - 9;
+    while (n < 9 && node != NULL) {
+        total += TQuestVmDownLoadServer__sub_803EB7C0((Node_803EB7C0 *)node) + 3;
+        if (total > limit) {
+            break;
+        }
+        n++;
+        node = next_group_803EC284(node);
+    }
+    if (n == 0) {
+        return 1;
+    }
+    return n;
+}
+inline void advance_groups_803EC284(Node_803EB794 *&head, s32 count) {
+    for (s32 i = 0; i != count; i++) {
+        Node_803EB794 *node = head;
+        while (node->flags & 1) {
+            node = node->next;
+        }
+        head = node->next;
+    }
+}
 void TQuestVmDownLoadServer__sub_803EC284(s32 pos, s32 mode) {
     Node_803EB794 *p;
-    s32 n;
-    s32 i;
-    if (mode == 1) {
+    s32 saved_mode = mode;
+    if (saved_mode == 1) {
         TQuestVmDownLoadServer__sub_803EC09C();
     }
     p = quest_download_slot_chain_table[quest_text_cursor_pos].chain;
@@ -4128,23 +4166,21 @@ void TQuestVmDownLoadServer__sub_803EC284(s32 pos, s32 mode) {
     } else {
         lbl_805D78A4 = TQuestVmDownLoadServer::get_buffer_size();
     }
-    n = count_fitting_groups(p);
-    while (pos >= n) {
-        pos -= n;
-        for (i = n; i != 0; i--) {
-            p = next_entry_group(p);
-        }
-        n = count_fitting_groups(p);
-        if (n == 0) {
+    mode = count_groups_803EC284(p);
+    while (pos >= mode) {
+        pos -= mode;
+        advance_groups_803EC284(p, mode);
+        mode = count_groups_803EC284(p);
+        if (mode == 0) {
             TQuestVmDownLoadServer__sub_803EC284(0, 0);
             goto done;
         }
     }
     lbl_805D78A0 = p;
     quest_page_node_index = pos;
-    quest_page_node_count = n;
+    quest_page_node_count = mode;
 done:
-    if (mode == 1 && quest_download_state == 0) {
+    if (saved_mode == 1 && quest_download_state == 0) {
         TQuestVmDownLoadServer__sub_803EB4D4();
     }
 }
