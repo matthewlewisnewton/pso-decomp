@@ -690,11 +690,7 @@ struct TLobby : public TObject {
     static void dec_ref_and_reset_tables();
     static void init_afs_adxf_state();
     static s32 get_afs_file_info(s32 arg0, s32 arg1, char *arg2, s32 *arg3, s32 *arg4, s32 *arg5);
-    s32 adxf_get_fsize_byte();
-    static s32 adxf_seek(void *adxf, int pos, int type);
-    s32 adxf_stop();
-    static s32 adxf_read_nw32(void *adxf, int nsct, void *buf);
-    static s32 read_checked_align(s32 arg0, s32 arg1, s32 arg2);
+    static s32 read_checked_align(void *arg0, s32 arg1, void *arg2);
     static void release_used_slots();
     static s32 read_afs_toc(s32 arg0);
     s32 demux_stream_chunks();
@@ -952,7 +948,6 @@ struct TLobby : public TObject {
     static s32 unhide_enemies_at(s32 arg0, s32 arg1, s32 arg2);
     void transfer_trade_item_amount(u32 arg1, s32 arg2);
     void move_trade_item_amount(u32 arg1, s32 arg2);
-    void close_adxf_handle();
     void set_stream_frequency(s32 rate);
     s32 copy_current_entry_name(s32 len);
     void capture_chat_sensor();

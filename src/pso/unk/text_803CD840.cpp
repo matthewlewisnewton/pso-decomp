@@ -1,3 +1,4 @@
+#include "pso/system/Adxf.h"
 #include "pso/system/MiddlewareInterruptLock.h"
 
 #include "types.h"
@@ -91,8 +92,8 @@ struct Obj_803CDB0C {
 extern "C" {
 char *strncpy(char *, const char *, u32);
 void *memset(void *, s32, u32);
-s32 adxf_read_nw32__6TLobbyFPviPv(void *, int, int);
-void *adxf_open__6TLobbyFUii(const char *, s32);
+s32 ADXF_ReadNw32(void *, int, int);
+void *ADXF_Open(const char *, s32);
 extern char lbl_8047C818[];
 extern Ent_803CD840 *afs_archive_toc_table[256];
 u8 adxf_open_file_buffer[0x2080];
@@ -134,7 +135,7 @@ s32 adxf_open_file__6TLobbyFiPviPv(s32 id, const char *name, s32 arg2, Ent_803CD
         TLobby::notify_error(msg + 0x56C);
         return -1;
     }
-    lobby_adxf_open_file_handle = adxf_open__6TLobbyFUii(name, arg2);
+    lobby_adxf_open_file_handle = ADXF_Open(name, arg2);
     if (lobby_adxf_open_file_handle == NULL) {
         TLobby::notify_error(msg + 0x5A4);
         return -1;
@@ -150,9 +151,9 @@ s32 adxf_open_file__6TLobbyFiPviPv(s32 id, const char *name, s32 arg2, Ent_803CD
     aligned = (s32)(adxf_open_file_buffer + 0x20) & ~0x1F;
     lbl_805D75F0 = aligned;
     lbl_805D75EC = aligned;
-    r = adxf_read_nw32__6TLobbyFPviPv(lobby_adxf_open_file_handle, 1, aligned);
+    r = ADXF_ReadNw32(lobby_adxf_open_file_handle, 1, aligned);
     if (r < 0) {
-        ((TLobby *)lobby_adxf_open_file_handle)->close_adxf_handle();
+        ADXF_Close((AdxfHandle *)lobby_adxf_open_file_handle);
         return r;
     }
     e->f8 = 0;

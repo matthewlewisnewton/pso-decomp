@@ -46,19 +46,20 @@ s32 try_begin_load__12TChCrLoadAfsFPv(void *arg0) {
 struct L_8028B948 { u8 pad[0x1c]; s32 f1c; u8 pad2[0xc]; s32 f2c; };
 
 extern "C" {
-s32 TLobby__sub_803CC4C0(int);
-void close_adxf_handle__6TLobbyFv(int);
+s32 ADXF_GetStat(int);
+void ADXF_Close(int);
+s32 ADXF_Stop(void *);
 void poll_load__12TChCrLoadAfsFv(L_8028B948 *arg0);
-u32 adxf_open_afs__6TLobbyFii(s32, s32);
+u32 ADXF_OpenAfs(s32, s32);
 
 void sub_8028B940__12TChCrLoadAfsFv(void) {  }
 void sub_8028B944__12TChCrLoadAfsFv(void) {  }
 void poll_load__12TChCrLoadAfsFv(L_8028B948 *arg0) {
-    switch (TLobby__sub_803CC4C0(arg0->f1c)) {
+    switch (ADXF_GetStat(arg0->f1c)) {
     case 2:
         return;
     case 3:
-        close_adxf_handle__6TLobbyFv(arg0->f1c);
+        ADXF_Close(arg0->f1c);
         arg0->f1c = 0;
         break;
     case 1:
@@ -77,8 +78,8 @@ void poll_load__12TChCrLoadAfsFv(L_8028B948 *arg0) {
 
 #define try_begin_load__12TChCrLoadAfsFPv (*(s32 (*)())&try_begin_load__12TChCrLoadAfsFPv)
 #define release_load_slot__12TChCrLoadAfsFv (*(int (*)(void *))&release_load_slot__12TChCrLoadAfsFv)
-#define close_adxf_handle__6TLobbyFv (*(int (*)(int))&close_adxf_handle__6TLobbyFv)
-#define TLobby__sub_803CC4C0 (*(int (*)(int))&TLobby__sub_803CC4C0)
+#define ADXF_Close (*(int (*)(int))&ADXF_Close)
+#define ADXF_GetStat (*(int (*)(int))&ADXF_GetStat)
 
 struct Te_8028BFA4 { s32 id; u8 pad[0xC]; };
 
@@ -122,20 +123,20 @@ void TChCrLoadAfs::start_download() {
     u32 temp_r3_3;
 
     if (try_begin_load__12TChCrLoadAfsFPv() != 0) {
-        temp_r3 = adxf_open_afs__6TLobbyFii(*(s32 *)((s8 *)this + 0x20), *(s32 *)((s8 *)this + 0x24));
+        temp_r3 = ADXF_OpenAfs(*(s32 *)((s8 *)this + 0x20), *(s32 *)((s8 *)this + 0x24));
         *(u32 *)((s8 *)this + 0x1C) = temp_r3;
         if (temp_r3 == 0U) {
             *(s32 *)((s8 *)this + 0x2C) = 3;
             return;
         }
-        count = TLobby__sub_803CC53C((u8 *)(*(u32 *)((s8 *)this + 0x1C)));
+        count = ADXF_GetFsizeSct((u8 *)(*(u32 *)((s8 *)this + 0x1C)));
         temp_r3_3 = (s32)TQuestVmDownLoadServer::alloc(count << 0xB);
         *(u32 *)((s8 *)this + 0x28) = temp_r3_3;
         if (temp_r3_3 == 0U) {
             *(s32 *)((s8 *)this + 0x2C) = 3;
             return;
         }
-        TLobby::read_checked_align(*(u32 *)((s8 *)this + 0x1C), count, *(u32 *)((s8 *)this + 0x28));
+        TLobby::read_checked_align((void *)*(u32 *)((s8 *)this + 0x1C), count, (void *)*(u32 *)((s8 *)this + 0x28));
         *(s32 *)((s8 *)this + 0x2C) = 1;
     }
 }
@@ -175,8 +176,8 @@ void TChCrLoadAfs::run_task() {
 TChCrLoadAfs::~TChCrLoadAfs() {
     u32 handle = load_handle;
     if (handle != 0) {
-        if (TLobby__sub_803CC4C0((int)handle) == 2) ((TLobby *)load_handle)->adxf_stop();
-        close_adxf_handle__6TLobbyFv((int)load_handle);
+        if (ADXF_GetStat((int)handle) == 2) ADXF_Stop((void *)load_handle);
+        ADXF_Close((int)load_handle);
         load_handle = 0;
     }
     u32 buffer = buffer_address;
@@ -255,7 +256,7 @@ void TChCrLoadAfsTextureReq::update_loading(void *) {
     s32 retry;
     s32 i;
     retry = 0;
-    switch (TLobby__sub_803CC4C0(arg0->f60)) {
+    switch (ADXF_GetStat(arg0->f60)) {
     case 1:
         if (++arg0->f20 >= 3) {
             return;
@@ -274,14 +275,14 @@ void TChCrLoadAfsTextureReq::update_loading(void *) {
         return;
     }
     if (retry != 0) {
-        close_adxf_handle__6TLobbyFv(arg0->f60);
+        ADXF_Close(arg0->f60);
         arg0->f60 = 0;
         TAdSinglePlyChrSelectGC::safe_free(arg0->bufs[arg0->f5c]);
         arg0->bufs[arg0->f5c] = 0;
         arg0->f2c = 1;
         return;
     }
-    close_adxf_handle__6TLobbyFv(arg0->f60);
+    ADXF_Close(arg0->f60);
     arg0->f60 = 0;
     if (++arg0->f5c != arg0->f58) {
         arg0->f2c = 1;
@@ -302,22 +303,22 @@ void TChCrLoadAfsTextureReq::start_read(void *) {
     s32 n;
     u32 t;
     void *buf;
-    t = adxf_open_afs__6TLobbyFii(player_class_texture_archive_table[arg0->f70].id, find_player_texture_name_ordinal((u8 *)arg0));
+    t = ADXF_OpenAfs(player_class_texture_archive_table[arg0->f70].id, find_player_texture_name_ordinal((u8 *)arg0));
     arg0->f60 = t;
     if (t != 0) {
         arg0->f20 = 0;
         arg0->f24 = 0;
-        n = TLobby__sub_803CC53C((u8 *)arg0->f60);
+        n = ADXF_GetFsizeSct((u8 *)arg0->f60);
         buf = ((void *)TQuestVmDownLoadServer::alloc(n << 11));
         arg0->bufs[arg0->f5c] = buf;
         if (buf != NULL) {
-            TLobby::read_checked_align((u32)arg0->f60, (s32)n, (u32)arg0->bufs[arg0->f5c]);
+            TLobby::read_checked_align((void *)arg0->f60, (s32)n, (void *)arg0->bufs[arg0->f5c]);
             arg0->f2c = 2;
         }
     }
 }
 
-#undef TLobby__sub_803CC4C0
-#undef close_adxf_handle__6TLobbyFv
+#undef ADXF_GetStat
+#undef ADXF_Close
 #undef release_load_slot__12TChCrLoadAfsFv
 #undef try_begin_load__12TChCrLoadAfsFPv

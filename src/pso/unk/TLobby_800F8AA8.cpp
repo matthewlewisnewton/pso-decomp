@@ -824,7 +824,7 @@ void TLobby::flush_pending() {
         if ((temp_r5 != 0U)) {
             count = pending_file_read_sector_count;
             if (count != 0) {
-                TLobby::read_checked_align(*pending_file_read_handle_ref, count, temp_r5);
+                TLobby::read_checked_align((void *)*pending_file_read_handle_ref, count, (void *)temp_r5);
             }
         }
         TLobby::flush_checked_reads();
@@ -836,7 +836,7 @@ void TLobby::flush_checked_reads() {
 
     for (i = 0; i < 4; i++) {
         if (lobby_checked_read_ptr_table[i] != NULL && lbl_80499A10[i] != 0 && lbl_80499A20[i] != 0) {
-            TLobby::read_checked_align(*lobby_checked_read_ptr_table[i], lbl_80499A10[i], lbl_80499A20[i]);
+            TLobby::read_checked_align((void *)*lobby_checked_read_ptr_table[i], lbl_80499A10[i], (void *)lbl_80499A20[i]);
         }
     }
 }

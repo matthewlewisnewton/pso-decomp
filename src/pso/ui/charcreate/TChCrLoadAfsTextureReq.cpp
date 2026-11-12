@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
+#include "pso/system/Adxf.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC_8001ED80.h"
 #include "pso/ui/charcreate/TChCrLoadGmNjReq.h"
 #include "pso/unk/TLobby.h"
@@ -65,7 +66,7 @@ void init_texture_table__22TChCrLoadAfsTextureReqFPv(R_8028C310 *arg0);
 void __dt__7TObjectFv(void *, s32);
 void __dl__7TObjectFPv(void *);
 void finish_request__22TChCrLoadAfsTextureReqFPv(void *arg0);
-s32 TLobby__sub_803CC4C0(s32);
+s32 ADXF_GetStat(s32);
 Req_8028C1F0 *__dt__22TChCrLoadAfsTextureReqFv(Req_8028C1F0 *arg0, s16 arg1);
 f32 TLobby__sub_8028C50C(void);
 void * create__22TChCrLoadAfsTextureReqFPvPv(void *arg0, void *arg1);
@@ -134,10 +135,10 @@ Req_8028C1F0 *__dt__22TChCrLoadAfsTextureReqFv(Req_8028C1F0 *arg0, s16 arg1) {
     if (arg0 != NULL) {
         arg0->vt = ((s32 *)&__vt__22TChCrLoadAfsTextureReq);
         if (arg0->mode == 0 && arg0->tab[0] != 0) {
-            if (TLobby__sub_803CC4C0(arg0->handle) == 2) {
-                ((TLobby *)(arg0->handle))->adxf_stop();
+            if (ADXF_GetStat(arg0->handle) == 2) {
+                ADXF_Stop((AdxfHandle *)(arg0->handle));
             }
-            ((TLobby *)(arg0->handle))->close_adxf_handle();
+            ADXF_Close((AdxfHandle *)(arg0->handle));
             arg0->handle = 0;
         }
         finish_request__22TChCrLoadAfsTextureReqFPv(arg0);

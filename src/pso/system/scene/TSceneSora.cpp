@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/Adxf.h"
 #include "pso/unk/TLobby_80207DA8.h"
 #include "pso/unk/TLobby_80131794.h"
 #include "pso/unk/TLobby_80140FF4.h"
@@ -70,7 +71,7 @@ s32 set_current_texture_list();
 void *get_current_floor();
 u32 init_bin_model_request(void *, int, Res_80207478 *, Res_80207478 *, int, int, int);
 s32 lookup_scene_object__6TLobbyFPv(void *, Ref_80207478 *);
-void *adxf_open__6TLobbyFUii(char *, int);
+void *ADXF_Open(char *, int);
 extern char sky_model_ext_s_njm[];
 extern char sky_model_ext_sm_gj[];
 extern char sky_model_ext_s_gj[];
@@ -191,18 +192,18 @@ void TSceneSora::load_sky_resources() {
         if (ok <= 0) {
             replace_file_extension__6TLobbyFPvPvPv(name2, tbl[ref.idx].name, sky_model_ext_s_gj);
         }
-        p = adxf_open__6TLobbyFUii(name2, 0);
+        p = ADXF_Open(name2, 0);
         if (p != NULL) {
             b.buf = name2;
-            ((TLobby *)p)->close_adxf_handle();
+            ADXF_Close((AdxfHandle *)p);
         } else {
             return;
         }
-        p = adxf_open__6TLobbyFUii(name1, 0);
+        p = ADXF_Open(name1, 0);
         if (p != NULL) {
             a.buf = name1;
             TSceneSora__has_sky_motion = 1;
-            ((TLobby *)p)->close_adxf_handle();
+            ADXF_Close((AdxfHandle *)p);
         } else {
             a.buf = NULL;
         }
