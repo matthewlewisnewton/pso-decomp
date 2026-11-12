@@ -1878,6 +1878,48 @@ force_active:
   - TQuestVmDownLoadServer__rng_cipher_state
   - TQuestVmDownLoadServer__sub_801F6B98
   - TQuestVmDownLoadServer__sub_801F8538
+  - TQuestVmDownLoadServer__sub_803E6F98
+  - TQuestVmDownLoadServer__sub_803E7018
+  - TQuestVmDownLoadServer__sub_803E7098
+  - TQuestVmDownLoadServer__sub_803E8788
+  - TQuestVmDownLoadServer__sub_803E93DC
+  - TQuestVmDownLoadServer__sub_803E95BC
+  - TQuestVmDownLoadServer__sub_803E9A74
+  - TQuestVmDownLoadServer__sub_803E9FFC
+  - TQuestVmDownLoadServer__sub_803EA1A8
+  - TQuestVmDownLoadServer__sub_803EA428
+  - TQuestVmDownLoadServer__sub_803EADD4
+  - TQuestVmDownLoadServer__sub_803EB4D4
+  - TQuestVmDownLoadServer__sub_803EB7C0
+  - TQuestVmDownLoadServer__sub_803EBA98
+  - TQuestVmDownLoadServer__sub_803EBEFC
+  - TQuestVmDownLoadServer__sub_803EC09C
+  - TQuestVmDownLoadServer__sub_803EC460
+  - TQuestVmDownLoadServer__sub_803EC884
+  - TQuestVmDownLoadServer__sub_803EC95C
+  - TQuestVmDownLoadServer__sub_803ECD1C
+  - TQuestVmDownLoadServer__sub_803ECD8C
+  - TQuestVmDownLoadServer__sub_803ECE5C
+  - TQuestVmDownLoadServer__sub_803ECE94
+  - TQuestVmDownLoadServer__sub_803ECED0
+  - TQuestVmDownLoadServer__sub_803ECF0C
+  - TQuestVmDownLoadServer__sub_803ECF48
+  - TQuestVmDownLoadServer__sub_803ECF84
+  - TQuestVmDownLoadServer__sub_803ED0B4
+  - TQuestVmDownLoadServer__sub_803ED84C
+  - TQuestVmDownLoadServer__sub_803EDDA4
+  - TQuestVmDownLoadServer__sub_803EE580
+  - TQuestVmDownLoadServer__sub_803EE934
+  - TQuestVmDownLoadServer__sub_803EEDC0
+  - TQuestVmDownLoadServer__sub_803EEF2C
+  - TQuestVmDownLoadServer__sub_803EEFC8
+  - TQuestVmDownLoadServer__sub_803EF8E0
+  - TQuestVmDownLoadServer__sub_803EF958
+  - TQuestVmDownLoadServer__sub_803EFCB4
+  - TQuestVmDownLoadServer__sub_803EFF20
+  - TQuestVmDownLoadServer__sub_803F03B4
+  - TQuestVmDownLoadServer__sub_803F0500
+  - TQuestVmDownLoadServer__sub_803F0BE8
   - TRKEXICallBack
   - TRKInterruptHandlerEnableInterrupts
   - TRKLoadContext
@@ -3869,6 +3911,7 @@ force_active:
   - append_text__24TMessageWindowControllerFPCc
   - append_text_entry__19TWindowKeyBoardSoftFPUc
   - append_title_string__24TMessageWindowControllerFv
+  - append_unique_node__22TQuestVmDownLoadServerFiPvPvPv
   - apply_6xA8_action__12TBoss8DragonFPvPv
   - apply__16CameraViewParamsFv
   - apply_all_default__8TFogCtrlFv
@@ -4012,6 +4055,7 @@ force_active:
   - approach_world_height__13TObjEneMe1GeeFf
   - ar_alloc__6TLobbyFv
   - aramQueueCallback
+  - aram_read_thunk__22TQuestVmDownLoadServerFUli
   - are_all_players_in_range__12TObjWarpBossFv
   - are_all_selections_done__23TAdSinglePlyChrSelectGCFv
   - are_p01s_broken__12TBoss3VoloptFv
@@ -4130,6 +4174,7 @@ force_active:
   - area_gsl_filename_table
   - area_sound_remap_table_a
   - area_sound_remap_table_b
+  - ask_header_signature
   - assert_light_id__9TObjLightFl
   - assign_char_data__23TAdSinglePlyChrSelectGCFPvPv
   - assign_guard_targets__19TObjEneEpsilonGuardFv
@@ -4734,6 +4779,7 @@ force_active:
   - build_download_list__12TQuestListVMFv
   - build_ethernet_frame_header__6TLobbyFPvPvUsUcUsUs
   - build_item_list__19TShopItemListWindowFPv
+  - build_item_list__22TQuestVmDownLoadServerFiPv
   - build_item_list__23TShopJudgmentItemWindowFPv
   - build_menu__19TWindowSubShortMailFv
   - build_mode_menu__21TAdMultiSelGameModeGCFl
@@ -4749,6 +4795,7 @@ force_active:
   - build_state_packet__11TBoss6Type2FPUc
   - build_status_text__20TWindowSubStatusDispFl
   - build_text_from_comma_list__6TLobbyFPv
+  - build_text_node_chain__22TQuestVmDownLoadServerFPvPvlPvPv
   - build_trade_menu__19TWindowSubTradeMainFv
   - build_weapon_type_weights__9TItemDropFiPvi
   - byteswap_6x49_packet__10TObjPlayerFv
@@ -4791,6 +4838,7 @@ force_active:
   - calc_drop_offset__9TItemDropFl
   - calc_drop_rarity__9TItemDropFiiPv
   - calc_duel_number_uv__FlPUcl
+  - calc_entry_cost__22TQuestVmDownLoadServerFPvPv
   - calc_field4b0_delta__11TBoss6Type1Fv
   - calc_field4f0_delta__11TBoss6Type2FPv
   - calc_follow_camera_offsets__12TBoss1DragonFv
@@ -4805,6 +4853,9 @@ force_active:
   - calc_highlight_scale__12TChCrTagNameFPv
   - calc_hit_zone_index__16TBoss3VoloptCoreFv
   - calc_i8_tiled_texel_offset
+  - calc_item_cost_bonus__22TQuestVmDownLoadServerFUcUcUcll
+  - calc_item_entry_cost__22TQuestVmDownLoadServerFUcUcl
+  - calc_item_entry_cost_extra__22TQuestVmDownLoadServerFUcUcUcl
   - calc_joyboot_checksum__6TLobbyFv
   - calc_key_coord__19TWindowKeyBoardSoftFll
   - calc_key_index__19TWindowKeyBoardSoftFiii
@@ -4818,6 +4869,7 @@ force_active:
   - calc_offset__17TWindowSubComCardFv
   - calc_orb_positions__18TObjEneRe4SorcererFv
   - calc_orbit_xz__12TBoss8DragonFPfPf
+  - calc_pair_cost_bonus__22TQuestVmDownLoadServerFUcUcl
   - calc_parameters__11TTecRaBartaFv
   - calc_params__10TTecGiFoieFv
   - calc_params__11TTecGiBartaFv
@@ -5235,6 +5287,7 @@ force_active:
   - clear_child_flag__15TObjEneSlimeOneFv
   - clear_counter__6TLobbyFPv
   - clear_creation_shape_eval_masks__FPfPCfPCfPCf
+  - clear_entries_by_id__22TQuestVmDownLoadServerFl
   - clear_entry_flags__20TBoss5GryphonColli_CFv
   - clear_episode1_quest_availability__FPv
   - clear_field2A0__22TQuestVmDownLoadServerFv
@@ -5560,8 +5613,10 @@ force_active:
   - count_balloon_slots__11TWindowCtrlFv
   - count_card_layout_entries__6TLobbyFv
   - count_empty_slots__20TWindowSubSymbolChatFv
+  - count_fitting_entries__22TQuestVmDownLoadServerFPv
   - count_flags__23TAdSinglePlyChrSelectGCFPv
   - count_if_within_range__13TUnk_804CC148Fv
+  - count_leading_entries__22TQuestVmDownLoadServerFll
   - count_matching_values__11TBoss6Type2Fll
   - count_players_in_warp_radius__25TObjCityMainWarpChallengeFv
   - count_plist_strips_by_texture__FPvPvPv
@@ -6419,6 +6474,9 @@ force_active:
   - find_heal_target__13TOHealGeneralFv
   - find_index_in_table__11TBoss6Type2FUl
   - find_indirect_effect_ctrl
+  - find_insert_position__22TQuestVmDownLoadServerFlll
+  - find_keyword_entry__22TQuestVmDownLoadServerFPUsPUs
+  - find_longest_match_entry__22TQuestVmDownLoadServerFPviPv
   - find_material_entry_by_id__6TSceneFPvUs
   - find_motion_key_partition_u16__FPUcUlUlUl
   - find_nearest_enemy__15TObjEnemyCustomFP3Vecf
@@ -6437,6 +6495,7 @@ force_active:
   - find_shape_triangle_region__FPUc
   - find_strongest_player__12TBoss3VoloptFv
   - find_support_technique_contact__FPviPvPv
+  - find_symbol_entry__22TQuestVmDownLoadServerFPvsPv
   - find_table_entry_id
   - find_target_in_range__10TOMineTrapFv
   - find_target_player__16TOTrapAncient02RFv
@@ -6820,6 +6879,7 @@ force_active:
   - format_enemy_text__13TObjTombstoneFv
   - format_label__13TObjTombstoneFv
   - format_level_text__15TAdSubPlyItemGCFii
+  - format_number_text__22TQuestVmDownLoadServerFiiPvi
   - format_player_name__13TObjTombstoneFv
   - format_quoted_name__13TObjTombstoneFv
   - format_status_strings__14TAdPlyStatusGCFPv
@@ -7081,6 +7141,7 @@ force_active:
   - get_move_done_result__24TObjWaitEntryHairMoveSimFPv
   - get_network_config_card_channel__Fv
   - get_network_info_card_key__FiPUc
+  - get_next_node__22TQuestVmDownLoadServerFPv
   - get_next_send_chunk__6TLobbyFv
   - get_node_height__18TObjEneMe3SinowZoaFv
   - get_node_position__15TBoss3VoloptP01FlP3Vec
@@ -7761,6 +7822,7 @@ force_active:
   - insert_char_slot__19TWindowKeyBoardSoftFv
   - insert_item_at__6TLobbyFsll
   - insert_sorted_by_id__5TItemFv
+  - insert_sorted_node__22TQuestVmDownLoadServerFPvPv
   - insert_string__19TWindowKeyBoardSoftFPc
   - instance__16TLobbyEventTheme
   - interact__19TOMonumentAncient02Fl
@@ -7769,6 +7831,7 @@ force_active:
   - interpolate_along_curve__18TObjTailsTailsMoveFPf
   - interpolate_motion_quaternion_keys__FUlUllf
   - intersect_wall_triangle_one_sided
+  - invalidate_entries_by_id__22TQuestVmDownLoadServerFl
   - invalidate_ginja_inherited_state__Fv
   - invoke_callback_16C_and_destroy__23TShopJudgmentItemWindowFv
   - invoke_callback_170_and_destroy__23TShopJudgmentItemWindowFv
@@ -7809,6 +7872,8 @@ force_active:
   - is_dead__12TBoss3VoloptFv
   - is_destination_ahead__12TBoss1DragonFPv
   - is_done__16TObjItemOKWindowFv
+  - is_download_cmd_allowed__22TQuestVmDownLoadServerFUc
+  - is_download_command__22TQuestVmDownLoadServerFUsl
   - is_downloadable_new_entry__12TQuestListVMFP14QuestBinHeader
   - is_duplicate_shop_armor
   - is_duplicate_shop_shield_or_unit
@@ -7914,6 +7979,7 @@ force_active:
   - is_technique_usable__20TWindowShortListCtrlFv
   - is_valid__24ModelNodePositionCaptureFP22ModelNodePositionEntry
   - is_valid_player_index__6TLobbyFi
+  - is_valid_sjis_code__22TQuestVmDownLoadServerFUs
   - is_valid_state__6TLobbyFPvi
   - is_value_out_of_range__6TLobbyFl
   - is_visible__14TBoss7CrawfishFv
@@ -8881,6 +8947,7 @@ force_active:
   - lbl_80581A30
   - lbl_8058DC00
   - lbl_8058DD88
+  - lbl_805A0698
   - lbl_805A28C0
   - lbl_805A5ED0
   - lbl_805A9008
@@ -14839,6 +14906,8 @@ force_active:
   - quest_bgm_open_filename
   - quest_bgm_smile_filename
   - quest_decrypt_result_size
+  - quest_download_aram_dma_buffer
+  - quest_download_block_pool
   - quest_download_file_header
   - quest_download_file_info
   - quest_download_file_slot
@@ -15017,6 +15086,7 @@ force_active:
   - release_load_slot__12TChCrLoadAfsFv
   - release_model__8TItemMagFv
   - release_network_info_cipher_key__FPUl
+  - release_node_chain__22TQuestVmDownLoadServerFPv
   - release_object__10TBoss6RockFv
   - release_split_slimes__12TObjEneSlimeFv
   - release_subobjects__11TObjDFDemo5Fv
@@ -16232,6 +16302,7 @@ force_active:
   - seed_character_select_serial_rng__Fl
   - seed_download_rng__Fl
   - seek_gvrt_chunk__6TLobbyFv
+  - seek_or_reopen__22TQuestVmDownLoadServerFi
   - select_action_by_distance__16TObjEneMerillLiaFv
   - select_air_fire_target__12TBoss1DragonFPv
   - select_and_advance__20TShopItemTecSequenceFPv
@@ -19225,6 +19296,10 @@ force_active:
 block_relocations:
   # 0x8000F513 inside lobby_font_texture_prs_data; would export MusyX hardware.c's @eti_8000F50C.
   - source: 0x8049C198
+  # Packed quest-download glyph bits, consumed by byte loads and bit masks.
+  # These words happen to equal code addresses; they are not pointers.
+  - source: 0x8047EB44
+  - source: 0x8047EC64
 
 # MetroTRK code templates are copied as data, so CFA does not discover their references.
 add_relocations:

@@ -80,7 +80,7 @@ public:
     s32 convert_jis_to_sjis_string();
     static void init_buffer_pointers();
     static s32 get_buffer_size();
-    static s32 lookup_value_by_key(u16 arg0);
+    static u8 lookup_value_by_key(u16 arg0);
     static u16 map_key_to_code(u32 arg0);
     static s32 is_valid_item_for_slot(u8 c, u8 k);
     static void invalidate_entries_by_id(s32 id);
@@ -123,7 +123,7 @@ public:
     static s32 calc_pair_cost_bonus(u8 arg0, u8 arg1, s32 arg2);
     static s32 calc_item_entry_cost_extra(u8 arg0, u8 arg1, u8 arg2, s32 arg3);
     static void reset_slot_chain_timers(s32 arg0);
-    static s16 select_best_slot_entry(s32 idx, s32 max, s32 want);
+    static s32 select_best_slot_entry(s32 idx, s32 max, s32 want);
     static s32 sum_entry_sizes(s32 start, s32 n);
     static u8 *find_keyword_entry(u16 *start, u16 *end);
     static s32 get_download_state();
