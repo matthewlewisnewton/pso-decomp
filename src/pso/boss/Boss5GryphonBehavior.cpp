@@ -4985,7 +4985,7 @@ TBoss5Gryphon *TBoss5Gryphon__ct(TBoss5Gryphon *self, void *parent, void *data) 
     } else {
         self->model = (void *)boss5_gryphon_body_bml_resource->models[0].model;
     }
-    self->texlist = boss5_gryphon_body_bml_resource->models[0].m_c;
+    self->texlist = (s32)boss5_gryphon_body_bml_resource->models[0].m_c;
     init_model__9TObjEneDDFP13CollisionBodyl(self, lbl_804878D0, 10);
     self->motion_flags = 0;
     self->set_action_table((TObjMotionAction *)((s32)lbl_80487B1C));
@@ -5148,7 +5148,7 @@ void TBoss5Gryphon::cleanup() {
     TBoss8Dragon__sub_80066A4C();
     if (boss5_gryphon_texture_list != NULL) {
         release_texture_list(boss5_gryphon_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free((u32)boss5_gryphon_texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)boss5_gryphon_texture_list);
         boss5_gryphon_texture_list = NULL;
     }
     if (boss5_gryphon_bml_resource != NULL) {

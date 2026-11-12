@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "types.h"
 #include "pso/unk/text_8034960C.h"
 #include "pso/TObjCMHairMenu.h"
@@ -69,7 +70,7 @@ void draw_quest_load_panel_overlays(void) {
         d.pos[6] = d.pos[0] + quest_load_panel_overlay_offsets[i].x;
         d.pos[7] = d.pos[1];
         d.col[3] = 0x77;
-        ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 7, lbl_805DFD00);
+        ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 7, lbl_805DFD00);
         i++;
     } while (i < 2);
 }
@@ -97,7 +98,7 @@ void draw_quest_load_letterbox_bars(void) {
         d.pos[6] = d.pos[0] + lbl_80478728[i].x;
         d.pos[7] = d.pos[1];
         d.col[3] = 0xFF;
-        ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 3, lbl_805DFD00);
+        ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 3, lbl_805DFD00);
         i++;
     } while (i < 2);
 }

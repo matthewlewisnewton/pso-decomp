@@ -9,6 +9,7 @@
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/boss/TBoss4DarkFalz.h"
+#include "pso/boss/TBoss4ZakoDraw_8030AD38.h"
 #include "pso/boss/TBoss4DarkFalzState.h"
 
 struct Vec_8004AB90 { f32 x, y, z; };
@@ -829,7 +830,6 @@ extern s32 game_difficulty_selection;
 
 extern "C" {
 s32 TBoss4DarkFalz__ct(s32 a0, s32 arg1, s32 a2);
-int TBoss4DarkFalz__sub_8030AD38(void);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
 

@@ -2,7 +2,7 @@
 
 This checks source control flow and field updates, not the native pointer layout,
 constructor ABI, rendering, or arbitrary invalid BML resources. The texture getter
-returns the existing integer handle; its zero fixture avoids a host pointer claim.
+uses the shared pointer return contract with an allocated host fixture.
 """
 from pathlib import Path
 import os
@@ -28,15 +28,15 @@ struct TBoss4Uro { static BmlResource *get_instance_count(); };
 struct TBoss4DarkFalz { static void init_uro_link(); static void clear_uro_link_state(); };
 static BmlResource resource;
 static NJS_OBJECT root, child;
-static GinjaTextureList old_texture;
+static GinjaTextureList old_texture, new_texture;
 static int old_model, new_model;
 static int resource_calls, model_calls, texture_calls, clear_calls;
 static GinjaTextureList *falz_zako_texture_list;
 static void *falz_zako_chunk_model;
 static s32 TBoss4ZakoDraw__rotation_phase;
 BmlResource *TBoss4Uro::get_instance_count() { ++resource_calls; return &resource; }
-s32 TObjFish__sub_8001EDB0(BmlResource *r, s32 index) {
-    assert(r == &resource && index == 8); ++texture_calls; return 0;
+GinjaTextureList *TObjFish__sub_8001EDB0(BmlResource *r, s32 index) {
+    assert(r == &resource && index == 8); ++texture_calls; return &new_texture;
 }
 NJS_OBJECT *get_bml_model(BmlResource *r, s32 index) {
     assert(r == &resource && index == 8); ++model_calls; return &root;
@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
     TBoss4DarkFalz::init_uro_link();
     assert(resource_calls == 2 && texture_calls == 1 && model_calls == 1);
     assert(child.evalflags == 0xA5A5A5A5u);
-    assert(falz_zako_texture_list == nullptr);
+    assert(falz_zako_texture_list == &new_texture);
     assert(falz_zako_chunk_model == (has_model ? &new_model : &old_model));
     assert(TBoss4ZakoDraw__rotation_phase == (has_model ? 0 : 3));
     assert(clear_calls == (has_model ? 1 : 0));

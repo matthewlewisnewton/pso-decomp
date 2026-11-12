@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -48,14 +49,13 @@ struct Obj_8018DBCC {
 };
 
 extern "C" {
-u8 * TObjFish__sub_8001EDB0(void *, int);
 extern u32 TObjContainerJungEx__resource_bundle;
 extern RecoveredGlobal_8018D9B0_lbl_804B7158 fe_obj_hako02_resource_descriptor;
 
 
 u8 *TObjContainerJungEx__sub_8018D900(s32 arg0) {
     if ((void *) (*(u8 * *)&TObjContainerJungEx__resource_bundle) != NULL) {
-        return TObjFish__sub_8001EDB0((*(u8 * *)&TObjContainerJungEx__resource_bundle), arg0);
+        return (u8 *)TObjFish__sub_8001EDB0((BmlResource *)(*(u8 * *)&TObjContainerJungEx__resource_bundle), (s32)arg0);
     }
     return NULL;
 }
@@ -271,7 +271,7 @@ void TObjDoaEx01::try_open() {
     if (((TObjDoaEx01_VObj*)((u8 *)this))->m8(4e+02f, 2e+01f) != 0) {
         ((TObjDoorJung *)(*(s32 *)((s8 *)TObjDoaEx01__alpha_model_node + 4)))->free_children((void *)1);
         ((TObjDoorJung *)(*(s32 *)((s8 *)TObjDoaEx01__alpha_model_sibling + 4)))->free_children((void *)1);
-        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)TObjDoaEx01__resource_bundle, 0)));
+        set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)TObjDoaEx01__resource_bundle, 0)));
         push_matrix();
         post_translate_matrix(((u8 *)this) + 0x38);
         rotate_matrix_y(0, this->rotation.yaw);
@@ -287,7 +287,7 @@ void TObjDoaEx01::draw_model() {
         ((TObjDoorJung *)(*(s32 *)((s8 *)TObjDoaEx01__alpha_model_node + 4)))->free_children((void *)0);
         ((TObjDoorJung *)(*(s32 *)((s8 *)TObjDoaEx01__alpha_model_sibling + 4)))->free_children((void *)0);
         temp_r31 = (s32)(u8 *)get_bml_model((BmlResource *)(TObjDoaEx01__resource_bundle), 0);
-        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)(TObjDoaEx01__resource_bundle), 0)));
+        set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)TObjDoaEx01__resource_bundle, 0)));
         push_matrix();
         post_translate_matrix((void *) (((u8 *)this) + 0x38));
         rotate_matrix_y(0, (this->rotation.yaw));

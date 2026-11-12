@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -24,7 +25,6 @@ struct RecoveredGlobal_802A4CC4_lbl_804DCFF8 {
 };
 
 extern "C" {
-s32 TObjPlayer__sub_802A445C(void *, s32);
 void *find_entity_by_id(u16 id);
 s32 update_lifetime__22TObjEneMe1GiGueMissileFv(void *);
 u16 get_entity_id(void *);
@@ -35,8 +35,6 @@ extern u32 me1gee_cached_model_handle;
 s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
 s32 rotate_matrix_x(int, int);
-s32 TObjFish__sub_8001EDB0(void *, int);
-
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
 
@@ -51,7 +49,7 @@ void TObjEneMe1Gee_NEEDLE::render() {
     post_translate_matrix((u8 *)&this->m_6c);
     rotate_matrix_y(0, this->m_a4);
     rotate_matrix_x(0, this->m_a0);
-    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void *)me1gee_cached_model_handle, 1)));
+    set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)me1gee_cached_model_handle, 1)));
     (s32)get_bml_model((BmlResource *)me1gee_cached_model_handle, 1);
     draw_ginja_object();
     TParticleCtrl::end_effect_render();
@@ -66,7 +64,7 @@ void TObjEneMe1Gee_NEEDLE::run_task() {
     if ((s32) this->m_b8 == 1) {
         update_position();
         update_lifetime__22TObjEneMe1GiGueMissileFv(this);
-        TObjPlayer__sub_802A445C(this, 1);
+        check_actor_contacts(1);
         return;
     }
     TNeedleShoot__sub_802A4668(this);

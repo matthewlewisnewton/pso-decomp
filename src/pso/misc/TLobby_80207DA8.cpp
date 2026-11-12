@@ -426,7 +426,7 @@ void TLobby__sub_802083C0(void);
 
 void TLobby__sub_802083C0(void) {
     if ((u32) forest_rel_work_buffer != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)((void*)forest_rel_work_buffer));
+        TAdSinglePlyChrSelectGC::safe_free((void *)((void*)forest_rel_work_buffer));
         forest_rel_work_buffer = 0U;
         lbl_805D6070 = 0;
         lbl_805D606C = 0;

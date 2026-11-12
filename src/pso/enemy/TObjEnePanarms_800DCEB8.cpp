@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -241,7 +242,6 @@ struct PanarmsMovementParameters {
 };
 extern "C" {
 extern const char *TObjEnePanarms__name;
-s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
 CollisionBody *init_collision_body_parts(TObjCollidable *, const CollisionBody *, s32);
 void register_entity_by_id(TObjBase *);
 }
@@ -1171,7 +1171,7 @@ TObjEnePanarms::TObjEnePanarms(TObject *parent, void *set_data) : TObjEnemy(pare
     add_flags_2e4(2);
     apply_set_data(set_data);
     clear_lobby_object_state();
-    texlist = TObjFish__sub_8001EDB0((BmlResource *)TObjEnePanarms__entry_params_resource, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)((BmlResource *)TObjEnePanarms__entry_params_resource), 0);
     model = (void *)get_bml_model((BmlResource *)TObjEnePanarms__entry_params_resource, 0);
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     collision_body = init_collision_body_parts(this, &lbl_80494F20, 1);

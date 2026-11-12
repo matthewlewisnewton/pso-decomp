@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/object/TObjChip.h"
@@ -27,7 +28,6 @@ struct Param_8017D448 {
 };
 
 extern "C" {
-s32 TObjFish__sub_8001EDB0(void *, int);
 void *__nw__7TObjectFUl(u32);
 void vec3_add_to(Vec_8017D448 *, Vec_8017D448 *);
 void rotate_vector_by_matrix(int, Vec_8017D448 *, Vec_8017D448 *);
@@ -59,7 +59,7 @@ void TOWreckAncientBrakable::spawn_debris() {
         VecCopy((Vec *)&p.pos, (const Vec *)((Vec_8017D448 *)(arg0 + 0x38)));
         vec3_add_to(&p.pos, &tmp);
         p.f40 = (s32)get_bml_model((BmlResource *)wreck_ancient_brakable_bml_resource, i);
-        p.f44 = TObjFish__sub_8001EDB0(wreck_ancient_brakable_bml_resource, i);
+        p.f44 = (s32)TObjFish__sub_8001EDB0((BmlResource *)wreck_ancient_brakable_bml_resource, (s32)i);
         obj = __nw__7TObjectFUl(0x234);
         if (obj != 0) {
             __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)obj, (u8 *)tl_05, (u8 *)&p);

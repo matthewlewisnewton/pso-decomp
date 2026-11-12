@@ -200,7 +200,7 @@ s32 TGStream::load_sct_file(s32 name, u8 *dst) {
         }
         ((TGStream *)((s32 *)&st))->read_sectors_sync(sectors, buf);
         prs_decompress_buffer(buf, (s32)dst);
-        TAdSinglePlyChrSelectGC::safe_free(buf);
+        TAdSinglePlyChrSelectGC::safe_free((void *)buf);
         size = st.info->size;
         ((s32 (*)(s32 *, s32))destroy_gstream)((s32 *)((s32 *)&st), -1);
         return size;

@@ -568,7 +568,7 @@ void load_creation_shape_rel(W_80290250 *arg0) {
     }
 }
 void TAdSinglePlyChrSelectGC::free_field_FC() {
-    TAdSinglePlyChrSelectGC::safe_free(*(s32 *)((s8 *)this + 0xFC));
+    TAdSinglePlyChrSelectGC::safe_free((void *)*(s32 *)((s8 *)this + 0xFC));
     *(s32 *)((s8 *)this + 0xFC) = 0;
 }
 

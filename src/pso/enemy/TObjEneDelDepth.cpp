@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
@@ -73,8 +74,6 @@ u8 *get_bml_motion(s32, s32);
 
 extern const f32 lbl_805DF29C;
 extern const f32 lbl_805DF294;
-
-s32 TObjFish__sub_8001EDB0(u8 *, int);
 
 s32 get_mode__11TCameraCtrlFPv(void *);
 void draw_blob_shadow(s32 arg0);
@@ -312,7 +311,7 @@ TObjEneDelDepth::TObjEneDelDepth(TObject *parent, void *setData) : TObjEnemy(par
 void TObjEneDelDepth::init() {
     u8 *arg0 = (u8 *)this;
     DelDepthMotion *var_r0;
-    this->texlist = TObjFish__sub_8001EDB0((u8 *)(TObjEneDelDepth__shared_resource = TObjEneDelDepth::get_data()), 0);
+    this->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)(TObjEneDelDepth__shared_resource = TObjEneDelDepth::get_data()), 0);
     this->model = (void *)get_bml_model(TObjEneDelDepth__shared_resource, 0);
     VecCopy(&this->prev_position, (const Vec *)(VecCopy(&this->home_position, (const Vec *)(VecCopy(&this->center, &this->position)))));
     this->collisionBody = (CollisionBody *)init_collision_body_parts(arg0, TObjEneDelDepth_collision_body_parts, 1);
@@ -1292,7 +1291,7 @@ void TObjEneDelDepthBomb::render() {
         return;
     }
     NJS_OBJECT *model = get_bml_model(data, 2);
-    s32 texture = TObjFish__sub_8001EDB0((u8 *)data, 2);
+    s32 texture = (s32)TObjFish__sub_8001EDB0((BmlResource *)data, 2);
     push_matrix();
     post_translate_matrix(&position);
     rotate_matrix_zyx(0, this->rotation.pitch, this->rotation.yaw, this->rotation.roll);

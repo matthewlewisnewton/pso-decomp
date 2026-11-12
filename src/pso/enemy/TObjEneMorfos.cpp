@@ -253,7 +253,7 @@ void TObjEneMorfos::init_instance() {
 
     init_position_vectors();
     model = (void *)morfos_resources->models[1].model;
-    this->texlist = morfos_resources->models[1].m_c;
+    this->texlist = (s32)morfos_resources->models[1].m_c;
     init_model(&morfos_collision_body, 1);
     set_action_table(morfos_motion_param_table);
     set_motion_list(morfos_resources->motions);

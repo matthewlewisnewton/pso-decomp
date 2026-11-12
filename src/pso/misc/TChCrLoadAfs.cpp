@@ -177,7 +177,7 @@ TChCrLoadAfs::~TChCrLoadAfs() {
     }
     void *buffer = buffer_address;
     if (buffer != NULL) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)buffer);
+        TAdSinglePlyChrSelectGC::safe_free((void *)buffer);
         buffer_address = NULL;
     }
     release_load_slot__12TChCrLoadAfsFv(this);
@@ -272,7 +272,7 @@ void TChCrLoadAfsTextureReq::update_loading(void *) {
     if (retry != 0) {
         ADXF_Close(arg0->f60);
         arg0->f60 = 0;
-        TAdSinglePlyChrSelectGC::safe_free(arg0->bufs[arg0->f5c]);
+        TAdSinglePlyChrSelectGC::safe_free((void *)arg0->bufs[arg0->f5c]);
         arg0->bufs[arg0->f5c] = 0;
         arg0->f2c = 1;
         return;

@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/MatrixVectorArray.h"
@@ -879,16 +880,14 @@ extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 void TObjPlayer__sub_802E80A0(void);
 NJS_MOTION *get_bml_motion(void *resource, s32 id);
-int TObjFish__sub_8001EDB0(void*, void*);
-
     extern void *lbl_805D6918;
 NJS_MOTION *TObjPlayer::notify_fish_obj(s32 id) { return get_bml_motion(lbl_805D6918, id); }
 
 NJS_OBJECT *TObjPlayer::queue_boss_effect(s32 id) { return get_bml_model((BmlResource *)lbl_805D6918, id); }
 
-void TObjPlayer__sub_802E80A0(void) { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); }
+void TObjPlayer__sub_802E80A0(void) { (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D6918, 0); }
 
-void TObjPlayer::draw_effect() { set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0))); }
+void TObjPlayer::draw_effect() { set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)lbl_805D6918, 0))); }
 
 typedef char RecoveredGlobal_802E80F4_lbl_8050BEC0_size[sizeof(RecoveredGlobal_802E80F4_lbl_8050BEC0) == 0x20 ? 1 : -1];
 typedef char RecoveredGlobal_802E80F4_main_task_size[sizeof(RecoveredGlobal_802E80F4_main_task) == 0x34 ? 1 : -1];

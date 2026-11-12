@@ -60,9 +60,9 @@ void load_memcard_file(void) {
         TLobby::run_frame();
     }
     if (TAdPlayerLoadGC__sub_801E1538(&hdr, buf) != 0) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+        TAdSinglePlyChrSelectGC::safe_free((void *)buf);
         return;
     }
     fn_80197FD0((void *)hdr.f58, (void *)hdr.f5C);
-    TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+    TAdSinglePlyChrSelectGC::safe_free((void *)buf);
 }

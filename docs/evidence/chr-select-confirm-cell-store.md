@@ -132,3 +132,40 @@ pooling and explicit `-pooldata on` did not affect the constructor difference.
 The resulting object covers all 38 functions and owns 7,836 bytes of code and
 900 bytes of data across five sections. The class-name pointer occupies four
 bytes in `.sdata`. The next four bytes are alignment padding.
+
+
+## Native float-pool recovery
+
+On fork base `4b40cbeb933f52d6a86d9530abbefec9ec1f1028`, the plate's 38
+functions and 900 data bytes already matched and linked. Its first eight float
+constants, however, came from `TAdMultiPlyChrSelectGC_literals.s`, a separate
+32-byte assembly-only unit at `805DE560..805DE580`. All references in the fresh
+split and compiled object inventory belong to `TAdChrSelPlyPlateGC.cpp`.
+The assembly loads identify the half-up alpha bias, alpha scale, horizontal
+translation, zero, depth, fade increment, maximum alpha and cursor margin.
+
+The first C++ experiment defined those eight exported constants in the plate
+source. All 38 functions still matched, but CodeWarrior emitted the eight named
+floats followed by another anonymous copy: `.sdata2` grew from 40 to 72 bytes.
+The [conversion-pool investigation](conversion-pool-constants.md#duplicate-copies-that-hide-a-size-mismatch)
+describes this duplicate-definition failure and the native literal solution.
+Replacing the references with `0.5f`, `255.0f`, `-206.0f`, `0.0f`, `0.54f`,
+`0.16666667f`, `1.0f` and `16.0f` emits exactly the original pool, followed by
+the existing `0.53f` and `1/256` entries. No new compiler override or pragma is
+needed. The existing deferred definition order remains necessary.
+
+The split now assigns `805DE560..805DE588` to the plate. The eight old exported
+names are local after `localize_split_globals.py` checked the fresh generated
+configuration's original and compiled consumer objects and found no foreign
+references. The assembly source and its link-list entry are removed.
+This consolidates two previously linked units; it adds no function matches or
+linked bytes and does not claim recovery of the historical translation unit.
+
+Validation: all 38 functions (7,836 code bytes) and all 932 data bytes match.
+Every allocated section's raw bytes, size and alignment equal the fresh original
+split: `.text` 7,836/4, `.rodata` 640/8, `.data` 224/8, `.sdata` 4/8,
+`.sbss` 24/8 and `.sdata2` 40/8 (size/alignment). The generated linker inputs
+select the compiled plate object. The complete linked DOL retains SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`; the address-based report comparison
+loses no functions, code or data. Linked-unit and retention checks pass with
+3,625 linked units and the same 19,276 retention entries.

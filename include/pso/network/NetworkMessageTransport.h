@@ -9,10 +9,9 @@ s16 TLobby__sub_804262CC(void *argp);
 s16 TLobby__sub_80426440(void);
 s16 TLobby__sub_80426660(u8 *arg0);
 s32 TLobby__sub_80426B88(s16 arg0);
+s16 post_send_message(u8 *frame, u16 arg1);
+void forward_to_channel(void *frame, void *b);
 }
 void dispatch_received_ethernet_frame(void *q, void *a, void *b);
-extern "C" {
-s16 post_send_message__6TLobbyFUs(s32 arg0, u16 arg1);
-}
 
 #endif

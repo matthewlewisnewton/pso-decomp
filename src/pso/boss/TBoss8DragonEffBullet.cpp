@@ -150,7 +150,7 @@ typedef char RecoveredGlobal_802FE378_lbl_80474B68_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_802FE378_lbl_80474B74_size[sizeof(RecoveredGlobal_802FE378_lbl_80474B74) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_802FE378_lbl_80474B80_size[sizeof(RecoveredGlobal_802FE378_lbl_80474B80) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_802FE378___vt__21TBoss8DragonEffBullet_size[sizeof(RecoveredGlobal_802FE378___vt__21TBoss8DragonEffBullet) == 0x18 ? 1 : -1];
-u8 *TBoss8DragonEffBullet__ct(u8 *boss8_dragon_eff_bullet, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s16 arg5) {
+u8 *TBoss8DragonEffBullet__ct(u8 *boss8_dragon_eff_bullet, void *arg1, const void *arg2, const void *arg3, s32 arg4, u16 arg5) {
     __ct__7TObjectFP7TObject((void *)boss8_dragon_eff_bullet, (void *)arg1);
     *(s32 **)((s8 *)boss8_dragon_eff_bullet + 0x18) = &(*(RecoveredGlobal_802FE378___vt__21TBoss8DragonEffBullet *)&__vt__21TBoss8DragonEffBullet).value;
     *(s32 *)((s8 *)boss8_dragon_eff_bullet + 0) = (s32) TBoss8DragonEffBullet__name;

@@ -2,12 +2,19 @@
 #define PSO_MISC_TNEEDLESHOOT_H
 
 #include "types.h"
+#include "pso/technique/TechniqueContact.h"
 #include "pso/TObject.h"
 
 struct TechniqueContactBody;
 
 struct TNeedleShoot : public TObject {
     virtual ~TNeedleShoot();
+    void clear_technique_contacts();
+    s32 is_hit_receivable_target(TechniqueContactActor *target);
+    TechniqueContactList *fn_802A3DE8(void *source);
+    TechniqueContactList *fn_802A3FDC(void *source);
+    TechniqueContactList *collect_technique_contacts(void *source);
+    void check_actor_contacts(s32 ignored);
     virtual int vfunc_6();
     virtual int queue_destruction();
     virtual void vfunc_8();
@@ -20,7 +27,7 @@ struct TNeedleShoot : public TObject {
     u8 unk_30[0x4];
     u16 m_34;
     u8 _pad36[0x2];
-    TechniqueContactBody *m_38;
+    TechniqueContactBody *contact_body;
     void* m_3c;
     u8 _pad40[0x10];
     u32 m_50;

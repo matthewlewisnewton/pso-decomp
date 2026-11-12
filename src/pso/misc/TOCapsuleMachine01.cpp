@@ -83,7 +83,7 @@ TOCapsuleMachine01::TOCapsuleMachine01(void *set_data) : TObjMapObject(tl_05) {
     m_name = TOCapsuleMachine01_class_name;
     apply_object_set_data(set_data);
     model = (void *)TOCapsuleMachine01__model_resource->models[0].model;
-    texlist = TOCapsuleMachine01__model_resource->models[0].m_c;
+    texlist = (s32)TOCapsuleMachine01__model_resource->models[0].m_c;
     view_range = 500.0f;
     model_radius = 50.0f;
     actorFlags |= 0x40000000;

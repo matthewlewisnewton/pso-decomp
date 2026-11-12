@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -101,7 +102,6 @@ extern s32 lbl_805D5868;
 extern const f32 lbl_805DF3AC;
 extern const f32 lbl_805DF3B0;
 extern const f32 lbl_805DF3B4;
-s32 TObjFish__sub_8001EDB0(void *, int);
 s32 rotate_matrix_z(int, int);
 s32 rotate_matrix_x(int, void *);
 s32 push_matrix();
@@ -153,7 +153,7 @@ void TObjEneReconBomb::render() {
         return;
     }
     bml_model = (s32)get_bml_model((BmlResource *)recon_bomb_bml_resource, 2);
-    temp_r30 = TObjFish__sub_8001EDB0((void *)recon_bomb_bml_resource, 2);
+    temp_r30 = (s32)TObjFish__sub_8001EDB0((BmlResource *)recon_bomb_bml_resource, 2);
     push_matrix();
     translate_matrix(0, (f32) (*(f32 *)((s8 *)arg0 + 0x38)), (f32) ((2.0f) + *(f32 *)((s8 *)arg0 + 0x3C)), (f32) (*(f32 *)((s8 *)arg0 + 0x40)));
     rotate_matrix_zyx(0, (*(s32 *)&this->rotation.pitch), (this->rotation.yaw), (this->rotation.roll));

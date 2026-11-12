@@ -55,7 +55,7 @@ extern const f32 lbl_805D967C;
 // the original function order and placing the native vtable before switch data.
 void TObjEneBalClaw::select_model(s32 i) {
     model = (void *)lbl_805D4F20->models[i].model;
-    texlist = lbl_805D4F20->models[i].m_c;
+    texlist = (s32)lbl_805D4F20->models[i].m_c;
 }
 
 TObjEneBalClawBody::TObjEneBalClawBody(TObject *parent, BalClawSetData *set_data)

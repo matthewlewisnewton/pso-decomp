@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "types.h"
 #include "pso/misc/TWindowKeyBoardBase_8008102C.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
@@ -753,7 +754,7 @@ void fn_8025DE10(void *arg0, void *arg1) {
     pos[5] = bottom;
     pos[6] = pos[0];
     pos[7] = bottom;
-    ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 6, depth);
+    ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 6, depth);
 }
 
 void TWindowKeyBoardBase::draw_text_glyphs(void *arg1, void *arg2) {
@@ -811,7 +812,7 @@ void TWindowKeyBoardBase::draw_text_glyphs(void *arg1, void *arg2) {
                 pos[5] = q.y2;
                 pos[6] = q.x;
                 pos[7] = q.y2;
-                ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 6, depth);
+                ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 6, depth);
                 ((f32 *)arg2)[0] += (f32)(s32)adv;
             }
         }
@@ -858,7 +859,7 @@ void TWindowSubStatusDisp__sub_8025E148(TWindowKeyBoardBase *self, TWindowKeyBoa
             pos[5] = q.y2;
             pos[6] = q.x;
             pos[7] = q.y2;
-            ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 6, depth);
+            ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 6, depth);
             cursor[0] += (f32)adv;
         }
     }

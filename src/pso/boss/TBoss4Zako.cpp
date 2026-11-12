@@ -100,7 +100,7 @@ struct Obj_8005C218 {
     V_8005C218 home;
 };
 
-struct Vec_8005BC4C { f32 x, y, z; };
+typedef Vec Vec_8005BC4C;
 
 struct TBoss4Bishi {
     u8 pad0[0x38];
@@ -254,7 +254,7 @@ void TBoss4Uro__vt61(void* p);
 void *__dt__9TBoss4UroFv(void *arg0, s16 arg1);
 s32 create__9TBoss4UroFi(s32 arg0);
 
-struct Vec_8005C49C { f32 x, y, z; };
+typedef Vec Vec_8005C49C;
 
 struct TBoss4Uro {
     u8 pad0[0x38];
