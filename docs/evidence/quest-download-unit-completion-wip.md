@@ -708,3 +708,29 @@ slot/entry/allocation storage, the shared selection mode and preserved
 registers agree. Every controlled operation is reached. This validates the
 refinement under those modeled callback behaviors; it does not replace the
 remaining exact assembly comparison or complete-unit source-link admission.
+
+## Follow-up allocation experiments
+
+The retained selector is 99.28287%, with the native instruction sequence,
+1,004-byte extent and 80-byte frame. Its 3,000-case native differential check
+and the complete repository checks pass. A minimal standalone C translation
+and a minimal C++ translation both reproduce that same score and extent, so
+neither language mode nor unrelated declarations explain the remaining swaps.
+
+Private compiler-state captures and a replay of the simplify/select algorithm
+reproduce every current selector register assignment and the full 93-node
+selection order. Searches over named-local declaration orders alone did not
+improve this graph. A model that also permits reordering compiler-created
+values can reach the native assignment; that model result is a diagnostic,
+not a source match. The corresponding source-level lifetime reconstruction
+remains unfinished.
+
+The follow-up research used the existing
+[TWW register-allocation guide](https://github.com/zeldaret/tww/blob/main/docs/regalloc.md)
+and [GC/1.2.5 allocation observations](https://github.com/MarkMcCaskey/decomp-scripts/blob/main/mwcc-compiler-notes.md).
+Trials covered declaration initializers, separate phase cursors, scoped
+optimizer settings, actual inline operations, dependency-safe initialization
+orders, and equivalent integer and pointer expressions. Aggregate variants
+that changed the native frame were rejected. The accumulator's character
+buffer and cast-spelling trials did not improve its retained 99.386505%.
+No shared helper ABI or buffer declaration was changed for these experiments.
