@@ -999,177 +999,132 @@ extern vec2f lbl_804DBCD0[3];
 #pragma push
 #pragma fp_contract on
 void TObjCMHairMenu::render() {
-    ColorLineVertex pts[4];
-    u32 cols[4];
-    ColorLineList list;
-    vec2f pos;
-    vec2f scl;
-    vec2f pos2;
-    vec2f pos3;
-    vec2f pos4;
-    s32 i;
-    f32 hi;
-    s32 j;
+    f32 first, right, pulse, screen_scale, opacity, step;
+    vec2f position, scale, tabs, icons, details;
+    u32 colors[4];
+    ColorLineList primitive;
+    ColorLineVertex vertices[4];
     s32 hair = appearance->hair;
-    f32 w;
-    s32 sprite;
-    f32 t;
-    f32 step;
-    f32 dim;
-    f32 scale;
-    f32 v;
-    f32 a;
-    f32 pulse = 0.25f * sin_table_lookup(ticks << 10) + 1.0f;
-    f32 base;
-    s32 idx;
-    f32 alpha;
-
-    if (pulse > 1.0f) {
-        pulse = 1.0f;
-    }
-    idx = count - 1;
-    if (idx < 0) {
-        idx = 0;
-    } else if (idx >= 10) {
-        idx = 9;
-    }
-    base = lbl_8046509C[idx];
+    pulse = 0.25f * sin_table_lookup(ticks << 10) + 1.0f;
+    if (pulse > 1.0f) pulse = 1.0f;
+    s32 index = count - 1;
+    if (index < 0) index = 0;
+    else if (index >= 10) index = 9;
+    right = lbl_8046509C[index];
     if (!(fade <= 0.33f)) {
-        if (fade >= 0.66f) {
-            t = 1.0f;
-        } else {
-            t = (fade - 0.33f) / 0.33f;
-        }
-        scl.y = 1.0f;
-        pos.y = 146.0f;
-        for (i = 0; i < 4; i++) {
-            sprite = 0;
-            if (i == 0) {
-                w = t * (base - 75.0f) + 75.0f;
-            } else {
-                w = t * (lbl_804650C4[i] - 75.0f) + 75.0f;
-            }
-            pos.x = 75.0f;
+        f32 fill;
+        if (fade >= 0.66f) fill = 1.0f;
+        else fill = (fade - 0.33f) / 0.33f;
+        scale.y = 1.0f;
+        position.y = 146.0f;
+        first = fill * (right - 75.0f) + 75.0f;
+        for (s32 i = 0; i < 4; ++i) {
+            s32 sprite = 0;
+            f32 edge = i == 0 ? first : fill * (lbl_804650C4[i] - 75.0f) + 75.0f;
+            position.x = 75.0f;
             if (i == selection) {
                 sprite = 2;
-                pos.x = 9.0f * sin_table_lookup(ticks << 10) + pos.x;
+                position.x = 9.0f * sin_table_lookup(ticks << 10) + position.x;
             }
-            scl.x = (w - pos.x) / 48.0f;
-            draw_ui_sprite_opaque(sprite + 6, &pos, &scl, -2.75f);
-            pos.x = w;
-            scl.x = 1.0f;
-            draw_ui_sprite_opaque(sprite + 7, &pos, &scl, -2.75f);
-            pos.y += 44.0f;
+            scale.x = (edge - position.x) / 48.0f;
+            draw_ui_sprite_opaque(sprite + 6, &position, &scale, -2.75f);
+            position.x = edge;
+            scale.x = 1.0f;
+            draw_ui_sprite_opaque(sprite + 7, &position, &scale, -2.75f);
+            position.y += 44.0f;
         }
     }
     if (!(fade <= 0.0f)) {
-        if (fade >= 0.33f) {
-            a = 1.0f;
-        } else {
-            a = fade / 0.33f;
-        }
-        pos2.x = 56.0f;
-        pos2.y = 146.0f;
-        for (i = 0; i < 4; i++) {
-            sprite = 0;
-            if (i == selection) {
-                sprite = -1;
-            }
-            draw_ui_sprite(sprite + 1, &pos2, -2.4375f, a);
-            pos2.y += 44.0f;
+        f32 alpha = fade >= 0.33f ? 1.0f : fade / 0.33f;
+        tabs.x = 56.0f;
+        tabs.y = 146.0f;
+        for (s32 i = 0; i < 4; ++i) {
+            s32 selected = 0;
+            if (i == selection) selected = -1;
+            draw_ui_sprite(selected + 1, &tabs, -2.4375f, alpha);
+            tabs.y += 44.0f;
         }
     }
     if (!(fade <= 0.66f)) {
-        t = (fade - 0.66f) / 0.33999997f;
-        pos3.x = 103.0f;
-        pos3.y = 150.0f;
-        alpha = t * t;
-        for (i = 0; i < count; i++) {
-            f32 s = alpha;
-            sprite = 0x1F;
-            if (selection != 0) {
-                s *= 0.6f;
-            }
+        f32 amount = (fade - 0.66f) / 0.33999997f;
+        icons.x = 103.0f;
+        icons.y = 150.0f;
+        f32 alpha = amount * amount;
+        for (s32 i = 0; i < count; ++i) {
+            f32 a = alpha;
+            s32 sprite = 31;
+            if (selection != 0) a *= 0.6f;
             if (i == hair) {
-                sprite = 0x20;
-                if (creation_resource_ready_state != 2) {
-                    s *= 0.2f * fabs_float(sin_table_lookup(ticks << 12)) + 0.2f;
-                } else if (selection == 0) {
-                    s *= pulse;
-                }
+                sprite = 32;
+                if (creation_resource_ready_state != 2)
+                    a *= 0.2f * fabs_float(sin_table_lookup(ticks << 12)) + 0.2f;
+                else if (selection == 0) a *= pulse;
             }
-            draw_ui_sprite(sprite, &pos3, -2.4375f, s);
-            pos3.x += 17.0f;
+            draw_ui_sprite(sprite, &icons, -2.4375f, a);
+            icons.x += 17.0f;
         }
-        w = base - 347.0f;
-        dim = alpha;
-        if (selection == 0) {
-            hi = alpha * pulse;
-        } else {
-            dim *= 0.6f;
-            hi = dim;
+        f32 offset = right - 347.0f;
+        f32 a = alpha;
+        f32 selected_alpha;
+        if (selection == 0) selected_alpha = alpha * pulse;
+        else { selected_alpha = alpha; selected_alpha *= 0.6f; a = selected_alpha; }
+        details.x = 299.0f + offset;
+        details.y = 149.0f;
+        draw_ui_sprite(hair + 20, &details, -2.4375f, selected_alpha);
+        details.x = 305.0f + offset;
+        details.y = 150.0f;
+        draw_ui_sprite(30, &details, -2.4375f, a);
+        details.x = 324.0f + offset;
+        details.y = 167.0f;
+        draw_ui_sprite(count + 19, &details, -2.4375f, a);
+        for (s32 i = 1; i < 4; ++i) {
+            f32 icon_alpha = alpha;
+            if (i == selection) icon_alpha *= pulse;
+            else icon_alpha *= 0.6f;
+            draw_ui_sprite(i + 15, &lbl_804DBCD0[i - 1], -2.4375f, icon_alpha);
         }
-        pos4.x = 299.0f + w;
-        pos4.y = 149.0f;
-        draw_ui_sprite(hair + 20, &pos4, -2.4375f, hi);
-        pos4.x = 305.0f + w;
-        pos4.y = 150.0f;
-        draw_ui_sprite(0x1E, &pos4, -2.4375f, dim);
-        pos4.x = 324.0f + w;
-        pos4.y = 167.0f;
-        draw_ui_sprite(count + 19, &pos4, -2.4375f, dim);
-        for (i = 1; i < 4; i++) {
-            f32 s = alpha;
-            if (i == selection) {
-                s *= pulse;
-            } else {
-                s *= 0.6f;
-            }
-            draw_ui_sprite(i + 15, &lbl_804DBCD0[i - 1], -2.4375f, s);
-        }
-
         TCameraCtrl::restore_full_screen_view();
-        scale = TObjCMMainMenu::get_scale();
-        step = 44.0f * scale;
-        pts[0].y = pts[3].y = 0.1f * (lbl_804650D4[1].y - lbl_804650D4[0].y) + lbl_804650D4[0].y;
-        pts[1].y = pts[2].y = 1.1f * (lbl_804650D4[1].y - lbl_804650D4[0].y) + lbl_804650D4[0].y;
-        list.verts = pts;
-        list.colors = cols;
-        list.unk_8 = 0;
+        screen_scale = TObjCMMainMenu::get_scale();
+        step = 44.0f * screen_scale;
+        primitive.verts = vertices;
+        primitive.colors = colors;
+        primitive.unk_8 = 0;
+        f32 top = 0.1f * (lbl_804650D4[1].y - lbl_804650D4[0].y) + lbl_804650D4[0].y;
+        f32 bottom = 1.1f * (lbl_804650D4[1].y - lbl_804650D4[0].y) + lbl_804650D4[0].y;
+        vertices[0].x = 0.1f * (lbl_804650D4[1].x - lbl_804650D4[0].x) + lbl_804650D4[0].x;
+        vertices[1].x = 1.1f * (lbl_804650D4[1].x - lbl_804650D4[0].x) + lbl_804650D4[0].x;
+        vertices[2].x = 1.1f * (lbl_804650D4[2].x - lbl_804650D4[3].x) + lbl_804650D4[3].x;
+        vertices[3].x = 0.1f * (lbl_804650D4[2].x - lbl_804650D4[3].x) + lbl_804650D4[3].x;
+        vertices[0].y = vertices[3].y = top;
+        vertices[1].y = vertices[2].y = bottom;
+        vertices[0].y *= screen_scale;
+        vertices[1].y *= screen_scale;
+        vertices[2].y *= screen_scale;
+        vertices[3].y *= screen_scale;
+        opacity = 255.0f * amount;
         HairBarColor color = lbl_804650F4[3];
-        pts[0].x = 0.1f * (lbl_804650D4[1].x - lbl_804650D4[0].x) + lbl_804650D4[0].x;
-        pts[1].x = 1.1f * (lbl_804650D4[1].x - lbl_804650D4[0].x) + lbl_804650D4[0].x;
-        pts[2].x = 1.1f * (lbl_804650D4[2].x - lbl_804650D4[3].x) + lbl_804650D4[3].x;
-        pts[3].x = 0.1f * (lbl_804650D4[2].x - lbl_804650D4[3].x) + lbl_804650D4[3].x;
-        pts[0].y *= scale;
-        pts[1].y *= scale;
-        pts[2].y *= scale;
-        pts[3].y *= scale;
-        color.c[3] = 255.0f * t;
-        TObjCMHairMenu__sub_801E3F54(&cols[0], TObjCMHairMenu__sub_801E3F54(&cols[1],
-            TObjCMHairMenu__sub_801E3F54(&cols[2], TObjCMHairMenu__sub_801E3F54(&cols[3], &color))));
-        for (i = 0; i < 3; i++) {
-            ((TObjCMHairMenu *)&list)->draw_tri_fan_2d(4, 6, -2.75f);
-            pts[0].y += step;
-            pts[1].y += step;
-            pts[2].y += step;
-            pts[3].y += step;
+        color.c[3] = opacity;
+        TObjCMHairMenu__sub_801E3F54(&colors[0], TObjCMHairMenu__sub_801E3F54(&colors[1], TObjCMHairMenu__sub_801E3F54(&colors[2], TObjCMHairMenu__sub_801E3F54(&colors[3], &color))));
+        for (s32 i = 0; i < 3; ++i) {
+            ((TObjCMHairMenu *)&primitive)->draw_tri_fan_2d(4, 6, -2.75f);
+            vertices[0].y += step;
+            vertices[1].y += step;
+            vertices[2].y += step;
+            vertices[3].y += step;
         }
-        for (i = 0; i < 3; i++) {
-            v = (&appearance->red)[i] / 255.0f;
-            if (v != 0.0f) {
-                pts[0].x = lbl_804650D4[0].x;
-                pts[1].x = lbl_804650D4[1].x;
-                pts[2].x = v * (lbl_804650D4[2].x - lbl_804650D4[1].x) + lbl_804650D4[1].x;
-                pts[3].x = v * (lbl_804650D4[3].x - lbl_804650D4[0].x) + lbl_804650D4[0].x;
-                for (j = 0; j < 4; j++) {
-                    pts[j].y = scale * lbl_804650D4[j].y + i * step;
-                }
+        for (s32 i = 0; i < 3; ++i) {
+            f32 channel = (&appearance->red)[i] / 255.0f;
+            if (0.0f != channel) {
+                vertices[0].x = lbl_804650D4[0].x;
+                vertices[1].x = lbl_804650D4[1].x;
+                vertices[2].x = channel * (lbl_804650D4[2].x - lbl_804650D4[1].x) + lbl_804650D4[1].x;
+                vertices[3].x = channel * (lbl_804650D4[3].x - lbl_804650D4[0].x) + lbl_804650D4[0].x;
+                f32 y = (f32)i * step;
+                for (s32 j = 0; j < 4; ++j) vertices[j].y = screen_scale * lbl_804650D4[j].y + y;
                 HairBarColor bar_color = lbl_804650F4[i];
-                bar_color.c[3] = 255.0f * t;
-                TObjCMHairMenu__sub_801E3F54(&cols[0], TObjCMHairMenu__sub_801E3F54(&cols[1],
-                    TObjCMHairMenu__sub_801E3F54(&cols[2], TObjCMHairMenu__sub_801E3F54(&cols[3], &bar_color))));
-                ((TObjCMHairMenu *)&list)->draw_tri_fan_2d(4, 6, -2.4375f);
+                bar_color.c[3] = opacity;
+                TObjCMHairMenu__sub_801E3F54(&colors[0], TObjCMHairMenu__sub_801E3F54(&colors[1], TObjCMHairMenu__sub_801E3F54(&colors[2], TObjCMHairMenu__sub_801E3F54(&colors[3], &bar_color))));
+                ((TObjCMHairMenu *)&primitive)->draw_tri_fan_2d(4, 6, -2.4375f);
             }
         }
         TCameraCtrl__sub_80068EF0();

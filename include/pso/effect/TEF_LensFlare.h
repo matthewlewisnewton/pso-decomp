@@ -12,7 +12,7 @@ struct LensFlareElement {
     f32 size;
     f32 shrink;      // how much of the size goes as the light leaves the view centre
     f32 brightness;
-    u8 pad_14[0x4];
+    f32 reserved;
 };
 
 struct TEF_LensFlare : public TObjBase {

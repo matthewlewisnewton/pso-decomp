@@ -1205,7 +1205,10 @@ pso/ui/window/TWindowKeyBoardBase_8008102C.cpp:
 
 pso/effect/TEF_LensFlare.cpp:
 	.text       start:0x80081278 end:0x8008197C
-	.data       start:0x8048E130 end:0x8048E164
+	.rodata     start:0x80438E30 end:0x80438E4C
+	.data       start:0x8048E040 end:0x8048E164
+	.sdata      start:0x805D28F0 end:0x805D28F4
+	.sdata2     start:0x805D9338 end:0x805D9374
 
 pso/effect/TEF_PvrWave.cpp:
 	.text       start:0x8008197C end:0x80081B2C
@@ -4315,6 +4318,7 @@ pso/unk/text_8016F1C0.cpp:
 
 pso/object/trap/TOMineTrap_8016F6F8.cpp:
 	.text       start:0x8016F6F8 end:0x80170EEC
+	.rodata     start:0x804421F8 end:0x80442200
 
 pso/object/trap/TOMine.cpp:
 	.text       start:0x80170EEC end:0x80171314
@@ -9287,6 +9291,7 @@ pso/unk/text_802E3BA8.cpp:
 
 pso/weapon/TItemAttackCol.cpp:
 	.text       start:0x802E3BFC end:0x802E4748
+	.data       start:0x804E3530 end:0x804E353C
 
 pso/effect/item/TItemEffOrgaFlowShot.cpp:
 	.text       start:0x802E4748 end:0x802E4798

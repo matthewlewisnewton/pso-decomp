@@ -383,6 +383,7 @@ pso/boss/TUnk_80484A94.cpp
 pso/boss/TUnk_80484AFC.cpp
 pso/camera/CreationCamera.cpp
 pso/effect/photon/TDPBShower.cpp
+pso/effect/TEF_LensFlare.cpp
 pso/effect/TEF_PvrWave.cpp
 pso/effect/TEffClitical.cpp
 pso/effect/TEffGuard.cpp
@@ -519,6 +520,7 @@ pso/weapon/TUnk_804A4338.cpp
 pso/weapon/SpecialProjectileWeapons.cpp
 pso/weapon/SpecialProjectileWeapons_80124760.cpp
 pso/item/TItem.cpp
+pso/weapon/TItemAttackCol.cpp
 pso/weapon/TItemAttackCol_802E4798.cpp
 pso/weapon/TItemAttacker.cpp
 pso/item/TItemBuff.cpp
@@ -559,6 +561,7 @@ pso/item/TItemEquipBase_8022F1C0.cpp
 pso/item/TItemHeapObject.cpp
 pso/item/TItemList_8010ED0C.cpp
 pso/item/TItemList_801D57B0.cpp
+pso/item/TItemList.cpp
 pso/item/TItemLoad.cpp
 pso/item/TItemLoad_8010F2AC.cpp
 pso/item/TItemLoad_8010F52C.cpp
@@ -1186,6 +1189,7 @@ pso/object/trap/TOMineTrap.cpp
 pso/object/trap/TOMineTrapDisp.cpp
 pso/object/trap/TOMineTrapDisp_8016EDC8.cpp
 pso/object/trap/TOMineTrap_8016ED9C.cpp
+pso/object/trap/TOMineTrap_8016F6F8.cpp
 pso/object/mine/TOMonitorMachine01.cpp
 pso/object/ruins/TOMonumentAncient01.cpp
 pso/object/ruins/TOMonumentAncient02.cpp
@@ -1250,6 +1254,7 @@ pso/effect/photon/TPhotonMylla.cpp
 pso/effect/photon/TPhotonPilla.cpp
 pso/effect/photon/TPhotonRainbow.cpp
 pso/effect/photon/TPhotonYoulla.cpp
+pso/player/TObjPlayer_801C7430.cpp
 pso/player/TObjPlayer_802790CC.cpp
 pso/player/TPlayerBattleCtrl4P.cpp
 pso/player/TPlayerBattleCtrl4P_801C4F70.cpp
@@ -2877,6 +2882,7 @@ pso/unk/text_803C1780.cpp
 pso/map/CsnQuery.cpp
 pso/unk/text_80209D34.cpp
 pso/unk/text_8020B47C.cpp
+pso/unk/text_8020B5CC.cpp
 pso/unk/text_803C5AA0.cpp
 pso/ui/chat/TWindowSubSymbolChatParts.cpp
 pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp
