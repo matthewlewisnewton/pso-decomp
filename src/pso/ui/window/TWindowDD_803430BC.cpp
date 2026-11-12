@@ -240,6 +240,8 @@ void build_item_list__9TWindowDDFPv(u8 *arg0);
 s32 TWindowDD__sub_80347758(DD_803461CC *, DD_803461CC *);
 s32 TWindowDD__sub_803474CC(DD_803461CC *, s32, char *, char *, s32 *);
 s32 append_string__9TWindowDDFllPl(char *, char *, s32 *);
+extern const char lbl_805DFCC0[4];
+extern const char lbl_805DFCC4[4];
 s32 show_message_by_count__9TWindowDDFll(char *, s32 *);
 s32 can_append_chars__9TWindowDDFlPl(s32, s32 *);
 s32 word_select_player_gender(u16);
@@ -1733,14 +1735,32 @@ s32 format_word_select_german(DD_803461CC *src, char *window_dd, u16 arg2) {
     return pos;
 }
 
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(1)
+static inline void append_spanish_word_form(s32 id, s32 form, char *buffer, s32 *length) {
+    show_message_by_count__9TWindowDDFll(buffer, length);
+    if (form == 0) {
+        TWindowDD__sub_8034886C(id, buffer, length);
+    } else {
+        Pair_80344980 *forms;
+        if (form == 1) {
+            forms = &TWindowDD__data_805D6E40[1];
+        } else {
+            forms = &TWindowDD__data_805D6E40[0];
+        }
+        append_string__9TWindowDDFllPl(TWindowDD__data_805D6E28[forms->list[id - 0x5AC]], buffer, length);
+    }
+}
+
 /* Spanish word-select formatter (window mode 4; inferred: format_spanish_message, from the
    leading "\xBF"/"\xA1" marks for the ?/! ids 0x685/0x686). */
 s32 format_word_select_spanish(DD_803461CC *src, char *window_dd, u16 arg2) {
     s32 k;
     s32 n;
+    s32 s;
     s32 i;
     s32 pos;
-    s32 s;
     pos = i = 0;
     n = src->count;
     if (n == 0) {
@@ -1755,11 +1775,11 @@ s32 format_word_select_spanish(DD_803461CC *src, char *window_dd, u16 arg2) {
         if (n > 2) {
             n = 2;
         }
-        for (k = 0; k < n; k++) {
-            if (k == 1) {
+        for (i = 0; i < n; i++) {
+            if (i == 1) {
                 append_char__9TWindowDDFSclPl(0x20, window_dd, &pos);
             }
-            TWindowDD__sub_8034886C(src->ids[k], window_dd, &pos);
+            TWindowDD__sub_8034886C(src->ids[i], window_dd, &pos);
         }
         append_char__9TWindowDDFSclPl(0x3F, window_dd, &pos);
         if (src->count > 2) {
@@ -1779,9 +1799,9 @@ s32 format_word_select_spanish(DD_803461CC *src, char *window_dd, u16 arg2) {
     case 4: {
         if (n > 3) {
             if (src->ids[3] == 0x685) {
-                append_string__9TWindowDDFllPl("\xBF", window_dd, &pos);
+                append_string__9TWindowDDFllPl((char *)lbl_805DFCC0, window_dd, &pos);
             } else if (src->ids[3] == 0x686) {
-                append_string__9TWindowDDFllPl("\xA1", window_dd, &pos);
+                append_string__9TWindowDDFllPl((char *)lbl_805DFCC4, window_dd, &pos);
             }
         }
         s = src->ids[0];
@@ -1802,19 +1822,7 @@ s32 format_word_select_spanish(DD_803461CC *src, char *window_dd, u16 arg2) {
             k = 1;
         }
         if (n > 1) {
-            i = src->ids[1];
-            show_message_by_count__9TWindowDDFll(window_dd, &pos);
-            if (k == 0) {
-                TWindowDD__sub_8034886C(i, window_dd, &pos);
-            } else {
-                Pair_80344980 *p;
-                if (k == 1) {
-                    p = &TWindowDD__data_805D6E40[1];
-                } else {
-                    p = &TWindowDD__data_805D6E40[0];
-                }
-                append_string__9TWindowDDFllPl(TWindowDD__data_805D6E28[p->list[i - 0x5AC]], window_dd, &pos);
-            }
+            append_spanish_word_form(src->ids[1], k, window_dd, &pos);
         }
         if (n > 2) {
             show_message_by_count__9TWindowDDFll(window_dd, &pos);
@@ -1830,9 +1838,9 @@ s32 format_word_select_spanish(DD_803461CC *src, char *window_dd, u16 arg2) {
         s32 mode;
         if (n > 2) {
             if (src->ids[2] == 0x685) {
-                append_string__9TWindowDDFllPl("\xBF", window_dd, &pos);
+                append_string__9TWindowDDFllPl((char *)lbl_805DFCC0, window_dd, &pos);
             } else if (src->ids[2] == 0x686) {
-                append_string__9TWindowDDFllPl("\xA1", window_dd, &pos);
+                append_string__9TWindowDDFllPl((char *)lbl_805DFCC4, window_dd, &pos);
             }
         }
         k = src->ids[0];
@@ -1952,6 +1960,7 @@ s32 format_word_select_spanish(DD_803461CC *src, char *window_dd, u16 arg2) {
     window_dd[pos++] = 0;
     return pos;
 }
+#pragma pop
 
 
 #pragma push
