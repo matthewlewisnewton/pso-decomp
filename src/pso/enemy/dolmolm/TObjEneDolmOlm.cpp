@@ -1135,7 +1135,7 @@ void TObjEneDolmOlm::render() {
         }
         TObjPlayer::toggle_particle_effect();
         TObjEneDolmOlm__effect_render_state = 0;
-        set_chunk_model_node_callback((s32)((void *)TObjEneDolmOlm::toggle_effect_render));
+        set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjEneDolmOlm::toggle_effect_render));
         if (arg0->f390 == 1) {
             if (arg0->sub.m8() != 0) {
                 saved_model_render_flags = model_render_flags;
@@ -1157,7 +1157,7 @@ void TObjEneDolmOlm::render() {
         } else {
             ((TObjEnemy *)arg0)->draw_motion_model();
         }
-        set_chunk_model_node_callback((s32)NULL);
+        set_chunk_model_node_callback((ChunkModelNodeCallback)NULL);
         TParticleCtrl::end_effect_render();
         switch (arg0->state) {
         case 0:

@@ -2,11 +2,12 @@
 #define PSO_UNK_TUNK_804F1C58_H
 #include "types.h"
 #include "pso/system/task/TObject.h"
+#include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 
 class TUnk_804F1C58 : public TObject {
 public:
     TUnk_804F1C58(TObject *parent, void *model);
-    void set_field_38(s32 v);
+    void set_capture_callback(ChunkModelNodeCallback callback);
     virtual ~TUnk_804F1C58();
     void *destroy(s16);
     u8 unk_1C[0x4];
@@ -16,7 +17,7 @@ public:
     u8 unk_2C[0x4];
     s32 m_30;
     u8 unk_34[0x4];
-    s32 m_38;
+    ChunkModelNodeCallback m_38;
 };
 typedef char TUnk_804F1C58_size[sizeof(TUnk_804F1C58) == 0x3C ? 1 : -1];
 

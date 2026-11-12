@@ -2937,7 +2937,7 @@ void render__17TObjEneDf2BringerFv(u8 *arg0) {
             push_matrix();
             post_translate_matrix(arg0 + 0x38);
             rotate_matrix_y(0, *(s32 *)((s8 *)arg0 + 0x60));
-            set_chunk_model_node_callback((s32)&bringer_render_node_callback);
+            set_chunk_model_node_callback((ChunkModelNodeCallback)&bringer_render_node_callback);
             set_motion_packed_rotation();
             if (var_r31 == 1) {
                 ((TObjMotion *)arg0)->draw();

@@ -704,7 +704,7 @@ void *gibbles_motion_name_table[11] = {
 void *lbl_804E28A0[4] = {
     (void *)&lbl_80472730, (void *)&lbl_804E286C, (void *)&gibbles_motion_name_table, (void *)0x1000a,
 };
-TObjMotionAction gibbles_action_table[10] = {
+TObjMotionAction gibbles_motion_actions[10] = {
     {1, 0, 8, 0.3f, 1},
     {1, 0, 9, 0.5f, 1},
     {2, 0, 0, 0.7f, 4},
@@ -731,7 +731,7 @@ void *lbl_804E296C[33] = {
     (void *)0x8003, (void *)0x0, (void *)0x0, (void *)0x0,
     (void *)0x0,
 };
-void *lbl_804E29F0[83] = {
+void *__vt__14TObjEneGibbles[83] = {
     (void *)0x0, (void *)0x0, (void *)&TObjEneGibbles__sub_802DB920, (void *)&run_task__14TObjEneGibblesFv,
     (void *)&draw_model__14TObjEneGibblesFPv, (void *)&render_shadows__9TObjEnemyFv, (void *)&vfunc_6__8TObjBaseFPsl, (void *)&apply_object_set_data__8TObjBaseFPv,
     (void *)&reset_motion_fields__9TObjCharaFv, (void *)&get_center__14TObjEneGibblesFv, (void *)&update_object_view_visibility__8TObjBaseFff, (void *)&classify_actor_view_detail__8TObjBaseFfff,
@@ -762,7 +762,7 @@ void TObjEneGibbles::set_min_clamped_entry_value(s32 arg0, s32 arg1, f32 farg0) 
   {
     var_f1 = lbl_805DE7E0;
   }
-  gibbles_action_table[arg1].speed = var_f1;
+  gibbles_motion_actions[arg1].speed = var_f1;
 }
 
 void TObjEneGibbles__sub_802D7A54(void *arg0) {
@@ -2421,7 +2421,7 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
         scale_matrix_vec3(0, (u8 *)arg0 + 0x68);
         TObjEneGibbles__render_node_index = 0;
         TObjEneGibbles__render_rotation_x = arg0->m_3bc;
-        set_chunk_model_node_callback((s32)((void *)gibbles_render_node_callback));
+        set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)gibbles_render_node_callback));
         TObjPlayer::toggle_particle_effect();
         switch (arg0->mode) {
         case 0:
@@ -2469,7 +2469,7 @@ void draw_model__14TObjEneGibblesFPv(TObjEneGibbles *arg0) {
             break;
         }
         TParticleCtrl::end_effect_render();
-        set_chunk_model_node_callback((s32)NULL);
+        set_chunk_model_node_callback((ChunkModelNodeCallback)NULL);
         pop_matrix();
         restore_scene_lighting();
         if (!(arg0->m_374 & 1)) {
@@ -2639,7 +2639,7 @@ struct Gib_802DB920 {
 
 Gib_802DB920 *TObjEneGibbles__sub_802DB920(Gib_802DB920 *self, s16 arg1) {
     if (self != NULL) {
-        self->vt = lbl_804E29F0;
+        self->vt = __vt__14TObjEneGibbles;
         if (self->p3b4 != NULL) {
             free_collision_body_parts(self->p3b4);
             delete self->p3b4;
@@ -2665,7 +2665,7 @@ u8 *TObjEneGibbles__ct(u8 *arg0, void *parent, s32 arg2) {
     s32 i;
     void *p;
     __ct__9TObjEnemyFP7TObject(arg0, parent);
-    *(void **)((s8 *)arg0 + 0x18) = (void *)lbl_804E29F0;
+    *(void **)((s8 *)arg0 + 0x18) = (void *)__vt__14TObjEneGibbles;
     __ct__13TUnk_80494938Fv((arg0 + 0x3C0));
     __construct_array(arg0 + 0x3DC, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D3F60;
@@ -2679,7 +2679,7 @@ u8 *TObjEneGibbles__ct(u8 *arg0, void *parent, s32 arg2) {
     ((TObjEnemy *)arg0)->set_param(0x3D);
     ((TObjEneGibbles *)arg0)->subtype = 0;
     ((TObjEneGibbles *)arg0)->sub_802DBC94(((TObjEneGibbles *)arg0)->variant);
-    ((TObjEneGibbles *)arg0)->action_table = gibbles_action_table;
+    ((TObjEneGibbles *)arg0)->action_table = gibbles_motion_actions;
     ((TObjMotion *)arg0)->set_field_d8((s32)(((TObjEneGibbles *)arg0)->action_table));
     *(s32 *)((s8 *)arg0 + 0xDC) = *(s32 *)((s8 *)TObjEneGibbles__resource_bundle + 0x430);
     ((TObjEneGibbles *)arg0)->requested_action = 0;

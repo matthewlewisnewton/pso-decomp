@@ -161,7 +161,7 @@ TBoss7DeRolLeC::TBoss7DeRolLeC(TObject *parent, void *set_data) : TObjEneDD_ST(p
     }
     unk_7AC = new TUnk_804F1C58(this, model);
     if (unk_7AC != NULL) {
-        unk_7AC->set_field_38((s32)TObjPlayer__sub_802E8274);
+        unk_7AC->set_capture_callback((ChunkModelNodeCallback)(s32)TObjPlayer__sub_802E8274);
     }
     unk_7B0 = 0;
     unk_7B4 = 0.0f;

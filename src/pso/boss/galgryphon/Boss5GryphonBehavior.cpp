@@ -1441,7 +1441,7 @@ void TBoss5Gryphon::draw_body() {
     boss5_gryphon_bone_capture_index = 0;
     boss5_gryphon_bone_capture_output = (s32)((Obj_8005E0C0 *)this)->f3c0;
     boss5_gryphon_render_flags = ((Obj_8005E0C0 *)this)->f4c0;
-    set_chunk_model_node_callback((s32)((void *)TBoss8Dragon__sub_8005E17C));
+    set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TBoss8Dragon__sub_8005E17C));
     ((void (*)(void))push_matrix)();
     set_motion_packed_rotation();
     ((void (*)(void *))post_translate_matrix)((u8 *)this + 0x38);

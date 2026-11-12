@@ -172,7 +172,6 @@ struct Shot_80356374 {
 };
 
 extern "C" {
-u8 *fn_8035648C(s32 arg0, s32 arg1, s32 arg2, f32 farg0);
 extern s32 TBoss6SwordShot__name;
 u8 *TBoss6SwordShot__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0);
 
@@ -214,15 +213,15 @@ u8 *TBoss6SwordShot__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0) {
 
 #pragma push
 #pragma fp_contract on
-u8 *fn_8035648C(s32 arg0, s32 arg1, s32 arg2, f32 farg0) {
+TBoss6SwordShot *TBoss6SwordShot::create(TObject *owner, const Vec *pos, s32 with_particles, f32 speed) {
     u8 *temp_r3;
     u8 *var_r0;
     temp_r3 = (u8 *)(__nw__7TObjectFUl(0x38));
     var_r0 = temp_r3;
     if (var_r0 != NULL) {
-        var_r0 = (u8 *)(TBoss6SwordShot__ct(temp_r3, arg0, arg1, arg2, farg0));
+        var_r0 = (u8 *)(TBoss6SwordShot__ct(temp_r3, (s32)owner, (s32)pos, with_particles, speed));
     }
-    return var_r0;
+    return (TBoss6SwordShot *)var_r0;
 }
 #pragma pop
 

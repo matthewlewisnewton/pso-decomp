@@ -5,6 +5,7 @@
 
 extern "C" {
 void TLobby__sub_803CFE9C(void);
+void cvfs_forward_error(void);
 }
 
 // --- C functions defined in TLobby_803CFE68.cpp ---

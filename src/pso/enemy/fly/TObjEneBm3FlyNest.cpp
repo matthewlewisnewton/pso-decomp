@@ -1114,9 +1114,9 @@ void TObjEneBm3FlyNest::render() {
                 if (self->f326 == 0) {
                     bm3_fly_nest_attachment_index = 0;
                     lbl_805D5114 = (s32)self->f3E0;
-                    set_chunk_model_node_callback((s32)((void *)handle_attachment_sample__17TObjEneBm3FlyNestFi));
+                    set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)handle_attachment_sample__17TObjEneBm3FlyNestFi));
                 } else {
-                    set_chunk_model_node_callback((s32)((void *)TObjEneBm3FlyNest::capture_attachment));
+                    set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjEneBm3FlyNest::capture_attachment));
                 }
                 ((s32 (*)(int, int))rotate_matrix_y)(0, self->f60);
                 TObjEneDD::clear_global_flag_400();
@@ -1127,7 +1127,7 @@ void TObjEneBm3FlyNest::render() {
                     this->draw_motion_model();
                 }
                 TParticleCtrl::end_effect_render();
-                set_chunk_model_node_callback((s32)NULL);
+                set_chunk_model_node_callback((ChunkModelNodeCallback)NULL);
                 pop_matrix();
             }
             this->update_primary_light();

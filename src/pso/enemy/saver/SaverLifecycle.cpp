@@ -1870,7 +1870,7 @@ void TObjEneSaver::render() {
         rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation_y);
         lbl_805D505C = 0;
         lbl_805D5060 = *(s32 *)((s8 *)arg0 + 0x39C);
-        set_chunk_model_node_callback((s32)((void *)TObjPlayer::step_cutscene_frame));
+        set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjPlayer::step_cutscene_frame));
         TObjPlayer::toggle_particle_effect();
         switch (((TObjEneSaver *)arg0)->mode) {
         case 11:
@@ -1910,7 +1910,7 @@ void TObjEneSaver::render() {
             break;
         }
         TParticleCtrl::end_effect_render();
-        set_chunk_model_node_callback((s32)NULL);
+        set_chunk_model_node_callback((ChunkModelNodeCallback)NULL);
         VecCopy((Vec *)((Vec_800A6B14 *)(arg0 + 0x390)), (const Vec *)((Vec_800A6B14 *)&lbl_80500978));
         pop_matrix();
         restore_scene_lighting();

@@ -2279,7 +2279,7 @@ void TObjEneSlimeTailAttack::sub_800E841C() {
     set_current_texture_list((GinjaTextureList *)((int) (((TObjEneSlimeTailAttack *)arg0)->texlist)));
     if ((s32) *(s32 *)((s8 *)arg0 + 0x378) != 0) {
         TObjPlayer__sub_800E81A8();
-        set_chunk_model_node_callback((s32)TObjPlayer__sub_800E8128);
+        set_chunk_model_node_callback((ChunkModelNodeCallback)TObjPlayer__sub_800E8128);
         ((TObjMotion *)arg0)->draw();
         set_chunk_model_node_callback(NULL);
         TObjPlayer__sub_800E80C0(arg0 + 0x390);
@@ -2288,7 +2288,7 @@ void TObjEneSlimeTailAttack::sub_800E841C() {
         TObjPlayer__sub_800EBE48((f32) (*(f32 *)((s8 *)arg0 + 0x38C)));
         scale_matrix_vec3(0, (arg0 + 0x380));
         TObjPlayer__sub_800E81A8();
-        set_chunk_model_node_callback((s32)TObjPlayer__sub_800E8128);
+        set_chunk_model_node_callback((ChunkModelNodeCallback)TObjPlayer__sub_800E8128);
         ((TObjMotion *)arg0)->draw();
         set_chunk_model_node_callback(NULL);
         TObjPlayer__sub_800E80C0(arg0 + 0x390);

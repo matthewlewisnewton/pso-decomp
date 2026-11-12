@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/Adxf.h"
 #include "pso/ui/frontend/TAdPlayerLoadGC_800F9EF8.h"
 #include "pso/unk/TLobby_800F9DA0.h"
 #include "pso/render/render_util.h"
@@ -14,8 +15,8 @@ int read_whole_file__8TGStreamFlPUc(void);
 void TLobby__sub_800F8AD0(void);
 void TLobby__sub_800F8F34(void);
 void TLobby__sub_803382E4(void);
-s32 adxf_get_fsize_byte__6TLobbyFv();
-s32 adxf_open__6TLobbyFUii(s32, s32);
+s32 ADXF_GetFsizeByte();
+s32 ADXF_Open(s32, s32);
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
 void restore_saved_depth_alpha_state(void);
 void fn_801E2C50(void);
@@ -28,12 +29,12 @@ s32 TLobby::get_file_size() {
     s32 temp_r3;
     s32 uninit;
 
-    temp_r3 = adxf_open__6TLobbyFUii(uninit, 0);
+    temp_r3 = ADXF_Open(uninit, 0);
     if (temp_r3 == 0) {
         return -1;
     }
-    temp_r31 = adxf_get_fsize_byte__6TLobbyFv();
-    ((TLobby *)temp_r3)->close_adxf_handle();
+    temp_r31 = ADXF_GetFsizeByte();
+    ADXF_Close((AdxfHandle *)temp_r3);
     return temp_r31;
 }
 

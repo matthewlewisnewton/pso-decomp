@@ -1164,7 +1164,7 @@ void remove_com_card_entry__6TLobbyFi(s32 arg0) {
     u8 *lobby;
     if (arg0 < 7) {
         lobby = (u8 *)&lbl_80517F9C.value + (arg0 * 0xBC);
-        ((TLobby *)lobby)->move_words((u32 *)(lobby + 0xBC), (s32)((void *) ((u32) ((7 - arg0) * 0xBC) >> 2U)));
+        move_words((void *)lobby, (const void *)(u32 *)(lobby + 0xBC), (s32)((void *) ((u32) ((7 - arg0) * 0xBC) >> 2U)));
     }
     (*(s32 *)&com_card_entry_count) -= 1;
 }

@@ -493,13 +493,13 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
                     f1 = 0;
                 }
                 if (f1 != 0) {
-                    set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::demo_frame_callback));
+                    set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjEneRe7Berura::demo_frame_callback));
                     ((TObjMotion *)o)->draw();
                     set_chunk_model_node_callback(0);
                 }
                 fade->v.m7();
             } else {
-                set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::demo_frame_callback));
+                set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjEneRe7Berura::demo_frame_callback));
                 if (mode == 1) {
                     ((TObjMotion *)o)->draw();
                 } else {
@@ -518,7 +518,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
                         f2 = 0;
                     }
                     if (f2 != 0) {
-                        set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::advance_state));
+                        set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjEneRe7Berura::advance_state));
                         ((TObjMotion *)o)->draw();
                         set_chunk_model_node_callback(0);
                     }
@@ -526,7 +526,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
                 }
             } else if (cam != 0) {
                 fade->v.m6();
-                set_chunk_model_node_callback((s32)((void *)TObjEneRe7Berura::advance_state));
+                set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjEneRe7Berura::advance_state));
                 ((TObjMotion *)o)->draw();
                 set_chunk_model_node_callback(0);
                 fade->v.m7();

@@ -457,10 +457,10 @@ void TBoss2DeRolLe::render_body() {
         }
     }
     fn_8002F5AC((u8 *)self);
-    set_chunk_model_node_callback((s32)TObjPlayer__sub_8002F61C);
+    set_chunk_model_node_callback((ChunkModelNodeCallback)TObjPlayer__sub_8002F61C);
     set_current_texture_list((GinjaTextureList *)(this->texlist));
     draw_model_motion((void *)self->x34, (void *)model, (f32)frame);
-    set_chunk_model_node_callback((s32)NULL);
+    set_chunk_model_node_callback((ChunkModelNodeCallback)NULL);
     TObjLight__sub_801337F8(current_scene_light);
     pop_matrix();
 }
@@ -663,7 +663,7 @@ void TBoss2DeRolLe::render() {
     }
     fn_8002F5AC(((u8 *)this));
     set_current_texture_list((GinjaTextureList *)(e->f24));
-    set_chunk_model_node_callback((s32)((void *)TObjPlayer__sub_8002F61C));
+    set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjPlayer__sub_8002F61C));
     {
     Vec4_8002F258 saved;
     col = &TObjLight__scene_light_state.col;
@@ -678,7 +678,7 @@ void TBoss2DeRolLe::render() {
     this->draw();
     copy_argb((NJS_ARGB *)col, (NJS_ARGB *)&saved);
     }
-    set_chunk_model_node_callback((s32)NULL);
+    set_chunk_model_node_callback((ChunkModelNodeCallback)NULL);
     TObjLight__sub_801337F8(current_scene_light);
     pop_matrix();
     chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
