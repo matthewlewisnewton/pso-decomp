@@ -87,9 +87,10 @@ The folded unit retains #214's typed plate, `alpha`, `home[4][3]`/`ox`/`oy`,
 ownership without changing the exact C++: `.data` is
 `0x804E0A48-0x804E0B10`, which includes the later standalone unit's expanded
 `0x804E0A48-0x804E0B00` range, and `.sdata2` is `0x805DE580-0x805DE588`, which
-covers the reciprocal used by these divisions. The preceding unit's
-literals stay externs, defined by `TAdMultiPlyChrSelectGC_literals.s` with global bindings. Only the 0.53 and reciprocal constants are owned here;
-the folded unit is source-linked with its 18 unreferenced globals force-active.
+covers the reciprocal used by these divisions. At that checkpoint, the preceding
+literals stayed externs, defined by `TAdMultiPlyChrSelectGC_literals.s` with global
+bindings. The later [native pool recovery](chr-select-confirm-cell-store.md#native-float-pool-recovery)
+folds those constants into the plate's C++ unit.
 
 Ported commits: `36e860b33` (retail allocation / view), `ee03d9da2` (direct
 stores), and `8f43cc281` (division and literals).
