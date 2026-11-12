@@ -2,7 +2,7 @@
 
 The claimed unit is `pso/misc/TQuestVmDownLoadServer_803E6970.cpp`, based on
 fork main `554d21699c873ccf9be1b2268eba37cd3a32e48b`. All 173 native functions
-now have C++ bodies, but only 162 match exactly. **This unit remains unlinked
+now have C++ bodies, but only 163 match exactly. **This unit remains unlinked
 and is not ready for a completion PR.** The exact display milestone is
 recorded in [display recovery](quest-download-display-recovery.md).
 
@@ -81,8 +81,7 @@ GC/1.2.5 profile. Remaining functions are:
 | --- | ---: | ---: |
 | `803E8924` | 98.10317 | 504/504 |
 | `803E8DA0` | 95.051544 | 780/776 |
-| `803E93DC` | 97.82727 | 444/440 |
-| `803E95BC` | 99.43396 | 424/424 |
+| `803E93DC` | 98.37273 | 444/440 |
 | `803EA428` | 94.19162 | 1336/1336 |
 | `803EA9E8` | 96.88844 | 1004/1004 |
 | `803EDC20` | 94.41237 | 388/388 |
@@ -110,7 +109,7 @@ stack/nonvolatile restoration. This bounded execution evidence does not prove
 exact code or whole-unit linkage. Original binaries, table contents and
 extracted instructions remain private and are not committed.
 
-Completion still requires all eleven function differences, full allocated
+Completion still requires all ten function differences, full allocated
 section layout and relocations, source-link eligibility, and fresh complete
 link/no-loss verification. No incomplete unit is added to `linked_units.txt`.
 
@@ -193,3 +192,25 @@ in this unit are retained, all 3,626 linked units remain exact, the original DOL
 hash passes, and force-active retention has zero additions or removals. The
 branch's exact gain remains three functions and 2,148 code bytes. These partial
 improvements do not make the unit eligible for source linkage or a completion PR.
+
+## Cache page rotation exact recovery
+
+`803E95BC` now matches all 424 bytes. A readonly trace of the unmodified pinned
+compiler showed that the helper's mutable input-length parameter received a
+virtual register before the bucket and node locals. That made the length and
+bucket occupy the opposite saved registers from the original.
+
+The helper now distinguishes the input name length from each indexed record's
+length. It declares the wanted length, bucket, node, predecessor, then the
+per-record length in that order. Their actual lifetimes reproduce the native
+allocation; the caller's input length and the loop's record length reuse the
+same physical register without being the same C++ variable. No dummy reads,
+padding, compiler patch, new option or instruction editing is involved.
+
+The rebuilt owning object retains all previous exact functions and now has
+163/173 exact. Its shared lookup also raises the persisted-page rebuild to
+98.37273%, still 444/440 bytes with a base-copy and stack-layout difference.
+The full repository check passes with four added exact functions and 2,572
+matched code bytes, all 3,626 existing linked units exact, an identical DOL,
+and unchanged force-active retention. Ten functions and complete unit linkage
+remain outstanding.

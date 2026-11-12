@@ -1932,11 +1932,12 @@ s32 TQuestVmDownLoadServer::calc_message_length() {
 // The caller supplies the copied, terminated name. The stopping node and its
 // predecessor link are both needed by insertion and page rotation.
 inline QuestDownloadCachedNameNode *find_cached_name_link(
-        char *name, size_t cacheAddress, u8 len, QuestDownloadCachedNameNode **&link) {
+        char *name, size_t cacheAddress, u8 inputLength, QuestDownloadCachedNameNode **&link) {
     s16 wanted;
+    s32 bucket;
     QuestDownloadCachedNameNode *node;
     QuestDownloadCachedNameNode *previous;
-    s32 bucket;
+    u8 recordLength;
     previous = NULL;
     u8 first = (u8)name[0];
     if (first >= 0xA0 && first < 0xF0) {
@@ -1945,13 +1946,13 @@ inline QuestDownloadCachedNameNode *find_cached_name_link(
         bucket = 0;
     }
     node = QUEST_DOWNLOAD_CACHE_INDEX(cacheAddress)->heads[bucket];
-    wanted = (s16)len;
+    wanted = (s16)inputLength;
     for (; node != NULL; node = node->next) {
         u8 *indexed = node->encodedRecord;
-        len = indexed[2];
-        s32 comparison = strncmp((const char *)(indexed + 3), name, (s16)len);
+        recordLength = indexed[2];
+        s32 comparison = strncmp((const char *)(indexed + 3), name, (s16)recordLength);
         if (comparison == 0) {
-            if (wanted == (s16)len) {
+            if (wanted == (s16)recordLength) {
                 break;
             }
         } else if (comparison > 0) {
