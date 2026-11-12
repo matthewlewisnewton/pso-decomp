@@ -7,6 +7,7 @@ limitations before applying its conclusions to current code.
 See the [documentation index](../README.md) for current contributor and operator
 guides.
 
+- [EXI Ethernet driver completion](exi-ethernet-unit.md)
 - [Audio header parsing and ADX block transfer](audio-formats-and-adx-transfer.md)
 - [Action-palette unit](action-palette-unit.md)
 - [Box-drop directive](box-drop-directive-evidence.md)
@@ -35,6 +36,7 @@ guides.
 - [Floor-area sound wrappers](floor-area-sound-evidence.md)
 - [Speech-balloon name plate and complete unit](fukidasi-name-plate-recovery.md)
 - [Gee native recovery checkpoint](gee-native-recovery-evidence.md)
+- [Complete Gol Dragon behavior unit](gol-dragon-complete-unit.md)
 - [Ginja material dispatcher and complete unit](ginja-material-recovery.md)
 - [Indirect texture scroll offset and copy propagation](indirect-scroll-offset-propagation.md)
 - [Indirect controller native observations (from #267)](indirect-controller-dispatcher.md)
@@ -42,6 +44,7 @@ guides.
 - [Keyboard constructor client argument](keyboard-constructor-abi-evidence.md)
 - [Soft keyboard unit recovery (WIP)](keyboard-control-recovery-wip.md)
 - [Main-phase predicate return](main-phase-predicate-evidence.md)
+- [Laser-light constant pool](laser-light-constant-pool.md)
 - [Locked-cache matrix stack base](locked-cache-matrix-stack.md)
 - [Matrix copy and concatenation](matrix-copy-concat-evidence.md)
 - [MatrixVector hand-written kernels](matrixvector-asm-kernels-evidence.md)

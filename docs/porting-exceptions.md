@@ -24,9 +24,9 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 84 | 55 |
+| MWCC intrinsics | 87 | 56 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,719 | 881 |
+| CodeWarrior pragmas (excluding push/pop) | 5,714 | 881 |
 | Per-unit compiler overrides in `configure.py` | 195 | 195 |
 | Approved regressions | 0 | 0 |
 
@@ -85,6 +85,16 @@ a count-leading-zeros helper (`__builtin_clz` with a zero check, returns 32 for 
 redundant but harmless); `__rlwinm` → shift/rotate + mask; `__builtin_va_info` →
 standard `va_start`.
 
+### EXI Ethernet driver
+
+`src/pso/misc/TLobby_80429598.cpp` uses guarded `__lhbrx`, `__rlwinm` and
+`__cntlzw` for the receive-page swap, register-command mask and highest-bit
+interrupt dispatch. The mask's backend temporary identity is required for the
+844-byte receiver match. Its non-MWERKS branch calls the scalar byte-swap,
+mask and zero-safe leading-zero helpers in
+`ports/include/pso/port/ExiEthernetFallbacks.h`; the host tests exercise these
+same helpers. See [recovery and validation](evidence/exi-ethernet-unit.md).
+
 ## 3. Direct hardware access
 
 13 files write the GX write-gather pipe at `0xCC008000` directly (inlined
@@ -94,7 +104,22 @@ Reason not recorded per site; it mirrors the SDK's inline GX macros. Port should
 route through the GX abstraction of the target renderer (call `GXPosition3f32`
 etc. or their port equivalents) instead of the fixed address.
 
+The EXI Ethernet initializer in `src/pso/misc/TLobby_80429598.cpp` clears
+bit 31 of the SI register at `0xCC00643C` through `__SIRegs[15]`. The native
+mapped-register header is guarded. A port supplies the guest register view and
+EXI/OS backend; the scalar bit helpers alone do not implement the driver.
+
 ## 4. CodeWarrior pragmas
+
+The EXI Ethernet receiver in `src/pso/misc/TLobby_80429598.cpp` uses scoped
+`opt_propagation off`, helper inlining and ordered volatile snapshot/publication
+accesses to preserve the original descriptor copy and callback lifetimes.
+Four guarded unused byte arrays retain the observed native 0x50-byte frame;
+they are a matching workaround, not evidence of original source declarations
+or wire-record fields. A port omits these MWCC-only slots and pragmas and
+provides its own callback synchronization. [Measured constraints and scalar
+fallbacks](evidence/exi-ethernet-unit.md) record the native and portable limits.
+
 
 The Spanish formatter in `src/pso/misc/TWindowDD_8034435C.cpp` uses scoped
 `dont_inline off` and `inline_depth(1)` to inline its separator/form helper.
@@ -1578,3 +1603,26 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 The SDK includes use the existing `PSO_SDK_COMPACT_MATH` header mode so unused
 square-root inlines do not emit 32 bytes of static constants outside this unit's
 owned sections. A port can use its ordinary SDK/math declarations.
+
+### Native ADX runtime recovery
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `configure.py`, the nine `pso/system/Adx*.cpp` units extracted from `AdxStreamRuntime.cpp` | GC/2.6 `-O4,p -inline auto -str reuse,readonly` | The native object boundaries and CRI profile follow upstream matchpass 18 (`b0b44cbda2`). Separate encoder and playback conversion pools reproduce their original addresses; ordinary inline helpers reproduce the encoder work-pool register lifetimes. Other CRI units retain their existing profiles. | Use normal optimization and string storage; retain the encoder, stream, playback and manager interfaces. |
+| `src/pso/system/AdxEncoder.cpp` | Two inherited `opt_propagation off` scopes around header and terminal-block writers | Moved from the formerly combined unit. They preserve the existing byte-write and load/store sequences. | Drop optimizer steering; preserve explicit ADX byte encoding. |
+| `src/pso/system/AdxtServer.cpp`, per-handle state helpers and dispatcher at `803CA8B4` | Scoped `opt_common_subs off` | Ordinary compilation is 99.87578%: four uses of the playback handle occupy r26 rather than r28. Declaration-order trials and `opt_lifetimes off` do not fix it. This scope preserves the original lifetime shared with the later silence-padding phase; all 644 bytes match. | Drop the pragma. The state machine and silence padding use ordinary C++. |
+| Native ADX runtime boundary | Existing legacy `TLobby` entry names, bounded record views, pointer/integer handle and callback casts, OS thread entry casts and volatile flags; inherited floating-point contraction in decoder and playback helpers | These are retained native ABI obligations. New encoder records use size/offset assertions and the shared SJ interface; stream-file callers share one recovered record definition. No assembly or hardware access is added. | Replace native handle words and thread casts with typed platform interfaces, provide synchronization for shared flags, and preserve fused rounding where required. |
+| `src/pso/system/AdxEncoder.cpp`, residual magnitude | MWCC `__abs` through `ADXENC_ABS`, with a compiled scalar conditional fallback on other compilers | A scalar sign-mask helper scores 99.816666% and a conditional helper 98.76667% in `fn_803C8020`; the native intrinsic retains the original repeated absolute-value sequences. The input is a signed 16-bit residual, so negation fits in `s32`. | Use the scalar fallback. |
+
+### Complete Gol Dragon behavior unit
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/boss/TBoss8Dragon.cpp`: `fn_802F7B70`, `fn_802F89F8`, `TBoss8Dragon__sub_802FBFA4` | Three scoped `opt_common_subs off` settings; `fp_contract on` in the recovered state handler | Preserve native fused arithmetic and the original floating-point load lifetimes and register operands with the owned named constants. Propagation-only and lifetime-only trials did not fix these differences. The last helper also uses explicit acceleration and velocity intermediates to preserve the fused multiply-add operand order. See [complete-unit evidence](evidence/gol-dragon-complete-unit.md). | Drop the optimizer controls; retain the arithmetic and fused rounding where required. |
+| Same unit, complete object | Descending function definitions under the existing GC/2.0 `-inline off,deferred` settings; the three Bezier arrays follow the dispatcher's local static table in source | Reproduces native function, member-pointer initializer, runtime table, vtable and switch-table placement. No new compiler override, inline helper, hand-written member-pointer table or vtable is introduced. | Use ordinary C++ member pointers and compiler-generated virtual dispatch; source and emitted order need not agree. |
+
+### Complete draw-line component
+
+`src/pso/ui/DrawLine.cpp` uses GC/2.6 `-inline off,deferred` with reverse definitions to preserve the original function order and the compiler-generated controller/task vtables. Unit `-fp_contract on` replaces the task constructor's existing pragma and preserves its fused length calculation. Immediate emission with ascending definitions preserves instructions but reverses the two vtables; reverse/deferred emission preserves all code and symbolic data relocations.
+
+The four named float constants are declared with a guarded `.sdata2` placement attribute and defined after their uses. Their original order is `1.0, 0.0, -1.0, 0.5`. Literal-only probes instead emit `0.0, -1.0, 1.0, 0.5`; defining named constants before their uses also introduces anonymous duplicates. The guard becomes empty outside MWCC. A port can keep the ordinary constant definitions, use its normal compiler settings, and ignore definition order and section placement. No assembly or hand-written vtables are used.

@@ -3,6 +3,9 @@
 
 #include "types.h"
 
+struct NJS_OBJECT;
+extern "C" NJS_OBJECT *clone_node_tree__12TBoss8DragonFPvPvi(NJS_OBJECT *source, NJS_OBJECT *storage, void *model);
+
 extern "C" {
 void TBoss8Dragon__sub_802FDF10(void);
 }

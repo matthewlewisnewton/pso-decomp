@@ -8,12 +8,12 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 46 | 12 |
-| intrinsic | 84 | 55 |
+| intrinsic | 88 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5723 | 881 |
-| configure.py per-unit override | 196 | 196 |
+| pragma | 5693 | 883 |
+| configure.py per-unit override | 206 | 206 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1114, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 617, `scheduling` 264, `opt_propagation` 248, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 31, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1093, `inline_depth` 993, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 620, `scheduling` 264, `opt_propagation` 248, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 31, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -94,6 +94,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1114, `inline_depth` 1005,
 | `src/pso/misc/TLoadingCur.cpp:174` | `__cntlzw` |
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
 | `src/pso/misc/TLobby_803C4698.cpp:237` | `__frsqrte` |
+| `src/pso/misc/TLobby_80429598.cpp:16` | `__lhbrx` |
+| `src/pso/misc/TLobby_80429598.cpp:17` | `__rlwinm` |
+| `src/pso/misc/TLobby_80429598.cpp:18` | `__cntlzw` |
 | `src/pso/misc/TMainCursor.cpp:844` | `__cntlzw` |
 | `src/pso/misc/TNpcPlayer.cpp:3269` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
@@ -120,8 +123,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1114, `inline_depth` 1005,
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
 | `src/pso/object/TObjTombstone.cpp:427` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4890` | `__fabs` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4898` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4891` | `__fabs` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4899` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:303` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:2511` | `__cntlzw` |
@@ -143,6 +146,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1114, `inline_depth` 1005,
 | `src/pso/protocol/subcommand_validation_player.cpp:213` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_player.cpp:233` | `__cntlzw` |
 | `src/pso/render/render_util_tail.cpp:21` | `__frsqrte` |
+| `src/pso/system/AdxEncoder.cpp:108` | `__abs` |
 | `src/pso/system/SjMemoryBuffer.cpp:26` | `__cntlzw` |
 | `src/pso/ui/TAdExNetConfirmGC.cpp:9` | `__cntlzw` |
 | `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:293` | `__cntlzw` |
@@ -233,6 +237,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1114, `inline_depth` 1005,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/ui/DrawLine.cpp` | `-inline off,deferred, -fp_contract on` | Reverse definitions retain native function and vtable order. |
 | `pso/menu/TAdTimeSetGC.cpp` | `-sdata 4, -fp_contract on` | Keep the eight-byte menu positions in .data with the state table. The calendar x coordinate uses a fused multiply-add. |
 | `pso/misc/TLobby_802409AC.cpp` | `-sym on` | Keep the compiler-generated guild-card initializer ahead of its constructor and accessors. |
 | `pso/misc/TPlayerFootStamp.cpp` | `-fp_contract on, -inline off,deferred, -str reuse,readonly` | Upstream #208: fused scale/corner arithmetic; deferred emission puts the compiler vtable before the constructor switch table; class string is rodata. |
@@ -417,6 +422,15 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1114, `inline_depth` 1005,
 | `pso/player/TObjPlayer_801D5220.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. count_owned_items and the other TItemList walks stay the lwz of m_down / m_next; -inline off grows each. |
 | `pso/player/TPlyItem.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. The three TPlyItem walks (reduce_owner_matched_items, reduce_child_item_amounts, collect_owner_fields_recursive) stay byte-identical to the cast spelling. |
 | `pso/player/TObjPlayer_801D4CB8.cpp` | `-inline noauto` | Same -inline noauto as text_801D40D4.cpp. destroy_subobjects_recursive's child load stays lwz r31,20(r3) and the sibling step stays lwz r31,12(r31). |
+| `pso/system/AdxtInit.cpp` | `-inline auto, -str reuse,readonly` | Native CRI objects recovered by upstream matchpass 18. |
+| `pso/system/AdxEncoder.cpp` | `-inline auto, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/system/AdxStream.cpp` | `-inline auto, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/system/AdxTalk.cpp` | `-inline auto, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/system/AdxtStart.cpp` | `-inline auto, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/system/AdxtServer.cpp` | `-inline auto, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/system/AdxExpand.cpp` | `-inline auto, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/system/AdxManager.cpp` | `-inline auto, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/system/AdxStreamRuntime.cpp` | `-inline auto, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/unk/text_803D8098.cpp` | `(multi-line entry; see configure.py)` | render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 / _restgpr_25, and its glyph quads are the inlined SDK FIFO writers (sth/stw to 0xCC008000), not calls. -inline on inlines only functions marked inline, so queue_debug_text stays a call from debug_printf_at. The matrix helpers in text_803D8910.cpp match under the ginja defaults. |
 | `pso/misc/TKeyBoardControl_803F0C50.cpp` | `GC/1.2.5n` | Epilogue order (mtlr before the restores) only 1.2.5n produces. |
 | `pso/unk/text_803F1804.cpp` | `GC/1.2.5n` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -518,7 +532,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1114, `inline_depth` 1005,
 | `src/pso/boss/TBoss7Joint.cpp` | opt_common_subs×1 |
 | `src/pso/boss/TBoss7LaserLight.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss7LaserPtcl.cpp` | fp_contract×2, dont_inline×1, inline_depth×1 |
-| `src/pso/boss/TBoss8Dragon.cpp` | fp_contract×20, opt_common_subs×3 |
+| `src/pso/boss/TBoss8Dragon.cpp` | fp_contract×21, opt_common_subs×6 |
 | `src/pso/boss/TBoss8DragonDemo.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss8DragonEffBullet.cpp` | fp_contract×1 |
 | `src/pso/boss/TBoss8Dragon_8002CC48.cpp` | fp_contract×3, defer_codegen×2, opt_propagation×1 |
@@ -764,7 +778,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1114, `inline_depth` 1005,
 | `src/pso/misc/TLobby_804050DC.cpp` | dont_inline×34, inline_depth×25, opt_common_subs×22, opt_propagation×12, optimization_level×9, pool_data×2, opt_unroll_loops×1, scheduling×1, opt_lifetimes×1 |
 | `src/pso/misc/TLobby_80426CAC.cpp` | dont_inline×4, inline_depth×3, opt_propagation×2, opt_common_subs×2, auto_inline×1 |
 | `src/pso/misc/TLobby_80428374.cpp` | dont_inline×3, inline_depth×2, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
-| `src/pso/misc/TLobby_80429598.cpp` | dont_inline×4, inline_depth×3, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
+| `src/pso/misc/TLobby_80429598.cpp` | inline_depth×2, auto_inline×1, dont_inline×1, opt_propagation×1 |
 | `src/pso/misc/TLockOnCursor_8013D91C.cpp` | opt_loop_invariants×1 |
 | `src/pso/misc/TMainCursor.cpp` | fp_contract×3, opt_common_subs×1 |
 | `src/pso/misc/TMotorcycle_802D712C.cpp` | scheduling×1 |
@@ -1114,7 +1128,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1114, `inline_depth` 1005,
 | `src/pso/protocol/NetworkRuntime.cpp` | dont_inline×8, inline_depth×8, opt_common_subs×6, pool_data×5, opt_propagation×3, opt_lifetimes×1, opt_dead_assignments×1, bool×1 |
 | `src/pso/quest/QuestOpcodeHandlers.cpp` | opt_common_subs×2, opt_propagation×2, fp_contract×2, opt_dead_assignments×1, scheduling×1 |
 | `src/pso/quest/TQuestThread.cpp` | readonly_strings×1 |
-| `src/pso/system/AdxStreamRuntime.cpp` | dont_inline×18, inline_depth×11, opt_propagation×2, fp_contract×2 |
+| `src/pso/system/AdxEncoder.cpp` | opt_propagation×2 |
+| `src/pso/system/AdxExpand.cpp` | fp_contract×1 |
+| `src/pso/system/AdxTalk.cpp` | fp_contract×1 |
+| `src/pso/system/AdxtServer.cpp` | opt_common_subs×1 |
 | `src/pso/system/ChunkMaterialState.cpp` | scheduling×3, use_lmw_stmw×1, optimize_for_size×1, inline_depth×1, auto_inline×1, dont_inline×1, peephole×1, opt_common_subs×1 |
 | `src/pso/system/CityTraffic.cpp` | opt_propagation×1 |
 | `src/pso/system/GinjaMaterial.cpp` | scheduling×12, peephole×10, use_lmw_stmw×2 |
@@ -1137,7 +1154,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1114, `inline_depth` 1005,
 | `src/pso/ui/TAdChrSelSlotGC.cpp` | fp_contract×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/ui/TAdDialingGC_80328DB0.cpp` | readonly_strings×1 |
 | `src/pso/ui/TAdDialingMessageWindow.cpp` | readonly_strings×1 |
-| `src/pso/ui/TAdDrawLineTask.cpp` | fp_contract×1 |
 | `src/pso/ui/TAdEnterPasswordGC.cpp` | explicit_zero_data×2 |
 | `src/pso/ui/TAdEnterSerialAccessGC.cpp` | readonly_strings×1, fp_contract×1, opt_common_subs×1 |
 | `src/pso/ui/TAdEp3Exist.cpp` | readonly_strings×1, opt_lifetimes×1 |

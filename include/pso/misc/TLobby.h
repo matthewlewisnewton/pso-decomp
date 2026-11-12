@@ -75,8 +75,6 @@ struct TLobby : public TObject {
     void apply_lobby_markers();
     static s32 get_option_state();
     static void install_game_join_handlers();
-    static void free_item_loader();
-    static void load_draw_line_task();
     static void send_or_handle_packet(void *arg0, void *arg1, void *arg2, void *arg3, u32 arg4);
     void merge_adjacent_free_blocks();
     static void sync_auto_reply_state();
@@ -683,7 +681,7 @@ struct TLobby : public TObject {
     static void start_exi_dma_read(u16 arg0);
     static void start_exi_dma_write(s32 chan, void *ctx);
     static void start_exi_send(s32 arg0, s32 arg1, ExiSendCompletionCallback arg2);
-    static s32 exi_start_send_dma(int, int);
+    static void exi_start_send_dma(int, int);
     void copy_6_byte_config();
     void copy_mac_address();
     s32 poll_exi_status();
@@ -722,7 +720,6 @@ struct TLobby : public TObject {
     static s32 add_multicast_address(s16 arg0, void *arg1);
     static s32 remove_rec_by_handle(s16 arg0, u16 arg1);
     static s32 open_channel_checked(s16 arg0, u16 arg1);
-    void forward_to_channel(void *b);
     static s16 query_link_status();
     static s32 set_connect_mode(s32 arg0);
     static s32 get_task_count();

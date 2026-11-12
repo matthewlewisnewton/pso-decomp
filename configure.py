@@ -429,6 +429,8 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Reverse definitions retain native function and vtable order.
+    "pso/ui/DrawLine.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     # Keep the eight-byte menu positions in .data with the state table.
     # The calendar x coordinate uses a fused multiply-add.
     "pso/menu/TAdTimeSetGC.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-fp_contract on")},
@@ -925,9 +927,16 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     ("musyx_hw", 0x803BAC70, "GC/1.2.5n", _switch(cflags_musyx, "-inline auto"), {}),
     # CRI ADX, LSC, SJ, MFCI and GCRNA ("Build:Jun 13 2002").
     ("cri", 0x803BFE50, "GC/2.6", cflags_middleware, {
-        # sin_table_lookup / cos_table_lookup load the 4-byte sin_cos_table
-        # pointer with lis/addi. The .sdata2 constants in this TU stay
-        # lfs@sda21, so non-const small data is off and sdata2 stays on.
+        # Native CRI objects recovered by upstream matchpass 18.
+        "pso/system/AdxtInit.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxEncoder.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxStream.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxTalk.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxtStart.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxtServer.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxExpand.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxManager.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxStreamRuntime.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
     }),
     # Sega's Ginja model library.
     ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
