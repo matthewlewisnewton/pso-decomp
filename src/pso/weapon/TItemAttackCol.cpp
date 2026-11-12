@@ -4,6 +4,10 @@
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
+#include "pso/math/AngleLookup.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/effect/particle/TParticleCtrl_800874F4.h"
+#include "pso/unk/text_80087278.h"
 #include "pso/item/TItem.h"
 #include "pso/item/TUnk_804E355C.h"
 
@@ -180,7 +184,6 @@ void vfunc_7__14TItemAttackColFv(s32 arg0);
 void* TObjPlayer__sub_802E449C(void* a0);
 void *__dt__14TItemAttackColFv(TItemAttackCol *arg0, s16 arg1);
 s32 vec3_add_to(s32 *, s32);
-void *__ct__14TItemAttackColFP7TObjectP24ItemAttackColliderParams(void *, void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 int fn_802E3BA8(void*, void*);
@@ -188,7 +191,7 @@ int fn_802E3BA8(void*, void*);
 void TItemAttackCol::add_to_active_list(void* a0) { fn_802E3BA8((void*)attack_collider_render_owner, a0); attack_collider_active_count = (attack_collider_active_count + 0x1); }
 
 void TItemAttackCol::shift_collision_bounds() {
-    *(s32 *)&this->_pad104 = (s32) (*(s32 *)&this->_pad104 + 0xCCC);
+    this->model_rotation.z = this->model_rotation.z + 0xCCC;
     this->m_11c = (this->m_11c - 0xCCC);
 }
 
@@ -236,9 +239,9 @@ void TItemAttackCol::move_with_collision(void *arg1) {
     if (hit != NULL) {
         ((FlagWord *)(arg0 + 0xE0))->set(1);
         VecCopy((Vec *)(arg0 + 0x24), (const Vec *)(hit->pos));
-        cb = *(Cb_802E3D8C *)((s8 *)arg0 + 0x138);
+        cb = (Cb_802E3D8C)contact_callback;
         if (cb != NULL) {
-            cb(this->m_ac, (u8 *)&this->m_24, (u8 *)&this->m_d0);
+            cb(this->m_ac, (u8 *)&this->m_24, (u8 *)&this->velocity);
         }
     } else {
         VecCopy((Vec *)(arg0 + 0x24), (const Vec *)(arg1));
@@ -251,7 +254,7 @@ void TItemAttackCol::render() {
         return;
     }
     {
-        if ((u32) this->m_e8 != 0U) {
+        if (this->model != NULL) {
             if ((u32) this->m_ec != 0U) {
                 set_texlist(this->m_ec);
             }
@@ -260,10 +263,10 @@ void TItemAttackCol::render() {
             attack_collider_active_count = 0;
             push_matrix();
             post_translate_matrix((u8 *)&this->m_24);
-            rotate_matrix_by_node_angles((u8 *)&this->m_f0, 1);
-            rotate_matrix_by_node_angles((u8 *)&this->m_fc, 1);
-            scale_current_matrix((u8 *)&this->m_108);
-            draw_node_tree_with_callback((NJS_OBJECT *)this->m_e8, (void (*)(NJS_OBJECT *))TItemAttackCol::add_to_active_list);
+            rotate_matrix_by_node_angles((u8 *)&this->heading, 1);
+            rotate_matrix_by_node_angles((u8 *)&this->model_rotation, 1);
+            scale_current_matrix((u8 *)&this->model_scale);
+            draw_node_tree_with_callback(this->model, (void (*)(NJS_OBJECT *))TItemAttackCol::add_to_active_list);
             pop_matrix();
             attack_collider_render_owner = 0;
             TParticleCtrl::end_effect_render();
@@ -273,10 +276,6 @@ void TItemAttackCol::render() {
 
 void TItemAttackCol::run_task() {
     u8 *arg0 = (u8 *)this;
-    u32 temp_r3;
-    u32 temp_r3_2;
-    u32 temp_r3_3;
-    u32 temp_r3_4;
     if (has_game_join_id__13TUnk_804E355CFv(arg0) == 0) {
         queue_destruction__7TObjectFv(arg0);
         disallow_rendering__7TObjectFv(arg0);
@@ -286,27 +285,23 @@ void TItemAttackCol::run_task() {
         shift_collision_bounds();
     }
     if (this->m_e4 & 0x20) {
-        this->m_100 = (this->m_100 + 0x888);
+        this->model_rotation.y = (this->model_rotation.y + 0x888);
     }
     this->vfunc_7();
-    temp_r3 = this->m_12c;
-    if (temp_r3 != 0U) {
-        ((TEffStarLight2D *)temp_r3)->copy_position((const Vec *)&this->m_24);
+    if (star_light != NULL) {
+        star_light->copy_position((const Vec *)&this->m_24);
     }
-    temp_r3_2 = this->m_130;
-    if (temp_r3_2 != 0U) {
-        ((TParticleCtrl *)temp_r3_2)->set_position((u8 *)&this->m_24);
+    if (emitter != NULL) {
+        emitter->set_position((u8 *)&this->m_24);
     }
-    temp_r3_3 = this->m_134;
-    if (temp_r3_3 != 0U) {
-        ((TParticleCtrl *)temp_r3_3)->set_position((u8 *)&this->m_24);
+    if (secondary_emitter != NULL) {
+        secondary_emitter->set_position((u8 *)&this->m_24);
     }
-    temp_r3_4 = this->m_140;
-    if (temp_r3_4 != 0U) {
-        ((TParticleCtrl *)temp_r3_4)->set_position((u8 *)&this->m_24);
+    if (continuous_effect != NULL) {
+        continuous_effect->set_position((u8 *)&this->m_24);
     }
     ((TUnk_804E355C *)arg0)->check_hits();
-    if ((this->m_dc <= vec_distance_squared((u8 *)&this->m_24, (u8 *)&this->m_c4)) || (test_flags_any((u8 *)&this->m_e0, 1) != 0)) {
+    if ((this->m_dc <= vec_distance_squared((u8 *)&this->m_24, (u8 *)&this->start_position)) || (test_flags_any((u8 *)&this->collision_flags, 1) != 0)) {
         queue_destruction__7TObjectFv(arg0);
     }
 }
@@ -314,10 +309,10 @@ void TItemAttackCol::run_task() {
 void *__dt__14TItemAttackColFv(TItemAttackCol *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TItemAttackCol;
-        if (*(void **)((s8 *)arg0 + 0x12C) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x12C)); arg0->m_12c = 0; }
-        if (*(void **)((s8 *)arg0 + 0x130) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x130)); arg0->m_130 = 0; }
-        if (*(void **)((s8 *)arg0 + 0x134) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x134)); arg0->m_134 = 0; }
-        if (*(void **)((s8 *)arg0 + 0x140) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x140)); arg0->m_140 = 0; }
+        if (*(void **)((s8 *)arg0 + 0x12C) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x12C)); arg0->star_light = NULL; }
+        if (*(void **)((s8 *)arg0 + 0x130) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x130)); arg0->emitter = NULL; }
+        if (*(void **)((s8 *)arg0 + 0x134) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x134)); arg0->secondary_emitter = NULL; }
+        if (*(void **)((s8 *)arg0 + 0x140) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x140)); arg0->continuous_effect = NULL; }
         __dt__13TUnk_804E355CFv((TUnk_804E355C *)arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -326,12 +321,148 @@ void *__dt__14TItemAttackColFv(TItemAttackCol *arg0, s16 arg1) {
     return arg0;
 }
 
-void TItemAttackCol::create(void *arg0, void *arg1) {
-    void *o;
-    o = __nw__7TObjectFUl(0x144);
-    if (o != NULL) {
-        __ct__14TItemAttackColFP7TObjectP24ItemAttackColliderParams(o, arg0, arg1);
+struct ItemAttackColliderParams {
+    Vec position;
+    u8 base_params[0x1c];
+    s32 yaw;
+    Vec direction;
+    f32 speed;
+    f32 range;
+    u32 flags;
+    NJS_OBJECT *model;
+    u32 texture_list;
+    f32 model_scale;
+    AttackColliderAngles model_rotation;
+    f32 star_light_width;
+    f32 unk_60;
+    f32 red;
+    f32 green;
+    f32 blue;
+    AttackColliderContactCallback contact_callback;
+    AttackColliderHitCallback hit_callback;
+    s32 emitter_id;
+    s32 secondary_emitter_id;
+};
+
+extern const char *lbl_805D3F88;
+extern const f32 lbl_805DE91C;
+extern const f64 lbl_804729C0;
+extern const StarLightParameters lbl_804729A8;
+TEffStarLight2D *spawn_star_light_2d__Flll(Vec *position, const StarLightParameters *params, TObject *parent);
+f32 normalize_vector(Vec *vector);
+
+AttackColliderAngles lbl_804E3530 = { 0x4000, 0, 0x4000 };
+
+#pragma push
+#pragma opt_lifetimes off
+TItemAttackCol::TItemAttackCol(TObject *parent, ItemAttackColliderParams *params)
+    : TUnk_804E355C(parent, params) {
+    m_name = lbl_805D3F88;
+    VecCopy(&start_position, &params->position);
+    if (params->flags & 1) {
+        VecCopy(&velocity, &params->direction);
+        normalize_vector(&velocity);
+        const f32 x_squared = velocity.x * velocity.x;
+        const f32 z_squared = velocity.z * velocity.z;
+        heading.x = -(s32)(lbl_804729C0 * atan2_float(velocity.y, newton_sqrtf(x_squared + z_squared)));
+        heading.y = (s32)(lbl_804729C0 * atan2_float(velocity.x, velocity.z));
+        heading.z = 0;
+    } else {
+        velocity.x = sin_table_lookup(params->yaw);
+        velocity.y = lbl_805DE914;
+        velocity.z = cos_table_lookup(params->yaw);
+        heading.x = 0;
+        heading.y = params->yaw;
+        heading.z = 0;
     }
+    velocity.x *= params->speed;
+    velocity.y *= params->speed;
+    velocity.z *= params->speed;
+    *(s32 *)&m_30 = heading.y;
+    m_dc = params->range * params->range;
+    model = params->model;
+    m_ec = params->texture_list;
+    model_scale.x = params->model_scale;
+    model_scale.y = params->model_scale;
+    model_scale.z = params->model_scale;
+    copy_xyz(&model_rotation, &params->model_rotation);
+    m_114 = 0;
+    m_118 = 0;
+    m_11c = 0;
+    m_120.x = lbl_805DE918;
+    m_120.y = lbl_805DE918;
+    m_120.z = lbl_805DE918;
+    collision_flags.reset();
+    if (params->flags & 2) {
+        StarLightParameters block;
+        size_t src = reinterpret_cast<size_t>(&lbl_804729A8);
+        size_t dst = reinterpret_cast<size_t>(&block);
+        src -= sizeof(u32);
+        dst -= sizeof(u32);
+        for (s32 words = 0; words < 2; ++words) {
+            __memcpy(reinterpret_cast<void *>(dst + sizeof(u32)),
+                     reinterpret_cast<const void *>(src + sizeof(u32)), sizeof(u32));
+            src += 2 * sizeof(u32);
+            dst += 2 * sizeof(u32);
+            __memcpy(reinterpret_cast<void *>(dst), reinterpret_cast<const void *>(src), sizeof(u32));
+        }
+        f32 scale = lbl_805DE91C;
+        f32 red = scale * params->red;
+        f32 green = scale * params->green;
+        f32 blue = scale * params->blue;
+        scale = params->star_light_width;
+        __memcpy(reinterpret_cast<void *>(dst + sizeof(u32)),
+                 reinterpret_cast<const void *>(src + sizeof(u32)), sizeof(u32));
+        block.width = scale;
+        block.color.channels.r = static_cast<u8>(static_cast<s32>(red));
+        block.color.channels.g = static_cast<u8>(static_cast<s32>(green));
+        block.color.channels.b = static_cast<u8>(static_cast<s32>(blue));
+        star_light = spawn_star_light_2d__Flll((Vec *)&m_24, &block, this);
+    } else {
+        star_light = NULL;
+    }
+    contact_callback = params->contact_callback;
+    hit_callback = params->hit_callback;
+    m_e4 = params->flags;
+    if (params->flags & 0x800) {
+        check_object_hits();
+        if (contact_callback != NULL) {
+            contact_callback(m_ac, (Vec *)&m_24, &velocity);
+        }
+        emitter = NULL;
+        secondary_emitter = NULL;
+        continuous_effect = NULL;
+        queue_destruction__7TObjectFv(this);
+        disallow_rendering__7TObjectFv(this);
+    } else {
+        check_hits();
+        if (params->emitter_id != -1) {
+            emitter = create_particle_emitter((Vec *)&m_24, params->emitter_id);
+            if (emitter != NULL) {
+                s32 yaw = params->yaw;
+                AttackColliderAngles rotation = lbl_804E3530;
+                rotation.x += yaw;
+                emitter->set_direction(&rotation);
+            }
+        } else {
+            emitter = NULL;
+        }
+        if (params->secondary_emitter_id != -1) {
+            secondary_emitter = create_particle_emitter((Vec *)&m_24, params->secondary_emitter_id);
+        } else {
+            secondary_emitter = NULL;
+        }
+        if (params->flags & 0x10) {
+            continuous_effect = spawn_continuous_particle_effect_with_flags((Vec *)&m_24, 0x19E, 0x2000);
+        } else {
+            continuous_effect = NULL;
+        }
+    }
+}
+#pragma pop
+
+void TItemAttackCol::create(void *arg0, void *arg1) {
+    new TItemAttackCol((TObject *)arg0, (ItemAttackColliderParams *)arg1);
 }
 
     extern const float lbl_805DE920;

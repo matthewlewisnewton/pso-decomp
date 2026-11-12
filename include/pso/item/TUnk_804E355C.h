@@ -5,6 +5,7 @@
 
 class TUnk_804E355C : public TObject {
 public:
+    TUnk_804E355C(TObject *parent, void *params);
     virtual ~TUnk_804E355C();
     void check_hits();
     s32 try_add_hit_target(void *);
