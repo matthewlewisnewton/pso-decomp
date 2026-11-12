@@ -10,14 +10,13 @@ current-main PR acceptance.
 The branch was subsequently rebased onto `5146327538`. An untouched checkout
 of that commit rebuilt with the pinned tools and original inputs, reproduced
 the original DOL, and passed `tools/check_pr.py`. The rebased development branch
-also passes that check: three new exact functions, zero regressions, all 3,622
+also passes that check: four new exact functions, zero regressions, all 3,622
 linked units exact, and retention unchanged at 19,177 entries. TCP is still
-unlinked; these checks do not waive the two remaining exact-match requirements.
+unlinked; these checks do not waive the remaining output exact-match requirement.
 
 The starting unit had 40 of 45 exact functions (9,756 code bytes). The current
-source has all 45 definitions and 43 exact functions (10,808 code bytes), with
-BSS still exact. The unit remains unlinked. Output `8041A9AC` and packet input
-`8041B974` still require exact native matches; function similarity is not
+source has all 45 definitions and 44 exact functions (16,780 code bytes), with
+BSS still exact. The unit remains unlinked. Output `8041A9AC` still requires an exact native match; function similarity is not
 claimed as recovered or source-linked code. Whole-object, source-link, DOL,
 no-regression and current-main checks remain required before publication.
 
@@ -76,16 +75,30 @@ acceptance comparisons use the unmodified pinned GC/1.2.5n executable.
   agrees apart from register choices. A previous phase split was removed after
   this control-flow audit; an identical opcode list alone was insufficient.
   The SYN option fields and final padding retain their distinct pointers.
-- Packet input retains the original instruction count. The branch audit corrected
+- Packet input `8041B974` is exact (5,972 bytes). The branch audit corrected
   two upstream draft scopes: overlapping data still clears FIN and requests an
   ACK when no reassembly call is needed, and repeated FIN does not advance the
-  receive sequence again. A signed-short option-length intermediate preserves
-  the measured truncation. A short reassembly offset also preserves the native
-  narrowing boundary. A short snapshot of the remaining segment length at the
-  receive-window comparison removes the final temporary-register differences.
-  Only two constant/address instruction positions remain. A complete compiler trace shows
-  the target sequence through register allocation, frame generation and final
-  peephole optimization; the last scheduling pass exchanges those positions.
+  receive sequence again. Signed-short option length, short reassembly offset,
+  and the short segment-length snapshot retain the native narrowing boundaries.
+
+## Accept notification boundary
+
+`SocketEvents.h` now declares `80422AB8` for both input and its provider in the
+already-linked socket runtime. Both index arguments are signed shorts. The
+caller's index calculations remain `int` until the call; the provider keeps an
+explicit word promotion in the callback-index copy, `i2 = (int)idx`. The
+provider's complete 42-function object remains exact, so this is a shared
+interface correction rather than an incompatible private call view.
+
+This boundary resolves input's final two instruction positions. With short
+caller locals and a word-width first formal parameter, the initial scheduler
+already produces the target sequence. Register allocation then deletes two
+argument moves and clears the block's `fScheduled` flag; the last scheduler
+exchanges the constant load and low-address instruction. With word-width
+calculations and short formal parameters, argument normalization does not leave
+those moves. The native callback block retains its initial schedule. Traces of
+GC/1.2.5 explain this mechanism; the unmodified pinned GC/1.2.5n validates the
+complete input match and the unchanged provider.
 
 Output's native zero predicate uses guarded `__cntlzw` followed by an unsigned
 shift. The ordinary C++ boolean conversion extracts a different bit range. Its
