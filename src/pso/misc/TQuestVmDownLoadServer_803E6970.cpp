@@ -5135,64 +5135,62 @@ void TQuestVmDownLoadServer__sub_803EE580(s32 start, s32 length, QuestDownloadTe
 #pragma dont_inline off
 #pragma inline_depth(1)
 #pragma opt_propagation off
-inline char *download_name_storage(char *const &storage) {
+inline u8 *download_encoded_storage(u8 *const &storage) {
     return storage;
 }
 void TQuestVmDownLoadServer__sub_803EE2F4(s32 start, s32 end) {
     s32 emittedLength;
-    char *encodedText;
-    char *name = (char *)lbl_8058DC98;
-    u8 *encoded = lbl_8058DC48;
+    u8 *encoded;
     u16 *wide = lbl_805A0340;
+    char *copyName;
     s32 length;
     QuestDownloadTextNode *text;
-    s32 groupStart;
     QuestDownloadSlot *slot;
     while (start < end && (length = TQuestVmDownLoadServer__sub_803E9F54(start)) != 0) {
-        groupStart = start;
-        slot = &quest_download_slot_chain_table[groupStart];
-        if (groupStart == lbl_805D78F0 && (lbl_805D78E8 == 1 || lbl_805D7834 >= 3)) {
+        slot = &quest_download_slot_chain_table[start];
+        if (start == lbl_805D78F0 && (lbl_805D78E8 == 1 || lbl_805D7834 >= 3)) {
             text = advance_nodes__22TQuestVmDownLoadServerFPvi(lbl_805D78A0, lbl_805D7898);
         } else {
             text = advance_nodes__22TQuestVmDownLoadServerFPvi(slot->textHead, 0);
         }
         if (lbl_805D7848 != 3 && lbl_805D7834 <= 2) {
         emit_entry:
-            TQuestVmDownLoadServer__sub_803EE580(groupStart, length, text, slot->entryHead);
+            TQuestVmDownLoadServer__sub_803EE580(start, length, text, slot->entryHead);
             start += length;
             continue;
         }
         if (slot->x16 != 0 && slot->x16 != slot->x15) {
+            copyName = reinterpret_cast<char *>(lbl_8058DC98);
+            encoded = download_encoded_storage(lbl_8058DC48);
             s32 n = length;
-            strncpy(download_name_storage((char *)lbl_8058DC98), (char *)lbl_805A0470.bytes + start, n);
+            strncpy(copyName, reinterpret_cast<char *>(lbl_805A0470.bytes) + start, n);
             lbl_8058DC98[length] = 0;
             emittedLength = length;
-            if (length != strlen((char *)lbl_8058DC98)) {
-                name[0] = 0;
+            if (length != strlen(copyName)) {
+                lbl_8058DC98[0] = 0;
             } else {
                 s32 count = TQuestVmDownLoadServer__sub_803EB420(start, n, text, lbl_805A0340);
-                TQuestVmDownLoadServer__sub_803EC71C(lbl_805A0340, lbl_8058DC48, count);
+                TQuestVmDownLoadServer__sub_803EC71C(lbl_805A0340, encoded, count);
             }
             TQuestVmDownLoadServer__sub_803EE580(start, emittedLength, text, slot->entryHead);
         } else {
-            if ((u8)name[0] == 0) goto emit_entry;
-            encodedText = (char *)encoded;
-            char *appendName = name + strlen((char *)lbl_8058DC98);
-            u8 *appendEncoded = encoded + strlen(encodedText);
+            if ((u8)lbl_8058DC98[0] == 0) goto emit_entry;
+            char *appendName = reinterpret_cast<char *>(lbl_8058DC98) + strlen(reinterpret_cast<char *>(lbl_8058DC98));
+            u8 *appendEncoded = lbl_8058DC48 + strlen(reinterpret_cast<char *>(lbl_8058DC48));
             s32 n = text->payload.head.length;
-            strncpy(appendName, (char *)lbl_805A0470.bytes + start, n);
+            strncpy(appendName, reinterpret_cast<char *>(lbl_805A0470.bytes) + start, n);
             appendName[n] = 0;
             if (n != strlen(appendName)) {
-                name[0] = 0;
+                lbl_8058DC98[0] = 0;
             } else {
                 s32 count = TQuestVmDownLoadServer__sub_803EB420(start, n, text, wide);
                 wide = lbl_805A0340;
                 TQuestVmDownLoadServer__sub_803EC71C(wide, appendEncoded, count);
             }
-            if ((u8)name[0] != 0) {
+            if ((u8)lbl_8058DC98[0] != 0) {
                 Req_803EEF2C request;
-                request.name = name;
-                request.len = (u16)strlen(name);
+                request.name = reinterpret_cast<char *>(lbl_8058DC98);
+                request.len = (u16)strlen(reinterpret_cast<char *>(lbl_8058DC98));
                 request.pad6 = 0;
                 QuestDownloadItemNode *item;
                 if (text == NULL || (item = (QuestDownloadItemNode *)text->payload.head.source) == NULL) {
@@ -5202,10 +5200,10 @@ void TQuestVmDownLoadServer__sub_803EE2F4(s32 start, s32 end) {
                     request.x7 = item->a;
                     request.x8 = item->b;
                 }
-                request.text = encoded;
+                request.text = lbl_8058DC48;
                 TQuestVmDownLoadServer__sub_803EEF2C(&request);
             }
-            name[0] = 0;
+            lbl_8058DC98[0] = 0;
         }
         start += length;
     }

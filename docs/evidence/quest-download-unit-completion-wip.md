@@ -80,7 +80,7 @@ GC/1.2.5 profile. Remaining functions are:
 | Native suffix/name | Match % | Compiled/original bytes |
 | --- | ---: | ---: |
 | `803EA9E8` | 99.52191 | 1004/1004 |
-| `803EE2F4` | 99.386505 | 652/652 |
+| `803EE2F4` | 99.81595 | 652/652 |
 
 The latest full build and `tools/check_pr.py` pass against main `5146327538`:
 +12 exact functions, +7,652 matched code bytes and +1,744 matched data bytes,
@@ -784,3 +784,35 @@ registers, but actual compilation still changes initialization scheduling and
 cursor uses; model agreement alone is not an exact source result. The whole
 unit remains at 171 of 173 exact functions and is not yet admitted or ready for
 the requested completion PR.
+
+
+The accumulator now reaches **99.81595%**, retaining its native 652-byte extent
+and 104-byte frame. A branch-local name pointer is shared by the initial copy
+and length check; the conversion borrows its encoded destination. The append
+and request paths use the actual global buffers directly. This restores every
+body instruction and register operand. The only differences are the order of
+the name and encoded-buffer address materializations in the prologue. No ABI,
+global declaration, or optimization setting changed.
+
+The cleaned integrated source passes the 3,000-case native PPC comparison,
+including native string functions, conversion/emission callback arguments,
+buffer writes and preserved registers. `tools/check_pr.py` passes the original
+DOL check, all 3,622 linked-unit checks, retention and no-loss checks. The private
+three-file source layout was regenerated and linked again: all 171 exact
+functions and every data/rodata/BSS extent remain exact. Comparing every
+loadable section with the original executable finds **28 differing bytes**:
+24 in the selector and 4 in the accumulator, with none elsewhere. This private
+link is evidence for the remaining work, not production admission or a 100%
+completion claim.
+
+The next investigation follows the first-differing-priority approach described
+by [mwcc-debugger](https://github.com/cadmic/mwcc-debugger). A second accumulator
+variant reaches 99.7546% with exact instruction order and frame; its append-only
+name pointer is allocated ahead of the end bound, conversion pointer and slot
+table, shifting four register choices. Compiler captures identify the relevant
+cost/degree ordering. Typed array/pointer accessors, local reference bindings,
+phase snapshots and scheduling controls were tested without resolving both
+remaining functions. The inline-search adapter was also corrected to preserve
+generated helpers preceding the target function, and fresh searches reproduce
+their baseline scores before mutation. The unit remains 171/173 exact and its
+claim remains active until the full source unit is exact and linked.
