@@ -1099,7 +1099,7 @@ send:
                 tp->f2F0 += len;
             }
             if (len > 0) {
-                s32 first = off + tp->snd_una;
+                s32 first = tp->snd_una + off;
                 s32 last = len + first;
                 if ((s32)(last - tp->snd_nxt) > 0) {
                     tp->snd_nxt += len;
@@ -1330,6 +1330,7 @@ extern s32 TLobby__sub_8041B974(u8 *pkt, u8 *a, u8 *b) {
     s16 kind;
     s16 ti_flags;
     s32 blen;
+    s16 option_bytes;
     TcpHdr *ti;
     s32 st;
     u32 tmp;
@@ -1369,7 +1370,8 @@ extern s32 TLobby__sub_8041B974(u8 *pkt, u8 *a, u8 *b) {
     if ((u16)TLobby__sub_8040D8F0(a, b, 6, pkt, 0)) {
         goto drop;
     }
-    blen = (s16)(len - (s32)sizeof(TcpHdr));
+    option_bytes = (s16)(len - (s32)sizeof(TcpHdr));
+    blen = option_bytes;
     if ((s16)blen != 0) {
         body = TLobby__sub_80406F0C(p + offsetof(NetPacketFragment, buffer)) + sizeof(TcpHdr);
     } else {
@@ -1946,8 +1948,11 @@ step6:
                 found[offsetof(TcpTcb, flags)] |= 1;
             }
             goto L1397;
-        } else if ((s32)(hdr.seq - *(u32 *)(found + offsetof(TcpTcb, rcv_nxt))) > 0) {
-            TLobby__sub_8041F914((NetPacket *)pkt, (u16)(len + total), (TcpTcb *)found, ti);
+        } else {
+            if ((s32)(hdr.seq - *(u32 *)(found + offsetof(TcpTcb, rcv_nxt))) > 0) {
+                u16 reassembly_offset = len + total;
+                TLobby__sub_8041F914((NetPacket *)pkt, reassembly_offset, (TcpTcb *)found, ti);
+            }
             kind &= ~1;
             found[offsetof(TcpTcb, flags)] |= 1;
             goto L1397;
@@ -1961,9 +1966,9 @@ L1397:
     NetDispatchSocketEvent(TCP_IDX(found), *(s32 *)(found + offsetof(TcpTcb, event_ctx)), 3, 2);
     if (!(found[offsetof(TcpTcb, flags)] & 0x08)) {
         TLobby__sub_8041F11C((TcpTcb *)found);
+        found[offsetof(TcpTcb, flags)] |= 1;
+        *(u32 *)(found + offsetof(TcpTcb, rcv_nxt)) += 1;
     }
-    found[offsetof(TcpTcb, flags)] |= 1;
-    *(u32 *)(found + offsetof(TcpTcb, rcv_nxt)) += 1;
     found[offsetof(TcpTcb, flags)] |= 8;
     switch (*(s16 *)(found + offsetof(TcpTcb, t_state))) {
     case 3:
