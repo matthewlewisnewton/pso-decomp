@@ -9,6 +9,7 @@ struct TWindowKeyBoardBase : public TWindowBase {
     virtual ~TWindowKeyBoardBase();
     void init_keyboard_text_field(u32, u32);
     void set_text(char *text);
+    void set_input_mode(s32 mode);
     void set_input_flags_212();
     void set_input_flags_112();
     void set_input_flags_92();
@@ -28,7 +29,7 @@ struct TWindowKeyBoardBase : public TWindowBase {
     int is_active();
     u16 m_60;
     u16 m_62;
-    u8 _pad64[0x1];
+    u8 m_input_mode;
     s8 m_65;
     u8 _pad66[0x2];
     u32 m_68;

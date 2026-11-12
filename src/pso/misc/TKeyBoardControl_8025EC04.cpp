@@ -45,7 +45,6 @@ u8 get_key_state__16TKeyBoardControlFPv(s32 *);
 extern s32 TKeyBoardControl__global_key_state[];
 u8 TKeyBoardControl__sub_8013239C(void *, u8);
 s32 TKeyBoardControl__sub_801A58B0(void);
-s32 set_input_mode__20TWindowSubStatusDispFUc(s32, s32);
 
 void TWindowKeyBoardHard::reset_input_state() {
     m_68 = 0;
@@ -468,8 +467,8 @@ block_7:
         if ((sub_80260438() != 0) && ((s32) sp8 >= 0x61) && ((s32) sp8 <= 0x7A)) {
             sp8 -= 0x20;
         }
-        set_input_mode__20TWindowSubStatusDispFUc(*(s32 *)((s8 *)this + 0x70), temp_r31);
-        ((TWindowKeyBoardBase *)(*(s32 *)((s8 *)this + 0x70)))->insert_character(sp8);
+        m_composer->set_input_mode(temp_r31);
+        m_composer->insert_character(sp8);
     }
 }
 

@@ -64,7 +64,6 @@ SoftKeyboardWindowDescriptor soft_keyboard_window_and_action_data = {
     { 307.0f, 161.0f }, 50040.0f, NULL, 0x803
 };
 s32 get_chat_shortcut(s32);
-s32 set_input_mode__20TWindowSubStatusDispFUc(s32, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 struct RecoveredGlobal_80260808_lbl_8050E208 {
     s32 value;
@@ -387,7 +386,7 @@ void TWindowKeyBoardSoft__sub_80260904(void *self, s32 port) {
     if (((TWindowKeyBoardSoft *)self)->get_flag_bit5() && (code < 'A' || code > 'Z')) return;
     if (((TWindowKeyBoardSoft *)self)->get_flag_bit6() && is_alnum__19TWindowKeyBoardSoftFUs(code) == 0) return;
     if (((TWindowKeyBoardSoft *)self)->is_cursor_locked() && (code < '0' || code > '9')) return;
-    set_input_mode__20TWindowSubStatusDispFUc((s32)kb->child, 2);
+    ((TWindowKeyBoardBase *)kb->child)->set_input_mode(2);
     ((TWindowKeyBoardBase *)kb->child)->insert_character(code);
 }
 
