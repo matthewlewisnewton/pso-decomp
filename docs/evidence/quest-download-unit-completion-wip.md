@@ -2,7 +2,7 @@
 
 The claimed unit is `pso/misc/TQuestVmDownLoadServer_803E6970.cpp`, based on
 fork main `554d21699c873ccf9be1b2268eba37cd3a32e48b`. All 173 native functions
-now have C++ bodies, but only 160 match exactly. **This unit remains unlinked
+now have C++ bodies, but only 161 match exactly. **This unit remains unlinked
 and is not ready for a completion PR.** The exact display milestone is
 recorded in [display recovery](quest-download-display-recovery.md).
 
@@ -80,10 +80,9 @@ GC/1.2.5 profile. Remaining functions are:
 | Native suffix/name | Match % | Compiled/original bytes |
 | --- | ---: | ---: |
 | `803E8924` | 98.10317 | 504/504 |
-| `803E8DA0` | 90.5567 | 772/776 |
-| `803E93DC` | 88.09091 | 448/440 |
-| `803E95BC` | 90.18868 | 428/424 |
-| `__VIRetraceHandler` | 57.057323 | 648/628 |
+| `803E8DA0` | 95.051544 | 780/776 |
+| `803E93DC` | 95.281815 | 448/440 |
+| `803E95BC` | 97.5566 | 424/424 |
 | `803EA428` | 94.19162 | 1336/1336 |
 | `803EA9E8` | 96.88844 | 1004/1004 |
 | `803EDC20` | 94.41237 | 388/388 |
@@ -112,6 +111,31 @@ stack/nonvolatile restoration. This bounded execution evidence does not prove
 exact code or whole-unit linkage. Original binaries, table contents and
 extracted instructions remain private and are not committed.
 
-Completion still requires all thirteen function differences, full allocated
+Completion still requires all twelve function differences, full allocated
 section layout and relocations, source-link eligibility, and fresh complete
 link/no-loss verification. No incomplete unit is added to `linked_units.txt`.
+
+## Cache initializer exact recovery
+
+The follow-up initializer now matches all 628 native bytes. An MWCC-only
+integer address adapter reaches the actual index immediately after the actual
+8,192-byte cache, without claiming an enclosing C++ object. Other compilers name
+the actual index directly. The existing canonical index layout supplies the
+80 bucket heads and 512 nodes. A scoped `opt_common_subs off` preserves the
+native independent node-end calculation. Unsigned bucket indexing reproduces
+the straight unrolled stores. After clearing the eight pages, the page cursor
+is rewound to the first page's end before publishing the append bound; this
+preserves its native register handoff without dummy storage or extra writes.
+
+This iteration also tested natural inlined cache-search boundaries and parser
+header/body splits; they did not improve exactness and were discarded. A private
+read-only trace of the pinned compiler under retrowin32/GDB exposes the parser's
+remaining four-word header difference: the offset addition reuses the output
+cursor's virtual register, whereas the target needs a separate intermediate.
+No compiler state or generated instructions are patched.
+
+The same address adapter and separately scoped CSE setting improve replacement
+to 95.051544%, reload to 95.281815%, and rotation to 97.5566%. Rotation uses a
+bounded name-search helper that returns the stopping node and its link. It now
+has the native 424-byte extent, with stack offsets and registers still differing.
+The checked native initializer is an exact milestone, not whole-unit completion.

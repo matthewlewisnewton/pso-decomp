@@ -460,6 +460,20 @@ and the same function body.
 | `src/pso/network/NetworkDispatcher.cpp` | All 12 dispatcher functions | Four existing pragma lines (`opt_common_subs on` x3, `pool_data off` x1), inherited `-opt nocse`, 32-bit handles and provisional `TLobby`/`TUdpSocket` wrappers; reset status and thread-creation callback/return declarations remain inconsistent across units | Extracts the fork's already-exact dispatcher and its 248-byte BSS so it can link. The follow-up replaces reset/shutdown/handler overlays with the shared state and names both thread handles without changing native objects. The reset callee now explicitly returns `s32`, but the incompatible DHCP caller is retained after a type-correct probe changed its frame and result copy; this is not a completed ABI repair. See [upstream-dispatcher.md](evidence/upstream-dispatcher.md). | Remove compiler-only steering and recover explicit dispatcher/OS contracts with portable handle types, validating callers and callees together. |
 | `src/pso/network/TcpProtocol.cpp` | Extracted TCP range; still unlinked | Inherited `-opt nocse`; 24 moved pragma lines plus explicit `dont_inline off` and `inline_depth(4)` that previously carried into this range from earlier source | Without the ambient settings, timer callbacks `8041A3CC` / `8041A5B4` have different stack frames and `8041D584` no longer inlines its segment-removal helper. Scores are 99.78432%, 99.916664% and 65.69705%; restoring the settings retains all 40 previously exact TCP functions. Existing raw views, local ABI redeclarations and provisional members remain unresolved. | Remove compiler steering; unify TCP layouts and callback/status interfaces. This extraction does not claim the five still-unmatched TCP functions as recovered. |
 
+### Quest-download cache address and traversal recovery
+
+`__VIRetraceHandler` in `TQuestVmDownLoadServer_803E6970.cpp` is the existing
+placeholder for the cache initializer. Its scoped `opt_common_subs off` preserves
+the native independent node-list bounds. Separate scopes in `803E8DA0`,
+`803E93DC` and `803E95BC` preserve the independently calculated bucket links.
+The rotation routine inlines its bounded name search at depth one; this helper
+returns the stopping node and publishes the corresponding link address. An MWCC-only integer address adapter
+reaches the separate canonical name index at cache address plus 0x2000; this
+records native placement rather than declaring a larger owner. The portable
+branch names `lbl_80593EC8` directly. Ports can drop the optimization pragma and
+keep ordinary typed traversal of the actual index and cache byte array. See
+[the unit investigation](evidence/quest-download-unit-completion-wip.md).
+
 ### Quest-download scratch storage and native workspace addressing
 
 `QuestDownloadScratch.h` declares the shared aligned byte storage consistently.
