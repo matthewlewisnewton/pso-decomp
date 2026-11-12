@@ -2801,23 +2801,13 @@ inline N_803E9FA4 *merge_sorted_nodes(N_803E9FA4 *head, N_803E9FA4 *list) {
     }
     return head;
 }
-#pragma opt_lifetimes off
-#pragma opt_propagation off
-#pragma opt_common_subs off
-#pragma opt_lifetimes off
 s32 TQuestVmDownLoadServer__sub_803EA1A8(s32 start, s32 end) {
     Obj_803EADD4 *e;
-    N_803E9FA4 *next;
     Node_803ECDC4 *tok;
-    N_803E9FA4 *n;
     N_803E9FA4 *list;
-    N_803E9FA4 *head;
     Out_803E9FFC *o;
-    u8 *text;
     s32 i;
-    volatile s32 frame_pad[2];
-    s32 offset = start * sizeof(Slot_803ED9AC);
-    e = (Obj_803EADD4 *)((u8 *)&quest_download_slot_chain_table + offset);
+    e = (Obj_803EADD4 *)&quest_download_slot_chain_table[start];
     if ((u32)e->x4 != 0xFFFFFFFF) {
         for (tok = e->x4; tok != NULL; tok = tok->next) {
             list = (N_803E9FA4 *)TQuestVmDownLoadServer__sub_803E9FFC(start, end, (Tok_803E9FFC *)tok);
@@ -2842,25 +2832,15 @@ s32 TQuestVmDownLoadServer__sub_803EA1A8(s32 start, s32 end) {
         return 0;
     }
     if (list != NULL) {
-        u8 *member = (u8 *)&quest_download_slot_chain_table + offset;
-        member += 8;
-        N_803E9FA4 **headp = (N_803E9FA4 **)member;
-        head = *headp;
-        for (n = list; n != NULL; n = next) {
-            next = n->next;
-            head = insert_sorted_node__22TQuestVmDownLoadServerFPvPv(head, n);
-        }
-        *headp = head;
+        quest_download_slot_chain_table[start].head = (Elem_803ED9AC *)merge_sorted_nodes((N_803E9FA4 *)quest_download_slot_chain_table[start].head, list);
     }
     if (e->x8 == NULL) {
         o = (Out_803E9FFC *)TQuestVmDownLoadServer__sub_803ECF48();
         if (o == NULL) {
             return -1;
         }
-        i = start + 1;
-        text = (u8 *)&quest_download_scratch_storage + i;
-        for (; i < end; text++, i++) {
-            if (!TQuestVmDownLoadServer::is_download_cmd_allowed(*text)) {
+        for (i = start + 1; i < end; i++) {
+            if (!TQuestVmDownLoadServer::is_download_cmd_allowed(((u8 *)&quest_download_scratch_storage)[i])) {
                 break;
             }
         }
