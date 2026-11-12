@@ -474,6 +474,18 @@ branch names `lbl_80593EC8` directly. Ports can drop the optimization pragma and
 keep ordinary typed traversal of the actual index and cache byte array. See
 [the unit investigation](evidence/quest-download-unit-completion-wip.md).
 
+### Quest-download primary-record removal
+
+The whole-record tail helper for `803EF208` in
+`TQuestVmDownLoadServer_803E6970.cpp` uses an MWCC-only integer address sum
+to preserve native displacement/base operand order; its portable branch uses
+ordinary byte-pointer addition. The existing depth-two inline scope also
+contains a distinct forwarding boundary for partial-message compaction. These
+choices reproduce the native code and name-buffer stack offset without dummy
+locals. Ports may inline freely and retain the ordinary pointer arithmetic.
+The helper's source must be strictly past its backing page's start, as proved
+for this nonempty-record caller in [the evidence](evidence/quest-download-unit-completion-wip.md).
+
 ### Quest-download scratch storage and native workspace addressing
 
 `QuestDownloadScratch.h` declares the shared aligned byte storage consistently.

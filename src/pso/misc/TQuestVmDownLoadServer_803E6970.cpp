@@ -5528,28 +5528,44 @@ inline s32 max_entry_index(u8 *rec) {
     return max;
 }
 
-inline void shift_tail_cursors(u8 *source, u8 *end, s32 delta) {
+// These spans are tails after a nonempty record in the same cached page.
+// source is strictly past the array start: the backward cursor can finish one
+// byte before source while remaining inside the backing page.
+#ifdef __MWERKS__
+#define QUEST_DOWNLOAD_SHIFT_ADDRESS(pointer, delta) \
+    reinterpret_cast<u8 *>((delta) + reinterpret_cast<size_t>(pointer))
+#else
+#define QUEST_DOWNLOAD_SHIFT_ADDRESS(pointer, delta) ((pointer) + (delta))
+#endif
+inline void shift_removed_record_tail(u8 *source, u8 *end, const s32 &delta) {
     if (delta > 0) {
-        u8 *destination = end + delta;
-        while (source < end) {
-            --end;
-            --destination;
+        --end;
+        u8 *destination = QUEST_DOWNLOAD_SHIFT_ADDRESS(end, delta);
+        for (; source <= end; end--, destination--) {
             *destination = *end;
         }
     } else if (delta < 0) {
-        u8 *destination = source + delta;
+        u8 *destination = QUEST_DOWNLOAD_SHIFT_ADDRESS(source, delta);
         for (; source < end; source++, destination++) {
             *destination = *source;
         }
     }
 }
 
+#undef QUEST_DOWNLOAD_SHIFT_ADDRESS
+
+// Partial-message removal already shortened its record. Keep this operation's
+// inline boundary separate from whole-record removal; see the unit evidence.
+inline void shift_compacted_record_tail(u8 *p, u8 *end, s32 delta) {
+    shift_tail_bytes(p, end, delta);
+}
 // Remove one matching message from a primary cached page. Caller-supplied
 // names/text and page records retain the native bounded-input preconditions.
 s32 TQuestVmDownLoadServer__sub_803EF208(Req_803EEF2C *request) {
+    s32 delta;
     char name[0x50];
-    u8 *record;
     u8 *end;
+    u8 *record;
     u8 len;
     s32 comparison;
     s32 size;
@@ -5589,10 +5605,11 @@ s32 TQuestVmDownLoadServer__sub_803EF208(Req_803EEF2C *request) {
     }
     if (removed == -1) {
         size = (u16)(record[0] + (record[1] << 8));
-        shift_tail_cursors(record + size, end + 2, -size);
+        delta = -size;
+        shift_removed_record_tail(record + size, end + 2, delta);
     } else {
         size = (u16)(record[0] + (record[1] << 8));
-        shift_tail_bytes(record + size + removed, end + 2, -removed);
+        shift_compacted_record_tail(record + size + removed, end + 2, -removed);
     }
     TQuestVmDownLoadServer__sub_803E79AC();
     TQuestVmDownLoadServer::set_active();

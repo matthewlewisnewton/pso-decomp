@@ -2,7 +2,7 @@
 
 The claimed unit is `pso/misc/TQuestVmDownLoadServer_803E6970.cpp`, based on
 fork main `554d21699c873ccf9be1b2268eba37cd3a32e48b`. All 173 native functions
-now have C++ bodies, but only 161 match exactly. **This unit remains unlinked
+now have C++ bodies, but only 162 match exactly. **This unit remains unlinked
 and is not ready for a completion PR.** The exact display milestone is
 recorded in [display recovery](quest-download-display-recovery.md).
 
@@ -89,7 +89,6 @@ GC/1.2.5 profile. Remaining functions are:
 | `803EDF64` | 78.625 | 888/896 |
 | `803EE2F4` | 82.36196 | 668/652 |
 | `803EE580` | 92.35294 | 412/408 |
-| `803EF208` | 95.303925 | 808/816 |
 | `803F03B4` | 99.75903 | 332/332 |
 
 A fresh full build and `tools/check_pr.py` pass against the starting-main
@@ -111,7 +110,7 @@ stack/nonvolatile restoration. This bounded execution evidence does not prove
 exact code or whole-unit linkage. Original binaries, table contents and
 extracted instructions remain private and are not committed.
 
-Completion still requires all twelve function differences, full allocated
+Completion still requires all eleven function differences, full allocated
 section layout and relocations, source-link eligibility, and fresh complete
 link/no-loss verification. No incomplete unit is added to `linked_units.txt`.
 
@@ -139,3 +138,33 @@ to 95.051544%, reload to 95.281815%, and rotation to 97.5566%. Rotation uses a
 bounded name-search helper that returns the stopping node and its link. It now
 has the native 424-byte extent, with stack offsets and registers still differing.
 The checked native initializer is an exact milestone, not whole-unit completion.
+
+## Primary-record remover exact recovery
+
+`803EF208` now matches all 816 bytes. The record/end declaration order restores
+their native registers. Whole-record removal names its actual negative
+displacement and borrows it through a readonly reference. Its destination uses
+a documented MWCC integer-address expression to preserve the native operand
+order; other compilers use ordinary byte-pointer addition. Partial-message
+removal forwards through its own depth-two inline boundary to the existing
+byte shifter. This accounts for the native name-buffer offset without padding,
+extra storage or an alignment attribute.
+
+The whole-record helper is deliberately specific to a tail after a nonempty
+record. The caller reaches it only for a record before the terminated page end;
+its positive record size puts `source = record + size` strictly after the
+backing array's first byte. Both terminator bytes belong to the same page.
+Consequently, even the helper's generic backward branch can decrement its
+cursor to `source - 1` without forming a before-array pointer. The actual call
+uses `-size`, hence the forward branch. This is a narrower, caller-supported
+interface than the earlier general array-start copy helper; it does not claim
+to accept arbitrary `source == array_begin` inputs. The existing partial-message
+helper and its other exact callers retain their previous code and contracts.
+
+The integrated remover passes the fresh full no-loss check: all 3,626 linked
+units remain exact and the original DOL SHA-1 passes. Together with the display
+and cache initializer, this branch adds three exact functions and 2,148 matched
+code bytes. A host C++98 extraction of the exact portable record-tail helper
+also passes 91,455 comparisons with `memmove` under AddressSanitizer and
+UndefinedBehaviorSanitizer, including empty spans and both overlap directions,
+with the documented strictly-after-array-start source condition.
