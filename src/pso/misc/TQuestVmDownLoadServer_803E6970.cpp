@@ -4906,10 +4906,10 @@ u8 *TQuestVmDownLoadServer__sub_803EDDA4(u16 *start, u16 *end) {
 // The frontend starts and fills the actual halfword scratch object.
 s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
                                       u16 *output, s32 *outputCount) {
-    u16 state;
-    u16 next;
     u8 byte;
-    s32 first;
+    u8 first;
+    u16 next;
+    u16 state;
     const u16 *cursor;
     u8 category;
     s32 consumed;
@@ -4947,9 +4947,10 @@ s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
         }
         cursor = input + 1;
         {
-            next = byte = *cursor & 0xFF;
+            u16 raw = *cursor;
+            byte = (u8)raw;
             first = (u8)*input;
-            if (first == (u8)byte) {
+            if (first == (next = (u8)raw)) {
                 if (category == 12) return 2;
                 if (category == 13) {
                     output[0] = TQuestVmDownLoadServer__sub_803E719C(0x43, *cursor);

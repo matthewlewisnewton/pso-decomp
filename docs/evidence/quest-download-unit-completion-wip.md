@@ -2,7 +2,7 @@
 
 The claimed unit is `pso/misc/TQuestVmDownLoadServer_803E6970.cpp`, based on
 fork main `554d21699c873ccf9be1b2268eba37cd3a32e48b`. All 173 native functions
-now have C++ bodies, but only 167 match exactly. **This unit remains unlinked
+now have C++ bodies, but only 168 match exactly. **This unit remains unlinked
 and is not ready for a completion PR.** The exact display milestone is
 recorded in [display recovery](quest-download-display-recovery.md).
 
@@ -81,8 +81,7 @@ GC/1.2.5 profile. Remaining functions are:
 | --- | ---: | ---: |
 | `803E8DA0` | 95.051544 | 780/776 |
 | `803EA9E8` | 96.88844 | 1004/1004 |
-| `803EDC20` | 94.41237 | 388/388 |
-| `803EDF64` | 99.24107 | 892/896 |
+| `803EDC20` | 94.46392 | 388/388 |
 | `803EE2F4` | 95.74847 | 644/652 |
 | `803F03B4` | 99.75903 | 332/332 |
 
@@ -105,7 +104,7 @@ stack/nonvolatile restoration. This bounded execution evidence does not prove
 exact code or whole-unit linkage. Original binaries, table contents and
 extracted instructions remain private and are not committed.
 
-Completion still requires all nine function differences, full allocated
+Completion still requires all five remaining function differences, full allocated
 section layout and relocations, source-link eligibility, and fresh complete
 link/no-loss verification. No incomplete unit is added to `linked_units.txt`.
 
@@ -464,3 +463,30 @@ address-based comparison against the complete pre-integration branch report
 also reports no regressions. The claimed unit still has six partial functions
 and remains unlinked; publication awaits their exact matches and integration
 of the validated data grouping.
+
+
+## Exact lookahead conversion
+
+`803EDF64` now matches all 896 bytes under the unchanged GC/1.2.5 profile.
+The next input word is retained as `u16 raw`; its low byte initializes the
+byte lookahead, while the comparison assigns the decoded value to the
+halfword `next`. The first input byte is also an unsigned byte. This retains
+the two native masks and the dependency that schedules the halfword copy
+before the comparison. Ordering the byte, first-byte, next and state locals
+then reproduces the remaining register allocation. An overwritten preliminary
+assignment to `next` was removed and exactness rechecked. No new optimization
+pragma or target-specific source operation is required.
+
+The complete native instruction sequence was reached before declaration-order
+refinement; the earlier candidate's higher aggregate score concealed a missing
+mask. Read-only compiler traces distinguished that missing dependency from a
+register-allocation difference. The private differential run passes the same
+134,296 cases described above, including all six keyword rows, actual native
+helpers, outputs, input preservation and nonvolatile registers. Both the tested
+candidate and the version without the overwritten assignment are byte exact.
+
+The complete build and `tools/check_pr.py` pass against independently validated
+main `5146327538`: nine new exact functions and 6,156 additional matched code
+bytes, with no losses. All 3,622 previously linked units remain exact and the
+DOL hash passes. This brings the claimed unit to 168/173 exact functions; the
+five remaining routines and eventual complete source linkage remain in scope.
