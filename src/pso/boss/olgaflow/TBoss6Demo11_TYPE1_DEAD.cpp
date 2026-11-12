@@ -36,36 +36,41 @@ struct EffectNodeDesc {
 
 extern s32 lbl_804DF614[]; // model ids, defined in TBoss6Type1.cpp
 
+__declspec(weak) extern const EffectNodeDesc lbl_80477E60[];
+__declspec(weak) extern const CameraAngles lbl_80477EC0;
+__declspec(weak) extern const CameraPlayback lbl_80477ECC;
+extern s32 lbl_804EF9D8[2];
+extern Vec lbl_804EF9E0;
+
 const char TBoss6Demo11_TYPE1_DEAD__class_name_string[] = "TBoss6Demo11_TYPE1_DEAD";
-static s32 lbl_804EF9D8[2] = {4, 5};          // motion ids
-static Vec lbl_804EF9E0 = {0.0f, 0.0f, 70.0f}; // start position
+s32 lbl_804EF9D8[2] = {4, 5};          // motion ids
+Vec lbl_804EF9E0 = {0.0f, 0.0f, 70.0f}; // start position
 const char *TBoss6Demo11_TYPE1_DEAD__name = TBoss6Demo11_TYPE1_DEAD__class_name_string;
+const EffectNodeDesc lbl_80477E60[] = {
+    {0, {0.0f, 0.0f, 0.0f}},
+    {4, {0.0f, 0.0f, 0.0f}},
+    {6, {0.0f, 0.0f, 0.0f}},
+    {0x19, {0.0f, 0.0f, 0.0f}},
+    {0x31, {0.0f, 0.0f, 0.0f}},
+    {-1, {0.0f, 0.0f, 0.0f}},
+};
+const CameraAngles lbl_80477EC0 = {0, 0, 0};
+const CameraPlayback lbl_80477ECC = {1, 0, 0, 0.0f, 0.7f};
 
 void *TBoss6PlotFalz::create(void *parent, void *arg) {
     return new TBoss6Demo11_TYPE1_DEAD((TBoss6PlotFalz *)parent, (const Vec *)arg);
 }
 
 TBoss6Demo11_TYPE1_DEAD::TBoss6Demo11_TYPE1_DEAD(TBoss6PlotFalz *parent, const Vec *arg) : TObject(parent) {
-    static const EffectNodeDesc lbl_80477E60[] = {
-        {0, {0.0f, 0.0f, 0.0f}},
-        {4, {0.0f, 0.0f, 0.0f}},
-        {6, {0.0f, 0.0f, 0.0f}},
-        {0x19, {0.0f, 0.0f, 0.0f}},
-        {0x31, {0.0f, 0.0f, 0.0f}},
-        {-1, {0.0f, 0.0f, 0.0f}},
-    };
-    static const CameraAngles lbl_80477EC0 = {0, 0, 0};
-    static const CameraPlayback lbl_80477ECC = {1, 0, 0, 0.0f, 0.7f};
     BmlResource *resource;
-    s32 i;
     m_name = TBoss6Demo11_TYPE1_DEAD__name;
     owner = (TObjFish *)parent;
     VecCopy(&position, &lbl_804EF9E0);
     resource = (BmlResource *)TObjFish::get_fish_count();
-    for (i = 0; i < 2; i++) {
-        s32 model_id = lbl_804DF614[i];
-        parts[i].model = get_bml_model(resource, model_id);
-        parts[i].texture = TObjFish__sub_8001EDB0(resource, model_id);
+    for (s32 i = 0; i < 2; i++) {
+        const s32 index = lbl_804DF614[i];
+        parts[i].model = get_bml_model(resource, index);
+        parts[i].texture = TObjFish__sub_8001EDB0(resource, (s32)index);
         parts[i].motion = get_bml_motion(resource, lbl_804EF9D8[i]);
     }
     node_effect = (TObjFish *)create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec((u8 *)lbl_80477E60, (s32)effect_points);
