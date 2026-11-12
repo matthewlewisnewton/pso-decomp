@@ -1,3 +1,4 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "types.h"
 #include "pso/system/vector.h"
@@ -201,12 +202,81 @@ void TOMineTrap::set_triggered() {
     this->actorFlags = (s32) (this->actorFlags & 0xFFFBFFFF);
 }
 
-void TOMineTrap::run_task() {
-    TObjChara *attacker;
-    s32 i;
-    TObjPlayer *p;
-    u16 id;
+/* Mode 4's strike against one actor. */
+inline void TOMineTrap::strike_player(TObjChara *actor) {
+    TOMineTrap *self = this;
+    if (TObjPlayer::get_player_count() != 1) {
+        return;
+    }
+    if (((TObjPlayer *)actor)->get_floor() != get_current_floor()) {
+        return;
+    }
+    if (horizontal_distance_squared(&self->position, &actor->position) < self->m_350 * self->m_350) {
+        if (actor->obj_isState2_324() == 0) {
+            self->target = (u8 *)actor;
+            switch (self->attack.kind) {
+            case 2:
+                ((TObjChara *)self->target)->apply_movement_ailment(0);
+                break;
+            default:
+                ((TObjChara *)self->target)->receive_direct_attack(self, self->attack, 0, -1, -1);
+                break;
+            }
+            record_attack_source(self->target, self->get_trap_type());
+        }
+        if (self->m_380 != 1) {
+            self->m_380 = TOMineTrap::show_owner_message(self, actor);
+        }
+    }
+}
 
+inline void TOMineTrap::strike_enemy(TObjChara *actor, TObjPlayer *owner) {
+    TOMineTrap *self = this;
+    if (horizontal_distance_squared(&self->position, &actor->position) < self->m_350 * self->m_350) {
+        self->target = (u8 *)actor;
+        switch (self->attack.kind) {
+        case 2:
+            ((TObjChara *)self->target)->apply_movement_ailment(0);
+            ((TObjChara *)self->target)->vfunc_74(0);
+            break;
+        default:
+            ((TObjChara *)self->target)->receive_direct_attack(owner, self->attack, 0, -1, -1);
+            break;
+        }
+        record_attack_source(self->target, self->get_trap_type());
+    }
+}
+
+inline void TOMineTrap::strike_actor(TObjChara *actor, TObjPlayer *owner) {
+    TOMineTrap *self = this;
+    if (actor == 0 || actor == (TObjChara *)self) {
+        return;
+    }
+    if (actor->obj_testFlags30(0x4000800) != 0) {
+        return;
+    }
+    if (actor->alt_room != self->alt_room && actor->room != self->room && actor->room != self->alt_room) {
+        return;
+    }
+    u16 id = get_entity_id(actor);
+    if (id == 0xFFFF) {
+        return;
+    }
+    if (id == self->get_trap_type() && TOMineTrap::get_trap_count() != 1) {
+        return;
+    }
+    if (id < 0x1000) {
+        strike_player(actor);
+    } else if (id < 0x4000) {
+        strike_enemy(actor, owner);
+    } else if (check_value_equals__7TObjectFPCc(actor, TOMineTrap__data_805D3080) != 0 &&
+               horizontal_distance_squared(&self->position, &actor->position) < self->m_350 * self->m_350) {
+        self->target = (u8 *)actor;
+        ((TObjChara *)self->target)->receive_physical_attack(self, TOMineTrap__data_805DB868);
+    }
+}
+
+void TOMineTrap::run_task() {
     update_float_height();
     switch (mode) {
     case 0:
@@ -216,80 +286,34 @@ void TOMineTrap::run_task() {
         }
         VecCopy((Vec *)&m_2fc, &float_position);
         VecCopy(&bodies->center, &float_position);
-        break;
-    case 3:
-        if (set_params[1]-- < 0) {
+        return;
+    case 3: {
+        s32 timer = set_params[1];
+        set_params[1] = timer - 1;
+        if (timer < 0) {
             set_state();
             send_state_packet(2);
         }
         TOMineTrap__sub_80170CD4(this);
         submit_cursor_candidate(this, -1);
-        break;
-    case 4:
-        attacker = get_player_by_client_id(get_trap_type());
-        if (attacker == NULL) {
-            attacker = this;
+        return;
+    }
+    case 4: {
+        TObjPlayer *owner = (TObjPlayer *)get_player_by_client_id(get_trap_type());
+        if (owner == 0) {
+            owner = (TObjPlayer *)this;
         }
-        for (i = 0; i < lbl_805D5868; i++) {
-            p = TObjPlayer::get_player_data(i);
-            if (p == NULL || p == (TObjChara *)this || p->obj_testFlags30(0x4000800) != 0) {
-                continue;
-            }
-            if (p->alt_room != alt_room && p->room != room && p->room != alt_room) {
-                continue;
-            }
-            id = get_entity_id(p);
-            if (id == 0xFFFF) {
-                continue;
-            }
-            if (id == get_trap_type() && TOMineTrap::get_trap_count() != 1) {
-                continue;
-            }
-            if (id < 0x1000) {
-                if (TObjPlayer::get_player_count() == 1 && p->get_floor() == get_current_floor() &&
-                    horizontal_distance_squared(&position, &p->position) < m_350 * m_350) {
-                    if (p->obj_isState2_324() == 0) {
-                        target = (u8 *)p;
-                        switch (attack.kind) {
-                        case 2:
-                            ((TObjChara *)target)->apply_movement_ailment(0);
-                            break;
-                        default:
-                            ((TObjChara *)target)->receive_direct_attack(this, attack, 0, -1, -1);
-                            break;
-                        }
-                        record_attack_source(target, get_trap_type());
-                    }
-                    if (m_380 != 1) {
-                        m_380 = show_owner_message((TOMineTrap *)(s32)this, (TObjChara *)(u32)p);
-                    }
-                }
-            } else if (id < 0x4000) {
-                if (horizontal_distance_squared(&position, &p->position) < m_350 * m_350) {
-                    target = (u8 *)p;
-                    switch (attack.kind) {
-                    case 2:
-                        ((TObjChara *)target)->apply_movement_ailment(0);
-                        ((TObjChara *)target)->vfunc_74(0);
-                        break;
-                    default:
-                        ((TObjChara *)target)->receive_direct_attack(attacker, attack, 0, -1, -1);
-                        break;
-                    }
-                    record_attack_source(target, get_trap_type());
-                }
-            } else if (check_value_equals__7TObjectFPCc(p, TOMineTrap__data_805D3080) != 0) {
-                if (horizontal_distance_squared(&position, &p->position) < m_350 * m_350) {
-                    target = (u8 *)p;
-                    ((TObjChara *)target)->receive_physical_attack(this, TOMineTrap__data_805DB868);
-                }
-            }
+        for (s32 i = 0; i < lbl_805D5868; i++) {
+            strike_actor((TObjChara *)TObjPlayer::get_player_data(i), owner);
         }
         mode = 5;
         clear_player_status_flag(0, 1);
         sub_8017070C();
         queue_destruction();
-        break;
+        return;
+    }
+    default:
+        return;
     }
 }
 
@@ -346,6 +370,8 @@ void *__dt__10TOMineTrapFv(void *arg0, s16 arg1) {
 
 #pragma push
 #pragma fp_contract on
+#pragma push
+#pragma opt_common_subs off
 TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 kind, s16 slot) : TOMine(tl_05) {
     TObjPlayer *player;
     s32 floor;
@@ -395,7 +421,10 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 kind, s16 slot) : TOMine(tl_05) {
             attack.power = lbl_805DB85C;
             break;
         }
-        m_37e = slot + (kind * 20 + get_trap_type() * 80);
+        s32 type = (u16)get_trap_type();
+        s32 idx = (s16)kind;
+        s32 id = (s16)slot;
+        m_37e = type * 0x50 + (idx * 0x14 + id);
         VecCopy(&float_position, VecCopy(&home_position, VecCopy(&position, &owner->position)));
         ((TObjChara *)this)->initialize_position_copies();
         calc_attach_pos();
@@ -448,6 +477,7 @@ TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 kind, s16 slot) : TOMine(tl_05) {
         queue_destruction();
     }
 }
+#pragma pop
 #pragma pop
 
 s32 TOMine::is_target_in_list(void *obj) {

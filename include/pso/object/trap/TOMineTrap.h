@@ -42,6 +42,9 @@ struct TOMineTrap : public TOMine {
     void sync_position();
     void send_state_packet(u16 idx);
     int update_trap_sub();
+    void strike_player(TObjChara *actor);
+    void strike_enemy(TObjChara *actor, TObjPlayer *owner);
+    void strike_actor(TObjChara *actor, TObjPlayer *owner);
     static s32 show_owner_message(TOMineTrap *trap, TObjChara *actor);
 };
 
