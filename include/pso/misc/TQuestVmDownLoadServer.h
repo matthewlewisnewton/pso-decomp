@@ -80,7 +80,7 @@ public:
     s32 convert_jis_to_sjis_string();
     static void init_buffer_pointers();
     static s32 get_buffer_size();
-    static s32 lookup_value_by_key(u16 arg0);
+    static u8 lookup_value_by_key(u16 arg0);
     static u16 map_key_to_code(u32 arg0);
     static s32 is_valid_item_for_slot(u8 c, u8 k);
     static void invalidate_entries_by_id(s32 id);

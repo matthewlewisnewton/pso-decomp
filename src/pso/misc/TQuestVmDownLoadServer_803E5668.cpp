@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/QuestDownloadCharacter.h"
 #include "pso/misc/QuestDownloadScratch.h"
 #include "pso/misc/QuestDownloadRecords.h"
 #include "pso/misc/TQuestVmDownLoadServer_803E5668.h"
@@ -73,9 +74,6 @@ extern s32 lbl_805D78F8;
 extern s32 lbl_805D78FC;
 extern s32 lbl_805D7900;
 extern s32 lbl_805D7904;
-s32 TQuestVmDownLoadServer__sub_803EC69C(s32);
-u8 TQuestVmDownLoadServer__sub_803EC8D8();
-s32 TQuestVmDownLoadServer__sub_803ECC7C(u32 arg0);
 s32 TQuestVmDownLoadServer__sub_803EF208(Req_803E5D20 *);
 s32 TQuestVmDownLoadServer__sub_803EF538(Req_803E5D20 *);
 extern u8 quest_download_code_remap_table[];
@@ -254,7 +252,7 @@ s32 TQuestVmDownLoadServer__sub_803E5D20(s32 *arg0) {
   s32 code;
   u8 *src;
   int new_var;
-  s32 ch;
+  u16 ch;
   u8 *dst;
   s32 n;
   s32 idx;
@@ -297,8 +295,8 @@ s32 TQuestVmDownLoadServer__sub_803E5D20(s32 *arg0) {
     {
       return 3;
     }
-    TQuestVmDownLoadServer__sub_803EC69C(ch);
-    r = TQuestVmDownLoadServer__sub_803EC8D8();
+    ch = TQuestVmDownLoadServer__sub_803EC69C(ch);
+    r = TQuestVmDownLoadServer__sub_803EC8D8(ch);
     if (r == 0)
     {
       return 3;

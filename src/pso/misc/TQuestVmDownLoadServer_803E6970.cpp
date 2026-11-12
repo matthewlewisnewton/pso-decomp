@@ -184,9 +184,8 @@ extern s32 lbl_805D790C;
 extern s32 lbl_805E10D8;
 extern s32 lbl_805E10E0;
 extern s32 lbl_805D7888;
-s32 TQuestVmDownLoadServer__sub_803E7098(u8 *p, u16 code);
 extern u16 quest_download_char_code_table[];
-s32 TQuestVmDownLoadServer__sub_803EC69C(int);
+
 extern u8 quest_name_index_table[1024][4];
 void __VIRetraceHandler(void);
 s32 TQuestVmDownLoadServer__sub_803E93DC(void);
@@ -366,8 +365,6 @@ void TQuestVmDownLoadServer__sub_803E6ACC(s32 arg0) {
 
 
 void TQuestVmDownLoadServer__sub_803E6B70(u8 *dst, s32 start, s32 count, s32 mode) {
-    s32 TQuestVmDownLoadServer__sub_803E6F98(u16 arg0);
-    s32 TQuestVmDownLoadServer__sub_803E7018(u16 arg0);
     QuestDownloadInputEntry *e;
     QuestDownloadInputEntry *end;
     u16 c;
@@ -492,7 +489,7 @@ s32 TQuestVmDownLoadServer::get_buffer_size() {
 }
 
 
-s32 TQuestVmDownLoadServer::lookup_value_by_key(u16 arg0) {
+u8 TQuestVmDownLoadServer::lookup_value_by_key(u16 arg0) {
     E_803E6F48 *p;
     for (p = jis_to_single_byte_symbol_table; p < jis_to_single_byte_symbol_table + 45; p++) {
         if (p->key == arg0) {
@@ -505,36 +502,40 @@ s32 TQuestVmDownLoadServer::lookup_value_by_key(u16 arg0) {
     return 0;
 }
 
-bool TQuestVmDownLoadServer__sub_803E6F98(s32 arg0) {
-    u8 spC;
-    s32 code;
-    s32 TQuestVmDownLoadServer__sub_803E7098(void *, int);
+#pragma push
+#pragma bool off
+s32 TQuestVmDownLoadServer__sub_803E6F98(u16 arg0) {
+    u8 decoded[2];
+    u16 code;
     code = arg0;
     if (TQuestVmDownLoadServer__sub_803ECC7C(arg0) != 0) {
         code = TQuestVmDownLoadServer__sub_803EC69C(code);
     }
-    if (TQuestVmDownLoadServer__sub_803E7098(&spC, code) != 1) {
+    if (TQuestVmDownLoadServer__sub_803E7098(decoded, code) != 1) {
         return 0;
     }
-    return (lbl_8047F8B8[spC] & 0xF) == 0xB;
+    return (lbl_8047F8B8[decoded[0]] & 0xF) == 0xB;
 }
+#pragma pop
 
-bool TQuestVmDownLoadServer__sub_803E7018(s32 arg0) {
-    u8 spC;
-    s32 code;
-    s32 TQuestVmDownLoadServer__sub_803E7098(void *, int);
+#pragma push
+#pragma bool off
+s32 TQuestVmDownLoadServer__sub_803E7018(u16 arg0) {
+    u8 decoded[2];
+    u16 code;
     code = arg0;
     if (TQuestVmDownLoadServer__sub_803ECC7C(arg0) != 0) {
         code = TQuestVmDownLoadServer__sub_803EC69C(code);
     }
-    if (TQuestVmDownLoadServer__sub_803E7098(&spC, code) != 1) {
+    if (TQuestVmDownLoadServer__sub_803E7098(decoded, code) != 1) {
         return 0;
     }
-    return (lbl_8047F8B8[spC] & 0xF) == 0xA;
+    return (lbl_8047F8B8[decoded[0]] & 0xF) == 0xA;
 }
+#pragma pop
 
 s32 TQuestVmDownLoadServer__sub_803E7098(u8 *p, u16 code) {
-    u32 c;
+    u8 c;
     s32 w = code;
 
     switch (code & 0xFF00) {
@@ -3917,7 +3918,7 @@ u16 TQuestVmDownLoadServer::jis_to_sjis(u16 arg0) {
 }
 
 // The callers validate Shift-JIS lead bytes; this conversion checks the trail byte.
-s32 TQuestVmDownLoadServer__sub_803EC69C(int code) {
+u16 TQuestVmDownLoadServer__sub_803EC69C(u16 code) {
     u32 lo = code & 0xff;
     u8 hi = ((u32)code >> 8) & 0xff;
     code = hi;
@@ -3926,7 +3927,7 @@ s32 TQuestVmDownLoadServer__sub_803EC69C(int code) {
     if (lo < 0x40 || lo > 0xfc || lo == 0x7f) {
         return 0;
     }
-    if ((u32)code >= 0xe0) {
+    if (hi >= 0xe0) {
         code -= 0x40;
     }
     row = ((u8)code - 0x81) * 2 + 0x21;
@@ -4043,9 +4044,9 @@ s32 TQuestVmDownLoadServer::is_download_command(u16 arg0, s32 arg1) {
     return 0;
 }
 
-s32 TQuestVmDownLoadServer__sub_803EC8D8(u16 arg0) {
+u8 TQuestVmDownLoadServer__sub_803EC8D8(u16 arg0) {
     s32 temp_r0;
-    s32 var_r3;
+    u8 var_r3;
     u16 var_r4;
     if ((arg0 > 0x20U) && (arg0 < 0x7FU)) {
         var_r3 = 0;
@@ -4199,7 +4200,7 @@ s32 TQuestVmDownLoadServer::encode_char_with_attr(u16 *out, u16 ch, s32 attr) {
 
 #pragma pop
 
-s32 TQuestVmDownLoadServer__sub_803ECC7C(u32 arg0) {
+s32 TQuestVmDownLoadServer__sub_803ECC7C(u16 arg0) {
     u8 hi = (arg0 >> 8) & 0xFF;
     u8 lo = arg0;
     s32 lead;

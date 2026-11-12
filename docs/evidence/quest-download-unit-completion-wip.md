@@ -408,3 +408,19 @@ low-byte combination, randomized longer inputs, all keyword rows with case
 and high-byte variants, and long inputs. Return values, output bytes and count,
 read-only input, and preserved registers agreed; both implementations reached
 all six keyword rows using the actual native helpers.
+
+## Shared character interfaces
+
+The character conversion chain now shares halfword inputs, a halfword Shift-JIS
+conversion result, and byte encoder/lookup results. The two classification
+predicates return integers, as their native callers expect. Their two-byte local
+output arrays accommodate both encoder outcomes; the former single-byte locals
+were too small for the two-byte case. Scoped `bool off` preserves the native
+integer predicate instructions.
+
+The neighboring routine at `803E5D20` now passes the conversion result explicitly
+to the encoder through the shared header. Its old parameterless declaration
+relied on the prior call leaving its result in r3. All 16 neighboring functions
+remain exact, as do the same 167 functions in the claimed unit. The corrected
+interfaces slightly improve the still-partial input parser to 94.46392%; no
+additional function or source linkage is claimed in this step.
