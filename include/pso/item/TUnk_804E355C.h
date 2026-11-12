@@ -9,7 +9,6 @@ public:
     void check_hits();
     s32 try_add_hit_target(void *);
     virtual void vfunc_6(s32 *);
-    void *destroy_attack_collision(s16);
     u8 has_game_join_id();
     s32 resolve_attack_col_hit(u8 *);
     u8 unk_1C[0x4];
@@ -40,5 +39,7 @@ public:
     s32 m_bc;
     u8 unk_C0[0x4];
 };
+
+extern "C" void *__dt__13TUnk_804E355CFv(TUnk_804E355C *self, s16 arg1);
 
 #endif

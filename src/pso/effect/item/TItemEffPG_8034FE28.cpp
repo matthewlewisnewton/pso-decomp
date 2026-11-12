@@ -104,7 +104,7 @@ void TItemEffPG::run_task() {
 void *__dt__10TItemEffPGFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__10TItemEffPG;
-        ((TUnk_804E355C *)arg0)->destroy_attack_collision(0);
+        __dt__13TUnk_804E355CFv((TUnk_804E355C *)arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -115,7 +115,7 @@ void *__dt__10TItemEffPGFv(void *arg0, s16 arg1) {
 u8 *TItemEffPG__ct(u8 *item_eff_pg, s32 arg1, u8 *arg2) {
     s32 temp_r3;
     s32 var_r0;
-    construct_attack_collision((item_eff_pg), (arg1), (arg2));
+    __ct__13TUnk_804E355CFP7TObjectPv((item_eff_pg), (arg1), (arg2));
     *(s32 **)((s8 *)item_eff_pg + 0x18) = &(*(RecoveredGlobal_8035007C___vt__10TItemEffPG *)&__vt__10TItemEffPG).value;
     *(s32 *)((s8 *)item_eff_pg + 0) = (s32) ((s32)TItemEffPG__name);
     *(f32 *)((s8 *)item_eff_pg + 0xC4) = (f32) *(f32 *)((s8 *)arg2 + 0x28);

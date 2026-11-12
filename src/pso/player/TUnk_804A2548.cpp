@@ -50,7 +50,7 @@ extern s32 __vt__13TUnk_804A2548[];
 void *__dt__13TUnk_804A2548Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__13TUnk_804A2548;
-        ((TUnk_804E355C *)arg0)->destroy_attack_collision(0);
+        __dt__13TUnk_804E355CFv((TUnk_804E355C *)arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -62,10 +62,10 @@ void *__dt__13TUnk_804A2548Fv(void *arg0, s16 arg1) {
 
 extern "C" {
 
-int construct_attack_collision(void);
+int __ct__13TUnk_804E355CFP7TObjectPv(void);
 
     extern const float lbl_805DAD54;
-void*TUnk_804A2548::construct_explosion_collider() { construct_attack_collision(); *(int*)((char*)this + 0x18) = (int)__vt__13TUnk_804A2548; *(float *)&this->unk_C4 = lbl_805DAD54; return this; }
+void*TUnk_804A2548::construct_explosion_collider() { __ct__13TUnk_804E355CFP7TObjectPv(); *(int*)((char*)this + 0x18) = (int)__vt__13TUnk_804A2548; *(float *)&this->unk_C4 = lbl_805DAD54; return this; }
 
 }
 
