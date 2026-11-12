@@ -56,8 +56,8 @@ void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 extern const Vec lbl_804775F0;
 extern const f32 TObjEneMorfos__data_805DF86C;
 extern const f32 TObjEneMorfos__data_805DF874;
-void* TObjEneMorfosArm__sub_803326B4(void* p);
-s32 TObjEneMorfosArm__sub_803326BC(void* p);
+void* get_arm_position__13TObjEneMorfosFv(void* p);
+s32 get_heading__13TObjEneMorfosFv(void* p);
 void TWindowSubTradeMain__sub_803323A8(void* p);
 void TWindowSubTradeMain__sub_803323B8(void* p);
 void TWindowSubTradeMain__sub_803323C8(void* p);
@@ -155,7 +155,7 @@ u8 TObjEneMorfos::check_value_in_range(void *arg0, u16 arg1, u16 arg2, u16 arg3)
     }
 }
 
-void* TObjEneMorfosArm__sub_803326B4(void* p) { return (char*)p + 0x4a4; }
-s32 TObjEneMorfosArm__sub_803326BC(void* p) { return *(s32*)((char*)p + 0x60); }
+void* get_arm_position__13TObjEneMorfosFv(void* p) { return (char*)p + 0x4a4; }
+s32 get_heading__13TObjEneMorfosFv(void* p) { return *(s32*)((char*)p + 0x60); }
 
 }

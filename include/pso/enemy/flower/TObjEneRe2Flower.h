@@ -54,7 +54,7 @@ struct TObjEneRe2Flower : public TObjEneDD_ST {
 };
 
 // The archive loader the enemy factory table pairs with destroy_instance.
-extern "C" void TObjPlayer__sub_800C44C4(void);
+extern "C" void initialize_resources__16TObjEneRe2FlowerFv(void);
 
 typedef char TObjEneRe2Flower_size[sizeof(TObjEneRe2Flower) == 0x42C ? 1 : -1];
 #endif

@@ -10,7 +10,7 @@ public:
 };
 
 extern "C" {
-void *TPlyItem__ct(void *ply_item);
+void *__ct__8TPlyItemFP7TObject(void *ply_item);
 }
 
 #endif

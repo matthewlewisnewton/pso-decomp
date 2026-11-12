@@ -749,30 +749,30 @@ s32 get_flag_b4__9TObjEneDDFv(void *);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 void render_with_state_debug__17TObjEneBm3FlyNestFv(u8 *arg0);
 void render__17TObjEneBm3FlyNestFv(u8 *arg0);
-void handle_attachment_sample__17TObjEneBm3FlyNestFi(s32 arg0);
-int copy_target_state__17TObjEneBm3FlyNestFPv(void* p, s32 sound_id);
-void* TObjEneBm3FlyNest__sub_800B2A54(void* p);
-void handle_state__17TObjEneBm3FlyNestFPvi(void *arg0, s32 arg1);
-void state_dying__17TObjEneBm3FlyNestFPvi(u8 *arg0, s32 arg1);
-void handle_motion_event__17TObjEneBm3FlyNestFPvi(u8 *arg0, s32 arg1);
-void state_spawn__17TObjEneBm3FlyNestFPvi(void *arg0, s32 arg1);
-void update_state__17TObjEneBm3FlyNestFPvi(void *arg0, s32 arg1);
+void sample_carrier_attachments__17TObjEneBm3FlyNestFP10NJS_OBJECT(s32 arg0);
+int remap_child_sound__17TObjEneBm3FlyNestFl(void* p, s32 sound_id);
+void* get_spawn_point__17TObjEneBm3FlyNestFv(void* p);
+void handle_state__17TObjEneBm3FlyNestFl(void *arg0, s32 arg1);
+void state_dying__17TObjEneBm3FlyNestFl(u8 *arg0, s32 arg1);
+void handle_motion_event__17TObjEneBm3FlyNestFl(u8 *arg0, s32 arg1);
+void state_spawn__17TObjEneBm3FlyNestFl(void *arg0, s32 arg1);
+void update_state__17TObjEneBm3FlyNestFl(void *arg0, s32 arg1);
 void TObjEneBm3FlyNest__sub_800B318C(u8 *arg0, s32 arg1);
-void handle_event__17TObjEneBm3FlyNestFPvi(void *arg0, s32 arg1);
-void state_wait__17TObjEneBm3FlyNestFPvi(void *arg0, s32 arg1);
-void handle_appear__17TObjEneBm3FlyNestFPvi(u8 *arg0, s32 arg1);
+void handle_event__17TObjEneBm3FlyNestFl(void *arg0, s32 arg1);
+void state_wait__17TObjEneBm3FlyNestFl(void *arg0, s32 arg1);
+void handle_appear__17TObjEneBm3FlyNestFl(u8 *arg0, s32 arg1);
 void init_params__17TObjEneBm3FlyNestFv(void *arg0);
-s32 TObjEneBm3FlyNest__sub_800B3AC8(u8 *arg0);
+s32 has_pending_spawns__17TObjEneBm3FlyNestCFv(u8 *arg0);
 void vfunc_88__17TObjEneBm3FlyNestFv(void* p);
 void vfunc_61__17TObjEneBm3FlyNestFv(void);
 void vfunc_62__17TObjEneBm3FlyNestFv(void *arg0);
 void vfunc_63__17TObjEneBm3FlyNestFv(void *arg0);
 void vfunc_28__17TObjEneBm3FlyNestFv(void);
-void dispatch_state__17TObjEneBm3FlyNestFiUii(s32 arg0, u32 arg1, s32 arg2);
+void dispatch_action__17TObjEneBm3FlyNestFUll(s32 arg0, u32 arg1, s32 arg2);
 void run_task__17TObjEneBm3FlyNestFv(u8 *arg0);
-Obj_800B3E40 * TObjEneBm3FlyNest__sub_800B3E40(Obj_800B3E40 *self, s16 flag);
-void * TObjEneBm3FlyNest__ct(void *, void *, void *);
-int TObjEneBm3FlyNest__sub_800B4158(void);
+Obj_800B3E40 * __dt__17TObjEneBm3FlyNestFv(Obj_800B3E40 *self, s16 flag);
+void * __ct__17TObjEneBm3FlyNestFP7TObjectP14EnemySetRecord(void *, void *, void *);
+int get_resources__17TObjEneBm3FlyNestFv(void);
 u8 * __ct__26TObjEneBm3FlyNest_CarryFlyFP7TObjectlllll(u8 *self, void *parent, s32 a, s32 b, s32 unused, s32 c, s32 d);
 s32 is_main_phase_15__9TObjEneDDFv();
 void transform_point_to_view(s32, s32);
@@ -895,36 +895,36 @@ void update_flag30_timer__9TObjCharaFv();
 void update_movement_status__9TObjCharaFv();
 void update_object_view_visibility__8TObjBaseFff();
 void update_poison_status__9TObjCharaFv();
-extern char lbl_8043B120[];
-extern char lbl_8043B130[];
-extern char lbl_8043B140[];
-extern char lbl_8043B158[];
-extern char lbl_8043B170[];
-extern char lbl_8043B184[];
-extern char lbl_8043B19C[];
-extern char lbl_8043B1B0[];
-extern char lbl_8043B1C4[];
-extern char lbl_8043B1DC[];
-extern char lbl_8043B1F4[];
-extern char lbl_8043B20C[];
-extern char lbl_8043B220[];
-extern char lbl_8043B238[];
-extern char lbl_8043B24C[];
-extern char lbl_8043B264[];
-extern char lbl_8043B27C[];
-extern char lbl_8043B290[];
+extern char fly_body_model_filename[];
+extern char fly_nest_model_filename[];
+extern char fly_attack_motion_filename[];
+extern char fly_damage_motion_filename[];
+extern char nest_damage_motion_filename[];
+extern char fly_death_motion_filename[];
+extern char nest_death_motion_filename[];
+extern char nest_fall_motion_filename[];
+extern char fallen_nest_damage_motion_filename[];
+extern char fallen_nest_emit_motion_filename[];
+extern char fallen_nest_wait_motion_filename[];
+extern char nest_emit_motion_filename[];
+extern char fly_flight_motion_filename[];
+extern char nest_land_motion_filename[];
+extern char fly_move_motion_filename[];
+extern char nest_trance_motion_filename[];
+extern char nest_wait_motion_filename[];
+extern char fly_bml_filename[];
 struct Params_80491DA0 { f32 f00; u32 w[6]; };
 struct Coll_80491DBC { u32 w0[3]; f32 radius; u32 w1[2]; u32 flags; u32 w2[4]; };
 struct Res_80491E34 { void *bml; void *models; void *motions; u16 nmodels; u16 nmotions; };
 struct Hit_80491E44 { u16 kind; u16 pad; u32 part; f32 scale; u32 zero; };
 Params_80491DA0 bm3_fly_nest_params = { 225.0f, { 0x0, 0x600, 0x0, 0x0, 0x0, 0x0 } };
 Coll_80491DBC bm3_flynest_collider_params = { { 0x0, 0x0, 0x0 }, 10.0f, { 0x0, 0x0 }, 0x8003, { 0x0, 0x0, 0x0, 0x0 } };
-void *bm_ene_bm3_fly_model_names[3] = { lbl_8043B120, lbl_8043B130, 0 };
-void *bm_ene_bm3_fly_motion_names[16] = { lbl_8043B140, lbl_8043B158, lbl_8043B170, lbl_8043B184, lbl_8043B19C, lbl_8043B1B0, lbl_8043B1C4, lbl_8043B1DC, lbl_8043B1F4, lbl_8043B20C, lbl_8043B220, lbl_8043B238, lbl_8043B24C, lbl_8043B264, lbl_8043B27C, 0 };
-Res_80491E34 bm3_fly_nest_resource_desc = { lbl_8043B290, bm_ene_bm3_fly_model_names, bm_ene_bm3_fly_motion_names, 0x2, 0xf };
+void *bm_ene_bm3_fly_model_names[3] = { fly_body_model_filename, fly_nest_model_filename, 0 };
+void *bm_ene_bm3_fly_motion_names[16] = { fly_attack_motion_filename, fly_damage_motion_filename, nest_damage_motion_filename, fly_death_motion_filename, nest_death_motion_filename, nest_fall_motion_filename, fallen_nest_damage_motion_filename, fallen_nest_emit_motion_filename, fallen_nest_wait_motion_filename, nest_emit_motion_filename, fly_flight_motion_filename, nest_land_motion_filename, fly_move_motion_filename, nest_trance_motion_filename, nest_wait_motion_filename, 0 };
+Res_80491E34 bm3_fly_nest_resource_desc = { fly_bml_filename, bm_ene_bm3_fly_model_names, bm_ene_bm3_fly_motion_names, 0x2, 0xf };
 Hit_80491E44 bm3_flynest_hit_action_table[10] = { { 0x1, 0x0, 0xe, 0.30000001192092896f, 0x0 }, { 0x3, 0x0, 0x9, 0.699999988079071f, 0x0 }, { 0x3, 0x0, 0x2, 1.0f, 0x0 }, { 0x3, 0x0, 0x5, 0.5f, 0x0 }, { 0x1, 0x0, 0x8, 0.30000001192092896f, 0x0 }, { 0x3, 0x0, 0x7, 0.699999988079071f, 0x0 }, { 0x3, 0x0, 0x6, 1.0f, 0x0 }, { 0x3, 0x0, 0x4, 0.30000001192092896f, 0x0 }, { 0x1, 0x0, 0xd, 0.30000001192092896f, 0x0 }, { 0x3, 0x0, 0xb, 0.20000000298023224f, 0x0 } };
-void *lbl_80491EE4[106] = {
-    0, 0, (void *)TObjEneBm3FlyNest__sub_800B3E40, (void *)run_task__17TObjEneBm3FlyNestFv,
+void *__vt__17TObjEneBm3FlyNest[106] = {
+    0, 0, (void *)__dt__17TObjEneBm3FlyNestFv, (void *)run_task__17TObjEneBm3FlyNestFv,
     (void *)render__17TObjEneBm3FlyNestFv, (void *)render_shadows__17TObjEneBm3FlyNestFv, (void *)vfunc_6__8TObjBaseFPsl, (void *)apply_object_set_data__8TObjBaseFPv,
     (void *)reset_motion_fields__9TObjCharaFv, (void *)get_center__9TObjCharaFv, (void *)update_object_view_visibility__8TObjBaseFff, (void *)classify_actor_view_detail__8TObjBaseFfff,
     (void *)get_name__9TObjEnemyFv, (void *)interact__14TObjCollidableFl, (void *)add_actor_exp__9TObjCharaFl, (void *)consume_timer_field__9TObjCharaFl,
@@ -945,7 +945,7 @@ void *lbl_80491EE4[106] = {
     (void *)enemy_spawn_zalure_effect__9TObjCharaFv, (void *)recalc_stats__9TObjCharaFv, (void *)vfunc_74__9TObjEnemyFl, (void *)vfunc_75__9TObjCharaFf,
     (void *)vfunc_76__9TObjCharaFf, (void *)vfunc_77__9TObjCharaFv, (void *)vfunc_78__9TObjCharaFl, (void *)vfunc_79__9TObjEneDDFPl,
     (void *)apply_hit_message_flags__9TObjEnemyFPv, (void *)apply_set_data__9TObjEnemyFPv, (void *)clear_lobby_object_state__9TObjEnemyFv, (void *)vfunc_83__9TObjEneDDFv,
-    (void *)vfunc_84__9TObjEneDDFv, (void *)vfunc_85__9TObjEneDDFv, (void *)vfunc_86__9TObjEneDDFv, (void *)dispatch_state__17TObjEneBm3FlyNestFiUii,
+    (void *)vfunc_84__9TObjEneDDFv, (void *)vfunc_85__9TObjEneDDFv, (void *)vfunc_86__9TObjEneDDFv, (void *)dispatch_action__17TObjEneBm3FlyNestFUll,
     (void *)vfunc_88__17TObjEneBm3FlyNestFv, (void *)vfunc_89__9TObjEneDDFv, (void *)vfunc_90__9TObjEneDDFv, (void *)vfunc_91__9TObjEneDDFv,
     (void *)vfunc_92__9TObjEneDDFv, (void *)vfunc_93__9TObjEneDDFv, (void *)vfunc_94__9TObjEneDDFv, (void *)vfunc_95__9TObjEneDDFv,
     (void *)vfunc_96__9TObjEneDDFv, (void *)vfunc_97__9TObjEneDDFv, (void *)vfunc_98__9TObjEneDDFv, (void *)vfunc_99__9TObjEneDDFv,
@@ -954,14 +954,14 @@ void *lbl_80491EE4[106] = {
 };
 extern RecoveredGlobal_800B2948_lbl_8043B2A4 bm3_fly_nest_attachment_sample_table;
 extern Anim_800B41E8 bm3_flynest_anim_binding;
-extern Vec_800B39CC lbl_8043B304[];
+extern Vec_800B39CC child_spawn_velocity[];
 extern Vec lbl_8043B310;
 extern const Vec lbl_8043B31C;
-extern char lbl_8043B328[];
-extern char lbl_8043B338[];
-extern char lbl_8043B348[];
-extern char lbl_8043B358[];
-extern char lbl_8043B368[];
+extern char normal_state_text[];
+extern char dead_state_text[];
+extern char fallen_state_text[];
+extern char start_count_format[];
+extern char total_count_format[];
 extern const f64 lbl_8043B398[];
 typedef struct Ctl_800B47C4 {
     f32 *pv;
@@ -977,15 +977,15 @@ Ctl_800B47C4 lbl_80500B2C;
 #define TObjEneBm3FlyNest__attachment_sample_origin (*(RecoveredGlobal_800B2948_lbl_80500B00 *)TObjEneBm3FlyNest__attachment_sample_origin)
 extern s32 debug_chunk_object;
 extern const char *TObjEneBm3FlyNest_CarryFly__name;
-s32 lbl_805D50F8;
-s32 lbl_805D50FC;
-s32 lbl_805D5100;
-s32 lbl_805D5104;
-u32 lbl_805D5108;
-s32 lbl_805D510C;
-NestAttachmentPoint *TObjEneBm3FlyNest_attachment_point_ptr;
-s32 lbl_805D5114;
-s32 bm3_fly_nest_attachment_index;
+s32 bm3_flynest_base_stats;
+s32 bm3_flynest_attack_params;
+s32 bm3_flynest_resistance_params;
+s32 bm3_flynest_movement_params;
+u32 nest_resources;
+s32 attachment_node_index;
+NestAttachmentPoint *attachment_point_cursor;
+s32 carrier_point_cursor;
+s32 carrier_sample_index;
 extern s32 saved_model_render_flags;
 extern s32 saved_chunk_polygon_flags_and_mask;
 extern s32 saved_chunk_polygon_flags_or_mask;
@@ -1004,17 +1004,17 @@ void TObjEneBm3FlyNest::render_with_state_debug() {
         switch (this->m_3a8) {
         default:
         case 2:
-            debug_printf_at(pack_debug_text_position(0, 0), lbl_8043B328);
+            debug_printf_at(pack_debug_text_position(0, 0), normal_state_text);
             break;
         case 9:
-            debug_printf_at(pack_debug_text_position(0, 0), lbl_8043B338);
+            debug_printf_at(pack_debug_text_position(0, 0), dead_state_text);
             break;
         case 5:
-            debug_printf_at(pack_debug_text_position(0, 0), lbl_8043B348);
+            debug_printf_at(pack_debug_text_position(0, 0), fallen_state_text);
             break;
         }
-        debug_printf_at(pack_debug_text_position(0, 1), lbl_8043B358, this->m_3ac);
-        debug_printf_at(pack_debug_text_position(0, 2), lbl_8043B368, this->m_3b0);
+        debug_printf_at(pack_debug_text_position(0, 1), start_count_format, this->m_3ac);
+        debug_printf_at(pack_debug_text_position(0, 2), total_count_format, this->m_3b0);
     }
     switch (this->m_3a8) {
     default:
@@ -1110,14 +1110,14 @@ void TObjEneBm3FlyNest::render() {
                 this->update_secondary_light();
                 ((s32 (*)(int))set_current_texture_list)(self->f24);
                 push_matrix();
-                lbl_805D510C = 0;
-                TObjEneBm3FlyNest_attachment_point_ptr = (NestAttachmentPoint *)&self->f3C8;
+                attachment_node_index = 0;
+                attachment_point_cursor = (NestAttachmentPoint *)&self->f3C8;
                 post_translate_matrix(self->f38);
                 ((s32 (*)(int, f32, f32, f32))translate_matrix)(0, 0.0f, self->f4B0, 0.0f);
                 if (self->f326 == 0) {
-                    bm3_fly_nest_attachment_index = 0;
-                    lbl_805D5114 = (s32)self->f3E0;
-                    set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)handle_attachment_sample__17TObjEneBm3FlyNestFi));
+                    carrier_sample_index = 0;
+                    carrier_point_cursor = (s32)self->f3E0;
+                    set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)sample_carrier_attachments__17TObjEneBm3FlyNestFP10NJS_OBJECT));
                 } else {
                     set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjEneBm3FlyNest::capture_attachment));
                 }
@@ -1145,31 +1145,31 @@ void TObjEneBm3FlyNest::render() {
     VecCopy((Vec *)&self->f2FC, (const Vec *)&self->f3C8);
 }
 
-void handle_attachment_sample__17TObjEneBm3FlyNestFi(s32 arg0) {
+void sample_carrier_attachments__17TObjEneBm3FlyNestFP10NJS_OBJECT(s32 arg0) {
     s32 pos;
-    if ((s32) lbl_805D510C == (s32) *(s32 *)((s8 *)&bm3_fly_nest_attachment_sample_table.value + (bm3_fly_nest_attachment_index * 4))) {
-        pos = lbl_805D5114;
-        bm3_fly_nest_attachment_index += 1;
-        lbl_805D5114 = pos + 0xC;
+    if ((s32) attachment_node_index == (s32) *(s32 *)((s8 *)&bm3_fly_nest_attachment_sample_table.value + (carrier_sample_index * 4))) {
+        pos = carrier_point_cursor;
+        carrier_sample_index += 1;
+        carrier_point_cursor = pos + 0xC;
         transform_point_to_view((s32) &TObjEneBm3FlyNest__attachment_sample_origin.value, pos);
     }
     TObjEneBm3FlyNest::capture_attachment((void *)arg0);
 }
 
 void TObjEneBm3FlyNest::capture_attachment(void * _w0) {
-    switch (lbl_805D510C) {
+    switch (attachment_node_index) {
     case 36: case 45:
-        transform_point_to_view((s32)&TObjEneBm3FlyNest__attachment_sample_origin, (s32)(TObjEneBm3FlyNest_attachment_point_ptr++));
+        transform_point_to_view((s32)&TObjEneBm3FlyNest__attachment_sample_origin, (s32)(attachment_point_cursor++));
         break;
     }
-    ++lbl_805D510C;
+    ++attachment_node_index;
 }
 
 int TObjEneBm3FlyNest::init(void* p) { return ((int (*)(void*))init_params__17TObjEneBm3FlyNestFv)(p); }
 
-int copy_target_state__17TObjEneBm3FlyNestFPv(void* p, s32 sound_id) { return ((TObjEnemy *)(p))->remap_sound_for_area((s32)(sound_id)); }
+int remap_child_sound__17TObjEneBm3FlyNestFl(void* p, s32 sound_id) { return ((TObjEnemy *)(p))->remap_sound_for_area((s32)(sound_id)); }
 
-void* TObjEneBm3FlyNest__sub_800B2A54(void* p) { return (char*)p + 0x3d4; }
+void* get_spawn_point__17TObjEneBm3FlyNestFv(void* p) { return (char*)p + 0x3d4; }
 
 void TObjEneBm3FlyNest::remove_child(u8 *child) {
     Obj_800B2A5C *self = (Obj_800B2A5C *)this;
@@ -1200,7 +1200,7 @@ s32 TObjEneBm3FlyNest::has_free_attack_slot(u16 id) {
     return n < 2;
 }
 
-void handle_state__17TObjEneBm3FlyNestFPvi(void *arg0, s32 arg1) {
+void handle_state__17TObjEneBm3FlyNestFl(void *arg0, s32 arg1) {
     switch (arg1) {
     case 4:
         ((struct VObj_800B2BAC_800B2A14 *) arg0)->m93();
@@ -1218,7 +1218,7 @@ void handle_state__17TObjEneBm3FlyNestFPvi(void *arg0, s32 arg1) {
 
 #pragma push
 #pragma fp_contract on
-void state_dying__17TObjEneBm3FlyNestFPvi(u8 *actor, s32 arg1) {
+void state_dying__17TObjEneBm3FlyNestFl(u8 *actor, s32 arg1) {
     Vec_800B2C24 v;
     Vec_800B2C24 p;
     f32 r;
@@ -1285,7 +1285,7 @@ void state_dying__17TObjEneBm3FlyNestFPvi(u8 *actor, s32 arg1) {
 }
 #pragma pop
 
-void handle_motion_event__17TObjEneBm3FlyNestFPvi(u8 *arg0, s32 arg1) {
+void handle_motion_event__17TObjEneBm3FlyNestFl(u8 *arg0, s32 arg1) {
     switch (arg1) {
     case 4:
         ((TObjEneDD *)arg0)->vfunc_96();
@@ -1324,7 +1324,7 @@ void handle_motion_event__17TObjEneBm3FlyNestFPvi(u8 *arg0, s32 arg1) {
     }
 }
 
-void state_spawn__17TObjEneBm3FlyNestFPvi(void *ene_bm3_fly_nest, s32 arg1) {
+void state_spawn__17TObjEneBm3FlyNestFl(void *ene_bm3_fly_nest, s32 arg1) {
     switch (arg1) {
     case 4:
         ((TObjEneBm3FlyNest *)ene_bm3_fly_nest)->requested_action = 5;
@@ -1351,7 +1351,7 @@ void state_spawn__17TObjEneBm3FlyNestFPvi(void *ene_bm3_fly_nest, s32 arg1) {
     }
 }
 
-void update_state__17TObjEneBm3FlyNestFPvi(void *ene_bm3_fly_nest, s32 arg1) {
+void update_state__17TObjEneBm3FlyNestFl(void *ene_bm3_fly_nest, s32 arg1) {
     switch (arg1) {
     case 4:
         ((TObjEneBm3FlyNest *)ene_bm3_fly_nest)->requested_action = 4;
@@ -1367,7 +1367,7 @@ void update_state__17TObjEneBm3FlyNestFPvi(void *ene_bm3_fly_nest, s32 arg1) {
     case 5:
         break;
     case 3:
-        if (((s32 (*)(void))TObjEneBm3FlyNest__sub_800B3AC8)() != 0) {
+        if (((s32 (*)(void))has_pending_spawns__17TObjEneBm3FlyNestCFv)() != 0) {
             transition_enemy_state__9TObjEneDDFl(ene_bm3_fly_nest, 6);
             return;
         }
@@ -1429,7 +1429,7 @@ void TObjEneBm3FlyNest__sub_800B318C(u8 *ene_dd, s32 arg1) {
 }
 #pragma pop
 
-void handle_event__17TObjEneBm3FlyNestFPvi(void *ene_bm3_fly_nest, s32 arg1) {
+void handle_event__17TObjEneBm3FlyNestFl(void *ene_bm3_fly_nest, s32 arg1) {
     switch (arg1) {
     case 4:
         ((TObjEneBm3FlyNest *)ene_bm3_fly_nest)->requested_action = 1;
@@ -1455,7 +1455,7 @@ void handle_event__17TObjEneBm3FlyNestFPvi(void *ene_bm3_fly_nest, s32 arg1) {
     }
 }
 
-void state_wait__17TObjEneBm3FlyNestFPvi(void *ene_bm3_fly_nest, s32 arg1) {
+void state_wait__17TObjEneBm3FlyNestFl(void *ene_bm3_fly_nest, s32 arg1) {
     switch (arg1) {
     case 4:
         ((TObjEneBm3FlyNest *)ene_bm3_fly_nest)->requested_action = 0;
@@ -1466,7 +1466,7 @@ void state_wait__17TObjEneBm3FlyNestFPvi(void *ene_bm3_fly_nest, s32 arg1) {
         *(s32 *)((s8 *)ene_bm3_fly_nest + 0x4C4) = 0x96;
         return;
     case 3:
-        if (((s32 (*)(void))TObjEneBm3FlyNest__sub_800B3AC8)() != 0) {
+        if (((s32 (*)(void))has_pending_spawns__17TObjEneBm3FlyNestCFv)() != 0) {
             transition_enemy_state__9TObjEneDDFl(ene_bm3_fly_nest, 3);
         }
         break;
@@ -1552,7 +1552,7 @@ void TObjEneBm3FlyNest::state_initial_emit(s32 arg1) {
 
 #pragma push
 #pragma fp_contract on
-void handle_appear__17TObjEneBm3FlyNestFPvi(u8 *ene_dd, s32 arg1) {
+void handle_appear__17TObjEneBm3FlyNestFl(u8 *ene_dd, s32 arg1) {
     s32 *cnt = (s32 *)(ene_dd + 0x4CC);
     s32 i;
     void *o;
@@ -1644,12 +1644,12 @@ void TObjEneBm3FlyNest::init_params() {
 
 void TObjEneBm3FlyNest::spawn_child() {
     Nest_800B39CC *s = (Nest_800B39CC *)this;
-    Vec_800B39CC velocity = lbl_8043B304[0];
+    Vec_800B39CC velocity = child_spawn_velocity[0];
     Vec_800B39CC position;
     s32 n;
     if (s->count <= 6) {
         n = (s->f2C + 1) + s->spawned;
-        VecCopy((Vec *)(&position), (const Vec *)(((Vec_800B39CC * (*)(void *))TObjEneBm3FlyNest__sub_800B2A54)(s)));
+        VecCopy((Vec *)(&position), (const Vec *)(((Vec_800B39CC * (*)(void *))get_spawn_point__17TObjEneBm3FlyNestFv)(s)));
         if (((TObjEneBm3Fly *)s)->create((void *)s->nextId, (void *)n, &position, &velocity) != 0) {
             s->ids[s->count++] = s->nextId;
             s->nextId++;
@@ -1661,7 +1661,7 @@ void TObjEneBm3FlyNest::spawn_child() {
     }
 }
 
-s32 TObjEneBm3FlyNest__sub_800B3AC8(u8 *arg0) {
+s32 has_pending_spawns__17TObjEneBm3FlyNestCFv(u8 *arg0) {
     return *(s32 *)((s8 *)arg0 + 0x4B8) > 0;
 }
 
@@ -1737,37 +1737,37 @@ void TObjEneBm3FlyNest::vfunc_63() {
 
 void TObjEneBm3FlyNest::vfunc_28() {  }
 
-void dispatch_state__17TObjEneBm3FlyNestFiUii(s32 arg0, u32 arg1, s32 arg2) {
+void dispatch_action__17TObjEneBm3FlyNestFUll(s32 arg0, u32 arg1, s32 arg2) {
     switch (arg1) {
     case 1:
         ((TObjEneBm3FlyNest *)arg0)->state_initial_emit(arg2);
         return;
     case 0:
-        ((s32 (*)(void *, void *))handle_appear__17TObjEneBm3FlyNestFPvi)((void *)arg0, (void *)arg2);
+        ((s32 (*)(void *, void *))handle_appear__17TObjEneBm3FlyNestFl)((void *)arg0, (void *)arg2);
         return;
     case 2:
-        ((s32 (*)(void *, void *))state_wait__17TObjEneBm3FlyNestFPvi)((void *)arg0, (void *)arg2);
+        ((s32 (*)(void *, void *))state_wait__17TObjEneBm3FlyNestFl)((void *)arg0, (void *)arg2);
         return;
     case 3:
-        ((s32 (*)(void *, void *))handle_event__17TObjEneBm3FlyNestFPvi)((void *)arg0, (void *)arg2);
+        ((s32 (*)(void *, void *))handle_event__17TObjEneBm3FlyNestFl)((void *)arg0, (void *)arg2);
         return;
     case 4:
         ((s32 (*)(void *, void *))TObjEneBm3FlyNest__sub_800B318C)((void *)arg0, (void *)arg2);
         return;
     case 5:
-        ((s32 (*)(void *, void *))update_state__17TObjEneBm3FlyNestFPvi)((void *)arg0, (void *)arg2);
+        ((s32 (*)(void *, void *))update_state__17TObjEneBm3FlyNestFl)((void *)arg0, (void *)arg2);
         return;
     case 6:
-        ((s32 (*)(void *, void *))state_spawn__17TObjEneBm3FlyNestFPvi)((void *)arg0, (void *)arg2);
+        ((s32 (*)(void *, void *))state_spawn__17TObjEneBm3FlyNestFl)((void *)arg0, (void *)arg2);
         return;
     case 7:
-        ((s32 (*)(void *, void *))handle_motion_event__17TObjEneBm3FlyNestFPvi)((void *)arg0, (void *)arg2);
+        ((s32 (*)(void *, void *))handle_motion_event__17TObjEneBm3FlyNestFl)((void *)arg0, (void *)arg2);
         return;
     case 8:
-        ((s32 (*)(void *, void *))state_dying__17TObjEneBm3FlyNestFPvi)((void *)arg0, (void *)arg2);
+        ((s32 (*)(void *, void *))state_dying__17TObjEneBm3FlyNestFl)((void *)arg0, (void *)arg2);
         return;
     case 9:
-        ((s32 (*)(void *, void *))handle_state__17TObjEneBm3FlyNestFPvi)((void *)arg0, (void *)arg2);
+        ((s32 (*)(void *, void *))handle_state__17TObjEneBm3FlyNestFl)((void *)arg0, (void *)arg2);
     default:
         return;
     }
@@ -1792,9 +1792,9 @@ void TObjEneBm3FlyNest::run_task() {
 }
 #pragma pop
 
-Obj_800B3E40 *TObjEneBm3FlyNest__sub_800B3E40(Obj_800B3E40 *self, s16 flag) {
+Obj_800B3E40 *__dt__17TObjEneBm3FlyNestFv(Obj_800B3E40 *self, s16 flag) {
     if (self != 0) {
-        self->vtbl = lbl_80491EE4;
+        self->vtbl = __vt__17TObjEneBm3FlyNest;
         free_collision_body_parts(self);
         __destroy_arr(self->arr, (void *)__dt__15RenderFadeStateFv, 0x1c, 4);
         __dt__9TObjEneDDFv(self, 0);
@@ -1859,26 +1859,26 @@ s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 #define self ((Nest_800B3EB8 *)arg0)
 #pragma push
 #pragma opt_loop_invariants off
-void *TObjEneBm3FlyNest__ct(void *arg0, void *arg1, void *arg2) {
+void *__ct__17TObjEneBm3FlyNestFP7TObjectP14EnemySetRecord(void *arg0, void *arg1, void *arg2) {
     s32 i;
 
     __ct__9TObjEneDDFP7TObject(self, arg1, arg2);
-    self->vt = lbl_80491EE4;
+    self->vt = __vt__17TObjEneBm3FlyNest;
     __construct_array(self->f440, __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     self->id = bm3_fly_nest_class_name;
     invoke_initialization_hook__9TObjEneDDFPv(self, arg2);
     ((TObjEneDD *)self)->init_position_vectors();
-    self->f34 = *(s32 *)(*(u8 **)((int)lbl_805D5108 + 0x42C) + 0x18);
-    self->f24 = *(s32 *)(*(u8 **)((int)lbl_805D5108 + 0x42C) + 0xC);
+    self->f34 = *(s32 *)(*(u8 **)((int)nest_resources + 0x42C) + 0x18);
+    self->f24 = *(s32 *)(*(u8 **)((int)nest_resources + 0x42C) + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl(self, &bm3_flynest_collider_params, 1);
     self->f300 = 20.0f + self->pos.y;
     ((TObjEneDD *)self)->vfunc_88();
     ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)bm3_flynest_hit_action_table));
-    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(*(s32 *)((int)lbl_805D5108 + 0x430)));
+    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(*(s32 *)((int)nest_resources + 0x430)));
     self->fB8 = 0;
     ((TObjMotion *)self)->set_animation(self->fB8);
     ((TObjMotion *)self)->set_field_b8(self->fB8);
-    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, lbl_805D50F8, lbl_805D50FC, lbl_805D5100);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, bm3_flynest_base_stats, bm3_flynest_attack_params, bm3_flynest_resistance_params);
     ((TObjEneDD *)self)->check_state_flag_1();
     self->f350 = &bm3_fly_nest_params;
     initialize_enemy_state__9TObjEneDDFl(self, 4);
@@ -1926,20 +1926,20 @@ void *TObjEneBm3FlyNest__ct(void *arg0, void *arg1, void *arg2) {
 #pragma pop
 #undef self
 
-int TObjEneBm3FlyNest__sub_800B4158(void) {  return (*(int *)&lbl_805D5108); }
+int get_resources__17TObjEneBm3FlyNestFv(void) {  return (*(int *)&nest_resources); }
 
 void TObjEneBm3FlyNest::free_fly() {
     TObjEneBm3Fly::release_shared_data();
-    if ((u32) lbl_805D5108 != 0U) {
-        delete (BmlResource *)(lbl_805D5108);
-        lbl_805D5108 = 0U;
+    if ((u32) nest_resources != 0U) {
+        delete (BmlResource *)(nest_resources);
+        nest_resources = 0U;
     }
 }
 
 void *TObjEneBm3FlyNest::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x4DC);
     if (o != NULL) {
-        o = TObjEneBm3FlyNest__ct(o, tl_04, arg0);
+        o = __ct__17TObjEneBm3FlyNestFP7TObjectP14EnemySetRecord(o, tl_04, arg0);
     }
     return o;
 }
@@ -1949,31 +1949,31 @@ void TObjEneBm3FlyNest::load_resources() {
     (*(Vec_800B41E8 *)&TObjEneBm3FlyNest__attachment_sample_origin).x = 0.0f;
     (*(Vec_800B41E8 *)&TObjEneBm3FlyNest__attachment_sample_origin).y = 0.0f;
     (*(Vec_800B41E8 *)&TObjEneBm3FlyNest__attachment_sample_origin).z = 0.0f;
-    lbl_805D510C = 0;
-    (*(s32 *)&TObjEneBm3FlyNest_attachment_point_ptr) = 0;
-    lbl_805D5114 = 0;
-    bm3_fly_nest_attachment_index = 0;
+    attachment_node_index = 0;
+    (*(s32 *)&attachment_point_cursor) = 0;
+    carrier_point_cursor = 0;
+    carrier_sample_index = 0;
     if (TObjEneDD::check_v2_mode() != 0) {
-        lbl_805D5108 = load_enemy_bml_resource_named(&bm3_fly_nest_resource_desc, (void *)bm_ene_bm3_fly_a_bml_filename);
+        nest_resources = load_enemy_bml_resource_named(&bm3_fly_nest_resource_desc, (void *)bm_ene_bm3_fly_a_bml_filename);
     } else {
-        lbl_805D5108 = load_enemy_bml_resource((u8 *)&bm3_fly_nest_resource_desc);
+        nest_resources = load_enemy_bml_resource((u8 *)&bm3_fly_nest_resource_desc);
     }
-    lbl_805D50F8 = (s32)get_battle_base_stats(1);
-    lbl_805D50FC = (s32)get_battle_attack_params(1);
-    lbl_805D5100 = (s32)get_battle_resistance_params(1);
-    lbl_805D5104 = (s32)get_battle_movement_params(1);
+    bm3_flynest_base_stats = (s32)get_battle_base_stats(1);
+    bm3_flynest_attack_params = (s32)get_battle_attack_params(1);
+    bm3_flynest_resistance_params = (s32)get_battle_resistance_params(1);
+    bm3_flynest_movement_params = (s32)get_battle_movement_params(1);
     TObjEneBm3Fly::load_resources();
     TObjEneBm3FlyNest::init_vertex_table();
     {
         Anim_800B41E8 anim = bm3_flynest_anim_binding;
-        anim.motions = ((Res_800B41E8 *)lbl_805D5108)->motions;
-        bodies = (Bodies_800B41E8 *)((Res_800B41E8 *)lbl_805D5108)->bodies;
+        anim.motions = ((Res_800B41E8 *)nest_resources)->motions;
+        bodies = (Bodies_800B41E8 *)((Res_800B41E8 *)nest_resources)->bodies;
         NpcModelRegistry::register_animated_chunk((s16)8, (void *)(bodies->model), (void *)(bodies->textures), (const NpcAnimationBinding *)(&anim), (f32)bm3_flynest_collider_params.radius, (f32)0.0f);
     }
 }
 
 void TObjEneBm3FlyNest_CarryFly::render() {
-    ((s32 (*)(s32, void *))set_current_texture_list)(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 * *)&lbl_805D5108) + 0x42C)) + 0xC), (*(u8 * *)&lbl_805D5108));
+    ((s32 (*)(s32, void *))set_current_texture_list)(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 * *)&nest_resources) + 0x42C)) + 0xC), (*(u8 * *)&nest_resources));
     push_matrix();
     if (state == 0) {
         post_translate_matrix(origin);
@@ -1983,7 +1983,7 @@ void TObjEneBm3FlyNest_CarryFly::render() {
     post_translate_matrix(&offset);
     rotate_matrix_y(0, angle);
     set_motion_packed_rotation();
-    draw_model_motion((void *)(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 * *)&lbl_805D5108) + 0x42C)) + 8)), motion, frame);
+    draw_model_motion((void *)(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 * *)&nest_resources) + 0x42C)) + 8)), motion, frame);
     clear_motion_packed_rotation();
     pop_matrix();
 }
@@ -2019,7 +2019,7 @@ void TObjEneBm3FlyNest_CarryFly::run_task() {
             arc = (-120.0f) / (distance * distance);
             height = 30.0f;
         }
-        play_persistent_sound(copy_target_state__17TObjEneBm3FlyNestFPv(m_up, 0x4003A828), (s32)this, (u32)origin, 0, 0);
+        play_persistent_sound(remap_child_sound__17TObjEneBm3FlyNestFl(m_up, 0x4003A828), (s32)this, (u32)origin, 0, 0);
         TObjPlayer::play_effect_if_v2(-0x400);
         break;
     case 1:
@@ -2028,7 +2028,7 @@ void TObjEneBm3FlyNest_CarryFly::run_task() {
             state = 2;
             velocity.y = 0.5f * distance;
         }
-        play_persistent_sound(copy_target_state__17TObjEneBm3FlyNestFPv(m_up, 0x4003A828), (s32)this, (u32)origin, 0, 0);
+        play_persistent_sound(remap_child_sound__17TObjEneBm3FlyNestFl(m_up, 0x4003A828), (s32)this, (u32)origin, 0, 0);
         TObjPlayer::play_effect_if_v2(-0x400);
         break;
     case 2:
@@ -2037,7 +2037,7 @@ void TObjEneBm3FlyNest_CarryFly::run_task() {
         v = v - 0.05f * spd;
         if (v < 0.5f * -spd) {
             spawn_particle_effect(target, 0xC8);
-            ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(copy_target_state__17TObjEneBm3FlyNestFPv(m_up, 0x4003AB27), target, 0, 0);
+            ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(remap_child_sound__17TObjEneBm3FlyNestFl(m_up, 0x4003AB27), target, 0, 0);
             TObjPlayer::play_effect_if_v2(-0x400);
             queue_destruction();
             break;
@@ -2047,7 +2047,7 @@ void TObjEneBm3FlyNest_CarryFly::run_task() {
         v += 0.5f * distance;
         offset.x = velocity.x * v;
         offset.z = velocity.z * v;
-        play_persistent_sound(copy_target_state__17TObjEneBm3FlyNestFPv(m_up, 0x4003A828), (s32)this, (u32)target, 0, 0);
+        play_persistent_sound(remap_child_sound__17TObjEneBm3FlyNestFl(m_up, 0x4003A828), (s32)this, (u32)target, 0, 0);
         TObjPlayer::play_effect_if_v2(-0x400);
         break;
     }
@@ -2071,7 +2071,7 @@ TObjEneBm3FlyNest_CarryFly::TObjEneBm3FlyNest_CarryFly(TObject *parent, s32 a, s
     offset.x = 6.0f * v.x;
     offset.y = 6.0f;
     offset.z = 6.0f * v.z;
-    motion = *(u8 **)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&lbl_805D5108) + 0x430)) + 0x54);
+    motion = *(u8 **)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&nest_resources) + 0x430)) + 0x54);
     frame = (f32) (index * 2);
     unk_3C = 1.0f;
     unk_44 = 0;

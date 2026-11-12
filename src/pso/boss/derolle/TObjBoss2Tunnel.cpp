@@ -138,7 +138,7 @@ s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 extern u32 camera_ctrl_instance;
 s32 verify_snapshot_checksum__15TObjBoss2TunnelFv();
 void set_depth_buffer_settings_1__Fv(void);
-void draw_projected_quads__15TObjBoss2TunnelFPvi(Vtx_8007D828 *, s32);
+void draw_projected_quads__15TObjBoss2TunnelFP15ProjectedVertexi(Vtx_8007D828 *, s32);
 extern s32 lbl_805D63F0;
 s32 TAdPlayerLoadGC__sub_801E0FA4(s32);
 s32 query_memcard_capacity__15TAdPlayerLoadGCFl(s32, s32);
@@ -702,7 +702,7 @@ void draw_snapshot_capture_overlay(void) {
     v[3].x = 640.0f;
     v[3].y = TObjBoss2Tunnel__data_8048DF2C.y - 96.0f;
     TObjBoss2Tunnel__sub_803E2D10(1);
-    draw_projected_quads__15TObjBoss2TunnelFPvi(v, 4);
+    draw_projected_quads__15TObjBoss2TunnelFP15ProjectedVertexi(v, 4);
     TObjBoss2Tunnel::reset_player_state();
     v[0].x = 0.0f;
     v[0].y = TObjBoss2Tunnel__data_8048DF2C.y - 96.0f;
@@ -713,7 +713,7 @@ void draw_snapshot_capture_overlay(void) {
     v[3].x = TObjBoss2Tunnel__data_8048DF2C.x - 128.0f;
     v[3].y = 480.0f;
     TObjBoss2Tunnel__sub_803E2D10(1);
-    draw_projected_quads__15TObjBoss2TunnelFPvi(v, 4);
+    draw_projected_quads__15TObjBoss2TunnelFP15ProjectedVertexi(v, 4);
     TObjBoss2Tunnel::reset_player_state();
     v[0].x = 128.0f + TObjBoss2Tunnel__data_8048DF2C.x;
     v[0].y = TObjBoss2Tunnel__data_8048DF2C.y - 96.0f;
@@ -724,7 +724,7 @@ void draw_snapshot_capture_overlay(void) {
     v[3].x = 640.0f;
     v[3].y = 96.0f + TObjBoss2Tunnel__data_8048DF2C.y;
     TObjBoss2Tunnel__sub_803E2D10(1);
-    draw_projected_quads__15TObjBoss2TunnelFPvi(v, 4);
+    draw_projected_quads__15TObjBoss2TunnelFP15ProjectedVertexi(v, 4);
     TObjBoss2Tunnel::reset_player_state();
     v[0].x = TObjBoss2Tunnel__data_8048DF2C.x - 128.0f;
     v[0].y = 96.0f + TObjBoss2Tunnel__data_8048DF2C.y;
@@ -735,7 +735,7 @@ void draw_snapshot_capture_overlay(void) {
     v[3].x = 640.0f;
     v[3].y = 480.0f;
     TObjBoss2Tunnel__sub_803E2D10(1);
-    draw_projected_quads__15TObjBoss2TunnelFPvi(v, 4);
+    draw_projected_quads__15TObjBoss2TunnelFP15ProjectedVertexi(v, 4);
     TObjBoss2Tunnel::reset_player_state();
     set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(1, -1);

@@ -20,8 +20,8 @@
 // out in reverse.
 
 extern "C" {
-void end_cutscene_camera__14TBoss6PlotFalzFPv(void);
-void refresh_players_equipment__14TBoss6PlotFalzFPv(void);
+void end_cutscene_camera__14TBoss6PlotFalzFv(void);
+void refresh_players_equipment__14TBoss6PlotFalzFv(void);
 int is_ready__14TBoss6PlotFalzFv(void *);
 s32 is_ending_or_split_screen__14TBoss6PlotFalzFv(void *);
 s32 destroy_static_instance__14TBoss6PlotFalzFv(void *);
@@ -58,7 +58,7 @@ void TBoss6PlotFalz::sub_802B08F0() { if (is_ready__14TBoss6PlotFalzFv(this) != 
 void TBoss6PlotFalz::tick_timeout() {
     s32 temp_r0;
 
-    refresh_players_equipment__14TBoss6PlotFalzFPv();
+    refresh_players_equipment__14TBoss6PlotFalzFv();
     temp_r0 = *(s32 *)((s8 *)this + 0x3CC) + 1;
     *(s32 *)((s8 *)this + 0x3CC) = temp_r0;
     if (temp_r0 > 0x1F4) {
@@ -67,7 +67,7 @@ void TBoss6PlotFalz::tick_timeout() {
 }
 
 // --- VS_TYPE1 ---
-void TBoss6PlotFalz::enter_active_state() { end_cutscene_camera__14TBoss6PlotFalzFPv(); refresh_players_equipment__14TBoss6PlotFalzFPv(); *(int*)((char*)this + 0x3d0) = 1; *(int*)((char*)this + 0x3cc) = 0; spawn_type1(); }
+void TBoss6PlotFalz::enter_active_state() { end_cutscene_camera__14TBoss6PlotFalzFv(); refresh_players_equipment__14TBoss6PlotFalzFv(); *(int*)((char*)this + 0x3d0) = 1; *(int*)((char*)this + 0x3cc) = 0; spawn_type1(); }
 void TBoss6PlotFalz::update_phase() {
     if ((TBoss6PlotFalz__sub_802ABADC() == 0) || (is_ready__14TBoss6PlotFalzFv(this) != 0)) {
         send_6xA3_action((s8)((void*)(3)));
@@ -89,7 +89,7 @@ void TBoss6PlotFalz::reset_and_recreate() {
 void TBoss6PlotFalz::set_state4_if_ready() { if (is_ready__14TBoss6PlotFalzFv(this) != 0) { send_6xA3_action((s8)((void*)4)); } }
 void TBoss6PlotFalz::sub_802B06D0() {
     f32 f;
-    refresh_players_equipment__14TBoss6PlotFalzFPv();
+    refresh_players_equipment__14TBoss6PlotFalzFv();
     if (*(s32 *)((s8 *)this + 0x3CC) > 0xF7) {
         f = (f32)(*(s32 *)((s8 *)this + 0x3CC) - 0xF7) / 8.0f;
         if (f > 1.0f) {
@@ -107,7 +107,7 @@ void TBoss6PlotFalz::init_hall_boss_scene() {
     TBoss6EmptyWarp::init_warp();
     release_object();
     play_area_music("HALL.adx");
-    refresh_players_equipment__14TBoss6PlotFalzFPv();
+    refresh_players_equipment__14TBoss6PlotFalzFv();
     *(s32 *)((s8 *)this + 0x3CC) = 0;
     *(s32 *)((s8 *)this + 0x3DC) = alloc__8TObjFishFPv(this);
 }
@@ -125,7 +125,7 @@ void TBoss6PlotFalz::update_cutscene_fade() {
         apply_fade_alpha(0, (f32)(0x10E - t) / 225.0f);
     }
     if (*(s32 *)((s8 *)this + 0x3CC) == 0x2D) {
-        end_cutscene_camera__14TBoss6PlotFalzFPv();
+        end_cutscene_camera__14TBoss6PlotFalzFv();
     }
     *(s32 *)((s8 *)this + 0x3CC) = *(s32 *)((s8 *)this + 0x3CC) + 1;
 }
@@ -146,7 +146,7 @@ void TBoss6PlotFalz::advance_phase_if_ready() { if (is_ready__14TBoss6PlotFalzFv
 void TBoss6PlotFalz::advance_timer() {
     s32 temp_r0;
 
-    refresh_players_equipment__14TBoss6PlotFalzFPv();
+    refresh_players_equipment__14TBoss6PlotFalzFv();
     temp_r0 = *(s32 *)((s8 *)this + 0x3CC) + 1;
     *(s32 *)((s8 *)this + 0x3CC) = temp_r0;
     if (temp_r0 > 0x198) {
@@ -155,7 +155,7 @@ void TBoss6PlotFalz::advance_timer() {
 }
 
 // --- VS_TYPE2 ---
-void TBoss6PlotFalz::sub_802B0448() { end_cutscene_camera__14TBoss6PlotFalzFPv(); refresh_players_equipment__14TBoss6PlotFalzFPv(); *(int*)((char*)this + 0x3d0) = 0; *(int*)((char*)this + 0x3cc) = 0; spawn_type2(); }
+void TBoss6PlotFalz::sub_802B0448() { end_cutscene_camera__14TBoss6PlotFalzFv(); refresh_players_equipment__14TBoss6PlotFalzFv(); *(int*)((char*)this + 0x3d0) = 0; *(int*)((char*)this + 0x3cc) = 0; spawn_type2(); }
 void TBoss6PlotFalz::check_action_7() {
     if ((TBoss6PlotFalz::is_boss_active() == 0) || (is_ready__14TBoss6PlotFalzFv(this) != 0)) {
         send_6xA3_action((s8)((void*)(7)));
@@ -190,7 +190,7 @@ void TBoss6PlotFalz::finish_and_dispatch_next_phase() {
 void TBoss6PlotFalz::update_plot_timer() {
     s32 temp_r0;
 
-    refresh_players_equipment__14TBoss6PlotFalzFPv();
+    refresh_players_equipment__14TBoss6PlotFalzFv();
     if (((s32) *(s32 *)((s8 *)this + 0x3CC) > 1) && (is_ready__14TBoss6PlotFalzFv(this) != 0)) {
         *(s32 *)((s8 *)this + 0x3CC) = 0x2CA;
     }
@@ -201,7 +201,7 @@ void TBoss6PlotFalz::update_plot_timer() {
             set_state(8);
             return;
         }
-        end_cutscene_camera__14TBoss6PlotFalzFPv();
+        end_cutscene_camera__14TBoss6PlotFalzFv();
         award_exp_and_destroy();
     }
 }
@@ -214,7 +214,7 @@ void TBoss6PlotFalz::sub_802B0228() {
     temp_r0 = *(s32 *)((s8 *)this + 0x3CC) + 1;
     *(s32 *)((s8 *)this + 0x3CC) = temp_r0;
     if (temp_r0 > 0x1C6) {
-        end_cutscene_camera__14TBoss6PlotFalzFPv();
+        end_cutscene_camera__14TBoss6PlotFalzFv();
         award_exp_and_destroy();
     }
 }

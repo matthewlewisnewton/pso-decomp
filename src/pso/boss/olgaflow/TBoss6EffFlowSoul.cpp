@@ -30,7 +30,7 @@ struct Soul_8036A6B0 {
     s32 age;
 };
 
-s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0);
+s32 is_state_1f__14TBoss6PlotFalzFP10TObjPlayer(u32 arg0);
 void subtract_vector(Vec_8036A6B0 *, Vec_8036A6B0 *);
 void vec3_add_to(Vec_8036A6B0 *, Vec_8036A6B0 *);
 
@@ -49,7 +49,7 @@ void TBoss6EffFlowSoul::run_task() {
         ((TBoss6Type2 *)(self->f1c))->copy_pos_620((s32)&target);
     } else {
         p = (u8 *)get_player_by_client_id(self->player);
-        if (p != NULL && is_state_1f__14TBoss6PlotFalzFUi((u32)p) != 0) {
+        if (p != NULL && is_state_1f__14TBoss6PlotFalzFP10TObjPlayer((u32)p) != 0) {
             VecCopy((Vec *)&target, (const Vec *)((Vec_8036A6B0 *)(p + 0x38)));
             target.y += 10.0f;
         } else {

@@ -20,7 +20,7 @@ void *__dt__12TOMineIcon03Fv(void *arg0, s16 arg1);
 }
 
 extern "C" {
-void *TOMineIcon03__ct(void *arg0, void *arg1, void *arg2);
+void *__ct__12TOMineIcon03FP7TObjectPv(void *arg0, void *arg1, void *arg2);
 }
 
 #endif

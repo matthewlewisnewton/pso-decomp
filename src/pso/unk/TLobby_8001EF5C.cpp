@@ -907,14 +907,14 @@ inline void TBinModel::request_motions(u32 *list) {
     for (i = 0; *list != 0; list++, i++) {
         req.a = (Ctx_8001FA1C *)&ents8[i].data;
         req.b = (s32)this;
-        create_named_entry__6TLobbyFiiUiiPv(*list, lobby_download_buffer, (u32)load_bin_motion_callback, &req, (void **)&handle);
+        create_named_entry__6TLobbyFPvlPFP14Lobby_8001FA1C_vPvPPv(*list, lobby_download_buffer, (u32)load_bin_motion_callback, &req, (void **)&handle);
         TLobby__sub_8001EDD8(this, handle);
     }
 }
 
 // TBinModel constructor (inferred: strings "TBinModel_NORMAL" / "TBinModel_REQ", operator new(0x440) at each caller).
 extern "C" {
-TBinModel *init_bin_model_request(TBinModel *self, s32 kind, u32 *models, u32 *motions, s32 on_loaded, s32 on_loaded_arg, s32 load_buffer) {
+TBinModel *init_from_id_lists__FP11BmlResourcelPPvPPvllPv(TBinModel *self, s32 kind, u32 *models, u32 *motions, s32 on_loaded, s32 on_loaded_arg, s32 load_buffer) {
     Lobby_8001FA1C req;
     s32 handle;
     u32 *p;
@@ -965,7 +965,7 @@ TBinModel *init_bin_model_request(TBinModel *self, s32 kind, u32 *models, u32 *m
             req.fC = (Ctx_8001FA1C *)self;
             req.f10 = (s32)&self->ents16[i];
             req.f14 = TLobby::get_resource_file_size((const void *)*p);
-            create_named_entry__6TLobbyFiiUiiPv(*p, lobby_download_buffer, (u32)load_bin_model_callback, &req, (void **)&handle);
+            create_named_entry__6TLobbyFPvlPFP14Lobby_8001FA1C_vPvPPv(*p, lobby_download_buffer, (u32)load_bin_model_callback, &req, (void **)&handle);
             TLobby__sub_8001EDD8(self, handle);
         }
         self->request_motions(motions);

@@ -170,7 +170,7 @@ int get_global_part_count__12TBoss8DragonFl(void*);
 void fn_8030B7B4(void) {  }
 void fn_8030B7B8(void) {  }
 void TObjLiveMonitor::update_camera() { void* m = *(void**)((char*)this + 0x50); if (m) update_single_screen__11TCameraCtrlFv(m); }
-int call_null__12TBoss8DragonFv(void) { return get_global_part_count__12TBoss8DragonFl((void*)(0)); }
+int get_first_dragon_part_id__18TObjLiveCameraCtrlFv(void) { return get_global_part_count__12TBoss8DragonFl((void*)(0)); }
 
 }
 
@@ -187,7 +187,7 @@ void TObjPlayer__sub_80082CBC(void *effect);
 void TObjPlayer__sub_80082CCC(void *effect);
 
     extern int local_client_id;
-int TBoss8Dragon__sub_8030B80C(void) {  return (local_client_id & 0xffff); }
+int get_local_client_id__18TObjLiveCameraCtrlFv(void) {  return (local_client_id & 0xffff); }
 
 void TObjLiveCameraCtrl::sub_8030B818(int _w1) {
   s32 temp_r0;
@@ -239,14 +239,14 @@ void TBoss8Dragon::choose_next_camera_shot() {
         break;
     case 1:
         this->m_1e = 1.8e+02f * (r = calc_random_ratio__10TObjPlayerFv((u8 *)&this->unk_54), r) + 1.8e+02f;
-        *(u16 *)((s8 *)arg0 + 0x24) = ((int (*)(void *))TBoss8Dragon__sub_8030B80C)(arg0);
+        *(u16 *)((s8 *)arg0 + 0x24) = ((int (*)(void *))get_local_client_id__18TObjLiveCameraCtrlFv)(arg0);
         *(s32 *)&this->unk_28 = 65535.0f * calc_random_ratio__10TObjPlayerFv((u8 *)&this->unk_54);
         this->m_2c = 2.0f * (8e+01f * (calc_random_ratio__10TObjPlayerFv((u8 *)&this->unk_54) - 0.5f));
         *(f32 *)&this->unk_30 = 15.0f * (r = calc_random_ratio__10TObjPlayerFv((u8 *)&this->unk_54), r) + 5.0f;
         break;
     case 2:
         this->m_1e = 1.8e+02f * (r = calc_random_ratio__10TObjPlayerFv((u8 *)&this->unk_54), r) + 1.8e+02f;
-        *(u16 *)((s8 *)arg0 + 0x24) = ((int (*)(void *))TBoss8Dragon__sub_8030B80C)(arg0);
+        *(u16 *)((s8 *)arg0 + 0x24) = ((int (*)(void *))get_local_client_id__18TObjLiveCameraCtrlFv)(arg0);
         p = get_player_by_client_id(*(u16 *)((s8 *)arg0 + 0x24));
         if (p != NULL) {
             *(s32 *)&this->unk_28 = *(s32 *)((s8 *)p + 0x60) - 0x8000;
@@ -254,7 +254,7 @@ void TBoss8Dragon::choose_next_camera_shot() {
         break;
     case 3:
         this->m_1e = 1.5e+02f * (r = calc_random_ratio__10TObjPlayerFv((u8 *)&this->unk_54), r) + 1.5e+02f;
-        *(u16 *)((s8 *)arg0 + 0x24) = ((u16 (*)(void *))call_null__12TBoss8DragonFv)(arg0);
+        *(u16 *)((s8 *)arg0 + 0x24) = ((u16 (*)(void *))get_first_dragon_part_id__18TObjLiveCameraCtrlFv)(arg0);
         p = get_enemy_entity(*(u16 *)((s8 *)arg0 + 0x24));
         if (p != NULL) {
             *(s32 *)&this->unk_28 = *(s32 *)((s8 *)p + 0x60) - 0x8000;

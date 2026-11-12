@@ -548,13 +548,13 @@ struct Fish_802E7B40 { u8 pad[0x6DC]; void* t[4]; };
 struct Fish_802E7B94 { u8 pad[0x6DC]; void* t[4]; };
 
 extern "C" {
-void queue_boss_effect__10TObjPlayerFPv(void* a0);
+void queue_boss_effect__10TObjPlayerFl(void* a0);
 void TObjPlayer__sub_802E7F30(void *unused, s32 arg1);
 void TBoss7Tentacle__sub_802F0B80(void* p);
 void TObjFish__sub_802E7B40(Fish_802E7B40* o);
 void TBoss7Tentacle__sub_802F0B70(void* p);
 void TObjFish__sub_802E7B94(Fish_802E7B94* o);
-#define queue_boss_effect__10TObjPlayerFPv ((u32 (*)(int))queue_boss_effect__10TObjPlayerFPv)
+#define queue_boss_effect__10TObjPlayerFl ((u32 (*)(int))queue_boss_effect__10TObjPlayerFl)
 void TBoss7DeRolLeC::render_shadows() {
     if (*(s32 *)((s8 *)this->bodies + 0x18) & 1) {
         render_shadows__9TObjEnemyFv((u8 *)this);
@@ -703,7 +703,7 @@ struct Saved_802E7EA0 { u8 pad[0x5A8]; s32 a[10]; s32 b[10]; };
 void TObjPlayer__sub_802E7EA0(void *arg0) {
     u32 effect;
     s32 i;
-    effect = queue_boss_effect__10TObjPlayerFPv(0);
+    effect = queue_boss_effect__10TObjPlayerFl(0);
     for (i = 0; i != 10; i++) {
         ((Saved_802E7EA0 *)arg0)->a[i] = ((EffectRef_802E7EA0 *)find_model_node(effect, lbl_804739AC[i]))->node->value;
         ((Saved_802E7EA0 *)arg0)->b[i] = ((EffectRef_802E7EA0 *)find_model_node(effect, lbl_804739D4[i]))->node->value;
@@ -726,7 +726,7 @@ void TObjPlayer__sub_802E7F30(void *unused, s32 arg1) {
     {
       var_r4 = (s32 *)lbl_804739AC;
       var_r4 = (s32 *) (*((s32 *) (((s8 *)lbl_804739AC) + var_r31)));
-      temp_r3 = (u8 *) find_model_node(queue_boss_effect__10TObjPlayerFPv(0), (s32) var_r4);
+      temp_r3 = (u8 *) find_model_node(queue_boss_effect__10TObjPlayerFl(0), (s32) var_r4);
     }
     if (temp_r3 != 0)
     {
@@ -737,7 +737,7 @@ void TObjPlayer__sub_802E7F30(void *unused, s32 arg1) {
     var_r4 = (s32 *)lbl_804739D4;
     var_r4 = (s32 *)lbl_804739D4;
     var_r4 = (s32 *) (*((s32 *) (((s8 *)lbl_804739D4) + var_r31)));
-    temp_r3_2 = (u8 *) find_model_node(queue_boss_effect__10TObjPlayerFPv(0), (s32) var_r4);
+    temp_r3_2 = (u8 *) find_model_node(queue_boss_effect__10TObjPlayerFl(0), (s32) var_r4);
     if (temp_r3_2 != 0)
     {
       var_r3 = (u8 *) ((RecoveredFields_802E7F30_temp_r3_2 *) temp_r3_2)->field_4;
@@ -750,7 +750,7 @@ void TObjPlayer__sub_802E7FC0(void *arg0) {
     u32 effect;
     s32 i;
     EffectRef_802E7EA0 *ref;
-    effect = queue_boss_effect__10TObjPlayerFPv(0);
+    effect = queue_boss_effect__10TObjPlayerFl(0);
     for (i = 0; i != 10; i++) {
         ref = (EffectRef_802E7EA0 *)find_model_node(effect, lbl_804739AC[i]);
         ref->node->value = ((Saved_802E7EA0 *)arg0)->a[i];
@@ -761,7 +761,7 @@ void TObjPlayer__sub_802E7FC0(void *arg0) {
 
 }
 
-#undef queue_boss_effect__10TObjPlayerFPv
+#undef queue_boss_effect__10TObjPlayerFl
 
 #include <stddef.h>
 struct Stack_802E8274 {
@@ -822,7 +822,7 @@ int set_current_texture_list(void);
 
 void TObjPlayer::notify_fish_obj(void* a0) { get_bml_motion((void*)lbl_805D6918, a0); }
 
-void queue_boss_effect__10TObjPlayerFPv(void* a0) { get_bml_model((void*)lbl_805D6918, a0); }
+void queue_boss_effect__10TObjPlayerFl(void* a0) { get_bml_model((void*)lbl_805D6918, a0); }
 
 void TObjPlayer__sub_802E80A0(void) { TObjFish__sub_8001EDB0((void*)lbl_805D6918, (void*)0); }
 
@@ -1506,7 +1506,7 @@ extern RecoveredGlobal_802EC468_lbl_804FF5E8 lbl_804FF5E8;
 struct Boss_802E83E8 { u8 pad[0x728]; s32 timer; s32 count; u8 pad730[0x7CC - 0x730]; u16 targets[4]; };
 
 extern "C" {
-void *TBoss7TentacleNeedle__ct(void *o, void *boss, void *pos);
+void *__ct__20TBoss7TentacleNeedleFP7TObjectP3Vec(void *o, void *boss, void *pos);
 }
 
 void TObjFish__sub_802E83E8(u8 *boss, u32 k) {
@@ -1544,7 +1544,7 @@ void TObjFish__sub_802E83E8(u8 *boss, u32 k) {
                 if (player != NULL) {
                     o = TObject::operator new(0x7C);
                     if (o != NULL) {
-                        TBoss7TentacleNeedle__ct(o, boss, player + 0x38);
+                        __ct__20TBoss7TentacleNeedleFP7TObjectP3Vec(o, boss, player + 0x38);
                     }
                 }
             } else {

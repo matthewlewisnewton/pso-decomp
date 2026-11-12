@@ -16,25 +16,25 @@ struct TObjEneSlimeTailAttack : public TObjEnemy {
 struct TObjEneSlimeOne;
 struct TObjEneSlimeWaterBomb;
 extern "C" {
-u8 *TObjEneSlimeOne__ct(u8 *actor, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-void *TObjEneSlimeTailAttack__ct(TObjEneSlimeTailAttack *arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4);
-void *TObjEneSlimeWaterBomb__ct(TObjEneSlimeWaterBomb *arg0, void *arg1, void *arg2);
-void TObjPlayer__sub_800E80C0(u8 *dst);
-void TObjPlayer__sub_800E8128(void);
-void TObjPlayer__sub_800E81A8(void);
+u8 *__ct__15TObjEneSlimeOneFP7TObjectP12TObjEneSlimePvPC3Vec(u8 *actor, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+void *__ct__22TObjEneSlimeTailAttackFP7TObjectPC3VeclP15TObjEneSlimeOne(TObjEneSlimeTailAttack *arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4);
+void *__ct__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne(TObjEneSlimeWaterBomb *arg0, void *arg1, void *arg2);
+void get_slime_tail_pose(u8 *dst);
+void capture_slime_tail_node(void);
+void reset_slime_tail_node_index(void);
 void sub_800E841C__22TObjEneSlimeTailAttackFv(u8 *arg0);
 void render__22TObjEneSlimeTailAttackFv(u8 *arg0);
 void run_task__22TObjEneSlimeTailAttackFv(u8 *arg0);
 void *__dt__15TObjEneSlimeOneFv(void *arg0, s16 arg1);
 void *__dt__21TObjEneSlimeWaterBombFv(void *arg0, s16 arg1);
-void *create__22TObjEneSlimeTailAttackFiiii(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-void *dt__22TObjEneSlimeTailAttackFPvs(void *arg0, s16 arg1);
-void fn_800E9238(s32 arg0);
-u8 *init__15TObjEneSlimeOneFPviii(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
+void *create__22TObjEneSlimeTailAttackFlPC3VeclP15TObjEneSlimeOne(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+void *__dt__22TObjEneSlimeTailAttackFv(void *arg0, s16 arg1);
+void update_trail_position__15TObjEneSlimeOneFv(s32 arg0);
+u8 *__ct__15TObjEneSlimeOneFP7TObjectP12TObjEneSlimePv(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
 void initialize_slime_instance_state__15TObjEneSlimeOneFv(u8 *actor);
 void render__15TObjEneSlimeOneFv(TObjEneSlimeOne *arg0);
-void set_display_mode__15TObjEneSlimeOneFPvi(void *arg0, s32 arg1);
-void set_random_timer__15TObjEneSlimeOneFPvii(void *arg0, s32 arg1, s32 arg2);
+void set_display_mode__15TObjEneSlimeOneFl(void *arg0, s32 arg1);
+void set_random_timer__15TObjEneSlimeOneFll(void *arg0, s32 arg1, s32 arg2);
 s32 try_spawn_child__15TObjEneSlimeOneFPv(int origin, void *arg1);
 }
 extern "C" {

@@ -4,7 +4,7 @@
 #include "types.h"
 
 extern "C" {
-u8 *TNECFontEORFunction__ct(u8 *arg0);
+u8 *__ct__19TNECFontEORFunctionFv(u8 *arg0);
 }
 
 #endif

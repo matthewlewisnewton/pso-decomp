@@ -34,7 +34,7 @@ void __ct__7TObjectFP7TObject(void *);
 extern u8 __vt__20TAdChrSelMovePlateGC[];
 extern s32 lbl_805D4190;
 extern s32 chr_sel_move_plate_texture;
-Obj_803258C4 *__ct__20TAdChrSelMovePlateGCFv(Obj_803258C4 *arg0);
+Obj_803258C4 *__ct__20TAdChrSelMovePlateGCFP7TObject(Obj_803258C4 *arg0);
 void TAdChrSelMovePlateGC::draw_move_plate_quads() {
     Obj_80325660 *arg0 = (Obj_80325660 *)this;
     u32 i;
@@ -90,7 +90,7 @@ void TAdChrSelMovePlateGC::run_task() {
     }
 }
 TAdChrSelMovePlateGC::~TAdChrSelMovePlateGC() {}
-Obj_803258C4 *__ct__20TAdChrSelMovePlateGCFv(Obj_803258C4 *arg0) {
+Obj_803258C4 *__ct__20TAdChrSelMovePlateGCFP7TObject(Obj_803258C4 *arg0) {
     s32 i;
     __ct__7TObjectFP7TObject(arg0);
     arg0->vt = __vt__20TAdChrSelMovePlateGC;

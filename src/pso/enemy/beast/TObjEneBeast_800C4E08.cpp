@@ -59,7 +59,7 @@ s32 check_path_obstructed(void *, void *);
 f32 get_collision_body_radius(void *, s32);
 f32 fabs_float(f32);
 f64 atan2_float(f32, f32);
-s32 link_chain_nodes__10TObjPlayerFPvPvPv(void *, void *, void *);
+s32 link_last_group_child__9TObjEnemyFP9TObjEnemyP9TObjEnemy(void *, void *, void *);
 f32 horizontal_distance_squared(void *, void *);
 s32 approach_angle_limited(int, int, int);
 s32 project_actor_to_ground(void *, void *, int);
@@ -524,11 +524,11 @@ void TUnk_80493450::beast_idle_update() {
     if (other != NULL) {
         diff = *(s32 *)((s8 *)other + 0x37C) - *(s32 *)&this->m_37c;
         if (diff > 1) {
-            link_chain_nodes__10TObjPlayerFPvPvPv(arg0, other, arg0);
+            link_last_group_child__9TObjEnemyFP9TObjEnemyP9TObjEnemy(arg0, other, arg0);
             *(s32 *)&this->m_37c = *(s32 *)&this->m_37c + 1;
             *(s32 *)((s8 *)other + 0x37C) = *(s32 *)((s8 *)other + 0x37C) - 1;
         } else if (diff < -1) {
-            link_chain_nodes__10TObjPlayerFPvPvPv(arg0, arg0, other);
+            link_last_group_child__9TObjEnemyFP9TObjEnemyP9TObjEnemy(arg0, arg0, other);
             *(s32 *)&this->m_37c = *(s32 *)&this->m_37c - 1;
             *(s32 *)((s8 *)other + 0x37C) = *(s32 *)((s8 *)other + 0x37C) + 1;
         }

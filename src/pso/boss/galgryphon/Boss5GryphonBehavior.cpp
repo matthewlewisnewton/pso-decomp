@@ -581,7 +581,7 @@ void TBoss8Dragon__sub_80064828(u8 *arg0);
 void TBoss8Dragon__sub_800648C8(u8 *arg0);
 int emit_part_attack_effect__13TBoss5GryphonFPvi(void *arg0, int arg1);
 void TBoss8Dragon__sub_80064AB0(O_80064AB0 *self);
-void apply_remote_action__13TBoss5GryphonFPvPv(u8 *arg0, u8 *arg1);
+void apply_remote_action__13TBoss5GryphonFP28G_GalGryphonBossActions_6xA0(u8 *arg0, u8 *arg1);
 void TBoss8Dragon__sub_80064DB8(u8 *arg0);
 void TBoss8Dragon__sub_80064E3C(u8 *arg0);
 void spawn_ancient_trap__12TBoss8DragonFii(s32 arg0, s32 arg1);
@@ -1101,7 +1101,7 @@ void update_object_view_visibility__8TObjBaseFff();
 extern "C" {
 void update_poison_status__9TObjCharaFv();
 }
-void *lbl_80487848[4] = {
+void *boss5_gryphon_particle_filenames[4] = {
     (void *)&lbl_804378C8, (void *)&lbl_804378D8, (void *)&lbl_804378F0, (void *)0x0,
 };
 void *lbl_80487858[2] = {
@@ -1109,12 +1109,12 @@ void *lbl_80487858[2] = {
 };
 // Resource descriptor passed to load_enemy_bml_resource for boss5_gryphon_bml_resource.
 void *boss5_gryphon_bml_desc[4] = {
-    (void *)&lbl_80437918, (void *)&lbl_80487848, (void *)&lbl_80487858, (void *)0x30001,
+    (void *)&lbl_80437918, (void *)&boss5_gryphon_particle_filenames, (void *)&lbl_80487858, (void *)0x30001,
 };
 // Ids resolved into boss5_gryphon_attack_params / boss5_gryphon_behavior_params by the resource loader.
 s32 boss5_gryphon_attack_param_ids[5] = { 0x1E, 0x1F, 0x20, 0x21, 0x22 };
-s32 boss5_gryphon_behavior_param_ids[3] = { 0x1E, 0x1F, 0x20 };
-void *lbl_80487890[3] = {
+s32 boss5_gryphon_movement_param_ids[3] = { 0x1E, 0x1F, 0x20 };
+void *boss5_gryphon_base_indices[3] = {
     (void *)0x0, (void *)0x0, (void *)0x0,
 };
 void *lbl_8048789C[3] = {
@@ -1216,7 +1216,7 @@ extern void *lbl_804880B8[3];
 extern void *gryphon_particle_enable_pos[3];
 extern void *gryphon_particle_position_vec[3];
 extern void *__vt__13TBoss5Gryphon[107];
-#define lbl_80487848 (*(RecoveredGlobal_80064CFC_lbl_80487848 *)lbl_80487848)
+#define boss5_gryphon_particle_filenames (*(RecoveredGlobal_80064CFC_lbl_80487848 *)boss5_gryphon_particle_filenames)
 #define gryphon_particle_enable_pos ((u8 *)gryphon_particle_enable_pos)
 #define gryphon_particle_position_vec ((s32 *)gryphon_particle_position_vec)
 #define __vt__13TBoss5Gryphon ((u8 *)__vt__13TBoss5Gryphon)
@@ -4538,7 +4538,7 @@ void TBoss8Dragon__sub_80064AB0(O_80064AB0 *self) {
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-void apply_remote_action__13TBoss5GryphonFPvPv(u8 *ene_dd, u8 *arg1) {
+void apply_remote_action__13TBoss5GryphonFP28G_GalGryphonBossActions_6xA0(u8 *ene_dd, u8 *arg1) {
     s16 temp_r4;
     VecCopy__FP3VecPC3Vec((void*)((void *) (ene_dd + 0x484)), (void*)((void *) (arg1 + 4)));
     ((f32 (*)(void *, void *))subtract_vector)((void *) (ene_dd + 0x484), (void *) (ene_dd + 0x38));
@@ -4579,7 +4579,7 @@ void handle_6xA0_gal_gryphon_boss_actions(TBoss8Dragon *boss8_dragon) {
     boss8_dragon->byteswap_action_packet();
     x = get_enemy_entity(*(u16 *)((s8 *)boss8_dragon + 0x2));
     if (x != NULL) {
-        apply_remote_action__13TBoss5GryphonFPvPv((u8 *)x, (u8 *)boss8_dragon);
+        apply_remote_action__13TBoss5GryphonFP28G_GalGryphonBossActions_6xA0((u8 *)x, (u8 *)boss8_dragon);
     }
 }
 #pragma pop
@@ -4617,12 +4617,12 @@ void handle_6x9F_gal_gryphon_boss_actions(void *boss8_dragon) {
 extern "C" {
 
 s32 TBoss5Gryphon::reload_stats_for_phase(void *) {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this, boss5_gryphon_base_params[((s32 *)lbl_80487890)[2]], boss5_gryphon_attack_params[((s32 *)lbl_8048789C)[2]], boss5_gryphon_resistance_params[((s32 *)lbl_804878A8)[2]]);
+    reload_stats_keep_hp_tp__9TObjEneDDFv(this, boss5_gryphon_base_params[((s32 *)boss5_gryphon_base_indices)[2]], boss5_gryphon_attack_params[((s32 *)lbl_8048789C)[2]], boss5_gryphon_resistance_params[((s32 *)lbl_804878A8)[2]]);
 }
 
 void TBoss5Gryphon::reload_stats_for_type() {
     s32 arg0 = (s32)this;
-    reload_stats_keep_hp_tp__9TObjEneDDFv((void *)arg0, boss5_gryphon_base_params[*(s32 *)((s8 *)(&lbl_80487848.value) + 0x48)], boss5_gryphon_attack_params[*(s32 *)((s8 *)(&lbl_80487848.value) + 0x54)], boss5_gryphon_resistance_params[*(s32 *)((s8 *)(&lbl_80487848.value) + 0x60)]);
+    reload_stats_keep_hp_tp__9TObjEneDDFv((void *)arg0, boss5_gryphon_base_params[*(s32 *)((s8 *)(&boss5_gryphon_particle_filenames.value) + 0x48)], boss5_gryphon_attack_params[*(s32 *)((s8 *)(&boss5_gryphon_particle_filenames.value) + 0x54)], boss5_gryphon_resistance_params[*(s32 *)((s8 *)(&boss5_gryphon_particle_filenames.value) + 0x60)]);
 }
 #pragma pop
 
@@ -5011,7 +5011,7 @@ TBoss5Gryphon *TBoss5Gryphon__ct(TBoss5Gryphon *self, void *parent, void *data) 
     self->requested_action = 0;
     self->set_animation(self->requested_action);
     self->set_field_b8(self->requested_action);
-    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, boss5_gryphon_base_params[*(s32 *)lbl_80487890], boss5_gryphon_attack_params[*(s32 *)lbl_8048789C], boss5_gryphon_resistance_params[*(s32 *)lbl_804878A8]);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, boss5_gryphon_base_params[*(s32 *)boss5_gryphon_base_indices], boss5_gryphon_attack_params[*(s32 *)lbl_8048789C], boss5_gryphon_resistance_params[*(s32 *)lbl_804878A8]);
     self->check_state_flag_2();
     *(void **)((u8 *)self + 0x350) = lbl_804878B4;
     initialize_enemy_state__9TObjEneDDFl(self, 77);
@@ -5163,7 +5163,7 @@ void load_boss5_gryphon_resources(void) {
         boss5_gryphon_resistance_params[i] = (s32)get_battle_resistance_params(boss5_gryphon_resistance_param_ids[i]);
     }
     for (s32 i = 0; i < 3; i++) {
-        boss5_gryphon_behavior_params[i] = get_battle_movement_params(boss5_gryphon_behavior_param_ids[i]);
+        boss5_gryphon_behavior_params[i] = get_battle_movement_params(boss5_gryphon_movement_param_ids[i]);
     }
     TWindowCtrl::init_all_slots();
     TBoss8Dragon::set_default_on_state0();

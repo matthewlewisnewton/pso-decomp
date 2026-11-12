@@ -15,9 +15,9 @@ extern const f32 lbl_805DA34C;
 extern const float lbl_805DA350;
 extern const f32 lbl_805DA354;
 extern const f32 lbl_805DA358;
-s32 TObjEneMe3SinowZoa__sub_800D72A4(O_800D72A4 *self);
+s32 has_partial_opacity__19MaterialOpacityFadeFv(O_800D72A4 *self);
 
-s32 TObjEneMe3SinowZoa__sub_800D72A4(O_800D72A4 *self) {
+s32 has_partial_opacity__19MaterialOpacityFadeFv(O_800D72A4 *self) {
     return self->f18 > (*(const f32 *)&lbl_805DA348) && self->f18 < lbl_805DA34C;
 }
 

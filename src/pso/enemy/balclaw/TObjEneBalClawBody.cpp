@@ -58,7 +58,7 @@ TObjMotionAction balclaw_body_actions[12] = {
     {2, 5, 1, 0.6f, 1},
 };
 
-// Movement rows; TObjPlayer__sub_8008E934 points TObjEnemy::movementParameters at one.
+// Movement rows; set_form__18TObjEneBalClawBodyFl points TObjEnemy::movementParameters at one.
 struct BalClawBodyMovement {
     EnemyMoveParams move;
     s32 pad_c;
@@ -263,7 +263,7 @@ void TObjPlayer__sub_8008E254(void *arg0);
 void TObjEneBalClawClaw__sub_80090A10(u8 *arg0, u8 *arg1, s32 arg2, s16 arg3);
 void *create__18TObjEneBalClawClawFPvPvPvPvPv(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4, void *arg5);
 u8 *get_enemy_entity(u16);
-void TObjPlayer__sub_8008E934(void *arg0_, s32 arg1);
+void set_form__18TObjEneBalClawBodyFl(void *arg0_, s32 arg1);
 struct VBase18_8008e74c_8008DCF0 { char pad[0x18]; };
 struct VObj18_8008e74c_8008DCF0 : VBase18_8008e74c_8008DCF0 {
     virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
@@ -450,7 +450,7 @@ void send_6x2F_change_player_hp(s32 arg0, s32 arg1, s32 arg2);
 s32 post_translate_matrix(void *);
 extern u8 identity_matrix[];
 void TObjPlayer__sub_8008F1DC(void *arg0);
-s32 TObjPlayer__sub_800A0554(void *);
+s32 start_negative_fade_phase__13TUnk_80490470Fv(void *);
 void TObjPlayer__sub_8008EC3C(u8 *arg0);
 }
 
@@ -520,7 +520,7 @@ TObjEneBalClawBody::TObjEneBalClawBody(TObject *parent, void *set_data) : TObjEn
     for (i = 0; i < 4; i++) {
         child_ids[i] = 0xFFFF;
     }
-    TObjPlayer__sub_8008E934(this, 1);
+    set_form__18TObjEneBalClawBodyFl(this, 1);
     bind_enemy_combat_stats(lbl_805007A8[0], lbl_805007B0[0], lbl_805007B8[0]);
     parts[0] = NULL;
     parts[1] = NULL;
@@ -1127,7 +1127,7 @@ void TObjPlayer__sub_8008EC3C(u8 *enemy) {
         *(s32 *)((s8 *)enemy + 0x30) = (s32) (*(s32 *)((s8 *)enemy + 0x30) | 0x04000000);
         *(s16 *)((s8 *)enemy + 0xB8) = (*(s32 *)((s8 *)enemy + 0x388) & 0x01000000) ? 0 : 5;
         ((TBoss3Volopt *)(enemy + 0x38))->play_area_se_with_particle();
-        TObjPlayer__sub_800A0554(enemy + 0x390);
+        start_negative_fade_phase__13TUnk_80490470Fv(enemy + 0x390);
         *(s32 *)((s8 *)enemy + 0x37C) = 1;
     case 1:
         ((TObjMotion *)enemy)->advance_animation();
@@ -1170,7 +1170,7 @@ void TObjEneBalClawBody::update_dragon_boss_state() {
 #pragma push
 #pragma opt_propagation off
 #define arg0 ((u8 *)arg0_)
-void TObjPlayer__sub_8008E934(void *arg0_, s32 arg1) {
+void set_form__18TObjEneBalClawBodyFl(void *arg0_, s32 arg1) {
     Vec a;
     Vec b;
     s32 angA;
@@ -1386,7 +1386,7 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {
             queue_destruction__7TObjectFv((void *)arg0_->emit1);
             arg0_->emit1 = 0;
             spawn_particle_effect(arg0_->f2FC, 0x129);
-            TObjPlayer__sub_8008E934(arg0_, 1);
+            set_form__18TObjEneBalClawBodyFl(arg0_, 1);
             ((TObjMotion *)arg0_)->advance_animation();
             arg0_->flags &= ~0x04000000;
             arg0_->f33C = 0x1E;
@@ -1405,7 +1405,7 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {
         break;
     case -1:
         if (arg0_->flags & 0x04000000) {
-            TObjPlayer__sub_8008E934(arg0_, 1);
+            set_form__18TObjEneBalClawBodyFl(arg0_, 1);
             ((TObjMotion *)arg0_)->advance_animation();
         }
         if (((TObjEneBalClaw *)arg0_)->get_flag_0x388_b24() == 0) {
@@ -1439,7 +1439,7 @@ void TObjPlayer__sub_8008E254(void *arg0_) {
             return;
         }
         *(s32 *)((s8 *)arg0_ + 0x3D4) = 0;
-        TObjPlayer__sub_8008E934(arg0_, 0);
+        set_form__18TObjEneBalClawBodyFl(arg0_, 0);
         *(s16 *)((s8 *)arg0_ + 0x33C) = 0x1E;
         ((TObjPlayer *)arg0_)->m_37c = 1;
         return;

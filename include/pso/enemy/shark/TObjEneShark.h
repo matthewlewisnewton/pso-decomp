@@ -111,7 +111,7 @@ typedef char SharkFadeStride[(sizeof(RenderFadeState) == 0x1C) ? 1 : -1];
 typedef char SharkSize[(sizeof(TObjEneShark) == 0x43C) ? 1 : -1];
 
 extern "C" {
-void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2);
+void *__ct__12TObjEneSharkFP7TObjectPv(void *arg0, void *arg1, void *arg2);
 void TObjPlayer__sub_800ACA0C(void);
 }
 

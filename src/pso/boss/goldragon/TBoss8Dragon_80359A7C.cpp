@@ -134,7 +134,7 @@ extern s32 boss8_dragon_attack_object_vtable[];
 u8 *__dt__12TBoss8DragonFv(u8 *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 
-void TBoss8Dragon__sub_80359A7C(u8 *boss8_dragon) {
+void run_task__13TUnk_804F1A78Fv(u8 *boss8_dragon) {
     s16 temp_r0;
     s32 temp_r0_2;
     s32 temp_r30;

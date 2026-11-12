@@ -83,7 +83,7 @@ u8 *csnVector(void *, Vec_800A34E8 *, s32);
 extern void *tl_04;
 extern f32 player_scale_factor;
 extern s32 __vt__13TUnk_804909C4[];
-CollisionBody lbl_80490998[] = {
+CollisionBody projectile_collision_body[] = {
     {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f}
 };
 void *__dt__13TUnk_804909C4Fv(void *arg0, s16 arg1);
@@ -156,7 +156,7 @@ extern "C" {
 TUnk_804909C4::TUnk_804909C4(u8 *player, s32 arg2, s32 arg3) : TObjCollidable((TObject *)tl_04) {
     s32 var_r0;
     u8 *temp_r3;
-    init_collision_body_parts(((u8 *)this), lbl_80490998, 1);
+    init_collision_body_parts(((u8 *)this), projectile_collision_body, 1);
     *(f32 *)((s8 *)(this->bodies) + 0xC) = 0.75f * player_scale_factor;
     *(s16 *)((s8 *)this + 0xC8) = get_entity_id(player, 0.75f);
     if (((TObjPlayer *)player)->is_flag_set_388_bit26() != 0) {

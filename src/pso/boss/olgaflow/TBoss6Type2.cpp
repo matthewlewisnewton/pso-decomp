@@ -549,7 +549,7 @@ s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 project_actor_to_ground(void *, void *, int);
 s32 __nw__7TObjectFUl(s32);
 int pick_random_active_player__14TBoss6PlotFalzFv(void*);
-s32 is_state_1f__14TBoss6PlotFalzFUi(void *);
+s32 is_state_1f__14TBoss6PlotFalzFP10TObjPlayer(void *);
 f32 TBoss6PlotFalz__sub_802AB684(void *);
 void TBoss6PlotFalz__sub_802AC724(void *, void *);
 void world_to_grid_pos__11TBoss6Type2FPvPvPv(f32 *arg0, s8 *arg1, s8 *arg2);
@@ -1689,7 +1689,7 @@ s32 TBoss6Type2::push_players_away(void *target, f32 range) {
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         pl = get_player_data__10TObjPlayerFi(i);
-        if (is_state_1f__14TBoss6PlotFalzFUi(pl) == 0) {
+        if (is_state_1f__14TBoss6PlotFalzFP10TObjPlayer(pl) == 0) {
             continue;
         }
         VecCopy((Vec *)&dir, (const Vec *)(pl + 0x38));

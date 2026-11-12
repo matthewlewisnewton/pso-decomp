@@ -64,7 +64,7 @@ __declspec(section ".sdata") extern AppearanceClassTag TBoss6Demo10_TYPE1_APPEAR
 struct AppearanceZero { f32 value; u32 padding; };
 __declspec(section ".sdata2") extern const AppearanceZero lbl_805DFA50;
 Fish_8033CB4C *__ct__25TBoss6Demo10_TYPE1_APPEARFP7TObject(Fish_8033CB4C *self, void *parent);
-s32 refresh_players_equipment__14TBoss6PlotFalzFPv();
+s32 refresh_players_equipment__14TBoss6PlotFalzFv();
 s32 post_translate_matrix(s32 *);
 s32 push_matrix();
 void *__nw__7TObjectFUl(int);
@@ -163,7 +163,7 @@ void run_task__25TBoss6Demo10_TYPE1_APPEARFv(TBoss6Demo10_TYPE1_APPEAR *boss6_de
 }
 TBoss6Demo10_TYPE1_APPEAR::~TBoss6Demo10_TYPE1_APPEAR() {
     restore_player_cameras();
-    refresh_players_equipment__14TBoss6PlotFalzFPv();
+    refresh_players_equipment__14TBoss6PlotFalzFv();
     ((Boss6ScrollStrips *)(((u8 *)this) + 0x40))->free_buffer_pairs();
     if ((u32) this->m_60 != 0U) {
         ModelNodePositionCapture::destroy((ModelNodePositionCapture *)*(void **)((s8 *)this + 0x60));

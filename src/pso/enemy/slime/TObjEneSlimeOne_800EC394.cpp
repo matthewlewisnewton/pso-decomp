@@ -311,13 +311,13 @@ void TObjEneSlimeOne::set_motion_state(s32 arg1) {
   }
 }
 
-s32 __dt__15TObjEneSlimeOneFis(s32 arg0, s16 arg1) {
+s32 __dt__19SlimeAnimationStateFv(s32 arg0, s16 arg1) {
     if ((arg0 != 0) && (arg1 > 0)) {
         __dl__FPv();
     }
     return arg0;
 }
-void *fn_800ECA28(void *arg0, s32 arg1) {
+void *__ct__19SlimeAnimationStateFP15TObjEneSlimeOne(void *arg0, s32 arg1) {
     *(s32 *)((s8 *)arg0 + 0) = arg1;
     *(s32 *)((s8 *)arg0 + 4) = -1;
     return arg0;

@@ -708,7 +708,7 @@ void TObjEneMe3Stelth__sub_800F1440(u8 *arg0, s32 arg1) {
             case 0:
                 if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA828) != 0) {
                     F(s32, 0x3CC) |= 8;
-                    NJS_ARGB q = me3_stelth_offset_vec;
+                    NJS_ARGB q = stelth_fade_color;
                     ((TObjEneMe3SinowZoa *)(arg0 + 0x404))->copy_position_vector(&q);
                     F(s32, 0x424) = 1;
                 }
@@ -1133,7 +1133,7 @@ s32 is_main_phase_15__9TObjEneDDFv();
 #define sub_800F47D4__16TObjEneMe3StelthFv ((s32 (*)(void *))sub_800F47D4__16TObjEneMe3StelthFv)
 s32 draw_ginja_motion_model__10TObjMotionFv(void *);
 s32 defer_render__7TObjectFv(void *);
-s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
+s32 dispatch_input_to_instance__18TAdEnterPasswordGCFP7TObject(void *);
 #define TObjEneMe3Stelth__material_color_pointers ((s32 * *)&TObjEneMe3Stelth__material_color_pointers)
 extern const f32 lbl_805D9E84;
 extern const f32 lbl_805D9E88;
@@ -1159,7 +1159,7 @@ void TObjEneMe3Stelth::render() {
     } else {
         mode = 0;
     }
-    if (F(s32, 0x3C0) != 0 && is_split_screen() == 0 && dispatch_input_to_instance__18TAdEnterPasswordGCFi(arg0) != 0) {
+    if (F(s32, 0x3C0) != 0 && is_split_screen() == 0 && dispatch_input_to_instance__18TAdEnterPasswordGCFP7TObject(arg0) != 0) {
         return;
     }
     if (mode != 0) {

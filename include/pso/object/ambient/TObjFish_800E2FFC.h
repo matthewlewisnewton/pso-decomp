@@ -5,7 +5,7 @@
 
 extern "C" {
 s32 create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec(u8 *list, s32 vecs);
-s32 TObjFish__sub_800E3188(s32 arg0, s16 arg1);
+s32 __dt__24ModelNodePositionCaptureFv(s32 arg0, s16 arg1);
 }
 
 #endif

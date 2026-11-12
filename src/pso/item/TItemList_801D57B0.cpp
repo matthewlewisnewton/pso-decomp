@@ -23,7 +23,7 @@ int copy_from__9TItemDataFP9TItemData(void*);
 extern s32 __vt__9TItemList[];
 extern void *TItemList__name;
 
-void *__ct__9TItemListFv(void *item_list) {
+void *__ct__9TItemListFP7TObject(void *item_list) {
     __ct__7TObjectFP7TObject(item_list);
     *(s32 **)((s8 *)item_list + 0x18) = __vt__9TItemList;
     *(void * *)&((TItemList *)item_list)->m_name = TItemList__name;

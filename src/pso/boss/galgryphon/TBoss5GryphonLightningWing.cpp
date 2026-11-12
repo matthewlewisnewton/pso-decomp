@@ -51,7 +51,7 @@ struct Wing_80351C18 {
 extern "C" {
 s32 __nw__7TObjectFUl(int);
 extern const f32 lbl_805D8D48;
-s32 TBoss5GryphonLightning__ct(f32);
+s32 __ct__22TBoss5GryphonLightningFP7TObjectfPC3Vec(f32);
 extern u8 __vt__26TBoss5GryphonLightningWing[];
 extern const char *TBoss5GryphonLightningWing__name;
 s32 TBoss8Dragon__sub_80063FB8(s32, s32 *, f32);
@@ -97,9 +97,9 @@ void run_task__26TBoss5GryphonLightningWingFv(TBoss5GryphonLightningWing *boss5_
 #pragma pop
 
 TBoss5GryphonLightningWing::~TBoss5GryphonLightningWing() {}
-s32 __ct__26TBoss5GryphonLightningWingFv(int arg0, void *arg1, void *a, void *mid, void *b, void *arg5, void *arg6) {
+s32 __ct__26TBoss5GryphonLightningWingFP7TObjectPC3VecP3VecPC3Vecll(int arg0, void *arg1, void *a, void *mid, void *b, void *arg5, void *arg6) {
     s32 i;
-    TBoss5GryphonLightning__ct(20.0f);
+    __ct__22TBoss5GryphonLightningFP7TObjectfPC3Vec(20.0f);
     ((Wing_80351C18 *)arg0)->vt = __vt__26TBoss5GryphonLightningWing;
     ((Wing_80351C18 *)arg0)->x0 = ((s32)TBoss5GryphonLightningWing__name);
     ((Wing_80351C18 *)arg0)->n = 3;
@@ -136,7 +136,7 @@ s32 spawn_lightning_wing__12TBoss8DragonFiiiiii(s32 arg0, s32 arg1, s32 mid, s32
     allocation = __nw__7TObjectFUl(0xA0);
     effect = allocation;
     if (effect != 0) {
-        effect = __ct__26TBoss5GryphonLightningWingFv(allocation, (void *)((void*)arg0), (void *)((void*)arg1), (void *)((void*)mid), &position, (void *)((void*)arg4), (void *)((void*)arg5));
+        effect = __ct__26TBoss5GryphonLightningWingFP7TObjectPC3VecP3VecPC3Vecll(allocation, (void *)((void*)arg0), (void *)((void*)arg1), (void *)((void*)mid), &position, (void *)((void*)arg4), (void *)((void*)arg5));
     }
     return effect;
 }

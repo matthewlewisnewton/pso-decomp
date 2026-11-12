@@ -6,7 +6,7 @@
 
 extern "C" {
 s32 DCFlushRange(void *, int);
-extern s32 lbl_805D56B4;
+extern s32 menu_font_palette;
 extern s32 menu_font_upload_flags;
 extern u8 lbl_805D56C0;
 extern "C" u8 lbl_8050C090[];
@@ -29,8 +29,8 @@ s32 menu_font_char_advance_table[191] = {
 };
 void TNECFontEORFunction::run_task() {
     if (menu_font_upload_flags & 2) {
-        DCFlushRange((void *)lbl_805D56B4, 0x80);
-        init_and_load_tlut(0, 2, 0x80, (void *)lbl_805D56B4);
+        DCFlushRange((void *)menu_font_palette, 0x80);
+        init_and_load_tlut(0, 2, 0x80, (void *)menu_font_palette);
         menu_font_upload_flags &= 0xFFFFFFFD;
     }
     if (menu_font_upload_flags & 1) {
@@ -52,7 +52,7 @@ void __ct__7TObjectFP7TObject(void *, void *);
 extern RecoveredGlobal_80144AC8___vt__19TNECFontEORFunction __vt__19TNECFontEORFunction;
 extern s32 TNECFontEORFunction__name;
 typedef char RecoveredGlobal_80144AC8___vt__19TNECFontEORFunction_size[sizeof(RecoveredGlobal_80144AC8___vt__19TNECFontEORFunction) == 0x1C ? 1 : -1];
-u8 *TNECFontEORFunction__ct(u8 *object) {
+u8 *__ct__19TNECFontEORFunctionFv(u8 *object) {
     __ct__7TObjectFP7TObject(object, &end_of_render_root);
     *(s32 **)((s8 *)object + 0x18) = &__vt__19TNECFontEORFunction.value;
     *(s32 *)((s8 *)object + 0) = (s32) TNECFontEORFunction__name;

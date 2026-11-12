@@ -130,7 +130,7 @@ void play_area_sound_and_particles_a(s32 arg0) {
         play_sound_effect(TBoss3Volopt::remap_area_sound_id(0x4003AB20), (void *)arg0, 0, 0);
         break;
     }
-    spawn_particles_at__12TBoss3VoloptFi(arg0);
+    spawn_position_particles(arg0);
 }
 
 void TBoss3Volopt::play_area_sound_effect() {
@@ -157,10 +157,10 @@ void TBoss3Volopt::play_area_sound_effect() {
         play_sound_effect(TBoss3Volopt::remap_area_sound_id(0x4003AB37), (void *)arg0, 0, 0);
         break;
     }
-    spawn_particles_at__12TBoss3VoloptFi(arg0);
+    spawn_position_particles(arg0);
 }
 
-void spawn_particles_at__12TBoss3VoloptFi(s32 arg0) {
+void spawn_position_particles(s32 arg0) {
     Stack_800D8F78 stack;
     f32 temp_f1;
     VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0));

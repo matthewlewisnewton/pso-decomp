@@ -43,7 +43,7 @@ void load_texture_list(void *);
 extern u8 lbl_8043F3D8[];
 extern TexList_80145804 menu_font_texture_list[];
 extern s32 menu_font_glyph_data;
-extern s16 *lbl_805D56B4;
+extern s16 *menu_font_palette;
 extern s32 menu_font_upload_flags;
 extern Glyph_80145804 *menu_font_glyph_table;
 extern u8 lbl_805D56C0;
@@ -85,12 +85,12 @@ void load_menu_font(void) {
         *(menu_font_glyph_pixel_buffers + m) = menu_font_texture_list[0].ents[m].obj->img->pixels;
         clear_words_80145804(*(menu_font_glyph_pixel_buffers + m), 0x2000);
     }
-    lbl_805D56B4 = (s16 *)::operator new[](0x100);
-    clear_words_80145804((u32 *)lbl_805D56B4, 0x40);
-    lbl_805D56B4[0] = 0xFFF;
-    lbl_805D56B4[1] = 0x3FFF;
-    lbl_805D56B4[2] = 0x5FFF;
-    lbl_805D56B4[3] = 0x7FFF;
+    menu_font_palette = (s16 *)::operator new[](0x100);
+    clear_words_80145804((u32 *)menu_font_palette, 0x40);
+    menu_font_palette[0] = 0xFFF;
+    menu_font_palette[1] = 0x3FFF;
+    menu_font_palette[2] = 0x5FFF;
+    menu_font_palette[3] = 0x7FFF;
     set_current_texture_list((GinjaTextureList *)((s32)menu_font_texture_list));
     for (i = 0; i < 2; i++) {
         TLanguage::set_entry_index(i, 0);
@@ -118,7 +118,7 @@ void load_menu_font(void) {
     menu_font_upload_flags = 3;
     f = __nw__7TObjectFUl(0x1C);
     if (f != NULL) {
-        f = TNECFontEORFunction__ct((u8 *)f);
+        f = __ct__19TNECFontEORFunctionFv((u8 *)f);
     }
     menu_font_object = f;
 }

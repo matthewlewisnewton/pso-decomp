@@ -5,7 +5,7 @@
 
 extern "C" {
 
-void TObjEneMorfosArm__sub_8033542C(void) {  }
+void unload_static_data__16TObjEneMorfosArmFv(void) {  }
 
 extern s32 TObjEneMorfosArm__parent_morfos_instance;
 

@@ -315,7 +315,7 @@ void TAdEnterPasswordGC__sub_8032BC94(u8 *arg0, s32 arg1) {
     }
 }
 
-s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(s32 arg0) {
+s32 dispatch_input_to_instance__18TAdEnterPasswordGCFP7TObject(s32 arg0) {
     if ((u32) lbl_805D6CB8 != 0U) {
         if (((TAdSnAkPassConfirmGC *)lbl_805D6CB8)->get_confirm_state() != 0) {
             return 0;

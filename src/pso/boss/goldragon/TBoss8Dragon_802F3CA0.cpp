@@ -61,7 +61,7 @@ extern const f32 TBoss8Dragon__data_805DED58;
 extern const f32 lbl_805DED5C;
 extern const f32 TBoss8Dragon__data_805DED60;
 f32 receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(void *, void *, Pair_802F3D18 *, s32, s32, s32);
-f32 calc_direct_attack_damage__12TBoss8DragonFPvPvPviii(void *a, void *b, Pair_802F3D18 *p, s32 x, s32 y, s32 z);
+f32 receive_direct_attack__12TBoss8DragonFPv19DirectAttackPayloadPvll(void *a, void *b, Pair_802F3D18 *p, s32 x, s32 y, s32 z);
 typedef char RecoveredGlobal_802F3CA0_lbl_80474508_size[sizeof(RecoveredGlobal_802F3CA0_lbl_80474508) == 0x28 ? 1 : -1];
 typedef char RecoveredGlobal_802F3CA0_lbl_80474530_size[sizeof(RecoveredGlobal_802F3CA0_lbl_80474530) == 0x28 ? 1 : -1];
 typedef char RecoveredGlobal_802F3CA0_lbl_80474558_size[sizeof(RecoveredGlobal_802F3CA0_lbl_80474558) == 0x28 ? 1 : -1];
@@ -84,7 +84,7 @@ void TBoss8Dragon::set_mode_params(s8 arg1) {
     }
 }
 
-f32 calc_direct_attack_damage__12TBoss8DragonFPvPvPviii(void *a, void *b, Pair_802F3D18 *p, s32 x, s32 y, s32 z) {
+f32 receive_direct_attack__12TBoss8DragonFPv19DirectAttackPayloadPvll(void *a, void *b, Pair_802F3D18 *p, s32 x, s32 y, s32 z) {
     switch (p->a) {
     case 0xB:
     case 0xC:

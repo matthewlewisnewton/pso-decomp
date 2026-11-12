@@ -390,8 +390,8 @@ void TObjEneRe7BeruraPunch__sub_800962F4(void *p);
 void TObjPlayer__sub_800A04F0(void *);
 s32 is_split_screen();
 s32 get_camera_mode__11TCameraCtrlFv();
-void fn_80095DD0(Elem_800959F8 *);
-void fn_80095DF4(Elem_800959F8 *);
+void show_end_nodes__18BeruraDetachedPartFv(Elem_800959F8 *);
+void hide_end_nodes__18BeruraDetachedPartFv(Elem_800959F8 *);
 s32 is_main_phase_15__9TObjEneDDFv();
 s32 update__15RenderFadeStateFv(void *);
 s32 scroll_strip_uvs(s32, int, int);
@@ -458,7 +458,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
         TObjPlayer::toggle_particle_effect();
         for (i = 0; i < 2; i++) {
             if (o->f418[i] & 1) {
-                fn_80095DF4(&TObjEneRe7Berura__detached_part_states[i]);
+                hide_end_nodes__18BeruraDetachedPartFv(&TObjEneRe7Berura__detached_part_states[i]);
             }
         }
         *berura_node_matrix_ptr_a = o->f3C4;
@@ -541,7 +541,7 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
         ((TObjEneDD *)o)->update_primary_light();
         for (l3 = 0; l3 < 2; l3++) {
             if (o->f418[l3] & 1) {
-                fn_80095DD0(&TObjEneRe7Berura__detached_part_states[l3]);
+                show_end_nodes__18BeruraDetachedPartFv(&TObjEneRe7Berura__detached_part_states[l3]);
             }
         }
         TParticleCtrl::end_effect_render();
@@ -1004,7 +1004,7 @@ struct V_A : Base_A {
     virtual void m100(s32);
 };
 
-extern "C" void state_patrol__16TObjEneRe7BeruraFPvi(void *arg0, s32 arg1) {
+extern "C" void state_patrol__16TObjEneRe7BeruraFl(void *arg0, s32 arg1) {
     s32 temp_r4;
 
     switch (arg1) {
@@ -1994,19 +1994,19 @@ Player_800951AC * get_player_data__10TObjPlayerFi(s32);
 u16 get_entity_id(void *);
 void queue_destruction__7TObjectFv(void *);
 u32 csnLookAt(void *, void *);
-void state_patrol__16TObjEneRe7BeruraFPvi(void *arg0, s32 arg1);
+void state_patrol__16TObjEneRe7BeruraFl(void *arg0, s32 arg1);
 void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1);
 void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1);
 void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1);
 void TObjEneRe7Berura__sub_80094624(u8 *arg0, s32 arg1);
 void TObjEneRe7Berura__sub_8009472C(u8 *arg0, s32 arg1);
-void TObjEneRe7Berura__vt85(s32 arg0, u32 arg1, s32 arg2);
+void dispatch_action__16TObjEneRe7BeruraFUll(s32 arg0, u32 arg1, s32 arg2);
 void TObjEneRe7Berura__sub_80094C68(TObjEneRe7Berura *self);
-void TObjEneRe7Berura__sub_80094D98(u8 *arg0);
+void clear_active_part_flag_2__16TObjEneRe7BeruraFv(u8 *arg0);
 s32 TObjEneRe7Berura__sub_80094DB4(void *arg0);
 s32 get_field_3D4_shifted__16TObjEneRe7BeruraFPv(void *arg0);
-void set_data_and_draw_node_tree__16TObjEneRe7BeruraFii(int a0, int a1);
-void draw_node_tree__16TObjEneRe7BeruraFPv(void *arg0);
+void draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECTPA3_A4_f(int a0, int a1);
+void draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECT(void *arg0);
 void vfunc_88__16TObjEneRe7BeruraFv(void *arg0);
 void vfunc_61__16TObjEneRe7BeruraFv(void);
 void vfunc_62__16TObjEneRe7BeruraFv(u8 *arg0);
@@ -2014,9 +2014,9 @@ void vfunc_63__16TObjEneRe7BeruraFv(void* p);
 void vfunc_28__16TObjEneRe7BeruraFv(void);
 void run_task__16TObjEneRe7BeruraFv(TObjEneRe7Berura *arg0);
 Berura_800954E8 * __dt__16TObjEneRe7BeruraFv(Berura_800954E8 *self, s16 flag);
-void * TObjEneRe7Berura__ct(void *arg0, void *arg1, void *arg2);
+void * __ct__16TObjEneRe7BeruraFP7TObjectPv(void *arg0, void *arg1, void *arg2);
 s32 spawn_punch__16TObjEneRe7BeruraFPv(void *);
-s32 TObjPlayer__sub_800A0554(void *);
+s32 start_negative_fade_phase__13TUnk_80490470Fv(void *);
 void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
 s32 enemy_set_target_id(void *, u16);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
@@ -2049,10 +2049,10 @@ void draw_chunk_model(void *arg0);
 extern const s32 TObjEneRe7Berura__data_80439DA8[];
 extern const s32 TObjEneRe7Berura__data_80439DB0[];
 extern const s32 TObjEneRe7Berura__data_80439DB8[];
-extern s32 TObjEneRe7Berura__data_805007D4[];
+extern s32 berura_attack_stats[];
 extern Elem_800959F8 TObjEneRe7Berura__detached_part_states[];
-extern s32 TObjEneRe7Berura__stat_handle_table[1];
-extern s32 TObjEneRe7Berura__shared_object_handles[1];
+extern s32 berura_base_stats[1];
+extern s32 berura_resistance_stats[1];
 extern u32 TObjEneRe7Berura__shared_resource;
 extern s32 TObjEneRe7Berura__node_matrix_cursor;
 extern const f32 TObjEneRe7Berura__data_805D9724;
@@ -2074,7 +2074,7 @@ extern s32 lbl_805D4F6C;
 extern s32 re7_berura_demo_camera_ptr;
 extern s32 berura_demo_flag;
 extern s32 re7_berura_demo_flag;
-extern u32 re7_berura_static_buffer;
+extern u32 berura_detached_matrices;
 extern s32 berura_attack_node_range_start;
 extern s32 berura_attack_node_range_end;
 extern s32 berura_attack_node_vec_ptr;
@@ -2250,7 +2250,7 @@ void *__vt__16TObjEneRe7Berura[107] = {
     (void *)&enemy_spawn_zalure_effect__9TObjCharaFv, (void *)&recalc_stats__9TObjCharaFv, (void *)&vfunc_74__9TObjEnemyFl, (void *)&vfunc_75__9TObjCharaFf,
     (void *)&vfunc_76__9TObjCharaFf, (void *)&vfunc_77__9TObjCharaFv, (void *)&vfunc_78__9TObjCharaFl, (void *)&vfunc_79__9TObjEneDDFPl,
     (void *)&apply_hit_message_flags__9TObjEnemyFPv, (void *)&apply_set_data__9TObjEnemyFPv, (void *)&clear_lobby_object_state__9TObjEnemyFv, (void *)&vfunc_83__12TObjEneDD_STFv,
-    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&TObjEneRe7Berura__vt85,
+    (void *)&vfunc_84__9TObjEneDDFv, (void *)&vfunc_85__9TObjEneDDFv, (void *)&vfunc_86__9TObjEneDDFv, (void *)&dispatch_action__16TObjEneRe7BeruraFUll,
     (void *)&vfunc_88__16TObjEneRe7BeruraFv, (void *)&vfunc_89__9TObjEneDDFv, (void *)&vfunc_90__9TObjEneDDFv, (void *)&vfunc_91__9TObjEneDDFv,
     (void *)&vfunc_92__9TObjEneDDFv, (void *)&vfunc_93__9TObjEneDDFv, (void *)&vfunc_94__9TObjEneDDFv, (void *)&vfunc_95__9TObjEneDDFv,
     (void *)&vfunc_96__9TObjEneDDFv, (void *)&vfunc_97__9TObjEneDDFv, (void *)&vfunc_98__9TObjEneDDFv, (void *)&vfunc_99__9TObjEneDDFv,
@@ -2274,7 +2274,7 @@ void TObjEneRe7Berura::state_attack(s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (temp_r5 & ~5);
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) | 2);
         set_field_378__9TObjEneDDFl(arg0, 3, temp_r5);
-        TObjPlayer__sub_800A0554(arg0 + 0x3D8);
+        start_negative_fade_phase__13TUnk_80490470Fv(arg0 + 0x3D8);
         ((TBoss3Volopt *)(arg0 + 0x38))->play_area_se_with_particle();
         init_fields4B8();
         return;
@@ -2303,7 +2303,7 @@ void TObjEneRe7Berura::handle_message_transition(s32 msg) {
     }
 }
 
-void TObjEneRe7Berura__vt85(s32 arg0, u32 arg1, s32 mode) {
+void dispatch_action__16TObjEneRe7BeruraFUll(s32 arg0, u32 arg1, s32 mode) {
     switch (arg1) {
     case 0:
         ((TObjEneRe7Berura *)arg0)->handle_message_transition(mode);
@@ -2333,7 +2333,7 @@ void TObjEneRe7Berura__vt85(s32 arg0, u32 arg1, s32 mode) {
         ((TObjEneRe7Berura *)arg0)->run_flash_warning_state(mode);
         return;
     case 9:
-        state_patrol__16TObjEneRe7BeruraFPvi((void *)arg0, (mode));
+        state_patrol__16TObjEneRe7BeruraFl((void *)arg0, (mode));
         return;
     case 10:
         TObjEneRe7Berura__sub_80093470((Berura_80093470 *)arg0, mode);
@@ -2365,15 +2365,15 @@ void TObjEneRe7Berura::play_band_sound() {
 #pragma pop
 
 void TObjEneRe7Berura__sub_80094C68(TObjEneRe7Berura *self) {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(self, ((void * *)TObjEneRe7Berura__stat_handle_table)[TObjEneRe7Berura__data_80439DA8[0]],
-                            ((void * *)TObjEneRe7Berura__data_805007D4)[TObjEneRe7Berura__data_80439DB0[0]],
-                            ((void * *)TObjEneRe7Berura__shared_object_handles)[TObjEneRe7Berura__data_80439DB8[0]]);
+    reload_stats_keep_hp_tp__9TObjEneDDFv(self, ((void * *)berura_base_stats)[TObjEneRe7Berura__data_80439DA8[0]],
+                            ((void * *)berura_attack_stats)[TObjEneRe7Berura__data_80439DB0[0]],
+                            ((void * *)berura_resistance_stats)[TObjEneRe7Berura__data_80439DB8[0]]);
 }
 
 void TObjEneRe7Berura::reload_stats_from_tables() {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this, ((void * *)TObjEneRe7Berura__stat_handle_table)[TObjEneRe7Berura__data_80439DA8[1]],
-                            ((void * *)TObjEneRe7Berura__data_805007D4)[TObjEneRe7Berura__data_80439DB0[1]],
-                            ((void * *)TObjEneRe7Berura__shared_object_handles)[TObjEneRe7Berura__data_80439DB8[1]]);
+    reload_stats_keep_hp_tp__9TObjEneDDFv(this, ((void * *)berura_base_stats)[TObjEneRe7Berura__data_80439DA8[1]],
+                            ((void * *)berura_attack_stats)[TObjEneRe7Berura__data_80439DB0[1]],
+                            ((void * *)berura_resistance_stats)[TObjEneRe7Berura__data_80439DB8[1]]);
 }
 
 void TObjEneRe7Berura::destroy_parts() {
@@ -2389,7 +2389,7 @@ void TObjEneRe7Berura::destroy_parts() {
 
 #pragma push
 #pragma opt_common_subs off
-void TObjEneRe7Berura__sub_80094D98(u8 *arg0) {
+void clear_active_part_flag_2__16TObjEneRe7BeruraFv(u8 *arg0) {
     u8 *temp_r3;
     temp_r3 = (u8 *)(arg0 + (*(s32 *)((s8 *)arg0 + 0x3F4) * 4));
     *(s32 *)((s8 *)temp_r3 + 0x418) = (s32) (*(s32 *)((s8 *)temp_r3 + 0x418) & 0xFFFFFFFD);
@@ -2461,12 +2461,12 @@ void TObjEneRe7Berura::init_part(s32 arg0) {
 
     ((s32 (*)(s32, void *))set_current_texture_list)(*(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TObjEneRe7Berura__shared_resource) + 0x42C)) + 0xC), (*(void * *)&TObjEneRe7Berura__shared_resource));
     temp_r3 = (s32 *)((s8 *)((s32 *)TObjEneRe7Berura__detached_part_states) + (arg0 * 0x64));
-    ((s32 (*)(void *, s32))set_data_and_draw_node_tree__16TObjEneRe7BeruraFii)((s32 *)((s8 *)temp_r3 + 0x20), *temp_r3);
+    ((s32 (*)(void *, s32))draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECTPA3_A4_f)((s32 *)((s8 *)temp_r3 + 0x20), *temp_r3);
 }
 
-void set_data_and_draw_node_tree__16TObjEneRe7BeruraFii(int a0, int a1) { (*(int *)&TObjEneRe7Berura__node_matrix_cursor) = a1; ((int (*)(void))draw_node_tree__16TObjEneRe7BeruraFPv)(); }
+void draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECTPA3_A4_f(int a0, int a1) { (*(int *)&TObjEneRe7Berura__node_matrix_cursor) = a1; ((int (*)(void))draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECT)(); }
 
-void draw_node_tree__16TObjEneRe7BeruraFPv(void *arg0) {
+void draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECT(void *arg0) {
     s32 temp_r31;
     s32 temp_r4;
     void *var_r30;
@@ -2483,7 +2483,7 @@ void draw_node_tree__16TObjEneRe7BeruraFPv(void *arg0) {
         }
         pop_matrix();
         if (!(temp_r31 & 0x10)) {
-            draw_node_tree__16TObjEneRe7BeruraFPv((void *)(*(void **)((s8 *)var_r30 + 0x2C)));
+            draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECT((void *)(*(void **)((s8 *)var_r30 + 0x2C)));
         }
         var_r30 = *(void **)((s8 *)var_r30 + 0x30);
     } while (var_r30 != NULL);
@@ -2675,9 +2675,9 @@ void TObjEneRe7Berura::init_enemy() {
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));
-    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, TObjEneRe7Berura__stat_handle_table[TObjEneRe7Berura__data_80439DA8[0]],
-        TObjEneRe7Berura__data_805007D4[TObjEneRe7Berura__data_80439DB0[0]],
-        TObjEneRe7Berura__shared_object_handles[TObjEneRe7Berura__data_80439DB8[0]]);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, berura_base_stats[TObjEneRe7Berura__data_80439DA8[0]],
+        berura_attack_stats[TObjEneRe7Berura__data_80439DB0[0]],
+        berura_resistance_stats[TObjEneRe7Berura__data_80439DB8[0]]);
     ((TObjEneDD *)arg0)->set_state_8();
     *(u8 **)((s8 *)arg0 + 0x350) = berura_init_params;
     initialize_enemy_state__9TObjEneDDFl(arg0, 0x25);
@@ -2723,7 +2723,7 @@ void TObjEneRe7Berura::init_enemy() {
     ((VObj_18_b345b0 *)arg0)->m85(*(s16 *)((s8 *)arg0 + 0x326), 4);
 }
 
-void *TObjEneRe7Berura__ct(void *ene_re7_berura, void *arg1, void *arg2) {
+void *__ct__16TObjEneRe7BeruraFP7TObjectPv(void *ene_re7_berura, void *arg1, void *arg2) {
     __ct__12TObjEneDD_STFP7TObject(ene_re7_berura);
     *(s32 **)((s8 *)ene_re7_berura + 0x18) = __vt__16TObjEneRe7Berura;
     __ct__13TUnk_80490470Fv(((char *)ene_re7_berura + 984));
@@ -2745,9 +2745,9 @@ void TObjEneRe7Berura::destroy_children() {
         destroy_buffer_pair((void *)belra_uv_animation_buffer, 1);
         belra_uv_animation_buffer = 0U;
     }
-    if ((u32) re7_berura_static_buffer != 0U) {
-        ::operator delete[]((void*)re7_berura_static_buffer);
-        re7_berura_static_buffer = 0U;
+    if ((u32) berura_detached_matrices != 0U) {
+        ::operator delete[]((void*)berura_detached_matrices);
+        berura_detached_matrices = 0U;
     }
     if ((u32) TObjEneRe7Berura__shared_resource != 0U) {
         delete (BmlResource *)(TObjEneRe7Berura__shared_resource);
@@ -2758,14 +2758,14 @@ void TObjEneRe7Berura::destroy_children() {
 void *TObjEneRe7Berura::create() {
     void *o = __nw__7TObjectFUl(0x4E4);
     if (o != NULL) {
-        o = TObjEneRe7Berura__ct(o, tl_04, this);
+        o = __ct__16TObjEneRe7BeruraFP7TObjectPv(o, tl_04, this);
     }
     return o;
 }
 
 f32 lbl_805007C8[3];
 
-__declspec(section ".data") s32 TObjEneRe7Berura__data_805007D4[2];
+__declspec(section ".data") s32 berura_attack_stats[2];
 
 Elem_800959F8 TObjEneRe7Berura__detached_part_states[2];
 
@@ -2795,7 +2795,7 @@ void TObjEneRe7Berura::load_static_resources() {
     TObjEneRe7Berura__demo_target = 0;
     m = *(u32 *)(r->f42C + 8);
     buf = (u8 *)::operator new[](0x660);
-    re7_berura_static_buffer = (u32)buf;
+    berura_detached_matrices = (u32)buf;
     TObjEneRe7Berura__detached_part_states[0].buf = buf;
     TObjEneRe7Berura__detached_part_states[1].buf = buf + 0x330;
     TObjEneRe7Berura__detached_part_states[0].f4 = 0x21;
@@ -2853,13 +2853,13 @@ void TObjEneRe7Berura::load_static_resources() {
     vecs[2].x = TObjEneRe7Berura__data_805D9730;
     sampled->sample((NJS_OBJECT *)(*(s32 *)(RES->f42C + 8)), (NJS_MOTION *)((RES->f430 + TObjEneRe7Berura__animation_definitions[2].f4)->f4), (const s32 *)pair, (const Vec *)vecs);
     for (i = 0; i < 1; i++) {
-        TObjEneRe7Berura__stat_handle_table[i] = (s32)get_battle_base_stats(lbl_805D9718[i]);
+        berura_base_stats[i] = (s32)get_battle_base_stats(lbl_805D9718[i]);
     }
     for (s32 j = 0; j < 2; j++) {
-        TObjEneRe7Berura__data_805007D4[j] = (s32)get_battle_attack_params(lbl_80439DA0[j]);
+        berura_attack_stats[j] = (s32)get_battle_attack_params(lbl_80439DA0[j]);
     }
     for (i = 0; i < 1; i++) {
-        TObjEneRe7Berura__shared_object_handles[i] = (s32)get_battle_resistance_params(lbl_805D971C[i]);
+        berura_resistance_stats[i] = (s32)get_battle_resistance_params(lbl_805D971C[i]);
     }
     for (i = 0; i < 1; i++) {
         TObjEneRe7Berura__handler_table_a[i] = (s32)get_battle_movement_params(lbl_805D9720[i]);
@@ -2871,12 +2871,12 @@ void TObjEneRe7Berura::load_static_resources() {
     }
 }
 
-void fn_80095DD0(Elem_800959F8 *part) {
+void show_end_nodes__18BeruraDetachedPartFv(Elem_800959F8 *part) {
     *part->f18 &= 0xFFFFFFF7;
     *part->f1C &= 0xFFFFFFF7;
 }
 
-void fn_80095DF4(Elem_800959F8 *part) {
+void hide_end_nodes__18BeruraDetachedPartFv(Elem_800959F8 *part) {
     *part->f18 |= 8;
     *part->f1C |= 8;
 }

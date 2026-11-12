@@ -122,7 +122,7 @@ extern const f32 lbl_805DBA8C;
 extern const f32 lbl_805DBA90;
 extern const f32 lbl_805DBA94;
 extern const f32 lbl_805DBA98;
-void TOTrapAncient02R__vt79(Obj_8017A3C0 *o);
+void vfunc_81__16TOTrapAncient02RFv(Obj_8017A3C0 *o);
 void vfunc_82__16TOTrapAncient02RFv(void *arg0);
 f32 TObjPlayer__sub_8017A1A4(void *, s32);
 void send_6x2C_impose_hold(void *, void *, s32, s32, f32);
@@ -339,17 +339,17 @@ void * __ct__6TOTrapFP7TObjectPv(void *, void *, void *);
 void find_target_player__16TOTrapAncient02RFv(Obj_8017A8B0 *self);
 f32 receive_physical_attack__16TOTrapAncient02RFPvf(Obj_8017A988 *self);
 void * __dt__16TOTrapAncient02RFv(void *arg0, s16 arg1);
-void *TOTrapAncient02R__ct(TOTrapAncient02R *arg0, void *arg1, void *arg2);
+void *__ct__16TOTrapAncient02RFP7TObjectPv(TOTrapAncient02R *arg0, void *arg1, void *arg2);
 void vfunc_84__15TOTrapAncient02Fv(Obj_8017ACA0 *self);
 void render__15TOTrapAncient02Fv(void *arg0);
 void * __dt__15TOTrapAncient02Fv(void *arg0, s16 arg1);
-void * TOTrapAncient02__ct(void *arg0, void *arg1, void *arg2);
+void * __ct__15TOTrapAncient02FP7TObjectPv(void *arg0, void *arg1, void *arg2);
 void submit_cursor_and_notify__16TOTrapAncient02RFv(void *arg0);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 u8 is_current_floor_switch_set(u16);
 void __dl__7TObjectFPv(void *);
 void scroll_ginja_mesh_uvs(u32, s32, s32, u16, s32);
-s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi(void *);
+s32 dispatch_input_to_instance__18TAdEnterPasswordGCFP7TObject(void *);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
@@ -478,9 +478,9 @@ struct TrapAncient02CollisionBody {
 typedef char TrapAncient02ResourceDescriptor_size[(sizeof(TrapAncient02ResourceDescriptor) == 0x10) ? 1 : -1];
 typedef char TrapAncient02ResourceRecord_size[(sizeof(TrapAncient02ResourceRecord) == 0x18) ? 1 : -1];
 typedef char TrapAncient02CollisionBody_size[(sizeof(TrapAncient02CollisionBody) == 0x2C) ? 1 : -1];
-TrapAncient02ResourceRecord trap_ancient02_torabasami_resources = {
+TrapAncient02ResourceRecord trap_ancient02_resources = {
     { lbl_80442E70, 0 },
-    { lbl_80442E88, trap_ancient02_torabasami_resources.model_filenames, lbl_805D31A8, 1, 0 }
+    { lbl_80442E88, trap_ancient02_resources.model_filenames, lbl_805D31A8, 1, 0 }
 };
 TrapAncient02ResourceRecord trap_ancient02_ruins_pillar_resources = {
     { lbl_80442EA4, 0 },
@@ -575,7 +575,7 @@ s32 __vt__16TOTrapAncient02R[90] = {
     (s32)&vfunc_78__9TObjCharaFl,
     (s32)&find_target_player__16TOTrapAncient02RFv,
     (s32)&submit_cursor_and_notify__16TOTrapAncient02RFv,
-    (s32)&TOTrapAncient02R__vt79,
+    (s32)&vfunc_81__16TOTrapAncient02RFv,
     (s32)&vfunc_82__16TOTrapAncient02RFv,
     (s32)&is_any_player_matching_stat__16TOTrapAncient02RFv,
     (s32)&vfunc_84__15TOTrapAncient02Fv,
@@ -645,7 +645,7 @@ void TOTrapAncient02R::vfunc_82() {
 
 #pragma push
 #pragma fp_contract on
-void TOTrapAncient02R__vt79(Obj_8017A3C0 *o) {
+void vfunc_81__16TOTrapAncient02RFv(Obj_8017A3C0 *o) {
     f32 d;
     s32 ang;
     ((TObjCollidable *)o)->set_indexed_flags(0, 1);
@@ -814,7 +814,7 @@ f32 TOTrapAncient02R::receive_physical_attack(void *, f32) {
 void *TOTrapAncient02R::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x36C);
     if (o != NULL) {
-        o = TOTrapAncient02R__ct((TOTrapAncient02R *)o, tl_05, arg0);
+        o = __ct__16TOTrapAncient02RFP7TObjectPv((TOTrapAncient02R *)o, tl_05, arg0);
     }
     return o;
 }
@@ -837,8 +837,8 @@ void *__dt__16TOTrapAncient02RFv(void *arg0, s16 arg1) {
 #pragma push
 #pragma fp_contract on
 #pragma fp_contract on
-void *TOTrapAncient02R__ct(TOTrapAncient02R *trap_ancient02_r, void *arg1, void *arg2) {
-    ((s32 (*)(void *, void *))TOTrapAncient02__ct)(trap_ancient02_r, arg1);
+void *__ct__16TOTrapAncient02RFP7TObjectPv(TOTrapAncient02R *trap_ancient02_r, void *arg1, void *arg2) {
+    ((s32 (*)(void *, void *))__ct__15TOTrapAncient02FP7TObjectPv)(trap_ancient02_r, arg1);
     *(s32 **)((s8 *)trap_ancient02_r + 0x18) = __vt__16TOTrapAncient02R;
     *(s32 *)((s8 *)trap_ancient02_r + 0) = (s32) lbl_805D31B8;
     trap_ancient02_r->apply_object_set_data(arg2);
@@ -1145,7 +1145,7 @@ void TOTrapAncient02::draw_effect_chain() {
 void TOTrapAncient02::render() {
     if (TMainTask::get_render_pass() != 1) {
         this->m_340 = ((V_B_8017AC98 *) this)->m8(lbl_805DBAA4, lbl_805DBA94);
-        if (((s32) this->m_340 == 1) && (((s32) this->m_358 == 0) || (is_split_screen() != 0) || (dispatch_input_to_instance__18TAdEnterPasswordGCFi(this) == 0))) {
+        if (((s32) this->m_340 == 1) && (((s32) this->m_358 == 0) || (is_split_screen() != 0) || (dispatch_input_to_instance__18TAdEnterPasswordGCFP7TObject(this) == 0))) {
             set_draw_list_mask(3);
             if ((s32) this->m_358 != 0) {
                 this->render_particle_chain();
@@ -1160,7 +1160,7 @@ void TOTrapAncient02::render() {
 void *TOTrapAncient02::create(void *arg0) {
     void *o = __nw__7TObjectFUl(0x35C);
     if (o != NULL) {
-        o = TOTrapAncient02__ct(o, tl_05, arg0);
+        o = __ct__15TOTrapAncient02FP7TObjectPv(o, tl_05, arg0);
     }
     return o;
 }
@@ -1173,7 +1173,7 @@ void TOTrapAncient02::destroy_instance() {
 }
 
 void TOTrapAncient02::load_resources() {
-    char *base = (char *)&trap_ancient02_torabasami_resources;
+    char *base = (char *)&trap_ancient02_resources;
     void *obj;
     switch (get_current_floor_area()) {
     case AREA_VR_TEMPLE_ALPHA:
@@ -1224,7 +1224,7 @@ void *__dt__15TOTrapAncient02Fv(void *trap, s16 arg1) {
 
 #pragma push
 #pragma fp_contract on
-void *TOTrapAncient02__ct(void *arg0, void *arg1, void *arg2) {
+void *__ct__15TOTrapAncient02FP7TObjectPv(void *arg0, void *arg1, void *arg2) {
     __ct__6TOTrapFP7TObjectPv(((Trap_8017B6D8 *)arg0), arg1, arg2);
     ((Trap_8017B6D8 *)arg0)->vt = (void *)__vt__15TOTrapAncient02;
     ((Trap_8017B6D8 *)arg0)->id = TOTrapAncient02__name;

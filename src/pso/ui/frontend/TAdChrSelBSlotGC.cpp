@@ -927,7 +927,7 @@ void run_task__16TAdChrSelBSlotGCFv(C_8030F874 *self) {
 extern "C" {
 
 void *__ct__19TAdPlyChrSelPlateGCFv(void *, void *, void *);
-void *__ct__20TAdChrSelMovePlateGCFv(void *, void *);
+void *__ct__20TAdChrSelMovePlateGCFP7TObject(void *, void *);
 void *__nw__7TObjectFUl(int);
 
 
@@ -945,7 +945,7 @@ void TAdChrSelBSlotGC::create_children() {
     this->player_items = new TAdSubPlyItemGC(this);
     o4 = __nw__7TObjectFUl(0x208);
     if (o4 != NULL) {
-        o4 = __ct__20TAdChrSelMovePlateGCFv(o4, this);
+        o4 = __ct__20TAdChrSelMovePlateGCFP7TObject(o4, this);
     }
     this->m_34 = o4;
 }

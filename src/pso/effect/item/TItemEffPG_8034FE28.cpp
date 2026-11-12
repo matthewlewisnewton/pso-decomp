@@ -24,7 +24,7 @@ void *__nw__7TObjectFUl(int);
 extern s32 lbl_804F0C08[];
 
 void *TUnk_804F0C08::initialize(void *arg1, void *parent, void *item) {
-    TItemEffPG__ct((u8 *)this, (s32)arg1, (u8 *)parent);
+    __ct__10TItemEffPGFP7TObjectPv((u8 *)this, (s32)arg1, (u8 *)parent);
     *(s32 **)((s8 *)this + 0x18) = lbl_804F0C08;
     *(void * *)&this->unk_D4 = item;
     return this;
@@ -112,7 +112,7 @@ void *__dt__10TItemEffPGFv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-u8 *TItemEffPG__ct(u8 *item_eff_pg, s32 arg1, u8 *arg2) {
+u8 *__ct__10TItemEffPGFP7TObjectPv(u8 *item_eff_pg, s32 arg1, u8 *arg2) {
     s32 temp_r3;
     s32 var_r0;
     __ct__13TUnk_804E355CFP7TObjectPv((item_eff_pg), (arg1), (arg2));
@@ -138,7 +138,7 @@ void TItemEffPG::create(void *arg0, void *arg1) {
     void *o;
     o = __nw__7TObjectFUl(0xD4);
     if (o != NULL) {
-        TItemEffPG__ct((u8 *)o, (s32)arg0, (u8 *)arg1);
+        __ct__10TItemEffPGFP7TObjectPv((u8 *)o, (s32)arg0, (u8 *)arg1);
     }
 }
 

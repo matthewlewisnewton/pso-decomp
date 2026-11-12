@@ -56,13 +56,13 @@ struct Self_8004F3D4
 };
 
 extern "C" {
-extern const f32 lbl_805D89F4;
-extern const f32 lbl_805D89F8;
+extern const f32 afterimage_fade_rate;
+extern const f32 afterimage_frame;
 void set_scripted_camera_pose(void *, void *, void *);
 extern Vec_8004F3D4 lbl_804373F4[];
 extern Vec_8004F3D4 boss4_type2_effect_offset_vec[];
-extern const f32 lbl_805D89FC;
-extern const f32 lbl_805D8A00;
+extern const f32 body_frame_step;
+extern const f32 body_last_frame;
 void TObjDFDemo4::draw_afterimages() {
     Obj_8004F2A8 *arg0 = (Obj_8004F2A8 *)this;
     f32 alpha;
@@ -72,7 +72,7 @@ void TObjDFDemo4::draw_afterimages() {
         return;
     }
     if (*(s32 *)&this->m_f8 > 0x44) {
-        alpha = (f32)(0x4C - *(s32 *)&this->m_f8) * lbl_805D89F4;
+        alpha = (f32)(0x4C - *(s32 *)&this->m_f8) * afterimage_fade_rate;
     }
     if (alpha < 1.0f) {
         TObjPlayer__sub_80052390(alpha);
@@ -83,7 +83,7 @@ void TObjDFDemo4::draw_afterimages() {
     rotate_matrix_y(0, *(s32 *)&this->m_f4);
     for (i = 0; i < 2; i++) {
         set_current_texture_list((GinjaTextureList *)(arg0->recs[i].b));
-        draw_model_motion((void *)arg0->recs[i].a, (void *)arg0->recs[i].c, lbl_805D89F8);
+        draw_model_motion((void *)arg0->recs[i].a, (void *)arg0->recs[i].c, afterimage_frame);
     }
     clear_motion_packed_rotation();
     pop_matrix();
@@ -162,9 +162,9 @@ void TObjDFDemo4::run_task() {
     self->fF4 = 0;
     set_scripted_camera_pose(&self->pos, &self->pos, &b);
   }
-  f = self->fFC + lbl_805D89FC;
+  f = self->fFC + body_frame_step;
   self->fFC = f;
-  if (f > (*(new_var = &lbl_805D8A00)))
+  if (f > (*(new_var = &body_last_frame)))
   {
     self->fFC = *new_var;
   }

@@ -25,7 +25,7 @@ void TLobby::update_scroll() {
 extern u32 cvfs_completion_callback;
 extern s32 lbl_805D75FC;
 
-void TLobby__sub_803CE544(u32 arg0, s32 arg1) {
+void cvFsEntryErrFunc(u32 arg0, s32 arg1) {
     if (arg0 == 0U) {
         cvfs_completion_callback = 0U;
         lbl_805D75FC = 0;
