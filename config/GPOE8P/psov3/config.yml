@@ -834,6 +834,25 @@ force_active:
   - TLobby__sub_803FADA0
   - TLobby__sub_803FAEDC
   - TLobby__sub_803FB358
+  - TLobby__sub_8041A3CC
+  - TLobby__sub_8041A498
+  - TLobby__sub_8041A5B4
+  - TLobby__sub_8041A6A4
+  - TLobby__sub_8041B3D4
+  - TLobby__sub_8041B5C0
+  - TLobby__sub_8041B724
+  - TLobby__sub_8041B774
+  - TLobby__sub_8041D0C8
+  - TLobby__sub_8041D368
+  - TLobby__sub_8041D398
+  - TLobby__sub_8041D460
+  - TLobby__sub_8041D524
+  - TLobby__sub_8041D584
+  - TLobby__sub_8041E8A8
+  - TLobby__sub_8041EA14
+  - TLobby__sub_8041EB74
+  - TLobby__sub_8041EC14
+  - TLobby__sub_8041ECA4
   - TLobby__sub_80421FB8
   - TLobby__sub_80423440
   - TLobby__sub_80423C04
@@ -5253,6 +5272,7 @@ force_active:
   - clear_photon_blast_slots__10TObjPlayerFv
   - clear_pipe_interaction_latch__FPv
   - clear_player_grav_flags__14TBoss6GravBallFv
+  - clear_position__6TLobbyFv
   - clear_ref_if_destroyed__12TObjComputerFv
   - clear_render_deferred__7TObjectFv
   - clear_s16_arrays__10TObjPlayerFPv
@@ -5303,6 +5323,7 @@ force_active:
   - close_if_active__23TAdSinglePlyChrSelectGCFv
   - close_if_done__20TShopItemTecSequenceFv
   - close_if_done__22TShopEquipmentSequenceFv
+  - close_if_open__6TLobbyFv
   - close_menu_windows__6TLobbyFv
   - close_message__22TQuestVmDownLoadServerFv
   - close_result_windows__6TLobbyFv
@@ -6936,6 +6957,7 @@ force_active:
   - get_action_state__10TNpcPlayerFv
   - get_actor_attack_params__FP9TObjChara
   - get_actor_param_block__FP9TObjChara
+  - get_adjusted_slot_count__6TLobbyFPv
   - get_angle__23MagNodeOscillationStateFv
   - get_anim_field_c__10TObjPlayerFPv
   - get_anim_frame__13TUnk_804B5E48Fv
@@ -7004,7 +7026,9 @@ force_active:
   - get_field_340__10TObjPlayerFi
   - get_field_44__23TAdSinglePlyChrSelectGCFv
   - get_field_4__10TObjPlayerFv
+  - get_field_534__6TLobbyFv
   - get_field_cc__19TWindowSubShortMailFPv
+  - get_field_d8__6TLobbyFv
   - get_first_dragon_part_id__18TObjLiveCameraCtrlFv
   - get_first_target_position__10TObjPlayerFPvPv
   - get_flag_1__10TObjPlayerFv
@@ -7090,6 +7114,7 @@ force_active:
   - get_quest_size__12TQuestListVMFv
   - get_quest_size__16TQuestListOnlineFv
   - get_quest_thread_id__10TObjPlayerFPv
+  - get_queue_diff__6TLobbyFv
   - get_random_scaled__11TBoss4Type3FPv
   - get_random_sign__12TBoss8DragonFiPvi
   - get_registered_object_count__Fv
@@ -7098,6 +7123,7 @@ force_active:
   - get_result__18TObjItemNameSelectFv
   - get_rock_entry__10TBoss6RockFl
   - get_row_position__19TWindowMenuMainMenuFP12TMainMenuRowi
+  - get_score__6TLobbyFv
   - get_selected_blast__13TWindowSubMagFv
   - get_selected_entry__14TWindowSubItemFv
   - get_selected_guild_card_record__Fv
@@ -7733,6 +7759,7 @@ force_active:
   - initialize_windows__10TChallengeFv
   - inpTranslateExCtrl
   - insert_char_slot__19TWindowKeyBoardSoftFv
+  - insert_item_at__6TLobbyFsll
   - insert_sorted_by_id__5TItemFv
   - insert_string__19TWindowKeyBoardSoftFPc
   - instance__16TLobbyEventTheme
@@ -15576,6 +15603,7 @@ force_active:
   - reset_selection__21TWindowSubCustomEquipFv
   - reset_slime_tail_node_index
   - reset_slot_entry__15TAdPlayerLoadGCFl
+  - reset_slot_index__6TLobbyFv
   - reset_slot_selection_table__22TAdMultiPlyChrSelectGCFv
   - reset_sound_events__10TObjCameraFv
   - reset_sound_group_fade__6TLobbyFv

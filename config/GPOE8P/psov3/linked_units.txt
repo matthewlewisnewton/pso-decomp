@@ -2025,6 +2025,7 @@ pso/network/TProtocol_801DFCAC.cpp
 pso/network/TProtocol_801E08CC.cpp
 pso/network/TTcpSocket.cpp
 pso/network/TTcpSocket_801E0BB4.cpp
+pso/network/TcpProtocol.cpp
 pso/npc/TObjNpcAHM01.cpp
 pso/npc/TObjNpcARM00.cpp
 pso/npc/TObjNpcARW00.cpp
