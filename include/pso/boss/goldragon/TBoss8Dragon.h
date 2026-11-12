@@ -289,7 +289,6 @@ struct TBoss8Dragon
     static void *create(void *arg0);
     void update_colli_parts();
     int test_card_flag_2();
-    void set_speed(f32 v);
     static void free_resources();
     int get_flag_bit6();
     void fill_follow_camera_params(u8 *arg1, u8 *arg2);

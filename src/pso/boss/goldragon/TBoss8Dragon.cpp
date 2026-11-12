@@ -6,6 +6,7 @@
 #include "pso/unk/TLobby_801E2F94.h"
 #include "pso/render/RenderFadeState.h"
 #include "types.h"
+#include "pso/render/MaterialColorFade.h"
 #include "pso/system/PadRumble.h"
 #include "pso/enemy/epsilon/TObjEneEpsilon.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
@@ -2688,7 +2689,7 @@ void TBoss8Dragon::fn_802F51DC(u32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) & ~0x36);
         TBoss8Dragon__sub_802F48DC((TBoss8Dragon *)arg0, (Vec *)(arg0 + 0x394));
         for (i = 0; i < 4; i++) {
-            ((TBoss8Dragon *)(&((Self_802F51DC *)arg0)->arr[i]))->set_speed(lbl_805DEDC4);
+            ((MaterialColorFade *)(&((Self_802F51DC *)arg0)->arr[i]))->set_rate(lbl_805DEDC4);
         }
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) | 0x100);
         temp_f1 = *(f32 *)((s8 *)TBoss8Dragon__data_80541DDC[0] + 0x10);
@@ -2758,7 +2759,7 @@ void TBoss8Dragon::fn_802F5434(u32 arg1) {
         arg0->set_active_flag();
         *(s32 *)&arg0->m_3c0 = (s32) (*(s32 *)&arg0->m_3c0 & ~0x36);
         for (i = 0; i < 4; i++) {
-            ((TBoss8Dragon *)(&((Self_802F5434 *)arg0)->arr[i]))->set_speed(lbl_805DEDC4);
+            ((MaterialColorFade *)(&((Self_802F5434 *)arg0)->arr[i]))->set_rate(lbl_805DEDC4);
         }
         *(s32 *)&arg0->m_3c0 = (*(s32 *)&arg0->m_3c0 | 0x100);
         *(s32 *)&arg0->m_84c = 0;
@@ -3481,7 +3482,7 @@ void TBoss8Dragon::fn_802F6618(u32 event) {
         dragon->set_active_flag();
         dragon->m_3c0 |= 0x136;
         for (i = 0; i < 4; i++) {
-            ((TBoss8Dragon *)&dragon->renderFadeStates[i])->set_speed(lbl_805DEDE0);
+            ((MaterialColorFade *)&dragon->renderFadeStates[i])->set_rate(lbl_805DEDE0);
         }
         break;
     case 0:
@@ -4840,7 +4841,7 @@ void TBoss8Dragon::fn_802F87EC(u32 arg1) {
     switch (arg1) {
     case 4:
         for (i = 0; i < 4; i++) {
-            ((TBoss8Dragon *)(&((Self_802F87EC *)arg0)->arr[i]))->set_speed(lbl_805DEE54);
+            ((MaterialColorFade *)(&((Self_802F87EC *)arg0)->arr[i]))->set_rate(lbl_805DEE54);
         }
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) | 0x100);
         ((TBoss8Dragon *)arg0)->fn_802F8578(arg1);
@@ -5491,7 +5492,7 @@ void TBoss8Dragon::fn_802F9A4C(u32 arg1) {
     switch (arg1) {
     case 4:
         for (i = 0; i < 4; i++) {
-            ((TBoss8Dragon *)(&((Obj_802F9A4C *)arg0p)->fades[i]))->set_speed(lbl_805DEEA0);
+            ((MaterialColorFade *)(&((Obj_802F9A4C *)arg0p)->fades[i]))->set_rate(lbl_805DEEA0);
         }
         ((TBoss8Dragon *)arg0p)->m_3c0 |= 0x100;
         ((TBoss8Dragon *)arg0p)->fn_802F9850(arg1);
