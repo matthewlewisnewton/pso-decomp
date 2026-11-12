@@ -1,6 +1,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/sorcerer/TObjEneRe4Bit.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/SoundEffect.h"
@@ -707,7 +708,7 @@ TObjEneRe4Bit::~TObjEneRe4Bit() {
 extern "C" {
 void run_task__13TObjEneRe4BitFv(u8 *arg0) {
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRe4Bit *)(arg0))->vfunc_105();
         return;
     }
@@ -779,7 +780,7 @@ void TObjEneRe4Bit::update_homing_velocity() {
     VecCopy((Vec *)(&sp), (const Vec *)(this->m_3dc));
     sp.y = sp.y + arg0->f3D8;
     subtract_vector(&sp, &arg0->v2FC);
-    s = lbl_805DA77C * ((TObjBoss2Tunnel *)(&sp))->update_scale();
+    s = lbl_805DA77C * normalize_vector_checked((Vec *)((&sp)));
     arg0->v3F8.x = lbl_805DA780 * (sp.x * s + arg0->v3F8.x);
     arg0->v3F8.y = lbl_805DA780 * (sp.y * s + arg0->v3F8.y);
     arg0->v3F8.z = lbl_805DA780 * (sp.z * s + arg0->v3F8.z);
@@ -1106,7 +1107,7 @@ void render__13TObjEneRe4BitFv(Bit_800ECA40 *self) {
     s32 saved;
     s32 draw;
     Model_800ECA40 *m;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         self->m104();
         return;
     }

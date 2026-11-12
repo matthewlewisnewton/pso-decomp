@@ -316,8 +316,8 @@ void TObjEneDelDepth::init() {
     this->model = (void *)get_bml_model(TObjEneDelDepth__shared_resource, 0);
     VecCopy(&this->prev_position, (const Vec *)(VecCopy(&this->home_position, (const Vec *)(VecCopy(&this->center, &this->position)))));
     this->collisionBody = (CollisionBody *)init_collision_body_parts(arg0, TObjEneDelDepth_collision_body_parts, 1);
-    ((TObjMotion *)arg0)->set_field_d8((s32)lbl_804E8194);
-    ((TObjMotion *)arg0)->set_field_dc((int) (TObjEneDelDepth__shared_resource->motions));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)lbl_804E8194));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)((int) (TObjEneDelDepth__shared_resource->motions)));
     ((TObjMotion *)arg0)->set_animation(0);
     ((TObjMotion *)arg0)->set_field_b8(0);
     VecCopy((Vec *)((u8 *)&this->m_2fc), &this->position);
@@ -327,7 +327,7 @@ void TObjEneDelDepth::init() {
     this->target = 0;
     ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x30)), (u8 *)(get_battle_attack_params(0x30)), (u8 *)(get_battle_resistance_params(0x30)));
     this->referenceHp = (s16) this->hp;
-    ((TBoss3Volopt *)arg0)->reset_photon_effect();
+    ((TObjEnemy *)arg0)->register_by_id();
     this->movementParameters = 0;
     ((TObjEnemy *)arg0)->set_param(0x47);
     var_r0 = new DelDepthMotion(this);
@@ -358,7 +358,7 @@ TObjEneDelDepth::~TObjEneDelDepth() {
 void TObjEneDelDepth::run_task() {
     TObjEneDelDepth *o = this;
     TObjEneDelDepth::Action fn;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         update_target_depth();
         return;
     }
@@ -381,7 +381,7 @@ void TObjEneDelDepth::run_task() {
 
 void TObjEneDelDepth::render() {
     TObjEneDelDepth *o = this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->fn_80315518();
         return;
     }
@@ -1127,7 +1127,7 @@ void TObjEneDelDepth::update_death_fade() {
     default:
         sp8 = 0x800;
         ((TObjEnemy *)enemy)->send_6x0A_enemy_state(&sp8);
-        ((TObjEnemy *)enemy)->exchange_object_state((s32)&sp8, (s16)(0));
+        ((TObjEnemy *)enemy)->exchange_object_state((void *)&sp8, (s16)(0));
         vfunc_79(&sp8);
         ((TObjEnemy *)enemy)->send_entity_set_flags();
         TObjPlayer::apply_effect_variant_a((s32)((u8 *)&this->position), 0);

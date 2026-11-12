@@ -2954,7 +2954,7 @@ void TObjEneMe3ShinowaMirage::draw_model() {
     s32 var_r31;
     s32 var_r30;
     s32 i;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_118();
         return;
     }
@@ -4218,7 +4218,7 @@ void TObjEneMe3Shinowa::vfunc_63() { if (this->mode != 13) { ((int (*)(void*, vo
 void TObjEneMe3Shinowa::vfunc_28() {  }
 
 void TObjEneMe3Shinowa::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->update_mirage();
         return;
     }
@@ -4259,8 +4259,8 @@ void TObjEneMe3Shinowa::init_enemy() {
     self->f34 = TObjEneMe3ShinowaMirage__data_805D5298->models->model;
     init_model__9TObjEneDDFP13CollisionBodyl(self, ((void * *)shinowa_mirage_model_init_data), 1);
     self->fB0 = 0;
-    ((TObjMotion *)self)->set_field_d8((s32)shinowa_mirage_motion_param_table);
-    ((TObjMotion *)self)->set_field_dc((s32)TObjEneMe3ShinowaMirage__data_805D5298->motions);
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)shinowa_mirage_motion_param_table));
+    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)((s32)TObjEneMe3ShinowaMirage__data_805D5298->motions));
     self->fB8 = 0;
     ((TObjMotion *)self)->set_animation(self->fB8);
     ((TObjMotion *)self)->set_field_b8(self->fB8);

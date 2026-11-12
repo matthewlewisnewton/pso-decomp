@@ -228,7 +228,7 @@ void TObjEneRecobox::render() {
     s32 var_r28;
     s32 var_r27;
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRecobox *)arg0)->draw_with_debug_info();
         return;
     }

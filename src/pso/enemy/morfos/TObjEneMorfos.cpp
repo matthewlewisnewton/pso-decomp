@@ -939,7 +939,7 @@ struct Self_803329E4;
 void render__13TObjEneMorfosFv(u8 *ene_morfos) {
     s32 cam;
     s32 vis;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_80332850 *)ene_morfos)->m104();
         return;
     }
@@ -1931,7 +1931,7 @@ void TObjEneMorfos::vfunc_63() { if (this->mode != 11) { ((int (*)(void*, void*)
 void TObjEneMorfos::vfunc_28() {  }
 
 void run_task__13TObjEneMorfosFv(u8 *arg0) {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneMorfos *)(arg0))->vfunc_106();
         return;
     }
@@ -2097,8 +2097,8 @@ void TObjEneMorfos::init_instance() {
     *(s32 *)((s8 *)this + 0x34) = ((Mgr_80334D74 *)TObjEneMorfos__instance)->res->f18;
     this->texlist = ((Mgr_80334D74 *)TObjEneMorfos__instance)->res->f1C;
     init_model__9TObjEneDDFP13CollisionBodyl(this, lbl_804EE0DC, 1);
-    set_field_d8((s32)morfos_motion_param_table);
-    set_field_dc(((Mgr_80334D74 *)TObjEneMorfos__instance)->f430);
+    set_action_table((TObjMotionAction *)((s32)morfos_motion_param_table));
+    set_motion_list((BmlMotionEntry *)(((Mgr_80334D74 *)TObjEneMorfos__instance)->f430));
     this->requested_action = 0;
     set_animation(this->requested_action);
     set_field_b8(this->requested_action);

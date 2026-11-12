@@ -1705,8 +1705,8 @@ void TObjEneMe3SinowZoaReal::init_enemy() {
     *(s32 *)((s8 *)((u8 *)this) + 0x34) = (s32) *(s32 *)((s8 *)temp_r6 + 8);
     init_model__9TObjEneDDFP13CollisionBodyl((void *)this, ((void * *)sinow_zoa_collision_parts), 1, (int)temp_r6);
     *(s32 *)((s8 *)((u8 *)this) + 0xB0) = 0;
-    this->set_field_d8((s32)lbl_804E8880);
-    this->set_field_dc((int) (*(s32 *)((s8 *)TObjEneMe3SinowZoa__bml_resource + 0x430)));
+    this->set_action_table((TObjMotionAction *)((s32)lbl_804E8880));
+    this->set_motion_list((BmlMotionEntry *)((int) (*(s32 *)((s8 *)TObjEneMe3SinowZoa__bml_resource + 0x430))));
     set_animation((*(s16 *)((s8 *)((u8 *)this) + 0xB8)));
     temp_r0 = *(s32 *)((s8 *)((u8 *)this) + 0x3C8);
     reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock((void *)this, lbl_80542FBC[temp_r0], lbl_80542FC4[temp_r0], lbl_80542FCC[temp_r0]);
@@ -1759,7 +1759,7 @@ TObjEneMe3SinowZoa::~TObjEneMe3SinowZoa() {
 
 void TObjEneMe3SinowZoa::run_task() {
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->action();
         return;
     }
@@ -3188,7 +3188,7 @@ void TObjEneMe3SinowZoa::render() {
     s32 i;
     Zoa_8031786C *o = (Zoa_8031786C *)this;
 
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         v->m113();
         return;
     }

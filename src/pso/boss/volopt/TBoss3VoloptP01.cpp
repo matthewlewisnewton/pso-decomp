@@ -155,7 +155,7 @@ TBoss3VoloptP01::TBoss3VoloptP01(TBoss3Volopt *parent, s32 index, u16 id, s32 an
 void TBoss3VoloptP01::init_params() {
     motion_list = TBoss3VoloptP01__resource_bundle->motions;
     action_table = volopt_p01_action_table;
-    set_field_d8((s32)action_table);
+    set_action_table((TObjMotionAction *)((s32)action_table));
     init_collision_body_parts(this, &volopt_p01_collision_parts, 1);
     variant = 0;
     movementParameters = &volopt_p01_movement;
@@ -168,7 +168,7 @@ void TBoss3VoloptP01::init_params() {
     referenceHp = hp;
     set_param(0x2E);
     update_prev_position();
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    ((TObjEnemy *)this)->register_by_id();
     load_model(17);
     start_rise();
     ((TBoss3VoloptP01Collision *)bodies)->flags &= ~1;
@@ -213,7 +213,7 @@ void TBoss3VoloptP01::run_task() {
     f32 y;
     s32 angle;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_80043CA8();
         return;
     }
@@ -241,7 +241,7 @@ void TBoss3VoloptP01::run_task() {
         y = m_300;
         m_300 = y + (18.0f + y_offset);
         ((TBoss3VoloptP01Collision *)bodies)->height = 18.0f + y_offset;
-        ((TBoss3VoloptHiraisin *)this)->copy_position();
+        ((TObjChara *)this)->copy_body_to_center();
         angle = pulse_angle;
         pulse_angle = angle + 0x400;
         clear_all_status_effects();
@@ -268,7 +268,7 @@ void TBoss3VoloptP01::render() {
         select_actor_lighting((s32)this);
         TObjPlayer::toggle_particle_effect();
         push_matrix();
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             post_translate_matrix(&position);
             rotate_matrix_y(0, rotation_y);
             draw_chunk_object(model);

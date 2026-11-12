@@ -206,7 +206,7 @@ int VecCopy__FP3VecPC3Vec(void*, void*);
 void queue_destruction__7TObjectFv(void *);
 s32 get_flag_bit6__12TBoss8DragonFv();
 void TBoss8Dragon__sub_8005FB90(u8 *arg0);
-int check_demo_mode__10TObjPlayerFv(void*);
+int check_demo_mode__Fv(void*);
 void project_sound_origin_from_camera(s32 arg0, u8 *arg1, f32 farg0);
 s32 query_teammate_state__9TObjEneDDFv();
 s32 is_main_phase_15__9TObjEneDDFv();
@@ -1397,11 +1397,11 @@ void TBoss5Gryphon::render_model() {
     pop_matrix();
 }
 
-void TBoss5Gryphon::render_shadows() { if (check_demo_mode__10TObjPlayerFv(this) == 0) { render_model(); } }
+void TBoss5Gryphon::render_shadows() { if (check_demo_mode__Fv(this) == 0) { render_model(); } }
 
 void TBoss8Dragon__sub_8005DF60(TBoss5Gryphon *self) {
     s32 view = 0;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         self->vfunc_105();
         return;
     }
@@ -4862,7 +4862,7 @@ void TBoss5Gryphon::run_task() {
     s32 var_r30;
     s32 i;
     u8 *arg0 = (u8 *)this;
-    if (((int (*)())check_demo_mode__10TObjPlayerFv)() != 0) {
+    if (((int (*)())check_demo_mode__Fv)() != 0) {
         ((TBoss5Gryphon *)(arg0))->vfunc_83();
         return;
     }
@@ -4993,7 +4993,7 @@ TBoss5Gryphon *TBoss5Gryphon__ct(TBoss5Gryphon *self, void *parent, void *data) 
     }
     invoke_initialization_hook__9TObjEneDDFPv(self, data);
     self->m_4c0 = 0;
-    if (self->exchange_object_state((s32)flags, 1) != 0 && (flags[0] & 0x12008) == 0x12008) {
+    if (self->exchange_object_state((void *)flags, 1) != 0 && (flags[0] & 0x12008) == 0x12008) {
         self->m_4c0 |= 1;
     }
     self->init_position_vectors();
@@ -5005,8 +5005,8 @@ TBoss5Gryphon *TBoss5Gryphon__ct(TBoss5Gryphon *self, void *parent, void *data) 
     self->texlist = *(s32 *)(*(u8 **)(boss5_gryphon_body_bml_resource + 0x42C) + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl(self, lbl_804878D0, 10);
     self->motion_flags = 0;
-    self->set_field_d8((s32)lbl_80487B1C);
-    self->set_field_dc(*(s32 *)(boss5_gryphon_body_bml_resource + 0x430));
+    self->set_action_table((TObjMotionAction *)((s32)lbl_80487B1C));
+    self->set_motion_list((BmlMotionEntry *)(*(s32 *)(boss5_gryphon_body_bml_resource + 0x430)));
     self->requested_action = 0;
     self->set_animation(self->requested_action);
     self->set_field_b8(self->requested_action);

@@ -270,7 +270,7 @@ extern const f32 TObjEneRecon__data_805DF3C4;
 void render__12TObjEneReconFv(u8 *ene_recon) {
     s32 var_r29;
     s32 var_r31;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18_1fdb47 *)(ene_recon))->m104();
         return;
     }
@@ -2127,8 +2127,8 @@ void TObjEneRecon::init_state() {
     temp_r6 = (u8 *)(*(u8 **)((s8 *)TObjEneRecon__recobox_static_instance + 0x42C));
     *(s32 *)((s8 *)arg0 + 0x24) = (s32) *(s32 *)((s8 *)temp_r6 + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl((void *)arg0, (void *)&TObjEneRecon__collision_body_template, 1, (int)temp_r6);
-    ((TObjMotion *)arg0)->set_field_d8((s32)((void *) TObjEneRecon__animation_entries));
-    ((TObjMotion *)arg0)->set_field_dc((int) (*(s32 *)((s8 *)TObjEneRecon__recobox_static_instance + 0x430)));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)((void *) TObjEneRecon__animation_entries)));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)((int) (*(s32 *)((s8 *)TObjEneRecon__recobox_static_instance + 0x430))));
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation((*(s16 *)((s8 *)arg0 + 0xB8)));
     ((TObjMotion *)arg0)->set_field_b8((int) (*(s16 *)((s8 *)arg0 + 0xB8)));
@@ -2203,7 +2203,7 @@ void run_task__12TObjEneReconFv(TObjEneRecon *ene_recon) {
     u8 *temp_r3_2;
     u8 *temp_r3_3;
     u8 *temp_r3_4;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRecon *)(ene_recon))->vfunc_105();
         return;
     }

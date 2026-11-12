@@ -1251,7 +1251,7 @@ void TBoss6Mag::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 var_r4;
 
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if (TBoss6PlotFalz::is_boss_active() == 0) {
             *(s32 *)((s8 *)arg0 + 0x378) = 0;
             queue_destruction__7TObjectFv(arg0);
@@ -1311,7 +1311,7 @@ struct Key_80330724 { s32 a; s16 b; s16 c; s32 d; s32 e; };
 
 extern "C" {
 void __ct__9TObjEnemyFP7TObject(void *, s32, void *);
-s32 exchange_object_state__9TObjEnemyFls(void *, Key_80330724 *, s32);
+s32 exchange_object_state__9TObjEnemyFPvs(void *, Key_80330724 *, s32);
 void init_collision_body_parts(void *, void *, s32);
 s32 create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec(u8 *list, s32 vecs);
 void TBoss6Mag__sub_803309C4(void *, void *);
@@ -1330,10 +1330,10 @@ u8 *TBoss6Mag__ct(u8 *arg0, s32 arg1, u8 *arg2) {
     *(s32 *)((s8 *)arg0 + 0x384) = *(s32 *)((s8 *)arg2 + 0x54);
     TBoss6Type2__instance_slots[*(s32 *)((s8 *)arg0 + 0x384)] = arg0;
     ((TBoss6Mag *)arg0)->apply_set_data(arg2);
-    if (exchange_object_state__9TObjEnemyFls(arg0, &key, 1) != 0) {
+    if (exchange_object_state__9TObjEnemyFPvs(arg0, &key, 1) != 0) {
         key.a = 0;
         key.c = 0;
-        exchange_object_state__9TObjEnemyFls(arg0, &key, 0);
+        exchange_object_state__9TObjEnemyFPvs(arg0, &key, 0);
     }
     *(s32 *)((s8 *)arg0 + 0x374) = TObjFish::get_fish_count();
     *(s32 *)((s8 *)arg0 + 0x37C) = 0;
@@ -1349,7 +1349,7 @@ u8 *TBoss6Mag__ct(u8 *arg0, s32 arg1, u8 *arg2) {
     ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2E)), (u8 *)(get_battle_attack_params(0x2E)), (u8 *)(get_battle_resistance_params(0x2E)));
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
     *(s32 *)((s8 *)arg0 + 0x38C) = *(s16 *)((s8 *)arg0 + 0x32C);
-    ((TBoss3Volopt *)arg0)->reset_photon_effect();
+    ((TObjEnemy *)arg0)->register_by_id();
     enemy = (TObjEnemy *)arg0;
     prm = 0x55;
     if (*(s32 *)((s8 *)arg0 + 0x384) == 1) {

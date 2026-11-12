@@ -226,7 +226,7 @@ void TObjVoloptCage::update_state() {
 }
 
 void TObjVoloptCage::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         run_demo_task();
         return;
     }
@@ -247,14 +247,14 @@ void TObjVoloptCage::run_task() {
     }
     update_state();
     update_prev_position();
-    ((TBoss3VoloptHiraisin *)this)->copy_position();
+    ((TObjChara *)this)->copy_body_to_center();
     submit_cursor_candidate(this, -1);
 }
 
 TObjVoloptCage::~TObjVoloptCage() {
     TObjPlayer *player = get_player_by_client_id(targetId);
     if (player != NULL && TObjPlayer::is_locally_controlled(player) != 0) {
-        if (((TLobby *)player)->check_player_flag1() != 0) {
+        if (((TObjPlayer *)player)->check_player_flag1() != 0) {
             TObjPlayer::send_code_45_1((s32)player);
         }
         obj_clear_flag30_20000(player);
@@ -280,7 +280,7 @@ TObjVoloptCage::TObjVoloptCage(TObjEnemy *boss, u16 target, u16 id, s32 group) :
     set_entry = 0;
     *(s16 *)&room = *(s16 *)&boss->room;
     *((s16 *)&room + 1) = *((s16 *)&boss->room + 1);
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    ((TObjEnemy *)this)->register_by_id();
     set_param(0x2E);
     position.y = -25.0f;
     recalc_combat_stats(volopt_cage_combat_stats, NULL, NULL, 1.0f, 1.0f);
@@ -304,7 +304,7 @@ void obj_clear_flag30_20000(TObjBase *actor) {
     actor->obj_clearFlags30(0x20000);
 }
 
-s32 TLobby::check_player_flag1() {
+s32 TObjPlayer::check_player_flag1() {
     return check_flag__10TObjPlayerFl(this, 1);
 }
 

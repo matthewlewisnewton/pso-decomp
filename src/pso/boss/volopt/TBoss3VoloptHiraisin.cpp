@@ -245,7 +245,7 @@ void TBoss3VoloptHiraisin::render() {
         }
         translate_matrix(0, 0.0f, sin_table_lookup(hover_angle), 0.0f);
         rotate_matrix_y(NULL, rotation_y);
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object(model);
         } else {
             draw();
@@ -286,7 +286,7 @@ void TBoss3VoloptHiraisin::dispatch_state() {
 }
 
 void TBoss3VoloptHiraisin::run_task() {
-    if (TObjPlayer::check_demo_mode() != 1) {
+    if (check_demo_mode() != 1) {
         if (mode != 5) {
             if (has_flag_0x800() != 0) {
                 vfunc_63();
@@ -307,7 +307,7 @@ void TBoss3VoloptHiraisin::run_task() {
         if (mode != 5) {
             m_300 -= 30.0f;
         }
-        copy_position();
+        copy_body_to_center();
         submit_cursor_candidate(this, -1);
         minimap_render_dot(&position, -0x5DB4, 1, 0);
         volopt_hiraisin_spin_node->rotation_y += 0x4000;
@@ -347,10 +347,10 @@ TBoss3VoloptHiraisin::~TBoss3VoloptHiraisin() {
 void TBoss3VoloptHiraisin::init_params() {
     VecCopy((Vec *)&m_2fc, &position);
     m_300 -= 30.0f;
-    copy_position();
+    copy_body_to_center();
     motion_list = volopt_hiraisin_resources->motions;
     action_table = volopt_hiraisin_motions;
-    set_field_d8((s32)action_table);
+    set_action_table((TObjMotionAction *)((s32)action_table));
     init_collision_body_parts(this, volopt_hiraisin_body_parts, 1);
     variant = 0;
     movementParameters = &volopt_hiraisin_movement;
@@ -362,7 +362,7 @@ void TBoss3VoloptHiraisin::init_params() {
     tp = tpmax;
     referenceHp = hp;
     set_param(0x2E);
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    ((TObjEnemy *)this)->register_by_id();
     load_params_from_table(0x10);
     sub_800C7860();
     add_flags_2e4(4);
@@ -389,7 +389,7 @@ TBoss3VoloptHiraisin::TBoss3VoloptHiraisin(TObject *parent, void *set_data) : TO
     init_params();
 }
 
-void TBoss3VoloptHiraisin::copy_position() {
+void TObjChara::copy_body_to_center() {
     VecCopy(&center, (Vec *)&m_2fc);
 }
 

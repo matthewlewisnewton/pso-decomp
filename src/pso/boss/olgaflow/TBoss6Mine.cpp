@@ -87,7 +87,7 @@ f32 subtract_vector(void *, void *);
 f32 normalize_vector(void *);
 f64 TBoss5GryphonLightningWing__sub_80324CEC(f32);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
+s32 exchange_object_state__9TObjEnemyFPvs(void *, void *, int);
 s32 init_collision_body_parts(void *, void *, int);
 static u32 TBoss6Mine__collision_body_template[11] = {
     0, 0, 0, 0x41700000, 0, 0, 0x801B, 0, 0, 0, 0,
@@ -346,7 +346,7 @@ void add_radar_scaled_marker(void *pos, u32 color, s32 a2, s32 a3, f32 scale);
 
 void TBoss6Mine::run_task() {
     u32 color;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         return;
     }
     if (TBoss6PlotFalz__sub_802ABADC() == 0) {
@@ -418,10 +418,10 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, TBoss6MineSetData *set_data) {
     ((TBoss6Mine *)THIS)->seed = set_data->seed;
     ((TObjChara *)THIS)->add_flags_2e4(8);
     ((TBoss3Volopt *)THIS)->apply_set_data(set_data);
-    if (exchange_object_state__9TObjEnemyFls(THIS, &tmp, 1) != 0) {
+    if (exchange_object_state__9TObjEnemyFPvs(THIS, &tmp, 1) != 0) {
         tmp.a = 0;
         tmp.b = 0;
-        exchange_object_state__9TObjEnemyFls(THIS, &tmp, 0);
+        exchange_object_state__9TObjEnemyFPvs(THIS, &tmp, 0);
     }
     ((TBoss3Volopt *)THIS)->next_action = TObjFish::get_fish_count();
     ((TBoss3Volopt *)THIS)->texlist = 0;
@@ -435,7 +435,7 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, TBoss6MineSetData *set_data) {
     *(s32 *)((s8 *)THIS + 0x2A8) = 0;
     ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2D)), (u8 *)(get_battle_attack_params(0x2D)), (u8 *)(get_battle_resistance_params(0x2D)));
     ((TBoss3Volopt *)THIS)->referenceHp = ((TBoss3Volopt *)THIS)->hp;
-    ((TBoss3Volopt *)THIS)->reset_photon_effect();
+    ((TObjEnemy *)THIS)->register_by_id();
     ((TObjEnemy *)THIS)->set_param(0);
     ((TBoss6Mine *)THIS)->rise_delay = (s32)(136.0f * TBoss6Mine::next_random_float((s32 *)(THIS + 0x388)) + 7.0f);
     *(s32 *)((s8 *)THIS + 0x3A4) = 0x96 - ((TBoss6Mine *)THIS)->rise_delay;

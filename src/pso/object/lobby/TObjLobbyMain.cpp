@@ -142,7 +142,7 @@ void *TObjLobbyMain::create(void *set_data) {
 }
 
 void TObjLobbyMain::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         demo_step();
     }
     switch (fade_state) {

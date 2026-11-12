@@ -475,7 +475,7 @@ TObjGrass::TObjGrass(TObject *parent, void *set_data) : TObjEnemy(parent) {
     s32 t;
     m_name = TObjGrass__class_name;
     apply_set_data(set_data);
-    ((TObjPlayer *)this)->init_position_vectors();
+    ((TObjChara *)this)->initialize_position_copies();
     apply_actor_gravity(this, 0, (0.0f));
     t = *(s32 *)((s8 *)TObjGrass__resource_bundle + 0x430);
     *(s32 *)&motion_list = t;
@@ -487,7 +487,7 @@ TObjGrass::TObjGrass(TObject *parent, void *set_data) : TObjEnemy(parent) {
     subtype = 0;
     init_from_table_entry(variant);
     action_table = (TObjMotionAction *)TObjGrass__grass_type_param_table;
-    set_field_d8((s32)action_table);
+    set_action_table((TObjMotionAction *)((s32)action_table));
     if ((0.0f) < parameters[1]) {
         m_39c = 2;
     } else {
@@ -502,7 +502,7 @@ TObjGrass::TObjGrass(TObject *parent, void *set_data) : TObjEnemy(parent) {
     movementParameters = &((E1C_800BF924 *)lbl_804929E4)[variant];
     referenceHp = hp;
     update_prev_position();
-    ((TBoss3VoloptHiraisin *)this)->copy_position();
+    ((TObjChara *)this)->copy_body_to_center();
     register_object_by_id();
     m_398 = (0.0f);
     mode = 0;
@@ -594,7 +594,7 @@ void TObjGrass::run_task() {
     u16 temp_r3;
     u8 *temp_r3_2;
     u8 *temp_r4;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjGrass__sub_800BCA2C(arg0);
         return;
     }
@@ -656,7 +656,7 @@ void TObjGrass::run_task() {
         this->target = NULL;
     }
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     submit_cursor_candidate(arg0, -1);
     this->m_2b4 += (1.0f);
 }
@@ -679,7 +679,7 @@ void TObjGrass::render() {
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, *(s32 *)((s8 *)arg0 + 0x60));
     scale_matrix(0, (1.3f), *(f32 *)((s8 *)arg0 + 0x6C), (1.3f));
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object((void *)(*(s32 *)((s8 *)arg0 + 0x34)));
     } else {
         TObjPlayer::toggle_particle_effect();
@@ -1112,7 +1112,7 @@ s32 TObjGrass::is_target_in_attack_range() {
     kind = get_entity_id(t);
     if (kind < 0x1000) {
         t = this->target;
-        if (((TLobby *)t)->check_player_flag1() == 1 || (enable_v2_features == 1 && obj_testFlags30__14TObjCollidableFUl(t, 0x20) != 0)) {
+        if (((TObjPlayer *)t)->check_player_flag1() == 1 || (enable_v2_features == 1 && obj_testFlags30__14TObjCollidableFUl(t, 0x20) != 0)) {
             T318 = TBL[0];
             if (IN_RANGE()) {
                 BIND(0)

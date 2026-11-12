@@ -235,7 +235,7 @@ void TBoss4DarkFalz::update_countdown_shrink() {
 
 void TBoss4DarkFalz::init_state() {
     freeze_all_players__14TBoss4DarkFalzFPv(this);
-    TObjDFDemo4::create(this, (void *)((char *)this + 924), *(void **)((s8 *)this + 0x3A8));
+    TObjDFDemo4::create((TObject *)this, (const Vec *)((char *)this + 924), *(s32 *)((s8 *)this + 0x3A8));
     play_area_music("dark2.adx");
     *(u32 *)((s8 *)this + 0x380) = 114;
 }
@@ -509,7 +509,7 @@ void TBoss4DarkFalz__sub_8004B8F8(TBoss4DarkFalz *arg0);
 }
 void set_dark_falz_music_request(s32 arg0);
 extern "C" {
-int check_demo_mode__10TObjPlayerFv(void*);
+int check_demo_mode__Fv(void*);
 int create__14TObjDFUsoTowerFPv(void);
 void unlock_music_flag(s32 flag);
 
@@ -559,7 +559,7 @@ void TBoss4DarkFalz::check_players_near_center() {
     }
 }
 
-void TBoss4DarkFalz::update_leader_editor() { if (check_demo_mode__10TObjPlayerFv(this) == 0) { change_state((s32)((void*)1)); } }
+void TBoss4DarkFalz::update_leader_editor() { if (check_demo_mode__Fv(this) == 0) { change_state((s32)((void*)1)); } }
 
 
 TBoss4DarkFalzState dark_falz_state_table[16] = {

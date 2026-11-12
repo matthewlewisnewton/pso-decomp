@@ -634,7 +634,7 @@ u8 *TObjEneDarkGunCenter__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__20TObjEneDarkGunCenter;
     *(s32 *)((s8 *)arg0 + 0) = TObjEneDarkGunCenter__name;
     ((TObjEneDarkGunCenter *)(arg0))->apply_set_data((void *)arg2);
-    ((TBoss3Volopt *)arg0)->reset_photon_effect();
+    ((TObjEnemy *)arg0)->register_by_id();
     o = (Obj_800A0EDC *)arg0;
     VecCopy((Vec *)o->home, (const Vec *)o->pos);
     o->flags = o->flags | 0x06000000 | 0x800;
@@ -1492,7 +1492,7 @@ void TObjPlayer__sub_800A28A4(VObj_18_800A28A4 *self) {
         TObjPlayer__sub_8023DEE0((s16 *)lbl_805D5024, 8, 0, 1);
         TObjPlayer__sub_8023DEE0((s16 *)lbl_805D5028, 8, 0, 0);
     }
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((void (*)(VObj_18_800A28A4 *))init_scale_global__10TObjPlayerFv)(self);
         TObjPlayer__sub_800A1974(self);
         return;
@@ -1673,7 +1673,7 @@ u8 *TObjPlayer__sub_800A2F94(u8 *self, s32 arg1, u8 *arg2) {
     ((TObjEneDarkGunner *)self)->set_fields_24_34_from_global((void *)1);
     F(s32, 0xDC) = *(s32 *)(G500C + 0x430);
     F(void *, 0xD8) = lbl_80490668;
-    ((TObjMotion *)self)->set_field_d8(F(s32, 0xD8));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)(F(s32, 0xD8)));
     F(s16, 0xB8) = 0;
     ((TObjMotion *)self)->set_animation(F(s16, 0xB8));
     ((TObjMotion *)self)->set_field_b8(F(s16, 0xB8));

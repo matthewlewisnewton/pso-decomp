@@ -199,7 +199,7 @@ extern SeabedTrapFragmentSpawn seabed_trap_fragment_spawns[];
 s32 TOTrapSeabed01__bml_resource;
 s32 TOTrapSeabed01__texture_file;
 void TOTrapSeabed01__vt83(Trap_802C9E3C *self);
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
+s32 check_value_equals__7TObjectFPCc(void *, s32);
 s32 is_valid_and_active__10TObjPlayerFUl();
 extern s32 lbl_805D3530;
 s32 vfunc_67__14TOTrapSeabed01Ff(Trap_802C9F70 *self);
@@ -254,7 +254,7 @@ int TOTrapSeabed01::vfunc_67(f32) {
     VObj_802C9F70 *o;
     for (i = 0; i < 0x10; i++) {
         o = (VObj_802C9F70 *)TObjPlayer::get_battle_param(i);
-        if (is_valid_and_active__10TObjPlayerFUl() != 0 && check_value_equals__13TUnk_804B6C24Fl(o, lbl_805D3530) != 0) {
+        if (is_valid_and_active__10TObjPlayerFUl() != 0 && check_value_equals__7TObjectFPCc(o, lbl_805D3530) != 0) {
             Pair_802C9F70 p = ((Trap_802C9F70 *)this)->pair;
             o->m21(this, &p, 0, -1, -1);
             if (((Trap_802C9F70 *)this)->pair.a < 5) {

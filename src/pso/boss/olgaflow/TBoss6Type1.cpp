@@ -781,10 +781,10 @@ s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     ((TObjChara *)arg0)->add_flags_2e4(8);
     *(s32 *)((s8 *)arg0 + 0x3F8) = arg2[0];
     ((VObj_18_f05d67 *)(arg0))->m79(arg2 + 1);
-    if (((TObjEnemy *)arg0)->exchange_object_state((s32)&tmp, (s16)1) != 0) {
+    if (((TObjEnemy *)arg0)->exchange_object_state((void *)&tmp, (s16)1) != 0) {
         tmp.a = 0;
         tmp.c = 0;
-        ((TObjEnemy *)arg0)->exchange_object_state((s32)&tmp, (s16)0);
+        ((TObjEnemy *)arg0)->exchange_object_state((void *)&tmp, (s16)0);
     }
     *(s32 *)((s8 *)arg0 + 0x3FC) = TObjFish::get_fish_count();
     *(s32 *)((s8 *)arg0 + 0x24) = 0;
@@ -800,7 +800,7 @@ s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     *(s32 *)((s8 *)arg0 + 0x2A8) = 0;
     ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2B)), (u8 *)(get_battle_attack_params(0x2B)), (u8 *)(get_battle_resistance_params(0x2B)));
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
-    ((TBoss3Volopt *)arg0)->reset_photon_effect();
+    ((TObjEnemy *)arg0)->register_by_id();
     ((TObjEnemy *)arg0)->set_param(0x4E);
     TBoss6Type1__sub_802B854C(arg0);
     *(s32 *)((s8 *)arg0 + 0x654) = create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec((u8 *)boss6_type1_model_node_desc, (s32)(arg0 + 0x578));

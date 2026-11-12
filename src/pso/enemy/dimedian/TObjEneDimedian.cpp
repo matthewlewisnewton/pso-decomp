@@ -337,7 +337,7 @@ void draw_actor_model__10TObjPlayerFPv(Player_800A7CA4 *self) {
     push_matrix();
     post_translate_matrix(self->pos);
     rotate_matrix_y(0, self->f60);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object(self->f34);
     } else {
         switch (self->f326) {
@@ -831,12 +831,12 @@ void *TObjEneDimedian__ct(void *arg0_, void *arg1_, void *arg2_) {
     __construct_array(arg0 + 0x3CC, (void *)&__ct__15RenderFadeStateFv, (void *)&__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)arg0 + 0) = TObjEneDimedian_name_ref;
     ((VObj_18_c99286 *)arg0)->m79(arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(s32 *)((s8 *)arg0 + 0x334) = *(s32 *)((s8 *)arg0 + 0x368);
     ((TObjEneDimedian *)arg0)->sub_800A7B54();
     ((TObjEneDimedian *)arg0)->load_dimedian_param_entry(*(s32 *)((s8 *)arg0 + 0x368));
     *(u8 **)((s8 *)arg0 + 0xD8) = dimedian_action_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(*(u8 **)((s8 *)arg0 + 0xD8)));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(*(u8 **)((s8 *)arg0 + 0xD8))));
     *(s32 *)((s8 *)arg0 + 0xDC) = *(s32 *)((s8 *)(*(u8 **)&dimedian_resource_ptr) + 0x430);
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
@@ -846,7 +846,7 @@ void *TObjEneDimedian__ct(void *arg0_, void *arg1_, void *arg2_) {
     *(u8 **)((s8 *)arg0 + 0x350) = dimedian_movement_params + *(s32 *)((s8 *)arg0 + 0x334) * 0x1C;
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     initialize_enemy_photon_effect(arg0);
     *(s32 *)((s8 *)arg0 + 0x2AC) = (s32)(182.04445f * (3.6e+02f * ((TObjChara *)arg0)->random_ratio()));
     *(s16 *)((s8 *)arg0 + 0x33A) = 0xF;

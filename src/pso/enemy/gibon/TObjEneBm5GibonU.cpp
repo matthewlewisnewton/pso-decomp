@@ -1910,7 +1910,7 @@ void TObjEneBm5GibonU::render() {
     s32 cam;
     s32 vis;
     s32 fade;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((Obj_800CD204 *)((u8 *)this))->m104();
         return;
     }
@@ -4443,7 +4443,7 @@ void TObjEneBm5GibonU::run_task() {
     s16 temp_r0;
     s16 temp_r3_2;
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->render_debug();
         return;
     }
@@ -4534,8 +4534,8 @@ u8 *TObjEneBm5GibonU__ct(u8 *ene_bm5_gibon_u, s32 arg1, s32 arg2) {
     } else {
         init_model__9TObjEneDDFP13CollisionBodyl(ene_bm5_gibon_u, &gibon_collision_body_templates[0], 1);
     }
-    ((TObjMotion *)ene_bm5_gibon_u)->set_field_d8((s32)gibon_u_action_table);
-    ((TObjMotion *)ene_bm5_gibon_u)->set_field_dc(*(s32 *)((s8 *)(*(u8 * *)&(*(u32 *)&TObjEneBm5GibonU__model_archive)) + 0x430));
+    ((TObjMotion *)ene_bm5_gibon_u)->set_action_table((TObjMotionAction *)((s32)gibon_u_action_table));
+    ((TObjMotion *)ene_bm5_gibon_u)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)(*(u8 * *)&(*(u32 *)&TObjEneBm5GibonU__model_archive)) + 0x430)));
     *(s16 *)((s8 *)ene_bm5_gibon_u + 0xB8) = 0;
     ((TObjMotion *)ene_bm5_gibon_u)->set_animation(*(s16 *)((s8 *)ene_bm5_gibon_u + 0xB8));
     ((TObjMotion *)ene_bm5_gibon_u)->set_field_b8(*(s16 *)((s8 *)ene_bm5_gibon_u + 0xB8));

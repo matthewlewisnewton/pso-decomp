@@ -129,7 +129,7 @@ struct A_8015C9D4 { u8 pad[0x1C]; Vec pos; };
 
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
+s32 exchange_object_state__9TObjEnemyFPvs(void *, void *, int);
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern RecoveredGlobal_8015D314_lbl_804B0A10 bm_fs_obj_zombie_con_resource_descriptor;
 extern u32 TOCtrlDubchik__shared_resource;
@@ -142,7 +142,7 @@ extern s32 __vt__13TOCtrlDubchik[];
 extern s32 TOCtrlDubchik__name;
 u8 *TOCtrlDubchik__ct(TOCtrlDubchik *arg0, s32 arg1, s32 arg2);
 s32 obj_testFlags30__14TObjCollidableFUl(void *, s32);
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
+s32 check_value_equals__7TObjectFPCc(void *, s32);
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 extern char lbl_80440984[];
@@ -198,7 +198,7 @@ void TOCtrlDubchik::sub_8015CA74() {
     }
     for (i = registered_player_count; i < registered_player_count + lbl_805D5870; i++) {
         p = (u8 *)get_player_data__10TObjPlayerFi(i);
-        if (p != NULL && p != arg0 && check_value_equals__13TUnk_804B6C24Fl(p, (s32)TObjEneDubchik__class_name) != 0 &&
+        if (p != NULL && p != arg0 && check_value_equals__7TObjectFPCc(p, (s32)TObjEneDubchik__class_name) != 0 &&
             *(s32 *)(p + 0x368) == 0 && *(s16 *)(arg0 + 0x28) == *(s16 *)(p + 0x28)) {
             dubchik_start_dying(p);
         }
@@ -208,10 +208,10 @@ void TOCtrlDubchik::sub_8015CA74() {
 void TOCtrlDubchik::complete_and_destroy() {
     u8 *arg0 = (u8 *)this;
     s32 sp8;
-    if (exchange_object_state__9TObjEnemyFls(arg0, &sp8, 1) != 0) {
+    if (exchange_object_state__9TObjEnemyFPvs(arg0, &sp8, 1) != 0) {
         sp8 = 1;
         ((TObjEnemy *)arg0)->send_6x0A_enemy_state(&sp8);
-        exchange_object_state__9TObjEnemyFls(arg0, &sp8, 0);
+        exchange_object_state__9TObjEnemyFPvs(arg0, &sp8, 0);
         ((VObj_18_65b835 *)(arg0))->m77(&sp8);
         ((TOCtrlDubchik *)arg0)->sub_8015CA74();
         ((TObjCollidable *)arg0)->set_flag8();
@@ -279,7 +279,7 @@ void TOCtrlDubchik::sub_8015CE80() {
     for (i = registered_player_count; i < registered_player_count + lbl_805D5870; i++) {
         p = (u8 *)get_player_data__10TObjPlayerFi(i);
         if (p != NULL && p != ((u8 *)this) && obj_testFlags30__14TObjCollidableFUl(p, 0x800) != 0 &&
-            check_value_equals__13TUnk_804B6C24Fl(p, (s32)TObjEneDubchik__class_name) != 0 &&
+            check_value_equals__7TObjectFPCc(p, (s32)TObjEneDubchik__class_name) != 0 &&
             *(s32 *)(p + 0x368) == 0 && *(s16 *)(((u8 *)this) + 0x28) == *(s16 *)(p + 0x28)) {
             this->mode = 1;
         }
@@ -288,7 +288,7 @@ void TOCtrlDubchik::sub_8015CE80() {
 
 void TOCtrlDubchik::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TOCtrlDubchik__sub_8015C9D0(arg0);
         return;
     }
@@ -431,7 +431,7 @@ u8 *TOCtrlDubchik__ct(TOCtrlDubchik *ctrl_dubchik, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)ctrl_dubchik + 0x18) = &(*(RecoveredGlobal_8015D3CC___vt__13TOCtrlDubchik *)&__vt__13TOCtrlDubchik).value;
     *(s32 *)((s8 *)ctrl_dubchik + 0) = (s32) TOCtrlDubchik__name;
     ((TOCtrlDubchik *)(ctrl_dubchik))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)ctrl_dubchik)->init_position_vectors();
+    ((TObjChara *)ctrl_dubchik)->initialize_position_copies();
     ctrl_dubchik->model = (unsigned char *) ((void *) *(void **)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TOCtrlDubchik__shared_resource) + 0x42C)) + 8));
     ctrl_dubchik->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TOCtrlDubchik__shared_resource) + 0x42C)) + 0xC);
     init_collision_body_parts(ctrl_dubchik, &TOCtrlDubchik__collision_body.value, 1);

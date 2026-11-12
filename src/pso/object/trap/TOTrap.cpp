@@ -89,7 +89,7 @@ void TOTrap::vfunc_82() {
             u32 v = (u16) get_entity_id(p);
             if (v < 0x1000U) {
                 temp_r31 = (s32)get_player_by_client_id(v);
-                if ((is_locally_controlled__10TObjPlayerFPv(temp_r31) != 0) && (((TLobby *)temp_r31)->check_player_flag1() != 0)) {
+                if ((is_locally_controlled__10TObjPlayerFPv(temp_r31) != 0) && (((TObjPlayer *)temp_r31)->check_player_flag1() != 0)) {
                     TObjPlayer::send_code_45_1(temp_r31);
                 }
             }
@@ -179,7 +179,7 @@ f32 TOTrap::receive_physical_attack(void *arg1, f32) {
       if (temp_r3 < 0x1000U)
       {
         temp_r3_2 = (s32)get_player_by_client_id(((int) ((s32) temp_r3)));
-        if (((temp_r3_2 != 0) && (is_locally_controlled__10TObjPlayerFPv((int)((int) temp_r3_2)) != 0)) && (((TLobby *)((long long) temp_r3_2))->check_player_flag1() != 0))
+        if (((temp_r3_2 != 0) && (is_locally_controlled__10TObjPlayerFPv((int)((int) temp_r3_2)) != 0)) && (((TObjPlayer *)((long long) temp_r3_2))->check_player_flag1() != 0))
         {
           TObjPlayer::send_code_45_1((s32)((int) temp_r3_2));
         }
@@ -190,7 +190,7 @@ f32 TOTrap::receive_physical_attack(void *arg1, f32) {
 }
 
 void TOTrap::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         this->vfunc_88();
         return;
     }
@@ -254,7 +254,7 @@ void TOTrap::render() {
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_y(0, this->rotation_y);
             set_current_texture_list((GinjaTextureList *)(this->texlist));
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 draw_chunk_object(this->model);
             } else {
                 draw_model_motion((void *)this->model, (void *)this->current_motion, this->frame);

@@ -139,7 +139,7 @@ void TBoss3VoloptCore::init_params() {
     m_name = TBoss3VoloptCore_name;
     motion_list = core_resources->motions;
     action_table = core_motions;
-    set_field_d8((s32)action_table);
+    set_action_table((TObjMotionAction *)((s32)action_table));
     init_collision_body_parts(this, core_body_parts, 1);
     variant = 0;
     movementParameters = &core_movement;
@@ -152,7 +152,7 @@ void TBoss3VoloptCore::init_params() {
     referenceHp = hp;
     set_param(0x2E);
     update_prev_position();
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    ((TObjEnemy *)this)->register_by_id();
     load_entry_params_volopt(0x18);
     m_388 |= 0x10000;
     orbit_angle = 0;
@@ -190,7 +190,7 @@ void TBoss3VoloptCore::release() {}
 
 void TBoss3VoloptCore::run_task() {
     vol_opt_active_hit_zone = calc_hit_zone_index();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_80040558();
         return;
     }
@@ -274,7 +274,7 @@ void TBoss3VoloptCore::render() {
         } else {
             rotate_matrix_y(0, rotation_y);
         }
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object(model);
         } else {
             draw();

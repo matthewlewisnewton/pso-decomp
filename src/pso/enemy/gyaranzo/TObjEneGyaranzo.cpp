@@ -717,7 +717,7 @@ s32 get_bml_motion(u32, int);
 s32 free_bin_model_request(u32, s32);
 u32 load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 s32 get_camera_mode__11TCameraCtrlFv();
-s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
+s32 copy_body_to_center__9TObjCharaFv(void *);
 VObj_800D3BA0_800D3B38 * init__11TBreakUpMdlFPviif(void *, s32, s32, f32);
 u32 load_enemy_bml_resource_named(void *, void *);
 void __dt__15TObjEnemyCustomFv(void *, int);
@@ -1477,7 +1477,7 @@ void TObjEneGyaranzo::render() {
             push_matrix();
             post_translate_matrix(((u8 *)this) + 0x38);
             rotate_matrix_y(0, this->rotation_y);
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 draw_chunk_object((int) (*(s32 *)((s8 *)((u8 *)this) + 0x34)));
             } else if (this->m_388 & 4) {
                 if (((Obj_800D35D8 *)((u8 *)this))->light.m8() != 0) {
@@ -1606,7 +1606,7 @@ void TObjEneGyaranzo::dispatch_state_update() {
 void TObjEneGyaranzo::run_task() {
     s32 temp_r3;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((s32 (*)(void *))update_demo__15TObjEneGyaranzoFv)(this);
         return;
     }
@@ -1625,7 +1625,7 @@ void TObjEneGyaranzo::run_task() {
     }
     ((TObjEneGyaranzo *)((u8 *)this))->dispatch_state_update();
     this->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv(this);
+    copy_body_to_center__9TObjCharaFv(this);
     submit_cursor_candidate(this, -1);
     minimap_render_dot(((u8 *)this) + 0x38, -0x5DB4, 1, 0);
 }
@@ -1729,7 +1729,7 @@ u8 *__ct__15TObjEneGyaranzoFP7TObjectPv(TObjEneGyaranzo *arg0, s32 arg1, u8 *arg
     VecCopy((Vec *)((u8 *)arg0 + 0x290), (const Vec *)(VecCopy((Vec *)((u8 *)arg0 + 0x29C), (const Vec *)((u8 *)arg0 + 0x38))));
     *(s32 *)((s8 *)arg0 + 0xDC) = (s32) *(s32 *)((s8 *)(*(u8 * *)&gyaranzo_bml_resource) + 0x430);
     arg0->action_table = gyaranzo_action_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)arg0->action_table);
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)arg0->action_table));
     init_collision_body_parts(arg0, (void *) lbl_804941F8, 1);
     arg0->variant = 0;
     arg0->movementParameters = (u8 *) lbl_804941DC;

@@ -242,7 +242,7 @@ s32 rotate_matrix_z(int, int);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 rotate_matrix_x(int, int);
 s32 scale_current_matrix(Vec_800DEDC4 *);
-int check_demo_mode__10TObjPlayerFv(void*);
+int check_demo_mode__Fv(void*);
 int clear__24ModelNodePositionCaptureFv(void*);
 }
 
@@ -341,8 +341,8 @@ TObjEnePanarms::TObjEnePanarms(TObject *parent, void *setData) : TObjEnemy(paren
     model = (void *)get_bml_model(TObjEnePanarms__entry_params_resource, 0);
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     collision_body_parts = init_collision_body_parts(this, panarms_collision_body, 1);
-    set_field_d8((s32)panarms_motion_param_table);
-    set_field_dc((s32)TObjEnePanarms__entry_params_resource->motions);
+    set_action_table((TObjMotionAction *)((s32)panarms_motion_param_table));
+    set_motion_list((BmlMotionEntry *)((s32)TObjEnePanarms__entry_params_resource->motions));
     set_animation(0);
     set_field_b8(0);
     VecCopy((Vec *)&m_2fc, &position);
@@ -412,7 +412,7 @@ void TObjEnePanarms::destroy_handles() {
 
 void TObjEnePanarms::run_task() {
     PanarmsStateFn update;
-    if (this->state != 0 && TObjPlayer::check_demo_mode() != 0) {
+    if (this->state != 0 && check_demo_mode() != 0) {
         set_state(0);
     }
     sub_800DE390();
@@ -782,7 +782,7 @@ void TObjEnePanarms::vfunc_61() { this->actorFlags &= 0xfffffeff; }
 
 void TObjEnePanarms::enter_idle() { *(s32 *)((s8 *)this + 0x3E0) = 1; *(s32 *)((s8 *)this + 0x3DC) = 1; }
 
-void TObjEnePanarms::try_activate() { if (check_demo_mode__10TObjPlayerFv(this) == 0) { set_state((s32)((void*)((void*)1))); } }
+void TObjEnePanarms::try_activate() { if (check_demo_mode__Fv(this) == 0) { set_state((s32)((void*)((void*)1))); } }
 
 void TObjEnePanarms::enter_wait_hidden() {
     u8 *temp_r4;

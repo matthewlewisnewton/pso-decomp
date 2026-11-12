@@ -608,8 +608,8 @@ TObjEneEpsilonBody::TObjEneEpsilonBody(TObject *parent, void *set_data) : TObjEn
     flags |= 2;
     set_guard_state();
     texlist = TObjFish__sub_8001EDB0(lbl_805D6FA0, 0);
-    set_field_d8((s32)lbl_804F2230);
-    set_field_dc((s32)(lbl_805D6FA0)->motions);
+    set_action_table((TObjMotionAction *)((s32)lbl_804F2230));
+    set_motion_list((BmlMotionEntry *)((s32)(lbl_805D6FA0)->motions));
     set_animation(requested_action);
     set_field_b8(requested_action);
     reset_hp((BattleBaseStats *)lbl_805D6F80, (AttackParams *)lbl_805D6F84, (ActorParamBlock *)lbl_805D6F88);
@@ -679,7 +679,7 @@ void *create_TObjEneEpsilonBody(void *set_data) {
 }
 
 void TObjEneEpsilonBody::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_105();
         return;
     }
@@ -1416,7 +1416,7 @@ void TObjEneEpsilonBody::action_destroy(s32 reason) {
 void TObjEneEpsilonBody::render() {
     s32 var_r31;
     s32 i;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_106();
         return;
     }

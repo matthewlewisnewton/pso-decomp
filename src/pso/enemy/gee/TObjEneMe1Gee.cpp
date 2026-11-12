@@ -1997,7 +1997,7 @@ void TUnk_8049387C::vfunc_105() {
 void TUnk_8049387C::vfunc_106() { *(int*)((char*)this + 0x34) = *(int*)((char*)*(int*)((char*)(*(int *)&TObjEneMe1Gee__resource_bundle) + 0x42c) + 0x8); this->texlist = *(int*)((char*)*(int*)((char*)(*(int *)&TObjEneMe1Gee__resource_bundle) + 0x42c) + 0xc); }
 
 void TObjEneMe1Gee__sub_800C8BCC(u8 *arg0) {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TUnk_8049387C *)(arg0))->vfunc_114();
         return;
     }
@@ -2070,7 +2070,7 @@ void render__13TObjEneMe1GeeFv(u8 *ene_me1_gee) {
     s32 var_r30;
     s32 var_r29;
 
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneMe1Gee *)(ene_me1_gee))->vfunc_115();
         return;
     }
@@ -3723,7 +3723,7 @@ int TObjEneMe1Gee__sub_800CC2BC(void) {  return (*(int *)&TObjEneMe1Gee__resourc
 
 void run_task__13TObjEneMe1GeeFv(u8 *arg0) {
     u8 *object;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneMe1Gee *)(arg0))->vfunc_114();
         return;
     }
@@ -3761,8 +3761,8 @@ void TObjEneMe1Gee::init_state() {
     this->init_position_vectors();
     this->vfunc_106();
     init_model__9TObjEneDDFP13CollisionBodyl(this, (void *) lbl_8049379C, 1);
-    this->set_field_d8((s32)((void *) TObjEneMe1Gee__motion_parameters));
-    this->set_field_dc((int) (*(s32 *)((s8 *)(*(u8 * *)&(*(int *)&TObjEneMe1Gee__resource_bundle)) + 0x430)));
+    this->set_action_table((TObjMotionAction *)((s32)((void *) TObjEneMe1Gee__motion_parameters)));
+    this->set_motion_list((BmlMotionEntry *)((int) (*(s32 *)((s8 *)(*(u8 * *)&(*(int *)&TObjEneMe1Gee__resource_bundle)) + 0x430))));
     *(s16 *)((s8 *)((u8 *)this) + 0xB8) = 0;
     set_animation((*(s16 *)((s8 *)((u8 *)this) + 0xB8)));
     this->set_field_b8((int) (*(s16 *)((s8 *)((u8 *)this) + 0xB8)));

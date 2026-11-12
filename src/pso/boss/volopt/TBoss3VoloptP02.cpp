@@ -257,7 +257,7 @@ void TBoss3VoloptP02::init_params() {
     m_name = TBoss3VoloptP02_name;
     motion_list = lbl_805D4CE4->motions;
     action_table = action_entries;
-    set_field_d8((s32)action_table);
+    set_action_table((TObjMotionAction *)((s32)action_table));
     init_collision_body_parts(this, collision_bodies, 5);
     variant = 0;
     movementParameters = &movement_params;
@@ -270,7 +270,7 @@ void TBoss3VoloptP02::init_params() {
     referenceHp = hp;
     set_param(0x2E);
     update_prev_position();
-    ((TBoss3Volopt *)this)->reset_photon_effect();
+    ((TObjEnemy *)this)->register_by_id();
     load_params_from_table(0x13);
     for (i = 0; i < 4; i++) {
         arc_lines[i] = NULL;
@@ -401,7 +401,7 @@ void TBoss3VoloptP02::run_task() {
     node_44_color[5] = (s8)fabs_float(wave * pulse_color[1]);
     node_44_color[4] = (s8)fabs_float(wave * pulse_color[2]);
     pulse_angle += pulse_speed;
-    if (TObjPlayer::check_demo_mode() != 1) {
+    if (check_demo_mode() != 1) {
         if (has_flag_0x800() != 0) {
             vfunc_63();
         } else if (test_flag30_512() != 0) {
@@ -432,7 +432,7 @@ void TBoss3VoloptP02::run_task() {
             }
             run_state();
             update_prev_position();
-            ((TBoss3VoloptHiraisin *)this)->copy_position();
+            ((TObjChara *)this)->copy_body_to_center();
             submit_cursor_candidate(this, -1);
             minimap_render_dot(&position, -0x5DB4, 1, 0);
             fade.update();
@@ -472,7 +472,7 @@ void TBoss3VoloptP02::render() {
         model_render_flags &= ~0x400;
         post_translate_matrix(&position);
         rotate_matrix_y(0, rotation_y);
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object(model);
         } else {
             draw();

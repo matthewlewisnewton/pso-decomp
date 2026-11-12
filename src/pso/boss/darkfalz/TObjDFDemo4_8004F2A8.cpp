@@ -63,7 +63,7 @@ extern Vec_8004F3D4 lbl_804373F4[];
 extern Vec_8004F3D4 boss4_type2_effect_offset_vec[];
 extern const f32 lbl_805D89FC;
 extern const f32 lbl_805D8A00;
-void TObjDFDemo4::sub_8004F2A8() {
+void TObjDFDemo4::draw_afterimages() {
     Obj_8004F2A8 *arg0 = (Obj_8004F2A8 *)this;
     f32 alpha;
     s32 i;
@@ -92,7 +92,7 @@ void TObjDFDemo4::sub_8004F2A8() {
     }
 }
 
-void TObjDFDemo4::render() { sub_8004F2A8(); sub_8004F1FC(); }
+void TObjDFDemo4::render() { draw_afterimages(); draw_body(); }
 typedef struct Self_8004F3D4 Self_8004F3D4;
 typedef struct Vec_8004F3D4 Vec_8004F3D4;
 #pragma inline_depth(1)

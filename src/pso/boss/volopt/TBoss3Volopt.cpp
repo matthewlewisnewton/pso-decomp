@@ -277,8 +277,8 @@ void TObject::pause_update() {
     m_flags |= PAUSE_UPDATE;
 }
 
-BOOL TUnk_804B6C24::check_value_equals(s32 name) {
-    return (s32)m_name == name;
+BOOL TObject::check_value_equals(const char *name) {
+    return m_name == name;
 }
 
 void clear_volopt_cage_flag() {
@@ -378,14 +378,14 @@ s32 TBoss3Volopt::get_field_3e0() {
     return m_3e0;
 }
 
-void TBoss3Volopt::reset_photon_effect() {
-    ((TObjPlayer *)this)->register_object_by_id();
+void TObjEnemy::register_by_id() {
+    register_object_by_id();
 }
 
 TBoss3Volopt::TBoss3Volopt(void *set_data) : TObjEnemyCustom(tl_04) {
     m_name = TBoss3Volopt_name;
     apply_set_data(set_data);
-    reset_photon_effect();
+    register_by_id();
     move_to_arena(0);
     VecCopy(&position, VecCopy((Vec *)&m_2fc, &boss3_volopt_spawn_pos));
     actorFlags |= 0x06040000;
@@ -1334,8 +1334,8 @@ void TBoss3Volopt::push_actors_out(s32 phase2) {
         actor = TObjPlayer::get_player_data(i);
         if (actor == NULL) continue;
         if (actor->bodies == NULL) continue;
-        if (((TUnk_804B6C24 *)actor)->check_value_equals((s32)TOCapsuleAncient01::class_name) != 0) continue;
-        if (((TUnk_804B6C24 *)actor)->check_value_equals(door_vo_ship_class_name) != 0) continue;
+        if (((TObject *)actor)->check_value_equals(TOCapsuleAncient01::class_name) != 0) continue;
+        if (((TObject *)actor)->check_value_equals((const char *)door_vo_ship_class_name) != 0) continue;
         if (!(actor->bodies->flags & 0x20000)) continue;
         if (fabs_float(actor->position.z - center_z) > 1000.0f) {
             Vec pos = *&actor->position;

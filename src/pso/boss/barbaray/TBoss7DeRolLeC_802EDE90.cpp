@@ -34,7 +34,7 @@ TBoss7DeRolLeC::TBoss7DeRolLeC(TObject *parent, void *set_data) : TObjEneDD_ST(p
     unk_620 = (TBoss7DeRolLeCParams *)get_battle_movement_params(15);
     invoke_initialization_hook(set_data);
     unk_628 = 0;
-    if (exchange_object_state((s32)&flags, 1) && (flags & 0x12008) == 0x12008) {
+    if (exchange_object_state((void *)&flags, 1) && (flags & 0x12008) == 0x12008) {
         unk_628 |= 0x8000;
     }
     init_position_vectors();
@@ -45,8 +45,8 @@ TBoss7DeRolLeC::TBoss7DeRolLeC(TObject *parent, void *set_data) : TObjEneDD_ST(p
     set_collision_body(&unk_3C0);
     transform_part_positions();
     motion_flags = 0;
-    set_field_d8((s32)&lbl_804E3D1C[4]);
-    set_field_dc((s32)((BmlResource *)lbl_805D6918)->motions);
+    set_action_table((TObjMotionAction *)((s32)&lbl_804E3D1C[4]));
+    set_motion_list((BmlMotionEntry *)((s32)((BmlResource *)lbl_805D6918)->motions));
     requested_action = 0;
     set_animation(requested_action);
     set_field_b8(requested_action);

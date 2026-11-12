@@ -473,7 +473,7 @@ void vfunc_94__16TObjEneMerillLiaFv(u8 *arg0);
 extern const f32 lbl_805DA2EC;
 extern const f32 lbl_805DA334;
 extern const f32 lbl_805DA338;
-s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
+s32 copy_body_to_center__9TObjCharaFv(void *);
 s32 get_current_floor();
 f32 xz_distance_squared(void *, void *);
 extern const f32 TObjEneMerillLia__data_805DA2F4;
@@ -1505,7 +1505,7 @@ void TObjEneMerillLia::render() {
     translate_matrix(0, (f32) TObjEneMerillLia__data_805DA300, (f32) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_380, (f32) TObjEneMerillLia__data_805DA300);
     post_translate_matrix(((u8 *)this) + 0x38);
     rotate_matrix_y(0, (int) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_60);
-    if (TObjPlayer::check_demo_mode() == 1)
+    if (check_demo_mode() == 1)
     {
       draw_chunk_object((void *)((int) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_34));
     }
@@ -1596,7 +1596,7 @@ typedef struct VBase_18_477421 VBase_18_477421;
 typedef struct VObj_18_477421 VObj_18_477421;
 void TObjEneMerillLia::run_task() {
   s16 temp_r0;
-  if (TObjPlayer::check_demo_mode() == 1)
+  if (check_demo_mode() == 1)
   {
     (this->vfunc_101());
     return;
@@ -1650,7 +1650,7 @@ void TObjEneMerillLia::run_task() {
     }
   }
   this->update_prev_position();
-  copy_position__20TBoss3VoloptHiraisinFv((void *) ((u8 *)this));
+  copy_body_to_center__9TObjCharaFv((void *) ((u8 *)this));
   submit_cursor_candidate((void *) this, -1);
   this->m_2b4 = (f32) ((this->m_2b4) + TObjEneMerillLia__data_805DA2F4);
 }
@@ -1776,12 +1776,12 @@ void *TObjEneMerillLia__ct(void *arg0v, void *arg1, void *arg2) {
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D2A88;
     ((VObj_18_4c2345 *) arg0)->m79((s32)arg2);
     ((TObjEneMerillLia *)arg0)->init_params_from_position();
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(s32 *)((s8 *)arg0 + 0x334) = *(s32 *)((s8 *)arg0 + 0x368);
     ((TObjEneMerillLia *)arg0)->clamp_and_apply_mode_param();
     ((TObjEneMerillLia *)arg0)->load_entry_params(*(s32 *)((s8 *)arg0 + 0x368));
     *(void **)((s8 *)arg0 + 0xD8) = lbl_80494570;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(*(void **)((s8 *)arg0 + 0xD8)));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(*(void **)((s8 *)arg0 + 0xD8))));
     *(s32 *)((s8 *)arg0 + 0xDC) = *(s32 *)((s8 *)TObjEneMerillLia__entry_params_resource + 0x430);
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
@@ -1791,7 +1791,7 @@ void *TObjEneMerillLia__ct(void *arg0v, void *arg1, void *arg2) {
     *(u8 **)((s8 *)arg0 + 0x350) = (u8 *) lbl_80494650 + *(s32 *)((s8 *)arg0 + 0x334) * 0x1C;
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
     ((TObjEnemy *)arg0)->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv(arg0);
+    copy_body_to_center__9TObjCharaFv(arg0);
     ((TObjPlayer *)arg0)->register_object_by_id();
     *(s32 *)((s8 *)arg0 + 0x2AC) = lbl_805DA340 * (lbl_805DA344 * random_ratio__9TObjCharaFv(arg0));
     *(s16 *)((s8 *)arg0 + 0x33A) = 0xF;

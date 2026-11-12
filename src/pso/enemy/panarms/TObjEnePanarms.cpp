@@ -475,18 +475,18 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *setData, s32 index) : TObj
     apply_set_data(setData);
     // Same statements as TObjEnemy::clear_lobby_object_state (0x800F5D80); the original expands them here.
     PanBARAObjectState objectState;
-    if (exchange_object_state((s32)&objectState, 1) != 0) {
+    if (exchange_object_state((void *)(s32)&objectState, 1) != 0) {
         objectState.unk_0 = 0;
         objectState.unk_6 = 0;
-        exchange_object_state((s32)&objectState, 0);
+        exchange_object_state((void *)(s32)&objectState, 0);
     }
     m_380 = index;
     texlist = TObjFish__sub_8001EDB0(TObjEnePanarms__entry_params_resource, lbl_8043CD38[m_380]);
     model = (void *)get_bml_model(TObjEnePanarms__entry_params_resource, lbl_8043CD38[m_380]);
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     collision_body_parts = init_collision_body_parts(this, lbl_80495458, 1);
-    set_field_d8((s32)panbara_action_tables[m_380]);
-    set_field_dc((s32)TObjEnePanarms__entry_params_resource->motions);
+    set_action_table((TObjMotionAction *)((s32)panbara_action_tables[m_380]));
+    set_motion_list((BmlMotionEntry *)((s32)TObjEnePanarms__entry_params_resource->motions));
     set_animation(0);
     set_field_b8(0);
     VecCopy((Vec *)&m_2fc, &position);
@@ -505,7 +505,7 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *setData, s32 index) : TObj
         return;
     }
     referenceHp = hp;
-    ((TBoss3Volopt *)this)->reset_photon_effect(); // 0x8003F0E8: generic helper, owned under this name by 24 callers
+    ((TObjEnemy *)this)->register_by_id();
     movementParameters = NULL;
     if (m_380 == 0) {
         set_param(23);
@@ -559,7 +559,7 @@ void TObjEnePanBARA::run_task() {
     Vec_800E2200 a;
     f32 s;
 
-    if (m_378 != 0 && TObjPlayer::check_demo_mode() != 0) {
+    if (m_378 != 0 && check_demo_mode() != 0) {
         set_state__14TObjEnePanBARAFl(this, 0);
     }
     pad_3c8.x = ((Tgt_800E2200 *)m_3a0)->x - position.x;

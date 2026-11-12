@@ -184,7 +184,7 @@ int reset_coords__15TObjBoss2TunnelFv();
 s32 get_view_matrix__11TCameraCtrlFv();
 int vec3_add_to(void*, void*);
 int TCameraCtrl__sub_8006B370(f32 farg0);
-f32 vec_squared_length();
+f32 vec_squared_length(Vec *);
 f32 normalize_vector(void *);
 }
 
@@ -233,23 +233,23 @@ void TObjBoss2Tunnel::finalize_and_send_60() {
 }
 
 extern "C" {
-f32 TObjBoss2Tunnel::update_scale() {
+f32 normalize_vector_checked(Vec *vector) {
     f32 var_f31;
     f32 temp_f0;
 
     var_f31 = 0.0f;
-    if (0.0f != vec_squared_length()) {
-        var_f31 = normalize_vector(this);
+    if (0.0f != vec_squared_length(vector)) {
+        var_f31 = normalize_vector(vector);
         if (TCameraCtrl__sub_8006B370(var_f31) != 0) {
-            *(f32 *)&this->m_name = var_f31 = 0.0f;
-            *(f32 *)&this->m_flags = var_f31;
-            *(f32 *)&this->m_prev = var_f31;
+            vector->x = var_f31 = 0.0f;
+            vector->y = var_f31;
+            vector->z = var_f31;
         }
     } else {
         temp_f0 = 0.0f;
-        *(f32 *)&this->m_name = temp_f0;
-        *(f32 *)&this->m_flags = temp_f0;
-        *(f32 *)&this->m_prev = temp_f0;
+        vector->x = temp_f0;
+        vector->y = temp_f0;
+        vector->z = temp_f0;
     }
     return var_f31;
 }

@@ -122,7 +122,7 @@ extern const f64 lbl_80442200;
 extern const f32 lbl_805DB870;
 void queue_destruction__7TObjectFv(void *arg0);
 int get_player_data__10TObjPlayerFi(int a0);
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
+s32 check_value_equals__7TObjectFPCc(void *, s32);
 extern s32 TOMineTrap__data_805D3080;
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
@@ -278,7 +278,7 @@ void TOMineTrap::run_task() {
                     }
                     record_attack_source(target, get_trap_type());
                 }
-            } else if (check_value_equals__13TUnk_804B6C24Fl(p, TOMineTrap__data_805D3080) != 0) {
+            } else if (check_value_equals__7TObjectFPCc(p, TOMineTrap__data_805D3080) != 0) {
                 if (horizontal_distance_squared(&position, &p->position) < m_350 * m_350) {
                     target = (u8 *)p;
                     ((TObjChara *)target)->receive_physical_attack(this, TOMineTrap__data_805DB868);
@@ -305,7 +305,7 @@ void TOMineTrap::destroy_matching_traps() {
     s32 i;
     for (i = registered_player_count + lbl_805D5870; i < lbl_805D5868; i++) {
         p = (void *)get_player_data__10TObjPlayerFi(i);
-        if (p != 0 && check_value_equals__13TUnk_804B6C24Fl(p, TOMineTrap__data_805D3080) != 0) {
+        if (p != 0 && check_value_equals__7TObjectFPCc(p, TOMineTrap__data_805D3080) != 0) {
             queue_destruction__7TObjectFv(p);
         }
     }
@@ -397,7 +397,7 @@ TOMineTrap::TOMineTrap(TObjBase *owner, s16 kind, s16 slot) : TOMine(tl_05) {
         }
         m_37e = slot + (kind * 20 + get_trap_type() * 80);
         VecCopy(&float_position, VecCopy(&home_position, VecCopy(&position, &owner->position)));
-        ((TObjPlayer *)this)->init_position_vectors();
+        ((TObjChara *)this)->initialize_position_copies();
         calc_attach_pos();
         spawn_disp_objects();
         m_370 = owner->rotation_y;
@@ -721,10 +721,10 @@ void TOMine::sub_80170BEC() {
         for (i = lbl_805D5870; i < lbl_805D5868; i++) {
             p = (u8 *)get_player_data__10TObjPlayerFi(i);
             if (p != NULL && p != ((u8 *)this) &&
-                (check_value_equals__13TUnk_804B6C24Fl(p, TOMineIcon01__name) != 0 ||
-                 check_value_equals__13TUnk_804B6C24Fl(p, TOMineIcon02__name) != 0 ||
-                 check_value_equals__13TUnk_804B6C24Fl(p, TOMineIcon03__name) != 0 ||
-                 check_value_equals__13TUnk_804B6C24Fl(p, TOMineIcon04__name) != 0) &&
+                (check_value_equals__7TObjectFPCc(p, TOMineIcon01__name) != 0 ||
+                 check_value_equals__7TObjectFPCc(p, TOMineIcon02__name) != 0 ||
+                 check_value_equals__7TObjectFPCc(p, TOMineIcon03__name) != 0 ||
+                 check_value_equals__7TObjectFPCc(p, TOMineIcon04__name) != 0) &&
                 *(s32 *)(p + 0x344) == 1 && *(s32 *)(p + 0x348) == *(s32 *)(((u8 *)this) + 0x348)) {
                 ((TOMine *)p)->update_trigger();
             }

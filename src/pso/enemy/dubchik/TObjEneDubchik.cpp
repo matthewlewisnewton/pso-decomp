@@ -491,7 +491,7 @@ TObjEneDubchik::TObjEneDubchik(TObject *parent, void *set_data) : TObjEnemyCusto
     state36C = *(s16 *)((u8 *)set_data + 0x3E);
     init_level_stats(variant);
     action_table = (TObjMotionAction *)&lbl_804910F4;
-    set_field_d8((s32)action_table);
+    set_action_table((TObjMotionAction *)((s32)action_table));
     init_collision_body_parts(this, dubchik_collision_body, 1);
     movementParameters = &dubchik_movement;
     bind_enemy_combat_stats((u8 *)((s32 *)lbl_805009A0)[variant], (u8 *)lbl_805009A8[variant], (u8 *)lbl_805009B0[variant]);
@@ -660,7 +660,7 @@ void *TObjPlayer::create_dubchik(void *arg0) {
 
 void TObjEneDubchik::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjPlayer__sub_800AA330(arg0);
         return;
     }
@@ -725,7 +725,7 @@ void TObjEneDubchik::render() {
             rotate_matrix_y(0, (int) (((TObjEneDubchik *)arg0)->rotation_y));
             scale_matrix(0, 1.3f, 1.3f, 1.3f);
             model_render_flags &= 0xFFFFFBFF;
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 draw_chunk_object((void *)(*(s32 *)((s8 *)arg0 + 0x34)));
             } else if (((TObjEneDubchik *)arg0)->m_388 & 4) {
                 if (((Self_800AA334 *)arg0)->sub.m8() != 0) {

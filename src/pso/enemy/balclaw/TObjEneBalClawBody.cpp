@@ -496,7 +496,7 @@ TObjEneBalClawBody::TObjEneBalClawBody(TObject *parent, void *set_data) : TObjEn
     VecCopy((Vec *)(&m_290), (const Vec *)(VecCopy((Vec *)(&m_29c), (const Vec *)(&position))));
     motion_list = lbl_805D4F20->motions;
     action_table = balclaw_body_actions;
-    set_field_d8((s32)(action_table));
+    set_action_table((TObjMotionAction *)((s32)(action_table)));
     init_collision_body_parts(this, &balclaw_body_collision, 1);
     requested_action = 0;
     set_animation(requested_action);
@@ -565,7 +565,7 @@ void TObjEneBalClawBody::run_task() {
     CollisionBody *body;
 
     TObjEneBalClaw__sub_8008D68C();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_8008DC90();
         sub_8008FC0C();
         return;
@@ -1257,7 +1257,7 @@ void TObjEneBalClawBody::render() {
             TObjPlayer::toggle_particle_effect();
             push_matrix();
             model_render_flags &= 0xFFFFFBFF;
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 TObjPlayer::set_visibility_flags_by_count(arg0, 4);
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_x(0, *(s32 *)((s8 *)arg0 + 0x5C));

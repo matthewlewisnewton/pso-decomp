@@ -271,7 +271,7 @@ struct Vec_800E9EFC { f32 x, y, z; };
 u16 find_nearest_visible_player(void *, void *, f32);
 void queue_destruction__7TObjectFv(void *);
 u8 * get_bml_motion(s32, s32);
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
+s32 exchange_object_state__9TObjEnemyFPvs(void *, void *, int);
 void transform_to_view__11TCameraCtrlFii(s32, s32);
 void TObjPlayer__sub_800E80C0(u8 *arg0);
 S_800E80E8 * TObjPlayer__sub_800E80E8(S_800E80E8 *dst, S_800E80E8 *src);
@@ -917,12 +917,12 @@ u8 *TObjEneSlime__ct(TObjEneSlime *ene_slime, s32 arg1, u8 *arg2) {
     *(s32 *)((s8 *)ene_slime + 0) = (s32) TObjEneSlime__name;
     ((TObjEneSlime *)(ene_slime))->apply_set_data(arg2);
     ((TObjEneSlime *)(ene_slime))->clear_lobby_object_state();
-    ((TBoss3Volopt *)ene_slime)->reset_photon_effect();
+    ((TObjEnemy *)ene_slime)->register_by_id();
     TBoss4DarkFalz__sub_8004B4F0(((u8 *)ene_slime + 0x374), (arg2));
     ene_slime->m_3b4 = (s32) *(s16 *)((s8 *)arg2 + 2);
     temp_r0 = ene_slime->m_3b4;
     if (temp_r0 < 1) {
-        if (TObjPlayer::check_demo_mode() != 0) {
+        if (check_demo_mode() != 0) {
             ene_slime->m_3b4 = 3;
         }
     } else if (temp_r0 > 4) {
@@ -942,10 +942,10 @@ void TObjEneSlime::vfunc_63() { this->release_split_slimes(); }
 void TObjEneSlime::run_task() {
     s32 sp8;
 
-    if ((TObjPlayer::check_demo_mode() == 0) && (has_no_active_slot((O_800EB8DC *)this) != 0)) {
+    if ((check_demo_mode() == 0) && (has_no_active_slot((O_800EB8DC *)this) != 0)) {
         sp8 = 0x800;
         send_6x0A_enemy_state(&sp8);
-        exchange_object_state((s32)&sp8, (s16)0);
+        exchange_object_state((void *)&sp8, (s16)0);
         ((VObj_800EBB18_800EB9F0 *)this)->m77(&sp8);
         send_entity_set_flags();
         queue_destruction__7TObjectFv(this);
@@ -958,7 +958,7 @@ void TObjEneSlime::render() {
     s32 temp_r30_2;
     s32 temp_r31;
     temp_r31 = this->defer_render();
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         temp_r30 = (this->state36C * 4) & 4;
         debug_printf_at(0x130020, "TYPE [0/1] : %s", (int) (*(s32 *)((s8 *)((u8 *)slime_debug_label_table + temp_r30) + 0)));
         TObjPlayer::toggle_particle_effect();
@@ -1131,10 +1131,10 @@ u8 *init__15TObjEneSlimeOneFPviii(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjEneSlimeOne_class_name;
     ((TObjChara *)arg0)->add_flags_2e4(2);
     ((TObjEneSlimeOne *)(arg0))->apply_set_data((void *)arg3);
-    if (exchange_object_state__9TObjEnemyFls(arg0, &stack.sp8, 1) != 0) {
+    if (exchange_object_state__9TObjEnemyFPvs(arg0, &stack.sp8, 1) != 0) {
         stack.sp8 = 0;
         stack.spE = 0;
-        exchange_object_state__9TObjEnemyFls(arg0, &stack.sp8, 0);
+        exchange_object_state__9TObjEnemyFPvs(arg0, &stack.sp8, 0);
     }
     ((TObjEneSlimeOne *)arg0)->parent_slime = arg2;
     ((TObjEneSlimeOne *)arg0)->initialize_slime_instance_state();
@@ -1152,10 +1152,10 @@ u8 *TObjEneSlimeOne__ct(u8 *actor, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     *(s32 *)((s8 *)actor + 0) = (s32) TObjEneSlimeOne_class_name;
     ((TObjChara *)actor)->add_flags_2e4(2);
     ((TObjEneSlimeOne *)(actor))->apply_set_data((void *)arg3);
-    if (exchange_object_state__9TObjEnemyFls(actor, &stack.sp8, 1) != 0) {
+    if (exchange_object_state__9TObjEnemyFPvs(actor, &stack.sp8, 1) != 0) {
         stack.sp8 = 0;
         stack.spE = 0;
-        exchange_object_state__9TObjEnemyFls(actor, &stack.sp8, 0);
+        exchange_object_state__9TObjEnemyFPvs(actor, &stack.sp8, 0);
     }
     ((TObjEneSlimeOne *)actor)->parent_slime = arg2;
     VecCopy((Vec *)(actor + 0x3DC), (const Vec *)(arg4));
@@ -1185,8 +1185,8 @@ void TObjEneSlimeOne::initialize_slime_instance_state() {
   *((s32 *) (((s8 *) actor) + 0x34)) = get_bml_model((s32)(((TObjEneSlimeOne *)actor)->model_archive), id);
   VecCopy((Vec *)(actor + 0x44), (const Vec *)((u8 *)VecCopy((Vec *)(actor + 0x50), (const Vec *)((void *)VecCopy((Vec *)(actor + 0x74), (const Vec *)(actor + 0x38))))));
   *((s32 *) (((s8 *) actor) + 0x38C)) = init_collision_body_parts(actor, lbl_80496370, 1);
-  ((TObjMotion *)actor)->set_field_d8((s32)lbl_8049639C);
-  ((TObjMotion *)actor)->set_field_dc(*((s32 *) (((s8 *) (((TObjEneSlimeOne *)actor)->model_archive)) + 0x430)));
+  ((TObjMotion *)actor)->set_action_table((TObjMotionAction *)((s32)lbl_8049639C));
+  ((TObjMotion *)actor)->set_motion_list((BmlMotionEntry *)(*((s32 *) (((s8 *) (((TObjEneSlimeOne *)actor)->model_archive)) + 0x430))));
   ((TObjMotion *)actor)->set_animation(0);
   ((TObjMotion *)actor)->set_field_b8(0);
   VecCopy((Vec *)(new_var = actor + 0x2FC), (const Vec *)(actor + 0x38));
@@ -1203,7 +1203,7 @@ void TObjEneSlimeOne::initialize_slime_instance_state() {
     ((TObjEnemy *)actor)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x34)), (u8 *)(get_battle_attack_params(0x34)), (u8 *)(get_battle_resistance_params(0x34)));
   }
   ((TObjEneSlimeOne *)actor)->referenceHp = ((TObjEneSlimeOne *)actor)->hp;
-  ((TBoss3Volopt *)actor)->reset_photon_effect();
+  ((TObjEnemy *)actor)->register_by_id();
   *((s32 *) (((s8 *) actor) + 0x350)) = 0;
   if ((*new_var2) == 0)
   {
@@ -1236,7 +1236,7 @@ TObjEneSlimeOne::~TObjEneSlimeOne() {
 }
 
 void TObjEneSlimeOne::run_task() {
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if ((s32)this->state != 13 && (this->parent_slime == 0 || ((TObject *)this->parent_slime)->all_parents_unqueued_for_destruction() == 0)) {
             set_state(13);
         }
@@ -1263,7 +1263,7 @@ void TObjEneSlimeOne::run_task() {
 }
 void render__15TObjEneSlimeOneFv(TObjEneSlimeOne *ene_slime_one) {
     s32 temp_r31;
-    if ((TObjPlayer::check_demo_mode() == 0) && !(ene_slime_one->alpha <= 0.0f) && (((VObj_18_26a62c *)(ene_slime_one))->m8(500.0f, 20.0f) != 0)) {
+    if ((check_demo_mode() == 0) && !(ene_slime_one->alpha <= 0.0f) && (((VObj_18_26a62c *)(ene_slime_one))->m8(500.0f, 20.0f) != 0)) {
         temp_r31 = ene_slime_one->defer_render();
         if (ene_slime_one->alpha < 1.0f) {
             TObjPlayer__sub_800EBE48(ene_slime_one->alpha);
@@ -2135,9 +2135,9 @@ void *TObjEneSlimeTailAttack__ct(TObjEneSlimeTailAttack *ene_slime_tail_attack, 
   ene_slime_tail_attack->texlist = TObjFish__sub_8001EDB0((s32) inst, id);
   *((s32 *) (((s8 *) ene_slime_tail_attack) + 0x34)) = get_bml_model((s32) inst, id);
   ene_slime_tail_attack->action_table = (TObjMotionAction *)lbl_8049639C;
-  ((TObjMotion *)ene_slime_tail_attack)->set_field_d8((s32) ((u8 *) lbl_8049639C));
+  ((TObjMotion *)ene_slime_tail_attack)->set_action_table((TObjMotionAction *)((s32) ((u8 *) lbl_8049639C)));
   *((s32 *) (((s8 *) ene_slime_tail_attack) + 0xDC)) = *((s32 *) (((s8 *) inst) + 0x430));
-  ((TObjMotion *)ene_slime_tail_attack)->set_field_dc(*((s32 *) (((s8 *) inst) + 0x430)));
+  ((TObjMotion *)ene_slime_tail_attack)->set_motion_list((BmlMotionEntry *)(*((s32 *) (((s8 *) inst) + 0x430))));
   ene_slime_tail_attack->requested_action = 6;
   ((TObjMotion *)ene_slime_tail_attack)->set_animation(ene_slime_tail_attack->requested_action);
   ((TObjMotion *)ene_slime_tail_attack)->set_field_b8(ene_slime_tail_attack->requested_action);

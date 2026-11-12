@@ -83,8 +83,8 @@ TObjEneMorfosArm::TObjEneMorfosArm(TObject *parent, void *owner) : TObjMotion(pa
     model = *(void **)(*(u8 **)(TObjEneMorfosArm__parent_morfos_instance + 0x42C) + 8);
     resource = *(u8 **)(TObjEneMorfosArm__parent_morfos_instance + 0x42C);
     texlist = *(s32 *)(resource + 0xC);
-    set_field_d8((s32)morfos_arm_motion_params);
-    set_field_dc(*(s32 *)(TObjEneMorfosArm__parent_morfos_instance + 0x430));
+    set_action_table((TObjMotionAction *)((s32)morfos_arm_motion_params));
+    set_motion_list((BmlMotionEntry *)(*(s32 *)(TObjEneMorfosArm__parent_morfos_instance + 0x430)));
     requested_action = 0;
     set_animation(requested_action);
     set_field_b8(requested_action);

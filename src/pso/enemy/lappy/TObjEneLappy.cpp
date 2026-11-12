@@ -1183,7 +1183,7 @@ void TObjEneLappy::run_task() {
     u8 *temp_r3;
     u8 *temp_r3_2;
     sub_800C20C0__12TObjEneLappyFv();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         apply_variant_speeds__12TObjEneLappyFv((Obj_800BFCD4 *)(this));
         TObjPlayer__sub_800BFF54(this);
         return;
@@ -1684,14 +1684,14 @@ u8 *TObjEneLappy__ct(u8 *self, s32 arg1, Set_800C1C4C *set) {
     *(s16 *)(self + 0x32E) = *(s16 *)(self + 0x2BA);
     *(s16 *)(self + 0x33E) = *(s16 *)(self + 0x32C);
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     ((TObjPlayer *)self)->register_object_by_id();
     scale = lbl_805D9F84 * (lbl_805D9F60 + random_ratio__9TObjCharaFv(self));
     *(s16 *)(self + 0x37E) = lbl_805D9F2C * scale;
     add_flags_2e4__9TObjCharaFUl(self, 1, scale, lbl_805D9F84);
     *(u32 *)(self + 0x30) |= 0x40000;
     *(void **)(self + 0xD8) = (u8 *)rappy_variant_speed_table;
-    ((TObjMotion *)self)->set_field_d8((s32)(*(void **)(self + 0xD8)));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)(*(void **)(self + 0xD8))));
     *(s16 *)(self + 0xB8) = 0;
     ((TObjMotion *)self)->set_animation(*(s16 *)(self + 0xB8));
     ((TObjMotion *)self)->set_field_b8(*(s16 *)(self + 0xB8));
@@ -1802,7 +1802,7 @@ void TObjEneRe2Flower::render() {
     s32 visible;
     s32 save8;
     s32 save14;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_106();
         return;
     }

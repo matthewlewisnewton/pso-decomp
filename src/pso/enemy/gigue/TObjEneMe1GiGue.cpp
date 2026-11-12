@@ -1825,7 +1825,7 @@ void draw_model__15TObjEneMe1GiGueFPv(Obj_802CD058 *self) {
     if (vis == 0) {
         return;
     }
-    if (TObjPlayer::check_demo_mode() != 1 && (self->f388 & 0x40000)) {
+    if (check_demo_mode() != 1 && (self->f388 & 0x40000)) {
         return;
     }
     saved_model_render_flags = model_render_flags;
@@ -1844,7 +1844,7 @@ void draw_model__15TObjEneMe1GiGueFPv(Obj_802CD058 *self) {
     translate_matrix(0, self->pos.x, self->f3ec + (self->pos.y + self->f3e8), self->pos.z);
     rotate_matrix_y(0, self->f60);
     model_render_flags &= ~0x400;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object((void *)self->f34);
     } else if (self->f388 & 4) {
         if (self->s3fc.m8() != 0) {
@@ -1948,7 +1948,7 @@ void TObjEneMe1GiGue::run_task() {
     u8 *temp_r3_4;
     u8 *arg0 = (u8 *)this;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         load_params__15TObjEneMe1GiGueFv(arg0);
         ((s32 (*)(void *))TObjEneMe1GiGue__sub_802CD054)(arg0);
         return;
@@ -2130,7 +2130,7 @@ u8 *TObjEneMe1GiGue__ct(u8 *arg0, s32 enemy_custom, u8 *arg2) {
     ((TObjEneMe1GiGue *)arg0)->state36C = *(s16 *)((s8 *)arg2 + 0x3E);
     ((TObjEneMe1GiGue *)arg0)->load_params_from_table(((TObjEneMe1GiGue *)arg0)->variant);
     ((TObjEneMe1GiGue *)arg0)->action_table = gigue_enemy_param_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(((TObjEneMe1GiGue *)arg0)->action_table));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(((TObjEneMe1GiGue *)arg0)->action_table)));
     init_collision_body_parts(arg0, lbl_804E1304, 2);
     *(u32 *)((s8 *)(((TObjEneMe1GiGue *)arg0)->bodies) + 0x44) &= ~1;
     ((TObjEneMe1GiGue *)arg0)->movementParameters = lbl_804E12E8;

@@ -146,8 +146,8 @@ TObjEneMe1GiGueBarrier::TObjEneMe1GiGueBarrier(TObject *parent, void *owner) : T
     model = *(void **)(*(u8 **)(TObjEneMe1GiGueBarrier__barrier_resource_object + 0x42C) + 0x28);
     resource = *(u8 **)(TObjEneMe1GiGueBarrier__barrier_resource_object + 0x42C);
     texlist = *(s32 *)(resource + 0x2C);
-    set_field_d8((s32)TObjEneMe1GiGueBarrier__animation_definitions);
-    set_field_dc(*(s32 *)(TObjEneMe1GiGueBarrier__barrier_resource_object + 0x430));
+    set_action_table((TObjMotionAction *)((s32)TObjEneMe1GiGueBarrier__animation_definitions));
+    set_motion_list((BmlMotionEntry *)(*(s32 *)(TObjEneMe1GiGueBarrier__barrier_resource_object + 0x430)));
     requested_action = 0;
     set_animation(requested_action);
     set_field_b8(requested_action);

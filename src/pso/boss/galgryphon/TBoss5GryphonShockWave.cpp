@@ -2,6 +2,7 @@
 #include "pso/boss/goldragon/TBoss8Dragon_8005D700.h"
 #include "pso/boss/galgryphon/TBoss5GryphonShockWave.h"
 #include "pso/boss/galgryphon/Boss5GryphonBehavior.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/system/task/TObject_80019A50.h"
 
 #include "pso/system/vector.h"
@@ -92,7 +93,7 @@ TBoss5GryphonShockWave::TBoss5GryphonShockWave(TObject *arg1_parent, s32 arg2, u
     this->m_3c = 0;
     VecCopy((Vec *)sp8, (const Vec *)(((u8 *)this) + 0x2C));
     subtract_vector(sp8, arg4);
-    this->m_24 = (s32) (0.07f * ((TObjBoss2Tunnel *)sp8)->update_scale());
+    this->m_24 = (s32) (0.07f * normalize_vector_checked((Vec *)(sp8)));
     if ((s32) this->m_24 < 0x1E) {
         this->m_24 = 0x1E;
     }

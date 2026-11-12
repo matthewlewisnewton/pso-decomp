@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/BattleParameters.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
@@ -430,7 +431,7 @@ static const s32 lbl_805D9BFC = 0x8001;
 TObjEneMoja::TObjEneMoja(TObject *parent, void *setData) : TObjEnemy(parent) {
     m_name = TObjEneMoja__name;
     apply_set_data(setData);
-    ((TObjPlayer *)this)->init_position_vectors();
+    ((TObjChara *)this)->initialize_position_copies();
     mode = 0;
     phase = 0;
     techniqueChance = 0.3f + parameters[1];
@@ -449,7 +450,7 @@ TObjEneMoja::TObjEneMoja(TObject *parent, void *setData) : TObjEnemy(parent) {
     select_rare_variant();
     subtype = 1;
     action_table = lbl_804918C8;
-    set_field_d8((s32)action_table);
+    set_action_table((TObjMotionAction *)((s32)action_table));
     motion_list = lbl_805D50D8->motions;
     requested_action = 0;
     set_animation(requested_action);
@@ -461,7 +462,7 @@ TObjEneMoja::TObjEneMoja(TObject *parent, void *setData) : TObjEnemy(parent) {
     movementParameters = &lbl_80491958[variant];
     referenceHp = hp;
     update_prev_position();
-    ((TBoss3VoloptHiraisin *)this)->copy_position();
+    ((TObjChara *)this)->copy_body_to_center();
     register_object_by_id();
     resetTimer = 0;
     timer = resetTimer;
@@ -580,7 +581,7 @@ void TObjEneMoja::run_task() {
     u16 temp_r3;
     u8 *temp_r3_2;
     u8 *temp_r4;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjPlayer__sub_800ACA0C(arg0);
         return;
     }
@@ -636,7 +637,7 @@ void TObjEneMoja::run_task() {
         }
     }
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     submit_cursor_candidate(arg0, -1);
     temp_r4 = this->target;
     if ((temp_r4 != NULL) && (*(s32 *)((s8 *)temp_r4 + 0x30) & 0x02000800)) {
@@ -687,7 +688,7 @@ void TObjEneMoja::render() {
         translate_matrix(0, 0.0f, sinkOffset, 0.0f);
         post_translate_matrix(&position);
         rotate_matrix_y(0, (int)(rotation_y));
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object((s32)model);
         } else {
             TObjPlayer::toggle_particle_effect();
@@ -1403,7 +1404,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
                     ((s32 (*)(void *, int))spawn_particle_effect)(&pos, 0xB9);
                     ((s32 (*)(void *, int))spawn_particle_effect)(&pos, 0xBA);
                     if (ang2 < ((AttackParams *)(self->f318))->get_attack_angle() / 2) {
-                        if (((TObjBoss2Tunnel *)(&dir))->update_scale() < 0.00001f) {
+                        if (normalize_vector_checked((Vec *)((&dir))) < 0.00001f) {
                             dir.y = dir.x = 0.0f;
                             dir.z = 1.0f;
                             ((s32 (*)(void *))push_matrix_from)(identity_matrix);

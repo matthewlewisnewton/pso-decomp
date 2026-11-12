@@ -922,7 +922,7 @@ s32 TObjEneIllGill::is_target_in_attack_range() {
         if (id < 0x1000) {
             s32 i;
             pl = this->target;
-            if (((TLobby *)pl)->check_player_flag1() == 1 || (enable_v2_features == 1 && ((TObjCollidable *)pl)->obj_testFlags30(0x20) != 0)) {
+            if (((TObjPlayer *)pl)->check_player_flag1() == 1 || (enable_v2_features == 1 && ((TObjCollidable *)pl)->obj_testFlags30(0x20) != 0)) {
                 this->m_318 = (u32)ill_gill_combat_parameter_variants[0];
                 if (dist <= (rad + ((AttackParams *)(this->m_318))->get_attack_range()) * (rad + ((AttackParams *)(this->m_318))->get_attack_range()) &&
                     ang <= ((AttackParams *)(this->m_318))->get_attack_angle()) {
@@ -1326,7 +1326,7 @@ void TObjEneIllGill::render() {
         scale_matrix(0, this->scale.x, this->scale.y, this->scale.z);
         illGillModelNodeIndex = 0;
         set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjEneIllGill::capture_effect_positions));
-        if (this->fadingIn != 0 && TObjPlayer::check_demo_mode() == 0) {
+        if (this->fadingIn != 0 && check_demo_mode() == 0) {
             if (fade.has_visible_opacity() != 0) {
                 saved_model_render_flags = model_render_flags;
                 saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
@@ -1390,7 +1390,7 @@ void TObjEneIllGill::run_task() {
         o->target = NULL;
     }
     o->update_prev_position();
-    ((TBoss3VoloptHiraisin *)o)->copy_position();
+    ((TObjChara *)o)->copy_body_to_center();
     submit_cursor_candidate(o, -1);
     o->m_2b4 += TObjEneIllGill__data_805E02CC;
 }
@@ -1411,13 +1411,13 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
     this->set_param(0x52);
     this->apply_set_data(setData);
     this->clear_lobby_object_state();
-    ((TObjPlayer *)self)->init_position_vectors();
+    ((TObjChara *)self)->initialize_position_copies();
     apply_actor_gravity(self, 0, TObjEneIllGill__data_805E02BC);
     model = (void *)illGillResource->models->model;
     texlist = illGillResource->models->m_c;
     motion_list = illGillResource->motions;
     action_table = illGillActions;
-    this->set_field_d8((s32)action_table);
+    this->set_action_table((TObjMotionAction *)((s32)action_table));
     requested_action = 0;
     this->set_animation(requested_action);
     this->set_field_b8(requested_action);
@@ -1428,7 +1428,7 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
     this->add_flags_2e4(8);
     init_collision_body_parts(self, &illGillCollisionBody, 1);
     this->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     register_object_by_id();
     movementParameters = &illGillMovement;
     attackType = 0;

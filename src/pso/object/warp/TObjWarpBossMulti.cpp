@@ -215,7 +215,7 @@ struct Obj_8019F578 {
 };
 
 extern "C" {
-s32 check_player_flag1__6TLobbyFv(void);
+s32 check_player_flag1__10TObjPlayerFv(void);
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 fn_80248994(void *, u32, int);
 void *refresh_with_default_list__20TWindowSubStatusDispFll(s32, void *);
@@ -1128,7 +1128,7 @@ s32 TObjWarpBoss::update_warp_dialogs() {
     {
             ((THunterGuildSeqOffline *)(self->list))->advance_matching_entries(self->inside[j] != 0, j);
       color = 0xF0F0F0FF;
-      if (((self->mode == 1) && (((u32)get_player_by_client_id((j))) != 0)) && (check_player_flag1__6TLobbyFv() != 0))
+      if (((self->mode == 1) && (((u32)get_player_by_client_id((j))) != 0)) && (check_player_flag1__10TObjPlayerFv() != 0))
       {
         color = 0xFFFF00FF;
       }
@@ -1201,7 +1201,7 @@ block_4:
 
 void TObjWarpBoss::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() != 1) {
+    if (check_demo_mode() != 1) {
         if (!(*(s16 *)((s8 *)arg0 + 0xE2) & 1) && ((s16) *(s16 *)((s8 *)arg0 + 0xDE) != (s16) *(s16 *)((s8 *)arg0 + 0xDC))) {
             if ((s16) *(s16 *)((s8 *)arg0 + 0xE0) != -1) {
                 *(s16 *)((s8 *)arg0 + 0xE0) = -1;

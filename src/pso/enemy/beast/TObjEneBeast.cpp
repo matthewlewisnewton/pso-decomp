@@ -285,7 +285,7 @@ void render__12TObjEneBeastFPv(Obj_8009211C *o) {
     translate_matrix(0, 0.0f, o->f380, 0.0f);
     post_translate_matrix(o->f38);
     rotate_matrix_y(0, o->f60);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object(o->f34);
     } else {
         TObjPlayer::toggle_particle_effect();
@@ -751,12 +751,12 @@ void *TObjEneBeast__ct(void *arg0v, void *arg1, void *arg2) {
     __construct_array(arg0 + 0x3B0, __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     F(arg0, s32, 0) = lbl_805D2980;
     ((VObj_800927DC *)arg0)->m79(arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     F(arg0, s32, 0x334) = F(arg0, s32, 0x368);
     ((TObjEneBeast *)arg0)->select_subtype();
     ((TObjEneBeast *)arg0)->select_model_record(F(arg0, s32, 0x368));
     F(arg0, u8 *, 0xD8) = (u8 *)beast_action_table;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(F(arg0, u8 *, 0xD8)));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)(F(arg0, u8 *, 0xD8))));
     F(arg0, u32, 0xDC) = F(ene_beast_bml_resource, u32, 0x430);
     F(arg0, s16, 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(F(arg0, s16, 0xB8));
@@ -766,7 +766,7 @@ void *TObjEneBeast__ct(void *arg0v, void *arg1, void *arg2) {
     F(arg0, void *, 0x350) = &((Rec1C_800927DC *)beast_movement_params)[F(arg0, s32, 0x334)];
     F(arg0, s16, 0x33E) = F(arg0, s16, 0x32C);
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     ((TObjPlayer *)arg0)->register_object_by_id();
     F(arg0, s32, 0x2AC) = (s32)(182.04445f * (3.6e+02f * random_ratio__9TObjCharaFv((s32)arg0)));
     F(arg0, s16, 0x33A) = 0xF;

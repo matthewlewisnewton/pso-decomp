@@ -50,7 +50,7 @@ TObjNpcNFW01 *TObjNpcNFW01__ct(TObjNpcNFW01 *npc, TObjControl *control, void *se
     *(s32 **)((u8 *)npc + 0x18) = __vt__12TObjNpcNFW01;
     npc->m_name = TObjNpcNFW01__name;
     npc->apply_set_data(set_data);
-    ((TObjPlayer *)npc)->init_position_vectors();
+    ((TObjChara *)npc)->initialize_position_copies();
     npc->model = *(void **)TObjNpcNFW01__shared_object_resource;
     npc->texlist = TObjNpcNFW01__texture_gvm;
     npc->setup_common();

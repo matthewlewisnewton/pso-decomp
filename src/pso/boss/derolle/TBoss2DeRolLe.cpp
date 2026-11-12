@@ -3,6 +3,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
@@ -1872,7 +1873,7 @@ void TBoss2DeRolLe__sub_8002FE60(void *arg0, u32 arg1) {
                 VCOPY(&p, &self->pos);
                 VCOPY(&d, hit);
                 subtract_vector(&d, &p);
-                dist = ((TObjBoss2Tunnel *)(&d))->update_scale();
+                dist = normalize_vector_checked((Vec *)((&d)));
                 p.x += d.x * s;
                 p.y += d.y * s;
                 p.z += d.z * s;
@@ -5485,7 +5486,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     self->f3C0 = 0;
     {
 
-        if (((TObjEnemy *)self)->exchange_object_state((s32)&locals.flags, (s16)1) != 0 && (locals.flags & 0x12008) == 0x12008) {
+        if (((TObjEnemy *)self)->exchange_object_state((void *)&locals.flags, (s16)1) != 0 && (locals.flags & 0x12008) == 0x12008) {
             self->f3C0 |= 0x8000;
         }
     }
@@ -5499,8 +5500,8 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
         init_model__9TObjEneDDFP13CollisionBodyl(self, (u8 *)lbl_804822A8, 3, q);
     }
     ((TBoss2DeRolLe *)self)->motion_flags = 0;
-    ((TObjMotion *)self)->set_field_d8((s32)((u8 *)lbl_804823A8));
-    ((TObjMotion *)self)->set_field_dc(*(s32 *)((s8 *)lbl_805D4BA4 + 0x430));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)((u8 *)lbl_804823A8)));
+    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)lbl_805D4BA4 + 0x430)));
     ((TBoss2DeRolLe *)self)->requested_action = 0;
     ((TObjMotion *)self)->set_animation(((TBoss2DeRolLe *)self)->requested_action);
     ((TObjMotion *)self)->set_field_b8(((TBoss2DeRolLe *)self)->requested_action);

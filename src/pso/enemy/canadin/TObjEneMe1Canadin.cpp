@@ -1866,8 +1866,8 @@ void TObjEneMe1Canadin::setup_enemy() {
     ((TObjEneDD *)arg0)->init_position_vectors();
     this->vfunc_106();
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, lbl_8048FECC, 1);
-    ((TObjMotion *)arg0)->set_field_d8((s32)lbl_8048FF30);
-    ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)(*(u8 * *)&lbl_805D4FD0) + 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)lbl_8048FF30));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)(*(u8 * *)&lbl_805D4FD0) + 0x430)));
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));
@@ -1950,7 +1950,7 @@ extern "C" {
 void TObjEneMe1Canadin::run_task() {
     u8 *arg0 = (u8 *)this;
     u8 *temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->update_if_ready();
         return;
     }
@@ -3588,7 +3588,7 @@ void TObjEneMe1Canadin::render() {
     s16 temp_r0_2;
     s32 var_r30;
     s32 var_r29;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18_8dc821 *)(arg0))->m113();
         return;
     }
@@ -3732,7 +3732,7 @@ TObjEneMe1CanadinLeader::~TObjEneMe1CanadinLeader() {
 
 extern "C" {
 void TObjEneMe1CanadinLeader::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         update_if_ready();
         return;
     }

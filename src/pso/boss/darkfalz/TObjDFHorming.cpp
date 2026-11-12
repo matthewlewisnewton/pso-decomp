@@ -702,7 +702,7 @@ void TBoss4DarkFalz::handle_defeat() {
     }
     flags[0] = 0x800;
     ((TObjEnemy *)arg0)->send_6x0A_enemy_state(flags);
-    ((TObjEnemy *)arg0)->exchange_object_state((s32)flags, (s16)0);
+    ((TObjEnemy *)arg0)->exchange_object_state((void *)flags, (s16)0);
     ((VObj_18_8004B654 *)(arg0))->m77(flags);
     ((TObjEnemy *)arg0)->send_entity_set_flags();
     queue_destruction__7TObjectFv(arg0);
@@ -899,7 +899,7 @@ void TBoss4DarkFalz::render() {  }
 
 void TBoss4DarkFalz::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (((s32) this->m_37c != 0) && (TObjPlayer::check_demo_mode() != 0)) {
+    if (((s32) this->m_37c != 0) && (check_demo_mode() != 0)) {
         ((TBoss4DarkFalz *)arg0)->change_state(0);
     }
     if (query_teammate_state__9TObjEneDDFv() == 0) {

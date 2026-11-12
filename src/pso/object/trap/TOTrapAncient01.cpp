@@ -162,7 +162,7 @@ extern const f32 lbl_805DBA54;
 extern const f32 lbl_805DBA6C;
 extern const f32 lbl_805DBA74;
 VObj_801797D4 *get_battle_param__10TObjPlayerFi(s32);
-s32 check_value_equals__13TUnk_804B6C24Fl(void *, s32);
+s32 check_value_equals__7TObjectFPCc(void *, s32);
 extern s32 lbl_805D3530;
 extern const f32 lbl_805DBA48;
 void update__15RenderFadeStateFv(void *);
@@ -193,7 +193,7 @@ void TOTrapAncient01::release_trapped_player() {
         if (target != NULL) {
             player = get_player_by_client_id(get_entity_id((TObjBase *)target));
             if (player != NULL) {
-                if (((TLobby *)player)->check_player_flag1() != 0) {
+                if (((TObjPlayer *)player)->check_player_flag1() != 0) {
                     TObjPlayer::send_code_45_1((s32)player);
                 }
                 obj_clear_flag30_20000(player);
@@ -202,7 +202,7 @@ void TOTrapAncient01::release_trapped_player() {
     } else if (target != NULL && local_client_id == get_entity_id((TObjBase *)target)) {
         player = get_player_by_client_id(local_client_id);
         if (player != NULL) {
-            if (((TLobby *)player)->check_player_flag1() != 0) {
+            if (((TObjPlayer *)player)->check_player_flag1() != 0) {
                 TObjPlayer::send_code_45_1((s32)player);
             }
             obj_clear_flag30_20000(player);
@@ -292,7 +292,7 @@ void TOTrapAncient01::vfunc_82() {
             if (obj_is_hit_receivable((u8 *)p) == 0) {
                 break;
             }
-            if (check_value_equals__13TUnk_804B6C24Fl(p, lbl_805D3530) == 0) {
+            if (check_value_equals__7TObjectFPCc(p, lbl_805D3530) == 0) {
                 break;
             }
             {
@@ -439,7 +439,7 @@ void render__15TOTrapAncient01Fv(Trap_80179B8C *self) {
         push_matrix();
         post_translate_matrix((const f32 *)self->pos38);
         rotate_matrix_y(NULL, self->f60);
-        if (TObjPlayer::check_demo_mode() != 1 && self->f6C <= TOTrapAncient01__data_805DBA4C) {
+        if (check_demo_mode() != 1 && self->f6C <= TOTrapAncient01__data_805DBA4C) {
             v.x = lbl_805DBA60 * (lbl_805DBA64 * (f32)rand()) - lbl_805DBA68;
             v.y = TOTrapAncient01__data_805DBA4C;
             v.z = lbl_805DBA60 * (lbl_805DBA64 * (f32)rand()) - lbl_805DBA68;
@@ -518,7 +518,7 @@ void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2) {
     __construct_array(self + 0x358, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)self + 0) = TOTrapAncient01__class_name;
     ((TOTrapAncient01 *)arg0)->apply_object_set_data((void *)((s32)arg2));
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     ((TObjChara *)arg0)->calc_attach_pos();
     *(s32 *)((s8 *)self + 0x34) = get_bml_model(TOTrapAncient01__bml_resource, 3);
     *(s32 *)((s8 *)self + 0x24) = TObjFish__sub_8001EDB0(TOTrapAncient01__bml_resource, 3);

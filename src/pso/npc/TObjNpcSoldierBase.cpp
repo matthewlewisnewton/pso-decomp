@@ -49,7 +49,7 @@ TObjNpcSoldierBase *TObjNpcSoldierBase__ct(TObjNpcSoldierBase *npc, TObjControl 
     *(s32 **)((u8 *)npc + 0x18) = __vt__18TObjNpcSoldierBase;
     npc->m_name = TObjNpcSoldierBase__name;
     npc->apply_set_data(set_data);
-    ((TObjPlayer *)npc)->init_position_vectors();
+    ((TObjChara *)npc)->initialize_position_copies();
     npc->model = (void *)TObjNpcSoldierBase__shared_model_resource->models->model;
     npc->texlist = TObjNpcSoldierBase__shared_model_resource->models->m_c;
     npc->setup_common();

@@ -387,12 +387,12 @@ struct TObjPlayer : public TObjChara {
     static f32 get_scale_factor();
     static int get_battle_param(int a0);
     s32 check_flag(s32 arg1);
+    s32 check_player_flag1();
     static void sync_player_globals();
     void*get_position_ptr();
     void clear_header_struct();
     void clear_velocity_vectors();
     static void set_com_card_window(s32 arg0);
-    static s32 check_demo_mode();
     static s32 is_locally_controlled(void *player);
     static TObjPlayer *get_player_data(int index);
     int queue_destruction();
@@ -413,7 +413,6 @@ struct TObjPlayer : public TObjChara {
     void run_death_sequence();
     int reset_enemy_state();
     void update_move_to_target();
-    void init_position_vectors();
     void trigger_targets_action();
     s16 get_field_2c8();
     void set_flag_start_effect();
@@ -1570,6 +1569,8 @@ struct TObjPlayer : public TObjChara {
     void push_to_list(s32 arg1);
     static s32 run_and_return_arg(s32 arg0);
 };
+
+s32 check_demo_mode();
 
 #include <stddef.h>
 typedef char PlayerActionPaletteSize[(sizeof(TObjPlayer::ActionPalette) == 0x24) ? 1 : -1];

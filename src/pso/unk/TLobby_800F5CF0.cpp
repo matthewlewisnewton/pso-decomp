@@ -14,7 +14,7 @@ struct Stack_800F5D80 {
 };
 
 extern "C" {
-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
+s32 exchange_object_state__9TObjEnemyFPvs(void *, void *, int);
 s32 collect_model_strips_by_texture(void *, s32, s32, s32);
 s32 count_model_strips_by_texture();
 
@@ -43,10 +43,10 @@ void TObjEnemy::clear_lobby_object_state() {
     typedef char sp8_offset[(offsetof(Stack_800F5D80, sp8) == 0x0) ? 1 : -1];
     typedef char spE_offset[(offsetof(Stack_800F5D80, spE) == 0x6) ? 1 : -1];
     Stack_800F5D80 stack;
-    if (exchange_object_state__9TObjEnemyFls((void *)arg0, &stack.sp8, 1) != 0) {
+    if (exchange_object_state__9TObjEnemyFPvs((void *)arg0, &stack.sp8, 1) != 0) {
         stack.sp8 = 0;
         stack.spE = 0;
-        exchange_object_state__9TObjEnemyFls((void *)arg0, &stack.sp8, 0);
+        exchange_object_state__9TObjEnemyFPvs((void *)arg0, &stack.sp8, 0);
     }
 }
 

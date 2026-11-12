@@ -494,7 +494,7 @@ s32 TObjEneBalClawClaw__ct(void *arg0) {
     ((TObject *)self)->m_name = balclaw_claw_class_name;
     *(s32 *)((s8 *)self + 0xDC) = (s32)lbl_805D4F20->motions;
     *(u8 **)((s8 *)self + 0xD8) = (u8 *)balclaw_claw_model_node_desc;
-    ((TObjMotion *)self)->set_field_d8((s32)(*(u8 **)((s8 *)self + 0xD8)));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)(*(u8 **)((s8 *)self + 0xD8))));
     init_collision_body_parts(self, TObjEneBalClawClaw__collision_body_template, 1);
     *(s32 *)((s8 *)self + 0x368) = 0;
     *(u8 **)((s8 *)self + 0x350) = (u8 *)lbl_8048F100;
@@ -509,7 +509,7 @@ s32 TObjEneBalClawClaw__ct(void *arg0) {
     ((TObjEnemy *)self)->set_param(0x26);
     VecCopy((Vec *)(self + 0x2FC), (const Vec *)(self + 0x38));
     *(f32 *)((s8 *)self + 0x300) += (5.0f);
-    ((TBoss3Volopt *)self)->reset_photon_effect();
+    ((TObjEnemy *)self)->register_by_id();
     ((TObjEneBalClawClaw *)self)->sub_80090418(2);
     *(s32 *)((s8 *)self + 0x3B8) = 0;
     *(f32 *)((s8 *)self + 0x3BC) = (0.0f);
@@ -547,7 +547,7 @@ void TObjEneBalClawClaw::run_task() {
     u8 *temp_r5;
     u8 *arg0 = (u8 *)this;
     TObjEneBalClaw__sub_8008D68C();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_80090824();
         sub_800914A4();
         return;
@@ -953,7 +953,7 @@ void TObjEneBalClawClaw::render() {
             TObjPlayer::toggle_particle_effect();
             push_matrix();
             model_render_flags &= 0xFFFFFBFF;
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_x(0, *(s32 *)((s8 *)arg0 + 0x5C));
                 rotate_matrix_y(0, this->rotation_y);

@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/vector.h"
 #include "types.h"
@@ -1062,7 +1063,7 @@ void TObjEneBm3FlyNest::render() {
     s32 draw;
     Nest_800B264C *self = (Nest_800B264C *)this;
     f32 t;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->render_with_state_debug();
         return;
     }
@@ -1773,7 +1774,7 @@ void dispatch_state__17TObjEneBm3FlyNestFiUii(s32 arg0, u32 arg1, s32 arg2) {
 #pragma push
 #pragma fp_contract on
 void TObjEneBm3FlyNest::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_18_p5 *)(this))->m102();
         return;
     }
@@ -1870,8 +1871,8 @@ void *TObjEneBm3FlyNest__ct(void *arg0, void *arg1, void *arg2) {
     init_model__9TObjEneDDFP13CollisionBodyl(self, &bm3_flynest_collider_params, 1);
     self->f300 = 20.0f + self->pos.y;
     ((TObjEneDD *)self)->vfunc_88();
-    ((TObjMotion *)self)->set_field_d8((s32)bm3_flynest_hit_action_table);
-    ((TObjMotion *)self)->set_field_dc(*(s32 *)((int)lbl_805D5108 + 0x430));
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)bm3_flynest_hit_action_table));
+    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(*(s32 *)((int)lbl_805D5108 + 0x430)));
     self->fB8 = 0;
     ((TObjMotion *)self)->set_animation(self->fB8);
     ((TObjMotion *)self)->set_field_b8(self->fB8);
@@ -2063,7 +2064,7 @@ TObjEneBm3FlyNest_CarryFly::TObjEneBm3FlyNest_CarryFly(TObject *parent, s32 a, s
     index = d;
     VecCopy(&v, origin);
     subtract_vector(&v, target);
-    ((TObjBoss2Tunnel *)(&v))->update_scale();
+    normalize_vector_checked((Vec *)((&v)));
     angle = (s32) (lbl_8043B398[0] * atan2_float(v.x, v.z));
     offset.x = 6.0f * v.x;
     offset.y = 6.0f;

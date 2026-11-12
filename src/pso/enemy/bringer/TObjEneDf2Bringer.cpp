@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
@@ -1724,7 +1725,7 @@ void TObjEneDf2Bringer::load_resources() {
     VecCopy((Vec *)&a, (const Vec *)&seg->p0);
     VecCopy((Vec *)&d, (const Vec *)&seg->p2);
     subtract_vector(&d, &a);
-    len = ((TObjBoss2Tunnel *)(&d))->update_scale();
+    len = normalize_vector_checked((Vec *)((&d)));
     p1 = &seg->p1;
     s1 = k1 * len;
     VecCopy((Vec *)p1, (const Vec *)&a);
@@ -1814,8 +1815,8 @@ void TObjEneDf2Bringer::init_enemy() {
     *(s32 *)((s8 *)arg0 + 0x34) = *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneDf2Bringer__resource_bundle + 0x42C)) + 8);
     *(s32 *)((s8 *)arg0 + 0x24) = *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjEneDf2Bringer__resource_bundle + 0x42C)) + 0xC);
     init_model__9TObjEneDDFP13CollisionBodyl(arg0, lbl_8048FA2C, 1);
-    ((TObjMotion *)arg0)->set_field_d8((s32)&lbl_8048FAF8);
-    ((TObjMotion *)arg0)->set_field_dc(*(s32 *)((s8 *)TObjEneDf2Bringer__resource_bundle + 0x430));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)&lbl_8048FAF8));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)(*(s32 *)((s8 *)TObjEneDf2Bringer__resource_bundle + 0x430)));
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));
@@ -1894,7 +1895,7 @@ TObjEneDf2Bringer::~TObjEneDf2Bringer() {
 extern "C" {
 void run_task__17TObjEneDf2BringerFv(u8 *arg0) {
     s32 temp_r0;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneDf2Bringer *)(arg0))->vfunc_83();
         return;
     }
@@ -2882,7 +2883,7 @@ void render__17TObjEneDf2BringerFv(u8 *arg0) {
     s32 temp_r27;
     s32 mode;
     s32 i;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneDf2Bringer *)(arg0))->vfunc_105();
         return;
     }

@@ -399,7 +399,7 @@ void TObjEneShark::render() {
   translate_matrix(0, 0.0f, this->render_y_offset, 0.0f);
   post_translate_matrix((u8 *)&this->position);
   rotate_matrix_y(0, this->rotation_y);
-  if (TObjPlayer::check_demo_mode() == 1)
+  if (check_demo_mode() == 1)
   {
     draw_chunk_object(*((s32 *) (((s8 *) arg0) + 0x34)));
   }
@@ -983,12 +983,12 @@ void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2) {
     __construct_array(self->f3CC, (void *)__ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)self = TObjEneShark_name_ref;
     self->m79(arg2);
-    ((TObjPlayer *)self)->init_position_vectors();
+    ((TObjChara *)self)->initialize_position_copies();
     self->f334 = self->f368;
     ((TObjEneShark *)self)->apply_clamped_mode_param();
     ((TObjEneShark *)self)->sub_800AC9DC(self->f368);
     self->fD8 = TObjEneShark__action_table;
-    ((TObjMotion *)self)->set_field_d8((s32)self->fD8);
+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)self->fD8));
     self->fDC = *(s32 *)(shark_bml_resource + 0x430);
     self->fB8 = 0;
     ((TObjMotion *)self)->set_animation(self->fB8);
@@ -998,7 +998,7 @@ void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2) {
     self->f350 = lbl_804915B4 + self->f334 * 0x1C;
     self->f33E = self->f32C;
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     initialize_enemy_photon_effect(self);
     self->f2AC = (s32)(182.04445f * (360.0f * random_ratio__9TObjCharaFv((s32)self)));
     self->f33A = 0xF;

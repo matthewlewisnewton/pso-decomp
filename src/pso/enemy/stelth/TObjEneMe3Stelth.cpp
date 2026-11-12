@@ -1145,7 +1145,7 @@ void TObjEneMe3Stelth::render() {
     s32 mode;
     s32 draw;
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         VO->m113();
         return;
     }
@@ -4215,7 +4215,7 @@ void TObjEneMe3Stelth::vfunc_28() {  }
 void TObjEneMe3Stelth::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->setup_move();
         return;
     }
@@ -4261,8 +4261,8 @@ void TObjEneMe3StelthReal::init_common() {
     *(s32 *)((s8 *)arg0 + 0x34) = (s32) *(s32 *)((s8 *)temp_r6 + 8);
     init_model__9TObjEneDDFP13CollisionBodyl((void *)arg0, ((void * *)TObjEneMe3Stelth__collision_body_template), 1, (int)temp_r6);
     *(s32 *)((s8 *)arg0 + 0xB0) = 0;
-    ((TObjMotion *)arg0)->set_field_d8((s32)TObjEneMe3Stelth__animation_descriptors);
-    ((TObjMotion *)arg0)->set_field_dc((int) (*(s32 *)((s8 *)TObjEneMe3Stelth__bml_resource + 0x430)));
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)TObjEneMe3Stelth__animation_descriptors));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)((int) (*(s32 *)((s8 *)TObjEneMe3Stelth__bml_resource + 0x430))));
     ((TObjMotion *)arg0)->set_animation((*(s16 *)((s8 *)arg0 + 0xB8)));
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x3C8);
     reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, TObjEneMe3Stelth__base_params_by_variant[temp_r0], TObjEneMe3Stelth__attack_params_by_variant[temp_r0], TObjEneMe3Stelth__resistance_params_by_variant[temp_r0]);

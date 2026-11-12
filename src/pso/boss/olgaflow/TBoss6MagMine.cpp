@@ -104,7 +104,7 @@ void *__vt__13TBoss6MagMine[11] = {
     (void *)0x0, (void *)0x0, (void *)0x0,
 };
 void vec3_add_to(void *, void *);
-s32 check_demo_mode__10TObjPlayerFv(void *);
+s32 check_demo_mode__Fv(void *);
 s32 query_teammate_state__9TObjEneDDFv();
 void add_radar_scaled_marker(void *, int, int, int, f32);
 void vt2__13TBoss6MagMineFv(u8 *arg0);
@@ -357,7 +357,7 @@ public:
 void TUnk_804F322C::run_task() {
     TBoss6MagMine_80368FA0 *self = (TBoss6MagMine_80368FA0 *)this;
     s32 color;
-    if (check_demo_mode__10TObjPlayerFv(self) != 0) {
+    if (check_demo_mode__Fv(self) != 0) {
         return;
     }
     if (TBoss6PlotFalz::is_boss_active() == 0) {
@@ -430,10 +430,10 @@ s32 TBoss6MagMine__ct(s32 arg0, s32 parent, s32 arg2) {
     VecCopy__FP3VecPC3Vec(arg0 + 0x384, arg2 + 0x4C);
     ((TObjChara *)self)->add_flags_2e4(8);
     ((TBoss3Volopt *)(self))->apply_set_data((void *)arg2);
-    if (((TObjEnemy *)self)->exchange_object_state((s32)&key, (s16)1) != 0) {
+    if (((TObjEnemy *)self)->exchange_object_state((void *)&key, (s16)1) != 0) {
         key.a = 0;
         key.c = 0;
-        ((TObjEnemy *)self)->exchange_object_state((s32)&key, (s16)0);
+        ((TObjEnemy *)self)->exchange_object_state((void *)&key, (s16)0);
     }
     *(s32 *)((s8 *)self + 0x374) = TObjFish::get_fish_count();
     *(s32 *)((s8 *)self + 0x24) = 0;
@@ -445,7 +445,7 @@ s32 TBoss6MagMine__ct(s32 arg0, s32 parent, s32 arg2) {
     *(s32 *)((s8 *)self + 0x2A8) = 0;
     ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2D)), (u8 *)(get_battle_attack_params(0x2D)), (u8 *)(get_battle_resistance_params(0x2D)));
     *(s16 *)((s8 *)self + 0x33E) = *(s16 *)((s8 *)self + 0x32C);
-    ((TBoss3Volopt *)self)->reset_photon_effect();
+    ((TObjEnemy *)self)->register_by_id();
     ((TObjEnemy *)self)->set_param(0);
     d = (u8 *)get_battle_movement_params(0x2D);
     *(s32 *)((s8 *)self + 0x39C) = (s32) *(f32 *)((s8 *)d + 4);

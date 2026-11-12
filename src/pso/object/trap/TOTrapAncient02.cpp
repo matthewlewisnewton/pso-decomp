@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
@@ -330,7 +331,7 @@ s32 is_split_screen();
 void * get_bml_model(void *, int);
 void free_bin_model_request(void*, int);
 void * load_resource_from_descriptor(void *, int, char *, int, int, int);
-s32 check_player_flag1__6TLobbyFv();
+s32 check_player_flag1__10TObjPlayerFv();
 s32 free_collision_body_parts(void *);
 void init_collision_body_parts(void *, void *, s32);
 void *__dt__6TOTrapFv(void *arg0, s16 arg1);
@@ -680,7 +681,7 @@ void TOTrapAncient02R__vt79(Obj_8017A3C0 *o) {
                     scratch_vec->y += o->f344 + o->f348;
                     VecCopy((Vec *)lbl_8050BF00, (const Vec *)&o->target->f2FC);
                     subtract_vector(lbl_8050BF00, scratch_vec);
-                    if (((TObjBoss2Tunnel *)lbl_8050BF00)->update_scale() < lbl_805DBA8C) {
+                    if (normalize_vector_checked((Vec *)(lbl_8050BF00)) < lbl_805DBA8C) {
                         lbl_8050BF00->x = lbl_8050BF00->y = lbl_805DBA80;
                         lbl_8050BF00->z = lbl_805DBA78;
                         push_matrix_from(identity_matrix);
@@ -840,7 +841,7 @@ void *TOTrapAncient02R__ct(TOTrapAncient02R *trap_ancient02_r, void *arg1, void 
     *(s32 **)((s8 *)trap_ancient02_r + 0x18) = __vt__16TOTrapAncient02R;
     *(s32 *)((s8 *)trap_ancient02_r + 0) = (s32) lbl_805D31B8;
     trap_ancient02_r->apply_object_set_data(arg2);
-    ((TObjPlayer *)trap_ancient02_r)->init_position_vectors();
+    ((TObjChara *)trap_ancient02_r)->initialize_position_copies();
     ((TObjChara *)trap_ancient02_r)->calc_attach_pos();
     *(s32 *)((s8 *)trap_ancient02_r + 0x34) = (s32) *(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TOTrapAncient02__shared_resource) + 0x42C)) + 8);
     trap_ancient02_r->texlist = (s32) *(s32 *)((s8 *)(*(void **)((s8 *)(*(void * *)&TOTrapAncient02__shared_resource) + 0x42C)) + 0xC);
@@ -954,7 +955,7 @@ void TOTrapAncient02::vfunc_82() {
                 self->timer = self->reset;
                 if (self->target != NULL && local_client_id == get_entity_id(self->target)) {
                     p = (s32)get_player_by_client_id(local_client_id);
-                    if (p != 0 && check_player_flag1__6TLobbyFv() != 0) {
+                    if (p != 0 && check_player_flag1__10TObjPlayerFv() != 0) {
                         TObjPlayer::send_code_45_1(p);
                     }
                 }
@@ -1236,7 +1237,7 @@ void *TOTrapAncient02__ct(void *arg0, void *arg1, void *arg2) {
     ((Trap_8017B6D8 *)arg0)->vt = (void *)__vt__15TOTrapAncient02;
     ((Trap_8017B6D8 *)arg0)->id = TOTrapAncient02__name;
     ((V_8017B6D8 *)((Trap_8017B6D8 *)arg0))->init(arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     ((TObjChara *)arg0)->calc_attach_pos();
     ((Trap_8017B6D8 *)arg0)->f34 = *(void **)(*(u8 **)(TOTrapAncient02__shared_resource + 0x42C) + 8);
     ((Trap_8017B6D8 *)arg0)->f24 = *(s32 *)(*(u8 **)(TOTrapAncient02__shared_resource + 0x42C) + 0xC);

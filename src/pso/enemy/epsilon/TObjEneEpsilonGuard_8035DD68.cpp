@@ -661,7 +661,7 @@ void render_with_fade__19TObjEneEpsilonGuardFPvi(u8 *ene_re7_berura, s32 arg1) {
 #pragma opt_common_subs off
 void TObjEneEpsilonGuard::render() {
     s32 detail;
-    if ((TObjPlayer::check_demo_mode() == 0) && !(actorFlags & 0x02000000)) {
+    if ((check_demo_mode() == 0) && !(actorFlags & 0x02000000)) {
         detail = 0;
         if (!(flags & 0x10)) {
             if (is_main_phase_15__9TObjEneDDFv() != 0) {
@@ -1344,8 +1344,8 @@ void TObjEneEpsilonGuard::init_model_and_state() {
     *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(lbl_805D6FA0, 2);
     *(s32 *)((s8 *)arg0 + 0x24) = TObjFish__sub_8001EDB0(lbl_805D6FA0, 0);
     init_model(TObjEneEpsilonGuard__model_desc, 1);
-    ((TObjMotion *)arg0)->set_field_d8((s32)lbl_804F2024);
-    ((TObjMotion *)arg0)->set_field_dc((s32)lbl_805D6FA0->motions);
+    ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)lbl_804F2024));
+    ((TObjMotion *)arg0)->set_motion_list((BmlMotionEntry *)((s32)lbl_805D6FA0->motions));
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));
