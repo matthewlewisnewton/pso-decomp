@@ -80,7 +80,7 @@ GC/1.2.5 profile. Remaining functions are:
 | Native suffix/name | Match % | Compiled/original bytes |
 | --- | ---: | ---: |
 | `803EA9E8` | 96.88844 | 1004/1004 |
-| `803EE2F4` | 98.65031 | 652/652 |
+| `803EE2F4` | 99.386505 | 652/652 |
 
 The latest full build and `tools/check_pr.py` pass against main `5146327538`:
 +12 exact functions, +7,652 matched code bytes and +1,744 matched data bytes,
@@ -652,3 +652,31 @@ functions; group selection and request accumulation remain partial.
 The integrated cache checkpoint passes `tools/check_pr.py`: original DOL SHA-1,
 all 3,622 linked units, unchanged 19,177-entry retention list and no match losses.
 Relative to current main it adds 12 exact functions and 7,652 matched code bytes.
+
+## Accumulator pointer lifetimes and complete first group
+
+The accumulator now reaches 99.386505% with all 652 native instruction bytes'
+layout and its 104-byte stack frame retained. Directly initializing the name
+pointer and borrowing the pointer at the replacement-copy call changes which
+value the compiler preserves across calls. An explicit current-group index
+then preserves the slot-selection/emission lifetime. The wide conversion
+buffer is reassigned at the append handoff. The remaining differences are
+register operands; this is still a partial function.
+
+Compiler-stage traces showed the earlier borrowed initialization splitting the
+main name-buffer value before register allocation. Follow-up experiments covered
+borrowed call-site views, actual byte/string pointer types, complete copy and
+request-emission helpers, standard register hints, constant pointer bases,
+equivalent loops, and supported optimizer passes. The selector experiments also
+covered real phase storage, cursor/bound value objects, local references and a
+token-initialization helper. Higher scores with a wrong frame were not adopted.
+
+The integrated accumulator passes 3,000 native PPC differential cases, including
+buffer contents, callback arguments and preserved registers. `tools/check_pr.py`
+passes against unchanged main `5146327538`, with 171 of 173 functions exact and
+no loss of matches or source linkage. The source layout experiment is now 59/59,
+58/59 and 54/55 exact functions across the three native groups. Group zero's
+12,468 text bytes, 1,744 rodata bytes and 156 data bytes all match exactly; every
+other data/BSS section also remains exact. A fresh stock-linker run using all
+three source objects succeeds with diagnostics identical to the original-object
+control. Final linked-unit admission awaits the selector and accumulator.

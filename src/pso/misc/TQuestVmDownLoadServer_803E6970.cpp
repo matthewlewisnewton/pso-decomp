@@ -5137,28 +5137,30 @@ inline char *download_name_storage(char *const &storage) {
 void TQuestVmDownLoadServer__sub_803EE2F4(s32 start, s32 end) {
     s32 emittedLength;
     char *encodedText;
-    char *name = download_name_storage((char *)lbl_8058DC98);
+    char *name = (char *)lbl_8058DC98;
     u8 *encoded = lbl_8058DC48;
     u16 *wide = lbl_805A0340;
     s32 length;
     QuestDownloadTextNode *text;
+    s32 groupStart;
     QuestDownloadSlot *slot;
     while (start < end && (length = TQuestVmDownLoadServer__sub_803E9F54(start)) != 0) {
-        slot = &quest_download_slot_chain_table[start];
-        if (start == lbl_805D78F0 && (lbl_805D78E8 == 1 || lbl_805D7834 >= 3)) {
+        groupStart = start;
+        slot = &quest_download_slot_chain_table[groupStart];
+        if (groupStart == lbl_805D78F0 && (lbl_805D78E8 == 1 || lbl_805D7834 >= 3)) {
             text = advance_nodes__22TQuestVmDownLoadServerFPvi(lbl_805D78A0, lbl_805D7898);
         } else {
             text = advance_nodes__22TQuestVmDownLoadServerFPvi(slot->textHead, 0);
         }
         if (lbl_805D7848 != 3 && lbl_805D7834 <= 2) {
         emit_entry:
-            TQuestVmDownLoadServer__sub_803EE580(start, length, text, slot->entryHead);
+            TQuestVmDownLoadServer__sub_803EE580(groupStart, length, text, slot->entryHead);
             start += length;
             continue;
         }
         if (slot->x16 != 0 && slot->x16 != slot->x15) {
             s32 n = length;
-            strncpy((char *)lbl_8058DC98, (char *)lbl_805A0470.bytes + start, n);
+            strncpy(download_name_storage((char *)lbl_8058DC98), (char *)lbl_805A0470.bytes + start, n);
             lbl_8058DC98[length] = 0;
             emittedLength = length;
             if (length != strlen((char *)lbl_8058DC98)) {
@@ -5180,7 +5182,8 @@ void TQuestVmDownLoadServer__sub_803EE2F4(s32 start, s32 end) {
                 name[0] = 0;
             } else {
                 s32 count = TQuestVmDownLoadServer__sub_803EB420(start, n, text, wide);
-                TQuestVmDownLoadServer__sub_803EC71C(lbl_805A0340, appendEncoded, count);
+                wide = lbl_805A0340;
+                TQuestVmDownLoadServer__sub_803EC71C(wide, appendEncoded, count);
             }
             if ((u8)name[0] != 0) {
                 Req_803EEF2C request;
