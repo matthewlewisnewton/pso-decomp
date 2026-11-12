@@ -2662,12 +2662,9 @@ inline void set_candidate_span(QuestDownloadSlot *slot, s32 maximum) {
     slot->x17 = maximum;
 }
 
-// Preserve the signed-byte result before the word-sized store interface.
-inline s8 next_candidate_span(s32 end) {
-    return (s8)(end + 1);
-}
-
+#pragma opt_lifetimes off
 s32 TQuestVmDownLoadServer__sub_803EA428(s32 start, s32 end) {
+    size_t position;
     QuestDownloadSlot *slot;
     s32 stop;
     u32 candidateLength;
@@ -2675,27 +2672,34 @@ s32 TQuestVmDownLoadServer__sub_803EA428(s32 start, s32 end) {
     QuestDownloadInputEntry *last;
     u8 runKind;
     u32 length;
-    u8 *p;
     u8 kind;
 
     QuestDownloadWorkspaceAddress workspace(reinterpret_cast<size_t>(&lbl_80595008));
     length = end - start;
     if (length == 0) return 0;
     text = lbl_805A0470.bytes + start;
-    slot = QUEST_WORKSPACE_SLOT(workspace.address, start);
+    // The native temporary holds the slot displacement on run-emission paths
+    // and an input address inside either text scan. Each path initializes it
+    // before use; keep addresses in size_t rather than inventing a pointer.
+    position = start * sizeof(QuestDownloadSlot);
+#ifdef __MWERKS__
+    slot = reinterpret_cast<QuestDownloadSlot *>(workspace.address + sizeof(QuestDownloadWorkspace) + position);
+#else
+    slot = &quest_download_slot_chain_table[start];
+#endif
     kind = 0;
     if (TQuestVmDownLoadServer__sub_803EDB58(*text)) {
-        u8 *p = text + 1;
+        position = reinterpret_cast<size_t>(text + 1);
         kind = 0x1F;
-        for (end = 1; end < length; end++, p++) {
-            if (!TQuestVmDownLoadServer__sub_803EDB58(*p)) break;
+        for (end = 1; end < length; end++, position++) {
+            if (!TQuestVmDownLoadServer__sub_803EDB58(*reinterpret_cast<u8 *>(position))) break;
         }
         if (lbl_805D7888 >= 3 && end >= length) return 0;
     } else if (TQuestVmDownLoadServer__sub_803EDB3C(*text)) {
-        p = text + 1;
+        position = reinterpret_cast<size_t>(text + 1);
         kind = 0x19;
-        for (end = 1; end < length; end++, p++) {
-            if (!TQuestVmDownLoadServer__sub_803EDB74(*p)) break;
+        for (end = 1; end < length; end++, position++) {
+            if (!TQuestVmDownLoadServer__sub_803EDB74(*reinterpret_cast<u8 *>(position))) break;
         }
         if (lbl_805D7888 >= 3 && end >= length) return 0;
     } else if (TQuestVmDownLoadServer__sub_803EDB20(*text)) {
@@ -2729,7 +2733,7 @@ emit_run:
             item->next = NULL;
 #ifdef __MWERKS__
             reinterpret_cast<s8 *>(workspace.address + sizeof(QuestDownloadWorkspace) +
-                                   offsetof(QuestDownloadSlot, x17))[start * sizeof(QuestDownloadSlot)] = stop - start + 1;
+                                   offsetof(QuestDownloadSlot, x17))[position] = stop - start + 1;
 #else
             slot->x17 = stop - start + 1;
 #endif
@@ -2752,7 +2756,7 @@ emit_run:
 
 lookup:
     {
-        p = text;
+        u8 *p = text;
         u32 remaining = length;
         candidateLength = 0;
         for (; candidateLength < remaining; candidateLength++) {
@@ -2786,13 +2790,14 @@ candidates:
         if (kind != 0 && candidateLength == end) {
             QuestDownloadItemNode *item = TQuestVmDownLoadServer__sub_803ECF84();
             if (item != NULL) {
+                s8 maximum = end + 1;
                 item->off = end;
                 item->a = kind;
                 item->b = 0;
                 item->x4 = -1;
                 item->c = 0;
                 item->next = NULL;
-                set_candidate_span(slot, next_candidate_span(end));
+                set_candidate_span(slot, maximum);
                 append_candidate_items(item, items);
             }
         }

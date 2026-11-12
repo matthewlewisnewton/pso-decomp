@@ -2,7 +2,7 @@
 
 The claimed unit is `pso/misc/TQuestVmDownLoadServer_803E6970.cpp`, based on
 fork main `554d21699c873ccf9be1b2268eba37cd3a32e48b`. All 173 native functions
-now have C++ bodies, but only 165 match exactly. **This unit remains unlinked
+now have C++ bodies, but only 166 match exactly. **This unit remains unlinked
 and is not ready for a completion PR.** The exact display milestone is
 recorded in [display recovery](quest-download-display-recovery.md).
 
@@ -334,3 +334,29 @@ deterministic boundary stubs. Return values, complete workspace/slot and item
 memory, unchanged input, boundary call traces, and preserved registers agree.
 This checks the recovered routine's behavior, not the implementations of those
 stubbed external operations or whole-game runtime behavior.
+
+## Exact candidate builder (`803EA428`)
+
+The follow-up recovers all 1,336 bytes, including every register operand.
+The temporary used for the native slot displacement is reused for the input
+address inside either character scan. It is represented as `size_t`, and each
+branch initializes its value before reading it. The lookup scan has its own
+byte cursor. Scoped `opt_lifetimes off` preserves that reuse. The non-MWCC
+slot adapter still addresses the actual separate array; no encompassing owner
+or synthetic pointer object is introduced.
+
+Inside synthetic-item creation, `s8 maximum = end + 1` precedes the item field
+writes and passes to the existing word-sized span store. Moving the conversion
+outside this block or obtaining it through a narrow-return helper produces the
+same behavior but different allocation order. The local form restores both the
+three loop-invariant registers and the command-table base register. The unused
+narrow-return helper was removed. All other previously exact functions remain
+exact: the unit is now 166/173, with seven function matches and full object
+layout/linkage still outstanding.
+
+The cleaned exact object also passes the 10,168-case native comparison described
+above, with all 334 original and candidate instructions reached. This iteration
+consulted [the MWCC allocator research](https://github.com/stephenjayakar/melee-mwcc-register-skill/blob/main/references/allocator-rules.md)
+and [Pikmin's inline-boundary evidence](https://github.com/projectPiki/pikmin/wiki/MWCC-Decomp-Permutation-Notes).
+They were research references; no code was copied into the unit and no raw
+register constraints or assembly were introduced.
