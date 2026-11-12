@@ -79,7 +79,7 @@ GC/1.2.5 profile. Remaining functions are:
 
 | Native suffix/name | Match % | Compiled/original bytes |
 | --- | ---: | ---: |
-| `803EA9E8` | 96.88844 | 1004/1004 |
+| `803EA9E8` | 99.28287 | 1004/1004 |
 | `803EE2F4` | 99.386505 | 652/652 |
 
 The latest full build and `tools/check_pr.py` pass against main `5146327538`:
@@ -680,3 +680,31 @@ no loss of matches or source linkage. The source layout experiment is now 59/59,
 other data/BSS section also remains exact. A fresh stock-linker run using all
 three source objects succeeds with diagnostics identical to the original-object
 control. Final linked-unit admission awaits the selector and accumulator.
+
+## Selector consolidation lifetime improvement
+
+The selector now reaches 99.28287% with the native 1,004-byte extent and
+80-byte frame. The input limit is used directly; an explicit token-input
+pointer supplies the dictionary lookup. The consolidation cursor
+initialization assigns the lookup result to `walk` and then `slot`, while a
+separate `groupEnd` supplies the leading-entry count. Together these reproduce
+the formerly different consolidation copy/load sequence. Register operands
+still differ. Removing the bound wrapper also restores native prologue
+scheduling; this selector refinement needs no additional compiler pragmas.
+Declaring `first` before `selectedEnd` further improves register allocation.
+
+The token-input temporary survives cleanup from an assignment expression to
+an ordinary assignment followed by the consuming call. A search result that
+hoisted slot lookup out of its loop was rejected as behaviorally invalid;
+statement reordering was disabled for subsequent searches. Small arithmetic
+helpers, cursor getters, equivalent address expressions and boundary wrappers
+were tested without another improvement.
+
+A private native PPC differential harness compares 3,000 selector scenarios.
+It controls eleven external operations consistently on both sides, varies
+initial token and node availability, selection modes and spans, early-return
+and allocation failures, and group consolidation. Callback arguments, all
+slot/entry/allocation storage, the shared selection mode and preserved
+registers agree. Every controlled operation is reached. This validates the
+refinement under those modeled callback behaviors; it does not replace the
+remaining exact assembly comparison or complete-unit source-link admission.
