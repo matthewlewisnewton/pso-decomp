@@ -2,7 +2,7 @@
 
 The claimed unit is `pso/misc/TQuestVmDownLoadServer_803E6970.cpp`, based on
 fork main `554d21699c873ccf9be1b2268eba37cd3a32e48b`. All 173 native functions
-now have C++ bodies, but only 166 match exactly. **This unit remains unlinked
+now have C++ bodies, but only 167 match exactly. **This unit remains unlinked
 and is not ready for a completion PR.** The exact display milestone is
 recorded in [display recovery](quest-download-display-recovery.md).
 
@@ -80,16 +80,14 @@ GC/1.2.5 profile. Remaining functions are:
 | Native suffix/name | Match % | Compiled/original bytes |
 | --- | ---: | ---: |
 | `803E8DA0` | 95.051544 | 780/776 |
-| `803EA428` | 94.19162 | 1336/1336 |
 | `803EA9E8` | 96.88844 | 1004/1004 |
 | `803EDC20` | 94.41237 | 388/388 |
 | `803EDF64` | 96.98214 | 888/896 |
 | `803EE2F4` | 95.74847 | 644/652 |
-| `803EE580` | 92.35294 | 412/408 |
 | `803F03B4` | 99.75903 | 332/332 |
 
-A fresh full build and `tools/check_pr.py` pass against the starting-main
-baseline: +1 exact function, +704 matched code bytes, no exact-function,
+The latest full build and `tools/check_pr.py` pass against the starting-main
+baseline: +8 exact functions, +5,260 matched code bytes, no exact-function,
 matched-data or source-linkage losses; all 3,626 linked units remain exact.
 The built DOL retains its original SHA-1. The new scoped placement inlining
 and native address boundaries are registered in `porting-exceptions.md`;
@@ -360,3 +358,37 @@ consulted [the MWCC allocator research](https://github.com/stephenjayakar/melee-
 and [Pikmin's inline-boundary evidence](https://github.com/projectPiki/pikmin/wiki/MWCC-Decomp-Permutation-Notes).
 They were research references; no code was copied into the unit and no raw
 register constraints or assembly were introduced.
+
+## Exact request emitter (`803EE580`)
+
+The emitter now matches all 408 original bytes. A structural search found that
+separating the final request-field writes from the storage view changes the
+constant-zero lifetime and restores the native call-argument registers. Keeping
+the request view before the ID cursor restores their r30/r29 allocation. The
+borrowed view's constructor removes the extra global-address copy. The retained
+source uses the existing `inline_depth(1)` region; no new option, padding,
+assembly, or physical-register constraint is needed.
+
+`QuestDownloadRequestView` holds only a pointer to the actual 40-byte allocation.
+The later `completed` pointer names its real leading `Req_803EEF2C` subobject.
+Neither view changes ownership, storage lifetime, or request layout. The
+placement construction of the existing scratch ID array remains unchanged.
+The unit now has 167 exact functions; six function matches and complete object
+layout/linkage remain outstanding.
+
+A native PPC differential run passes 3,600 cases with matching memory, boundary
+calls, and preserved registers. Half are ordinary ABI cases covering null and
+all-ones entry lists, absent item sources, duplicate IDs, all-ones IDs, varying
+16-bit text IDs, and randomized lists. The other half explicitly force the
+comparison operand to signed -1 to exercise the retained custom-request path:
+the original unsigned halfword load cannot naturally produce this value.
+This supplemental injection is confined to the test harness. Together the runs
+reach all 102 instructions in both implementations. Native `strncpy` executes;
+word conversion, byte conversion, and submission use deterministic stubs that
+also clobber caller-saved registers. This does not test those external routines
+or claim whole-game runtime coverage.
+
+The full native build still reproduces the original DOL hash, and no previously
+exact or source-linked function or data range is lost. A separate private
+function-order candidate preserves all matches; its cleanup and the two data
+alignment boundaries remain part of completing the whole claimed span.

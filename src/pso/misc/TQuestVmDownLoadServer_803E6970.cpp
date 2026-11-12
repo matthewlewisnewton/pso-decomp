@@ -5020,11 +5020,18 @@ s32 TQuestVmDownLoadServer__sub_803EF958(u32, u16, s32 *, s32);
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(1)
+// Borrows the request allocation while its leading request is assembled.
+struct QuestDownloadRequestView {
+    QuestDownloadRequestStorage *storage;
+    QuestDownloadRequestView(QuestDownloadRequestStorage *value) : storage(value) {}
+};
+
 void TQuestVmDownLoadServer__sub_803EE580(s32 start, s32 length, QuestDownloadTextNode *text, QuestDownloadEntryNode *entries) {
     s32 zero = 0;
     QuestDownloadItemNode *selected;
+    Req_803EEF2C *completed;
+    QuestDownloadRequestView request(&lbl_805A0698);
     s32 *ids;
-    QuestDownloadRequestStorage *request = &lbl_805A0698;
     s32 count;
     if (text->payload.head.id == -1) {
         selected = NULL;
@@ -5054,13 +5061,14 @@ void TQuestVmDownLoadServer__sub_803EE580(s32 start, s32 length, QuestDownloadTe
         lbl_8058DD38[length] = zero;
         count = TQuestVmDownLoadServer__sub_803EB420(start, length, text, lbl_805A0340);
         TQuestVmDownLoadServer__sub_803EC71C(lbl_805A0340, lbl_8058DCE8, count);
-        request->request.name = (char *)lbl_8058DD38;
-        request->request.len = length;
-        request->request.pad6 = zero;
-        request->request.x7 = 0x19;
-        request->request.x8 = zero;
-        request->request.text = lbl_8058DCE8;
-        TQuestVmDownLoadServer__sub_803EEDC0(&request->request, reinterpret_cast<QuestDownloadScratchIds *>(quest_download_text_buffer)->values, ids - reinterpret_cast<QuestDownloadScratchIds *>(quest_download_text_buffer)->values);
+        request.storage->request.name = (char *)lbl_8058DD38;
+        request.storage->request.len = length;
+        request.storage->request.pad6 = zero;
+        request.storage->request.x7 = 0x19;
+        completed = &request.storage->request;
+        completed->x8 = zero;
+        completed->text = lbl_8058DCE8;
+        TQuestVmDownLoadServer__sub_803EEDC0(completed, reinterpret_cast<QuestDownloadScratchIds *>(quest_download_text_buffer)->values, ids - reinterpret_cast<QuestDownloadScratchIds *>(quest_download_text_buffer)->values);
     } else {
         TQuestVmDownLoadServer__sub_803EF958((u32)selected->x4, text->payload.head.id,
             reinterpret_cast<QuestDownloadScratchIds *>(quest_download_text_buffer)->values, ids - reinterpret_cast<QuestDownloadScratchIds *>(quest_download_text_buffer)->values);
