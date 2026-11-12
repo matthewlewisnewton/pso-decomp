@@ -2,7 +2,7 @@
 
 The claimed unit is `pso/misc/TQuestVmDownLoadServer_803E6970.cpp`, based on
 fork main `554d21699c873ccf9be1b2268eba37cd3a32e48b`. All 173 native functions
-now have C++ bodies, but only 171 match exactly. **This unit remains unlinked
+now have C++ bodies, and 172 match exactly. **This unit remains unlinked
 and is not ready for a completion PR.** The exact display milestone is
 recorded in [display recovery](quest-download-display-recovery.md).
 
@@ -79,14 +79,14 @@ GC/1.2.5 profile. Remaining functions are:
 
 | Native suffix/name | Match % | Compiled/original bytes |
 | --- | ---: | ---: |
-| `803EA9E8` | 99.52191 | 1004/1004 |
+| `803EA9E8` | 100 | 1004/1004 |
 | `803EE2F4` | 99.81595 | 652/652 |
 
 The latest full build and `tools/check_pr.py` pass against main `5146327538`:
 +12 exact functions, +7,652 matched code bytes and +1,744 matched data bytes,
 with no exact-function, matched-data or source-linkage losses. All 3,622 linked
 units remain exact and the built DOL retains its original SHA-1. The chosen
-unit has 171 of 173 functions exact; final source-link admission remains pending.
+unit has 172 of 173 functions exact; final source-link admission remains pending.
 The scoped compiler exceptions are registered in `porting-exceptions.md` and
 the generated inventory is current.
 
@@ -102,7 +102,7 @@ stack/nonvolatile restoration. This bounded execution evidence does not prove
 exact code or whole-unit linkage. Original binaries, table contents and
 extracted instructions remain private and are not committed.
 
-Completion still requires all five remaining function differences, full allocated
+Completion still requires the remaining accumulator difference, full allocated
 section layout and relocations, source-link eligibility, and fresh complete
 link/no-loss verification. No incomplete unit is added to `linked_units.txt`.
 
@@ -816,3 +816,37 @@ remaining functions. The inline-search adapter was also corrected to preserve
 generated helpers preceding the target function, and fresh searches reproduce
 their baseline scores before mutation. The unit remains 171/173 exact and its
 claim remains active until the full source unit is exact and linked.
+
+
+## Exact selector and four-byte complete-link remainder
+
+`803EA9E8` now matches all 1,004 bytes, including its original `0x50` frame.
+The retained implementation names the input bound, separates validation and
+pruning cursors, and wraps the actual best-entry call in `select_download_length`.
+That helper returns its consumed result through a local value. The group begins
+with `slot = lookup`, `walk = slot`, then reads both its initial signed span and
+flag through `walk`. This gives MWCC the native pointer copy and load order.
+Reading those fields through `slot` instead allows the forward peephole pass to
+fold the flag load into the preceding address addition and move it too early.
+A search-generated unused header snapshot was removed before retention; the
+cleaned, formatted implementation remains exactly matching.
+
+The final selector object passes the 3,000-case native comparison harness:
+callback arguments, slot and node mutations, failure paths, consolidation,
+mode, and preserved registers agree. The complete `tools/check_pr.py` gate also
+passes, including the original DOL, no regressions, all 3,622 already linked
+units, and the 19,177-entry force-active inventory.
+
+Regenerating all three genuine source groups gives 59/59, 59/59, and 54/55
+exact functions, with all data, read-only data, and BSS exact. A new stock-linker
+full-source executable preserves every loadable section's address and extent.
+It differs from the original by **four bytes total**, all in `803EE2F4`'s two
+buffer-address loads; the selector and every other byte agree. The unit is now
+172/173 exact. Source admission and the complete-unit PR remain pending the
+accumulator's final exact match.
+
+For that remaining routine, stock-compiler allocation traces also reproduce
+an alternative with exact instruction ordering and a three-way rotation of
+the end, encoded-buffer alias, and slot-table registers. Source-only buffer and
+loop-bound experiments continue against both alternatives; no compiler or
+object-code patch is part of the implementation.
