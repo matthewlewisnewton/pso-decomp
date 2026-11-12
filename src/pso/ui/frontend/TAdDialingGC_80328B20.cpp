@@ -13,7 +13,7 @@ extern f32 lbl_804767B0[];
 void TAdDialingGC__sub_80328B20(void) {  }
 
 // Draws a flat dark-blue quad of `size` (w, h) at `origin` (x, y) (one 2D polygon, four points).
-void TAdDialingGC__sub_80328B24(f32 *origin, f32 *size) {
+void draw_dialing_rectangle(f32 *origin, f32 *size) {
     NJS_POINT2 pos[4];
     NJS_POINT2COL poly;
     NJS_COLOR col[4];
@@ -39,12 +39,12 @@ void TAdDialingGC__sub_80328B24(f32 *origin, f32 *size) {
 void TAdDialingGC::draw_if_flag_set() {
     TAdDialingGC *self = this;
     if (self->m_a4 & 1) {
-        TAdDialingGC__sub_80328B24(lbl_804767B8, lbl_804767C0);
+        draw_dialing_rectangle(lbl_804767B8, lbl_804767C0);
     }
 }
 void TAdDialingGC::render_if_flag_set() {
     if ((this->m_a4 & 1) && ((s32) this->m_1c == 0)) {
-        TAdDialingGC__sub_80328B24(lbl_804767A8, lbl_804767B0);
+        draw_dialing_rectangle(lbl_804767A8, lbl_804767B0);
     }
 }
 

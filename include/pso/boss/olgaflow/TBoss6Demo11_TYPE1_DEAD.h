@@ -6,6 +6,7 @@
 
 struct AnimationMotion;
 struct TObjFish;
+struct TBoss6PlotFalz;
 class TParticleCtrl;
 
 class TBoss6Demo11_TYPE1_DEAD : public TObject {
@@ -17,7 +18,7 @@ public:
         AnimationMotion *motion;
     };
 
-    TBoss6Demo11_TYPE1_DEAD(TObject *parent, void *arg);
+    TBoss6Demo11_TYPE1_DEAD(TBoss6PlotFalz *parent, const Vec *arg);
     virtual ~TBoss6Demo11_TYPE1_DEAD();
     void render_fade_model();
     virtual void render();

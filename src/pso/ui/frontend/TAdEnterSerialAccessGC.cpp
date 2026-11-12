@@ -178,7 +178,7 @@ void __ct__9TAdBackGCFv(void *, void *);
 void __ct__12TAdBackTxtGCFv(void *, void *);
 void *__ct__14TAdSelectCurGCFv(void *, TObject *, void *, void *);
 extern s32 __vt__22TAdEnterSerialAccessGC[];
-void TAdEnterSerialAccessGC__sub_802C4B64(void *, void *, Col_803214C4, int);
+void draw_selection_plate(void *, void *, Col_803214C4, int);
 void __dt__19TAdPlyChrSelPlateGCFv(void *, int);
 void *__ct__19TAdPlyChrSelPlateGCFv(void *, TObject *, void *);
 extern Col_803214C4 lbl_805DF4D8;
@@ -302,16 +302,16 @@ void TAdEnterSerialAccessGC::draw_serial_plates() {
         case 3:
             break;
         case 2:
-            TAdEnterSerialAccessGC__sub_802C4B64(&b, (void *)&serial_plate_position_table[0], c, 0);
+            draw_selection_plate(&b, (void *)&serial_plate_position_table[0], c, 0);
             for (i = 0; i < 2; i++) {
-                TAdEnterSerialAccessGC__sub_802C4B64(&a, (void *)&serial_plate_position_table[i + 1], c, 0);
+                draw_selection_plate(&a, (void *)&serial_plate_position_table[i + 1], c, 0);
             }
             TAdEnterSerialAccessGC::draw_serial_separators();
             break;
         case 4:
             for (i = 0; i < 3; i++) {
                 pos.x = lbl_805DF504 * (f32)i + lbl_805DF500;
-                TAdEnterSerialAccessGC__sub_802C4B64(&a, &pos, c, 0);
+                draw_selection_plate(&a, &pos, c, 0);
             }
             TAdEnterSerialAccessGC::draw_serial_separators();
             break;

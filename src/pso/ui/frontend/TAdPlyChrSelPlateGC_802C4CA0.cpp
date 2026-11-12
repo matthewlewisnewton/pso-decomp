@@ -56,7 +56,7 @@ void TAdPlyChrSelPlateGC::render() {
                 u8 *pos = (u8 *)this;
                 pos += i * sizeof(NJS_POINT2);
                 pos += offsetof(TAdPlyChrSelPlateGC, plate_pos);
-                TAdEnterSerialAccessGC__sub_802C4B64(this, (NJS_POINT2 *)pos, plate_color[i], i);
+                draw_selection_plate(this, (NJS_POINT2 *)pos, plate_color[i], i);
             }
         }
         set_color_blending_mode(0, 8);
