@@ -8,7 +8,6 @@ struct TWindowSubSymbolChatPartsSet : public TWindowChatSymbol {
     virtual ~TWindowSubSymbolChatPartsSet();
     void sub_8028625C();
     s32 is_active();
-    void set_selection(u32);
     void update_visibility();
     virtual void render();
     u8 m_68;

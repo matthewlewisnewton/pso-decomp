@@ -9,7 +9,6 @@ struct TAdChrMoveEffectGC : public TObject {
     void sub_80348E34();
     u32 m_1c;
     u32 m_20;
-    void copy4(void* q);
     virtual void render();
     void reset_effect_entries();
     void clear_entries();
@@ -24,5 +23,7 @@ extern "C" {
 void *TAdChrMoveEffectGC__ct(void *arg0);
 void *__dt__18TAdChrMoveEffectGCFv(void *arg0, s16 arg1);
 }
+
+void copy_color_bytes(void *dst, const void *src);
 
 #endif

@@ -53,7 +53,7 @@ void TBoss6Demo15_TYPE2_WAIT::check_any_player_near() {
     lim = 25.0f;
     for (i = 0; i < n; i++) {
         p = (P_8033FF78 *)get_player_data__10TObjPlayerFi(i);
-        if (((TBoss6PlotFalz *)p)->is_active() != 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)p) != 0) {
             VecCopy((Vec *)&v, (const Vec *)&arg0->pos);
             subtract_vector(&v, &p->pos);
             v.y = y;

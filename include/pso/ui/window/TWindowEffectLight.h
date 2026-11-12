@@ -14,7 +14,7 @@ public:
 public:
     f32 calc_scale();
     u32 calc_alpha();
-    static void *create(void *arg0, void *arg1, void *arg2);
+    static void *create(void *arg0, s16 arg1, u32 arg2);
 };
 
 extern "C" {

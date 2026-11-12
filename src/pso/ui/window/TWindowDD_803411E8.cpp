@@ -6,6 +6,7 @@
 #include "pso/ui/window/TWindowSubStatusDisp.h"
 #include "pso/ui/chat/TWindowSubSymbolChatPartsSet.h"
 
+extern "C" void measure_text_entry();
 extern const f32 TWindowDD__data_805DFB58;
 extern const f32 lbl_805DFC98;
 void TWindowDD::init_and_set_field50(void *arg1) {
@@ -33,7 +34,7 @@ void TWindowDD__sub_803412A0(u8 *arg0) {
     s32 temp_r3;
     temp_r3 = ((TWindowBase *)arg0)->get_array_entry(0);
     if (temp_r3 != 0) {
-        TWindowDD::refresh_status_display();
+        measure_text_entry();
         *(f32 *)((s8 *)arg0 + 0x38) = (f32) ((lbl_805DFC98 * TWindowDD__data_805DFB58) + *(f32 *)((s8 *)temp_r3 + 0x10));
     }
 }

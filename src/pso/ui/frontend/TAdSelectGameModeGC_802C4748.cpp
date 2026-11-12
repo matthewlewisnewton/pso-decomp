@@ -183,16 +183,16 @@ void TAdEnterSerialAccessGC__sub_802C4B64(TAdPlyChrSelPlateGC *plate, NJS_POINT2
     fan.num = 4;
     fan.p[0].x = x;
     fan.p[0].y = y;
-    ((TAdChrMoveEffectGC *)&fan.col[0])->copy4(&color);
+    copy_color_bytes((void *)&fan.col[0], &color);
     fan.p[1].x = fan.p[0].x;
     fan.p[1].y = fan.p[0].y + plate->plate_size.y;
-    ((TAdChrMoveEffectGC *)&fan.col[1])->copy4(&color);
+    copy_color_bytes((void *)&fan.col[1], &color);
     fan.p[2].x = fan.p[0].x + plate->plate_size.x;
     fan.p[2].y = fan.p[0].y + plate->plate_size.y;
-    ((TAdChrMoveEffectGC *)&fan.col[2])->copy4(&color);
+    copy_color_bytes((void *)&fan.col[2], &color);
     fan.p[3].x = fan.p[0].x + plate->plate_size.x;
     fan.p[3].y = fan.p[0].y;
-    ((TAdChrMoveEffectGC *)&fan.col[3])->copy4(&color);
+    copy_color_bytes((void *)&fan.col[3], &color);
     ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 7, lbl_805DE544 * (f32)depth + lbl_805DE540);
 }
 #pragma pop

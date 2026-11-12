@@ -157,7 +157,7 @@ extern int lbl_805D3614;
 extern s32 lbl_805D3888;
 
 extern "C" {
-s32 try_open__19TWindowKeyBoardSoftFii(void *, Quad_802455CC *);
+s32 try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(void *, Quad_802455CC *);
 }
 
 int TWindowSubComCard__sub_80244774(void) {  return lbl_805D3614; }
@@ -442,7 +442,7 @@ void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + p->u) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (try_open__19TWindowKeyBoardSoftFii(window_key_board_soft, &q) != 0) {
+    if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(window_key_board_soft, &q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, z);
     }
     t = x + *(f32 *)((s8 *)window_key_board_soft + 0x18);
@@ -455,7 +455,7 @@ void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + u) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (try_open__19TWindowKeyBoardSoftFii(window_key_board_soft, &q) != 0) {
+    if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(window_key_board_soft, &q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, z);
     }
     q.x0 = x1;
@@ -466,7 +466,7 @@ void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
     q.v0 = p->v / 256.0f;
     q.u1 = (16.0f + (16.0f + p->u)) / 256.0f;
     q.v1 = (18.0f + p->v) / 256.0f;
-    if (try_open__19TWindowKeyBoardSoftFii(window_key_board_soft, &q) != 0) {
+    if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(window_key_board_soft, &q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, z);
     }
     TWindowSubStatusDisp::get_player();

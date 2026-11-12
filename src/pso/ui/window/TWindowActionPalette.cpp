@@ -102,7 +102,7 @@ void TWindowActionPalette::set_bank_panel_art(unsigned short state) {
 }
 
 #define self ((Obj_80243968 *)arg0)
-void TWindowActionPalette::update_slot_icon(void *arg0, int idx, int mode, int slot) {
+void TWindowActionPalette::update_slot_icon(void *arg0, int idx, int mode, u16 slot) {
     if (((u32 (*)(int))get_player_by_client_id)(self->id) != 0) {
         Ent_80243968 *ent = (Ent_80243968 *)((void *)get_array_entry__11TWindowBaseFi((TWindowActionPalette*)(self), 4));
         if (TObjPlayer__sub_80354C7C((u16)self->id) != 0) {
@@ -115,7 +115,7 @@ void TWindowActionPalette::update_slot_icon(void *arg0, int idx, int mode, int s
         if ((u16)mode != ((TMainCursor *)cur)->get_type() || ((TMainCursor *)cur)->get_enabled() != (u16)slot) {
             ((TWindowActionPalette *)cur)->set_mode(mode);
             ((TWindowActionPalette *)cur)->set_slot(slot);
-            ((void (*)(void *, int, int))draw_action_palette_icon)(ent, mode, slot);
+            draw_action_palette_icon((u8 *)ent, mode, slot);
         }
     }
 }

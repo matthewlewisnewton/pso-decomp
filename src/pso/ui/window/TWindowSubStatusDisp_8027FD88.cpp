@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/unk/TLobby_80132ED0.h"
+#include "pso/ui/window/PageIndicator.h"
 #include "pso/ui/window/TWindowSubStatusDisp_80071774.h"
 #include "pso/ui/window/TWindowSubStatusDisp_80228CC0.h"
 #include "pso/ui/window/TWindowSubStatusDisp_80228F5C.h"
@@ -72,7 +73,7 @@ s32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 TLobby__sub_801C2614();
 void *get_array_entry__11TWindowBaseFi(void *, s32);
 s32 init_window_layout_entries(void *, s32 *, s16);
-s8 get_type__20TWindowSubStatusDispFv(int);
+s8 get_type__13PageIndicatorFv(int);
 void *get_player_by_client_id(s32 i);
 void vt11__20TWindowSubStatusDispFv(Wn_80280F14 *arg0);
 }
@@ -99,12 +100,12 @@ s32 TWindowSubStatusDisp::get_display_mode() {
     Win_8027FD9C *arg0 = (Win_8027FD9C *)this;
     s32 r;
     if (arg0->f60 == 2) {
-        s8 t = get_type__20TWindowSubStatusDispFv(arg0->f68);
+        s8 t = get_type__13PageIndicatorFv(arg0->f68);
         r = 3;
         if (t == 2) r = 2;
         return r;
     }
-    return get_type__20TWindowSubStatusDispFv(arg0->f68) != 2 ? 1 : 0;
+    return get_type__13PageIndicatorFv(arg0->f68) != 2 ? 1 : 0;
 }
 
 void TWindowSubStatusDisp::vt16() {  }
@@ -127,7 +128,7 @@ inline int TWindowSubStatusDisp::get_record_slot(int base) {
 }
 
 // Best-time records page: the online (m_60 == 2) variant shows the other record slots.
-void TWindowSubStatusDisp::vt4() {
+void TWindowSubStatusDisp::init_challenge_records_page() {
     s32 slot;
     u16 *entry;
     u16 *label;
@@ -141,7 +142,7 @@ void TWindowSubStatusDisp::vt4() {
         m_5c = 7;
     }
     init_window_layout_entries(&m_24, TWindowSubStatusDisp__rank_time_records_layout, m_20);
-    ((TWindowSubStatusDisp *)m_68)->get_type();
+    ((PageIndicator *)m_68)->get_type();
     slot = get_record_slot(0);
     entry = (u16 *)get_array_entry(0);
     if (slot == 0) {

@@ -25,7 +25,8 @@ struct Quad_8025B0D0 { f32 v[8]; };
 extern "C" {
 void apply_context_transform_to_rect(void *, void *);
 void draw_window_uv_sprite_part(Win_8025B0D0 *arg0, Ref_8025B0D0 *arg1);
-s32 sub_80256BDC__13TUnk_804CF930Fl(void *, void *);
+s32 __ct__13TUnk_804CF918Fs(void *, void *);
+void *__dt__13TUnk_804CF918Fv(void *, s16);
 }
 
 void *window_uv_sprite_part_vtable[6] = {
@@ -116,7 +117,7 @@ void draw_window_uv_sprite_part(Win_8025B0D0 *arg0, Ref_8025B0D0 *arg1) {
     if (arg0->flags & 0x10) {
         apply_context_transform_to_rect(arg1, &q);
         draw_textured_quad_at_depth((f32 *)&q, scale);
-    } else if (try_open__19TWindowKeyBoardSoftFii((s32)arg1, (s32)&q) != 0) {
+    } else if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf((s32)arg1, (s32)&q) != 0) {
         draw_textured_quad_at_depth((f32 *)&q, scale);
     }
     TWindowSubStatusDisp::get_player();
@@ -129,7 +130,7 @@ void TWindowSubStatusDisp::update_palette_sprite() {  }
 void *TWindowSubStatusDisp__sub_8025B2DC(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(void ***)((s8 *)arg0 + 4) = window_uv_sprite_part_vtable;
-        ((TUnk_804CF930 *)arg0)->destroy(0);
+        __dt__13TUnk_804CF918Fv(arg0, 0);
         if (arg1 > 0) {
             ::operator delete(arg0);
         }
@@ -138,7 +139,7 @@ void *TWindowSubStatusDisp__sub_8025B2DC(void *arg0, s16 arg1) {
 }
 
 u8 *TWindowSubStatusDisp::init_part_direct(u8 *arg1, s32 arg2) {
-    sub_80256BDC__13TUnk_804CF930Fl(this, (void *)arg2);
+    __ct__13TUnk_804CF918Fs(this, (void *)arg2);
     *(void ***)((s8 *)((u8 *)this) + 4) = window_uv_sprite_part_vtable;
     ((TWindowSubSymbolChatPartsSet *)(((u8 *)this) + 8))->copy_vec2(arg1 + 4);
     ((TWindowSubSymbolChatPartsSet *)(((u8 *)this) + 0x10))->copy_vec2(arg1 + 0xC);
@@ -155,7 +156,7 @@ u8 *TWindowSubStatusDisp::init_part_direct(u8 *arg1, s32 arg2) {
 }
 
 u8 *init_part_scaled__20TWindowSubStatusDispFPvPvi(u8 *arg0, u8 *arg1, s32 arg2) {
-    sub_80256BDC__13TUnk_804CF930Fl(arg0, (void *)arg2);
+    __ct__13TUnk_804CF918Fs(arg0, (void *)arg2);
     *(void ***)((s8 *)arg0 + 4) = window_uv_sprite_part_vtable;
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 8))->copy_vec2(arg1 + 4);
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 0x10))->copy_vec2(arg1 + 0xC);

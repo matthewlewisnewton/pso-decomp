@@ -13,6 +13,7 @@ void set_constant_material(const NJS_ARGB *color);
 #include "pso/system/PadRumble.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/boss/olgaflow/Boss6ScrollStrips.h"
 #include "pso/boss/olgaflow/TBoss6PlotFalz.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -267,7 +268,7 @@ s32 TBoss6PlotFalz::damage_player_hp(s32 arg0, u32 arg1) {
     u16 id;
     id = arg0;
     v = arg1;
-    if (id == 0xFFFF || (p = get_player_by_client_id(id)) == NULL || ((TBoss6PlotFalz *)p)->is_active() == 0) {
+    if (id == 0xFFFF || (p = get_player_by_client_id(id)) == NULL || TBoss6PlotFalz::is_active((TObjPlayer *)p) == 0) {
         return 0;
     }
     hp = get_actor_hp(p);
@@ -305,7 +306,7 @@ s32 TBoss6PlotFalz::sort_active_players() {
     n = 0;
     for (i = 0; i < registered_player_count; i++) {
         p = get_player_data__10TObjPlayerFi(i);
-        if (p != NULL && ((TBoss6PlotFalz *)p)->is_active() != 0 && p->f32c != 0) {
+        if (p != NULL && TBoss6PlotFalz::is_active((TObjPlayer *)p) != 0 && p->f32c != 0) {
             boss6_plot_falz_player_order_table[n] = get_entity_id(p);
             vals[n] = p->f32c;
             n++;
@@ -336,7 +337,7 @@ u16 TBoss6PlotFalz::pick_random_active_player() {
     n = 0;
     for (i = 0; i < registered_player_count; i++) {
         p = get_player_data__10TObjPlayerFi(i);
-        if (p != NULL && ((TBoss6PlotFalz *)p)->is_active() != 0) {
+        if (p != NULL && TBoss6PlotFalz::is_active((TObjPlayer *)p) != 0) {
             ids[n] = get_entity_id(p);
             n++;
         }
@@ -347,8 +348,8 @@ u16 TBoss6PlotFalz::pick_random_active_player() {
     return ids[(s32)(((f32)n - 0.1f) * (3.0517578125e-05f * (f32)rand()))];
 }
 
-s32 TBoss6PlotFalz::is_active() {
-    if ((is_state_1f__14TBoss6PlotFalzFUi() != 0) && !(this->actorFlags & 0x02000800)) {
+s32 TBoss6PlotFalz::is_active(TObjPlayer *player) {
+    if ((is_state_1f__14TBoss6PlotFalzFUi() != 0) && !(player->actorFlags & 0x02000800)) {
         return 1;
     }
     return 0;
@@ -1094,7 +1095,7 @@ void refresh_players_equipment__14TBoss6PlotFalzFPv(void *self);
 void scroll_strip_uvs(u32, s16, s16);
 s32 get_bml_model(s32, s32);
 s32 alloc_tables__6TLobbyFll(s32, s32, s32);
-void build_tables__14TBoss6PlotFalzFPvPvi(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2);
+void build_tables__17Boss6ScrollStripsFP14Boss6StripDescl(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2);
 extern s32 lbl_805D5868;
 extern s32 lbl_805D5870;
 void update_active_flag__14TBoss6PlotFalzFv(void);
@@ -1107,7 +1108,7 @@ void update_active_flag__14TBoss6PlotFalzFv(void) {
     }
 }
 
-void TBoss6PlotFalz::scroll_strips_uv(s32 dx, s32 dy) {
+void Boss6ScrollStrips::scroll_strips_uv(s32 dx, s32 dy) {
     Obj_802AC1D8 *o = (Obj_802AC1D8 *)this;
     s32 j;
     s32 i;
@@ -1123,7 +1124,7 @@ void TBoss6PlotFalz::scroll_strips_uv(s32 dx, s32 dy) {
     }
 }
 
-void TBoss6PlotFalz::free_buffer_pairs() {
+void Boss6ScrollStrips::free_buffer_pairs() {
     Obj_8004AA04 *self = (Obj_8004AA04 *)this;
     s32 i;
     for (i = 0; i < self->count; i++) {
@@ -1140,7 +1141,7 @@ typedef char RecoveredGlobal_8004B084_TBoss4DarkFalz__data_80485108_size[sizeof(
 typedef char MemberActionStorage_8004B0F8_size[sizeof(MemberActionStorage_8004B0F8) == 12 ? 1 : -1];
 typedef char RecoveredGlobal_8004B0F8_TBoss4DarkFalz__data_80485108_size[sizeof(RecoveredGlobal_8004B0F8_TBoss4DarkFalz__data_80485108) == 0x340 ? 1 : -1];
 
-void build_tables__14TBoss6PlotFalzFPvPvi(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2) {
+void build_tables__17Boss6ScrollStripsFP14Boss6StripDescl(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2) {
     s32 h;
     s32 i;
     Rec_8004AA80 *r;

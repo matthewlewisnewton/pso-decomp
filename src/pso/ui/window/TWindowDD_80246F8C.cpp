@@ -6,7 +6,7 @@ extern "C" {
 s32 measure_message_text_width(f32);
 
 
-void TWindowDD::refresh_status_display() {
+void measure_text_entry() {
     measure_message_text_width(1000000.0f);
 }
 

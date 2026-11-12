@@ -1,4 +1,4 @@
 #include "types.h"
-#include "pso/ui/window/TWindowSubStatusDisp.h"
+#include "pso/ui/window/PageIndicator.h"
 
-s8 TWindowSubStatusDisp::get_type() { return *(s8 *)&this->m_name; }
+s8 PageIndicator::get_type() { return *(s8 *)this; }

@@ -28,7 +28,7 @@ extern "C" {
 int get_array_entry__11TWindowBaseFi(void*, int);
 s32 save_position__11TWindowBaseFv(void *);
 void construct_base__9TWindowDDFPUcsPUc(void *, void *, s16, void *);
-void refresh_status_display__9TWindowDDFv(void *);
+void measure_text_entry(void *);
 s32 get_window_layout_position(int);
 extern RecoveredGlobal_8026D674_lbl_804D08DC room_window_base_parameters;
 extern s32 __vt__11TWindowRoom[];
@@ -86,7 +86,7 @@ TWindowRoom::TWindowRoom(char *title) {
     className = TWindowRoom__class_name;
     entry = (RoomTitleEntry *)get_array_entry__11TWindowBaseFi(this, 0);
     set_text_entry_string((u8 *)entry, (u32)title, 0x60);
-    refresh_status_display__9TWindowDDFv(entry);
+    measure_text_entry(entry);
     width = 10.0f + (entry->positionX + entry->width);
     positionX -= width;
     save_position__11TWindowBaseFv(this);

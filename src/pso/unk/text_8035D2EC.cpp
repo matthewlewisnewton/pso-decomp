@@ -25,7 +25,7 @@ s32 any_player_has_listed_equipment(void) {
     s32 i;
     for (i = 0; i < n; i++) {
         void *pl = (void *)get_player_data__10TObjPlayerFi(i);
-        if (pl != NULL && ((TBoss6PlotFalz *)pl)->is_active() != 0) {
+        if (pl != NULL && TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0) {
             s32 j;
             for (j = 0; j < 10; j++) {
                 u8 *e = listed_equipment_table[j];

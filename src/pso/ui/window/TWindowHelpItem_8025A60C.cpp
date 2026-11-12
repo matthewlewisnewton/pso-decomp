@@ -25,8 +25,9 @@ struct Ctx_8025A650 { u8 p0[0x10]; f32 x; f32 y; u8 p18[0x18]; s32 f30; u8 p34[4
 
 f32 get_item_star_row_width(u8 *arg0);
 extern "C" {
-s32 sub_80256BDC__13TUnk_804CF930Fl(void *, void *);
-s32 try_open__19TWindowKeyBoardSoftFii(void *, void *);
+s32 __ct__13TUnk_804CF918Fs(void *, void *);
+void *__dt__13TUnk_804CF918Fv(void *, s16);
+s32 try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(void *, void *);
 void begin_screen_draw(s32 arg0);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
@@ -88,7 +89,7 @@ void render_item_rarity_stars(Item_8025A650 *item, Ctx_8025A650 *ctx) {
         q.v0 = uv->v / 256.0f;
         q.u1 = (16.0f + uv->u) / 256.0f;
         q.v1 = (16.0f + uv->v) / 256.0f;
-        if (try_open__19TWindowKeyBoardSoftFii(ctx, &q) != 0) {
+        if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(ctx, &q) != 0) {
             draw_textured_quad_at_depth((f32 *)&q, depth);
         }
         x += 17.0f;
@@ -110,7 +111,7 @@ void render_item_rarity_stars(Item_8025A650 *item, Ctx_8025A650 *ctx) {
         q.v0 = uv->v / 256.0f;
         q.u1 = (16.0f + uv->u) / 256.0f;
         q.v1 = (16.0f + uv->v) / 256.0f;
-        if (try_open__19TWindowKeyBoardSoftFii(ctx, &q) != 0) {
+        if (try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(ctx, &q) != 0) {
             draw_textured_quad_at_depth((f32 *)&q, depth2);
         }
         x += 17.0f;
@@ -124,7 +125,7 @@ void TWindowHelpItem__sub_8025A900(void) {  }
 void *TWindowHelpItem__sub_8025A904(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(void ***)((s8 *)arg0 + 4) = lbl_804CFA10;
-        ((TUnk_804CF930 *)arg0)->destroy((s16)(0));
+        __dt__13TUnk_804CF918Fv(arg0, 0);
         if (arg1 > 0) {
             ::operator delete(arg0);
         }
@@ -134,7 +135,7 @@ void *TWindowHelpItem__sub_8025A904(void *arg0, s16 arg1) {
 
 typedef char RecoveredGlobal_8025A95C_lbl_804CFA10_size[sizeof(RecoveredGlobal_8025A95C_lbl_804CFA10) == 0x18 ? 1 : -1];
 u8 *TWindowHelpItem__sub_8025A95C(u8 *arg0, s32 arg1, s32 arg2) {
-    sub_80256BDC__13TUnk_804CF930Fl((void *)arg0, (void *)arg2);
+    __ct__13TUnk_804CF918Fs((void *)arg0, (void *)arg2);
     *(s32 **)((s8 *)arg0 + 4) = &(*(RecoveredGlobal_8025A95C_lbl_804CFA10 *)&lbl_804CFA10).value;
     ((TWindowSubSymbolChatPartsSet *)(arg0 + 8))->copy_vec2((void *)(arg1 + 4));
     *(s32 *)((s8 *)arg0 + 0x10) = 0;

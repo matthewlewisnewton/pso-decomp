@@ -5,7 +5,7 @@
 
 struct TWindowHelpItem;
 extern "C" {
-s32 get_help_value__15TWindowHelpItemFv(void);
+s32 get_palette_item_amount(u16 slot, s32 client_id);
 void update_palette_item_count_label(TWindowHelpItem *arg0, u8 *arg1, u16 arg2, u16 arg3, s32 arg4);
 }
 

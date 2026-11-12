@@ -63,7 +63,7 @@ void TWindowHelpItem::set_help_text(s32 arg0, s32 arg1) {
     set_sprite_uv_from_pixels((u8 *)arg0, lbl_805DCA1C, lbl_805DCA24);
 }
 
-s32 get_help_value__15TWindowHelpItemFv(void) {
+s32 get_palette_item_amount(u16 slot, s32 client_id) {
     struct VObj_80243464 *o;
 
     s32 id = ((s32 (*)(void))get_palette_consumable_count)();
@@ -108,7 +108,7 @@ void update_palette_item_count_label(TWindowHelpItem *window_help_item, u8 *arg1
             v = clamp_char_at__10TObjPlayerFl(p + 0x7C4, arg3 - 0xD);
         }
     } else {
-        v = ((s32 (*)(u16, s32))get_help_value__15TWindowHelpItemFv)(arg3, arg4);
+        v = get_palette_item_amount(arg3, arg4);
     }
     if (v <= 0) {
         window_help_item->set_flag0_bit2();

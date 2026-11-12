@@ -2,6 +2,7 @@
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/window/TWindowEffectLight.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
+extern "C" void *create__18TWindowEffectLightFPvsUl(void *, void *, void *);
 struct Win_802437C4 {
     u8 pad0[0x20];
     s16 id;
@@ -61,7 +62,7 @@ void spawn_action_palette_slot_light(Win_802437C4 *arg0, s32 arg1) {
         pt.x = lbl_805DCA2C * e->w + (arg0->x + e->x);
         pt.y = lbl_805DCA2C * e->h + (arg0->y + e->y);
     }
-    TWindowEffectLight::create(&pt, (void *)kind, (void *)arg0->id);
+    create__18TWindowEffectLightFPvsUl(&pt, (void *)kind, (void *)arg0->id);
 }
 #pragma pop
 

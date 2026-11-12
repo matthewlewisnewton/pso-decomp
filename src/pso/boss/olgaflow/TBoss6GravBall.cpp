@@ -74,7 +74,7 @@ void TBoss6GravBall__sub_803233AC(u8 *self) {
     for (i = 0; i < n; i++) {
         pl = (PL_803233AC *)get_player_data__10TObjPlayerFi(i);
         id = get_entity_id(pl) + 5;
-        if (((TBoss6PlotFalz *)pl)->is_active() == 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) == 0) {
             ((TBoss6GravBall *)self)->destroy_part((s32)((void *)id));
             continue;
         }
@@ -124,7 +124,7 @@ void TBoss6GravBall__sub_80323544(u8 *self) {
     for (i = 0; i < n; i++) {
         pl = (PL_80323544 *)get_player_data__10TObjPlayerFi(i);
         id = get_entity_id(pl) + 5;
-        if (((TBoss6PlotFalz *)pl)->is_active() == 0) {
+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) == 0) {
             ((TBoss6GravBall *)self)->destroy_part((s32)((void *)id));
             continue;
         }
