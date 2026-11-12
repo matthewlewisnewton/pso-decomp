@@ -694,6 +694,9 @@ extern TCameraCtrl *camera_ctrl_instance;
 // Volume, pan and surround of a positioned voice from the listener: the camera,
 // or in split screen the nearest viewed player. Dark Falz and Olga Flow double
 // the hearing range.
+#pragma push
+#pragma opt_propagation off
+#pragma opt_lifetimes off
 void calc_sound_spatial_params(SoundRequestVoice *v) {
     s32 pan = 0;
     s32 volume = 0;
@@ -752,18 +755,26 @@ void calc_sound_spatial_params(SoundRequestVoice *v) {
             if (is_split_screen() || (v->flags & 2)) {
                 pan = 0;
             } else if (dist > 0.0f) {
-                pan = (s8)(127.0f * -sin_table_lookup(
-                    (s32)(10430.38043493439 * atan2_float(((const Vec *)v->position)->z - camera_ctrl_instance->pos_z,
-                                                          ((const Vec *)v->position)->x - camera_ctrl_instance->pos_x))
-                    + (camera_ctrl_instance->yaw + 0x4000)));
+                const TCameraCtrl *camera = camera_ctrl_instance;
+                const Vec *position = (const Vec *)v->position;
+                f32 z = position->z - camera->pos_z;
+                f32 x = position->x - camera->pos_x;
+                f32 angle = atan2_float(z, x);
+                s32 bearing = (s32)(10430.38043493439 * angle);
+                s32 turn = (s32)camera_ctrl_instance->yaw + 0x4000;
+                pan = (s8)(127.0f * -sin_table_lookup(bearing + turn));
             }
             if (is_split_screen() || (v->flags & 8)) {
                 surround = 0;
             } else {
-                const Vec *pos = (const Vec *)v->position;
-                s32 angle = (s32)(10430.38043493439 * atan2_float(pos->z - listener.z, pos->x - listener.x))
-                    + (camera_ctrl_instance->yaw - 0x4000);
-                surround = (s32)(dist * (cos_table_lookup(angle) * get_field_2a4__6TLobbyFPv(v->owner)));
+                const Vec *position = (const Vec *)v->position;
+                f32 angle = atan2_float(position->z - listener.z, position->x - listener.x);
+                s32 bearing = (s32)(10430.38043493439 * angle);
+                s32 turn = (s32)camera_ctrl_instance->yaw - 0x4000;
+                turn = bearing + turn;
+                f32 surroundScale = get_field_2a4__6TLobbyFPv(v->owner);
+                f32 cosine = cos_table_lookup(turn);
+                surround = (s32)(dist * (cosine * surroundScale));
             }
             if (v->flags & 4) {
                 volume = 0;
@@ -781,6 +792,7 @@ void calc_sound_spatial_params(SoundRequestVoice *v) {
     v->panSpatial = pan;
     v->surroundSpatial = surround;
 }
+#pragma pop
 
 extern const f32 lbl_805DC9EC;
 
