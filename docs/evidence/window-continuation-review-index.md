@@ -38,7 +38,16 @@ notes remain historical; the final preservation/build checks govern this split.
 
 ## Current-main refresh
 
-Latest native validation covers main `5146327538ef67c0077c30664309f9cd48fabc86`.
+Latest native validation covers main `b10ff5980cc382f189530cc462b7e77289eae54d`.
+The [accepted-main maintenance](window-mainb10f-maintenance.md) preserves typed
+Zako buffers, PlotFalz's material contract and the complete source-linked TCP
+provider. Both strict comparisons and original-DOL builds pass: 3623 exact linked
+units and 19379 retention names without drift. Complete accepted/protected objects,
+relocations and ordered providers are preserved; 346 existing tool tests and all
+portable behavior/sanitizer targets pass. Stopped packet research is not resumed,
+and all representation, padding, widening and substantive window holds remain.
+
+The preceding native validation covers main `5146327538ef67c0077c30664309f9cd48fabc86`.
 The [draw-line/Gol Dragon integration](window-main5146-draw-line-integration.md)
 preserves accepted providers, typed callers, original-DOL bytes and all holds.
 DrawLine's resource/private-root facts do not resolve the held window producers,
