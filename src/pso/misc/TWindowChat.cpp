@@ -2,6 +2,7 @@
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
 #include "pso/misc/TWindowKeyBoardHard.h"
+#include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TWindowKeyBoardHard_802601D4.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/object/TObject_80019A50.h"
@@ -392,11 +393,9 @@ void TWindowChat::open_next_input_window() {
     switch ((s8) (((RecoveredFields_8024792C_arg0 *)arg0)->field_1C)) {
     case 0:
         *((RecoveredFields_8024792C_arg0 *)arg0)->field_38 = 1;
-        temp_r3 = __nw__7TObjectFUl(0x70);
-        var_r0 = temp_r3;
-        if (var_r0 != 0) {
-            var_r0 = (s32)TWindowKeyBoardSoft__ct((u8 *)temp_r3, (s32)(((RecoveredFields_8024792C_arg0 *)arg0)->field_20), local_client_id);
-        }
+        var_r0 = (s32)new TWindowKeyBoardSoft(
+            (TWindowKeyBoardBase *)((RecoveredFields_8024792C_arg0 *)arg0)->field_20,
+            local_client_id);
         ((RecoveredFields_8024792C_arg0 *)arg0)->field_24 = var_r0;
         fn_80247ED8((void*)((int) (((RecoveredFields_8024792C_arg0 *)arg0)->field_24)));
         ((TWindowSubSymbolChatPartsSet *)(((RecoveredFields_8024792C_arg0 *)arg0)->field_20 + 0x30))->copy_vec2((void*)(get_window_layout_position(0xB8)));

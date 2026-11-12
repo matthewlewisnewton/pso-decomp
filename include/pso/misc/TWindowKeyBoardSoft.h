@@ -3,12 +3,16 @@
 
 #include "types.h"
 #include <stddef.h>
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowDrawContext.h"
 
 struct Vec2_8024EC34;
+struct TWindowKeyBoardBase;
 
-struct TWindowKeyBoardSoft : public TWindowDrawContext
+struct TWindowKeyBoardSoft : public TWindowBase
 {
+    TWindowKeyBoardSoft(TWindowKeyBoardBase *composer, s32 client);
+    virtual ~TWindowKeyBoardSoft();
     void spawn_key_effect(s32, s32);
     void handle_page_cycle_input(s32);
     void update_keyboard_child_input_from_controller(s32);
@@ -19,14 +23,13 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     int is_cursor_locked();
     void render();
     static s32 try_open(TWindowDrawContext *context, f32 *quad);
-    u32 m_68;
+    u32 m_60;
+    u8 m_64;
+    u8 m_65;
+    u8 m_66;
+    u8 unknown_67;
+    f32 m_68;
     u32 m_6c;
-    u8 _pad70[0xC];
-    u32 m_7c;
-    u8 _pad80[0x2C];
-    u32 m_ac;
-    u8 _padB0[0x4];
-    u32 m_b4;
     static f32 calc_key_coord(s32 arg0, s32 arg1);
     void update_focus_flags();
     void close();
@@ -104,7 +107,9 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     static void dispatch_request_0f(s32 a, s32 b);
 };
 
-typedef char TWindowKeyBoardSoft_depth_offset[offsetof(TWindowKeyBoardSoft, depth) == 0x38 ? 1 : -1];
-typedef char TWindowKeyBoardSoft_m68[offsetof(TWindowKeyBoardSoft, m_68) == 0x4C ? 1 : -1];
+typedef char TWindowKeyBoardSoft_size[sizeof(TWindowKeyBoardSoft) == 0x70 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_m60[offsetof(TWindowKeyBoardSoft, m_60) == 0x60 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_m68[offsetof(TWindowKeyBoardSoft, m_68) == 0x68 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_m6c[offsetof(TWindowKeyBoardSoft, m_6c) == 0x6C ? 1 : -1];
 
 #endif

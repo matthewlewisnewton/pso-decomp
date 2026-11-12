@@ -293,7 +293,7 @@ void TWindowKeyBoardSoft::sub_80260808(s32 arg1) {
     s32 temp_r5;
     temp_r5 = arg1 * 0x50;
     if ((TWindowShortListCtrl__check_controller_button((void *) ((u8 *)&controller_input_state.value + temp_r5 + 0x20), 2) != 0) && ((u32) *(u32 *)((s8 *)((u8 *)this) + 0x6C) != 0U)) {
-        this->m_7c = (s32) (this->m_7c & 0xFFFFFFEF);
+        this->m_60 = (s32) (this->m_60 & 0xFFFFFFEF);
         play_sound_effect(0x52F16, 0, 0, 0);
         ((TWindowKeyBoardSoft *)(*(u32 *)((s8 *)((u8 *)this) + 0x6C)))->handle_backspace();
     }
@@ -1009,11 +1009,6 @@ void TWindowKeyBoardSoft::run_task() {
 
 #pragma fp_contract off
 
-struct RecoveredGlobal_80262740_lbl_804D0004 {
-    s32 value;
-    u8 remaining[0x18];
-};
-
 extern "C" {
 s32 get_window_layout_position(int);
 extern s32 __vt__19TWindowKeyBoardSoft[];
@@ -1030,19 +1025,17 @@ void *__dt__19TWindowKeyBoardSoftFv(void *arg0, s16 arg1) {
     }
     return arg0;
 }
-typedef char RecoveredGlobal_80262740_lbl_804D0004_size[sizeof(RecoveredGlobal_80262740_lbl_804D0004) == 0x1C ? 1 : -1];
-u8 *TWindowKeyBoardSoft__ct(u8 *arg0, s32 arg1, s32 arg2) {
-    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)arg0, (u8 *)&soft_keyboard_window_and_action_data, (s16)arg2, (u8 *)get_window_layout_position(0xBA));
-    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_80262740_lbl_804D0004 *)&__vt__19TWindowKeyBoardSoft).value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) keyboard_soft_type_name_pointer;
-    *(s32 *)((s8 *)arg0 + 0x60) = 0;
-    *(s8 *)((s8 *)arg0 + 0x64) = 0;
-    *(s8 *)((s8 *)arg0 + 0x65) = 2;
-    *(s8 *)((s8 *)arg0 + 0x66) = 1;
-    *(f32 *)((s8 *)arg0 + 0x68) = (f32) 0.0f;
-    *(s32 *)((s8 *)arg0 + 0x6C) = arg1;
-    ((TWindowKeyBoardSoft *)arg0)->close();
-    return arg0;
+TWindowKeyBoardSoft::TWindowKeyBoardSoft(TWindowKeyBoardBase *composer, s32 client)
+    : TWindowBase((u8 *)&soft_keyboard_window_and_action_data, (s16)client,
+                  (u8 *)get_window_layout_position(0xBA)) {
+    m_name = (const char *)keyboard_soft_type_name_pointer;
+    m_60 = 0;
+    m_64 = 0;
+    m_65 = 2;
+    m_66 = 1;
+    m_68 = 0.0f;
+    m_6c = (u32)composer;
+    close();
 }
 
 }
