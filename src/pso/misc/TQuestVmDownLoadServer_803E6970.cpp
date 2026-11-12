@@ -4798,7 +4798,15 @@ u8 *TQuestVmDownLoadServer::find_keyword_entry(u16 *start, u16 *end) {
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(1)
-inline s32 count_encoded_download_input(QuestDownloadInputEntry *end) {
+#pragma push
+#pragma opt_propagation off
+struct DownloadDecoderState {
+    u16 lead;
+    DownloadDecoderState() : lead(0) {}
+};
+inline s32 count_encoded_download_input(QuestDownloadInputEntry *&entry) {
+    QuestDownloadInputEntry *end = lbl_805D78C8;
+    entry = end;
     s32 encoded = 0;
     QuestDownloadInputEntry *scan;
     for (scan = quest_download_entry_table; scan < end; scan++) {
@@ -4807,24 +4815,23 @@ inline s32 count_encoded_download_input(QuestDownloadInputEntry *end) {
     }
     return encoded;
 }
-// The unchanged packet ABI carries a valid input character-array address.
+// The packet ABI carries a valid input character-array address. The state
+// constructor preserves the native pending-byte initialization and reset.
 s32 TQuestVmDownLoadServer__sub_803EDC20(u32 input_address) {
     QuestDownloadInputEntry *entry;
     u8 *codes;
     s32 count;
     u8 *input;
-    u16 lead;
+    DownloadDecoderState state;
     s32 encoded;
     u16 ch;
-    lead = 0;
     input = reinterpret_cast<u8 *>(input_address);
-    entry = lbl_805D78C8;
     codes = lbl_805D78BC;
     count = lbl_805D78C0;
     encoded = count_encoded_download_input(entry);
     for (; *input != 0; input++) {
-        if (lead != 0) {
-            ch = TQuestVmDownLoadServer__sub_803EC69C((lead << 8) | *input);
+        if (state.lead != 0) {
+            ch = TQuestVmDownLoadServer__sub_803EC69C((state.lead << 8) | *input);
             if (ch != 0) {
                 if (count >= 0x24 || encoded >= 0x4E) return -1;
                 entry->ch = ch;
@@ -4834,18 +4841,18 @@ s32 TQuestVmDownLoadServer__sub_803EDC20(u32 input_address) {
                 count++;
                 encoded += 2;
             }
-            lead = 0;
+            state.lead = 0;
         } else if (TQuestVmDownLoadServer::is_sjis_lead_byte(*input)) {
-            lead = *input;
+            state.lead = *input;
         } else if ((*input >= 0x20 && *input < 0x7F) || (*input >= 0xA0 && *input < 0xE0)) {
             if (count >= 0x24 || encoded >= 0x4F) return -1;
             entry->ch = *input;
+            state.lead = 0;
             entry->len = 1;
-            lead = 0;
-            count++;
             encoded++;
-            *codes++ = 0;
+            *codes++ = state.lead;
             entry++;
+            count++;
         }
     }
     lbl_805D78C8 = entry;
@@ -4855,6 +4862,8 @@ s32 TQuestVmDownLoadServer__sub_803EDC20(u32 input_address) {
     lbl_805D78C0 = count;
     return count;
 }
+#pragma pop
+
 
 inline u8 Upper_803EDDA4(s32 code) {
     u8 ch = code;

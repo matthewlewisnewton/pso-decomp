@@ -81,14 +81,13 @@ GC/1.2.5 profile. Remaining functions are:
 | --- | ---: | ---: |
 | `803E8DA0` | 95.051544 | 780/776 |
 | `803EA9E8` | 96.88844 | 1004/1004 |
-| `803EDC20` | 94.46392 | 388/388 |
 | `803EE2F4` | 98.65031 | 652/652 |
 
 The latest full build and `tools/check_pr.py` pass against main `5146327538`:
-+10 exact functions, +6,488 matched code bytes and +1,744 matched data bytes,
++11 exact functions, +6,876 matched code bytes and +1,744 matched data bytes,
 with no exact-function, matched-data or source-linkage losses. All 3,622 linked
 units remain exact and the built DOL retains its original SHA-1. The chosen
-unit has 169 of 173 functions exact; final source-link admission remains pending.
+unit has 170 of 173 functions exact; final source-link admission remains pending.
 The scoped compiler exceptions are registered in `porting-exceptions.md` and
 the generated inventory is current.
 
@@ -570,3 +569,29 @@ register operands. Comparing those data-flow differences led to reusing the
 input parameter. All 168 previously exact functions remain exact. The full
 repository check passes with no linkage or coverage losses; four functions
 remain before complete-unit admission.
+
+
+## Input decoder exact state lifetime
+
+`803EDC20` now matches all 388 bytes, including its stack frame and register
+operands. The inlined scan reads the current entry limit and returns both that
+pointer and the encoded-byte count. A small decoder state holds the real
+pending lead byte; its constructor sets that byte to zero. Depth-one inlining
+and scoped propagation control preserve the native initialization copy and the
+ASCII-path reset. This changes no external signature, storage layout or call.
+
+The compiler trace of the scalar candidate showed that the scan's pointer
+handoff changed interference with the entry count. Moving state loads alone
+failed to resolve it. Making the pending byte an initialized state value fixed
+the native zero handoff; declaring entry, code cursor and count in that order,
+and ordering the independent ASCII-path increments as encoded count, code
+cursor, entry cursor, then entry count completed the match. The same order
+preserves the original per-character writes and bounds checks.
+
+The direct full-object comparison retains all 169 previous exact functions and
+adds the decoder. Three functions remain: cache replacement, group selection
+and name accumulation. Complete-unit source-link admission is still pending.
+
+The full repository check passes: +11 exact functions and +6,876 matched code
+bytes versus main, no coverage or source-linkage loss, unchanged retention,
+and the original DOL hash. All 3,622 currently linked units remain exact.

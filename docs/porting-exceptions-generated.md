@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 88 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5716 | 884 |
+| pragma | 5717 | 884 |
 | configure.py per-unit override | 205 | 205 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1099, `inline_depth` 1003, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 624, `scheduling` 264, `opt_propagation` 249, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 58, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 31, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1099, `inline_depth` 1003, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 624, `scheduling` 264, `opt_propagation` 250, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 58, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 31, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -848,7 +848,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1099, `inline_depth` 1003,
 | `src/pso/misc/TQuestListOnline_80217464.cpp` | fp_contract×1 |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp` | opt_propagation×1 |
 | `src/pso/misc/TQuestVmDownLoadServer_803E5668.cpp` | readonly_strings×1, dont_inline×1, inline_depth×1 |
-| `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | inline_depth×48, dont_inline×45, opt_common_subs×11, opt_propagation×4, bool×2, opt_lifetimes×2, opt_dead_assignments×1 |
+| `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | inline_depth×48, dont_inline×45, opt_common_subs×11, opt_propagation×5, bool×2, opt_lifetimes×2, opt_dead_assignments×1 |
 | `src/pso/misc/TRaderMapCore.cpp` | fp_contract×2, opt_common_subs×1 |
 | `src/pso/misc/TRaderMapCore_801FB2B8.cpp` | fp_contract×1, opt_common_subs×1 |
 | `src/pso/misc/TRegister.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
