@@ -16,7 +16,6 @@ struct TObjEneBalClawClaw : public TObjEneBalClaw {
     virtual void vfunc_58();
     void sub_80090824();
     void sub_800914A4();
-    void sub_80090418(s32);
     void update_state();
     void *create(void *arg1, void *arg2, void *arg3, void *arg4, void *arg5);
     void *create();
