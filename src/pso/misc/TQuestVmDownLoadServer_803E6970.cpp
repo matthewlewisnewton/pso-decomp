@@ -4905,8 +4905,10 @@ u8 *TQuestVmDownLoadServer__sub_803EDDA4(u16 *start, u16 *end) {
 // The frontend starts and fills the actual halfword scratch object.
 s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
                                       u16 *output, s32 *outputCount) {
-    u8 next;
     u16 state;
+    u16 next;
+    u8 byte;
+    s32 first;
     const u16 *cursor;
     u8 category;
     s32 consumed;
@@ -4944,21 +4946,21 @@ s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
         }
         cursor = input + 1;
         {
-            next = (u8)*cursor;
-            s32 first = (u8)*input;
-            if (first == (u8)*cursor) {
+            next = byte = *cursor & 0xFF;
+            first = (u8)*input;
+            if (first == (u8)byte) {
                 if (category == 12) return 2;
                 if (category == 13) {
                     output[0] = TQuestVmDownLoadServer__sub_803E719C(0x43, *cursor);
                     return 1;
                 }
             }
-            if ((first == 'x' || first == 'X') && ((next = *(cursor = input + 1)) == 0x6EU || next == 0x4EU)) {
+            if ((first == 'x' || first == 'X') && ((cursor = input + 1, (u8)(next = byte)) == 0x6EU || (u8)next == 0x4EU)) {
                 output[0] = TQuestVmDownLoadServer__sub_803E719C(0x73, *input);
                 return 2;
             }
-            if (state == 1 && next == 0x27U) return 2;
-            category = lbl_8047F8B8[next] & 0xF;
+            if (state == 1 && (u8)next == 0x27U) return 2;
+            category = lbl_8047F8B8[(u8)next] & 0xF;
         }
         if (category == 7 && state == 3) {
             output[0] += 2;

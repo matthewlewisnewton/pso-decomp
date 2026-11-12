@@ -82,7 +82,7 @@ GC/1.2.5 profile. Remaining functions are:
 | `803E8DA0` | 95.051544 | 780/776 |
 | `803EA9E8` | 96.88844 | 1004/1004 |
 | `803EDC20` | 94.41237 | 388/388 |
-| `803EDF64` | 96.98214 | 888/896 |
+| `803EDF64` | 99.24107 | 892/896 |
 | `803EE2F4` | 95.74847 | 644/652 |
 | `803F03B4` | 99.75903 | 332/332 |
 
@@ -392,3 +392,19 @@ The full native build still reproduces the original DOL hash, and no previously
 exact or source-linked function or data range is lost. A separate private
 function-order candidate preserves all matches; its cleanup and the two data
 alignment boundaries remain part of completing the whole claimed span.
+
+## Converter lookahead follow-up
+
+The converter at `0x803EDF64` now retains the decoded low byte separately from
+its halfword lookahead state and reuses it for the repeated-character and x/X
+checks. With the existing compiler settings this improves the candidate from
+96.98214% to 99.24107% (892 candidate bytes versus 896 native bytes). A redundant native byte mask
+and register assignments remain unresolved, so this does not add an exact
+function or source-link coverage.
+
+A private PowerPC differential run compared this candidate with the original
+routine on 134,296 cases: both mode settings, every one-byte and two-byte
+low-byte combination, randomized longer inputs, all keyword rows with case
+and high-byte variants, and long inputs. Return values, output bytes and count,
+read-only input, and preserved registers agreed; both implementations reached
+all six keyword rows using the actual native helpers.
