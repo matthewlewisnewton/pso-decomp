@@ -11,6 +11,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/effect/particle/TParticleCtrl_800867E4.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/object/base/TObjChara.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/MatrixStack.h"
@@ -236,7 +237,7 @@ TUnk_8048FE64::TUnk_8048FE64(TObject *parent, const Vec *from, const Vec *to) : 
     VecCopy(&position, &start);
     VecCopy(&delta, &end);
     subtract_vector(&delta, &start);
-    length = ((TObjBoss2Tunnel *)&delta)->update_scale();
+    length = normalize_vector_checked((Vec *)(&delta));
     frames = 0.0f;
 }
 
@@ -314,7 +315,7 @@ void TUnk_8048FE08::run_task() {
         VecCopy(&destination, &contact->contact->point);
         VecCopy(&offset, &position);
         subtract_vector(&offset, &destination);
-        step = ((TObjBoss2Tunnel *)&offset)->update_scale();
+        step = normalize_vector_checked((Vec *)(&offset));
         hit = 1;
     }
     f32 spacing = 16.0f;

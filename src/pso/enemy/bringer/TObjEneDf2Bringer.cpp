@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/enemy/BattleParameters.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
@@ -1724,7 +1725,7 @@ void TObjEneDf2Bringer::load_resources() {
     VecCopy((Vec *)&a, (const Vec *)&seg->p0);
     VecCopy((Vec *)&d, (const Vec *)&seg->p2);
     subtract_vector(&d, &a);
-    len = ((TObjBoss2Tunnel *)(&d))->update_scale();
+    len = normalize_vector_checked((Vec *)((&d)));
     p1 = &seg->p1;
     s1 = k1 * len;
     VecCopy((Vec *)p1, (const Vec *)&a);

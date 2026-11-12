@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/vector.h"
 #include "types.h"
@@ -2063,7 +2064,7 @@ TObjEneBm3FlyNest_CarryFly::TObjEneBm3FlyNest_CarryFly(TObject *parent, s32 a, s
     index = d;
     VecCopy(&v, origin);
     subtract_vector(&v, target);
-    ((TObjBoss2Tunnel *)(&v))->update_scale();
+    normalize_vector_checked((Vec *)((&v)));
     angle = (s32) (lbl_8043B398[0] * atan2_float(v.x, v.z));
     offset.x = 6.0f * v.x;
     offset.y = 6.0f;

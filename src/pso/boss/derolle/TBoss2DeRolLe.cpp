@@ -3,6 +3,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
@@ -1872,7 +1873,7 @@ void TBoss2DeRolLe__sub_8002FE60(void *arg0, u32 arg1) {
                 VCOPY(&p, &self->pos);
                 VCOPY(&d, hit);
                 subtract_vector(&d, &p);
-                dist = ((TObjBoss2Tunnel *)(&d))->update_scale();
+                dist = normalize_vector_checked((Vec *)((&d)));
                 p.x += d.x * s;
                 p.y += d.y * s;
                 p.z += d.z * s;

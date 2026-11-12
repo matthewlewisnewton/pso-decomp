@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
@@ -680,7 +681,7 @@ void TOTrapAncient02R__vt79(Obj_8017A3C0 *o) {
                     scratch_vec->y += o->f344 + o->f348;
                     VecCopy((Vec *)lbl_8050BF00, (const Vec *)&o->target->f2FC);
                     subtract_vector(lbl_8050BF00, scratch_vec);
-                    if (((TObjBoss2Tunnel *)lbl_8050BF00)->update_scale() < lbl_805DBA8C) {
+                    if (normalize_vector_checked((Vec *)(lbl_8050BF00)) < lbl_805DBA8C) {
                         lbl_8050BF00->x = lbl_8050BF00->y = lbl_805DBA80;
                         lbl_8050BF00->z = lbl_805DBA78;
                         push_matrix_from(identity_matrix);

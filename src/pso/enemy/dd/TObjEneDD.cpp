@@ -2,6 +2,7 @@
 #include "types.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 #include "pso/enemy/dd/TObjEneDD_800BA754.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/system/vector.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/render/render_util.h"
@@ -1615,7 +1616,7 @@ void project_sound_origin_from_camera(s32 arg0, u8 *arg1, f32 farg0) {
     f32 temp_f1;
     VecCopy((Vec *)(arg1), (const Vec *)(arg0));
     subtract_vector((Vec *)arg1, (const Vec *)(camera_ctrl_instance + 0x178));
-    { f32 s = ((TObjBoss2Tunnel *)arg1)->update_scale(); temp_f1 = s * farg0; }
+    { f32 s = normalize_vector_checked((Vec *)(arg1)); temp_f1 = s * farg0; }
     *(f32 *)((s8 *)arg1 + 0) = (f32) (*(f32 *)((s8 *)arg1 + 0) * temp_f1);
     *(f32 *)((s8 *)arg1 + 4) = (f32) (*(f32 *)((s8 *)arg1 + 4) * temp_f1);
     *(f32 *)((s8 *)arg1 + 8) = (f32) (*(f32 *)((s8 *)arg1 + 8) * temp_f1);

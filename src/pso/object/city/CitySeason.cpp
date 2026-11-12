@@ -2,6 +2,7 @@
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/boss/darkfalz/TBoss4Type2_80086C44.h"
 #include "pso/boss/goldragon/TBoss8Dragon_8002CC48.h"
+#include "pso/math/VectorNormalize.h"
 #include "pso/object/city/CitySeason.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -328,7 +329,7 @@ void TObjCity_Season_FireWorkCtrl::run_task() {
     {
       VecCopy((Vec *)(&stack.sp14), (const Vec *)(arg0 + 0x38));
       subtract_vector((void *)&stack.sp14, (void *)(camera_ctrl_instance + 0x178));
-      if ((((TObjBoss2Tunnel *)(&stack.sp14))->update_scale() < lbl_805DBC3C[0]) && (vec3_dot((void *)&stack.sp14, (void *) (((u8 *)&lbl_804FF5E8.value) + 0xC)) > lbl_805DBC1C[0]))
+      if ((normalize_vector_checked((Vec *)((&stack.sp14))) < lbl_805DBC3C[0]) && (vec3_dot((void *)&stack.sp14, (void *) (((u8 *)&lbl_804FF5E8.value) + 0xC)) > lbl_805DBC1C[0]))
       {
         temp_f30 = rand_signed_unit();
         temp_f30 = (this->scale.x) * temp_f30;

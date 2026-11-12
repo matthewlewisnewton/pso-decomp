@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/vector.h"
@@ -177,7 +178,6 @@ f32 calc_nearest_crater_distance(void *);
 f32 horizontal_distance_squared(void *, void *);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32, f32);
-s32 update_scale__15TObjBoss2TunnelFv(void *, f32);
 u8 *TObjBoss1MokoHill_SoloM__ct(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3);
 void update_dragon_trail_uvs(Obj_8002D4C0 *self);
 s32 TBoss8Dragon__sub_8002DAEC(void *arg0);
@@ -566,7 +566,7 @@ f32 apply_velocity_scale(Vec *v, f32 farg0, f32 farg1) {
         v->x = temp_f2;
         v->y = lbl_805D81F4;
         v->z = v->z * temp_f1_2;
-        update_scale__15TObjBoss2TunnelFv(v, temp_f1_2);
+        normalize_vector_checked(v);
     }
     return var_f31;
 }

@@ -1,3 +1,4 @@
+#include "pso/math/VectorNormalize.h"
 #include "pso/player/TObjPlayer_800F0810.h"
 #include "pso/render/BlobShadow.h"
 #include "pso/unk/text_803D8F74.h"
@@ -2829,7 +2830,7 @@ void TObjChara::apply_knockback_from_attacker(u8 *arg1, f32) {
     if (scale < 0.0f) {
         scale = 0.0f;
     }
-    ((TObjBoss2Tunnel *)(&diff))->update_scale();
+    normalize_vector_checked((Vec *)((&diff)));
     *(f32 *)((s8 *)((u8 *)this) + 0x308) = -scale * diff.x;
     this->m_310 = -scale * diff.z;
     }
