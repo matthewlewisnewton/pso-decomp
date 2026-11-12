@@ -4,7 +4,10 @@
 
 #include "types.h"
 #include "dolphin/exi.h"
-#include "dolphin/os.h"
+#include "dolphin/os/OSInterrupt.h"
+#include "dolphin/os/OSThread.h"
+#include "dolphin/os/OSCache.h"
+#include "dolphin/os/OSUtil.h"
 #include "dolphin/os/OSReset.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/TLobby.h"
@@ -581,6 +584,10 @@ s32 modem_wait_ok_or_error(void) {
     }
 }
 
+static char modem_setup_commands[][12] = {
+    "ATW1\\V0\r", "ATS95=44\r"
+};
+
 s32 TAdSinglePlyChrSelectGC__sub_8042CEF8(char *country)
 {
     char buf[0x88];
@@ -745,9 +752,9 @@ s32 TAdSinglePlyChrSelectGC__sub_8042CEF8(char *country)
     modem_wait_ok_or_error();
     TAdSinglePlyChrSelectGC__sub_8042D6A4(lbl_805D48B0);
     modem_wait_ok_or_error();
-    TAdSinglePlyChrSelectGC__sub_8042D6A4("ATW1\\V0\r");
+    TAdSinglePlyChrSelectGC__sub_8042D6A4(modem_setup_commands[0]);
     modem_wait_ok_or_error();
-    TAdSinglePlyChrSelectGC__sub_8042D6A4("ATS95=44\r");
+    TAdSinglePlyChrSelectGC__sub_8042D6A4(modem_setup_commands[1]);
     modem_wait_ok_or_error();
 
     b24 = *p29;
