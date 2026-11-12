@@ -671,6 +671,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # (`xoris/xori 0xFFFF`; 2.x always emits `li -1; xor`), and five others.
     # TObjCamera: 1.3.2 copies CameraSoundEvent member by member unscheduled.
     "pso/camera/TObjCamera.cpp": {"mw_version": "GC/1.3.2"},
+    # GC/1.3.2 preserves the per-vertex coordinate loads and store order.
+    "pso/ui/frontend/TAdDialingGC_80328B20.cpp": {"mw_version": "GC/1.3.2"},
     "pso/object/TObjComputer.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     "pso/object/container/TObjContainerJung.cpp": {"mw_version": "GC/1.3.2"},
     # The two below also schedule the by-value DirectAttackPayload read of

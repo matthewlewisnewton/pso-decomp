@@ -2176,6 +2176,7 @@ pso/ui/frontend/TAdChrSelSlotGC.cpp
 pso/ui/frontend/TAdDialingGC.cpp
 pso/ui/frontend/TAdDialingGC_801A4C90.cpp
 pso/ui/frontend/TAdDialingGC_80328210.cpp
+pso/ui/frontend/TAdDialingGC_80328B20.cpp
 pso/ui/frontend/TAdDialingGC_80328E50.cpp
 pso/ui/frontend/TAdDialingGC_80328E90.cpp
 pso/ui/frontend/TAdDialingMessageWindow.cpp
