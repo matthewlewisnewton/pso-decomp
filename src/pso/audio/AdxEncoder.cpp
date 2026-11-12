@@ -875,3 +875,7 @@ s32 fn_803C8020(AdxEncoder *enc, s32 ch) {
 #pragma pop
 }
 
+
+/* Stream read-request table and decoder channel pool; both are used by the stream runtime. */
+u8 adx_stream_read_requests[0xA00];
+u8 adx_decoder_channel_pool[0x340];
