@@ -4496,9 +4496,9 @@ pso/object/trap/TOTrap.cpp:
 
 pso/object/trap/TOTrapAncient01.cpp:
 	.text       start:0x8017939C end:0x8017A20C
-	.rodata     start:0x80442E68 end:0x80442E70
+	.rodata     start:0x80442D80 end:0x80442E70
 	.data       start:0x804B49D8 end:0x804B4AD8
-	.sdata2     start:0x805DBA48 end:0x805DBA74
+	.sdata2     start:0x805DBA48 end:0x805DBA78
 
 pso/object/trap/TOTrapAncient02R.cpp:
 	.text       start:0x8017A20C end:0x8017A210
@@ -8229,7 +8229,7 @@ pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp:
 	.data       start:0x804D3A08 end:0x804D40A8
 	.bss        start:0x8051C0E8 end:0x80540954
 	.sdata      start:0x805D3B70 end:0x805D3BC0
-	.sbss       start:0x805D655C end:0x805D6560
+	.sbss       start:0x805D6558 end:0x805D6560
 
 pso/ui/charcreate/CharacterAppearanceTables.cpp:
 	.rodata     start:0x80451CE0 end:0x80464B48
