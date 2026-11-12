@@ -11,7 +11,7 @@
 
 extern "C" {
 
-int read_whole_file__8TGStreamFlPUc(void);
+int read_whole_file__8TGStreamFPCvPUc(void);
 void TLobby__sub_800F8AD0(void);
 void TLobby__sub_800F8F34(void);
 void TLobby__sub_803382E4(void);
@@ -39,7 +39,7 @@ s32 TLobby::get_file_size() {
 }
 
     extern int disc_read_filename;
-void read_disc_file(int a0) { disc_read_filename = a0; read_whole_file__8TGStreamFlPUc(); }
+void read_disc_file(int a0) { disc_read_filename = a0; read_whole_file__8TGStreamFPCvPUc(); }
 
 extern s32 tl_su;
 extern s32 tl_camera;

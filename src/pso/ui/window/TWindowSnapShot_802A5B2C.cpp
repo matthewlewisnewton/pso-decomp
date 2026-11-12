@@ -74,7 +74,7 @@ s32 alloc_buffer__15TWindowSnapShotFPv(TWindowSnapShot *window_snap_shot) {
     return 1;
 }
 s32 TWindowSnapShot::open_stream(const void *arg1) {
-    *(s32 *)&this->m_next = TGStream::read_whole_file((s32)arg1, (u8 *)(*(s32 *)&this->m_prev));
+    *(s32 *)&this->m_next = TGStream::read_whole_file((const void *)arg1, (u8 *)(*(s32 *)&this->m_prev));
     if (TWindowSnapShot__sub_802A605C((u8 *)this) == 0) {
         set_mode(2);
         free_buffer();
@@ -83,7 +83,7 @@ s32 TWindowSnapShot::open_stream(const void *arg1) {
     return 1;
 }
 s32 init__15TWindowSnapShotFPvi(TWindowSnapShot *window_snap_shot, s32 arg1) {
-    *(s32 *)((s8 *)window_snap_shot + 0xC) = ((TLobby *)arg1)->get_resource_file_size();
+    *(s32 *)((s8 *)window_snap_shot + 0xC) = TLobby::get_resource_file_size((const void *)arg1);
     if (TWindowSnapShot__sub_802A605C((u8 *)window_snap_shot) == 0) {
         window_snap_shot->set_mode(1);
         return 0;

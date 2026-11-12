@@ -53,11 +53,11 @@ void TUnk_804C4480::sub_801D5A70() {
     copy_position__9TItemListFPv(TItemList__sub_801D598C(*(s32 *)(arg0 + 0x54), ((s8)((TItemList *)arg0)->get_item_count())), ((s32)get_ptr_0x44__9TItemListFPv(arg0)));
 }
 
-s32 TItemList::is_item_valid(s32 arg0) {
+s32 TItemList::is_item_valid(TItemList *arg0) {
     u8 valid;
 
     valid = 0;
-    if ((check_value_equals__7TObjectFPCc(arg0, TItemList__name) != 0) && (((TObject *)arg0)->all_parents_unqueued_for_destruction() != 0)) {
+    if ((check_value_equals__7TObjectFPCc((s32)arg0, TItemList__name) != 0) && (((TObject *)arg0)->all_parents_unqueued_for_destruction() != 0)) {
         valid = 1;
     }
     return valid;

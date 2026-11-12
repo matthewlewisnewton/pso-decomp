@@ -7,6 +7,7 @@
 #include "pso/object/ambient/TObjLight.h"
 #include "pso/player/TObjPlayer_8022C6C4.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/player/TechniqueCastState.h"
 #include "pso/map/FloorArea.h"
 #include "pso/ui/hud/TLockOnCursor.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
@@ -87,7 +88,7 @@ u16 get_entity_id(void *);
 s32 is_split_screen();
 Ent_8022D27C *find_entity_by_id(u16);
 void get_hand_joint_position__10TObjPlayerFl(void *, void *);
-Target_8022D27C *get_technique_data__10TObjPlayerFPv(void *);
+Target_8022D27C *get_targets__18TechniqueCastStateFv(void *);
 u8 get_cast_technique_level(void *, int);
 void create__10TTecDebandFllll(void *, void *, void *, int);
 void create__9TTecRestaFPvPvPvPv(void *, void *, void *, int);
@@ -174,7 +175,7 @@ typedef char RecoveredGlobal_8022F068_lbl_804CC934_size[sizeof(RecoveredGlobal_8
         set_slot_type_state__10TObjPlayerFllss(slots, 0,                                                \
             ((TObjPlayer *)(TObjPlayer__sub_80116620(c->list, 0)))->get_type_id(),           \
             get_obj_id__10TObjPlayerFv(TObjPlayer__sub_80116620(c->list, 0)));           \
-        ((TObjPlayer *)slots)->set_tech_level(1);                                      \
+        ((TechniqueCastState *)slots)->set_target_count(1);                                      \
     }
 
 #define COLLECT_8022D27C()                                              \
@@ -498,7 +499,7 @@ void launch_technique__10TObjPlayerFv(s32 tech, s32 unused, Player_8022D27C *pl)
         }
     }
     td = pl->tech;
-    targets = get_technique_data__10TObjPlayerFPv(td);
+    targets = get_targets__18TechniqueCastStateFv(td);
     if (targets == NULL) {
         return;
     }
@@ -667,7 +668,7 @@ void capture_technique_targets__10TObjPlayerFv(int kind, Owner_8022CDE8 *owner) 
                 n++;
             }
         }
-        ((TObjPlayer *)slots)->set_tech_level(n);
+        ((TechniqueCastState *)slots)->set_target_count(n);
         break;
     }
     case 9:
@@ -687,7 +688,7 @@ void capture_technique_targets__10TObjPlayerFv(int kind, Owner_8022CDE8 *owner) 
                 get_obj_id__10TObjPlayerFv(TObjPlayer__sub_80116620(c->list, n)));
             n++;
         }
-        ((TObjPlayer *)slots)->set_tech_level(n);
+        ((TechniqueCastState *)slots)->set_target_count(n);
         break;
     }
     case 17:

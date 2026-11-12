@@ -1,4 +1,5 @@
 #include "pso/ui/charcreate/TChCrEffWall.h"
+#include "pso/render/ColorLineList.h"
 #include "pso/render/render_util.h"
 
 #include "pso/ui/window/TWindowCtrlMain.h"
@@ -52,10 +53,10 @@ void TChCrEffWall::render() {
     args.c = 0;
     args.d = 4;
     args.a = lbl_804DBF68;
-    ((TWindowCtrlMain *)(&args))->draw_strip_swap_color(4, 6, -9934.0f);
+    ((ColorLineList *)(&args))->draw_strip_swap_color(4, 6, -9934.0f);
     args.b = lbl_804DBFA8;
     args.a = lbl_804DBF88;
-    ((TWindowCtrlMain *)(&args))->draw_strip_swap_color(4, 6, -9934.0f);
+    ((ColorLineList *)(&args))->draw_strip_swap_color(4, 6, -9934.0f);
     TCameraCtrl__sub_80068EF0();
     restore_saved_depth_alpha_state();
 }

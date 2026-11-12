@@ -172,7 +172,7 @@ s32 is_photon_blast_presentation_admitted(u32 owner_id, void *records) {
     return 0;
 }
 
-void apply_photon_blast_action_hold(s32 arg0, s32 arg1, s32 arg2) {
+void apply_photon_blast_action_hold(TUnk_804C349C *sequence, s32 arg1, s32 arg2) {
     u8 *plr;
     u8 *ent;
     s32 i;
@@ -283,7 +283,7 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
         return;
     }
     if (is_photon_blast_presentation_admitted(get_entity_id(self), b) != 0) {
-        new TUnk_804C349C(get_entity_id(self), (u8 *)b, counts.v, 1, 0);
+        new TUnk_804C349C(get_entity_id(self), (PhotonBlastSlot *)b, counts.v, 1, 0);
     } else {
         idx = 0;
         for (i = 0; i < 4; i++) {
@@ -293,7 +293,7 @@ void admit_photon_blast_sequence(u8 *players, void *self) {
             }
         }
         delay = idx * 150 + 100;
-        new TUnk_804C349C(get_entity_id(self), (u8 *)b, counts.v, 0, delay);
+        new TUnk_804C349C(get_entity_id(self), (PhotonBlastSlot *)b, counts.v, 0, delay);
     }
     TObjPlayer__sub_801AA528((s32)&b[3], -1);
     TObjPlayer__sub_801AA528((s32)&b[2], -1);
@@ -564,7 +564,7 @@ void step_photon_blast_sequence(TUnk_804C349C *seq) {
             seq->summon = (TObject *)summon;
             for (j = 0; j < 4; j++) {
                 if (seq->participants[j] < 4) {
-                    ((void (*)(u32, s32, s32))queue_photon_blast_support)(seq->participants[j], 4, 1);
+                    queue_photon_blast_support(seq->participants[j], 4, 1);
                 }
             }
             break;
@@ -590,7 +590,7 @@ void step_photon_blast_sequence(TUnk_804C349C *seq) {
             seq->summon = (TObject *)summon;
             for (j = 0; j < 4; j++) {
                 if (seq->participants[j] < 4) {
-                    ((void (*)(u32, s32, s32))queue_photon_blast_support)(seq->participants[j], 5, 1);
+                    queue_photon_blast_support(seq->participants[j], 5, 1);
                 }
             }
             break;

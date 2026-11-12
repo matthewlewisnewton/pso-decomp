@@ -50,7 +50,7 @@ void TOTrapSeabed01::sub_802C9D38() {
             temp_r3 = (s32)get_player_by_client_id((get_entity_id(o)));
             if (temp_r3 != 0) {
                 if (check_player_flag1__10TObjPlayerFv() != 0) {
-                    TObjPlayer::send_code_45_1(temp_r3);
+                    TObjPlayer::send_code_45_1((TObjPlayer *)(temp_r3));
                 }
                 obj_clear_flag30_20000((void *)temp_r3);
             }
@@ -60,7 +60,7 @@ void TOTrapSeabed01::sub_802C9D38() {
         if ((o2 != NULL) && ((s32) local_client_id == (s32) get_entity_id(o2))) {
         temp_r3_2 = (s32)get_player_by_client_id((local_client_id));
         if ((temp_r3_2 != 0) && (check_player_flag1__10TObjPlayerFv() != 0)) {
-            TObjPlayer::send_code_45_1(temp_r3_2);
+            TObjPlayer::send_code_45_1((TObjPlayer *)(temp_r3_2));
         }
         }
     }

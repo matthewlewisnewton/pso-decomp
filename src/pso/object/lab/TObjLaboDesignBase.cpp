@@ -53,7 +53,7 @@ s32 post_translate_matrix(void *);
 void draw_node_tree__18TObjLaboDesignBaseFiPv(s32 arg0, u8 *arg1);
 s32 init_collision_body_parts(void *, int, int);
 s32 __ct__14TObjCollidableFP7TObject();
-s32 create__10TObjMapCsnFl(void *, f32, f32);
+s32 create__10TObjMapCsnFPv(void *, f32, f32);
 u8 *TObjLaboDesignBase__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
 void *TObjLaboDesignBase__create(void *arg0);
 void *TObjLaboDesignBase__sub_80364D38(void *arg0);
@@ -334,7 +334,7 @@ u8 *TObjLaboDesignBase__ct(u8 *player, s32 arg1, s32 arg2, s32 arg3) {
         (*(f32 *)(copy_storage_80365210.bytes + 0x24)) = 40.0f;
         (*(f32 *)(copy_storage_80365210.bytes + 0x28)) = 20.0f;
         (*(f32 *)(copy_storage_80365210.bytes + 0x2C)) = 10.0f;
-        *(s32 *)((s8 *)player + 0xBC) = create__10TObjMapCsnFl((void *) ((copy_storage_80365210.bytes)), 20.0f, 40.0f);
+        *(s32 *)((s8 *)player + 0xBC) = create__10TObjMapCsnFPv((void *) ((copy_storage_80365210.bytes)), 20.0f, 40.0f);
     }
     return player;
 }

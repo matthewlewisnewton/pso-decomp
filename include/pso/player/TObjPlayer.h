@@ -295,9 +295,7 @@ struct TObjPlayer : public TObjChara {
     void clear_target_lock();
     static void init_matrix_stack(s32 arg0, s32 arg1);
     void draw_shadow_quad(s32 arg1, s32 flags);
-    void draw_tri_fan_3d(s32 n, u32 flags);
     static void render_tree(void *arg0);
-    void draw_compass_sprite(s32 idx, s32 color, s32 flags, f32 z);
     void init_vec_record();
     s32 get_entrance_id();
     void copy_efb_to_texture();
@@ -515,7 +513,6 @@ struct TObjPlayer : public TObjChara {
     static void init_all_slots();
     static s32 check_flag_pair(s32 arg0, s32 arg1);
     static s32 check_flags(s32 arg0, s32 arg1);
-    void update_collisions();
     static void reset();
     static void set_camera_mode(s32 arg0);
     void reset_fields();
@@ -639,7 +636,6 @@ struct TObjPlayer : public TObjChara {
     int is_handle_valid();
     int forward_801C210C();
     static int get_hold_effect_count();
-    void set_technique_id(s16 v);
     static int get_item_count_max();
     void *init();
     void set_field4(s32 v);
@@ -895,7 +891,6 @@ struct TObjPlayer : public TObjChara {
     void bswap_u16_pair_list();
     void bswap_u16_pair();
     void set_technique_state(s32 v);
-    void set_technique_id(u8 v);
     int test_bit1_at_10();
     f32 get_float_14();
     void set_tech_override(u8 v);
@@ -961,14 +956,12 @@ struct TObjPlayer : public TObjChara {
     s16 get_section_clamped();
     s16 get_or_init_field_4();
     static void split_capped_value(u8 arg0, u8 *arg1, s8 *arg2);
-    u8 get_valid_technique();
     void level_up_all_techniques(s32 add);
     static u8 clamp_to_max(s32 arg0, u8 arg1, u8 arg2);
     void validate_and_clear_slot();
     static u8 is_invalid_slot(u8 arg0);
     static u8 is_valid_technique_id(s16 arg0);
     static u8 is_valid_technique_slot(u8 arg0);
-    void set_tech_level(s16 arg1);
     void reset_slots();
     void set_field_1c(f32 v);
     void set_field18(f32 v);
@@ -1242,7 +1235,7 @@ struct TObjPlayer : public TObjChara {
     u16 get_uid();
     static u32 spawn_shot_effect(s32 arg0, s32 arg1, s32 arg2, f32 farg0);
     void clear_rico_ring_flag();
-    static void start_photon_blast(s32 arg0, u16 arg1);
+    static void start_photon_blast(s32 kind, s32 client);
     s32 init_arrays();
     s32 get_card_window_field_244();
     void init_local_pad_binding();
@@ -1315,8 +1308,8 @@ struct TObjPlayer : public TObjChara {
     static s32 get_battle_ctrl_flag(u16 arg0);
     s32 is_outside_movement_hold(f32 *pos);
     static s32 draw_small_font(s32 arg0, void * _w1);
-    static void send_code_45_1(s32 arg0);
-    static void play_effect_default(int player, int effect);
+    static void send_code_45_1(TObjPlayer *player);
+    static void play_effect_default(TObjPlayer *player, s32 effect);
     static void play_effect(s32 arg0, s32 arg1, s32 arg2);
     s32 get_clamped_index();
     void apply_input_mode();
@@ -1474,7 +1467,6 @@ struct TObjPlayer : public TObjChara {
     f32 select_normal_attack_marker();
     u8 get_castable_technique_level();
     static void update_all_units(s32 arg0, s32 arg1);
-    static s32 check_technique_level(s32 arg0, s32 arg1, u8 arg2);
     void build_shop_item_list();
     void reset_action_palette();
     u8 *create_state_513();

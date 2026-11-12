@@ -68,7 +68,7 @@ struct TRaderMapCore : public TObjBase {
     void draw_player_markers();
     void copy_transform(void* q);
     void setup_view(s32 arg1);
-    void render_region_records(void * _w1);
+    void render_region_records(s32 _w1);
     virtual void render();
     s32 is_render_admitted(void *arg1);
     void update_pan_zoom_input();
@@ -80,7 +80,7 @@ struct TRaderMapCore : public TObjBase {
     static void create();
     static void unload_floor_map();
     static void load_map_resources();
-    static s32 apply_compass_param(s32 *counter);
+    static s32 apply_compass_param(const s32 *counter);
     void draw_compass(s32 mode);
     static void free_statics();
     static void load_frame_texture();

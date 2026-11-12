@@ -447,7 +447,7 @@ void TObjNpcBase::interact(s32 client) {
                 this->targetId = client;
                 this->target = (u8 *) player;
                 if ((s32) this->targetId == local_client_id) {
-                    TObjPlayer::play_effect_default((int) player, -1);
+                    TObjPlayer::play_effect_default((TObjPlayer *)((int) player), -1);
                 }
                 this->request_action(1);
                 this->m_2ac = 0;
@@ -610,7 +610,7 @@ void TObjNpcBase::update_conversation() {
             if (F(void *, 0x2A8) != 0 && local_client_id == get_entity_id(F(void *, 0x2A8))) {
                 p = (u32) get_player_by_client_id(local_client_id);
                 if (p != 0 && ((TObjPlayer *)p)->check_player_flag1() != 0) {
-                    TObjPlayer::send_code_45_1((s32)((void *)p));
+                    TObjPlayer::send_code_45_1((TObjPlayer *)((s32)((void *)p)));
                 }
             }
         }

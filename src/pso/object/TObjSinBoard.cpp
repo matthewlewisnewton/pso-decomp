@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/TriangleFan3D.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -154,7 +155,7 @@ void TObjSinBoard::render() {
         rotate_matrix_x(0, rotation_x);
         rotate_matrix_y(0, rotation_y);
         scale_matrix(0, scale.x, scale.y, scale.z);
-        ((TObjPlayer *)(&d))->draw_tri_fan_3d(4, 0xE);
+        draw_tri_fan_3d((TriangleFan3D *)(&d), 4, 0xE);
         pop_matrix();
         TParticleCtrl::end_effect_render();
     }

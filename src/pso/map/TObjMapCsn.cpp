@@ -159,7 +159,7 @@ s32 TObjMapCsn::build_box_triangles() {
     return pop_matrix();
 }
 
-s32 TObjMapCsn::create(s32 arg0) {
+s32 TObjMapCsn::create(void *arg0) {
     s32 map_csn;
 
     map_csn = __nw__7TObjectFUl(0x254);

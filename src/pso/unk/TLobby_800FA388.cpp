@@ -6,14 +6,14 @@
 extern "C" {
 
 u8 *alloc_from_heap__6TLobbyFPv(s32);
-s32 ADXF_Open(s32, s32);
+s32 ADXF_Open(const char *, s32);
 s32 ADXF_GetFsizeByte(void *);
 u8 *link_into_list__6TLobbyFv();
-s32 strncpy(void *, s32, s32);
+s32 strncpy(void *, const char *, s32);
 
 struct Ent_800fa388;
 
-s32 TLobby::request_file_read(s32 arg0, s32 arg1, s32 *arg2, void **arg3) {
+s32 TLobby::request_file_read(const char *arg0, s32 arg1, s32 *arg2, void **arg3) {
     struct Ent_800fa388 *var_r31;
     s32 temp_r3;
 

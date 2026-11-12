@@ -335,7 +335,7 @@ s32 check_player_flag1__10TObjPlayerFv();
 s32 free_collision_body_parts(void *);
 void init_collision_body_parts(void *, void *, s32);
 void *__dt__6TOTrapFv(void *arg0, s16 arg1);
-void * TOTrap__ct(void *, void *, void *);
+void * __ct__6TOTrapFP7TObjectPv(void *, void *, void *);
 void find_target_player__16TOTrapAncient02RFv(Obj_8017A8B0 *self);
 f32 receive_physical_attack__16TOTrapAncient02RFPvf(Obj_8017A988 *self);
 void * __dt__16TOTrapAncient02RFv(void *arg0, s16 arg1);
@@ -424,6 +424,7 @@ void get_pos__9TObjCharaFl();
 void is_actor_cadence_frame__9TObjCharaFl();
 void is_target_in_attack_range__9TObjCharaFv();
 void play_sounds__6TOTrapFv();
+void vfunc_87__6TOTrapFf();
 void render_shadows__7TObjectFv();
 void reset_motion_fields__9TObjCharaFv();
 void reset_pose__9TObjCharaFv();
@@ -580,7 +581,7 @@ s32 __vt__16TOTrapAncient02R[90] = {
     (s32)&vfunc_84__15TOTrapAncient02Fv,
     (s32)&play_sounds__6TOTrapFv,
     (s32)&vfunc_86__16TOTrapAncient02RFv,
-    (s32)&TOTrap::scale_by_table_value,
+    (s32)&vfunc_87__6TOTrapFf,
     (s32)&vfunc_88__16TOTrapAncient02RFv,
     (s32)&vfunc_89__6TOTrapFv
 };
@@ -956,7 +957,7 @@ void TOTrapAncient02::vfunc_82() {
                 if (self->target != NULL && local_client_id == get_entity_id(self->target)) {
                     p = (s32)get_player_by_client_id(local_client_id);
                     if (p != 0 && check_player_flag1__10TObjPlayerFv() != 0) {
-                        TObjPlayer::send_code_45_1(p);
+                        TObjPlayer::send_code_45_1((TObjPlayer *)(p));
                     }
                 }
             }
@@ -1233,7 +1234,7 @@ void *__dt__15TOTrapAncient02Fv(void *trap, s16 arg1) {
 #pragma push
 #pragma fp_contract on
 void *TOTrapAncient02__ct(void *arg0, void *arg1, void *arg2) {
-    TOTrap__ct(((Trap_8017B6D8 *)arg0), arg1, arg2);
+    __ct__6TOTrapFP7TObjectPv(((Trap_8017B6D8 *)arg0), arg1, arg2);
     ((Trap_8017B6D8 *)arg0)->vt = (void *)__vt__15TOTrapAncient02;
     ((Trap_8017B6D8 *)arg0)->id = TOTrapAncient02__name;
     ((V_8017B6D8 *)((Trap_8017B6D8 *)arg0))->init(arg2);

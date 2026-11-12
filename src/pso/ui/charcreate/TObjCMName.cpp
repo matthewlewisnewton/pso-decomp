@@ -656,7 +656,7 @@ void TObjCMProportion::render() {
     lbl_80540988[2] = color;
     lbl_80540988[1] = color;
     lbl_80540988[0] = color;
-    ((TWindowCtrlMain *)lbl_804DBD08)->draw_strip_swap_color(4, 5, -2.0f);
+    ((ColorLineList *)lbl_804DBD08)->draw_strip_swap_color(4, 5, -2.0f);
     color = ((s32)(64.0f * alpha) << 24) | 0xFF0000 | 0xFFFF;
     lbl_805409B8[3] = color;
     lbl_805409B8[2] = color;
@@ -672,7 +672,7 @@ void TObjCMProportion::render() {
     lbl_80540998[1].x = 2.0f + x;
     lbl_80540998[2].x = 2.0f + x;
     lbl_80540998[3].x = x - 2.0f;
-    ((TWindowCtrlMain *)lbl_804DBD18)->draw_strip_swap_color(4, 6, -2.0f);
+    ((ColorLineList *)lbl_804DBD18)->draw_strip_swap_color(4, 6, -2.0f);
     lbl_80540998[0].y = y - 2.0f;
     lbl_80540998[1].x = 230.0f;
     lbl_80540998[1].y = 2.0f + y;
@@ -681,7 +681,7 @@ void TObjCMProportion::render() {
     lbl_80540998[3].y = y - 2.0f;
     lbl_80540998[3].x = 410.0f;
     lbl_80540998[2].x = 410.0f;
-    ((TWindowCtrlMain *)lbl_804DBD18)->draw_strip_swap_color(4, 6, -2.0f);
+    ((ColorLineList *)lbl_804DBD18)->draw_strip_swap_color(4, 6, -2.0f);
     draw_creation_ruler_lines(fade);
 }
 #pragma pop
@@ -2047,7 +2047,7 @@ void TObjCMMainMenu::draw_footer_divider() {
         }
         prim.colors = cols;
         prim.pts = q->p;
-        ((TWindowCtrlMain *)(&prim))->draw_strip_swap_color(4, 6, lbl_805DDB90);
+        ((ColorLineList *)(&prim))->draw_strip_swap_color(4, 6, lbl_805DDB90);
     }
 }
 

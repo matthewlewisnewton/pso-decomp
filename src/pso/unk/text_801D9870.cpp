@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/player/TechniqueCastState.h"
 typedef struct TechLevel_801D9870 { u8 level; } TechLevel_801D9870;
 
 typedef struct TObjPlayer_801D9870 {
@@ -18,7 +19,7 @@ s32 get_cast_technique_level(TObjPlayer_801D9870 *arg0, s32 arg1) {
         return 0;
     }
     level = arg0->techs[(s16)arg1].level;
-    if (TObjPlayer::check_technique_level((s32)arg0, (s32)arg1, (u8)level) == 0) {
+    if (((TechniqueCastState *)arg0)->check_technique_level((s32)arg1, (u8)level) == 0) {
         level = 0x1D;
     }
     return ((s32 (*)(void *, u8, s32))clamp_to_max__10TObjPlayerFlUcUc)(arg0, level, ((s32 (*)(void *, s32))get_effective_technique_level__10TObjPlayerFPvs)(arg0, arg1));

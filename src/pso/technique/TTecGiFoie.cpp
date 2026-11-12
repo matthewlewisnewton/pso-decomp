@@ -175,7 +175,7 @@ void __ct__7TObjectFP7TObject(void *, void *);
 void construct_area_technique_base(void *, void *, void *, void *, void *);
 s32 calc_technique_parameters(int, int, int);
 u8 * __dt__13TUnk_804CC800Fv(Task_80231224 *task, s16 flag);
-Task_802312E4 * construct_orbit__10TTecGiFoieFPvPviUciPvUc(Task_802312E4 *self, Vec_802312E4 *pos, s32 arg2, u8 band, s32 arg4, void *parent, u8 single);
+Task_802312E4 * __ct__13TUnk_804CC800FP3VeclllP7TObjectUc(Task_802312E4 *self, Vec_802312E4 *pos, s32 arg2, u8 band, s32 arg4, void *parent, u8 single);
 u8 * __dt__10TTecGiFoieFv(u8 *arg0, s16 arg1);
 void run_task__10TTecGiFoieFv(u8 *self);
 void * TTecGiFoie__ct(void *self_, void *source, void *origin, void *level);
@@ -231,7 +231,7 @@ u8 *__dt__13TUnk_804CC800Fv(Task_80231224 *task, s16 flag) {
     return (u8 *)task;
 }
 
-Task_802312E4 *construct_orbit__10TTecGiFoieFPvPviUciPvUc(Task_802312E4 *self, Vec_802312E4 *pos, s32 arg2, u8 band, s32 arg4, void *parent, u8 single) {
+Task_802312E4 *__ct__13TUnk_804CC800FP3VeclllP7TObjectUc(Task_802312E4 *self, Vec_802312E4 *pos, s32 arg2, u8 band, s32 arg4, void *parent, u8 single) {
     __ct__7TObjectFP7TObject(self, parent);
     self->vt = lbl_804CC800;
     self->x46 = 0;
@@ -416,7 +416,7 @@ void *TTecGiFoie__ct(void *self_, void *source, void *origin, void *level) {
         p.z = self->pos.z + v.z;
         o = __nw__7TObjectFUl(0x4C);
         if (o != NULL) {
-            o = ((Task_8023179C *(*)(void *, Vec_8023179C *, s32, s32, s32, void *, u8))construct_orbit__10TTecGiFoieFPvPviUciPvUc)(o, &p, angle, self->band, self->level, (void *)tl_07, 0);
+            o = ((Task_8023179C *(*)(void *, Vec_8023179C *, s32, s32, s32, void *, u8))__ct__13TUnk_804CC800FP3VeclllP7TObjectUc)(o, &p, angle, self->band, self->level, (void *)tl_07, 0);
         }
         self->tasks[k] = (Task_8023179C *)o;
     }

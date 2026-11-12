@@ -1094,7 +1094,7 @@ void TLobby::load_ask_dictionary() {
     s32 size;
     s32 aligned;
     s32 aram;
-    size = ((TLobby *)lbl_8044F098)->get_resource_file_size();
+    size = TLobby::get_resource_file_size((const void *)lbl_8044F098);
     aligned = (size + 0x1F) & ~0x1F;
     aram = Dolphin_ARAlloc(aligned);
     data = set_stream_and_load_file__6TLobbyFi((s32 *)lbl_8044F098);

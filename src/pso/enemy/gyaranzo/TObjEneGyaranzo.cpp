@@ -178,8 +178,8 @@ u8 *gyaranzo_resource_ptrs[13];
 EnemyTargetCandidate TObjGyaranzoMissile_target_slots[4];
 extern u32 gyaranzo_bml_resource;
 extern u8 *tl_05;
-void update_collisions__10TObjPlayerFv(void *);
-#define update_collisions__10TObjPlayerFv ((void (*)(void *))update_collisions__10TObjPlayerFv)
+void update_collisions__14TObjCollidableFv(void *);
+#define update_collisions__14TObjCollidableFv ((void (*)(void *))update_collisions__14TObjCollidableFv)
 void apply_actor_gravity(void *, int, f32);
 }
 void move_with_wall_slide(u8 *arg0);
@@ -207,7 +207,7 @@ void update_return_home__15TObjEneGyaranzoFv(Ene_800D1E4C *arg0) {
         calc_velocity_toward_destination(arg0, arg0->v290, arg0->v29C, arg0->param->speed);
         ((TObjEnemy *)arg0)->turn_toward_direction(arg0->param->turn, (Vec *)arg0->v308);
         move_with_wall_slide((u8 *)arg0);
-        update_collisions__10TObjPlayerFv(arg0);
+        update_collisions__14TObjCollidableFv(arg0);
         if (xz_distance_squared((Vec *)&arg0->pos, (Vec *)&arg0->target) <= lbl_805DA25C) {
             update_if_active__15TObjEnemyCustomFl(arg0, 0);
         }
@@ -215,7 +215,7 @@ void update_return_home__15TObjEneGyaranzoFv(Ene_800D1E4C *arg0) {
     }
 }
 }
-#undef update_collisions__10TObjPlayerFv
+#undef update_collisions__14TObjCollidableFv
 #pragma push
 
 #define CAT2(a, b) a##b
@@ -1257,7 +1257,7 @@ void TObjEneGyaranzo::update_aim_and_fire() {
     }
     advance_animation();
     apply_actor_gravity(this, 0, lbl_805DA258);
-    update_collisions__10TObjPlayerFv(this);
+    update_collisions__14TObjCollidableFv(this);
 }
 
 void update_model_visibility__15TObjEneGyaranzoFv(Ene_800D2E8C *arg0) {
@@ -1328,7 +1328,7 @@ void update_knockback__15TObjEneGyaranzoFv(Obj_800D30A8 *enemy) {
         enemy->vel.x *= lbl_805DA280;
         enemy->vel.z *= lbl_805DA280;
         apply_actor_gravity(enemy, 0, lbl_805DA258);
-        update_collisions__10TObjPlayerFv(enemy);
+        update_collisions__14TObjCollidableFv(enemy);
         if (enemy->fB4 != 8) {
             enemy->state = -1;
         }
@@ -1432,7 +1432,7 @@ void update_chase__15TObjEneGyaranzoFv(u8 *arg0) {
             ((VObj_800D3314 *)arg0)->m63(0x27, &v);
             spawn_particle_effect(&v, 0xF3);
         }
-        update_collisions__10TObjPlayerFv(arg0);
+        update_collisions__14TObjCollidableFv(arg0);
         if (*(u32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0xA4)) + 0x18) & 0x380000) {
             *(s32 *)((s8 *)arg0 + 0x37C) = -1;
         } else if (*(f32 *)((s8 *)arg0 + 0x39C) >= *(f32 *)((s8 *)arg0 + 0x3A0)) {

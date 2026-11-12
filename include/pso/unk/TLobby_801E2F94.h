@@ -3,17 +3,8 @@
 
 #include "types.h"
 #include "pso/system/NinjaTypes.h"
+#include "pso/render/ColorLineList.h"
 
-struct ColorLineVertex {
-    f32 x, y;
-};
-
-struct ColorLineList {
-    ColorLineVertex *verts;
-    u32 *colors;
-    s32 unk_8;
-    s32 count;
-};
 
 extern "C" {
 void TCameraCtrl__sub_801E32D8(f32 farg0, f32 farg1);

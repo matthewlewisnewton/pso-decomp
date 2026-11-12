@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/TriangleFan3D.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/data/FlagWord.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -365,7 +366,7 @@ void TAdRicoRingCtrl::render() {
         v[11] = g;
         lbl_805D4A31 = 1;
     }
-    ((TObjPlayer *)lbl_80480A10)->draw_tri_fan_3d(4, 6);
+    draw_tri_fan_3d((TriangleFan3D *)lbl_80480A10, 4, 6);
     t = *(f32 *)&this->unk_24;
     if (t > lbl_805D7E4C) {
         u32 args[4];

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/SpriteDescriptor.h"
 #include "pso/boss/derolle/TObjBoss2Tunnel_803E2BAC.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/TLobby_803382E4.h"
@@ -150,7 +151,7 @@ void TLobby__sub_803382E4(void) {
         draw_projected_textured_strip(lbl_804EF344, 4);
         TLobby::reset_player_state();
         set_additive_blend();
-        ((TObjPlayer *)lbl_804EF3E0)->draw_compass_sprite(2, (__cvt_fp2unsigned(lbl_805DF9B4 * alpha) << 24) | 0xFFFFFF, 0x21, lbl_805DF9A0);
+        ((SpriteDescriptor *)lbl_804EF3E0)->draw_compass_sprite(2, (__cvt_fp2unsigned(lbl_805DF9B4 * alpha) << 24) | 0xFFFFFF, 0x21, lbl_805DF9A0);
         set_default_alpha_blend();
         TCameraCtrl__sub_80068EF0();
         TParticleCtrl::end_effect_render();

@@ -153,7 +153,7 @@ s32 __destroy_arr(void *, void *, int, int);
 void __dl__7TObjectFPv(void *);
 extern s32 __vt__15TOTrapAncient01[];
 Self_80179EC0 *__dt__15TOTrapAncient01Fv(Self_80179EC0 *self, s16 flag);
-void TOTrap__ct(void *, void *, void *);
+void __ct__6TOTrapFP7TObjectPv(void *, void *, void *);
 void __construct_array(void *, void *, void *, int, int);
 void __ct__15RenderFadeStateFv(void *);
 extern CollisionBody lbl_804B4844[];
@@ -194,7 +194,7 @@ void TOTrapAncient01::release_trapped_player() {
             player = get_player_by_client_id(get_entity_id((TObjBase *)target));
             if (player != NULL) {
                 if (((TObjPlayer *)player)->check_player_flag1() != 0) {
-                    TObjPlayer::send_code_45_1((s32)player);
+                    TObjPlayer::send_code_45_1((TObjPlayer *)((s32)player));
                 }
                 obj_clear_flag30_20000(player);
             }
@@ -203,7 +203,7 @@ void TOTrapAncient01::release_trapped_player() {
         player = get_player_by_client_id(local_client_id);
         if (player != NULL) {
             if (((TObjPlayer *)player)->check_player_flag1() != 0) {
-                TObjPlayer::send_code_45_1((s32)player);
+                TObjPlayer::send_code_45_1((TObjPlayer *)((s32)player));
             }
             obj_clear_flag30_20000(player);
         }
@@ -473,7 +473,7 @@ void render__15TOTrapAncient01Fv(Trap_80179B8C *self) {
 void *TOTrapAncient01::create() {
     void *o = TObject::operator new(0x3C8);
     if (o != NULL) {
-        o = TOTrapAncient01__ct(o, tl_05, this);
+        o = __ct__15TOTrapAncient01FP7TObjectPv(o, tl_05, this);
     }
     return o;
 }
@@ -511,9 +511,9 @@ Self_80179EC0 *__dt__15TOTrapAncient01Fv(Self_80179EC0 *self, s16 flag) {
 #pragma push
 #pragma fp_contract on
 #define self ((u8 *)arg0)
-void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2) {
+void *__ct__15TOTrapAncient01FP7TObjectPv(void *arg0, void *arg1, void *arg2) {
     s32 i;
-    TOTrap__ct(arg0, arg1, arg2);
+    __ct__6TOTrapFP7TObjectPv(arg0, arg1, arg2);
     *(s32 **)((s8 *)self + 0x18) = __vt__15TOTrapAncient01;
     __construct_array(self + 0x358, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)self + 0) = TOTrapAncient01__class_name;

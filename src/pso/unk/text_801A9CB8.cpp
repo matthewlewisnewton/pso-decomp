@@ -50,7 +50,7 @@ TUnk_804C349C::~TUnk_804C349C() {
     }
 }
 
-TUnk_804C349C::TUnk_804C349C(s32 owner_client_id, u8 *players, s32 *counts, s32 animated, s32 delay)
+TUnk_804C349C::TUnk_804C349C(s32 owner_client_id, PhotonBlastSlot *players, const s32 *counts, s32 animated, s32 delay)
     : TObject(tl_07) {
     TObjPlayer *player;
     s32 i;
@@ -75,17 +75,16 @@ TUnk_804C349C::TUnk_804C349C(s32 owner_client_id, u8 *players, s32 *counts, s32 
         participants[i] = 0xFFFF;
     }
     summon_count = 4;
-    for (i = 0; i < 4; i++) {
-        if (TObjPlayer__sub_80313114(players) == -1) {
+    for (i = 0; i < 4; players++, i++) {
+        if (TObjPlayer__sub_80313114(players->data) == -1) {
             summon_count = i;
             break;
         }
-        kinds[i] = TObjPlayer__sub_80313114(players);
+        kinds[i] = TObjPlayer__sub_80313114(players->data);
         participants[i] = ((TObjPlayer *)players)->get_section_id();
-        players += 0x18;
     }
     owner = get_player_by_client_id(owner_client_id);
-    apply_photon_blast_action_hold((s32)this, summon_count * 150 + 100, owner_client_id);
+    apply_photon_blast_action_hold(this, summon_count * 150 + 100, owner_client_id);
     if (this->animated != 0) {
         TLobby::send_neg30();
         TObjPlayer__sub_8024ABDC(local_client_id);

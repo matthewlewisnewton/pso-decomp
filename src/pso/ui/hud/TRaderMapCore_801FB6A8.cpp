@@ -96,7 +96,7 @@ void TRaderMapCore::load_map_resources() {
     TRaderMapCore__render_mode = 1;
 }
 
-s32 TRaderMapCore::apply_compass_param(s32 *counter) {
+s32 TRaderMapCore::apply_compass_param(const s32 *counter) {
     if ((u32) TRaderMapCore__data_805D5F4C != 0U) {
         set_current_texture_list((GinjaTextureList *)((s32) TRaderMapCore__data_805D5F4C));
         return 1;
