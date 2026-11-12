@@ -6149,7 +6149,7 @@ force_active:
   - draw_empty_warp_overlay__Fv
   - draw_enemy_gate_markers__13TRaderMapCoreFv
   - draw_entry__12TAdMultiOkGCFi
-  - draw_entry_if_visible__19TWindowDD_WS_StringFPv
+  - draw_entry_if_visible__19TWindowDD_WS_StringFP18TWindowDrawContext
   - draw_entry_tab__20TWindowSubStatusDispFPv
   - draw_fade__9TAdFadeGCFv
   - draw_fading_model_1_pair__25TBoss6Demo20_TYPE2_APPEARFv
