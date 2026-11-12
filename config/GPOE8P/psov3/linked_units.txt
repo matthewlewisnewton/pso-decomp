@@ -714,6 +714,7 @@ pso/ui/frontend/TAdPlyChrSelPlateGC.cpp
 pso/ui/frontend/TAdTimeSetGC.cpp
 pso/ui/charcreate/TChCrCharSelect.cpp
 pso/ui/charcreate/TChCrEffWall.cpp
+pso/ui/charcreate/TChCrTagInformationStr.cpp
 pso/ui/charcreate/TChCrLoadGmNjReq.cpp
 pso/object/quest/TObjTagChallenge.cpp
 pso/quest/TQuestBgmCtrl.cpp
