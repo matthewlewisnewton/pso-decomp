@@ -1477,6 +1477,7 @@ pso/ui/window/TWindowCtrl_80271DFC.cpp
 pso/ui/window/TWindowDD_8020C2DC.cpp
 pso/ui/window/TWindowDD_8024662C.cpp
 pso/ui/window/TWindowDD_80246F8C.cpp
+pso/ui/window/TWindowDD.cpp
 pso/ui/window/TWindowDD_80340EA8.cpp
 pso/ui/window/TWindowDD_803411E8.cpp
 pso/ui/window/TWindowDD_80341334.cpp
@@ -1691,6 +1692,7 @@ pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp
 pso/ui/window/TWindowSubStatusDisp_80255DF4.cpp
 pso/ui/window/TWindowSubStatusDisp_8025737C.cpp
 pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp
+pso/ui/window/TWindowSubStatusDisp_80256B94.cpp
 pso/ui/window/TWindowSubStatusDisp_8025995C.cpp
 pso/ui/window/TWindowSubStatusDisp_80259DB0.cpp
 pso/ui/window/TWindowSubStatusDisp_8025A9B4.cpp

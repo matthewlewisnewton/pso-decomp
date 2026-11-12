@@ -48,8 +48,6 @@ extern s32 lbl_804CF918[];
 void __ct__13TUnk_804CF918Fs(void *self, s32 arg1);
 void calc_bar_width__13TUnk_804CF930Fv(struct Bar_80256C00 *bar);
 f32 fabs_float(f32);
-extern const f32 lbl_805DCE58;
-extern const f32 lbl_805DCECC;
 void update__13TUnk_804CF930Fv(Gauge_802571B4 *g);
 s32 try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf(void *, void *);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
@@ -225,19 +223,19 @@ void update__13TUnk_804CF930Fv(Gauge_802571B4 *g) {
     f32 target;
     f32 diff;
     g->flags &= ~4;
-    if (g->max <= lbl_805DCE58 || g->val <= lbl_805DCE58) {
+    if (g->max <= 0.0f || g->val <= 0.0f) {
         target = 0.0f;
     } else {
         target = (g->val * g->scale) / g->max;
     }
     diff = target - g->cur;
-    if (fabs_float(diff) < lbl_805DCECC) {
+    if (fabs_float(diff) < 2.0f) {
         g->cur = target;
         g->flags |= 4;
-    } else if (diff > lbl_805DCE58) {
-        g->cur += lbl_805DCECC;
+    } else if (diff > 0.0f) {
+        g->cur += 2.0f;
     } else {
-        g->cur -= lbl_805DCECC;
+        g->cur -= 2.0f;
     }
 }
 
@@ -274,9 +272,8 @@ typedef void *(*Ctor_80257D44)(void *, void *, s32);
 #define update__13TUnk_804CF930Fv ((void (*)(void *))update__13TUnk_804CF930Fv)
 
 #define lbl_804CF930 (*(unsigned char (*)[1])&lbl_804CF930)
-extern const float lbl_805DCE58;
 
-void *__ct__13TUnk_804CF930FPvs(void *self, void *a1, int a2) { __ct__13TUnk_804CF918Fs(self, a2); *(int*)((char*)self + 0x4) = (int)lbl_804CF930; *(float*)((char*)self + 0x1c) = lbl_805DCE58; *(float*)((char*)self + 0xc) = *(float*)((char*)a1 + 0x4); *(float*)((char*)self + 0x10) = *(float*)((char*)a1 + 0x8); *(float*)((char*)self + 0x8) = *(float*)((char*)a1 + 0xc); *(float*)((char*)self + 0x14) = *(float*)((char*)a1 + 0x18); *(int*)((char*)self + 0x18) = *(int*)((char*)a1 + 0x10); *(short*)((char*)self + 0x0) = *(int*)((char*)a1 + 0x14); *(float*)((char*)self + 0x20) = *(float*)((char*)a1 + 0x1c); *(float*)((char*)self + 0x24) = *(float*)((char*)a1 + 0x20); return self; }
+void *__ct__13TUnk_804CF930FPvs(void *self, void *a1, int a2) { __ct__13TUnk_804CF918Fs(self, a2); *(int*)((char*)self + 0x4) = (int)lbl_804CF930; *(float*)((char*)self + 0x1c) = 0.0f; *(float*)((char*)self + 0xc) = *(float*)((char*)a1 + 0x4); *(float*)((char*)self + 0x10) = *(float*)((char*)a1 + 0x8); *(float*)((char*)self + 0x8) = *(float*)((char*)a1 + 0xc); *(float*)((char*)self + 0x14) = *(float*)((char*)a1 + 0x18); *(int*)((char*)self + 0x18) = *(int*)((char*)a1 + 0x10); *(short*)((char*)self + 0x0) = *(int*)((char*)a1 + 0x14); *(float*)((char*)self + 0x20) = *(float*)((char*)a1 + 0x1c); *(float*)((char*)self + 0x24) = *(float*)((char*)a1 + 0x20); return self; }
 
 }
 
