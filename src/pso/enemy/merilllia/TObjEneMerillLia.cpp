@@ -28,7 +28,7 @@ extern "C" void test_flag_1000__9TObjCharaFv();
 #include "pso/object/base/TObjMotion.h"
 #include "pso/system/vector.h"
 
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 extern "C" void test_flag_256__13TUnk_80493450Fv();
 
 struct Obj_800D5614 { u8 pad0[0x38]; u8 pos[0xC]; u8 pad44[0x2A8 - 0x44]; void *f2a8; u8 pad2ac[0x326 - 0x2AC]; s16 f326; s16 f328; u8 pad32a[0x338 - 0x32A]; u16 f338; u8 pad33a[0x350 - 0x33A]; f32 *f350; u8 pad354[0x3D0 - 0x354]; f32 f3d0; };
@@ -546,7 +546,7 @@ void free_collision_body_parts(void *);
 void *TObjEneMerillLia__ct(void *, void *, void *);
 void *__dt__13TUnk_80493450Fv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
-void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
+void *__dt__19MaterialOpacityFadeFv(void *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
 s32 is_split_screen(void);
 void TObjEneMerillLia__sub_800D6D64(void);
@@ -1009,7 +1009,7 @@ void TObjEneMerillLia::sub_800D5570() {
     default:
         this->phase = 1;
         this->requested_action = 1;
-        ((TUnk_80494938 *)((u8 *)arg0 + 0x3A8))->start_fade_in();
+        ((MaterialOpacityFade *)((u8 *)arg0 + 0x3A8))->start_fade_in();
         ((TBoss3Volopt *)(arg0->sub38))->play_area_sound_effect();
         break;
     case 1:
@@ -1740,7 +1740,7 @@ void *__dt__16TObjEneMerillLiaFPvs(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = lbl_80494728;
         ((TUnk_80493450 *)arg0)->unlink_enemy_group_relations();
         free_collision_body_parts(arg0);
-        __dt__13TUnk_80494938Fv((s8 *)arg0 + 0x3A8, -1);
+        __dt__19MaterialOpacityFadeFv((s8 *)arg0 + 0x3A8, -1);
         __dt__13TUnk_80493450Fv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -1763,7 +1763,7 @@ void *TObjEneMerillLia__ct(void *arg0v, void *arg1, void *arg2) {
 
     __ct__13TUnk_80493450FP7TObject(arg0, (s32)arg1);
     *(void **)((s8 *)arg0 + 0x18) = lbl_80494728;
-    __ct__13TUnk_80494938Fv((arg0 + 0x3A8));
+    __ct__19MaterialOpacityFadeFv((arg0 + 0x3A8));
     *(s32 *)((s8 *)arg0 + 0) = lbl_805D2A88;
     ((VObj_18_4c2345 *) arg0)->m79((s32)arg2);
     ((TObjEneMerillLia *)arg0)->init_params_from_position();

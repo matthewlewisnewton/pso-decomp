@@ -25,7 +25,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/object/TObjChip.h"
 #include "pso/system/BmlResource.h"
 
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include <stddef.h>
 typedef char GyaranzoPositionOffset[offsetof(TObjEneGyaranzo, position) == 0x38 ? 1 : -1];
 typedef char GyaranzoYawOffset[offsetof(TObjEneGyaranzo, rotation_y) == 0x60 ? 1 : -1];
@@ -351,7 +351,7 @@ void update_fade_state__15TObjEneGyaranzoFv(u8 *arg0) {
         *(s32 *)((s8 *)arg0 + 0x30) = temp_r4;
         *(s16 *)((s8 *)arg0 + 0xB8) = 0;
         play_area_sound_and_particles_a(arg0 + 0x2FC, temp_r4);
-        ((TUnk_80494938 *)(arg0 + 0x3D0))->start_fade_in();
+        ((MaterialOpacityFade *)(arg0 + 0x3D0))->start_fade_in();
         *(s32 *)((s8 *)arg0 + 0x37C) = 1;
     case 1:
         ((TObjMotion *)arg0)->advance_animation();
@@ -734,7 +734,7 @@ void render__15TObjEneGyaranzoFv(u8 *arg0);
 void run_task__15TObjEneGyaranzoFv(u8 *arg0);
 Obj_800D3E54 * __dt__15TObjEneGyaranzoFv(Obj_800D3E54 *arg0, s16 arg1);
 u8 *__ct__15TObjEneGyaranzoFP7TObjectPv(TObjEneGyaranzo *arg0, s32 arg1, u8 *arg2);
-s32 __dt__13TUnk_80494938Fv(void *, s16);
+s32 __dt__19MaterialOpacityFadeFv(void *, s16);
 s32 update_fast__15RenderFadeStateFv(int);
 void __dt__15RenderFadeStateFv();
 void __ct__15RenderFadeStateFv(void *);
@@ -1706,7 +1706,7 @@ Obj_800D3E54 *__dt__15TObjEneGyaranzoFv(Obj_800D3E54 *arg0, s16 arg1) {
         arg0->vt = __vt__15TObjEneGyaranzo;
         free_collision_body_parts(arg0);
         __destroy_arr((u8 *)arg0 + 0x3EC, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
-        __dt__13TUnk_80494938Fv((u8 *)arg0 + 0x3D0, -1);
+        __dt__19MaterialOpacityFadeFv((u8 *)arg0 + 0x3D0, -1);
         __dt__15TObjEnemyCustomFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -1723,7 +1723,7 @@ u8 *__ct__15TObjEneGyaranzoFP7TObjectPv(TObjEneGyaranzo *arg0, s32 arg1, u8 *arg
 
     ((void (*)(void *, s32, void *)) __ct__15TObjEnemyCustomFP7TObject)(arg0, arg1, arg2);
     *(u8 **)((s8 *)arg0 + 0x18) = (u8 *) ((void * *)__vt__15TObjEneGyaranzo);
-    __ct__13TUnk_80494938Fv(((u8 *)arg0 + 0x3D0));
+    __ct__19MaterialOpacityFadeFv(((u8 *)arg0 + 0x3D0));
     __construct_array((u8 *)arg0 + 0x3EC, &__ct__15RenderFadeStateFv, &__dt__15RenderFadeStateFv, 0x1C, 4);
     *(s32 *)((s8 *)arg0 + 0) = (s32) lbl_805D2A78;
     ((TObjEneGyaranzo *)(arg0))->apply_set_data(arg2);

@@ -35,7 +35,7 @@
 #include "pso/boss/goldragon/TBoss8Dragon.h"
 #include "pso/enemy/panarms/TObjEnePanarms.h"
 #include "pso/enemy/recon/TObjEneRecon_8031E574.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h"
 #include "pso/enemy/recon/TObjEneRecon_8031BC38.h"
 #include "pso/enemy/recon/TObjEneRecobox_8031FCB0.h"
@@ -1972,7 +1972,7 @@ extern s32 TObjEneRecon_name_ref;
 u8 *TObjEneRecon__ct(u8 *ene_recon, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
     __ct__12TObjEneDD_STFP7TObject();
     *(s32 **)((s8 *)ene_recon + 0x18) = __vt__12TObjEneRecon;
-    __ct__13TUnk_80494938Fv((ene_recon + 0x480));
+    __ct__19MaterialOpacityFadeFv((ene_recon + 0x480));
     *(s32 *)((s8 *)ene_recon + 0) = (s32) TObjEneRecon_name_ref;
     *(s16 *)((s8 *)ene_recon + 0x434) = get_entity_id((void *)arg2);
     ((TObjEneDD *)ene_recon)->init_common_from((u8 *)arg2);
@@ -2098,7 +2098,7 @@ s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(voi
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);
-void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
+void *__dt__19MaterialOpacityFadeFv(void *arg0, s16 arg1);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
@@ -2190,7 +2190,7 @@ TObjEneRecon::~TObjEneRecon() {
     ((TObjEnemy *)this)->send_entity_set_flags();
     free_collision_body_parts(this);
     if (*(void **)((s8 *)this + 0x478) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)this + 0x478)); this->m_494 = 0; }
-    __dt__13TUnk_80494938Fv((s8 *)this + 0x480, -1);
+    __dt__19MaterialOpacityFadeFv((s8 *)this + 0x480, -1);
 }
 
 extern "C" {

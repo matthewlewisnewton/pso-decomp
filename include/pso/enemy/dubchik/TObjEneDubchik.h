@@ -2,7 +2,7 @@
 #define PSO_ENEMY_DUBCHIK_TOBJENEDUBCHIK_H
 #include "types.h"
 #include "pso/enemy/TObjEnemyCustom.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 
 class TParticleCtrl;
 class TUnk_80494968;
@@ -36,7 +36,7 @@ public:
     f32 chase_distance;  // 0x3A4: distance walked while chasing; past a threshold it may switch target (inferred)
     TParticleCtrl *effect;  // 0x3A8: particle 0x119 while it falls apart (inferred)
     TUnk_80494968 *saver;
-    TUnk_80494938 fade;
+    MaterialOpacityFade fade;
     u8 unk_3CC[0x4];
     f32 search_range;  // 0x3D0: passed to find_target_in_range (inferred)
     Vec part_offsets[3];

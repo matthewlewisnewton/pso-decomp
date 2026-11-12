@@ -27,7 +27,7 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/enemy/recon/TObjEneRecon.h"
 #include "pso/enemy/berura/TObjEneRe7Berura.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/object/base/TObjChara.h"
@@ -2203,7 +2203,7 @@ void TObjEneMe3SinowZoa::sub_80319E74(s32 arg1) {
         ((TObjEneMe3SinowZoa *)arg0)->vfunc_95();
         *(s32 *)((s8 *)arg0 + 0x3CC) &= 0xFFEFFFFD;
         *(s32 *)((s8 *)arg0 + 0x3CC) |= 5;
-        ((TUnk_80494938 *)(arg0 + 0x414))->start_fade_in();
+        ((MaterialOpacityFade *)(arg0 + 0x414))->start_fade_in();
         VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x38));
         t = *(f32 *)((s8 *)arg0 + 0x3E0);
         v.y = t - 20.0f;
@@ -2306,7 +2306,7 @@ void TObjEneMe3SinowZoa__sub_80319B8C(u8 *ene_dd, s32 arg1) {
         ((TObjEneDD *)ene_dd)->set_field_378(0);
         ((TObjEneDD *)(ene_dd))->vfunc_95();
         *(s32 *)((s8 *)ene_dd + 0x3CC) = (s32) (*(s32 *)((s8 *)ene_dd + 0x3CC) | 7);
-        ((TUnk_80494938 *)(ene_dd + 0x414))->start_fade_in();
+        ((MaterialOpacityFade *)(ene_dd + 0x414))->start_fade_in();
         VecCopy((Vec *)(&stack.sp8), (const Vec *)(ene_dd + 0x38));
         temp_f1 = *(f32 *)((s8 *)ene_dd + 0x3E0);
         stack.spC = temp_f1 - TObjEneMe3SinowZoa__data_805DF314;
@@ -2572,7 +2572,7 @@ void TObjEneMe3SinowZoa__sub_80318F7C(Ene_80318F7C *self, s32 arg1) {
                     if (csnVecterUnder((s32)&v, 0x15) != 0) {
                         if (self->f28 == ((TScene *)(&v))->find_section_at_position()) {
                             if (self->f3C0 != 0) {
-                                ((TObjEneMe3SinowZoa *)(&self->sub))->set_field_10(TObjEneMe3SinowZoa__data_805DF30C);
+                                ((MaterialOpacityFade *)(&self->sub))->set_rate(TObjEneMe3SinowZoa__data_805DF30C);
                                 self->sub.m3();
                                 self->f3CC |= 0x100000;
                                 self->f3CC |= 0x40000;
@@ -2596,7 +2596,7 @@ void TObjEneMe3SinowZoa__sub_80318F7C(Ene_80318F7C *self, s32 arg1) {
             self->m87();
             break;
         case 3:
-            if (((TObjEneMe3SinowZoa *)(&self->sub))->advance_timer(TObjEneMe3SinowZoa__data_805DF310) != 0) {
+            if (((MaterialOpacityFade *)(&self->sub))->advance_to(TObjEneMe3SinowZoa__data_805DF310) != 0) {
                 self->f434 = 4;
             }
         case 4:
@@ -2664,7 +2664,7 @@ void TObjEneMe3SinowZoa__sub_80318C0C(void *arg0_, s32 arg1) {
         *(s32 *)((s8 *)ene_epsilon + 0x3CC) |= 0x40000;
         ((TObjCollidable *)ene_epsilon)->clear_player_status_flag(0, 0x08000000);
         if (*(s32 *)((s8 *)ene_epsilon + 0x3C0) != 0) {
-            ((TObjEneMe3SinowZoa *)(ene_epsilon + 0x414))->set_field_10(TObjEneMe3SinowZoa__data_805DF30C);
+            ((MaterialOpacityFade *)(ene_epsilon + 0x414))->set_rate(TObjEneMe3SinowZoa__data_805DF30C);
             ((VObj_14_6ea8ee *)(ene_epsilon + 0x414))->m3();
             *(s32 *)((s8 *)ene_epsilon + 0x3CC) |= 0x100000;
             *(s32 *)((s8 *)ene_epsilon + 0x434) = 0;
@@ -2682,7 +2682,7 @@ void TObjEneMe3SinowZoa__sub_80318C0C(void *arg0_, s32 arg1) {
     case 0:
         switch (*(s32 *)((s8 *)ene_epsilon + 0x434)) {
         case 0:
-            if (((TObjEneMe3SinowZoa *)(ene_epsilon + 0x414))->advance_timer(TObjEneMe3SinowZoa__data_805DF310) != 0) {
+            if (((MaterialOpacityFade *)(ene_epsilon + 0x414))->advance_to(TObjEneMe3SinowZoa__data_805DF310) != 0) {
                 *(s32 *)((s8 *)ene_epsilon + 0x434) = 1;
             }
         case 1:
@@ -2841,7 +2841,7 @@ void TObjEneMe3SinowZoa__sub_80318564(u8 *arg0, s32 arg1) {
         VO->m94();
         F(s32, 0x3CC) &= 0xFFEFFFF8;
         if (F(s32, 0x3C0) != 0) {
-            ((TObjEneMe3SinowZoa *)(arg0 + 0x414))->set_field_10(TObjEneMe3SinowZoa__data_805DF30C);
+            ((MaterialOpacityFade *)(arg0 + 0x414))->set_rate(TObjEneMe3SinowZoa__data_805DF30C);
             VS->s3();
             F(s32, 0x3CC) |= 0x100000;
             F(s32, 0x3CC) |= 0x40000;
@@ -2864,7 +2864,7 @@ void TObjEneMe3SinowZoa__sub_80318564(u8 *arg0, s32 arg1) {
         switch (F(s32, 0x434)) {
         case 0:
             ((TObjMotion *)arg0)->advance_animation();
-            if (((TObjEneMe3SinowZoa *)(arg0 + 0x414))->advance_timer(TObjEneMe3SinowZoa__data_805DF310) != 0) {
+            if (((MaterialOpacityFade *)(arg0 + 0x414))->advance_to(TObjEneMe3SinowZoa__data_805DF310) != 0) {
                 F(s32, 0x434) = 1;
             }
         case 1:
@@ -3501,7 +3501,7 @@ void TObjEneMe3SinowZoa__sub_80316C3C(Obj_80316C3C *arg0, s32 arg1) {
             angle = seek_80316C3C(arg0, &diff);
             if (angle < 0x100) {
                 if (arg0->f3c0 != 0) {
-                    ((TObjEneMe3SinowZoa *)(&arg0->sub))->set_field_10(TObjEneMe3SinowZoa__data_805DF30C);
+                    ((MaterialOpacityFade *)(&arg0->sub))->set_rate(TObjEneMe3SinowZoa__data_805DF30C);
                     arg0->sub.m3();
                     arg0->flags |= 0x100000;
                     arg0->flags |= 0x40000;
@@ -3517,7 +3517,7 @@ void TObjEneMe3SinowZoa__sub_80316C3C(Obj_80316C3C *arg0, s32 arg1) {
             break;
         case 1:
             ((TObjMotion *)arg0)->advance_animation();
-            if (((TObjEneMe3SinowZoa *)(&arg0->sub))->advance_timer(TObjEneMe3SinowZoa__data_805DF310) != 0) {
+            if (((MaterialOpacityFade *)(&arg0->sub))->advance_to(TObjEneMe3SinowZoa__data_805DF310) != 0) {
                 arg0->state = 2;
             }
         case 2:

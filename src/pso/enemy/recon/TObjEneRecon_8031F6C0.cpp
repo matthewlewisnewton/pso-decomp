@@ -1,4 +1,4 @@
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "types.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 #include "pso/enemy/recon/TObjEneRecobox.h"
@@ -73,7 +73,7 @@ void TObjEneRecon::handle_state(s32 arg1) {
         *(s16 *)((s8 *)arg0 + 0xB8) = 0;
         this->vfunc_95();
         ((TObjEneDD *)arg0)->set_field_378(0);
-        ((TUnk_80494938 *)(arg0 + 0x3C0))->start_fade_in();
+        ((MaterialOpacityFade *)(arg0 + 0x3C0))->start_fade_in();
         return;
     case 3:
         if (((V_Sub_8031f748 *) (arg0 + 0x3C0))->m5() != 0) {

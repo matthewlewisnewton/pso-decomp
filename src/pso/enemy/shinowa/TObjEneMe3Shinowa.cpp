@@ -28,7 +28,7 @@
 #include "pso/enemy/shinowa/TObjEneMe3ShinowaMirage.h"
 #include "pso/enemy/saver/TObjEneSaver.h"
 #include "pso/object/base/TObjMotion.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include <stddef.h>
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
@@ -2404,7 +2404,7 @@ void transform_point_to_view(s32, s32);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 void TObjEneDD__sub_800BA438(s32 arg0, u8 *arg1);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
-void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
+void *__dt__19MaterialOpacityFadeFv(void *arg0, s16 arg1);
 s32 play_area_sound_and_particles_a(void *, f32);
 void update_mirage__17TObjEneMe3ShinowaFv(void* p);
 void vfunc_116__17TObjEneMe3ShinowaFl(void);
@@ -3856,7 +3856,7 @@ void TObjEneMe3Shinowa::sub_800E6BB8(s32 arg1) {
         ((TObjEneDD *)arg0)->set_field_378(0);
         this->vfunc_95();
         *(s32 *)((s8 *)arg0 + 0x3C4) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C4) & 0xFFFFFFFC);
-        ((TUnk_80494938 *)(arg0 + 0x3E8))->start_fade_in();
+        ((MaterialOpacityFade *)(arg0 + 0x3E8))->start_fade_in();
         VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0x38));
         temp_f1 = *(f32 *)((s8 *)arg0 + 0x3C8);
         stack.spC = temp_f1 - 20.0f;
@@ -4242,7 +4242,7 @@ void *__dt__17TObjEneMe3ShinowaFv(void *arg0, s16 arg1) {
         if (*(void **)((s8 *)arg0 + 0x424) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x424)); *(s32 *)((s8 *)arg0 + 0x424) = 0; }
         if (*(void **)((s8 *)arg0 + 0x428) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x428)); *(s32 *)((s8 *)arg0 + 0x428) = 0; }
         free_collision_body_parts((TObjCollidable *)arg0);
-        __dt__13TUnk_80494938Fv((s8 *)arg0 + 0x3E8, -1);
+        __dt__19MaterialOpacityFadeFv((s8 *)arg0 + 0x3E8, -1);
         __dt__12TObjEneDD_STFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -4304,7 +4304,7 @@ void TObjEneMe3Shinowa::init_enemy() {
 void *TObjEneMe3Shinowa__ct(void *ene_me3_shinowa, void *parent) {
     __ct__12TObjEneDD_STFP7TObject(ene_me3_shinowa, parent);
     *(s32 **)((s8 *)ene_me3_shinowa + 0x18) = __vt__17TObjEneMe3Shinowa;
-    __ct__13TUnk_80494938Fv(((char *)ene_me3_shinowa + 1000));
+    __ct__19MaterialOpacityFadeFv(((char *)ene_me3_shinowa + 1000));
     *(void * *)&((TObjEneMe3Shinowa *)ene_me3_shinowa)->m_name = TObjEneMe3Shinowa__name;
     return ene_me3_shinowa;
 }

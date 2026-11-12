@@ -25,7 +25,7 @@
 #include "pso/enemy/dd/TObjEneDD_800BB804.h"
 #include "pso/player/TObjPlayer_800F0810.h"
 
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include <stddef.h>
 
 #include "pso/enemy/canadin/TObjEneMe1CanadinLeader.h"
@@ -2549,7 +2549,7 @@ void TObjEneMe1Canadin__sub_8009DE90(void *argv0, s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x30) = (s32) (*(s32 *)((s8 *)arg0 + 0x30) | 0x01000000);
         *(s32 *)((s8 *)arg0 + 0x3FC) = 4;
         *(s32 *)((s8 *)arg0 + 0x4B8) = 1;
-        ((TUnk_80494938 *)(arg0 + 0x3CC))->start_fade_in();
+        ((MaterialOpacityFade *)(arg0 + 0x3CC))->start_fade_in();
         play_area_sound_and_particles_a((s32)(arg0 + 0x38));
         return;
     case 3:

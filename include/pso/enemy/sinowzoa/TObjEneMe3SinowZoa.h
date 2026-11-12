@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 
 struct TObjEneMe3SinowZoa : public TObjEneDD_ST {
     TObjEneMe3SinowZoa(TObject *parent);
@@ -42,7 +42,7 @@ struct TObjEneMe3SinowZoa : public TObjEneDD_ST {
     void vfunc_28();
     u8 pad_374[0x94];
     Vec unk_408; // filled with the target player's hand joint position, then a particle spawn point
-    TUnk_80494938 fade;
+    MaterialOpacityFade fade;
     u8 pad_430[0x24];
     TObject *unk_454; // queued for destruction in the dtor; writer not in this TU
     TObject *unk_458; // queued for destruction in the dtor; writer not in this TU
@@ -62,10 +62,7 @@ struct TObjEneMe3SinowZoa : public TObjEneDD_ST {
     // in floor_resource_callbacks.
     static void load_resources();
     static void free_resources();
-    s32 advance_timer(f32 farg0);
     void copy_position_vector(void* q);
-    void set_field_10(f32 v);
-    void init_death_params();
 };
 
 #endif

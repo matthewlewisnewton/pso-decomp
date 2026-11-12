@@ -29,7 +29,7 @@ extern "C" void test_flag_1000__9TObjCharaFv();
 #include "pso/system/task/TObject.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 extern "C" void test_flag_256__13TUnk_80493450Fv();
 
 struct Base_80301690_80300CE4 { char pad[0x18]; };
@@ -412,7 +412,7 @@ extern u32 TObjEneDolmOlm__resource_bundle;
 void vfunc_83__14TObjEneDolmOlmFv(Ene_80302004 *self);
 void queue_destruction__7TObjectFv(void *);
 void __dt__13TUnk_80493450Fv(void *, int);
-void __dt__13TUnk_80494938Fv(void *, int);
+void __dt__19MaterialOpacityFadeFv(void *, int);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
 s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
@@ -885,7 +885,7 @@ void TObjEneDolmOlm::load_params_from_table(s32 i) {
 }
 TObjEneDolmOlm::TObjEneDolmOlm(s32 arg1, s32 arg2) : TUnk_80493450((TObject *)arg1) {
     u32 col;
-    __ct__13TUnk_80494938Fv((((u8 *)this) + 0x3A8));
+    __ct__19MaterialOpacityFadeFv((((u8 *)this) + 0x3A8));
     *(s32 *)((s8 *)this + 0) = obj_ene_dolm_olm_class_name;
     this->apply_set_data((void *)arg2);
     ((TObjChara *)this)->initialize_position_copies();
@@ -946,7 +946,7 @@ TObjEneDolmOlm::~TObjEneDolmOlm() {
     }
     ((TUnk_80493450 *)this)->unlink_enemy_group_relations();
     free_collision_body_parts(((Ene_80302A34 *)this));
-    __dt__13TUnk_80494938Fv(((Ene_80302A34 *)this)->sub, -1);
+    __dt__19MaterialOpacityFadeFv(((Ene_80302A34 *)this)->sub, -1);
 }
 extern "C" {
 void TObjEneDolmOlm::load_shared_resources() {
@@ -1220,7 +1220,7 @@ void TObjEneDolmOlm::vfunc_83() {
     case 0:
     default:
         if (this->m_390 != 0) {
-            ((TUnk_80494938 *)(&self->obj))->start_fade_in();
+            ((MaterialOpacityFade *)(&self->obj))->start_fade_in();
             ((TBoss3Volopt *)(self->sub38))->play_area_sound_effect();
             this->phase = 1;
             return;

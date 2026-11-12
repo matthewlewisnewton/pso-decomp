@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/effect/TUnk_80494968.h"
 
 struct TObjGrass : public TObjEnemy {
@@ -36,7 +36,7 @@ struct TObjGrass : public TObjEnemy {
     u8 _pad3A4[0x4];
     u32 m_3a8;
     u32 m_3ac;
-    TUnk_80494938 fade;
+    MaterialOpacityFade fade;
     TUnk_80494968 *savers[2];  // attack traces; same type and role as TObjEneDubchik::saver (inferred name)
     static void update_dying(void *arg0_);
     static void update_camera_vec_by_stage();

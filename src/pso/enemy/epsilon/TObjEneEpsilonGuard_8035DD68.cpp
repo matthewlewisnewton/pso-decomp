@@ -33,7 +33,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/ui/hud/TNowLoading.h"
 #include "pso/object/ambient/TObjFish.h"
 
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/system/task/TObject.h"
 
 struct EGPad_8035DD68 { char pad[0x18]; };
@@ -1091,7 +1091,7 @@ extern s32 epsilon_guard_registered_object_handle;
 extern BmlResource *lbl_805D6FA0;
 s32 __ct__14TObjEneEpsilonFP7TObject();
 void *TObjEneEpsilonGuard__ct(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4, void *arg5, void *arg6);
-void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
+void *__dt__19MaterialOpacityFadeFv(void *arg0, s16 arg1);
 s32 __dl__7TObjectFPv(void *);
 u8 *__dt__14TObjEneEpsilonFv(u8 *arg0, s16 arg1);
 u8 *__dt__19TObjEneEpsilonGuardFv(u8 *arg0, s16 arg1);
@@ -1328,7 +1328,7 @@ u8 *__dt__19TObjEneEpsilonGuardFv(u8 *arg0, s16 arg1) {
             *(void **)((s8 *)arg0 + 0x45C) = NULL;
         }
         free_collision_body_parts((TObjEneEpsilonGuard *)arg0);
-        __dt__13TUnk_80494938Fv(arg0 + 0x4BC, -1);
+        __dt__19MaterialOpacityFadeFv(arg0 + 0x4BC, -1);
         __dt__14TObjEneEpsilonFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -1379,7 +1379,7 @@ void *TObjEneEpsilonGuard__ct(void *ene_epsilon_guard, void *arg1, void *arg2, v
     s32 i;
     __ct__14TObjEneEpsilonFP7TObject();
     *(void ***)((s8 *)ene_epsilon_guard + 0x18) = __vt__19TObjEneEpsilonGuard;
-    __ct__13TUnk_80494938Fv(((u8 *)ene_epsilon_guard + 0x4BC));
+    __ct__19MaterialOpacityFadeFv(((u8 *)ene_epsilon_guard + 0x4BC));
     ((TObject *)ene_epsilon_guard)->m_name = TObjEneEpsilonGuard__class_name;
     *(s16 *)((s8 *)ene_epsilon_guard + 0x470) = ((s16 (*)(void *))get_entity_id)(arg2);
     ((TObjEneDD *)ene_epsilon_guard)->init_common_from((u8 *)arg2);

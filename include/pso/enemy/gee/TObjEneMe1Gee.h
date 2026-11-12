@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 
 struct TObjEneMe1Gee : public TObjEneDD_ST {
     virtual ~TObjEneMe1Gee();
@@ -53,7 +53,7 @@ struct TObjEneMe1Gee : public TObjEneDD_ST {
     u8 pad_3a4[0x20];
     u32 m_3e0;
     u32 pad_3c8;
-    TUnk_80494938 fade;
+    MaterialOpacityFade fade;
     u8 pad_3e8[0x7C];
     TObject *unk_464;
     u8 pad_468[0x28];

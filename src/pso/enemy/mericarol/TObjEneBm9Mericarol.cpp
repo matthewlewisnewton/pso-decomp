@@ -20,7 +20,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 
 #include "pso/player/TUnk_804928CC.h"
 
-#include "pso/render/TUnk_80494938.h"
+#include "pso/render/MaterialOpacityFade.h"
 #include "pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"
 
@@ -165,7 +165,7 @@ f32 horizontal_distance_squared(void *, void *);
 void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 __dt__17AreaAttackHistoryFv(s32 arg0, s16 arg1);
-void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
+void *__dt__19MaterialOpacityFadeFv(void *arg0, s16 arg1);
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
 s32 __destroy_arr(void *, void *, u32, u32);
@@ -639,7 +639,7 @@ u8 *__dt__19TObjEneBm9MericarolFPvs(u8 *arg0, s16 arg1) {
             *(void **)((s8 *)arg0 + 0x4AC) = NULL;
         }
         free_collision_body_parts(arg0);
-        __dt__13TUnk_80494938Fv(arg0 + 0x46C, -1);
+        __dt__19MaterialOpacityFadeFv(arg0 + 0x46C, -1);
         __destroy_arr(arg0 + 0x3C8, (void *) __dt__15RenderFadeStateFv, 0x1C, 4);
         __dt__12TObjEneDD_STFv(arg0, 0);
         if (arg1 > 0) {
@@ -657,7 +657,7 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     __ct__12TObjEneDD_STFP7TObject(self, parent);
     self->vt18 = TObjEneBm9Mericarol__vtable;
     __construct_array(self->a3C8, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
-    __ct__13TUnk_80494938Fv((self->o46C));
+    __ct__19MaterialOpacityFadeFv((self->o46C));
     self->f0 = lbl_805D3F28;
     invoke_initialization_hook__9TObjEneDDFPv(self, arg2);
     ((TObjEneBm9Mericarol *)self)->init_size_tier_and_offsets();
