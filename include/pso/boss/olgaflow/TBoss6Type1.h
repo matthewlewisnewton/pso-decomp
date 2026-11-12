@@ -77,7 +77,7 @@ struct TBoss6Type1 : public TObjEnemy {
     u8 unk_4EC[0x1C];
     s32 m_508;
     u8 unk_50C[0x6C];
-    // Model node positions, filled through the node callback list at 0x654 (__ct__11TBoss6Type1FP7TObjectP15Boss6Type1Spawn passes
+    // Model node positions, filled through the node callback list at 0x654 (the TBoss6Type1 constructor passes
     // this array to TObjFish__sub_800E3124); node 7 is where the boss's sounds play from.
     Vec node_points[8];
     Boss6EffectPoint trail_points[3];

@@ -388,7 +388,7 @@ void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self);
 s32 TObjFish__sub_8001EDB0(s32, s32);
 void clear_render_callback__8TObjFishFv(u32);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
-// init_collision_body_parts copies these 7 spheres in __ct__11TBoss6Type1FP7TObjectP15Boss6Type1Spawn.
+// init_collision_body_parts copies these 7 spheres in the TBoss6Type1 constructor.
 CollisionBody lbl_804DF4E0[7] = {
     {{0.0f, 0.0f, 0.0f}, 35.0f, 0.0f, 0, 0x801B, {0.0f, 0.0f, 0.0f}, 0.0f},
     {{0.0f, 0.0f, 0.0f}, 50.0f, 0.0f, 0, 0x801B, {0.0f, 0.0f, 0.0f}, 0.0f},
