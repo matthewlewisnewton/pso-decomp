@@ -669,8 +669,8 @@ void TBoss7DeRolLeC::try_spawn_pattern_crawfish(s32 variant, s32 index) {
 
         Vec **locations = tables->patterns.positions;
 
-        positions = *reinterpret_cast<Vec **>(reinterpret_cast<u8 *>(locations) + variant_offset);
-        angles.yaw = *reinterpret_cast<const s32 *>(reinterpret_cast<const u8 *>(yaws) + column_offset);
+        positions = locations[variant];
+        angles.yaw = yaws[index];
         // Keep lookup and call-argument lifetimes separate for native scheduling.
         s16 selected_slot = TObjFish__sub_802E7CC4(this);
         s16 slot = selected_slot;
