@@ -25,6 +25,8 @@
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/unk/text_80087278.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct VBase_18_65b835 { char pad[0x18]; };
 
@@ -395,7 +397,7 @@ void *TOCtrlDubchik::create(void *arg0) {
 
 void TOCtrlDubchik::destroy_instance() {
     if ((u32) TOCtrlDubchik__shared_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TOCtrlDubchik__shared_resource, 1);
+        delete (BmlResource *)(TOCtrlDubchik__shared_resource);
         TOCtrlDubchik__shared_resource = 0U;
     }
 }

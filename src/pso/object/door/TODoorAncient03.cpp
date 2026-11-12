@@ -11,7 +11,6 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/render/ModelDrawContext.h"
@@ -67,10 +66,7 @@ TODoorAncient03::~TODoorAncient03() {
 }
 
 void TODoorAncient03::load_resources() {
-    BmlResource *archive = (BmlResource *)::operator new(0x440);
-    if (archive != NULL) {
-        archive = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(archive, 1, &bm_fe_obj_o_door03l_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *archive = new BmlResource(1, &bm_fe_obj_o_door03l_resource_descriptor, 0, 0, 0);
     door_ancient03_archive = archive;
     s32 *texlists = (s32 *)::operator new[](2 * sizeof(s32));
     door_ancient03_texlists = texlists;
@@ -87,7 +83,7 @@ void TODoorAncient03::free_resources() {
         }
     }
     if (door_ancient03_archive != NULL) {
-        __dt__11BmlResourceFv(door_ancient03_archive, 1);
+        delete door_ancient03_archive;
         door_ancient03_archive = NULL;
     }
 }

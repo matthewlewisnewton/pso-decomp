@@ -22,6 +22,7 @@
 #include "pso/math/MatrixTransforms.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/math/MatrixVector.h"
+#include "pso/system/BmlResourceClass.h"
 
 struct RecoveredGlobal_8018289C_lbl_80443F4C
 {
@@ -181,7 +182,7 @@ void TLobby::free_map_resources() {
         TAdSinglePlyChrSelectGC::safe_free(city_common_texture_list);
         city_common_texture_list = 0U;
     }
-    __dt__11BmlResourceFv((s32)city_common_model_archive, 1);
+    delete (BmlResource *)((s32)city_common_model_archive);
     city_common_model_archive = 0;
 }
 }
@@ -897,6 +898,7 @@ u8 *TObjCityDoor_Shop__ct(u8 *city_door_shop, s32 arg1, s32 arg2) {
 }
 
 #include "pso/player/TObjPlayer.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct Base_80182A58_8018291C { char pad[0x18]; };
 struct VObj_80182A58_8018291C : Base_80182A58_8018291C {

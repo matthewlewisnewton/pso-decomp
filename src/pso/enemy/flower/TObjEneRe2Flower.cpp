@@ -10,7 +10,6 @@
 #include "pso/enemy/flower/TObjEneRe2Flower.h"
 #include "pso/map/FloorArea.h"
 #include "pso/player/TUnk_804928CC.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/system/vector.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"
 #include "pso/player/TObjPlayer_80011014.h"
@@ -22,6 +21,8 @@
 #include "pso/unk/text_800C3088.h"
 #include "pso/player/TObjPlayer_800F0810.h"
 #include "pso/boss/goldragon/TBoss8Dragon_800BC53C.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct Stack_800C44C4 {
     s32 sp8;
@@ -206,7 +207,7 @@ void *TObjEneRe2Flower::create(void *arg0) {
 void TObjEneRe2Flower::destroy_instance() {
     TObjPlayer__sub_800C4D44();
     if (lbl_805D5174 != NULL) {
-        __dt__11BmlResourceFv(lbl_805D5174, 1);
+        delete lbl_805D5174;
         lbl_805D5174 = NULL;
     }
 }

@@ -26,7 +26,7 @@ void *TObjNpcFemaleFat__create(void *set_data) {
 
 void TObjNpcFemaleFat::free_static_model() {
     if (TObjNpcFemaleFat__static_model != NULL) {
-        __dt__11BmlResourceFv(TObjNpcFemaleFat__static_model, 1);
+        delete TObjNpcFemaleFat__static_model;
         TObjNpcFemaleFat__static_model = NULL;
     }
 }

@@ -28,7 +28,7 @@ void *TObjNpcSecretaryBase__create(void *set_data) {
 
 void TObjNpcSecretaryBase::free_static_data() {
     if (TObjNpcSecretaryBase__static_model_resource != NULL) {
-        __dt__11BmlResourceFv(TObjNpcSecretaryBase__static_model_resource, 1);
+        delete TObjNpcSecretaryBase__static_model_resource;
         TObjNpcSecretaryBase__static_model_resource = NULL;
     }
 }

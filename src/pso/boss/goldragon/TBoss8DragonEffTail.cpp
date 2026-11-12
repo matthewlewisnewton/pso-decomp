@@ -16,6 +16,8 @@
 #include "pso/math/MatrixTransforms.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/math/MatrixVector.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct VBase_18 { char pad[0x18]; };
 struct VObj_18 : VBase_18 {
@@ -111,7 +113,6 @@ extern s32 __vt__19TBoss8DragonEffTail[];
 EffTail_8002C06C *TBoss8DragonEffTail__ct(EffTail_8002C06C *arg0, s32 arg1, s32 arg2);
 s32 vec3_add_to(s32, s32, s32);
 void matrix_mult_vec(s32, void *, void *);
-s32 __dt__11BmlResourceFv(s32, s32);
 s32 release_texture_list(void*);
 void __dl__7TObjectFPv(void *);
 int fill_value_array(void*);
@@ -217,7 +218,7 @@ void TBoss8DragonEffTail::free_statics() {
         TAdSinglePlyChrSelectGC::safe_free(dragon_tail_gvm_texture_handle);
         dragon_tail_gvm_texture_handle = 0U;
     }
-    __dt__11BmlResourceFv(boss8_eff_tail_bml_resource, 1);
+    delete (BmlResource *)(boss8_eff_tail_bml_resource);
     boss8_eff_tail_bml_resource = 0;
 }
 

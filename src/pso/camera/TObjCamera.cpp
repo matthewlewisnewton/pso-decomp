@@ -18,6 +18,7 @@
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -219,7 +220,7 @@ void *TObjCamera::create(void *set_data) {
 
 void TObjCamera::free_resources() {
     if (model_resource != 0) {
-        __dt__11BmlResourceFv((void *)model_resource, 1);
+        delete (BmlResource *)(model_resource);
         model_resource = 0;
     }
 }

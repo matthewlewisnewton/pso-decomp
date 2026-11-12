@@ -8,6 +8,7 @@
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -43,7 +44,7 @@ void *__nw__7TObjectFUl(int);
 
 void TObjNpcHosa::destroy_static_instance() {
     if ((u32) TObjNpcHosa__static_model_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TObjNpcHosa__static_model_resource, 1);
+        delete (BmlResource *)(TObjNpcHosa__static_model_resource);
         TObjNpcHosa__static_model_resource = 0U;
     }
 }

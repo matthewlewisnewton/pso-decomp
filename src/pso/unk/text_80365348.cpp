@@ -1,19 +1,19 @@
 #include "types.h"
 #include "pso/unk/text_80365348.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 typedef struct Ent_803653A4 { s32 id; s32 arg; } Ent_803653A4;
 
 extern "C" {
-void __dt__11BmlResourceFv(void *, int);
 extern u32 labo_design_object_table[];
-void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, s32, s32, s32, s32);
 }
 extern Ent_803653A4 lbl_804F2C08[];
 void free_object_table(void) {
     s32 i;
     for (i = 5; i >= 0; i--) {
         if (labo_design_object_table[i] != 0) {
-            __dt__11BmlResourceFv((void *)labo_design_object_table[i], 1);
+            delete (BmlResource *)(labo_design_object_table[i]);
             labo_design_object_table[i] = 0;
         }
     }
@@ -29,10 +29,7 @@ void load_labo_design_object_table(void) {
     e = lbl_804F2C08;
     if (e != NULL) {
         while (e->id != -1) {
-            p = ::operator new(0x440);
-            if (p != NULL) {
-                p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, e->arg, 0, 0, 0);
-            }
+            p = new BmlResource(5, (BmlResourceDescriptor *)(e->arg), 0, 0, 0);
             labo_design_object_table[e->id] = (u32)p;
             e++;
         }

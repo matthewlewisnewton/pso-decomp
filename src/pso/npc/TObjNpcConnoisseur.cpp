@@ -8,7 +8,7 @@
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
+#include "pso/system/BmlResourceClass.h"
 
 const char *bm_n_kanteib_i_body_motion_names[1] = { NULL };
 __declspec(section ".data") const char *bm_n_kanteib_i_body_model_names[2] = { "n_kanteib_i_body_1.nj", NULL };
@@ -66,7 +66,7 @@ void *__nw__7TObjectFUl(int);
 
 void TObjNpcConnoisseur::destroy_instance() {
     if ((u32) TObjNpcConnoisseur__instance != 0U) {
-        __dt__11BmlResourceFv((void*)TObjNpcConnoisseur__instance, 1);
+        delete (BmlResource *)(TObjNpcConnoisseur__instance);
         TObjNpcConnoisseur__instance = 0U;
     }
 }
@@ -74,10 +74,7 @@ void TObjNpcConnoisseur::destroy_instance() {
 void TObjNpcConnoisseur::load_section_motion() {
     void *o;
     lbl_805D5748 = ((TFontSmallTask *)TLobby__data_805011D8)->get_task_id();
-    o = ::operator new(0x440);
-    if (o != 0) {
-        o = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(o, 1, tekker_descriptor_selector_table[lbl_805D5748], 0, 0, 0);
-    }
+    o = new BmlResource(1, tekker_descriptor_selector_table[lbl_805D5748], 0, 0, 0);
     TObjNpcConnoisseur__instance = (u32)o;
 }
 

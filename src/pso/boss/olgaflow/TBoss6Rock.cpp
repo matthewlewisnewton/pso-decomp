@@ -22,7 +22,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/render/GinjaTexture.h"
 #include "pso/system/MatrixOps.h"
@@ -79,10 +78,7 @@ struct RockRing {
 void TBoss6Rock::load_resources() {
     BmlResource *resource;
     s32 i;
-    resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 5, &boss6_rock_resource_descriptor, 0, 0, 0);
-    }
+    resource = new BmlResource(5, &boss6_rock_resource_descriptor, 0, 0, 0);
     TBoss6Rock__data_805D6EF0 = resource;
     TBoss6Rock__data_805D6EF4 = (GinjaTextureList *)load_gvm_texture_file((s32) "boss06_rock_dat.gvm");
     if (TBoss6Rock__data_805D6EF0 == NULL || TBoss6Rock__data_805D6EF4 == NULL) {
@@ -100,7 +96,7 @@ void TBoss6Rock::load_resources() {
 
 void TBoss6Rock::free_data() {
     if (TBoss6Rock__data_805D6EF0 != NULL) {
-        __dt__11BmlResourceFv(TBoss6Rock__data_805D6EF0, 1);
+        delete TBoss6Rock__data_805D6EF0;
         TBoss6Rock__data_805D6EF0 = NULL;
     }
     if (TBoss6Rock__data_805D6EF4 != NULL) {

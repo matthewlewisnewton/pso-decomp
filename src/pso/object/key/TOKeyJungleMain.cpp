@@ -60,7 +60,7 @@ void *TOKeyJungleMain::create(void *set_data) {
 
 void TOKeyJungleMain::release_static_resource() {
     if (TOKeyJungleMain__static_model_resource != NULL) {
-        __dt__11BmlResourceFv(TOKeyJungleMain__static_model_resource, 1);
+        delete TOKeyJungleMain__static_model_resource;
         TOKeyJungleMain__static_model_resource = NULL;
     }
 }

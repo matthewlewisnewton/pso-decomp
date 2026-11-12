@@ -15,6 +15,7 @@
 #include "pso/unk/text_803D8F74.h"
 #include "pso/math/AngleLookup.h"
 #include <stdlib.h>
+#include "pso/system/BmlResourceClass.h"
 
 extern char lbl_80478D80[];
 extern char lbl_80478D98[];
@@ -346,7 +347,7 @@ void *TObjButterflyLobby__create(void *arg0) {
 
 void TObjButterflyLobby::destroy_instance() {
     if ((u32) lobby_butterfly_bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)lobby_butterfly_bml_resource, 1);
+        delete (BmlResource *)(lobby_butterfly_bml_resource);
         lobby_butterfly_bml_resource = 0U;
     }
 }

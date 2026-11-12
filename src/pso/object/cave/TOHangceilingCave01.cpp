@@ -23,6 +23,7 @@
 #include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/render/GinjaMaterial.h"
+#include "pso/system/BmlResourceClass.h"
 
 struct RecoveredGlobal_80167878_lbl_804B1F80 {
     s32 value;
@@ -803,7 +804,7 @@ void TOHangceilingCave01::destroy_instance() {
         }
     }
     if ((u32) TOHangceilingCave01__model_archive != 0U) {
-        __dt__11BmlResourceFv((void*)TOHangceilingCave01__model_archive, 1);
+        delete (BmlResource *)(TOHangceilingCave01__model_archive);
         TOHangceilingCave01__model_archive = 0U;
     }
 }

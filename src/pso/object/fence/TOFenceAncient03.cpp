@@ -8,7 +8,6 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoad.h"
 
 const char *bm_fd_obj_n_saku_4x4_model_names[2] = { "fd_obj_n_saku_4x4.gj", NULL };
 const char *bm_fd_obj_n_saku_4x4_motion_names[2] = { "fd_obj_n_saku_4x4.njm", NULL };
@@ -66,16 +65,13 @@ void TOFenceAncient03::unload_resources() {
         }
     }
     if (model_resource != NULL) {
-        __dt__11BmlResourceFv(model_resource, 1);
+        delete model_resource;
         model_resource = NULL;
     }
 }
 
 void TOFenceAncient03::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fd_obj_n_saku_4x4_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_fd_obj_n_saku_4x4_resource_descriptor, 0, 0, 0);
     model_resource = resource;
     s32 *lists = (s32 *)::operator new[](4 * sizeof(s32));
     texlists = lists;

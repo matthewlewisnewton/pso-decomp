@@ -26,7 +26,7 @@ void *TObjNpcFemaleOld__create(void *set_data) {
 
 void TObjNpcFemaleOld::destroy_static_instance() {
     if (TObjNpcFemaleOld__static_instance != NULL) {
-        __dt__11BmlResourceFv(TObjNpcFemaleOld__static_instance, 1);
+        delete TObjNpcFemaleOld__static_instance;
         TObjNpcFemaleOld__static_instance = NULL;
     }
 }

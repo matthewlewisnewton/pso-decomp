@@ -8,6 +8,7 @@
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceClass.h"
 
 extern char lbl_804433E8[];
 extern char lbl_804433FC[];
@@ -76,11 +77,11 @@ void TOWreckAncient::render() {
 
 void TOWreckAncient::free_statics() {
     if ((u32) wreck_ancient_bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)wreck_ancient_bml_resource, 1);
+        delete (BmlResource *)(wreck_ancient_bml_resource);
         wreck_ancient_bml_resource = 0U;
     }
     if ((u32) wreck_ancient_brakable_bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)wreck_ancient_brakable_bml_resource, 1);
+        delete (BmlResource *)(wreck_ancient_brakable_bml_resource);
         wreck_ancient_brakable_bml_resource = 0U;
     }
 }

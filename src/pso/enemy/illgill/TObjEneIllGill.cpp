@@ -118,7 +118,6 @@ f32 fabs_float(f32);
 s32 approach_angle_limited(s32, s32, s32);
 extern Vec scratch_vec;
 
-int __dt__11BmlResourceFv(void*, void*);
 void free_collision_body_parts(void *);
 
 #pragma push
@@ -1470,20 +1469,16 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
 }
 
 void TObjEneIllGill::free_effect() {
-    __dt__11BmlResourceFv(illGillResource, (void *)1);
+    delete illGillResource;
     illGillResource = NULL;
 }
 
-u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 void TObjEneIllGill::load_shared_resources() {
     void *p;
     BmlResource *resource;
     Vec *q;
 
-    p = (void *)::operator new(0x440);
-    if (p != NULL) {
-        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &illGillResourceDescriptor, 0, 0, 0);
-    }
+    p = new BmlResource(1, &illGillResourceDescriptor, 0, 0, 0);
     illGillResource = (BmlResource *)p;
     TObjEneIllGill__boss_registration_id = (s32)get_battle_base_stats(0x26);
     ill_gill_combat_parameter_variants[0] = (AttackParams *)get_battle_attack_params(0x26);

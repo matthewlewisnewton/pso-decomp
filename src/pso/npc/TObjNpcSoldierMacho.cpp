@@ -28,7 +28,7 @@ void *TObjNpcSoldierMacho__create(void *set_data) {
 
 void TObjNpcSoldierMacho::unload_static_data() {
     if (TObjNpcSoldierMacho__shared_model_resource != NULL) {
-        __dt__11BmlResourceFv(TObjNpcSoldierMacho__shared_model_resource, 1);
+        delete TObjNpcSoldierMacho__shared_model_resource;
         TObjNpcSoldierMacho__shared_model_resource = NULL;
     }
 }

@@ -8,6 +8,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -50,7 +51,7 @@ void __dl__7TObjectFPv(void *);
 
 void TObjNpcSoutokufu::close_dialog_window() {
     if ((u32) TObjNpcSoutokufu__shared_model_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TObjNpcSoutokufu__shared_model_resource, 1);
+        delete (BmlResource *)(TObjNpcSoutokufu__shared_model_resource);
         TObjNpcSoutokufu__shared_model_resource = 0U;
     }
 }

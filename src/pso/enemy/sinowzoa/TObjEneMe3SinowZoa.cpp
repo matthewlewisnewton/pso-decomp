@@ -54,6 +54,7 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/render/render_util.h"
+#include "pso/system/BmlResourceClass.h"
 
 // load_resources fills these per kind (0 and 1) from get_battle_base_stats,
 // get_battle_attack_params, get_battle_resistance_params and
@@ -1543,7 +1544,6 @@ extern const f32 lbl_805DF370;
 
 extern "C" {
 extern const f32 lbl_805DF38C;
-s32 __dt__11BmlResourceFv(u32, s32);
 
 }
 
@@ -1667,7 +1667,7 @@ void TObjEneMe3SinowZoa::free_resources() {
         TObjEneMe3SinowZoa__alternate_texture_list.textures = NULL;
     }
     if (TObjEneMe3SinowZoa__bml_resource != 0) {
-        __dt__11BmlResourceFv((u32)TObjEneMe3SinowZoa__bml_resource, 1);
+        delete (BmlResource *)((u32)TObjEneMe3SinowZoa__bml_resource);
         TObjEneMe3SinowZoa__bml_resource = NULL;
     }
 }

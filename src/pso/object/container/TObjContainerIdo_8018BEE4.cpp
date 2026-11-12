@@ -24,6 +24,7 @@
 #include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/render/GinjaMaterial.h"
+#include "pso/system/BmlResourceClass.h"
 
 extern "C" {
 __declspec(section ".data") const char *fe_obj_hako_i_rail_model_names[3] = { "fe_obj_hako_i_rail.gj", "fe_obj_hako_ido.gj", NULL };
@@ -327,7 +328,7 @@ void TObjContainerIdo::free_resources() {
         container_ido_texture_gvm_handle = 0U;
     }
     if ((u32) TObjContainerIdo__model_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TObjContainerIdo__model_resource, 1);
+        delete (BmlResource *)(TObjContainerIdo__model_resource);
         TObjContainerIdo__model_resource = 0U;
     }
 }

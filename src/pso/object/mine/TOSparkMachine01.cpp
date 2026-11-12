@@ -9,6 +9,7 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include <stdlib.h>
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -178,7 +179,7 @@ void *TOSparkMachine01::create() {
 
 void TOSparkMachine01::destroy_static_instance() {
     if ((u32) TOSparkMachine01__static_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TOSparkMachine01__static_resource, 1);
+        delete (BmlResource *)(TOSparkMachine01__static_resource);
         TOSparkMachine01__static_resource = 0U;
     }
 }

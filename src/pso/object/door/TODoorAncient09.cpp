@@ -19,7 +19,6 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/render/ModelDrawContext.h"
@@ -75,10 +74,7 @@ TODoorAncient09::~TODoorAncient09() {
 }
 
 void TODoorAncient09::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &door_ancient09_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &door_ancient09_resource_descriptor, 0, 0, 0);
     bml_resource = resource;
     texture_lists = (s32 *)::operator new[](8);
     texture_lists[0] = bml_resource->models[0].m_c;
@@ -94,7 +90,7 @@ void TODoorAncient09::destroy() {
         }
     }
     if (bml_resource != NULL) {
-        __dt__11BmlResourceFv(bml_resource, 1);
+        delete bml_resource;
         bml_resource = NULL;
     }
 }

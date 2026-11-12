@@ -25,6 +25,8 @@
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 extern "C" {
 s32 is_main_phase_15__9TObjEneDDFv();
@@ -317,7 +319,7 @@ void TObjLaboMapWarp__vt13(TObjLaboMapWarp *labo_map_warp, s32 arg1) {
 
 void TObjLaboMapWarp::release_static_resource() {
     if ((u32) (*(u32 *)&TObjLaboMapWarp__resource_bundle) != 0U) {
-        __dt__11BmlResourceFv((void*)(*(u32 *)&TObjLaboMapWarp__resource_bundle), 1);
+        delete (BmlResource *)((*(u32 *)&TObjLaboMapWarp__resource_bundle));
         (*(u32 *)&TObjLaboMapWarp__resource_bundle) = 0U;
     }
 }

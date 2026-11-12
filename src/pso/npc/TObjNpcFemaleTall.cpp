@@ -26,7 +26,7 @@ void *TObjNpcFemaleTall__create(void *set_data) {
 
 void TObjNpcFemaleTall::destroy_instance() {
     if (TObjNpcFemaleTall__instance != NULL) {
-        __dt__11BmlResourceFv(TObjNpcFemaleTall__instance, 1);
+        delete TObjNpcFemaleTall__instance;
         TObjNpcFemaleTall__instance = NULL;
     }
 }

@@ -8,6 +8,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -41,7 +42,7 @@ void *__nw__7TObjectFUl(int);
 
 void TObjNpcKenkyu::free_static_model() {
     if ((u32) TObjNpcKenkyu__static_model != 0U) {
-        __dt__11BmlResourceFv((void*)TObjNpcKenkyu__static_model, 1);
+        delete (BmlResource *)(TObjNpcKenkyu__static_model);
         TObjNpcKenkyu__static_model = 0U;
     }
 }

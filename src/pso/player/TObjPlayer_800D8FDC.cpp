@@ -9,6 +9,8 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 extern "C" {
 s32 __nw__7TObjectFUl(s32);
@@ -144,13 +146,11 @@ void TObjPlayer::spawn_dead_spot(s32 point, s32 selector, s32 delay, f32 farg0) 
 extern const f32 lbl_805DA3D8;
 extern s32 player_particle_effect_enabled;
 extern u8 corpse_mark_resource_descriptor[];
-u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
-void __dt__11BmlResourceFv(void*, int);
 void set_chunk_material_override_pair(s32 arg0, s32 arg1);
 
 void TObjPlayer::destroy_static_lobby() {
     if ((u32) (*(u32 *)&player_corpse_mark_resource) != 0U) {
-        __dt__11BmlResourceFv((void*)(*(u32 *)&player_corpse_mark_resource), 1);
+        delete (BmlResource *)((*(u32 *)&player_corpse_mark_resource));
         (*(u32 *)&player_corpse_mark_resource) = 0U;
     }
 }
@@ -159,10 +159,7 @@ void set_chunk_blend(u32 x);
 extern s32 model_render_flags;
 
 void load_corpse_mark_resource(void) {
-    u8 *p = (u8 *)::operator new(0x440);
-    if (p != 0) {
-        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, corpse_mark_resource_descriptor, 0, 0, 0);
-    }
+    u8 *p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(corpse_mark_resource_descriptor), 0, 0, 0);
     (*(u32 *)&player_corpse_mark_resource) = (u32)p;
     player_particle_effect_enabled = 1;
 }

@@ -795,7 +795,6 @@ struct RecoveredGlobal_800EBC28___vt__12TObjEneSlime {
 extern "C" {
 s32 __ct__9TObjEnemyFP7TObject(void *);
 extern s32 __vt__12TObjEneSlime[];
-void __dt__11BmlResourceFv(void*, int);
 void __dl__7TObjectFPv(void *);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 
@@ -815,7 +814,6 @@ typedef char RecoveredGlobal_800EBC28___vt__12TObjEneSlime_size[sizeof(Recovered
 
 extern "C" {
 
-void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, s32 *, s32, s32, s32);
 
 
 
@@ -831,6 +829,8 @@ void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, s32 *, s32,
 #include "pso/enemy/slime/TObjEneSlimeTailAttack.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/enemy/slime/TObjEneSlimeOne.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct Stack_800EBE74 {
     f32 sp8;
@@ -892,10 +892,7 @@ void TObjEneSlime::spawn_pair() {
     void *temp_r5;
     void *temp_r5_2;
 
-    temp_r4 = ::operator new(0x440);
-    if (temp_r4 != NULL) {
-        temp_r4 = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(temp_r4, 1, (s32 *)slime_pair_resource_descriptor, 0, 0, 0);
-    }
+    temp_r4 = new BmlResource(1, (BmlResourceDescriptor *)((s32 *)slime_pair_resource_descriptor), 0, 0, 0);
     slime_bml_resource = temp_r4;
     temp_r5 = *(void **)((s8 *)temp_r4 + 0x42C);
     TObjEneSlime::spawn_child(0x28, *(s32 *)((s8 *)temp_r5 + 0x48), *(s32 *)((s8 *)temp_r5 + 0x4C), 10.0f, 0.0f);
@@ -905,7 +902,7 @@ void TObjEneSlime::spawn_pair() {
 
 void TObjEneSlime::free_instance() {
     if ((u32) slime_bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)slime_bml_resource, 1);
+        delete (BmlResource *)(slime_bml_resource);
         slime_bml_resource = 0U;
     }
 }

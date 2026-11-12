@@ -35,6 +35,7 @@
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/TLobby_80291D94.h"
 #include "pso/player/TObjPlayer_80011014.h"
+#include "pso/system/BmlResourceClass.h"
 
 struct Off_800753DC { s16 x, y; };
 struct P_800753DC { f32 x, y; };
@@ -122,7 +123,7 @@ void TObjTombstone::load_resources() {
 
 void TObjTombstone::destroy() {
     if (TObjTombstone__shared_resource_object != 0U) {
-        __dt__11BmlResourceFv((void *)TObjTombstone__shared_resource_object, 1);
+        delete (BmlResource *)(TObjTombstone__shared_resource_object);
         TObjTombstone__shared_resource_object = 0U;
         TObjTombstone::reset_matrix();
     }

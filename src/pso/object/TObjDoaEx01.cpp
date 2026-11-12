@@ -17,6 +17,7 @@
 #include "pso/object/door/TODoorAncient01.h"
 #include "pso/map/FloorArea.h"
 #include "pso/system/SoundEffect.h"
+#include "pso/system/BmlResourceClass.h"
 
 __declspec(section ".data") const char *fs_obj_ex_doa01_model_names[2] = { "fs_obj_ex_doa01.gj", NULL };
 __declspec(section ".data") const char *fs_obj_ex_doa01_motion_names[2] = { "fs_obj_ex_doa01.njm", NULL };
@@ -353,7 +354,7 @@ void *TObjDoaEx01__create(void *arg0) {
 
 void TObjDoaEx01::free_resource() {
     if ((u32) TObjDoaEx01__resource_bundle != 0U) {
-        __dt__11BmlResourceFv((void*)TObjDoaEx01__resource_bundle, 1);
+        delete (BmlResource *)(TObjDoaEx01__resource_bundle);
         TObjDoaEx01__resource_bundle = 0U;
     }
 }

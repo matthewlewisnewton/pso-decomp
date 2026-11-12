@@ -11,6 +11,7 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/system/BmlResourceClass.h"
 
 extern char lbl_80445DB8[];
 extern char lbl_80445DC8[];
@@ -104,7 +105,7 @@ void TMotorcycle::free_statics() {
         TMotorcycle__texture_list = 0U;
     }
     if ((u32) TMotorcycle__bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TMotorcycle__bml_resource, 1);
+        delete (BmlResource *)(TMotorcycle__bml_resource);
         TMotorcycle__bml_resource = 0U;
     }
 }

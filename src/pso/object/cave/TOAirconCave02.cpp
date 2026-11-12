@@ -7,6 +7,8 @@
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 const char *bm_fe_obj_aircon02_model_names[] = {"fe_obj_aircon02.gj", NULL};
 const char *bm_fe_obj_aircon02_motion_names[] = {NULL};
@@ -34,7 +36,7 @@ void *TOAirconCave02::create(void *set_data) {
 
 void TOAirconCave02::release_static_resource() {
     if (TOAirconCave02__bml_resource != NULL) {
-        __dt__11BmlResourceFv(TOAirconCave02__bml_resource, 1);
+        delete TOAirconCave02__bml_resource;
         TOAirconCave02__bml_resource = NULL;
     }
 }

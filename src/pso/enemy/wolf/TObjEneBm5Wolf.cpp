@@ -3049,6 +3049,8 @@ void calc_rotated_vector__14TObjEneBm5WolfFPviPvPv(void *arg0, s32 arg1, void *a
 #define rotate_xz_pair_by_angle ((void (*)(f32 *, f32 *, s32))rotate_xz_pair_by_angle)
 
 #include <stddef.h>
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 struct Stack_800B7C14 {
     f32 sp8;
     f32 spC;
@@ -3440,7 +3442,6 @@ s32 init_collision_body_parts(void *, void *, int);
 void *__ct__14TObjCollidableFP7TObject(void *, int);
 void *__nw__7TObjectFUl(int);
 extern s32 bm5_wolf_class_name;
-void __dt__11BmlResourceFv(void*, int);
 
 void TObjEneBm5Wolf::update_collision_center() {
 
@@ -3645,7 +3646,7 @@ void TObjEneBm5Wolf::apply_position_to_node_list() {
 
 void TObjEneBm5Wolf::release_global_805D5120() {
     if ((u32) (*(u32 *)&TObjEneBm5Wolf__bml_resource) != 0U) {
-        __dt__11BmlResourceFv((void*)(*(u32 *)&TObjEneBm5Wolf__bml_resource), 1);
+        delete (BmlResource *)((*(u32 *)&TObjEneBm5Wolf__bml_resource));
         (*(u32 *)&TObjEneBm5Wolf__bml_resource) = 0U;
     }
 }

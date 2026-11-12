@@ -1709,8 +1709,6 @@ void TObjEneMe1GiGue::sub_802CCF2C() {
 #undef TObjEneMe1GiGue__sub_802CB10C
 #undef subtract_vector
 s32 is_split_screen();
-s32 __dt__11BmlResourceFv(s32, s32);
-u8 * __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 s32 init_from_model__11TBreakUpMdlFl(s32, s32);
 s32 update__15RenderFadeStateFv(void *);
 s32 find_active_entity_by_id(int);
@@ -1751,6 +1749,8 @@ void TObjEneMe1GiGue__sub_802CD054(void) {  }
 #include "pso/unk/TLobby.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 
 struct SubBase_802CD058 { u8 pad[0x14]; };
@@ -2022,7 +2022,7 @@ void TObjEneMe1GiGue::delete_barrier() {
         TObjEneMe1GiGue__barrier_obj = NULL;
     }
     if (TObjEneMe1GiGue__data_805D6838 != 0U) {
-        __dt__11BmlResourceFv(TObjEneMe1GiGue__data_805D6838, 1);
+        delete (BmlResource *)(TObjEneMe1GiGue__data_805D6838);
         TObjEneMe1GiGue__data_805D6838 = 0U;
     }
 }
@@ -2041,16 +2041,10 @@ void TObjEneMe1GiGue::load_resources() {
     Sub_802CD62C *q;
 
     if (is_split_screen() != 0) {
-        o = (int)::operator new(0x440);
-        if (o != 0) {
-            o = (s32)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *)o, 1, lbl_804E1248, 0, 0, 0);
-        }
+        o = (s32)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E1248), 0, 0, 0);
         TObjEneMe1GiGue__data_805D6838 = o;
     } else {
-        o = (int)::operator new(0x440);
-        if (o != 0) {
-            o = (s32)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv((void *)o, 1, lbl_804E1200, 0, 0, 0);
-        }
+        o = (s32)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E1200), 0, 0, 0);
         TObjEneMe1GiGue__data_805D6838 = o;
     }
     ene_me1_gigue_boss_id = (s32)get_battle_base_stats(0x1A);

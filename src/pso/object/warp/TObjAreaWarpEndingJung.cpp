@@ -47,6 +47,8 @@
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/render/GinjaMaterial.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 // The original TU was built with deferred codegen: functions below are in reverse
 // address order, and the pool (three {3, 2} initializers, then the float literals
@@ -559,7 +561,6 @@ struct VObj_8019DA54_8019D964 : Base_8019DA54_8019D964 {
     virtual void m12(); virtual void m13();
 };
 
-s32 __dt__11BmlResourceFv(s32, s32);
 s32 release_texture_list(void*);
 
 extern s32 forest_warp_bml_resource;
@@ -576,7 +577,7 @@ void TObjWarpBase::free_globals() {
         TAdSinglePlyChrSelectGC::safe_free(forest_warp_texture_list);
         forest_warp_texture_list = 0U;
     }
-    __dt__11BmlResourceFv(forest_warp_bml_resource, 1);
+    delete (BmlResource *)(forest_warp_bml_resource);
     forest_warp_bml_resource = 0;
 }
 

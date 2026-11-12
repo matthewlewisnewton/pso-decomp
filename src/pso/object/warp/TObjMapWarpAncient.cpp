@@ -48,6 +48,7 @@ struct VObj8017CB60_8017CB60_more_8017cca4_0 : VBase8017CB60_8017CB60_more_8017c
 };
 
 #include <stddef.h>
+#include "pso/system/BmlResourceClass.h"
 struct RecoveredFields_8017CCA4_arg0 {
     u8 unknown_0[0xC4];
     f32 field_C4;
@@ -320,7 +321,7 @@ void TObjMapWarpAncient::free_globals() {
     TObjPlayer::free_if_valid(goal_warp_ancient_gvm_texture);
     goal_warp_ancient_gvm_texture = 0;
     if ((u32) ancient_warp_shared_resource != 0U) {
-        __dt__11BmlResourceFv((void*)ancient_warp_shared_resource, 1);
+        delete (BmlResource *)(ancient_warp_shared_resource);
         ancient_warp_shared_resource = 0U;
     }
 }

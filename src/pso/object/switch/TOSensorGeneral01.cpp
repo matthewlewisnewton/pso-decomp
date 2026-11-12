@@ -10,12 +10,12 @@
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/BmlResource.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/render/GinjaModel.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 const char *bm_fs_obj_sensor_model_names[] = {"fs_obj_sensor.gj", NULL};
 const char *bm_fs_obj_sensor_motion_names[] = {NULL};
@@ -106,16 +106,13 @@ void TOSensorGeneral01::free_assets() {
         }
     }
     if (sensor_general_shared_bml_archive != NULL) {
-        __dt__11BmlResourceFv(sensor_general_shared_bml_archive, 1);
+        delete sensor_general_shared_bml_archive;
         sensor_general_shared_bml_archive = NULL;
     }
 }
 
 void TOSensorGeneral01::load_assets() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &TOSensorGeneral01__resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &TOSensorGeneral01__resource_descriptor, 0, 0, 0);
     sensor_general_shared_bml_archive = resource;
     TOSensorGeneral01__texture_lists = (s32 *)::operator new[](8);
     TOSensorGeneral01__texture_lists[1] = sensor_general_shared_bml_archive->models[0].m_c;

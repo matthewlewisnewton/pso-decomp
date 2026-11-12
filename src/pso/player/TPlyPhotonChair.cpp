@@ -18,6 +18,7 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/system/vector.h"
+#include "pso/system/BmlResourceClass.h"
 
 extern const char *bm_ply_photon_chair_model_names[3];
 extern const char *bm_ply_photon_chair_motion_names[3];
@@ -237,7 +238,7 @@ void TPlyPhotonChair::run_task() {
 
 void TPlyPhotonChair::free_static_model() {
     if ((u32) TPlyPhotonChair__shared_model_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TPlyPhotonChair__shared_model_resource, 1);
+        delete (BmlResource *)(TPlyPhotonChair__shared_model_resource);
         TPlyPhotonChair__shared_model_resource = 0U;
     }
 }
@@ -344,7 +345,7 @@ extern u32 chao_npc_instance_handle;
 
 void TPlyPhotonChair::free_instance() {
     if ((u32) chao_npc_instance_handle != 0U) {
-        __dt__11BmlResourceFv((void*)chao_npc_instance_handle, 1);
+        delete (BmlResource *)(chao_npc_instance_handle);
         chao_npc_instance_handle = 0U;
     }
 }

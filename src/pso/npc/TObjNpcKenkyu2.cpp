@@ -8,6 +8,7 @@
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -37,7 +38,7 @@ void *__nw__7TObjectFUl(int);
 
 void TObjNpcKenkyu2::free_static_model() {
     if ((u32) TObjNpcKenkyu2__shared_model_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TObjNpcKenkyu2__shared_model_resource, 1);
+        delete (BmlResource *)(TObjNpcKenkyu2__shared_model_resource);
         TObjNpcKenkyu2__shared_model_resource = 0U;
     }
 }

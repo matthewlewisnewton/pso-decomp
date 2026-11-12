@@ -12,7 +12,6 @@
 #include "pso/system/MatrixOps.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/unk/text_803D8F74.h"
-#include "pso/system/BmlResourceLoad.h"
 
 #pragma readonly_strings on
 
@@ -93,16 +92,13 @@ void *TObjStendGlassLobby::create(void *set_data) {
 
 void TObjStendGlassLobby::free_resources() {
     if (static_model_resource != NULL) {
-        __dt__11BmlResourceFv(static_model_resource, 1);
+        delete static_model_resource;
         static_model_resource = NULL;
     }
 }
 
 void TObjStendGlassLobby::load_resources() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 5, &bm_obj_lobby_stendglass_resource_descriptor, 0, 0, 0);
-    }
+    void *resource = new BmlResource(5, &bm_obj_lobby_stendglass_resource_descriptor, 0, 0, 0);
     static_model_resource = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();
 }

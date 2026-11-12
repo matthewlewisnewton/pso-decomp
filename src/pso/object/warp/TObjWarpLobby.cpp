@@ -19,6 +19,7 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/unk/text_803D853C.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -209,20 +210,15 @@ struct Sub_801A0B38 { u8 pad[0xc]; s32 value; };
 struct Obj_801A0B38 { u8 pad[0x42c]; Sub_801A0B38 *sub; };
 
 extern "C" {
-u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern s32 lbl_805D5CCC;
 void TObjWarpLobby__sub_801A0B38(void);
-s32 __dt__11BmlResourceFv(s32, s32);
 
 void TObjWarpLobby::release_static() {
-    __dt__11BmlResourceFv(TObjWarpLobby__instance, 1);
+    delete (BmlResource *)(TObjWarpLobby__instance);
     TObjWarpLobby__instance = 0;
 }
 void TObjWarpLobby__sub_801A0B38(void) {
-    u8 *p = (u8 *)::operator new(0x440);
-    if (p != 0) {
-        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &warp_lobby_resource_descriptor, 0, 0, 0);
-    }
+    u8 *p = (u8 *)new BmlResource(1, &warp_lobby_resource_descriptor, 0, 0, 0);
     TObjWarpLobby__instance = (s32)p;
     lbl_805D5CCC = ((Obj_801A0B38 *)TObjWarpLobby__instance)->sub->value;
 }

@@ -37,6 +37,8 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/unk/TLobby.h"
 
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct VBase_800B3EB8 { char pad[0x18]; };
 struct VObj_800B3EB8 : VBase_800B3EB8 {
@@ -740,7 +742,6 @@ struct Bodies_800B41E8 { u8 pad0[0xC]; NJS_TEXLIST *textures; u8 pad1[0x18 - 0x1
 
 
 void queue_destruction__7TObjectFv(void *);
-void __dt__11BmlResourceFv(void*, int);
 s32 get_camera_mode__11TCameraCtrlFv();
 s32 get_flag_b4__9TObjEneDDFv(void *);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
@@ -1928,7 +1929,7 @@ int TObjEneBm3FlyNest__sub_800B4158(void) {  return (*(int *)&lbl_805D5108); }
 void TObjEneBm3FlyNest::free_fly() {
     TObjEneBm3Fly::release_shared_data();
     if ((u32) lbl_805D5108 != 0U) {
-        __dt__11BmlResourceFv((void*)lbl_805D5108, 1);
+        delete (BmlResource *)(lbl_805D5108);
         lbl_805D5108 = 0U;
     }
 }

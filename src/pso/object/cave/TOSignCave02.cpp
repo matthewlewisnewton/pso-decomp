@@ -6,11 +6,12 @@
 #include "pso/math/MatrixTransforms.h"
 #include "pso/object/cave/TOSignCave02.h"
 #include "pso/object/ambient/TObjFish.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 const char *bm_fs_obj_dokanban02_model_names[] = {"fs_obj_dokanban02.gj", NULL};
 const char *bm_fs_obj_dokanban02_motion_names[] = {NULL};
@@ -86,16 +87,13 @@ void *TOSignCave02::create(void *set_data) {
 
 void TOSignCave02::release_static_resource() {
     if (TOSignCave02__bml_resource != NULL) {
-        __dt__11BmlResourceFv(TOSignCave02__bml_resource, 1);
+        delete TOSignCave02__bml_resource;
         TOSignCave02__bml_resource = NULL;
     }
 }
 
 void TOSignCave02::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_dokanban02_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_fs_obj_dokanban02_resource_descriptor, 0, 0, 0);
     TOSignCave02__bml_resource = resource;
 }
 

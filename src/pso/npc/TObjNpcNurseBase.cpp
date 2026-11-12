@@ -28,7 +28,7 @@ void *TObjNpcNurseBase__create(void *set_data) {
 
 void TObjNpcNurseBase::free_shared_data() {
     if (TObjNpcNurseBase__shared_model_resource != NULL) {
-        __dt__11BmlResourceFv(TObjNpcNurseBase__shared_model_resource, 1);
+        delete TObjNpcNurseBase__shared_model_resource;
         TObjNpcNurseBase__shared_model_resource = NULL;
     }
 }

@@ -33,6 +33,8 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/render/GinjaMaterial.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 const char *TObjWarpBoss__name = "TObjWarpBoss";
 const char *TObjWarpBossMulti__name = "TObjWarpBossMulti";
@@ -1290,7 +1292,7 @@ s32 TObjWarpBossMulti__create(s32 arg0) {
 }
 void TObjFish__sub_8019F72C(void) {
     if ((u32) boss_warp_resource_bundle != 0U) {
-        __dt__11BmlResourceFv((void*)boss_warp_resource_bundle, 1);
+        delete (BmlResource *)(boss_warp_resource_bundle);
         boss_warp_resource_bundle = 0U;
     }
 }

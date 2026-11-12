@@ -32,6 +32,7 @@
 #include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/render/GinjaMaterial.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -557,7 +558,7 @@ void *TObjContainerJung::create(void *arg0) {
 }
 
 void TObjContainerJung::release() {
-    __dt__11BmlResourceFv(TObjContainerJung__bml_model_resource, 1);
+    delete (BmlResource *)(TObjContainerJung__bml_model_resource);
     TObjContainerJung__bml_model_resource = 0;
     TObjContainerJung__bml_aux_handle = 0;
 }
@@ -716,7 +717,7 @@ u8 *TObjContainerJungEx::get_model(s32 index) {
 
 void TObjContainerJungEx::free_data() {
     if (TObjContainerJungEx__resource_bundle != NULL) {
-        __dt__11BmlResourceFv((s32)TObjContainerJungEx__resource_bundle, 1);
+        delete (BmlResource *)((s32)TObjContainerJungEx__resource_bundle);
         TObjContainerJungEx__resource_bundle = NULL;
     }
 }

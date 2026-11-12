@@ -427,7 +427,7 @@ u8 *TAdSinglePlyChrSelectGC__sub_802908CC(u8 *arg0, s16 arg1) {
             }
         }
         ((TAdSinglePlyChrSelectGC *)arg0)->free_field_FC();
-        __dt__11BmlResourceFv((void *)chara_select_preview_resource, 1);
+        delete (BmlResource *)(chara_select_preview_resource);
         chara_select_preview_resource = 0;
         ((TCMCharacter *)arg0)->reset_model_parts();
         (*(s32 *)&chara_select_head_node) = 0;

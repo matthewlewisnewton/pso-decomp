@@ -17,6 +17,8 @@
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 extern "C" {
 
@@ -466,7 +468,6 @@ void *TObjOnlineEnding__ct(void *arg0, void *parent) {
 #pragma pop
 #undef SELF
 
-void __dt__11BmlResourceFv(void*, int);
 void *TObjOnlineEnding__ct(void *, void *);
 
 void *TObjOnlineEnding::create(void *arg0) {
@@ -479,7 +480,7 @@ void *TObjOnlineEnding::create(void *arg0) {
 
 void TBoss4DarkFalz::free_global_instance() {
     if ((u32) lbl_805D68F4 != 0U) {
-        __dt__11BmlResourceFv((void*)lbl_805D68F4, 1);
+        delete (BmlResource *)(lbl_805D68F4);
         lbl_805D68F4 = 0U;
     }
 }
@@ -487,16 +488,12 @@ void TBoss4DarkFalz::free_global_instance() {
 }
 
 extern "C" {
-s32 __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(s32, int, void *, int, int, int);
 extern u32 lbl_805D68F4;
 
 void fn_802E52AC() {
     s32 r;
     if (lbl_805D68F4 == 0) {
-        r = (int)::operator new(0x440);
-        if (r != 0) {
-            r = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 5, lbl_804E35E8, 0, 0, 0);
-        }
+        r = (s32)new BmlResource(5, (BmlResourceDescriptor *)(lbl_804E35E8), 0, 0, 0);
         lbl_805D68F4 = r;
         if (lbl_805D68F4 == 0) {
             return;

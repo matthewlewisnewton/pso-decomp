@@ -13,6 +13,7 @@
 
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/player/TObjPlayer_801542CC.h"
+#include "pso/system/BmlResourceClass.h"
 
 extern char lbl_80440220[];
 extern char lbl_80440234[];
@@ -90,7 +91,7 @@ void *TOBind::create(void *arg0) {
 
 void TOBind::free_static_model() {
     if ((u32) TOBind__static_model_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TOBind__static_model_resource, 1);
+        delete (BmlResource *)(TOBind__static_model_resource);
         TOBind__static_model_resource = 0U;
     }
 }

@@ -26,7 +26,7 @@ void *TObjNpcFemaleDwarf__create(void *set_data) {
 
 void TObjNpcFemaleDwarf::unload_static_data() {
     if (TObjNpcFemaleDwarf__static_data != NULL) {
-        __dt__11BmlResourceFv(TObjNpcFemaleDwarf__static_data, 1);
+        delete TObjNpcFemaleDwarf__static_data;
         TObjNpcFemaleDwarf__static_data = NULL;
     }
 }

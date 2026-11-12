@@ -18,7 +18,6 @@
 #include "pso/render/render_util.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/render/GinjaModel.h"
 #include "pso/system/MatrixOps.h"
@@ -62,16 +61,13 @@ TOBoss4::~TOBoss4() {
 }
 
 void TOBoss4::load_static_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_o_boss4_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_o_boss4_resource_descriptor, 0, 0, 0);
     model_resource = resource;
 }
 
 void TOBoss4::free_instance() {
     if (model_resource != NULL) {
-        __dt__11BmlResourceFv(model_resource, 1);
+        delete model_resource;
         model_resource = NULL;
     }
 }

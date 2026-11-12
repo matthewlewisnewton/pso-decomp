@@ -17,12 +17,13 @@
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/render/model_render_state.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/ChunkMaterialState.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 // The default constant-material colour (owner unit not split yet; 27 files
 // declare it with their own types, see the lane report).
@@ -223,7 +224,7 @@ void TOKeyCave01::free_objects() {
         }
     }
     if (TOKeyCave01__resource_bundle != NULL) {
-        __dt__11BmlResourceFv(TOKeyCave01__resource_bundle, 1);
+        delete TOKeyCave01__resource_bundle;
         TOKeyCave01__resource_bundle = NULL;
     }
 }
@@ -233,10 +234,7 @@ void TOKeyCave01::load_resources() {
     BmlResource *resource;
 
     if (TContainerAncient01::is_global_state_in_table() == 1 || area == AREA_SEABED_UPPER || area == AREA_SEABED_LOWER) {
-        resource = (BmlResource *)::operator new(0x440);
-        if (resource != NULL) {
-            resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &fs_obj_key_jungle_resource_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(1, &fs_obj_key_jungle_resource_descriptor, 0, 0, 0);
         TOKeyCave01__resource_bundle = resource;
         TOKeyCave01__texture_lists = (s32 *)::operator new[](8);
         TOKeyCave01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_key_jungle_red.gvm");
@@ -244,10 +242,7 @@ void TOKeyCave01::load_resources() {
         key_cave_render_state = 1;
         return;
     }
-    resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_do_doa_panel_resource_descriptor, 0, 0, 0);
-    }
+    resource = new BmlResource(1, &bm_fs_obj_do_doa_panel_resource_descriptor, 0, 0, 0);
     TOKeyCave01__resource_bundle = resource;
     TOKeyCave01__texture_lists = (s32 *)::operator new[](8);
     TOKeyCave01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_do_doa_panelr.gvm");

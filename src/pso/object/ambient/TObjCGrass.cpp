@@ -14,6 +14,8 @@
 #include "pso/unk/text_803D8F74.h"
 #include <stdlib.h>
 #include "pso/unk/text_803D96A8.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct Rec_800B8B08 { u8 vec[0x18]; s32 f18; u32 flags; };
 
@@ -182,7 +184,7 @@ void TObjCGrass::run_task() {
 
 void TObjCGrass::release_global_805D5130() {
     if ((u32) TObjCGrass_bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TObjCGrass_bml_resource, 1);
+        delete (BmlResource *)(TObjCGrass_bml_resource);
         TObjCGrass_bml_resource = 0U;
     }
 }

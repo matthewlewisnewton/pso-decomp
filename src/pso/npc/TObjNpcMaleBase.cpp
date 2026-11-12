@@ -28,7 +28,7 @@ void *TObjNpcMaleBase__create(void *set_data) {
 
 void TObjNpcMaleBase::free_static_data() {
     if (TObjNpcMaleBase__shared_bml_archive != NULL) {
-        __dt__11BmlResourceFv(TObjNpcMaleBase__shared_bml_archive, 1);
+        delete TObjNpcMaleBase__shared_bml_archive;
         TObjNpcMaleBase__shared_bml_archive = NULL;
     }
 }

@@ -255,7 +255,7 @@ void TObjHashi::load_shared_resource() {
 
 void TObjHashi::unload_static_data() {
     if (bml_resource != NULL) {
-        __dt__11BmlResourceFv(bml_resource, 1);
+        delete bml_resource;
         bml_resource = NULL;
     }
 }
@@ -293,7 +293,7 @@ void TObjHashiVersus1::load_shared_resource() {
 
 void TObjHashiVersus1::unload_static_data() {
     if (bml_resource != NULL) {
-        __dt__11BmlResourceFv(bml_resource, 1);
+        delete bml_resource;
         bml_resource = NULL;
     }
 }
@@ -332,7 +332,7 @@ void TObjHashiVersus2::load_shared_resource() {
 
 void TObjHashiVersus2::unload_static_data() {
     if (bml_resource != NULL) {
-        __dt__11BmlResourceFv(bml_resource, 1);
+        delete bml_resource;
         bml_resource = NULL;
     }
 }

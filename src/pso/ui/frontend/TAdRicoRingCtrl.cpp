@@ -16,6 +16,8 @@
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/system/vector.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 struct Stack_8001B8AC {
     s32 sp8;
     s32 spC;
@@ -113,7 +115,7 @@ void TAdRicoRingCtrl::load_static_resource() {
 
 void TAdRicoRingCtrl::release_global_805D4A00() {
     if ((u32) TAdRicoRing__resource_bundle != 0U) {
-        __dt__11BmlResourceFv((void*)TAdRicoRing__resource_bundle, 1);
+        delete (BmlResource *)(TAdRicoRing__resource_bundle);
         TAdRicoRing__resource_bundle = 0U;
     }
 }

@@ -33,6 +33,8 @@
 #include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 extern "C" {
 s32 lbl_805D5140;
@@ -310,7 +312,6 @@ u8 *get_player_by_client_id(u16);
 s32 subtract_vector(void *, void *);
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
-u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, int, void *, int, int, int);
 u8 *load_enemy_bml_resource_named(void *, void *);
 extern s32 lbl_805D5140;
 extern u32 TObjGrass__bml_resource;
@@ -357,7 +358,6 @@ s32 is_split_screen();
 extern s32 local_client_id;
 s32 set_param__9TObjEnemyFl(void *, int, int);
 s32 init_collision_body_parts(void *, void *, int);
-void __dt__11BmlResourceFv(void*, int);
 s32 update_movement_status__9TObjCharaFv();
 s32 update_action_hold_status__9TObjCharaFv();
 
@@ -534,10 +534,7 @@ void TObjGrass::load_resources() {
     if (TObjEneDD::check_v2_mode() != 0) {
         TObjGrass__resource_bundle = (u32) load_enemy_bml_resource_named(bm_ene_grass_resource_descriptor, (void *)"bm_ene_grass_a.bml");
     } else {
-        p = (u8 *)::operator new(0x440);
-        if (p != NULL) {
-            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, bm_ene_grass_resource_descriptor, 0, 0, 0);
-        }
+        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(bm_ene_grass_resource_descriptor), 0, 0, 0);
         TObjGrass__resource_bundle = (u32) p;
     }
     TObjGrass__render_node_index = 0;
@@ -576,7 +573,7 @@ void TObjGrass::destroy_all() {
         lbl_805D5158 = 0U;
     }
     if ((u32) TObjGrass__resource_bundle != 0U) {
-        __dt__11BmlResourceFv((void*)TObjGrass__resource_bundle, 1);
+        delete (BmlResource *)(TObjGrass__resource_bundle);
         TObjGrass__resource_bundle = 0U;
     }
 }

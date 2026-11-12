@@ -56,7 +56,7 @@ void TOGrassJungle::release_static_instance() {
         TOGrassJungle__grass_gvm_texture = 0U;
     }
     if ((u32) TOGrassJungle__bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TOGrassJungle__bml_resource, 1);
+        delete TOGrassJungle__bml_resource;
         TOGrassJungle__bml_resource = 0U;
     }
 }

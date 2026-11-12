@@ -26,7 +26,7 @@ void *TObjNpcFemaleBase__create(void *set_data) {
 
 void TObjNpcFemaleBase::free_static_data() {
     if (TObjNpcFemaleBase__shared_resource_obj != NULL) {
-        __dt__11BmlResourceFv(TObjNpcFemaleBase__shared_resource_obj, 1);
+        delete TObjNpcFemaleBase__shared_resource_obj;
         TObjNpcFemaleBase__shared_resource_obj = NULL;
     }
 }

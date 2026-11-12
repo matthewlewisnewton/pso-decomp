@@ -8,6 +8,7 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -66,7 +67,7 @@ void *TObjNpcCloakroomBase::create(void *arg0) {
 
 void TObjNpcCloakroomBase::destroy_static_instance() {
     if ((u32) TObjNpcCloakroomBase__static_instance != 0U) {
-        __dt__11BmlResourceFv((void*)TObjNpcCloakroomBase__static_instance, 1);
+        delete (BmlResource *)(TObjNpcCloakroomBase__static_instance);
         TObjNpcCloakroomBase__static_instance = 0U;
     }
 }

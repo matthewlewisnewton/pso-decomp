@@ -13,7 +13,6 @@
 #include "pso/player/TObjPlayer_803DF7A8.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/render/model_render_state.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/ChunkMaterialColor.h"
 #include "pso/render/ChunkMaterialState.h"
 #include "pso/system/MatrixOps.h"
@@ -23,6 +22,8 @@
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 // normalize_vector (text_803D96A8, 133 callers) has no header yet: the files
 // that use it declare it with conflicting return types.
@@ -313,16 +314,13 @@ void *TOKurage::create(void *set_data) {
 
 void TOKurage::destroy_static_instance() {
     if (TOKurage__bml_resource != NULL) {
-        __dt__11BmlResourceFv(TOKurage__bml_resource, 1);
+        delete TOKurage__bml_resource;
         TOKurage__bml_resource = NULL;
     }
 }
 
 void TOKurage::load_static_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_kurage_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_fs_obj_kurage_resource_descriptor, 0, 0, 0);
     TOKurage__bml_resource = resource;
 }
 

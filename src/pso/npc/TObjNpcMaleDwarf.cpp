@@ -28,7 +28,7 @@ void *TObjNpcMaleDwarf__create(void *set_data) {
 
 void TObjNpcMaleDwarf::unload_static_data() {
     if (TObjNpcMaleDwarf__shared_model_resource != NULL) {
-        __dt__11BmlResourceFv(TObjNpcMaleDwarf__shared_model_resource, 1);
+        delete TObjNpcMaleDwarf__shared_model_resource;
         TObjNpcMaleDwarf__shared_model_resource = NULL;
     }
 }

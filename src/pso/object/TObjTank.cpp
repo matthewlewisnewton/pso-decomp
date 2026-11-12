@@ -10,6 +10,8 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 extern "C" void *__ct__14TObjCollidableFP7TObject(void *, s32);
 
 struct RecoveredGlobal_8019A9B8_lbl_80446184 {
@@ -114,7 +116,7 @@ void TObjTank::free_globals() {
         TObjTank__texture_list = 0U;
     }
     if ((u32) tank_bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)tank_bml_resource, 1);
+        delete (BmlResource *)(tank_bml_resource);
         tank_bml_resource = 0U;
     }
 }

@@ -248,6 +248,7 @@ int clear_render_callback__8TObjFishFv(void*);
 typedef struct Stack_800DDFDC Stack_800DDFDC;
 
 #include "pso/render/RenderFadeState.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 // The camera-obstruction fade (vtable __vt__15RenderFadeState) keeps its vtable pointer at +0x14.
 struct VFade_800DEF5C {
@@ -323,7 +324,7 @@ void TObjEnePanarms::load_and_spawn_npc() {
 
 void TObjEnePanarms::free_data() {
     if (TObjEnePanarms__entry_params_resource != NULL) {
-        __dt__11BmlResourceFv((void*)TObjEnePanarms__entry_params_resource, 1);
+        delete TObjEnePanarms__entry_params_resource;
         TObjEnePanarms__entry_params_resource = NULL;
     }
 }

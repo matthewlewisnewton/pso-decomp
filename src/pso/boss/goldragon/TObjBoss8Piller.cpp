@@ -7,6 +7,7 @@ TObjBoss8Piller::~TObjBoss8Piller() {}
 #include "types.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceClass.h"
 
 struct RecoveredGlobal_8030AF60___vt__15TObjBoss8Piller {
     s32 value;
@@ -38,7 +39,7 @@ u8 *__ct__15TObjBoss8PillerFv(u8 *object, u8 *arg1, u8 *arg2, s16 arg3) {
 
 void TObjBoss8Piller::free_held_object() {
     if ((u32) TObjBoss8Piller__shared_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TObjBoss8Piller__shared_resource, 1);
+        delete (BmlResource *)(TObjBoss8Piller__shared_resource);
         TObjBoss8Piller__shared_resource = 0U;
     }
 }

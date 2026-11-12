@@ -22,6 +22,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/object/container/TContainerAncient01.h"
 #include "pso/enemy/panarms/TObjEnePanarms.h"
 #include "pso/object/ambient/TObjFish.h"
+#include "pso/system/BmlResourceClass.h"
 
 struct Base_8018AC68_8018A584 { char pad[0x18]; };
 struct VObj_8018AC68_8018A584 : Base_8018AC68_8018A584 {
@@ -1016,13 +1017,11 @@ struct Res_8018BB64 { u8 pad[0x430]; s32 x430; };
 
 extern "C" {
 
-void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
 extern Param_8018BB64 container_ancient_anim_binding[];
 
 extern s32 TContainerAncient01__effect_id_table[];
 
 u8 *TContainerAncient01__ct(u8 *arg0, s32 arg1, s32 arg2);
-void __dt__11BmlResourceFv(void*, int);
 void *__nw__7TObjectFUl(int);
 
 extern void *tl_05;
@@ -1037,7 +1036,7 @@ void *TContainerAncient01::create(void *arg0) {
 
 void TContainerAncient01::release_static_resource() {
     if ((u32) TContainerAncient01__bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TContainerAncient01__bml_resource, 1);
+        delete (BmlResource *)(TContainerAncient01__bml_resource);
         TContainerAncient01__bml_resource = 0U;
     }
 }
@@ -1045,18 +1044,12 @@ void TContainerAncient01::load_resources() {
     void *p;
     TContainerAncient01__bml_resource = 0;
     if (TContainerAncient01::is_global_state_in_table() != 0) {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, TContainerAncient01__resource_descriptor_2, 0, 0, 0);
-        }
+        p = new BmlResource(5, (BmlResourceDescriptor *)(TContainerAncient01__resource_descriptor_2), 0, 0, 0);
         TContainerAncient01__effect_id_table[0] = 0x230;
         TContainerAncient01__bml_resource = (u32)p;
         TContainerAncient01__effect_id_table[1] = 0x231;
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 5, TContainerAncient01__resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, (BmlResourceDescriptor *)(TContainerAncient01__resource_descriptor), 0, 0, 0);
         TContainerAncient01__effect_id_table[0] = 0x45;
         TContainerAncient01__bml_resource = (u32)p;
         TContainerAncient01__effect_id_table[1] = 0x46;
@@ -1081,6 +1074,7 @@ void TContainerAncient01::load_resources() {
 #include "pso/object/container/TContainerAncient01R.h"
 
 #include "types.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct RecoveredGlobal_8018BD00_TContainerAncient01__data_804B6DC0 {
     s32 value;

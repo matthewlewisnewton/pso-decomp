@@ -20,6 +20,7 @@
 #include "pso/math/AngleLookup.h"
 #include <stdlib.h>
 #include "pso/unk/text_80087278.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -1054,7 +1055,7 @@ void handle_6x19_dark_falz_actions(Msg_8004BFA4 *arg0) {
     }
 }
 
-void TBoss4DarkFalz::cleanup_global() { TBoss4DarkFalz::free_global_instance(); TBoss4DarkFalz__sub_8030AD38(); __dt__11BmlResourceFv((void*)darkfalz_dat_resource, (void*)1); darkfalz_dat_resource = 0; }
+void TBoss4DarkFalz::cleanup_global() { TBoss4DarkFalz::free_global_instance(); TBoss4DarkFalz__sub_8030AD38(); delete (BmlResource *)(darkfalz_dat_resource); darkfalz_dat_resource = 0; }
 
 extern s32 tl_04;
 

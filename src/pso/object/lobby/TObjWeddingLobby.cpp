@@ -13,7 +13,6 @@
 #include "pso/system/MatrixOps.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/unk/text_803D8F74.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
 
 #pragma readonly_strings on
@@ -93,16 +92,13 @@ void *TObjWeddingLobby::create(void *set_data) {
 
 void TObjWeddingLobby::free_resources() {
     if (resource_bundle != NULL) {
-        __dt__11BmlResourceFv(resource_bundle, 1);
+        delete resource_bundle;
         resource_bundle = NULL;
     }
 }
 
 void TObjWeddingLobby::load_resources() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 5, &bm_obj_lobby_bell_resource_descriptor, 0, 0, 0);
-    }
+    void *resource = new BmlResource(5, &bm_obj_lobby_bell_resource_descriptor, 0, 0, 0);
     resource_bundle = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();
 }

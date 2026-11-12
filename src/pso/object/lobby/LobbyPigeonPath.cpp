@@ -22,6 +22,7 @@
 #include <stdlib.h>
 #include "pso/unk/text_803D96A8.h"
 #include "pso/math/MatrixVector.h"
+#include "pso/system/BmlResourceClass.h"
 struct Vec_802C0CAC { f32 x, y, z; };
 
 struct Entry_802C0CAC { s32 a; union { f32 pa; s32 b; }; union { f32 pb; s32 c; }; f32 d; s32 e; };
@@ -709,7 +710,7 @@ void TObjPlayer::destroy_instance() {
         lobby_kamome_texture_gvm_handle = 0U;
     }
     if ((u32) lobby_kamome_model_resource != 0U) {
-        __dt__11BmlResourceFv((void*)lobby_kamome_model_resource, 1);
+        delete (BmlResource *)(lobby_kamome_model_resource);
         lobby_kamome_model_resource = 0U;
     }
 }
@@ -907,7 +908,7 @@ void TObjPlayer::free_statics() {
         lobby_pigeon_texture_gvm = 0U;
     }
     if ((u32) jungle_bird_bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)jungle_bird_bml_resource, 1);
+        delete (BmlResource *)(jungle_bird_bml_resource);
         jungle_bird_bml_resource = 0U;
     }
 }
@@ -1096,7 +1097,7 @@ void TObjPlayer::free_chr_select() {
         jungle_ebi_texture_gvm_handle = 0U;
     }
     if ((u32) jungle_ebi_model_resource != 0U) {
-        __dt__11BmlResourceFv((void*)jungle_ebi_model_resource, 1);
+        delete (BmlResource *)(jungle_ebi_model_resource);
         jungle_ebi_model_resource = 0U;
     }
 }
@@ -1309,7 +1310,7 @@ void TObjPlayer__sub_802C2900(void) {
         (*(u32 *)&seabed_dolphin_texture_handle) = 0U;
     }
     if ((u32) seabed_dolphin_bml_archive != 0U) {
-        __dt__11BmlResourceFv((void*)seabed_dolphin_bml_archive, 1);
+        delete (BmlResource *)(seabed_dolphin_bml_archive);
         seabed_dolphin_bml_archive = 0U;
     }
 }
@@ -1534,6 +1535,7 @@ s32 sample_clamped_path_position(void *arg0, s32 arg1, void *arg2, s32 arg3, f32
 
 #include "pso/ui/frontend/TAdStorySelectGC.h"
 #include "pso/object/base/TObjMotion.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct Base_802C3188 { char pad[0x18]; };
 struct VObj_802C3188 : Base_802C3188 {

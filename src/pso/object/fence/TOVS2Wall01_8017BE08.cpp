@@ -221,7 +221,7 @@ void TOVS2Wall01::load_resources() {
 }
 void TOVS2Wall01::release_model() {
     if ((u32) TOVS2Wall01__bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TOVS2Wall01__bml_resource, 1);
+        delete TOVS2Wall01__bml_resource;
         TOVS2Wall01__bml_resource = 0U;
     }
 }

@@ -14,6 +14,8 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct RecoveredGlobal_801711D0_lbl_804B2F2C { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_801711D0_lbl_804B2F2C_size[sizeof(RecoveredGlobal_801711D0_lbl_804B2F2C) == 0x10 ? 1 : -1];
@@ -152,7 +154,7 @@ void TOMine::render() {
 
 void TOMine::free_instance() {
     if ((u32) lbl_805D5A50 != 0U) {
-        __dt__11BmlResourceFv((void*)lbl_805D5A50, 1);
+        delete (BmlResource *)(lbl_805D5A50);
         lbl_805D5A50 = 0U;
     }
 }

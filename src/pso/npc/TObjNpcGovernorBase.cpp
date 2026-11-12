@@ -12,6 +12,7 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -54,7 +55,7 @@ void * TObjNpcGovernorBase__create(void *arg0) {
 
 void TObjNpcGovernorBase::free_shared_data() {
     if ((u32) TObjNpcGovernorBase__shared_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TObjNpcGovernorBase__shared_resource, 1);
+        delete (BmlResource *)(TObjNpcGovernorBase__shared_resource);
         TObjNpcGovernorBase__shared_resource = 0U;
     }
 }

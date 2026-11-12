@@ -15,6 +15,7 @@
 #include "pso/unk/TLobby.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/math/AngleLookup.h"
+#include "pso/system/BmlResourceClass.h"
 
 
 struct Ent_8008D68C { s16 *plist; s16 model_index; s16 part_index; s16 a; s16 b; s16 c; s16 d; };
@@ -80,7 +81,6 @@ struct Obj_8008D79C { u8 pad0[0x388]; s32 flags; u8 pad38C[0x3B8 - 0x38C]; s32 f
 extern "C" {
 extern s32 balclaw_last_shared_update_frame;
 extern s32 actor_frame_tick;
-void __dt__11BmlResourceFv(void*, int);
 void __dl__7TObjectFPv(void *);
 void *__dt__15TObjEnemyCustomFv(void *arg0, s16 arg1);
 
@@ -162,7 +162,7 @@ void TObjEneBalClaw::vfunc_62() {
 
 void TObjEneBalClaw::release_global_805D4F20() {
     if ((u32) lbl_805D4F20 != 0U) {
-        __dt__11BmlResourceFv((void*)lbl_805D4F20, 1);
+        delete (BmlResource *)(lbl_805D4F20);
         lbl_805D4F20 = 0U;
     }
 }
@@ -176,7 +176,6 @@ extern void *lbl_805D4F28[];
 extern void *lbl_805D4F2C[];
 extern void *lbl_805D4F30[];
 extern void *lbl_805D4F34[];
-u8 *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
 u32 get_bml_model(u32, s32);
 
 void TObjEneBalClaw__sub_8008D924(void) {
@@ -190,10 +189,7 @@ void TObjEneBalClaw__sub_8008D924(void) {
     s32 j;
     s32 m;
     s32 n;
-    p = (u8 *)::operator new(0x440);
-    if (p != NULL) {
-        p = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(p, 1, &balclaw_resource_descriptor, 0, 0, 0);
-    }
+    p = (u8 *)new BmlResource(1, &balclaw_resource_descriptor, 0, 0, 0);
     lbl_805D4F20 = (u32)p;
     model = ((BalClawResource *)p)->models[1].model;
     for (k = 0; k < 4; k++) {

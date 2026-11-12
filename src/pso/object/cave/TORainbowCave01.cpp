@@ -10,7 +10,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/render/model_render_state.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/ChunkMaterialColor.h"
 #include "pso/render/ChunkMaterialState.h"
 #include "pso/render/GinjaMaterial.h"
@@ -18,6 +17,8 @@
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/vector.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 const char *abeniji_fe_obj001_niji_model_names[] = {"abeniji_fe_obj001_niji.gj", NULL};
 const char *abeniji_fe_obj001_niji_motion_names[] = {NULL};
@@ -94,16 +95,13 @@ void *TORainbowCave01::create(void *set_data) {
 
 void TORainbowCave01::free_static_data() {
     if (TORainbowCave01__bml_resource != NULL) {
-        __dt__11BmlResourceFv(TORainbowCave01__bml_resource, 1);
+        delete TORainbowCave01__bml_resource;
         TORainbowCave01__bml_resource = NULL;
     }
 }
 
 void TORainbowCave01::load_resource_instance() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &abeniji_fe_obj001_niji_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &abeniji_fe_obj001_niji_resource_descriptor, 0, 0, 0);
     TORainbowCave01__bml_resource = resource;
 }
 

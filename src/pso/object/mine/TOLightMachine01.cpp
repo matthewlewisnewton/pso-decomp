@@ -12,6 +12,7 @@
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/math/AngleLookup.h"
 #include <stdlib.h>
+#include "pso/system/BmlResourceClass.h"
 
 struct Base_8016E9F4_8016E998 { char pad[0x18]; };
 struct VObj_8016E9F4_8016E998 : Base_8016E9F4_8016E998 {
@@ -85,7 +86,7 @@ void *TOLightMachine01::create(void *arg0) {
 
 void TOLightMachine01::destroy_instance() {
     if ((u32) TOLightMachine01__shared_bml_archive != 0U) {
-        __dt__11BmlResourceFv((void*)TOLightMachine01__shared_bml_archive, 1);
+        delete (BmlResource *)(TOLightMachine01__shared_bml_archive);
         TOLightMachine01__shared_bml_archive = 0U;
     }
 }

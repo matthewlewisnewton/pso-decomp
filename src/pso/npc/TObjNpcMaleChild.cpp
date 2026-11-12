@@ -28,7 +28,7 @@ void *TObjNpcMaleChild__create(void *set_data) {
 
 void TObjNpcMaleChild::release_static_instance() {
     if (TObjNpcMaleChild__shared_model_resource != NULL) {
-        __dt__11BmlResourceFv(TObjNpcMaleChild__shared_model_resource, 1);
+        delete TObjNpcMaleChild__shared_model_resource;
         TObjNpcMaleChild__shared_model_resource = NULL;
     }
 }

@@ -2,6 +2,8 @@
 #include "pso/system/TLanguage_801E4874.h"
 #include "pso/ui/hud/TRaderMapCore.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct RecoveredGlobal_8019A9B8_lbl_80446184 {
     s32 value;
@@ -39,7 +41,7 @@ void TRaderMapCore::free_statics() {
         TRaderMapCore__data_805D5F4C = 0U;
     }
     if ((u32) TRaderMapCore__frame_model_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TRaderMapCore__frame_model_resource, 1);
+        delete (BmlResource *)(TRaderMapCore__frame_model_resource);
         TRaderMapCore__frame_model_resource = 0U;
     }
 }

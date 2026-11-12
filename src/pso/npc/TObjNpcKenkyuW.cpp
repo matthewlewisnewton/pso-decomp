@@ -20,6 +20,7 @@ struct RecoveredGlobal_802A3CD8___vt__14TObjNpcKenkyuW {
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -95,7 +96,7 @@ void TObjPlayer__sub_802A445C(TNeedleShoot *self, int arg1);
 
 void TObjNpcKenkyuW::destroy_instance() {
     if ((u32) TObjNpcKenkyuW__model_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TObjNpcKenkyuW__model_resource, 1);
+        delete (BmlResource *)(TObjNpcKenkyuW__model_resource);
         TObjNpcKenkyuW__model_resource = 0U;
     }
 }

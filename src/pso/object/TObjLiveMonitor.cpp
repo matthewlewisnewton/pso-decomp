@@ -11,6 +11,8 @@
 #include "pso/object/base/TObjMotion.h"
 #include "pso/math/AngleLookup.h"
 #include <stdlib.h>
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct O_8030B370 { u8 pad[0x24]; u32 a; s32 t; };
 
@@ -116,7 +118,7 @@ extern s32 TObjLiveCamera__class_name;
 int __dt__11BmlResourceFv(void*, void*);
 void __dl__7TObjectFPv(void *);
 
-void TObjLiveCamera__sub_8030B630(void) { __dt__11BmlResourceFv((void*)live_monitor_shared_resource, (void*)1); }
+void TObjLiveCamera__sub_8030B630(void) { delete (BmlResource *)(live_monitor_shared_resource); }
 
 void TObjLiveCamera::load_static_resource() {
     s32 temp_r3;

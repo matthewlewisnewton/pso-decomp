@@ -8,6 +8,8 @@
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 const char *bm_fs_obj_aircon01_model_names[] = {"fs_obj_aircon01.gj", NULL};
 const char *bm_fs_obj_aircon01_motion_names[] = {NULL};
@@ -36,7 +38,7 @@ void *TOAirconCave01::create(void *set_data) {
 
 void TOAirconCave01::release_static_resource() {
     if (TOAirconCave01__model_archive != NULL) {
-        __dt__11BmlResourceFv(TOAirconCave01__model_archive, 1);
+        delete TOAirconCave01__model_archive;
         TOAirconCave01__model_archive = NULL;
     }
 }

@@ -7,6 +7,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/BmlResourceClass.h"
 
 #pragma readonly_strings on
 
@@ -36,7 +37,7 @@ void __dl__7TObjectFPv(void *);
 
 void TObjNpcExpertBase::free_shared_data() {
     if ((u32) TObjNpcExpertBase__shared_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TObjNpcExpertBase__shared_resource, 1);
+        delete (BmlResource *)(TObjNpcExpertBase__shared_resource);
         TObjNpcExpertBase__shared_resource = 0U;
     }
 }

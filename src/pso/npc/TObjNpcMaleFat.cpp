@@ -28,7 +28,7 @@ void *TObjNpcMaleFat__create(void *set_data) {
 
 void TObjNpcMaleFat::free_static_model() {
     if (TObjNpcMaleFat__static_model_resource != NULL) {
-        __dt__11BmlResourceFv(TObjNpcMaleFat__static_model_resource, 1);
+        delete TObjNpcMaleFat__static_model_resource;
         TObjNpcMaleFat__static_model_resource = NULL;
     }
 }

@@ -28,7 +28,7 @@ void *TObjNpcMaleMacho__create(void *set_data) {
 
 void TObjNpcMaleMacho::close_dialog_window() {
     if (TObjNpcMaleMacho__static_model_resource != NULL) {
-        __dt__11BmlResourceFv(TObjNpcMaleMacho__static_model_resource, 1);
+        delete TObjNpcMaleMacho__static_model_resource;
         TObjNpcMaleMacho__static_model_resource = NULL;
     }
 }

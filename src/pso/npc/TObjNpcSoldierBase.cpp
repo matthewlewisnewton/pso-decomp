@@ -28,7 +28,7 @@ void *TObjNpcSoldierBase__create(void *set_data) {
 
 void TObjNpcSoldierBase::release_static_instance() {
     if (TObjNpcSoldierBase__shared_model_resource != NULL) {
-        __dt__11BmlResourceFv(TObjNpcSoldierBase__shared_model_resource, 1);
+        delete TObjNpcSoldierBase__shared_model_resource;
         TObjNpcSoldierBase__shared_model_resource = NULL;
     }
 }

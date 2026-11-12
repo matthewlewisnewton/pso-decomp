@@ -26,7 +26,7 @@ void *TObjNpcFemaleMacho__create(void *set_data) {
 
 void TObjNpcFemaleMacho::close_dialog_window() {
     if (TObjNpcFemaleMacho__lobby_resource != NULL) {
-        __dt__11BmlResourceFv(TObjNpcFemaleMacho__lobby_resource, 1);
+        delete TObjNpcFemaleMacho__lobby_resource;
         TObjNpcFemaleMacho__lobby_resource = NULL;
     }
 }

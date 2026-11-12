@@ -7,6 +7,7 @@
 #include "pso/unk/text_803D8F74.h"
 #include "pso/math/AngleLookup.h"
 #include <stdlib.h>
+#include "pso/system/BmlResourceClass.h"
 
 struct Base_8017E978 { char pad[0x18]; };
 struct VObj_8017E978 : Base_8017E978 { virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3(); virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7(); virtual s32 m8(f32, f32); };
@@ -240,7 +241,7 @@ void *TButterfly__create(void *arg0) {
 
 void TButterfly::destroy_instance() {
     if ((u32) butterfly_bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)butterfly_bml_resource, 1);
+        delete (BmlResource *)(butterfly_bml_resource);
         butterfly_bml_resource = 0U;
     }
 }

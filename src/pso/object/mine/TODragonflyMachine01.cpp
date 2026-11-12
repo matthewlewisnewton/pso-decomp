@@ -3,7 +3,6 @@
 #include "pso/object/mine/TODragonflyMachine01.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/render/GinjaModel.h"
@@ -162,17 +161,14 @@ void *TODragonflyMachine01::create(void *set_data) {
 
 void TODragonflyMachine01::unload_static_data() {
     if (model_resource != NULL) {
-        __dt__11BmlResourceFv(model_resource, 1);
+        delete model_resource;
         model_resource = NULL;
     }
 }
 
 void TODragonflyMachine01::load_resources() {
     BmlResource *resource;
-    resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_mekatombo_resource_descriptor, 0, 0, 0);
-    }
+    resource = new BmlResource(1, &bm_fs_obj_mekatombo_resource_descriptor, 0, 0, 0);
     model_resource = resource;
     node_index = 0;
     node_yaw = 0;

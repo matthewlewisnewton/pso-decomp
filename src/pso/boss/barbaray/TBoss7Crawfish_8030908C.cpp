@@ -15,6 +15,8 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct RecoveredGlobal_8030946C_lbl_804E7370 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_8030946C_lbl_804E7370_size[sizeof(RecoveredGlobal_8030946C_lbl_804E7370) == 0x10 ? 1 : -1];
@@ -137,7 +139,7 @@ u8 *TBoss7Crawfish__ct(u8 *arg0, s32 arg1, s32 arg2) {
 
 void TBoss7Crawfish::destroy_instance() {
     if ((u32) TBoss7Crawfish__shared_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TBoss7Crawfish__shared_resource, 1);
+        delete (BmlResource *)(TBoss7Crawfish__shared_resource);
         TBoss7Crawfish__shared_resource = 0U;
     }
 }

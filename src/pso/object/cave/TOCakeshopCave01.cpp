@@ -6,12 +6,13 @@
 #include "pso/object/cave/TOCakeshopCave01.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer_801542CC.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 const char *bm_fs_obj_cakeya_model_names[] = {"fs_obj_cakeya.gj", NULL};
 const char *bm_fs_obj_cakeya_motion_names[] = {NULL};
@@ -92,16 +93,13 @@ void *TOCakeshopCave01::create(void *set_data) {
 
 void TOCakeshopCave01::release_static_resource() {
     if (TOCakeshopCave01__model_resource != NULL) {
-        __dt__11BmlResourceFv(TOCakeshopCave01__model_resource, 1);
+        delete TOCakeshopCave01__model_resource;
         TOCakeshopCave01__model_resource = NULL;
     }
 }
 
 void TOCakeshopCave01::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_cakeya_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_fs_obj_cakeya_resource_descriptor, 0, 0, 0);
     TOCakeshopCave01__model_resource = resource;
 }
 

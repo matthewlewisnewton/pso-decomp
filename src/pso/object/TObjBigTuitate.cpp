@@ -17,6 +17,7 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/object/TObjTuitate.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
 
 struct FadeBase_8019AA18 { char pad[0x14]; };
 
@@ -174,7 +175,7 @@ extern void *tl_05;
 
 void free_tuitate_bml_resource(void) {
     if ((u32) TObjTuitate__bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TObjTuitate__bml_resource, 1);
+        delete (BmlResource *)(TObjTuitate__bml_resource);
         TObjTuitate__bml_resource = 0U;
     }
 }
@@ -269,7 +270,7 @@ void load_bigtuitate_bml_resource(void) {
 
 void TObjBigTuitate::free_instance() {
     if ((u32) TObjBigTuitate__bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TObjBigTuitate__bml_resource, 1);
+        delete (BmlResource *)(TObjBigTuitate__bml_resource);
         TObjBigTuitate__bml_resource = 0U;
     }
 }

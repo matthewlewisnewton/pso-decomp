@@ -39,6 +39,8 @@
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 struct RecoveredGlobal_801982D4_lbl_804B8DAC { s32 value; u8 remaining[0x20]; };
 typedef char RecoveredGlobal_801982D4_lbl_804B8DAC_size[sizeof(RecoveredGlobal_801982D4_lbl_804B8DAC) == 0x24 ? 1 : -1];
 #pragma inline_depth(1)
@@ -1023,10 +1025,7 @@ void TLanguage::load_lobby_textures() {
     c->f18 = 0;
     p->a = 0;
     p->b = 0;
-    obj = ::operator new(0x440);
-    if (obj != 0) {
-        obj = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(obj, 5, language_lobby_texture_descriptor, 0, 0, 0);
-    }
+    obj = new BmlResource(5, (BmlResourceDescriptor *)(language_lobby_texture_descriptor), 0, 0, 0);
     (*(void**)&gogo_ball_bml_resource) = obj;
     lobby_gvm_texture_handles[0] = (s32)load_gvm_texture_file((s32)lbl_80446088);
     lobby_gvm_texture_handles[1] = (s32)load_gvm_texture_file((s32)lbl_80446098);

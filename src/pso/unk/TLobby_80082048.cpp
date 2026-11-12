@@ -21,6 +21,7 @@ typedef char RecoveredGlobal_80082080_lbl_8048E194_size[sizeof(RecoveredGlobal_8
 #include "pso/boss/darkfalz/TBoss4Type2.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/system/BmlResourceClass.h"
 struct RecoveredFields_8008213C_arg0 {
     u8 unknown_0[0x18];
     s32 * field_18;
@@ -77,7 +78,7 @@ void __dl__7TObjectFPv(void *);
 
 void TLobby::destroy_global_singleton() {
     if ((u32) freeze_shell_bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)freeze_shell_bml_resource, 1);
+        delete (BmlResource *)(freeze_shell_bml_resource);
         freeze_shell_bml_resource = 0U;
     }
 }

@@ -20,6 +20,8 @@
 #include "pso/system/MatrixStack.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 // The default constant-material colour (owner unit not split yet; 27 files
 // declare it with their own types, see the lane report).
@@ -173,7 +175,7 @@ void TOKeyAncient03::cleanup_refs() {
         }
     }
     if (TOKeyAncient03__model_archive != NULL) {
-        __dt__11BmlResourceFv(TOKeyAncient03__model_archive, 1);
+        delete TOKeyAncient03__model_archive;
         TOKeyAncient03__model_archive = NULL;
     }
 }

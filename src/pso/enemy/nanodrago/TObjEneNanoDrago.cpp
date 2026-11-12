@@ -314,7 +314,7 @@ void TObjEneNanoDrago::load_resources() {
 }
 void TObjEneNanoDrago::free_resources() {
     if ((u32) nano_drago_entry_params_resource != 0U) {
-        __dt__11BmlResourceFv((void*)nano_drago_entry_params_resource, 1);
+        delete nano_drago_entry_params_resource;
         nano_drago_entry_params_resource = NULL;
     }
 }

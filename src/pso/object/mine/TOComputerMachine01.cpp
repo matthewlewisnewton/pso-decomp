@@ -8,13 +8,13 @@
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/render/GinjaUvScroll.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
 
 // TCameraCtrl.h does not declare the instance yet: 28 files that include it
 // still redeclare it with their own types.
@@ -83,17 +83,14 @@ void TOComputerMachine01::unload_resources() {
         screen_meshes[i] = NULL;
     }
     if (model_resource != NULL) {
-        __dt__11BmlResourceFv(model_resource, 1);
+        delete model_resource;
         model_resource = NULL;
     }
 }
 
 void TOComputerMachine01::load_resources() {
     NJS_OBJECT *screen;
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &bm_fs_obj_kenkyu_com_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_fs_obj_kenkyu_com_resource_descriptor, 0, 0, 0);
     model_resource = resource;
     screen = ((NJS_OBJECT *)resource->models->model)->child;
     screen_meshes[3] = screen->model;

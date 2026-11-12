@@ -13,7 +13,6 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/SoundEffect.h"
@@ -144,16 +143,13 @@ void TODoorVS2Door01::destroy() {
         }
     }
     if (bml_resource != NULL) {
-        __dt__11BmlResourceFv(bml_resource, 1);
+        delete bml_resource;
         bml_resource = NULL;
     }
 }
 
 void TODoorVS2Door01::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = __ct__11BmlResourceFlP21BmlResourceDescriptorllPv(resource, 1, &door_vs2door01_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &door_vs2door01_resource_descriptor, 0, 0, 0);
     bml_resource = resource;
     texture_lists = (s32 *)::operator new[](8);
     texture_lists[1] = bml_resource->models[0].m_c;

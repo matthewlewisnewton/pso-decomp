@@ -18,6 +18,7 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/render/GinjaMaterial.h"
+#include "pso/system/BmlResourceClass.h"
 
 struct Vec_8029B640 { s32 x, y, z; };
 struct Ids_8029B428 {
@@ -251,7 +252,7 @@ void TODoorJungleMain::free_static_resources() {
         door_jungle_main_gvm_texture = 0U;
     }
     if ((u32) TODoorJungleMain__bml_resource != 0U) {
-        __dt__11BmlResourceFv((void*)TODoorJungleMain__bml_resource, 1);
+        delete (BmlResource *)(TODoorJungleMain__bml_resource);
         TODoorJungleMain__bml_resource = 0U;
     }
 }

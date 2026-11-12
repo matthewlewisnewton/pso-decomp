@@ -11,6 +11,8 @@
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 // The game's frame counter (main's .sbss; no module header owns it yet).
 extern s32 actor_frame_tick;
@@ -58,7 +60,7 @@ void TOCapsuleMachine01::reset_static_state() {
     TOCapsuleMachine01__last_update_frame_tick = 0;
     lbl_805D58C4 = 0;
     if (TOCapsuleMachine01__model_resource != NULL) {
-        __dt__11BmlResourceFv(TOCapsuleMachine01__model_resource, 1);
+        delete TOCapsuleMachine01__model_resource;
         TOCapsuleMachine01__model_resource = NULL;
     }
 }
