@@ -1174,8 +1174,8 @@ force_active:
   - vfunc_111__23TObjEneMe1CanadinLeaderFl
   - vfunc_112__23TObjEneMe1CanadinLeaderFl
   - vfunc_113__23TObjEneMe1CanadinLeaderFv
-  - vfunc_116__23TObjEneMe1CanadinLeaderFv
-  - vfunc_117__23TObjEneMe1CanadinLeaderFUl
+  - vfunc_116__23TObjEneMe1CanadinLeaderFP9TObjChara
+  - vfunc_117__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin
   - TObjEneMe1Canadin__render_point_cursor
   - TObjEneMe1Canadin__sub_8009BFF8
   - TObjEneMe1Canadin__sub_8009C178
@@ -14593,7 +14593,7 @@ force_active:
   - reset_keys__16TKeyBoardControlFv
   - reset_leader_selection__FPv
   - reset_leader_selection_static__6TLobbyFv
-  - reset_map_core__17TObjEneMe1CanadinFPv
+  - reset_map_core__17TObjEneMe1CanadinFP8NJS_ARGB
   - reset_matrix__13TObjTombstoneFv
   - reset_obstruction_fade__13TUnk_80490470Fv
   - reset_obstruction_fade__19MaterialOpacityFadeFv
@@ -15383,7 +15383,7 @@ force_active:
   - set_anim_state__15TAdPlyPltAnimGCFl
   - set_animation_by_state__12TBoss8DragonFPv
   - set_attack_flag__14TObjEneBm5WolfFv
-  - set_attack_flag__23TObjEneMe1CanadinLeaderFv
+  - set_attack_flag__17TObjEneMe1CanadinFv
   - set_attack_pattern_by_index__11TBoss4Type2Fl
   - set_bank_panel_art__20TWindowActionPaletteFUs
   - set_battle_ctrl_flag30__18TItemLockCountCtrlFi
@@ -15436,13 +15436,13 @@ force_active:
   - set_fields_24_34_from_global__17TObjEneDarkGunnerFPv
   - set_fields_554__11TBoss6Type2Fv
   - set_flag1e_bit80__18TWindowSubShortCutFv
-  - set_flag3c8_bit20__23TObjEneMe1CanadinLeaderFv
+  - set_flag3c8_bit20__17TObjEneMe1CanadinFv
   - set_flag3c8_bit2__13TObjEneMe1GeeFv
   - set_flag3c8_bit40__13TObjEneMe1GeeFv
-  - set_flag3c8_bit40__23TObjEneMe1CanadinLeaderFv
+  - set_flag3c8_bit40__17TObjEneMe1CanadinFv
   - set_flag3c8_bit4__13TObjEneMe1GeeFv
   - set_flag3c8_bit8__13TObjEneMe1GeeFv
-  - set_flag3c8_bit8__23TObjEneMe1CanadinLeaderFv
+  - set_flag3c8_bit8__17TObjEneMe1CanadinFv
   - set_flag4c_bit8__13TWindowSubLogFv
   - set_flag60_bit8__13TWindowSubMagFv
   - set_flag62_bit8__16TKeyBoardControlFv
@@ -15481,7 +15481,7 @@ force_active:
   - set_keyboard_mode__6TLobbyFi
   - set_labels__19TWindowSubTradeMainFl
   - set_launch_midpoint__10TTecSlicerFPvPvPv
-  - set_leader_index__23TObjEneMe1CanadinLeaderFll
+  - set_leader_index__17TObjEneMe1CanadinFP9TObjCharal
   - set_lobby_map_state_code__Fl
   - set_low_flight_height__13TBoss5GryphonFv
   - set_mag_mode__13TWindowSubMagFl
@@ -16874,7 +16874,7 @@ force_active:
   - update_fade_out__12TBoss4ThanksFv
   - update_fade_out__12TBoss6ThanksFv
   - update_fade_sequence__13TObjEneMe1GeeFv
-  - update_fade_sequence__23TObjEneMe1CanadinLeaderFPv
+  - update_fade_sequence__17TObjEneMe1CanadinFv
   - update_fade_state__12TBoss1DragonFUl
   - update_fade_state__15TBoss3VoloptP02Fv
   - update_fall__10TBoss6RockFv
@@ -16894,7 +16894,7 @@ force_active:
   - update_follow_target__10TNpcPlayerFv
   - update_footstep_effects__11TBoss6Type2Fv
   - update_for_target__13TWindowLockOnFii
-  - update_formation_state__23TObjEneMe1CanadinLeaderFPv
+  - update_formation_state__23TObjEneMe1CanadinLeaderFv
   - update_forward_movement__14TObjEneIllGillFv
   - update_from_data__12TBoss1DragonFv
   - update_from_float_sum__13TObjEneMe1GeeFv
@@ -17009,7 +17009,7 @@ force_active:
   - update_mode_selection_and_save__21TAdMultiChgGameModeGCFv
   - update_motion_playback__9TBoss6MagFv
   - update_motion_tracks__11TBoss6Type2Fv
-  - update_move__17TObjEneMe1CanadinFPv
+  - update_move__17TObjEneMe1CanadinFv
   - update_move_flag__10TBoss2MineFv
   - update_move_to_destination__10TObjPlayerFv
   - update_move_to_target__18TObjEneBalClawClawFPv
