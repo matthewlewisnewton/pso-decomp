@@ -673,6 +673,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/camera/TObjCamera.cpp": {"mw_version": "GC/1.3.2"},
     # GC/1.3.2 preserves the per-vertex coordinate loads and store order.
     "pso/ui/frontend/TAdDialingGC_80328B20.cpp": {"mw_version": "GC/1.3.2"},
+    # The download graph's border pass keeps GC/1.3.2 load scheduling.
+    "pso/unk/text_8007ECF0.cpp": {"mw_version": "GC/1.3.2"},
     "pso/object/TObjComputer.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     "pso/object/container/TObjContainerJung.cpp": {"mw_version": "GC/1.3.2"},
     # The two below also schedule the by-value DirectAttackPayload read of
