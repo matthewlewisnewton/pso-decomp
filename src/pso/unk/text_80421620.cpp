@@ -911,13 +911,14 @@ struct T_80422AB8 {
     u8 pad0[0x2BC]; u8 fl; u8 pad2BD; s16 st; s32 th; u8 pad2C4[4]; s32 z; u8 pad2CC[0x544 - 0x2CC];
 };
 
-s32 TLobby__sub_80422AB8(s32 idx, void (*cb)(s16, s16, s32, s32), s16 code, s32 arg3, s32 arg4, s32 arg5) {
+s32 TLobby__sub_80422AB8(s16 idx, void (*cb)(s16, s16, s32, s32), s16 code, s32 arg3, s32 arg4, s32 arg5) {
     T_80422AB8 *s = (T_80422AB8 *)tcp_protocol_state[0];
     s16 i2;
     s16 v;
-    s += (s16)idx;
+    s += idx;
     if (cb != NULL && !(s->fl & 8)) {
-        i2 = (s16)idx;
+        // Share the native word promotion with the control-block index calculation.
+        i2 = (int)idx;
         if (code >= 0) {
             v = (s32)code;
             TLobby__sub_8041E590(code);

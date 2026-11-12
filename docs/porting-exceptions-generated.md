@@ -8,12 +8,12 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 46 | 12 |
-| intrinsic | 88 | 57 |
+| intrinsic | 89 | 58 |
 | hardware | 69 | 13 |
-| pragma | 5721 | 884 |
+| pragma | 5736 | 884 |
 | configure.py per-unit override | 205 | 205 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1100, `inline_depth` 1004, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 624, `scheduling` 264, `opt_propagation` 251, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 58, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41, `opt_loop_invariants` 40, `pool_data` 36, `opt_lifetimes` 32, `use_lmw_stmw` 28, `optimize_for_size` 27, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `inline` 1, `opt_unroll_loops` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1099, `inline_depth` 1004, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 630, `scheduling` 264, `opt_propagation` 255, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 58, `defer_codegen` 56, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 41, `pool_data` 37, `opt_lifetimes` 33, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -119,6 +119,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1100, `inline_depth` 1004,
 | `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
 | `src/pso/network/ModemRuntime.cpp:363` | `__cntlzw` |
+| `src/pso/network/TcpProtocol.cpp:846` | `__cntlzw` |
 | `src/pso/object/TObjCMMainMenu_8028D9A8.cpp:108` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
@@ -231,7 +232,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1100, `inline_depth` 1004,
 | `src/pso/unk/text_803E2D70.cpp:954` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
 | `src/pso/unk/text_803E2D70.cpp:955` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
 | `src/pso/unk/text_803E2D70.cpp:956` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_80421620.cpp:1257` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
+| `src/pso/unk/text_80421620.cpp:1258` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
 
 ## configure.py per-unit compiler overrides
 
@@ -848,7 +849,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1100, `inline_depth` 1004,
 | `src/pso/misc/TQuestListOnline_80217464.cpp` | fp_contract×1 |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp` | opt_propagation×1 |
 | `src/pso/misc/TQuestVmDownLoadServer_803E5668.cpp` | readonly_strings×1, dont_inline×1, inline_depth×1 |
-| `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | inline_depth×49, dont_inline×46, opt_common_subs×11, opt_propagation×6, opt_lifetimes×3, bool×2, opt_dead_assignments×1 |
+| `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | inline_depth×50, dont_inline×47, opt_common_subs×12, opt_propagation×7, opt_lifetimes×4, bool×2, opt_dead_assignments×1 |
 | `src/pso/misc/TRaderMapCore.cpp` | fp_contract×2, opt_common_subs×1 |
 | `src/pso/misc/TRaderMapCore_801FB2B8.cpp` | fp_contract×1, opt_common_subs×1 |
 | `src/pso/misc/TRegister.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -995,7 +996,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1100, `inline_depth` 1004,
 | `src/pso/network/TProtocol.cpp` | inline_depth×2, auto_inline×2, dont_inline×2, scheduling×2 |
 | `src/pso/network/TProtocol_801DA240.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/network/TTcpSocket.cpp` | readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1 |
-| `src/pso/network/TcpProtocol.cpp` | pool_data×12, opt_propagation×5, opt_common_subs×4, dont_inline×3, inline_depth×2 |
+| `src/pso/network/TcpProtocol.cpp` | pool_data×13, opt_common_subs×9, opt_propagation×8, dont_inline×1, inline_depth×1, optimize_for_size×1, opt_loop_invariants×1, opt_strength_reduction×1, opt_unroll_loops×1 |
 | `src/pso/npc/TObjNpcAHM01.cpp` | readonly_strings×1 |
 | `src/pso/npc/TObjNpcARM00.cpp` | readonly_strings×1 |
 | `src/pso/npc/TObjNpcCloakroomBase.cpp` | readonly_strings×1 |

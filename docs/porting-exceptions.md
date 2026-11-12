@@ -15,7 +15,7 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (including approved native restore exception, 2026-11-11 UTC)
+## Summary (including complete TCP recovery, 2026-11-12 UTC)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
 for this source tree. Assembly is counted as source lines;
@@ -24,10 +24,10 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 87 | 56 |
+| MWCC intrinsics | 89 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,714 | 881 |
-| Per-unit compiler overrides in `configure.py` | 195 | 195 |
+| CodeWarrior pragmas (excluding push/pop) | 5,699 | 883 |
+| Per-unit compiler overrides in `configure.py` | 205 | 205 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -36,6 +36,19 @@ If assembly is approved, a scalar C/C++ equivalent ships next to it (Matt,
 2026-11-04). The asm is guarded for the GameCube/MWCC build (`#ifdef __MWERKS__`)
 and the scalar version is the compiled fallback, so a port builds the C. Approved
 asm always has an entry in this register.
+
+### TCP protocol recovery
+
+`src/pso/network/TcpProtocol.cpp` is source-linked with all 45 functions and its
+168-byte BSS exact. Its scoped optimizer constraints, guarded `__cntlzw` zero
+predicate and MWCC-only unused output-frame homes are recorded in
+[the TCP evidence](evidence/tcp-protocol-unit.md). The homes reproduce measured
+native compiler storage; they are not recovered TCP fields. A port removes the
+homes and optimizer steering and uses the scalar equality fallback. The record
+views retain native 32-bit address/callback and overlapping-layout debt;
+consolidate those providers before claiming portable TCP interfaces. The
+route-send result declaration also retains the documented inherited short/word
+provider discrepancy. This recovery introduces no assembly.
 
 ## 1. Assembly
 
@@ -458,7 +471,7 @@ and the same function body.
 | File | Functions | What | Why | Port should |
 |---|---|---|---|---|
 | `src/pso/network/NetworkDispatcher.cpp` | All 12 dispatcher functions | Four existing pragma lines (`opt_common_subs on` x3, `pool_data off` x1), inherited `-opt nocse`, 32-bit handles and provisional `TLobby`/`TUdpSocket` wrappers; reset status and thread-creation callback/return declarations remain inconsistent across units | Extracts the fork's already-exact dispatcher and its 248-byte BSS so it can link. The follow-up replaces reset/shutdown/handler overlays with the shared state and names both thread handles without changing native objects. The reset callee now explicitly returns `s32`, but the incompatible DHCP caller is retained after a type-correct probe changed its frame and result copy; this is not a completed ABI repair. See [upstream-dispatcher.md](evidence/upstream-dispatcher.md). | Remove compiler-only steering and recover explicit dispatcher/OS contracts with portable handle types, validating callers and callees together. |
-| `src/pso/network/TcpProtocol.cpp` | Extracted TCP range; still unlinked | Inherited `-opt nocse`; 24 moved pragma lines plus explicit `dont_inline off` and `inline_depth(4)` that previously carried into this range from earlier source | Without the ambient settings, timer callbacks `8041A3CC` / `8041A5B4` have different stack frames and `8041D584` no longer inlines its segment-removal helper. Scores are 99.78432%, 99.916664% and 65.69705%; restoring the settings retains all 40 previously exact TCP functions. Existing raw views, local ABI redeclarations and provisional members remain unresolved. | Remove compiler steering; unify TCP layouts and callback/status interfaces. This extraction does not claim the five still-unmatched TCP functions as recovered. |
+| `src/pso/network/TcpProtocol.cpp` | Complete TCP unit; source-linked | Inherited `-opt nocse`; 24 moved pragma lines plus explicit `dont_inline off` and `inline_depth(4)` that previously carried into this range from earlier source | Without the ambient settings, timer callbacks `8041A3CC` / `8041A5B4` have different stack frames and `8041D584` no longer inlines its segment-removal helper. Scores are 99.78432%, 99.916664% and 65.69705%; restoring the settings retains all 40 previously exact TCP functions. Existing raw views, local ABI redeclarations and provisional members remain unresolved. | Remove compiler steering; unify TCP layouts and callback/status interfaces. All 45 functions now match; output also needs scoped loop-pass constraints and scalar workspaces documented in the TCP evidence. |
 
 ### Quest-download cache address and traversal recovery
 
