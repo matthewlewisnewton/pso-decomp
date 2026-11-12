@@ -21,6 +21,12 @@ struct BmlResourceDescriptor;
 struct BmlResource {
     BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 callback, s32 context, void *arena);
     ~BmlResource();
+    void free_if_not_in_arena(void *ptr);
+    void reset();
+    void load_texture_sub(void *filename, s32 index);
+    void set_flag_and_notify();
+    s32 load_bin_motion(void *name, s32 index);
+    s32 load_bin_model(void *name, s32 index);
 
     u32 flags;
     s32 loaded_models;

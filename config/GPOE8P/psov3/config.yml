@@ -6441,7 +6441,7 @@ force_active:
   - free_chara_making__10TObjPlayerFv
   - free_chardata__23TAdSinglePlyChrSelectGCFls
   - free_data__23TAdSinglePlyChrSelectGCFv
-  - free_if_not_owner__6TLobbyFPv
+  - free_if_not_in_arena__11BmlResourceFPv
   - free_item_pmt__Fv
   - free_objects__6TLobbyFv
   - free_parts__13TBoss5GryphonFv
@@ -8819,9 +8819,9 @@ force_active:
   - load_all_floor_event_sets__6TLobbyFv
   - load_and_verify_data
   - load_battle_params__11TBoss6Type2Fv
-  - load_bin_model__6TLobbyFll
+  - load_bin_model__11BmlResourceFPvl
   - load_bin_model_callback__FPv
-  - load_bin_motion__6TLobbyFll
+  - load_bin_motion__11BmlResourceFPvl
   - load_bin_motion_callback__FPv
   - load_chr_select_slot__23TAdSinglePlyChrSelectGCFv
   - load_downloaded_quest__12TQuestListVMFv
@@ -8869,7 +8869,7 @@ force_active:
   - load_texture__12TItemTexLoadFl
   - load_texture_archive__12TItemTexLoadFv
   - load_texture_sequence_frame
-  - load_texture_sub__6TLobbyFPvl
+  - load_texture_sub__11BmlResourceFPvl
   - lobby_buffer_refcount
   - lobby_butterfly_bml_resource
   - lobby_checked_read_ptr_table
@@ -14560,7 +14560,7 @@ force_active:
   - reset_all_tech_slots__10TObjPlayerFv
   - reset_and_invoke__6TLobbyFv
   - reset_and_recreate__14TBoss6PlotFalzFv
-  - reset_battle_state__6TLobbyFv
+  - reset__11BmlResourceFv
   - reset_by_door__18TObjLazerFenceNormFv
   - reset_by_door__19TObjLazerFenceExtraFPv
   - reset_camera_if_fullscreen__6TLobbyFPv
@@ -15453,7 +15453,7 @@ force_active:
   - set_flag__9TItemDropFPvPv
   - set_flag_and_clear_download__6TLobbyFv
   - set_flag_and_notify__10TObjPlayerFv
-  - set_flag_and_notify__6TLobbyFv
+  - set_flag_and_notify__11BmlResourceFv
   - set_flags__13MagOwnerWatchFUl
   - set_flags_and_apply_damage_color__13TUnk_80490470Fv
   - set_flags_and_apply_damage_color__19MaterialOpacityFadeFv
