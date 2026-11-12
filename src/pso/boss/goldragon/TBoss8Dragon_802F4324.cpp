@@ -8,6 +8,6 @@ extern "C" {
 int check_demo_mode__Fv(void*);
 
 void TBoss8Dragon::render_shadows() { if (check_demo_mode__Fv(this) == 0) { draw(); } }
-int TBoss8Dragon__sub_802F4360(void* p) { return ((TObjEneDD *)p)->get_target_info(); }
+int vfunc_105__12TBoss8DragonFv(void* p) { return ((TObjEneDD *)p)->get_target_info(); }
 
 }
