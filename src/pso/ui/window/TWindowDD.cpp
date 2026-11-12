@@ -132,10 +132,13 @@ extern const f32 lbl_805DFC48;
 
 struct Quad_8034055C { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 
+#pragma push
+#pragma opt_propagation off
 void TWindowDD__sub_8034055C(TUnk_804EFBAC *self) {
     E_803403F8 points[8];
     Quad_8034055C q;
     s32 count;
+    s32 result;
     TWindowKeyBoardSoft *ctx;
     s32 sel;
     s32 i;
@@ -154,13 +157,15 @@ void TWindowDD__sub_8034055C(TUnk_804EFBAC *self) {
     ((TWindowDD *)points)->copy_point_table(0);
     TWindowDD__sub_80348A2C(ctx, points);
     TWindowDD__sub_803489B8(ctx, points, 0);
-    count = TWindowDD::get_draw_count((void **)lbl_805D63F0);
+    result = TWindowDD::get_draw_count((void **)lbl_805D63F0);
     if (self->pad_60 == 0) {
         sel = self->pad_68;
     } else {
         sel = -1;
     }
-    for (i = 0; i < 3; i++) {
+    i = 0;
+    count = result;
+    for (; i < 3; i++) {
         TWindowDD__sub_803489B8(ctx, points, i);
         if (i == sel) {
             ((TWindowDD *)points)->copy_point_table(1);
@@ -203,6 +208,7 @@ void TWindowDD__sub_8034055C(TUnk_804EFBAC *self) {
     }
     TWindowSubStatusDisp::get_player();
 }
+#pragma pop
 
 void update_draw__9TWindowDDFPv(void* p) { ((TWindowDD *)p)->initialize_subwindow(); update_fade__11TWindowBaseFv(p); }
 
@@ -344,127 +350,177 @@ extern const f32 lbl_805DFB28;
 extern const f32 lbl_805DFB38;
 extern const f32 lbl_805DFBCC;
 extern Src_80348A9C TWindowDD__data_805434E8[7][8];
+extern const f32 lbl_805DFC50;
+extern const f32 lbl_805DFC54;
+extern const f32 lbl_805DFC58;
+extern const f32 lbl_805DFC5C;
+extern const f32 lbl_805DFC60;
+extern const f32 lbl_805DFC64;
+extern const f32 lbl_805DFC68;
 
 // Scroll bar render (slot 4 of the TWindowDD_WS_ScrollBar table lbl_804EFBE4).
+#pragma push
+#pragma fp_contract on
+#pragma opt_propagation off
+#pragma opt_common_subs off
 void TWindowDD__sub_80340A78(TWindowDD_WS_ScrollBar *self) {
-    TWindowKeyBoardSoft *rect = (TWindowKeyBoardSoft *)TWindowDD::draw_default_entry((s32)self);
+    f32 edge;
+    f32 width_factor;
+    f32 left;
+    f32 half_width_scale;
+    f32 half_width;
+    f32 thumb_v1;
+    f32 center;
+    f32 inner_bottom;
+    f32 horizontal_size;
+    f32 x_origin;
+    f32 right;
+    f32 half_width_source;
+    f32 half_width_unscaled;
+    f32 thumb_v0;
+    f32 inset;
+    f32 track_bottom;
+    f32 item_height;
+    f32 thumb_top;
+    f32 half;
+    f32 horizontal_factor;
+    f32 horizontal_half;
+    f32 half_width_factor;
+    f32 inset_source;
+    f32 thumb_height;
+    f32 cap_gap;
+    f32 cap_v1;
+    f32 cap_v0;
+    f32 cap_end;
+    f32 scaled_half;
+    f32 inner_top;
+    f32 horizontal_scale;
+    f32 cap_size;
+    f32 x_center;
+    f32 track_top;
+    f32 width;
+    f32 depth;
+    f32 scale;
+    f32 top;
+    f32 bottom;
     E_803403F8 verts[8];
     f32 quad[8];
-    s32 tex;
-    s32 i;
-    Src_80348A9C *uv;
-    E_803403F8 *v;
-    f32 z;
-    f32 s;
-    f32 half;
-    f32 t;
-    f32 c;
-    f32 lo;
-    f32 hi;
-    f32 d;
-    f32 x0;
-    f32 step;
-    f32 top;
-    f32 bot;
-    f32 range;
-    f32 len;
-
+    TWindowKeyBoardSoft *rect = (TWindowKeyBoardSoft *)TWindowDD::draw_default_entry((s32)self);
     self->calc_inner_rect((u8 *)rect);
-    tex = TWindowDD::get_draw_count((void **)lbl_805D63F0);
-    ((TWindowDD *)verts)->reset_entries(TWindowDD__sub_80348AD4(self->pad_54, 0.0f), -1);
-    uv = TWindowDD__data_805434E8[6];
-    s = rect->scale[1];
-    v = verts;
-    for (i = 0; i < 8; i++) {
+    s32 tex = TWindowDD::get_draw_count((void **)lbl_805D63F0);
+    depth = TWindowDD__sub_80348AD4(self->pad_54, lbl_805DFC50);
+    ((TWindowDD *)verts)->reset_entries(depth, -1);
+    Src_80348A9C *uv = TWindowDD__data_805434E8[6];
+    E_803403F8 *v = verts;
+    scale = rect->scale[1];
+    for (s32 i = 0; i < 8; ++i) {
         v->d = uv->x;
         v->e = uv->y;
-        uv++;
-        v++;
+        ++uv;
+        ++v;
     }
-
-    half = 0.5f * self->pad_4C;
-    t = half * s;
-    c = self->pad_44 + half;
-    lo = c - t;
-    hi = c + t;
-    if (t < lbl_805DFB28) {
-        d = (hi - lo) / 3.0f;
+    half = lbl_805DFC54 * self->pad_4C;
+    center = self->pad_44 + half;
+    scaled_half = half * scale;
+    top = center - scaled_half;
+    bottom = center + scaled_half;
+    if (scaled_half < lbl_805DFB28) {
+        edge = (bottom - top) / lbl_805DFC58;
     } else {
-        d = 16.0f;
+        edge = lbl_805DFC5C;
     }
-    verts[0].b = verts[1].b = lo;
-    verts[2].b = verts[3].b = lo + d;
-    verts[4].b = verts[5].b = hi - d;
-    verts[6].b = verts[7].b = hi;
-
-    half = 0.5f * self->pad_48;
-    c = self->pad_40 + half;
-    step = lbl_805DFB24 * rect->scale[0];
-    t = half * rect->scale[0];
-    x0 = c - t;
+    inner_top = top + edge;
+    verts[1].b = top;
+    inner_bottom = bottom - edge;
+    horizontal_factor = lbl_805DFC54;
+    verts[0].b = top;
+    verts[3].b = inner_top;
+    width_factor = lbl_805DFB24;
+    verts[2].b = inner_top;
+    verts[5].b = inner_bottom;
+    verts[4].b = inner_bottom;
+    verts[7].b = bottom;
+    verts[6].b = bottom;
+    horizontal_size = self->pad_48;
+    horizontal_scale = rect->scale[0];
+    horizontal_half = horizontal_factor * horizontal_size;
+    x_origin = self->pad_40;
+    width = width_factor * horizontal_scale;
+    x_center = x_origin + horizontal_half;
+    left = horizontal_half * horizontal_scale;
+    left = x_center - left;
+    right = left + width;
     v = verts;
-    for (i = 0; i < 4; i++) {
-        v[0].a = x0;
-        v[1].a = x0 + step;
-        v += 2;
+    for (s32 i = 0; i < 4; ++i, v += 2) {
+        v[0].a = left;
+        v[1].a = right;
     }
-    half = 0.5f * lbl_805DFB38 * rect->scale[0];
-    quad[0] = c - half;
-    quad[2] = c + half;
+    half_width_factor = lbl_805DFC54;
+    half_width_source = lbl_805DFB38;
+    half_width_scale = rect->scale[0];
+    half_width_unscaled = half_width_factor * half_width_source;
+    half_width = half_width_unscaled * half_width_scale;
+    quad[0] = x_center - half_width;
+    quad[2] = x_center + half_width;
     ((TWindowDD *)verts)->draw_transformed_primitive((void *)8, (void *)tex, (void *)1);
-
-    z = TWindowDD__sub_80348AD4(self->pad_54, 0.1f);
+    depth = TWindowDD__sub_80348AD4(self->pad_54, lbl_805DFC60);
     set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     begin_screen_draw(1);
     set_draw_texture_and_color(0, -1);
-
     quad[5] = lbl_805D6DCC;
     quad[7] = lbl_805D6DD0;
     quad[4] = lbl_805D6DD4;
     quad[6] = lbl_805D6DD8;
-    quad[1] = lbl_805DFBCC * s + lo;
-    quad[3] = s * (lbl_805DFBCC + lbl_805DFB38) + lo;
-    draw_textured_quad_at_depth(quad, z);
-
+    quad[1] = lbl_805DFBCC * scale + top;
+    quad[3] = scale * (lbl_805DFBCC + lbl_805DFB38) + top;
+    draw_textured_quad_at_depth(quad, depth);
     quad[4] = lbl_805D6DDC;
     quad[6] = lbl_805D6DE0;
-    quad[1] = hi - s * (lbl_805DFBCC + lbl_805DFB38);
-    quad[3] = hi - lbl_805DFBCC * s;
-    draw_textured_quad_at_depth(quad, z);
-
+    quad[1] = bottom - scale * (lbl_805DFBCC + lbl_805DFB38);
+    quad[3] = bottom - lbl_805DFBCC * scale;
+    draw_textured_quad_at_depth(quad, depth);
     quad[4] = lbl_805D6DE4;
     quad[6] = lbl_805D6DE8;
     quad[5] = lbl_805D6DEC;
     quad[7] = lbl_805D6DF0;
-    quad[1] = lbl_805D6DC0 * s + lo;
-    quad[3] = s * (14.0f + lbl_805D6DC0) + lo;
-    draw_textured_quad_at_depth(quad, z);
-
-    quad[5] = lbl_805D6DF4;
-    quad[7] = lbl_805D6DF8;
-    quad[1] = hi - s * (14.0f + lbl_805D6DC0);
-    quad[3] = hi - lbl_805D6DC0 * s;
-    draw_textured_quad_at_depth(quad, z);
-
-    top = lo + lbl_805D6DC4 * s;
-    bot = hi - lbl_805D6DC4 * s;
-    quad[5] = lbl_805D6DFC;
-    quad[7] = lbl_805D6E00;
+    quad[1] = lbl_805D6DC0 * scale + top;
+    quad[3] = scale * (lbl_805DFC64 + lbl_805D6DC0) + top;
+    draw_textured_quad_at_depth(quad, depth);
+    cap_v0 = lbl_805D6DF4;
+    cap_v1 = lbl_805D6DF8;
+    quad[5] = cap_v0;
+    quad[7] = cap_v1;
+    cap_size = lbl_805D6DC0;
+    cap_gap = lbl_805DFC64;
+    cap_end = cap_gap + cap_size;
+    quad[1] = bottom - scale * cap_end;
+    quad[3] = bottom - cap_size * scale;
+    draw_textured_quad_at_depth(quad, depth);
+    thumb_v0 = lbl_805D6DFC;
+    thumb_v1 = lbl_805D6E00;
+    inset_source = lbl_805D6DC4;
+    quad[5] = thumb_v0;
+    inset = inset_source * scale;
+    quad[7] = thumb_v1;
+    track_top = top + inset;
+    track_bottom = bottom - inset;
     if (self->pad_64 <= self->pad_68) {
-        quad[1] = top;
-        quad[3] = bot;
+        quad[1] = track_top;
+        quad[3] = track_bottom;
     } else {
-        range = self->pad_60 * (bot - top);
-        len = range * self->pad_68;
-        if (len < 2.0f) {
-            len = 2.0f;
+        item_height = self->pad_60 * (track_bottom - track_top);
+        thumb_height = item_height * self->pad_68;
+        if (thumb_height < lbl_805DFC68) {
+            thumb_height = lbl_805DFC68;
         }
-        quad[1] = range * self->pad_6C + top;
-        quad[3] = quad[1] + len;
+        thumb_top = item_height * self->pad_6C + track_top;
+        quad[1] = thumb_top;
+        quad[3] = thumb_top + thumb_height;
     }
-    draw_textured_quad_at_depth(quad, z);
+    draw_textured_quad_at_depth(quad, depth);
     TWindowSubStatusDisp::get_player();
 }
+#pragma pop
 
 void TWindowDD::init() { initialize_subwindow(); update_fade__11TWindowBaseFv(this); }
 
