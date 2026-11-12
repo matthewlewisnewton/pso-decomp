@@ -672,10 +672,7 @@ void TBoss7DeRolLeC::try_spawn_pattern_crawfish(s32 variant, s32 index) {
 
         positions = locations[variant];
         angles.yaw = yaws[index];
-        // Keep lookup and call-argument lifetimes separate for native scheduling.
-        s16 selected_slot = TObjFish__sub_802E7CC4(this);
-        s16 slot = selected_slot;
-        this->spawn_pattern_crawfish(slot, &positions[index], &angles, alternate);
+        this->spawn_pattern_crawfish(TObjFish__sub_802E7CC4(this), &positions[index], &angles, alternate);
     }
 }
 
