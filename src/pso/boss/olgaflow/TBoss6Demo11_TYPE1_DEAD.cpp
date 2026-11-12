@@ -28,7 +28,7 @@ struct FishSpawnEntry {
     s32 point;
 };
 
-// One node of the list create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec reads (node -1 ends it).
+// One node of the list ModelNodePositionCapture::create reads (node -1 ends it).
 struct EffectNodeDesc {
     s32 node;
     Vec offset;

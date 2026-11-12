@@ -77,12 +77,12 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 m_508;
     u8 unk_50C[0x6C];
     // Model node positions, filled through the node callback list at 0x654 (TBoss6Type1__ct passes
-    // this array to create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec); node 7 is where the boss's sounds play from.
+    // this array to ModelNodePositionCapture::create); node 7 is where the boss's sounds play from.
     Vec node_points[8];
     Boss6EffectPoint trail_points[3];
     u8 unknown_5FC[0x3C];
     Boss6EffectPoint effect_points[2];
-    // create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec lists, one per model; render passes each to
+    // ModelNodePositionCapture::create lists, one per model; render passes each to
     // set_draw_callback_list before it draws that model.
     void *draw_callback_lists[2];
     u8 scroll_strips_u[0x14]; // scroll_strips_uv(8, 0) every frame

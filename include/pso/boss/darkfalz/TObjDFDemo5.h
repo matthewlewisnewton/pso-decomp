@@ -8,7 +8,7 @@ class TParticleCtrl;
 struct TObjFish;
 struct AnimationMotion;
 
-// One entry of a TObjFish node table (create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec walks it up to
+// One entry of a TObjFish node table (ModelNodePositionCapture::create walks it up to
 // the node -1 and keeps one Vec per entry in the array it is given).
 struct TObjFishNodeEntry {
     s32 node;

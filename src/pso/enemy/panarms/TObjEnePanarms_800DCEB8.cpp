@@ -159,7 +159,7 @@ static PanarmsState lbl_8049515C[14] = {
     { &TObjEnePanarms::enter_rejoin, &TObjEnePanarms::update_state_effect },
     { &TObjEnePanarms::enter_down_state, &TObjEnePanarms::update_spin },
 };
-/* Model nodes the constructor hands to create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec. */
+/* Model nodes the constructor hands to ModelNodePositionCapture::create. */
 TObjFishNodeEntry panarms_model_node_desc[6] = {
     { 0x35 }, { 0x22 }, { 0x38 }, { 0x46 }, { 0x3b }, { -1 },
 };
