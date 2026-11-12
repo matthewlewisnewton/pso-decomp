@@ -45,3 +45,11 @@
   `volatile s32 frame_pad[2]` that gives the original's 0x30 frame (the fork reaches the frame another way).
   803EC284: `saved_mode` copy with `mode` reused as the group count, and a depth-2 inline region (next group / count /
   advance) as in the fork.
+
+## Overseer: 803EA1A8 match withdrawn
+
+The 803EA1A8 match used an unused `volatile s32 frame_pad[2]` plus three optimisation
+pragmas to reproduce the 0x30 frame. The fork matches the same function with no padding
+(`git show origin/main:src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp`, the insertion loop is
+written out instead of calling `merge_sorted_nodes`). The function is back to its earlier
+form (99.45%) and is queued for a port of the fork's body. 803EC284 stays matched.
