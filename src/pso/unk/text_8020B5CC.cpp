@@ -20,11 +20,14 @@ struct Tbl_8020B970 { s32 count; s32 count2; u8 pad8[8]; Dst_8020B970 *list; Dst
 struct Slot_8020B970 { void *entry; void *entry2; };
 
 // Set flags of every floor's object and enemy sets, packed for the network (serialize_area_set_flags).
-struct AreaSetFlags_8020B5CC {
+struct AreaSetFlagsHeader_8020B5CC {
     u32 header_size;
     s32 object_count;
     u32 enemy_offset;
     s32 enemy_count;
+};
+
+struct AreaSetFlags_8020B5CC : AreaSetFlagsHeader_8020B5CC {
     s16 flags[1];
 };
 
@@ -49,76 +52,82 @@ extern Src_8020B7C4 *TLobby__data_805D6114;
 s32 load_floor_enemy_group_entries__6TLobbyFiPvUi(s32 idx, Src_8020B970 *src, u32 size);
 s32 init_quest_floor_enemies(s32 idx, Src_8020B7C4 *src, u32 size);
 
-int TLobby__sub_8020B5CC(AreaSetFlags_8020B5CC *out) {
-    Dst_8020B970 *e;
-    s32 n;
-    s16 *p;
-    s32 i;
-    s32 count;
-    s32 j;
-    Src_8020B970 *s;
-    Src_8020B7C4 *s2;
-
-    out->header_size = 0x10;
-    p = out->flags;
-    count = 0;
-    for (i = 0; i < 18; i++) {
-        n = TLobby__floor_enemy_group_table[i].count;
-        if (n > 0) {
-            e = TLobby__floor_enemy_group_table[i].list;
-            if (i == get_current_floor()) {
-                s = TLobby__data_805D610C;
-                if (s != NULL) {
-                    for (j = 0; j < n; j++) {
-                        s16 flags = s->flags & ~2;
-                        bswap_16((u16 *)&flags);
-                        s++;
-                        count++;
-                        *p++ = flags;
+int TLobby__sub_8020B5CC(AreaSetFlags_8020B5CC *buf) {
+    // The enemy total is named before the header copy and zeroed after the
+    // object column. The copy is what stays live, so the table address is
+    // scheduled above the save and the cursor and the object-offset store
+    // still use the incoming pointer. Object rows bind the row pointer
+    // before the count snapshot, as the 0x8020B47C importer does.
+    s32 total2;
+    s32 total1 = 0;
+    s16 *out = buf->flags;
+    buf->header_size = 0x10;
+    AreaSetFlagsHeader_8020B5CC *hdr = buf;
+    Tbl_8020B970 *t = TLobby__floor_enemy_group_table;
+    for (s32 i = 0; i < 18; i++) {
+        if (t[i].count > 0) {
+            Dst_8020B970 *l = t[i].list;
+            s32 count = t[i].count;
+            if (get_current_floor() == i) {
+                // The raw cursor is copied before the null branch (mr above beq).
+                Src_8020B970 *raw = TLobby__data_805D610C;
+                if (raw != NULL) {
+                    s32 j;
+                    for (j = 0; j < count; j++) {
+                        s16 v = raw->flags & ~2;
+                        bswap_16((u16 *)&v);
+                        *out++ = v;
+                        raw++;
+                        total1++;
                     }
                 }
             } else {
-                for (j = 0; j < n; j++) {
-                    s16 flags = e->flags & ~2;
-                    bswap_16((u16 *)&flags);
-                    e++;
-                    count++;
-                    *p++ = flags;
+                s32 j;
+                for (j = 0; j < count; j++) {
+                    s16 v = l->flags & ~2;
+                    bswap_16((u16 *)&v);
+                    *out++ = v;
+                    l++;
+                    total1++;
                 }
             }
         }
     }
-    out->object_count = count;
-    out->enemy_offset = out->object_count * 2 + 0x10;
-    count = 0;
-    for (i = 0; i < 18; i++) {
-        n = TLobby__floor_enemy_group_table[i].count2;
-        if (n > 0) {
-            e = TLobby__floor_enemy_group_table[i].list2;
-            if (i == get_current_floor()) {
-                s2 = TLobby__data_805D6114;
-                if (s2 != NULL) {
-                    for (j = 0; j < n; j++) {
-                        s16 flags = s2->flags & ~2;
-                        bswap_16((u16 *)&flags);
-                        s2++;
-                        count++;
-                        *p++ = flags;
+    total2 = 0;
+    hdr->object_count = total1;
+    hdr->enemy_offset = 0x10 + hdr->object_count * 2;
+    s16 *out2 = out;
+    s32 i2 = 0;
+    for (; i2 < 18; i2++) {
+        if (TLobby__floor_enemy_group_table[i2].count2 > 0) {
+            Dst_8020B970 *l2 = TLobby__floor_enemy_group_table[i2].list2;
+            s32 count2 = TLobby__floor_enemy_group_table[i2].count2;
+            if (get_current_floor() == i2) {
+                Src_8020B7C4 *raw2 = TLobby__data_805D6114;
+                if (raw2 != NULL) {
+                    s32 k;
+                    for (k = 0; k < count2; k++) {
+                        s16 v2 = raw2->flags & ~2;
+                        bswap_16((u16 *)&v2);
+                        *out2++ = v2;
+                        raw2++;
+                        total2++;
                     }
                 }
             } else {
-                for (j = 0; j < n; j++) {
-                    s16 flags = e->flags & ~2;
-                    bswap_16((u16 *)&flags);
-                    e++;
-                    count++;
-                    *p++ = flags;
+                s32 k;
+                for (k = 0; k < count2; k++) {
+                    s16 v2 = l2->flags & ~2;
+                    bswap_16((u16 *)&v2);
+                    *out2++ = v2;
+                    l2++;
+                    total2++;
                 }
             }
         }
     }
-    out->enemy_count = count;
-    ((TLobby *)out)->bswap_4_words();
+    hdr->enemy_count = total2;
+    ((TLobby *)hdr)->bswap_4_words();
     return TLobby__sub_8020BF88();
 }
 
