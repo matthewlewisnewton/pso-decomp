@@ -1,5 +1,7 @@
 #include "types.h"
 #include "pso/misc/TWindowKeyBoardSoft_8024E68C.h"
+#include "pso/misc/WindowViewport.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/memory.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TCameraCtrl.h"
@@ -13,18 +15,6 @@ struct RecoveredFields_8024E754_arg0
 };
 
 struct Vec2_8024EC34 { f32 x; f32 y; };
-
-struct Win_8024EA50 {
-    f32 x, y;
-    f32 w, h;
-    f32 x10, y14, x18, y1c;
-    Vec2_8024EC34 c;
-    f32 sx, sy;
-    s32 f30;
-    s32 f34;
-    f32 depth;
-    f32 x3c, y40, x44, y48;
-};
 
 extern u32 soft_keyboard_instance;
 extern "C" {
@@ -47,7 +37,7 @@ extern const f32 lbl_805DCC98;
 extern const f32 lbl_805DCC9C;
 extern const f32 lbl_805DCCA0;
 extern const f32 lbl_805DCCA4;
-u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
+u32 init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
 
 typedef struct RecoveredFields_8024E754_arg0 RecoveredFields_8024E754_arg0;
 void TWindowDrawContext::scale_point_about_pivot(f32 *q) {
@@ -166,7 +156,7 @@ s32 TWindowKeyBoardSoft::try_open(TWindowDrawContext *context, f32 *quad) {
     return 1;
 }
 
-u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth) {
+u32 init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth) {
     f32 mx;
     f32 my;
     s32 cam;
@@ -180,52 +170,51 @@ u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, 
     }
     win->w = size[0];
     win->h = size[1];
-    win->sx = scale[0];
-    win->sy = scale[1];
+    win->scale[0] = scale[0];
+    win->scale[1] = scale[1];
     if (flags & 0x4000) {
-        win->c.x = lbl_805DCCA0 * win->w + pos[0];
-        win->c.y = lbl_805DCCA0 * win->h + pos[1];
+        win->pivot[0] = lbl_805DCCA0 * win->w + pos[0];
+        win->pivot[1] = lbl_805DCCA0 * win->h + pos[1];
     } else {
         t = lbl_805DCCA0 * win->w;
-        win->c.x = t * win->sx + pos[0];
+        win->pivot[0] = t * win->scale[0] + pos[0];
         t = lbl_805DCCA0 * win->h;
-        win->c.y = t * win->sy + pos[1];
+        win->pivot[1] = t * win->scale[1] + pos[1];
     }
-    win->f30 = 0;
-    win->f34 = -1;
+    win->open_tick = 0;
+    win->color = (u32)-1;
     win->depth = depth;
     if (!(flags & 0x1000) && is_split_screen() != 0) {
         cam = TCameraCtrl::get_camera_no();
         if (cam != 100) {
-            ((TWindowKeyBoardSoft *)(&win->c))->adjust_pos_for_split_screen(cam);
-            win->sx = win->sx / TCameraCtrl::get_view_scale();
-            win->sy = win->sy / TCameraCtrl::get_fov();
+            adjust_window_position_for_split_screen(win->pivot, cam);
+            win->scale[0] = win->scale[0] / TCameraCtrl::get_view_scale();
+            win->scale[1] = win->scale[1] / TCameraCtrl::get_fov();
         }
     }
-    win->x = win->c.x - lbl_805DCCA0 * win->w;
-    win->y = win->c.y - lbl_805DCCA0 * win->h;
-    win->x10 = win->x + mx;
-    win->y14 = win->y + my;
-    win->x18 = win->w - lbl_805DCCA4 * mx;
-    win->y1c = win->h - lbl_805DCCA4 * my;
-    win->x3c = win->x + mx;
-    win->y40 = win->y + my;
-    win->x44 = (win->x + win->w) - mx;
-    win->y48 = (win->y + win->h) - my;
+    win->x = win->pivot[0] - lbl_805DCCA0 * win->w;
+    win->y = win->pivot[1] - lbl_805DCCA0 * win->h;
+    win->inner_x = win->x + mx;
+    win->inner_y = win->y + my;
+    win->inner_w = win->w - lbl_805DCCA4 * mx;
+    win->inner_h = win->h - lbl_805DCCA4 * my;
+    win->clip_left = win->x + mx;
+    win->clip_top = win->y + my;
+    win->clip_right = (win->x + win->w) - mx;
+    win->clip_bottom = (win->y + win->h) - my;
     return soft_keyboard_instance;
 }
 
-void TWindowKeyBoardSoft::adjust_pos_for_split_screen(s32 i) {
-    Vec2_8024EC34 *arg0 = (Vec2_8024EC34 *)this;
+void adjust_window_position_for_split_screen(f32 *position, s32 i) {
     Vec2_8024EC34 *p;
     if (is_split_screen() == 0 || i == 0x64) {
         return;
     }
     p = TWindowKeyBoardSoft::get_viewport_offset(i);
-    arg0->x = arg0->x + (p->x + TCameraCtrl__sub_80068A04(i));
-    arg0->y = arg0->y + (p->y + TCameraCtrl::get_split_offset(i));
-    arg0->x = arg0->x / TCameraCtrl::get_view_scale();
-    arg0->y = arg0->y / TCameraCtrl::get_fov();
+    position[0] = position[0] + (p->x + TCameraCtrl__sub_80068A04(i));
+    position[1] = position[1] + (p->y + TCameraCtrl::get_split_offset(i));
+    position[0] = position[0] / TCameraCtrl::get_view_scale();
+    position[1] = position[1] / TCameraCtrl::get_fov();
 }
 
 Vec2_8024EC34 *TWindowKeyBoardSoft::get_viewport_offset(int i) {
@@ -255,7 +244,7 @@ TWindowDrawContext *TWindowDrawContext::open_singleton(f32 *pos, f32 *size, f32 
     if ((u32) soft_keyboard_instance == 0U) {
         return 0;
     }
-    init_text_window_layout((Win_8024EA50 *)(soft_keyboard_instance), pos, size, scale, (u32)flags, depth);
+    init_text_window_layout((TWindowDrawContext *)(soft_keyboard_instance), pos, size, scale, (u32)flags, depth);
     return (TWindowDrawContext *)soft_keyboard_instance;
 }
 
