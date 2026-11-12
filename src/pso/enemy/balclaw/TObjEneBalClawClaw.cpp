@@ -119,7 +119,7 @@ void calc_velocity_toward_destination(void *self, Vec_80090850 pos, Vec_80090850
 void update_move_to_target__18TObjEneBalClawClawFPv(Claw_80090850 *self);
 int update_if_active__15TObjEnemyCustomFl(void*, int);
 void move_along_ground_avoiding_walls__15TObjEnemyCustomF3Vecff(void *, Vec_80090504, void *, f32, f32);
-s32 update_collisions__10TObjPlayerFv(void *);
+s32 update_collisions__14TObjCollidableFv(void *);
 
 typedef char RecoveredFields_8009060C_arg0_37C_offset[offsetof(RecoveredFields_8009060C_arg0, field_37C) == 0x37C ? 1 : -1];
 typedef char RecoveredFields_8009060C_arg0_388_offset[offsetof(RecoveredFields_8009060C_arg0, field_388) == 0x388 ? 1 : -1];
@@ -441,7 +441,7 @@ extern void *tl_04;
 }
 
 const char *balclaw_claw_class_name = "TObjEneBalClawClaw";
-#define update_collisions__10TObjPlayerFv (*(s32 (*)(void *))&update_collisions__10TObjPlayerFv)
+#define update_collisions__14TObjCollidableFv (*(s32 (*)(void *))&update_collisions__14TObjCollidableFv)
 #define update_enemy_wander_move (*(s32 (*)(void *, void *, int, void *, f32))&update_enemy_wander_move)
 #define update_if_active__15TObjEnemyCustomFl (*(s32 (*)(void *, int))&update_if_active__15TObjEnemyCustomFl)
 #define clear_attack_flag__14TObjEneBalClawFv (*(s32 (*)(void *))&clear_attack_flag__14TObjEneBalClawFv)
@@ -754,7 +754,7 @@ void update_chase__18TObjEneBalClawClawFPv(Claw_80091354 *self) {
         ((TObjEnemy *)self)->turn_toward_direction(self->info->f8, (Vec *)((u8 *)self + 0x308));
         ((TObjMotion *)self)->advance_animation();
         apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
-        update_collisions__10TObjPlayerFv(self);
+        update_collisions__14TObjCollidableFv(self);
         break;
     }
     case -1:
@@ -782,7 +782,7 @@ void TObjEneBalClawClaw__sub_80091200(Claw_80091200 *self) {
         self->vel.x *= (0.9f);
         self->vel.z *= (0.9f);
         apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
-        update_collisions__10TObjPlayerFv(self);
+        update_collisions__14TObjCollidableFv(self);
         play_persistent_sound(0x4003B235, (s32)self, (u32)((u8 *)self + 0x38), 0, 0);
         if (self->fB4 != 8) {
             self->f30 &= ~0x200;
@@ -876,7 +876,7 @@ void TObjEneBalClawClaw__sub_80090ECC(Claw_80090ECC *self) {
     }
     ((TObjMotion *)self)->advance_animation();
     apply_actor_gravity((TObjEnemy *)((u8 *)self), (s32 *)(0), (0.0f));
-    update_collisions__10TObjPlayerFv(self);
+    update_collisions__14TObjCollidableFv(self);
 }
 #undef RESET_80090ECC
 #undef SEEK_80090ECC
@@ -912,7 +912,7 @@ void action__18TObjEneBalClawClawFPv(u8 *ene_bal_claw_claw) {
         break;
     }
 }
-#undef update_collisions__10TObjPlayerFv
+#undef update_collisions__14TObjCollidableFv
 #undef update_enemy_wander_move
 #undef update_if_active__15TObjEnemyCustomFl
 #undef clear_attack_flag__14TObjEneBalClawFv
@@ -1157,7 +1157,7 @@ void TObjEneBalClawClaw::update_chase_state() {
         turn_toward_direction(*(s32 *)((s8 *)this->movementParameters + 8), (Vec *)unk_308);
         advance_animation();
         apply_actor_gravity((TObjEnemy *)this, (s32 *)(0), (0.0f));
-        update_collisions__10TObjPlayerFv(this);
+        update_collisions__14TObjCollidableFv(this);
         break;
     }
 }

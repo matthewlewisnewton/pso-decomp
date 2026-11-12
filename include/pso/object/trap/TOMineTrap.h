@@ -4,9 +4,12 @@
 #include "types.h"
 #include "pso/object/trap/TOMine.h"
 
+struct TObjPlayer;
+class TObjChara;
+
 struct TOMineTrap : public TOMine {
     // owner: the actor that placed it; kind 0-3 picks the attack; slot is its index among the owner's traps.
-    TOMineTrap(TObjBase *owner, s16 kind, s16 slot);
+    TOMineTrap(TObjPlayer *owner, s16 kind, s16 slot);
     virtual ~TOMineTrap();
     virtual void spawn_disp_objects();
     virtual void vfunc_86();
@@ -39,7 +42,7 @@ struct TOMineTrap : public TOMine {
     void sync_position();
     void send_state_packet(u16 idx);
     int update_trap_sub();
-    static s32 show_owner_message(s32 arg0, u32 arg1);
+    static s32 show_owner_message(TOMineTrap *trap, TObjChara *actor);
 };
 
 typedef char TOMineTrap_size[sizeof(TOMineTrap) == 0x384 ? 1 : -1];

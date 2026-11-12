@@ -64,11 +64,11 @@ void TOMineTrap::spawn_disp_objects() {
 }
 
 extern "C" {
-s32 TOMineTrap::show_owner_message(s32 arg0, u32 arg1) {
+s32 TOMineTrap::show_owner_message(TOMineTrap *trap, TObjChara *actor) {
     char *name;
     VO_8016F320 *p;
-    if ((arg1 != 0U) && (is_technique_ready__8TTecCtrlFv() != 0)) {
-        p = get_player_by_client_id(get_trap_type__10TOMineTrapFv(arg0));
+    if (((u32)actor != 0U) && (is_technique_ready__8TTecCtrlFv() != 0)) {
+        p = get_player_by_client_id(get_trap_type__10TOMineTrapFv((s32)trap));
         if (p != NULL) {
             name = p->m10();
             if (name != NULL) {

@@ -261,7 +261,7 @@ void TOMineTrap::run_task() {
                         record_attack_source(target, get_trap_type());
                     }
                     if (m_380 != 1) {
-                        m_380 = show_owner_message((s32)this, (u32)p);
+                        m_380 = show_owner_message((TOMineTrap *)(s32)this, (TObjChara *)(u32)p);
                     }
                 }
             } else if (id < 0x4000) {
@@ -323,7 +323,7 @@ s32 create_placed_trap__10TOMineTrapFUiss(u32 arg0, s16 arg1, s16 arg2) {
     if (is_boss_area() == 1 || is_current_area_item_enabled() == 0) {
         return 0;
     }
-    obj = new TOMineTrap((TObjBase *)arg0, arg1, arg2);
+    obj = new TOMineTrap((TObjPlayer *)arg0, arg1, arg2);
     return (s32)obj;
 }
 
@@ -346,7 +346,7 @@ void *__dt__10TOMineTrapFv(void *arg0, s16 arg1) {
 
 #pragma push
 #pragma fp_contract on
-TOMineTrap::TOMineTrap(TObjBase *owner, s16 kind, s16 slot) : TOMine(tl_05) {
+TOMineTrap::TOMineTrap(TObjPlayer *owner, s16 kind, s16 slot) : TOMine(tl_05) {
     TObjPlayer *player;
     s32 floor;
     f32 area_scale;

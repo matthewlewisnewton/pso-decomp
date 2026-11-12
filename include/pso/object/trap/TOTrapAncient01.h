@@ -31,7 +31,7 @@ struct TOTrapAncient01 : public TOTrap {
 typedef char TOTrapAncient01_size[sizeof(TOTrapAncient01) == 0x3C8 ? 1 : -1];
 
 extern "C" {
-void *TOTrapAncient01__ct(void *arg0, void *arg1, void *arg2);
+void *__ct__15TOTrapAncient01FP7TObjectPv(void *arg0, void *arg1, void *arg2);
 }
 
 #endif
