@@ -6,11 +6,12 @@
 
 class TChCrTagInformationStr : public TObject {
 public:
+    TChCrTagInformationStr(TObject *parent, s32 index);
     virtual ~TChCrTagInformationStr();
     virtual void render();
     virtual void run_task();
 public:
-    static void *create(TObject *arg0, s32 arg1);
+    static TChCrTagInformationStr *create(TObject *parent, s32 index);
 
     s32 state;
     // Compared with char_creation_tag_info_selected_index; picks the text block.
@@ -21,10 +22,5 @@ public:
     f32 alpha;
     s32 frame;
 };
-
-extern "C" {
-void *__ct__22TChCrTagInformationStrFP7TObjectl(void *arg0, s32 arg1, s32 arg2);
-void run_task__22TChCrTagInformationStrFv(u8 *arg0);
-}
 
 #endif

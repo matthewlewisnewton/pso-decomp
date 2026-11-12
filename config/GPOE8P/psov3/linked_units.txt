@@ -714,6 +714,7 @@ pso/ui/frontend/TAdPlyChrSelPlateGC.cpp
 pso/ui/frontend/TAdTimeSetGC.cpp
 pso/ui/charcreate/TChCrCharSelect.cpp
 pso/ui/charcreate/TChCrEffWall.cpp
+pso/ui/charcreate/TChCrTagInformationStr.cpp
 pso/ui/charcreate/TChCrLoadGmNjReq.cpp
 pso/object/quest/TObjTagChallenge.cpp
 pso/quest/TQuestBgmCtrl.cpp
@@ -1305,6 +1306,7 @@ pso/quest/TQuestVmDownLoadServer_80080788.cpp
 pso/quest/TQuestVmDownLoadServer_800F9CE4.cpp
 pso/quest/TQuestVmDownLoadServer_801F9010.cpp
 pso/quest/TQuestVmDownLoadServer_803E5668.cpp
+pso/ui/hud/TRaderMapCore.cpp
 pso/ui/hud/TRaderMapCore_801A6CEC.cpp
 pso/ui/hud/TRaderMapCore_801F3710.cpp
 pso/ui/hud/TRaderMapCore_801FB2B8.cpp
@@ -1581,6 +1583,7 @@ pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp
 pso/ui/window/TWindowShortListCtrl_80277D3C.cpp
 pso/ui/window/TWindowSimpleStatus.cpp
 pso/ui/window/TWindowSnapShot.cpp
+pso/ui/window/TWindowSnapShot_802A5B2C.cpp
 pso/ui/window/TWindowSoundBalance.cpp
 pso/ui/window/TWindowStatus.cpp
 pso/ui/window/TWindowSubAreaMap.cpp
@@ -2174,6 +2177,7 @@ pso/ui/frontend/TAdChrSelSlotGC.cpp
 pso/ui/frontend/TAdDialingGC.cpp
 pso/ui/frontend/TAdDialingGC_801A4C90.cpp
 pso/ui/frontend/TAdDialingGC_80328210.cpp
+pso/ui/frontend/TAdDialingGC_80328B20.cpp
 pso/ui/frontend/TAdDialingGC_80328E50.cpp
 pso/ui/frontend/TAdDialingGC_80328E90.cpp
 pso/ui/frontend/TAdDialingMessageWindow.cpp
@@ -2362,6 +2366,7 @@ pso/unk/text_80074C20.cpp
 pso/unk/text_80074C70.cpp
 pso/unk/text_80076BC4.cpp
 pso/unk/text_80076E84.cpp
+pso/unk/text_8007ECF0.cpp
 pso/unk/text_800779A0.cpp
 pso/unk/text_80077A70.cpp
 pso/unk/text_80077AA4.cpp
@@ -2875,3 +2880,4 @@ pso/unk/text_8020B47C.cpp
 pso/unk/text_803C5AA0.cpp
 pso/ui/chat/TWindowSubSymbolChatParts.cpp
 pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp
+pso/ui/frontend/TAdPlyChrSelPlateGC_802C4CA0.cpp
