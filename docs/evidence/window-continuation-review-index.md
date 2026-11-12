@@ -8,6 +8,12 @@ The initial two-commit continuation keeps the coupled implementation/configurati
 atomic, then restores its evidence and attribution. It is not a claim of 100%
 completion or portable recovery of every historical ABI boundary.
 
+## Soft native destruction checkpoint
+
+See [Soft native destruction/table ownership](window-soft-native-destruction.md).
+This supersedes only the Soft raw deleting-wrapper/table ownership hold; broader
+borrowed-lifetime and window-family holds remain.
+
 ## Initial split preservation and review order
 
 Original PR #268 is preserved at `2b99de553e82eff0ab0bb70263c943bb68e23fb4`,

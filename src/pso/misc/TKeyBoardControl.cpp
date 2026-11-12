@@ -1011,20 +1011,10 @@ void TWindowKeyBoardSoft::run_task() {
 
 extern "C" {
 s32 get_window_layout_position(int);
-extern s32 __vt__19TWindowKeyBoardSoft[];
 extern s32 keyboard_soft_type_name_pointer;
-void __dl__7TObjectFPv(void *);
 
-void *__dt__19TWindowKeyBoardSoftFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TWindowKeyBoardSoft;
-        __dt__11TWindowBaseFv((TWindowBase *)arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TWindowKeyBoardSoft::~TWindowKeyBoardSoft() {}
+
 TWindowKeyBoardSoft::TWindowKeyBoardSoft(TWindowKeyBoardBase *composer, s32 client)
     : TWindowBase((u8 *)&soft_keyboard_window_and_action_data, (s16)client,
                   (u8 *)get_window_layout_position(0xBA)) {
