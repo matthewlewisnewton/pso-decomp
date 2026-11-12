@@ -27,7 +27,7 @@ s8 get_type__20TWindowSubStatusDispFv(s32);
 s32 clamp_selection_to_valid_entry__20TShopArmorListWindowFv(void *);
 s32 save_cursor_selection__20TShopArmorListWindowFv();
 s32 reset_list__19TWindowMenuIconLineFv(void *);
-s32 update_state__9TWindowDDFv(s32 *, s32, u16);
+s32 format_word_select_message(s32 *, s32, u16);
 void *__dt__22TWindowSubShortCutListFv(void *arg0, s16 arg1);
 void render__22TWindowSubShortCutListFv(u8 *arg0);
 s32 handle_list_page_flip_input(s32);
@@ -59,7 +59,7 @@ void TWindowSubShortCutList::refresh_entries() {
             draw_entry(var_r29, 0x12, temp_r0, var_r29);
             break;
         case 2:
-            update_state__9TWindowDDFv(chat_shortcut + 1, get_shared_text_buffer(), (u16) local_client_id);
+            format_word_select_message(chat_shortcut + 1, get_shared_text_buffer(), (u16) local_client_id);
             draw_entry(var_r29, 0x10, get_shared_text_buffer(), var_r29);
             break;
         case 3:

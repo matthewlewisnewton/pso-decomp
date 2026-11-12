@@ -231,7 +231,7 @@ s32 append_prompt_newline__9TWindowDDFPl(char *, s32 *);
 s32 maybe_scroll__9TWindowDDFPv(char *, s32 *);
 s32 append_char__9TWindowDDFSclPl(s32, char *, s32 *);
 s32 TWindowDD__sub_8034886C(s32, char *, s32 *);
-s32 format_entry_text__9TWindowDDFPvPv(DD_803461CC *arg0, char *arg1);
+s32 format_word_select_japanese(DD_803461CC *arg0, char *arg1);
 List_803467CC *get_element_ptr__9TWindowDDFl(s16);
 List_803467CC *get_entry__9TWindowDDFl(s32, s16);
 extern s32 TWindowDD__window_mode;
@@ -242,7 +242,7 @@ s32 TWindowDD__sub_803474CC(DD_803461CC *, s32, char *, char *, s32 *);
 s32 append_string__9TWindowDDFllPl(char *, char *, s32 *);
 s32 show_message_by_count__9TWindowDDFll(char *, s32 *);
 s32 can_append_chars__9TWindowDDFlPl(s32, s32 *);
-s32 get_player_battle_flag_state__9TWindowDDFUs(u16);
+s32 word_select_player_gender(u16);
 s32 clamp_range_2C9_552__9TWindowDDFs(s16);
 s32 clamp_range_5FA_682__9TWindowDDFs(s16);
 char fn_80228C54(char);
@@ -250,10 +250,10 @@ extern char **TWindowDD__data_805D6E28;
 extern Pair_80344980 *TWindowDD__data_805D6E40;
 extern Pair_80344980 *TWindowDD__data_805D6E44;
 extern u8 *TWindowDD__data_805D6E48;
-s32 format_message_text__9TWindowDDFPvPvUs(DD_803461CC *arg0, char *arg1, u16 arg2);
+s32 format_word_select_french(DD_803461CC *arg0, char *arg1, u16 arg2);
 void TWindowDD__sub_8034694C(DD_803461CC *, s32, char *, char *, char *, s32 *);
-s32 format_german_message__9TWindowDDFPvPvUs(DD_803461CC *arg0, char *arg1, u16 arg2);
-s32 format_english_message__9TWindowDDFPvPvUs(DD_803461CC *arg0, char *arg1, u16 arg2);
+s32 format_word_select_german(DD_803461CC *arg0, char *arg1, u16 arg2);
+s32 format_word_select_english(DD_803461CC *arg0, char *arg1, u16 arg2);
 s32 apply_both_choices__9TWindowDDFll(void *, int);
 s32 set_clamped_page__9TWindowDDFl(int, int);
 s32 TWindowDD__sub_80340820(int);
@@ -287,7 +287,7 @@ void init_layout__9TWindowDDFiPv(void *, s32);
 s32 TWindowDD__sub_8034146C(V2_80343C64 *arg0, V2_80343C64 *arg1, s32 arg2, s32 arg3, f32 farg0);
 s32 TWindowDD__sub_80348B70(s16 arg0);
 void TWindowDD__sub_803412A0(u8 *arg0);
-void update_state__9TWindowDDFv(void);
+void format_word_select_message(void);
 void update_position__9TWindowDDFl(u8 *arg0, s32 arg1);
 s32 create__9TWindowDDFv(void);
 extern char lbl_8047863C[];
@@ -870,7 +870,7 @@ Obj_80343C64 *TWindowDD__ct(Obj_80343C64 *self, void *parent, void *arg2) {
       TWindowDD__sub_803412A0((u8 *)q);
     }
   }
-  ((void (*)(void *, u32, u16)) update_state__9TWindowDDFv)(self->fC4, TWindowDD__work_buffer, local_client_id);
+  ((void (*)(void *, u32, u16)) format_word_select_message)(self->fC4, TWindowDD__work_buffer, local_client_id);
   {
     a.x = lbl_805DFBF0;
     a.y = lbl_805DFBF4;
@@ -1314,7 +1314,7 @@ s16 TWindowDD__sub_80344774(u8 *window_dd, u32 arg1, s32 arg2, s32 value_index) 
     return v;
 }
 
-s32 format_message_text__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd, u16 arg2) {
+s32 format_word_select_french(DD_803461CC *src, char *window_dd, u16 arg2) {
     s32 k;
     s32 n;
     s32 m;
@@ -1351,7 +1351,7 @@ s32 format_message_text__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd, u1
         if (n > 1) {
             struct { DD_803461CC dd; u8 pad[0x10]; } tmp;
             TWindowDD__sub_80347758(src, &tmp.dd);
-            pos = format_message_text__9TWindowDDFPvPvUs(&tmp.dd, window_dd, arg2);
+            pos = format_word_select_french(&tmp.dd, window_dd, arg2);
         } else {
             TWindowDD__sub_8034886C(src->ids[0], window_dd, &pos);
         }
@@ -1406,12 +1406,12 @@ s32 format_message_text__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd, u1
         TWindowDD__sub_80347474(src, k, window_dd, &pos);
         if (k == 0x2C4) {
             mode = 0;
-            i = get_player_battle_flag_state__9TWindowDDFUs(arg2);
+            i = word_select_player_gender(arg2);
         } else if (k == 0x2C7) {
             append_char__9TWindowDDFSclPl(0x2C, window_dd, &pos);
             append_string__9TWindowDDFllPl(TWindowDD__data_805D6E28[0xA58 / 4], window_dd, &pos);
             mode = 2;
-            if (get_player_battle_flag_state__9TWindowDDFUs(arg2) == 2) {
+            if (word_select_player_gender(arg2) == 2) {
                 i = 3;
             } else {
                 i = 1;
@@ -1420,7 +1420,7 @@ s32 format_message_text__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd, u1
             append_char__9TWindowDDFSclPl(0x2C, window_dd, &pos);
             append_string__9TWindowDDFllPl(TWindowDD__data_805D6E28[0xA4C / 4], window_dd, &pos);
             mode = 1;
-            i = get_player_battle_flag_state__9TWindowDDFUs(k - 0x68C);
+            i = word_select_player_gender(k - 0x68C);
         } else {
             mode = 3;
             if (k == 0x2C5) {
@@ -1501,7 +1501,7 @@ s32 format_message_text__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd, u1
     return pos;
 }
 
-s32 format_german_message__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd, u16 arg2) {
+s32 format_word_select_german(DD_803461CC *src, char *window_dd, u16 arg2) {
     s32 pos;
     s32 id;
     s32 kind;
@@ -1539,7 +1539,7 @@ s32 format_german_message__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd, 
         if (n > 1) {
             struct { DD_803461CC dd; u8 pad[0x10]; } tmp;
             TWindowDD__sub_80347758(src, &tmp.dd);
-            pos = format_german_message__9TWindowDDFPvPvUs(&tmp.dd, window_dd, arg2);
+            pos = format_word_select_german(&tmp.dd, window_dd, arg2);
         } else {
             TWindowDD__sub_8034886C(src->ids[0], window_dd, &pos);
         }
@@ -1613,14 +1613,14 @@ s32 format_german_message__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd, 
         s3 = 0;
         if (id == 0x2C4) {
             mode = 0;
-            kind = get_player_battle_flag_state__9TWindowDDFUs(arg2);
+            kind = word_select_player_gender(arg2);
             s1 = (char *)TWindowDD__sub_80348B70(id);
         } else if (id == 0x2C7) {
             TWindowDD__sub_8034886C(id, window_dd, &pos);
             append_char__9TWindowDDFSclPl(0x2C, window_dd, &pos);
             mode = 2;
             {
-            s32 st = get_player_battle_flag_state__9TWindowDDFUs(arg2);
+            s32 st = word_select_player_gender(arg2);
             kind = 1;
             if (st == 2) {
                 kind = 3;
@@ -1631,7 +1631,7 @@ s32 format_german_message__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd, 
             TWindowDD__sub_8034886C(id, window_dd, &pos);
             append_char__9TWindowDDFSclPl(0x2C, window_dd, &pos);
             mode = 1;
-            kind = get_player_battle_flag_state__9TWindowDDFUs(id - 0x68C);
+            kind = word_select_player_gender(id - 0x68C);
             s1 = TWindowDD__data_805D6E28[0x2A3];
         } else {
             mode = 3;
@@ -1735,7 +1735,7 @@ s32 format_german_message__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd, 
 
 /* Spanish word-select formatter (window mode 4; inferred: format_spanish_message, from the
    leading "\xBF"/"\xA1" marks for the ?/! ids 0x685/0x686). */
-s32 TWindowDD__sub_80345608(DD_803461CC *src, char *window_dd, u16 arg2) {
+s32 format_word_select_spanish(DD_803461CC *src, char *window_dd, u16 arg2) {
     s32 k;
     s32 n;
     s32 i;
@@ -1771,7 +1771,7 @@ s32 TWindowDD__sub_80345608(DD_803461CC *src, char *window_dd, u16 arg2) {
         if (n > 1) {
             struct { DD_803461CC dd; u8 pad[0x10]; } tmp;
             TWindowDD__sub_80347758(src, &tmp.dd);
-            pos = TWindowDD__sub_80345608(&tmp.dd, window_dd, arg2);
+            pos = format_word_select_spanish(&tmp.dd, window_dd, arg2);
         } else {
             TWindowDD__sub_8034886C(src->ids[0], window_dd, &pos);
         }
@@ -1839,12 +1839,12 @@ s32 TWindowDD__sub_80345608(DD_803461CC *src, char *window_dd, u16 arg2) {
         TWindowDD__sub_80347474(src, k, window_dd, &pos);
         if (k == 0x2C4) {
             mode = 0;
-            i = get_player_battle_flag_state__9TWindowDDFUs(arg2);
+            i = word_select_player_gender(arg2);
         } else if (k == 0x2C7) {
             mode = 2;
             append_char__9TWindowDDFSclPl(0x2C, window_dd, &pos);
             append_string__9TWindowDDFllPl(TWindowDD__data_805D6E28[0xA8C / 4], window_dd, &pos);
-            if (get_player_battle_flag_state__9TWindowDDFUs(arg2) == 2) {
+            if (word_select_player_gender(arg2) == 2) {
                 i = 3;
             } else {
                 i = 1;
@@ -1853,7 +1853,7 @@ s32 TWindowDD__sub_80345608(DD_803461CC *src, char *window_dd, u16 arg2) {
             mode = 1;
             append_char__9TWindowDDFSclPl(0x2C, window_dd, &pos);
             append_string__9TWindowDDFllPl(TWindowDD__data_805D6E28[0xA80 / 4], window_dd, &pos);
-            i = get_player_battle_flag_state__9TWindowDDFUs(k - 0x68C);
+            i = word_select_player_gender(k - 0x68C);
         } else {
             mode = 3;
             if (k == 0x2C5) {
@@ -1956,7 +1956,7 @@ s32 TWindowDD__sub_80345608(DD_803461CC *src, char *window_dd, u16 arg2) {
 
 #pragma push
 #pragma opt_common_subs on
-s32 format_english_message__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd, u16 arg2) {
+s32 format_word_select_english(DD_803461CC *src, char *window_dd, u16 arg2) {
     s32 b;
     s32 n;
     s32 i;
@@ -1993,7 +1993,7 @@ s32 format_english_message__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd,
         if (n > 1) {
             struct { DD_803461CC dd; u8 pad[0x10]; } tmp;
             TWindowDD__sub_80347758(src, &tmp.dd);
-            pos = format_english_message__9TWindowDDFPvPvUs(&tmp.dd, window_dd, arg2);
+            pos = format_word_select_english(&tmp.dd, window_dd, arg2);
         } else {
             TWindowDD__sub_8034886C(src->ids[0], window_dd, &pos);
         }
@@ -2123,7 +2123,7 @@ s32 format_english_message__9TWindowDDFPvPvUs(DD_803461CC *src, char *window_dd,
 }
 #pragma pop
 
-s32 format_entry_text__9TWindowDDFPvPv(DD_803461CC *arg0, char *window_dd) {
+s32 format_word_select_japanese(DD_803461CC *arg0, char *window_dd) {
     s32 pos;
     s32 n;
     pos = 0;
