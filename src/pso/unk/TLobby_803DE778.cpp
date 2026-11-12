@@ -19,9 +19,8 @@ void TLobby::copy_u16_array(u16 *src, s32 n) {
 #pragma push
 #pragma scheduling off
 #pragma peephole off
-void TLobby::move_words(u32 *src, s32 n) {
-    u32 *dst = (u32 *)this;
-    memmove(dst, (const void *)(src), (u32)(n * sizeof(u32)));
+void move_words(void *dst, const void *src, s32 n) {
+    memmove(dst, src, (u32)(n * sizeof(u32)));
 }
 #pragma pop
 

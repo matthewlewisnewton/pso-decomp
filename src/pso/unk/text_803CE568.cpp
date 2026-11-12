@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/unk/text_803CE568.h"
 #include "pso/unk/TLobby.h"
+#include "pso/unk/TLobby_803CFE68.h"
 
 typedef s32 (*RecoveredCallback_4873a87e26d6)(s32, const char *, s32);
 
@@ -752,7 +753,7 @@ void TLobby__sub_803CFAA8(char *name, CvFsDevIf *(*getif)(void), s32 arg) {
         return;
     }
     if (dev->set_callback != NULL) {
-        dev->set_callback(TLobby::call_callback, 0);
+        dev->set_callback(cvfs_forward_error, 0);
     }
 }
 
