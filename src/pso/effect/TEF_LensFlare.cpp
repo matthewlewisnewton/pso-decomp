@@ -88,12 +88,6 @@ f32 normalize_vector(Vec *);
 }
 
 #pragma push
-// The descriptor loop keeps its induction pointer separate from the hoisted
-// definition-table base; default propagation swaps those two callee-saved
-// registers. This is the only frontend control the object still needs.
-// Porting exception (approved by Matt 2026-11-04, see docs/porting-exceptions.md):
-// no honest source form reproduces MWCC's output without it. Remove when
-// porting off MWCC.
 #pragma opt_propagation off
 void TEF_LensFlare::render() {
     Vec *sprite_position;
@@ -169,7 +163,6 @@ void TEF_LensFlare::render() {
             color.channels.a = 255; color.channels.r = 255; color.channels.g = 255; color.channels.b = 255;
             strength *= strength * strength * strength;
             __memcpy(&sprite->color, &color, sizeof(color));
-            // Pair displacement and point setup to retain the original scalar lifetimes.
             const f32 screen_x = screen[0];
             center_x = 320.0f - screen_x;
             point.x = screen_x;
@@ -209,7 +202,6 @@ void TEF_LensFlare::render() {
                 f32 size = element->size * (1.0f - inverse_strength * element->shrink);
                 if (size < 0.0f) size = 0.0f;
                 LensFlareColor color;
-                // fctiwz followed by stb: signed truncation, then low-byte wrapping.
                 color.channels.r = 255; color.channels.g = 255; color.channels.b = 255;
                 color.channels.a = (s32)(255.0f * (strength * element->brightness));
                 __memcpy(&sprite->color, &color, sizeof(color));
@@ -222,7 +214,6 @@ void TEF_LensFlare::render() {
                 GinjaTextureList *texture_list = (GinjaTextureList *)lbl_804C5820[9 + element->sprite].param;
                 set_current_texture_list(texture_list);
                 set_draw_texture_and_color(lbl_804C5820[9 + element->sprite].tex, -1);
-                // Preserve the native float lifetimes: capture x, read y at the bounds.
                 f32 sy;
                 f32 sx = 2.0f * sprite->scale_x;
                 const f32 x = point.x;

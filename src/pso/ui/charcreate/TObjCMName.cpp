@@ -999,7 +999,6 @@ extern vec2f lbl_804DBCD0[3];
 #pragma push
 #pragma fp_contract on
 void TObjCMHairMenu::render() {
-    // These shared values span the menu passes; retain their declaration order.
     f32 first, right, pulse, screen_scale, opacity, step;
     vec2f position, scale, tabs, icons, details;
     u32 colors[4];

@@ -53,11 +53,6 @@ s32 load_floor_enemy_group_entries__6TLobbyFiPvUi(s32 idx, Src_8020B970 *src, u3
 s32 init_quest_floor_enemies(s32 idx, Src_8020B7C4 *src, u32 size);
 
 int TLobby__sub_8020B5CC(AreaSetFlags_8020B5CC *buf) {
-    // The enemy total is named before the header copy and zeroed after the
-    // object column. The copy is what stays live, so the table address is
-    // scheduled above the save and the cursor and the object-offset store
-    // still use the incoming pointer. Object rows bind the row pointer
-    // before the count snapshot, as the 0x8020B47C importer does.
     s32 total2;
     s32 total1 = 0;
     s16 *out = buf->flags;
@@ -69,7 +64,6 @@ int TLobby__sub_8020B5CC(AreaSetFlags_8020B5CC *buf) {
             Dst_8020B970 *l = t[i].list;
             s32 count = t[i].count;
             if (get_current_floor() == i) {
-                // The raw cursor is copied before the null branch (mr above beq).
                 Src_8020B970 *raw = TLobby__data_805D610C;
                 if (raw != NULL) {
                     s32 j;
