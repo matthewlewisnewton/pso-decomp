@@ -2,7 +2,7 @@
 
 The claimed unit is `pso/misc/TQuestVmDownLoadServer_803E6970.cpp`, based on
 fork main `554d21699c873ccf9be1b2268eba37cd3a32e48b`. All 173 native functions
-now have C++ bodies, but only 163 match exactly. **This unit remains unlinked
+now have C++ bodies, but only 164 match exactly. **This unit remains unlinked
 and is not ready for a completion PR.** The exact display milestone is
 recorded in [display recovery](quest-download-display-recovery.md).
 
@@ -81,7 +81,6 @@ GC/1.2.5 profile. Remaining functions are:
 | --- | ---: | ---: |
 | `803E8924` | 98.10317 | 504/504 |
 | `803E8DA0` | 95.051544 | 780/776 |
-| `803E93DC` | 98.37273 | 444/440 |
 | `803EA428` | 94.19162 | 1336/1336 |
 | `803EA9E8` | 96.88844 | 1004/1004 |
 | `803EDC20` | 94.41237 | 388/388 |
@@ -109,7 +108,7 @@ stack/nonvolatile restoration. This bounded execution evidence does not prove
 exact code or whole-unit linkage. Original binaries, table contents and
 extracted instructions remain private and are not committed.
 
-Completion still requires all ten function differences, full allocated
+Completion still requires all nine function differences, full allocated
 section layout and relocations, source-link eligibility, and fresh complete
 link/no-loss verification. No incomplete unit is added to `linked_units.txt`.
 
@@ -214,3 +213,22 @@ The full repository check passes with four added exact functions and 2,572
 matched code bytes, all 3,626 existing linked units exact, an identical DOL,
 and unchanged force-active retention. Ten functions and complete unit linkage
 remain outstanding.
+
+## Persisted cache rebuild exact recovery
+
+`803E93DC` now matches all 440 bytes. The ARAM read and initial page cursor
+name the actual cache array directly; retaining a second pointer alias had
+emitted an extra saved-register copy. A fixed-image read helper forwards to a
+byte-count adapter under a scoped inline depth of two. Both use the existing
+ARAM boundary and its unchanged byte count. Their inline temporary lifetimes
+place the real name buffer at the native 0x18 stack offset, with the native
+0x90-byte frame. The outer adapter retains its explicit signed-word return
+cast: removing that otherwise redundant cast shifts the inline temporary and
+name-buffer offset by four bytes (99.96364%). There is no padding object, dummy
+parameter or alignment trick.
+
+The complete object retains exact rotation and all earlier exact functions:
+164/173 now match. Full checks pass with five added exact functions and 3,012
+matched bytes, all 3,626 linked units exact, the original DOL hash unchanged,
+and zero retention drift. Nine function differences and full source-link
+eligibility remain before the requested completion PR.

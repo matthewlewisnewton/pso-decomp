@@ -468,7 +468,9 @@ the native independent node-list bounds. Separate scopes in `803E8DA0`,
 `803E93DC` and `803E95BC` preserve the independently calculated bucket links.
 The rotation and rebuild routines inline their shared bounded name search at
 depth one after copying and terminating the name in the caller; this helper
-returns the stopping node and publishes the corresponding link address. An MWCC-only integer address adapter
+returns the stopping node and publishes the corresponding link address. The
+rebuild additionally uses a depth-two fixed-image/byte-count read boundary to
+recover the native name-buffer stack offset without padding. An MWCC-only integer address adapter
 reaches the separate canonical name index at cache address plus 0x2000; this
 records native placement rather than declaring a larger owner. The portable
 branch names `lbl_80593EC8` directly. Ports can drop the optimization pragma and

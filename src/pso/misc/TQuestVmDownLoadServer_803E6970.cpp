@@ -1967,6 +1967,16 @@ inline QuestDownloadCachedNameNode *find_cached_name_link(
     }
     return node;
 }
+#pragma push
+#pragma inline_depth(2)
+inline s32 read_name_image_bytes(void *file, u8 *image, s32 length) {
+    return (s32)aram_read_thunk__22TQuestVmDownLoadServerFUli(file, image, length);
+}
+// Keep the fixed cache-image read distinct from its byte-count adapter; their
+// native inline lifetimes also determine the rebuild name-buffer offset.
+inline s32 read_cached_name_image(void *file, u8 *image) {
+    return (s32)read_name_image_bytes(file, image, 0x2000);
+}
 s32 TQuestVmDownLoadServer__sub_803E93DC(void) {
     char name[0x50];
     u8 *pageStart;
@@ -1977,16 +1987,15 @@ s32 TQuestVmDownLoadServer__sub_803E93DC(void) {
     QuestDownloadCachedNameNode **link;
 
     size_t cacheAddress = (size_t)lbl_80591EC8;
-    u8 *cacheBytes = reinterpret_cast<u8 *>(cacheAddress);
     if (TQuestVmDownLoadServer::seek_or_reopen(0x1400) == -1) {
         return -1;
     }
-    s32 readCount = (s32)aram_read_thunk__22TQuestVmDownLoadServerFUli(
-            (void *)lbl_805D7904, cacheBytes, 0x2000);
+    s32 readCount = (s32)read_cached_name_image(
+            (void *)lbl_805D7904, lbl_80591EC8);
     if (readCount != 0x2000) {
         return -1;
     }
-    pageStart = cacheBytes;
+    pageStart = lbl_80591EC8;
     for (page = 0; page < 8; page++, pageStart += 0x400) {
         for (record = pageStart;
              (u16)(record[0] + (record[1] << 8)) != 0;
@@ -2013,6 +2022,8 @@ s32 TQuestVmDownLoadServer__sub_803E93DC(void) {
     }
     return 0;
 }
+#pragma pop
+
 #pragma pop
 
 #pragma pop
