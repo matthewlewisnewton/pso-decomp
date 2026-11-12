@@ -510,3 +510,14 @@ Moving the actual definitions back after the functions preserves their native
 address loads and all three exact matches. No synthetic padding or invented
 aggregate is needed. The source organization still needs a final cleanup and
 full linkage validation after the five remaining functions match.
+
+
+A separate private link-only probe substitutes these three recovered objects
+for the combined original object in the normal linker input list. The stock
+linker succeeds; its diagnostics are identical to an unchanged control link.
+The resulting ELF contains all 173 native function symbols and the expected
+eight BSS objects and sizes, including the 40,000-byte pool and 8,288-byte DMA
+buffer. This checks symbol resolution and retention only. The five partial
+functions prevent an exact executable, and the accepted linkset and verified
+build output remain unchanged. Final admission still requires the fresh
+split/config retention workflow and complete original-DOL comparison.
