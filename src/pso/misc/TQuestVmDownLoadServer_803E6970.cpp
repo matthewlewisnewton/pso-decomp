@@ -1472,13 +1472,26 @@ void TQuestVmDownLoadServer__sub_803E8918(void) {
 
 // Move the indexed record to the append page, preserving native reservation
 // and identity-check order. See the lifecycle evidence for unchecked preconditions.
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(1)
+// Borrowed view of a variable-length cache record; it does not own storage.
+struct CachedRecordView {
+    u8 *record;
+    CachedRecordView(u8 *const &data) : record(data) {}
+    u8 *bytes() const { return record; }
+    s32 length() const { return (u16)(bytes()[0] + (bytes()[1] << 8)); }
+    u8 name_length() const { return record[2]; }
+    char *name() const { return (char *)(record + 3); }
+};
+#pragma inline_depth(2)
 void TQuestVmDownLoadServer__sub_803E8924(s32 id) {
     char name[0x50];
     s16 sourcePage = (s16)(id >> 12);
     u8 *source;
-    u8 *original;
     u8 *destination;
     s32 length;
+    u8 *original;
     u8 len;
     s16 wanted;
     s32 bucket;
@@ -1487,9 +1500,9 @@ void TQuestVmDownLoadServer__sub_803E8924(s32 id) {
     if (lbl_805D7874 == sourcePage) {
         return;
     }
-    source = lbl_80591EC8 + sourcePage * 0x400 + (s16)(id & 0xFFF);
-    original = source;
-    if (lbl_805D7870 > lbl_805D786C - (length = (u16)(source[0] + (source[1] << 8))) - 2) {
+    original = source = lbl_80591EC8 + sourcePage * 0x400 + (s16)(id & 0xFFF);
+    CachedRecordView sourceView(original);
+    if (lbl_805D7870 > lbl_805D786C - (length = sourceView.length()) - 2) {
         TQuestVmDownLoadServer__sub_803E95BC();
     }
     destination = lbl_805D7870;
@@ -1511,9 +1524,9 @@ void TQuestVmDownLoadServer__sub_803E8924(s32 id) {
     node = lbl_80593EC8.heads[bucket];
     wanted = (s16)len;
     for (; node != NULL; node = node->next) {
-        u8 *indexed = node->encodedRecord;
-        len = indexed[2];
-        s32 comparison = strncmp((const char *)(indexed + 3), name, (s16)len);
+        CachedRecordView indexed(node->encodedRecord);
+        len = indexed.name_length();
+        s32 comparison = strncmp(indexed.name(), name, (s16)len);
         if (comparison == 0) {
             if (wanted == (s16)len) {
                 break;
@@ -1523,7 +1536,7 @@ void TQuestVmDownLoadServer__sub_803E8924(s32 id) {
         }
     }
     // Native code also requires a non-null stopping node at this point.
-    if (node->encodedRecord == original) {
+    if (node->encodedRecord == source) {
         node->encodedRecord = destination;
         for (; length != 0; length--) {
             *destination++ = *source++;
@@ -1532,6 +1545,7 @@ void TQuestVmDownLoadServer__sub_803E8924(s32 id) {
         TQuestVmDownLoadServer::invalidate_entries_by_id(id);
     }
 }
+#pragma pop
 
 
 

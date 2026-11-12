@@ -2,7 +2,7 @@
 
 The claimed unit is `pso/misc/TQuestVmDownLoadServer_803E6970.cpp`, based on
 fork main `554d21699c873ccf9be1b2268eba37cd3a32e48b`. All 173 native functions
-now have C++ bodies, but only 164 match exactly. **This unit remains unlinked
+now have C++ bodies, but only 165 match exactly. **This unit remains unlinked
 and is not ready for a completion PR.** The exact display milestone is
 recorded in [display recovery](quest-download-display-recovery.md).
 
@@ -79,7 +79,6 @@ GC/1.2.5 profile. Remaining functions are:
 
 | Native suffix/name | Match % | Compiled/original bytes |
 | --- | ---: | ---: |
-| `803E8924` | 98.10317 | 504/504 |
 | `803E8DA0` | 95.051544 | 780/776 |
 | `803EA428` | 94.19162 | 1336/1336 |
 | `803EA9E8` | 96.88844 | 1004/1004 |
@@ -252,3 +251,26 @@ and preserved registers. Cases cover every one- and two-byte low-byte combinatio
 under both mapping modes with nonzero input attributes, randomized longer input,
 and all six keyword rows with case/attribute variants. This is behavioral
 validation of the partial candidate, not a claim of an exact match.
+
+## Exact cached-record move (`803E8924`)
+
+The 504-byte move now matches exactly with the pinned compiler. A borrowed
+`CachedRecordView` exposes only the existing record pointer, little-endian
+length, name length and name pointer. Its constructor copies a pointer; it
+neither owns nor extends the underlying cache allocation. Inlining the byte
+accessor through the length accessor at depth two reproduces the native
+0x90-byte frame and name buffer at stack offset 0x20 without padding.
+
+The source cursor and saved original pointer use chained initialization.
+The identity check compares against the still-unadvanced source cursor; after
+the copy loop, the saved original pointer clears the old record's name length.
+Separate initialization generated `mr r27,r30` instead of the native
+`addi r27,r30,0`; comparing against the saved pointer changed the comparison's
+register operand. Both pointers designate the same record at that check.
+
+This iteration used the GC/1.2.5 implementation in
+[rayanht/mwcc](https://github.com/rayanht/mwcc) and the chained-assignment notes in
+[Sunshine's matching guide](https://github.com/doldecomp/sms/blob/main/docs/AGENT_MATCHING_TIPS.md).
+Compiler tracing was read-only; no compiler or generated binary was patched.
+Direct relocation-sensitive comparison confirms all 126 instructions, with
+165 of 173 functions now exact and the other eight unchanged.

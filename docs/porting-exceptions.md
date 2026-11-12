@@ -477,6 +477,13 @@ branch names `lbl_80593EC8` directly. Ports can drop the optimization pragma and
 keep ordinary typed traversal of the actual index and cache byte array. See
 [the unit investigation](evidence/quest-download-unit-completion-wip.md).
 
+The cache mover (`803E8924`) uses a non-owning record view with a borrowed
+pointer constructor and depth-two byte/length accessors. The inline boundaries
+recover its native 0x90-byte frame and name buffer at offset 0x20. Chained
+source-pointer initialization preserves the native copy instruction; the
+identity comparison uses the live cursor before it advances. Ports may use
+ordinary accessors and separate initialization with the same pointer values.
+
 ### Quest-download primary-record removal
 
 The whole-record tail helper for `803EF208` in
