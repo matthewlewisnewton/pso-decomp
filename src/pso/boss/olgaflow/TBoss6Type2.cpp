@@ -240,7 +240,7 @@ f32 receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(void *self, vo
 f32 vfunc_23__11TBoss6Type2FPvPvPvll(TBoss6Type2 *self, void *attacker, AttackMsg_802BD430 msg, void *collision, s32 tech, s32 arg5);
 void set_screen_pos__11TBoss6Type2FPv(void *arg0);
 void TBoss6Type2__sub_802BE4E0(s32 *arg0, s32 *arg1);
-s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
+s32 create__11TBoss6ZanzoFP7TObjectll(void *, int, int);
 extern u8 boss6_type2_collision_parts[];
 extern u8 __vt__11TBoss6Type2[];
 s32 TBoss6Type2__ct(s32 arg0_, s32 arg1, s32 arg2_);
@@ -3214,7 +3214,7 @@ s32 TBoss6Type2__ct(s32 arg0_, s32 parent, s32 arg2_) {
     ((TBoss6Type2 *)arg0)->init_motion_entries();
     *(s32 *)((s8 *)arg0 + 0x764) = TObjFish__sub_800E3124((u8 *)boss6_type2_effect_desc_table, (s32)(arg0 + 0x59C));
     build_tables__14TBoss6PlotFalzFPvPvi(arg0 + 0x768, (void *)boss6_type2_plot_falz_entry_table, 2);
-    *(s32 *)((s8 *)arg0 + 0x458) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 7, 0xF);
+    *(s32 *)((s8 *)arg0 + 0x458) = create__11TBoss6ZanzoFP7TObjectll(arg0, 7, 0xF);
     *(s8 *)((s8 *)arg0 + 0x478) = 0;
     *(s32 *)((s8 *)arg0 + 0x47C) = 0x11;
     TBoss6Type2__sub_802BE4E0((s32 *)(arg0 + 0x480), (s32 *)boss6_type2_zero_vec);
