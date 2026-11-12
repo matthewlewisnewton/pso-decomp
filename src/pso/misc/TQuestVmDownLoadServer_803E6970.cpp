@@ -4863,6 +4863,8 @@ u8 *TQuestVmDownLoadServer__sub_803EDDA4(u16 *start, u16 *end) {
 // The frontend starts and fills the actual halfword scratch object.
 s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
                                       u16 *output, s32 *outputCount) {
+    u8 next;
+    u16 state;
     const u16 *cursor;
     u8 category;
     s32 consumed;
@@ -4884,7 +4886,7 @@ s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
         return 1;
     }
     {
-        u16 state = 0;
+        state = 0;
         if (category <= 12) {
             if (category == 12) {
                 output[0] = TQuestVmDownLoadServer__sub_803E719C(0x73, *input);
@@ -4900,7 +4902,7 @@ s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
         }
         cursor = input + 1;
         {
-            u8 next = *cursor;
+            next = (u8)*cursor;
             s32 first = (u8)*input;
             if (first == (u8)*cursor) {
                 if (category == 12) return 2;
@@ -4909,11 +4911,11 @@ s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
                     return 1;
                 }
             }
-            if ((first == 'x' || first == 'X') && ((next = *(cursor = input + 1)) == 'n' || next == 'N')) {
+            if ((first == 'x' || first == 'X') && ((next = *(cursor = input + 1)) == 0x6EU || next == 0x4EU)) {
                 output[0] = TQuestVmDownLoadServer__sub_803E719C(0x73, *input);
                 return 2;
             }
-            if (state == 1 && next == '\'') return 2;
+            if (state == 1 && next == 0x27U) return 2;
             category = lbl_8047F8B8[next] & 0xF;
         }
         if (category == 7 && state == 3) {
@@ -4922,7 +4924,7 @@ s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
         }
         if (category == 6 && state >= 2) {
             output[0]++;
-            if ((u8)*input == 0xB3) {
+            if ((s32)(u8)*input == 0xB3) {
                 output[0] = TQuestVmDownLoadServer__sub_803E719C(0x74, *cursor);
             }
             return 2;
@@ -4935,25 +4937,25 @@ s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
                 if (mapping != NULL) goto emit_mapping;
                 mapping = TQuestVmDownLoadServer__sub_803EDDA4((u16 *)input, (u16 *)cursor);
                 if (mapping == NULL) return -2;
-                goto fallback_mapping;
+fallback_mapping:
+                // The pinned classifier has classes 1..13/15, never zero.
+                mapping += (category - 1) * 2;
+emit_mapping:
+                *output++ = TQuestVmDownLoadServer__sub_803E719C(*mapping++, *cursor);
+                if (*mapping != 0) {
+                    *output = TQuestVmDownLoadServer__sub_803E719C(*mapping, *cursor);
+                    *outputCount = 2;
+                }
+                return consumed;
             }
-            if (consumed++ >= count) return 0;
+            if (consumed++ >= count) break;
             cursor++;
             category = lbl_8047F8B8[(u8)*cursor] & 0xF;
             if ((category >= 6 && category <= 12) || consumed > 4) return -2;
         }
     }
 
-fallback_mapping:
-    // The pinned classifier has classes 1..13/15, never zero.
-    mapping += (category - 1) * 2;
-emit_mapping:
-    *output++ = TQuestVmDownLoadServer__sub_803E719C(*mapping++, *cursor);
-    if (*mapping != 0) {
-        *output = TQuestVmDownLoadServer__sub_803E719C(*mapping, *cursor);
-        *outputCount = 2;
-    }
-    return consumed;
+    return 0;
 }
 
 #pragma pop

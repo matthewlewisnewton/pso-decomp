@@ -84,7 +84,7 @@ GC/1.2.5 profile. Remaining functions are:
 | `803EA428` | 94.19162 | 1336/1336 |
 | `803EA9E8` | 96.88844 | 1004/1004 |
 | `803EDC20` | 94.41237 | 388/388 |
-| `803EDF64` | 78.625 | 888/896 |
+| `803EDF64` | 96.98214 | 888/896 |
 | `803EE2F4` | 95.74847 | 644/652 |
 | `803EE580` | 92.35294 | 412/408 |
 | `803F03B4` | 99.75903 | 332/332 |
@@ -232,3 +232,23 @@ The complete object retains exact rotation and all earlier exact functions:
 matched bytes, all 3,626 linked units exact, the original DOL hash unchanged,
 and zero retention drift. Nine function differences and full source-link
 eligibility remain before the requested completion PR.
+
+## Keyword-conversion block layout
+
+The native `803EDF64` places fallback mapping and output emission inside the
+keyword-scan loop, before the scan-advance block. Keeping that block after the
+loop had preserved behavior but moved a large range of instructions. The two
+existing entry paths now join labels at the native position. Exhausting input
+breaks to the common zero return after the loop. The lookahead byte is declared
+before the conversion state, and byte comparisons retain unsigned constants.
+These changes improve the comparison from 78.625% to 96.98214%, still 888/896
+bytes; the lookahead load/copy sequence remains different. Exact coverage stays
+164/173 functions.
+
+The freshly compiled candidate was compared with the original PPC instructions
+in Unicorn using the original classifier, keyword table, and mapping helpers.
+All 134,296 cases agreed on return value, output bytes and count, unchanged input,
+and preserved registers. Cases cover every one- and two-byte low-byte combination
+under both mapping modes with nonzero input attributes, randomized longer input,
+and all six keyword rows with case/attribute variants. This is behavioral
+validation of the partial candidate, not a claim of an exact match.
