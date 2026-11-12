@@ -56,3 +56,29 @@
 - Five float literals that were `extern` data references (1.0, 0.04, 0.1, 0.0, 10.0) are written as literals so the
   compiler pools them in the original order; the symbols at 0x805DC360..370 and the double at 0x80447130 are now
   scope:local compiler names (@24, @48, @122, @379, @489, @566).
+
+## Notes moved out of source comments by the overseer
+
+These were comments in the ported code that explained how the match was achieved.
+`#pragma opt_propagation off` in TEF_LensFlare.cpp is one of the fork's registered porting
+exceptions (fork `docs/porting-exceptions.md`).
+
+- `src/pso/effect/TEF_LensFlare.cpp`:
+    The descriptor loop keeps its induction pointer separate from the hoisted
+    definition-table base; default propagation swaps those two callee-saved
+    registers. This is the only frontend control the object still needs.
+    Porting exception (approved by Matt 2026-11-04, see docs/porting-exceptions.md):
+    no honest source form reproduces MWCC's output without it. Remove when
+    porting off MWCC.
+    Pair displacement and point setup to retain the original scalar lifetimes.
+    fctiwz followed by stb: signed truncation, then low-byte wrapping.
+    Preserve the native float lifetimes: capture x, read y at the bounds.
+- `src/pso/ui/charcreate/TObjCMName.cpp`:
+    These shared values span the menu passes; retain their declaration order.
+- `src/pso/unk/text_8020B5CC.cpp`:
+    The enemy total is named before the header copy and zeroed after the
+    object column. The copy is what stays live, so the table address is
+    scheduled above the save and the cursor and the object-offset store
+    still use the incoming pointer. Object rows bind the row pointer
+    before the count snapshot, as the 0x8020B47C importer does.
+    The raw cursor is copied before the null branch (mr above beq).
