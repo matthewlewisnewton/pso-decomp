@@ -161,7 +161,7 @@ strict address-based no-loss coverage, retention, caller/domain closure and
 behavioral/sanitizer results against authenticated unchanged baselines.
 Function scores and raw byte equality alone do not resolve the source-truth
 blockers. The original DOL SHA-1 requirement remains
-`0d85744b51d7379efb025a943d0cd5aaae2191a3`. No current PASS or completion
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. No
 source-completion claim is made for this intermediate. Fresh native results
 belong to exact descendant `c597ac33`, as recorded below.
 
