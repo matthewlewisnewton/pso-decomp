@@ -294,3 +294,43 @@ bytes were added to source. The whole `.rodata` range now reports 100%, and
 the regenerated DOL retains the original SHA-1. The switch tables still have
 two internal alignment gaps to recover; function emission order also remains
 a separate whole-object requirement.
+
+## Candidate-builder control flow and lifetimes (`803EA428`)
+
+The candidate builder now compares at 99.74551%, with all 334 instructions,
+the original 1,336-byte extent, and the original 0x48-byte frame. Exact unit
+coverage remains 165/173; this is still a partial function.
+
+An explicit zero switch case restores the native decision tree. The bounded
+text scan compares its accumulated length against the original input bound,
+which recovers the unsigned count-loop exit. Input bound and computed candidate
+length are separate locals: frontend lifetime splitting had otherwise given
+the latter an anonymous value with a different allocation priority.
+
+The append helper preserves the native list-tail handoffs, and a saved pointer
+to the slot's item head is shared across candidate lengths. A signed-byte span
+return passes through the word-sized store helper, retaining the native sign
+extension. The borrowed workspace-address value has no padding or ownership
+claim; its constructor preserves the native temporary lifetime. The result
+uses its real offset within the workspace. The native-only run store expresses
+the member displacement before indexing by the slot byte stride, recovering
+`add` plus displacement `stb` instead of an indexed store. Ports continue to
+use the actual, separately declared slot array.
+
+Read-only traces of the unchanged GC/1.2.5 compiler guided these changes.
+The remaining 15 instruction differences are register arguments: six scan
+pointer uses, three command-table address uses, and six uses of promoted loop
+values. C language-mode probes for the separate `803F03B4` parser and additional
+pointer/reference, scope, and promotion probes produced no new exact functions.
+No compiler, generated instruction, or physical register assignment was patched.
+
+The improved builder was executed against the original PPC routine in Unicorn
+for 10,168 cases. All 334 instructions were reached on both sides. Cases include
+all initial byte values, empty and bounded runs, download-command continuation,
+mode-dependent early returns, seeded existing item lists, allocation failures,
+and randomized mixed input. Native classification helpers execute unchanged;
+dictionary lookups, allocation, release, and item-list construction use identical
+deterministic boundary stubs. Return values, complete workspace/slot and item
+memory, unchanged input, boundary call traces, and preserved registers agree.
+This checks the recovered routine's behavior, not the implementations of those
+stubbed external operations or whole-game runtime behavior.
