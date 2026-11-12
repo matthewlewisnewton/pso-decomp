@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 89 | 58 |
 | hardware | 69 | 13 |
-| pragma | 5699 | 883 |
+| pragma | 5862 | 887 |
 | configure.py per-unit override | 205 | 205 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1089, `inline_depth` 992, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 625, `scheduling` 264, `opt_propagation` 250, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56, `defer_codegen` 56, `pack` 46, `opt_loop_invariants` 41, `opt_dead_assignments` 41, `pool_data` 37, `opt_lifetimes` 30, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055, `fp_contract` 884, `auto_inline` 803, `opt_common_subs` 639, `scheduling` 264, `opt_propagation` 264, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 39, `pool_data` 37, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
 
 ## Assembly
 
@@ -448,7 +448,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1089, `inline_depth` 992, 
 
 | File | Pragmas |
 |---|---|
+| `include/pso/misc/QuestDownloadInternal.h` | inline_depth×57, dont_inline×54, opt_propagation×10, opt_common_subs×9, opt_lifetimes×5, opt_dead_assignments×1 |
 | `include/pso/misc/QuestDownloadRecords.h` | options×1 |
+| `include/pso/misc/QuestDownloadScratch.h` | dont_inline×1, inline_depth×1 |
 | `src/musyx/runtime/Chorus/chorus_fx.c` | peephole×2, dont_inline×1, inline_depth×1, auto_inline×1 |
 | `src/musyx/runtime/StdReverb/reverb.c` | dont_inline×1, peephole×1 |
 | `src/musyx/runtime/hardware.c` | scheduling×1 |
@@ -847,8 +849,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1089, `inline_depth` 992, 
 | `src/pso/misc/TQuestListOnline.cpp` | optimization_level×1, dont_inline×1 |
 | `src/pso/misc/TQuestListOnline_80217464.cpp` | fp_contract×1 |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp` | opt_propagation×1 |
-| `src/pso/misc/TQuestVmDownLoadServer_803E5668.cpp` | readonly_strings×1 |
-| `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | inline_depth×40, dont_inline×39, opt_common_subs×7, opt_propagation×2, opt_lifetimes×1, opt_dead_assignments×1 |
+| `src/pso/misc/TQuestVmDownLoadServer_803E5668.cpp` | readonly_strings×1, dont_inline×1, inline_depth×1 |
+| `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | dont_inline×14, inline_depth×14, opt_common_subs×7, bool×1, opt_lifetimes×1 |
+| `src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp` | dont_inline×15, inline_depth×15, opt_lifetimes×3, opt_propagation×3, opt_common_subs×2, opt_dead_assignments×1 |
+| `src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp` | dont_inline×15, inline_depth×15, opt_common_subs×3, opt_propagation×3, opt_lifetimes×1 |
 | `src/pso/misc/TRaderMapCore.cpp` | fp_contract×2, opt_common_subs×1 |
 | `src/pso/misc/TRaderMapCore_801FB2B8.cpp` | fp_contract×1, opt_common_subs×1 |
 | `src/pso/misc/TRegister.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |

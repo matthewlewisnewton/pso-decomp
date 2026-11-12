@@ -38,7 +38,16 @@ notes remain historical; the final preservation/build checks govern this split.
 
 ## Current-main refresh
 
-Latest native validation covers main `b10ff5980cc382f189530cc462b7e77289eae54d`.
+Latest native validation covers main `4b40cbeb933f52d6a86d9530abbefec9ec1f1028`.
+The [quest-download integration](window-main4b40-quest-integration.md) preserves
+the three accepted providers and shared character/query/scratch contracts.
+Fresh-main/combined original-DOL builds, both strict comparisons, complete-object,
+actual-relocation and ordered-provider protection pass: 3626 exact linked units
+and 19450 retention names without drift. The two inter-object byte intervals
+are explicitly retained. All 346 existing tool tests and portable behavior/
+sanitizer targets pass. All substantive holds and stopped-work boundaries remain.
+
+The preceding native validation covers main `b10ff5980cc382f189530cc462b7e77289eae54d`.
 The [accepted-main maintenance](window-mainb10f-maintenance.md) preserves typed
 Zako buffers, PlotFalz's material contract and the complete source-linked TCP
 provider. Both strict comparisons and original-DOL builds pass: 3623 exact linked

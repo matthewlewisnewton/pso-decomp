@@ -473,6 +473,62 @@ and the same function body.
 | `src/pso/network/NetworkDispatcher.cpp` | All 12 dispatcher functions | Four existing pragma lines (`opt_common_subs on` x3, `pool_data off` x1), inherited `-opt nocse`, 32-bit handles and provisional `TLobby`/`TUdpSocket` wrappers; reset status and thread-creation callback/return declarations remain inconsistent across units | Extracts the fork's already-exact dispatcher and its 248-byte BSS so it can link. The follow-up replaces reset/shutdown/handler overlays with the shared state and names both thread handles without changing native objects. The reset callee now explicitly returns `s32`, but the incompatible DHCP caller is retained after a type-correct probe changed its frame and result copy; this is not a completed ABI repair. See [upstream-dispatcher.md](evidence/upstream-dispatcher.md). | Remove compiler-only steering and recover explicit dispatcher/OS contracts with portable handle types, validating callers and callees together. |
 | `src/pso/network/TcpProtocol.cpp` | Complete TCP unit; source-linked | Inherited `-opt nocse`; 24 moved pragma lines plus explicit `dont_inline off` and `inline_depth(4)` that previously carried into this range from earlier source | Without the ambient settings, timer callbacks `8041A3CC` / `8041A5B4` have different stack frames and `8041D584` no longer inlines its segment-removal helper. Scores are 99.78432%, 99.916664% and 65.69705%; restoring the settings retains all 40 previously exact TCP functions. Existing raw views, local ABI redeclarations and provisional members remain unresolved. | Remove compiler steering; unify TCP layouts and callback/status interfaces. All 45 functions now match; output also needs scoped loop-pass constraints and scalar workspaces documented in the TCP evidence. |
 
+### Quest-download cache address and traversal recovery
+
+`__VIRetraceHandler` in `TQuestVmDownLoadServer_803E6970.cpp` is the existing
+placeholder for the cache initializer. Its scoped `opt_common_subs off` preserves
+the native independent node-list bounds. Separate scopes in `803E8DA0`,
+`803E93DC` and `803E95BC` preserve the independently calculated bucket links.
+The rotation and rebuild routines inline their shared bounded name search at
+depth one after copying and terminating the name in the caller; this helper
+returns the stopping node and publishes the corresponding link address. The
+rebuild additionally uses a depth-two fixed-image/byte-count read boundary to
+recover the native name-buffer stack offset without padding. An MWCC-only integer address adapter
+reaches the separate canonical name index at cache address plus 0x2000; this
+records native placement rather than declaring a larger owner. The portable
+branch names `lbl_80593EC8` directly. Ports can drop the optimization pragma and
+keep ordinary typed traversal of the actual index and cache byte array. See
+[the unit investigation](evidence/quest-download-unit-completion.md).
+
+The cache mover (`803E8924`) uses a non-owning record view with a borrowed
+pointer constructor and depth-two byte/length accessors. The inline boundaries
+recover its native 0x90-byte frame and name buffer at offset 0x20. Chained
+source-pointer initialization preserves the native copy instruction; the
+identity comparison uses the live cursor before it advances. Ports may use
+ordinary accessors and separate initialization with the same pointer values.
+
+### Quest-download primary-record removal
+
+The whole-record tail helper for `803EF208` in
+`TQuestVmDownLoadServer_803ED0CC.cpp` uses an MWCC-only integer address sum
+to preserve native displacement/base operand order; its portable branch uses
+ordinary byte-pointer addition. The existing depth-two inline scope also
+contains a distinct forwarding boundary for partial-message compaction. These
+choices reproduce the native code and name-buffer stack offset without dummy
+locals. Ports may inline freely and retain the ordinary pointer arithmetic.
+The helper's source must be strictly past its backing page's start, as proved
+for this nonempty-record caller in [the evidence](evidence/quest-download-unit-completion.md).
+
+### Quest-download scratch storage and native workspace addressing
+
+`QuestDownloadScratch.h` declares the shared aligned byte storage consistently.
+The conversion producer and ID-list producer use tagged placement construction
+to begin complete halfword-array and ID-array objects before writing them.
+Scoped `dont_inline off` / `inline_depth(1)` regions inline the empty placement
+operator in the frontend conversion and request producer; a port can use the
+ordinary placement-new operator with the same storage and lifetime transitions.
+The scratch operator has its own tag, separate from the allocator-pool tag.
+
+The two recovered candidate routines retain the original workspace address and
+reach the following, separately owned slot array through native integer address
+arithmetic under `__MWERKS__`. The fallback accesses the real slot array directly.
+The display-prefix adapter likewise reaches the following scratch object only
+through native address arithmetic; ports name the real byte array.
+The workspace result remains a real member of the workspace object. These
+adapters do not assert a larger encompassing object or change the link map.
+The complete provider now links as three native layout groups; see
+[the completion evidence](evidence/quest-download-unit-completion.md).
+
 ## 5. Per-unit compiler overrides (`configure.py`)
 
 195 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
@@ -1617,6 +1673,23 @@ owned sections. A port can use its ordinary SDK/math declarations.
 | Native ADX runtime boundary | Existing legacy `TLobby` entry names, bounded record views, pointer/integer handle and callback casts, OS thread entry casts and volatile flags; inherited floating-point contraction in decoder and playback helpers | These are retained native ABI obligations. New encoder records use size/offset assertions and the shared SJ interface; stream-file callers share one recovered record definition. No assembly or hardware access is added. | Replace native handle words and thread casts with typed platform interfaces, provide synchronization for shared flags, and preserve fused rounding where required. |
 | `src/pso/system/AdxEncoder.cpp`, residual magnitude | MWCC `__abs` through `ADXENC_ABS`, with a compiled scalar conditional fallback on other compilers | A scalar sign-mask helper scores 99.816666% and a conditional helper 98.76667% in `fn_803C8020`; the native intrinsic retains the original repeated absolute-value sequences. The input is a signed 16-bit residual, so negation fits in `s32`. | Use the scalar fallback. |
 
+### Quest-download candidate and request construction
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `TQuestVmDownLoadServer_803E9A24.cpp`, `803EA428` and its local helpers | Scoped `dont_inline off`, `inline_depth(2)`, `opt_propagation off`, and `opt_lifetimes off`; borrowed workspace-address value and branch-local displacement/address reuse | Restores the native append handoffs, signed span promotion, temporary lifetime, and candidate-length flow. All 1,336 bytes match exactly. See [the candidate-builder evidence](evidence/quest-download-unit-completion.md). | Drop compiler steering and keep the ordinary scalar/list operations. The existing non-MWCC address adapters name the actual workspace result and separate slot array. |
+| `TQuestVmDownLoadServer_803ED0CC.cpp`, `803EE580` | Existing scoped `dont_inline off` / `inline_depth(1)` also inlines the borrowed request-storage view | The view constructor and leading-request handoff preserve the native temporary lifetimes and remove an extra address copy; all 408 bytes match. See [request-emitter evidence](evidence/quest-download-unit-completion.md). | Keep the real storage/subobject relationship and ordinary scratch placement construction; compiler controls can be removed. |
+| `TQuestVmDownLoadServer_803E6970.cpp`, `803E8DA0` | Scoped depth-two inlining, CSE off, propagation on and lifetimes off; sequenced record-length arithmetic and six retained scalar declarations | All 776 bytes, including the native 104-byte frame, match. Removing the now-unused caller locals leaves the instructions unchanged but shrinks the frame to 80 bytes (99.97423%). These are matching constraints, not evidence of original declarations. See [cache completion evidence](evidence/quest-download-unit-completion.md). | Remove the six unused locals and compiler controls; use the same search, length and record-writing operations. |
+| `TQuestVmDownLoadServer_803ED0CC.cpp`, `803EDC20` | Existing depth-one inlining plus scoped `opt_propagation off`; pending lead-byte state constructor | All 388 native bytes match. The actual decoder state preserves initialization and reset copies; an inlined scan hands off the entry pointer. See [decoder evidence](evidence/quest-download-unit-completion.md). | Drop compiler steering; retain the decoder state and scan operations. |
+| `TQuestVmDownLoadServer_803ED0CC.cpp`, `803EE2F4` | Scoped `opt_propagation off` and `opt_lifetimes off` | Independent uses of the actual buffers reproduce all 652 bytes and the 104-byte frame. Automatic lifetime splitting had left four linked address-setup bytes different. The final source removes the borrowed-pointer helper and obsolete wide-buffer local; 3,000 native differential cases pass. See [the complete-unit evidence](evidence/quest-download-unit-completion.md). | Drop compiler steering; retain the ordinary buffer and request operations. |
+
+| `TQuestVmDownLoadServer_803E9A24.cpp`, `803EA9E8`, and shared inline helpers | Scoped depth-three inlining with CSE, propagation and lifetime splitting off | Separate validation/pruning cursors, the consumed selected-length result, and the leading-slot handoff reproduce all 1,004 bytes and the 80-byte frame. A 3,000-case native differential check covers failure and consolidation paths. | Drop the compiler controls; retain the list operations and consumed snapshots. |
+
+### Quest-download character predicates
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `TQuestVmDownLoadServer_803E6970.cpp`, `803E6F98` and `803E7018` | Scoped `bool off` | These integer predicates have shared `s32(u16)` declarations. Disabling the legacy compiler's distinct Boolean type preserves the native integer comparison result without an extra byte mask. Both functions remain exact with two-byte output buffers. | Remove the pragma; retain the shared integer-return interfaces and two-byte buffers. |
 ### Complete Gol Dragon behavior unit
 
 | Scope | Construct | Evidence and reason | Port action |
@@ -1629,6 +1702,21 @@ owned sections. A port can use its ordinary SDK/math declarations.
 `src/pso/ui/DrawLine.cpp` uses GC/2.6 `-inline off,deferred` with reverse definitions to preserve the original function order and the compiler-generated controller/task vtables. Unit `-fp_contract on` replaces the task constructor's existing pragma and preserves its fused length calculation. Immediate emission with ascending definitions preserves instructions but reverses the two vtables; reverse/deferred emission preserves all code and symbolic data relocations.
 
 The four named float constants are declared with a guarded `.sdata2` placement attribute and defined after their uses. Their original order is `1.0, 0.0, -1.0, 0.5`. Literal-only probes instead emit `0.0, -1.0, 1.0, 0.5`; defining named constants before their uses also introduces anonymous duplicates. The guard becomes empty outside MWCC. A port can keep the ordinary constant definitions, use its normal compiler settings, and ignore definition order and section placement. No assembly or hand-written vtables are used.
+
+### Complete quest-download source organization
+
+The former `TQuestVmDownLoadServer_803E6970.cpp` range is represented by
+`TQuestVmDownLoadServer_803E6970.cpp`, `TQuestVmDownLoadServer_803E9A24.cpp`,
+and `TQuestVmDownLoadServer_803ED0CC.cpp`, sharing `QuestDownloadInternal.h`.
+Ordinary compiler-generated switch tables require two eight-byte-aligned
+object boundaries; the final group defines its real BSS after its functions
+to preserve native address materialization. The shared header retains the
+existing scoped inline-helper options. Default-only and empty declaration
+scopes are removed. These are source organization constraints, not new
+compiler profiles or recovered original filenames. All 173 functions and
+allocated sections match and link. Ports can organize these declarations and
+functions normally; preserve the real storage ownership and documented ABI
+boundaries. See [the complete-unit evidence](evidence/quest-download-unit-completion.md).
 
 ## 9. Window lifetime entry points for legacy raw-storage functions
 
