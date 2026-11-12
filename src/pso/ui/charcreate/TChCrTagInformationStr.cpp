@@ -75,11 +75,11 @@ extern const f32 lbl_805DF12C;
 s32 __ct__7TObjectFP7TObject();
 void *__nw__7TObjectFUl(int);
 
-void *TChCrTagInformationStr::create(void *arg0, void *arg1) {
+void *TChCrTagInformationStr::create(TObject *arg0, s32 arg1) {
     void *o;
     o = __nw__7TObjectFUl(0x38);
     if (o != NULL) {
-        o = __ct__22TChCrTagInformationStrFv((void *)o, (s32)arg0, (s32)arg1);
+        o = __ct__22TChCrTagInformationStrFP7TObjectl((void *)o, (s32)arg0, (s32)arg1);
     }
     return o;
 }
@@ -127,7 +127,7 @@ void run_task__22TChCrTagInformationStrFv(u8 *arg0) {
 }
 #pragma pop
 
-void *__ct__22TChCrTagInformationStrFv(void *arg0, s32 arg1, s32 arg2) {
+void *__ct__22TChCrTagInformationStrFP7TObjectl(void *arg0, s32 arg1, s32 arg2) {
     __ct__7TObjectFP7TObject();
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__22TChCrTagInformationStr;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TChCrTagInformationStr__class_name;

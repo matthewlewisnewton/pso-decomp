@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -2068,7 +2069,7 @@ void TObjEneMe1GiGue::load_resources() {
     {
     Spawn_802CD62C sp = gigue_spawn_descriptor;
     sp.w[0] = ((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->v430;
-    TLobby::spawn_npc_enemy((s16)0x41, (s32)(((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->a), ((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->texlist, &sp, (f32)(getf_802CD62C(q)), (f32)15.0f);
+    NpcModelRegistry::register_animated_chunk((s16)0x41, (void *)((s32)(((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->a)), (void *)(((Obj_802CD62C *)TObjEneMe1GiGue__data_805D6838)->mdl->texlist), (const NpcAnimationBinding *)(&sp), (f32)(getf_802CD62C(q)), (f32)15.0f);
     }
 }
 #pragma pop

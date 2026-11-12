@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/math/VectorNormalize.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/text_803D96A8.h"
@@ -1750,7 +1751,7 @@ void TObjEneDf2Bringer::load_resources() {
   {
     Sp_80099BD4 sp = lbl_8043A0BC[0];
     sp.a = *((s32 *) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x430));
-    TLobby::spawn_npc_enemy((s16)0x16, (s32)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 8))), (NJS_TEXLIST *)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 0xC))), &sp, (f32)TObjEneDf2Bringer__data_805D9808, (f32)TObjEneDf2Bringer__data_805D97E0);
+    NpcModelRegistry::register_animated_chunk((s16)0x16, (void *)((s32)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 8)))), (void *)((NJS_TEXLIST *)(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 0xC)))), (const NpcAnimationBinding *)(&sp), (f32)TObjEneDf2Bringer__data_805D9808, (f32)TObjEneDf2Bringer__data_805D97E0);
   }
 }
 

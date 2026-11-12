@@ -1,3 +1,4 @@
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
@@ -25,7 +26,7 @@
 #include "pso/system/MatrixOps.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/unk/text_803D96A8.h"
-// Same layout as DelDepthAnimationBinding: the motion-binding block TLobby::spawn_npc_enemy takes.
+// Same layout as DelDepthAnimationBinding: the motion-binding block NpcModelRegistry::register_animated_chunk takes.
 struct BalClawClawAnimationBinding {
     void *motions;
     void *actions;
@@ -1166,6 +1167,5 @@ void spawn_lobby_npc_enemy(void) {
     BalClawClawAnimationBinding binding = {lbl_805D4F20->motions, balclaw_claw_model_node_desc, 1, 7, 0};
     BmlModelEntry *models;
     models = lbl_805D4F20->models;
-    TLobby::spawn_npc_enemy(0x14, models[2].model, (NJS_TEXLIST *)models[2].m_c, &binding,
-                            *(f32 *)((u8 *)TObjEneBalClawClaw__collision_body_template + 0xC), 15.0f);
+    NpcModelRegistry::register_animated_chunk(0x14, (void *)(models[2].model), (void *)((NJS_TEXLIST *)models[2].m_c), (const NpcAnimationBinding *)(&binding), *(f32 *)((u8 *)TObjEneBalClawClaw__collision_body_template + 0xC), 15.0f);
 }

@@ -190,11 +190,11 @@ void TObjPlayer__sub_802F0D30(void) {
 
 void TObjPlayer__sub_802F0D2C(void) {  }
 
-TBoss7Tentacle::TBoss7Tentacle(TObject *object, s32 arg2, s32 arg3) : TObject(object) {
+TBoss7Tentacle::TBoss7Tentacle(TObject *object, const f32 (*arg2)[4], s32 arg3) : TObject(object) {
     m_name = TBoss7Tentacle__name;
     (*(s32 *)((s8 *)(this) + (0x1C))) = ((s32 (*)(s32))queue_boss_effect__10TObjPlayerFPv)(1);
     (*(Anim_802F0BE8 * *)((s8 *)(this) + (0x20))) = ((Anim_802F0BE8 * (*)(s32))notify_fish_obj__10TObjPlayerFPv)(0x11);
-    (*(s32 *)((s8 *)(this) + (0x130))) = arg2;
+    (*(s32 *)((s8 *)(this) + (0x130))) = (s32)arg2;
     (*(s32 *)((s8 *)(this) + (0x4C))) = arg3;
     (*(s32 *)((s8 *)(this) + (0x30))) = 0;
     (*(s32 *)((s8 *)(this) + (0x34))) = 0;

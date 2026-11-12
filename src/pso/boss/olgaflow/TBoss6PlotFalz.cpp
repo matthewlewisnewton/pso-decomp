@@ -844,7 +844,7 @@ struct Stack_802ABC64 {
 
 extern "C" {
 void TBoss4DarkFalz__sub_8004B4F0(void *arg0p, void *arg1p);
-u32 create__11TBoss6Type1Fl(void *, int);
+u32 create__11TBoss6Type1FP15Boss6Type1Spawn(void *, int);
 u32 create__11TBoss6Type2Fl(void *, int);
 s32 is_locally_controlled__10TObjPlayerFPv(s32);
 f32 xyz_distance(const void *, const void *);
@@ -899,7 +899,7 @@ void TBoss6PlotFalz::spawn_type1() {
         stack.spC = *(s16 *)&this->set_index + 0x200;
         temp_r4 = this->entity_id;
         stack.sp12 = temp_r4 + 0x200;
-        TBoss6PlotFalz__type1_instance = create__11TBoss6Type1Fl(&sp8, temp_r4);
+        TBoss6PlotFalz__type1_instance = create__11TBoss6Type1FP15Boss6Type1Spawn(&sp8, temp_r4);
     }
 }
 

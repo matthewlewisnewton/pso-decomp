@@ -1,6 +1,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/EnemyTargetCandidate.h"
 #include "types.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/enemy/gibon/TObjEneBm5GibonU.h"
 #include "pso/player/TObjPlayer.h"
@@ -1694,8 +1695,8 @@ void TLobby::load_gyaranzo_resources() {
     {
         Pos_800D3C04 pos = lbl_8043C25C;
         pos.w[0] = AREA->f430;
-        TLobby::spawn_npc_enemy(0x20, AREA->res->r38, AREA->res->texlist, &pos, lbl_805DA298, lbl_805DA258);
-        TLobby::spawn_npc_enemy(0x21, AREA->res->r48, AREA->res->texlist, &pos, lbl_805DA298, lbl_805DA258);
+        NpcModelRegistry::register_animated_chunk(0x20, (void *)(AREA->res->r38), (void *)(AREA->res->texlist), (const NpcAnimationBinding *)(&pos), lbl_805DA298, lbl_805DA258);
+        NpcModelRegistry::register_animated_chunk(0x21, (void *)(AREA->res->r48), (void *)(AREA->res->texlist), (const NpcAnimationBinding *)(&pos), lbl_805DA298, lbl_805DA258);
     }
 }
 

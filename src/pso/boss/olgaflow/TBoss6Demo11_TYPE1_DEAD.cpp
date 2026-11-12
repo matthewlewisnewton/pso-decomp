@@ -42,10 +42,10 @@ static Vec lbl_804EF9E0 = {0.0f, 0.0f, 70.0f}; // start position
 const char *TBoss6Demo11_TYPE1_DEAD__name = TBoss6Demo11_TYPE1_DEAD__class_name_string;
 
 void *TBoss6PlotFalz::create(void *parent, void *arg) {
-    return new TBoss6Demo11_TYPE1_DEAD((TObject *)parent, arg);
+    return new TBoss6Demo11_TYPE1_DEAD((TBoss6PlotFalz *)parent, (const Vec *)arg);
 }
 
-TBoss6Demo11_TYPE1_DEAD::TBoss6Demo11_TYPE1_DEAD(TObject *parent, void *arg) : TObject(parent) {
+TBoss6Demo11_TYPE1_DEAD::TBoss6Demo11_TYPE1_DEAD(TBoss6PlotFalz *parent, const Vec *arg) : TObject(parent) {
     static const EffectNodeDesc lbl_80477E60[] = {
         {0, {0.0f, 0.0f, 0.0f}},
         {4, {0.0f, 0.0f, 0.0f}},

@@ -2,6 +2,7 @@
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
 #include "pso/system/CurrentTextureList.h"
@@ -3732,8 +3733,8 @@ void TObjEneBm5Wolf::load_resources() {
     {
     Spawn_800B86B4 sp = bm5_wolf_spawn_descriptor;
     sp.a = TObjEneBm5Wolf__bml_resource->x430;
-    TLobby::spawn_npc_enemy(9, TObjEneBm5Wolf__bml_resource->p42c[6], (NJS_TEXLIST *)TObjEneBm5Wolf__bml_resource->p42c[3], &sp, TObjEneBm5Wolf__collider_params[3], (*(f32 *)&TObjEneBm5Wolf__data_805D9D78));
-    TLobby::spawn_npc_enemy(10, TObjEneBm5Wolf__bml_resource->p42c[2], (NJS_TEXLIST *)TObjEneBm5Wolf__bml_resource->p42c[3], &sp, TObjEneBm5Wolf__collider_params[3], (*(f32 *)&TObjEneBm5Wolf__data_805D9D78));
+    NpcModelRegistry::register_animated_chunk(9, (void *)(TObjEneBm5Wolf__bml_resource->p42c[6]), (void *)((NJS_TEXLIST *)TObjEneBm5Wolf__bml_resource->p42c[3]), (const NpcAnimationBinding *)(&sp), TObjEneBm5Wolf__collider_params[3], (*(f32 *)&TObjEneBm5Wolf__data_805D9D78));
+    NpcModelRegistry::register_animated_chunk(10, (void *)(TObjEneBm5Wolf__bml_resource->p42c[2]), (void *)((NJS_TEXLIST *)TObjEneBm5Wolf__bml_resource->p42c[3]), (const NpcAnimationBinding *)(&sp), TObjEneBm5Wolf__collider_params[3], (*(f32 *)&TObjEneBm5Wolf__data_805D9D78));
     }
 }
 

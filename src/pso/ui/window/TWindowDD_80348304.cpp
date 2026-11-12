@@ -26,11 +26,11 @@ s32 is_flag_set__6TLobbyFv();
 s32 TWindowDD__sub_8034435C();
 s32 TWindowDD__sub_80344568();
 s32 TWindowDD__sub_80344774();
-s32 format_message_text__9TWindowDDFPvPvUs();
-s32 format_german_message__9TWindowDDFPvPvUs();
-s32 TWindowDD__sub_80345608();
-s32 format_english_message__9TWindowDDFPvPvUs();
-s32 format_entry_text__9TWindowDDFPvPv();
+s32 format_word_select_french();
+s32 format_word_select_german();
+s32 format_word_select_spanish();
+s32 format_word_select_english();
+s32 format_word_select_japanese();
 s32 TWindowDD__sub_80346434();
 s32 TWindowDD__sub_80346640();
 
@@ -137,22 +137,22 @@ s32 TWindowDD::can_append_chars(s32 arg0, s32 *arg1) {
     return (arg0 + t + 1) < 0x80;
 }
 
-void TWindowDD::update_state() {
+extern "C" void format_word_select_message() {
     switch ((s32) TWindowDD__window_mode) {
     case 0:
-        format_entry_text__9TWindowDDFPvPv();
+        format_word_select_japanese();
         return;
     default:
-        format_english_message__9TWindowDDFPvPvUs();
+        format_word_select_english();
         return;
     case 4:
-        TWindowDD__sub_80345608();
+        format_word_select_spanish();
         return;
     case 2:
-        format_german_message__9TWindowDDFPvPvUs();
+        format_word_select_german();
         return;
     case 3:
-        format_message_text__9TWindowDDFPvPvUs();
+        format_word_select_french();
         return;
     }
 }

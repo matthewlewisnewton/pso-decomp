@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/render/TUnk_80494938.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -4004,7 +4005,7 @@ void TObjEneMe1Gee::load_resources() {
     {
         Q_800CC950 sp8 = lbl_8043BE6C;
         sp8.a = TObjEneMe1Gee__resource_bundle->f430;
-        TLobby::spawn_npc_enemy((s16)0x10, TObjEneMe1Gee__resource_bundle->f42c->f8, TObjEneMe1Gee__resource_bundle->f42c->texlist, &sp8, 8.0f, (f32)TObjEneMe1Gee__data_805DA0C0);
+        NpcModelRegistry::register_animated_chunk((s16)0x10, (void *)(TObjEneMe1Gee__resource_bundle->f42c->f8), (void *)(TObjEneMe1Gee__resource_bundle->f42c->texlist), (const NpcAnimationBinding *)(&sp8), 8.0f, (f32)TObjEneMe1Gee__data_805DA0C0);
     }
 }
 

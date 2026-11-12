@@ -96,15 +96,15 @@ void TUnk_804E355C::check_hits() {
     reset_global_table();
 }
 
-void *TUnk_804E355C::destroy_attack_collision(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = __vt__13TUnk_804E355C;
-        __dt__7TObjectFv(this, 0);
+extern "C" void *__dt__13TUnk_804E355CFv(TUnk_804E355C *self, s16 arg1) {
+    if (self != NULL) {
+        *(s32 **)((s8 *)self + 0x18) = __vt__13TUnk_804E355C;
+        __dt__7TObjectFv(self, 0);
         if (arg1 > 0) {
-            __dl__7TObjectFPv(this);
+            __dl__7TObjectFPv(self);
         }
     }
-    return this;
+    return self;
 }
 
 }
@@ -115,8 +115,8 @@ s32 memset(void *, int, int);
 s32 get_type__10TObjPlayerFPv(void *);
 s32 __ct__7TObjectFP7TObject(void *, void *);
 extern const f32 lbl_805DE914;
-u8 *construct_attack_collision(u8 *arg0, s32 arg1, u8 *arg2);
-u8 *construct_attack_collision(u8 *arg0, s32 arg1, u8 *arg2) {
+u8 *__ct__13TUnk_804E355CFP7TObjectPv(u8 *arg0, s32 arg1, u8 *arg2);
+u8 *__ct__13TUnk_804E355CFP7TObjectPv(u8 *arg0, s32 arg1, u8 *arg2) {
     u32 player;
     __ct__7TObjectFP7TObject((void *)arg0, (void *)arg1);
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__13TUnk_804E355C;

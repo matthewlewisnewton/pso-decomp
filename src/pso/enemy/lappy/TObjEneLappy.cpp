@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/enemy/flower/TObjEneRe2Flower.h"
@@ -1587,14 +1588,11 @@ void TObjEneLappy::load_resources() {
         u8 *res = RES_800C17B8;
         Desc_800C17B8 d = lappy_resource_binding_desc;
         d.a = *(s32 *)(res + 0x430);
-        TLobby::spawn_npc_enemy(5, *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8),
-                                        (NJS_TEXLIST *)*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0xC), &d, lbl_805D9F28, lbl_805D9F4C);
+        NpcModelRegistry::register_animated_chunk(5, (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8)), (void *)((NJS_TEXLIST *)*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0xC)), (const NpcAnimationBinding *)(&d), lbl_805D9F28, lbl_805D9F4C);
         if (TLobby::get_instance() == 0) {
-            TLobby::spawn_npc_enemy(6, *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8), (NJS_TEXLIST *)(*(u32 *)&rappy_alternate_texture_list), &d,
-                                            lbl_805D9F28, lbl_805D9F4C);
+            NpcModelRegistry::register_animated_chunk(6, (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 8)), (void *)((NJS_TEXLIST *)(*(u32 *)&rappy_alternate_texture_list)), (const NpcAnimationBinding *)(&d), lbl_805D9F28, lbl_805D9F4C);
         } else {
-            TLobby::spawn_npc_enemy(6, *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x18),
-                                            (NJS_TEXLIST *)*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x1C), &d, lbl_805D9F28, lbl_805D9F4C);
+            NpcModelRegistry::register_animated_chunk(6, (void *)(*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x18)), (void *)((NJS_TEXLIST *)*(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x1C)), (const NpcAnimationBinding *)(&d), lbl_805D9F28, lbl_805D9F4C);
         }
     }
 }

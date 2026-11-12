@@ -17,6 +17,7 @@
 #include "pso/object/base/TObjChara.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/boss/olgaflow/TBoss6Type1.h"
+#include "pso/boss/olgaflow/TBoss6Zanzo.h"
 #include "pso/boss/olgaflow/TBoss6Mine.h"
 #include "pso/boss/olgaflow/TBoss6SwordShot.h"
 #include "pso/boss/darkfalz/TObjDFHorming.h"
@@ -577,16 +578,6 @@ s32 add_radar_scaled_marker(void *, int, int, int, f32);
 }
 
 
-/* 6xA4: the Olga Flow boss action sent by send_6xA4_action. */
-struct OlgaFlowActionMsg {
-    u8 command;
-    u8 size;
-    u16 entity_id;
-    s8 action;
-    u8 action_args[3];
-    u8 sync_params[3];
-};
-
 struct T1_802B529C;
 struct Boss_802B5434;
 struct Boss_802B8EE0;
@@ -687,7 +678,7 @@ struct Tmp_802B93C4 { s32 a; s16 b; s16 c; u8 pad[0x10]; };
 s32 create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec(u8 *list, s32 vecs);
 void build_tables__17Boss6ScrollStripsFP14Boss6StripDescl(void *, void *, int);
 void TBoss6Type1__sub_802B854C(void *);
-s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
+s32 create__11TBoss6ZanzoFP7TObjectll(void *, int, int);
 extern u8 lbl_80470D1C[];
 extern u8 boss6_type1_model_node_desc[];
 extern u8 boss6_type1_model_node_desc_b[];
@@ -705,19 +696,19 @@ void build_6xA4_olga_flow_boss_actions(void* p) { *(u8*)((char*)p + 0x0) = 164; 
 #pragma pop
 #pragma push
 #pragma opt_propagation off
-void TBoss6Type1::step_and_send_60() { read_be16_field2(); send_subcommand((u8 *)this); }
+void OlgaFlowActionMsg::step_and_send_60() { read_be16_field2(); send_subcommand((u8 *)this); }
 #pragma pop
 #pragma push
 #pragma opt_propagation off
-void TBoss6Type1::read_be16_field2() { ((G_ClientIDHeader *)this)->bswap(); }
+void OlgaFlowActionMsg::read_be16_field2() { bswap(); }
 #pragma pop
 #pragma push
 #pragma opt_propagation off
-int TBoss6Type1::is_idle() { return this->m_374 == 0; }
+int TBoss6PlotFalz::is_idle() { return this->m_374 == 0; }
 #pragma pop
 #pragma push
 #pragma opt_propagation off
-void*TBoss6Type1::get_mag_mine_ptr() { return (char*)this + 0x388; }
+void *TBoss6PlotFalz::get_mag_mine_ptr() { return this->unk_388; }
 #pragma pop
 #pragma push
 #pragma opt_propagation off
@@ -751,7 +742,7 @@ void TBoss6Type1::apply_poison_status() {  }
 
 #pragma push
 #pragma opt_propagation off
-s32 TBoss6Type1::create(s32 arg2_) {
+s32 TBoss6Type1::create(Boss6Type1Spawn *arg2_) {
     s32 arg0_;
     s32 var_r4;
 
@@ -761,7 +752,7 @@ s32 TBoss6Type1::create(s32 arg2_) {
         if (var_r4 != 0) {
             var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);
         }
-        arg0_ = __ct__11TBoss6Type1FP7TObjectP15Boss6Type1Spawn(arg0_, var_r4, arg2_);
+        arg0_ = __ct__11TBoss6Type1FP7TObjectP15Boss6Type1Spawn(arg0_, var_r4, (s32)arg2_);
     }
     return arg0_;
 }
@@ -817,8 +808,8 @@ s32 __ct__11TBoss6Type1FP7TObjectP15Boss6Type1Spawn(s32 arg0_, s32 parent, s32 a
     *(s32 *)((s8 *)arg0 + 0x650) = create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec((u8 *)boss6_type1_model_node_desc_b, (s32)(arg0 + 0x5FC));
     build_tables__17Boss6ScrollStripsFP14Boss6StripDescl(arg0 + 0x658, boss6_type1_build_table, 2);
     build_tables__17Boss6ScrollStripsFP14Boss6StripDescl(arg0 + 0x66C, lbl_80470EA0, 1);
-    *(s32 *)((s8 *)arg0 + 0x400) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 7, 0xF);
-    *(s32 *)((s8 *)arg0 + 0x404) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 2, 0xF);
+    *(s32 *)((s8 *)arg0 + 0x400) = create__11TBoss6ZanzoFP7TObjectll(arg0, 7, 0xF);
+    *(s32 *)((s8 *)arg0 + 0x404) = create__11TBoss6ZanzoFP7TObjectll(arg0, 2, 0xF);
     *(s32 *)((s8 *)arg0 + 0x414) = 0;
     *(s8 *)((s8 *)arg0 + 0x41C) = 0;
     TBoss6Type1__sub_802B96C0((s32)(arg0 + 0x420), (s32)lbl_80470EAC);
@@ -898,11 +889,11 @@ void send_flow_action_if_idle__11TBoss6Type1FP11TBoss6Type1i(TBoss6Type1 *boss6_
     typedef char sp8_offset[(offsetof(Stack_802B9204_boss6_1, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802B9204_boss6_1, spC) == 0x4) ? 1 : -1];
     Stack_802B9204_boss6_1 stack;
-    if (((s32)((TBoss6Type1 *)(boss6_type1->m_3f8))->is_idle()) != 0) {
+    if (((s32)((TBoss6PlotFalz *)(boss6_type1->m_3f8))->is_idle()) != 0) {
         build_6xA4_olga_flow_boss_actions(&stack.sp8);
         boss6_type1->set_sync_data(&stack.sp8);
         stack.spC = arg1;
-        ((TBoss6Type1 *)(&stack.sp8))->step_and_send_60();
+        ((OlgaFlowActionMsg *)(&stack.sp8))->step_and_send_60();
     }
 }
 #pragma pop
@@ -913,7 +904,7 @@ s32 TBoss6Type1::send_6xA4_action(s32 t, void *src) {
     Msg_802B9178 m;
     u8 *s;
     s32 i;
-    if (((TBoss6Type1 *)(this->m_3f8))->is_idle() != 0) {
+    if (((TBoss6PlotFalz *)(this->m_3f8))->is_idle() != 0) {
         build_6xA4_olga_flow_boss_actions(&m);
         set_sync_data(&m);
         m.b[4] = t;
@@ -921,7 +912,7 @@ s32 TBoss6Type1::send_6xA4_action(s32 t, void *src) {
         for (i = 1; i < 4; i++) {
             m.b[i + 4] = *s++;
         }
-        ((TBoss6Type1 *)(&m))->step_and_send_60();
+        ((OlgaFlowActionMsg *)(&m))->step_and_send_60();
     }
 }
 #pragma pop
@@ -1117,8 +1108,8 @@ void handle_6xA4_olga_flow_boss_actions(void *arg) {
     TBoss6Type1 *boss;
     s32 action;
 
-    ((TBoss6Type1 *)msg)->read_be16_field2();
-    boss = (TBoss6Type1 *)get_enemy_entity(msg->entity_id);
+    ((OlgaFlowActionMsg *)msg)->read_be16_field2();
+    boss = (TBoss6Type1 *)get_enemy_entity(msg->client_id);
     if (boss == NULL) {
         return;
     }
@@ -1165,7 +1156,7 @@ void TBoss6Type1::run_task() {
     if (a.action != 0) {
         (((Boss_802B865C *)this)->*a.action)();
     }
-    if (((TBoss6Type1 *)this->m_3f8)->is_idle() != 0) {
+    if (((TBoss6PlotFalz *)this->m_3f8)->is_idle() != 0) {
         a.words[0] = boss6_type1_action_table[this->m_374].idle[0];
         a.words[1] = boss6_type1_action_table[this->m_374].idle[1];
         a.words[2] = boss6_type1_action_table[this->m_374].idle[2];
@@ -2065,7 +2056,7 @@ void TBoss6Type1__sub_802B6504(TBoss6Type1 *boss) {
     s32 seed = boss->m_41c;
     TBoss6MineSetData set;
     boss->reset_fields_4e0();
-    TBoss4DarkFalz__sub_8004B4F0(&set, ((TBoss6Type1 *)boss->m_3f8)->get_mag_mine_ptr());
+    TBoss4DarkFalz__sub_8004B4F0(&set, ((TBoss6PlotFalz *)boss->m_3f8)->get_mag_mine_ptr());
     set.owner = boss;
     VecCopy(&set.origin, &boss->node_points[0]);
     VecCopy(&set.offset, &lbl_80470F84);
@@ -2242,7 +2233,7 @@ void TBoss6Type1::update_trail_points() {
     subtract_vector(&points[2],&delta);
     vec3_add_to(&points[4],&delta);
     VecCopy((Vec *)&points[6], (const Vec *)&points[0]);
-    ((TBoss6Type1 *)trail_point_receiver)->set_effect_points((f32 *)points, (u32 *)boss6_type1_trail_point_offsets);
+    ((TBoss6Zanzo *)trail_point_receiver)->set_effect_points((const Vec *)points, (const u32 *)boss6_type1_trail_point_offsets);
 }
 
 void TBoss6Type1::update_effect_points() {
@@ -2250,7 +2241,7 @@ void TBoss6Type1::update_effect_points() {
     VecCopy((Vec *)&points[0], (const Vec *)&effect_points[0]);
     VecCopy((Vec *)&points[1], (const Vec *)&effect_points[1]);
     this->set_part_default_value((Vec *)&points[1]);
-    ((TBoss6Type1 *)effect_point_receiver)->set_effect_points((f32 *)points, (u32 *)lbl_80470FAC);
+    ((TBoss6Zanzo *)effect_point_receiver)->set_effect_points((const Vec *)points, (const u32 *)lbl_80470FAC);
 }
 
 void TBoss6Type1::set_part_default_value(Vec *a1) { *(float*)((char*)a1 + 0x4) = 10.0f; }

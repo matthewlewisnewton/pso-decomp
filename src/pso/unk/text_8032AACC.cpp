@@ -22,7 +22,7 @@ struct Arg_8032AC24 { f32 x, y; u8 pad[8]; };
 extern "C" {
 char *realloc_buffer__17TWindowSubComCardFv(void *);
 void fn_8025DE10(void *arg0, void *arg1);
-void TAdEnterSerialAccessGC__sub_802C4B64(void *, void *, void *, int);
+void draw_selection_plate(void *, void *, void *, int);
 void __dt__19TAdPlyChrSelPlateGCFv(void *, int);
 void *__ct__19TAdPlyChrSelPlateGCFv(void *, s32, void *);
 void *memset(void *, int, u32);
@@ -51,7 +51,7 @@ void draw_masked_password_field(s32 arg0) {
         p1.y = lbl_80477218[1];
         __ct__19TAdPlyChrSelPlateGCFv(&plate, tl_clipout, &p1);
         Word_8032AACC w = lbl_805DF76C;
-        TAdEnterSerialAccessGC__sub_802C4B64(&plate, lbl_80477210, &w, 0);
+        draw_selection_plate(&plate, lbl_80477210, &w, 0);
         str = realloc_buffer__17TWindowSubComCardFv(password_entry_keyboard_control);
         len = strlen(str);
         ::operator delete[](str);
@@ -79,6 +79,6 @@ void fn_8032AC24(void) {
     p1.y = src[1];
     __ct__19TAdPlyChrSelPlateGCFv(&plate, tl_clipout, &p1);
     Word_8032AC24 w = lbl_805DF768;
-    TAdEnterSerialAccessGC__sub_802C4B64(&plate, lbl_80477200, &w, 0);
+    draw_selection_plate(&plate, lbl_80477200, &w, 0);
     __dt__19TAdPlyChrSelPlateGCFv(&plate, -1);
 }

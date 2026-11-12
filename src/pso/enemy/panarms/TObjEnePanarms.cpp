@@ -2,6 +2,7 @@
 #include "pso/effect/GroundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_800F0810.h"
 #include "pso/render/BlobShadow.h"
 #include "pso/system/CurrentTextureList.h"
@@ -1696,9 +1697,9 @@ void TObjEnePanarms::spawn_npc_pair() {
   stack.sp14 = *((s32 *) (((s8 *)&panarms_npc_binding_desc_b.value) + 0xC));
   stack.sp8 = temp_r8;
   temp_r5 = (u8 *) (*((u8 **) (new_var + 0x42C)));
-  TLobby::spawn_npc_enemy((s16)(0x24), (s32)((int) (*((s32 *) (((s8 *) temp_r5) + 0x18)))), (NJS_TEXLIST *)((int) (*((s32 *) (((s8 *) temp_r5) + 0x1C)))), &stack.sp18, (f32)(7.5f), (f32)(0.0f));
+  NpcModelRegistry::register_animated_chunk((s16)(0x24), (void *)((s32)((int) (*((s32 *) (((s8 *) temp_r5) + 0x18))))), (void *)((NJS_TEXLIST *)((int) (*((s32 *) (((s8 *) temp_r5) + 0x1C))))), (const NpcAnimationBinding *)(&stack.sp18), (f32)(7.5f), (f32)(0.0f));
   temp_r5_2 = (u8 *) (*((u8 **) (((s8 *) TObjEnePanarms__entry_params_resource) + 0x42C)));
-  TLobby::spawn_npc_enemy((s16)(0x25), (s32)((int) (*((s32 *) (((s8 *) temp_r5_2) + 0x28)))), (NJS_TEXLIST *)((int) (*((s32 *) (((s8 *) temp_r5_2) + 0x2C)))), &stack.sp8, (f32)(7.5f), (f32)(0.0f));
+  NpcModelRegistry::register_animated_chunk((s16)(0x25), (void *)((s32)((int) (*((s32 *) (((s8 *) temp_r5_2) + 0x28))))), (void *)((NJS_TEXLIST *)((int) (*((s32 *) (((s8 *) temp_r5_2) + 0x2C))))), (const NpcAnimationBinding *)(&stack.sp8), (f32)(7.5f), (f32)(0.0f));
 }
 #pragma pop
 

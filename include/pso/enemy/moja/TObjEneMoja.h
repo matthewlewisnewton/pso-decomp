@@ -22,7 +22,7 @@ struct MojaMovementParameters {
     s32 unknown_08;
     u32 unknown_0C[4];
 };
-// The motion-binding block TLobby::spawn_npc_enemy takes (same layout as
+// The motion-binding block NpcModelRegistry::register_animated_chunk takes (same layout as
 // DelDepthAnimationBinding).
 struct MojaAnimationBinding {
     BmlMotionEntry *motions;

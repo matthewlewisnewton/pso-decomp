@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/render/TUnk_80494938.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
@@ -611,7 +612,7 @@ extern "C" void TObjPlayer__sub_800AA82C(void) {
         d.a = dubchik_resource->f430;
         for (j = 0; j < 2; j++) {
             Mdl_800AA82C *e = &dubchik_resource->mdl[j];
-            TLobby::spawn_npc_enemy(ids.v[j], e->f8, (NJS_TEXLIST *)e->fC, &d, 5.0f, 0.0f);
+            NpcModelRegistry::register_animated_chunk(ids.v[j], (void *)(e->f8), (void *)((NJS_TEXLIST *)e->fC), (const NpcAnimationBinding *)(&d), 5.0f, 0.0f);
         }
     }
 }

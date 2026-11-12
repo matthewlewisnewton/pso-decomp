@@ -25,6 +25,6 @@ public:
 };
 
 // Draws one plate quad of `plate`'s size at `pos` in `color`, `depth` steps in front.
-extern "C" void TAdEnterSerialAccessGC__sub_802C4B64(TAdPlyChrSelPlateGC *plate, NJS_POINT2 *pos, NJS_COLOR color, u32 depth);
+extern "C" void draw_selection_plate(TAdPlyChrSelPlateGC *plate, NJS_POINT2 *pos, NJS_COLOR color, u32 depth);
 
 #endif

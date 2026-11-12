@@ -164,7 +164,7 @@ extern const f32 lbl_805DE540;
 extern const f32 lbl_805DE544;
 #pragma push
 #pragma fp_contract on
-void TAdEnterSerialAccessGC__sub_802C4B64(TAdPlyChrSelPlateGC *plate, NJS_POINT2 *pos, NJS_COLOR color, u32 depth) {
+void draw_selection_plate(TAdPlyChrSelPlateGC *plate, NJS_POINT2 *pos, NJS_COLOR color, u32 depth) {
     NJS_POINT2COL fan;
     NJS_POINT2 *xyp;
     NJS_COLOR col[4];

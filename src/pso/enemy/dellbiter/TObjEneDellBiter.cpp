@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -239,8 +240,7 @@ void TObjEneDellBiter::load_resources() {
         TObjEneDellBiter__last_uv_scroll_tick = 0;
         DelbiterAttackDefinition attack = ene_dell_biter_attack_def;
         attack.motion = resource->motions;
-        TLobby::spawn_npc_enemy((s16)0x46, resource->models->model, (NJS_TEXLIST *)resource->models->m_c,
-            &attack, lbl_804E6B8C[0].radius, 0.0f);
+        NpcModelRegistry::register_animated_chunk((s16)0x46, (void *)(resource->models->model), (void *)((NJS_TEXLIST *)resource->models->m_c), (const NpcAnimationBinding *)(&attack), lbl_804E6B8C[0].radius, 0.0f);
     }
 }
 

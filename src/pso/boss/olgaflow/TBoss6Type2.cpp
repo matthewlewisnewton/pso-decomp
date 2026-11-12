@@ -242,7 +242,7 @@ f32 receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(void *self, vo
 f32 vfunc_23__11TBoss6Type2FPvPvPvll(TBoss6Type2 *self, void *attacker, AttackMsg_802BD430 msg, void *collision, s32 tech, s32 arg5);
 void set_screen_pos__11TBoss6Type2FPv(void *arg0);
 void TBoss6Type2__sub_802BE4E0(s32 *arg0, s32 *arg1);
-s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
+s32 create__11TBoss6ZanzoFP7TObjectll(void *, int, int);
 extern u8 boss6_type2_collision_parts[];
 extern u8 __vt__11TBoss6Type2[];
 s32 TBoss6Type2__ct(s32 arg0_, s32 arg1, s32 arg2_);
@@ -1655,7 +1655,7 @@ void TBoss6Type2__sub_802BB818(TBoss6Type2 *self, f32) {
     VecCopy(&params.origin, (const Vec *)&self->position);
     params.origin.y += 150.0f;
     params.rotation_y = self->m_60;
-    TBoss4DarkFalz__sub_8004B4F0(&params, ((TBoss6Type1 *)self->m_3f8)->get_mag_mine_ptr());
+    TBoss4DarkFalz__sub_8004B4F0(&params, ((TBoss6PlotFalz *)self->m_3f8)->get_mag_mine_ptr());
     params.active = 1;
     VecCopy(&params.pos, &params.origin);
     params.flags = self->m_2e4;
@@ -2510,7 +2510,7 @@ void TBoss6Type2::run_task() {
     if (fn) {
         (o->*fn)();
     }
-    if (((TBoss6Type1 *)(this->m_3f8))->is_idle() != 0) {
+    if (((TBoss6PlotFalz *)(this->m_3f8))->is_idle() != 0) {
         Tb_802BD0C8 *tbl = (Tb_802BD0C8 *)lbl_804E00DC;
         fn = tbl[o->a[0]].fn2;
         if (fn) {
@@ -3038,7 +3038,7 @@ void TBoss6Type2::update_action_state() {
 void TBoss6Type2::send_action_packet_if_idle(s32 arg1, s32 *arg2) {
     Pkt_802BDD6C p;
     u8 *s; s32 i;
-    if (((TBoss6Type1 *)(this->m_3f8))->is_idle() != 0) {
+    if (((TBoss6PlotFalz *)(this->m_3f8))->is_idle() != 0) {
         ((TBoss6Type2 *)(&p))->init_packet();
         build_state_packet((u8 *)&p);
         s = (u8 *)arg2; p.d[4] = arg1;
@@ -3061,7 +3061,7 @@ void TBoss6Type2::send_action_packet(s8 arg1) {
     typedef char sp8_offset[(offsetof(Stack_802BDDF8, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_802BDDF8, spC) == 0x4) ? 1 : -1];
     Stack_802BDDF8 stack;
-    if (((TBoss6Type1 *)(this->m_3f8))->is_idle() != 0) {
+    if (((TBoss6PlotFalz *)(this->m_3f8))->is_idle() != 0) {
         ((TBoss6Type2 *)(&stack.sp8))->init_packet();
         build_state_packet((u8 *)&stack.sp8);
         stack.spC = arg1;
@@ -3216,7 +3216,7 @@ s32 TBoss6Type2__ct(s32 arg0_, s32 parent, s32 arg2_) {
     ((TBoss6Type2 *)arg0)->init_motion_entries();
     *(s32 *)((s8 *)arg0 + 0x764) = create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec((u8 *)boss6_type2_effect_desc_table, (s32)(arg0 + 0x59C));
     build_tables__17Boss6ScrollStripsFP14Boss6StripDescl(arg0 + 0x768, (void *)boss6_type2_plot_falz_entry_table, 2);
-    *(s32 *)((s8 *)arg0 + 0x458) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 7, 0xF);
+    *(s32 *)((s8 *)arg0 + 0x458) = create__11TBoss6ZanzoFP7TObjectll(arg0, 7, 0xF);
     *(s8 *)((s8 *)arg0 + 0x478) = 0;
     *(s32 *)((s8 *)arg0 + 0x47C) = 0x11;
     TBoss6Type2__sub_802BE4E0((s32 *)(arg0 + 0x480), (s32 *)boss6_type2_zero_vec);

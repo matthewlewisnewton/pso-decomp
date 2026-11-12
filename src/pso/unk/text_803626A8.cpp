@@ -1,5 +1,6 @@
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/system/task/TMainTask.h"
@@ -289,7 +290,7 @@ void TObjEneEpsilonGuard::load_assets() {
     {
         Quad_803627DC q = lbl_80479FAC;
         q.a = ((Res_803627DC *)lbl_805D6FA0)->f430;
-        TLobby::spawn_npc_enemy((s16)0x4E, (s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->f8), ((Res_803627DC *)lbl_805D6FA0)->f42c->texlist, &q, (f32)lbl_805E024C, (f32)lbl_805E0250);
+        NpcModelRegistry::register_animated_chunk((s16)0x4E, (void *)((s32)(((Res_803627DC *)lbl_805D6FA0)->f42c->f8)), (void *)(((Res_803627DC *)lbl_805D6FA0)->f42c->texlist), (const NpcAnimationBinding *)(&q), (f32)lbl_805E024C, (f32)lbl_805E0250);
     }
 }
 

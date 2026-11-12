@@ -2,6 +2,7 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/canadin/TObjEneMe1Canadin.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -1740,7 +1741,7 @@ extern const s32 lbl_8043A198[3];
 extern const s32 lbl_8043A1A4[3];
 }
 
-// Name inferred: the motion setup TLobby::spawn_npc_enemy takes (motions, animation table, 0, 0x70000).
+// Name inferred: the motion setup NpcModelRegistry::register_animated_chunk takes (motions, animation table, 0, 0x70000).
 struct CanadinSpawnParams {
     s32 motions;
     void *animations;
@@ -1799,7 +1800,7 @@ void TObjEneMe1Canadin::load_resources() {
     CanadinSpawnParams params = lbl_8043A380;
     params.motions = (s32)lbl_805D4FD0->motions;
     for (i = 0; i < 2; i++) {
-        TLobby::spawn_npc_enemy(ids[i], lbl_805D4FD0->models[i].model, (NJS_TEXLIST *)lbl_805D4FD0->models[1].m_c, &params, 8.0f, 15.0f);
+        NpcModelRegistry::register_animated_chunk(ids[i], (void *)(lbl_805D4FD0->models[i].model), (void *)((NJS_TEXLIST *)lbl_805D4FD0->models[1].m_c), (const NpcAnimationBinding *)(&params), 8.0f, 15.0f);
     }
 }
 

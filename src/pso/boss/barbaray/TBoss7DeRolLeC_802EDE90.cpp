@@ -74,7 +74,7 @@ TBoss7DeRolLeC::TBoss7DeRolLeC(TObject *parent, void *set_data) : TObjEneDD_ST(p
     unk_6D8 = (GC_Mtx *)::operator new[](4 * sizeof(GC_Mtx));
     for (s32 i = 0; i < 4; i++) {
         set_matrix_identity((u8 *)unk_6D8[i]);
-        unk_6DC[i] = new TBoss7Tentacle(&unk_690, (s32)unk_6D8[i], i);
+        unk_6DC[i] = new TBoss7Tentacle(&unk_690, (const f32 (*)[4])unk_6D8[i], i);
     }
     Vec v = lbl_80473F6C;
     u16 id = entity_id + 1;

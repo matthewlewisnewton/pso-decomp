@@ -13,7 +13,7 @@
 #pragma dont_inline off
 struct ByteBlock_C { u8 bytes[0xc]; };
 
-struct Src_80320534 { s32 a; u8 *p; };
+typedef Boss6TrailFrame Src_80320534;
 
 struct Ent_803204B8 { u8 pad[4]; f32 v[3]; };
 
@@ -40,12 +40,12 @@ int set_depth_buffer_settings_1__Fv(void*);
 
 s32 fn_803204B0(void* p) { return *(s32*)((char*)p + 0x4); }
 
-void TBoss6Type1::set_effect_points(f32 *a, u32 *b) {
+void TBoss6Zanzo::set_effect_points(const Vec *a, const u32 *b) {
     Ef_803204B8 *o = (Ef_803204B8 *)this;
     Ent_803204B8 *p;
     Ent_803204B8 *end;
-    f32 *a2 = a;
-    u32 *b2 = b;
+    f32 *a2 = (f32 *)a;
+    u32 *b2 = (u32 *)b;
     o->blk->flag = 1;
     p = o->blk->ents;
     end = p + o->count;
@@ -55,7 +55,7 @@ void TBoss6Type1::set_effect_points(f32 *a, u32 *b) {
     }
 }
 
-void TBoss6Zanzo::copy_trail_buffer(void *arg1_arg, void *arg2_arg) {
+void TBoss6Zanzo::copy_trail_buffer(Boss6TrailFrame *arg1_arg, Boss6TrailFrame *arg2_arg) {
     TBoss6Zanzo *arg0 = this;
     Src_80320534 *arg1 = (Src_80320534 *)arg1_arg;
     Src_80320534 *arg2 = (Src_80320534 *)arg2_arg;
@@ -85,7 +85,7 @@ struct ZanzoTrailPoint { u8 color[4]; Vec pos; };
 struct ZanzoQuad { Vec *positions; u8 (*colors)[4]; void *uvs; s32 count; };
 
 // Draws the after-image trail: a strip of quads between each pair of consecutive frames, fading out with age.
-void TBoss6Zanzo::sub_803205C4() {
+void TBoss6Zanzo::draw_trail() {
     Src_80320534 *frame;
     Src_80320534 *end;
     Src_80320534 *prev;
@@ -147,7 +147,7 @@ void TBoss6Zanzo::sub_803205C4() {
     }
 }
 
-void TBoss6Zanzo::render() { set_depth_buffer_settings_1__Fv(this); sub_803205C4(); restore_saved_depth_alpha_state(); }
+void TBoss6Zanzo::render() { set_depth_buffer_settings_1__Fv(this); draw_trail(); restore_saved_depth_alpha_state(); }
 
 void run_task__11TBoss6ZanzoFv(Obj_803208CC *arg0) {
     Src_80320534 *base;

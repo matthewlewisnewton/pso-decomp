@@ -4,17 +4,25 @@
 #include "types.h"
 #include "pso/system/task/TObject.h"
 
+struct Vec;
+struct Boss6TrailFrame {
+    s32 a;
+    u8 *p;
+};
+
 struct TBoss6Zanzo : public TObject {
     TBoss6Zanzo(TObject *arg1, s32 arg2, s32 arg3);
     virtual ~TBoss6Zanzo();
-    void copy_trail_buffer(void *, void *);
+    void copy_trail_buffer(Boss6TrailFrame *, Boss6TrailFrame *);
+    void set_effect_points(const Vec *a, const u32 *b);
+    static void *create(TObject *arg0, s32 arg1, s32 arg2);
     virtual void run_task();
     u32 m_1c;
     u32 m_20;
     s32 m_24;
     s32 m_28;
     virtual void render();
-    void sub_803205C4();
+    void draw_trail();
 };
 
 typedef char TBoss6Zanzo_size[sizeof(TBoss6Zanzo) == 0x2C ? 1 : -1];

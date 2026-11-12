@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
@@ -2076,7 +2077,7 @@ void initialize_saver_resources(void) {
     lbl_805D504C = (f32 *)get_battle_movement_params(0x51);
     Init_800A715C init = saver_init_binding_desc;
     init.motions = (s32)RES->ents;
-    TLobby::spawn_npc_enemy((s16)0x1A, (s32)RES->sub->f8, RES->sub->texlist, &init, (f32)saver_collision_body_part_table[3], (f32)0.0f);
+    NpcModelRegistry::register_animated_chunk((s16)0x1A, (void *)((s32)RES->sub->f8), (void *)(RES->sub->texlist), (const NpcAnimationBinding *)(&init), (f32)saver_collision_body_part_table[3], (f32)0.0f);
 }
 Obj_800A73F8 *__dt__12TObjEneSaverFv(Obj_800A73F8 *arg0, s16 arg1) {
     s32 i;

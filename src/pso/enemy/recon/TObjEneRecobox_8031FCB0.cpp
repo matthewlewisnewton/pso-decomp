@@ -1,5 +1,6 @@
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/render/RenderFadeState.h"
 #include "types.h"
 #include "pso/enemy/dd/TObjEneDD.h"
@@ -579,7 +580,7 @@ void TObjEneRecobox::load_resources() {
         Spawn_80320260 s = recobox_resource_binding_desc;
         box = (Box_80320260 *)(*(u32 *)&TObjEneRecobox__static_instance);
         s.a = box->f430;
-        TLobby::spawn_npc_enemy((s16)0xD, box->f42C->f18, box->f42C->texlist, &s, (f32)(getf_80320260(sp)), (f32)lbl_805DF46C);
+        NpcModelRegistry::register_animated_chunk((s16)0xD, (void *)(box->f42C->f18), (void *)(box->f42C->texlist), (const NpcAnimationBinding *)(&s), (f32)(getf_80320260(sp)), (f32)lbl_805DF46C);
     }
 }
 

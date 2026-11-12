@@ -1,12 +1,13 @@
 #include "types.h"
 #include "pso/object/TMotorcycle_802D712C.h"
+#include "pso/npc/NpcModelRegistry.h"
 #include "pso/unk/TLobby.h"
 
 extern "C" {
 
 u8 *insert_slot_by_id__12TObjNpcEnemyFs();
 
-void TLobby::spawn_npc_enemy(s16 arg0, s32 arg1, NJS_TEXLIST *arg2, void *arg3, f32 farg0, f32 farg1) {
+void NpcModelRegistry::register_animated_chunk(s16 arg0, void *arg1, void *arg2, const NpcAnimationBinding *arg3, f32 farg0, f32 farg1) {
     u8 *temp_r3;
 
     temp_r3 = insert_slot_by_id__12TObjNpcEnemyFs();
@@ -14,10 +15,10 @@ void TLobby::spawn_npc_enemy(s16 arg0, s32 arg1, NJS_TEXLIST *arg2, void *arg3, 
         *(s16 *)((s8 *)temp_r3 + 0) = arg0;
         *(s16 *)((s8 *)temp_r3 + 2) = 1;
         *(f32 *)((s8 *)temp_r3 + 4) = farg1;
-        *(s32 *)((s8 *)temp_r3 + 8) = arg1;
-        *(NJS_TEXLIST **)((s8 *)temp_r3 + 0xC) = arg2;
+        *(s32 *)((s8 *)temp_r3 + 8) = (s32)arg1;
+        *(NJS_TEXLIST **)((s8 *)temp_r3 + 0xC) = (NJS_TEXLIST *)arg2;
         *(f32 *)((s8 *)temp_r3 + 0x10) = farg0;
-        copy_position_data(temp_r3 + 0x14, arg3);
+        copy_position_data(temp_r3 + 0x14, (void *)arg3);
     }
 }
 

@@ -176,11 +176,11 @@ s32 scale_current_matrix(void *);
 s32 post_translate_matrix(void *);
 extern int attack_collider_render_owner;
 extern int attack_collider_active_count;
-void TItemAttackCol__vt5(s32 arg0);
+void vfunc_7__14TItemAttackColFv(s32 arg0);
 void* TObjPlayer__sub_802E449C(void* a0);
 void *__dt__14TItemAttackColFv(TItemAttackCol *arg0, s16 arg1);
 s32 vec3_add_to(s32 *, s32);
-void *TItemAttackCol__ct(void *, void *, void *);
+void *__ct__14TItemAttackColFP7TObjectP24ItemAttackColliderParams(void *, void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 int fn_802E3BA8(void*, void*);
@@ -217,7 +217,7 @@ void TItemAttackCol::vfunc_6(s32 *a) {
     }
 }
 
-void TItemAttackCol__vt5(s32 arg0) {
+void vfunc_7__14TItemAttackColFv(s32 arg0) {
     s32 sp8;
 
     VecCopy((Vec *)&sp8, (const Vec *)(arg0 + 0xD0));
@@ -318,7 +318,7 @@ void *__dt__14TItemAttackColFv(TItemAttackCol *arg0, s16 arg1) {
         if (*(void **)((s8 *)arg0 + 0x130) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x130)); arg0->m_130 = 0; }
         if (*(void **)((s8 *)arg0 + 0x134) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x134)); arg0->m_134 = 0; }
         if (*(void **)((s8 *)arg0 + 0x140) != NULL) { queue_destruction__7TObjectFv(*(void **)((s8 *)arg0 + 0x140)); arg0->m_140 = 0; }
-        ((TUnk_804E355C *)arg0)->destroy_attack_collision(0);
+        __dt__13TUnk_804E355CFv((TUnk_804E355C *)arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -330,7 +330,7 @@ void TItemAttackCol::create(void *arg0, void *arg1) {
     void *o;
     o = __nw__7TObjectFUl(0x144);
     if (o != NULL) {
-        TItemAttackCol__ct(o, arg0, arg1);
+        __ct__14TItemAttackColFP7TObjectP24ItemAttackColliderParams(o, arg0, arg1);
     }
 }
 

@@ -10,7 +10,7 @@ public:
     virtual void render();
     virtual void run_task();
 public:
-    static void *create(void *arg0, void *arg1);
+    static void *create(TObject *arg0, s32 arg1);
 
     s32 state;
     // Compared with char_creation_tag_info_selected_index; picks the text block.
@@ -23,7 +23,7 @@ public:
 };
 
 extern "C" {
-void *__ct__22TChCrTagInformationStrFv(void *arg0, s32 arg1, s32 arg2);
+void *__ct__22TChCrTagInformationStrFP7TObjectl(void *arg0, s32 arg1, s32 arg2);
 void run_task__22TChCrTagInformationStrFv(u8 *arg0);
 }
 

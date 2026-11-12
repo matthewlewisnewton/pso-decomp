@@ -16,6 +16,7 @@
 #include "pso/boss/darkfalz/TBoss4Type2.h"
 #include "pso/boss/olgaflow/TBoss6PlotFalz.h"
 #include "pso/boss/olgaflow/TBoss6Type1.h"
+#include "pso/boss/olgaflow/TBoss6Zanzo.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/unk/TLobby.h"
 #include "pso/ui/hud/TNowLoading.h"
@@ -77,7 +78,7 @@ s32 get_bml_model(void *, int);
 void set_scripted_camera_pose(void *, void *, void *);
 void __ct__7TObjectFP7TObject(void *);
 void *get_fish_count__8TObjFishFv(void);
-s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
+s32 create__11TBoss6ZanzoFP7TObjectll(void *, int, int);
 void vec3_add_to(void *, void *);
 f32 vector_length(void *);
 void subtract_vector(void *, void *);
@@ -319,7 +320,7 @@ void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
         mid.x *= (0.5f);
         mid.y *= (0.5f);
         mid.z *= (0.5f);
-        ((TBoss6Type1 *)(arg0->fb0))->set_effect_points((f32 *)&a, (u32 *)lbl_8047817C);
+        ((TBoss6Zanzo *)(arg0->fb0))->set_effect_points((const Vec *)&a, (const u32 *)lbl_8047817C);
     }
     if (arg0->timer == 0x23A) {
         s32 n = TLobby::get_game_mode();
@@ -430,7 +431,7 @@ void *TBoss6Demo21_TYPE2_DEAD__ct(void *arg0p, void *arg1, void *arg2) {
     for (i = 0; i < 4; i++) {
         ((Fish_8033E688 *)arg0)->arr[i] = 0;
     }
-    ((TBoss6Type1 *)arg0)->motion_flags = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 3, 0xF);
+    ((TBoss6Type1 *)arg0)->motion_flags = create__11TBoss6ZanzoFP7TObjectll(arg0, 3, 0xF);
     *(f32 *)((s8 *)arg0 + 0x4C) = (0.0f);
     *(s32 *)((s8 *)arg0 + 0x50) = 0;
     return arg0;
