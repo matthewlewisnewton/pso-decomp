@@ -503,7 +503,7 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *setData, s32 index) : TObj
         return;
     }
     referenceHp = hp;
-    ((TObjEnemy *)this)->register_by_id(); // 0x8003F0E8: generic helper, owned under this name by 24 callers
+    ((TObjEnemy *)this)->register_by_id();
     movementParameters = NULL;
     if (m_380 == 0) {
         set_param(23);
