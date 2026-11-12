@@ -103,6 +103,8 @@ typedef char ModemLaunchContextData[offsetof(ModemLaunchContext, data) == 0x110 
 typedef char ModemLaunchContextImage[offsetof(ModemLaunchContext, field_104) == 0x104 ? 1 : -1];
 
 extern "C" {
+void LaunchDol(ModemLaunchContext *ctx);
+
 extern s32 lbl_805D7CA8;
 // Preserve the observed store/read-back and repeated slot loads.
 // This qualifies the slot, not the context storage.
