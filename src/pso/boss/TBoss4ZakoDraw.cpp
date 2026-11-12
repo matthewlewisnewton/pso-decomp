@@ -6,7 +6,7 @@
 #include "pso/TParticleCtrl.h"
 #include "pso/player/TObjPlayer.h"
 
-extern u8 boss4_zako_draw_buffers[];
+#include "pso/boss/TBoss4ZakoDrawBuffer.h"
 extern u32 dark_falz_controller_instance;
 extern s32 TBoss4ZakoDraw__draw_buffer_index;
 extern s32 TBoss4ZakoDraw__rotation_phase;
@@ -19,7 +19,7 @@ void TBoss4ZakoDraw::run_task() {
         return;
     }
     old = TBoss4ZakoDraw__draw_buffer_index;
-    *(s32 *)(boss4_zako_draw_buffers + old * 0x784) = 0;
+    boss4_zako_draw_buffers[old].count = 0;
     TBoss4ZakoDraw__draw_buffer_index = old ^ 1;
     if (++TBoss4ZakoDraw__rotation_phase >= 4) {
         TBoss4ZakoDraw__rotation_phase = 0;
