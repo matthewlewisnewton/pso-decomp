@@ -466,7 +466,8 @@ and the same function body.
 placeholder for the cache initializer. Its scoped `opt_common_subs off` preserves
 the native independent node-list bounds. Separate scopes in `803E8DA0`,
 `803E93DC` and `803E95BC` preserve the independently calculated bucket links.
-The rotation routine inlines its bounded name search at depth one; this helper
+The rotation and rebuild routines inline their shared bounded name search at
+depth one after copying and terminating the name in the caller; this helper
 returns the stopping node and publishes the corresponding link address. An MWCC-only integer address adapter
 reaches the separate canonical name index at cache address plus 0x2000; this
 records native placement rather than declaring a larger owner. The portable

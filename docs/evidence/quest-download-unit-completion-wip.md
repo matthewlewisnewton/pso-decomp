@@ -81,13 +81,13 @@ GC/1.2.5 profile. Remaining functions are:
 | --- | ---: | ---: |
 | `803E8924` | 98.10317 | 504/504 |
 | `803E8DA0` | 95.051544 | 780/776 |
-| `803E93DC` | 95.281815 | 448/440 |
-| `803E95BC` | 97.5566 | 424/424 |
+| `803E93DC` | 97.82727 | 444/440 |
+| `803E95BC` | 99.43396 | 424/424 |
 | `803EA428` | 94.19162 | 1336/1336 |
 | `803EA9E8` | 96.88844 | 1004/1004 |
 | `803EDC20` | 94.41237 | 388/388 |
 | `803EDF64` | 78.625 | 888/896 |
-| `803EE2F4` | 82.36196 | 668/652 |
+| `803EE2F4` | 95.74847 | 644/652 |
 | `803EE580` | 92.35294 | 412/408 |
 | `803F03B4` | 99.75903 | 332/332 |
 
@@ -168,3 +168,28 @@ code bytes. A host C++98 extraction of the exact portable record-tail helper
 also passes 91,455 comparisons with `memmove` under AddressSanitizer and
 UndefinedBehaviorSanitizer, including empty spans and both overlap directions,
 with the documented strictly-after-array-start source condition.
+
+## Shared cache lookup and accumulator control flow
+
+Copying and terminating the record name in the caller, then inlining the
+sorted lookup, reproduces rotation's native 0x88-byte frame and name offset
+0x14. The helper returns the stopping node and publishes its link; it does not
+introduce a fabricated result object or unused padding. Rotation is now
+99.43396%, with only the length and bucket registers swapped. Reusing this
+boundary in the persisted-page rebuild reaches 97.82727%, 444/440 bytes.
+Its extra base-pointer copy and stack/register differences remain unresolved.
+
+The accumulator's empty-cache-name branch returns to the earlier shared
+emit/increment/continue block, as the native backward branch does. Its request
+length is explicitly narrowed to an unsigned halfword before the existing
+signed-halfword field store. Direct use of the actual global buffers for the
+first conversion and append-name scan reproduces more of the native pointer
+handoffs; the first terminator store also names the actual global buffer.
+This reaches 95.74847%, 644/652 bytes. Missing pointer spills and remaining
+register assignments are still partial work, not exact coverage.
+
+The full repository check passes after these changes: all 162 exact functions
+in this unit are retained, all 3,626 linked units remain exact, the original DOL
+hash passes, and force-active retention has zero additions or removals. The
+branch's exact gain remains three functions and 2,148 code bytes. These partial
+improvements do not make the unit eligible for source linkage or a completion PR.
