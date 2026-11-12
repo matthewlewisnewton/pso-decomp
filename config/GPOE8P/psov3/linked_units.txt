@@ -2008,6 +2008,7 @@ pso/network/NetworkInfoRequests.cpp
 pso/network/NetworkMessageTransport.cpp
 pso/network/NetworkPacketRuntime.cpp
 pso/network/NetworkTransport.cpp
+pso/network/SocketProtocolRuntime.cpp
 pso/network/TGameProtocol.cpp
 pso/network/TProtocol.cpp
 pso/network/TProtocolChoiceSearch.cpp

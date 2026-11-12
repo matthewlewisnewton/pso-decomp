@@ -105,6 +105,7 @@ force_active:
   - NetIPv6CPParseConfigureOption
   - NetRunProtocolDispatchLoop
   - NetRunTimerDispatchLoop
+  - NetUdpAllocateEphemeralPort
   - NumHeaps
   - OSExitThread
   - OSNotifyLink
@@ -834,6 +835,9 @@ force_active:
   - TLobby__sub_803FADA0
   - TLobby__sub_803FAEDC
   - TLobby__sub_803FB358
+  - TLobby__sub_8041F66C
+  - TLobby__sub_8041FDA0
+  - TLobby__sub_8041FED4
   - TLobby__sub_80421FB8
   - TLobby__sub_80423440
   - TLobby__sub_80423C04
@@ -6298,6 +6302,7 @@ force_active:
   - exit_photon_blast_action__10TObjPlayerFv
   - exit_technique_cast__10TObjPlayerFv
   - expand_message_substitutions
+  - expire_timeout_entries__6TLobbyFv
   - explode__13TBoss6MagMineFPv
   - explode__22TObjEneMe1GiGueMissileFPv
   - explode_and_destroy__13TUnk_80484AFCFv
@@ -17849,6 +17854,7 @@ force_active:
   - turn_toward_target__14TObjEnePanarmsFl
   - tv_render_mode_obj
   - twindow_action_palette_layout
+  - udp_runtime_state
   - udp_socket_slots
   - ultimate_area_gsl_filename_table
   - unicode_to_UTF8

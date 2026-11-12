@@ -1,4 +1,5 @@
 #include "pso/network/UdpRuntime.h"
+#include "pso/network/TcpControlBlock.h"
 #include "pso/network/SocketEvents.h"
 #include "pso/network/NetworkDispatch.h"
 #include "pso/misc/TLobby.h"
@@ -12,13 +13,12 @@
 #include "pso/network/IPv6Send.h"
 #include "pso/misc/TUdpSocket.h"
 
-struct E_805C1D48;
 struct RecoveredGlobal_8041E178_lbl_805C1D48;
 struct O_8041D2B8;
 struct E_8041A230;
 struct G_8041A230;
 struct P_8041D2B8;
-struct E_805C1D48 { u8 pad[4]; u16 f4; s16 f6; u8 pad2[0x53C]; };
+typedef TcpControlBlock E_805C1D48;
 struct RecoveredGlobal_8041E178_lbl_805C1D48 {
     union { s32 value; E_805C1D48 *p; };
     s16 n;
@@ -92,7 +92,6 @@ u16 TLobby__sub_8040D8F0(u8 *arg0, u8 *arg1, s8 arg2, u8 *arg3, s16 arg4);
 s16 TLobby__sub_8041579C(void *);
 s16 TLobby__sub_8040DC8C(u8 *arg0, u8 *arg1);
 s32 TLobby__sub_8041A9AC(int);
-s32 TLobby__sub_8041FFF8(int, int);
 s32 TLobby__sub_80420BD0(void *, void *, s32);
 s32 NetRegisterTimer(s32 period, s16 locked, NetTimerCallback fn);
 void TLobby__sub_803F8794(void *);
@@ -848,13 +847,13 @@ s16 TLobby::tcp_get_socket_handle(s16 i) {
     s16 r;
     if (i < 0 || i >= tcp_protocol_state.n) {
         r = -4;
-    } else if (tcp_protocol_state.p[i].f4 != 1) {
+    } else if (tcp_protocol_state.p[i].active != 1) {
         r = -4;
     } else {
         r = 0;
     }
     if (r < 0) { return -4; }
-    return tcp_protocol_state.p[i].f6;
+    return tcp_protocol_state.p[i].state;
 }
 #pragma pop
 
@@ -870,7 +869,7 @@ s32 TLobby__sub_8041DBD4(s16 arg0, s32 arg1, s32 len, s32 arg3) {
 
     if (arg0 < 0 || arg0 >= tcp_protocol_state.n) {
         r = -4;
-    } else if (tcp_protocol_state.p[arg0].f4 != 1) {
+    } else if (tcp_protocol_state.p[arg0].active != 1) {
         r = -4;
     } else {
         r = 0;
@@ -880,7 +879,7 @@ s32 TLobby__sub_8041DBD4(s16 arg0, s32 arg1, s32 len, s32 arg3) {
     }
     e = tcp_protocol_state.p;
     e += arg0;
-    switch (e->f6) {
+    switch (e->state) {
     case 0:
     case 4: case 5: case 6: case 7: case 8: case 9: case 10:
         if ((*(u8 *)((s8 *)e + 0xA) & 4) && (*(u8 *)((s8 *)e + 0xCC) == 0 || (u32)((TLobby *)e)->get_field_d8() == 0)) {
@@ -905,7 +904,7 @@ s32 tcp_start_send(s16 arg0, u8 *arg1, void (*completion)(s16, s16), u8 arg3) {
     E_805C1D48 *e;
     if (arg0 < 0 || arg0 >= tcp_protocol_state.n) {
         r = -4;
-    } else if (tcp_protocol_state.p[arg0].f4 != 1) {
+    } else if (tcp_protocol_state.p[arg0].active != 1) {
         r = -4;
     } else {
         r = 0;
@@ -915,7 +914,7 @@ s32 tcp_start_send(s16 arg0, u8 *arg1, void (*completion)(s16, s16), u8 arg3) {
     }
     e = tcp_protocol_state.p;
     e += arg0;
-    v = e->f6;
+    v = e->state;
     if (v <= 1) {
         return -4;
     }
@@ -930,7 +929,7 @@ s32 tcp_start_send(s16 arg0, u8 *arg1, void (*completion)(s16, s16), u8 arg3) {
         *(s32 *)((s8 *)e + 0x210) = *(s32 *)((s8 *)e + 0x20C) + *(s32 *)((s8 *)arg1 + 8);
     }
     ret = ((s32)TLobby__sub_8041A9AC((int)e));
-    TLobby__sub_8041FFF8(0, (int)e);
+    TLobby__sub_8041FFF8(0, e);
     return ret;
 }
 #pragma pop
@@ -976,7 +975,7 @@ s32 TLobby__sub_8041DE1C(s16 i, s16 opt, u32 *val) {
 
     if (i < 0 || i >= tcp_protocol_state.n) {
         r = -4;
-    } else if (tcp_protocol_state.p[i].f4 != 1) {
+    } else if (tcp_protocol_state.p[i].active != 1) {
         r = -4;
     } else {
         r = 0;
@@ -1063,7 +1062,7 @@ s32 TLobby::get_tcp_stat(s16 arg0, s16 *arg1, s16 *arg2, s32 *arg3, s32 *arg4) {
 
     if (arg0 < 0 || arg0 >= tcp_protocol_state.n) {
         r = -4;
-    } else if (tcp_protocol_state.p[arg0].f4 != 1) {
+    } else if (tcp_protocol_state.p[arg0].active != 1) {
         r = -4;
     } else {
         r = 0;
@@ -1074,10 +1073,10 @@ s32 TLobby::get_tcp_stat(s16 arg0, s16 *arg1, s16 *arg2, s32 *arg3, s32 *arg4) {
     e = tcp_protocol_state.p;
     e += arg0;
     if (arg1 != NULL) {
-        *arg1 = e->f6;
+        *arg1 = e->state;
     }
     if (arg2 != NULL) {
-        if (e->f6 == 1) {
+        if (e->state == 1) {
             *arg2 = *(s16 *)((s8 *)e + 0x2C6);
         } else {
             *arg2 = 0;
@@ -1142,7 +1141,7 @@ s32 TLobby::abort_tcp_connection(s16 arg0) {
 
     if (arg0 < 0 || arg0 >= tcp_protocol_state.n) {
         r = -4;
-    } else if (tcp_protocol_state.p[arg0].f4 != 1) {
+    } else if (tcp_protocol_state.p[arg0].active != 1) {
         r = -4;
     } else {
         r = 0;
@@ -1152,10 +1151,10 @@ s32 TLobby::abort_tcp_connection(s16 arg0) {
     }
     e = tcp_protocol_state.p;
     e += arg0;
-    if (e->f6 < 4) {
-        e->f6 = 0;
+    if (e->state < 4) {
+        e->state = 0;
     } else {
-        e->f6 = 0;
+        e->state = 0;
         TLobby__sub_8041A9AC((int)e);
     }
     ((TLobby *)e)->clear_position();
@@ -1196,7 +1195,7 @@ s16 TLobby::tcp_connect_start(s16 arg0, s32 arg1, s16 arg2) {
 
     if (arg0 < 0 || arg0 >= tcp_protocol_state.n) {
         r = -4;
-    } else if (tcp_protocol_state.p[arg0].f4 != 1) {
+    } else if (tcp_protocol_state.p[arg0].active != 1) {
         r = -4;
     } else {
         r = 0;
@@ -1232,7 +1231,7 @@ s16 TLobby::tcp_connect_start(s16 arg0, s32 arg1, s16 arg2) {
         return r;
     }
     *(u32 *)((s8 *)e + 0x23C) = get_adjusted_slot_count__6TLobbyFPv((u8 *)e);
-    e->f6 = 2;
+    e->state = 2;
     *(s16 *)((s8 *)e + 0x260) = 0x96;
     {
         s32 *t = (s32 *)((u8 *)&tcp_protocol_state + 0x18);
@@ -1348,7 +1347,7 @@ s16 TLobby__sub_8041E5E4(s16 h, u8 *addr, u16 port) {
 
     if (h < 0 || h >= tcp_protocol_state.n) {
         r = -4;
-    } else if (tcp_protocol_state.p[h].f4 != 1) {
+    } else if (tcp_protocol_state.p[h].active != 1) {
         r = -4;
     } else {
         r = 0;
@@ -1533,7 +1532,7 @@ u16 TLobby__sub_8041EA14(void) {
 
 s16 TLobby::validate_tcp_handle(s16 i) {
     if (i < 0 || i >= tcp_protocol_state.n) { return -4; }
-    if (tcp_protocol_state.p[i].f4 != 1) { return -4; }
+    if (tcp_protocol_state.p[i].active != 1) { return -4; }
     return 0;
 }
 

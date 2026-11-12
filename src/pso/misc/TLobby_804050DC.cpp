@@ -648,7 +648,6 @@ Pkt_804081C0 *alloc_packet_with_header__6TLobbyFPvPv(Out_804081C0 *arg0, u8 *arg
 s32 init_ipv6_all_routers_multicast_address(u8 *arg0, s8 arg1);
 bool init_ipv6_all_nodes_multicast_address(u8 *arg0, s8 arg1);
 s32 TLobby__sub_8041A9AC(int);
-s32 TLobby__sub_8041FFF8(int, int);
 s32 TLobby__sub_80420BD0(void *, void *, s32);
 s32 tcp_start_send(s16 arg0, u8 *arg1, void (*completion)(s16, s16), u8 arg3);
 void TLobby__sub_80406EB8(NetBufferRef *ref, s32 n);

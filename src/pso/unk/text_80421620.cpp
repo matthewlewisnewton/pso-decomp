@@ -1,4 +1,5 @@
 #include "pso/network/DhcpClient.h"
+#include "pso/network/TcpControlBlock.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/UdpRuntime.h"
 #include "pso/network/SocketEvents.h"
@@ -166,7 +167,7 @@ void NetMemcpy(void *_w0, void *_w1, int _w2);
 s32 TLobby__sub_80421938(O_80421938 *o, void *src, void *dst, void *cb, s32 flags);
 s32 TLobby__sub_80421F10(O_80421F10 *o, void *src, void *dst, s16 port, void *cb, s32 flags);
 extern S_804220A0 *tcp_protocol_state[];
-s32 complete_request_callback__6TLobbyFv(s32 idx_, void (*cb)(s16, s16, s32), s16 arg2, s32 *arg3);
+s32 complete_request_callback__6TLobbyFv(s16 idx_, TcpSendCallback cb, s16 arg2, const TcpSendRequest *arg3);
 void OSReport(const char *, ...);
 s16 reset_socket_table__6TLobbyFv();
 s16 TLobby__sub_80409AD8();
@@ -591,12 +592,12 @@ void TLobby__sub_80421FB8(void *cb, void *hdr_, void *o_) {
     }
 }
 
-s32 complete_request_callback__6TLobbyFv(s32 idx_, void (*cb)(s16, s16, s32), s16 arg2, s32 *arg3) {
-    s16 idx = idx_;
+s32 complete_request_callback__6TLobbyFv(s16 idx_, TcpSendCallback cb, s16 arg2, const TcpSendRequest *arg3) {
+    s32 idx = (s16)idx_;
     S_804220A0 *s = tcp_protocol_state[0];
     s += idx;
     if (cb != NULL && !(s->flags & 8)) {
-        cb(arg2, idx, *arg3);
+        cb(arg2, idx, arg3->buffer.value);
     } else if (!(s->flags2 & 4)) {
         s->f2AE = arg2;
         s->flags2 |= 4;

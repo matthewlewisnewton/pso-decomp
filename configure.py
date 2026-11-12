@@ -971,6 +971,8 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         # Extracted from TLobby_804050DC; preserve its compiler/CSE settings.
         "pso/network/NetworkDispatcher.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/network/TcpProtocol.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
+        # The reassembly range-removal helper must inline; other recovered bodies opt out.
+    "pso/network/SocketProtocolRuntime.cpp": {"cflags": _switch(cflags_middleware, "-inline on")},
     }),
     # The modem driver (AT command strings).
     ("modem", 0x8042BF48, "GC/1.2.5", cflags_middleware, {}),
