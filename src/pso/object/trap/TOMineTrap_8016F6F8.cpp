@@ -202,6 +202,13 @@ void TOMineTrap::set_triggered() {
     this->actorFlags = (s32) (this->actorFlags & 0xFFFBFFFF);
 }
 
+void TOMineTrap::vfunc_86() {
+    u8 *arg0 = (u8 *)this;
+    this->mode = 2;
+    ((TObjCollidable *)arg0)->set_indexed_flags(0, 1);
+    this->actorFlags = (s32) (this->actorFlags & 0xFFFBFFFF);
+}
+
 /* Mode 4's strike against one actor. */
 inline void TOMineTrap::strike_player(TObjChara *actor) {
     TOMineTrap *self = this;
@@ -315,13 +322,6 @@ void TOMineTrap::run_task() {
     default:
         return;
     }
-}
-
-void TOMineTrap::vfunc_86() {
-    u8 *arg0 = (u8 *)this;
-    this->mode = 2;
-    ((TObjCollidable *)arg0)->set_indexed_flags(0, 1);
-    this->actorFlags = (s32) (this->actorFlags & 0xFFFBFFFF);
 }
 
 void TOMineTrap::destroy_matching_traps() {
