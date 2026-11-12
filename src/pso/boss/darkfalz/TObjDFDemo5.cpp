@@ -9,6 +9,7 @@
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/camera/TCameraCtrl_800687BC.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/unk/TLobby_802268F4.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/object/ambient/TObjFish_800E2FFC.h"
@@ -72,8 +73,8 @@ TObjDFDemo5::TObjDFDemo5(TObject *parent, const Vec *pos, s32 angle) : TObjBase(
         set_scripted_camera_pose(&this->pos, &this->pos, &angles);
         ((TCameraCtrl *)&playback)->cache_target_and_forward(0x416C);
     }
-    node_list0 = (TObjFish *)TObjFish__sub_800E3124((u8 *)lbl_80485798, (s32)emitter_positions);
-    node_list1 = (TObjFish *)TObjFish__sub_800E3124((u8 *)lbl_804857C8, (s32)&tail_position);
+    node_list0 = (TObjFish *)create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec((u8 *)lbl_80485798, (s32)emitter_positions);
+    node_list1 = (TObjFish *)create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec((u8 *)lbl_804857C8, (s32)&tail_position);
     play_sound_effect(0x4003A835, NULL, 0, 0);
     timer = 0;
 }
@@ -81,11 +82,11 @@ TObjDFDemo5::TObjDFDemo5(TObject *parent, const Vec *pos, s32 angle) : TObjBase(
 TObjDFDemo5::~TObjDFDemo5() {
     s32 i;
     if (node_list0 != NULL) {
-        TObjFish::init_state_1(node_list0);
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)node_list0);
         node_list0 = NULL;
     }
     if (node_list1 != NULL) {
-        TObjFish::init_state_1(node_list1);
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)node_list1);
         node_list1 = NULL;
     }
     for (i = 0; i < 5; i++) {
@@ -138,9 +139,9 @@ void TObjDFDemo5::draw_fading_motion() {
     post_translate_matrix(&pos.x);
     rotate_matrix_y(NULL, angle);
     set_current_texture_list((GinjaTextureList *)(parts[0].texlist));
-    node_list0->set_draw_callback_list();
+    ((ModelNodePositionCapture *)node_list0)->install();
     draw_model_motion((void *)parts[0].model, parts[0].motion, frame);
-    node_list0->clear_render_callback();
+    ((ModelNodePositionCapture *)node_list0)->clear();
     part_frame = (s32)frame % 30;
     set_current_texture_list((GinjaTextureList *)(parts[1].texlist));
     draw_model_motion((void *)parts[1].model, parts[1].motion, part_frame);
@@ -161,9 +162,9 @@ void TObjDFDemo5::release_subobjects() {
         post_translate_matrix(&pos.x);
         rotate_matrix_y(NULL, angle);
         set_current_texture_list((GinjaTextureList *)(parts[3].texlist));
-        node_list1->set_draw_callback_list();
+        ((ModelNodePositionCapture *)node_list1)->install();
         draw_model_motion((void *)parts[3].model, parts[3].motion, frame);
-        node_list1->clear_render_callback();
+        ((ModelNodePositionCapture *)node_list1)->clear();
         clear_motion_packed_rotation();
         pop_matrix();
         TObjPlayer::sync_player_globals();

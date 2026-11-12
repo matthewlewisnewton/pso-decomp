@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
@@ -246,7 +247,7 @@ void TObjEneShark::vfunc_94() {
     rotate_vector_by_matrix(0, &stack.sp8, &stack.sp8);
     pop_matrix();
     vec3_add_to(&stack.sp8, (u8 *)&this->position);
-    ((TObjPlayer *)(&stack.sp8))->spawn_ground_effect(0x23);
+    spawn_ground_effect((const Vec *)(&stack.sp8), 0x23);
     TObjPlayer__sub_800D92BC((s32)&stack.sp8, 0xF);
 }
 

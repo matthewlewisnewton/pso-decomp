@@ -269,8 +269,6 @@ struct TObjPlayer : public TObjChara {
     static void free_resources();
     void enter_state_8();
     void tick_freeze_state();
-    void update_death_breakup();
-    void dispatch_state_update();
     static void create_render_texture();
     // The photon blast gauge's charge, 0-100.
     s32 get_photon_blast_charge();
@@ -318,7 +316,6 @@ struct TObjPlayer : public TObjChara {
     static void*get_pmt_record_by_index(int i);
     static s32 is_hit_receivable_target(s32 arg0, u32 arg1);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
-    void refresh_lobby_state();
     int query_lobby_state();
     s32 is_action_available();
     void draw_trail_strip(void *arg1, s32 arg2);
@@ -439,7 +436,6 @@ struct TObjPlayer : public TObjChara {
     static void spawn_effect_f8(s32 arg1, s32 arg2);
     static void set_field_e4(s32 arg1, s32 arg2);
     void trigger_dell_biter_events();
-    void spawn_ground_effect(s32 arg1);
     void spawn_effect_at_ground(s32 arg1);
     static void apply_effect_variant_a(s32 arg0, s32 arg1);
     static void apply_effect_variant_b(s32 arg0, s32 arg1);
@@ -1218,7 +1214,6 @@ struct TObjPlayer : public TObjChara {
     static void notify_fish_obj(void* a0);
     static void draw_effect();
     void draw_trail_pair();
-    void update_aim_and_fire();
     void set_flag_and_notify();
     static void update_particle_by_phase();
     void draw_blob_shadows();

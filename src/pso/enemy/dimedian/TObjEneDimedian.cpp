@@ -160,7 +160,7 @@ void TObjEnemy::sub_800A7798(f32 farg0) {
     this->set_flags_B0((u32)(0x100U));
 }
 
-void TObjEnemy::set_flags_B0(u32 v) { this->motion_flags |= v; }
+void TObjMotion::set_flags_B0(u32 v) { this->motion_flags |= v; }
 void TObjEneDimedian::vfunc_101() {  }
 
 void TObjEneDimedian::vfunc_99() {

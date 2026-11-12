@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/player/TObjPlayer_803E4954.h"
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/PadRumble.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/object/base/TObjChara.h"
@@ -285,7 +286,7 @@ void TBoss4Type2__sub_80055300(void);
 Vec_80053E40 * get_position_ptr__10TObjPlayerFv(void *);
 void * create__9TBoss4UroFi(Params_80052CDC *);
 int toggle_particle_effect__10TObjPlayerFv(void*);
-s32 clear_render_callback__8TObjFishFv(s32);
+s32 clear__24ModelNodePositionCaptureFv(s32);
 void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 void free_collision_body_parts(void *);
 s32 project_actor_to_ground(void *, void *, int);
@@ -712,9 +713,9 @@ TBoss4Type1::TBoss4Type1(TObject *parent, s32 *params) : TObjEnemy(parent) {
     set_param(0x2F);
     unk_3ec = lbl_805D8B84;
     for (i = 0; i < 3; i++) {
-        fx[i] = (void *)TObjFish__sub_800E3124((u8 *)lbl_804860F0, (s32)unk_438[i]);
+        fx[i] = (void *)create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec((u8 *)lbl_804860F0, (s32)unk_438[i]);
     }
-    unk_480 = (void *)TObjFish__sub_800E3124((u8 *)lbl_80486120, (s32)unk_484);
+    unk_480 = (void *)create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec((u8 *)lbl_80486120, (s32)unk_484);
     for (j = 0; j < 8; j++) {
         parts[j] = create_particle_emitter(&position, boss4_type1_emitter_id_table[j]);
     }
@@ -759,10 +760,10 @@ TBoss4Type1::~TBoss4Type1() {
         }
     }
     for (j = 0; j < 3; j++) {
-        TObjFish::init_state_1(fx[j]);
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)fx[j]);
         fx[j] = 0;
     }
-    TObjFish::init_state_1(unk_480);
+    ModelNodePositionCapture::destroy((ModelNodePositionCapture *)unk_480);
     unk_480 = 0;
     free_collision_body_parts(this);
     unk_394 = 0;
@@ -905,16 +906,16 @@ void TBoss4Type1::draw_parts() {
         case 4:
             TBoss6PlotFalz__sub_802AC008(*(f32 *)((s8 *)arg0 + 0x3DC), *(f32 *)((s8 *)arg0 + 0x3E0));
             off = (i - 2) * 4 + 0x42C;
-            ((TObjFish *)(*(s32 *)(arg0 + off)))->set_draw_callback_list();
+            ((ModelNodePositionCapture *)(*(s32 *)(arg0 + off)))->install();
             a = get_bml_model(*(s32 *)((s8 *)arg0 + 0x390), lbl_80485EB0[i]);
             draw_model_motion((void *)a, (void *)(get_bml_motion(*(s32 *)((s8 *)arg0 + 0x390), *(s32 *)((s8 *)((u8 *)&boss4_type1_motion_states.value + (*(s32 *)((s8 *)arg0 + 0x3E4) << 5) + i * 4) + 8))), *(f32 *)((s8 *)arg0 + 0x3E8));
-            clear_render_callback__8TObjFishFv(*(s32 *)(arg0 + off));
+            clear__24ModelNodePositionCaptureFv(*(s32 *)(arg0 + off));
             TBoss6PlotFalz::update_camera_target();
             break;
         case 5:
-            ((TObjFish *)(*(s32 *)((s8 *)arg0 + 0x480)))->set_draw_callback_list();
+            ((ModelNodePositionCapture *)(*(s32 *)((s8 *)arg0 + 0x480)))->install();
             draw_model_motion((void *)(get_bml_model(*(s32 *)((s8 *)arg0 + 0x390), lbl_80485EB0[i])), (void *)(get_bml_motion(*(s32 *)((s8 *)arg0 + 0x390), *(s32 *)((s8 *)((u8 *)&boss4_type1_motion_states.value + (*(s32 *)((s8 *)arg0 + 0x3E4) << 5) + i * 4) + 8))), *(f32 *)((s8 *)arg0 + 0x3E8));
-            clear_render_callback__8TObjFishFv(*(s32 *)((s8 *)arg0 + 0x480));
+            clear__24ModelNodePositionCaptureFv(*(s32 *)((s8 *)arg0 + 0x480));
             break;
         default:
             draw_model_motion((void *)(get_bml_model(*(s32 *)((s8 *)arg0 + 0x390), lbl_80485EB0[i])), (void *)(get_bml_motion(*(s32 *)((s8 *)arg0 + 0x390), *(s32 *)((s8 *)((u8 *)&boss4_type1_motion_states.value + (*(s32 *)((s8 *)arg0 + 0x3E4) << 5) + i * 4) + 8))), *(f32 *)((s8 *)arg0 + 0x3E8));

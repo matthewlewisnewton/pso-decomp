@@ -84,7 +84,7 @@ s32 rotate_xz_pair_by_angle(void *, void *, int);
 s32 TObjPlayer__sub_800A04F0(void *);
 void enemy_clear_target__12TObjEneDD_STFUs(void *);
 void enemy_set_target_id(void *, u16);
-s32 get_camera_ctrl__9TObjEneDDFv(void *, int);
+s32 transform_point_to_view(void *, int);
 s32 pack_debug_text_position(s32, s32);
 s32 attack_target_history_add(s32, void *);
 void fn_800D8830(void *owner, void *pos);
@@ -281,7 +281,7 @@ void TObjEneDellBiter::init_params() {
     this->requested_action = 0;
     set_animation(this->requested_action);
     set_field_b8(this->requested_action);
-    reset_hp((u8 *)dellbiter_boss_stat_handle, (u8 *)TObjEneDellBiter__shared_handler_param, (u8 *)dellbiter_object_stat_handle);
+    reset_hp((BattleBaseStats *)dellbiter_boss_stat_handle, (AttackParams *)TObjEneDellBiter__shared_handler_param, (ActorParamBlock *)dellbiter_object_stat_handle);
     set_state_8();
     movementParameters = &TObjEneDellBiter__param_table;
     initialize_enemy_state(0x48);
@@ -1502,7 +1502,7 @@ void TObjEneDellBiter::step_demo_script() {
     case 32:
         pos = TObjEneDellBiter__demo_script_cursor;
         TObjEneDellBiter__demo_script_cursor = pos + 0xC;
-        get_camera_ctrl__9TObjEneDDFv(&dellbiter_demo_camera_vec, pos);
+        transform_point_to_view(&dellbiter_demo_camera_vec, pos);
         break;
     }
     TObjEneDellBiter__demo_script_step += 1;

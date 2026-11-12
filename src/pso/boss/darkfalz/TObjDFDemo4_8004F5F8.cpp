@@ -4,6 +4,7 @@
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/system/ModelNodePositionCapture.h"
 struct S_8004F5F8 {
     u8 pad0[0x18];
     void *vt;
@@ -25,7 +26,7 @@ S_8004F5F8 *__dt__11TObjDFDemo4Fv(S_8004F5F8 *o, s16 flag) {
         o->vt = __vt__11TObjDFDemo4;
         fn_8004AA04(o->f90);
         if (o->f100 != 0) {
-            TObjFish::init_state_1(o->f100);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)o->f100);
             o->f100 = 0;
         }
         for (i = 0; i < 2; i++) {

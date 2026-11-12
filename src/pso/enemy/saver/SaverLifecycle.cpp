@@ -155,7 +155,7 @@ s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 s32 push_matrix();
 f32 random_ratio__9TObjCharaFv(s32 arg0);
 s32 minimap_render_dot(void *, int, int, int);
-s32 refresh_lobby_state__10TObjPlayerFv(void *, void *);
+s32 distribute_experience_and_request_drop__9TObjEnemyFv(void *, void *);
 
 struct Obj_800A48C4;
 struct Obj_800A4C4C;
@@ -424,7 +424,7 @@ void TObjEneSaver::vfunc_63() {
         }
         temp_r4 = this->bodies;
         *(s32 *)((s8 *)temp_r4 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r4 + 0x18) & 0xFFFFFFFE);
-        refresh_lobby_state__10TObjPlayerFv(this, temp_r4);
+        distribute_experience_and_request_drop__9TObjEnemyFv(this, temp_r4);
         send_entity_set_flags();
     }
 }

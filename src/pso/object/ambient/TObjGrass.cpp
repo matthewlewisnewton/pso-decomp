@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
@@ -1620,7 +1621,7 @@ void TObjGrass::vfunc_63() {
         temp_r6 = (u8 *)(*(u8 **)((s8 *)arg0 + 0xA4));
         *(s32 *)((s8 *)temp_r6 + 0x18) = (s32) (*(s32 *)((s8 *)temp_r6 + 0x18) & 0xFFFF7FFE);
         spawn_particle_effect((arg0 + 0x2FC), 0xF2);
-        ((TObjPlayer *)arg0)->refresh_lobby_state();
+        ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
         ((TObjEnemy *)arg0)->send_entity_set_flags();
     }
 }
@@ -1712,7 +1713,7 @@ void TObjGrass::update_dying(void *arg0_) {
             }
             play_sound_effect((void *)((TObjEnemy *)(arg0))->remap_sound_for_area((s32)(0x4003AB0A)), arg0 + 0x38, 0, 0);
             TObjPlayer::spawn_dead_spot_default((s32)(arg0 + 0x38), 0xA);
-            ((TObjPlayer *)(arg0 + 0x38))->spawn_ground_effect(0x1E);
+            spawn_ground_effect((const Vec *)(arg0 + 0x38), 0x1E);
         }
         ((TObjEnePanarms *)arg0)->scale.y -= 0.01f;
         if (((TObjEnePanarms *)arg0)->scale.y < 0.0f) {

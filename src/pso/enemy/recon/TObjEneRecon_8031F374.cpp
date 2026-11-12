@@ -5,13 +5,13 @@
 extern "C" {
 
 s32 TObjEneRecobox__sub_8031F1A8(void *);
-s32 refresh_lobby_state__10TObjPlayerFv();
+s32 distribute_experience_and_request_drop__9TObjEnemyFv();
 s32 send_entity_set_flags__9TObjEnemyFv();
 
 void TObjEneRecon::handle_death_state(s32 arg1) {
     switch (arg1) {
     case 4:
-        refresh_lobby_state__10TObjPlayerFv();
+        distribute_experience_and_request_drop__9TObjEnemyFv();
         *(s32 *)&this->m_428 = (s32) (*(s32 *)&this->m_428 | 1);
         TObjEneRecobox__sub_8031F1A8(this);
         this->vfunc_95();

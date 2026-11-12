@@ -789,7 +789,7 @@ u8 *get_enemy_entity(u16 arg0) {
     return 0;
 }
 
-void TObjPlayer::refresh_lobby_state() { distribute_experience__9TObjEnemyFv((TObjPlayer_800F6B68 *)(this)); query_lobby_state(); }
+void TObjEnemy::distribute_experience_and_request_drop() { distribute_experience__9TObjEnemyFv((TObjPlayer_800F6B68 *)(this)); ((TObjPlayer *)this)->query_lobby_state(); }
 
 int TObjPlayer::query_lobby_state() { return send_6x60_standard_drop_item_request(this); }
 

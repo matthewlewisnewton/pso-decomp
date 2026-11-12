@@ -75,7 +75,7 @@ s32 TObjFish__sub_8001EDB0(u8 *, int);
 
 s32 get_mode__11TCameraCtrlFPv(void *);
 void draw_blob_shadow(s32 arg0);
-s32 refresh_lobby_state__10TObjPlayerFv();
+s32 distribute_experience_and_request_drop__9TObjEnemyFv();
 s32 free_collision_body_parts(void *);
 s32 init_collision_body_parts(void *, void *, int);
 void create__11TTecRaBartaFPvPvPvPv(void *source, void *origin, void *pos, void *level);
@@ -1081,7 +1081,7 @@ void TObjEneDelDepth::init_move() {
     this->drawScale.z = (f32) TObjEneDelDepth__data_805DF260;
     this->drawScale.y = (f32) TObjEneDelDepth__data_805DF260;
     this->drawScale.x = (f32) TObjEneDelDepth__data_805DF260;
-    refresh_lobby_state__10TObjPlayerFv();
+    distribute_experience_and_request_drop__9TObjEnemyFv();
     this->actionPhase = 0;
     if (this->motionController->get_type() < 6) {
         this->timer = 0x22;

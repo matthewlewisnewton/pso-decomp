@@ -6,6 +6,7 @@
 #include "pso/system/MatrixOps.h"
 #include "pso/render/render_util.h"
 #include "pso/math/MatrixTransforms.h"
+#include "pso/math/ViewPoint.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/math/AngleLookup.h"
 extern "C" {
@@ -458,7 +459,7 @@ struct Obj_800BB780 { u8 pad[0x30]; u32 flags; u8 pad1[0x70]; Part_800BB780 *par
 extern "C" {
 s32 is_alive__8TObjBaseFv(void *);
 int submit_cursor_candidate(void*, int);
-int refresh_lobby_state__10TObjPlayerFv(void*);
+int distribute_experience_and_request_drop__9TObjEnemyFv(void*);
 int send_entity_set_flags__9TObjEnemyFv(void*);
 }
 #include "types.h"
@@ -896,7 +897,7 @@ void TObjEneDD::clear_attack_receipts() {
 
 int TObjEneBm3Fly::was_hit_by_ranged() { return (this->m_2dc >> 1) & 0x1; }
 
-void TObjEnemy::refresh_and_send_entity_flags() { refresh_lobby_state__10TObjPlayerFv(this); send_entity_set_flags__9TObjEnemyFv(this); }
+void TObjEnemy::refresh_and_send_entity_flags() { distribute_experience_and_request_drop__9TObjEnemyFv(this); send_entity_set_flags__9TObjEnemyFv(this); }
 
 u16 enemy_nearest_visible_player_sq(u8 *arg0, f32 farg0) {
     f32 d;
@@ -1545,10 +1546,10 @@ void TObjEneDD::initialize_enemy_state(s32 parameter) {
 
 int TObjEneDD::update_camera_sequence() { return apply_split_screen_view_matrix__11TCameraCtrlFv(this); }
 
-int TObjEneDD::get_camera_ctrl() { return transform_to_view__11TCameraCtrlFii(this); }
+extern "C" void transform_point_to_view(const Vec *source, Vec *destination) { transform_to_view__11TCameraCtrlFii((void *)source); }
 
-void TObjEneDD::reset_hp(u8 *base_stats, u8 *attack_stats, u8 *resistance_stats) {
-    bind_enemy_combat_stats(base_stats, attack_stats, resistance_stats);
+void TObjEneDD::reset_hp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats) {
+    bind_enemy_combat_stats((u8 *)base_stats, (u8 *)attack_stats, (u8 *)resistance_stats);
     referenceHp = hp;
 }
 

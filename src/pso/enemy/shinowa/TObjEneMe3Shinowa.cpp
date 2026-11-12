@@ -2397,13 +2397,13 @@ s32 update_linked_position__12TObjEneDD_STFf(f32);
 int select_and_apply_target__12TObjEneDD_STFf(void*);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 s32 is_main_phase_15__9TObjEneDDFv();
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
-void get_camera_ctrl__9TObjEneDDFv(s32, s32);
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
+void transform_point_to_view(s32, s32);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 void TObjEneDD__sub_800BA438(s32 arg0, u8 *arg1);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
 void *__dt__13TUnk_80494938Fv(void *arg0, s16 arg1);
-s32 TBoss3Volopt__sub_800D8D88(void *, f32);
+s32 play_area_sound_and_particles_a(void *, f32);
 void update_mirage__17TObjEneMe3ShinowaFv(void* p);
 void vfunc_116__17TObjEneMe3ShinowaFl(void);
 void vfunc_114__17TObjEneMe3ShinowaFl(void);
@@ -3011,7 +3011,7 @@ void TObjEneMe3ShinowaMirage::draw_model() {
 
 void TObjEneMe3ShinowaMirage::advance_camera_ctrl_step() {
     if ((s32) TObjEneMe3ShinowaMirage__render_node_index == 1) {
-        get_camera_ctrl__9TObjEneDDFv((s32) &TObjEneMe3ShinowaMirage__data_80500FC0, (s32) &lbl_80500FF4);
+        transform_point_to_view((s32) &TObjEneMe3ShinowaMirage__data_80500FC0, (s32) &lbl_80500FF4);
     }
     TObjEneMe3ShinowaMirage__render_node_index += 1;
 }
@@ -3858,7 +3858,7 @@ void TObjEneMe3Shinowa::sub_800E6BB8(s32 arg1) {
         VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0x38));
         temp_f1 = *(f32 *)((s8 *)arg0 + 0x3C8);
         stack.spC = temp_f1 - 20.0f;
-        TBoss3Volopt__sub_800D8D88(&stack.sp8, temp_f1);
+        play_area_sound_and_particles_a(&stack.sp8, temp_f1);
         return;
     case 3:
         if (((VObj_14_948132 *)(arg0 + (1000)))->m5() != 0) {
@@ -4269,7 +4269,7 @@ void TObjEneMe3Shinowa::init_enemy() {
         s32 *b = tbl->t[1];
         s32 *c = tbl->t[2];
         s32 i = self->f3C0;
-        reset_hp__9TObjEneDDFPUcPUcPUc(self, a[i], b[i], c[i]);
+        reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, a[i], b[i], c[i]);
     }
     ((TObjEneDD *)self)->check_state_flag_4();
     self->f350 = TObjEneMe3ShinowaMirage__init_params;

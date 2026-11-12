@@ -676,14 +676,14 @@ void enemy_turn_and_move_on_ground(u8 *arg0, s32 arg1, f32 farg0);
 extern "C" {
 int select_and_apply_target__12TObjEneDD_STFf(void*);
 s32 check_v2_mode__9TObjEneDDFv(s32, s32);
-s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int);
+s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 s32 initialize_enemy_state__9TObjEneDDFl(void *, int);
 int vfunc_96__9TObjEneDDFv(void*);
 int vfunc_95__9TObjEneDDFv(void*);
 void TObjEneDD__sub_800BA438(void *, void *);
 s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);
 s32 TObjEneMe3SinowZoa__sub_800D72A4(void *);
-s32 TBoss3Volopt__sub_800D8D88(void *, f32);
+s32 play_area_sound_and_particles_a(void *, f32);
 f32 * TBoss3Volopt__sub_800F059C(void *);
 void send_6x26_unequip_item__10TObjPlayerFPvPv(void *, s32);
 void create__10TTecDebandFlll(void *, void *, int);
@@ -1709,7 +1709,7 @@ void TObjEneMe3SinowZoaReal::init_enemy() {
     this->set_field_dc((int) (*(s32 *)((s8 *)TObjEneMe3SinowZoa__bml_resource + 0x430)));
     set_animation((*(s16 *)((s8 *)((u8 *)this) + 0xB8)));
     temp_r0 = *(s32 *)((s8 *)((u8 *)this) + 0x3C8);
-    reset_hp__9TObjEneDDFPUcPUcPUc((void *)this, lbl_80542FBC[temp_r0], lbl_80542FC4[temp_r0], lbl_80542FCC[temp_r0]);
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock((void *)this, lbl_80542FBC[temp_r0], lbl_80542FC4[temp_r0], lbl_80542FCC[temp_r0]);
     this->check_state_flag_4();
     *(void **)((s8 *)((u8 *)this) + 0x350) = TObjEneMe3SinowZoa_init_params;
     *(f32 *)((s8 *)((u8 *)this) + 0x37C) = (f32) TObjEneMe3SinowZoa__data_805DF314;
@@ -2207,7 +2207,7 @@ void TObjEneMe3SinowZoa::sub_80319E74(s32 arg1) {
         t = *(f32 *)((s8 *)arg0 + 0x3E0);
         v.y = t - 20.0f;
         if (*(s32 *)((s8 *)arg0 + 0x3C0) == 0) {
-            TBoss3Volopt__sub_800D8D88(&v, t);
+            play_area_sound_and_particles_a(&v, t);
         } else {
             create_timed_particle_emitter(arg0 + 0x38, 0x79, 0, 0xF);
         }
@@ -2309,7 +2309,7 @@ void TObjEneMe3SinowZoa__sub_80319B8C(u8 *ene_dd, s32 arg1) {
         VecCopy((Vec *)(&stack.sp8), (const Vec *)(ene_dd + 0x38));
         temp_f1 = *(f32 *)((s8 *)ene_dd + 0x3E0);
         stack.spC = temp_f1 - TObjEneMe3SinowZoa__data_805DF314;
-        TBoss3Volopt__sub_800D8D88(&stack.sp8, temp_f1);
+        play_area_sound_and_particles_a(&stack.sp8, temp_f1);
         break;
     case 3:
         if (((VObj_14_948132 *)(ene_dd + (1044)))->m5() != 0) {

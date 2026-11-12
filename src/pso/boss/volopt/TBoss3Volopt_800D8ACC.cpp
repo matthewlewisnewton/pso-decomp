@@ -107,7 +107,7 @@ void TBoss3Volopt::play_area_se_with_particle() {
     spawn_particle_effect(&v, 0xE6, y);
 }
 
-void TBoss3Volopt__sub_800D8D88(s32 arg0) {
+void play_area_sound_and_particles_a(s32 arg0) {
     switch (get_current_floor_area()) {
     case AREA_CENTRAL_CONTROL_AREA:
     case AREA_JUNGLE_NORTH:

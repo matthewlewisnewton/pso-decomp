@@ -187,6 +187,7 @@ public:
     TObjMotionAction *get_anim_entry(int action);
     int test_motion_flags(s32 flags);
     void clear_motion_flags(s32 flags);
+    void set_flags_B0(u32);
     // The motion an action plays.
     NJS_MOTION *get_action_motion(s16 action);
     f32 get_action_frame_count(s16 action);

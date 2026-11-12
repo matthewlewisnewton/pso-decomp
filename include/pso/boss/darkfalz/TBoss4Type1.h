@@ -55,9 +55,9 @@ struct TBoss4Type1 : public TObjEnemy
     f32 unk_3ec;
     u8 pad_3f0[0x8];
     void *parts[13];              // particle effects, released by the dt
-    void *fx[3];                  // TObjFish__sub_800E3124(lbl_804860F0, unk_438[i])
+    void *fx[3];                  // ModelNodePositionCapture::create(lbl_804860F0, unk_438[i])
     Vec unk_438[3][2];
-    void *unk_480;                // TObjFish__sub_800E3124(lbl_80486120, unk_484)
+    void *unk_480;                // ModelNodePositionCapture::create(lbl_80486120, unk_484)
     Vec unk_484[2];
 };
 

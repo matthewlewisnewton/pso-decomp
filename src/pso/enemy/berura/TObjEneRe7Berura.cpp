@@ -417,7 +417,7 @@ extern const f32 lbl_805D9734;
 extern const f32 lbl_805D9E84;
 extern const f32 lbl_805D9E88;
 void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o);
-s32 get_camera_ctrl__9TObjEneDDFv(s32, s32);
+s32 transform_point_to_view(s32, s32);
 
 void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {
     Fade_80092CCC *fade;
@@ -578,7 +578,7 @@ void TObjEneRe7Berura::demo_frame_callback() {
         break;
     case 0x4C:
     case 0x50:
-        get_camera_ctrl__9TObjEneDDFv(re7_berura_demo_camera_ptr, re7_berura_demo_camera_ptr);
+        transform_point_to_view(re7_berura_demo_camera_ptr, re7_berura_demo_camera_ptr);
         re7_berura_demo_camera_ptr += 0xC;
         break;
     case 0x21:
@@ -2019,7 +2019,7 @@ void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
 s32 enemy_set_target_id(void *, u16);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
 int reload_stats_keep_hp_tp__9TObjEneDDFv(void *self, void *a, void *b, void *c);
-void reset_hp__9TObjEneDDFPUcPUcPUc(void *, s32, s32, s32);
+void reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 void initialize_enemy_state__9TObjEneDDFl(void *, int);
 s32 is_alive__8TObjBaseFv(void *);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int);
@@ -2673,7 +2673,7 @@ void TObjEneRe7Berura::init_enemy() {
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));
-    reset_hp__9TObjEneDDFPUcPUcPUc(arg0, TObjEneRe7Berura__stat_handle_table[TObjEneRe7Berura__data_80439DA8[0]],
+    reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, TObjEneRe7Berura__stat_handle_table[TObjEneRe7Berura__data_80439DA8[0]],
         TObjEneRe7Berura__data_805007D4[TObjEneRe7Berura__data_80439DB0[0]],
         TObjEneRe7Berura__shared_object_handles[TObjEneRe7Berura__data_80439DB8[0]]);
     ((TObjEneDD *)arg0)->set_state_8();

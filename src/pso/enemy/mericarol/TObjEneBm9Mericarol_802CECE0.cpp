@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "types.h"
@@ -855,7 +856,7 @@ void TObjEneBm9Mericarol::state_burrow(s32 arg1) {
         stack.sp10 = lbl_805DE710 * cos_table_lookup((int) (*((s32 *) (((s8 *) arg0) + 0x60))));
         vec3_add_to(&stack.sp8, arg0 + 0x38);
         TObjPlayer::spawn_dead_spot_here((s32)&stack.sp8, 0x32);
-        ((TObjPlayer *)(&stack.sp8))->spawn_ground_effect(0x46);
+        spawn_ground_effect((const Vec *)(&stack.sp8), 0x46);
       }
         (this->vfunc_102());
         return;

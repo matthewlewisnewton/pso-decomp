@@ -10,9 +10,15 @@ struct TObjEneGyaranzo : public TObjEnemyCustom {
     void select_targets();
     virtual void run_task();
     virtual void render();
-    void sub_800D37F4();
-    void sub_800D2900();
-    void fn_800D2A68();
+    void cancel_fade_state();
+    s32 update_movement_status();
+    s32 update_shock_clock();
+    void update_aim_and_fire();
+    void update_death_breakup();
+    void dispatch_state_update();
+    void select_next_action();
+    void shed_armor();
+    void spawn_hit_debris();
     void init_params_from_table();
     virtual void vfunc_62();
     virtual void vfunc_63();

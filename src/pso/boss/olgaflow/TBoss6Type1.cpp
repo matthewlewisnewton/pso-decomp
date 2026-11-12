@@ -3,6 +3,7 @@
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/unk/TLobby_801E43E4.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -377,7 +378,7 @@ f32 project_point_onto_line(void *, void *, void *);
 f32 xyz_distance(void *, void *);
 void TBoss6Type1__sub_802B6C30(Boss_802B6C30 *self);
 s32 TObjFish__sub_8001EDB0(s32, s32);
-void clear_render_callback__8TObjFishFv(u32);
+void clear__24ModelNodePositionCaptureFv(u32);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 // init_collision_body_parts copies these 7 spheres in TBoss6Type1__ct.
 CollisionBody lbl_804DF4E0[7] = {
@@ -673,7 +674,7 @@ struct VObj_18_f05d67 : VBase_18_f05d67 {
 struct Arr_802B93C4 { u8 pad[0x378]; s32 arr[32]; };
 struct Tmp_802B93C4 { s32 a; s16 b; s16 c; u8 pad[0x10]; };
 
-s32 TObjFish__sub_800E3124(u8 *list, s32 vecs);
+s32 create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec(u8 *list, s32 vecs);
 void build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
 void TBoss6Type1__sub_802B854C(void *);
 s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
@@ -802,8 +803,8 @@ s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     ((TBoss3Volopt *)arg0)->reset_photon_effect();
     ((TObjEnemy *)arg0)->set_param(0x4E);
     TBoss6Type1__sub_802B854C(arg0);
-    *(s32 *)((s8 *)arg0 + 0x654) = TObjFish__sub_800E3124((u8 *)boss6_type1_model_node_desc, (s32)(arg0 + 0x578));
-    *(s32 *)((s8 *)arg0 + 0x650) = TObjFish__sub_800E3124((u8 *)boss6_type1_model_node_desc_b, (s32)(arg0 + 0x5FC));
+    *(s32 *)((s8 *)arg0 + 0x654) = create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec((u8 *)boss6_type1_model_node_desc, (s32)(arg0 + 0x578));
+    *(s32 *)((s8 *)arg0 + 0x650) = create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec((u8 *)boss6_type1_model_node_desc_b, (s32)(arg0 + 0x5FC));
     build_tables__14TBoss6PlotFalzFPvPvi(arg0 + 0x658, boss6_type1_build_table, 2);
     build_tables__14TBoss6PlotFalzFPvPvi(arg0 + 0x66C, lbl_80470EA0, 1);
     *(s32 *)((s8 *)arg0 + 0x400) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 7, 0xF);
@@ -854,7 +855,7 @@ TBoss6Type1::~TBoss6Type1() {
     ((TBoss6PlotFalz *)scroll_strips_u)->free_buffer_pairs();
     for (i = 0; i < 2; i++) {
         if (draw_callback_lists[i] != NULL) {
-            TObjFish::init_state_1(draw_callback_lists[i]);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)draw_callback_lists[i]);
             draw_callback_lists[i] = NULL;
         }
     }
@@ -1346,17 +1347,17 @@ void TBoss6Type1::draw_part_motions() {
         if (cb != 0) {
             set_current_texture_list((GinjaTextureList *)(p));
             if (0.0f == a->blend) {
-                ((TObjFish *)cb)->set_draw_callback_list();
+                ((ModelNodePositionCapture *)cb)->install();
                 draw_model_motion((void *)id, (void *)a->id, a->t);
-                clear_render_callback__8TObjFishFv(cb);
+                clear__24ModelNodePositionCaptureFv(cb);
             } else {
                 b.ids[0] = a->prevId;
                 b.ts[0] = a->prevT;
                 b.ids[1] = a->id;
                 b.ts[1] = a->t;
-                ((TObjFish *)cb)->set_draw_callback_list();
+                ((ModelNodePositionCapture *)cb)->install();
                 draw_model_blend_motion((void *)id, &b, a->blend);
-                clear_render_callback__8TObjFishFv(cb);
+                clear__24ModelNodePositionCaptureFv(cb);
             }
         }
     }

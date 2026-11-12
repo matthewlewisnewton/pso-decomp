@@ -1838,7 +1838,7 @@ void TObjEneSlimeOne::sub_800E95F4() {
     this->draw_scale.y = 1.0f;
     this->draw_scale.x = 1.0f;
     *(s32 *)((s8 *)((u8 *)this) + 0x390) = 5;
-    ((TObjPlayer *)((u8 *)this))->refresh_lobby_state();
+    ((TObjEnemy *)((u8 *)this))->distribute_experience_and_request_drop();
     ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x4003A81B, (u32)(((u8 *)this) + 0x38), 0, 0);
     spawn_particle_effect((((u8 *)this) + 0x2FC), 0xFE);
     ((TObjEneSlimeOne *)(*(u8 **)((s8 *)((u8 *)this) + 0x388)))->set_motion_state(5);
