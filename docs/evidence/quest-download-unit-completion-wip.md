@@ -2,7 +2,7 @@
 
 The claimed unit is `pso/misc/TQuestVmDownLoadServer_803E6970.cpp`, based on
 fork main `554d21699c873ccf9be1b2268eba37cd3a32e48b`. All 173 native functions
-now have C++ bodies, but only 168 match exactly. **This unit remains unlinked
+now have C++ bodies, but only 171 match exactly. **This unit remains unlinked
 and is not ready for a completion PR.** The exact display milestone is
 recorded in [display recovery](quest-download-display-recovery.md).
 
@@ -79,15 +79,14 @@ GC/1.2.5 profile. Remaining functions are:
 
 | Native suffix/name | Match % | Compiled/original bytes |
 | --- | ---: | ---: |
-| `803E8DA0` | 95.051544 | 780/776 |
 | `803EA9E8` | 96.88844 | 1004/1004 |
 | `803EE2F4` | 98.65031 | 652/652 |
 
 The latest full build and `tools/check_pr.py` pass against main `5146327538`:
-+11 exact functions, +6,876 matched code bytes and +1,744 matched data bytes,
++12 exact functions, +7,652 matched code bytes and +1,744 matched data bytes,
 with no exact-function, matched-data or source-linkage losses. All 3,622 linked
 units remain exact and the built DOL retains its original SHA-1. The chosen
-unit has 170 of 173 functions exact; final source-link admission remains pending.
+unit has 171 of 173 functions exact; final source-link admission remains pending.
 The scoped compiler exceptions are registered in `porting-exceptions.md` and
 the generated inventory is current.
 
@@ -625,3 +624,31 @@ have not improved the native-frame selector. These experiments followed the
 [TWW register-allocation guidance](https://github.com/zeldaret/tww/blob/main/docs/regalloc.md)
 and compiler allocation/propagation traces; no instruction patch, physical
 register pin, extra linked object or changed shared ABI was introduced.
+
+## Cache replacement complete
+
+`803E8DA0` now matches all 776 native bytes. Separate replacement and insertion
+search helpers preserve their different temporary lifetimes. A bucket value
+constructor supplies the first search index; the insertion helper retains an
+ordinary scalar bucket. A distinct insertion-link result prevents the first
+lookup's reference from extending into insertion.
+
+The record length keeps its actual metadata count, encoded width and prefix
+sum. Discarding the prefix assignment's expression value with a `void` cast in
+the comma expression retains the native temporary handoff. Ordinary sequential
+assignments differed in two register operands. No instruction bytes or physical
+register selections are embedded in the source.
+
+Six caller declarations from the direct reconstruction become unused after
+inlining the search, size and writer helpers. They are explicitly retained for
+the native 104-byte frame. Removing them produces the same instructions and
+registers with an 80-byte frame (99.97423%). Sixty-four combinations passing the
+actual scratch variables by reference did not preserve the exact allocation.
+The retained declarations are documented matching debt, following the existing
+NetworkRuntime and PPPoE frame precedents, not a claim about original source.
+A port can remove them. The integrated comparison retains all previously exact
+functions; group selection and request accumulation remain partial.
+
+The integrated cache checkpoint passes `tools/check_pr.py`: original DOL SHA-1,
+all 3,622 linked units, unchanged 19,177-entry retention list and no match losses.
+Relative to current main it adds 12 exact functions and 7,652 matched code bytes.

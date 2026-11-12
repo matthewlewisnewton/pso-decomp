@@ -1690,27 +1690,60 @@ s32 TQuestVmDownLoadServer__sub_803E8C2C(char *arg0, s16 arg1, Out_803E8C2C *arg
 // search-stop, node-availability and bounded-input preconditions are retained.
 #pragma push
 #pragma opt_common_subs off
-s32 TQuestVmDownLoadServer__sub_803E8DA0(char *key, Req_803EEF2C *req, s32 value) {
+#pragma dont_inline off
+#pragma inline_depth(2)
+#pragma opt_propagation on
+#pragma opt_lifetimes off
+struct CachedNameBucket {
+    s32 value;
+    CachedNameBucket(u8 first) {
+        if (first >= 0xA0 && first < 0xF0) {
+            value = first - 0xA0;
+        } else {
+            value = 0;
+        }
+    }
+};
+inline QuestDownloadCachedNameNode *find_replacement_name_link(
+        char *name, size_t cacheAddress, const s16 &inputLength, QuestDownloadCachedNameNode **&link) {
+    s16 wanted;
     QuestDownloadCachedNameNode *node;
     QuestDownloadCachedNameNode *previous;
-    QuestDownloadCachedNameNode **link;
-    QuestDownloadCachedNameNode *reserved;
-    u8 *oldRecord;
-    u8 *record;
-    u8 *p;
-    u8 len;
-    s16 wanted;
-    s32 bucket;
-    s32 width;
-    s32 length;
-    s32 offset;
-
-    size_t cacheAddress = (size_t)lbl_80591EC8;
-    u8 *cacheBytes = reinterpret_cast<u8 *>(cacheAddress);
-    lbl_805D7868 = 1;
+    u8 recordLength;
     previous = NULL;
-    u8 first = (u8)key[0];
-    wanted = req->len;
+    wanted = inputLength;
+    CachedNameBucket bucket((u8)name[0]);
+    node = QUEST_DOWNLOAD_CACHE_INDEX(cacheAddress)->heads[bucket.value];
+    for (; node != NULL; node = node->next) {
+        u8 *indexed = node->encodedRecord;
+        recordLength = indexed[2];
+        s32 comparison = strncmp((const char *)(indexed + 3), name, (s16)recordLength);
+        if (comparison == 0) {
+            if (wanted == (s16)recordLength) {
+                break;
+            }
+        } else if (comparison > 0) {
+            break;
+        }
+        previous = node;
+    }
+    if (previous == NULL) {
+        link = &QUEST_DOWNLOAD_CACHE_INDEX(cacheAddress)->heads[bucket.value];
+    } else {
+        link = &previous->next;
+    }
+    return node;
+}
+inline QuestDownloadCachedNameNode *find_cached_insertion_link(
+        char *name, size_t cacheAddress, const s16 &inputLength, QuestDownloadCachedNameNode **&link) {
+    s32 bucket;
+    s16 wanted;
+    QuestDownloadCachedNameNode *node;
+    QuestDownloadCachedNameNode *previous;
+    u8 recordLength;
+    previous = NULL;
+    u8 first = (u8)name[0];
+    wanted = inputLength;
     if (first >= 0xA0 && first < 0xF0) {
         bucket = first - 0xA0;
     } else {
@@ -1719,10 +1752,10 @@ s32 TQuestVmDownLoadServer__sub_803E8DA0(char *key, Req_803EEF2C *req, s32 value
     node = QUEST_DOWNLOAD_CACHE_INDEX(cacheAddress)->heads[bucket];
     for (; node != NULL; node = node->next) {
         u8 *indexed = node->encodedRecord;
-        len = indexed[2];
-        s32 comparison = strncmp((const char *)(indexed + 3), key, (s16)len);
+        recordLength = indexed[2];
+        s32 comparison = strncmp((const char *)(indexed + 3), name, (s16)recordLength);
         if (comparison == 0) {
-            if (wanted == (s16)len) {
+            if (wanted == (s16)recordLength) {
                 break;
             }
         } else if (comparison > 0) {
@@ -1735,6 +1768,52 @@ s32 TQuestVmDownLoadServer__sub_803E8DA0(char *key, Req_803EEF2C *req, s32 value
     } else {
         link = &previous->next;
     }
+    return node;
+}
+inline void write_cached_record(u8 *p, s32 length, Req_803EEF2C *req, s32 value) {
+    *p++ = length % 256;
+    *p++ = length / 256;
+    *p++ = req->len;
+    strncpy((char *)p, req->name, req->len);
+    p += req->len;
+    *p++ = req->x7;
+    *p++ = value;
+    u8 extra = req->x8;
+    if (extra != 0 || req->x7 >= 0x2D) {
+        *p++ = extra;
+    }
+    TQuestVmDownLoadServer::copy_sjis_string(req->text, p);
+
+}
+inline s32 cached_record_length(Req_803EEF2C *req) {
+    s32 width;
+    s32 metadata;
+    if (req->x8 != 0 || req->x7 >= 0x2D) metadata = 3;
+    else metadata = 2;
+    width = TQuestVmDownLoadServer::calc_sjis_string_width(req->text);
+    s32 total;
+    // Discarding the prefix assignment's value preserves MWCC's temporary handoff.
+    return ((void)(total = req->len + metadata), metadata = total + width) + 3;
+}
+s32 TQuestVmDownLoadServer__sub_803E8DA0(char *key, Req_803EEF2C *req, s32 value) {
+    QuestDownloadCachedNameNode *node;
+    QuestDownloadCachedNameNode *previous;
+    QuestDownloadCachedNameNode **link;
+    u8 *record;
+    u8 *oldRecord;
+    QuestDownloadCachedNameNode *reserved;
+    u8 *p;
+    u8 len;
+    s16 wanted;
+    s32 bucket;
+    s32 width;
+    s32 length;
+    s32 offset;
+
+    size_t cacheAddress = (size_t)lbl_80591EC8;
+    u8 *cacheBytes = reinterpret_cast<u8 *>(cacheAddress);
+    lbl_805D7868 = 1;
+    node = find_replacement_name_link(key, cacheAddress, req->len, link);
     // The original also dereferences its stopping node without a null check.
     oldRecord = node->encodedRecord;
     if (oldRecord[2] == req->len
@@ -1752,13 +1831,7 @@ s32 TQuestVmDownLoadServer__sub_803E8DA0(char *key, Req_803EEF2C *req, s32 value
     }
     reserved = lbl_805D7878;
     lbl_805D7878 = reserved->next;
-    if (req->x8 != 0 || req->x7 >= 0x2D) {
-        length = 3;
-    } else {
-        length = 2;
-    }
-    width = TQuestVmDownLoadServer::calc_sjis_string_width(req->text);
-    length = req->len + length + width + 3;
+    length = cached_record_length(req);
     if (lbl_805D7870 > lbl_805D786C - length - 2) {
         TQuestVmDownLoadServer__sub_803E95BC();
     }
@@ -1766,49 +1839,13 @@ s32 TQuestVmDownLoadServer__sub_803E8DA0(char *key, Req_803EEF2C *req, s32 value
     lbl_805D7870 += length;
     lbl_805D7870[0] = 0;
     lbl_805D7870[1] = 0;
-    p = record;
-    *p++ = length % 256;
-    *p++ = length / 256;
-    *p++ = req->len;
-    strncpy((char *)p, req->name, req->len);
-    p += req->len;
-    *p++ = req->x7;
-    *p++ = value;
-    if (req->x8 != 0 || req->x7 >= 0x2D) {
-        *p++ = req->x8;
-    }
-    TQuestVmDownLoadServer::copy_sjis_string(req->text, p);
+    write_cached_record(record, length, req, value);
 
-    previous = NULL;
-    first = (u8)key[0];
-    wanted = req->len;
-    if (first >= 0xA0 && first < 0xF0) {
-        bucket = first - 0xA0;
-    } else {
-        bucket = 0;
-    }
-    node = QUEST_DOWNLOAD_CACHE_INDEX(cacheAddress)->heads[bucket];
-    for (; node != NULL; node = node->next) {
-        u8 *indexed = node->encodedRecord;
-        len = indexed[2];
-        s32 comparison = strncmp((const char *)(indexed + 3), key, (s16)len);
-        if (comparison == 0) {
-            if (wanted == (s16)len) {
-                break;
-            }
-        } else if (comparison > 0) {
-            break;
-        }
-        previous = node;
-    }
-    if (previous == NULL) {
-        link = &QUEST_DOWNLOAD_CACHE_INDEX(cacheAddress)->heads[bucket];
-    } else {
-        link = &previous->next;
-    }
+    QuestDownloadCachedNameNode **insertionLink;
+    node = find_cached_insertion_link(key, cacheAddress, req->len, insertionLink);
     reserved->encodedRecord = record;
     reserved->next = node;
-    *link = reserved;
+    *insertionLink = reserved;
     return 0;
 }
 #pragma pop
