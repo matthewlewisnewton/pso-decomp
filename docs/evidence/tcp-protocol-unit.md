@@ -76,8 +76,13 @@ acceptance comparisons use the unmodified pinned GC/1.2.5n executable.
   agrees apart from register choices. A previous phase split was removed after
   this control-flow audit; an identical opcode list alone was insufficient.
   The SYN option fields and final padding retain their distinct pointers.
-- Packet input's best candidate has the original instruction count and differs
-  in two constant/address instruction positions. A complete compiler trace shows
+- Packet input retains the original instruction count. The branch audit corrected
+  two upstream draft scopes: overlapping data still clears FIN and requests an
+  ACK when no reassembly call is needed, and repeated FIN does not advance the
+  receive sequence again. A signed-short option-length intermediate preserves
+  the measured truncation. A short reassembly offset also preserves the native
+  narrowing boundary. Remaining differences are temporary-register choices and
+  two constant/address instruction positions. A complete compiler trace shows
   the target sequence through register allocation, frame generation and final
   peephole optimization; the last scheduling pass exchanges those positions.
 
