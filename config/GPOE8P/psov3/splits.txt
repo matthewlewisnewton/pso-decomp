@@ -10450,6 +10450,7 @@ pso/object/TObjOnlineEndingHexLine.cpp:
 	.rodata     start:0x80472C20 end:0x80472C28
 	.data       start:0x804E3A98 end:0x804E3B60
 	.bss        start:0x805412B0 end:0x805412C0
+	.sdata2     start:0x805DE958 end:0x805DE990
 
 pso/unk/text_802E62A4.cpp:
 	.text       start:0x802E62A4 end:0x802E62F8
