@@ -161,7 +161,7 @@ s32 TGStream::read_whole_file(const void *name, u8 *dst) {
     rem = size % 2048;
     if (rem > 0) {
         stream.read_sectors_sync(1, (s32)gstream_sector_buffer);
-        ((TLobby *)(dst + n * 2048))->move_data((const void *)gstream_sector_buffer, (u32)rem);
+        move_data((void *)(dst + n * 2048), (const void *)gstream_sector_buffer, (u32)rem);
     }
     return size;
 }
@@ -311,7 +311,7 @@ s32 TGStream::read_data(u8 *dst, s32 size) {
         } else {
             n = get_gstream_buffered_bytes();
         }
-        ((TLobby *)dst)->move_data((const void *)(gstream_tmp_buffer + gstream_buffer_read_offset), (u32)n);
+        move_data((void *)(dst), (const void *)(gstream_tmp_buffer + gstream_buffer_read_offset), (u32)n);
         dst += n;
         size -= n;
         total += n;

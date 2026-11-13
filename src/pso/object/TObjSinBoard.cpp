@@ -117,7 +117,7 @@ void fn_80197FD0(const void *image, u32 size) {
     u32 t = (u32)TQuestVmDownLoadServer::alloc(size);
     TObjSinBoard__texture_buffer = t;
     if (t != 0) {
-        ((TLobby *)t)->move_data(image, size);
+        move_data((void *)(t), image, size);
         signboard_texture_list.entries = &TObjSinBoard__texture_name;
         signboard_texture_list.count = 1;
         ((GinjaTextureInput *)TObjSinBoard__texture_surface)->configure((void *)(TObjSinBoard__texture_buffer), 0, 0, 0);

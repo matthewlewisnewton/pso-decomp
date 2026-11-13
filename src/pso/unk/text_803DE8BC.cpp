@@ -4,9 +4,9 @@
 
 extern void *sys_heap_handle;
 extern "C" {
+void move_data__FPvPCvUl(void *, void *, void *);
 void OSFreeToHeap(void *heap, void *ptr);
 void *OSAllocFromHeap(void *heap, u32 size);
-void move_data__6TLobbyFPCvUl(void *, void *, void *);
 }
 
 #pragma push
@@ -31,7 +31,7 @@ void *sys_calloc(s32 arg0, s32 arg1) {
 
 void *fn_803DE960(void *arg0, void *size) {
     void *p = OSAllocFromHeap(sys_heap_handle, (u32)size);
-    move_data__6TLobbyFPCvUl(p, arg0, size);
+    move_data__FPvPCvUl(p, arg0, size);
     OSFreeToHeap(sys_heap_handle, arg0);
     return p;
 }

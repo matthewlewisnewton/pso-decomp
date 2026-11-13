@@ -170,21 +170,21 @@ void build_challenge_enemy_set__Fl(s32 floor_id) {
       out_hdr[0] = (challenge_event_count * 0x14) + 0x10;
       out_hdr[1] = 0x10;
       out_hdr[2] = challenge_event_count;
-      move_data__6TLobbyFPCvUl(dst, out_hdr, 0x10);
+      move_data(dst, out_hdr, 0x10);
       if (challenge_event_count > 0)
       {
         dst = ((u8 *) dst) + 0x10;
-        move_data__6TLobbyFPCvUl(dst, challenge_event_buffer, challenge_event_count * 0x14);
+        move_data(dst, challenge_event_buffer, challenge_event_count * 0x14);
       }
       if (rem > 0)
       {
         dst = ((u8 *) dst) + (challenge_event_count * 0x14);
-        move_data__6TLobbyFPCvUl(dst, ((u8 *) challenge_event_source) + hdr.data_offset, rem);
+        move_data(dst, ((u8 *) challenge_event_source) + hdr.data_offset, rem);
       }
       if (aligned > 0)
       {
         dst = ((u8 *) dst) + rem;
-        move_data__6TLobbyFPCvUl(dst, challenge_action_buffer, aligned);
+        move_data(dst, challenge_action_buffer, aligned);
       }
     }
   }
