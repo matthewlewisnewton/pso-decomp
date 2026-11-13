@@ -83,7 +83,7 @@ int is_quest_active(void);
 void init__9TItemDataFv(void *);
 extern Source_8011AA68 *quest_object_entries;
 void apply_by_index__9TObjEnemyFs(s16, void *);
-void drop_item_from_slot__10TObjPlayerFlll(s8 arg0, s32 arg1, s32 arg2);
+void drop_item_from_slot__10TObjPlayerFlll(s32 arg0, s32 arg1, s32 arg2);
 extern Source_8011AB64 *TLobby__data_805D6144;
 s32 spawn_dropped_item_from_msg(void *, int);
 void handle_6x5F_drop_item(Pkt_8011ADF4 *pkt);
@@ -213,7 +213,7 @@ void TLobby::drop_item_from_source(s16 source, int client, s16 room, int slot, f
     }
 }
 
-void process_enemy_drop_request(s8 area, s16 source, int client, s16 room, int slot, f32 x, f32 z) {
+void process_enemy_drop_request(s32 area, s16 source, int client, s16 room, int slot, f32 x, f32 z) {
     u32 id;
     if (source != -1) {
         Delivery_8011AB64 delivery;
@@ -264,7 +264,7 @@ void handle_6x60_standard_drop_item_request(void *arg0) {
     Req_8011AD1C *req = (Req_8011AD1C *)arg0;
     s32 client;
     s32 slot;
-    s8 area;
+    s32 area;
     bswap_6x60_drop_request_fields(arg0);
     if ((u32)(req->size * 4) == 0x14) {
         client = req->client;

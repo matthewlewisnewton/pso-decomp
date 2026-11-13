@@ -2,6 +2,7 @@
 #include "pso/unk/TLobby_8013AD38.h"
 #include "pso/ui/window/TWindowMenuIconLine.h"
 #include "pso/unk/TLobby.h"
+#include "pso/ui/window/TWindowMakeTeam.h"
 #include "pso/ui/city/TCheckRoomSequence.h"
 
 struct RecoveredGlobal_8013ADB0_TAdEnterSerialAccessGC__data_804EC9B8 {
@@ -24,7 +25,7 @@ int TWindowMenuIconLine::is_decided() { return (this->state_flags >> 1) & 0x1; }
 int TWindowMenuIconLine::is_cancelled() { return (this->state_flags >> 2) & 0x1; }
 int test_flag_1d_bit1__15TWindowMakeTeamFv(void* p) { return (*(u8*)((char*)p + 0x1d) >> 1) & 0x1; }
 s32 get_field_20__15TWindowMakeTeamFv(void* p) { return *(s32*)((char*)p + 0x20); }
-u8 TLobby::get_mode() { return *(u8*)((char*)this + 0x1e); }
+u8 TWindowMakeTeam::get_mode() { return m_1e; }
 u8 read_mode__15TWindowMakeTeamFv(void* p) { return *(u8*)((char*)p + 0x1e); }
 int test_flag_1d_bit0__15TWindowMakeTeamFv(void* p) { return *(u8*)((char*)p + 0x1d) & 0x1; }
 

@@ -20,7 +20,7 @@ s32 check_room_seq_4__16TAdChrSelASlotGCFl(void *, s32);
 extern u8 lbl_8044F300[];
 void init_status_disp__15TWindowMakeTeamFc(s8 arg0);
 extern u8 lbl_8044F308[];
-s8 get_mode__6TLobbyFv();
+s8 get_mode__15TWindowMakeTeamFv();
 
 void init_status_disp__15TWindowMakeTeamFc(s8 arg0) {
     TWindowSubStatusDisp::get_message_10(arg0 + 0x113);
@@ -29,7 +29,7 @@ s32 TWindowMakeTeam::draw_entry_0x110(s8 arg0) {
     TWindowSubStatusDisp::get_message_10(arg0 + 0x110);
 }
 u8 TWindowMakeTeam::is_enabled() {
-    if (get_mode__6TLobbyFv() == 1) {
+    if (get_mode__15TWindowMakeTeamFv() == 1) {
         return 0U;
     }
     return this->m_1f;

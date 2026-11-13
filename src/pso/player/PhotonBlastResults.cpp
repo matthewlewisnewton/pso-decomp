@@ -72,7 +72,7 @@ s32 get_photon_blast_chain(void *, s32);
 s32 is_split_screen();
 s32 get_room__8TObjBaseFv(void *);
 u16 get_entity_id(void *);
-void set_type__10TObjPlayerFs(void *, s16);
+void set_type__10TObjPlayerFUs(void *, s16);
 s32 TObjPlayer__sub_801AA528(s32 arg0, s16 arg1);
 void *TObjPlayer__sub_801AA66C(void *, void *);
 void *__nw__7TObjectFUl(int);
@@ -93,7 +93,7 @@ void admit_photon_blast_sequence(u8 *players, void *self);
 #pragma push
 #pragma fp_contract on
 
-f32 TObjPlayer::calc_photon_blast_power(s32 arg1, f32 farg0) {
+f32 TUnk_804C349C::calc_photon_blast_power(s32 arg1, f32 farg0) {
     u8 *arg0 = (u8 *)this;
     f32 var_f30;
     void *mag;
@@ -205,7 +205,7 @@ void clear_photon_blast_donations(void) {
     }
 }
 #define GET_STAT ((s16 (*)(void *))get_room__8TObjBaseFv)
-#define SET_TYPE ((void (*)(void *, u16))set_type__10TObjPlayerFs)
+#define SET_TYPE ((void (*)(void *, u16))set_type__10TObjPlayerFUs)
 void admit_photon_blast_sequence(u8 *players, void *self) {
     Slot_801A8868 a[4];
     Slot_801A8868 b[4];
@@ -313,7 +313,7 @@ void deliver_photon_blast_results_animated(TUnk_804C349C *seq) {
         TObjChara *target = find_entity_by_id(photon_blast_hit_queue[i].identity);
         if (target != NULL) {
             DirectAttackPayload payload;
-            f32 power = ((TObjPlayer *)seq)->calc_photon_blast_power(photon_blast_hit_queue[i].kind, photon_blast_hit_queue[i].value);
+            f32 power = seq->calc_photon_blast_power(photon_blast_hit_queue[i].kind, photon_blast_hit_queue[i].value);
             payload.power = power * (0.01 * (seq->power_level * seq->summon_count));
             if (photon_blast_hit_queue[i].kind == 4) {
                 payload.kind = 6;
@@ -411,7 +411,7 @@ void deliver_photon_blast_results_delayed(TUnk_804C349C *seq) {
         TObjChara *target = find_entity_by_id(deferred_photon_blast_hit_queue[i].identity);
         if (target != NULL) {
             DirectAttackPayload payload;
-            f32 power = ((TObjPlayer *)seq)->calc_photon_blast_power(deferred_photon_blast_hit_queue[i].kind, deferred_photon_blast_hit_queue[i].value);
+            f32 power = seq->calc_photon_blast_power(deferred_photon_blast_hit_queue[i].kind, deferred_photon_blast_hit_queue[i].value);
             payload.power = power * (0.01 * (seq->power_level * seq->summon_count));
             if (deferred_photon_blast_hit_queue[i].kind == 4) {
                 payload.kind = 6;

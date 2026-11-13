@@ -93,6 +93,7 @@ typedef struct Ent_801D4744 {
 typedef struct List_801D4744 {
     s32 count;
     Ent_801D4744 *items;
+    void sort_by_key();
 } List_801D4744;
 struct Item_801D5004 {
     u8 pad0[0xC];
@@ -568,7 +569,7 @@ s32 TObjPlayer::update_inventory_item(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s3
 
 int TObjPlayer::run_state_query(int a1) { owned_item_export_cursor = a1; inventory_walk_visit_count = 0; ((TObjPlayer *)this->unk_1C4)->count_owned_items(); return inventory_walk_visit_count; }
 
-int TObjPlayer::run_and_get_result(int a1) { TObjPlayer__owner_field_write_cursor = (s32 *)a1; inventory_walk_visit_count = 0; ((TObjPlayer *)this->unk_1C4)->collect_owner_fields_recursive(); return inventory_walk_visit_count; }
+int TPlyItem::run_and_get_result(s32 *a1) { TObjPlayer__owner_field_write_cursor = a1; inventory_walk_visit_count = 0; ((TObjPlayer *)*(u32 *)((u8 *)this + 0x1C4))->collect_owner_fields_recursive(); return inventory_walk_visit_count; }
 
 extern "C" s32 TObjPlayer__sub_801D47EC(s32 arg0, s32 arg1, s32 arg2) {
     TObjPlayer *node_a;
@@ -598,8 +599,8 @@ extern "C" s32 TObjPlayer__sub_801D47EC(s32 arg0, s32 arg1, s32 arg2) {
 
 extern "C" void TObjPlayer__sub_801D47D8(void* p, void* q) { *(u32*)((char*)p + 0x0) = *(u32*)((char*)q + 0x0); *(u32*)((char*)p + 0x4) = *(u32*)((char*)q + 0x4); }
 
-void TObjPlayer::sort_by_key() {
-    List_801D4744 *arg0 = (List_801D4744 *)this;
+void List_801D4744::sort_by_key() {
+    List_801D4744 *arg0 = this;
     Ent_801D4744 t;
     s32 n;
     s32 j;
@@ -720,7 +721,7 @@ extern "C" s32 TObjPlayer__sub_801D4368(TObjPlayer *arg0) {
         }
         down_2 = *(void **)((s8 *)down_2 + 0xC);
     }
-    ((TObjPlayer *)obj)->sort_by_key();
+    ((List_801D4744 *)obj)->sort_by_key();
     cnt_3 = 0;
     down_3 = *(void **)((s8 *)*(s32 *)((s8 *)arg0 + 0x1c4) + 0x14);
     rec_2 = (u32 *)*(s32 *)(obj + 4);

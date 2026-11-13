@@ -22,6 +22,7 @@ public:
     virtual ~TUnk_804C349C();
     void update_and_destroy();
     virtual void run_task();
+    f32 calc_photon_blast_power(s32 kind, f32 value);
 
     TObject *summon;
     s32 summon_index;

@@ -195,7 +195,6 @@ struct TLobby : public TObject {
     void bswap_fields();
     void bswap_header_3words();
     void bswap_6x6B();
-    u8 get_mode();
     static void init_serial_access();
     static void heap_alloc(void* a0);
     void set_range(int a1, int a2, int a3);

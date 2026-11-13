@@ -1372,7 +1372,7 @@ s32 test_flags_any(void*,u32);
 extern u8 lbl_805DACA4;
 }
 
-void apply_weapon_node_material() {
+void apply_weapon_node_material(NJS_OBJECT *) {
     const s32 node = TObjPlayer::get_player_list();
     TItem::end_material_color();
     TItem::end_effect_render();

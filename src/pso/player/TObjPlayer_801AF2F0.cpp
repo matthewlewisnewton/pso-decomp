@@ -5272,8 +5272,8 @@ void send_6x2C_impose_hold(s32 arg0, struct Vec_801B5328 *pos, s16 arg2, s16 arg
     }
 }
 
-void TObjPlayer::play_effect(s32 arg0, s32 arg1, s32 arg2) {
-    ((s32 (*)(s32, s32, s32, s32, f32))send_6x2C_impose_hold)(arg0, get_position_ptr__10TObjPlayerFv(), arg1, arg2, (*(f32 *)&TObjPlayer__data_805DC278));
+void TObjPlayer::play_effect(TObjPlayer *player, s32 arg1, s32 arg2) {
+    ((s32 (*)(s32, s32, s32, s32, f32))send_6x2C_impose_hold)((s32)player, get_position_ptr__10TObjPlayerFv(), arg1, arg2, (*(f32 *)&TObjPlayer__data_805DC278));
 }
 
 void play_effect_default__10TObjPlayerFP10TObjPlayerl(s32 arg0, s32 arg1) {

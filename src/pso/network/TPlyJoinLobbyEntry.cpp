@@ -1522,7 +1522,7 @@ s32 TWindowMakeTeam__sub_80264B38(u32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 void close_all_windows__6TLobbyFv(void);
 s32 send_server_time_accepted__9TProtocolFv(s32);
-s8 get_mode__6TLobbyFv(u32);
+s8 get_mode__15TWindowMakeTeamFv(u32);
 s32 is_enabled__15TWindowMakeTeamFv(u32);
 s32 send_create_game__9TProtocolFPcPcUcUcUcUc(s32, s32, s32, u8, u8, u8, s32);
 
@@ -1968,7 +1968,7 @@ void handle_create_game_window__6TLobbyFv(void) {
                 temp_r30 = TWindowMakeTeam__sub_80264B24(lobby_make_team_window);
                 temp_r29 = read_mode__15TWindowMakeTeamFv(lobby_make_team_window) == 2;
                 temp_r28 = is_enabled__15TWindowMakeTeamFv(lobby_make_team_window);
-                temp_r27 = get_mode__6TLobbyFv(lobby_make_team_window) == 1;
+                temp_r27 = get_mode__15TWindowMakeTeamFv(lobby_make_team_window) == 1;
                 temp_r0 = get_field_20__15TWindowMakeTeamFv(lobby_make_team_window);
                 send_create_game__9TProtocolFPcPcUcUcUcUc((*(s32 *)&(*(s32 *)&(*(s32 *)&(*(s32 *)&TLobby__protocol_instance)))), temp_r3, temp_r30, temp_r28, temp_r29, temp_r27, temp_r0);
                 ((s32 (*)())destroy_lobby_ui__6TLobbyFv)();
