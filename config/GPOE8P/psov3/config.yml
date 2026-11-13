@@ -4944,7 +4944,7 @@ force_active:
   - check_beam_player_hits__13TBoss6KakusanFv
   - check_bin_model_loaded__6TLobbyFPvPv
   - check_body_collision_at__18TObjEneMe3SinowZoaFlf
-  - check_both__15TObjBoss2TunnelFl
+  - check_both__13TUnk_804E4B3CFv
   - check_can_attack__12TBoss1DragonFv
   - check_can_attack__13TObjEneMe1GeeFv
   - check_can_open__16TObjBagWarnWin4PFPv
@@ -7294,7 +7294,7 @@ force_active:
   - is_out_of_range__13TBoss6KakusanFv
   - is_p02_idle__12TBoss3VoloptFv
   - is_partner_counter_reached__FPsll
-  - is_phase_active__15TObjBoss2TunnelFl
+  - is_phase_active__13TUnk_804E4B3CFv
   - is_phase_e__9TObjEneDDFPv
   - is_photon_blast_presentation_admitted__FUlPv
   - is_player_in_range__10TObjPlayerFllf
@@ -17188,7 +17188,7 @@ force_active:
   - update_slot_sprites__20TWindowActionPaletteFiiUs
   - update_slot_state__16TAdChrSelBSlotGCFPv
   - update_spark_toggle__16TOSparkMachine01Fl
-  - update_spawn_timer__13TUnk_804E4B3CFlll
+  - update_spawn_timer__13TUnk_804E4B3CFPClll
   - update_spawning__20TContainerAncient01RFv
   - update_special_pose__11TItemMagSubFv
   - update_spin__13TOCtrlDubchikFv
