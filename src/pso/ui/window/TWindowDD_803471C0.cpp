@@ -8,7 +8,7 @@ s32 format_word_select_message(s32, s32, s32);
 
 extern s32 window_dd_buffer_a;
 
-void TWindowDD::open(s32 arg0, s32 arg1) {
+void show_word_select_message(s32 arg0, s32 arg1) {
     format_word_select_message(arg0, window_dd_buffer_a, arg1);
     TWindowCtrl::open(arg1, window_dd_buffer_a, 0x4F);
 }
