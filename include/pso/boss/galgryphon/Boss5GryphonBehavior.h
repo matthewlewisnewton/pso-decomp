@@ -32,7 +32,8 @@ void choose_next_action__13TBoss5GryphonFPvPv(u8 *arg0, u32 *arg1);
 int emit_part_attack_effect__13TBoss5GryphonFPvi(void *arg0, int arg1);
 }
 void handle_6x9F_gal_gryphon_boss_actions(void *arg0);
-void handle_6xA0_gal_gryphon_boss_actions(TBoss8Dragon *arg0);
+struct G_GalGryphonBossActions_6xA0;
+void handle_6xA0_gal_gryphon_boss_actions(G_GalGryphonBossActions_6xA0 *arg0);
 extern "C" {
 void move_along_angle__13TBoss5GryphonFPvif(void *arg0, s32 arg1, f32 farg0);
 s32 rand_scaled_offset__12TBoss8DragonFiii(s32 arg0, s32 arg1, s32 arg2);

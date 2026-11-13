@@ -513,28 +513,28 @@ void TObjEneIllGill::capture_effect_positions() {
         v->x = TObjEneIllGill__data_805E02BC;
         v->y = TObjEneIllGill__data_805E02BC;
         v->z = TObjEneIllGill__data_805E02BC;
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)lbl_804FF5E8, (s32)v, (s32)v);
+        TObjBoss2Tunnel::transform_vec_by_camera((void *)lbl_804FF5E8, (const Vec *)v, (Vec *)v);
         break;
     case 44:
         v = &illGillShadowEffectPosition;
         v->x = TObjEneIllGill__data_805E02BC;
         v->y = TObjEneIllGill__data_805E02BC;
         v->z = TObjEneIllGill__data_805E02BC;
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)lbl_804FF5E8, (s32)v, (s32)v);
+        TObjBoss2Tunnel::transform_vec_by_camera((void *)lbl_804FF5E8, (const Vec *)v, (Vec *)v);
         break;
     case 40:
         v = &illGillChargeEffectPosition1;
         v->x = TObjEneIllGill__data_805E02BC;
         v->y = TObjEneIllGill__data_805E02BC;
         v->z = TObjEneIllGill__data_805E02BC;
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)lbl_804FF5E8, (s32)v, (s32)v);
+        TObjBoss2Tunnel::transform_vec_by_camera((void *)lbl_804FF5E8, (const Vec *)v, (Vec *)v);
         break;
     case 27:
         v = &illGillChargeEffectPosition2;
         v->x = TObjEneIllGill__data_805E02BC;
         v->y = TObjEneIllGill__data_805E02BC;
         v->z = TObjEneIllGill__data_805E02BC;
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)lbl_804FF5E8, (s32)v, (s32)v);
+        TObjBoss2Tunnel::transform_vec_by_camera((void *)lbl_804FF5E8, (const Vec *)v, (Vec *)v);
         break;
     }
     illGillModelNodeIndex++;

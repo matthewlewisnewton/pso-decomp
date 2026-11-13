@@ -3,6 +3,40 @@
 
 #include "types.h"
 #include "pso/system/task/TObject.h"
+#include <dolphin/mtx/GeoTypes.h>
+
+struct G_PlaySound_6xB2;
+
+// A velocity/position ramp: accelerate from v0 to peak, cruise, brake to rest over dist.
+// init_piecewise_curve fills it, eval_piecewise_curve reads the speed, sample_piecewise_curve the distance.
+struct PiecewiseCurve {
+    f32 accel;
+    f32 decel;
+    f32 v0;
+    f32 peak;
+    f32 accelEnd;
+    f32 decelStart;
+    f32 end;
+    f32 t;
+    f32 accelDist;
+    f32 decelPos;
+    f32 dist;
+};
+
+// The same ramp without a start speed or clock (init_acceleration_curve / sample_acceleration_curve).
+struct AccelerationCurve {
+    f32 accel;
+    f32 decel;
+    f32 peak;
+    f32 accelEnd;
+    f32 decelStart;
+    f32 end;
+    f32 accelDist;
+    f32 decelPos;
+    f32 dist;
+    AccelerationCurve();
+    ~AccelerationCurve();
+};
 
 struct TObjBoss2Tunnel : public TObject {
     virtual ~TObjBoss2Tunnel();
@@ -48,9 +82,9 @@ struct TObjBoss2Tunnel : public TObject {
     u32 m_bc;
     u8 _padC0[0x18];
     u32 m_d8;
-    s32 advance_phase(f32 *out);
-    void update_position();
-    f32 eval_piecewise_curve(f32 farg0);
+    static s32 advance_phase(PiecewiseCurve *c, f32 *out);
+    static f32 update_position(PiecewiseCurve *c);
+    static f32 eval_piecewise_curve(PiecewiseCurve *c, f32 farg0);
     static void set_global_flag_200();
     static void clear_global_flag_3000();
     static void set_global_flag_800();
@@ -66,23 +100,19 @@ struct TObjBoss2Tunnel : public TObject {
     static s32 save_snapshot();
     static void free_buffers();
     static void reset_state();
-    void reset_floats();
-    static s32 dt(s32 arg0, s16 arg1);
-    static s32 reset_floats(s32 arg0);
-    int check_param_threshold(f32 arg1);
-    void reset_coords();
-    static s32 maybe_delete(s32 arg0, s16 arg1);
-    static s32 reset_coords_pass(s32 arg0);
+    static void reset_floats(PiecewiseCurve *c);
+    static PiecewiseCurve *dt(PiecewiseCurve *c, s16 arg1);
+    static PiecewiseCurve *reset_floats_pass(PiecewiseCurve *c);
+    static int check_param_threshold(AccelerationCurve *c, f32 arg1);
+    static void reset_coords(AccelerationCurve *c);
     static s32 decrement_packed_timer(u32 *arg0, s32 arg1);
-    static s32 spawn_effect(s32 arg0, void *arg1, void *arg2);
-    static s32 adjust_to_ground(s32 arg0, void *arg1);
-    void init_zako(void* a1, s32 _w2);
+    static void init_zako(Vec *v, void* a1, s32 _w2);
     static s16 turn_toward_angle_limited(s32 arg0, s32 cur, s32 target, s32 step, s32 limit);
     s32 count_tree_nodes();
     static f32 calc_scaled_value(s32 arg0, f32 farg0);
-    static void transform_vec_by_camera(s32 arg0, s32 arg1, s32 arg2);
+    static void transform_vec_by_camera(void *unused, const Vec *src, Vec *dst);
     void render(void* a1);
-    void finalize_and_send_60();
+    static void finalize_and_send_60(G_PlaySound_6xB2 *cmd);
     static void set_flag_0x200();
     static void clear_flags_0x3000();
     static s32 is_phase_active(s32 _w0);
@@ -94,6 +124,10 @@ struct TObjBoss2Tunnel : public TObject {
     static void set_global_flag_100();
     static s32 is_active();
 };
+
+extern "C" {
+s32 adjust_point_to_ground(const Vec *source, Vec *destination);
+}
 
 typedef char TObjBoss2Tunnel_size[sizeof(TObjBoss2Tunnel) == 0xDC ? 1 : -1];
 #endif

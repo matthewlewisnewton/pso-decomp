@@ -234,14 +234,14 @@ void TCameraCtrl::cache_target_and_forward(s32 unused) {
         TCameraCtrl__saved_projection_angle = *(s32 *)((s8 *)camera_ctrl_instance + 0x19C);
         scripted_camera_projection_angle = unused;
     }
-    configure_scripted_camera_playback((u8 *)playback_data, (s32)unused);
+    configure_scripted_camera_playback((CameraPlayback *)playback_data, (s32)unused);
 }
 
-void configure_scripted_camera_playback(u8* playback_data, s32 unused) {
+void configure_scripted_camera_playback(CameraPlayback* playback_arg, s32 unused) {
     struct MotionDirectory { CameraMotionData** entries; };
     struct MotionBank { MotionDirectory* directory; u32 unknown_04; };
     struct PathBank { CameraPathMode* modes; u32 unknown_04; };
-    const CameraPlayback* playback = (const CameraPlayback*)playback_data;
+    const CameraPlayback* playback = playback_arg;
     ScriptedCameraState* camera = (ScriptedCameraState*)camera_controller_registry[5];
     if (camera != NULL) {
         camera->playback.index = playback->index;

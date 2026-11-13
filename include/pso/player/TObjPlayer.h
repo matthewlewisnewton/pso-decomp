@@ -394,6 +394,7 @@ struct TObjPlayer : public TObjChara {
     static void set_com_card_window(s32 arg0);
     static s32 is_locally_controlled(void *player);
     static TObjPlayer *get_player_data(int index);
+    s32 get_current_area();
     int queue_destruction();
     s32 test_action_mask(s32 arg1);
     static void free_singleton();
@@ -409,9 +410,6 @@ struct TObjPlayer : public TObjChara {
     static f32 get_end_text_value();
     int is_inactive();
     static void set_visibility_flags_by_count(void *arg0, s32 arg1);
-    void run_death_sequence();
-    int reset_enemy_state();
-    void update_move_to_target();
     void trigger_targets_action();
     s16 get_field_2c8();
     void set_flag_start_effect();

@@ -45,6 +45,10 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/boss/goldragon/TBoss8Dragon.h"
 
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
+extern "C" {
+void *__ct__17AccelerationCurveFv(void *);
+void *__dt__17AccelerationCurveFv(void *, s16);
+}
 
 #include "pso/enemy/berura/TObjEneRe7Berura.h"
 #include "pso/render/RenderFadeState.h"
@@ -462,7 +466,7 @@ void set_chunk_material_override_pair(s32, s32);
 void render__12TBoss1DragonFv(u8 *arg0);
 }
 void direction_to_rotation_xz(u8 *arg0, s32 *arg1, s32 *arg2);
-void dragon_capture_node_points(void);
+void dragon_capture_node_points(NJS_OBJECT *);
 extern u8 lbl_804FE1D0[0xC];
 extern u8 lbl_804FE1DC[0xC];
 extern u32 TBoss1Dragon__data_805D4B08;
@@ -1109,7 +1113,7 @@ void TBoss1Dragon::render() {
             rotate_matrix_x(0, *(s32 *)((s8 *)((u8 *)this) + 0x5C));
             rotate_matrix_z(0, ((TBoss1Dragon *)((u8 *)this))->rotation_z);
             scale_matrix(0, (2.0f), (2.0f), (2.0f));
-            set_chunk_model_node_callback((ChunkModelNodeCallback)((s32 *) dragon_capture_node_points));
+            set_chunk_model_node_callback(dragon_capture_node_points);
             TObjPlayer::toggle_particle_effect();
             ((TObjMotion *)((u8 *)this))->draw();
             TParticleCtrl::end_effect_render();
@@ -1140,7 +1144,7 @@ void TBoss1Dragon::draw() {
 
     temp_r31 = *(s32 *)&this->model;
     *(s32 *)&this->model = (s32) TBoss1Dragon__data_805D4B28;
-    set_chunk_model_node_callback((ChunkModelNodeCallback)(((s32 *)dragon_capture_node_points)));
+    set_chunk_model_node_callback(dragon_capture_node_points);
     push_matrix();
     post_translate_matrix(((u8 *)this) + 0x38);
     translate_matrix(0, (0.0f), this->heightOffset, (0.0f));
@@ -1154,7 +1158,7 @@ void TBoss1Dragon::draw() {
     *(s32 *)&this->model = temp_r31;
 }
 
-void dragon_capture_node_points(void) {
+void dragon_capture_node_points(NJS_OBJECT *) {
     s32 temp_r0;
     s32 temp_r4;
     if ((s32) TBoss1Dragon__data_805D4B0C == (s32) lbl_805D4B10) {
@@ -2139,7 +2143,7 @@ void TBoss1Dragon::update_fade_state(u32 arg1) {
         beginHeightTransition__12TBoss1DragonFv(this);
         this->flags |= 0xE80;
         for (i = 0; i < 4; i++) {
-            ((TBoss8Dragon *)(&this->viewFade[i]))->set_speed((0.005f));
+            ((MaterialColorFade *)(&this->viewFade[i]))->set_rate((0.005f));
         }
         break;
     case ENEMY_STATE_UPDATE:
@@ -3669,7 +3673,7 @@ void TBoss1Dragon::update_flight_state(u32 arg1) {
             this->fallVelocity += (1.0f);
             t = sample_acceleration_curve(arg0 + 0x618, this->fallVelocity);
             this->rotation_y = (s32)((f32)*(s32 *)((s8 *)arg0 + 0x65C) * t + (f32)*(s32 *)((s8 *)arg0 + 0x874));
-            if (((TObjBoss2Tunnel *)(arg0 + 0x618))->check_param_threshold(this->fallVelocity) != 0) {
+            if (TObjBoss2Tunnel::check_param_threshold((AccelerationCurve *)(arg0 + 0x618), this->fallVelocity) != 0) {
                 this->fallVelocity = (0.0f);
                 this->stateStep = 1;
             }
@@ -3679,7 +3683,7 @@ void TBoss1Dragon::update_flight_state(u32 arg1) {
             t = sample_acceleration_curve(arg0 + 0x5F4, this->fallVelocity);
             this->position.x = *(f32 *)((s8 *)arg0 + 0x3A0) * t + base[0];
             this->position.z = *(f32 *)((s8 *)arg0 + 0x3A8) * t + base[2];
-            if (((TObjBoss2Tunnel *)(arg0 + 0x5F4))->check_param_threshold(this->fallVelocity) != 0) {
+            if (TObjBoss2Tunnel::check_param_threshold((AccelerationCurve *)(arg0 + 0x5F4), this->fallVelocity) != 0) {
                 this->stateStep = 2;
             }
             break;
@@ -5667,8 +5671,8 @@ Obj_80029C78 *destroy__12TBoss1DragonFPvs(Obj_80029C78 *o, s16 flag) {
             TBoss1Dragon__data_805D4B2C = 0;
         }
         __destroy_arr(o->f6E8, (void *)__dt__15RenderFadeStateFv, 0x1c, 4);
-        TObjBoss2Tunnel::maybe_delete((s32)o->f618, (s16)(-1));
-        TObjBoss2Tunnel::maybe_delete((s32)o->f5F4, (s16)(-1));
+        __dt__17AccelerationCurveFv((AccelerationCurve *)o->f618, -1);
+        __dt__17AccelerationCurveFv((AccelerationCurve *)o->f5F4, -1);
         __dt__7TObjectFv(o->f3C4, -1);
         __dt__12TObjEneDD_STFv(o, 0);
         if (flag > 0) {
@@ -5692,8 +5696,8 @@ u8 *TBoss1Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     __ct__12TObjEneDD_STFP7TObject(arg0, arg1);
     F_29DE4(arg0, s32, 0x18) = (s32)lbl_80481280;
     __ct__7TObjectFP7TObject(arg0 + 0x3C4, 0);
-    TObjBoss2Tunnel::reset_coords_pass((s32)(arg0 + 0x5F4));
-    TObjBoss2Tunnel::reset_coords_pass((s32)(arg0 + 0x618));
+    __ct__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x5F4));
+    __ct__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x618));
     __construct_array(arg0 + 0x6E8, __ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     __ct__14SubtractiveRngFv(arg0 + 0x77C);
     F_29DE4(arg0, s32, 0) = TBoss1Dragon__name;
@@ -5746,8 +5750,8 @@ u8 *TBoss1Dragon__ct(u8 *arg0, void *arg1, void *arg2) {
     F_29DE4(arg0, f32, 0x5E8) = (0.0f);
     F_29DE4(arg0, f32, 0x5EC) = (0.0f);
     F_29DE4(arg0, f32, 0x5F0) = (0.0f);
-    ((TObjBoss2Tunnel *)(arg0 + 0x5F4))->reset_coords();
-    ((TObjBoss2Tunnel *)(arg0 + 0x618))->reset_coords();
+    TObjBoss2Tunnel::reset_coords((AccelerationCurve *)(arg0 + 0x5F4));
+    TObjBoss2Tunnel::reset_coords((AccelerationCurve *)(arg0 + 0x618));
     VecCopy__FP3VecPC3Vec((s32)(arg0 + 0x63C), (s32)&O_29DE4->pos);
     VecCopy__FP3VecPC3Vec((s32)(arg0 + 0x648), (s32)&O_29DE4->pos);
     F_29DE4(arg0, s32, 0x654) = 0;
@@ -6207,7 +6211,7 @@ s32 fn_8002AE08(void *p) {
 
 int TBoss8Dragon::test_card_flag_2() { return TWindowKeyBoardHard::test_card_flag((s32)this, 2); }
 
-void TBoss8Dragon::set_speed(f32 v) { this->m_10 = v; }
+void MaterialColorFade::set_rate(f32 v) { rate = v; }
 
 void TObjEnemy::sub_8002AE64() {
     this->motion_flags = (s32) (this->motion_flags & 0xFFFFFFFE);

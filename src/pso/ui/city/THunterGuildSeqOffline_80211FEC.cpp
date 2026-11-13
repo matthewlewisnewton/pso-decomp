@@ -60,7 +60,7 @@ s32 THunterGuildSeqOffline__sub_80212074(void) {
     if (player == 0) {
         return 0;
     }
-    temp_r3_3 = ((TBoss3Volopt *)player)->get_field_3e0();
+    temp_r3_3 = ((TObjPlayer *)player)->get_current_area();
     if ((temp_r3_3 != 0x12) && ((temp_r3_3 >= 0x12) || (temp_r3_3 != 0))) {
         return 0;
     }
@@ -87,7 +87,7 @@ s32 THunterGuildSeqOffline::check_party_gathered() {
     for (i = 0; i < 4; i++) {
         u32 q = get_player_by_client_id(i);
         if (q != 0) {
-            switch (((TBoss3Volopt *)q)->get_field_3e0()) {
+            switch (((TObjPlayer *)q)->get_current_area()) {
             case 0:
             case 0x12:
                 break;

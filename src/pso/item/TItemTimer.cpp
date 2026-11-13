@@ -122,7 +122,7 @@ extern const f32 lbl_805DAC7C;
 void TUnk_804A0568::vfunc_6() {
     Timer_8011D5B4 *arg0 = (Timer_8011D5B4 *)this;
     Rec_8011D5B4 a;
-    ((TBoss3Volopt *)(arg0->obj))->get_field_3e0();
+    ((TObjPlayer *)(arg0->obj))->get_current_area();
     if (is_item_area_enabled() == 1 && lbl_805DAC78 * (f32)rand() < arg0->f2c) {
         a.k1 = 0x10;
         a.v2 = lbl_805DAC7C;
@@ -135,7 +135,7 @@ void TUnk_804A0568::vfunc_6() {
 void TUnk_804A0588::vfunc_6() {
     Timer_8011D5B4 *arg0 = (Timer_8011D5B4 *)this;
     Rec_8011D5B4 a;
-    ((TBoss3Volopt *)(arg0->obj))->get_field_3e0();
+    ((TObjPlayer *)(arg0->obj))->get_current_area();
     if (is_item_area_enabled() == 1 && lbl_805DAC78 * (f32)rand() < arg0->f2c) {
         a.k1 = 0x12;
         a.v2 = lbl_805DAC7C;
@@ -148,7 +148,7 @@ void TUnk_804A0588::vfunc_6() {
 void TUnk_804A05A8::vfunc_6() {
     Timer_8011D5B4 *arg0 = (Timer_8011D5B4 *)this;
     Rec_8011D5B4 a;
-    ((TBoss3Volopt *)(arg0->obj))->get_field_3e0();
+    ((TObjPlayer *)(arg0->obj))->get_current_area();
     if (is_item_area_enabled() == 1 && lbl_805DAC78 * (f32)rand() < arg0->f2c) {
         a.k1 = 0x11;
         a.v2 = lbl_805DAC7C;
@@ -162,7 +162,7 @@ void TUnk_804A05C8::vfunc_6() {
     s32 particle_effect_with_flags;
 
     if ((((TObjPlayer *)this->m_28)->is_body_collision_inactive() == 0) && (is_flag_20000_set__10TObjPlayerFv(this->m_28) == 0)) {
-        ((TBoss3Volopt *)(this->m_28))->get_field_3e0();
+        ((TObjPlayer *)(this->m_28))->get_current_area();
         if ((is_item_area_enabled() == 1) && (obj_testFlags30__14TObjCollidableFUl((void *)this->m_28, 0x800) == 0)) {
             particle_effect_with_flags = (s32)spawn_particle_effect_with_flags((void *)(*(s32 *)&this->m_28 + 0x2FC), *(s32 *)&this->unk_2C, 0x10);
             if (particle_effect_with_flags != 0) {
@@ -176,7 +176,7 @@ void TUnk_804A05E8::vfunc_6() {
 
     if (obj_isState2_324__9TObjCharaFv(*(void * *)&this->m_28) == 0) {
         if (((TObjPlayer *)this->m_28)->has_flag_0x800() == 0) {
-            ((TBoss3Volopt *)(this->m_28))->get_field_3e0();
+            ((TObjPlayer *)(this->m_28))->get_current_area();
             if ((is_item_area_enabled() == 1) && ((lbl_805DAC78 * (f32) rand()) < *(f32 *)&this->unk_2C)) {
                 ((TObjPlayer *)this->m_28)->apply_movement_ailment(0);
                 ((TObjPlayer *)this->m_28)->vfunc_74(0);
@@ -209,7 +209,7 @@ void TUnk_804A0648::vfunc_6() {
 }
 
 void TUnk_804A0668::vfunc_6() {
-    ((TBoss3Volopt *)(this->m_28))->get_field_3e0();
+    ((TObjPlayer *)(this->m_28))->get_current_area();
     if ((is_item_area_enabled() == 1) && (obj_isState3_324__9TObjCharaFv(this->m_28) == 0) && (obj_testFlags30__14TObjCollidableFUl((void *)this->m_28, 0x800) == 0)) {
         ((TObjChara *)(this->m_28))->subtract_actor_tp(1);
     }

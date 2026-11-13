@@ -6,6 +6,7 @@
 #include "pso/unk/TLobby_801E2F94.h"
 #include "pso/render/RenderFadeState.h"
 #include "types.h"
+#include "pso/render/MaterialColorFade.h"
 #include "pso/system/PadRumble.h"
 #include "pso/enemy/epsilon/TObjEneEpsilon.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
@@ -36,6 +37,10 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/boss/darkfalz/TBoss4Type2.h"
 #include "pso/boss/goldragon/TBoss8DragonEffTail.h"
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
+extern "C" {
+void *__ct__17AccelerationCurveFv(void *);
+void *__dt__17AccelerationCurveFv(void *, s16);
+}
 #include "pso/enemy/shinowa/TObjEneMe3ShinowaReal.h"
 #include "pso/enemy/panarms/TObjEnePanarms.h"
 #include "pso/enemy/berura/TObjEneRe7Berura.h"
@@ -2688,7 +2693,7 @@ void TBoss8Dragon::fn_802F51DC(u32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) & ~0x36);
         TBoss8Dragon__sub_802F48DC((TBoss8Dragon *)arg0, (Vec *)(arg0 + 0x394));
         for (i = 0; i < 4; i++) {
-            ((TBoss8Dragon *)(&((Self_802F51DC *)arg0)->arr[i]))->set_speed(lbl_805DEDC4);
+            ((MaterialColorFade *)(&((Self_802F51DC *)arg0)->arr[i]))->set_rate(lbl_805DEDC4);
         }
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) | 0x100);
         temp_f1 = *(f32 *)((s8 *)TBoss8Dragon__data_80541DDC[0] + 0x10);
@@ -2758,7 +2763,7 @@ void TBoss8Dragon::fn_802F5434(u32 arg1) {
         arg0->set_active_flag();
         *(s32 *)&arg0->m_3c0 = (s32) (*(s32 *)&arg0->m_3c0 & ~0x36);
         for (i = 0; i < 4; i++) {
-            ((TBoss8Dragon *)(&((Self_802F5434 *)arg0)->arr[i]))->set_speed(lbl_805DEDC4);
+            ((MaterialColorFade *)(&((Self_802F5434 *)arg0)->arr[i]))->set_rate(lbl_805DEDC4);
         }
         *(s32 *)&arg0->m_3c0 = (*(s32 *)&arg0->m_3c0 | 0x100);
         *(s32 *)&arg0->m_84c = 0;
@@ -3481,7 +3486,7 @@ void TBoss8Dragon::fn_802F6618(u32 event) {
         dragon->set_active_flag();
         dragon->m_3c0 |= 0x136;
         for (i = 0; i < 4; i++) {
-            ((TBoss8Dragon *)&dragon->renderFadeStates[i])->set_speed(lbl_805DEDE0);
+            ((MaterialColorFade *)&dragon->renderFadeStates[i])->set_rate(lbl_805DEDE0);
         }
         break;
     case 0:
@@ -4840,7 +4845,7 @@ void TBoss8Dragon::fn_802F87EC(u32 arg1) {
     switch (arg1) {
     case 4:
         for (i = 0; i < 4; i++) {
-            ((TBoss8Dragon *)(&((Self_802F87EC *)arg0)->arr[i]))->set_speed(lbl_805DEE54);
+            ((MaterialColorFade *)(&((Self_802F87EC *)arg0)->arr[i]))->set_rate(lbl_805DEE54);
         }
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) | 0x100);
         ((TBoss8Dragon *)arg0)->fn_802F8578(arg1);
@@ -5390,7 +5395,7 @@ void TBoss8Dragon::state_turn_and_charge(u32 arg1) {
         case 0:
             d->field_864 += 1.0f;
             d->angle = (s32)((f32)d->sign * sample_acceleration_curve(d->curve1, d->field_864) + (f32)d->base);
-            if (((TObjBoss2Tunnel *)(d->curve1))->check_param_threshold(d->field_864) != 0) {
+            if (TObjBoss2Tunnel::check_param_threshold((AccelerationCurve *)(d->curve1), d->field_864) != 0) {
                 d->field_864 = 0.0f;
                 d->field_84C = 1;
             }
@@ -5405,7 +5410,7 @@ void TBoss8Dragon::state_turn_and_charge(u32 arg1) {
             v.y = 0.0f;
             v.z = d->dir.z * dlt;
             apply_ground_movement__12TBoss8DragonFPvPv(boss8_dragon, &v.x);
-            if (((TObjBoss2Tunnel *)(d->curve0))->check_param_threshold(d->field_864) != 0) {
+            if (TObjBoss2Tunnel::check_param_threshold((AccelerationCurve *)(d->curve0), d->field_864) != 0) {
                 d->field_84C = 2;
             }
             break;
@@ -5491,7 +5496,7 @@ void TBoss8Dragon::fn_802F9A4C(u32 arg1) {
     switch (arg1) {
     case 4:
         for (i = 0; i < 4; i++) {
-            ((TBoss8Dragon *)(&((Obj_802F9A4C *)arg0p)->fades[i]))->set_speed(lbl_805DEEA0);
+            ((MaterialColorFade *)(&((Obj_802F9A4C *)arg0p)->fades[i]))->set_rate(lbl_805DEEA0);
         }
         ((TBoss8Dragon *)arg0p)->m_3c0 |= 0x100;
         ((TBoss8Dragon *)arg0p)->fn_802F9850(arg1);
@@ -6985,8 +6990,8 @@ u8 *__dt__12TBoss8DragonFv(u8 *arg0, s16 arg1) {
             TBoss8Dragon__data_805D69AC = NULL;
         }
         __destroy_arr(arg0 + 0x6DC, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
-        TObjBoss2Tunnel::maybe_delete((s32)(arg0 + 0x610), (s16)(-1));
-        TObjBoss2Tunnel::maybe_delete((s32)(arg0 + 0x5EC), (s16)(-1));
+        __dt__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x610), -1);
+        __dt__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x5EC), -1);
         __dt__7TObjectFv(arg0 + 0x3C4, -1);
         __dt__12TObjEneDD_STFv(arg0, 0);
         if (arg1 > 0) {
@@ -7133,8 +7138,8 @@ u8 *__ct__12TBoss8DragonFP7TObjectPv(u8 *arg0, void *arg1, void *arg2) {
     __ct__12TObjEneDD_STFP7TObject(arg0, arg1, arg2);
     *(u8 * *)&((TBoss8Dragon *)arg0)->m_18 = (u8 *)__vt__12TBoss8Dragon;
     __ct__7TObjectFP7TObject(arg0 + 0x3C4, 0);
-    TObjBoss2Tunnel::reset_coords_pass((s32)(arg0 + 0x5EC));
-    TObjBoss2Tunnel::reset_coords_pass((s32)(arg0 + 0x610));
+    __ct__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x5EC));
+    __ct__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x610));
     __construct_array(arg0 + 0x6DC, (void *) __ct__15RenderFadeStateFv, (void *) __dt__15RenderFadeStateFv, 0x1C, 4);
     __ct__14SubtractiveRngFv(arg0 + 0x764);
     ((TBoss8Dragon *)arg0)->m_0 = boss8_dragon_class_name;
@@ -7185,8 +7190,8 @@ u8 *__ct__12TBoss8DragonFP7TObjectPv(u8 *arg0, void *arg1, void *arg2) {
     *(f32 *)((s8 *)arg0 + 0x5E0) = TBoss8Dragon__data_805DED50;
     ((TBoss8Dragon *)arg0)->m_5e4 = TBoss8Dragon__data_805DED50;
     *(f32 *)((s8 *)arg0 + 0x5E8) = TBoss8Dragon__data_805DED50;
-    ((TObjBoss2Tunnel *)(arg0 + 0x5EC))->reset_coords();
-    ((TObjBoss2Tunnel *)(arg0 + 0x610))->reset_coords();
+    TObjBoss2Tunnel::reset_coords((AccelerationCurve *)(arg0 + 0x5EC));
+    TObjBoss2Tunnel::reset_coords((AccelerationCurve *)(arg0 + 0x610));
     VecCopy__FP3VecPC3Vec(arg0 + 0x634, arg0 + 0x38);
     VecCopy__FP3VecPC3Vec(arg0 + 0x640, arg0 + 0x38);
     ((TBoss8Dragon *)arg0)->m_64c = 0;

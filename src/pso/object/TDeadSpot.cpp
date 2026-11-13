@@ -143,7 +143,7 @@ void TUnk_804949D8::vfunc_6() {
     stack.sp8 = temp_f1;
     stack.sp10 = this->m_28 * cos_table_lookup(temp_r3);
     vec3_add_to(&stack.sp8, (u8 *)&this->unk_1C);
-    TObjBoss2Tunnel::adjust_to_ground((s32)&stack.sp8, &stack.sp8);
+    adjust_point_to_ground((const Vec *)&stack.sp8, (Vec *)&stack.sp8);
     ((TParticleCtrl *)this->m_34)->set_position(&stack.sp8);
 }
 #pragma pop

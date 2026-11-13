@@ -4,6 +4,7 @@
 #include "types.h"
 #include "pso/render/RenderFadeState.h"
 
+struct G_GalGryphonBossActions_6xA0;
 struct TBoss8Dragon
 {
     void sub_802F4098(u8 *);
@@ -243,8 +244,7 @@ struct TBoss8Dragon
     int set_state_2();
     int attack_default();
     int query_default();
-    void copy_spawn_params(void* a1);
-    void copy_action_state(u8 *arg1);
+    void copy_spawn_params(G_GalGryphonBossActions_6xA0 *cmd);
     static s32 spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2);
     static void set_default_on_state0();
     static void update_camera_script();
@@ -289,19 +289,12 @@ struct TBoss8Dragon
     static void *create(void *arg0);
     void update_colli_parts();
     int test_card_flag_2();
-    void set_speed(f32 v);
     static void free_resources();
     int get_flag_bit6();
     void fill_follow_camera_params(u8 *arg1, u8 *arg2);
     static int get_instance_count();
-    void init_color();
-    void send_spawn_params_packet();
-    void byteswap_action_packet();
-    void byteswap_record();
     void send_boss_actions();
     void bswap_boss_actions();
-    s32 is_within_xz_distance(u8 *arg1, f32 farg0);
-    f32 calc_sq_offset(f32 farg0);
     static void noop();
     static int get_instance();
     static u16 get_global_part_count(s32 arg0);

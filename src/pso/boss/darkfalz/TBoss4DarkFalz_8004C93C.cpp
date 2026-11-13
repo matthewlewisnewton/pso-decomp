@@ -87,7 +87,7 @@ int TBoss4DarkFalz::is_field378_zero() { return this->m_378 == 0; }
 s32 TBoss4DarkFalz::get_action_state() { return this->m_374; }
 s32 TBoss4DarkFalz::get_phase() { return this->m_374; }
 s32 TBoss4DarkFalz::get_state() { return this->m_374; }
-void*TBoss4DarkFalz::get_hit_data() { return (char*)this + 0x5c; }
+void *TObjBase::get_rotation() { return (char*)this + 0x5c; }
 void TBoss4DarkFalz::save_position() {
     s32 arg0 = (s32)this;
     VecCopy__FP3VecPC3Vec((void*)(arg0 + 0x44), (void*)(arg0 + 0x38));

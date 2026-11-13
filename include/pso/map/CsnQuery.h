@@ -55,7 +55,14 @@ struct CsnContact {
 struct CsnHit {
     u32 hit_mask;        // (inferred) bit 0: ground contact, others: per-flag contacts
     CsnContact *contact;
-    u8 pad_8[0x38];
+    CsnHit();
+};
+
+// The extended result at 0x80500148 adds the selected index and distance.
+struct CsnQueryResult : CsnHit {
+    s32 index;
+    f32 best;
+    CsnQueryResult();
 };
 
 extern "C" {

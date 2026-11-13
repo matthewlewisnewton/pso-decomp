@@ -7,6 +7,7 @@
 class MaterialColorFade {
 public:
     MaterialColorFade();
+    void set_rate(f32 v);
     NJS_ARGB color;
     f32 rate;
     virtual ~MaterialColorFade();
