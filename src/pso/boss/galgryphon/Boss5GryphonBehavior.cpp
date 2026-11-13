@@ -2568,8 +2568,8 @@ void TBoss5Gryphon::update_ground_lightning_attack(s32 event) {
         matrix_mult_vec(0, lbl_804880AC, &left);
         matrix_mult_vec(0, lbl_804880B8, &right);
         pop_matrix();
-        self->m_6dc = TBoss8Dragon::spawn_ground_lightning((s32)self, (s32)&left, self->rotation_y);
-        self->m_6e0 = TBoss8Dragon::spawn_ground_lightning((s32)self, (s32)&right, self->rotation_y);
+        self->m_6dc = TBoss8Dragon::spawn_ground_lightning(self, &left, self->rotation_y);
+        self->m_6e0 = TBoss8Dragon::spawn_ground_lightning(self, &right, self->rotation_y);
         subtractive_rng_seed(self->rng, self->motion->m_4);
         break;
     case ENEMY_STATE_UPDATE:

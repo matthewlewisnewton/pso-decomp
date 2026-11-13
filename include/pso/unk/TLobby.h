@@ -706,7 +706,7 @@ struct TLobby : public TObject {
     static void init_graph();
     static void free_buffer();
     static void alloc_buffer();
-    static void send_data(s32 arg0);
+    static void send_data(const void *name);
     static void update_alloc_size();
     static u8 get_selected_slot();
     void copy_player_record(u8 *arg1);

@@ -2201,7 +2201,7 @@ void qst_op_prepare_gba_rom_from_disk(void) {
 
     temp_r31 = qst_args[0];
     TLobby::free_luker_object();
-    TLobby::send_data(temp_r31);
+    TLobby::send_data((const void *)temp_r31);
     TLobby::set_send_buffer((u8 *)gba_download_data_buffer, (s32)gba_download_data_size);
     TLobby::clear_quest_vm_flag();
 }
