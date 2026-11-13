@@ -196,9 +196,9 @@ void bswap_6xB2_play_sound(TObjPlayer *player) {
     bswap_32((u32 *)((char *)player + 8));
 }
 
-void TObjBoss2Tunnel::finalize_and_send_60() {
-    bswap_6xB2_play_sound((TObjPlayer *)this);
-    send_subcommand((u8 *)this);
+void TObjBoss2Tunnel::finalize_and_send_60(G_PlaySound_6xB2 *cmd) {
+    bswap_6xB2_play_sound((TObjPlayer *)cmd);
+    send_subcommand((u8 *)cmd);
 }
 
 extern "C" {
@@ -259,7 +259,7 @@ void TObjBoss2Tunnel::render(void* a1) { push_matrix(); TObjPlayer::invert_matri
 #pragma push
 #pragma fp_contract on
 extern "C" {
-void TObjBoss2Tunnel::transform_vec_by_camera(s32 arg0, s32 arg1, s32 arg2) {
+void TObjBoss2Tunnel::transform_vec_by_camera(void *arg0, const Vec *arg1, Vec *arg2) {
     push_matrix();
     TCameraCtrl::concat_matrix(0, get_view_matrix__11TCameraCtrlFv());
     matrix_mult_vec(NULL, (const Vec *)arg1, (Vec *)arg2);
@@ -358,9 +358,9 @@ s16 TObjBoss2Tunnel::turn_toward_angle_limited(s32 arg0, s32 cur, s32 target, s3
     return cur;
 }
 
-void TObjBoss2Tunnel::init_zako(void* a1, s32 _w2) { rotate_xz_pair_by_angle((f32 *)this, (f32 *)((char*)this + 0x8), (s32)_w2); vec3_add_to(this, a1); }
+void TObjBoss2Tunnel::init_zako(Vec *v, void* a1, s32 _w2) { rotate_xz_pair_by_angle(&v->x, &v->z, (s32)_w2); vec3_add_to(v, a1); }
 
-s32 TObjBoss2Tunnel::adjust_to_ground(s32 arg0, void *arg1) {
+s32 adjust_point_to_ground(const Vec *arg0, Vec *arg1) {
     s32 *temp_r3;
 
     VecCopy((Vec *)arg1, (const Vec *)arg0);
@@ -374,7 +374,7 @@ s32 TObjBoss2Tunnel::adjust_to_ground(s32 arg0, void *arg1) {
     return 0;
 }
 
-s32 TObjBoss2Tunnel::spawn_effect(s32 arg0, void *arg1, void *arg2) {
+s32 adjust_point_to_ground_with_normal(const Vec *arg0, Vec *arg1, Vec *arg2) {
     s32 *temp_r3;
 
     VecCopy((Vec *)arg1, (const Vec *)arg0);
@@ -918,7 +918,7 @@ s32 TObjBoss2Tunnel__sub_8007D1D0(void) {
         cmd.unused = 0;
         cmd.client_id = local_client_id;
         cmd.sound_id = 0x52B20;
-        ((TObjBoss2Tunnel *)&cmd)->finalize_and_send_60();
+        TObjBoss2Tunnel::finalize_and_send_60(&cmd);
         if (memcard_check_snapshot(0, NULL) != 0) {
             if (load_player__23TAdSinglePlyChrSelectGCFllll(1, TObjBoss2Tunnel__data_80438A08, frame->save_image, 0xF) == 0) {
                 t = 0.0f;

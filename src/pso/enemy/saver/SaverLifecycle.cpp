@@ -1854,7 +1854,7 @@ void TObjPlayer::step_cutscene_frame() {
         *(f32 *)((s8 *)&lbl_80500978.value + 0) = (f32) 0.0f;
         *(f32 *)((s8 *)&lbl_80500978.value + 4) = (f32) 0.0f;
         *(f32 *)((s8 *)&lbl_80500978.value + 8) = (f32) 0.0f;
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)((void *)&lbl_804FF5E8.value), (s32)((void *)&lbl_80500978.value), (s32)((void *)&lbl_80500978.value));
+        TObjBoss2Tunnel::transform_vec_by_camera((void *)((void *)&lbl_804FF5E8.value), (const Vec *)((void *)&lbl_80500978.value), (Vec *)((void *)&lbl_80500978.value));
     }
     lbl_805D505C += 1;
 }

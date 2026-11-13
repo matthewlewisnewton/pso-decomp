@@ -3054,7 +3054,7 @@ void TObjEneMe3ShinowaMirage::state_break_apart(s32 arg1) {
                 sp14.x = 0.0f;
                 sp14.y = 10.0f;
                 sp14.z = 20.0f;
-                ((TObjBoss2Tunnel *)(&sp14))->init_zako(arg0 + 0x38, *(s32 *)((s8 *)arg0 + 0x60));
+                TObjBoss2Tunnel::init_zako((Vec *)(&sp14), arg0 + 0x38, *(s32 *)((s8 *)arg0 + 0x60));
                 TObjPlayer::spawn_effect_f8((s32)&sp14, 0x14);
             }
             break;
