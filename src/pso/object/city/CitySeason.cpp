@@ -653,7 +653,7 @@ void TObjCity_Season_SonicAdv2::render() {
         b.x = lbl_805DBC54[0];
         b.y = lbl_805DBC1C[0];
         b.z = lbl_805DBC58[0];
-        ((TObjEneDD *)(&pos))->draw_oriented_shadow((s32)&a, self->x60, (u32)&b);
+        TObjEneDD::draw_oriented_shadow((const Vec *)(&pos), (const Vec *)&a, self->x60, (const Vec *)&b);
     }
 }
 #pragma pop

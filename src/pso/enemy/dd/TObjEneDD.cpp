@@ -1571,8 +1571,7 @@ int TObjEneDD::update_secondary_light() { return select_actor_lighting(this); }
 
 int TObjEneDD::update_primary_light() { return restore_scene_lighting(this); }
 
-void TObjEneDD::draw_oriented_shadow(s32 arg1, s32 arg2, u32 arg3) {
-    s32 arg0 = (s32)this;
+void TObjEneDD::draw_oriented_shadow(const Vec *arg0, const Vec *arg1, s32 arg2, const Vec *arg3) {
     Stack_800B9D94 stack;
     direction_to_rotation_xz((u8 *)arg1, (&stack.sp8), (&stack.sp10));
     push_matrix();
@@ -1581,7 +1580,7 @@ void TObjEneDD::draw_oriented_shadow(s32 arg1, s32 arg2, u32 arg3) {
     rotate_matrix_z(0, stack.sp10);
     rotate_matrix_x(0, stack.sp8);
     rotate_matrix_y(0, (void *)arg2);
-    if (arg3 != 0U) {
+    if (arg3 != NULL) {
         scale_current_matrix((void *)arg3);
     }
     rotate_matrix_x(0, -0x4000);

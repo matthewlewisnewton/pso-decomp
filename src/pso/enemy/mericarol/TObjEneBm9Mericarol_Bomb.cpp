@@ -68,7 +68,7 @@ s32 TObjEneBm9Mericarol_Bomb::area_attack_deliver_direct(void *recoil, s32 arg2,
 
 void TObjEneBm9Mericarol_Bomb::render() {
     if (shadow_visible != 0) {
-        ((TObjEneDD *)&position)->draw_oriented_shadow((s32)&shadow_pos, 0, (u32)0);
+        TObjEneDD::draw_oriented_shadow((const Vec *)&position, (const Vec *)&shadow_pos, 0, NULL);
     }
 }
 
