@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/TObjBoss5Ctrl.h"
+#include "pso/boss/TObjBoss5PillarDemo.h"
 #include "pso/system/SoundEffect.h"
 
 #pragma fp_contract on
@@ -14,7 +15,6 @@ s32 is_split_screen();
 TObject *create__19TObjBoss5FloorStoneFv();
 TObject *create__19TObjBoss5FloorGrassFv();
 TObject *create__19TObjBoss5PillarCtrlFv(TObject *parent);
-TObject *create__19TObjBoss5PillarDemoFv();
 // The original also calls this entry with a pillar-demo receiver. Its shared
 // class ownership is unresolved; retain the observed TObject borrow here.
 void play_sound_once__19TObjBoss5PillarCtrlFv(TObject *pillar);
@@ -77,7 +77,7 @@ TObjBoss5Ctrl::TObjBoss5Ctrl(TObject *parent) : TObject(parent) {
             }
         }
         if (pillar_demo == NULL) {
-            pillar_demo = create__19TObjBoss5PillarDemoFv();
+            pillar_demo = TObjBoss5PillarDemo::create();
         }
     }
 }

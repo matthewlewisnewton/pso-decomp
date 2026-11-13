@@ -127,10 +127,7 @@ EXI/OS backend; the scalar bit helpers alone do not implement the driver.
 `src/pso/boss/TObjBoss5Ctrl.cpp` retains its existing `fp_contract on` when
 its three fragments are consolidated. Both countdown calculations use the
 original fused `60 * normalized_random + 90`. Ports should preserve fused
-rounding if required. The pillar-sound and pillar-controller factory entries
-retain explicit `TObject *` ABI boundaries because their legacy member names
-have unresolved receiver ownership; ports should unify those helper declarations
-when recovering the neighboring classes. See [controller evidence](evidence/boss5-controller-unit.md).
+rounding if required. See [controller evidence](evidence/boss5-controller-unit.md).
 
 The EXI Ethernet receiver in `src/pso/misc/TLobby_80429598.cpp` uses scoped
 `opt_propagation off`, helper inlining and ordered volatile snapshot/publication
@@ -1623,6 +1620,12 @@ in the generated table once merged.
 This callback boundary is documented for review; it does not add assembly,
 steering pragmas, per-unit compiler switches or link-check exceptions. The
 mechanical inventory does not currently enumerate function-pointer conversions.
+
+### TObjBoss5Ctrl pillar-controller ABI
+
+| File | Boundary | Why | Port should |
+|---|---|---|---|
+| `src/pso/boss/TObjBoss5Ctrl.cpp` | `create__19TObjBoss5PillarCtrlFv` and `play_sound_once__19TObjBoss5PillarCtrlFv` retain explicit `TObject *` ABI boundaries | Their legacy member names have unresolved receiver ownership. See [controller evidence](evidence/boss5-controller-unit.md). | Unify those helper declarations when recovering the neighboring classes. |
 
 ### Radial particle interpolation and colour packing
 
