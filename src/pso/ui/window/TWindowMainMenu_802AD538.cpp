@@ -204,7 +204,7 @@ void draw_item_labels__14TMainMenuEntryFP18TWindowDrawContext(Item_802AD538 *p, 
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-int TMainMenuEntry::is_item_active() { return *(u8*)((char*)this + 0x13) & 0x1; }
+int TMainMenuEntry::is_item_active() { return flags & 0x1; }
 #pragma pop
 
 #pragma push
@@ -218,7 +218,7 @@ void TWindowMainMenu__sub_802AD74C(void* p) { *(u8*)((char*)p + 0x13) |= 0x2; }
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-void TMainMenuEntry::set_symbol_chat_parts(TMainMenuRow *_w1) { copy_vec2__28TWindowSubSymbolChatPartsSetFPv(this, _w1); *((u8 *)this + 0x14) = 8; }
+void TMainMenuEntry::set_symbol_chat_parts(TMainMenuRow *_w1) { copy_vec2__28TWindowSubSymbolChatPartsSetFPv(this, _w1); tween = 8; }
 #pragma pop
 
 #pragma push
@@ -236,18 +236,17 @@ void init_row_entry__14TMainMenuEntryFP12TMainMenuRowScSc(u8 *window_sub_symbol_
 #pragma pop
 
 void TMainMenuEntry::update_item_tween() {
-    Item_802AD7F0 *p = (Item_802AD7F0 *)this;
     if (is_item_active() != 0) {
-        if (p->x14 <= 0) {
-            p->x8 = p->x0;
-            p->xc = p->x4;
+        if (tween <= 0) {
+            cur_x = x;
+            cur_y = y;
         } else {
-            p->x8 += (p->x0 - p->x8) / p->x14;
-            p->xc += (p->x4 - p->xc) / p->x14;
-            p->x14--;
+            cur_x += (x - cur_x) / tween;
+            cur_y += (y - cur_y) / tween;
+            tween--;
         }
-        if (p->x10 < 4) {
-            p->x10++;
+        if (fade < 4) {
+            fade++;
         }
     }
 }
@@ -257,16 +256,12 @@ void TMainMenuEntry::update_item_tween() {
 #pragma auto_inline off
 #pragma dont_inline off
 void TMainMenuEntry::init_color() {
-  int new_var;
-  char *new_var2;
-  *((float *) (((char *) this) + 0xc)) = (*((float *) (((char *) this) + 0x8)) = (*((float *) (((char *) this) + 0x4)) = (*((float *) (((char *) this) + 0x0)) = 0.0f)));
-  new_var2 = (char *) this;
-  *((unsigned char *) (new_var2 + 0x10)) = 0;
-  *((unsigned char *) (new_var2 + 0x11)) = -((double) 1);
-  *((unsigned char *) (new_var2 + 0x12)) = 0;
-  new_var = 0x13;
-  *((unsigned char *) (new_var2 + new_var)) = 0;
-  *((unsigned char *) (new_var2 + 0x14)) = 0;
+    cur_y = cur_x = y = x = 0.0f;
+    fade = 0;
+    icon = -1;
+    kind = 0;
+    flags = 0;
+    tween = 0;
 }
 #pragma pop
 
