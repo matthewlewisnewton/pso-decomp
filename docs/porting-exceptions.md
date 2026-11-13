@@ -15,6 +15,18 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Jungle grass and key constant pool
+
+`TOGrassJungle.cpp`, `TOGrassJungle_8029CD90.cpp`, and `TOKeyJungleMain.cpp`
+define their six floats at `0x805DDD28`–`0x805DDD40` after their consumers.
+Early definitions emit duplicate pooled constants; late definitions without
+section placement land in `.sdata`. Guarded `__declspec(section ".sdata2")`
+definitions preserve the original loads and the exact eight-byte pool in each
+owner. Ordinary literals also match the two grass owners, but fold a comparison
+in `TOKeyJungleMain::update_switch_on` and lose its original named loads.
+Other compilers use ordinary `const f32` definitions without section placement;
+ports need no definition-order constraint.
+
 ### Raft splash shared constant
 
 `src/pso/boss/TObjBoss2RaftSplash.cpp` defines the shared scalar at
