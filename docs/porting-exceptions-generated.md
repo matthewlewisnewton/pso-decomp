@@ -8,7 +8,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 46 | 12 |
-| intrinsic | 89 | 58 |
+| intrinsic | 93 | 58 |
 | hardware | 69 | 13 |
 | pragma | 5858 | 884 |
 | configure.py per-unit override | 207 | 207 |
@@ -135,8 +135,12 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055,
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:331` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:354` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:149` | `__fabs` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:159` | `__fabs` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:164` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:176` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:376` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:399` | `__frsqrte` |
 | `src/pso/protocol/subcommand_validation_actions.cpp:94` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_actions.cpp:106` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_movement.cpp:99` | `__cntlzw` |
