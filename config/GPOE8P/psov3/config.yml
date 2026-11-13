@@ -3977,7 +3977,7 @@ force_active:
   - approach_target__16TObjEneBm5GibonUFf
   - approach_world_height__13TObjEneMe1GeeFf
   - approach_value__13TObjEneBm3FlyFff
-  - approach_value__13TObjEneMorfosFll
+  - turn_toward_angle__13TObjEneMorfosFll
   - aramQueueCallback
   - are_all_players_in_range__12TObjWarpBossFv
   - are_all_selections_done__23TAdSinglePlyChrSelectGCFv
@@ -5771,7 +5771,7 @@ force_active:
   - draw_blend_motion_tree
   - draw_blob_shadows__22TObjEneSlimeTailAttackFv
   - draw_body__13TBoss5GryphonFv
-  - draw_body__13TObjEneMorfosFv
+  - draw_guard_wall__13TObjEneMorfosFv
   - draw_body_models__11TBoss6Type2Fv
   - draw_bottom_bar__20TWindowSubStatusDispFv
   - capture_node__24ModelNodePositionCaptureFP10NJS_OBJECT
@@ -9377,7 +9377,7 @@ force_active:
   - play_sound__14TObjEneBm5WolfFPv
   - play_sound_events__10TObjCameraFv
   - play_sound_if_no_target__11TBoss6Type2Fv
-  - play_sound_in_band__13TObjEneMorfosFv
+  - play_frame_sounds__13TObjEneMorfosFv
   - play_sound_variant__16TObjEneBm5GibonUFv
   - play_variant_sound__14TObjEneBm5WolfFPv
   - play_voice__12TObjNpcAHM01Fv
@@ -13953,7 +13953,7 @@ force_active:
   - recobox_boss_register_id
   - recobox_motion_name_table
   - record_camera_angle_samples__19TObjEneEpsilonGuardFv
-  - record_camera_path_point__13TObjEneMorfosFv
+  - record_model_node_position__13TObjEneMorfosFP10NJS_OBJECT
   - record_hit__22TObjFogCollisionPoisonFll
   - record_local_battle_placement
   - record_local_damage_if_enabled__FPvPvl
@@ -14486,13 +14486,13 @@ force_active:
   - render_matrix_chain__10TObjPlayerFPv
   - render_model__13TBoss5GryphonFv
   - render_model__5TItemFv
-  - render_model_if_visible__13TObjEneMorfosFv
+  - render_reflection__13TObjEneMorfosFv
   - render_model_if_visible__14TObjEneDolmOlmFv
   - render_model_if_visible__16TObjEneDellBiterFv
   - render_nodes_with_flag__13TBoss5GryphonFv
   - render_objects__9TMainTaskFv
   - render_owned__5TItemFv
-  - render_part__13TObjEneMorfosFll
+  - render_with_camera_fade__13TObjEneMorfosFll
   - render_particle_chain__15TOTrapAncient02Fv
   - render_particle_effects__9TMainTaskFv
   - render_present_box__5TItemFv
@@ -15472,7 +15472,7 @@ force_active:
   - set_hit_cooldown_for_player__14TOTrapChainSawFPv
   - set_hit_flags_and_notify__19TBoss3VoloptMonitorFv
   - set_hold_flags__18TObjEneRe4SorcererFPv
-  - set_hover_target_position__13TObjEneMorfosFv
+  - update_body_center__13TObjEneMorfosFv
   - set_id__23TAdSinglePlyChrSelectGCFPvi
   - set_index__9TLanguageFl
   - set_input_active__11TWindowChatFv

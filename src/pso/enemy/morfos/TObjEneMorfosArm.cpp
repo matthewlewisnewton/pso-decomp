@@ -14,7 +14,7 @@ void *TObjEneMorfosArm::create(void *arg0, void *arg1) {
 }
 
 void TObjEneMorfosArm::init_global() {
-    TObjEneMorfosArm__parent_morfos_instance = TObjEneMorfos::get_instance();
+    TObjEneMorfosArm__parent_morfos_instance = TObjEneMorfos::get_resources();
 }
 
 }
