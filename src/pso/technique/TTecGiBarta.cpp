@@ -369,7 +369,7 @@ void TTecGiBarta::create_ex(void *arg1, void *arg2, void *arg3) {
     void *o;
     o = __nw__7TObjectFUl(0x178);
     if (o != NULL) {
-        ((TTecGiBarta *)o)->construct_facing(this, arg1, arg2, arg3);
+        ((TTecGiBarta *)o)->construct_facing(this, (Vec *)arg1, (s32)arg2, (s32)arg3);
     }
 }
 
@@ -418,7 +418,7 @@ TTecGiBarta_80230C58 *TTecGiBarta__ct(TTecGiBarta_80230C58 *self, void * _w1, vo
     return self;
 }
 
-u8 *TTecGiBarta::construct_facing(void * _w1, void * _w2, void * _w3, void * _w4) {
+u8 *TTecGiBarta::construct_facing(void * _w1, Vec *_w2, s32 _w3, s32 _w4) {
     u8 *arg0 = (u8 *)this;
     s32 i;
     construct_facing_technique__10TObjPlayerFPviPvii();
