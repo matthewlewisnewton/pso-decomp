@@ -404,11 +404,11 @@ void TOTrapSeabed01::render_effect_layers() {
     set_model_node_callback((NULL));
 }
 
-void TOTrapSeabed01::draw_object_tree(u8 *arg1) {
+void TOTrapSeabed01::draw_object_tree(NJS_OBJECT *arg1) {
     s32 temp_r31;
     u8 *temp_r4;
     u8 *var_r30;
-    var_r30 = arg1;
+    var_r30 = (u8 *)arg1;
     do {
         temp_r31 = *(s32 *)((s8 *)var_r30 + 0);
         push_matrix();
@@ -435,7 +435,7 @@ void TOTrapSeabed01::draw_object_tree(u8 *arg1) {
         if (!(temp_r31 & 0x10)) {
             temp_r4 = (u8 *)(*(u8 **)((s8 *)var_r30 + 0x2C));
             if (temp_r4 != NULL) {
-                draw_object_tree(temp_r4);
+                draw_object_tree((NJS_OBJECT *)temp_r4);
             }
         }
         pop_matrix();
@@ -452,7 +452,7 @@ void TOTrapSeabed01::draw() {
         push_matrix();
         post_translate_matrix(((u8 *)this) + 0x38);
         ((s32 (*)(int, int))rotate_matrix_y)(0, (int)(*(s32 *)((s8 *)((u8 *)this) + 0x60)));
-        this->draw_object_tree((u8 *)(*(s32 *)((s8 *)((u8 *)this) + 0x34)));
+        this->draw_object_tree((NJS_OBJECT *)(*(s32 *)((s8 *)((u8 *)this) + 0x34)));
         pop_matrix();
         TParticleCtrl::end_effect_render();
         restore_draw_list_mask();
