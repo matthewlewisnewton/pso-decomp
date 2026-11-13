@@ -6,15 +6,27 @@ tail and the four-byte `tails_adjacent_name.cpp` split into the simulation.
 The latter actually holds `TObjHMS_EZRope_Player__name`, as its constructor's
 load at `800FF0AC` and the pointed-to class string establish.
 
-The data order also connects these ranges: a material-color/default-record
-block at `8049DCF0`, chain gravity at `8049DD20`, the derived vtable at
-`8049DD2C` and the base vtable at `8049DD44`. The derived constructor addresses
-its defaults and vtable relative to the first block. The source retains the
-existing C constructor interfaces and their provisional receiver views; this
-change does not claim that every legacy constructor/caller type is recovered.
-The native derived destructor releases the three separately allocated record
-arrays at offsets `3C`, `40` and `44`, then invokes the native base destructor.
-Both vtables now come from the compiler.
+The data order also connects these ranges: a 16-byte `NJS_ARGB` at
+`8049DCF0`, a zero `RopeAnchor` at `8049DD00`, a zero `RopeCollisionSphere` at
+`8049DD10`, chain gravity at `8049DD20`, the derived vtable at `8049DD2C` and
+the base vtable at `8049DD44`. The color and defaults are separate file-static
+objects; their explicit zero initializers remain in `.data` without section
+annotations. The derived constructor refers to the named defaults and lets
+C++ initialize its vptr. GC/2.6 shares the unit's data base in `r30`, emitting
+`addi r0, r30, 0x3C` for that native vtable and `addi r4, r30, 0x10/0x20` for
+the defaults. An explicit vtable-symbol reference instead adds a `lis` and
+grows the constructor from `0x18C` to `0x190`.
+
+The base and derived constructors now use their real classes and pass the
+parent through to `TObject`. The remaining base-constructor caller,
+`TBoss2Fin`, also uses a native constructor, and De Rol Le allocates it with
+`new` using its parent task and position-vector elements. The rope base,
+HMS player and fin constructors retain their original sizes (`0x5C`, `0x18C`
+and `0xA8`); the De Rol Le constructor remains exact too. The native derived
+destructor releases the three separately allocated record arrays at offsets
+`3C`, `40` and `44`, then invokes the native base destructor. Both vtables
+come from the compiler. This does not establish every remaining legacy caller
+or record field's original source type.
 
 Immediate emission with ascending definitions preserves instruction bodies but
 reverses the vtables. The compiler also duplicates an explicitly defined named

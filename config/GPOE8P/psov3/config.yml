@@ -440,6 +440,7 @@ force_active:
   - TBoss7Tentacle__sub_802F0A44
   - TBoss8DragonDemo__sub_802F2CC4
   - TBoss8DragonEffBreath__name
+  - TBoss8DragonEffBullet__name
   - TBoss8Dragon__camera_offset_index_table
   - TBoss8Dragon__data_804E4C28
   - TBoss8Dragon__data_80541DC8
@@ -1497,7 +1498,6 @@ force_active:
   - TObjGrass__sub_800BCA2C
   - TObjGrass__sub_800BFB68
   - TObjGyaranzoMissile_target_slots
-  - TObjHMS_EZRope_Player__ct
   - TObjHMS_EZRope_Player__name
   - TObjItemNameEntry__class_name
   - TObjItemNameSelect__class_name
@@ -1596,7 +1596,7 @@ force_active:
   - TObjOnlineEndingHexMove__ct
   - TObjOnlineEndingHexMove__default_move_params
   - TObjOnlineEnding__ct
-  - TObjParticle__ct
+  - TObjParticle__class_name_string
   - TObjPathObj__ct
   - TObjPlayerSet__ct
   - TObjPlayer__deactivate_off_floor_body
@@ -2279,6 +2279,7 @@ force_active:
   - __ct__12TOSignCave03FP7TObjectPv
   - __ct__12TOSwitchItemFP7TObjectPv
   - __ct__12TObjEneSharkFP7TObjectPv
+  - __ct__12TObjParticleFP7TObjectP15ParticleSetData
   - __ct__13List_801D4744Fl
   - __ct__13PointerBufferFlPv
   - __ct__13TItemAttackerFllll
@@ -2485,6 +2486,7 @@ force_active:
   - __ct__21TItemEffArmorParticleFP7TObjectlUsl
   - __ct__21TObjEneMe3ShinowaRealFP7TObjectPv
   - __ct__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne
+  - __ct__21TObjHMS_EZRope_PlayerFP10TObjPlayerPvPv
   - __ct__22TAdMultiPlyChrSelectGCFP7TObjectl
   - __ct__22TChCrTagInformationStrFP7TObjectl
   - __ct__22TChallenge4PItemSelectFP7TObjectP18TChallenge4PResult
@@ -6446,7 +6448,6 @@ force_active:
   - explosive_machine_model_archive
   - explosive_machine_resource_desc
   - export_player_record__10TObjPlayerFPvPv
-  - ezrope_chunk_material_color_table
   - f064_wordmojitex_eng_gvp
   - f064_wordmojitex_fre_gvp
   - f064_wordmojitex_ger_gvp
@@ -8425,6 +8426,10 @@ force_active:
   - lbl_80473F90
   - lbl_80473F9C
   - lbl_80474B50
+  - lbl_80474B68
+  - lbl_80474B74
+  - lbl_80474B80
+  - lbl_80474B8C
   - lbl_80474F08
   - lbl_80474F1C
   - lbl_80474F34
@@ -9403,9 +9408,12 @@ force_active:
   - lbl_805D92A0
   - lbl_805D92A4
   - lbl_805D92AC
+  - lbl_805D9330
   - lbl_805D93B0
   - lbl_805D9520
   - lbl_805D9550
+  - lbl_805D9970
+  - lbl_805D9974
   - lbl_805D9D70
   - lbl_805D9D88
   - lbl_805D9D90
@@ -10359,6 +10367,7 @@ force_active:
   - obj_curtain_lobby_class_name
   - obj_kabocha_lobby_class_name
   - obj_lobby_main_class_name
+  - obj_particle_class_name
   - obj_particle_lobby_class_name
   - obj_rainbow_lobby_class_name
   - obj_setField96_1

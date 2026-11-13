@@ -17,7 +17,6 @@ struct RecoveredGlobal_8029AA74_lbl_804652A4 {
 extern "C" {
 u32 create_str__11TChCrEffTagFPvPvPv(void *, int, void *);
 extern RecoveredGlobal_8029AA74_lbl_804652A4 lbl_804652A4;
-extern s32 TChCrEffTag__selected_heading;
 
 int restore_saved_depth_alpha_state(void);
 int draw_chcr_tag_heading_frame(void*);
@@ -119,4 +118,5 @@ void *__ct__11TChCrEffTagFv(void *ch_cr_eff_tag) {
 
 extern char lbl_80465298[];
 void *TChCrEffTag__name = lbl_80465298;
+s32 TChCrEffTag__selected_heading = -1;
 }
