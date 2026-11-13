@@ -1468,7 +1468,7 @@ void TObjEneDellBiter::state_death(s32 reason) {
     }
 }
 
-void TObjEneDellBiter::step_demo_script() {
+void TObjEneDellBiter::step_demo_script(NJS_OBJECT *) {
     s32 pos;
     switch (TObjEneDellBiter__demo_script_step) {
     case 9:

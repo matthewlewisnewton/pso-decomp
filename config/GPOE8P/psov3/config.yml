@@ -16081,7 +16081,7 @@ force_active:
   - step_angle_toward__11TBoss6Type2Flll
   - step_camera_scalar__FPCfPCfPff
   - step_cutscene_frame__10TObjPlayerFP10NJS_OBJECT
-  - step_demo_script__16TObjEneDellBiterFv
+  - step_demo_script__16TObjEneDellBiterFP10NJS_OBJECT
   - step_effect_sequence__18TObjEneRe4SorcererFP10NJS_OBJECT
   - step_fade_opacity_decrease__13TUnk_80499970Fv
   - step_fade_opacity_increase__FPUc
@@ -16520,7 +16520,7 @@ force_active:
   - tl_window_name
   - to_le_uint16_t__FUs
   - tobjtank_collision_body_parts
-  - toggle_effect_render__14TObjEneDolmOlmFv
+  - toggle_effect_render__14TObjEneDolmOlmFP10NJS_OBJECT
   - toggle_selected_part__28TWindowSubSymbolChatPartsSetFv
   - tombstone_first_run_flag
   - tombstone_name_label_offset_table

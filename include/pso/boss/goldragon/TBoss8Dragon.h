@@ -2,6 +2,8 @@
 #define PSO_BOSS_GOLDRAGON_TBOSS8DRAGON_H
 
 #include "types.h"
+
+struct NJS_OBJECT;
 #include "pso/render/RenderFadeState.h"
 
 struct G_GalGryphonBossActions_6xA0;
@@ -247,7 +249,7 @@ struct TBoss8Dragon
     void copy_spawn_params(G_GalGryphonBossActions_6xA0 *cmd);
     static s32 spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2);
     static void set_default_on_state0();
-    static void update_camera_script();
+    static void update_camera_script(NJS_OBJECT *);
     void calc_velocity_from_angle();
     f32 clamp_step_in_radius(f32 a, f32 b, f32 s);
     void freeze_player_at_self();

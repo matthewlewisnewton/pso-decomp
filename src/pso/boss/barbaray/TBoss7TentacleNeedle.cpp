@@ -115,7 +115,7 @@ s32 attach_particle_model(int, int, int, int, int, f32);
 f32 horizontal_distance_squared(void *, void *);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
-s32 notify_fish_obj__10TObjPlayerFPv(int);
+s32 notify_fish_obj__10TObjPlayerFl(int);
 s32 queue_boss_effect__10TObjPlayerFl(int);
 s32 TObjPlayer__sub_802E80A0();
 void draw_effect__10TObjPlayerFv(void *);
@@ -166,7 +166,7 @@ void TObjPlayer__sub_802F0D30(void) {
     s32 i;
 
     src = (Node_802EFF24 *)queue_boss_effect__10TObjPlayerFl(1);
-    notify_fish_obj__10TObjPlayerFPv(0x11);
+    notify_fish_obj__10TObjPlayerFl(0x11);
     dst = lbl_80541528;
     for (i = 0; i < 12; i++) {
         copy_model_node((u8 *)dst, (u8 *)src);
@@ -193,7 +193,7 @@ void TObjPlayer__sub_802F0D2C(void) {  }
 TBoss7Tentacle::TBoss7Tentacle(TObject *object, const f32 (*arg2)[4], s32 arg3) : TObject(object) {
     m_name = TBoss7Tentacle__name;
     (*(s32 *)((s8 *)(this) + (0x1C))) = ((s32 (*)(s32))queue_boss_effect__10TObjPlayerFl)(1);
-    (*(Anim_802F0BE8 * *)((s8 *)(this) + (0x20))) = ((Anim_802F0BE8 * (*)(s32))notify_fish_obj__10TObjPlayerFPv)(0x11);
+    (*(Anim_802F0BE8 * *)((s8 *)(this) + (0x20))) = ((Anim_802F0BE8 * (*)(s32))notify_fish_obj__10TObjPlayerFl)(0x11);
     (*(s32 *)((s8 *)(this) + (0x130))) = (s32)arg2;
     (*(s32 *)((s8 *)(this) + (0x4C))) = arg3;
     (*(s32 *)((s8 *)(this) + (0x30))) = 0;
@@ -576,9 +576,9 @@ extern "C" {
 
 void TObjPlayer__sub_802EFEC4(void) {
     lbl_805D6948 = queue_boss_effect__10TObjPlayerFl(5);
-    *(s32 *)((s8 *)(&(*(RecoveredGlobal_802EFEC4_lbl_80541918 *)&boss7_tentacle_needle_target_state).value) + 0) = notify_fish_obj__10TObjPlayerFPv(0x13);
-    *(s32 *)((s8 *)(&(*(RecoveredGlobal_802EFEC4_lbl_80541918 *)&boss7_tentacle_needle_target_state).value) + 4) = notify_fish_obj__10TObjPlayerFPv(0x14);
-    *(s32 *)((s8 *)(&(*(RecoveredGlobal_802EFEC4_lbl_80541918 *)&boss7_tentacle_needle_target_state).value) + 8) = notify_fish_obj__10TObjPlayerFPv(0x12);
+    *(s32 *)((s8 *)(&(*(RecoveredGlobal_802EFEC4_lbl_80541918 *)&boss7_tentacle_needle_target_state).value) + 0) = notify_fish_obj__10TObjPlayerFl(0x13);
+    *(s32 *)((s8 *)(&(*(RecoveredGlobal_802EFEC4_lbl_80541918 *)&boss7_tentacle_needle_target_state).value) + 4) = notify_fish_obj__10TObjPlayerFl(0x14);
+    *(s32 *)((s8 *)(&(*(RecoveredGlobal_802EFEC4_lbl_80541918 *)&boss7_tentacle_needle_target_state).value) + 8) = notify_fish_obj__10TObjPlayerFl(0x12);
 }
 
 void fn_802EFEA8(void) {

@@ -820,7 +820,7 @@ int TObjFish__sub_8001EDB0(void*, void*);
 int get_bml_model(void*, void*);
 int set_current_texture_list(void);
 
-void TObjPlayer::notify_fish_obj(void* a0) { get_bml_motion((void*)lbl_805D6918, a0); }
+void TObjPlayer::notify_fish_obj(s32 a0) { get_bml_motion((void*)lbl_805D6918, (void*)a0); }
 
 void queue_boss_effect__10TObjPlayerFl(void* a0) { get_bml_model((void*)lbl_805D6918, a0); }
 

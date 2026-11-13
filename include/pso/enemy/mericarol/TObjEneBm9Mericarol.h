@@ -2,6 +2,8 @@
 #define PSO_ENEMY_MERICAROL_TOBJENEBM9MERICAROL_H
 
 #include "types.h"
+
+struct NJS_OBJECT;
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 
 struct TObjEneBm9Mericarol : public TObjEneDD_ST {
@@ -50,7 +52,7 @@ struct TObjEneBm9Mericarol : public TObjEneDD_ST {
     void sync_center_position();
     static void free_shared_instances();
     static void *create(void *arg0);
-    static void update_particle_effect();
+    static void update_particle_effect(NJS_OBJECT *);
     s32 get_clamped_level();
     void handle_motion_event(s32 arg1);
     void handle_state_message(s32 msg);
