@@ -16988,7 +16988,7 @@ force_active:
   - update_live_camera__12TBoss8DragonFv
   - update_load_progress__12TChCrLoadReqFv
   - update_load_state__16TAdChrSelASlotGCFv
-  - update_load_state__9TItemLoadFv
+  - update_load_state__13TUnk_8049F42CFv
   - update_load_status__12TQuestListVMFv
   - update_lobby_pigeon_visibility__13TUnk_804E0898Fv
   - update_lobby_selection__12TQuestListVMFv

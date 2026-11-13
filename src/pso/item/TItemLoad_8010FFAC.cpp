@@ -1,23 +1,23 @@
 #include "types.h"
 #include "pso/unk/text_803CC294.h"
 #include "pso/item/TItemLoad.h"
+#include "pso/item/ItemArchiveReader.h"
 
 extern "C" {
 
-s32 free_texture__9TItemLoadFv();
 u32 ADXF_OpenAfs(s32, s32);
 
-u32 TItemLoad::load_data(s32 arg1) {
-    u32 temp_r3;
-    if ((s32) *(s32 *)&this->m_up == 1) {
-        free_texture__9TItemLoadFv();
-        *(u32 *)&this->m_flags = ADXF_OpenAfs(*(s32 *)&this->m_prev, arg1);
-        temp_r3 = *(u32 *)&this->m_flags;
-        if (temp_r3 != 0U) {
-            *(s32 *)&this->m_next = ADXF_GetFsizeSct((u8 *)temp_r3);
+AdxfHandle *ItemArchiveReader::open(s32 arg1) {
+    AdxfHandle *file;
+    if (mode == 1) {
+        close();
+        handle = (AdxfHandle *)ADXF_OpenAfs(partition, arg1);
+        file = handle;
+        if (file != NULL) {
+            sectors = ADXF_GetFsizeSct((u8 *)file);
         }
     }
-    return *(u32 *)&this->m_flags;
+    return handle;
 }
 
 }
