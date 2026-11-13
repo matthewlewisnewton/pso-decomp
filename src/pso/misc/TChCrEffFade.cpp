@@ -1,84 +1,78 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS // Preserve the original out-of-line destruction queue call.
 #include "pso/TChCrEffFade.h"
-#include "pso/misc/TChCrEffFade.h"
-#include "pso/object/TObject_80019A50.h"
+#include "pso/misc/TCameraCtrl.h"
 #include "pso/unk/text_80293D84.h"
 
-#include "types.h"
-#include "pso/misc/TCameraCtrl.h"
-
 extern "C" {
-
 s32 TCameraCtrl__sub_80068EF0();
-s32 draw_fade_strip__12TChCrEffFadeFf(void *, f32);
+extern const char *lbl_805D3CC0;
+extern TObject *tl_fade;
+}
 
 void TChCrEffFade::render() {
-    f32 temp_f0;
+    f32 opacity;
 
     TCameraCtrl::restore_full_screen_view();
-    switch (*(s32 *)((s8 *)this + 0x2C)) {
+    switch (m_mode) {
     case 0:
-        draw_fade_strip__12TChCrEffFadeFf(this, *(f32 *)((s8 *)this + 0x28));
+        draw_fade_strip(m_opacity);
         break;
     case 1:
-        fn_80293E58(this, *(f32 *)((s8 *)this + 0x28));
-        temp_f0 = *(f32 *)((s8 *)this + 0x28);
-        draw_fade_strip__12TChCrEffFadeFf(this, temp_f0 * temp_f0);
+        fn_80293E58(this, m_opacity);
+        opacity = m_opacity;
+        draw_fade_strip(opacity * opacity);
         break;
     }
     TCameraCtrl__sub_80068EF0();
 }
 
-extern const f32 lbl_805DD9F8;
-
 void TChCrEffFade::update_fade() {
-    u8 *arg0 = (u8 *)this;
-    s32 temp_r6;
+    s32 frame = m_frame;
 
-    temp_r6 = *(s32 *)((s8 *)arg0 + 0x24);
-    if (temp_r6 <= 3) {
-        *(f32 *)((s8 *)arg0 + 0x28) = (f32) lbl_805DD9F8;
+    // Keep full opacity through frame 3, then fade to zero at m_duration.
+    if (frame <= 3) {
+        m_opacity = 1.0f;
         return;
     }
-    *(f32 *)((s8 *)arg0 + 0x28) = (f32) (lbl_805DD9F8 - ((temp_r6 - 3) / (f32) (*(s32 *)((s8 *)arg0 + 0x20) - 3)));
+    m_opacity = 1.0f - ((frame - 3) / (f32)(m_duration - 3));
 }
 
 void TChCrEffFade::run_task() {
-    s32 temp_r3;
+    s32 frame;
 
-    *(s32 *)((s8 *)this + 0x24) = (s32) (*(s32 *)((s8 *)this + 0x24) + *(s32 *)((s8 *)this + 0x1C));
+    m_frame += m_direction;
     update_fade();
-    temp_r3 = *(s32 *)((s8 *)this + 0x24);
-    if ((temp_r3 <= 0) || (temp_r3 >= (s32) *(s32 *)((s8 *)this + 0x20))) {
-        queue_destruction__7TObjectFv(this);
+    frame = m_frame;
+    if (frame <= 0 || frame >= m_duration) {
+        queue_destruction();
     }
 }
-
-extern s32 lbl_805D3CC0;
-extern s32 tl_fade;
 
 TChCrEffFade::~TChCrEffFade() {}
-}
-TChCrEffFade::TChCrEffFade(s32 arg1, s32 arg2, s32 arg3) : TObject((TObject *)tl_fade) {
-    s32 temp_r0;
-    s32 temp_r0_2;
-    *(s32 *)((s8 *)this + 0) = (s32) lbl_805D3CC0;
-    *(s32 *)((s8 *)this + 0x1C) = arg1;
-    *(s32 *)((s8 *)this + 0x20) = (arg2 + 3);
-    temp_r0 = *(s32 *)((s8 *)this + 0x20);
-    if (temp_r0 < 4) {
-        *(s32 *)((s8 *)this + 0x20) = 4;
-    } else if (temp_r0 > 0x1C2) {
-        *(s32 *)((s8 *)this + 0x20) = 0x1C2;
+
+TChCrEffFade::TChCrEffFade(s32 direction, s32 duration, s32 mode)
+    : TObject(tl_fade) {
+    s32 bounded_duration;
+    s32 step;
+
+    m_name = lbl_805D3CC0;
+    m_direction = direction;
+    m_duration = duration + 3;
+    bounded_duration = m_duration;
+    if (bounded_duration < 4) {
+        m_duration = 4;
+    } else if (bounded_duration > 450) {
+        m_duration = 450;
     }
-    temp_r0_2 = *(s32 *)((s8 *)this + 0x1C);
-    if (temp_r0_2 == 1) {
-        *(s32 *)((s8 *)this + 0x24) = 0;
-    } else if (temp_r0_2 == -1) {
-        *(s32 *)((s8 *)this + 0x24) = (s32) *(s32 *)((s8 *)this + 0x20);
+    step = m_direction;
+    if (step == 1) {
+        m_frame = 0;
+    } else if (step == -1) {
+        m_frame = m_duration;
     } else {
-        *(s32 *)((s8 *)this + 0x1C) = 1;
-        *(s32 *)((s8 *)this + 0x24) = 0;
+        m_direction = 1;
+        m_frame = 0;
     }
-    this->update_fade();
-    *(s32 *)((s8 *)this + 0x2C) = arg3;
+    update_fade();
+    m_mode = mode;
 }

@@ -135,6 +135,7 @@ pso/misc/TLoadingCur.cpp:
 pso/misc/TNowLoading.cpp:
 	.text       start:0x8001D198 end:0x8001D6A0
 	.data       start:0x80480C98 end:0x80480CB0
+	.sdata2     start:0x805D7EC0 end:0x805D7EC4
 
 pso/misc/TLobby_8001D6A0.cpp:
 	.text       start:0x8001D6A0 end:0x8001ED80
@@ -658,6 +659,7 @@ pso/boss/TBoss5GryphonShockWave.cpp:
 	.text       start:0x800666F8 end:0x80066A88
 	.rodata     start:0x80437F68 end:0x80437F70
 	.data       start:0x80488700 end:0x80488718
+	.sdata2     start:0x805D8EE8 end:0x805D8EF8
 
 pso/boss/TBoss5GryphonSnarl.cpp:
 	.text       start:0x80066A88 end:0x80066F10
@@ -1521,6 +1523,7 @@ pso/enemy/TObjEneDarkGunCenter.cpp:
 	.text       start:0x800A0B18 end:0x800A0EDC
 	.rodata     start:0x8043A490 end:0x8043A498
 	.data       start:0x804904A0 end:0x80490608
+	.sdata2     start:0x805D9970 end:0x805D9978
 
 pso/enemy/DarkGunner.cpp:
 	.text       start:0x800A0EDC end:0x800A3290
@@ -1652,6 +1655,7 @@ pso/enemy/TObjEneDD_800B9F98.cpp:
 
 pso/enemy/TObjEneDD.cpp:
 	.text       start:0x800B9FE8 end:0x800BA138
+	.sdata2     start:0x805D9E98 end:0x805D9EA0
 
 pso/enemy/TObjEneDD_800BA138.cpp:
 	.text       start:0x800BA138 end:0x800BA754
@@ -2572,6 +2576,7 @@ pso/item/TItemMenuCtrl_80115A78.cpp:
 
 pso/item/TItemMenuCtrl_80115AF0.cpp:
 	.text       start:0x80115AF0 end:0x80115C24
+	.sdata2     start:0x805DABE8 end:0x805DABEC
 
 pso/item/TItemEffectWeapon_80115C24.cpp:
 	.text       start:0x80115C24 end:0x80115C44
@@ -9461,6 +9466,7 @@ pso/misc/TChCrEffFade.cpp:
 	.text       start:0x8029400C end:0x8029427C
 	.rodata     start:0x80464F20 end:0x80464F28
 	.data       start:0x804DB920 end:0x804DB938
+	.sdata2     start:0x805DD9F8 end:0x805DDA00
 
 pso/object/TObjCMMainMenu_8029427C.cpp:
 	.text       start:0x8029427C end:0x80294324
@@ -10647,7 +10653,10 @@ pso/boss/TBoss8DragonEffBreath.cpp:
 
 pso/boss/TBoss8DragonEffBullet.cpp:
 	.text       start:0x802FE0E0 end:0x802FE48C
+	.rodata     start:0x80474B68 end:0x80474BA8
 	.data       start:0x804E5E90 end:0x804E5EA8
+	.sdata      start:0x805D4018 end:0x805D4020
+	.sdata2     start:0x805DEF00 end:0x805DEF08
 
 pso/boss/TBoss8DragonEffTail.cpp:
 	.text       start:0x802FE48C end:0x802FE8CC
@@ -13862,6 +13871,7 @@ pso/enemy/TObjEneRe7Berura_803E4CE0.cpp:
 
 pso/unk/text_803E4CE8.cpp:
 	.text       start:0x803E4CE8 end:0x803E4D8C
+	.sdata2     start:0x805E10B0 end:0x805E10B8
 
 pso/unk/text_803E4D8C.cpp:
 	.text       start:0x803E4D8C end:0x803E5470

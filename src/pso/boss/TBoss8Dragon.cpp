@@ -2586,7 +2586,6 @@ struct VObj_18_444bc5x : VBase_18_444bc5x {
 
 extern "C" {
 
-struct Vec_802F8F88 { f32 x, y, z; };
 
 void rotate_vec_xz(void *, void *, s32);
 u32 spawn_continuous_particle_effect_with_flags(void *, void *, int);
@@ -4889,9 +4888,9 @@ void TBoss8Dragon::fn_802F8F88(u32 arg1) {
                 (*(u32 *)(arg0 + (0x894))) = 0;
             }
             if (((TObjMotion *)arg0)->is_passing_frame(lbl_805DEE80) != 0) {
-                Vec_802F8F88 v;
-                Vec_802F8F88 dir;
-                Vec_802F8F88 rot;
+                Vec v;
+                Vec dir;
+                Vec rot;
                 f32 len;
                 VecCopy__FP3VecPC3Vec(&dir, d);
                 subtract_vector(&dir, arg0 + 0x38);
@@ -4899,34 +4898,25 @@ void TBoss8Dragon::fn_802F8F88(u32 arg1) {
                 dir.y = TBoss8Dragon__data_805DED50;
                 VecCopy__FP3VecPC3Vec(&v, d);
                 v.y = *(f32 *)(TBoss8Dragon__data_804744A8 + 4);
-                {
-                    void *b = __nw__7TObjectFUl(0x58);
-                    if (b != 0) {
-                        TBoss8DragonEffBullet__ct((u8 *)b, arg0 + 0x3C4, arg0 + 0x410, &v, (*(s32 *)(arg0 + (0x75C))), get_entity_id(arg0));
-                    }
-                }
+                new TBoss8DragonEffBullet((TObject *)(arg0 + 0x3C4),
+                    (const Vec *)(arg0 + 0x410), &v,
+                    *(s32 *)(arg0 + 0x75C), get_entity_id(arg0));
                 rotate_vec_xz(&dir, &rot, 0x1000);
                 VecCopy__FP3VecPC3Vec(&v, arg0 + 0x38);
                 v.x += rot.x * len;
                 v.y = *(f32 *)(TBoss8Dragon__data_804744A8 + 4);
                 v.z += rot.z * len;
-                {
-                    void *b = __nw__7TObjectFUl(0x58);
-                    if (b != 0) {
-                        TBoss8DragonEffBullet__ct((u8 *)b, arg0 + 0x3C4, arg0 + 0x410, &v, (*(s32 *)(arg0 + (0x75C))), get_entity_id(arg0));
-                    }
-                }
+                new TBoss8DragonEffBullet((TObject *)(arg0 + 0x3C4),
+                    (const Vec *)(arg0 + 0x410), &v,
+                    *(s32 *)(arg0 + 0x75C), get_entity_id(arg0));
                 rotate_vec_xz(&dir, &rot, -0x1000);
                 VecCopy__FP3VecPC3Vec(&v, arg0 + 0x38);
                 v.x += rot.x * len;
                 v.y = *(f32 *)(TBoss8Dragon__data_804744A8 + 4);
                 v.z += rot.z * len;
-                {
-                    void *b = __nw__7TObjectFUl(0x58);
-                    if (b != 0) {
-                        TBoss8DragonEffBullet__ct((u8 *)b, arg0 + 0x3C4, arg0 + 0x410, &v, (*(s32 *)(arg0 + (0x75C))), get_entity_id(arg0));
-                    }
-                }
+                new TBoss8DragonEffBullet((TObject *)(arg0 + 0x3C4),
+                    (const Vec *)(arg0 + 0x410), &v,
+                    *(s32 *)(arg0 + 0x75C), get_entity_id(arg0));
                 spawn_particle_effect_with_flags(arg0 + 0x410, (void *)*(s32 *)((s8 *)((*(u8 * *)(arg0 + (0x760)))) + 0x24), 0x40);
                 (*(s32 *)(arg0 + (0x84C))) = 3;
                 (*(s32 *)(arg0 + (0x854))) = 0;
@@ -5031,7 +5021,6 @@ void TBoss8Dragon::fn_802F89F8(u32 event) {
                     m_84c = 4;
                     m_64c = 0;
                 }
-                void *bullet;
                 s32 found = 0;
                 if (!(m_854 & 1)) {
                     TObjBase *player = (TObjBase *)get_player_by_client_id((u16)(((s32)m_854 >> 1) % 4));
@@ -5047,8 +5036,8 @@ void TBoss8Dragon::fn_802F89F8(u32 event) {
                     target.y = TBoss8Dragon__data_805DED50;
                     target.z = lbl_805DEE60 * (calc_random_ratio__10TObjPlayerFv(&m_764) - TBoss8Dragon__data_805DEDA8);
                 }
-                bullet = TObject::operator new(0x58);
-                if (bullet) TBoss8DragonEffBullet__ct((u8 *)bullet, &child, &m_410, &target, m_75c, get_entity_id((u8 *)this));
+                new TBoss8DragonEffBullet(&child, (const Vec *)&m_410, &target, m_75c,
+                                         get_entity_id((u8 *)this));
             }
             rotation.pitch -= m_85c;
             break;
