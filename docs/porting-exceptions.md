@@ -26,6 +26,9 @@ introducing an anonymous duplicate. Ports can drop both annotations and keep
 the ordinary declarations, array and C++ bodies. The prior common-subexpression
 and propagation pragmas are removed. See [the recovery evidence](evidence/critical-hit-effect-unit.md).
 
+| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
+| Per-unit compiler overrides in `configure.py` | 207 | 207 |
+
 ### Raft splash shared constant
 
 `src/pso/boss/TObjBoss2RaftSplash.cpp` defines the shared scalar at
@@ -48,7 +51,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 89 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,857 | 884 |
-| Per-unit compiler overrides in `configure.py` | 206 | 206 |
+| Per-unit compiler overrides in `configure.py` | 207 | 207 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -1759,3 +1762,18 @@ compiler profiles or recovered original filenames. All 173 functions and
 allocated sections match and link. Ports can organize these declarations and
 functions normally; preserve the real storage ownership and documented ABI
 boundaries. See [the complete-unit evidence](evidence/quest-download-unit-completion.md).
+
+### TDPBShower name-data alignment
+
+`pso/effect/TDPBShower.cpp` uses the existing `cw_align` adapter with
+`.rodata=4 .sdata=4`. Its name string starts at `0x80479C3C` and its name
+pointer at `0x805D4454`; neither address is eight-byte aligned. Stock GC/2.6
+emits eight-byte alignment in both the ELF headers and its private comment
+record. The adapter changes only those alignment records, preserving all
+payloads and relocations. Ordinary string pooling instead moves the string
+into `.data`; an explicit const array keeps the original read-only placement.
+The array has eleven bytes; the linker supplies the one-byte alignment tail
+before the next eight-byte-aligned read-only contribution. Ports can keep the
+ordinary C++ string, pointer, constructor and literals and omit this native
+object-alignment adapter. This does not establish the original compiler
+settings or filename.

@@ -1,113 +1,75 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/misc/ParticleFactory.h"
 #include "pso/TItemEffBringer.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/system/vector.h"
-#include "pso/boss/TBoss4Type2.h"
+#include "pso/math/AngleLookup.h"
+#include "pso/math/MatrixTransforms.h"
+#include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/system/MatrixStack.h"
 
 #include "types.h"
 #include "dolphin/mtx.h"
 
-struct Vec_8010834C { f32 x, y, z; };
-
-struct Bringer_8010834C {
-    s32 f0;
-    u8 pad4[0x18 - 4];
-    void *vt;
-    u8 pad1C[0x2C - 0x1C];
-    s32 f2C;
-    u8 pad30[0x38 - 0x30];
-    Vec_8010834C f38;
-    u8 pad44[0x58 - 0x44];
-    s32 m_particles[10];
-    s32 m_particle_count;
-    Vec_8010834C m_84;
-};
-
 extern "C" {
-f32 atan2_float(f32 y, f32 x);
-void disallow_rendering__7TObjectFv(TObject *);
-void *__ct__10TItemShootFPvPC3VecPC3Vecf(void *, u32, s32, s32, f32);
-f32 sin_table_lookup(s32);
-void subtract_vector(Vec*, Vec*);
-void transform_point_by_current_matrix(void *, void *);
-void push_matrix(void);
-s32 pop_matrix(void);
-extern const f64 lbl_8043E188[];
-extern void *__vt__15TItemEffBringer[];
-extern s32 TItemEffBringer__class_name;
-extern f32 lbl_805DAB10;
-extern const f32 lbl_805DAB14;
-extern const f32 lbl_805DAB18;
-extern const f32 lbl_805DAB1C;
-void *__ct__15TItemEffBringerFv(Bringer_8010834C *self, u32 arg1, Vec_8010834C *src, s32 arg3, f32 farg0);
-
+extern const char TItemEffBringer__class_name_string[] = "TItemEffBringer";
+const char *TItemEffBringer__class_name = TItemEffBringer__class_name_string;
 }
+
 void TItemEffBringer::hook() {
     Vec work = this->m_pos;
     for (int i = 0; i != this->m_particle_count; i++) {
-        spawn_particle_effect((const Vec *)(&work), 0x9C);
-        subtract_vector(&work, &this->m_84);
+        spawn_particle_effect(&work, 0x9C);
+        subtract_vector(&work, &this->m_particle_step);
     }
 }
 
 TItemEffBringer::~TItemEffBringer() {
     for (int i = 0; i != this->m_particle_count; i++) {
-        TParticleCtrl::release((void *)this->m_particles[i]);
+        TParticleCtrl::release(this->m_particles[i]);
     }
 }
-
-#include "pso/player/TObjPlayer.h"
-
-extern "C" {
-
-void *__nw__7TObjectFUl(s32);
 
 #pragma push
 #pragma fp_contract on
-void *__ct__15TItemEffBringerFv(Bringer_8010834C *self, u32 arg1, Vec_8010834C *src, s32 arg3, f32 farg0) {
-    Vec_8010834C w;
-    Vec_8010834C out;
-    Vec_8010834C z;
+TItemEffBringer::TItemEffBringer(void *owner, const Vec *src, const Vec *dir, f32 life)
+    : TItemShoot(owner, src, dir, life) {
+    Vec w;
+    Vec out;
+    Vec z;
     f32 r;
     f32 n;
     s32 i;
-    __ct__10TItemShootFPvPC3VecPC3Vecf(self, arg1, (s32)src, arg3, farg0);
-    self->vt = __vt__15TItemEffBringer;
-    self->f0 = TItemEffBringer__class_name;
+    m_name = TItemEffBringer__class_name;
     push_matrix();
-    z.x = z.y = z.z = lbl_805DAB10;
+    z.x = z.y = z.z = 0.0f;
     TObjPlayer::invert_matrix_in_place(0);
-    transform_point_by_current_matrix(&z, &out);
-    VecCopy((Vec *)&w, (const Vec *)src);
-    subtract_vector((Vec*)((Vec *)&w), (Vec*)((Vec *)&out));
+    transform_point_by_current_matrix(&z.x, &out);
+    VecCopy(&w, src);
+    subtract_vector(&w, &out);
     pop_matrix();
-    r = sin_table_lookup(self->f2C - (s32)(lbl_8043E188[0] * atan2_float(w.x, w.z)));
-    if (r < lbl_805DAB10) {
-        r *= lbl_805DAB14;
+    r = sin_table_lookup(m_count - (s32)(10430.38043493439 * atan2_float(w.x, w.z)));
+    if (r < 0.0f) {
+        r *= -1.0f;
     }
-    n = lbl_805DAB1C * r + lbl_805DAB18;
-    VecCopy((Vec *)&self->m_84, (const Vec *)&self->f38);
-    self->m_84.x /= n;
-    self->m_84.y /= n;
-    self->m_84.z /= n;
-    self->m_particle_count = (s32)n + 1;
-    for (i = 0; i != self->m_particle_count; i++) {
-        self->m_particles[i] = 0;
+    n = 4.0f * r + 1.0f;
+    VecCopy(&m_particle_step, &m_dir);
+    m_particle_step.x /= n;
+    m_particle_step.y /= n;
+    m_particle_step.z /= n;
+    m_particle_count = (s32)n + 1;
+    for (i = 0; i != m_particle_count; i++) {
+        m_particles[i] = 0;
     }
-    disallow_rendering__7TObjectFv((TObject *)self);
-    return self;
+    disallow_rendering();
 }
 #pragma pop
 
-void *TItemEffBringer::create(u32 arg0, s32 src, s32 arg2, f32 farg0) {
-    if ((lbl_805DAB10 != farg0) && (arg0 != 0U)) {
-        void *obj = __nw__7TObjectFUl(0x90);
-        if (obj != NULL) {
-            obj = __ct__15TItemEffBringerFv((Bringer_8010834C *)(obj), arg0, (Vec_8010834C *)(src), arg2, farg0);
-        }
-        return obj;
+// The weapon-effect factory table carries pointers in 32-bit integer arguments.
+void *TItemEffBringer::create(u32 owner, s32 pos, s32 dir, f32 life) {
+    if ((0.0f != life) && (owner != 0U)) {
+        return new TItemEffBringer((void *)owner, (const Vec *)pos, (const Vec *)dir, life);
     }
     return NULL;
-}
-
 }
