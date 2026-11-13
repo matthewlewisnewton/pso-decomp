@@ -6905,7 +6905,7 @@ force_active:
   - hide_part__9TObjLukerFPvUs
   - hide_title_layers_and_release
   - hit_object_in_radius__10TObjPlayerFPvPvPv
-  - hit_target_in_range__13TUnk_804EF130FP9TObjCharaP14TObjCollidable
+  - hit_target__13TUnk_804EF130FP9TObjCharaP9TObjChara
   - hold_captured_player__12TBoss1DragonFv
   - hook__13TItemEffLavisFv
   - hook__13TUnk_804A2148Fv
@@ -15695,7 +15695,7 @@ force_active:
   - smpcmp
   - snap_to_ground__10TObjPlayerFll
   - snap_to_ground__11TBoss6Type2FPv
-  - snap_to_ground__13TObjEneMorfosFll
+  - snap_to_ground__13TUnk_804EF130FP3Vec
   - snap_to_ground__21TObjEneRe7BeruraPunchFv
   - snap_to_ground__5TItemFv
   - snap_to_owner__8TItemMagFv
