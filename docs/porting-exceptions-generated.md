@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 93 | 58 |
 | hardware | 69 | 13 |
-| pragma | 5860 | 884 |
+| pragma | 5871 | 884 |
 | configure.py per-unit override | 208 | 208 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 636, `scheduling` 263, `opt_propagation` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 59, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 39, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -486,7 +486,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055,
 | `src/pso/boss/Boss6Type1Appearance.cpp` | opt_common_subs×2 |
 | `src/pso/boss/Boss6Type2Appearance.cpp` | opt_lifetimes×1, pool_data×1, opt_loop_invariants×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/boss/Boss6Type2Death.cpp` | pool_data×2, opt_common_subs×1 |
-| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | fp_contract×9, opt_common_subs×7, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1 |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | fp_contract×11, opt_common_subs×8, opt_propagation×4, inline_depth×3, dont_inline×2, defer_codegen×1, auto_inline×1, opt_lifetimes×1 |
 | `src/pso/boss/TBoss1Dragon.cpp` | fp_contract×24, inline_depth×7, auto_inline×7, dont_inline×7, opt_common_subs×7, readonly_strings×1, pool_data×1, scheduling×1, opt_loop_invariants×1, opt_propagation×1 |
 | `src/pso/boss/TBoss1DragonColli.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, scheduling×1 |
 | `src/pso/boss/TBoss1DragonEffBullet.cpp` | fp_contract×1 |
