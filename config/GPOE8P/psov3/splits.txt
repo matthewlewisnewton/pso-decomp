@@ -2359,7 +2359,10 @@ pso/item/TItemEffArmor.cpp:
 
 pso/item/TItemEffBringer.cpp:
 	.text       start:0x80108254 end:0x8010853C
+	.rodata     start:0x8043E178 end:0x8043E190
 	.data       start:0x8049EFE8 end:0x8049F004
+	.sdata      start:0x805D2B90 end:0x805D2B94
+	.sdata2     start:0x805DAB10 end:0x805DAB20
 
 pso/player/TObjPlayer_8010853C.cpp:
 	.text       start:0x8010853C end:0x801086B8
