@@ -30,6 +30,7 @@ public:
     int set_position_from(void *pos);
     s32 get_texlist();
     s32 is_alive();
+    void *get_rotation();
     u16 entity_id;  // the object table id, 0xFFFF while unregistered
     s16 visibility; // update_object_view_visibility: 0 culled, 1 visible, 2 near
     s32 m_20;
