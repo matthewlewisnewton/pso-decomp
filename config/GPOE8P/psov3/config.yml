@@ -4820,7 +4820,7 @@ force_active:
   - capture_attachment__17TObjEneBm3FlyNestFPv
   - capture_beam_origins__16TObjEneNanoDragoFv
   - capture_effect_positions__14TObjEneIllGillFv
-  - capture_matrix_by_frame__16TObjDFTenchuFuruFv
+  - capture_matrix_by_frame__16TObjDFTenchuFuruFP10NJS_OBJECT
   - cast_resta__18TObjEneRe4SorcererFv
   - cast_support_technique__8TItemMagFl
   - cast_tech_on_players__15TBoss3VoloptP01Fv
