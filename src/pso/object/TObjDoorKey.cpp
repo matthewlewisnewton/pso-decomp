@@ -79,7 +79,6 @@ extern "C" {
 void debug_draw_key_id__5TOKeyFv();
 void debug_printf_at(int, void *, ...);
 extern u8 lbl_804456C8[];
-extern const f32 lbl_805DBE08;
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_804456D8[];
 extern s32 TObjDoorKey__ginja_model_table[];
@@ -105,7 +104,6 @@ void *__ct__5TOKeyFP7TObject(TOKey *arg0);
 extern u8 TObjDoorKey__collision_body_parts[];
 extern s32 __vt__11TObjDoorKey[];
 extern s32 TObjDoorKey__class_name;
-extern const f32 lbl_805DBE0C;
 int update_armed_switch__5TOKeyFv(void*);
 s32 free_collision_body_parts(void *);
 int submit_cursor_candidate(void*, int);
@@ -124,12 +122,9 @@ void TObjDoorKey__sub_8018FAEC(void) {
     }
 }
 
-extern const f32 lbl_805DBE00;
-extern const f32 lbl_805DBE04;
-
 void TObjDoorKey::render() {
 
-    if (((TObjDoorKeyVObj_8018FAEC*)this)->m8(lbl_805DBE00, lbl_805DBE04) == 0) {
+    if (((TObjDoorKeyVObj_8018FAEC*)this)->m8(400.0f, 20.0f) == 0) {
         if ((u32) this->m_f8 != 0U) {
             ((TParticleCtrl *)(this->m_f8))->enable();
         }
@@ -199,7 +194,7 @@ void TObjDoorKey::debug_draw_key_id() {
     Key_8018FD9C *arg0 = (Key_8018FD9C *)this;
     debug_draw_key_id__5TOKeyFv();
     VecCopy((Vec *)&arg0->f74, (const Vec *)arg0->f38);
-    arg0->f78 = arg0->f78 + lbl_805DBE08;
+    arg0->f78 += 8.0f;
     TObjNpcEnemy::set_global_count(0xFF00FF);
     debug_printf_at(0x130022, lbl_804456C8, arg0->f8C);
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
@@ -289,7 +284,7 @@ void *TObjDoorKey__ct(TObjDoorKey *door_key, void *arg1, void *arg2) {
     *(s32 *)&door_key->actorFlags |= 0x40000000;
     ((TObjPlayer *)door_key)->register_object_by_id();
     Vec_80190020 pos = *(Vec_80190020 *)((s8 *)door_key + 0x38);
-    pos.y += lbl_805DBE0C;
+    pos.y += 10.0f;
     *(s32 *)&door_key->m_f8 = (s32)spawn_continuous_particle_effect_with_flags(&pos, 0x60, 0x40);
     door_key->cursor_action.set_use();
     return door_key;

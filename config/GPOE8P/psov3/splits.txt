@@ -5723,6 +5723,7 @@ pso/object/TObjDoor_8018E358.cpp:
 
 pso/object/TObjDoorJung.cpp:
 	.text       start:0x8018F458 end:0x8018FA6C
+	.sdata2     start:0x805DBDF8 end:0x805DBE00
 
 pso/unk/text_8018FA6C.cpp:
 	.text       start:0x8018FA6C end:0x8018FAEC
@@ -5731,6 +5732,7 @@ pso/object/TObjDoorKey.cpp:
 	.text       start:0x8018FAEC end:0x801902D8
 	.data       start:0x804B7910 end:0x804B7930
 	.sdata      start:0x805D3340 end:0x805D3344
+	.sdata2     start:0x805DBE00 end:0x805DBE10
 
 pso/object/TObjEnvSoundGlobal.cpp:
 	.text       start:0x801902D8 end:0x80190BFC
