@@ -76,7 +76,6 @@ struct TWindowKeyBoardSoft
     void set_bounds(f32 a, f32 b, f32 c, f32 d);
     void shrink_clip_right();
     void animate_scale();
-    s32 is_point_in_bounds(void *arg1);
     void adjust_pos_for_split_screen(s32 arg1);
     static u32 get_or_create_instance();
     static u32 free_singleton(u32 arg0, s16 arg1);

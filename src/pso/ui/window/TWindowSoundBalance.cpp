@@ -14,6 +14,7 @@
 #include "pso/ui/window/TWindowDD.h"
 #include "pso/ui/window/TWindowSubComCard.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
+#include "pso/ui/window/TWindowDrawContext.h"
 
 extern "C" {
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
@@ -54,7 +55,7 @@ void TWindowSoundBalance::apply_balance(void *window_key_board_soft) {
     s32 temp;
 
     temp = get_array_entry((s32)selection);
-    draw_selection_bar((u8 *)window_key_board_soft, (u8 *)temp, is_active());
+    draw_selection_bar((TWindowDrawContext *)window_key_board_soft, (u8 *)temp, is_active());
 }
 
 void TWindowSoundBalance::handle_cancel() {

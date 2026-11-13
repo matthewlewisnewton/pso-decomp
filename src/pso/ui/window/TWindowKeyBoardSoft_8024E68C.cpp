@@ -2,6 +2,7 @@
 #include "pso/ui/window/TWindowKeyBoardSoft_8024E68C.h"
 #include "pso/system/memory.h"
 #include "pso/ui/window/TWindowKeyBoardSoft.h"
+#include "pso/ui/window/TWindowDrawContext.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
@@ -133,7 +134,7 @@ void TWindowKeyBoardSoft::animate_scale() {
     *(f32 *)((s8 *)this + 0x40) = (f32) (*(f32 *)((s8 *)this + 0x40) + lbl_805DCC90);
 }
 
-s32 TWindowKeyBoardSoft::is_point_in_bounds(void *arg1) {
+s32 TWindowDrawContext::is_point_in_bounds(f32 *arg1) {
     if ((*(f32 *)((s8 *)arg1 + 8) < *(f32 *)((s8 *)this + 0x3C)) || (*(f32 *)((s8 *)arg1 + 0xC) < *(f32 *)((s8 *)this + 0x40)) || (*(f32 *)((s8 *)arg1 + 0) > *(f32 *)((s8 *)this + 0x44)) || (*(f32 *)((s8 *)arg1 + 4) > *(f32 *)((s8 *)this + 0x48))) {
         return 0;
     }
@@ -146,7 +147,7 @@ s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(Win_8024E8E8 *w, Box_8024E8E8
     f32 sx;
     f32 sy;
     f32 d;
-    if (((TWindowKeyBoardSoft *)w)->is_point_in_bounds(b) == 0) {
+    if (((TWindowDrawContext *)w)->is_point_in_bounds((f32 *)b) == 0) {
         return 0;
     }
     sx = (b->u1 - b->u0) / (b->x1 - b->x0);

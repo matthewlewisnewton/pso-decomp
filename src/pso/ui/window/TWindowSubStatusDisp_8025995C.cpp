@@ -3,6 +3,7 @@
 #include "pso/ui/window/TWindowKeyBoardSoft.h"
 #include "pso/system/memory.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
+#include "pso/ui/window/TWindowDrawContext.h"
 
 struct RecoveredGlobal_80259D3C_lbl_804CF9C8 {
     s32 value;
@@ -59,10 +60,10 @@ void draw_right_aligned_number(void *arg0) {
 }
 }
 
-void render_numeric_digit_entries(u8 *arg0, u8 *arg1);
+void render_numeric_digit_entries(u8 *arg0, TWindowDrawContext *arg1);
 typedef struct Pos_80259A84 Pos_80259A84;
 #pragma fp_contract on
-void render_numeric_digit_entries(u8 *arg0, u8 *window_key_board_soft) {
+void render_numeric_digit_entries(u8 *arg0, TWindowDrawContext *window_key_board_soft) {
   f32 t;
   Pos_80259A84 pos;
   f32 x;
