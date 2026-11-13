@@ -1466,7 +1466,6 @@ force_active:
   - TObjGrass__sub_800BCA2C
   - TObjGrass__sub_800BFB68
   - TObjGyaranzoMissile_target_slots
-  - TObjHMS_EZRope_Player__ct
   - TObjHMS_EZRope_Player__name
   - TObjItemNameEntry__class_name
   - TObjItemNameSelect__class_name
@@ -2452,6 +2451,7 @@ force_active:
   - __ct__21TItemEffArmorParticleFP7TObjectlUsl
   - __ct__21TObjEneMe3ShinowaRealFP7TObjectPv
   - __ct__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne
+  - __ct__21TObjHMS_EZRope_PlayerFP10TObjPlayerPvPv
   - __ct__22TAdMultiPlyChrSelectGCFP7TObjectl
   - __ct__22TChCrTagInformationStrFP7TObjectl
   - __ct__22TChallenge4PItemSelectFP7TObjectP18TChallenge4PResult
@@ -6412,7 +6412,6 @@ force_active:
   - explosive_machine_model_archive
   - explosive_machine_resource_desc
   - export_player_record__10TObjPlayerFPvPv
-  - ezrope_chunk_material_color_table
   - f064_wordmojitex_eng_gvp
   - f064_wordmojitex_fre_gvp
   - f064_wordmojitex_ger_gvp
