@@ -15,6 +15,38 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Duel-effect string lifetime data
+
+`src/pso/misc/TDuelEffectNumber_80080460.cpp` gives the final two-float
+object `lbl_805D9330` a guarded `.sdata2` section annotation. Its first
+float is the 30-frame lifetime; the second is the original zero tail.
+Without the annotation the array leaves the small-data constant section,
+changing the load and the object layout. The late definition keeps it after
+the digit-transform and opacity literals. Ports can drop the annotation and
+keep the ordinary array and C++ expressions.
+
+### Scalar collision-area helper
+
+`TObjPlayer__sub_803DF840` in `src/pso/player/TObjPlayer_803DF7A8.cpp` adds
+two `__fabs` and two `__frsqrte` uses. The lengths retain three double-precision
+Newton refinements and volatile float rounding homes. A double carrier and
+separate absolute-value and float-conversion assignments preserve the native
+register allocation; the arithmetic consumes the rounded float values. The
+function inherits the existing `fp_contract off` region. A port can use ordinary
+`fabs` and `sqrt`, retain the `0.025f` near-vertical rule, and validate rounding
+behavior. See [the scalar recovery evidence](evidence/scalar-collision-area-helper.md).
+
+### Dark Gunner center native emission
+
+`src/pso/enemy/TObjEneDarkGunCenter.cpp` uses `#pragma defer_codegen on`
+with reverse function definitions to retain the native vtable before the
+seven-entry switch table. Immediate generation preserves function instructions
+but puts the switch table first, moving the vtable by 28 bytes. Deferred
+generation reproduces all seven function positions, section contents and
+relocations with normal C++ virtual dispatch and destruction. Ports can drop
+the pragma and arrange definitions normally. The two late scalar definitions
+preserve named constant loads without generating duplicate literals.
+
 ### Critical-hit effect data placement
 
 `src/pso/effect/TEffClitical.cpp` uses guarded section annotations for the
@@ -45,7 +77,7 @@ keeps the scalar in the original small-data section; without it the scalar lands
 this exported scalar. Other compilers use the ordinary `const f32` definition
 and need no section placement or definition-order constraint.
 
-## Summary (including complete TCP recovery, 2026-11-12 UTC)
+## Summary (including scalar collision-area recovery, 2026-11-13 UTC)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
 for this source tree. Assembly is counted as source lines;
@@ -54,10 +86,10 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 89 | 58 |
+| MWCC intrinsics | 93 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,858 | 885 |
-| Per-unit compiler overrides in `configure.py` | 207 | 207 |
+| CodeWarrior pragmas (excluding push/pop) | 5,860 | 884 |
+| Per-unit compiler overrides in `configure.py` | 208 | 208 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -213,6 +245,17 @@ The draw-buffer helpers retain their existing native link names at a bounded
 ABI interface rather than casting vertex buffers to window objects; ports
 should map those legacy names to the corresponding shared draw operations.
 
+### `pso/boss/TBoss4Type1.cpp`
+
+The six trailing functions use `#pragma defer_codegen on` and reverse source
+order so the constructor addresses the compiler-generated vtable through the
+unit's shared data base while code stays in address order. The unit's `-sdata 4`
+keeps its two effect IDs in `.data`; the position generator uses scoped
+`#pragma fp_contract on` to reproduce fused arithmetic. A port can use normal
+compiler emission and data placement, preserving fused rounding where required.
+The constructor's existing `opt_loop_invariants off` pragma remains in place.
+
+
 `pso/boss/TBoss8Dragon_8002CC48.cpp` uses guarded `defer_codegen on/off`
 around its reversed first twelve definitions to preserve both native vtable
 offsets and scalar emission order. The initializer at `0x8002D5F8` uses scoped
@@ -250,11 +293,11 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,858 pragmas in 885 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1150, `inline_depth` 1055, `fp_contract` 882, `auto_inline` 804,
-`opt_common_subs` 637, `scheduling` 264, `opt_propagation` 263,
+5,859 pragmas in 885 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1150, `inline_depth` 1055, `fp_contract` 883, `auto_inline` 804,
+`opt_common_subs` 636, `scheduling` 263, `opt_propagation` 263,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57,
-`defer_codegen` 57, `pack` 46, `opt_dead_assignments` 42. Reason: reproduce the original code generation
+`defer_codegen` 59, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 39, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -1971,3 +2014,15 @@ before the next eight-byte-aligned read-only contribution. Ports can keep the
 ordinary C++ string, pointer, constructor and literals and omit this native
 object-alignment adapter. This does not establish the original compiler
 settings or filename.
+### Gol Dragon fireball table addressing
+
+`src/pso/boss/TBoss8DragonEffBullet.cpp` scopes `pool_data off` to its
+constructor. Defining its three particle descriptors in source otherwise makes
+GC/2.6 hoist a shared read-only-data base, changing the constructor's register
+allocation. Late definitions preserve the independent addresses but emit the
+descriptors in writable data. The scoped control retains the native code and
+read-only data together. Ports can drop this pragma and keep the ordinary
+constant descriptors and constructor. The existing `fp_contract on` scope in
+`run_task` preserves the three fused movement updates; a port needing the same
+rounding can use `fmaf` for those expressions. See the
+[unit evidence](evidence/gol-dragon-fireball-unit.md).

@@ -139,6 +139,51 @@ struct Point2_803E0CC8 { f32 u, v; };
 s32 TObjPlayer__sub_803DF9D0(Point2_803E0CC8 *a, Point2_803E0CC8 *b);
 f32 TObjPlayer__sub_803DF840(Point2_803E0CC8 *p, Point2_803E0CC8 *a, Point2_803E0CC8 *b);
 extern const f32 lbl_805E0FFC;
+extern const f32 lbl_805E0FD8, lbl_805E0FDC, lbl_805E0FE0, lbl_805E0FF8;
+extern const f64 lbl_805E0FE8, lbl_805E0FF0;
+
+f32 TObjPlayer__sub_803DF840(Point2_803E0CC8 *p, Point2_803E0CC8 *a, Point2_803E0CC8 *b) {
+    f32 lineU;
+    f32 lineV;
+    f32 lineC;
+    if ((f32)__fabs(p->u - a->u) < lbl_805E0FD8) {
+        lineU = lbl_805E0FDC;
+        lineV = lbl_805E0FE0;
+        lineC = -p->u;
+    } else {
+        lineU = a->v - p->v;
+        lineV = -(a->u - p->u);
+        lineC = (-p->u * lineU) - (p->v * lineV);
+    }
+    f64 distance = lineC + (lineU * b->u + lineV * b->v);
+    distance = __fabs(distance);
+    distance = (f32)distance;
+    f32 normalLength = lineU * lineU + lineV * lineV;
+    if (normalLength > lbl_805E0FE0) {
+        volatile f32 rounded;
+        f64 inverse = __frsqrte(normalLength);
+        inverse = (lbl_805E0FE8 * inverse) * (lbl_805E0FF0 - normalLength * (inverse * inverse));
+        inverse = (lbl_805E0FE8 * inverse) * (lbl_805E0FF0 - normalLength * (inverse * inverse));
+        inverse = (lbl_805E0FE8 * inverse) * (lbl_805E0FF0 - normalLength * (inverse * inverse));
+        rounded = (f32)(normalLength * inverse);
+        normalLength = rounded;
+    }
+    distance = (f32)distance / normalLength;
+    f32 squaredLength = (p->u - a->u) * (p->u - a->u) + (p->v - a->v) * (p->v - a->v);
+    f32 length;
+    if (squaredLength > lbl_805E0FE0) {
+        volatile f32 rounded;
+        f64 inverse = __frsqrte(squaredLength);
+        inverse = (lbl_805E0FE8 * inverse) * (lbl_805E0FF0 - squaredLength * (inverse * inverse));
+        inverse = (lbl_805E0FE8 * inverse) * (lbl_805E0FF0 - squaredLength * (inverse * inverse));
+        inverse = (lbl_805E0FE8 * inverse) * (lbl_805E0FF0 - squaredLength * (inverse * inverse));
+        rounded = (f32)(squaredLength * inverse);
+        length = rounded;
+    } else {
+        length = squaredLength;
+    }
+    return lbl_805E0FF8 * ((f32)distance * length);
+}
 
 s32 TObjPlayer__sub_803DF9D0(Point2_803E0CC8 *a, Point2_803E0CC8 *b) {
     Point2_803E0CC8 *p;

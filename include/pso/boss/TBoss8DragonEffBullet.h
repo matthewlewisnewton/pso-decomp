@@ -1,40 +1,49 @@
 #ifndef PSO_BOSS_TBOSS8DRAGONEFFBULLET_H
 #define PSO_BOSS_TBOSS8DRAGONEFFBULLET_H
 
-#include "types.h"
 #include "pso/TObject.h"
+#include <dolphin/mtx.h>
+#include <stddef.h>
 
-struct TBoss8DragonEffBullet : public TObject {
-    virtual ~TBoss8DragonEffBullet();
-    void* m_1c;
-    u8 _pad20[0x8];
-    void* m_28;
-    u8 _pad2C[0x8];
-    u32 m_34;
-    u32 m_38;
-    u8 unk_3C[0x4];
-    f32 m_40;
-    u32 m_44;
-    u16 m_48;
-    u8 _pad4A[0x2];
-    u32 m_4c;
-    u32 m_50;
-    u32 m_54;
-    virtual void render();
-    virtual void run_task();
+class TParticleCtrl;
+
+struct DragonBulletParticles {
+    s32 trail;
+    s32 impact;
+    s32 burst;
 };
 
+struct TBoss8DragonEffBullet : public TObject {
+    TBoss8DragonEffBullet(TObject *parent, const Vec *source, const Vec *target,
+                         s32 mode, u16 owner_id);
+    virtual ~TBoss8DragonEffBullet();
+    virtual void render();
+    virtual void run_task();
+
+    Vec position;
+    Vec direction;
+    s32 lifetime;
+    s32 state; // Flight, impact, then delayed destruction.
+    f32 traveled_distance;
+    f32 target_distance;
+    s32 mode;
+    u16 owner_id;
+    TParticleCtrl *trail;
+    TParticleCtrl *secondary_emitter;
+    const DragonBulletParticles *particles;
+};
+
+typedef char TBoss8DragonEffBullet_position[offsetof(TBoss8DragonEffBullet, position) == 0x1C ? 1 : -1];
+typedef char TBoss8DragonEffBullet_direction[offsetof(TBoss8DragonEffBullet, direction) == 0x28 ? 1 : -1];
+typedef char TBoss8DragonEffBullet_lifetime[offsetof(TBoss8DragonEffBullet, lifetime) == 0x34 ? 1 : -1];
+typedef char TBoss8DragonEffBullet_state[offsetof(TBoss8DragonEffBullet, state) == 0x38 ? 1 : -1];
+typedef char TBoss8DragonEffBullet_traveled_distance[offsetof(TBoss8DragonEffBullet, traveled_distance) == 0x3C ? 1 : -1];
+typedef char TBoss8DragonEffBullet_target_distance[offsetof(TBoss8DragonEffBullet, target_distance) == 0x40 ? 1 : -1];
+typedef char TBoss8DragonEffBullet_mode[offsetof(TBoss8DragonEffBullet, mode) == 0x44 ? 1 : -1];
+typedef char TBoss8DragonEffBullet_owner_id[offsetof(TBoss8DragonEffBullet, owner_id) == 0x48 ? 1 : -1];
+typedef char TBoss8DragonEffBullet_trail[offsetof(TBoss8DragonEffBullet, trail) == 0x4C ? 1 : -1];
+typedef char TBoss8DragonEffBullet_secondary_emitter[offsetof(TBoss8DragonEffBullet, secondary_emitter) == 0x50 ? 1 : -1];
+typedef char TBoss8DragonEffBullet_particles[offsetof(TBoss8DragonEffBullet, particles) == 0x54 ? 1 : -1];
 typedef char TBoss8DragonEffBullet_size[sizeof(TBoss8DragonEffBullet) == 0x58 ? 1 : -1];
-
-extern "C" {
-u8 *TBoss8DragonEffBullet__ct(u8 *storage, void *parent, const void *source, const void *target, s32 mode, u16 owner);
-void *__dt__21TBoss8DragonEffBulletFv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TBoss8DragonEffBullet.cpp ---
-extern "C" {
-u8 *TBoss8DragonEffBullet__ct(u8 *storage, void *parent, const void *source, const void *target, s32 mode, u16 owner);
-}
-// --- end of C functions
 
 #endif

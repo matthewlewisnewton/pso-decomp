@@ -19,35 +19,16 @@ extern const char lbl_8043DF28[] = "TObjHMS_EZRope_Player";
 
 const char *TObjEZRopeBase__name = lbl_8043DF18;
 const char *TObjHMS_EZRope_Player__name = lbl_8043DF28;
-f32 ezrope_chunk_material_color_table[12] = {
-    0.5f, 1.0f, 1.0f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-};
+static NJS_ARGB ezrope_chunk_material_color_table = { 0.5f, 1.0f, 1.0f, 0.5f };
+static RopeAnchor ezrope_default_anchor = { 0, { 0.0f, 0.0f, 0.0f } };
+static RopeCollisionSphere ezrope_default_collision_sphere = { 0.0f, { 0.0f, 0.0f, 0.0f } };
 Vec TObjEZBoneRotPlayer__chain_gravity = { 0.0f, -0.75f, 0.0f };
 
 struct ByteBlock_C { u8 bytes[0xc]; };
 
-typedef struct E1_800FF070 { s8 type; u8 pad1[0x13]; u8 *data; } E1_800FF070;
-
-typedef struct E2_800FF070 { s8 type; u8 pad1[0x13]; } E2_800FF070;
-
-typedef struct Obj_800FF070 {
-    s32 f0;
-    u8 pad4[0x14];
-    void *vt;
-    u8 pad1c[0x14];
-    void *f30;
-    E1_800FF070 *list;
-    E2_800FF070 *list2;
-    RopeSegment *a;
-    RopeAnchor *b;
-    RopeCollisionSphere *c;
-} Obj_800FF070;
-
 void TObjPlayer__sub_800FF220(s32 *arg0, s32 *arg1);
 void TObjPlayer__sub_800FF1FC(f32 *arg0, f32 *arg1);
 void TObjPlayer__sub_800FF244(u8 *arg0, u8 *arg1);
-void *TObjEZRopeBase__ct(void *);
-void *TObjHMS_EZRope_Player__ct(void *, void *, void *, void *);
 
 f32 fabs_float(f32);
 f32 atan2_float(f32, f32);
@@ -68,24 +49,14 @@ extern s32 saved_chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
-void *__nw__7TObjectFUl(int);
 
-void __ct__7TObjectFP7TObject(void *);
-
-extern s32 __vt__14TObjEZRopeBase[];
-
-// Retain the legacy constructor entry points used by the remaining C ABI callers.
-void *TObjEZRopeBase__ct(void *obj_ez_rope_base) {
-    TObjEZRopeBase *rope = static_cast<TObjEZRopeBase *>(obj_ez_rope_base);
-    __ct__7TObjectFP7TObject(obj_ez_rope_base);
-    *(s32 **)((s8 *)obj_ez_rope_base + 0x18) = __vt__14TObjEZRopeBase;
-    rope->m_name = TObjEZRopeBase__name;
-    rope->segment_count = 0;
-    rope->segments = NULL;
-    rope->anchors = NULL;
-    rope->collision_spheres = NULL;
-    rope->points = NULL;
-    return obj_ez_rope_base;
+TObjEZRopeBase::TObjEZRopeBase(TObject *parent) : TObject(parent) {
+    m_name = TObjEZRopeBase__name;
+    segment_count = 0;
+    segments = NULL;
+    anchors = NULL;
+    collision_spheres = NULL;
+    points = NULL;
 }
 
 TObjEZRopeBase::~TObjEZRopeBase() {
@@ -261,7 +232,7 @@ void TObjHMS_EZRope_Player::sub_800FF2D0() {
         saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
         model_render_flags |= 0x10;
         set_chunk_material_override_pair(0, 0x800);
-        set_constant_material((const NJS_ARGB *)ezrope_chunk_material_color_table);
+        set_constant_material(&ezrope_chunk_material_color_table);
         for (RopeCollisionSphere *sphere = collision_spheres; sphere->radius >= 0.0f; ++sphere) {
             f32 s;
             push_matrix();
@@ -278,12 +249,7 @@ void TObjHMS_EZRope_Player::sub_800FF2D0() {
 }
 
 void *TObjPlayer::create_hairmove(void *arg1, void *arg2) {
-    void *o;
-    o = __nw__7TObjectFUl(0x48);
-    if (o != NULL) {
-        o = TObjHMS_EZRope_Player__ct(o, this, arg1, arg2);
-    }
-    return o;
+    return new TObjHMS_EZRope_Player(this, arg1, arg2);
 }
 
 #pragma push
@@ -309,59 +275,54 @@ void TObjPlayer__sub_800FF1FC(f32 *arg0, f32 *arg1) {
 }
 #pragma pop
 
-#define SELF ((Obj_800FF070 *)arg0)
-void *TObjHMS_EZRope_Player__ct(void *arg0, void *arg1, void *arg2, void *arg3) {
-    s32 base = (s32)ezrope_chunk_material_color_table;
+TObjHMS_EZRope_Player::TObjHMS_EZRope_Player(TObjPlayer *arg1, void *arg2, void *arg3)
+    : TObjEZRopeBase(arg1) {
     s32 n1;
     s32 n2;
-    E2_800FF070 *q;
-    E1_800FF070 *p;
-    TObjEZRopeBase__ct(arg0);
+    RopePlayerSphereSource *q;
+    RopePlayerSegmentSource *p;
     n1 = 0;
-    SELF->vt = (void *)(base + 0x3C);
     n2 = 0;
-    SELF->f0 = (s32)TObjHMS_EZRope_Player__name;
-    SELF->f30 = arg1;
-    SELF->list = (E1_800FF070 *)arg2;
-    SELF->list2 = (E2_800FF070 *)arg3;
-    for (p = SELF->list; p->type >= 0; p++, n1++) {
+    m_name = TObjHMS_EZRope_Player__name;
+    player = arg1;
+    segment_sources = (RopePlayerSegmentSource *)arg2;
+    sphere_sources = (RopePlayerSphereSource *)arg3;
+    for (p = segment_sources; p->type >= 0; p++, n1++) {
     }
-    if (SELF->list2 != NULL) {
-        for (q = SELF->list2; q->type >= 0; q++, n2++) {
+    if (sphere_sources != NULL) {
+        for (q = sphere_sources; q->type >= 0; q++, n2++) {
         }
     }
-    SELF->a = static_cast<RopeSegment *>(TQuestVmDownLoadServer::alloc((n1 + 1) * sizeof(RopeSegment)));
-    SELF->b = static_cast<RopeAnchor *>(TQuestVmDownLoadServer::alloc(n1 * sizeof(RopeAnchor)));
+    segment_storage = static_cast<RopeSegment *>(TQuestVmDownLoadServer::alloc((n1 + 1) * sizeof(RopeSegment)));
+    anchor_storage = static_cast<RopeAnchor *>(TQuestVmDownLoadServer::alloc(n1 * sizeof(RopeAnchor)));
     if (n2 == 0) {
-        SELF->c = NULL;
+        sphere_storage = NULL;
     } else {
-        SELF->c = static_cast<RopeCollisionSphere *>(TQuestVmDownLoadServer::alloc((n2 + 1) * sizeof(RopeCollisionSphere)));
+        sphere_storage = static_cast<RopeCollisionSphere *>(TQuestVmDownLoadServer::alloc((n2 + 1) * sizeof(RopeCollisionSphere)));
     }
     {
-        E1_800FF070 *p3;
+        RopePlayerSegmentSource *p3;
         RopeSegment *d3;
         RopeAnchor *e3;
-        d3 = SELF->a;
-        p3 = SELF->list;
-        e3 = SELF->b;
+        d3 = segment_storage;
+        p3 = segment_sources;
+        e3 = anchor_storage;
         for (; p3->type >= 0; p3++, d3++, e3++) {
             TObjPlayer__sub_800FF244((u8 *)d3, p3->data);
-            TObjPlayer__sub_800FF220((s32 *)e3, (s32 *)(base + 0x10));
+            TObjPlayer__sub_800FF220(&e3->yaw, &ezrope_default_anchor.yaw);
         }
         d3->point_count = -1;
     }
-    if (SELF->c != NULL) {
-        E2_800FF070 *q4 = SELF->list2;
-        RopeCollisionSphere *e4 = SELF->c;
+    if (sphere_storage != NULL) {
+        RopePlayerSphereSource *q4 = sphere_sources;
+        RopeCollisionSphere *e4 = sphere_storage;
         for (; q4->type >= 0; q4++, e4++) {
-            TObjPlayer__sub_800FF1FC((f32 *)e4, (f32 *)(base + 0x20));
+            TObjPlayer__sub_800FF1FC(&e4->radius, &ezrope_default_collision_sphere.radius);
         }
-        TObjPlayer__sub_800FF1FC((f32 *)e4, (f32 *)(base + 0x20));
+        TObjPlayer__sub_800FF1FC(&e4->radius, &ezrope_default_collision_sphere.radius);
     }
-    static_cast<TObjEZRopeBase *>(arg0)->sub_800FF8CC(SELF->a, SELF->b, SELF->c);
-    return arg0;
+    sub_800FF8CC(segment_storage, anchor_storage, sphere_storage);
 }
-#undef SELF
 
 TObjHMS_EZRope_Player::~TObjHMS_EZRope_Player() {
     if (segment_storage != NULL) {

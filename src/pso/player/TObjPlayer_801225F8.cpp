@@ -26,24 +26,21 @@ void TObjPlayer::cast_tech_gibarta() {
 }
 void TObjPlayer::notify_container_if_mode1() { if (get_player_list__10TObjPlayerFv(this) == 1) { rotate_matrix_x((void*)0, *(void* *)&this->unk_1F8); } }
 
-extern f32 lbl_805DACF0;
-extern f32 lbl_805DACF4;
-
 void TUnk_804A1098::update_idle() {
-    if ((s32) this->m_1fc == 3) {
-        this->m_1fc = 1;
+    if (m_1fc == 3) {
+        m_1fc = 1;
     }
-    if (((s32) this->m_1fc == 0) && ((lbl_805DACF0 * (f32) rand()) < lbl_805DACF4)) {
-        this->m_1fc = 2;
+    if ((m_1fc == 0) && (((1.0f / 32768.0f) * (f32)rand()) < 0.1f)) {
+        m_1fc = 2;
     }
 }
 
 void TUnk_804A1098::update_attack() {
     s32 temp_r0;
 
-    temp_r0 = this->m_1fc;
+    temp_r0 = m_1fc;
     if ((temp_r0 == 1) || (temp_r0 == 0)) {
-        this->m_1fc = 2;
+        m_1fc = 2;
     }
 }
 
