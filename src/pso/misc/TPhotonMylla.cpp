@@ -117,16 +117,6 @@ void *find_entity_by_id(u16 id);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 
 u8 *__nw__7TObjectFUl(s32, f32);
-extern const f32 lbl_805DC1FC;
-extern const f32 lbl_805DC200;
-extern const f32 lbl_805DC204;
-extern const f32 lbl_805DC208;
-extern const f32 lbl_805DC20C;
-extern const f32 lbl_805DC210;
-extern const f32 lbl_805DC214;
-extern const f32 lbl_805DC218;
-extern const f32 lbl_805DC21C;
-extern const f32 lbl_805DC220;
 s32 clear_render_context__10TObjPlayerFv(void *);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix();
@@ -168,8 +158,14 @@ void *__dt__12TPhotonMyllaFv(void *arg0, s16 arg1);
 s32 __dl__7TObjectFPv(void *);
 void *destroy_photon_motion_object(void *arg0, s16 arg1);
 
-    extern const float lbl_805DC1F8;
-void TPhotonMylla::sub_801AD4A8() { *(float *)&this->m_184 = lbl_805DC1F8; *(float*)((char*)this + 0x188) = lbl_805DC1F8; this->m_18c = lbl_805DC1F8; *(float *)&this->unk_190 = lbl_805DC1F8; }
+// Literals emit this unit's original scalar pool; see docs/evidence/photon-mylla-constant-pool.md.
+void TPhotonMylla::sub_801AD4A8() {
+    Self_801AD4C0 *self = (Self_801AD4C0 *)this;
+    self->color.a = 0.0f;
+    self->color.r = 0.0f;
+    self->color.g = 0.0f;
+    self->color.b = 0.0f;
+}
 
 #pragma push
 #pragma opt_common_subs off
@@ -238,13 +234,13 @@ void TPhotonMylla::run_task() {
             VecCopy((Vec *)(&stack.sp2C), (const Vec *)(entity + 0x38));
         }
         temp_f1 = stack.sp30;
-        stack.sp30 = temp_f1 + lbl_805DC1FC;
+        stack.sp30 += 30.0f;
         photon_magic_square = (u8 *)(__nw__7TObjectFUl(0xD0, temp_f1));
         if (photon_magic_square != NULL) {
-            TPhotonMagicSquare__ct((u8 *)photon_magic_square, (s32)arg0, 5, (s32)&stack.sp2C, 0xAA, (f32)lbl_805DC200);
+            TPhotonMagicSquare__ct((u8 *)photon_magic_square, (s32)arg0, 5, (s32)&stack.sp2C, 0xAA, 0.5f);
         }
     }
-    if ((lbl_805DC204 == (f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4) && ((s16) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_B8 == 1)) {
+    if ((100.0f == (f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4) && ((s16) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_B8 == 1)) {
         ((TUnk_804C3248 *)arg0)->begin_photon_summon_camera(3);
         ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4 = 0;
         ((TObjMotion *)arg0)->set_field_b8(0);
@@ -257,38 +253,38 @@ void TPhotonMylla::run_task() {
     ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_14C = (s16) (((RecoveredFields_801AD5D8_arg0 *)arg0)->field_14C + 0xF);
     ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_14C = (s16) (u8) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_14C;
     ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4 = (s32) (((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4 + 1);
-    if (lbl_805DC208 == (f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4) {
+    if (118.0f == (f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4) {
         temp_r3_3 = (u8 *)(find_entity_by_id(((RecoveredFields_801AD5D8_arg0 *)arg0)->field_17C));
         if (temp_r3_3 != NULL) {
             VecCopy((Vec *)(&stack.sp20), (const Vec *)(temp_r3_3 + 0x38));
         }
-        stack.sp24 += lbl_805DC20C;
+        stack.sp24 += 45.0f;
         spawn_particle_effect((const Vec *)(&stack.sp20), 0x174);
         spawn_particle_effect((const Vec *)(&stack.sp20), 0x175);
     }
-    if (lbl_805DC210 == (f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4) {
+    if (120.0f == (f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4) {
         temp_r3_4 = (u8 *)(find_entity_by_id(((RecoveredFields_801AD5D8_arg0 *)arg0)->field_17C));
         if (temp_r3_4 != NULL) {
             VecCopy((Vec *)(&stack.sp14), (const Vec *)(temp_r3_4 + 0x38));
         }
-        stack.sp18 += lbl_805DC20C;
+        stack.sp18 += 45.0f;
         spawn_particle_effect((const Vec *)(&stack.sp14), 0x169);
     }
-    if (lbl_805DC214 == (f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4) {
+    if (122.0f == (f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4) {
         temp_r3_5 = (u8 *)(find_entity_by_id(((RecoveredFields_801AD5D8_arg0 *)arg0)->field_17C));
         if (temp_r3_5 != NULL) {
             VecCopy((Vec *)(&stack.sp8), (const Vec *)(temp_r3_5 + 0x38));
         }
-        stack.spC += lbl_805DC20C;
+        stack.spC += 45.0f;
         spawn_particle_effect((const Vec *)(&stack.sp8), 0x169);
         if (temp_r3_5 != NULL) {
             queue_photon_blast_hit((int) (get_entity_id(temp_r3_5)), 5, 0, (f32) (((RecoveredFields_801AD5D8_arg0 *)arg0)->field_150));
         }
     }
-    if ((f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4 > lbl_805DC218) {
+    if ((f32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A4 > 116.0f) {
         temp_f1_2 = ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_184;
-        if (temp_f1_2 > lbl_805DC21C) {
-            ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_184 = (f32) (temp_f1_2 - lbl_805DC220);
+        if (temp_f1_2 > -1.0f) {
+            ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_184 = (f32) (temp_f1_2 - 0.15f);
         }
     }
     if ((s32) ((RecoveredFields_801AD5D8_arg0 *)arg0)->field_1A0 != 0) {
@@ -387,10 +383,10 @@ void *TPhotonMylla__ct(Mylla_801AD970 *self, Pkt_801AD970 *pkt) {
         if (owner != NULL) {
             VecCopy((Vec *)&v, (const Vec *)(owner + 0x38));
         }
-        v.y = v.y + lbl_805DC1FC;
+        v.y += 30.0f;
         o = NEW_801AD970(0xD0);
         if (o != NULL) {
-            TPhotonMagicSquare__ct((u8 *)o, (s32)self, 5, (s32)&v, 0xAA, (f32)lbl_805DC200);
+            TPhotonMagicSquare__ct((u8 *)o, (s32)self, 5, (s32)&v, 0xAA, 0.5f);
         }
         spawn_photon_blast_attachment_effects((TPhotonMylla *)self, 5);
         play_cue_stream_file((s32)lbl_80446E80);
