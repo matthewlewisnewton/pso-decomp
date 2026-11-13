@@ -15,7 +15,6 @@
 #include "types.h"
 #include "pso/misc/TWindowKeyBoardSoft_80261440.h"
 
-struct Win_8024701C { u8 p0[0x1E]; u16 flags; s32 f20; u8 p24[4]; s32 f28; };
 
 struct Win_802473C8 { u8 pad0[0x1E]; u16 flags; };
 
@@ -41,8 +40,7 @@ s32 TAdSinglePlyChrSelectGC__sub_80076D9C(s32 arg0, s32 arg1);
 int get_chat_shortcut(s32 arg0);
 s32 update_selected_symbol__20TWindowSubSymbolChatFv();
 s32 reset_input__11TWindowChatFv(int);
-s32 sub_8025CB10__19TWindowKeyBoardBaseFv(s32);
-bool TWindowCtrl__sub_8024701C(Win_8024701C *w);
+bool TWindowCtrl__sub_8024701C(TWindowChat *w);
 void *get_player_by_client_id(s32 i);
 extern s32 local_client_id;
 s32 has_player_active_menu__11TWindowCtrlFv(s32);
@@ -65,14 +63,14 @@ void TWindowChat__sub_80247E50(u8 *arg0);
 void fn_80247ED8(void* p);
     extern int chat_help_color_table[];
 int TWindowSubSymbolChatHelp__sub_80247EE8(int a0);
-bool TWindowCtrl__sub_8024701C(Win_8024701C *w) {
+bool TWindowCtrl__sub_8024701C(TWindowChat *w) {
     bool r;
-    if (sub_8025CB10__19TWindowKeyBoardBaseFv(w->f20) != 0) {
+    if (((TWindowKeyBoardBase *)w->composer)->sub_8025CB10() != 0) {
         r = true;
     } else if (!(w->flags & 2)) {
         r = true;
     } else {
-        r = TWindowChat__sub_80247D50((u8 *)w->f28) != 0;
+        r = TWindowChat__sub_80247D50((u8 *)w->hardKeyboard) != 0;
     }
     return r;
 }
