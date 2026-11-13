@@ -15,6 +15,16 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Raft splash shared constant
+
+`src/pso/boss/TObjBoss2RaftSplash.cpp` defines the shared scalar at
+`0x805D85B0` after `run_task` so CodeWarrior retains the named load rather
+than emitting a duplicate literal. Its guarded `__declspec(section ".sdata2")`
+keeps the scalar in the original small-data section; without it the scalar lands in
+`.sdata`. Dust, the raft-splash constructor and the tunnel update also read
+this exported scalar. Other compilers use the ordinary `const f32` definition
+and need no section placement or definition-order constraint.
+
 ## Summary (including complete TCP recovery, 2026-11-12 UTC)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)

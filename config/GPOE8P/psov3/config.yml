@@ -531,6 +531,7 @@ force_active:
   - TChCrEffCtrlPl__name
   - TChCrEffTagStr__name
   - TChCrEffTag__name
+  - TChCrEffWall__name
   - TChCrLoadAfsTextureReq__active_load_count
   - TChCrLoadAfsTextureReq__ct
   - TChCrLoadGmNjReq__ct
@@ -5749,6 +5750,8 @@ force_active:
   - creation_body_shape_destination
   - creation_body_shape_samples
   - creation_cap_model_parts
+  - creation_effwall_sprite_position_table
+  - creation_effwall_sprite_size_table
   - creation_empty_model_node
   - creation_hair_model_parts
   - creation_head_model_parts
@@ -8271,6 +8274,7 @@ force_active:
   - lbl_80450AA0
   - lbl_80450AB4
   - lbl_80451CD0
+  - lbl_804652E0
   - lbl_80465A48
   - lbl_80465A68
   - lbl_80465A88
