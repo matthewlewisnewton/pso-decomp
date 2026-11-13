@@ -1,4 +1,5 @@
 #include "pso/misc/TEnding.h"
+#include "pso/TEndingPic.h"
 #include "pso/map/FloorArea.h"
 #include "pso/misc/TEndingPicStage.h"
 #include "pso/misc/ParticleRadial.h"
@@ -15,7 +16,6 @@ void TAdRicoRingCtrl__sub_8001B4A0(TAdRicoRingCtrl *, f32);
 s32 get_end_text_font_loaded_flag();
 u32 __cvt_fp2unsigned(f32);
 int TKeyBoardControl__sub_8000F828(void);
-u8 *__ct__10TEndingPicFv(u8 *arg0, u8 *arg1);
 u8 *TAdRicoRingCtrl__ct(TAdRicoRingCtrl *arg0, s32 arg1);
 void __ct__10TAdEndTextFv(void *, TObject *);
 extern u32 ending_frame_counter;
@@ -75,8 +75,7 @@ TEnding::TEnding() : TObject(tl_window) {
     case 0: timing_rate = 30; break;
     case 1: timing_rate = 25; break;
     }
-    void *picture = TObject::operator new(0xF0);
-    if (picture != NULL) __ct__10TEndingPicFv((u8 *)picture, (u8 *)tl_01);
+    new TEndingPic(tl_01);
     void *first = TObject::operator new(0xF0);
     if (first != NULL) __ct__9TEndingABFv((u8 *)first, (u8 *)this);
     void *second = TObject::operator new(0x9C);
