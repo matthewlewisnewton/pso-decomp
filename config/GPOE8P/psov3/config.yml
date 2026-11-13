@@ -3761,7 +3761,7 @@ force_active:
   - advance_bone_rotation__19TObjEZBoneRotPlayerFv
   - advance_bura__11TBoss4Type3Fv
   - advance_camera_ctrl_step__13TObjEneMe1GeeFP10NJS_OBJECT
-  - advance_camera_ctrl_step__19TObjEneEpsilonGuardFv
+  - advance_camera_ctrl_step__19TObjEneEpsilonGuardFP10NJS_OBJECT
   - advance_capture__11TBoss4Type3Fv
   - advance_cut__11TBoss4Type3Fv
   - advance_dark_magic__11TBoss4Type3Fv
@@ -3817,7 +3817,7 @@ force_active:
   - adxf_open_file_buffer
   - aim_toward_point__11TBoss6Type2FPv
   - alerted_state__14TObjEneBm5WolfFl
-  - all_children_gone__19TObjEneEpsilonGuardFv
+  - all_children_gone__18TObjEneEpsilonBodyFv
   - alloc_boss4rock_buffer__6TLobbyFv
   - alloc_boss_target_slot__16TBoss3VoloptCoreFv
   - alloc_breakup_model__13TUnk_804E3BD8Fl
@@ -13952,7 +13952,7 @@ force_active:
   - receive_weapon_special_attack__20TContainerAncient01RFPvPv
   - recobox_boss_register_id
   - recobox_motion_name_table
-  - record_camera_angle_samples__19TObjEneEpsilonGuardFv
+  - record_camera_angle_samples__19TObjEneEpsilonGuardFP10NJS_OBJECT
   - record_model_node_position__13TObjEneMorfosFP10NJS_OBJECT
   - record_hit__22TObjFogCollisionPoisonFll
   - record_local_battle_placement
