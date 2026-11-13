@@ -15,6 +15,7 @@ guides.
 - [Ballistic particle recovery](ballistic-particle-recovery.md)
 - [Battle parameter tables](battle-parameter-evidence.md)
 - [Camera orbit controller native recovery](camera-orbit-controller-recovery.md)
+- [Bridge and item-light constant ownership](bridge-item-light-constant-pool.md)
 - [Cast-technique (6x47) register allocation](cast-technique-6x47-register-allocation.md)
 - [Actor position layout guards](chara-position-layout-evidence.md)
 - [Character movement vector](chara-velocity-evidence.md)
