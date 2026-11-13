@@ -39,6 +39,7 @@ extern u8 controller_input_state[];
 void *__nw__7TObjectFUl(u32);
 s32 __ct__15TWindowHelpItemFPvUs(void *, void *, s32);
 s32 create_equip_list_window(void *, void *, s32);
+void update_window__19TWindowSubEquipListFv(void *);
 extern s32 lbl_8044F918[];
 extern s32 __vt__15TWindowSubEquip[];
 extern s32 TWindowSubEquip__class_name;
@@ -97,7 +98,7 @@ void TWindowSubEquip::run_task() {
         fn_80255A38(this->m_30);
         this->m_20 = -1;
         this->m_24 = -1;
-        ((TWindowSubEquip *)(this->m_34))->update_window();
+        update_window__19TWindowSubEquipListFv((void *)(this->m_34));
         ((TWindowMenuIconLine *)(this->m_34))->clear_decided();
         ((TWindowSubMag *)(this->m_34))->start_scroll(188.0f);
         this->m_1c = 2U;
