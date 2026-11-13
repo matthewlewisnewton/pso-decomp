@@ -4344,7 +4344,7 @@ struct PktB_802ED62C { u8 hdr[2]; u16 a; s16 b; s16 c; };
 struct Elem_802ED73C { u8 pad0[0x18]; s32 flags; u8 pad1C[0x2C - 0x1C]; };
 
 extern "C" {
-s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, s32, s32, s32);
+s32 reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 void TBoss7PhotonBullet__sub_802ED5A0(void *arg0, int arg1);
 s32 update_local_colliders_from_world(void *, void *);
 #define VecCopy__FP3VecPC3Vec ((s32 (*)(void *, void *))VecCopy__FP3VecPC3Vec)
@@ -4376,7 +4376,7 @@ void TBoss7PhotonBullet__sub_802ED5A0(void *arg0, int arg1) {
         v = 0x11;
         break;
     }
-    reload_stats_keep_hp_tp__9TObjEneDDFv(arg0, (s32)get_battle_base_stats(0xF), (s32)get_battle_attack_params(v), (s32)get_battle_resistance_params(0xF));
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(arg0, (s32)get_battle_base_stats(0xF), (s32)get_battle_attack_params(v), (s32)get_battle_resistance_params(0xF));
 }
 
 void TBoss7DeRolLeC::set_state_and_send(s32 arg1) {

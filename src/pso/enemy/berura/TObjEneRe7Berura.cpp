@@ -2020,7 +2020,7 @@ s32 start_negative_fade_phase__13TUnk_80490470Fv(void *);
 void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
 s32 enemy_set_target_id(void *, u16);
 void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);
-int reload_stats_keep_hp_tp__9TObjEneDDFv(void *self, void *a, void *b, void *c);
+int reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *self, void *a, void *b, void *c);
 void reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 void initialize_enemy_state__9TObjEneDDFl(void *, int);
 s32 is_alive__8TObjBaseFv(void *);
@@ -2365,13 +2365,13 @@ void TObjEneRe7Berura::play_band_sound() {
 #pragma pop
 
 void TObjEneRe7Berura__sub_80094C68(TObjEneRe7Berura *self) {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(self, ((void * *)berura_base_stats)[TObjEneRe7Berura__data_80439DA8[0]],
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, ((void * *)berura_base_stats)[TObjEneRe7Berura__data_80439DA8[0]],
                             ((void * *)berura_attack_stats)[TObjEneRe7Berura__data_80439DB0[0]],
                             ((void * *)berura_resistance_stats)[TObjEneRe7Berura__data_80439DB8[0]]);
 }
 
 void TObjEneRe7Berura::reload_stats_from_tables() {
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this, ((void * *)berura_base_stats)[TObjEneRe7Berura__data_80439DA8[1]],
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this, ((void * *)berura_base_stats)[TObjEneRe7Berura__data_80439DA8[1]],
                             ((void * *)berura_attack_stats)[TObjEneRe7Berura__data_80439DB0[1]],
                             ((void * *)berura_resistance_stats)[TObjEneRe7Berura__data_80439DB8[1]]);
 }

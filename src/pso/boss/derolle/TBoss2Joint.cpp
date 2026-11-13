@@ -322,12 +322,12 @@ void TBoss2Joint::init_joint_offset(s32 arg1) {
 }
 
 struct Ent_80036ACC { s32 a; s32 b; };
-void reload_stats_keep_hp_tp__9TObjEneDDFv(void *, int, int, int);
+void reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 // Breaks the shell: marks it broken, reloads the stats and throws the 19
 // breakup pieces. Its slot passes a float that the shell does not use.
 s32 TBoss2Joint::vfunc_104(f32) {
     m_38c |= 1;
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this,
+    reload_stats_keep_hp_tp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(this,
         (s32)get_battle_base_stats(((Ent_80036ACC *)&TBoss2Joint__param_table)->b),
         (s32)get_battle_attack_params(((Ent_80036ACC *)lbl_80482A58)->b),
         (s32)get_battle_resistance_params(((Ent_80036ACC *)lbl_80482A60)->b));

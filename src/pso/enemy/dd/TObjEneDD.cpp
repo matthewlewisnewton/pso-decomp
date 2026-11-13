@@ -1554,7 +1554,7 @@ void TObjEneDD::reset_hp(BattleBaseStats *base_stats, AttackParams *attack_stats
     referenceHp = hp;
 }
 
-void TObjEneDD::reload_stats_keep_hp_tp() {
+void TObjEneDD::reload_stats_keep_hp_tp(BattleBaseStats *, AttackParams *, ActorParamBlock *) {
     Obj_800B9E84 *self = (Obj_800B9E84 *)this;
     s16 a = this->hpmax;
     s16 c = this->hp;
