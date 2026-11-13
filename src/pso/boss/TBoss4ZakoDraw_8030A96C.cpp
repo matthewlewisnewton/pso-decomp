@@ -86,15 +86,12 @@ void TObjPlayer__sub_8030A9B0() {
     f32 d;
     f32 t;
     f32 k;
-    u32 old;
-
-    old = model_render_flags;
-    model_render_flags = old & ~0x10;
-    saved_model_render_flags = old;
+    saved_model_render_flags = model_render_flags;
     saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
     saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
+    model_render_flags &= ~0x10U;
     model_render_flags |= lbl_805DF138;
-    ((void (*)(int, int, u32, s32, s32, u32))set_chunk_material_override_pair)(0xFF00, 0x900, old & ~0x10, chunk_polygon_flags_or_mask, chunk_polygon_flags_and_mask, old);
+    set_chunk_material_override_pair(0xFF00, 0x900);
     tbl = &boss4_zako_draw_buffers[TBoss4ZakoDraw__draw_buffer_index];
     e = tbl->entries;
     rot = (TBoss4ZakoDraw__rotation_phase << 16) / 16;
