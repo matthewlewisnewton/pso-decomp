@@ -56,7 +56,7 @@ s32 get_window_layout_position(int);
 s32 TWindowDD__ct(int, void *, void *);
 void *__dt__11TWindowChatFv(void *, s16);
 void *__dt__11TWindowChatFv(void *arg0, s16 arg1);
-s32 TWindowChat__sub_80247D50(u8 *arg0);
+s32 TWindowChat__sub_80247D50(TWindowKeyBoardHard *arg0);
 int TWindowChat__sub_80247DAC(void* p);
 void TWindowChat__sub_80247DFC(u8 *arg0);
 void TWindowChat__sub_80247E50(u8 *arg0);
@@ -70,7 +70,7 @@ s32 TWindowCtrl__sub_8024701C(TWindowChat *w) {
     if (!(w->flags & 2)) {
         return 1;
     }
-    return TWindowChat__sub_80247D50((u8 *)w->hardKeyboard) != 0 ? 1 : 0;
+    return TWindowChat__sub_80247D50((TWindowKeyBoardHard *)w->hardKeyboard) != 0 ? 1 : 0;
 }
 
 s32 TWindowChat::sub_80247080() {
@@ -475,8 +475,8 @@ u8 TWindowChat::get_input_mode() { return *(u8*)((char*)this + 0x65); }
 
 int TWindowChat::get_flag() { return (*(u16*)((char*)this + 0x60) >> 6) & 0x1; }
 
-s32 TWindowChat__sub_80247D50(u8 *arg0) {
-    return *(s32 *)((s8 *)arg0 + 0x68) > 0;
+s32 TWindowChat__sub_80247D50(TWindowKeyBoardHard *arg0) {
+    return arg0->m_68 > 0;
 }
 
 int TWindowChat::forward_card_at_1c() { return ((TWindowMenu *)(*(void**)((char*)this + 0x1c)))->get_selected_value(); }
