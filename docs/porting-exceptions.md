@@ -26,7 +26,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 89 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,699 | 883 |
+| CodeWarrior pragmas (excluding push/pop) | 5,860 | 887 |
 | Per-unit compiler overrides in `configure.py` | 205 | 205 |
 | Approved regressions | 0 | 0 |
 
@@ -205,11 +205,11 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,719 pragmas in 881 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1112, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803,
-`opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247,
-`readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
-`defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
+5,860 pragmas in 887 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1150, `inline_depth` 1055, `fp_contract` 883, `auto_inline` 803,
+`opt_common_subs` 638, `scheduling` 264, `opt_propagation` 264,
+`readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57,
+`defer_codegen` 56, `pack` 46, `opt_dead_assignments` 42. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -531,7 +531,7 @@ The complete provider now links as three native layout groups; see
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-195 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+205 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
