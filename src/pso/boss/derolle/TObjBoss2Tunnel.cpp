@@ -146,41 +146,10 @@ s32 set_stream_and_load_file__6TLobbyFi(s32);
 s32 is_on_current_screen__11TCameraCtrlFv(void *, s32);
 }
 extern s32 screen_binary_filename;
-// A velocity/position ramp: accelerate from v0 to peak, cruise, brake to rest over dist.
-// init_piecewise_curve fills it, eval_piecewise_curve reads the speed, sample_piecewise_curve the distance.
-struct PiecewiseCurve {
-    f32 accel;
-    f32 decel;
-    f32 v0;
-    f32 peak;
-    f32 accelEnd;
-    f32 decelStart;
-    f32 end;
-    f32 t;
-    f32 accelDist;
-    f32 decelPos;
-    f32 dist;
-};
-extern "C" {
-}
-// The same ramp without a start speed or clock (init_acceleration_curve / sample_acceleration_curve).
-struct AccelerationCurve {
-    f32 accel;
-    f32 decel;
-    f32 peak;
-    f32 accelEnd;
-    f32 decelStart;
-    f32 end;
-    f32 accelDist;
-    f32 decelPos;
-    f32 dist;
-};
 extern "C" {
 f32 sample_acceleration_curve(AccelerationCurve *c, f32 t);
 void init_acceleration_curve(AccelerationCurve *c, f32 a, f32 d, f32 length, f32 speed);
 void __dl__FPv(void);
-s32 reset_floats__15TObjBoss2TunnelFv();
-int reset_coords__15TObjBoss2TunnelFv();
 s32 get_view_matrix__11TCameraCtrlFv();
 int vec3_add_to(void*, void*);
 int TCameraCtrl__sub_8006B370(f32 farg0);
@@ -432,20 +401,24 @@ s32 TObjBoss2Tunnel::decrement_packed_timer(u32 *arg0, s32 arg1) {
     return 0;
 }
 
-s32 TObjBoss2Tunnel::reset_coords_pass(s32 arg0) {
-    reset_coords__15TObjBoss2TunnelFv();
-    return arg0;
+AccelerationCurve::AccelerationCurve() {
+    TObjBoss2Tunnel::reset_coords(this);
 }
 
-s32 TObjBoss2Tunnel::maybe_delete(s32 arg0, s16 arg1) {
-    if ((arg0 != 0) && (arg1 > 0)) {
-        __dl__FPv();
-    }
-    return arg0;
-}
+AccelerationCurve::~AccelerationCurve() {}
 
 }
-void TObjBoss2Tunnel::reset_coords() { *(float *)&this->m_flags = 0.0f; *(float *)&this->m_name = 0.0f; *(float *)&this->m_prev = 0.0f; *(float *)&this->m_down = 0.0f; *(float *)&this->m_up = 0.0f; *(float *)&this->m_next = 0.0f; *(float *)&this->m_20 = 0.0f; *(float *)&this->_pad1C = 0.0f; *(float*)((char*)this + 0x18) = 0.0f; }
+void TObjBoss2Tunnel::reset_coords(AccelerationCurve *c) {
+    c->decel = 0.0f;
+    c->accel = 0.0f;
+    c->peak = 0.0f;
+    c->end = 0.0f;
+    c->decelStart = 0.0f;
+    c->accelEnd = 0.0f;
+    c->dist = 0.0f;
+    c->decelPos = 0.0f;
+    c->accelDist = 0.0f;
+}
 
 extern "C" {
 void init_acceleration_curve(AccelerationCurve *c, f32 a, f32 d, f32 length, f32 speed) {
@@ -482,8 +455,8 @@ void init_acceleration_curve(AccelerationCurve *c, f32 a, f32 d, f32 length, f32
     c->end = c->decelStart + (-c->peak / c->decel);
 }
 
-int TObjBoss2Tunnel::check_param_threshold(f32 arg1) {
-    return arg1 >= *(f32 *)&this->m_down;
+int TObjBoss2Tunnel::check_param_threshold(AccelerationCurve *c, f32 arg1) {
+    return arg1 >= c->end;
 }
 
 }
@@ -519,20 +492,32 @@ f32 sample_acceleration_curve(AccelerationCurve *c, f32 t) {
 }
 #pragma pop
 extern "C" {
-s32 TObjBoss2Tunnel::reset_floats(s32 arg0) {
-    reset_floats__15TObjBoss2TunnelFv();
-    return arg0;
+PiecewiseCurve *TObjBoss2Tunnel::reset_floats_pass(PiecewiseCurve *c) {
+    reset_floats(c);
+    return c;
 }
 
-s32 TObjBoss2Tunnel::dt(s32 arg0, s16 arg1) {
-    if ((arg0 != 0) && (arg1 > 0)) {
+PiecewiseCurve *TObjBoss2Tunnel::dt(PiecewiseCurve *c, s16 arg1) {
+    if ((c != NULL) && (arg1 > 0)) {
         __dl__FPv();
     }
-    return arg0;
+    return c;
 }
 
 }
-void TObjBoss2Tunnel::reset_floats() { *(float *)&this->m_flags = 0.0f; *(float *)&this->m_name = 0.0f; *(float *)&this->m_next = 0.0f; *(float *)&this->m_prev = 0.0f; *(float*)((char*)this + 0x18) = 0.0f; *(float *)&this->m_down = 0.0f; *(float *)&this->m_up = 0.0f; *(float *)&this->_pad1C = 0.0f; *(float *)&this->m_28 = 0.0f; *(float *)&this->m_24 = 0.0f; *(float *)&this->m_20 = 0.0f; }
+void TObjBoss2Tunnel::reset_floats(PiecewiseCurve *c) {
+    c->decel = 0.0f;
+    c->accel = 0.0f;
+    c->peak = 0.0f;
+    c->v0 = 0.0f;
+    c->end = 0.0f;
+    c->decelStart = 0.0f;
+    c->accelEnd = 0.0f;
+    c->t = 0.0f;
+    c->dist = 0.0f;
+    c->decelPos = 0.0f;
+    c->accelDist = 0.0f;
+}
 
 extern "C" {
 void init_piecewise_curve(PiecewiseCurve *c, f32 accel, f32 decel, f32 dist, f32 v0, f32 peak) {
@@ -582,8 +567,7 @@ void init_piecewise_curve(PiecewiseCurve *c, f32 accel, f32 decel, f32 dist, f32
 #pragma push
 #pragma fp_contract on
 extern "C" {
-f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {
-    PiecewiseCurve *c = (PiecewiseCurve *)this;
+f32 TObjBoss2Tunnel::eval_piecewise_curve(PiecewiseCurve *c, f32 farg0) {
     f32 t;
     f32 r = 0.0f;
     if (farg0 < r) {
@@ -607,8 +591,8 @@ f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {
 }
 #pragma pop
 extern "C" {
-void TObjBoss2Tunnel::update_position() {
-    eval_piecewise_curve(*(f32 *)&this->_pad1C);
+f32 TObjBoss2Tunnel::update_position(PiecewiseCurve *c) {
+    return eval_piecewise_curve(c, c->t);
 }
 
 }
@@ -636,8 +620,7 @@ s32 sample_piecewise_curve(PiecewiseCurve *c, f32 *out, f32 t) {
 
 }
 #pragma pop
-s32 TObjBoss2Tunnel::advance_phase(f32 *out) {
-    PiecewiseCurve *c = (PiecewiseCurve *)this;
+s32 TObjBoss2Tunnel::advance_phase(PiecewiseCurve *c, f32 *out) {
     s32 done = sample_piecewise_curve(c, out, c->t);
     c->t += 1.0f;
     return done;

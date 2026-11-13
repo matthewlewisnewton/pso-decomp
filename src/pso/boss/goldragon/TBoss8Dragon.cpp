@@ -37,6 +37,10 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/boss/darkfalz/TBoss4Type2.h"
 #include "pso/boss/goldragon/TBoss8DragonEffTail.h"
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
+extern "C" {
+void *__ct__17AccelerationCurveFv(void *);
+void *__dt__17AccelerationCurveFv(void *, s16);
+}
 #include "pso/enemy/shinowa/TObjEneMe3ShinowaReal.h"
 #include "pso/enemy/panarms/TObjEnePanarms.h"
 #include "pso/enemy/berura/TObjEneRe7Berura.h"
@@ -5391,7 +5395,7 @@ void TBoss8Dragon::state_turn_and_charge(u32 arg1) {
         case 0:
             d->field_864 += 1.0f;
             d->angle = (s32)((f32)d->sign * sample_acceleration_curve(d->curve1, d->field_864) + (f32)d->base);
-            if (((TObjBoss2Tunnel *)(d->curve1))->check_param_threshold(d->field_864) != 0) {
+            if (TObjBoss2Tunnel::check_param_threshold((AccelerationCurve *)(d->curve1), d->field_864) != 0) {
                 d->field_864 = 0.0f;
                 d->field_84C = 1;
             }
@@ -5406,7 +5410,7 @@ void TBoss8Dragon::state_turn_and_charge(u32 arg1) {
             v.y = 0.0f;
             v.z = d->dir.z * dlt;
             apply_ground_movement__12TBoss8DragonFPvPv(boss8_dragon, &v.x);
-            if (((TObjBoss2Tunnel *)(d->curve0))->check_param_threshold(d->field_864) != 0) {
+            if (TObjBoss2Tunnel::check_param_threshold((AccelerationCurve *)(d->curve0), d->field_864) != 0) {
                 d->field_84C = 2;
             }
             break;
@@ -6986,8 +6990,8 @@ u8 *__dt__12TBoss8DragonFv(u8 *arg0, s16 arg1) {
             TBoss8Dragon__data_805D69AC = NULL;
         }
         __destroy_arr(arg0 + 0x6DC, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
-        TObjBoss2Tunnel::maybe_delete((s32)(arg0 + 0x610), (s16)(-1));
-        TObjBoss2Tunnel::maybe_delete((s32)(arg0 + 0x5EC), (s16)(-1));
+        __dt__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x610), -1);
+        __dt__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x5EC), -1);
         __dt__7TObjectFv(arg0 + 0x3C4, -1);
         __dt__12TObjEneDD_STFv(arg0, 0);
         if (arg1 > 0) {
@@ -7134,8 +7138,8 @@ u8 *__ct__12TBoss8DragonFP7TObjectPv(u8 *arg0, void *arg1, void *arg2) {
     __ct__12TObjEneDD_STFP7TObject(arg0, arg1, arg2);
     *(u8 * *)&((TBoss8Dragon *)arg0)->m_18 = (u8 *)__vt__12TBoss8Dragon;
     __ct__7TObjectFP7TObject(arg0 + 0x3C4, 0);
-    TObjBoss2Tunnel::reset_coords_pass((s32)(arg0 + 0x5EC));
-    TObjBoss2Tunnel::reset_coords_pass((s32)(arg0 + 0x610));
+    __ct__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x5EC));
+    __ct__17AccelerationCurveFv((AccelerationCurve *)(arg0 + 0x610));
     __construct_array(arg0 + 0x6DC, (void *) __ct__15RenderFadeStateFv, (void *) __dt__15RenderFadeStateFv, 0x1C, 4);
     __ct__14SubtractiveRngFv(arg0 + 0x764);
     ((TBoss8Dragon *)arg0)->m_0 = boss8_dragon_class_name;
@@ -7186,8 +7190,8 @@ u8 *__ct__12TBoss8DragonFP7TObjectPv(u8 *arg0, void *arg1, void *arg2) {
     *(f32 *)((s8 *)arg0 + 0x5E0) = TBoss8Dragon__data_805DED50;
     ((TBoss8Dragon *)arg0)->m_5e4 = TBoss8Dragon__data_805DED50;
     *(f32 *)((s8 *)arg0 + 0x5E8) = TBoss8Dragon__data_805DED50;
-    ((TObjBoss2Tunnel *)(arg0 + 0x5EC))->reset_coords();
-    ((TObjBoss2Tunnel *)(arg0 + 0x610))->reset_coords();
+    TObjBoss2Tunnel::reset_coords((AccelerationCurve *)(arg0 + 0x5EC));
+    TObjBoss2Tunnel::reset_coords((AccelerationCurve *)(arg0 + 0x610));
     VecCopy__FP3VecPC3Vec(arg0 + 0x634, arg0 + 0x38);
     VecCopy__FP3VecPC3Vec(arg0 + 0x640, arg0 + 0x38);
     ((TBoss8Dragon *)arg0)->m_64c = 0;
