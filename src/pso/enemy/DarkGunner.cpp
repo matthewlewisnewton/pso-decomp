@@ -232,7 +232,7 @@ f32 atan2_float(f32, f32);
 u8 * csnVector(void *, Vec_800A34E8 *, s32);
 void * __dt__13TUnk_80490470Fv(void *, s16);
 s32 trigger_targets_action__10TObjPlayerFv();
-u8 * TObjEneDarkGunCenter__ct(u8 *arg0, s32 arg1, s32 arg2);
+u8 * TObjEneDarkGunCenter__ct(u8 *arg0, TObject *arg1, void *arg2);
 void clear_lappy_flag_set_param(TObjEneLappy *arg0);
 void fn_800A0FDC(TObjEneLappy *arg0);
 void TObjPlayer__sub_800A100C(s32 _w0);
@@ -635,7 +635,7 @@ extern s32 lbl_805D5018;
 extern s32 TObjPlayer__shadow_chunk_object;
 extern void *tl_04;
 
-u8 *TObjEneDarkGunCenter__ct(u8 *arg0, s32 arg1, s32 arg2) {
+u8 *TObjEneDarkGunCenter__ct(u8 *arg0, TObject *arg1, void *arg2) {
     Obj_800A0EDC *o;
     s32 i;
     __ct__9TObjEnemyFP7TObject(arg0);

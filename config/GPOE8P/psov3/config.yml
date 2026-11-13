@@ -260,6 +260,7 @@ force_active:
   - TBoss1DragonColli_C__ct
   - TBoss1DragonColli_sphere_chain_desc
   - TBoss1DragonEffBreath__name
+  - TBoss1DragonEffBullet__name
   - TBoss1Dragon__ct
   - TBoss1Dragon__data_80434E80
   - TBoss1Dragon__data_80480CE0
@@ -435,6 +436,7 @@ force_active:
   - TBoss7Tentacle__sub_802F0A44
   - TBoss8DragonDemo__sub_802F2CC4
   - TBoss8DragonEffBreath__name
+  - TBoss8DragonEffBullet__name
   - TBoss8Dragon__camera_offset_index_table
   - TBoss8Dragon__data_804E4C28
   - TBoss8Dragon__data_80541DC8
@@ -614,7 +616,8 @@ force_active:
   - TItemEffArmor__ct
   - TItemEffBringer__class_name
   - TItemEffBringer__class_name_string
-  - TItemEffEquip__ct
+  - TItemEffEquip__class_name
+  - TItemEffEquip__class_name_string
   - TItemEffFlame__class_name
   - TItemEffHeaven__class_name
   - TItemEffNeedleBase__class_name
@@ -2246,6 +2249,7 @@ force_active:
   - __ct__13List_801D4744Fl
   - __ct__13PointerBufferFlPv
   - __ct__13TItemAttackerFllll
+  - __ct__13TItemEffEquipFP7TObjectUslll
   - __ct__13TItemEffFlameFP7TObjectP12ActorBodyHit
   - __ct__13TItemEffLavisFPvPC3VecPC3Vecf
   - __ct__13TOCapsuleLaboFP7TObjectPv
@@ -2268,7 +2272,7 @@ force_active:
   - __ct__13TUnk_80488B38Fv
   - __ct__13TUnk_80488B68Fv
   - __ct__13TUnk_8048DF58Fv
-  - __ct__13TUnk_8049F038FP7TObjectsl
+  - __ct__13TUnk_8049F038FP7TObjectUsl
   - __ct__13TUnk_8049F770FP7TObjectPUc
   - __ct__13TUnk_8049F828FP7TObjectPUc
   - __ct__13TUnk_8049F8E0FP7TObjectPUc
@@ -2406,7 +2410,7 @@ force_active:
   - __ct__18TBoss7PhotonBulletFP7TObjectP8TObjBasePC3VecPC3Vecf
   - __ct__18TChCrTagOccupationFv
   - __ct__18TChallenge4PResultFP7TObjectUsl
-  - __ct__18TEffStarLightChildFv
+  - __ct__18TEffStarLightChildFP15ColorLineVertexP15ColorLineVertexP7TObjectff
   - __ct__18TItemEffNeedleBaseFP7TObjectP5TItem
   - __ct__18TItemReverseTechBGFv
   - __ct__18TOCapsuleAncient01FP7TObjectPv
@@ -2644,6 +2648,7 @@ force_active:
   - __dt__13TUnk_80494968Fv
   - __dt__13TUnk_80494E10Fv
   - __dt__13TUnk_8049EFB8Fv
+  - __dt__13TUnk_8049F038Fv
   - __dt__13TUnk_8049F130Fv
   - __dt__13TUnk_8049F148Fv
   - __dt__13TUnk_8049F770Fv
@@ -3812,6 +3817,7 @@ force_active:
   - advance_dark_magic__11TBoss4Type3Fv
   - advance_dead__11TBoss4Type3Fv
   - advance_effect_timer__13TUnk_804E4B3CFv
+  - advance_equipment_effect
   - advance_flee_step__12TObjEneLappyFv
   - advance_go_down__11TBoss4Type3Fv
   - advance_go_up__11TBoss4Type3Fv
@@ -5561,7 +5567,7 @@ force_active:
   - copy_from__11TMainCursorFPv
   - copy_from__13TItemAttackerFPv
   - copy_from__14TechniqueBoostFP14TechniqueBoost
-  - copy_from__15TEffStarLight2DFPv
+  - copy_from__19StarLightParametersFP19StarLightParameters
   - copy_from__21BmlResourceDescriptorFRC21BmlResourceDescriptor
   - copy_from__23MagNodeOscillationStateFP23MagNodeOscillationState
   - copy_from_subobject__15TEffStarLight2DFPv
@@ -5872,7 +5878,6 @@ force_active:
   - destroy__12TPhotonPillaFPvs
   - destroy__12T_OWEHMS_ExpFs
   - destroy__13TPhotonFarllaFPvs
-  - destroy__13TUnk_8049F038Fs
   - destroy__14TObjEneBm5WolfFis
   - destroy__15TORockJungleL01Fs
   - destroy__15TWindowHelpItemFPvs
@@ -6035,6 +6040,7 @@ force_active:
   - dragon_capture_node_points__FP10NJS_OBJECT
   - dragon_fireball_attack_params
   - dragon_fireball_impact_damage_params
+  - dragon_fireball_particle_ids
   - dragon_node_override
   - dragonfly_machine_motion_actions
   - draw__10TBoss6MineFv
@@ -6372,6 +6378,7 @@ force_active:
   - epsilon_guard_camera_ctrl_ptr
   - epsilon_guard_camera_step
   - epsilon_guard_params
+  - equipment_effect_body
   - eval_piecewise_curve__15TObjBoss2TunnelFP14PiecewiseCurvef
   - evaluate_ground_triangles
   - evict_lowest_key_floor_item__Fl
@@ -8094,6 +8101,9 @@ force_active:
   - lbl_80434EC8
   - lbl_80434ED4
   - lbl_804353F8
+  - lbl_80435410
+  - lbl_8043541C
+  - lbl_80435428
   - lbl_804371BC
   - lbl_80437310
   - lbl_8043731C
@@ -8364,6 +8374,10 @@ force_active:
   - lbl_80472C90
   - lbl_80472C9C
   - lbl_80474B50
+  - lbl_80474B68
+  - lbl_80474B74
+  - lbl_80474B80
+  - lbl_80474B8C
   - lbl_80474F08
   - lbl_80474F1C
   - lbl_80474F34
@@ -9345,6 +9359,8 @@ force_active:
   - lbl_805D93B0
   - lbl_805D9520
   - lbl_805D9550
+  - lbl_805D9970
+  - lbl_805D9974
   - lbl_805D9D70
   - lbl_805D9D88
   - lbl_805D9D90
@@ -15133,6 +15149,7 @@ force_active:
   - release_child_slot__12TObjEneSlimeFl
   - release_children__15TObjBoss2TunnelFPvf
   - release_control_lock__10TObjPlayerFPv
+  - release_effect__13TItemEffEquipFv
   - release_held_player__12TBoss1DragonFv
   - release_load_slot__12TChCrLoadAfsFv
   - release_model__8TItemMagFv
@@ -15773,6 +15790,7 @@ force_active:
   - restore_target_pos__12TBoss8DragonFPv
   - resume_challenge_result_processing__FPv
   - retire_ballistic_particle_if_done__13TUnk_8048E778Fv
+  - retire_equipment_effect
   - retire_lobby_player__6TLobbyFii
   - retire_orbit_particle__13TUnk_8048E790Fv
   - retry_selection_value_table
@@ -17225,6 +17243,7 @@ force_active:
   - spawn_effect__19TContainerAncient01FPvPvPv
   - spawn_effect_if_in_band__12TBoss8DragonFi
   - spawn_effects__19TBoss3VoloptMonitorFv
+  - spawn_equip_particle_effect__13TItemEffEquipFl
   - spawn_falling_rocks__9TBoss6MagFv
   - spawn_faust_explosion__FUlRC3Vec
   - spawn_faust_hit_explosion__Fll
