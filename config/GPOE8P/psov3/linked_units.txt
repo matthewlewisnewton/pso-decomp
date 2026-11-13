@@ -599,9 +599,6 @@ pso/item/TItemEffArmor.cpp
 pso/item/TItemEffBringer.cpp
 pso/item/TItemEffCane.cpp
 pso/item/TItemEffEquip.cpp
-pso/item/TItemEffEquip_801088D0.cpp
-pso/item/TItemEffEquip_801088F8.cpp
-pso/item/TItemEffEquip_80108920.cpp
 pso/item/TItemEffFlame.cpp
 pso/item/TItemEffHeaven.cpp
 pso/item/TItemEffLandHit.cpp
@@ -2975,7 +2972,6 @@ pso/unk/text_801036CC.cpp
 pso/unk/text_80104F4C.cpp
 pso/unk/text_80104FCC.cpp
 pso/unk/text_801057A8.cpp
-pso/unk/text_80108860.cpp
 pso/unk/text_801094D8.cpp
 pso/unk/text_801095EC.cpp
 pso/unk/text_8010EF14.cpp
