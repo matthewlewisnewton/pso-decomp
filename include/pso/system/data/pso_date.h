@@ -6,7 +6,7 @@
 
 struct DateStamp;
 
-u8 calc_day_in_cycle(s32 *date);
+u8 calc_day_in_cycle(DateStamp *date);
 
 extern "C" {
 void fill_date_from_seconds(u32 secs, DateStamp *out);

@@ -13909,7 +13909,7 @@ force_active:
   - read_byte_advance__6TLobbyFv
   - read_data_sync__6TLobbyFlll
   - read_file_header__9TLanguageFiPv
-  - read_into_buffer__9TLanguageFll
+  - read_into_buffer__9TLanguageFPUcl
   - read_stream_u16__Fv
   - read_stream_u8__Fv
   - read_u16_le__9TLanguageFv
