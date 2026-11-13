@@ -568,6 +568,9 @@ force_active:
   - TDuelEffectNumber__sub_800802F8
   - TEF_LensFlare__class_name
   - TEF_LensFlare__class_name_string
+  - TEffClitical__alpha_approach_step
+  - TEffClitical__class_name
+  - TEffClitical__name
   - TEffGuard__class_name
   - TEffHit__class_name
   - TEffIndirectCtrl__name
@@ -2222,7 +2225,7 @@ force_active:
   - __ct__12TChCrLoadReqFP7TObjectPv
   - __ct__12TChCrTagNameFv
   - __ct__12TChatMessageFRC12TChatMessage
-  - __ct__12TEffCliticalFPv
+  - __ct__12TEffCliticalFPC3Vec
   - __ct__12TItemProUnitFP7TObjectPUc
   - __ct__12TItemTexLoadFP7TObject
   - __ct__12TOBoss4TowerFPv
@@ -8448,6 +8451,7 @@ force_active:
   - lbl_8048D0B0
   - lbl_8048D108
   - lbl_8048D278
+  - lbl_8048E2E0
   - lbl_8048FECC
   - lbl_804907AC
   - lbl_804907BC
@@ -8878,6 +8882,7 @@ force_active:
   - lbl_804FE1DC
   - lbl_804FF67C
   - lbl_804FF82C
+  - lbl_80500610
   - lbl_805007C8
   - lbl_805009A0
   - lbl_805009A8
@@ -9337,6 +9342,7 @@ force_active:
   - lbl_805D92A0
   - lbl_805D92A4
   - lbl_805D92AC
+  - lbl_805D93B0
   - lbl_805D9520
   - lbl_805D9550
   - lbl_805D9D70

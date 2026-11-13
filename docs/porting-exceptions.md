@@ -15,17 +15,19 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-### Jungle grass and key constant pool
+### Critical-hit effect data placement
 
-`TOGrassJungle.cpp`, `TOGrassJungle_8029CD90.cpp`, and `TOKeyJungleMain.cpp`
-define their six floats at `0x805DDD28`–`0x805DDD40` after their consumers.
-Early definitions emit duplicate pooled constants; late definitions without
-section placement land in `.sdata`. Guarded `__declspec(section ".sdata2")`
-definitions preserve the original loads and the exact eight-byte pool in each
-owner. Ordinary literals also match the two grass owners, but fold a comparison
-in `TOKeyJungleMain::update_switch_on` and lose its original named loads.
-Other compilers use ordinary `const f32` definitions without section placement;
-ports need no definition-order constraint.
+`src/pso/effect/TEffClitical.cpp` uses guarded section annotations for the
+owned eight-byte texture-list descriptor (`.data`) and the existing
+`lbl_805D93B0[2]` scalar object (`.sdata2`). The descriptor must use its real
+absolute address; ordinary small-data inference changes the renderer. The
+late scalar definition retains the original 1.0 value and zero tail without
+introducing an anonymous duplicate. Ports can drop both annotations and keep
+the ordinary declarations, array and C++ bodies. The prior common-subexpression
+and propagation pragmas are removed. See [the recovery evidence](evidence/critical-hit-effect-unit.md).
+
+| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
+| Per-unit compiler overrides in `configure.py` | 207 | 207 |
 
 ### Raft splash shared constant
 
@@ -48,7 +50,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 89 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
+| CodeWarrior pragmas (excluding push/pop) | 5,857 | 884 |
 | Per-unit compiler overrides in `configure.py` | 207 | 207 |
 | Approved regressions | 0 | 0 |
 

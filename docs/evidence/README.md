@@ -25,6 +25,7 @@ guides.
 - [CodeWarrior source order and emitted layout](compiler-emission-evidence.md)
 - [GameCube decomp survey of scalar vector math](gc-decomp-vector-math-survey.md)
 - [Conversion-pool constants](conversion-pool-constants.md)
+- [Critical-hit effect complete unit](critical-hit-effect-unit.md)
 - [Current texture list](current-texture-list-evidence.md)
 - [DD descendant virtual slot](dd-descendant-slot-evidence.md)
 - [DD scaled random receiver](dd-scaled-random-evidence.md)
