@@ -1,4 +1,5 @@
 #include "pso/render/ChunkMaterialState.h"
+#include "pso/math/MatrixCopy.h"
 #include "types.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/render/MaterialColorFade.h"
@@ -153,7 +154,7 @@ void TUnk_804E3BA8::render() {
         rotate_matrix_z(0, part->f20);
         rotate_matrix_x(0, part->f18);
         translate_matrix(0, -this->m_30, -*(f32 *)&this->unk_34, -this->m_38);
-        TObjPlayer::concat_matrix(0, *(s32 *)&this->unk_2C);
+        concat_matrix(NULL, (const f32 (*)[4])(*(s32 *)&this->unk_2C));
         switch (part->type) {
         case 0:
         case 1:
@@ -215,7 +216,7 @@ u8 *TObjPlayer::init_breakup_pieces(void *arg1, s32 arg2) {
     part = *(Part_802E6F10 * *)&this->room;
     push_matrix();
     set_matrix_identity(0);
-    TObjPlayer::concat_matrix(0, *(s32 *)((s8 *)((u8 *)this) + 0x2C));
+    concat_matrix(NULL, (const f32 (*)[4])(*(s32 *)((s8 *)((u8 *)this) + 0x2C)));
     (*(Vec_802E6F10 *)((s8 *)((u8 *)this) + 0x30)).z = (*(Vec_802E6F10 *)((s8 *)((u8 *)this) + 0x30)).y = (*(Vec_802E6F10 *)((s8 *)((u8 *)this) + 0x30)).x = lbl_805DE9CC;
     matrix_mult_vec(0, ((u8 *)this) + 0x30, ((u8 *)this) + 0x30);
     for (i = 0; i < this->texlist; i++) {

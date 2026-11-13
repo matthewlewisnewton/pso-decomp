@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/render/GinjaModelQueue.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/math/MatrixCopy.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/unk/TLobby.h"
@@ -51,11 +52,11 @@ void rotate_matrix_x(Matrix34* matrix, s32 angle) {
 
 #pragma push
 #pragma scheduling off
-void TObjPlayer::concat_matrix(u32 arg0, u32 arg1) {
+extern "C" void concat_matrix(MtxP dest, const f32 (*source)[4]) {
     u32 elements;
     u32 var_r4;
-    elements = arg0;
-    var_r4 = arg1;
+    elements = (u32) dest;
+    var_r4 = (u32) source;
     if (elements == 0U) {
         elements = current_matrix;
     }
