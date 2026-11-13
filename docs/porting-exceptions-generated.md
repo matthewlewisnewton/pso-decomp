@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 89 | 58 |
 | hardware | 69 | 13 |
-| pragma | 5859 | 885 |
-| configure.py per-unit override | 206 | 206 |
+| pragma | 5857 | 884 |
+| configure.py per-unit override | 207 | 207 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055, `fp_contract` 882, `auto_inline` 804, `opt_common_subs` 638, `scheduling` 264, `opt_propagation` 264, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 39, `pool_data` 37, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055, `fp_contract` 882, `auto_inline` 804, `opt_common_subs` 637, `scheduling` 264, `opt_propagation` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 39, `pool_data` 37, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -248,6 +248,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055,
 | `pso/boss/TBoss6EmptyWarp_802B0E2C.cpp` | `-str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/pso_date.cpp` | `GC/1.3.2` | Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md. |
 | `pso/misc/TWindowFukidasi.cpp` | `(multi-line entry; see configure.py)` | The balloon float pool begins at 0x805DCD0C, which is four-byte aligned. |
+| `pso/effect/TDPBShower.cpp` | `(multi-line entry; see configure.py)` | The class string and name pointer start on four-byte boundaries. |
 | `pso/object/TObjCMName.cpp` | `-sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/ui/TAdDialingGC_80328B20.cpp` | `GC/1.3.2` | GC/1.3.2 preserves the per-vertex coordinate loads and store order. |
 | `pso/unk/text_8007ECF0.cpp` | `GC/1.3.2` | The download graph's border pass keeps GC/1.3.2 load scheduling. |
@@ -558,7 +559,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055,
 | `src/pso/boss/TUnk_80484888.cpp` | fp_contract×1 |
 | `src/pso/boss/TUnk_80484AFC.cpp` | fp_contract×1 |
 | `src/pso/effect/TEF_LensFlare.cpp` | opt_propagation×1 |
-| `src/pso/effect/TEffClitical.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/effect/TEffGuard.cpp` | readonly_strings×1 |
 | `src/pso/effect/TEffHit.cpp` | readonly_strings×1 |
 | `src/pso/effect/TEffStarLight2D_Base.cpp` | fp_contract×2, opt_common_subs×2, defer_codegen×1, opt_propagation×1 |
@@ -1074,6 +1074,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055,
 | `src/pso/object/TObjOnlineEndingHexLine.cpp` | fp_contract×2, opt_loop_invariants×1 |
 | `src/pso/object/TObjOnlineEnding_802E4B80.cpp` | opt_common_subs×1 |
 | `src/pso/object/TObjParticleLobby.cpp` | readonly_strings×1 |
+| `src/pso/object/TObjRain.cpp` | fp_contract×1 |
 | `src/pso/object/TObjRainCtrl.cpp` | fp_contract×1 |
 | `src/pso/object/TObjRainbowLobby.cpp` | readonly_strings×1 |
 | `src/pso/object/TObjResultWin.cpp` | defer_codegen×1, inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -1238,7 +1239,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055,
 | `src/pso/unk/text_8015C534.cpp` | fp_contract×1 |
 | `src/pso/unk/text_80171A98.cpp` | fp_contract×1 |
 | `src/pso/unk/text_80180D18.cpp` | fp_contract×1 |
-| `src/pso/unk/text_80197998.cpp` | fp_contract×1 |
 | `src/pso/unk/text_801BC688.cpp` | fp_contract×2 |
 | `src/pso/unk/text_801BDBB4.cpp` | opt_pointer_analysis×1 |
 | `src/pso/unk/text_801C51D4.cpp` | fp_contract×1 |

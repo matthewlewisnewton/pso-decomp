@@ -181,7 +181,10 @@ pso/boss/TBoss1DragonDemo.cpp:
 
 pso/boss/TBoss1DragonEffBreath.cpp:
 	.text       start:0x8002B840 end:0x8002B9CC
+	.rodata     start:0x804353F8 end:0x80435410
 	.data       start:0x80481C28 end:0x80481C40
+	.sdata      start:0x805D2668 end:0x805D2670
+	.sdata2     start:0x805D8130 end:0x805D8140
 
 pso/boss/TBoss1DragonEffBullet.cpp:
 	.text       start:0x8002B9CC end:0x8002BD34
@@ -1201,7 +1204,11 @@ pso/player/TObjPlayer_800822D0.cpp:
 
 pso/effect/TEffClitical.cpp:
 	.text       start:0x80082308 end:0x8008271C
-	.data       start:0x8048E2E8 end:0x8048E300
+	.rodata     start:0x80438EA8 end:0x80438ED8
+	.data       start:0x8048E2E0 end:0x8048E300
+	.bss        start:0x80500610 end:0x80500620
+	.sdata      start:0x805D2900 end:0x805D2908
+	.sdata2     start:0x805D93A8 end:0x805D93B8
 
 pso/effect/TEffect.cpp:
 	.text       start:0x8008271C end:0x80082C30
@@ -2359,7 +2366,10 @@ pso/item/TItemEffArmor.cpp:
 
 pso/item/TItemEffBringer.cpp:
 	.text       start:0x80108254 end:0x8010853C
+	.rodata     start:0x8043E178 end:0x8043E190
 	.data       start:0x8049EFE8 end:0x8049F004
+	.sdata      start:0x805D2B90 end:0x805D2B94
+	.sdata2     start:0x805DAB10 end:0x805DAB20
 
 pso/player/TObjPlayer_8010853C.cpp:
 	.text       start:0x8010853C end:0x801086B8
@@ -5915,17 +5925,12 @@ pso/object/TObjRaderCol.cpp:
 	.text       start:0x80197508 end:0x801977D4
 	.data       start:0x804B8940 end:0x804B8974
 
-pso/unk/text_801977D4.cpp:
-	.text       start:0x801977D4 end:0x80197998
-
-pso/unk/text_80197998.cpp:
-	.text       start:0x80197998 end:0x80197BEC
-	.rodata     start:0x80445F78 end:0x80445F80
-	.sdata2     start:0x805DBF18 end:0x805DBF40
-
 pso/object/TObjRain.cpp:
-	.text       start:0x80197BEC end:0x80197CE8
-	.data       start:0x804B89A8 end:0x804B89C0
+	.text       start:0x801977D4 end:0x80197CE8
+	.rodata     start:0x80445F68 end:0x80445F80
+	.data       start:0x804B8978 end:0x804B89C0
+	.sdata      start:0x805D3420 end:0x805D3428
+	.sdata2     start:0x805DBF10 end:0x805DBF40
 
 pso/object/TObjRainCtrl_80197CE8.cpp:
 	.text       start:0x80197CE8 end:0x80197D28
@@ -9650,13 +9655,16 @@ pso/misc/TOGrassJungle.cpp:
 	.text       start:0x8029CC68 end:0x8029CD90
 	.data       start:0x804DC528 end:0x804DC544
 	.sdata      start:0x805D3D48 end:0x805D3D4C
+	.sdata2     start:0x805DDD28 end:0x805DDD30
 
 pso/misc/TOGrassJungle_8029CD90.cpp:
 	.text       start:0x8029CD90 end:0x8029CF68
+	.sdata2     start:0x805DDD30 end:0x805DDD38
 
 pso/object/TOKeyJungleMain.cpp:
 	.text       start:0x8029CF68 end:0x8029D504
 	.rodata     start:0x80465A40 end:0x80465A48
+	.sdata2     start:0x805DDD38 end:0x805DDD40
 
 pso/object/TObjFish.cpp:
 	.text       start:0x8029D504 end:0x8029E764
@@ -10689,7 +10697,10 @@ pso/boss/TBoss8Dragon_802FDDD4.cpp:
 
 pso/boss/TBoss8DragonEffBreath.cpp:
 	.text       start:0x802FDF34 end:0x802FE0E0
+	.rodata     start:0x80474B50 end:0x80474B68
 	.data       start:0x804E5E78 end:0x804E5E90
+	.sdata      start:0x805D4010 end:0x805D4018
+	.sdata2     start:0x805DEEF0 end:0x805DEF00
 
 pso/boss/TBoss8DragonEffBullet.cpp:
 	.text       start:0x802FE0E0 end:0x802FE48C
@@ -12315,7 +12326,10 @@ pso/misc/TWindowMessageScroll.cpp:
 
 pso/effect/TDPBShower.cpp:
 	.text       start:0x8035D6F4 end:0x8035D8B0
+	.rodata     start:0x80479C3C end:0x80479C48
 	.data       start:0x804F1FD8 end:0x804F1FF0
+	.sdata      start:0x805D4454 end:0x805D4458
+	.sdata2     start:0x805E01C0 end:0x805E01C8
 
 pso/boss/TBoss6DPB.cpp:
 	.text       start:0x8035D8B0 end:0x8035DCC0
