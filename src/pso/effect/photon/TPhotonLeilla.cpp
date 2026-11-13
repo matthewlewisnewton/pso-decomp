@@ -6,6 +6,7 @@ const char *TPhotonLeilla__class_name = "TPhotonLeilla";
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/render/ChunkMaterialState.h"
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/effect/photon/TPhotonLeilla.h"
 #include "pso/ui/hud/TRaderMapCore.h"
 #include "pso/render/MaterialColorFade.h"
@@ -319,12 +320,5 @@ void TObjPlayer::destroy_buffer_pair_instance() {
 }
 
 void create_leilla_photon_blast_model(void) {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)::operator new(0x14);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (((TLobby *)temp_r3)->alloc_tables(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 8)) + 0x2C), 0));
-    }
-    leilla_photon_buffer_pair = (void *)var_r0;
+    leilla_photon_buffer_pair = (void *)new StripBufferPair(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 8)) + 0x2C), 0);
 }

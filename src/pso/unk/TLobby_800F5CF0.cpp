@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include "pso/system/ArrayAllocation.h"
 #include "pso/unk/TLobby.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
 #include "pso/enemy/lappy/TObjEneLappy.h"
 #include "pso/ui/window/TWindowLockOn.h"
@@ -22,21 +23,20 @@ extern s32 plist_strip_write_ptr;
 extern s32 plist_strip_uv_write_ptr;
 extern s32 plist_texture_matches_filter;
 
-void *TLobby::alloc_tables(s32 arg1, s32 arg2) {
+StripBufferPair::StripBufferPair(s32 model, s32 filter) {
     s32 temp_r6;
 
-    *(s32 *)&this->m_flags = 0;
-    *(s32 *)&this->m_name = 0;
+    strip_count = 0;
+    uv_count = 0;
     plist_texture_matches_filter = 0;
     count_model_strips_by_texture();
-    *(s32 *)&this->m_prev = (s32)::operator new[](*(s32 *)&this->m_flags * 8);
-    *(s32 *)&this->m_next = (s32)::operator new[](*(s32 *)&this->m_name * 4);
-    plist_strip_write_ptr = *(s32 *)&this->m_prev;
-    temp_r6 = *(s32 *)&this->m_next;
+    strips = ::operator new[](strip_count * 8);
+    uvs = ::operator new[](uv_count * 4);
+    plist_strip_write_ptr = (s32)strips;
+    temp_r6 = (s32)uvs;
     plist_strip_uv_write_ptr = temp_r6;
     plist_texture_matches_filter = 0;
-    collect_model_strips_by_texture(this, arg1, arg2, temp_r6);
-    return this;
+    collect_model_strips_by_texture(this, model, filter, temp_r6);
 }
 void TObjEnemy::clear_lobby_object_state() {
     s32 arg0 = (s32)this;

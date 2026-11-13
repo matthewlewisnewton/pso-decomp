@@ -175,7 +175,7 @@ extern u8 __vt__19TObjCityAirCar_Ctrl[];
 extern s32 TObjCityAirCar_Ctrl__name;
 extern s32 city_traffic_path_motion_index_table[];
 extern s32 city_aircar_model_indices[];
-s32 alloc_tables__6TLobbyFll(s32, s32, s32, Ent_801817AC *);
+s32 __ct__15StripBufferPairFll(s32, s32, s32, Ent_801817AC *);
 void subtract_vector(Vec_801817AC *, Vec_801817AC *);
 extern s32 city_traffic_car_chunk_index_table[];
 extern Lob_801817AC *city_air_car_model_resource;
@@ -255,7 +255,7 @@ void measure_traffic_path_lengths(void) {
       new_var = city_traffic_car_chunk_index_table;
       if (p != 0)
       {
-        p = alloc_tables__6TLobbyFll(p, city_air_car_model_resource->entries[new_var[j]].f8, 1, city_air_car_model_resource->entries);
+        p = __ct__15StripBufferPairFll(p, city_air_car_model_resource->entries[new_var[j]].f8, 1, city_air_car_model_resource->entries);
       }
       air_car_buffer_pair_table[j] = (void *)p;
     }

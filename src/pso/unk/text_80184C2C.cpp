@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/unk/text_800F5BC0.h"
 #include "pso/unk/text_80184C2C.h"
 #include "pso/unk/TLobby.h"
@@ -143,8 +144,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
         if (lbl_805D5B30 == 0) {
             base = *(u8 **)(tmp + 0x42c);
             ent = *(u8 **)(base + 0x18);
-            tmp = (u8 *)::operator new(0x14);
-            if (tmp != NULL) tmp = (u8 *)((TLobby *)tmp)->alloc_tables((s32)ent, 3);
+            tmp = (u8 *)new StripBufferPair((s32)ent, 3);
             lbl_805D5B34 = tmp;
             base = *(u8 **)(*(u8 **)(ent + 0x2c) + 4);
             base = *(u8 **)(base + 4);
@@ -152,8 +152,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
         } else if (lbl_805D5B30 == 4) {
             base = *(u8 **)(tmp + 0x42c);
             ent = *(u8 **)(base + 0x18);
-            tmp = (u8 *)::operator new(0x14);
-            if (tmp != NULL) tmp = (u8 *)((TLobby *)tmp)->alloc_tables((s32)ent, 0);
+            tmp = (u8 *)new StripBufferPair((s32)ent, 0);
             lbl_805D5B34 = tmp;
             base = *(u8 **)(*(u8 **)(ent + 0x2c) + 4);
             base = *(u8 **)(base + 4);
@@ -189,8 +188,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
         lbl_805D5B40 = *(s32 *)(*(u8 **)(r + 0x42c) + 0x18);
     }
 
-    tmp = (u8 *)::operator new(0x14);
-    if (tmp != NULL) tmp = (u8 *)((TLobby *)tmp)->alloc_tables((s32)(void *)lbl_805D5B3C, 2);
+    tmp = (u8 *)new StripBufferPair((s32)(void *)lbl_805D5B3C, 2);
     lbl_805D5B48 = tmp;
     base = (u8 *)lbl_805D5B3C;
     base = *(u8 **)(base + 4);

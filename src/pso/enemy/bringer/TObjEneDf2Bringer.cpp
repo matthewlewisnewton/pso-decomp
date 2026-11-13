@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/npc/NpcModelRegistry.h"
@@ -1742,12 +1743,7 @@ void TObjEneDf2Bringer::load_resources() {
     p3->z = (d.z * s2) + p3->z;
   }
 
-  o = ::operator new(0x14);
-  if (o != 0)
-  {
-    o = ((TLobby *)o)->alloc_tables(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 8)), 1);
-  }
-  TObjEneDf2Bringer__uv_scroll_buffer = (u32) o;
+  TObjEneDf2Bringer__uv_scroll_buffer = (u32) new StripBufferPair(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 8)), 1);
   init_bringer_effect_tables();
   {
     Sp_80099BD4 sp = lbl_8043A0BC[0];

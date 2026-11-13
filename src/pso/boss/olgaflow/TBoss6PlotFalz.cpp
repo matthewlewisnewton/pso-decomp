@@ -1095,7 +1095,7 @@ extern "C" {
 void refresh_players_equipment__14TBoss6PlotFalzFv(void *self);
 void scroll_strip_uvs(u32, s16, s16);
 s32 get_bml_model(s32, s32);
-s32 alloc_tables__6TLobbyFll(s32, s32, s32);
+s32 __ct__15StripBufferPairFll(s32, s32, s32);
 void build_tables__17Boss6ScrollStripsFP14Boss6StripDescl(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2);
 extern s32 lbl_805D5868;
 extern s32 lbl_805D5870;
@@ -1166,7 +1166,7 @@ void build_tables__17Boss6ScrollStripsFP14Boss6StripDescl(Obj_8004AA80 *arg0, Re
         t = (s32)find_model_node(get_bml_model(h, r->a), r->b);
         p = (s32)::operator new(0x14);
         if (p != 0) {
-            p = alloc_tables__6TLobbyFll(p, t, r->c);
+            p = __ct__15StripBufferPairFll(p, t, r->c);
         }
         arg0->items[i] = p;
     }

@@ -24,7 +24,7 @@ typedef struct Obj_8004AA80 {
 extern "C" {
 void fn_8004AA04(Obj_8004AA04 *self);
 s32 get_bml_model(s32, s32);
-s32 alloc_tables__6TLobbyFll(s32, s32, s32);
+s32 __ct__15StripBufferPairFll(s32, s32, s32);
 void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2);
 void fn_8004AA04(Obj_8004AA04 *self) {
     s32 i;
@@ -61,7 +61,7 @@ void init_model_node_tables(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2) {
         t = (s32)find_model_node(get_bml_model(h, r->a), r->b);
         p = (int)::operator new(0x14);
         if (p != 0) {
-            p = alloc_tables__6TLobbyFll(p, t, r->c);
+            p = __ct__15StripBufferPairFll(p, t, r->c);
         }
         arg0->items[i] = p;
     }
