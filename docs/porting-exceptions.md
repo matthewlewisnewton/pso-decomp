@@ -67,7 +67,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 89 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,859 | 886 |
+| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
 | Per-unit compiler overrides in `configure.py` | 207 | 207 |
 | Approved regressions | 0 | 0 |
 
@@ -261,11 +261,11 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,858 pragmas in 885 files; per-file table in the generated file. Main kinds:
+5,860 pragmas in 886 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1150, `inline_depth` 1055, `fp_contract` 882, `auto_inline` 804,
 `opt_common_subs` 637, `scheduling` 264, `opt_propagation` 263,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57,
-`defer_codegen` 57, `pack` 46, `opt_dead_assignments` 42. Reason: reproduce the original code generation
+`defer_codegen` 58, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 39, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -1794,3 +1794,15 @@ before the next eight-byte-aligned read-only contribution. Ports can keep the
 ordinary C++ string, pointer, constructor and literals and omit this native
 object-alignment adapter. This does not establish the original compiler
 settings or filename.
+### Gol Dragon fireball table addressing
+
+`src/pso/boss/TBoss8DragonEffBullet.cpp` scopes `pool_data off` to its
+constructor. Defining its three particle descriptors in source otherwise makes
+GC/2.6 hoist a shared read-only-data base, changing the constructor's register
+allocation. Late definitions preserve the independent addresses but emit the
+descriptors in writable data. The scoped control retains the native code and
+read-only data together. Ports can drop this pragma and keep the ordinary
+constant descriptors and constructor. The existing `fp_contract on` scope in
+`run_task` preserves the three fused movement updates; a port needing the same
+rounding can use `fmaf` for those expressions. See the
+[unit evidence](evidence/gol-dragon-fireball-unit.md).
