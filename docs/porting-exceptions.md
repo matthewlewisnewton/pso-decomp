@@ -88,7 +88,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 93 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,860 | 884 |
+| CodeWarrior pragmas (excluding push/pop) | 5,871 | 884 |
 | Per-unit compiler overrides in `configure.py` | 208 | 208 |
 | Approved regressions | 0 | 0 |
 
@@ -293,11 +293,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,859 pragmas in 885 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1150, `inline_depth` 1055, `fp_contract` 883, `auto_inline` 804,
-`opt_common_subs` 636, `scheduling` 263, `opt_propagation` 263,
-`readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57,
-`defer_codegen` 59, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 39, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
+5,871 pragmas in 884 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1151, `inline_depth` 1057, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -470,6 +467,17 @@ and the same function body.
 | File | What | Why | Port should |
 |---|---|---|---|
 | `src/pso/unk/text_802EDE90.cpp` | Scoped `opt_common_subs off`, `opt_propagation off`, and `opt_lifetimes off` | With CSE enabled the vector resets share a computed address instead of using indexed stores (96.78%, 1,600 bytes). Propagation reloads the data-bank address before installing the vtable (99.21%, 1,624 bytes). Lifetime splitting changes register allocation for the part and matrix loops (99.53%, 1,616 bytes). The three pragmas together preserve all 1,616 bytes with the existing unit flags. | Drop the optimizer pragmas. Keep the initialization order and use the target compiler's ordinary constructor and virtual dispatch when porting the rest of the class. |
+
+### Barba Ray behavior at `0x802E7888`
+
+| File | Function or data | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Native data and function emission | `defer_codegen on`, reverse function definitions and unit inline-expansion defaults | The compiler emits the actual `TBoss7DeRolLeC` vtable before the switch tables. Reverse definitions retain native text order; `dont_inline off`, `auto_inline off` and `inline_depth(1)` preserve the existing explicit helper and aggregate-copy expansion during deferred generation. `render_shadows` is declared first among the class overrides so this unit owns vtable emission. All sections and resolved relocations match. | Definition and vtable-emission order are immaterial; omit the compiler controls. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Pattern selector at `0x802E7BE8` | Scoped `opt_propagation off` | The real action, position and yaw arrays now form the compiler data pool. Ordinary indexing matches all 220 bytes; the former scaled byte offsets and pointer-to-integer conversion are removed. The positions pointer remains at function scope, and its table pointer at branch scope, preserving register lifetimes. See [table-pool recovery](evidence/barba-ray-table-pool-recovery.md). | Keep ordinary indexing and omit the pragma. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Crawfish spawn at `0x802E7D70` | Inline short-valued reference update with an explicit narrowing write; scoped `dont_inline off`, `inline_depth(4)`, `opt_propagation off`, and `opt_lifetimes off` | Preserves the original in-place `addi` / `extsh` displacement update. A plain scalar assignment, scalar reference helper, or removing the second narrowing write changes two register operands. The complete 304-byte function matches with the typed update. | Use a scalar `(s16)(slot + 11)` and omit the compiler pragmas and helper. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Movement state handler at `0x802EB270` | Scoped `fp_contract on` and `opt_common_subs off`; cached byte views of the actual `Vec` array's y and z members | Fused scalar operations and independent component-address lifetimes reproduce the original float registers, loads and stores. The views use `sizeof(Vec)` and `offsetof` within the complete array object. | Use ordinary `Vec` component accesses and omit the optimizer pragma; preserve fused float rounding where required. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Particle state handler at `0x802EAAC8` | Scoped `opt_propagation off` for the named random ratio and displacement | Keeps the random call before loading the exported 20.0f coefficient, with the original float register allocation. | Keep the call order and the scalar displacement calculation; omit the pragma. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Coefficients at `0x805DEA10..0x805DEBA4` | Explicit `.sdata2` placement and ordered named definitions | Preserves the shared exported constants, their original order, and SDA relocations without a second anonymous 20.0f word. | Use ordinary constant definitions and target linkage. |
 
 ### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
 

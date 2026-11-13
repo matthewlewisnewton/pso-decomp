@@ -39,7 +39,7 @@ typedef char RecoveredGlobal_801950B8_lbl_80445E18_size[sizeof(RecoveredGlobal_8
 struct RecoveredGlobal_801950B8_lbl_804B8564 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_801950B8_lbl_804B8564_size[sizeof(RecoveredGlobal_801950B8_lbl_804B8564) == 0x10 ? 1 : -1];
 
-struct Moto_801951C8 { s32 x0; u8 pad4[0x30 - 4]; u32 flags; u8 pad34[0x68 - 0x34]; f32 x68; u8 pad6C[0xBC - 0x6C]; s32 xBC; };
+struct Moto_801951C8 { const char *name; u8 pad4[0x30 - 4]; u32 flags; u8 pad34[0x68 - 0x34]; f32 x68; u8 pad6C[0xBC - 0x6C]; s32 xBC; };
 
 extern "C" {
 }
@@ -63,7 +63,7 @@ void *TObjMesBase__ct(TObjMesBase *arg0, s32 arg1, s32 arg2);
 extern s32 lbl_80445DF4[];
 extern s32 TMotorcycle__collision_parts[];
 extern s32 __vt__11TMotorcycle[];
-extern s32 motorcycle_class_name;
+extern const char *motorcycle_class_name;
 void *TMotorcycle__ct(void *arg0, void *arg1, void *arg2);
 void *__dt__11TMotorcycleFv(void *arg0, s16 arg1);
 s32 release_texture_list(void*);
@@ -139,7 +139,7 @@ void *__dt__11TMotorcycleFv(void *arg0, s16 arg1) {
 void *TMotorcycle__ct(void *arg0, void *arg1, void *arg2) {
     TObjMesBase__ct((TObjMesBase *)arg0, (s32)arg1, (s32)arg2);
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TMotorcycle;
-    self->x0 = motorcycle_class_name;
+    self->name = motorcycle_class_name;
     self->xBC = fabs_float(self->x68);
     self->xBC = self->xBC % 2;
     self->xBC = lbl_80445DF4[self->xBC];
@@ -152,4 +152,7 @@ void *TMotorcycle__ct(void *arg0, void *arg1, void *arg2) {
 __declspec(section ".data") const char *fe_obj_baiku_model_names[3] = { lbl_80445DB8, lbl_80445DC8, NULL };
 BmlResourceDescriptor motorcycle_resource_descriptor = { lbl_80445DE0, fe_obj_baiku_model_names, fe_obj_baiku_motion_names, 2, 0 };
 __declspec(section ".sdata") const char *fe_obj_baiku_motion_names[1] = { NULL };
+// Preserve the original class-name string's address instead of emitting a copy.
+extern const char lbl_80445DFC[];
+const char *motorcycle_class_name = lbl_80445DFC;
 }

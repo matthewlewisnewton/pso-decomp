@@ -7,6 +7,7 @@ limitations before applying its conclusions to current code.
 See the [documentation index](../README.md) for current contributor and operator
 guides.
 
+- [Photon Mylla scalar pool](photon-mylla-constant-pool.md)
 - [Chunk vertex-color cache constant ownership](chunk-vertex-color-cache-pool.md)
 - [Equipment menu helper scalar ownership](equipment-menu-helper-unit.md)
 - [EXI Ethernet driver completion](exi-ethernet-unit.md)

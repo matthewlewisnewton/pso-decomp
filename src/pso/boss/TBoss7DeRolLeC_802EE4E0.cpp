@@ -1,14 +1,12 @@
 #include "types.h"
+#include "pso/boss/Boss7StaticTables.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/NinjaUtil.h"
 #include "pso/boss/TBoss7DeRolLeC_802EE4E0.h"
 #include "pso/boss/TBoss7DeRolLeC.h"
 #include "pso/misc/TWindowCtrl.h"
 
-struct RecoveredGlobal_802EE4E0_lbl_804E3C5C {
-    s32 value;
-    u8 remaining[0x48];
-};
+
 
 struct Light_802EE574 {
     s32 type;
@@ -29,10 +27,8 @@ struct Light_802EE574 {
 
 extern "C" {
 void call_funcs_reverse__6TLobbyFPvUi(s32, u32);
-extern RecoveredGlobal_802EE4E0_lbl_804E3C5C lbl_804E3C5C;
 extern u8 *lbl_805D6918;
 void run_load_callback_table(void *, int);
-extern s32 lbl_804E3D1C[];
 extern Light_802EE574 boss7_derolle_light_pool[];
 extern s32 boss7_derolle_c_motion_id;
 extern s32 lbl_805D6920;
@@ -48,9 +44,8 @@ extern const f32 lbl_805DEA10;
 
 extern void *tl_04;
 
-typedef char RecoveredGlobal_802EE4E0_lbl_804E3C5C_size[sizeof(RecoveredGlobal_802EE4E0_lbl_804E3C5C) == 0x4C ? 1 : -1];
 void TBoss7DeRolLeC::run_exit_callbacks() {
-    call_funcs_reverse__6TLobbyFPvUi((s32) &lbl_804E3C5C.value, 0x30U);
+    call_funcs_reverse__6TLobbyFPvUi((s32) lbl_804E3C5C, 0x30U);
     if ((void *) lbl_805D6918 != NULL) {
         delete (BmlResource *)(lbl_805D6918);
         lbl_805D6918 = NULL;
@@ -67,7 +62,7 @@ void *TBoss7DeRolLeC::create(void *arg0) {
 void TObjPlayer__sub_802EE574(void) {
     s32 i;
     u8 *p;
-    p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(lbl_804E3D1C), 0, 0, (void *)(0));
+    p = (u8 *)new BmlResource(1, &lbl_804E3D1C, 0, 0, (void *)(0));
     lbl_805D6918 = p;
     boss7_derolle_c_motion_id = 0;
     lbl_805D6920 = 0;
@@ -77,7 +72,7 @@ void TObjPlayer__sub_802EE574(void) {
     lbl_805D6930 = 0;
     lbl_805D6934 = 0;
     boss7_joint_state = 0;
-    run_load_callback_table(&lbl_804E3C5C.value, 0x30);
+    run_load_callback_table(lbl_804E3C5C, 0x30);
     lbl_805D693C = (u8 *)find_model_node(*(s32 *)((s8 *)(*(u8 **)((s8 *)lbl_805D6918 + 0x42C)) + 8), 0x4D);
     lbl_805D6940 = *(s32 *)((s8 *)lbl_805D693C + 0x2C);
     for (i = 0; i < 11; i++) {
