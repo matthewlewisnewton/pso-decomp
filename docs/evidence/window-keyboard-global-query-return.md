@@ -32,3 +32,7 @@ Original Hard code passes its receiver, whereas the global-state helper chain
 does not use that incoming value. Static/member ownership cannot be inferred
 from that alone. Hard table/destruction, borrowed lifetime, Word/ComCard and
 other window-family holds remain unchanged.
+
+Subsequent [full-width caller evidence](window-keyboard-integer-query-contract.md)
+resolves the B0 return-forwarding hold; the failed wrapper-only probe remains
+historical evidence, and receiver/lifetime holds are not cleared by it.

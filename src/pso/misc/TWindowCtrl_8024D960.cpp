@@ -1,3 +1,4 @@
+#include "pso/misc/KeyboardInputQueries.h"
 #include "types.h"
 #include "pso/misc/TWindowMainMenu.h"
 #include "pso/misc/TWindowBase.h"
@@ -39,7 +40,6 @@ s32 TWindowCtrl__sub_8024C7F8(void *);
 s32 TWindowCtrl__sub_8024A314();
 s32 TWindowCtrl__sub_8024C7C4(void *);
 s32 TWindowCtrl__sub_8024C7E0(void *);
-s32 TKeyBoardControl__sub_801A58B0();
 s32 TKeyBoardControl__sub_801A58D8();
 s32 get_function_key_menu__16TKeyBoardControlFPv(void *arg0);
 void queue_destruction__7TObjectFv(void *);

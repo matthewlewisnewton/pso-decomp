@@ -1,3 +1,4 @@
+#include "pso/misc/KeyboardInputQueries.h"
 #include "types.h"
 #include "pso/misc/TKeyBoardControl_8025CB70.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
@@ -37,14 +38,12 @@ struct Ctl_8025F4A0 {
 
 extern "C" {
 
-s32 TKeyBoardControl__sub_801321B4(void *);
 s32 TKeyBoardControl__sub_80132274(void *);
 s32 is_key_57_pressed__16TKeyBoardControlFi(void *);
 s32 TKeyBoardControl__sub_801323C8(void *, int);
 u8 get_key_state__16TKeyBoardControlFPv(s32 *);
 extern s32 TKeyBoardControl__global_key_state[];
 u8 TKeyBoardControl__sub_8013239C(void *, u8);
-s32 TKeyBoardControl__sub_801A58B0(void);
 
 void TWindowKeyBoardHard::reset_input_state() {
     m_68 = 0;
@@ -499,7 +498,7 @@ void TWindowKeyBoardHard::update_modifier_flags() {
             arg0->field_60 &= 0xFFFFFFFD;
         }
     }
-    if (TKeyBoardControl__sub_801321B4(&(*(RecoveredGlobal_8025FC60_TKeyBoardControl__data_80506270 *)&TKeyBoardControl__global_key_state).value) != 0) {
+    if (TKeyBoardControl__sub_801321B4((s32)&(*(RecoveredGlobal_8025FC60_TKeyBoardControl__data_80506270 *)&TKeyBoardControl__global_key_state).value) != 0) {
         arg0->field_60 |= 2;
     } else {
         arg0->field_60 &= 0xFFFFFFFD;

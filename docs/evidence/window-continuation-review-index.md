@@ -43,6 +43,12 @@ See [explicit keyboard-query return](window-keyboard-global-query-return.md).
 The integer-query wrapper now returns its result explicitly; adjacent bool
 forwarding and receiver-contract questions remain held with failed-probe evidence.
 
+## Full-width keyboard-query checkpoint
+
+See [integer keyboard-query contract](window-keyboard-integer-query-contract.md).
+New original-call-width evidence resolves B0 return forwarding and removes an
+incompatible function-pointer cast; receiver and lifecycle/table holds remain.
+
 ## Initial split preservation and review order
 
 Original PR #268 is preserved at `2b99de553e82eff0ab0bb70263c943bb68e23fb4`,

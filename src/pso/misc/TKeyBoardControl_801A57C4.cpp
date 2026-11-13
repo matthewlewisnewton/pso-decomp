@@ -53,8 +53,8 @@ s32 TKeyBoardControl::check_reset_button() {
 }
 
 typedef char RecoveredGlobal_801A58B0_TKeyBoardControl__data_80506270_size[sizeof(RecoveredGlobal_801A58B0_TKeyBoardControl__data_80506270) == 0xB0 ? 1 : -1];
-void TKeyBoardControl__sub_801A58B0(void) {
-    TKeyBoardControl__sub_801321B4((s32) &(*(RecoveredGlobal_801A58B0_TKeyBoardControl__data_80506270 *)&TKeyBoardControl__global_key_state).value);
+s32 TKeyBoardControl__sub_801A58B0(void) {
+    return TKeyBoardControl__sub_801321B4((s32) &(*(RecoveredGlobal_801A58B0_TKeyBoardControl__data_80506270 *)&TKeyBoardControl__global_key_state).value);
 }
 
 typedef char RecoveredGlobal_801A58D8_TKeyBoardControl__data_80506270_size[sizeof(RecoveredGlobal_801A58D8_TKeyBoardControl__data_80506270) == 0xB0 ? 1 : -1];
