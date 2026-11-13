@@ -1,6 +1,8 @@
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include "pso/animation/ActorAnimationState.h"
+#include "pso/system/ModelDrawContext.h"
 #include "pso/object/TObjAreaWarp.h"
 #include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowSubComCardList.h"
@@ -37,19 +39,15 @@ s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
 void draw_ginja_object(void *child);
-s32 draw_ginja_model_with_motion(s32, s32, f32);
 extern s32 warp_jung_beam_models[];
 extern s32 actor_frame_tick;
 extern s32 TObjWarpJung__beam_bml_resource;
-extern void *warp_jung_beam_motion;
 extern int warp_jung_model_handle;
 extern s32 lbl_805D5CB4;
 extern s32 warp_jung_beam_mesh_node;
 extern s32 warp_jung_beam_entry_index;
 extern s32 lbl_805D5CC0;
 extern s32 lbl_805D5CC4;
-extern const f32 lbl_805DC040;
-extern const f32 lbl_805DC044;
 s32 get_localized_text_entry(s32, s32);
 s32 request_active_window_close();
 s32 align_menu_entry_positions(u32);
@@ -129,16 +127,12 @@ extern s32 __vt__16TObjWarpJungMain[];
 extern RecoveredGlobal_8019FCFC_lbl_804B9658 jungle_warp_destination_ids;
 extern s32 lbl_805D3498;
 extern s32 lbl_805D349C;
-extern const f32 lbl_805DC048;
-extern const f32 lbl_805DC04C;
-extern const f32 lbl_805DC050;
-extern const f32 lbl_805DC054;
 extern void *tl_05;
 
 void TObjWarpJungMain::render() {
     VObj_18_8019FB8C *arg0 = (VObj_18_8019FB8C *)this;
     s32 i;
-    if (arg0->m8(lbl_805DC040, lbl_805DC044) != 0) {
+    if (arg0->m8(550.0f, 40.0f) != 0) {
         if (actor_frame_tick != lbl_805D5CB4) {
             lbl_805D5CB4 = actor_frame_tick;
             if (lbl_805D5CC4 >= 0) {
@@ -168,7 +162,7 @@ void TObjWarpJungMain::render() {
         rotate_matrix_y(0, *(s32 *)((s8 *)arg0 + 0x60));
         draw_ginja_object((void *)(get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, 0)));
         TParticleCtrl::begin_effect_render();
-        draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, 1), *(s32 *)&warp_jung_beam_motion, *(f32 *)((s8 *)arg0 + 0xC4));
+        draw_ginja_model_with_motion(get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, 1), warp_jung_beam_motion, m_c4);
         TParticleCtrl::end_effect_render();
         pop_matrix();
     }
@@ -205,13 +199,11 @@ void TObjWarpJungMain__vt13(TObjWarpJungMain *warp_jung_main, s16 arg1) {
 }
 
 void TObjWarpJungMain::run_task() {
-    u8 *arg0 = (u8 *)this;
-  this->m_c4 = (f32) ((this->m_c4) + lbl_805DC048);
-  if ((this->m_c4) > ((f32) (((*((s32 *) (((s8 *) (*(u8 * *)&warp_jung_beam_motion)) + 4))) - 1) & 0xFFFFFFFF)))
-  {
-    this->m_c4 = (f32) lbl_805DC04C;
-  }
-  ((TObjAreaWarp *)arg0)->handle_area_selection();
+    m_c4 += 4.0f;
+    if (m_c4 > (f32)(warp_jung_beam_motion->frameCount - 1)) {
+        m_c4 = 0.0f;
+    }
+    handle_area_selection();
 }
 
 void *__dt__16TObjWarpJungMainFv(void *arg0, s16 arg1) {
@@ -229,17 +221,17 @@ Obj_8019FF24 *TObjWarpJungMain__ct(Obj_8019FF24 *self) {
     TObjAreaWarp__ct(self);
     self->vt18 = __vt__16TObjWarpJungMain;
     self->f0 = lbl_805D349C;
-    self->fC4 = lbl_805DC04C;
+    self->fC4 = 0.0f;
     self->f8C = fabs_float(self->f8C % 2);
     if (get_game_play_mode() == 1 && self->f8C == 0) {
         queue_destruction__7TObjectFv(self);
         return self;
     }
-    self->fAC = lbl_805DC050;
+    self->fAC = 15.0f;
     if (TRaderMapCore::is_not_split_screen() == 1) {
         void *p = ::operator new(0x88);
         if (p != NULL) {
-            p = init__13TAdVIConfigGCFf(p, self->f38, lbl_805DC054);
+            p = init__13TAdVIConfigGCFf(p, self->f38, 20.0f);
         }
         self->fC0 = p;
     } else {
@@ -259,7 +251,7 @@ void *TObjWarpJung__create(void *arg0) {
 void TObjWarpJung::render() {
     u8 *arg0 = (u8 *)this;
 
-    if (((VObj_801A0070_more_8019fe60_1*)arg0)->m8(lbl_805DC040, lbl_805DC044) != 0) {
+    if (((VObj_801A0070_more_8019fe60_1*)arg0)->m8(550.0f, 40.0f) != 0) {
         if (TObjWarpJung::update_warp_display() != 0) {
             PPCSync();
         }
@@ -286,13 +278,11 @@ void TObjWarpJung::render() {
 void TObjWarpJung::confirm_area_transfer(s32) { confirm_area_transfer__12TObjAreaWarpFPvi(this); }
 
 void TObjWarpJung::run_task() {
-    u8 *arg0 = (u8 *)this;
-  this->m_c4 = (f32) ((this->m_c4) + lbl_805DC048);
-  if ((this->m_c4) > ((f32) (((*((s32 *) (((s8 *) (*(u8 * *)&warp_jung_beam_motion)) + 4))) - 1) & 0xFFFFFFFF)))
-  {
-    this->m_c4 = (f32) lbl_805DC04C;
-  }
-  ((TObjAreaWarp *)arg0)->handle_area_selection();
+    m_c4 += 4.0f;
+    if (m_c4 > (f32)(warp_jung_beam_motion->frameCount - 1)) {
+        m_c4 = 0.0f;
+    }
+    handle_area_selection();
 }
 
 void *__dt__12TObjWarpJungFv(void *arg0, s16 arg1) {
@@ -310,17 +300,17 @@ Obj_801A0224 *TObjWarpJung__ct(Obj_801A0224 *self) {
     TObjAreaWarp__ct(self);
     self->vt18 = __vt__12TObjWarpJung;
     self->f0 = lbl_805D3498;
-    self->fC4 = lbl_805DC04C;
+    self->fC4 = 0.0f;
     self->f8C = fabs_float(self->f8C % 2);
     if (get_game_play_mode() == 1 && self->f8C == 1) {
         queue_destruction__7TObjectFv(self);
         return self;
     }
-    self->fAC = lbl_805DC050;
+    self->fAC = 15.0f;
     if (TRaderMapCore::is_not_split_screen() == 1) {
         void *p = ::operator new(0x88);
         if (p != NULL) {
-            p = init__13TAdVIConfigGCFf(p, self->f38, lbl_805DC054);
+            p = init__13TAdVIConfigGCFf(p, self->f38, 20.0f);
         }
         self->fC0 = p;
     } else {
@@ -330,16 +320,16 @@ Obj_801A0224 *TObjWarpJung__ct(Obj_801A0224 *self) {
 }
 
 f32 TObjWarpJung::get_static_field4_as_float() {
-    return (f32) *(u32 *)((s8 *)warp_jung_beam_motion + 4);
+    return (f32)warp_jung_beam_motion->frameCount;
 }
 
 void TObjWarpJung::set_global_render_param() { set_current_texture_list((GinjaTextureList *)(warp_jung_model_handle)); }
 
 void TObjWarpJung::render_warp_effect(s32 arg0, s32 arg1) {
-    s32 bml_model;
+    NJS_OBJECT *bml_model;
 
-    bml_model = (s32)get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, arg0);
-    draw_ginja_model_with_motion(bml_model, (*(s32 *)&warp_jung_beam_motion), (f32) arg1);
+    bml_model = get_bml_model((BmlResource *)TObjWarpJung__beam_bml_resource, arg0);
+    draw_ginja_model_with_motion(bml_model, warp_jung_beam_motion, (f32) arg1);
 }
 
 }

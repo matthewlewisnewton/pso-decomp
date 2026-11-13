@@ -4,6 +4,9 @@
 #include "types.h"
 #include "pso/object/TObjAreaWarp.h"
 
+struct AnimationMotion;
+extern "C" AnimationMotion *warp_jung_beam_motion;
+
 struct TObjWarpJung : public TObjAreaWarp {
     virtual ~TObjWarpJung();
     virtual void confirm_area_transfer(s32);
