@@ -10647,7 +10647,10 @@ pso/boss/TBoss8DragonEffBreath.cpp:
 
 pso/boss/TBoss8DragonEffBullet.cpp:
 	.text       start:0x802FE0E0 end:0x802FE48C
+	.rodata     start:0x80474B68 end:0x80474BA8
 	.data       start:0x804E5E90 end:0x804E5EA8
+	.sdata      start:0x805D4018 end:0x805D4020
+	.sdata2     start:0x805DEF00 end:0x805DEF08
 
 pso/boss/TBoss8DragonEffTail.cpp:
 	.text       start:0x802FE48C end:0x802FE8CC
