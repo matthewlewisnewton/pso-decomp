@@ -8,7 +8,7 @@
 
 class TObjEneEpsilonBody : public TObjEneEpsilon {
 public:
-    TObjEneEpsilonBody(TObject *parent, void *set_data);
+    TObjEneEpsilonBody(TObject *parent, s32 *set_data);
     virtual ~TObjEneEpsilonBody();
     virtual f32 receive_weapon_special_attack(void *, void *);
     void init_params();

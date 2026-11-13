@@ -683,7 +683,7 @@ struct TLobby : public TObject {
     s32 get_field10_or_report();
     s32 get_handle_value_checked();
     s32 get_handle_field_1c();
-    static s32 get_dvd_file_size(const char *name);
+    static s32 get_dvd_file_size(char *name);
     static void poll_dvd_requests();
     static void log_printf(const char *fmt, ...);
     static void init_callback_tables();

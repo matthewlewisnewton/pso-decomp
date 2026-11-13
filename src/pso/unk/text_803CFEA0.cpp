@@ -458,7 +458,7 @@ GcciRequest *TLobby__sub_803D08E0(const char *name, s32 arg1, s32 mode) {
 #pragma pop
 
 typedef s32 (*RecoveredCallback_4873a87e26d6)(s32, s32 *, s32);
-s32 TLobby::get_dvd_file_size(const char *name) {
+s32 TLobby::get_dvd_file_size(char *name) {
     s32 size;
     u32 len;
     u32 i;
