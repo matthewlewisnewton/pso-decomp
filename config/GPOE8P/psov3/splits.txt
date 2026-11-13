@@ -1654,6 +1654,7 @@ pso/enemy/TObjEneDD_800B9F98.cpp:
 
 pso/enemy/TObjEneDD.cpp:
 	.text       start:0x800B9FE8 end:0x800BA138
+	.sdata2     start:0x805D9E98 end:0x805D9EA0
 
 pso/enemy/TObjEneDD_800BA138.cpp:
 	.text       start:0x800BA138 end:0x800BA754
