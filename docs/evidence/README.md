@@ -7,6 +7,7 @@ limitations before applying its conclusions to current code.
 See the [documentation index](../README.md) for current contributor and operator
 guides.
 
+- [Chunk vertex-color cache constant ownership](chunk-vertex-color-cache-pool.md)
 - [EXI Ethernet driver completion](exi-ethernet-unit.md)
 - [Audio header parsing and ADX block transfer](audio-formats-and-adx-transfer.md)
 - [Action-palette unit](action-palette-unit.md)
@@ -33,6 +34,7 @@ guides.
 - [Dead-spot effect wrapper](dead-spot-e4-evidence.md)
 - [Download graph recovery](download-graph-recovery.md)
 - [Dragon fireball unit](dragon-fireball-unit.md)
+- [Gol Dragon fireball unit](gol-dragon-fireball-unit.md)
 - [Dragon ground grid unit](dragon-ground-grid-recovery.md)
 - [Scale-15 dead-spot position](dead-spot-scale15-evidence.md)
 - [Ending-picture native layout and data ownership](ending-picture-recovery.md)
@@ -55,6 +57,7 @@ guides.
 - [Locked-cache matrix stack base](locked-cache-matrix-stack.md)
 - [Matrix copy and concatenation](matrix-copy-concat-evidence.md)
 - [MatrixVector hand-written kernels](matrixvector-asm-kernels-evidence.md)
+- [Loading particle distance constant](now-loading-constant-pool.md)
 - [Moja constructor: compiler tracing and replacement of the scaled-index workaround](moja-compiler-tracing.md)
 - [Moja constructor: initial alternatives and constant-pool investigation](moja-constructor-index-investigation.md)
 - [Motion drawing and model callbacks](motion-draw-callback-evidence.md)
