@@ -260,6 +260,7 @@ force_active:
   - TBoss1DragonColli_C__ct
   - TBoss1DragonColli_sphere_chain_desc
   - TBoss1DragonEffBreath__name
+  - TBoss1DragonEffBullet__name
   - TBoss1Dragon__ct
   - TBoss1Dragon__data_80434E80
   - TBoss1Dragon__data_80480CE0
@@ -6038,6 +6039,7 @@ force_active:
   - dragon_capture_node_points__FP10NJS_OBJECT
   - dragon_fireball_attack_params
   - dragon_fireball_impact_damage_params
+  - dragon_fireball_particle_ids
   - dragon_node_override
   - dragonfly_machine_motion_actions
   - draw__10TBoss6MineFv
@@ -8098,6 +8100,9 @@ force_active:
   - lbl_80434EC8
   - lbl_80434ED4
   - lbl_804353F8
+  - lbl_80435410
+  - lbl_8043541C
+  - lbl_80435428
   - lbl_804371BC
   - lbl_80437310
   - lbl_8043731C

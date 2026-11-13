@@ -31,6 +31,7 @@ guides.
 - [DD scaled random receiver](dd-scaled-random-evidence.md)
 - [Dead-spot effect wrapper](dead-spot-e4-evidence.md)
 - [Download graph recovery](download-graph-recovery.md)
+- [Dragon fireball unit](dragon-fireball-unit.md)
 - [Dragon ground grid unit](dragon-ground-grid-recovery.md)
 - [Scale-15 dead-spot position](dead-spot-scale15-evidence.md)
 - [Ending-picture native layout and data ownership](ending-picture-recovery.md)
