@@ -3011,7 +3011,7 @@ void TObjEneMe3ShinowaMirage::draw_model() {
     TParticleCtrl::end_effect_render();
 }
 
-void TObjEneMe3ShinowaMirage::advance_camera_ctrl_step() {
+void TObjEneMe3ShinowaMirage::advance_camera_ctrl_step(NJS_OBJECT *) {
     if ((s32) TObjEneMe3ShinowaMirage__render_node_index == 1) {
         transform_point_to_view((s32) &TObjEneMe3ShinowaMirage__data_80500FC0, (s32) &lbl_80500FF4);
     }

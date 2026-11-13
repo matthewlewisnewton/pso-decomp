@@ -1267,7 +1267,7 @@ void render__18TObjEneRe4SorcererFv(u8 *ene_re7_berura) {
 
 #pragma push
 #pragma opt_propagation off
-void TObjEneRe4Sorcerer::step_effect_sequence() {
+void TObjEneRe4Sorcerer::step_effect_sequence(NJS_OBJECT *) {
     s32 t;
     switch (TObjEneRe4Sorcerer__render_node_index) {
     case 0:

@@ -3752,7 +3752,7 @@ force_active:
   - advance_afterimage__11TBoss4Type2Fv
   - advance_afterimage__11TBoss4Type3Fv
   - advance_air_turn__12TBoss1DragonFv
-  - advance_anim_frame__16TObjEneBm5GibonUFv
+  - advance_anim_frame__16TObjEneBm5GibonUFP10NJS_OBJECT
   - advance_anim_frame__18TObjEneRe4SorcererFv
   - advance_anim_time__13TUnk_804B5E48Flf
   - advance_anim_time_wrapped__14TBoss7TentacleFf
@@ -3760,7 +3760,7 @@ force_active:
   - advance_appear__11TBoss4Type3Fv
   - advance_bone_rotation__19TObjEZBoneRotPlayerFv
   - advance_bura__11TBoss4Type3Fv
-  - advance_camera_ctrl_step__13TObjEneMe1GeeFv
+  - advance_camera_ctrl_step__13TObjEneMe1GeeFP10NJS_OBJECT
   - advance_camera_ctrl_step__19TObjEneEpsilonGuardFv
   - advance_capture__11TBoss4Type3Fv
   - advance_cut__11TBoss4Type3Fv
@@ -16082,7 +16082,7 @@ force_active:
   - step_camera_scalar__FPCfPCfPff
   - step_cutscene_frame__10TObjPlayerFP10NJS_OBJECT
   - step_demo_script__16TObjEneDellBiterFv
-  - step_effect_sequence__18TObjEneRe4SorcererFv
+  - step_effect_sequence__18TObjEneRe4SorcererFP10NJS_OBJECT
   - step_fade_opacity_decrease__13TUnk_80499970Fv
   - step_fade_opacity_increase__FPUc
   - step_ground_technique_projectile
@@ -16702,7 +16702,7 @@ force_active:
   - update_by_state__9TTecMegidFv
   - update_camera_facing_offset__11TLoadingCurFv
   - update_camera_slots__10TObjCameraFv
-  - update_camera_vec_by_stage__9TObjGrassFv
+  - update_camera_vec_by_stage__9TObjGrassFP10NJS_OBJECT
   - update_capture__11TBoss4Type3Fv
   - update_capture__14TObjVoloptCageFv
   - update_card_confirm__16TAdChrSelBSlotGCFPv

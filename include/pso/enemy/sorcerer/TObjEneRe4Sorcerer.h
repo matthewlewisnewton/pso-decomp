@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 
+struct NJS_OBJECT;
+
 struct TObjEneRe4Sorcerer : public TObjEneDD_ST {
     virtual ~TObjEneRe4Sorcerer();
     virtual void vfunc_88();
@@ -30,7 +32,7 @@ struct TObjEneRe4Sorcerer : public TObjEneDD_ST {
     void* m_418;
     u8 _pad41C[0x58];
     void* m_474;
-    static void step_effect_sequence();
+    static void step_effect_sequence(NJS_OBJECT *);
     void handle_death_state(s32 arg1);
     void update_state_machine(void *arg1p);
     void state_wait(s32 arg1);

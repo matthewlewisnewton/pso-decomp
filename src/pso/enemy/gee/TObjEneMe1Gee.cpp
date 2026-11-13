@@ -2144,7 +2144,7 @@ void render__13TObjEneMe1GeeFv(u8 *ene_me1_gee) {
     VecCopy__FP3VecPC3Vec(ene_me1_gee + 0x420, ene_me1_gee + 0x2FC);
 }
 
-void TObjEneMe1Gee::advance_camera_ctrl_step() {
+void TObjEneMe1Gee::advance_camera_ctrl_step(NJS_OBJECT *) {
     s32 pos;
     s32 temp_r4_2;
     switch ((s32) TObjEneMe1Gee__render_node_index) {

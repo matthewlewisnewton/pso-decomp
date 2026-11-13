@@ -1624,7 +1624,7 @@ void TObjGrass::vfunc_63() {
     }
 }
 
-void TObjGrass::update_camera_vec_by_stage() {
+void TObjGrass::update_camera_vec_by_stage(NJS_OBJECT *) {
     Vec *v;
 
     switch (TObjGrass__render_node_index) {

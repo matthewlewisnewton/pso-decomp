@@ -6,6 +6,8 @@
 #include "pso/render/MaterialOpacityFade.h"
 #include "pso/effect/TUnk_80494968.h"
 
+struct NJS_OBJECT;
+
 struct TObjGrass : public TObjEnemy {
     TObjGrass(TObject *parent, void *set_data);
     virtual ~TObjGrass();
@@ -39,7 +41,7 @@ struct TObjGrass : public TObjEnemy {
     MaterialOpacityFade fade;
     TUnk_80494968 *savers[2];  // attack traces; same type and role as TObjEneDubchik::saver (inferred name)
     static void update_dying(void *arg0_);
-    static void update_camera_vec_by_stage();
+    static void update_camera_vec_by_stage(NJS_OBJECT *);
     s32 update();
     s32 update_web_attack();
     static void update_chase_target(void *arg0_);

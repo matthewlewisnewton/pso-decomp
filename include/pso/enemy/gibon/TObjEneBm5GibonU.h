@@ -5,6 +5,8 @@
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 #include "dolphin/mtx.h"
 
+struct NJS_OBJECT;
+
 struct TObjPlayer;
 
 struct TObjEneBm5GibonU : public TObjEneDD_ST {
@@ -81,7 +83,7 @@ struct TObjEneBm5GibonU : public TObjEneDD_ST {
     static void register_global_objects();
     s32 get_clamped_level();
     int get_attack_state(void * _w1);
-    static void advance_anim_frame();
+    static void advance_anim_frame(NJS_OBJECT *);
     void handle_message(s32 msg);
     void state_cast_technique(s32 arg1);
     void run_idle_state(s32 arg1);

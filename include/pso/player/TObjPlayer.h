@@ -428,7 +428,7 @@ struct TObjPlayer : public TObjChara {
     s32 get_action_priority();
     void draw_model_no_fog();
     void update_invincibility();
-    static void update_effect_sequence();
+    static void update_effect_sequence(NJS_OBJECT *);
     static void toggle_particle_effect();
     static void create_dead_spot(s32 arg0, s32 arg1, f32 farg0);
     static void spawn_effect_f8(s32 arg1, s32 arg2);

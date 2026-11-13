@@ -1994,7 +1994,7 @@ void TObjEneBm5GibonU::render() {
     }
 }
 
-void TObjEneBm5GibonU::advance_anim_frame() {
+void TObjEneBm5GibonU::advance_anim_frame(NJS_OBJECT *) {
     if (((s32) TObjEneBm5GibonU__render_node_index >= 0x30) && ((s32) TObjEneBm5GibonU__render_node_index < 0x32)) {
         rotate_matrix_y(0, TObjEneBm5GibonU__render_joint_y_rotation);
     }

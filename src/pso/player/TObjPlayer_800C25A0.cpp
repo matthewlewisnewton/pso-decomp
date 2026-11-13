@@ -13,7 +13,7 @@ extern s32 lbl_805D5178;
 extern s32 lbl_805D517C;
 extern s32 lbl_805D5180;
 
-void TObjPlayer::update_effect_sequence() {
+void TObjPlayer::update_effect_sequence(NJS_OBJECT *) {
     switch ((s32) lbl_805D5178) {
     case 1:
         rotate_matrix_y(0, lbl_805D517C);
