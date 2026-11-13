@@ -9554,12 +9554,24 @@ pso/misc/TChCrEffTag.cpp:
 	.sdata      start:0x805D3D08 end:0x805D3D0C
 	.sdata2     start:0x805DDC90 end:0x805DDCAC
 
+original_unclaimed_805DDCAC:
+	.sdata2     start:0x805DDCAC end:0x805DDCB0 align:4
+
+original_unclaimed_805D3D0C:
+	.sdata      start:0x805D3D0C end:0x805D3D10 align:4
+
 pso/misc/TChCrEffTag_8029ACA8.cpp:
 	.text       start:0x8029ACA8 end:0x8029ACF8
 
 pso/menu/TChCrEffWall.cpp:
 	.text       start:0x8029ACF8 end:0x8029AED0
+	.rodata     start:0x804652E0 end:0x80465330
 	.data       start:0x804DBF58 end:0x804DBFD0
+	.sdata      start:0x805D3D10 end:0x805D3D14
+	.sdata2     start:0x805DDCB0 end:0x805DDCB8
+
+original_unclaimed_805D3D14:
+	.sdata      start:0x805D3D14 end:0x805D3D18 align:4
 
 pso/misc/TChCrEffTagStr.cpp:
 	.text       start:0x8029AED0 end:0x8029B098
