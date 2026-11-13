@@ -12,6 +12,7 @@ guides.
 - [Audio header parsing and ADX block transfer](audio-formats-and-adx-transfer.md)
 - [Action-palette unit](action-palette-unit.md)
 - [Box-drop directive](box-drop-directive-evidence.md)
+- [Item-menu and effect helper unit](item-menu-effect-helpers.md)
 - [Item-drop packet and payload contracts](item-drop-packet-contract.md)
 - [Ballistic particle recovery](ballistic-particle-recovery.md)
 - [Battle parameter tables](battle-parameter-evidence.md)
