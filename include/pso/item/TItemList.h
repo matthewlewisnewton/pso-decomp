@@ -4,6 +4,8 @@
 #include "pso/system/task/TObject.h"
 #include "types.h"
 
+struct TItem;
+
 class TItemList : public TObject {
 public:
     virtual ~TItemList();
@@ -17,6 +19,19 @@ public:
     void lookup_entry_by_count(s32 arg1);
     u8 get_item_count();
     void *run_item_count_update();
+    s32 get_owner_if_alive();
+    void set_field_1c(TItem *v);
+    void count_owned_items();
+    void collect_item_owners_recursive();
+    void collect_alive_owners();
+    void unequip_invalid_items_recursive();
+    void count_items_recursive();
+    void *find_inventory_item_matching_data();
+    void *find_inventory_item_by_field_d8();
+    void destroy_subobjects_recursive();
+    void reduce_owner_matched_items();
+    void reduce_child_item_amounts();
+    void collect_owner_fields_recursive();
 };
 
 class TItemList;

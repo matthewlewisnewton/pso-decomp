@@ -5635,7 +5635,7 @@ force_active:
   - destroy_static_array__10TObjPlayerFv
   - destroy_sub_objects__15TBoss3VoloptP02Fv
   - set_color__13TObjEneMe1GeeFPC8NJS_ARGB
-  - destroy_subobjects_recursive__10TObjPlayerFv
+  - destroy_subobjects_recursive__9TItemListFv
   - detect_device_type__16TKeyBoardControlFl
   - dimedian_action_table
   - dimedian_appear_motion_filename

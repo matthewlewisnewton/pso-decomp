@@ -1526,8 +1526,8 @@ void request_player_size_restore(PlayerScaleState *state);
 void request_player_shrink(PlayerScaleState *state);
 Vec_801ECFDC * TObjPlayer__sub_801C6FDC(void *);
 void * set_mode_and_refresh_object__8TPlyItemFPv(void *, Item_801EE77C *);
-void * start_inventory_update__10TObjPlayerFi(void *, s32);
-void * get_owner_if_alive__10TObjPlayerFv(void *);
+void * start_inventory_update__8TPlyItemFi(void *, s32);
+void * get_owner_if_alive__9TItemListFv(void *);
 s32 send_download_head_d7(int, int, int);
 void* __ct__13TQuestBgmCtrlFP7TObject(void*, TObject *);
 void qst_op_item_create_multi_cm(u8 i);
@@ -4957,7 +4957,7 @@ void qst_op_find_inventory_item_ex(u8 arg0, u8 arg1) {
         item.data[4] = qst_registers[(u8)arg0];
         obj = set_mode_and_refresh_object__8TPlyItemFPv(player->fD00, &item);
         if (obj != NULL) {
-            obj = get_owner_if_alive__10TObjPlayerFv(obj);
+            obj = get_owner_if_alive__9TItemListFv(obj);
             if (obj != NULL) {
                 qst_registers[arg1] = ((TItem *)obj)->get_item_id();
             } else {
@@ -4985,7 +4985,7 @@ void qst_op_item_check(u32 first, u32 destination) {
         item.data[2] = qst_registers[(u8)first];
         slot = set_mode_and_refresh_object__8TPlyItemFPv(*(void **)((s8 *)player + 0xD00), &item);
         if (slot != 0) {
-            owner = get_owner_if_alive__10TObjPlayerFv(slot);
+            owner = get_owner_if_alive__9TItemListFv(slot);
             if (owner != 0) {
                 qst_registers[(u8) destination] = ((TItem *)owner)->get_item_id();
                 return;
@@ -5015,7 +5015,7 @@ void qst_op_item_delete2(u32 src, u32 dst) {
         item.data[2] = qst_registers[(u8)src];
         slot = set_mode_and_refresh_object__8TPlyItemFPv(*(void **)((s8 *)player + 0xD00), &item);
         if (slot != 0) {
-            owner = get_owner_if_alive__10TObjPlayerFv(slot);
+            owner = get_owner_if_alive__9TItemListFv(slot);
             if (owner != 0) {
                 ((TItem *)owner)->copy_to_item_data((TItemData *)&item);
                 qst_registers[(u8)dst++] = item.data[0];
@@ -5052,9 +5052,9 @@ void qst_op_item_delete(u32 src, u32 dst) {
     }
     player = get_player_by_client_id(local_client_id);
     if (player != 0) {
-        slot = start_inventory_update__10TObjPlayerFi(*(void **)((s8 *)player + 0xD00), qst_registers[(u8)src]);
+        slot = start_inventory_update__8TPlyItemFi(*(void **)((s8 *)player + 0xD00), qst_registers[(u8)src]);
         if (slot != 0) {
-            owner = get_owner_if_alive__10TObjPlayerFv(slot);
+            owner = get_owner_if_alive__9TItemListFv(slot);
             if (owner != 0) {
                 ((TItem *)owner)->copy_to_item_data((TItemData *)&item);
                 qst_registers[(u8)dst++] = item.data[0];

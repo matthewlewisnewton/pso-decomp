@@ -1,3 +1,4 @@
+#include "pso/player/TPlyItem.h"
 #include "pso/unk/text_80104FCC.h"
 #include "pso/ui/city/TShopJudgmentItemWindow.h"
 #include "pso/ui/window/TWindowMenuIconLine.h"
@@ -586,7 +587,7 @@ s32 TShopJudgmentItemWindow::build_item_list(void *arg0) {
     s32 j;
     s32 k;
     memset(W->ents, 0, 0xF0);
-    n = ((TObjPlayer *)(*(s32 *)(W->player + 0xD00)))->apply_shop_judgment((int)items);
+    n = ((TPlyItem *)(*(s32 *)(W->player + 0xD00)))->apply_shop_judgment((void *)items);
     W->count = 0;
     for (i = 0; i < n; i++) {
         it = items[i];
