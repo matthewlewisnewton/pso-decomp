@@ -2152,7 +2152,6 @@ pso/object/TObjDoor_8018E358.cpp
 pso/object/TObjDoor_801F3754.cpp
 pso/object/TObjEZBoneRotBase.cpp
 pso/object/TObjEZBoneRotPlayer.cpp
-pso/object/TObjEZRopeBase.cpp
 pso/object/TObjEZRopeSimulation.cpp
 pso/object/TObjEnvSoundGlobal.cpp
 pso/object/TObjEvtCollision.cpp

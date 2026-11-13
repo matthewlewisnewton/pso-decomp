@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 89 | 58 |
 | hardware | 69 | 13 |
-| pragma | 5860 | 887 |
-| configure.py per-unit override | 205 | 205 |
+| pragma | 5860 | 886 |
+| configure.py per-unit override | 206 | 206 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055, `fp_contract` 883, `auto_inline` 803, `opt_common_subs` 638, `scheduling` 264, `opt_propagation` 264, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 39, `pool_data` 37, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 638, `scheduling` 264, `opt_propagation` 264, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 39, `pool_data` 37, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -238,6 +238,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/object/TObjEZRopeSimulation.cpp` | `-inline deferred` | Reverse definitions reproduce both native rope vtables and function order. |
 | `pso/ui/DrawLine.cpp` | `-inline off,deferred, -fp_contract on` | Reverse definitions retain native function and vtable order. |
 | `pso/menu/TAdTimeSetGC.cpp` | `-sdata 4, -fp_contract on` | Keep the eight-byte menu positions in .data with the state table. The calendar x coordinate uses a fused multiply-add. |
 | `pso/misc/TLobby_802409AC.cpp` | `-sym on` | Keep the compiler-generated guild-card initializer ahead of its constructor and accessors. |
@@ -1053,8 +1054,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055,
 | `src/pso/object/TObjDFHorming.cpp` | fp_contract×6, auto_inline×3, dont_inline×3, inline_depth×2, readonly_strings×1, cplusplus×1, opt_common_subs×1 |
 | `src/pso/object/TObjDoaEx01.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/object/TObjDoor_8018E358.cpp` | fp_contract×2, opt_common_subs×1 |
-| `src/pso/object/TObjEZRopeBase.cpp` | force_active×1 |
-| `src/pso/object/TObjEZRopeSimulation.cpp` | inline_depth×1, dont_inline×1 |
+| `src/pso/object/TObjEZRopeSimulation.cpp` | auto_inline×1, inline_depth×1, dont_inline×1 |
 | `src/pso/object/TObjEnvSoundGlobal.cpp` | opt_common_subs×1 |
 | `src/pso/object/TObjFish.cpp` | fp_contract×2, dont_inline×1, inline_depth×1, defer_codegen×1 |
 | `src/pso/object/TObjFogCollisionSwitch.cpp` | readonly_strings×1, defer_codegen×1 |
