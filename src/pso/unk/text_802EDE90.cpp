@@ -24,7 +24,6 @@ struct SavedEnemyState {
 }
 
 extern "C" {
-extern Boss7ConstructorTables lbl_804E3BF0;
 extern const Vec lbl_80473F6C;
 extern const CollisionBody lbl_80473C3C;
 extern BmlResource *lbl_805D6918;
@@ -46,9 +45,9 @@ void fill_value_array(PointerBuffer *);
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 extern "C" TBoss7DeRolLeC *TBoss7DeRolLeC__ct(TBoss7DeRolLeC *boss, TObject *parent, void *set_data) {
-    Boss7ConstructorTables *tables = &lbl_804E3BF0;
+    Boss7ConstructorTables *tables = reinterpret_cast<Boss7ConstructorTables *>(&lbl_804E3BF0);
     __ct__12TObjEneDD_STFP7TObject(boss, parent);
-    // The vtable is owned by the existing data split and used by the destructor.
+    // The behavior unit emits the native vtable; this keeps the existing constructor ABI.
     *reinterpret_cast<void ***>(reinterpret_cast<u8 *>(boss) + 0x18) = &tables->first_virtual_entry;
     init_resources__13TBoss2DeRolLeFi(&boss->float_blocks[0]);
     init_resources__13TBoss2DeRolLeFi(&boss->float_blocks[1]);

@@ -17,10 +17,12 @@ struct Boss7FloatBlock {
 };
 
 struct TBoss7DeRolLeC : public TObjEneDD_ST {
+    virtual void render_shadows();
     virtual ~TBoss7DeRolLeC();
+    virtual void dispatch_action(u32 state, s32 reason);
     void update_projectile_spawns();
     void try_spawn_pattern_crawfish(s32 variant, s32 index);
-    void spawn_pattern_crawfish(s16 slot, Vec *position, CameraAngles *angles, u32 flags);
+    void spawn_pattern_crawfish(s16 slot, const Vec *position, CameraAngles *angles, u32 flags);
     virtual void run_task();
     virtual void render();
     void update_or_dispatch();
@@ -33,7 +35,6 @@ struct TBoss7DeRolLeC : public TObjEneDD_ST {
     void sub_802E8234();
     void set_flag_800();
     virtual void vfunc_88();
-    virtual void render_shadows();
     void vfunc_63();
     void vfunc_62();
     void vfunc_61();

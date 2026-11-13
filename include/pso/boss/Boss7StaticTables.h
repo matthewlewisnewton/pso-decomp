@@ -10,9 +10,9 @@ struct Boss7PatternTables {
     s32 *angles[4];
 };
 
-// A bounded view of the original data block, shared with the constructor.
-// The remaining resource/action records and vtable still belong to the
-// original data split; this declaration does not define their storage.
+// The legacy native constructor addresses this contiguous linked data pool.
+// Boss7DeRolLeCBehavior.cpp owns its real objects and compiler-generated vtable;
+// this bounded address view remains at the existing constructor ABI boundary.
 struct Boss7ConstructorTables {
     Vec scale;
     Vec joint_offsets[4];
@@ -27,6 +27,13 @@ typedef char Boss7Patterns_offset[offsetof(Boss7ConstructorTables, patterns) == 
 typedef char Boss7ActionTable_offset[offsetof(Boss7ConstructorTables, first_action) == 0x13C ? 1 : -1];
 typedef char Boss7Vtable_offset[offsetof(Boss7ConstructorTables, first_virtual_entry) == 0x264 ? 1 : -1];
 
-extern "C" Boss7ConstructorTables lbl_804E3BF0;
+extern "C" {
+extern Vec lbl_804E3BF0;
+extern Vec lbl_804E3BFC[4];
+extern const Ent_802E88F8 *boss7_pattern_actions[4];
+extern const Vec *boss7_pattern_positions[4];
+extern const s32 *boss7_pattern_yaws[4];
+extern TObjMotionAction boss7_motion_actions[17];
+}
 
 #endif
