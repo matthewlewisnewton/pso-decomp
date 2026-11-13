@@ -3798,7 +3798,7 @@ force_active:
   - advance_review__14CreationCameraFv
   - advance_scene_object_animations__6TSceneFv
   - advance_scroll__13TRaderMapCoreFv
-  - advance_spawn_timer__14TObjEneBm5WolfFv
+  - advance_spawn_timer__14TObjEneBm5WolfFP10NJS_OBJECT
   - advance_state_4_to_5__17TObjEneMe1CanadinFv
   - advance_state_5_to_4__17TObjEneMe1CanadinFv
   - advance_state__16TObjEneRe7BeruraFP10NJS_OBJECT

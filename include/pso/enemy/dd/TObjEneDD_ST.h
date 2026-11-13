@@ -25,6 +25,7 @@ public:
     void sub_800F5864(s32);
     s32 enemy_check_target_valid();
     s32 enemy_has_live_target();
+    s32 check_target_validity();
 };
 
 

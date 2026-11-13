@@ -1807,8 +1807,8 @@ block_5:
     return 0;
 }
 
-s32 TObjEneEpsilon::update_death_check() {
-    if ((this->vfunc_99() == 0) && (is_player_entity_id(this->m_38c) == 0)) {
+s32 TObjEneDD_ST::check_target_validity() {
+    if ((this->vfunc_99() == 0) && (is_player_entity_id(((TObjEneEpsilon *)this)->m_38c) == 0)) {
         enemy_clear_target__12TObjEneDD_STFUs(this);
         return 0;
     }
