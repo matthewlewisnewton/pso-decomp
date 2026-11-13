@@ -315,9 +315,7 @@ struct TObjPlayer : public TObjChara {
     static void*get_pmt_record_by_index(int i);
     static s32 is_hit_receivable_target(s32 arg0, u32 arg1);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
-    s32 is_action_available();
     void draw_trail_strip(void *arg1, s32 arg2);
-    f32 calc_photon_blast_power(s32 arg1, f32 farg0);
     static s32 is_any_teammate_in_state();
     static void set_shared_flag(int a0);
     static void set_shared_count(int a0);
@@ -518,7 +516,7 @@ struct TObjPlayer : public TObjChara {
     s16 get_hp();
     u16 get_section_id();
     void set_field_2(s16 v);
-    void set_type(s16 v);
+    void set_type(u16 v);
     u16 get_entity_type();
     static void destroy_global_buffer();
     static void destroy_buffers();
@@ -906,7 +904,6 @@ struct TObjPlayer : public TObjChara {
     int is_flag32_clear();
     int get_field_340(int _w1);
     static int check_status_flag_128(void* p);
-    int run_and_get_result(int a1);
     int run_state_query(int a1);
     s32 update_inventory_item(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
     void find_first_inventory_entry(int a1);
@@ -1304,7 +1301,7 @@ struct TObjPlayer : public TObjChara {
     static s32 draw_small_font(s32 arg0, void * _w1);
     static void send_code_45_1(TObjPlayer *player);
     static void play_effect_default(TObjPlayer *player, s32 effect);
-    static void play_effect(s32 arg0, s32 arg1, s32 arg2);
+    static void play_effect(TObjPlayer *player, s32 arg1, s32 arg2);
     s32 get_clamped_index();
     void apply_input_mode();
     void select_class_action_provider();

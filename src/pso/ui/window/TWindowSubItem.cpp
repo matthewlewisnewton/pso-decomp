@@ -1,3 +1,4 @@
+#include "pso/player/TPlyItem.h"
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/unk/TLobby_80132ED0.h"
@@ -788,7 +789,7 @@ void populate_sub_item_list(Win_8027ABFC *arg0) {
 
     pl = (Player_8027ABFC *)get_player_by_client_id(arg0->id);
     if (pl != NULL) {
-        arg0->n = ((TObjPlayer *)(pl->inv))->run_and_get_result((int)ids);
+        arg0->n = ((TPlyItem *)(pl->inv))->run_and_get_result((s32 *)ids);
         for (i = 0; i < arg0->n; i++) {
             it = find_item_by_id(ids[i]);
             if (it != NULL) {

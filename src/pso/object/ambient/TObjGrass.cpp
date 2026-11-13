@@ -1776,7 +1776,7 @@ void TObjGrassWeb::apply_to_player() {
     this->m_90 = 1;
     player = get_player_by_client_id(this->m_a4);
     if ((player != NULL) && (TObjPlayer::is_locally_controlled(player) != 0) && (((TObject *)player)->all_parents_unqueued_for_destruction() != 0) && (obj_testFlags30__14TObjCollidableFUl(player, 0x800) == 0)) {
-        TObjPlayer::play_effect((s32)player, this->set_params[0], 1);
+        TObjPlayer::play_effect((TObjPlayer *)player, this->set_params[0], 1);
     }
 }
 

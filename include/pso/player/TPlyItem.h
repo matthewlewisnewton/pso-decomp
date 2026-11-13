@@ -7,6 +7,7 @@
 class TPlyItem : public TObject {
 public:
     virtual ~TPlyItem();
+    int run_and_get_result(s32 *out);
 };
 
 extern "C" {

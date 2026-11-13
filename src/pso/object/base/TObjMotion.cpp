@@ -255,7 +255,7 @@ int TObjMotion::is_passing_frame(f32 at_frame) {
     return 0;
 }
 
-void save_joint_matrix_callback() {
+void save_joint_matrix_callback(NJS_OBJECT *) {
     get_current_matrix(player_joint_matrix_write_ptr);
     player_joint_matrix_write_ptr++;
 }

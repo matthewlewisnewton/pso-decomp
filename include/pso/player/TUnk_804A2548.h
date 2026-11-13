@@ -6,7 +6,7 @@
 class TUnk_804A2548 : public TUnk_804E355C {
 public:
     virtual ~TUnk_804A2548();
-    void*construct_explosion_collider();
+    TUnk_804A2548(TObject *parent, void *params);
     virtual void run_task();
     u8 unk_C4[0x4];
 };

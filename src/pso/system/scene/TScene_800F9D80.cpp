@@ -4,8 +4,8 @@
 
 extern "C" {
 
-int get_resource_file_size__6TLobbyFPCv(void*);
+int get_resource_file_size__6TLobbyFPCv(const void*);
 
-int TScene::update_lobby_scene() { return get_resource_file_size__6TLobbyFPCv(this); }
+int TScene::update_lobby_scene(const void *name) { return get_resource_file_size__6TLobbyFPCv(name); }
 
 }

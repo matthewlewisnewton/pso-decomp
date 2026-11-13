@@ -59,7 +59,7 @@ u8 *load_gvm_texture_file(s32 arg0) {
     } else {
         buf = TLobby::tmp_buf_use_req((const char *)lbl_8044983C);
     }
-    TGStream::load_sct_file(arg0, buf);
+    TGStream::load_sct_file(arg0, (u8 *)buf);
     count = ((s32 (*)(s32, u8 *))read_file_header__9TLanguageFiPv)(buf, (u8 *)&hdr);
     if (count == 0) {
         if (big != 0) {

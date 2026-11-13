@@ -261,7 +261,7 @@ s32 TItemMagSub::resolve_owner_heading() {
 }
 
 void TItemMagSub::render() {
-    if (is_point_on_screen(&owner->m_2fc, 400.0f, 20.0f) && model != NULL) {
+    if (is_point_on_screen((const Vec *)&owner->m_2fc, 400.0f, 20.0f) && model != NULL) {
         drawing = this;
         set_texlist(textures);
         push_matrix();
@@ -387,7 +387,7 @@ void accumulate_mag_axis_oscillation(f32 *out, s32 *phase, MagAxisOscillationPar
     *out = axis->amplitude * sin_table_lookup(*phase + axis->phase_offset);
 }
 
-void TItemMagSub::update_node_oscillation(void *node) {
+void TItemMagSub::update_node_oscillation(NJS_OBJECT *node) {
     if (drawing != NULL) {
         drawing->apply_node_oscillation(node);
         drawn_node++;

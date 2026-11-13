@@ -517,7 +517,7 @@ void TUnk_80493450::beast_idle_update() {
     if (this->phase != 1) {
         this->phase = 1;
         ((TUnk_80493450 *)arg0)->link_into_group_chain();
-        *(s32 *)&this->m_378 = ((TObjPlayer *)arg0)->is_action_available();
+        *(s32 *)&this->m_378 = ((TObjEnemy *)arg0)->has_group();
     }
     *(s32 *)&this->m_37c = ((TUnk_80493450 *)arg0)->countChildren();
     other = *(u8 * *)&this->next;

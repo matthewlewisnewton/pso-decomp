@@ -33,12 +33,12 @@ extern s16 quest_floor_designations[];
 s32 TLobby__data_805D5EE0;
 s32 read_disc_file(s32, s32);
 s32 alloc__22TQuestVmDownLoadServerFUl();
-s32 update_lobby_scene__6TSceneFv();
+s32 update_lobby_scene__6TSceneFPCv();
 
 void refresh_quest_list__6TLobbyFi(s32 arg0) {
     s32 temp_r3;
 
-    if (update_lobby_scene__6TSceneFv() >= 0) {
+    if (update_lobby_scene__6TSceneFPCv() >= 0) {
         temp_r3 = alloc__22TQuestVmDownLoadServerFUl();
         if (temp_r3 != 0) {
             read_disc_file(arg0, temp_r3);
@@ -373,7 +373,7 @@ extern s16 TLobby__data_805D6134;
 void open_session__6TLobbyFi(s32 arg0) {
     s32 t;
 
-    if (update_lobby_scene__6TSceneFv() >= 0) {
+    if (update_lobby_scene__6TSceneFPCv() >= 0) {
         t = (TLobby__data_805D5EE0 = alloc__22TQuestVmDownLoadServerFUl());
         if (t != 0) {
             read_disc_file(arg0, t);

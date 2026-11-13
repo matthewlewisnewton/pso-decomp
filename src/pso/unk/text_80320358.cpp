@@ -46,7 +46,7 @@ u8 *load_rel_module(u8 *arg0, s32 arg1) {
     u32 size2;
     *(void **)((s8 *)arg0 + 0) = NULL;
     *(void **)((s8 *)arg0 + 4) = NULL;
-    size = ((TScene *)arg1)->update_lobby_scene();
+    size = TScene::update_lobby_scene((const void *)(arg1));
     if (size > 0) {
         *(void **)((s8 *)arg0 + 4) = xmalloc(size);
         if ((void *) *(void **)((s8 *)arg0 + 4) == NULL) {

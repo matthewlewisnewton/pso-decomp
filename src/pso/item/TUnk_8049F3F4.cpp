@@ -2,6 +2,7 @@
 #include "pso/item/TUnk_8049F3F4.h"
 #include "pso/item/TItemLoad_8010F3D8.h"
 #include "pso/item/TItemLoad.h"
+#include "pso/item/TUnk_8049F42C.h"
 
 extern "C" {
 
@@ -21,10 +22,10 @@ void *__dt__13TUnk_8049F3F4Fv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = lbl_8049F3F4;
         switch (((TUnk_8049F3F4 *)arg0)->m_20) {
         case 2:
-            ((TItemLoad *)item_model_chunk_loader)->reset_ring_state();
+            ((TUnk_8049F42C *)item_model_chunk_loader)->reset_ring_state();
             break;
         case 3:
-            ((TItemLoad *)item_texture_archive_loader)->reset_ring_state();
+            ((TUnk_8049F42C *)item_texture_archive_loader)->reset_ring_state();
             break;
         }
         temp_r3 = *(void ***)((s8 *)arg0 + 0x3C);
@@ -55,11 +56,11 @@ void TItemLoad::update_all() {
     void *temp_r3;
     temp_r3 = item_texture_archive_loader;
     if (temp_r3 != 0) {
-        ((TItemLoad *)temp_r3)->update_state();
+        ((TUnk_8049F42C *)temp_r3)->update_state();
     }
     temp_r3 = item_model_chunk_loader;
     if (temp_r3 != 0) {
-        ((TItemLoad *)temp_r3)->update_state();
+        ((TUnk_8049F42C *)temp_r3)->update_state();
     }
 }
 

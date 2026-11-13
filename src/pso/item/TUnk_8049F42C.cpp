@@ -17,7 +17,7 @@ struct VOff_8010FD2C_arg0_8010fd2c { char pad_0[0x1C]; char f_1C[1]; };
 
 extern s32 item_load_compressed_work_buffer;
 
-void TItemLoad::advance_load_state() {
+void TUnk_8049F42C::advance_load_state() {
     u8 *arg0 = (u8 *)this;
     if (test_flags_any(arg0 + 0x1C, 4) == 0) {
         if ((s32) item_load_work_buffer_busy != 1) {
@@ -27,9 +27,9 @@ void TItemLoad::advance_load_state() {
         }
     } else {
 block_3:
-        if (((TItemLoad *)arg0)->load_data((int) (*(s32 *)((s8 *)arg0 + 0x20))) != 0U) {
+        if (((ItemArchiveReader *)arg0)->open((int) (*(s32 *)((s8 *)arg0 + 0x20))) != 0U) {
             TItemLoad__sub_801107DC(arg0);
-            ((TItemLoad *)arg0)->request_load(item_load_compressed_work_buffer);
+            ((ItemArchiveReader *)arg0)->read(item_load_compressed_work_buffer);
             *(s32 *)((s8 *)arg0 + 0x18) = 2;
         }
     }

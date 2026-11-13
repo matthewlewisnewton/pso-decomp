@@ -224,7 +224,7 @@ void TCameraCtrl::load_camera_banks() {
         return;
     }
     for (j = 0; j < n; j++) {
-        sz = ((TScene *)(b->entries[j].id))->update_lobby_scene();
+        sz = TScene::update_lobby_scene((const void *)((b->entries[j].id)));
         if (sz <= -1) {
             return;
         }

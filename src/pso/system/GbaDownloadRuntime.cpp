@@ -20,7 +20,7 @@ s32 read_disc_file(s32, u32);
 int GBAInit(void*);
 s32 GBAGetProcessStatus(s32, u8 *);
 u32 SIProbe(s32);
-u32 update_lobby_scene__6TSceneFv();
+u32 update_lobby_scene__6TSceneFPCv();
 
 extern u32 gba_download_data_buffer;
 extern u32 gba_download_graph;
@@ -87,7 +87,7 @@ void gba_joyboot_transfer_callback(s32 arg0, s32 arg1) {
 void TLobby::send_data(s32 arg0) {
     u32 temp_r3;
 
-    temp_r3 = update_lobby_scene__6TSceneFv();
+    temp_r3 = update_lobby_scene__6TSceneFPCv();
     gba_download_data_size = temp_r3;
     if (temp_r3 > 0x40000U) {
         gba_download_data_size = 0U;

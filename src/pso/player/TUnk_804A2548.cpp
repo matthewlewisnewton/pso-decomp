@@ -62,10 +62,11 @@ void *__dt__13TUnk_804A2548Fv(void *arg0, s16 arg1) {
 
 extern "C" {
 
-int __ct__13TUnk_804E355CFP7TObjectPv(void);
-
     extern const float lbl_805DAD54;
-void*TUnk_804A2548::construct_explosion_collider() { __ct__13TUnk_804E355CFP7TObjectPv(); *(int*)((char*)this + 0x18) = (int)__vt__13TUnk_804A2548; *(float *)&this->unk_C4 = lbl_805DAD54; return this; }
+TUnk_804A2548::TUnk_804A2548(TObject *parent, void *params)
+    : TUnk_804E355C(parent, params) {
+    *(f32 *)&unk_C4 = lbl_805DAD54;
+}
 
 }
 
@@ -107,7 +108,6 @@ void spawn_faust_hit_explosion(s32 arg0, s32 arg1) {
 extern "C" {
 void *TObjPlayer__sub_802E449C(void *a0);
 void *__nw__7TObjectFUl(u32);
-s32 construct_explosion_collider__13TUnk_804A2548Fv(void *, TObject *, void *);
 extern TObject *tl_05;
 }
 
@@ -119,10 +119,7 @@ s32 spawn_faust_explosion(u32 a0, const Vec &pos) {
         ((TObjPlayer *)a0)->fill_status_info(&info);
         VecCopy(&info.pos, &pos);
         info.f10 = 0xA;
-        o = __nw__7TObjectFUl(0xC8);
-        if (o != NULL) {
-            construct_explosion_collider__13TUnk_804A2548Fv(o, tl_05, &info);
-        }
+        new TUnk_804A2548(tl_05, &info);
         create_timed_particle_emitter(&info, 0x17F, 0, 10);
     } else {
         Vec v = pos;

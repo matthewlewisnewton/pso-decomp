@@ -83,7 +83,7 @@ int is_quest_active(void);
 void init__9TItemDataFv(void *);
 extern Source_8011AA68 *quest_object_entries;
 void apply_by_index__9TObjEnemyFs(s16, void *);
-void drop_item_from_slot__10TObjPlayerFlll(s8 arg0, s32 arg1, s32 arg2);
+void drop_item_from_slot__10TObjPlayerFlll(s32 arg0, s32 arg1, s32 arg2);
 extern Source_8011AB64 *TLobby__data_805D6144;
 s32 spawn_dropped_item_from_msg(void *, int);
 void handle_6x5F_drop_item(Pkt_8011ADF4 *pkt);
@@ -122,7 +122,6 @@ void observe_item_id(s32 item_id) {
 void handle_box_drop_directive(void *arg0) {
     BoxDrop_8011A868 *req = (BoxDrop_8011A868 *)arg0;
     BoxSet_8011A868 set;
-    Delivery_8011AA68 delivery;
     TItemData item;
     u32 id;
     s16 source = req->source;
@@ -148,15 +147,16 @@ void handle_box_drop_directive(void *arg0) {
             item.id = id;
             if (item.isValidGroundDrop() != 0) {
                 item.encode_for_network();
-                ((TLobby *)(&delivery))->init_header_packet();
-                delivery.client = req->client;
-                delivery.kind = 2;
-                delivery.source = source;
-                delivery.x = req->x;
-                delivery.z = req->z;
-                delivery.room = req->room;
-                ((TItemData *)(delivery.item))->copy_from(&item);
-                ((TLobby *)(&delivery))->send_item_packet();
+                G_DropItem_PC_V3_BB_6x5F delivery;
+                FloorItem &floor_item = delivery.__base_G_DropItem_DC_6x5F.item;
+                floor_item.floor = req->client;
+                floor_item.source_type = 2;
+                floor_item.entity_index = source;
+                floor_item.pos.x = req->x;
+                floor_item.pos.z = req->z;
+                floor_item.room_id = req->room;
+                floor_item.item.copy_from(&item);
+                delivery.send();
             }
         }
     }
@@ -185,7 +185,6 @@ void remove_item_condition_at(s16 floor, s32 item_id) {
 }
 
 void TLobby::drop_item_from_source(s16 source, int client, s16 room, int slot, f32 x, f32 z) {
-    Delivery_8011AA68 delivery;
     Item_8011AA68 item;
     u32 id;
     if (source != -1) {
@@ -199,25 +198,25 @@ void TLobby::drop_item_from_source(s16 source, int client, s16 room, int slot, f
             item.id = id;
             if (((TItemData *)(&item))->isValidGroundDrop() != 0) {
                 ((TItemData *)&item)->encode_for_network();
-                ((TLobby *)(&delivery))->init_header_packet();
-                delivery.client = client;
-                delivery.kind = 2;
-                delivery.source = source;
-                delivery.x = x;
-                delivery.z = z;
-                delivery.room = room;
-                ((TItemData *)(delivery.item))->copy_from((TItemData *)(&item));
-                ((TLobby *)(&delivery))->send_item_packet();
+                G_DropItem_PC_V3_BB_6x5F delivery;
+                FloorItem &floor_item = delivery.__base_G_DropItem_DC_6x5F.item;
+                floor_item.floor = client;
+                floor_item.source_type = 2;
+                floor_item.entity_index = source;
+                floor_item.pos.x = x;
+                floor_item.pos.z = z;
+                floor_item.room_id = room;
+                floor_item.item.copy_from((TItemData *)(&item));
+                delivery.send();
             }
         }
     }
 }
 
-void process_enemy_drop_request(s8 area, s16 source, int client, s16 room, int slot, f32 x, f32 z) {
+void process_enemy_drop_request(s32 area, s16 source, int client, s16 room, int slot, f32 x, f32 z) {
     u32 id;
     if (source != -1) {
-        Delivery_8011AB64 delivery;
-        Item_8011AB64 item;
+            Item_8011AB64 item;
         Source_8011AB64 row = TLobby__data_805D6144[source];
         if (row.claim != 0xFFFF) {
             id = build_item_id(row.claim);
@@ -228,15 +227,16 @@ void process_enemy_drop_request(s8 area, s16 source, int client, s16 room, int s
             item.id = id;
             if (((TItemData *)(&item))->isValidGroundDrop() != 0) {
                 ((TItemData *)&item)->encode_for_network();
-                ((TLobby *)(&delivery))->init_header_packet();
-                delivery.client = client;
-                delivery.kind = 1;
-                delivery.source = source;
-                delivery.x = x;
-                delivery.z = z;
-                ((TItemData *)(delivery.item))->copy_from((TItemData *)(&item));
-                delivery.room = room;
-                ((TLobby *)(&delivery))->send_item_packet();
+                G_DropItem_PC_V3_BB_6x5F delivery;
+                FloorItem &floor_item = delivery.__base_G_DropItem_DC_6x5F.item;
+                floor_item.floor = client;
+                floor_item.source_type = 1;
+                floor_item.entity_index = source;
+                floor_item.pos.x = x;
+                floor_item.pos.z = z;
+                floor_item.item.copy_from((TItemData *)(&item));
+                floor_item.room_id = room;
+                delivery.send();
             }
         }
     }
@@ -264,7 +264,7 @@ void handle_6x60_standard_drop_item_request(void *arg0) {
     Req_8011AD1C *req = (Req_8011AD1C *)arg0;
     s32 client;
     s32 slot;
-    s8 area;
+    s32 area;
     bswap_6x60_drop_request_fields(arg0);
     if ((u32)(req->size * 4) == 0x14) {
         client = req->client;
