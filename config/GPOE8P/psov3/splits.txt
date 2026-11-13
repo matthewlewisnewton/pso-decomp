@@ -2986,6 +2986,7 @@ pso/item/TItemEquipVariant_801225A0.cpp:
 pso/player/TObjPlayer_801225F8.cpp:
 	.text       start:0x801225F8 end:0x80122768
 	.rodata     start:0x8043E870 end:0x8043E878
+	.sdata2     start:0x805DACF0 end:0x805DACF8
 
 pso/unk/text_80122768.cpp:
 	.text       start:0x80122768 end:0x801227E0
