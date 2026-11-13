@@ -1565,7 +1565,7 @@ force_active:
   - TObjOnlineEndingHexMove__ct
   - TObjOnlineEndingHexMove__default_move_params
   - TObjOnlineEnding__ct
-  - TObjParticle__ct
+  - TObjParticle__class_name_string
   - TObjPathObj__ct
   - TObjPlayerSet__ct
   - TObjPlayer__deactivate_off_floor_body
@@ -2246,6 +2246,7 @@ force_active:
   - __ct__12TOSignCave03FP7TObjectPv
   - __ct__12TOSwitchItemFP7TObjectPv
   - __ct__12TObjEneSharkFP7TObjectPv
+  - __ct__12TObjParticleFP7TObjectP15ParticleSetData
   - __ct__13List_801D4744Fl
   - __ct__13PointerBufferFlPv
   - __ct__13TItemAttackerFllll
@@ -10216,6 +10217,7 @@ force_active:
   - obj_curtain_lobby_class_name
   - obj_kabocha_lobby_class_name
   - obj_lobby_main_class_name
+  - obj_particle_class_name
   - obj_particle_lobby_class_name
   - obj_rainbow_lobby_class_name
   - obj_setField96_1
