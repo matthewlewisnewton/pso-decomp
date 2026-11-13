@@ -18,6 +18,7 @@ public:
 public:
     virtual ~TChCrLoadGmNjReq();
     void sub_8028C8A8();
+    void update_model_load();
     virtual void run_task();
 };
 
