@@ -21,7 +21,7 @@ extern "C" {
 BOOL approach_camera_vector(Vec* current, Vec* target, f32 rate);
 void set_scripted_camera_pose(const Vec* position, const Vec* target, const CameraAngles* angles);
 }
-void configure_scripted_camera_playback(u8* playback_data, s32 unused);
+void configure_scripted_camera_playback(CameraPlayback* playback, s32 unused);
 extern "C" {
 CameraPlayback* get_scripted_camera_playback();
 }

@@ -5239,7 +5239,7 @@ force_active:
   - computer_machine01_collision_body
   - computer_screen_model__13TObjLobbyMain
   - computer_screen_model_b__13TObjLobbyMain
-  - configure_scripted_camera_playback__FPUcl
+  - configure_scripted_camera_playback__FP14CameraPlaybackl
   - confirm_and_close_if_valid__15TShopWindowBaseFv
   - confirm_and_free__17TWindowSubComCardFv
   - confirm_mode_selection__21TAdMultiChgGameModeGCFv
