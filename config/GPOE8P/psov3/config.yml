@@ -1604,6 +1604,7 @@ force_active:
   - TObjParticle__class_name_string
   - TObjPathObj__ct
   - TObjPlayerSet__ct
+  - TObjPlayer__data_80434060
   - TObjPlayer__deactivate_off_floor_body
   - TObjPlayer__enter_off_floor_state
   - TObjPlayer__sub_800181DC
@@ -8166,6 +8167,8 @@ force_active:
   - lazer_fence_norm_episode1_resource_descriptor
   - lazer_fence_norm_episode2_resource_descriptor
   - lazer_fence_sw_ginja_model_table
+  - lbl_8043406C
+  - lbl_80434074
   - lbl_804345D8
   - lbl_804345E0
   - lbl_804347B0
@@ -14742,6 +14745,7 @@ force_active:
   - player_asset_pxtZc_01i_t_core
   - player_asset_pxtZc_01j_t_core
   - player_asset_pxtZc_01z_t_core
+  - player_attack_stat_status_light_colors
   - player_auxiliary_surface_flag_table
   - player_band_threshold_table
   - player_cast_motion_record_table
@@ -14759,6 +14763,7 @@ force_active:
   - player_class_base_stats_10
   - player_class_base_stats_11
   - player_collider_radius_table
+  - player_defense_stat_status_light_colors
   - player_footstep_floor_table
   - player_joined_message
   - player_joint_matrix_write_ptr
