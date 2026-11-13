@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/enemy/shinowa/TObjEneMe3Shinowa.h"
 
+struct NJS_OBJECT;
+
 struct TObjEneMe3ShinowaMirage : public TObjEneMe3Shinowa {
     virtual ~TObjEneMe3ShinowaMirage();
     virtual void vfunc_105();
@@ -21,7 +23,7 @@ struct TObjEneMe3ShinowaMirage : public TObjEneMe3Shinowa {
     u16 m_42c;
     u8 _pad42E[0x2];
     void* m_430;
-    static void advance_camera_ctrl_step();
+    static void advance_camera_ctrl_step(NJS_OBJECT *);
     void state_break_apart(s32 arg1);
     void state_cast_support(s32 arg1);
     void state_chase_target(s32 arg1);
@@ -39,7 +41,6 @@ struct TObjEneMe3ShinowaMirage : public TObjEneMe3Shinowa {
     f32 m_434;
     u8 unk_438[0x4];
     f32 m_43c;
-    void draw_model();
 };
 
 typedef char TObjEneMe3ShinowaMirage_size[sizeof(TObjEneMe3ShinowaMirage) == 0x440 ? 1 : -1];

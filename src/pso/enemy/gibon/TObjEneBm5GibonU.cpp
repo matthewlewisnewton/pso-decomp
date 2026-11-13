@@ -1994,7 +1994,7 @@ void TObjEneBm5GibonU::render() {
     }
 }
 
-void TObjEneBm5GibonU::advance_anim_frame() {
+void TObjEneBm5GibonU::advance_anim_frame(NJS_OBJECT *) {
     if (((s32) TObjEneBm5GibonU__render_node_index >= 0x30) && ((s32) TObjEneBm5GibonU__render_node_index < 0x32)) {
         rotate_matrix_y(0, TObjEneBm5GibonU__render_joint_y_rotation);
     }
@@ -3659,7 +3659,7 @@ void TObjEneBm5GibonU__sub_800D02F8(Gibon_800D02F8 *g, s32 arg1) {
         g->f478 = 0;
         VecCopy((Vec *)home, (const Vec *)g->pos);
         ((MaterialOpacityFade *)(&g->sub))->start_fade_in();
-        ((TBoss3Volopt *)(g->pos))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)(g->pos));
         break;
     case 3:
         if (g->sub.m5() != 0) {

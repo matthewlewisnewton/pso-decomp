@@ -18,7 +18,7 @@ struct TObjEneMerillLia : public TUnk_80493450 {
     virtual void vfunc_98();
     virtual void vfunc_99();
     virtual void vfunc_101();
-    void sub_800D5570();
+    void update_fade_transition();
     virtual void vfunc_83();
     virtual void vfunc_60();
     virtual void vfunc_59();
@@ -29,9 +29,9 @@ struct TObjEneMerillLia : public TUnk_80493450 {
     void reset_state_clear_status();
     void init_attack_state();
     void reset_action_state();
-    static void search_target(void *ov);
-    static s32 update_emerge_state(void *ov);
-    static s32 update_kafun_attack(void *p);
+    void search_target();
+    s32 update_emerge_state();
+    s32 update_kafun_attack();
     void init_params_from_position();
     void select_action_by_distance();
     static void destroy_rocks();

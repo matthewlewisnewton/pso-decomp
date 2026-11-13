@@ -11,6 +11,7 @@
 #include "pso/unk/text_803D96A8.h"
 extern "C" void *__ct__12TObjEneDD_STFP7TObject(void *);
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 #include "pso/enemy/sorcerer/TObjEneRe4Sorcerer.h"
@@ -1267,7 +1268,7 @@ void render__18TObjEneRe4SorcererFv(u8 *ene_re7_berura) {
 
 #pragma push
 #pragma opt_propagation off
-void TObjEneRe4Sorcerer::step_effect_sequence() {
+void TObjEneRe4Sorcerer::step_effect_sequence(NJS_OBJECT *) {
     s32 t;
     switch (TObjEneRe4Sorcerer__render_node_index) {
     case 0:
@@ -2441,11 +2442,7 @@ void TObjEneRe4Sorcerer::load_resources() {
     TObjEneRe4Sorcerer__effect_render_scale = TObjEneRe4Sorcerer__data_805DA790;
     re4_sorcerer_render_node_ptr = 0;
     TObjEneRe4Bit__sub_800EDAB4();
-    r = (u32) (int)::operator new(0x14);
-    if (r != 0) {
-        r = (u32) ((TLobby *)r)->alloc_tables(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 8), 2);
-    }
-    TObjEneRe4Sorcerer__uv_scroll_buffer = r;
+    TObjEneRe4Sorcerer__uv_scroll_buffer = (u32)new StripBufferPair(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 8), 2);
     Params_800F0464 p = re4_sorcerer_spawn_descriptor;
     p.a = *(s32 *)((s8 *)sorcerer_bml_resource + 0x430);
     NpcModelRegistry::register_animated_chunk((s16)0x2A, (void *)((s32)(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 8))), (void *)((NJS_TEXLIST *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)sorcerer_bml_resource + 0x42C)) + 0xC))), (const NpcAnimationBinding *)(&p), re4_sorcerer_collision_body_part_table[3], (f32)TObjEneRe4Sorcerer__data_805DA78C);

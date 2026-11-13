@@ -64,7 +64,16 @@ void MaterialOpacityFade::update_alpha() {
     this->color.a = (f32) lbl_805DA354;
 }
 
-void TObjEneMe3SinowZoa::copy_position_vector(void* q) { *(f32*)((char*)this + 0x18) = *(f32*)((char*)q + 0x0); *(f32 *)&this->m_name = *(f32*)((char*)q + 0x0); *(f32 *)&this->m_flags = *(f32*)((char*)q + 0x4); *(f32 *)&this->m_prev = *(f32*)((char*)q + 0x8); *(f32 *)&this->m_next = *(f32*)((char*)q + 0xc); }
+#pragma push
+#pragma optimization_level 0
+void MaterialOpacityFade::set_color(const NJS_ARGB *source) {
+    this->value = source->a;
+    this->color.a = source->a;
+    this->color.r = source->r;
+    this->color.g = source->g;
+    this->color.b = source->b;
+}
+#pragma pop
 
 void MaterialOpacityFade::reset_obstruction_fade() { this->value = lbl_805DA348; this->color.a = lbl_805DA350; this->color.r = lbl_805DA348; this->color.g = lbl_805DA348; this->color.b = lbl_805DA348; }
 

@@ -9,14 +9,13 @@
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/slime/TObjEneSlimeWaterBomb.h"
 #include "pso/enemy/slime/TObjEneSlimeOne.h"
+#include "pso/enemy/slime/SlimeAnimationState.h"
 #include "pso/enemy/panarms/TObjEnePanarms.h"
 #include "pso/enemy/berura/TObjEneRe7Berura.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 
 struct O_800EC39C { u8 pad[0x384]; s32 state; };
-
-struct Obj_800EC6D0 { s32 f0; s32 state; u8 pad8[0x28 - 8]; f32 f28; f32 f2C; f32 f30; };
 
 struct E12_800EC7F4
 {
@@ -40,29 +39,6 @@ struct Tbl_800EC7F4
   u8 pad18[0x68 - 0x18];
   E20_800EC7F4 *ptrs[2];
   s32 ids[2];
-};
-
-struct Res_800EC7F4
-{
-  u8 pad[4];
-  u32 n;
-};
-
-struct Slime_800EC7F4
-{
-  void *obj;
-  s32 state;
-  s32 f8;
-  s32 fC;
-  Res_800EC7F4 *f10;
-  s32 f14;
-  s32 f18;
-  s32 f1C;
-  Res_800EC7F4 *f20;
-  u8 pad24[4];
-  f32 f28;
-  f32 f2C;
-  f32 f30;
 };
 
 extern "C" {
@@ -119,110 +95,108 @@ int TObjEneSlimeOne::check_player_field_7cc() { return get_validated_attack_stag
 extern f32 TObjEneSlimeOne__target_depth;
 extern u8 TObjEneSlimeOne__target_depth_initialized;
 
-void TObjEneSlimeOne::draw_part(s32 arg1) {
-    u8 *arg0 = (u8 *)this;
-    s32 state = *(s32 *)&this->m_flags;
+void SlimeAnimationState::draw(s32 arg1) {
+    s32 state = this->state;
     if (state == -1) {
         return;
     }
     if (state < 7) {
-        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjEneSlimeOne::get_instance(), slime_one_part_texture_index_table[((TObjEneSlimeOne *)(*(void * *)&this->m_name))->get_attack_target()])));
+        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjEneSlimeOne::get_instance(), slime_one_part_texture_index_table[owner->get_attack_target()])));
         if (arg1 != 0) {
             model_render_flags |= 0x400000;
             set_chunk_render_flags(1);
-            ((TObjMotion *)(*(void * *)&this->m_name))->draw();
+            ((TObjMotion *)owner)->draw();
             clear_chunk_render_flags();
             model_render_flags &= ~0x400000;
             return;
         }
         set_cull_back();
         set_chunk_render_flags(2);
-        ((TObjMotion *)(*(void * *)&this->m_name))->draw();
+        ((TObjMotion *)owner)->draw();
         set_cull_front();
-        ((TObjMotion *)(*(void * *)&this->m_name))->draw();
+        ((TObjMotion *)owner)->draw();
         set_cull_none();
         clear_chunk_render_flags();
         return;
     }
     if (state < 9) {
-        set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->m_next));
+        set_current_texture_list((GinjaTextureList *)(texture_list));
         if (arg1 != 0) {
             model_render_flags |= 0x400000;
             set_chunk_render_flags(1);
-            draw_chunk_model_with_shape_motion((void *)(*(s32 *)&this->m_prev), (void *)(*(s32 *)&this->m_up), (void *)(*(s32 *)&this->m_down), *(f32 *)&this->actorFlags);
+            draw_chunk_model_with_shape_motion((void *)(model), (void *)((s32)motion), (void *)(shape_motion), frame);
             clear_chunk_render_flags();
             model_render_flags &= ~0x400000;
             return;
         }
         set_chunk_render_flags(2);
         set_cull_back();
-        draw_chunk_model_with_shape_motion((void *)(*(s32 *)&this->m_prev), (void *)(*(s32 *)&this->m_up), (void *)(*(s32 *)&this->m_down), *(f32 *)&this->actorFlags);
+        draw_chunk_model_with_shape_motion((void *)(model), (void *)((s32)motion), (void *)(shape_motion), frame);
         set_cull_front();
-        draw_chunk_model_with_shape_motion((void *)(*(s32 *)&this->m_prev), (void *)(*(s32 *)&this->m_up), (void *)(*(s32 *)&this->m_down), *(f32 *)&this->actorFlags);
+        draw_chunk_model_with_shape_motion((void *)(model), (void *)((s32)motion), (void *)(shape_motion), frame);
         set_cull_none();
         clear_chunk_render_flags();
         return;
     }
-    set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->m_next));
+    set_current_texture_list((GinjaTextureList *)(texture_list));
     set_motion_packed_rotation();
     if (arg1 != 0) {
         model_render_flags |= 0x400000;
         set_chunk_render_flags(1);
-        draw_model_motion((void *)(*(s32 *)&this->m_prev), (void *)(*(s32 *)&this->m_up), *(f32 *)&this->actorFlags);
-        set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->entity_id));
-        draw_model_motion((void *)(*(s32 *)((s8 *)arg0 + 0x18)), (void *)(*(s32 *)&this->m_20), *(f32 *)&this->actorFlags);
+        draw_model_motion((void *)(model), (void *)((s32)motion), frame);
+        set_current_texture_list((GinjaTextureList *)(second_texture_list));
+        draw_model_motion((void *)(second_model), (void *)((s32)second_motion), frame);
         clear_chunk_render_flags();
         model_render_flags &= ~0x400000;
     } else {
         set_chunk_render_flags(2);
         set_cull_back();
-        draw_model_motion((void *)(*(s32 *)&this->m_prev), (void *)(*(s32 *)&this->m_up), *(f32 *)&this->actorFlags);
+        draw_model_motion((void *)(model), (void *)((s32)motion), frame);
         set_cull_front();
-        draw_model_motion((void *)(*(s32 *)&this->m_prev), (void *)(*(s32 *)&this->m_up), *(f32 *)&this->actorFlags);
-        set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->entity_id));
+        draw_model_motion((void *)(model), (void *)((s32)motion), frame);
+        set_current_texture_list((GinjaTextureList *)(second_texture_list));
         set_cull_back();
-        draw_model_motion((void *)(*(s32 *)((s8 *)arg0 + 0x18)), (void *)(*(s32 *)&this->m_20), *(f32 *)&this->actorFlags);
+        draw_model_motion((void *)(second_model), (void *)((s32)second_motion), frame);
         set_cull_front();
-        draw_model_motion((void *)(*(s32 *)((s8 *)arg0 + 0x18)), (void *)(*(s32 *)&this->m_20), *(f32 *)&this->actorFlags);
+        draw_model_motion((void *)(second_model), (void *)((s32)second_motion), frame);
         set_cull_none();
         clear_chunk_render_flags();
     }
     clear_motion_packed_rotation();
 }
 
-void TObjEneSlimeOne::advance_animation_state() {
-    Obj_800EC6D0 *arg0 = (Obj_800EC6D0 *)this;
-    s32 s = arg0->state;
+void SlimeAnimationState::advance() {
+    s32 s = state;
     if (s == -1) {
         return;
     }
     if (s < 7) {
-        ((TObjMotion *)arg0->f0)->advance_animation();
+        ((TObjMotion *)owner)->advance_animation();
     } else if (s < 9) {
-        f32 v = arg0->f30 + arg0->f28;
-        arg0->f30 = v;
-        if (v >= arg0->f2C) {
-            arg0->f30 = arg0->f30 - arg0->f2C;
+        f32 v = frame + speed;
+        frame = v;
+        if (v >= frame_count) {
+            frame = frame - frame_count;
         }
     } else {
         if (slime_one_animation_end_initialized == 0) {
-            f32 tmp = arg0->f2C;
+            f32 tmp = frame_count;
             slime_one_animation_end_initialized = 1;
             slime_one_animation_end_frame = tmp - 1.0f;
         }
-        f32 v = arg0->f30 + arg0->f28;
+        f32 v = frame + speed;
         f32 lim = slime_one_animation_end_frame;
-        arg0->f30 = v;
+        frame = v;
         if (v >= lim) {
-            arg0->f30 = lim;
+            frame = lim;
         }
     }
 }
 
-s32 TObjEneSlimeOne::is_reached_target_depth() {
+s32 SlimeAnimationState::is_finished() {
     s32 temp_r0;
 
-    temp_r0 = *(s32 *)&this->m_flags;
+    temp_r0 = this->state;
     if (temp_r0 == -1) {
         return 1;
     }
@@ -230,11 +204,11 @@ s32 TObjEneSlimeOne::is_reached_target_depth() {
         return 0;
     }
     if ((s8) TObjEneSlimeOne__target_depth_initialized == 0) {
-        f32 tmp = *(f32 *)&this->set_index;
+        f32 tmp = frame_count;
         TObjEneSlimeOne__target_depth_initialized = 1;
         TObjEneSlimeOne__target_depth = tmp - 1.0f;
     }
-    if (*(f32 *)&this->actorFlags == TObjEneSlimeOne__target_depth) {
+    if (frame == TObjEneSlimeOne__target_depth) {
         return 1;
     }
     return 0;
@@ -242,8 +216,6 @@ s32 TObjEneSlimeOne::is_reached_target_depth() {
 
 typedef struct E12_800EC7F4 E12_800EC7F4;
 typedef struct E20_800EC7F4 E20_800EC7F4;
-typedef struct Res_800EC7F4 Res_800EC7F4;
-typedef struct Slime_800EC7F4 Slime_800EC7F4;
 typedef struct Tbl_800EC7F4 Tbl_800EC7F4;
 void *slime_one_motion_state_table[6] = {(void *) 0xb, (void *) 0xc, (void *) 0x3f333333, (void *) 0x6, (void *) 0x7, (void *) 0x3f4ccccd};
 void *lbl_80496C68[10] = {(void *) 0x4, (void *) 0x5, (void *) 0x0, (void *) 0x1, (void *) 0x3f19999a, (void *) 0x4, (void *) 0x0, (void *) 0x0, (void *) 0x4, (void *) 0x3f19999a};
@@ -260,8 +232,8 @@ f32 TObjEneSlimeOne__target_depth;
 u8 TObjEneSlimeOne__target_depth_initialized;
 f32 slime_one_animation_end_frame;
 s8 slime_one_animation_end_initialized;
-void TObjEneSlimeOne::set_motion_state(s32 arg1) {
-    Slime_800EC7F4 *arg0 = (Slime_800EC7F4 *)this;
+void SlimeAnimationState::set_state(s32 arg1) {
+    SlimeAnimationState *arg0 = this;
   s32 flag;
   flag = arg0->state & 0x1000;
   arg0->state = arg1 & (~0x1000);
@@ -273,11 +245,11 @@ void TObjEneSlimeOne::set_motion_state(s32 arg1) {
   {
     if (flag != 0)
     {
-      ((void (*)(void *, s16)) init__14TObjEnePanarmsFs)(arg0->obj, arg0->state);
+      ((void (*)(void *, s16)) init__14TObjEnePanarmsFs)(arg0->owner, arg0->state);
     }
     else
     {
-      ((TObjMotion *)(arg0->obj))->set_field_b8(arg0->state);
+      ((TObjMotion *)(arg0->owner))->set_field_b8(arg0->state);
     }
     return;
   }
@@ -285,29 +257,29 @@ void TObjEneSlimeOne::set_motion_state(s32 arg1) {
   {
     s32 inst = TObjEneSlimeOne::get_instance();
     E12_800EC7F4 *e = (((E12_800EC7F4 *) slime_one_motion_state_table) + arg0->state) - 7;
-    unsigned int id = (s32) slime_one_attack_target_id_table[((TObjEneSlimeOne *)(arg0->obj))->get_attack_target()];
-    arg0->f8 = get_bml_model(inst, id);
-    arg0->fC = TObjFish__sub_8001EDB0(inst, id);
-    arg0->f10 = (Res_800EC7F4 *) get_bml_motion(inst, e->a);
-    arg0->f14 = get_bml_motion(inst, e->b);
-    arg0->f2C = arg0->f10->n;
-    arg0->f28 = e->c;
-    arg0->f30 = 0.0f;
+    unsigned int id = (s32) slime_one_attack_target_id_table[arg0->owner->get_attack_target()];
+    arg0->model = get_bml_model(inst, id);
+    arg0->texture_list = TObjFish__sub_8001EDB0(inst, id);
+    arg0->motion = (SlimeMotionInfo *) get_bml_motion(inst, e->a);
+    arg0->shape_motion = get_bml_motion(inst, e->b);
+    arg0->frame_count = arg0->motion->frame_count;
+    arg0->speed = e->c;
+    arg0->frame = 0.0f;
     return;
   }
   {
     s32 st = arg0->state - 9;
     s32 inst = TObjEneSlimeOne::get_instance();
-    E20_800EC7F4 *f = &((E20_800EC7F4 **) lbl_80496CB8)[((TObjEneSlimeOne *)(arg0->obj))->get_attack_target()][st];
-    arg0->f8 = get_bml_model(inst, f->a);
-    arg0->fC = TObjFish__sub_8001EDB0(inst, f->a);
-    arg0->f10 = (Res_800EC7F4 *) get_bml_motion(inst, f->b);
-    arg0->f18 = get_bml_model(inst, f->c);
-    arg0->f1C = TObjFish__sub_8001EDB0(inst, f->c);
-    arg0->f20 = (Res_800EC7F4 *) get_bml_motion(inst, f->d);
-    arg0->f2C = arg0->f20->n;
-    arg0->f28 = f->e;
-    arg0->f30 = 0.0f;
+    E20_800EC7F4 *f = &((E20_800EC7F4 **) lbl_80496CB8)[arg0->owner->get_attack_target()][st];
+    arg0->model = get_bml_model(inst, f->a);
+    arg0->texture_list = TObjFish__sub_8001EDB0(inst, f->a);
+    arg0->motion = (SlimeMotionInfo *) get_bml_motion(inst, f->b);
+    arg0->second_model = get_bml_model(inst, f->c);
+    arg0->second_texture_list = TObjFish__sub_8001EDB0(inst, f->c);
+    arg0->second_motion = (SlimeMotionInfo *) get_bml_motion(inst, f->d);
+    arg0->frame_count = arg0->second_motion->frame_count;
+    arg0->speed = f->e;
+    arg0->frame = 0.0f;
   }
 }
 

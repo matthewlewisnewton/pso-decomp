@@ -709,7 +709,7 @@ void TObjEneMe3Stelth__sub_800F1440(u8 *arg0, s32 arg1) {
                 if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805DA828) != 0) {
                     F(s32, 0x3CC) |= 8;
                     NJS_ARGB q = stelth_fade_color;
-                    ((TObjEneMe3SinowZoa *)(arg0 + 0x404))->copy_position_vector(&q);
+                    ((MaterialOpacityFade *)(arg0 + 0x404))->set_color(&q);
                     F(s32, 0x424) = 1;
                 }
                 break;

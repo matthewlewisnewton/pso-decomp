@@ -11,6 +11,7 @@ struct TObjEneSlimeTailAttack : public TObjEnemy {
     virtual void run_task();
     virtual void render();
     int find_nearest_enemy_with_flag(f32);
+    void draw_blob_shadows();
 };
 
 struct TObjEneSlimeOne;
@@ -35,10 +36,8 @@ void initialize_slime_instance_state__15TObjEneSlimeOneFv(u8 *actor);
 void render__15TObjEneSlimeOneFv(TObjEneSlimeOne *arg0);
 void set_display_mode__15TObjEneSlimeOneFl(void *arg0, s32 arg1);
 void set_random_timer__15TObjEneSlimeOneFll(void *arg0, s32 arg1, s32 arg2);
-s32 try_spawn_child__15TObjEneSlimeOneFPv(int origin, void *arg1);
 }
 extern "C" {
 }
-s32 water_bomb_hit_nearby(u8 *target);
 
 #endif

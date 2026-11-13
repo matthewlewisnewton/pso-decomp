@@ -45,10 +45,6 @@ struct TObjEneSlimeOne : public TObjEnemy {
     int is_timer_active();
     int find_nearest_enemy_with_flag(s32 arg1, f32 farg0);
     int check_player_field_7cc();
-    void draw_part(s32 arg1);
-    void advance_animation_state();
-    s32 is_reached_target_depth();
-    void set_motion_state(s32 arg1);
     void copy_position();
     void set_random_timer_15();
     void clear_child_flag();
@@ -56,7 +52,6 @@ struct TObjEneSlimeOne : public TObjEnemy {
     static s32 create(s32 arg0, s32 arg1, s32 arg2);
     static s32 create(s32 arg0, s32 arg1);
     void set_state(s32 arg1);
-    s32 try_spawn_child(void *arg1);
     void sub_800E92D8();
     void sub_800E9538();
     void update_effect_fade_lifetime();

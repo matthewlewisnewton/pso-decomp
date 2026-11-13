@@ -62,7 +62,6 @@ struct TObjEneMe3SinowZoa : public TObjEneDD_ST {
     // in floor_resource_callbacks.
     static void load_resources();
     static void free_resources();
-    void copy_position_vector(void* q);
 };
 
 #endif

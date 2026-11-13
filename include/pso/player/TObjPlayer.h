@@ -315,7 +315,6 @@ struct TObjPlayer : public TObjChara {
     static void*get_pmt_record_by_index(int i);
     static s32 is_hit_receivable_target(s32 arg0, u32 arg1);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
-    int query_lobby_state();
     s32 is_action_available();
     void draw_trail_strip(void *arg1, s32 arg2);
     f32 calc_photon_blast_power(s32 arg1, f32 farg0);
@@ -426,11 +425,10 @@ struct TObjPlayer : public TObjChara {
     s32 get_action_priority();
     void draw_model_no_fog();
     void update_invincibility();
-    static void update_effect_sequence();
+    static void update_effect_sequence(NJS_OBJECT *);
     static void toggle_particle_effect();
     static void create_dead_spot(s32 arg0, s32 arg1, f32 farg0);
     static void spawn_effect_f8(s32 arg1, s32 arg2);
-    static void set_field_e4(s32 arg1, s32 arg2);
     void trigger_dell_biter_events();
     void spawn_effect_at_ground(s32 arg1);
     static void apply_effect_variant_a(s32 arg0, s32 arg1);
@@ -1206,7 +1204,6 @@ struct TObjPlayer : public TObjChara {
     static void draw_effect();
     void draw_trail_pair();
     void set_flag_and_notify();
-    void draw_blob_shadows();
     void set_flag_8_if_check_passes();
     void fill_status_info(void *arg1);
     void launch_rare_weapon_special(void *origin, s32 enable, f32 scale);

@@ -1002,7 +1002,7 @@ typedef struct VBase_18_ca64a0 VBase_18_ca64a0;
 typedef struct VObj_14_fddec9 VObj_14_fddec9;
 typedef struct VObj_18_ca64a0 VObj_18_ca64a0;
 
-void TObjEneMerillLia::sub_800D5570() {
+void TObjEneMerillLia::update_fade_transition() {
     Obj_800D5570 *arg0 = (Obj_800D5570 *)this;
     switch (this->phase) {
     case 0:
@@ -1010,7 +1010,7 @@ void TObjEneMerillLia::sub_800D5570() {
         this->phase = 1;
         this->requested_action = 1;
         ((MaterialOpacityFade *)((u8 *)arg0 + 0x3A8))->start_fade_in();
-        ((TBoss3Volopt *)(arg0->sub38))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)(arg0->sub38));
         break;
     case 1:
         spawn_ground_effect__16TObjEneMerillLiaFv((u8 *)arg0);
@@ -1025,8 +1025,8 @@ void TObjEneMerillLia::sub_800D5570() {
     ((TObjMotion *)arg0)->advance_animation();
 }
 
-#define arg0 ((Obj_800D5614 *)ov)
-void TObjEneMerillLia::search_target(void *ov) {
+#define arg0 ((Obj_800D5614 *)this)
+void TObjEneMerillLia::search_target() {
     Pl_800D5614 *p;
     s32 v;
     arg0->f338 = find_nearest_visible_player(arg0, 0, *arg0->f350);
@@ -1049,8 +1049,8 @@ void TObjEneMerillLia::search_target(void *ov) {
 }
 #undef arg0
 
-#define arg0 ((u8 *)ov)
-s32 TObjEneMerillLia::update_emerge_state(void *ov) {
+#define arg0 ((u8 *)this)
+s32 TObjEneMerillLia::update_emerge_state() {
 
     ((TObjMotion *)arg0)->advance_animation();
     switch (*(s16 *)((s8 *)arg0 + 0x328)) {
@@ -1088,8 +1088,8 @@ s32 TObjEneMerillLia::update_emerge_state(void *ov) {
 
 struct Obj_800D5100;
 struct RecoveredGlobal_800D5060_lbl_8058D490;
-#define arg0 ((u8 *)p)
-s32 TObjEneMerillLia::update_kafun_attack(void *p) {
+#define arg0 ((u8 *)this)
+s32 TObjEneMerillLia::update_kafun_attack() {
     Vec_800D57C8 sp14;
     ((TObjMotion *)arg0)->advance_animation();
     switch (*(s16 *)((s8 *)arg0 + 0x328)) {
@@ -1193,7 +1193,7 @@ void TObjEneMerillLia::beast_update_hurt() {
 #define o ((Lia_800D5BCC *)arg0)
 void beast_idle_update__16TObjEneMerillLiaFv(u8 *arg0) {
     ((TUnk_80493450 *)o)->update_target_near_flag();
-    ((TUnk_80493450 *)o)->sub_800C4E08();
+    ((TUnk_80493450 *)o)->select_target_proximity_movement();
     ((TObjMotion *)o)->advance_animation();
     if (o->state != 1) {
         o->state = 1;
@@ -1466,7 +1466,7 @@ void TObjEneMerillLia::beast_update_approach() {
                 VecCopy((Vec *)&sp14, (const Vec *)(*(u32 *)&this->target + 0x2FC));
             }
             ((TUnk_80493450 *)arg0)->update_target_near_flag();
-            ((TUnk_80493450 *)arg0)->sub_800C4E08();
+            ((TUnk_80493450 *)arg0)->select_target_proximity_movement();
             ((TObjMotion *)arg0)->advance_animation();
             {
                 Vec_800D6618 sp8 = sp14;
@@ -1635,16 +1635,16 @@ void TObjEneMerillLia::run_task() {
         (this->beast_retire_corpse());
         break;
       case 10:
-        TObjEneMerillLia::update_kafun_attack((void *)this);
+        this->update_kafun_attack();
         break;
       case 11:
-        TObjEneMerillLia::update_emerge_state((void *) ((u8 *)this));
+        this->update_emerge_state();
         break;
       case 12:
-        TObjEneMerillLia::search_target((void *) ((u8 *)this));
+        this->search_target();
         break;
       case 13:
-        this->sub_800D5570();
+        this->update_fade_transition();
         break;
     }
   }

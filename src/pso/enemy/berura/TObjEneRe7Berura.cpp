@@ -4,6 +4,7 @@
 #undef PADV4
 #undef PAD5
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/ArrayAllocation.h"
@@ -2833,11 +2834,7 @@ void TObjEneRe7Berura::load_static_resources() {
     }
     berura_node_matrix_ptr_a = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(m, 2))->model)[1] + 8);
     berura_node_matrix_ptr_b = (s16 *)(((s32 *)((NJS_OBJECT *)find_model_node(m, 1))->model)[1] + 8);
-    p = ::operator new(0x14);
-    if (p != NULL) {
-        p = ((TLobby *)p)->alloc_tables(*(s32 *)(RES->f42C + 8), 2);
-    }
-    belra_uv_animation_buffer = (u32)p;
+    belra_uv_animation_buffer = (u32)new StripBufferPair(*(s32 *)(RES->f42C + 8), 2);
     SampledMotionPoints *sampled = new SampledMotionPoints(4, lbl_805D9780, lbl_805D9784, TObjEneRe7Berura__data_805D9738);
     belra_trail_buffer = (u8 *)sampled;
     pair[0] = 0x2E;

@@ -618,8 +618,8 @@ void TObjEnePanarms::turn_toward_target(s32 arg1) {
 #pragma opt_common_subs off
 struct Vec_800DE528;
 struct Vec_800DE6A8;
-#define arg0 ((u8 *)p)
-s32 TObjEnePanarms::find_combine_position(void *p) {
+#define arg0 ((u8 *)this)
+s32 TObjEnePanarms::find_combine_position() {
     Vec_800DE7EC sp14;
     Vec_800DE7EC sp8;
     f32 dist;
@@ -1208,7 +1208,7 @@ void TObjEnePanarms::update_separated_parts() {
                 this->m_388 += 15.0f;
                 return;
             }
-            TObjEnePanarms::find_combine_position(this);
+            this->find_combine_position();
             ((TObjEnePanBARA *)(this->m_3e4))->init_state();
             ((TObjEnePanBARA *)(this->m_3e8))->init_state();
             return;

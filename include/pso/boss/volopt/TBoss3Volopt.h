@@ -115,7 +115,6 @@ struct TBoss3Volopt : public TObjEnemyCustom {
     static void create_breakup_mdl(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
     void play_area_variant_sound();
     void play_area_se_with_particle();
-    void play_area_sound_effect();
     static s32 remap_area_sound_id(s32 arg0);
     void create_cage(u16 target_id);
 
@@ -166,5 +165,7 @@ extern s32 volopt_resources_loaded;
 extern s32 boss3_volopt_cage_flag;
 extern s32 volopt_p01_tech;
 extern Vec boss3_volopt_spawn_pos;
+
+extern "C" void play_area_sound_and_particles_b(const Vec *position);
 
 #endif

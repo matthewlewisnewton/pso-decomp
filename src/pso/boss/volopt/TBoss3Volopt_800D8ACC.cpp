@@ -133,8 +133,8 @@ void play_area_sound_and_particles_a(s32 arg0) {
     spawn_position_particles(arg0);
 }
 
-void TBoss3Volopt::play_area_sound_effect() {
-    s32 arg0 = (s32)this;
+void play_area_sound_and_particles_b(const Vec *position) {
+    s32 arg0 = (s32)position;
     switch (get_current_floor_area()) {
     case AREA_CENTRAL_CONTROL_AREA:
     case AREA_JUNGLE_NORTH:

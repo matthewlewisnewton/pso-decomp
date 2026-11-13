@@ -85,7 +85,7 @@ extern "C" f32 atan2_float(f32 y, f32 x);
 extern "C" s32 check_enemy_body_collisions(void *);
 
 extern "C" u32 get_player_by_client_id(s32);
-extern "C" s32 play_area_sound_effect__12TBoss3VoloptFv(void *, s32);
+extern "C" s32 play_area_sound_and_particles_b(void *, s32);
 
 void move_with_wall_slide(u8 *arg0);
 
@@ -1141,7 +1141,7 @@ void TObjEneNanoDrago::update_fade_in_state() {
         flags = actorFlags | 0x04000000;
         actorFlags = flags;
         requested_action = 0;
-        play_area_sound_effect__12TBoss3VoloptFv((u8 *)(&m_2fc), flags);
+        play_area_sound_and_particles_b((u8 *)(&m_2fc), flags);
         ((MaterialOpacityFade *)((u8 *)(&appearFade)))->start_fade_in();
         state = 1;
     case 1:

@@ -4,6 +4,7 @@
 #include "pso/render/ChunkMaterialState.h"
 #include "pso/effect/photon/PhotonBlastSummon.h"
 #include "types.h"
+#include "pso/system/StripBufferPair.h"
 #include "pso/ui/hud/TRaderMapCore.h"
 #include "pso/render/MaterialColorFade.h"
 #include "pso/player/TObjPlayer_801AB608.h"
@@ -542,12 +543,5 @@ void TObjPlayer::destroy_static_buffer_pair() {
 }
 
 void create_golla_photon_blast_model(void) {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)::operator new(0x14);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (((TLobby *)temp_r3)->alloc_tables(*(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x48), 0));
-    }
-    golla_photon_blast_buffer_pair = (void *)var_r0;
+    golla_photon_blast_buffer_pair = (void *)new StripBufferPair(*(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x48), 0);
 }

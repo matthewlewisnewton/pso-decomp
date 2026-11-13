@@ -84,7 +84,7 @@ struct TObjEnePanarms : public TObjEnemy {
     void enter_split();
     void enter_separated();
     void enter_rejoin();
-    static s32 find_combine_position(void *p);
+    s32 find_combine_position();
     void turn_toward_target(s32 arg1);
     u16 turn_to_nearest_player(s32 arg1, s32 arg2);
     void snap_to_ground();
