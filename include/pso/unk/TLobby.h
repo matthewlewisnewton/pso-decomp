@@ -177,10 +177,7 @@ struct TLobby : public TObject {
     void process_and_dispatch_packet();
     void bswap_6xa2_fields();
     void *build_6x06_guild_card_packet();
-    void send_item_packet();
     void bswap_item_packet();
-    void *init_header_packet();
-    void *init_header();
     void bswap_packet();
     static s32 apply_table_entry(s16 arg0, void * _w1);
     void copy_short_fields(void *arg1);
