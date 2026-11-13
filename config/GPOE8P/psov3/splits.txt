@@ -135,6 +135,7 @@ pso/misc/TLoadingCur.cpp:
 pso/misc/TNowLoading.cpp:
 	.text       start:0x8001D198 end:0x8001D6A0
 	.data       start:0x80480C98 end:0x80480CB0
+	.sdata2     start:0x805D7EC0 end:0x805D7EC4
 
 pso/misc/TLobby_8001D6A0.cpp:
 	.text       start:0x8001D6A0 end:0x8001ED80
@@ -1521,6 +1522,7 @@ pso/enemy/TObjEneDarkGunCenter.cpp:
 	.text       start:0x800A0B18 end:0x800A0EDC
 	.rodata     start:0x8043A490 end:0x8043A498
 	.data       start:0x804904A0 end:0x80490608
+	.sdata2     start:0x805D9970 end:0x805D9978
 
 pso/enemy/DarkGunner.cpp:
 	.text       start:0x800A0EDC end:0x800A3290
@@ -13865,6 +13867,7 @@ pso/enemy/TObjEneRe7Berura_803E4CE0.cpp:
 
 pso/unk/text_803E4CE8.cpp:
 	.text       start:0x803E4CE8 end:0x803E4D8C
+	.sdata2     start:0x805E10B0 end:0x805E10B8
 
 pso/unk/text_803E4D8C.cpp:
 	.text       start:0x803E4D8C end:0x803E5470
