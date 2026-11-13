@@ -1122,7 +1122,7 @@ s32 TUnk_80493450::countChildren() {
     return count;
 }
 
-s32 TObjPlayer::is_action_available() {
+s32 TObjEnemy::has_group() {
     TObjEnemy*_w0 = (TObjEnemy*)this;
     return ((s32)_w0->groupRoot()) ? 1 : 0;
 }

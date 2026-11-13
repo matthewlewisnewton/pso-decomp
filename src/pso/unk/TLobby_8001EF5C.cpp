@@ -161,8 +161,8 @@ void check_bin_model_loaded__6TLobbyFPvPv(Obj_8001F8D8 *self, void * _w1);
 s32 bind_bml_motion(struct Lobby_8001FB6C *self, s32 idx, void *bytes);
 s32 change_file_extension__6TLobbyFPvPvPv(char *arg0, char *arg1, char *arg2);
 s32 load_gvm_texture_archive(s32, s32);
-s32 set_stream_state__6TLobbyFi(s32, s32);
-s32 create_file_load_entry__6TLobbyFllUllPPv(void *, s32, void *, void *, void *);
+s32 set_stream_state__6TLobbyFPCv(s32, s32);
+s32 create_file_load_entry__6TLobbyFPCclPFPv_vPvPPv(void *, s32, void *, void *, void *);
 s32 TLobby__sub_800F9FF4(s32);
 s32 release_texture_list(void *);
 u32 prs_decompress_buffer(s32 arg0, s32 arg1);
@@ -269,7 +269,7 @@ void BmlResource::load_texture_sub(void *arg1, s32 arg2) {
     char buf[0x20];
     s32 size;
     change_file_extension__6TLobbyFPvPvPv((char *)buf, (char *)arg1, "gvm");
-    size = TGStream::load_sct_file((s32)buf, (s32)lobby_download_buffer);
+    size = TGStream::load_sct_file((s32)buf, (u8 *)lobby_download_buffer);
     if (size > 0x40000) {
         TLobby::debug_print("LoadTextureSub: %s too large.", buf);
     } else if (size > 0) {
@@ -318,7 +318,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
         lbl_805D4AE0 = (u8 *) bml_load_buffer;
         bml_header_record_ptr = (Rec_8001F128 *) (bml_load_buffer + 0x40);
         TLobby::read_checked_align((void *)lobby_bml_file_handle, (s32)n, (void *)bml_load_buffer);
-        TLobby::set_read_params(&lobby_bml_file_handle, (int)n, (int)lbl_805D4AE0);
+        TLobby::set_read_params((AdxfHandle **)&lobby_bml_file_handle, (int)n, (int)lbl_805D4AE0);
         self->state = 1;
     case 1:
         if (self->flags & 0x200) {
@@ -349,7 +349,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
             case 0:
             case 1:
                 TLobby::read_checked_align((void *)lobby_bml_file_handle, (s32)n, (void *)lobby_bml_read_buffer);
-                TLobby::set_read_params(&lobby_bml_file_handle, (int)n, (int)lobby_bml_read_buffer);
+                TLobby::set_read_params((AdxfHandle **)&lobby_bml_file_handle, (int)n, (int)lobby_bml_read_buffer);
                 break;
             default:
                 TLobby::debug_print("TBinModel: Illegal File Format");
@@ -398,7 +398,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
             case 0:
             case 1:
                 TLobby::read_checked_align((void *)lobby_bml_file_handle, (s32)n, (void *)lobby_bml_read_buffer);
-                TLobby::set_read_params(&lobby_bml_file_handle, (int)n, (int)lobby_bml_read_buffer);
+                TLobby::set_read_params((AdxfHandle **)&lobby_bml_file_handle, (int)n, (int)lobby_bml_read_buffer);
                 break;
             default:
                 TLobby::debug_print("TBinModel: Illegal File Format");
@@ -458,7 +458,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
                     bml_header_record_ptr++;
                 } else {
                     TLobby::read_checked_align((void *)lobby_bml_file_handle, (s32)n, (void *)lobby_bml_read_buffer);
-                    TLobby::set_read_params(&lobby_bml_file_handle, (int)n, (int)lobby_bml_read_buffer);
+                    TLobby::set_read_params((AdxfHandle **)&lobby_bml_file_handle, (int)n, (int)lobby_bml_read_buffer);
                 }
             } else {
                 self->entries[bml_load_entry_index].flags |= 2;
@@ -577,7 +577,7 @@ void load_bin_model_callback(void *request) {
             params.a = self->fC;
             params.b = self->f10;
             change_file_extension__6TLobbyFPvPvPv((char *)name, (char *)self->f0, "gvm");
-            r = create_file_load_entry__6TLobbyFllUllPPv(name, *slot, (void *)increment_ref_and_set_flag__6TLobbyFPv, &params, &handle);
+            r = create_file_load_entry__6TLobbyFPCclPFPv_vPvPPv(name, *slot, (void *)increment_ref_and_set_flag__6TLobbyFPv, &params, &handle);
             if (r >= 0) {
                 TLobby__sub_8001EDD8((TBinModel *)self->fC, handle);
                 self->fC->f43C++;
@@ -643,7 +643,7 @@ s32 BmlResource::load_bin_motion(void *arg1, s32 arg2) {
     s32 size;
     s32 data;
     arg0->entries[arg2].data = 0;
-    size = set_stream_state__6TLobbyFi((s32)arg1, lobby_download_buffer);
+    size = set_stream_state__6TLobbyFPCv((s32)arg1, lobby_download_buffer);
     if (size == 0) {
         TLobby::debug_print("LoadBinMotion: %s load failed.", (s32)arg1);
         return 0;
@@ -672,7 +672,7 @@ s32 BmlResource::load_bin_model(void *arg1, s32 arg2) {
     if (size > 0x40000) {
         TLobby::debug_print("LoadBinModel: tmpbuf overflow(%x)", size - 0x40000);
     }
-    set_stream_state__6TLobbyFi((s32)arg1, lobby_download_buffer);
+    set_stream_state__6TLobbyFPCv((s32)arg1, lobby_download_buffer);
     bind_bml_model((Lobby_8001FBEC *)(this), size, arg2, lobby_download_buffer);
     if (((Lobby_8001FD98 *)this)->entries[arg2].texture != NULL) {
         this->load_texture_sub((void *)arg1, (s32)arg2);
@@ -773,7 +773,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 on_loa
             }
             hdr = (Hdr_80020004 *)bml_load_buffer;
             first = hdr->recs;
-            st.read_data((s32)hdr, (s32)(sectors << 11));
+            st.read_data((u8 *)hdr, (s32)(sectors << 11));
             switch (hdr->compressed) {
             case 0x50:
                 bml_load_state = 1;
@@ -798,7 +798,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 on_loa
                     buf = (s32)TQuestVmDownLoadServer::alloc(size + 0x800);
                     if (buf != 0) {
                         disc_read_filename = (s32)descriptor->archive_filename;
-                        st.read_data((s32)((void *)buf), (s32)size);
+                        st.read_data((u8 *)((void *)buf), (s32)size);
                         st.align_read_offset(blk);
                         disc_read_filename = lbl_805D2B10;
                         prs_decompress_buffer(buf, (s32)resource_decompress_buffer);
@@ -809,7 +809,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 on_loa
                     }
                     break;
                 default:
-                    st.read_data((s32)resource_decompress_buffer, (s32)size);
+                    st.read_data((u8 *)resource_decompress_buffer, (s32)size);
                     st.align_read_offset(blk);
                     disc_read_filename = lbl_805D2B10;
                     bind_bml_model((Lobby_8001FBEC *)(this), size, i, (s32)((s32)resource_decompress_buffer));
@@ -821,7 +821,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 on_loa
                         s32 tsize = rec->texSize;
                         if (tsize != 0) {
                             s32 tbuf = (s32)TQuestVmDownLoadServer::alloc(tsize + 0x800);
-                            st.read_data((s32)((void *)tbuf), (s32)tsize);
+                            st.read_data((u8 *)((void *)tbuf), (s32)tsize);
                             st.align_read_offset(blk);
                             prs_decompress_buffer(tbuf, (s32)resource_decompress_buffer);
                             TAdSinglePlyChrSelectGC::safe_free(tbuf);
@@ -848,7 +848,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 on_loa
                 switch (bml_load_state) {
                 case 1: {
                     s32 mb = (s32)TQuestVmDownLoadServer::alloc(sz + 0x800);
-                    st.read_data((s32)((void *)mb), (s32)sz);
+                    st.read_data((u8 *)((void *)mb), (s32)sz);
                     st.align_read_offset(blk);
                     prs_decompress_buffer(mb, (s32)resource_decompress_buffer);
                     TAdSinglePlyChrSelectGC::safe_free(mb);
@@ -856,7 +856,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 on_loa
                     break;
                 }
                 default:
-                    st.read_data((s32)resource_decompress_buffer, (s32)sz);
+                    st.read_data((u8 *)resource_decompress_buffer, (s32)sz);
                     st.align_read_offset(blk);
                     bind_bml_motion((struct Lobby_8001FB6C *)this, j, resource_decompress_buffer);
                     break;

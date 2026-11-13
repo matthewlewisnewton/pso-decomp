@@ -142,7 +142,7 @@ void draw_projected_quads__15TObjBoss2TunnelFP15ProjectedVertexi(Vtx_8007D828 *,
 extern s32 lbl_805D63F0;
 s32 TAdPlayerLoadGC__sub_801E0FA4(s32);
 s32 query_memcard_capacity__15TAdPlayerLoadGCFl(s32, s32);
-s32 set_stream_and_load_file__6TLobbyFi(s32);
+s32 set_stream_and_load_file__6TLobbyFPCv(s32);
 s32 is_on_current_screen__11TCameraCtrlFv(void *, s32);
 }
 extern s32 screen_binary_filename;
@@ -1059,9 +1059,9 @@ void load_data_buffers(void) {
     if (buf != NULL) {
         memset(buf, 0, 0x1818C);
     }
-    temp_r31 = ((TScene *)screen_binary_filename)->update_lobby_scene();
+    temp_r31 = TScene::update_lobby_scene((const void *)(screen_binary_filename));
     if (temp_r31 <= 0x1818C) {
-        temp_r30 = set_stream_and_load_file__6TLobbyFi(screen_binary_filename);
+        temp_r30 = set_stream_and_load_file__6TLobbyFPCv(screen_binary_filename);
         if (temp_r30 != 0) {
             if (boss2_tunnel_snapshot_buffer != NULL) {
                 memmove(boss2_tunnel_snapshot_buffer, (void *)temp_r30, temp_r31);

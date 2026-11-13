@@ -12,7 +12,7 @@
 #include "pso/map/FloorArea.h"
 
 extern "C" {
-s32 get_file_size__6TLobbyFv(void *);
+s32 get_file_size__6TLobbyFPCv(void *);
 s32 is_split_screen();
 s32 ADXF_GetStat(s32);
 s32 read_checked_align__6TLobbyFPvlPv(s32);
@@ -102,11 +102,11 @@ const char *ep2_multi_area_gsl_filename_table[13] = {
 };
 
 s32 TLobby::get_resource_file_size(const void *name) {
-    GslArchiveEntry *e = find_gsl_entry((void *)name, 0);
+    GslArchiveEntry *e = find_gsl_entry(name, 0);
     if (e != NULL) {
         return e->file_size;
     }
-    return get_file_size__6TLobbyFv((void *)name);
+    return get_file_size__6TLobbyFPCv((void *)name);
 }
 
 void load_area_gsl(void) {
@@ -166,7 +166,7 @@ s32 TGStream::read_whole_file(const void *name, u8 *dst) {
     return size;
 }
 
-s32 TGStream::load_sct_file(s32 name, s32 dst) {
+s32 TGStream::load_sct_file(s32 name, u8 *dst) {
     TGStream stream((void *)name, 1);
     s32 size;
     s32 sectors;
@@ -182,17 +182,17 @@ s32 TGStream::load_sct_file(s32 name, s32 dst) {
             TLobby::debug_print("TGStream::gsSctLoadFile Malloc Failed.");
         }
         stream.read_sectors_sync(sectors, buf);
-        prs_decompress_buffer(buf, dst);
+        prs_decompress_buffer(buf, (s32)dst);
         TAdSinglePlyChrSelectGC::safe_free(buf);
         return stream.archive_entry->decoded_size;
     }
-    stream.read_sectors_sync(sectors, dst);
+    stream.read_sectors_sync(sectors, (s32)dst);
     return size;
 }
 
 void TGStream::read_sectors_sync(s32 sector_count, s32 destination) {
     read_checked_align__6TLobbyFPvlPv(adxf_handle);
-    TLobby::set_read_params(&adxf_handle, (int)sector_count, (int)destination);
+    TLobby::set_read_params((AdxfHandle **)&adxf_handle, (int)sector_count, (int)destination);
 loop_1:
     if (ADXF_GetStat(adxf_handle) != 3) {
         TLobby::run_frame();
@@ -214,7 +214,7 @@ void TGStream__sub_800FDD64(void) {  }
 s32 TGStream::get_file_size() { return gstream_file_size; }
 }
 s32 get_gstream_buffered_bytes();
-GslArchiveEntry *find_gsl_entry(void *name, s32 unused) {
+GslArchiveEntry *find_gsl_entry(const void *name, s32 unused) {
     GslArchiveEntry *e;
     s32 i;
     if (TItemDrop__gsl_adxf_handle == 0) {
@@ -222,7 +222,7 @@ GslArchiveEntry *find_gsl_entry(void *name, s32 unused) {
     }
     e = gsl_archive_entries;
     for (i = 0; i < TItemDrop__gsl_entry_count; i++, e++) {
-        if (strcmp(e, name) == 0) {
+        if (strcmp(e, (void *)name) == 0) {
             return e;
         }
     }
@@ -255,7 +255,7 @@ void open_gsl_archive(char *name) {
         if (TItemDrop__gsl_adxf_handle != 0) {
             TGStream::reset();
             ((s32 (*)(u32, s32, GslArchiveEntry *))read_checked_align__6TLobbyFPvlPv)(TItemDrop__gsl_adxf_handle, 6, gsl_archive_entries);
-            TLobby::set_read_params(&TItemDrop__gsl_adxf_handle, 6, (int)gsl_archive_entries);
+            TLobby::set_read_params((AdxfHandle **)&TItemDrop__gsl_adxf_handle, 6, (int)gsl_archive_entries);
             for (;;) {
                 if (((s32 (*)(u32))ADXF_GetStat)(TItemDrop__gsl_adxf_handle) == 3) {
                     break;
@@ -279,14 +279,14 @@ void open_gsl_archive(char *name) {
     }
 }
 
-void TLobby::read_data_sync(s32 arg0, s32 arg1, s32 arg2) {
-    s32 sp8;
+void TLobby::read_data_sync(AdxfHandle *arg0, s32 arg1, u8 *dst) {
+    AdxfHandle *sp8;
 
     sp8 = arg0;
     ((s32 (*)())read_checked_align__6TLobbyFPvlPv)();
-    TLobby::set_read_params(&sp8, (int)arg1, (int)arg2);
+    TLobby::set_read_params(&sp8, (int)arg1, (int)dst);
 loop_1:
-    if (ADXF_GetStat(sp8) != 3) {
+    if (ADXF_GetStat((s32)sp8) != 3) {
         TLobby::run_frame();
         goto loop_1;
     }
@@ -298,12 +298,12 @@ void TGStream::align_read_offset(s32 alignment) {
     gstream_buffer_read_offset = alignment * ((gstream_buffer_read_offset + alignment - 1) / alignment);
 }
 
-s32 TGStream::read_data(s32 dst, s32 size) {
+s32 TGStream::read_data(u8 *dst, s32 size) {
     s32 total;
     s32 n;
     total = 0;
     while (size > 0) {
-        if (refill_gstream_buffer(adxf_handle) <= 0) {
+        if (refill_gstream_buffer((AdxfHandle *)adxf_handle) <= 0) {
             break;
         }
         if (size < get_gstream_buffered_bytes()) {
@@ -328,7 +328,7 @@ s32 get_gstream_buffered_bytes(void) {
   return (gstream_buffer_valid_size - gstream_buffer_read_offset) & (((s32) ((-new_var) & (~new_var))) >> 0x1F);
 }
 
-s32 refill_gstream_buffer(s32 arg0) {
+s32 refill_gstream_buffer(AdxfHandle *arg0) {
     s32 temp_r0;
     s32 var_r5;
     if (arg0 == 0) {
@@ -342,7 +342,7 @@ s32 refill_gstream_buffer(s32 arg0) {
         if (var_r5 > 0) {
             gstream_buffer_valid_size = var_r5;
             gstream_buffer_read_offset = 0;
-            TLobby::read_data_sync(arg0, (var_r5 + 0x7FF) / 2048, gstream_tmp_buffer);
+            TLobby::read_data_sync(arg0, (var_r5 + 0x7FF) / 2048, (u8 *)gstream_tmp_buffer);
         }
     }
     return get_gstream_buffered_bytes();
@@ -370,7 +370,7 @@ TGStream::TGStream(void *file, s32 direct_read_mode) {
         gstream_file_size = archive_entry->file_size;
         strncpy(name, archive_entry->name, 0x20);
     } else {
-        size = get_file_size__6TLobbyFv(file);
+        size = get_file_size__6TLobbyFPCv(file);
         gstream_file_size = size;
         if (size > 0) {
             adxf_handle = ADXF_Open((char *)file, 0);

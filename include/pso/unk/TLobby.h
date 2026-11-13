@@ -2,6 +2,8 @@
 #define PSO_UNK_TLOBBY_H
 
 #include "types.h"
+
+struct AdxfHandle;
 #include "pso/system/task/TObject.h"
 #include "pso/item/TItemData.h"
 
@@ -138,9 +140,9 @@ struct TLobby : public TObject {
     static s32 run_disk_error_check();
     u32 write_packet_header(s32 arg1, s32 arg2, u32 arg3);
     s32 alloc_download_quest(s32 arg1, s32 *arg2);
-    static void set_stream_and_load_file(int a0);
-    static void set_stream_state(int a0);
-    static s32 get_file_size();
+    static void set_stream_and_load_file(const void *name);
+    static void set_stream_state(const void *name);
+    static s32 get_file_size(const void *name);
     static void run_frame();
     static void free_static_buffer(void* a0);
     static void alloc_from_heap(void* a0);
@@ -614,7 +616,7 @@ struct TLobby : public TObject {
     static void adxm_goto_mwidle_border();
     static void dec_ref_and_clear_buffer();
     static s32 get_resource_file_size(const void *name);
-    static void read_data_sync(s32 arg0, s32 arg1, s32 arg2);
+    static void read_data_sync(AdxfHandle *arg0, s32 arg1, u8 *dst);
     s32 get_battle_ctrl_default();
     static s32 find_free_chat_log_slot();
     static void apply_menu_cursor_selection();
@@ -769,13 +771,13 @@ struct TLobby : public TObject {
     static void flush_checked_reads();
     static void reset_read_state();
     static void clear_player_slot_tables(s32 n);
-    void set_entry_params(s32 arg1, s32 arg2, s32 arg3);
-    static void set_read_params(void *handle_ref, int sector_count, int destination);
+    static void set_entry_params(AdxfHandle **handle_ref, s32 arg1, s32 arg2, void *dest);
+    static void set_read_params(AdxfHandle **handle_ref, int sector_count, int destination);
     void draw_fullscreen_texture_quad();
     static void release_menu_font();
     static void load_font_texture();
     static void reset_state_byte();
-    static s32 create_file_load_entry(s32 arg0, s32 arg1, u32 arg2, s32 arg3, void **arg4);
+    static s32 create_file_load_entry(const char *name, s32 arg1, void (*callback)(void *), void *arg3, void **arg4);
     static s32 request_file_read(const char *arg0, s32 arg1, s32 *arg2, void **arg3);
     static void reset_lobby_state();
     static void init_keyboard_buffer();

@@ -842,7 +842,7 @@ s32 TLobby__sub_8023FFB8(SoundControlState *self, int id) {
     }
     for (i = 0; i < 4; i++) {
         TLobby::read_checked_align((void *)self->bank_file_handles[i], (s32)(self->bank_file_sizes[i] / 2048), (void *)self->ents[id].h[i]);
-        ((TLobby *)(&self->bank_file_handles[i]))->set_entry_params(i, self->bank_file_sizes[i] / 2048, self->ents[id].h[i]);
+        TLobby::set_entry_params((AdxfHandle **)&self->bank_file_handles[i], i, self->bank_file_sizes[i] / 2048, (void *)self->ents[id].h[i]);
     }
     return 0;
 fail:
@@ -981,7 +981,7 @@ s32 init_sound_aux_effects(SoundControlState *self) {
         void *handle = ADXF_OpenAfs(0, sound_bank_file_indices[i][2]);
         if (handle != NULL) {
             TLobby::read_checked_align((void *)handle, (s32)size / 2048, (void *)lbl_80517E44[i]);
-            TLobby::set_read_params(&handle, (s32)size / 2048, (int)lbl_80517E44[i]);
+            TLobby::set_read_params((AdxfHandle **)&handle, (s32)size / 2048, (int)lbl_80517E44[i]);
             do {
                 TLobby__sub_803382E4();
                 TLobby::run_disk_error_check();

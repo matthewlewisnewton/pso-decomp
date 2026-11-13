@@ -1198,7 +1198,7 @@ void beast_idle_update__16TObjEneMerillLiaFv(u8 *arg0) {
     if (o->state != 1) {
         o->state = 1;
         ((TUnk_80493450 *)o)->link_into_group_chain();
-        o->f378 = ((TObjPlayer *)o)->is_action_available();
+        o->f378 = ((TObjEnemy *)o)->has_group();
     }
     o->count = ((TUnk_80493450 *)o)->countChildren();
     {
