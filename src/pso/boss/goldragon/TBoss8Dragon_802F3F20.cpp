@@ -126,7 +126,7 @@ void TBoss8Dragon::sub_802F4098(u8 *arg1) {
         *(f32 *)((s8 *)arg1 + 8) = (f32) (*(f32 *)((s8 *)arg1 + 8) + lbl_805DED6C);
     }
 }
-void TBoss8Dragon::draw_with_fade(s32 arg1, s32 arg2) {
+void TBoss8Dragon::draw_with_fade(Vec *arg1, s32 arg2) {
     u8 *temp_r31;
     if (!(this->m_3c <= lbl_805DED70)) {
         set_current_texture_list((GinjaTextureList *)(this->m_24));
@@ -143,7 +143,7 @@ void TBoss8Dragon::draw_with_fade(s32 arg1, s32 arg2) {
             ((VObj_14_681f8e *)(temp_r31))->m6();
         }
         push_matrix();
-        post_translate_matrix((void *)arg1);
+        post_translate_matrix(arg1);
         rotate_matrix_y(0, this->m_60);
         rotate_matrix_x(0, this->m_5c);
         rotate_matrix_z(0, (int) (*(s32 *)((s8 *)((u8 *)this) + 0x64)));

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/boss/TUnk_804E4BF0.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"
 #include "pso/player/TObjPlayer_80011014.h"
 
@@ -21,7 +22,7 @@ bool TBoss8Dragon::has_enough_enemies() {
     count = 0;
     i = 0;
     do {
-        ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(i);
+        ((TUnk_804E4BF0 *)boss8_dragon_leader_part)->get_part_entity_id(i);
         if (get_enemy_entity() != 0U) {
             count += 1;
         }

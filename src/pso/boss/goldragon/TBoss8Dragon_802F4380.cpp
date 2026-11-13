@@ -140,11 +140,11 @@ void render__12TBoss8DragonFv(TBoss8Dragon *self) {
             self->copy_vectors();
         }
         if (self->renderFadeStates[view].isFading() == 0) {
-            self->draw_with_fade((s32)pos, view);
+            self->draw_with_fade((Vec *)pos, view);
         }
         self->render_nodes_flagged();
     } else if (self->renderFadeStates[view].isFading() != 0) {
-        self->draw_with_fade((s32)pos, view);
+        self->draw_with_fade((Vec *)pos, view);
     }
 }
 

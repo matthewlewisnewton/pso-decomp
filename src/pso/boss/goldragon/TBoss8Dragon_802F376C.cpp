@@ -1,5 +1,6 @@
 #include "pso/system/vector.h"
 #include "types.h"
+#include "pso/boss/TUnk_804E4BF0.h"
 #include "pso/boss/goldragon/TBoss8Dragon_802F3AB4.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
@@ -41,7 +42,7 @@ s32 TBoss8Dragon::is_closest_part() {
     v.z = ((Ent_802F376C *)this)->z - ((Ent_802F376C *)this)->z;
     len = normalize_vector_xz((Vec *)(&v));
     for (i = 1; i < 6; i++) {
-        u16 id = ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(i);
+        u16 id = ((TUnk_804E4BF0 *)boss8_dragon_leader_part)->get_part_entity_id(i);
         if (id != get_entity_id(this)) {
             Ent_802F376C *e = (Ent_802F376C *)get_enemy_entity(id);
             if (e != NULL) {
@@ -67,7 +68,7 @@ s32 TBoss8Dragon::push_apart_from_parts() {
         return 0;
     }
     for (i = 0; i < 6; i++) {
-        u16 id = ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(i);
+        u16 id = ((TUnk_804E4BF0 *)boss8_dragon_leader_part)->get_part_entity_id(i);
         if (id != get_entity_id(this)) {
             Ent_802F3878 *e = ((Ent_802F3878 *)get_enemy_entity(id));
             if (e != NULL) {
@@ -94,7 +95,7 @@ s32 TBoss8Dragon::is_near_other_part() {
         return 0;
     }
     for (i = 0; i < 6; i++) {
-        u16 id = ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(i);
+        u16 id = ((TUnk_804E4BF0 *)boss8_dragon_leader_part)->get_part_entity_id(i);
         if (id != get_entity_id(this)) {
             Ent_802F3974 *e = ((Ent_802F3974 *)get_enemy_entity(id));
             if (e != NULL) {
@@ -110,12 +111,12 @@ s32 TBoss8Dragon::is_near_other_part() {
     return 0;
 }
 
-s32 TBoss8Dragon::spawn_attack_object(s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+s32 TUnk_804E4BF0::spawn_attack_object(Vec *arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 arg0 = (s32)this;
     Stack_802F3A48 stack;
     s32 temp_r3;
     s32 var_r0;
-    if (setup_attack_slot__13TUnk_804E4BF0FP3VecllPUc(arg0, arg1, arg2, arg4, (u8 *)&stack.sp8) != 0) {
+    if (setup_attack_slot__13TUnk_804E4BF0FP3VecllPUc(arg0, (u32)arg1, arg2, arg4, (u8 *)&stack.sp8) != 0) {
         temp_r3 = __nw__7TObjectFUl(0x8A4);
         var_r0 = temp_r3;
         if (var_r0 != 0) {

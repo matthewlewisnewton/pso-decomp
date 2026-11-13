@@ -2,6 +2,7 @@
 #define PSO_BOSS_GOLDRAGON_TBOSS8DRAGON_H
 
 #include "types.h"
+#include <dolphin/mtx/GeoTypes.h>
 
 struct NJS_OBJECT;
 #include "pso/render/RenderFadeState.h"
@@ -305,8 +306,6 @@ struct TBoss8Dragon
     static s32 is_any_part_alive();
     static void update_all_parts();
     static bool has_enough_enemies();
-    s32 spawn_attack_object(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-    u16 get_part_count_plus(s32 arg1);
     void set_mode_params(s8 arg1);
     void draw_motion_model();
     void render_nodes_flagged();
@@ -325,7 +324,7 @@ struct TBoss8Dragon
     s32 is_closest_part();
     s32 push_apart_from_parts();
     s32 is_near_other_part();
-    void draw_with_fade(s32 arg1, s32 arg2);
+    void draw_with_fade(Vec *arg1, s32 arg2);
     void draw();
     u8 *ct_attack_object(s32 arg1, s32 arg2, s32 arg3);
 };

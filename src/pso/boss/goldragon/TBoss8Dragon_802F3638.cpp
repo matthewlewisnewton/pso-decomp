@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/boss/TUnk_804E4BF0.h"
 #include "pso/boss/goldragon/TBoss8Dragon_802F3638.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"
 #include "pso/player/TObjPlayer_80011014.h"
@@ -19,7 +20,7 @@ s32 TBoss8Dragon__sub_802F3638() {
     }
     alive = 0;
     for (i = 0; i < 6; i++) {
-        if (get_enemy_entity(boss8_dragon_leader_part->get_part_count_plus(i)) != NULL) {
+        if (get_enemy_entity(((TUnk_804E4BF0 *)boss8_dragon_leader_part)->get_part_entity_id(i)) != NULL) {
             alive++;
         }
     }
