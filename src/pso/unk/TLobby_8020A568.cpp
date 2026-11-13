@@ -6,7 +6,17 @@
 
 void TLobby__sub_8020A568(void* p) { bswap_32((u32 *)p); bswap_32((u32 *)((char*)p + 0x4)); bswap_32((u32 *)((char*)p + 0x8)); bswap_32((u32 *)((char*)p + 0xc)); }
 
-void ChallengeRandomEvent::swap_endian() { bswap_32((u32 *)this); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_16((u16 *)((char*)this + 0x8)); bswap_16((u16 *)((char*)this + 0xa)); bswap_16((u16 *)((char*)this + 0xc)); bswap_16((u16 *)((char*)this + 0xe)); bswap_16((u16 *)((char*)this + 0x12)); bswap_32((u32 *)((char*)this + 0x14)); }
+void ChallengeRandomEvent::swap_endian() {
+    bswap_32((u32 *)&id);
+    bswap_16((u16 *)&flags);
+    bswap_16((u16 *)&eventType);
+    bswap_16((u16 *)&room);
+    bswap_16((u16 *)&wave);
+    bswap_16((u16 *)&minDelay);
+    bswap_16((u16 *)&maxDelay);
+    bswap_16((u16 *)&maxWaves);
+    bswap_32((u32 *)&commandOffset);
+}
 
 void TLobby__sub_8020A618(void *arg0, void *arg1) {
     *(s32 *)((s8 *)arg0 + 0) = (s32) *(s32 *)((s8 *)arg1 + 0);
@@ -22,4 +32,8 @@ void TLobby__sub_8020A618(void *arg0, void *arg1) {
     *(s32 *)((s8 *)arg0 + 0x14) = (s32) *(s32 *)((s8 *)arg1 + 0x14);
 }
 
-void ChallengeEventHeader::swap_endian() { bswap_32((u32 *)this); bswap_32((u32 *)((char*)this + 0x4)); bswap_32((u32 *)((char*)this + 0x8)); }
+void ChallengeEventHeader::swap_endian() {
+    bswap_32((u32 *)&commandOffset);
+    bswap_32((u32 *)&eventOffset);
+    bswap_32((u32 *)&eventCount);
+}
