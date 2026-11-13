@@ -27,6 +27,7 @@ guides.
 - [Conversion-pool constants](conversion-pool-constants.md)
 - [Critical-hit effect complete unit](critical-hit-effect-unit.md)
 - [Current texture list](current-texture-list-evidence.md)
+- [DD collision and random helper unit](dd-collision-random-unit.md)
 - [DD descendant virtual slot](dd-descendant-slot-evidence.md)
 - [DD scaled random receiver](dd-scaled-random-evidence.md)
 - [Dead-spot effect wrapper](dead-spot-e4-evidence.md)
