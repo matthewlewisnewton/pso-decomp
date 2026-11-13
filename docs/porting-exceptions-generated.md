@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 89 | 58 |
 | hardware | 69 | 13 |
-| pragma | 5859 | 885 |
+| pragma | 5858 | 884 |
 | configure.py per-unit override | 207 | 207 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055, `fp_contract` 882, `auto_inline` 804, `opt_common_subs` 637, `scheduling` 263, `opt_propagation` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 58, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 39, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055, `fp_contract` 882, `auto_inline` 804, `opt_common_subs` 636, `scheduling` 263, `opt_propagation` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 58, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 39, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -515,7 +515,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055,
 | `src/pso/boss/TBoss5GryphonSnarl.cpp` | readonly_strings×1, fp_contract×1, opt_common_subs×1 |
 | `src/pso/boss/TBoss5GryphonTornado.cpp` | fp_contract×2 |
 | `src/pso/boss/TBoss6CrushRock.cpp` | fp_contract×2, opt_common_subs×1 |
-| `src/pso/boss/TBoss6CrushRock_80359FEC.cpp` | opt_common_subs×1 |
 | `src/pso/boss/TBoss6DPB.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1, fp_contract×1 |
 | `src/pso/boss/TBoss6EffFlowSoul.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss6GravBall.cpp` | fp_contract×2, opt_common_subs×1 |

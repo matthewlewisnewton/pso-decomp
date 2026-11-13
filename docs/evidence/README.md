@@ -28,6 +28,7 @@ guides.
 - [CodeWarrior source order and emitted layout](compiler-emission-evidence.md)
 - [GameCube decomp survey of scalar vector math](gc-decomp-vector-math-survey.md)
 - [Conversion-pool constants](conversion-pool-constants.md)
+- [Crush-rock render/physics unit](crush-rock-physics-unit.md)
 - [Critical-hit effect complete unit](critical-hit-effect-unit.md)
 - [Current texture list](current-texture-list-evidence.md)
 - [DD collision and random helper unit](dd-collision-random-unit.md)
