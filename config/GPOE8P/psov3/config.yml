@@ -6255,6 +6255,7 @@ force_active:
   - end_invincibility__8TItemMagFv
   - end_of_render_root_dtor_chain
   - ending_ab_class_name
+  - ending_pic_wall_texture_list
   - ending_player
   - ending_player_class_type
   - ending_wall_archive_nh
@@ -8383,6 +8384,7 @@ force_active:
   - lbl_80478134
   - lbl_80478140
   - lbl_8047817C
+  - lbl_804790F0
   - lbl_80479280
   - lbl_8047B928
   - lbl_80480950
@@ -9058,6 +9060,7 @@ force_active:
   - lbl_805D42D8
   - lbl_805D4350
   - lbl_805D4368
+  - lbl_805D4378
   - lbl_805D4630
   - lbl_805D4638
   - lbl_805D4640
@@ -17680,6 +17683,15 @@ force_active:
   - sub_8034B918__18TChallenge4PResultFv
   - sub_8034BA2C__18TChallenge4PResultFv
   - sub_80351DF8__16TLobbyEventThemeFl
+  - sub_8035307C__17TItemSpecialEventFv
+  - sub_803530A0__17TItemSpecialEventFv
+  - sub_803530C4__17TItemSpecialEventFv
+  - sub_80353110__17TItemSpecialEventFv
+  - sub_80353134__17TItemSpecialEventFv
+  - sub_80353158__17TItemSpecialEventFv
+  - sub_80353194__17TItemSpecialEventFv
+  - sub_803531D0__17TItemSpecialEventFv
+  - sub_803531F8__17TItemSpecialEventFv
   - sub_80353F5C__10TBoss6RockFv
   - sub_8035B610__13TUnk_804A7478Fv
   - sub_8035B66C__13TUnk_804A7488Fv

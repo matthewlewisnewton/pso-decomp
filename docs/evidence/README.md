@@ -31,6 +31,7 @@ guides.
 - [Download graph recovery](download-graph-recovery.md)
 - [Dragon ground grid unit](dragon-ground-grid-recovery.md)
 - [Scale-15 dead-spot position](dead-spot-scale15-evidence.md)
+- [Ending-picture native layout and data ownership](ending-picture-recovery.md)
 - [Enemy experience and drop wrappers](enemy-death-award-evidence.md)
 - [Equipment requirement match and link limit](equip-requirements-match.md)
 - [Empty enemy-call interfaces](enemy-empty-hooks-evidence.md)
