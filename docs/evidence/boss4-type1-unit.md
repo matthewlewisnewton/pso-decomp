@@ -46,3 +46,46 @@ floating-point contraction. The porting exceptions register records these
 settings. Exact function scores alone do not establish linkability: the unit
 also needs the symbol extents, compiler-local constants, data layout, alignment,
 relocations, and generated retention metadata checked together.
+
+
+## Independent review on current main (2026-11-13)
+
+Reviewed the original PR #446 commit `44bfff3c72a73a69a9f4b48c32e3e1e7513b3871`
+and its three cited upstream implementations, then integrated fork main
+`34742a01fa18f1df3b4d838871297333cc8d1c76`. The integration preserves main's
+typed BML texture-list access. Merge conflicts in compiler settings and retention
+metadata were resolved by preserving both units' entries; the exception inventory
+was regenerated. The review also corrected the state-table owner comment,
+recorded the effect-ID placement reason beside the compiler override, refreshed
+the register counts, and added the upstream adaptation to the third-party index.
+
+The base was extracted from that immutable main commit into a separate directory.
+Both builds generated fresh split objects and config inventories from their own
+source trees and the local original disc; neither reused compiled game objects.
+The tool executables and compiler installation were copied from the local build
+cache (dtk 1.8.4, objdiff-cli 3.6.1, GC/2.6 with the repository's per-unit settings).
+Configuration used explicit local tool paths; both full `ninja -j2` builds passed.
+Unchanged main passed the full no-build gate against its own saved baseline,
+including all 3,616 linked units and a retention check with zero drift.
+
+The reviewed source tree passes `tools/check_pr.py --no-build` against that fresh
+main baseline:
+
+- Matched functions: 27,499 to 27,501 (+2); matched code: 4,294,708 to
+  4,296,388 (+1,680); matched data: 1,490,204 to 1,492,356 (+2,152).
+- Linked code: 4,086,576 to 4,099,068 (+12,492); linked data: 1,479,048 to
+  1,482,024 (+2,976); linked units: 3,616 to 3,617 (+1).
+- No function, address, data or link regressions. All 60 unit functions, 12,492
+  code bytes and 2,976 data bytes are exact. Every unit section is 100% matched.
+- All 3,617 source-linked units pass the link check; retention metadata has
+  19,430 entries, zero additions and zero stale entries.
+- The rebuilt `build/GPOE8P/psov3.dol` has SHA-1
+  `0d85744b51d7379efb025a943d0cd5aaae2191a3` on both base and reviewed trees.
+- Python syntax, all 346 synthetic tool tests, portable behavior tests,
+  ASan/UBSan checks, changed-line whitespace, and
+  `tools/list_port_exceptions.py --check` pass.
+
+The review covered constructor/destructor ownership, native vtable slots and
+state callbacks, the position generator, shared factory/position callers,
+symbol boundaries and source-link selection. No blocking findings remain.
+The pre-existing shared helper ownership limits described above remain unchanged.

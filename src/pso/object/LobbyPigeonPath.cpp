@@ -680,7 +680,7 @@ void *TObjPlayer::create_child_object(void *arg0) {
 void TObjPlayer::destroy_instance() {
     if ((u32) lobby_kamome_texture_gvm_handle != 0U) {
         release_texture_list((void*)lobby_kamome_texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(lobby_kamome_texture_gvm_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)lobby_kamome_texture_gvm_handle);
         lobby_kamome_texture_gvm_handle = 0U;
     }
     if ((u32) lobby_kamome_model_resource != 0U) {
@@ -875,7 +875,7 @@ void *create__10TObjPlayerFPv(void *arg0) {
 void TObjPlayer::free_statics() {
     if ((u32) lobby_pigeon_texture_gvm != 0U) {
         release_texture_list((void*)lobby_pigeon_texture_gvm);
-        TAdSinglePlyChrSelectGC::safe_free(lobby_pigeon_texture_gvm);
+        TAdSinglePlyChrSelectGC::safe_free((void *)lobby_pigeon_texture_gvm);
         lobby_pigeon_texture_gvm = 0U;
     }
     if ((u32) jungle_bird_bml_resource != 0U) {
@@ -1061,7 +1061,7 @@ void *TObjPlayer::create_path_obj(void *arg0) {
 void TObjPlayer::free_chr_select() {
     if ((u32) jungle_ebi_texture_gvm_handle != 0U) {
         release_texture_list((void*)jungle_ebi_texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(jungle_ebi_texture_gvm_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)jungle_ebi_texture_gvm_handle);
         jungle_ebi_texture_gvm_handle = 0U;
     }
     if ((u32) jungle_ebi_model_resource != 0U) {
@@ -1271,7 +1271,7 @@ void *TObjPlayer__sub_802C28B4(void *arg0) {
 void TObjPlayer__sub_802C2900(void) {
     if ((u32) (*(u32 *)&seabed_dolphin_texture_handle) != 0U) {
         release_texture_list((void*)(*(u32 *)&seabed_dolphin_texture_handle));
-        TAdSinglePlyChrSelectGC::safe_free((*(u32 *)&seabed_dolphin_texture_handle));
+        TAdSinglePlyChrSelectGC::safe_free((void *)(*(u32 *)&seabed_dolphin_texture_handle));
         (*(u32 *)&seabed_dolphin_texture_handle) = 0U;
     }
     if ((u32) seabed_dolphin_bml_archive != 0U) {

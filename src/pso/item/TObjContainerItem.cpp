@@ -1535,7 +1535,7 @@ void TLobby::dispatch_fish_event(void* a0) { get_bml_model(container_breakup_mod
 void TLobby::free_chr_select_slot() {
     if ((u32) lbl_805D5B8C != 0U) {
         release_texture_list((void*)lbl_805D5B8C);
-        TAdSinglePlyChrSelectGC::safe_free(lbl_805D5B8C);
+        TAdSinglePlyChrSelectGC::safe_free((void *)lbl_805D5B8C);
         lbl_805D5B8C = 0U;
     }
     if ((u32) container_breakup_model_archive != 0U) {
@@ -1568,7 +1568,7 @@ s32 get_container_param(s32 index) { return (s32)get_bml_model(lbl_805D5B78, ind
 void TLobby::free_char_select_resources() {
     if ((u32) lbl_805D5B7C != 0U) {
         release_texture_list((void*)lbl_805D5B7C);
-        TAdSinglePlyChrSelectGC::safe_free(lbl_805D5B7C);
+        TAdSinglePlyChrSelectGC::safe_free((void *)lbl_805D5B7C);
         lbl_805D5B7C = 0U;
     }
     if ((u32) lbl_805D5B78 != 0U) {

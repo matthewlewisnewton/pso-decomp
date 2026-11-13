@@ -12,9 +12,12 @@ LOADER_SOURCES := loader_transfer.cpp ../../src/pso/unk/text_8042E8C4.cpp ../../
 GINJA_BIN := ginja_parameter_callbacks
 GINJA_SAN := $(GINJA_BIN)_san
 
+EXI_BIN := exi_ethernet_fallbacks
+EXI_SAN := $(EXI_BIN)_san
+
 .PHONY: all run sanitize clean
 
-all: $(BIN) $(CALLBACK_BIN) $(LOADER_BIN) $(GINJA_BIN)
+all: $(BIN) $(CALLBACK_BIN) $(LOADER_BIN) $(GINJA_BIN) $(EXI_BIN)
 
 $(BIN): vector_math_fallbacks.cpp ../include/pso/port/VectorMathFallbacks.h ../include/pso/port/PortCompat.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $<
@@ -25,6 +28,9 @@ $(CALLBACK_BIN): item_factory_callbacks.cpp ../../include/pso/item/ItemCreateFun
 $(GINJA_BIN): ginja_parameter_callbacks.cpp ../../include/pso/system/GinjaParameterHandler.h
 	$(CXX) $(CPPFLAGS) -I../../include $(CXXFLAGS) -o $@ $<
 
+$(EXI_BIN): exi_ethernet_fallbacks.cpp ../include/pso/port/ExiEthernetFallbacks.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $<
+
 $(LOADER_BIN): $(LOADER_SOURCES) ../include/pso/port/LoaderTransfer.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(LOADER_SOURCES)
 
@@ -33,6 +39,7 @@ run: all
 	./$(CALLBACK_BIN)
 	./$(LOADER_BIN)
 	./$(GINJA_BIN)
+	./$(EXI_BIN)
 
 sanitize: vector_math_fallbacks.cpp ../include/pso/port/VectorMathFallbacks.h ../include/pso/port/PortCompat.h
 	$(CXX) $(CPPFLAGS) -std=c++98 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -o $(SAN) $<
@@ -43,6 +50,8 @@ sanitize: vector_math_fallbacks.cpp ../include/pso/port/VectorMathFallbacks.h ..
 	./$(LOADER_SAN)
 	$(CXX) $(CPPFLAGS) -I../../include -std=c++98 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -o $(GINJA_SAN) ginja_parameter_callbacks.cpp
 	./$(GINJA_SAN)
+	$(CXX) $(CPPFLAGS) -std=c++98 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -o $(EXI_SAN) exi_ethernet_fallbacks.cpp
+	./$(EXI_SAN)
 
 clean:
-	rm -f $(BIN) $(SAN) $(CALLBACK_BIN) $(CALLBACK_SAN) $(LOADER_BIN) $(LOADER_SAN) $(GINJA_BIN) $(GINJA_SAN)
+	rm -f $(BIN) $(SAN) $(CALLBACK_BIN) $(CALLBACK_SAN) $(LOADER_BIN) $(LOADER_SAN) $(GINJA_BIN) $(GINJA_SAN) $(EXI_BIN) $(EXI_SAN)

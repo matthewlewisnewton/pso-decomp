@@ -1,4 +1,5 @@
 #include "pso/network/ModemRuntime.h"
+#include "pso/network/NetworkMessageTransport.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/NetworkTransport.h"
 #include "pso/network/NetworkTimer.h"
@@ -145,7 +146,6 @@ extern u8 lbl_805E1190[6];
 s16 TLobby__sub_80426660(u8 *arg0);
 s32 TLobby__sub_804089A8(s32, s32, void *, void *);
 s32 TLobby__sub_80426AAC(u16 key, s32 len);
-void forward_to_channel__6TLobbyFPv(void *frame, void *b);
 s16 TLobby__sub_80426440(void);
 
 #pragma push
@@ -224,7 +224,7 @@ void TLobby::message_thread_loop() {
         n = *(s32 *)((u8 *)spC + 4);
         id = *(s32 *)((u8 *)spC + 8);
         if (n > 0) {
-            TLobby::start_exi_send(id, n, (s32)TLobby__sub_80425D88);
+            TLobby::start_exi_send(id, n, TLobby__sub_80425D88);
             OSReceiveMessage(&lbl_805CF380.queue, &sp8, 1);
             network_message_pending_count -= 1;
         }
@@ -373,7 +373,7 @@ void TLobby__sub_80426190(Obj_80426110 *o) {
     }
     if (n > 0) {
         TLobby__sub_8042BA48((s32)o->out, n);
-        TLobby__sub_8042B58C((u32)TLobby__sub_80426AAC, (s32)forward_to_channel__6TLobbyFPv);
+        TLobby__sub_8042B58C((u32)TLobby__sub_80426AAC, (s32)forward_to_channel);
     }
 }
 
@@ -430,11 +430,11 @@ s16 TLobby__sub_80426440(void) {
     return 0;
 }
 
-s16 TLobby::post_send_message(u16 arg1) {
+s16 post_send_message(u8 *frame, u16 arg1) {
     s32 temp_r3;
     u8 *msg;
     u8 pad[8];
-    s32 arg0 = (s32)this;
+    s32 arg0 = (s32)frame;
     temp_r3 = TLobby__sub_8042558C((void *)arg1);
     if (temp_r3 == 0) {
         return -1;
@@ -627,10 +627,10 @@ s32 TLobby::open_channel_checked(s16 arg0, u16 arg1) {
     return 0;
 }
 
-void TLobby::forward_to_channel(void *b) {
-    if (this != NULL) {
+void forward_to_channel(void *frame, void *b) {
+    if (frame != NULL) {
         void *q = lobby_net_channel_table;
-        dispatch_received_ethernet_frame(q, this, b);
+        dispatch_received_ethernet_frame(q, frame, b);
     }
 }
 

@@ -860,7 +860,7 @@ void TObjEneGibbles::fn_802D8E8C() {
 
 void TObjEneGibbles::sub_802DBC94(s32 i) {
     model = (void *)TObjEneGibbles__resource_bundle->models[i].model;
-    texlist = TObjEneGibbles__resource_bundle->models[i].m_c;
+    texlist = (s32)TObjEneGibbles__resource_bundle->models[i].m_c;
 }
 
 void *TObjEneGibbles::get_center() {

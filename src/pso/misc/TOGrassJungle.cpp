@@ -43,7 +43,7 @@ void *TOGrassJungle__create(void *arg0) {
 void TOGrassJungle::release_static_instance() {
     if (TOGrassJungle__grass_gvm_texture != NULL) {
         release_texture_list(TOGrassJungle__grass_gvm_texture);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TOGrassJungle__grass_gvm_texture);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TOGrassJungle__grass_gvm_texture);
         TOGrassJungle__grass_gvm_texture = NULL;
     }
     if ((u32) TOGrassJungle__bml_resource != 0U) {
@@ -64,4 +64,15 @@ void TOGrassJungle::load_resources() {
 __declspec(section ".data") const char *bm_o_grass_jungle_model_names[3] = { lbl_80465938, lbl_80465950, NULL };
 BmlResourceDescriptor ograss_jungle_resource_descriptor = { lbl_80465964, bm_o_grass_jungle_model_names, bm_o_grass_jungle_motion_names, 2, 0 };
 __declspec(section ".sdata") const char *bm_o_grass_jungle_motion_names[1] = { NULL };
+}
+
+extern "C" {
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805DDD28 = 12.0f;
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805DDD2C = -10.0f;
 }

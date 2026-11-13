@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
 #include "pso/system/ModelNodePositionCapture.h"
@@ -318,7 +319,6 @@ f32 vector_length(void *);
 f32 subtract_vector(void *, int);
 f32 normalize_vector(void *);
 void TBoss6Type2__sub_8032F5C4(void *arg0);
-s32 TObjFish__sub_8001EDB0(s32, s32);
 }
 void draw_model_blend_motion(void *arg0, void *arg1, f32 farg0);
 extern "C" {
@@ -1038,7 +1038,7 @@ void TBoss6Mag::draw_model_motion_blend() {
     s32 temp_r31;
     s32 bml_model;
     set_motion_packed_rotation();
-    temp_r31 = TObjFish__sub_8001EDB0(*(s32 *)((s8 *)this + 0x374), 1);
+    temp_r31 = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)((s8 *)this + 0x374)), 1);
     bml_model = (s32)get_bml_model((BmlResource *)*(s32 *)((s8 *)this + 0x374), 1);
     set_current_texture_list((GinjaTextureList *)(temp_r31));
     if ((0.0f) == *(f32 *)((s8 *)this + 0x3E8)) {

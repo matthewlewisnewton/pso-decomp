@@ -221,7 +221,7 @@ extern const char *lbl_805D3F18;
 #pragma fp_contract on
 void TObjEneMe1GiGue::load_params_from_table(s32 i) {
     model = (void *)TObjEneMe1GiGue__data_805D6838->models[i].model;
-    texlist = TObjEneMe1GiGue__data_805D6838->models[i].m_c;
+    texlist = (s32)TObjEneMe1GiGue__data_805D6838->models[i].m_c;
 }
 
 void TObjEneMe1GiGue::fn_802CDAE8() {  }
@@ -327,7 +327,7 @@ void TObjEneMe1GiGue::load_resources() {
     TObjEneMe1GiGue__param_table = (GiGueParameters *)get_battle_movement_params(0x1A);
     o = (int)::operator new(0x10);
     if (o != 0) {
-        o = init_from_model__11TBreakUpMdlFl(o, TObjEneMe1GiGue__data_805D6838->models[0].model);
+        o = init_from_model__11TBreakUpMdlFl(o, (s32)TObjEneMe1GiGue__data_805D6838->models[0].model);
     }
     TObjEneMe1GiGue__barrier_obj = (TUnk_8048FA00 *)o;
     TObjEneMe1GiGue__sub_802CE4EC();

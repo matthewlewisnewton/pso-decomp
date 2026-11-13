@@ -3,7 +3,11 @@
 
 #include "types.h"
 
-void advance_angle_wrap(s32 *arg0, s32 arg1);
-u8 *spawn_star_light_2d(s32 arg0, s32 arg1, s32 arg2);
+void advance_angle_wrap(s32 *value, s32 step);
+class TObject;
+class TEffStarLight2D;
+
+// The opaque position/parameter boundary follows the shared effect constructor.
+TEffStarLight2D *spawn_star_light_2d(void *position, void *parameters, TObject *parent);
 
 #endif

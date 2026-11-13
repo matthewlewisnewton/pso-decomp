@@ -145,14 +145,14 @@ s32 TAdSinglePlyChrSelectGC::load_preview_models() {
         len = 0;
         p = (u32)TLobby__sub_801E38A0((s32)(((TAdSinglePlyChrSelectGC *)(self->f74[i]))->get_result()), &len, &tag, (s32 *)(0), (s32 *)(0));
         if (p == 0 || tag != 0x4E4A544C) return;
-        TAdSinglePlyChrSelectGC::safe_free(p);
+        TAdSinglePlyChrSelectGC::safe_free((void *)p);
         bufs[i] = (u32)TLobby__sub_801E38A0((s32)(((TAdSinglePlyChrSelectGC *)(self->f74[i]))->get_result()), &len, &tag, (s32 *)(0), (s32 *)(0));
         if (bufs[i] == 0 || tag != 0x4E4A434D) {
-            for (i = 0; i < 6; i++) TAdSinglePlyChrSelectGC::safe_free(bufs[i]);
+            for (i = 0; i < 6; i++) TAdSinglePlyChrSelectGC::safe_free((void *)bufs[i]);
             return;
         }
         if (is_node_tree_valid(bufs[i], tag) == 0) {
-            for (i = 0; i < 6; i++) TAdSinglePlyChrSelectGC::safe_free(bufs[i]);
+            for (i = 0; i < 6; i++) TAdSinglePlyChrSelectGC::safe_free((void *)bufs[i]);
             return;
         }
     }
@@ -166,7 +166,7 @@ s32 TAdSinglePlyChrSelectGC::load_preview_models() {
     }
     ((TAdSinglePlyChrSelectGC *)(&s))->reset_creation_parts();
     blend_creation_proportion_shapes(self->f38 + 0x48);
-    for (j = 0; j < 6; j++) TAdSinglePlyChrSelectGC::safe_free(bufs[j]);
+    for (j = 0; j < 6; j++) TAdSinglePlyChrSelectGC::safe_free((void *)bufs[j]);
 }
 
 void start_preview_loads__23TAdSinglePlyChrSelectGCFPv(Gc_8028CB6C *arg0) {

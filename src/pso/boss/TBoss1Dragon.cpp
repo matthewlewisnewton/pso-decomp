@@ -1,3 +1,4 @@
+#include "pso/boss/TBoss1DragonEffBullet.h"
 #include "pso/boss/EffectGeometryParameters.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/system/MatrixVectorArray.h"
@@ -429,7 +430,6 @@ s32 init_acceleration_curve(void *, f32, f32, f32, f32);
 void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 flags);
 
 void rotate_vec_xz(void *, void *, s32);
-u8 *TBoss1DragonEffBullet__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
 void prepare_flight_destination__12TBoss1DragonFPv(u8 *arg0);
 
 extern const f32 lbl_805D800C;
@@ -975,8 +975,8 @@ extern s32 lbl_805D4B34;
 extern u16 TBoss1Dragon__data_805D4B3C;
 extern s32 lbl_80481B34[];
 
-bool TBoss1Dragon::isV2Mode() {
-    return TObjEneDD::check_v2_mode() != 0;
+s32 TBoss1Dragon::isV2Mode() {
+    return TObjEneDD::check_v2_mode() != 0 ? 1 : 0;
 }
 
 void TBoss1Dragon::render_low_detail() {
@@ -3405,7 +3405,7 @@ void TBoss1Dragon::update_spinning_projectile_attack(u32 reason) {
             }
             break;
         case 3: {
-            Vec_80028CA8 position;
+            Vec position;
             s32 found;
             self->m_874 += 0x40;
             if (self->m_874 > 0x2000) {
@@ -3438,10 +3438,7 @@ void TBoss1Dragon::update_spinning_projectile_attack(u32 reason) {
                     position.z = lbl_805D8030 *
                         (calc_random_ratio__10TObjPlayerFv(self->randomState) - (0.5f));
                 }
-                u8 *bullet = __nw__7TObjectFUl(0x4C);
-                if (bullet != NULL) {
-                    TBoss1DragonEffBullet__ct(bullet, (s32)self->unknown3C4, (s32)&self->m_40c, (s32)&position);
-                }
+                new TBoss1DragonEffBullet((TObject *)self->unknown3C4, (const Vec *)&self->m_40c, &position);
             }
             self->rotation.pitch -= self->m_874;
             break;
@@ -3514,10 +3511,9 @@ void TBoss1Dragon::update_spinning_projectile_attack(u32 reason) {
 void TBoss1Dragon::update_air_fire_state(u32 arg1) {
     Vec_80025710 *tgt;
     f32 dist;
-    Vec_80025710 dest;
+    Vec dest;
     Vec_80025710 d;
     Vec_80025710 out;
-    u8 *obj;
     u8 *arg0 = (u8 *)this;
 
     tgt = (Vec_80025710 *)(arg0 + 0x890);
@@ -3610,28 +3606,19 @@ void TBoss1Dragon::update_air_fire_state(u32 arg1) {
                 d.y = (0.0f);
                 VecCopy__FP3VecPC3Vec(&dest, tgt);
                 dest.y = TBoss1Dragon__data_80434E80.y;
-                obj = __nw__7TObjectFUl(0x4C);
-                if (obj != NULL) {
-                    TBoss1DragonEffBullet__ct((u8 *)obj, (s32)(arg0 + 0x3C4), (s32)(arg0 + 0x40C), (s32)&dest);
-                }
+                new TBoss1DragonEffBullet((TObject *)(arg0 + 0x3C4), (const Vec *)(arg0 + 0x40C), &dest);
                 rotate_vec_xz(&d, &out, 0x1000);
                 VecCopy__FP3VecPC3Vec(&dest, (u8 *)&this->position);
                 dest.x = out.x * dist + dest.x;
                 dest.y = TBoss1Dragon__data_80434E80.y;
                 dest.z = out.z * dist + dest.z;
-                obj = __nw__7TObjectFUl(0x4C);
-                if (obj != NULL) {
-                    TBoss1DragonEffBullet__ct((u8 *)obj, (s32)(arg0 + 0x3C4), (s32)(arg0 + 0x40C), (s32)&dest);
-                }
+                new TBoss1DragonEffBullet((TObject *)(arg0 + 0x3C4), (const Vec *)(arg0 + 0x40C), &dest);
                 rotate_vec_xz(&d, &out, -0x1000);
                 VecCopy__FP3VecPC3Vec(&dest, (u8 *)&this->position);
                 dest.x = out.x * dist + dest.x;
                 dest.y = TBoss1Dragon__data_80434E80.y;
                 dest.z = out.z * dist + dest.z;
-                obj = __nw__7TObjectFUl(0x4C);
-                if (obj != NULL) {
-                    TBoss1DragonEffBullet__ct((u8 *)obj, (s32)(arg0 + 0x3C4), (s32)(arg0 + 0x40C), (s32)&dest);
-                }
+                new TBoss1DragonEffBullet((TObject *)(arg0 + 0x3C4), (const Vec *)(arg0 + 0x40C), &dest);
                 spawn_particle_effect_with_flags(arg0 + 0x40C, *(s32 *)((s8 *)this->effectResource + 0x1C), 0x40);
                 this->stateStep = 3;
                 *(s32 *)((s8 *)arg0 + 0x86C) = 0;
@@ -5959,7 +5946,7 @@ void TBoss1Dragon::requestActionRefresh() {
 
 void TBoss1Dragon::free_resources() {
     if ((u32) TBoss1Dragon__data_805D4B28 != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)((void*)TBoss1Dragon__data_805D4B28));
+        TAdSinglePlyChrSelectGC::safe_free((void *)((void*)TBoss1Dragon__data_805D4B28));
         TBoss1Dragon__data_805D4B28 = 0U;
     }
     if ((u32) TBoss1Dragon__data_805D4B08 != 0U) {

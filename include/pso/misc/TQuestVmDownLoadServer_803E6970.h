@@ -2,6 +2,7 @@
 #define PSO_MISC_TQUESTVMDOWNLOADSERVER_803E6970_H
 
 #include "types.h"
+#include "pso/misc/QuestDownloadCharacter.h"
 
 extern "C" {
 void Add_803EB8BC(u8 *key, s32 len);
@@ -37,9 +38,6 @@ s32 Seek_803E8624(s32 h, s32 pos, s32 whence);
 s32 TQuestVmDownLoadServer__sub_803E6970(s32 start, s32 count, u16 *buf, s32 flag);
 void TQuestVmDownLoadServer__sub_803E6ACC(s32 arg0);
 void TQuestVmDownLoadServer__sub_803E6B70(u8 *dst, s32 start, s32 count, s32 mode);
-bool TQuestVmDownLoadServer__sub_803E6F98(s32 arg0);
-bool TQuestVmDownLoadServer__sub_803E7018(s32 arg0);
-s32 TQuestVmDownLoadServer__sub_803E7098(u8 *p, u16 code);
 s32 TQuestVmDownLoadServer__sub_803E719C(u8 arg0, s32 arg1);
 u16 TQuestVmDownLoadServer__sub_803E721C(u16 arg0);
 s32 TQuestVmDownLoadServer__sub_803E779C(u32 arg0, s32 *arg1, s32 *arg2, s32 *arg3);
@@ -55,9 +53,7 @@ s32 TQuestVmDownLoadServer__sub_803EB0D8(s32 arg0, s32 arg1);
 void TQuestVmDownLoadServer__sub_803EC09C(void);
 void TQuestVmDownLoadServer__sub_803EC460(s32 pos, s32 x);
 s32 TQuestVmDownLoadServer__sub_803EC884(u16 arg0);
-s32 TQuestVmDownLoadServer__sub_803EC8D8(u16 arg0);
 void TQuestVmDownLoadServer__sub_803ECA1C(u16 *arg0, s32 arg1, s32 arg2);
-s32 TQuestVmDownLoadServer__sub_803ECC7C(u32 arg0);
 u16 TQuestVmDownLoadServer__sub_803ED0B4(u8 *arg0, u16 arg1);
 s32 TQuestVmDownLoadServer__sub_803EDB20(u8 arg0);
 s32 TQuestVmDownLoadServer__sub_803EDB3C(u8 arg0);
@@ -119,9 +115,6 @@ s32 Seek_803E8624(s32 h, s32 pos, s32 whence);
 s32 TQuestVmDownLoadServer__sub_803E6970(s32 start, s32 count, u16 *buf, s32 flag);
 void TQuestVmDownLoadServer__sub_803E6ACC(s32 arg0);
 void TQuestVmDownLoadServer__sub_803E6B70(u8 *dst, s32 start, s32 count, s32 mode);
-bool TQuestVmDownLoadServer__sub_803E6F98(s32 arg0);
-bool TQuestVmDownLoadServer__sub_803E7018(s32 arg0);
-s32 TQuestVmDownLoadServer__sub_803E7098(u8 *p, u16 code);
 s32 TQuestVmDownLoadServer__sub_803E719C(u8 arg0, s32 arg1);
 u16 TQuestVmDownLoadServer__sub_803E721C(u16 arg0);
 s32 TQuestVmDownLoadServer__sub_803E779C(u32 arg0, s32 *arg1, s32 *arg2, s32 *arg3);
@@ -137,9 +130,7 @@ s32 TQuestVmDownLoadServer__sub_803EB0D8(s32 arg0, s32 arg1);
 void TQuestVmDownLoadServer__sub_803EC09C(void);
 void TQuestVmDownLoadServer__sub_803EC460(s32 pos, s32 x);
 s32 TQuestVmDownLoadServer__sub_803EC884(u16 arg0);
-s32 TQuestVmDownLoadServer__sub_803EC8D8(u16 arg0);
 void TQuestVmDownLoadServer__sub_803ECA1C(u16 *arg0, s32 arg1, s32 arg2);
-s32 TQuestVmDownLoadServer__sub_803ECC7C(u32 arg0);
 u16 TQuestVmDownLoadServer__sub_803ED0B4(u8 *arg0, u16 arg1);
 s32 TQuestVmDownLoadServer__sub_803EDB20(u8 arg0);
 s32 TQuestVmDownLoadServer__sub_803EDB3C(u8 arg0);

@@ -298,23 +298,23 @@ void TObjEneMe1Canadin::load_resources() {
     canadin_render_node_index = 0;
     TUnk_8048FA00 *breakup = static_cast<TUnk_8048FA00 *>(::operator new(sizeof(TUnk_8048FA00)));
     if (breakup != NULL) {
-        breakup = init_from_model__11TBreakUpMdlFl(breakup, canadin_resources->models[1].model);
+        breakup = init_from_model__11TBreakUpMdlFl(breakup, (s32)canadin_resources->models[1].model);
     }
     canadin_leader_breakup_model = breakup;
     breakup = static_cast<TUnk_8048FA00 *>(::operator new(sizeof(TUnk_8048FA00)));
     if (breakup != NULL) {
-        breakup = init_from_model__11TBreakUpMdlFl(breakup, canadin_resources->models[0].model);
+        breakup = init_from_model__11TBreakUpMdlFl(breakup, (s32)canadin_resources->models[0].model);
     }
     canadin_follower_breakup_model = breakup;
 
     // Skip the two halfwords before the packed polygon colors.
-    s32 leader = canadin_resources->models[1].model;
+    s32 leader = (s32)canadin_resources->models[1].model;
     NJS_OBJECT *node = reinterpret_cast<NJS_OBJECT *>(find_model_node(leader, 3));
     canadin_leader_node3_color = reinterpret_cast<s32 *>(static_cast<NJS_CNK_MODEL *>(node->model)->polygon_list + 2);
     node = reinterpret_cast<NJS_OBJECT *>(find_model_node(leader, 2));
     canadin_leader_node2_color = reinterpret_cast<s32 *>(static_cast<NJS_CNK_MODEL *>(node->model)->polygon_list + 2);
 
-    s32 follower = canadin_resources->models[0].model;
+    s32 follower = (s32)canadin_resources->models[0].model;
     node = reinterpret_cast<NJS_OBJECT *>(find_model_node(follower, 3));
     canadin_follower_node3_color = reinterpret_cast<s32 *>(static_cast<NJS_CNK_MODEL *>(node->model)->polygon_list + 2);
     node = reinterpret_cast<NJS_OBJECT *>(find_model_node(follower, 2));
@@ -528,7 +528,7 @@ void TObjEneMe1Canadin::update_by_field_0x354() {
 
 void TObjEneMe1Canadin::vfunc_106() {
     model = (void *)canadin_resources->models[0].model;
-    texlist = canadin_resources->models[1].m_c;
+    texlist = (s32)canadin_resources->models[1].m_c;
 }
 
 #pragma push
@@ -2127,7 +2127,7 @@ void TObjEneMe1CanadinLeader::run_task() {
 void TObjEneMe1CanadinLeader::vfunc_106() {
     void *arg0 = this;
     model = (void *)canadin_resources->models[1].model;
-    texlist = canadin_resources->models[1].m_c;
+    texlist = (s32)canadin_resources->models[1].m_c;
 }
 
 void TObjEneMe1CanadinLeader::vfunc_105() {

@@ -169,8 +169,8 @@ void TLobby::load_now_loading_texture() {
         set_stream_state__6TLobbyFPCv(lbl_80477BC4, temp_r3);
         prs_decompress_buffer((temp_r3), (temp_r31));
         load_gvm_texture_archive(temp_r31, lbl_804EF1DC);
-        TAdSinglePlyChrSelectGC::safe_free(temp_r3);
-        TAdSinglePlyChrSelectGC::safe_free(temp_r31);
+        TAdSinglePlyChrSelectGC::safe_free((void *)temp_r3);
+        TAdSinglePlyChrSelectGC::safe_free((void *)temp_r31);
         lobby_request_flags |= 2;
     }
 }

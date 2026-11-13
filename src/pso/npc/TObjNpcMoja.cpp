@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -125,7 +126,6 @@ void __dl__7TObjectFPv(void *);
 void *__dt__11TObjNpcBaseFv(void *arg0, s16 arg1);
 void *__nw__7TObjectFUl(int);
 
-s32 TObjFish__sub_8001EDB0(void *, s32);
 void TObjNpcBase__ct(void *, void *);
 void init_collision_body_parts(void *, void *, s32);
 extern u8 npc_default_battle_stats[];
@@ -292,7 +292,7 @@ void *TObjNpcMoja__ct(void *selfv, void *parent, void *arg2v) {
     ((TObjChara *)self)->initialize_position_copies();
     ((VObj_8014C780 *)self)->m85(0, 1);
     *(s32 *)(self + 0x34) = (s32)get_bml_model((BmlResource *)lbl_805D50D8, 0);
-    *(s32 *)(self + 0x24) = TObjFish__sub_8001EDB0(lbl_805D50D8, 0);
+    *(s32 *)(self + 0x24) = (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D50D8, 0);
     ((TObjMotion *)self)->init_motion(moja_action_table, (BmlMotionEntry *)*(s32 *)(lbl_805D50D8 + 0x430), *(s16 *)(self + 0xB8));
     *(u8 **)(self + 0x350) = npc_movement_parameters;
     ((TObjChara *)self)->set_motion_params(npc_default_battle_stats);
@@ -323,7 +323,7 @@ void * TObjNpcNFM00__create(void *arg0) {
 void TObjNpcNFM00::free_resources() {
     if ((u32) TObjNpcNFM00__texture_gvm_handle != 0U) {
         release_texture_list((void*)TObjNpcNFM00__texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjNpcNFM00__texture_gvm_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcNFM00__texture_gvm_handle);
         TObjNpcNFM00__texture_gvm_handle = 0U;
     }
     if ((u32) TObjNpcNFM00__shared_named_model_object != 0U) {

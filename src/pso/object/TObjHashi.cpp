@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/CurrentTextureList.h"
 // The bridges: TObjHashiBase and its three set objects TObjHashi,
 // TObjHashiVersus1 and TObjHashiVersus2, and the packet 6x78 slot timers.
@@ -27,14 +28,10 @@
 extern "C" {
 // The BML resource loader and its deleting destructor (TLobby_8001EF5C) and
 // a model's texture list (TObjFish_8001ED90), still named after their units.
-s32 TObjFish__sub_8001EDB0(BmlResource *resource, s32 index);
 extern TCameraCtrl *camera_ctrl_instance;
 }
 
-// The unit's .sdata2 float pool (0x805DBE20-0x805DBE40) is still referenced
-// from the DOL: CW pools these in the order the functions need them, and no
-// source arrangement found yet gives the original order 120, 400, 40, 0, 640,
-// 0.15, 30 (written source gives 120, 0, 640, 400, 40, 0.15, 30).
+// Definitions follow the functions so GC/2.6 retains the named pool order.
 extern const f32 lbl_805DBE20; // 120.0f, TObjHashiVersus2's model radius
 extern const f32 lbl_805DBE24; // 400.0f, the view depth
 extern const f32 lbl_805DBE28; // 40.0f, the model radius
@@ -181,9 +178,8 @@ void TObjHashiBase::render() {
 }
 
 
-// Kept from the old unit: with the pool constants read through their DOL
-// symbols (above), common-subexpression elimination keeps 0.0f in a different
-// register; with literals the function matches without it.
+// Named constant loads need CSE disabled here to retain the original FPR use.
+// Literals avoid that constraint but reorder this unit's small-data pool.
 #pragma push
 #pragma opt_common_subs off
 s32 TObjHashiBase::update_object_view_visibility(f32 depth, f32 radius) {
@@ -232,7 +228,7 @@ s32 TObjHashiBase::update_object_view_visibility(f32 depth, f32 radius) {
 TObjHashi::TObjHashi(TObject *parent, void *set_data) : TObjHashiBase(parent, set_data) {
     m_name = class_name;
     model = (void *)get_bml_model(bml_resource, 0);
-    texlist = TObjFish__sub_8001EDB0(bml_resource, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)bml_resource, 0);
     init_collision_body_parts(this, hashi_collision_bodies, 1);
     actorFlags |= 0x40000000;
     register_object_by_id();
@@ -266,7 +262,7 @@ TObjHashiVersus1::TObjHashiVersus1(TObject *parent, void *set_data) : TObjHashiB
     }
     riseSpeed = scale.y;
     model = (void *)get_bml_model(bml_resource, 0);
-    texlist = TObjFish__sub_8001EDB0(bml_resource, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)bml_resource, 0);
     init_collision_body_parts(this, hashi_versus1_collision_bodies, 2);
     actorFlags |= 0x40000000;
     register_object_by_id();
@@ -301,7 +297,7 @@ TObjHashiVersus2::TObjHashiVersus2(TObject *parent, void *set_data) : TObjHashiB
     riseSpeed = scale.y;
     model_radius = lbl_805DBE20;
     model = (void *)get_bml_model(bml_resource, 0);
-    texlist = TObjFish__sub_8001EDB0(bml_resource, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)bml_resource, 0);
     init_collision_body_parts(this, hashi_versus2_collision_bodies, 2);
     actorFlags |= 0x40000000;
     register_object_by_id();
@@ -327,3 +323,12 @@ void TObjHashiVersus2::unload_static_data() {
 void *TObjHashiVersus2::create(void *set_data) {
     return new TObjHashiVersus2(tl_05, set_data);
 }
+
+// Keep the definitions after their consumers to avoid compiler-pooled copies.
+const f32 lbl_805DBE20 = 120.0f;
+const f32 lbl_805DBE24 = 400.0f;
+const f32 lbl_805DBE28 = 40.0f;
+const f32 lbl_805DBE2C = 0.0f;
+const f32 lbl_805DBE30 = 640.0f;
+const f32 lbl_805DBE34 = 0.15f;
+const f32 lbl_805DBE38 = 30.0f;

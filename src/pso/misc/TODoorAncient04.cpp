@@ -71,7 +71,7 @@ void TODoorAncient04::load_resources() {
     door_ancient04_archive = archive;
     s32 *texlists = (s32 *)::operator new[](2 * sizeof(s32));
     door_ancient04_texlists = texlists;
-    texlists[0] = door_ancient04_archive->models[0].m_c;
+    texlists[0] = (s32)door_ancient04_archive->models[0].m_c;
     door_ancient04_texlists[1] = (s32)load_gvm_texture_file("fe_obj_o_door04g.gvm");
 }
 

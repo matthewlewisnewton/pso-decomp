@@ -116,7 +116,7 @@ void *TObjTank__create(void *arg0) {
 void TObjTank::free_globals() {
     if (TObjTank__texture_list != NULL) {
         release_texture_list(TObjTank__texture_list);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TObjTank__texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjTank__texture_list);
         TObjTank__texture_list = NULL;
     }
     if ((u32) tank_bml_resource != 0U) {

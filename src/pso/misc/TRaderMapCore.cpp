@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include <string.h>
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
@@ -1144,7 +1145,7 @@ void TRaderMapCore::draw_backdrop(TRaderMapCore *self, s32 mode) {
     colors[3] = color;
     set_default_alpha_blend();
     TParticleCtrl::begin_effect_render();
-    ((TObjCMHairMenu *)&desc)->draw_tri_fan_2d(4, 0x16, lbl_805DC574);
+    ((ColorLineList *)&desc)->draw_tri_fan_2d(4, 0x16, lbl_805DC574);
     TParticleCtrl::end_effect_render();
 }
 

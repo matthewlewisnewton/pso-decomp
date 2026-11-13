@@ -119,7 +119,7 @@ void TBoss6Rock::free_data() {
     }
     if (TBoss6Rock__data_805D6EF4 != NULL) {
         release_texture_list(TBoss6Rock__data_805D6EF4);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TBoss6Rock__data_805D6EF4);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TBoss6Rock__data_805D6EF4);
         TBoss6Rock__data_805D6EF4 = NULL;
     }
 }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/item/TItemDrop_800F93F0.h"
 #include "pso/item/TUnk_8049C658.h"
 #include "pso/item/TItemDrop.h"
@@ -17,7 +18,6 @@ struct Head_800F957C { u8 pad[0x14]; N_800F957C *first; };
 
 extern "C" {
 extern Head_800F957C resource_load_task_root[];
-int safe_free__23TAdSinglePlyChrSelectGCFUl(void*);
 s32 apply_rel_relocations(void *);
 void *construct__13TUnk_8049C658Fv(void *);
 s32 read_disc_file(void *, void *);
@@ -82,13 +82,13 @@ s32 load_relocatable_file(s32 arg0, s32 arg1) {
 }
 
 #pragma pop
-int free_data_file(void* p) { return safe_free__23TAdSinglePlyChrSelectGCFUl(p); }
+void free_data_file(void* p) { TAdSinglePlyChrSelectGC::safe_free(p); }
 void *load_data_file(const char *path) { return set_stream_and_load_file__6TLobbyFPCv(path); }
 void TLobby::free_nodes_with_id(u32 arg0) {
     N_800F957C *n = resource_load_task_root->first;
     while (n != 0) {
         if (n->id24 == arg0) {
-            safe_free__23TAdSinglePlyChrSelectGCFUl(n->p1C);
+            TAdSinglePlyChrSelectGC::safe_free(n->p1C);
             if (n != 0) {
                 n->m0(1);
             }

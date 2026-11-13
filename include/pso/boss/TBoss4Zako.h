@@ -1,7 +1,8 @@
 #ifndef PSO_BOSS_TBOSS4ZAKO_H
 #define PSO_BOSS_TBOSS4ZAKO_H
 #include "types.h"
-struct TBoss4ZakoVec3 { f32 x, y, z; };
+#include <dolphin/mtx.h>
+typedef Vec TBoss4ZakoVec3;
 struct TBoss4ZakoCollisionState { u8 _pad0[0x18]; s32 flags; };
 struct TBoss4Zako {
     s32 sub_8005D6B0();

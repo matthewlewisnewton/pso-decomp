@@ -1,3 +1,4 @@
+#include "pso/misc/WordSelectMessage.h"
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowDD_80346A84.h"
 
@@ -63,7 +64,6 @@ extern s32 twindowdd_entry_count;
 extern s32 TWindowDD__data_805D6E40;
 extern s32 TWindowDD__data_805D6E44;
 extern s32 TWindowDD__data_805D6E48;
-extern s32 lbl_805D6E4C;
 extern void *lbl_805D6E50;
 extern void *lbl_805D6E54;
 extern void *lbl_805D6E58;
@@ -111,7 +111,7 @@ void ws_data_load(void) {
         TWindowDD__data_805D6E40 = *(s32 *)((s8 *)temp_r3_3 + 0x10);
         TWindowDD__data_805D6E48 = *(s32 *)((s8 *)temp_r3_3 + 0x18);
         TWindowDD__data_805D6E44 = *(s32 *)((s8 *)temp_r3_3 + 0x14);
-        lbl_805D6E4C = *(s32 *)((s8 *)temp_r3_3 + 0x20);
+        lbl_805D6E4C = *(u8 **)((s8 *)temp_r3_3 + 0x20);
         window_dd_element_count = 0x126;
         twindowdd_entry_count = 0x13;
         return;

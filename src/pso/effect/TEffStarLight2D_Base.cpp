@@ -4,9 +4,9 @@
 #include "pso/effect/TEffStarLight2D_Base.h"
 #include "pso/effect/TEffStarLight2D.h"
 #include "pso/effect/TEffStarLightChild.h"
-#include "types.h"
-#include "pso/system/NinjaTypes.h"
 #include "pso/system/vector.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/unk/text_803D853C.h"
 
 extern "C" {
 extern TObject *tl_particle;
@@ -21,75 +21,21 @@ const char *TEffStarLight2D__name = TEffStarLight2D_class_name;
 
 __declspec(section ".rodata") NJS_ARGB star_light_2d_base_color = {0.5f, 1.0f, 1.0f, 1.0f};
 
-
-struct Vec_800851B0 { f32 x; f32 y; f32 z; };
-
-struct P2_800851B0 { f32 x; f32 z; };
-
-struct Star_800851B0 {
-    u8 pad0[0x1C];
-    f32 curX;
-    f32 curZ;
-    f32 prevX;
-    f32 prevZ;
-    Vec_800851B0 pos;
-    f32 f38;
-    f32 f3C;
-};
-
-struct O_80085388 { const char *f0; u8 pad4[0x14]; void *vptr; f32 f1c; f32 f20; f32 f24; f32 f28; };
-
-struct P2_80085388 { f32 x; f32 z; };
-
-
-struct Star_80085424 {
-    u8 pad0[0x1C];
-    f32 angle;
-    f32 x0;
-    f32 y0;
-    f32 x1;
-    f32 y1;
-};
-
-struct Vec_800855F8 { f32 x, y, z; };
-
-struct Pt_800855F8 { f32 x, y; };
-
-struct Star_800855F8 {
-    const char *name;
-    u8 pad4[0x18 - 0x4];
-    void *vt;
-    f32 angle;
-    f32 x0;
-    f32 y0;
-    f32 x1;
-    f32 y1;
-};
-
 extern "C" {
-void *__nw__7TObjectFUl(u32);
-void matrix_mult_vec(int, void *, void *);
-void __ct__7TObjectFP7TObject(void *, void *);
-void project_world_to_screen(int, void *, void *);
-void queue_destruction__7TObjectFv(void *arg0);
-f32 vector_length(void *);
-f32 normalize_vector(void *);
+f32 vector_length(const Vec *);
+f32 normalize_vector(Vec *);
 f32 newton_sqrtf(f32);
-extern void *__vt__18TEffStarLightChild[];
-void run_task__15TEffStarLight2DFv(Star_800851B0 *self);
-void run_task__18TEffStarLightChildFv(Star_80085424 *self);
-Star_800855F8 *__ct__18TEffStarLightChildFv(Star_800855F8 *self, Pt_800855F8 *a, Pt_800855F8 *b, void *parent, f32 w, f32 speed);
 }
 
+// Reverse definitions preserve the native function, literal and vtable order.
+// See docs/evidence/starlight-native-unit.md.
 #pragma defer_codegen on
 
 #pragma push
 #pragma fp_contract on
-Star_800855F8 *__ct__18TEffStarLightChildFv(Star_800855F8 *self, Pt_800855F8 *a, Pt_800855F8 *b, void *parent, f32 w, f32 speed) {
-    Vec_800855F8 d;
-    __ct__7TObjectFP7TObject(self, parent);
-    self->vt = __vt__18TEffStarLightChild;
-    self->name = TEffStarLightChild__name;
+TEffStarLightChild::TEffStarLightChild(ColorLineVertex *a, ColorLineVertex *b, TObject *parent, f32 width, f32 speed) : TObject(parent) {
+    Vec d;
+    m_name = TEffStarLightChild__name;
     if (speed <= 0.0f) {
         speed = 1.0f;
     }
@@ -103,56 +49,55 @@ Star_800855F8 *__ct__18TEffStarLightChildFv(Star_800855F8 *self, Pt_800855F8 *a,
         d.y = 0.0f;
         d.z = 0.0f;
     }
-    self->x0 = d.y * w + b->x;
-    self->y0 = d.x * w + b->y;
-    self->x1 = -d.y * w + b->x;
-    self->y1 = -d.x * w + b->y;
-    if (self->y0 <= self->y1) {
-        f32 t0 = self->y0;
-        f32 t1 = self->y1;
-        self->y1 = t0;
-        self->y0 = t1;
+    edges[0].x = d.y * width + b->x;
+    edges[0].y = d.x * width + b->y;
+    edges[1].x = -d.y * width + b->x;
+    edges[1].y = -d.x * width + b->y;
+    if (edges[0].y <= edges[1].y) {
+        f32 t0 = edges[0].y;
+        f32 t1 = edges[1].y;
+        edges[1].y = t0;
+        edges[0].y = t1;
     }
-    self->angle = newton_sqrtf((self->x0 - self->x1) * (self->x0 - self->x1) + (self->y0 - self->y1) * (self->y0 - self->y1)) / 2.0f / speed;
-    return self;
+    shrink_distance = newton_sqrtf((edges[0].x - edges[1].x) * (edges[0].x - edges[1].x) + (edges[0].y - edges[1].y) * (edges[0].y - edges[1].y)) / 2.0f / speed;
 }
 #pragma pop
 
 TEffStarLightChild::~TEffStarLightChild() {}
 
-void run_task__18TEffStarLightChildFv(Star_80085424 *self) {
+void TEffStarLightChild::run_task() {
     Vec a;
     Vec b;
     Vec c;
     s32 inside = 0;
     c.z = 0.0f;
-    c.x = 0.5f * (self->x0 + self->x1);
-    c.y = 0.5f * (self->y0 + self->y1);
+    c.x = 0.5f * (edges[0].x + edges[1].x);
+    c.y = 0.5f * (edges[0].y + edges[1].y);
     a.z = 0.0f;
-    a.x = self->x0;
-    a.y = self->y0;
+    a.x = edges[0].x;
+    a.y = edges[0].y;
     b.z = 0.0f;
-    b.x = self->x1;
-    b.y = self->y1;
-    approach_vector_fixed_distance(&a, &c, &a, self->angle);
-    self->x0 = a.x;
-    self->y0 = a.y;
-    approach_vector_fixed_distance(&b, &c, &b, self->angle);
-    self->x1 = b.x;
-    self->y1 = b.y;
-    if (self->x0 >= -100.0f && self->x0 <= 740.0f) {
-        if (self->y0 >= -100.0f && self->y0 <= 580.0f) {
-            if (self->x1 >= -100.0f && self->x1 <= 740.0f) {
-                if (self->y1 >= -100.0f && self->y1 <= 580.0f) {
+    b.x = edges[1].x;
+    b.y = edges[1].y;
+    approach_vector_fixed_distance(&a, &c, &a, shrink_distance);
+    edges[0].x = a.x;
+    edges[0].y = a.y;
+    approach_vector_fixed_distance(&b, &c, &b, shrink_distance);
+    edges[1].x = b.x;
+    edges[1].y = b.y;
+    if (edges[0].x >= -100.0f && edges[0].x <= 740.0f) {
+        if (edges[0].y >= -100.0f && edges[0].y <= 580.0f) {
+            if (edges[1].x >= -100.0f && edges[1].x <= 740.0f) {
+                if (edges[1].y >= -100.0f && edges[1].y <= 580.0f) {
                     inside = 1;
                 }
             }
         }
     }
     if (inside == 0) {
-        queue_destruction__7TObjectFv(self);
+        queue_destruction();
     } else if (c.x == b.x && c.y == b.y) {
-        queue_destruction__7TObjectFv(self);
+        queue_destruction();
     }
 }
 
@@ -160,54 +105,62 @@ void TEffStarLightChild::render() {  }
 
 #pragma push
 #pragma opt_common_subs off
-TEffStarLight2D::TEffStarLight2D(void *arg1, void *arg2, TObject *object) : TObject(object) {
-    P2_80085388 p;
-    ((O_80085388 *)this)->f0 = TEffStarLight2D__name;
-    ((TEffStarLight2D *)((u8 *)this + 0x38))->copy_from(arg2);
-    VecCopy((Vec *)((u8 *)this + 0x2C), (const Vec *)arg1);
-    project_world_to_screen(0, (u8 *)this + 0x2C, &p);
-    ((O_80085388 *)this)->f24 = p.x;
-    ((O_80085388 *)this)->f28 = p.z;
-    ((O_80085388 *)this)->f1c = ((O_80085388 *)this)->f24;
-    ((O_80085388 *)this)->f20 = ((O_80085388 *)this)->f28;
+TEffStarLight2D::TEffStarLight2D(void *source_position, void *source_parameters, TObject *parent) : TObject(parent) {
+    ColorLineVertex p;
+    m_name = TEffStarLight2D__name;
+    parameters.copy_from((StarLightParameters *)source_parameters);
+    VecCopy(&position, (const Vec *)source_position);
+    project_world_to_screen(NULL, &position, &p.x);
+    previous_screen_position.x = p.x;
+    previous_screen_position.y = p.y;
+    screen_position.x = previous_screen_position.x;
+    screen_position.y = previous_screen_position.y;
 }
 
 #pragma pop
 
 TEffStarLight2D::~TEffStarLight2D() {}
 
-void TEffStarLight2D::copy_from(void* q) { *(f32 *)&this->m_name = *(f32*)((char*)q + 0x0); *(f32 *)&this->m_flags = *(f32*)((char*)q + 0x4); *(u8 *)&this->m_prev = *(u8*)((char*)q + 0x8); *(u8*)((char*)this + 0x9) = *(u8*)((char*)q + 0x9); *(u8*)((char*)this + 0xa) = *(u8*)((char*)q + 0xa); *(u8*)((char*)this + 0xb) = *(u8*)((char*)q + 0xb); *(u32 *)&this->m_next = *(u32*)((char*)q + 0xc); *(f32 *)&this->m_up = *(f32*)((char*)q + 0x10); }
+// The mutable borrow preserves GC/2.6's alternating loads and stores.
+// This copies the parameter subobject, not a TObject prefix.
+void StarLightParameters::copy_from(StarLightParameters *source) {
+    width = source->width;
+    speed = source->speed;
+    color.channels.a = source->color.channels.a;
+    color.channels.r = source->color.channels.r;
+    color.channels.g = source->color.channels.g;
+    color.channels.b = source->color.channels.b;
+    blend_mode = source->blend_mode;
+    alpha_step = source->alpha_step;
+}
 
-void TEffStarLight2D::copy_from_subobject(void* a1) { ((TEffStarLight2D *)((char*)this + 0x38))->copy_from(a1); }
+void TEffStarLight2D::copy_from_subobject(void *source) {
+    parameters.copy_from((StarLightParameters *)source);
+}
 
-extern "C" {
-void run_task__15TEffStarLight2DFv(Star_800851B0 *self) {
-    P2_800851B0 scr;
-    Vec_800851B0 view;
+void TEffStarLight2D::run_task() {
+    ColorLineVertex screen;
+    Vec view;
     f32 dx;
-    f32 dz;
-    void *child;
+    f32 dy;
 
-    matrix_mult_vec(0, &self->pos, &view);
+    matrix_mult_vec(NULL, &position, &view);
     if (view.z > 0.0f) {
         return;
     }
-    project_world_to_screen(0, &self->pos, &scr);
-    if (scr.x >= -100.0f && scr.x <= 740.0f && scr.z >= -100.0f && scr.z <= 580.0f) {
-        self->prevX = self->curX;
-        self->prevZ = self->curZ;
-        self->curX = scr.x;
-        self->curZ = scr.z;
-        dx = self->curX - self->prevX;
-        dz = self->curZ - self->prevZ;
-        if (dx * dx + dz * dz >= 1.0f) {
-            child = __nw__7TObjectFUl(0x30);
-            if (child != NULL) {
-                ((void *(*)(void *, void *, void *, void *, f32, f32))__ct__18TEffStarLightChildFv)(child, &self->prevX, &self->curX, self, self->f38, self->f3C);
-            }
+    project_world_to_screen(NULL, &position, &screen.x);
+    if (screen.x >= -100.0f && screen.x <= 740.0f && screen.y >= -100.0f && screen.y <= 580.0f) {
+        previous_screen_position.x = screen_position.x;
+        previous_screen_position.y = screen_position.y;
+        screen_position.x = screen.x;
+        screen_position.y = screen.y;
+        dx = screen_position.x - previous_screen_position.x;
+        dy = screen_position.y - previous_screen_position.y;
+        if (dx * dx + dy * dy >= 1.0f) {
+            new TEffStarLightChild(&previous_screen_position, &screen_position, this,
+                                  parameters.width, parameters.speed);
         }
     }
-}
 }
 
 void TEffStarLight2D::queue_child_destruction() {

@@ -339,8 +339,8 @@ void TAdChrSelASlotGC::sub_8030CEEC() {
             push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_38, lbl_80475878[0]);
             push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_38, lbl_80475878[1]);
             push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_38, lbl_80475878[2]);
-            *(s32 *)((s8 *)this + 0x4C) = ((s32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0x12, lbl_805DF218));
-            *(s32 *)((s8 *)this + 0x50) = ((s32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0x13, lbl_805DF218));
+            *(s32 *)((s8 *)this + 0x4C) = ((s32)create_draw_line_ctrl(this, 0x12, lbl_805DF218));
+            *(s32 *)((s8 *)this + 0x50) = ((s32)create_draw_line_ctrl(this, 0x13, lbl_805DF218));
             break;
         case 2:
             push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_38, lbl_80475858[0]);
@@ -653,18 +653,18 @@ void TAdChrSelASlotGC::close_windows() {
     }
     switch (this->mode) {
     case 0:
-        *(u32 *)&this->unk_4C = (u32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0xC, (f32)lbl_805DF218);
+        *(u32 *)&this->unk_4C = (u32)create_draw_line_ctrl(this, 0xC, (f32)lbl_805DF218);
         ((TAdMcSelectGC *)(*(s32 *)&this->_pad2C))->init_slot(0, (void *)lbl_80475840);
-        this->m_48 = (u32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0xB, (f32)lbl_805DF218);
+        this->m_48 = (u32)create_draw_line_ctrl(this, 0xB, (f32)lbl_805DF218);
         break;
     case 1:
         ((TAdMcSelectGC *)(*(s32 *)&this->_pad2C))->init_slot(0, (void *)lbl_80475840);
-        this->m_48 = (u32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0xB, (f32)lbl_805DF218);
+        this->m_48 = (u32)create_draw_line_ctrl(this, 0xB, (f32)lbl_805DF218);
         break;
     case 2:
         ((TAdMcSelectGC *)(*(s32 *)&this->_pad2C))->init_slot(0, (void *)lbl_804758A0);
-        this->m_48 = (u32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0xD, (f32)lbl_805DF218);
-        *(u32 *)&this->unk_4C = (u32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0x14, (f32)lbl_805DF218);
+        this->m_48 = (u32)create_draw_line_ctrl(this, 0xD, (f32)lbl_805DF218);
+        *(u32 *)&this->unk_4C = (u32)create_draw_line_ctrl(this, 0x14, (f32)lbl_805DF218);
         break;
     }
     this->state = 1;

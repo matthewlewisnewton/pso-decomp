@@ -473,7 +473,7 @@ void init_area_lights(void) {
 
 void TObjLight::free_shared_data() {
     if ((u32) TObjLight__light_entry_data != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)((void*)TObjLight__light_entry_data));
+        TAdSinglePlyChrSelectGC::safe_free((void *)((void*)TObjLight__light_entry_data));
         TObjLight__light_entry_data = 0U;
     }
 }

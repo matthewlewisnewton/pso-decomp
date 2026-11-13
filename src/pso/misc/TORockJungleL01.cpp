@@ -634,7 +634,7 @@ u8 *TORockJungleS01::get_model(s32 arg0) {
 void TORockJungleS01::free_globals() {
     if ((u32) TORockJungleS01__texture_resource != 0U) {
         release_texture_list((void*)TORockJungleS01__texture_resource);
-        TAdSinglePlyChrSelectGC::safe_free(TORockJungleS01__texture_resource);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TORockJungleS01__texture_resource);
         TORockJungleS01__texture_resource = 0U;
     }
     if ((u32) TORockJungleS01__bml_resource != 0U) {

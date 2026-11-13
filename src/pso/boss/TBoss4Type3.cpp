@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/misc/SampledMotionPoints.h"
@@ -388,7 +389,6 @@ s32 is_split_screen();
 void queue_destruction__7TObjectFv(void *);
 
 s32 get_bml_motion(BmlResource *, s32);
-s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
 void fn_80044330(void *p);
 void fn_8004AA04(void *);
 void TObjPlayer__sub_80052390(f32 x);
@@ -1185,7 +1185,7 @@ void TBoss4Type3::draw_model_set(const s32 *tbl, f32 t) {
     TObjEneRe4Sorcerer__sub_801E3F1C(0.0f, this->m_3dc);
     set_motion_packed_rotation();
     for (i = 0; i < 3; i++) {
-        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(this->m_390, tbl[i])));
+        set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(this->m_390), (s32)(tbl[i]))));
         off = i;
         ((ModelNodePositionCapture *)((s32)this->render_lists[off]))->install();
         draw_model_motion((void *)(get_bml_model(this->m_390, tbl[i])), (void *)(get_bml_motion(this->m_390, TBoss4Type3__anim_state_table[this->m_3f0].motions[i])), this->m_3f4);

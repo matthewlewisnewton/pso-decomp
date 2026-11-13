@@ -1,3 +1,4 @@
+#include "pso/system/NinjaTypes.h"
 #include "pso/protocol/protocol_types.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_802FDDD4.h"
@@ -5,19 +6,10 @@
 #include "pso/system/byteswap.h"
 #include "pso/boss/TBoss8Dragon.h"
 
-struct Node_802FDDD4 {
-    u8 pad0[4];
-    s32 v;
-    u8 pad1[0x24];
-    Node_802FDDD4 *c0;
-    Node_802FDDD4 *c1;
-    u8 pad2[4];
-};
-
 extern "C" {
 
 void copy_model_node(u8 *, u8 *);
-Node_802FDDD4 *clone_node_tree__12TBoss8DragonFPvPvi(Node_802FDDD4 *src, Node_802FDDD4 *dst, s32 v);
+NJS_OBJECT *clone_node_tree__12TBoss8DragonFPvPvi(NJS_OBJECT *src, NJS_OBJECT *dst, void *model);
 extern f32 lbl_805D6980;
 extern f32 lbl_805D6984;
 extern f32 lbl_805D69C0;
@@ -25,18 +17,18 @@ extern f32 lbl_805D9E80;
 extern f32 TBoss8Dragon__data_805DEDC8;
 extern f32 lbl_805DEE40;
 
-Node_802FDDD4 *clone_node_tree__12TBoss8DragonFPvPvi(Node_802FDDD4 *src, Node_802FDDD4 *dst, s32 v) {
-    Node_802FDDD4 *cur = dst;
+NJS_OBJECT *clone_node_tree__12TBoss8DragonFPvPvi(NJS_OBJECT *src, NJS_OBJECT *dst, void *model) {
+    NJS_OBJECT *cur = dst;
     dst = dst + 1;
     copy_model_node((u8 *)cur, (u8 *)src);
-    cur->v = v;
-    if (src->c0 != NULL) {
-        cur->c0 = dst;
-        dst = clone_node_tree__12TBoss8DragonFPvPvi(src->c0, dst, v);
+    cur->model = model;
+    if (src->child != NULL) {
+        cur->child = dst;
+        dst = clone_node_tree__12TBoss8DragonFPvPvi(src->child, dst, model);
     }
-    if (src->c1 != NULL) {
-        cur->c1 = dst;
-        dst = clone_node_tree__12TBoss8DragonFPvPvi(src->c1, dst, v);
+    if (src->sibling != NULL) {
+        cur->sibling = dst;
+        dst = clone_node_tree__12TBoss8DragonFPvPvi(src->sibling, dst, model);
     }
     return dst;
 }

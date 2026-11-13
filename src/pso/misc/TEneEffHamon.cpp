@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
@@ -66,8 +67,6 @@ extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 void render__12TEneEffHamonFv(Hamon_800A36A8 *o);
-int TObjFish__sub_8001EDB0(void*, void*);
-
 void render__12TEneEffHamonFv(Hamon_800A36A8 *o) {
     f32 s;
     if (o->delay > 0) {
@@ -111,7 +110,7 @@ void run_task__12TEneEffHamonFv(u8 *arg0) {
 void TEneEffHamon__sub_800A380C(void) {  }
 
     extern int player_effect_bml_resource;
-void init_fish_effects__12TEneEffHamonFv(void) { TEneEffHamon__fish_model = (int)get_bml_model((BmlResource *)player_effect_bml_resource, (s32)3); TEneEffHamon__fish_effect_param = TObjFish__sub_8001EDB0((void*)player_effect_bml_resource, (void*)3); }
+void init_fish_effects__12TEneEffHamonFv(void) { TEneEffHamon__fish_model = (int)get_bml_model((BmlResource *)player_effect_bml_resource, (s32)3); TEneEffHamon__fish_effect_param = (s32)TObjFish__sub_8001EDB0((BmlResource *)player_effect_bml_resource, 3); }
 
 }
 
