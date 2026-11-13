@@ -6012,13 +6012,13 @@ force_active:
   - enter_attack_cast__15TObjEneDelDepthFv
   - enter_bura__11TBoss4Type3Fv
   - enter_capture__11TBoss4Type3Fv
-  - enter_chg_game_mode__6TLobbyFv
+  - enter_chg_game_mode__13TUnk_804EEF64Fv
   - enter_cut__11TBoss4Type3Fv
   - enter_dark_magic__11TBoss4Type3Fv
   - enter_dead__11TBoss4Type3Fv
   - enter_fall_to_ground__15TObjEneDelDepthFv
   - enter_flag800_state__11TBoss6Type1Fv
-  - enter_game_mode_change__6TLobbyFv
+  - enter_game_mode_change__13TUnk_804EEF64Fv
   - enter_go_down__11TBoss4Type3Fv
   - enter_go_up__11TBoss4Type3Fv
   - enter_ground_mode__13TBoss5GryphonFv
@@ -9257,7 +9257,7 @@ force_active:
   - open_item_list_window__20TShopItemTecSequenceFv
   - open_judgment_window__17TJudgmentSequenceFv
   - open_judgment_window__22THunterGuildSeqOfflineFv
-  - open_keyboard__6TLobbyFv
+  - open_keyboard__13TUnk_804EEF64Fv
   - open_keyboard_window__17TAdEnterPPPPassGCFPv
   - open_keyboard_window__18TAdEnterPasswordGCFPv
   - open_keyboard_window__6TLobbyFv
@@ -14521,7 +14521,7 @@ force_active:
   - request_action__12TObjNpcEnemyFl
   - request_action__8TItemMagFl
   - request_aram_load_state__16TAdWarningBaseGCFPv
-  - request_change_game_mode__6TLobbyFv
+  - request_change_game_mode__13TUnk_804EEF64Fv
   - request_close__22THunterGuildSeqOfflineFv
   - request_death_effect__18TObjEneRe4SorcererFv
   - request_default_follow_camera__11TBoss6Type2Fv
