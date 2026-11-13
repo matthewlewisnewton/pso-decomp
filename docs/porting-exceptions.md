@@ -15,6 +15,17 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Critical-hit effect data placement
+
+`src/pso/effect/TEffClitical.cpp` uses guarded section annotations for the
+owned eight-byte texture-list descriptor (`.data`) and the existing
+`lbl_805D93B0[2]` scalar object (`.sdata2`). The descriptor must use its real
+absolute address; ordinary small-data inference changes the renderer. The
+late scalar definition retains the original 1.0 value and zero tail without
+introducing an anonymous duplicate. Ports can drop both annotations and keep
+the ordinary declarations, array and C++ bodies. The prior common-subexpression
+and propagation pragmas are removed. See [the recovery evidence](evidence/critical-hit-effect-unit.md).
+
 ### Raft splash shared constant
 
 `src/pso/boss/TObjBoss2RaftSplash.cpp` defines the shared scalar at
@@ -36,7 +47,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 89 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
+| CodeWarrior pragmas (excluding push/pop) | 5,857 | 884 |
 | Per-unit compiler overrides in `configure.py` | 206 | 206 |
 | Approved regressions | 0 | 0 |
 
