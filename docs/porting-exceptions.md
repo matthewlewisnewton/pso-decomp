@@ -15,6 +15,16 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Duel-effect string lifetime data
+
+`src/pso/misc/TDuelEffectNumber_80080460.cpp` gives the final two-float
+object `lbl_805D9330` a guarded `.sdata2` section annotation. Its first
+float is the 30-frame lifetime; the second is the original zero tail.
+Without the annotation the array leaves the small-data constant section,
+changing the load and the object layout. The late definition keeps it after
+the digit-transform and opacity literals. Ports can drop the annotation and
+keep the ordinary array and C++ expressions.
+
 ### Dark Gunner center native emission
 
 `src/pso/enemy/TObjEneDarkGunCenter.cpp` uses `#pragma defer_codegen on`

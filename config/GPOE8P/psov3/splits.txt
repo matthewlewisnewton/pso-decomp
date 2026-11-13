@@ -1161,6 +1161,7 @@ pso/misc/TDuelEffectNumber_80080460.cpp:
 	.text       start:0x80080460 end:0x80080750
 	.rodata     start:0x80438E20 end:0x80438E28
 	.data       start:0x8048DFE0 end:0x8048DFF8
+	.sdata2     start:0x805D9310 end:0x805D9338
 
 pso/player/TObjPlayer_80080750.cpp:
 	.text       start:0x80080750 end:0x80080788
