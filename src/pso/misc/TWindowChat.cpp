@@ -40,7 +40,7 @@ s32 TAdSinglePlyChrSelectGC__sub_80076D9C(s32 arg0, s32 arg1);
 int get_chat_shortcut(s32 arg0);
 s32 update_selected_symbol__20TWindowSubSymbolChatFv();
 s32 reset_input__11TWindowChatFv(int);
-bool TWindowCtrl__sub_8024701C(TWindowChat *w);
+s32 TWindowCtrl__sub_8024701C(TWindowChat *w);
 void *get_player_by_client_id(s32 i);
 extern s32 local_client_id;
 s32 has_player_active_menu__11TWindowCtrlFv(s32);
@@ -63,16 +63,14 @@ void TWindowChat__sub_80247E50(u8 *arg0);
 void fn_80247ED8(void* p);
     extern int chat_help_color_table[];
 int TWindowSubSymbolChatHelp__sub_80247EE8(int a0);
-bool TWindowCtrl__sub_8024701C(TWindowChat *w) {
-    bool r;
+s32 TWindowCtrl__sub_8024701C(TWindowChat *w) {
     if (((TWindowKeyBoardBase *)w->composer)->sub_8025CB10() != 0) {
-        r = true;
-    } else if (!(w->flags & 2)) {
-        r = true;
-    } else {
-        r = TWindowChat__sub_80247D50((u8 *)w->hardKeyboard) != 0;
+        return 1;
     }
-    return r;
+    if (!(w->flags & 2)) {
+        return 1;
+    }
+    return TWindowChat__sub_80247D50((u8 *)w->hardKeyboard) != 0 ? 1 : 0;
 }
 
 s32 TWindowChat::sub_80247080() {
