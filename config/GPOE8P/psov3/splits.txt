@@ -5999,6 +5999,7 @@ pso/object/TObjWarpBoss03.cpp:
 pso/object/TObjWarpJungMain.cpp:
 	.text       start:0x8019FB8C end:0x801A03D8
 	.rodata     start:0x80446708 end:0x80446718
+	.sdata2     start:0x805DC040 end:0x805DC058
 
 pso/object/TObjWarpJung_801A03D8.cpp:
 	.text       start:0x801A03D8 end:0x801A0520
