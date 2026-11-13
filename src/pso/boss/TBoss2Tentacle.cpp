@@ -106,14 +106,8 @@ extern s32 boss2_tentacle_angle_limit_table[];
 void run_task__14TBoss2TentacleFv(u8 *arg0);
 s32 rand();
 extern s32 TBoss2Tentacle__name;
-extern const f32 lbl_805D855C;
-extern const f32 lbl_805D8560;
 f32 newton_sqrtf(f32);
 void TBoss2Tentacle__sub_80039990(void);
-extern const f32 lbl_805D8548;
-extern const f32 lbl_805D854C;
-extern const f32 lbl_805D8550;
-extern const f32 lbl_805D8554;
 void TBoss2Tentacle__sub_80039994(Obj_80039994 *o, f32 len);
 void TBoss2Tentacle__sub_80039D98(void* p);
 void TBoss2Tentacle__sub_80039DC8(void* p);
@@ -318,13 +312,13 @@ void TBoss2Tentacle__sub_80039994(Obj_80039994 *o, f32 len) {
     s32 i;
     s32 prev, ang;
     s32 j;
-    f32 scale = lbl_805D8548;
+    f32 scale = 0.5f;
     f32 half = scale * len;
-    f32 h = lbl_805D854C - o->f144;
+    f32 h = 60.0f - o->f144;
     f32 a;
     f32 step = o->f138;
     a = -(h / (half * half));
-    step /= lbl_805D8550;
+    step /= 9.0f;
     f32 dx, dy, px, py, w, k;
     for (i = 0; i < 10; i++) {
         f32 t = step * (f32)i;
@@ -363,7 +357,7 @@ void TBoss2Tentacle__sub_80039994(Obj_80039994 *o, f32 len) {
         for (i = 2; i < 12; i++) {
             o->pts[i].x = o->pts[i].x * w + k * ((V3_80039994 *)&TBoss2Tentacle__segment_points)[i].x;
         }
-        o->vals[2] = (s32)(lbl_805D8554 * (1.0f - o->f13C) + (f32)o->vals[2] * w);
+        o->vals[2] = (s32)(16384.0f * (1.0f - o->f13C) + (f32)o->vals[2] * w);
         for (i = 3; i < 12; i++) {
             o->vals[i] = (s32)((f32)o->vals[i] * w);
         }
@@ -402,8 +396,6 @@ void TBoss2Tentacle__sub_80039DBC(void* p) { *(s32*)((char*)p + 0x20) = 4; }
 void TBoss2Tentacle__sub_80039DC8(void* p) { *(s32*)((char*)p + 0x20) = 1; }
 void TBoss2Tentacle__sub_80039DD4(void* p) { *(s32*)((char*)p + 0x20) = 0; }
 
-    extern const float lbl_805D8558;
-
 void TBoss2Tentacle::reset_segment_points() {
     Obj_80039DE0 *self = (Obj_80039DE0 *)this;
     s32 i;
@@ -413,7 +405,7 @@ void TBoss2Tentacle::reset_segment_points() {
     }
 }
 
-void TBoss2Tentacle__sub_80039E54(void* a0) { *(float*)((char*)a0 + 0x118) = lbl_805D8558; *(int*)((char*)a0 + 0x124) = 3038; }
+void TBoss2Tentacle__sub_80039E54(void* a0) { *(float*)((char*)a0 + 0x118) = 1.6f; *(int*)((char*)a0 + 0x124) = 3038; }
 
 void TBoss2Tentacle__sub_80039E68(void* p) { TBoss2Tentacle__sub_80039D98(p); }
 
@@ -448,8 +440,8 @@ TBoss2Tentacle::TBoss2Tentacle(TObject *parent, s32 arg2, s32 arg3) : TObject(pa
         VecCopy((Vec *)&((Obj_80039F50 *)this)->pts[i], (const Vec *)&TBoss2Tentacle__segment_points[i]);
         ((Obj_80039F50 *)this)->vals[i] = TBoss2Tentacle__segment_point_defaults[i];
     }
-    ((Obj_80039F50 *)this)->f114 = (TBoss2Tentacle__motion_data->frameCount - 1) * (lbl_805D855C * (f32)rand());
-    ((Obj_80039F50 *)this)->f118 = lbl_805D8560;
+    ((Obj_80039F50 *)this)->f114 = (TBoss2Tentacle__motion_data->frameCount - 1) * ((1.0f / 32768.0f) * (f32)rand());
+    ((Obj_80039F50 *)this)->f118 = 0.8f;
     ((Obj_80039F50 *)this)->f11C = 0;
     ((Obj_80039F50 *)this)->f120 = 0;
     ((Obj_80039F50 *)this)->f124 = 0x5EF;
