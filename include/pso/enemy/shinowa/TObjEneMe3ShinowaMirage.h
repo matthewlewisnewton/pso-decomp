@@ -41,7 +41,6 @@ struct TObjEneMe3ShinowaMirage : public TObjEneMe3Shinowa {
     f32 m_434;
     u8 unk_438[0x4];
     f32 m_43c;
-    void draw_model();
 };
 
 typedef char TObjEneMe3ShinowaMirage_size[sizeof(TObjEneMe3ShinowaMirage) == 0x440 ? 1 : -1];

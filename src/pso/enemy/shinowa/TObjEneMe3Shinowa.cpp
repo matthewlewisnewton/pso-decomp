@@ -487,7 +487,6 @@ struct Vec_800E420C { f32 x, y, z; };
 
 extern "C" {
 int transition_enemy_state__9TObjEneDDFl(void*, int);
-s32 draw_model__23TObjEneMe3ShinowaMirageFv();
 void run_task__17TObjEneMe3ShinowaFv(u8 *arg0);
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
 s32 enemy_clear_target__12TObjEneDD_STFUs(void *);
@@ -507,7 +506,7 @@ void *__nw__7TObjectFUl(int);
 void TObjEneMe3ShinowaMirage::render() {
     u8 *arg0 = (u8 *)this;
     if (!(*(s32 *)((s8 *)arg0 + 0x3C4) & 0x100)) {
-        draw_model__23TObjEneMe3ShinowaMirageFv();
+        TObjEneMe3Shinowa::render();
     }
 }
 
@@ -2952,7 +2951,7 @@ void TObjEneMe3Shinowa::vfunc_118() {
 
 void TObjEneMe3Shinowa::update_mirage() { if (get_target_info() != 0) { ((int (*)(void*))fn_800E762C)(this); sub_800E6F64(); } }
 
-void TObjEneMe3ShinowaMirage::draw_model() {
+void TObjEneMe3Shinowa::render() {
     s32 var_r31;
     s32 var_r30;
     s32 i;
@@ -3020,7 +3019,7 @@ void TObjEneMe3ShinowaMirage::advance_camera_ctrl_step(NJS_OBJECT *) {
 
 void TObjEneMe3Shinowa::vfunc_116(s32) {  }
 
-void TObjEneMe3Shinowa::vfunc_115() {  }
+void TObjEneMe3Shinowa::vfunc_115(s32) {  }
 
 void TObjEneMe3Shinowa::vfunc_114(s32) {  }
 
