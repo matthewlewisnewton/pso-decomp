@@ -1075,6 +1075,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055,
 | `src/pso/object/TObjOnlineEndingHexLine.cpp` | fp_contract×2, opt_loop_invariants×1 |
 | `src/pso/object/TObjOnlineEnding_802E4B80.cpp` | opt_common_subs×1 |
 | `src/pso/object/TObjParticleLobby.cpp` | readonly_strings×1 |
+| `src/pso/object/TObjRain.cpp` | fp_contract×1 |
 | `src/pso/object/TObjRainCtrl.cpp` | fp_contract×1 |
 | `src/pso/object/TObjRainbowLobby.cpp` | readonly_strings×1 |
 | `src/pso/object/TObjResultWin.cpp` | defer_codegen×1, inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -1239,7 +1240,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1150, `inline_depth` 1055,
 | `src/pso/unk/text_8015C534.cpp` | fp_contract×1 |
 | `src/pso/unk/text_80171A98.cpp` | fp_contract×1 |
 | `src/pso/unk/text_80180D18.cpp` | fp_contract×1 |
-| `src/pso/unk/text_80197998.cpp` | fp_contract×1 |
 | `src/pso/unk/text_801BC688.cpp` | fp_contract×2 |
 | `src/pso/unk/text_801BDBB4.cpp` | opt_pointer_analysis×1 |
 | `src/pso/unk/text_801C51D4.cpp` | fp_contract×1 |

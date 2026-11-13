@@ -5921,17 +5921,12 @@ pso/object/TObjRaderCol.cpp:
 	.text       start:0x80197508 end:0x801977D4
 	.data       start:0x804B8940 end:0x804B8974
 
-pso/unk/text_801977D4.cpp:
-	.text       start:0x801977D4 end:0x80197998
-
-pso/unk/text_80197998.cpp:
-	.text       start:0x80197998 end:0x80197BEC
-	.rodata     start:0x80445F78 end:0x80445F80
-	.sdata2     start:0x805DBF18 end:0x805DBF40
-
 pso/object/TObjRain.cpp:
-	.text       start:0x80197BEC end:0x80197CE8
-	.data       start:0x804B89A8 end:0x804B89C0
+	.text       start:0x801977D4 end:0x80197CE8
+	.rodata     start:0x80445F68 end:0x80445F80
+	.data       start:0x804B8978 end:0x804B89C0
+	.sdata      start:0x805D3420 end:0x805D3428
+	.sdata2     start:0x805DBF10 end:0x805DBF40
 
 pso/object/TObjRainCtrl_80197CE8.cpp:
 	.text       start:0x80197CE8 end:0x80197D28

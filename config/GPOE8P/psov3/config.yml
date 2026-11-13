@@ -1824,6 +1824,10 @@ force_active:
   - TObjPlayer__update_off_floor_state
   - TObjQuestColALock2__ct
   - TObjRaderIcon__ct
+  - TObjRain__class_name
+  - TObjRain__class_name_string
+  - TObjRain__streak_geometry
+  - TObjRain__streak_line_list
   - TObjResultWin_class_name
   - TObjResultWin_name
   - TObjRoomId__ct
@@ -6181,6 +6185,7 @@ force_active:
   - draw_status_text__19TWindowKeyBoardHardFPv
   - draw_status_window__14TAdPlyStatusGCFPvPv
   - draw_status_window__15TAdMcSelectMcGCFv
+  - draw_streaks__8TObjRainFv
   - draw_stretched_segment__22TObjEneSlimeTailAttackFPvPvf
   - draw_switch_light__12TODoorCave01FP10NJS_OBJECTl
   - draw_switch_light__15TODoorMachine01FP10NJS_OBJECTl
@@ -7621,6 +7626,7 @@ force_active:
   - init_draw_params__15TObjEneDelDepthFv
   - init_draw_state__15TObjEneDelDepthFv
   - init_drop_table__9TItemDropFv
+  - init_drops__8TObjRainFv
   - init_effect__11TBoss4Type3FPv
   - init_effect__13TUnk_804E4B3CFv
   - init_effect_object__13TUnk_804EDD20Fv
@@ -18266,6 +18272,7 @@ force_active:
   - update_draw__9TWindowDDFPv
   - update_drop__18TObjEneBalClawClawFPv
   - update_drop__20TBoss3VoloptHiraisinFv
+  - update_drops__8TObjRainFv
   - update_duel_end_effect
   - update_duel_result__6TLobbyFPv
   - update_duel_start_countdown__15TDuelEffectCtrlFv
