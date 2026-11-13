@@ -11,6 +11,9 @@ struct TObjEneBalClawBody : public TObjEneBalClaw {
     virtual void render();
     virtual void vfunc_60();
     virtual void vfunc_58();
+    int reset_enemy_state();
+    void update_move_to_target();
+    void run_death_sequence();
     void sub_8008DC90();
     void sub_8008FC0C();
     void sub_8008FC10();
