@@ -545,7 +545,6 @@ struct TLobby : public TObject {
     void release_handle();
     u32 get_packet_size();
     u32 get_available_size();
-    void move_data(const void * _w1, u32 _w2);
     void copy_u16_array(u16 *src, s32 n);
     static s32 calc_delta(s32 arg0, s32 arg1);
     static void reset_player_state();
@@ -679,7 +678,7 @@ struct TLobby : public TObject {
     s32 get_field10_or_report();
     s32 get_handle_value_checked();
     s32 get_handle_field_1c();
-    static s32 get_dvd_file_size(const char *name);
+    static s32 get_dvd_file_size(char *name);
     static void poll_dvd_requests();
     static void log_printf(const char *fmt, ...);
     static void init_callback_tables();
@@ -949,6 +948,7 @@ typedef char TLobby_size[sizeof(TLobby) == 0x1C ? 1 : -1];
 extern void *item_object_set_data;
 extern s32 item_ground_placement_enabled;
 
+void move_data(void *dst, const void *src, u32 n);
 void move_words(void *dst, const void *src, s32 n);
 
 #endif

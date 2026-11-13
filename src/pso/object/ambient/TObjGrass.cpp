@@ -1,4 +1,5 @@
 #include "pso/effect/GroundEffects.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/ArrayAllocation.h"
@@ -325,7 +326,6 @@ extern u32 lbl_805D515C;
 void TObjGrass__sub_800BCA2C(void *);
 s32 submit_cursor_candidate(void *, int);
 f32 random_ratio__9TObjCharaFv(s32 arg0);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 s32 scale_matrix(int, f32, f32, f32);
 void set_matrix_identity(u8 *arg0);
 s32 push_matrix();
@@ -1240,7 +1240,7 @@ void TObjGrass::sub_800BDD70() {
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_y(0, this->rotation_y);
                 scale_matrix(0, (1.3f), (1.3f), (1.3f));
-                mult_vec_array__10TObjPlayerFUll(0, ent, &sp14, 2);
+                matrix_mult_vec_array(NULL, (const Vec *)(ent), (Vec *)(&sp14), 2);
                 pop_matrix();
                 if (((VObj_800BDD70 **)(arg0 + 0x3CC))[idx] != NULL) {
                     ((VObj_800BDD70 **)(arg0 + 0x3CC))[idx]->m4((s32 *)&sp14, (s32 *)&sp20);

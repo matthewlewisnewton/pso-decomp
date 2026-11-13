@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/render/render_util.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TObject.h"
@@ -252,7 +253,6 @@ typedef struct {
 } Obj_80181BAC;
 
 void vec3_add_to(Vec_80181BAC *, Vec_80181BAC *);
-void mult_vec_array__10TObjPlayerFUll(s32, Vec_80181BAC *, Vec_80181BAC *, s32);
 s32 push_matrix(void);
 extern Vec_80181BAC city_door_lobby_collision_vertices[];
 extern const f32 lbl_805DBBE8[1];
@@ -298,7 +298,7 @@ s32 TObjCityDoor_Lobby::build_door_collision_triangles() {
         t1 += 2;
         j += 2;
     }
-    mult_vec_array__10TObjPlayerFUll(0, city_door_lobby_collision_vertices, self->verts, 10);
+    matrix_mult_vec_array(NULL, (const Vec *)(city_door_lobby_collision_vertices), (Vec *)(self->verts), 10);
     zero = lbl_805DBBE8[0];
     t = (Tri_80181BAC *)(arg0 + 0xB8);
     three = lbl_805DBBEC;

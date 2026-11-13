@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/CurrentTextureList.h"
@@ -117,7 +118,6 @@ s32 init_collision_body_parts(void *, void *, int);
 f32 vec3_add_to(void *, void *);
 s32 rotate_vector_by_matrix(int, void *, void *);
 extern RecoveredGlobal_80091E08_lbl_8058D490 identity_matrix;
-void mult_vec_array__10TObjPlayerFUll(int, u32, void *, int);
 void set_matrix_identity(u8 *arg0);
 extern void *beast_claw_trail_instance;
 extern void *boss4_type3_instance;
@@ -195,7 +195,7 @@ void TObjEneBeast::vfunc_93() {
             set_matrix_identity(0);
             post_translate_matrix(&self->pos);
             rotate_matrix_y(0, this->rotation_y);
-            mult_vec_array__10TObjPlayerFUll(0, entry, &pos, 2);
+            matrix_mult_vec_array(NULL, (const Vec *)(entry), (Vec *)(&pos), 2);
             pop_matrix();
             eff = self->effects[idx];
             if (eff != NULL) {

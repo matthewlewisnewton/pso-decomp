@@ -4,6 +4,8 @@
 #undef PADV4
 #undef PAD5
 #include "types.h"
+#include "pso/math/MatrixCopy.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/system/StripBufferPair.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/npc/NpcModelRegistry.h"
@@ -864,7 +866,6 @@ f32 random_ratio__9TObjCharaFv(s32);
 s32 get_field_3D4_shifted__16TObjEneRe7BeruraFPv(void *);
 s32 enemy_validate_retained_target(u8 *arg0);
 void TObjEneDD__sub_800BA378(s32 arg0, u8 *arg1);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 void set_matrix_identity(u8 *arg0);
 s32 rotate_matrix_y(int, int);
 extern u8 *belra_trail_buffer;
@@ -1175,7 +1176,7 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {
                 set_matrix_identity(0);
                 post_translate_matrix(actor + 0x38);
                 rotate_matrix_y(0, (int) (*(s32 *)((s8 *)actor + 0x60)));
-                mult_vec_array__10TObjPlayerFUll(0, entry, (void *) (&sp8), 4);
+                matrix_mult_vec_array(NULL, (const Vec *)(entry), (Vec *)((void *) (&sp8)), 4);
                 pop_matrix();
                 ((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x440))))->m4(&sp8, &sp14);
                 ((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x444))))->m4(&sp20, &sp2C);
@@ -2040,8 +2041,6 @@ void __destroy_arr(void *, void *, u32, u32);
 void __construct_array(void *, void *, void *, int, int);
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
-void copy_matrix__10TObjPlayerFUlUl(int, void *);
-s32 concat_matrix__10TObjPlayerFUlUl(s32, s32);
 }
 void *destroy_buffer_pair(void *arg0, s16 arg1);
 void get_current_matrix(void *);
@@ -2477,7 +2476,7 @@ void draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECT(void *arg0) {
         push_matrix();
         temp_r4 = TObjEneRe7Berura__node_matrix_cursor;
         TObjEneRe7Berura__node_matrix_cursor = temp_r4 + 0x30;
-        concat_matrix__10TObjPlayerFUlUl(0, temp_r4);
+        concat_matrix(NULL, (const f32 (*)[4])(temp_r4));
         temp_r31 = *(s32 *)((s8 *)var_r30 + 0);
         if (!(temp_r31 & 8)) {
             draw_chunk_model((void *)(*(s32 *)((s8 *)var_r30 + 4)));
@@ -2520,10 +2519,10 @@ s32 TObjEneRe7Berura::collect_node_matrices(NJS_OBJECT *arg0, s32 idx) {
             get_current_matrix(&m);
             push_matrix_from(identity_matrix);
             translate_matrix(0, -V[0], -V[1], -V[2]);
-            ((s32 (*)(s32, void *))concat_matrix__10TObjPlayerFUlUl)(0, &m);
+            concat_matrix(NULL, (const f32 (*)[4])(&m));
             get_current_matrix(&m);
             pop_matrix();
-            copy_matrix__10TObjPlayerFUlUl(0, &m);
+            copy_matrix(NULL, (const f32 (*)[4])(&m));
         }
         if (idx >= berura_attack_node_range_start && idx <= berura_attack_node_range_end) {
             s32 p = TObjEneRe7Berura__node_matrix_cursor;

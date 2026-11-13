@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/render/GinjaModelQueue.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/math/MatrixCopy.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/unk/TLobby.h"
@@ -51,11 +52,11 @@ void rotate_matrix_x(Matrix34* matrix, s32 angle) {
 
 #pragma push
 #pragma scheduling off
-void TObjPlayer::concat_matrix(u32 arg0, u32 arg1) {
+extern "C" void concat_matrix(MtxP dest, const f32 (*source)[4]) {
     u32 elements;
     u32 var_r4;
-    elements = arg0;
-    var_r4 = arg1;
+    elements = (u32) dest;
+    var_r4 = (u32) source;
     if (elements == 0U) {
         elements = current_matrix;
     }
@@ -96,7 +97,7 @@ s32 push_matrix_from(void *src) {
     if (next > matrix_stack_limit) {
         return 0;
     }
-    ((TLobby *)next)->move_data((src == 0) ? (void *)current_matrix : src, 0x30);
+    move_data((void *)(next), (src == 0) ? (void *)current_matrix : src, 0x30);
     current_matrix = next;
     return 1;
 }
@@ -200,7 +201,7 @@ u32 *find_gvrt_texture_chunk(TLobby *lobby, u32 *arg1, u32 *arg2) {
         TObjPlayer__sub_803D9C60(&tag);
         switch (tag) {
         case 0x54525647:
-            lobby->move_data(p + 2, 8);
+            move_data(lobby, p + 2, 8);
             return p + 4;
         case 0x58494247: {
             u32 len;

@@ -114,7 +114,7 @@ u16 read_file_header__9TLanguageFiPv(s32 arg0, u8 *arg1) {
 }
 
 void TLanguage::read_into_buffer(u8 *arg0, s32 arg1) {
-    ((TLobby *)arg0)->move_data((const void *)TLanguage__read_cursor, (u32)arg1);
+    move_data((void *)(arg0), (const void *)TLanguage__read_cursor, (u32)arg1);
     TLanguage__read_cursor += arg1;
 }
 

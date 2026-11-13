@@ -2087,7 +2087,7 @@ force_active:
   - __ct__18TOCapsuleMachine01FPv
   - __ct__18TOExplosiveMachineFv
   - __ct__18TOMonitorMachine01FPv
-  - __ct__18TObjEneEpsilonBodyFP7TObjectPv
+  - __ct__18TObjEneEpsilonBodyFP7TObjectPl
   - __ct__18TObjItemNameSelectFP7TObject
   - __ct__18TObjSeabedSuiso_CHFP7TObjectPv
   - __ct__18TObjTailsTailsMoveFP10TObjPlayer
@@ -4819,7 +4819,7 @@ force_active:
   - capsule_machine_ginja_mesh_handle
   - capture_attachment__17TObjEneBm3FlyNestFP10NJS_OBJECT
   - capture_beam_origins__16TObjEneNanoDragoFv
-  - capture_effect_positions__14TObjEneIllGillFv
+  - capture_effect_positions__14TObjEneIllGillFP10NJS_OBJECT
   - capture_matrix_by_frame__16TObjDFTenchuFuruFP10NJS_OBJECT
   - cast_resta__18TObjEneRe4SorcererFv
   - cast_support_technique__8TItemMagFl

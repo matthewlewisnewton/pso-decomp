@@ -4,6 +4,7 @@
 // and TUnk_804820A8::render's .rodata templates before TUnk_80482090::render's only come out in that order).
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/math/MatrixCopy.h"
 #include "pso/player/TUnk_804820A8.h"
 #include "pso/boss/goldragon/TBoss8Dragon_8002CC48.h"
 #include "pso/system/CurrentTextureList.h"
@@ -291,7 +292,7 @@ TUnk_80482090::TUnk_80482090(TObject *parent, u32 matrix) : TUnk_804820C0(parent
     m_matrix = matrix;
     push_matrix();
     set_matrix_identity(0);
-    TObjPlayer::concat_matrix(0, m_matrix);
+    concat_matrix(NULL, (const f32 (*)[4])(m_matrix));
     v = &m_origin;
     v->x = lbl_805D822C;
     v->y = lbl_805D822C;
@@ -354,7 +355,7 @@ void TUnk_80482090::render() {
             rotate_matrix_z(0, p->ang_z);
             rotate_matrix_x(0, p->ang_x);
             translate_matrix(0, -m_origin.x, -m_origin.y, -m_origin.z);
-            TObjPlayer::concat_matrix(0, m_matrix);
+            concat_matrix(NULL, (const f32 (*)[4])(m_matrix));
             switch (p->state) {
             case 0:
             case 1:

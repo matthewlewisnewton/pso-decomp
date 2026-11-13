@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/GinjaTextureInput.h"
 #include "pso/enemy/flower/TObjEneRe2Flower_EffCurse3.h"
 #include "pso/enemy/flower/TObjEneRe2Flower_800C4B78.h"
 #include "pso/math/VectorNormalize.h"
@@ -153,7 +154,7 @@ void TObjPlayer__sub_800C4D44(void) {
 void pso_load_texture__6TLobbyFv(void *, void *);
 void set_texture_name(void *, void *, s32, s32);
 void TObjPlayer::create_render_texture() {
-    ((TObjPlayer *)(&player_render_target))->set_render_rect((s32)(player_render_texture_buffer = ::operator new[](0x800)), 0x902, 0x20, 0x20);
+    ((GinjaTextureInput *)(&player_render_target))->configure((void *)((s32)(player_render_texture_buffer = ::operator new[](0x800))), 0x902, 0x20, 0x20);
     set_texture_name(&player_render_texture_name, &player_render_target, 0x18696, 0x40800000);
     ((Node_800C4D88 *)lbl_80500C30)->p = &player_render_texture_name;
     ((Node_800C4D88 *)lbl_80500C30)->v = 1;

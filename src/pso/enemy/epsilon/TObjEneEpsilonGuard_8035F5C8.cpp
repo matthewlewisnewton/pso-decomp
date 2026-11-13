@@ -596,7 +596,7 @@ void TObjEneEpsilonBody::set_guard_part_colors(NJS_ARGB *color) {
     }
 }
 
-TObjEneEpsilonBody::TObjEneEpsilonBody(TObject *parent, void *set_data) : TObjEneEpsilon(parent) {
+TObjEneEpsilonBody::TObjEneEpsilonBody(TObject *parent, s32 *set_data) : TObjEneEpsilon(parent) {
     s32 i;
     m_name = lbl_805D4460;
     invoke_initialization_hook(set_data);
@@ -675,7 +675,7 @@ TObjEneEpsilonBody::~TObjEneEpsilonBody() {
 }
 
 void *create_TObjEneEpsilonBody(void *set_data) {
-    return new TObjEneEpsilonBody(tl_04, set_data);
+    return new TObjEneEpsilonBody(tl_04, (s32 *)set_data);
 }
 
 void TObjEneEpsilonBody::run_task() {

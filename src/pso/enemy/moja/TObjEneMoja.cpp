@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/BattleParameters.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/npc/NpcModelRegistry.h"
 #include "pso/system/ArrayAllocation.h"
@@ -304,7 +305,6 @@ s32 angle_difference_abs(s32, s32);
 
 s32 obj_is_hit_receivable();
 
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 void set_matrix_identity(u8 *arg0);
 s32 push_matrix();
 
@@ -1263,7 +1263,7 @@ s32 TObjEneMoja::update_punch_attack(void *self_800ADAAC) {
                 set_matrix_identity(0);
                 post_translate_matrix(arg0 + 0x38);
                 rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
-                mult_vec_array__10TObjPlayerFUll(0, e, &sp8, 2);
+                matrix_mult_vec_array(NULL, (const Vec *)(e), (Vec *)(&sp8), 2);
                 ((s32 (*)())pop_matrix)();
                 o = *(V398_800ADAAC **)(arg0 + 0x398);
                 if (o != NULL) {

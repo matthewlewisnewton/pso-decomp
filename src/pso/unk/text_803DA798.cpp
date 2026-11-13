@@ -1,3 +1,4 @@
+#include "pso/unk/TLobby.h"
 #include "types.h"
 
 #include <stddef.h>
@@ -57,7 +58,6 @@ s32 TObjPlayer__sub_803DA8B4(u8 *arg0, s32 arg1);
 extern S_803DA7E0 lbl_8058D470;
 void TObjPlayer__sub_803DA7E0(void);
 void TObjPlayer__sub_803DAB7C(Obj_803DAB7C *self, s32 i, s32 j);
-void move_data__6TLobbyFPCvUl();
 void DCFlushRange(void *, void *);
 void copy_and_flush__FPvlPv(void *arg0, s32 arg1, void *arg2);
 s32 TObjPlayer__sub_803DAB9C(s32 arg0, s32 arg1);
@@ -111,7 +111,7 @@ void TObjPlayer__sub_803DA7E0(void) {
 #pragma pop
 
 void copy_and_flush__FPvlPv(void *buf, s32 arg1, void *arg2) {
-    move_data__6TLobbyFPCvUl();
+    move_data(buf, (const void *)arg1, (u32)arg2);
     DCFlushRange(buf, arg2);
 }
 

@@ -1,4 +1,5 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/boss/TUnk_80481B34.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/math/FloatRounding.h"
@@ -503,7 +504,6 @@ extern s32 local_client_id;
 void run_task__12TBoss1DragonFv(u8 *arg0);
 void transform_point_to_view(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
-s32 mult_vec_array__10TObjPlayerFUll(int, void *, int, int);
 extern DragonModelVector lbl_804FE188;
 extern DragonCaptureVectors lbl_804FE194;
 extern DragonModelState lbl_804FE1B8;
@@ -1164,7 +1164,7 @@ void dragon_capture_node_points(NJS_OBJECT *) {
     if ((s32) TBoss1Dragon__data_805D4B0C == (s32) lbl_805D4B10) {
         push_matrix();
         update_camera_sequence__9TObjEneDDFv();
-        mult_vec_array__10TObjPlayerFUll(0, (void *)&lbl_804FE194.vectors[0].x, TBoss1Dragon__data_805D4B14, 3);
+        matrix_mult_vec_array(NULL, (const Vec *)((void *)&lbl_804FE194.vectors[0].x), (Vec *)(TBoss1Dragon__data_805D4B14), 3);
         pop_matrix();
     }
     if ((s32) TBoss1Dragon__data_805D4B0C == (s32) boss1_dragon_capture_node_table[TBoss1Dragon__data_805D4B18]) {
