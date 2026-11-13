@@ -361,7 +361,7 @@ s32 TShopKeepItemWindow::close_with_cancel_callback() {
     queue_destruction__7TObjectFv(this);
 }
 
-void TShopKeepItemWindow::vfunc_6() {
+void TShopKeepItemWindow::vfunc_6(s32, s32) {
     struct VObj_8022187C_80221844 *o = (struct VObj_8022187C_80221844 *)this->message_window;
     if (o != NULL) {
         o->m4();
