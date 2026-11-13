@@ -467,7 +467,7 @@ void TAdMultiPlyChrSelectGC::create_widgets() {
     V2_802DF9B4 v = lbl_80472848[0];
     v.x = multi_chr_select_widget_layout[0].x;
     v.y = multi_chr_select_widget_layout[0].y;
-    this->m_5c = (s32)fn_802C6F20(tl_02, (vec2f *)&v);
+    this->m_5c = (s32)fn_802C6F20(tl_02, (const TAdChrSelPlyPlateGCPoint *)&v);
     TAdMultiPlyChrSelectGC::get_move_effect(tl_clipout);
 }
 

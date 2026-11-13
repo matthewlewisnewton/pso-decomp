@@ -49,7 +49,7 @@ typedef char TAdChrSelPlyPlateGC_size[sizeof(TAdChrSelPlyPlateGC) == 0x538 ? 1 :
 extern TAdChrSelPlyPlateGC *ad_chr_sel_ply_plate_instance;
 
 extern "C" {
-TAdChrSelPlyPlateGC *fn_802C6F20(TObject *parent, vec2f *pos);
+TAdChrSelPlyPlateGC *fn_802C6F20(TObject *parent, const TAdChrSelPlyPlateGCPoint *pos);
 void TAdMultiPlyChrSelectGC__sub_802C50EC(s32 arg0);
 void TAdMultiPlyChrSelectGC__sub_802C522C(s32 arg0);
 s32 TAdMultiPlyChrSelectGC__sub_802C6558(void);
