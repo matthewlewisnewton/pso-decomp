@@ -5355,7 +5355,7 @@ force_active:
   - copy_position__15TObjEneSlimeOneFv
   - copy_positions_to_parts__11TBoss4Type3Fv
   - copy_request__23TAdSinglePlyChrSelectGCFPvPv
-  - copy_resource_desc__9TObjEneDDFPUc
+  - copy_from__21BmlResourceDescriptorFRC21BmlResourceDescriptor
   - copy_ring_buffer_window__15TObjBoss2TunnelFv
   - copy_rotation_to_current_matrix
   - copy_save_data__23TAdSinglePlyChrSelectGCFii

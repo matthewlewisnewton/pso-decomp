@@ -1,5 +1,6 @@
 #pragma fp_contract on
 #include "types.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 #include "pso/enemy/dd/TObjEneDD_800BA754.h"
 #include "pso/math/VectorNormalize.h"
@@ -817,17 +818,20 @@ s32 load_enemy_bml_resource(u8 *arg0) {
     return var_r0;
 }
 
-void TObjEneDD::copy_resource_desc(u8 *arg1) {
-    *(s32 *)&this->m_name = (s32) *(s32 *)((s8 *)arg1 + 0);
-    *(s32 *)&this->m_flags = (s32) *(s32 *)((s8 *)arg1 + 4);
-    *(s32 *)&this->m_prev = (s32) *(s32 *)((s8 *)arg1 + 8);
-    *(s16 *)&this->m_next = (s16) *(s16 *)((s8 *)arg1 + 0xC);
-    *(s16 *)((s8 *)((u8 *)this) + 0xE) = (s16) *(s16 *)((s8 *)arg1 + 0xE);
+#pragma push
+#pragma scheduling off
+void BmlResourceDescriptor::copy_from(const BmlResourceDescriptor &other) {
+    archive_filename = other.archive_filename;
+    model_filenames = other.model_filenames;
+    motion_filenames = other.motion_filenames;
+    model_count = other.model_count;
+    motion_count = other.motion_count;
 }
+#pragma pop
 
 s32 load_enemy_bml_resource_named(s32 arg0, s32 arg1) {
     s32 sp8;
-    ((TObjEneDD *)(&sp8))->copy_resource_desc((u8 *)arg0);
+    ((BmlResourceDescriptor *)(&sp8))->copy_from(*(const BmlResourceDescriptor *)arg0);
     sp8 = arg1;
     return load_enemy_bml_resource((u8 *)&sp8);
 }
