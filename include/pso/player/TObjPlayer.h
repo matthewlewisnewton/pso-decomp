@@ -9,6 +9,7 @@
 #include "pso/object/base/TObjChara.h"
 
 struct TItemData;
+struct NJS_OBJECT;
 
 struct player_stats;
 
@@ -265,7 +266,7 @@ struct TObjPlayer : public TObjChara {
     void clear_counter();
     void set_cancel_flag();
     static void reset_effect_count();
-    static void step_cutscene_frame();
+    static void step_cutscene_frame(NJS_OBJECT *);
     static void free_resources();
     void enter_state_8();
     void tick_freeze_state();

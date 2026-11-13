@@ -153,7 +153,7 @@ TUnk_804909C4::~TUnk_804909C4() {
 extern "C" {
 
 }
-TUnk_804909C4::TUnk_804909C4(u8 *player, s32 arg2, s32 arg3) : TObjCollidable((TObject *)tl_04) {
+TUnk_804909C4::TUnk_804909C4(u8 *player, const Vec *arg2, const Vec *arg3) : TObjCollidable((TObject *)tl_04) {
     s32 var_r0;
     u8 *temp_r3;
     init_collision_body_parts(((u8 *)this), projectile_collision_body, 1);

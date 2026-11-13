@@ -16080,7 +16080,7 @@ force_active:
   - step_angle_clamped__10TObjPlayerFPvi
   - step_angle_toward__11TBoss6Type2Flll
   - step_camera_scalar__FPCfPCfPff
-  - step_cutscene_frame__10TObjPlayerFv
+  - step_cutscene_frame__10TObjPlayerFP10NJS_OBJECT
   - step_demo_script__16TObjEneDellBiterFv
   - step_effect_sequence__18TObjEneRe4SorcererFv
   - step_fade_opacity_decrease__13TUnk_80499970Fv

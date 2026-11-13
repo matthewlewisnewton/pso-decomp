@@ -1846,7 +1846,7 @@ extern void *tl_04;
 
 typedef char RecoveredGlobal_800A6BE0_lbl_804FF5E8_size[sizeof(RecoveredGlobal_800A6BE0_lbl_804FF5E8) == 0x28 ? 1 : -1];
 typedef char RecoveredGlobal_800A6BE0_lbl_80500978_size[sizeof(RecoveredGlobal_800A6BE0_lbl_80500978) == 0x10 ? 1 : -1];
-void TObjPlayer::step_cutscene_frame() {
+void TObjPlayer::step_cutscene_frame(NJS_OBJECT *) {
     if ((s32) lbl_805D505C == 0x15) {
         rotate_matrix_x(0, (void *)lbl_805D5060);
     }
