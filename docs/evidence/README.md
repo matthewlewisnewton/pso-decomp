@@ -8,6 +8,7 @@ See the [documentation index](../README.md) for current contributor and operator
 guides.
 
 - [Chunk vertex-color cache constant ownership](chunk-vertex-color-cache-pool.md)
+- [Equipment menu helper scalar ownership](equipment-menu-helper-unit.md)
 - [EXI Ethernet driver completion](exi-ethernet-unit.md)
 - [Audio header parsing and ADX block transfer](audio-formats-and-adx-transfer.md)
 - [Action-palette unit](action-palette-unit.md)
@@ -28,6 +29,7 @@ guides.
 - [CodeWarrior source order and emitted layout](compiler-emission-evidence.md)
 - [GameCube decomp survey of scalar vector math](gc-decomp-vector-math-survey.md)
 - [Conversion-pool constants](conversion-pool-constants.md)
+- [Crush-rock render/physics unit](crush-rock-physics-unit.md)
 - [Critical-hit effect complete unit](critical-hit-effect-unit.md)
 - [Current texture list](current-texture-list-evidence.md)
 - [DD collision and random helper unit](dd-collision-random-unit.md)
@@ -92,6 +94,7 @@ guides.
 - [Quest-download canonical read-only token view](quest-download-token-format.md)
 - [Native starlight effect unit](starlight-native-unit.md)
 - [Shared scratch vector storage](scratch-vector-evidence.md)
+- [Scalar 2D collision-area helper](scalar-collision-area-helper.md)
 - [Symbol chat parts unit linkage](symbol-chat-parts-recovery-evidence.md)
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)
 - [TBoss6Type1 `.sdata2` integer constants](tboss6type1-sdata2-constants.md)
