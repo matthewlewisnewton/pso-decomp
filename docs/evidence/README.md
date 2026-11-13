@@ -45,6 +45,7 @@ guides.
 - [Floor-area sound wrappers](floor-area-sound-evidence.md)
 - [Speech-balloon name plate and complete unit](fukidasi-name-plate-recovery.md)
 - [Gee native recovery checkpoint](gee-native-recovery-evidence.md)
+- [Gryphon shockwave constant ownership](gryphon-shockwave-constants.md)
 - [Gal Gryphon controller unit](boss5-controller-unit.md)
 - [Complete Gol Dragon behavior unit](gol-dragon-complete-unit.md)
 - [Ginja material dispatcher and complete unit](ginja-material-recovery.md)
