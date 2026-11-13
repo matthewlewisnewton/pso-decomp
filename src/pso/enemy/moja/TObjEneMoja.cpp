@@ -36,6 +36,7 @@
 #include "pso/unk/TLobby.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/technique/TTecZondeEff.h"
 
 extern "C" {
 f32 random_ratio__9TObjCharaFv(s32);
@@ -1423,7 +1424,7 @@ s32 TObjEneMoja::update_technique_state(void *self_800AD3D8) {
                     }
                     obj = __nw__7TObjectFUl(0x260);
                     if (obj != NULL) {
-                        ((TTecZonde *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&pos, (u8 *)&dir, 0x14000000, 20, (f32)(((AttackParams *)(self->f318))->get_attack_range()), 1.8f);
+                        ((TTecZondeEff *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&pos, (u8 *)&dir, 0x14000000, 20, (f32)(((AttackParams *)(self->f318))->get_attack_range()), 1.8f);
                     }
                     ((s32 (*)(void *, void *, int, int))play_sound_effect)((void *) 0x4002A408, &pos, 0, 0);
                     break;

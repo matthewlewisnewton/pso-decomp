@@ -4,7 +4,7 @@
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 
-struct TWindowKeyBoardSoft;
+class TWindowDrawContext;
 
 struct TWindowMenuMainMenu : public TWindowBase {
     virtual ~TWindowMenuMainMenu();
@@ -13,7 +13,17 @@ struct TWindowMenuMainMenu : public TWindowBase {
     void handle_cancel();
     int get_menu_flag();
     int is_flag_set();
-    void draw_frame(TWindowKeyBoardSoft *frame);
+    void draw_frame(TWindowDrawContext *ctx);
+    void pop_level();
+    int get_selected_item_type();
+    void clear_menu_flags();
+    s32 find_free_slot();
+    s32 is_not_split_screen();
+    s32 update_if_active(s32 _w1);
+    void set_target_y(f32 farg0);
+    void update_scaled_position();
+    void draw_entries_reversed(TWindowDrawContext *ctx);
+    void update_slide_position();
     virtual void render();
     virtual void run_task();
     u8 _pad1C[0x4];

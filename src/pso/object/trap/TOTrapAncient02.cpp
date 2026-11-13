@@ -38,6 +38,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/object/seabed/TObjSeabedSuisoBrakable.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/technique/TTecZondeEff.h"
 
 struct Vec_8017A3C0 { f32 x, y, z; };
 
@@ -702,7 +703,7 @@ void vfunc_81__16TOTrapAncient02RFv(Obj_8017A3C0 *o) {
                         {
                             void *t = __nw__7TObjectFUl(0x260);
                             if (t != NULL) {
-                                ((TTecZonde *)t)->construct_bolt_effect((u8 *)tl_07, (u8 *)scratch_vec, (u8 *)lbl_8050BF00, 0x14000000, 0x14, o->range, (f32)lbl_805DBA98);
+                                ((TTecZondeEff *)t)->construct_bolt_effect((u8 *)tl_07, (u8 *)scratch_vec, (u8 *)lbl_8050BF00, 0x14000000, 0x14, o->range, (f32)lbl_805DBA98);
                             }
                         }
                         play_sound_effect(0x4002A408, scratch_vec, 0, 0);

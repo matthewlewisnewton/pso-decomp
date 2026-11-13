@@ -1,6 +1,6 @@
 #include "types.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
-#include "pso/player/TObjPlayer.h"
+#include "pso/ui/window/TWindowSubEquipList.h"
 
 extern "C" {
 
@@ -9,11 +9,11 @@ void *get_array_entry__11TWindowBaseFi(void *, s16);
 
 extern const f32 lbl_805DD620;
 
-void TObjPlayer::add_status_line(u8 arg1, u32 arg2, s32 arg3) {
+void TWindowSubEquipList::add_status_line(u8 arg1, TItem *arg2, s32 arg3) {
     void *temp_r31;
 
     temp_r31 = get_array_entry__11TWindowBaseFi(this, *(s16 *)((s8 *)this + 0x72));
-    if (arg2 == 0U) {
+    if (arg2 == NULL) {
         init_status_entry__20TWindowSubStatusDispFPvcUii(temp_r31, arg1, 0, arg3);
         *(f32 *)((s8 *)temp_r31 + 8) = (f32) (*(f32 *)((s8 *)temp_r31 + 8) + lbl_805DD620);
         ((TWindowSubStatusDisp *)temp_r31)->m_2c = 0xFFAAAAAA;
@@ -28,7 +28,7 @@ void TObjPlayer::add_status_line(u8 arg1, u32 arg2, s32 arg3) {
 
 #pragma push
 #pragma cplusplus off
-void add_status_line__10TObjPlayerFUcUll(void* self, s32 a, void* b, void* c);
+void add_status_line__19TWindowSubEquipListFUcP5TIteml(void* self, s32 a, void* b, void* c);
 void* get_player_by_client_id(s32 index);
 void* get_slot_value__10TObjPlayerFPvi(void* p, s32 n);
 void copy_to_item_data__5TItemFP9TItemData(void* p, void* out);
@@ -38,7 +38,7 @@ s32 get_class_weapon_icon_index__FPvPUc(void* a, u8* self);
 #pragma cplusplus off
 #pragma dont_inline off
 
-void build_equipment_list__15TWindowSubEquipFv(void* self) {
+void build_equipment_list__19TWindowSubEquipListFv(void* self) {
     u8 buf[0x18];
     void* q;
     s32 i;
@@ -50,21 +50,21 @@ void build_equipment_list__15TWindowSubEquipFv(void* self) {
     if (p != NULL) {
         a = get_class_weapon_icon_index__FPvPUc(self, p);
         q = get_slot_value__10TObjPlayerFPvi(p + 0xd04, 6);
-        add_status_line__10TObjPlayerFUcUll(self, a, q, (void*)6);
+        add_status_line__19TWindowSubEquipListFUcP5TIteml(self, a, q, (void*)6);
         q = get_slot_value__10TObjPlayerFPvi(p + 0xd04, 2);
-        add_status_line__10TObjPlayerFUcUll(self, 0xb, q, (void*)2);
+        add_status_line__19TWindowSubEquipListFUcP5TIteml(self, 0xb, q, (void*)2);
         if (q != NULL) {
             copy_to_item_data__5TItemFP9TItemData(q, buf);
             n = (s8)buf[5];
             for (i = 0; i < n; i++) {
                 q = get_slot_value__10TObjPlayerFPvi(p + 0xd04, i + 9);
-                add_status_line__10TObjPlayerFUcUll(self, 4, q, (void*)(i + 9));
+                add_status_line__19TWindowSubEquipListFUcP5TIteml(self, 4, q, (void*)(i + 9));
             }
         }
         q = get_slot_value__10TObjPlayerFPvi(p + 0xd04, 3);
-        add_status_line__10TObjPlayerFUcUll(self, 0xa, q, (void*)3);
+        add_status_line__19TWindowSubEquipListFUcP5TIteml(self, 0xa, q, (void*)3);
         q = get_slot_value__10TObjPlayerFPvi(p + 0xd04, 1);
-        add_status_line__10TObjPlayerFUcUll(self, 3, q, (void*)1);
+        add_status_line__19TWindowSubEquipListFUcP5TIteml(self, 3, q, (void*)1);
     }
 }
 #pragma pop

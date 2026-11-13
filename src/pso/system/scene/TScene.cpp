@@ -210,7 +210,6 @@ struct Lobby_8020533C { Vec_8020533C v; Ang_8020533C a; void *param; Node_802053
 
 void render_projected_shadow_receiver(void *, void *);
 
-void draw_field_1c__6TSceneFlll(void *, s32, s32, s32);
 
 void release_indexed_entry__6TLobbyFl(Lobby_8020533C *);
 
@@ -1603,7 +1602,7 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
     SceneMaterialStatic *e;
     s32 i;
     Node_8020533C *node;
-    void *tex;
+    TUnk_804DDF04 *tex;
 
     for (i = 0, e = scene_material_section->objects; i < scene_material_section->count; i++, e++) {
         if (arg2 != 0 && !(e->flags & 0x10000)) {
@@ -1685,11 +1684,11 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
                 Model_8020533C *m = (Model_8020533C *)e->node;
                 if (m != NULL) {
                     if (m->tex != NULL) {
-                        draw_field_1c__6TSceneFlll(tex = m->tex, m->f8, m->fE, 0);
+                        enable_indirect_tev(tex = (TUnk_804DDF04 *)m->tex, m->f8, m->fE, 0);
                         set_current_texture_list((GinjaTextureList *)((s32)((void *)*(s32 *)((s8 *)TScene__data_805D5FCC + 0x14))));
                         set_material_alpha_compare_reference(TScene__data_805D5FCC->flags);
                         draw_ginja_object(node);
-                        TScene::set_indirect_tev((u32)tex, 0);
+                        disable_indirect_tev(tex, 0);
                     }
                 }
             }
@@ -1713,7 +1712,7 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect
 }
 void draw_ginja_model_with_motion(void *, void *, f32);
 void TScene::render_animated_map_section(SceneMaterialSection *scene_material_section, s32 arg2) {
-  void *texture;
+  TUnk_804DDF04 *texture;
   SceneMaterialAnimated *e;
   s32 i;
   Node_8020533C *node;
@@ -1783,11 +1782,11 @@ void TScene::render_animated_map_section(SceneMaterialSection *scene_material_se
         void *tex = m->tex;
         if (tex != 0)
         {
-          draw_field_1c__6TSceneFlll(texture = tex, m->f8, m->fE, 0);
+          enable_indirect_tev(texture = (TUnk_804DDF04 *)tex, m->f8, m->fE, 0);
           set_current_texture_list((GinjaTextureList *)((s32)((void *) (*((s32 *) (((s8 *) TScene__data_805D5FCC) + 0x14))))));
           set_material_alpha_compare_reference(TScene__data_805D5FCC->flags);
           draw_ginja_model_with_motion(node, e->motion, e->frame);
-          TScene::set_indirect_tev((u32) texture, 0);
+          disable_indirect_tev(texture, 0);
         }
 
       }

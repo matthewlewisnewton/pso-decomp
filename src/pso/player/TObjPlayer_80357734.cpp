@@ -96,6 +96,7 @@ typedef char RecoveredGlobal_803589F8_lbl_804F15C8_size[sizeof(RecoveredGlobal_8
 #include "pso/item/TItem.h"
 #include "pso/map/FloorArea.h"
 #include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/technique/TTecZondeEff.h"
 
 struct RecoveredGlobal_80358048_lbl_804F166C {
     s32 value;
@@ -394,28 +395,28 @@ void spawn_scattered_lightning_strikes(u8 *arg0, s32 arg1) {
     case 0:
         obj = __nw__7TObjectFUl(0x260);
         if (obj != 0) {
-            ((TTecZonde *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[0].pos, (u8 *)&strikes[0].dir, 0x14000000, 0x14, strikes[0].len, 0.5f);
+            ((TTecZondeEff *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[0].pos, (u8 *)&strikes[0].dir, 0x14000000, 0x14, strikes[0].len, 0.5f);
         }
         break;
     case 1:
         scale *= 1.2f;
         obj = __nw__7TObjectFUl(0x260);
         if (obj != 0) {
-            ((TTecZonde *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[0].pos, (u8 *)&strikes[0].dir, 0x14000000, 0x14, strikes[0].len, (f32)scale);
+            ((TTecZondeEff *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[0].pos, (u8 *)&strikes[0].dir, 0x14000000, 0x14, strikes[0].len, (f32)scale);
         }
         break;
     case 2:
         scale *= 1.4f;
         obj = __nw__7TObjectFUl(0x260);
         if (obj != 0) {
-            ((TTecZonde *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[0].pos, (u8 *)&strikes[0].dir, 0x14000000, 0x14, strikes[0].len, (f32)scale);
+            ((TTecZondeEff *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[0].pos, (u8 *)&strikes[0].dir, 0x14000000, 0x14, strikes[0].len, (f32)scale);
         }
         break;
     case 3:
         for (j = 0; j < 3; j++) {
             obj = __nw__7TObjectFUl(0x260);
             if (obj != 0) {
-                ((TTecZonde *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[j].pos, (u8 *)&strikes[j].dir, 0x14000000, 0x14, strikes[j].len, 0.5f);
+                ((TTecZondeEff *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[j].pos, (u8 *)&strikes[j].dir, 0x14000000, 0x14, strikes[j].len, 0.5f);
             }
         }
         break;
@@ -424,7 +425,7 @@ void spawn_scattered_lightning_strikes(u8 *arg0, s32 arg1) {
         for (k = 0; k < 3; k++) {
             obj = __nw__7TObjectFUl(0x260);
             if (obj != 0) {
-                ((TTecZonde *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[k].pos, (u8 *)&strikes[k].dir, 0x14000000, 0x14, strikes[k].len, (f32)scale);
+                ((TTecZondeEff *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[k].pos, (u8 *)&strikes[k].dir, 0x14000000, 0x14, strikes[k].len, (f32)scale);
             }
         }
         break;
@@ -433,12 +434,12 @@ void spawn_scattered_lightning_strikes(u8 *arg0, s32 arg1) {
             if (m == 0) {
                 obj = __nw__7TObjectFUl(0x260);
                 if (obj != 0) {
-                    ((TTecZonde *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[m].pos, (u8 *)&strikes[m].dir, 0x14000000, 0x14, strikes[m].len, 5.0f);
+                    ((TTecZondeEff *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[m].pos, (u8 *)&strikes[m].dir, 0x14000000, 0x14, strikes[m].len, 5.0f);
                 }
             } else {
                 obj = __nw__7TObjectFUl(0x260);
                 if (obj != 0) {
-                    ((TTecZonde *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[m].pos, (u8 *)&strikes[m].dir, 0x14000000, 0x14, strikes[m].len, 0.5f);
+                    ((TTecZondeEff *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&strikes[m].pos, (u8 *)&strikes[m].dir, 0x14000000, 0x14, strikes[m].len, 0.5f);
                 }
             }
         }
@@ -698,7 +699,7 @@ void weapon_special_lightning_bolt_effect(void *arg0, s32 arg1, s32 arg2, s32 ar
             Vec_8035862C t = lbl_804793D8;
             obj = __nw__7TObjectFUl(0x260);
             if (obj != 0U) {
-                ((TTecZonde *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&v, (u8 *)&t, 0x14000000, 0x14, 100.0f, 1.8f);
+                ((TTecZondeEff *)obj)->construct_bolt_effect((u8 *)tl_07, (u8 *)&v, (u8 *)&t, 0x14000000, 0x14, 100.0f, 1.8f);
             }
         }
     }

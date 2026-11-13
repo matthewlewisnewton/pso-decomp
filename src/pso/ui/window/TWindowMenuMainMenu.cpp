@@ -4,6 +4,7 @@
 #include "pso/ui/window/TWindowDD.h"
 #include "pso/ui/window/TWindowMainMenu.h"
 #include "pso/ui/window/TWindowSubComCard.h"
+#include "pso/ui/window/TMainMenuEntry.h"
 
 struct W_802AE864 { u8 pad[0x124]; void *a[8]; };
 
@@ -17,8 +18,8 @@ void __dl__7TObjectFPv(void *);
 void render__19TWindowMenuMainMenuFv(s32 arg0) {
     s32 temp_r3;
     temp_r3 = setup_content_frame__19TWindowMenuMainMenuFv();
-    ((TWindowMenuMainMenu *)arg0)->draw_frame((TWindowKeyBoardSoft *)temp_r3);
-    ((TWindowMainMenu *)arg0)->draw_entries_reversed((u8 *)temp_r3);
+    ((TWindowMenuMainMenu *)arg0)->draw_frame((TWindowDrawContext *)temp_r3);
+    ((TWindowMenuMainMenu *)arg0)->draw_entries_reversed((TWindowDrawContext *)temp_r3);
 }
 
 void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window_menu_main_menu) {
@@ -34,13 +35,13 @@ void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window_menu_main_men
     var_r30 = (u8 *)window_menu_main_menu + 0x64;
     var_r31 = 0;
     do {
-        ((TWindowMainMenu *)var_r30)->update_item_tween();
+        ((TMainMenuEntry *)var_r30)->update_item_tween();
         var_r31 += 1;
         var_r30 += 0x18;
     } while (var_r31 < 8);
     window_menu_main_menu->handle_navigation_input();
     ((TWindowDD *)window_menu_main_menu)->initialize_subwindow();
-    ((TWindowMainMenu *)window_menu_main_menu)->update_slide_position();
+    ((TWindowMenuMainMenu *)window_menu_main_menu)->update_slide_position();
     ((TWindowBase *)window_menu_main_menu)->update_fade();
     temp_r3_2 = window_menu_main_menu->m_60;
     if (temp_r3_2 & 8) {
@@ -71,14 +72,14 @@ u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *window_menu_main_menu, s32 arg1
     window_menu_main_menu->m_62 = 0;
     window_menu_main_menu->m_20 = arg2;
     do {
-        ((TWindowMainMenu *)p)->init_color();
+        ((TMainMenuEntry *)p)->init_color();
         i++;
         p += 0x18;
     } while (i < 8);
     for (i = 0; i < 8; i++) {
         ((W_802AE864 *)window_menu_main_menu)->a[i] = 0;
     }
-    ((TWindowMainMenu *)window_menu_main_menu)->update_scaled_position();
+    ((TWindowMenuMainMenu *)window_menu_main_menu)->update_scaled_position();
     ((TWindowBase *)window_menu_main_menu)->save_position();
     return (u8 *)window_menu_main_menu;
 }

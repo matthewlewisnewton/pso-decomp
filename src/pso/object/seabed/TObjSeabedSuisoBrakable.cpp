@@ -32,6 +32,7 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/render/GinjaMaterialState.h"
 
 s32 TObjSeabedSuisoBrakable::texture_entries[5];
 NJS_OBJECT *TObjSeabedSuisoBrakable::model12_nodes[3];
@@ -64,7 +65,7 @@ void TObjSeabedSuisoBrakable::load_resources() {
         if ((texture_list = (u32)load_gvm_texture_file((s32)"obj_seabed_suiso_2.GVM")) != 0) {
             SeabedSuisoTextureNames names = seabed_suiso_2_texture_names;
             for (i = 0; i < 5; i++) {
-                texture_entries[i] = ((TObjDoorJung *)texture_list)->find_entry_by_name(names.name[i]);
+                texture_entries[i] = ((GinjaTextureList *)texture_list)->find_entry_by_name(names.name[i]);
             }
         }
         break;
@@ -79,7 +80,7 @@ void TObjSeabedSuisoBrakable::load_resources() {
         if ((texture_list = (u32)load_gvm_texture_file((s32)"obj_seabed_suiso.GVM")) != 0) {
             SeabedSuisoTextureNames names = seabed_suiso_texture_names;
             for (i = 0; i < 5; i++) {
-                texture_entries[i] = ((TObjDoorJung *)texture_list)->find_entry_by_name(names.name[i]);
+                texture_entries[i] = ((GinjaTextureList *)texture_list)->find_entry_by_name(names.name[i]);
             }
         }
         break;

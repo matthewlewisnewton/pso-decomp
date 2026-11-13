@@ -11,6 +11,7 @@ struct TObjEneMe1GiGue : public TObjEnemyCustom {
     void sub_802CCF2C();
     void sub_802CB6D4();
     void init_move();
+    void clear_barrier_active();
     void update_direction();
     void load_params();
     virtual void vfunc_62();

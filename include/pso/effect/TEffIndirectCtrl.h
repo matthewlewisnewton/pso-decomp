@@ -14,6 +14,9 @@ struct TUnk_804DDF04 : public TObject {
 
 typedef char TUnk_804DDF04_size[sizeof(TUnk_804DDF04) == 0x20 ? 1 : -1];
 
+void disable_indirect_tev(TUnk_804DDF04 *self, s32 arg1);
+void enable_indirect_tev(TUnk_804DDF04 *self, s32 sampler, s32 arg2, s32 arg3);
+
 struct TEffIndirectCtrl : public TObject {
     virtual ~TEffIndirectCtrl();
     void sub_802A955C();
@@ -33,7 +36,7 @@ struct TEffIndirectCtrl : public TObject {
     u16 m_46;
     static void free_buffers();
     virtual void render();
-    void copy_and_flush_texture(s32 arg1);
+    void copy_and_flush_texture(u8 *arg1);
     static void free_all();
     void update_scroll_mode();
     void update_eff_indirect();

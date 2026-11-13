@@ -20,6 +20,7 @@ struct TBoss6Tube : public TObject {
     void update_wobble();
     void spawn_trap();
     void update_timer();
+    void activate_warp();
     static void *create(void *arg0);
     static void free_resources();
     static void load_resources();

@@ -228,7 +228,7 @@ f32 TLobby__sub_8028C50C(void) {
 }
 #pragma push
 #pragma fp_contract on
-void TLobby::update_model_load() {
+void TChCrLoadGmNjReq::update_model_load() {
     s32 *temp_r5;
     s32 temp_r0;
     s32 temp_r4;

@@ -14,6 +14,7 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/BmlResourceClass.h"
+#include "pso/render/GinjaMaterialState.h"
 
 
 const char *bm_obj_beamdoa_model_names[3] = {"fe_obj_beamdoa.gj", "fe_obj_beamdoa_singo.gj", NULL};
@@ -109,10 +110,10 @@ void TObjDoorJung__sub_8018F4AC(void) {
     door_jung_child_list = model->child->sibling->model;
     lbl_805D5BDC = 0;
     const char *parts[4] = {"ts032_beamdoa_singo_aka", "ts032_beamdoa_singo_ao", "ts064_beamdoa_aka", "ts064_beamdoa_ao"};
-    lbl_805D5BE4 = ((TObjDoorJung *)lbl_805D5BD4)->find_entry_by_name(parts[0]);
-    lbl_805D5BE8 = ((TObjDoorJung *)lbl_805D5BD4)->find_entry_by_name(parts[1]);
-    lbl_805D5BEC = ((TObjDoorJung *)lbl_805D5BD4)->find_entry_by_name(parts[2]);
-    lbl_805D5BF0 = ((TObjDoorJung *)lbl_805D5BD4)->find_entry_by_name(parts[3]);
+    lbl_805D5BE4 = ((GinjaTextureList *)lbl_805D5BD4)->find_entry_by_name(parts[0]);
+    lbl_805D5BE8 = ((GinjaTextureList *)lbl_805D5BD4)->find_entry_by_name(parts[1]);
+    lbl_805D5BEC = ((GinjaTextureList *)lbl_805D5BD4)->find_entry_by_name(parts[2]);
+    lbl_805D5BF0 = ((GinjaTextureList *)lbl_805D5BD4)->find_entry_by_name(parts[3]);
     if (lbl_805D5BEC != -1) {
         scene = (void *)::operator new(0x14);
         if (scene != NULL) {

@@ -16,6 +16,7 @@
 #include "pso/render/render_util.h"
 #include "pso/unk/text_803DA798.h"
 #include "pso/unk/text_803E2D70.h"
+#include "pso/ui/window/TWindowDrawContext.h"
 
 
 struct UV_8024503C { f32 u, v; };
@@ -269,7 +270,7 @@ extern s16 lbl_805D63F6;
 void draw_window_scanlines(u8 *arg0, u8 *arg1);
 extern UVPair_8024503C selection_bar_texture_coordinates;
 extern s32 lbl_805D63F0;
-void draw_selection_bar(u8 *arg0, u8 *arg1, s32 arg2);
+void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 void window_request_refresh(u8 *arg0);
 void window_request_show(void *arg0);
 bool is_balloon_overlapping(u8 *arg0, u8 *arg1, u8 *arg2);
@@ -410,7 +411,7 @@ void TWindowBase::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
     }
 }
 
-void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
+void draw_selection_bar(TWindowDrawContext *window_key_board_soft, u8 *arg1, s32 arg2) {
     UVPair_8024503C uv = selection_bar_texture_coordinates;
     UV_8024503C *p;
     Quad_802455CC q;

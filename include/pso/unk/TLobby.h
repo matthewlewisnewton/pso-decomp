@@ -713,7 +713,6 @@ struct TLobby : public TObject {
     static void send_data(s32 arg0);
     static void update_alloc_size();
     static u8 get_selected_slot();
-    void update_model_load();
     void copy_player_record(u8 *arg1);
     u8 *init_memory_pool(s32 arg1, s32 arg2, s32 arg3);
     static void init_on_main_phase();

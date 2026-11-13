@@ -469,7 +469,7 @@ f32 TObjEneMe1GiGue::receive_physical_attack(void *, f32) {
 
 struct O_802CAC04 { u8 pad[0x326]; s16 v; };
 
-void TObjEneMe1GiGueBarrier::clear_flag388_bit80000() { *(u32*)((char*)this + 0x388) &= 0xfff7ffff; }
+void TObjEneMe1GiGue::clear_barrier_active() { *(u32*)((char*)this + 0x388) &= 0xfff7ffff; }
 void set_barrier_active__15TObjEneMe1GiGueFv(void* p) { *(u32*)((char*)p + 0x388) |= 0x80000; }
 
 u8 TObjEneMe1GiGueBarrier::is_active_state() {

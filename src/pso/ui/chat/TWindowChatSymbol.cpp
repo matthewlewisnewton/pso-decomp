@@ -325,7 +325,7 @@ void TWindowSubSymbolChat::init_layout_entries(s32 player) {
     init_window_layout_entries((void *)arg0, &symbol_chat_layout_sprite_records, (void *)player);
 }
 
-void TWindowSubSymbolChatPartsSet::update_visibility() {
+void TWindowChatSymbol::update_visibility() {
     u8 *arg0 = (u8 *)this;
     if (((s32) this->m_64 == 0) && (((u32) this->m_60 == 0U) || (is_symbol_chat_preset_in_use((u32 *)this->m_60) == 0))) {
         disallow_rendering__7TObjectFv((TObject *)arg0);

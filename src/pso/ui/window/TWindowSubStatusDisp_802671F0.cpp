@@ -21,6 +21,7 @@
 #include "pso/ui/window/TWindowMenu.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
+#include "pso/ui/window/TWindowDrawContext.h"
 
 struct Stack_80266EB8 {
     f32 sp8;
@@ -121,7 +122,7 @@ s32 is_flag_4_set__20TWindowSubStatusDispFv();
 }
 void text_builder_reset();
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);
-void draw_selection_bar(u8 *arg0, u8 *arg1, s32 arg2);
+void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 extern "C" {
 u8 *fn_802683F4(void *, s32, s32, s16);
 u8 *__nw__7TObjectFUl(s32);
@@ -639,7 +640,7 @@ void TWindowMenuIconLine::draw_selected_list_entry(s32 window_key_board_soft) {
     if (!(this->state_flags & 0x80)) {
         temp_r3 = ((u16 *(*)(void *, s16))get_array_entry__11TWindowBaseFi)(this, (s16)(*(s16 *)&this->cursor));
         if (*temp_r3 & 1) {
-            draw_selection_bar((u8 *)window_key_board_soft, (u8 *)temp_r3, is_decided__19TWindowMenuIconLineFv(this));
+            draw_selection_bar((TWindowDrawContext *)window_key_board_soft, (u8 *)temp_r3, is_decided__19TWindowMenuIconLineFv(this));
         }
     }
 }

@@ -3,6 +3,7 @@
 #include "pso/technique/TTecZonde.h"
 #include "pso/technique/TTecGiZonde.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/technique/TTecZondeEff.h"
 
 typedef struct GTarget_80232598 {
     u16 id;
@@ -97,7 +98,7 @@ s32 TTecGiZonde::find_chain_targets() {
     case 0:
         p = __nw__7TObjectFUl(0x260);
         if (p != NULL) {
-            ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, 0.5f);
+            ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, 0.5f);
         }
         p = __nw__7TObjectFUl(0x40);
         if (p != NULL) {
@@ -108,7 +109,7 @@ s32 TTecGiZonde::find_chain_targets() {
         scale *= 1.2f;
         p = __nw__7TObjectFUl(0x260);
         if (p != NULL) {
-            ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, (f32)scale);
+            ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, (f32)scale);
         }
         p = __nw__7TObjectFUl(0x40);
         if (p != NULL) {
@@ -119,7 +120,7 @@ s32 TTecGiZonde::find_chain_targets() {
         scale *= 1.4f;
         p = __nw__7TObjectFUl(0x260);
         if (p != NULL) {
-            ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, (f32)scale);
+            ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, (f32)scale);
         }
         p = __nw__7TObjectFUl(0x40);
         if (p != NULL) {
@@ -130,7 +131,7 @@ s32 TTecGiZonde::find_chain_targets() {
         scale *= 1.2f;
         p = __nw__7TObjectFUl(0x260);
         if (p != NULL) {
-            ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, (f32)scale);
+            ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, (f32)scale);
         }
         p = __nw__7TObjectFUl(0x40);
         if (p != NULL) {
@@ -145,7 +146,7 @@ s32 TTecGiZonde::find_chain_targets() {
         scale *= 1.4f;
         p = __nw__7TObjectFUl(0x260);
         if (p != NULL) {
-            ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, (f32)scale);
+            ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, (f32)scale);
         }
         p = __nw__7TObjectFUl(0x40);
         if (p != NULL) {
@@ -159,15 +160,15 @@ s32 TTecGiZonde::find_chain_targets() {
     case 5:
         p = __nw__7TObjectFUl(0x260);
         if (p != NULL) {
-            ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, 5.0f);
+            ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, 5.0f);
         }
         p = __nw__7TObjectFUl(0x260);
         if (p != NULL) {
-            ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, 0.5f);
+            ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, 0.5f);
         }
         p = __nw__7TObjectFUl(0x260);
         if (p != NULL) {
-            ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, 0.5f);
+            ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)&self->pos, (u8 *)&d, 0x14000000, 20, (f32)len, 0.5f);
         }
         p = __nw__7TObjectFUl(0x40);
         if (p != NULL) {
@@ -203,49 +204,49 @@ s32 TTecGiZonde::find_chain_targets() {
         case 0:
             p = __nw__7TObjectFUl(0x260);
             if (p != NULL) {
-                ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, 0.5f);
+                ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, 0.5f);
             }
             break;
         case 1:
             scale *= 1.2f;
             p = __nw__7TObjectFUl(0x260);
             if (p != NULL) {
-                ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, (f32)scale);
+                ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, (f32)scale);
             }
             break;
         case 2:
             scale *= 1.4f;
             p = __nw__7TObjectFUl(0x260);
             if (p != NULL) {
-                ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, (f32)scale);
+                ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, (f32)scale);
             }
             break;
         case 3:
             scale *= 1.2f;
             p = __nw__7TObjectFUl(0x260);
             if (p != NULL) {
-                ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, (f32)scale);
+                ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, (f32)scale);
             }
             break;
         case 4:
             scale *= 1.4f;
             p = __nw__7TObjectFUl(0x260);
             if (p != NULL) {
-                ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, (f32)scale);
+                ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, (f32)scale);
             }
             break;
         case 5:
             p = __nw__7TObjectFUl(0x260);
             if (p != NULL) {
-                ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, 5.0f);
+                ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, 5.0f);
             }
             p = __nw__7TObjectFUl(0x260);
             if (p != NULL) {
-                ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, 0.5f);
+                ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, 0.5f);
             }
             p = __nw__7TObjectFUl(0x260);
             if (p != NULL) {
-                ((TTecZonde *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, 0.5f);
+                ((TTecZondeEff *)p)->construct_bolt_effect((u8 *)tl_07, (u8 *)(&a->parts[self->targets[i].part].pos), (u8 *)&d2, 0x14000000, 20, (f32)len2, 0.5f);
             }
             break;
         }

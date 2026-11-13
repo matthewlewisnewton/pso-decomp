@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/render/ColorLineList.h"
 #include "pso/boss/olgaflow/TBoss6EmptyWarp.h"
+#include "pso/boss/olgaflow/TBoss6Tube.h"
 #include "pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.h"
 #include "pso/system/TLoadCtrl_80227390.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -96,8 +97,8 @@ void *TBoss6EmptyWarp::create() {
     return o;
 }
 
-void TBoss6EmptyWarp::activate_warp() {
-    *(s32 *)&this->unk_1C = 1;
+void TBoss6Tube::activate_warp() {
+    this->m_1c = 1;
     play_sound_effect(0x4003351F, 0, 0, 0);
 }
 void TBoss6EmptyWarp__sub_802B1004(void* p) { *(s32*)((char*)p + 0x20) = 0; *(s32*)((char*)p + 0x1c) = 2; }

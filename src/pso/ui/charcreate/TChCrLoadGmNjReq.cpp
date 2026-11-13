@@ -11,7 +11,7 @@ const char *TChCrLoadGmNjReq__name = "TChCrLoadGmNjReq";
 
 extern "C" {
 s32 queue_destruction__7TObjectFv();
-s32 update_model_load__6TLobbyFv();
+s32 update_model_load__16TChCrLoadGmNjReqFv();
 s32 start_character_load_task__23TAdSinglePlyChrSelectGCFv();
 struct VOff_8028C7BC_arg0_8028C6EC { char pad_0[0x30]; char f_30[1]; };
 
@@ -35,7 +35,7 @@ void TChCrLoadGmNjReq::run_task() {
         start_character_load_task__23TAdSinglePlyChrSelectGCFv();
         return;
     case 1:
-        update_model_load__6TLobbyFv();
+        update_model_load__16TChCrLoadGmNjReqFv();
         return;
     }
 }

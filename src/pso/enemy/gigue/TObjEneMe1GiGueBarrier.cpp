@@ -129,7 +129,7 @@ void TObjEneMe1GiGueBarrier::run_task() {
 
 }
 TObjEneMe1GiGueBarrier::~TObjEneMe1GiGueBarrier() {
-    if (*(void **)((s8 *)this + 0xFC) != NULL) { ((TObjEneMe1GiGueBarrier *)(*(void **)((s8 *)this + 0xFC)))->clear_flag388_bit80000(); }
+    if (*(void **)((s8 *)this + 0xFC) != NULL) { ((TObjEneMe1GiGue *)(*(void **)((s8 *)this + 0xFC)))->clear_barrier_active(); }
 }
 
 

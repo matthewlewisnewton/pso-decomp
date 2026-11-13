@@ -4,9 +4,11 @@
 #include "types.h"
 #include "pso/object/trap/TOTrap.h"
 
+struct NJS_OBJECT;
+
 struct TOTrapSeabed01 : public TOTrap {
     virtual ~TOTrapSeabed01();
-    void draw_object_tree(u8 *);
+    void draw_object_tree(NJS_OBJECT *);
     void render_effect_layers();
     virtual int vfunc_67(f32 damage_scale);
     virtual void vfunc_84();
