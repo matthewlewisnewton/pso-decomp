@@ -63,6 +63,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/render/GinjaTexture.h"
 #include "pso/system/byteswap.h"
 #include "pso/network/protocol/protocol_types.h"
+#include "pso/network/protocol/subcmd_6x.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/system/BmlResourceDescriptor.h"
 
@@ -2000,14 +2001,13 @@ void TBoss8Dragon::update_target_from_state() {
 }
 
 void TBoss8Dragon::play_animation_index(s32 arg1) {
-    struct { u8 pad[0x30]; } sp8;
+    G_GalGryphonBossActions_6xA0 sp8;
     s32 temp_r5;
-    ((TBoss8Dragon *)(&sp8))->init_color();
     temp_r5 = *(s32 *)((s8 *)((u8 *)this) + 0x778);
     this->m_774 = (s32) *(s32 *)((s8 *)temp_r5 + (arg1 * 4));
     ((s32 (*)(void *, void *, int))trigger_effect__12TBoss8DragonFPvi)((void *) (this), (void *) (&sp8), temp_r5);
     TBoss8Dragon__sub_8005F684(this, (void *) (&sp8));
-    this->copy_spawn_params((void *) (&sp8));
+    this->copy_spawn_params(&sp8);
 }
 
 void set_animation_by_state__12TBoss8DragonFPv(TBoss8Dragon *boss8_dragon) {
@@ -2065,9 +2065,8 @@ void trigger_effect__12TBoss8DragonFPvi(void *arg0, s32 arg1) {
 
 void TBoss8Dragon::flush_pending_effect() {
     O_8005F740 *self = (O_8005F740 *)this;
-    P_8005F740 p;
     if ((this->m_4c0 & 2) && this->m_4bc >= self->buf) {
-        ((TBoss8Dragon *)(&p))->init_color();
+        G_GalGryphonBossActions_6xA0 p;
         ((void (*)(void *, void *))trigger_effect__12TBoss8DragonFPvi)(self, &p);
         ((void (*)(void *, void *))TBoss8Dragon__sub_8005F684)(self, &p);
         this->m_4c0 &= ~2;
@@ -4516,7 +4515,12 @@ int emit_part_attack_effect__13TBoss5GryphonFPvi(void *ene_dd, int arg1) {
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-void TBoss8Dragon::copy_spawn_params(void* a1) { *(short*)((char*)a1 + 0x2) = *(unsigned short *)&this->unk_1C; VecCopy__FP3VecPC3Vec((void*)((char*)a1 + 0x4), (void*)((char*)this + 0x38)); *(void**)((char*)a1 + 0x10) = *(void* *)&this->m_60; ((TBoss8Dragon *)a1)->send_spawn_params_packet(); }
+void TBoss8Dragon::copy_spawn_params(G_GalGryphonBossActions_6xA0 *cmd) {
+    cmd->header.client_id = *(u16 *)&this->unk_1C;
+    VecCopy__FP3VecPC3Vec(&cmd->pos, (void *)((char *)this + 0x38));
+    cmd->angle_y = this->m_60;
+    cmd->send();
+}
 #pragma pop
 
 #pragma push
@@ -4543,7 +4547,7 @@ void apply_remote_action__13TBoss5GryphonFP28G_GalGryphonBossActions_6xA0(u8 *en
     VecCopy__FP3VecPC3Vec((void*)((void *) (ene_dd + 0x484)), (void*)((void *) (arg1 + 4)));
     ((f32 (*)(void *, void *))subtract_vector)((void *) (ene_dd + 0x484), (void *) (ene_dd + 0x38));
     ((TObjEneDD *)ene_dd)->rotation_y = (s32) *(s32 *)((s8 *)arg1 + 0x10);
-    ((TBoss8Dragon *)(ene_dd + 0x494))->copy_action_state((u8 *)((void *) (arg1 + 0x14)));
+    ((G_GalGryphonBossAction *)(ene_dd + 0x494))->copy_action_state((G_GalGryphonBossAction *)(arg1 + 0x14));
     *(s16 **)((s8 *)ene_dd + 0x4BC) = (s16 *) (ene_dd + 0x494);
     temp_r4 = **(s16 **)((s8 *)ene_dd + 0x4BC);
     if ((s16) ((TObjEneDD *)ene_dd)->mode != temp_r4) {
@@ -4557,16 +4561,15 @@ void apply_remote_action__13TBoss5GryphonFP28G_GalGryphonBossActions_6xA0(u8 *en
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-void TBoss8Dragon::copy_action_state(u8 *arg1) {
-    u8 *arg0 = (u8 *)this;
-    *(s16 *)&this->m_0 = (s16) *(s16 *)((s8 *)arg1 + 0);
-    *(s16 *)((s8 *)arg0 + 2) = (s16) *(s16 *)((s8 *)arg1 + 2);
-    *(ByteBlock_10 *)((s32) (u8 *)&this->unk_4) = *(const ByteBlock_10 *)((s32) arg1 + 4);
+void G_GalGryphonBossAction::copy_action_state(G_GalGryphonBossAction *src) {
+    state = src->state;
+    timer = src->timer;
+    *(ByteBlock_10 *)params = *(const ByteBlock_10 *)src->params;
 }
 }
 void set_collider_contact_low(u8 *arg0);
 void set_collider_contact_high(u8 *arg0);
-void handle_6xA0_gal_gryphon_boss_actions(TBoss8Dragon *arg0);
+void handle_6xA0_gal_gryphon_boss_actions(G_GalGryphonBossActions_6xA0 *arg0);
 void handle_6x9F_gal_gryphon_boss_actions(void *arg0);
 #pragma pop
 
@@ -4574,12 +4577,12 @@ void handle_6x9F_gal_gryphon_boss_actions(void *arg0);
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-void handle_6xA0_gal_gryphon_boss_actions(TBoss8Dragon *boss8_dragon) {
+void handle_6xA0_gal_gryphon_boss_actions(G_GalGryphonBossActions_6xA0 *cmd) {
     void *x;
-    boss8_dragon->byteswap_action_packet();
-    x = get_enemy_entity(*(u16 *)((s8 *)boss8_dragon + 0x2));
+    cmd->bswap();
+    x = get_enemy_entity(cmd->header.client_id);
     if (x != NULL) {
-        apply_remote_action__13TBoss5GryphonFP28G_GalGryphonBossActions_6xA0((u8 *)x, (u8 *)boss8_dragon);
+        apply_remote_action__13TBoss5GryphonFP28G_GalGryphonBossActions_6xA0((u8 *)x, (u8 *)cmd);
     }
 }
 #pragma pop
@@ -5229,26 +5232,25 @@ void TBoss5Gryphon::apply_confusion_status() {  }
 void TBoss5Gryphon::apply_movement_ailment(s32) {  }
 void TBoss5Gryphon::apply_shock_status() {  }
 void TBoss5Gryphon::clear_harmful_statuses() {  }
-void TBoss8Dragon::init_color() { *(u8 *)&this->m_0 = 160; *(u8*)((char*)this + 0x1) = 10; }
+G_GalGryphonBossActions_6xA0::G_GalGryphonBossActions_6xA0() { header.subcommand = 160; header.size = 10; }
 
-void TBoss8Dragon::send_spawn_params_packet() { byteswap_action_packet(); send_subcommand((u8 *)this); }
+void G_GalGryphonBossActions_6xA0::send() { bswap(); send_subcommand((u8 *)this); }
 
-void TBoss8Dragon::byteswap_action_packet() {
-    ((G_ClientIDHeader *)this)->bswap();
-    ((TBoss8Dragon *)((char *)this + 20))->byteswap_record();
-    bswap_32((u32 *)((void *)((char *)this + 4)));
-    bswap_32((u32 *)((void *)((char *)this + 8)));
-    bswap_32((u32 *)((void *)((char *)this + 12)));
-    bswap_32((u32 *)((void *)((char *)this + 16)));
+void G_GalGryphonBossActions_6xA0::bswap() {
+    header.bswap();
+    action.bswap();
+    bswap_32((u32 *)&pos.x);
+    bswap_32((u32 *)&pos.y);
+    bswap_32((u32 *)&pos.z);
+    bswap_32(&angle_y);
 }
 
-void TBoss8Dragon::byteswap_record() {
-    O_80065FD4 *p = (O_80065FD4 *)this;
+void G_GalGryphonBossAction::bswap() {
     s32 i;
-    bswap_16(&p->a);
-    bswap_16(&p->b);
+    bswap_16((u16 *)&state);
+    bswap_16((u16 *)&timer);
     for (i = 0; i < 4; i++) {
-        bswap_32(&p->c[i]);
+        bswap_32(&params[i]);
     }
 }
 

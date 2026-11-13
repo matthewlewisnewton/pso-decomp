@@ -5306,7 +5306,7 @@ force_active:
   - copy__15DepthAlphaStateFP15DepthAlphaState
   - copy__16TPlyGuildCardTagFPv
   - copy__6TMovieFPv
-  - copy_action_state__12TBoss8DragonFPUc
+  - copy_action_state__22G_GalGryphonBossActionFP22G_GalGryphonBossAction
   - copy_all_data__6TLobbyFii
   - copy_all_entries__6TLobbyFii
   - copy_and_flush_texture__16TEffIndirectCtrlFl
@@ -5359,7 +5359,7 @@ force_active:
   - copy_ring_buffer_window__15TObjBoss2TunnelFv
   - copy_rotation_to_current_matrix
   - copy_save_data__23TAdSinglePlyChrSelectGCFii
-  - copy_spawn_params__12TBoss8DragonFPv
+  - copy_spawn_params__12TBoss8DragonFP28G_GalGryphonBossActions_6xA0
   - copy_stat_block__17TWindowSetLevelUpFl
   - copy_state__11TBoss6Type2FPv
   - copy_state__12TWindowTimerFPUc
