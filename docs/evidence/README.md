@@ -18,6 +18,7 @@ guides.
 - [Bridge and item-light constant ownership](bridge-item-light-constant-pool.md)
 - [Cast-technique (6x47) register allocation](cast-technique-6x47-register-allocation.md)
 - [Actor position layout guards](chara-position-layout-evidence.md)
+- [Character-creation fade constant ownership](chcr-fade-constant-pool.md)
 - [Character movement vector](chara-velocity-evidence.md)
 - [Character-select plate: typed tables, the cell store, and the float order](chr-select-confirm-cell-store.md)
 - [Character-select slot clamp inlining](chr-select-slot-clamp-inline.md)

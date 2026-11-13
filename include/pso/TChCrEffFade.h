@@ -5,13 +5,19 @@
 
 class TChCrEffFade : public TObject {
 public:
-    TChCrEffFade(s32 arg1, s32 arg2, s32 arg3);
+    TChCrEffFade(s32 direction, s32 duration, s32 mode);
     virtual ~TChCrEffFade();
     virtual void run_task();
     virtual void render();
-public:
     void update_fade();
-    static void draw_fade_strip(f32 farg0);
+    void draw_fade_strip(f32 opacity);
+
+private:
+    s32 m_direction; // 0x1C: +1 or -1
+    s32 m_duration;  // 0x20: includes the three opaque frames
+    s32 m_frame;     // 0x24
+    f32 m_opacity;   // 0x28
+    s32 m_mode;      // 0x2C: plain or layered rendering
 };
 
 #endif
