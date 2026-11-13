@@ -300,7 +300,8 @@ void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);
 s32 __ct__9TObjEnemyFP7TObject(void *);
 }
 
-s32 water_bomb_hit_nearby(u8 *arg0);
+extern "C" s32 check_hits__21TObjEneSlimeWaterBombFv(u8 *arg0);
+
 extern "C" {
 
 
@@ -1060,7 +1061,7 @@ void release_child_slot__12TObjEneSlimeFl(Obj_800EB778 *self, s32 id) {
 
 struct Bomb_800E9090;
 
-s32 TObjEneSlimeOne::try_spawn_child(void *arg1) {
+s32 TObjEneSlime::try_spawn_child(void *arg1) {
     s32 i;
     Vec_800EB654 pos;
     Vec_800EB654 dir;
@@ -1349,7 +1350,7 @@ f32 TObjEneSlimeOne::receive_direct_attack(void *attacker, DirectAttackPayload p
                                          void *source, s32, s32) {
     if (payload.kind == 2 && parent_slime != 0 &&
         ((TObjEneSlimeOne *)parent_slime)->all_parents_unqueued_for_destruction()) {
-        ((TObjEneSlimeOne *)parent_slime)->try_spawn_child(&position);
+        ((TObjEneSlime *)parent_slime)->try_spawn_child(&position);
     }
     TObjChara::receive_direct_attack(attacker, payload, source, -1, -1);
     return 0.0f;
@@ -1361,7 +1362,7 @@ void TObjEneSlimeOne::vfunc_62() {
     u8 *arg0 = (u8 *)this;
     if ((s32) this->state != 0xC) {
         if (((s32) this->m_2d4 < (s32) registered_player_count) && (((u32 (*)(void))get_player_by_client_id)() != 0U) && (check_player_field_7cc__15TObjEneSlimeOneFv() == 2) && ((u32) this->parent_slime != 0U) && (((TObject *)((void *) this->parent_slime))->all_parents_unqueued_for_destruction() != 0)) {
-            ((TObjEneSlimeOne *)(this->parent_slime))->try_spawn_child((u8 *)&this->position);
+            ((TObjEneSlime *)(this->parent_slime))->try_spawn_child((u8 *)&this->position);
         }
         this->actorFlags = (s32) (this->actorFlags & 0xFFFFFDFF);
         ((TObjEneSlimeOne *)arg0)->set_state((s32)((void*)(0xC)));
@@ -1717,7 +1718,7 @@ void TObjEneSlimeOne::update_water_bomb_timer() {
     } else if (temp_r0 == 0) {
         ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(0x4003A017, ((u8 *)this) + 0x38, 0, 0);
         spawn_particle_effect(((u8 *)this) + 0x2FC, 0xE2);
-        ((TObjEneSlimeWaterBomb *)((u8 *)this))->create(((u8 *)this));
+        TObjEneSlimeWaterBomb::create((TObjEneSlimeOne *)this, (TObjEneSlimeOne *)this);
     }
     temp_r0_2 = *(s32 *)((s8 *)((u8 *)this) + 0x390) - 1;
     *(s32 *)((s8 *)((u8 *)this) + 0x390) = temp_r0_2;
@@ -2020,11 +2021,11 @@ TObjEneSlimeWaterBomb::~TObjEneSlimeWaterBomb() {
     }
 }
 
-void *TObjEneSlimeWaterBomb::create(void *arg1) {
+void *TObjEneSlimeWaterBomb::create(TObjEneSlimeOne *parent, TObjEneSlimeOne *arg1) {
     void *o;
     o = ((void * (*)(int))__nw__7TObjectFUl)(0x398);
     if (o != NULL) {
-        o = __ct__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne((TObjEneSlimeWaterBomb *)o, (void *)this, (void *)arg1);
+        o = __ct__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne((TObjEneSlimeWaterBomb *)o, (void *)parent, (void *)arg1);
     }
     return o;
 }
@@ -2053,7 +2054,7 @@ void run_task__21TObjEneSlimeWaterBombFv(Bomb_800E8D4C *arg0) {
     if (arg0->link != NULL) {
         ((TParticleCtrl *)arg0->link)->set_position(&arg0->pos);
     }
-    if (((TObjEneSlimeOne *)(arg0->owner))->is_in_water_bomb_states() != 0 || ((s32 (*)(void *))water_bomb_hit_nearby)(arg0) != 0) {
+    if (((TObjEneSlimeOne *)(arg0->owner))->is_in_water_bomb_states() != 0 || ((s32 (*)(void *))check_hits__21TObjEneSlimeWaterBombFv)(arg0) != 0) {
         die = 1;
     }
     {
@@ -2088,7 +2089,7 @@ void TObjEneSlimeWaterBomb::render() {
     draw_blob_shadow(0);
     ((int (*)(void))pop_matrix)();
 }
-s32 water_bomb_hit_nearby(u8 *target) {
+extern "C" s32 check_hits__21TObjEneSlimeWaterBombFv(u8 *target) {
     s32 hit;
     Ent_800E8AD0 *e;
     Ent_800E8AD0 *e2;
@@ -2266,7 +2267,7 @@ void TObjEneSlimeTailAttack::render() {
   temp_f1 = this->frame;
   if ((temp_f1 >= 12.0f) && (temp_f1 < 35.0f))
   {
-    ((TObjPlayer *)((u8 *)this))->draw_blob_shadows();
+    this->draw_blob_shadows();
   }
 }
 void TObjEneSlimeTailAttack::sub_800E841C() {
@@ -2326,7 +2327,7 @@ void TObjEneSlimeTailAttack::draw_stretched_segment(void *arg1, void *arg2, f32 
     TObjPlayer::init_render_globals();
     pop_matrix();
 }
-void TObjPlayer::draw_blob_shadows() {
+void TObjEneSlimeTailAttack::draw_blob_shadows() {
     s32 i;
     f32 k;
     s32 spC;

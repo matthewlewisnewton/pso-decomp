@@ -1207,7 +1207,6 @@ struct TObjPlayer : public TObjChara {
     static void draw_effect();
     void draw_trail_pair();
     void set_flag_and_notify();
-    void draw_blob_shadows();
     void set_flag_8_if_check_passes();
     void fill_status_info(void *arg1);
     void launch_rare_weapon_special(void *origin, s32 enable, f32 scale);

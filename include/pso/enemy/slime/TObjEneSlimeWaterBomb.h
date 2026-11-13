@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/enemy/TObjEnemy.h"
 
+struct TObjEneSlimeOne;
+
 struct TObjEneSlimeWaterBomb : public TObjEnemy {
     virtual ~TObjEneSlimeWaterBomb();
     int find_nearest_enemy_masked(f32);
@@ -18,7 +20,7 @@ struct TObjEneSlimeWaterBomb : public TObjEnemy {
     u8 _pad390[0x4];
     u32 m_394;
     virtual void render();
-    void *create(void *arg1);
+    static void *create(TObjEneSlimeOne *parent, TObjEneSlimeOne *owner);
 };
 
 typedef char TObjEneSlimeWaterBomb_size[sizeof(TObjEneSlimeWaterBomb) == 0x398 ? 1 : -1];

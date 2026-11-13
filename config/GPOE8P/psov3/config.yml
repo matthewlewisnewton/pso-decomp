@@ -5421,7 +5421,7 @@ force_active:
   - create__18TChCrTagOccupationFPv
   - create__19TChCrTagInformationFPv
   - create__19TObjEneDelDepthBombFP15TObjEneDelDepthP9TObjCharaPC3Vecl
-  - create__21TObjEneSlimeWaterBombFPv
+  - create__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne
   - create__22TObjEneSlimeTailAttackFlPC3VeclP15TObjEneSlimeOne
   - create__22TQuestVmDownLoadServerFv
   - create__18T_ATS_DrawCalendarFv
@@ -5769,7 +5769,7 @@ force_active:
   - draw_background__17TAdGameStartSubGCFPv
   - draw_background__18TWindowPartyStatusFPUc
   - draw_blend_motion_tree
-  - draw_blob_shadows__10TObjPlayerFv
+  - draw_blob_shadows__22TObjEneSlimeTailAttackFv
   - draw_body__13TBoss5GryphonFv
   - draw_body__13TObjEneMorfosFv
   - draw_body_models__11TBoss6Type2Fv
@@ -16570,7 +16570,7 @@ force_active:
   - try_hit_target__13TUnk_80491460Fi
   - try_open__11TObjDoaEx01Fv
   - try_relocate_on_timer__15TObjEneDelDepthFv
-  - try_spawn_child__15TObjEneSlimeOneFPv
+  - try_spawn_child__12TObjEneSlimeFPv
   - try_spawn_ground_effect__16TObjEneMe3StelthFl
   - try_start_action__11TOVS2Wall01Fll
   - try_start_action__15TOAttackableColFll
@@ -17734,7 +17734,7 @@ force_active:
   - warp_lobby_resource_descriptor
   - warp_nearby_players__14TBoss6PlotFalzFv
   - warp_player__12TObjWarpBossFl
-  - water_bomb_hit_nearby__FPUc
+  - check_hits__21TObjEneSlimeWaterBombFv
   - window_chat_type_name_pointer
   - window_dd_element_count
   - window_duel_result_class_name

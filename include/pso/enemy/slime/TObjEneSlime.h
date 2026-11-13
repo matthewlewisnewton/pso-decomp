@@ -11,6 +11,7 @@ struct TObjEneSlime : public TObjEnemy {
     u8 _pad378[0x3C];
     u32 m_3b4;
     void release_split_slimes();
+    s32 try_spawn_child(void *position);
     virtual void render();
     virtual void run_task();
     static void free_instance();
