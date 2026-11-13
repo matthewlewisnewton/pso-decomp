@@ -434,7 +434,7 @@ void TWindowChat::run_task() {
     if ((((int)((TWindowChat *)arg0)->is_open()) == 0) && (((TWindowChat *)arg0)->is_mode_bit4() == 0) && (((TWindowChat *)arg0)->is_visible() == 0)) {
         ((TWindowChat *)arg0)->handle_chat_input();
         ((TWindowChat *)arg0)->handle_input();
-        if (sub_8025CB10__19TWindowKeyBoardBaseFv((s32)((int) ((s32)composer))) != 0) {
+        if (((TWindowKeyBoardBase *)composer)->sub_8025CB10() != 0) {
             flags = (u16) (flags | 4);
             return;
         }
