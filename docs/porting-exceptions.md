@@ -26,9 +26,6 @@ introducing an anonymous duplicate. Ports can drop both annotations and keep
 the ordinary declarations, array and C++ bodies. The prior common-subexpression
 and propagation pragmas are removed. See [the recovery evidence](evidence/critical-hit-effect-unit.md).
 
-| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
-| Per-unit compiler overrides in `configure.py` | 207 | 207 |
-
 ### Raft splash shared constant
 
 `src/pso/boss/TObjBoss2RaftSplash.cpp` defines the shared scalar at
@@ -244,9 +241,9 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,860 pragmas in 887 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1150, `inline_depth` 1055, `fp_contract` 883, `auto_inline` 803,
-`opt_common_subs` 638, `scheduling` 264, `opt_propagation` 264,
+5,857 pragmas in 884 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1150, `inline_depth` 1055, `fp_contract` 882, `auto_inline` 804,
+`opt_common_subs` 637, `scheduling` 264, `opt_propagation` 263,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57,
 `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 42. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
@@ -570,7 +567,7 @@ The complete provider now links as three native layout groups; see
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-205 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+207 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
