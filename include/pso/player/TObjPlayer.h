@@ -393,6 +393,7 @@ struct TObjPlayer : public TObjChara {
     static void set_com_card_window(s32 arg0);
     static s32 is_locally_controlled(void *player);
     static TObjPlayer *get_player_data(int index);
+    s32 get_current_area();
     int queue_destruction();
     s32 test_action_mask(s32 arg1);
     static void free_singleton();

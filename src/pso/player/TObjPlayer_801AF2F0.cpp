@@ -1996,7 +1996,7 @@ int test_flags_any(void*, int);
 s8 get_chr_select_state__23TAdSinglePlyChrSelectGCFv();
 s32 *get_shared_text_buffer(void);
 s32 fn_8002AE08(u16);
-s32 get_field_3e0__12TBoss3VoloptFv();
+s32 get_current_area__10TObjPlayerFv();
 s32 check_value_equals__7TObjectFPCc(void *, s32);
 void obj_clear_flag30_20000(void *arg0);
 s32 check_player_flag1__10TObjPlayerFv(s32);
@@ -2973,7 +2973,7 @@ u8 is_key_machine_ready__10TObjPlayerFv(void) {
 }
 
 u8 is_volopt_phase_final__10TObjPlayerFv(void) {
-    return (u8) (get_field_3e0__12TBoss3VoloptFv() == 0xF);
+    return (u8) (get_current_area__10TObjPlayerFv() == 0xF);
 }
 
 u8 is_lobby_floor_15__15TFontSmallLobbyFv(void) {
@@ -3740,7 +3740,7 @@ void TObjPlayer::play_phase_transition_sound(s32 arg0) {
     draw_chunk_object((void *)arg0);
 }
 
-void reset_volopt_state__10TObjPlayerFv(void) { ((int (*)(void))get_field_3e0__12TBoss3VoloptFv)(); is_item_area_enabled(); }
+void reset_volopt_state__10TObjPlayerFv(void) { ((int (*)(void))get_current_area__10TObjPlayerFv)(); is_item_area_enabled(); }
 
 void foreach_player__10TObjPlayerFv(s32 (*arg0)(u32)) {
     s32 (*var_r27)(u32);
@@ -5115,7 +5115,7 @@ void fill_player_record__10TObjPlayerFPvPv(Src_801B4CE4 *src, Dst_801B4CE4 *dst)
     ((TObjPlayer *)(dst->f78))->copy_player_record_header(src->f830);
     TObjPlayer__sub_801BEEE0(dst->f94, src->f858);
     TObjPlayer__sub_801BEEAC(dst->f98, src->f730);
-    dst->fAC = ((s32 (*)(void *))get_field_3e0__12TBoss3VoloptFv)(src);
+    dst->fAC = ((s32 (*)(void *))get_current_area__10TObjPlayerFv)(src);
     dst->f488 = ((TObjPlayer *)src)->get_floor();
     dst->fB0 = src->f334;
     dst->f64 = ((s32 (*)(void *))TObjPlayer__sub_801AFD8C)(src);

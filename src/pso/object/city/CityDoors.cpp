@@ -1009,7 +1009,7 @@ void city_door_play_close_sound__13TUnk_804B5BA8Fv(s32 arg0);
 void begin_state_1__13TUnk_804B5BA8Fv(void *arg0);
 void check_ground_or_fall__13TUnk_804B5BA8Fv(void *arg0);
 void dispatch_state__13TUnk_804B5BA8Fv(void *arg0);
-s32 get_field_3e0__12TBoss3VoloptFv();
+s32 get_current_area__10TObjPlayerFv();
 
 void TUnk_804B5BA8::vfunc_22() {
     VObj_8018291C *arg0 = (VObj_8018291C *)this;
@@ -1100,7 +1100,7 @@ s32 TObjPlayer::is_player_in_range(s32 arg0, s32 arg1, f32 farg0) {
     var_r30 = 0;
 loop_1:
     player = (s32)get_player_by_client_id(var_r30);
-    if ((player != 0) && ((temp_r3_2 = get_field_3e0__12TBoss3VoloptFv(), ((temp_r3_2 == 0) != 0)) || (temp_r3_2 == 0x12)) && (horizontal_distance_squared((const Vec *)arg1, (const Vec *)(player + 0x38)) < farg0)) {
+    if ((player != 0) && ((temp_r3_2 = get_current_area__10TObjPlayerFv(), ((temp_r3_2 == 0) != 0)) || (temp_r3_2 == 0x12)) && (horizontal_distance_squared((const Vec *)arg1, (const Vec *)(player + 0x38)) < farg0)) {
         return 1;
     }
     var_r30 += 1;
