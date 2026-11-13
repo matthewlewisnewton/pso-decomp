@@ -2235,6 +2235,7 @@ force_active:
   - __ct__13TItemEffLavisFPvPC3VecPC3Vecf
   - __ct__13TOCapsuleLaboFP7TObjectPv
   - __ct__13TOHealGeneralFPv
+  - __ct__13TObjBoss5CtrlFP7TObject
   - __ct__13TObjBs4CutAtkFv
   - __ct__13TObjCHTimeWinFv
   - __ct__13TObjDFRecoverFP7TObjectUsPCf
@@ -8075,6 +8076,7 @@ force_active:
   - lbl_80437328
   - lbl_80437384
   - lbl_804373A4
+  - lbl_80438128
   - lbl_80438528
   - lbl_80438534
   - lbl_80438AB4
@@ -8993,6 +8995,7 @@ force_active:
   - lbl_805D280C
   - lbl_805D2810
   - lbl_805D2820
+  - lbl_805D2828
   - lbl_805D2990
   - lbl_805D2A50
   - lbl_805D2A58

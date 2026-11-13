@@ -668,16 +668,13 @@ pso/unk/text_80066F5C.cpp:
 pso/boss/TBoss8Dragon_80067034.cpp:
 	.text       start:0x80067034 end:0x80067124
 
-pso/boss/TObjBoss5Ctrl_80067124.cpp:
-	.text       start:0x80067124 end:0x8006715C
-
 pso/boss/TObjBoss5Ctrl.cpp:
-	.text       start:0x8006715C end:0x800673D0
-	.rodata     start:0x80438138 end:0x80438140
+	.text       start:0x80067124 end:0x80067410
+	.rodata     start:0x80438128 end:0x80438140
 	.data       start:0x80488778 end:0x80488790
-
-pso/boss/TObjBoss5Ctrl_800673D0.cpp:
-	.text       start:0x800673D0 end:0x80067410
+	.sdata      start:0x805D2828 end:0x805D282C
+	.sbss       start:0x805D4DE0 end:0x805D4DE4
+	.sdata2     start:0x805D8F10 end:0x805D8F1C
 
 pso/misc/TLobby_80067410.cpp:
 	.text       start:0x80067410 end:0x80067490

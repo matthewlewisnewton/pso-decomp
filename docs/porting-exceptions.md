@@ -124,6 +124,14 @@ EXI/OS backend; the scalar bit helpers alone do not implement the driver.
 
 ## 4. CodeWarrior pragmas
 
+`src/pso/boss/TObjBoss5Ctrl.cpp` retains its existing `fp_contract on` when
+its three fragments are consolidated. Both countdown calculations use the
+original fused `60 * normalized_random + 90`. Ports should preserve fused
+rounding if required. The pillar-sound and pillar-controller factory entries
+retain explicit `TObject *` ABI boundaries because their legacy member names
+have unresolved receiver ownership; ports should unify those helper declarations
+when recovering the neighboring classes. See [controller evidence](evidence/boss5-controller-unit.md).
+
 The EXI Ethernet receiver in `src/pso/misc/TLobby_80429598.cpp` uses scoped
 `opt_propagation off`, helper inlining and ordered volatile snapshot/publication
 accesses to preserve the original descriptor copy and callback lifetimes.
