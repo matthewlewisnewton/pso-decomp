@@ -33,8 +33,8 @@ extern "C" {
 s32 TAdPlayerLoadGC__sub_801E0FA4(s32 chan);
 s32 TAdPlayerLoadGC__sub_801E1B50(s32 chan);
 s32 TAdPlayerLoadGC__sub_801E24F8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-s32 query_memcard_capacity__15TAdPlayerLoadGCFl(s32 chan, s32 arg1);
-s32 poll_load_status__15TAdPlayerLoadGCFl(s32 chan, const char *name);
+s32 query_memcard_capacity__15TAdPlayerLoadGCFll(s32 chan, s32 arg1);
+s32 poll_load_status__15TAdPlayerLoadGCFlPCc(s32 chan, const char *name);
 s32 TWindowShortListCtrl__check_controller_button(ControllerInputContext *context, s32 mask);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(ControllerInputContext *context, s32 mask);
 TWindowMessage *update_window_mode_from_progress__6TLobbyFPv(const f32 *pos, const f32 *size);
@@ -370,7 +370,7 @@ void TAdTimeSetGC::close_scene() {
 }
 
 void TAdTimeSetGC::sub_802E2BD4() {
-    if (poll_load_status__15TAdPlayerLoadGCFl(0, pso_character_card_filename) == 0) {
+    if (poll_load_status__15TAdPlayerLoadGCFlPCc(0, pso_character_card_filename) == 0) {
         change_state(9);
     }
 }
@@ -403,7 +403,7 @@ void TAdTimeSetGC::sub_802E2AD4() {
 }
 
 void TAdTimeSetGC::advance_when_load_done() {
-    if (poll_load_status__15TAdPlayerLoadGCFl(0, pso_guildcard_card_filename) == 0) {
+    if (poll_load_status__15TAdPlayerLoadGCFlPCc(0, pso_guildcard_card_filename) == 0) {
         change_state(0xB);
     }
 }
@@ -759,7 +759,7 @@ s32 TAdTimeSetGC::check_capacity() {
     s32 files = count_flags();
     s32 blocks = count_selected_flags();
     s32 free_files = TAdPlayerLoadGC__sub_801E0FA4(0);
-    s32 free_blocks = query_memcard_capacity__15TAdPlayerLoadGCFl(0, 0);
+    s32 free_blocks = query_memcard_capacity__15TAdPlayerLoadGCFll(0, 0);
 
     if (files > free_files || blocks > free_blocks) {
         return 0;

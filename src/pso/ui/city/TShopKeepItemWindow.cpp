@@ -2,6 +2,7 @@
 #pragma auto_inline off
 #pragma dont_inline off
 
+#include "pso/player/TPlyItem.h"
 #include "types.h"
 #include "pso/ui/city/TShopKeepItemWindow.h"
 #include "pso/ui/window/TWindowMenuIconLine.h"
@@ -146,7 +147,7 @@ s32 TShopKeepItemWindow::rebuild_item_list() {
     s32 i;
     s32 cur;
     this->deposit_count = 1;
-    count = ((TObjPlayer *)(*(s32 *)((s8 *)this->m_24 + 0xD00)))->count_matching_items((int)buf);
+    count = ((TPlyItem *)(*(s32 *)((s8 *)this->m_24 + 0xD00)))->count_matching_items((void *)buf);
     this->entry_count = 0;
     for (i = 0; i < count; i++) {
         if (buf[i] != 0 && ((TItem *)(buf[i]))->copy_to_item_data(&this->entries[this->entry_count].data) != 0) {
@@ -360,7 +361,7 @@ s32 TShopKeepItemWindow::close_with_cancel_callback() {
     queue_destruction__7TObjectFv(this);
 }
 
-void TShopKeepItemWindow::vfunc_6() {
+void TShopKeepItemWindow::vfunc_6(s32, s32) {
     struct VObj_8022187C_80221844 *o = (struct VObj_8022187C_80221844 *)this->message_window;
     if (o != NULL) {
         o->m4();

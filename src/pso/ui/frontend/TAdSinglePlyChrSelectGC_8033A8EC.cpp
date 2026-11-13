@@ -68,7 +68,7 @@ int forward_trade_action_default__16TObjCityMainWarpFPviii(void*, void*, void*, 
 u32 __nw__7TObjectFUl(int);
 
 s32 get_card_file_info__15TAdPlayerLoadGCFiPvPv(int, void *, int);
-s32 query_memcard_capacity__15TAdPlayerLoadGCFl(int, int);
+s32 query_memcard_capacity__15TAdPlayerLoadGCFll(int, int);
 extern char pso_guildcard_card_filename[];
 extern char pso_character_card_filename[];
 s32 TAdPlayerLoadGC__sub_801E1944(s32, void *, u32, s32);
@@ -181,7 +181,7 @@ void TAdSinglePlyChrSelectGC::handle_player_load() {
     case 0:
         switch (TAdPlayerLoadGC__sub_801E1B50(arg0->f24)) {
         case 0:
-            switch (TAdPlayerLoadGC::get_load_result((void *)arg0->f24)) {
+            switch (TAdPlayerLoadGC::get_load_result((s32)arg0->f24)) {
             case 0:
                 arg0->f2C = 0xE;
                 close_window__23TAdSinglePlyChrSelectGCFPv(arg0);
@@ -222,7 +222,7 @@ void TAdSinglePlyChrSelectGC::check_memcard_space() {
     case -1:
         break;
     default:
-        if (arg0->f28 <= query_memcard_capacity__15TAdPlayerLoadGCFl(arg0->f24, 0)) {
+        if (arg0->f28 <= query_memcard_capacity__15TAdPlayerLoadGCFll(arg0->f24, 0)) {
             arg0->f2c = 7;
         } else {
             arg0->f2c = 0xA;
@@ -246,7 +246,7 @@ void TAdSinglePlyChrSelectGC::sub_8033ACF4() {
     case 0:
         switch (TAdPlayerLoadGC__sub_801E1B50(arg0->f24)) {
         case 0:
-            switch (TAdPlayerLoadGC::get_load_result((void *)arg0->f24)) {
+            switch (TAdPlayerLoadGC::get_load_result((s32)arg0->f24)) {
             case 0:
                 arg0->f2C = 6;
                 arg0->f24 = get_chr_select_state__23TAdSinglePlyChrSelectGCFv();

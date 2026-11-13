@@ -79,7 +79,7 @@ u8 *load_gvm_texture_file(s32 arg0) {
         ent->name = str;
         TLanguage__read_cursor += 2;
         if (hdr.flags & 1) {
-            TLanguage::read_into_buffer((s32)str, 0x1C);
+            TLanguage::read_into_buffer((u8 *)str, 0x1C);
             str[0x1C] = 0;
         }
         if (hdr.flags & 2) {
@@ -103,7 +103,7 @@ u8 *load_gvm_texture_file(s32 arg0) {
 
 u16 read_file_header__9TLanguageFiPv(s32 arg0, u8 *arg1) {
     TLanguage__read_cursor = arg0;
-    TLanguage::read_into_buffer((s32)arg1, 4);
+    TLanguage::read_into_buffer((u8 *)arg1, 4);
     *(s32 *)((s8 *)arg1 + 4) = TLanguage::read_u32_le();
     *(u16 *)((s8 *)arg1 + 8) = TLanguage::read_u16_le();
     *(u16 *)((s8 *)arg1 + 0xA) = TLanguage::read_u16_le();
@@ -113,7 +113,7 @@ u16 read_file_header__9TLanguageFiPv(s32 arg0, u8 *arg1) {
     return *(u16 *)((s8 *)arg1 + 0xA);
 }
 
-void TLanguage::read_into_buffer(s32 arg0, s32 arg1) {
+void TLanguage::read_into_buffer(u8 *arg0, s32 arg1) {
     ((TLobby *)arg0)->move_data((const void *)TLanguage__read_cursor, (u32)arg1);
     TLanguage__read_cursor += arg1;
 }

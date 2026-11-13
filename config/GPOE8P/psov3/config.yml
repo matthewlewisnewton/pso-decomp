@@ -5635,7 +5635,7 @@ force_active:
   - destroy_static_array__10TObjPlayerFv
   - destroy_sub_objects__15TBoss3VoloptP02Fv
   - set_color__13TObjEneMe1GeeFPC8NJS_ARGB
-  - destroy_subobjects_recursive__10TObjPlayerFv
+  - destroy_subobjects_recursive__9TItemListFv
   - detect_device_type__16TKeyBoardControlFl
   - dimedian_action_table
   - dimedian_appear_motion_filename
@@ -13909,7 +13909,7 @@ force_active:
   - read_byte_advance__6TLobbyFv
   - read_data_sync__6TLobbyFP10AdxfHandlelPUc
   - read_file_header__9TLanguageFiPv
-  - read_into_buffer__9TLanguageFll
+  - read_into_buffer__9TLanguageFPUcl
   - read_stream_u16__Fv
   - read_stream_u8__Fv
   - read_u16_le__9TLanguageFv
@@ -17584,7 +17584,7 @@ force_active:
   - vfunc_6__11TTecRaZondeFPv
   - vfunc_6__12TNeedleShootFv
   - vfunc_6__12TODoorCave01FPsl
-  - vfunc_6__12TQuestListVMFv
+  - vfunc_6__12TQuestListVMFll
   - vfunc_6__13TAdVIConfigGCFv
   - vfunc_6__13TUnk_80488D70Fv
   - vfunc_6__14TOTrapSeabed01FPsl

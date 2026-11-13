@@ -2,6 +2,7 @@
 #pragma auto_inline off
 #pragma dont_inline off
 
+#include "pso/player/TPlyItem.h"
 #include "types.h"
 #include "pso/ui/window/TWindowMenuIconLine.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -168,7 +169,7 @@ void TShopItemListWindow::display_message(const char *text, s32 flags) {
     }
 }
 
-void TShopItemListWindow::vfunc_6() {
+void TShopItemListWindow::vfunc_6(s32, s32) {
     struct VObj_8021F16C_8021F134 *temp_r3;
 
     temp_r3 = (struct VObj_8021F16C_8021F134 *)*(void **)((s8 *)this + 0x2C);
@@ -223,7 +224,7 @@ void TShopItemListWindow::handle_amount_confirm() {
                     }
                     try_buy_item((void *)m_24, &item);
                     if (m_3c != 0U) {
-                        n = ((TObjPlayer *)(*(s32 *)(m_24 + 0xD00)))->count_items_by_id((s32)&self->recs[sel]);
+                        n = ((TPlyItem *)(*(s32 *)(m_24 + 0xD00)))->count_items_by_id((void *)&self->recs[sel]);
                         ((TWindowSubStatusDisp *)m_3c)->set_entry1_field20(n);
                     }
                     if (is_single_purchase_shop_item((u8 *)&self->recs[sel]) != 0) {
@@ -321,7 +322,7 @@ s32 TShopItemListWindow::handle_tool_list_select(void *p) {
             ((TWindowHelpItem *)(W->help))->set_displayed_item_colored((u32)&W->recs[i]);
         }
         if (W->status != NULL && i != W->cur) {
-            n = ((TObjPlayer *)(*(s32 *)(W->player + 0xD00)))->count_items_by_id((s32)&W->recs[i]);
+            n = ((TPlyItem *)(*(s32 *)(W->player + 0xD00)))->count_items_by_id((void *)&W->recs[i]);
             ((TWindowSubStatusDisp *)(W->status))->set_entry1_field20(n);
         }
         if (W->sell != NULL && i != W->cur && (e = (u8 *)W + i * 0x14, *(s32 *)(e + 0x68) > 0)) {
@@ -426,7 +427,7 @@ void TShopItemListWindow::build_item_list(void *p) {
     }
     if (W->status == NULL) {
         W->status = create_window_quantity(((TShopSequence *)W)->get_child_field1c());
-        n = ((TObjPlayer *)(*(s32 *)(W->player + 0xD00)))->count_items_by_id((s32)W->recs);
+        n = ((TPlyItem *)(*(s32 *)(W->player + 0xD00)))->count_items_by_id((void *)W->recs);
         ((TWindowSubStatusDisp *)(W->status))->set_entry1_field20(n);
     }
     if (W->cost == NULL) {

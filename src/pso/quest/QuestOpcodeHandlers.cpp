@@ -696,7 +696,7 @@ s32 send_statistic_aa(int, int, int, int, void *);
 extern s32 TLobby__protocol_instance;
 void qst_op_arg_pushw(u16 a0);
 void qst_op_arg_pushb(u8 a0);
-void qst_op_arg_pushs(int a0);
+void qst_op_arg_pushs(const char *a0);
 extern "C" {
 
 void qst_op_enable_keyword_detect() { TOChatSensorCapture::create_instance((void*)tl_01); }
@@ -712,7 +712,7 @@ void qst_op_send_statistic() {
 }
 }
 
-void qst_op_arg_pushs(int a0) { int old = qst_arg_count; qst_arg_count = old + 1; qst_args[old] = a0; }
+void qst_op_arg_pushs(const char *a0) { int old = qst_arg_count; qst_arg_count = old + 1; qst_args[old] = (int)a0; }
 extern "C" {
 
 void qst_op_arg_pusho(u16 a0) {
@@ -1526,8 +1526,8 @@ void request_player_size_restore(PlayerScaleState *state);
 void request_player_shrink(PlayerScaleState *state);
 Vec_801ECFDC * TObjPlayer__sub_801C6FDC(void *);
 void * set_mode_and_refresh_object__8TPlyItemFPv(void *, Item_801EE77C *);
-void * start_inventory_update__10TObjPlayerFi(void *, s32);
-void * get_owner_if_alive__10TObjPlayerFv(void *);
+void * start_inventory_update__8TPlyItemFi(void *, s32);
+void * get_owner_if_alive__9TItemListFv(void *);
 s32 send_download_head_d7(int, int, int);
 void* __ct__13TQuestBgmCtrlFP7TObject(void*, TObject *);
 void qst_op_item_create_multi_cm(u8 i);
@@ -4957,7 +4957,7 @@ void qst_op_find_inventory_item_ex(u8 arg0, u8 arg1) {
         item.data[4] = qst_registers[(u8)arg0];
         obj = set_mode_and_refresh_object__8TPlyItemFPv(player->fD00, &item);
         if (obj != NULL) {
-            obj = get_owner_if_alive__10TObjPlayerFv(obj);
+            obj = get_owner_if_alive__9TItemListFv(obj);
             if (obj != NULL) {
                 qst_registers[arg1] = ((TItem *)obj)->get_item_id();
             } else {
@@ -4985,7 +4985,7 @@ void qst_op_item_check(u32 first, u32 destination) {
         item.data[2] = qst_registers[(u8)first];
         slot = set_mode_and_refresh_object__8TPlyItemFPv(*(void **)((s8 *)player + 0xD00), &item);
         if (slot != 0) {
-            owner = get_owner_if_alive__10TObjPlayerFv(slot);
+            owner = get_owner_if_alive__9TItemListFv(slot);
             if (owner != 0) {
                 qst_registers[(u8) destination] = ((TItem *)owner)->get_item_id();
                 return;
@@ -5015,7 +5015,7 @@ void qst_op_item_delete2(u32 src, u32 dst) {
         item.data[2] = qst_registers[(u8)src];
         slot = set_mode_and_refresh_object__8TPlyItemFPv(*(void **)((s8 *)player + 0xD00), &item);
         if (slot != 0) {
-            owner = get_owner_if_alive__10TObjPlayerFv(slot);
+            owner = get_owner_if_alive__9TItemListFv(slot);
             if (owner != 0) {
                 ((TItem *)owner)->copy_to_item_data((TItemData *)&item);
                 qst_registers[(u8)dst++] = item.data[0];
@@ -5052,9 +5052,9 @@ void qst_op_item_delete(u32 src, u32 dst) {
     }
     player = get_player_by_client_id(local_client_id);
     if (player != 0) {
-        slot = start_inventory_update__10TObjPlayerFi(*(void **)((s8 *)player + 0xD00), qst_registers[(u8)src]);
+        slot = start_inventory_update__8TPlyItemFi(*(void **)((s8 *)player + 0xD00), qst_registers[(u8)src]);
         if (slot != 0) {
-            owner = get_owner_if_alive__10TObjPlayerFv(slot);
+            owner = get_owner_if_alive__9TItemListFv(slot);
             if (owner != 0) {
                 ((TItem *)owner)->copy_to_item_data((TItemData *)&item);
                 qst_registers[(u8)dst++] = item.data[0];
@@ -5607,10 +5607,10 @@ void qst_op_player_effect_nc(u8 arg0) {
 void qst_op_has_ep3_save_file() {
     u8 reg = qst_args[0];
     s32 ok = 0;
-    if (TAdPlayerLoadGC::probe_card_slot(0) != 0 && TAdPlayerLoadGC::find_card_file(0, "PSO3_CHARACTER") == 0 && TAdPlayerLoadGC::get_load_result((void *)0) == 0) {
+    if (TAdPlayerLoadGC::probe_card_slot(0) != 0 && TAdPlayerLoadGC::find_card_file(0, "PSO3_CHARACTER") == 0 && TAdPlayerLoadGC::get_load_result(0) == 0) {
         ok = 1;
     }
-    if (ok == 0 && TAdPlayerLoadGC::probe_card_slot(1) != 0 && TAdPlayerLoadGC::find_card_file(1, "PSO3_CHARACTER") == 0 && TAdPlayerLoadGC::get_load_result((void *)1) == 0) {
+    if (ok == 0 && TAdPlayerLoadGC::probe_card_slot(1) != 0 && TAdPlayerLoadGC::find_card_file(1, "PSO3_CHARACTER") == 0 && TAdPlayerLoadGC::get_load_result(1) == 0) {
         ok = 1;
     }
     qst_registers[reg] = ok;

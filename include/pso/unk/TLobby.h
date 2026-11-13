@@ -263,10 +263,6 @@ struct TLobby : public TObject {
     void bswap_set_battle_mode_data();
     void send_6x7D_set_battle_mode_data();
     static s32 free_if_positive(s32 arg0, s16 arg1);
-    void reduce_item_amount(s32 arg1, s32 arg2, s32 arg3);
-    s32 use_item(s32 arg1, s32 arg2, s32 arg3);
-    void set_globals_and_update(int a1, int a2);
-    int set_globals_and_notify(int a1, int a2);
     void update_all_children();
     void set_volume(u8 arg1);
     void set_validated_field_0x11(u8 arg1);
@@ -299,14 +295,11 @@ struct TLobby : public TObject {
     static void create_heap_8000();
     void *free_boss4rock(s16 arg1);
     static void append_swapped_u32(s32 *arg0);
-    void append_entity_entry();
     static u32 clamp_min_drop(u32 min, u32 max);
     static void free_boss4rock();
     void bswap_quad_word();
     void bswap_vec3();
     void swap_header_endian();
-    void bswap();
-    void swap_endian_header();
     static void init_sub_objects();
     int rebuild_entry();
     int init_sub_state();
@@ -590,8 +583,6 @@ struct TLobby : public TObject {
     static s32 tmp_buf_use_req(const char *name);
     void handle_quest_download_chunk();
     static u16 alloc_actor_ids(s32 arg);
-    void reduce_owner_matched_items();
-    void reduce_child_item_amounts();
     static void update_battle_mode();
     static void update_trade_partner();
     static void close_trade_request();
@@ -842,7 +833,7 @@ struct TLobby : public TObject {
     static void import_sync_records(s16 *arg0);
     static s32 export_sync_records(s16 *arg0);
     static u8 *alloc_heap_slot(s32 arg0, s32 arg1);
-    static s32 add_player(s32 arg0, s32 arg1, s32 arg2);
+    static s32 add_player(s32 arg0, const void *arg1, s32 arg2);
     static s32 load_all_floor_event_sets();
     static int get_destroy_event_obj();
     static void free_data_60F0();

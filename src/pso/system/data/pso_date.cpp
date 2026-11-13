@@ -75,13 +75,13 @@ void fill_date_from_seconds(u32 secs, DateStamp *out) {
         out->day--;
     }
     out->weekday = calc_day_of_week(out->year, out->month, out->day);
-    out->_pad = calc_day_in_cycle((s32 *)out);
+    out->_pad = calc_day_in_cycle(out);
 }
 
-u8 calc_day_in_cycle(s32 *date) {
+u8 calc_day_in_cycle(DateStamp *date) {
     u32 sp8;
     u32 var_r4;
-    DateToSeconds((DateStamp *)date, (int *)&sp8);
+    DateToSeconds(date, (int *)&sp8);
     if (sp8 >= 0x5CB417D1U) {
         var_r4 = sp8 - 0x5CB417D1U;
         var_r4 = var_r4 % 0x26EE7FU;

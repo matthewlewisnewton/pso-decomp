@@ -70,9 +70,9 @@ u32 TShopSequence::create_message_window(s32 arg1, s32 arg2) {
 }
 
 void TShopSequence::display_guild_message(s32 index, s32 flags) { void* m = *(void**)((char*)this + 0x28); if (m) ((TMessageWindowController *)m)->format_guild_message(index, flags); }
-void TShopSequence::vfunc_8() { void* m = *(void**)((char*)this + 0x28); if (m) send_message__24TMessageWindowControllerFll(m); }
+void TShopSequence::vfunc_8(s32, s32) { void* m = *(void**)((char*)this + 0x28); if (m) send_message__24TMessageWindowControllerFll(m); }
 void TShopSequence::display_message(const char *text, s32 flags) { void* m = *(void**)((char*)this + 0x28); if (m) ((TMessageWindowController *)m)->display_message(text, flags); }
-void TShopSequence::vfunc_6() { void* m = *(void**)((char*)this + 0x28); if (m) format_shop_message__24TMessageWindowControllerFll(m); }
+void TShopSequence::vfunc_6(s32, s32) { void* m = *(void**)((char*)this + 0x28); if (m) format_shop_message__24TMessageWindowControllerFll(m); }
 void TShopSequence::close_if_single_screen() {
     if ((TAdSinglePlyChrSelectGC::get_game_mode() != 0) && (is_split_screen() == 0)) {
         load_character_from_card__23TAdSinglePlyChrSelectGCFi(0);

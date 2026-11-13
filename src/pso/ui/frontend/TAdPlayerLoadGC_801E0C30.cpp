@@ -180,7 +180,7 @@ s32 TAdPlayerLoadGC::probe_and_check_card(s32 arg0) {
     if (sp8 == 0x2000) {
         if (!(TAdPlayerLoadGC__card_slot_state_flags & (4 << arg0))) {
             TAdPlayerLoadGC__sub_801E101C(arg0);
-            if ((u32) TAdPlayerLoadGC::get_load_result((void *)arg0) == -0x7FU) {
+            if ((u32) TAdPlayerLoadGC::get_load_result((s32)arg0) == -0x7FU) {
                 TAdPlayerLoadGC__card_result_code = -0x7F;
                 return 0;
             }
@@ -402,7 +402,7 @@ int TAdPlayerLoadGC__sub_801E1510(void) {  return lbl_805D5E44; }
 s32 TAdPlayerLoadGC__sub_801E1518(void *arg0, s32 arg1, u32 arg2) {
     return (s32) (((arg2 >> 0xDU) + 3) << 0xD) / 8192;
 }
-s32 TAdPlayerLoadGC::get_load_result(void * _w0) {
+s32 TAdPlayerLoadGC::get_load_result(s32 _w0) {
     return TAdPlayerLoadGC__card_result_code;
 }
 
@@ -850,7 +850,7 @@ check:
     return -0xFB;
 }
 
-s32 TAdPlayerLoadGC::query_memcard_capacity(s32 arg0) {
+s32 TAdPlayerLoadGC::query_memcard_capacity(s32 arg0, s32 arg1) {
     s32 spC;
     s32 sp8;
     if (arg0 >= 2) {
@@ -899,7 +899,7 @@ s32 TAdPlayerLoadGC__sub_801E24F8(s32 chan) {
     return -1;
 }
 
-s32 TAdPlayerLoadGC::poll_load_status(s32 arg0) {
+s32 TAdPlayerLoadGC::poll_load_status(s32 arg0, const char *name) {
     if (arg0 >= 2) {
         TAdPlayerLoadGC__card_result_code = -1;
         return -1;

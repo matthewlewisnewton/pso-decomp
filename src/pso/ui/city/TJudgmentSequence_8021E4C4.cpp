@@ -46,7 +46,7 @@ void TShopGetItemWindow::display_message(const char *text, s32 flags) {
     }
 }
 
-void TShopGetItemWindow::vfunc_6() {
+void TShopGetItemWindow::vfunc_6(s32, s32) {
     struct VObj_8021E55C_8021E4C4 *o = (struct VObj_8021E55C_8021E4C4 *)this->m_5c;
     if (o != NULL) {
         o->m4();
