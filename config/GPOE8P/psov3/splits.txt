@@ -11965,6 +11965,7 @@ pso/unk/text_803516F8.cpp:
 
 pso/player/TObjPlayer_80351748.cpp:
 	.text       start:0x80351748 end:0x80351A2C
+	.sdata2     start:0x805DFEC8 end:0x805DFED0
 
 pso/boss/TBoss5GryphonLightningWing.cpp:
 	.text       start:0x80351A2C end:0x80351DF8
