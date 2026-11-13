@@ -433,6 +433,7 @@ force_active:
   - TBoss7Tentacle__sub_802F0A2C
   - TBoss7Tentacle__sub_802F0A44
   - TBoss8DragonDemo__sub_802F2CC4
+  - TBoss8DragonEffBreath__name
   - TBoss8Dragon__camera_offset_index_table
   - TBoss8Dragon__data_804E4C28
   - TBoss8Dragon__data_80541DC8
@@ -8335,6 +8336,7 @@ force_active:
   - lbl_80472C80
   - lbl_80472C90
   - lbl_80472C9C
+  - lbl_80474B50
   - lbl_80474F08
   - lbl_80474F1C
   - lbl_80474F34
