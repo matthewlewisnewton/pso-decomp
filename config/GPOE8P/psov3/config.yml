@@ -5774,7 +5774,7 @@ force_active:
   - draw_body__13TObjEneMorfosFv
   - draw_body_models__11TBoss6Type2Fv
   - draw_bottom_bar__20TWindowSubStatusDispFv
-  - draw_callback_transform_to_view__8TObjFishFv
+  - capture_node__24ModelNodePositionCaptureFP10NJS_OBJECT
   - draw_class_illustration__17TChCrTagPlGraphicFv
   - draw_closed__8TObjDoorFPv
   - draw_closed_glow__8TObjDoorFPv
@@ -7254,7 +7254,7 @@ force_active:
   - is_enabled__9TItemDropFv
   - is_end__12TCharaMakingFv
   - is_entity_locally_controlled__Fl
-  - is_entry_table_valid__8TObjFishFv
+  - is_valid__24ModelNodePositionCaptureFP22ModelNodePositionEntry
   - is_entry_valid__23TAdSinglePlyChrSelectGCFPvi
   - is_entry_valid__6TLobbyFl
   - is_far_from_origin__10TBoss6MineFv

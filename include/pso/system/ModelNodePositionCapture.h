@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/system/vector.h"
 
+struct NJS_OBJECT;
+
 struct ModelNodePositionEntry {
     s32 node_index;
     Vec offset;
@@ -13,6 +15,8 @@ class ModelNodePositionCapture {
 public:
     void install();
     void clear();
+    static void capture_node(NJS_OBJECT *node);
+    static s32 is_valid(ModelNodePositionEntry *entries);
     static void destroy(ModelNodePositionCapture *capture);
 
 private:

@@ -13,8 +13,6 @@ struct Param_800E2FFC { s32 a; s32 b; s32 c; };
 
 struct State_800E2FFC { s32 counter; Entry_800E2FFC *list; Param_800E2FFC *params; s32 pad; };
 
-struct Entry_800E30BC { s32 id; u8 data[0xC]; };
-
 struct Entry_800E3074 { s32 id; u8 data[0xC]; };
 
 struct Param_800E3074 { s32 a; s32 b; s32 c; };
@@ -28,7 +26,7 @@ u8 * __ct__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec(void *, voi
 State_800E2FFC model_node_position_capture_state;
 void transform_to_view__11TCameraCtrlFii(s32 arg0, s32 arg1);
 
-void TObjFish::draw_callback_transform_to_view() {
+void ModelNodePositionCapture::capture_node(NJS_OBJECT *) {
     Entry_800E2FFC *p = model_node_position_capture_state.list;
     Param_800E2FFC *q = model_node_position_capture_state.params;
     s32 id;
@@ -47,16 +45,15 @@ void ModelNodePositionCapture::install() {
     (*(State_800E3074 *)&model_node_position_capture_state).counter = 0;
     (*(State_800E3074 *)&model_node_position_capture_state).list = arg->list;
     (*(State_800E3074 *)&model_node_position_capture_state).params = arg->params;
-    set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)TObjFish::draw_callback_transform_to_view));
+    set_chunk_model_node_callback((ChunkModelNodeCallback)((void *)ModelNodePositionCapture::capture_node));
 }
 
-s32 TObjFish::is_entry_table_valid() {
-    Entry_800E30BC *p = (Entry_800E30BC *)this;
+s32 ModelNodePositionCapture::is_valid(ModelNodePositionEntry *p) {
     s32 i;
     if (p == 0) {
         return 0;
     }
-    for (i = 0; p->id != -1; i++, p++) {
+    for (i = 0; p->node_index != -1; i++, p++) {
         if (i >= 0x40) {
             return 0;
         }
@@ -71,7 +68,7 @@ void ModelNodePositionCapture::destroy(ModelNodePositionCapture *capture) {
 s32 create__24ModelNodePositionCaptureFP22ModelNodePositionEntryP3Vec(u8 *list, s32 vecs) {
     s32 temp_r3;
     s32 var_r0;
-    if (((TObjFish *)list)->is_entry_table_valid() != 0) {
+    if (ModelNodePositionCapture::is_valid((ModelNodePositionEntry *)list) != 0) {
         temp_r3 = (int)::operator new(8);
         var_r0 = temp_r3;
         if (var_r0 != 0) {
