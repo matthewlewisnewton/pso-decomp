@@ -5009,7 +5009,7 @@ force_active:
   - check_trigger_flag__15TOTrapAncient01Fll
   - check_type_and_enabled__11TMainCursorFPvPv
   - check_valid_state__6TLobbyFi
-  - check_vector_bit__15TObjEneMe1GiGueFl
+  - check_vector_bit__15TObjEneMe1GiGueFP3Vec
   - choose_attack__13TObjEneBm3FlyFPv
   - choose_attack_heading_sector__11TBoss4Type3Fv
   - choose_attack_target__10TNpcPlayerFv
@@ -6600,8 +6600,8 @@ force_active:
   - get_floor_surface_type__10TObjPlayerFv
   - get_floor_switch_flag__FUls
   - get_function_key_menu__16TKeyBoardControlFPv
-  - get_gigue_float_parameter__Fll
-  - get_gigue_int_parameter__Fll
+  - get_float_parameter__15TObjEneMe1GiGueFl
+  - get_int_parameter__15TObjEneMe1GiGueFl
   - get_group_id__14TObjEneBm5WolfFPv
   - get_gstream_buffered_bytes__Fv
   - get_handle_6x78_entry__FUs
@@ -14038,7 +14038,7 @@ force_active:
   - reload_stats_for_phase__13TBoss5GryphonFPv
   - reload_stats_for_type__13TBoss5GryphonFv
   - remap_sequence_after_recovery__12TBoss1DragonFv
-  - remap_sound_id__15TObjEneMe1GiGueFPvl
+  - remap_sound_id__15TObjEneMe1GiGueFl
   - remove_duplicate_bindings__21TWindowSubCustomEquipFPv
   - remove_entry_at__6TLobbyFi
   - remove_equip_effects__14TItemEquipBaseFv
@@ -16302,9 +16302,9 @@ force_active:
   - sub_802C2548__13TUnk_804E094CFv
   - sub_802C2A10__13TUnk_804E0988Fv
   - sub_802C2C48__13TUnk_804E0988Fv
-  - sub_802CACD8__15TObjEneMe1GiGueFv
-  - sub_802CB6D4__15TObjEneMe1GiGueFv
-  - sub_802CCF2C__15TObjEneMe1GiGueFv
+  - reset_spawn_after_hold__15TObjEneMe1GiGueFv
+  - select_next_action__15TObjEneMe1GiGueFv
+  - update_idle__15TObjEneMe1GiGueFv
   - sub_802D4E08__23TAdSinglePlyChrSelectGCFv
   - sub_802D577C__13TUnk_804E21F8Fv
   - sub_802D7444__12TObjNpcEnemyFv

@@ -72,7 +72,7 @@ s32 collect_targets__15TObjEneMe1GiGueFv(S_802CB10C *arg0);
 void add_target_in_cone__15TObjEneMe1GiGueFP9TObjChara(Gi_802CB170 *self, Tgt_802CB170 *t);
 void update_spawn__15TObjEneMe1GiGueFv(u8 *arg0);
 void update_landing__15TObjEneMe1GiGueFv(u8 *arg0);
-void sub_802CB6D4__15TObjEneMe1GiGueFv(u8 *arg0);
+void select_next_action__15TObjEneMe1GiGueFv(u8 *arg0);
 void move_around_center__15TObjEneMe1GiGueFP3Vecf(Obj_802CB8F0 *o, Vec_802CB8F0 *c, f32 r);
 void update_rush_attack__15TObjEneMe1GiGueFv(Obj_802CBCC0 *o);
 void update_barrier__15TObjEneMe1GiGueFv(void *arg0);
@@ -82,7 +82,7 @@ void update_missile_attack__15TObjEneMe1GiGueFv(u8 *arg0);
 void update_search__15TObjEneMe1GiGueFv(Obj_802CCBAC *o);
 void vfunc_63__15TObjEneMe1GiGueFv(u8 *arg0);
 void vfunc_62__15TObjEneMe1GiGueFv(u8 *arg0);
-void sub_802CCF2C__15TObjEneMe1GiGueFv(u8 *arg0);
+void update_idle__15TObjEneMe1GiGueFv(u8 *arg0);
 void TObjEneMe1GiGue__sub_802CD054(void);
 void render__15TObjEneMe1GiGueFv(Obj_802CD058 *self);
 void run_task__15TObjEneMe1GiGueFv(u8 *arg0);
@@ -472,7 +472,7 @@ struct O_802CAC04 { u8 pad[0x326]; s16 v; };
 void TObjEneMe1GiGueBarrier::clear_flag388_bit80000() { *(u32*)((char*)this + 0x388) &= 0xfff7ffff; }
 void set_barrier_active__15TObjEneMe1GiGueFv(void* p) { *(u32*)((char*)p + 0x388) |= 0x80000; }
 
-u8 TObjEneMe1GiGueBarrier::is_active_state() {
+s32 TObjEneMe1GiGue::should_end_barrier() {
     s32 r = 0;
     s16 v = ((O_802CAC04 *)this)->v;
     if (v == 9) goto yes;
@@ -483,12 +483,12 @@ u8 TObjEneMe1GiGueBarrier::is_active_state() {
 yes:
     r = 1;
 done:
-    return r;
+    return (u8)r;
 }
 
-s32 TObjEneMe1GiGueBarrier::get_field_44c() { return *(s32*)((char*)this + 0x44c); }
-s32 TObjEneMe1GiGueBarrier::get_timer() { return this->rotation_y; }
-void*TObjEneMe1GiGueBarrier::update_and_get_pos() { update_animation_nodes__15TObjEneMe1GiGueFv((u8 *)this); return (char*)this + 0x3b4; }
+s32 TObjEneMe1GiGue::get_barrier_duration() { return *(s32*)((char*)this + 0x44c); }
+s32 TObjEneMe1GiGue::get_barrier_rotation() { return *(s32*)((char*)this + 0x60); }
+Vec *TObjEneMe1GiGue::update_barrier_origin() { update_animation_nodes__15TObjEneMe1GiGueFv((u8 *)this); return (Vec *)((char*)this + 0x3b4); }
 
 struct RecoveredGlobal_802CB03C_lbl_8058D490 {
     s32 value;
@@ -533,8 +533,6 @@ extern "C" {
 s32 update_if_active__15TObjEnemyCustomFl(void *, s32);
 s32 project_actor_to_ground(void *, void *, s32);
 }
-s32 get_gigue_int_parameter(s32, s32);
-f32 get_gigue_float_parameter(s32, s32);
 extern f32 lbl_805D6840;
 extern f32 lbl_805D6844;
 extern f32 lbl_805D6848;
@@ -559,10 +557,11 @@ s32 update_action_hold_status__9TObjCharaFv();
 s32 *csnVectorUnder(s32, s32, s32, s32);
 
     extern u32 TObjEneMe1GiGue__data_805D6838;
-int TObjEneMe1GiGue::get_barrier_count() {  return TObjEneMe1GiGue__data_805D6838; }
+int TObjEneMe1GiGue::get_resources() {  return TObjEneMe1GiGue__data_805D6838; }
 
-s32 TObjEneMe1GiGue::check_vector_bit(s32 arg1) {
+s32 TObjEneMe1GiGue::check_vector_bit(Vec *point) {
     s32 arg0 = (s32)this;
+    s32 arg1 = (s32)point;
     s32 *temp_r3;
 
     temp_r3 = csnVectorUnder(arg1, arg0 + 0x120, 5, arg0);
@@ -574,7 +573,7 @@ s32 TObjEneMe1GiGue::check_vector_bit(s32 arg1) {
 
 #pragma push
 #pragma fp_contract on
-void TObjEneMe1GiGue::sub_802CACD8() {
+void TObjEneMe1GiGue::reset_spawn_after_hold() {
     s32 temp_r4;
     u8 *arg0 = (u8 *)this;
     temp_r4 = ((TObjEneMe1GiGue *)arg0)->m_388;
@@ -594,7 +593,7 @@ void TObjEneMe1GiGue::sub_802CACD8() {
 s32 TObjEneMe1GiGue::update_action_hold_status() {
     s32 arg0 = (s32)this;
     if (update_action_hold_status__9TObjCharaFv() != 0) {
-        ((TObjEneMe1GiGue *)arg0)->sub_802CACD8();
+        ((TObjEneMe1GiGue *)arg0)->reset_spawn_after_hold();
         return 1;
     }
     return 0;
@@ -646,14 +645,14 @@ void find_open_direction__15TObjEneMe1GiGueFP3Vec(u8 *arg0, Vec_802CAD98 *arg1) 
 #pragma fp_contract on
 void TObjEneMe1GiGue::load_params() {
     s32 arg0 = (s32)this;
-    lbl_805D6840 = get_gigue_float_parameter(arg0, 1);
-    lbl_805D6844 = get_gigue_float_parameter(arg0, 2);
-    lbl_805D6848 = get_gigue_float_parameter(arg0, 3);
-    lbl_805D684C = get_gigue_float_parameter(arg0, 4);
-    lbl_805D6850 = get_gigue_int_parameter(arg0, 0);
-    lbl_805D6854 = get_gigue_int_parameter(arg0, 1);
-    *(s32 *)((s8 *)arg0 + 0x44C) = (s32) (30.0f * (f32) get_gigue_int_parameter(arg0, 3));
-    *(s32 *)((s8 *)arg0 + 0x450) = get_gigue_int_parameter(arg0, 4);
+    lbl_805D6840 = ((TObjEneMe1GiGue *)arg0)->get_float_parameter(1);
+    lbl_805D6844 = ((TObjEneMe1GiGue *)arg0)->get_float_parameter(2);
+    lbl_805D6848 = ((TObjEneMe1GiGue *)arg0)->get_float_parameter(3);
+    lbl_805D684C = ((TObjEneMe1GiGue *)arg0)->get_float_parameter(4);
+    lbl_805D6850 = ((TObjEneMe1GiGue *)arg0)->get_int_parameter(0);
+    lbl_805D6854 = ((TObjEneMe1GiGue *)arg0)->get_int_parameter(1);
+    *(s32 *)((s8 *)arg0 + 0x44C) = (s32) (30.0f * (f32) ((TObjEneMe1GiGue *)arg0)->get_int_parameter(3));
+    *(s32 *)((s8 *)arg0 + 0x450) = ((TObjEneMe1GiGue *)arg0)->get_int_parameter(4);
 }
 #pragma pop
 
@@ -738,7 +737,7 @@ void update_spawn__15TObjEneMe1GiGueFv(u8 *arg0) {
         ((TObjMotion *)arg0)->advance_animation();
         if (((VObj410 *)(arg0 + 0x3FC))->m5() == 1) {
             *(s32 *)((s8 *)arg0 + 0x37C) = -1;
-            play_sound_effect((void *)TObjEneMe1GiGue::remap_sound_id((arg0), 0x3A345), arg0 + 0x38, 0, 0);
+            play_sound_effect((void *)((TObjEneMe1GiGue *)arg0)->remap_sound_id(0x3A345), arg0 + 0x38, 0, 0);
         }
         ((TObjPlayer *)arg0)->update_collisions();
         return;
@@ -777,7 +776,7 @@ void update_landing__15TObjEneMe1GiGueFv(u8 *arg0) {
             *(f32 *)((s8 *)arg0 + 0x30C) = 0.0f;
             if ((s16) *(s16 *)((s8 *)arg0 + 0xB8) != 8) {
                 *(s32 *)((s8 *)arg0 + 0x37C) = -1;
-                play_sound_effect((void *)TObjEneMe1GiGue::remap_sound_id((arg0), 0x3A345), arg0 + 0x38, 0, 0);
+                play_sound_effect((void *)((TObjEneMe1GiGue *)arg0)->remap_sound_id(0x3A345), arg0 + 0x38, 0, 0);
             }
         } else if ((s16) *(s16 *)((s8 *)arg0 + 0xB8) == 7) {
             if (temp_f3 <= (2.3f * (40.0f + (1.0f / *(f32 *)((s8 *)arg0 + 0xCC))))) {
@@ -785,11 +784,11 @@ void update_landing__15TObjEneMe1GiGueFv(u8 *arg0) {
             }
         } else {
             temp_r0_2 = (s32) *(f32 *)((s8 *)arg0 + 0xC0);
-            if (((temp_r0_2 == 0x14) || (temp_r0_2 == 0x28)) && (((TObjEneMe1GiGue *)arg0)->check_vector_bit((s32)(arg0 + 0x38)) != 0)) {
+            if (((temp_r0_2 == 0x14) || (temp_r0_2 == 0x28)) && (((TObjEneMe1GiGue *)arg0)->check_vector_bit((Vec *)(arg0 + 0x38)) != 0)) {
                 spawn_particle_effect((arg0 + 0x38), 0xF0);
             }
         }
-        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(arg0, 0x3A819)), (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+        play_persistent_sound((s32)(((TObjEneMe1GiGue *)arg0)->remap_sound_id(0x3A819)), (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
         ((TObjPlayer *)arg0)->update_collisions();
         break;
     case -1:
@@ -870,11 +869,11 @@ void *find_entity_by_id(u16 id);
 #define subtract_vector ((void (*)(void *, void *))subtract_vector)
 u32 get_player_by_client_id(s32);
 
-s32 TObjEneMe1GiGue::remap_sound_id(void *obj, s32 id) {
+s32 TObjEneMe1GiGue::remap_sound_id(s32 id) {
     s32 area = get_current_floor_area();
     if (id == 0x3A344) return area == AREA_TOWER ? 0x40039E14 : id;
     if (id == 0x3A345) return area == AREA_TOWER ? 0x40039415 : id;
-    return ((TObjEnemy *)(obj))->remap_sound_for_area((s32)(id));
+    return ((TObjEnemy *)this)->remap_sound_for_area((s32)(id));
 }
 
 void TObjEneMe1GiGue::apply_hit_shake(u32 arg1) {
@@ -894,7 +893,7 @@ void TObjEneMe1GiGue::init_move() {
 
 #pragma fp_contract on
 
-void TObjEneMe1GiGue::sub_802CB6D4() {
+void TObjEneMe1GiGue::select_next_action() {
     switch (this->mode) {
     case 0:
         if (this->is_actor_cadence_frame(0x1E) != 0) {
@@ -929,12 +928,12 @@ void TObjEneMe1GiGue::sub_802CB6D4() {
 void spawn_needle__15TObjEneMe1GiGueFl(void *arg0_, s32 arg1) {
     u8 *slot = arg0 + arg1 * 2;
     if (find_entity_by_id(*(u16 *)(slot + 0x3C4)) != 0) {
-        GiGueShotAngles v;
+        GiGueProjectileAngles v;
         v.x = 0;
         v.y = *(s32 *)(arg0 + 0x60) + ((arg1 & 1) ? -0x2000 : 0x2000);
         v.z = 0;
         new TUnk_804E14E8((Vec *)(arg0 + 0x3A8), *(u16 *)(slot + 0x3C4), &v, arg1 * 3,
-                          random_ratio__9TObjCharaFv(arg0) <= get_gigue_float_parameter((s32)arg0, 5),
+                          random_ratio__9TObjCharaFv(arg0) <= ((TObjEneMe1GiGue *)arg0)->get_float_parameter(5),
                           *(u16 *)(arg0 + 0x1C));
     }
 }
@@ -962,7 +961,7 @@ void TObjEneMe1GiGue::break_apart() {
     this->send_entity_set_flags();
     spawn_particle_effect((&position.x), 0x205);
     spawn_particle_effect((&position.x), 0x206);
-    play_sound_effect((void *) (TObjEneMe1GiGue::remap_sound_id((this), 0x3AF1C)), &position.x, 0, 0);
+    play_sound_effect((void *) (remap_sound_id(0x3AF1C)), &position.x, 0, 0);
     queue_destruction__7TObjectFv((this));
 }
 
@@ -1118,7 +1117,7 @@ void update_rush_attack__15TObjEneMe1GiGueFv(Obj_802CBCC0 *o) {
         o->f454--;
         if (o->f454 <= 0) {
             o->state = 2;
-            play_sound_effect((void *)TObjEneMe1GiGue::remap_sound_id((o), 0x3A818), &o->pos, 0, 0);
+            play_sound_effect((void *)((TObjEneMe1GiGue *)o)->remap_sound_id(0x3A818), &o->pos, 0, 0);
             o->f30 |= 0x1000000;
             o->f30 &= ~0x800000;
             ((s32 (*)(void *, Sub_802CBCC0 *, f32))find_target_in_range__15TObjEnemyCustomFf)(o, o->f350, o->f350->f0);
@@ -1141,7 +1140,7 @@ void update_rush_attack__15TObjEneMe1GiGueFv(Obj_802CBCC0 *o) {
         s32 ok;
         o->f30 &= ~0x800000;
         ((TObjMotion *)o)->advance_animation();
-        calc_velocity_toward_destination(o, get_gigue_float_parameter((s32)o, 0), o->pos, o->dest);
+        calc_velocity_toward_destination(o, ((TObjEneMe1GiGue *)o)->get_float_parameter(0), o->pos, o->dest);
         ok = 1;
         if (o->fB8 == 6 && o->fC0 < 22.0f) {
             ok = 0;
@@ -1150,18 +1149,18 @@ void update_rush_attack__15TObjEneMe1GiGueFv(Obj_802CBCC0 *o) {
             o->f3EC += 2.2f;
         }
         ((TObjPlayer *)o)->update_collisions();
-        if (TObjPlayer__sub_800DC478((u8 *)o, 1, 22.0f) != 0 && ((TObjEneMe1GiGue *)o)->check_vector_bit((s32)&o->pos) != 0) {
+        if (TObjPlayer__sub_800DC478((u8 *)o, 1, 22.0f) != 0 && ((TObjEneMe1GiGue *)o)->check_vector_bit((Vec *)&o->pos) != 0) {
             spawn_particle_effect(&o->pos, 0xF0);
         }
         if (o->f3EC >= 50.0f) {
             o->state = 3;
         }
-        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A819)), (s32)o, (u32)&o->pos, 0, 0);
+        play_persistent_sound((s32)(((TObjEneMe1GiGue *)o)->remap_sound_id(0x3A819)), (s32)o, (u32)&o->pos, 0, 0);
         break;
     }
     case 3:
         ((TObjMotion *)o)->advance_animation();
-        calc_velocity_toward_destination(o, get_gigue_float_parameter((s32)o, 0), o->pos, o->dest);
+        calc_velocity_toward_destination(o, ((TObjEneMe1GiGue *)o)->get_float_parameter(0), o->pos, o->dest);
         o->v308.y = 0.0f;
         VecCopy((Vec *)&o->prev, (const Vec *)&o->pos);
         vec3_add_to(&o->pos, &o->v308);
@@ -1175,14 +1174,14 @@ void update_rush_attack__15TObjEneMe1GiGueFv(Obj_802CBCC0 *o) {
                 o->v308.x = o->v308.z = 0.0f;
             }
         }
-        if (((TObjMotion *)o)->is_passing_frame((f32)(10.0f)) != 0 && ((TObjEneMe1GiGue *)o)->check_vector_bit((s32)&o->pos) != 0) {
+        if (((TObjMotion *)o)->is_passing_frame((f32)(10.0f)) != 0 && ((TObjEneMe1GiGue *)o)->check_vector_bit((Vec *)&o->pos) != 0) {
             spawn_particle_effect(&o->pos, 0xF0);
         }
         ((TObjCollidable *)o)->refresh_collision_body_centers();
         if (o->f3EC > 15.0f) {
             ((TObjEnemy *)o)->turn_toward_direction(o->f350->f8 * 2, (Vec *)&o->v308);
         }
-        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A819)), (s32)o, (u32)&o->pos, 0, 0);
+        play_persistent_sound((s32)(((TObjEneMe1GiGue *)o)->remap_sound_id(0x3A819)), (s32)o, (u32)&o->pos, 0, 0);
         project_actor_to_ground(o, &o->pos, 0);
         break;
     case 4:
@@ -1208,11 +1207,11 @@ void update_rush_attack__15TObjEneMe1GiGueFv(Obj_802CBCC0 *o) {
             }
         } else {
             s32 t = (s32)o->fC0;
-            if ((t == 0x14 || t == 0x28) && ((TObjEneMe1GiGue *)o)->check_vector_bit((s32)&o->pos) != 0) {
+            if ((t == 0x14 || t == 0x28) && ((TObjEneMe1GiGue *)o)->check_vector_bit((Vec *)&o->pos) != 0) {
                 spawn_particle_effect(&o->pos, 0xF0);
             }
         }
-        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A819)), (s32)o, (u32)&o->pos, 0, 0);
+        play_persistent_sound((s32)(((TObjEneMe1GiGue *)o)->remap_sound_id(0x3A819)), (s32)o, (u32)&o->pos, 0, 0);
         check_object_collisions__14TObjCollidableFv(o);
         check_enemy_body_collisions(o);
         update_enemy_collision_flags__14TObjCollidableFv(o);
@@ -1307,12 +1306,12 @@ void update_techniques__15TObjEneMe1GiGueFv(u8 *arg0) {
             }
             break;
         case 2:
-            play_sound_effect((void *)TObjEneMe1GiGue::remap_sound_id((arg0), 0x3A344), arg0 + 0x38, 0, 0);
+            play_sound_effect((void *)((TObjEneMe1GiGue *)arg0)->remap_sound_id(0x3A344), arg0 + 0x38, 0, 0);
             if (*(f32 *)((s8 *)arg0 + 0xC0) >= 10.0f) {
                 update_animation_nodes__15TObjEneMe1GiGueFv(arg0);
                 *(s32 *)((s8 *)arg0 + 0x37C) = 3;
-                create_instance__9TTecZaruaFllll(arg0, arg0 + 0x2FC, arg0 + 0x2FC, get_gigue_int_parameter((s32)arg0, 2));
-                create__9TTecJelinFllll(arg0, arg0 + 0x2FC, arg0 + 0x2FC, get_gigue_int_parameter((s32)arg0, 2));
+                create_instance__9TTecZaruaFllll(arg0, arg0 + 0x2FC, arg0 + 0x2FC, ((TObjEneMe1GiGue *)arg0)->get_int_parameter(2));
+                create__9TTecJelinFllll(arg0, arg0 + 0x2FC, arg0 + 0x2FC, ((TObjEneMe1GiGue *)arg0)->get_int_parameter(2));
             }
             break;
     }
@@ -1377,7 +1376,7 @@ void update_needle_attack__15TObjEneMe1GiGueFv(u8 *enemy) {
             }
             break;
         case 2:
-            play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(enemy, 0x3A820)), (s32)enemy, (u32)(enemy + 0x38), 0, 0);
+            play_persistent_sound((s32)(((TObjEneMe1GiGue *)enemy)->remap_sound_id(0x3A820)), (s32)enemy, (u32)(enemy + 0x38), 0, 0);
             if (*(f32 *)((s8 *)enemy + 0xC0) >= 10.0f) {
                 update_animation_nodes__15TObjEneMe1GiGueFv(enemy);
                 n = *(s32 *)((s8 *)enemy + 0x3C0);
@@ -1512,7 +1511,7 @@ void update_missile_attack__15TObjEneMe1GiGueFv(u8 *arg0) {
             }
             break;
         case 2:
-            play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(o, 0x3A81D)), (s32)o, (u32)&o->pos, 0, 0);
+            play_persistent_sound((s32)(((TObjEneMe1GiGue *)o)->remap_sound_id(0x3A81D)), (s32)o, (u32)&o->pos, 0, 0);
             if (o->fC0 >= 20.0f) {
                 update_animation_nodes__15TObjEneMe1GiGueFv((u8 *)o);
                 if ((r = (u32)spawn_particle_effect(o->f39C, 0x203)) != 0) {
@@ -1520,7 +1519,7 @@ void update_missile_attack__15TObjEneMe1GiGueFv(u8 *arg0) {
                     ((TParticleCtrl *)r)->set_direction(&v);
                 }
                 TObjEneMe1GiGueMissile::create((s32)o, (s32)o->f39C, (s32)(o->f2A8 + 0x2FC), (f32)lbl_805D6840, (f32)lbl_805D6850);
-                play_sound_effect((void *)TObjEneMe1GiGue::remap_sound_id((o), 0x3A31E), &o->pos, 0, 0);
+                play_sound_effect((void *)((TObjEneMe1GiGue *)o)->remap_sound_id(0x3A31E), &o->pos, 0, 0);
                 o->state = 3;
             }
             break;
@@ -1663,7 +1662,7 @@ void TObjEneMe1GiGue::vfunc_62() {
   *((s32 *) (((s8 *) arg0) + 0x378)) = 4;
   *((s32 *) (((s8 *) arg0) + 0x388)) = (s32) (((*((s32 *) (((s8 *) arg0) + 0x388))) | 0x10000) | 1);
 }
-void TObjEneMe1GiGue::sub_802CCF2C() {
+void TObjEneMe1GiGue::update_idle() {
     if (this->m_388 & 0x40000) {
         return;
     }
@@ -1716,10 +1715,10 @@ void * __ct__11TObjControlFP7TObject(void *, void *);
 s32 submit_cursor_candidate(void *, int);
 s32 minimap_render_dot(void *, int, int, int);
 #define load_params__15TObjEneMe1GiGueFv ((s32 (*)(void *))load_params__15TObjEneMe1GiGueFv)
-#define sub_802CB6D4__15TObjEneMe1GiGueFv ((s32 (*)(void *))sub_802CB6D4__15TObjEneMe1GiGueFv)
+#define select_next_action__15TObjEneMe1GiGueFv ((s32 (*)(void *))select_next_action__15TObjEneMe1GiGueFv)
 #define update_rush_attack__15TObjEneMe1GiGueFv ((s32 (*)(void *))update_rush_attack__15TObjEneMe1GiGueFv)
 #define update_search__15TObjEneMe1GiGueFv ((s32 (*)(void *))update_search__15TObjEneMe1GiGueFv)
-#define sub_802CCF2C__15TObjEneMe1GiGueFv ((s32 (*)(void *))sub_802CCF2C__15TObjEneMe1GiGueFv)
+#define update_idle__15TObjEneMe1GiGueFv ((s32 (*)(void *))update_idle__15TObjEneMe1GiGueFv)
 u8 *__ct__15TObjEneMe1GiGueFP7TObjectPv(u8 *, s32, u8 *);
 void TObjEneMe1GiGue__sub_802CDAE8();
 void TObjEneMe1GiGue__sub_802CE4E8(void);
@@ -1736,10 +1735,10 @@ extern void *tl_04;
 void TObjEneMe1GiGue__sub_802CD054(void) {  }
 }
 #undef load_params__15TObjEneMe1GiGueFv
-#undef sub_802CB6D4__15TObjEneMe1GiGueFv
+#undef select_next_action__15TObjEneMe1GiGueFv
 #undef update_rush_attack__15TObjEneMe1GiGueFv
 #undef update_search__15TObjEneMe1GiGueFv
-#undef sub_802CCF2C__15TObjEneMe1GiGueFv
+#undef update_idle__15TObjEneMe1GiGueFv
 #include "pso/boss/volopt/TBoss3VoloptMonitor.h"
 #include "pso/enemy/lappy/TObjEneLappy.h"
 #include "pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h"
@@ -1887,10 +1886,10 @@ void render__15TObjEneMe1GiGueFv(Obj_802CD058 *self) {
 
 #undef rotate_matrix_y
 #define load_params__15TObjEneMe1GiGueFv ((s32 (*)(void *))load_params__15TObjEneMe1GiGueFv)
-#define sub_802CB6D4__15TObjEneMe1GiGueFv ((s32 (*)(void *))sub_802CB6D4__15TObjEneMe1GiGueFv)
+#define select_next_action__15TObjEneMe1GiGueFv ((s32 (*)(void *))select_next_action__15TObjEneMe1GiGueFv)
 #define update_rush_attack__15TObjEneMe1GiGueFv ((s32 (*)(void *))update_rush_attack__15TObjEneMe1GiGueFv)
 #define update_search__15TObjEneMe1GiGueFv ((s32 (*)(void *))update_search__15TObjEneMe1GiGueFv)
-#define sub_802CCF2C__15TObjEneMe1GiGueFv ((s32 (*)(void *))sub_802CCF2C__15TObjEneMe1GiGueFv)
+#define update_idle__15TObjEneMe1GiGueFv ((s32 (*)(void *))update_idle__15TObjEneMe1GiGueFv)
 void TObjEneMe1GiGue::dispatch_state() {
     u8 *arg0 = (u8 *)this;
   s16 temp_r0;
@@ -1899,7 +1898,7 @@ void TObjEneMe1GiGue::dispatch_state() {
     switch (temp_r0)
     {
       case 0:
-        sub_802CCF2C__15TObjEneMe1GiGueFv((void *) arg0);
+        update_idle__15TObjEneMe1GiGueFv((void *) arg0);
         return;
       case 1:
         update_search__15TObjEneMe1GiGueFv((void *) arg0);
@@ -1955,7 +1954,7 @@ void TObjEneMe1GiGue::run_task() {
     }
     *(s32 *)((s8 *)arg0 + 0x2A8) = find_active_entity_by_id((int) (((TObjEneMe1GiGue *)arg0)->targetId));
     ((TObjEnemyCustom *)arg0)->release_destroyed_target();
-    sub_802CB6D4__15TObjEneMe1GiGueFv(arg0);
+    select_next_action__15TObjEneMe1GiGueFv(arg0);
     if ((s16) ((TObjEneMe1GiGue *)arg0)->mode != (s32) ((TObjEneMe1GiGue *)arg0)->next_action) {
         if ((s32) ((TObjEneMe1GiGue *)arg0)->state != -1) {
             ((TObjEneMe1GiGue *)arg0)->state = -1;
@@ -2070,10 +2069,10 @@ void TObjEneMe1GiGue::load_resources() {
 }
 
 #undef load_params__15TObjEneMe1GiGueFv
-#undef sub_802CB6D4__15TObjEneMe1GiGueFv
+#undef select_next_action__15TObjEneMe1GiGueFv
 #undef update_rush_attack__15TObjEneMe1GiGueFv
 #undef update_search__15TObjEneMe1GiGueFv
-#undef sub_802CCF2C__15TObjEneMe1GiGueFv
+#undef update_idle__15TObjEneMe1GiGueFv
 
 struct E_802CDAEC { s32 a; s32 b; s32 c; s32 d; };
 struct G_802CDAEC { u8 pad[0x42c]; E_802CDAEC *e; };
@@ -2182,11 +2181,11 @@ void TObjEneMe1GiGue::vfunc_59() {  }
 void TObjEneMe1GiGue::vfunc_61() {  }
 }
 
-s32 get_gigue_int_parameter(s32 self, s32 i) {
+s32 TObjEneMe1GiGue::get_int_parameter(s32 i) {
     return (*(G_802CDAC4 * *)&TObjEneMe1GiGue__param_table)->v[i];
 }
 
-f32 get_gigue_float_parameter(s32 arg0, s32 arg1) {
+f32 TObjEneMe1GiGue::get_float_parameter(s32 arg1) {
     return *(f32 *)((s8 *)(TObjEneMe1GiGue__param_table + (arg1 * 4)) + 0);
 }
 

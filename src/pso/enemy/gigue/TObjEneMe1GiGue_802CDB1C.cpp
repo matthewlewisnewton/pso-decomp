@@ -42,7 +42,7 @@ extern s32 lbl_805D6854;
 
 }
 
-TUnk_804E14E8::TUnk_804E14E8(Vec *start, u16 target_id, GiGueShotAngles *angles, s32 delay, s32 double_hit, u16 src_id)
+TUnk_804E14E8::TUnk_804E14E8(Vec *start, u16 target_id, GiGueProjectileAngles *angles, s32 delay, s32 double_hit, u16 src_id)
     : TObjCollidable(tl_04) {
     Vec *target;
     this->target_id = target_id;
