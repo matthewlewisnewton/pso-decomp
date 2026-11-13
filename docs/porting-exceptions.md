@@ -15,6 +15,17 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Critical-hit effect data placement
+
+`src/pso/effect/TEffClitical.cpp` uses guarded section annotations for the
+owned eight-byte texture-list descriptor (`.data`) and the existing
+`lbl_805D93B0[2]` scalar object (`.sdata2`). The descriptor must use its real
+absolute address; ordinary small-data inference changes the renderer. The
+late scalar definition retains the original 1.0 value and zero tail without
+introducing an anonymous duplicate. Ports can drop both annotations and keep
+the ordinary declarations, array and C++ bodies. The prior common-subexpression
+and propagation pragmas are removed. See [the recovery evidence](evidence/critical-hit-effect-unit.md).
+
 ### Equipment-effect native emission
 
 `src/pso/item/TItemEffEquip.cpp` uses `#pragma defer_codegen on` and reverse
@@ -45,8 +56,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 89 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
-| Per-unit compiler overrides in `configure.py` | 206 | 206 |
+| CodeWarrior pragmas (excluding push/pop) | 5,858 | 885 |
+| Per-unit compiler overrides in `configure.py` | 207 | 207 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -239,11 +250,11 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,860 pragmas in 887 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1150, `inline_depth` 1055, `fp_contract` 883, `auto_inline` 803,
-`opt_common_subs` 638, `scheduling` 264, `opt_propagation` 264,
+5,858 pragmas in 885 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1150, `inline_depth` 1055, `fp_contract` 882, `auto_inline` 804,
+`opt_common_subs` 637, `scheduling` 264, `opt_propagation` 263,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57,
-`defer_codegen` 56, `pack` 46, `opt_dead_assignments` 42. Reason: reproduce the original code generation
+`defer_codegen` 57, `pack` 46, `opt_dead_assignments` 42. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -565,7 +576,7 @@ The complete provider now links as three native layout groups; see
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-205 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+207 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -1757,3 +1768,18 @@ compiler profiles or recovered original filenames. All 173 functions and
 allocated sections match and link. Ports can organize these declarations and
 functions normally; preserve the real storage ownership and documented ABI
 boundaries. See [the complete-unit evidence](evidence/quest-download-unit-completion.md).
+
+### TDPBShower name-data alignment
+
+`pso/effect/TDPBShower.cpp` uses the existing `cw_align` adapter with
+`.rodata=4 .sdata=4`. Its name string starts at `0x80479C3C` and its name
+pointer at `0x805D4454`; neither address is eight-byte aligned. Stock GC/2.6
+emits eight-byte alignment in both the ELF headers and its private comment
+record. The adapter changes only those alignment records, preserving all
+payloads and relocations. Ordinary string pooling instead moves the string
+into `.data`; an explicit const array keeps the original read-only placement.
+The array has eleven bytes; the linker supplies the one-byte alignment tail
+before the next eight-byte-aligned read-only contribution. Ports can keep the
+ordinary C++ string, pointer, constructor and literals and omit this native
+object-alignment adapter. This does not establish the original compiler
+settings or filename.

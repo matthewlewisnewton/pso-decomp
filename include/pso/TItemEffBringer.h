@@ -7,15 +7,15 @@
 
 class TItemEffBringer : public TItemShoot {
 public:
- s32 m_particles[10];
- s32 m_particle_count;
- Vec m_84;
+    void *m_particles[10];
+    s32 m_particle_count;
+    Vec m_particle_step;
 
-public:
+    TItemEffBringer(void *owner, const Vec *pos, const Vec *dir, f32 life);
     virtual ~TItemEffBringer();
     virtual void hook();
-public:
-    static void *create(u32 arg0, s32 arg1, s32 arg2, f32 farg0);
+
+    static void *create(u32 owner, s32 pos, s32 dir, f32 life);
 };
 
 #endif
