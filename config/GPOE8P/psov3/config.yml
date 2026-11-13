@@ -4941,16 +4941,16 @@ force_active:
   - calc_sound_spatial_params
   - calc_spherical_camera_position__14CreationCameraFv
   - calc_spin_value__16TBoss3VoloptCoreFv
-  - calc_target_position__11TBoss4Type1Fv
   - calc_step_value__12TBoss8DragonFv
+  - calc_target_position__11TBoss4Type1Fv
   - calc_target_vector__12TBoss1DragonFPv
   - calc_text_pos__10TAdTitleGCFlPUcl
   - calc_text_size__13TUnk_804CF0B8FPf
   - calc_time_from_hms__6TLobbyFv
   - calc_trap_count__16TOTrapAncient02RFv
   - calc_tube_progress__10TBoss6TubeFl
-  - calc_wave_offset__11TBoss4Type1Ff
   - calc_velocity_from_angle__12TBoss8DragonFv
+  - calc_wave_offset__11TBoss4Type1Ff
   - calc_xz_direction_to__16TObjEneBm5GibonUFPvPvPv
   - calculate_crc16_ccitt__FPCUcl
   - calendar_class_name_text
@@ -10116,6 +10116,7 @@ force_active:
   - morfos_resources
   - morfos_wall_model_filename
   - morning_glory_ct__FPvlPv
+  - motorcycle_class_name
   - motorcycle_resource_descriptor
   - move__17TObjEneMe1CanadinFl
   - move_along_angle__13TBoss5GryphonFPvif
