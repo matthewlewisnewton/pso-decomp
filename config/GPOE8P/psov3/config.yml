@@ -4954,7 +4954,7 @@ force_active:
   - check_card_file__19TAdTrialAgreementGCFl
   - check_client_connections__22TQuestVmDownLoadServerFv
   - check_death__12TBoss1DragonFv
-  - check_death_trigger__13TObjEneMe1GeeFv
+  - return_home_if_target_lost__13TObjEneMe1GeeFv
   - check_destruction_by_phase__6TLobbyFv
   - check_door_trigger__15TOAttackableColFv
   - check_event_theme__13TObjLobbyMainFv
@@ -5346,7 +5346,7 @@ force_active:
   - copy_params__12TBoss1DragonFPv
   - copy_pos__10TBoss6MineFv
   - copy_pos__13TBoss6MagMineFi
-  - copy_pos__13TObjEneMe1GeeFv
+  - sync_body_position__13TObjEneMe1GeeFv
   - copy_pos__13TObjEneRe4BitFv
   - copy_pos__17TObjEneBm3FlyNestFv
   - copy_pos__17TObjEneMe1CanadinFv
@@ -6814,7 +6814,7 @@ force_active:
   - handle_menu_input__21TAdMultiChgGameModeGCFv
   - handle_message__13TBoss5GryphonFl
   - handle_message__13TObjEneBm3FlyFl
-  - handle_message__13TObjEneMe1GeeFll
+  - remap_gee_sound__13TObjEneMe1GeeFl
   - handle_message__16TObjEneBm5GibonUFl
   - handle_message__16TObjEneMe3StelthFPvi
   - handle_message__19TObjEneEpsilonGuardFl
@@ -15565,7 +15565,7 @@ force_active:
   - set_state_after_message__12TQuestListVMFl
   - set_state_by_distance__10TBoss2MineFl
   - set_state_by_timer__14TObjEneBm5WolfFi
-  - set_state_flag__13TObjEneMe1GeeFll
+  - activate_with_target__13TObjEneMe1GeeFPvl
   - set_state_flags__18TObjEneRe4SorcererFPv
   - set_state_ready__15TPlyPhotonChairFv
   - set_subs_visible__8TItemMagFl
@@ -16163,15 +16163,15 @@ force_active:
   - sub_800BE75C__9TObjGrassFv
   - sub_800C20B0__12TObjEneLappyFv
   - sub_800C20C0__12TObjEneLappyFv
-  - sub_800C84C8__13TUnk_8049387CFv
-  - sub_800CB5B8__13TObjEneMe1GeeFv
-  - sub_800CB5D4__13TObjEneMe1GeeFv
-  - sub_800CB5F0__13TObjEneMe1GeeFv
-  - sub_800CB60C__13TObjEneMe1GeeFv
-  - sub_800CB764__13TUnk_8049387CFl
+  - update_swarm_phase__13TUnk_8049387CFv
+  - set_out_fighter__13TObjEneMe1GeeFv
+  - set_in_fighter__13TObjEneMe1GeeFv
+  - set_high_appearance__13TObjEneMe1GeeFv
+  - set_low_appearance__13TObjEneMe1GeeFv
+  - start_color_sequence__13TObjEneMe1GeeFl
   - sub_800CBE6C__13TObjEneMe1GeeFv
   - sub_800CBF58__13TObjEneMe1GeeFf
-  - sub_800CC0C4__13TObjEneMe1GeeFv
+  - apply_behavior_parameters__13TObjEneMe1GeeFv
   - sub_800D10A0__16TObjEneBm5GibonUFv
   - sub_800D4200__13TUnk_8049442CFv
   - sub_800D47B4__19TObjGyaranzoMissileFv
@@ -17388,8 +17388,8 @@ force_active:
   - vfunc_111__13TUnk_8049387CFl
   - vfunc_112__13TUnk_8049387CFl
   - vfunc_113__13TUnk_8049387CFv
-  - vfunc_116__13TUnk_8049387CFv
-  - vfunc_117__13TUnk_8049387CFUl
+  - vfunc_116__13TUnk_8049387CFPv
+  - remove_child__13TUnk_8049387CFP13TObjEneMe1Gee
   - vfunc_11__12TQuestListVMFv
   - vfunc_11__17TQuestListOfflineFv
   - vfunc_12__8TObjChipFv
