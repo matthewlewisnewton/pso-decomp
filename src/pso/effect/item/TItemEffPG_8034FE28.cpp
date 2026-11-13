@@ -23,18 +23,18 @@ void *__nw__7TObjectFUl(int);
 
 extern s32 lbl_804F0C08[];
 
-void *TUnk_804F0C08::initialize(void *arg1, void *parent, void *item) {
-    __ct__10TItemEffPGFP7TObjectPv((u8 *)this, (s32)arg1, (u8 *)parent);
-    *(s32 **)((s8 *)this + 0x18) = lbl_804F0C08;
-    *(void * *)&this->unk_D4 = item;
-    return this;
+void *__ct__13TUnk_804F0C08FP7TObjectPvPv(void *arg0, void *parent_obj, void *params, void *duration) {
+    __ct__10TItemEffPGFP7TObjectPv((u8 *)arg0, (s32)parent_obj, (u8 *)params);
+    *(s32 **)((s8 *)arg0 + 0x18) = lbl_804F0C08;
+    *(void * *)&((TUnk_804F0C08 *)arg0)->unk_D4 = duration;
+    return arg0;
 }
 
 void create__10TItemEffPGFPvPvPv(void *arg0, void *parent, void *item) {
     void *o;
     o = __nw__7TObjectFUl(0xD8);
     if (o != NULL) {
-        ((TUnk_804F0C08 *)o)->initialize(arg0, parent, item);
+        __ct__13TUnk_804F0C08FP7TObjectPvPv(o, arg0, parent, item);
     }
 }
 
