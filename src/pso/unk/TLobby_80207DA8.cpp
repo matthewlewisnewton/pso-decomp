@@ -1023,7 +1023,7 @@ void free_team_buffers__6TLobbyFv(void);
 #define lobby_slot_ptr_table (*(s32 (*)[1])&lobby_slot_ptr_table)
 #define area_event_set_heap (*(s32 *)&area_event_set_heap)
 
-s32 TLobby::add_player(s32 arg0, s32 arg1, s32 arg2) {
+s32 TLobby::add_player(s32 arg0, const void *arg1, s32 arg2) {
     s32 temp_r29;
     s32 temp_r3;
 
@@ -1036,7 +1036,7 @@ s32 TLobby::add_player(s32 arg0, s32 arg1, s32 arg2) {
     }
     temp_r3 = HA2(area_event_set_heap, arg2);
     if (temp_r3 != 0) {
-        ((TLobby *)temp_r3)->move_data((const void *)arg1, (u32)arg2);
+        ((TLobby *)temp_r3)->move_data(arg1, (u32)arg2);
         *((s32 *)((s8 *)lobby_slot_ptr_table + temp_r29)) = temp_r3;
         bswap_floor_event_set(arg0);
         return 1;

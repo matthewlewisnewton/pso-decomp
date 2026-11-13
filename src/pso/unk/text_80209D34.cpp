@@ -84,7 +84,7 @@ void build_challenge_enemy_set__Fl(s32 floor_id) {
   s32 size;
   void *dst;
   hdr = *((struct SetHeader_80209D34 *) challenge_event_source);
-  swap_endian_header__6TLobbyFv((u8 *) &hdr);
+  swap_endian__20ChallengeEventHeaderFv((u8 *) &hdr);
   p = ((u8 *) challenge_event_source) + hdr.record_offset;
   rem = challenge_event_source_size - ((hdr.record_count * 0x18) + 0x10);
   memset(challenge_enemy_buffer, 0, 0x9000);
@@ -96,7 +96,7 @@ void build_challenge_enemy_set__Fl(s32 floor_id) {
   for (i = 0; i < hdr.record_count; i++, p += 0x18)
   {
     TLobby__sub_8020A618(&rec, p);
-    bswap__6TLobbyFv(&rec);
+    swap_endian__20ChallengeRandomEventFv(&rec);
     groups = clamp_min_drop__6TLobbyFUlUl(1, (rec.group_count) + 1);
     id = rec.base_id;
     index = rec.first_index;
@@ -126,18 +126,18 @@ void build_challenge_enemy_set__Fl(s32 floor_id) {
         *((s32 *) ((((u8 *) challenge_event_buffer) + (challenge_event_count * 0x14)) + 0x10)) = rem + challenge_action_size;
         id = (s16) (((rec.base_id) + 0x2710) + index);
         ent[0] = 0xc;
-        append_entity_entry__6TLobbyFv(ent);
+        append__21ChallengeEventCommandCFv(ent);
         val = (u16) id;
         append_swapped_u32__6TLobbyFPl(&val);
         ent[0] = 1;
-        append_entity_entry__6TLobbyFv(ent);
+        append__21ChallengeEventCommandCFv(ent);
         challenge_event_count++;
         index++;
       }
     }
 
     TLobby__sub_8020A618(&rec, p);
-    bswap__6TLobbyFv(&rec);
+    swap_endian__20ChallengeRandomEventFv(&rec);
     *((s32 *) (((u8 *) challenge_event_buffer) + (challenge_event_count * 0x14))) = id;
     *((s16 *) ((((u8 *) challenge_event_buffer) + (challenge_event_count * 0x14)) + 4)) = rec.x;
     *((s16 *) ((((u8 *) challenge_event_buffer) + (challenge_event_count * 0x14)) + 6)) = rec.z;
