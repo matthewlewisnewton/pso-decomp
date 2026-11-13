@@ -709,11 +709,11 @@ void TTecRaFoie::update_detonation(void *arg1) {
     queue_destruction__7TObjectFv(self);
 }
 
-void TTecRaFoie::create(void *arg1, void *arg2, void *arg3) {
+void TTecRaFoie::create(TObject *parent, void *arg1, void *arg2, void *arg3) {
     void *o;
     o = __nw__7TObjectFUl(0x14C);
     if (o != NULL) {
-        TTecRaFoie__ct((Obj_80238AE8 *)(o), (void *)this, (void *)arg1, (void *)arg2, (int)arg3);
+        TTecRaFoie__ct((Obj_80238AE8 *)(o), parent, (void *)arg1, (void *)arg2, (int)arg3);
     }
 }
 
