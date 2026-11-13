@@ -8,6 +8,7 @@ See the [documentation index](../README.md) for current contributor and operator
 guides.
 
 - [Chunk vertex-color cache constant ownership](chunk-vertex-color-cache-pool.md)
+- [Equipment menu helper scalar ownership](equipment-menu-helper-unit.md)
 - [EXI Ethernet driver completion](exi-ethernet-unit.md)
 - [Audio header parsing and ADX block transfer](audio-formats-and-adx-transfer.md)
 - [Action-palette unit](action-palette-unit.md)

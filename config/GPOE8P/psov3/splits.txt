@@ -8607,6 +8607,7 @@ pso/unk/text_80263A20.cpp:
 pso/misc/TWindowSubEquip_80263AB0.cpp:
 	.text       start:0x80263AB0 end:0x80263B70
 	.rodata     start:0x8044F2E8 end:0x8044F2F0
+	.sdata2     start:0x805DD138 end:0x805DD13C
 
 pso/misc/TWindowMainMenu_80263B70.cpp:
 	.text       start:0x80263B70 end:0x802644D4
