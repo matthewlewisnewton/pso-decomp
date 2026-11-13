@@ -9660,6 +9660,7 @@ pso/misc/TODoorLabo.cpp:
 	.text       start:0x8029F730 end:0x802A018C
 	.rodata     start:0x80466038 end:0x80466040
 	.data       start:0x804DC820 end:0x804DC864
+	.sdata2     start:0x805DDDB8 end:0x805DDDC8
 
 pso/misc/TLobby_802A018C.cpp:
 	.text       start:0x802A018C end:0x802A031C
