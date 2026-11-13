@@ -316,9 +316,6 @@ struct TBoss8Dragon
     void copy_position(s32 arg1);
     int queue_destruction();
     static void trigger_switches_in_range(void *arg0, void *arg1, void *arg2);
-    void choose_next_camera_shot();
-    void update_live_camera();
-    void update_toggle_state();
     static s32 calc_binomial_coefficient(s32 n, s32 k);
     void play_animation_index(s32 arg1);
     void render_body_model();
