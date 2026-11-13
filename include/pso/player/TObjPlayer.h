@@ -1208,7 +1208,6 @@ struct TObjPlayer : public TObjChara {
     static void draw_effect();
     void draw_trail_pair();
     void set_flag_and_notify();
-    static void update_particle_by_phase();
     void draw_blob_shadows();
     void set_flag_8_if_check_passes();
     void fill_status_info(void *arg1);
@@ -1227,7 +1226,6 @@ struct TObjPlayer : public TObjChara {
     static void load_jungle_ebi_resources();
     static void load_seabed_dolphin();
     static void new_child_object(s32 arg0);
-    void clamp_stat_354();
     void update_ground_effect();
     void create_item_eff_cane(TItem* item, s32 attachment, s32 effect_id);
     void spawn_cane_effect(TItem* item, s32 attachment);

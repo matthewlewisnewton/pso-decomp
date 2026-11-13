@@ -448,7 +448,7 @@ TObjEneMoja::TObjEneMoja(TObject *parent, void *setData) : TObjEnemy(parent) {
     } else if (1.0f < jumpChance) {
         jumpChance = 1.0f;
     }
-    ((TObjPlayer *)this)->clamp_stat_354();
+    clamp_appearance_parameter();
     select_rare_variant();
     subtype = 1;
     action_table = moja_enemy_actions;
@@ -1710,12 +1710,12 @@ void TObjEneMoja::select_rare_variant() {
     }
 }
 
-void TObjPlayer::clamp_stat_354() {
+void TObjEneMoja::clamp_appearance_parameter() {
     f32 lo = 0.0f;
-    if (this->m_354 < lo) {
-        this->m_354 = lo;
-    } else if (1.0f < this->m_354) {
-        this->m_354 = 1.0f;
+    if (parameters[0] < lo) {
+        parameters[0] = lo;
+    } else if (1.0f < parameters[0]) {
+        parameters[0] = 1.0f;
     }
-    *(s32 *)&this->m_374 = (s32) this->m_354;
+    appearance = (s32) parameters[0];
 }

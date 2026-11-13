@@ -3869,7 +3869,7 @@ force_active:
   - apply_battle_ctrl_effect__Fi
   - apply_blend_mode_1__10TObjPlayerFv
   - apply_bonuses
-  - apply_clamped_mode_param__12TObjEneSharkFv
+  - configure_subtype__12TObjEneSharkFv
   - apply_confusion_status__12TBoss1DragonFv
   - apply_confusion_status__13TObjEneRe4BitFv
   - apply_confusion_status__14TBoss7CrawfishFv
@@ -16155,7 +16155,7 @@ force_active:
   - sub_800A62D4__12TObjEneSaverFv
   - sub_800A7734__12TObjEneSaverFl
   - sub_800A7B54__15TObjEneDimedianFv
-  - sub_800AC9DC__12TObjEneSharkFl
+  - bind_variant_model__12TObjEneSharkFl
   - sub_800B1634__13TObjEneBm3FlyFv
   - sub_800BCE44__9TObjGrassFv
   - sub_800BD4D8__9TObjGrassFv
@@ -17063,7 +17063,7 @@ force_active:
   - update_palette_sprite__20TWindowSubStatusDispFv
   - update_part_positions__11TBoss6Type2Fv
   - update_particle__15TObjSuisouLobbyFv
-  - update_particle_by_phase__10TObjPlayerFv
+  - update_node_particle_state__12TObjEneSharkFP10NJS_OBJECT
   - update_particle_emitters__11TObjDFDemo5Fv
   - update_particle_emitters__12TBoss4ThanksFv
   - update_particle_emitters__12TBoss6ThanksFv
