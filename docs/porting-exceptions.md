@@ -15,6 +15,16 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Raft splash shared constant
+
+`src/pso/boss/TObjBoss2RaftSplash.cpp` defines the shared scalar at
+`0x805D85B0` after `run_task` so CodeWarrior retains the named load rather
+than emitting a duplicate literal. Its guarded `__declspec(section ".sdata2")`
+keeps the scalar in the original small-data section; without it the scalar lands in
+`.sdata`. Dust, the raft-splash constructor and the tunnel update also read
+this exported scalar. Other compilers use the ordinary `const f32` definition
+and need no section placement or definition-order constraint.
+
 ## Summary (including complete TCP recovery, 2026-11-12 UTC)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
@@ -26,8 +36,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 89 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,699 | 883 |
-| Per-unit compiler overrides in `configure.py` | 205 | 205 |
+| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
+| Per-unit compiler overrides in `configure.py` | 206 | 206 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -49,6 +59,16 @@ views retain native 32-bit address/callback and overlapping-layout debt;
 consolidate those providers before claiming portable TCP interfaces. The
 route-send result declaration also retains the documented inherited short/word
 provider discrepancy. This recovery introduces no assembly.
+
+### Rope-controller native emission
+
+`src/pso/object/TObjEZRopeSimulation.cpp` uses GC/2.6 `-inline deferred`,
+reverse definitions and `auto_inline off` to preserve its twelve functions and
+both compiler-generated vtables. The three existing record-copy helpers retain
+scoped `dont_inline off` and `inline_depth(1)` so aggregate assignments expand
+inline. A port can remove these emission controls and retain the ordinary C++
+bodies. This replaces the old handwritten derived vtable and its `force_active`
+pragma; it adds no assembly. See [the object-layout evidence](evidence/rope-controller-native-emission.md).
 
 ## 1. Assembly
 
@@ -123,6 +143,11 @@ mapped-register header is guarded. A port supplies the guest register view and
 EXI/OS backend; the scalar bit helpers alone do not implement the driver.
 
 ## 4. CodeWarrior pragmas
+
+`src/pso/boss/TObjBoss5Ctrl.cpp` retains its existing `fp_contract on` when
+its three fragments are consolidated. Both countdown calculations use the
+original fused `60 * normalized_random + 90`. Ports should preserve fused
+rounding if required. See [controller evidence](evidence/boss5-controller-unit.md).
 
 The EXI Ethernet receiver in `src/pso/misc/TLobby_80429598.cpp` uses scoped
 `opt_propagation off`, helper inlining and ordered volatile snapshot/publication
@@ -205,11 +230,11 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,719 pragmas in 881 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1112, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803,
-`opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247,
-`readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
-`defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
+5,860 pragmas in 887 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1150, `inline_depth` 1055, `fp_contract` 883, `auto_inline` 803,
+`opt_common_subs` 638, `scheduling` 264, `opt_propagation` 264,
+`readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57,
+`defer_codegen` 56, `pack` 46, `opt_dead_assignments` 42. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -531,7 +556,7 @@ The complete provider now links as three native layout groups; see
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-195 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+205 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -1615,6 +1640,12 @@ in the generated table once merged.
 This callback boundary is documented for review; it does not add assembly,
 steering pragmas, per-unit compiler switches or link-check exceptions. The
 mechanical inventory does not currently enumerate function-pointer conversions.
+
+### TObjBoss5Ctrl pillar-controller ABI
+
+| File | Boundary | Why | Port should |
+|---|---|---|---|
+| `src/pso/boss/TObjBoss5Ctrl.cpp` | `create__19TObjBoss5PillarCtrlFv` and `play_sound_once__19TObjBoss5PillarCtrlFv` retain explicit `TObject *` ABI boundaries | Their legacy member names have unresolved receiver ownership. See [controller evidence](evidence/boss5-controller-unit.md). | Unify those helper declarations when recovering the neighboring classes. |
 
 ### Radial particle interpolation and colour packing
 

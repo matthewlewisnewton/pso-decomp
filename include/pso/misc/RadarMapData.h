@@ -5,7 +5,7 @@
 #include <stddef.h>
 #include <dolphin/mtx.h>
 
-// Three 0x28-byte view records are owned by the original map-state BSS.
+// Shared view record used by the camera and the three radar map views.
 struct RadarMapViewState {
     Vec position;
     f32 field0c, field10, field14;
@@ -20,6 +20,7 @@ typedef char RadarMapViewField24[(offsetof(RadarMapViewState, field24) == 0x24) 
 
 extern "C" {
 extern RadarMapViewState TRaderMapCore__map_view_state[3];
+void fn_803D64F8(RadarMapViewState *view);
 s32 add_radar_scaled_gate(Vec *position, u32 color, u16 rotation, s16 kind, s32 flags, f32 scale);
 }
 #endif

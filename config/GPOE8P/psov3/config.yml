@@ -531,6 +531,7 @@ force_active:
   - TChCrEffCtrlPl__name
   - TChCrEffTagStr__name
   - TChCrEffTag__name
+  - TChCrEffWall__name
   - TChCrLoadAfsTextureReq__active_load_count
   - TChCrLoadAfsTextureReq__ct
   - TChCrLoadGmNjReq__ct
@@ -1455,6 +1456,7 @@ force_active:
   - TObjGrass__sub_800BFB68
   - TObjGyaranzoMissile_target_slots
   - TObjHMS_EZRope_Player__ct
+  - TObjHMS_EZRope_Player__name
   - TObjItemNameEntry__class_name
   - TObjItemNameSelect__class_name
   - TObjItemOKWindow__class_name
@@ -2229,6 +2231,7 @@ force_active:
   - __ct__13TItemEffLavisFPvPC3VecPC3Vecf
   - __ct__13TOCapsuleLaboFP7TObjectPv
   - __ct__13TOHealGeneralFPv
+  - __ct__13TObjBoss5CtrlFP7TObject
   - __ct__13TObjBs4CutAtkFv
   - __ct__13TObjCHTimeWinFv
   - __ct__13TObjDFRecoverFP7TObjectUsPCf
@@ -2626,6 +2629,7 @@ force_active:
   - __dt__13TUnk_80484A94Fv
   - __dt__13TUnk_80484AFCFv
   - __dt__13TUnk_80488AD8Fv
+  - __dt__13TUnk_80488B38Fv
   - __dt__13TUnk_8048DF58Fv
   - __dt__13TUnk_804909C4Fv
   - __dt__13TUnk_8049387CFv
@@ -3030,6 +3034,7 @@ force_active:
   - __dt__21TObjContainerAbeEnemyFv
   - __dt__21TObjEneMe3ShinowaRealFv
   - __dt__21TObjEneSlimeWaterBombFv
+  - __dt__21TObjHMS_EZRope_PlayerFv
   - __dt__21TWindowSubAreaMapDispFv
   - __dt__21TWindowSubComCardListFv
   - __dt__21TWindowSubCustomEquipFv
@@ -3305,6 +3310,7 @@ force_active:
   - __vt__13TUnk_80484A94
   - __vt__13TUnk_80484AFC
   - __vt__13TUnk_80488AD8
+  - __vt__13TUnk_80488B38
   - __vt__13TUnk_8048DF58
   - __vt__13TUnk_80490470
   - __vt__13TUnk_804909C4
@@ -3699,6 +3705,7 @@ force_active:
   - __vt__21TObjContainerAbeEnemy
   - __vt__21TObjEneMe3ShinowaReal
   - __vt__21TObjEneSlimeWaterBomb
+  - __vt__21TObjHMS_EZRope_Player
   - __vt__21TWindowSubAreaMapDisp
   - __vt__21TWindowSubComCardList
   - __vt__21TWindowSubCustomEquip
@@ -5832,6 +5839,8 @@ force_active:
   - creation_body_shape_destination
   - creation_body_shape_samples
   - creation_cap_model_parts
+  - creation_effwall_sprite_position_table
+  - creation_effwall_sprite_size_table
   - creation_empty_model_node
   - creation_hair_model_parts
   - creation_head_model_parts
@@ -6339,6 +6348,7 @@ force_active:
   - end_invincibility__8TItemMagFv
   - end_of_render_root_dtor_chain
   - ending_ab_class_name
+  - ending_pic_wall_texture_list
   - ending_player
   - ending_player_class_type
   - ending_wall_archive_nh
@@ -6467,6 +6477,7 @@ force_active:
   - explosive_machine_model_archive
   - explosive_machine_resource_desc
   - export_player_record__10TObjPlayerFPvPv
+  - ezrope_chunk_material_color_table
   - f064_wordmojitex_eng_gvp
   - f064_wordmojitex_fre_gvp
   - f064_wordmojitex_ger_gvp
@@ -8158,6 +8169,7 @@ force_active:
   - lbl_80437328
   - lbl_80437384
   - lbl_804373A4
+  - lbl_80438128
   - lbl_80438528
   - lbl_80438534
   - lbl_80438AB4
@@ -8184,6 +8196,8 @@ force_active:
   - lbl_8043CD90
   - lbl_8043CD98
   - lbl_8043CDA0
+  - lbl_8043DF18
+  - lbl_8043DF28
   - lbl_8043ED80
   - lbl_8043EDE8
   - lbl_8043EDF0
@@ -8347,6 +8361,7 @@ force_active:
   - lbl_80450AA0
   - lbl_80450AB4
   - lbl_80451CD0
+  - lbl_804652E0
   - lbl_80465A48
   - lbl_80465A68
   - lbl_80465A88
@@ -8466,6 +8481,7 @@ force_active:
   - lbl_80478134
   - lbl_80478140
   - lbl_8047817C
+  - lbl_804790F0
   - lbl_80479280
   - lbl_8047B928
   - lbl_80480950
@@ -9078,6 +9094,7 @@ force_active:
   - lbl_805D280C
   - lbl_805D2810
   - lbl_805D2820
+  - lbl_805D2828
   - lbl_805D2990
   - lbl_805D2A50
   - lbl_805D2A58
@@ -9143,6 +9160,7 @@ force_active:
   - lbl_805D42D8
   - lbl_805D4350
   - lbl_805D4368
+  - lbl_805D4378
   - lbl_805D4630
   - lbl_805D4638
   - lbl_805D4640
@@ -9662,6 +9680,13 @@ force_active:
   - lbl_805DBC74
   - lbl_805DBC78
   - lbl_805DBC7C
+  - lbl_805DBE20
+  - lbl_805DBE24
+  - lbl_805DBE28
+  - lbl_805DBE2C
+  - lbl_805DBE30
+  - lbl_805DBE34
+  - lbl_805DBE38
   - lbl_805DBF94
   - lbl_805DC324
   - lbl_805DC328
@@ -16042,6 +16067,7 @@ force_active:
   - run_task__13TUnk_80484A94Fv
   - run_task__13TUnk_80484AFCFv
   - run_task__13TUnk_80488AD8Fv
+  - run_task__13TUnk_80488B38Fv
   - run_task__13TUnk_804909C4Fv
   - run_task__13TUnk_8049387CFv
   - run_task__13TUnk_80494E10Fv
@@ -17846,6 +17872,15 @@ force_active:
   - sub_8034B918__18TChallenge4PResultFv
   - sub_8034BA2C__18TChallenge4PResultFv
   - sub_80351DF8__16TLobbyEventThemeFl
+  - sub_8035307C__17TItemSpecialEventFv
+  - sub_803530A0__17TItemSpecialEventFv
+  - sub_803530C4__17TItemSpecialEventFv
+  - sub_80353110__17TItemSpecialEventFv
+  - sub_80353134__17TItemSpecialEventFv
+  - sub_80353158__17TItemSpecialEventFv
+  - sub_80353194__17TItemSpecialEventFv
+  - sub_803531D0__17TItemSpecialEventFv
+  - sub_803531F8__17TItemSpecialEventFv
   - sub_80353F5C__10TBoss6RockFv
   - sub_8035B610__13TUnk_804A7478Fv
   - sub_8035B66C__13TUnk_804A7488Fv

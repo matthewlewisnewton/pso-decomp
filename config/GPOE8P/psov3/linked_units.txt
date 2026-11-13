@@ -360,8 +360,6 @@ pso/boss/TObjBoss2Tunnel_802F2070.cpp
 pso/boss/TObjBoss2Tunnel_8036EF0C.cpp
 pso/boss/TObjBoss2Tunnel_803E2BAC.cpp
 pso/boss/TObjBoss5Ctrl.cpp
-pso/boss/TObjBoss5Ctrl_80067124.cpp
-pso/boss/TObjBoss5Ctrl_800673D0.cpp
 pso/boss/TObjBoss5FloorGrass.cpp
 pso/boss/TObjBoss5FloorGrass_8028AAB8.cpp
 pso/boss/TObjBoss5FloorGrass_8028AAFC.cpp
@@ -2152,7 +2150,6 @@ pso/object/TObjDoor_8018E358.cpp
 pso/object/TObjDoor_801F3754.cpp
 pso/object/TObjEZBoneRotBase.cpp
 pso/object/TObjEZBoneRotPlayer.cpp
-pso/object/TObjEZRopeBase.cpp
 pso/object/TObjEZRopeSimulation.cpp
 pso/object/TObjEnvSoundGlobal.cpp
 pso/object/TObjEvtCollision.cpp
@@ -2760,7 +2757,6 @@ pso/ui/TAdMultiPlyChrSelectGC_802E0064.cpp
 pso/ui/TAdMultiPlyChrSelectGC_802E011C.cpp
 pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.cpp
 pso/ui/TAdMultiPlyChrSelectGC_803495B4.cpp
-pso/ui/TAdMultiPlyChrSelectGC_literals.s
 pso/ui/TAdMultiSaveGC.cpp
 pso/ui/TAdMultiSaveGC_802FF0A0.cpp
 pso/ui/TAdMultiSaveGC_802FF14C.cpp
