@@ -789,9 +789,9 @@ u8 *get_enemy_entity(u16 arg0) {
     return 0;
 }
 
-void TObjEnemy::distribute_experience_and_request_drop() { distribute_experience__9TObjEnemyFv((TObjPlayer_800F6B68 *)(this)); ((TObjPlayer *)this)->query_lobby_state(); }
+void TObjEnemy::distribute_experience_and_request_drop() { distribute_experience__9TObjEnemyFv((TObjPlayer_800F6B68 *)(this)); this->request_standard_drop(); }
 
-int TObjPlayer::query_lobby_state() { return send_6x60_standard_drop_item_request(this); }
+void TObjEnemy::request_standard_drop() { send_6x60_standard_drop_item_request(this); }
 
 void TObjEnemy::distribute_experience() {
     s32 count;
