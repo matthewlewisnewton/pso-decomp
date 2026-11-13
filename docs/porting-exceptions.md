@@ -25,6 +25,17 @@ changing the load and the object layout. The late definition keeps it after
 the digit-transform and opacity literals. Ports can drop the annotation and
 keep the ordinary array and C++ expressions.
 
+### Scalar collision-area helper
+
+`TObjPlayer__sub_803DF840` in `src/pso/player/TObjPlayer_803DF7A8.cpp` adds
+two `__fabs` and two `__frsqrte` uses. The lengths retain three double-precision
+Newton refinements and volatile float rounding homes. A double carrier and
+separate absolute-value and float-conversion assignments preserve the native
+register allocation; the arithmetic consumes the rounded float values. The
+function inherits the existing `fp_contract off` region. A port can use ordinary
+`fabs` and `sqrt`, retain the `0.025f` near-vertical rule, and validate rounding
+behavior. See [the scalar recovery evidence](evidence/scalar-collision-area-helper.md).
+
 ### Dark Gunner center native emission
 
 `src/pso/enemy/TObjEneDarkGunCenter.cpp` uses `#pragma defer_codegen on`
@@ -66,7 +77,7 @@ keeps the scalar in the original small-data section; without it the scalar lands
 this exported scalar. Other compilers use the ordinary `const f32` definition
 and need no section placement or definition-order constraint.
 
-## Summary (including complete TCP recovery, 2026-11-12 UTC)
+## Summary (including scalar collision-area recovery, 2026-11-13 UTC)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
 for this source tree. Assembly is counted as source lines;
@@ -75,7 +86,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 89 | 58 |
+| MWCC intrinsics | 93 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,859 | 885 |
 | Per-unit compiler overrides in `configure.py` | 207 | 207 |
