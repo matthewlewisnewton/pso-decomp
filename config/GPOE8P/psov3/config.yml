@@ -2406,7 +2406,7 @@ force_active:
   - __ct__18TBoss7PhotonBulletFP7TObjectP8TObjBasePC3VecPC3Vecf
   - __ct__18TChCrTagOccupationFv
   - __ct__18TChallenge4PResultFP7TObjectUsl
-  - __ct__18TEffStarLightChildFv
+  - __ct__18TEffStarLightChildFP15ColorLineVertexP15ColorLineVertexP7TObjectff
   - __ct__18TItemEffNeedleBaseFP7TObjectP5TItem
   - __ct__18TItemReverseTechBGFv
   - __ct__18TOCapsuleAncient01FP7TObjectPv
@@ -5561,7 +5561,7 @@ force_active:
   - copy_from__11TMainCursorFPv
   - copy_from__13TItemAttackerFPv
   - copy_from__14TechniqueBoostFP14TechniqueBoost
-  - copy_from__15TEffStarLight2DFPv
+  - copy_from__19StarLightParametersFP19StarLightParameters
   - copy_from__21BmlResourceDescriptorFRC21BmlResourceDescriptor
   - copy_from__23MagNodeOscillationStateFP23MagNodeOscillationState
   - copy_from_subobject__15TEffStarLight2DFPv
