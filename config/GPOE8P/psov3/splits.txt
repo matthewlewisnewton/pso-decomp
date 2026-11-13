@@ -303,6 +303,7 @@ pso/boss/TObjBoss2DustCtrl.cpp:
 pso/boss/TObjBoss2RaftSplash.cpp:
 	.text       start:0x8003AED4 end:0x8003AFBC
 	.data       start:0x804833A0 end:0x804833B8
+	.sdata2     start:0x805D85B0 end:0x805D85B4
 
 pso/unk/text_8003AFBC.cpp:
 	.text       start:0x8003AFBC end:0x8003B07C
