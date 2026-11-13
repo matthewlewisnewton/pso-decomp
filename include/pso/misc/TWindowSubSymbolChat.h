@@ -84,7 +84,7 @@ struct TWindowSubSymbolChat : public TObject {
     s16 get_cursor_pos();
     s16 get_cursor_x();
     void set_selection_and_refresh(s32 arg1);
-    static void update_display(s32 arg0);
+    static void *update_display(s32 arg0);
     s32 *copy_chat_entry(s32 *arg1);
     void init_layout_entries(s32 arg1);
     void set_from_key(s32 arg1);

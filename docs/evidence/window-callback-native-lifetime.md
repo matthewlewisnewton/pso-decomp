@@ -97,3 +97,39 @@ against fresh main are +600 matched code, +1220 linked code, +1540 matched data
 and +1496 linked data bytes. Callback/copy interfaces, remaining lifetimes,
 ChoiceSetting/global ownership, constants, Word/nameplate original-provider
 holds and protected remainders persist. The PR remains draft.
+
+## Dynamic wrapper result correction (52dba159 follow-up)
+
+The callback producer at 802ACF5C previously had a `void` source return despite
+forwarding the factory result unchanged in r3. The original wrapper saves its
+incoming callback word, obtains both zero vectors, calls the existing factory,
+then restores only r30/r31, link register and stack. Its epilogue does not alter
+r3. The source now explicitly returns the factory's existing `void*` result;
+the signed-word callback parameter and exported mangling remain unchanged.
+
+Two inspected producer chains consume this result as a window handle:
+
+- Character-select transition construction stores r3 at +0x4C immediately after
+  the call at 802C72F4. Its destructor reads that slot, calls Base close and
+  clears it before closing the status window and clearing lbl_805D67E8.
+- SubSymbolChat construction stores the result at +0x5C. Its destructor closes
+  that stored window, clears the slot and then clears the singleton.
+
+The registered transition callback at 802C6FB0 obtains its receiver from
+lbl_805D67E8, not the callback window argument. The SubSymbolChat callback at
+80281814 similarly obtains its receiver from TWindowSubSymbolChat__instance.
+Both test their global for null. This establishes two concrete global-mediated
+borrowed callback chains, not a guarantee of every reentrant destruction order
+or a common portable callback signature. The existing outer caller declarations
+and invocation contracts remain held and are not rewritten by this correction.
+
+Independent source review confirmed the original return and both stored-handle
+uses. The capacity-gated native full build passed, retaining DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. The complete rebuilt wrapper object is
+byte-identical to its captured 52dba159 object, including relocations and symbol
+metadata. No table, data range, ownership, callback arguments or lifetime order
+changes. This is a source-return correction with no match gain, not clearance
+of the wider callback or keyboard holds. A native rebuild of the prior-head sources provided a fresh comparison baseline;
+all 3,655 source-object files have identical SHA-256 inventories after restoring
+the correction. The 347-test suite and linked-unit exactness check pass.
+No fresh-main delta result is claimed for this pass.
