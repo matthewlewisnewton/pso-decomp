@@ -28,6 +28,7 @@ struct TBoss7DeRolLeC : public TObjEneDD_ST {
     TBoss7DeRolLeC(TObject *parent, void *set_data);
     virtual ~TBoss7DeRolLeC();
     void update_projectile_spawns();
+    void emit_hit_effect(void *arg1);
     virtual void run_task();
     virtual void render();
     virtual void dispatch_action(u32 state, s32 reason); // defined as TBoss7DeRolLeC__dispatch_state (vtable +0x15C)

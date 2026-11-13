@@ -7,6 +7,9 @@
 struct TBoss7TentacleNeedle : public TObject {
     virtual ~TBoss7TentacleNeedle();
     void advance_needle_timer();
+    void restart_particle_effect();
+    s32 advance_anim_time_wrapped(f32 d);
+    s32 advance_toward_limit(f32 farg0);
     void* m_1c;
     u8 _pad20[0x8];
     u32 m_28;

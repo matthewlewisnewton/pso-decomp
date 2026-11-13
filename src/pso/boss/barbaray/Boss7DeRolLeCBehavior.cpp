@@ -1664,7 +1664,7 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
                         adjust_point_to_ground((const Vec *)&v, (Vec *)(void *)&v);
                     }
                     for (j = 0; j != 4; j++) {
-                        ((TBoss7Tentacle *)(self->kids[j]))->start_attack_at_position((u8 *)&v, self->f738);
+                        ((TBoss7Tentacle *)(self->kids[j]))->start_attack_at_position((const Vec *)&v, self->f738);
                     }
                     self->fired = 1;
                     self->timer = 0;
@@ -2419,7 +2419,7 @@ void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s
                     v.z = r * cos_table_lookup(ang);
                     adjust_point_to_ground((const Vec *)&v, (Vec *)(void *)&v);
                 }
-                ((TBoss7Tentacle *)(o->tent[o->idx]))->start_attack_at_position((u8 *)&v, (s32)o->arg);
+                ((TBoss7Tentacle *)(o->tent[o->idx]))->start_attack_at_position((const Vec *)&v, (s32)o->arg);
                 o->idx++;
                 if (o->idx >= 4) {
                     o->timer = 0;
@@ -4019,7 +4019,7 @@ void TObjFish__sub_802ECE90(void *arg0, int idx, int arg) {
     }
     o = TObject::operator new(0x38);
     if (o != NULL) {
-        __ct__15TBoss7PhotonPadFllll((u8 *)o, (s32)((Boss_802ECE90 *)arg0)->nodes, (s32)&((Boss_802ECE90 *)arg0)->pads[idx], (s32)&dir, arg);
+        __ct__15TBoss7PhotonPadFP7TObjectPC3VecPC3Vecl((u8 *)o, (TObject *)((Boss_802ECE90 *)arg0)->nodes, (const Vec *)&((Boss_802ECE90 *)arg0)->pads[idx], (const Vec *)&dir, arg);
     }
     play_sound_effect((void *)0x39D11, &((Boss_802ECE90 *)arg0)->pads[idx], (void *)0, (void *)1);
 }
@@ -4356,7 +4356,7 @@ f32 TBoss7PhotonBullet::get_target_pos_y() {
 }
 
 
-void TBoss7PhotonBullet::emit_hit_effect(void *arg1) {
+void TBoss7DeRolLeC::emit_hit_effect(void *arg1) {
     TBoss7PhotonBullet__sub_802ED5A0(this, 2);
     TObjEneDD::emit_effect((void*)this, (int)arg1, (int)&lbl_80472D7C);
     ((void (*)(void *, void *))TBoss7PhotonBullet__sub_802ED5A0)(this, *(void **)((s8 *)this + 0x62C));
