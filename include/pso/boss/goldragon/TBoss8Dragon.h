@@ -7,6 +7,8 @@
 struct NJS_OBJECT;
 #include "pso/render/RenderFadeState.h"
 
+class TObject;
+struct Vec;
 struct G_GalGryphonBossActions_6xA0;
 struct TBoss8Dragon
 {
@@ -248,7 +250,7 @@ struct TBoss8Dragon
     int attack_default();
     int query_default();
     void copy_spawn_params(G_GalGryphonBossActions_6xA0 *cmd);
-    static s32 spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2);
+    static s32 spawn_ground_lightning(TObject *parent, const Vec *source, s32 direction);
     static void set_default_on_state0();
     static void update_camera_script(NJS_OBJECT *);
     void calc_velocity_from_angle();
@@ -326,7 +328,6 @@ struct TBoss8Dragon
     s32 is_near_other_part();
     void draw_with_fade(Vec *arg1, s32 arg2);
     void draw();
-    u8 *ct_attack_object(s32 arg1, s32 arg2, s32 arg3);
 };
 
 #include <stddef.h>

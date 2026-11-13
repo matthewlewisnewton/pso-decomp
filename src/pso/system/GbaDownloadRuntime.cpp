@@ -84,7 +84,7 @@ void gba_joyboot_transfer_callback(s32 arg0, s32 arg1) {
     }
 }
 
-void TLobby::send_data(s32 arg0) {
+void TLobby::send_data(const void *name) {
     u32 temp_r3;
 
     temp_r3 = update_lobby_scene__6TSceneFPCv();
@@ -94,7 +94,7 @@ void TLobby::send_data(s32 arg0) {
         return;
     }
     if ((u32) gba_download_data_buffer != 0U) {
-        read_disc_file(arg0, gba_download_data_buffer);
+        read_disc_file((s32)name, gba_download_data_buffer);
         return;
     }
     gba_download_data_size = 0U;

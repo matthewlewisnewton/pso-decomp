@@ -66,7 +66,7 @@ void TWindowSubTradeMain__sub_803323A8(void* p) { *(u16*)((char*)p + 0x60) |= 0x
 void TWindowSubTradeMain__sub_803323B8(void* p) { *(u16*)((char*)p + 0x60) &= 0xffffffbf; }
 void TWindowSubTradeMain__sub_803323C8(void* p) { *(u16*)((char*)p + 0x70) &= 0xfffffffb; }
 
-void TObjEneMorfos::vfunc_106() {
+void TObjEneMorfos::render_demo() {
     O_803323D8 *arg0 = (O_803323D8 *)this;
     s32 idx;
     f32 frame;
@@ -103,7 +103,7 @@ void TObjEneMorfos::vfunc_106() {
     }
 }
 
-s32 TObjEneMorfos::vfunc_83() { if (get_target_info() != 0) { this->init_target_offsets(); } }
+void TObjEneMorfos::update_demo() { if (get_target_info() != 0) { this->initialize_behavior_parameters(); } }
 
 void TObjEneMorfos::update_ground_probe() {
     u8 *arg0 = (u8 *)this;
@@ -125,33 +125,35 @@ void TObjEneMorfos::update_ground_probe() {
     }
 }
 
-u8 TObjEneMorfos::check_value_in_range(void *arg0, u16 arg1, u16 arg2, u16 arg3) {
-    s32 r;
-    s32 d;
-    s32 c;
-    s32 b;
-    s32 a;
-    a = arg1;
-    b = arg2;
-    if (a > b) {
-        c = arg3;
-        r = 0;
-        d = a - c;
-        if ((d >= 0 && b - c >= 0) || (d <= 0 && b - c <= 0)) {
-            r = 1;
+s32 TObjEneMorfos::crosses_heading(s32 start, s32 end, s32 heading) {
+    u8 result;
+    s32 difference;
+    s32 point;
+    s32 finish;
+    s32 begin;
+    begin = (start & 0xFFFF);
+    finish = (end & 0xFFFF);
+    if (begin > finish) {
+        point = (heading & 0xFFFF);
+        result = 0;
+        difference = begin - point;
+        if ((difference >= 0 && finish - point >= 0) ||
+            (difference <= 0 && finish - point <= 0)) {
+            result = 1;
         }
-        return r;
+        return result;
     } else {
-        s32 r2;
-        s32 d2;
-        s32 c2;
-        c2 = arg3;
-        r2 = 0;
-        d2 = a - c2;
-        if ((d2 <= 0 && b - c2 >= 0) || (d2 >= 0 && b - c2 <= 0)) {
-            r2 = 1;
+        u8 result;
+        s32 difference;
+        s32 point;
+        point = (heading & 0xFFFF);
+        result = 0;
+        difference = begin - point;
+        if ((difference <= 0 && finish - point >= 0) ||
+            (difference >= 0 && finish - point <= 0)) {
+            result = 1;
         }
-        return r2;
+        return result;
     }
 }
 

@@ -224,14 +224,15 @@ void *__dt__13TUnk_804F1A78Fv(void *arg0, s16 arg1) {
     return arg0;
 }
 typedef char RecoveredGlobal_80359DC4_lbl_804F1A78_size[sizeof(RecoveredGlobal_80359DC4_lbl_804F1A78) == 0x1B0 ? 1 : -1];
-u8 *TBoss8Dragon::ct_attack_object(s32 arg1, s32 arg2, s32 arg3) {
-    __ct__12TBoss8DragonFP7TObjectPv(((u8 *)this), (void *)arg1, (void *)arg2);
-    this->m_18 = &(*(RecoveredGlobal_80359DC4_lbl_804F1A78 *)&boss8_dragon_attack_object_vtable).value;
-    *(s32 *)&this->m_3c0 = (s32) (*(s32 *)&this->m_3c0 | 0x40);
-    *(s16 *)&this->m_67a = -1;
-    this->m_32c = arg3;
-    this->m_2b8 = arg3;
-    return ((u8 *)this);
+u8 *__ct__13TUnk_804F1A78FP7TObjectPvl(u8 *arg0, void *arg1, void *arg2, s32 arg3) {
+    TBoss8Dragon *self = (TBoss8Dragon *)arg0;
+    __ct__12TBoss8DragonFP7TObjectPv(arg0, arg1, arg2);
+    self->m_18 = &(*(RecoveredGlobal_80359DC4_lbl_804F1A78 *)&boss8_dragon_attack_object_vtable).value;
+    *(s32 *)&self->m_3c0 = (s32) (*(s32 *)&self->m_3c0 | 0x40);
+    *(s16 *)&self->m_67a = -1;
+    self->m_32c = arg3;
+    self->m_2b8 = arg3;
+    return arg0;
 }
 
 }

@@ -28,7 +28,7 @@ extern const f32 morfos_projectile_power;
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
 }
 
-void TUnk_804EF130::hit_target_in_range(TObjChara *target, TObjCollidable *owner) {
+void TUnk_804EF130::hit_target(TObjChara *target, TObjChara *owner) {
     Vec v = pos;
     subtract_vector(&v, &vel);
     if (target != 0 && target != owner && !(target->actorFlags & 0x04000A00)) {
@@ -39,13 +39,13 @@ void TUnk_804EF130::hit_target_in_range(TObjChara *target, TObjCollidable *owner
     }
 }
 
-s32 TObjEneMorfos::snap_to_ground(s32 arg0, s32 arg1) {
+s32 TUnk_804EF130::snap_to_ground(Vec *position) {
     u8 *temp_r3;
-    temp_r3 = (u8 *)(csnVecterUnder(arg1, 0x16EF));
+    temp_r3 = (u8 *)(csnVecterUnder((s32)position, 0x16EF));
     if (temp_r3 == NULL) {
         return 0;
     }
-    VecCopy((Vec *)(arg1), (const Vec *)(*(s32 *)((s8 *)temp_r3 + 4)));
+    VecCopy(position, (const Vec *)(*(s32 *)((s8 *)temp_r3 + 4)));
     return 1;
 }
 
@@ -66,7 +66,7 @@ void TUnk_804EF130::run_task() {
         ground_timer++;
         if (ground_timer > 4) {
             ground_timer = 0;
-            TObjEneMorfos::snap_to_ground((s32)this, (s32)&ground_pos);
+            snap_to_ground(&ground_pos);
         }
     }
     if (distance >= 500.0f) {
@@ -82,7 +82,7 @@ void TUnk_804EF130::run_task() {
         for (i = 0; i < registered_player_count; i++) {
             p = TObjPlayer::get_player_data(i);
             if (TObjPlayer::is_valid_and_active((u32)p) != 0 && fabs_float(pos.y - *(f32 *)((u8 *)p + 0x300)) < 20.0f) {
-                hit_target_in_range((TObjChara *)p, owner);
+                hit_target((TObjChara *)p, (TObjChara *)owner);
             }
         }
     }
@@ -94,7 +94,7 @@ TUnk_804EF130::~TUnk_804EF130() {
     }
 }
 
-TUnk_804EF130::TUnk_804EF130(Vec *start, s32 angle, TObjEneMorfos *owner) : TObjCollidable(tl_06) {
+TUnk_804EF130::TUnk_804EF130(const Vec *start, s32 angle, TObjChara *owner) : TObjCollidable(tl_06) {
     ParticleAngles a;
     VecCopy(&pos, start);
     distance = 0.0f;
@@ -105,8 +105,8 @@ TUnk_804EF130::TUnk_804EF130(Vec *start, s32 angle, TObjEneMorfos *owner) : TObj
     vel.x = morfos_projectile_speed * sin_table_lookup(angle);
     vel.y = 0.0f;
     vel.z = morfos_projectile_speed * cos_table_lookup(angle);
-    effect = (TParticleCtrl *)spawn_particle_effect_with_rotation(start, &a, 0x213, 2);
+    effect = (TParticleCtrl *)spawn_particle_effect_with_rotation((void *)start, &a, 0x213, 2);
     VecCopy(&ground_pos, &pos);
-    TObjEneMorfos::snap_to_ground((s32)this, (s32)&ground_pos);
+    snap_to_ground(&ground_pos);
     ground_timer = 0;
 }

@@ -5,16 +5,16 @@
 
 class TParticleCtrl;
 class TObjChara;
-class TObjEneMorfos;
 
 // Morfos's ground shot: flies straight from start along angle (particle 0x213), hits players it passes and
 // dies after 500 units or on a wall (made by TObjEneMorfos; the vtable at 0x804EF130 overrides the dtor and run_task).
 class TUnk_804EF130 : public TObjCollidable {
 public:
-    TUnk_804EF130(Vec *start, s32 angle, TObjEneMorfos *owner);
+    TUnk_804EF130(const Vec *start, s32 angle, TObjChara *owner);
     virtual ~TUnk_804EF130();
     virtual void run_task();
-    void hit_target_in_range(TObjChara *target, TObjCollidable *owner);
+    void hit_target(TObjChara *target, TObjChara *owner);
+    s32 snap_to_ground(Vec *position);
     Vec pos;
     Vec vel;
     u8 pad_C4[0x18];

@@ -49,10 +49,10 @@ u8 *TBoss6CrushPtcl__ct(u8 *boss6_crush_ptcl, void *arg1, Vec_80359EF0 *arg2) {
     return boss6_crush_ptcl;
 }
 
-void *TBoss6CrushPtcl::create() {
+void *TBoss6CrushPtcl::create(Vec *point) {
     void *o = __nw__7TObjectFUl(0x28);
     if (o != NULL) {
-        o = TBoss6CrushPtcl__ct((u8 *)o, (void *)tl_02, (Vec_80359EF0 *)(this));
+        o = TBoss6CrushPtcl__ct((u8 *)o, (void *)tl_02, (Vec_80359EF0 *)(point));
     }
     return o;
 }

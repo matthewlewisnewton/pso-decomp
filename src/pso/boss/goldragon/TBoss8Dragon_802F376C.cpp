@@ -24,7 +24,7 @@ struct Ent_802F3974 { u8 pad[0x38]; f32 x; f32 y; f32 z; };
 
 extern "C" {
 s32 __nw__7TObjectFUl(int);
-s32 ct_attack_object__12TBoss8DragonFlll(int, int, void *, void *);
+s32 __ct__13TUnk_804F1A78FP7TObjectPvl(int, int, void *, void *);
 extern s32 tl_04;
 u16 get_entity_id(void *);
 u8 *get_enemy_entity(u16 arg0);
@@ -120,7 +120,7 @@ s32 TUnk_804E4BF0::spawn_attack_object(Vec *arg1, s32 arg2, s32 arg3, s32 arg4) 
         temp_r3 = __nw__7TObjectFUl(0x8A4);
         var_r0 = temp_r3;
         if (var_r0 != 0) {
-            var_r0 = ct_attack_object__12TBoss8DragonFlll((int)temp_r3, (int)tl_04, &stack.sp8, (void *)arg3);
+            var_r0 = __ct__13TUnk_804F1A78FP7TObjectPvl((int)temp_r3, (int)tl_04, &stack.sp8, (void *)arg3);
         }
         return var_r0;
     }

@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/enemy/epsilon/TObjEneEpsilon.h"
 
+struct NJS_OBJECT;
+
 struct TObjEneEpsilonGuard : public TObjEneEpsilon {
     virtual ~TObjEneEpsilonGuard();
     void sub_803626A8(s32, s32);
@@ -29,11 +31,9 @@ struct TObjEneEpsilonGuard : public TObjEneEpsilon {
     s32 flags;                 // 0x46C: state bits; bit 4 while it follows the body
     u16 body_id;               // 0x470: entity id of the TObjEneEpsilonBody that spawned it
     u8 pad_472[0x32];
-    void *create(void *arg1, void *arg2, void *arg3, void *arg4);
     void init_model_and_state();
-    s32 all_children_gone();
     static void update_attack_pattern(void *arg0);
-    static void record_camera_angle_samples();
+    static void record_camera_angle_samples(NJS_OBJECT *);
     void draw_debug_line();
     static s32 create_damage_font(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     static void free_shared_resources();
@@ -45,7 +45,7 @@ struct TObjEneEpsilonGuard : public TObjEneEpsilon {
     void clear_and_flag_state();
     void set_flag_8_and_notify();
     void set_target(s32 arg1, s32 arg2, s32 arg3);
-    static void advance_camera_ctrl_step();
+    static void advance_camera_ctrl_step(NJS_OBJECT *);
     void handle_message(s32 arg1);
     void handle_break_state(s32 arg1);
     void state_orbit(s32 arg1);

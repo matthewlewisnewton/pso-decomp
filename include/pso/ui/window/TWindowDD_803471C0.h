@@ -4,6 +4,7 @@
 #include "types.h"
 
 extern "C" {
+void show_word_select_message(s32 arg0, s32 arg1);
 s32 TWindowDD__sub_80347238(s16 arg0);
 }
 

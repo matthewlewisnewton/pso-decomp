@@ -4,6 +4,8 @@
 #include "pso/system/task/TObject.h"
 #include "types.h"
 
+struct Vec;
+
 class TBoss6CrushPtcl : public TObject {
 public:
     virtual ~TBoss6CrushPtcl();
@@ -13,7 +15,7 @@ public:
     u32 m_20;
     u32 m_24;
 public:
-    void *create();
+    static void *create(Vec *point);
 };
 
 #endif

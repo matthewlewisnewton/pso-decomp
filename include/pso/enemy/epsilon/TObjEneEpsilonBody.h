@@ -12,6 +12,8 @@ public:
     virtual ~TObjEneEpsilonBody();
     virtual f32 receive_weapon_special_attack(void *, void *);
     void init_params();
+    void *create_guard(u32 entity_id, s32 set_index, const Vec *position, s32 yaw);
+    s32 all_children_gone();
     void update_guard_flag();
     void sub_80361D4C(s32);
     void sub_803606A0(s32);

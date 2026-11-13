@@ -1052,10 +1052,6 @@ struct TObjPlayer : public TObjChara {
     void spawn_hit_effect(s32 arg1, s32 arg2, s32 arg3);
     void spawn_mirror_pair(void *arg1, s32 arg2, s32 arg3);
     void handle_hit_effect(s32 arg1, s32 arg2, s32 arg3);
-    static void process_callback_list(s32 arg0);
-    void draw_node_tree(void *arg1);
-    void draw_node_tree_if_visible();
-    void apply_with_callback(s32 arg1, f32 farg0);
     static s32 conditional_delete_ex(s32 arg0, s16 arg1);
     static void create_cane_if_ready(s32 arg0, void *position);
     static void create_cleanup_object(void *arg0);

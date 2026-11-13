@@ -466,7 +466,7 @@ void *item_tool_factory_table[24] = {
     (void *)TItemObject::create,
     (void *)TItemObject::create,
     (void *)TItemObject::create,
-    (void *)TUnk_804F112C::create,
+    (void *)TItemSpecialEvent::create,
     (void *)TUnk_804F0C48::create,
     (void *)TUnk_804F0D34::create,
     (void *)TUnk_804F0FF0::create,

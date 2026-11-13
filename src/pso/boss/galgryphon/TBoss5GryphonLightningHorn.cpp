@@ -70,13 +70,13 @@ void TUnk_804ECDC0::emit_marker_effects() {
 }
 typedef char RecoveredGlobal_8012DBF4_lbl_804A5B20_size[sizeof(RecoveredGlobal_8012DBF4_lbl_804A5B20) == 0xF8 ? 1 : -1];
 
-s32 TBoss8Dragon::spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2) {
+s32 TBoss8Dragon::spawn_ground_lightning(TObject *parent, const Vec *source, s32 direction) {
     Vec position;
     f32 ground_height;
     s32 allocation;
     s32 effect;
     u8* collision;
-    VecCopy(&position, (const Vec *)arg1);
+    VecCopy(&position, source);
     collision = (u8 *)csnVecterUnder((s32)((s32*)&position), 0x16EF);
     if (collision == NULL) {
         position.y = lbl_805D8D48;
@@ -92,7 +92,7 @@ s32 TBoss8Dragon::spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2) {
     allocation = __nw__7TObjectFUl(0xA8);
     effect = allocation;
     if (effect != 0) {
-        effect = (s32)__ct__26TBoss5GryphonLightningHornFP7TObjectPC3Vecl((u8*)allocation, arg0, (s32)&position, arg2);
+        effect = (s32)__ct__26TBoss5GryphonLightningHornFP7TObjectPC3Vecl((u8*)allocation, (s32)parent, (s32)&position, direction);
     }
     return effect;
 }

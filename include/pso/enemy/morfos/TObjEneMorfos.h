@@ -4,16 +4,18 @@
 #include "types.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 
+struct NJS_OBJECT;
+
 struct TObjEneMorfos : public TObjEneDD_ST {
     virtual ~TObjEneMorfos();
-    s32 render_model_if_visible();
+    s32 render_reflection();
     virtual void vfunc_28();
     virtual void vfunc_63();
     virtual void vfunc_62();
     virtual void vfunc_61();
     virtual void vfunc_88();
-    virtual s32 vfunc_83();
-    virtual void vfunc_106();
+    virtual void update_demo();
+    virtual void render_demo();
     void render();
     void run_task();
     u8 unk_374[0x4];
@@ -35,25 +37,24 @@ struct TObjEneMorfos : public TObjEneDD_ST {
     u8 _pad428[0x6C];
     u32 m_494;
     void* m_498;
-    static int get_instance();
-    void draw_body();
-    static void record_camera_path_point();
+    static int get_resources();
+    void draw_guard_wall();
+    static void record_model_node_position(NJS_OBJECT *);
     void state_death(s32 arg1);
     void state_patrol(s32 arg1);
     void state_appear(s32 arg1);
     void handle_event_transition(s32 ev);
-    void play_sound_in_band();
-    void init_target_offsets();
-    void set_hover_target_position();
-    s32 approach_value(s32 arg1, s32 arg2);
+    void play_frame_sounds();
+    void initialize_behavior_parameters();
+    void update_body_center();
+    s32 turn_toward_angle(s32 arg1, s32 arg2);
     s32 try_enter_low_hp_state();
     s32 check_low_hp_trigger();
     void init_instance();
     static void unload_static_data();
-    void *create();
-    static s32 snap_to_ground(s32 arg0, s32 arg1);
+    static void *create(void *set_data);
     void update_ground_probe();
-    static u8 check_value_in_range(void *arg0, u16 arg1, u16 arg2, u16 arg3);
+    s32 crosses_heading(s32 start, s32 end, s32 heading);
     u8 unk_480[0x1C];
     f32 m_49c;
     u8 unk_4A0[0x4];
@@ -70,7 +71,7 @@ struct TObjEneMorfos : public TObjEneDD_ST {
     f32 m_4cc;
     u8 unk_4D0[0x4];
     f32 m_4d4;
-    void render_part(s32 idx, s32 mode);
+    void render_with_camera_fade(s32 idx, s32 mode);
     void state_rotating_projectile_burst(s32 arg1);
     s32 select_target_in_view();
 };

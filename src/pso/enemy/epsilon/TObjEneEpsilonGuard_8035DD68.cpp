@@ -687,7 +687,7 @@ void TObjEneEpsilonGuard::render() {
 }
 #pragma pop
 
-void TObjEneEpsilonGuard::advance_camera_ctrl_step() {
+void TObjEneEpsilonGuard::advance_camera_ctrl_step(NJS_OBJECT *) {
     if ((s32) epsilon_guard_camera_step == 0) {
         transform_point_to_view((s32) &lbl_805439E0.value, epsilon_guard_camera_ctrl_ptr);
     }
@@ -1304,11 +1304,11 @@ void run_task__19TObjEneEpsilonGuardFv(u8 *arg0) {
 }
 #pragma pop
 
-void *TObjEneEpsilonGuard::create(void *arg1, void *arg2, void *arg3, void *arg4) {
+void *TObjEneEpsilonBody::create_guard(u32 arg1, s32 arg2, const Vec *arg3, s32 arg4) {
     void *o;
     o = __nw__7TObjectFUl(0x4D8);
     if (o != NULL) {
-        o = TObjEneEpsilonGuard__ct(o, tl_04, this, arg1, arg2, arg3, arg4);
+        o = TObjEneEpsilonGuard__ct(o, tl_04, this, (void *)arg1, (void *)arg2, (void *)arg3, (void *)arg4);
     }
     return o;
 }

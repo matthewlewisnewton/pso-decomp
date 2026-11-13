@@ -636,7 +636,7 @@ TObjEneEpsilonBody::TObjEneEpsilonBody(TObject *parent, void *set_data) : TObjEn
     target_position.y = 0.0f;
     target_position.z = 0.0f;
     for (i = 0; i < 4; i++) {
-        void *guard = ((TObjEneEpsilonGuard *)this)->create((void *)(u16)(entity_id + 1 + i), (void *)(set_index + 1 + i), &position, (void *)rotation_y);
+        void *guard = create_guard((u32)(u16)(entity_id + 1 + i), set_index + 1 + i, &position, rotation_y);
         if (guard != NULL) {
             guard_ids[i] = get_entity_id(guard);
         }
@@ -1388,7 +1388,7 @@ void TObjEneEpsilonBody::action_destroy(s32 reason) {
         action_timer = 0;
         break;
     case 3:
-        if (action_step == 1 && ((TObjEneEpsilonGuard *)this)->all_children_gone() != 0) {
+        if (action_step == 1 && all_children_gone() != 0) {
             queue_destruction();
         }
         break;
@@ -1595,7 +1595,7 @@ void TObjEneEpsilonBody::render_body_effect() {
     }
 }
 
-void TObjEneEpsilonGuard::record_camera_angle_samples() {
+void TObjEneEpsilonGuard::record_camera_angle_samples(NJS_OBJECT *) {
     switch (epsilon_guard_camera_sample_phase) {
     case 0x1C:
     case 0x26:
@@ -1735,7 +1735,7 @@ s32 TObjEneEpsilonGuard__sub_8035FCEC(W_8035FCEC *arg0) {
     return 1;
 }
 
-s32 TObjEneEpsilonGuard::all_children_gone() {
+s32 TObjEneEpsilonBody::all_children_gone() {
     W_8035FC8C *arg0 = (W_8035FC8C *)this;
     s32 i;
     for (i = 0; i < 4; i++) {

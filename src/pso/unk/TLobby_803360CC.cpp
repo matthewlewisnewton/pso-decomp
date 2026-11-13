@@ -67,14 +67,14 @@ LobbyLoadCallback lobby_load_callback_table[4] = {
     {TLobby__sub_80336E68, TLobby__sub_80336E64},
 };
 
-typedef void (TLobby::*TLobbyStateHandler)();
+typedef void (TUnk_804EEF64::*TLobbyStateHandler)();
 
 // Indexed by lobby_game_mode_state (each handler stores its own index).
 TLobbyStateHandler TLobby__state_handler_pmf_table[4] = {
-    &TLobby::enter_chg_game_mode,
-    &TLobby::enter_game_mode_change,
-    &TLobby::request_change_game_mode,
-    &TLobby::open_keyboard,
+    &TUnk_804EEF64::enter_chg_game_mode,
+    &TUnk_804EEF64::enter_game_mode_change,
+    &TUnk_804EEF64::request_change_game_mode,
+    &TUnk_804EEF64::open_keyboard,
 };
 
 // Texture archive per language (Japanese, then English for the others);
@@ -176,10 +176,10 @@ void TLobby::set_flag_and_clear_download() {
 }
 
 void TLobby__sub_803361FC(void) {  }
-void TLobby::open_keyboard() { lobby_game_mode_state = 3; TKeyBoardControl__sub_8000F9CC((s32)((void*)19)); }
-void TLobby::request_change_game_mode() { lobby_game_mode_state = 2; TAdMultiChgGameModeGC::set_mode_change_state(); }
-void TLobby::enter_game_mode_change() { lobby_game_mode_state = 1; TAdMultiChgGameModeGC::set_game_mode_state(); }
-void TLobby::enter_chg_game_mode() { lobby_game_mode_state = 0; TAdMultiChgGameModeGC::set_mode_0x15(); }
+void TUnk_804EEF64::open_keyboard() { lobby_game_mode_state = 3; TKeyBoardControl__sub_8000F9CC((s32)((void*)19)); }
+void TUnk_804EEF64::request_change_game_mode() { lobby_game_mode_state = 2; TAdMultiChgGameModeGC::set_mode_change_state(); }
+void TUnk_804EEF64::enter_game_mode_change() { lobby_game_mode_state = 1; TAdMultiChgGameModeGC::set_game_mode_state(); }
+void TUnk_804EEF64::enter_chg_game_mode() { lobby_game_mode_state = 0; TAdMultiChgGameModeGC::set_mode_0x15(); }
 void TLobby__sub_803362A4(void *arg0_) {
     u8 *arg0 = (u8 *)arg0_;
     if (TAdTrialAgreementGC__sub_80335958(*(s32 *)(arg0 + 0x24)) != 0) {
@@ -187,7 +187,7 @@ void TLobby__sub_803362A4(void *arg0_) {
         if (((TAdSinglePlyChrSelectGC *)arg0)->start_offline_seq() != 0) {
             ((void (*)(void *))TLobby__sub_803361FC)(arg0);
             TLobbyStateHandler m = TLobby__state_handler_pmf_table[TLobby__sub_80336030(arg0)];
-            (((TLobby *)arg0)->*m)();
+            (((TUnk_804EEF64 *)arg0)->*m)();
         }
     }
 }

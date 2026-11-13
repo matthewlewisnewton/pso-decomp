@@ -1,15 +1,15 @@
-#ifndef PSO_ITEM_TUNK_804F112C_H
-#define PSO_ITEM_TUNK_804F112C_H
+#ifndef PSO_ITEM_TITEMSPECIALEVENT_H
+#define PSO_ITEM_TITEMSPECIALEVENT_H
 #include "types.h"
 #include "pso/item/TItemObject.h"
 
-class TUnk_804F112C : public TItemObject {
+class TItemSpecialEvent : public TItemObject {
 public:
-    TUnk_804F112C(TObject *parent, u8 *item);
+    TItemSpecialEvent(TObject *parent, u8 *item);
     // Declared first: apply_use_effect is the key function, so its TU emits the vtable.
     virtual void apply_use_effect();
-    virtual ~TUnk_804F112C();
-    static TUnk_804F112C *create(u8 *item);
+    virtual ~TItemSpecialEvent();
+    static TItemSpecialEvent *create(u8 *item);
 
     void send_obj_position_event(s32 kind);
     // The use effects of techniques 8 down to 0 (apply_use_effect's table).
