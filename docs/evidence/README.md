@@ -81,6 +81,7 @@ guides.
 - [Quest-download primary byte-page removal (partial)](quest-download-primary-removal.md)
 - [Quest-download byte-input conversion consumer (partial)](quest-download-byte-conversion.md)
 - [Quest-download canonical read-only token view](quest-download-token-format.md)
+- [Native starlight effect unit](starlight-native-unit.md)
 - [Shared scratch vector storage](scratch-vector-evidence.md)
 - [Symbol chat parts unit linkage](symbol-chat-parts-recovery-evidence.md)
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)

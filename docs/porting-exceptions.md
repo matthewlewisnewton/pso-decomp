@@ -26,6 +26,15 @@ introducing an anonymous duplicate. Ports can drop both annotations and keep
 the ordinary declarations, array and C++ bodies. The prior common-subexpression
 and propagation pragmas are removed. See [the recovery evidence](evidence/critical-hit-effect-unit.md).
 
+### Equipment-effect native emission
+
+`src/pso/item/TItemEffEquip.cpp` uses `#pragma defer_codegen on` and reverse
+function definitions to emit the two compiler-generated vtables in their original
+order (`TItemEffEquip`, then `TUnk_8049F038`) while preserving all twelve function
+positions. Immediate generation emits the vtables in the opposite order. A port
+can drop the pragma and use ordinary definition order; both classes retain normal
+C++ constructors, destructors and virtual dispatch.
+
 ### Raft splash shared constant
 
 `src/pso/boss/TObjBoss2RaftSplash.cpp` defines the shared scalar at
@@ -47,7 +56,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 89 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,857 | 884 |
+| CodeWarrior pragmas (excluding push/pop) | 5,858 | 885 |
 | Per-unit compiler overrides in `configure.py` | 207 | 207 |
 | Approved regressions | 0 | 0 |
 
@@ -241,11 +250,11 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,857 pragmas in 884 files; per-file table in the generated file. Main kinds:
+5,858 pragmas in 885 files; per-file table in the generated file. Main kinds:
 `dont_inline` 1150, `inline_depth` 1055, `fp_contract` 882, `auto_inline` 804,
 `opt_common_subs` 637, `scheduling` 264, `opt_propagation` 263,
 `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57,
-`defer_codegen` 56, `pack` 46, `opt_dead_assignments` 42. Reason: reproduce the original code generation
+`defer_codegen` 57, `pack` 46, `opt_dead_assignments` 42. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
