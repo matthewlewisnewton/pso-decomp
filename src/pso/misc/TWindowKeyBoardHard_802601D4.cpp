@@ -24,7 +24,6 @@ s32 get_window_layout_position(int);
 extern RecoveredGlobal_80260304_lbl_804CFAD0 lbl_804CFAD0;
 extern s32 __vt__19TWindowKeyBoardHard[];
 extern const char *TWindowKeyBoardHard__name;
-s32 is_key_active__19TWindowKeyBoardHardFv();
 void __dl__7TObjectFPv(void *);
 s32 initialize_subwindow__9TWindowDDFv(void *);
 s32 has_non_modifier_key__16TKeyBoardControlFv(void *);
@@ -35,7 +34,7 @@ void TWindowKeyBoardHard::run_task() {
     TWindowKeyBoardBase *temp_r3;
 
     if (this->m_composer != NULL) {
-        if ((is_key_active__19TWindowKeyBoardHardFv() == 0) && (this->m_composer->is_key_active() == 0)) {
+        if ((is_key_active() == 0) && (this->m_composer->is_key_active() == 0)) {
             if (has_non_modifier_key__16TKeyBoardControlFv(this) != 0) {
                 if (current_language == LANGUAGE_JAPANESE) {
                     this->m_68 = 0x3C;

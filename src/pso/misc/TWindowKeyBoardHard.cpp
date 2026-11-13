@@ -25,7 +25,6 @@ extern s32 lbl_8044F104[];
 extern const f32 lbl_805DD068;
 extern const f32 lbl_805DD06C;
 extern const f32 lbl_805DD070;
-s32 is_key_active__19TWindowKeyBoardHardFv();
 
 void TWindowKeyBoardHard::release_keyboard() { void* m = this->m_composer; if (m) TWindowKeyBoardHard__sub_8025CC48(m); }
 
@@ -58,7 +57,7 @@ void TWindowKeyBoardHard::draw_status_text(TWindowDrawContext *ctx) {
 
 void TWindowKeyBoardHard::render() {
     s32 temp;
-    if (((s32) this->m_68 > 0) && (is_key_active__19TWindowKeyBoardHardFv() == 0)) {
+    if (((s32) this->m_68 > 0) && (is_key_active() == 0)) {
         temp = TWindowDD::draw_default_entry((s32)this);
         draw_status_text((TWindowDrawContext *)temp);
     }

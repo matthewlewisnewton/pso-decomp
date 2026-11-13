@@ -31,6 +31,12 @@ See [Hard status context and composer flags](window-hard-status-context.md).
 The status renderer uses actual context/composer fields; legacy external ABI,
 compiler-control and Hard destruction/table holds remain.
 
+## Hard key-query receiver checkpoint
+
+See [explicit Hard key-query receiver](window-hard-key-query-receiver.md).
+Only the two no-argument aliases for the existing Hard member are replaced;
+the separate global non-modifier query and broader holds remain.
+
 ## Initial split preservation and review order
 
 Original PR #268 is preserved at `2b99de553e82eff0ab0bb70263c943bb68e23fb4`,
