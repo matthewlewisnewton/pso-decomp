@@ -303,6 +303,7 @@ pso/boss/TObjBoss2DustCtrl.cpp:
 pso/boss/TObjBoss2RaftSplash.cpp:
 	.text       start:0x8003AED4 end:0x8003AFBC
 	.data       start:0x804833A0 end:0x804833B8
+	.sdata2     start:0x805D85B0 end:0x805D85B4
 
 pso/unk/text_8003AFBC.cpp:
 	.text       start:0x8003AFBC end:0x8003B07C
@@ -668,16 +669,13 @@ pso/unk/text_80066F5C.cpp:
 pso/boss/TBoss8Dragon_80067034.cpp:
 	.text       start:0x80067034 end:0x80067124
 
-pso/boss/TObjBoss5Ctrl_80067124.cpp:
-	.text       start:0x80067124 end:0x8006715C
-
 pso/boss/TObjBoss5Ctrl.cpp:
-	.text       start:0x8006715C end:0x800673D0
-	.rodata     start:0x80438138 end:0x80438140
+	.text       start:0x80067124 end:0x80067410
+	.rodata     start:0x80438128 end:0x80438140
 	.data       start:0x80488778 end:0x80488790
-
-pso/boss/TObjBoss5Ctrl_800673D0.cpp:
-	.text       start:0x800673D0 end:0x80067410
+	.sdata      start:0x805D2828 end:0x805D282C
+	.sbss       start:0x805D4DE0 end:0x805D4DE4
+	.sdata2     start:0x805D8F10 end:0x805D8F1C
 
 pso/misc/TLobby_80067410.cpp:
 	.text       start:0x80067410 end:0x80067490
@@ -2239,16 +2237,11 @@ pso/object/TObjEZBoneRotPlayer.cpp:
 	.text       start:0x800FEE2C end:0x800FEFCC
 
 pso/object/TObjEZRopeSimulation.cpp:
-	.text       start:0x800FEFCC end:0x800FF9B8
+	.text       start:0x800FEFCC end:0x800FFA88
+	.rodata     start:0x8043DF18 end:0x8043DF48
+	.data       start:0x8049DCF0 end:0x8049DD5C
+	.sdata      start:0x805D2B50 end:0x805D2B58
 	.sdata2     start:0x805DAA58 end:0x805DAA68
-
-pso/object/TObjEZRopeBase.cpp:
-	.text       start:0x800FF9B8 end:0x800FFA88
-	.data       start:0x8049DCF0 end:0x8049DD60
-	.sdata      start:0x805D2B50 end:0x805D2B54
-
-pso/unk/tails_adjacent_name.cpp:
-	.sdata      start:0x805D2B54 end:0x805D2B58
 
 pso/player/TObjPlayer_800FFA88.cpp:
 	.text       start:0x800FFA88 end:0x800FFA98
@@ -5999,6 +5992,7 @@ pso/object/TObjWarpBoss03.cpp:
 pso/object/TObjWarpJungMain.cpp:
 	.text       start:0x8019FB8C end:0x801A03D8
 	.rodata     start:0x80446708 end:0x80446718
+	.sdata2     start:0x805DC040 end:0x805DC058
 
 pso/object/TObjWarpJung_801A03D8.cpp:
 	.text       start:0x801A03D8 end:0x801A0520
@@ -9554,12 +9548,24 @@ pso/misc/TChCrEffTag.cpp:
 	.sdata      start:0x805D3D08 end:0x805D3D0C
 	.sdata2     start:0x805DDC90 end:0x805DDCAC
 
+original_unclaimed_805DDCAC:
+	.sdata2     start:0x805DDCAC end:0x805DDCB0 align:4
+
+original_unclaimed_805D3D0C:
+	.sdata      start:0x805D3D0C end:0x805D3D10 align:4
+
 pso/misc/TChCrEffTag_8029ACA8.cpp:
 	.text       start:0x8029ACA8 end:0x8029ACF8
 
 pso/menu/TChCrEffWall.cpp:
 	.text       start:0x8029ACF8 end:0x8029AED0
+	.rodata     start:0x804652E0 end:0x80465330
 	.data       start:0x804DBF58 end:0x804DBFD0
+	.sdata      start:0x805D3D10 end:0x805D3D14
+	.sdata2     start:0x805DDCB0 end:0x805DDCB8
+
+original_unclaimed_805D3D14:
+	.sdata      start:0x805D3D14 end:0x805D3D18 align:4
 
 pso/misc/TChCrEffTagStr.cpp:
 	.text       start:0x8029AED0 end:0x8029B098
