@@ -361,7 +361,7 @@ void TUnk_804CCB28::render() {
     model_render_flags = id | 0x200010;
     ((void (*)(void *, s32))set_constant_material)(o->m48, id);
     if (o->tev != 0) {
-        ((TScene *)(o->tev))->draw_field_1c(2, 0, 0);
+        enable_indirect_tev((TUnk_804DDF04 *)(o->tev), 2, 0, 0);
     }
     lv = o->level;
     x = o->sx;
@@ -390,7 +390,7 @@ void TUnk_804CCB28::render() {
     pop_matrix();
     model_render_flags = saved_model_render_flags;
     if (o->tev != 0) {
-        TScene::set_indirect_tev((s32)o->tev, 0);
+        disable_indirect_tev((TUnk_804DDF04 *)o->tev, 0);
     }
     TParticleCtrl::end_effect_render();
 }
