@@ -54,6 +54,7 @@ guides.
 - [Locked-cache matrix stack base](locked-cache-matrix-stack.md)
 - [Matrix copy and concatenation](matrix-copy-concat-evidence.md)
 - [MatrixVector hand-written kernels](matrixvector-asm-kernels-evidence.md)
+- [Loading particle distance constant](now-loading-constant-pool.md)
 - [Moja constructor: compiler tracing and replacement of the scaled-index workaround](moja-compiler-tracing.md)
 - [Moja constructor: initial alternatives and constant-pool investigation](moja-constructor-index-investigation.md)
 - [Motion drawing and model callbacks](motion-draw-callback-evidence.md)
