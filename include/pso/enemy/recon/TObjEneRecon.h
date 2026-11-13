@@ -2,6 +2,8 @@
 #define PSO_ENEMY_RECON_TOBJENERECON_H
 
 #include "types.h"
+
+struct NJS_OBJECT;
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 
 struct TObjEneRecon : public TObjEneDD_ST {
@@ -47,7 +49,7 @@ struct TObjEneRecon : public TObjEneDD_ST {
     static void set_active();
     static void *create_bomb(void *arg0, void *arg1, void *arg2);
     void render_shadows();
-    static void advance_intro_stage();
+    static void advance_intro_stage(NJS_OBJECT *);
     void update_ground_probe();
     u8 is_anim_5();
     void spawn_trap_a();
@@ -87,7 +89,7 @@ struct TObjEneRecon : public TObjEneDD_ST {
     void retarget();
     void select_next_target();
     void update_collide_flag();
-    void set_flag2();
+    void set_flag2(f32 dx, f32 dz, f32 distance);
     void set_orbit_destination(s32 arg1);
     void advance_field398();
     void sync_height();

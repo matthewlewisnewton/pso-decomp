@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/npc/TObjNpcEnemy.h"
+#include "pso/npc/NpcModelEntry.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/boss/volopt/TBoss3VoloptHiraisin.h"
 #include "pso/math/MatrixVector.h"
@@ -113,14 +114,14 @@ s16 *TObjNpcEnemy::insert_slot_by_id(s16 arg0) {
     if (i < 0xF) {
         memmove(e + 1, e, (0xF - i) * 0x24);
     }
-    ((TObjNpcEnemy *)e)->reset_anim_fields();
+    ((NpcModelEntry *)e)->reset();
     return (s16 *)e;
 }
 
 void TObjNpcEnemy::reset_all_anim_fields() {
     s32 i;
     for (i = 0; i < 0x10; i++) {
-        ((TObjNpcEnemy *)(&((Ent_802D732C *)&TObjNpcEnemy__entry_table)[i]))->reset_anim_fields();
+        ((NpcModelEntry *)(&((Ent_802D732C *)&TObjNpcEnemy__entry_table)[i]))->reset();
     }
 }
 

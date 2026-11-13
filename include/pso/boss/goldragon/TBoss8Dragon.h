@@ -2,6 +2,9 @@
 #define PSO_BOSS_GOLDRAGON_TBOSS8DRAGON_H
 
 #include "types.h"
+#include <dolphin/mtx/GeoTypes.h>
+
+struct NJS_OBJECT;
 #include "pso/render/RenderFadeState.h"
 
 struct G_GalGryphonBossActions_6xA0;
@@ -247,7 +250,7 @@ struct TBoss8Dragon
     void copy_spawn_params(G_GalGryphonBossActions_6xA0 *cmd);
     static s32 spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2);
     static void set_default_on_state0();
-    static void update_camera_script();
+    static void update_camera_script(NJS_OBJECT *);
     void calc_velocity_from_angle();
     f32 clamp_step_in_radius(f32 a, f32 b, f32 s);
     void freeze_player_at_self();
@@ -303,8 +306,6 @@ struct TBoss8Dragon
     static s32 is_any_part_alive();
     static void update_all_parts();
     static bool has_enough_enemies();
-    s32 spawn_attack_object(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-    u16 get_part_count_plus(s32 arg1);
     void set_mode_params(s8 arg1);
     void draw_motion_model();
     void render_nodes_flagged();
@@ -314,9 +315,6 @@ struct TBoss8Dragon
     void copy_position(s32 arg1);
     int queue_destruction();
     static void trigger_switches_in_range(void *arg0, void *arg1, void *arg2);
-    void choose_next_camera_shot();
-    void update_live_camera();
-    void update_toggle_state();
     static s32 calc_binomial_coefficient(s32 n, s32 k);
     void play_animation_index(s32 arg1);
     void render_body_model();
@@ -326,7 +324,7 @@ struct TBoss8Dragon
     s32 is_closest_part();
     s32 push_apart_from_parts();
     s32 is_near_other_part();
-    void draw_with_fade(s32 arg1, s32 arg2);
+    void draw_with_fade(Vec *arg1, s32 arg2);
     void draw();
     u8 *ct_attack_object(s32 arg1, s32 arg2, s32 arg3);
 };

@@ -24,7 +24,7 @@ s32 setup_attack_slot__13TUnk_804E4BF0FP3VecllPUc(s32 arg0, u32 arg1, s32 arg2, 
     TBoss4DarkFalz__sub_8004B4F0(arg4, (void *)(arg0 + 0x1C));
     *(s16 *)((s8 *)arg4 + 0) = TBoss8Dragon__sub_802F3C94((void *)arg0, (s32)arg3);
     *(s16 *)((s8 *)arg4 + 2) = 0;
-    *(s16 *)((s8 *)arg4 + 6) = ((TBoss8Dragon *)arg0)->get_part_count_plus(arg3);
+    *(s16 *)((s8 *)arg4 + 6) = ((TUnk_804E4BF0 *)arg0)->get_part_entity_id(arg3);
     if (arg1 != 0U) {
         VecCopy((Vec *)(arg4 + 0x10), (const Vec *)(arg1));
     }
@@ -61,8 +61,8 @@ void TBoss8Dragon__sub_802F3C74(void) {  }
 
 void clear_boss8_dragon_leader_part(void) { boss8_dragon_leader_part = 0; }
 
-u16 TBoss8Dragon::get_part_count_plus(s32 arg1) {
-    return (u16) (this->m_22 + arg1);
+u16 TUnk_804E4BF0::get_part_entity_id(s32 arg1) {
+    return (u16) (this->first_part_id + arg1);
 }
 
 s32 TBoss8Dragon__sub_802F3C94(void *arg0, s32 arg1) {

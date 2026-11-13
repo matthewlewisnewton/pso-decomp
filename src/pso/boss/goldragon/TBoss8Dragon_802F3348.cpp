@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/boss/TUnk_804E4BF0.h"
 #include "pso/boss/goldragon/TBoss8Dragon_802F3348.h"
 #include "pso/unk/TLobby_8007C550.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"
@@ -10,22 +11,22 @@ struct Ent_802F33C8 { u8 pad0[0x38]; f32 x, y, z; u8 pad44[0x60 - 0x44]; s32 rot
 
 extern "C" {
 s32 get_enemy_entity();
+void spawn_attack_object__13TUnk_804E4BF0FP3Veclll(void *, Vec_802F33C8 *, u16, s32, s32);
 extern u8 *boss8_dragon_leader_part;
 f32 calc_random_ratio__10TObjPlayerFv(void *);
 void subtractive_rng_seed(void *, s32);
-void spawn_attack_object__12TBoss8DragonFllll(void *, Vec_802F33C8 *, u16, s32, s32);
 s32 TBoss8Dragon__sub_802F3348(s32 arg0) {
     if ((void *) boss8_dragon_leader_part == NULL) {
         return 0;
     }
-    ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(arg0);
+    ((TUnk_804E4BF0 *)boss8_dragon_leader_part)->get_part_entity_id(arg0);
     return get_enemy_entity();
 }
 u16 TBoss8Dragon::get_global_part_count(s32 arg0) {
     if ((void *) boss8_dragon_leader_part == NULL) {
         return 0xFFFFU;
     }
-    return ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(arg0);
+    return ((TUnk_804E4BF0 *)boss8_dragon_leader_part)->get_part_entity_id(arg0);
 }
 void TBoss8Dragon::place_parts_in_ring(s32 arg1, s32 arg2) {
     s32 n = (s32)this;
@@ -40,7 +41,7 @@ void TBoss8Dragon::place_parts_in_ring(s32 arg1, s32 arg2) {
         subtractive_rng_seed(buf, arg2);
         ang = (s32)(65535.0f * calc_random_ratio__10TObjPlayerFv(buf));
         step = 0x10000 / (n + 1);
-        ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(0);
+        ((TUnk_804E4BF0 *)boss8_dragon_leader_part)->get_part_entity_id(0);
         e = (Ent_802F33C8 *)get_enemy_entity();
         e->x = 320.0f * sin_table_lookup(ang);
         e->z = 320.0f * cos_table_lookup(ang);
@@ -50,7 +51,7 @@ void TBoss8Dragon::place_parts_in_ring(s32 arg1, s32 arg2) {
             v.x = 320.0f * sin_table_lookup(ang);
             v.y = e->y;
             v.z = 320.0f * cos_table_lookup(ang);
-            spawn_attack_object__12TBoss8DragonFllll(boss8_dragon_leader_part, &v, ang + 0x8000, arg1, i + 1);
+            spawn_attack_object__13TUnk_804E4BF0FP3Veclll(boss8_dragon_leader_part, &v, ang + 0x8000, arg1, i + 1);
         }
     }
 }

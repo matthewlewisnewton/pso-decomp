@@ -1200,7 +1200,7 @@ s32 TObjEneDolmOlm::render_model_if_visible() {
     }
     return 0;
 }
-void TObjEneDolmOlm::toggle_effect_render() {
+void TObjEneDolmOlm::toggle_effect_render(NJS_OBJECT *) {
     switch (TObjEneDolmOlm__effect_render_state) {
     case 0x15:
     case 0x1d:

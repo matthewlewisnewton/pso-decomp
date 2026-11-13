@@ -223,9 +223,9 @@ void *__dt__15TBoss7PhotonPadFv(void *self, s16 arg1) {
     return self;
 }
 }
-TBoss7PhotonPad::TBoss7PhotonPad(s32 arg1, s32 arg2, s32 arg3, s32 arg4) : TObject((TObject *)arg1) {
+TBoss7PhotonPad::TBoss7PhotonPad(TObject *parent, const Vec *arg2, const Vec *arg3, s32 arg4) : TObject(parent) {
     *(const char **)((s8 *)this + 0) = TBoss7PhotonPad__name;
-    *(s32 *)((s8 *)this + 0x1C) = arg2;
+    *(s32 *)((s8 *)this + 0x1C) = (s32)arg2;
     *(s32 *)((s8 *)this + 0x2C) = arg4;
     VecCopy__FP3VecPC3Vec(((u8 *)this) + 0x20, (void *)arg3);
     rotate_xz_pair_by_angle((f32 *)(((u8 *)this) + 0x20), (f32 *)(((u8 *)this) + 0x28), (s32)(-(boss7_photon_bullet_level_table[*(s32 *)((s8 *)this + 0x2C)].c / 2)));

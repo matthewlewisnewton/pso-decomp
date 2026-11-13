@@ -2262,7 +2262,7 @@ void TBoss8Dragon::render_body_model() {
     ((Obj_802F44D8 *)this)->f34 = saved;
 }
 
-void TBoss8Dragon::update_camera_script() {
+void TBoss8Dragon::update_camera_script(NJS_OBJECT *) {
     s32 temp_r0;
     s32 pos;
     if ((s32) TBoss8Dragon__data_805D698C == (s32) lbl_805D6990) {

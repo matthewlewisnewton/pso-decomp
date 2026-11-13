@@ -1,5 +1,5 @@
 #include "types.h"
-#include "pso/object/TMotorcycle_802D712C.h"
+#include "pso/npc/NpcAnimationBinding.h"
 #include "pso/npc/NpcModelRegistry.h"
 #include "pso/unk/TLobby.h"
 
@@ -18,7 +18,7 @@ void NpcModelRegistry::register_animated_chunk(s16 arg0, void *arg1, void *arg2,
         *(s32 *)((s8 *)temp_r3 + 8) = (s32)arg1;
         *(NJS_TEXLIST **)((s8 *)temp_r3 + 0xC) = (NJS_TEXLIST *)arg2;
         *(f32 *)((s8 *)temp_r3 + 0x10) = farg0;
-        copy_position_data(temp_r3 + 0x14, (void *)arg3);
+        *(NpcAnimationBinding *)(temp_r3 + 0x14) = *(const NpcAnimationBinding *)arg3;
     }
 }
 

@@ -5,7 +5,7 @@
 
 extern "C" {
 u8 *__ct__18TBoss7PhotonBulletFP7TObjectP8TObjBasePC3VecPC3Vecf(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
-u8 *__ct__15TBoss7PhotonPadFllll(u8 *object, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+u8 *__ct__15TBoss7PhotonPadFP7TObjectPC3VecPC3Vecl(u8 *object, TObject *arg1, const Vec *arg2, const Vec *arg3, s32 arg4);
 void *__dt__15TBoss7PhotonPadFv(void *self, s16 arg1);
 void *__dt__18TBoss7PhotonBulletFv(void *arg0, s16 arg1);
 void render__18TBoss7PhotonBulletFv(u8 *arg0);

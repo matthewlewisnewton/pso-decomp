@@ -49,7 +49,6 @@ struct VObj_18_ca64a0 : VBase_18_ca64a0 {
 };
 
 extern "C" {
-s32 is_active_state__22TObjEneMe1GiGueBarrierFv(int);
 u16 get_entity_id(void *);
 void set_barrier_active__15TObjEneMe1GiGueFv(void *p);
 extern const char *TObjEneMe1GiGueBarrier__name;
@@ -96,8 +95,8 @@ void TObjEneMe1GiGueBarrier::run_task() {
         queue_destruction__7TObjectFv((arg0));
         return;
     }
-    VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(((TObjEneMe1GiGueBarrier *)temp_r0)->update_and_get_pos()));
-    this->rotation_y = ((TObjEneMe1GiGueBarrier *)(this->m_fc))->get_timer();
+    VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(((TObjEneMe1GiGue *)temp_r0)->update_barrier_origin()));
+    this->rotation_y = ((TObjEneMe1GiGue *)(this->m_fc))->get_barrier_rotation();
     ((TObjMotion *)arg0)->advance_animation();
     this->m_108 = (this->m_108 - 1);
     switch (this->m_104) {
@@ -119,7 +118,7 @@ void TObjEneMe1GiGueBarrier::run_task() {
         break;
     default:
     case 1:
-        if (((s32) this->m_108 <= 0) || (is_active_state__22TObjEneMe1GiGueBarrierFv(this->m_fc) != 0)) {
+        if (((s32) this->m_108 <= 0) || (((TObjEneMe1GiGue *)this->m_fc)->should_end_barrier() != 0)) {
             this->m_104 = 2;
             this->requested_action = 2;
         }
@@ -138,9 +137,9 @@ TObjEneMe1GiGueBarrier::TObjEneMe1GiGueBarrier(TObject *parent, void *owner) : T
     m_name = TObjEneMe1GiGueBarrier__name;
     m_fc = (u32)owner;
     m_100 = get_entity_id((void *)m_fc);
-    VecCopy(&position, (const Vec *)((TObjEneMe1GiGueBarrier *)m_fc)->update_and_get_pos());
-    rotation_y = ((TObjEneMe1GiGueBarrier *)m_fc)->get_timer();
-    m_108 = ((TObjEneMe1GiGueBarrier *)m_fc)->get_field_44c();
+    VecCopy(&position, (const Vec *)((TObjEneMe1GiGue *)m_fc)->update_barrier_origin());
+    rotation_y = ((TObjEneMe1GiGue *)m_fc)->get_barrier_rotation();
+    m_108 = ((TObjEneMe1GiGue *)m_fc)->get_barrier_duration();
     set_barrier_active__15TObjEneMe1GiGueFv((void *)m_fc);
     m_104 = 0;
     model = *(void **)(*(u8 **)(TObjEneMe1GiGueBarrier__barrier_resource_object + 0x42C) + 0x28);
@@ -160,6 +159,6 @@ void *TObjEneMe1GiGueBarrier::create(void *arg0, void *arg1) {
 }
 
 void TObjEneMe1GiGueBarrier::init_global() {
-    TObjEneMe1GiGueBarrier__barrier_resource_object = TObjEneMe1GiGue::get_barrier_count();
+    TObjEneMe1GiGueBarrier__barrier_resource_object = TObjEneMe1GiGue::get_resources();
 }
 

@@ -7,6 +7,7 @@
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/boss/barbaray/TBoss7PhotonBullet.h"
+#include "pso/boss/barbaray/TBoss7DeRolLeC.h"
 #include "pso/boss/TUnk_804F1C88.h"
 #include <stddef.h>
 #include "pso/ui/hud/TNowLoading.h"
@@ -85,7 +86,7 @@ void TUnk_804F1C88::run_task() {
     TObjPlayer::apply_status_effect((s32)o->x1c);
     for (i = 0; i != TObjOnlineEnding::get_instance(); i++) {
         u8 **e = (u8 **)TObjOnlineEnding::get_attack_entry(i);
-        ((TBoss7PhotonBullet *)(o->x10))->emit_hit_effect(*e + 0x38);
+        ((TBoss7DeRolLeC *)(o->x10))->emit_hit_effect(*e + 0x38);
     }
     reset_global_table();
     if (6e+01f < o->x40) {

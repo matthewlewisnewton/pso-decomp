@@ -87,7 +87,7 @@ static const f32 time_set_calendar_pos[2] = {
 static TAdTimeSetGCState time_set_state_actions[25] = {
     {&TAdTimeSetGC::rebuild_and_maybe_close, &TAdTimeSetGC::report_card_status},
     {&TAdTimeSetGC::sub_802E3038, &TAdTimeSetGC::ensure_system_file_loaded},
-    {&TAdTimeSetGC::sub_802E2FEC, &TAdTimeSetGC::sub_802E2F88},
+    {&TAdTimeSetGC::sub_802E2FEC, &TAdTimeSetGC::poll_loaded_player},
     {&TAdTimeSetGC::sub_802E2F68, &TAdTimeSetGC::ensure_player_loaded},
     {&TAdTimeSetGC::sub_802E2F20, &TAdTimeSetGC::reset_on_load_complete},
     {&TAdTimeSetGC::open_char_select, &TAdTimeSetGC::handle_confirm_menu},
@@ -99,7 +99,7 @@ static TAdTimeSetGCState time_set_state_actions[25] = {
     {&TAdTimeSetGC::sub_802E2A7C, &TAdTimeSetGC::update_char_timer},
     {&TAdTimeSetGC::init_screen, &TAdTimeSetGC::sub_802E289C},
     {&TAdTimeSetGC::sub_802E2848, &TAdTimeSetGC::update_close_timer},
-    {&TAdTimeSetGC::sub_802E2728, &TAdTimeSetGC::try_setup},
+    {&TAdTimeSetGC::start_settings, &TAdTimeSetGC::try_setup},
     {NULL, &TAdTimeSetGC::update_close_on_load},
     {&TAdTimeSetGC::sub_802E2610, &TAdTimeSetGC::sub_802E2588},
     {&TAdTimeSetGC::sub_802E2520, &TAdTimeSetGC::sub_802E24B8},
@@ -109,7 +109,7 @@ static TAdTimeSetGCState time_set_state_actions[25] = {
     {&TAdTimeSetGC::build_selection_summary, &TAdTimeSetGC::sub_802E22A4},
     {&TAdTimeSetGC::create_result_bg, &TAdTimeSetGC::sub_802E2158},
     {&TAdTimeSetGC::show_confirm_dialog, &TAdTimeSetGC::sub_802E1FAC},
-    {&TAdTimeSetGC::sub_802E1F8C, &TAdTimeSetGC::update_state},
+    {&TAdTimeSetGC::sub_802E1F8C, &TAdTimeSetGC::finish_settings},
 };
 
 void TAdTimeSetGC::sub_802E34A8() {
@@ -269,7 +269,7 @@ void TAdTimeSetGC::ensure_system_file_loaded() {
 void TAdTimeSetGC::sub_802E2FEC() {
 }
 
-void TAdTimeSetGC::sub_802E2F88() {
+void TAdTimeSetGC::poll_loaded_player() {
     if (TAdPlayerLoadGC::get_instance() == 0) {
         unk_20 = 1;
         if (load_status == 0) {
@@ -488,7 +488,7 @@ void TAdTimeSetGC::update_close_timer() {
     }
 }
 
-void TAdTimeSetGC::sub_802E2728() {
+void TAdTimeSetGC::start_settings() {
     init_timestamped_data();
     if (check_ready__23TAdSinglePlyChrSelectGCFv() == 0) {
         change_state(0);
@@ -670,7 +670,7 @@ void TAdTimeSetGC::sub_802E1F8C() {
     close_windows();
 }
 
-void TAdTimeSetGC::update_state() {
+void TAdTimeSetGC::finish_settings() {
     if (timer <= 0) {
         switch (unknown_5c) {
         case 0:

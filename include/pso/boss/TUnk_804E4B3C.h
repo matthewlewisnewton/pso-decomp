@@ -21,7 +21,9 @@ public:
     void sub_802F23FC();
     void sub_802F273C();
     void update_dust_spawn();
-    void update_spawn_timer(s32 arg1, s32 arg2, s32 arg3);
+    void update_spawn_timer(const s32 *arg1, s32 arg2, s32 arg3);
+    s32 check_both();
+    s32 is_phase_active();
     void double_scroll_speed();
     void advance_effect_timer();
     // Size 0x94 (TObjBoss2Tunnel__sub_802F2C50's operator new); its constructor

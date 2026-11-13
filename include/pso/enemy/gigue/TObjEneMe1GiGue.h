@@ -6,14 +6,16 @@
 
 struct TObjEneMe1GiGue : public TObjEnemyCustom {
     virtual ~TObjEneMe1GiGue();
-    void sub_802CACD8();
+    void reset_spawn_after_hold();
     virtual void run_task();
-    void sub_802CCF2C();
-    void sub_802CB6D4();
+    void update_idle();
+    void select_next_action();
     void init_move();
     void clear_barrier_active();
     void update_direction();
     void load_params();
+    s32 get_int_parameter(s32 index);
+    f32 get_float_parameter(s32 index);
     virtual void vfunc_62();
     virtual void vfunc_63();
     virtual s32 update_action_hold_status();
@@ -51,10 +53,14 @@ struct TObjEneMe1GiGue : public TObjEnemyCustom {
     static void load_resources();
     void load_params_from_table(s32 i);
     u8 unk_44C[0xC];
-    static int get_barrier_count();
+    static int get_resources();
+    s32 should_end_barrier();
+    s32 get_barrier_duration();
+    s32 get_barrier_rotation();
+    Vec *update_barrier_origin();
     void apply_hit_shake(u32 arg1);
-    s32 check_vector_bit(s32 arg1);
-    static s32 remap_sound_id(void *obj, s32 id);
+    s32 check_vector_bit(Vec *point);
+    s32 remap_sound_id(s32 id);
     void break_apart();
     void update_hit_reaction();
 };

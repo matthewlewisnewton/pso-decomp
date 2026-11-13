@@ -7,7 +7,7 @@
 class TAdSubPlyItemGC;
 
 struct TAdChrSelASlotGC : public TObject {
-    TAdChrSelASlotGC(TObject *arg1, void *arg2);
+    TAdChrSelASlotGC(TObject *arg1, s32 arg2);
     virtual ~TAdChrSelASlotGC();
     virtual void render();
     virtual void run_task();

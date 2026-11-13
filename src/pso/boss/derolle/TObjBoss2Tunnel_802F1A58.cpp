@@ -389,14 +389,14 @@ void TObjBoss2Tunnel__sub_802F22DC(void) {
 s32 TObjBoss2Tunnel__sub_802F22F4(void) {
     return ((u32) boss2_tunnel_state_flags >> 0xDU) & 1;
 }
-s32 TObjBoss2Tunnel::is_phase_active(s32 _w0) {
+s32 TUnk_804E4B3C::is_phase_active() {
     return ((u32) boss2_tunnel_state_flags >> 0xCU) & 1;
 }
-s32 TObjBoss2Tunnel::check_both(s32 arg0) {
+s32 TUnk_804E4B3C::check_both() {
     s32 temp_r31;
     s32 temp_r3;
     temp_r31 = TObjBoss2Tunnel__sub_802F22F4();
-    temp_r3 = TObjBoss2Tunnel::is_phase_active(arg0);
+    temp_r3 = is_phase_active();
     return temp_r3 | temp_r31;
 }
 
@@ -423,7 +423,7 @@ void TUnk_804E4B3C::sub_802F23FC() {  }
 void TUnk_804E4B3C::sub_802F2400() {
     f32 temp_f1;
     TObject *temp_r3;
-    update_spawn_timer((s32)boss2_tunnel_spawn_timer_table_b, 0xA, 1);
+    update_spawn_timer(boss2_tunnel_spawn_timer_table_b, 0xA, 1);
     if ((*(s32 *)&boss2_tunnel_state_flags) & 8) {
         temp_f1 = unk_80;
         if (temp_f1 < 1.0f) {
@@ -456,7 +456,7 @@ void TUnk_804E4B3C::sub_802F2400() {
 }
 void TUnk_804E4B3C::init_effect() {
     advance_effect_timer();
-    update_spawn_timer((s32)boss2_tunnel_spawn_timer_table, 0x1F, 0);
+    update_spawn_timer(boss2_tunnel_spawn_timer_table, 0x1F, 0);
     if ((*(s32 *)&boss2_tunnel_state_flags) & 0x200) {
         (*(s32 *)&boss2_tunnel_state_flags) &= 0xFFFFFDFF;
         phase = 1;
@@ -487,7 +487,7 @@ void TUnk_804E4B3C::update_dust_spawn() {
 
 #pragma push
 #pragma opt_common_subs off
-void TUnk_804E4B3C::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {
+void TUnk_804E4B3C::update_spawn_timer(const s32 *arg1, s32 arg2, s32 arg3) {
     u8 *arg0 = (u8 *)this;
     Vec position;
     f32 temp_f1;
@@ -506,7 +506,7 @@ void TUnk_804E4B3C::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {
         position.x = *(f32 *)((s8 *)arg0 + 0x54);
         position.y = 0.0f;
         position.z = *(f32 *)((s8 *)arg0 + 0x84) - *(f32 *)((s8 *)arg0 + 0x58);
-        spawn(*(s32 *)((s8 *)(arg1 + (*(s32 *)((s8 *)arg0 + 0x70) * 4)) + 0), &position);
+        spawn(arg1[*(s32 *)((s8 *)arg0 + 0x70)], &position);
     }
 }
 #pragma pop
@@ -531,8 +531,8 @@ void TUnk_804E4B3C::update_phase_motion() {
     f32 sp8;
     switch (*(s32 *)((s8 *)arg0 + 0x4C)) {
     case 0:
-        if (TObjBoss2Tunnel::check_both((s32)arg0) != 0) {
-            if (TObjBoss2Tunnel::is_phase_active((s32)arg0) != 0) {
+        if (check_both() != 0) {
+            if (is_phase_active() != 0) {
                 *(f32 *)((s8 *)arg0 + 0x50) = (-1.0f);
             } else {
                 *(f32 *)((s8 *)arg0 + 0x50) = 1.0f;
@@ -543,7 +543,7 @@ void TUnk_804E4B3C::update_phase_motion() {
         }
         break;
     case 1:
-        if (TObjBoss2Tunnel::check_both((s32)arg0) == 0) {
+        if (check_both() == 0) {
             *(s32 *)((s8 *)arg0 + 0x4C) = 3;
             sp8 = fabs_float((f32) (*(f32 *)((s8 *)arg0 + 0x54)));
             init_piecewise_curve(arg0 + 0x20, 0.1f, (-0.1f), (f32) (*(f32 *)((s8 *)arg0 + 0x54)), (f32) (-update_position__15TObjBoss2TunnelFP14PiecewiseCurve(arg0 + 0x20)), 2.0f);
@@ -555,7 +555,7 @@ void TUnk_804E4B3C::update_phase_motion() {
         *(f32 *)((s8 *)arg0 + 0x54) = (f32) (sp8 * *(f32 *)((s8 *)arg0 + 0x50));
         return;
     case 2:
-        if (TObjBoss2Tunnel::check_both((s32)arg0) == 0) {
+        if (check_both() == 0) {
             *(s32 *)((s8 *)arg0 + 0x4C) = 3;
             init_piecewise_curve(arg0 + 0x20, 0.1f, (-0.1f), 150.0f, 0.0f, 2.0f);
             return;

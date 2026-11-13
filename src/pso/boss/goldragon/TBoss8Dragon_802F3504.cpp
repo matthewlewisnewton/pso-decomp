@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/boss/TUnk_804E4BF0.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"
 
 extern "C" {
@@ -16,7 +17,7 @@ s32 TBoss8Dragon::find_target_enemy() {
     }
     var_r31 = 1;
 loop_3:
-    ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(var_r31);
+    ((TUnk_804E4BF0 *)boss8_dragon_leader_part)->get_part_entity_id(var_r31);
     if (get_enemy_entity() != 0U) {
         return 1;
     }
@@ -35,7 +36,7 @@ s32 TBoss8Dragon::is_any_part_alive() {
     }
     var_r31 = 1;
 loop_3:
-    ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(var_r31);
+    ((TUnk_804E4BF0 *)boss8_dragon_leader_part)->get_part_entity_id(var_r31);
     if (get_enemy_entity() != 0U) {
         return 0;
     }
@@ -52,7 +53,7 @@ void TBoss8Dragon::update_all_parts() {
     if ((u32) boss8_dragon_leader_part != 0U) {
         var_r31 = 1;
         do {
-            ((TBoss8Dragon *)boss8_dragon_leader_part)->get_part_count_plus(var_r31);
+            ((TUnk_804E4BF0 *)boss8_dragon_leader_part)->get_part_entity_id(var_r31);
             if (get_enemy_entity() != 0U) {
                 set_state_22__12TBoss8DragonFv();
             }

@@ -1,5 +1,5 @@
 #include "types.h"
-#include "pso/object/TMotorcycle_802D712C.h"
+#include "pso/npc/NpcAnimationBinding.h"
 #include "pso/enemy/stelth/TObjEneMe3Stelth.h"
 
 extern "C" {
@@ -17,7 +17,7 @@ void TObjEneMe3Stelth::spawn_attack(s16 arg0, s32 arg1, s32 arg2, s32 arg3, f32 
         *(s32 *)((s8 *)temp_r3 + 8) = arg1;
         *(s32 *)((s8 *)temp_r3 + 0xC) = arg2;
         *(f32 *)((s8 *)temp_r3 + 0x10) = farg0;
-        copy_position_data(temp_r3 + 0x14, (void *)arg3);
+        *(NpcAnimationBinding *)(temp_r3 + 0x14) = *(const NpcAnimationBinding *)arg3;
     }
 }
 

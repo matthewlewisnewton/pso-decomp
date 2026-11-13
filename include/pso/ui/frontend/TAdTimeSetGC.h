@@ -42,7 +42,7 @@ public:
     void sub_802E1F14();
 
     // State handlers, last state first.
-    void update_state();
+    void finish_settings();
     void sub_802E1F8C();
     void sub_802E1FAC();
     void show_confirm_dialog();
@@ -59,7 +59,7 @@ public:
     void sub_802E2610();
     void update_close_on_load();
     void try_setup();
-    void sub_802E2728();
+    void start_settings();
     void update_close_timer();
     void sub_802E2848();
     void sub_802E289C();
@@ -82,7 +82,7 @@ public:
     void sub_802E2F20();
     void ensure_player_loaded();
     void sub_802E2F68();
-    void sub_802E2F88();
+    void poll_loaded_player();
     void sub_802E2FEC();
     void ensure_system_file_loaded();
     void sub_802E3038();

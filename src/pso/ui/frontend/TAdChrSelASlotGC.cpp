@@ -56,7 +56,7 @@ s32 forward_slot_selection__16TAdChrSelASlotGCFPvPv(s32, s32, s32, f32);
 s32 create__19TWindowMessageYesNoFPvPvPvPv(s32, s32, s32, s32);
 s32 TAdChrSelASlotGC__sub_8030CA84(s32 arg0, s32 arg1);
 s32 TAdChrSelASlotGC__sub_8030C978(void *arg0, s32 arg1, s32 arg2);
-void *__ct__16TAdChrSelASlotGCFP7TObjectPv(void *arg0, void *arg1, void *arg2);
+void *__ct__16TAdChrSelASlotGCFP7TObjectl(void *arg0, void *arg1, s32 arg2);
 u8 *__nw__7TObjectFUl(s32);
 u32 TAdChrSel__global_slot_data;
 u8 *get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(s32 arg0, s32 arg1);
@@ -896,10 +896,10 @@ TAdChrSelASlotGC::~TAdChrSelASlotGC() {
     }
 }
 extern void *TAdChrSelASlotGC__name;
-TAdChrSelASlotGC::TAdChrSelASlotGC(TObject *object, void *arg2) : TObject(object) {
+TAdChrSelASlotGC::TAdChrSelASlotGC(TObject *object, s32 arg2) : TObject(object) {
     *(void * *)&this->m_name = TAdChrSelASlotGC__name;
-    this->init((s32)arg2);
-    this->create_children((s32)arg2);
+    this->init(arg2);
+    this->create_children(arg2);
 }
 
 u8 *get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(s32 arg0, s32 arg1) {
@@ -911,7 +911,7 @@ u8 *get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(s32 arg0, s32 arg1) {
     ad_chr_sel_a_slot_gc = (u8 *)(__nw__7TObjectFUl(0x80));
     var_r0 = ad_chr_sel_a_slot_gc;
     if (var_r0 != NULL) {
-        var_r0 = (u8 *)(((u8 *)__ct__16TAdChrSelASlotGCFP7TObjectPv((void *)ad_chr_sel_a_slot_gc, (void *)arg0, (void *)arg1)));
+        var_r0 = (u8 *)(((u8 *)__ct__16TAdChrSelASlotGCFP7TObjectl((void *)ad_chr_sel_a_slot_gc, (void *)arg0, arg1)));
     }
     (*(u8 * *)&TAdChrSel__global_slot_data) = var_r0;
     return var_r0;

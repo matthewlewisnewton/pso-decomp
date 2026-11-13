@@ -6,13 +6,13 @@
 class TParticleCtrl;
 
 // x turns the start velocity about x, y about y (rotate_matrix_x / rotate_matrix_y)
-struct GiGueShotAngles { s32 x, y, z; };
+struct GiGueProjectileAngles { s32 x, y, z; };
 
 // GiGue's homing shot: waits `timer` frames, then flies from *start toward target_id and hits it
 // (made by spawn_needle__15TObjEneMe1GiGueFl; the vtable at 0x804E14E8 overrides only the dtor and run_task).
 class TUnk_804E14E8 : public TObjCollidable {
 public:
-    TUnk_804E14E8(Vec *start, u16 target_id, GiGueShotAngles *angles, s32 delay, s32 double_hit, u16 src_id);
+    TUnk_804E14E8(Vec *start, u16 target_id, GiGueProjectileAngles *angles, s32 delay, s32 double_hit, u16 src_id);
     virtual ~TUnk_804E14E8();
     virtual void run_task();
     Vec pos;
