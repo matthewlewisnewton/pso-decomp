@@ -295,8 +295,6 @@ struct TBoss8Dragon
     static int get_instance_count();
     void send_boss_actions();
     void bswap_boss_actions();
-    s32 is_within_xz_distance(u8 *arg1, f32 farg0);
-    f32 calc_sq_offset(f32 farg0);
     static void noop();
     static int get_instance();
     static u16 get_global_part_count(s32 arg0);
