@@ -2130,7 +2130,7 @@ force_active:
   - __ct__25TBoss6Demo10_TYPE1_APPEARFP7TObject
   - __ct__26TBoss5GryphonLightningHornFP7TObjectPC3Vecl
   - __ct__26TBoss5GryphonLightningWingFP7TObjectPC3VecP3VecPC3Vecll
-  - __ct__26TObjEneBm3FlyNest_CarryFlyFP7TObjectlllll
+  - __ct__26TObjEneBm3FlyNest_CarryFlyFP17TObjEneBm3FlyNestPC3VecPC3VecPC3VecPCll
   - __ct__31G_DropStackedItem_PC_V3_BB_6x5DFv
   - __ct__5TOVS2FPvl
   - __ct__7TOBoss4Fv
@@ -4817,7 +4817,7 @@ force_active:
   - capsule_labo_collision_body
   - capsule_machine01_collision_body
   - capsule_machine_ginja_mesh_handle
-  - capture_attachment__17TObjEneBm3FlyNestFPv
+  - capture_attachment__17TObjEneBm3FlyNestFP10NJS_OBJECT
   - capture_beam_origins__16TObjEneNanoDragoFv
   - capture_effect_positions__14TObjEneIllGillFv
   - capture_matrix_by_frame__16TObjDFTenchuFuruFv
@@ -6952,7 +6952,7 @@ force_active:
   - update_spawn__15TObjEneMe1GiGueFv
   - __ct__15TObjEneSlimeOneFP7TObjectP12TObjEneSlimePv
   - init__16TAdChrSelASlotGCFl
-  - init__17TObjEneBm3FlyNestFPv
+  - init__17TObjEneBm3FlyNestFv
   - init__17TWindowSubComCardFi
   - init__18TChallenge4PResultFv
   - init__18TObjAreaWarpForestFPvPv

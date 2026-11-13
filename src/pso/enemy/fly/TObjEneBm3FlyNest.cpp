@@ -773,7 +773,7 @@ void run_task__17TObjEneBm3FlyNestFv(u8 *arg0);
 Obj_800B3E40 * __dt__17TObjEneBm3FlyNestFv(Obj_800B3E40 *self, s16 flag);
 void * __ct__17TObjEneBm3FlyNestFP7TObjectP14EnemySetRecord(void *, void *, void *);
 int get_resources__17TObjEneBm3FlyNestFv(void);
-u8 * __ct__26TObjEneBm3FlyNest_CarryFlyFP7TObjectlllll(u8 *self, void *parent, s32 a, s32 b, s32 unused, s32 c, s32 d);
+u8 * __ct__26TObjEneBm3FlyNest_CarryFlyFP17TObjEneBm3FlyNestPC3VecPC3VecPC3VecPCll(u8 *self, void *parent, s32 a, s32 b, s32 unused, s32 c, s32 d);
 s32 is_main_phase_15__9TObjEneDDFv();
 void transform_point_to_view(s32, s32);
 s32 get_random_scaled__9TObjEneDDFv(void *);
@@ -1153,10 +1153,10 @@ void sample_carrier_attachments__17TObjEneBm3FlyNestFP10NJS_OBJECT(s32 arg0) {
         carrier_point_cursor = pos + 0xC;
         transform_point_to_view((s32) &TObjEneBm3FlyNest__attachment_sample_origin.value, pos);
     }
-    TObjEneBm3FlyNest::capture_attachment((void *)arg0);
+    TObjEneBm3FlyNest::capture_attachment((NJS_OBJECT *)arg0);
 }
 
-void TObjEneBm3FlyNest::capture_attachment(void * _w0) {
+void TObjEneBm3FlyNest::capture_attachment(NJS_OBJECT *) {
     switch (attachment_node_index) {
     case 36: case 45:
         transform_point_to_view((s32)&TObjEneBm3FlyNest__attachment_sample_origin, (s32)(attachment_point_cursor++));
@@ -1165,17 +1165,17 @@ void TObjEneBm3FlyNest::capture_attachment(void * _w0) {
     ++attachment_node_index;
 }
 
-int TObjEneBm3FlyNest::init(void* p) { return ((int (*)(void*))init_params__17TObjEneBm3FlyNestFv)(p); }
+int TObjEneBm3FlyNest::init() { return ((int (*)(void))init_params__17TObjEneBm3FlyNestFv)(); }
 
 int remap_child_sound__17TObjEneBm3FlyNestFl(void* p, s32 sound_id) { return ((TObjEnemy *)(p))->remap_sound_for_area((s32)(sound_id)); }
 
 void* get_spawn_point__17TObjEneBm3FlyNestFv(void* p) { return (char*)p + 0x3d4; }
 
-void TObjEneBm3FlyNest::remove_child(u8 *child) {
+void TObjEneBm3FlyNest::remove_child(TObjCollidable *child) {
     Obj_800B2A5C *self = (Obj_800B2A5C *)this;
     s32 i;
     for (i = 0; i < 6; i++) {
-        if (find_entity_by_id(self->ids[i]) == child) {
+        if (find_entity_by_id(self->ids[i]) == (u8 *)child) {
             self->count--;
             self->ids[i] = self->ids[self->count];
             self->ids[self->count] = 0xFFFF;
@@ -1582,7 +1582,7 @@ void handle_appear__17TObjEneBm3FlyNestFl(u8 *ene_dd, s32 arg1) {
                 for (i = 0; i < 6; i++) {
                     o = __nw__7TObjectFUl(0x68);
                     if (o != 0) {
-                        ((s32 (*)(void *, void *, void *, void *, void *, void *, s32))__ct__26TObjEneBm3FlyNest_CarryFlyFP7TObjectlllll)(o, ene_dd, &((Self_800B36F8 *)ene_dd)->arr[i], ene_dd + 0x3D4, ene_dd + 0x38, cnt, i + 1);
+                        ((s32 (*)(void *, void *, void *, void *, void *, void *, s32))__ct__26TObjEneBm3FlyNest_CarryFlyFP17TObjEneBm3FlyNestPC3VecPC3VecPC3VecPCll)(o, ene_dd, &((Self_800B36F8 *)ene_dd)->arr[i], ene_dd + 0x3D4, ene_dd + 0x38, cnt, i + 1);
                     }
                 }
             }
@@ -1650,7 +1650,7 @@ void TObjEneBm3FlyNest::spawn_child() {
     if (s->count <= 6) {
         n = (s->f2C + 1) + s->spawned;
         VecCopy((Vec *)(&position), (const Vec *)(((Vec_800B39CC * (*)(void *))get_spawn_point__17TObjEneBm3FlyNestFv)(s)));
-        if (((TObjEneBm3Fly *)s)->create((void *)s->nextId, (void *)n, &position, &velocity) != 0) {
+        if (TObjEneBm3Fly::create((TObjEneBm3FlyNest *)s, s->nextId, n, (Vec *)&position, (Vec *)&velocity) != 0) {
             s->ids[s->count++] = s->nextId;
             s->nextId++;
             s->spawned++;
@@ -2057,7 +2057,7 @@ void TObjEneBm3FlyNest_CarryFly::run_task() {
 TObjEneBm3FlyNest_CarryFly::~TObjEneBm3FlyNest_CarryFly() {}
 
 }
-TObjEneBm3FlyNest_CarryFly::TObjEneBm3FlyNest_CarryFly(TObject *parent, s32 a, s32 b, s32 unused, s32 c, s32 d) : TObject(parent) {
+TObjEneBm3FlyNest_CarryFly::TObjEneBm3FlyNest_CarryFly(TObjEneBm3FlyNest *parent, const Vec *a, const Vec *b, const Vec *unused, const s32 *c, s32 d) : TObject((TObject *)parent) {
     Vec v;
     m_name = TObjEneBm3FlyNest_CarryFly__name;
     origin = (Vec *)a;

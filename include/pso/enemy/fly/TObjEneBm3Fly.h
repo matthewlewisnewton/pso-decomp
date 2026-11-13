@@ -6,6 +6,8 @@
 #include <stddef.h>
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 
+struct TObjEneBm3FlyNest;
+
 struct TObjEneBm3Fly : public TObjEneDD_ST {
     virtual ~TObjEneBm3Fly();
     virtual s32 vfunc_104(f32);
@@ -60,7 +62,7 @@ struct TObjEneBm3Fly : public TObjEneDD_ST {
     void store_position();
     s32 init_child_params();
     static void release_shared_data();
-    void *create(void *arg1, void *arg2, void *arg3, void *arg4);
+    static void *create(TObjEneBm3FlyNest *nest, s32 id, s32 index, const Vec *position, const Vec *velocity);
     static void load_resources();
     void play_pitched_cue();
     u8 unk_460[0x48];

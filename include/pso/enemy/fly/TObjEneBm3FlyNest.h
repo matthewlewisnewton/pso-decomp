@@ -4,6 +4,9 @@
 #include "types.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 
+class TObjCollidable;
+struct NJS_OBJECT;
+
 struct TObjEneBm3FlyNest : public TObjEneDD {
     virtual ~TObjEneBm3FlyNest();
     virtual void run_task();
@@ -38,9 +41,9 @@ struct TObjEneBm3FlyNest : public TObjEneDD {
     u32 m_4cc;
     u32 m_4d0;
     u32 m_4d4;
-    static void capture_attachment(void * _w0);
-    static int init(void* p);
-    void remove_child(u8 *child);
+    static void capture_attachment(NJS_OBJECT *);
+    static int init();
+    void remove_child(TObjCollidable *child);
     s32 has_free_attack_slot(u16 id);
     void spawn_child();
     void update_replenish();
@@ -55,7 +58,7 @@ struct TObjEneBm3FlyNest : public TObjEneDD {
 typedef char TObjEneBm3FlyNest_size[sizeof(TObjEneBm3FlyNest) == 0x4DC ? 1 : -1];
 
 extern "C" {
-u8 *__ct__26TObjEneBm3FlyNest_CarryFlyFP7TObjectlllll(u8 *self, void *parent, s32 a, s32 b, s32 unused, s32 c, s32 d);
+u8 *__ct__26TObjEneBm3FlyNest_CarryFlyFP17TObjEneBm3FlyNestPC3VecPC3VecPC3VecPCll(u8 *self, void *parent, s32 a, s32 b, s32 unused, s32 c, s32 d);
 void *__ct__17TObjEneBm3FlyNestFP7TObjectP14EnemySetRecord(void *arg0, void *arg1, void *arg2);
 void *get_spawn_point__17TObjEneBm3FlyNestFv(void *p);
 void TObjEneBm3FlyNest__sub_800B318C(u8 *arg0, s32 arg1);
