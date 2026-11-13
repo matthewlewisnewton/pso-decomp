@@ -1946,7 +1946,7 @@ block_4:
 }
 extern "C" {
 
-void TObjEneMe3SinowZoa::sub_8031A6A0() {
+void TObjEneMe3SinowZoa::vfunc_105() {
     f32 d;
     s32 near;
     VObj_18_bd3b49 *pl;
@@ -2082,7 +2082,7 @@ void cast_technique__18TObjEneMe3SinowZoaFPv(u8 *arg0) {
 void TObjEneMe3SinowZoa::dispatch_action(u32 state, s32 mode) {
     switch (state) {
     case 0:
-        action(mode);
+        state_action(mode);
         return;
     case 1:
         sub_80319E74(mode);
@@ -2142,7 +2142,7 @@ void TObjEneMe3SinowZoa::dispatch_action(u32 state, s32 mode) {
     }
 }
 
-void TObjEneMe3SinowZoa::action(s32 arg1) {
+void TObjEneMe3SinowZoa::state_action(s32 arg1) {
     s32 temp_r3;
     s32 temp_r4;
 

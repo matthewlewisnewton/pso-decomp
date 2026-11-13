@@ -25,7 +25,7 @@ struct TObjEneMe3SinowZoa : public TObjEneDD_ST {
     virtual void vfunc_95();
     virtual void vfunc_96();
     virtual void vfunc_89();
-    virtual void sub_8031A6A0();
+    virtual void vfunc_105();
     virtual u8 is_target_in_range();
     virtual void vfunc_107();
     virtual void vfunc_108();
@@ -33,7 +33,7 @@ struct TObjEneMe3SinowZoa : public TObjEneDD_ST {
     virtual s32 try_run_effect_m7();
     virtual void vfunc_111();
     virtual void vfunc_112();
-    virtual void action(s32);
+    virtual void state_action(s32);
     virtual void action();
     virtual void vfunc_115();
     void vfunc_63();
