@@ -4,7 +4,7 @@
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 
-class TWindowDrawContext;
+struct TWindowDrawContext;
 
 struct TWindowMenuMainMenu : public TWindowBase {
     virtual ~TWindowMenuMainMenu();

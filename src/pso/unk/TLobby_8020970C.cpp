@@ -18,9 +18,8 @@ void TLobby::append_swapped_u32(s32 *arg0) {
 }
 
 void ChallengeEventCommand::append() const {
-    s32 arg0 = (s32)this;
     if ((u32) challenge_action_buffer != 0U) {
-        move_data((void *)(challenge_action_buffer + challenge_action_size), (s32 *)arg0, 1);
+        move_data((void *)(challenge_action_buffer + challenge_action_size), (s32 *)&opcode, 1);
         challenge_action_size += 1;
     }
 }
