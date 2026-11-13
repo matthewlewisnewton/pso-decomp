@@ -7,7 +7,6 @@ extern "C" {
 void *__ct__11TChCrEffTagFv(void *, void *);
 void *__nw__7TObjectFUl(int);
 
-    extern int TChCrEffTag__selected_heading;
 void TChCrEffTag::set_eff_tag(int a0) { TChCrEffTag__selected_heading = a0; }
 }
 

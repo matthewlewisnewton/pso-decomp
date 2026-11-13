@@ -5547,7 +5547,6 @@ s32 fill_value_array(void *);
 void reset_fields_3d0__13TBoss2DeRolLeFPv(void *p);
 void init_float_block__13TBoss2DeRolLeFPv(u8 *arg0);
 s32 init_resources__13TBoss2DeRolLeFi(s32 arg0);
-void *__ct__9TBoss2FinFv(void *, void *, void *, void *);
 void *TBoss2Joint__ct(void *, void *, u16, int, void *, s32, s32);
 void *TBoss2LaserLight__ct(void *, void *, void *);
 void *create__13TUnk_80482D04Fiii(void *, void *, u16, int);
@@ -5737,9 +5736,9 @@ struct Self_8003563C {
     void *f3CC;
     s32 f3D0;
     s32 f3D4;
-    u8 obj3D8[0x3F4 - 0x3D8];
+    TObject parts_parent;
     s32 f3F4;
-    Vec_8003563C v3F8[20];
+    Vec v3F8[20];
     Vec_8003563C v4E8[4];
     Vec_8003563C v518[3];
     s32 f53C;
@@ -5790,7 +5789,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
 
     __ct__12TObjEneDD_STFP7TObject(arg0, arg1);
     *(u8 **)((s8 *)self + 0x18) = (u8 *)__vt__13TBoss2DeRolLe;
-    __ct__7TObjectFP7TObject(self->obj3D8, 0);
+    __ct__7TObjectFP7TObject(&self->parts_parent, 0);
     init_resources__13TBoss2DeRolLeFi((s32)self->r664);
     init_resources__13TBoss2DeRolLeFi((s32)self->r684);
     self->f0 = boss2_de_rol_le_class_name;
@@ -5845,7 +5844,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
         set_matrix_identity(&self->f61C[i]);
         p = __nw__7TObjectFUl(0x158);
         if (p != NULL) {
-            p = __ct__14TBoss2TentacleFP7TObjectll(p, self->obj3D8, &self->f61C[i], i);
+            p = __ct__14TBoss2TentacleFP7TObjectll(p, &self->parts_parent, &self->f61C[i], i);
         }
         self->f620[i] = p;
     }
@@ -5866,21 +5865,18 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     for (i = 0; i < 5; i++) {
         p = __nw__7TObjectFUl(0x3F0);
         if (p != NULL) {
-            p = TBoss2Mine__sub_800381B8(p, self->obj3D8, a++, b++);
+            p = TBoss2Mine__sub_800381B8(p, &self->parts_parent, a++, b++);
         }
         self->f630[i] = p;
     }
     for (i = 0; i < 3; i++) {
         p = __nw__7TObjectFUl(0x410);
         if (p != NULL) {
-            p = create__13TUnk_80482D04Fiii(p, self->obj3D8, a++, b++);
+            p = create__13TUnk_80482D04Fiii(p, &self->parts_parent, a++, b++);
         }
         self->f644[i] = p;
     }
-    p = __nw__7TObjectFUl(0x88);
-    if (p != NULL) {
-        p = __ct__9TBoss2FinFv(p, self->obj3D8, (u8 *)self + 0x404, (u8 *)self + 0x470);
-    }
+    p = new TBoss2Fin(&self->parts_parent, &self->v3F8[1], &self->v3F8[10]);
     self->f650 = p;
     self->f654 = 0;
     self->f658 = 0;
@@ -5895,7 +5891,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     self->f6B4 = 0;
     p = __nw__7TObjectFUl(0x44);
     if (p != NULL) {
-        p = TBoss2LaserLight__ct(p, self->obj3D8, &self->f6BC);
+        p = TBoss2LaserLight__ct(p, &self->parts_parent, &self->f6BC);
     }
     self->f6B8 = p;
     self->f6BC = TBoss2DeRolLe__data_805D827C;

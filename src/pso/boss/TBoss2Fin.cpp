@@ -106,36 +106,21 @@ struct In_800367C4 { u8 pad[0x8]; void *end_model; u8 pad2[0xC]; void *segment_m
 
 struct G_800367C4 { u8 pad[0x42c]; In_800367C4 *in; };
 
-struct Obj_80036718 {
-    s32 f0;
-    u8 pad4[0x14];
-    void *vt;
-    u8 pad1c[0x30 - 0x1C];
-    RopeAnchor anchors[2];
-    RopeCollisionSphere spheres[3];
-    s32 f80;
-    s32 f84;
-};
-
 extern "C" {
 extern RopeSegment lbl_804FE590[];
 extern const f32 lbl_805D8460;
-void *TObjEZRopeBase__ct(void *);
-extern u8 __vt__9TBoss2Fin[];
-extern s32 TBoss2Fin__name;
+extern const char *TBoss2Fin__name;
 extern const f32 lbl_805D845C;
-Obj_80036718 *__ct__9TBoss2FinFv(Obj_80036718 *self, s32 arg1, s32 arg2, s32 arg3);
 void TBoss2Fin__sub_800367C0(void);
 
-Obj_80036718 *__ct__9TBoss2FinFv(Obj_80036718 *self, s32 arg1, s32 arg2, s32 arg3) {
+TBoss2Fin::TBoss2Fin(TObject *parent, const Vec *left, const Vec *right)
+    : TObjEZRopeBase(parent) {
     s32 i;
     RopeCollisionSphere *p;
-    TObjEZRopeBase__ct(self);
-    self->vt = __vt__9TBoss2Fin;
-    self->f0 = TBoss2Fin__name;
-    self->f80 = arg2;
-    self->f84 = arg3;
-    p = self->spheres;
+    m_name = TBoss2Fin__name;
+    left_position = left;
+    right_position = right;
+    p = sphere_storage;
     for (i = 0; i < 2; i++, p++) {
         p->radius = lbl_805D845C;
         p->center.x = TBoss2Fin__data_805D8450;
@@ -143,9 +128,8 @@ Obj_80036718 *__ct__9TBoss2FinFv(Obj_80036718 *self, s32 arg1, s32 arg2, s32 arg
         p->center.z = TBoss2Fin__data_805D8450;
     }
     p->radius = lbl_805D8454;
-    ((TBoss2Fin *)self)->init_link_points();
-    ((TBoss2Fin *)self)->sub_800FF8CC(lbl_804FE590, self->anchors, self->spheres);
-    return self;
+    init_link_points();
+    sub_800FF8CC(lbl_804FE590, anchor_storage, sphere_storage);
 }
 
 void TBoss2Fin__sub_800367C0(void) {  }

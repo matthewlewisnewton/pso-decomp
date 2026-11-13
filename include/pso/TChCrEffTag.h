@@ -3,6 +3,8 @@
 #include "pso/TObject.h"
 #include "types.h"
 
+extern "C" s32 TChCrEffTag__selected_heading;
+
 class TChCrEffTag : public TObject {
 public:
     virtual void run_task();

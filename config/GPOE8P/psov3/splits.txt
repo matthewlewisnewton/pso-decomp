@@ -1161,6 +1161,7 @@ pso/misc/TDuelEffectNumber_80080460.cpp:
 	.text       start:0x80080460 end:0x80080750
 	.rodata     start:0x80438E20 end:0x80438E28
 	.data       start:0x8048DFE0 end:0x8048DFF8
+	.sdata2     start:0x805D9310 end:0x805D9338
 
 pso/player/TObjPlayer_80080750.cpp:
 	.text       start:0x80080750 end:0x80080788
@@ -5723,6 +5724,7 @@ pso/object/TObjDoor_8018E358.cpp:
 
 pso/object/TObjDoorJung.cpp:
 	.text       start:0x8018F458 end:0x8018FA6C
+	.sdata2     start:0x805DBDF8 end:0x805DBE00
 
 pso/unk/text_8018FA6C.cpp:
 	.text       start:0x8018FA6C end:0x8018FAEC
@@ -5731,6 +5733,7 @@ pso/object/TObjDoorKey.cpp:
 	.text       start:0x8018FAEC end:0x801902D8
 	.data       start:0x804B7910 end:0x804B7930
 	.sdata      start:0x805D3340 end:0x805D3344
+	.sdata2     start:0x805DBE00 end:0x805DBE10
 
 pso/object/TObjEnvSoundGlobal.cpp:
 	.text       start:0x801902D8 end:0x80190BFC
@@ -5819,9 +5822,15 @@ pso/misc/TMotorcycle.cpp:
 	.data       start:0x804B8558 end:0x804B8574
 	.sdata      start:0x805D33D0 end:0x805D33D4
 
+original_unclaimed_805D33D4:
+	.sdata      start:0x805D33D4 end:0x805D33D8 align:4
+
 pso/object/TObjParticle.cpp:
 	.text       start:0x8019527C end:0x80195674
+	.rodata     start:0x80445E30 end:0x80445E40
 	.data       start:0x804B85E8 end:0x804B861C
+	.sdata      start:0x805D33D8 end:0x805D33E0
+	.sdata2     start:0x805DBEE0 end:0x805DBEF0
 
 pso/player/TObjPlayerSet.cpp:
 	.text       start:0x80195674 end:0x80195874
@@ -9550,14 +9559,11 @@ pso/misc/TChCrEffTag.cpp:
 	.text       start:0x8029AA34 end:0x8029ACA8
 	.rodata     start:0x804652D8 end:0x804652E0
 	.data       start:0x804DBF40 end:0x804DBF58
-	.sdata      start:0x805D3D08 end:0x805D3D0C
+	.sdata      start:0x805D3D08 end:0x805D3D10
 	.sdata2     start:0x805DDC90 end:0x805DDCAC
 
 original_unclaimed_805DDCAC:
 	.sdata2     start:0x805DDCAC end:0x805DDCB0 align:4
-
-original_unclaimed_805D3D0C:
-	.sdata      start:0x805D3D0C end:0x805D3D10 align:4
 
 pso/misc/TChCrEffTag_8029ACA8.cpp:
 	.text       start:0x8029ACA8 end:0x8029ACF8
@@ -9661,6 +9667,7 @@ pso/misc/TODoorLabo.cpp:
 	.text       start:0x8029F730 end:0x802A018C
 	.rodata     start:0x80466038 end:0x80466040
 	.data       start:0x804DC820 end:0x804DC864
+	.sdata2     start:0x805DDDB8 end:0x805DDDC8
 
 pso/misc/TLobby_802A018C.cpp:
 	.text       start:0x802A018C end:0x802A031C
@@ -10450,6 +10457,7 @@ pso/object/TObjOnlineEndingHexLine.cpp:
 	.rodata     start:0x80472C20 end:0x80472C28
 	.data       start:0x804E3A98 end:0x804E3B60
 	.bss        start:0x805412B0 end:0x805412C0
+	.sdata2     start:0x805DE958 end:0x805DE990
 
 pso/unk/text_802E62A4.cpp:
 	.text       start:0x802E62A4 end:0x802E62F8
