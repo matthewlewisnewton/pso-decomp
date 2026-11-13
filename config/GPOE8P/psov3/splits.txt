@@ -12261,7 +12261,10 @@ pso/misc/TWindowMessageScroll.cpp:
 
 pso/effect/TDPBShower.cpp:
 	.text       start:0x8035D6F4 end:0x8035D8B0
+	.rodata     start:0x80479C3C end:0x80479C48
 	.data       start:0x804F1FD8 end:0x804F1FF0
+	.sdata      start:0x805D4454 end:0x805D4458
+	.sdata2     start:0x805E01C0 end:0x805E01C8
 
 pso/boss/TBoss6DPB.cpp:
 	.text       start:0x8035D8B0 end:0x8035DCC0

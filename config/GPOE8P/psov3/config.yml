@@ -561,7 +561,8 @@ force_active:
   - TContainerAncient01__sub_8018A584
   - TContainerAncient01__sub_8018B180
   - TContainerAncient01__sub_8018BE90
-  - TDPBShower__ct
+  - TDPBShower__class_name
+  - TDPBShower__class_name_string
   - TDuelEffectNumber__sub_800802F8
   - TEF_LensFlare__class_name
   - TEF_LensFlare__class_name_string
@@ -2186,6 +2187,7 @@ force_active:
   - __atexit_funcs
   - __console_exit
   - __ct__10TBoss6RockFP7TObjectl
+  - __ct__10TDPBShowerFP7TObjectPC3Vec
   - __ct__10TItemEffPGFP7TObjectPv
   - __ct__10TItemMoneyFP7TObjectP9TItemData
   - __ct__10TOMineTrapFP10TObjPlayerss
