@@ -137,7 +137,7 @@ u32 __nw__7TObjectFUl(int);
 s32 fn_802E79B0(void *);
 s32 TParticleCtrl__sub_802EC550(void *);
 s32 sub_802ECB10__14TBoss7DeRolLeCFv();
-s32 apply_with_callback__10TObjPlayerFlf(int, int);
+s32 apply_with_callback__13TUnk_804F1C58FP10NJS_MOTIONf(int, int);
 s32 rotate_matrix_by_node_angles(void *, int);
 s32 push_matrix();
 s32 scale_current_matrix(void *);
@@ -246,7 +246,7 @@ void TBoss7DeRolLeC::run_task() {
         scale_current_matrix(lbl_804E3BF0);
         this->sub_802E8234();
         this->get_frame();
-        apply_with_callback__10TObjPlayerFlf((s32)this->unk_7AC, (s32)this->current_motion);
+        apply_with_callback__13TUnk_804F1C58FP10NJS_MOTIONf((s32)this->unk_7AC, (s32)this->current_motion);
         pop_matrix();
         clear_motion_packed_rotation();
         fn_802E79B0(this);

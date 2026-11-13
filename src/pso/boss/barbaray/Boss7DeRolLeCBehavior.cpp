@@ -1,4 +1,5 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/unk/TUnk_804F1C58.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -858,7 +859,7 @@ void TBoss7DeRolLeC::render() {
                 *(s32 **)((s8 *)lbl_805D693C + 0x2C) = (s32 *) lbl_805D6940;
             }
             TObjPlayer::draw_effect();
-            ((TObjPlayer *)(this->unk_7AC))->draw_node_tree_if_visible();
+            this->unk_7AC->draw_node_tree_if_visible();
         }
         pop_matrix();
         TParticleCtrl::end_effect_render();
