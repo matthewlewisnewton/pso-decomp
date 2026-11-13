@@ -19,6 +19,7 @@ public:
     s32 advance_to(f32);
     void set_rate(f32);
     void start_fade_out();
+    void set_color(const NJS_ARGB *source);
     f32 value;
 };
 
