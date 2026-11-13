@@ -1456,6 +1456,7 @@ force_active:
   - TObjGrass__sub_800BFB68
   - TObjGyaranzoMissile_target_slots
   - TObjHMS_EZRope_Player__ct
+  - TObjHMS_EZRope_Player__name
   - TObjItemNameEntry__class_name
   - TObjItemNameSelect__class_name
   - TObjItemOKWindow__class_name
@@ -2999,6 +3000,7 @@ force_active:
   - __dt__21TObjContainerAbeEnemyFv
   - __dt__21TObjEneMe3ShinowaRealFv
   - __dt__21TObjEneSlimeWaterBombFv
+  - __dt__21TObjHMS_EZRope_PlayerFv
   - __dt__21TeneFakeTecThunderEffFv
   - __dt__22TAdEnterSerialAccessGCFv
   - __dt__22TBoss5GryphonShockWaveFv
@@ -3624,6 +3626,7 @@ force_active:
   - __vt__21TObjContainerAbeEnemy
   - __vt__21TObjEneMe3ShinowaReal
   - __vt__21TObjEneSlimeWaterBomb
+  - __vt__21TObjHMS_EZRope_Player
   - __vt__21TeneFakeTecThunderEff
   - __vt__22TAdEnterSerialAccessGC
   - __vt__22TBoss5GryphonShockWave
@@ -6387,6 +6390,7 @@ force_active:
   - explosive_machine_model_archive
   - explosive_machine_resource_desc
   - export_player_record__10TObjPlayerFPvPv
+  - ezrope_chunk_material_color_table
   - f064_wordmojitex_eng_gvp
   - f064_wordmojitex_fre_gvp
   - f064_wordmojitex_ger_gvp
@@ -8105,6 +8109,8 @@ force_active:
   - lbl_8043CD90
   - lbl_8043CD98
   - lbl_8043CDA0
+  - lbl_8043DF18
+  - lbl_8043DF28
   - lbl_8043ED80
   - lbl_8043EDE8
   - lbl_8043EDF0

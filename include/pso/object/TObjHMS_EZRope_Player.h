@@ -10,12 +10,10 @@ public:
     virtual void render();
     void sub_800FF2D0();
     u8 unk_30[0xC];
-    void * m_3c;
-    u8 unk_40[0x4];
-    void * m_44;
+    RopeSegment *segment_storage;
+    RopeAnchor *anchor_storage;
+    RopeCollisionSphere *sphere_storage;
 };
 typedef char TObjHMS_EZRope_Player_size[sizeof(TObjHMS_EZRope_Player) == 0x48 ? 1 : -1];
-
-extern "C" void *__dt__21TObjHMS_EZRope_PlayerFv(TObjHMS_EZRope_Player *rope, s16 delete_flag);
 
 #endif

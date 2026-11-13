@@ -429,6 +429,8 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Reverse definitions reproduce both native rope vtables and function order.
+    "pso/object/TObjEZRopeSimulation.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # Reverse definitions retain native function and vtable order.
     "pso/ui/DrawLine.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     # Keep the eight-byte menu positions in .data with the state table.

@@ -36,8 +36,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 89 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,860 | 887 |
-| Per-unit compiler overrides in `configure.py` | 205 | 205 |
+| CodeWarrior pragmas (excluding push/pop) | 5,860 | 886 |
+| Per-unit compiler overrides in `configure.py` | 206 | 206 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -59,6 +59,16 @@ views retain native 32-bit address/callback and overlapping-layout debt;
 consolidate those providers before claiming portable TCP interfaces. The
 route-send result declaration also retains the documented inherited short/word
 provider discrepancy. This recovery introduces no assembly.
+
+### Rope-controller native emission
+
+`src/pso/object/TObjEZRopeSimulation.cpp` uses GC/2.6 `-inline deferred`,
+reverse definitions and `auto_inline off` to preserve its twelve functions and
+both compiler-generated vtables. The three existing record-copy helpers retain
+scoped `dont_inline off` and `inline_depth(1)` so aggregate assignments expand
+inline. A port can remove these emission controls and retain the ordinary C++
+bodies. This replaces the old handwritten derived vtable and its `force_active`
+pragma; it adds no assembly. See [the object-layout evidence](evidence/rope-controller-native-emission.md).
 
 ## 1. Assembly
 
