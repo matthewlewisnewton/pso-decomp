@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 89 | 58 |
 | hardware | 69 | 13 |
-| pragma | 5872 | 887 |
-| configure.py per-unit override | 205 | 205 |
+| pragma | 5868 | 885 |
+| configure.py per-unit override | 207 | 207 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1057, `fp_contract` 885, `auto_inline` 803, `opt_common_subs` 640, `opt_propagation` 267, `scheduling` 264, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57, `defer_codegen` 56, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 37, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `force_active` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1057, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 638, `opt_propagation` 266, `scheduling` 264, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 57, `defer_codegen` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 37, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -238,6 +238,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1057,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/object/TObjEZRopeSimulation.cpp` | `-inline deferred` | Reverse definitions reproduce both native rope vtables and function order. |
 | `pso/ui/DrawLine.cpp` | `-inline off,deferred, -fp_contract on` | Reverse definitions retain native function and vtable order. |
 | `pso/menu/TAdTimeSetGC.cpp` | `-sdata 4, -fp_contract on` | Keep the eight-byte menu positions in .data with the state table. The calendar x coordinate uses a fused multiply-add. |
 | `pso/misc/TLobby_802409AC.cpp` | `-sym on` | Keep the compiler-generated guild-card initializer ahead of its constructor and accessors. |
@@ -247,6 +248,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1057,
 | `pso/boss/TBoss6EmptyWarp_802B0E2C.cpp` | `-str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/pso_date.cpp` | `GC/1.3.2` | Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md. |
 | `pso/misc/TWindowFukidasi.cpp` | `(multi-line entry; see configure.py)` | The balloon float pool begins at 0x805DCD0C, which is four-byte aligned. |
+| `pso/effect/TDPBShower.cpp` | `(multi-line entry; see configure.py)` | The class string and name pointer start on four-byte boundaries. |
 | `pso/object/TObjCMName.cpp` | `-sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/ui/TAdDialingGC_80328B20.cpp` | `GC/1.3.2` | GC/1.3.2 preserves the per-vertex coordinate loads and store order. |
 | `pso/unk/text_8007ECF0.cpp` | `GC/1.3.2` | The download graph's border pass keeps GC/1.3.2 load scheduling. |
@@ -557,7 +559,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1057,
 | `src/pso/boss/TUnk_80484888.cpp` | fp_contract×1 |
 | `src/pso/boss/TUnk_80484AFC.cpp` | fp_contract×1 |
 | `src/pso/effect/TEF_LensFlare.cpp` | opt_propagation×1 |
-| `src/pso/effect/TEffClitical.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/effect/TEffGuard.cpp` | readonly_strings×1 |
 | `src/pso/effect/TEffHit.cpp` | readonly_strings×1 |
 | `src/pso/effect/TEffStarLight2D_Base.cpp` | fp_contract×2, opt_common_subs×2, defer_codegen×1, opt_propagation×1 |
@@ -645,6 +646,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1057,
 | `src/pso/item/TItemDrop_80105D0C.cpp` | fp_contract×1 |
 | `src/pso/item/TItemEffArmor.cpp` | defer_codegen×2 |
 | `src/pso/item/TItemEffBringer.cpp` | fp_contract×1 |
+| `src/pso/item/TItemEffEquip.cpp` | defer_codegen×1 |
 | `src/pso/item/TItemEffFlame.cpp` | readonly_strings×1, fp_contract×1 |
 | `src/pso/item/TItemEffHeaven.cpp` | readonly_strings×1 |
 | `src/pso/item/TItemEffNeedle.cpp` | readonly_strings×1, fp_contract×1 |
@@ -700,7 +702,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1057,
 | `src/pso/misc/TCameraCtrl_80067CE8.cpp` | fp_contract×1 |
 | `src/pso/misc/TCameraCtrl_80067FC0.cpp` | fp_contract×1 |
 | `src/pso/misc/TCameraCtrl_8006B3D8.cpp` | fp_contract×1, opt_common_subs×1 |
-| `src/pso/misc/TCameraCtrl_8006BA68.cpp` | fp_contract×2, opt_common_subs×1 |
+| `src/pso/misc/TCameraCtrl_8006BA68.cpp` | fp_contract×1 |
 | `src/pso/misc/TCameraCtrl_8006BCD8.cpp` | fp_contract×2, opt_common_subs×1 |
 | `src/pso/misc/TCameraCtrl_8006C254.cpp` | fp_contract×2, opt_common_subs×1 |
 | `src/pso/misc/TCameraCtrl_8006C7C4.cpp` | fp_contract×2, opt_common_subs×1 |
@@ -1053,8 +1055,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1057,
 | `src/pso/object/TObjDFHorming.cpp` | fp_contract×6, auto_inline×3, dont_inline×3, inline_depth×2, readonly_strings×1, cplusplus×1, opt_common_subs×1 |
 | `src/pso/object/TObjDoaEx01.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/object/TObjDoor_8018E358.cpp` | fp_contract×2, opt_common_subs×1 |
-| `src/pso/object/TObjEZRopeBase.cpp` | force_active×1 |
-| `src/pso/object/TObjEZRopeSimulation.cpp` | inline_depth×1, dont_inline×1 |
+| `src/pso/object/TObjEZRopeSimulation.cpp` | auto_inline×1, inline_depth×1, dont_inline×1 |
 | `src/pso/object/TObjEnvSoundGlobal.cpp` | opt_common_subs×1 |
 | `src/pso/object/TObjFish.cpp` | fp_contract×2, dont_inline×1, inline_depth×1, defer_codegen×1 |
 | `src/pso/object/TObjFogCollisionSwitch.cpp` | readonly_strings×1, defer_codegen×1 |
@@ -1074,6 +1075,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1057,
 | `src/pso/object/TObjOnlineEndingHexLine.cpp` | fp_contract×2, opt_loop_invariants×1 |
 | `src/pso/object/TObjOnlineEnding_802E4B80.cpp` | opt_common_subs×1 |
 | `src/pso/object/TObjParticleLobby.cpp` | readonly_strings×1 |
+| `src/pso/object/TObjRain.cpp` | fp_contract×1 |
 | `src/pso/object/TObjRainCtrl.cpp` | fp_contract×1 |
 | `src/pso/object/TObjRainbowLobby.cpp` | readonly_strings×1 |
 | `src/pso/object/TObjResultWin.cpp` | defer_codegen×1, inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -1238,7 +1240,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1057,
 | `src/pso/unk/text_8015C534.cpp` | fp_contract×1 |
 | `src/pso/unk/text_80171A98.cpp` | fp_contract×1 |
 | `src/pso/unk/text_80180D18.cpp` | fp_contract×1 |
-| `src/pso/unk/text_80197998.cpp` | fp_contract×1 |
 | `src/pso/unk/text_801BC688.cpp` | fp_contract×2 |
 | `src/pso/unk/text_801BDBB4.cpp` | opt_pointer_analysis×1 |
 | `src/pso/unk/text_801C51D4.cpp` | fp_contract×1 |
@@ -1267,7 +1268,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1057,
 | `src/pso/unk/text_8028EC70.cpp` | inline_depth×2, auto_inline×2, dont_inline×2, fp_contract×1 |
 | `src/pso/unk/text_80290D1C.cpp` | readonly_strings×2, const_strings×2 |
 | `src/pso/unk/text_80290E28.cpp` | opt_lifetimes×1, opt_common_subs×1 |
-| `src/pso/unk/text_802910C8.cpp` | fp_contract×1 |
 | `src/pso/unk/text_802910EC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, fp_contract×1 |
 | `src/pso/unk/text_80293D84.cpp` | fp_contract×1 |
 | `src/pso/unk/text_8029EC3C.cpp` | fp_contract×1 |

@@ -429,6 +429,8 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Reverse definitions reproduce both native rope vtables and function order.
+    "pso/object/TObjEZRopeSimulation.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
     # Reverse definitions retain native function and vtable order.
     "pso/ui/DrawLine.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     # Keep the eight-byte menu positions in .data with the state table.
@@ -455,6 +457,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
     # The balloon float pool begins at 0x805DCD0C, which is four-byte aligned.
     "pso/misc/TWindowFukidasi.cpp": {"cw_align": ".sdata2=4"},
+    # The class string and name pointer start on four-byte boundaries.
+    "pso/effect/TDPBShower.cpp": {"cw_align": ".rodata=4 .sdata=4"},
     "pso/object/TObjCMName.cpp": {"cflags": _switch(cflags_pso, "-sym on"), "cw_align": ".sdata2=4"},
     # GC/1.3.2 preserves the per-vertex coordinate loads and store order.
     "pso/ui/TAdDialingGC_80328B20.cpp": {"mw_version": "GC/1.3.2"},

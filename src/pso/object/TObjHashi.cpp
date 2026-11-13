@@ -31,10 +31,7 @@ extern "C" {
 extern TCameraCtrl *camera_ctrl_instance;
 }
 
-// The unit's .sdata2 float pool (0x805DBE20-0x805DBE40) is still referenced
-// from the DOL: CW pools these in the order the functions need them, and no
-// source arrangement found yet gives the original order 120, 400, 40, 0, 640,
-// 0.15, 30 (written source gives 120, 0, 640, 400, 40, 0.15, 30).
+// Definitions follow the functions so GC/2.6 retains the named pool order.
 extern const f32 lbl_805DBE20; // 120.0f, TObjHashiVersus2's model radius
 extern const f32 lbl_805DBE24; // 400.0f, the view depth
 extern const f32 lbl_805DBE28; // 40.0f, the model radius
@@ -181,9 +178,8 @@ void TObjHashiBase::render() {
 }
 
 
-// Kept from the old unit: with the pool constants read through their DOL
-// symbols (above), common-subexpression elimination keeps 0.0f in a different
-// register; with literals the function matches without it.
+// Named constant loads need CSE disabled here to retain the original FPR use.
+// Literals avoid that constraint but reorder this unit's small-data pool.
 #pragma push
 #pragma opt_common_subs off
 s32 TObjHashiBase::update_object_view_visibility(f32 depth, f32 radius) {
@@ -327,3 +323,12 @@ void TObjHashiVersus2::unload_static_data() {
 void *TObjHashiVersus2::create(void *set_data) {
     return new TObjHashiVersus2(tl_05, set_data);
 }
+
+// Keep the definitions after their consumers to avoid compiler-pooled copies.
+const f32 lbl_805DBE20 = 120.0f;
+const f32 lbl_805DBE24 = 400.0f;
+const f32 lbl_805DBE28 = 40.0f;
+const f32 lbl_805DBE2C = 0.0f;
+const f32 lbl_805DBE30 = 640.0f;
+const f32 lbl_805DBE34 = 0.15f;
+const f32 lbl_805DBE38 = 30.0f;

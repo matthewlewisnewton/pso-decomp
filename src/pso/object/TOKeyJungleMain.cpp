@@ -283,3 +283,14 @@ u8 *TOKeyJungleMain__ct(TOKeyJungleMain *key_jungle_main, s32 arg1, s32 arg2) {
     return (u8 *)key_jungle_main;
 }
 }
+
+extern "C" {
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805DDD38 = 1.0f;
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805DDD3C = 0.0f;
+}

@@ -2958,7 +2958,7 @@ struct Obj_80014108 {
 #define COLL_80014108() (&((Obj_80014108 *)this)->colls[i])
 
 f32 TObjChara::receive_physical_attack(void *att, f32 scale) {
-    Vec_80014108 hit;
+    Vec hit;
     s32 immune;
     s32 i;
     s32 j;
@@ -3046,7 +3046,7 @@ f32 TObjChara::receive_physical_attack(void *att, f32 scale) {
                         lck = 100.0f;
                     }
                     if (crit <= lck) {
-                        ((TEffClitical *)(&hit))->create();
+                        TEffClitical::create(&hit);
                         play_sound_effect(0x4001A31F, (const Vec *)(&hit), 0, 0);
                         d *= (1.5f);
                     } else {

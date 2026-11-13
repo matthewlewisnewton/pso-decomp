@@ -361,8 +361,6 @@ pso/boss/TObjBoss2Tunnel_802F2070.cpp
 pso/boss/TObjBoss2Tunnel_8036EF0C.cpp
 pso/boss/TObjBoss2Tunnel_803E2BAC.cpp
 pso/boss/TObjBoss5Ctrl.cpp
-pso/boss/TObjBoss5Ctrl_80067124.cpp
-pso/boss/TObjBoss5Ctrl_800673D0.cpp
 pso/boss/TObjBoss5FloorGrass.cpp
 pso/boss/TObjBoss5FloorGrass_8028AAB8.cpp
 pso/boss/TObjBoss5FloorGrass_8028AAFC.cpp
@@ -602,9 +600,6 @@ pso/item/TItemEffArmor.cpp
 pso/item/TItemEffBringer.cpp
 pso/item/TItemEffCane.cpp
 pso/item/TItemEffEquip.cpp
-pso/item/TItemEffEquip_801088D0.cpp
-pso/item/TItemEffEquip_801088F8.cpp
-pso/item/TItemEffEquip_80108920.cpp
 pso/item/TItemEffFlame.cpp
 pso/item/TItemEffHeaven.cpp
 pso/item/TItemEffLandHit.cpp
@@ -2153,7 +2148,6 @@ pso/object/TObjDoor_8018E358.cpp
 pso/object/TObjDoor_801F3754.cpp
 pso/object/TObjEZBoneRotBase.cpp
 pso/object/TObjEZBoneRotPlayer.cpp
-pso/object/TObjEZRopeBase.cpp
 pso/object/TObjEZRopeSimulation.cpp
 pso/object/TObjEnvSoundGlobal.cpp
 pso/object/TObjEvtCollision.cpp
@@ -2979,7 +2973,6 @@ pso/unk/text_801036CC.cpp
 pso/unk/text_80104F4C.cpp
 pso/unk/text_80104FCC.cpp
 pso/unk/text_801057A8.cpp
-pso/unk/text_80108860.cpp
 pso/unk/text_801094D8.cpp
 pso/unk/text_801095EC.cpp
 pso/unk/text_8010EF14.cpp
@@ -3186,8 +3179,6 @@ pso/unk/text_80196814.cpp
 pso/unk/text_80196880.cpp
 pso/unk/text_80196A20.cpp
 pso/unk/text_80196A8C.cpp
-pso/unk/text_801977D4.cpp
-pso/unk/text_80197998.cpp
 pso/unk/text_80197E54.cpp
 pso/unk/text_80197F74.cpp
 pso/unk/text_80197FD0.cpp

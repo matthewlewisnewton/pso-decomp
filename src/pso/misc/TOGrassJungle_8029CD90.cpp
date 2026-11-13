@@ -103,3 +103,14 @@ void TOKeyJungleMain::play_activate_sound() {
 }
 
 }
+
+extern "C" {
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805DDD30 = 400.0f;
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805DDD34 = 20.0f;
+}
