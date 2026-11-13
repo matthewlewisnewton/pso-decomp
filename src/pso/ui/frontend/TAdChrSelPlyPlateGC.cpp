@@ -155,18 +155,18 @@ TAdChrSelPlyPlateGC *fn_802C6F20(TObject *parent, vec2f *pos) {
     if (ad_chr_sel_ply_plate_instance != NULL) {
         return NULL;
     }
-    ad_chr_sel_ply_plate_instance = new TAdChrSelPlyPlateGC(parent, pos);
+    ad_chr_sel_ply_plate_instance = new TAdChrSelPlyPlateGC(parent, (const TAdChrSelPlyPlateGCPoint *)pos);
     return ad_chr_sel_ply_plate_instance;
 }
 
-TAdChrSelPlyPlateGC::TAdChrSelPlyPlateGC(TObject *parent, vec2f *pos) : TObject(parent) {
+TAdChrSelPlyPlateGC::TAdChrSelPlyPlateGC(TObject *parent, const TAdChrSelPlyPlateGCPoint *pos) : TObject(parent) {
     u32 i;
     u32 j;
     m_name = TAdChrSelPlyPlateGC__name;
     lbl_805D67D0 = TAdMultiPlyChrSelectGC__sub_802C6FA8();
     lbl_805D67D4 = TAdMultiPlyChrSelectGC::get_global_6700();
     TAdMultiPlyChrSelectGC__select_mode = 0;
-    ((TWindowSubSymbolChatPartsSet *)&this->pos)->copy_vec2(pos);
+    ((TWindowSubSymbolChatPartsSet *)&this->pos)->copy_vec2((void *)pos);
     unk_1c = -1;
     unk_4e8 = 0;
     TAdMultiPlyChrSelectGC__selected_slot = 0;
@@ -211,7 +211,7 @@ void TAdChrSelPlyPlateGC::run_task() {
             break;
         case 0: {
             u32 buf[2];
-            TAdMultiPlyChrSelectGC::find_first_open_cell((s32)this, buf);
+            find_first_open_cell(buf);
             cursor_col = buf[1] - 1;
             sel[multi_ply_chr_select_active_player][cursor_col] = buf[0] - 1;
             break;
@@ -384,7 +384,7 @@ void TAdMultiPlyChrSelectGC__sub_802C6660(S_802C50EC *self) {
         }
     }
     multi_ply_chr_select_active_player = ((TAdChrSelPlyPlateGC *)self)->find_active_slot();
-    TAdMultiPlyChrSelectGC::find_first_open_cell((s32)self, cell);
+    ((TAdChrSelPlyPlateGC *)self)->find_first_open_cell(cell);
     self->cursor_col = cell[1] - 1;
     self->sel[multi_ply_chr_select_active_player][self->cursor_col] = cell[0] - 1;
 }
@@ -666,7 +666,7 @@ void TAdChrSelPlyPlateGC::move_cursor(s32 x_, s32 y_, s32 dx, s32 dy, s32 depth)
     }
 }
 
-void TAdMultiPlyChrSelectGC::find_first_open_cell(s32 arg0, u32 *arg1) {
+void TAdChrSelPlyPlateGC::find_first_open_cell(u32 *arg1) {
     u32 p;
     s32 q;
     for (p = 1; p < 3; p++) {
@@ -764,7 +764,7 @@ void TAdMultiPlyChrSelectGC__sub_802C5688(S_802C50EC *self) {
     self->a[self->sel[multi_ply_chr_select_active_player][self->cursor_col]][self->cursor_col] = 0;
     TAdMultiPlyChrSelectGC::add_selected_slot();
     multi_ply_chr_select_active_player = ((TAdChrSelPlyPlateGC *)self)->find_active_slot();
-    TAdMultiPlyChrSelectGC::find_first_open_cell((s32)self, cell);
+    ((TAdChrSelPlyPlateGC *)self)->find_first_open_cell(cell);
     self->cursor_col = cell[1] - 1;
     self->sel[multi_ply_chr_select_active_player][self->cursor_col] = cell[0] - 1;
 }

@@ -8,8 +8,14 @@
 // Multiplayer character-select player plates. The class name is the string its constructor
 // stores in m_name; the vtable it installs (0x804E0B10) holds the dtor, run_task (0x802C6AC8)
 // and render (0x802C54C4).
+struct TAdChrSelPlyPlateGCPoint {
+    f32 x;
+    f32 y;
+};
+
 struct TAdChrSelPlyPlateGC : public TObject {
-    TAdChrSelPlyPlateGC(TObject *parent, vec2f *pos);
+    TAdChrSelPlyPlateGC(TObject *parent, const TAdChrSelPlyPlateGCPoint *pos);
+    void find_first_open_cell(u32 *arg1);
     virtual ~TAdChrSelPlyPlateGC();
     virtual void run_task();
     virtual void render();
