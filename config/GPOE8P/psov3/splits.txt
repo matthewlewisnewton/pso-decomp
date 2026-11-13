@@ -2572,6 +2572,7 @@ pso/item/TItemMenuCtrl_80115A78.cpp:
 
 pso/item/TItemMenuCtrl_80115AF0.cpp:
 	.text       start:0x80115AF0 end:0x80115C24
+	.sdata2     start:0x805DABE8 end:0x805DABEC
 
 pso/item/TItemEffectWeapon_80115C24.cpp:
 	.text       start:0x80115C24 end:0x80115C44
