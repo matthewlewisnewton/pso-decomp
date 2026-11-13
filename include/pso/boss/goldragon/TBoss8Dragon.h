@@ -330,7 +330,6 @@ struct TBoss8Dragon
     s32 is_near_other_part();
     void draw_with_fade(s32 arg1, s32 arg2);
     void draw();
-    u8 *ct_attack_object(s32 arg1, s32 arg2, s32 arg3);
 };
 
 #include <stddef.h>
