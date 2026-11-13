@@ -43,7 +43,7 @@ void TWindowKeyBoardHard::run_task() {
                 temp_r3 = this->m_composer;
                 temp_r3->m_b4 = temp_r3->m_b4 & 0xFFFFFFBF;
                 if (!(this->m_60 & 0x40)) {
-                    TWindowKeyBoardHard__sub_8025CC48(this->m_composer);
+                    this->m_composer->reset_input_flags_for_language();
                 }
             }
             update_modifier_flags();

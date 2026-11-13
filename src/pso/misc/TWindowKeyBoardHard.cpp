@@ -26,7 +26,7 @@ extern const f32 lbl_805DD068;
 extern const f32 lbl_805DD06C;
 extern const f32 lbl_805DD070;
 
-void TWindowKeyBoardHard::release_keyboard() { void* m = this->m_composer; if (m) TWindowKeyBoardHard__sub_8025CC48(m); }
+void TWindowKeyBoardHard::release_keyboard() { TWindowKeyBoardBase* m = this->m_composer; if (m) m->reset_input_flags_for_language(); }
 
 void TWindowKeyBoardHard::draw_status_text(TWindowDrawContext *ctx) {
     s32 flags;
