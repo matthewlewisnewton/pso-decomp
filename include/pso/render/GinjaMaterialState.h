@@ -42,6 +42,7 @@ typedef struct GinjaTextureEntry {
 typedef struct GinjaTextureList {
   GinjaTextureEntry *entries;
   u32 count;
+  s32 find_entry_by_name(const char *name);
 } GinjaTextureList;
 typedef struct GinjaSceneState {
   u8 reserved0[0x20];

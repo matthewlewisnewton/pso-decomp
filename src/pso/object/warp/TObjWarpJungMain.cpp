@@ -24,6 +24,7 @@
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/render/GinjaMaterialState.h"
 
 const char *bm_obj_warp_jung_model_names[3] = { "fe_obj_warp_dodai.gj", "fe_obj_warp_jogo_light.gj", NULL };
 __declspec(section ".data") const char *bm_obj_warp_jung_motion_names[2] = { "fe_obj_warp_jogo_light.njm", NULL };
@@ -368,7 +369,7 @@ void load_warp_beam_resources(void) {
     warp_jung_beam_models[5] = root->sibling->model;
     warp_jung_beam_mesh_node = root->sibling->sibling->sibling->model;
     warp_jung_last_scroll_tick = 0;
-    warp_jung_beam_entry_index = ((TObjDoorJung *)warp_jung_model_handle)->find_entry_by_name(lbl_80446718);
-    warp_jung_beam_blue_tex_entry = ((TObjDoorJung *)warp_jung_model_handle)->find_entry_by_name(lbl_80446728);
-    warp_jung_nakalight_tex_entry = ((TObjDoorJung *)warp_jung_model_handle)->find_entry_by_name(lbl_80446738);
+    warp_jung_beam_entry_index = ((GinjaTextureList *)warp_jung_model_handle)->find_entry_by_name(lbl_80446718);
+    warp_jung_beam_blue_tex_entry = ((GinjaTextureList *)warp_jung_model_handle)->find_entry_by_name(lbl_80446728);
+    warp_jung_nakalight_tex_entry = ((GinjaTextureList *)warp_jung_model_handle)->find_entry_by_name(lbl_80446738);
 }

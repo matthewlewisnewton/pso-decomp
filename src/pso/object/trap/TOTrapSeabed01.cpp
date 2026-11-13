@@ -26,6 +26,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/object/trap/TOTrapAncient02.h"
 #include "pso/ui/hud/TRaderMapCore.h"
 #include "pso/object/ambient/TObjFish.h"
+#include "pso/render/GinjaMaterialState.h"
 
 extern "C" {
 __declspec(section ".sdata2") extern const f32 lbl_805DE640[1] = { 1.0f };
@@ -636,7 +637,7 @@ void TOTrapSeabed01::load_resources() {
     lbl_805D681C = 0;
     seabed01_ginja_mesh_index = -1;
     if (t != 0U) {
-        seabed01_ginja_mesh_index = ((TObjDoorJung *)t)->find_entry_by_name("apk_o064_seaturigane03");
+        seabed01_ginja_mesh_index = ((GinjaTextureList *)t)->find_entry_by_name("apk_o064_seaturigane03");
     }
 }
 
