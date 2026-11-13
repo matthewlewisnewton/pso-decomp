@@ -1010,7 +1010,7 @@ void TObjEneMerillLia::update_fade_transition() {
         this->phase = 1;
         this->requested_action = 1;
         ((MaterialOpacityFade *)((u8 *)arg0 + 0x3A8))->start_fade_in();
-        ((TBoss3Volopt *)(arg0->sub38))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)(arg0->sub38));
         break;
     case 1:
         spawn_ground_effect__16TObjEneMerillLiaFv((u8 *)arg0);

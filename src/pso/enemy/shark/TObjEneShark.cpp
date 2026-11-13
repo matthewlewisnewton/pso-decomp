@@ -323,7 +323,7 @@ void TObjEneShark::vfunc_83() {
     default:
         if (*(s32 *)&this->m_390 != 0) {
             ((MaterialOpacityFade *)((u8 *)arg0 + 0x3A8))->start_fade_in();
-            ((TBoss3Volopt *)(arg0->sub38))->play_area_sound_effect();
+            play_area_sound_and_particles_b((const Vec *)(arg0->sub38));
             *(s16 *)&this->m_328 = 1;
         } else {
             *(s16 *)&this->m_328 = 2;

@@ -3184,7 +3184,7 @@ void TObjEneMe1Gee::state_move(s32 arg1) {
         this->actorFlags = temp_r4;
         *(s32 *)((s8 *)((u8 *)this) + 0x47C) = 1;
         fade.start_fade_in();
-        ((TBoss3Volopt *)(((u8 *)this) + 0x38))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)(((u8 *)this) + 0x38));
         return;
     case 3:
         if (((V_Sub *) (((u8 *)this) + 0x3CC))->m5() != 0) {
