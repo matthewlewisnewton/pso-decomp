@@ -584,11 +584,6 @@ void TObjPlayer__sub_802EFEC4();
 void fn_802EFEA8();
 void TBoss7LaserPtcl__sub_8035AF10();
 void TBoss7LaserPtcl__sub_8035AF0C();
-struct Boss7ResourceCallbacks {
-    void (*load)();
-    void (*unload)();
-};
-typedef char Boss7ResourceCallbacks_size[sizeof(Boss7ResourceCallbacks) == 8 ? 1 : -1];
 Boss7ResourceCallbacks lbl_804E3C5C[6] = {
     {TObjPlayer__sub_802F0D30, TObjPlayer__sub_802F0D2C},
     {TObjPlayer__sub_802E7470, TObjPlayer__sub_802E7084},

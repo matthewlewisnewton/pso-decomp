@@ -4,6 +4,12 @@
 #include "pso/object/TObjMotion.h"
 
 struct Ent_802E88F8;
+struct BmlResourceDescriptor;
+struct Boss7ResourceCallbacks {
+    void (*load)();
+    void (*unload)();
+};
+typedef char Boss7ResourceCallbacks_size[sizeof(Boss7ResourceCallbacks) == 8 ? 1 : -1];
 struct Boss7PatternTables {
     Ent_802E88F8 *actions[4];
     Vec *positions[4];
@@ -34,6 +40,8 @@ extern const Ent_802E88F8 *boss7_pattern_actions[4];
 extern const Vec *boss7_pattern_positions[4];
 extern const s32 *boss7_pattern_yaws[4];
 extern TObjMotionAction boss7_motion_actions[17];
+extern Boss7ResourceCallbacks lbl_804E3C5C[6];
+extern BmlResourceDescriptor lbl_804E3D1C;
 }
 
 #endif

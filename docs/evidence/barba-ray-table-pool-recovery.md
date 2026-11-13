@@ -57,7 +57,9 @@ The existing compiler-generated switch tables follow at `0x804E3FF8`.
 The original labels at `0x804E3C2C`, `0x804E3C5C` and `0x804E3D1C` each covered
 multiple objects. Their extents are separated at the observed array and record
 boundaries. No padding objects or hand-written vtable are introduced.
-The actual resource and action types determine their layout.
+The actual resource and action types determine their layout. The neighboring
+renderer and resource loader share the real scale, callback and descriptor
+declarations instead of declaring the same symbols as opaque integer arrays.
 
 Declaring the existing `render_shadows` override first gives this unit ownership
 of vtable emission without changing virtual slot order. The previously free
