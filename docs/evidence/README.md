@@ -66,6 +66,7 @@ guides.
 - [Motion drawing and model callbacks](motion-draw-callback-evidence.md)
 - [Motion table setters](motion-table-setter-evidence.md)
 - [MusyX assembly and scalar fallbacks](musyx-asm-fallbacks.md)
+- [Complete object-particle unit](object-particle-complete-unit.md)
 - [Negative fade phase](negative-fade-phase-evidence.md)
 - [Network-info request frame and switch](network-info-request-frame.md)
 - [Native Nest continuation](nest-native-recovery-evidence.md)
