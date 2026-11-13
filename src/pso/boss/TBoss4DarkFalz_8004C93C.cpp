@@ -659,7 +659,7 @@ void TBoss4DarkFalz::swap_and_send() { swap_bytes(); send_subcommand((u8 *)this)
 
 int TObjBase::set_position_from(void *pos) { return VecCopy__FP3VecPC3Vec(&this->position, pos); }
 
-void TBoss4DarkFalz::save_position() {
+void TObjBase::save_previous_position() {
     s32 arg0 = (s32)this;
     VecCopy__FP3VecPC3Vec((void*)(arg0 + 0x44), (void*)(arg0 + 0x38));
 }

@@ -25,6 +25,17 @@ changing the load and the object layout. The late definition keeps it after
 the digit-transform and opacity literals. Ports can drop the annotation and
 keep the ordinary array and C++ expressions.
 
+### Scalar collision-area helper
+
+`TObjPlayer__sub_803DF840` in `src/pso/player/TObjPlayer_803DF7A8.cpp` adds
+two `__fabs` and two `__frsqrte` uses. The lengths retain three double-precision
+Newton refinements and volatile float rounding homes. A double carrier and
+separate absolute-value and float-conversion assignments preserve the native
+register allocation; the arithmetic consumes the rounded float values. The
+function inherits the existing `fp_contract off` region. A port can use ordinary
+`fabs` and `sqrt`, retain the `0.025f` near-vertical rule, and validate rounding
+behavior. See [the scalar recovery evidence](evidence/scalar-collision-area-helper.md).
+
 ### Dark Gunner center native emission
 
 `src/pso/enemy/TObjEneDarkGunCenter.cpp` uses `#pragma defer_codegen on`
@@ -66,7 +77,7 @@ keeps the scalar in the original small-data section; without it the scalar lands
 this exported scalar. Other compilers use the ordinary `const f32` definition
 and need no section placement or definition-order constraint.
 
-## Summary (including complete TCP recovery, 2026-11-12 UTC)
+## Summary (including scalar collision-area recovery, 2026-11-13 UTC)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
 for this source tree. Assembly is counted as source lines;
@@ -75,10 +86,10 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 89 | 58 |
+| MWCC intrinsics | 93 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,869 | 885 |
-| Per-unit compiler overrides in `configure.py` | 207 | 207 |
+| CodeWarrior pragmas (excluding push/pop) | 5,871 | 884 |
+| Per-unit compiler overrides in `configure.py` | 208 | 208 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -234,6 +245,17 @@ The draw-buffer helpers retain their existing native link names at a bounded
 ABI interface rather than casting vertex buffers to window objects; ports
 should map those legacy names to the corresponding shared draw operations.
 
+### `pso/boss/TBoss4Type1.cpp`
+
+The six trailing functions use `#pragma defer_codegen on` and reverse source
+order so the constructor addresses the compiler-generated vtable through the
+unit's shared data base while code stays in address order. The unit's `-sdata 4`
+keeps its two effect IDs in `.data`; the position generator uses scoped
+`#pragma fp_contract on` to reproduce fused arithmetic. A port can use normal
+compiler emission and data placement, preserving fused rounding where required.
+The constructor's existing `opt_loop_invariants off` pragma remains in place.
+
+
 `pso/boss/TBoss8Dragon_8002CC48.cpp` uses guarded `defer_codegen on/off`
 around its reversed first twelve definitions to preserve both native vtable
 offsets and scalar emission order. The initializer at `0x8002D5F8` uses scoped
@@ -271,8 +293,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,870 pragmas in 885 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1151, `inline_depth` 1057, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 638, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 59, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
+5,871 pragmas in 884 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1151, `inline_depth` 1057, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer

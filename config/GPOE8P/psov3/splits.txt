@@ -580,7 +580,7 @@ pso/boss/TBoss4Type1.cpp:
 	.text       start:0x800525AC end:0x80055678
 	.ctors      start:0x80433F38 end:0x80433F3C
 	.rodata     start:0x80437628 end:0x80437630
-	.data       start:0x80485AE0 end:0x80485B08
+	.data       start:0x80485AE0 end:0x80486370
 	.bss        start:0x804FF2A0 end:0x804FF5A0
 	.sdata2     start:0x805D8B28 end:0x805D8B2C
 
@@ -2986,6 +2986,7 @@ pso/item/TItemEquipVariant_801225A0.cpp:
 pso/player/TObjPlayer_801225F8.cpp:
 	.text       start:0x801225F8 end:0x80122768
 	.rodata     start:0x8043E870 end:0x8043E878
+	.sdata2     start:0x805DACF0 end:0x805DACF8
 
 pso/unk/text_80122768.cpp:
 	.text       start:0x80122768 end:0x801227E0
@@ -8606,6 +8607,7 @@ pso/unk/text_80263A20.cpp:
 pso/misc/TWindowSubEquip_80263AB0.cpp:
 	.text       start:0x80263AB0 end:0x80263B70
 	.rodata     start:0x8044F2E8 end:0x8044F2F0
+	.sdata2     start:0x805DD138 end:0x805DD13C
 
 pso/misc/TWindowMainMenu_80263B70.cpp:
 	.text       start:0x80263B70 end:0x802644D4
@@ -12161,6 +12163,7 @@ pso/boss/TBoss6CrushRock_80359FC4.cpp:
 
 pso/boss/TBoss6CrushRock_80359FEC.cpp:
 	.text       start:0x80359FEC end:0x8035A14C
+	.sdata2     start:0x805E00B8 end:0x805E00C8
 
 pso/boss/TBoss6CrushRock.cpp:
 	.text       start:0x8035A14C end:0x8035A628

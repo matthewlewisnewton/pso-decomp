@@ -89,7 +89,7 @@ an explicit porting obligation, not evidence of original assembly.
 
 ## Validation
 
-The baseline is fork main `34742a01fa18f1df3b4d838871297333cc8d1c76`, freshly
+The baseline is fork main `8e27ed9a61756b650fde9788d356785e68929402`, freshly
 built and checked before these changes. Original objects and configuration are
 regenerated from the checked-in metadata and pinned original inputs.
 

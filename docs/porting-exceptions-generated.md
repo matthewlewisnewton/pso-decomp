@@ -8,12 +8,12 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 46 | 12 |
-| intrinsic | 89 | 58 |
+| intrinsic | 93 | 58 |
 | hardware | 69 | 13 |
-| pragma | 5870 | 885 |
-| configure.py per-unit override | 207 | 207 |
+| pragma | 5871 | 884 |
+| configure.py per-unit override | 208 | 208 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 638, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 59, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -135,8 +135,12 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057,
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:331` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:354` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:149` | `__fabs` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:159` | `__fabs` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:164` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:176` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:376` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:399` | `__frsqrte` |
 | `src/pso/protocol/subcommand_validation_actions.cpp:94` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_actions.cpp:106` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_movement.cpp:99` | `__cntlzw` |
@@ -238,6 +242,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/boss/TBoss4Type1.cpp` | `-sdata 4` | Keep the eight-byte effect-ID pair in .data beside the state table. |
 | `pso/object/TObjEZRopeSimulation.cpp` | `-inline deferred` | Reverse definitions reproduce both native rope vtables and function order. |
 | `pso/ui/DrawLine.cpp` | `-inline off,deferred, -fp_contract on` | Reverse definitions retain native function and vtable order. |
 | `pso/menu/TAdTimeSetGC.cpp` | `-sdata 4, -fp_contract on` | Keep the eight-byte menu positions in .data with the state table. The calendar x coordinate uses a fused multiply-add. |
@@ -499,7 +504,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057,
 | `src/pso/boss/TBoss3VoloptP01.cpp` | fp_contract×2, readonly_strings×1, opt_common_subs×1 |
 | `src/pso/boss/TBoss3VoloptP02.cpp` | fp_contract×6, opt_common_subs×4, opt_propagation×3, opt_dead_assignments×3, readonly_strings×1, opt_loop_invariants×1 |
 | `src/pso/boss/TBoss4DarkFalz_8004C93C.cpp` | fp_contract×4 |
-| `src/pso/boss/TBoss4Type1.cpp` | fp_contract×4, opt_propagation×2, opt_common_subs×2, opt_loop_invariants×1 |
+| `src/pso/boss/TBoss4Type1.cpp` | fp_contract×5, opt_propagation×2, opt_common_subs×2, defer_codegen×1, opt_loop_invariants×1 |
 | `src/pso/boss/TBoss4Type2_80086C44.cpp` | opt_propagation×1 |
 | `src/pso/boss/TBoss4Type2_800874F4.cpp` | inline_depth×16, auto_inline×16, dont_inline×16, readonly_strings×1, fp_contract×1 |
 | `src/pso/boss/TBoss4Type2_80340160.cpp` | opt_common_subs×1, opt_propagation×1 |
@@ -515,7 +520,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057,
 | `src/pso/boss/TBoss5GryphonSnarl.cpp` | readonly_strings×1, fp_contract×1, opt_common_subs×1 |
 | `src/pso/boss/TBoss5GryphonTornado.cpp` | fp_contract×2 |
 | `src/pso/boss/TBoss6CrushRock.cpp` | fp_contract×2, opt_common_subs×1 |
-| `src/pso/boss/TBoss6CrushRock_80359FEC.cpp` | opt_common_subs×1 |
 | `src/pso/boss/TBoss6DPB.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1, fp_contract×1 |
 | `src/pso/boss/TBoss6EffFlowSoul.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss6GravBall.cpp` | fp_contract×2, opt_common_subs×1 |
