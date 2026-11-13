@@ -15,6 +15,17 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Dark Gunner center native emission
+
+`src/pso/enemy/TObjEneDarkGunCenter.cpp` uses `#pragma defer_codegen on`
+with reverse function definitions to retain the native vtable before the
+seven-entry switch table. Immediate generation preserves function instructions
+but puts the switch table first, moving the vtable by 28 bytes. Deferred
+generation reproduces all seven function positions, section contents and
+relocations with normal C++ virtual dispatch and destruction. Ports can drop
+the pragma and arrange definitions normally. The two late scalar definitions
+preserve named constant loads without generating duplicate literals.
+
 ### Critical-hit effect data placement
 
 `src/pso/effect/TEffClitical.cpp` uses guarded section annotations for the
@@ -56,7 +67,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 89 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,858 | 885 |
+| CodeWarrior pragmas (excluding push/pop) | 5,859 | 886 |
 | Per-unit compiler overrides in `configure.py` | 207 | 207 |
 | Approved regressions | 0 | 0 |
 
