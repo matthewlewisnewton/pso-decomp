@@ -606,6 +606,8 @@ force_active:
   - TItemDrop__gsl_adxf_handle
   - TItemDrop__gsl_entry_count
   - TItemEffArmor__ct
+  - TItemEffBringer__class_name
+  - TItemEffBringer__class_name_string
   - TItemEffEquip__ct
   - TItemEffFlame__class_name
   - TItemEffHeaven__class_name
@@ -2316,7 +2318,7 @@ force_active:
   - __ct__15TBoss6CrushRockFv
   - __ct__15TBoss6SwordShotFP7TObjectPC3Veclf
   - __ct__15TBoss6SwordWaveFv
-  - __ct__15TItemEffBringerFv
+  - __ct__15TItemEffBringerFPvPC3VecPC3Vecf
   - __ct__15TODoorAncient01FP7TObjectPv
   - __ct__15TODoorAncient03FP7TObjectPv
   - __ct__15TODoorAncient04FP7TObjectPv
