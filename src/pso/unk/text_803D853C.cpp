@@ -1,5 +1,6 @@
 #include "pso/render/DebugFont.h"
 #include "pso/unk/text_803D853C.h"
+#include "pso/system/MatrixVectorArray.h"
 #define PSO_SDK_COMPACT_MATH
 #include <dolphin/gx/GXStruct.h>
 #undef PSO_SDK_COMPACT_MATH
@@ -224,13 +225,13 @@ void matrix_mult_vec(f32 (*m)[4], const Vec *src, Vec *dst) {
 
 #pragma push
 #pragma scheduling off
-void TObjPlayer::mult_vec_array(u32 arg0, s32 arg1) {
+extern "C" void matrix_mult_vec_array(f32 (*m)[4], const Vec *src, Vec *dst, u32 count) {
     u32 var_r3;
-    var_r3 = arg0;
+    var_r3 = (u32) m;
     if (var_r3 == 0U) {
         var_r3 = (u32) current_matrix;
     }
-    PSMTXMultVecArray((s32) var_r3, arg1);
+    PSMTXMultVecArray((s32) var_r3, (s32) src);
 }
 }
 #pragma pop

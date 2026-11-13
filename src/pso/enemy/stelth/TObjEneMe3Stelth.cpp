@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include "pso/system/MatrixVectorArray.h"
 #include "types.h"
 #include "pso/boss/goldragon/TBoss8Dragon_80065C90.h"
 #include "pso/enemy/BattleParameters.h"
@@ -2533,7 +2534,6 @@ extern const f32 lbl_805DA878;
 f64 atan2_float(f32, f32);
 #define get_flag_b4__9TObjEneDDFv ((s32 (*)())get_flag_b4__9TObjEneDDFv)
 #define test_body_collision__16TObjEneMe3StelthFlf ((s32 (*)(void *, int, f32))test_body_collision__16TObjEneMe3StelthFlf)
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 extern const f32 lbl_805DA810;
 extern const f32 lbl_805DA86C;
 extern const f32 lbl_805DA870;
@@ -2871,7 +2871,7 @@ void TObjEneMe3Stelth__sub_800F348C(u8 *arg0, s32 arg1) {
                 set_matrix_identity(0);
                 post_translate_matrix((f32 *)(arg0 + 0x38));
                 rotate_matrix_y(0, F(s32, 0x60));
-                mult_vec_array__10TObjPlayerFUll(0, entry, &m, 2);
+                matrix_mult_vec_array(NULL, (const Vec *)(entry), (Vec *)(&m), 2);
                 pop_matrix();
             }
         }

@@ -4,6 +4,7 @@
 #undef PADV4
 #undef PAD5
 #include "types.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/system/StripBufferPair.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/npc/NpcModelRegistry.h"
@@ -864,7 +865,6 @@ f32 random_ratio__9TObjCharaFv(s32);
 s32 get_field_3D4_shifted__16TObjEneRe7BeruraFPv(void *);
 s32 enemy_validate_retained_target(u8 *arg0);
 void TObjEneDD__sub_800BA378(s32 arg0, u8 *arg1);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 void set_matrix_identity(u8 *arg0);
 s32 rotate_matrix_y(int, int);
 extern u8 *belra_trail_buffer;
@@ -1175,7 +1175,7 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {
                 set_matrix_identity(0);
                 post_translate_matrix(actor + 0x38);
                 rotate_matrix_y(0, (int) (*(s32 *)((s8 *)actor + 0x60)));
-                mult_vec_array__10TObjPlayerFUll(0, entry, (void *) (&sp8), 4);
+                matrix_mult_vec_array(NULL, (const Vec *)(entry), (Vec *)((void *) (&sp8)), 4);
                 pop_matrix();
                 ((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x440))))->m4(&sp8, &sp14);
                 ((VObj_18_a5c788 *)((u8 *)(*(u8 **)((s8 *)actor + 0x444))))->m4(&sp20, &sp2C);

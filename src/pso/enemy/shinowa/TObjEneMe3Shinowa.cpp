@@ -1,4 +1,5 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/shinowa/TObjEneMe3Shinowa.h"
 #include "pso/npc/NpcModelRegistry.h"
@@ -1481,7 +1482,6 @@ struct Info_800E5CE4 { u8 pad[0x8]; f32 f8; u8 pad2[0x14]; s32 f20; };
 
 extern "C" {
 u32 csnVecterUnder(void *, int);
-s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
 extern SampledMotionPoints *TObjEneMe3ShinowaMirage__data_805D52AC;
@@ -3640,7 +3640,7 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1) {
                 set_matrix_identity(0);
                 post_translate_matrix(arg0 + 0x38);
                 rotate_matrix_y(0, *(s32 *)((s8 *)arg0 + 0x60));
-                mult_vec_array__10TObjPlayerFUll(0, entry, &sp14, 2);
+                matrix_mult_vec_array(NULL, (const Vec *)(entry), (Vec *)(&sp14), 2);
                 pop_matrix();
                 ((VObj_18_2add4a *)*(u8 **)((s8 *)arg0 + 0x3E0))->m4((s32 *)&sp14, (s32 *)&sp20);
             }
@@ -4026,12 +4026,12 @@ void TObjEneMe3Shinowa::apply_effect_pair() {
     rotate_matrix_y(0, this->rotation_y);
     entry = (s32)TObjEneMe3ShinowaMirage__data_805D52A4->lookup(this->frame);
     if (entry != 0U) {
-        mult_vec_array__10TObjPlayerFUll(0, entry, &sp8, 2);
+        matrix_mult_vec_array(NULL, (const Vec *)(entry), (Vec *)(&sp8), 2);
         ((VObj18b_800e70d4_800E47DC *) ((unsigned char *) (*(void **)((s8 *)arg0 + 0x3E0))))->m4(&sp8, &sp8[3]);
     }
     temp_r3_3 = (s32)TObjEneMe3ShinowaMirage__data_805D52A8->lookup(this->frame);
     if (temp_r3_3 != 0U) {
-        mult_vec_array__10TObjPlayerFUll(0, temp_r3_3, &sp8, 2);
+        matrix_mult_vec_array(NULL, (const Vec *)(temp_r3_3), (Vec *)(&sp8), 2);
         ((VObj18b_800e70d4_800E47DC *) ((unsigned char *) (*(void **)((s8 *)arg0 + 0x3E4))))->m4(&sp8, &sp8[3]);
     }
     pop_matrix();

@@ -1,4 +1,5 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/system/MatrixVectorArray.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -783,7 +784,6 @@ struct RecoveredGlobal_8002F61C_lbl_804FE31C {
 extern "C" {
 void transform_point_to_view(s32, s32);
 void update_camera_sequence__9TObjEneDDFv(void);
-s32 mult_vec_array__10TObjPlayerFUll(int, void *, void *, int);
 s32 subtract_vector(void *, void *);
 s32 push_matrix();
 extern RecoveredGlobal_8002F61C_lbl_80435628 derolle_attack_sequence_id_table;
@@ -809,7 +809,7 @@ void TObjPlayer__sub_8002F61C(void) {
     if ((s32) TBoss2DeRolLe__current_attack_id == 0x33) {
         push_matrix();
         update_camera_sequence__9TObjEneDDFv();
-        mult_vec_array__10TObjPlayerFUll(0, (void *)&derolle_part_transform_template.value, (void *)lbl_805D4BB8, 4);
+        matrix_mult_vec_array(NULL, (const Vec *)((void *)&derolle_part_transform_template.value), (Vec *)((void *)lbl_805D4BB8), 4);
         pop_matrix();
         subtract_vector((void *)(lbl_805D4BB8 + 0xC), (void *)lbl_805D4BB8);
     }
