@@ -12162,6 +12162,7 @@ pso/boss/TBoss6CrushRock_80359FC4.cpp:
 
 pso/boss/TBoss6CrushRock_80359FEC.cpp:
 	.text       start:0x80359FEC end:0x8035A14C
+	.sdata2     start:0x805E00B8 end:0x805E00C8
 
 pso/boss/TBoss6CrushRock.cpp:
 	.text       start:0x8035A14C end:0x8035A628
