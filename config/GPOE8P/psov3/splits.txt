@@ -13620,6 +13620,10 @@ pso/unk/text_803D647C.cpp:
 
 pso/unk/text_803D64F8.cpp:
 	.text       start:0x803D64F8 end:0x803D6538
+	.sdata2     start:0x805E0DF0 end:0x805E0DFC
+
+original_unclaimed_805E0DFC:
+	.sdata2     start:0x805E0DFC end:0x805E0E00 align:4
 
 pso/misc/TCameraCtrl_803D6538.cpp:
 	.text       start:0x803D6538 end:0x803D66DC
