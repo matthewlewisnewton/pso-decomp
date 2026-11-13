@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include "pso/unk/TUnk_804CF918.h"
 
-class TWindowDrawContext;
+struct TWindowDrawContext;
 
 class TUnk_804CF930 : public TUnk_804CF918 {
 public:

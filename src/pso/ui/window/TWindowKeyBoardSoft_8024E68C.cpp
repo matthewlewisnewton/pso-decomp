@@ -135,7 +135,7 @@ void TWindowKeyBoardSoft::animate_scale() {
 }
 
 s32 TWindowDrawContext::is_point_in_bounds(f32 *arg1) {
-    if ((*(f32 *)((s8 *)arg1 + 8) < *(f32 *)((s8 *)this + 0x3C)) || (*(f32 *)((s8 *)arg1 + 0xC) < *(f32 *)((s8 *)this + 0x40)) || (*(f32 *)((s8 *)arg1 + 0) > *(f32 *)((s8 *)this + 0x44)) || (*(f32 *)((s8 *)arg1 + 4) > *(f32 *)((s8 *)this + 0x48))) {
+    if ((arg1[2] < clip_left) || (arg1[3] < clip_top) || (arg1[0] > clip_right) || (arg1[1] > clip_bottom)) {
         return 0;
     }
     return 1;
