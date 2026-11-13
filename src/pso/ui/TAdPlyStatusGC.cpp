@@ -151,7 +151,6 @@ struct Box_8033F3D8 { f32 v[8]; };
 struct Item_8033F3D8 { s8 valid; u8 pad[0xF]; };
 struct Status_8033F3D8 { u8 pad[8]; u32 f8; };
 
-void draw_window_frame__11TWindowBaseFPv(void *);
 Status_8033F3D8 **get_status_sub__14TAdPlyStatusGCFv(s32);
 extern const f32 lbl_805DFAE0;
 extern const f32 lbl_805DFAE4;
@@ -163,7 +162,7 @@ void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, void *arg1) {
     Vec2_8033F3D8 pts2[3];
     s32 i;
 
-    draw_window_frame__11TWindowBaseFPv(arg0);
+    ((TWindowBase *)arg0)->draw_window_frame(arg1);
     if ((u32)ply_status_chcr_load_afs != 0 && ((TChCrLoadAfs *)ply_status_chcr_load_afs)->is_unloaded() != 0 && TAdPlyStatusGC__is_shown != 0 &&
         (*get_status_sub__14TAdPlyStatusGCFv(ply_status_chcr_load_afs))->f8 != 0) {
         box = TAdPlyStatusGC__status_window_box;

@@ -133,3 +133,35 @@ of the wider callback or keyboard holds. A native rebuild of the prior-head sour
 all 3,655 source-object files have identical SHA-256 inventories after restoring
 the correction. The 347-test suite and linked-unit exactness check pass.
 No fresh-main delta result is claimed for this pass.
+
+## Explicit borrowed frame arguments (aa2d396773 follow-up)
+
+Three already-two-argument callback implementations previously called a raw
+`draw_window_frame` declaration with missing arguments: serial draw_screen at
+803212F8 and password callback 8032AC9C supplied neither argument, while player
+status callback 8033F3D8 supplied only the receiver. Their original first frame
+calls at 8032130C, 8032ACB0 and 8033F3F4 preserve incoming r3/r4. Saving r4 to r31
+in the serial/password prologues does not consume or replace the live r4 value.
+The frame implementation at 80245F98 uses both the Base window and the second
+argument's rectangle/color fields. These were real source-contract omissions,
+not an instruction-byte difference.
+
+Each call now uses the existing `TWindowBase::draw_window_frame(void*)` member,
+with arg0 as receiver and arg1 as the borrowed frame context. The callback
+window is Base-derived; render at 802ACDA8 loads its callback, passes the window
+in r3 and draw_default_entry's result in r4. The three existing registrations
+and all callback entry signatures remain unchanged. This does not change frame
+context ownership, callback storage or deletion order, nor establish a portable
+common callback signature. In particular, Agreement's no-argument callback and
+other mixed producer declarations are outside this correction and remain held.
+
+The native capacity-gated full build preserves the original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 3,655 source-object SHA-256 entries
+are identical to the captured aa2d396773 inventory, including the complete three
+changed units and their symbol/relocation records. No original-provider,
+compiler-profile, layout, coverage or ownership change is introduced.
+Independent original-assembly review confirms the three incoming-register paths,
+the callee's use of both values and the factory registrations. Address-based
+check_pr against the captured aa2d396773 report passes with zero regression.
+
+The 347-test repository suite also passes. Broader holds remain unchanged.
