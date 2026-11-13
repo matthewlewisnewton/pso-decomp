@@ -54,10 +54,10 @@ struct TObjEneDD : public TObjEnemy {
     static u8 is_main_phase_15();
     static void clear_global_flag_400();
     void draw_ground_shadow(const Vec *scale, s32 forceDraw);
-    void draw_oriented_shadow(s32 arg1, s32 arg2, u32 arg3);
+    static void draw_oriented_shadow(const Vec *pos, const Vec *normal, s32 angle, const Vec *scale);
     int update_primary_light();
     int update_secondary_light();
-    void reload_stats_keep_hp_tp();
+    void reload_stats_keep_hp_tp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats);
     void reset_hp(BattleBaseStats *base_stats, AttackParams *attack_stats, ActorParamBlock *resistance_stats);
     int update_camera_sequence();
     void initialize_enemy_state(s32 parameter);
@@ -96,7 +96,6 @@ struct TObjEneDD : public TObjEnemy {
     void state_damaged(s32 arg1);
     void state_chase_target(s32 arg1);
     int get_target_info();
-    void copy_resource_desc(u8 *arg1);
     void set_field_378(s32 v);
     void init_position_vectors();
     static void release_resource();

@@ -485,12 +485,12 @@ s32 minimap_render_dot(void *, int, int, int);
 
 // (no extra declarations)
 // Picks the claw's model and texture list from the Bal Claw BML.
-void TObjEneBalClawClaw::sub_80090418(s32 i) {
+void TObjEneBalClaw::select_model(s32 i) {
     model = (void *)lbl_805D4F20->models[i].model;
     texlist = lbl_805D4F20->models[i].m_c;
 }
 
-TObjEneBalClawBody::TObjEneBalClawBody(TObject *parent, void *set_data) : TObjEneBalClaw(parent) {
+TObjEneBalClawBody::TObjEneBalClawBody(TObject *parent, BalClawSetData *set_data) : TObjEneBalClaw(parent) {
     s32 i;
     m_name = balclaw_body_class_name;
     apply_set_data(set_data);
@@ -557,7 +557,7 @@ TObjEneBalClawBody::~TObjEneBalClawBody() {
 
 void *TObjEneBalClawBody::create(void *set_data) {
     TObjControl *control = new TObjControl((TObject *)tl_04);
-    return new TObjEneBalClawBody(control, set_data);
+    return new TObjEneBalClawBody(control, (BalClawSetData *)set_data);
 }
 
 void TObjEneBalClawBody::run_task() {
@@ -800,7 +800,7 @@ void TObjPlayer__sub_8008F910(u8 *arg0) {
         break;
     case 0:
         *(s32 *)((s8 *)arg0 + 0x30) &= ~0x200000;
-        *(s16 *)((s8 *)arg0 + 0xB8) = ((TObjEneBalClaw *)arg0)->get_flag_0x388_b24() != 0 ? 3 : 8;
+        *(s16 *)((s8 *)arg0 + 0xB8) = ((TObjEneBalClawBody *)arg0)->get_flag_0x388_b24() != 0 ? 3 : 8;
         *(s32 *)((s8 *)arg0 + 0x37C) = 1;
     case 1: {
         ((TObjMotion *)arg0)->advance_animation();
@@ -822,7 +822,7 @@ void TObjPlayer__sub_8008F910(u8 *arg0) {
             *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
             *(s32 *)((s8 *)arg0 + 0x30) &= ~0x200;
             *(s32 *)((s8 *)arg0 + 0x388) &= ~1;
-            if (((TObjEneBalClaw *)arg0)->get_flag_0x388_b24() == 0) {
+            if (((TObjEneBalClawBody *)arg0)->get_flag_0x388_b24() == 0) {
                 var_r3 = fn_80090464(arg0, 0);
                 if (var_r3 <= 0) {
                     var_r3 = 0xA;
@@ -850,7 +850,7 @@ void TObjPlayer::run_death_sequence() {
     case 0:
         ((TObjEnemy *)arg0)->distribute_experience_and_request_drop();
         *(s32 *)((s8 *)arg0 + 0x388) &= ~0x20000;
-        if (((TObjEneBalClaw *)arg0)->get_flag_0x388_b24() != 0) {
+        if (((TObjEneBalClawBody *)arg0)->get_flag_0x388_b24() != 0) {
             this->requested_action = 4;
             this->m_37c = 1;
             for (i = 0; i < ((P_8008F730 *)arg0)->n; i++) {
@@ -906,7 +906,7 @@ void TObjPlayer::run_death_sequence() {
 void TObjPlayer__sub_8008F1DC(void *arg0) {
     switch (o->state) {
     case 0:
-        if (((TObjEneBalClaw *)o)->get_flag_0x388_b24() != 0) {
+        if (((TObjEneBalClawBody *)o)->get_flag_0x388_b24() != 0) {
             RESET(o);
             return;
         }
@@ -1025,7 +1025,7 @@ void TObjPlayer__sub_8008F1DC(void *arg0) {
 void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {
     switch (arg0->state) {
     case 0:
-        if (((TObjEneBalClaw *)arg0)->get_flag_0x388_b24() == 0) {
+        if (((TObjEneBalClawBody *)arg0)->get_flag_0x388_b24() == 0) {
             RESET(arg0);
             return;
         }
@@ -1186,14 +1186,14 @@ void set_form__18TObjEneBalClawBodyFl(void *arg0_, s32 arg1) {
         *(u32 *)((s8 *)arg0 + 0x388) |= 0x01000000;
         ((TObjEnemy *)arg0)->set_param(0x28);
         *(s16 *)((s8 *)arg0 + 0xB8) = 0;
-        ((TObjEneBalClawClaw *)arg0)->sub_80090418(1);
+        ((TObjEneBalClaw *)arg0)->select_model(1);
         *(s16 *)((s8 *)arg0 + 0x3DA) = 0;
         ((VObj_18_4841bb *)(arg0))->m53();
     } else {
         *(u32 *)((s8 *)arg0 + 0x388) &= ~0x01000000;
         ((TObjEnemy *)arg0)->set_param(0x27);
         *(s16 *)((s8 *)arg0 + 0xB8) = 5;
-        ((TObjEneBalClawClaw *)arg0)->sub_80090418(0);
+        ((TObjEneBalClaw *)arg0)->select_model(0);
         ((VObj_18_4841bb *)(arg0))->m53();
         if (!(*(u32 *)((s8 *)arg0 + 0x388) & 0x40000)) {
             *(s16 *)((s8 *)arg0 + 0x32C) = *(s16 *)((s8 *)arg0 + 0x32C) / (*(s16 *)((s8 *)arg0 + 0x3D8) + 1);
@@ -1318,7 +1318,7 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {
     f32 lim;
     switch (arg0_->state) {
     case 0:
-        if (((TObjEneBalClaw *)arg0_)->get_flag_0x388_b24() != 0) {
+        if (((TObjEneBalClawBody *)arg0_)->get_flag_0x388_b24() != 0) {
             ((TObjPlayer *)arg0_)->reset_enemy_state();
             return;
         }
@@ -1408,7 +1408,7 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {
             set_form__18TObjEneBalClawBodyFl(arg0_, 1);
             ((TObjMotion *)arg0_)->advance_animation();
         }
-        if (((TObjEneBalClaw *)arg0_)->get_flag_0x388_b24() == 0) {
+        if (((TObjEneBalClawBody *)arg0_)->get_flag_0x388_b24() == 0) {
             for (s32 i = 0; i < arg0_->count; i++) {
                 e = (E_8008E310 *)find_entity_by_id(arg0_->ids[i]);
                 if (e != NULL) {
@@ -1434,7 +1434,7 @@ void TObjPlayer__sub_8008E254(void *arg0_) {
     case -1:
         break;
     case 0:
-        if (((TObjEneBalClaw *)arg0_)->get_flag_0x388_b24() == 0) {
+        if (((TObjEneBalClawBody *)arg0_)->get_flag_0x388_b24() == 0) {
             ((TObjPlayer *)arg0_)->reset_enemy_state();
             return;
         }
@@ -1497,7 +1497,7 @@ void TObjPlayer::update_move_to_target() {
         break;
     case 0: {
         self->f30 &= ~0x100;
-        self->fB8 = ((TObjEneBalClaw *)self)->get_flag_0x388_b24() != 0 ? 1 : 6;
+        self->fB8 = ((TObjEneBalClawBody *)self)->get_flag_0x388_b24() != 0 ? 1 : 6;
         Vec d = self->pos;
         subtract_vector(&d, &self->target->pos);
         ((TObjEnemyCustom *)self)->pick_open_direction((f32 *)&d, 60.0f, 30.0f);

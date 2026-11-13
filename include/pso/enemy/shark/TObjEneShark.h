@@ -4,9 +4,13 @@
 #include "types.h"
 #include "pso/render/RenderFadeState.h"
 
+struct NJS_OBJECT;
+
 struct TObjEneShark {
-    void sub_800AC9DC(s32);
-    void apply_clamped_mode_param();
+    void bind_variant_model(s32);
+    void configure_subtype();
+    static void load_resources();
+    static void update_node_particle_state(NJS_OBJECT *);
     void vfunc_83();
     void vfunc_101();
     void vfunc_98();

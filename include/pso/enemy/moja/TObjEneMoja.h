@@ -62,6 +62,7 @@ struct TObjEneMoja : public TObjEnemy {
     static void free_resources();
     s32 calc_technique_level();
     void select_rare_variant();
+    void clamp_appearance_parameter();
     void update_death_state();
     static s32 update_technique_state(void *self_800AD3D8);
     static s32 update_punch_attack(void *self_800ADAAC);

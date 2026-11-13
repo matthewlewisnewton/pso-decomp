@@ -1808,8 +1808,8 @@ void *TObjEneMe1Canadin::create(void *arg0) {
     return new TObjEneMe1Canadin(tl_04, arg0, 0);
 }
 
-void *TObjEneMe1CanadinLeader::create_canadin(void *arg0, void *arg1, void *arg2, void *arg3) {
-    return new TObjEneMe1Canadin(tl_04, (TObjEneMe1Canadin *)arg0, (Vec *)arg1, (s32)arg2, (s32)arg3);
+TObjEneMe1Canadin *TObjEneMe1CanadinLeader::create_canadin(TObjEneMe1Canadin *leader, Vec *position, s32 id, s32 index) {
+    return new TObjEneMe1Canadin(tl_04, leader, position, id, index);
 }
 
 // Floor teardown: frees the two breakup models and the Canadin archive.
@@ -1961,7 +1961,7 @@ void TObjEneMe1Canadin::run_task() {
     }
     if (this->vfunc_83() != 4) {
         this->vfunc_85();
-        TObjEneMe1CanadinLeader::update_fade_sequence(arg0);
+        ((TObjEneMe1Canadin *)arg0)->update_fade_sequence();
     }
     copy_pos();
     ((TObjEnemy *)arg0)->submit_default_cursor_candidate();
@@ -2114,7 +2114,7 @@ void TObjEneMe1Canadin::update_angle() {
 }
 
 extern "C" {
-void TObjEneMe1Canadin::update_move(void* p) { if (((TObjEneDD_ST *)p)->enemy_has_live_target() != 0) { ((TObjEneDD_ST *)p)->enemy_copy_target_destination(); ((TObjEneDD *)p)->update_velocity(); ((TObjEneMe1Canadin *)p)->update_angle(); } }
+void TObjEneMe1Canadin::update_move() { void *p = this; if (((TObjEneDD_ST *)p)->enemy_has_live_target() != 0) { ((TObjEneDD_ST *)p)->enemy_copy_target_destination(); ((TObjEneDD *)p)->update_velocity(); ((TObjEneMe1Canadin *)p)->update_angle(); } }
 }
 
 extern "C" {
@@ -2269,7 +2269,8 @@ s32 TObjEneMe1Canadin::vfunc_104(f32) { return select_and_apply_target__12TObjEn
 
 extern "C" {
 #define p ((Canadin_8009E504 *)pv)
-void TObjEneMe1CanadinLeader::update_fade_sequence(void *pv) {
+void TObjEneMe1Canadin::update_fade_sequence() {
+    void *pv = this;
     switch (p->state) {
     case 0:
         break;
@@ -2317,7 +2318,7 @@ void TObjEneMe1CanadinLeader::update_fade_sequence(void *pv) {
 
 extern "C" {
 void TObjEneMe1CanadinLeader__sub_8009E4AC(u8 *arg0, s32 arg1) {
-    ((TObjEneMe1Canadin *)arg0)->reset_map_core(&canadin_formation_fade_start_color.value);
+    ((TObjEneMe1Canadin *)arg0)->reset_map_core((NJS_ARGB *)&canadin_formation_fade_start_color.value);
     *(s32 *)((s8 *)arg0 + 0x4B8) = 3;
     *(s32 *)((s8 *)arg0 + 0x4BC) = arg1;
     *(s32 *)((s8 *)arg0 + 0x4C0) = 2;
@@ -2326,7 +2327,7 @@ void TObjEneMe1CanadinLeader__sub_8009E4AC(u8 *arg0, s32 arg1) {
 }
 
 extern "C" {
-void TObjEneMe1Canadin::reset_map_core(void * _w1) { ((int (*)(void*))copy_argb)((char*)this + 0x4a4); pack_color_rgba(); }
+void TObjEneMe1Canadin::reset_map_core(NJS_ARGB *) { ((int (*)(void*))copy_argb)((char*)this + 0x4a4); pack_color_rgba(); }
 }
 
 extern "C" {
@@ -2393,11 +2394,11 @@ s32 fn_8009E300(u8 *arg0) {
 }
 
 extern "C" {
-void TObjEneMe1Canadin::vfunc_117(u32) {  }
+void TObjEneMe1Canadin::vfunc_117(TObjEneMe1Canadin *) {  }
 }
 
 extern "C" {
-int TObjEneMe1Canadin::vfunc_116() { return 1; }
+int TObjEneMe1Canadin::vfunc_116(TObjChara *) { return 1; }
 }
 
 extern "C" {
@@ -2408,7 +2409,7 @@ void fn_8009E2DC(u8 *arg0) {
 }
 
 extern "C" {
-void TObjEneMe1CanadinLeader::set_leader_index(s32 arg1, s32 arg2) {
+void TObjEneMe1Canadin::set_leader_index(TObjChara *, s32 arg2) {
     set_target_player__12TObjEneDD_STFPv(this);
     *(s32 *)((s8 *)this + 0x400) = arg2;
     *(s32 *)((s8 *)this + 0x3C8) = (s32) (*(s32 *)((s8 *)this + 0x3C8) | 1);
@@ -2416,14 +2417,14 @@ void TObjEneMe1CanadinLeader::set_leader_index(s32 arg1, s32 arg2) {
 }
 
 extern "C" {
-void TObjEneMe1CanadinLeader::set_attack_flag() { *(u32*)((char*)this + 0x3c8) |= 0x2; }
+void TObjEneMe1Canadin::set_attack_flag() { *(u32*)((char*)this + 0x3c8) |= 0x2; }
 }
 
 extern "C" {
 void TObjEneMe1CanadinLeader__sub_8009E27C(void* p) { *(u32*)((char*)p + 0x3c8) |= 0x4; }
 }
 
-void TObjEneMe1CanadinLeader::set_flag3c8_bit8() { *(u32*)((char*)this + 0x3c8) |= 0x8; }
+void TObjEneMe1Canadin::set_flag3c8_bit8() { *(u32*)((char*)this + 0x3c8) |= 0x8; }
 
 extern "C" {
 void TObjEneMe1CanadinLeader__sub_8009E258(u8 *arg0) {
@@ -2432,11 +2433,11 @@ void TObjEneMe1CanadinLeader__sub_8009E258(u8 *arg0) {
 }
 
 extern "C" {
-void TObjEneMe1CanadinLeader::set_flag3c8_bit20() { *(u32*)((char*)this + 0x3c8) |= 0x20; }
+void TObjEneMe1Canadin::set_flag3c8_bit20() { *(u32*)((char*)this + 0x3c8) |= 0x20; }
 }
 
 extern "C" {
-void TObjEneMe1CanadinLeader::set_flag3c8_bit40() { *(u32*)((char*)this + 0x3c8) |= 0x40; }
+void TObjEneMe1Canadin::set_flag3c8_bit40() { *(u32*)((char*)this + 0x3c8) |= 0x40; }
 }
 
 extern "C" {
@@ -2677,10 +2678,10 @@ void TObjEneMe1Canadin::vfunc_110(s32 arg1) {
                     break;
                 }
             }
-            TObjEneMe1Canadin::update_move(arg0);
+            ((TObjEneMe1Canadin *)arg0)->update_move();
             break;
         case 3:
-            TObjEneMe1Canadin::update_move(arg0);
+            ((TObjEneMe1Canadin *)arg0)->update_move();
             break;
         }
         ((TObjEneMe1Canadin *)arg0)->set_target_speed_z();
@@ -2714,7 +2715,7 @@ void TObjEneMe1Canadin::vfunc_111(s32 arg1) {
     case 0:
         advance_animation();
         update_linked_position(200.0f);
-        TObjEneMe1Canadin::update_move(this);
+        update_move();
         this->update_hover_height();
         this->vfunc_89();
         ((s32 (*)(void *))noop__17TObjEneMe1CanadinFv)(this);
@@ -2761,18 +2762,18 @@ void TObjEneMe1Canadin::move(s32 arg1) {
                     ((s32 (*)(void *, s32))TObjEneMe1CanadinLeader__sub_8009E4AC)(this, 3);
                 }
             }
-            TObjEneMe1Canadin::update_move(this);
+            update_move();
             update_hover_height();
             break;
         case 1:
             if ((s32) *(s32 *)((s8 *)this + 0x4B8) == 0) {
                 *(s32 *)((s8 *)this + 0x470) = 3;
             }
-            TObjEneMe1Canadin::update_move(this);
+            update_move();
             update_hover_height();
             break;
         case 2:
-            TObjEneMe1Canadin::update_move(this);
+            update_move();
             if ((s32) *(s32 *)((s8 *)this + 0x4B8) != 0) {
                 update_hover_height();
             } else {
@@ -2804,7 +2805,7 @@ void TObjEneMe1Canadin__sub_8009D320(void *arg0, s32 arg1) {
         o->flags &= 0xFFBFFFFF;
         ((VObj_18_2d9fb9 *)o)->m94();
         o->f30 |= 0x01000000;
-        ((TObjEneMe1Canadin *)o)->reset_map_core((void *)canadin_formation_reset_vec4);
+        ((TObjEneMe1Canadin *)o)->reset_map_core((NJS_ARGB *)canadin_formation_reset_vec4);
         o->mode = 1;
         o->timer = 0;
         o->f49C = 0;
@@ -2825,7 +2826,7 @@ void TObjEneMe1Canadin__sub_8009D320(void *arg0, s32 arg1) {
             if (((TObjEneDD_ST *)o)->update_linked_position(200.0f) == 0) {
                 break;
             }
-        } else if (((TObjEneEpsilon *)o)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)o)->check_target_validity() == 0) {
             break;
         }
         ((TObjEneDD_ST *)o)->enemy_copy_target_destination();
@@ -2847,7 +2848,7 @@ void TObjEneMe1Canadin__sub_8009D320(void *arg0, s32 arg1) {
             if (o->fB8 == 1) {
                 void *p;
                 o->mode = 3;
-                ((TObjEneMe1Canadin *)o)->reset_map_core(TObjEneMe1Canadin__map_core_default_vec4);
+                ((TObjEneMe1Canadin *)o)->reset_map_core((NJS_ARGB *)TObjEneMe1Canadin__map_core_default_vec4);
                 VecCopy((Vec *)pos, (const Vec *)&o->base);
                 p = __nw__7TObjectFUl(0x48);
                 if (p != 0) {
@@ -2898,7 +2899,7 @@ void TObjEneMe1Canadin__sub_8009D320(void *arg0, s32 arg1) {
                 o->mode = 5;
                 o->timer = 0;
                 o->flags &= 0xFFFBFFFF;
-                ((TObjEneMe1Canadin *)o)->reset_map_core((void *)canadin_formation_reset_vec4);
+                ((TObjEneMe1Canadin *)o)->reset_map_core((NJS_ARGB *)canadin_formation_reset_vec4);
                 o->f404++;
                 {
                     void *q = __nw__7TObjectFUl(0x68);
@@ -2927,7 +2928,7 @@ void TObjEneMe1Canadin__sub_8009D320(void *arg0, s32 arg1) {
         break;
     case 5:
         o->flags &= 0xFFFBFFFF;
-        ((TObjEneMe1Canadin *)o)->reset_map_core((void *)canadin_formation_reset_vec4);
+        ((TObjEneMe1Canadin *)o)->reset_map_core((NJS_ARGB *)canadin_formation_reset_vec4);
         if (o->f49C != 0) {
             queue_destruction__7TObjectFv(o->f49C);
             o->f49C = 0;
@@ -2973,7 +2974,7 @@ void TObjEneMe1Canadin__sub_8009CC74(void *arg0, s32 arg1) {
             if (((TObjEneDD_ST *)o)->update_linked_position(200.0f) == 0) {
                 break;
             }
-        } else if (((TObjEneEpsilon *)o)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)o)->check_target_validity() == 0) {
             break;
         }
         switch (o->mode) {
@@ -2991,7 +2992,7 @@ void TObjEneMe1Canadin__sub_8009CC74(void *arg0, s32 arg1) {
                 if (o->flags & 0x40000) {
                     if (o->f3AC < 40.0f) {
                         o->mode = 2;
-                        ((TObjEneMe1Canadin *)o)->reset_map_core(TObjEneMe1Canadin__map_core_default_vec4);
+                        ((TObjEneMe1Canadin *)o)->reset_map_core((NJS_ARGB *)TObjEneMe1Canadin__map_core_default_vec4);
                     }
                 } else if (o->f3AC < 100.0f) {
                     o->f3C0 = find_entity_by_id(o->f4C8);
@@ -3100,7 +3101,7 @@ void TObjEneMe1Canadin__sub_8009CC74(void *arg0, s32 arg1) {
                         o->mode = 2;
                     } else {
                         o->mode = 1;
-                        ((TObjEneMe1Canadin *)o)->reset_map_core((void *)canadin_formation_reset_vec4);
+                        ((TObjEneMe1Canadin *)o)->reset_map_core((NJS_ARGB *)canadin_formation_reset_vec4);
                         if (o->f3AC > 100.0f) {
                             o->flags &= 0xFFFBFFFF;
                         }
@@ -3114,7 +3115,7 @@ void TObjEneMe1Canadin__sub_8009CC74(void *arg0, s32 arg1) {
         break;
     case 5:
         o->flags &= 0xFFFBFFFF;
-        ((TObjEneMe1Canadin *)o)->reset_map_core((void *)canadin_formation_reset_vec4);
+        ((TObjEneMe1Canadin *)o)->reset_map_core((NJS_ARGB *)canadin_formation_reset_vec4);
         TObjEneMe1Canadin__sub_8009E930((u8 *)o);
         break;
     }
@@ -3739,8 +3740,8 @@ void TObjEneMe1CanadinLeader::run_task() {
     }
     if (vfunc_83() != 4) {
         vfunc_85();
-        update_fade_sequence(this);
-        update_formation_state(this);
+        update_fade_sequence();
+        update_formation_state();
     }
     copy_pos();
     submit_default_cursor_candidate();
@@ -3795,7 +3796,7 @@ void TObjEneMe1CanadinLeader::vfunc_107() {
         v.z = 40.0f * cos_table_lookup(angle);
         vec3_add_to(&v, &self->pos);
         angle += 0x10000 / self->max;
-        self->ids[i] = TObjEneMe1CanadinLeader::create_canadin(self, &v, (void *)id++, (void *)sub++);
+        self->ids[i] = TObjEneMe1CanadinLeader::create_canadin((TObjEneMe1Canadin *)self, (Vec *)&v, id++, sub++);
         ((s32 (*)(void *))TObjEneMe1CanadinLeader__sub_8009E334)(self->ids[i]);
         self->count++;
     }
@@ -3805,7 +3806,7 @@ void TObjEneMe1CanadinLeader::vfunc_107() {
         v.z = 40.0f * cos_table_lookup(angle);
         vec3_add_to(&v, &self->pos);
         angle += 0x10000 / self->max;
-        self->ids[j] = TObjEneMe1CanadinLeader::create_canadin(self, &v, (void *)id++, (void *)sub++);
+        self->ids[j] = TObjEneMe1CanadinLeader::create_canadin((TObjEneMe1Canadin *)self, (Vec *)&v, id++, sub++);
         ((s32 (*)(void *))TObjEneMe1CanadinLeader__sub_8009E350)(self->ids[j]);
         self->count++;
     }
@@ -3829,7 +3830,8 @@ s32 TObjEneMe1CanadinLeader::vfunc_108() {
 }
 
 extern "C" {
-void TObjEneMe1CanadinLeader::vfunc_117(u32 id) {
+void TObjEneMe1CanadinLeader::vfunc_117(TObjEneMe1Canadin *arg1) {
+    u32 id = (u32)arg1;
     Leader_8009B274 *self = (Leader_8009B274 *)this;
     s32 i;
     for (i = 0; i < self->count; i++) {
@@ -3858,7 +3860,7 @@ void TObjEneMe1CanadinLeader::vfunc_117(u32 id) {
 }
 
 extern "C" {
-int TObjEneMe1CanadinLeader::vfunc_116() {
+int TObjEneMe1CanadinLeader::vfunc_116(TObjChara *) {
     Obj_8009B1CC *self = (Obj_8009B1CC *)this;
     s32 n = 0;
     s32 i;
@@ -3889,7 +3891,8 @@ int TObjEneMe1CanadinLeader::vfunc_109() {
 
 extern "C" {
 #define self ((Obj_8009AF54 *)arg0)
-void TObjEneMe1CanadinLeader::update_formation_state(void *arg0) {
+void TObjEneMe1CanadinLeader::update_formation_state() {
+    void *arg0 = this;
     s32 i;
     s32 j;
     if (self->flags3C8 & 0x10) {
@@ -3979,7 +3982,7 @@ void TObjEneMe1CanadinLeader::vfunc_110(s32 arg1) {
         self->f4B0 = p[3];
         self->sub = 0;
         for (k = 2, i = 0; i < self->count; k += 2, i++) {
-            ((TObjEneMe1CanadinLeader *)(self->members[i]))->set_leader_index(self->f390, k);
+            ((TObjEneMe1CanadinLeader *)(self->members[i]))->set_leader_index((TObjChara *)self->f390, k);
         }
         break;
     }
@@ -4018,7 +4021,7 @@ void TObjEneMe1CanadinLeader::vfunc_110(s32 arg1) {
                     }
                 }
             }
-            TObjEneMe1Canadin::update_move(arg0);
+            ((TObjEneMe1Canadin *)arg0)->update_move();
             break;
         }
         update_hover_position__17TObjEneMe1CanadinFf(arg0, 25.0f + self->f3C);
@@ -4048,7 +4051,7 @@ void TObjEneMe1CanadinLeader::vfunc_111(s32 mode) {
     case 0:
         advance_animation();
         update_linked_position(200.0f);
-        TObjEneMe1Canadin::update_move(this);
+        update_move();
         update_hover_height();
         vfunc_89();
         break;

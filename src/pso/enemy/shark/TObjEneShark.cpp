@@ -290,7 +290,7 @@ void TObjEneShark::vfunc_93() {
     }
 }
 
-void TObjEneShark::apply_clamped_mode_param() {
+void TObjEneShark::configure_subtype() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r0;
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x334);
@@ -342,7 +342,7 @@ void TObjEneShark::vfunc_83() {
     }
 }
 
-void TObjPlayer::update_particle_by_phase() {
+void TObjEneShark::update_node_particle_state(NJS_OBJECT *) {
     switch (shark_render_node_index) {
     case 0x10:
     case 0x1A:
@@ -434,7 +434,7 @@ void TObjEneShark::render() {
     }
     TObjPlayer::toggle_particle_effect();
     shark_render_node_index = 0;
-    set_chunk_model_node_callback((ChunkModelNodeCallback)((void *) TObjPlayer::update_particle_by_phase));
+    set_chunk_model_node_callback((ChunkModelNodeCallback)((void *) TObjEneShark::update_node_particle_state));
     if ((*(s32 *)&this->m_390) == 1)
     {
       if (((VObj_14_800ABDD8 *) (arg0 + 0x3A8))->m8() != 0)
@@ -814,7 +814,7 @@ void TObjEneShark::free_resources() {
 #define G_BC (*(void **)&shark_attack3_trail_buffer)
 #define G_C0 (*(void **)&shark_attack4_trail_buffer)
 #define RES ((Res_800AC318 *)G_B8)
-void TLobby::load_shark_resources() {
+void TObjEneShark::load_resources() {
     void *p;
     s32 i;
     if (TObjEneDD::check_v2_mode() != 0) {
@@ -982,8 +982,8 @@ void *__ct__12TObjEneSharkFP7TObjectPv(void *arg0, void *arg1, void *arg2) {
     self->m79(arg2);
     ((TObjChara *)self)->initialize_position_copies();
     self->f334 = self->f368;
-    ((TObjEneShark *)self)->apply_clamped_mode_param();
-    ((TObjEneShark *)self)->sub_800AC9DC(self->f368);
+    ((TObjEneShark *)self)->configure_subtype();
+    ((TObjEneShark *)self)->bind_variant_model(self->f368);
     self->fD8 = shark_actions;
     ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)self->fD8));
     self->fDC = *(s32 *)(shark_bml_resource + 0x430);
@@ -1052,7 +1052,7 @@ void *__ct__12TObjEneSharkFP7TObjectPv(void *arg0, void *arg1, void *arg2) {
 #undef lbl_80491608
 void TUnk_80493450::vfunc_99() {  }
 
-void TObjEneShark::sub_800AC9DC(s32 i) {
+void TObjEneShark::bind_variant_model(s32 i) {
     O_800AC9DC *self = (O_800AC9DC *)this;
     self->x34 = (*(G_800AC9DC * *)&shark_bml_resource)->tbl[i].x8;
     self->x24 = (*(G_800AC9DC * *)&shark_bml_resource)->tbl[i].xc;

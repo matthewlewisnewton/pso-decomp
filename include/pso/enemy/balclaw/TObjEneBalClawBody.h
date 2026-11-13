@@ -4,13 +4,30 @@
 #include "types.h"
 #include "pso/enemy/balclaw/TObjEneBalClaw.h"
 
+struct BalClawSetData {
+    s16 set_index;
+    u8 unknown02[4];
+    u16 entity_id;
+    s16 room;
+    s16 wave;
+    u8 unknown0c[4];
+    Vec position;
+    s32 rotation[3];
+    f32 parameters[5];
+    s16 variant;
+    s16 unknown3e;
+};
+
+typedef char BalClawSetData_size[sizeof(BalClawSetData) == 0x40 ? 1 : -1];
+
 struct TObjEneBalClawBody : public TObjEneBalClaw {
-    TObjEneBalClawBody(TObject *parent, void *set_data);
+    TObjEneBalClawBody(TObject *parent, BalClawSetData *set_data);
     virtual ~TObjEneBalClawBody();
     virtual void run_task();
     virtual void render();
     virtual void vfunc_60();
     virtual void vfunc_58();
+    int get_flag_0x388_b24();
     void sub_8008DC90();
     void sub_8008FC0C();
     void sub_8008FC10();

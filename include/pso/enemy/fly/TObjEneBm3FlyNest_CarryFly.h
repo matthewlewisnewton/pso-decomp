@@ -4,12 +4,14 @@
 #include "pso/system/task/TObject.h"
 #include <dolphin/mtx/GeoTypes.h>
 
+struct TObjEneBm3FlyNest;
+
 // One of the six flies a TObjEneBm3FlyNest sends out (vtable __vt__26TObjEneBm3FlyNest_CarryFly):
 // it waits at its offset from origin until *arrived reaches its index, then flies in an arc to
 // target and bursts there. Field names are inferred from run_task/render/the ctor.
 class TObjEneBm3FlyNest_CarryFly : public TObject {
 public:
-    TObjEneBm3FlyNest_CarryFly(TObject *parent, s32 a, s32 b, s32 unused, s32 c, s32 d);
+    TObjEneBm3FlyNest_CarryFly(TObjEneBm3FlyNest *parent, const Vec *a, const Vec *b, const Vec *unused, const s32 *c, s32 d);
     virtual ~TObjEneBm3FlyNest_CarryFly();
     virtual void run_task();
     virtual void render();

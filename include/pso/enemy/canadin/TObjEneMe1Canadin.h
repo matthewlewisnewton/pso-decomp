@@ -2,6 +2,8 @@
 #define PSO_ENEMY_CANADIN_TOBJENEME1CANADIN_H
 
 #include "types.h"
+
+class TObjChara;
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 #include "pso/render/MaterialOpacityFade.h"
 #include "pso/enemy/canadin/TObjEneMe1Canadin_EffLight.h"
@@ -26,8 +28,8 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
     virtual void vfunc_113();
     virtual void update_if_ready();
     virtual void render_canadin_model_with_debug_type();
-    virtual int vfunc_116();
-    virtual void vfunc_117(u32);
+    virtual int vfunc_116(TObjChara *);
+    virtual void vfunc_117(TObjEneMe1Canadin *);
     void vfunc_63();
     void vfunc_62();
     void vfunc_61();
@@ -47,11 +49,17 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
     void action(s32 arg1);
     void handle_state(s32 arg1);
     void pack_color_rgba();
-    void reset_map_core(void * _w1);
+    void reset_map_core(NJS_ARGB *color);
     s32 try_trigger_action();
     void advance_state_4_to_5();
     s32 check_target();
-    static void update_move(void* p);
+    void update_move();
+    void set_flag3c8_bit40();
+    void set_flag3c8_bit20();
+    void set_flag3c8_bit8();
+    void set_attack_flag();
+    void set_leader_index(TObjChara *target, s32 index);
+    void update_fade_sequence();
     void update_angle();
     void update_hover_height();
     void set_target_speed_z();
