@@ -606,7 +606,8 @@ force_active:
   - TItemDrop__gsl_adxf_handle
   - TItemDrop__gsl_entry_count
   - TItemEffArmor__ct
-  - TItemEffEquip__ct
+  - TItemEffEquip__class_name
+  - TItemEffEquip__class_name_string
   - TItemEffFlame__class_name
   - TItemEffHeaven__class_name
   - TItemEffNeedleBase__class_name
@@ -2233,6 +2234,7 @@ force_active:
   - __ct__13List_801D4744Fl
   - __ct__13PointerBufferFlPv
   - __ct__13TItemAttackerFllll
+  - __ct__13TItemEffEquipFP7TObjectUslll
   - __ct__13TItemEffFlameFP7TObjectP12ActorBodyHit
   - __ct__13TItemEffLavisFPvPC3VecPC3Vecf
   - __ct__13TOCapsuleLaboFP7TObjectPv
@@ -2255,7 +2257,7 @@ force_active:
   - __ct__13TUnk_80488B38Fv
   - __ct__13TUnk_80488B68Fv
   - __ct__13TUnk_8048DF58Fv
-  - __ct__13TUnk_8049F038FP7TObjectsl
+  - __ct__13TUnk_8049F038FP7TObjectUsl
   - __ct__13TUnk_8049F770FP7TObjectPUc
   - __ct__13TUnk_8049F828FP7TObjectPUc
   - __ct__13TUnk_8049F8E0FP7TObjectPUc
@@ -2631,6 +2633,7 @@ force_active:
   - __dt__13TUnk_80494968Fv
   - __dt__13TUnk_80494E10Fv
   - __dt__13TUnk_8049EFB8Fv
+  - __dt__13TUnk_8049F038Fv
   - __dt__13TUnk_8049F130Fv
   - __dt__13TUnk_8049F148Fv
   - __dt__13TUnk_8049F770Fv
@@ -3799,6 +3802,7 @@ force_active:
   - advance_dark_magic__11TBoss4Type3Fv
   - advance_dead__11TBoss4Type3Fv
   - advance_effect_timer__13TUnk_804E4B3CFv
+  - advance_equipment_effect
   - advance_flee_step__12TObjEneLappyFv
   - advance_go_down__11TBoss4Type3Fv
   - advance_go_up__11TBoss4Type3Fv
@@ -5859,7 +5863,6 @@ force_active:
   - destroy__12TPhotonPillaFPvs
   - destroy__12T_OWEHMS_ExpFs
   - destroy__13TPhotonFarllaFPvs
-  - destroy__13TUnk_8049F038Fs
   - destroy__14TObjEneBm5WolfFis
   - destroy__15TORockJungleL01Fs
   - destroy__15TWindowHelpItemFPvs
@@ -6358,6 +6361,7 @@ force_active:
   - epsilon_guard_camera_ctrl_ptr
   - epsilon_guard_camera_step
   - epsilon_guard_params
+  - equipment_effect_body
   - eval_piecewise_curve__15TObjBoss2TunnelFP14PiecewiseCurvef
   - evaluate_ground_triangles
   - evict_lowest_key_floor_item__Fl
@@ -15107,6 +15111,7 @@ force_active:
   - release_child_slot__12TObjEneSlimeFl
   - release_children__15TObjBoss2TunnelFPvf
   - release_control_lock__10TObjPlayerFPv
+  - release_effect__13TItemEffEquipFv
   - release_held_player__12TBoss1DragonFv
   - release_load_slot__12TChCrLoadAfsFv
   - release_model__8TItemMagFv
@@ -15747,6 +15752,7 @@ force_active:
   - restore_target_pos__12TBoss8DragonFPv
   - resume_challenge_result_processing__FPv
   - retire_ballistic_particle_if_done__13TUnk_8048E778Fv
+  - retire_equipment_effect
   - retire_lobby_player__6TLobbyFii
   - retire_orbit_particle__13TUnk_8048E790Fv
   - retry_selection_value_table
@@ -17199,6 +17205,7 @@ force_active:
   - spawn_effect__19TContainerAncient01FPvPvPv
   - spawn_effect_if_in_band__12TBoss8DragonFi
   - spawn_effects__19TBoss3VoloptMonitorFv
+  - spawn_equip_particle_effect__13TItemEffEquipFl
   - spawn_falling_rocks__9TBoss6MagFv
   - spawn_faust_explosion__FUlRC3Vec
   - spawn_faust_hit_explosion__Fll

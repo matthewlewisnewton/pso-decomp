@@ -15,6 +15,15 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Equipment-effect native emission
+
+`src/pso/item/TItemEffEquip.cpp` uses `#pragma defer_codegen on` and reverse
+function definitions to emit the two compiler-generated vtables in their original
+order (`TItemEffEquip`, then `TUnk_8049F038`) while preserving all twelve function
+positions. Immediate generation emits the vtables in the opposite order. A port
+can drop the pragma and use ordinary definition order; both classes retain normal
+C++ constructors, destructors and virtual dispatch.
+
 ### Raft splash shared constant
 
 `src/pso/boss/TObjBoss2RaftSplash.cpp` defines the shared scalar at
