@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/GinjaTextureInput.h"
 #include "pso/render/TriangleFan3D.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
@@ -119,7 +120,7 @@ void fn_80197FD0(const void *image, u32 size) {
         ((TLobby *)t)->move_data(image, size);
         signboard_texture_list.entries = &TObjSinBoard__texture_name;
         signboard_texture_list.count = 1;
-        ((TObjPlayer *)TObjSinBoard__texture_surface)->set_render_rect(TObjSinBoard__texture_buffer, 0, 0, 0);
+        ((GinjaTextureInput *)TObjSinBoard__texture_surface)->configure((void *)(TObjSinBoard__texture_buffer), 0, 0, 0);
         set_texture_name(&TObjSinBoard__texture_name, TObjSinBoard__texture_surface, 0, 0x40000000);
         load_texture_if_valid((u32)&signboard_texture_list);
     }
