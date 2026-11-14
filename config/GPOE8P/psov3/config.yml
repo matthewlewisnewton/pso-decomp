@@ -188,7 +188,9 @@ force_active:
   - TAdMultiSaveGC__sub_802FF314
   - TAdPlayerLoadGC__banner_buffers
   - TAdPlayerLoadGC__data_80511EE8
+  - TAdPlayerLoadGC__network_config_buffer
   - TAdPlayerLoadGC__network_info_payload_buffer
+  - TAdPlayerLoadGC__player_load_value
   - TAdPlayerLoadGC__sub_801E101C
   - TAdPlayerLoadGC__sub_801E26DC
   - TAdPlayerLoadGC__sub_803F1908
@@ -710,9 +712,11 @@ force_active:
   - TLanguage__read_cursor
   - TLazerFenceSw__ct
   - TLoadCtrl__ct
+  - TLobby__battle_flag
   - TLobby__battle_team_table
   - TLobby__card_list_selected_index
   - TLobby__card_list_window
+  - TLobby__connect_pending_flags
   - TLobby__current_dialog_window
   - TLobby__data_8043EF38
   - TLobby__data_80506A6C
@@ -720,6 +724,10 @@ force_active:
   - TLobby__data_805D5588
   - TLobby__data_805D558C
   - TLobby__data_805D55B8
+  - TLobby__data_805D5EA8
+  - TLobby__data_805D5EA9
+  - TLobby__data_805D5EAA
+  - TLobby__data_805D5EAC
   - TLobby__deferred_player_setup_state
   - TLobby__disk_error_msg_last
   - TLobby__disk_error_msg_table
@@ -731,10 +739,12 @@ force_active:
   - TLobby__list_window
   - TLobby__lobby_entered_flag
   - TLobby__login_pending_flag
+  - TLobby__next_send_chunk
   - TLobby__pending_member_count
   - TLobby__player_names
   - TLobby__player_setup_pending
   - TLobby__pppoe_message_queue
+  - TLobby__queue_timeout_remaining
   - TLobby__sub_8001D9E8
   - TLobby__sub_8001DBD8
   - TLobby__sub_8001DF58
@@ -1969,8 +1979,12 @@ force_active:
   - TQuestThreadBoard__class_name
   - TQuestThread__class_name
   - TQuestThread__floor_handler_ids
+  - TQuestVmDownLoadServer__bin_download_complete
+  - TQuestVmDownLoadServer__dat_download_complete
   - TQuestVmDownLoadServer__data_804C8690
   - TQuestVmDownLoadServer__download_file_state
+  - TQuestVmDownLoadServer__gba_download_complete
+  - TQuestVmDownLoadServer__pvr_download_complete
   - TQuestVmDownLoadServer__rng_cipher_state
   - TQuestVmDownLoadServer__sub_801F6B98
   - TQuestVmDownLoadServer__sub_801F8538
@@ -6567,6 +6581,8 @@ force_active:
   - execute_action__13TObjEneBm3FlyFl
   - exi_dma_buffer
   - exi_dma_write_buffer
+  - exi_mac_address
+  - exi_send_started_flag
   - exi_start_send_dma__6TLobbyFii
   - exi_write__6TLobbyFlll
   - exit__22TShopEquipmentSequenceFPv
@@ -6648,6 +6664,7 @@ force_active:
   - fence_ancient03_collision_bodies
   - fence_ancient04_collision_bodies
   - fields_equal__23TAdSinglePlyChrSelectGCFPv
+  - file_page_cache_head
   - fill_follow_camera_params__12TBoss8DragonFPUcPUc
   - fill_list_entry__6TLobbyFPvPv
   - fill_range__15TBoss6SwordWaveFPvPv
@@ -8320,10 +8337,13 @@ force_active:
   - lbl_80438128
   - lbl_80438528
   - lbl_80438534
+  - lbl_80438660
   - lbl_80438AB4
   - lbl_80438AD8
   - lbl_80438AE0
   - lbl_80438AEC
+  - lbl_80438D50
+  - lbl_80438D58
   - lbl_80438E40
   - lbl_80438E60
   - lbl_80438E74
@@ -8333,6 +8353,7 @@ force_active:
   - lbl_804394A4
   - lbl_804394BC
   - lbl_804394D4
+  - lbl_80439588
   - lbl_8043B310
   - lbl_8043B31C
   - lbl_8043BC10
@@ -8393,6 +8414,7 @@ force_active:
   - lbl_8043F06C
   - lbl_8043F078
   - lbl_8043F084
+  - lbl_8043F380
   - lbl_8043FA38
   - lbl_8043FA4C
   - lbl_8043FD20
@@ -8450,6 +8472,8 @@ force_active:
   - lbl_80445588
   - lbl_80445910
   - lbl_80445CD8
+  - lbl_804468F8
+  - lbl_80446908
   - lbl_80446D10
   - lbl_80446D1C
   - lbl_80446D40
@@ -8479,6 +8503,37 @@ force_active:
   - lbl_8044A840
   - lbl_8044A84C
   - lbl_8044A858
+  - lbl_8044BAC8
+  - lbl_8044BAD0
+  - lbl_8044BDA0
+  - lbl_8044BDA8
+  - lbl_8044BDB0
+  - lbl_8044BDB8
+  - lbl_8044BDC0
+  - lbl_8044BDC8
+  - lbl_8044BDD0
+  - lbl_8044BDD8
+  - lbl_8044BDE0
+  - lbl_8044BDE8
+  - lbl_8044BDF0
+  - lbl_8044BDF8
+  - lbl_8044BE00
+  - lbl_8044BE08
+  - lbl_8044BE10
+  - lbl_8044BE18
+  - lbl_8044BE20
+  - lbl_8044BE28
+  - lbl_8044BE30
+  - lbl_8044BE38
+  - lbl_8044BE40
+  - lbl_8044BE48
+  - lbl_8044BE50
+  - lbl_8044BE58
+  - lbl_8044BE60
+  - lbl_8044BE68
+  - lbl_8044BE70
+  - lbl_8044BE78
+  - lbl_8044BE80
   - lbl_8044C478
   - lbl_8044D920
   - lbl_8044D944
@@ -8719,6 +8774,7 @@ force_active:
   - lbl_804790F0
   - lbl_80479280
   - lbl_8047B928
+  - lbl_8047C5D8
   - lbl_80480950
   - lbl_804809D0
   - lbl_804809E0
@@ -9427,6 +9483,10 @@ force_active:
   - lbl_805D4678
   - lbl_805D46A0
   - lbl_805D46C8
+  - lbl_805D489C
+  - lbl_805D48A4
+  - lbl_805D48AC
+  - lbl_805D48B0
   - lbl_805D4AF0
   - lbl_805D4AF8
   - lbl_805D4B10
@@ -9453,6 +9513,8 @@ force_active:
   - lbl_805D5A90
   - lbl_805D5A94
   - lbl_805D5A98
+  - lbl_805D5D00
+  - lbl_805D5D04
   - lbl_805D5D60
   - lbl_805D5D70
   - lbl_805D5FF8
@@ -9465,6 +9527,8 @@ force_active:
   - lbl_805D6248
   - lbl_805D624C
   - lbl_805D6270
+  - lbl_805D629C
+  - lbl_805D62A0
   - lbl_805D63C0
   - lbl_805D63C4
   - lbl_805D63D8
@@ -9473,6 +9537,8 @@ force_active:
   - lbl_805D647C
   - lbl_805D64A8
   - lbl_805D64AC
+  - lbl_805D6578
+  - lbl_805D657C
   - lbl_805D67D0
   - lbl_805D67D4
   - lbl_805D6800
@@ -9617,6 +9683,26 @@ force_active:
   - lbl_805D7948
   - lbl_805D794C
   - lbl_805D7950
+  - lbl_805D7A70
+  - lbl_805D7A74
+  - lbl_805D7B80
+  - lbl_805D7B84
+  - lbl_805D7B88
+  - lbl_805D7B8C
+  - lbl_805D7B90
+  - lbl_805D7B94
+  - lbl_805D7B98
+  - lbl_805D7B9C
+  - lbl_805D7BB8
+  - lbl_805D7BBC
+  - lbl_805D7BC0
+  - lbl_805D7BD0
+  - lbl_805D7BD4
+  - lbl_805D7C36
+  - lbl_805D7C90
+  - lbl_805D7C98
+  - lbl_805D7C9C
+  - lbl_805D7CA0
   - lbl_805D7D3C
   - lbl_805D7DD8
   - lbl_805D7DDC
@@ -10328,18 +10414,25 @@ force_active:
   - lobby_join_message_buffer
   - lobby_keyboard_controller
   - lobby_keyboard_prompt_window
+  - lobby_layout_offset_c
+  - lobby_layout_start_position
   - lobby_login_result_flag
   - lobby_main_collision_body
   - lobby_main_model_motions
   - lobby_main_texture_gvm
   - lobby_make_team_menu_window
   - lobby_make_team_window
+  - lobby_map_state_code
   - lobby_net_channel_table
   - lobby_net_recv_desc
   - lobby_pppoe_slot_table
   - lobby_pulse_color_table
   - lobby_pumpkin_resource_descriptor
+  - lobby_request_flags
+  - lobby_ring_buffer_write_pos
   - lobby_selected_game_list_index
+  - lobby_send_ring_pending_bytes
+  - lobby_send_ring_read_pos
   - lobby_short_mail_entry_count
   - lobby_story_flag_clear_list
   - lobby_texlist__13TObjLobbyMain
@@ -10545,7 +10638,14 @@ force_active:
   - multi_confirm_texture_entries
   - multi_ply_chr_select_default_slot_table
   - multiplayer_controller_device_codes
+  - music_active_mode_index
+  - music_fade_frames_remaining
+  - music_fade_full_scale
+  - music_fade_step
+  - music_sequencer_fade_state
+  - music_sequencer_timer
   - music_stream_afs_filename_buffer
+  - music_target_id
   - nano_drago_bodies
   - nano_drago_movement
   - needs_movement__10TNpcPlayerFPvPvi
@@ -10558,6 +10658,7 @@ force_active:
   - nest_resources
   - nest_trance_motion_filename
   - nest_wait_motion_filename
+  - network_config_mode
   - network_info_cipher_pool_binding
   - network_info_cipher_workspace
   - network_info_config_field_handled
@@ -10623,6 +10724,8 @@ force_active:
   - network_packet_buffer_descriptors
   - network_packet_buffer_storage
   - network_packet_buffers
+  - network_pppoe_transport_enabled
+  - network_thread_queue
   - next__15PSOV3EncryptionFv
   - next_sequence_action__12TBoss1DragonFv
   - nights_npc_resource_descriptor
@@ -10867,6 +10970,7 @@ force_active:
   - photon_blast_attachment_table
   - photon_blast_farlla_params
   - photon_blast_golla_params
+  - photon_blast_joint_index
   - photon_blast_joint_origins
   - photon_blast_leilla_params
   - photon_blast_load_callback_table
@@ -15429,10 +15533,13 @@ force_active:
   - quest_bgm_smile_filename
   - quest_decrypt_result_size
   - quest_download_aram_dma_buffer
+  - quest_download_ask_header_size
   - quest_download_block_pool
   - quest_download_file_header
   - quest_download_file_info
   - quest_download_file_slot
+  - quest_download_header_name_index_hi_count
+  - quest_download_name_search_lo
   - quest_floor_designations
   - quest_list_battle_stage_table
   - quest_list_challenge_stage_table
@@ -19904,6 +20011,8 @@ force_active:
   - warp_boss_handle_window__12TObjWarpBossFv
   - warp_nearby_players__14TBoss6PlotFalzFv
   - warp_player__12TObjWarpBossFl
+  - wave_event_stop_requested
+  - wave_event_trigger_count
   - weapon_trail_slot_bitmap
   - window_chat_type_name_pointer
   - window_duel_result_class_name
