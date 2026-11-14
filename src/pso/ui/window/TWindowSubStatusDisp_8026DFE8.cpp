@@ -4,6 +4,16 @@
 #include "pso/ui/window/TWindowMenuIconLine.h"
 #include "pso/ui/window/TUnk_804D0948.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
+#include "pso/ui/window/TWindowShortCut.h"
+#include "pso/ui/window/TWindowSubStatusDisp_8025A9B4.h"
+#include "pso/ui/window/TWindowSubStatusDisp_8025B050.h"
+#include "pso/ui/chat/TWindowChatSymbol.h"
+#include "pso/ui/chat/TWindowChatSymbol_802486A8.h"
+#include "pso/ui/chat/TWindowSubSymbolChat.h"
+#include "pso/ui/chat/TWindowSubSymbolChatPartsSet.h"
+#include "pso/unk/text_80266BD0.h"
+#include "pso/unk/TLobby_8026B06C.h"
+#include "pso/unk/TLobby_8001D6A0.h"
 
 struct RecoveredGlobal_8026E110_lbl_804D0948 {
     s32 value;
@@ -85,3 +95,160 @@ u8 *TWindowSubStatusDisp::construct_item_list(s32 arg1, s32 arg2, s16 arg3) {
 }
 
 }
+
+struct WordSelectMessage;
+
+extern "C" {
+s32 *fn_80076BC4(s32 *);
+void measure_message_text_width(void *entry, f32 max_width);
+void refresh_status_display__9TWindowDDFv(void *entry);
+void update_state__9TWindowDDFv(WordSelectMessage *words, char *buffer, u16 player);
+u8 *open_symbol_chat__11TWindowChatFPl(s32 *);
+}
+
+namespace {
+
+struct ShortcutEntry {
+    u16 flags;
+    u8 reserved[0xE];
+    f32 width;
+    f32 height;
+};
+
+struct SpriteOrigin {
+    f32 u;
+    f32 v;
+};
+
+struct PreviewPair {
+    f32 x;
+    f32 y;
+};
+
+enum ShortcutKind {
+    SHORTCUT_EMPTY,
+    SHORTCUT_TEXT,
+    SHORTCUT_WORD_SELECT,
+    SHORTCUT_SYMBOL_CHAT,
+};
+
+} // namespace
+
+extern const u8 lbl_805DD34C[4];
+extern const f32 lbl_805DD350;
+extern const f32 lbl_805DD354;
+extern const f32 lbl_805DD358;
+extern const f32 lbl_805DD35C;
+extern const f32 lbl_805DD360;
+extern const f32 lbl_805DD364;
+extern const f32 lbl_805DD368;
+extern const f32 lbl_805DD36C;
+extern const f32 lbl_805DD370;
+extern const f32 lbl_805DD374;
+extern const f32 lbl_805DD378;
+
+#pragma push
+#pragma fp_contract on
+#pragma opt_propagation off
+void TWindowShortCut::initialize_preview(s32 index, s32 *shortcut) {
+    u8 icon;
+    u8 icon_detail;
+    PreviewPair position;
+    s32 kind;
+    PreviewPair size;
+
+    u8 *shortcut_label = reinterpret_cast<u8 *>(this->get_array_entry(0));
+    ShortcutEntry *shortcut_icon = reinterpret_cast<ShortcutEntry *>(this->get_array_entry(2));
+    u8 *detail_icon = reinterpret_cast<u8 *>(this->get_array_entry(3));
+    u8 *kind_label = reinterpret_cast<u8 *>(this->get_array_entry(4));
+    u8 *kind_icon = reinterpret_cast<u8 *>(this->get_array_entry(6));
+    u8 *kind_name = reinterpret_cast<u8 *>(this->get_array_entry(7));
+    u8 *preview_label = reinterpret_cast<u8 *>(this->get_array_entry(8));
+    ShortcutEntry *preview = reinterpret_cast<ShortcutEntry *>(this->get_array_entry(10));
+
+    kind = shortcut[0];
+    set_text_entry_string(shortcut_label, (u32)TWindowSubStatusDisp::get_message_10(0xC4), 0);
+    fn_80266BD0(index, &icon, &icon_detail, this->m_20);
+    if (icon != 0x33) {
+        const SpriteOrigin *origin = static_cast<const SpriteOrigin *>(TWindowSubStatusDisp::get_entry_ptr(icon));
+        shortcut_icon->flags &= ~2;
+        set_sprite_uv_from_pixels(reinterpret_cast<u8 *>(shortcut_icon), origin->u, origin->v);
+    } else {
+        shortcut_icon->flags |= 2;
+    }
+
+    const SpriteOrigin *detail_origin = static_cast<const SpriteOrigin *>(TWindowSubStatusDisp::get_entry_ptr(icon_detail));
+    set_sprite_uv_from_pixels(detail_icon, detail_origin->u, detail_origin->v);
+    set_text_entry_string(kind_label, (u32)TWindowSubStatusDisp::get_message_10(0xC5), 0);
+    set_text_entry_string(kind_name, (u32)TWindowSubStatusDisp::get_message_10(0xC0 + kind), 0);
+    const s32 kind_sprite_id = lbl_805DD34C[kind - 1];
+    const SpriteOrigin *kind_origin = static_cast<const SpriteOrigin *>(TWindowSubStatusDisp::get_entry_ptr(kind_sprite_id));
+    set_sprite_uv_from_pixels(kind_icon, kind_origin->u, kind_origin->v);
+
+    position.x = lbl_805DD350;
+    position.y = lbl_805DD354;
+    set_text_entry_string(preview_label, (u32)TWindowSubStatusDisp::get_message_10(0x35), 0);
+
+    switch (kind) {
+    case SHORTCUT_EMPTY:
+        break;
+    case SHORTCUT_TEXT: {
+        s32 *text = fn_80076BC4(shortcut + 1);
+        set_text_entry_string(reinterpret_cast<u8 *>(preview), (u32)text, 0);
+        measure_message_text_width(preview, lbl_805DD358);
+
+        preview->flags |= 2;
+        size.x = lbl_805DD35C + (lbl_805DD360 + preview->width);
+        size.y = lbl_805DD364 + (lbl_805DD368 + preview->height);
+        position.x = TWindowSubStatusDisp::round_away_from_zero(position.x - lbl_805DD36C * size.x);
+        position.y = TWindowSubStatusDisp::round_away_from_zero(position.y - lbl_805DD36C * size.y);
+        text_preview = (TWindowBase *)create_quest_message_window_at((s32)&position, (s32)&size);
+        dispatch_message_window_text(text_preview, (s32)text, 0x402);
+        text_preview->set_depth(lbl_805DD370);
+        break;
+    }
+    case SHORTCUT_WORD_SELECT: {
+        s32 *buffer = get_shared_text_buffer();
+        const u16 player = (u16)local_client_id;
+        s32 *words = shortcut + 1;
+        update_state__9TWindowDDFv((WordSelectMessage *)words, (char *)buffer, player);
+        set_text_entry_string(reinterpret_cast<u8 *>(preview), (u32)get_shared_text_buffer(), 0);
+        refresh_status_display__9TWindowDDFv(preview);
+
+        preview->flags |= 2;
+        size.x = lbl_805DD35C + (lbl_805DD360 + preview->width);
+        size.y = lbl_805DD364 + (lbl_805DD368 + preview->height);
+        position.x = TWindowSubStatusDisp::round_away_from_zero(position.x - lbl_805DD36C * size.x);
+        position.y = TWindowSubStatusDisp::round_away_from_zero(position.y - lbl_805DD36C * size.y);
+        text_preview = (TWindowBase *)create_quest_message_window_at((s32)&position, (s32)&size);
+        dispatch_message_window_text(text_preview, (s32)get_shared_text_buffer(), 2);
+        text_preview->set_depth(lbl_805DD370);
+        break;
+    }
+    case SHORTCUT_SYMBOL_CHAT: {
+        u8 *preset = open_symbol_chat__11TWindowChatFPl(shortcut + 1);
+        set_text_entry_string(reinterpret_cast<u8 *>(preview),
+            (u32)((TWindowSubSymbolChat *)preset)->get_symbol_chat_data(), 0);
+
+        f32 half;
+        f32 height;
+        f32 width;
+        width = lbl_805DD374;
+        height = lbl_805DD378;
+        half = lbl_805DD36C;
+        size.x = width;
+        position.x -= half * width;
+        size.y = height;
+        position.y -= half * height;
+        TWindowChatSymbol *symbol = static_cast<TWindowChatSymbol *>(TObject::operator new(sizeof(TWindowChatSymbol)));
+        if (symbol != NULL) {
+            symbol = (TWindowChatSymbol *)TWindowChatSymbol__ct(symbol, (s32)&position, (s32)&size);
+        }
+        symbol_preview = symbol;
+        ((TWindowSubSymbolChatPartsSet *)symbol_preview)->set_selection((u32)preset);
+        symbol_preview->set_depth(lbl_805DD370);
+        break;
+    }
+    }
+}
+#pragma pop

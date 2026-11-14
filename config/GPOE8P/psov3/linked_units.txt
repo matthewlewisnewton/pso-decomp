@@ -1573,6 +1573,7 @@ pso/ui/window/TWindowSubStatusDisp_8025995C.cpp
 pso/ui/window/TWindowSubStatusDisp_80259DB0.cpp
 pso/ui/window/TWindowSubStatusDisp_8025A9B4.cpp
 pso/ui/window/TWindowSubStatusDisp_8025B050.cpp
+pso/ui/window/TWindowSubStatusDisp_8026DFE8.cpp
 pso/ui/window/TWindowSubStatusDisp_8025B4A0.cpp
 pso/ui/window/TWindowSubStatusDisp_802671F0.cpp
 pso/ui/window/TWindowSubStatusDisp_80268488.cpp
