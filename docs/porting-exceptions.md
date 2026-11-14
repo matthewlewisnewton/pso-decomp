@@ -15,6 +15,18 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### TCP out-of-order receive queue
+
+`TLobby__sub_8041F914` in `src/pso/network/SocketProtocolRuntime.cpp`
+retains the scoped `dont_inline off` / `inline_depth(4)` controls from
+[upstream #285](https://github.com/zeroz41/pso-decomp/pull/285), commit
+`be4a012306441b91fe0e30083800a8589bccf518`. They inline the reassembly-range
+removal helper, including its ordinary aggregate assignment. The receive-room
+clamp uses ordinary assignment in its condition and direct `TcpTcb` member
+access; it needs no additional matching constraint. Ports can drop the inline
+pragmas and keep the receive-ring copy and range-merging operations. See the
+[recovery and ABI evidence](evidence/tcp-out-of-order-queue.md).
+
 ### Logo texture descriptor declaration
 
 `src/pso/misc/TLogo_8001C134.cpp` marks the existing eight-byte
