@@ -242,3 +242,10 @@ u8 *TObjDoorJung__ct(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 }
+
+extern "C" {
+void *TObjDoorJung__door_scene_buffer;
+s32 lbl_805D5BE4;
+s32 lbl_805D5BE8;
+s32 lbl_805D5BEC;
+}
