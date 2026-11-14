@@ -5753,6 +5753,7 @@ pso/object/TObjEvtCollision.cpp:
 
 pso/misc/TNpcPlayer_80190E64.cpp:
 	.text       start:0x80190E64 end:0x80191218
+	.rodata     start:0x80445910 end:0x80445928
 
 pso/misc/TLobby_80191218.cpp:
 	.text       start:0x80191218 end:0x801912BC
