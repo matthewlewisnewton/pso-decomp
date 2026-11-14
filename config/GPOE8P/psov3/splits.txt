@@ -1820,6 +1820,7 @@ pso/enemy/TObjEneBm5GibonU.cpp:
 	.rodata     start:0x8043C0F0 end:0x8043C0F8
 	.data       start:0x80493CA0 end:0x80494104
 	.bss        start:0x80500E78 end:0x80500ED0
+	.sbss       start:0x805D51D0 end:0x805D51D8
 	.sdata2     start:0x805DA158 end:0x805DA258
 
 pso/enemy/TObjEneGyaranzo.cpp:
