@@ -47,7 +47,7 @@ static const f32 lbl_805DF4CC = 0.0f;
 static const f32 lbl_805DF4D0 = 0.75f;
 static const f32 lbl_805DF4D4 = 1.0f;
 TAdGameStartLineGC_80320EF0 *__ct__18TAdGameStartLineGCFv(TAdGameStartLineGC_80320EF0 *self, void *parent);
-static const f32 lbl_805DF4A4 = 0.20000000298023224f;
+static const f32 lbl_805DF4A4 = 0.2f;
 static const f32 lbl_805DF4A8 = 64.0f;
 
 void TAdGameStartLineGC::render() { if (TMainTask::get_render_pass() != 1) { set_additive_blend(); fn_80320DE8(); set_default_alpha_blend(); } }

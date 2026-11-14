@@ -31,8 +31,8 @@ struct E_8034923C {
 struct O_8034923C { u8 pad0[0x1C]; s32 n; s32 active; E_8034923C e[16]; };
 
 extern "C" {
-static const f32 lbl_805DFCE8 = -1.0099999904632568f;
-static const f32 lbl_805DFCEC = 9.999999747378752e-06f;
+static const f32 lbl_805DFCE8 = -1.01f;
+static const f32 lbl_805DFCEC = 1e-05f;
 void copy_effect_data__18TAdChrMoveEffectGCFPvPv(S_803491F8 *arg0, S_803491F8 *arg1);
 #pragma push
 #pragma fp_contract on

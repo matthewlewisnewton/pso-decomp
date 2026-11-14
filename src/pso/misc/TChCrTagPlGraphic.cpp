@@ -21,7 +21,7 @@ extern const TChCrTagPlGraphicRow TChCrTagPlGraphic__data_804664A4[12];
 extern void *__vt__17TChCrTagPlGraphic[];
 extern s32 ch_cr_tag_pl_graphic_class_name;
 extern const f32 lbl_805DDF18;
-static const f32 lbl_805DDF2C = 0.13333334028720856f;
+static const f32 lbl_805DDF2C = 0.13333334f;
 extern const f32 lbl_805DDF30;
 static const f32 lbl_805DDF20 = 0.25f;
 static const f32 lbl_805DDF24 = -2.75f;

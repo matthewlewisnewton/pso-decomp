@@ -82,7 +82,7 @@ u32 calc_text_width(char *s);
 s32 render_status_line__15TAdSubPlyItemGCFi(int, int, f32, f32, f32);
 static const f32 lbl_805E0440 = 320.0f;
 static const f32 lbl_805E0444 = 394.0f;
-static const f32 lbl_805E0448 = 0.800000011920929f;
+static const f32 lbl_805E0448 = 0.8f;
 void queue_destruction__7TObjectFv(void *);
 s32 load_and_verify_character_save__23TAdSinglePlyChrSelectGCFPc(void *, void *);
 u8 *get_instance__23TAdSinglePlyChrSelectGCFv(void);

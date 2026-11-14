@@ -28,9 +28,9 @@ int TChCrTag__vt4(void) { return 0; }
 void TChCrTag::render() {  }
 
 extern void *__vt__8TChCrTag[];
-static const f32 lbl_805DDE08 = 0.13333334028720856f;
+static const f32 lbl_805DDE08 = 0.13333334f;
 extern void *lbl_805D3D90;
-static const f32 lbl_805DDE0C = -0.13333334028720856f;
+static const f32 lbl_805DDE0C = -0.13333334f;
 
 #pragma push
 #pragma opt_common_subs off

@@ -63,8 +63,8 @@ s32 set_draw_texture_and_color(s32, s32, f32);
 
 extern s32 TEndingC__wall_texture_list_entry[];
 static const f32 lbl_805D95C0 = 255.0f;
-static const f32 lbl_805D95C4 = 0.9800000190734863f;
-static const f32 lbl_805D95C8 = 0.9900000095367432f;
+static const f32 lbl_805D95C4 = 0.98f;
+static const f32 lbl_805D95C8 = 0.99f;
 
 }
 

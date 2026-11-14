@@ -54,7 +54,7 @@ void restore_saved_depth_alpha_state(void);
 s32 defer_render__7TObjectFv();
 
 extern s32 TAdMcSelectCursorGC__texture_entry;
-static const f32 lbl_805DF728 = 0.8999999761581421f;
+static const f32 lbl_805DF728 = 0.9f;
 
 void TAdMcSelectCursorGC::render_cursor() {
     u8 *arg0 = (u8 *)this;

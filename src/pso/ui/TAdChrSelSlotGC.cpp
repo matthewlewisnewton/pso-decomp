@@ -114,7 +114,7 @@ extern const s32 lbl_80471D50[];
 extern const s32 current_language;
 extern u32 lbl_805D67F0;
 extern s32 TAdChrSelSlotGC__name;
-static const f32 lbl_805DE5C8 = 0.10000000149011612f;
+static const f32 lbl_805DE5C8 = 0.1f;
 s32 get_main_phase();
 extern const f32 lbl_805DE5B4, lbl_805DE5B8, lbl_805DE5BC, lbl_805DE5C0;
 void* __nw__7TObjectFUl(u32 size);

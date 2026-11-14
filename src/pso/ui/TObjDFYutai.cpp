@@ -13,9 +13,9 @@ extern void *__vt__11TObjDFYutai[];
 extern s32 TObjDFYutai__name;
 extern const f32 lbl_805D8A30;
 extern const f32 lbl_805D8A34;
-static const f32 lbl_805D8A38 = -0.011111111380159855f;
-static const f32 lbl_805D8A3C = 0.01666666753590107f;
-static const f32 lbl_805D8A40 = -0.1111111119389534f;
+static const f32 lbl_805D8A38 = -0.011111111f;
+static const f32 lbl_805D8A3C = 0.016666668f;
+static const f32 lbl_805D8A40 = -0.11111111f;
 
 void *__ct__11TObjDFYutaiFv(void *arg0, s32 arg1, s32 arg2, s16 arg3) {
 

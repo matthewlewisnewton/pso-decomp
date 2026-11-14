@@ -49,8 +49,8 @@ struct RecoveredGlobal_803560F0_lbl_804F142C {
 
 extern "C" {
 extern s32 player_prate_texture_list_ptr;
-static const f32 lbl_805DFFC8 = 0.9900000095367432f;
-static const f32 lbl_805DFFCC = 0.0010000000474974513f;
+static const f32 lbl_805DFFC8 = 0.99f;
+static const f32 lbl_805DFFCC = 0.001f;
 extern const V2_80355D5C lbl_80479350[];
 static const f32 lbl_805DFFD0 = 0.5f;
 void start_anim_rect__19TAdPlyPltAnimCtrlGCFPvPv(Obj_80355D5C *o, V2_80355D5C *p);

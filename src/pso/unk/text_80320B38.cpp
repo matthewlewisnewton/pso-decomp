@@ -10,7 +10,7 @@ struct Q_80320B38 { u8 b[0x20]; };
 struct W_80320B38 { u8 pad[0x1C]; Q_80320B38 q[5]; s32 tex; };
 
 extern s32 TAdGameStartShadowGC__texture_list;
-static const f32 lbl_805DF478 = 0.7400000095367432f;
+static const f32 lbl_805DF478 = 0.74f;
 void TAdGameStartShadowGC::sub_80320B38() {
     W_80320B38 *arg0 = (W_80320B38 *)this;
     u32 i;

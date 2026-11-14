@@ -64,7 +64,7 @@ void draw_window_frame__11TWindowBaseFPv();
 static const f32 lbl_805DF700 = 320.0f;
 static const f32 lbl_805DF704 = 394.0f;
 static const f32 lbl_805DF708 = 20.0f;
-static const f32 lbl_805DF70C = 0.800000011920929f;
+static const f32 lbl_805DF70C = 0.8f;
 
 void TAdAgreementBaseGC::check_main_task_state() {
     if (TMainTask::get_render_pass() == 1) { return;

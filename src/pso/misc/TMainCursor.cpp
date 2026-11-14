@@ -113,7 +113,7 @@ s32 TMainCursor::check_can_pickup() {
 
 extern const f32 TMainCursor__data_805DB0C0;
 extern const f32 TMainCursor__data_805DB0CC;
-static const f32 lbl_805DB0D0 = 0.20000000298023224f;
+static const f32 lbl_805DB0D0 = 0.2f;
 
 #pragma push
 #pragma opt_common_subs off

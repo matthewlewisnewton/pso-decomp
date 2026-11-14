@@ -39,7 +39,7 @@ s32 get_window_layout_position(s32);
 s32 strncpy(void *, s32, s32);
 extern u8 TObjBagWarnWin__message_window_size[];
 static const f32 lbl_805D90C8 = 70200.0f;
-static const f32 lbl_805D90CC = 0.800000011920929f;
+static const f32 lbl_805D90CC = 0.8f;
 
 s32 TObjBagWarnWin::should_show_warning(void *arg0) {
     Ctrl_8006EC20 *ctrl;

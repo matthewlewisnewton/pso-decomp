@@ -28,7 +28,7 @@ void process_async_file_reads(void);
 void set_screen_size(f32 farg0, f32 farg1);
 extern int ending_sequence_active;
 static const f32 lbl_805DF0B0 = 1.0f;
-static const f32 lbl_805DF0B4 = 0.8500000238418579f;
+static const f32 lbl_805DF0B4 = 0.85f;
 extern "C" {
 int TLobby__sub_800FC3CC(void);
 

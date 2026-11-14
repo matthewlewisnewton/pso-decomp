@@ -33,7 +33,7 @@ void restore_saved_depth_alpha_state(void);
 s32 defer_render__7TObjectFv();
 
 extern s32 TAdMcSelectMcGC__texture_list_ptr;
-static const f32 lbl_805DF748 = 0.800000011920929f;
+static const f32 lbl_805DF748 = 0.8f;
 
 void TAdMcSelectMcGC::draw_status_window() {
     u8 *arg0 = (u8 *)this;

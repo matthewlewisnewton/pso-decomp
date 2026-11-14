@@ -25,10 +25,10 @@ struct W_80290250 { u8 pad[0xfc]; s32 bufp; s32 rc; u8 data[4]; };
 struct Opaque_80290088;
 
 static const f32 lbl_805DD944 = 1.0f;
-static const f32 lbl_805DD948 = 0.6666666865348816f;
+static const f32 lbl_805DD948 = 0.6666667f;
 static const f32 lbl_805DD94C = 3.0f;
-static const f32 lbl_805DD950 = 0.3333333432674408f;
-static const f32 lbl_805DD954 = -0.6666666865348816f;
+static const f32 lbl_805DD950 = 0.33333334f;
+static const f32 lbl_805DD954 = -0.6666667f;
 s32 find_shape_triangle_region(u8 *arg0);
 TChCrLoadAfsTextureReq *create_ch_cr_load_afs_texture_req(void *figure, void *list, void *slot, void *index);
 extern "C" {
