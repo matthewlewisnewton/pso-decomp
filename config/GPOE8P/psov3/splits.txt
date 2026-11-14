@@ -10056,6 +10056,7 @@ pso/boss/TBoss6Tube_802B15F4.cpp:
 
 pso/boss/TBoss6Tube_802B16BC.cpp:
 	.text       start:0x802B16BC end:0x802B17D4
+	.rodata     start:0x80470A68 end:0x80470A80
 
 pso/menu/TAdGuideTxtGC_802B17D4.cpp:
 	.text       start:0x802B17D4 end:0x802B1850
