@@ -222,4 +222,5 @@ void TObjLaboMapWarp::slot4C() {
 extern "C" {
 s32 lbl_805D5B30;
 }
+
 int lbl_8050DC20[6];
