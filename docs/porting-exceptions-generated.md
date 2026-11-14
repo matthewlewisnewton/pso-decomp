@@ -240,7 +240,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
-| `pso/boss/TBoss2DeRolLe.cpp` | `-inline on` | Explicit scalar helpers preserve operand order after native literal pooling. |
+| `pso/boss/TBoss2DeRolLe.cpp` | `GC/2.0, -inline on` | GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order. |
 | `pso/boss/TBoss4Type1.cpp` | `-sdata 4` | Keep the eight-byte effect-ID pair in .data beside the state table. |
 | `pso/object/TObjEZRopeSimulation.cpp` | `-inline deferred` | Reverse definitions reproduce both native rope vtables and function order. |
 | `pso/ui/DrawLine.cpp` | `-inline off,deferred, -fp_contract on` | Reverse definitions retain native function and vtable order. |
