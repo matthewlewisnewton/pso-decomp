@@ -4237,6 +4237,7 @@ pso/misc/TLogo.cpp:
 
 pso/unk/text_8013F810.cpp:
 	.text       start:0x8013F810 end:0x8013FFA8
+	.rodata     start:0x8043F168 end:0x8043F188
 
 pso/misc/TLobby_8013FFA8.cpp:
 	.text       start:0x8013FFA8 end:0x801404CC
