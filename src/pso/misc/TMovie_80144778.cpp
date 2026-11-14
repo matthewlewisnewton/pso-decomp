@@ -27,7 +27,7 @@ struct Vec_80144778 { s32 x, y, z; };
 
 extern "C" {
 char *strncpy(char *, const char *, u32);
-extern char lbl_8043F380[];
+extern const char lbl_8043F380[] = "movie.rel";
 extern s32 TMovie__name;
 void queue_destruction__7TObjectFv(void *arg0);
 u8 *__ct__10TAdEndTextFv(void *, void *);

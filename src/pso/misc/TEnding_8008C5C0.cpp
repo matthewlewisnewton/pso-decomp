@@ -22,7 +22,7 @@ int render_tick__Fv(void);
 void *__nw__7TObjectFUl(int);
 extern Vec_8008C5E8 lbl_80439570;
 extern Vec_8008C5E8 lbl_8043957C;
-extern u8 lbl_80439588[];
+extern const u8 lbl_80439588[] = "ending.adx";
 extern u8 ending_scene_callbacks[];
 extern u8 default_scene_light_config[];
 extern void *tl_camera;

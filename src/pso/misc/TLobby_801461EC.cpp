@@ -1170,3 +1170,8 @@ s32 *get_ppp_password_buffer(void) {
     return &ppp_password_buffer.value;
 }
 #undef TLobby__sub_803FB184
+
+extern "C" {
+s32 TLobby__connect_pending_flags;
+s32 TLobby__battle_flag;
+}
