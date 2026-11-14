@@ -35,3 +35,7 @@ void TMovie::flip_frame_buffer() {
 }
 
 }
+
+extern "C" {
+s32 lbl_805D5698;
+}
