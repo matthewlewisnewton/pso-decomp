@@ -218,3 +218,7 @@ void TObjLaboMapWarp::slot4C() {
     debug_printf_at(0x130022, lbl_80444A10, labo_map_warp_dest_name_table_b[this->set_params[2]]);
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
 }
+
+extern "C" {
+s32 lbl_805D5B30;
+}
