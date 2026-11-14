@@ -4577,6 +4577,7 @@ pso/npc/TObjNpcNFM00.cpp:
 
 pso/npc/TObjNpcNFM01.cpp:
 	.text       start:0x8014CB50 end:0x8014CD24
+	.rodata     start:0x8043FD90 end:0x8043FDB8
 
 pso/npc/TObjNpcNFW00.cpp:
 	.text       start:0x8014CD24 end:0x8014CEF8
