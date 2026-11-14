@@ -22,7 +22,7 @@ pso/misc/TKeyBoardControl_8000F764.cpp:
 
 pso/player/TObjPlayer_80011014.cpp:
 	.text       start:0x8000FD54 end:0x80019848
-	.rodata     start:0x80434080 end:0x80434090
+	.rodata     start:0x80434040 end:0x80434090
 	.data       start:0x804806E8 end:0x804808EC
 	.sdata2     start:0x805D7D18 end:0x805D7DCC
 
@@ -103,6 +103,7 @@ pso/ui/TAdSEGAlogo.cpp:
 
 pso/misc/TLogo_8001C134.cpp:
 	.text       start:0x8001C134 end:0x8001C1C4
+	.rodata     start:0x804349A0 end:0x804349A8
 
 pso/ui/TAdSoniclogo_8001C1C4.cpp:
 	.text       start:0x8001C1C4 end:0x8001C2E4
@@ -1013,6 +1014,7 @@ pso/network/TTcpSocket.cpp:
 
 pso/map/CsnQuery.cpp:
 	.text       start:0x800790F0 end:0x8007A5D8
+	.sbss       start:0x805D4E70 end:0x805D4E80
 
 pso/object/TObjButterflyLobby_8007A5D8.cpp:
 	.text       start:0x8007A5D8 end:0x8007A6C8
@@ -1558,6 +1560,7 @@ pso/enemy/TObjEneDimedian.cpp:
 	.text       start:0x800A7764 end:0x800A884C
 	.rodata     start:0x8043A8D8 end:0x8043AAA4
 	.data       start:0x80490D10 end:0x80491088
+	.bss        start:0x80500988 end:0x805009A0
 	.sdata2     start:0x805D9AA0 end:0x805D9AD4
 
 pso/unk/text_800A884C.cpp:
@@ -6229,7 +6232,9 @@ pso/misc/TPhotonLaser.cpp:
 
 pso/misc/TPhotonLeilla.cpp:
 	.text       start:0x801AC43C end:0x801ACA6C
-	.rodata     start:0x80446DF0 end:0x80446DF8
+	.rodata     start:0x80446DD8 end:0x80446E10
+	.data       start:0x804C3778 end:0x804C37D8
+	.sdata      start:0x805D34F8 end:0x805D3500
 	.sdata2     start:0x805DC1C0 end:0x805DC1D8
 
 pso/player/TObjPlayer_801ACA6C.cpp:
@@ -6237,6 +6242,10 @@ pso/player/TObjPlayer_801ACA6C.cpp:
 
 pso/misc/TPhotonLine.cpp:
 	.text       start:0x801ACAF0 end:0x801ACE1C
+	.rodata     start:0x80446E10 end:0x80446E20
+	.data       start:0x804C37D8 end:0x804C3940
+	.sdata      start:0x805D3500 end:0x805D3508
+	.sdata2     start:0x805DC1D8 end:0x805DC1E0
 
 pso/misc/TPhotonMagicSquare_801ACE1C.cpp:
 	.text       start:0x801ACE1C end:0x801AD47C
@@ -6739,6 +6748,7 @@ pso/network/TProtocol_801DA140.cpp:
 
 pso/network/TProtocol_801DA240.cpp:
 	.text       start:0x801DA240 end:0x801DA7DC
+	.rodata     start:0x804495E8 end:0x80449610
 
 pso/misc/TLobby_801DA7DC.cpp:
 	.text       start:0x801DA7DC end:0x801DAC6C

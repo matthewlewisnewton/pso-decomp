@@ -7,6 +7,7 @@
 #include "pso/network/IPv6.h"
 #include "types.h"
 #include "pso/network/TcpProtocolState.h"
+#include "pso/network/TcpReceiveQueue.h"
 #include "pso/network/BufferPool.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/EthernetReceiveFilter.h"
@@ -486,7 +487,6 @@ u8 *TLobby__sub_80406F0C(void *);
 s16 is_addr_unspecified__6TLobbyFPv(void *);
 s32 TLobby__sub_80420410(u32, u32, NetPacket *, TcpTcb *);
 s32 TLobby__sub_8041F204(NetPacket *, u16, TcpTcb *);
-s32 TLobby__sub_8041F914(NetPacket *, u32, TcpTcb *, TcpHdr *);
 s32 TLobby__sub_8041F11C(TcpTcb *);
 void NetYieldOutsideDispatcherThread(void);
 
@@ -1967,8 +1967,8 @@ step6:
             goto L1397;
         } else {
             if ((s32)(hdr.seq - *(u32 *)(found + offsetof(TcpTcb, rcv_nxt))) > 0) {
-                u16 reassembly_offset = len + total;
-                TLobby__sub_8041F914((NetPacket *)pkt, reassembly_offset, (TcpTcb *)found, ti);
+                // Keep the native full-register truncation at the shared u16 call boundary.
+                TLobby__sub_8041F914((NetPacket *)pkt, (len + total) & 0xffff, (TcpTcb *)found, ti);
             }
             kind &= ~1;
             found[offsetof(TcpTcb, flags)] |= 1;

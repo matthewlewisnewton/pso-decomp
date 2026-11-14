@@ -15,6 +15,26 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### TCP out-of-order receive queue
+
+`TLobby__sub_8041F914` in `src/pso/network/SocketProtocolRuntime.cpp`
+retains the scoped `dont_inline off` / `inline_depth(4)` controls from
+[upstream #285](https://github.com/zeroz41/pso-decomp/pull/285), commit
+`be4a012306441b91fe0e30083800a8589bccf518`. They inline the reassembly-range
+removal helper, including its ordinary aggregate assignment. The receive-room
+clamp uses ordinary assignment in its condition and direct `TcpTcb` member
+access; it needs no additional matching constraint. Ports can drop the inline
+pragmas and keep the receive-ring copy and range-merging operations. See the
+[recovery and ABI evidence](evidence/tcp-out-of-order-queue.md).
+
+### Logo texture descriptor declaration
+
+`src/pso/misc/TLogo_8001C134.cpp` marks the existing eight-byte
+`texture_logo_e_descriptor` declaration as `.data` for CodeWarrior, matching
+its definition in `TAdSEGAlogo_8001BF4C.cpp`. Without it, the typed declaration
+changes the original absolute-address loads into small-data references.
+Ports can drop the guarded annotation and retain the `NJS_TEXLIST` type.
+
 ### Duel-effect string lifetime data
 
 `src/pso/misc/TDuelEffectNumber_80080460.cpp` gives the final two-float
@@ -2048,3 +2068,23 @@ or original source order. Ports should use the ordinary native constructor,
 destructor and new expression, omit this compiler override and arrange source
 for readability. Existing raw reset/list-loader and storage interfaces remain
 qualified separately.
+
+
+### De Rol Le compiler and native scalar pool
+
+`src/pso/boss/TBoss2DeRolLe.cpp` uses GC/2.0 with `-inline on`. With the
+single-argument `free_laser` boundary, GC/2.0 reproduces the attack handler's
+native parameter-copy registers and load scheduling. GC/2.6 leaves that copy
+at 99.38865% even after the saved-register permutation is resolved. All 110
+functions and all allocated sections match together under GC/2.0; this is a
+reproducible compiler selection, not proof of the historical build command.
+
+The shared `add_motion_delta` helper preserves the moving value as the left
+operand after substitution of the native scalar literals. Direct literal
+additions are commuted during parsing and change load order and floating-point
+register allocation. Division by two similarly preserves the left operand when
+the backend folds it to multiplication by one half. The color-halfword swap
+uses ordinary masks instead of `__rlwimi`. A port can keep the ordinary C++
+arithmetic, masks and single-argument release call with its normal compiler;
+the compiler version, operand order and literal-emission order serve native
+matching. See the [complete unit evidence](evidence/tboss2-derolle-register-allocation.md).
