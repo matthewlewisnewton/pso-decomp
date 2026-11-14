@@ -14032,6 +14032,7 @@ pso/network/NetworkPacketRuntime.cpp:
 pso/network/NetworkMessageTransport.cpp:
 	.text       start:0x80425B70 end:0x80426CAC
 	.bss        start:0x805CF240 end:0x805CFC20
+	.sbss       start:0x805D7BB8 end:0x805D7BC4
 
 pso/misc/TLobby_80426CAC.cpp:
 	.text       start:0x80426CAC end:0x80428374
