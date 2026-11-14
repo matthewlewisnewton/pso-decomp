@@ -4289,6 +4289,7 @@ pso/misc/TMovie_80143BBC.cpp:
 
 pso/misc/TMovie_80143C00.cpp:
 	.text       start:0x80143C00 end:0x80143C94
+	.sbss       start:0x805D5698 end:0x805D569C
 
 pso/misc/TMovie_80143C94.cpp:
 	.text       start:0x80143C94 end:0x80143CA4
