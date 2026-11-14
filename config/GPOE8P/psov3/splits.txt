@@ -11797,6 +11797,7 @@ pso/misc/TWindowDD_80342E40.cpp:
 pso/misc/TWindowDD_803430BC.cpp:
 	.text       start:0x803430BC end:0x8034435C
 	.data       start:0x804EFD68 end:0x804EFDBC
+	.sbss       start:0x805D6E68 end:0x805D6E70
 
 pso/misc/TWindowDD_8034435C.cpp:
 	.text       start:0x8034435C end:0x80346A84
