@@ -207,3 +207,8 @@ void TItemEffectWeapon::initialize_static_effects() {
         weapon_trail_slot_bitmap[i] = 0;
     }
 }
+
+extern "C" {
+TItemEffectWeapon::TrailVertex *item_weapon_trail_vertex_buffer;
+s32 *weapon_trail_slot_bitmap;
+}
