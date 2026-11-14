@@ -1544,12 +1544,15 @@ force_active:
   - TObjLazerFence4__ct
   - TObjLazerFenceExtra__ct
   - TObjLazerFenceNorm__ct
+  - TObjLight__active_light_count
+  - TObjLight__actor_light_count
   - TObjLight__ct
   - TObjLight__data_80506370
   - TObjLight__data_8050637C
   - TObjLight__data_805068FC
   - TObjLight__data_80506A5C
   - TObjLight__data_805DB088
+  - TObjLight__light_count
   - TObjLight__sub_80133714
   - TObjLight__sub_8013397C
   - TObjLight__sub_80133980
