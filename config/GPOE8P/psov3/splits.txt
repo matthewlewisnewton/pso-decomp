@@ -1149,6 +1149,7 @@ pso/unk/text_8007FA24.cpp:
 
 pso/unk/text_8007FA94.cpp:
 	.text       start:0x8007FA94 end:0x8007FE78
+	.rodata     start:0x80438D50 end:0x80438D68
 	.data       start:0x8048DFA0 end:0x8048DFC4
 
 pso/misc/TDuelEffectNumber.cpp:
@@ -1360,6 +1361,7 @@ pso/unk/text_8008C4F4.cpp:
 
 pso/misc/TEnding_8008C5C0.cpp:
 	.text       start:0x8008C5C0 end:0x8008C6F4
+	.rodata     start:0x80439588 end:0x80439598
 
 pso/misc/TEndingC.cpp:
 	.text       start:0x8008C6F4 end:0x8008C6FC
@@ -4334,6 +4336,7 @@ pso/misc/TMovie_801444C0.cpp:
 
 pso/misc/TMovie_80144778.cpp:
 	.text       start:0x80144778 end:0x801449FC
+	.rodata     start:0x8043F380 end:0x8043F390
 
 pso/system/TNECFontEORFunction.cpp:
 	.text       start:0x801449FC end:0x80144AC8
@@ -7734,6 +7737,7 @@ pso/player/TObjPlayer_8022602C.cpp:
 pso/misc/TLobby_80226070.cpp:
 	.text       start:0x80226070 end:0x802264B8
 	.rodata     start:0x8044C850 end:0x8044C858
+	.sbss       start:0x805D6298 end:0x805D62A8
 
 pso/unk/text_802264B8.cpp:
 	.text       start:0x802264B8 end:0x80226534
@@ -7745,12 +7749,15 @@ pso/misc/TOTrapAncient01_80226534.cpp:
 pso/misc/TLobby_802268F4.cpp:
 	.text       start:0x802268F4 end:0x80227390
 	.bss        start:0x80514C60 end:0x80514F58
+	.sbss       start:0x805D6318 end:0x805D6328
 	.sdata2     start:0x805DC748 end:0x805DC760
 
 pso/misc/TLoadCtrl_80227390.cpp:
 	.text       start:0x80227390 end:0x80227A2C
 	.rodata     start:0x8044C890 end:0x8044C898
 	.data       start:0x804CB838 end:0x804CB850
+	.sdata      start:0x805D3718 end:0x805D371C
+	.sbss       start:0x805D6328 end:0x805D6330
 
 pso/misc/TLobby_80227A2C.cpp:
 	.text       start:0x80227A2C end:0x80227AA0
@@ -13446,6 +13453,7 @@ pso/system/AdxtInit.cpp:
 
 pso/system/AdxStreamRuntime.cpp:
 	.text       start:0x803C5B50 end:0x803C5E78
+	.rodata     start:0x8047C5D8 end:0x8047C600
 	.bss        start:0x80572BA0 end:0x80573100
 
 pso/system/AdxEncoder.cpp:

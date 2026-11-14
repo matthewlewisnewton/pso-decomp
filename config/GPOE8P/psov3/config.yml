@@ -8318,6 +8318,8 @@ force_active:
   - lbl_80438AD8
   - lbl_80438AE0
   - lbl_80438AEC
+  - lbl_80438D50
+  - lbl_80438D58
   - lbl_80438E40
   - lbl_80438E60
   - lbl_80438E74
@@ -8327,6 +8329,7 @@ force_active:
   - lbl_804394A4
   - lbl_804394BC
   - lbl_804394D4
+  - lbl_80439588
   - lbl_8043B310
   - lbl_8043B31C
   - lbl_8043BC10
@@ -8387,6 +8390,7 @@ force_active:
   - lbl_8043F06C
   - lbl_8043F078
   - lbl_8043F084
+  - lbl_8043F380
   - lbl_8043FA38
   - lbl_8043FA4C
   - lbl_8043FD20
@@ -8706,6 +8710,7 @@ force_active:
   - lbl_804790F0
   - lbl_80479280
   - lbl_8047B928
+  - lbl_8047C5D8
   - lbl_80480950
   - lbl_804809D0
   - lbl_804809E0
@@ -9448,6 +9453,8 @@ force_active:
   - lbl_805D6248
   - lbl_805D624C
   - lbl_805D6270
+  - lbl_805D629C
+  - lbl_805D62A0
   - lbl_805D63C0
   - lbl_805D63C4
   - lbl_805D6440
@@ -10298,6 +10305,8 @@ force_active:
   - lobby_join_message_buffer
   - lobby_keyboard_controller
   - lobby_keyboard_prompt_window
+  - lobby_layout_offset_c
+  - lobby_layout_start_position
   - lobby_login_result_flag
   - lobby_main_collision_body
   - lobby_main_model_motions
@@ -10514,7 +10523,14 @@ force_active:
   - multi_confirm_texture_entries
   - multi_ply_chr_select_default_slot_table
   - multiplayer_controller_device_codes
+  - music_active_mode_index
+  - music_fade_frames_remaining
+  - music_fade_full_scale
+  - music_fade_step
+  - music_sequencer_fade_state
+  - music_sequencer_timer
   - music_stream_afs_filename_buffer
+  - music_target_id
   - nano_drago_bodies
   - nano_drago_movement
   - needs_movement__10TNpcPlayerFPvPvi
