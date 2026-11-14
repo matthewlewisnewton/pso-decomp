@@ -593,3 +593,10 @@ void bswap_32(u32 *p) {
     u32 v = *p;
     *p = (v >> 24) | ((v >> 8) & 0xFF00) | ((v << 8) & 0xFF0000) | (v << 24);
 }
+
+extern "C" {
+int current_line_width = 12;
+s32 lbl_805D3584 = 1;
+f32 viewport_scissor_origin_x = 320.0f;
+f32 camera_viewport_center_y = 240.0f;
+}

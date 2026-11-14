@@ -493,3 +493,7 @@ void TBoss4DarkFalz::free_global_instance() {
 }
 
 }
+
+extern "C" {
+f32 online_ending_scene_z_offset;
+}
