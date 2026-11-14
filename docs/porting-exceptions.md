@@ -15,6 +15,16 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Shared warning-window lifecycle
+
+The `TObjBagWarnWin` and `TObjBagWarnWin4P` units use guarded
+`dont_inline off` / `inline_depth(2)` controls from the start of each unit
+through deferred template emission. Scoped controls restored before the end
+leave the lifecycle and policy adapters out of line in GC/2.6. The common
+warning lifecycle retains distinct predicates, creation methods and original
+virtual entry points. Ports can remove the pragmas and retain the ordinary
+template and composed warning state.
+
 ### Shared three-channel weapon animation
 
 The idle and attack wrappers of `TUnk_804A6200` and `TUnk_804A67D0` use
@@ -143,7 +153,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,889 | 890 |
+| CodeWarrior pragmas (excluding push/pop) | 5,893 | 892 |
 | Per-unit compiler overrides in `configure.py` | 210 | 210 |
 | Approved regressions | 0 | 0 |
 
@@ -348,8 +358,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,889 pragmas in 890 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1160, `inline_depth` 1066, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
+5,893 pragmas in 892 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1162, `inline_depth` 1068, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
