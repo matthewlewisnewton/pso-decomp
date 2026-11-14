@@ -6048,6 +6048,7 @@ pso/object/TObjRoomId.cpp:
 pso/object/TObjBase.cpp:
 	.text       start:0x801A1E2C end:0x801A2710
 	.data       start:0x804B9870 end:0x804B98A8
+	.sbss       start:0x805D5CD0 end:0x805D5CD8
 
 pso/map/FloorLifecycleTables.cpp:
 	.data       start:0x804B98A8 end:0x804BB1A8
