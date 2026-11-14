@@ -11590,6 +11590,7 @@ pso/misc/TLobby_803382E4.cpp:
 
 pso/misc/TWindowSubStatusDisp_80338740.cpp:
 	.text       start:0x80338740 end:0x80338BB4
+	.sbss       start:0x805D6D68 end:0x805D6D70
 
 pso/misc/TEneParticleCtrl.cpp:
 	.text       start:0x80338BB4 end:0x80338E9C
