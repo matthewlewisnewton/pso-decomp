@@ -1952,3 +1952,7 @@ void TObjEneRe2Flower::render() {
 #undef draw_motion_model__10TObjMotionFv
 #undef apply_variant_speeds__12TObjEneLappyFv
 #undef render__12TObjEneLappyFv
+
+extern "C" {
+s32 *rappy_visibility_node;
+}

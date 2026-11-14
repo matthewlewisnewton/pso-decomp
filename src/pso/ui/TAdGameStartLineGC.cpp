@@ -34,21 +34,21 @@ void *get_instance__10TObjPlayerFv(void);
 extern void *__vt__18TAdGameStartLineGC[];
 extern void *TAdGameStartLineGC__name;
 extern void *lbl_805D6C18;
-extern const f32 lbl_805DF4A0;
-extern const f32 lbl_805DF4AC;
-extern const f32 lbl_805DF4B0;
-extern const f32 lbl_805DF4B4;
-extern const f32 lbl_805DF4B8;
-extern const f32 lbl_805DF4BC;
-extern const f32 lbl_805DF4C0;
-extern const f32 lbl_805DF4C4;
-extern const f32 lbl_805DF4C8;
-extern const f32 lbl_805DF4CC;
-extern const f32 lbl_805DF4D0;
-extern const f32 lbl_805DF4D4;
+static const f32 lbl_805DF4A0 = 3.0f;
+static const f32 lbl_805DF4AC = 384.0f;
+static const f32 lbl_805DF4B0 = 640.0f;
+static const f32 lbl_805DF4B4 = 0.5f;
+static const f32 lbl_805DF4B8 = 27.0f;
+static const f32 lbl_805DF4BC = 191.0f;
+static const f32 lbl_805DF4C0 = 613.0f;
+static const f32 lbl_805DF4C4 = 289.0f;
+static const f32 lbl_805DF4C8 = 128.0f;
+static const f32 lbl_805DF4CC = 0.0f;
+static const f32 lbl_805DF4D0 = 0.75f;
+static const f32 lbl_805DF4D4 = 1.0f;
 TAdGameStartLineGC_80320EF0 *__ct__18TAdGameStartLineGCFv(TAdGameStartLineGC_80320EF0 *self, void *parent);
-extern const f32 lbl_805DF4A4;
-extern const f32 lbl_805DF4A8;
+static const f32 lbl_805DF4A4 = 0.2f;
+static const f32 lbl_805DF4A8 = 64.0f;
 
 void TAdGameStartLineGC::render() { if (TMainTask::get_render_pass() != 1) { set_additive_blend(); fn_80320DE8(); set_default_alpha_blend(); } }
 

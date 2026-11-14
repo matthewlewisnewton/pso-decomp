@@ -153,8 +153,8 @@ struct Status_8033F3D8 { u8 pad[8]; u32 f8; };
 
 void draw_window_frame__11TWindowBaseFPv(void *);
 Status_8033F3D8 **get_status_sub__14TAdPlyStatusGCFv(s32);
-extern const f32 lbl_805DFAE0;
-extern const f32 lbl_805DFAE4;
+static const f32 lbl_805DFAE0 = 0.8f;
+static const f32 lbl_805DFAE4 = 100000.0f;
 extern Vec2_8033F3D8 ply_status_window_offset_table[];
 void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, void *arg1) {
     Item_8033F3D8 items[3];

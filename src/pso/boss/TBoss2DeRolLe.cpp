@@ -6004,3 +6004,15 @@ typedef char RecoveredGlobal_800365C8_lbl_80435A44_size[sizeof(RecoveredGlobal_8
 
 }
 #pragma pop
+
+extern "C" {
+s32 de_rol_le_base_param_ids[1] = {15};
+s32 de_rol_le_resistance_param_ids[1] = {15};
+s32 lbl_805D26B0[1] = {15};
+}
+
+extern "C" {
+s32 TBoss2DeRolLe__current_attack_id;
+s32 TBoss2DeRolLe__sequence_match_index;
+s32 lbl_805D4BB0;
+}

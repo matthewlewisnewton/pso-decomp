@@ -490,3 +490,8 @@ void TBoss2Tentacle__sub_8003A0AC(void) {
         TBoss2Tentacle__segment_point_defaults[i] = tentacle_model_nodes[i].rotation.z;
     }
 }
+
+extern "C" {
+s32 *lbl_805D4BD0;
+DragonMotion *TBoss2Tentacle__motion_data;
+}

@@ -41,7 +41,7 @@ extern s32 status_disp_texture_handle;
 extern const f32 lbl_805DDF44;
 extern const f32 lbl_805DDF48;
 extern const f32 lbl_805DDF4C;
-extern const f32 lbl_805DDF54;
+static const f32 lbl_805DDF54 = 28.0f;
 extern const f32 lbl_805DDF58;
 Txt_802A37A0 *__ct__17TAdSelectTxtSubGCFv(Txt_802A37A0 *arg0, void *parent, Src_802A37A0 *src);
 void *__ct__11TObjControlFP7TObject(void *, void *);

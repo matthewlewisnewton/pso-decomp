@@ -43,10 +43,10 @@ struct Obj_8001BFCC { u8 pad[0x1c]; s32 f1c; };
 extern "C" {
 s32 render_logo_with_default(void *, int, int, f32);
 extern void* logo_texture_e_handle;
-extern const f32 lbl_805D7E70;
+static const f32 lbl_805D7E70 = -150.0f;
 extern int TAdSEGAlogo__state;
 extern void *tl_00;
-extern const f32 lbl_805D7E74;
+static const f32 lbl_805D7E74 = 60.0f;
 void *__nw__7TObjectFUl(u32 size);
 int queue_destruction__7TObjectFv(void);
 

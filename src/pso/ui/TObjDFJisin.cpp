@@ -215,7 +215,7 @@ extern void *__vt__11TObjDFJisin[];
 extern void *__vt__13TObjDFHorming[];
 extern void *__vt__13TObjDFRecBall[];
 extern void *__vt__16TObjDFBeamCursor[];
-extern const f64 lbl_804374F0;
+static const f64 lbl_804374F0 = 10430.38043493439;
 extern s32 TObjDFJisin__particle_emitter_id_table[];
 extern s32 TObjDFRecBall__name;
 extern void *TObjDFBeamCursor__name;

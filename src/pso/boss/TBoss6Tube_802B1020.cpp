@@ -155,3 +155,8 @@ void TBoss6Tube::update_timer() {
 }
 
 }
+
+extern "C" {
+s32 TBoss6Tube__previous_scroll_phase;
+f32 TBoss6Tube__scroll_delta;
+}
