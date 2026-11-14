@@ -9122,6 +9122,7 @@ pso/misc/TWindowSubSymbolChat_80281814.cpp:
 	.text       start:0x80281814 end:0x802837A8
 	.rodata     start:0x8044FB28 end:0x8044FB30
 	.data       start:0x804D2B68 end:0x804D2C14
+	.sbss       start:0x805D6490 end:0x805D6494
 	.sdata2     start:0x805DD710 end:0x805DD750
 
 pso/misc/TWindowSubSymbolChat.cpp:
