@@ -8,10 +8,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 46 | 12 |
-| intrinsic | 93 | 58 |
+| intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
 | pragma | 5871 | 884 |
-| configure.py per-unit override | 208 | 208 |
+| configure.py per-unit override | 209 | 209 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -79,8 +79,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057,
 | `src/musyx/runtime/snd3d.c:273` | `__frsqrte` |
 | `src/musyx/runtime/snd_math.c:20` | `__frsqrte` |
 | `src/musyx/runtime/synth.c:145` | `__cntlzw` |
-| `src/pso/boss/TBoss2DeRolLe.cpp:3776` | `__rlwimi` |
-| `src/pso/boss/TBoss2DeRolLe.cpp:3777` | `__rlwimi` |
 | `src/pso/boss/TBoss3VoloptCore.cpp:521` | `__abs` |
 | `src/pso/boss/TBoss7Crawfish.cpp:120` | `__cntlzw` |
 | `src/pso/enemy/TObjEneBalClawClaw.cpp:325` | `__cntlzw` |
@@ -242,6 +240,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1151, `inline_depth` 1057,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/boss/TBoss2DeRolLe.cpp` | `-inline on` | Explicit scalar helpers preserve operand order after native literal pooling. |
 | `pso/boss/TBoss4Type1.cpp` | `-sdata 4` | Keep the eight-byte effect-ID pair in .data beside the state table. |
 | `pso/object/TObjEZRopeSimulation.cpp` | `-inline deferred` | Reverse definitions reproduce both native rope vtables and function order. |
 | `pso/ui/DrawLine.cpp` | `-inline off,deferred, -fp_contract on` | Reverse definitions retain native function and vtable order. |

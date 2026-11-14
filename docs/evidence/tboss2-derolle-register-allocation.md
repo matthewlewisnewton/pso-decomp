@@ -1,5 +1,55 @@
 # TBoss2DeRolLe update and pulsing-color register allocation
 
+## Native color and scalar recovery (2026-11-14)
+
+Continuation from fork main `c17ee9946c4d6887e37a01c390320bb25e9a793c`.
+The pulsing-color function now matches all 440 instruction bytes, and the
+unit's complete 444-byte scalar pool matches. The unit has 109 of 110 exact
+functions; `8002FE60` remains the last unmatched function. This checkpoint
+is not a source-linked completion of the unit.
+
+The earlier inline `__rlwimi` swap is replaced by ordinary masks:
+
+```cpp
+(((color << 16) & 0xFF000000) | (color >> 16)) |
+    ((color << 16) & 0x00FF0000)
+```
+
+Together with staged packing of the two primary colors, this preserves the
+original rotate/insert instructions and register allocation. The compiler can
+reuse the receiver register for the segment counter. Equivalent mask orders,
+nested intrinsic calls, direct packing expressions, loop forms and helper
+boundaries were compiled and compared; those source forms retain different
+registers or rotate/mask encodings. This is a reproducible source arrangement,
+not evidence of the historical helper names.
+
+All 111 scalar values in the unit's `.sdata2` extent are distinct. Replacing
+external scalar aliases with ordinary literals recovers their native pool.
+Two ballistic expressions put the target-height subtraction before the
+velocity product in source; their instructions remain exact, and their
+literals then appear in native order. Parsing direct literal additions can
+commute their operands, changing load order and FPR allocation. The shared
+`add_motion_delta` helper preserves the original left operand through inline
+substitution. Vector-component multiplication by one half is written as
+division by two for the same reason. Explicit `-inline on` preserves all
+previous matches; `-inline off` emits helper calls instead.
+
+Research followed the [character-select inline-helper investigation](chr-select-slot-clamp-inline.md),
+[operand-cost evidence](chr-select-confirm-cell-store.md),
+[Barba Ray pool recovery](barba-ray-table-pool-recovery.md), and the existing
+CodeWarrior debugger workflow. The local compiler-source and allocator traces
+were diagnostic only; acceptance uses the pinned, unmodified GC/2.6 compiler
+through wibo.
+
+The original-DOL checksum, address-based no-loss comparison, all 3,618 linked
+units and unchanged-main retention metadata pass `tools/check_pr.py` at this
+checkpoint. Gains are one exact function, 440 matched code bytes and 444
+matched data bytes, with unchanged denominators and no source-link gain yet.
+The per-unit inline setting is recorded in the porting exceptions register;
+no assembly, new intrinsic or synthetic data object is introduced.
+
+The remainder below records the earlier investigation and its limits.
+
 Base commit `0ea667b2a` (fork `main`). The two remaining approximate
 functions in `psov3/pso/boss/TBoss2DeRolLe` are:
 

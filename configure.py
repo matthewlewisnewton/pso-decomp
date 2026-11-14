@@ -429,6 +429,8 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Explicit scalar helpers preserve operand order after native literal pooling.
+    "pso/boss/TBoss2DeRolLe.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     # Keep the eight-byte effect-ID pair in .data beside the state table.
     "pso/boss/TBoss4Type1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Reverse definitions reproduce both native rope vtables and function order.
