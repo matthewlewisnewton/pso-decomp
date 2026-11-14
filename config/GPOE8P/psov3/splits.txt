@@ -2189,6 +2189,7 @@ pso/misc/TQuestVmDownLoadServer_800FA8A4.cpp:
 pso/misc/TFogCtrl.cpp:
 	.text       start:0x800FAB94 end:0x800FBD74
 	.rodata     start:0x8043DA60 end:0x8043DA70
+	.bss        start:0x80501198 end:0x805011D8
 	.sdata2     start:0x805DA948 end:0x805DA978
 
 pso/misc/TWindowSubStatusDisp_800FBD74.cpp:
