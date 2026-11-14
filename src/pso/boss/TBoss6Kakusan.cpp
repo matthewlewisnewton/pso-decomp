@@ -307,3 +307,10 @@ u8 *TBoss6Type1::create_kakusan(TObject *parent, Vec *pos, Vec *dir, u16 target_
     }
     return var_r0;
 }
+
+extern "C" {
+s32 TBoss6Kakusan__homing_start_frame;
+u8 boss6_kakusan_homing_start_initialized;
+s32 boss6_kakusan_homing_end_frame;
+u8 TBoss6Kakusan__homing_end_frame_initialized;
+}
