@@ -15,6 +15,14 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Logo texture descriptor declaration
+
+`src/pso/misc/TLogo_8001C134.cpp` marks the existing eight-byte
+`texture_logo_e_descriptor` declaration as `.data` for CodeWarrior, matching
+its definition in `TAdSEGAlogo_8001BF4C.cpp`. Without it, the typed declaration
+changes the original absolute-address loads into small-data references.
+Ports can drop the guarded annotation and retain the `NJS_TEXLIST` type.
+
 ### Duel-effect string lifetime data
 
 `src/pso/misc/TDuelEffectNumber_80080460.cpp` gives the final two-float
