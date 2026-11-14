@@ -4856,7 +4856,6 @@ force_active:
   - broadcast_values__15TBoss3VoloptP02Fv
   - bsearch_record__6TLobbyFPvii
   - bswap32_in_place__6TLobbyFPUl
-  - bswap_6x12_packet__10TObjPlayerFv
   - bswap_6x6E_sync_game_state__6TLobbyFPv
   - bswap_6x79_gogo_ball__12TWindowTimerFi
   - bswap_6xAD_subordinate_action__20TItemEffOrgaFlowShotFv
@@ -4871,11 +4870,13 @@ force_active:
   - bswap_and_handle_packet__6TLobbyFii
   - bswap_and_send__10TObjPlayerFv
   - bswap_and_send_extended_subcommand
+  - bswap_boss_action_6x10
+  - bswap_boss_action_6x11
+  - bswap_boss_action_6x12
   - bswap_boss_actions__12TBoss8DragonFv
   - bswap_cmd_88_marker_record__FPv
   - bswap_coords__10TObjPlayerFv
   - bswap_data__9TObjLightFv
-  - bswap_dragon_boss_fields__10TObjPlayerFv
   - bswap_enemy_set_row_fields__FPv
   - bswap_enemy_set_rows__6TLobbyFUl
   - bswap_entry_list__10TObjPlayerFv
@@ -4899,7 +4900,6 @@ force_active:
   - bswap_packet_field__6TLobbyFv
   - bswap_pair__14TPlyDispConfigFv
   - bswap_state__15TOAttackableColFv
-  - bswap_stats__10TObjPlayerFv
   - bswap_u16_pair__10TObjPlayerFv
   - bswap_u16_pair_list__10TObjPlayerFv
   - bswap_u32__6TLobbyFPUl
@@ -7749,6 +7749,7 @@ force_active:
   - init_battle_round__17TPlayerBattleCtrlFv
   - init_body_sub__14TObjEneDolmOlmFv
   - init_bolt_points__12TTecZondeEffFv
+  - init_boss_action_6x12
   - init_buffer
   - init_cast__9TTecRestaFv
   - init_char_data__23TAdSinglePlyChrSelectGCFPv
@@ -16771,7 +16772,6 @@ force_active:
   - select_weighted_byte__9TItemDropFiiiii
   - select_weighted_column_u16__9TItemDropFiiiii
   - send_45_and_close_windows__6TLobbyFPv
-  - send_6x12_packet__10TObjPlayerFv
   - send_6x13__13TBoss2DeRolLeFPv
   - send_6x37_photon_blast__10TObjPlayerFv
   - send_6x3E_stop_at_position__10TObjPlayerFv
@@ -16812,6 +16812,7 @@ force_active:
   - send_battle_mode_data__6TLobbyFPv
   - send_battle_mode_params__6TLobbyFcii
   - send_battle_mode_state__6TLobbyFPv
+  - send_boss_action_6x12
   - send_boss_actions__12TBoss8DragonFv
   - send_buy_shop_item__FP9TItemDataUs
   - send_cmd_6A__12TObjWarpBossFUs
@@ -17175,7 +17176,6 @@ force_active:
   - set_triggers__8TItemMagFPCUcPCUc
   - set_type_53__10TObjPlayerFv
   - set_type__15TPlyPhotonChairFl
-  - set_type_dragon__10TObjPlayerFv
   - set_value__6TLobbyFl
   - set_view_scissor__13TRaderMapCoreFPviP13Rect_801F9228
   - set_visible_flag__14TBoss6PlotFalzFv

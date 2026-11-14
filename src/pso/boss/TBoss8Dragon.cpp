@@ -1,3 +1,4 @@
+#include "pso/protocol/BossActionPacket.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/NinjaHierarchy.h"
 #include "pso/system/RandomRatio.h"
@@ -1274,7 +1275,6 @@ struct Del_802FD354 : DelBase_802FD354 {
     virtual ~Del_802FD354();
 };
 
-struct Pkt_802FBBFC { u8 hdr[2]; u16 a; s16 b; s16 c; s32 d; f32 e; f32 f; s8 g; };
 
 struct VB_802FBBFC { u8 pad[0x18]; };
 
@@ -1367,7 +1367,6 @@ struct V_802FBBFC : VB_802FBBFC {
     virtual void m85(s32, int);
 };
 
-struct Pkt_802FBCBC { u8 hdr[2]; u16 a; s16 b; s16 c; s32 d; f32 e; f32 f; s8 g; };
 
 typedef struct Vec_802FC380 { f32 x, y, z; } Vec_802FC380;
 
@@ -3655,7 +3654,7 @@ void TBoss8Dragon__sub_802FBE3C(TBoss8Dragon *dragon) {
 
 extern "C++" void handle_6xA8_gol_dragon_boss_actions(void *boss8_dragon) {
     void *x;
-    ((TBoss8Dragon *)boss8_dragon)->bswap_packet();
+    bswap_boss_action_6xA8(boss8_dragon);
     x = get_enemy_entity(*(u16 *)((s8 *)boss8_dragon + 0x2));
     if (x != NULL) {
         ((void (*)(void *, void *))apply_6xA8_action__12TBoss8DragonFPvPv)(x, boss8_dragon);
@@ -3682,34 +3681,34 @@ void apply_6xA8_action__12TBoss8DragonFPvPv(u8 *boss8_dragon, u8 *arg1) {
 }
 
 void TBoss8Dragon::send_6xA8_action() {
-    Pkt_802FBCBC p;
+    GolDragonActionPacket p;
     f32 t;
     build_6xA8_gol_dragon_boss_actions(&p);
-    p.a = this->entity_id;
-    p.b = this->mode;
-    p.c = this->m_674;
-    p.d = this->target_entity_id;
-    p.e = this->m_688;
-    p.f = this->m_68c;
+    p.dragon.target.action.header.client_id = this->entity_id;
+    p.dragon.target.action.action = this->mode;
+    p.dragon.target.action.sequence = this->m_674;
+    p.dragon.target.target_entity_id = this->target_entity_id;
+    p.dragon.x = this->m_688;
+    p.dragon.z = this->m_68c;
     t = TBoss8Dragon__data_805DEDA4 * (f32)rand();
-    p.g = (s8)(TBoss8Dragon__data_805DED8C * t);
-    ((TBoss8Dragon *)(&p))->send_swapped_packet();
+    p.mode = (s8)(TBoss8Dragon__data_805DED8C * t);
+    send_boss_action_6xA8(&p);
 }
 
 void send_action_packet__12TBoss8DragonFPvi(u8 *boss8_dragon, s32 arg1) {
-    Pkt_802FBBFC p;
+    GolDragonActionPacket p;
     f32 t;
     ((V_802FBBFC *)boss8_dragon)->m85(arg1, 6);
     build_6xA8_gol_dragon_boss_actions(&p);
-    p.a = *(u16 *)((s8 *)boss8_dragon + 0x1C);
-    p.b = arg1;
-    p.c = ((TBoss8Dragon *)boss8_dragon)->m_674;
-    p.d = ((TBoss8Dragon *)boss8_dragon)->target_entity_id;
-    p.e = *(f32 *)((s8 *)boss8_dragon + 0x688);
-    p.f = ((TBoss8Dragon *)boss8_dragon)->m_68c;
+    p.dragon.target.action.header.client_id = *(u16 *)((s8 *)boss8_dragon + 0x1C);
+    p.dragon.target.action.action = arg1;
+    p.dragon.target.action.sequence = ((TBoss8Dragon *)boss8_dragon)->m_674;
+    p.dragon.target.target_entity_id = ((TBoss8Dragon *)boss8_dragon)->target_entity_id;
+    p.dragon.x = *(f32 *)((s8 *)boss8_dragon + 0x688);
+    p.dragon.z = ((TBoss8Dragon *)boss8_dragon)->m_68c;
     t = TBoss8Dragon__data_805DEDA4 * (f32)rand();
-    p.g = (s8)(TBoss8Dragon__data_805DED8C * t);
-    ((TBoss8Dragon *)(&p))->send_swapped_packet();
+    p.mode = (s8)(TBoss8Dragon__data_805DED8C * t);
+    send_boss_action_6xA8(&p);
 }
 
 void sync_target_pos__12TBoss8DragonFPv(void* p) { *(f32*)((char*)p + 0x394) = *(f32*)((char*)p + 0x690); *(f32*)((char*)p + 0x39c) = *(f32*)((char*)p + 0x694); }
