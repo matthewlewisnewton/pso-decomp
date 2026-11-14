@@ -15,6 +15,14 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Shared cave-sign rendering
+
+`TOSignCave01::render` and `TOSignCave02::render` use guarded, scoped
+`dont_inline off` / `inline_depth(1)` to expand `render_cave_sign` at each
+existing entry point. This retains the two original virtual methods and their
+model traversal while sharing the implementation. Ports can remove the pragmas
+and retain the ordinary inline function; no intermediate class is inferred.
+
 ### TCP out-of-order receive queue
 
 `TLobby__sub_8041F914` in `src/pso/network/SocketProtocolRuntime.cpp`
@@ -106,10 +114,10 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 93 | 58 |
+| MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,871 | 884 |
-| Per-unit compiler overrides in `configure.py` | 208 | 208 |
+| CodeWarrior pragmas (excluding push/pop) | 5,877 | 886 |
+| Per-unit compiler overrides in `configure.py` | 209 | 209 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
