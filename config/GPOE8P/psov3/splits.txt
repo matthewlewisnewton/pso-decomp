@@ -6228,7 +6228,7 @@ pso/misc/TPhotonFarlla.cpp:
 
 pso/misc/TPhotonGolla.cpp:
 	.text       start:0x801AB608 end:0x801AC0D8
-	.rodata     start:0x80446DA0 end:0x80446DA8
+	.rodata     start:0x80446DA0 end:0x80446DC0
 	.data       start:0x804C35A8 end:0x804C3638
 	.sdata2     start:0x805DC188 end:0x805DC1AC
 
