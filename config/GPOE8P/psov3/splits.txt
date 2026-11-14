@@ -7720,6 +7720,7 @@ pso/misc/TOTrapAncient01_80226534.cpp:
 pso/misc/TLobby_802268F4.cpp:
 	.text       start:0x802268F4 end:0x80227390
 	.bss        start:0x80514C60 end:0x80514F58
+	.sbss       start:0x805D6318 end:0x805D6328
 	.sdata2     start:0x805DC748 end:0x805DC760
 
 pso/misc/TLoadCtrl_80227390.cpp:
