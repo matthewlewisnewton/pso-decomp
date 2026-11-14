@@ -258,3 +258,7 @@ Vec *SampledMotionPoints::lookup(f32 frame) {
 }
 
 }
+
+extern "C" {
+void *player_corpse_mark_resource;
+}
