@@ -10,6 +10,7 @@ public:
         f32 m_0c;
     };
 
+    TUnk_804EF4E0(s32 heading);
     virtual ~TUnk_804EF4E0();
     virtual void vfunc_6(u32 count, s32 id);
 };

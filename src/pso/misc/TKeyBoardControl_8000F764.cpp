@@ -13,7 +13,7 @@
 #include "pso/boss/TObjBoss2Tunnel.h"
 #include "pso/enemy/TObjEneMe3Stelth.h"
 #include "pso/misc/TLobby.h"
-#include "pso/misc/TWindowSnapShot.h"
+#include "pso/misc/SnapshotCaptureAbi.h"
 #include "pso/npc/TObjNpcEnemy.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
@@ -386,7 +386,7 @@ void init_game_systems(void) {
     TLobby::wait_for_sound_init();
     load_info_icon();
     TLobby__sub_8020E3C0();
-    TWindowSnapShot::alloc_buffer();
+    alloc_buffer__15TWindowSnapShotFv();
     TAdWarningBaseGC::init_heap();
     TLobby::load_ask_dictionary();
     TCharaMaking__sub_8028E6B4();

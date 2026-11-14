@@ -49,7 +49,8 @@ void *lbl_804CFA28[6] = {
 };
 
 void TWindowHelpItem::reset_float_field() {
-    *(f32 *)&this->_pad1C = (f32) (9e+05f);
+    // Qualified text-entry prefix; this is not the window frame at 0x1C.
+    ((Win_8025AD5C *)this)->f1C = 900000.0f;
 }
 
 extern const u32 lbl_805DCFAC = 0x00000000;

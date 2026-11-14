@@ -5,6 +5,7 @@
 #include "pso/misc/TWindowBase.h"
 
 struct TWindowTimer : public TWindowBase {
+    TWindowTimer();
     virtual ~TWindowTimer();
     void ease_window_timer_position();
     virtual void render();
@@ -13,7 +14,7 @@ struct TWindowTimer : public TWindowBase {
     void update_chat_parts();
     void draw(s32 arg1, s32 arg2);
     void set_time(u32 secs);
-    static void draw_tab(s32 arg0, s32 arg1);
+    void draw_tab(s32 context);
     static s32 create();
     static s32 create_alt();
     void copy_state(u8 *arg1);
@@ -24,12 +25,11 @@ struct TWindowTimer : public TWindowBase {
 };
 
 typedef char TWindowTimer_size[sizeof(TWindowTimer) == 0x64 ? 1 : -1];
+typedef char TWindowTimer_m60[offsetof(TWindowTimer, m_60) == 0x60 ? 1 : -1];
 
 extern "C" {
-u8 *TWindowTimer__ct(TWindowTimer *arg0);
-void *__dt__12TWindowTimerFv(void *arg0, s16 arg1);
-void render__12TWindowTimerFv(s32 arg0);
-void run_task__12TWindowTimerFv(TWindowTimer *arg0);
+void init_timer_window_layout(TWindowTimer *window);
+void init_timer_window_layout_alt(TWindowTimer *window);
 }
 
 #endif

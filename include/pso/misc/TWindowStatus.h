@@ -5,6 +5,7 @@
 #include "pso/misc/TWindowSimpleStatus.h"
 
 struct TWindowStatus : public TWindowSimpleStatus {
+    TWindowStatus(void *position, s32 client, u8 *descriptor);
     virtual ~TWindowStatus();
     virtual void render();
     virtual void run_task();

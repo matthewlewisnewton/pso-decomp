@@ -1,3 +1,5 @@
+#include "pso/misc/Scroll_8026D790.h"
+#include "pso/misc/WindowLayoutDescriptor.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowChoiceSetting.h"
@@ -100,37 +102,6 @@ typedef char RecoveredGlobal_80285054_lbl_8050E208_size[sizeof(RecoveredGlobal_8
 
 struct Vec2_80285D38 { f32 x, y; };
 
-struct Parts_80285D38 {
-    s32 f0;
-    u8 pad[0x14];
-    void *vt;
-    u8 pad2[0x20 - 0x1C];
-    s16 id;
-    u8 pad3[0x70 - 0x22];
-    s8 f70;
-    u8 pad4;
-    s8 f72;
-    s8 f73;
-    u8 pad5[2];
-    s16 f76;
-    u8 pad6[0x7C - 0x78];
-    s32 f7C;
-    s32 f80;
-    u8 pad7[0x88 - 0x84];
-    void *sub88;
-    void *sub8C;
-};
-
-struct Parts_80285B84 {
-    u8 pad[0x2C];
-    s32 flags;
-    u8 pad2[0x5C - 0x30];
-    s32 timer;
-    u8 pad3[0x88 - 0x60];
-    s32 sub88;
-    s32 sub8C;
-};
-
 s32 TWindowSubSymbolChat__sub_800771B0(struct TWSC *, s32);
 s32 TWindowSubSymbolChat__sub_800771C4(struct TWSC *, s32);
 s32 refresh_parts__20TWindowSubSymbolChatFv();
@@ -139,22 +110,21 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 
 void __dl__7TObjectFPv(void *);
-void construct_with_parent__15TWindowAdditionFPv(void *, void *, s32, void *);
 void clamp_list_scroll_offset(s32, Vec2_80284D68 *, Vec2_80284D68 *);
 s32 draw_window_scrollbar(s32, s32, void *);
-void * reset_selection__20TWindowSubStatusDispFv(void *, Vec2_80285D38 *);
 s32 sub_80283974__25TWindowSubSymbolChatPartsFv();
 s32 calc_symbol_index__25TWindowSubSymbolChatPartsFv(void *arg0);
 void fn_80285314(Win_802857C4 *, Rect_802857C4 *);
 void fn_802855C4(Win_802857C4 *, Rect_802857C4 *);
 void setup_part_sprites__28TWindowSubSymbolChatPartsSetFPvPvPvUsiiii(void *, void *, void *, u16, s32, s32, s32, s32);
-Parts_80285D38 * TWindowSubSymbolChatParts__ct(Parts_80285D38 *arg0, void *arg1, s32 arg2, s32 arg3);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 
-extern s32 __vt__25TWindowSubSymbolChatParts[];
-extern u8 symbol_chat_parts_window_layout[];
+extern u8 lbl_804D2D40[];
+WindowLayoutDescriptor symbol_chat_parts_window_layout = {
+    {178.0f, 188.0f}, 50050.0f, lbl_804D2D40, 0xC3
+};
 extern RecoveredGlobal_80285054_lbl_8050E208 controller_input_state;
-extern s32 TWindowSubSymbolChatParts__name;
+extern const char *TWindowSubSymbolChatParts__name;
 
 #pragma push
 #pragma fp_contract on
@@ -163,7 +133,7 @@ void fn_80284C04(u8 *arg0) {
     *(s8 *)((s8 *)arg0 + 0x74) = (s8) TWindowSubStatusDisp::round_away_from_zero((f32) *(s16 *)((s8 *)arg0 + 0x76) / 4.0f);
     stack.sp8 = 170.0f;
     stack.spC = (40.0f * (f32) (s8) (u8) *(s8 *)((s8 *)arg0 + 0x74)) + 18.0f;
-    ((TWindowMenu *)(*(u8 **)((s8 *)arg0 + 0x8C)))->copy_position(&stack.sp8);
+    ((Scroll_8026D790 *)(*(u8 **)((s8 *)arg0 + 0x8C)))->copy_position(&stack.sp8);
 }
 #pragma pop
 
@@ -231,7 +201,7 @@ void TWindowSubSymbolChatParts::add_part() {
     play_sound_effect(0x52D01, 0, 0, 0);
     **(s32 * *)&this->_pad84 = 1;
     this->m_70 = (u8) (this->m_70 | 1);
-    ((TWindowSubStatusDisp *)(*(s32 *)&this->m_88))->set_entry_state(2);
+    ((TWindowSubStatusDisp *)m_88)->set_entry_state(2);
 }
 
 void TWindowSubSymbolChatParts::handle_add() {
@@ -241,7 +211,7 @@ void TWindowSubSymbolChatParts::handle_add() {
     }
     play_sound_effect(0x52D01, 0, 0, 0);
     this->m_70 = (u8) (this->m_70 | 1);
-    ((TWindowSubStatusDisp *)(*(s32 *)&this->m_88))->set_entry_state(2);
+    ((TWindowSubStatusDisp *)m_88)->set_entry_state(2);
 }
 
 #pragma push
@@ -413,16 +383,16 @@ void fn_802855C4(Win_802857C4 *self, Rect_802857C4 *ctx) {
 void fn_802857C4(Win_802857C4 *arg0, Rect_802857C4 *ctx) {
     s32 i;
     s32 j;
-    f32 *e0;
+    Part_80285314 *e0;
     s32 row;
-    f32 *e1;
+    Part_80285314 *e1;
     f32 y;
     f32 off;
     f32 x;
     f32 h;
     row = 0;
-    e1 = (f32 *)((TWindowBase *)arg0)->get_array_entry(1);
-    e0 = (f32 *)((TWindowBase *)arg0)->get_array_entry(0);
+    e1 = (Part_80285314 *)((TWindowBase *)arg0)->get_array_entry(1);
+    e0 = (Part_80285314 *)((TWindowBase *)arg0)->get_array_entry(0);
     h = 32.0f;
     for (i = 0; i < arg0->count; row++) {
         off = 40.0f * (f32)row;
@@ -434,10 +404,10 @@ void fn_802857C4(Win_802857C4 *arg0, Rect_802857C4 *ctx) {
             x = 9.0f + off;
             for (j = 0; j < 4; j++, i++) {
                 if (i >= arg0->count) break;
-                e0[2] = 40.0f * (f32)j + 10.0f;
-                e0[3] = x;
-                e1[2] = 16.0f + e0[2];
-                e1[3] = 16.0f + e0[3];
+                e0->x = 40.0f * (f32)j + 10.0f;
+                e0->y = x;
+                e1->x = 16.0f + e0->x;
+                e1->y = 16.0f + e0->y;
                 TWindowSubSymbolChatPartsSet::set_part_sprite(e1, (s16)i, *arg0->p7C, *arg0->p80);
                 draw_visible_window_entries(arg0, arg0->sub, ctx);
             }
@@ -484,93 +454,78 @@ extern "C" void fn_80285A28(Win_80285A28 *self, s32 *help) {
     self->mode = 0;
 }
 
-void render__25TWindowSubSymbolChatPartsFv(u8 *window_sub_symbol_chat_parts) {
-    TWindowDrawContext *temp_r3;
-
-    temp_r3 = get_draw_context__11TWindowBaseFPv(window_sub_symbol_chat_parts);
-    ((TWindowBase *)window_sub_symbol_chat_parts)->draw_window_frame((void *)temp_r3);
-    switch ((s8) (((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->m_71)) {
+void TWindowSubSymbolChatParts::render() {
+    TWindowDrawContext *context = get_draw_context__11TWindowBaseFPv(this);
+    draw_window_frame(context);
+    switch ((s8)m_71) {
     case 0:
-        fn_802857C4((Win_802857C4 *)(window_sub_symbol_chat_parts), (Rect_802857C4 *)(temp_r3));
+        fn_802857C4((Win_802857C4 *)this, (Rect_802857C4 *)context);
         break;
     case 1:
-        fn_802855C4((Win_802857C4 *)window_sub_symbol_chat_parts, (Rect_802857C4 *)temp_r3);
+        fn_802855C4((Win_802857C4 *)this, (Rect_802857C4 *)context);
         break;
     case 2:
-        fn_80285314((Win_802857C4 *)(window_sub_symbol_chat_parts), (Rect_802857C4 *)(temp_r3));
+        fn_80285314((Win_802857C4 *)this, (Rect_802857C4 *)context);
         break;
     }
-    draw_window_scrollbar(((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->m_8c, (s32)temp_r3, window_sub_symbol_chat_parts + 0x68);
-    ((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->sub_80285274((u8 *)temp_r3);
-    forward_render__20TWindowSubStatusDispFv(((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->m_88, (s32)temp_r3);
+    draw_window_scrollbar((s32)m_8c, (s32)context, (u8 *)this + 0x68);
+    sub_80285274((u8 *)context);
+    forward_render__20TWindowSubStatusDispFv((s32)m_88, (s32)context);
 }
 
-void run_task__25TWindowSubSymbolChatPartsFv(Parts_80285B84 *arg0) {
+void TWindowSubSymbolChatParts::run_task() {
     u8 *pad;
-
-    if (!(arg0->flags & 2)) {
-        arg0->timer = 0x01000000;
+    if (!(m_2c & 2)) {
+        m_5c = 0x01000000;
     }
-    if (((s32 (*)(void *))sub_80283974__25TWindowSubSymbolChatPartsFv)(arg0) == 0) {
-        ((TWindowSubSymbolChatParts *)arg0)->sub_80285054();
-        pad = ((u8 *)&controller_input_state) + 0x20;
-        if (TWindowShortListCtrl__check_controller_button(pad, 4) != 0 || test_flag_4c__23TAdSinglePlyChrSelectGCFv(((u8 *)&controller_input_state) + 0x160, 4) != 0) {
-            ((TWindowSubSymbolChatParts *)arg0)->handle_add();
+    if (sub_80283974() == 0) {
+        sub_80285054();
+        pad = (u8 *)&controller_input_state + 0x20;
+        if (TWindowShortListCtrl__check_controller_button(pad, 4) != 0 || test_flag_4c__23TAdSinglePlyChrSelectGCFv((u8 *)&controller_input_state + 0x160, 4) != 0) {
+            handle_add();
         }
         if (TWindowShortListCtrl__check_controller_button(pad, 0x400) != 0) {
-            ((TWindowSubSymbolChatParts *)arg0)->add_part();
+            add_part();
         }
-        if (TWindowShortListCtrl__check_controller_button(pad, 2) != 0 || test_flag_4c__23TAdSinglePlyChrSelectGCFv(((u8 *)&controller_input_state) + 0x160, 2) != 0) {
-            ((TWindowSubSymbolChatParts *)arg0)->handle_cancel();
+        if (TWindowShortListCtrl__check_controller_button(pad, 2) != 0 || test_flag_4c__23TAdSinglePlyChrSelectGCFv((u8 *)&controller_input_state + 0x160, 2) != 0) {
+            handle_cancel();
         }
     }
-    fn_80284FB8(arg0);
-    if ((f32)arg0->timer >= 7.5f) {
-        ((TWindowSubStatusDisp *)(arg0->sub88))->update_subwindow();
-        ((TWindowSubStatusDisp *)(arg0->sub8C))->increment_counter();
+    fn_80284FB8(this);
+    if ((f32)m_5c >= 7.5f) {
+        ((TWindowSubStatusDisp *)m_88)->update_subwindow();
+        fn_8026D9C0(m_8c);
     }
-    ((TWindowDD *)arg0)->initialize_subwindow();
+    ((TWindowDD *)this)->initialize_subwindow();
 }
 
-void *__dt__25TWindowSubSymbolChatPartsFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__25TWindowSubSymbolChatParts;
-        TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)arg0 + 0x8C)), (s16)1);
-        TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x88)), (s16)1);
-        ((TWindowAddition *)arg0)->destroy_window(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TWindowSubSymbolChatParts::~TWindowSubSymbolChatParts() {
+    fn_8026D9D0(m_8c, 1);
+    TWindowSubStatusDisp::destroy_status_display((s32)m_88, 1);
 }
 
-Parts_80285D38 *TWindowSubSymbolChatParts__ct(Parts_80285D38 *arg0, void *arg1, s32 arg2, s32 arg3) {
+void *construct_type1_heading__20TWindowSubStatusDispFll(void *storage, s32 text, s32 client);
+
+TWindowSubSymbolChatParts::TWindowSubSymbolChatParts(void *position, s32 *value7c, s32 *value80)
+    : TWindowAddition((u8 *)&symbol_chat_parts_window_layout, 4, (u8 *)position) {
     Vec2_80285D38 v;
-    void *p;
-    void *q;
-    construct_with_parent__15TWindowAdditionFPv(arg0, symbol_chat_parts_window_layout, 4, arg1);
-    arg0->vt = __vt__25TWindowSubSymbolChatParts;
-    arg0->f0 = TWindowSubSymbolChatParts__name;
-    arg0->f70 = 0;
-    arg0->f72 = 0;
-    arg0->f73 = 0;
-    arg0->f76 = 0;
-    arg0->f7C = arg2;
-    arg0->f80 = arg3;
-    p = ::operator new(0x24);
-    if (p != NULL) {
-        p = ((TWindowSubStatusDisp *)p)->construct_type1_heading(get_message_10__20TWindowSubStatusDispFl(0x33), arg0->id);
+    void *heading;
+    m_name = TWindowSubSymbolChatParts__name;
+    m_70 = 0;
+    m_72 = 0;
+    m_73 = 0;
+    m_76 = 0;
+    m_7c = value7c;
+    m_80 = value80;
+    heading = ::operator new(0x24);
+    if (heading != NULL) {
+        heading = construct_type1_heading__20TWindowSubStatusDispFll(
+            heading, (s32)TWindowSubStatusDisp::get_message_10(0x33), m_20);
     }
-    arg0->sub88 = p;
+    m_88 = heading;
     v.x = 0.0f;
     v.y = 0.0f;
-    q = ::operator new(0xC);
-    if (q != NULL) {
-        q = reset_selection__20TWindowSubStatusDispFv(q, &v);
-    }
-    arg0->sub8C = q;
-    return arg0;
+    m_8c = new Scroll_8026D790(&v);
 }
 
 }

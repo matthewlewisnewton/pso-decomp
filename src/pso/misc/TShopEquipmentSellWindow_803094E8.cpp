@@ -1,15 +1,15 @@
-#include "types.h"
-#include "pso/misc/TWindowBase.h"
-#include "pso/misc/TShopEquipmentSellWindow.h"
 #include "pso/misc/TWindowCost.h"
-#include "pso/boss/TBoss7Crawfish.h"
+#include "pso/misc/TWindowSubComCard_80269064.h"
 
 extern "C" {
+int initialize_subwindow__9TWindowDDFv(void *);
 
-int initialize_subwindow__9TWindowDDFv(void*);
-int fn_80269078(void*);
+void fn_803094E8(TWindowCost *window, s32 value) {
+    fn_80269078((u8 *)window, value);
+}
 
-int TShopEquipmentSellWindow::get_item_count() { return fn_80269078(this); }
-void TWindowCost::run_task() { initialize_subwindow__9TWindowDDFv(this); update_window_entry_list((char*)this + 0x24); }
-
+void TWindowCost::run_task() {
+    initialize_subwindow__9TWindowDDFv(this);
+    update_window_entry_list((char *)this + 0x24);
+}
 }

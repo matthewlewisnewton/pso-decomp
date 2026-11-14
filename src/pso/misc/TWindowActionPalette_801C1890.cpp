@@ -1,3 +1,4 @@
+#include "pso/misc/ActionPaletteTagAbi.h"
 #include "pso/protocol/protocol_types.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
@@ -154,18 +155,18 @@ void is_action_channel_active(s32 *arg0, s32 arg1) {
 void TWindowActionPalette::set_palette_entry(s32 arg0, s32 i, s32 arg2, s32 arg3, s32 arg4) {
     s32 *p = (s32 *)((s32)TWindowActionPalette__sub_801C1C68((O_801C1C68 *)(arg0), i));
     s32 temp_r31 = (s32)(p + arg2);
-    ((TWindowActionPalette *)temp_r31)->set_mode((u8)arg3);
-    ((TWindowActionPalette *)temp_r31)->set_slot((u8)arg4);
+    set_mode__20TWindowActionPaletteFUc((void *)temp_r31, (u8)arg3);
+    set_slot__20TWindowActionPaletteFUc((void *)temp_r31, (u8)arg4);
 }
 
 void TWindowActionPalette::set_slot_by_index(s32 arg0, s32 i, s32 arg2, s32 arg3) {
     s32 *p = (s32 *)((s32)TWindowActionPalette__sub_801C1C68((O_801C1C68 *)(arg0), i));
-    ((TWindowActionPalette *)(p + arg2))->set_slot((u8)arg3);
+    set_slot__20TWindowActionPaletteFUc((void *)(p + arg2), (u8)arg3);
 }
 
 void TWindowActionPalette::set_slot_mode(s32 arg0, s32 i, s32 arg2, s32 arg3) {
     s32 *p = (s32 *)((s32)TWindowActionPalette__sub_801C1C68((O_801C1C68 *)(arg0), i));
-    ((TWindowActionPalette *)(p + arg2))->set_mode((u8)arg3);
+    set_mode__20TWindowActionPaletteFUc((void *)(p + arg2), (u8)arg3);
 }
 
 u8 *TWindowActionPalette__sub_801C1D7C(s32 arg0, s32 i, s32 arg2) {

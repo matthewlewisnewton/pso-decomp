@@ -1,3 +1,5 @@
+#include "pso/misc/TWindowQuantity.h"
+#include "pso/misc/TWindowCost.h"
 #include "pso/system/SoundEffect.h"
 #pragma inline_depth(1)
 #pragma auto_inline off
@@ -135,7 +137,6 @@ s32 sub_802239EC__13TShopSequenceFv(void *);
 s32 sub_80223A48__15TShopWindowBaseFv(void *);
 
 s32 get_cursor_value__19TWindowMenuIconLineFv(void *);
-s32 get_item_count__24TShopEquipmentSellWindowFv(void *a, s32 b);
 int obj_getPtr2B0_20(u8 *p);
 s32 get_entity_id(void *);
 s32 TShopItemTecSequence__sub_8021FE6C();
@@ -143,9 +144,7 @@ s32 get_shop_text(int);
 void *__nw__7TObjectFUl(u32);
 void *__ct__15TWindowHelpItemFPvUs(void *, s32, u16);
 s32 get_window_layout_position(int);
-void *create_window_quantity(u16);
 void *create_item_list_window(s32, s32, u16);
-void *create_cost_window(u16);
 extern const f32 lbl_805DC6F8;
 void *__dt__19TShopItemListWindowFv(TShopItemListWindow *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
@@ -326,7 +325,7 @@ s32 TShopItemListWindow::handle_tool_list_select(void *p) {
             ((TWindowSubStatusDisp *)(W->status))->set_entry1_field20(n);
         }
         if (W->sell != NULL && i != W->cur && (e = (u8 *)W + i * 0x14, *(s32 *)(e + 0x68) > 0)) {
-            get_item_count__24TShopEquipmentSellWindowFv(W->sell, *(s32 *)(e + 0x68));
+            fn_803094E8((TWindowCost *)(W->sell), *(s32 *)(e + 0x68));
         }
         W->cur = i;
     }
@@ -426,14 +425,14 @@ void TShopItemListWindow::build_item_list(void *p) {
         ((TWindowHelpItem *)(W->help))->set_displayed_item_colored((u32)W->recs);
     }
     if (W->status == NULL) {
-        W->status = create_window_quantity(((TShopSequence *)W)->get_child_field1c());
+        W->status = create_window_quantity((u16)(((TShopSequence *)W)->get_child_field1c()));
         n = W->player->inventory_objects->count_items_by_id(W->recs);
         ((TWindowSubStatusDisp *)(W->status))->set_entry1_field20(n);
     }
     if (W->cost == NULL) {
-        W->cost = create_cost_window(get_entity_id(W->player));
+        W->cost = create_cost_window((u16)(get_entity_id(W->player)));
         if ((c = W->cost) != NULL && W->recs[0].price > 0) {
-            get_item_count__24TShopEquipmentSellWindowFv(c, W->recs[0].price);
+            fn_803094E8((TWindowCost *)(c), W->recs[0].price);
         }
     }
 }

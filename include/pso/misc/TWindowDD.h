@@ -61,7 +61,6 @@ struct TWindowDD
     u32 m_100;
     u32 m_104;
     void draw_transformed_primitive(void* a1, void* a2, void* a3);
-    void reset_entries(f32 depth, s32 color);
     void set_quad_corners_scaled(f32 farg0, f32 farg1, f32 farg2);
     static s32 apply_both_choices(s32 arg0, s32 arg1);
     void set_clamped_page(s32 arg1);
@@ -76,14 +75,11 @@ struct TWindowDD
     static s32 check_all_ready(s32 arg0);
     int update_com_card();
     int initialize_subwindow();
-    void *destroy_window_base(s16 arg1);
-    void init_window();
     void init_and_set_field50(void *arg1);
     void update_position(s32 arg1);
     void set_first_entry_text(u32 arg1);
     void set_mode_2();
     void reset_cursor();
-    void handle_scroll_input();
     void init_and_mark_field8C();
     void free_child();
     void init_child(void* a1);
@@ -96,7 +92,6 @@ struct TWindowDD
     s32 update_if_field28_set();
     void get_cursor_pos(u8 *arg1);
     s32 get_field_68();
-    void add_scroll_offset(int a1);
     void enter_state_19();
     void enter_state_18();
     void enter_state_9();
@@ -145,7 +140,6 @@ struct TWindowDD
     s32 count_chars_since_newline(s32 *len);
     static void append_char(s8 arg0, s32 arg1, s32 *arg2);
     static void append_string(s32 arg0, s32 arg1, s32 *arg2);
-    void copy_point_table(s32 idx);
     static s32 get_draw_count(void **arg0);
     static s32 get_entry(s32 arg0);
     int handle_word_select();
@@ -160,7 +154,6 @@ struct TWindowDD
     static void init_ws_data_tables();
     static s32 lookup_item_category(s32 arg0);
     static s32 draw_default_entry(s32 arg0);
-    u8 *construct_base(u8 *arg1, s16 arg2, u8 *arg3);
     void handle_confirm_input();
     void update_selection_state();
 };

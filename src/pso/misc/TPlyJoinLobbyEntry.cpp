@@ -3,6 +3,7 @@
 #include "pso/misc/TWindowBase.h"
 #include "types.h"
 #include "pso/TObject.h"
+#include "pso/TSocket.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 #include "pso/misc/TUnk_804A7008.h"
 #include "pso/system/date.h"
@@ -32,6 +33,9 @@
 #include "pso/ui/TAdScrollWinGC.h"
 #include "pso/ui/TWindowRoom.h"
 #include "pso/ui/Language.h"
+
+typedef char ProtocolInvalidPacketFlagOffset[offsetof(TSocket, m_is_invalid_packet) == 0x2A ? 1 : -1];
+typedef char ProtocolBufferClearedFlagOffset[offsetof(TSocket, m_buffer_cleared) == 0x2B ? 1 : -1];
 
 struct Entry_8013634C {
     u8 tag[8];
@@ -322,7 +326,6 @@ struct Pkt_80136C94 {
 
 typedef struct { u8 pad0[0xA]; char name[0x12]; } Ent_8013703C;
 
-s32 memcpy(void *, void *, int);
 void * memset(void *, int, u32);
 void mark_area_change_pending();
 u16 get_entity_id(void *);
@@ -1000,7 +1003,6 @@ extern const char lbl_8043EF90[];
 extern const char lbl_8043EF9C[];
 extern const char lbl_8043EFB4[];
 void close_all_windows__6TLobbyFv(void);
-void *__ct__11TWindowRoomFPc(void *self, char *title);
 void handle_chat_message__11TWindowCtrlFPc(char *);
 
 #pragma push
@@ -1263,7 +1265,6 @@ void *TKeyBoardControl__ct(void *, s32, s32, s32, s32, s32);
 s32 get_window_layout_position(s32);
 void *__nw__7TObjectFUl(u32);
 void close_all_windows__6TLobbyFv(void);
-s32 fn_80131B18(s32, s32);
 s32 send_room_change__9TProtocolFi(s32, s32);
 
 extern s32 TLobby__data_805D5588;
@@ -2028,14 +2029,14 @@ void handle_comcard_window__6TLobbyFv(void) {
     s32 temp_r3;
 
     if ((u32) lobby_keyboard_controller != 0U) {
-        if (((TWindowSubComCard *)lobby_keyboard_controller)->is_keyboard_active() != 0) {
+        if (((TKeyBoardControl *)lobby_keyboard_controller)->is_keyboard_active() != 0) {
             ((s32 (*)(u32))queue_destruction__7TObjectFv)(lobby_keyboard_controller);
             lobby_keyboard_controller = 0U;
             close_all_windows__6TLobbyFv();
             return;
         }
-        if (((TWindowSubComCard *)lobby_keyboard_controller)->update_keyboard() != 0) {
-            temp_r3 = ((TWindowSubComCard *)lobby_keyboard_controller)->realloc_buffer();
+        if (((TKeyBoardControl *)lobby_keyboard_controller)->is_key_active() != 0) {
+            temp_r3 = (s32)((TKeyBoardControl *)lobby_keyboard_controller)->allocate_text_copy();
             ((s32 (*)(GBig_80138D3C_80137188 *, GLE_80138D3C_80137188 *, s32 *, s32, GBig_80138D3C_80137188 *))send_action__9TProtocolFR13GameListEntryPcPc)((*(GBig_80138D3C_80137188 * *)&TLobby__protocol_instance), &(*(GBig_80138D3C_80137188 * *)&TLobby__protocol_instance)->arr[lobby_selected_game_list_index], &(*(s32 *)&TLobby__data_805DB0B0), temp_r3, (*(GBig_80138D3C_80137188 * *)&TLobby__protocol_instance));
             ::operator delete[](reinterpret_cast<void *>(temp_r3));
             ((s32 (*)(u32))queue_destruction__7TObjectFv)(lobby_keyboard_controller);
@@ -2325,7 +2326,7 @@ void TLobby__sub_801384E4(void) {
                 TLobby__join_lobby_idle_timer = 0;
                 TLobby__data_805D5594 = 0xC;
                 if ((void *) TLobby__protocol_instance != NULL) {
-                    *(u8 *)((s8 *)TLobby__protocol_instance + 0x2A) = (u8) (*(u8 *)((s8 *)TLobby__protocol_instance + 0x2A) | 1);
+                    ((TSocket *)TLobby__protocol_instance)->m_is_invalid_packet |= 1;
                 }
             }
         } else {
@@ -2346,7 +2347,7 @@ void update_state__6TLobbyFv(void) {
                 TLobby__join_lobby_idle_timer = 0;
                 TLobby__data_805D5594 = 0xC;
                 if ((void *) TLobby__protocol_instance != NULL) {
-                    *(u8 *)((s8 *)TLobby__protocol_instance + 0x2A) = (u8) (*(u8 *)((s8 *)TLobby__protocol_instance + 0x2A) | 1);
+                    ((TSocket *)TLobby__protocol_instance)->m_is_invalid_packet |= 1;
                 }
             }
         } else {
@@ -2514,8 +2515,8 @@ void open_keyboard_window__6TLobbyFv(void) {
         kb = TKeyBoardControl__ct(kb, TLobby__join_lobby_controller, 0x10, 0, 0, local_client_id);
     }
     lobby_keyboard_controller = (u32)kb;
-    ((TWindowMakeTeam *)(*(s32 *)&lobby_keyboard_controller))->set_sub_position((u8 *)(get_window_layout_position(0xC4)));
-    fn_80131B18((*(s32 *)&lobby_keyboard_controller), get_window_layout_position(0xC5));
+    ((TKeyBoardControl *)(*(s32 *)&lobby_keyboard_controller))->set_composer_position((u8 *)(get_window_layout_position(0xC4)));
+    ((TKeyBoardControl *)lobby_keyboard_controller)->set_hard_keyboard_position((u8 *)get_window_layout_position(0xC5));
     TLobby__data_805D5594 = 9;
 }
 
@@ -3178,7 +3179,6 @@ void construct_lobby_players(Rec_801378AC *records, s32 count, int self_id, s32 
     s32 j;
     s32 i;
     u8 *plr;
-    void *room;
 
     for (i = 0; i < count; i++) {
         if (self_id == ((Entry_8013634C *)records)[i].client_id) {
@@ -3207,15 +3207,11 @@ void construct_lobby_players(Rec_801378AC *records, s32 count, int self_id, s32 
     }
     *(void **)(TLobby__protocol_instance + 0xBBF0) = (void *)handle_chat_message__11TWindowCtrlFPc;
     if (lobby_player_construction_window != NULL) {
-        lobby_player_construction_window->queue_destruction();
+        queue_destruction__7TObjectFv(lobby_player_construction_window);
         lobby_player_construction_window = NULL;
     }
     sprintf((char *)lbl_80509D3C, lbl_8043EFB4, TLobby__data_8050AAAC, TLobby__data_805D55AC, TLobby__lobby_number + 1);
-    room = __nw__7TObjectFUl(sizeof(TWindowRoom));
-    if (room != NULL) {
-        room = __ct__11TWindowRoomFPc(room, (char *)lbl_80509D3C);
-    }
-    lobby_player_construction_window = (TObject *)room;
+    lobby_player_construction_window = new TWindowRoom((char *)lbl_80509D3C);
     close_all_windows__6TLobbyFv();
 }
 }

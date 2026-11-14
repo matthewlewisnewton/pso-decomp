@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowActionPalette.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowCtrlPlayer.h"
@@ -28,7 +29,6 @@ void run_all_updates__11TWindowCtrlFv(void* p);
 
 s32 is_split_screen(void);
 void *__nw__7TObjectFUl(u32);
-void *TWindowActionPalette__ct(void *, s32);
 s32 get_window_layout_position(s32);
 void *TWindowMainMenu1P__ct(void *, void *, s32);
 void *TWindowMainMenu4P__ct(void *, void *, s32);
@@ -79,10 +79,7 @@ TWindowCtrlPlayer::TWindowCtrlPlayer(TObject *parent, s32 arg2) : TObject(parent
     ((struct Ctl_8024E2A8 *)this)->f2c = (void *)create_message_information_window((s32)(get_window_layout_position(0x20)), (s32)lbl_8044EC4C, (s32)(((struct Ctl_8024E2A8 *)this)->f24));
     ((struct Ctl_8024E2A8 *)this)->f30 = (void *)create_status_window(((struct Ctl_8024E2A8 *)this)->f24);
     ((TObject *)(((struct Ctl_8024E2A8 *)this)->f30))->suspend_update();
-    p = __nw__7TObjectFUl(0x78);
-    if (p != 0) {
-        p = TWindowActionPalette__ct(p, ((struct Ctl_8024E2A8 *)this)->f24);
-    }
+    p = new TWindowActionPalette(((struct Ctl_8024E2A8 *)this)->f24);
     ((struct Ctl_8024E2A8 *)this)->f34 = p;
     ((TObject *)(((struct Ctl_8024E2A8 *)this)->f34))->suspend_update();
 }

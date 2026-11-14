@@ -16,10 +16,10 @@ void TWindowChoiceSetting::sub_80249078() {
     }
     steps = *(u32 *)&this->unk_50;
     if (steps == 0) {
-        *(f32 *)&this->unk_60[0xC] = target;
+        this->m_6c = target;
         return;
     }
     target += 0.5f * (this->m_3c - this->m_4c);
-    *(f32 *)&this->unk_60[0xC] += (target - *(f32 *)&this->unk_60[0xC]) / (f32)steps;
+    this->m_6c += (target - this->m_6c) / (f32)steps;
 }
 #pragma pop

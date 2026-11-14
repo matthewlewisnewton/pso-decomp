@@ -1,3 +1,5 @@
+#include "pso/misc/KeyboardInputQueries.h"
+#include "pso/misc/ActionPaletteTagAbi.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/math/ScratchVectorStorage.h"
@@ -1236,7 +1238,6 @@ s32 play_weapon_hit_sound(void *);
 void apply_camera_shake__10TObjPlayerFiii(TObjPlayer *player, TObjChara *target, s32 damage);
 u8 * find_entity_by_id(s32);
 s32 get_trap_type__10TOMineTrapFv(int);
-s32 TKeyBoardControl__sub_801A58B0();
 s32 TKeyBoardControl__sub_801A58D8();
 s32 is_final_phase__10TObjPlayerFv();
 s32 is_camera_mode_active__10TObjPlayerFv();
@@ -4397,8 +4398,8 @@ void TObjPlayer::update_cursor(s32 parameter) {
 
     temp_r3 = this->m_424;
     if ((temp_r3 != 0U) && (canSetMenuCursorAction(temp_r3 + 0x520, this, 3, (u8) parameter) != 0)) {
-        ((TWindowActionPalette *)(this->m_424 + 0x520))->set_mode(3);
-        ((TWindowActionPalette *)(this->m_424 + 0x520))->set_slot((u8) parameter);
+        set_mode__20TWindowActionPaletteFUc((void *)(this->m_424 + 0x520), 3);
+        set_slot__20TWindowActionPaletteFUc((void *)(this->m_424 + 0x520), (u8) parameter);
         TMainCursor__sub_8013DFC4((u8 *)(this->m_424 + 0x520));
     }
 }

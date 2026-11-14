@@ -1,3 +1,4 @@
+#include "pso/misc/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
@@ -32,9 +33,6 @@ void *TKeyBoardControl__ct(void *, void *, s32, s32, s32, s32);
 extern s32 local_client_id;
 void *get_window_layout_position(s32);
 extern const f32 lbl_805DD144;
-void get_lobby_field_20__15TWindowMakeTeamFv(void *, f32);
-void get_keyboard_field_6c__15TWindowMakeTeamFv(void *, char *);
-char *realloc_buffer__17TWindowSubComCardFv(void *);
 char *get_shared_text_buffer(void);
 s32 measure_string_len__20TWindowSubStatusDispFv(char *);
 char *strncpy(char *, const char *, u32);
@@ -86,22 +84,22 @@ void TWindowMakeTeam::run_task() {
             kb = TKeyBoardControl__ct(kb, self, 0xE, 0, 4, local_client_id);
         }
         self->keyboard = kb;
-        ((TWindowMakeTeam *)(self->keyboard))->set_sub_position((u8 *)(get_window_layout_position(0xCB)));
-        get_lobby_field_20__15TWindowMakeTeamFv(self->keyboard, lbl_805DD144);
-        update_chat_window(self->keyboard);
-        get_keyboard_field_6c__15TWindowMakeTeamFv(self->keyboard, self->name);
+        ((TKeyBoardControl *)(self->keyboard))->set_composer_position((u8 *)(get_window_layout_position(0xCB)));
+        ((TKeyBoardControl *)self->keyboard)->set_keyboard_depth(lbl_805DD144);
+        ((TKeyBoardControl *)(self->keyboard))->set_keyboard_flag62_bit4();
+        ((TKeyBoardControl *)self->keyboard)->set_text(self->name);
         ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(NULL, 0);
         this->m_1c = 4;
     }
     case 4:
-        if (((TWindowSubComCard *)(self->keyboard))->is_keyboard_active() != 0) {
+        if (((TKeyBoardControl *)(self->keyboard))->is_keyboard_active() != 0) {
             ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(self->name, 0);
             this->m_1c = 1;
         }
-        if (((TWindowSubComCard *)(self->keyboard))->update_keyboard() != 0) {
+        if (((TKeyBoardControl *)(self->keyboard))->is_key_active() != 0) {
             s32 n;
             ::operator delete[](self->name);
-            self->name = realloc_buffer__17TWindowSubComCardFv(self->keyboard);
+            self->name = ((TKeyBoardControl *)self->keyboard)->allocate_text_copy();
             TWindowSubComCard::mask_profanity_words(self->name, get_shared_text_buffer());
             n = measure_string_len__20TWindowSubStatusDispFv(self->name);
             strncpy(self->name, get_shared_text_buffer(), n);
@@ -115,21 +113,21 @@ void TWindowMakeTeam::run_task() {
             kb = TKeyBoardControl__ct(kb, self, 0x10, 0, 0, local_client_id);
         }
         self->keyboard = kb;
-        ((TWindowMakeTeam *)(self->keyboard))->set_sub_position((u8 *)(get_window_layout_position(0xCC)));
-        get_lobby_field_20__15TWindowMakeTeamFv(self->keyboard, lbl_805DD144);
-        get_keyboard_field_6c__15TWindowMakeTeamFv(self->keyboard, self->comment);
+        ((TKeyBoardControl *)(self->keyboard))->set_composer_position((u8 *)(get_window_layout_position(0xCC)));
+        ((TKeyBoardControl *)self->keyboard)->set_keyboard_depth(lbl_805DD144);
+        ((TKeyBoardControl *)self->keyboard)->set_text(self->comment);
         ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(NULL, 1);
         this->m_1c = 6;
     }
     case 6:
-        if (((TWindowSubComCard *)(self->keyboard))->is_keyboard_active() != 0) {
+        if (((TKeyBoardControl *)(self->keyboard))->is_keyboard_active() != 0) {
             ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(self->comment, 1);
             this->m_1c = 1;
         }
-        if (((TWindowSubComCard *)(self->keyboard))->update_keyboard() != 0) {
+        if (((TKeyBoardControl *)(self->keyboard))->is_key_active() != 0) {
             s32 n;
             ::operator delete[](self->comment);
-            self->comment = realloc_buffer__17TWindowSubComCardFv(self->keyboard);
+            self->comment = ((TKeyBoardControl *)self->keyboard)->allocate_text_copy();
             TWindowSubComCard::mask_profanity_words(self->comment, get_shared_text_buffer());
             n = measure_string_len__20TWindowSubStatusDispFv(self->comment);
             strncpy(self->comment, get_shared_text_buffer(), n);

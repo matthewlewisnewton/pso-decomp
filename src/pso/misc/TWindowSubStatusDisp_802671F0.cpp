@@ -1,3 +1,4 @@
+#include "pso/misc/Scroll_8026D790.h"
 #include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -102,7 +103,7 @@ extern s32 lbl_805D3968;
 extern RecoveredGlobal_80267704_lbl_804D0604 lbl_804D0604;
 extern s32 lbl_804D05F8[];
 extern RecoveredGlobal_80268048_lbl_8050E208 controller_input_state;
-extern s32 lbl_804D0618[];
+extern s32 __vt__19TWindowMenuIconLine[];
 
 s32 clamp_list_scroll_offset(int, void *, void *);
 s32 get_cursor_pos__14TWindowSubItemFv();
@@ -116,7 +117,6 @@ s32 finalize_state__20TWindowSubStatusDispFv(s32);
 s32 is_flag80_set__20TWindowSubStatusDispFv(s32);
 s32 advance_state__20TWindowSubStatusDispFv();
 s32 init_status_entry__20TWindowSubStatusDispFPvcUii(void*, s32, s32, s32);
-u32 reset_selection__20TWindowSubStatusDispFv(int, void *);
 u32 construct_type1_heading__20TWindowSubStatusDispFll(u32, s32, s16);
 s32 is_decided__19TWindowMenuIconLineFv(void *);
 s32 is_flag_4_set__20TWindowSubStatusDispFv();
@@ -126,7 +126,6 @@ s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);
 struct TWindowDrawContext;
 void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 extern "C" {
-u8 *fn_802683F4(void *, s32, s32, s16);
 u8 *__nw__7TObjectFUl(s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
@@ -134,7 +133,6 @@ s32 is_player_input_active(s32 param_1);
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 void __dl__7TObjectFPv(void *);
-void destroy_window__15TWindowAdditionFs(void *, int);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 
 void TShopJudgmentItemWindow__sub_80267F9C(V_80267F9C v, s32 x);
@@ -171,7 +169,7 @@ void TWindowMenuIconLine::calc_content_extent() {
             v.x -= lbl_805DD184;
         }
         v.y = (f32) (s->count * 20 - 2);
-        ((TWindowMenu *)(s->scrollbar))->copy_position(&v);
+        ((Scroll_8026D790 *)(s->scrollbar))->copy_position(&v);
     }
 }
 
@@ -531,12 +529,7 @@ void TWindowMenuIconLine::create_menu_scroll_bar() {
         temp_f1 = this->m_38 - lbl_805DD180;
         stack.spC = (*(const f32 *)&lbl_805DD188);
         stack.sp8 = temp_f1;
-        temp_r3 = (int)::operator new(0xC);
-        var_r0 = temp_r3;
-        if (var_r0 != 0U) {
-            var_r0 = reset_selection__20TWindowSubStatusDispFv(temp_r3, &stack.sp8);
-        }
-        *(u32 *)&this->unk_84 = var_r0;
+        this->unk_84 = new Scroll_8026D790(&stack.sp8);
         this->m_2c = (s32) (this->m_2c | 0x80);
     }
 }
@@ -590,7 +583,7 @@ void TWindowMenuIconLine::center_list_selection() {
         f32 t = (*(f32 *)&this->m_4c - lbl_805DD1C8) - lbl_805DD1CC;
         target = lbl_805DD1C4 + (f32) (*(s16 *)&this->cursor * 0x14);
         target -= (*(const f32 *)&lbl_805DD1BC) * t;
-        *(f32 *)&this->unk_6C += target - *(f32 *)&this->unk_6C;
+        this->m_6c += target - this->m_6c;
     }
 }
 #pragma pop
@@ -646,35 +639,28 @@ void TWindowMenuIconLine::draw_selected_list_entry(s32 window_key_board_soft) {
     }
 }
 
-void TWindowMenuIconLine__ct(u8 *arg0, u32 arg1, s32 arg2) {
+void TWindowMenuIconLine::vfunc_6(u32 arg1, s32 arg2) {
     u32 i;
     u8 *e;
-    *(s32 *)arg0 = lbl_805D3968;
-    *(s16 *)(arg0 + 0x20) = arg2;
-    *(s16 *)(arg0 + 0x72) = 0;
-    *(s16 *)(arg0 + 0x74) = 0;
-    *(u16 *)(arg0 + 0x76) = arg1;
-    *(s16 *)(arg0 + 0x78) = 0;
-    *(s32 *)(arg0 + 0x7C) = 0;
-    *(s16 *)(arg0 + 0x70) = 0;
-    *(s32 *)(arg0 + 0x80) = 0;
-    *(s32 *)(arg0 + 0x84) = 0;
+    m_name = (const char *)lbl_805D3968;
+    m_20 = arg2;
+    entry_count = 0;
+    cursor = 0;
+    entry_capacity = arg1;
+    m_78 = 0;
+    m_7c = 0;
+    state_flags = 0;
+    status_display = NULL;
+    unk_84 = NULL;
     for (i = 0; i < arg1; i++) {
-        e = ((u8 *(*)(void *, u32))get_array_entry__11TWindowBaseFi)(arg0, i);
+        e = (u8 *)get_array_entry((int)i);
         *(f32 *)(e + 0xC) = (f32)(i * 0x14);
     }
 }
 
 u8 *fn_80267F38(s32 arg0, s32 arg1, s32 arg2, s16 arg3) {
-    u8 *temp_r3;
-    u8 *var_r0;
     ((s32 (*)(void *, void *))TShopJudgmentItemWindow__sub_80267F9C)((void *)arg1, (void *)arg2);
-    temp_r3 = (u8 *)(__nw__7TObjectFUl(0x88));
-    var_r0 = temp_r3;
-    if (var_r0 != NULL) {
-        var_r0 = (u8 *)(fn_802683F4(temp_r3, arg0, arg2, arg3));
-    }
-    return var_r0;
+    return (u8 *)new TWindowMenuIconLine((u8 *)arg0, (u32)arg2, arg3);
 }
 
 void TShopJudgmentItemWindow__sub_80267F9C(V_80267F9C v, s32 x) {
@@ -740,7 +726,7 @@ void TWindowMenuIconLine::run_task() {
         }
         temp_r3_2 = *(u32 *)((s8 *)((u8 *)this) + 0x84);
         if (temp_r3_2 != 0U) {
-            ((TWindowSubStatusDisp *)temp_r3_2)->increment_counter();
+            fn_8026D9C0((void *)temp_r3_2);
         }
     }
     ((TWindowDD *)((u8 *)this))->initialize_subwindow();
@@ -751,16 +737,8 @@ void TWindowMenuIconLine::run_task() {
     this->update_window_entry_list(((u8 *)this) + 0x24);
 }
 
-void *TWindowSubStatusDisp::destroy_item_list_resources(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = lbl_804D0618;
-        TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)this + 0x84)), (s16)1);
-        TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)this + 0x80)), (s16)1);
-        destroy_window__15TWindowAdditionFs(this, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(this);
-        }
-    }
-    return this;
+TWindowMenuIconLine::~TWindowMenuIconLine() {
+    fn_8026D9D0((void *)((s32)(*(void **)((s8 *)this + 0x84))), (s16)1);
+    TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)this + 0x80)), (s16)1);
 }
 }
