@@ -187,6 +187,7 @@ force_active:
   - TAdMultiSaveGC__sub_802FF2B4
   - TAdMultiSaveGC__sub_802FF314
   - TAdPlayerLoadGC__banner_buffers
+  - TAdPlayerLoadGC__card_result_code
   - TAdPlayerLoadGC__data_80511EE8
   - TAdPlayerLoadGC__network_info_payload_buffer
   - TAdPlayerLoadGC__sub_801E101C
@@ -4712,6 +4713,9 @@ force_active:
   - bm_ply_photon_chair_motion_names
   - bm_tec_regurar_model_names
   - bm_tec_regurar_motion_names
+  - bml_header_record_ptr
+  - bml_load_buffer
+  - bml_load_entry_index
   - bml_resource__12TODoorCave01
   - bml_resource__12TODoorCave02
   - bml_resource__12TODoorCave03
@@ -5125,6 +5129,7 @@ force_active:
   - capture_node__24ModelNodePositionCaptureFP10NJS_OBJECT
   - capture_part_matrices__16TObjEneRe7BeruraFP10NJS_OBJECTP18BeruraDetachedPart
   - capture_slime_tail_node
+  - card_load_followup_pending
   - carrier_class_string
   - carrier_point_cursor
   - carrier_sample_index
@@ -7163,6 +7168,7 @@ force_active:
   - fs_obj_o_door06l_motion_names
   - fs_obj_o_vs2door01l_model_names
   - fs_obj_o_vs2door01l_motion_names
+  - fsrv_read_pvm_buffer_tag
   - fxcmp
   - gDBCommTable
   - gReadBuf
@@ -8363,6 +8369,7 @@ force_active:
   - lbl_8043F06C
   - lbl_8043F078
   - lbl_8043F084
+  - lbl_8043F168
   - lbl_80441858
   - lbl_80441874
   - lbl_80443BA8
@@ -8422,6 +8429,8 @@ force_active:
   - lbl_80446FFC
   - lbl_80447008
   - lbl_80447010
+  - lbl_804496A8
+  - lbl_804496B8
   - lbl_80449700
   - lbl_8044A800
   - lbl_8044A80C
@@ -9363,6 +9372,7 @@ force_active:
   - lbl_805D4664
   - lbl_805D4678
   - lbl_805D46C8
+  - lbl_805D4AE0
   - lbl_805D4AF0
   - lbl_805D4AF8
   - lbl_805D4B10
@@ -10229,6 +10239,8 @@ force_active:
   - load_texture_sub__11BmlResourceFPvl
   - lobby_account_entries
   - lobby_alarm_slot_table
+  - lobby_bml_file_handle
+  - lobby_bml_read_buffer
   - lobby_buffer_refcount
   - lobby_checked_read_ptr_table
   - lobby_class_name
