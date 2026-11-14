@@ -1,3 +1,4 @@
+#include "pso/protocol/PppConfigure.h"
 #include "types.h"
 #include "pso/misc/TLobby.h"
 #include "pso/protocol/NetworkRuntime.h"
@@ -422,11 +423,18 @@ typedef struct B_803FADA0 { u8 *buf; u16 len; } B_803FADA0;
 
 typedef struct A_803FADA0 { u8 pad0[4]; u32 a; u32 b; } A_803FADA0;
 
-struct Sub_803FA664 { u8 pad0[0x28]; s16 h1C; u8 pad2A[0x4C - 0x2A]; u8 peer[0x74 - 0x4C]; s16 h74; };
+struct IpcpConfigureOptions {
+    u8 before_request[0x28];
+    s16 request_mask;
+    u8 before_peer[0x4C - 0x2A];
+    u8 peer[0x74 - 0x4C];
+    s16 reply_mask;
+};
+typedef char IpcpConfigureOptionsRequestOffset[offsetof(IpcpConfigureOptions, request_mask) == 0x28 ? 1 : -1];
+typedef char IpcpConfigureOptionsPeerOffset[offsetof(IpcpConfigureOptions, peer) == 0x4C ? 1 : -1];
+typedef char IpcpConfigureOptionsReplyOffset[offsetof(IpcpConfigureOptions, reply_mask) == 0x74 ? 1 : -1];
 
-struct Obj_803FA664 { u8 pad0; u8 b1; u8 pad2[4]; u8 b6; u8 pad7[4]; u8 bB; u8 padC[0x24]; Sub_803FA664 *p30; };
 
-struct Msg_803FA664 { u8 pad0; u8 b1; s16 h2; };
 
 typedef struct B_803FADA0 Ent_80401CE8;
 
@@ -529,7 +537,7 @@ s32 TLobby__sub_80403730(u8 *dst, unsigned short n);
 struct Opt_80400338;
 void TLobby__sub_80400270(B_803FADA0 **pbuf, Opt_80400338 *opt, s16 mask);
 extern u8 lcp_read_byte_buffer;
-s32 TLobby__sub_803FF858(Obj_803FA664 *arg0, Msg_803FA664 *arg1, u32 arg2);
+s32 TLobby__sub_803FF858(PppConfigureContext *arg0, PppConfigureMessage *arg1, u32 arg2);
 s16 TLobby__sub_803FD5A4(s16 h, s16 v);
 s32 TLobby__sub_80406328(s32, s16);
 s16 TLobby__sub_804098B4(void *);
@@ -1956,29 +1964,12 @@ void TLobby__sub_803FF48C(P_803FF48C *o) {
 
 struct Opt_80400338 { s16 mask; u8 pad2[2]; u32 f4; u32 f8; s16 fC; s16 fE; u8 f10; u8 pad11[3]; u32 f14; u32 f18; };
 
-s16 TLobby__sub_803FFB84(u32 *src, Sub_803FA664 *opts, Sub_803FA664 *peer, u8 *hdr, s32 reply);
+s16 TLobby__sub_803FFB84(u32 *src, IpcpConfigureOptions *opts, IpcpConfigureOptions *peer, u8 *hdr, s32 reply);
 
 #pragma push
 #pragma opt_common_subs on
 #pragma dont_inline off
 #pragma inline_depth(4)
-inline s32 ipcp_is_extended_option(u8 type) {
-    s32 result = 0;
-    if (type >= 0x80 && type < 0x90) {
-        result = 1;
-    }
-    return result;
-}
-
-inline s32 ipcp_option_bit(u8 type) {
-    if (type < 8) {
-        return type;
-    }
-    if (ipcp_is_extended_option(type)) {
-        return type - 120;
-    }
-    return 0;
-}
 
 inline s32 ipcp_read_byte(u32 *src) {
     if (TLobby__sub_80401BCC(src, &lcp_read_byte_buffer, 1) != 1) {
@@ -1987,13 +1978,13 @@ inline s32 ipcp_read_byte(u32 *src) {
     return (s16)lcp_read_byte_buffer;
 }
 
-s32 TLobby__sub_803FF50C(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
-    Sub_803FA664 *opts = fsm->p30;
-    Sub_803FA664 *peer = opts;
-    s32 remaining = msg->h2;
+s32 TLobby__sub_803FF50C(PppConfigureContext *fsm, PppConfigureMessage *msg, u32 src) {
+    IpcpConfigureOptions *opts = (IpcpConfigureOptions *)fsm->options;
+    IpcpConfigureOptions *peer = opts;
+    s32 remaining = msg->option_bytes;
     u8 hdr[2];
     s16 n;
-    if (msg->b1 != fsm->b1) {
+    if (msg->identifier != fsm->request_id) {
         return -1;
     }
     while (remaining > 0 && (s16)((TLobby *)hdr)->read_2_bytes(&src) != -1) {
@@ -2001,7 +1992,7 @@ s32 TLobby__sub_803FF50C(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
         if (remaining < 0) {
             return -1;
         }
-        if ((opts->h1C & (1 << ipcp_option_bit(hdr[0]))) == 0) {
+        if ((opts->request_mask & (1 << ppp_configure_option_bit(hdr[0]))) == 0) {
             return -1;
         }
         n = hdr[1] - 2;
@@ -2010,18 +2001,18 @@ s32 TLobby__sub_803FF50C(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
                 return -1;
             }
         }
-        opts->h1C &= ~(1 << ipcp_option_bit(hdr[0]));
+        opts->request_mask &= ~(1 << ppp_configure_option_bit(hdr[0]));
     }
     return 0;
 }
 
-s32 TLobby__sub_803FF698(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
-    Sub_803FA664 *opts = fsm->p30;
-    Sub_803FA664 *peer = opts;
-    s32 remaining = msg->h2;
+s32 TLobby__sub_803FF698(PppConfigureContext *fsm, PppConfigureMessage *msg, u32 src) {
+    IpcpConfigureOptions *opts = (IpcpConfigureOptions *)fsm->options;
+    IpcpConfigureOptions *peer = opts;
+    s32 remaining = msg->option_bytes;
     u8 hdr[2];
     s16 r;
-    if (msg->b1 != fsm->b1) {
+    if (msg->identifier != fsm->request_id) {
         return -1;
     }
     while (remaining > 0 && (s16)((TLobby *)hdr)->read_2_bytes(&src) != -1) {
@@ -2029,15 +2020,15 @@ s32 TLobby__sub_803FF698(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
         if (remaining < 0) {
             return -1;
         }
-        if ((opts->h1C & (1 << ipcp_option_bit(hdr[0]))) == 0) {
-            opts->h1C |= 1 << ipcp_option_bit(hdr[0]);
+        if ((opts->request_mask & (1 << ppp_configure_option_bit(hdr[0]))) == 0) {
+            opts->request_mask |= 1 << ppp_configure_option_bit(hdr[0]);
         }
         r = TLobby__sub_803FFB84(&src, opts, peer, hdr, 0);
         if (r == -1) {
             return -1;
         }
         if (r == 4) {
-            opts->h1C &= ~(1 << ipcp_option_bit(hdr[0]));
+            opts->request_mask &= ~(1 << ppp_configure_option_bit(hdr[0]));
         }
     }
     return 0;
@@ -2051,7 +2042,7 @@ s32 TLobby__sub_803FF698(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(4)
-inline u32 first_803FA664(Sub_803FA664 *s) {
+inline u32 ipcp_serialize_configure_options(IpcpConfigureOptions *s) {
     u32 t;
     u32 v = 0;
     t = v;
@@ -2059,30 +2050,30 @@ inline u32 first_803FA664(Sub_803FA664 *s) {
     if (t == 0) {
         return v;
     }
-    TLobby__sub_80400270((B_803FADA0 **)&t, (Opt_80400338 *)&s->h1C, s->h1C);
+    TLobby__sub_80400270((B_803FADA0 **)&t, (Opt_80400338 *)&s->request_mask, s->request_mask);
     v = t;
     return v;
 }
-inline s32 read_803FA664(u32 *p) {
+inline s32 ipcp_read_configure_byte(u32 *p) {
     if (TLobby__sub_80401BCC(p, &lcp_read_byte_buffer, 1) != 1) {
         return -1;
     }
     return (s16)lcp_read_byte_buffer;
 }
-s32 TLobby__sub_803FF858(Obj_803FA664 *arg0, Msg_803FA664 *arg1, u32 arg2) {
+s32 TLobby__sub_803FF858(PppConfigureContext *arg0, PppConfigureMessage *arg1, u32 arg2) {
     s16 err;
     s16 a;
     s16 b;
     err = 0;
-    if (arg1->b1 != arg0->b1) {
+    if (arg1->identifier != arg0->request_id) {
         return -1;
     }
-    u32 cur = first_803FA664(arg0->p30);
-    if (arg1->h2 != ((TLobby *)cur)->get_field_4()) {
+    u32 cur = ipcp_serialize_configure_options((IpcpConfigureOptions *)arg0->options);
+    if (arg1->option_bytes != ((TLobby *)cur)->get_field_4()) {
         err = 1;
     } else {
-        while ((a = read_803FA664(&cur)) != -1) {
-            b = read_803FA664(&arg2);
+        while ((a = ipcp_read_configure_byte(&cur)) != -1) {
+            b = ipcp_read_configure_byte(&arg2);
             if (b == -1 || b != a) {
                 err = 1;
                 break;
@@ -2092,7 +2083,7 @@ s32 TLobby__sub_803FF858(Obj_803FA664 *arg0, Msg_803FA664 *arg1, u32 arg2) {
     if (err != 0) {
         return -1;
     }
-    arg0->bB++;
+    arg0->accepted_configures++;
     return 0;
 }
 #pragma pop
@@ -2106,24 +2097,24 @@ void TLobby__sub_80400338(B_803FADA0 **pbuf, Opt_80400338 *opt, s32 type, s32 le
 #pragma bool off
 #pragma dont_inline off
 #pragma inline_depth(4)
-s16 TLobby__sub_803FF9A4(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
-    Sub_803FA664 *opts;
+s16 TLobby__sub_803FF9A4(PppConfigureContext *fsm, PppConfigureMessage *msg, u32 src) {
+    IpcpConfigureOptions *opts;
     s32 remaining;
     s16 status;
     s16 r;
     B_803FADA0 *reply;
     u8 hdr[2];
     status = 2;
-    opts = fsm->p30;
-    remaining = msg->h2;
+    opts = (IpcpConfigureOptions *)fsm->options;
+    remaining = msg->option_bytes;
     reply = NULL;
-    opts->h74 = 0;
+    opts->reply_mask = 0;
     while (remaining > 0 && (s16)((TLobby *)hdr)->read_2_bytes(&src) != -1) {
         remaining -= hdr[1];
         if (remaining < 0) {
             return -1;
         }
-        r = TLobby__sub_803FFB84(&src, opts, (Sub_803FA664 *)opts->peer, hdr, 1);
+        r = TLobby__sub_803FFB84(&src, opts, (IpcpConfigureOptions *)opts->peer, hdr, 1);
         if (r == -1) {
             return -1;
         }
@@ -2135,25 +2126,25 @@ s16 TLobby__sub_803FF9A4(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
             status = r;
         }
         if (r != 4) {
-            opts->h74 |= 1 << ipcp_option_bit(hdr[0]);
+            opts->reply_mask |= 1 << ppp_configure_option_bit(hdr[0]);
         }
-        TLobby__sub_80400338(&reply, (Opt_80400338 *)&opts->h74, hdr[0], hdr[1], &src);
+        TLobby__sub_80400338(&reply, (Opt_80400338 *)&opts->reply_mask, hdr[0], hdr[1], &src);
         if (r > 3) {
-            TLobby__sub_803FE6CC(fsm, status, msg->b1, reply);
+            TLobby__sub_803FE6CC(fsm, status, msg->identifier, reply);
         }
     }
     if (status == 3) {
-        if (fsm->b6 != 0) {
-            fsm->b6--;
+        if (fsm->nak_retries != 0) {
+            fsm->nak_retries--;
         } else {
             status = 4;
-            TLobby__sub_803FE6CC(fsm, 4, msg->b1, reply);
+            TLobby__sub_803FE6CC(fsm, 4, msg->identifier, reply);
         }
     }
     if (status > 3) {
         return status != 2;
     }
-    TLobby__sub_803FE6CC(fsm, status, msg->b1, reply);
+    TLobby__sub_803FE6CC(fsm, status, msg->identifier, reply);
     return status != 2;
 }
 #pragma pop
@@ -2392,16 +2383,16 @@ inline void add_lcp_options(B_803FADA0 **pbuf, LcpVals_8040172C *vals, s16 mask)
 }
 
 #pragma push
-s32 TLobby__sub_80400C4C(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
+s32 TLobby__sub_80400C4C(PppConfigureContext *fsm, PppConfigureMessage *msg, u32 src) {
     s16 last = 0;
-    LcpOpts_8040172C *o = (LcpOpts_8040172C *)fsm->p30;
-    s32 left = msg->h2;
+    LcpOpts_8040172C *o = (LcpOpts_8040172C *)fsm->options;
+    s32 left = msg->option_bytes;
     u8 opt[12];
     s16 n;
     u8 len;
     u8 type;
 
-    if (msg->b1 != fsm->b1) {
+    if (msg->identifier != fsm->request_id) {
         return -1;
     }
     while (left > 0 && (s16)((TLobby *)opt)->read_2_bytes(&src) != -1) {
@@ -2429,14 +2420,14 @@ s32 TLobby__sub_80400C4C(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
 
 #pragma push
 #pragma opt_common_subs on
-s32 TLobby__sub_80400DA8(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
-    St_80400BA8 *opts = (St_80400BA8 *)fsm->p30;
+s32 TLobby__sub_80400DA8(PppConfigureContext *fsm, PppConfigureMessage *msg, u32 src) {
+    St_80400BA8 *opts = (St_80400BA8 *)fsm->options;
     St_80400BA8 *peer = opts;
-    s32 remaining = msg->h2;
+    s32 remaining = msg->option_bytes;
     s16 last = 0;
     u8 hdr[2];
     s16 r;
-    if (msg->b1 != fsm->b1) {
+    if (msg->identifier != fsm->request_id) {
         return -1;
     }
     while (remaining > 0 && (s16)((TLobby *)hdr)->read_2_bytes(&src) != -1) {
@@ -2470,8 +2461,8 @@ s32 TLobby__sub_80400DA8(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(4)
-inline u32 first_lcp_options(Obj_803FA664 *fsm) {
-    LcpOpts_8040172C *o = (LcpOpts_8040172C *)fsm->p30;
+inline u32 first_lcp_options(PppConfigureContext *fsm) {
+    LcpOpts_8040172C *o = (LcpOpts_8040172C *)fsm->options;
     B_803FADA0 *t = NULL;
     t = TLobby::init_net_buffer_entry(0);
     if (t == NULL) {
@@ -2488,16 +2479,16 @@ inline s32 read_lcp_byte(u32 *p) {
     return (s16)lobby_read_byte_buffer[0];
 }
 
-s32 TLobby__sub_80400F1C(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
+s32 TLobby__sub_80400F1C(PppConfigureContext *fsm, PppConfigureMessage *msg, u32 src) {
     s16 err;
     s16 a;
     s16 b;
     err = 0;
-    if (msg->b1 != fsm->b1) {
+    if (msg->identifier != fsm->request_id) {
         return -1;
     }
     u32 cur = first_lcp_options(fsm);
-    if (msg->h2 != ((TLobby *)cur)->get_field_4()) {
+    if (msg->option_bytes != ((TLobby *)cur)->get_field_4()) {
         err = 1;
     } else {
         while ((a = read_lcp_byte(&cur)) != -1) {
@@ -2519,7 +2510,7 @@ s32 TLobby__sub_80400F1C(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
 #pragma bool off
 #pragma dont_inline off
 #pragma inline_depth(4)
-s16 TLobby__sub_804010A0(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
+s16 TLobby__sub_804010A0(PppConfigureContext *fsm, PppConfigureMessage *msg, u32 src) {
     St_80400BA8 *opts;
     s32 remaining;
     s16 status;
@@ -2527,8 +2518,8 @@ s16 TLobby__sub_804010A0(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
     B_803FADA0 *reply;
     u8 hdr[2];
     status = 2;
-    opts = (St_80400BA8 *)fsm->p30;
-    remaining = msg->h2;
+    opts = (St_80400BA8 *)fsm->options;
+    remaining = msg->option_bytes;
     reply = NULL;
     opts->f50 = 0;
     reply = TLobby::init_net_buffer_entry(1);
@@ -2557,23 +2548,23 @@ s16 TLobby__sub_804010A0(Obj_803FA664 *fsm, Msg_803FA664 *msg, u32 src) {
         }
         TLobby__sub_804017D8(&reply, (LcpVals_8040172C *)&opts->f50, hdr[0], hdr[1], &src);
         if (r >= 3) {
-            TLobby__sub_803FE6CC(fsm, status, msg->b1, reply);
+            TLobby__sub_803FE6CC(fsm, status, msg->identifier, reply);
         }
     }
     s16 missing = opts->f38 & ~opts->f50;
     if (status == 3) {
-        if (fsm->b6 != 0) {
+        if (fsm->nak_retries != 0) {
             add_lcp_options(&reply, (LcpVals_8040172C *)&opts->f50, missing);
-            fsm->b6--;
+            fsm->nak_retries--;
         } else {
             status = 4;
-            TLobby__sub_803FE6CC(fsm, 4, msg->b1, reply);
+            TLobby__sub_803FE6CC(fsm, 4, msg->identifier, reply);
         }
     }
     if (status >= 3) {
         return status != 2;
     }
-    TLobby__sub_803FE6CC(fsm, status, msg->b1, reply);
+    TLobby__sub_803FE6CC(fsm, status, msg->identifier, reply);
     return status != 2;
 }
 #pragma pop
