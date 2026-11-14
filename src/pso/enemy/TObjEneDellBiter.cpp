@@ -1693,3 +1693,7 @@ s32 TObjEneDellBiter::render_model_if_visible() {
 }
 
 Vec dellbiter_demo_camera_vec;
+
+extern "C" {
+s32 TObjEneDellBiter__demo_rotate_x_angle;
+}

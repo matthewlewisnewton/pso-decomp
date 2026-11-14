@@ -10782,6 +10782,7 @@ pso/enemy/TObjEneDellBiter.cpp:
 	.rodata     start:0x80475330 end:0x80475338
 	.data       start:0x804E6B70 end:0x804E6FA8
 	.bss        start:0x80541E48 end:0x80541E54
+	.sbss       start:0x805D6A38 end:0x805D6A3C
 	.sdata2     start:0x805DEFC0 end:0x805DEFC8
 
 pso/item/TUnk_804E6FA8.cpp:
