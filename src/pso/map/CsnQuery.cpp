@@ -138,6 +138,11 @@ struct Wall_8007A138 {
 
 extern RecoveredGlobal_800790F0_lbl_804F5800 lbl_804F5800;
 extern "C" {
+s32 csn_query_hit_count;
+f32 csn_query_nearest_hit_t;
+CsnHit *csn_query_hit_buffer;
+s32 wall_query_hit_result;
+
 s32 get_csn_group_flags(u8 arg0);
 void TObjPlayer__sub_80079108(void);
 s32 TObjPlayer__sub_80079118(s32 *);
@@ -161,7 +166,6 @@ f32 fabs_float(f32);
 extern const f32 lbl_805D9204;
 s32 select_deepest_wall_ray(Query_80079608 *q, Result_80079608 *r);
 void TObjPlayer__sub_80079124(void * _w0, void * _w1);
-extern CsnHit *csn_query_hit_buffer;
 s32 query_segment_wall_meshes(void *arg0, void *arg1, u32 arg2, Node_8007970C **list);
 s32 check_line_hits_walls__10TObjPlayerFPvPviPv(void *arg0, void *arg1, int arg2, Node_800797DC **list);
 f32 vec3_dot(void *, void *);
@@ -169,7 +173,6 @@ void vec3_cross(void *, void *, void *);
 extern Vec_800798A0 lbl_8050BF20;
 extern Vec_800798A0 lbl_8050BF40;
 extern Vec_800798A0 lbl_8050BF60;
-extern s32 csn_query_hit_count;
 extern const f32 lbl_805D91F0;
 extern const f32 lbl_805D91F4;
 extern const f32 lbl_805D91F8;
@@ -240,8 +243,6 @@ extern s32 lbl_80438988[];
 void *query_prepared_wall_polygons(void *self);
 extern s32 lbl_804389A8[];
 extern E_80079580 *wall_query_scene_buffer;
-extern f32 csn_query_nearest_hit_t;
-extern s32 wall_query_hit_result;
 s32 query_wall_segment(void *arg0, void *arg1, void *arg2, s32 arg3);
 CsnGroup *select_ground_query_groups(CsnVector *arg0, u32 arg1);
 s32 prepare_wall_query_polygons(void *arg0, f32 r, s32 mask);
