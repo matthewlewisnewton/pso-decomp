@@ -1806,3 +1806,14 @@ s16 TLobby__sub_8042455C(char *a) {
 }
 
 }
+
+extern "C" {
+s32 lbl_805D7B80;
+s32 lbl_805D7B84;
+s32 lbl_805D7B88;
+s32 lbl_805D7B8C;
+s32 lbl_805D7B90;
+u32 lbl_805D7B94;
+u32 lbl_805D7B98;
+s32 lbl_805D7B9C;
+}
