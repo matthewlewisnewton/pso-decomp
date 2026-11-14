@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5873 | 884 |
+| pragma | 5879 | 886 |
 | configure.py per-unit override | 209 | 209 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1058, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1155, `inline_depth` 1061, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -876,13 +876,15 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1152, `inline_depth` 1058,
 | `src/pso/misc/TShopKeepItemWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TSwitch.cpp` | readonly_strings×1 |
 | `src/pso/misc/TTecAnti.cpp` | readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1 |
+| `src/pso/misc/TTecBarta.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/misc/TTecCtrl.cpp` | opt_propagation×1 |
 | `src/pso/misc/TTecDeband.cpp` | opt_common_subs×2, readonly_strings×1 |
-| `src/pso/misc/TTecGiBarta.cpp` | auto_inline×2, inline_depth×1, dont_inline×1 |
+| `src/pso/misc/TTecGiBarta.cpp` | dont_inline×2, inline_depth×2, auto_inline×2 |
 | `src/pso/misc/TTecGiFoie.cpp` | opt_propagation×4, opt_common_subs×3, opt_dead_assignments×3, fp_contract×1 |
 | `src/pso/misc/TTecJelin.cpp` | readonly_strings×1 |
 | `src/pso/misc/TTecKafun.cpp` | readonly_strings×1 |
 | `src/pso/misc/TTecLuker.cpp` | opt_common_subs×1, opt_loop_invariants×1 |
+| `src/pso/misc/TTecMegid.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/misc/TTecRaBarta.cpp` | readonly_strings×1, opt_common_subs×1 |
 | `src/pso/misc/TTecRaFoie.cpp` | opt_common_subs×4, readonly_strings×1, fp_contract×1, opt_loop_invariants×1 |
 | `src/pso/misc/TTecRaZonde_80238C6C.cpp` | opt_common_subs×3, readonly_strings×1, fp_contract×1, opt_loop_invariants×1 |

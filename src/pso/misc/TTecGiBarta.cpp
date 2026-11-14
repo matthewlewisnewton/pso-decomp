@@ -1,3 +1,4 @@
+#include "pso/technique/TechniqueBandSound.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundSlotPitch.h"
@@ -163,41 +164,18 @@ void construct_facing_technique__10TObjPlayerFPviPvii();
 void *find_entity_by_id(u16 id);
 void *__nw__7TObjectFUl(int);
 
+#ifdef __MWERKS__
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(1)
+#endif
 void TTecGiBarta::update_technique_by_phase() {
-    u8 *arg0 = (u8 *)this;
-    s32 handle;
-
-    switch (this->band) {
-    case 0:
-        handle = play_sound_effect(0x4002A605, (const Vec *)((arg0 + 0x20)), 0, 0);
-        if (handle >= 0) {
-            update_technique_slot__10TTecRaFoieFl(handle, 0x100, 0);
-        }
-        return;
-    case 1:
-        play_sound_effect(0x4002A605, (const Vec *)((arg0 + 0x20)), 0, 0);
-        return;
-    case 2:
-    case 3:
-        handle = play_sound_effect(0x4002A605, (const Vec *)((arg0 + 0x20)), 0, 0);
-        if (handle >= 0) {
-            update_technique_slot__10TTecRaFoieFl(handle, -0x180, 0);
-        }
-        break;
-    case 4:
-        handle = play_sound_effect(0x4002A605, (const Vec *)((arg0 + 0x20)), 0, 0);
-        if (handle >= 0) {
-            update_technique_slot__10TTecRaFoieFl(handle, -0x250, 0);
-        }
-        break;
-    case 5:
-        handle = play_sound_effect(0x4002A605, (const Vec *)((arg0 + 0x20)), 0, 0);
-        if (handle >= 0) {
-            update_technique_slot__10TTecRaFoieFl(handle, -0x100, 0);
-        }
-        break;
-    }
+    play_technique_band_sound(this, 0x4002A605);
 }
+#ifdef __MWERKS__
+#pragma pop
+#endif
+
 
 #pragma inline_depth(1)
 #pragma auto_inline on
