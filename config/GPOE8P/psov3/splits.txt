@@ -12398,6 +12398,7 @@ pso/enemy/TObjEneIllGill.cpp:
 	.rodata     start:0x8047A350 end:0x8047A358
 	.data       start:0x804F2E40 end:0x804F3184
 	.bss        start:0x80543A60 end:0x80543AA0
+	.sbss       start:0x805D6FD0 end:0x805D6FD4
 
 pso/boss/TBoss6MagMine.cpp:
 	.text       start:0x8036897C end:0x80369654

@@ -1526,3 +1526,7 @@ void TObjEneIllGill::load_shared_resources() {
 }
 
 }
+
+extern "C" {
+BmlResource *illGillResource;
+}
