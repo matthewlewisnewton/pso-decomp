@@ -90,7 +90,7 @@ s32 vec3_add_to(void *, void *);
 f32 vector_length(void *);
 s32 subtract_vector(void *, void *);
 s32 normalize_vector(void *);
-extern const f64 lbl_804793B0;
+static const f64 lbl_804793B0 = 10430.38043493439;
 extern s32 lbl_805E000C;
 int get_player_data__10TObjPlayerFi(int a0);
 extern const f32 lbl_805DFFEC;

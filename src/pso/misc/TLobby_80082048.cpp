@@ -10,10 +10,10 @@
 #include "pso/misc/TUnk_8048E1A4.h"
 #include "pso/system/BmlResourceDescriptor.h"
 
-extern char lbl_80438E60[];
-extern char lbl_80438E74[];
-extern char lbl_80438E80[];
-extern char lbl_80438E94[];
+extern const char lbl_80438E60[] = "ice_break_root.gj";
+extern const char lbl_80438E74[] = "ice_root.gj";
+extern const char lbl_80438E80[] = "ice_break_root.njm";
+extern const char lbl_80438E94[] = "bm_eff_ice.bml";
 extern const char *bm_eff_ice_model_names[3];
 extern const char *bm_eff_ice_motion_names[2];
 extern BmlResourceDescriptor enemy_freeze_ice_resource_descriptor;

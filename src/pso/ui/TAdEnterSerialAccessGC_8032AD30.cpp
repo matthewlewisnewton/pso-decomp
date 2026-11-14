@@ -25,7 +25,7 @@ void sscanf(int, const char *, ...);
 s32 memset(s32, s32, s32);
 extern char lbl_80477260[];
 extern char lbl_80477268[];
-extern char serial_access_hex_string_buf[];
+extern char serial_access_hex_string_buf[0x40];
 u8 *get_access_key_input_buffer();
 u8 *get_raw_serial_input_buffer();
 u8 *TAdEnterPasswordGC__sub_8013ADE4();
@@ -192,3 +192,7 @@ int validate_input__22TAdEnterSerialAccessGCFPviPv(void *arg0, s32 arg1, char *a
 }
 
 int TAdEnterSerialAccessGC::forward_input(void* p) { return ((int (*)(void *))validate_input__22TAdEnterSerialAccessGCFPviPv)(p); }
+
+extern "C" {
+char serial_access_hex_string_buf[0x40];
+}

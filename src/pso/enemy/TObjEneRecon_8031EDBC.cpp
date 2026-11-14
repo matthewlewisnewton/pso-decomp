@@ -22,7 +22,7 @@ struct Rec_8031EDF8
 };
 
 extern s32 actor_frame_tick;
-extern const f32 lbl_805DF448;
+static const f32 lbl_805DF448 = 15.0f;
 
 void TObjEneRecon::remove_tracked_id(s32 id) {
     T_8031EDBC *self = (T_8031EDBC *)this;

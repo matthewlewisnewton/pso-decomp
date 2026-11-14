@@ -5,7 +5,7 @@ int strncmp(const char *, const char *, unsigned long);
 char *strncpy(char *, const char *, unsigned long);
 int atoi(const char *);
 }
-extern char network_info_file_header[19];
+char network_info_file_header[19] = "GAMECUBE_NETINFO\r\n";
 s32 parse_netinfo(char *, u32, NetworkInfoConfig *);
 extern char network_info_unparsed_config_lines[0x400];
 extern char network_info_config_key_iver[5];

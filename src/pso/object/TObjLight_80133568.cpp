@@ -774,3 +774,9 @@ __declspec(section ".sdata2") extern const f32 lbl_805DB09C = 100000000.0f;
 __declspec(section ".sdata2") extern const f32 lbl_805DB0A0 = 0.89999997615814209f;
 __declspec(section ".sdata2") extern const f32 lbl_805DB0A4 = 48.0f;
 }
+
+extern "C" {
+s32 TObjLight__active_light_count;
+s32 TObjLight__actor_light_count;
+s32 TObjLight__light_count;
+}

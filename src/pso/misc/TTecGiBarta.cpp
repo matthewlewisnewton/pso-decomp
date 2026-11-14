@@ -143,9 +143,9 @@ extern Vec_802304A0 lbl_8044D288;
 extern u8 identity_matrix[];
 extern void *technique_effect_bml;
 extern void *lbl_805D63B0;
-extern const f32 lbl_805DC800;
-extern const f32 lbl_805DC804;
-extern const f32 lbl_805DC808;
+static const f32 lbl_805DC800 = 5.0f;
+static const f32 lbl_805DC804 = 1.0f;
+static const f32 lbl_805DC808 = 15.0f;
 
 s32 calc_technique_parameters(int, int, int);
 s32 is_technique_ready__8TTecCtrlFv();
@@ -157,7 +157,7 @@ extern void *__vt__11TTecGiBarta[];
 TTecGiBarta_80230B48 *__dt__11TTecGiBartaFv(TTecGiBarta_80230B48 *self, s16 deleting);
 void __ct__13TUnk_804CCC68FlPUcPUcl();
 extern s32 tec_gibarta_class_name_ptr;
-extern const f32 lbl_805DC80C;
+static const f32 lbl_805DC80C = 12.0f;
 TTecGiBarta_80230C58 *TTecGiBarta__ct(TTecGiBarta_80230C58 *self, void *owner, Vec *pos, Vec *target, s32 level);
 void construct_facing_technique__10TObjPlayerFPviPvii();
 

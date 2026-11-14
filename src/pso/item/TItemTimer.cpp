@@ -193,8 +193,8 @@ void TItemTimer__sub_8011D598(u8 *arg0, s32 arg1, s32 arg2) {
 
 void TItemTimer::reset_fields() { *(s32 *)&this->m_name = 0; *(s32 *)&this->m_flags = 0; }
 
-extern const f32 lbl_805DAC78;
-extern const f32 lbl_805DAC7C;
+static const f32 lbl_805DAC78 = 3.0517578e-05f;
+static const f32 lbl_805DAC7C = 0.0f;
 void TUnk_804A0568::vfunc_6() {
     Timer_8011D5B4 *arg0 = (Timer_8011D5B4 *)this;
     Rec_8011D5B4 a;

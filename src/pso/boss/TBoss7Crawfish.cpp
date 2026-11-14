@@ -90,9 +90,9 @@ s32 obj_isState2_324__9TObjCharaFv(int);
 int rand(void);
 extern s32 game_difficulty_selection;
 extern const f32 TBoss7Crawfish__data_805DF0DC;
-extern const f32 lbl_805DF0E0;
-extern const f32 lbl_805DF0E4;
-extern const f32 lbl_805DF0E8;
+static const f32 lbl_805DF0E0 = 3.0517578e-05f;
+static const f32 lbl_805DF0E4 = 0.5f;
+static const f32 lbl_805DF0E8 = 100.0f;
 
 extern const f32 TBoss7Crawfish__data_805DF0D8;
 s32 get_mode__11TCameraCtrlFPv(void *);
@@ -227,7 +227,7 @@ s32 TBoss7Crawfish::sub_80308AA8() {
 
 void TBoss7Crawfish::render() { if (is_visible() != 0) { set_texlist(this->texlist); set_motion_packed_rotation(); push_matrix(); post_translate_matrix((char*)this + 0x38); rotate_matrix_yxz((s32)((void*)0), (s32)this->rotation.pitch, this->rotation.yaw, this->rotation.roll); scale_current_matrix((char*)this + 0x68); draw(); pop_matrix(); clear_motion_packed_rotation(); } }
 
-extern const f32 lbl_805DF0EC;
+static const f32 lbl_805DF0EC = 14.0f;
 
 void TBoss7Crawfish::clear_object_state_exchange() {
     s32 arg0 = (s32)this;

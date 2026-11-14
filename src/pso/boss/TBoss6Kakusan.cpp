@@ -73,13 +73,13 @@ s32 __ct__7TObjectFP7TObject(void *, void *);
 f32 vector_length(void *);
 extern s32 __vt__13TBoss6Kakusan[];
 extern s32 TBoss6Kakusan__name;
-extern const f32 TBoss6Kakusan__data_805DF518;
-extern const f32 TBoss6Kakusan__data_805DF51C;
-extern const f32 lbl_805DF53C;
+static const f32 TBoss6Kakusan__data_805DF518 = 0.0f;
+static const f32 TBoss6Kakusan__data_805DF51C = 1e-05f;
+static const f32 lbl_805DF53C = 1.0f;
 u8 *TBoss6Kakusan__ct(u8 *arg0, TObject *arg1, Vec *arg2, Vec *arg3, u16 arg4, f32 farg0);
-extern const f32 lbl_805DF52C;
-extern const f32 lbl_805DF530;
-extern const f32 lbl_805DF534;
+static const f32 lbl_805DF52C = -200.0f;
+static const f32 lbl_805DF530 = 200.0f;
+static const f32 lbl_805DF534 = 400.0f;
 void queue_destruction__7TObjectFv(void *);
 s32 query_teammate_state__9TObjEneDDFv();
 }
@@ -94,11 +94,11 @@ extern s32 TBoss6Kakusan__homing_start_frame;
 extern u8 boss6_kakusan_homing_start_initialized;
 extern s32 boss6_kakusan_homing_end_frame;
 extern u8 TBoss6Kakusan__homing_end_frame_initialized;
-extern const f32 lbl_805DF538;
+static const f32 lbl_805DF538 = 10.0f;
 int get_player_data__10TObjPlayerFi(int a0);
-extern const f32 lbl_805DF520;
-extern const f32 lbl_805DF524;
-extern const f32 lbl_805DF528;
+static const f32 lbl_805DF520 = 15.0f;
+static const f32 lbl_805DF524 = 5.0f;
+static const f32 lbl_805DF528 = 0.1f;
 
 #pragma push
 #pragma opt_propagation off

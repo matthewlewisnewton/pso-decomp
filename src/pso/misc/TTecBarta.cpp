@@ -135,8 +135,8 @@ u8 *construct_tec_barta_facing(TTecBarta *arg0, void *_w1, void *_w2, void *_w3,
 void move_ground_technique_projectile(void *p);
 extern s32 technique_effect_bml;
 extern s32 lbl_805D63B0;
-extern const f32 lbl_805DC7A0;
-extern const f32 lbl_805DC7A4;
+static const f32 lbl_805DC7A0 = 1.0f;
+static const f32 lbl_805DC7A4 = 10.0f;
 extern "C" {
 s32 get_bml_motion(s32, s32);
 void *spawn_continuous_particle_with_direction(void *pos, void *dir, s32 id);
