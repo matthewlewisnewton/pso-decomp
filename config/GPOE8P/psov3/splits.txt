@@ -11584,6 +11584,7 @@ pso/misc/TShopDeleteItemWindow.cpp:
 pso/misc/TLobby_803382E4.cpp:
 	.text       start:0x803382E4 end:0x80338740
 	.data       start:0x804EF1B8 end:0x804EF43C
+	.sbss       start:0x805D6D58 end:0x805D6D5C
 
 pso/misc/TWindowSubStatusDisp_80338740.cpp:
 	.text       start:0x80338740 end:0x80338BB4
