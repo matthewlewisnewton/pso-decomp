@@ -1089,3 +1089,8 @@ int TLobby::get_destroy_event_obj() {  return set_event_destroy_id; }
 
 #undef area_event_set_heap
 #undef lobby_slot_ptr_table
+
+extern "C" {
+int wave_event_stop_requested;
+s32 wave_event_trigger_count;
+}
