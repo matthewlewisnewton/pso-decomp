@@ -948,6 +948,7 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     }),
     # Sega's Ginja model library.
     ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
+        "pso/unk/text_803E2D70.cpp": {"cw_align": ".sdata2=4"},
         # render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 /
         # _restgpr_25, and its glyph quads are the inlined SDK FIFO writers
         # (sth/stw to 0xCC008000), not calls. -inline on inlines only functions
