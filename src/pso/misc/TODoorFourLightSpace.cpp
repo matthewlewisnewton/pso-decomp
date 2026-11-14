@@ -45,7 +45,7 @@ extern Tbl_80289EE0 door_four_light_space_index_table;
 extern s32 TODoorFourLight__collision_body_params[];
 extern s32 __vt__20TODoorFourLightSpace[];
 extern s32 lbl_805D3B1C;
-extern const f32 lbl_805DD8F4;
+static const f32 lbl_805DD8F4 = 1.0f;
 extern const f32 lbl_805DD8F8;
 u8 *TODoorFourLightSpace__ct(u8 *arg0, s32 arg1, s32 arg2);
 u8 is_current_floor_switch_set(u16);
@@ -105,7 +105,7 @@ void TODoorFourLightSpace::vfunc_6(s16 *arg1, s32) {
     }
 }
 
-extern const f32 lbl_805DD8F0;
+static const f32 lbl_805DD8F0 = 30.0f;
 
 void TODoorFourLightSpace::update_door_switch_state() {
     u8 *arg0 = (u8 *)this;

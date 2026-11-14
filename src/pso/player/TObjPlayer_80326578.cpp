@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/items/TItemWeapon.h"
@@ -221,17 +222,17 @@ void TObjPlayer::apply_container_item() {
 
 void TUnk_804ED0A8::update_idle() {
     u8 *arg0 = (u8 *)this;
-    TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x1F8), 0x71C, 0x4000);
+    add_integer_clamped((s32 *)(arg0 + 0x1F8), 0x71C, 0x4000);
     if ((s32) *(s32 *)&this->unk_1F8 == 0x4000) {
-        TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x1FC), 0x71C, 0x4000);
+        add_integer_clamped((s32 *)(arg0 + 0x1FC), 0x71C, 0x4000);
     }
 }
 
 void TUnk_804ED0A8::update_attack() {
     u8 *arg0 = (u8 *)this;
-    TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x1FC), -0xAAA, 0);
+    add_integer_clamped((s32 *)(arg0 + 0x1FC), -0xAAA, 0);
     if ((s32) this->m_1fc == 0) {
-        TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x1F8), -0xAAA, 0);
+        add_integer_clamped((s32 *)(arg0 + 0x1F8), -0xAAA, 0);
     }
 }
 
@@ -334,16 +335,16 @@ extern const f32 lbl_805DF670;
 
 void TUnk_804ED298::update_idle() {
     s32 arg0 = (s32)this;
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1F8), (f32)lbl_805DF664, (f32)lbl_805DF668);
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1FC), (f32)lbl_805DF66C, (f32)lbl_805DF670);
+    add_float_clamped((f32 *)(arg0 + 0x1F8), (f32)lbl_805DF664, (f32)lbl_805DF668);
+    add_float_clamped((f32 *)(arg0 + 0x1FC), (f32)lbl_805DF66C, (f32)lbl_805DF670);
 }
 
 extern const f32 lbl_805DF674;
 
 void TUnk_804ED298::update_attack() {
     s32 arg0 = (s32)this;
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1F8), (f32)lbl_805DF670, (f32)lbl_805DF660);
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1FC), (f32)lbl_805DF674, (f32)lbl_805DF660);
+    add_float_clamped((f32 *)(arg0 + 0x1F8), (f32)lbl_805DF670, (f32)lbl_805DF660);
+    add_float_clamped((f32 *)(arg0 + 0x1FC), (f32)lbl_805DF674, (f32)lbl_805DF660);
 }
 
 extern s32 lbl_804ED298[];
@@ -404,14 +405,14 @@ void TObjPlayer__sub_80326F9C(O_80326F9C *arg0) {
 
 void TUnk_804ED390::update_idle() {
     s32 arg0 = (s32)this;
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1F8), (f32)lbl_805DF684, (f32)lbl_805DF688);
+    add_float_clamped((f32 *)(arg0 + 0x1F8), (f32)lbl_805DF684, (f32)lbl_805DF688);
 }
 
 extern const f32 lbl_805DF68C;
 
 void TUnk_804ED390::update_attack() {
     s32 arg0 = (s32)this;
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1F8), (f32)lbl_805DF68C, (f32)lbl_805DF680);
+    add_float_clamped((f32 *)(arg0 + 0x1F8), (f32)lbl_805DF68C, (f32)lbl_805DF680);
 }
 
 extern s32 lbl_804ED390[];

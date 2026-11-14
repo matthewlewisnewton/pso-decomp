@@ -35,8 +35,8 @@ extern "C" {
 s32 is_in_shadow_range(f32, const Vec *);
 s32 project_world_to_screen(int, const Vec *, f32 *);
 f32 transform_point_by_current_matrix(const Vec *, Vec *);
-extern const f32 lbl_805DC098;
-extern const f32 lbl_805DC09C;
+static const f32 lbl_805DC098 = 0.0f;
+static const f32 lbl_805DC09C = 640.0f;
 extern const f32 lbl_805DC0A0;
 }
 
