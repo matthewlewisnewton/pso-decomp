@@ -450,7 +450,7 @@ extern u8 lobby_rule_settings[];
 extern void *lbl_805D2B04;
 extern s32 area_random_seed;
 extern s32 game_difficulty_selection;
-static const f32 lbl_805DA8C0 = 0.10000000149011612f;
+static const f32 lbl_805DA8C0 = 0.1f;
 static const f32 lbl_805DA8C4 = 30.0f;
 static const f32 lbl_805DA8C8 = 40.0f;
 extern s32 lbl_805DA8CC;

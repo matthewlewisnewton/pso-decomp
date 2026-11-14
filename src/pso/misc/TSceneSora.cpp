@@ -64,7 +64,7 @@ s32 __ct__8TObjBaseFP7TObject(void *);
 extern s32 lbl_805D3624;
 extern s32 TSceneSora__has_sky_motion;
 static const f32 lbl_805DC608 = 0.0f;
-static const f32 lbl_805DC60C = 0.10000000149011612f;
+static const f32 lbl_805DC60C = 0.1f;
 u8 *TSceneSora__ct(TSceneSora *arg0, s32 _w1);
 s32 draw_ginja_model_with_motion(int, int, f32);
 s32 rotate_matrix_y(int, int);

@@ -10,11 +10,11 @@ f32 TObjCMIcon__horizontal_scroll_offset;
 
 extern "C" {
 extern f32 cm_icon_screen_position[];
-static const f32 lbl_805DDC44 = 0.1666666716337204f;
-static const f32 lbl_805DDC48 = -0.06666667014360428f;
-static const f32 lbl_805DDC4C = 0.05000000074505806f;
+static const f32 lbl_805DDC44 = 0.16666667f;
+static const f32 lbl_805DDC48 = -0.06666667f;
+static const f32 lbl_805DDC4C = 0.05f;
 static const f32 lbl_805DDC50 = 8.0f;
-static const f32 lbl_805DDC54 = 0.15000000596046448f;
+static const f32 lbl_805DDC54 = 0.15f;
 }
 
 void TObjCMIcon::reset_icon_flags() {

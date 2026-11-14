@@ -242,7 +242,7 @@ static const f32 lbl_805DE930 = -100.0f;
 static const f32 lbl_805DE934 = 1.0f;
 static const f32 lbl_805DE938 = 63.0f;
 static const f32 lbl_805DE93C = 343.0f;
-static const f32 lbl_805DE940 = 0.10000000149011612f;
+static const f32 lbl_805DE940 = 0.1f;
 static const f32 lbl_805DE944 = 0.0f;
 s32 restore_player_cameras();
 s32 TLobby__sub_80070ACC();

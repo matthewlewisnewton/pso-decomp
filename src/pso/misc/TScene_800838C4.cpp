@@ -49,7 +49,7 @@ static const f64 lbl_80439360 = 10430.38043493439;
 extern u8 *camera_ctrl_instance;
 extern const f32 lbl_805D940C;
 static const f32 lbl_805D9428 = 11832.0f;
-static const f32 lbl_805D942C = 0.8500000238418579f;
+static const f32 lbl_805D942C = 0.85f;
 void TScene::apply_single_screen_state() {
     if ((is_split_screen() == 0) && (TObjPlayer::check_all_players_ready() != 0)) {
         model_render_flags &= 0xFFF7FFFF;

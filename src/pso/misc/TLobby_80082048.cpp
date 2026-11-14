@@ -75,8 +75,8 @@ void *create_particle_emitter(void *pos, s32 id);
 extern s32 lbl_8048E1A4[];
 extern s32 tl_05;
 extern const f32 lbl_805D9378;
-static const f32 lbl_805D9398 = 0.15000000596046448f;
-static const f32 lbl_805D939C = 0.07500000298023224f;
+static const f32 lbl_805D9398 = 0.15f;
+static const f32 lbl_805D939C = 0.075f;
 extern const f32 lbl_805D93A0;
 void __dl__7TObjectFPv(void *);
 

@@ -178,7 +178,7 @@ extern const f32 lbl_805D91F4;
 extern const f32 lbl_805D91F8;
 extern const f32 lbl_805D91FC;
 extern const f32 lbl_805D9200;
-static const f32 lbl_805D9208 = -9.999999747378752e-06f;
+static const f32 lbl_805D9208 = -1e-05f;
 static const f32 lbl_805D920C = 1.0f;
 CsnGroup **get_data_ptr__10TObjMapCsnFv();
 M_80079C64 *refill_csn_candidate_cache(P_80079C64 *arg0, M_80079C64 **arg1, u32 arg2);
