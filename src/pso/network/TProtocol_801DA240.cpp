@@ -100,9 +100,9 @@ struct Pkt_801DA734 {
 
 extern "C" {
 int sprintf(char *, const char *, ...);
-extern char TProtocol__recv_trade_list_log_format[];
+extern const char TProtocol__recv_trade_list_log_format[] = "RcvTradeList %d %d";
 void handle_cmd_D3__9TProtocolFR6packet(u8 *arg0, Pkt_801DA35C *src);
-extern char TProtocol__send_trade_list_log_format[];
+extern const char TProtocol__send_trade_list_log_format[] = "SndTradeList %d %d";
 void send_trade_list__6TLobbyFPvPv(VObj_18_801DA4A0 *obj, Pkt_801DA4A0 *src);
 typedef void (*Fn_801DA240)(char *);
 typedef void (*Fn_801DA5E4)(void *);
