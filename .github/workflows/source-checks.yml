@@ -29,18 +29,19 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Install real Ninja for synthetic preparation tests
+      - name: Verify runner-provided Ninja
         run: |
-          sudo apt-get update
-          sudo apt-get install --no-install-recommends -y ninja-build
-          /usr/bin/ninja --version
+          test -f /usr/local/bin/ninja
+          test -x /usr/local/bin/ninja
+          /usr/local/bin/ninja --version
+          sha256sum /usr/local/bin/ninja
 
       - name: Python syntax
         run: python3 -m compileall -q configure.py tools
 
       - name: Synthetic tool tests
         env:
-          PSO_TEST_NINJA: /usr/bin/ninja
+          PSO_TEST_NINJA: /usr/local/bin/ninja
         run: python3 -m unittest discover -s tools/tests -p 'test_*.py' -v
 
       - name: Portable behavior

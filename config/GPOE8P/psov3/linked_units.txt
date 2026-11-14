@@ -1651,6 +1651,7 @@ pso/misc/TWindowChoiceSetting_801A6F38.cpp
 pso/misc/TWindowChoiceSetting_80249240.cpp
 pso/misc/TWindowChoiceSetting_80249610.cpp
 pso/misc/TWindowComCard.cpp
+pso/misc/TWindowComCard_80249CBC.cpp
 pso/misc/TWindowCost.cpp
 pso/misc/TWindowCtrl.cpp
 pso/misc/TWindowCtrlMain.cpp

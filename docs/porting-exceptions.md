@@ -15,6 +15,24 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Shared warning-window lifecycle
+
+The `TObjBagWarnWin` and `TObjBagWarnWin4P` units use guarded
+`dont_inline off` / `inline_depth(2)` controls from the start of each unit
+through deferred template emission. Scoped controls restored before the end
+leave the lifecycle and policy adapters out of line in GC/2.6. The common
+warning lifecycle retains distinct predicates, creation methods and original
+virtual entry points. Ports can remove the pragmas and retain the ordinary
+template and composed warning state.
+
+### Shared three-channel weapon animation
+
+The idle and attack wrappers of `TUnk_804A6200` and `TUnk_804A67D0` use
+guarded, scoped `dont_inline off` / `inline_depth(1)` to expand the common
+`WeaponAnimationChannels` operations at the existing virtual entry points.
+Ports can remove the pragmas and retain the composed state and ordinary C++
+methods. The channels do not establish a new intermediate base class.
+
 ### Shared technique band sounds
 
 The Barta, GiBarta and Megid sound wrappers use guarded, scoped
@@ -135,8 +153,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,881 | 888 |
-| Per-unit compiler overrides in `configure.py` | 210 | 210 |
+| CodeWarrior pragmas (excluding push/pop) | 5,893 | 892 |
+| Per-unit compiler overrides in `configure.py` | 214 | 214 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -340,8 +358,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,871 pragmas in 884 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1151, `inline_depth` 1057, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
+5,893 pragmas in 892 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1162, `inline_depth` 1068, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -674,7 +692,7 @@ The complete provider now links as three native layout groups; see
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-207 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+214 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -690,6 +708,25 @@ use their own compiler versions as recorded there.
 Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
+
+### Window native lifetime emission (deferred codegen)
+
+Approved by Matt (Nov 14 2026, 1:35 PM PT: "#562: approve deferred codegen on
+the window units, with a register row, to replace WindowConstructorAbi.h").
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TWindowDD.cpp` | `TUnk_804EFBAC` ctor/dtor/`render`/`run_task`; `TWindowDD_WS_ScrollBar::render`/`run_task` | unit `configure.py` override `-inline off,deferred`; definitions written in reverse order | The original constructors reach the compiler-generated vtable from the same data base register as the layout/descriptor arrays. MWCC pools only data already defined when a function is generated; without deferral the generated vtable is created at the end of the unit and loaded separately (54.9% best). Deferred emission makes the vtable available during pooling and reverses definition order, so the definitions are written bottom to top. | Drop the flag; keep the ordinary constructor, destructor and `new`. |
+| `src/pso/misc/TWindowDD_80340EA8.cpp` | `TWindowDD_WS_ScrollBar` ctor/dtor | same | Same pooling timing (61.5% without deferral); reversed definitions also restore the `.sdata2` order. | Same. |
+| `src/pso/misc/TWindowDD_80342254.cpp` | `TWindowDD_WS_Word` ctor/dtor | same | Same pooling timing (70.9% without deferral). Word detail: [Word native lifetime emission](#word-native-lifetime-emission). | Same. |
+| `src/pso/misc/TWindowComCard_80249CBC.cpp` | `TUnk_804CE964` ctor/dtor and the rest of the former `TWindowComCard.cpp` tail from `0x80249CBC` | same; `TWindowComCard.cpp` is split at `0x80249CBC` and its first part needs no override | The follower window's generated vtable follows the deferred emission order; the first part of the old unit matches without deferral. | Same. |
+
+These entries replace raw constructor/destructor transport through
+`WindowConstructorAbi.h` (see §9) for these units with real constructors
+(base initializers), compiler-generated vtables, automatic base destruction and
+ordinary `new`. Vtable symbols are 0x18 bytes; the former 0x1C entries included
+four bytes of alignment padding. No other pragma, flag or hand-written table is
+used. Evidence: [window-native-lifetime-deferred.md](evidence/window-native-lifetime-deferred.md).
 
 ### Speech-balloon constant alignment
 
@@ -1882,16 +1919,24 @@ boundaries. See [the complete-unit evidence](evidence/quest-download-unit-comple
 `include/pso/misc/WindowConstructorAbi.h` is a bounded MWCC ABI interface for
 the remaining C-named initializers and destroyers that receive allocated object
 storage. Its declarations name the actual compiler-emitted constructors and
-destructors with their complete native arguments. Recovered C++ constructors
-use base initializers, recovered destructors use automatic base cleanup, and
-the updated factories use ordinary `new`.
-
-The remaining raw destroyers pass the native hidden deleting flag `0` for base
-cleanup. An explicit C++ destructor expression emits `-1` instead; both avoid
-deallocation, but the latter does not reproduce these call sites. No substitute
-helper body, alternate-width mangled declaration, hand-written table, new pragma,
-or compiler override is used. Evidence and full qualification:
+destructors with their complete native arguments. The remaining raw destroyers
+pass the native hidden deleting flag `0` for base cleanup; an explicit C++
+destructor expression would emit `-1`. Evidence and full qualification:
 [window-native-lifetime.md](evidence/window-native-lifetime.md).
+
+It now covers only these leftover raw call sites:
+
+| File | Raw entry points used | Native form still blocked by |
+|---|---|---|
+| `src/pso/misc/TWindowChallengeResult.cpp` | `TWindowBase` ctor and dtor | Its sole allocation producer, `TObjOnlineEnding::create_result_window`, reaches 99.73% with ordinary `new`; the class stays raw until that caller matches. |
+| `src/pso/misc/TWindowKeyBoardHard_802601D4.cpp` | `TWindowBase` dtor | The generated vtable section is 8-aligned; the original table is at `0x804CFDC4` (4 mod 8). |
+| `src/pso/misc/TWindowFukidasi_80252AE4.cpp` | `TWindowAddition` dtor | Native emission order of the balloon vtable and constant pools in `TWindowFukidasi.cpp`. |
+
+The soft keyboard window in `TKeyBoardControl.cpp` uses native construction
+after the keyboard/composer contract recovery. The DD selection, ScrollBar,
+Word and ComCard follower windows moved to native construction under the §5
+entry
+[Window native lifetime emission (deferred codegen)](#window-native-lifetime-emission-deferred-codegen).
 
 A port must replace this symbol-name transport with real constructor/destructor
 calls, or placement construction where an external owner supplies storage.
@@ -2094,6 +2139,9 @@ rounding can use `fmaf` for those expressions. See the
 
 ### Word native lifetime emission
 
+This override is the Word row of the §5 entry
+[Window native lifetime emission (deferred codegen)](#window-native-lifetime-emission-deferred-codegen);
+it is not a separate exception. Word-specific detail:
 `src/pso/misc/TWindowDD_80342254.cpp` uses the supported GC/2.6
 `-inline off,deferred` option and reverse function definitions. The native
 constructor needs its compiler-generated table available during data pooling;

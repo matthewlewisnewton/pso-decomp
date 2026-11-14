@@ -66,7 +66,6 @@ struct TWindowDD
     void set_clamped_page(s32 arg1);
     void handle_input();
     void set_clamped_selection(s32 arg1);
-    static void *construct_variant_a(void *arg0v);
     static void *create();
     static void init_layout_constants();
     void init();
@@ -167,9 +166,5 @@ s32 TWindowDD__sub_80340820(void *p);
 void TWindowDD__sub_80340910(void *p);
 }
 s32 TWindowDD_check_input_mask(void *input_context, s32 arg1);
-extern "C" {
-void *__dt__13TUnk_804EFBACFv(void *arg0, s16 arg1);
-void update_draw__9TWindowDDFPv(void *p);
-}
 
 #endif
