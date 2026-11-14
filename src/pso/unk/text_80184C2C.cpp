@@ -9,7 +9,7 @@
 
 struct Obj_80185160 { u8 pad[0x8C]; s32 dest; };
 
-extern int lbl_8050DC20[];
+extern int lbl_8050DC20[6];
 extern s32 lobby_event_theme_id_table[];
 extern s32 TLobby__event_theme_id;
 extern "C" {
@@ -222,3 +222,4 @@ void TObjLaboMapWarp::slot4C() {
 extern "C" {
 s32 lbl_805D5B30;
 }
+int lbl_8050DC20[6];
