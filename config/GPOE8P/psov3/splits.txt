@@ -1537,6 +1537,7 @@ pso/enemy/DarkGunner.cpp:
 	.text       start:0x800A0EDC end:0x800A3290
 	.rodata     start:0x8043A6B0 end:0x8043A6E8
 	.data       start:0x80490608 end:0x80490998
+	.sbss       start:0x805D5020 end:0x805D5024
 	.sdata2     start:0x805D9978 end:0x805D99D0
 
 pso/enemy/TUnk_804909C4.cpp:
