@@ -493,7 +493,7 @@ void TUnk_804C3248::setup_photon_blast_camera() {
   }
 }
 
-void *destroy_photon_motion_object(void *arg0, s16 arg1) {
+void *__dt__13TUnk_804C3248Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = lbl_804C3248;
         ((TUnk_804C3248 *)arg0)->m_148 = 0;

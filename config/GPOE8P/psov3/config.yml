@@ -2671,6 +2671,7 @@ force_active:
   - __dt__13TObjTreeLobbyFv
   - __dt__13TObjWarnChimeFv
   - __dt__13TParticleCtrlFv
+  - __dt__13TPhotonLeillaFv
   - __dt__13TPlyOnCreatedFv
   - __dt__13TQuestBgmCtrlFv
   - __dt__13TQuestColCtrlFv
@@ -3312,6 +3313,7 @@ force_active:
   - __vt__13TObjTreeLobby
   - __vt__13TObjWarnChime
   - __vt__13TParticleCtrl
+  - __vt__13TPhotonLeilla
   - __vt__13TQuestBgmCtrl
   - __vt__13TQuestColCtrl
   - __vt__13TUnk_80482C58
@@ -9191,6 +9193,7 @@ force_active:
   - lbl_805D34A8
   - lbl_805D34C8
   - lbl_805D34F0
+  - lbl_805D34F8
   - lbl_805D3520
   - lbl_805D3528
   - lbl_805D3640
@@ -10665,6 +10668,7 @@ force_active:
   - photon_blast_farlla_params
   - photon_blast_golla_params
   - photon_blast_joint_origins
+  - photon_blast_leilla_params
   - photon_blast_load_callback_table
   - photon_blast_motion_timing_tables
   - photon_blast_resource_descriptor
@@ -15520,6 +15524,7 @@ force_active:
   - render__13TObjTombstoneFv
   - render__13TObjTreeLobbyFv
   - render__13TPhotonFarllaFv
+  - render__13TPhotonLeillaFv
   - render__13TQuestColCtrlFv
   - render__13TUnk_80484840Fv
   - render__13TUnk_80484870Fv
@@ -16222,6 +16227,7 @@ force_active:
   - run_task__13TObjWarnChimeFv
   - run_task__13TParticleCtrlFv
   - run_task__13TPhotonFarllaFv
+  - run_task__13TPhotonLeillaFv
   - run_task__13TQuestBgmCtrlFv
   - run_task__13TQuestColCtrlFv
   - run_task__13TUnk_80483B88Fv

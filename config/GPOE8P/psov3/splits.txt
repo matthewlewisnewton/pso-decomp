@@ -6229,7 +6229,9 @@ pso/misc/TPhotonLaser.cpp:
 
 pso/misc/TPhotonLeilla.cpp:
 	.text       start:0x801AC43C end:0x801ACA6C
-	.rodata     start:0x80446DF0 end:0x80446DF8
+	.rodata     start:0x80446DD8 end:0x80446E10
+	.data       start:0x804C3778 end:0x804C37D8
+	.sdata      start:0x805D34F8 end:0x805D3500
 	.sdata2     start:0x805DC1C0 end:0x805DC1D8
 
 pso/player/TObjPlayer_801ACA6C.cpp:
