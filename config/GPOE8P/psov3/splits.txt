@@ -1972,6 +1972,7 @@ pso/enemy/TObjEneMe3Shinowa.cpp:
 	.rodata     start:0x8043CFA0 end:0x8043CFA8
 	.data       start:0x80495BE0 end:0x804962F4
 	.bss        start:0x80500FC0 end:0x80501010
+	.sbss       start:0x805D5298 end:0x805D52B0
 	.sdata2     start:0x805DA5B8 end:0x805DA634
 
 pso/player/TObjPlayer_800E80A4.cpp:
