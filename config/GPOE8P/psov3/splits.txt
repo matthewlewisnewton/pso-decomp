@@ -5484,6 +5484,7 @@ pso/object/TObjMapWarpAncient.cpp:
 
 pso/object/TObjGoalWarpAncient.cpp:
 	.text       start:0x8017D21C end:0x8017D2FC
+	.rodata     start:0x80443308 end:0x80443328
 
 pso/misc/TOWreckAncientBrakable05.cpp:
 	.text       start:0x8017D2FC end:0x8017D39C
