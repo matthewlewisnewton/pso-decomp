@@ -2004,3 +2004,8 @@ void TObjEneGibbles::fn_802D9110() {
     submit_cursor_candidate(self, -1);
 }
 #pragma pop
+
+extern "C" {
+BmlResource *TObjEneGibbles__resource_bundle;
+s32 TObjEneGibbles__render_node_index;
+}
