@@ -2309,6 +2309,7 @@ pso/unk/text_80103674.cpp:
 
 pso/unk/text_801036CC.cpp:
 	.text       start:0x801036CC end:0x80103F5C
+	.rodata     start:0x8043E048 end:0x8043E068
 
 pso/misc/TLobby_80103F5C.cpp:
 	.text       start:0x80103F5C end:0x801047B4
