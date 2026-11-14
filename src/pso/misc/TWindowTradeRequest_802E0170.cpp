@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "types.h"
 #include "pso/misc/TWindowMessageYesNo.h"
 #include "pso/misc/TWindowTradeRequest.h"
@@ -44,7 +45,6 @@ s32 init_parts__10TObjPlayerFv();
 void *get_player_by_client_id(s32 i);
 s32 __dl__7TObjectFPv(void *);
 void fn_8024AADC(s32 arg0, s32 arg1);
-void TLobby__sub_8024AC20(s32 arg0);
 void TWindowReturnCity__sub_8024ACA8(s32 arg0);
 extern RecoveredGlobal_802E0224___vt__19TWindowTradeRequest __vt__19TWindowTradeRequest;
 extern s32 local_client_id;
@@ -59,7 +59,6 @@ s32 text_builder_append();
 void text_builder_reset(void);
 extern "C" {
 s32 __ct__7TObjectFP7TObject();
-void TObjPlayer__sub_8024ABDC(s32 arg0);
 void fn_8024AC64(s32 arg0);
 s32 forward_slot_selection__16TAdChrSelASlotGCFPvPv(int, int, int, f32);
 extern s32 lbl_805D3F70;
@@ -110,7 +109,7 @@ u8 *__dt__19TWindowTradeRequestFv(TWindowTradeRequest *arg0, s16 arg1) {
             arg0->m_20 = 0U;
         }
         TWindowReturnCity__sub_8024ACA8((local_client_id));
-        TLobby__sub_8024AC20((local_client_id));
+        enable_player_main_menu((local_client_id));
         if (get_player_by_client_id((local_client_id)) != 0U) {
             init_parts__10TObjPlayerFv();
         }
@@ -156,7 +155,7 @@ u8 *TWindowTradeRequest__ct(TWindowTradeRequest *window_trade_request) {
   {
     reset_equip_slots__10TObjPlayerFv();
   }
-  TObjPlayer__sub_8024ABDC(local_client_id);
+  disable_player_main_menu(local_client_id);
   fn_8024AC64(local_client_id);
   *((s32 *) new_var2) = 0;
   return (u8 *)window_trade_request;

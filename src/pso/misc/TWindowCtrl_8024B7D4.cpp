@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024B7D4.h"
 #include "pso/misc/TWindowCtrl.h"
@@ -83,9 +84,7 @@ void TWindowCtrl::update_pulse_color() {
 
 extern "C" {
 
-s32 has_player_active_menu__11TWindowCtrlFv(s32);
 s32 TWindowCtrl__sub_8024B000(void *, s32);
-s32 is_slot_visible__11TWindowCtrlFv(s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32, s32 *);
 s32 is_split_screen();
 s32 fn_8002AE08(s32);
@@ -94,7 +93,7 @@ extern s32 local_client_id;
 
 void TWindowCtrl__sub_8024B9C0(void *arg0) {
     if ((u32) *(u32 *)((s8 *)arg0 + 0x30) != 0U) {
-        if (is_slot_visible__11TWindowCtrlFv(local_client_id) != 0) {
+        if (is_player_window_visible(local_client_id) != 0) {
             ((TWindowLockOn *)(*(u32 *)((s8 *)arg0 + 0x30)))->request_close();
             return;
         }
@@ -104,7 +103,7 @@ void TWindowCtrl__sub_8024B9C0(void *arg0) {
 
 void TWindowCtrl::update_trade_window() {
     if ((u32) this->m_34 != 0U) {
-        if ((is_slot_visible__11TWindowCtrlFv(local_client_id) != 0) || (TWindowCtrl__sub_8024B000(this, local_client_id) != 0) || ((is_split_screen() != 0) && (TRaderMapCore::is_active() == 0))) {
+        if ((is_player_window_visible(local_client_id) != 0) || (TWindowCtrl__sub_8024B000(this, local_client_id) != 0) || ((is_split_screen() != 0) && (TRaderMapCore::is_active() == 0))) {
             ((TWindowLockOn *)(this->m_34))->request_close();
             return;
         }
@@ -116,7 +115,7 @@ extern u8 controller_input_state[];
 
 void TWindowCtrl::handle_controller() {
     s32 arg0 = (s32)this;
-    if ((get_current_floor_area() == AREA_LOBBY) && (is_slot_visible__11TWindowCtrlFv(local_client_id) == 0) && (TWindowCtrl__sub_8024B000((void *)arg0, (s32)local_client_id) == 0) && (has_player_active_menu__11TWindowCtrlFv(local_client_id) == 0) && (TWindowShortListCtrl__check_controller_button(controller_input_state + 0x20, fn_8002AE08(local_client_id), (s32 *)controller_input_state) != 0)) {
+    if ((get_current_floor_area() == AREA_LOBBY) && (is_player_window_visible(local_client_id) == 0) && (TWindowCtrl__sub_8024B000((void *)arg0, (s32)local_client_id) == 0) && (has_player_active_menu(local_client_id) == 0) && (TWindowShortListCtrl__check_controller_button(controller_input_state + 0x20, fn_8002AE08(local_client_id), (s32 *)controller_input_state) != 0)) {
         TWindowCtrlMain::advance_card_status(local_client_id);
     }
 }
@@ -142,8 +141,6 @@ void TWindowCtrl__sub_8024BB30(TWindowCtrl *ctrl) {
 
 extern "C" {
 
-s32 has_player_active_menu__11TWindowCtrlFv(s32);
-s32 is_slot_visible__11TWindowCtrlFv(s32);
 void *TWindowTradeRequest__ct(void *, void *);
 void *__nw__7TObjectFUl(s32);
 s32 TWindowCtrl__sub_8024701C(void *);
@@ -153,7 +150,7 @@ extern s32 local_client_id;
 void TWindowCtrl::update_trade_request_window() {
     void *var_r0;
 
-    if ((is_trade_active() == 0) || (has_player_active_menu__11TWindowCtrlFv(local_client_id) != 0) || (is_slot_visible__11TWindowCtrlFv(local_client_id) != 0) || ((u32) this->m_3c != 0U) || (((u32) *(void * *)&this->m_38 != 0U) && (TWindowCtrl__sub_8024701C(*(void * *)&this->m_38) != 0))) {
+    if ((is_trade_active() == 0) || (has_player_active_menu(local_client_id) != 0) || (is_player_window_visible(local_client_id) != 0) || ((u32) this->m_3c != 0U) || (((u32) *(void * *)&this->m_38 != 0U) && (TWindowCtrl__sub_8024701C(*(void * *)&this->m_38) != 0))) {
         if ((u32) this->m_40 != 0U) {
             queue_destruction__7TObjectFv(*(void * *)&this->m_40);
             this->m_40 = 0U;
@@ -183,7 +180,7 @@ void TWindowCtrl::update_com_card_window() {
     if ((temp_r3 != 0U) && (((TObject *)temp_r3)->all_parents_unqueued_for_destruction() == 0)) {
         this->m_3c = 0U;
     }
-    if ((is_guild_card_receive_active() == 0) || (has_player_active_menu__11TWindowCtrlFv(local_client_id) != 0) || (is_slot_visible__11TWindowCtrlFv(local_client_id) != 0) || (TWindowCtrl::get_flag_bit5() != 0) || ((u32) this->m_40 != 0U) || ((temp_r3_2 = this->m_38, ((temp_r3_2 == 0U) == 0)) && (TWindowCtrl__sub_8024701C((void *)temp_r3_2) != 0))) {
+    if ((is_guild_card_receive_active() == 0) || (has_player_active_menu(local_client_id) != 0) || (is_player_window_visible(local_client_id) != 0) || (TWindowCtrl::get_flag_bit5() != 0) || ((u32) this->m_40 != 0U) || ((temp_r3_2 = this->m_38, ((temp_r3_2 == 0U) == 0)) && (TWindowCtrl__sub_8024701C((void *)temp_r3_2) != 0))) {
         temp_r3_3 = this->m_3c;
         if (temp_r3_3 != 0U) {
             queue_destruction__7TObjectFv((void *)temp_r3_3);
@@ -204,9 +201,7 @@ void TWindowCtrl::update_com_card_window() {
 extern "C" {
 
 void *get_player_by_client_id(s32 i);
-s32 has_player_active_menu__11TWindowCtrlFv(s32);
 s32 apply_default_vec__11TWindowCtrlFll(void *, s32);
-s32 is_slot_visible__11TWindowCtrlFv(s32);
 }
 s32 chat_accept_submission(s32 arg0);
 extern "C" {
@@ -230,7 +225,7 @@ void TWindowCtrl::update_window_visibility() {
             return;
         }
         current_target_id = TObjPlayer::get_current_target_id();
-        if ((TWindowCtrl::get_display_flag() != 0) || (has_player_active_menu__11TWindowCtrlFv(local_client_id) != 0) || (is_slot_visible__11TWindowCtrlFv(local_client_id) != 0) || (apply_default_vec__11TWindowCtrlFll(arg0, local_client_id) != 0) || (((u16)current_target_id != 0xffffU) && ((s32)(u16)current_target_id != (s32) local_client_id))) {
+        if ((TWindowCtrl::get_display_flag() != 0) || (has_player_active_menu(local_client_id) != 0) || (is_player_window_visible(local_client_id) != 0) || (apply_default_vec__11TWindowCtrlFll(arg0, local_client_id) != 0) || (((u16)current_target_id != 0xffffU) && ((s32)(u16)current_target_id != (s32) local_client_id))) {
             ((TWindowChat *)(this->m_38))->update();
             return;
         }
@@ -264,9 +259,7 @@ void *get_player_by_client_id(s32);
 }
 void window_request_show(void *);
 extern "C" {
-s32 has_player_active_menu__11TWindowCtrlFv(s32);
 int TWindowCtrl__sub_8024B048(void *p);
-s32 is_slot_visible__11TWindowCtrlFv(s32);
 f32 get_target_distance__13TWindowLockOnFv(s32);
 extern s32 local_client_id;
 void TWindowCtrl::update_party_status_rows() {
@@ -279,8 +272,8 @@ void TWindowCtrl::update_party_status_rows() {
         w = ((Ctrl_8024BE80 *)this)->slots[i];
         if (w != NULL && ((TWindowCtrl *)w)->is_flag_2_set() == 0) {
             pl = get_player_by_client_id(get_width__19TWindowSimpleStatusFv(w));
-            if (pl == NULL || has_player_active_menu__11TWindowCtrlFv(local_client_id) != 0 ||
-                is_slot_visible__11TWindowCtrlFv(local_client_id) != 0 || TWindowCtrl__sub_8024B048(this) != 0 ||
+            if (pl == NULL || has_player_active_menu(local_client_id) != 0 ||
+                is_player_window_visible(local_client_id) != 0 || TWindowCtrl__sub_8024B048(this) != 0 ||
                 is_script_controlled__10TObjPlayerFv(pl) != 0 ||
                 (obj_isState3_324__9TObjCharaFv(pl) != 0 &&
                  (((TObjPlayer *)pl)->get_field_828() != 0 || ((TNpcPlayer *)pl)->get_action_flags() == 0xFFFF))) {

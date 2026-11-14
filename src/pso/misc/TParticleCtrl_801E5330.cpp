@@ -20,8 +20,8 @@ extern void *tl_particle;
 extern f32 particle_sprite_atlas_uv_rects[0x10][4];
 extern GinjaTextureList *lbl_805D35A0[2];
 extern f32 lbl_804C6900[1][4];
-extern const f32 lbl_805DC458;
-extern const f32 lbl_805DC45C;
+static const f32 lbl_805DC458 = 0.0f;
+static const f32 lbl_805DC45C = 0.25f;
 
 void TParticleCtrl::reset_emitter_table() {
     s32 i;

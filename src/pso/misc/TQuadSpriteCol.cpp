@@ -58,8 +58,8 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 void set_inverse_color_blend(void);
 void set_constant_material_color(u32 x);
 extern Cam_801E4FF0 lbl_8058D4F8;
-extern const f32 lbl_805DC450;
-extern const f32 lbl_805DC454;
+static const f32 lbl_805DC450 = 480.0f;
+static const f32 lbl_805DC454 = 1.0f;
 extern "C" {
 void *TQuadSpriteCol__ct(void *arg0);
 void quad_sprite_base_ct(void *);

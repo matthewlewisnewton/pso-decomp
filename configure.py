@@ -490,6 +490,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
     # The base collider's vtable follows the derived vtable at 0x804E355C.
     "pso/item/TItemAttackCol_802E4798.cpp": {"cw_align": ".data=4"},
+    # The radar-hide vtable and name pointer both start four bytes past an
+    # eight-byte boundary; preserve their native placement in MWLD metadata.
+    "pso/object/TObjRaderHideCol.cpp": {"cw_align": ".data=4 .sdata=4"},
     # The memory-card menu position precedes the callback templates in .data.
     # Its two read-only layout inputs begin at a four-byte-aligned address.
     "pso/misc/TCheckMemoryCard.cpp": {

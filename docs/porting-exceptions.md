@@ -23,6 +23,33 @@ guarded, scoped `dont_inline off` / `inline_depth(1)` to expand the common
 Ports can remove the pragmas and retain the composed state and ordinary C++
 methods. The channels do not establish a new intermediate base class.
 
+### Shared technique band sounds
+
+The Barta, GiBarta and Megid sound wrappers use guarded, scoped
+`dont_inline off` / `inline_depth(1)` to expand `play_technique_band_sound`
+at their original entry points, keeping the native sound IDs, pitch schedule
+and switch tables. Ports can remove the pragmas and retain the ordinary inline
+function and inherited technique fields.
+
+### Shared cave-sign rendering
+
+`TOSignCave01::render` and `TOSignCave02::render` use guarded, scoped
+`dont_inline off` / `inline_depth(1)` to expand `render_cave_sign` at each
+existing entry point. This retains the two original virtual methods and their
+model traversal while sharing the implementation. Ports can remove the pragmas
+and retain the ordinary inline function; no intermediate class is inferred.
+
+### Zako shadow falloff
+
+`TObjPlayer__sub_8030A9B0` in `src/pso/boss/TBoss4ZakoDraw.cpp` retains
+its existing scoped `fp_contract on`: the cubic distance falloff and alpha
+calculation use the native fused multiply-add/subtract instructions. The unit
+fold removes the old `inline_depth` and `dont_inline` controls and trailing
+redeclaration; ordinary `Vec` copy initialization needs none of them. Ports
+should preserve the floating-point contraction/rounding behavior where required,
+using the platform compiler's equivalent support. See the
+[renderer consolidation evidence](evidence/zako-renderer-consolidation.md).
+
 ### TCP out-of-order receive queue
 
 `TLobby__sub_8041F914` in `src/pso/network/SocketProtocolRuntime.cpp`
@@ -116,8 +143,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,881 | 886 |
-| Per-unit compiler overrides in `configure.py` | 209 | 209 |
+| CodeWarrior pragmas (excluding push/pop) | 5,889 | 890 |
+| Per-unit compiler overrides in `configure.py` | 210 | 210 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -321,8 +348,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,871 pragmas in 884 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1151, `inline_depth` 1057, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
+5,889 pragmas in 890 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1160, `inline_depth` 1066, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -655,7 +682,7 @@ The complete provider now links as three native layout groups; see
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-207 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+210 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -976,6 +1003,16 @@ immediately after the derived vtable. CodeWarrior declares eight-byte
 `.data` alignment. The unit uses `cw_align: .data=4` to retain the
 four-byte boundary in the ELF and CodeWarrior metadata. A port can use its
 default vtable placement.
+
+### `TObjRaderHideCol.cpp` native data alignment
+
+`pso/object/TObjRaderHideCol.cpp` uses `cw_align: .data=4 .sdata=4`.
+Its compiler-generated vtable starts at `0x804B890C`, and its class-name
+pointer at `0x805D3414`. Both addresses have four-byte alignment, while
+GC/2.6 records eight-byte alignment for the emitted sections. The existing
+`cw_comment_align.py` adapter changes only the ELF and CodeWarrior alignment
+metadata; instructions, data and relocations remain compiler-generated.
+A port can use its compiler's default vtable and pointer alignment.
 
 ### `TCheckMemoryCard.cpp` section placement
 

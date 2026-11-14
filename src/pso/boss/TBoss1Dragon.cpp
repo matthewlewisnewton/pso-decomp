@@ -1,3 +1,4 @@
+#include "pso/protocol/BossActionPacket.h"
 #include "pso/boss/TBoss1DragonEffBullet.h"
 #include "pso/boss/EffectGeometryParameters.h"
 #include "pso/misc/CameraHelpers.h"
@@ -224,15 +225,6 @@ struct RecoveredGlobal_800277D8_TBoss1Dragon__data_804FE17C {
     u8 remaining[0x8];
 };
 
-struct pkt_80028530 {
-    u8 hdr[2];
-    u16 target_id;
-    s16 state;
-    s16 cursor;
-    s32 extra;
-    f32 x;
-    f32 z;
-};
 
 struct dragon_80028530 {
     u8 pad0[0x1C];
@@ -392,21 +384,21 @@ extern f32 boss1_dragon_gravity;
 extern const f32 lbl_805D4B40;
 extern s32 tl_05;
 
-extern const f32 lbl_805D8028;
-extern const f32 lbl_805D802C;
-extern const f32 lbl_805D8030;
-extern const f32 lbl_805D8034;
-extern const f32 lbl_805D8038;
-extern const f32 lbl_805D803C;
-extern const f32 lbl_805D8044;
+static const f32 lbl_805D8028 = 22.0f;
+static const f32 lbl_805D802C = -16384.0f;
+static const f32 lbl_805D8030 = 700.0f;
+static const f32 lbl_805D8034 = 0.3f;
+static const f32 lbl_805D8038 = 512.0f;
+static const f32 lbl_805D803C = -512.0f;
+static const f32 lbl_805D8044 = 125.0f;
 extern const f32 lbl_805D80AC;
-extern const f32 lbl_805D8048;
-extern const f32 lbl_805D804C;
-extern const f32 lbl_805D8050;
-extern const f32 lbl_805D8054;
-extern const f32 lbl_805D8058;
-extern const f32 lbl_805D805C;
-extern const f32 lbl_805D8060;
+static const f32 lbl_805D8048 = 45.0f;
+static const f32 lbl_805D804C = 53.0f;
+static const f32 lbl_805D8050 = 47.0f;
+static const f32 lbl_805D8054 = -0.1f;
+static const f32 lbl_805D8058 = 16.0f;
+static const f32 lbl_805D805C = -16.0f;
+static const f32 lbl_805D8060 = 256.0f;
 extern const f32 lbl_805D80C0;
 extern const f32 lbl_805D80C4;
 extern const f32 lbl_805D80C8;
@@ -432,7 +424,7 @@ void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 fla
 void rotate_vec_xz(void *, void *, s32);
 void prepare_flight_destination__12TBoss1DragonFPv(u8 *arg0);
 
-extern const f32 lbl_805D800C;
+static const f32 lbl_805D800C = -400.0f;
 s32 get_current_floor();
 u32 get_player_by_client_id(s32);
 extern u8 lbl_80435394[];
@@ -483,10 +475,10 @@ f32 cos_table_lookup(s32);
 
 extern s32 TBoss1Dragon__data_804FE17C[3];
 
-extern const f32 lbl_805D8078;
-extern const f32 lbl_805D807C;
-extern const f32 lbl_805D8080;
-extern const f32 lbl_805D8084;
+static const f32 lbl_805D8078 = 320.0f;
+static const f32 lbl_805D807C = 0.125f;
+static const f32 lbl_805D8080 = 0.6f;
+static const f32 lbl_805D8084 = 19.0f;
 s32 is_split_screen();
 s32 check_parts_visible__12TBoss1DragonFiPv(s32 arg0, Obj_80021260 *arg1);
 s32 is_sphere_visible__12TBoss1DragonFf(f32 farg0);
@@ -525,7 +517,7 @@ extern "C" {
 f32 vec3_dot(void *, void *);
 
 void play_se_at_pos__12TBoss1DragonFii(s32 arg0, s32 arg1);
-extern const f32 TBoss1Dragon__data_805D8040;
+static const f32 TBoss1Dragon__data_805D8040 = 180.0f;
 void TBoss1Dragon__sub_80028B28(u8 *arg0);
 s32 set_frames__15ProtectionTimerFl(void *, s32);
 extern const f32 lbl_805D8090;
@@ -578,9 +570,9 @@ void send_6x2F_change_player_hp(s32 arg0, s32 arg1, s32 arg2);
 s32 TBoss1Dragon__sub_80027514(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3);
 void TBoss1Dragon__sub_800277D8(u8 *arg0);
 extern const f32 TBoss1Dragon__gravity_accel;
-extern const f32 TBoss1Dragon__data_805D8008;
-extern const f32 lbl_805D8020;
-extern const f32 lbl_805D8024;
+static const f32 TBoss1Dragon__data_805D8008 = 18.0f;
+static const f32 lbl_805D8020 = 44.0f;
+static const f32 lbl_805D8024 = 11.0f;
 void compose_motion_node_matrix(void *arg0);
 s32 matrix_mult_vec(int, void *, void *);
 s32 push_matrix_from(void *);
@@ -925,16 +917,16 @@ extern s32 lbl_80435388[];
 s32 disable_dragon_blocking_bodies(int);
 s32 enable_dragon_blocking_bodies(int, void *, int);
 
-extern const f32 lbl_805D8014;
-extern const f32 TBoss1Dragon__data_805D8018;
-extern const f32 lbl_805D801C;
+static const f32 lbl_805D8014 = 7.0f;
+static const f32 TBoss1Dragon__data_805D8018 = 14.0f;
+static const f32 lbl_805D801C = 0.9f;
 extern const f32 lbl_805D4AF0;
-extern const f32 lbl_805D8064;
-extern const f32 lbl_805D8068;
-extern const f32 lbl_805D806C;
-extern const f32 lbl_805D8070;
+static const f32 lbl_805D8064 = -2.0f;
+static const f32 lbl_805D8068 = 42.0f;
+static const f32 lbl_805D806C = 46.0f;
+static const f32 lbl_805D8070 = 23.0f;
 s32 __ct__21TBoss1DragonEffBreathFP7TObjectPvPv(void *, void *, void *, void *);
-extern const f32 lbl_805D8074;
+static const f32 lbl_805D8074 = 115.0f;
 void clear_work__12TBoss1DragonFi(s32 arg0);
 void TBoss1Dragon__sub_80028AFC(u8 *arg0);
 void spawn_trap__12TBoss1DragonFii(s32 arg0, s32 arg1);
@@ -960,13 +952,13 @@ s32 is_dragon_trail_damaging(u8 *arg0);
 
 void set_collider_contact_low(u8 *arg0);
 void set_collider_contact_high(u8 *arg0);
-void handle_6x12_dragon_boss_actions(TObjPlayer *arg0);
+void handle_6x12_dragon_boss_actions(void *arg0);
 void handle_6x11_dragon_boss_actions(void *arg0);
 void handle_6x10_dragon_boss_actions(void *arg0);
 extern u32 TBoss1Dragon__data_805D4B28;
 
 extern f32 lbl_805D8088;
-extern const f32 TBoss1Dragon__data_805D8010;
+static const f32 TBoss1Dragon__data_805D8010 = 10.0f;
 extern const f32 lbl_805D8098;
 extern const f32 lbl_805D809C;
 extern const f32 lbl_805D80A0;
@@ -5017,9 +5009,6 @@ void TBoss1Dragon::restoreTargetPosition() {
     target_destination.z = savedZ;
 }
 
-struct Pkt_800284B4 {
-    u16 hdr; u16 owner; s16 state; s16 cursor; s32 target; f32 x; f32 z;
-};
 struct Dragon_800284B4 {
     u8 pad0[0x1C]; u16 owner; u8 pad1[0x38C - 0x1E]; u16 target; u8 pad2[0x67C - 0x38E];
     s32 cursor; u8 pad3[0x690 - 0x680]; f32 x; f32 z;
@@ -5027,29 +5016,29 @@ struct Dragon_800284B4 {
 
 void TBoss1Dragon::request_state_change(u32 state32) {
     struct Dragon_800284B4 *self = (struct Dragon_800284B4 *)this;
-    struct Pkt_800284B4 pkt;
+    DragonActionPacket pkt;
 
     ((TBoss1Dragon *) self)->dispatch_action(state32, 6);
-    ((TObjPlayer *)(&pkt))->set_type_dragon();
-    pkt.owner = self->owner;
-    pkt.state = state32;
-    pkt.cursor = self->cursor;
-    pkt.target = self->target;
+    init_boss_action_6x12(&pkt);
+    pkt.target.action.header.client_id = self->owner;
+    pkt.target.action.action = state32;
+    pkt.target.action.sequence = self->cursor;
+    pkt.target.target_entity_id = self->target;
     pkt.x = self->x;
     pkt.z = self->z;
-    ((TObjPlayer *)(&pkt))->send_6x12_packet();
+    send_boss_action_6x12(&pkt);
 }
 
 void send_state_sync__12TBoss1DragonFPv(struct dragon_80028530 *s) {
-    struct pkt_80028530 pkt;
-    ((TObjPlayer *)(&pkt))->set_type_dragon();
-    pkt.target_id = s->target_id;
-    pkt.state = s->mode;
-    pkt.cursor = (s16) s->sequence_cursor;
-    pkt.extra = s->extra;
+    DragonActionPacket pkt;
+    init_boss_action_6x12(&pkt);
+    pkt.target.action.header.client_id = s->target_id;
+    pkt.target.action.action = s->mode;
+    pkt.target.action.sequence = (s16) s->sequence_cursor;
+    pkt.target.target_entity_id = s->extra;
     pkt.x = s->outgoing_x;
     pkt.z = s->outgoing_z;
-    ((TObjPlayer *)(&pkt))->send_6x12_packet();
+    send_boss_action_6x12(&pkt);
 }
 
 void TBoss1Dragon::receive_state_request(u8 *arg1) {
@@ -5065,9 +5054,9 @@ void TBoss1Dragon::receive_state_request(u8 *arg1) {
     }
 }
 
-void handle_6x12_dragon_boss_actions(TObjPlayer *arg0) {
+void handle_6x12_dragon_boss_actions(void *arg0) {
     void *x;
-    arg0->bswap_6x12_packet();
+    bswap_boss_action_6x12(arg0);
     x = get_enemy_entity(*(u16 *)((s8 *)arg0 + 0x2));
     if (x != NULL) {
         ((TBoss1Dragon *)x)->receive_state_request((u8 *)arg0);
@@ -5084,7 +5073,7 @@ void TBoss1Dragon::set_params(void *arg1) {
 
 void handle_6x11_dragon_boss_actions(void *arg0) {
     void *x;
-    ((TObjPlayer *)arg0)->bswap_dragon_boss_fields();
+    bswap_boss_action_6x11(arg0);
     x = get_enemy_entity(*(u16 *)((s8 *)arg0 + 0x2));
     if (x != NULL) {
         ((TBoss1Dragon *)x)->set_params(arg0);
@@ -5099,7 +5088,7 @@ void TBoss1Dragon::copy_params(void *arg1) {
 
 void handle_6x10_dragon_boss_actions(void *arg0) {
     void *x;
-    ((TObjPlayer *)arg0)->bswap_stats();
+    bswap_boss_action_6x10(arg0);
     x = get_enemy_entity(*(u16 *)((s8 *)arg0 + 0x2));
     if (x != NULL) {
         ((TBoss1Dragon *)x)->copy_params(arg0);
@@ -6298,11 +6287,11 @@ void TObjMotion::set_action_table(TObjMotionAction *v) { action_table = v; }
 void TObjPlayer::reset_lobby_model() { reset_type(); }
 void TObjPlayer::reset_type() { *(s32*)((char*)this + 0x0) = 0; }
 void ProtectionTimer::set_frames(s32 v) { frames = v; }
-void TObjPlayer::send_6x12_packet() { bswap_6x12_packet(); send_subcommand((u8 *)this); }
-void TObjPlayer::bswap_6x12_packet() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_32((u32 *)((char*)this + 0x8)); }
-void TObjPlayer::set_type_dragon() { *(u8*)((char*)this + 0x0) = 18; *(u8*)((char*)this + 0x1) = 5; }
-void TObjPlayer::bswap_dragon_boss_fields() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_32((u32 *)((char*)this + 0x8)); }
-void TObjPlayer::bswap_stats() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_32((u32 *)((char*)this + 0x8)); }
+void send_boss_action_6x12(void *packet) { bswap_boss_action_6x12(packet); send_subcommand((u8 *)packet); }
+void bswap_boss_action_6x12(void *packet) { ((G_ClientIDHeader *)packet)->bswap(); bswap_16((u16 *)((char*)packet + 0x4)); bswap_16((u16 *)((char*)packet + 0x6)); bswap_32((u32 *)((char*)packet + 0x8)); }
+void init_boss_action_6x12(void *packet) { *(u8*)((char*)packet + 0x0) = 18; *(u8*)((char*)packet + 0x1) = 5; }
+void bswap_boss_action_6x11(void *packet) { ((G_ClientIDHeader *)packet)->bswap(); bswap_16((u16 *)((char*)packet + 0x4)); bswap_16((u16 *)((char*)packet + 0x6)); bswap_32((u32 *)((char*)packet + 0x8)); }
+void bswap_boss_action_6x10(void *packet) { ((G_ClientIDHeader *)packet)->bswap(); bswap_16((u16 *)((char*)packet + 0x4)); bswap_16((u16 *)((char*)packet + 0x6)); bswap_32((u32 *)((char*)packet + 0x8)); }
 s32 TObjEnemy::exchange_object_state(void *state, s16 operation) {
     s16 temp_r31;
     temp_r31 = *(s16 *)&this->set_index;

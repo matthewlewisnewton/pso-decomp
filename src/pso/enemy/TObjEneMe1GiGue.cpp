@@ -138,7 +138,7 @@ void vec3_add_to(void *, void *);
 void matrix_mult_vec(int, Vec *, void *);
 extern Vec lbl_80472280;
 extern Vec lbl_8047228C;
-extern const f64 TObjEneMe1GiGue__data_80472298;
+static const f64 TObjEneMe1GiGue__data_80472298 = 10430.38043493439;
 s16 get_entity_id(void *);
 s32 angle_difference_abs(s32, s32);
 void subtract_vector(void *, void *);
@@ -1447,4 +1447,10 @@ f32 TObjEneMe1GiGue::receive_weapon_special_attack(void *attacker, void *attack)
         damage_received = TObjChara::receive_weapon_special_attack(attacker, attack);
     }
     return damage_received;
+}
+
+extern "C" {
+BmlResource *TObjEneMe1GiGue__data_805D6838;
+TUnk_8048FA00 *TObjEneMe1GiGue__barrier_obj;
+f32 lbl_805D6840;
 }

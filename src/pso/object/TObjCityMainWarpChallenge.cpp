@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -269,7 +270,7 @@ void TObjCityMainWarp__sub_801875F8(TObjCityMainWarpChallenge *self) {
                 ((TWindowSubShortMail *)self->m_168)->notify_warp_flag70();
                 begin_player_keyboard_hold(local_client_id);
                 request_active_window_close();
-                ((TWindowCtrl *)local_client_id)->suppress_slot();
+                suppress_player_window(local_client_id);
             }
         }
         break;

@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/object/TObjCityMainWarpChallenge.h"
@@ -47,7 +48,7 @@ void TObjCityMainWarpChallenge::close_windows() {
     }
     end_player_keyboard_hold(local_client_id);
     TWindowCtrl::clear_flag();
-    ((TWindowCtrl *)local_client_id)->unsuppress_slot();
+    unsuppress_player_window(local_client_id);
 }
 
 void TObjCityMainWarpChallenge::send_6x6A_set_boss_warp_flags(u16 value) {

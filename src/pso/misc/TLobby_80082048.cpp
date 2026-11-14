@@ -10,10 +10,10 @@
 #include "pso/misc/TUnk_8048E1A4.h"
 #include "pso/system/BmlResourceDescriptor.h"
 
-extern char lbl_80438E60[];
-extern char lbl_80438E74[];
-extern char lbl_80438E80[];
-extern char lbl_80438E94[];
+extern const char lbl_80438E60[] = "ice_break_root.gj";
+extern const char lbl_80438E74[] = "ice_root.gj";
+extern const char lbl_80438E80[] = "ice_break_root.njm";
+extern const char lbl_80438E94[] = "bm_eff_ice.bml";
 extern const char *bm_eff_ice_model_names[3];
 extern const char *bm_eff_ice_motion_names[2];
 extern BmlResourceDescriptor enemy_freeze_ice_resource_descriptor;
@@ -75,8 +75,8 @@ void *create_particle_emitter(void *pos, s32 id);
 extern s32 lbl_8048E1A4[];
 extern s32 tl_05;
 extern const f32 lbl_805D9378;
-extern const f32 lbl_805D9398;
-extern const f32 lbl_805D939C;
+static const f32 lbl_805D9398 = 0.15f;
+static const f32 lbl_805D939C = 0.075f;
 extern const f32 lbl_805D93A0;
 void __dl__7TObjectFPv(void *);
 

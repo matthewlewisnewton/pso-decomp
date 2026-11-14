@@ -706,3 +706,7 @@ Group_801A7428 photon_blast_attachment_table[7] = {
 Reg_801A7578 photon_blast_joint_origins[1];
 Ent_801A710C photon_blast_hit_queue[32];
 Ent_801A70C8 deferred_photon_blast_hit_queue[32];
+
+extern "C" {
+s32 photon_blast_joint_index;
+}

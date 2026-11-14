@@ -3400,3 +3400,10 @@ void TBoss6Type2__vt47(void) {  }
 void TBoss6Type2__vt48(void) {  }
 }
 #pragma pop
+
+extern "C" {
+f32 TBoss6Type2__foot_lift_height;
+u8 TBoss6Type2__foot_lift_height_initialized;
+f32 boss6_type2_footstep_height_threshold;
+u8 boss6_type2_footstep_threshold_initialized;
+}

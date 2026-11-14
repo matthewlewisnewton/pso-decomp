@@ -231,7 +231,7 @@ struct Obj_8009A4B8 {
 
 extern "C" {
 extern Vec_8009A640 bringer_effect_vec_table[6];
-extern u32 bringer_effect_color_table[];
+extern u32 bringer_effect_color_table[12];
 
 void TUnk_8048FE7C::run_task() {
     switch (((Obj_8009A4B8 *)this)->state) {
@@ -454,4 +454,9 @@ u8 *construct_bringer_rush_effect(u8 *ene_df2_bringer_eff_rush, s32 arg1, u8 *ar
         rotate_xz_pair_by_angle(ene_df2_bringer_eff_rush + 0x20, ene_df2_bringer_eff_rush + 0x28, 0x1800);
     }
     return ene_df2_bringer_eff_rush;
+}
+
+extern "C" {
+Vec_8009A640 bringer_effect_vec_table[6];
+u32 bringer_effect_color_table[12];
 }

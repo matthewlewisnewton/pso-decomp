@@ -1406,3 +1406,8 @@ void TRaderMapCore::update_target() {
 Gate_801FA1E0 TRaderMapCore__marker_buffer[128];
 RadarMapViewState TRaderMapCore__map_view_state[3];
 s16 *TRaderMapCore__floor_discovery_table[18];
+
+extern "C" {
+f32 lbl_805D3608 = 1.0f;
+f32 radar_overhead_projection_scale = 75.0f;
+}

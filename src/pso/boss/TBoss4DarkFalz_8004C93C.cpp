@@ -686,22 +686,22 @@ int TBoss4DarkFalz__sub_8004C1AC(void) {  return TBoss4DarkFalz__type3_instance;
 
 #pragma pop
 
-extern const char lbl_804371E0[];
-extern const char lbl_804371E8[];
-extern const char lbl_804371F4[];
-extern const char lbl_80437200[];
-extern const char lbl_8043720C[];
-extern const char lbl_80437214[];
-extern const char lbl_80437220[];
-extern const char lbl_80437228[];
-extern const char lbl_80437234[];
-extern const char lbl_8043723C[];
-extern const char lbl_80437248[];
-extern const char lbl_80437254[];
-extern const char lbl_80437260[];
-extern const char lbl_8043726C[];
-extern const char lbl_80437274[];
-extern const char lbl_80437280[];
+extern const char lbl_804371E0[] = "EDITOR";
+extern const char lbl_804371E8[] = "WAIT_CASKET";
+extern const char lbl_804371F4[] = "DEMO_WARP0";
+extern const char lbl_80437200[] = "DEMO_WARP1";
+extern const char lbl_8043720C[] = "ZAKO";
+extern const char lbl_80437214[] = "APP TYPE1";
+extern const char lbl_80437220[] = "TYPE1";
+extern const char lbl_80437228[] = "APP TYPE2";
+extern const char lbl_80437234[] = "TYPE2";
+extern const char lbl_8043723C[] = "DIE TYPE2";
+extern const char lbl_80437248[] = "GET RING";
+extern const char lbl_80437254[] = "DEMO_WARP2";
+extern const char lbl_80437260[] = "DEMO_WARP3";
+extern const char lbl_8043726C[] = "TYPE3";
+extern const char lbl_80437274[] = "DIE TYPE3";
+extern const char lbl_80437280[] = "OL ENDING";
 DarkFalzState TBoss4DarkFalz__data_80485108[16] = {
     {lbl_804371E0, 0, 0, &TBoss4DarkFalz::sub_8004D29C, 0},
     {lbl_804371E8, 0, 0, &TBoss4DarkFalz::check_players_near_center, 0},

@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/TMainTask.h"
 #include "pso/misc/TWindowBase.h"
@@ -50,7 +51,7 @@ extern Pos_80214F80 lbl_8044BCC8[];
 extern s32 TLobby__protocol_instance;
 extern s32 quest_download_received_bytes;
 extern s32 quest_download_graph_current_bytes;
-extern const f32 lbl_805DC660;
+static const f32 lbl_805DC660 = 36000.0f;
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 extern s32 controller_input_state[];
 }
@@ -63,7 +64,7 @@ void THunterGuildSeqOnlineTask::run_task() {
             TWindowShortListCtrl__check_controller_button((int)p, 2) != 0) {
             ((TWindowBase *)TQuestListOnline__quest_info_window)->close();
             TQuestListOnline__quest_info_window = 0;
-            ((TWindowCtrl *)local_client_id)->unsuppress_slot();
+            unsuppress_player_window(local_client_id);
         }
     }
 }
@@ -159,7 +160,7 @@ void TQuestListOnline::handle_quest_ready() {
         }
         evt2_random_enemies_mode = m;
         TKeyBoardControl__sub_8000F950();
-        ((TWindowCtrl *)local_client_id)->unsuppress_slot();
+        unsuppress_player_window(local_client_id);
     } else {
         TLobby::clear_counter();
         evt2_random_enemies_mode = 0;
@@ -199,7 +200,7 @@ void TQuestListOnline::handle_quest_ready() {
             ((TObjPlayer *)p)->activate_body_collision();
         }
     }
-    ((TWindowCtrl *)local_client_id)->unsuppress_slot();
+    unsuppress_player_window(local_client_id);
 }
 void TLobby::handle_quest_download_chunk() {
     Pkt_80214F80 *p = (Pkt_80214F80 *)this;

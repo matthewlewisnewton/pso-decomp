@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/ui/TChallenge4PItemSelect.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/protocol/protocol_types.h"
@@ -81,11 +82,9 @@ void obj_set_flag_20000(TObjPlayer *);
 void get_player_result__18TChallenge4PResultFPv(TObjPlayer *, s32);
 void fn_8034BE48(TObjPlayer *);
 u32 get_entity_id(TObjPlayer *);
-void TObjPlayer__sub_8024ABDC(u16);
 void request_active_window_close();
 void obj_clear_flag30_20000(TObjPlayer *);
 void fn_8034BE38(TObjPlayer *);
-void TLobby__sub_8024AC20(u16);
 void update_entries__18TChallenge4PResultFii(s32 arg0, s32 arg1);
 s32 __ct__18TChallenge4PResultFP7TObjectUsl(void *, s32, int, s32);
 u32 __nw__7TObjectFUl(s32);
@@ -359,7 +358,7 @@ s32 update_challenge_result_player_locks() {
                 get_player_result__18TChallenge4PResultFPv(player, 2);
                 get_player_result__18TChallenge4PResultFPv(player, 3);
                 if (((TObjPlayer *)player)->check_flag_0x40000000() == 0) fn_8034BE48(player);
-                TObjPlayer__sub_8024ABDC(get_entity_id(player));
+                disable_player_main_menu((u16)(get_entity_id(player)));
                 request_active_window_close();
                 TWindowCtrl::set_close_flag();
             }
@@ -372,7 +371,7 @@ s32 update_challenge_result_player_locks() {
                 obj_clear_flag30_20000(player);
                 ((TChallenge4PResult *)player)->get_player_rank();
                 if (((TObjPlayer *)player)->check_flag_0x40000000()) fn_8034BE38(player);
-                TLobby__sub_8024AC20(get_entity_id(player));
+                enable_player_main_menu((u16)(get_entity_id(player)));
                 TWindowCtrl::clear_flag();
                 TWindowCtrl::clear_flag_2();
             }

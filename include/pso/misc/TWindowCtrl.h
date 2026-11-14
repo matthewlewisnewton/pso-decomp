@@ -57,11 +57,7 @@ struct TWindowCtrl : public TObject {
     void handle_chat_message(char *arg1);
     static void init_all_slots();
     static void init_all_slots2();
-    void suppress_slot();
-    void unsuppress_slot();
-    void has_player_active_menu();
     static void apply_default_vec(s32 arg0, s32 arg1);
-    void is_slot_visible();
     static s32 get_message_by_type(s8 arg0, s32 arg1);
     static void release_slot(s8 *arg0);
     static void close_windows_by_flags(u16 arg0);
