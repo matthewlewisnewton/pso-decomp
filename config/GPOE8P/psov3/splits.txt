@@ -6946,6 +6946,7 @@ pso/misc/TParticleCtrl_801E2EFC.cpp:
 pso/misc/TLobby_801E2F94.cpp:
 	.text       start:0x801E2F94 end:0x801E3F14
 	.rodata     start:0x80449730 end:0x80449738
+	.sdata      start:0x805D3580 end:0x805D3590
 	.sdata2     start:0x805DC418 end:0x805DC444
 
 pso/enemy/TObjEneRe4Sorcerer_801E3F14.cpp:
