@@ -17920,6 +17920,7 @@ force_active:
   - store_challenge_seeds__6TLobbyFl
   - store_position__11TBoss7JointFv
   - store_position__13TObjEneBm3FlyFv
+  - stream_chunk_decode_table
   - stream_read_be32
   - strstr
   - sub_80010DE8__9TObjCharaFUsUcUc
