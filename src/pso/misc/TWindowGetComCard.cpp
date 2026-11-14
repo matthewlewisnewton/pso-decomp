@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
@@ -39,7 +40,6 @@ void *get_player_by_client_id(s32 i);
 void *get_com_card_list__6TLobbyFPv(void *p);
 s32 text_builder_append();
 s32 __ct__7TObjectFP7TObject();
-void TObjPlayer__sub_8024ABDC(s32 arg0);
 void fn_8024AC64(s32 arg0);
 s32 create__14TWindowMessageFPvll(void *, void *, int);
 extern s32 lbl_8044ED94[];
@@ -61,7 +61,6 @@ extern Pad_80252CCC controller_input_state[];
 void run_task__17TWindowGetComCardFv(GetCard_80252CCC *self);
 void TWindowFukidasi__sub_80252C38(void* p);
 int fn_80252CBC(void* p);
-void TLobby__sub_8024AC20(s32 arg0);
 s32 TWindowCtrl__sub_8024A314();
 void TWindowReturnCity__sub_8024ACA8(s32 arg0);
 s32 init_parts__10TObjPlayerFv();
@@ -155,7 +154,7 @@ TWindowGetComCard::~TWindowGetComCard() {
         this->m_1c = 0U;
     }
     TWindowReturnCity__sub_8024ACA8(local_client_id);
-    TLobby__sub_8024AC20(local_client_id);
+    enable_player_main_menu(local_client_id);
     if ((TWindowCtrl__sub_8024A314() == 0) && (get_player_by_client_id(local_client_id) != 0U)) {
         init_parts__10TObjPlayerFv();
     }
@@ -185,7 +184,7 @@ u8 *TWindowGetComCard__ct(TWindowGetComCard *window_get_com_card) {
     if (get_player_by_client_id(local_client_id) != 0U) {
         reset_equip_slots__10TObjPlayerFv();
     }
-    TObjPlayer__sub_8024ABDC((local_client_id));
+    disable_player_main_menu((local_client_id));
     fn_8024AC64((local_client_id));
     window_get_com_card->m_24 = 0;
     return (u8 *)window_get_com_card;

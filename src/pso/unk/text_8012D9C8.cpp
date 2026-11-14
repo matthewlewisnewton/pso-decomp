@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/misc/TRaderMapCore.h"
@@ -71,19 +72,19 @@ void TUnk_804A5B20::update_idle() {
     case 5:
     {
       s32 lim;
-      TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x1F8), 0x1555, 0x8000);
+      add_integer_clamped((s32 *)(arg0 + 0x1F8), 0x1555, 0x8000);
       new_var = 0x8000;
       if (new_var <= ((s32) (*((s32 *) (((s8 *) arg0) + 0x1F8)))))
       {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x204), (f32)lbl_805DAF40, (f32)lbl_805DAF44);
+        add_float_clamped((f32 *)(arg0 + 0x204), (f32)lbl_805DAF40, (f32)lbl_805DAF44);
       }
     }
       break;
     case 6:
       break;
     case 7:
-      TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x204), (f32)lbl_805DAF48, (f32)lbl_805DAF4C);
-      TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x1F8), -0x1555, -0x8000);
+      add_float_clamped((f32 *)(arg0 + 0x204), (f32)lbl_805DAF48, (f32)lbl_805DAF4C);
+      add_integer_clamped((s32 *)(arg0 + 0x1F8), -0x1555, -0x8000);
       break;
   }
 }
@@ -93,17 +94,17 @@ void TUnk_804A5B20::update_attack() {
   switch ((s32) get_item_index__5TItemFv())
   {
     case 5:
-      TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x204), (f32)((f32) lbl_805DAF50), (f32)((f32) lbl_805DAF38));
+      add_float_clamped((f32 *)(arg0 + 0x204), (f32)((f32) lbl_805DAF50), (f32)((f32) lbl_805DAF38));
       if (lbl_805DAF38 <= (this->m_204))
     {
-      TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x1F8), -0x2AAA, 0);
+      add_integer_clamped((s32 *)(arg0 + 0x1F8), -0x2AAA, 0);
     }
     case 6:
       return;
     return;
     case 7:
-      TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x204), (f32)((f32) lbl_805DAF54), (f32)((f32) lbl_805DAF3C));
-      TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x1F8), 0x2AAA, 0);
+      add_float_clamped((f32 *)(arg0 + 0x204), (f32)((f32) lbl_805DAF54), (f32)((f32) lbl_805DAF3C));
+      add_integer_clamped((s32 *)(arg0 + 0x1F8), 0x2AAA, 0);
       break;
   }
 }

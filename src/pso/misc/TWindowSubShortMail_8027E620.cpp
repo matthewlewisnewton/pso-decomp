@@ -49,7 +49,7 @@ s32 realloc_buffer__17TWindowSubComCardFv(s32);
 s32 check_room_seq_4__16TAdChrSelASlotGCFl(s32, s32);
 s32 get_main_phase();
 s32 draw_card_icon__17TWindowSubComCardFll(s32, s32, s32);
-extern const f32 TWindowSubShortMail__data_805DD6C8;
+static const f32 TWindowSubShortMail__data_805DD6C8 = 206.0f;
 s32 fn_8007B83C(s32);
 void *TLobby__sub_8022598C(int a0);
 u32 get_lobby_id__6TLobbyFPv();
@@ -61,7 +61,7 @@ extern s32 lbl_8044FACC[];
 s32 create__19TWindowMessageYesNoFPvPvPvPv(void *, s32, s32, s32);
 s32 free_member__17TWindowSubComCardFv(s32, s32);
 void open_yes_no_prompt(TChCrTagPlBack *arg0, u32 arg1, s32 arg2, s32 arg3, f32 farg0);
-extern const f32 lbl_805DD6D0;
+static const f32 lbl_805DD6D0 = 205.0f;
 void TWindowSubShortMail__sub_8027E620(void* p);
 s32 TKeyBoardControl__ct(s32, s32, s32, s32, s32, s32);
 s32 get_shared_text_buffer();
@@ -145,7 +145,7 @@ s32 open_menu__19TWindowSubShortMailFv(void) {
     return temp_r31;
 }
 
-extern const f32 lbl_805DD6CC;
+static const f32 lbl_805DD6CC = 140.0f;
 
 s32 create_window__19TWindowSubShortMailFv(void) {
     s32 window_layout_position;
@@ -202,7 +202,7 @@ s32 create_keyboard__19TWindowSubShortMailFv(void) {
     return var_r31;
 }
 
-extern const f32 lbl_805DD6D4;
+static const f32 lbl_805DD6D4 = 179.0f;
 
 #pragma push
 #pragma fp_contract on
@@ -343,7 +343,7 @@ void TWindowSubShortMail__sub_80131998(void *);
 void TWindowSubShortMail__sub_8027E620(void *p);
 }
 s32 create_titled_window_menu(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-extern const f32 lbl_805DD6D8;
+static const f32 lbl_805DD6D8 = 202.0f;
 void remove_short_mail_by_id(u32 id);
 extern "C" {
 void get_keyboard_field_6c__15TWindowMakeTeamFv(void *, void *);

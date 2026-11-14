@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "types.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/boss/TUnk_804E4B3C.h"
@@ -8,6 +9,10 @@
 #include <stddef.h>
 #include "pso/boss/TObjBoss2Tunnel.h"
 #include "pso/item/TItemEffOrgaFlowShot.h"
+
+extern "C" {
+u32 boss2_tunnel_state_flags;
+}
 
 extern "C" {
 s32 fn_802F1FB0(void *, TObject *, s32, f32, Vec *);
@@ -328,18 +333,18 @@ void TUnk_804E4B3C::sub_802F2400() {
             return;
         }
         if (temp_f1 < lbl_805DECBC) {
-            TItemEffOrgaFlowShot::approach_value(&m_5c, lbl_805DECC0, lbl_805DECC4 * lbl_805DEC68);
-            TItemEffOrgaFlowShot::approach_value(&value, lbl_805DECC8, lbl_805DECB8);
+            add_float_clamped(&m_5c, lbl_805DECC0, lbl_805DECC4 * lbl_805DEC68);
+            add_float_clamped(&value, lbl_805DECC8, lbl_805DECB8);
             return;
         }
         if (temp_f1 < 200.0f) {
-            TItemEffOrgaFlowShot::approach_value(&m_5c, 0.04f, 0.2f * lbl_805DEC68);
-            TItemEffOrgaFlowShot::approach_value(&value, lbl_805DECC8, -30.000002f);
+            add_float_clamped(&m_5c, 0.04f, 0.2f * lbl_805DEC68);
+            add_float_clamped(&value, lbl_805DECC8, -30.000002f);
             return;
         }
         if (temp_f1 < lbl_805DECA8) {
-            TItemEffOrgaFlowShot::approach_value(&m_5c, 0.06f, 0.3f * lbl_805DEC68);
-            TItemEffOrgaFlowShot::approach_value(&value, lbl_805DECC8, -15.000001f);
+            add_float_clamped(&m_5c, 0.06f, 0.3f * lbl_805DEC68);
+            add_float_clamped(&value, lbl_805DECC8, -15.000001f);
         }
     }
 }

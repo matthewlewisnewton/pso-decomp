@@ -17,8 +17,8 @@ extern s32 lbl_8044EAC0[];
 extern s32 lbl_8044EAC8[];
 extern s32 lbl_8044EAD0[];
 extern s32 lbl_804CE7D0[];
-extern const f32 lbl_805DCBA0;
-extern const f32 lbl_805DCBA4;
+static const f32 lbl_805DCBA0 = 220.0f;
+static const f32 lbl_805DCBA4 = 120.0f;
 u8 *construct_symbol_chat_selection(u8 *arg0) {
     s32 i;
     u8 *temp_r30;

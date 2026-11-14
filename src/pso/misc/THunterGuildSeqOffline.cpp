@@ -145,8 +145,8 @@ struct V_A_80213474 : Base_A_80213474 {
 extern "C" {
 s32 get_window_layout_position(s32);
 s32 set_service_counter_camera(void *, int);
-extern const f32 lbl_805DC650;
-extern const f32 lbl_805DC654;
+static const f32 lbl_805DC650 = 332.0f;
+static const f32 lbl_805DC654 = 80.0f;
 void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);

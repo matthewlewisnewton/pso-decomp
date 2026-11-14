@@ -6,7 +6,7 @@
 #include "pso/object/TObjFish.h"
 
 extern s32 scroll_win_texture_handle;
-extern const f32 lbl_805DF698;
+static const f32 lbl_805DF698 = 0.1f;
 
 void TAdScrollWinGC::render_status_value() {
     u8 *arg0 = (u8 *)this;

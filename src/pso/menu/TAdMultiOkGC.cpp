@@ -76,29 +76,29 @@ typedef struct { P3_80307034 v[11]; } Pos_80307034;
 
 typedef struct { u32 c[12]; } Col_80307034;
 
-extern const f32 lbl_805DF04C;
-extern const f32 lbl_805DF050;
-extern const f32 lbl_805DF054;
-extern const f32 lbl_805DF058;
-extern const f32 lbl_805DF05C;
-extern const f32 lbl_805DF060;
-extern const f32 lbl_805DF064;
+static const f32 lbl_805DF04C = 3.0f;
+static const f32 lbl_805DF050 = 0.2f;
+static const f32 lbl_805DF054 = -32.0f;
+static const f32 lbl_805DF058 = -16.0f;
+static const f32 lbl_805DF05C = 32.0f;
+static const f32 lbl_805DF060 = 16.0f;
+static const f32 lbl_805DF064 = 1.0f;
 extern "C" {
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
 extern Ports_80306DF4 multi_ok_player_port_index_table;
 extern Pad_80306DF4 controller_physical_port_bank[];
 extern s32 multi_confirm_texture_list;
-extern const f32 lbl_805DF040;
-extern const f32 lbl_805DF044;
-extern const f32 lbl_805DF048;
+static const f32 lbl_805DF040 = 0.0050000004f;
+static const f32 lbl_805DF044 = 0.01f;
+static const f32 lbl_805DF048 = 0.001f;
 void __ct__7TObjectFP7TObject(void *, void *);
 extern void *__vt__12TAdMultiOkGC[];
 extern Pos_80307034 ad_multi_ok_layout_table;
 extern Col_80307034 multi_ok_button_colors;
 extern const char *lbl_805D4080;
-extern const f32 lbl_805DF068;
-extern const f32 lbl_805DF06C;
+static const f32 lbl_805DF068 = 64.0f;
+static const f32 lbl_805DF06C = 0.0f;
 extern const f32 lbl_805DF070;
 Ok_80307034 *__ct__12TAdMultiOkGCFv(Ok_80307034 *self, void *parent, Cfg_80307034 *cfg);
 }

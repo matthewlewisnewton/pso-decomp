@@ -64,8 +64,8 @@ void *TChCrTagPlBack::create(void *arg0) {
 
 void *TChCrTagPlBack::create_default() { return TChCrTagPlBack::create((void *)((void*)(0))); }
 
-extern const f32 lbl_805DDFF0;
-extern const f32 lbl_805DDFF4;
+static const f32 lbl_805DDFF0 = 111.0f;
+static const f32 lbl_805DDFF4 = 10.0f;
 
 void TChCrTagPlBack::get_position_offset(void *arg1) {
     void *temp_r3;

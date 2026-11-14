@@ -36,10 +36,10 @@ extern RecoveredGlobal_80158890_lbl_804AFC54 bind_collision_body_parts;
 extern s32 __vt__6TOBind[];
 extern s32 lbl_805D2EA8;
 extern s32 tl_05;
-extern const f32 lbl_805DB300;
-extern const f32 lbl_805DB304;
-extern const f32 lbl_805DB308;
-extern const f32 lbl_805DB30C;
+static const f32 lbl_805DB300 = 0.0f;
+static const f32 lbl_805DB304 = 1.0f;
+static const f32 lbl_805DB308 = 400.0f;
+static const f32 lbl_805DB30C = 40.0f;
 struct BindBase_801586B8 { char pad[0x18]; };
 struct BindObj_801586B8 : BindBase_801586B8 {
     virtual void m0();
