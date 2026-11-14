@@ -55,7 +55,7 @@ void load_current_tex_matrix(s32 i);
 static const f64 lbl_804783B0 = 0.0054931640625;
 extern u32 camera_ctrl_instance;
 extern s32 current_matrix;
-static const f32 lbl_805DFAC8 = 1.133333444595337f;
+static const f32 lbl_805DFAC8 = 1.1333334f;
 static const f32 lbl_805DFACC = 0.5f;
 extern const f32 lbl_805DFAD0;
 void play_indirect_effect_recipe(u8 arg0, u16 sampler, s32 second);

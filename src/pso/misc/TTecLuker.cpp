@@ -202,7 +202,7 @@ s16 get_field_2__9TTecLukerFPv(void* p);
 s32 get_current_floor(void);
 void restore_floor_telepipes(void);
 f32 vector_length(void *);
-static const f32 lbl_805DC860 = 0.20000000298023224f;
+static const f32 lbl_805DC860 = 0.2f;
 s32 telepipe_record_differs(Rec_8023402C *r, s16 floor, Vec_8023402C *p, u16 unused);
 void *__nw__7TObjectFUl(int);
 s32 get_entity_id(void *);
@@ -254,9 +254,9 @@ u8 *create_telepipe_marker(u8 *arg0, s32 arg1, s8 arg2, s8 arg3, s32 arg4, s32 a
 extern s32 telepipe_visual_template_table[][3];
 extern s32 telepipe_owner_tint_table[];
 extern s32 tl_particlemodel;
-static const f32 lbl_805DC86C = 1.7999999523162842f;
+static const f32 lbl_805DC86C = 1.8f;
 static const f32 lbl_805DC870 = 15.0f;
-static const f32 lbl_805DC874 = 1.899999976158142f;
+static const f32 lbl_805DC874 = 1.9f;
 extern "C" {
 void *create_telepipe_visual(void *self, Vec_802347B4 *pos, u32 id, s32 res);
 void *__dt__13TUnk_804CC9D4Fv(void *arg0, s16 arg1);

@@ -70,11 +70,11 @@ extern "C" {
 
 static const f32 lbl_805DC110 = 0.0f;
 static const f32 lbl_805DC114 = 2.5f;
-static const f32 lbl_805DC118 = 0.02500000037252903f;
+static const f32 lbl_805DC118 = 0.025f;
 static const f32 lbl_805DC11C = 15.0f;
-static const f32 lbl_805DC120 = 0.15000000596046448f;
+static const f32 lbl_805DC120 = 0.15f;
 static const f32 lbl_805DC124 = 7.5f;
-static const f32 lbl_805DC128 = 0.07500000298023224f;
+static const f32 lbl_805DC128 = 0.075f;
 static const f32 lbl_805DC12C = 0.5f;
 
 extern u32 lbl_805D5D18;

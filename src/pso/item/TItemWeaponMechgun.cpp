@@ -61,7 +61,7 @@ struct WeaponDispatch : WeaponDispatchPrefix {
 
 extern "C" {
 static const f32 lbl_805DADD0 = 0.0f;
-static const f32 lbl_805DADD4 = 0.4000000059604645f;
+static const f32 lbl_805DADD4 = 0.4f;
 u8 *__nw__5TItemFUl(s32);
 extern s32 tl_05;
 void spawn_weapon_impact_effect();

@@ -15,7 +15,7 @@ extern "C" {
 ItemChoiceList *get_item_pmt_entry__10TObjPlayerFUc(u8);
 s32 rand(void);
 static const f32 lbl_805DFE28 = 100.0f;
-static const f32 lbl_805DFE2C = 3.0517578125e-05f;
+static const f32 lbl_805DFE2C = 3.0517578e-05f;
 }
 
 void TUnk_804F0C48::apply_use_effect() {

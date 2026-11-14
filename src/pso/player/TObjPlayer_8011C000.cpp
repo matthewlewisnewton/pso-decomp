@@ -109,7 +109,7 @@ s32 is_unsealable_item(u8 *id);
 s32 get_item_stat_boost_record(s32 arg0, s32 arg1, s32 arg2);
 extern "C" {
 s32 rand();
-static const f32 lbl_805DAC70 = 3.0517578125e-05f;
+static const f32 lbl_805DAC70 = 3.0517578e-05f;
 typedef struct Thing__8011c1e8_8011C000 { u8 a; u8 b; } Thing;
 
 s32 TObjPlayer::get_item_pmt_entry(u8 arg0) {

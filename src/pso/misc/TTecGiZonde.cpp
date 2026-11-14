@@ -70,8 +70,8 @@ u8 *construct_helper_effect__11TTecGiZondeFPvPvPvPvi(u8 *arg0, u8 *arg1, u8 *arg
 extern s32 tl_07;
 static const f32 lbl_805DC828 = 0.5f;
 static const f32 lbl_805DC82C = 0.0f;
-static const f32 lbl_805DC830 = 1.2000000476837158f;
-static const f32 lbl_805DC834 = 1.399999976158142f;
+static const f32 lbl_805DC830 = 1.2f;
+static const f32 lbl_805DC834 = 1.4f;
 extern const f32 lbl_805DC838;
 void *__dt__11TTecGiZondeFv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);

@@ -149,11 +149,11 @@ TObjCollidable *find_entity_by_id(u16 id);
 extern s32 quest_object_entries;
 void handle_6x0B_update_object_state(G_UpdateObjectState_6x0B *packet);
 }
-static const f32 lbl_805DB284 = 9.999999747378752e-06f;
-static const f32 lbl_805DB288 = 0.10000000149011612f;
-static const f32 lbl_805DB28C = -0.10000000149011612f;
-static const f32 lbl_805DB290 = -0.010000000707805157f;
-static const f32 lbl_805DB294 = 0.010000000707805157f;
+static const f32 lbl_805DB284 = 1e-05f;
+static const f32 lbl_805DB288 = 0.1f;
+static const f32 lbl_805DB28C = -0.1f;
+static const f32 lbl_805DB290 = -0.010000001f;
+static const f32 lbl_805DB294 = 0.010000001f;
 s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2);
 struct Obj_80156844 { u8 pad[0x1C]; u16 room; u8 pad2[0x90 - 0x1E]; void *f90; };
 
@@ -194,7 +194,7 @@ s32 test_box_sphere_contact(CollisionBox_80155C54*,CollisionSphere_80155C54*);
 }
 s32 test_collider_sphere_overlap_xz(s32 arg0, u8 *arg1, u32 arg2);
 extern int player_battle_param_table[];
-static const f32 lbl_805DB27C = 9.999999439624929e-11f;
+static const f32 lbl_805DB27C = 9.9999994e-11f;
 static const f32 lbl_805DB280 = 0.25f;
 s32 resolve_actor_sphere_contact(u8 *arg0, s32 arg1, s32 arg2);
 s32 respond_to_body_contact(u8 *arg0, u32 arg1, u8 *arg2);

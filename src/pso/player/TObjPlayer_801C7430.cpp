@@ -1672,7 +1672,7 @@ extern u8 *lbl_805D3530;
 extern s32 TWindowReturnCity__class_name;
 extern u8 *TObjPlayer__shared_photon_blast_state;
 static const f32 lbl_805DC374 = 44.0f;
-static const f32 lbl_805DC37C = 0.0020000000949949026f;
+static const f32 lbl_805DC37C = 0.002f;
 extern s32 lbl_805DC380;
 extern s32 lbl_805DC384;
 extern const f32 lbl_805DC388;

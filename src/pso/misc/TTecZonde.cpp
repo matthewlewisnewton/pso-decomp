@@ -167,11 +167,11 @@ extern u8 *tl_07;
 static const f32 lbl_805DC968 = 100.0f;
 static const f32 lbl_805DC96C = 500.0f;
 static const f32 lbl_805DC970 = 13.0f;
-static const f32 lbl_805DC974 = 3.0517578125e-05f;
+static const f32 lbl_805DC974 = 3.0517578e-05f;
 static const f32 lbl_805DC978 = 0.0f;
 static const f32 lbl_805DC97C = 0.5f;
-static const f32 lbl_805DC980 = 1.2000000476837158f;
-static const f32 lbl_805DC984 = 1.399999976158142f;
+static const f32 lbl_805DC980 = 1.2f;
+static const f32 lbl_805DC984 = 1.4f;
 extern const f32 lbl_805DC988;
 
 void TTecZonde::run_task() {

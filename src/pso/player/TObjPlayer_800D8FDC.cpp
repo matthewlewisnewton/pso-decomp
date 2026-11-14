@@ -222,7 +222,7 @@ void MaterialColorFade::reset_obstruction_fade() {
 }
 
 extern "C" {
-static const f32 lbl_805DA3E4 = 0.03999999910593033f;
+static const f32 lbl_805DA3E4 = 0.04f;
 
 void MaterialColorFade::reset_color() {
     this->color.a = lbl_805DA3DC;
@@ -243,7 +243,7 @@ MaterialColorFade::MaterialColorFade() {
     rate = lbl_805DA3E4;
     reset_color();
 }
-static const f32 lbl_805DA3E8 = 0.009999999776482582f;
+static const f32 lbl_805DA3E8 = 0.01f;
 
 Vec *SampledMotionPoints::lookup(f32 frame) {
     f32 first = start;

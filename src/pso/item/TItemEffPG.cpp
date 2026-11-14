@@ -29,7 +29,7 @@ struct RecoveredGlobal_8034FCF0_lbl_804F0BF0 {
 
 extern "C" {
 static const f32 lbl_805DFE08 = -1.0f;
-static const f32 lbl_805DFE0C = 0.06666667014360428f;
+static const f32 lbl_805DFE0C = 0.06666667f;
 u8 *__nw__5TItemFUl(s32);
 extern s32 tl_05;
 void *create_particle_emitter(void *pos, s32 id);

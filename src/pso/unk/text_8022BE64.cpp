@@ -124,7 +124,7 @@ u32 __ct__14TObjCollidableFP7TObject(u32, void *);
 u32 __nw__7TObjectFUl(s32);
 static const f32 lbl_805DC7B4 = 0.0f;
 static const f32 lbl_805DC7B8 = 1.0f;
-static const f32 lbl_805DC7BC = 0.20000000298023224f;
+static const f32 lbl_805DC7BC = 0.2f;
 static const f32 lbl_805DC7C0 = 3.0f;
 static const f32 lbl_805DC7C4 = 150.0f;
 extern const f32 lbl_805DC7C8;
