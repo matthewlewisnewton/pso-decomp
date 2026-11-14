@@ -6418,6 +6418,7 @@ pso/misc/TPlyPhotonChair_801BEC44.cpp:
 
 pso/player/TObjPlayer.cpp:
 	.text       start:0x801BEC98 end:0x801BF548
+	.sbss       start:0x805D5D70 end:0x805D5D78
 
 pso/player/TObjPlayer_801BF548.cpp:
 	.text       start:0x801BF548 end:0x801BF6B0
