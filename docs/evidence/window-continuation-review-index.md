@@ -8,6 +8,13 @@ The initial two-commit continuation keeps the coupled implementation/configurati
 atomic, then restores its evidence and attribution. It is not a claim of 100%
 completion or portable recovery of every historical ABI boundary.
 
+## Callback target closure and next acceptance gates
+
+The [callback closure and gate chart](window-callback-closure-gates.md) records
+the seven observed relocation-backed targets and separates common callback ABI
+repair from deferred/global-generation lifetime proof. It is a bounded producer
+audit, not a whole-program closure or readiness claim.
+
 ## Soft native destruction checkpoint
 
 See [Soft native destruction/table ownership](window-soft-native-destruction.md).
