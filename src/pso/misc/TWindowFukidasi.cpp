@@ -1267,7 +1267,8 @@ void TUnk_804CF0B8::render() {
 }
 #pragma pop
 
-void TWindowFukidasi::run_task() {
+// Actual balloon owner; the surrounding legacy Fukidasi helper views remain qualified.
+void TUnk_804CF0B8::run_task() {
     u8 *arg0 = (u8 *)this;
   switch (*((u8 *) (((s8 *) arg0) + 0x70)))
   {
@@ -1278,11 +1279,11 @@ void TWindowFukidasi::run_task() {
       ((TUnk_804CF0B8 *)arg0)->set_flag2c_bit100();
       *((u8 *) (((s8 *) arg0) + 0x70)) = 2U;
     case 2:
-      if (approach(TWindowFukidasi__data_805DCCE8) != 0)
+      if (((TWindowFukidasi *)this)->approach(TWindowFukidasi__data_805DCCE8) != 0)
     {
       *((u8 *) (((s8 *) arg0) + 0x70)) = 3U;
     }
-      sync_display_pos();
+      ((TWindowFukidasi *)this)->sync_display_pos();
       break;
     case 3:
       TWindowFukidasi__sub_80252C38(arg0);
@@ -1307,11 +1308,11 @@ void TWindowFukidasi::run_task() {
       ((TUnk_804CF0B8 *)arg0)->set_flag2c_bit100();
       *((u8 *) (((s8 *) arg0) + 0x70)) = 6U;
     case 6:
-      if (approach((0.5f)) != 0)
+      if (((TWindowFukidasi *)this)->approach((0.5f)) != 0)
     {
       *((u8 *) (((s8 *) arg0) + 0x70)) = 1U;
     }
-      sync_display_pos();
+      ((TWindowFukidasi *)this)->sync_display_pos();
       break;
     case 7:
       ((TUnk_804CF0B8 *)arg0)->clear_flag();
@@ -1320,11 +1321,11 @@ void TWindowFukidasi::run_task() {
       *((u8 *) (((s8 *) arg0) + 0x71)) = (u8) ((*((u8 *) (((s8 *) arg0) + 0x71))) | 0x10);
       *((u8 *) (((s8 *) arg0) + 0x70)) = 8U;
     case 8:
-      if (approach((*(const f32 *)&TWindowFukidasi__data_805DCD30)) != 0)
+      if (((TWindowFukidasi *)this)->approach((*(const f32 *)&TWindowFukidasi__data_805DCD30)) != 0)
     {
       *((u8 *) (((s8 *) arg0) + 0x70)) = 9U;
     }
-      sync_display_pos();
+      ((TWindowFukidasi *)this)->sync_display_pos();
       break;
     case 9:
       queue_destruction__7TObjectFv(arg0);

@@ -23,10 +23,6 @@ public:
     void set_flag4();
     int get_flag();
     int get_status_flag();
-    u8 unk_60[0x4];
-    u32 m_64;
-    u32 m_68;
-    u8 unk_6C[0x4];
     u16 m_70;
     s16 m_72;
     s16 unk_74;
@@ -38,5 +34,7 @@ public:
     Scroll_8026D790 *unk_84;
 };
 typedef char TUnk_804D0618_size[sizeof(TUnk_804D0618) == 0x88 ? 1 : -1];
+
+typedef char TUnk_804D0618_fields_begin[offsetof(TUnk_804D0618, m_70) == 0x70 ? 1 : -1];
 
 #endif

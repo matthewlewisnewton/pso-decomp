@@ -4,9 +4,13 @@
 #include <stddef.h>
 #include "pso/misc/TWindowAddition.h"
 
+struct TWindowDrawContext;
+
 class TUnk_804CF0B8 : public TWindowAddition {
 public:
+    TUnk_804CF0B8(s32 speaker, s32 text, s32 client, f32 scale);
     virtual ~TUnk_804CF0B8();
+    virtual void run_task();
     void draw_body(void *, u32, f32 *, f32);
     void draw_body_row(void *, void *, f32, f32, f32, f32);
     void draw_tail(void *, u32, f32 *, f32);
@@ -35,7 +39,6 @@ public:
     void set_flag2c_bit200();
     void clear_flag2c_bit200();
     void set_flag2c_bit100();
-    u8 unk_5C[0x10];
     s8 m_70;
     u8 m_71;
     u8 unk_72[0x1];
@@ -52,5 +55,7 @@ typedef char TUnk_804CF0B8_name_offset[offsetof(TUnk_804CF0B8, name) == 0x78 ? 1
 typedef char TUnk_804CF0B8_next_offset[offsetof(TUnk_804CF0B8, m_7c) == 0x7c ? 1 : -1];
 typedef char TUnk_804CF0B8_pointer_size[sizeof(char *) == 4 ? 1 : -1];
 typedef char TUnk_804CF0B8_size[sizeof(TUnk_804CF0B8) == 0x98 ? 1 : -1];
+
+typedef char TUnk_804CF0B8_fields_begin[offsetof(TUnk_804CF0B8, m_70) == 0x70 ? 1 : -1];
 
 #endif

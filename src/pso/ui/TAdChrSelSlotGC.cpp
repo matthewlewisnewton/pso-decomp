@@ -85,7 +85,6 @@ struct TAdChrSelSlotGC_802C7314 {
 #include "pso/object/TObjFish.h"
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
 struct TObject;
-struct StatusWindow;
 struct CallbackTask;
 struct CharacterSelectTransitionState {
     u8 base[0x18];
@@ -101,7 +100,7 @@ struct CharacterSelectTransitionState {
     s32 client;
     s32 timer;
     TObject* parent;
-    StatusWindow* statusWindow;
+    TWindowSubStatusDisp* statusWindow;
     CallbackTask* callback;
 };
 
@@ -118,7 +117,6 @@ static const f32 lbl_805DE5C8 = 0.1f;
 s32 get_main_phase();
 extern const f32 lbl_805DE5B4, lbl_805DE5B8, lbl_805DE5BC, lbl_805DE5C0;
 void* __nw__7TObjectFUl(u32 size);
-StatusWindow* TWindowSubStatusDisp__ct(void* storage, s32 client);
 CallbackTask* update_display__20TWindowSubSymbolChatFl(void (*callback)());
 extern s32 __vt__13TUnk_804E0B28[];
 extern s32 lbl_805D67E8;
@@ -199,10 +197,7 @@ TUnk_804E0B28::TUnk_804E0B28(TObject*parent, s32 client) : TObject((TObject*)(pa
     ((CharacterSelectTransitionState*)this)->client = client;
     ((CharacterSelectTransitionState*)this)->timer = 0;
     (*(CharacterSelectTransitionState* *)&lbl_805D67E8) = ((CharacterSelectTransitionState*)this);
-    StatusWindow* window = (StatusWindow*)__nw__7TObjectFUl(0x74);
-    if (window) {
-        window = TWindowSubStatusDisp__ct(window, ((CharacterSelectTransitionState*)this)->client);
-    }
+    TWindowSubStatusDisp* window = new TWindowSubStatusDisp(((CharacterSelectTransitionState*)this)->client);
     ((CharacterSelectTransitionState*)this)->statusWindow = window;
     ((CharacterSelectTransitionState*)this)->callback = update_display__20TWindowSubSymbolChatFl(TAdMultiPlyChrSelectGC::update_transition_anim_if_active);
 }

@@ -509,7 +509,7 @@ void TWindowSubTradeMain::run_task() {
         break;
     case 3:
         if (o->menu != 0) {
-            ((TWindowLockOn *)(o->menu))->request_close();
+            ((TWindowBase *)(o->menu))->request_close();
         }
         if (o->offer != 0) {
             ((void (*)(void *, s32))TWindowSubTradeMain__sub_802448E4)(o->offer, ((s32 (*)(int))get_window_layout_position)(0x62));
@@ -592,7 +592,7 @@ void TWindowSubTradeMain::run_task() {
         break;
     case 10:
         if (o->menu != 0) {
-            ((TWindowLockOn *)(o->menu))->request_close();
+            ((TWindowBase *)(o->menu))->request_close();
         }
         if (o->request != 0) {
             ((TWindowSubTradeMain *)(o->request))->update_trade_state();
@@ -664,7 +664,7 @@ void TWindowSubTradeMain::run_task() {
         break;
     case 17:
         if (o->menu != 0) {
-            ((TWindowLockOn *)(o->menu))->request_close();
+            ((TWindowBase *)(o->menu))->request_close();
         }
         if (o->offer != 0) {
             ((TWindowSubTradeMain *)(o->offer))->update_trade_state();
@@ -720,7 +720,7 @@ void TWindowSubTradeMain::run_task() {
         } else if (((TWindowMenu *)(o->confirm))->is_decided() != 0) {
             o->state = ((TWindowMenu *)o->confirm)->get_selected_value();
             if (o->confirm != 0) {
-                ((TWindowLockOn *)(o->confirm))->request_close();
+                ((TWindowBase *)(o->confirm))->request_close();
             }
             if (o->menu != 0) {
                 ((TWindowSubComCard *)(o->menu))->clear_transition_flag();
@@ -740,7 +740,7 @@ void TWindowSubTradeMain::run_task() {
         break;
     case 23:
         if (o->menu != 0) {
-            ((TWindowLockOn *)(o->menu))->request_close();
+            ((TWindowBase *)(o->menu))->request_close();
         }
         if (o->card == 0) {
             o->card = ((TWindowSubTradeMain *)o)->open_confirm_prompt();
@@ -771,7 +771,7 @@ void TWindowSubTradeMain::run_task() {
         break;
     case 26:
         if (o->menu != 0) {
-            ((TWindowLockOn *)(o->menu))->request_close();
+            ((TWindowBase *)(o->menu))->request_close();
         }
         if ((n = TLobby::check_trade_items_and_show_error()) != 0) {
             if (o->card == 0) {

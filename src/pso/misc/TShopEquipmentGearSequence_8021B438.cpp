@@ -2,7 +2,7 @@
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TShopEquipmentGearSequence_8021B438.h"
 #include "pso/player/TObjPlayer_801A5AEC.h"
-#include "pso/unk/text_8026934C.h"
+#include "pso/misc/TWindowMeseta.h"
 #include "pso/misc/TShopSequence.h"
 #include "pso/misc/TWindowAddition.h"
 #include "pso/TShopWindowBase.h"
@@ -171,7 +171,7 @@ s32 TShopEquipmentGearSequence::open_greeting() {
   stack.spC = lbl_805DC6CC;
   this->create_message_window(get_window_layout_position(0x2C, (f32) lbl_805DC6C8), (s32)&stack.sp8);
   PSO_VCALL_VObj_18_a93f07_m4(this, 0x2b, 1);
-  this->m_30 = create_meseta_window((s32) get_child_field1c__13TShopSequenceFv(this));
+  this->m_30 = (s32)create_meseta_window((s32) get_child_field1c__13TShopSequenceFv(this));
   this->set_field_20(2);
   *((s32 *) (((s8 *) ((u8 *)this)) + 0x34)) = set_service_counter_camera((void *) this, 0x4);
 }

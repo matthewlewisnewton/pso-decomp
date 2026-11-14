@@ -1,3 +1,4 @@
+#include "pso/misc/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/TAdPlyChrSelPlateGC.h"
@@ -18,7 +19,6 @@ struct Plate_8032AC24 { u8 data[0x3B4]; };
 struct Arg_8032AC24 { f32 x, y; u8 pad[8]; };
 
 extern "C" {
-char *realloc_buffer__17TWindowSubComCardFv(void *);
 void fn_8025DE10(void *arg0, void *arg1);
 void __dt__19TAdPlyChrSelPlateGCFv(void *, int);
 void *__ct__19TAdPlyChrSelPlateGCFv(void *, s32, void *);
@@ -48,7 +48,7 @@ void draw_masked_password_field(s32 arg0) {
         p1.y = lbl_80477218[1];
         __ct__19TAdPlyChrSelPlateGCFv(&plate, tl_clipout, &p1);
         draw_selection_plate(&plate, lbl_80477210, lbl_805DF76C, 0);
-        str = realloc_buffer__17TWindowSubComCardFv(password_entry_keyboard_control);
+        str = ((TKeyBoardControl *)password_entry_keyboard_control)->allocate_text_copy();
         len = strlen(str);
         ::operator delete[](str);
         memset(buf, 0, 0x80);

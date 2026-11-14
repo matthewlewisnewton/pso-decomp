@@ -1,5 +1,7 @@
 #include "pso/misc/TextEntryMeasurement.h"
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
+#include "pso/misc/TWindowSubStatusDisp_802598E4.h"
 #include "pso/TObject.h"
 #include "pso/misc/TLobby_8001D6A0.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
@@ -37,7 +39,6 @@ struct Win_80246DCC {
 };
 
 Entry_80246DCC *get_array_entry__11TWindowBaseFi(void *, s32);
-void draw_right_aligned_number(void);
 s32 get_window_layout_position(s32);
 extern const char lbl_8044E7BC[];
 extern const f32 lbl_805DCB60;
@@ -83,7 +84,7 @@ void init_subwindow__22TWindowChallengeResultFPv(void* p) { ((TWindowDD *)p)->in
 void *dt__22TWindowChallengeResultFPvs(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = lbl_804CE2B8;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(arg0), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -96,7 +97,7 @@ Win_80246DCC *TWindowChallengeResult__ct(Win_80246DCC *self, s32 str, s32 arg2, 
     Entry_80246DCC *e;
     s32 m;
 
-    ((TWindowDD *)self)->construct_base((u8 *)lbl_804CE298, (s16)4, (u8 *)(get_window_layout_position(0x3F)));
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)self), (u8 *)((u8 *)lbl_804CE298), (s16)((s16)4), (u8 *)((u8 *)(get_window_layout_position(0x3F))));
     self->vt = lbl_804CE2B8;
     self->f0 = (s32)lbl_805D3898;
     for (i = 0; i < 3; i++) {
@@ -124,7 +125,7 @@ Win_80246DCC *TWindowChallengeResult__ct(Win_80246DCC *self, s32 str, s32 arg2, 
     set_text_entry_string((u8 *)e, (u32)(get_shared_text_buffer()), 0x20);
     e = get_array_entry__11TWindowBaseFi(self, 5);
     e->f20 = arg3;
-    draw_right_aligned_number();
+    draw_right_aligned_number(e);
     e->f8 = lbl_805DCB60 + e->f10;
     if (TCameraCtrl::get_camera_id() == 4) {
         self->f60 = lbl_805DCB68;

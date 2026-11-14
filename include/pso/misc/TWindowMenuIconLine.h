@@ -7,6 +7,8 @@ struct Scroll_8026D790;
 
 class TWindowMenuIconLine : public TWindowAddition {
 public:
+    TWindowMenuIconLine(u8 *position, u32 count, s16 client, u8 *descriptor);
+    TWindowMenuIconLine(u8 *position, u32 count, s16 client);
     virtual ~TWindowMenuIconLine();
     virtual void run_task();
     virtual void render();
@@ -30,10 +32,6 @@ public:
     s32 get_cursor_value();
     void calc_content_extent();
     void disable_cancel();
-    u8 unk_60[0x4];
-    u32 m_64;
-    u32 m_68;
-    u8 unk_6C[0x4];
     u16 state_flags;
     s16 entry_count;
     s16 cursor;
@@ -45,5 +43,7 @@ public:
     Scroll_8026D790 *unk_84;
 };
 typedef char TWindowMenuIconLine_size[sizeof(TWindowMenuIconLine) == 0x88 ? 1 : -1];
+
+typedef char TWindowMenuIconLine_fields_begin[offsetof(TWindowMenuIconLine, state_flags) == 0x70 ? 1 : -1];
 
 #endif
