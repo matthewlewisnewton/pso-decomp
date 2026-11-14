@@ -261,6 +261,7 @@ pso/boss/galgryphon/TBoss5GryphonShockWave.cpp
 pso/boss/galgryphon/TBoss5GryphonSnarl.cpp
 pso/boss/galgryphon/TBoss5GryphonTornado.cpp
 pso/boss/olgaflow/TBoss6CrushRock.cpp
+pso/boss/olgaflow/TBoss6Zanzo.cpp
 pso/boss/olgaflow/TBoss6DPB.cpp
 pso/boss/olgaflow/TBoss6EffFlowSoul.cpp
 pso/boss/olgaflow/TBoss6EffHyoui.cpp
@@ -905,6 +906,7 @@ pso/unk/TLobby_8020CE4C.cpp
 pso/unk/TLobby_8020CFC8.cpp
 pso/unk/TLobby_8020D0B0.cpp
 pso/unk/TLobby_8020D1BC.cpp
+pso/unk/text_8020B5CC.cpp
 pso/effect/TUnk_80494968.cpp
 pso/unk/text_80184C2C.cpp
 pso/unk/TLobby_8020E400.cpp
@@ -958,6 +960,7 @@ pso/unk/TLobby_8035D540.cpp
 pso/unk/TLobby_8036A37C.cpp
 pso/unk/TLobby_8036B204.cpp
 pso/ui/window/TWindowSubStatusDisp_8036D774.cpp
+pso/unk/TLobby_803BFE50.cpp
 pso/unk/TLobby_8036F81C.cpp
 pso/audio/AdxAiff.cpp
 pso/audio/AdxAu.cpp
@@ -1022,6 +1025,7 @@ pso/ui/window/TMessageBox.cpp
 pso/object/TMotorcycle.cpp
 pso/object/TMotorcycle_802D712C.cpp
 pso/system/movie/TMovie.cpp
+pso/system/movie/TMovie_80143988.cpp
 pso/system/movie/TMovie_80143BBC.cpp
 pso/enemy/TNeedleShoot.cpp
 pso/enemy/gee/TObjEneMe1Gee_NEEDLE_802A4A44.cpp
@@ -1212,6 +1216,7 @@ pso/quest/TQuestVmDownLoadServer_803E5668.cpp
 pso/quest/TQuestVmDownLoadServer_803E6970.cpp
 pso/quest/TQuestVmDownLoadServer_803E8918.cpp
 pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp
+pso/ui/hud/TRaderMapCore.cpp
 pso/ui/hud/TRaderMapCore_801A6CEC.cpp
 pso/ui/hud/TRaderMapCore_801F3710.cpp
 pso/ui/hud/TRaderMapCore_801FB2B8.cpp
@@ -1569,6 +1574,7 @@ pso/ui/window/TWindowSubStatusDisp_8025995C.cpp
 pso/ui/window/TWindowSubStatusDisp_80259DB0.cpp
 pso/ui/window/TWindowSubStatusDisp_8025A9B4.cpp
 pso/ui/window/TWindowSubStatusDisp_8025B050.cpp
+pso/ui/window/TWindowSubStatusDisp_8026DFE8.cpp
 pso/ui/window/TWindowSubStatusDisp_8025B4A0.cpp
 pso/ui/window/TWindowSubStatusDisp_802671F0.cpp
 pso/ui/window/TWindowSubStatusDisp_80268488.cpp
@@ -2211,6 +2217,7 @@ pso/unk/text_80072004.cpp
 pso/unk/text_80072230.cpp
 pso/unk/text_80074BD0.cpp
 pso/unk/text_80074C20.cpp
+pso/unk/text_8007ECF0.cpp
 pso/unk/text_80074C70.cpp
 pso/unk/text_80076BC4.cpp
 pso/unk/text_80076E84.cpp

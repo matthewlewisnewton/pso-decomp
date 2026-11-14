@@ -9,6 +9,17 @@
 #include "pso/ui/charcreate/TObjCMHairMenu.h"
 #include "pso/system/task/TObject.h"
 
+struct ColorLineVertex {
+    f32 x, y;
+};
+
+struct ColorLineList {
+    ColorLineVertex *verts;
+    u32 *colors;
+    s32 unk_8;
+    s32 count;
+};
+
 struct E_8007F3F8 { s32 a; f32 f; };
 
 struct O_8007F3F8 { u8 pad[0x40]; s32 count; E_8007F3F8 e[4]; };
@@ -36,7 +47,8 @@ extern const f32 lbl_805D929C;
 extern const f32 lbl_805D92A0;
 extern const f32 lbl_805D92A4;
 extern const f32 lbl_805D92AC;
-extern const f32 lbl_805D92B0;
+extern const f32 lbl_805D92B8;
+extern const ColorLineList lbl_80438AB4;
 
 #pragma push
 #pragma opt_common_subs off
@@ -88,6 +100,15 @@ void fn_8007ECF0(u8 *arg0, s32 arg1, s32 arg2) {
 }
 #pragma pop
 
+namespace GraphConstants {
+extern "C" {
+__declspec(section ".sdata2") extern const f32 lbl_805D9298 = 0.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805D929C = 1.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805D92A0 = 30.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805D92A4 = 1800.0f;
+}
+}
+
 s32 draw_outlined_string_right_aligned__14TObjWarpStringFPviiPv(void *arg0, s32 x0, s32 y0, s8 *str) {
     f32 x;
     f32 y;
@@ -126,6 +147,10 @@ void TDLGraph::draw_percent_text(f32 farg0, f32 farg1) {
     }
 }
 
+__declspec(section ".sdata2") extern const f32 lbl_805D92AC = 100.0f;
+
+__declspec(section ".rodata") extern const char lbl_80438AD8[] = "%3d%";
+
 void TDLGraph::draw_countdown_timer(f32 x, f32 y) {
     Obj_8007F0E4 *self = (Obj_8007F0E4 *)this;
     char buf[16];
@@ -148,12 +173,12 @@ void TDLGraph::draw_countdown_timer(f32 x, f32 y) {
     secs = (t / 30) % 60;
     frac = (t % 30) / 3;
     if (mins > 0) {
-        ((int (*)(char *, const char *, ...))sprintf)(buf, lbl_80438AE0, mins, secs, frac);
+        sprintf((s8 *)buf, lbl_80438AE0, mins, secs, frac);
     } else {
-        ((int (*)(char *, const char *, ...))sprintf)(buf, lbl_80438AEC, secs, frac);
+        sprintf((s8 *)buf, lbl_80438AEC, secs, frac);
     }
-    ((s32 (*)(void *, s32, s32, char *))draw_outlined_string_right_aligned__14TObjWarpStringFPviiPv)(self, (s32)x, (s32)y, buf);
-    if (self->f30 > 0 && self->f24 - self->f30 > 0x4B && self->f1C > lbl_805D92B0) {
+    draw_outlined_string_right_aligned__14TObjWarpStringFPviiPv(self, (s32)x, (s32)y, (s8 *)buf);
+    if (self->f30 > 0 && self->f24 - self->f30 > 0x4B && self->f1C > 1e-5f) {
         k = lbl_805D929C;
         r = k / self->f1C;
         r -= k;
@@ -167,47 +192,37 @@ void TDLGraph::draw_countdown_timer(f32 x, f32 y) {
         self->time--;
     }
 }
-struct VtxList_8007F27C {
-    f32 *pos;
-    u32 *col;
-    s32 n;
-    s32 cap;
-};
-
 #pragma push
 #pragma fp_contract on
-void fn_8007F27C(TDLGraph *self, f32 *pos, f32 *size) {
-    u32 col[4];
-    f32 v[8];
-    f32 x0 = pos[0] - 2.0f;
-    f32 y0 = pos[1] - 2.0f;
-    f32 y1 = 2.0f + (pos[1] + size[1]);
-    f32 x1 = 2.0f + (pos[0] + size[0]);
-    VtxList_8007F27C vl = { NULL, NULL, 0, 4 };
-    vl.pos = v;
-    vl.col = col;
-    col[0] = col[1] = col[2] = col[3] = 0xFF;
-    v[0] = v[6] = x0;
-    v[2] = v[4] = x1;
-    v[1] = v[3] = y0;
-    v[5] = v[7] = y1;
-    ((TObjCMHairMenu *)&vl)->draw_tri_fan_2d(4, 2, -2.0f);
-    x0 = pos[0];
-    y0 = pos[1];
-    x1 = size[0];
-    y1 = size[1] + y0;
-    col[0] = col[1] = col[2] = col[3] = self->m_34;
-    v[0] = v[6] = x0;
-    v[2] = v[4] = x1 * self->m_1c + x0;
-    v[1] = v[3] = y0;
-    v[5] = v[7] = y1;
-    ((TObjCMHairMenu *)&vl)->draw_tri_fan_2d(4, 2, -1.0f);
-    x0 = size[0] + pos[0];
-    col[0] = col[1] = col[2] = col[3] = self->m_38;
-    v[0] = v[6] = x0;
-    ((TObjCMHairMenu *)&vl)->draw_tri_fan_2d(4, 2, -1.0f);
+// Draws the download bar: a black frame, the filled part in the bar colour, and the empty part in the track colour.
+void fn_8007F27C(TDLGraph *graph, const ColorLineVertex *position, const ColorLineVertex *size) {
+    ColorLineVertex vertices[4];
+    u32 colors[4];
+    ColorLineList fan = lbl_80438AB4;
+    const f32 margin = 2.0f;
+    fan.verts = vertices;
+    fan.colors = colors;
+    colors[0] = colors[1] = colors[2] = colors[3] = 0xff;
+    vertices[0].x = vertices[3].x = position->x - margin;
+    vertices[1].x = vertices[2].x = margin + (position->x + size->x);
+    vertices[0].y = vertices[1].y = position->y - margin;
+    vertices[2].y = vertices[3].y = margin + (position->y + size->y);
+    ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 2, -2.0f);
+
+    colors[0] = colors[1] = colors[2] = colors[3] = graph->m_34;
+    vertices[0].x = vertices[3].x = position->x;
+    vertices[1].x = vertices[2].x = size->x * graph->m_1c + position->x;
+    vertices[0].y = vertices[1].y = position->y;
+    vertices[2].y = vertices[3].y = size->y + position->y;
+    ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 2, lbl_805D92B8);
+
+    colors[0] = colors[1] = colors[2] = colors[3] = graph->m_38;
+    vertices[0].x = vertices[3].x = size->x + position->x;
+    ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 2, lbl_805D92B8);
 }
 #pragma pop
+
+__declspec(section ".sdata2") extern const f32 lbl_805D92B8 = -1.0f;
 
 s32 fn_8007F3F8(O_8007F3F8 *arg0, f32 farg0) {
     f32 sum;
@@ -217,7 +232,7 @@ s32 fn_8007F3F8(O_8007F3F8 *arg0, f32 farg0) {
     if (arg0->count < 9) {
         return -1;
     }
-    sum = 0.0f;
+    sum = lbl_805D9298;
     for (i = 0; i < 3; i++) {
         da = (f32)(arg0->e[i].a - arg0->e[i + 1].a);
         df = arg0->e[i].f - arg0->e[i + 1].f;
@@ -227,7 +242,8 @@ s32 fn_8007F3F8(O_8007F3F8 *arg0, f32 farg0) {
         sum += da / df;
     }
     sum /= 3.0f;
-    return (s32)((1.0f - farg0) * sum);
+    f32 remaining = lbl_805D929C - farg0;
+    return (s32)(remaining * sum);
 }
 
 }
