@@ -1842,7 +1842,7 @@ f64 atan2_float(f32, f32);
 #define test_body_collision__16TObjEneMe3StelthFlf ((s32 (*)(void *, int, f32))test_body_collision__16TObjEneMe3StelthFlf)
 s32 approach_angle_limited(int, int, int);
 s32 set_matrix_identity(int);
-extern const f64 TObjEneMe3Stelth__data_8043D758;
+static const f64 TObjEneMe3Stelth__data_8043D758 = 10430.38043493439;
 extern s32 TObjEneMe3Stelth__trail_buffer;
 extern const f32 lbl_805DA810;
 extern const f32 lbl_805DA86C;

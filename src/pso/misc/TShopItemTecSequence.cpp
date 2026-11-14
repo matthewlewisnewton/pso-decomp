@@ -99,8 +99,8 @@ struct Seq_80220110 : VBase_18_80220110 {
 extern "C" {
 s32 set_service_counter_camera(void *, int);
 s32 get_window_layout_position(int, f32);
-extern const f32 lbl_805DC700;
-extern const f32 lbl_805DC704;
+static const f32 lbl_805DC700 = 332.0f;
+static const f32 lbl_805DC704 = 80.0f;
 void queue_destruction__7TObjectFv(void *arg0);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);

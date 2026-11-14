@@ -12,8 +12,8 @@ f32 calc_random_ratio__10TObjPlayerFv(void *);
 void subtractive_rng_seed(void *, s32);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
-extern const f32 lbl_805DED40;
-extern const f32 lbl_805DED44;
+static const f32 lbl_805DED40 = 65535.0f;
+static const f32 lbl_805DED44 = 320.0f;
 u8 *TBoss8Dragon__sub_802F3348(s32 arg0) {
     if (boss8_dragon_leader_part == NULL) {
         return NULL;

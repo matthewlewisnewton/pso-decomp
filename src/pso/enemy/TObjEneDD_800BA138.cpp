@@ -193,7 +193,7 @@ void TObjEneDD::emit_effect_at_position(void* a1) { TObjEneDD::emit_enemy_effect
 void TObjEneDD::emit_effect(void* p, int a1, int a2) { TObjEneDD::emit_enemy_effect((s32)p, (s32)a1, (u8 *)a2, 0); }
 
 extern u8 *obj_ene_dd_instance;
-extern const f32 lbl_805D9EA0;
+static const f32 lbl_805D9EA0 = 100.0f;
 
 void TObjEneDD::emit_enemy_effect(s32 arg0, s32 arg1, u8 *arg2, s32 arg3) {
     ((TUnk_804928CC *)obj_ene_dd_instance)->sub_800BC3E8((u8 *)arg0);

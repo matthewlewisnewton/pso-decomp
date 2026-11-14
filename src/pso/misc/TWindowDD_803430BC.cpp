@@ -1041,3 +1041,8 @@ void TWindowDD__sub_80344114(void) {
 }
 
 }
+
+extern "C" {
+s8 lbl_805D6E68;
+char *lbl_805D6E6C;
+}

@@ -368,3 +368,7 @@ __declspec(section ".data") const char *fe_obj_switch_laz_model_names[4] = { lbl
 __declspec(section ".data") const char *fe_obj_switch_laz_motion_names[3] = { lbl_80445C54, lbl_80445C6C, NULL };
 BmlResourceDescriptor laser_fence_switch_resource_descriptor = { lbl_80445C88, fe_obj_switch_laz_model_names, fe_obj_switch_laz_motion_names, 3, 2 };
 }
+
+extern "C" {
+void *lazer_fence_switch_bml_resource;
+}
