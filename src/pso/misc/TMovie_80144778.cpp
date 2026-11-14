@@ -44,8 +44,8 @@ extern Vec_80144778 lbl_8043F2F4;
 extern Vec_80144778 lbl_8043F300;
 extern s32 video_initial_draw_framebuffer;
 extern s32 video_initial_display_framebuffer;
-extern const f32 lbl_805DB180;
-extern const f32 lbl_805DB184;
+static const f32 lbl_805DB180 = 1.133333444595337f;
+static const f32 lbl_805DB184 = 1.0f;
 extern const f32 lbl_805DB188;
 void run_task__6TMovieFv(TMovie *arg0);
 

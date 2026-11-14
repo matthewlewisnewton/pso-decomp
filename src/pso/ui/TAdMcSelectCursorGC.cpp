@@ -37,24 +37,24 @@ extern "C" {
 void __ct__7TObjectFP7TObject(void *);
 extern s32 __vt__19TAdMcSelectCursorGC[];
 extern s32 lbl_805D41D0;
-extern const f32 lbl_805DF740;
-extern const f32 lbl_805DF744;
+static const f32 lbl_805DF740 = 0.0f;
+static const f32 lbl_805DF744 = 1.0f;
 Obj_8032A574 *TAdMcSelectCursorGC__ct(Obj_8032A574 *arg0);
 
 extern u8 controller_input_state[];
 extern u8 controller_physical_port_bank[];
-extern const f32 lbl_805DF72C;
-extern const f32 lbl_805DF730;
-extern const f32 lbl_805DF734;
-extern const f32 lbl_805DF738;
-extern const f32 lbl_805DF73C;
+static const f32 lbl_805DF72C = 51.0f;
+static const f32 lbl_805DF730 = 286.0f;
+static const f32 lbl_805DF734 = 116.0f;
+static const f32 lbl_805DF738 = 256.0f;
+static const f32 lbl_805DF73C = 372.0f;
 s32 __dl__7TObjectFPv(void *);
 s32 __dt__7TObjectFv(void *, s32);
 void restore_saved_depth_alpha_state(void);
 s32 defer_render__7TObjectFv();
 
 extern s32 TAdMcSelectCursorGC__texture_entry;
-extern const f32 lbl_805DF728;
+static const f32 lbl_805DF728 = 0.8999999761581421f;
 
 void TAdMcSelectCursorGC::render_cursor() {
     u8 *arg0 = (u8 *)this;

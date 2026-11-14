@@ -11,7 +11,7 @@
 extern "C" {
 void restore_saved_depth_alpha_state(void);
 extern s32 TEndingAB__fade_sequence_state;
-extern const f32 lbl_805D9580;
+static const f32 lbl_805D9580 = 0.8999999761581421f;
 extern s32 game_difficulty_selection;
 extern s32 ending_ab_wall_texture_list;
 void TEndingAB::advance_fade_sequence() {

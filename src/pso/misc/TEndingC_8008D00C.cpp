@@ -40,31 +40,31 @@ int TKeyBoardControl__sub_8000F828(void);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern void *__vt__8TEndingC[];
 extern s32 lbl_805D2960;
-extern const f32 lbl_805D95CC;
-extern const f32 lbl_805D95D4;
-extern const f32 lbl_805D95D8;
-extern const f32 lbl_805D95DC;
-extern const f32 lbl_805D95E0;
-extern const f32 lbl_805D95E4;
-extern const f32 lbl_805D95E8;
-extern const f32 lbl_805D95EC;
-extern const f32 lbl_805D95F0;
-extern const f32 lbl_805D95F4;
+static const f32 lbl_805D95CC = 1.0f;
+static const f32 lbl_805D95D4 = 0.0f;
+static const f32 lbl_805D95D8 = 228.0f;
+static const f32 lbl_805D95DC = 640.0f;
+static const f32 lbl_805D95E0 = 480.0f;
+static const f32 lbl_805D95E4 = 0.1953125f;
+static const f32 lbl_805D95E8 = 0.9375f;
+static const f32 lbl_805D95EC = 100.0f;
+static const f32 lbl_805D95F0 = 10.0f;
+static const f32 lbl_805D95F4 = 340.0f;
 extern const f32 lbl_805D95F8;
 u8 *__ct__8TEndingCFv(u8 *arg0, u8 *arg1);
 int TEndingC__sub_8008C6F4(void);
 void TEndingAB__sub_8008D5A0(void);
 void TEndingPic__sub_8008D5AC(void);
 int TEnding__sub_8008D5B8(void);
-extern const f32 lbl_805D95D0;
+static const f32 lbl_805D95D0 = 4.0f;
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void begin_screen_draw(s32 arg0);
 s32 set_draw_texture_and_color(s32, s32, f32);
 
 extern s32 TEndingC__wall_texture_list_entry[];
-extern const f32 lbl_805D95C0;
-extern const f32 lbl_805D95C4;
-extern const f32 lbl_805D95C8;
+static const f32 lbl_805D95C0 = 255.0f;
+static const f32 lbl_805D95C4 = 0.9800000190734863f;
+static const f32 lbl_805D95C8 = 0.9900000095367432f;
 
 }
 

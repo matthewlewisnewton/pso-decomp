@@ -26,8 +26,8 @@ extern u8 lbl_80439588[];
 extern u8 ending_scene_callbacks[];
 extern u8 default_scene_light_config[];
 extern void *tl_camera;
-extern const f32 lbl_805D9570;
-extern const f32 lbl_805D9574;
+static const f32 lbl_805D9570 = 1.0f;
+static const f32 lbl_805D9574 = 0.8500000238418579f;
 extern s32 ending_scene_active;
 
 void TEnding::set_flag_and_advance() {

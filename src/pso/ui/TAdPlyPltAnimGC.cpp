@@ -49,20 +49,20 @@ struct RecoveredGlobal_803560F0_lbl_804F142C {
 
 extern "C" {
 extern s32 player_prate_texture_list_ptr;
-extern const f32 lbl_805DFFC8;
-extern const f32 lbl_805DFFCC;
+static const f32 lbl_805DFFC8 = 0.9900000095367432f;
+static const f32 lbl_805DFFCC = 0.0010000000474974513f;
 extern const V2_80355D5C lbl_80479350[];
-extern const f32 lbl_805DFFD0;
+static const f32 lbl_805DFFD0 = 0.5f;
 void start_anim_rect__19TAdPlyPltAnimCtrlGCFPvPv(Obj_80355D5C *o, V2_80355D5C *p);
 extern Pos_80355DE0 ply_plt_anim_target_position_table[];
 extern u32 ply_plt_anim_duration_table[];
-extern const f32 lbl_805DFFD4;
-extern const f32 lbl_805DFFD8;
+static const f32 lbl_805DFFD4 = 1.0f;
+static const f32 lbl_805DFFD8 = 255.0f;
 extern RecoveredGlobal_803560F0_lbl_804F142C TAdPlyPltAnimGC__instances;
 extern void *__vt__15TAdPlyPltAnimGC[];
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 lbl_805D43A0;
-extern const f32 lbl_805DFFDC;
+static const f32 lbl_805DFFDC = 0.0f;
 extern const f32 lbl_805DFFE0;
 s32 __nw__7TObjectFUl(int);
 void release_texture_list(void*);

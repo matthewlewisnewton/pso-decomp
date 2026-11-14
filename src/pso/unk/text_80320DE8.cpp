@@ -7,8 +7,8 @@
 
 extern "C" {
 extern void *lbl_805D6C18;
-extern const f32 lbl_805DF498;
-extern const f32 lbl_805DF49C;
+static const f32 lbl_805DF498 = 0.7950000166893005f;
+static const f32 lbl_805DF49C = 9.999999747378752e-05f;
 }
 
 #pragma push

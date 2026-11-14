@@ -290,12 +290,12 @@ struct Item_802D6BEC {
 struct Entry_802D6DAC { s32 idx; const char *str; s32 id; Vec2_802D6E7C pos; };
 extern "C" {
 void render_status_line__15TAdSubPlyItemGCFi(const char *, u32, f32, f32, f32);
-extern const f32 lbl_805DE7C0;
-extern const f32 lbl_805DE7C4;
-extern const f32 lbl_805DE7C8;
+static const f32 lbl_805DE7C0 = 1.0f;
+static const f32 lbl_805DE7C4 = 0.38999998569488525f;
+static const f32 lbl_805DE7C8 = 0.4000000059604645f;
 char *strncpy(char *, const char *, u32);
 u32 calc_text_width(char *s);
-extern const f32 lbl_805DE7CC;
+static const f32 lbl_805DE7CC = 180.0f;
 extern const f32 lbl_805DE7D0;
 void run_task__15TAdSubPlyItemGCFv(Self_802D6E7C *self);
 extern u8 level_text_buffer[];

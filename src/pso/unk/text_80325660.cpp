@@ -7,7 +7,7 @@
 
 extern "C" {
 extern s32 chr_sel_move_plate_texture;
-extern const f32 lbl_805DF600;
+static const f32 lbl_805DF600 = 0.5199999809265137f;
 void draw_move_plate_quads(TAdChrSelMovePlateGC *arg0) {
     u32 i;
     for (i = 0; i < arg0->count; i++) {

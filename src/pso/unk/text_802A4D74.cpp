@@ -3,8 +3,8 @@
 #include "pso/TAdTitleTexGC.h"
 #include "pso/TObjWarpString.h"
 
-extern const f32 lbl_805DDF80;
-extern const f32 lbl_805DDF84;
+static const f32 lbl_805DDF80 = 22.0f;
+static const f32 lbl_805DDF84 = 1.0f;
 
 #pragma push
 #pragma opt_common_subs off
