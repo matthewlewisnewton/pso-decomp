@@ -136,7 +136,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,881 | 888 |
-| Per-unit compiler overrides in `configure.py` | 209 | 209 |
+| Per-unit compiler overrides in `configure.py` | 210 | 210 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -995,6 +995,16 @@ immediately after the derived vtable. CodeWarrior declares eight-byte
 `.data` alignment. The unit uses `cw_align: .data=4` to retain the
 four-byte boundary in the ELF and CodeWarrior metadata. A port can use its
 default vtable placement.
+
+### `TObjRaderHideCol.cpp` native data alignment
+
+`pso/object/TObjRaderHideCol.cpp` uses `cw_align: .data=4 .sdata=4`.
+Its compiler-generated vtable starts at `0x804B890C`, and its class-name
+pointer at `0x805D3414`. Both addresses have four-byte alignment, while
+GC/2.6 records eight-byte alignment for the emitted sections. The existing
+`cw_comment_align.py` adapter changes only the ELF and CodeWarrior alignment
+metadata; instructions, data and relocations remain compiler-generated.
+A port can use its compiler's default vtable and pointer alignment.
 
 ### `TCheckMemoryCard.cpp` section placement
 

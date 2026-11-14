@@ -6050,6 +6050,9 @@ pso/object/TObjRaderIcon.cpp:
 
 pso/object/TObjRaderHideCol.cpp:
 	.text       start:0x801973AC end:0x80197508
+	.rodata     start:0x80445F40 end:0x80445F54
+	.data       start:0x804B890C end:0x804B8940
+	.sdata      start:0x805D3414 end:0x805D3418
 
 pso/object/TObjRaderCol.cpp:
 	.text       start:0x80197508 end:0x801977D4

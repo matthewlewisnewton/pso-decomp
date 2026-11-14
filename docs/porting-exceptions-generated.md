@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
 | pragma | 5881 | 888 |
-| configure.py per-unit override | 209 | 209 |
+| configure.py per-unit override | 210 | 210 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1156, `inline_depth` 1062, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -261,6 +261,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1156, `inline_depth` 1062,
 | `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `(multi-line entry; see configure.py)` | Deferred, with definitions in reverse address order: the ctor's function-local static and guard precede run_task's table guard in .sbss, as in the original (docs/porting-exceptions.md section 5). .sbss starts at 0x805D696C and .sdata2 at 0x805DECCC, both only 4-aligned. mwld takes alignment from the CodeWarrior comment record, which GC/2.6 writes as 8, so the pool and every later sda21 offset shift by 4. cw_align rewrites that record after compile. -sdata 4 does not. |
 | `pso/boss/TObjBoss2Tunnel.cpp` | `-inline off,deferred, -pool off, -sdata 4, -fp_contract on` | Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is needed (docs/porting-exceptions.md section 5). |
 | `pso/item/TItemAttackCol_802E4798.cpp` | `(multi-line entry; see configure.py)` | The base collider's vtable follows the derived vtable at 0x804E355C. |
+| `pso/object/TObjRaderHideCol.cpp` | `(multi-line entry; see configure.py)` | The radar-hide vtable and name pointer both start four bytes past an eight-byte boundary; preserve their native placement in MWLD metadata. |
 | `pso/misc/TCheckMemoryCard.cpp` | `(multi-line entry; see configure.py)` | The memory-card menu position precedes the callback templates in .data. Its two read-only layout inputs begin at a four-byte-aligned address. |
 | `pso/boss/TBoss4DarkFalz_8004C93C.cpp` | `-inline deferred, -sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOTrapSeabed01.cpp` | `-inline deferred` | Reverse definitions with deferred generation: the weak copies of TOTrap's inline slots are generated first, so their 1.0/0.0 head .sdata2 as in the original pool, and clamp_params_and_init inlines its clamp helpers. |

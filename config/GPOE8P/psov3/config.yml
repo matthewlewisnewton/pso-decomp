@@ -1952,6 +1952,8 @@ force_active:
   - TObjPlayer__sub_803E5458
   - TObjPlayer__update_off_floor_state
   - TObjQuestColALock2__ct
+  - TObjRaderHideCol__class_name
+  - TObjRaderHideCol__name
   - TObjRaderIcon__ct
   - TObjRain__class_name
   - TObjRain__class_name_string
@@ -2996,6 +2998,7 @@ force_active:
   - __dt__16TObjHashiVersus2Fv
   - __dt__16TObjItemOKWindowFv
   - __dt__16TObjKabochaLobbyFv
+  - __dt__16TObjRaderHideColFv
   - __dt__16TObjRainbowLobbyFv
   - __dt__16TObjTagChallengeFv
   - __dt__16TObjVoloptPillarFv
@@ -3630,6 +3633,7 @@ force_active:
   - __vt__16TObjItemOKWindow
   - __vt__16TObjKabochaLobby
   - __vt__16TObjOnlineEnding
+  - __vt__16TObjRaderHideCol
   - __vt__16TObjRainbowLobby
   - __vt__16TObjTagChallenge
   - __vt__16TObjVoloptPillar
@@ -16127,6 +16131,7 @@ force_active:
   - render__16TObjEvtCollisionFv
   - render__16TObjKabochaLobbyFv
   - render__16TObjOnlineEndingFv
+  - render__16TObjRaderHideColFv
   - render__16TObjRainbowLobbyFv
   - render__16TObjVoloptPillarFv
   - render__16TObjWeddingLobbyFv
@@ -16863,6 +16868,7 @@ force_active:
   - run_task__16TObjEvtCollisionFv
   - run_task__16TObjKabochaLobbyFv
   - run_task__16TObjOnlineEndingFv
+  - run_task__16TObjRaderHideColFv
   - run_task__16TObjRainbowLobbyFv
   - run_task__16TObjTagChallengeFv
   - run_task__16TObjVoloptPillarFv
