@@ -2364,6 +2364,8 @@ pso/item/TItemDisconnectCtrl.cpp:
 pso/item/TItemDrop_80105D0C.cpp:
 	.text       start:0x80105D0C end:0x80107B74
 	.rodata     start:0x8043E120 end:0x8043E130
+	.sdata      start:0x805D2B78 end:0x805D2B7C
+	.sbss       start:0x805D5470 end:0x805D5478
 
 pso/item/TItemDropSub_80107B74.cpp:
 	.text       start:0x80107B74 end:0x80107B90
