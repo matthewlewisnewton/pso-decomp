@@ -133,8 +133,8 @@ s32 select_actor_lighting(void *);
 s32 defer_render__7TObjectFv(void *);
 s32 TObjPlayer__sub_8023DEE0(int, int, int, int);
 s32 draw_chunk_object(void *);
-extern s32 dimedian_resource_handles[];
-extern s32 dimedian_last_draw_tick[];
+extern s32 dimedian_resource_handles[3];
+extern s32 dimedian_last_draw_tick[3];
 extern s32 actor_frame_tick;
 extern s32 saved_model_render_flags;
 extern s32 saved_chunk_polygon_flags_and_mask;
@@ -483,8 +483,8 @@ struct Self_800A8530 { u8 pad[0x3CC]; Sub_800A8530 subs[4]; };
 
 extern "C" {
 extern u8 lbl_8043AAA4[];
-extern s32 dimedian_resource_handles[];
-extern s32 dimedian_last_draw_tick[];
+extern s32 dimedian_resource_handles[3];
+extern s32 dimedian_last_draw_tick[3];
 
 void __ct__13TUnk_80493450FP7TObject(void *);
 s32 create__13TUnk_80494968FUlUl(s32, s32);
@@ -900,3 +900,8 @@ void *TObjEneDimedian__ct(void *arg0_, void *arg1_, void *arg2_) {
 #undef arg0
 #undef arg1
 #undef arg2
+
+extern "C" {
+s32 dimedian_resource_handles[3];
+s32 dimedian_last_draw_tick[3];
+}
