@@ -1341,3 +1341,11 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
     }
     return result;
 }
+
+extern "C" {
+s8 lbl_805D4E98;
+f32 lbl_805D4E9C;
+s8 boss2_tunnel_message_shown_flag;
+s8 boss2_tunnel_confirm_loop_flag;
+f32 lbl_805D4EA4;
+}

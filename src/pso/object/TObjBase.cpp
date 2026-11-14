@@ -331,3 +331,10 @@ TObjBase::TObjBase(TObject *parent) : TObject(parent) {
     center.z = lbl_805DC098;
     visibility = 0;
 }
+
+extern "C" {
+u16 lbl_805D5CD0;
+u16 lbl_805D5CD2;
+u16 lbl_805D5CD4;
+u16 lbl_805D5CD6;
+}

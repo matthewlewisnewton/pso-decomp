@@ -33,14 +33,14 @@ extern const f32 lbl_805DE3F8;
 extern f32 lbl_805DE4DC;
 extern const f32 lbl_805DE4F0;
 
-extern const f32 lbl_805DE4E0;
-extern const f32 lbl_805DE4E4;
+static const f32 lbl_805DE4E0 = 0.0f;
+static const f32 lbl_805DE4E4 = 1.0f;
 void *get_player_by_client_id(s32 i);
 
 s32 spawn_flow_soul__11TBoss6Type2Fiii(s32 arg0, s32 arg1, s32 arg2);
 extern const f32 lbl_805DE404;
-extern const f32 lbl_805DE4E8;
-extern const f32 lbl_805DE4EC;
+static const f32 lbl_805DE4E8 = 60.0f;
+static const f32 lbl_805DE4EC = 10.0f;
 extern s32 lbl_805D6780;
 extern u8 lbl_805D6784;
 extern const f32 lbl_805DE400;

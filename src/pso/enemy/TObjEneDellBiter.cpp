@@ -64,7 +64,7 @@ f64 atan2_float(f32, f32);
 s32 approach_angle_limited(int, int, int);
 
 void * __nw__7TObjectFUl(int);
-extern const f64 TObjEneDellBiter__data_80475328;
+static const f64 TObjEneDellBiter__data_80475328 = 10430.38043493439;
 extern DelbiterMovementParameters *TObjEneDellBiter__movement_params;
 extern const f32 lbl_805DEFCC;
 extern const f32 lbl_805DEFD0;

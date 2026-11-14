@@ -44,9 +44,9 @@ s16 get_validated_attack_stage(u8 *arg0);
 s16 TObjPlayer__sub_801D2F4C(s16 *arg0);
 }
 void enlarge_flight_cutter_slicer(void *arg0);
-extern const f32 lbl_805DAF28;
-extern const f32 lbl_805DAF2C;
-extern const f32 lbl_805DAF30;
+static const f32 lbl_805DAF28 = 1.0f;
+static const f32 lbl_805DAF2C = 0.0f;
+static const f32 lbl_805DAF30 = 0.7f;
 typedef char RecoveredGlobal_8012D6BC_lbl_804A05A8_size[sizeof(RecoveredGlobal_8012D6BC_lbl_804A05A8) == 0x20 ? 1 : -1];
 
 u8 *slow_curse_timer_ct(u8 *arg0, s16 arg1, s32 arg2, f32 farg0) {

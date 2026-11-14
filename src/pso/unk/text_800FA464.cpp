@@ -18,7 +18,7 @@ struct AsyncFileReadRequest {
 extern "C" {
 void load_gvm_texture_archive(u8 *, s32);
 }
-extern char fsrv_read_pvm_buffer_tag[];
+extern const char fsrv_read_pvm_buffer_tag[] = "FSVR_READPVM";
 extern AsyncFileReadRequest *async_file_read_current_request;
 extern s32 async_file_read_state;
 extern u8 *async_file_read_sector_buffer;

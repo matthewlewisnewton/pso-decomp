@@ -1185,3 +1185,8 @@ void TLobby__sub_8024285C(void* p) { reset_state_805D63DC__6TLobbyFv(p); }
 
 LobbyGuildCardRecord selected_guild_card_record;
 LobbyGuildCardRecord lbl_80517F9C[8];
+
+extern "C" {
+s32 lbl_805D63D8;
+int com_card_entry_count;
+}

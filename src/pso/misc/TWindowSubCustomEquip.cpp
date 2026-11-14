@@ -355,3 +355,10 @@ s32 TWindowSubCustomEquip::calc_equip_index() {
 }
 
 }
+
+extern "C" {
+f32 TWindowSubCustomEquip__ring_scale;
+u8 TWindowSubCustomEquip__bank_ring_init_done;
+f32 lbl_805D6478;
+u8 lbl_805D647C;
+}

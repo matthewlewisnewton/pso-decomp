@@ -14,8 +14,8 @@ struct ItemChoiceList { s32 count; ItemChoice *choices; };
 extern "C" {
 ItemChoiceList *get_item_pmt_entry__10TObjPlayerFUc(u8);
 s32 rand(void);
-extern const f32 lbl_805DFE28;
-extern const f32 lbl_805DFE2C;
+static const f32 lbl_805DFE28 = 100.0f;
+static const f32 lbl_805DFE2C = 3.0517578e-05f;
 }
 
 void TUnk_804F0C48::apply_use_effect() {
