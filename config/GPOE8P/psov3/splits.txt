@@ -6747,6 +6747,7 @@ pso/network/TProtocol_801DA140.cpp:
 
 pso/network/TProtocol_801DA240.cpp:
 	.text       start:0x801DA240 end:0x801DA7DC
+	.rodata     start:0x804495E8 end:0x80449610
 
 pso/misc/TLobby_801DA7DC.cpp:
 	.text       start:0x801DA7DC end:0x801DAC6C
@@ -6804,8 +6805,12 @@ pso/unk/text_801DBA58.cpp:
 
 pso/network/TProtocol.cpp:
 	.text       start:0x801DBAB4 end:0x801DEF7C
+	.rodata     start:0x80449610 end:0x8044963C
 	.data       start:0x804C4A50 end:0x804C5234
 	.sbss       start:0x805D5E28 end:0x805D5E30
+
+original_padding_8044963C:
+	.rodata     start:0x8044963C end:0x80449640 align:4
 
 pso/misc/TPlyClientConfig.cpp:
 	.text       start:0x801DEF7C end:0x801DEFA4
