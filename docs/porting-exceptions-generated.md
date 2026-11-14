@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5881 | 888 |
-| configure.py per-unit override | 210 | 210 |
+| pragma | 5893 | 892 |
+| configure.py per-unit override | 214 | 214 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1156, `inline_depth` 1062, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -314,6 +314,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1156, `inline_depth` 1062,
 | `pso/misc/TWindowShortListCtrl_8026E7DC.cpp` | `GC/1.3` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TMedicalCenterSequence.cpp` | `-inline deferred` | Deferred inlining: functions come out in reverse source order and the vtables before the switch tables in .data. |
 | `pso/misc/TWindowMainMenu_802AD538.cpp` | `-inline noauto,level=1` | Row-header copy is a 16-byte struct assignment. -inline off outlines it; noauto,level=1 inlines that helper only. The rest of the unit stays out of line. |
+| `pso/misc/TWindowDD_80342254.cpp` | `-inline off,deferred` | Window native lifetime (Matt's approval, Nov 14 2026, 1:35 PM PT): deferred emission makes the compiler-generated Word vtable exist while metadata is pooled; reverse definitions keep the original addresses and pool order. See docs/evidence/window-native-lifetime-deferred.md. |
+| `pso/misc/TWindowComCard_80249CBC.cpp` | `-inline off,deferred` | Window native lifetime: same deferred emission for the ComCard follower window vtable (TUnk_804CE964). See docs/evidence/window-native-lifetime-deferred.md. |
+| `pso/misc/TWindowDD.cpp` | `-inline off,deferred` | Window native lifetime: same deferred emission for the TUnk_804EFBAC selection window vtable. See docs/evidence/window-native-lifetime-deferred.md. |
+| `pso/misc/TWindowDD_80340EA8.cpp` | `-inline off,deferred` | Window native lifetime: same deferred emission for the TWindowDD_WS_ScrollBar vtable. See docs/evidence/window-native-lifetime-deferred.md. |
 | `pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `-fp_contract on` | Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs (scale_point_about_pivot, apply_context_transform_to_rect, apply_window_closing_stretch, clip_textured_quad, init_text_window_layout). Unit -fp_contract on replaces the per-function pragmas. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/unk/text_8034A090.cpp` | `-fp_contract on` | Loading-text particle positions contract `scale * i + base` into fmadds (TAdLoadQuestPrtTxtGC ctor, cases 0/1/2). The other three functions have no contracted multiply. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/misc/TNpcPlayer.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190: this file is written in reverse so deferred codegen emits address order, and the readonly string pool places the constants. |
@@ -675,6 +679,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1156, `inline_depth` 1062,
 | `src/pso/item/TObjContainerItem.cpp` | opt_propagation×2, readonly_strings×1, fp_contract×1 |
 | `src/pso/item/TObjContainerJung.cpp` | opt_propagation×3, fp_contract×2 |
 | `src/pso/item/TUnk_8049F8E0.cpp` | scheduling×1 |
+| `src/pso/item/TUnk_804A6200.cpp` | dont_inline×2, inline_depth×2 |
+| `src/pso/item/TUnk_804A67D0.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/item/TUnk_804A6AD8.cpp` | opt_common_subs×1 |
 | `src/pso/item/TUnk_804F0D34.cpp` | readonly_strings×1 |
 | `src/pso/map/CsnQuery.cpp` | fp_contract×6, inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -905,13 +911,13 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1156, `inline_depth` 1062,
 | `src/pso/misc/TWindowChat.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowCheckBox.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowChoiceSetting.cpp` | fp_contract×1, inline_depth×1, auto_inline×1, dont_inline×1 |
-| `src/pso/misc/TWindowComCard.cpp` | fp_contract×2 |
+| `src/pso/misc/TWindowComCard_80249CBC.cpp` | fp_contract×2 |
 | `src/pso/misc/TWindowCtrlMain_8024C820.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowCtrl_8024A1A8.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/misc/TWindowCtrl_8024B1A0.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowCtrl_8024B7D4.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowCtrl_8024D960.cpp` | fp_contract×1, scheduling×1 |
-| `src/pso/misc/TWindowDD.cpp` | opt_propagation×2, opt_common_subs×2, opt_dead_assignments×1, fp_contract×1 |
+| `src/pso/misc/TWindowDD.cpp` | opt_propagation×2, opt_common_subs×2, fp_contract×1, opt_dead_assignments×1 |
 | `src/pso/misc/TWindowDD_803411E8.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowDD_80341334.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowDD_80341A08.cpp` | fp_contract×3 |
@@ -1042,6 +1048,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1156, `inline_depth` 1062,
 | `src/pso/object/LobbyPigeonPath.cpp` | fp_contract×4 |
 | `src/pso/object/TLazerFenceSw.cpp` | opt_common_subs×2, opt_propagation×1 |
 | `src/pso/object/TObjAreaWarpEndingJung.cpp` | opt_common_subs×4, defer_codegen×1, readonly_strings×1 |
+| `src/pso/object/TObjBagWarnWin4P.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/object/TObjBase.cpp` | opt_common_subs×2, opt_propagation×2, fp_contract×2 |
 | `src/pso/object/TObjBigTuitate.cpp` | inline_depth×2, auto_inline×2, dont_inline×2, opt_common_subs×2 |
 | `src/pso/object/TObjButterflyLobby_80350958.cpp` | fp_contract×1 |
@@ -1206,6 +1213,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1156, `inline_depth` 1062,
 | `src/pso/ui/TChallenge4PItemSelect.cpp` | defer_codegen×1 |
 | `src/pso/ui/TFontSmallTask.cpp` | fp_contract×2 |
 | `src/pso/ui/TMessageWindowController.cpp` | readonly_strings×1 |
+| `src/pso/ui/TObjBagWarnWin.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/ui/TObjCMHexTile.cpp` | readonly_strings×1, fp_contract×1, opt_lifetimes×1 |
 | `src/pso/ui/TObjDFJisin.cpp` | fp_contract×5 |
 | `src/pso/ui/TObjDFTenchuFuru_80052000.cpp` | opt_common_subs×1 |

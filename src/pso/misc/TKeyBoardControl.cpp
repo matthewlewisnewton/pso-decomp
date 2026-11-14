@@ -3,7 +3,6 @@
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowDD.h"
-#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/misc/TKeyBoardControl_8025CB70.h"
 #include "pso/misc/TWindowSubMag_802627D8.h"
