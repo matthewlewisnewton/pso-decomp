@@ -7128,6 +7128,7 @@ pso/misc/TRaderMapCore_801FB2B8.cpp:
 
 pso/misc/TRaderMapCore_801FB6A8.cpp:
 	.text       start:0x801FB6A8 end:0x801FB8AC
+	.rodata     start:0x8044A7B0 end:0x8044A7B8
 
 pso/misc/TRaderMapCore_801FB8AC.cpp:
 	.text       start:0x801FB8AC end:0x801FB964
