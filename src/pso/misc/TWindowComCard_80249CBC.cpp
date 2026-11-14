@@ -11,7 +11,6 @@ extern "C" {
 s32 draw_visible_window_entries(void *, void *, int);
 int initialize_subwindow__9TWindowDDFv(void*);
 extern "C" u8 lbl_805D63F0[];
-extern "C" void render_shadows__7TObjectFv();
 void set_help_mode__14TWindowComCardFl(void *entry, s32 arg1);
 extern const f32 lbl_805DCBD0;
 extern struct Obj054_80249DE4 *TWindowCtrl__active_window;
