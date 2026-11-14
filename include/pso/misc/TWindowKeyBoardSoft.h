@@ -3,12 +3,16 @@
 
 #include "types.h"
 #include <stddef.h>
+#include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowDrawContext.h"
 
 struct Vec2_8024EC34;
+struct TWindowKeyBoardBase;
 
-struct TWindowKeyBoardSoft : public TWindowDrawContext
+struct TWindowKeyBoardSoft : public TWindowBase
 {
+    TWindowKeyBoardSoft(TWindowKeyBoardBase *composer, s32 client);
+    virtual ~TWindowKeyBoardSoft();
     void spawn_key_effect(s32, s32);
     void handle_page_cycle_input(s32);
     void update_keyboard_child_input_from_controller(s32);
@@ -19,19 +23,18 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     int is_cursor_locked();
     void render();
     static s32 try_open(TWindowDrawContext *context, f32 *quad);
-    u32 m_68;
+    u32 m_60;
+    u8 m_64;
+    u8 m_65;
+    u8 m_66;
+    u8 unknown_67;
+    f32 m_68;
     u32 m_6c;
-    u8 _pad70[0xC];
-    u32 m_7c;
-    u8 _pad80[0x2C];
-    u32 m_ac;
-    u8 _padB0[0x4];
-    u32 m_b4;
     static f32 calc_key_coord(s32 arg0, s32 arg1);
     void update_focus_flags();
     void close();
     s32 hit_test_relative(u8 *arg1, u8 *arg2);
-    static void draw_key_frame(void *self, f32 *rect, f32 x0, f32 y, f32 w, f32 scale, u32 color, s32 idx);
+    static void draw_key_frame(void *self, TWindowDrawContext *context, f32 x0, f32 y, f32 w, f32 scale, u32 color, s32 idx);
     void insert_string(char *src);
     void update_input(void* a1);
     void append_text_entry(u8 *arg1);
@@ -53,17 +56,7 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     s32 check_text_overflow(u16 *arg1);
     void reset_state();
     static s32 strnlen(s8 *str, u32 max);
-    void scale_point_about_pivot(f32 *q);
-    void set_open_tick(s32 arg1);
-    void set_bounds(f32 a, f32 b, f32 c, f32 d);
-    void shrink_clip_right();
-    void animate_scale();
-    void adjust_pos_for_split_screen(s32 arg1);
-    static TWindowKeyBoardSoft *open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags);
-    static u32 get_or_create_instance();
-    static u32 free_singleton(u32 arg0, s16 arg1);
     static Vec2_8024EC34 *get_viewport_offset(int view);
-    u32 init_layout();
     s32 get_state();
     void update_input_state();
     void sub_8025B928();
@@ -114,7 +107,9 @@ struct TWindowKeyBoardSoft : public TWindowDrawContext
     static void dispatch_request_0f(s32 a, s32 b);
 };
 
-typedef char TWindowKeyBoardSoft_depth_offset[offsetof(TWindowKeyBoardSoft, depth) == 0x38 ? 1 : -1];
-typedef char TWindowKeyBoardSoft_m68[offsetof(TWindowKeyBoardSoft, m_68) == 0x4C ? 1 : -1];
+typedef char TWindowKeyBoardSoft_size[sizeof(TWindowKeyBoardSoft) == 0x70 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_m60[offsetof(TWindowKeyBoardSoft, m_60) == 0x60 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_m68[offsetof(TWindowKeyBoardSoft, m_68) == 0x68 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_m6c[offsetof(TWindowKeyBoardSoft, m_6c) == 0x6C ? 1 : -1];
 
 #endif

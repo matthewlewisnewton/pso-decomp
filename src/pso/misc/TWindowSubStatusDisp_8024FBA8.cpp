@@ -1,6 +1,7 @@
 #include "pso/misc/SmallFontDrawing.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/misc/TWindowKeyBoardBase.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/ui/Language.h"
 
@@ -51,7 +52,7 @@ s32 get_font_char_advance(u16);
 u16 map_char_to_font_code(s32 code);
 u8 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(u16 glyph, void *quad, s32 color);
 void end_render_forward__20TWindowSubStatusDispFPv();
-void TWindowSubStatusDisp::set_input_mode(u8 v) { *(u8*)((char*)this + 0x64) = v; }
+void TWindowKeyBoardBase::set_input_mode(s32 mode) { m_input_mode = mode; }
 }
 s32 draw_small_font_string_clipped(f32 *pos, const char *s, u32 color, f32 width);
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);

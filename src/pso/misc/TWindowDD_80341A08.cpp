@@ -10,14 +10,14 @@
 
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowHelpItem.h"
-#include "pso/misc/TWindowKeyBoardSoft.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TUnk_804CFA28.h"
 #include "pso/system/GinjaMaterialState.h"
 #include "pso/unk/text_803D619C.h"
 
 extern "C" {
 void TWindowDD__sub_80341674(TWindowDD_WS_Word *, TWindowDrawContext *);
-void draw_visible_window_entries(TWindowDD_WS_Word *, TWindowDDWordEntryList *, TWindowKeyBoardSoft *);
+void draw_visible_window_entries(TWindowDD_WS_Word *, TWindowDDWordEntryList *, TWindowDrawContext *);
 extern const s32 TWindowDD__data_805DFC14;
 extern const s32 lbl_805DFC18;
 extern const f32 lbl_805DFCA0;
@@ -25,13 +25,13 @@ extern const f32 lbl_805DFCA0;
 
 void TWindowDD_WS_Word::render() {
     TWindowDD_WS_Word *self = this;
-    TWindowKeyBoardSoft *entry;
+    TWindowDrawContext *entry;
     TUnk_804CFA28 *item;
     s32 idx;
     s32 i;
     s32 j;
-    entry = (TWindowKeyBoardSoft *)TWindowDD::draw_default_entry((s32)self);
-    self->calc_inner_rect((u8 *)entry);
+    entry = (TWindowDrawContext *)TWindowDD::draw_default_entry((s32)self);
+    self->calc_inner_rect(entry);
     TWindowDD__sub_80341674(self, entry);
     if (self->m_8c != 0) {
         self->m_8c = 0;

@@ -9,7 +9,7 @@ struct TWindowKeyBoardBase;
 struct TWindowKeyBoardHard : public TWindowBase {
     TWindowKeyBoardHard(TWindowKeyBoardBase *composer);
     virtual ~TWindowKeyBoardHard();
-    void draw_status_text(void *);
+    void draw_status_text(TWindowDrawContext *);
     void update_modifier_flags();
     void process_all_key_states();
     void process_key_input(u8);
@@ -22,9 +22,9 @@ struct TWindowKeyBoardHard : public TWindowBase {
     int sub_8026042C();
     u32 m_60;
     u32 m_64;
-    u32 m_68;
+    s32 m_68;
     u32 m_6c;
-    u32 m_70;
+    TWindowKeyBoardBase *m_composer;
     void release_keyboard();
     void reset_input_state();
     void reset_composer_input_flags();

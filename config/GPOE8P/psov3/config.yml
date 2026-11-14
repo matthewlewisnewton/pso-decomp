@@ -3145,6 +3145,7 @@ force_active:
   - __dt__19TQuestListChallengeFv
   - __dt__19TWindowDD_WS_StringFv
   - __dt__19TWindowKeyBoardBaseFv
+  - __dt__19TWindowKeyBoardSoftFv
   - __dt__19TWindowMenuMainMenuFv
   - __dt__19TWindowMessageYesNoFv
   - __dt__19TWindowSoundBalanceFv
@@ -3823,6 +3824,7 @@ force_active:
   - __vt__19TTecPlayerInfluence
   - __vt__19TWindowDD_WS_String
   - __vt__19TWindowKeyBoardBase
+  - __vt__19TWindowKeyBoardSoft
   - __vt__19TWindowMenuMainMenu
   - __vt__19TWindowMessageYesNo
   - __vt__19TWindowSimpleStatus
@@ -6420,7 +6422,7 @@ force_active:
   - draw_empty_warp_overlay__Fv
   - draw_enemy_gate_markers__13TRaderMapCoreFv
   - draw_entry__12TAdMultiOkGCFi
-  - draw_entry_if_visible__19TWindowDD_WS_StringFPv
+  - draw_entry_if_visible__19TWindowDD_WS_StringFP18TWindowDrawContext
   - draw_entry_tab__20TWindowSubStatusDispFPv
   - draw_fade__9TAdFadeGCFv
   - draw_fading_model_1_pair__25TBoss6Demo20_TYPE2_APPEARFv
@@ -6446,7 +6448,7 @@ force_active:
   - draw_if_visible__15TObjEneDelDepthFv
   - draw_inactive_badge__11TObjDoorKeyFv
   - draw_item_labels__14TMainMenuEntryFP18TWindowDrawContext
-  - draw_key_frame__19TWindowKeyBoardSoftFPvPfffffUll
+  - draw_key_frame__19TWindowKeyBoardSoftFPvP18TWindowDrawContextffffUll
   - draw_label__16TAdGuideButtonGCFiPCc
   - draw_label_value__20TWindowSubStatusDispFPvPv
   - draw_laser_beam__13TLazerFenceSwFv
@@ -6520,7 +6522,7 @@ force_active:
   - draw_slot_icons__15TAdChrSelSlotGCFv
   - draw_snapshot_capture_overlay
   - draw_split_screen_dividers__20TWindowSubStatusDispFv
-  - draw_status_text__19TWindowKeyBoardHardFPv
+  - draw_status_text__19TWindowKeyBoardHardFP18TWindowDrawContext
   - draw_status_window__14TAdPlyStatusGCFPvPv
   - draw_status_window__15TAdMcSelectMcGCFv
   - draw_streaks__8TObjRainFv
@@ -8041,7 +8043,7 @@ force_active:
   - init_kind_params__18TObjSeabedSuiso_CHFv
   - init_launch_angles__10TTecSlicerFPlPll
   - init_layout__17TWindowSubComCardFv
-  - init_layout__19TWindowKeyBoardSoftFv
+  - init_layout__18TWindowDrawContextFv
   - init_layout_constants__9TWindowDDFv
   - init_layout_entries__9TWindowDDFv
   - init_level_stats__14TObjEneDubchikFl
@@ -16325,6 +16327,7 @@ force_active:
   - render__19TObjStendGlassLobbyFv
   - render__19TTecPlayerInfluenceFv
   - render__19TWindowKeyBoardBaseFv
+  - render__19TWindowKeyBoardSoftFv
   - render__19TWindowMenuIconLineFv
   - render__19TWindowMenuMainMenuFv
   - render__19TWindowMessageYesNoFv
@@ -17113,6 +17116,7 @@ force_active:
   - run_task__19TPlayerBattleCtrl4PFv
   - run_task__19TTecPlayerInfluenceFv
   - run_task__19TWindowKeyBoardBaseFv
+  - run_task__19TWindowKeyBoardSoftFv
   - run_task__19TWindowMenuMainMenuFv
   - run_task__19TWindowMessageYesNoFv
   - run_task__19TWindowSimpleStatusFv

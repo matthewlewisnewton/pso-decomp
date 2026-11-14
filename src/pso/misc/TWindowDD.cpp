@@ -185,7 +185,7 @@ void TWindowDD__sub_8034055C(TUnk_804EFBAC *self) {
     s32 texture;
     TWindowDrawContext *context = draw_default_entry__9TWindowDDFl(self);
     if (context->open_tick >= 0) {
-        self->calc_inner_rect((u8 *)context);
+        self->calc_inner_rect(context);
         depth = TWindowDD__sub_80348AD4(self->m_54, lbl_805DFC40);
         reset_entries__9TWindowDDFf(vertices, -1, depth);
         copy_vertex_uv_table(vertices, 0);
@@ -430,7 +430,7 @@ void TWindowDD__sub_80340A78(TWindowDD_WS_ScrollBar *self) {
     WindowVertex vertices[8];
     WindowQuad quad;
     TWindowDrawContext *context = draw_default_entry__9TWindowDDFl(self);
-    self->calc_inner_rect((u8 *)context);
+    self->calc_inner_rect(context);
     s32 texture = get_draw_count__9TWindowDDFPPv(lbl_805D63F0);
     depth = TWindowDD__sub_80348AD4(self->m_54, lbl_805DFC50);
     reset_entries__9TWindowDDFf(vertices, -1, depth);

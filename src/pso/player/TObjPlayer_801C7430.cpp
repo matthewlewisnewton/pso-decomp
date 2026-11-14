@@ -1,4 +1,5 @@
 #include "pso/ui/PlayerWindowDispatch.h"
+#include "pso/misc/KeyboardInputQueries.h"
 #include "pso/misc/ActionPaletteTagAbi.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/misc/PersistentSound.h"
@@ -1238,7 +1239,6 @@ s32 play_weapon_hit_sound(void *);
 void apply_camera_shake__10TObjPlayerFiii(TObjPlayer *player, TObjChara *target, s32 damage);
 u8 * find_entity_by_id(s32);
 s32 get_trap_type__10TOMineTrapFv(int);
-s32 TKeyBoardControl__sub_801A58B0();
 s32 TKeyBoardControl__sub_801A58D8();
 s32 is_final_phase__10TObjPlayerFv();
 s32 is_camera_mode_active__10TObjPlayerFv();
