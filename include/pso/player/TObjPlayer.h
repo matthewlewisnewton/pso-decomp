@@ -385,11 +385,6 @@ struct TObjPlayer : public TObjChara {
     void clear_ground_candidates();
     void reset_lobby_model();
     void reset_type();
-    void send_6x12_packet();
-    void bswap_6x12_packet();
-    void set_type_dragon();
-    void bswap_dragon_boss_fields();
-    void bswap_stats();
     static void clear_target_ref();
     static void create_breakup_model();
     void *deleting_dtor(s16 arg1);
