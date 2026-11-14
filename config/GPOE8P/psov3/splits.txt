@@ -1425,6 +1425,7 @@ pso/enemy/TObjEneBalClawClaw.cpp:
 
 pso/enemy/TObjEneBeast.cpp:
 	.text       start:0x80091CCC end:0x80092A7C
+	.rodata     start:0x80439BA0 end:0x80439D58
 	.data       start:0x8048F2C8 end:0x8048F650
 	.sdata2     start:0x805D96D8 end:0x805D9714
 
