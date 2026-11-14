@@ -1,3 +1,8 @@
+#ifdef __MWERKS__
+#pragma dont_inline off
+#pragma inline_depth(2)
+#endif
+#include "pso/ui/WarningWindowUpdate.h"
 #include "pso/TObjBagWarnWin4P.h"
 #include "pso/misc/TWindowBase.h"
 
@@ -53,39 +58,23 @@ s32 TObjBagWarnWin4P::check_can_open(void * _w0) {
 
 extern s32 TObjBagWarnWin4P__message_window_size[];
 
+struct TObjBagWarnWin4PPolicy {
+    static s32 should_show(TObjBagWarnWin4P *self) { return TObjBagWarnWin4P::check_can_open(self); }
+    static void open(TObjBagWarnWin4P *self) { self->create_window(); }
+};
+
 void TObjBagWarnWin4P::run_task() {
-    u8 *arg0 = (u8 *)this;
-    s32 temp_r0;
-    if ((u32) *(u32 *)((s8 *)arg0 + 0x1C) == 0U) {
-        if (TWindowCtrlMain__sub_8024CE58() != 0) {
-            if (TObjBagWarnWin4P::check_can_open(arg0) != 0) {
-                temp_r0 = *(s32 *)((s8 *)arg0 + 0xA0) - 1;
-                *(s32 *)((s8 *)arg0 + 0xA0) = temp_r0;
-                if (temp_r0 < 0) {
-                    *(s32 *)((s8 *)arg0 + 0xA0) = 0;
-                }
-            } else {
-                *(s32 *)((s8 *)arg0 + 0xA0) = 0x1E;
-            }
-            if ((s32) *(s32 *)((s8 *)arg0 + 0xA0) == 0) {
-                create_window();
-            }
-        }
-    } else if (TObjBagWarnWin4P::check_can_open(arg0) == 0) {
-        ((TWindowBase *)(*(u32 *)((s8 *)arg0 + 0x1C)))->close();
-        *(u32 *)((s8 *)arg0 + 0x1C) = 0U;
-        *(s32 *)((s8 *)arg0 + 0xA0) = 0x1E;
-    }
+    update_warning_window<TObjBagWarnWin4P, TObjBagWarnWin4PPolicy>(this);
 }
 
+
 void TObjBagWarnWin4P::create_window() {
-    u8 *arg0 = (u8 *)this;
     s32 r3 = get_window_layout_position(0x5B);
-    *(u32 *)((s8 *)arg0 + 0x1C) = create__14TWindowMessageFlPCvUll(r3, TObjBagWarnWin4P__message_window_size, 1, 4);
-    if ((u32) *(u32 *)((s8 *)arg0 + 0x1C) != 0U) {
-        strncpy(arg0 + 0x20, TQuestVmDownLoadServer__sub_8006EF6C(0x69), 0x7F);
-        *(s8 *)((s8 *)arg0 + 0x9F) = 0;
-        append_line__14TWindowMessageFii(*(u32 *)((s8 *)arg0 + 0x1C), arg0 + 0x20, 0);
+    warning.window = (TWindowBase *)create__14TWindowMessageFlPCvUll(r3, TObjBagWarnWin4P__message_window_size, 1, 4);
+    if (warning.window != NULL) {
+        strncpy(warning.text, TQuestVmDownLoadServer__sub_8006EF6C(0x69), 0x7F);
+        warning.text[0x7F] = 0;
+        append_line__14TWindowMessageFii((u32)warning.window, warning.text, 0);
     }
 }
 
@@ -97,8 +86,8 @@ void *__ct__16TObjBagWarnWin4PFv(void *bag_warn_win4_p) {
     __ct__7TObjectFP7TObject(bag_warn_win4_p);
     *(s32 **)((s8 *)bag_warn_win4_p + 0x18) = __vt__16TObjBagWarnWin4P;
     *(void * *)&((TObjBagWarnWin4P *)bag_warn_win4_p)->m_name = lbl_805D284C;
-    *(u32 *)((s8 *)bag_warn_win4_p + 0x1C) = 0;
-    *(u32 *)((s8 *)bag_warn_win4_p + 0xA0) = 0;
+    ((TObjBagWarnWin4P *)bag_warn_win4_p)->warning.window = NULL;
+    ((TObjBagWarnWin4P *)bag_warn_win4_p)->warning.countdown = 0;
     return bag_warn_win4_p;
 }
 
