@@ -50,7 +50,7 @@ extern Pos_80214F80 lbl_8044BCC8[];
 extern s32 TLobby__protocol_instance;
 extern s32 quest_download_received_bytes;
 extern s32 quest_download_graph_current_bytes;
-extern const f32 lbl_805DC660;
+static const f32 lbl_805DC660 = 36000.0f;
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 extern s32 controller_input_state[];
 }

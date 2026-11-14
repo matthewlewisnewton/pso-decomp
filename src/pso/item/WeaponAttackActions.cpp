@@ -93,7 +93,7 @@ void construct_actor_light_task(u32, void *, void *, s32, s32, s32, f32);
 extern A12_8011E3E8 lbl_8043E838[];
 extern A16_8011E3E8 lbl_8043E844[];
 extern s32 tl_07;
-extern const f32 lbl_805DAC88;
+static const f32 lbl_805DAC88 = 0.20000000298023224f;
 s32 is_locally_controlled__10TObjPlayerFPv(s32);
 void create__10TItemEffPGFPvPvPv(void *arg0, void *parent, void *item);
 void create__10TItemEffPGFPvPv(s32, Params_8011EAB8 *);
@@ -346,8 +346,8 @@ s32 vec3_add_to(void *, void *);
 f32 normalize_vector(void *);
 f32 xyz_distance(void *, void *);
 
-extern const f32 lbl_805DAC8C;
-extern const f32 lbl_805DAC90;
+static const f32 lbl_805DAC8C = 3.0517578125e-05f;
+static const f32 lbl_805DAC90 = 255.0f;
 extern const f32 lbl_805DAC98;
 
 void TItemWeapon::set_weapon_category_flags() {

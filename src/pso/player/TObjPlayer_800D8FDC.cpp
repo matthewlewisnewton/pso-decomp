@@ -142,7 +142,7 @@ void TObjPlayer::spawn_dead_spot(s32 point, s32 selector, s32 delay, f32 farg0) 
 
 #undef __nw__7TObjectFUl
 
-extern const f32 lbl_805DA3D8;
+static const f32 lbl_805DA3D8 = -1.0f;
 extern s32 player_particle_effect_enabled;
 extern u8 corpse_mark_resource_descriptor[];
 void set_chunk_material_override_pair(s32 arg0, s32 arg1);
@@ -181,7 +181,7 @@ void MaterialColorFade::set_flags_and_apply_damage_color() {
     set_chunk_material_override_pair(0xFF00, 0x800);
 }
 
-extern const f32 lbl_805DA3DC;
+static const f32 lbl_805DA3DC = 0.0f;
 
 s32 MaterialColorFade::advance_toward_max() {
     f32 temp_f1;
@@ -222,7 +222,7 @@ void MaterialColorFade::reset_obstruction_fade() {
 }
 
 extern "C" {
-extern const f32 lbl_805DA3E4;
+static const f32 lbl_805DA3E4 = 0.03999999910593033f;
 
 void MaterialColorFade::reset_color() {
     this->color.a = lbl_805DA3DC;
@@ -231,7 +231,7 @@ void MaterialColorFade::reset_color() {
     this->color.b = lbl_805DA3DC;
 }
 
-extern const f32 lbl_805DA3E0;
+static const f32 lbl_805DA3E0 = 1.0f;
 
 void MaterialColorFade::set_rate_from_divisor(s32 arg1) {
     this->rate = (f32) (lbl_805DA3E0 / (f32) arg1);
@@ -243,7 +243,7 @@ MaterialColorFade::MaterialColorFade() {
     rate = lbl_805DA3E4;
     reset_color();
 }
-extern const f32 lbl_805DA3E8;
+static const f32 lbl_805DA3E8 = 0.009999999776482582f;
 
 Vec *SampledMotionPoints::lookup(f32 frame) {
     f32 first = start;

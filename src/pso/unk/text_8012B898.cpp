@@ -32,8 +32,8 @@ s16 get_captured_target_collider_index(void *p);
 s32 get_captured_target_entry(s32, s32);
 s32 get_captured_target_count(s32 *arg0);
 s32 rand(void);
-extern const f32 lbl_805DAEC0;
-extern const f32 lbl_805DAEC4;
+static const f32 lbl_805DAEC0 = 3.0f;
+static const f32 lbl_805DAEC4 = 3.0517578125e-05f;
 
 u8 *TObjPlayer::create_vtable_clear_field1f8(u8 *arg0) {
     u8 *temp_r3;
