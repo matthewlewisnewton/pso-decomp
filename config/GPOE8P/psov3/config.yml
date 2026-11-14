@@ -16877,6 +16877,7 @@ force_active:
   - sensor_texture_table_index
   - seqCrossFade
   - seqFreeKeyOffNote
+  - serial_access_hex_string_buf
   - serial_entry_status_line_position
   - serial_unsigned_decimal_scan_format
   - service_hold_phase2_nop__10TObjPlayerFv
