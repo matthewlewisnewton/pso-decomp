@@ -242,8 +242,8 @@ s32 sub_801AA6F8__13TPhotonEstllaFv(void *, int);
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
 
-extern u8 lbl_80446D10[];
-extern u8 lbl_80446D1C[];
+extern const u8 lbl_80446D10[] = "estla2.adx";
+extern const u8 lbl_80446D1C[] = "estla.adx";
 extern u8 photon_estlla_param_table[];
 extern s32 __vt__13TPhotonEstlla[];
 extern s32 lbl_805D34D8;
