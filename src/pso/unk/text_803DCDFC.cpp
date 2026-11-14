@@ -388,3 +388,7 @@ NJS_ARGB model_material_color;
 f32 camera_clip_parameters[10];
 Cam_803DD300 lbl_8058D4F8;
 }
+
+extern "C" {
+s32 video_present_interval_retraces;
+}
