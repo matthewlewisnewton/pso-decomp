@@ -78,7 +78,7 @@ __declspec(section ".data") vec2f lbl_80480A20[4] = {
     { 350.0f, 0.0f }, { 640.0f, 0.0f },
     { 640.0f, 600.0f }, { 350.0f, 600.0f }
 };
-extern u32 lbl_804FE138[];
+extern u32 lbl_804FE138[4];
 u32 __cvt_fp2unsigned(f32);
 
 typedef char RecoveredGlobal_8001B8AC_lbl_8043481C_size[sizeof(RecoveredGlobal_8001B8AC_lbl_8043481C) == 0xC ? 1 : -1];
@@ -273,4 +273,8 @@ void TAdRicoRingCtrl::start_anim(f32 farg0) {
         *(f32 *)((s8 *)arg0 + 0x40) = temp_f0;
         *(f32 *)((s8 *)arg0 + 0x44) = temp_f0;
     }
+}
+
+extern "C" {
+u32 lbl_804FE138[4];
 }
