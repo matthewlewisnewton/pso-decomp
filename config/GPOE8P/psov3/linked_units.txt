@@ -958,6 +958,7 @@ pso/unk/TLobby_8035D540.cpp
 pso/unk/TLobby_8036A37C.cpp
 pso/unk/TLobby_8036B204.cpp
 pso/ui/window/TWindowSubStatusDisp_8036D774.cpp
+pso/unk/TLobby_803BFE50.cpp
 pso/unk/TLobby_8036F81C.cpp
 pso/audio/AdxAiff.cpp
 pso/audio/AdxAu.cpp
