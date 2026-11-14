@@ -53,10 +53,10 @@ extern s32 __vt__12TOMineIcon03[];
 extern s32 TOMineIcon03__name;
 extern s32 game_difficulty_selection;
 extern void *lbl_805D5A50;
-extern const f32 lbl_805DB8C0;
-extern const f32 lbl_805DB8C4;
-extern const f32 lbl_805DB8C8;
-extern const f32 lbl_805DB8CC;
+static const f32 lbl_805DB8C0 = 1.0f;
+static const f32 lbl_805DB8C4 = 2.0f;
+static const f32 lbl_805DB8C8 = 30.0f;
+static const f32 lbl_805DB8CC = 0.5f;
 extern const f32 lbl_805DB8D0;
 #pragma push
 #pragma fp_contract on

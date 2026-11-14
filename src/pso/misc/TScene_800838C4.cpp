@@ -45,11 +45,11 @@ extern const f32 lbl_805D9424;
 f64 get_end_text_value__10TObjPlayerFv(f32);
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
-extern const f64 lbl_80439360;
+static const f64 lbl_80439360 = 10430.38043493439;
 extern u8 *camera_ctrl_instance;
 extern const f32 lbl_805D940C;
-extern const f32 lbl_805D9428;
-extern const f32 lbl_805D942C;
+static const f32 lbl_805D9428 = 11832.0f;
+static const f32 lbl_805D942C = 0.8500000238418579f;
 void TScene::apply_single_screen_state() {
     if ((is_split_screen() == 0) && (TObjPlayer::check_all_players_ready() != 0)) {
         model_render_flags &= 0xFFF7FFFF;

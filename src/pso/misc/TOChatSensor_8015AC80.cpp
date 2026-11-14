@@ -21,8 +21,8 @@ struct Packet_8015AD54 {
 extern "C" {
 u8 is_current_floor_switch_set(int);
 f32 newton_sqrtf(f32);
-extern const f32 lbl_805DB388;
-extern const f32 lbl_805DB38C;
+static const f32 lbl_805DB388 = 0.30000001192092896f;
+static const f32 lbl_805DB38C = 0.800000011920929f;
 void *strncpy(void *, void *, s32);
 s32 get_current_floor(void);
 s32 find_chat_keyword(void *, void *, s32);

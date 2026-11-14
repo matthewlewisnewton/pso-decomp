@@ -59,7 +59,7 @@ extern const f32 lbl_805D93D8;
 extern const f32 lbl_805D9404;
 extern const f32 lbl_805D9408;
 extern const f32 lbl_805D940C;
-extern const f32 lbl_805D9410;
+static const f32 lbl_805D9410 = 21000.0f;
 extern s32 lbl_805E1210;
 extern G_80082FCC TCameraCtrl__data_804FF634;
 extern const f32 lbl_805D93EC;

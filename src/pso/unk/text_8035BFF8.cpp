@@ -6,7 +6,7 @@
 
 extern "C" {
 s32 VecCopy__FP3VecPC3Vec(void *);
-extern const f32 lbl_805E0168;
+static const f32 lbl_805E0168 = 373.0f;
 s32 fn_8035BFF8(void) {
     Vec position;
     VecCopy__FP3VecPC3Vec(&position.x);
