@@ -13988,6 +13988,7 @@ pso/misc/TLobby_803F8794.cpp:
 pso/protocol/NetworkRuntime.cpp:
 	.text       start:0x803F8E08 end:0x803FAEA0
 	.bss        start:0x805BE070 end:0x805BFF68
+	.sbss       start:0x805D7A70 end:0x805D7A78
 
 pso/misc/TLobby_803FAEA0.cpp:
 	.text       start:0x803FAEA0 end:0x803FC178

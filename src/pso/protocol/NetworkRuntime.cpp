@@ -1186,3 +1186,8 @@ typedef void (*CbB_8040C540)(s16, u32, s16);
 typedef void (*Handler_8041A130)(s32, s16, s16, s16);
 
 }
+
+extern "C" {
+u8 lbl_805D7A70[4];
+u8 lbl_805D7A74[1];
+}
