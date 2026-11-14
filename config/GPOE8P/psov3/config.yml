@@ -2166,6 +2166,7 @@ force_active:
   - TWindowKeyBoardSoft__text_resource
   - TWindowLoadItemTexture__ct
   - TWindowLockOn__ct
+  - TWindowLockOn__data_805DD110
   - TWindowLockOn__update_for_enemy
   - TWindowLockOn__update_for_item
   - TWindowLockOn__update_for_other_player
@@ -2187,6 +2188,7 @@ force_active:
   - TWindowSubComCard__sub_8027337C
   - TWindowSubComCard__sub_8027346C
   - TWindowSubComCard__sub_8027353C
+  - TWindowSubCustomSelect__data_805DD5B0
   - TWindowSubEquipList__class_name
   - TWindowSubEquipList__ct
   - TWindowSubGameEnd__class_name
@@ -2199,6 +2201,7 @@ force_active:
   - TWindowSubMag__sub_8027C0E8
   - TWindowSubQuestBoardSelect__sub_8027D444
   - TWindowSubShortCutList__ct
+  - TWindowSubShortMail__data_805DD6C8
   - TWindowSubShortMail__sub_8027E620
   - TWindowSubShortMail__sub_8027FAD0
   - TWindowSubStatusDisp__sub_8025AF0C
@@ -8466,6 +8469,7 @@ force_active:
   - lbl_80447008
   - lbl_80447010
   - lbl_80449700
+  - lbl_80449CC0
   - lbl_8044A800
   - lbl_8044A80C
   - lbl_8044A840
@@ -9945,13 +9949,44 @@ force_active:
   - lbl_805DBE34
   - lbl_805DBE38
   - lbl_805DBF94
+  - lbl_805DC0B0
   - lbl_805DC324
   - lbl_805DC328
+  - lbl_805DC640
+  - lbl_805DC650
+  - lbl_805DC654
+  - lbl_805DC740
+  - lbl_805DC744
   - lbl_805DC8C4
+  - lbl_805DCAA8
+  - lbl_805DCAAC
+  - lbl_805DCBA0
+  - lbl_805DCBA4
+  - lbl_805DCBD8
+  - lbl_805DCBDC
+  - lbl_805DCC60
+  - lbl_805DCC64
+  - lbl_805DCC68
+  - lbl_805DCC6C
+  - lbl_805DCC98
+  - lbl_805DCC9C
+  - lbl_805DCCA0
+  - lbl_805DCCA4
   - lbl_805DCCA8
   - lbl_805DCD10
   - lbl_805DCD54
+  - lbl_805DCDE8
+  - lbl_805DCE00
+  - lbl_805DCE04
+  - lbl_805DCE08
+  - lbl_805DCE0C
   - lbl_805DCEF0
+  - lbl_805DCF18
+  - lbl_805DCF1C
+  - lbl_805DCF20
+  - lbl_805DCF24
+  - lbl_805DCF28
+  - lbl_805DCF2C
   - lbl_805DCFAC
   - lbl_805DCFB0
   - lbl_805DCFB4
@@ -9959,6 +9994,31 @@ force_active:
   - lbl_805DCFBC
   - lbl_805DCFC0
   - lbl_805DCFC4
+  - lbl_805DD038
+  - lbl_805DD03C
+  - lbl_805DD040
+  - lbl_805DD044
+  - lbl_805DD048
+  - lbl_805DD04C
+  - lbl_805DD050
+  - lbl_805DD054
+  - lbl_805DD058
+  - lbl_805DD05C
+  - lbl_805DD068
+  - lbl_805DD06C
+  - lbl_805DD100
+  - lbl_805DD104
+  - lbl_805DD108
+  - lbl_805DD10C
+  - lbl_805DD114
+  - lbl_805DD118
+  - lbl_805DD11C
+  - lbl_805DD120
+  - lbl_805DD124
+  - lbl_805DD128
+  - lbl_805DD12C
+  - lbl_805DD130
+  - lbl_805DD134
   - lbl_805DD188
   - lbl_805DD18C
   - lbl_805DD190
@@ -9973,14 +10033,65 @@ force_active:
   - lbl_805DD1B4
   - lbl_805DD1B8
   - lbl_805DD1BC
+  - lbl_805DD2C8
+  - lbl_805DD2CC
+  - lbl_805DD2D0
+  - lbl_805DD2D4
+  - lbl_805DD2D8
+  - lbl_805DD2DC
+  - lbl_805DD408
+  - lbl_805DD40C
+  - lbl_805DD410
+  - lbl_805DD414
+  - lbl_805DD568
+  - lbl_805DD56C
+  - lbl_805DD570
+  - lbl_805DD574
+  - lbl_805DD578
+  - lbl_805DD57C
+  - lbl_805DD580
+  - lbl_805DD584
+  - lbl_805DD588
+  - lbl_805DD58C
+  - lbl_805DD590
+  - lbl_805DD594
+  - lbl_805DD598
+  - lbl_805DD59C
+  - lbl_805DD5A0
+  - lbl_805DD5A4
+  - lbl_805DD5A8
+  - lbl_805DD5AC
+  - lbl_805DD5B4
+  - lbl_805DD5B8
+  - lbl_805DD5BC
+  - lbl_805DD5C0
+  - lbl_805DD5C4
+  - lbl_805DD5C8
+  - lbl_805DD5CC
+  - lbl_805DD5D0
+  - lbl_805DD5D4
+  - lbl_805DD5D8
+  - lbl_805DD5DC
+  - lbl_805DD5E0
+  - lbl_805DD5E4
+  - lbl_805DD5E8
+  - lbl_805DD5EC
   - lbl_805DD648
   - lbl_805DD668
+  - lbl_805DD6CC
+  - lbl_805DD6D0
+  - lbl_805DD6D4
+  - lbl_805DD6D8
+  - lbl_805DD810
   - lbl_805DDD28
   - lbl_805DDD2C
   - lbl_805DDD30
   - lbl_805DDD34
   - lbl_805DDD38
   - lbl_805DDD3C
+  - lbl_805DDF38
+  - lbl_805DE018
+  - lbl_805DE01C
   - lbl_805DE040
   - lbl_805DE0E0
   - lbl_805DE0E8
@@ -10002,6 +10113,7 @@ force_active:
   - lbl_805DE128
   - lbl_805DE12C
   - lbl_805DE130
+  - lbl_805DE298
   - lbl_805DE4BC
   - lbl_805DE620
   - lbl_805DE910
@@ -10172,6 +10284,7 @@ force_active:
   - lbl_805DF3B0
   - lbl_805DF3B4
   - lbl_805DF5FC
+  - lbl_805DF698
   - lbl_805DF878
   - lbl_805DF87C
   - lbl_805DF880
@@ -10183,13 +10296,58 @@ force_active:
   - lbl_805DF8A0
   - lbl_805DF8A4
   - lbl_805DF8A8
+  - lbl_805DF8E8
+  - lbl_805DF8EC
+  - lbl_805DF8F0
+  - lbl_805DF8F4
+  - lbl_805DF8F8
+  - lbl_805DF8FC
+  - lbl_805DF900
+  - lbl_805DF904
   - lbl_805DF988
   - lbl_805DF98C
   - lbl_805DF990
   - lbl_805DF994
+  - lbl_805DF9D0
+  - lbl_805DF9D4
+  - lbl_805DF9D8
+  - lbl_805DF9DC
   - lbl_805DFA48
   - lbl_805DFA4C
   - lbl_805DFA50
+  - lbl_805DFC00
+  - lbl_805DFC04
+  - lbl_805DFC08
+  - lbl_805DFC70
+  - lbl_805DFC74
+  - lbl_805DFC78
+  - lbl_805DFC7C
+  - lbl_805DFC80
+  - lbl_805DFC84
+  - lbl_805DFC88
+  - lbl_805DFC8C
+  - lbl_805DFCD0
+  - lbl_805DFD00
+  - lbl_805DFD04
+  - lbl_805DFD08
+  - lbl_805DFD0C
+  - lbl_805DFD10
+  - lbl_805DFD14
+  - lbl_805DFD20
+  - lbl_805DFD24
+  - lbl_805DFD28
+  - lbl_805DFD2C
+  - lbl_805DFD30
+  - lbl_805DFD34
+  - lbl_805DFD38
+  - lbl_805DFD3C
+  - lbl_805DFD40
+  - lbl_805DFD44
+  - lbl_805DFD48
+  - lbl_805DFD4C
+  - lbl_805DFD50
+  - lbl_805DFD54
+  - lbl_805DFD60
   - lbl_805DFDA8
   - lbl_805DFDAC
   - lbl_805DFDB0
@@ -10197,6 +10355,8 @@ force_active:
   - lbl_805DFDB8
   - lbl_805DFDBC
   - lbl_805DFDC0
+  - lbl_805DFDD8
+  - lbl_805DFDDC
   - lbl_805E0198
   - lbl_805E019C
   - lbl_805E01A0
