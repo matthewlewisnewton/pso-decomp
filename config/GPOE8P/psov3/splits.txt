@@ -1206,6 +1206,7 @@ pso/player/TObjPlayer_80081FC8.cpp:
 
 pso/misc/TLobby_80082048.cpp:
 	.text       start:0x80082048 end:0x800822D0
+	.rodata     start:0x80438E60 end:0x80438EA8
 	.data       start:0x8048E180 end:0x8048E1A4
 
 pso/player/TObjPlayer_800822D0.cpp:
