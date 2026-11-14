@@ -6,6 +6,7 @@
 #include "types.h"
 #include "pso/player/TObjPlayer_801AA664.h"
 #include "pso/misc/TPhotonEstlla.h"
+#include "pso/misc/TPhotonLine.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/misc/MaterialColorFade.h"
@@ -44,17 +45,6 @@ struct Stack_801AA930 {
 #pragma dont_inline off
 struct Vec_801AA710 { f32 x, y, z; };
 
-struct Packet_801AA710 { u32 w[8]; };
-
-struct Self_801AA710 {
-    u8 pad0[0x38];
-    Vec_801AA710 pos;
-    u8 pad1[0x150 - 0x44];
-    f32 f150;
-    u8 pad2[0x17C - 0x154];
-    u16 id;
-};
-
 struct Owner_801AA710 { u8 pad[0x60]; s32 f60; };
 
 struct Color_801AA818 { f32 a, r, g, b; };
@@ -84,12 +74,11 @@ extern "C" {
 
 u32 __nw__7TObjectFUl(int);
 
-s32 TPhotonLine__ct(void *, void *, void *, u16);
 s32 rotate_vector_by_matrix(int, void *, void *);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix_from(void *);
 s32 pop_matrices(s32 arg0);
-extern const Packet_801AA710 photon_estlla_line_packet_init;
+extern const PhotonLineParams photon_estlla_line_packet_init;
 extern u8 identity_matrix[];
 
 s32 scroll_strip_uvs(void *, s16, int);
@@ -109,11 +98,9 @@ extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 
 void TPhotonEstlla::spawn_line() {
-    Self_801AA710 *self = (Self_801AA710 *)this;
     Owner_801AA710 *owner;
     Vec_801AA710 forward;
     Vec_801AA710 direction;
-    u32 line;
     owner = (Owner_801AA710 *)find_entity_by_id(this->m_17c);
     forward.x = 0.0f;
     forward.y = 0.0f;
@@ -125,14 +112,13 @@ void TPhotonEstlla::spawn_line() {
     rotate_vector_by_matrix(0, &forward, &direction);
     pop_matrices(1);
     {
-        Packet_801AA710 packet = photon_estlla_line_packet_init;
-        *(Vec_801AA710 *)&packet.w[0] = self->pos;
-        *(Vec_801AA710 *)&packet.w[3] = direction;
-        *(f32 *)&packet.w[7] = this->m_150;
-        line = __nw__7TObjectFUl(0x378);
-        if (line) {
-            TPhotonLine__ct((void *)line, &packet, self, this->m_17c);
-        }
+        PhotonLineParams packet = photon_estlla_line_packet_init;
+        packet.position = position;
+        packet.direction.x = direction.x;
+        packet.direction.y = direction.y;
+        packet.direction.z = direction.z;
+        packet.hit_scale = this->m_150;
+        new TPhotonLine(&packet, this, this->m_17c);
     }
 }
 

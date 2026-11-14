@@ -2578,6 +2578,7 @@ force_active:
   - __dt__11TObjDFYutaiFv
   - __dt__11TObjEneMojaFv
   - __dt__11TObjInfoColFv
+  - __dt__11TPhotonLineFv
   - __dt__11TPlayerSoulFv
   - __dt__11TSetManagerFv
   - __dt__11TTecRaZondeFv
@@ -3220,6 +3221,7 @@ force_active:
   - __vt__11TObjInfoCol
   - __vt__11TObjMesBase
   - __vt__11TObjNpcMoja
+  - __vt__11TPhotonLine
   - __vt__11TPlayerSoul
   - __vt__11TTecRaZonde
   - __vt__11TWindowChat
@@ -9192,6 +9194,7 @@ force_active:
   - lbl_805D34A8
   - lbl_805D34C8
   - lbl_805D34F0
+  - lbl_805D3500
   - lbl_805D3520
   - lbl_805D3528
   - lbl_805D3640
@@ -10670,6 +10673,8 @@ force_active:
   - photon_blast_motion_timing_tables
   - photon_blast_resource_descriptor
   - photon_chair_resource_descriptor
+  - photon_line_class_name
+  - photon_line_collision_body_part
   - photon_pilla_action_table
   - photon_pilla_laser_offset_table
   - pick_next_action__12TBoss8DragonFv
@@ -15465,6 +15470,7 @@ force_active:
   - render__11TObjDFDemo3Fv
   - render__11TObjDFDemo4Fv
   - render__11TObjDFDemo5Fv
+  - render__11TPhotonLineFv
   - render__11TTecRaZondeFv
   - render__11TWindowChatFv
   - render__12TAdBackTxtGCFv
@@ -16149,6 +16155,7 @@ force_active:
   - run_task__11TObjDFJisinFv
   - run_task__11TObjEneMojaFv
   - run_task__11TObjInfoColFv
+  - run_task__11TPhotonLineFv
   - run_task__11TPlayerSoulFv
   - run_task__11TSetManagerFv
   - run_task__11TTecRaZondeFv
