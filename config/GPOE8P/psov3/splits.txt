@@ -14032,6 +14032,7 @@ pso/unk/text_80421620.cpp:
 pso/network/NetworkPacketRuntime.cpp:
 	.text       start:0x804245DC end:0x80425B70
 	.bss        start:0x805C30C0 end:0x805CF240
+	.sbss       start:0x805D7B78 end:0x805D7B80
 
 pso/network/NetworkMessageTransport.cpp:
 	.text       start:0x80425B70 end:0x80426CAC

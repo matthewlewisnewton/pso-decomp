@@ -751,3 +751,8 @@ typedef char NetworkPacketDescriptorSize[sizeof(NetworkPacketBufferDescriptor)==
 typedef char NetworkPacketInUseOffset[offsetof(NetworkPacketBufferDescriptor,in_use)==0 ? 1 : -1];
 typedef char NetworkPacketLengthOffset[offsetof(NetworkPacketBufferDescriptor,queued_length)==4 ? 1 : -1];
 typedef char NetworkPacketDataOffset[offsetof(NetworkPacketBufferDescriptor,data)==8 ? 1 : -1];
+
+extern "C" {
+u32 dhcp_lease_start;
+u32 dhcp_lease_expiry;
+}
