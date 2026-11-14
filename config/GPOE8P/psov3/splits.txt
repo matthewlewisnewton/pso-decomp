@@ -899,6 +899,7 @@ pso/misc/TWindowSubComCard_80073DB8.cpp:
 
 pso/quest/TQuestListVM_80073DC4.cpp:
 	.text       start:0x80073DC4 end:0x80073F74
+	.rodata     start:0x80438660 end:0x80438668
 
 pso/ui/TObjNewFloorWin.cpp:
 	.text       start:0x80073F74 end:0x800740FC
@@ -6095,6 +6096,7 @@ pso/misc/TCameraCtrl_801A2FE0.cpp:
 
 pso/unk/text_801A3014.cpp:
 	.text       start:0x801A3014 end:0x801A3B84
+	.rodata     start:0x804468F8 end:0x80446918
 
 pso/misc/TLobby_801A3B84.cpp:
 	.text       start:0x801A3B84 end:0x801A3BB8
@@ -7057,6 +7059,7 @@ pso/quest/QuestOpcodeHandlers.cpp:
 
 pso/misc/TLobby_801F2D2C.cpp:
 	.text       start:0x801F2D2C end:0x801F3710
+	.sbss       start:0x805D5EA8 end:0x805D5EB0
 
 pso/misc/TRaderMapCore_801F3710.cpp:
 	.text       start:0x801F3710 end:0x801F3718
@@ -7131,6 +7134,7 @@ pso/misc/TQuestVmDownLoadServer.cpp:
 	.ctors      start:0x80433F98 end:0x80433F9C
 	.data       start:0x804C8690 end:0x804C8738
 	.bss        start:0x80512B28 end:0x80512D08
+	.sbss       start:0x805D5F00 end:0x805D5F10
 
 pso/misc/TWindowSubItem_801F8FD4.cpp:
 	.text       start:0x801F8FD4 end:0x801F9010
@@ -7202,6 +7206,7 @@ pso/ui/TAdStorySelectGC.cpp:
 
 pso/misc/TLobby_80207DA8.cpp:
 	.text       start:0x80207DA8 end:0x8020910C
+	.rodata     start:0x8044BAC8 end:0x8044BAE8
 	.data       start:0x804C8C60 end:0x804C8FC0
 	.sbss       start:0x805D6080 end:0x805D6088
 
@@ -7540,6 +7545,7 @@ pso/misc/TWindow.cpp:
 
 pso/misc/TWindow_80217288.cpp:
 	.text       start:0x802171BC end:0x802173F0
+	.rodata     start:0x8044BDA0 end:0x8044BE88
 	.data       start:0x804C9900 end:0x804C9CE8
 
 pso/misc/TLobby_802173F0.cpp:
@@ -9480,6 +9486,7 @@ pso/misc/TLobby_80291D94.cpp:
 	.ctors      start:0x80433FBC end:0x80433FC0
 	.rodata     start:0x80464E40 end:0x80464E48
 	.data       start:0x804DAB60 end:0x804DB8A0
+	.sbss       start:0x805D6578 end:0x805D6580
 
 pso/misc/TChCrCharSelect_802937D4.cpp:
 	.text       start:0x802937D4 end:0x802937E8
@@ -13960,6 +13967,7 @@ pso/misc/TQuestVmDownLoadServer_803E6970.cpp:
 	.text       start:0x803E6970 end:0x803E9A24
 	.rodata     start:0x8047EA28 end:0x8047F0F8
 	.data       start:0x804FC858 end:0x804FC8F4
+	.sbss       start:0x805D7850 end:0x805D7860
 
 pso/misc/TQuestVmDownLoadServer_803E9A24.cpp:
 	.text       start:0x803E9A24 end:0x803ED0CC
