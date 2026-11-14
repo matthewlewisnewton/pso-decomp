@@ -14050,6 +14050,7 @@ pso/misc/TLobby_80429598.cpp:
 	.text       start:0x80429598 end:0x8042BF48
 	.data       start:0x804FD9D8 end:0x804FDA1D
 	.bss        start:0x805D0AA0 end:0x805D1D20
+	.sbss       start:0x805D7C30 end:0x805D7C44
 
 pso/network/ModemRuntime.cpp:
 	.text       start:0x8042BF48 end:0x8042E8C4
