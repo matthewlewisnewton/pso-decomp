@@ -4075,6 +4075,7 @@ pso/object/TObjLight_80133568.cpp:
 	.text       start:0x80133568 end:0x80134A40
 	.rodata     start:0x8043ED80 end:0x8043ED98
 	.bss        start:0x80506320 end:0x80506A60
+	.sbss       start:0x805D5568 end:0x805D5574
 	.sdata2     start:0x805DB088 end:0x805DB0A8
 
 pso/misc/TLobby.cpp:
