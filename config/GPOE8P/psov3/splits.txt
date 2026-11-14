@@ -1840,6 +1840,7 @@ pso/enemy/TObjEneMerillLia.cpp:
 	.text       start:0x800D4D70 end:0x800D72A4
 	.rodata     start:0x8043C6C0 end:0x8043C6F8
 	.data       start:0x804944D0 end:0x80494934
+	.sbss       start:0x805D5210 end:0x805D5220
 	.sdata2     start:0x805DA2E8 end:0x805DA2EC
 
 pso/misc/MaterialOpacityFade.cpp:
