@@ -2034,3 +2034,17 @@ constant descriptors and constructor. The existing `fp_contract on` scope in
 `run_task` preserves the three fused movement updates; a port needing the same
 rounding can use `fmaf` for those expressions. See the
 [unit evidence](evidence/gol-dragon-fireball-unit.md).
+
+### Word native lifetime emission
+
+`src/pso/misc/TWindowDD_80342254.cpp` uses the supported GC/2.6
+`-inline off,deferred` option and reverse function definitions. The native
+constructor needs its compiler-generated table available during data pooling;
+deferred emission supplies that timing and reverses definition order. The
+arrangement reproduces all original text, data, startup destinations and
+relocations, as detailed in [the evidence](evidence/window-word-native-emission.md).
+It reconstructs emitted layout and does not establish the retail build options
+or original source order. Ports should use the ordinary native constructor,
+destructor and new expression, omit this compiler override and arrange source
+for readability. Existing raw reset/list-loader and storage interfaces remain
+qualified separately.

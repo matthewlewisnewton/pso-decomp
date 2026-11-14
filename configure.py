@@ -648,6 +648,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Row-header copy is a 16-byte struct assignment. -inline off outlines it;
     # noauto,level=1 inlines that helper only. The rest of the unit stays out of line.
     "pso/misc/TWindowMainMenu_802AD538.cpp": {"cflags": _switch(cflags_pso, "-inline noauto,level=1")},
+    # Deferred emission makes the native Word table available to metadata pooling;
+    # reverse definitions preserve all original function/table/startup addresses.
+    # See docs/evidence/window-word-native-emission.md (reconstruction, not retail flags).
+    "pso/misc/TWindowDD_80342254.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs
     # (scale_point_about_pivot, apply_context_transform_to_rect,
     # apply_window_closing_stretch, clip_textured_quad, init_text_window_layout).

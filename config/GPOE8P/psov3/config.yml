@@ -2071,7 +2071,6 @@ force_active:
   - TWindowDD__sub_80340FA8
   - TWindowDD__sub_803414DC
   - TWindowDD__sub_80341674
-  - TWindowDD__sub_803422F0
   - TWindowDD__sub_803423E0
   - TWindowDD__sub_803434F4
   - TWindowDD__sub_8034694C
@@ -2440,6 +2439,7 @@ force_active:
   - __ct__17TObjItemNameEntryFP7TObject
   - __ct__17TObjParticleLobbyFP7TObjectPv
   - __ct__17TQuestThreadBoardFP7TObjectl
+  - __ct__17TWindowDD_WS_WordFll
   - __ct__18G_BuyShopItem_6x5EFv
   - __ct__18G_DropItem_DC_6x5FFv
   - __ct__18TAdLoadQuestCellGCFP7TObjectPv
@@ -2968,6 +2968,7 @@ force_active:
   - __dt__17TQuadSpriteSclColFv
   - __dt__17TQuestThreadBoardFv
   - __dt__17TWindowCtrlPlayerFv
+  - __dt__17TWindowDD_WS_WordFv
   - __dt__17TWindowDuelResultFv
   - __dt__17TWindowGetComCardFv
   - __dt__17TWindowMainMenu4PFv
@@ -3643,6 +3644,7 @@ force_active:
   - __vt__17TQuestThreadBoard
   - __vt__17TWindowChatSymbol
   - __vt__17TWindowCtrlPlayer
+  - __vt__17TWindowDD_WS_Word
   - __vt__17TWindowDuelResult
   - __vt__17TWindowGetComCard
   - __vt__17TWindowMainMenu4P
@@ -6034,7 +6036,6 @@ force_active:
   - destroy__16TObjEneBm5GibonUFls
   - destroy__16TObjOnlineEndingFPvs
   - destroy__17TBoss8DragonColliFPvs
-  - destroy__17TWindowDD_WS_WordFs
   - destroy__19TPlayerBattleCtrl4PFs
   - destroy__19TQuestListChallengeFv
   - destroy__21TShopDeleteItemWindowFv
@@ -9084,7 +9085,6 @@ force_active:
   - lbl_804EFBE4
   - lbl_804EFC74
   - lbl_804EFC7C
-  - lbl_804EFC90
   - lbl_804F1260
   - lbl_804F2024
   - lbl_804F2B78
@@ -16971,6 +16971,7 @@ force_active:
   - set_bit__15TBoss6SwordWaveFiUc
   - set_blast_level__16PhotonBlastGaugeFsSc
   - set_boss4_state__12TObjEneLappyFv
+  - set_callback__15TWindowCallBackFPFPvPv_v
   - set_camera__15TEndingPicStageFv
   - set_card_index__17TWindowSubComCardFl
   - set_card_window_flags__20TWindowShortListCtrlFll
@@ -17027,7 +17028,6 @@ force_active:
   - set_field_100__11TCameraCtrlFl
   - set_field_3c__10TObjPlayerFf
   - set_field_4__6TLobbyFl
-  - set_callback__15TWindowCallBackFPFPvPv_v
   - set_field_74__14TWindowSubItemFs
   - set_field_8__15TPlyPhotonChairFl
   - set_field_d4_and_flag_200__10TObjPlayerFf
