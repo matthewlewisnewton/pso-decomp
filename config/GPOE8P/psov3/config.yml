@@ -5913,6 +5913,9 @@ force_active:
   - creation_texture_cache
   - cri_copyright_string
   - crosses_heading__13TObjEneMorfosFlll
+  - csn_query_hit_buffer
+  - csn_query_hit_count
+  - csn_query_nearest_hit_t
   - ct_init_placement_ring__9TItemListFPUclPUcPUcSc
   - ct_shoot_model__10TObjPlayerFPv
   - cull_sections__6TSceneFv
@@ -19769,6 +19772,7 @@ force_active:
   - wait_timeout_loop__FP12ModemRequest
   - wake_load_thread__23TAdSinglePlyChrSelectGCFlP9OSContext
   - wake_network_thread__6TLobbyFv
+  - wall_query_hit_result
   - wander_around__16TObjEneNanoDragoFP3Vecf
   - warp_boss_handle_window__12TObjWarpBossFv
   - warp_nearby_players__14TBoss6PlotFalzFv
