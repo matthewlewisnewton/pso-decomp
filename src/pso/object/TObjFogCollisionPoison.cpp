@@ -56,7 +56,7 @@ void __dt__7TObjectFv(void *, int);
 void __dl__7TObjectFPv(void *);
 void vfunc_14__22TObjFogCollisionSwitchFv(void *self);
 void debug_printf_at(s32 id, const char *fmt, ...);
-extern char lbl_80440078[];
+extern const char lbl_80440078[] = "Poison Power";
 s16 get_actor_hp(s32);
 s32 get_entity_id(s32);
 s32 is_valid_target__9TObjEneDDFv(s32);

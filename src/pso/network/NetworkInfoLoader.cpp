@@ -495,3 +495,9 @@ typedef char NetworkInfoPayloadBufferExtent[
     sizeof(TAdPlayerLoadGC__network_info_payload_buffer) == 0x23C0 ? 1 : -1];
 typedef char NetworkInfoTrailerExtent[sizeof(network_info_trailer_buffer) == 0x400 ? 1 : -1];
 typedef char NetworkInfoTrailerBackupExtent[sizeof(network_info_trailer_backup) == 0x404 ? 1 : -1];
+
+extern "C" {
+Save_803F3F64 *TAdPlayerLoadGC__network_config_buffer;
+s32 network_config_mode;
+s32 TAdPlayerLoadGC__player_load_value;
+}

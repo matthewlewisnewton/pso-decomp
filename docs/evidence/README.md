@@ -28,6 +28,7 @@ guides.
 - [Character-select slot clamp inlining](chr-select-slot-clamp-inline.md)
 - [Chunk model node callbacks](chunk-node-callback-evidence.md)
 - [CodeWarrior source order and emitted layout](compiler-emission-evidence.md)
+- [Creation-menu icon animation interfaces](creation-icon-animation.md)
 - [GameCube decomp survey of scalar vector math](gc-decomp-vector-math-survey.md)
 - [Conversion-pool constants](conversion-pool-constants.md)
 - [Crush-rock render/physics unit](crush-rock-physics-unit.md)
@@ -107,3 +108,5 @@ guides.
 - [Window effect light recovery](window-effect-light-recovery-evidence.md)
 
 - [Word-select formatter completion and table grouping](word-select-completion.md)
+
+- [Zako renderer consolidation](zako-renderer-consolidation.md): exact class/renderer fold, typed color and model access, and retained floating-point contraction.

@@ -98,8 +98,8 @@ s32 set_field_20__15TShopWindowBaseFl(void *, s32);
 unsigned short get_child_field1c__13TShopSequenceFv(void *);
 s32 set_service_counter_camera(void *, int);
 s32 get_window_layout_position(int, f32);
-extern const f32 lbl_805DC6E0;
-extern const f32 lbl_805DC6E4;
+static const f32 lbl_805DC6E0 = 332.0f;
+static const f32 lbl_805DC6E4 = 80.0f;
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 s32 __dl__7TObjectFPv(void *);
@@ -333,4 +333,9 @@ void TShopEquipmentSequence__sub_8021DC08(void) {
     }
 }
 
+}
+
+extern "C" {
+u8 *lbl_805D6228;
+s32 lbl_805D622C;
 }

@@ -14,7 +14,7 @@ struct T_8022BEAC { u8 pad[0x20]; u8 f20[0xC]; u8 f2c[0x10]; f32 f3c; u8 pad2[0x
 
 extern "C" {
 extern V3_8022BEAC TTecLuker__render_scale_vec;
-extern const f32 lbl_805DC7B0;
+static const f32 lbl_805DC7B0 = 2.75f;
 #pragma pop
 
 #pragma push
@@ -122,11 +122,11 @@ void *__ct__7TEffectFv(void *);
 s32 init_collision_body_parts(u32, void *, s32);
 u32 __ct__14TObjCollidableFP7TObject(u32, void *);
 u32 __nw__7TObjectFUl(s32);
-extern const f32 lbl_805DC7B4;
-extern const f32 lbl_805DC7B8;
-extern const f32 lbl_805DC7BC;
-extern const f32 lbl_805DC7C0;
-extern const f32 lbl_805DC7C4;
+static const f32 lbl_805DC7B4 = 0.0f;
+static const f32 lbl_805DC7B8 = 1.0f;
+static const f32 lbl_805DC7BC = 0.2f;
+static const f32 lbl_805DC7C0 = 3.0f;
+static const f32 lbl_805DC7C4 = 150.0f;
 extern const f32 lbl_805DC7C8;
 u8 *construct_area_technique_base(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 

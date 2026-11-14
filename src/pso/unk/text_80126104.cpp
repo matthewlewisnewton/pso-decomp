@@ -149,7 +149,7 @@ struct Pl_801261BC : PlB_801261BC {
 
 extern "C" {
 s32 obj_is_hit_receivable(void *);
-extern const f32 lbl_805DAD70;
+static const f32 lbl_805DAD70 = 2.0f;
 void frozen_shooter_collider_block(Obj_80126180 *self, Out_80126180 *o);
 }
 #pragma push
