@@ -9511,6 +9511,7 @@ pso/object/TObjCMName.cpp:
 	.rodata     start:0x80465140 end:0x80465150
 	.data       start:0x804DB950 end:0x804DBDC0
 	.bss        start:0x80540988 end:0x805409C8
+	.sdata      start:0x805D3CD8 end:0x805D3CDC
 	.sbss       start:0x805D65A0 end:0x805D65A8
 	.sdata2     start:0x805DDA6C end:0x805DDC20
 

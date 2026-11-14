@@ -2549,3 +2549,7 @@ static const f32 lbl_805DDB50 = 0.4f;
 const f32 lbl_805DDB50 = 0.4f;
 #endif
 }
+
+extern "C" {
+char lbl_805D3CD8[4] = "???";
+}
