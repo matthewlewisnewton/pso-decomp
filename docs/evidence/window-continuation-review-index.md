@@ -8,6 +8,13 @@ The initial two-commit continuation keeps the coupled implementation/configurati
 atomic, then restores its evidence and attribution. It is not a claim of 100%
 completion or portable recovery of every historical ABI boundary.
 
+## Character-transition callback lifetime control
+
+The [transition retirement trace](window-callback-transition-retirement.md) follows
+the actual replacement helper, owner destructor, callback phase and ordinary/
+deferred render paths. It establishes a no-republication null-gate result while
+leaving old/new generation ordering explicitly unresolved.
+
 ## Shared callback contract checkpoint
 
 The [atomic common callback contract](window-callback-common-contract.md) resolves
