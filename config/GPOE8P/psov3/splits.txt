@@ -10185,6 +10185,7 @@ pso/misc/TOTrapChainSawEdge.cpp:
 	.text       start:0x802C80F0 end:0x802C9C18
 	.rodata     start:0x80471DA0 end:0x80471FB8
 	.data       start:0x804E0BD0 end:0x804E0F90
+	.bss        start:0x80540B30 end:0x80540B58
 	.sdata      start:0x805D3F00 end:0x805D3F10
 	.sbss       start:0x805D6808 end:0x805D6810
 	.sdata2     start:0x805DE618 end:0x805DE63C
