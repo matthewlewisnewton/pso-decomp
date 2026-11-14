@@ -27,3 +27,7 @@ void apply_scene_fog(void) {
     }
     Dolphin_GXSetFog(type, scene_fog_start_distance, scene_fog_end_distance, scene_projection_state.f44, scene_projection_state.f48, *(Col_803E2010 *)&scene_fog_color);
 }
+
+extern "C" {
+s32 scene_fog_type;
+}
