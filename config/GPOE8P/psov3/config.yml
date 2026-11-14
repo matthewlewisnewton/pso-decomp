@@ -651,8 +651,10 @@ force_active:
   - TItemDrop__ct
   - TItemDrop__data_805D53CC
   - TItemDrop__data_805D53D0
+  - TItemDrop__drop_table_mode_flags
   - TItemDrop__gsl_adxf_handle
   - TItemDrop__gsl_entry_count
+  - TItemDrop__section_id
   - TItemEffArmor__ct
   - TItemEffBringer__class_name
   - TItemEffBringer__class_name_string
@@ -8204,6 +8206,7 @@ force_active:
   - item_box_secondary_colors
   - item_create_fn_table
   - item_disabled_area_table
+  - item_drop_cached_offset
   - item_eff_armor_particle_class_name
   - item_equip_base_class_name
   - item_follow_effect_vtable
@@ -8220,6 +8223,7 @@ force_active:
   - item_name_selection_table
   - item_name_table_a
   - item_name_table_b
+  - item_pmt
   - item_pro_armor_class_name
   - item_pro_armor_particle_class_name
   - item_pro_create_fn_table
@@ -8230,6 +8234,7 @@ force_active:
   - item_system_generation
   - item_texture_afs_work_buffer
   - item_texture_filename_buffer
+  - item_weapon_trail_vertex_buffer
   - jisin_enter__11TBoss4Type2Fv
   - jisin_idle__11TBoss4Type2Fv
   - jisin_update__11TBoss4Type2Fv
@@ -8321,6 +8326,7 @@ force_active:
   - lbl_8043CDA0
   - lbl_8043DF18
   - lbl_8043DF28
+  - lbl_8043E048
   - lbl_8043ED80
   - lbl_8043EDE8
   - lbl_8043EDF0
@@ -8407,6 +8413,8 @@ force_active:
   - lbl_80444250
   - lbl_80444E5C
   - lbl_80444EA8
+  - lbl_80445430
+  - lbl_8044543C
   - lbl_80445588
   - lbl_80445CD8
   - lbl_80446F94
@@ -8428,6 +8436,7 @@ force_active:
   - lbl_8044A840
   - lbl_8044A84C
   - lbl_8044A858
+  - lbl_8044C478
   - lbl_8044D920
   - lbl_8044D944
   - lbl_8044D968
@@ -9390,6 +9399,10 @@ force_active:
   - lbl_805D6014
   - lbl_805D6018
   - lbl_805D6160
+  - lbl_805D6228
+  - lbl_805D622C
+  - lbl_805D6248
+  - lbl_805D624C
   - lbl_805D6270
   - lbl_805D63C0
   - lbl_805D63C4
@@ -19806,6 +19819,7 @@ force_active:
   - warp_boss_handle_window__12TObjWarpBossFv
   - warp_nearby_players__14TBoss6PlotFalzFv
   - warp_player__12TObjWarpBossFl
+  - weapon_trail_slot_bitmap
   - window_chat_type_name_pointer
   - window_duel_result_class_name
   - window_label_value_part_vtable
