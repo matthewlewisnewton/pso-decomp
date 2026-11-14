@@ -1124,3 +1124,10 @@ char lbl_805D48A4[8] = "AT+GCI=";
 char lbl_805D48AC[2] = "\r";
 char lbl_805D48B0[6] = "ATE0\r";
 }
+
+extern "C" {
+ModemRegs_805D7C90 lbl_805D7C90;
+s32 lbl_805D7C98;
+s32 lbl_805D7C9C;
+OSThreadQueue lbl_805D7CA0;
+}
