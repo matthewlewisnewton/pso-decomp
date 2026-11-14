@@ -1225,7 +1225,7 @@ pso/effect/TEffect.cpp:
 	.data       start:0x8048E300 end:0x8048E318
 	.bss        start:0x80500620 end:0x805006F8
 	.sdata      start:0x805D2908 end:0x805D290C
-	.sbss       start:0x805D4ED8 end:0x805D4EDC
+	.sbss       start:0x805D4ED8 end:0x805D4EE0
 	.sdata2     start:0x805D93B8 end:0x805D93C0
 
 pso/unk/text_80082C30.cpp:
@@ -1257,6 +1257,7 @@ pso/misc/TScene_800838C4.cpp:
 
 pso/player/TObjPlayer_80083B38.cpp:
 	.text       start:0x80083B38 end:0x800847A8
+	.sbss       start:0x805D4EE0 end:0x805D4EE4
 
 pso/player/TObjPlayer_800847A8.cpp:
 	.text       start:0x800847A8 end:0x80084864
