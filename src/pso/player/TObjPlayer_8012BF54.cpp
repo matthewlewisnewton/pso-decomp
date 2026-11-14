@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "types.h"
 #include "pso/player/TUnk_804A5150.h"
 #include "pso/player/TObjPlayer.h"
@@ -8,9 +9,9 @@ s32 rotate_matrix_z(s32, s32);
 s32 rotate_matrix_x(s32, s32);
 void __ct__11TItemWeaponFP7TObjectPUc(void *);
 
-void TUnk_804A5150::update_idle() { TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)-910), (s32)((void*)-7281)); TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)-910), (s32)((void*)-9102)); }
+void TUnk_804A5150::update_idle() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)-910), (s32)((void*)-7281)); add_integer_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)-910), (s32)((void*)-9102)); }
 
-void TUnk_804A5150::update_attack() { TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)1820), (s32)((void*)0)); TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)1820), (s32)((void*)0)); }
+void TUnk_804A5150::update_attack() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)1820), (s32)((void*)0)); add_integer_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)1820), (s32)((void*)0)); }
 
 void TObjPlayer::apply_conveyor_move() {
     s32 player_list;

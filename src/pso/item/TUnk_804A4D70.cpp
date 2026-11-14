@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "pso/misc/ParticleFactory.h"
 #include "types.h"
 #include "pso/item/TItemEquipVariant_80120CF8.h"
@@ -106,20 +107,20 @@ void TObjPlayer::update_area_effect_objects() {
 
 void TUnk_804A4D70::update_idle() {
     if (get_item_index() == 5) {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(((u8 *)this) + 0x204), (f32)0.2f, (f32)0.0f);
+        add_float_clamped((f32 *)(((u8 *)this) + 0x204), (f32)0.2f, (f32)0.0f);
         if (this->m_204 <= 0.0f) {
-            TItemEffOrgaFlowShot::approach_value((f32 *)(((u8 *)this) + 0x20C), (f32)(-0.2f), (f32)(-1.055f));
-            TItemEffOrgaFlowShot::approach_value((f32 *)(((u8 *)this) + 0x218), (f32)0.15f, (f32)0.75f);
+            add_float_clamped((f32 *)(((u8 *)this) + 0x20C), (f32)(-0.2f), (f32)(-1.055f));
+            add_float_clamped((f32 *)(((u8 *)this) + 0x218), (f32)0.15f, (f32)0.75f);
         }
     }
 }
 void TUnk_804A4D70::update_attack() {
     u8 *arg0 = (u8 *)this;
     if (get_item_index() == 5) {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x20C), (f32)0.5f, (f32)0.0f);
-        TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x218), (f32)(-0.25f), (f32)0.0f);
+        add_float_clamped((f32 *)(arg0 + 0x20C), (f32)0.5f, (f32)0.0f);
+        add_float_clamped((f32 *)(arg0 + 0x218), (f32)(-0.25f), (f32)0.0f);
         if (0.0f <= this->m_20c) {
-            TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x204), (f32)0.5f, (f32)1.0f);
+            add_float_clamped((f32 *)(arg0 + 0x204), (f32)0.5f, (f32)1.0f);
         }
     }
 }
