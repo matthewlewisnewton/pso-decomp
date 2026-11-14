@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TWindowMessage.h"
@@ -764,7 +765,6 @@ void qst_op_va_call(s32 arg0) {
   qst_pc = qst_function_table[(u16)arg0];
 }
 }
-
 
 extern "C" {
 s16 get_actor_hp(u8 *);
@@ -1901,8 +1901,6 @@ int create_alt_timer__11TWindowCtrlFv(void*);
 }
 void close_window_if_active(void *p);
 extern "C" {
-void TObjPlayer__sub_8024ABDC(s32 arg0);
-void TLobby__sub_8024AC20(s32 arg0);
 void set_field28__11TWindowCtrlFs(u16);
 s32 close_windows_by_flags__11TWindowCtrlFUs(int, void *);
 void open_default__11TWindowCtrlFi(u16, s32);
@@ -2012,7 +2010,7 @@ extern RecoveredGlobal_801EC90C_lbl_80449AFC lbl_80449B08;
 extern s32 lbl_80449B10[];
 extern Tbl_801E9AF8 lobby_index_identity_table_a[];
 extern s32 lbl_80449B2C[];
-extern const f64 lbl_80449CC0;
+static const f64 lbl_80449CC0 = 10430.38043493439;
 extern RecoveredGlobal_801ECF84_lbl_8050D3E0 lbl_8050D3E0;
 extern s32 symbolchat_colli_param_table[];
 extern E_801E93B4 controller_input_state[];
@@ -4863,9 +4861,9 @@ void qst_op_start_battlebgm() {
     }
 }
 
-void qst_op_disable_mainmenu(void) { TObjPlayer__sub_8024ABDC(((*(int *)&local_client_id))); }
+void qst_op_disable_mainmenu(void) { disable_player_main_menu(((*(int *)&local_client_id))); }
 
-void qst_op_enable_mainmenu() { TLobby__sub_8024AC20(((*(int *)&local_client_id))); }
+void qst_op_enable_mainmenu() { enable_player_main_menu(((*(int *)&local_client_id))); }
 
 void qst_op_nop_BC(void) {  }
 
@@ -5303,9 +5301,9 @@ int qst_op_cine_disable(void) { return reset_state__9TCineCtrlFl((void*)(0)); }
 
 int qst_op_cine_enable(void) { return reset__9TCineCtrlFl((void*)(0)); }
 
-void qst_op_hud_show(void) { ((TWindowCtrl *)(*(int *)&local_client_id))->unsuppress_slot(); TRaderMapCore::show_radar(); }
+void qst_op_hud_show(void) { unsuppress_player_window((*(int *)&local_client_id)); TRaderMapCore::show_radar(); }
 
-void qst_op_hud_hide(void) { ((TWindowCtrl *)(*(int *)&local_client_id))->suppress_slot(); TRaderMapCore::hide_radar(); }
+void qst_op_hud_hide(void) { suppress_player_window((*(int *)&local_client_id)); TRaderMapCore::hide_radar(); }
 extern "C" {
 
 int qst_op_pl_pkon(void* p) { return notify_all_battle_players__10TObjPlayerFv(p); }
@@ -5985,7 +5983,7 @@ void qst_op_winend(void) {
         qst_message_window = NULL;
     }
     TWindowCtrl::clear_flag_bit2();
-    TLobby__sub_8024AC20((local_client_id));
+    enable_player_main_menu((local_client_id));
     TWindowCtrl::clear_flag();
     TWindowCtrl::clear_flag_2();
 }
@@ -5998,7 +5996,7 @@ void qst_op_mesend(void) {
     s32 i;
     s32 f;
     s32 v;
-    TLobby__sub_8024AC20(local_client_id);
+    enable_player_main_menu(local_client_id);
     TWindowCtrl::clear_flag();
     TWindowCtrl::clear_flag_2();
     id = qst_message_speaker;
@@ -6443,7 +6441,6 @@ void qst_op_glet(u16 flag, s32 arg1) {
     }
     clear_story_flag((flag));
 }
-
 
 void qst_op_gclear(u16 arg0);
 void qst_op_gset(u16 arg0);

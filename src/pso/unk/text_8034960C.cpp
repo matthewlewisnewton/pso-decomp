@@ -36,14 +36,14 @@ struct Vec2_8034960C {
 extern "C" {
 void draw_color_lines(Desc_80349844 *, s32, s32, f32);
 }
-extern const f32 lbl_805DFD04;
-extern const f32 lbl_805DFD08;
-extern const f32 lbl_805DFD0C;
-extern const f32 lbl_805DFD10;
-extern const f32 lbl_805DFD14;
+static const f32 lbl_805DFD04 = 0.0f;
+static const f32 lbl_805DFD08 = 8.0f;
+static const f32 lbl_805DFD0C = 640.0f;
+static const f32 lbl_805DFD10 = 4.0f;
+static const f32 lbl_805DFD14 = -500.0f;
 extern const Vec2_80349728 lbl_80478718[2];
 extern const Vec2_80349728 lbl_80478728[2];
-extern const f32 lbl_805DFD00;
+static const f32 lbl_805DFD00 = -490.0f;
 extern const Vec2_8034960C lbl_80478738[2];
 extern const Vec2_8034960C quest_load_panel_overlay_offsets[2];
 
