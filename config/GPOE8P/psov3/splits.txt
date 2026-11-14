@@ -1230,7 +1230,7 @@ pso/effect/TEffect.cpp:
 	.data       start:0x8048E300 end:0x8048E318
 	.bss        start:0x80500620 end:0x805006F8
 	.sdata      start:0x805D2908 end:0x805D290C
-	.sbss       start:0x805D4ED8 end:0x805D4EDC
+	.sbss       start:0x805D4ED8 end:0x805D4EE0
 	.sdata2     start:0x805D93B8 end:0x805D93C0
 
 pso/unk/text_80082C30.cpp:
@@ -1262,6 +1262,7 @@ pso/misc/TScene_800838C4.cpp:
 
 pso/player/TObjPlayer_80083B38.cpp:
 	.text       start:0x80083B38 end:0x800847A8
+	.sbss       start:0x805D4EE0 end:0x805D4EE4
 
 pso/player/TObjPlayer_800847A8.cpp:
 	.text       start:0x800847A8 end:0x80084864
@@ -1913,6 +1914,7 @@ pso/player/TObjPlayer_800D8FDC.cpp:
 	.text       start:0x800D8FDC end:0x800D97E8
 	.rodata     start:0x8043C758 end:0x8043C760
 	.data       start:0x80494AE0 end:0x80494B0C
+	.sbss       start:0x805D5228 end:0x805D522C
 
 pso/unk/text_800D97E8.cpp:
 	.text       start:0x800D97E8 end:0x800D98D8
@@ -4491,6 +4493,7 @@ pso/unk/text_8014AB24.cpp:
 
 pso/npc/TObjNpcGovernorBase.cpp:
 	.text       start:0x8014AB8C end:0x8014ADF4
+	.rodata     start:0x8043FA38 end:0x8043FA60
 
 pso/npc/TObjNpcHFW00.cpp:
 	.text       start:0x8014ADF4 end:0x8014AFC8
@@ -4580,13 +4583,16 @@ pso/player/TObjPlayer_8014C610.cpp:
 
 pso/npc/TObjNpcMoja.cpp:
 	.text       start:0x8014C6C0 end:0x8014C97C
+	.rodata     start:0x8043FD20 end:0x8043FD48
 	.data       start:0x804AABB8 end:0x804AAD80
 
 pso/npc/TObjNpcNFM00.cpp:
 	.text       start:0x8014C97C end:0x8014CB50
+	.rodata     start:0x8043FD58 end:0x8043FD80
 
 pso/npc/TObjNpcNFM01.cpp:
 	.text       start:0x8014CB50 end:0x8014CD24
+	.rodata     start:0x8043FD90 end:0x8043FDB8
 
 pso/npc/TObjNpcNFW00.cpp:
 	.text       start:0x8014CD24 end:0x8014CEF8
@@ -5768,6 +5774,7 @@ pso/object/TObjEvtCollision.cpp:
 
 pso/misc/TNpcPlayer_80190E64.cpp:
 	.text       start:0x80190E64 end:0x80191218
+	.rodata     start:0x80445910 end:0x80445928
 
 pso/misc/TLobby_80191218.cpp:
 	.text       start:0x80191218 end:0x801912BC
@@ -6433,6 +6440,7 @@ pso/misc/TPlyPhotonChair_801BEC44.cpp:
 
 pso/player/TObjPlayer.cpp:
 	.text       start:0x801BEC98 end:0x801BF548
+	.sbss       start:0x805D5D70 end:0x805D5D78
 
 pso/player/TObjPlayer_801BF548.cpp:
 	.text       start:0x801BF548 end:0x801BF6B0
@@ -10920,11 +10928,8 @@ pso/misc/TLobby_8030A834.cpp:
 	.text       start:0x8030A834 end:0x8030A884
 
 pso/boss/TBoss4ZakoDraw.cpp:
-	.text       start:0x8030A884 end:0x8030A96C
+	.text       start:0x8030A884 end:0x8030AD38
 	.data       start:0x804E7650 end:0x804E7668
-
-pso/boss/TBoss4ZakoDraw_8030A96C.cpp:
-	.text       start:0x8030A96C end:0x8030AD38
 	.bss        start:0x80541E58 end:0x80542D60
 
 pso/boss/TBoss4ZakoDraw_8030AD38.cpp:

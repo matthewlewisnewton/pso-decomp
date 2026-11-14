@@ -578,6 +578,7 @@ force_active:
   - TCameraCtrl__sub_8006B798
   - TCameraCtrl__sub_8006CC30
   - TCameraCtrl__sub_8006E804
+  - TCameraCtrl__sub_8030ABF4
   - TCameraCtrl__sub_803D65F8
   - TCameraCtrl__view_matrices
   - TCameraCtrl__view_matrix
@@ -3458,6 +3459,7 @@ force_active:
   - __vt__14TAdSelectTxtGC
   - __vt__14TAdYesNoBaseGC
   - __vt__14TBoss2Tentacle
+  - __vt__14TBoss4ZakoDraw
   - __vt__14TBoss6EffHyoui
   - __vt__14TBoss7Tentacle
   - __vt__14TChCrEffCtrlPl
@@ -4832,6 +4834,7 @@ force_active:
   - boss4_type3_state_name_wait_kill
   - boss4_type3_state_name_wait_next
   - boss4_type3_states
+  - boss4_zako_draw_buffers
   - boss5_gryphon_attack_indices
   - boss5_gryphon_attack_param_ids
   - boss5_gryphon_attack_params
@@ -8439,6 +8442,14 @@ force_active:
   - lbl_8043F06C
   - lbl_8043F078
   - lbl_8043F084
+  - lbl_8043FA38
+  - lbl_8043FA4C
+  - lbl_8043FD20
+  - lbl_8043FD34
+  - lbl_8043FD58
+  - lbl_8043FD6C
+  - lbl_8043FD90
+  - lbl_8043FDA4
   - lbl_80441858
   - lbl_80441874
   - lbl_80443BA8
@@ -8484,6 +8495,7 @@ force_active:
   - lbl_80444E5C
   - lbl_80444EA8
   - lbl_80445588
+  - lbl_80445910
   - lbl_80445CD8
   - lbl_80446F94
   - lbl_80446F9C
@@ -9456,6 +9468,7 @@ force_active:
   - lbl_805D4D90
   - lbl_805D4D94
   - lbl_805D4DC0
+  - lbl_805D4EE0
   - lbl_805D5020
   - lbl_805D5058
   - lbl_805D505C
@@ -9471,6 +9484,7 @@ force_active:
   - lbl_805D5A94
   - lbl_805D5A98
   - lbl_805D5D60
+  - lbl_805D5D70
   - lbl_805D5FF8
   - lbl_805D600C
   - lbl_805D6014
@@ -14983,6 +14997,7 @@ force_active:
   - player_class_base_stats_10
   - player_class_base_stats_11
   - player_collider_radius_table
+  - player_corpse_mark_resource
   - player_defense_stat_status_light_colors
   - player_footstep_floor_table
   - player_joined_message
@@ -17341,6 +17356,7 @@ force_active:
   - setup_view__13TRaderMapCoreFl
   - setup_vtx_desc__10TObjPlayerFv
   - shared_breakup_model
+  - shared_flag
   - shared_model_resource__16TObjRainbowLobby
   - shark_actions
   - shark_alt_archive_filename
