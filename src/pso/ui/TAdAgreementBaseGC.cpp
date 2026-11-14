@@ -60,7 +60,6 @@ extern s32 lbl_805D41B8;
 Obj_80329AA8 *TAdAgreementBaseGC__ct(Obj_80329AA8 *arg0, void *arg1);
 void *get_localized_text_entry(int, u32);
 s32 render_status_line__15TAdSubPlyItemGCFi(void *, int, f32, f32, f32);
-void draw_window_frame__11TWindowBaseFPv();
 extern const f32 lbl_805DF700;
 extern const f32 lbl_805DF704;
 extern const f32 lbl_805DF708;
@@ -73,10 +72,10 @@ void TAdAgreementBaseGC::check_main_task_state() {
 
 #pragma push
 #pragma fp_contract on
-void TAdAgreementBaseGC::draw_agreement_text() {
+void TAdAgreementBaseGC::draw_agreement_text(void *window, void *frame_context) {
     Pos_803296E8 pos[2];
     u32 i;
-    draw_window_frame__11TWindowBaseFPv();
+    ((TWindowBase *)window)->draw_window_frame(frame_context);
     for (i = 0; i < 2; i++) {
         pos[i].x = lbl_805DF700 - (f32) (calc_text_width((char *)(get_localized_text_entry(0x1B, i))) >> 1);
         pos[i].y = lbl_805DF708 * (f32) i + lbl_805DF704;

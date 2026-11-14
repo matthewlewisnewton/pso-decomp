@@ -6205,7 +6205,7 @@ force_active:
   - draw_active_beam__11TObjDoorKeyFv
   - draw_actor_model__10TObjPlayerFPv
   - draw_afterimages__11TObjDFDemo4Fv
-  - draw_agreement_text__18TAdAgreementBaseGCFv
+  - draw_agreement_text__18TAdAgreementBaseGCFPvPv
   - draw_and_send__10TObjPlayerFv
   - draw_and_send_field1c__10TObjPlayerFi
   - draw_animated_beam__18TObjLazerFenceNormFv

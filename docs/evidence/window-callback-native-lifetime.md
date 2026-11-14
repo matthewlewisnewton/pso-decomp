@@ -165,3 +165,40 @@ the callee's use of both values and the factory registrations. Address-based
 check_pr against the captured aa2d396773 report passes with zero regression.
 
 The 347-test repository suite also passes. Broader holds remain unchanged.
+
+## Agreement entry and registration contract (e778094702 follow-up)
+
+Agreement's callback at 803296E8 was separately traced rather than assumed to
+share the preceding three source contracts. Its prologue saves floating-point
+and nonvolatile registers without replacing incoming r3/r4, then calls the
+frame member at 80329718. That callee reads both its window receiver and frame
+context. The existing no-argument callback and no-argument raw frame declaration
+therefore omitted values actually consumed by the original execution path.
+
+A scan of 5,061 available original split objects found only the callback's
+zero-addend HA/LO address references, both in Agreement's own registration at
+80329808/80329818. The registration passes this address as the third factory
+argument at 8032981C; the existing factory stores it in the Base-derived callback
+window. Its renderer passes that window in r3 and draw_default_entry's result
+in r4. No alternate direct reference appeared in this original-object census;
+computed callers, external aliases and future registrations are not excluded.
+
+The genuine static member now explicitly accepts window/context pointers and
+calls the existing Base frame member with them. Its native mangling is recorded
+in the symbol catalog and retention entry; no adapter, asm alias, forced slot,
+new parameter width, callback dispatch change or assumed source-name provenance
+is introduced. Registration still uses the member's address. The callback's
+body, frame behavior and text-rendering order are unchanged. Its static class
+placement is retained, not presented as original-source identity evidence.
+
+The capacity-gated native full build passes with original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. Only the Agreement object changes in
+the 3,655-file compiled-source inventory. Its complete non-string sections,
+relocation records and ordered symbol metadata agree after normalizing the one
+native export rename; ELF string offsets/file positions are not claimed raw
+identical. All other 3,654 source objects are raw-identical. The qualified common
+callback field type, no-argument global-mediated callbacks, remaining interface
+and lifetime holds remain outside this narrow entry-contract correction.
+Independent original-assembly/source review passes. check_pr against the captured
+e778094702 report passes with zero metric loss and the single catalog rename;
+the 347-test repository suite passes. This is not a ready-for-review claim.
