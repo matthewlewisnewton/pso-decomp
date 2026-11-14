@@ -1480,6 +1480,7 @@ pso/player/TObjPlayer_80099EF8.cpp:
 pso/enemy/BringerEffects.cpp:
 	.text       start:0x80099F0C end:0x8009AB4C
 	.rodata     start:0x8043A178 end:0x8043A180
+	.bss        start:0x805008B8 end:0x80500930
 	.sdata2     start:0x805D9850 end:0x805D9888
 
 pso/enemy/TObjEneMe1Canadin.cpp:
