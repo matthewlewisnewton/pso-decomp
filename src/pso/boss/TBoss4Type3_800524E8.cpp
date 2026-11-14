@@ -7,11 +7,11 @@
 struct Player_8005254C { u8 pad[0x30]; u32 flags; };
 
 extern "C" {
-extern const f32 lbl_805D8AE0;
+static const f32 lbl_805D8AE0 = 1.0f;
 void *get_player_by_client_id(s32 i);
 f32 cos_table_lookup(s32);
 
-extern const f32 lbl_805D8AE4;
+static const f32 lbl_805D8AE4 = 0.5f;
 extern const f32 lbl_805D8AF0;
 
 #pragma push

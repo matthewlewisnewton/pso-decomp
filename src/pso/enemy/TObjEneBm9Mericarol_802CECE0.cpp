@@ -628,7 +628,7 @@ s32 enemy_validate_retained_target(void *);
 s32 set_field_378__9TObjEneDDFl(void *, s32, s32);
 s32 approach_angle_limited(int, int, void *);
 s32 fn_802CE510(void *);
-extern const f64 lbl_804724B8;
+static const f64 lbl_804724B8 = 10430.38043493439;
 extern const f32 lbl_805DE720;
 extern const f32 lbl_805DE724;
 extern const f32 lbl_805DE728;

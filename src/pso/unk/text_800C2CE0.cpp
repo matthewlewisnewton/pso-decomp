@@ -127,7 +127,7 @@ s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 s32 noop__9TObjEneDDFv(void *, s32);
 s32 fn_800C3A60(void *, s32);
 
-extern const f32 lbl_805D9FD0;
+static const f32 lbl_805D9FD0 = 0.30000001192092896f;
 #define F(T, o) (*(T *)((s8 *)(arg0) + (o)))
 void TObjEneDD::state_damaged(s32 arg1) {
     u8 *arg0 = (u8 *)this;

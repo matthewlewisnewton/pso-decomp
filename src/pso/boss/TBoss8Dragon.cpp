@@ -457,7 +457,7 @@ s32 enemy_validate_retained_target(void *);
 void * __nw__7TObjectFUl(int);
 void TBoss8Dragon__sub_802FC9D8(u8 *arg0);
 s32 __ct__21TBoss8DragonEffBreathFP7TObjectPvPvls(void *, void *, void *, void *, s32, u16);
-extern const f32 lbl_805DEEAC;
+static const f32 lbl_805DEEAC = 115.0f;
 
 f32 newton_sqrtf(f32);
 s32 is_valid_target__9TObjEneDDFv(void);
@@ -1459,7 +1459,7 @@ extern s32 TBoss8Dragon__data_805D69A0;
 extern s32 TBoss8Dragon__data_805D69A8;
 extern u8 *TBoss8Dragon__data_805D69AC;
 
-extern const f32 TBoss8Dragon__data_805DEEA4;
+static const f32 TBoss8Dragon__data_805DEEA4 = 10.0f;
 extern s32 TLobby__designated_client_id;
 extern s32 boss8_dragon_init_state_params[];
 extern RecoveredGlobal_802F45A0_lbl_80474580 dragon_camera_script_frame_table;
@@ -1477,8 +1477,8 @@ extern RecoveredGlobal_802F4760_lbl_80541E3C dragon_forward_reference_vec;
 extern s32 lbl_805D6990;
 extern f32 boss8_dragon_visibility_distance;
 
-extern const f32 lbl_805DEEA0;
-extern const f32 lbl_805DEEA8;
+static const f32 lbl_805DEEA0 = 0.07999999821186066f;
+static const f32 lbl_805DEEA8 = 23.0f;
 extern f32 lbl_805DEEB0;
 extern const f32 lbl_805DEEB4;
 extern const f32 lbl_805DEEB8;

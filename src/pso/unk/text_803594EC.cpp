@@ -26,8 +26,8 @@ struct Quad_803594EC : ColorLineList {
 };
 
 extern ColorLineVertex TBoss4Fade__fullscreen_vertices[];
-extern const f32 lbl_805E0098;
-extern const f32 lbl_805E009C;
+static const f32 lbl_805E0098 = 255.0f;
+static const f32 lbl_805E009C = -1.0f;
 
 typedef struct Ent_803594EC Ent_803594EC;
 typedef struct Fade_803594EC Fade_803594EC;

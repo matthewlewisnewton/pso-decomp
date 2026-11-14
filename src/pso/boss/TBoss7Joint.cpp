@@ -23,7 +23,7 @@ extern "C" {
 TObjEneDD *__ct__9TObjEneDDFP7TObject(TObjEneDD *, TObject *);
 void *__dt__9TObjEneDDFv(void *, s16);
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
-extern const f32 lbl_805DEBB8;
+static const f32 lbl_805DEBB8 = 1.2000000476837158f;
 void initialize_enemy_state__9TObjEneDDFl(void *, s32);
 extern s32 __vt__11TBoss7Joint[];
 extern s32 lbl_805D3FC0;
@@ -33,7 +33,7 @@ extern s32 lbl_805D3FC0;
 s32 reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, int, int, int);
 extern s32 lbl_80473FB8[];
 extern s32 boss7_joint_params[];
-extern const f32 lbl_805DEBBC;
+static const f32 lbl_805DEBBC = 3.0f;
 struct VOff_802EE9A4_arg0_802EE9A4 { char pad_0[0x2FC]; char f_2FC[1]; };
 
 s32 apply_damage_and_set_effect__8TObjFishFl(int, int, int);
@@ -46,8 +46,8 @@ void TBoss7Joint::store_position() {
     VecCopy((Vec *)((char *)this + 116), (const Vec *)self->f_2FC);
 }
 
-extern const f32 lbl_805DEBB0;
-extern const f32 lbl_805DEBB4;
+static const f32 lbl_805DEBB0 = 15.0f;
+static const f32 lbl_805DEBB4 = 12.0f;
 
 void TBoss7Joint::vfunc_62() {
     s16 temp_r4;
