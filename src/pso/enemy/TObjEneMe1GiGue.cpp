@@ -138,7 +138,7 @@ void vec3_add_to(void *, void *);
 void matrix_mult_vec(int, Vec *, void *);
 extern Vec lbl_80472280;
 extern Vec lbl_8047228C;
-extern const f64 TObjEneMe1GiGue__data_80472298;
+static const f64 TObjEneMe1GiGue__data_80472298 = 10430.38043493439;
 s16 get_entity_id(void *);
 s32 angle_difference_abs(s32, s32);
 void subtract_vector(void *, void *);

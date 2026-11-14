@@ -20,8 +20,8 @@ void __ct__7TObjectFP7TObject(void *, void *);
 s32 rand(void);
 extern RecoveredGlobal_802F16CC___vt__19TObjBoss7RaftSplash __vt__19TObjBoss7RaftSplash;
 extern s32 lbl_805D3FE8;
-extern const f32 lbl_805DEC88;
-extern const f32 lbl_805DEC8C;
+static const f32 lbl_805DEC88 = 3.0f;
+static const f32 lbl_805DEC8C = 3.0517578e-05f;
 s32 spawn_particle__8TObjFishFllf(f32);
 
 extern const f32 lbl_805DEC90;
