@@ -12388,6 +12388,7 @@ pso/object/TObjTreeLobby.cpp:
 
 pso/object/TObjLaboDesignBase.cpp:
 	.text       start:0x80364C98 end:0x80365348
+	.rodata     start:0x8047A0A8 end:0x8047A1D0
 	.data       start:0x804F2B78 end:0x804F2E08
 	.sbss       start:0x805D6FC8 end:0x805D6FD0
 
