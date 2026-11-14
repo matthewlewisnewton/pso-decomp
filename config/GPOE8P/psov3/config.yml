@@ -16720,6 +16720,8 @@ force_active:
   - seabed_suiso_break_sets
   - seabed_suiso_chip_collision_bodies
   - seabed_suiso_kind_params
+  - seabed_suiso_linked_switch_counts
+  - seabed_suiso_switch_counts
   - seabed_trap_collision_body
   - seabed_trap_fragment_spawns
   - seabed_trap_model_filenames
