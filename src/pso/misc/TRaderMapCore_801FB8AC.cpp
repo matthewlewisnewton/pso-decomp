@@ -23,7 +23,7 @@ struct RecoveredGlobal_8019A880___vt__8TObjTank {
 
 extern "C" {
 extern u32 TRaderMapCore__frame_model_resource;
-extern char lbl_8044A7B8[];
+extern const char lbl_8044A7B8[] = "RaderMapFrame.gvm";
 extern RecoveredGlobal_8019A9B8_lbl_804B8F60 obj_f_enemy_resource_descriptor;
 
 void TRaderMapCore::free_statics() {

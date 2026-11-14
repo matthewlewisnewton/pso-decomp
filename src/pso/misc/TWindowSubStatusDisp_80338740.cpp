@@ -172,3 +172,8 @@ int TWindowSubStatusDisp__sub_80338B88(void* p) { return (*(u16*)((char*)p + 0x0
 int TEneParticleCtrl__vt7(void* p) { return get_field_38_ptr__16TEneParticleCtrlFv(p); }
 
 }
+
+extern "C" {
+s32 *lbl_805D6D68;
+u8 lbl_805D6D6C;
+}
