@@ -1082,6 +1082,7 @@ force_active:
   - TOSymbolchatColli__ct
   - TOTrapAncient01__bml_resource
   - TOTrapAncient01__class_name
+  - TOTrapAncient02__shared_resource
   - TOTrapChainSawDamage__ct
   - TOTrapChainSawDamage__sub_802C9C00
   - TOTrapChainSawDamage__vt14
@@ -1092,6 +1093,9 @@ force_active:
   - TOTrapChainSawKey__ct
   - TOTrapChainSaw__level_scale_table
   - TOTrapChainSaw__name
+  - TOTrapSeabed01__bml_resource
+  - TOTrapSeabed01__ginja_model
+  - TOTrapSeabed01__texture_file
   - TOVS2Wall01__ct
   - TOVS2Wreck01__ct
   - TOVS2Wreck02__ct
@@ -1223,7 +1227,10 @@ force_active:
   - TObjDeadListWin_name
   - TObjDoaEx01__ct
   - TObjDoaEx01__resource_descriptor
+  - TObjDoorJung__child_table
+  - TObjDoorJung__door_scene_buffer
   - TObjDoorKey__ct
+  - TObjDoorKey__data_805D5C04
   - TObjDoorKey__resource_descriptor
   - TObjDoor__collision_desc
   - TObjDoor__ct
@@ -6208,6 +6215,7 @@ force_active:
   - door_cave03_a_resource_descriptor
   - door_cave03_class_name
   - door_cave03_resource_descriptor
+  - door_key_id_counter
   - door_machine01_a_resource_descriptor
   - door_machine01_class_name
   - door_machine01_resource_descriptor
@@ -7697,6 +7705,7 @@ force_active:
   - handle_withdraw_list_input__18TShopGetItemWindowFv
   - hang_ceiling_cave_scale_params
   - hanger_machine01_collision_body_parts
+  - hanging_ceiling_motion_index
   - hasActiveRenderFade__12TBoss8DragonFv
   - has_armor_with_unit_slot__FP14TWindowSubItemi
   - has_at_most_one_player__15TObjSoloPlayWinFv
@@ -8314,6 +8323,7 @@ force_active:
   - lazer_fence_norm_episode1_resource_descriptor
   - lazer_fence_norm_episode2_resource_descriptor
   - lazer_fence_sw_ginja_model_table
+  - lazer_fence_switch_bml_resource
   - lbl_8043406C
   - lbl_80434074
   - lbl_804345D8
@@ -8424,8 +8434,11 @@ force_active:
   - lbl_8043FD6C
   - lbl_8043FD90
   - lbl_8043FDA4
+  - lbl_80440078
   - lbl_80441858
   - lbl_80441874
+  - lbl_804421F0
+  - lbl_80443308
   - lbl_80443BA8
   - lbl_80443BBC
   - lbl_80443BD0
@@ -8466,6 +8479,7 @@ force_active:
   - lbl_80444238
   - lbl_80444248
   - lbl_80444250
+  - lbl_80444B48
   - lbl_80444E5C
   - lbl_80444EA8
   - lbl_80445430
@@ -8473,6 +8487,7 @@ force_active:
   - lbl_80445588
   - lbl_80445910
   - lbl_80445CD8
+  - lbl_80446470
   - lbl_804468F8
   - lbl_80446908
   - lbl_80446D10
@@ -8591,6 +8606,8 @@ force_active:
   - lbl_80450A10
   - lbl_80450AA0
   - lbl_80450AB4
+  - lbl_80450C50
+  - lbl_80450C6C
   - lbl_80451CD0
   - lbl_804652E0
   - lbl_80465A48
@@ -8769,6 +8786,18 @@ force_active:
   - lbl_8047817C
   - lbl_804790F0
   - lbl_80479280
+  - lbl_8047A0A8
+  - lbl_8047A0C4
+  - lbl_8047A0DC
+  - lbl_8047A0F8
+  - lbl_8047A110
+  - lbl_8047A124
+  - lbl_8047A134
+  - lbl_8047A150
+  - lbl_8047A16C
+  - lbl_8047A188
+  - lbl_8047A1A4
+  - lbl_8047A1B8
   - lbl_8047B928
   - lbl_8047C5D8
   - lbl_80480950
@@ -9299,6 +9328,7 @@ force_active:
   - lbl_8050CE54
   - lbl_8050CF68
   - lbl_8050CFC4
+  - lbl_8050DC20
   - lbl_8050EA64
   - lbl_80511DD8
   - lbl_80511EFC
@@ -9506,6 +9536,18 @@ force_active:
   - lbl_805D5A90
   - lbl_805D5A94
   - lbl_805D5A98
+  - lbl_805D5ADC
+  - lbl_805D5AE0
+  - lbl_805D5AE4
+  - lbl_805D5B30
+  - lbl_805D5B78
+  - lbl_805D5BE4
+  - lbl_805D5BE8
+  - lbl_805D5BEC
+  - lbl_805D5CD0
+  - lbl_805D5CD2
+  - lbl_805D5CD4
+  - lbl_805D5CD6
   - lbl_805D5D00
   - lbl_805D5D04
   - lbl_805D5D60
@@ -9534,6 +9576,7 @@ force_active:
   - lbl_805D6800
   - lbl_805D6804
   - lbl_805D6808
+  - lbl_805D681C
   - lbl_805D6910
   - lbl_805D6948
   - lbl_805D6990
@@ -18625,6 +18668,7 @@ force_active:
   - try_update_target_flag__10TNpcPlayerFPvi
   - try_use_mag__10TObjPlayerFv
   - try_warp_to_position__14TObjEnePanarmsFP3Vec
+  - turiten_singo_key_model_index
   - turn_pose_to_target__14TObjEneBm5WolfFv
   - turn_to_nearest_player__14TObjEnePanarmsFll
   - turn_to_target__18TObjEneRe4SorcererFv

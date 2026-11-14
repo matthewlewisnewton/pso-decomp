@@ -4658,6 +4658,7 @@ pso/misc/TNpcPlayer.cpp:
 
 pso/object/TObjFogCollisionPoison.cpp:
 	.text       start:0x8015302C end:0x80153674
+	.rodata     start:0x80440078 end:0x80440088
 	.data       start:0x804AF7B0 end:0x804AF7C8
 	.bss        start:0x8050D430 end:0x8050D460
 
@@ -5055,6 +5056,7 @@ pso/misc/TOFenceAncient04.cpp:
 pso/misc/TOHangceilingCave01.cpp:
 	.text       start:0x80167980 end:0x80168D3C
 	.rodata     start:0x804416F8 end:0x80441890
+	.sbss       start:0x805D59E0 end:0x805D59E8
 	.sdata2     start:0x805DB650 end:0x805DB6A4
 
 pso/misc/TOHangerMachine01.cpp:
@@ -5173,6 +5175,7 @@ pso/misc/TOMineDisp.cpp:
 
 pso/unk/text_8016F1C0.cpp:
 	.text       start:0x8016F1C0 end:0x8016F6F8
+	.rodata     start:0x804421F0 end:0x804421F8
 
 pso/misc/TOMineTrap_8016F6F8.cpp:
 	.text       start:0x8016F6F8 end:0x80170EEC
@@ -5462,6 +5465,7 @@ pso/misc/TOTrapAncient02.cpp:
 	.text       start:0x8017A210 end:0x8017B9AC
 	.rodata     start:0x80442F30 end:0x80442F40
 	.data       start:0x804B4AD8 end:0x804B4E78
+	.sbss       start:0x805D5AD8 end:0x805D5AE8
 	.sdata2     start:0x805DBA78 end:0x805DBAA8
 
 pso/unk/text_8017B8A0.cpp:
@@ -5504,6 +5508,7 @@ pso/object/TObjMapWarpAncient.cpp:
 
 pso/object/TObjGoalWarpAncient.cpp:
 	.text       start:0x8017D21C end:0x8017D2FC
+	.rodata     start:0x80443308 end:0x80443328
 
 pso/misc/TOWreckAncientBrakable05.cpp:
 	.text       start:0x8017D2FC end:0x8017D39C
@@ -5673,6 +5678,8 @@ pso/object/CitySeason.cpp:
 
 pso/unk/text_80184C2C.cpp:
 	.text       start:0x80184C2C end:0x80185248
+	.bss        start:0x8050DC20 end:0x8050DC38
+	.sbss       start:0x805D5B30 end:0x805D5B34
 
 pso/object/TObjLaboMapWarp_80185248.cpp:
 	.text       start:0x80185248 end:0x801867F4
@@ -5706,6 +5713,7 @@ pso/object/TObjGbAdvance_80187E18.cpp:
 
 pso/object/TObjGbAdvance.cpp:
 	.text       start:0x80187ECC end:0x8018807C
+	.rodata     start:0x80444B48 end:0x80444B58
 
 pso/object/TObjComputer.cpp:
 	.text       start:0x8018807C end:0x80188584
@@ -5717,6 +5725,7 @@ pso/item/TObjContainerItem.cpp:
 	.rodata     start:0x80444B90 end:0x80444EF4
 	.data       start:0x804B6338 end:0x804B66F4
 	.sdata      start:0x805D32D8 end:0x805D3300
+	.sbss       start:0x805D5B78 end:0x805D5B7C
 
 pso/misc/TLazerFenceSw.cpp:
 	.text       start:0x8018A55C end:0x8018A584
@@ -5755,6 +5764,8 @@ pso/object/TObjDoor_8018E358.cpp:
 
 pso/object/TObjDoorJung.cpp:
 	.text       start:0x8018F458 end:0x8018FA6C
+	.bss        start:0x8050DC98 end:0x8050DCA8
+	.sbss       start:0x805D5BE0 end:0x805D5BF0
 	.sdata2     start:0x805DBDF8 end:0x805DBE00
 
 pso/unk/text_8018FA6C.cpp:
@@ -5764,6 +5775,7 @@ pso/object/TObjDoorKey.cpp:
 	.text       start:0x8018FAEC end:0x801902D8
 	.data       start:0x804B7910 end:0x804B7930
 	.sdata      start:0x805D3340 end:0x805D3344
+	.sbss       start:0x805D5C00 end:0x805D5C08
 	.sdata2     start:0x805DBE00 end:0x805DBE10
 
 pso/object/TObjEnvSoundGlobal.cpp:
@@ -5833,6 +5845,7 @@ pso/object/TLazerFenceSw.cpp:
 	.rodata     start:0x80445CD0 end:0x80445CF0
 	.data       start:0x804B8318 end:0x804B8344
 	.bss        start:0x8050DCE8 end:0x8050DD08
+	.sbss       start:0x805D5C30 end:0x805D5C34
 	.sdata2     start:0x805DBE78 end:0x805DBE94
 
 pso/object/TObjLight.cpp:
@@ -6011,6 +6024,7 @@ pso/object/TObjAreaWarpEndingJung.cpp:
 
 pso/unk/text_8019DBB4.cpp:
 	.text       start:0x8019DBB4 end:0x8019DC14
+	.rodata     start:0x80446470 end:0x80446480
 
 pso/ui/TAdStorySelectGC_8019DC14.cpp:
 	.text       start:0x8019DC14 end:0x8019DC78
@@ -6073,6 +6087,7 @@ pso/object/TObjRoomId.cpp:
 pso/object/TObjBase.cpp:
 	.text       start:0x801A1E2C end:0x801A2710
 	.data       start:0x804B9870 end:0x804B98A8
+	.sbss       start:0x805D5CD0 end:0x805D5CD8
 
 pso/map/FloorLifecycleTables.cpp:
 	.data       start:0x804B98A8 end:0x804BB1A8
@@ -9297,6 +9312,7 @@ pso/misc/TLobby_8028A7C8.cpp:
 
 pso/unk/text_8028A820.cpp:
 	.text       start:0x8028A820 end:0x8028A8F8
+	.rodata     start:0x80450C50 end:0x80450C88
 
 pso/boss/TBoss8Dragon_8028A8F8.cpp:
 	.text       start:0x8028A8F8 end:0x8028A998
@@ -10247,6 +10263,7 @@ pso/misc/TOTrapSeabed01.cpp:
 	.text       start:0x802C9DF0 end:0x802CAA84
 	.rodata     start:0x804720D8 end:0x804720E8
 	.data       start:0x804E0F90 end:0x804E11C4
+	.sbss       start:0x805D6810 end:0x805D6820
 	.sdata2     start:0x805DE640 end:0x805DE65C
 
 pso/enemy/TObjEneMe1GiGue.cpp:
@@ -12421,6 +12438,7 @@ pso/object/TObjTreeLobby.cpp:
 
 pso/object/TObjLaboDesignBase.cpp:
 	.text       start:0x80364C98 end:0x80365348
+	.rodata     start:0x8047A0A8 end:0x8047A1D0
 	.data       start:0x804F2B78 end:0x804F2E08
 	.sbss       start:0x805D6FC8 end:0x805D6FD0
 
