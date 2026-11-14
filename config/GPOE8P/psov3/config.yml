@@ -717,6 +717,10 @@ force_active:
   - TLobby__data_805D5588
   - TLobby__data_805D558C
   - TLobby__data_805D55B8
+  - TLobby__data_805D5EA8
+  - TLobby__data_805D5EA9
+  - TLobby__data_805D5EAA
+  - TLobby__data_805D5EAC
   - TLobby__deferred_player_setup_state
   - TLobby__disk_error_msg_last
   - TLobby__disk_error_msg_table
@@ -1966,8 +1970,12 @@ force_active:
   - TQuestThreadBoard__class_name
   - TQuestThread__class_name
   - TQuestThread__floor_handler_ids
+  - TQuestVmDownLoadServer__bin_download_complete
+  - TQuestVmDownLoadServer__dat_download_complete
   - TQuestVmDownLoadServer__data_804C8690
   - TQuestVmDownLoadServer__download_file_state
+  - TQuestVmDownLoadServer__gba_download_complete
+  - TQuestVmDownLoadServer__pvr_download_complete
   - TQuestVmDownLoadServer__rng_cipher_state
   - TQuestVmDownLoadServer__sub_801F6B98
   - TQuestVmDownLoadServer__sub_801F8538
@@ -6635,6 +6643,7 @@ force_active:
   - fence_ancient03_collision_bodies
   - fence_ancient04_collision_bodies
   - fields_equal__23TAdSinglePlyChrSelectGCFPv
+  - file_page_cache_head
   - fill_follow_camera_params__12TBoss8DragonFPUcPUc
   - fill_list_entry__6TLobbyFPvPv
   - fill_range__15TBoss6SwordWaveFPvPv
@@ -8295,6 +8304,7 @@ force_active:
   - lbl_80438128
   - lbl_80438528
   - lbl_80438534
+  - lbl_80438660
   - lbl_80438AB4
   - lbl_80438AD8
   - lbl_80438AE0
@@ -8409,6 +8419,8 @@ force_active:
   - lbl_80444EA8
   - lbl_80445588
   - lbl_80445CD8
+  - lbl_804468F8
+  - lbl_80446908
   - lbl_80446F94
   - lbl_80446F9C
   - lbl_80446FA4
@@ -8428,6 +8440,37 @@ force_active:
   - lbl_8044A840
   - lbl_8044A84C
   - lbl_8044A858
+  - lbl_8044BAC8
+  - lbl_8044BAD0
+  - lbl_8044BDA0
+  - lbl_8044BDA8
+  - lbl_8044BDB0
+  - lbl_8044BDB8
+  - lbl_8044BDC0
+  - lbl_8044BDC8
+  - lbl_8044BDD0
+  - lbl_8044BDD8
+  - lbl_8044BDE0
+  - lbl_8044BDE8
+  - lbl_8044BDF0
+  - lbl_8044BDF8
+  - lbl_8044BE00
+  - lbl_8044BE08
+  - lbl_8044BE10
+  - lbl_8044BE18
+  - lbl_8044BE20
+  - lbl_8044BE28
+  - lbl_8044BE30
+  - lbl_8044BE38
+  - lbl_8044BE40
+  - lbl_8044BE48
+  - lbl_8044BE50
+  - lbl_8044BE58
+  - lbl_8044BE60
+  - lbl_8044BE68
+  - lbl_8044BE70
+  - lbl_8044BE78
+  - lbl_8044BE80
   - lbl_8044D920
   - lbl_8044D944
   - lbl_8044D968
@@ -9396,6 +9439,8 @@ force_active:
   - lbl_805D6440
   - lbl_805D64A8
   - lbl_805D64AC
+  - lbl_805D6578
+  - lbl_805D657C
   - lbl_805D67D0
   - lbl_805D67D4
   - lbl_805D6800
@@ -15337,10 +15382,13 @@ force_active:
   - quest_bgm_smile_filename
   - quest_decrypt_result_size
   - quest_download_aram_dma_buffer
+  - quest_download_ask_header_size
   - quest_download_block_pool
   - quest_download_file_header
   - quest_download_file_info
   - quest_download_file_slot
+  - quest_download_header_name_index_hi_count
+  - quest_download_name_search_lo
   - quest_floor_designations
   - quest_list_battle_stage_table
   - quest_list_challenge_stage_table
