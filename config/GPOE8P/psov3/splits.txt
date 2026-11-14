@@ -2166,6 +2166,7 @@ pso/misc/TLobby_800FA388.cpp:
 
 pso/unk/text_800FA464.cpp:
 	.text       start:0x800FA464 end:0x800FA73C
+	.rodata     start:0x8043DA10 end:0x8043DA20
 
 pso/misc/TLobby_800FA73C.cpp:
 	.text       start:0x800FA73C end:0x800FA774
