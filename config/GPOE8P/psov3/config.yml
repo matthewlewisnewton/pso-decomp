@@ -9373,6 +9373,7 @@ force_active:
   - lbl_805D4D90
   - lbl_805D4D94
   - lbl_805D4DC0
+  - lbl_805D4EE0
   - lbl_805D509C
   - lbl_805D50A0
   - lbl_805D5140
@@ -9385,6 +9386,7 @@ force_active:
   - lbl_805D5A94
   - lbl_805D5A98
   - lbl_805D5D60
+  - lbl_805D5D70
   - lbl_805D5FF8
   - lbl_805D600C
   - lbl_805D6014
@@ -14880,6 +14882,7 @@ force_active:
   - player_class_base_stats_10
   - player_class_base_stats_11
   - player_collider_radius_table
+  - player_corpse_mark_resource
   - player_defense_stat_status_light_colors
   - player_footstep_floor_table
   - player_joined_message
@@ -17237,6 +17240,7 @@ force_active:
   - setup_view__13TRaderMapCoreFl
   - setup_vtx_desc__10TObjPlayerFv
   - shared_breakup_model
+  - shared_flag
   - shared_model_resource__16TObjRainbowLobby
   - shark_actions
   - shark_alt_archive_filename
