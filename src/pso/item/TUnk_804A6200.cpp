@@ -11,33 +11,35 @@
 
 extern "C" {
 
+#ifdef __MWERKS__
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(1)
+#endif
 void TUnk_804A6200::update_idle() {
-    f32 temp_f2;
-    s32 var_r31;
-    var_r31 = 0;
-    temp_f2 = *(f32 *)((s8 *)((u8 *)this) + 0x1F8);
-    if (temp_f2 < 1.0f) {
-        *(f32 *)((s8 *)((u8 *)this) + 0x1F8) += 0.14f;
-        if (1.0f <= *(f32 *)((s8 *)((u8 *)this) + 0x1F8)) {
-            *(f32 *)((s8 *)((u8 *)this) + 0x1F8) = (f32) 1.0f;
-            var_r31 = 1;
-        }
-    }
-    add_float_clamped((f32 *)(((u8 *)this) + 0x1FC), (f32)(-0.04000001f), (f32)1.0f);
-    add_float_clamped((f32 *)(((u8 *)this) + 0x200), (f32)0.14f, (f32)1.0f);
-    if (var_r31 == 1) {
+    if (animation.update_idle() == 1) {
         play_sound_effect(0x4001AA24, (const Vec *)((*(s32 *)((s8 *)((u8 *)this) + 0xF0) + 0x38)), 0, 0);
     }
 }
+#ifdef __MWERKS__
+#pragma pop
+#endif
+
 
 }
 
+#ifdef __MWERKS__
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(1)
+#endif
 void TUnk_804A6200::update_attack() {
-    s32 arg0 = (s32)this;
-    add_float_clamped((f32 *)(arg0 + 0x1F8), (f32)(-0.14f), (f32)0.3f);
-    add_float_clamped((f32 *)(arg0 + 0x1FC), (f32)0.04000001f, (f32)1.2f);
-    add_float_clamped((f32 *)(arg0 + 0x200), (f32)(-0.14f), (f32)0.3f);
+    animation.update_attack();
 }
+#ifdef __MWERKS__
+#pragma pop
+#endif
+
 
 extern s32 lbl_804A6200[];
 
@@ -56,6 +58,6 @@ extern "C" {
 
 int __ct__11TItemWeaponFP7TObjectPUc(void);
 
-void*TUnk_804A6200::set_mode_vector() { __ct__11TItemWeaponFP7TObjectPUc(); *(int*)((char*)this + 0x18) = (int)lbl_804A6200; *(float *)&this->unk_200 = 1.0f; *(float *)&(this->m_1fc) = 1.0f; *(float*)((char*)this + 0x1f8) = 1.0f; return this; }
+void*TUnk_804A6200::set_mode_vector() { __ct__11TItemWeaponFP7TObjectPUc(); *(int*)((char*)this + 0x18) = (int)lbl_804A6200; animation.third = 1.0f; animation.second = 1.0f; animation.first = 1.0f; return this; }
 
 }
