@@ -289,7 +289,6 @@ s32 TLobby__sub_8041F914(NetPacket *pkt, u16 x, TcpTcb *o, TcpHdr *th) {
         u32 pos;
         s32 total;
         s32 d;
-        u32 room;
         s32 seq;
         s32 end;
         s16 j;
@@ -328,14 +327,8 @@ s32 TLobby__sub_8041F914(NetPacket *pkt, u16 x, TcpTcb *o, TcpHdr *th) {
             if (skip != 0) {
                 TLobby__sub_80406EB8(&src, skip);
             }
-            n = pkt->fragments[i].length - skip;
-            room = o->f534 - o->fD8;
-            // MWCC GC/1.2.5n allocation constraint from upstream #285: emits no code,
-            // but avoids an extra length-register copy before the clamp.
-            if (!o && !o) {
-            }
-            if (n > room) {
-                n = room;
+            if ((n = pkt->fragments[i].length - skip) > o->f534 - o->fD8) {
+                n = o->f534 - o->fD8;
             }
             total += n;
             if (pos + n >= o->f534) {

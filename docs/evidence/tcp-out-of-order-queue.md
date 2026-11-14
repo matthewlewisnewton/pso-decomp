@@ -30,11 +30,26 @@ already truncates the argument. Instead, the call explicitly masks
 in an intermediate local schedules it earlier and loses the caller's exact
 match. Both translation units now share one compatible declaration.
 
-The scoped inline controls, declaration order, separate `n` and empty branch
-are inherited matching constraints, documented in the
-[porting exceptions register](../porting-exceptions.md). Upstream reports
-99.62% without the empty branch. This is compiler-allocation evidence, not a
-claim about how the original source was written.
+The scoped inline controls remain inherited matching constraints, documented
+in the [porting exceptions register](../porting-exceptions.md). The receive-room
+clamp computes the fragment remainder in the condition and compares it directly
+with the available room on the real `TcpTcb`:
+
+```cpp
+if ((n = pkt->fragments[i].length - skip) > o->f534 - o->fD8) {
+    n = o->f534 - o->fD8;
+}
+```
+
+This ordinary assignment-and-clamp form removes the unused `room` local and
+matches all `0x48C` bytes (100%). Computing `n` and `room` in separate preceding
+assignments instead scores 99.621994%: the compiler emits an extra
+`addi r30,r3,0`, increasing the compiled size to `0x490` (the report's original
+size remains `0x48C`). The condition form needs no dead branch, new helper,
+pragma or compiler override. Both retargeted helpers and all other functions
+in the unit retain their previous scores. The unit's aggregate fuzzy score is
+59.953793%, with 18 of 21 functions exact; the remaining three functions are
+still unimplemented.
 
 Validation against fork `main` at
 `1bb11b184a5c70c03062b4cfa26d7863b4ce1cec` passes `tools/check_pr.py`:

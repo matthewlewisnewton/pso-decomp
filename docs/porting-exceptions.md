@@ -21,12 +21,10 @@ entry says *reason not recorded*.
 retains the scoped `dont_inline off` / `inline_depth(4)` controls from
 [upstream #285](https://github.com/zeroz41/pso-decomp/pull/285), commit
 `be4a012306441b91fe0e30083800a8589bccf518`. They inline the reassembly-range
-removal helper, including its ordinary aggregate assignment. The separate
-fragment length `n`, declaration order and empty `if (!o && !o) {}` preserve
-GC/1.2.5n register allocation before the receive-room clamp. The empty branch
-emits no instructions; it is a matching constraint, not evidence of original
-source structure. Ports can drop the pragmas and empty branch and keep the
-receive-ring copy and range-merging operations. See the
+removal helper, including its ordinary aggregate assignment. The receive-room
+clamp uses ordinary assignment in its condition and direct `TcpTcb` member
+access; it needs no additional matching constraint. Ports can drop the inline
+pragmas and keep the receive-ring copy and range-merging operations. See the
 [recovery and ABI evidence](evidence/tcp-out-of-order-queue.md).
 
 ### Logo texture descriptor declaration
