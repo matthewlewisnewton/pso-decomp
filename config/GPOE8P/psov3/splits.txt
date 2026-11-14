@@ -1901,6 +1901,7 @@ pso/player/TObjPlayer_800D8FDC.cpp:
 	.text       start:0x800D8FDC end:0x800D97E8
 	.rodata     start:0x8043C758 end:0x8043C760
 	.data       start:0x80494AE0 end:0x80494B0C
+	.sbss       start:0x805D5228 end:0x805D522C
 
 pso/unk/text_800D97E8.cpp:
 	.text       start:0x800D97E8 end:0x800D98D8
