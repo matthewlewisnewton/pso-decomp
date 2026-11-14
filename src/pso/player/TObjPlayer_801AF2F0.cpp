@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/math/VectorNormalize.h"
 #include "pso/math/MatrixCopy.h"
@@ -840,7 +841,6 @@ struct pkt_801B5164 {
     u8 hdr[2];
     u16 player_id;
 };
-
 
 struct Pkt_801B5328 {
     u8 hdr[2];
@@ -2273,7 +2273,6 @@ u32 __nw__7TObjectFUl(s32);
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
 u8 * __ct__7TObjectFP7TObject(void *, void *);
 void construct_actor_light_task(void *, Color_801B6964 *, Vec_801B6964 *, s32, s32, s32, f32);
-void TLobby__sub_8024AC20(s32);
 void dispatch_to_child__11TWindowCtrlFPv(u16, s32);
 u32 TWindowReturnCity__ct(u32, s32, u16);
 s32 get_battle_ctrl_default__6TLobbyFv();
@@ -3103,7 +3102,7 @@ void TLobby__sub_801B09A4(void) {
     for (i = 0; i < 12; i++) {
         if (players[i] != NULL) {
             create_player_instance__10TObjPlayerFll(i, &lobby_char_slot_array[i]);
-            TLobby__sub_8024AC20(i);
+            enable_player_main_menu(i);
         }
     }
     shared_state_flags &= ~1;
@@ -7507,7 +7506,7 @@ void TObjPlayer::reset_motion_fields() {
     }
     if ((TObjPlayer::is_locally_controlled((void *)arg0) != 0) && (((TObjPlayer *)arg0)->check_flag(0x800) != 0)) {
         ((s32 (*)(void *, int))sub_8011E204__10TObjPlayerFl)((void *)arg0, 0x800);
-        ((s32 (*)(s32))TLobby__sub_8024AC20)(((u16 (*)(void *))get_entity_id)((void *)arg0));
+        ((s32 (*)(s32))enable_player_main_menu)(((u16 (*)(void *))get_entity_id)((void *)arg0));
         play_effect_default(this, 0xF);
         ((TObjPlayer *)arg0)->update_position_from_target();
         ((s32 (*)(void *))send_code_49_1__10TObjPlayerFi)((void *)arg0);

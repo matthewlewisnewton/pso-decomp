@@ -60,8 +60,8 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 void set_inverse_color_blend(void);
 void set_constant_material_color(u32 x);
 extern Cam_801E5C24 lbl_8058D4F8;
-extern const f32 lbl_805DC480;
-extern const f32 lbl_805DC484;
+static const f32 lbl_805DC480 = 480.0f;
+static const f32 lbl_805DC484 = -1.0f;
 extern const f32 lbl_805DC488;
 extern "C" {
 void render__17TQuadSpriteSclColFv(Self_801E5C24 *self);

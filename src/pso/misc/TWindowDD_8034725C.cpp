@@ -93,7 +93,7 @@ E_80347CC8 *get_array_entry__11TWindowBaseFi(void *, s32);
 extern s32 local_client_id;
 extern u32 TWindowDD__work_buffer;
 extern const f32 TWindowDD__data_805DFB58;
-extern const f32 lbl_805DFCD0;
+static const f32 lbl_805DFCD0 = 0.0f;
 extern const f32 lbl_805DFCD4;
 void TWindowDD__sub_80347CC8(W_80347CC8 *arg0, void *arg1);
 void TWindowDD__sub_80348D90(void *, int);

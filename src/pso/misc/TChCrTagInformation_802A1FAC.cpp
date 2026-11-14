@@ -7,9 +7,9 @@ extern "C" {
 
 void __ct__8TChCrTagFP7TObjectPv(void *);
 
-extern const f32 lbl_805DDE20;
+static const f32 lbl_805DDE20 = 0.06666667f;
 extern s32 __vt__19TChCrTagInformation[];
-extern const f32 lbl_805DDE24;
+static const f32 lbl_805DDE24 = -0.06666667f;
 extern void *TChCrTagInformation__class_name;
 
 void *TChCrTagInformation__ct(TChCrTagInformation *ch_cr_tag_information) {

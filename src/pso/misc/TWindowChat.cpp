@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/misc/TWindowChat.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
@@ -69,7 +70,6 @@ s32 sub_8025CB10__19TWindowKeyBoardBaseFv(s32);
 bool TWindowCtrl__sub_8024701C(Win_8024701C *w);
 void *get_player_by_client_id(s32 i);
 extern s32 local_client_id;
-s32 has_player_active_menu__11TWindowCtrlFv(s32);
 s32 fn_8002AE08(s32);
 void send_chat_shortcut(s32);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
@@ -187,7 +187,7 @@ void TWindowChat::update() {
         TWindowChat__sub_80247DFC((u8 *)this);
         player = (s32)get_player_by_client_id(local_client_id);
         if ((player != 0) && !(this->flags & 2) && (is_mode_bit6() != 0)) {
-            if (has_player_active_menu__11TWindowCtrlFv(local_client_id) == 0) {
+            if (has_player_active_menu(local_client_id) == 0) {
                 ((TObjPlayer *)player)->init_parts();
             }
             end_player_keyboard_hold(local_client_id);

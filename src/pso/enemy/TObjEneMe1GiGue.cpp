@@ -1448,3 +1448,9 @@ f32 TObjEneMe1GiGue::receive_weapon_special_attack(void *attacker, void *attack)
     }
     return damage_received;
 }
+
+extern "C" {
+BmlResource *TObjEneMe1GiGue__data_805D6838;
+TUnk_8048FA00 *TObjEneMe1GiGue__barrier_obj;
+f32 lbl_805D6840;
+}

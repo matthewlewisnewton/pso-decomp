@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/item/TUnk_804A6200.h"
@@ -22,8 +23,8 @@ void TUnk_804A6200::update_idle() {
             var_r31 = 1;
         }
     }
-    TItemEffOrgaFlowShot::approach_value((f32 *)(((u8 *)this) + 0x1FC), (f32)(-0.04000001f), (f32)1.0f);
-    TItemEffOrgaFlowShot::approach_value((f32 *)(((u8 *)this) + 0x200), (f32)0.14f, (f32)1.0f);
+    add_float_clamped((f32 *)(((u8 *)this) + 0x1FC), (f32)(-0.04000001f), (f32)1.0f);
+    add_float_clamped((f32 *)(((u8 *)this) + 0x200), (f32)0.14f, (f32)1.0f);
     if (var_r31 == 1) {
         play_sound_effect(0x4001AA24, (const Vec *)((*(s32 *)((s8 *)((u8 *)this) + 0xF0) + 0x38)), 0, 0);
     }
@@ -33,9 +34,9 @@ void TUnk_804A6200::update_idle() {
 
 void TUnk_804A6200::update_attack() {
     s32 arg0 = (s32)this;
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1F8), (f32)(-0.14f), (f32)0.3f);
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1FC), (f32)0.04000001f, (f32)1.2f);
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x200), (f32)(-0.14f), (f32)0.3f);
+    add_float_clamped((f32 *)(arg0 + 0x1F8), (f32)(-0.14f), (f32)0.3f);
+    add_float_clamped((f32 *)(arg0 + 0x1FC), (f32)0.04000001f, (f32)1.2f);
+    add_float_clamped((f32 *)(arg0 + 0x200), (f32)(-0.14f), (f32)0.3f);
 }
 
 extern s32 lbl_804A6200[];

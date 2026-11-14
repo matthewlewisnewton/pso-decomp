@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "types.h"
 #include "pso/item/TItemMenuCtrl_80115AF0.h"
 #include "pso/TItemMenuCtrl.h"
@@ -18,7 +19,7 @@ TEffStarLight2D *spawn_star_light_2d(void *position, void *parameters, TObject *
     return NULL;
 }
 
-void TItemEffOrgaFlowShot::approach_value(f32 *value, f32 step, f32 target) {
+void add_float_clamped(f32 *value, f32 step, f32 target) {
     *value += step;
     if (step > 0.0f) {
         if (*value > target) {
@@ -29,7 +30,7 @@ void TItemEffOrgaFlowShot::approach_value(f32 *value, f32 step, f32 target) {
     }
 }
 
-void TObjPlayer::add_angle_clamped(s32 *angle, s32 step, s32 target) {
+void add_integer_clamped(s32 *angle, s32 step, s32 target) {
     *angle += step;
     if (step > 0) {
         if (*angle > target) {

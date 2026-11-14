@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "types.h"
 #include "pso/unk/text_802233F8.h"
 #include "pso/player/TObjPlayer.h"
@@ -8,9 +9,7 @@
 extern "C" {
 s32 get_entity_id(void *);
 TObjPlayer *get_player_by_client_id(s32);
-s32 TLobby__sub_8024AC20(u16);
 s32 play_effect_default__10TObjPlayerFP10TObjPlayerl(void *, s32);
-s32 TObjPlayer__sub_8024ABDC(u16);
 void fn_802233F8(void) {
     u16 self_slot;
     s32 i;
@@ -22,7 +21,7 @@ void fn_802233F8(void) {
                 p = get_player_by_client_id(i);
                 if (p != NULL && p->check_player_flag1() != 0) {
                     TObjPlayer::send_code_45_1(p);
-                    TLobby__sub_8024AC20(get_entity_id(p));
+                    enable_player_main_menu((u16)(get_entity_id(p)));
                 }
             }
         }
@@ -39,7 +38,7 @@ void fn_80223480(void) {
                 p = get_player_by_client_id(i);
                 if (p != NULL && p->check_player_flag1() == 0) {
                     play_effect_default__10TObjPlayerFP10TObjPlayerl(p, -1);
-                    TObjPlayer__sub_8024ABDC(get_entity_id(p));
+                    disable_player_main_menu((u16)(get_entity_id(p)));
                 }
             }
         }

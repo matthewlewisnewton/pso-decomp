@@ -22,10 +22,10 @@ extern "C" {
 void *__nw__7TObjectFUl(int);
 f32 vector_length(void *, int, f32, f32);
 s32 normalize_vector(void *);
-extern const f32 lbl_805D8F28;
-extern const f32 lbl_805D8F2C;
-extern const f32 lbl_805D8F30;
-extern const f32 lbl_805D8F34;
+static const f32 lbl_805D8F28 = 1.0f;
+static const f32 lbl_805D8F2C = 0.0f;
+static const f32 lbl_805D8F30 = 30.0f;
+static const f32 lbl_805D8F34 = 10.0f;
 u8 * __ct__13TUnk_80488A28Fv(void *);
 void *get_player_by_client_id(s32 i);
 extern s32 lbl_804887C8[];

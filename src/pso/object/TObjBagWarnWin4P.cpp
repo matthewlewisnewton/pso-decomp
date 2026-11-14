@@ -3,6 +3,7 @@
 #pragma inline_depth(2)
 #endif
 #include "pso/ui/WarningWindowUpdate.h"
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/TObjBagWarnWin4P.h"
 #include "pso/misc/TWindowBase.h"
 
@@ -17,8 +18,6 @@ void *__ct__16TObjBagWarnWin4PFv(void *arg0);
 u32 create__14TWindowMessageFlPCvUll(s32, void *, s32, s32);
 void *get_player_by_client_id(s32 i);
 s32 TQuestVmDownLoadServer__sub_8006EF6C(s32);
-s32 has_player_active_menu__11TWindowCtrlFv(u16);
-s32 is_slot_visible__11TWindowCtrlFv(u16);
 s32 get_window_layout_position(s32);
 void __ct__7TObjectFP7TObject(void *);
 s32 get_character_save_record(u32 arg0);
@@ -33,12 +32,12 @@ s32 TObjBagWarnWin4P::check_can_open(void * _w0) {
     s32 var_r30;
 
     for (i = 0; i < 4; i++) {
-        if ((get_player_by_client_id(i) != 0U) && (has_player_active_menu__11TWindowCtrlFv(get_entity_id()) != 0)) {
+        if ((get_player_by_client_id(i) != 0U) && (has_player_active_menu((u16)(get_entity_id())) != 0)) {
             return 0;
         }
     }
     for (i = 0; i < 4; i++) {
-        if ((get_player_by_client_id(i) != 0U) && (is_slot_visible__11TWindowCtrlFv(get_entity_id()) != 0)) {
+        if ((get_player_by_client_id(i) != 0U) && (is_player_window_visible((u16)(get_entity_id())) != 0)) {
             return 0;
         }
     }

@@ -43,14 +43,14 @@ struct Obj_80067D20 {
 extern "C" {
 s32 set_target_pos__13TUnk_80488DA0FPv(void *, void *, f32);
 void *get_player_by_client_id(s32 i);
-extern const f32 lbl_805D8F78;
+static const f32 lbl_805D8F78 = 10.0f;
 void target_player0__11TCameraCtrlFi(s32 arg0);
 s32 matrix_mult_vec(int, void *, void *);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix_from(void *);
 s32 pop_matrix();
 extern RecoveredGlobal_80067E30_lbl_8058D490 identity_matrix;
-extern const f32 lbl_805D8F74;
+static const f32 lbl_805D8F74 = 0.0f;
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 void * TCameraCtrl__vt7(void) {

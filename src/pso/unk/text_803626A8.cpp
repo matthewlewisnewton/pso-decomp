@@ -377,3 +377,7 @@ __declspec(section ".data") const char *bm_ene_epsilon_motion_names[5] = { lbl_8
 BmlResourceDescriptor TObjEneEpsilonGuard__resource_descriptor = { lbl_80479F88, bm_ene_epsilon_model_names, bm_ene_epsilon_motion_names, 7, 4 };
 
 TObjMotionAction lbl_804F252C = {1, 0, 0, 0.3f, 0};
+
+extern "C" {
+f32 lbl_80543A18[3];
+}

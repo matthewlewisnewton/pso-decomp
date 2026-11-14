@@ -22,7 +22,7 @@ extern "C" void render_shadows__7TObjectFv();
 struct W_80340F00 { s32 f0; u8 pad4[0x14]; void *p18; u8 pad1c[0x5C - 0x1C]; s32 f5c; u8 pad60[4]; f32 f64; f32 f68; f32 f6c; };
 extern s32 lbl_805D42D0;
 extern const f32 lbl_805DFC50;
-extern const f32 lbl_805DFC70;
+static const f32 lbl_805DFC70 = 6.0f;
 __declspec(section ".data") void *lbl_804EFBC8[2] = {
     (void *)0x0, (void *)0x0,
 };
@@ -69,7 +69,7 @@ void *TWindowDD__sub_80340F70(void) {
 }
 
 extern const f32 TWindowDD__data_805DFB18;
-extern const f32 lbl_805DFC74;
+static const f32 lbl_805DFC74 = 17.0f;
 extern const f32 lbl_805DFBCC;
 extern const f32 lbl_805DFB34;
 extern const f32 lbl_805DFB3C;
@@ -77,14 +77,14 @@ extern const f32 lbl_805DFB2C;
 extern const f32 lbl_805DFB38;
 extern const f32 lbl_805DFB30;
 extern const f32 lbl_805DFC64;
-extern const f32 lbl_805DFC84;
-extern const f32 lbl_805DFC78;
-extern const f32 lbl_805DFC88;
+static const f32 lbl_805DFC84 = 72.0f;
+static const f32 lbl_805DFC78 = 224.0f;
+static const f32 lbl_805DFC88 = 86.0f;
 extern const f32 lbl_805DFBC4;
 extern const f32 lbl_805DFBBC;
-extern const f32 lbl_805DFC7C;
-extern const f32 lbl_805DFC80;
-extern const f32 lbl_805DFC8C;
+static const f32 lbl_805DFC7C = 238.0f;
+static const f32 lbl_805DFC80 = 58.0f;
+static const f32 lbl_805DFC8C = 100.0f;
 extern const f32 lbl_805DFBC8;
 extern const f32 lbl_805DFBC0;
 extern const f32 lbl_805DFC24;

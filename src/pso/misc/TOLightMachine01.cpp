@@ -35,13 +35,13 @@ f32 sin_table_lookup(s32);
 extern s32 __vt__16TOLightMachine01[];
 extern s32 TOLightMachine01__name;
 extern s32 tl_05;
-extern const f32 lbl_805DB82C;
-extern const f32 lbl_805DB830;
-extern const f32 lbl_805DB834;
-extern const f32 lbl_805DB838;
-extern const f32 lbl_805DB83C;
-extern const f32 lbl_805DB840;
-extern const f32 lbl_805DB844;
+static const f32 lbl_805DB82C = 500.0f;
+static const f32 lbl_805DB830 = 1.0f;
+static const f32 lbl_805DB834 = 0.1f;
+static const f32 lbl_805DB838 = 182.04445f;
+static const f32 lbl_805DB83C = 360.0f;
+static const f32 lbl_805DB840 = 30.0f;
+static const f32 lbl_805DB844 = 3.0517578e-05f;
 extern const f32 lbl_805DB848;
 s32 post_translate_matrix(void *);
 s32 rotate_matrix_y(s32, s32);
@@ -55,7 +55,7 @@ void TOLightMachine01::run_task() {
     this->m_ac = (s32) (this->m_ac + this->set_params[2]);
 }
 
-extern const f32 lbl_805DB828;
+static const f32 lbl_805DB828 = 0.0f;
 
 void TOLightMachine01::render() {
     u8 *arg0 = (u8 *)this;

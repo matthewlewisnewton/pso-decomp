@@ -1163,3 +1163,10 @@ void TObjEneMerillLia::vfunc_60() {
 }
 
 }
+
+extern "C" {
+u8 **TObjEneMerillLia__rock_stats_table;
+u8 **merill_lia_rock_buffer;
+u8 **merill_lia_rock_aux_buffer;
+MerillLiaCombatParameters **TObjEneMerillLia__rock_param_table;
+}

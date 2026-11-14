@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_801299DC.h"
 #include "pso/player/TUnk_804A444C.h"
@@ -10,14 +11,14 @@ int construct_srank_weapon(void);
 void TUnk_804A444C::update_idle() {
     u8 *arg0 = (u8 *)this;
     if ((s32) *(s32 *)((s8 *)arg0 + 0x200) < 0x2000) {
-        TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x200), 0x2D8, 0x2000);
+        add_integer_clamped((s32 *)(arg0 + 0x200), 0x2D8, 0x2000);
     }
 }
 
 void TUnk_804A444C::update_attack() {
     u8 *arg0 = (u8 *)this;
     if ((s32) *(s32 *)((s8 *)arg0 + 0x200) > 0) {
-        TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x200), -0x2000, 0);
+        add_integer_clamped((s32 *)(arg0 + 0x200), -0x2000, 0);
     }
 }
 
