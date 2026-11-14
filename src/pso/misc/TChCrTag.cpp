@@ -18,8 +18,8 @@ struct VObj_18_c1c33b : VBase_18_c1c33b {
 };
 
 extern "C" {
-extern const f32 lbl_805DDE00;
-extern const f32 lbl_805DDE04;
+static const f32 lbl_805DDE00 = 1.0f;
+static const f32 lbl_805DDE04 = 0.0f;
 void __dt__7TObjectFv(void *, s16);
 void __dl__7TObjectFPv(void *);
 void render_shadows__7TObjectFv(void);
@@ -28,9 +28,9 @@ int TChCrTag__vt4(void) { return 0; }
 void TChCrTag::render() {  }
 
 extern void *__vt__8TChCrTag[];
-extern const f32 lbl_805DDE08;
+static const f32 lbl_805DDE08 = 0.13333334f;
 extern void *lbl_805D3D90;
-extern const f32 lbl_805DDE0C;
+static const f32 lbl_805DDE0C = -0.13333334f;
 
 #pragma push
 #pragma opt_common_subs off

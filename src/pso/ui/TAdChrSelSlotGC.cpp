@@ -107,14 +107,14 @@ struct CharacterSelectTransitionState {
 
 extern "C" {
 void TAdChrSelSlotGC__sub_802C754C(O_802C754C *self, s32 i);
-extern const f32 lbl_805DE5CC;
+static const f32 lbl_805DE5CC = 174.0f;
 extern f32 char_select_slot_quad_width, char_select_slot_quad_height;
 extern const s32 chr_sel_slot_resource_name_table[];
 extern const s32 lbl_80471D50[];
 extern const s32 current_language;
 extern u32 lbl_805D67F0;
 extern s32 TAdChrSelSlotGC__name;
-extern const f32 lbl_805DE5C8;
+static const f32 lbl_805DE5C8 = 0.1f;
 s32 get_main_phase();
 extern const f32 lbl_805DE5B4, lbl_805DE5B8, lbl_805DE5BC, lbl_805DE5C0;
 void* __nw__7TObjectFUl(u32 size);

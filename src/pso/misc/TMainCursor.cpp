@@ -113,7 +113,7 @@ s32 TMainCursor::check_can_pickup() {
 
 extern const f32 TMainCursor__data_805DB0C0;
 extern const f32 TMainCursor__data_805DB0CC;
-extern const f32 lbl_805DB0D0;
+static const f32 lbl_805DB0D0 = 0.2f;
 
 #pragma push
 #pragma opt_common_subs off
@@ -296,9 +296,9 @@ s32 check_field_24__11TMainCursorFv();
 u8 update_sub_60__11TMainCursorFv(void *);
 s32 get_rader_map__11TMainCursorFv(void *, void *);
 extern const f32 TMainCursor__data_805DB0CC;
-extern const f32 lbl_805DB0D4;
-extern const f32 lbl_805DB0D8;
-extern const f32 lbl_805DB0DC;
+static const f32 lbl_805DB0D4 = 3.75f;
+static const f32 lbl_805DB0D8 = 5.0f;
+static const f32 lbl_805DB0DC = 0.5f;
 void *__dt__11TMainCursorFv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
@@ -398,7 +398,7 @@ f32 cos_table_lookup(s32);
 f32 vec3_dot(void *, void *);
 extern const f32 TMainCursor__data_805DB0C0;
 extern const f32 TMainCursor__data_805DB0CC;
-extern const f32 lbl_805DB0E0;
+static const f32 lbl_805DB0E0 = -1.0f;
 s32 target_in_vertical_cone(Vec_8013BF0C *p, Vec_8013BF0C *q, s32 yaw, f32 range, f32 dist);
 s32 target_in_xz_cone(Vec_8013C0A0 *p, Vec_8013C0A0 *q, Vec_8013C0A0 *r, s32 yaw, f32 range, f32 dist);
 s32 get_entity_id(void *);
@@ -832,7 +832,7 @@ Tech_8013CDE4 *get_photon_blast_entry__10TObjPlayerFi(s16);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 extern f32 lbl_8050BF60[3];
-extern const f32 interaction_cursor_radius;
+static const f32 interaction_cursor_radius = 15.0f;
 extern const f32 ryuker_cursor_forward_offset;
 s32 TMainCursor__sub_8013E970(s32, u16, s32, s32);
 s32 TObjPlayer__sub_801B066C(s32);

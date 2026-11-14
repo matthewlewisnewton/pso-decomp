@@ -25,15 +25,15 @@ extern "C" {
 u32 get_mc_count__13TAdMcSelectGCFv(void);
 void *get_cursor_type__19TAdMcSelectCursorGCFi(s32);
 s32 TAdMcSelectMcGC__sub_8032AAC4(void);
-extern const f32 lbl_805DF74C;
-extern const f32 lbl_805DF750;
-extern const f32 lbl_805DF754;
-extern const f32 lbl_805DF758;
+static const f32 lbl_805DF74C = 51.0f;
+static const f32 lbl_805DF750 = 286.0f;
+static const f32 lbl_805DF754 = 116.0f;
+static const f32 lbl_805DF758 = 256.0f;
 void restore_saved_depth_alpha_state(void);
 s32 defer_render__7TObjectFv();
 
 extern s32 TAdMcSelectMcGC__texture_list_ptr;
-extern const f32 lbl_805DF748;
+static const f32 lbl_805DF748 = 0.8f;
 
 void TAdMcSelectMcGC::draw_status_window() {
     u8 *arg0 = (u8 *)this;
