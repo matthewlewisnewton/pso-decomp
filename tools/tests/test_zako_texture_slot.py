@@ -14,7 +14,7 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
-READER = ROOT / "src/pso/boss/TBoss4ZakoDraw_8030A96C.cpp"
+READER = ROOT / "src/pso/boss/TBoss4ZakoDraw.cpp"
 WRITER = ROOT / "src/pso/boss/TBoss4ZakoDraw_8030AD58.cpp"
 HEADER = "pso/boss/TBoss4ZakoTexture.h"
 
