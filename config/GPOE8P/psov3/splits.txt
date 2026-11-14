@@ -2787,6 +2787,7 @@ pso/misc/item_param.cpp:
 
 pso/misc/item_pmt.cpp:
 	.text       start:0x8011CDC4 end:0x8011CEC0
+	.sbss       start:0x805D54F0 end:0x805D54F4
 
 pso/player/TObjPlayer_8011CEC0.cpp:
 	.text       start:0x8011CEC0 end:0x8011CEDC
