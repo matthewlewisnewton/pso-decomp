@@ -167,9 +167,9 @@ extern PanarmsNpcSpawnDescriptor panarms_npc_spawn_descriptor[];
 extern u32 TObjEnePanarms__entry_params_resource;
 static const f32 lbl_805DA51C = 12.5f;
 f32 random_ratio__9TObjCharaFv(s32 arg0);
-static const f32 lbl_805DA4D4 = 1.9900000095367432f;
+static const f32 lbl_805DA4D4 = 1.99f;
 static const f32 lbl_805DA4E8 = 655360.0f;
-static const f32 lbl_805DA4EC = 6.28000020980835f;
+static const f32 lbl_805DA4EC = 6.28f;
 s32 subtract_vector(void *, void *);
 s32 normalize_vector(void *);
 u32 csnLookAt(void *, void *);
@@ -199,17 +199,17 @@ s32 rotate_matrix_z(int, int);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 rotate_matrix_x(int, int);
 s32 scale_current_matrix(Vec *);
-static const f32 lbl_805DA4F8 = 19.80000114440918f;
+static const f32 lbl_805DA4F8 = 19.800001f;
 static const f32 lbl_805DA4FC = 0.25f;
 static const f32 lbl_805DA500 = 0.75f;
-static const f32 lbl_805DA504 = 0.20000000298023224f;
+static const f32 lbl_805DA504 = 0.2f;
 static const f32 lbl_805DA508 = 40.0f;
-static const f32 lbl_805DA50C = 0.10000000149011612f;
-static const f32 lbl_805DA510 = 0.6499999761581421f;
+static const f32 lbl_805DA50C = 0.1f;
+static const f32 lbl_805DA510 = 0.65f;
 static const f32 lbl_805DA514 = 1.0f;
 static const f32 lbl_805DA518 = 2.0f;
 
-static const f32 lbl_805DA4E0 = -39.60000228881836f;
+static const f32 lbl_805DA4E0 = -39.600002f;
 
 extern "C" {
 s32 is_split_screen();

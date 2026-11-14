@@ -62,7 +62,7 @@ extern int olga_flow_subordinate_actions_enabled;
 void handle_6xAD_olga_flow_subordinate_boss_actions(Pkt_803570E4 *pkt);
 s32 has_game_join_id__13TUnk_804E355CFv();
 static const f32 lbl_805E0030 = 50.0f;
-static const f32 lbl_805E0034 = 0.6000000238418579f;
+static const f32 lbl_805E0034 = 0.6f;
 void *__nw__7TObjectFUl(int);
 }
 

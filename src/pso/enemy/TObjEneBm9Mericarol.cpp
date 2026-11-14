@@ -146,7 +146,7 @@ f32 random_ratio__9TObjCharaFv(s32);
 extern const f32 lbl_805DE6F4;
 extern const f32 lbl_805DE714;
 extern const f32 lbl_805DE728;
-static const f32 lbl_805DE740 = 0.800000011920929f;
+static const f32 lbl_805DE740 = 0.8f;
 static const f32 lbl_805DE744 = 0.5f;
 static const f32 lbl_805DE748 = 3.0f;
 void TObjEneBm9Mericarol__sub_802CEDA0(u8 *arg0, s32 arg1);
@@ -359,7 +359,7 @@ extern const s32 lbl_80472318[];
 extern s32 lbl_805D3F28;
 extern const f32 lbl_805DE6EC;
 extern const f32 lbl_805DE70C;
-static const f32 lbl_805DE750 = 0.0020000000949949026f;
+static const f32 lbl_805DE750 = 0.002f;
 
 void *lbl_804E1548[7] = {
     (void *)0x43610000, (void *)0x0, (void *)0x200, (void *)0x0,
@@ -768,7 +768,7 @@ extern const s32 lbl_804722F4[];
 extern const s32 lbl_80472300[];
 extern const s32 lbl_8047230C[];
 extern const SpawnPos_802D1130 lbl_80472480;
-static const f32 lbl_805DE754 = 0.699999988079071f;
+static const f32 lbl_805DE754 = 0.7f;
 extern u32 lbl_805D686C;
 extern u32 lbl_805D6870;
 extern u32 lbl_805D6874;

@@ -32,7 +32,7 @@ void *get_player_by_client_id(s32 i);
 void subtract_vector(Vec_8036A6B0 *, Vec_8036A6B0 *);
 void vec3_add_to(Vec_8036A6B0 *, Vec_8036A6B0 *);
 static const f32 lbl_805E0370 = 10.0f;
-static const f32 lbl_805E0374 = 9.999999747378752e-06f;
+static const f32 lbl_805E0374 = 1e-05f;
 extern const f32 lbl_805E0378;
 
 void TBoss6EffFlowSoul::run_task() {

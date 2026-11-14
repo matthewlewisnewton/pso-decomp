@@ -23,7 +23,7 @@ extern "C" {
 TObjEneDD *__ct__9TObjEneDDFP7TObject(TObjEneDD *, TObject *);
 void *__dt__9TObjEneDDFv(void *, s16);
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
-static const f32 lbl_805DEBB8 = 1.2000000476837158f;
+static const f32 lbl_805DEBB8 = 1.2f;
 void initialize_enemy_state__9TObjEneDDFl(void *, s32);
 extern s32 __vt__11TBoss7Joint[];
 extern s32 lbl_805D3FC0;

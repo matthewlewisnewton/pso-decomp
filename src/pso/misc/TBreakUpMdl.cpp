@@ -135,7 +135,7 @@ void rotate_matrix_y(s32, s32);
 extern u8 breakup_default_param_row[];
 extern s32 __vt__11TBreakUpMdl[];
 extern s32 TBreakUpMdl__class_name;
-static const f32 lbl_805D97D0 = 3.0517578125e-05f;
+static const f32 lbl_805D97D0 = 3.0517578e-05f;
 static const f32 lbl_805D97D4 = 5000.0f;
 u8 *TBreakUpMdl__ct(u8 *arg0, void *arg1, Model_80096AD8 *arg2, void *arg3, s32 arg4, void *arg5, s32 arg6);
 void *__dt_deleting__11TBreakUpMdlFPvs(void *arg0, s16 arg1);

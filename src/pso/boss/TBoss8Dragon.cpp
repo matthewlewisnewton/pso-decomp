@@ -1477,7 +1477,7 @@ extern RecoveredGlobal_802F4760_lbl_80541E3C dragon_forward_reference_vec;
 extern s32 lbl_805D6990;
 extern f32 boss8_dragon_visibility_distance;
 
-static const f32 lbl_805DEEA0 = 0.07999999821186066f;
+static const f32 lbl_805DEEA0 = 0.08f;
 static const f32 lbl_805DEEA8 = 23.0f;
 extern f32 lbl_805DEEB0;
 extern const f32 lbl_805DEEB4;

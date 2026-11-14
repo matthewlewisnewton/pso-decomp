@@ -90,7 +90,7 @@ s32 obj_isState2_324__9TObjCharaFv(int);
 int rand(void);
 extern s32 game_difficulty_selection;
 extern const f32 TBoss7Crawfish__data_805DF0DC;
-static const f32 lbl_805DF0E0 = 3.0517578125e-05f;
+static const f32 lbl_805DF0E0 = 3.0517578e-05f;
 static const f32 lbl_805DF0E4 = 0.5f;
 static const f32 lbl_805DF0E8 = 100.0f;
 

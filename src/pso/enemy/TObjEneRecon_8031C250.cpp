@@ -253,8 +253,8 @@ extern const f32 TObjEneRecon__data_805DF3C4;
 extern const f32 lbl_805DF3CC;
 extern const f32 TObjEneRecon__data_805DF3D0;
 extern const f32 TObjEneRecon__data_805DF3D4;
-static const f32 lbl_805DF3D8 = 0.9800000190734863f;
-static const f32 lbl_805DF3DC = 0.30000001192092896f;
+static const f32 lbl_805DF3D8 = 0.98f;
+static const f32 lbl_805DF3DC = 0.3f;
 void TObjEneRecon__sub_8031C364(u8 *arg0, s32 arg1);
 
 void TObjEneRecon__sub_8031C364(u8 *arg0, s32 arg1) {

@@ -74,7 +74,7 @@ f32 vector_length(void *);
 extern s32 __vt__13TBoss6Kakusan[];
 extern s32 TBoss6Kakusan__name;
 static const f32 TBoss6Kakusan__data_805DF518 = 0.0f;
-static const f32 TBoss6Kakusan__data_805DF51C = 9.999999747378752e-06f;
+static const f32 TBoss6Kakusan__data_805DF51C = 1e-05f;
 static const f32 lbl_805DF53C = 1.0f;
 u8 *TBoss6Kakusan__ct(u8 *arg0, TObject *arg1, Vec *arg2, Vec *arg3, u16 arg4, f32 farg0);
 static const f32 lbl_805DF52C = -200.0f;
@@ -98,7 +98,7 @@ static const f32 lbl_805DF538 = 10.0f;
 int get_player_data__10TObjPlayerFi(int a0);
 static const f32 lbl_805DF520 = 15.0f;
 static const f32 lbl_805DF524 = 5.0f;
-static const f32 lbl_805DF528 = 0.10000000149011612f;
+static const f32 lbl_805DF528 = 0.1f;
 
 #pragma push
 #pragma opt_propagation off
