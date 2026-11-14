@@ -4368,6 +4368,7 @@ pso/misc/TLobby_801461EC.cpp:
 	.text       start:0x801461EC end:0x80147A80
 	.data       start:0x804A7808 end:0x804A7850
 	.bss        start:0x8050C0A8 end:0x8050CF68
+	.sbss       start:0x805D56F8 end:0x805D5700
 
 pso/misc/TOBoss4Rock.cpp:
 	.text       start:0x80147A80 end:0x80147B30
