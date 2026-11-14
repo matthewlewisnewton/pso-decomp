@@ -169,7 +169,7 @@ s32 construct_base__9TWindowDDFPUcsPUc(void *, void *, void *, int);
 s32 get_window_layout_position(int);
 extern u8 lbl_804D0268[];
 extern s32 lbl_805D3948;
-static const f32 lbl_805DD130 = 0.699999988079071f;
+static const f32 lbl_805DD130 = 0.7f;
 static const f32 lbl_805DD134 = 1.0f;
 
 void bind_target__13TWindowLockOnFv(Win_8026366C *w, u16 id);

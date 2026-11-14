@@ -610,7 +610,7 @@ void draw_item_list_icon(ItemListWindowView *, ItemListPosition *, s32, s32, f32
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);
 extern const f32 lbl_805DCF14;
 static const f32 lbl_805DCF20 = -1.0f;
-static const f32 lbl_805DCF24 = 0.14949999749660492f;
+static const f32 lbl_805DCF24 = 0.1495f;
 static const f32 lbl_805DCF28 = 100000.0f;
 static const f32 lbl_805DCF2C = 0.5f;
 void draw_item_list_row(ItemListRow *row, ItemListWindowView *win);

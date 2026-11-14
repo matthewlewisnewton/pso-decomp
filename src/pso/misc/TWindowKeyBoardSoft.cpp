@@ -36,7 +36,7 @@ u8 get_font_char_advance(u16);
 void apply_context_transform_to_rect(void *, void *);
 extern u32 lbl_804CFA84[];
 static const f32 lbl_805DD048 = 20.0f;
-static const f32 lbl_805DD058 = 0.05979999899864197f;
+static const f32 lbl_805DD058 = 0.0598f;
 s32 measure_string_len__20TWindowSubStatusDispFv(void *);
 struct KbSoft_8025CFA8 {
     u8 pad0[0xA8];
@@ -140,7 +140,7 @@ s32 dispatch_request_0x25__19TWindowKeyBoardSoftFll(void *, s32 *);
 s32 dispatch_request_0x23__19TWindowKeyBoardSoftFll(void *, void *);
 s32 dispatch_request_0x24__19TWindowKeyBoardSoftFll(void *, void *);
 extern s32 actor_frame_tick;
-static const f32 lbl_805DD04C = 0.1793999969959259f;
+static const f32 lbl_805DD04C = 0.1794f;
 static const f32 lbl_805DD050 = 5.0f;
 static const f32 lbl_805DD054 = 18.0f;
 s32 dispatch_request_0x22__19TWindowKeyBoardSoftFll(void *, void *);
@@ -151,7 +151,7 @@ s32 dispatch_request_0x13__19TWindowKeyBoardSoftFlll(u8 *, s32 *, s8 *);
 
 static const f32 lbl_805DD038 = 100000.0f;
 static const f32 lbl_805DD03C = 38.0f;
-static const f32 lbl_805DD040 = 0.10000000149011612f;
+static const f32 lbl_805DD040 = 0.1f;
 static const f32 lbl_805DD044 = 8.0f;
 static const f32 lbl_805DD05C = -1.0f;
 extern const f32 lbl_805DD060;

@@ -48,7 +48,7 @@ static const f32 TWindowSubCustomSelect__data_805DD5B0 = 51.0f;
 static const f32 lbl_805DD5C4 = 1.0f;
 static const f32 lbl_805DD5C8 = 58.0f;
 static const f32 lbl_805DD5CC = -5.0f;
-static const f32 lbl_805DD5D0 = 0.4000000059604645f;
+static const f32 lbl_805DD5D0 = 0.4f;
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 extern RecoveredGlobal_80277928_lbl_8050E208 controller_input_state;

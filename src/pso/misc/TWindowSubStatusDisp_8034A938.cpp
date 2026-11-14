@@ -6,7 +6,7 @@
 #include "pso/object/TObjFish.h"
 
 extern s32 lbl_805D6E88;
-static const f32 lbl_805DFD60 = 0.8989999890327454f;
+static const f32 lbl_805DFD60 = 0.899f;
 
 void TAdGameStartShineGC::render_status_box() {
     u8 *arg0 = (u8 *)this;

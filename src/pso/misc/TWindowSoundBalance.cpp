@@ -73,7 +73,7 @@ void TWindowSoundBalance::play_open_sound() {
     this->m_60 = (u8) (this->m_60 | 1);
 }
 
-static const f32 lbl_805DD408 = 0.02500000037252903f;
+static const f32 lbl_805DD408 = 0.025f;
 
 void TWindowSoundBalance::sub_8027095C() {
     ControllerInputContext *input = &controller_input_state.controllers[0];
