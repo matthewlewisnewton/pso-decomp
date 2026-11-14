@@ -1949,8 +1949,6 @@ force_active:
   - TPlyPhotonChair__shared_model_resource
   - TPlyPhotonChair__sub_8035B56C
   - TProtocol__recv_trade_list_log_format
-  - TProtocol__send_pso_data2_log_format
-  - TProtocol__send_pso_data_log_format
   - TProtocol__send_trade_list_log_format
   - TQuestBgmCtrl__area_bgm_index
   - TQuestBgmCtrl__bgm_forced_flag
