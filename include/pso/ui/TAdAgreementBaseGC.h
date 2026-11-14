@@ -20,7 +20,7 @@ struct TAdAgreementBaseGC : public TObject {
     u32 m_2c;
     u32 m_30;
     u32 m_34;
-    static void draw_agreement_text();
+    static void draw_agreement_text(void *window, void *frame_context);
 };
 
 typedef char TAdAgreementBaseGC_size[sizeof(TAdAgreementBaseGC) == 0x38 ? 1 : -1];

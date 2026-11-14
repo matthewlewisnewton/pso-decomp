@@ -81,7 +81,7 @@ s32 refresh_with_default_list__20TWindowSubStatusDispFll(s32, s32 *);
 
 extern void *TWindowSubSymbolChat__instance;
 
-void TWindowSubSymbolChat::close_child() {
+void TWindowSubSymbolChat::close_child(void *, void *) {
     void *temp_r3;
     temp_r3 = TWindowSubSymbolChat__instance;
     if (temp_r3 != NULL) {
@@ -396,7 +396,6 @@ extern s32 TWindowSubSymbolChat__help_window;
 void TWindowSubComCard__sub_80265680(u8 *arg0, s16 arg1);
 s32 __ct__7TObjectFP7TObject();
 s8 get_global_4e54__20TWindowSubSymbolChatFv();
-s32 update_display__20TWindowSubSymbolChatFl(s32 *);
 
 s32 TWindowSubSymbolChat::open_edit_menu() {
     s32 temp_r31;
@@ -468,7 +467,6 @@ s32 TWindowSubSymbolChat::create_chat_symbol_window(s32 arg0, s32 arg1) {
 
 void TWindowSubSymbolChat::render() {  }
 
-extern s32 close_child__20TWindowSubSymbolChatFv[];
 extern s32 TWindowSubSymbolChat__class_name;
 
 void TWindowSubSymbolChat::run_task() {
@@ -1087,7 +1085,7 @@ void *TWindowSubSymbolChat__ct(TWindowSubSymbolChat *window_sub_symbol_chat, s32
     TWindowSubSymbolChat__data_805D649C = 0;
     window_sub_symbol_chat->m_20 = 0;
     TWindowSubSymbolChat__instance = window_sub_symbol_chat;
-    window_sub_symbol_chat->m_5c = update_display__20TWindowSubSymbolChatFl(close_child__20TWindowSubSymbolChatFv);
+    window_sub_symbol_chat->m_5c = (u32)TWindowSubSymbolChat::update_display(TWindowSubSymbolChat::close_child);
     window_sub_symbol_chat->m_1c = 0;
     return window_sub_symbol_chat;
 }
