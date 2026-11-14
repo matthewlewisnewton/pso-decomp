@@ -10,6 +10,10 @@
 #include "pso/item/TItemEffOrgaFlowShot.h"
 
 extern "C" {
+u32 boss2_tunnel_state_flags;
+}
+
+extern "C" {
 s32 fn_802F1FB0(void *, TObject *, s32, f32, Vec *);
 extern u32 boss2_tunnel_state_flags;
 void TObjBoss2Tunnel__sub_802F2278(void);

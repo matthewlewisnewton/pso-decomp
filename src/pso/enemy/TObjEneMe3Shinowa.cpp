@@ -4838,3 +4838,12 @@ extern const f32 lbl_805DA624 = 300.0f;
 
 #pragma dont_inline off
 #pragma inline_depth(1)
+
+extern "C" {
+BmlResource *TObjEneMe3ShinowaMirage__data_805D5298;
+s32 TObjEneMe3ShinowaMirage__render_node_index;
+TUnk_8048FA00 *TObjEneMe3ShinowaMirage__data_805D52A0;
+void *TObjEneMe3ShinowaMirage__data_805D52A4;
+void *TObjEneMe3ShinowaMirage__data_805D52A8;
+void *TObjEneMe3ShinowaMirage__data_805D52AC;
+}
