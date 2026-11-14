@@ -43,8 +43,8 @@ void free_collision_body_parts(void *);
 s32 push_matrix();
 void __dl__7TObjectFPv(void *);
 
-extern const f32 lbl_805DEF20;
-extern const f32 lbl_805DEF24;
+static const f32 lbl_805DEF20 = 400.0f;
+static const f32 lbl_805DEF24 = 40.0f;
 
 void TOJungleDesign::render() {
     u8 *arg0 = (u8 *)this;
