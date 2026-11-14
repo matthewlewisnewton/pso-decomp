@@ -1,3 +1,4 @@
+#include "pso/misc/WindowCallback.h"
 #ifndef PSO_MISC_TWINDOWSUBSYMBOLCHAT_H
 #define PSO_MISC_TWINDOWSUBSYMBOLCHAT_H
 
@@ -60,7 +61,7 @@ struct TWindowSubSymbolChat : public TObject {
     static int get_instance();
     int is_initialized();
     void bswap_entry();
-    static void close_child();
+    static void close_child(void *window, void *frame_context);
     s32 is_card_confirmed();
     void update_sub_window();
     void update_state();
@@ -84,7 +85,7 @@ struct TWindowSubSymbolChat : public TObject {
     s16 get_cursor_pos();
     s16 get_cursor_x();
     void set_selection_and_refresh(s32 arg1);
-    static void *update_display(s32 arg0);
+    static void *update_display(WindowCallback callback);
     s32 *copy_chat_entry(s32 *arg1);
     void init_layout_entries(s32 arg1);
     void set_from_key(s32 arg1);

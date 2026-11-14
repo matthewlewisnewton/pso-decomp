@@ -8,6 +8,13 @@ The initial two-commit continuation keeps the coupled implementation/configurati
 atomic, then restores its evidence and attribution. It is not a claim of 100%
 completion or portable recovery of every historical ABI boundary.
 
+## Shared callback contract checkpoint
+
+The [atomic common callback contract](window-callback-common-contract.md) resolves
+the inspected seven-target graph's incompatible explicit parameter lists and
+function-address transport. Deferred/global-generation lifetime, word-valued
+context boundaries, language-linkage portability and all unrelated holds remain.
+
 ## Callback target closure and next acceptance gates
 
 The [callback closure and gate chart](window-callback-closure-gates.md) records

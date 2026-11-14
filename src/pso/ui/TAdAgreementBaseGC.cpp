@@ -90,7 +90,7 @@ typedef char RecoveredGlobal_80329830_lbl_8050E208_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_80329830_lbl_8050E3B8_size[sizeof(RecoveredGlobal_80329830_lbl_8050E3B8) == 0x1B0 ? 1 : -1];
 
 void TAdAgreementBaseGC::create_agreement_callback() {
-    TAdEnterSerialAccessGC::create_callback(lbl_804770BC, lbl_804770C4, (void *)TAdAgreementBaseGC::draw_agreement_text);
+    TAdEnterSerialAccessGC::create_callback(lbl_804770BC, lbl_804770C4, TAdAgreementBaseGC::draw_agreement_text);
 }
 
 void TAdAgreementBaseGC::update_state() {

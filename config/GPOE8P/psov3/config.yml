@@ -5545,7 +5545,7 @@ force_active:
   - close_and_send_text_list__6TLobbyFv
   - close_and_set_state_12__6TLobbyFv
   - close_and_set_state_13__6TLobbyFv
-  - close_child__20TWindowSubSymbolChatFv
+  - close_child__20TWindowSubSymbolChatFPvPv
   - close_com_card_window__6TLobbyFv
   - close_download__22TQuestVmDownLoadServerFv
   - close_giveup_window__6TLobbyFPv
@@ -17027,7 +17027,7 @@ force_active:
   - set_field_100__11TCameraCtrlFl
   - set_field_3c__10TObjPlayerFf
   - set_field_4__6TLobbyFl
-  - set_field_60__15TWindowCallBackFPvi
+  - set_callback__15TWindowCallBackFPFPvPv_v
   - set_field_74__14TWindowSubItemFs
   - set_field_8__15TPlyPhotonChairFl
   - set_field_d4_and_flag_200__10TObjPlayerFf

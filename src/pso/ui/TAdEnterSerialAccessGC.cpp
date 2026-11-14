@@ -448,7 +448,7 @@ char *TAdEnterSerialAccessGC::hex_to_decimal_string(int arg0) {
 }
 
 void create_draw_callback__22TAdEnterSerialAccessGCFv(void) {
-    TAdEnterSerialAccessGC::create_callback(lbl_804764D8, lbl_804764E0, (void *)TAdEnterSerialAccessGC::draw_screen);
+    TAdEnterSerialAccessGC::create_callback(lbl_804764D8, lbl_804764E0, TAdEnterSerialAccessGC::draw_screen);
 }
 
 s32 TAdEnterSerialAccessGC::open_message_window(void *arg0, void *arg1) {

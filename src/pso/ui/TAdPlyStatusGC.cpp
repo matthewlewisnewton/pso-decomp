@@ -1,3 +1,4 @@
+#include "pso/ui/TAdEnterSerialAccessGC.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
@@ -85,7 +86,6 @@ u8 *__dt__14TAdPlyStatusGCFv(u8 *arg0, s16 arg1);
 void update_shown__14TAdPlyStatusGCFv(struct RecoveredFields_8033F9DC_arg0 *arg0);
 void set_load_state__14TAdPlyStatusGCFPvi(u8 *arg0, s32 arg1);
 void set_depth__11TWindowBaseFf(f32);
-s32 create_callback__22TAdEnterSerialAccessGCFPvPvPv(void *, void *, void *);
 void draw_status_window__14TAdPlyStatusGCFPvPv(void *arg0, void *arg1);
 extern u8 lbl_804783D8[];
 extern const f32 lbl_805DFAEC;
@@ -268,7 +268,7 @@ void format_status_strings__14TAdPlyStatusGCFPv(char *buf) {
 }
 
 s32 TAdPlyStatusGC__sub_8033F8B0(void *arg0, void *ad_enter_serial_access_gc) {
-    s32 r = create_callback__22TAdEnterSerialAccessGCFPvPvPv(ad_enter_serial_access_gc, lbl_804783D8, (void *)draw_status_window__14TAdPlyStatusGCFPvPv);
+    s32 r = (s32)TAdEnterSerialAccessGC::create_callback(ad_enter_serial_access_gc, lbl_804783D8, draw_status_window__14TAdPlyStatusGCFPvPv);
     set_depth__11TWindowBaseFf(lbl_805DFAEC);
     return r;
 }

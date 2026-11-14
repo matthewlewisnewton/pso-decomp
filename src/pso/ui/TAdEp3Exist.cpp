@@ -24,7 +24,7 @@ const f32 lbl_8047B8CC[2] = { 470.0f, 32.0f };
 
 
 void TAdEp3Exist::vfunc_6() {
-    TAdEnterSerialAccessGC::create_callback((void *)lbl_8047B8C4, (void *)lbl_8047B8CC, (void *)TAdEp3Exist::draw_message_window);
+    TAdEnterSerialAccessGC::create_callback((void *)lbl_8047B8C4, (void *)lbl_8047B8CC, TAdEp3Exist::draw_message_window);
 }
 
 struct Obj_8036F4DC { u8 pad0[8]; u8 cnt; u8 bits; };

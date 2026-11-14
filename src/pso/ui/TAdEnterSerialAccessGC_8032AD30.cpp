@@ -70,7 +70,7 @@ u32 TAdEnterSerialAccessGC::create_keyboard_control(s32 arg0, s32 arg1) {
 }
 
 void TAdEnterSerialAccessGC::create_default_callback() {
-    TAdEnterSerialAccessGC::create_callback(lbl_80477188, lbl_80477190, (void *)fn_8032AC9C);
+    TAdEnterSerialAccessGC::create_callback(lbl_80477188, lbl_80477190, fn_8032AC9C);
 }
 
 s32 TAdEnterSerialAccessGC::show_message_window(void *arg0, void *arg1) {
