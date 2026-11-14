@@ -1998,6 +1998,7 @@ pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp:
 	.text       start:0x800EDB98 end:0x800F05A0
 	.rodata     start:0x8043D410 end:0x8043D418
 	.data       start:0x80496EE0 end:0x804971BC
+	.sbss       start:0x805D52E8 end:0x805D52F0
 	.sdata2     start:0x805DA788 end:0x805DA7F0
 
 pso/enemy/AreaSoundRemap.cpp:

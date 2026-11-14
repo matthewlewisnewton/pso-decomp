@@ -2456,3 +2456,8 @@ void TObjEneRe4Sorcerer::load_resources() {
 
 void TBoss3Volopt__sub_800F059C(void) {  }
 }
+
+extern "C" {
+s32 TObjEneRe4Sorcerer__saved_render_flags;
+f32 TObjEneRe4Sorcerer__effect_render_scale;
+}
