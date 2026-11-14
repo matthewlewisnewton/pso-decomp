@@ -6275,7 +6275,7 @@ pso/misc/TPhotonMylla.cpp:
 
 pso/misc/TPhotonPilla.cpp:
 	.text       start:0x801ADC6C end:0x801AE48C
-	.rodata     start:0x80446ED8 end:0x80446EE0
+	.rodata     start:0x80446ED8 end:0x80446EF8
 	.data       start:0x804C3A38 end:0x804C3B10
 	.sdata2     start:0x805DC228 end:0x805DC25C
 
