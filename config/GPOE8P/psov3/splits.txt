@@ -11400,6 +11400,7 @@ pso/unk/text_8032AC9C.cpp:
 
 pso/ui/TAdEnterSerialAccessGC_8032AD30.cpp:
 	.text       start:0x8032AD30 end:0x8032B318
+	.bss        start:0x80543468 end:0x805434A8
 
 pso/unk/text_8032B318.cpp:
 	.text       start:0x8032B318 end:0x8032B38C
