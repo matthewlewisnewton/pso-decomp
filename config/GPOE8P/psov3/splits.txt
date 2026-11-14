@@ -897,6 +897,7 @@ pso/misc/TWindowSubComCard_80073DB8.cpp:
 
 pso/quest/TQuestListVM_80073DC4.cpp:
 	.text       start:0x80073DC4 end:0x80073F74
+	.rodata     start:0x80438660 end:0x80438668
 
 pso/ui/TObjNewFloorWin.cpp:
 	.text       start:0x80073F74 end:0x800740FC
