@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5881 | 888 |
+| pragma | 5889 | 890 |
 | configure.py per-unit override | 210 | 210 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1156, `inline_depth` 1062, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1066, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -675,6 +675,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1156, `inline_depth` 1062,
 | `src/pso/item/TObjContainerItem.cpp` | opt_propagation×2, readonly_strings×1, fp_contract×1 |
 | `src/pso/item/TObjContainerJung.cpp` | opt_propagation×3, fp_contract×2 |
 | `src/pso/item/TUnk_8049F8E0.cpp` | scheduling×1 |
+| `src/pso/item/TUnk_804A6200.cpp` | dont_inline×2, inline_depth×2 |
+| `src/pso/item/TUnk_804A67D0.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/item/TUnk_804A6AD8.cpp` | opt_common_subs×1 |
 | `src/pso/item/TUnk_804F0D34.cpp` | readonly_strings×1 |
 | `src/pso/map/CsnQuery.cpp` | fp_contract×6, inline_depth×1, auto_inline×1, dont_inline×1 |
