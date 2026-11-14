@@ -14025,6 +14025,7 @@ pso/network/SocketProtocolRuntime.cpp:
 pso/unk/text_80421620.cpp:
 	.text       start:0x80421620 end:0x804245DC
 	.bss        start:0x805C1E00 end:0x805C30C0
+	.sbss       start:0x805D7B80 end:0x805D7BA0
 
 pso/network/NetworkPacketRuntime.cpp:
 	.text       start:0x804245DC end:0x80425B70
