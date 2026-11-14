@@ -1117,6 +1117,7 @@ force_active:
   - TObjBs4CutAtk_name
   - TObjBs4CutAtk_type_name
   - TObjButterflyLobby__ct
+  - TObjCGrass__data_805D9E64
   - TObjCMAutoMkData__ct
   - TObjCMIcon__horizontal_scroll_offset
   - TObjCMIcon__sub_802994B0
@@ -8312,6 +8313,10 @@ force_active:
   - lbl_80437384
   - lbl_804373A4
   - lbl_80438128
+  - lbl_804383D0
+  - lbl_804383D8
+  - lbl_80438510
+  - lbl_80438518
   - lbl_80438528
   - lbl_80438534
   - lbl_80438AB4
@@ -8323,6 +8328,7 @@ force_active:
   - lbl_80438E74
   - lbl_80438E80
   - lbl_80438E94
+  - lbl_80439360
   - lbl_80439494
   - lbl_804394A4
   - lbl_804394BC
@@ -8397,6 +8403,7 @@ force_active:
   - lbl_8043FDA4
   - lbl_80441858
   - lbl_80441874
+  - lbl_80443B90
   - lbl_80443BA8
   - lbl_80443BBC
   - lbl_80443BD0
@@ -9660,11 +9667,41 @@ force_active:
   - lbl_805D8E1C
   - lbl_805D8E20
   - lbl_805D8E24
+  - lbl_805D8F20
+  - lbl_805D8F24
+  - lbl_805D8F28
+  - lbl_805D8F2C
+  - lbl_805D8F30
+  - lbl_805D8F34
+  - lbl_805D8F38
+  - lbl_805D8F3C
+  - lbl_805D8F40
+  - lbl_805D8F44
+  - lbl_805D8F48
+  - lbl_805D8F4C
+  - lbl_805D8F50
+  - lbl_805D8F54
+  - lbl_805D8F58
+  - lbl_805D8F5C
+  - lbl_805D8F74
+  - lbl_805D8F78
+  - lbl_805D9100
+  - lbl_805D9104
+  - lbl_805D9208
+  - lbl_805D920C
   - lbl_805D92A0
   - lbl_805D92A4
   - lbl_805D92AC
+  - lbl_805D92C0
+  - lbl_805D92C4
+  - lbl_805D92C8
   - lbl_805D9330
+  - lbl_805D9398
+  - lbl_805D939C
   - lbl_805D93B0
+  - lbl_805D9410
+  - lbl_805D9428
+  - lbl_805D942C
   - lbl_805D9520
   - lbl_805D9550
   - lbl_805D9970
@@ -9708,6 +9745,11 @@ force_active:
   - lbl_805D9E50
   - lbl_805D9E54
   - lbl_805D9E58
+  - lbl_805D9E60
+  - lbl_805D9E68
+  - lbl_805D9E6C
+  - lbl_805D9E70
+  - lbl_805D9E74
   - lbl_805D9F24
   - lbl_805D9F28
   - lbl_805D9F2C
@@ -9883,6 +9925,9 @@ force_active:
   - lbl_805DA7E0
   - lbl_805DA7E4
   - lbl_805DA7E8
+  - lbl_805DA8C0
+  - lbl_805DA8C4
+  - lbl_805DA8C8
   - lbl_805DAE18
   - lbl_805DAE1C
   - lbl_805DAE20
@@ -9900,6 +9945,39 @@ force_active:
   - lbl_805DB09C
   - lbl_805DB0A0
   - lbl_805DB0A4
+  - lbl_805DB2C8
+  - lbl_805DB2CC
+  - lbl_805DB300
+  - lbl_805DB304
+  - lbl_805DB308
+  - lbl_805DB30C
+  - lbl_805DB388
+  - lbl_805DB38C
+  - lbl_805DB398
+  - lbl_805DB828
+  - lbl_805DB82C
+  - lbl_805DB830
+  - lbl_805DB834
+  - lbl_805DB838
+  - lbl_805DB83C
+  - lbl_805DB840
+  - lbl_805DB844
+  - lbl_805DB8C0
+  - lbl_805DB8C4
+  - lbl_805DB8C8
+  - lbl_805DB8CC
+  - lbl_805DBA28
+  - lbl_805DBA2C
+  - lbl_805DBAD0
+  - lbl_805DBAD4
+  - lbl_805DBBA0
+  - lbl_805DBBA4
+  - lbl_805DBBA8
+  - lbl_805DBBAC
+  - lbl_805DBBB0
+  - lbl_805DBBB4
+  - lbl_805DBBB8
+  - lbl_805DBBBC
   - lbl_805DBBE0
   - lbl_805DBBE4
   - lbl_805DBBE8
@@ -9944,10 +10022,36 @@ force_active:
   - lbl_805DBE30
   - lbl_805DBE34
   - lbl_805DBE38
+  - lbl_805DBED0
+  - lbl_805DBED4
+  - lbl_805DBED8
+  - lbl_805DBEDC
   - lbl_805DBF94
+  - lbl_805DBFA0
+  - lbl_805DBFA4
+  - lbl_805DC088
+  - lbl_805DC08C
+  - lbl_805DC090
+  - lbl_805DC094
+  - lbl_805DC098
+  - lbl_805DC09C
   - lbl_805DC324
   - lbl_805DC328
+  - lbl_805DC450
+  - lbl_805DC454
+  - lbl_805DC458
+  - lbl_805DC45C
+  - lbl_805DC460
+  - lbl_805DC464
+  - lbl_805DC470
+  - lbl_805DC474
+  - lbl_805DC480
+  - lbl_805DC484
+  - lbl_805DC608
+  - lbl_805DC60C
   - lbl_805DC8C4
+  - lbl_805DC9B8
+  - lbl_805DC9BC
   - lbl_805DCCA8
   - lbl_805DCD10
   - lbl_805DCD54
@@ -9975,12 +10079,31 @@ force_active:
   - lbl_805DD1BC
   - lbl_805DD648
   - lbl_805DD668
+  - lbl_805DD8F0
+  - lbl_805DD8F4
+  - lbl_805DDC44
+  - lbl_805DDC48
+  - lbl_805DDC4C
+  - lbl_805DDC50
+  - lbl_805DDC54
+  - lbl_805DDCD0
+  - lbl_805DDCD4
+  - lbl_805DDCD8
+  - lbl_805DDCDC
+  - lbl_805DDCE0
+  - lbl_805DDCE4
+  - lbl_805DDCE8
+  - lbl_805DDCEC
   - lbl_805DDD28
   - lbl_805DDD2C
   - lbl_805DDD30
   - lbl_805DDD34
   - lbl_805DDD38
   - lbl_805DDD3C
+  - lbl_805DDD98
+  - lbl_805DDD9C
+  - lbl_805DDF60
+  - lbl_805DDF64
   - lbl_805DE040
   - lbl_805DE0E0
   - lbl_805DE0E8
@@ -10010,6 +10133,12 @@ force_active:
   - lbl_805DE920
   - lbl_805DE924
   - lbl_805DE928
+  - lbl_805DE930
+  - lbl_805DE934
+  - lbl_805DE938
+  - lbl_805DE93C
+  - lbl_805DE940
+  - lbl_805DE944
   - lbl_805DEA14
   - lbl_805DEA18
   - lbl_805DEA1C
@@ -10167,6 +10296,8 @@ force_active:
   - lbl_805DEE90
   - lbl_805DEE94
   - lbl_805DEE98
+  - lbl_805DEF20
+  - lbl_805DEF24
   - lbl_805DF2E4
   - lbl_805DF3AC
   - lbl_805DF3B0
@@ -10197,6 +10328,11 @@ force_active:
   - lbl_805DFDB8
   - lbl_805DFDBC
   - lbl_805DFDC0
+  - lbl_805E0138
+  - lbl_805E013C
+  - lbl_805E0140
+  - lbl_805E0144
+  - lbl_805E0168
   - lbl_805E0198
   - lbl_805E019C
   - lbl_805E01A0
@@ -10204,6 +10340,10 @@ force_active:
   - lbl_805E01A8
   - lbl_805E01AC
   - lbl_805E01B0
+  - lbl_805E02A0
+  - lbl_805E02A4
+  - lbl_805E02A8
+  - lbl_805E02AC
   - lbl_805E03BC
   - lbl_805E03C0
   - lbl_805E03C4
@@ -10219,7 +10359,13 @@ force_active:
   - lbl_805E0D5C
   - lbl_805E0D60
   - lbl_805E0D64
+  - lbl_805E0E00
+  - lbl_805E0E04
+  - lbl_805E0E08
+  - lbl_805E0E10
   - lbl_805E0F68
+  - lbl_805E1050
+  - lbl_805E1054
   - lens_flare_reflected_element_descriptors
   - lerp_follow_anchor__FP3VecP3VecPf
   - level_text_buffer
