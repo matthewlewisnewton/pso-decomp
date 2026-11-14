@@ -158,3 +158,10 @@ void TLobby__sub_8022644C(void) {
     }
 }
 }
+
+extern "C" {
+int lobby_layout_offset_c;
+s32 lbl_805D629C;
+s32 lbl_805D62A0;
+s32 lobby_layout_start_position;
+}

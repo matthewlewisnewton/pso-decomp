@@ -13,12 +13,12 @@ extern "C" {
 void *__nw__7TObjectFUl(int);
 void *__ct__17TDuelEffectStringFP7TObjectPvPv(void *p, s32 v, void *s, s32 n);
 extern u8 lbl_80438D48[];
-extern u8 lbl_80438D50[];
+extern const u8 lbl_80438D50[] = "end.adx";
 void update_duel_end_effect(Obj_8007FA94 *self);
 void *__ct__17TDuelEffectNumberFP7TObjectPvPv(void *p, s32 v, void *s, s32 n);
 
 extern u8 lbl_80438D40[];
-extern u8 lbl_80438D58[];
+extern const u8 lbl_80438D58[] = "start.adx";
 f32 duel_start_countdown_effect_pos[3] = { 320.0f, 221.0f, 0.5f };
 void update_duel_end_effect(Obj_8007FA94 *self) {
     switch (self->state) {

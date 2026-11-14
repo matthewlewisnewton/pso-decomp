@@ -933,7 +933,7 @@ struct Area_80208E8C { Terr_80208E8C *terrs; s32 count; };
 struct Buf_80208E8C { u8 data[0x20]; };
 
 #define TLobby__data_805D6068 (*(Area_80208E8C * *)&TLobby__data_805D6068)
-extern u8 lbl_8044BAC8[];
+extern const u8 lbl_8044BAC8[] = ".evt";
 #define area_event_set_heap (*(s32 *)&area_event_set_heap)
 #define lobby_slot_ptr_table (*(s32 (*)[1])&lobby_slot_ptr_table)
 extern "C" {
@@ -1046,7 +1046,7 @@ u8 *__nw__5THeapFUl(s32);
 #define area_event_set_heap (*(int *)&area_event_set_heap)
 void close_gsl_archive();
 void open_gsl_archive(char *name);
-extern u8 lbl_8044BAD0[];
+extern const u8 lbl_8044BAD0[] = "gsl_set_event.gsl";
 #define lobby_slot_ptr_table (*(s32 (*)[1])&lobby_slot_ptr_table)
 extern s32 lbl_805D6098;
 int __dt__5THeapFv(void*, void*);
@@ -1089,3 +1089,8 @@ int TLobby::get_destroy_event_obj() {  return set_event_destroy_id; }
 
 #undef area_event_set_heap
 #undef lobby_slot_ptr_table
+
+extern "C" {
+int wave_event_stop_requested;
+s32 wave_event_trigger_count;
+}
