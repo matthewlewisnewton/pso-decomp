@@ -2184,6 +2184,8 @@ force_active:
   - TWindowSubComCard__sub_8027337C
   - TWindowSubComCard__sub_8027346C
   - TWindowSubComCard__sub_8027353C
+  - TWindowSubCustomEquip__bank_ring_init_done
+  - TWindowSubCustomEquip__ring_scale
   - TWindowSubEquipList__class_name
   - TWindowSubEquipList__ct
   - TWindowSubGameEnd__class_name
@@ -2212,6 +2214,7 @@ force_active:
   - TWindowSubStatusDisp__window_layout
   - TWindowSubSymbolChatFaceType__sub_80283F38
   - TWindowSubSymbolChatPartsSet__part_uv_table
+  - TWindowSubSymbolChat__instance
   - TWindowSubSymbolChat__sub_80281840
   - TWindowSubSymbolChat__sub_8028233C
   - TWindowSubSymbolChat__sub_8028379C
@@ -4762,6 +4765,8 @@ force_active:
   - boss2_mine_params
   - boss2_tunnel_color
   - boss2_tunnel_color_table
+  - boss2_tunnel_confirm_loop_flag
+  - boss2_tunnel_message_shown_flag
   - boss2_tunnel_model_index_table
   - boss2_tunnel_model_order_table
   - boss2_tunnel_snapshot_buffer
@@ -5595,6 +5600,7 @@ force_active:
   - collect_targets_in_arc__15TBoss3VoloptP02Fv
   - collect_targets_in_front__15TBoss3VoloptP02Fv
   - collect_technique_contacts__12TNeedleShootFPv
+  - com_card_entry_count
   - commit_composition_text__19TWindowKeyBoardSoftFv
   - complete_and_destroy__13TOCtrlDubchikFv
   - complete_fall_reaction__10TObjPlayerFv
@@ -8423,6 +8429,8 @@ force_active:
   - lbl_80447008
   - lbl_80447010
   - lbl_80449700
+  - lbl_8044A7B0
+  - lbl_8044A7B8
   - lbl_8044A800
   - lbl_8044A80C
   - lbl_8044A840
@@ -8443,6 +8451,7 @@ force_active:
   - lbl_8044DB08
   - lbl_8044DB14
   - lbl_8044DB2C
+  - lbl_8044DD18
   - lbl_8044E688
   - lbl_8044E6B0
   - lbl_8044E6C4
@@ -8454,6 +8463,7 @@ force_active:
   - lbl_8044E748
   - lbl_8044E758
   - lbl_8044E7BC
+  - lbl_8044F098
   - lbl_8044F138
   - lbl_8044F164
   - lbl_8044F1B4
@@ -8545,6 +8555,7 @@ force_active:
   - lbl_80471CE0
   - lbl_80471CE8
   - lbl_80471D70
+  - lbl_804725E0
   - lbl_80472998
   - lbl_804729A8
   - lbl_804729C0
@@ -8659,6 +8670,8 @@ force_active:
   - lbl_80478134
   - lbl_80478140
   - lbl_8047817C
+  - lbl_80478408
+  - lbl_804786A0
   - lbl_804790F0
   - lbl_80479280
   - lbl_8047B928
@@ -9339,6 +9352,7 @@ force_active:
   - lbl_805D3BB8
   - lbl_805D3BBC
   - lbl_805D3CC8
+  - lbl_805D3CD8
   - lbl_805D3E50
   - lbl_805D3E60
   - lbl_805D3E90
@@ -9373,6 +9387,9 @@ force_active:
   - lbl_805D4D90
   - lbl_805D4D94
   - lbl_805D4DC0
+  - lbl_805D4E98
+  - lbl_805D4E9C
+  - lbl_805D4EA4
   - lbl_805D509C
   - lbl_805D50A0
   - lbl_805D5140
@@ -9393,7 +9410,10 @@ force_active:
   - lbl_805D6270
   - lbl_805D63C0
   - lbl_805D63C4
+  - lbl_805D63D8
   - lbl_805D6440
+  - lbl_805D6478
+  - lbl_805D647C
   - lbl_805D64A8
   - lbl_805D64AC
   - lbl_805D67D0
@@ -9409,10 +9429,15 @@ force_active:
   - lbl_805D6AB0
   - lbl_805D6ADC
   - lbl_805D6C80
+  - lbl_805D6D68
+  - lbl_805D6D6C
   - lbl_805D6D80
   - lbl_805D6D84
   - lbl_805D6D88
   - lbl_805D6D90
+  - lbl_805D6DC8
+  - lbl_805D6E68
+  - lbl_805D6E6C
   - lbl_805D6EFC
   - lbl_805D6F00
   - lbl_805D7020
@@ -9528,6 +9553,11 @@ force_active:
   - lbl_805D75F0
   - lbl_805D7688
   - lbl_805D7694
+  - lbl_805D7940
+  - lbl_805D7944
+  - lbl_805D7948
+  - lbl_805D794C
+  - lbl_805D7950
   - lbl_805D7D3C
   - lbl_805D7DD8
   - lbl_805D7DDC
@@ -10262,6 +10292,7 @@ force_active:
   - lobby_texlist__19TObjStendGlassLobby
   - lobby_weapon_random_tables_ptr
   - lobby_worker_thread_run_flag
+  - lock_on_cursor_bml_resource
   - log_printf_buffer
   - logo_load_callback_table
   - lookup_attack_marker__Flssl
