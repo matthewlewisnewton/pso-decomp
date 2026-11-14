@@ -10043,6 +10043,7 @@ pso/boss/TBoss6EmptyWarp_802B0E2C.cpp:
 pso/boss/TBoss6Tube_802B1020.cpp:
 	.text       start:0x802B1020 end:0x802B1564
 	.rodata     start:0x80470A60 end:0x80470A68
+	.sbss       start:0x805D6720 end:0x805D6728
 	.sdata2     start:0x805DE230 end:0x805DE280
 
 pso/boss/TBoss6Tube.cpp:
