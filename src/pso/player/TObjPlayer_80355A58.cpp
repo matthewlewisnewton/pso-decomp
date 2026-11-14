@@ -14,8 +14,8 @@ struct RecoveredGlobal_80355BA0_lbl_804F1320 {
 extern "C" {
 u8 * __ct__11TItemWeaponFP7TObjectPUc(void *, void *);
 extern s32 lbl_804F1320[];
-extern const f32 lbl_805DFFC0;
-extern const f32 lbl_805DFFC4;
+static const f32 lbl_805DFFC0 = 70.0f;
+static const f32 lbl_805DFFC4 = 100.0f;
 u8 *photon_field_weapon_ct(TObjPlayer *arg0, u8 *arg1);
 void *__dt__13TUnk_804F1320Fv(void *arg0, s16 arg1);
 s32 get_current_floor();

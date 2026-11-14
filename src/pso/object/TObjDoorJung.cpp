@@ -58,7 +58,7 @@ s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
 void draw_ginja_object(void *child);
-extern s32 TObjDoorJung__child_table[];
+extern s32 TObjDoorJung__child_table[4];
 extern s32 actor_frame_tick;
 extern void *TObjDoorJung__resource_handle;
 extern s32 lbl_805D5BD4;
@@ -241,4 +241,15 @@ u8 *TObjDoorJung__ct(u8 *arg0, s32 arg1, s32 arg2) {
     return arg0;
 }
 
+}
+
+extern "C" {
+void *TObjDoorJung__door_scene_buffer;
+s32 lbl_805D5BE4;
+s32 lbl_805D5BE8;
+s32 lbl_805D5BEC;
+}
+
+extern "C" {
+s32 TObjDoorJung__child_table[4];
 }

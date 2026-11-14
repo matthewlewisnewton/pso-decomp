@@ -46,7 +46,7 @@ extern "C" {
 f32 calc_xz_distance_sq(void *, void *, Vec *);
 f64 atan2_float(f32, f32);
 s32 angle_difference_abs(s32, s32);
-extern const f64 TObjEneGibbles__data_80472798;
+static const f64 TObjEneGibbles__data_80472798 = 10430.38043493439;
 extern void **gibbles_combat_stat_entries;
 extern const f32 lbl_805DE834;
 extern const f32 lbl_805DE85C;
@@ -2004,3 +2004,8 @@ void TObjEneGibbles::fn_802D9110() {
     submit_cursor_candidate(self, -1);
 }
 #pragma pop
+
+extern "C" {
+BmlResource *TObjEneGibbles__resource_bundle;
+s32 TObjEneGibbles__render_node_index;
+}

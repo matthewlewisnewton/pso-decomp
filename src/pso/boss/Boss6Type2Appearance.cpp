@@ -50,11 +50,11 @@ const CameraAngles lbl_80478064 = {0, 0, 0};
 const CameraPlayback boss6_type2_appear_camera_script = {1, 3, 0, 0.0f, 0.7f};
 s32 push_matrix();
 s32 post_translate_matrix(void *);
-extern const f32 lbl_805DFA70;
-extern const f32 lbl_805DFA74;
-extern const f32 lbl_805DFA78;
+static const f32 lbl_805DFA70 = 0.0f;
+static const f32 lbl_805DFA74 = 1.0f;
+static const f32 lbl_805DFA78 = -15.0f;
 
-extern const f32 lbl_805DFA7C;
+static const f32 lbl_805DFA7C = 28.0f;
 
 void TBoss6Demo20_TYPE2_APPEAR::draw_model_12() {
     push_matrix();

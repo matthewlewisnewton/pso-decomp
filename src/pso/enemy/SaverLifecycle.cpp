@@ -2202,3 +2202,8 @@ void TObjEneSaver::sub_800A7734(s32 i) {
 #undef get_entity_id
 #undef get_floor__10TObjPlayerFv
 #undef get_player_by_client_id
+
+extern "C" {
+s32 lbl_805D5058;
+s32 lbl_805D505C;
+}

@@ -450,8 +450,8 @@ extern u8 lbl_80515BA0[];
 extern s32 game_difficulty_selection;
 extern Mgr_801361E8 *game_protocol_instance;
 extern s32 quest_download_active;
-extern const f32 lbl_805DB0A8;
-extern const f32 lbl_805DB0AC;
+static const f32 lbl_805DB0A8 = 30000.0f;
+static const f32 lbl_805DB0AC = 37000.0f;
 struct VBase_18_9029aa { char pad[0x18]; };
 struct VObj_18_9029aa : VBase_18_9029aa {
     virtual void m0();

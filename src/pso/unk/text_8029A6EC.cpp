@@ -6,10 +6,10 @@
 struct Fan_8029A6EC { f32 *pos; u32 *col; s32 first; s32 count; };
 
 
-extern const f32 lbl_805DDC58;
-extern const f32 lbl_805DDC5C;
-extern const f32 lbl_805DDC60;
-extern const f32 lbl_805DDC64;
+static const f32 lbl_805DDC58 = 0.0f;
+static const f32 lbl_805DDC5C = 479.0f;
+static const f32 lbl_805DDC60 = 639.0f;
+static const f32 lbl_805DDC64 = 0.01f;
 void TAdBackGC::sub_8029A6EC() {
     f32 pos[8];
     Fan_8029A6EC fan;

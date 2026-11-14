@@ -146,8 +146,8 @@ extern char lbl_80475BAC[];
 extern char lbl_80475BB8[];
 extern s32 TLobby__battle_ctrl_default_value;
 s32 rand();
-extern const f32 lbl_805DF240;
-extern const f32 lbl_805DF244;
+static const f32 lbl_805DF240 = 4.0f;
+static const f32 lbl_805DF244 = 3.0517578e-05f;
 
 s32 fn_801C19D8(void *, int);
 s32 fn_801D6D8C(void *, u8, int);

@@ -2889,3 +2889,7 @@ void TObjEneDf2Bringer::load_resources() {
 #undef set_effect_pos_above_self__17TObjEneDf2BringerFv
 #undef __nw__7TObjectFUl
 #undef transition_enemy_state__9TObjEneDDFl
+
+extern "C" {
+s32 TObjEneDf2Bringer__render_rotation_x;
+}

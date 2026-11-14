@@ -29,17 +29,17 @@ s32 TWindowCtrlMain__sub_8024CE58();
 void *get_player_by_client_id(s32 i);
 s32 TLobby__sub_80211C3C();
 extern s32 local_client_id;
-extern const f32 lbl_805D90B8;
-extern const f32 lbl_805D90BC;
-extern const f32 lbl_805D90C0;
-extern const f32 lbl_805D90C4;
+static const f32 lbl_805D90B8 = -100.0f;
+static const f32 lbl_805D90BC = 330.0f;
+static const f32 lbl_805D90C0 = -40.0f;
+static const f32 lbl_805D90C4 = -175.0f;
 s32 append_line__14TWindowMessageFii(u32, void *, s32);
 u32 create__14TWindowMessageFPvll(s32, void *, s32);
 s32 get_window_layout_position(s32);
 s32 strncpy(void *, s32, s32);
 extern u8 TObjBagWarnWin__message_window_size[];
-extern const f32 lbl_805D90C8;
-extern const f32 lbl_805D90CC;
+static const f32 lbl_805D90C8 = 70200.0f;
+static const f32 lbl_805D90CC = 0.8f;
 
 s32 TObjBagWarnWin::should_show_warning(void *arg0) {
     Ctrl_8006EC20 *ctrl;

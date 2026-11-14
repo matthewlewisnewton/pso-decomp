@@ -4019,12 +4019,12 @@ void pick_random_target__13TBoss2DeRolLeFi(s32 actor) {
 
 #define VecCopy__FP3VecPC3Vec ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)
 s32 advance_scalar_motion_profile(void *);
-extern const f32 lbl_805D8438;
-extern const f32 lbl_805D843C;
+static const f32 lbl_805D8438 = 160.0f;
+static const f32 lbl_805D843C = 200.0f;
 u8 TBoss2DeRolLe__sub_80034800(u8 *arg0);
 void calc_offset_position__13TBoss2DeRolLeFPv(u8 *arg0);
 s32 advance_scalar_motion_profile(void *);
-extern const f32 lbl_805D8440;
+static const f32 lbl_805D8440 = 380.0f;
 u8 update_phase_is_done__13TBoss2DeRolLeFPv(u8 *arg0);
 void *__ct__15TBoss2PhotonPadFv(void *, void *, Vec_800344A4 *, Vec_800344A4 *, s32);
 void *__nw__7TObjectFUl(u32);
@@ -4147,7 +4147,7 @@ u8 update_state__13TBoss2DeRolLeFPv(u8 *arg0) {
     return (u8) (*(s32 *)((s8 *)arg0 + 0x65C) == 2);
 }
 
-extern const f32 lbl_805D8434;
+static const f32 lbl_805D8434 = -250.0f;
 
 void init_move_params__13TBoss2DeRolLeFPv(u8 *arg0) {
     *(s32 *)((s8 *)arg0 + 0x65C) = 0;
@@ -6004,3 +6004,15 @@ typedef char RecoveredGlobal_800365C8_lbl_80435A44_size[sizeof(RecoveredGlobal_8
 
 }
 #pragma pop
+
+extern "C" {
+s32 de_rol_le_base_param_ids[1] = {15};
+s32 de_rol_le_resistance_param_ids[1] = {15};
+s32 lbl_805D26B0[1] = {15};
+}
+
+extern "C" {
+s32 TBoss2DeRolLe__current_attack_id;
+s32 TBoss2DeRolLe__sequence_match_index;
+s32 lbl_805D4BB0;
+}

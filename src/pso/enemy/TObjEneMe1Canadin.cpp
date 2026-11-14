@@ -2447,3 +2447,10 @@ void TObjEneMe1CanadinLeader::vfunc_112(s32 mode) {
 }
 
 }
+
+extern "C" {
+TUnk_8048FA00 *canadin_follower_breakup_model;
+s32 *canadin_leader_node3_color;
+s32 *canadin_leader_node2_color;
+s32 *canadin_follower_node3_color;
+}

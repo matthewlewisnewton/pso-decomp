@@ -28,7 +28,7 @@ void calc_projection_screen_offset(f32 *arg0, f32 *arg1);
 f32 calc_camera_fov_degrees(void);
 void load_current_pos_matrix(s32 arg0);
 void load_current_tex_matrix(s32 i);
-extern const f64 lbl_80439358;
+static const f64 lbl_80439358 = 0.0054931640625;
 extern s32 current_matrix;
 extern const f32 lbl_805D93DC;
 extern const f32 lbl_805D940C;
