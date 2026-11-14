@@ -6076,6 +6076,7 @@ pso/misc/TCameraCtrl_801A2FE0.cpp:
 
 pso/unk/text_801A3014.cpp:
 	.text       start:0x801A3014 end:0x801A3B84
+	.rodata     start:0x804468F8 end:0x80446918
 
 pso/misc/TLobby_801A3B84.cpp:
 	.text       start:0x801A3B84 end:0x801A3BB8
