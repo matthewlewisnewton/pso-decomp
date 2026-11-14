@@ -10520,6 +10520,7 @@ force_active:
   - network_info_config_key_t3
   - network_info_config_key_url
   - network_info_config_key_urn
+  - network_info_file_header
   - network_info_trailer_backup
   - network_info_trailer_buffer
   - network_info_unparsed_config_length
