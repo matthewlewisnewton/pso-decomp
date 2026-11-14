@@ -1119,3 +1119,9 @@ void TObjEneGyaranzo::cancel_fade_state() {
 extern "C" {
 __declspec(section ".sdata2") const f32 gyaranzo_volley_fire_frame = 28.0f;
 }
+
+extern "C" {
+NJS_OBJECT *lbl_805D5200;
+NJS_OBJECT *lbl_805D5204;
+TUnk_8048FA00 *gyaranzo_breakup_model_obj;
+}
