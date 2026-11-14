@@ -5032,6 +5032,7 @@ pso/misc/TOFenceAncient04.cpp:
 pso/misc/TOHangceilingCave01.cpp:
 	.text       start:0x80167980 end:0x80168D3C
 	.rodata     start:0x804416F8 end:0x80441890
+	.sbss       start:0x805D59E0 end:0x805D59E8
 	.sdata2     start:0x805DB650 end:0x805DB6A4
 
 pso/misc/TOHangerMachine01.cpp:
