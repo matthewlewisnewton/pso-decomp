@@ -13961,6 +13961,7 @@ pso/unk/text_803F4D84.cpp:
 
 pso/network/NetworkInfoCodec.cpp:
 	.text       start:0x803F632C end:0x803F7678
+	.data       start:0x804FD338 end:0x804FD350
 	.bss        start:0x805A8AE8 end:0x805A9008
 	.sdata      start:0x805D4710 end:0x805D47F0
 	.sbss       start:0x805D79E8 end:0x805D79F8
