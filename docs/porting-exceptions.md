@@ -15,6 +15,14 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Shared technique band sounds
+
+The Barta, GiBarta and Megid sound wrappers use guarded, scoped
+`dont_inline off` / `inline_depth(1)` to expand `play_technique_band_sound`
+at their original entry points, keeping the native sound IDs, pitch schedule
+and switch tables. Ports can remove the pragmas and retain the ordinary inline
+function and inherited technique fields.
+
 ### Shared cave-sign rendering
 
 `TOSignCave01::render` and `TOSignCave02::render` use guarded, scoped
@@ -127,7 +135,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,875 | 886 |
+| CodeWarrior pragmas (excluding push/pop) | 5,881 | 888 |
 | Per-unit compiler overrides in `configure.py` | 209 | 209 |
 | Approved regressions | 0 | 0 |
 
