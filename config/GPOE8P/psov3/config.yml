@@ -8300,6 +8300,10 @@ force_active:
   - lbl_80438AE0
   - lbl_80438AEC
   - lbl_80438E40
+  - lbl_80438E60
+  - lbl_80438E74
+  - lbl_80438E80
+  - lbl_80438E94
   - lbl_80439494
   - lbl_804394A4
   - lbl_804394BC
@@ -8409,6 +8413,14 @@ force_active:
   - lbl_80444EA8
   - lbl_80445588
   - lbl_80445CD8
+  - lbl_80446D10
+  - lbl_80446D1C
+  - lbl_80446D40
+  - lbl_80446D4C
+  - lbl_80446DA8
+  - lbl_80446DB4
+  - lbl_80446EE0
+  - lbl_80446EEC
   - lbl_80446F94
   - lbl_80446F9C
   - lbl_80446FA4
