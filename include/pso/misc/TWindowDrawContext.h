@@ -27,6 +27,15 @@ struct TWindowDrawContext {
     f32 clip_bottom;
 
     s32 is_point_in_bounds(f32 *quad);
+    void scale_point_about_pivot(f32 *q);
+    void set_open_tick(s32 arg1);
+    void set_bounds(f32 a, f32 b, f32 c, f32 d);
+    void shrink_clip_right();
+    void animate_scale();
+    static TWindowDrawContext *open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags);
+    static u32 get_or_create_instance();
+    static u32 free_singleton(u32 arg0, s16 arg1);
+    u32 init_layout();
 };
 
 typedef char TWindowDrawContext_size[sizeof(TWindowDrawContext) == 0x4C ? 1 : -1];

@@ -4,6 +4,7 @@
 #include "pso/misc/TWindowDD_80340EA8.h"
 #include "pso/misc/TWindowDD_WS_String.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TWindowDD_WS_ScrollBar.h"
 #include "pso/misc/TWindowDD.h"
 
@@ -136,22 +137,22 @@ extern f32 lbl_805DFC90;
 
 void TWindowDD_WS_String::render() {
     f32 ctx;
-    void *temp_r3;
+    TWindowDrawContext *temp_r3;
     s32 arg0 = (s32)this;
 
-    temp_r3 = (void *)TWindowDD::draw_default_entry(arg0);
-    ((TWindowBase *)arg0)->calc_inner_rect((u8 *)temp_r3);
+    temp_r3 = (TWindowDrawContext *)TWindowDD::draw_default_entry(arg0);
+    ((TWindowBase *)arg0)->calc_inner_rect(temp_r3);
     ((TWindowDD_WS_String *)arg0)->draw_entry_if_visible(temp_r3);
-    ctx = *(f32 *)((s8 *)temp_r3 + 0x14);
-    *(f32 *)((s8 *)temp_r3 + 0x14) = (f32) (ctx + lbl_805DFC90);
+    ctx = temp_r3->inner_y;
+    temp_r3->inner_y = (f32) (ctx + lbl_805DFC90);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3, ctx);
 }
 
 extern f32 lbl_805DFC94;
 
-void TWindowDD_WS_String::draw_entry_if_visible(void *arg1) {
-    if ((s32) *(s32 *)((s8 *)arg1 + 0x30) >= 0) {
-        draw((s32)arg1, (s32)(*(s32 *)&(*(u32 *)((u8 *)this + 0x60))), (f32)lbl_805DFC94);
+void TWindowDD_WS_String::draw_entry_if_visible(TWindowDrawContext *arg1) {
+    if (arg1->open_tick >= 0) {
+        draw(arg1, m_mode, (f32)lbl_805DFC94);
     }
 }
 
