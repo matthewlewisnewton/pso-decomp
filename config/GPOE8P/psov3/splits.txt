@@ -153,6 +153,7 @@ pso/object/TObjFish_8001ED90.cpp:
 pso/misc/TLobby_8001EF5C.cpp:
 	.text       start:0x8001EF5C end:0x80020898
 	.data       start:0x80480CB0 end:0x80480CE0
+	.sbss       start:0x805D4AD8 end:0x805D4AF0
 
 pso/player/TObjPlayer_80020898.cpp:
 	.text       start:0x80020898 end:0x800208B4
