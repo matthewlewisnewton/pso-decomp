@@ -8074,6 +8074,7 @@ pso/misc/TLobby_802409AC.cpp:
 	.rodata     start:0x8044E5C0 end:0x8044E5C8
 	.data       start:0x804CDA50 end:0x804CDC88
 	.bss        start:0x80517EE0 end:0x8051857C
+	.sbss       start:0x805D63D8 end:0x805D63E0
 	.sdata2     start:0x805DC9E0 end:0x805DCA00
 
 pso/misc/TWindowSubStatusDisp_80242908.cpp:
