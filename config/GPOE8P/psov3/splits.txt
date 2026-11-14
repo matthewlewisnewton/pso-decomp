@@ -12349,6 +12349,7 @@ pso/item/TItemEffectWeapon.cpp:
 	.rodata     start:0x80479FD8 end:0x80479FF8
 	.data       start:0x804F29E0 end:0x804F29F8
 	.sdata      start:0x805D4470 end:0x805D4478
+	.sbss       start:0x805D6FB0 end:0x805D6FB8
 	.sdata2     start:0x805E0280 end:0x805E0288
 
 pso/item/TItem_80363AF4.cpp:
