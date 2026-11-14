@@ -7701,6 +7701,7 @@ pso/unk/text_80223B98.cpp:
 
 pso/misc/ShopToolStock.cpp:
 	.text       start:0x8022448C end:0x80224660
+	.rodata     start:0x8044C478 end:0x8044C488
 	.bss        start:0x80513EF0 end:0x80513F30
 	.sbss       start:0x805D6260 end:0x805D6268
 
