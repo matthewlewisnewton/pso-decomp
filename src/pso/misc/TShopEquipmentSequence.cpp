@@ -334,3 +334,8 @@ void TShopEquipmentSequence__sub_8021DC08(void) {
 }
 
 }
+
+extern "C" {
+u8 *lbl_805D6228;
+s32 lbl_805D622C;
+}
