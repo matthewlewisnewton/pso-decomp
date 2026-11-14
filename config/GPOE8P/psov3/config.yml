@@ -7520,7 +7520,6 @@ force_active:
   - gx_blend_mode_table
   - gx_default_light_obj
   - gx_tlut_region_table
-  - gyaranzo_breakup_model_obj
   - gyaranzo_collision_body
   - gyaranzo_death_breakup_params
   - gyaranzo_flagged_resource_index_table
@@ -9466,8 +9465,6 @@ force_active:
   - lbl_805D514C
   - lbl_805D5158
   - lbl_805D515C
-  - lbl_805D5200
-  - lbl_805D5204
   - lbl_805D5288
   - lbl_805D58C4
   - lbl_805D5A90
