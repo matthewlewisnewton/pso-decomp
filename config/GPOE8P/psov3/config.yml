@@ -6283,7 +6283,7 @@ force_active:
   - draw_locked__8TObjDoorFPv
   - draw_menu_backdrop_gradients__Fl
   - draw_message_frame_row__11TWindowBaseFPvPv
-  - draw_message_window__11TAdEp3ExistFl
+  - draw_message_window__11TAdEp3ExistFPvPv
   - draw_model_12__25TBoss6Demo20_TYPE2_APPEARFv
   - draw_model_13__23TBoss6Demo21_TYPE2_DEADFv
   - draw_model__10TBoss6RockFv

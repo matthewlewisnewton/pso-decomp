@@ -202,3 +202,33 @@ and lifetime holds remain outside this narrow entry-contract correction.
 Independent original-assembly/source review passes. check_pr against the captured
 e778094702 report passes with zero metric loss and the single catalog rename;
 the 347-test repository suite passes. This is not a ready-for-review claim.
+
+## Ep3 callback receiver correction (0e9dee826 follow-up)
+
+The Ep3 entry at 8036EFBC was modeled as a nonstatic TAdEp3Exist member taking
+a signed word, registered through a hand-mangled no-argument C declaration.
+Its actual factory registration supplies an ordinary callback address, and the
+callback renderer supplies its own Base-derived window in r3, not an Ep3 task.
+The entry's prologue leaves r3/r4 unchanged for the frame call at 8036EFD0; no
+Ep3 task field is read. This distinct wrong-receiver contract was checked
+independently of Agreement's previously omitted parameters.
+
+The census of 5,061 available original objects finds only the zero-addend HA/LO
+references in the Ep3 factory registration. No alternate direct reference was
+found; computed callers or externally supplied aliases are not ruled out.
+The source now uses a genuine static member accepting window/context pointers,
+passes them to the existing Base frame member and registers its native address.
+The old hand-mangled external declaration is removed; catalog and retention use
+the real resulting FPvPv export. No adapter, forced symbol spelling, allocation,
+class size, dispatch, lifetime order or common callback-field type is changed.
+Static class placement remains recovered organization, not proof of original
+source naming. The larger mixed callback invocation ABI remains qualified.
+
+Native capacity-gated full build preserves original DOL SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 3,654 other compiled-source
+objects are byte-identical; the Ep3 object's full non-string sections, raw
+relocation records and ordered symbol metadata match after normalizing its one
+native export rename. String/file offsets are not claimed raw-identical.
+Independent original-assembly/source review passes. check_pr against the captured
+0e9dee826 report passes with zero metric loss and one catalog rename. All 347
+repository tests pass. This does not change the PR's substantive draft holds.
