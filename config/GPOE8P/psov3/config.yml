@@ -4327,16 +4327,32 @@ force_active:
   - beam_enter__11TBoss4Type2Fv
   - beam_idle__11TBoss4Type2Fv
   - beam_update__11TBoss4Type2Fv
+  - beast_appear_motion_filename
+  - beast_attack_left_motion_filename
+  - beast_attack_right_motion_filename
+  - beast_bml_filename
+  - beast_body_model_filename
   - beast_collision_body_table
+  - beast_damage_motion_filename
+  - beast_dead_motion_filename
+  - beast_deadb_motion_filename
   - beast_idle_update__16TObjEneMerillLiaFv
+  - beast_leader_motion_filename
+  - beast_mihari_motion_filename
   - beast_model_name_table
   - beast_motion_name_table
   - beast_movement_params
+  - beast_red_body_model_filename
   - beast_resource_descriptor
   - beast_retire_corpse__15TObjEneDimedianFv
+  - beast_run_motion_filename
+  - beast_stund_motion_filename
+  - beast_super_red_body_model_filename
   - beast_update_approach__16TObjEneMerillLiaFv
   - beast_update_group_chase__16TObjEneMerillLiaFv
   - beast_update_hurt__16TObjEneMerillLiaFv
+  - beast_wakeup_motion_filename
+  - beast_walk_motion_filename
   - beginHeightTransition__12TBoss1DragonFv
   - begin_action_0xB__10TObjPlayerFv
   - begin_appear__15TObjEneSlimeOneFv
