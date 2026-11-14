@@ -609,13 +609,13 @@ void draw_item_list_icon(ItemListWindowView *, ItemListPosition *, s32, s32, f32
 }
 s32 draw_window_text(f32 *pos, const char *s, s32 color, s32 mode, f32 width);
 extern const f32 lbl_805DCF14;
-extern const f32 lbl_805DCF20;
-extern const f32 lbl_805DCF24;
-extern const f32 lbl_805DCF28;
-extern const f32 lbl_805DCF2C;
+static const f32 lbl_805DCF20 = -1.0f;
+static const f32 lbl_805DCF24 = 0.1495f;
+static const f32 lbl_805DCF28 = 100000.0f;
+static const f32 lbl_805DCF2C = 0.5f;
 void draw_item_list_row(ItemListRow *row, ItemListWindowView *win);
 extern const f32 lbl_805DCF10;
-extern const f32 lbl_805DCF18;
+static const f32 lbl_805DCF18 = 9.0f;
 extern "C" {
 void calc_row_width__20TWindowSubStatusDispFv(Row_8025930C *arg0);
 s32 measure_string_len__20TWindowSubStatusDispFv(s32);
@@ -698,7 +698,7 @@ void calc_row_width__20TWindowSubStatusDispFv(Row_8025930C *arg0) {
 void*TWindowSubStatusDisp::get_entry_ptr(int a0) {  return (char*)status_disp_item_icon_coord_table + (unsigned char)(a0) * 8; }
 
 extern s32 lbl_805D63F0;
-extern const f32 lbl_805DCF1C;
+static const f32 lbl_805DCF1C = 0.00390625f;
 void begin_screen_draw(s32 arg0);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
 

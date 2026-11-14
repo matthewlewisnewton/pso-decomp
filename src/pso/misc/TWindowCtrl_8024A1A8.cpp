@@ -86,8 +86,8 @@ void *acquire_balloon_slot__11TWindowCtrlFPviiPv(Ctrl_8024A928 *self, s32 player
 s32 is_locally_controlled__10TObjPlayerFPv(u8 *);
 s32 obj_isState2_324__9TObjCharaFv(u8 *);
 s32 obj_is_hit_receivable();
-extern const f32 lbl_805DCBD8;
-extern const f32 lbl_805DCBDC;
+static const f32 lbl_805DCBD8 = 0.0f;
+static const f32 lbl_805DCBDC = 0.92f;
 void get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv(Ctrl_8024A928 *arg0, s32 arg1, f32 *arg2, s32 *arg3);
 s32 TWindowCtrl__sub_8024C5C4(u32);
 u32 create_area_window();

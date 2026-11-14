@@ -49,7 +49,7 @@ s32 get_window_layout_position(int);
 s32 free_member__17TWindowSubComCardFv(int, int);
 void open_yes_no_prompt(TChCrTagPlBack *arg0, u32 arg1, s32 arg2, s32 arg3, f32 farg0);
 s32 create__19TWindowMessageYesNoFPvPvPvPv(void *, int, int, int);
-extern const f32 lbl_805DE298;
+static const f32 lbl_805DE298 = 384.0f;
 s32 create__14TWindowMessageFlPCvUll(s32, void *, int, int);
 extern u8 lbl_80470AA8[];
 s32 TWindowSubTrade::open_trade_confirm_prompt(s32 arg1) {

@@ -41,8 +41,8 @@ extern "C" {
 s32 TObjBoss2Tunnel__sub_8007CAE8(f32 *, f32);
 u8 *draw_default_entry__9TWindowDDFl();
 s32 draw_visible_window_entries(void *, void *, void *);
-extern const f32 lbl_805DE018;
-extern const f32 lbl_805DE01C;
+static const f32 lbl_805DE018 = 18.0f;
+static const f32 lbl_805DE01C = 1000000.0f;
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 extern RecoveredGlobal_802A7FB0_lbl_8050E208 controller_input_state;
