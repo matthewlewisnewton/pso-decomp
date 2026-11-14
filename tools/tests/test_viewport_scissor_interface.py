@@ -158,8 +158,8 @@ class ViewportScissorInterface(unittest.TestCase):
                 "TCameraCtrl::set_viewport_scissor(0, (void *)&stack.sp8);",
             "src/pso/misc/TCameraCtrl_80067FC0.cpp":
                 "TCameraCtrl::set_viewport_scissor(2, TCameraCtrl__data_804FF634.f30);",
-            "src/pso/boss/TBoss4ZakoDraw_8030A96C.cpp":
-                "TCameraCtrl::set_viewport_scissor(2, var_r4);",
+            "src/pso/boss/TBoss4ZakoDraw.cpp":
+                "TCameraCtrl::set_viewport_scissor(2, rect);",
         }
         for path, call in calls.items():
             source = (ROOT / path).read_text()
