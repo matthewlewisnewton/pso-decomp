@@ -94,6 +94,11 @@ No additional virtual slot is invented to consume it. Constructors in
 
 ## Bounded native ABI interface
 
+The DD selection, ScrollBar, Word and ComCard follower windows later moved to
+native construction; see [window-native-lifetime-deferred.md](window-native-lifetime-deferred.md).
+The interface below now covers only the leftover raw sites listed in
+[porting-exceptions §9](../porting-exceptions.md#9-window-lifetime-entry-points-for-legacy-raw-storage-functions).
+
 `WindowConstructorAbi.h` centralizes declarations of the actual MWCC-emitted
 constructor/destructor entry points for remaining C-named raw-storage
 initializers and destroyers. Arguments match the recovered native declarations;
