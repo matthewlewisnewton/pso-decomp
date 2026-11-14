@@ -1117,3 +1117,10 @@ u32 fn_8042E8B8(void) {
 }
 
 }
+
+extern "C" {
+char lbl_805D489C[5] = "ATZ\r";
+char lbl_805D48A4[8] = "AT+GCI=";
+char lbl_805D48AC[2] = "\r";
+char lbl_805D48B0[6] = "ATE0\r";
+}
