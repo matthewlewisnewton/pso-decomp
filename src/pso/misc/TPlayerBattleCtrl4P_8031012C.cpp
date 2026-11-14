@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/TSetEvtDestroy.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/item/TItem.h"
@@ -522,7 +523,7 @@ void send_code_45_to_window__19TPlayerBattleCtrl4PFPvii(void *arg0, s32 arg1, s3
     if (temp_r30 != 0) {
         end_player_keyboard_hold(temp_r31);
         TWindowCtrl::clear_flag();
-        ((TWindowCtrl *)temp_r31)->unsuppress_slot();
+        unsuppress_player_window(temp_r31);
     }
 }
 
@@ -622,7 +623,7 @@ void TPlayerBattleCtrl4P::remove_player(void *arg0, u16 arg1, s32 arg2) {
     if (arg2 != 0) {
         begin_player_keyboard_hold(id);
         request_active_window_close();
-        ((TWindowCtrl *)id)->suppress_slot();
+        suppress_player_window(id);
     }
 }
 

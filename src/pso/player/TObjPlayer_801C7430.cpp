@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/math/ScratchVectorStorage.h"
@@ -1592,8 +1593,6 @@ void launch_technique__10TObjPlayerFv(s32, s32, void *);
 Rec_801CCEDC * calc_technique_parameters(s32 tech, s32 level, s32 id);
 s32 construct_actor_light_task(void *, f32 *, Vec *, int, void *, f32, s32);
 s32 construct_revival_particle_effect(void *, void *, s32);
-s32 TObjPlayer__sub_8024ABDC(void *);
-void TLobby__sub_8024AC20(s32 arg0);
 void dispatch_to_child__11TWindowCtrlFPv(u16, s32);
 }
 void reset_cameras_to_actor(void *actor, s32 arg1);
@@ -2869,7 +2868,7 @@ void run_service_hold_state_phase__10TObjPlayerFis(s32 arg0, s16 arg1) {
 
 void notify_lobby__10TObjPlayerFi(s32 arg0) {
     ((s32 (*)(void))clear_status_bit6__10TObjPlayerFPv)();
-    TLobby__sub_8024AC20(((u16 (*)(s32))get_entity_id)(arg0));
+    enable_player_main_menu(((u16 (*)(s32))get_entity_id)(arg0));
 }
 
 void ensure_default__10TObjPlayerFPv(void *player) {
@@ -3274,7 +3273,7 @@ void TObjPlayer::prepare_death() {
     Cmd_801CA7BC c1;
     Cmd2_801CA7BC c2;
     if (is_locally_controlled__10TObjPlayerFPv(arg0) != 0) {
-        TObjPlayer__sub_8024ABDC((void *)(u16)((s32 (*)(void *))get_entity_id)(arg0));
+        disable_player_main_menu((s32)(u16)((s32 (*)(void *))get_entity_id)(arg0));
         *(s32 *)(arg0 + 0x36C) = 0;
         *(s32 *)(arg0 + 0x548) = 0;
         ((FlagWord *)(arg0 + 0x858))->clear(4);
@@ -3323,7 +3322,7 @@ void TObjPlayer::check_reopen_return_city_window() {
   unsigned short new_var;
   u32 temp_r3;
   new_var = (s32) ((s32 (*)(void *))get_entity_id)((void *) arg0);
-  TObjPlayer__sub_8024ABDC((void *) new_var);
+  disable_player_main_menu((s32) new_var);
   temp_r3 = this->m_36c;
   new_var = 0U;
   if ((temp_r3 != new_var) && ((((TObject *)temp_r3)->all_parents_unqueued_for_destruction() == 0) || (check_value_equals__7TObjectFPCc((int) (this->m_36c), (void *) TWindowReturnCity__class_name) == 0)))

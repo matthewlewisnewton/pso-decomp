@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/TMainTask.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/misc/PhotonBlastSummon.h"
@@ -42,7 +43,7 @@ TUnk_804C349C::~TUnk_804C349C() {
         TLobby::set_and_notify_default();
         release_photon_blast_player_holds(holds);
         if (get_player_by_client_id(local_client_id) != NULL) {
-            TLobby__sub_8024AC20(local_client_id);
+            enable_player_main_menu(local_client_id);
             TCameraCtrl::release_photon_blast_camera();
             restore_player_cameras();
             reset_cameras_to_actor(get_player_by_client_id(local_client_id), 0);
@@ -99,7 +100,7 @@ TUnk_804C349C::TUnk_804C349C(s32 client, PhotonBlastSlot *slots, const s32 *coun
     apply_photon_blast_action_hold(this, summon_count * 150 + 100, client);
     if (this->animated != 0) {
         TLobby::send_neg30();
-        TObjPlayer__sub_8024ABDC(local_client_id);
+        disable_player_main_menu(local_client_id);
         if (owner != NULL) {
             VecCopy(&position, &owner->position);
             play_sound_effect(0x40021927, &position, 0, 0);
