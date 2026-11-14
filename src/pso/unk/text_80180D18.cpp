@@ -43,8 +43,8 @@ extern s32 city_traffic_car_chunk_index_table[];
 extern s32 air_car_buffer_pair_table[];
 extern void **city_air_car_model_handle;
 extern void **city_common_texture_list;
-extern const f32 lbl_805DBBA0;
-extern const f32 lbl_805DBBA4;
+static const f32 lbl_805DBBA0 = 800.0f;
+static const f32 lbl_805DBBA4 = 50.0f;
 }
 struct Vec_80180E70 { f32 x, y, z; };
 
@@ -83,16 +83,16 @@ void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 fla
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 extern u32 city_air_car_model_resource;
-extern const f32 lbl_805DBBA8;
-extern const f32 lbl_805DBBAC;
-extern const f32 lbl_805DBBB0;
-extern const f32 lbl_805DBBB4;
-extern const f32 lbl_805DBBB8;
-extern const f32 lbl_805DBBBC;
+static const f32 lbl_805DBBA8 = 15.5f;
+static const f32 lbl_805DBBAC = 35.5f;
+static const f32 lbl_805DBBB0 = 15.0f;
+static const f32 lbl_805DBBB4 = 35.0f;
+static const f32 lbl_805DBBB8 = 20.0f;
+static const f32 lbl_805DBBBC = 10.0f;
 f64 atan2_float(f32, f32);
 s32 angle_diff_s16(s32, s32);
 s32 vec3_add_to(void *, void *);
-extern const f64 lbl_80443B90;
+static const f64 lbl_80443B90 = 10430.38043493439;
 extern const f32 lbl_805DBBC0;
 extern const f32 lbl_805DBBC4;
 void render__18TObjCityAirCar_CarFPv(TObjCityAirCar_Car *city_air_car_car) {

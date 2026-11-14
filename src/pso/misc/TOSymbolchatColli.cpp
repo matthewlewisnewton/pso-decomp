@@ -58,7 +58,7 @@ struct Ent_8017873C
 
 extern "C" {
 f32 newton_sqrtf(f32 x);
-extern const f32 lbl_805DBA2C;
+static const f32 lbl_805DBA2C = 0.3f;
 extern const f32 lbl_805DBA30;
 void __ct__9TObjCharaFP7TObject(void *);
 void init_collision_body_parts(void *, void *, int);
@@ -76,7 +76,7 @@ extern u32 symbolchat_colli_param_table[];
 extern s32 lbl_805D3190;
 extern int symbol_chat_colli_entries;
 void *memset(void *, int, u32);
-extern const f32 lbl_805DBA28;
+static const f32 lbl_805DBA28 = 0.92f;
 void *__dt__17TOSymbolchatColliFv(void *arg0, s16 arg1);
 u8 is_current_floor_switch_set(u16);
 s32 free_collision_body_parts(void *);

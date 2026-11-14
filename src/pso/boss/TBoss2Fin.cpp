@@ -107,7 +107,7 @@ struct In_800367C4 { u8 pad[0x8]; void *end_model; u8 pad2[0xC]; void *segment_m
 struct G_800367C4 { u8 pad[0x42c]; In_800367C4 *in; };
 
 extern "C" {
-extern RopeSegment lbl_804FE590[];
+extern RopeSegment lbl_804FE590[3];
 extern const f32 lbl_805D8460;
 extern const char *TBoss2Fin__name;
 extern const f32 lbl_805D845C;
@@ -148,4 +148,8 @@ void TBoss2Fin::init_effect_table() {
     p->point_count = -1;
 }
 
+}
+
+extern "C" {
+RopeSegment lbl_804FE590[3];
 }
