@@ -5,12 +5,12 @@
 
 extern "C" {
 s32 test_action_mask__10TObjPlayerFl(void *, s32);
-extern const f32 lbl_805DAE00;
-extern const f32 lbl_805DAE04;
-extern const f32 lbl_805DAE08;
-extern const f32 lbl_805DAE0C;
-extern const f32 lbl_805DAE10;
-extern const f32 lbl_805DAE14;
+static const f32 lbl_805DAE00 = 15.6f;
+static const f32 lbl_805DAE04 = 20.4f;
+static const f32 lbl_805DAE08 = 12.0f;
+static const f32 lbl_805DAE0C = 24.0f;
+static const f32 lbl_805DAE10 = 14.4f;
+static const f32 lbl_805DAE14 = 20.0f;
 #pragma push
 #pragma fp_contract on
 void TUnk_804A4138::update_attack() {

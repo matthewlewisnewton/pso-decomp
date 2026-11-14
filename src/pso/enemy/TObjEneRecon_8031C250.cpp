@@ -240,8 +240,8 @@ struct Vec_8031C364 { f32 x, y, z; };
 extern "C" {
 f32 normalize_vector_xz__FP3Vec(void *, s32);
 void clear_attack_receipts__9TObjEneDDFv(void);
-extern const f32 TObjEneRecon__data_805DF3E0;
-extern const f32 TObjEneRecon__data_805DF3E4;
+static const f32 TObjEneRecon__data_805DF3E0 = 0.5f;
+static const f32 TObjEneRecon__data_805DF3E4 = 200.0f;
 void TObjEneRecon__sub_8031C624(u8 *arg0, s32 arg1);
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 void TBoss8Dragon__sub_800BB7D8(void *, int, f32);
@@ -253,8 +253,8 @@ extern const f32 TObjEneRecon__data_805DF3C4;
 extern const f32 lbl_805DF3CC;
 extern const f32 TObjEneRecon__data_805DF3D0;
 extern const f32 TObjEneRecon__data_805DF3D4;
-extern const f32 lbl_805DF3D8;
-extern const f32 lbl_805DF3DC;
+static const f32 lbl_805DF3D8 = 0.98f;
+static const f32 lbl_805DF3DC = 0.3f;
 void TObjEneRecon__sub_8031C364(u8 *arg0, s32 arg1);
 
 void TObjEneRecon__sub_8031C364(u8 *arg0, s32 arg1) {
@@ -670,7 +670,7 @@ struct Prm_8031C920 { f32 f0; f32 f4; };
 extern "C" {
 void TObjEneRecon__sub_8031D380(u8 *arg0, s32 arg1);
 f64 atan2_float(f32, f32);
-extern const f64 TObjEneRecon__data_80476110;
+static const f64 TObjEneRecon__data_80476110 = 10430.38043493439;
 extern const f32 lbl_805DF410;
 extern const f32 lbl_805DF414;
 extern const f32 lbl_805DF418;

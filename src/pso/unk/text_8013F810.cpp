@@ -45,7 +45,7 @@ void lzss_remove_ring_node(Lz_8013FCB0 *t, s32 p);
 void bswap_32__FPUl(u32 *);
 int sprintf(char *, const char *, ...);
 s32 TLobby__sub_8013F810(TLobby *lz, u32 *data, s32 len, u8 *out);
-extern char lbl_8043F168[];
+extern const char lbl_8043F168[] = "compless size  %d %d time %d";
 
 #pragma push
 #pragma opt_propagation off

@@ -26,7 +26,7 @@ u8 *TWindowKeyBoardBase__ct(u8 *arg0);
 s32 set_stream_and_load_file__6TLobbyFPCv(const char *);
 s32 Dolphin_ARAlloc(s32);
 s32 TQuestVmDownLoadServer__sub_803F0C04(s32, s32, s32, s32, s32);
-extern char lbl_8044F098[];
+extern const char lbl_8044F098[] = "Ask_n.dic";
 void *__dt__19TWindowKeyBoardBaseFv(void *arg0, s16 arg1);
 s32 sub_8025CB10__19TWindowKeyBoardBaseFv(void *);
 s32 sub_8025EB68__19TWindowKeyBoardBaseFv();

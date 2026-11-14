@@ -204,7 +204,7 @@ TTecGiBarta_80230B48 *__dt__9TTecMegidFv(TTecGiBarta_80230B48 *self, s16 deletin
 u16 get_entity_id(void *);
 void __ct__13TUnk_804CCC68FlPUcPUcl();
 extern s32 lbl_805D37E8;
-extern const f32 lbl_805DC884;
+static const f32 lbl_805DC884 = 0.0f;
 u8 *TTecMegid__ct(TTecMegid *arg0, s32 _w1, s32 _w2, s32 _w3, s32 _w4);
 void construct_facing_technique__10TObjPlayerFPviPvii();
 s32 obj_isState3_324__9TObjCharaFv(void *);
@@ -226,7 +226,7 @@ void *spawn_continuous_particle_effect_with_flags(void *, u32, u16);
 
 extern s32 technique_effect_bml;
 extern s32 lbl_805D63B0;
-extern const f32 lbl_805DC880;
+static const f32 lbl_805DC880 = 1.0f;
 u32 __nw__7TObjectFUl(s32 a0 = 0);
 
 void TTecMegid::update_by_state() {

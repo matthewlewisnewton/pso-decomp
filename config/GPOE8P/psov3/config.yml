@@ -187,6 +187,7 @@ force_active:
   - TAdMultiSaveGC__sub_802FF2B4
   - TAdMultiSaveGC__sub_802FF314
   - TAdPlayerLoadGC__banner_buffers
+  - TAdPlayerLoadGC__card_result_code
   - TAdPlayerLoadGC__data_80511EE8
   - TAdPlayerLoadGC__network_config_buffer
   - TAdPlayerLoadGC__network_info_payload_buffer
@@ -1090,6 +1091,7 @@ force_active:
   - TOSymbolchatColli__ct
   - TOTrapAncient01__bml_resource
   - TOTrapAncient01__class_name
+  - TOTrapAncient02__shared_resource
   - TOTrapChainSawDamage__ct
   - TOTrapChainSawDamage__sub_802C9C00
   - TOTrapChainSawDamage__vt14
@@ -1100,6 +1102,9 @@ force_active:
   - TOTrapChainSawKey__ct
   - TOTrapChainSaw__level_scale_table
   - TOTrapChainSaw__name
+  - TOTrapSeabed01__bml_resource
+  - TOTrapSeabed01__ginja_model
+  - TOTrapSeabed01__texture_file
   - TOVS2Wall01__ct
   - TOVS2Wreck01__ct
   - TOVS2Wreck02__ct
@@ -1232,7 +1237,10 @@ force_active:
   - TObjDeadListWin_name
   - TObjDoaEx01__ct
   - TObjDoaEx01__resource_descriptor
+  - TObjDoorJung__child_table
+  - TObjDoorJung__door_scene_buffer
   - TObjDoorKey__ct
+  - TObjDoorKey__data_805D5C04
   - TObjDoorKey__resource_descriptor
   - TObjDoor__collision_desc
   - TObjDoor__ct
@@ -2229,6 +2237,8 @@ force_active:
   - TWindowSubComCard__sub_8027337C
   - TWindowSubComCard__sub_8027346C
   - TWindowSubComCard__sub_8027353C
+  - TWindowSubCustomEquip__bank_ring_init_done
+  - TWindowSubCustomEquip__ring_scale
   - TWindowSubEquipList__class_name
   - TWindowSubEquipList__ct
   - TWindowSubGameEnd__class_name
@@ -2257,6 +2267,7 @@ force_active:
   - TWindowSubStatusDisp__window_layout
   - TWindowSubSymbolChatFaceType__sub_80283F38
   - TWindowSubSymbolChatPartsSet__part_uv_table
+  - TWindowSubSymbolChat__instance
   - TWindowSubSymbolChat__sub_80281840
   - TWindowSubSymbolChat__sub_8028233C
   - TWindowSubSymbolChat__sub_8028379C
@@ -4758,6 +4769,9 @@ force_active:
   - bm_ply_photon_chair_motion_names
   - bm_tec_regurar_model_names
   - bm_tec_regurar_motion_names
+  - bml_header_record_ptr
+  - bml_load_buffer
+  - bml_load_entry_index
   - bml_resource__12TODoorCave01
   - bml_resource__12TODoorCave02
   - bml_resource__12TODoorCave03
@@ -4808,6 +4822,8 @@ force_active:
   - boss2_mine_params
   - boss2_tunnel_color
   - boss2_tunnel_color_table
+  - boss2_tunnel_confirm_loop_flag
+  - boss2_tunnel_message_shown_flag
   - boss2_tunnel_model_index_table
   - boss2_tunnel_model_order_table
   - boss2_tunnel_snapshot_buffer
@@ -5184,6 +5200,7 @@ force_active:
   - capture_node__24ModelNodePositionCaptureFP10NJS_OBJECT
   - capture_part_matrices__16TObjEneRe7BeruraFP10NJS_OBJECTP18BeruraDetachedPart
   - capture_slime_tail_node
+  - card_load_followup_pending
   - carrier_class_string
   - carrier_point_cursor
   - carrier_sample_index
@@ -5654,6 +5671,7 @@ force_active:
   - collect_targets_in_arc__15TBoss3VoloptP02Fv
   - collect_targets_in_front__15TBoss3VoloptP02Fv
   - collect_technique_contacts__12TNeedleShootFPv
+  - com_card_entry_count
   - commit_composition_text__19TWindowKeyBoardSoftFv
   - complete_and_destroy__13TOCtrlDubchikFv
   - complete_fall_reaction__10TObjPlayerFv
@@ -6244,6 +6262,7 @@ force_active:
   - door_cave03_a_resource_descriptor
   - door_cave03_class_name
   - door_cave03_resource_descriptor
+  - door_key_id_counter
   - door_machine01_a_resource_descriptor
   - door_machine01_class_name
   - door_machine01_resource_descriptor
@@ -7233,6 +7252,7 @@ force_active:
   - fs_obj_o_door06l_motion_names
   - fs_obj_o_vs2door01l_model_names
   - fs_obj_o_vs2door01l_motion_names
+  - fsrv_read_pvm_buffer_tag
   - fxcmp
   - gDBCommTable
   - gReadBuf
@@ -7736,6 +7756,7 @@ force_active:
   - handle_withdraw_list_input__18TShopGetItemWindowFv
   - hang_ceiling_cave_scale_params
   - hanger_machine01_collision_body_parts
+  - hanging_ceiling_motion_index
   - hasActiveRenderFade__12TBoss8DragonFv
   - has_armor_with_unit_slot__FP14TWindowSubItemi
   - has_at_most_one_player__15TObjSoloPlayWinFv
@@ -8354,6 +8375,7 @@ force_active:
   - lazer_fence_norm_episode1_resource_descriptor
   - lazer_fence_norm_episode2_resource_descriptor
   - lazer_fence_sw_ginja_model_table
+  - lazer_fence_switch_bml_resource
   - lbl_8043406C
   - lbl_80434074
   - lbl_804345D8
@@ -8484,6 +8506,7 @@ force_active:
   - lbl_8043F06C
   - lbl_8043F078
   - lbl_8043F084
+  - lbl_8043F168
   - lbl_8043F380
   - lbl_8043FA38
   - lbl_8043FA4C
@@ -8493,8 +8516,11 @@ force_active:
   - lbl_8043FD6C
   - lbl_8043FD90
   - lbl_8043FDA4
+  - lbl_80440078
   - lbl_80441858
   - lbl_80441874
+  - lbl_804421F0
+  - lbl_80443308
   - lbl_80443BA8
   - lbl_80443BBC
   - lbl_80443BD0
@@ -8535,6 +8561,7 @@ force_active:
   - lbl_80444238
   - lbl_80444248
   - lbl_80444250
+  - lbl_80444B48
   - lbl_80444E5C
   - lbl_80444EA8
   - lbl_80445430
@@ -8542,6 +8569,7 @@ force_active:
   - lbl_80445588
   - lbl_80445910
   - lbl_80445CD8
+  - lbl_80446470
   - lbl_804468F8
   - lbl_80446908
   - lbl_80446D10
@@ -8565,7 +8593,11 @@ force_active:
   - lbl_80446FFC
   - lbl_80447008
   - lbl_80447010
+  - lbl_804496A8
+  - lbl_804496B8
   - lbl_80449700
+  - lbl_8044A7B0
+  - lbl_8044A7B8
   - lbl_8044A800
   - lbl_8044A80C
   - lbl_8044A840
@@ -8618,6 +8650,7 @@ force_active:
   - lbl_8044DB08
   - lbl_8044DB14
   - lbl_8044DB2C
+  - lbl_8044DD18
   - lbl_8044E688
   - lbl_8044E6B0
   - lbl_8044E6C4
@@ -8629,6 +8662,7 @@ force_active:
   - lbl_8044E748
   - lbl_8044E758
   - lbl_8044E7BC
+  - lbl_8044F098
   - lbl_8044F138
   - lbl_8044F164
   - lbl_8044F1B4
@@ -8658,6 +8692,8 @@ force_active:
   - lbl_80450A10
   - lbl_80450AA0
   - lbl_80450AB4
+  - lbl_80450C50
+  - lbl_80450C6C
   - lbl_80451CD0
   - lbl_804652E0
   - lbl_80465A48
@@ -8721,6 +8757,7 @@ force_active:
   - lbl_80471CE0
   - lbl_80471CE8
   - lbl_80471D70
+  - lbl_804725E0
   - lbl_80472998
   - lbl_804729A8
   - lbl_804729C0
@@ -8835,8 +8872,22 @@ force_active:
   - lbl_80478134
   - lbl_80478140
   - lbl_8047817C
+  - lbl_80478408
+  - lbl_804786A0
   - lbl_804790F0
   - lbl_80479280
+  - lbl_8047A0A8
+  - lbl_8047A0C4
+  - lbl_8047A0DC
+  - lbl_8047A0F8
+  - lbl_8047A110
+  - lbl_8047A124
+  - lbl_8047A134
+  - lbl_8047A150
+  - lbl_8047A16C
+  - lbl_8047A188
+  - lbl_8047A1A4
+  - lbl_8047A1B8
   - lbl_8047B928
   - lbl_8047C5D8
   - lbl_80480950
@@ -9368,6 +9419,7 @@ force_active:
   - lbl_8050CE54
   - lbl_8050CF68
   - lbl_8050CFC4
+  - lbl_8050DC20
   - lbl_8050EA64
   - lbl_80511DD8
   - lbl_80511EFC
@@ -9524,6 +9576,7 @@ force_active:
   - lbl_805D3BB8
   - lbl_805D3BBC
   - lbl_805D3CC8
+  - lbl_805D3CD8
   - lbl_805D3E50
   - lbl_805D3E60
   - lbl_805D3E90
@@ -9553,6 +9606,7 @@ force_active:
   - lbl_805D48A4
   - lbl_805D48AC
   - lbl_805D48B0
+  - lbl_805D4AE0
   - lbl_805D4AF0
   - lbl_805D4AF8
   - lbl_805D4B10
@@ -9566,6 +9620,9 @@ force_active:
   - lbl_805D4D90
   - lbl_805D4D94
   - lbl_805D4DC0
+  - lbl_805D4E98
+  - lbl_805D4E9C
+  - lbl_805D4EA4
   - lbl_805D4EE0
   - lbl_805D5020
   - lbl_805D5058
@@ -9582,6 +9639,18 @@ force_active:
   - lbl_805D5A90
   - lbl_805D5A94
   - lbl_805D5A98
+  - lbl_805D5ADC
+  - lbl_805D5AE0
+  - lbl_805D5AE4
+  - lbl_805D5B30
+  - lbl_805D5B78
+  - lbl_805D5BE4
+  - lbl_805D5BE8
+  - lbl_805D5BEC
+  - lbl_805D5CD0
+  - lbl_805D5CD2
+  - lbl_805D5CD4
+  - lbl_805D5CD6
   - lbl_805D5D00
   - lbl_805D5D04
   - lbl_805D5D60
@@ -9600,7 +9669,10 @@ force_active:
   - lbl_805D62A0
   - lbl_805D63C0
   - lbl_805D63C4
+  - lbl_805D63D8
   - lbl_805D6440
+  - lbl_805D6478
+  - lbl_805D647C
   - lbl_805D64A8
   - lbl_805D64AC
   - lbl_805D6578
@@ -9622,6 +9694,7 @@ force_active:
   - lbl_805D6800
   - lbl_805D6804
   - lbl_805D6808
+  - lbl_805D681C
   - lbl_805D6840
   - lbl_805D6910
   - lbl_805D6948
@@ -9631,10 +9704,15 @@ force_active:
   - lbl_805D6AB0
   - lbl_805D6ADC
   - lbl_805D6C80
+  - lbl_805D6D68
+  - lbl_805D6D6C
   - lbl_805D6D80
   - lbl_805D6D84
   - lbl_805D6D88
   - lbl_805D6D90
+  - lbl_805D6DC8
+  - lbl_805D6E68
+  - lbl_805D6E6C
   - lbl_805D6EFC
   - lbl_805D6F00
   - lbl_805D6FF8
@@ -9754,6 +9832,11 @@ force_active:
   - lbl_805D7694
   - lbl_805D76C8
   - lbl_805D76CC
+  - lbl_805D7940
+  - lbl_805D7944
+  - lbl_805D7948
+  - lbl_805D794C
+  - lbl_805D7950
   - lbl_805D7A70
   - lbl_805D7A74
   - lbl_805D7B80
@@ -10475,6 +10558,8 @@ force_active:
   - load_texture_sub__11BmlResourceFPvl
   - lobby_account_entries
   - lobby_alarm_slot_table
+  - lobby_bml_file_handle
+  - lobby_bml_read_buffer
   - lobby_buffer_refcount
   - lobby_checked_read_ptr_table
   - lobby_class_name
@@ -10515,6 +10600,7 @@ force_active:
   - lobby_texlist__19TObjStendGlassLobby
   - lobby_weapon_random_tables_ptr
   - lobby_worker_thread_run_flag
+  - lock_on_cursor_bml_resource
   - log_printf_buffer
   - logo_load_callback_table
   - lookup_attack_marker__Flssl
@@ -18717,6 +18803,7 @@ force_active:
   - try_update_target_flag__10TNpcPlayerFPvi
   - try_use_mag__10TObjPlayerFv
   - try_warp_to_position__14TObjEnePanarmsFP3Vec
+  - turiten_singo_key_model_index
   - turn_pose_to_target__14TObjEneBm5WolfFv
   - turn_to_nearest_player__14TObjEnePanarmsFll
   - turn_to_target__18TObjEneRe4SorcererFv

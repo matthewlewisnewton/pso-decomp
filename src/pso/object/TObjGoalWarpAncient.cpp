@@ -24,7 +24,7 @@ struct RecoveredGlobal_8019A880___vt__8TObjTank {
 extern "C" {
 extern int ancient_warp_shared_resource;
 extern s32 goal_warp_ancient_gvm_texture;
-extern char lbl_80443308[];
+extern const char lbl_80443308[] = "de_obj2_swarp_beam_r.gvm";
 extern RecoveredGlobal_8019A9B8_lbl_804B8F60 bm_o_warp_ancient_resource_descriptor;
 void TObjGoalWarpAncient__sub_8017D2D4(void* a0);
 int get_bml_motion(void*, void*);
