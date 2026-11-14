@@ -5086,6 +5086,7 @@ force_active:
   - camera_motion_context_table
   - camera_slot_positions
   - camera_slot_scan_index__10TObjCamera
+  - camera_viewport_center_y
   - can_action__15TBoss3VoloptP02Fv
   - can_action_wait__15TBoss3VoloptP02Fv
   - can_attack_target__13TObjEneBm3FlyFv
@@ -5946,6 +5947,7 @@ force_active:
   - ct_shoot_model__10TObjPlayerFPv
   - cull_sections__6TSceneFv
   - current_floor_area_type
+  - current_line_width
   - cursor_action_priority_table
   - curvecmp
   - cvfs_entry_table
@@ -7065,6 +7067,7 @@ force_active:
   - fn_803F1804
   - fn_803F4D10
   - fn_spawn_particle_f3_with_flags
+  - fog_default_entry
   - follow_anchor__13TUnk_804CF0B8Fv
   - footer_divider_colors
   - footer_divider_vertices
@@ -7439,10 +7442,18 @@ force_active:
   - gigue_split_screen_model_filenames
   - gigue_split_screen_motion_filenames
   - gigue_split_screen_resource_descriptor
+  - ginja_draw_list_state
   - ginja_load_texture_slot__FUl
   - ginja_parameter_handlers
+  - ginja_post_channel_callback
+  - ginja_post_tev_callback
+  - ginja_post_texgen_callback
+  - ginja_pre_channel_callback
+  - ginja_pre_tev_callback
+  - ginja_pre_texgen_callback
   - ginja_set_alpha_compare__Fl
   - ginja_set_vertex_format__FUl
+  - ginja_texcoord_gen_enabled
   - ginja_texcoord_ids
   - ginja_texmap_ids
   - ginja_texture_matrix_ids
@@ -8691,6 +8702,7 @@ force_active:
   - lbl_804809E0
   - lbl_80480A10
   - lbl_80480A70
+  - lbl_80480BC8
   - lbl_80480D20
   - lbl_80480D48
   - lbl_80480DD8
@@ -9155,6 +9167,8 @@ force_active:
   - lbl_804F7168
   - lbl_804F9D80
   - lbl_804F9E60
+  - lbl_804FC668
+  - lbl_804FC674
   - lbl_804FD9F8
   - lbl_804FDA04
   - lbl_804FE188
@@ -9328,6 +9342,8 @@ force_active:
   - lbl_805D3500
   - lbl_805D3520
   - lbl_805D3528
+  - lbl_805D3584
+  - lbl_805D3608
   - lbl_805D3640
   - lbl_805D3810
   - lbl_805D3820
@@ -9386,6 +9402,7 @@ force_active:
   - lbl_805D4660
   - lbl_805D4664
   - lbl_805D4678
+  - lbl_805D46A0
   - lbl_805D46C8
   - lbl_805D4AF0
   - lbl_805D4AF8
@@ -9405,6 +9422,7 @@ force_active:
   - lbl_805D5158
   - lbl_805D515C
   - lbl_805D5288
+  - lbl_805D5698
   - lbl_805D58C4
   - lbl_805D5A90
   - lbl_805D5A94
@@ -9554,6 +9572,8 @@ force_active:
   - lbl_805D75F0
   - lbl_805D7688
   - lbl_805D7694
+  - lbl_805D76C8
+  - lbl_805D76CC
   - lbl_805D7D3C
   - lbl_805D7DD8
   - lbl_805D7DDC
@@ -10657,6 +10677,7 @@ force_active:
   - online_ending_hex_line_param
   - online_ending_hex_line_state
   - online_ending_quad_vertices
+  - online_ending_scene_z_offset
   - online_floor_map_variation_dimension_table
   - onlineending_dat_model_names
   - onlineending_dat_motion_names
@@ -15395,6 +15416,7 @@ force_active:
   - radar_map_backdrop_color
   - radar_map_view_rect_table
   - radar_map_view_scissor_table
+  - radar_overhead_projection_scale
   - rafoie_burst_table
   - rand_range_inclusive__11TBoss6Type1Fii
   - rand_scaled_offset__12TBoss8DragonFiii
@@ -16758,6 +16780,7 @@ force_active:
   - scan_memcard_quest_files__12TQuestListVMFv
   - scan_nearby_enemies__10TNpcPlayerFPvPvf
   - scene_file_buffer_size
+  - scene_fog_type
   - scene_format_dispatch_tables
   - schedule_pack_reaction__14TObjEneBm5WolfFPvis
   - screen_meshes__19TOComputerMachine01
@@ -19801,6 +19824,8 @@ force_active:
   - vfunc_9__17TWindowMainMenu4PFv
   - vfunc_9__20TObjEneMe1Gee_NEEDLEFPv
   - vfunc_9__22TObjEneMe1GiGueMissileFPv
+  - video_present_interval_retraces
+  - viewport_scissor_origin_x
   - voiceRemovePriority
   - voiceResetLastStarted
   - volopt_cage_breakup_params
