@@ -7709,6 +7709,7 @@ pso/player/TObjPlayer_8022602C.cpp:
 pso/misc/TLobby_80226070.cpp:
 	.text       start:0x80226070 end:0x802264B8
 	.rodata     start:0x8044C850 end:0x8044C858
+	.sbss       start:0x805D6298 end:0x805D62A8
 
 pso/unk/text_802264B8.cpp:
 	.text       start:0x802264B8 end:0x80226534
