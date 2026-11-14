@@ -324,3 +324,8 @@ int TObjPlayer::update_action_palette() { return set_slot__20TWindowActionPalett
 int TObjPlayer::set_action_palette_mode() { return set_mode__20TWindowActionPaletteFUc((char*)this + 0x4); }
 void TObjPlayer::clear_flag0_bit1() { ((FlagWord *)this)->clear(2); }
 void TObjPlayer::set_flag_2() { ((FlagWord *)this)->set(2); }
+
+extern "C" {
+int lbl_805D5D70;
+int shared_flag;
+}

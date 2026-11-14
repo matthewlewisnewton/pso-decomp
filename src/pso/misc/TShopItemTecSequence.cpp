@@ -341,3 +341,8 @@ void set_judgment_target_flag(void *arg0, void *arg1) {
 }
 
 }
+
+extern "C" {
+s32 lbl_805D6248;
+s32 lbl_805D624C;
+}
