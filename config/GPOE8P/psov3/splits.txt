@@ -5999,6 +5999,7 @@ pso/object/TObjAreaWarpEndingJung.cpp:
 
 pso/unk/text_8019DBB4.cpp:
 	.text       start:0x8019DBB4 end:0x8019DC14
+	.rodata     start:0x80446470 end:0x80446480
 
 pso/ui/TAdStorySelectGC_8019DC14.cpp:
 	.text       start:0x8019DC14 end:0x8019DC78
