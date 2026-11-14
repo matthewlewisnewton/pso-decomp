@@ -5,8 +5,8 @@
 #include "pso/item/TItemEffOrgaFlowShot.h"
 #include "pso/item/TItemProShield.h"
 
-extern const f32 lbl_805DAFF0;
-extern const f32 lbl_805DAFF4;
+static const f32 lbl_805DAFF0 = -0.2f;
+static const f32 lbl_805DAFF4 = 0.6f;
 
 void TUnk_804A68C8::update_idle() {
     if ((s32) this->m_1fc == 1) {

@@ -68,14 +68,14 @@ struct VObj_18_b27ba1 : VBase_18_b27ba1 {
 
 extern "C" {
 
-extern const f32 lbl_805DC110;
-extern const f32 lbl_805DC114;
-extern const f32 lbl_805DC118;
-extern const f32 lbl_805DC11C;
-extern const f32 lbl_805DC120;
-extern const f32 lbl_805DC124;
-extern const f32 lbl_805DC128;
-extern const f32 lbl_805DC12C;
+static const f32 lbl_805DC110 = 0.0f;
+static const f32 lbl_805DC114 = 2.5f;
+static const f32 lbl_805DC118 = 0.025f;
+static const f32 lbl_805DC11C = 15.0f;
+static const f32 lbl_805DC120 = 0.15f;
+static const f32 lbl_805DC124 = 7.5f;
+static const f32 lbl_805DC128 = 0.075f;
+static const f32 lbl_805DC12C = 0.5f;
 
 extern u32 lbl_805D5D18;
 void deliver_photon_blast_results_animated(PhotonBlastSequence_801A9870 *seq);

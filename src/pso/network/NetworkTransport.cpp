@@ -896,3 +896,13 @@ void TLobby::init_net_config() {
     c->f44 = buf;
 }
 #pragma pop
+
+extern "C" {
+s32 lobby_ring_buffer_write_pos;
+s32 lobby_send_ring_read_pos;
+s32 lobby_send_ring_pending_bytes;
+Q_803F7AF4 TLobby__next_send_chunk;
+s32 lobby_map_state_code;
+s32 TLobby__queue_timeout_remaining;
+s16 network_pppoe_transport_enabled;
+}

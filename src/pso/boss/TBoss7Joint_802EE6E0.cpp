@@ -11,8 +11,8 @@
 
 extern "C" {
 extern const f32 lbl_805DE9F0;
-extern const f32 lbl_805DEBA8;
-extern const f32 lbl_805DEBAC;
+static const f32 lbl_805DEBA8 = 50.0f;
+static const f32 lbl_805DEBAC = 30.0f;
 
 
 

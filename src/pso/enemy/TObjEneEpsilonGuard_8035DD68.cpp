@@ -1106,7 +1106,7 @@ void vfunc_63__19TObjEneEpsilonGuardFv(void);
 void *__nw__7TObjectFUl(int);
 f64 atan2_float(f32, f32, f32);
 
-extern const f64 lbl_80479C88;
+static const f64 lbl_80479C88 = 10430.38043493439;
 
 extern "C" void vfunc_6__8TObjBaseFPsl();
 extern "C" void vfunc_103__9TObjEneDDFPUc();

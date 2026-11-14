@@ -23,6 +23,17 @@ existing entry point. This retains the two original virtual methods and their
 model traversal while sharing the implementation. Ports can remove the pragmas
 and retain the ordinary inline function; no intermediate class is inferred.
 
+### Zako shadow falloff
+
+`TObjPlayer__sub_8030A9B0` in `src/pso/boss/TBoss4ZakoDraw.cpp` retains
+its existing scoped `fp_contract on`: the cubic distance falloff and alpha
+calculation use the native fused multiply-add/subtract instructions. The unit
+fold removes the old `inline_depth` and `dont_inline` controls and trailing
+redeclaration; ordinary `Vec` copy initialization needs none of them. Ports
+should preserve the floating-point contraction/rounding behavior where required,
+using the platform compiler's equivalent support. See the
+[renderer consolidation evidence](evidence/zako-renderer-consolidation.md).
+
 ### TCP out-of-order receive queue
 
 `TLobby__sub_8041F914` in `src/pso/network/SocketProtocolRuntime.cpp`
@@ -116,7 +127,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,877 | 886 |
+| CodeWarrior pragmas (excluding push/pop) | 5,875 | 886 |
 | Per-unit compiler overrides in `configure.py` | 209 | 209 |
 | Approved regressions | 0 | 0 |
 
