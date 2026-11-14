@@ -83,11 +83,6 @@ struct TWindowSubSymbolChat : public TObject {
     static void clear_flag_bit2(s32 *arg0);
     s16 get_cursor_pos();
     s16 get_cursor_x();
-    void clear_flag60_bit2();
-    void clear_flag60_bit4();
-    void set_pos_and_flag(s32 arg1, s32 arg2);
-    void set_flag60_bit1();
-    void set_flag60_bit2();
     void set_selection_and_refresh(s32 arg1);
     static void update_display(s32 arg0);
     s32 *copy_chat_entry(s32 *arg1);

@@ -1,3 +1,4 @@
+#include "pso/misc/WindowConstructorAbi.h"
 #include "types.h"
 #include "pso/TObject.h"
 #include "pso/misc/TWindowDD_80340EA8.h"
@@ -13,7 +14,6 @@ s32 draw_visible_window_entries(s32, s32, void *, f32);
 int update_window_entry_list__11TWindowBaseFPv(void*, void*);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
-void *draw_default_entry__9TWindowDDFl();
 int update_fade__11TWindowBaseFv(void*);
 
 extern "C" void TWindowDD__sub_80340A78();
@@ -41,7 +41,7 @@ W_80340F00 *construct_variant_b__9TWindowDDFPv(W_80340F00 *arg0);
 void *TWindowDD_WS_ScrollBar::dt(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804EFBE4;
-        ((TWindowDD *)this)->destroy_window_base(0);
+        __dt__11TWindowBaseFv((TWindowBase *)(this), 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(this);
         }
@@ -50,7 +50,7 @@ void *TWindowDD_WS_ScrollBar::dt(s16 arg1) {
 }
 
 W_80340F00 *construct_variant_b__9TWindowDDFPv(W_80340F00 *arg0) {
-    ((TWindowDD *)arg0)->construct_base((u8 *)lbl_804EFBD0, (s16)4, (u8 *)lbl_804EFBC8);
+    __ct__11TWindowBaseFPUcsPUc((TWindowBase *)((TWindowBase *)arg0), (u8 *)((u8 *)lbl_804EFBD0), (s16)((s16)4), (u8 *)((u8 *)lbl_804EFBC8));
     arg0->p18 = lbl_804EFBE4;
     arg0->f0 = lbl_805D42D0;
     arg0->f64 = lbl_805DFC70;
@@ -139,7 +139,7 @@ void TWindowDD_WS_String::render() {
     void *temp_r3;
     s32 arg0 = (s32)this;
 
-    temp_r3 = draw_default_entry__9TWindowDDFl();
+    temp_r3 = (void *)TWindowDD::draw_default_entry(arg0);
     ((TWindowBase *)arg0)->calc_inner_rect((u8 *)temp_r3);
     ((TWindowDD_WS_String *)arg0)->draw_entry_if_visible(temp_r3);
     ctx = *(f32 *)((s8 *)temp_r3 + 0x14);
@@ -155,7 +155,7 @@ void TWindowDD_WS_String::draw_entry_if_visible(void *arg1) {
     }
 }
 
-void TWindowDD::init_window() { initialize_subwindow(); update_fade__11TWindowBaseFv(this); update_window_entry_list__11TWindowBaseFPv(this, (char*)this + 0x24); }
+void TWindowDD_WS_String::run_task() { ((TWindowDD *)this)->initialize_subwindow(); update_fade__11TWindowBaseFv(this); update_window_entry_list__11TWindowBaseFPv(this, (char*)this + 0x24); }
 
 }
 

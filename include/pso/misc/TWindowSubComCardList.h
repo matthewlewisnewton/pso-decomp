@@ -5,6 +5,8 @@
 #include "pso/misc/TWindowMenu.h"
 
 struct TWindowSubComCardList : public TWindowMenu {
+    TWindowSubComCardList(void *position);
+    TWindowSubComCardList(void *position, s32 records, s32 count, s32 mode);
     virtual ~TWindowSubComCardList();
     void draw_card_list_selection(u8 *);
     s16 get_field_72();
@@ -24,7 +26,6 @@ struct TWindowSubComCardList : public TWindowMenu {
     u32 m_98;
     u8 m_9c;
     virtual void run_task();
-    void init(int a1, int a2, int a3);
     u8 unk_9D[0x3];
 };
 

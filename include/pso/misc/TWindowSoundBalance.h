@@ -11,6 +11,7 @@ struct SoundBalanceSettings {
 };
 
 struct TWindowSoundBalance : public TWindowBase {
+    TWindowSoundBalance(void *position);
     virtual ~TWindowSoundBalance();
     int is_active();
     virtual void render();
@@ -31,18 +32,10 @@ struct TWindowSoundBalance : public TWindowBase {
 
 typedef char TWindowSoundBalance_size[sizeof(TWindowSoundBalance) == 0x68 ? 1 : -1];
 
-extern "C" {
-u8 *TWindowSoundBalance__ct(u8 *arg0, s32 arg1);
-void *__dt__19TWindowSoundBalanceFv(void *arg0, s16 arg1);
-void render__19TWindowSoundBalanceFv(s32 arg0);
-}
-
-// --- C functions defined in TWindowSoundBalance.cpp ---
-extern "C" {
-u8 *TWindowSoundBalance__ct(u8 *arg0, s32 arg1);
-void *__dt__19TWindowSoundBalanceFv(void *arg0, s16 arg1);
-void render__19TWindowSoundBalanceFv(s32 arg0);
-}
-// --- end of C functions
+typedef char SoundBalanceSettings_music[offsetof(SoundBalanceSettings, music_gain) == 4 ? 1 : -1];
+typedef char SoundBalanceSettings_sfx[offsetof(SoundBalanceSettings, sound_effect_gain) == 6 ? 1 : -1];
+typedef char TWindowSoundBalance_selection[offsetof(TWindowSoundBalance, selection) == 0x61 ? 1 : -1];
+typedef char TWindowSoundBalance_music[offsetof(TWindowSoundBalance, music_gain) == 0x62 ? 1 : -1];
+typedef char TWindowSoundBalance_sfx[offsetof(TWindowSoundBalance, sound_effect_gain) == 0x64 ? 1 : -1];
 
 #endif

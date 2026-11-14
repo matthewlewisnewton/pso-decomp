@@ -1380,7 +1380,7 @@ struct TObjPlayer : public TObjChara {
     s32 can_use_action();
     s32 is_target_valid();
     void update_subsystems();
-    static s32 get_battle_ctrl_id(u16 arg0);
+    static u16 get_battle_ctrl_id(u16 arg0);
     void clear_action_flag();
     void apply_material_color_override();
     static s32 get_battle_ctrl_flag(u16 arg0);

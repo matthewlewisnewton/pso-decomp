@@ -1,3 +1,4 @@
+#include "pso/misc/TUnk_804CE964.h"
 #include "pso/render/ColorLineList.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -224,7 +225,7 @@ void TWindowSimpleStatus::update_status_icons(void *ofs) {
             ((TWindowBase *)(((Disp_8026F9F4 *)this)->windows[j]))->set_depth(lbl_805DD38C + ((TWindowBase *)((Disp_8026F9F4 *)this))->get_scale());
         } else {
             TWindowComCard__sub_80249D7C((u8 *)w, 0);
-            ((TWindowComCard *)(((Disp_8026F9F4 *)this)->windows[j]))->set_selected_index(name);
+            ((TUnk_804CE964 *)(((Disp_8026F9F4 *)this)->windows[j]))->set_selected_index(name);
         }
         count = 1;
     } else if (((Disp_8026F9F4 *)this)->windows[j] != NULL) {
@@ -251,7 +252,7 @@ void TWindowSimpleStatus::update_status_icons(void *ofs) {
                 ((TWindowBase *)(((Disp_8026F9F4 *)this)->windows[j]))->set_depth(lbl_805DD398 + ((f32)k + ((TWindowBase *)((Disp_8026F9F4 *)this))->get_scale()));
             } else {
                 TWindowComCard__sub_80249D7C((u8 *)w, count);
-                ((TWindowComCard *)(((Disp_8026F9F4 *)this)->windows[j]))->set_selected_index(name);
+                ((TUnk_804CE964 *)(((Disp_8026F9F4 *)this)->windows[j]))->set_selected_index(name);
             }
             count++;
         }

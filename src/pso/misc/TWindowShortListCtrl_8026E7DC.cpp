@@ -1,4 +1,5 @@
 #include "pso/ui/PlayerWindowDispatch.h"
+#include "pso/misc/ActionPaletteTagAbi.h"
 // queue_destruction is inline in TObject.h. This unit calls the out-of-line
 // copy that lives with TAdADXlogo, the same call the original constructor makes.
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -182,10 +183,10 @@ void TWindowShortListCtrl::assign_item_to_palette(u32 arg0, u32 arg1) {
                     if (canSetMenuCursorAction((s32) var_r3, var_r4, 4U, parameter) != 0) {
                         var_r3 = var_r29 + 0x520;
                         var_r4 = 4;
-                        ((TWindowActionPalette *)var_r3)->set_mode(4);
+                        set_mode__20TWindowActionPaletteFUc((void *)var_r3, 4);
                         var_r3 = var_r29 + 0x520;
                         var_r4 = (s32) (u8) var_r31;
-                        ((TWindowActionPalette *)var_r3)->set_slot(var_r4);
+                        set_slot__20TWindowActionPaletteFUc((void *)var_r3, var_r4);
                         var_r3 = var_r29 + 0x520;
                         TMainCursor__sub_8013DFC4((u8 *)var_r3);
                     }

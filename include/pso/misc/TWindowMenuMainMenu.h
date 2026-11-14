@@ -43,6 +43,7 @@ typedef char TMainMenuEntry_flags[offsetof(TMainMenuEntry, flags) == 0x13 ? 1 : 
 typedef char TMainMenuEntry_kind[offsetof(TMainMenuEntry, kind) == 0x12 ? 1 : -1];
 
 struct TWindowMenuMainMenu : public TWindowBase {
+    TWindowMenuMainMenu(void *position, s32 client);
     virtual ~TWindowMenuMainMenu();
     void handle_navigation_input();
     void handle_confirm();
@@ -88,17 +89,5 @@ typedef char TWindowMenuMainMenu_unk3c[offsetof(TWindowMenuMainMenu, unk_3c) == 
 typedef char TWindowMenuMainMenu_unk50[offsetof(TWindowMenuMainMenu, unk_50) == 0x50 ? 1 : -1];
 typedef char TWindowMenuMainMenu_entries[offsetof(TWindowMenuMainMenu, entries) == 0x64 ? 1 : -1];
 typedef char TWindowMenuMainMenu_slots[offsetof(TWindowMenuMainMenu, slots) == 0x124 ? 1 : -1];
-
-extern "C" {
-u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *arg0, s32 arg1, s16 arg2);
-void *__dt__19TWindowMenuMainMenuFv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TWindowMenuMainMenu.cpp ---
-extern "C" {
-u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *window_menu_main_menu, s32 arg1, s16 arg2);
-void *__dt__19TWindowMenuMainMenuFv(void *arg0, s16 arg1);
-}
-// --- end of C functions
 
 #endif

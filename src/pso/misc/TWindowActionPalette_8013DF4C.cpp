@@ -1,8 +1,5 @@
 #include "types.h"
-#include "pso/misc/TWindowActionPalette.h"
-#include "pso/misc/TForceOperate.h"
-#include "pso/misc/TMainCursor.h"
+#include "pso/misc/ActionPaletteTagAbi.h"
 
-// These legacy entry points receive the four-byte palette entry, not a window.
-void TWindowActionPalette::set_slot(u8 v) { ((u8 *)this)[1] = v; }
-void TWindowActionPalette::set_mode(u8 v) { *(u8*)((char*)this + 0x0) = v; }
+void set_slot__20TWindowActionPaletteFUc(void *tag, u8 value) { ((u8 *)tag)[1] = value; }
+void set_mode__20TWindowActionPaletteFUc(void *tag, u8 value) { ((u8 *)tag)[0] = value; }

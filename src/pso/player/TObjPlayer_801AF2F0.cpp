@@ -4845,7 +4845,7 @@ void TObjPlayer::update_subsystems() {
     }
 }
 
-s32 TObjPlayer::get_battle_ctrl_id(u16 arg0) {
+u16 TObjPlayer::get_battle_ctrl_id(u16 arg0) {
     u32 temp_r3;
     void *temp_r3_2;
 
@@ -4857,7 +4857,7 @@ s32 TObjPlayer::get_battle_ctrl_id(u16 arg0) {
     if (temp_r3 == 0U) {
         return 0xFFFF;
     }
-    return ((s32 (*)(s32))get_id__11TMainCursorFv)(temp_r3 + 0x4F8);
+    return ((TMainCursor *)(temp_r3 + 0x4F8))->get_id();
 }
 
 void submit_cursor_candidate(void *self) {

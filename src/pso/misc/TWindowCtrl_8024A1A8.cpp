@@ -1,4 +1,5 @@
 #include "pso/ui/PlayerWindowDispatch.h"
+#include "pso/misc/TUnk_804CF0B8.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/player/TObjChara.h"
@@ -59,7 +60,6 @@ void *get_player_by_client_id(s32);
 extern s32 local_client_id;
 s32 find_farthest_balloon_slot__11TWindowCtrlFPvUs(Ctrl_8024A714 *ctrl, u16 speaker);
 void *__nw__7TObjectFUl(u32);
-u8 *TWindowFukidasi__sub_80252B74(u8 *arg0, s32 arg1, s32 str, s32 arg3, f32 farg0);
 void *acquire_balloon_slot__11TWindowCtrlFPviiPv(Ctrl_8024A928 *self, s32 player, s32 flags, void *local);
 s32 is_locally_controlled__10TObjPlayerFPv(u8 *);
 s32 obj_isState2_324__9TObjCharaFv(u8 *);
@@ -325,10 +325,7 @@ void *acquire_balloon_slot__11TWindowCtrlFPviiPv(Ctrl_8024A928 *self, s32 player
         if (self->slots[i] != 0) {
             ((TWindowBase *)(self->slots[i]))->close();
         }
-        b = __nw__7TObjectFUl(0x98);
-        if (b != 0) {
-            b = TWindowFukidasi__sub_80252B74((u8 *)b, (s32)player, (s32)n, (s32)local, (f32)f);
-        }
+        b = new TUnk_804CF0B8(player, n, (s32)local, f);
         self->slots[i] = b;
     }
     return self->slots[i];

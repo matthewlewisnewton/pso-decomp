@@ -237,11 +237,11 @@ void fn_802449E0(u8 *object) {
 }
 
 void TWindowBase::close() {
-    ((TWindowLockOn *)this)->request_close();
-    ((TWindowLockOn *)this)->m_2c = (s32) (((TWindowLockOn *)this)->m_2c | 0x10);
+    request_close();
+    m_2c |= 0x10;
 }
 
-void TWindowLockOn::request_close() {
+void TWindowBase::request_close() {
     s32 temp_r3;
     temp_r3 = *(s32 *)&(this->m_2c);
     if (!(temp_r3 & 1)) {

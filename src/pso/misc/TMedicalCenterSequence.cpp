@@ -1,4 +1,5 @@
 #include "pso/ui/PlayerWindowDispatch.h"
+#include "pso/misc/TWindowMeseta.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/TMedicalCenterMes.h"
 #include "pso/misc/TWindowBase.h"
@@ -135,7 +136,6 @@ struct VObj_8021658C : Base_8021658C {
 };
 
 extern "C" {
-s32 create_meseta_window(unsigned short);
 s32 set_service_counter_camera(void *, int);
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
@@ -263,7 +263,7 @@ s32 TMedicalCenterSequence::open_greeting_window() {
   stack.spC = 80.0f;
   ((TShopSequence *)arg0)->create_message_window(get_window_layout_position(0x2C, 332.0f), (s32)&stack.sp8);
   (((VObj_18_a93f07 *)(arg0))->m4(0x1F, 1));
-  this->m_2c = create_meseta_window((s32) ((TShopSequence *)arg0)->get_child_field1c());
+  this->m_2c = (s32)create_meseta_window((u16)((s32) ((TShopSequence *)arg0)->get_child_field1c()));
   ((TShopWindowBase *)arg0)->set_field_20((s32)((void*)(2)));
   *((s32 *) (((s8 *) arg0) + 0x34)) = set_service_counter_camera((void *) arg0, 0);
 }
