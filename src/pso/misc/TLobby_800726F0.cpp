@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TWindowMessage.h"
@@ -41,11 +42,9 @@ s32 TQuestVmDownLoadServer__sub_8006EF6C(s32);
 void *get_window_layout_position(s32);
 TWindowSubComCardList *check_room_seq_4__16TAdChrSelASlotGCFl(void *, s32);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
-void TLobby__sub_8024AC20(s32 arg0);
 TObjPlayer *get_player_by_client_id(s32);
 s32 check_player_flag1__10TObjPlayerFv();
 extern s32 local_client_id;
-void TObjPlayer__sub_8024ABDC(s32 arg0);
 void play_effect_default__10TObjPlayerFP10TObjPlayerl(TObjPlayer *arg0, s32 arg1);
 extern s32 TLobby__designated_client_id;
 u8 is_challenge_lobby__6TLobbyFv(void);
@@ -234,11 +233,11 @@ void TLobby::send_45_and_close_windows(void * _w0) {
     if ((player != 0) && (check_player_flag1__10TObjPlayerFv() != 0)) {
         TObjPlayer::send_code_45_1(player);
     }
-    ((TWindowCtrl *)local_client_id)->unsuppress_slot();
-    TLobby__sub_8024AC20(local_client_id);
+    unsuppress_player_window(local_client_id);
+    enable_player_main_menu(local_client_id);
 }
-void TLobby::show_ctrl_and_play_effect(void* a0) { ((TWindowCtrl *)(*(int *)&local_client_id))->suppress_slot(); play_player_default_effect__6TLobbyFv((s32)a0); }
-void TLobby::play_default_effect(void* a0) { TObjPlayer__sub_8024ABDC(((*(int *)&local_client_id))); play_player_default_effect__6TLobbyFv((s32)a0); }
+void TLobby::show_ctrl_and_play_effect(void* a0) { suppress_player_window((*(int *)&local_client_id)); play_player_default_effect__6TLobbyFv((s32)a0); }
+void TLobby::play_default_effect(void* a0) { disable_player_main_menu(((*(int *)&local_client_id))); play_player_default_effect__6TLobbyFv((s32)a0); }
 void play_player_default_effect__6TLobbyFv(s32 _w0) {
     TObjPlayer *player;
     player = get_player_by_client_id(local_client_id);

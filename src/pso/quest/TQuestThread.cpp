@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowMessage.h"
@@ -57,7 +58,6 @@ void read_disc_file(void *, s32);
 s32 init_quest_script_context(s32, void *);
 s32 check_flag_100__10TObjPlayerFPv(void *);
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
-s32 has_player_active_menu__11TWindowCtrlFv(s32);
 void *get_window_layout_position(s32);
 void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, s32);
 void *update_window_mode_from_progress__6TLobbyFPv(void *, WindowPos *);
@@ -337,7 +337,7 @@ void TQuestThreadBoard::run_task() {
             state = QST_RUNNING;
         }
         if (TWindowShortListCtrl__check_controller_button(controller_input_state + 0x20, 8) != 0 ||
-            has_player_active_menu__11TWindowCtrlFv(local_client_id) == 0) {
+            has_player_active_menu(local_client_id) == 0) {
             TWindowCtrl::clear_flag();
             TWindowCtrl::clear_flag_2();
             TLobby::close_windows();
@@ -352,12 +352,12 @@ void TQuestThreadBoard::run_task() {
             ((TWindowBase *)ctx.list_window)->close();
             ctx.list_window = NULL;
             state = QST_RUNNING;
-            TLobby__sub_8024AC20(local_client_id);
+            enable_player_main_menu(local_client_id);
             TWindowCtrl::clear_flag();
             TWindowCtrl::clear_flag_2();
         }
         if (TWindowShortListCtrl__check_controller_button(controller_input_state + 0x20, 8) != 0 ||
-            has_player_active_menu__11TWindowCtrlFv(local_client_id) == 0) {
+            has_player_active_menu(local_client_id) == 0) {
             if (ctx.message_window != NULL) {
                 ((TWindowBase *)ctx.message_window)->close();
                 ctx.message_window = NULL;
@@ -414,7 +414,7 @@ void TQuestThreadBoard::run_task() {
             ((TWindowBase *)ctx.pack_select_help_window)->close();
             ctx.pack_select_help_window = NULL;
             state = QST_RUNNING;
-            TLobby__sub_8024AC20(local_client_id);
+            enable_player_main_menu(local_client_id);
             TWindowCtrl::clear_flag_bit2();
         }
         break;
@@ -539,7 +539,7 @@ void TQuestThread::run_task() {
             ((TWindowBase *)ctx.list_window)->close();
             ctx.list_window = NULL;
             state = QST_RUNNING;
-            TLobby__sub_8024AC20(local_client_id);
+            enable_player_main_menu(local_client_id);
             TWindowCtrl::clear_flag();
             TWindowCtrl::clear_flag_2();
         }
@@ -590,7 +590,7 @@ void TQuestThread::run_task() {
             ((TWindowBase *)ctx.pack_select_help_window)->close();
             ctx.pack_select_help_window = NULL;
             state = QST_RUNNING;
-            TLobby__sub_8024AC20(local_client_id);
+            enable_player_main_menu(local_client_id);
             TWindowCtrl::clear_flag_bit2();
             TWindowCtrl::clear_flag();
             TWindowCtrl::clear_flag_2();
