@@ -221,8 +221,8 @@ s32 init_collision_body_parts(void *, void *, int);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 void sub_801ADC7C__12TPhotonPillaFv(void *, u8);
 u8 *TPhotonRainbow__ct(void *, void *, void *, s32);
-extern u8 lbl_80446EE0[];
-extern u8 lbl_80446EEC[];
+extern const u8 lbl_80446EE0[] = "paila2.adx";
+extern const u8 lbl_80446EEC[] = "paila.adx";
 extern s32 lbl_805D3518;
 extern u8 *photon_blast_shared_resource;
 

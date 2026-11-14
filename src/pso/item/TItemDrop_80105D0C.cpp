@@ -1162,3 +1162,9 @@ s32 item_drop_rng_below(s32 arg0, u32 arg1) {
 }
 }
 #pragma pop
+
+extern "C" {
+s32 item_drop_cached_offset = -1;
+s32 TItemDrop__drop_table_mode_flags;
+s32 TItemDrop__section_id;
+}
