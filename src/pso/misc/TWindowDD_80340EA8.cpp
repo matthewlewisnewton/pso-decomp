@@ -158,3 +158,7 @@ void TWindowDD_WS_String::draw_entry_if_visible(void *arg1) {
 void TWindowDD::init_window() { initialize_subwindow(); update_fade__11TWindowBaseFv(this); update_window_entry_list__11TWindowBaseFPv(this, (char*)this + 0x24); }
 
 }
+
+extern "C" {
+f32 lbl_805D6DC8;
+}

@@ -110,7 +110,7 @@ extern "C" {
 s32 TAdMultiPlyChrSelectGC__sub_802DFFE8(s32);
 int sprintf(char *, const char *, ...);
 void *memset(void *, int, u32);
-extern char lbl_80478408[];
+extern const char lbl_80478408[] = ":%04d:%02d'";
 extern u32 ply_status_index;
 extern char lbl_805DFAE8[4];
 void format_status_strings__14TAdPlyStatusGCFPv(char *buf);

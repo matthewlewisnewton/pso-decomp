@@ -299,7 +299,7 @@ static const f32 lbl_805DE7CC = 180.0f;
 extern const f32 lbl_805DE7D0;
 void run_task__15TAdSubPlyItemGCFv(Self_802D6E7C *self);
 extern u8 level_text_buffer[];
-extern u8 lbl_804725E0[];
+extern const u8 lbl_804725E0[] = "LV%d";
 s32 sprintf(void *, const void *, ...);
 typedef struct S_802D6D88 { u8 pad0[0x43C]; s32 f[4]; } S_802D6D88;
 

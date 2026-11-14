@@ -4980,3 +4980,7 @@ s32 get_char_index__23TAdSinglePlyChrSelectGCFUi(u32 arg0) {
 }
 }
 }
+
+extern "C" {
+s32 card_load_followup_pending;
+}

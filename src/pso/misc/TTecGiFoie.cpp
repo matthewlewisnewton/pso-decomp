@@ -176,7 +176,7 @@ void rotate_matrix_y(void *, s32);
 s32 push_matrix_from(void *src);
 s32 pop_matrices(s32 arg0);
 
-extern const f32 TTecGiFoie__data_805DC81C;
+static const f32 TTecGiFoie__data_805DC81C = 5.0f;
 extern RecoveredGlobal_80231638___vt__10TTecGiFoie __vt__10TTecGiFoie;
 extern const Profile_802312E4 TTecGiFoie__emitter_profile_table[];
 extern u8 lbl_8044D324[];
@@ -189,15 +189,15 @@ extern const f32 lbl_8044D338[3];
 extern const Vec_802312E4 lbl_8044D344;
 extern const f64 lbl_8044D358;
 extern const f64 lbl_8044D360[];
-extern const f32 lbl_805DC814;
+static const f32 lbl_805DC814 = 0.55f;
 f32 atan2_float(f32, f32);
 void rotate_matrix_x(void *, s32);
 void rotate_vector_by_matrix(void *, const void *, void *);
 
-extern const f32 lbl_805DC810;
-extern const f32 lbl_805DC818;
-extern const f32 lbl_805DC820;
-extern const f32 lbl_805DC824;
+static const f32 lbl_805DC810 = 0.0f;
+static const f32 lbl_805DC818 = 182.04445f;
+static const f32 lbl_805DC820 = 1.3f;
+static const f32 lbl_805DC824 = 1.8f;
 extern TObject *tl_07;
 
 void TTecGiFoie::calc_params() {
