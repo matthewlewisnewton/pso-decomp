@@ -188,7 +188,9 @@ force_active:
   - TAdMultiSaveGC__sub_802FF314
   - TAdPlayerLoadGC__banner_buffers
   - TAdPlayerLoadGC__data_80511EE8
+  - TAdPlayerLoadGC__network_config_buffer
   - TAdPlayerLoadGC__network_info_payload_buffer
+  - TAdPlayerLoadGC__player_load_value
   - TAdPlayerLoadGC__sub_801E101C
   - TAdPlayerLoadGC__sub_801E26DC
   - TAdPlayerLoadGC__sub_803F1908
@@ -710,9 +712,11 @@ force_active:
   - TLanguage__read_cursor
   - TLazerFenceSw__ct
   - TLoadCtrl__ct
+  - TLobby__battle_flag
   - TLobby__battle_team_table
   - TLobby__card_list_selected_index
   - TLobby__card_list_window
+  - TLobby__connect_pending_flags
   - TLobby__current_dialog_window
   - TLobby__data_8043EF38
   - TLobby__data_80506A6C
@@ -735,10 +739,12 @@ force_active:
   - TLobby__list_window
   - TLobby__lobby_entered_flag
   - TLobby__login_pending_flag
+  - TLobby__next_send_chunk
   - TLobby__pending_member_count
   - TLobby__player_names
   - TLobby__player_setup_pending
   - TLobby__pppoe_message_queue
+  - TLobby__queue_timeout_remaining
   - TLobby__sub_8001D9E8
   - TLobby__sub_8001DBD8
   - TLobby__sub_8001DF58
@@ -6569,6 +6575,8 @@ force_active:
   - execute_action__13TObjEneBm3FlyFl
   - exi_dma_buffer
   - exi_dma_write_buffer
+  - exi_mac_address
+  - exi_send_started_flag
   - exi_start_send_dma__6TLobbyFii
   - exi_write__6TLobbyFlll
   - exit__22TShopEquipmentSequenceFPv
@@ -9461,6 +9469,10 @@ force_active:
   - lbl_805D4678
   - lbl_805D46A0
   - lbl_805D46C8
+  - lbl_805D489C
+  - lbl_805D48A4
+  - lbl_805D48AC
+  - lbl_805D48B0
   - lbl_805D4AF0
   - lbl_805D4AF8
   - lbl_805D4B10
@@ -9484,6 +9496,8 @@ force_active:
   - lbl_805D5A90
   - lbl_805D5A94
   - lbl_805D5A98
+  - lbl_805D5D00
+  - lbl_805D5D04
   - lbl_805D5D60
   - lbl_805D5D70
   - lbl_805D5FF8
@@ -9639,6 +9653,26 @@ force_active:
   - lbl_805D7694
   - lbl_805D76C8
   - lbl_805D76CC
+  - lbl_805D7A70
+  - lbl_805D7A74
+  - lbl_805D7B80
+  - lbl_805D7B84
+  - lbl_805D7B88
+  - lbl_805D7B8C
+  - lbl_805D7B90
+  - lbl_805D7B94
+  - lbl_805D7B98
+  - lbl_805D7B9C
+  - lbl_805D7BB8
+  - lbl_805D7BBC
+  - lbl_805D7BC0
+  - lbl_805D7BD0
+  - lbl_805D7BD4
+  - lbl_805D7C36
+  - lbl_805D7C90
+  - lbl_805D7C98
+  - lbl_805D7C9C
+  - lbl_805D7CA0
   - lbl_805D7D3C
   - lbl_805D7DD8
   - lbl_805D7DDC
@@ -10358,12 +10392,17 @@ force_active:
   - lobby_main_texture_gvm
   - lobby_make_team_menu_window
   - lobby_make_team_window
+  - lobby_map_state_code
   - lobby_net_channel_table
   - lobby_net_recv_desc
   - lobby_pppoe_slot_table
   - lobby_pulse_color_table
   - lobby_pumpkin_resource_descriptor
+  - lobby_request_flags
+  - lobby_ring_buffer_write_pos
   - lobby_selected_game_list_index
+  - lobby_send_ring_pending_bytes
+  - lobby_send_ring_read_pos
   - lobby_short_mail_entry_count
   - lobby_story_flag_clear_list
   - lobby_texlist__13TObjLobbyMain
@@ -10588,6 +10627,7 @@ force_active:
   - nest_resources
   - nest_trance_motion_filename
   - nest_wait_motion_filename
+  - network_config_mode
   - network_info_cipher_pool_binding
   - network_info_cipher_workspace
   - network_info_config_field_handled
@@ -10653,6 +10693,8 @@ force_active:
   - network_packet_buffer_descriptors
   - network_packet_buffer_storage
   - network_packet_buffers
+  - network_pppoe_transport_enabled
+  - network_thread_queue
   - next__15PSOV3EncryptionFv
   - next_sequence_action__12TBoss1DragonFv
   - nights_npc_resource_descriptor
