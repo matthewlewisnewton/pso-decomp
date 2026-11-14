@@ -9266,6 +9266,7 @@ pso/misc/TLobby_8028A7C8.cpp:
 
 pso/unk/text_8028A820.cpp:
 	.text       start:0x8028A820 end:0x8028A8F8
+	.rodata     start:0x80450C50 end:0x80450C88
 
 pso/boss/TBoss8Dragon_8028A8F8.cpp:
 	.text       start:0x8028A8F8 end:0x8028A998
