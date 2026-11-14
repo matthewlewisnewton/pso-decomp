@@ -21,7 +21,7 @@ int TAdMultiPlyChrSelectGC__sub_802C6FA8(void) {  return lbl_805D6668; }
 
 extern u32 lbl_805D67E8;
 
-void TAdMultiPlyChrSelectGC::update_transition_anim_if_active() {
+void TAdMultiPlyChrSelectGC::update_transition_anim_if_active(void *, void *) {
     if ((u32) lbl_805D67E8 != 0U) {
         ((TAdMultiPlyChrSelectGC *)lbl_805D67E8)->update_transition_anim();
     }

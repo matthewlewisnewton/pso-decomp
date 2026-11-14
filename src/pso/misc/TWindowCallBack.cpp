@@ -11,7 +11,6 @@
 #include "pso/misc/TWindowSubSymbolChatPartsSet.h"
 
 extern "C" {
-void set_field_60__15TWindowCallBackFPvi(void* p, s32 v);
 WindowLayoutDescriptor window_callback_base_params = { { 0.0f, 0.0f }, 50045.0f, NULL, 0x23 };
 extern s32 lbl_805D3E58;
 void fn_802ACD40(void* p);
@@ -27,12 +26,12 @@ void fn_802ACD60(void* p) { fn_802ACD40(p); send_subcommand((u8 *)p); }
 }
 void build_6xA3_olga_flow_boss_actions(void* p);
 void build_6xA3_olga_flow_boss_actions(void* p) { *(u8*)((char*)p + 0x0) = 163; *(u8*)((char*)p + 0x1) = 5; }
-void set_field_60__15TWindowCallBackFPvi(void* p, s32 v) { *(s32*)((char*)p + 0x60) = v; }
+void TWindowCallBack::set_callback(WindowCallback callback_function) { callback = callback_function; }
 
 void TWindowCallBack::render() {
     s32 r = TWindowDD::draw_default_entry((s32)this);
     if (callback != NULL) {
-        callback(this, r);
+        callback(this, (void *)r);
     }
 }
 
@@ -40,10 +39,10 @@ void TWindowCallBack::run_task() { ((TWindowDD *)this)->initialize_subwindow(); 
 
 TWindowCallBack::~TWindowCallBack() {}
 
-TWindowCallBack::TWindowCallBack(u8 *position, u8 *scale, s32 callback)
+TWindowCallBack::TWindowCallBack(u8 *position, u8 *scale, WindowCallback callback)
     : TWindowBase((u8 *)&window_callback_base_params, 4, position) {
     m_name = (const char *)lbl_805D3E58;
     ((TWindowSubSymbolChatPartsSet *)&m_38)->copy_vec2(scale);
     save_position();
-    set_field_60__15TWindowCallBackFPvi(this, callback);
+    set_callback(callback);
 }
