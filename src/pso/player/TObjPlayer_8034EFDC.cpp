@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -161,8 +162,8 @@ void TObjPlayer::rotate_by_player_list() {
 }
 
 void TUnk_804F0810::reserved_53() { draw_weapon_at_joint((s32)this, (s8)((void*)49)); update_trail_slot(0); update_trail_slot(1); }
-void TUnk_804F0810::update_idle() { TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)(1820)), (s32)((void*)(13653))); }
-void TUnk_804F0810::update_attack() { TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)(-4551)), (s32)((void*)(0))); }
+void TUnk_804F0810::update_idle() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)(1820)), (s32)((void*)(13653))); }
+void TUnk_804F0810::update_attack() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)(-4551)), (s32)((void*)(0))); }
 
 extern s32 lbl_804F0810[];
 
@@ -328,9 +329,9 @@ void TObjPlayer::pose_gi_gue_bazooka_nodes() {
     }
 }
 
-void TUnk_804F0A00::update_idle() { TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)((void*)1820)), (s32)((void*)((void*)7281))); TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)((void*)-1820)), (s32)((void*)((void*)-5461))); TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x200), (s32)((void*)((void*)1820)), (s32)((void*)((void*)9102))); }
+void TUnk_804F0A00::update_idle() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)((void*)1820)), (s32)((void*)((void*)7281))); add_integer_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)((void*)-1820)), (s32)((void*)((void*)-5461))); add_integer_clamped((s32 *)((char*)this + 0x200), (s32)((void*)((void*)1820)), (s32)((void*)((void*)9102))); }
 
-void TUnk_804F0A00::update_attack() { TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)((void*)-3640)), (s32)((void*)((void*)0))); TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)((void*)2730)), (s32)((void*)((void*)0))); TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x200), (s32)((void*)((void*)-1820)), (s32)((void*)((void*)0))); }
+void TUnk_804F0A00::update_attack() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)((void*)-3640)), (s32)((void*)((void*)0))); add_integer_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)((void*)2730)), (s32)((void*)((void*)0))); add_integer_clamped((s32 *)((char*)this + 0x200), (s32)((void*)((void*)-1820)), (s32)((void*)((void*)0))); }
 
 void *__dt__13TUnk_804F0A00Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -385,9 +386,9 @@ void TObjPlayer::dispatch_by_state() {
 
 void TUnk_804F0AF8::reserved_53() { draw_weapon_at_joint((s32)this, (s8)((void*)49)); update_trail_slot(0); update_trail_slot(1); }
 
-void TUnk_804F0AF8::update_idle() { TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)((void*)-8192)), (s32)((void*)((void*)-30947))); TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)((void*)-1820)), (s32)((void*)((void*)-7281))); }
+void TUnk_804F0AF8::update_idle() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)((void*)-8192)), (s32)((void*)((void*)-30947))); add_integer_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)((void*)-1820)), (s32)((void*)((void*)-7281))); }
 
-void TUnk_804F0AF8::update_attack() { TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)((void*)16384)), (s32)((void*)((void*)0))); TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)((void*)3640)), (s32)((void*)((void*)0))); }
+void TUnk_804F0AF8::update_attack() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)((void*)16384)), (s32)((void*)((void*)0))); add_integer_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)((void*)3640)), (s32)((void*)((void*)0))); }
 
 extern s32 lbl_804F0AF8[];
 

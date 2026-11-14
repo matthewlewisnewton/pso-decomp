@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "pso/protocol/protocol_types.h"
 #include "types.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -221,9 +222,9 @@ void TItemEffOrgaFlowShot::run_task() {
         queue_destruction__7TObjectFv((item_eff_orga_flow_shot));
         disallow_rendering__7TObjectFv((TObject *)(item_eff_orga_flow_shot));
     }
-    TItemEffOrgaFlowShot::approach_value((f32 *)(item_eff_orga_flow_shot + 0x190), (f32)lbl_805E0030, (f32)((f32) (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x18C))));
+    add_float_clamped((f32 *)(item_eff_orga_flow_shot + 0x190), (f32)lbl_805E0030, (f32)((f32) (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x18C))));
     if (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x190) == *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x18C)) {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(item_eff_orga_flow_shot + 0x194), (f32)lbl_805E0034, (f32)((f32) (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x198))));
+        add_float_clamped((f32 *)(item_eff_orga_flow_shot + 0x194), (f32)lbl_805E0034, (f32)((f32) (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x198))));
     }
     for (i = 0; i != 10; i++) {
         TObjBoss2Tunnel::decrement_packed_timer((u32 *)(&((O_8035740C *)item_eff_orga_flow_shot)->v[i].w), 2);
