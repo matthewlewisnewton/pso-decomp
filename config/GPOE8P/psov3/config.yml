@@ -4848,6 +4848,8 @@ force_active:
   - break_apart__15TObjEneMe1GiGueFv
   - break_rocks_in_wave__15TBoss6SwordWaveFv
   - breakup_model_ptr
+  - bringer_effect_color_table
+  - bringer_effect_vec_table
   - bringer_init_params
   - bringer_render_node_callback__FP10NJS_OBJECT
   - broadcast_lobby_display__10TObjPlayerFv
