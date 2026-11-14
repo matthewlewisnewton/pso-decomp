@@ -7634,6 +7634,7 @@ pso/misc/TShopItemListWindow.cpp:
 pso/misc/TShopItemTecSequence.cpp:
 	.text       start:0x8021FE6C end:0x802205E4
 	.data       start:0x804CA170 end:0x804CA190
+	.sbss       start:0x805D6248 end:0x805D6250
 
 pso/misc/TShopJudgmentItemWindow.cpp:
 	.text       start:0x802205E4 end:0x80221820
