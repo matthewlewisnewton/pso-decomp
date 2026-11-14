@@ -155,6 +155,7 @@ pso/object/TObjFish_8001ED90.cpp:
 pso/misc/TLobby_8001EF5C.cpp:
 	.text       start:0x8001EF5C end:0x80020898
 	.data       start:0x80480CB0 end:0x80480CE0
+	.sbss       start:0x805D4AD8 end:0x805D4AF0
 
 pso/player/TObjPlayer_80020898.cpp:
 	.text       start:0x80020898 end:0x800208B4
@@ -2173,6 +2174,7 @@ pso/misc/TLobby_800FA388.cpp:
 
 pso/unk/text_800FA464.cpp:
 	.text       start:0x800FA464 end:0x800FA73C
+	.rodata     start:0x8043DA10 end:0x8043DA20
 
 pso/misc/TLobby_800FA73C.cpp:
 	.text       start:0x800FA73C end:0x800FA774
@@ -4248,6 +4250,7 @@ pso/misc/TLogo.cpp:
 
 pso/unk/text_8013F810.cpp:
 	.text       start:0x8013F810 end:0x8013FFA8
+	.rodata     start:0x8043F168 end:0x8043F188
 
 pso/misc/TLobby_8013FFA8.cpp:
 	.text       start:0x8013FFA8 end:0x801404CC
@@ -6948,7 +6951,9 @@ pso/unk/text_801E0C08.cpp:
 
 pso/ui/TAdPlayerLoadGC_801E0C30.cpp:
 	.text       start:0x801E0C30 end:0x801E283C
+	.rodata     start:0x804496A8 end:0x804496D0
 	.bss        start:0x80511ED0 end:0x80511F70
+	.sbss       start:0x805D5E40 end:0x805D5E44
 
 pso/misc/pso_date.cpp:
 	.text       start:0x801E283C end:0x801E2D1C
@@ -7178,6 +7183,7 @@ pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp:
 	.ctors      start:0x80433F9C end:0x80433FA0
 	.data       start:0x804C88C0 end:0x804C8B08
 	.bss        start:0x805137C8 end:0x80513920
+	.sbss       start:0x805D5FA8 end:0x805D5FAC
 
 pso/ui/TAdSinglePlyChrSelectGC_80202A68.cpp:
 	.text       start:0x80202A68 end:0x80203284
