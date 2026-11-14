@@ -156,7 +156,7 @@ struct VObj_801AD8FC_801AD4A8 : Base_801AD8FC_801AD4A8 {
 
 void *__dt__12TPhotonMyllaFv(void *arg0, s16 arg1);
 s32 __dl__7TObjectFPv(void *);
-void *destroy_photon_motion_object(void *arg0, s16 arg1);
+void *__dt__13TUnk_804C3248Fv(void *arg0, s16 arg1);
 
 // Literals emit this unit's original scalar pool; see docs/evidence/photon-mylla-constant-pool.md.
 void TPhotonMylla::sub_801AD4A8() {
@@ -299,7 +299,7 @@ void *__dt__12TPhotonMyllaFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TPhotonMylla;
         o->m13();
         ((TUnk_804C3248 *)arg0)->free_photon();
-        destroy_photon_motion_object(arg0, 0);
+        __dt__13TUnk_804C3248Fv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }

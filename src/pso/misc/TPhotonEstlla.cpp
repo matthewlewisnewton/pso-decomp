@@ -222,7 +222,7 @@ void *__dt__13TPhotonEstllaFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__13TPhotonEstlla;
         o->m13();
         ((TUnk_804C3248 *)arg0)->free_photon();
-        destroy_photon_motion_object(arg0, 0);
+        __dt__13TUnk_804C3248Fv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
