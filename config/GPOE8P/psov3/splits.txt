@@ -5688,6 +5688,7 @@ pso/object/TObjGbAdvance_80187E18.cpp:
 
 pso/object/TObjGbAdvance.cpp:
 	.text       start:0x80187ECC end:0x8018807C
+	.rodata     start:0x80444B48 end:0x80444B58
 
 pso/object/TObjComputer.cpp:
 	.text       start:0x8018807C end:0x80188584
