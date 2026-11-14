@@ -970,3 +970,7 @@ CARDStat_801E2048 lbl_80511EFC;
 u8 *lbl_80511F68[2];
 
 }
+
+extern "C" {
+s32 TAdPlayerLoadGC__card_result_code;
+}
