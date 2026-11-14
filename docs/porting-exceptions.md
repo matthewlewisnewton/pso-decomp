@@ -1854,3 +1854,17 @@ constant descriptors and constructor. The existing `fp_contract on` scope in
 `run_task` preserves the three fused movement updates; a port needing the same
 rounding can use `fmaf` for those expressions. See the
 [unit evidence](evidence/gol-dragon-fireball-unit.md).
+
+
+### De Rol Le native scalar pool
+
+`src/pso/boss/TBoss2DeRolLe.cpp` enables explicit inlining with GC/2.6
+`-inline on`. The shared `add_motion_delta` helper preserves the moving value
+as the left operand after substitution of the native scalar literals. Direct
+literal additions are commuted during parsing and change load order and
+floating-point register allocation. Division by two similarly preserves the
+left operand when the backend folds it to multiplication by one half.
+The color-halfword swap now uses ordinary masks instead of `__rlwimi`.
+A port can use the same ordinary arithmetic and masks with its normal compiler
+settings; the original operand and literal-emission order are matching
+constraints. The remaining state-handler recovery is documented separately.
