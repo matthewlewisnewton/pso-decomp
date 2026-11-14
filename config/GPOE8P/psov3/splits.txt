@@ -4476,6 +4476,7 @@ pso/unk/text_8014AB24.cpp:
 
 pso/npc/TObjNpcGovernorBase.cpp:
 	.text       start:0x8014AB8C end:0x8014ADF4
+	.rodata     start:0x8043FA38 end:0x8043FA60
 
 pso/npc/TObjNpcHFW00.cpp:
 	.text       start:0x8014ADF4 end:0x8014AFC8
