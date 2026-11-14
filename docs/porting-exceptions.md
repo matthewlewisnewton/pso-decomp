@@ -980,6 +980,16 @@ immediately after the derived vtable. CodeWarrior declares eight-byte
 four-byte boundary in the ELF and CodeWarrior metadata. A port can use its
 default vtable placement.
 
+### `TObjRaderHideCol.cpp` native data alignment
+
+`pso/object/TObjRaderHideCol.cpp` uses `cw_align: .data=4 .sdata=4`.
+Its compiler-generated vtable starts at `0x804B890C`, and its class-name
+pointer at `0x805D3414`. Both addresses have four-byte alignment, while
+GC/2.6 records eight-byte alignment for the emitted sections. The existing
+`cw_comment_align.py` adapter changes only the ELF and CodeWarrior alignment
+metadata; instructions, data and relocations remain compiler-generated.
+A port can use its compiler's default vtable and pointer alignment.
+
 ### `TCheckMemoryCard.cpp` section placement
 
 The native static initializer at `0x8033C69C` computes the card-menu position and layout
