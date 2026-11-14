@@ -6055,12 +6055,14 @@ force_active:
   - dimedian_damage_motion_filename
   - dimedian_dead_motion_filename
   - dimedian_deadb_motion_filename
+  - dimedian_last_draw_tick
   - dimedian_leader_motion_filename
   - dimedian_mihari_motion_filename
   - dimedian_model_name_table
   - dimedian_motion_name_table
   - dimedian_movement_params
   - dimedian_resource_descriptor
+  - dimedian_resource_handles
   - dimedian_run_motion_filename
   - dimedian_s_body_model_filename
   - dimedian_sl_body_model_filename
