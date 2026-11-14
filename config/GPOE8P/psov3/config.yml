@@ -135,6 +135,7 @@ force_active:
   - TAdChrSelASlotGC__data_804758A8
   - TAdChrSelASlotGC__data_804758B0
   - TAdChrSelASlotGC__data_804758B8
+  - TAdChrSelASlotGC__data_805DF208
   - TAdChrSelASlotGC__sub_8030C45C
   - TAdChrSelBSlotGC__sub_8030E3BC
   - TAdChrSelBSlotGC__sub_8030EF74
@@ -581,6 +582,7 @@ force_active:
   - TChCrLoadAfsTextureReq__ct
   - TChCrLoadGmNjReq__ct
   - TChCrLoadReq__sub_8028D360
+  - TChCrTagInformationStr__data_805DF108
   - TChCrTagName__class_name
   - TChCrTagName__sub_802A226C
   - TChCrTagName__vt4
@@ -8052,6 +8054,7 @@ force_active:
   - instance__16TLobbyEventTheme
   - interact__19TOMonumentAncient02Fl
   - interact_player_neg1__11TOVS2Wall01Fv
+  - interaction_cursor_radius
   - interp_position_between_nodes__11TBoss4Type3Fv
   - interpolate_along_curve__18TObjTailsTailsMoveFPf
   - interpolate_motion_quaternion_keys__FUlUllf
@@ -8311,6 +8314,7 @@ force_active:
   - lbl_80437328
   - lbl_80437384
   - lbl_804373A4
+  - lbl_804374F0
   - lbl_80438128
   - lbl_80438528
   - lbl_80438534
@@ -9612,8 +9616,13 @@ force_active:
   - lbl_805D7E38
   - lbl_805D7E3C
   - lbl_805D7E40
+  - lbl_805D7E70
+  - lbl_805D7E74
   - lbl_805D81D4
   - lbl_805D85A0
+  - lbl_805D8A38
+  - lbl_805D8A3C
+  - lbl_805D8A40
   - lbl_805D8D70
   - lbl_805D8D74
   - lbl_805D8D78
@@ -9660,6 +9669,12 @@ force_active:
   - lbl_805D8E1C
   - lbl_805D8E20
   - lbl_805D8E24
+  - lbl_805D90B8
+  - lbl_805D90BC
+  - lbl_805D90C0
+  - lbl_805D90C4
+  - lbl_805D90C8
+  - lbl_805D90CC
   - lbl_805D92A0
   - lbl_805D92A4
   - lbl_805D92AC
@@ -9667,6 +9682,23 @@ force_active:
   - lbl_805D93B0
   - lbl_805D9520
   - lbl_805D9550
+  - lbl_805D9570
+  - lbl_805D9574
+  - lbl_805D9580
+  - lbl_805D95C0
+  - lbl_805D95C4
+  - lbl_805D95C8
+  - lbl_805D95CC
+  - lbl_805D95D0
+  - lbl_805D95D4
+  - lbl_805D95D8
+  - lbl_805D95DC
+  - lbl_805D95E0
+  - lbl_805D95E4
+  - lbl_805D95E8
+  - lbl_805D95EC
+  - lbl_805D95F0
+  - lbl_805D95F4
   - lbl_805D9970
   - lbl_805D9974
   - lbl_805D9D70
@@ -9900,6 +9932,13 @@ force_active:
   - lbl_805DB09C
   - lbl_805DB0A0
   - lbl_805DB0A4
+  - lbl_805DB0D0
+  - lbl_805DB0D4
+  - lbl_805DB0D8
+  - lbl_805DB0DC
+  - lbl_805DB0E0
+  - lbl_805DB180
+  - lbl_805DB184
   - lbl_805DBBE0
   - lbl_805DBBE4
   - lbl_805DBBE8
@@ -9947,6 +9986,12 @@ force_active:
   - lbl_805DBF94
   - lbl_805DC324
   - lbl_805DC328
+  - lbl_805DC5C0
+  - lbl_805DC5C4
+  - lbl_805DC618
+  - lbl_805DC61C
+  - lbl_805DC680
+  - lbl_805DC684
   - lbl_805DC8C4
   - lbl_805DCCA8
   - lbl_805DCD10
@@ -9973,14 +10018,69 @@ force_active:
   - lbl_805DD1B4
   - lbl_805DD1B8
   - lbl_805DD1BC
+  - lbl_805DD2F0
+  - lbl_805DD2F4
+  - lbl_805DD2F8
   - lbl_805DD648
   - lbl_805DD668
+  - lbl_805DD940
+  - lbl_805DD944
+  - lbl_805DD948
+  - lbl_805DD94C
+  - lbl_805DD950
+  - lbl_805DD954
+  - lbl_805DDC58
+  - lbl_805DDC5C
+  - lbl_805DDC60
+  - lbl_805DDC64
+  - lbl_805DDCF8
+  - lbl_805DDCFC
+  - lbl_805DDD00
+  - lbl_805DDD04
   - lbl_805DDD28
   - lbl_805DDD2C
   - lbl_805DDD30
   - lbl_805DDD34
   - lbl_805DDD38
   - lbl_805DDD3C
+  - lbl_805DDE00
+  - lbl_805DDE04
+  - lbl_805DDE08
+  - lbl_805DDE0C
+  - lbl_805DDE20
+  - lbl_805DDE24
+  - lbl_805DDED8
+  - lbl_805DDEDC
+  - lbl_805DDEE0
+  - lbl_805DDEE4
+  - lbl_805DDEE8
+  - lbl_805DDEEC
+  - lbl_805DDEF0
+  - lbl_805DDEF4
+  - lbl_805DDEF8
+  - lbl_805DDEFC
+  - lbl_805DDF00
+  - lbl_805DDF04
+  - lbl_805DDF08
+  - lbl_805DDF0C
+  - lbl_805DDF10
+  - lbl_805DDF14
+  - lbl_805DDF20
+  - lbl_805DDF24
+  - lbl_805DDF28
+  - lbl_805DDF2C
+  - lbl_805DDF54
+  - lbl_805DDF80
+  - lbl_805DDF84
+  - lbl_805DDFC8
+  - lbl_805DDFCC
+  - lbl_805DDFD0
+  - lbl_805DDFD4
+  - lbl_805DDFD8
+  - lbl_805DDFDC
+  - lbl_805DDFE0
+  - lbl_805DDFF0
+  - lbl_805DDFF4
   - lbl_805DE040
   - lbl_805DE0E0
   - lbl_805DE0E8
@@ -10002,8 +10102,25 @@ force_active:
   - lbl_805DE128
   - lbl_805DE12C
   - lbl_805DE130
+  - lbl_805DE1D8
+  - lbl_805DE1DC
   - lbl_805DE4BC
+  - lbl_805DE588
+  - lbl_805DE58C
+  - lbl_805DE590
+  - lbl_805DE594
+  - lbl_805DE598
+  - lbl_805DE59C
+  - lbl_805DE5A8
+  - lbl_805DE5AC
+  - lbl_805DE5B0
+  - lbl_805DE5C8
+  - lbl_805DE5CC
   - lbl_805DE620
+  - lbl_805DE7C0
+  - lbl_805DE7C4
+  - lbl_805DE7C8
+  - lbl_805DE7CC
   - lbl_805DE910
   - lbl_805DE918
   - lbl_805DE91C
@@ -10167,11 +10284,72 @@ force_active:
   - lbl_805DEE90
   - lbl_805DEE94
   - lbl_805DEE98
+  - lbl_805DEF40
+  - lbl_805DEF44
+  - lbl_805DF040
+  - lbl_805DF044
+  - lbl_805DF048
+  - lbl_805DF04C
+  - lbl_805DF050
+  - lbl_805DF054
+  - lbl_805DF058
+  - lbl_805DF05C
+  - lbl_805DF060
+  - lbl_805DF064
+  - lbl_805DF068
+  - lbl_805DF06C
+  - lbl_805DF0B0
+  - lbl_805DF0B4
+  - lbl_805DF20C
   - lbl_805DF2E4
   - lbl_805DF3AC
   - lbl_805DF3B0
   - lbl_805DF3B4
+  - lbl_805DF478
+  - lbl_805DF498
+  - lbl_805DF49C
+  - lbl_805DF4A0
+  - lbl_805DF4A4
+  - lbl_805DF4A8
+  - lbl_805DF4AC
+  - lbl_805DF4B0
+  - lbl_805DF4B4
+  - lbl_805DF4B8
+  - lbl_805DF4BC
+  - lbl_805DF4C0
+  - lbl_805DF4C4
+  - lbl_805DF4C8
+  - lbl_805DF4CC
+  - lbl_805DF4D0
+  - lbl_805DF4D4
   - lbl_805DF5FC
+  - lbl_805DF600
+  - lbl_805DF700
+  - lbl_805DF704
+  - lbl_805DF708
+  - lbl_805DF70C
+  - lbl_805DF718
+  - lbl_805DF71C
+  - lbl_805DF728
+  - lbl_805DF72C
+  - lbl_805DF730
+  - lbl_805DF734
+  - lbl_805DF738
+  - lbl_805DF73C
+  - lbl_805DF740
+  - lbl_805DF744
+  - lbl_805DF748
+  - lbl_805DF74C
+  - lbl_805DF750
+  - lbl_805DF754
+  - lbl_805DF758
+  - lbl_805DF778
+  - lbl_805DF788
+  - lbl_805DF78C
+  - lbl_805DF790
+  - lbl_805DF794
+  - lbl_805DF798
+  - lbl_805DF79C
   - lbl_805DF878
   - lbl_805DF87C
   - lbl_805DF880
@@ -10190,6 +10368,10 @@ force_active:
   - lbl_805DFA48
   - lbl_805DFA4C
   - lbl_805DFA50
+  - lbl_805DFAE0
+  - lbl_805DFAE4
+  - lbl_805DFCE8
+  - lbl_805DFCEC
   - lbl_805DFDA8
   - lbl_805DFDAC
   - lbl_805DFDB0
@@ -10197,6 +10379,12 @@ force_active:
   - lbl_805DFDB8
   - lbl_805DFDBC
   - lbl_805DFDC0
+  - lbl_805DFFC8
+  - lbl_805DFFCC
+  - lbl_805DFFD0
+  - lbl_805DFFD4
+  - lbl_805DFFD8
+  - lbl_805DFFDC
   - lbl_805E0198
   - lbl_805E019C
   - lbl_805E01A0
@@ -10215,6 +10403,10 @@ force_active:
   - lbl_805E03DC
   - lbl_805E03E0
   - lbl_805E03E4
+  - lbl_805E0440
+  - lbl_805E0444
+  - lbl_805E0448
+  - lbl_805E044C
   - lbl_805E0D58
   - lbl_805E0D5C
   - lbl_805E0D60
