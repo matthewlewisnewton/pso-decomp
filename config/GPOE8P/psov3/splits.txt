@@ -13709,6 +13709,7 @@ pso/misc/TCameraCtrl_803D749C.cpp:
 
 pso/unk/text_803D8030.cpp:
 	.text       start:0x803D8030 end:0x803D8090
+	.sbss       start:0x805D76C8 end:0x805D76D0
 	.sdata2     start:0x805E0EA8 end:0x805E0EB0
 
 pso/npc/TObjNpcEnemy_803D8090.cpp:
