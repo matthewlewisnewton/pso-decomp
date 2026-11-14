@@ -1,7 +1,7 @@
 # Zako renderer consolidation
 
 This completes the remaining renderer work from fork PR #303 on main
-`284fafb0b1df1955a8d03f8035f3484d99e76fc7`. Its DHCP, network, BML,
+`8d032356158714045be28c034286f4c6e846a843`. Its DHCP, network, BML,
 character-load and storage recoveries have already landed through separate PRs.
 Those current implementations are retained, including the unsigned DHCP clock
 subtraction and the genuine two-argument chunk-material helper.
@@ -67,7 +67,8 @@ bytes** matched and linked from source. `check_pr.py` checks address-based
 no-loss, source providers and generated retention. Consolidation reduces the
 linked-unit count by one; it changes no matched or linked byte count. The scanner
 adds three retention entries for references now internal to the combined unit,
-removing none. The rebuilt DOL retains original SHA-1
+removing none. All 347 tool tests, the portable behavior/sanitizer suites and
+16 scoped Zako/viewport sanitizer cases pass. The rebuilt DOL retains original SHA-1
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 
 This does not claim to repair unrelated legacy network allocator, queue-adjacency,
