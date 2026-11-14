@@ -1014,6 +1014,7 @@ pso/network/TTcpSocket.cpp:
 
 pso/map/CsnQuery.cpp:
 	.text       start:0x800790F0 end:0x8007A5D8
+	.sbss       start:0x805D4E70 end:0x805D4E80
 
 pso/object/TObjButterflyLobby_8007A5D8.cpp:
 	.text       start:0x8007A5D8 end:0x8007A6C8
