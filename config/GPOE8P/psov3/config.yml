@@ -10776,6 +10776,7 @@ force_active:
   - photon_blast_attachment_table
   - photon_blast_farlla_params
   - photon_blast_golla_params
+  - photon_blast_joint_index
   - photon_blast_joint_origins
   - photon_blast_leilla_params
   - photon_blast_load_callback_table
@@ -19806,6 +19807,8 @@ force_active:
   - warp_boss_handle_window__12TObjWarpBossFv
   - warp_nearby_players__14TBoss6PlotFalzFv
   - warp_player__12TObjWarpBossFl
+  - wave_event_stop_requested
+  - wave_event_trigger_count
   - window_chat_type_name_pointer
   - window_duel_result_class_name
   - window_label_value_part_vtable
