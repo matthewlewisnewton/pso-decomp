@@ -13862,6 +13862,7 @@ pso/unk/text_803E1FC8.cpp:
 
 pso/unk/text_803E2008.cpp:
 	.text       start:0x803E2008 end:0x803E2070
+	.sbss       start:0x805D77B8 end:0x805D77BC
 
 pso/unk/text_803E2070.cpp:
 	.text       start:0x803E2070 end:0x803E20B0
