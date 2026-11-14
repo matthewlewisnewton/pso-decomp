@@ -24,14 +24,14 @@ struct Node_8026CCA4 {
 };
 struct Grp_8026CCA4 { u8 p0[0x14]; Node_8026CCA4 *head; };
 
-extern const f32 lbl_805DD2CC;
+static const f32 lbl_805DD2CC = -1.2999999523162842f;
 s32 is_split_screen(void);
 extern WindowLayoutPosition window_layout_position_table[];
 extern WindowLayoutPosition lbl_80477890[];
 extern unsigned char window_layout_rect_table[];
 s32 TWindowCtrlMain__sub_8024CE58(void);
 extern f32 window_depth_order_cursor;
-extern const f32 lbl_805DD2C8;
+static const f32 lbl_805DD2C8 = -0.30000001192092896f;
 void*TWindowOptionCtrl::get_option_entry(int a0) {  return (char*)window_layout_rect_table + a0 * 8; }
 WindowLayoutPosition *get_window_layout_position(s32 idx) {
     if (is_split_screen() != 0) {

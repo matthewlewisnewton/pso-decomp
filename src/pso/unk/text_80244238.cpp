@@ -25,10 +25,10 @@ typedef struct Disp_80244238 {
 extern "C" {
 s32 set_position_xy__15TWindowAdditionFff(f32, f32);
 extern s32 lbl_805D3878;
-extern const f32 lbl_805DCAAC;
+static const f32 lbl_805DCAAC = 0.0f;
 extern const f32 lbl_805DCAB0;
 Ctx_80244364 *setup_window_draw_context__11TWindowBaseFl(Obj_80244364 *self, f32 *p);
-extern const f32 lbl_805DCAA8;
+static const f32 lbl_805DCAA8 = 0.5f;
 
 #pragma push
 #pragma fp_contract on

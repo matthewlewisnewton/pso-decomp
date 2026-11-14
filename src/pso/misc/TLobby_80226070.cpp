@@ -11,7 +11,7 @@ extern int lbl_805D6280;
 extern int lbl_805D6284;
 extern s32 music_stream_base_gain;
 extern s32 music_stream_gain;
-extern const f32 lbl_805DC744;
+static const f32 lbl_805DC744 = 0.4233333170413971f;
 extern "C" {
 void update_music_stream_gain(s32 user);
 void TLobby__sub_8022614C(s32 arg0);
@@ -53,7 +53,7 @@ extern s32 lbl_805D629C;
 extern s32 lbl_805D62A0;
 extern s32 lbl_805D62A8;
 extern s32 lbl_805D62AC;
-extern const f32 lbl_805DC740;
+static const f32 lbl_805DC740 = 2.3622047901153564f;
 int TLobby__sub_80226308(void);
 void TTecRaFoie__sub_80226254(void);
 

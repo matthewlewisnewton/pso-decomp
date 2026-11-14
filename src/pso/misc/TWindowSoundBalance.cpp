@@ -28,7 +28,7 @@ s32 get_field_20__17TWindowSubComCardFv();
 extern s32 window_sound_balance_settings[];
 extern s32 __vt__19TWindowSoundBalance[];
 extern s32 TWindowSoundBalance__name;
-extern const f32 lbl_805DD414;
+static const f32 lbl_805DD414 = 231.0f;
 extern const f32 lbl_805DD418;
 s32 draw_visible_window_entries(s32, s32, void *);
 void __dl__7TObjectFPv(void *);
@@ -73,7 +73,7 @@ void TWindowSoundBalance::play_open_sound() {
     this->m_60 = (u8) (this->m_60 | 1);
 }
 
-extern const f32 lbl_805DD408;
+static const f32 lbl_805DD408 = 0.02500000037252903f;
 
 void TWindowSoundBalance::sub_8027095C() {
     ControllerInputContext *input = &controller_input_state.controllers[0];
@@ -108,8 +108,8 @@ void TWindowSoundBalance::sub_8027095C() {
     }
 }
 
-extern const f32 lbl_805DD40C;
-extern const f32 lbl_805DD410;
+static const f32 lbl_805DD40C = 174.0f;
+static const f32 lbl_805DD410 = 348.0f;
 
 void TWindowSoundBalance::handle_lr_input() {
     u8 *input;

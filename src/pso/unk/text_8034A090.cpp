@@ -37,20 +37,20 @@ struct T_8034A198 {
 extern "C" {
 s32 __nw__7TObjectFUl(int);
 RecoveredGlobal_8034A5D0_lbl_804EFF80 quest_load_prt_txt_by_slot = {0, {0}};
-extern const f32 lbl_805DFD20;
-extern const f32 lbl_805DFD24;
-extern const f32 lbl_805DFD28;
-extern const f32 lbl_805DFD2C;
-extern const f32 lbl_805DFD30;
-extern const f32 lbl_805DFD34;
-extern const f32 lbl_805DFD38;
-extern const f32 lbl_805DFD3C;
-extern const f32 lbl_805DFD40;
-extern const f32 lbl_805DFD44;
-extern const f32 lbl_805DFD48;
-extern const f32 lbl_805DFD4C;
-extern const f32 lbl_805DFD50;
-extern const f32 lbl_805DFD54;
+static const f32 lbl_805DFD20 = 15.600000381469727f;
+static const f32 lbl_805DFD24 = 0.0f;
+static const f32 lbl_805DFD28 = 8.0f;
+static const f32 lbl_805DFD2C = 72.0f;
+static const f32 lbl_805DFD30 = 16.0f;
+static const f32 lbl_805DFD34 = 0.002020202111452818f;
+static const f32 lbl_805DFD38 = 462.0f;
+static const f32 lbl_805DFD3C = 50.0f;
+static const f32 lbl_805DFD40 = 445.0f;
+static const f32 lbl_805DFD44 = 35.0f;
+static const f32 lbl_805DFD48 = 0.002222222276031971f;
+static const f32 lbl_805DFD4C = 99.0f;
+static const f32 lbl_805DFD50 = 40.0f;
+static const f32 lbl_805DFD54 = 555.0f;
 extern const f32 lbl_805DFD58;
 // Points at the "TAdLoadQuestPrtTxtGC" class-name string.
 extern const char *lbl_805D4308;

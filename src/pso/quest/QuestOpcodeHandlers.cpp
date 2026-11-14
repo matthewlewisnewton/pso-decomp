@@ -2012,7 +2012,7 @@ extern RecoveredGlobal_801EC90C_lbl_80449AFC lbl_80449B08;
 extern s32 lbl_80449B10[];
 extern Tbl_801E9AF8 lobby_index_identity_table_a[];
 extern s32 lbl_80449B2C[];
-extern const f64 lbl_80449CC0;
+static const f64 lbl_80449CC0 = 10430.38043493439;
 extern RecoveredGlobal_801ECF84_lbl_8050D3E0 lbl_8050D3E0;
 extern s32 symbolchat_colli_param_table[];
 extern E_801E93B4 controller_input_state[];

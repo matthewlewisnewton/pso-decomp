@@ -17,7 +17,7 @@ extern "C" {
 extern const Pair_8044BC7C lbl_8044BC7C;
 struct Data_8044BC84 { Pair_8044BC7C value; u8 padding[4]; };
 extern const Data_8044BC84 lbl_8044BC84;
-extern const f32 lbl_805DC640;
+static const f32 lbl_805DC640 = 0.8999999761581421f;
 }
 
 void THunterGuildWarning::close_windows() {
