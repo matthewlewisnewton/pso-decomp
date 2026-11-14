@@ -1,5 +1,13 @@
 # Continuation review assessment, separate from the focused PR
 
+The current [matching-scope checkpoint](window-pr403-matching-review.md) supersedes
+this historical blanket draft recommendation under the user-requested 100%
+matching criterion. It also resolves the Word placement/table/startup blocker.
+The remaining lifetime, ownership and portability qualifications below stay
+explicit; they are not cleared by binary equality.
+
+## Historical broader lifetime-completion assessment
+
 This review starts from continuation
 `ab0c33f1b99a3b1b8b426b23261fb6839c279d6c`. Main advanced from f8a71fae
 to `0a85a72c1c09598512363e6d375616ebd1d1b63e` during the assessment. The

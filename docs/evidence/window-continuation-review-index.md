@@ -1,6 +1,16 @@
 # Window continuation: current review and blocker index
 
-This draft continues the focused GuildWarning work. The initial base was
+## Current matching-scope review checkpoint
+
+The [PR #403 matching review](window-pr403-matching-review.md) records the current
+100% code/data result, fresh-main and prior-head no-loss gates, and remaining
+review qualifications. [Native Word emission](window-word-native-emission.md)
+resolves the earlier Word construction/order/table/startup blocker. Historical
+draft recommendations below refer to the broader completion assessment; the
+current explicitly requested readiness scope is binary matching, with the other
+uncertainties retained for review.
+
+This PR continues the focused GuildWarning work. The initial base was
 `codex/guildwarning-focused-20261110`; focused PR #402 has since merged and
 continuation PR #403 now targets main. Historical stack checkpoints below retain
 their original bases and validation scope.
@@ -458,8 +468,9 @@ The initial split required both replacements to remain draft until their scoped
 readiness gates were met and publication verified. That publication completed and
 #268 closed as superseded without deleting its branch/history. Focused #402 was
 subsequently reviewed and merged under separate authorization. This continuation
-#403 remains draft with its substantive holds; do not merge, formally approve,
-mark it ready or lift a hold merely because matching/CI checks pass.
+#403 remained draft at that checkpoint with substantive holds. The current
+matching-scope assessment above supersedes the blanket draft recommendation;
+readiness does not lift the retained qualifications or authorize a merge.
 
 The [accepted-main Parts integration](window-parts-accepted-main-integration.md)
 supersedes only the former missing-export/original-provider blocker after combined
