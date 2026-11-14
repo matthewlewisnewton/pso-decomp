@@ -5736,6 +5736,7 @@ pso/object/TObjDoor_8018E358.cpp:
 
 pso/object/TObjDoorJung.cpp:
 	.text       start:0x8018F458 end:0x8018FA6C
+	.bss        start:0x8050DC98 end:0x8050DCA8
 	.sbss       start:0x805D5BE0 end:0x805D5BF0
 	.sdata2     start:0x805DBDF8 end:0x805DBE00
 
