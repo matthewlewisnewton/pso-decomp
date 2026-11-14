@@ -6,7 +6,9 @@
 class TWindowDD_WS_ScrollBar : public TWindowBase {
 public:
     virtual ~TWindowDD_WS_ScrollBar();
-    void *dt(s16);
+    TWindowDD_WS_ScrollBar();
+    virtual void run_task();
+    virtual void render();
     // The setters store counts and positions as floats for thumb geometry.
     f32 inverse_item_count;
     f32 item_count;

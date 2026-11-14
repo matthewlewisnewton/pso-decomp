@@ -154,7 +154,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,893 | 892 |
-| Per-unit compiler overrides in `configure.py` | 210 | 210 |
+| Per-unit compiler overrides in `configure.py` | 214 | 214 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -692,7 +692,7 @@ The complete provider now links as three native layout groups; see
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-210 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+214 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
 1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
@@ -708,6 +708,25 @@ use their own compiler versions as recorded there.
 Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
+
+### Window native lifetime emission (deferred codegen)
+
+Approved by Matt (Nov 14 2026, 1:35 PM PT: "#562: approve deferred codegen on
+the window units, with a register row, to replace WindowConstructorAbi.h").
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TWindowDD.cpp` | `TUnk_804EFBAC` ctor/dtor/`render`/`run_task`; `TWindowDD_WS_ScrollBar::render`/`run_task` | unit `configure.py` override `-inline off,deferred`; definitions written in reverse order | The original constructors reach the compiler-generated vtable from the same data base register as the layout/descriptor arrays. MWCC pools only data already defined when a function is generated; without deferral the generated vtable is created at the end of the unit and loaded separately (54.9% best). Deferred emission makes the vtable available during pooling and reverses definition order, so the definitions are written bottom to top. | Drop the flag; keep the ordinary constructor, destructor and `new`. |
+| `src/pso/misc/TWindowDD_80340EA8.cpp` | `TWindowDD_WS_ScrollBar` ctor/dtor | same | Same pooling timing (61.5% without deferral); reversed definitions also restore the `.sdata2` order. | Same. |
+| `src/pso/misc/TWindowDD_80342254.cpp` | `TWindowDD_WS_Word` ctor/dtor | same | Same pooling timing (70.9% without deferral). Source is identical to the Word recovery stacked in #566. | Same. |
+| `src/pso/misc/TWindowComCard_80249CBC.cpp` | `TUnk_804CE964` ctor/dtor and the rest of the former `TWindowComCard.cpp` tail from `0x80249CBC` | same; `TWindowComCard.cpp` is split at `0x80249CBC` and its first part needs no override | The follower window's generated vtable follows the deferred emission order; the first part of the old unit matches without deferral. | Same. |
+
+These entries replace raw constructor/destructor transport through
+`WindowConstructorAbi.h` (see §9) for these units with real constructors
+(base initializers), compiler-generated vtables, automatic base destruction and
+ordinary `new`. Vtable symbols are 0x18 bytes; the former 0x1C entries included
+four bytes of alignment padding. No other pragma, flag or hand-written table is
+used. Evidence: [window-native-lifetime-deferred.md](evidence/window-native-lifetime-deferred.md).
 
 ### Speech-balloon constant alignment
 
@@ -1900,16 +1919,23 @@ boundaries. See [the complete-unit evidence](evidence/quest-download-unit-comple
 `include/pso/misc/WindowConstructorAbi.h` is a bounded MWCC ABI interface for
 the remaining C-named initializers and destroyers that receive allocated object
 storage. Its declarations name the actual compiler-emitted constructors and
-destructors with their complete native arguments. Recovered C++ constructors
-use base initializers, recovered destructors use automatic base cleanup, and
-the updated factories use ordinary `new`.
-
-The remaining raw destroyers pass the native hidden deleting flag `0` for base
-cleanup. An explicit C++ destructor expression emits `-1` instead; both avoid
-deallocation, but the latter does not reproduce these call sites. No substitute
-helper body, alternate-width mangled declaration, hand-written table, new pragma,
-or compiler override is used. Evidence and full qualification:
+destructors with their complete native arguments. The remaining raw destroyers
+pass the native hidden deleting flag `0` for base cleanup; an explicit C++
+destructor expression would emit `-1`. Evidence and full qualification:
 [window-native-lifetime.md](evidence/window-native-lifetime.md).
+
+It now covers only these leftover raw call sites:
+
+| File | Raw entry points used | Native form still blocked by |
+|---|---|---|
+| `src/pso/misc/TKeyBoardControl.cpp` | `TWindowBase` ctor and dtor (soft keyboard window) | The real 0x70-byte `TWindowKeyBoardSoft` window shares its name with the legacy draw-context view used across the keyboard units. |
+| `src/pso/misc/TWindowChallengeResult.cpp` | `TWindowBase` ctor and dtor | Its sole allocation producer, `TObjOnlineEnding::create_result_window`, reaches 99.73% with ordinary `new`; the class stays raw until that caller matches. |
+| `src/pso/misc/TWindowKeyBoardHard_802601D4.cpp` | `TWindowBase` dtor | The generated vtable section is 8-aligned; the original table is at `0x804CFDC4` (4 mod 8). |
+| `src/pso/misc/TWindowFukidasi_80252AE4.cpp` | `TWindowAddition` dtor | Native emission order of the balloon vtable and constant pools in `TWindowFukidasi.cpp`. |
+
+The DD selection, ScrollBar, Word and ComCard follower windows moved to native
+construction under the §5 entry
+[Window native lifetime emission (deferred codegen)](#window-native-lifetime-emission-deferred-codegen).
 
 A port must replace this symbol-name transport with real constructor/destructor
 calls, or placement construction where an external owner supplies storage.

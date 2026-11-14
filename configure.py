@@ -653,6 +653,19 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Row-header copy is a 16-byte struct assignment. -inline off outlines it;
     # noauto,level=1 inlines that helper only. The rest of the unit stays out of line.
     "pso/misc/TWindowMainMenu_802AD538.cpp": {"cflags": _switch(cflags_pso, "-inline noauto,level=1")},
+    # Window native lifetime (Matt's approval, Nov 14 2026, 1:35 PM PT): deferred emission makes
+    # the compiler-generated Word vtable exist while metadata is pooled; reverse definitions keep
+    # the original addresses and pool order. See docs/evidence/window-native-lifetime-deferred.md.
+    "pso/misc/TWindowDD_80342254.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Window native lifetime: same deferred emission for the ComCard follower window vtable
+    # (TUnk_804CE964). See docs/evidence/window-native-lifetime-deferred.md.
+    "pso/misc/TWindowComCard_80249CBC.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Window native lifetime: same deferred emission for the TUnk_804EFBAC selection window
+    # vtable. See docs/evidence/window-native-lifetime-deferred.md.
+    "pso/misc/TWindowDD.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Window native lifetime: same deferred emission for the TWindowDD_WS_ScrollBar vtable.
+    # See docs/evidence/window-native-lifetime-deferred.md.
+    "pso/misc/TWindowDD_80340EA8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs
     # (scale_point_about_pivot, apply_context_transform_to_rect,
     # apply_window_closing_stretch, clip_textured_quad, init_text_window_layout).
