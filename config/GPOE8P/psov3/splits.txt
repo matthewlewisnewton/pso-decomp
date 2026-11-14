@@ -103,6 +103,7 @@ pso/ui/TAdSEGAlogo.cpp:
 
 pso/misc/TLogo_8001C134.cpp:
 	.text       start:0x8001C134 end:0x8001C1C4
+	.rodata     start:0x804349A0 end:0x804349A8
 
 pso/ui/TAdSoniclogo_8001C1C4.cpp:
 	.text       start:0x8001C1C4 end:0x8001C2E4
