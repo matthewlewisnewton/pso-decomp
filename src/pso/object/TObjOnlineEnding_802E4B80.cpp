@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowChallengeResult.h"
 #include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
@@ -246,7 +247,6 @@ static const f32 lbl_805DE940 = 0.1f;
 static const f32 lbl_805DE944 = 0.0f;
 s32 restore_player_cameras();
 s32 TLobby__sub_80070ACC();
-s32 TWindowChallengeResult__ct(s32, s32, s32, s32);
 s32 TWindowSubStatusDisp__sub_800718D0();
 s32 __dl__7TObjectFPv(void *);
 s32 get_card_window_value__16TObjOnlineEndingFv();
@@ -254,25 +254,10 @@ s32 get_layout_id__20TWindowSubStatusDispFv(s32);
 s32 is_flag_set__6TLobbyFv();
 
 void TObjOnlineEnding::create_result_window() {
-    s32 temp_r31;
-    s32 temp_r30_2;
-    s32 temp_r30;
-    s32 var_r29;
-
-    this->m_154 = 0;
-    if (is_flag_set__6TLobbyFv() != 0) {
-        temp_r30 = get_layout_id__20TWindowSubStatusDispFv(-1) - 1;
-        {
-        s32 t = TLobby::get_online_result_value();
-        if (t == temp_r30) {
-            var_r29 = (s32)__nw__7TObjectFUl(0x68);
-            if (var_r29 != 0) {
-                temp_r30_2 = get_card_window_value__16TObjOnlineEndingFv();
-                temp_r31 = TWindowSubStatusDisp__sub_800718D0();
-                var_r29 = TWindowChallengeResult__ct(var_r29, TLobby__sub_80070ACC(), temp_r31, temp_r30_2);
-            }
-            this->m_154 = var_r29;
-        }
+    m_154 = 0;
+    if (is_flag_set__6TLobbyFv()) {
+        if (TLobby::get_online_result_value() == get_layout_id__20TWindowSubStatusDispFv(-1) - 1) {
+            m_154 = (s32)new TWindowChallengeResult(TLobby__sub_80070ACC(), TWindowSubStatusDisp__sub_800718D0(), get_card_window_value__16TObjOnlineEndingFv());
         }
     }
 }
