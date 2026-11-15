@@ -720,6 +720,7 @@ the window units, with a register row, to replace WindowConstructorAbi.h").
 | `src/pso/misc/TWindowDD_80340EA8.cpp` | `TWindowDD_WS_ScrollBar` ctor/dtor | same | Same pooling timing (61.5% without deferral); reversed definitions also restore the `.sdata2` order. | Same. |
 | `src/pso/misc/TWindowDD_80342254.cpp` | `TWindowDD_WS_Word` ctor/dtor | same | Same pooling timing (70.9% without deferral). Source is identical to the Word recovery stacked in #566. | Same. |
 | `src/pso/misc/TWindowComCard_80249CBC.cpp` | `TUnk_804CE964` ctor/dtor and the rest of the former `TWindowComCard.cpp` tail from `0x80249CBC` | same; `TWindowComCard.cpp` is split at `0x80249CBC` and its first part needs no override | The follower window's generated vtable follows the deferred emission order; the first part of the old unit matches without deferral. | Same. |
+| `src/pso/misc/TWindowChallengeResult.cpp` | `TWindowChallengeResult` ctor/dtor/`run_task` | same | Same pooling timing; with the class native, its sole producer `TObjOnlineEnding::create_result_window` uses ordinary `new` at 100%. | Same. |
 
 These entries replace raw constructor/destructor transport through
 `WindowConstructorAbi.h` (see §9) for these units with real constructors
@@ -1929,10 +1930,11 @@ It now covers only these leftover raw call sites:
 | File | Raw entry points used | Native form still blocked by |
 |---|---|---|
 | `src/pso/misc/TKeyBoardControl.cpp` | `TWindowBase` ctor and dtor (soft keyboard window) | The real 0x70-byte `TWindowKeyBoardSoft` window shares its name with the legacy draw-context view used across the keyboard units. |
-| `src/pso/misc/TWindowChallengeResult.cpp` | `TWindowBase` ctor and dtor | Its sole allocation producer, `TObjOnlineEnding::create_result_window`, reaches 99.73% with ordinary `new`; the class stays raw until that caller matches. |
 | `src/pso/misc/TWindowFukidasi_80252AE4.cpp` | `TWindowAddition` dtor | Native emission order of the balloon vtable and constant pools in `TWindowFukidasi.cpp`. |
 
 The Hard keyboard window is now native: `TKeyBoardControl_8025EC04.cpp` merges the original keyboard unit through `0x80260450`, so the generated vtable lands at `0x804CFDC4` with no per-unit alignment override.
+
+The ChallengeResult window is now native under the §5 deferred-codegen entry above; `TObjOnlineEnding::create_result_window` constructs it with ordinary `new`.
 
 The DD selection, ScrollBar, Word and ComCard follower windows moved to native
 construction under the §5 entry

@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
 | pragma | 5893 | 892 |
-| configure.py per-unit override | 214 | 214 |
+| configure.py per-unit override | 215 | 215 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -318,6 +318,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `pso/misc/TWindowComCard_80249CBC.cpp` | `-inline off,deferred` | Window native lifetime: same deferred emission for the ComCard follower window vtable (TUnk_804CE964). See docs/evidence/window-native-lifetime-deferred.md. |
 | `pso/misc/TWindowDD.cpp` | `-inline off,deferred` | Window native lifetime: same deferred emission for the TUnk_804EFBAC selection window vtable. See docs/evidence/window-native-lifetime-deferred.md. |
 | `pso/misc/TWindowDD_80340EA8.cpp` | `-inline off,deferred` | Window native lifetime: same deferred emission for the TWindowDD_WS_ScrollBar vtable. See docs/evidence/window-native-lifetime-deferred.md. |
+| `pso/misc/TWindowChallengeResult.cpp` | `-inline off,deferred` | Window native lifetime: same deferred emission for the TWindowChallengeResult vtable; definitions are written in reverse order. See docs/evidence/window-native-lifetime-deferred.md. |
 | `pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `-fp_contract on` | Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs (scale_point_about_pivot, apply_context_transform_to_rect, apply_window_closing_stretch, clip_textured_quad, init_text_window_layout). Unit -fp_contract on replaces the per-function pragmas. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/unk/text_8034A090.cpp` | `-fp_contract on` | Loading-text particle positions contract `scale * i + base` into fmadds (TAdLoadQuestPrtTxtGC ctor, cases 0/1/2). The other three functions have no contracted multiply. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/misc/TNpcPlayer.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190: this file is written in reverse so deferred codegen emits address order, and the readonly string pool places the constants. |

@@ -525,7 +525,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/object/TObjDFDemo4.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Reverse definitions preserve the palette vtable before its icon switch table.
     "pso/misc/TWindowActionPalette.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/misc/TWindowChallengeResult.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Deferred emission groups the Falz cutscene's motion indices, origin and vtable.
     "pso/object/TObjFish_8033CCC8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneBalClawBody_80090178.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4")},
@@ -667,6 +666,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Window native lifetime: same deferred emission for the TWindowDD_WS_ScrollBar vtable.
     # See docs/evidence/window-native-lifetime-deferred.md.
     "pso/misc/TWindowDD_80340EA8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Window native lifetime: same deferred emission for the TWindowChallengeResult vtable;
+    # definitions are written in reverse order. See docs/evidence/window-native-lifetime-deferred.md.
+    "pso/misc/TWindowChallengeResult.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs
     # (scale_point_about_pivot, apply_context_transform_to_rect,
     # apply_window_closing_stretch, clip_textured_quad, init_text_window_layout).
