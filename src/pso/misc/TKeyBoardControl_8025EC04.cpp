@@ -6,6 +6,10 @@
 #include "pso/misc/TWindowKeyBoardHard.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/ui/Language.h"
+#include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
+#include "pso/misc/TWindowDD.h"
+#include "pso/misc/TWindowKeyBoardHard_802601D4.h"
+#include "pso/misc/TWindowBase.h"
 
 struct RecoveredFields_8025FC60_arg0 {
     u8 unknown_0[0x60];
@@ -570,3 +574,153 @@ void TWindowKeyBoardHard::enable_caps_led() {
 }
 
 }
+
+void TWindowKeyBoardHard::reset_composer_input_flags() {
+    if (m_70 != 0U) {
+        m_60 |= 0x40;
+        ((TWindowKeyBoardBase *)m_70)->set_input_flags_12();
+        switch (current_language) {
+        case LANGUAGE_JAPANESE:
+        case LANGUAGE_ENGLISH:
+            break;
+        case LANGUAGE_GERMAN:
+        case LANGUAGE_FRENCH:
+        case LANGUAGE_SPANISH:
+            m_6c = 7;
+            break;
+        }
+    }
+}
+
+#pragma inline_depth(1)
+#pragma auto_inline off
+#pragma dont_inline off
+struct Pt_80260020 { f32 x, y; };
+
+struct Ctx_80260020 { u8 pad0[0x10]; Pt_80260020 pos; u8 pad18[0x38 - 0x18]; f32 scale; };
+
+struct State_80260020 { u8 pad0[0xB4]; s32 flags; };
+
+struct Win_80260020 { u8 pad0[0x70]; State_80260020 *state; };
+
+extern "C" {
+extern s32 lbl_8044F0CC[];
+extern s32 lbl_8044F0D4[];
+extern s32 keyboard_hard_status_text_a[];
+extern s32 keyboard_hard_status_text_b[];
+extern s32 lbl_8044F0FC[];
+extern s32 lbl_8044F104[];
+static const f32 lbl_805DD068 = -1.0f;
+static const f32 lbl_805DD06C = 100000.0f;
+extern const f32 lbl_805DD070;
+s32 is_key_active__19TWindowKeyBoardHardFv();
+
+void TWindowKeyBoardHard::release_keyboard() { void* m = *(void* *)&this->m_70; if (m) TWindowKeyBoardHard__sub_8025CC48(m); }
+
+void TWindowKeyBoardHard::draw_status_text(void *ctx) {
+    s32 flags;
+    if (((Win_80260020 *)this)->state != NULL && current_language == LANGUAGE_JAPANESE) {
+        f32 inv = lbl_805DD068 / ((Ctx_80260020 *)ctx)->scale;
+        Pt_80260020 pt;
+        pt.x = ((Ctx_80260020 *)ctx)->pos.x;
+        pt.y = ((Ctx_80260020 *)ctx)->pos.y;
+        set_text_draw_params((s32)((Ctx_80260020 *)ctx), 0, 0, (f32)inv, (f32)lbl_805DD06C);
+        flags = ((Win_80260020 *)this)->state->flags;
+        if (!(flags & 1)) {
+            draw_window_text((f32 *)&pt, (const char *)lbl_8044F0CC, -1, 0, (f32)lbl_805DD070);
+        } else if (flags & 2) {
+            draw_window_text((f32 *)&pt, (const char *)lbl_8044F0D4, -1, 0, (f32)lbl_805DD070);
+        } else if (flags & 4) {
+            if (flags & 8) {
+                draw_window_text((f32 *)&pt, (const char *)keyboard_hard_status_text_a, -1, 0, (f32)lbl_805DD070);
+            } else {
+                draw_window_text((f32 *)&pt, (const char *)keyboard_hard_status_text_b, -1, 0, (f32)lbl_805DD070);
+            }
+        } else if (flags & 8) {
+            draw_window_text((f32 *)&pt, (const char *)lbl_8044F0FC, -1, 0, (f32)lbl_805DD070);
+        } else {
+            draw_window_text((f32 *)&pt, (const char *)lbl_8044F104, -1, 0, (f32)lbl_805DD070);
+        }
+    }
+}
+
+void TWindowKeyBoardHard::render() {
+    s32 temp;
+    if (((s32) this->m_68 > 0) && (is_key_active__19TWindowKeyBoardHardFv() == 0)) {
+        temp = TWindowDD::draw_default_entry((s32)this);
+        draw_status_text((Ctx_80260020 *)(temp));
+    }
+}
+
+}
+
+extern "C" {
+s32 get_window_layout_position(int);
+extern const char *TWindowKeyBoardHard__name;
+s32 is_key_active__19TWindowKeyBoardHardFv();
+s32 initialize_subwindow__9TWindowDDFv(void *);
+s32 has_non_modifier_key__16TKeyBoardControlFv(void *);
+
+
+void TWindowKeyBoardHard::run_task() {
+    s32 temp_r3_2;
+    void *temp_r3;
+
+    if ((void *) this->m_70 != NULL) {
+        if ((is_key_active__19TWindowKeyBoardHardFv() == 0) && (((TWindowKeyBoardBase *)(this->m_70))->is_key_active() == 0)) {
+            if (has_non_modifier_key__16TKeyBoardControlFv(this) != 0) {
+                if (current_language == LANGUAGE_JAPANESE) {
+                    this->m_68 = 0x3C;
+                }
+                this->m_60 = (s32) (this->m_60 & 0xFFFFFEFF);
+                temp_r3 = *(void * *)&this->m_70;
+                *(s32 *)((s8 *)temp_r3 + 0xB4) = (s32) (*(s32 *)((s8 *)temp_r3 + 0xB4) & 0xFFFFFFBF);
+                if (!(this->m_60 & 0x40)) {
+                    TWindowKeyBoardHard__sub_8025CC48(*(void * *)&this->m_70);
+                }
+            }
+            update_modifier_flags();
+            process_all_key_states();
+        }
+        temp_r3_2 = this->m_68;
+        if (temp_r3_2 > 0) {
+            this->m_68 = (temp_r3_2 - 1);
+        }
+        initialize_subwindow__9TWindowDDFv(this);
+        update_fade();
+    }
+}
+
+TWindowKeyBoardHard::~TWindowKeyBoardHard() {}
+
+TWindowKeyBoardHard::TWindowKeyBoardHard(TWindowKeyBoardBase *composer)
+    : TWindowBase((u8 *)lbl_804CFAD0, 4,
+                  (u8 *)get_window_layout_position(0xB9)) {
+    m_name = TWindowKeyBoardHard__name;
+    m_60 = 0;
+    m_70 = (u32)composer;
+    m_64 = 0;
+    m_68 = 0;
+    m_6c = 7;
+    release_keyboard();
+}
+
+extern char lbl_8044F0A8[];
+const char *TWindowKeyBoardHard__name = lbl_8044F0A8;
+}
+
+void TWindowKeyBoardHard::set_bits_shift7(s32 arg0, s32 arg1) {
+    TWindowKeyBoardHard::set_card_window_flags((void *)arg0, (s32)(arg1 << 7), -0x81);
+}
+void TWindowKeyBoardHard::update_card_window_page_flags(s32 arg0, s32 arg1) {
+    TWindowKeyBoardHard::set_card_window_flags((void *)arg0, (s32)(arg1 << 6), -0x41);
+}
+void TWindowKeyBoardHard::clear_card_window_flag(s32 arg0, s32 arg1) {
+    TWindowKeyBoardHard::set_card_window_flags((void *)arg0, (s32)(arg1 << 4), -0x11);
+}
+void TWindowKeyBoardHard::set_card_window_flag(s32 arg0, s32 arg1) {
+    TWindowKeyBoardHard::set_card_window_flags((void *)arg0, (s32)(arg1 << 5), -0x21);
+}
+int TWindowKeyBoardHard::sub_8026042C() { return (this->m_60 >> 6) & 0x1; }
+int TWindowKeyBoardHard::sub_80260438() { return (this->m_60 >> 10) & 0x1; }
+int TWindowKeyBoardHard::is_key_active() { return this->m_60 & 0x200; }

@@ -3147,6 +3147,7 @@ force_active:
   - __dt__19TQuestListChallengeFv
   - __dt__19TWindowDD_WS_StringFv
   - __dt__19TWindowKeyBoardBaseFv
+  - __dt__19TWindowKeyBoardHardFv
   - __dt__19TWindowMenuMainMenuFv
   - __dt__19TWindowMessageYesNoFv
   - __dt__19TWindowSoundBalanceFv
@@ -3829,6 +3830,7 @@ force_active:
   - __vt__19TTecPlayerInfluence
   - __vt__19TWindowDD_WS_String
   - __vt__19TWindowKeyBoardBase
+  - __vt__19TWindowKeyBoardHard
   - __vt__19TWindowMenuMainMenu
   - __vt__19TWindowMessageYesNo
   - __vt__19TWindowSimpleStatus
@@ -5625,6 +5627,7 @@ force_active:
   - clear_bit__15TBoss6SwordWaveFPvUc
   - clear_buffer__13TUnk_804EF8C0Fv
   - clear_card_status_flags__6TLobbyFv
+  - clear_card_window_flag__19TWindowKeyBoardHardFll
   - clear_charge_hits__14TObjEneIllGillFv
   - clear_child_flag__15TObjEneSlimeOneFv
   - clear_counter__6TLobbyFPv
@@ -7855,6 +7858,7 @@ force_active:
   - has_inactive_card__17TWindowSubComCardFPvi
   - has_materialized__13TObjEneMe1GeeFv
   - has_no_active_slot
+  - has_non_modifier_key__16TKeyBoardControlFv
   - has_pending_spawns__17TObjEneBm3FlyNestCFv
   - has_photon_blast__8MagStatsFUc
   - has_serial_input__22TAdEnterSerialAccessGCFv
@@ -8303,6 +8307,7 @@ force_active:
   - is_in_view_depth__6TSceneFf
   - is_inactive__8TItemMagFv
   - is_item_active__14TMainMenuEntryFv
+  - is_key_active__19TWindowKeyBoardHardFv
   - is_level_in_table__24TObjWaitEntryHairMoveSimFPv
   - is_load_complete__23TAdSinglePlyChrSelectGCFv
   - is_lobby_active__17TObjWarpBossMultiFv
@@ -9286,6 +9291,7 @@ force_active:
   - lbl_804CF9F8
   - lbl_804CFA10
   - lbl_804CFA28
+  - lbl_804CFAD0
   - lbl_804D0058
   - lbl_804D1488
   - lbl_804D3A08
@@ -15719,6 +15725,7 @@ force_active:
   - prepare_tool_purchase__19TShopItemListWindowFv
   - prepare_wall_query_polygons__FPvfl
   - present_frame_and_wait_vsync__Fv
+  - process_all_key_states__19TWindowKeyBoardHardFv
   - process_byteswapped_pcm_transfer
   - process_connection_state__6TLobbyFv
   - process_download_entry__12TQuestListVMFv
@@ -15963,6 +15970,7 @@ force_active:
   - release_control_lock__10TObjPlayerFPv
   - release_effect__13TItemEffEquipFv
   - release_held_player__12TBoss1DragonFv
+  - release_keyboard__19TWindowKeyBoardHardFv
   - release_laser_light__15TBoss7LaserPtclFPv
   - release_load_slot__12TChCrLoadAfsFv
   - release_model__8TItemMagFv
@@ -16325,6 +16333,7 @@ force_active:
   - render__19TObjStendGlassLobbyFv
   - render__19TTecPlayerInfluenceFv
   - render__19TWindowKeyBoardBaseFv
+  - render__19TWindowKeyBoardHardFv
   - render__19TWindowMenuIconLineFv
   - render__19TWindowMenuMainMenuFv
   - render__19TWindowMessageYesNoFv
@@ -17114,6 +17123,7 @@ force_active:
   - run_task__19TPlayerBattleCtrl4PFv
   - run_task__19TTecPlayerInfluenceFv
   - run_task__19TWindowKeyBoardBaseFv
+  - run_task__19TWindowKeyBoardHardFv
   - run_task__19TWindowMenuMainMenuFv
   - run_task__19TWindowMessageYesNoFv
   - run_task__19TWindowSimpleStatusFv
@@ -17468,10 +17478,12 @@ force_active:
   - set_battle_ctrl_flag30__18TItemLockCountCtrlFi
   - set_battle_flag__6TLobbyFl
   - set_bit__15TBoss6SwordWaveFiUc
+  - set_bits_shift7__19TWindowKeyBoardHardFll
   - set_blast_level__16PhotonBlastGaugeFsSc
   - set_boss4_state__12TObjEneLappyFv
   - set_camera__15TEndingPicStageFv
   - set_card_index__17TWindowSubComCardFl
+  - set_card_window_flag__19TWindowKeyBoardHardFll
   - set_card_window_flags__20TWindowShortListCtrlFll
   - set_char_slots__23TAdSinglePlyChrSelectGCFll
   - set_character_select_b_slot_state__Fi
@@ -18562,6 +18574,8 @@ force_active:
   - sub_802504A8__13TUnk_804CF0B8Fv
   - sub_8025F2F8__19TWindowKeyBoardHardFUc
   - sub_8025F4A0__19TWindowKeyBoardHardFUc
+  - sub_8026042C__19TWindowKeyBoardHardFv
+  - sub_80260438__19TWindowKeyBoardHardFv
   - sub_802605DC__19TWindowKeyBoardSoftFv
   - sub_80260808__19TWindowKeyBoardSoftFl
   - sub_8026556C__21TWindowSubComCardListFv
@@ -19132,6 +19146,7 @@ force_active:
   - update_card_list_window__6TLobbyFv
   - update_card_rename__15TAdPlayerLoadGCFl
   - update_card_select__16TAdChrSelBSlotGCFPv
+  - update_card_window_page_flags__19TWindowKeyBoardHardFll
   - update_center_position__16TObjEneBm5GibonUFv
   - update_center_position__19TObjEneEpsilonGuardFv
   - update_chair__11TMainCursorFv
@@ -19467,6 +19482,7 @@ force_active:
   - update_mode_selection__21TAdMultiChgGameModeGCFv
   - update_mode_selection_and_save__21TAdMultiChgGameModeGCFv
   - update_model_visibility__15TObjEneGyaranzoFv
+  - update_modifier_flags__19TWindowKeyBoardHardFv
   - update_motion_playback__9TBoss6MagFv
   - update_motion_tracks__11TBoss6Type2Fv
   - update_move__17TObjEneMe1CanadinFv

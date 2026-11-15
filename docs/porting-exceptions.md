@@ -1930,8 +1930,9 @@ It now covers only these leftover raw call sites:
 |---|---|---|
 | `src/pso/misc/TKeyBoardControl.cpp` | `TWindowBase` ctor and dtor (soft keyboard window) | The real 0x70-byte `TWindowKeyBoardSoft` window shares its name with the legacy draw-context view used across the keyboard units. |
 | `src/pso/misc/TWindowChallengeResult.cpp` | `TWindowBase` ctor and dtor | Its sole allocation producer, `TObjOnlineEnding::create_result_window`, reaches 99.73% with ordinary `new`; the class stays raw until that caller matches. |
-| `src/pso/misc/TWindowKeyBoardHard_802601D4.cpp` | `TWindowBase` dtor | The generated vtable section is 8-aligned; the original table is at `0x804CFDC4` (4 mod 8). |
 | `src/pso/misc/TWindowFukidasi_80252AE4.cpp` | `TWindowAddition` dtor | Native emission order of the balloon vtable and constant pools in `TWindowFukidasi.cpp`. |
+
+The Hard keyboard window is now native: `TKeyBoardControl_8025EC04.cpp` merges the original keyboard unit through `0x80260450`, so the generated vtable lands at `0x804CFDC4` with no per-unit alignment override.
 
 The DD selection, ScrollBar, Word and ComCard follower windows moved to native
 construction under the §5 entry

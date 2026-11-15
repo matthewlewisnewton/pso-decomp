@@ -751,6 +751,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/misc/THunterGuildSeqOffline_80213788.cpp` | opt_propagation×2 |
 | `src/pso/misc/TKeyBoardControl.cpp` | fp_contract×15, pool_data×1 |
 | `src/pso/misc/TKeyBoardControl_80131C58.cpp` | opt_loop_invariants×1 |
+| `src/pso/misc/TKeyBoardControl_8025EC04.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TKeyBoardControl_803F0C50.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/misc/TKomorebi.cpp` | readonly_strings×1 |
 | `src/pso/misc/TLanguage_803DAF68.cpp` | scheduling×1, peephole×1 |
@@ -937,7 +938,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/misc/TWindowHelpItem_8025A12C.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowHelpItem_8025A60C.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowInputNumber_80256170.cpp` | fp_contract×2 |
-| `src/pso/misc/TWindowKeyBoardHard.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TWindowKeyBoardSoft.cpp` | optimization_level×2, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TWindowKeyBoardSoft_8025B85C.cpp` | opt_propagation×1 |
