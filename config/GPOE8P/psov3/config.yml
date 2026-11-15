@@ -3213,6 +3213,7 @@ force_active:
   - __dt__22TObjFogCollisionPoisonFv
   - __dt__22TObjFogCollisionSwitchFv
   - __dt__22TQuestVmDownLoadServerFv
+  - __dt__22TWindowChallengeResultFv
   - __dt__22TWindowDD_WS_ScrollBarFv
   - __dt__22TWindowLoadItemTextureFv
   - __dt__22TWindowSubCustomSelectFv
@@ -3894,6 +3895,7 @@ force_active:
   - __vt__22TObjFogCollisionPoison
   - __vt__22TObjFogCollisionSwitch
   - __vt__22TQuestVmDownLoadServer
+  - __vt__22TWindowChallengeResult
   - __vt__22TWindowDD_WS_ScrollBar
   - __vt__22TWindowLoadItemTexture
   - __vt__22TWindowSubCustomSelect
@@ -6572,7 +6574,6 @@ force_active:
   - dt__17TObjCityDoor_WarpFPvs
   - dt__18TObjCityDoor_GuildFPvs
   - dt__20TContainerAncient01RFPvs
-  - dt__22TWindowChallengeResultFPvs
   - dt_follow_particle_ctrl__10TObjPlayerFls
   - dt_item_shoot_model__13TUnk_804A2148Fs
   - dubchik_collision_body
@@ -8180,7 +8181,6 @@ force_active:
   - init_sub__13TLockOnCursorFPv
   - init_sub_object_vectors__10TObjPlayerFl
   - init_subobject__10TObjPlayerFi
-  - init_subwindow__22TWindowChallengeResultFPv
   - init_target_offsets__16TObjEneDellBiterFv
   - init_target_vector__11TMainCursorFiii
   - init_tech_params__9TTecJelinFv
@@ -9284,7 +9284,6 @@ force_active:
   - lbl_804CDDF8
   - lbl_804CDE10
   - lbl_804CDE50
-  - lbl_804CE2B8
   - lbl_804CE820
   - lbl_804CE918
   - lbl_804CF6F4
@@ -17178,6 +17177,7 @@ force_active:
   - run_task__22TObjFogCollisionPoisonFv
   - run_task__22TObjFogCollisionSwitchFv
   - run_task__22TQuestVmDownLoadServerFv
+  - run_task__22TWindowChallengeResultFv
   - run_task__22TWindowLoadItemTextureFv
   - run_task__22TWindowSubCustomSelectFv
   - run_task__22TWindowSubShortCutListFv
