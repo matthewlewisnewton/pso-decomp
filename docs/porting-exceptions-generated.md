@@ -8,7 +8,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 46 | 12 |
-| intrinsic | 91 | 57 |
+| intrinsic | 91 | 58 |
 | hardware | 69 | 13 |
 | pragma | 5893 | 892 |
 | configure.py per-unit override | 215 | 215 |
@@ -122,8 +122,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
 | `src/pso/object/TObjTombstone.cpp:427` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4891` | `__fabs` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4899` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4889` | `__fabs` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:303` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:2510` | `__cntlzw` |
@@ -161,6 +160,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/unk/text_803D8DE0.cpp:31` | `__frsqrte` |
 | `src/pso/unk/text_803D8DE0.cpp:75` | `__frsqrte` |
 | `src/pso/unk/text_803D8F74.cpp:24` | `__frsqrte` |
+| `include/pso/math/NewtonSqrtInline.h:14` | `__frsqrte` |
 
 ## Direct hardware access
 

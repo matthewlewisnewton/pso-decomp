@@ -151,7 +151,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 91 | 57 |
+| MWCC intrinsics | 91 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,893 | 892 |
 | Per-unit compiler overrides in `configure.py` | 214 | 214 |
@@ -736,8 +736,12 @@ starts at `0x805DCD0C`; GC/2.6 otherwise requests eight-byte alignment in
 both ELF and its CodeWarrior comment record. The existing alignment tool
 changes those records without changing code, constants or relocations.
 Ports can drop this object-layout override and use normal float alignment.
-The compatible pointer reads of four materialized constants avoid duplicate
-MWCC literal-pool entries; a port can read those constants directly.
+The compatible pointer reads of three materialized constants avoid duplicate
+MWCC literal-pool entries; a port can read those constants directly. The zero
+now comes from the [shared live square-root helper](evidence/balloon-newton-zero.md).
+The existing reciprocal-square-root intrinsic moves with the single body into
+`NewtonSqrtInline.h`. TObjPlayer retains its original FP-contract scope around
+the implementation include; the shared header adds no pragma.
 
 ### Time setting and calendar startup
 

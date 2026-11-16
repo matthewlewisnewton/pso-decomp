@@ -943,8 +943,6 @@ extern const s16 lbl_8043406C[4] = {0, 2, 5, 10};
 extern const Vec_800115C4 lbl_80434074 = {0.0f, 0.0f, 0.0f};
 extern const f64 TObjPlayer__data_804340B8;
 extern int TObjPlayer__data_8050D460[];
-extern const f64 lbl_80434098;
-extern const f64 lbl_804340A0;
 extern u8 lbl_804340A8[];
 extern s32 lbl_804340B0[];
 extern SceneEntry_8000FD54 main_phase_table[];
@@ -4893,18 +4891,8 @@ f64 fabs_double(f64 x) { return __fabs(x); }
 #pragma push
 #pragma fp_contract on
 
-f32 newton_sqrtf(f32 x) {
-    volatile f32 y;
-    if (x > (0.0f)) {
-        f64 guess = __frsqrte(x);
-        guess = lbl_80434098 * guess * (lbl_804340A0 - (f64) x * (guess * guess));
-        guess = lbl_80434098 * guess * (lbl_804340A0 - (f64) x * (guess * guess));
-        guess = lbl_80434098 * guess * (lbl_804340A0 - (f64) x * (guess * guess));
-        y = (f32) ((f64) x * guess);
-        return y;
-    }
-    return x;
-}
+// The shared math body stays with the original tail helper group.
+#include "pso/math/NewtonSqrtInline.h"
 #pragma pop
 
 s32 TObjPlayer::register_object() {
