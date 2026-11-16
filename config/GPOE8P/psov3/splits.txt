@@ -7138,8 +7138,10 @@ pso/misc/TParticleCtrl_801E5330.cpp:
 
 pso/misc/TQuadSpriteNormal.cpp:
 	.text       start:0x801E5598 end:0x801E58D8
+	.rodata     start:0x80449860 end:0x80449878
 	.data       start:0x804C6910 end:0x804C6928
-	.sdata2     start:0x805DC460 end:0x805DC468
+	.sdata      start:0x805D35A8 end:0x805D35B0
+	.sdata2     start:0x805DC460 end:0x805DC470
 
 pso/misc/TQuadSpriteScl.cpp:
 	.text       start:0x801E58D8 end:0x801E5C24
