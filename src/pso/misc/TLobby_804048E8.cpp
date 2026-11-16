@@ -362,7 +362,7 @@ typedef struct Tbl_80409BD4 {
     Ent_80409BD4 *ents;
 } Tbl_80409BD4;
 
-struct Strm_80405A74 { u8 *p; u16 len; };
+typedef B_803FADA0 Strm_80405A74;
 
 typedef struct A_803FADA0 { u8 pad0[4]; u32 a; u32 b; } A_803FADA0;
 
@@ -679,14 +679,14 @@ s32 TLobby__sub_804048E8(Obj_80403F4C *comp, Strm_80405A74 **m, s16 compress_cid
         } else {
             comp->n14++;
         }
-        *m = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (B_803FADA0 *)*m, 1);
+        *m = NetIPv4WriteHeader(&a, (B_803FADA0 *)*m, 1);
         return 0x40;
     }
     hlen += TLobby__sub_804053B8(&b, m);
     if (b.syn || b.fin || b.rst || !b.ack_flag) {
         comp->n14++;
         *m = (Strm_80405A74 *)TLobby__sub_8040555C(&b, (u8 *)*m, 0);
-        *m = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (B_803FADA0 *)*m, 1);
+        *m = NetIPv4WriteHeader(&a, (B_803FADA0 *)*m, 1);
         return 0x40;
     }
     for (;;) {
@@ -785,12 +785,12 @@ found:
     cs->b = b;
     deltaS = cp - lbl_805C1890;
     if (compress_cid == 0 || comp->last_xmit != cs->id) {
-        cp = (*m = (Strm_80405A74 *)alloc_from_buffer((B_803FADA0 *)*m, deltaS + 4))->p;
+        cp = (*m = alloc_from_buffer(*m, deltaS + 4))->buf;
         *cp++ = changes | 0x40;
         *cp++ = cs->id;
         comp->last_xmit = cs->id;
     } else {
-        cp = (*m = (Strm_80405A74 *)alloc_from_buffer((B_803FADA0 *)*m, deltaS + 3))->p;
+        cp = (*m = alloc_from_buffer(*m, deltaS + 3))->buf;
         *cp++ = (s8)changes;
     }
     cp = write_network_u16_be(cp, deltaA);
@@ -805,7 +805,7 @@ uncompressed:
     comp->last_xmit = cs->id;
     comp->n18++;
     *m = (Strm_80405A74 *)TLobby__sub_8040555C(&b, (u8 *)*m, 0);
-    *m = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (B_803FADA0 *)*m, 1);
+    *m = NetIPv4WriteHeader(&a, (B_803FADA0 *)*m, 1);
     return 0x70;
 }
 #pragma pop
@@ -900,8 +900,8 @@ struct Self_8040098C;
 #pragma inline_depth(4)
 #define FWD_80405A74()                                                       \
     (*(G + 0x13A))++;                                            \
-    t = (Strm_80405A74 *)alloc_from_buffer((B_803FADA0 *)arg0, 4); \
-    p = t->p;                                                                \
+    t = alloc_from_buffer(arg0, 4); \
+    p = t->buf;                                                                \
     *p++ = 0xFF;                                                             \
     *p++ = 3;                                                                \
     write_network_u16_be(p, code);                                           \

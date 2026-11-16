@@ -406,7 +406,7 @@ typedef struct Tbl_80409BD4 {
     Ent_80409BD4 *ents;
 } Tbl_80409BD4;
 
-struct Strm_80405A74 { u8 *p; u16 len; };
+typedef B_803FADA0 Strm_80405A74;
 
 typedef struct A_803FADA0 { u8 pad0[4]; u32 a; u32 b; } A_803FADA0;
 
@@ -2079,7 +2079,7 @@ s16 TLobby__sub_803FE6CC(void *state, u8 code, int reply_identifier, void *paylo
     }
     return TLobby__sub_80406624(0, 0, fsm->callbacks->protocol, payload);
 }
-#pragma pop
+#pragma opt_lifetimes reset
 
 void TLobby__sub_803FE820(s32 arg0) {
     TLobby__sub_80405328((u8 *)((void *) (arg0 + 0x10)));
@@ -2228,9 +2228,6 @@ struct IPv4WireHeader_803FEBFC {
     u8 options[44];
 };
 typedef char IPv4WireHeader_size_check[sizeof(IPv4WireHeader_803FEBFC) == 64 ? 1 : -1];
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 static inline u16 fold_ipv4_checksum(u32 checksum) {
     u32 sum = (checksum >> 16) + (checksum & 0xFFFF);
     sum = (sum >> 16) + sum;
@@ -3154,7 +3151,7 @@ extern "C" void TLobby__sub_8040059C(u8 *self) {
     TLobby__sub_803FD694((u8 *)connection);
 }
 
-#pragma pop
+#pragma opt_propagation reset
 
 struct LcpValues_80400744 {
     s16 mask;
@@ -3174,9 +3171,17 @@ struct LcpSide_80400744 {
     LcpValues_80400744 agreed;
 };
 struct LcpOptions_80400744 { LcpSide_80400744 sides[2]; };
-struct LcpConfig_80400744 { u32 accm; s16 protocol_compression; u16 authentication; u32 magic; u16 mru; s16 address_compression; };
+struct LcpConfig_80400744 { u32 accm; s16 protocol_compression; u16 authentication; s32 magic; u16 mru; s16 address_compression; };
 typedef char LcpSide_size_80400744[sizeof(LcpSide_80400744) == 0x34 ? 1 : -1];
 typedef char LcpOptions_size_80400744[sizeof(LcpOptions_80400744) == 0x68 ? 1 : -1];
+#pragma dont_inline off
+#pragma inline_depth(4)
+static inline u16 lcp_proposed_mru(const LcpConfig_80400744 *msg) {
+    return msg->mru;
+}
+static inline s32 lcp_proposed_magic(const LcpConfig_80400744 *msg) {
+    return msg->magic;
+}
 s16 TLobby__sub_80400744(int a0, void *a1) {
     void *self = (void *)a0;
     LcpConfig_80400744 *msg = (LcpConfig_80400744 *)a1;
@@ -3194,16 +3199,8 @@ s16 TLobby__sub_80400744(int a0, void *a1) {
     ((TLobby *)self)->set_flags_and_state();
     *s->sub = 1;
     if (*s->sub >= 1) {
-        // Keep the MRU proposal and its destination together until validation.
-        // Both members are consumed; see the native-frame recovery evidence.
-        struct {
-            LcpSide_80400744 *side;
-            u16 value;
-        } mru;
-        mru.value = msg->mru;
-        mru.side = (LcpSide_80400744 *)s->opts;
-        id = mru.value;
-        p = t = mru.side;
+        id = lcp_proposed_mru(msg);
+        p = t = (LcpSide_80400744 *)s->opts;
         sid = (s16)id;
         if (sid >= 0x80 && sid <= 0x1000) {
             t->wanted.mask |= 2;
@@ -3227,7 +3224,7 @@ s16 TLobby__sub_80400744(int a0, void *a1) {
             ((TLobby *)(p + 1))->configure_mode_by_type(m6);
             ((TLobby *)p)->configure_mode_by_type((s16)msg->authentication);
         }
-        v = msg->magic;
+        v = lcp_proposed_magic(msg);
         if (v != 0) {
             p->wanted.mask |= 0x20;
         } else {
@@ -3245,7 +3242,7 @@ s16 TLobby__sub_80400744(int a0, void *a1) {
             p->mask &= ~0x100;
         }
         q = p + 1;
-        w = msg->magic;
+        w = lcp_proposed_magic(msg);
         if (w != 0) {
             q->wanted.mask |= 0x20;
         } else {
@@ -3268,6 +3265,7 @@ s16 TLobby__sub_80400744(int a0, void *a1) {
     }
     return 0;
 }
+#pragma pop
 
 void TLobby__sub_80400988(void *context) {
 
@@ -3494,11 +3492,7 @@ s16 TLobby__sub_80400F1C(PppConfigureContext *fsm, PppConfigureMessage *msg, u32
     }
     return 0;
 }
-#pragma pop
-#pragma push
 #pragma bool off
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_804010A0(PppConfigureContext *fsm, PppConfigureMessage *msg, u32 src) {
     St_80400BA8 *opts;
     s32 remaining;
@@ -4818,10 +4812,9 @@ s16 TLobby__sub_80403F4C(void *ov, Strm_80405A74 **spp) {
     e->a = a;
     e->b = b;
     *pp = TLobby__sub_8040555C(&b, *pp, 0);
-    *spp = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (B_803FADA0 *)*spp, 1);
+    *spp = NetIPv4WriteHeader(&a, *spp, 1);
     o->n28++;
-    // Preserve the native halfword return without a second normalization.
-    return (s16)(s64)buffer_length((B_803FADA0 *)(*pp));
+    return (s16)(s64)buffer_length(*spp);
 }
 #undef o
 #undef pp
@@ -4854,7 +4847,7 @@ inline s32 vj_next_byte(Strm_80405A74 **src) {
     }
     if (fast) {
         (*src)->len--;
-        return *(*src)->p++;
+        return *(*src)->buf++;
     }
     return vj_read_byte(src);
 }
@@ -4874,7 +4867,7 @@ s16 TLobby__sub_804040E0(Obj_80403F4C *comp, Strm_80405A74 **src) {
     s16 len;
 
     comp->n2C++;
-    if ((u16)buffer_length((B_803FADA0 *)*src) < 3) {
+    if ((u16)buffer_length(*src) < 3) {
         comp->n30++;
         return 0;
     }
@@ -4970,10 +4963,10 @@ s16 TLobby__sub_804040E0(Obj_80403F4C *comp, Strm_80405A74 **src) {
     } else {
         cs->a.id++;
     }
-    len = buffer_length((B_803FADA0 *)*src) + 40 + cs->a.optlen;
+    len = buffer_length(*src) + 40 + cs->a.optlen;
     cs->a.len = len;
     *src = (Strm_80405A74 *)TLobby__sub_8040555C(th, (u8 *)*src, 0);
-    *src = (Strm_80405A74 *)NetIPv4WriteHeader(&cs->a, (B_803FADA0 *)*src, 0);
+    *src = NetIPv4WriteHeader(&cs->a, *src, 0);
     return len;
 
 bad:
@@ -5011,8 +5004,8 @@ typedef struct Lobby_804062A0 {
 struct Self_8040098C;
 #define FWD_80405A74()                                                       \
     (*(s16 *)((s8 *)(G) + 0x13A))++;                                            \
-    t = (Strm_80405A74 *)alloc_from_buffer((B_803FADA0 *)arg0, 4); \
-    p = t->p;                                                                \
+    t = alloc_from_buffer(arg0, 4); \
+    p = t->buf;                                                                \
     *p++ = 0xFF;                                                             \
     *p++ = 3;                                                                \
     write_network_u16_be(p, code);                                           \

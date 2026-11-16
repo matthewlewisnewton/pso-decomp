@@ -416,7 +416,7 @@ struct P_8041D2B8 { s32 a; s32 b; s32 c; s32 d; };
 
 struct O_8041D2B8 { u8 pad0[0x238]; s32 f238; u8 pad23C[0x320 - 0x23C]; s16 n; u8 pad322[0xE]; P_8041D2B8 items[32]; };
 
-struct Strm_80405A74 { u8 *p; u16 len; };
+typedef B_803FADA0 Strm_80405A74;
 
 typedef struct A_803FADA0 { u8 pad0[4]; u32 a; u32 b; } A_803FADA0;
 
@@ -1044,7 +1044,7 @@ inline s32 avail_80405A74(Strm_80405A74 **s) {
 inline s32 get_80405A74(Strm_80405A74 **s) {
     if (avail_80405A74(s)) {
         (*s)->len--;
-        return *(*s)->p++;
+        return *(*s)->buf++;
     }
     if (TLobby__sub_80401BCC(s, &ppp_input_byte, 1) != 1) {
         return -1;
@@ -1053,8 +1053,8 @@ inline s32 get_80405A74(Strm_80405A74 **s) {
 }
 #define FWD_80405A74()                                                       \
     (*(s16 *)(G + 0x13A))++;                                            \
-    t = (Strm_80405A74 *)alloc_from_buffer((B_803FADA0 *)arg0, 4); \
-    p = t->p;                                                                \
+    t = alloc_from_buffer(arg0, 4); \
+    p = t->buf;                                                                \
     *p++ = 0xFF;                                                             \
     *p++ = 3;                                                                \
     write_network_u16_be(p, code);                                           \
@@ -1079,7 +1079,7 @@ void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
         return;
     }
     G = lbl_805C0038;
-    if (lbl_805D7A7A == 0 && arg0->p[0] == 0xFF && arg0->p[1] == 3 &&
+    if (lbl_805D7A7A == 0 && arg0->buf[0] == 0xFF && arg0->buf[1] == 3 &&
         TLobby__sub_80401BCC(&arg0, &lobby_ppp_read_buf, 2) == 2) {
         read_network_u16_be(&lobby_ppp_read_buf);
     }
@@ -1093,14 +1093,14 @@ void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
             (*(s16 *)((s8 *)G + 0x140))++;
             return;
         }
-        TLobby__sub_804060B8(arg0->p, arg0->len, 0x800);
+        TLobby__sub_804060B8(arg0->buf, arg0->len, 0x800);
         return;
     case 0x57:
         if (*(u8 *)((s8 *)G + 0xD4) != 5) {
             (*(s16 *)((s8 *)G + 0x140))++;
             return;
         }
-        TLobby__sub_804060B8(arg0->p, arg0->len, -0x7923);
+        TLobby__sub_804060B8(arg0->buf, arg0->len, -0x7923);
         return;
     case 0x2D:
         if (*(u8 *)((s8 *)G + 0x6C) != 5) {
@@ -1115,7 +1115,7 @@ void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
             (*(s16 *)((s8 *)G + 0x140))++;
             return;
         }
-        TLobby__sub_804060B8(arg0->p, arg0->len, 0x800);
+        TLobby__sub_804060B8(arg0->buf, arg0->len, 0x800);
         return;
     case 0x2F:
         if (*(u8 *)((s8 *)G + 0x6C) != 5) {
@@ -1130,7 +1130,7 @@ void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
             (*(s16 *)((s8 *)G + 0x140))++;
             return;
         }
-        TLobby__sub_804060B8(arg0->p, arg0->len, 0x800);
+        TLobby__sub_804060B8(arg0->buf, arg0->len, 0x800);
         return;
     case 0xC021:
         (*(s16 *)((s8 *)G + 0x130))++;

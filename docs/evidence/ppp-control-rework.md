@@ -1,8 +1,8 @@
 # PPP control rework: natural frames and remaining sender recovery
 
 This rework starts at PR #573 head `0b3f5f5666` and merges main
-`f1227326c4`. Round two removes the LCP padding as well. It remains a partial
-improvement: the sender source patterns are not approved by this evidence record.
+`f1227326c4`. Round three replaces the staging LCP aggregate with consumed
+configuration readers. It remains a partial improvement: the sender source patterns are not approved by this evidence record.
 All scores below use the unit's existing GC/1.2.5n options. No compiler
 flags, unit overrides, assembly, alignment directives or link tools change.
 
@@ -29,21 +29,33 @@ outgoing stack arguments or pointers to that area. Removing the guarded
 array and alias gives a 0x20 frame and moves the three saved registers to
 0x14/0x18/0x1C, with LR at 0x24: 99.937930%. Every difference is a stack
 frame/save offset. The original local declarations cannot be inferred from
-these unused slots alone. Round two groups the MRU candidate and its
-option destination in a real local aggregate (`u16 value` and
-`LcpSide_80400744 *side`). Both members feed the existing validation and
-option write. MWCC reserves the aggregate's home but keeps its values in
-registers, producing the native 0x30 frame and 100% exact instructions.
-There is no guarded array, unused member, alias-only padding local or new
-pragma. This is a plausible source recovery, not proof of the original
-local's spelling. A word-unsigned candidate instead of the halfword keeps
-0x30 but changes r3/r4 allocation (99.724140%); the explicit halfword
-matches the configuration field and wire MRU. Reading the aggregate fields
-directly instead of the existing promoted validation temporaries gives
-0x28/95.634480%; the separate unsigned value and signed range check remain.
+these unused slots alone. The round-two aggregate was filled and immediately
+copied into scalar/pointer temporaries; round three removes it rather than
+claiming that it establishes real native state.
+
+Two ordinary inline readers consume the configuration's unsigned halfword
+MRU and signed word magic value. The MRU result feeds its existing signed
+range check and option write; the magic reader is used for each side's
+option mask and value. Both returned values are consumed. Their inline return
+homes produce the native 0x30 frame, with no local stack accesses, at 100%.
+A direct-field implementation without helpers gives 0x20/99.937930%; an MRU
+reader alone gives 0x28/99.937930%; reading both magic values as unsigned
+words gives 0x30/99.689650%. With the signed word reader, all instructions
+are exact. Signedness does not change the magic bit pattern: the result is
+assigned to the existing unsigned option value. This is a plausible ordinary
+source form, not evidence of the original helper names or spelling.
+
+The two inline controls have individual removal measurements: removing either
+makes LCP 90.558624%. Every setting and restoration is independently measured
+in the §4 PPP register. Equivalent inline scopes are shared across the
+sender/IPv4 writer, LCP initializer/setup, and adjacent LCP response handlers;
+separate lifetime/propagation resets keep the intended controls bounded.
+Versus main, the final source adds 44 pragmas and removes 90, including
+push/pop, within the requested +44/-86 ceiling. There are still 59 setting
+and reset directives, with no new pragma kind, flag, unit override or alignment.
 
 Section 4's EXI receiver precedent is historical only; no padding exception
-is needed by either PPP function after round two.
+is claimed for either PPP function.
 
 ## Natural alternatives measured
 
@@ -88,9 +100,9 @@ length caller was updated, including the other TLobby units and
 `NetworkRuntime.cpp`; no buffer is cast to `TLobby` for these operations.
 Round two makes the allocator return `B_803FADA0 *`, its actual argument
 type, and retypes the IPv4 writer's frame argument and return similarly.
-The FSM reply path reads `newbuf->buf` directly. Legacy `Strm_80405A74`
-boundaries keep explicit casts to the shared verified prefix; their broader
-interface is not recovered here. No symbol rename is necessary: allocator
+The FSM reply path reads `newbuf->buf` directly. `Strm_80405A74` is now an alias of that canonical buffer type in all five
+affected TLobby units. Its cursor member is consistently `buf`; allocation,
+length and IPv4-header calls no longer cast between those identical prefixes. No symbol rename is necessary: allocator
 parameter types (the mangled portion) are unchanged, and the IPv4 writer
 already has C linkage. No linkage or compiler symbol is newly invented. The comma-operator receiver is removed.
 
@@ -295,3 +307,58 @@ log directory. LCP alternatives start `lcp-`; sender alternatives start
 | `sender-packet-u32-length-only-on` | 97.882355% | 0x40 |
 | `sender-reset-global` | 99.294120% | 0x40 |
 | `sender-reset-return` | 99.235290% | 0x48 |
+
+## Round-three sender and return-width probes
+
+The sender remains a source blocker, with its payload formal reused as a wire
+length, payload-to-buffer casts, and the length-member-minus-offset helper.
+A real containing allocation whose first member is the packet-buffer prefix
+was tested with direct/member/array/nested-prefix addresses, pointer/reference
+helpers and member accessors. The ordinary helper remains 99.294120%/0x40:
+`mr r30,r4` replaces native `addi r30,r4,0`. Direct forms give
+99.235290%/0x38. Existing control combinations do not make those forms exact.
+
+Typed buffer formals with separate halfword/word/signed lengths, declaration
+positions and orders, frame reassignment, inline header writers/prependers,
+pointer/reference outputs, real wire-header aggregates and metadata-reset
+aggregates were compiled and scored. No complete natural exact sender was
+found. The 98.117645%/0x48 exploratory out-parameter candidate retained unused
+inherited declarations; removing those declarations changes its result, so
+that score is not evidence of an acceptable natural solution. No experimental
+padding, alias-only local, control, compiler flag or type pun is retained.
+The original exact sender is unchanged by round three. This does not prove
+that a natural exact form is impossible or authorize the remaining constructs.
+
+At 0x80403F4C, returning `buffer_length` naturally from the current `s16`
+function gives 99.009900%. A signed/unsigned word return makes that provider
+100%, but its native caller at 0x80405A74 requires a signed-halfword check.
+An explicit signed-halfword conversion gives 99.738150% there: the compiler
+emits `extsh` followed by `extsh.` instead of the single native `extsh.`.
+Narrow local, assignment and expression variants were also tested. Retyping
+`buffer_length` itself to unsigned halfword fixes the VJ return but regresses
+the sender to 97.411766% and NetPapDispatch to 99.270836%. The inherited
+`(s16)(s64)buffer_length(...)` therefore remains unresolved, with its old
+normalization-steering comment removed.
+
+All round-three candidate sources, successful instruction comparisons,
+compiled frame sizes, per-control measurements
+and gate logs are in the supplied external `round3` log directory. Its
+REPORT.md and probe-table.md enumerate every scored probe. The cumulative
+PR also retains legacy C-linkage spellings of five TLobby callbacks and old
+opaque/offset-based callback interfaces; round three introduces none of them.
+The report inventories these separately from the unresolved sender and VJ
+normalization patterns. This remains a partial local rework.
+
+The additional method/base-prefix reset probes also give 99.294120%/0x40.
+The `addi ...,0` instruction is not unique evidence for a zero-offset member:
+for example, exact `TLobby__sub_803FC1CC` copies its ordinary timeout formal
+with `addi r29,r4,0`. Its source has no containing-member expression there.
+
+A cumulative source audit also found the inherited alias-return local in
+`pap_message_destination_80402E68`. Returning the actual message member
+address directly gives NetPapDispatch 99.479164% in the same 0x38 frame;
+only register allocation changes. Pointer/reference owner arguments,
+reference returns, const pointer slots, and independent cast-removal probes
+were tested. The alias-return local remains, is not newly introduced in round
+three, and is an additional unresolved source pattern rather than an approved
+exception. No claim that all PR source blockers are fixed is made.

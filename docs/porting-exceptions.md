@@ -267,8 +267,8 @@ EXI/OS backend; the scalar bit helpers alone do not implement the driver.
 `pso/misc/TLobby_803FC178.cpp` remains 129/129 exact and source-linked.
 The rework removes both frame-padding arrays. Ordinary inline checksum
 acquisition and folding helpers reproduce the IPv4 native 0x78 frame and
-64-byte header at stack offset 0x20. A consumed MRU proposal aggregate
-(destination pointer and halfword value) gives LCP its exact 0x30 frame.
+64-byte header at stack offset 0x20. Consumed inline MRU and signed magic-value readers give LCP its exact
+0x30 frame; the round-two staging aggregate is removed.
 Typed buffer allocation and length functions replace the false `TLobby` interfaces throughout their callers.
 `optimization_level 0`, redundant settings and empty/nested push stacks
 are removed. No compiler flags or unit overrides change.
@@ -280,18 +280,20 @@ The comma cast and false allocation/length receivers are removed.
 These remaining patterns require further recovery or Matt's explicit ruling;
 the EXI receiver precedent below does not authorize them.
 See [PPP rework evidence](evidence/ppp-control-rework.md) for alternatives
-and native storage evidence. Ports can retain the MRU aggregate and must
+and native storage evidence. Ports can inline the two configuration readers and must
 keep frame pointers and lengths separate, clear the real length member
 directly, and preserve explicit wire-byte order and existing error behavior.
 
 Each row below records one remaining directive in source order, including
 inherited controls. Scores are independent ablations against the final source
-using the existing GC/1.2.5n configuration, remeasured after round two;
+using the existing GC/1.2.5n configuration, remeasured after round three;
 every listed function is 100% with the directive present. Push/pop restores belong to the corresponding
 scope. The `reset` row measures omitting that restoration. These are measured
 compiler constraints, not claims about original source pragmas. A port drops
 each listed control and keeps the ordinary C++ operation (including explicit
-Boolean comparisons and the checksum helpers).
+Boolean comparisons, configuration readers and checksum helpers). Shared
+inline scopes retain separate lifetime/propagation resets: each reset has its
+own independently measured row below.
 
 | Register ID | Function / address | Directive | Function score without directive | Port action |
 |---|---|---|---|---|
@@ -310,32 +312,32 @@ Boolean comparisons and the checksum helpers).
 | PPP-13 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `dont_inline off` | 96.595020% | Drop control; retain C++ semantics. |
 | PPP-14 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `inline_depth(4)` | 96.595020% | Drop control; retain C++ semantics. |
 | PPP-15 | TLobby__sub_803FE6CC (`0x803FE6CC`) | `opt_lifetimes off` | 98.058820% | Drop control; retain C++ semantics. |
-| PPP-16 | TLobby__sub_803FE6CC (`0x803FE6CC`) | `dont_inline off` | 90.411766% | Drop control; retain C++ semantics. |
-| PPP-17 | TLobby__sub_803FE6CC (`0x803FE6CC`) | `inline_depth(4)` | 90.411766% | Drop control; retain C++ semantics. |
-| PPP-18 | NetIPv4WriteHeader (`0x803FEBFC`) | `dont_inline off` | 92.231580% | Drop control; retain C++ semantics. |
-| PPP-19 | NetIPv4WriteHeader (`0x803FEBFC`) | `inline_depth(4)` | 92.231580% | Drop control; retain C++ semantics. |
-| PPP-20 | TLobby__sub_803FEF4C (`0x803FEF4C`) | `opt_propagation off` | 62.609756% | Drop control; retain C++ semantics. |
-| PPP-21 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `opt_common_subs on` | 96.717170%<br>90.687500% | Drop control; retain C++ semantics. |
-| PPP-22 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `dont_inline off` | 62.868687%<br>60.080357% | Drop control; retain C++ semantics. |
-| PPP-23 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `inline_depth(4)` | 62.868687%<br>60.080357% | Drop control; retain C++ semantics. |
-| PPP-24 | TLobby__sub_803FF858 (`0x803FF858`) | `opt_lifetimes off` | 99.578316% | Drop control; retain C++ semantics. |
-| PPP-25 | TLobby__sub_803FF858 (`0x803FF858`) | `opt_dead_assignments off` | 99.963850% | Drop control; retain C++ semantics. |
-| PPP-26 | TLobby__sub_803FF858 (`0x803FF858`) | `dont_inline off` | 51.975903% | Drop control; retain C++ semantics. |
-| PPP-27 | TLobby__sub_803FF858 (`0x803FF858`) | `inline_depth(4)` | 51.975903% | Drop control; retain C++ semantics. |
-| PPP-28 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `opt_common_subs on` | 99.125000% | Drop control; retain C++ semantics. |
-| PPP-29 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `bool off` | 99.000000% | Drop control; retain C++ semantics. |
-| PPP-30 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `dont_inline off` | 87.958336% | Drop control; retain C++ semantics. |
-| PPP-31 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `inline_depth(4)` | 87.958336% | Drop control; retain C++ semantics. |
-| PPP-32 | TLobby__sub_803FFB84 (`0x803FFB84`)<br>TLobby__sub_80400174 (`0x80400174`) | `dont_inline off` | 95.171050%<br>36.968254% | Drop control; retain C++ semantics. |
-| PPP-33 | TLobby__sub_803FFB84 (`0x803FFB84`)<br>TLobby__sub_80400174 (`0x80400174`) | `inline_depth(4)` | 95.171050%<br>36.968254% | Drop control; retain C++ semantics. |
-| PPP-34 | TLobby__sub_803FFB84 (`0x803FFB84`) | `opt_common_subs on` | 98.513160% | Drop control; retain C++ semantics. |
-| PPP-35 | TLobby__sub_8040059C (`0x8040059C`) | `opt_propagation off` | 92.679245% | Drop control; retain C++ semantics. |
-| PPP-36 | TLobby__sub_80400DA8 (`0x80400DA8`) | `opt_common_subs on` | 92.043015% | Drop control; retain C++ semantics. |
-| PPP-37 | TLobby__sub_80400F1C (`0x80400F1C`) | `dont_inline off` | 40.278350% | Drop control; retain C++ semantics. |
-| PPP-38 | TLobby__sub_80400F1C (`0x80400F1C`) | `inline_depth(4)` | 40.278350% | Drop control; retain C++ semantics. |
-| PPP-39 | TLobby__sub_804010A0 (`0x804010A0`) | `bool off` | 99.166664% | Drop control; retain C++ semantics. |
-| PPP-40 | TLobby__sub_804010A0 (`0x804010A0`) | `dont_inline off` | 85.944440% | Drop control; retain C++ semantics. |
-| PPP-41 | TLobby__sub_804010A0 (`0x804010A0`) | `inline_depth(4)` | 85.944440% | Drop control; retain C++ semantics. |
+| PPP-16 | TLobby__sub_803FE6CC (`0x803FE6CC`)<br>NetIPv4WriteHeader (`0x803FEBFC`) | `dont_inline off` | 90.411766%<br>92.231580% | Drop control; retain C++ semantics. |
+| PPP-17 | TLobby__sub_803FE6CC (`0x803FE6CC`)<br>NetIPv4WriteHeader (`0x803FEBFC`) | `inline_depth(4)` | 90.411766%<br>92.231580% | Drop control; retain C++ semantics. |
+| PPP-18 | TLobby__sub_803FE934 (`0x803FE934`)<br>TLobby__sub_803FE9F8 (`0x803FE9F8`) | `opt_lifetimes reset` | 99.387760%<br>98.055560% | Drop control; retain C++ semantics. |
+| PPP-19 | TLobby__sub_803FEF4C (`0x803FEF4C`) | `opt_propagation off` | 62.609756% | Drop control; retain C++ semantics. |
+| PPP-20 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `opt_common_subs on` | 96.717170%<br>90.687500% | Drop control; retain C++ semantics. |
+| PPP-21 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `dont_inline off` | 62.868687%<br>60.080357% | Drop control; retain C++ semantics. |
+| PPP-22 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `inline_depth(4)` | 62.868687%<br>60.080357% | Drop control; retain C++ semantics. |
+| PPP-23 | TLobby__sub_803FF858 (`0x803FF858`) | `opt_lifetimes off` | 99.578316% | Drop control; retain C++ semantics. |
+| PPP-24 | TLobby__sub_803FF858 (`0x803FF858`) | `opt_dead_assignments off` | 99.963850% | Drop control; retain C++ semantics. |
+| PPP-25 | TLobby__sub_803FF858 (`0x803FF858`) | `dont_inline off` | 51.975903% | Drop control; retain C++ semantics. |
+| PPP-26 | TLobby__sub_803FF858 (`0x803FF858`) | `inline_depth(4)` | 51.975903% | Drop control; retain C++ semantics. |
+| PPP-27 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `opt_common_subs on` | 99.125000% | Drop control; retain C++ semantics. |
+| PPP-28 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `bool off` | 99.000000% | Drop control; retain C++ semantics. |
+| PPP-29 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `dont_inline off` | 87.958336% | Drop control; retain C++ semantics. |
+| PPP-30 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `inline_depth(4)` | 87.958336% | Drop control; retain C++ semantics. |
+| PPP-31 | TLobby__sub_803FFB84 (`0x803FFB84`)<br>TLobby__sub_80400174 (`0x80400174`) | `dont_inline off` | 95.171050%<br>36.968254% | Drop control; retain C++ semantics. |
+| PPP-32 | TLobby__sub_803FFB84 (`0x803FFB84`)<br>TLobby__sub_80400174 (`0x80400174`) | `inline_depth(4)` | 95.171050%<br>36.968254% | Drop control; retain C++ semantics. |
+| PPP-33 | TLobby__sub_803FFB84 (`0x803FFB84`) | `opt_common_subs on` | 98.513160% | Drop control; retain C++ semantics. |
+| PPP-34 | TLobby__sub_8040059C (`0x8040059C`) | `opt_propagation off` | 92.679245% | Drop control; retain C++ semantics. |
+| PPP-35 | TLobby__sub_80400744 (`0x80400744`) | `opt_propagation reset` | 99.351720% | Drop control; retain C++ semantics. |
+| PPP-36 | TLobby__sub_80400744 (`0x80400744`) | `dont_inline off` | 90.558624% | Drop control; retain C++ semantics. |
+| PPP-37 | TLobby__sub_80400744 (`0x80400744`) | `inline_depth(4)` | 90.558624% | Drop control; retain C++ semantics. |
+| PPP-38 | TLobby__sub_80400DA8 (`0x80400DA8`) | `opt_common_subs on` | 92.043015% | Drop control; retain C++ semantics. |
+| PPP-39 | TLobby__sub_80400F1C (`0x80400F1C`)<br>TLobby__sub_804010A0 (`0x804010A0`) | `dont_inline off` | 40.278350%<br>85.944440% | Drop control; retain C++ semantics. |
+| PPP-40 | TLobby__sub_80400F1C (`0x80400F1C`)<br>TLobby__sub_804010A0 (`0x804010A0`) | `inline_depth(4)` | 40.278350%<br>85.944440% | Drop control; retain C++ semantics. |
+| PPP-41 | TLobby__sub_804010A0 (`0x804010A0`) | `bool off` | 99.166664% | Drop control; retain C++ semantics. |
 | PPP-42 | TLobby__sub_8040172C (`0x8040172C`) | `dont_inline off` | 49.604652% | Drop control; retain C++ semantics. |
 | PPP-43 | TLobby__sub_8040172C (`0x8040172C`) | `inline_depth(4)` | 49.604652% | Drop control; retain C++ semantics. |
 | PPP-44 | TLobby__sub_80401B20 (`0x80401B20`) | `opt_propagation off` | 86.111115% | Drop control; retain C++ semantics. |
