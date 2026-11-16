@@ -10,6 +10,7 @@ guides.
 - [Photon Mylla scalar pool](photon-mylla-constant-pool.md)
 - [Chunk vertex-color cache constant ownership](chunk-vertex-color-cache-pool.md)
 - [Equipment menu helper scalar ownership](equipment-menu-helper-unit.md)
+- [Ending wall controller complete unit](ending-wall-controller-unit.md)
 - [EXI Ethernet driver completion](exi-ethernet-unit.md)
 - [Audio header parsing and ADX block transfer](audio-formats-and-adx-transfer.md)
 - [Action-palette unit](action-palette-unit.md)

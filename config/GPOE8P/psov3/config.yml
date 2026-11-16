@@ -642,6 +642,7 @@ force_active:
   - TEffStarLightChild__name
   - TEffStarLightChild_class_name
   - TEffect__class_name
+  - TEndingAB__sub_8008CCC0
   - TEndingAB__sub_8008D5A0
   - TEndingPic__sub_8008D5AC
   - TEnding__sub_8008D5B8
@@ -3986,6 +3987,7 @@ force_active:
   - advance_dead__11TBoss4Type3Fv
   - advance_effect_timer__13TUnk_804E4B3CFv
   - advance_equipment_effect
+  - advance_fade_sequence__9TEndingABFv
   - advance_flee_step__12TObjEneLappyFv
   - advance_go_down__11TBoss4Type3Fv
   - advance_go_up__11TBoss4Type3Fv
@@ -6458,6 +6460,7 @@ force_active:
   - draw_object_tree_recursive__FPv
   - draw_outline_quad__18TWindowEffectLightFl
   - draw_outlined_string_right_aligned__14TObjWarpStringFPviiPv
+  - draw_overlay__9TEndingABFv
   - draw_palette_cells__22TWindowSubCustomSelectFi
   - draw_part_motions__11TBoss6Type1Fv
   - draw_parts__11TBoss4Type1Fv
@@ -7990,6 +7993,7 @@ force_active:
   - init_fish_school__8TObjFishFPvll
   - init_flags__15TWindowFukidasiFPvi
   - init_flags_vec4__10TObjPlayerFv
+  - init_float_table__9TEndingABFv
   - init_floor_encounter_sections__6TLobbyFv
   - init_follow_particle_ctrl__10TObjPlayerFv
   - init_follow_target__10TNpcPlayerFv
@@ -16387,6 +16391,7 @@ force_active:
   - render__9TBoss4UroFv
   - render__9TBoss6DPBFv
   - render__9TBoss6MagFv
+  - render__9TEndingABFv
   - render__9TObjLightFv
   - render__9TTecJelinFv
   - render__9TTecSiftaFv
@@ -17474,6 +17479,7 @@ force_active:
   - set_field_d4_and_flag_200__10TObjPlayerFf
   - set_fields_24_34_from_global__17TObjEneDarkGunnerFPv
   - set_fields_554__11TBoss6Type2Fv
+  - set_fish_global_param__9TEndingABFv
   - set_flag1e_bit80__18TWindowSubShortCutFv
   - set_flag3c8_bit20__17TObjEneMe1CanadinFv
   - set_flag3c8_bit2__13TObjEneMe1GeeFv
