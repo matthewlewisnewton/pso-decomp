@@ -136,10 +136,7 @@ TKeyBoardControl *TKeyBoardControl__ct(TKeyBoardControl *self, TObject *parent, 
     o = new TWindowKeyBoardHard((TWindowKeyBoardBase *)self->m_20);
     self->m_24 = (u32)o;
     ((TWindowKeyBoardHard *)self->m_24)->reset_input_state();
-    o = __nw__7TObjectFUl(0x70);
-    if (o != NULL) {
-        o = TWindowKeyBoardSoft__ct((u8 *)o, self->m_20, client);
-    }
+    o = new TWindowKeyBoardSoft((TWindowKeyBoardBase *)self->m_20, client);
     self->m_28 = (u32)o;
     switch (mode) {
     case 0:

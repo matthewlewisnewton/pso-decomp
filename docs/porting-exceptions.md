@@ -1929,16 +1929,18 @@ It now covers only these leftover raw call sites:
 
 | File | Raw entry points used | Native form still blocked by |
 |---|---|---|
-| `src/pso/misc/TKeyBoardControl.cpp` | `TWindowBase` ctor and dtor (soft keyboard window) | The real 0x70-byte `TWindowKeyBoardSoft` window shares its name with the legacy draw-context view used across the keyboard units. |
 | `src/pso/misc/TWindowFukidasi_80252AE4.cpp` | `TWindowAddition` dtor | Native emission order of the balloon vtable and constant pools in `TWindowFukidasi.cpp`. |
 
-The Hard keyboard window is now native: `TKeyBoardControl_8025EC04.cpp` merges the original keyboard unit through `0x80260450`, so the generated vtable lands at `0x804CFDC4` with no per-unit alignment override.
-
-The ChallengeResult window is now native under the §5 deferred-codegen entry above; `TObjOnlineEnding::create_result_window` constructs it with ordinary `new`.
-
-The DD selection, ScrollBar, Word and ComCard follower windows moved to native
-construction under the §5 entry
+The soft keyboard window in `TKeyBoardControl.cpp` uses native construction
+after the draw-context split and [native lifetime recovery](evidence/window-soft-native-destruction.md). The Hard keyboard window is
+also native: `TKeyBoardControl_8025EC04.cpp` merges the original keyboard unit
+through `0x80260450`, so the generated vtable lands at `0x804CFDC4` with no
+per-unit alignment override. The ChallengeResult window is native under the §5
+deferred-codegen entry above; `TObjOnlineEnding::create_result_window`
+constructs it with ordinary `new`. The DD selection, ScrollBar, Word and
+ComCard follower windows moved to native construction under the §5 entry
 [Window native lifetime emission (deferred codegen)](#window-native-lifetime-emission-deferred-codegen).
+The header now declares only the `TWindowAddition` destructor used by the balloon window.
 
 A port must replace this symbol-name transport with real constructor/destructor
 calls, or placement construction where an external owner supplies storage.
