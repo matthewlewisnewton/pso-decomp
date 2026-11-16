@@ -327,7 +327,6 @@ struct TObjPlayer : public TObjChara {
     static void*get_pmt_record_by_type_id(int type, int id);
     static void*get_pmt_record_by_index(int i);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
-    void draw_trail_strip(void *arg1, s32 arg2);
     static s32 is_any_teammate_in_state();
     static void set_shared_flag(int a0);
     static void set_shared_count(int a0);

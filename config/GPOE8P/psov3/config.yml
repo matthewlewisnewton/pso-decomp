@@ -1195,7 +1195,6 @@ force_active:
   - TObjBoss5PillarCtrl__ct
   - TObjBoss5PillarDemo__ct
   - TObjBoss5PillarDemo__sub_8028ACE8
-  - TObjBoss7DustCtrl__ct
   - TObjBoss7DustCtrl__helix_points
   - TObjBoss7DustCtrl__rotation_pairs
   - TObjBoss7DustCtrl__transformed_vertices
@@ -2594,6 +2593,7 @@ force_active:
   - __ct__17TOHangerMachine01FPv
   - __ct__17TOSensorAncient01FP7TObjectPv
   - __ct__17TOSensorGeneral01FP7TObjectPv
+  - __ct__17TObjBoss7DustCtrlFP7TObject
   - __ct__17TObjEZBoneRotBaseFP7TObjectP10NJS_OBJECTP13EZBoneRotDesc
   - __ct__17TObjEneBm3FlyNestFP7TObjectP14EnemySetRecord
   - __ct__17TObjEneMe1CanadinFP7TObjectP17TObjEneMe1CanadinP3Vecll

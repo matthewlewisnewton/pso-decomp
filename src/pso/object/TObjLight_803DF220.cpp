@@ -119,9 +119,9 @@ void load_gx_light_slot(s32 arg0) {
 }
 
 
-void TObjPlayer::draw_trail_strip(void *arg1, s32 arg2) {
-    TObjPlayer__sub_803DF768(arg2);
-    draw_untextured_trail_strip(this, arg1);
+extern "C" void draw_trail_strip(void *vertices, s32 count, s32 mode) {
+    TObjPlayer__sub_803DF768(mode);
+    draw_untextured_trail_strip(vertices, count);
     reset_player_transform();
 }
 
@@ -142,12 +142,12 @@ static inline void GXColor1u32_803DF5E4(u32 c) {
     (*(volatile WGPipe_803DF5E4 *)0xCC008000).u32 = c;
 }
 }
-void draw_untextured_trail_strip(void *arg0, void *arg1) {
+void draw_untextured_trail_strip(void *vertices, int count) {
     s32 n;
     Vtx_803DF5E4 *v;
     u32 c;
-    v = (Vtx_803DF5E4 *)arg0;
-    n = (s32)arg1;
+    v = (Vtx_803DF5E4 *)vertices;
+    n = (s32)count;
     GXBegin(0x98, 4, n);
     for (; n != 0; n--) {
         GXPosition3f32_803DF5E4(v->x, v->y, v->z);

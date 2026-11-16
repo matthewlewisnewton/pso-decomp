@@ -153,8 +153,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,893 | 892 |
-| Per-unit compiler overrides in `configure.py` | 210 | 210 |
+| CodeWarrior pragmas (excluding push/pop) | 5,926 | 890 |
+| Per-unit compiler overrides in `configure.py` | 211 | 211 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -377,8 +377,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,893 pragmas in 892 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1162, `inline_depth` 1068, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
+5,926 pragmas in 890 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1168, `inline_depth` 1074, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 646, `opt_propagation` 271, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 89, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_lifetimes` 45, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -670,7 +670,7 @@ branch names `lbl_80593EC8` directly. Ports can drop the optimization pragma and
 keep ordinary typed traversal of the actual index and cache byte array. See
 [the unit investigation](evidence/quest-download-unit-completion.md).
 
-The cache mover (`803E8924`) uses a non-owning record view with a borrowed
+The cache mover (`803E8904`) uses a non-owning record view with a borrowed
 pointer constructor and depth-two byte/length accessors. The inline boundaries
 recover its native 0x90-byte frame and name buffer at offset 0x20. Chained
 source-pointer initialization preserves the native copy instruction; the
@@ -1023,7 +1023,7 @@ cast stays a cast.
 
 | File | Functions | What | Why | Port should |
 |---|---|---|---|---|
-| `src/pso/unk/text_8034A090.cpp` | `TAdLoadQuestPrtTxtGC::TAdLoadQuestPrtTxtGC` (`0x8034A254`, 892 bytes) | unit `configure.py` override `-fp_contract on` | The constructor's three particle layouts contract `scale * index + base` into `fmadds` (case 0 at ctor+0x120, `ec 1d d8 3a`; the same form in cases 1 and 2). With the flag the unit is 1452/1452 code, 4/4 functions, `.rodata` 8 and `.data` 36. Without it those three functions and both data sections stay 100%, and the constructor falls to 93.32% and grows from 892 to 908 bytes (separate `fmul`/`fadd`). No `-inline` change was needed. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`). | Keep fused multiply-add, or accept the float differences. |
+| `src/pso/unk/text_8034A090.cpp` | `TAdLoadQuestPrtTxtGC::TAdLoadQuestPrtTxtGC` (`0x8034A254`, 890 bytes) | unit `configure.py` override `-fp_contract on` | The constructor's three particle layouts contract `scale * index + base` into `fmadds` (case 0 at ctor+0x120, `ec 1d d8 3a`; the same form in cases 1 and 2). With the flag the unit is 1452/1452 code, 4/4 functions, `.rodata` 8 and `.data` 36. Without it those three functions and both data sections stay 100%, and the constructor falls to 93.32% and grows from 890 to 908 bytes (separate `fmul`/`fadd`). No `-inline` change was needed. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`). | Keep fused multiply-add, or accept the float differences. |
 
 ### `TItemAttackCol_802E4798.cpp` vtable alignment
 
