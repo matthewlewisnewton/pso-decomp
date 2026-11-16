@@ -81,7 +81,7 @@ void queue_command_81__6TLobbyFv(void *context);
 void save_timer_state__6TLobbyFv(void *context);
 void init_md5_state__6TLobbyFv(struct Md5Ctx_80401EB8 *context);
 void NetPapDispatch(Conn_804004DC *state, B_803FADA0 *frame);
-u8 *NetIPv4WriteHeader(A_80403F4C *config, u8 *frame, s32 preserve_checksum);
+B_803FADA0 *NetIPv4WriteHeader(A_80403F4C *config, B_803FADA0 *frame, s32 preserve_checksum);
 #ifdef __cplusplus
 }
 #endif

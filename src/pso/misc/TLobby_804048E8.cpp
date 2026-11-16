@@ -679,14 +679,14 @@ s32 TLobby__sub_804048E8(Obj_80403F4C *comp, Strm_80405A74 **m, s16 compress_cid
         } else {
             comp->n14++;
         }
-        *m = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (u8 *)*m, 1);
+        *m = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (B_803FADA0 *)*m, 1);
         return 0x40;
     }
     hlen += TLobby__sub_804053B8(&b, m);
     if (b.syn || b.fin || b.rst || !b.ack_flag) {
         comp->n14++;
         *m = (Strm_80405A74 *)TLobby__sub_8040555C(&b, (u8 *)*m, 0);
-        *m = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (u8 *)*m, 1);
+        *m = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (B_803FADA0 *)*m, 1);
         return 0x40;
     }
     for (;;) {
@@ -805,7 +805,7 @@ uncompressed:
     comp->last_xmit = cs->id;
     comp->n18++;
     *m = (Strm_80405A74 *)TLobby__sub_8040555C(&b, (u8 *)*m, 0);
-    *m = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (u8 *)*m, 1);
+    *m = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (B_803FADA0 *)*m, 1);
     return 0x70;
 }
 #pragma pop

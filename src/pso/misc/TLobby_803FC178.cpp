@@ -1666,7 +1666,7 @@ void TLobby__sub_803FDBF8(Fsm_803FDBF8 *self, B_803FADA0 *arg1)
     extern s32 lbl_805D7AA0;
     PppConfigureMessage hdr;
     s16 rc;
-    u8 *newbuf;
+    B_803FADA0 *newbuf;
     u8 *dp;
 
     rc = read_fsm_header_803FDBF8(&hdr, &arg1, 0);
@@ -1912,11 +1912,11 @@ void TLobby__sub_803FDBF8(Fsm_803FDBF8 *self, B_803FADA0 *arg1)
     default:
         hdr.option_bytes += 4;
         newbuf = alloc_from_buffer(arg1, 4);
-        dp = *(u8 **)newbuf;
+        dp = newbuf->buf;
         *dp++ = hdr.code;
         *dp++ = hdr.identifier;
         write_network_u16_be(dp, (u16)hdr.option_bytes);
-        arg1 = (B_803FADA0 *)newbuf;
+        arg1 = newbuf;
         TLobby__sub_803FE6CC(self, 7, hdr.identifier, arg1);
         switch (self->f0) {
         case 6:
@@ -2062,7 +2062,7 @@ s16 TLobby__sub_803FE6CC(void *state, u8 code, int reply_identifier, void *paylo
     B_803FADA0 *saved_frame = (B_803FADA0 *)payload;
     payload = (void *)(payload_length + 4);
     {
-        B_803FADA0 *output = (B_803FADA0 *)alloc_from_buffer(saved_frame, 4);
+        B_803FADA0 *output = alloc_from_buffer(saved_frame, 4);
         u8 *data = output->buf;
         *data++ = code;
         *data++ = identifier;
@@ -2239,7 +2239,7 @@ static inline u16 fold_ipv4_checksum(u32 checksum) {
 static inline u16 ipv4_checksum(B_803FADA0 *frame, u16 length) {
     return fold_ipv4_checksum(TLobby__sub_803FE9F8(0, frame, length));
 }
-u8 *NetIPv4WriteHeader(A_80403F4C *input, u8 *frame, s32 preserve_checksum) {
+B_803FADA0 *NetIPv4WriteHeader(A_80403F4C *input, B_803FADA0 *frame, s32 preserve_checksum) {
     u16 length;
     IPv4WireHeader_803FEBFC storage;
     IPv4WireHeader_803FEBFC *header = &storage;
@@ -2250,8 +2250,8 @@ u8 *NetIPv4WriteHeader(A_80403F4C *input, u8 *frame, s32 preserve_checksum) {
     total = input->optlen + 20;
     length = total;
     if (length > 64) length = 64;
-    frame = alloc_from_buffer((B_803FADA0 *)frame, length);
-    data = ((B_803FADA0 *)frame)->buf;
+    frame = alloc_from_buffer(frame, length);
+    data = frame->buf;
     header->version_length = (input->version << 4) | (length >> 2);
     header->tos = input->tos;
     header->length = input->len;
@@ -2273,7 +2273,7 @@ u8 *NetIPv4WriteHeader(A_80403F4C *input, u8 *frame, s32 preserve_checksum) {
         u32 copy_length = (u16)length;
         NetMemcpy(data, header, copy_length);
         if ((u16)preserve_checksum == 0) {
-            header->checksum = ipv4_checksum((B_803FADA0 *)frame, length);
+            header->checksum = ipv4_checksum(frame, length);
         }
         NetMemcpy(data, header, copy_length);
     }
@@ -3178,10 +3178,6 @@ struct LcpConfig_80400744 { u32 accm; s16 protocol_compression; u16 authenticati
 typedef char LcpSide_size_80400744[sizeof(LcpSide_80400744) == 0x34 ? 1 : -1];
 typedef char LcpOptions_size_80400744[sizeof(LcpOptions_80400744) == 0x68 ? 1 : -1];
 s16 TLobby__sub_80400744(int a0, void *a1) {
-#if defined(__MWERKS__)
-    s32 native_frame_area[2];
-    s32 *native_frame_alias;
-#endif
     void *self = (void *)a0;
     LcpConfig_80400744 *msg = (LcpConfig_80400744 *)a1;
     LcpSide_80400744 *p;
@@ -3193,16 +3189,21 @@ s16 TLobby__sub_80400744(int a0, void *a1) {
     s32 sid;
     u32 v;
     u32 w;
-#if defined(__MWERKS__)
-    native_frame_alias = native_frame_area;
-#endif
 
     TLobby__sub_803FE600((O_803FE600 *)self);
     ((TLobby *)self)->set_flags_and_state();
     *s->sub = 1;
     if (*s->sub >= 1) {
-        id = msg->mru;
-        p = t = (LcpSide_80400744 *)s->opts;
+        // Keep the MRU proposal and its destination together until validation.
+        // Both members are consumed; see the native-frame recovery evidence.
+        struct {
+            LcpSide_80400744 *side;
+            u16 value;
+        } mru;
+        mru.value = msg->mru;
+        mru.side = (LcpSide_80400744 *)s->opts;
+        id = mru.value;
+        p = t = mru.side;
         sid = (s16)id;
         if (sid >= 0x80 && sid <= 0x1000) {
             t->wanted.mask |= 2;
@@ -3817,14 +3818,14 @@ Ent_80401B20 *TLobby__sub_80401B20(void *src, u16 n) {
 }
 #pragma opt_propagation reset
 
-u8 *alloc_from_buffer(B_803FADA0 *frame, s16 length) {
+B_803FADA0 *alloc_from_buffer(B_803FADA0 *frame, s16 length) {
     u8 *cursor;
     if (frame != NULL) {
         cursor = frame->buf;
         if ((s32)(cursor - (u8 *)(frame + 1)) >= length) {
             frame->buf = cursor - length;
             frame->len += length;
-            return (u8 *)frame;
+            return frame;
         }
     }
     return NULL;
@@ -4817,7 +4818,7 @@ s16 TLobby__sub_80403F4C(void *ov, Strm_80405A74 **spp) {
     e->a = a;
     e->b = b;
     *pp = TLobby__sub_8040555C(&b, *pp, 0);
-    *pp = NetIPv4WriteHeader(&a, *pp, 1);
+    *spp = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (B_803FADA0 *)*spp, 1);
     o->n28++;
     // Preserve the native halfword return without a second normalization.
     return (s16)(s64)buffer_length((B_803FADA0 *)(*pp));
@@ -4972,7 +4973,7 @@ s16 TLobby__sub_804040E0(Obj_80403F4C *comp, Strm_80405A74 **src) {
     len = buffer_length((B_803FADA0 *)*src) + 40 + cs->a.optlen;
     cs->a.len = len;
     *src = (Strm_80405A74 *)TLobby__sub_8040555C(th, (u8 *)*src, 0);
-    *src = (Strm_80405A74 *)NetIPv4WriteHeader(&cs->a, (u8 *)*src, 0);
+    *src = (Strm_80405A74 *)NetIPv4WriteHeader(&cs->a, (B_803FADA0 *)*src, 0);
     return len;
 
 bad:

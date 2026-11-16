@@ -265,31 +265,29 @@ EXI/OS backend; the scalar bit helpers alone do not implement the driver.
 ### PPP control unit: measured scopes and unresolved source blockers
 
 `pso/misc/TLobby_803FC178.cpp` remains 129/129 exact and source-linked.
-The rework removes the IPv4 frame-padding array: ordinary inline checksum
-acquisition and folding helpers reproduce the native 0x78 frame and the
-64-byte header at stack offset 0x20. Typed buffer allocation and length
-functions replace the false `TLobby` interfaces throughout their callers.
+The rework removes both frame-padding arrays. Ordinary inline checksum
+acquisition and folding helpers reproduce the IPv4 native 0x78 frame and
+64-byte header at stack offset 0x20. A consumed MRU proposal aggregate
+(destination pointer and halfword value) gives LCP its exact 0x30 frame.
+Typed buffer allocation and length functions replace the false `TLobby` interfaces throughout their callers.
 `optimization_level 0`, redundant settings and empty/nested push stacks
 are removed. No compiler flags or unit overrides change.
 
 **This is a partial rework, not approval of the remaining source patterns.**
-`TLobby__sub_80400744` (0x80400744) still has its inherited guarded dead
-array and alias; removing them gives 99.93793%, with a 0x20 frame instead
-of 0x30. The target never accesses local state at 0x08..0x23(r1).
 The sender at 0x803FE6CC still reuses its payload formal as a wire length
 and retains the containing-prefix expression in its length-clear helper.
 The comma cast and false allocation/length receivers are removed.
 These remaining patterns require further recovery or Matt's explicit ruling;
 the EXI receiver precedent below does not authorize them.
 See [PPP rework evidence](evidence/ppp-control-rework.md) for alternatives
-and native storage evidence. Ports must remove the LCP padding, keep frame
-pointers and lengths separate, clear the real length member directly, and
-preserve explicit wire-byte order and existing error behavior.
+and native storage evidence. Ports can retain the MRU aggregate and must
+keep frame pointers and lengths separate, clear the real length member
+directly, and preserve explicit wire-byte order and existing error behavior.
 
 Each row below records one remaining directive in source order, including
 inherited controls. Scores are independent ablations against the final source
-using the existing GC/1.2.5n configuration; every listed function is 100%
-with the directive present. Push/pop restores belong to the corresponding
+using the existing GC/1.2.5n configuration, remeasured after round two;
+every listed function is 100% with the directive present. Push/pop restores belong to the corresponding
 scope. The `reset` row measures omitting that restoration. These are measured
 compiler constraints, not claims about original source pragmas. A port drops
 each listed control and keeps the ordinary C++ operation (including explicit
