@@ -1,6 +1,7 @@
 #include "types.h"
 #include "pso/misc/TLobby.h"
 #include "pso/protocol/NetworkRuntime.h"
+#include "pso/protocol/PppControlRuntime.h"
 
 struct Self_803FD85C;
 struct Tbl_803FD85C {
@@ -289,14 +290,6 @@ struct Ent_80408718 { s16 f0; u8 pad[0x16]; };
 
 struct Tbl_80408718 { s16 count; s16 h2; s16 h4; s16 h6; s16 h8; u8 pad[4]; Ent_80408718 *list; u8 pad14[0x10]; u8 *f24; };
 
-typedef struct Conn_804004DC {
-    u8 state;
-    u8 pad[7];
-    s16 abort;
-    u8 pad2[2];
-    u8 *sub;
-} Conn_804004DC;
-
 typedef struct Blk_80400BA8 {
     s16 flags;
     u8 pad[2];
@@ -371,8 +364,6 @@ typedef struct Tbl_80409BD4 {
 
 struct Strm_80405A74 { u8 *p; u16 len; };
 
-typedef struct B_803FADA0 { u8 *buf; u16 len; } B_803FADA0;
-
 typedef struct A_803FADA0 { u8 pad0[4]; u32 a; u32 b; } A_803FADA0;
 
 extern "C" {
@@ -390,7 +381,6 @@ s32 NetMemcmp(void * _w0, void * _w1, int _w2);
 s32 TLobby__sub_8040FDA0(u32, s16);
 extern RecoveredGlobal_8041123C_lbl_805C1BB8 ipv6_address_routing_state;
 void NetMemset(void * _w0, int _w1, int _w2);
-s32 TLobby__sub_803FE6CC(void *, int, int, void *);
 s16 TLobby__sub_8040FCEC(u32);
 void TLobby__sub_803F892C(void *);
 void TLobby__sub_803F8958(void *);
@@ -458,8 +448,6 @@ typedef char RecoveredGlobal_803FC178_lbl_805C02D0_size[sizeof(RecoveredGlobal_8
 
 typedef char RecoveredGlobal_803FC1A0_lbl_805C02D0_size[sizeof(RecoveredGlobal_803FC1A0_lbl_805C02D0) == 0x40 ? 1 : -1];
 
-s32 TLobby__sub_803FE8BC(u8 *, void *);
-typedef struct Hdr_803FC4B4 { u8 type; u8 flag; s16 len; } Hdr_803FC4B4;
 struct O_80400ACC;
 void TLobby__sub_80400ACC(O_80400ACC *);
 struct Outer_80401CAC;
@@ -504,8 +492,6 @@ struct V_803FE600 {
     u8 pad[0x14];
     void (*fn)(O_803FE600 *, V_803FE600 *);
 };
-
-s32 TLobby__sub_803FE8BC(u8 *dst, void *src);
 
 struct O_80400ACC { u8 b0; u8 b1; u8 b2; u8 pad3[0x108 - 3]; s32 f108; };
 void TLobby__sub_80400ACC(O_80400ACC *o);
@@ -590,24 +576,6 @@ typedef char RecoveredGlobal_80403D28_lbl_805C0638_size[sizeof(RecoveredGlobal_8
 #pragma opt_common_subs on
 #pragma pop
 
-typedef struct A_80403F4C {
-    u32 src;
-    u32 dst;
-    u16 len;
-    u16 id;
-    u16 frag;
-    u16 cksum;
-    u8 pad10;
-    u8 df;
-    u8 mf;
-    u8 version;
-    u8 tos;
-    u8 ttl;
-    u8 count;
-    u8 optlen;
-    u8 opts[0x40 - 0x18];
-} A_80403F4C;
-
 typedef struct B_80403F4C {
     u16 src_port;
     u16 dst_port;
@@ -671,7 +639,6 @@ u8 lbl_805C1890[16];
 u32 TLobby__sub_803FEA88(A_80403F4C *out, Strm_80405A74 **src);
 s32 TLobby__sub_804053B8(B_80403F4C *, Strm_80405A74 **);
 u8 *TLobby__sub_8040555C(B_80403F4C *, u8 *, s32);
-u8 *GXLoadTexObjPreLoaded(A_80403F4C *, u8 *, s32);
 
 #pragma push
 #pragma dont_inline off
@@ -712,14 +679,14 @@ s32 TLobby__sub_804048E8(Obj_80403F4C *comp, Strm_80405A74 **m, s16 compress_cid
         } else {
             comp->n14++;
         }
-        *m = (Strm_80405A74 *)GXLoadTexObjPreLoaded(&a, (u8 *)*m, 1);
+        *m = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (u8 *)*m, 1);
         return 0x40;
     }
     hlen += TLobby__sub_804053B8(&b, m);
     if (b.syn || b.fin || b.rst || !b.ack_flag) {
         comp->n14++;
         *m = (Strm_80405A74 *)TLobby__sub_8040555C(&b, (u8 *)*m, 0);
-        *m = (Strm_80405A74 *)GXLoadTexObjPreLoaded(&a, (u8 *)*m, 1);
+        *m = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (u8 *)*m, 1);
         return 0x40;
     }
     for (;;) {
@@ -838,7 +805,7 @@ uncompressed:
     comp->last_xmit = cs->id;
     comp->n18++;
     *m = (Strm_80405A74 *)TLobby__sub_8040555C(&b, (u8 *)*m, 0);
-    *m = (Strm_80405A74 *)GXLoadTexObjPreLoaded(&a, (u8 *)*m, 1);
+    *m = (Strm_80405A74 *)NetIPv4WriteHeader(&a, (u8 *)*m, 1);
     return 0x70;
 }
 #pragma pop

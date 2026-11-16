@@ -261,6 +261,25 @@ EXI/OS backend; the scalar bit helpers alone do not implement the driver.
 
 ## 4. CodeWarrior pragmas
 
+
+`pso/misc/TLobby_803FC178.cpp` completes the PPP control unit with scoped
+CSE, propagation, lifetime, Boolean and helper-inlining controls under its
+existing GC/1.2.5n profile. They preserve the native fast/slow cursor reads,
+callback register lifetimes and compiler-generated switch tables. The small
+reply-length helper uses `optimization_level 0` with propagation enabled to
+retain the native address materialization; it uses ordinary pointer arithmetic.
+The sender reuses its payload formal for the native word-sized wire length,
+including a widening/narrowing conversion that avoids a redundant halfword
+normalization. Guarded unused locals in `NetIPv4WriteHeader` and
+`TLobby__sub_80400744` retain the native 0x78- and 0x30-byte frames. Removing
+them scores 99.810524% and 99.93793%, respectively. These locals and source
+arrangements are matching constraints, not recovered application state. A port
+should remove the compiler controls and guarded locals, keep frame pointers
+and wire lengths separate, and use typed cursor operations and explicit wire
+byte order. Existing native error handling and legacy boundary views are
+preserved; the unit recovery does not establish portable network behavior.
+
+
 `src/pso/boss/TObjBoss5Ctrl.cpp` retains its existing `fp_contract on` when
 its three fragments are consolidated. Both countdown calculations use the
 original fused `60 * normalized_random + 90`. Ports should preserve fused
