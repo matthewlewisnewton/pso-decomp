@@ -379,13 +379,10 @@ remain exact. Ports can drop the emission switch and reorder definitions.
 
 `src/pso/player/TObjPlayer_801AF2F0.cpp` uses two new scoped
 `opt_propagation off` settings: `apply_wall_response` retains the original
-query-origin address lifetime and scalar float registers, and
-`spawn_level_change_feedback__10TObjPlayerFv` retains the register order of
-its named constant loads. The wall routine keeps its declaration order and
-forms the origin view with `offsetof(WallQuery, origin)`; taking the member
-address directly introduces a separate pointer copy or schedules it later.
-These are measured GC/2.6 constraints, not evidence of original pragmas.
-Ports can drop the steering and take `query.origin` directly while keeping
+scalar float registers, and `spawn_level_change_feedback__10TObjPlayerFv`
+retains the register order of its named constant loads. The wall routine
+also keeps its declaration order. These are measured GC/2.6 constraints,
+not evidence of original pragmas. Ports can drop the steering while keeping
 the same collision queries and arithmetic.
 
 The owned newline and thirteen float constants use `__declspec(section

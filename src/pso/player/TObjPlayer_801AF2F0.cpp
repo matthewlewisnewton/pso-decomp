@@ -4725,7 +4725,7 @@ extern "C" void calc_move__10TObjPlayerFPvPv(Vec *velocity, Vec *direction, Vec 
     calc_move_velocity__10TObjPlayerFPvPvf(direction, out, length);
 }
 
-// Declaration order and the origin view retain the query and float lifetimes.
+// Declaration order retains the query and scalar float lifetimes.
 #pragma push
 #pragma opt_propagation off
 CsnHit *TObjPlayer::apply_wall_response() {
@@ -4770,13 +4770,13 @@ CsnHit *TObjPlayer::apply_wall_response() {
     Vec velocity;
     VecCopy(&velocity, &movement_velocity);
     velocity.y = TObjPlayer__data_805DC278;
-    origin_pointer = (f32 *)((u8 *)&query + offsetof(WallQuery, origin));
+    origin_pointer = query.origin;
     f32 distance = radius + vector_length(&velocity);
     query.count = 1;
     query.mask = 0x28A0;
-    query.origin[0] = position.x;
-    query.origin[1] = lbl_805DC2B0 + position.y;
-    query.origin[2] = position.z;
+    origin_pointer[0] = position.x;
+    origin_pointer[1] = lbl_805DC2B0 + position.y;
+    origin_pointer[2] = position.z;
     query.offsets = offsets;
     angle = (s32)(lbl_80446F68 * atan2_float(velocity.x, velocity.z));
     offsets[0].x = distance * sin_table_lookup(angle);
@@ -4799,9 +4799,9 @@ CsnHit *TObjPlayer::apply_wall_response() {
             f32 origin_z;
             f32 origin_y;
             f32 origin_x;
-            origin_x = query.origin[0];
-            origin_y = query.origin[1];
-            origin_z = query.origin[2];
+            origin_x = origin_pointer[0];
+            origin_y = origin_pointer[1];
+            origin_z = origin_pointer[2];
             point.x = origin_x + selected_offset->x;
             point.y = origin_y + selected_offset->y;
             point.z = origin_z + selected_offset->z;
@@ -4820,8 +4820,8 @@ CsnHit *TObjPlayer::apply_wall_response() {
     VecCopy(&velocity, &movement_velocity);
     query.count = 8;
     query.radius = radius;
-    query.origin[0] = position.x + velocity.x;
-    query.origin[2] = position.z + velocity.z;
+    origin_pointer[0] = position.x + velocity.x;
+    origin_pointer[2] = position.z + velocity.z;
     offset = offsets;
     for (first_count = 0; first_count < 8; ++first_count, ++offset) {
         offset->x = radius * sin_table_lookup(angle);
@@ -4851,9 +4851,9 @@ CsnHit *TObjPlayer::apply_wall_response() {
             second_normal = &second->contact[second_index].normal;
             normal_x = second_normal->x;
             normal_z = second_normal->z;
-            origin_x = query.origin[0];
-            origin_y = query.origin[1];
-            origin_z = query.origin[2];
+            origin_x = origin_pointer[0];
+            origin_y = origin_pointer[1];
+            origin_z = origin_pointer[2];
             f32 dx = normal_x * penetration;
             f32 dz = normal_z * penetration;
             Vec corrected;
@@ -4869,8 +4869,8 @@ CsnHit *TObjPlayer::apply_wall_response() {
             f32 cosine = cos_table_lookup(facing);
             f32 speed_z = TObjPlayer__sub_801BF814(&m_5e0);
             velocity.z = speed_z * cosine;
-            query.origin[0] = corrected.x + velocity.x;
-            query.origin[2] = corrected.z + velocity.z;
+            origin_pointer[0] = corrected.x + velocity.x;
+            origin_pointer[2] = corrected.z + velocity.z;
             Vec first_offset;
             VecCopy(&first_offset, &query.offsets[second_index]);
             angle = (s32)(lbl_80446F68 * atan2_float(velocity.x, velocity.z));
