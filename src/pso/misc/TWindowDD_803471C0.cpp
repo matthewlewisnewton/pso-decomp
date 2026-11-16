@@ -8,7 +8,7 @@ extern "C" {
 
 extern s32 window_dd_buffer_a;
 
-void show_word_select_message(WordSelectMessage *words, s32 player) {
+void show_word_select_message(WordSelectMessage *words, u16 player) {
     format_word_select_message(words, (char *)window_dd_buffer_a, player);
     TWindowCtrl::open(player, window_dd_buffer_a, 0x4F);
 }
