@@ -12,11 +12,9 @@
 #include "pso/ui/TAdRicoRingCtrl.h"
 
 extern "C" {
-void TAdRicoRingCtrl__sub_8001B4A0(TAdRicoRingCtrl *, f32);
 s32 get_end_text_font_loaded_flag();
 u32 __cvt_fp2unsigned(f32);
 int TKeyBoardControl__sub_8000F828(void);
-u8 *TAdRicoRingCtrl__ct(TAdRicoRingCtrl *arg0, s32 arg1);
 void __ct__10TAdEndTextFv(void *, TObject *);
 extern u32 ending_frame_counter;
 extern s32 ending_scene_active;
@@ -41,7 +39,7 @@ void TEnding::run_task() {
         }
         f32 duration = lbl_805D9578 * (f32)rate;
         if (ending_frame_counter > (u32)((rate * 139) - __cvt_fp2unsigned(duration)))
-            TAdRicoRingCtrl__sub_8001B4A0(ring_controller, duration);
+            ring_controller->fn_8001B4A0(duration);
         return;
     }
     case 2:
@@ -83,11 +81,10 @@ TEnding::TEnding() : TObject(tl_window) {
     ending_frame_counter = 0;
     phase = 0;
     elapsed_ticks = 0;
-    TAdRicoRingCtrl *ring = (TAdRicoRingCtrl *)TObject::operator new(0x2C);
-    if (ring != NULL) ring = (TAdRicoRingCtrl *)TAdRicoRingCtrl__ct((TAdRicoRingCtrl *)((u8 *)ring), (s32)this);
+    TAdRicoRingCtrl *ring = new TAdRicoRingCtrl(this);
     ring_controller = ring;
     if (ring_controller != NULL)
-        ((TAdRicoRingCtrl *)ring_controller)->start_fade_all(lbl_805D9578 * (f32)timing_rate);
+        ring_controller->start_fade_all(lbl_805D9578 * (f32)timing_rate);
     void *text = TObject::operator new(0x197C);
     if (text != NULL) __ct__10TAdEndTextFv(text, this);
 }

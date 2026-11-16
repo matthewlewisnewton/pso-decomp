@@ -10,8 +10,8 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 46 | 12 |
 | intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5893 | 892 |
-| configure.py per-unit override | 210 | 210 |
+| pragma | 5893 | 891 |
+| configure.py per-unit override | 211 | 211 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -240,6 +240,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/menu/TAdRicoRing.cpp` | `-str reuse,readonly, -sdata 4, -inline off,deferred` | Shared Rico ring resource/constant bank; reverse definitions preserve native vtable order. |
 | `pso/boss/TBoss2DeRolLe.cpp` | `GC/2.0, -inline on` | GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order. |
 | `pso/boss/TBoss4Type1.cpp` | `-sdata 4` | Keep the eight-byte effect-ID pair in .data beside the state table. |
 | `pso/object/TObjEZRopeSimulation.cpp` | `-inline deferred` | Reverse definitions reproduce both native rope vtables and function order. |
@@ -686,6 +687,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/menu/TAdGuideTxtGC.cpp` | readonly_strings×1, fp_contract×1, opt_common_subs×1 |
 | `src/pso/menu/TAdMultiOkGC.cpp` | fp_contract×3 |
 | `src/pso/menu/TAdPlyChrSelPlateGC_802C4CA0.cpp` | peephole×1, fp_contract×1, opt_propagation×1 |
+| `src/pso/menu/TAdRicoRing.cpp` | opt_common_subs×2, opt_dead_assignments×1, fp_contract×1 |
 | `src/pso/menu/TAdTimeSetGC.cpp` | opt_common_subs×2 |
 | `src/pso/menu/TChCrLoadGmNjReq.cpp` | readonly_strings×1 |
 | `src/pso/misc/ChallengeMode.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
@@ -1197,7 +1199,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/ui/TAdPlyPltAnimGC.cpp` | fp_contract×4 |
 | `src/pso/ui/TAdPlyStatusGC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/TAdRayGC.cpp` | readonly_strings×1 |
-| `src/pso/ui/TAdRicoRingCtrl_8001B4A0.cpp` | opt_common_subs×2, opt_dead_assignments×1 |
 | `src/pso/ui/TAdSEGAlogo_8001BF4C.cpp` | readonly_strings×1, const_strings×1 |
 | `src/pso/ui/TAdSelectCurGC_802AED98.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/TAdSelectTxtSubGC.cpp` | fp_contract×2 |
@@ -1216,7 +1217,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/ui/TObjLiveMonitor.cpp` | fp_contract×3 |
 | `src/pso/unk/TUnk_804A6CC8.cpp` | opt_common_subs×1 |
 | `src/pso/unk/TUnk_804CC870.cpp` | defer_codegen×2 |
-| `src/pso/unk/text_8001B424.cpp` | fp_contract×1 |
 | `src/pso/unk/text_8002E090.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/unk/text_8004D9A8.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/unk/text_80050050.cpp` | opt_common_subs×1 |
