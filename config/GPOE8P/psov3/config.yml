@@ -1252,7 +1252,6 @@ force_active:
   - TObjDoor__resource_param
   - TObjDoor__sub_8018E890
   - TObjDoor__sub_8018E8BC
-  - __ct__17TObjEZBoneRotBaseFP7TObjectP10NJS_OBJECTP13EZBoneRotDesc
   - TObjEZRopeBase__name
   - TObjEneBalClawClaw__collision_body_template
   - TObjEneBalClawClaw__ct
@@ -2538,6 +2537,7 @@ force_active:
   - __ct__17TOSensorAncient01FP7TObjectPv
   - __ct__17TOSensorGeneral01FP7TObjectPv
   - __ct__17TObjBoss7DustCtrlFP7TObject
+  - __ct__17TObjEZBoneRotBaseFP7TObjectP10NJS_OBJECTP13EZBoneRotDesc
   - __ct__17TObjEneBm3FlyNestFP7TObjectP14EnemySetRecord
   - __ct__17TObjEneMe1CanadinFP7TObjectP17TObjEneMe1CanadinP3Vecll
   - __ct__17TObjEneMe1CanadinFP7TObjectPvl
@@ -5203,6 +5203,8 @@ force_active:
   - capsule_machine01_collision_body
   - capsule_machine_ginja_mesh_handle
   - capture_attachment__17TObjEneBm3FlyNestFP10NJS_OBJECT
+  - capture_base_angles__17TObjEZBoneRotBaseFv
+  - capture_base_angles_recursive__17TObjEZBoneRotBaseFP10NJS_OBJECT
   - capture_beam_origins__16TObjEneNanoDragoFv
   - capture_effect_positions__14TObjEneIllGillFP10NJS_OBJECT
   - capture_lockon_targets
@@ -7585,6 +7587,7 @@ force_active:
   - gx_blend_mode_table
   - gx_default_light_obj
   - gx_tlut_region_table
+  - gyaranzo_breakup_model_obj
   - gyaranzo_collision_body
   - gyaranzo_death_breakup_params
   - gyaranzo_flagged_resource_index_table
@@ -9649,6 +9652,8 @@ force_active:
   - lbl_805D514C
   - lbl_805D5158
   - lbl_805D515C
+  - lbl_805D5200
+  - lbl_805D5204
   - lbl_805D5288
   - lbl_805D5698
   - lbl_805D58C4
@@ -18363,8 +18368,6 @@ force_active:
   - sub_800F47D4__16TObjEneMe3StelthFv
   - sub_800F4850__16TObjEneMe3StelthFv
   - sub_800F8250__13TUnk_80499988Ff
-  - capture_base_angles_recursive__17TObjEZBoneRotBaseFP10NJS_OBJECT
-  - capture_base_angles__17TObjEZBoneRotBaseFv
   - sub_800FF580__14TObjEZRopeBaseFP3Vecf
   - sub_80140F44__11TMapCsnCtrlFv
   - sub_80156A68__14TObjCollidableFv
