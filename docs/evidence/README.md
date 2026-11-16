@@ -33,6 +33,7 @@ guides.
 - [GC/2.0 consolidation: validated migrations and remaining compiler constraints](compiler-consolidation-gc20.md)
 - [GC/2.0 as the primary compiler: reverse migration impact](compiler-default-gc20-impact.md)
 - [GC/2.0 compiler and linker adoption](compiler-default-gc20-adoption.md)
+- [GC/2.0 migration merged with current main: final validation](compiler-default-gc20-main-merge.md)
 - [PSO GameCube development and toolchain history](pso-gamecube-toolchain-history.md)
 - [Sonic Team GameCube toolchain comparisons](sonic-team-gamecube-toolchain-history.md)
 - [TProtocol retained compiler and weak helpers](compiler-default-gc20-protocol.md)

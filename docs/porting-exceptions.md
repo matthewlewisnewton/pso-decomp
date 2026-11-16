@@ -706,17 +706,16 @@ units use the retained GC/1.3.2 compiler, with unchanged source and flags:
 | `pso/misc/TPlyMeetUserExtension_801DAC6C.cpp` | The name-field assignment and the complete object match GC/2.6. | Use the port compiler and ordinary record copying. |
 
 Gryphon, Slime and Dragon inherit GC/2.0; their source and effective flags
-remain unchanged. De Rol Le also uses GC/2.0: all 108 previously exact
-functions remain exact, and its sole changed already-unmatched function
-improves. No compiler or linker assignment requires GC/2.6. The remaining
+remain unchanged. De Rol Le retains main's GC/2.0 profile and `-inline on`, with all 110 functions exact. No compiler or linker assignment requires GC/2.6. The remaining
 older compiler profiles are a separate consolidation task.
 
-The [GC/2.0 consolidation](evidence/compiler-consolidation-gc20.md) moves
-nine existing game overrides to GC/1.3.2 without changing source or flags.
-Their earlier GC/2.0 recovery records below remain historical evidence;
-the current compiler choice is recorded in `configure.py` and the generated
-inventory. The complete build and no-loss checks pass with these migrations.
-Ports continue to use their normal compiler for these units.
+The initial [GC/2.0 consolidation](evidence/compiler-consolidation-gc20.md)
+experiment moved nine game units to GC/1.3.2 while planning to retire GC/2.0.
+With GC/2.0 now the default, those nine units inherit it again, preserving
+main's effective compiler, source, flags and symbol mappings. Their earlier
+recovery records remain historical evidence. The current assignments and
+[main-merge validation](evidence/compiler-default-gc20-main-merge.md) are
+authoritative for this PR. Ports use their normal compiler for these units.
 
 Units override the default `GAME_COMPILER = "GC/2.0"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,

@@ -1,5 +1,10 @@
 # Adopt GC/2.0 as compiler default and linker
 
+This records the initial adoption before merging newer main. See the
+[current main-merge validation](compiler-default-gc20-main-merge.md) for the
+final assignments and acceptance results. In that final configuration, the
+nine initial GC/1.3.2 experiment units return to the GC/2.0 default.
+
 Date: 2026-11-16. Baseline: `08c178922fb8da57f44c2d9fc4efb5ebdecf05b4`.
 The working configuration now uses GC/2.0 for the linker and most sources.
 No compiler or linker assignment uses GC/2.6. This is a validated matching

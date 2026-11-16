@@ -516,7 +516,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # the per-function pragmas: the constructors, calc_trap_count and the R
     # vfunc_81 fuse multiply-adds.
     "pso/misc/TOTrapAncient02.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-fp_contract on")},
-    # GC/1.3.2, like TOExplosiveMachine: play_sounds loads the three debris
+    # GC/2.0, like TOExplosiveMachine: play_sounds loads the three debris
     # positions before storing them (GC/2.6 interleaves them: 91.09%).
     # Reverse definitions and deferred generation place the native trap vtable
     # before its switch tables while preserving the original function order.
@@ -524,7 +524,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # 97.66% without it). -opt nolifetimes keeps render exact (99.42% without
     # it). -pooldata=off keeps play_sounds' copy prologue (94.54% without it);
     # read-only strings keep the .rodata/.data/.sdata layout.
-    "pso/misc/TOTrapAncient01.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-pooldata=off", "-opt nolifetimes")},
+    "pso/misc/TOTrapAncient01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-pooldata=off", "-opt nolifetimes")},
     # Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4).
     "pso/object/TObjDFDemo1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Keep both 8-byte afterimage tables out of .sdata in the demo constructor.
@@ -552,13 +552,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # TObjChip: render's colour template sits after draw_chips' in .rodata
     # while render comes first in .text, so the source runs backwards.
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    # GC/1.3.2 interleaves the BML model-table load with the debris initializer's
+    # GC/2.0 interleaves the BML model-table load with the debris initializer's
     # copy tail. Map the original template to CodeWarrior's local aggregate.
-    "pso/unk/text_80049FD8.cpp": {"mw_version": "GC/1.3.2", "symbol_mappings": {"volopt_pillar_chip_params": "@13"}},
-    # GC/1.3.2 schedules the model and position loads across the aggregate copy
+    "pso/unk/text_80049FD8.cpp": {"symbol_mappings": {"volopt_pillar_chip_params": "@13"}},
+    # GC/2.0 schedules the model and position loads across the aggregate copy
     # tails. Disabling pooling keeps the three original debris templates.
     "pso/unk/text_8031EF14.cpp": {
-        "mw_version": "GC/1.3.2",
         "cflags": _switch(cflags_pso, "-pooldata=off"),
         "symbol_mappings": {
             "recon_death_debris_model_3_params": "@67",
@@ -578,17 +577,16 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Dark Falz rocks are one TU, written last-defined first. -fp_contract on
     # fuses the fall and spin multiply-adds.
     "pso/boss/TBoss6Rock.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-inline off,deferred")},
-    # GC/1.3.2 preserves the compiler-expanded struct copies and the ending
+    # GC/2.0 preserves the compiler-expanded struct copies and the ending
     # item handler table's store/load scheduling for its
     # zero-initialized local member-function-pointer array.
     "pso/item/TItemSpecialEvent_803531FC.cpp": {
-        "mw_version": "GC/1.3.2",
         # The split names the compiler's anonymous PMF initializer image at
         # 0x804F10C0; the source-built object references its first 12-byte
         # entry label. Map the target entry name to the object's image label.
         "symbol_mappings": {"@12": "...data.0"},
     },
-    # GC/1.3.2: run_task's 36-byte PMF array initializer interleaves its copy
+    # GC/2.0: run_task's 36-byte PMF array initializer interleaves its copy
     # tail with actor_frame_tick (load, tail load, clrlwi., table load, tail
     # store). GC/2.5, 2.6 and 2.7 pack the tail pair and move the tick
     # relocation from +0xE4 to +0xEC. The current source preserves the wave
@@ -604,14 +602,13 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # fmadds.
     # -str reuse,readonly: the two file names and the class name are in this
     # unit's .rodata. See docs/porting-exceptions.md section 5.
-    "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline off,deferred", "-opt noprop", "-fp_contract on", "-str reuse,readonly")},
+    "pso/effect/TEffIndirectCtrl.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-opt noprop", "-fp_contract on", "-str reuse,readonly")},
     # pack_movie_frame: the original keeps every named local in one register
     # (no lifetime splitting), recomputes its pad and stride shifts instead of
     # sharing them, and leaves invariant hoisting to the backend. See
     # docs/porting-exceptions.md section 5.
     "pso/misc/TMovie_80143988.cpp": {"cflags": _switch(cflags_pso, "-opt nolifetimes,nocse,noprop,noloop")},
-    "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/1.3.2"},
+    "pso/enemy/TObjEneGyaranzo.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # -inline off,deferred: the real TBoss8Dragon constructor addresses
     # __vt__12TBoss8Dragon as addi r0, r31, 2348 from the .data anchor.
     # Plain -inline off emits lis/addi of the vtable symbol and the ctor
@@ -682,10 +679,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # this unit is built with -fp_contract on. -inline off,deferred emits
     # functions and vtables in reverse source order: the Needle vtable then
     # the Tentacle vtable, with .text still in address order.
-    # GC/1.3.2: the Needle constructor's const emitter copy. Before 2.5 a const
+    # GC/2.0: the Needle constructor's const emitter copy. Before 2.5 a const
     # local whose address escapes stays out of the worst-case alias set, so
     # the three word loads of pos batch ahead of the stores; 2.6 interleaves.
-    "pso/boss/TBoss7TentacleNeedle.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    "pso/boss/TBoss7TentacleNeedle.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     # Photon bullet run_task contracts a mul-add. Deferred emission puts the
     # compiler vtables in address order while the definitions stay bottom-to-top.
     "pso/boss/TBoss7PhotonBullet_802EF26C.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
@@ -725,9 +722,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # The shared zero starts at 0x805DB85C. Keep its original four-byte alignment.
     "pso/misc/TOMineTrap_8016F6F8.cpp": {"cflags": _switch(cflags_pso, "-inline on", "-fp_contract on"), "cw_align": ".sdata2=4"},
     # TItem.cpp is written from its last function back (deferred code
-    # generation; the data keeps source order). GC/1.3.2 preserves its aggregate
-    # copy scheduling, as in the other migrated GC/2.0 units.
-    "pso/item/TItem.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # generation; the data keeps source order). The GC/2.0 default preserves
+    # its aggregate-copy scheduling.
+    "pso/item/TItem.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TItemProArmor.cpp, TItemProShield.cpp and TItemProUnit.cpp are written
     # from their last function back (deferred code generation, which also puts
     # each vtable before the switch tables).
