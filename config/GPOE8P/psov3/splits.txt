@@ -2083,6 +2083,7 @@ pso/enemy/TObjEneMe3Stelth.cpp:
 
 pso/system/ChunkTextureStripCollector.cpp:
 	.text       start:0x800F58A4 end:0x800F5BC0
+	.sbss       start:0x805D5318 end:0x805D5328
 
 pso/unk/text_800F5BC0.cpp:
 	.text       start:0x800F5BC0 end:0x800F5CF0

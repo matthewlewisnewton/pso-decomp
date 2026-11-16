@@ -5676,7 +5676,7 @@ force_active:
   - collect_node_matrices__16TObjEneRe7BeruraFP10NJS_OBJECTl
   - collect_node_positions__11TBreakUpMdlFPUcl
   - collect_owner_events__8TItemMagFv
-  - collect_plist_strips_by_texture__FPvPsl
+  - collect_plist_strips_by_texture__FP15StripBufferPairPsl
   - collect_targets__15TObjEneMe1GiGueFv
   - collect_targets_in_arc__15TBoss3VoloptP02Fv
   - collect_targets_in_front__15TBoss3VoloptP02Fv
@@ -5878,7 +5878,7 @@ force_active:
   - count_leading_entries__22TQuestVmDownLoadServerFll
   - count_matching_values__11TBoss6Type2Fll
   - count_players_in_warp_radius__25TObjCityMainWarpChallengeFv
-  - count_plist_strips_by_texture__FPvPvPv
+  - count_plist_strips_by_texture__FP15StripBufferPairPsl
   - count_selected_flags__12TAdTimeSetGCFv
   - count_slots__13TWindowSubMagFv
   - count_sync_record_bytes__6TLobbyFv
