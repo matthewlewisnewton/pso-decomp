@@ -1,3 +1,4 @@
+#include "pso/system/TrailStrip.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/system/vector.h"
@@ -116,7 +117,7 @@ void render__26TObjEneMe1Canadin_EffLightFv(Trail_8009F7AC *o) {
         }
     }
     set_additive_blend();
-    ((TObjPlayer *)(o->verts))->draw_trail_strip((void *)(n * 2), 1);
+    draw_trail_strip(o->verts, n * 2, 1);
 }
 #pragma pop
 
