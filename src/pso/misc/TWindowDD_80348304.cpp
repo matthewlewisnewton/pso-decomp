@@ -134,7 +134,7 @@ s32 TWindowDD::can_append_chars(s32 arg0, s32 *arg1) {
     return (arg0 + t + 1) < 0x80;
 }
 
-s32 format_word_select_message(WordSelectMessage *words, char *buffer, s32 player) {
+s32 format_word_select_message(WordSelectMessage *words, char *buffer, u16 player) {
     switch ((s32) TWindowDD__window_mode) {
     case LANGUAGE_JAPANESE:
         return format_word_select_japanese(words, buffer);

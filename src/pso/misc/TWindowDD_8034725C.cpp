@@ -130,7 +130,7 @@ s32 TWindowDD::classify_id(s16 arg0) {
     return var_r3;
 }
 
-s32 word_select_player_gender(s32 arg0) {
+s32 word_select_player_gender(u16 arg0) {
     s32 temp_r3_2;
     void *player;
 
@@ -478,7 +478,7 @@ void TWindowDD__sub_80347CC8(W_80347CC8 *arg0, void *window_dd) {
     f32 c;
     f32 max;
     f32 f10;
-    format_word_select_message((WordSelectMessage *)window_dd, (char *)TWindowDD__work_buffer, local_client_id & 0xFFFF);
+    format_word_select_message((WordSelectMessage *)window_dd, (char *)TWindowDD__work_buffer, (u16)local_client_id);
     s = arg0->f70;
     if (s != NULL) {
         e = get_array_entry__11TWindowBaseFi(s, 0);
