@@ -1631,6 +1631,7 @@ force_active:
   - TObjNpcExpertBase__shared_resource
   - TObjNpcFemaleBase__ct
   - TObjNpcHFW01__name
+  - TObjNpcHFW01__texture_filename
   - TObjNpcHHM00__body_texture_gvm_handle
   - TObjNpcHHM00__model_object
   - TObjNpcHHM00__name
@@ -8530,12 +8531,15 @@ force_active:
   - lbl_8043F380
   - lbl_8043FA38
   - lbl_8043FA4C
+  - lbl_8043FA70
   - lbl_8043FD20
   - lbl_8043FD34
   - lbl_8043FD58
   - lbl_8043FD6C
   - lbl_8043FD90
   - lbl_8043FDA4
+  - lbl_8043FDC8
+  - lbl_8043FDDC
   - lbl_80440078
   - lbl_80441858
   - lbl_80441874
