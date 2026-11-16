@@ -210,6 +210,11 @@ force_active:
   - TAdPlyStatusGC__sub_8033F8B0
   - TAdRayGC__name
   - TAdRayGC_ray_quad_table
+  - TAdRicoRingCtrl__class_name
+  - TAdRicoRingCtrl__data_805D7E50
+  - TAdRicoRingCtrl__resource_descriptor
+  - TAdRicoRing__class_name
+  - TAdRicoRing__resource_bundle
   - TAdSelectCurGC__sub_802AF274
   - TAdSinglePlyChrSelectGC__sub_80076DF4
   - TAdSinglePlyChrSelectGC__sub_80133530
@@ -2341,6 +2346,7 @@ force_active:
   - __ct__10TOMineTrapFP10TObjPlayerss
   - __ct__10TObjCMNameFv
   - __ct__10TObjCameraFP7TObjectPv
+  - __ct__11TAdRicoRingFP7TObject
   - __ct__11TBoss4Type1FP7TObjectPl
   - __ct__11TBoss4ZanzoFv
   - __ct__11TBoss6Type1FP7TObjectP15Boss6Type1Spawn
@@ -5896,6 +5902,7 @@ force_active:
   - create__13TWindowSubMagFv
   - create__14TChCrTagPlBackFPv
   - create__14TObjCMHairMenuFv
+  - create__15TAdRicoRingCtrlFP7TObject
   - create__15TObjEneSlimeOneFll
   - create__15TObjEneSlimeOneFlll
   - create__16TItemReverseTechFv
@@ -6887,6 +6894,7 @@ force_active:
   - fly_nest_model_filename
   - fly_nest_vertex_table
   - fn_80010F4C
+  - fn_8001BED0__11TAdRicoRingFf
   - fn_8002F5AC
   - fn_8003F468
   - fn_80042960__Fl
@@ -8387,6 +8395,7 @@ force_active:
   - lbl_804345E0
   - lbl_804347B0
   - lbl_804347C0
+  - lbl_80434828
   - lbl_804349A0
   - lbl_80434EC8
   - lbl_80434ED4
@@ -8899,6 +8908,7 @@ force_active:
   - lbl_804809D0
   - lbl_804809E0
   - lbl_80480A10
+  - lbl_80480A20
   - lbl_80480A70
   - lbl_80480BC8
   - lbl_80480D20
@@ -9369,6 +9379,7 @@ force_active:
   - lbl_804FC674
   - lbl_804FD9F8
   - lbl_804FDA04
+  - lbl_804FE138
   - lbl_804FE188
   - lbl_804FE194
   - lbl_804FE1B8
@@ -9887,6 +9898,14 @@ force_active:
   - lbl_805D7E38
   - lbl_805D7E3C
   - lbl_805D7E40
+  - lbl_805D7E48
+  - lbl_805D7E4C
+  - lbl_805D7E54
+  - lbl_805D7E58
+  - lbl_805D7E5C
+  - lbl_805D7E60
+  - lbl_805D7E64
+  - lbl_805D7E68
   - lbl_805D81D4
   - lbl_805D85A0
   - lbl_805D8D70
@@ -16536,6 +16555,9 @@ force_active:
   - return_home_if_target_lost__13TObjEneMe1GeeFv
   - return_to_city_after_defeat__Fv
   - returning_state__14TObjEneBm5WolfFPvi
+  - rico_ring_model_names
+  - rico_ring_motion_names
+  - rico_ring_render_params
   - roaming_state__14TObjEneBm5WolfFi
   - rock_cave_resource_table
   - rock_jungle_collision_body_parts
@@ -17509,6 +17531,7 @@ force_active:
   - set_result_flag__12TBoss1DragonFll
   - set_revived_state__10TObjPlayerFv
   - set_saved_attack_stage__10TObjPlayerFs
+  - set_scale4__11TAdRicoRingFf
   - set_scale__13TUnk_804B2578Ff
   - set_scene_light_diffuse__FPv
   - set_screen_pos__11TBoss6Type2FPv
@@ -18094,7 +18117,7 @@ force_active:
   - start_action__8TItemMagFl
   - start_action_c__10TObjPlayerFv
   - start_action_if_idle__11TBoss6Type1Fv
-  - start_anim__15TAdRicoRingCtrlFf
+  - start_anim__11TAdRicoRingFf
   - start_animation__10TObjPlayerFv
   - start_attack__11TBoss6Type1Fv
   - start_attack_motion__15TObjEneDelDepthFv
@@ -18114,7 +18137,7 @@ force_active:
   - start_entry_timer__6TLobbyFUsl
   - start_exi_dma_read__6TLobbyFUs
   - start_exi_dma_write__6TLobbyFlPv
-  - start_fade__15TAdRicoRingCtrlFf
+  - start_fade__11TAdRicoRingFf
   - start_fade__9TAdFadeGCFPv
   - start_gba_joyboot__6TLobbyFv
   - start_get_type_async__16TKeyBoardControlFllll
@@ -18228,6 +18251,7 @@ force_active:
   - strstr
   - sub_80010DE8__9TObjCharaFUsUcUc
   - sub_800194C4__9TObjCharaFv
+  - sub_8001B424__15TAdRicoRingCtrlFPC3Vec
   - sub_8001CCD4__11TLoadingCurFv
   - sub_8002E1CC__13TObjBoss1RockFPUcPUcl
   - sub_80039D88__14TBoss2TentacleFv

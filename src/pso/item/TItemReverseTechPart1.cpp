@@ -1,5 +1,4 @@
 #include "pso/TItemReverseTechPart1.h"
-#include "pso/ui/TAdRicoRingCtrl_8001B4A0.h"
 #include "pso/item/TItemReverseTechPart1.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/ui/TAdRicoRingCtrl.h"
@@ -8,6 +7,8 @@
 
 extern "C" {
 
+void *__nw__7TObjectFUl(int);
+
 struct Self_80119DA0 {
     u8 pad0[0x1C];
     s32 state;
@@ -15,28 +16,22 @@ struct Self_80119DA0 {
     s32 t1;
     s32 t2;
     s32 t3;
-    void *ring;
+    TAdRicoRingCtrl *ring;
 };
-
-void TAdRicoRingCtrl__sub_8001B4A0(void *, f32);
-void *__nw__7TObjectFUl(int);
 
 void TItemReverseTechPart1::run_task() {
     Self_80119DA0 *self = (Self_80119DA0 *)this;
-    void *p;
+    TAdRicoRingCtrl *p;
 
     switch (self->state) {
     case 0:
         break;
     case 1:
         if (self->ring == NULL) {
-            p = __nw__7TObjectFUl(0x2C);
-            if (p != NULL) {
-                p = TAdRicoRingCtrl__ct((TAdRicoRingCtrl *)((u8 *)p), (s32)self);
-            }
+            p = new TAdRicoRingCtrl(this);
             self->ring = p;
             if (self->ring != NULL) {
-                ((TAdRicoRingCtrl *)(self->ring))->start_fade_all(self->t1);
+                self->ring->start_fade_all(self->t1);
             }
         }
         if (self->timer == self->t1) {
@@ -51,7 +46,7 @@ void TItemReverseTechPart1::run_task() {
             self->state = 3;
             self->timer = 0;
             if (self->ring != NULL) {
-                TAdRicoRingCtrl__sub_8001B4A0(self->ring, self->t1);
+                self->ring->fn_8001B4A0(self->t1);
                 self->ring = NULL;
             }
         } else {
