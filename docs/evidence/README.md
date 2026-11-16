@@ -97,6 +97,7 @@ guides.
 - [Quest-download canonical read-only token view](quest-download-token-format.md)
 - [Native starlight effect unit](starlight-native-unit.md)
 - [Shared scratch vector storage](scratch-vector-evidence.md)
+- [Shared scalar constants at 805D8200](scalar-constants-805d8200.md)
 - [Scalar 2D collision-area helper](scalar-collision-area-helper.md)
 - [Symbol chat parts unit linkage](symbol-chat-parts-recovery-evidence.md)
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)
