@@ -113,3 +113,5 @@ guides.
 - [Word-select formatter completion and table grouping](word-select-completion.md)
 
 - [Zako renderer consolidation](zako-renderer-consolidation.md): exact class/renderer fold, typed color and model access, and retained floating-point contraction.
+
+- [Normal quad-sprite unit completion](quad-sprite-normal-unit.md)

@@ -2018,6 +2018,7 @@ force_active:
   - TPlyPhotonChair__sub_8035B56C
   - TProtocol__recv_trade_list_log_format
   - TProtocol__send_trade_list_log_format
+  - TQuadSpriteNormal__class_name
   - TQuestBgmCtrl__area_bgm_index
   - TQuestBgmCtrl__bgm_forced_flag
   - TQuestBgmCtrl__class_name
@@ -8673,6 +8674,7 @@ force_active:
   - lbl_804496A8
   - lbl_804496B8
   - lbl_80449700
+  - lbl_80449860
   - lbl_8044A7B0
   - lbl_8044A7B8
   - lbl_8044A800
