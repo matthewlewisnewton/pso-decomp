@@ -22,7 +22,7 @@ it is a reconstruction, not independent historical build-system provenance.
 The four filenames are `npc_g01_data.rel`, `n_g01_e_body.gvm`,
 `npc_i01_data.rel` and `n_i01_e_body.gvm`. Each contains 16 visible characters
 plus its terminator. Each pair occupies 40 original bytes: 34 literal bytes
-and six zero alignment bytes, emitted naturally by the existing compiler.
+and six zero bytes from natural compiler/linker alignment.
 Definitions use inferred bounds and external linkage with the original names.
 No source padding, section attributes, new flags or asset payloads are added.
 The existing readonly-string pragma is retained.
@@ -49,7 +49,11 @@ inventory gates pass. The four units stay exact and source-linked. Matched and
 source-linked data each gain 80 bytes; no function/code count, linked unit or
 coverage denominator changes. Retention adds exactly four filename symbols and
 removes none. The moved code and relocation targets are checked by original
-address, rather than by unchanged object-relative offsets.
+address, rather than by unchanged object-relative offsets. All 1,584 text bytes
+and 102 allocated relocation records/targets match before/after and the original
+objects, including both class-name pointers. The two other source objects using
+the changed headers are byte-identical. Native compiler metadata relocations
+are excluded from this runtime relocation count.
 
 ## Deferred research
 
