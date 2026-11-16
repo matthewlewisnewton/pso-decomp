@@ -57,8 +57,14 @@ are excluded from this runtime relocation count.
 
 ## Deferred research
 
-FogCollisionSwitch has a possible diagnostic-string recovery after adopting the
-existing const-format API, but still needs its own native placement trial.
+FogCollisionSwitch's six diagnostic strings were tested with the existing shared
+const-format API. Both inline definitions and ordinary definitions after the
+functions emit the 96-byte string pool before the existing eight-byte conversion
+constant; the original requires that constant first at `0x80440088`. Both trials
+fail the original DOL hash and change code bytes. The readonly section remains
+104 bytes/alignment 8, so this is ordering/emission work, not a missing extent.
+Keep this recovery deferred; no compiler flags, attributes or padding were added
+to force it. The failed source and object experiments are excluded from this PR.
 TTecCtrl's texture descriptor uses an opaque surrogate instead of the shared
 texture-list contract. Mutable/integer archive-loading APIs and title texture
 filename fields also need interface work before defining const pools. None is
