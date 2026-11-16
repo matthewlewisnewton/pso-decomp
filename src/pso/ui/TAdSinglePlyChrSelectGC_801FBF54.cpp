@@ -2123,8 +2123,8 @@ extern s8 lbl_805D5FB4;
 extern f32 lbl_805D5FB8;
 extern s8 lbl_805D5FBC;
 extern void *tl_01;
-extern const f32 lbl_805DC5C0;
-extern const f32 lbl_805DC5C4;
+static const f32 lbl_805DC5C0 = 20.0f;
+static const f32 lbl_805DC5C4 = 10.0f;
 extern const f32 lbl_805DC5C8;
 s32 save_character_to_card__23TAdSinglePlyChrSelectGCFv(void);
 s32 load_selected_char__23TAdSinglePlyChrSelectGCFv(void);
@@ -4979,4 +4979,8 @@ s32 get_char_index__23TAdSinglePlyChrSelectGCFUi(u32 arg0) {
     return selected_character_data;
 }
 }
+}
+
+extern "C" {
+s32 card_load_followup_pending;
 }

@@ -878,3 +878,12 @@ BmlResource *init_from_id_lists(BmlResource *self, s32 kind, void **models, void
     }
     return self;
 }
+
+extern "C" {
+u8 *bml_load_buffer;
+AdxfHandle *lobby_bml_file_handle;
+u8 *lbl_805D4AE0;
+Rec_8001F128 *bml_header_record_ptr;
+s32 bml_load_entry_index;
+u8 *lobby_bml_read_buffer;
+}

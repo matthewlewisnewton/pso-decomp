@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "types.h"
 #include "pso/item/TItemEquipBase.h"
 #include "pso/math/MatrixTransforms.h"
@@ -37,7 +38,7 @@ void s_rank_bazooka_recoil(Self_80129BB0 *self) {
     Vec_80129BB0 v;
     Ang_80129BB0 a;
     if (self->state == 1) {
-        TItemEffOrgaFlowShot::approach_value(&self->f1FC, (-0.5f), (-2.0f));
+        add_float_clamped(&self->f1FC, (-0.5f), (-2.0f));
         if ((-2.0f) == self->f1FC) {
             self->state = 2;
             ang = self->owner->f60 + 0x4000;
@@ -50,7 +51,7 @@ void s_rank_bazooka_recoil(Self_80129BB0 *self) {
             TObjPlayer::launch_weapon_casing((s32)tl_05, (u32)self, 3, (u32)&v, (u32)&a);
         }
     } else if (self->state == 2) {
-        TItemEffOrgaFlowShot::approach_value(&self->f1FC, 0.2f, 0.0f);
+        add_float_clamped(&self->f1FC, 0.2f, 0.0f);
         if (0.0f == self->f1FC) {
             self->state = 0;
         }

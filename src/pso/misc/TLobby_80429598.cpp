@@ -962,3 +962,10 @@ u8 TLobby::exi_read_status_byte() {
     EXIUnlock(0);
     return ret;
 }
+
+extern "C" {
+u8 exi_mac_address[6];
+u8 lbl_805D7C36;
+OSThreadQueue network_thread_queue;
+s32 exi_send_started_flag;
+}

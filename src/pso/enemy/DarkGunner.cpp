@@ -1750,3 +1750,7 @@ void TObjPlayer::clear_counter() { this->m_340 = 0; }
 
 void TObjPlayer::set_cancel_flag() { *(s32 *)&this->m_340 = 1; }
 }
+
+extern "C" {
+s32 lbl_805D5020;
+}

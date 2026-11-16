@@ -136,3 +136,8 @@ void append_command_to_batch_buffer(S_801A5544 *arg0, u8 *arg1) {
 }
 
 }
+
+extern "C" {
+s32 lbl_805D5D00;
+s32 lbl_805D5D04;
+}

@@ -145,19 +145,19 @@ u16 get_entity_id(void *);
 void init_window_layout_entries(void *, void *, int);
 f32 get_target_distance__13TWindowLockOnFv(s32);
 extern Cb_802634E8 lockon_photon_blast_marker_callback;
-extern const f32 TWindowLockOn__data_805DD110;
-extern const f32 lbl_805DD124;
-extern const f32 lbl_805DD128;
-extern const f32 lbl_805DD12C;
+static const f32 TWindowLockOn__data_805DD110 = 28.0f;
+static const f32 lbl_805DD124 = 34.0f;
+static const f32 lbl_805DD128 = 49.0f;
+static const f32 lbl_805DD12C = 90.0f;
 
 extern u8 lockon_window_layout_entries[];
 extern Cb_80263370 lbl_804D0288;
 extern s32 __vt__13TWindowLockOn[];
-extern const f32 lbl_805DD100;
-extern const f32 lbl_805DD114;
-extern const f32 lbl_805DD118;
-extern const f32 lbl_805DD11C;
-extern const f32 lbl_805DD120;
+static const f32 lbl_805DD100 = 15.0f;
+static const f32 lbl_805DD114 = -8.0f;
+static const f32 lbl_805DD118 = 18.0f;
+static const f32 lbl_805DD11C = 38.0f;
+static const f32 lbl_805DD120 = 20.0f;
 
 s32 obj_testFlags30__14TObjCollidableFUl(s32, s32);
 s32 obj_isState3_324__9TObjCharaFv(void *);
@@ -169,8 +169,8 @@ s32 construct_base__9TWindowDDFPUcsPUc(void *, void *, void *, int);
 s32 get_window_layout_position(int);
 extern u8 lbl_804D0268[];
 extern s32 lbl_805D3948;
-extern const f32 lbl_805DD130;
-extern const f32 lbl_805DD134;
+static const f32 lbl_805DD130 = 0.7f;
+static const f32 lbl_805DD134 = 1.0f;
 
 void bind_target__13TWindowLockOnFv(Win_8026366C *w, u16 id);
 
@@ -308,9 +308,9 @@ s32 get_message_10__20TWindowSubStatusDispFl(int);
 s32 enemy_name_for_rt_index(int);
 u32 calc_text_width(int);
 extern Data_80263014 lock_on_window_params;
-extern const f32 lbl_805DD104;
-extern const f32 lbl_805DD108;
-extern const f32 lbl_805DD10C;
+static const f32 lbl_805DD104 = 64.0f;
+static const f32 lbl_805DD108 = 29.0f;
+static const f32 lbl_805DD10C = 10.0f;
 
 #pragma push
 #pragma fp_contract on

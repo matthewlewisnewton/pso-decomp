@@ -459,3 +459,7 @@ void disable_camera_capture_overlay(void) {
   (*(u8 *)&camera_capture_flags) = temp & (~2);
   camera_capture_overlay_alpha = 0x8F;
 }
+
+extern "C" {
+int lbl_805D4EE0;
+}

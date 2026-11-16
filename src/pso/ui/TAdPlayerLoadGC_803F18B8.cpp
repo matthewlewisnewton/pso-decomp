@@ -932,3 +932,11 @@ s32 TAdPlayerLoadGC::close_card_slot(s32 arg0) {
 }
 
 }
+
+extern "C" {
+s32 lbl_805D7940;
+u8 lbl_805D7944;
+void (*lbl_805D7948)(s32, s32, u32);
+void (*lbl_805D794C)(s32, s32, u32);
+void *lbl_805D7950;
+}

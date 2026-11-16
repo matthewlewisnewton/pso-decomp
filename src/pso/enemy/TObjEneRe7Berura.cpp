@@ -74,12 +74,12 @@ extern const s32 lbl_805D9718[1];
 extern const s32 lbl_805D971C[1];
 extern const s32 lbl_805D9720[1];
 extern const f32 lbl_805D974C;
-extern const f32 lbl_805D9770;
-extern const f32 lbl_805D9774;
-extern const f32 lbl_805D9778;
-extern const f32 lbl_805D977C;
-extern const f32 lbl_805D9780;
-extern const f32 lbl_805D9784;
+static const f32 lbl_805D9770 = 4.0f;
+static const f32 lbl_805D9774 = -4.0f;
+static const f32 lbl_805D9778 = 19.0f;
+static const f32 lbl_805D977C = 29.0f;
+static const f32 lbl_805D9780 = 14.0f;
+static const f32 lbl_805D9784 = 17.0f;
 extern const f32 lbl_805D9788;
 extern TObject *tl_04;
 

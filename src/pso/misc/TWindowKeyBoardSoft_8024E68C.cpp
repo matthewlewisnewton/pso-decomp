@@ -43,10 +43,10 @@ extern Vec2_8024EC34 lbl_8044EC80[];
 extern Vec2_8024EC34 lbl_8044EC98[];
 extern const float lbl_805DCC94;
 s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b);
-extern const f32 lbl_805DCC98;
-extern const f32 lbl_805DCC9C;
-extern const f32 lbl_805DCCA0;
-extern const f32 lbl_805DCCA4;
+static const f32 lbl_805DCC98 = 4.0f;
+static const f32 lbl_805DCC9C = 10.0f;
+static const f32 lbl_805DCCA0 = 0.5f;
+static const f32 lbl_805DCCA4 = 2.0f;
 u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
 
 typedef struct RecoveredFields_8024E754_arg0 RecoveredFields_8024E754_arg0;

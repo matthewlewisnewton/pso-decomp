@@ -23,7 +23,7 @@ s32 replace_file_extension__6TLobbyFPvPvPv(char *arg0, char *arg1, char *arg2);
 void init_radar_floor_flags(s32, u8 *);
 s32 get_floor_scene_table(s32 arg0);
 void bind_gvm_texture_list(char *, u8 *);
-extern const char lbl_8044A7B0[];
+extern const char lbl_8044A7B0[] = "r.rel";
 extern s32 lbl_805D49B4;
 extern s32 TRaderMapCore__data_805D5F30;
 extern s8 lbl_805D5F34;

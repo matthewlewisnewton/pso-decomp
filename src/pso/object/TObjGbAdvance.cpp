@@ -26,7 +26,7 @@ extern s32 __vt__13TObjGbAdvance[];
 extern s32 lbl_805D32D0;
 u8 *TObjGbAdvance__ct(u8 *arg0, s32 arg1);
 void debug_printf_at(s32 id, const char *fmt, ...);
-extern char lbl_80444B48[];
+extern const char lbl_80444B48[] = "<- MODEL SELECT";
 extern u32 TObjComputer__model_archive;
 extern s16 TObjComputer__data_805DBCD8[2];
 void *__dt__13TObjGbAdvanceFv(void *arg0, s16 arg1);

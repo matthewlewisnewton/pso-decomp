@@ -1176,3 +1176,8 @@ void TOTrapChainSawDamage__sub_802C9C00(u8 *arg0, s32 arg1) {
 
 void TOTrapChainSaw::vfunc_25() {  }
 void TOTrapChainSaw::vfunc_16() {  }
+
+extern "C" {
+u32 seabed_suiso_linked_switch_counts[5];
+u32 seabed_suiso_switch_counts[5];
+}

@@ -43,9 +43,9 @@ struct Obj_8002CA38 { u8 pad[0x28]; u32 slot[4]; };
 
 extern "C" {
 extern s32 TObjBoss1Floor__name;
-extern const f32 lbl_805D8174;
+static const f32 lbl_805D8174 = 0.0f;
 void *get_player_by_client_id(s32 i);
-extern const f32 lbl_805D8170;
+static const f32 lbl_805D8170 = 4.0f;
 void run_task__14TObjBoss1FloorFv(Floor_8002C968 *self);
 void TObjBoss1Floor__sub_8002CB40(void);
 void TObjBoss1Floor__sub_8002CB78(void);

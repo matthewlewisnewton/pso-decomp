@@ -38,3 +38,14 @@ extern "C" void draw_title_background_quads(s32 texture_list, s32 tex_base, s32 
     }
     TWindowSubStatusDisp::get_player();
 }
+
+TitleBackgroundTile lbl_80480BC8[8] = {
+    { 512, 384, 128, 128, 7 },
+    { 512, 256, 128, 128, 6 },
+    { 512, 128, 128, 128, 5 },
+    { 512, 0, 128, 128, 4 },
+    { 0, 256, 256, 256, 1 },
+    { 0, 0, 256, 256, 0 },
+    { 256, 256, 256, 256, 3 },
+    { 256, 0, 256, 256, 2 },
+};

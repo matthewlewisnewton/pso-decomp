@@ -904,3 +904,8 @@ void TUnk_804B2578::apply_knockback_from_attacker(u8 *, f32) {  }
 void TUnk_804B2578::set_scale(f32 v) { this->m_338 = v; }
 
 }
+
+extern "C" {
+s32 turiten_singo_key_model_index;
+s32 hanging_ceiling_motion_index;
+}

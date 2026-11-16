@@ -23,8 +23,8 @@ extern s32 keyboard_hard_status_text_a[];
 extern s32 keyboard_hard_status_text_b[];
 extern s32 lbl_8044F0FC[];
 extern s32 lbl_8044F104[];
-extern const f32 lbl_805DD068;
-extern const f32 lbl_805DD06C;
+static const f32 lbl_805DD068 = -1.0f;
+static const f32 lbl_805DD06C = 100000.0f;
 extern const f32 lbl_805DD070;
 s32 is_key_active__19TWindowKeyBoardHardFv();
 

@@ -291,7 +291,6 @@ struct TObjPlayer : public TObjChara {
     int is_frozen();
     static void send_6x26_unequip_item(void *player, void *item);
     player_class_type get_class_type();
-    static void add_angle_clamped(s32 *arg0, s32 arg1, s32 arg2);
     static void step_angle_clamped(void *actor, int arg1);
     void drain_owner_hp_fraction(f32 farg0);
     void call_callback_1ec(s32 arg1, s32 arg2);
@@ -328,7 +327,6 @@ struct TObjPlayer : public TObjChara {
     static void*get_pmt_record_by_type_id(int type, int id);
     static void*get_pmt_record_by_index(int i);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
-    void draw_trail_strip(void *arg1, s32 arg2);
     static s32 is_any_teammate_in_state();
     static void set_shared_flag(int a0);
     static void set_shared_count(int a0);
@@ -385,11 +383,6 @@ struct TObjPlayer : public TObjChara {
     void clear_ground_candidates();
     void reset_lobby_model();
     void reset_type();
-    void send_6x12_packet();
-    void bswap_6x12_packet();
-    void set_type_dragon();
-    void bswap_dragon_boss_fields();
-    void bswap_stats();
     static void clear_target_ref();
     static void create_breakup_model();
     void *deleting_dtor(s16 arg1);

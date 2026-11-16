@@ -44,13 +44,13 @@ typedef struct Cam_800A3D1C { u8 pad0[8]; f32 cx; f32 cy; u8 pad10[8]; f32 sw; f
 
 extern "C" {
 s32 queue_destruction__7TObjectFv();
-extern const f32 lbl_805D99E0;
+static const f32 lbl_805D99E0 = 0.0f;
 void __ct__7TObjectFP7TObject(void *, void *);
 extern RecoveredGlobal_800A38A4___vt__12TEneEffHamon __vt__12TEneEffHamon;
 extern s32 TEneEffHamon__name;
-extern const f32 lbl_805D99E4;
-extern const f32 lbl_805D99E8;
-extern const f32 lbl_805D99EC;
+static const f32 lbl_805D99E4 = 1.0f;
+static const f32 lbl_805D99E8 = 0.9f;
+static const f32 lbl_805D99EC = -0.9f;
 extern s32 tl_06;
 s32 scale_matrix(int, f32, f32, f32);
 s32 push_matrix();

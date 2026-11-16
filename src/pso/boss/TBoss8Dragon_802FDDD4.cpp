@@ -1,3 +1,4 @@
+#include "pso/protocol/BossActionPacket.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/protocol/protocol_types.h"
 #include "types.h"
@@ -40,8 +41,8 @@ void TBoss8Dragon::apply_confusion_status() {  }
 void TBoss8Dragon::apply_movement_ailment(s32) {  }
 void TBoss8Dragon::apply_shock_status() {  }
 void TBoss8Dragon::clear_harmful_statuses() {  }
-void TBoss8Dragon::send_swapped_packet() { bswap_packet(); send_subcommand((u8 *)this); }
-void TBoss8Dragon::bswap_packet() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_32((u32 *)((char*)this + 0x8)); }
+void send_boss_action_6xA8(void *packet) { bswap_boss_action_6xA8(packet); send_subcommand((u8 *)packet); }
+void bswap_boss_action_6xA8(void *packet) { ((G_ClientIDHeader *)packet)->bswap(); bswap_16((u16 *)((char*)packet + 0x4)); bswap_16((u16 *)((char*)packet + 0x6)); bswap_32((u32 *)((char*)packet + 0x8)); }
 }
 
 void build_6xA8_gol_dragon_boss_actions(void* p) { *(u8*)((char*)p + 0x0) = 168; *(u8*)((char*)p + 0x1) = 6; }

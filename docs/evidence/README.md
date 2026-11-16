@@ -13,6 +13,7 @@ guides.
 - [EXI Ethernet driver completion](exi-ethernet-unit.md)
 - [Audio header parsing and ADX block transfer](audio-formats-and-adx-transfer.md)
 - [Action-palette unit](action-palette-unit.md)
+- [Boss 7 dust controller recovery](boss7-dust-controller-recovery.md)
 - [Box-drop directive](box-drop-directive-evidence.md)
 - [Item-menu and effect helper unit](item-menu-effect-helpers.md)
 - [Item-drop packet and payload contracts](item-drop-packet-contract.md)
@@ -28,6 +29,7 @@ guides.
 - [Character-select slot clamp inlining](chr-select-slot-clamp-inline.md)
 - [Chunk model node callbacks](chunk-node-callback-evidence.md)
 - [CodeWarrior source order and emitted layout](compiler-emission-evidence.md)
+- [Creation-menu icon animation interfaces](creation-icon-animation.md)
 - [GameCube decomp survey of scalar vector math](gc-decomp-vector-math-survey.md)
 - [Conversion-pool constants](conversion-pool-constants.md)
 - [Crush-rock render/physics unit](crush-rock-physics-unit.md)
@@ -96,6 +98,7 @@ guides.
 - [Quest-download canonical read-only token view](quest-download-token-format.md)
 - [Native starlight effect unit](starlight-native-unit.md)
 - [Shared scratch vector storage](scratch-vector-evidence.md)
+- [Shared scalar constants at 805D8200](scalar-constants-805d8200.md)
 - [Scalar 2D collision-area helper](scalar-collision-area-helper.md)
 - [Symbol chat parts unit linkage](symbol-chat-parts-recovery-evidence.md)
 - [Symbol chat window receiver boundary](symbol-chat-ui-contract-evidence.md)
@@ -107,3 +110,5 @@ guides.
 - [Window effect light recovery](window-effect-light-recovery-evidence.md)
 
 - [Word-select formatter completion and table grouping](word-select-completion.md)
+
+- [Zako renderer consolidation](zako-renderer-consolidation.md): exact class/renderer fold, typed color and model access, and retained floating-point contraction.

@@ -426,8 +426,8 @@ void *find_entity_by_id(u16 id);
 s32 init_collision_body_parts(void *, void *, int);
 void sub_801AB688__12TPhotonGollaFv(void *);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
-extern u8 lbl_80446DA8[];
-extern u8 lbl_80446DB4[];
+extern const u8 lbl_80446DA8[] = "goula2.adx";
+extern const u8 lbl_80446DB4[] = "goula.adx";
 extern s32 lbl_805D34E8;
 extern u8 *photon_blast_shared_resource;
 

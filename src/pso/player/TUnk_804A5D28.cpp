@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "types.h"
 #include "pso/item/TItemEquipBase.h"
 #include "pso/player/TObjPlayer_8012E760.h"
@@ -150,7 +151,7 @@ void TUnk_804A5D28::update_weapon() {
     Ang_8012E5A0 a;
     Self_8012E5A0 *self = (Self_8012E5A0 *)this;
     if (this->m_1fc == 1) {
-        TItemEffOrgaFlowShot::approach_value(&self->f1FC, (-0.5f), (-2.0f));
+        add_float_clamped(&self->f1FC, (-0.5f), (-2.0f));
         if ((-2.0f) == self->f1FC) {
             this->m_1fc = 2;
             ang = self->owner->f60 + 0x4000;
@@ -163,7 +164,7 @@ void TUnk_804A5D28::update_weapon() {
             TObjPlayer::launch_weapon_casing((s32)tl_05, (u32)self, 3, (u32)&v, (u32)&a);
         }
     } else if (this->m_1fc == 2) {
-        TItemEffOrgaFlowShot::approach_value(&self->f1FC, 0.2f, 0.0f);
+        add_float_clamped(&self->f1FC, 0.2f, 0.0f);
         if (0.0f == self->f1FC) {
             this->m_1fc = 0;
         }

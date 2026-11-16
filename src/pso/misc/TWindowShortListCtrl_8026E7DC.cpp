@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 // queue_destruction is inline in TObject.h. This unit calls the out-of-line
 // copy that lives with TAdADXlogo, the same call the original constructor makes.
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -105,7 +106,6 @@ void *__dt__20TWindowShortListCtrlFv(TWindowShortListCtrl *arg0, s16 arg1);
 TWindowMenu *create_window_menu(s32 arg0, s32 arg1, s32 arg2);
 s32 end_player_keyboard_hold(s32);
 s32 TWindowCtrl__sub_8024A1A8();
-s32 has_player_active_menu__11TWindowCtrlFv(s32);
 s32 TWindowHelpItem__set_displayed_item_by_id(u32);
 s32 __dl__7TObjectFPv(void *);
 s32 __dt__7TObjectFv(void *, s32);
@@ -499,7 +499,7 @@ void *__dt__20TWindowShortListCtrlFv(TWindowShortListCtrl *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(void **)((s8 *)arg0 + 0x18) = __vt__20TWindowShortListCtrl;
         player = (s32) get_player_by_client_id((s32)(arg0->m_24));
-        if ((player != 0) && (has_player_active_menu__11TWindowCtrlFv(arg0->m_24) == 0) && (TWindowCtrl__sub_8024A1A8() == 0)) {
+        if ((player != 0) && (has_player_active_menu(arg0->m_24) == 0) && (TWindowCtrl__sub_8024A1A8() == 0)) {
             ((TObjPlayer *)player)->init_parts();
         }
         end_player_keyboard_hold(arg0->m_24);

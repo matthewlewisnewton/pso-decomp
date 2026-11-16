@@ -429,6 +429,8 @@ GAME_COMPILER = "GC/2.6"
 # keeps an object until its source changes) or with other switches. Every
 # entry is here because a function or data section matches only this way.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # Shared Rico ring resource/constant bank; reverse definitions preserve native vtable order.
+    "pso/menu/TAdRicoRing.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-inline off,deferred")},
     # GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order.
     "pso/boss/TBoss2DeRolLe.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline on")},
     # Keep the eight-byte effect-ID pair in .data beside the state table.
@@ -490,6 +492,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
     # The base collider's vtable follows the derived vtable at 0x804E355C.
     "pso/item/TItemAttackCol_802E4798.cpp": {"cw_align": ".data=4"},
+    # The radar-hide vtable and name pointer both start four bytes past an
+    # eight-byte boundary; preserve their native placement in MWLD metadata.
+    "pso/object/TObjRaderHideCol.cpp": {"cw_align": ".data=4 .sdata=4"},
     # The memory-card menu position precedes the callback templates in .data.
     # Its two read-only layout inputs begin at a four-byte-aligned address.
     "pso/misc/TCheckMemoryCard.cpp": {

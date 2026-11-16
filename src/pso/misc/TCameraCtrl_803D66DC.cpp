@@ -143,7 +143,7 @@ extern const f32 lbl_805E0E34;
 extern const f32 lbl_805E0E38;
 void blend_quaternions_nlerp(void *a, void *b, void *out, f32 t);
 void interpolate_spline_cyclic_cubic(struct SplineKey_803D7288 *keys, u32 count, f32 frame, f32 *output);
-extern const f32 lbl_805E0E10;
+static const f32 lbl_805E0E10 = 1.0f;
 extern const f32 lbl_805E0E50;
 void C_MTXLookAt(void *, void *, void *, void *);
 extern u8 *current_matrix;

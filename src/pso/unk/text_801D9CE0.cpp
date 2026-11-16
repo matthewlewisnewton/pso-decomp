@@ -20,8 +20,8 @@ void set_technique_id__10TObjPlayerFUc(void *, u8);
 void TObjPlayer__sub_801D2CC4(void *, f32);
 s32 TObjPlayer__sub_801D9E08(void *);
 void TObjPlayer__sub_801D9E10(void *p, s16 v);
-extern const f32 lbl_805DC408;
-extern const f32 lbl_805DC40C;
+static const f32 lbl_805DC408 = 0.0f;
+static const f32 lbl_805DC40C = 1.5f;
 void TObjPlayer::reset_all_tech_slots() {
     s32 i = 0;
     do {

@@ -48,7 +48,7 @@ void set_ginja_post_texgen_count(s32 x);
 void set_ginja_post_tev_stage_count(s32 x);
 void load_current_pos_matrix(s32 arg0);
 void load_current_tex_matrix(s32 i);
-extern const f64 lbl_80465E18;
+static const f64 lbl_80465E18 = 0.0054931640625;
 extern u32 camera_ctrl_instance;
 extern u32 lbl_805D65F0;
 extern s32 current_matrix;

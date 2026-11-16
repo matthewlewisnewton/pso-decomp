@@ -78,7 +78,7 @@ extern u16 *floor_item_next_sort_keys;
 extern s32 lbl_805D5440;
 void TLobby::debug_print(const char *, ...);
 void *memcpy(void *, const void *, u32);
-extern char lbl_8043E048[];
+extern const char lbl_8043E048[] = "ItemCondition AreaOffset Lost";
 void spawn_dropped_item_from_msg(void *, s32);
 s32 get_sync_counter__6TLobbyFi(u16);
 s32 bswap_player_packet__6TLobbyFv();

@@ -172,7 +172,7 @@ extern f32 TBoss6Type1__sword_shot_hit_radii[];
 extern s32 game_difficulty_selection;
 void TBoss6Type1__sub_802B73AC(TBoss6Type1 *self);
 f32 atan2_float(f64, f64);
-extern const f64 TBoss6Type1__data_80471038;
+static const f64 TBoss6Type1__data_80471038 = 10430.38043493439;
 void request_follow_camera_offsets(void *, const void *, int);
 extern const Vec lbl_80470FC0;
 s32 angle_diff_s16(s32, s32);

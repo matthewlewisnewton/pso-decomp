@@ -344,3 +344,10 @@ int TLobby__sub_801F36F0(void) { return -1; }
 int TLobby__sub_801F36F8(void) { return 0; }
 int TLobby__sub_801F3700(void) { return -1; }
 int TLobby__sub_801F3708(void) { return 0; }
+
+extern "C" {
+u8 TLobby__data_805D5EA8;
+u8 TLobby__data_805D5EA9;
+u16 TLobby__data_805D5EAA;
+u16 TLobby__data_805D5EAC;
+}

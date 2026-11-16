@@ -470,3 +470,10 @@ f32 TOTrapSeabed01::receive_physical_attack(void *source, f32 power) {
     sub_802C9D38();
     return TOTrap::receive_physical_attack(source, power);
 }
+
+extern "C" {
+BmlResource *TOTrapSeabed01__bml_resource;
+GinjaTextureList *TOTrapSeabed01__texture_file;
+NJS_OBJECT *TOTrapSeabed01__ginja_model;
+s32 lbl_805D681C;
+}

@@ -242,3 +242,7 @@ void *TLockOnCursor__ct(void *lock_on_cursor, void *arg1, void *arg2) {
     return lock_on_cursor;
 }
 
+
+extern "C" {
+u8 *lock_on_cursor_bml_resource;
+}

@@ -47,7 +47,7 @@ typedef char RecoveredGlobal_800FE364_lbl_8049DC78_size[sizeof(RecoveredGlobal_8
 void T_OWEHMS_Exp::start_bone_rotation() {
     s32 bone = (s32)player->m_8ac;
     TObjWaitEntryHairMoveSim__sub_800FE3BC(bone);
-    TObjEZBoneRotPlayer::create((void *)player, (void *)bone, (void *)((u8*)&(*(RecoveredGlobal_800FE364_lbl_8049DC78 *)&hair_bone_rotation_descriptor).value + descriptor_index * 0x14));
+    TObjEZBoneRotPlayer::create(player, (NJS_OBJECT *)bone, (EZBoneRotDesc *)((u8 *)&hair_bone_rotation_descriptor + descriptor_index * 0x14));
 }
 
 void TObjWaitEntryHairMoveSim__sub_800FE3BC(int _w0) {  }
@@ -738,7 +738,7 @@ void create_hair_effects__24TObjWaitEntryHairMoveSimFPv(void *arg0) {
             }
             ((void (*)(s32))TObjWaitEntryHairMoveSim__sub_800FE3BC)(v);
             if (e->p4 != NULL) {
-                TObjEZBoneRotPlayer::create(self->pl, (void *)v, e->p4);
+                TObjEZBoneRotPlayer::create((TObjPlayer *)self->pl, (NJS_OBJECT *)v, (EZBoneRotDesc *)e->p4);
             } else if (e->p8 != NULL) {
                 ((TObjPlayer *)(self->pl))->create_hairmove((void *)e->p8, (void *)e->pc);
             }

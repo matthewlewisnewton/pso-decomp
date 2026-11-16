@@ -1872,3 +1872,10 @@ f32 TObjEneEpsilonBody::receive_weapon_special_attack(void *src, void *hit) {
     ((TObjChara *)((Self_8035F5C8 *)this))->try_apply_damage((u32)((Self_8035F5C8 *)this)->x2FC, 0);
     return 0.0f;
 }
+
+extern "C" {
+s32 epsilon_guard_camera_sample_phase;
+u8 *epsilon_guard_angle_sample_write_ptr;
+u8 *epsilon_guard_camera_sample_read_ptr;
+u8 *epsilon_guard_camera_sample_end_ptr;
+}

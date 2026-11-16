@@ -1538,3 +1538,10 @@ void __VIRetraceHandler(void) {
 __declspec(section ".rodata") const char ask_header_signature[] = "ASK Copyright (C) ACCESS CO.,LTD.";
 
 }
+
+extern "C" {
+s32 quest_download_ask_header_size;
+s32 quest_download_header_name_index_hi_count;
+QuestDownloadCachePage *file_page_cache_head;
+s32 quest_download_name_search_lo;
+}

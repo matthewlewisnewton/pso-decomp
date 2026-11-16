@@ -1426,3 +1426,8 @@ void TLobby::copy_global_value_block() {
 #undef set_split_screen_name__6TLobbyFi
 #undef create_challenge4p__6TLobbyFv
 __declspec(section ".ctors") static void *const __sinit_TLobby_80291D94_cpp_ref = (void *)TLobby::copy_global_value_block;
+
+extern "C" {
+s32 lbl_805D6578;
+s8 lbl_805D657C;
+}

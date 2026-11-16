@@ -11,8 +11,8 @@ s32 rand();
 extern s32 item_drop_rng;
 extern s32 lbl_805D60A4;
 extern s32 item_drop_server_seed;
-extern const f32 lbl_805DC618;
-extern const f32 lbl_805DC61C;
+static const f32 lbl_805DC618 = 4294967296.0f;
+static const f32 lbl_805DC61C = 3.0517578e-05f;
 void TLobby__sub_8020A2AC(void) {
     s32 temp_r3;
     s32 temp_r3_2;

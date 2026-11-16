@@ -775,3 +775,8 @@ typedef char RecoveredGlobal_8042DD70_lbl_805D1D20_size[sizeof(RecoveredGlobal_8
 #pragma pop
 
 typedef char RecoveredGlobal_8042E768_lbl_805D1D20_size[sizeof(RecoveredGlobal_8042E768_lbl_805D1D20) == 0x1C ? 1 : -1];
+
+extern "C" {
+u32 lbl_805D7BD0;
+u32 lbl_805D7BD4;
+}

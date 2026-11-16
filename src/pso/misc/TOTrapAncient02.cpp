@@ -772,3 +772,10 @@ void TOTrapAncient02R::calc_trap_count() {
         this->m_360 = 0xE;
     }
 }
+
+extern "C" {
+BmlResource *TOTrapAncient02__shared_resource;
+s32 lbl_805D5ADC;
+void *lbl_805D5AE0;
+s32 lbl_805D5AE4;
+}

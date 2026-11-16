@@ -28,14 +28,14 @@ struct RecoveredGlobal_8034FCF0_lbl_804F0BF0 {
 };
 
 extern "C" {
-extern const f32 lbl_805DFE08;
-extern const f32 lbl_805DFE0C;
+static const f32 lbl_805DFE08 = -1.0f;
+static const f32 lbl_805DFE0C = 0.06666667f;
 u8 *__nw__5TItemFUl(s32);
 extern s32 tl_05;
 void *create_particle_emitter(void *pos, s32 id);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__13TUnk_804F0BF0[];
-extern const f32 lbl_805DFE10;
+static const f32 lbl_805DFE10 = 0.0f;
 s32 get_render_pass__9TMainTaskFv();
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
 s32 rotate_matrix_y(int, int);

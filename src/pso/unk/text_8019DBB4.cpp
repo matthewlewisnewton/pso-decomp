@@ -11,7 +11,7 @@ struct RecoveredGlobal_8019DBB4_lbl_804B90FC {
 
 extern "C" {
 }
-extern char lbl_80446470[];
+extern const char lbl_80446470[] = "fs_obj_warp.gvm";
 extern RecoveredGlobal_8019DBB4_lbl_804B90FC forest_warp_resource_descriptor;
 extern s32 forest_warp_bml_resource;
 extern GinjaTextureList *forest_warp_texture_list;

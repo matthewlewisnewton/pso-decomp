@@ -59,10 +59,10 @@ extern u8 lbl_805D6D6C;
 extern s32 lbl_805DF9C0;
 extern const f32 lbl_805DF9C4;
 extern const f32 lbl_805DF9C8;
-extern const f32 lbl_805DF9D0;
-extern const f32 lbl_805DF9D4;
-extern const f32 lbl_805DF9D8;
-extern const f32 lbl_805DF9DC;
+static const f32 lbl_805DF9D0 = 100000.0f;
+static const f32 lbl_805DF9D4 = 210.0f;
+static const f32 lbl_805DF9D8 = 108.0f;
+static const f32 lbl_805DF9DC = 96.0f;
 extern const f32 lbl_805DF9E0;
 
 void TWindowSubStatusDisp__sub_80338740(u8 *arg0, s32 arg1, s32 arg2, s8 arg3, s8 arg4, s8 arg5, s8 arg6, s8 arg7, s32 arg_sp8) {
@@ -171,4 +171,9 @@ int TWindowSubStatusDisp__sub_80338B88(void* p) { return (*(u16*)((char*)p + 0x0
 
 int TEneParticleCtrl__vt7(void* p) { return get_field_38_ptr__16TEneParticleCtrlFv(p); }
 
+}
+
+extern "C" {
+s32 *lbl_805D6D68;
+u8 lbl_805D6D6C;
 }

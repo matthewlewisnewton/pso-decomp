@@ -422,7 +422,7 @@ s32 tick_period_counter(s32 arg0, s32 *arg1, s32 arg2);
 extern "C" {
 s32 angle_difference_abs(int, int);
 s32 approach_angle_limited(int, int, void *);
-extern const f64 lbl_8043BBD8;
+static const f64 lbl_8043BBD8 = 10430.38043493439;
 extern const f32 lbl_805D9FE0;
 extern const f32 lbl_805D9FE4;
 extern const f32 lbl_805D9FE8;

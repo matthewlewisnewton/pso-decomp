@@ -367,7 +367,7 @@ s32 queue_destruction__7TObjectFv(void *);
 s32 angle_difference_abs(int, int);
 s32 lerp_angle_half__Fll(int, int);
 
-extern const f64 lbl_8043BA18;
+static const f64 lbl_8043BA18 = 10430.38043493439;
 s32 update_action_hold_status__12TObjEneLappyFv(s32 arg0);
 s32 update_movement_status__12TObjEneLappyFv(s32 arg0);
 s32 update_movement_status__9TObjCharaFv();
@@ -1952,3 +1952,7 @@ void TObjEneRe2Flower::render() {
 #undef draw_motion_model__10TObjMotionFv
 #undef apply_variant_speeds__12TObjEneLappyFv
 #undef render__12TObjEneLappyFv
+
+extern "C" {
+s32 *rappy_visibility_node;
+}

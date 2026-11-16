@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
@@ -161,7 +162,7 @@ void TQuestListOnline::begin_file_download() {
         main_task.render();
         main_task.render_screen_overlay();
         render_tick();
-        ((TWindowCtrl *)local_client_id)->suppress_slot();
+        suppress_player_window(local_client_id);
         main_task.toggle_pause_layers();
         quest_download_active = 1;
         quest_download_received_bytes = 0;
@@ -208,7 +209,7 @@ void TQuestListOnline::receive_quest_info(void *arg0) {
         memcpy(TQuestListOnline__selected_quest_info, arg0, 0x124);
         TQuestListOnline__sub_8013ACF4(2);
         if (THunterGuildSeqOffline__sub_80212074() != 0) {
-            ((TWindowCtrl *)local_client_id)->suppress_slot();
+            suppress_player_window(local_client_id);
             if ((u32) TQuestListOnline__quest_info_window != 0U) {
                 ((TWindowBase *)TQuestListOnline__quest_info_window)->close();
                 TQuestListOnline__quest_info_window = 0;

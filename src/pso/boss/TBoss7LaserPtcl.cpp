@@ -53,7 +53,7 @@ void *spawn_continuous_particle_effect_with_flags(void *parent, s32 idx, s32 fla
 void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 f32 atan2_float(f32 y, f32 x);
 
-extern const f64 lbl_804796D8;
+static const f64 lbl_804796D8 = 10430.38043493439;
 
 void TBoss7LaserPtcl::init_laser() {
     u8 *arg0 = (u8 *)this;

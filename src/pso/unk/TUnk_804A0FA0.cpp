@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "types.h"
 #include "pso/item/TItem.h"
 #include "pso/unk/text_80122388.h"
@@ -50,14 +51,14 @@ u8 get_item_index__5TItemFv();
 void TUnk_804A0FA0::update_idle() {
     s32 arg0 = (s32)this;
     if (get_item_index__5TItemFv() == 5) {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1F8), (f32)0.2f, (f32)0.0f);
+        add_float_clamped((f32 *)(arg0 + 0x1F8), (f32)0.2f, (f32)0.0f);
     }
 }
 
 void TUnk_804A0FA0::update_attack() {
     s32 arg0 = (s32)this;
     if (get_item_index__5TItemFv() == 5) {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1F8), (f32)0.5f, (f32)1.0f);
+        add_float_clamped((f32 *)(arg0 + 0x1F8), (f32)0.5f, (f32)1.0f);
     }
 }
 

@@ -117,12 +117,12 @@ static const f32 lbl_805DE580 = 0.53f;
 s32 TWindowShortListCtrl__check_controller_button(void *, int);
 
 void TAdMultiPlyChrSelectGC__sub_802C5F1C(TAdChrSelPlyPlateGC *, int);
-extern const f32 lbl_805DE588;
-extern const f32 lbl_805DE58C;
-extern const f32 lbl_805DE590;
-extern const f32 lbl_805DE594;
-extern const f32 lbl_805DE598;
-extern const f32 lbl_805DE59C;
+static const f32 lbl_805DE588 = 38.0f;
+static const f32 lbl_805DE58C = 0.703125f;
+static const f32 lbl_805DE590 = 0.0625f;
+static const f32 lbl_805DE594 = 0.875f;
+static const f32 lbl_805DE598 = 0.125f;
+static const f32 lbl_805DE59C = 0.9453125f;
 extern const f32 lbl_805DE5A0;
 
 /* This unit's .rodata: the open/occupied grid, the cursor-jump vectors, the two

@@ -44,8 +44,8 @@ extern s16 TObjPlayer__weapon_node_ids[];
 extern s16 weapon_node_material_index;
 extern u8 *weapon_render_callback_object;
 extern s32 model_render_flags;
-extern const f32 lbl_805DACA8;
-extern const f32 lbl_805DACAC;
+static const f32 lbl_805DACA8 = 400.0f;
+static const f32 lbl_805DACAC = 20.0f;
 
 s32 TItemWeapon::draw_weapon_model() {
     s32 var_r30;

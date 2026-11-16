@@ -1,3 +1,4 @@
+#include "pso/object/TObjCMMainMenu.h"
 #include "pso/TChCrEffTag.h"
 #include "pso/misc/TChCrEffTagStr.h"
 #include "types.h"
@@ -45,7 +46,6 @@ void TChCrEffTag::refresh_label() {
     }
 }
 
-s32 get_creation_sprite_id__14TObjCMMainMenuFl(int);
 
 }
 #pragma push
@@ -62,7 +62,7 @@ void TChCrEffTag::run_task()
   temp_r0 = heading;
   if (temp_r0 >= 0)
   {
-    targetWidth = (f32) (15.0f + ((f32) get_creation_sprite_id__14TObjCMMainMenuFl((int) ((s32*)&lbl_804652A4)[temp_r0])));
+    targetWidth = (f32) (15.0f + ((f32) TObjCMMainMenu::get_creation_sprite_id((int) ((s32*)&lbl_804652A4)[temp_r0])));
   }
   width = width;
   temp_f3 = targetWidth;

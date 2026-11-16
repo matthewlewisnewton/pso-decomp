@@ -80,3 +80,8 @@ void *TBoss6EffHyoui::create(void *arg1, void *arg2) {
 }
 
 }
+
+extern "C" {
+f32 lbl_805D6FF8;
+s8 lbl_805D6FFC;
+}

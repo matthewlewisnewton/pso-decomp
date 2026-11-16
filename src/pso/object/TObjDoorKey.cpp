@@ -336,3 +336,8 @@ __declspec(section ".data") const char *abeno_fs_obj001_fosuno_model_names[4] = 
 BmlResourceDescriptor TObjDoorKey__resource_descriptor = { lbl_804456A0, abeno_fs_obj001_fosuno_model_names, abeno_fs_obj001_fosuno_motion_names, 3, 0 };
 __declspec(section ".sdata") const char *abeno_fs_obj001_fosuno_motion_names[1] = { NULL };
 }
+
+extern "C" {
+s16 door_key_id_counter;
+s32 TObjDoorKey__data_805D5C04;
+}

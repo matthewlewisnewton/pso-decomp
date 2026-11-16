@@ -45,10 +45,10 @@ extern BmlResource *lbl_805D4F20;
 void TObjEneBalClawClaw__sub_8008DC90(TObjEneBalClawBody *);
 void minimap_render_dot(const Vec *, s32, s32, s32);
 extern const f32 lbl_805D9644;
-extern const f32 lbl_805D9670;
-extern const f32 lbl_805D9674;
-extern const f32 lbl_805D9678;
-extern const f32 lbl_805D967C;
+static const f32 lbl_805D9670 = 3600.0f;
+static const f32 lbl_805D9674 = 1600.0f;
+static const f32 lbl_805D9678 = 14400.0f;
+static const f32 lbl_805D967C = 10000.0f;
 }
 
 // Deferred code generation emits these definitions in reverse order, matching
