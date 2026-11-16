@@ -8,13 +8,13 @@ struct TWindowDrawContext;
 
 class TUnk_804CF0B8 : public TWindowAddition {
 public:
-    TUnk_804CF0B8(s32 speaker, s32 text, s32 client, f32 scale);
+    TUnk_804CF0B8(u16 speaker, s32 text, s32 client, f32 scale);
     virtual ~TUnk_804CF0B8();
     virtual void run_task();
     void draw_body(void *, u32, f32 *, f32);
     void draw_body_row(void *, void *, f32, f32, f32, f32);
     void draw_tail(void *, u32, f32 *, f32);
-    void sub_80251DF0(s16, s32, s16, f32);
+    void sub_80251DF0(u16, s32, s32, f32);
     s32 clamp_position(void *, f32);
     void set_color(u16);
     void follow_anchor();
@@ -25,6 +25,7 @@ public:
     void calc_text_size(f32 *);
     virtual void render();
     void clear_flag();
+    u16 get_speaker_id();
     s16 get_field_20();
     int get_flag_bit1();
     s8 alloc_nearest_free_slot();
@@ -44,7 +45,7 @@ public:
     u8 unk_72[0x1];
     s8 m_73;
     u8 unk_74[0x2];
-    s16 m_76;
+    u16 m_76; // Speaker entity ID; 0xFFFF denotes no entity.
     char *name;
     f32 m_7c;
     u8 unk_80[0x4];
