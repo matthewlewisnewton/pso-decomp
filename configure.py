@@ -447,6 +447,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Upstream #208: fused scale/corner arithmetic; deferred emission puts the
     # compiler vtable before the constructor switch table; class string is rodata.
     "pso/misc/TPlayerFootStamp.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-inline off,deferred", "-str reuse,readonly")},
+    # Native player vtable precedes switch tables; deferred emission preserves
+    # that layout with the recovered unit's reversed function definitions.
+    "pso/player/TObjPlayer_801AF2F0.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TObjPlayer__sub_8015434C fuses offset*sin+pos (fmadds at 0x80154408)
     # and offset*cos+pos (fmadds at 0x8015442C). The same flag leaves every
     # other function in this unit unchanged, including resolve_actor_sphere_contact's

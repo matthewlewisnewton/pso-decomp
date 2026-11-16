@@ -368,6 +368,48 @@ check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
 
+### Player battle reset and wall response
+
+This unit uses `-inline off,deferred` and reversed function definitions to
+emit the native player vtable before the jump tables while preserving the
+original text order. The ten equipment-joint indices and compiler-generated
+vtable reclaim the aligned `.data` prefix at `0x804C3BA8`; ordinary emission
+places the vtable after the jump tables. All 379 function instruction streams
+remain exact. Ports can drop the emission switch and reorder definitions.
+
+`src/pso/player/TObjPlayer_801AF2F0.cpp` uses two new scoped
+`opt_propagation off` settings: `apply_wall_response` retains the original
+query-origin address lifetime and scalar float registers, and
+`spawn_level_change_feedback__10TObjPlayerFv` retains the register order of
+its named constant loads. The wall routine keeps its declaration order and
+forms the origin view with `offsetof(WallQuery, origin)`; taking the member
+address directly introduces a separate pointer copy or schedules it later.
+These are measured GC/2.6 constraints, not evidence of original pragmas.
+Ports can drop the steering and take `query.origin` directly while keeping
+the same collision queries and arithmetic.
+
+The owned newline and thirteen float constants use `__declspec(section
+".sdata2")` on their declarations and definitions. Without placement,
+CodeWarrior puts the exported constants in `.sdata`, selecting the wrong
+small-data base. Ports should use ordinary read-only constants. The new
+level-row and vector interfaces preserve historical export labels without
+claiming that the records are player objects. The previously matched code
+in this newly linked unit retains its existing provisional offset views,
+legacy receiver aliases and compiler settings; those interfaces still need
+native types when porting.
+
+The recovered class-byte providers, character-stat initializer and NPC builder
+use plain `char`, distinct from `s8`, under the native build's existing
+`-char signed`. Mutable `char` views borrow the encoded class representation;
+they do not create a character-record object in raw storage. A port should
+preserve the signed low-byte interpretation and migrate callers and providers
+together if choosing an explicit byte type. The NPC's visual temporary is the
+existing trivial `disp_data_part2` record; item counts remain full scalar
+words. Its item-address word and the inventory copier's provisional entry
+view remain inherited boundaries. Other legacy player aliases, including the
+no-argument class-normalizer call and word-typed experience-accessor alias,
+are not unified by this recovery.
+
 ### Symbol-chat part-grid rendering
 
 `fn_802857C4` at `0x802857C4` in `TWindowSubSymbolChatParts.cpp` uses
