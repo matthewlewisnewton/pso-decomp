@@ -1,6 +1,8 @@
 # Shop generator slot storage
 
-Based on fork main `f1227326c4b7deaa4c33186978ad623862b590d5`.
+Initially based on fork main `f1227326c4b7deaa4c33186978ad623862b590d5`;
+refreshed and revalidated against `f9b6cf76d9171b3dce5082b1484a85f4579855cd`
+after the ending-controller work merged.
 
 `TShopGenerator__slot_active_table` owns the 16 bytes at
 `.bss 0x80513ED0–0x80513EE0`. Both service-dispatch reset routines explicitly
