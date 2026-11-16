@@ -989,7 +989,7 @@ void init_flags__15TWindowFukidasiFPvi(void *arg0, s32 arg1) {
     ((TUnk_804CF0B8 *)arg0)->m_71 = (u8) (((TUnk_804CF0B8 *)arg0)->m_71 & 0xFFFFFFFD);
 }
 
-void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
+void TUnk_804CF0B8::sub_80251DF0(u16 arg1, s32 str, s32 arg3, f32 farg0) {
     s32 temp_r3;
 
     *(s32 *)((s8 *)this + 0) = (s32) window_fukidasi_class_name;
@@ -1006,7 +1006,7 @@ void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
     } else {
         this->name = NULL;
     }
-    ((s32 (*)(void *, s16))set_color__13TUnk_804CF0B8FUs)(this, arg1);
+    set_color(arg1);
     *(f32 *)((s8 *)this + 0x80) = (f32) (*(const f32 *)&TWindowFukidasi__data_805DCD30);
     this->m_7c = farg0;
     this->m_48 = (f32) (*(const f32 *)&TWindowFukidasi__data_805DCD30);

@@ -6836,7 +6836,7 @@ force_active:
   - find_combine_position__14TObjEnePanarmsFv
   - find_enemy_by_id__16TObjEneBm5GibonUFi
   - find_entry_rest__17TWindowSubComCardFPvl
-  - find_farthest_balloon_slot__11TWindowCtrlFPvUs
+  - find_farthest_balloon_slot__11TWindowCtrlFUs
   - find_first_open_cell__19TAdChrSelPlyPlateGCFPUl
   - find_free_chat_log_slot__6TLobbyFv
   - find_free_file_names__22TQuestVmDownLoadServerFv
@@ -7582,7 +7582,7 @@ force_active:
   - get_slot_index__16TAdChrSelASlotGCFv
   - get_sock_status_name__Fs
   - get_spawn_point__17TObjEneBm3FlyNestFv
-  - get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv
+  - get_speaker_balloon_anchor__11TWindowCtrlFUsPfPl
   - get_split_screen_battle_timer_limit__FPUc
   - get_split_screen_character_save_record
   - get_state__12TBoss8DragonFv
