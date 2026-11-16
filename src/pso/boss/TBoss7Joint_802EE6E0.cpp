@@ -1,3 +1,4 @@
+#include "pso/protocol/BossActionPacket.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/protocol/protocol_types.h"
@@ -11,8 +12,8 @@
 
 extern "C" {
 extern const f32 lbl_805DE9F0;
-extern const f32 lbl_805DEBA8;
-extern const f32 lbl_805DEBAC;
+static const f32 lbl_805DEBA8 = 50.0f;
+static const f32 lbl_805DEBAC = 30.0f;
 
 
 
@@ -32,11 +33,11 @@ void TBoss7DeRolLeC::apply_confusion_status() {  }
 void TBoss7DeRolLeC::apply_movement_ailment(s32) {  }
 void TBoss7DeRolLeC::apply_shock_status() {  }
 void TBoss7DeRolLeC::clear_harmful_statuses() {  }
-void TBoss7Joint::read_state() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_32((u32 *)((char*)this + 0x8)); }
-void TBoss7Joint::byteswap_action_packet() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); }
-void TBoss7Joint::update_and_send_60() { byteswap_action_packet(); send_subcommand((u8 *)this); }
+void bswap_boss_action_6xAA(void *packet) { ((G_ClientIDHeader *)packet)->bswap(); bswap_16((u16 *)((char*)packet + 0x4)); bswap_16((u16 *)((char*)packet + 0x6)); bswap_32((u32 *)((char*)packet + 0x8)); }
+void bswap_boss_action_6xA9(void *packet) { ((G_ClientIDHeader *)packet)->bswap(); bswap_16((u16 *)((char*)packet + 0x4)); bswap_16((u16 *)((char*)packet + 0x6)); }
+void send_boss_action_6xA9(void *packet) { bswap_boss_action_6xA9(packet); send_subcommand((u8 *)packet); }
 void TBoss7Joint__sub_802EE7B8(void* p) { *(u8*)((char*)p + 0x0) = 169; *(u8*)((char*)p + 0x1) = 2; }
-void TBoss7Joint::broadcast_state() { read_state(); send_subcommand((u8 *)this); }
+void send_boss_action_6xAA(void *packet) { bswap_boss_action_6xAA(packet); send_subcommand((u8 *)packet); }
 void TBoss7Joint__sub_802EE800(void* p) { *(u8*)((char*)p + 0x0) = 170; *(u8*)((char*)p + 0x1) = 3; }
 
 int TBoss7Joint::is_part_active() { return *(u32*)((char*)this + 0x3bc) & 0x1; }

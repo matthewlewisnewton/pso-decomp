@@ -544,7 +544,7 @@ void TObjEneMoja::fn_800ACA0C() {  }
 
 void TObjEneShark::bind_variant_model(s32 i) {
     model = (void *)shark_bml_resource->models[i].model;
-    texlist = shark_bml_resource->models[i].m_c;
+    texlist = (s32)shark_bml_resource->models[i].m_c;
 }
 
 void TUnk_80493450::vfunc_99() {  }

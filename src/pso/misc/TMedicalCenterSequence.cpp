@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/TMedicalCenterMes.h"
 #include "pso/misc/TWindowBase.h"
@@ -43,7 +44,6 @@ extern "C" {
 RecoveredGlobal_802169A8_TMedicalCenterSequence__data_80513E90 TMedicalCenterSequence__data_80513E90;
 s32 TMedicalCenterMes__slot_flags[4];
 }
-
 
 struct Base_8021641C_802163AC { char pad[0x18]; };
 struct VObj_8021641C_802163AC : Base_8021641C_802163AC {
@@ -98,7 +98,6 @@ struct RecoveredGlobal_802169A8___vt__22TMedicalCenterSequence {
     s32 value;
     u8 remaining[0x34];
 };
-
 
 struct RecoveredGlobal_80216A70___vt__22TMedicalCenterSequence {
     s32 value;
@@ -400,7 +399,7 @@ void TMedicalCenterMes::run_task() {
             player = (TObjPlayer *)get_player_by_client_id(local_client_id);
         }
         THunterGuildSeqOffline__sub_8021E180(get_entity_id((s32)player));
-        ((TWindowCtrl *)((u16)get_entity_id((s32)player)))->suppress_slot();
+        suppress_player_window(((u16)get_entity_id((s32)player)));
         TMedicalCenterMesMessagePos pos = lbl_8044BD94[0];
         u16 id = (u16)get_entity_id((s32)player);
         create_message_window(((s32 (*)(int))get_window_layout_position)(0x2C), (s32)&pos, id);
@@ -424,7 +423,7 @@ void TMedicalCenterMes::run_task() {
         }
         close();
         if (player != NULL) {
-            ((TWindowCtrl *)((u16)get_entity_id((s32)player)))->unsuppress_slot();
+            unsuppress_player_window(((u16)get_entity_id((s32)player)));
         }
         TShopGenerator::clear_slot_active(get_entity_id((s32)player));
         queue_destruction__7TObjectFv(this);

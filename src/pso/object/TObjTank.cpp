@@ -34,8 +34,8 @@ s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
 extern u32 tank_bml_resource;
 extern GinjaTextureList *TObjTank__texture_list;
-extern const f32 lbl_805DBFA0;
-extern const f32 lbl_805DBFA4;
+static const f32 lbl_805DBFA0 = 400.0f;
+static const f32 lbl_805DBFA4 = 20.0f;
 extern char lbl_80446184[];
 extern RecoveredGlobal_8019A9B8_lbl_804B8F60 fs_obj_tank_resource_descriptor;
 s32 init_collision_body_parts(void *, void *, int);
@@ -116,7 +116,7 @@ void *TObjTank__create(void *arg0) {
 void TObjTank::free_globals() {
     if (TObjTank__texture_list != NULL) {
         release_texture_list(TObjTank__texture_list);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TObjTank__texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjTank__texture_list);
         TObjTank__texture_list = NULL;
     }
     if ((u32) tank_bml_resource != 0U) {

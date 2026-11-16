@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -21,7 +22,6 @@
 
 extern "C" {
 
-s32 TObjFish__sub_8001EDB0(BmlResource *resource, s32 index);
 void obj_setFlags30(TObject *obj, u32 mask);
 void submit_cursor_candidate(TObject *obj, s32 a1);
 s32 minimap_render_dot(Vec *pos, s32 color, s16 a2, s32 a3);
@@ -150,7 +150,7 @@ void TBoss3VoloptHiraisin::start_attack() {
     s16 max_hp;
     u32 flags;
     TBoss3Volopt::create_breakup_mdl((s32)volopt_hiraisin_breakup_model, (s32)&volopt_hiraisin_breakup_params,
-                                     TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0x10), (s32)&body_center_position, this->rotation.yaw);
+                                     (s32)TObjFish__sub_8001EDB0((BmlResource *)volopt_hiraisin_resources, 0x10), (s32)&body_center_position, this->rotation.yaw);
     trigger_dell_biter_events__10TObjPlayerFv((Vec *)&body_center_position);
     play_sound_effect(0x4001C112, (const Vec *)(&position), 0, 0);
     m_388 &= ~1;
@@ -263,7 +263,7 @@ void TBoss3VoloptHiraisin::render() {
             scale = 1.0f - 0.02202643f * (position.y - 4.6f);
             translate_matrix(0, position.x, 4.5f, position.z);
             scale_matrix(NULL, scale, scale, scale);
-            set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(volopt_hiraisin_resources, 0)));
+            set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)volopt_hiraisin_resources, 0)));
             draw_chunk_object(get_bml_model(volopt_hiraisin_resources, 0));
             pop_matrix();
         }
@@ -399,5 +399,5 @@ void TObjChara::copy_body_to_center() {
 
 void TBoss3VoloptHiraisin::load_params_from_table(s32 index) {
     model = (void *)volopt_hiraisin_resources->models[index].model;
-    texlist = volopt_hiraisin_resources->models[index].m_c;
+    texlist = (s32)volopt_hiraisin_resources->models[index].m_c;
 }

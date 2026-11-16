@@ -374,8 +374,8 @@ s32 mix_seed__6TLobbyFUs(u16 arg0) {
 }
 
 s32 rand();
-extern const f32 lbl_805D9100;
-extern const f32 lbl_805D9104;
+static const f32 lbl_805D9100 = 65535.0f;
+static const f32 lbl_805D9104 = 3.0517578e-05f;
 
 u16 TLobby__sub_8006FAE4(void) {
     f32 temp_f31;

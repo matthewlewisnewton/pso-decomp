@@ -73,13 +73,13 @@ void* camera_controller_registry[];
 extern "C" {
 f32 vector_length(const Vec*);
 void approach_vector_fixed_distance(const Vec*, const Vec*, Vec*, f32);
-extern const f64 lbl_804383D8;
+static const f64 lbl_804383D8 = 5.0;
 
 u16 TCameraCtrl__sub_8006A5DC();
 f32 fabs_float(f32);
 f32 atan2_float(f32 y, f32 x);
 f32 newton_sqrtf(f32);
-extern const f64 lbl_804383D0;
+static const f64 lbl_804383D0 = 10430.38043493439;
 s32 angle_difference_abs(s32, s32);
 s32 approach_angle_limited(s32, s32, s32);
 

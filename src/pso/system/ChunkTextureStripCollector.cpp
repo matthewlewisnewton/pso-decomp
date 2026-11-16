@@ -1,42 +1,24 @@
-#include "types.h"
 #include "pso/system/ChunkTextureStripCollector.h"
-struct Model_800F5A50 { void *vlist; void *plist; };
-
-struct Node_800F5A50 {
-    u32 evalflags;
-    Model_800F5A50 *model;
-    f32 pos[3];
-    s32 ang[3];
-    f32 scl[3];
-    Node_800F5A50 *child;
-    Node_800F5A50 *sibling;
-};
-
-struct Count_800F5AC8 { s32 verts; s32 strips; };
-
-struct StripRef_800F591C { s16 *strip; s16 *uv; };
 
 extern "C" {
-void count_model_strips_by_texture(void *ctx, Node_800F5A50 *node, void *arg);
-void collect_model_strips_by_texture(void *ctx, Node_800F5A50 *node, void *arg);
-extern s32 plist_texture_matches_filter;
-extern StripRef_800F591C *plist_strip_write_ptr;
-extern s16 *plist_strip_uv_write_ptr;
+StripReference *plist_strip_write_ptr;
+s16 *plist_strip_uv_write_ptr;
+s32 plist_texture_matches_filter;
 
-void collect_model_strips_by_texture(void *ctx, Node_800F5A50 *node, void *arg) {
+void collect_model_strips_by_texture(StripBufferPair *ctx, NJS_OBJECT *node, s32 texture) {
     do {
-        if (node->model != 0 && node->model->plist != 0) {
-            ((void (*)(void *, void *, void *))collect_plist_strips_by_texture)(ctx, node->model->plist, arg);
+        if (node->model != 0 && ((NJS_CNK_MODEL *)node->model)->polygon_list != 0) {
+            collect_plist_strips_by_texture(ctx, ((NJS_CNK_MODEL *)node->model)->polygon_list, texture);
         }
         if (node->child != 0) {
-            collect_model_strips_by_texture(ctx, node->child, arg);
+            collect_model_strips_by_texture(ctx, node->child, texture);
         }
         node = node->sibling;
     } while (node != 0);
 }
 }
 
-void collect_plist_strips_by_texture(void *ctx, s16 *p, s32 tex) {
+void collect_plist_strips_by_texture(StripBufferPair *ctx, s16 *p, s32 tex) {
     s16 c;
     s16 type;
     u32 n;
@@ -84,20 +66,18 @@ void collect_plist_strips_by_texture(void *ctx, s16 *p, s32 tex) {
     }
 }
 
-void count_model_strips_by_texture(void *ctx, Node_800F5A50 *node, void *arg) {
+void count_model_strips_by_texture(StripBufferPair *ctx, NJS_OBJECT *node, s32 texture) {
     do {
-        if (node->model != 0 && node->model->plist != 0) {
-            count_plist_strips_by_texture(ctx, node->model->plist, arg);
+        if (node->model != 0 && ((NJS_CNK_MODEL *)node->model)->polygon_list != 0) {
+            count_plist_strips_by_texture(ctx, ((NJS_CNK_MODEL *)node->model)->polygon_list, texture);
         }
         if (node->child != 0) {
-            count_model_strips_by_texture(ctx, node->child, arg);
+            count_model_strips_by_texture(ctx, node->child, texture);
         }
         node = node->sibling;
     } while (node != 0);
 }
-void count_plist_strips_by_texture(void *ctx, void *plist, void *arg) {
-    Count_800F5AC8 *cnt = (Count_800F5AC8 *) ctx;
-    s16 *p = (s16 *) plist;
+void count_plist_strips_by_texture(StripBufferPair *cnt, s16 *p, s32 texture) {
     s16 c;
     s32 skip;
     u32 n;
@@ -109,7 +89,7 @@ void count_plist_strips_by_texture(void *ctx, void *plist, void *arg) {
         }
         c = c & 0xFF;
         if (c < 0x10) {
-            if ((*p++ & 0x1FFF) == (s32) arg) {
+            if ((*p++ & 0x1FFF) == texture) {
                 plist_texture_matches_filter = 1;
             } else {
                 plist_texture_matches_filter = 0;
@@ -122,14 +102,14 @@ void count_plist_strips_by_texture(void *ctx, void *plist, void *arg) {
             s32 size = *(u16 *) p;
             p++;
             if (plist_texture_matches_filter != 0 && c == 0x41) {
-                cnt->strips++;
+                cnt->strip_count++;
                 n = *p++ & 0x3FFF;
                 for (i = 0; i < n; i++) {
                     len = *p++;
                     if (len < 0) {
                         len = -len;
                     }
-                    cnt->verts += len;
+                    cnt->uv_count += len;
                     p += len * 3;
                 }
             } else {

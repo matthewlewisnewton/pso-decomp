@@ -21,7 +21,7 @@ struct Craw_80308F8C {
 extern "C" {
 void *create_particle_emitter(void *pos, s32 id);
 
-extern const f32 lbl_805DF0F8;
+static const f32 lbl_805DF0F8 = 9.0f;
 
 void TBoss7Crawfish::update_attack_state() {
     s32 temp_r0;

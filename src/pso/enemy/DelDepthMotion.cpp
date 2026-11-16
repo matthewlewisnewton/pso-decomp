@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -16,7 +17,6 @@ struct DelDepthModelMotion { s32 model; s32 motion; };
 struct DelDepthPairBinding { DelDepthModelMotion first, second; f32 speed; };
 
 extern "C" {
-s32 TObjFish__sub_8001EDB0(s32, int);
 s32 find_nearest_hittable_enemy__10TObjPlayerFiPvf(void *, void *, f32);
 u8 *get_bml_motion(s32, s32);
 DelDepthMotionBinding lbl_804E8760[] = {{4, 0.3f}, {4, 0.3f}, {2, 0.6f}, {3, 0.4f}};
@@ -49,7 +49,7 @@ void DelDepthMotion::draw_model_part() {
     temp_r0 = motion;
     if (temp_r0 != -1) {
         if (temp_r0 < 6) {
-            set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((s32)TObjEneDelDepth::get_data(), 0)));
+            set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(TObjEneDelDepth::get_data()), 0)));
             actor->draw();
             return;
         }
@@ -134,7 +134,7 @@ void DelDepthMotion::set_motion(s32 arg1) {
         s32 data = (s32)TObjEneDelDepth::get_data();
         DelDepthMotionBinding *e = &lbl_804E8760[motion] - 6;
         model = (void *)get_bml_model((BmlResource *)data, 1);
-        texture = TObjFish__sub_8001EDB0(data, 1);
+        texture = (s32)TObjFish__sub_8001EDB0((BmlResource *)data, 1);
         animation = (AnimationMotion *)get_bml_motion(data, e->motion);
         endFrame = animation->frameCount;
         speed = e->speed;
@@ -144,11 +144,11 @@ void DelDepthMotion::set_motion(s32 arg1) {
         DelDepthPairBinding *e = &lbl_804E8780[motion] - 10;
         DelDepthModelMotion *q;
         model = (void *)get_bml_model((BmlResource *)data, e->first.model);
-        texture = TObjFish__sub_8001EDB0(data, e->first.model);
+        texture = (s32)TObjFish__sub_8001EDB0((BmlResource *)data, (s32)(e->first.model));
         animation = (AnimationMotion *)get_bml_motion(data, e->first.motion);
         q = &e->second;
         secondModel = (void *)get_bml_model((BmlResource *)data, q->model);
-        secondTexture = TObjFish__sub_8001EDB0(data, q->model);
+        secondTexture = (s32)TObjFish__sub_8001EDB0((BmlResource *)data, (s32)(q->model));
         secondAnimation = (AnimationMotion *)get_bml_motion(data, q->motion);
         endFrame = secondAnimation->frameCount;
         speed = e->speed;

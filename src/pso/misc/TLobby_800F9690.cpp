@@ -86,14 +86,14 @@ s32 load_encrypted_text_archive(char *name, s32 *arg1) {
         ((TGStream *)((s32 *)&st))->read_sectors_sync(1, (s32)buf);
         sp8 = *(s32 *)((s8 *)buf + 0);
         h = *(s32 *)((s8 *)buf + 4);
-        TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+        TAdSinglePlyChrSelectGC::safe_free((void *)buf);
         ret = (s32)TQuestVmDownLoadServer::alloc(sp8);
         buf = set_stream_and_load_file__6TLobbyFPCv(name);
         __ct__14SubtractiveRngFv((s32 *)&sel);
         subtractive_rng_seed((s32 *)&sel, h);
         subtractive_rng_xor_buffer((s32 *)&sel, (u32 *)(buf + 8), size - 8);
         prs_decompress_buffer((s32)(buf + 8), ret);
-        TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+        TAdSinglePlyChrSelectGC::safe_free((void *)buf);
         destroy_gstream((s32 *)&st, -1);
     }
     if (arg1 != NULL) {
@@ -113,7 +113,7 @@ s32 load_text_resource_pair(s32 arg0) {
     sprintf(buf, lbl_8043DA04, arg0);
     b = load_encrypted_text_archive(buf, &sp8);
     r = alloc_named_object(arg0, a, sp8, b);
-    TAdSinglePlyChrSelectGC::safe_free((u32)((void *)b));
+    TAdSinglePlyChrSelectGC::safe_free((void *)((void *)b));
     return r;
 }
 

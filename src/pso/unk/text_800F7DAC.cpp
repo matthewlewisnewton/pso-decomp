@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "types.h"
 #include "pso/unk/TUnk_804999D0.h"
 #include "pso/unk/TUnk_804999B8.h"
@@ -161,7 +162,7 @@ void TUnk_80499970::render() {
     q.pos[7] = (4.8e+02f);
     q.col[3] = ((Fade_800F7E28 *)this)->u.color;
     if ((0.0f) != (f32)((Fade_800F7E28 *)this)->u.c[3]) {
-        ((TObjCMHairMenu *)(&q))->draw_tri_fan_2d(4, 0x16, (-1e+01f));
+        ((ColorLineList *)(&q))->draw_tri_fan_2d(4, 0x16, (-1e+01f));
     }
     TCameraCtrl__sub_80068EF0();
 }
@@ -474,7 +475,7 @@ void TUnk_804999E8::render() {
     q.pos[7] = (4.8e+02f);
     q.col[3] = self->u.color;
     if ((0.0f) != (f32)self->u.c[3]) {
-        ((TObjCMHairMenu *)(&q))->draw_tri_fan_2d(4, 0x16, (-1e+01f));
+        ((ColorLineList *)(&q))->draw_tri_fan_2d(4, 0x16, (-1e+01f));
     }
     TCameraCtrl__sub_80068EF0();
 }

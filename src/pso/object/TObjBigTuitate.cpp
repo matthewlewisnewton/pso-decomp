@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -53,7 +54,6 @@ struct ByteBlock_3C { u8 bytes[0x3c]; };
 
 extern "C" {
 void __ct__15RenderFadeStateFv(void *);
-s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 isFading__15RenderFadeStateCFv(void *);
 s32 matrix_mult_vec(int, void *, void *);
 void rotate_matrix_y(int, int);
@@ -97,7 +97,7 @@ void TObjBigTuitate::render() {
     if (fading != 0) {
         ((Fade_8019AA18 *)(arg0 + 0xAC))->begin();
     }
-    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((*(s32 *)&TObjBigTuitate__bml_resource), 0)));
+    set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&TObjBigTuitate__bml_resource), 0)));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
@@ -219,7 +219,6 @@ struct Vec_8019ADA0 { f32 x, y, z; };
 #pragma dont_inline off
 
 extern "C" {
-s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 isFading__15RenderFadeStateCFv(void *);
 s32 matrix_mult_vec(int, void *, void *);
 void rotate_matrix_y(int, int);
@@ -263,7 +262,7 @@ void TObjTuitate::render() {
     if (fading != 0) {
         ((Fade_8019ADA0 *)(arg0 + 0xAC))->begin();
     }
-    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((*(s32 *)&TObjTuitate__bml_resource), 0)));
+    set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&TObjTuitate__bml_resource), 0)));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));

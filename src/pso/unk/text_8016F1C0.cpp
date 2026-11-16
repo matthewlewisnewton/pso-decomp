@@ -32,7 +32,7 @@ VO_8016F320 *get_player_by_client_id(s32);
 void text_builder_append(const char *);
 }
 void text_builder_reset(void);
-extern const char lbl_804421F0[];
+extern const char lbl_804421F0[] = " TRAP\n";
 extern const char lbl_805DB860[4];
 extern "C" {
 u32 TOMineTrapDisp__ct(u32, s32, u16, s32);

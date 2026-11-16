@@ -13,7 +13,7 @@ void clear_deferred_photon_blast_hits(void);
 void clear_photon_blast_hits(void);
 void copy_effect_params(u8 *arg0, u8 *arg1);
 extern "C" {
-void *destroy_photon_motion_object(void *arg0, s16 arg1);
+void *__dt__13TUnk_804C3248Fv(void *arg0, s16 arg1);
 void *photon_base_ct(void *arg0);
 }
 void publish_photon_blast_joint_origins(NJS_OBJECT *);

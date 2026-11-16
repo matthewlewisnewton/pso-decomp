@@ -710,3 +710,14 @@ s32 ginja_texture_matrix_ids[11] = {
     0x2a, 0x2d, 0x30, 0x33,
     0x36, 0x39, 0x3c,
 };
+
+extern "C" {
+RecoveredCallback_bfe74032a8e8 ginja_pre_channel_callback;
+RecoveredCallback_bfe74032a8e8 ginja_pre_texgen_callback;
+RecoveredCallback_bfe74032a8e8 ginja_pre_tev_callback;
+RecoveredCallback_b52dc2a08a00 ginja_post_channel_callback;
+RecoveredCallback_b52dc2a08a00 ginja_post_texgen_callback;
+RecoveredCallback_b52dc2a08a00 ginja_post_tev_callback;
+s32 ginja_texcoord_gen_enabled;
+s32 ginja_draw_list_state;
+}

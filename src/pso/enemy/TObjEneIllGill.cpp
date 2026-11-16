@@ -62,7 +62,7 @@ s32 minimap_render_dot(void *, int, int, int);
 void *__nw__7TObjectFUl(int);
 void TObjIllGillKage__ct(void *, s32, void *);
 void subtract_vector(void *, void *);
-extern const f64 TObjEneIllGill__data_8047A348;
+static const f64 TObjEneIllGill__data_8047A348 = 10430.38043493439;
 extern s32 tl_05;
 extern const f32 TObjEneIllGill__data_805E02BC;
 extern const f32 TObjEneIllGill__data_805E02D8;
@@ -1426,7 +1426,7 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
     ((TObjChara *)self)->initialize_position_copies();
     apply_actor_gravity(self, 0, TObjEneIllGill__data_805E02BC);
     model = (void *)illGillResource->models->model;
-    texlist = illGillResource->models->m_c;
+    texlist = (s32)illGillResource->models->m_c;
     motion_list = illGillResource->motions;
     action_table = illGillActions;
     this->set_action_table((TObjMotionAction *)((s32)action_table));
@@ -1525,4 +1525,8 @@ void TObjEneIllGill::load_shared_resources() {
     }
 }
 
+}
+
+extern "C" {
+BmlResource *illGillResource;
 }

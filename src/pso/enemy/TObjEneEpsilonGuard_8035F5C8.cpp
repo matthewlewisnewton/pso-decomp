@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -534,7 +535,6 @@ extern "C"{
 }
 extern "C"{
     void free_collision_body_parts(TObjCollidable *);
-    s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
     extern const char *lbl_805D4460;
     extern BattleBaseStats *lbl_805D6F80;
     extern AttackParams *lbl_805D6F84;
@@ -555,7 +555,7 @@ TObjEneEpsilonBody::TObjEneEpsilonBody(TObject *parent, s32 *set_data): TObjEneE
     m_438 = 0;
     m_438 |= 2;
     set_guard_state();
-    texlist = TObjFish__sub_8001EDB0(lbl_805D6FA0, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D6FA0, 0);
     set_action_table(epsilon_body_actions);
     set_motion_list(lbl_805D6FA0->motions);
     set_animation(requested_action);
@@ -1871,4 +1871,11 @@ f32 TObjEneEpsilonBody::receive_weapon_special_attack(void *src, void *hit) {
     }
     ((TObjChara *)((Self_8035F5C8 *)this))->try_apply_damage((u32)((Self_8035F5C8 *)this)->x2FC, 0);
     return 0.0f;
+}
+
+extern "C" {
+s32 epsilon_guard_camera_sample_phase;
+u8 *epsilon_guard_angle_sample_write_ptr;
+u8 *epsilon_guard_camera_sample_read_ptr;
+u8 *epsilon_guard_camera_sample_end_ptr;
 }

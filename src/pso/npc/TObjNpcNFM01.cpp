@@ -23,8 +23,8 @@ extern s32 *TObjNpcNFM01__model_object;
 extern s32 TObjNpcNFM01__texture_handle;
 extern u32 TObjNpcNFW00__named_object_resource;
 extern u32 TObjNpcNFW00__texture_gvm_handle;
-extern char lbl_8043FD90[];
-extern char lbl_8043FDA4[];
+extern const char lbl_8043FD90[] = "npc_i00_data.rel";
+extern const char lbl_8043FDA4[] = "n_i00_body.gvm";
 void release_texture_list(void*);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
@@ -73,7 +73,7 @@ void * TObjNpcNFW00__create(void *arg0) {
 void TObjNpcNFW00::free_resources() {
     if ((u32) TObjNpcNFW00__texture_gvm_handle != 0U) {
         release_texture_list((void*)TObjNpcNFW00__texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjNpcNFW00__texture_gvm_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcNFW00__texture_gvm_handle);
         TObjNpcNFW00__texture_gvm_handle = 0U;
     }
     if ((u32) TObjNpcNFW00__named_object_resource != 0U) {

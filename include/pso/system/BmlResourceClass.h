@@ -4,12 +4,19 @@
 #include "types.h"
 #include <stddef.h>
 
+struct NJS_OBJECT;
+struct GinjaTextureList;
+
 struct BmlModelEntry {
     s32 m_0;
     s32 m_4;
-    s32 model;
-    s32 m_c;
+    NJS_OBJECT *model;
+    GinjaTextureList *m_c;
 };
+
+typedef char BmlModelEntry_size[sizeof(BmlModelEntry) == 0x10 ? 1 : -1];
+typedef char BmlModelEntry_model_offset[offsetof(BmlModelEntry, model) == 0x8 ? 1 : -1];
+typedef char BmlModelEntry_texture_offset[offsetof(BmlModelEntry, m_c) == 0xC ? 1 : -1];
 
 struct AnimationMotion;
 struct BmlMotionEntry {

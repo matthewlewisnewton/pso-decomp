@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "pso/render/ColorCopy.h"
 #pragma push
 
@@ -30,8 +31,8 @@ struct E_8034923C {
 struct O_8034923C { u8 pad0[0x1C]; s32 n; s32 active; E_8034923C e[16]; };
 
 extern "C" {
-extern const f32 lbl_805DFCE8;
-extern const f32 lbl_805DFCEC;
+static const f32 lbl_805DFCE8 = -1.01f;
+static const f32 lbl_805DFCEC = 1e-05f;
 void copy_effect_data__18TAdChrMoveEffectGCFPvPv(S_803491F8 *arg0, S_803491F8 *arg1);
 #pragma push
 #pragma fp_contract on
@@ -72,7 +73,7 @@ void TAdChrMoveEffectGC::sub_80348E34() {
                 desc.pos[7] = *(f32 *)((s8 *)e + 0x48);
                 copy_color_bytes(desc.col + 12, src);
                 desc.col[15] = *(u8 *)((s8 *)e + 0x50);
-                ((TObjCMHairMenu *)(&desc))->draw_tri_fan_2d(4, 7, lbl_805DFCEC * (f32)i + lbl_805DFCE8);
+                ((ColorLineList *)(&desc))->draw_tri_fan_2d(4, 7, lbl_805DFCEC * (f32)i + lbl_805DFCE8);
             }
         }
     }

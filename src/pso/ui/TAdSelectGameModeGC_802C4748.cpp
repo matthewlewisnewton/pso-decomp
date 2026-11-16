@@ -58,8 +58,6 @@ extern s32 __vt__19TAdSelectGameModeGC[];
 extern void *TAdSelectGameModeGC__name;
 extern const f32 lbl_805DE538;
 int sync_char_select_state__10TObjPlayerFv(void*);
-// This renderer's receiver at the legacy entry point is a ColorLineList.
-void draw_tri_fan_2d__14TObjCMHairMenuFllf(ColorLineList *polygon, s32 count, s32 flags, f32 depth);
 
 int fn_802C4748(void* p) { return sync_char_select_state__10TObjPlayerFv(p); }
 
@@ -159,7 +157,7 @@ u8 *__ct__19TAdSelectGameModeGCFv(u8 *arg0, void *parent) {
     *(void **)((s8 *)arg0 + 0x20) = p;
     ((TAdMultiPlyChrSelectGC *)(*(s32 *)((s8 *)arg0 + 0x20)))->set_entry_value(0, get_localized_text_entry(0x15, 0));
     ((TAdMultiPlyChrSelectGC *)(*(s32 *)((s8 *)arg0 + 0x20)))->set_entry_value(1, get_localized_text_entry(0x15, 1));
-    create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)arg0, 0xA, (f32)lbl_805DE538);
+    create_draw_line_ctrl(reinterpret_cast<TObject *>(arg0), 0xA, (f32)lbl_805DE538);
     return arg0;
 }
 
@@ -188,7 +186,7 @@ void draw_selection_plate(const void *plateStorage, const ColorLineVertex *posit
     rectangle.verts[3].y = rectangle.verts[0].y;
     copy_color_bytes(&rectangle.colors[3], &color);
 
-    draw_tri_fan_2d__14TObjCMHairMenuFllf(&rectangle, 4, 7, -30.0f + 0.001f * static_cast<f32>(index));
+    rectangle.draw_tri_fan_2d( 4, 7, -30.0f + 0.001f * static_cast<f32>(index));
 }
 
 }

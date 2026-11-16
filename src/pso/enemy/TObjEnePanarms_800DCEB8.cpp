@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -139,7 +140,7 @@ typedef NpcAnimationBinding PanarmsNpcSpawnDescriptor;
 extern "C" {
 s32 obj_setFlags30(void *, int);
 
-extern const f32 lbl_805DA4DC;
+static const f32 lbl_805DA4DC = 7.5f;
 s32 spawn_continuous_particle_with_direction(void *, void *, int, int);
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
@@ -147,7 +148,7 @@ void *spawn_directional_particle(void *pos, void *dir, s32 id);
 
 void set_field_b8__10TObjMotionFs(void *, int);
 f32 vec3_add_to(void *, void *);
-extern const f32 lbl_805DA4D8;
+static const f32 lbl_805DA4D8 = -0.5f;
 s32 queue_destruction__7TObjectFv(void *);
 extern TObjMotionAction lbl_80494F4C[12];
 extern f32 lbl_805D527C;
@@ -155,25 +156,25 @@ extern u8 lbl_805D5280;
 s32 project_actor_to_ground(void *, void *, int);
 u16 find_nearest_visible_player(void *, f32 *, f32);
 f64 atan2_float(f32, f32);
-extern const f64 TObjEnePanarms__data_8043CD20;
+static const f64 TObjEnePanarms__data_8043CD20 = 10430.38043493439;
 s32 approach_angle_limited(s32, s32, s32);
-extern const f32 lbl_805DA4F0;
+static const f32 lbl_805DA4F0 = 500.0f;
 f32 vector_length(void *);
-extern const f32 lbl_805DA4F4;
+static const f32 lbl_805DA4F4 = 30.0f;
 
 extern PanarmsNpcSpawnDescriptor panarms_npc_spawn_descriptor[];
 
 extern u32 TObjEnePanarms__entry_params_resource;
-extern const f32 lbl_805DA51C;
+static const f32 lbl_805DA51C = 12.5f;
 f32 random_ratio__9TObjCharaFv(s32 arg0);
-extern const f32 lbl_805DA4D4;
-extern const f32 lbl_805DA4E8;
-extern const f32 lbl_805DA4EC;
+static const f32 lbl_805DA4D4 = 1.99f;
+static const f32 lbl_805DA4E8 = 655360.0f;
+static const f32 lbl_805DA4EC = 6.28f;
 s32 subtract_vector(void *, void *);
 s32 normalize_vector(void *);
 u32 csnLookAt(void *, void *);
 f32 horizontal_distance_squared(void *, void *);
-extern const f32 lbl_805DA4E4;
+static const f32 lbl_805DA4E4 = 250000.0f;
 void *create_particle_emitter(void *pos, s32 id);
 extern s32 lbl_8043CD04[];
 extern s32 lbl_8043CD0C[];
@@ -181,10 +182,10 @@ extern s32 lbl_8043CCF4[];
 extern s32 lbl_8043CCFC[];
 extern s32 registered_player_count;
 int TObjEnePanarms__sub_800DFBC4(void *p);
-extern const f32 lbl_805DA4C4;
-extern const f32 lbl_805DA4C8;
-extern const f32 lbl_805DA4CC;
-extern const f32 lbl_805DA4D0;
+static const f32 lbl_805DA4C4 = 32768.0f;
+static const f32 lbl_805DA4C8 = 6.0f;
+static const f32 lbl_805DA4CC = 1.5f;
+static const f32 lbl_805DA4D0 = -1.0f;
 void free_collision_body_parts(void *);
 int post_translate_matrix(void*);
 int rotate_matrix_y(void*, void*);
@@ -198,17 +199,17 @@ s32 rotate_matrix_z(int, int);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 rotate_matrix_x(int, int);
 s32 scale_current_matrix(Vec *);
-extern const f32 lbl_805DA4F8;
-extern const f32 lbl_805DA4FC;
-extern const f32 lbl_805DA500;
-extern const f32 lbl_805DA504;
-extern const f32 lbl_805DA508;
-extern const f32 lbl_805DA50C;
-extern const f32 lbl_805DA510;
-extern const f32 lbl_805DA514;
-extern const f32 lbl_805DA518;
+static const f32 lbl_805DA4F8 = 19.800001f;
+static const f32 lbl_805DA4FC = 0.25f;
+static const f32 lbl_805DA500 = 0.75f;
+static const f32 lbl_805DA504 = 0.2f;
+static const f32 lbl_805DA508 = 40.0f;
+static const f32 lbl_805DA50C = 0.1f;
+static const f32 lbl_805DA510 = 0.65f;
+static const f32 lbl_805DA514 = 1.0f;
+static const f32 lbl_805DA518 = 2.0f;
 
-extern const f32 lbl_805DA4E0;
+static const f32 lbl_805DA4E0 = -39.600002f;
 
 extern "C" {
 s32 is_split_screen();
@@ -241,7 +242,6 @@ struct PanarmsMovementParameters {
 };
 extern "C" {
 extern const char *TObjEnePanarms__name;
-s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
 CollisionBody *init_collision_body_parts(TObjCollidable *, const CollisionBody *, s32);
 void register_entity_by_id(TObjBase *);
 }
@@ -1171,7 +1171,7 @@ TObjEnePanarms::TObjEnePanarms(TObject *parent, void *set_data) : TObjEnemy(pare
     add_flags_2e4(2);
     apply_set_data(set_data);
     clear_lobby_object_state();
-    texlist = TObjFish__sub_8001EDB0((BmlResource *)TObjEnePanarms__entry_params_resource, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)((BmlResource *)TObjEnePanarms__entry_params_resource), 0);
     model = (void *)get_bml_model((BmlResource *)TObjEnePanarms__entry_params_resource, 0);
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     collision_body = init_collision_body_parts(this, &lbl_80494F20, 1);

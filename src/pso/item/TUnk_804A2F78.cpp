@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80126EA8.h"
 #include "pso/item/TUnk_804A2F78.h"
@@ -16,12 +17,12 @@ void TObjPlayer::handle_tentacle_state_2() { if (get_player_list__10TObjPlayerFv
 
 void TUnk_804A2F78::update_idle() {
     s32 arg0 = (s32)this;
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x200), (f32)(-0.6f), (f32)1.0f);
+    add_float_clamped((f32 *)(arg0 + 0x200), (f32)(-0.6f), (f32)1.0f);
 }
 
 void TUnk_804A2F78::update_attack() {
     s32 arg0 = (s32)this;
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x200), (f32)0.6f, (f32)4.0f);
+    add_float_clamped((f32 *)(arg0 + 0x200), (f32)0.6f, (f32)4.0f);
 }
 
 void TObjPlayer__sub_80126F3C(void) {  }

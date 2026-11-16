@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResource.h"
 #include "pso/object/TObjFish_8001ED90.h"
@@ -35,12 +36,12 @@ AnimationMotion *get_bml_motion(BmlResource *resource, s32 index) {
     return resource->motions[index].motion;
 }
 
-s32 TObjFish__sub_8001EDB0(BmlResource *resource, s32 index) {
+GinjaTextureList *TObjFish__sub_8001EDB0(BmlResource *resource, s32 index) {
     return resource->models[index].m_c;
 }
 
 NJS_OBJECT *get_bml_model(BmlResource *resource, s32 index) {
-    return (NJS_OBJECT *)resource->models[index].model;
+    return resource->models[index].model;
 }
 
 typedef char RecoveredGlobal_8001EDF4_lbl_804FE148_size[sizeof(RecoveredGlobal_8001EDF4_lbl_804FE148) == 0x20 ? 1 : -1];

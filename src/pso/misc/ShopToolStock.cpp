@@ -53,7 +53,7 @@ typedef struct Hdr_8022525C
 
 extern "C" {
 s32 is_split_screen(void);
-extern u8 lbl_8044C478[];
+extern const u8 lbl_8044C478[] = "ToolRandom.rel";
 extern s32 shop_tool_stock_buffers[];
 extern u32 lobby_tool_random_rel;
 extern int shop_tool_stock_level;

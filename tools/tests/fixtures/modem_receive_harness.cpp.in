@@ -11,6 +11,8 @@
 using u8 = uint8_t;
 using u16 = uint16_t;
 using u32 = uint32_t;
+using u64 = uint64_t;
+using BOOL = int;
 using s32 = int32_t;
 struct OSContext {};
 using EXICallback = void (*)(s32, OSContext *);
@@ -18,7 +20,8 @@ enum { EXI_READ, EXI_WRITE };
 
 @@RECORDS@@
 
-static ModemExiState modem_exi_state{};
+static ModemSendState modem_send_state{};
+static ModemReceiveState modem_receive_state{};
 static struct {
     u16 f0, f2;
     u8 f4, f5, f6, f7;
@@ -83,7 +86,8 @@ static void DCInvalidateRange(void *, u32) {
 void TAdSinglePlyChrSelectGC__sub_8042C124(s32, OSContext *);
 
 static void reset() {
-    modem_exi_state = {};
+    modem_send_state = {};
+    modem_receive_state = {};
     lbl_805D7C90 = {};
     lbl_805D7C9C = 0;
     trace.clear();
@@ -99,12 +103,12 @@ static size_t at(const std::string &entry) {
 }
 static void client(s32 length) {
     assert(lbl_805D7C9C == 1);
-    assert(modem_exi_state.receive.callback == nullptr);
-    assert(modem_exi_state.receive.received == length);
+    assert(modem_receive_state.callback == nullptr);
+    assert(modem_receive_state.received == length);
     assert(trace.back() == "unlock");
     client_length = length;
     log("client");
-    modem_exi_state.receive.received = 99;
+    modem_receive_state.received = 99;
 }
 
 @@FUNCTIONS@@
@@ -114,7 +118,7 @@ int main() {
 
     // Async head/DMA/tail partition, deferred completion and post-callback reset.
     reset();
-    auto &receive = modem_exi_state.receive;
+    auto &receive = modem_receive_state;
     receive.buffer = buffer + 1;
     receive.capacity = 100;
     receive.callback = client;

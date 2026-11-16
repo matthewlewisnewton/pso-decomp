@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "types.h"
 #include "pso/misc/TWindowKeyBoardBase_8008102C.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
@@ -34,8 +35,8 @@ u16 map_char_to_font_code(u16 code);
 u8 get_font_char_advance(u16);
 void apply_context_transform_to_rect(void *, void *);
 extern u32 lbl_804CFA84[];
-extern const f32 lbl_805DD048;
-extern const f32 lbl_805DD058;
+static const f32 lbl_805DD048 = 20.0f;
+static const f32 lbl_805DD058 = 0.0598f;
 s32 measure_string_len__20TWindowSubStatusDispFv(void *);
 struct KbSoft_8025CFA8 {
     u8 pad0[0xA8];
@@ -139,20 +140,20 @@ s32 dispatch_request_0x25__19TWindowKeyBoardSoftFll(void *, s32 *);
 s32 dispatch_request_0x23__19TWindowKeyBoardSoftFll(void *, void *);
 s32 dispatch_request_0x24__19TWindowKeyBoardSoftFll(void *, void *);
 extern s32 actor_frame_tick;
-extern const f32 lbl_805DD04C;
-extern const f32 lbl_805DD050;
-extern const f32 lbl_805DD054;
+static const f32 lbl_805DD04C = 0.1794f;
+static const f32 lbl_805DD050 = 5.0f;
+static const f32 lbl_805DD054 = 18.0f;
 s32 dispatch_request_0x22__19TWindowKeyBoardSoftFll(void *, void *);
 s32 TWindowKeyBoardSoft__sub_803E67D4(void *, void *);
 s32 TWindowKeyBoardSoft__sub_803E6868(void *, void *);
 s32 dispatch_request_0x14__19TWindowKeyBoardSoftFll(void *, void *);
 s32 dispatch_request_0x13__19TWindowKeyBoardSoftFlll(u8 *, s32 *, s8 *);
 
-extern const f32 lbl_805DD038;
-extern const f32 lbl_805DD03C;
-extern const f32 lbl_805DD040;
-extern const f32 lbl_805DD044;
-extern const f32 lbl_805DD05C;
+static const f32 lbl_805DD038 = 100000.0f;
+static const f32 lbl_805DD03C = 38.0f;
+static const f32 lbl_805DD040 = 0.1f;
+static const f32 lbl_805DD044 = 8.0f;
+static const f32 lbl_805DD05C = -1.0f;
 extern const f32 lbl_805DD060;
 
 void TWindowKeyBoardBase::init_keyboard_text_field(u32 arg1, u32 arg2) {
@@ -753,7 +754,7 @@ void fn_8025DE10(void *arg0, void *arg1) {
     pos[5] = bottom;
     pos[6] = pos[0];
     pos[7] = bottom;
-    ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 6, depth);
+    ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 6, depth);
 }
 
 void TWindowKeyBoardBase::draw_text_glyphs(void *arg1, void *arg2) {
@@ -811,7 +812,7 @@ void TWindowKeyBoardBase::draw_text_glyphs(void *arg1, void *arg2) {
                 pos[5] = q.y2;
                 pos[6] = q.x;
                 pos[7] = q.y2;
-                ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 6, depth);
+                ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 6, depth);
                 ((f32 *)arg2)[0] += (f32)(s32)adv;
             }
         }
@@ -858,7 +859,7 @@ void TWindowSubStatusDisp__sub_8025E148(TWindowKeyBoardBase *self, TWindowKeyBoa
             pos[5] = q.y2;
             pos[6] = q.x;
             pos[7] = q.y2;
-            ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 6, depth);
+            ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 6, depth);
             cursor[0] += (f32)adv;
         }
     }

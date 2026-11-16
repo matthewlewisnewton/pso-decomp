@@ -1,20 +1,33 @@
-#include "pso/system/BmlResource.h"
+#include "pso/system/BmlTextureList.h"
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
-#include "pso/system/BmlResourceClass.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/player/TObjPlayer_801542CC.h"
+#include "pso/misc/TLobby.h"
+#include "pso/network/client_id.h"
+#include <stdlib.h>
+#include "pso/system/BmlResource.h"
+#include "pso/system/GinjaMaterial.h"
+#include "pso/system/ModelDrawContext.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/object/TObjFish_8001ED90.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/TMainTask.h"
 #include "pso/TObject.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/object/TObject_80019A50.h"
 #include "pso/render/render_util.h"
-#include "pso/unk/text_803D96A8.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/unk/text_803D8F74.h"
+#include "pso/misc/TCameraCtrl.h"
 
 #include "pso/system/vector.h"
 #include "pso/TLevelSelect.h"
 #include "pso/TParticleCtrl.h"
 #include "pso/misc/TOKey.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
+#include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/npc/TObjNpcEnemy.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
@@ -23,147 +36,33 @@
 #include "pso/map/FloorArea.h"
 #include "pso/misc/TLobbyEventTheme.h"
 
-struct Base_8029D3A4_8029CF68;
-struct Base_8029CF68;
-struct VBase_18_076902;
-struct RecoveredGlobal_8029D238_TOKeyJungleMain__data_804653C8;
-struct RecoveredGlobal_8029CFEC_lbl_804DC590;
-struct RecoveredGlobal_8029D200_TOKeyJungleMain__data_804653C8;
-struct VBase_18_1a504b;
-struct RecoveredGlobal_8029D438_lbl_804DC5A0;
-struct RecoveredGlobal_8029D438___vt__15TOKeyJungleMain;
-struct VBase_18_26a62c;
-struct SVec_8029D5C8;
-struct Fish_8029D5C8;
-struct Vec_8029E170;
-struct Ent_8029E170;
 extern "C" {
-void * __nw__7TObjectFUl(int);
-void render__8TObjFishFv(u8 *arg0);
-s32 init_fish_school__8TObjFishFPvll(u8 *arg0, Vec_8029E170 *arg1, s32 arg2, s32 arg3);
-extern s32 TObjFish__area_bml_resource;
-extern void* __vt__8TObjFish[];
-extern void* fish_resource_name_table[];
-}
+BmlResource *TObjFish__area_bml_resource;
+s32 TObjFish__area_event_stage;
 
-struct Base_8029D3A4_8029CF68 { char pad[0x18]; };
-
-struct VObj_8029D3A4_8029CF68 : Base_8029D3A4_8029CF68 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual void m8();
-    virtual void m9();
-    virtual void m10();
-    virtual void m11();
-    virtual void m12();
-    virtual void m13();
-    virtual void m14();
-    virtual void m15();
-    virtual void m16();
-    virtual void m17();
-    virtual void m18();
-};
-
-struct Base_8029CF68 { char pad[0x18]; };
-
-struct VObj_8029CF68 : Base_8029CF68 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual s32 m8(f32, f32);
-};
-
-struct VBase_18_076902 { char pad[0x18]; };
-
-struct RecoveredGlobal_8029D238_TOKeyJungleMain__data_804653C8 { s32 value; u8 remaining[0x8]; };
-typedef char RecoveredGlobal_8029D238_TOKeyJungleMain__data_804653C8_size[sizeof(RecoveredGlobal_8029D238_TOKeyJungleMain__data_804653C8) == 0xC ? 1 : -1];
-
-struct RecoveredGlobal_8029CFEC_lbl_804DC590 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8029CFEC_lbl_804DC590_size[sizeof(RecoveredGlobal_8029CFEC_lbl_804DC590) == 0x10 ? 1 : -1];
-
-struct RecoveredGlobal_8029D200_TOKeyJungleMain__data_804653C8 {
-    s32 value;
-    u8 remaining[0x8];
-};
-
-struct VBase_18_1a504b { char pad[0x18]; };
-
-struct RecoveredGlobal_8029D438_lbl_804DC5A0 {
-    s32 value;
-    u8 remaining[0x28];
-};
-
-struct RecoveredGlobal_8029D438___vt__15TOKeyJungleMain {
-    s32 value;
-    u8 remaining[0x70];
-};
-
-extern "C" {
-s32 post_translate_matrix(void *);
-s32 draw_ginja_object();
-s32 draw_ginja_model_with_motion(s32, s32, f32);
-s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 rotate_matrix_y(s32, s32);
-s32 push_matrix();
-
-extern u32 TOKeyJungleMain__static_model_resource;
-void render__15TOKeyJungleMainFv(TOKeyJungleMain *arg0);
-void free_collision_body_parts(void *);
-void __dl__7TObjectFPv(void *);
-void *__dt__5TOKeyFv(void *arg0, s16 arg1);
-extern s32 __vt__15TOKeyJungleMain[];
-void *__dt__15TOKeyJungleMainFv(void *arg0, s16 arg1);
-extern s32 TObjFish__area_event_stage;
-u8 update_state__8TObjFishFv(void *arg0);
-extern const f32 lbl_805DDD38;
-extern const f32 lbl_805DDD3C;
-extern RecoveredGlobal_8029D238_TOKeyJungleMain__data_804653C8 TOKeyJungleMain__data_804653C8;
-extern s32 game_difficulty_selection;
-extern RecoveredGlobal_8029CFEC_lbl_804DC590 bm_obj_jungle_mkey_resource_descriptor;
-s32 dispatch_by_phase__15TOKeyJungleMainFlUs(void *, int);
-s32 init_collision_body_parts(void *, void *, int);
-void *__ct__5TOKeyFP7TObject(TOKey *arg0);
-extern RecoveredGlobal_8029D438_lbl_804DC5A0 TOKeyJungleMain_collision_body_parts;
-extern s32 lbl_805D3D50;
-u8 *TOKeyJungleMain__ct(TOKeyJungleMain *arg0, s32 arg1, s32 arg2);
-void debug_printf_at(s32, const char *, ...);
-extern char lbl_80465A2C[];
-
-u8 TObjFish::update_state() {
+s32 TObjFish::update_state() {
     if ((s32) TObjFish__area_event_stage == 0) {
-        switch (*(s16 *)((s8 *)this + 0x90)) {
+        switch (m_90) {
         case 0:
             if (is_lobby_event_active() == 0) {
-                *(s16 *)((s8 *)this + 0x90) = 2;
+                m_90 = 2;
                 this->m_92 = 0x28;
             }
             goto Lend;
         case 2:
             this->m_92 = (this->m_92 - 1);
             if (this->m_92 <= 0) {
-                *(s16 *)((s8 *)this + 0x90) = 3;
+                m_90 = 3;
             }
             goto Lend;
         case 3:
         default:
             if (is_lobby_event_active() != 0) {
-                *(s16 *)((s8 *)this + 0x90) = 0;
+                m_90 = 0;
             }
         }
 Lend:
-        return (u8) (*(s16 *)((s8 *)this + 0x90) == 3);
+        return (u8) (m_90 == 3);
     }
     return 1U;
 }
@@ -205,46 +104,16 @@ extern const char lbl_80465D30[] = "sakana05_obj1.njm";
 extern const char lbl_80465D44[] = "sakana06_obj1.njm";
 extern const char lbl_80465D58[] = "bm_sakana_obj_seabed2.bml";
 
-extern const f32 lbl_80465D74[15] = { 1.0f, 1.0f, 1.0f, 0.4f, 0.4f, 0.4f, 0.4f, 0.4f, 0.4f, 0.4f, 0.4f, 0.4f, 0.0f, 0.0f, 0.0f };
-extern const f32 lbl_80465DB0[15] = { 30.0f, 30.0f, 30.0f, 5.0f, 20.0f, 30.0f, 5.0f, 5.0f, 5.0f, 30.0f, 30.0f, 30.0f, 30.0f, 30.0f, 30.0f };
+extern const f32 lbl_80465D74[5][3] = { { 1.0f, 1.0f, 1.0f }, { 0.4f, 0.4f, 0.4f }, { 0.4f, 0.4f, 0.4f }, { 0.4f, 0.4f, 0.4f }, { 0.0f, 0.0f, 0.0f } };
+extern const f32 lbl_80465DB0[5][3] = { { 30.0f, 30.0f, 30.0f }, { 5.0f, 20.0f, 30.0f }, { 5.0f, 5.0f, 5.0f }, { 30.0f, 30.0f, 30.0f }, { 30.0f, 30.0f, 30.0f } };
 extern const char lbl_80465DEC[] = "TObjFish";
+const char *TObjFish__class_name = lbl_80465DEC;
 #pragma pop
 }
 
-struct VBase_18_26a62c { char pad[0x18]; };
-struct VObj_18_26a62c : VBase_18_26a62c {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual s32 m8(f32, f32);
-};
-
-struct SVec_8029D5C8 { s16 x, y, z; };
-struct Fish_8029D5C8 {
-    f32 x, y, z;
-    f32 tx, ty, tz;
-    u8 pad18[0xC];
-    s32 ang;
-    f32 frame;
-    s16 rot;
-    u8 pad2e[2];
-    s16 kind;
-    u8 pad32[2];
-    s32 seen;
-    u8 pad38[0xC];
-};
-
 extern "C" {
 
-extern u8 *camera_ctrl_instance;
-extern const f32 lbl_805DDD40;
-extern const f32 TObjFish__data_805DDD44;
-extern const f32 lbl_805DDD48;
+extern TCameraCtrl *camera_ctrl_instance;
 
 #pragma push
 #pragma fp_contract on
@@ -258,88 +127,84 @@ inline void wrap_8029D5C8(s16 *p) {
     }
 }
 
-#define F(T, o) (*(T *)(arg0 + (o)))
-void render__8TObjFishFv(u8 *arg0) {
-    Fish_8029D5C8 *f;
+void TObjFish::render() {
+    TObjFishEntry *f;
     s32 n;
     struct { f32 x, y, z; } d;
 
     if (TMainTask::get_render_pass() != 1 &&
-        ((VObj_18_26a62c *)arg0)->m8(lbl_805DDD40, TObjFish__data_805DDD44) != 0 &&
-        F(Fish_8029D5C8 *, 0xA0) != NULL && ((s32 (*)(void *))update_state__8TObjFishFv)(arg0) != 0) {
-        f = F(Fish_8029D5C8 *, 0xA0);
-        n = F(s32, 0x94);
+        update_object_view_visibility(400.0f, 200.0f) != 0 &&
+        m_a0 != NULL && update_state() != 0) {
+        f = m_a0;
+        n = (s32)m_94;
         push_matrix();
-        translate_matrix_vec3(0, arg0 + 0x38);
-        rotate_matrix_y(0, F(s32, 0x60));
+        translate_matrix_vec3(0, (u8 *)&position);
+        rotate_matrix_y(0, rotation.yaw);
         if (camera_ctrl_instance != NULL) {
-            d.x = *(f32 *)(camera_ctrl_instance + 0x178) - F(f32, 0x38);
-            d.y = *(f32 *)(camera_ctrl_instance + 0x17C) - F(f32, 0x3C);
-            d.z = *(f32 *)(camera_ctrl_instance + 0x180) - F(f32, 0x40);
+            d.x = camera_ctrl_instance->position.x - position.x;
+            d.y = camera_ctrl_instance->position.y - position.y;
+            d.z = camera_ctrl_instance->position.z - position.z;
         }
         while (n-- != 0) {
             s16 a;
             s16 *pa;
             f32 r;
             pa = &a;
-            *pa = (s16)f->ang - f->rot;
+            *pa = (s16)f->yaw - f->angle;
             if (*pa > 0) {
                 *pa -= 0x4000;
             } else {
                 *pa += 0x4000;
             }
-            r = lbl_805DDD48 * a;
+            r = 0.2f * a;
             {
                 struct { f32 x, y, z; } e, t;
-                e.x = d.x - f->x;
-                e.y = d.y - f->y;
-                e.z = d.z - f->z;
-                t.x = f->tx - f->x;
-                t.y = f->ty - f->y;
-                t.z = f->tz - f->z;
+                e.x = d.x - f->pos.x;
+                e.y = d.y - f->pos.y;
+                e.z = d.z - f->pos.z;
+                t.x = f->target.x - f->pos.x;
+                t.y = f->target.y - f->pos.y;
+                t.z = f->target.z - f->pos.z;
                 if (f->seen == 0 || e.x * e.x + e.y * e.y + e.z * e.z < t.x * t.x + t.y * t.y + t.z * t.z) {
                     f->seen = 1;
-                    f->tx = d.x;
-                    f->ty = d.y;
-                    f->tz = d.z;
+                    f->target.x = d.x;
+                    f->target.y = d.y;
+                    f->target.z = d.z;
                 }
             }
             push_matrix();
-            post_translate_matrix(f);
-            rotate_matrix_y(0, f->rot + (s32)r);
+            post_translate_matrix(&f->pos.x);
+            rotate_matrix_y(0, f->angle + (s32)r);
             set_draw_list_mask(3);
             if (get_current_floor_area() == AREA_SEABED_UPPER) {
-                switch (f->kind) {
+                switch (f->anim) {
                 case 1:
-                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1)));
-                    (s32)get_bml_model((BmlResource *)TObjFish__area_bml_resource, 1);
-                    draw_ginja_object();
+                    set_current_texture_list(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1));
+                    draw_ginja_object(get_bml_model(TObjFish__area_bml_resource, 1));
                     break;
                 case 2:
-                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 2)));
-                    (s32)get_bml_model((BmlResource *)TObjFish__area_bml_resource, 2);
-                    draw_ginja_object();
+                    set_current_texture_list(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 2));
+                    draw_ginja_object(get_bml_model(TObjFish__area_bml_resource, 2));
                     break;
                 default:
-                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 0)));
-                    (s32)get_bml_model((BmlResource *)TObjFish__area_bml_resource, 0);
-                    draw_ginja_object();
+                    set_current_texture_list(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 0));
+                    draw_ginja_object(get_bml_model(TObjFish__area_bml_resource, 0));
                     break;
                 }
             } else {
                 set_motion_packed_rotation();
-                switch (f->kind) {
+                switch (f->anim) {
                 case 1:
-                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1)));
-                    draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjFish__area_bml_resource, 1), get_bml_motion(TObjFish__area_bml_resource, 1), f->frame);
+                    set_current_texture_list(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 1));
+                    draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 1), get_bml_motion(TObjFish__area_bml_resource, 1), f->frame);
                     break;
                 case 2:
-                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 2)));
-                    draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjFish__area_bml_resource, 2), get_bml_motion(TObjFish__area_bml_resource, 2), f->frame);
+                    set_current_texture_list(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 2));
+                    draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 2), get_bml_motion(TObjFish__area_bml_resource, 2), f->frame);
                     break;
                 default:
-                    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 0)));
-                    draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjFish__area_bml_resource, 0), get_bml_motion(TObjFish__area_bml_resource, 0), f->frame);
+                    set_current_texture_list(TObjFish__sub_8001EDB0(TObjFish__area_bml_resource, 0));
+                    draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 0), get_bml_motion(TObjFish__area_bml_resource, 0), f->frame);
                     break;
                 }
                 clear_motion_packed_rotation();
@@ -351,80 +216,191 @@ void render__8TObjFishFv(u8 *arg0) {
         pop_matrix();
     }
 }
-#undef F
+
+void TObjFish::run_task() {
+    TObjFishEntry *f;
+    s32 n;
+    s32 k;
+    f32 dx;
+    f32 dy;
+    f32 dz;
+    f32 best;
+    s16 m;
+
+    if (m_a0 == NULL) {
+        return;
+    }
+    n = m_94;
+    f = m_a0;
+    while (n-- != 0) {
+        k = m_98 + n;
+        if (--f->timer <= 0) {
+            f->timer = 0;
+        }
+        f->pos.x += f->velocity.x;
+        f->pos.y += f->velocity.y;
+        f->pos.z += f->velocity.z;
+        if (fabs_float(f->pos.x) >= scale.x) {
+            f->pos.x -= f->velocity.x;
+            f->velocity.x = -f->velocity.x;
+        }
+        if (fabs_float(f->pos.y) >= scale.y) {
+            f->pos.y -= f->velocity.y;
+            f->velocity.y = -f->velocity.y;
+        }
+        if (fabs_float(f->pos.z) >= scale.z) {
+            f->pos.z -= f->velocity.z;
+            f->velocity.z = -f->velocity.z;
+        }
+        f->velocity.y = 0.85f * (1e-05f + f->velocity.y);
+        f->velocity.x *= 0.98f;
+        f->velocity.z *= 0.98f;
+        if (f->mode == 1) {
+            f32 ex;
+            f32 ez;
+            f32 ey;
+            ex = f->target.x - f->pos.x;
+            ey = f->target.y - f->pos.y;
+            ez = f->target.z - f->pos.z;
+            if (ex * ex + ey * ey + ez * ez < 10000.0f) {
+                f->mode = 0;
+            } else if (k & 7) {
+                k >>= 3;
+            } else {
+                f++;
+                continue;
+            }
+        }
+        if ((k & 7) == 0 && f->timer == 0) {
+            TObjCollidable *pl;
+            TLobby::get_game_mode();
+            pl = find_entity_by_id(local_client_id);
+            best = 900.0f;
+            if (pl != NULL) {
+                f32 d;
+                dx = (pl->position.x - position.x) - f->pos.x;
+                dy = (pl->position.y - position.y) - f->pos.y;
+                dz = (pl->position.z - position.z) - f->pos.z;
+                d = dx * dx + dy * dy + dz * dz;
+                if (best > d) {
+                    best = d;
+                }
+            }
+            if (best < 900.0f) {
+                f32 s;
+                f->timer = 0.5f * (200.0f * ((1.0f / 32768.0f) * (f32)rand()));
+                s = 0.9f / newton_sqrtf(best);
+                dx *= s;
+                dy *= s;
+                dz *= s;
+                f->velocity.x = -dx;
+                f->velocity.y = -dy;
+                f->velocity.z = -dz;
+            } else {
+                f32 a = f->velocity.x * f->velocity.x;
+                f32 b = f->velocity.y * f->velocity.y;
+                f32 c = f->velocity.z * f->velocity.z;
+                if (c + (a + b) <= 0.0009f) {
+                    f->timer = 200.0f * ((1.0f / 32768.0f) * (f32)rand());
+                    f->velocity.x += 0.9f * (2.0f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f));
+                    f->velocity.y += 0.9f * (2.0f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f));
+                    f->velocity.z += 0.9f * (2.0f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f));
+                } else {
+                    dx = f->pos.x - f->target.x;
+                    dy = f->pos.y - f->target.y;
+                    dz = f->pos.z - f->target.z;
+                    if (dx * dx + dy * dy + dz * dz > 10000.0f) {
+                        f->mode = 1;
+                    }
+                }
+            }
+            if ((1.0f / 32768.0f) * (f32)rand() < 6.6666665f) {
+                f->velocity.x += 0.02f * (2.0f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f));
+                f->velocity.y += 0.02f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f);
+                f->velocity.z += 0.02f * (2.0f * ((1.0f / 32768.0f) * (f32)rand() - 0.5f));
+            }
+        }
+        if (fabs_float(f->velocity.z) > 0.0f && (k & 3) == 0) {
+            f->target_angle = 10430.38043493439 * atan2_float(f->velocity.x, f->velocity.z);
+        }
+        f32 turn = (s16)(f->target_angle - f->angle);
+        turn *= 0.12f;
+        f->angle += (s32)turn;
+        if ((k & 3) == 0) {
+            turn = (s16)((s16)((s32)(10430.38043493439 * atan2_float(f->target.x - f->pos.x, f->target.z - f->pos.z)) - rotation.yaw) - f->yaw);
+            turn *= 0.8f;
+            f->yaw += (s32)turn;
+        }
+        m = f->anim;
+        if (m < 0 || m > 2) {
+            f->frame += lbl_80465D74[TObjFish__area_event_stage][0];
+            if (f->frame >= lbl_80465DB0[TObjFish__area_event_stage][0]) {
+                f->frame -= lbl_80465DB0[TObjFish__area_event_stage][0];
+            }
+        } else {
+            f->frame += lbl_80465D74[TObjFish__area_event_stage][m];
+            if (f->frame >= lbl_80465DB0[TObjFish__area_event_stage][f->anim]) {
+                f->frame -= lbl_80465DB0[TObjFish__area_event_stage][f->anim];
+            }
+        }
+        f->seen = 0;
+        f++;
+    }
+    m_98++;
+}
 #pragma pop
 
 }
 
-struct Vec_8029E170 { f32 x, y, z; };
-struct Ent_8029E170 {
-    Vec_8029E170 pos;
-    Vec_8029E170 v0c;
-    Vec_8029E170 v18;
-    s32 f24;
-    f32 f28;
-    s16 f2c;
-    s16 f2e;
-    s16 f30;
-    s16 f32;
-    s32 f34;
-    s32 f38;
-    u8 pad3c[8];
-};
-
 extern "C" {
 
 int rand(void);
-extern const f32 lbl_805DDD60;
-extern const f32 lbl_805DDD64;
-extern const f32 lbl_805DDD70;
-extern const f32 lbl_805DDD7C;
 
 #pragma push
 #pragma fp_contract on
 s32 TObjFish::init_fish_school(void *arg1_arg, s32 arg2, s32 arg3) {
-    Vec_8029E170 *arg1 = (Vec_8029E170 *)arg1_arg;
-    Ent_8029E170 *p;
+    Vec *arg1 = (Vec *)arg1_arg;
+    TObjFishEntry *p;
     s32 i;
 
     if (TObjFish__area_event_stage == 0 && is_lobby_event_active() != 0) {
-        *(s16 *)((s8 *)((u8 *)this) + 0x90) = 0;
+        m_90 = 0;
     } else {
-        *(s16 *)((s8 *)((u8 *)this) + 0x90) = 3;
+        m_90 = 3;
     }
     this->m_92 = 0;
-    if (*(s32 *)&this->m_94 < 1) {
+    if ((s32)m_94 < 1) {
         return 0;
     }
-    *(Ent_8029E170 * *)&this->m_a0 = (Ent_8029E170 *) TQuestVmDownLoadServer::alloc(*(s32 *)&this->m_94 * 0x44);
-    if (*(Ent_8029E170 * *)&this->m_a0 == NULL) {
+    m_a0 = (TObjFishEntry *)TQuestVmDownLoadServer::alloc((s32)m_94 * sizeof(TObjFishEntry));
+    if (m_a0 == NULL) {
         return 0;
     }
-    p = *(Ent_8029E170 * *)&this->m_a0;
-    for (i = 0; i < *(s32 *)&this->m_94; i++) {
-        p->pos.x = lbl_805DDD70 * (arg1->x * (lbl_805DDD64 * (f32) rand() - lbl_805DDD60));
-        p->pos.y = lbl_805DDD70 * (arg1->y * (lbl_805DDD64 * (f32) rand() - lbl_805DDD60));
-        p->pos.z = lbl_805DDD70 * (arg1->z * (lbl_805DDD64 * (f32) rand() - lbl_805DDD60));
-        p->v18.x = lbl_805DDD7C;
-        p->v18.y = lbl_805DDD7C;
-        p->v18.z = lbl_805DDD7C;
+    p = m_a0;
+    for (i = 0; i < (s32)m_94; i++) {
+        p->pos.x = 2.0f * (arg1->x * ((1.0f / 32768.0f) * (f32) rand() - 0.5f));
+        p->pos.y = 2.0f * (arg1->y * ((1.0f / 32768.0f) * (f32) rand() - 0.5f));
+        p->pos.z = 2.0f * (arg1->z * ((1.0f / 32768.0f) * (f32) rand() - 0.5f));
+        p->velocity.x = 0.0f;
+        p->velocity.y = 0.0f;
+        p->velocity.z = 0.0f;
         if (i < arg2) {
-            p->f30 = 0;
+            p->anim = 0;
         } else if (i < arg2 + arg3) {
-            p->f30 = 1;
+            p->anim = 1;
         } else {
-            p->f30 = 2;
+            p->anim = 2;
         }
-        p->f32 = TObjFish__data_805DDD44 * (lbl_805DDD64 * (f32) rand());
-        p->f24 = 0;
-        p->f28 = lbl_805DDD64 * (f32) rand();
-        p->f2c = 0;
-        p->f2e = 0;
-        p->f38 = 0;
-        p->f34 = 0;
-        p->v0c.x = lbl_805DDD7C;
-        p->v0c.y = lbl_805DDD7C;
-        p->v0c.z = lbl_805DDD7C;
+        p->timer = 200.0f * ((1.0f / 32768.0f) * (f32) rand());
+        p->yaw = 0;
+        p->frame = (1.0f / 32768.0f) * (f32) rand();
+        p->angle = 0;
+        p->target_angle = 0;
+        p->mode = 0;
+        p->seen = 0;
+        p->target.x = 0.0f;
+        p->target.y = 0.0f;
+        p->target.z = 0.0f;
         p++;
     }
     return 1;
@@ -435,203 +411,132 @@ s32 TObjFish::init_fish_school(void *arg1_arg, s32 arg2, s32 arg3) {
 
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-#define __nw__7TObjectFUl ((u8 * (*)(s32))__nw__7TObjectFUl)
-#define init_fish_school__8TObjFishFPvll ((s32 (*)(void *, void *, int, int))init_fish_school__8TObjFishFPvll)
 
 extern "C" {
-s32 is_split_screen(void);
-u8 *TObjFish__create(u8 *arg0);
-s32 __ct__8TObjBaseFP7TObject();
-extern s32 lbl_805D3D58;
-u8 *TObjFish__ct(u8 *arg0, s32 arg1, u8 *arg2);
-void *__dt__8TObjFishFv(void *arg0, s16 arg1);
-
-void *__dt__8TObjFishFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = (s32 *)__vt__8TObjFish;
-        if (*(void **)((s8 *)arg0 + 0xA0) != NULL) { TAdSinglePlyChrSelectGC::safe_free((u32)(*(void **)((s8 *)arg0 + 0xA0))); ((TObjFish *)arg0)->m_a0 = 0; }
-        __dt__8TObjBaseFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
+TObjFish::~TObjFish() {
+    if (m_a0 != NULL) {
+        TAdSinglePlyChrSelectGC::safe_free(m_a0);
+        m_a0 = NULL;
     }
-    return arg0;
 }
 
-u8 *TObjFish__ct(u8 *fish, s32 arg1, u8 *arg2) {
+// The placement record passed by object factory 0x220. Only these fields
+// are read by the fish constructor; the leading set metadata stays opaque.
+struct TObjFishSetData {
+    u8 metadata[0xC];
+    Vec position;
+    CameraAngles rotation;
+    Vec scale;
+    s32 counts[3];
+};
+typedef char TObjFishSetData_counts_offset[offsetof(TObjFishSetData, counts) == 0x30 ? 1 : -1];
+
+TObjFish::TObjFish(TObject *parent, void *set_data) : TObjBase(parent) {
+    TObjFishSetData *data = (TObjFishSetData *)set_data;
     f32 temp_f0;
     f32 var_f1;
-    __ct__8TObjBaseFP7TObject();
-    *(s32 **)((s8 *)fish + 0x18) = (s32 *)__vt__8TObjFish;
-    *(s32 *)((s8 *)fish + 0) = (s32) lbl_805D3D58;
-    ((TObjFish *)fish)->m_a0 = 0;
-    VecCopy((Vec *)(fish + 0x38), (const Vec *)(arg2 + 0xC));
-    copy_xyz(fish + 0x5C, arg2 + 0x18);
-    VecCopy((Vec *)(fish + 0x68), (const Vec *)(arg2 + 0x24));
-    var_f1 = ((TObjFish *)fish)->scale.x;
-    temp_f0 = ((TObjFish *)fish)->scale.y;
+    m_name = TObjFish__class_name;
+    m_a0 = NULL;
+    VecCopy(&position, &data->position);
+    copy_xyz(&rotation, &data->rotation);
+    VecCopy(&scale, &data->scale);
+    var_f1 = scale.x;
+    temp_f0 = scale.y;
     if (var_f1 < temp_f0) {
         var_f1 = temp_f0;
     }
+    // The original compares scale.y twice here, rather than reading scale.z.
     if (var_f1 < temp_f0) {
         var_f1 = temp_f0;
     }
-    *(f32 *)((s8 *)fish + 0x9C) = var_f1;
-    ((TObjFish *)fish)->m_94 = *(s32 *)((s8 *)arg2 + 0x30) + *(s32 *)((s8 *)arg2 + 0x34) + *(s32 *)((s8 *)arg2 + 0x38);
-    ((TObjFish *)fish)->m_98 = 0;
-    if ((s32) ((TObjFish *)fish)->m_94 < 1) {
-        ((TObjFish *)fish)->m_94 = 1;
+    m_9c = var_f1;
+    m_94 = data->counts[0] + data->counts[1] + data->counts[2];
+    m_98 = 0;
+    if ((s32)m_94 < 1) {
+        m_94 = 1;
     }
-    if (init_fish_school__8TObjFishFPvll(fish, fish + 0x68, (int) (*(s32 *)((s8 *)arg2 + 0x30)), (int) (*(s32 *)((s8 *)arg2 + 0x34))) == 0) {
-        queue_destruction__7TObjectFv((fish));
+    if (init_fish_school(&scale, data->counts[0], data->counts[1]) == 0) {
+        queue_destruction();
     }
-    return fish;
 }
 
-u8 *TObjFish__create(u8 *arg0) {
-    u8 *fish;
-    u8 *var_r0;
+void *TObjFish__create(void *set_data) {
     if (is_split_screen() != 0) {
         return NULL;
     }
-    fish = (u8 *)(__nw__7TObjectFUl(0xA4));
-    var_r0 = fish;
-    if (var_r0 != NULL) {
-        var_r0 = (u8 *)(TObjFish__ct(fish, (s32)((*(s32 *)&tl_05)), arg0));
-    }
-    return var_r0;
+    return new TObjFish(tl_05, set_data);
 }
 
 void TObjFish::free_resource() {
-    if ((u32) (*(u32 *)&TObjFish__area_bml_resource) != 0U) {
-        delete (BmlResource *)((void*)(*(u32 *)&TObjFish__area_bml_resource));
-        (*(u32 *)&TObjFish__area_bml_resource) = 0U;
+    if (TObjFish__area_bml_resource != NULL) {
+        delete TObjFish__area_bml_resource;
+        TObjFish__area_bml_resource = NULL;
     }
 }
-void vfunc_6__8TObjBaseFPsl();
-void get_name__8TObjBaseFv();
-void get_center__8TObjBaseFv();
-void apply_object_set_data__8TObjBaseFPv();
-void classify_actor_view_detail__8TObjBaseFfff();
-void render_shadows__7TObjectFv();
-void reset_motion_fields__8TObjBaseFv();
-void run_task__8TObjFishFv();
-void update_object_view_visibility__8TObjBaseFff();
-#pragma push
-extern const f64 lbl_80465E00 = 10430.38043493439;
-#pragma pop
-void *fish_resource_name_table[60] = {
-    (void *)lbl_80465A48,
-    (void *)lbl_80465A68,
-    (void *)lbl_80465A88,
-    0,
-    (void *)lbl_80465AA8,
-    (void *)lbl_80465ACC,
-    (void *)lbl_80465AEC,
-    0,
-    (void *)lbl_80465B0C,
-    (void *)&fish_resource_name_table[0],
-    (void *)&fish_resource_name_table[4],
-    (void *)0x30003,
-    (void *)lbl_80465B24,
-    (void *)lbl_80465B38,
-    (void *)lbl_80465B4C,
-    0,
-    (void *)lbl_80465B60,
-    (void *)lbl_80465B74,
-    (void *)lbl_80465B88,
-    0,
-    (void *)lbl_80465B9C,
-    (void *)&fish_resource_name_table[12],
-    (void *)&fish_resource_name_table[16],
-    (void *)0x30003,
-    (void *)lbl_80465BB8,
-    (void *)lbl_80465BCC,
-    (void *)lbl_80465BE0,
-    0,
-    (void *)lbl_80465BF4,
-    (void *)lbl_80465C08,
-    (void *)lbl_80465C1C,
-    0,
-    (void *)lbl_80465C30,
-    (void *)&fish_resource_name_table[24],
-    (void *)&fish_resource_name_table[28],
-    (void *)0x30003,
-    (void *)lbl_80465C4C,
-    (void *)lbl_80465C60,
-    (void *)lbl_80465C74,
-    0,
-    (void *)lbl_80465C88,
-    (void *)lbl_80465C9C,
-    (void *)lbl_80465CB0,
-    0,
-    (void *)lbl_80465CC4,
-    (void *)&fish_resource_name_table[36],
-    (void *)&fish_resource_name_table[40],
-    (void *)0x30003,
-    (void *)lbl_80465CE0,
-    (void *)lbl_80465CF4,
-    (void *)lbl_80465D08,
-    0,
-    (void *)lbl_80465D1C,
-    (void *)lbl_80465D30,
-    (void *)lbl_80465D44,
-    0,
-    (void *)lbl_80465D58,
-    (void *)&fish_resource_name_table[48],
-    (void *)&fish_resource_name_table[52],
-    (void *)0x30003,
+// Each area owns terminated model/motion name lists and a shared BML descriptor.
+struct TObjFishAreaResource {
+    const char *models[4];
+    const char *motions[4];
+    BmlResourceDescriptor descriptor;
 };
-void *__vt__8TObjFish[13] = {
-    0,
-    0,
-    (void *)__dt__8TObjFishFv,
-    (void *)run_task__8TObjFishFv,
-    (void *)render__8TObjFishFv,
-    (void *)render_shadows__7TObjectFv,
-    (void *)vfunc_6__8TObjBaseFPsl,
-    (void *)apply_object_set_data__8TObjBaseFPv,
-    (void *)reset_motion_fields__8TObjBaseFv,
-    (void *)get_center__8TObjBaseFv,
-    (void *)update_object_view_visibility__8TObjBaseFff,
-    (void *)classify_actor_view_detail__8TObjBaseFfff,
-    (void *)get_name__8TObjBaseFv,
-};
+typedef char TObjFishAreaResource_size[sizeof(TObjFishAreaResource) == 0x30 ? 1 : -1];
+typedef char TObjFishAreaResource_descriptor_offset[offsetof(TObjFishAreaResource, descriptor) == 0x20 ? 1 : -1];
 
+TObjFishAreaResource fish_resource_name_table[5] = {
+    { { lbl_80465A48, lbl_80465A68, lbl_80465A88, NULL },
+      { lbl_80465AA8, lbl_80465ACC, lbl_80465AEC, NULL },
+      { lbl_80465B0C, fish_resource_name_table[0].models, fish_resource_name_table[0].motions, 3, 3 } },
+    { { lbl_80465B24, lbl_80465B38, lbl_80465B4C, NULL },
+      { lbl_80465B60, lbl_80465B74, lbl_80465B88, NULL },
+      { lbl_80465B9C, fish_resource_name_table[1].models, fish_resource_name_table[1].motions, 3, 3 } },
+    { { lbl_80465BB8, lbl_80465BCC, lbl_80465BE0, NULL },
+      { lbl_80465BF4, lbl_80465C08, lbl_80465C1C, NULL },
+      { lbl_80465C30, fish_resource_name_table[2].models, fish_resource_name_table[2].motions, 3, 3 } },
+    { { lbl_80465C4C, lbl_80465C60, lbl_80465C74, NULL },
+      { lbl_80465C88, lbl_80465C9C, lbl_80465CB0, NULL },
+      { lbl_80465CC4, fish_resource_name_table[3].models, fish_resource_name_table[3].motions, 3, 3 } },
+    { { lbl_80465CE0, lbl_80465CF4, lbl_80465D08, NULL },
+      { lbl_80465D1C, lbl_80465D30, lbl_80465D44, NULL },
+      { lbl_80465D58, fish_resource_name_table[4].models, fish_resource_name_table[4].motions, 3, 3 } },
+};
+// Defer the final loader until the native vtable has been emitted.
+#pragma push
+#pragma defer_codegen on
 void TObjFish::load_area_resource() {
-    u8 *base = (u8 *)fish_resource_name_table;
-    u8 *p;
+    TObjFishAreaResource *base = fish_resource_name_table;
+    BmlResource *p;
     switch (get_current_floor_area()) {
     case AREA_JUNGLE_NORTH:
         TObjFish__area_event_stage = 1;
-        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(base + 0x50), 0, 0, (void *)(0));
-        (*(u32 *)&TObjFish__area_bml_resource) = (u32)p;
+        p = new BmlResource(1, &base[1].descriptor, 0, 0, (void *)(0));
+        TObjFish__area_bml_resource = p;
         break;
     case AREA_SEASIDE:
     case AREA_SEASIDE_NIGHT:
         TObjFish__area_event_stage = 2;
-        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(base + 0x80), 0, 0, (void *)(0));
-        (*(u32 *)&TObjFish__area_bml_resource) = (u32)p;
+        p = new BmlResource(1, &base[2].descriptor, 0, 0, (void *)(0));
+        TObjFish__area_bml_resource = p;
         break;
     case AREA_SEABED_UPPER:
         TObjFish__area_event_stage = 3;
-        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(base + 0xB0), 0, 0, (void *)(0));
-        (*(u32 *)&TObjFish__area_bml_resource) = (u32)p;
+        p = new BmlResource(1, &base[3].descriptor, 0, 0, (void *)(0));
+        TObjFish__area_bml_resource = p;
         break;
     case AREA_SEABED_LOWER:
         TObjFish__area_event_stage = 4;
-        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(base + 0xE0), 0, 0, (void *)(0));
-        (*(u32 *)&TObjFish__area_bml_resource) = (u32)p;
+        p = new BmlResource(1, &base[4].descriptor, 0, 0, (void *)(0));
+        TObjFish__area_bml_resource = p;
         break;
     case AREA_LOBBY:
     default:
         TObjFish__area_event_stage = 0;
-        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)(base + 0x20), 0, 0, (void *)(0));
-        (*(u32 *)&TObjFish__area_bml_resource) = (u32)p;
+        p = new BmlResource(1, &base[0].descriptor, 0, 0, (void *)(0));
+        TObjFish__area_bml_resource = p;
         break;
     }
 }
 
 }
-#undef __nw__7TObjectFUl
-#undef init_fish_school__8TObjFishFPvll
+
+// Keep this restoration at EOF: another declaration would emit the loader early.
+#pragma pop

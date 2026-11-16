@@ -240,7 +240,7 @@ void *destroy__13TPhotonFarllaFPvs(void *arg0, s16 arg1) {
         ((TUnk_804C3248 *)arg0)->free_photon();
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
-        destroy_photon_motion_object(arg0, 0);
+        __dt__13TUnk_804C3248Fv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -261,8 +261,8 @@ s32 sub_801AAE6C__13TPhotonFarllaFv(void *, int);
 u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern "C" {
 
-extern u8 lbl_80446D40[];
-extern u8 lbl_80446D4C[];
+extern const u8 lbl_80446D40[] = "farla2.adx";
+extern const u8 lbl_80446D4C[] = "farla.adx";
 extern s32 lbl_805D34E0;
 extern u8 *photon_blast_shared_resource;
 

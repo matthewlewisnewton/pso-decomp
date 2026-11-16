@@ -221,7 +221,7 @@ void TOTrapSeabed01::load_resources() {
 void TOTrapSeabed01::free_static_resources() {
     if (TOTrapSeabed01__texture_file != NULL) {
         release_texture_list(TOTrapSeabed01__texture_file);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TOTrapSeabed01__texture_file);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TOTrapSeabed01__texture_file);
         TOTrapSeabed01__texture_file = NULL;
     }
     if (TOTrapSeabed01__bml_resource != NULL) {
@@ -469,4 +469,11 @@ void TOTrapSeabed01::play_sounds() {
 f32 TOTrapSeabed01::receive_physical_attack(void *source, f32 power) {
     sub_802C9D38();
     return TOTrap::receive_physical_attack(source, power);
+}
+
+extern "C" {
+BmlResource *TOTrapSeabed01__bml_resource;
+GinjaTextureList *TOTrapSeabed01__texture_file;
+NJS_OBJECT *TOTrapSeabed01__ginja_model;
+s32 lbl_805D681C;
 }

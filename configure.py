@@ -433,6 +433,16 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/network/TProtocol.cpp": {"mw_version": "GC/1.3.2"},
     "pso/object/TObjResultWin.cpp": {"mw_version": "GC/1.3.2"},
     "pso/misc/TPlyMeetUserExtension_801DAC6C.cpp": {"mw_version": "GC/1.3.2"},
+    # Shared Rico ring resource/constant bank; reverse definitions preserve native vtable order.
+    "pso/menu/TAdRicoRing.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-inline off,deferred")},
+    # GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order.
+    "pso/boss/TBoss2DeRolLe.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # Keep the eight-byte effect-ID pair in .data beside the state table.
+    "pso/boss/TBoss4Type1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
+    # Reverse definitions reproduce both native rope vtables and function order.
+    "pso/object/TObjEZRopeSimulation.cpp": {"cflags": _switch(cflags_pso, "-inline deferred")},
+    # Reverse definitions retain native function and vtable order.
+    "pso/ui/DrawLine.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     # Keep the eight-byte menu positions in .data with the state table.
     # The calendar x coordinate uses a fused multiply-add.
     "pso/menu/TAdTimeSetGC.cpp": {"cflags": _switch(cflags_pso, "-sdata 4", "-fp_contract on")},
@@ -457,6 +467,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
     # The balloon float pool begins at 0x805DCD0C, which is four-byte aligned.
     "pso/misc/TWindowFukidasi.cpp": {"cw_align": ".sdata2=4"},
+    # The class string and name pointer start on four-byte boundaries.
+    "pso/effect/TDPBShower.cpp": {"cw_align": ".rodata=4 .sdata=4"},
+    "pso/object/TObjCMName.cpp": {"cflags": _switch(cflags_pso, "-sym on"), "cw_align": ".sdata2=4"},
     # GC/1.3.2 preserves the per-vertex coordinate loads and store order.
     "pso/ui/TAdDialingGC_80328B20.cpp": {"mw_version": "GC/1.3.2"},
     # The download graph's border pass keeps GC/1.3.2 load scheduling.
@@ -483,6 +496,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
     # The base collider's vtable follows the derived vtable at 0x804E355C.
     "pso/item/TItemAttackCol_802E4798.cpp": {"cw_align": ".data=4"},
+    # The radar-hide vtable and name pointer both start four bytes past an
+    # eight-byte boundary; preserve their native placement in MWLD metadata.
+    "pso/object/TObjRaderHideCol.cpp": {"cw_align": ".data=4 .sdata=4"},
     # The memory-card menu position precedes the callback templates in .data.
     # Its two read-only layout inputs begin at a four-byte-aligned address.
     "pso/misc/TCheckMemoryCard.cpp": {
@@ -656,6 +672,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Upstream #190: this file is written in reverse so deferred codegen emits
     # address order, and the readonly string pool places the constants.
     "pso/misc/TNpcPlayer.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
+    # Upstream #240: fish update loads each table/conversion constant directly.
+    "pso/object/TObjFish.cpp": {"cflags": _switch(cflags_pso, "-pool off")},
     # Native FMA in parameter scaling; deferred emission places the vtable before
     # four switch tables. Explicit inline helpers retain the global-load order.
     "pso/misc/TTecCtrl.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-inline on,deferred")},
@@ -925,9 +943,16 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     ("musyx_hw", 0x803BAC70, "GC/1.2.5n", _switch(cflags_musyx, "-inline auto"), {}),
     # CRI ADX, LSC, SJ, MFCI and GCRNA ("Build:Jun 13 2002").
     ("cri", 0x803BFE50, "GC/2.0", cflags_middleware, {
-        # sin_table_lookup / cos_table_lookup load the 4-byte sin_cos_table
-        # pointer with lis/addi. The .sdata2 constants in this TU stay
-        # lfs@sda21, so non-const small data is off and sdata2 stays on.
+        # Native CRI objects recovered by upstream matchpass 18.
+        "pso/system/AdxtInit.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxEncoder.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxStream.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxTalk.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxtStart.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxtServer.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxExpand.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxManager.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        "pso/system/AdxStreamRuntime.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
     }),
     # Sega's Ginja model library.
     ("ginja", 0x803D6538, "GC/2.0", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {

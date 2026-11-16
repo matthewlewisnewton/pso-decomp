@@ -1,3 +1,4 @@
+#include "pso/system/ChunkMaterialState.h"
 #include "pso/system/BmlResource.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/ArrayAllocation.h"
@@ -152,7 +153,6 @@ extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 extern s32 plot_falz_phase;
 extern s32 registered_player_count;
-void set_chunk_material_override_pair(int, int, s32, s32);
 s32 rand(void);
 }
 
@@ -882,7 +882,7 @@ void TBoss6PlotFalz::set_fade_material_color(f32 f) {
     (*(s32 *)&saved_chunk_polygon_flags_and_mask) = (*(s32 *)&chunk_polygon_flags_and_mask);
     (*(s32 *)&saved_chunk_polygon_flags_or_mask) = (*(s32 *)&chunk_polygon_flags_or_mask);
     (*(s32 *)&model_render_flags) |= lbl_805DE0B8;
-    set_chunk_material_override_pair(0xFF00, 0x800, (*(s32 *)&chunk_polygon_flags_or_mask), (*(s32 *)&chunk_polygon_flags_and_mask));
+    set_chunk_material_override_pair(0xFF00, 0x800);
     c.a = -1.0f + f;
     c.b = c.c = c.d = 0.0f;
     set_constant_material((const NJS_ARGB *)&c);
@@ -1127,7 +1127,7 @@ void place_players_in_warp_circle(void) {
             pos.x += 350.0f * sin_table_lookup(ang);
             pos.z += 350.0f * cos_table_lookup(ang);
             ((void (*)(void *, void *))set_position_from__8TObjBaseFPv)(p, &pos);
-            ((TBoss4DarkFalz *)p)->save_position();
+            ((TObjBase *)p)->save_previous_position();
             ((TObjBase *)p)->get_rotation()->yaw = ang + 0x8000;
             ((TObjPlayer *)p)->refresh_equipment_slot();
             if (TObjPlayer::is_locally_controlled(p) != 0) {
@@ -1173,7 +1173,7 @@ void TBoss6PlotFalz__sub_802AC724(u8 *boss4_dark_falz, u32 arg1) {
         return;
     }
     set_position_from__8TObjBaseFPv();
-    ((TBoss4DarkFalz *)boss4_dark_falz)->save_position();
+    ((TObjBase *)boss4_dark_falz)->save_previous_position();
     ((TObjCollidable *)boss4_dark_falz)->set_indexed_flags(0, 0x900000);
     *(u32 *)(boss4_dark_falz + 0x30) &= 0xFFFFFFDF;
 }

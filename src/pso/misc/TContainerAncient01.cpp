@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
 #include "pso/misc/ParticleFactory.h"
@@ -199,7 +200,6 @@ struct Obj_8018B030 : VBase_8018B030 {
 
 extern "C" {
 void __ct__9TObjCharaFP7TObject(void *, void *, void *);
-s32 TObjFish__sub_8001EDB0(int, int);
 void init_collision_body_parts(void *, void *, int);
 extern s32 TContainerAncient01R__name;
 
@@ -685,7 +685,7 @@ void *TContainerAncient01R__ct(Obj_8018B030 *self, void *arg1, void *parent) {
     *(s32 *)self = TContainerAncient01R__name;
     self->m5(parent);
     self->x34 = (s32)get_bml_model((BmlResource *)TContainerAncient01R__bml_resource, 0);
-    self->x24 = TObjFish__sub_8001EDB0(TContainerAncient01R__bml_resource, 0);
+    self->x24 = (s32)TObjFish__sub_8001EDB0((BmlResource *)TContainerAncient01R__bml_resource, 0);
     self->animTbl = (void *)TContainerAncient01__anim_table;
     ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)self->animTbl));
     self->xdc = ((Res_8018B030 *)TContainerAncient01R__bml_resource)->x430;
@@ -1062,7 +1062,7 @@ void TContainerAncient01::load_resources() {
     }
     Param_8018BB64 prm = container_ancient_anim_binding[0];
     prm.a = ((Res_8018BB64 *)TContainerAncient01__bml_resource)->x430;
-    TObjEneMe3Stelth::spawn_attack((s16)0x3B, (s32)((s32)get_bml_model((BmlResource *)TContainerAncient01__bml_resource, 0)), (s32)(TObjFish__sub_8001EDB0(TContainerAncient01__bml_resource, 0)), (s32)&prm, (f32)1e+01f, (f32)TContainerAncient01__data_805DBD14[0]);
+    TObjEneMe3Stelth::spawn_attack((s16)0x3B, (s32)((s32)get_bml_model((BmlResource *)TContainerAncient01__bml_resource, 0)), (s32)((s32)TObjFish__sub_8001EDB0((BmlResource *)TContainerAncient01__bml_resource, 0)), (s32)&prm, (f32)1e+01f, (f32)TContainerAncient01__data_805DBD14[0]);
 }
 
 }
@@ -1120,8 +1120,6 @@ struct V_8018BE98 : B_8018BE98 {
 
 extern "C" {
 
-s32 TObjFish__sub_8001EDB0(int, int);
-
 extern s32 __vt__19TContainerAncient01[];
 extern s32 TContainerAncient01__name;
 extern s32 TContainerAncient01__bml_resource;
@@ -1157,7 +1155,7 @@ u8 *TContainerAncient01__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)((s8 *)arg0 + 0) = (s32) TContainerAncient01__name;
     ((TContainerAncient01 *)(arg0))->apply_object_set_data((void *)arg2);
     *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model((BmlResource *)((*(u8 * *)&TContainerAncient01__bml_resource)), 0);
-    ((TContainerAncient01 *)arg0)->texlist = TObjFish__sub_8001EDB0((int) ((*(u8 * *)&TContainerAncient01__bml_resource)), 0);
+    ((TContainerAncient01 *)arg0)->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(u8 * *)&TContainerAncient01__bml_resource), 0);
     ((TContainerAncient01 *)arg0)->action_table = TContainerAncient01__anim_table;
     ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)((void *) (((TContainerAncient01 *)arg0)->action_table))));
     *(s32 *)((s8 *)arg0 + 0xDC) = (s32) *(s32 *)((s8 *)(*(u8 * *)&TContainerAncient01__bml_resource) + 0x430);

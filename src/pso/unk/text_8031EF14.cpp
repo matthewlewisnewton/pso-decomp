@@ -87,19 +87,19 @@ void TObjEneRecon::spawn_death_debris() {
     const TObjChipParams first = {
         {0.5f, 0.07f, 0.26f}, {position.x, position.y, position.z},
         {5.0f, 5.0f, 5.0f}, {0x400, 0x100, 0x400}, {5, 50},
-        {position.y, 0.6f}, resource->models[3].model, resource->models[3].m_c, 20,
+        {position.y, 0.6f}, (s32)resource->models[3].model, (s32)resource->models[3].m_c, 20,
     };
 
     const TObjChipParams second = {
         {0.5f, 0.07f, 0.26f}, {position.x, position.y, position.z},
         {4.0f, 4.5f, 4.0f}, {0x200, 0x100, 0x200}, {6, 50},
-        {position.y, 0.5f}, resource->models[4].model, resource->models[3].m_c, 20,
+        {position.y, 0.5f}, (s32)resource->models[4].model, (s32)resource->models[3].m_c, 20,
     };
 
     const TObjChipParams third = {
         {0.5f, 0.07f, 0.26f}, {position.x, position.y, position.z},
         {4.0f, 4.5f, 4.0f}, {0x200, 0x100, 0x200}, {6, 50},
-        {position.y, 0.5f}, resource->models[5].model, resource->models[3].m_c, 20,
+        {position.y, 0.5f}, (s32)resource->models[5].model, (s32)resource->models[3].m_c, 20,
     };
 
     spawn_particle_effect_with_flags(&position, 0x45, 0x40);

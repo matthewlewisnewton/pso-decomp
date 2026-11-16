@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "types.h"
@@ -50,7 +51,6 @@ struct Icon_801714E8 {
 };
 
 extern "C" {
-s32 TObjFish__sub_8001EDB0(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
 extern u8 mine_collision_body_parts[];
 extern s32 __vt__12TOMineIcon01[];
@@ -88,9 +88,9 @@ TOMineIcon01::TOMineIcon01(TObject *parent, void *set) : TOMine(parent) {
     ((TObjChara *)self)->initialize_position_copies();
     ((TObjChara *)self)->calc_attach_pos();
     self->f34 = (s32)get_bml_model((BmlResource *)lbl_805D5A50, 4);
-    self->f24 = TObjFish__sub_8001EDB0(lbl_805D5A50, 4);
+    self->f24 = (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D5A50, 4);
     self->f374 = (s32)get_bml_model((BmlResource *)lbl_805D5A50, 1);
-    self->f378 = TObjFish__sub_8001EDB0(lbl_805D5A50, 1);
+    self->f378 = (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D5A50, 1);
     self->f326 = 0;
     if (self->f84 < 0) {
         self->f84 = 0;

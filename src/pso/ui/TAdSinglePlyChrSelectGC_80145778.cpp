@@ -25,7 +25,7 @@ void TAdSinglePlyChrSelectGC::free_resources() {
     release_texture_list(&menu_font_texture_list);
     ::operator delete[]((void *)menu_font_glyph_table);
     ::operator delete[](menu_font_palette);
-    TAdSinglePlyChrSelectGC::safe_free(menu_font_glyph_data);
+    TAdSinglePlyChrSelectGC::safe_free((void *)menu_font_glyph_data);
 }
 #pragma pop
 

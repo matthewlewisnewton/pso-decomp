@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/map/FloorResourceCallbacks.h"
 #include "pso/misc/TWindowMessage.h"
@@ -180,13 +181,11 @@ void play_all_players_effect__6TLobbyFPv(void* a0);
 void play_effect_all_players__6TLobbyFPv(void*);
 TWindowSubComCardList *check_room_seq_4__16TAdChrSelASlotGCFl(void *, s32);
 s32 check_player_flag1__10TObjPlayerFv();
-s32 TLobby__sub_8024AC20(int);
 s32 TLobby__sub_80292F5C();
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 TObjPlayer *get_player_by_client_id(int);
 s32 TQuestVmDownLoadServer__sub_8006EF6C(s32);
 void *get_window_layout_position(s32);
-void TObjPlayer__sub_8024ABDC(s32 arg0);
 void play_effect_default__10TObjPlayerFP10TObjPlayerl(TObjPlayer *arg0, s32 arg1);
 
 s32 TLobby::is_multi_ready() {
@@ -240,8 +239,8 @@ void TObjChallenge4PRetry::open_giveup_window() {
 }
 
 void send_giveup_to_all_players__6TLobbyFv(void) {
-    TObjPlayer *player;
     s32 var_r31;
+    TObjPlayer *player;
 
     var_r31 = 0;
     do {
@@ -249,16 +248,16 @@ void send_giveup_to_all_players__6TLobbyFv(void) {
         if ((player != 0) && (check_player_flag1__10TObjPlayerFv() != 0)) {
             TObjPlayer::send_code_45_1(player);
         }
-        ((TWindowCtrl *)var_r31)->unsuppress_slot();
-        TLobby__sub_8024AC20(var_r31);
+        unsuppress_player_window(var_r31);
+        enable_player_main_menu(var_r31);
         var_r31 += 1;
     } while (var_r31 < 4);
 }
 
     extern int local_client_id;
-void close_giveup_window__6TLobbyFPv(void* a0) { ((TWindowCtrl *)local_client_id)->suppress_slot(); play_effect_all_players__6TLobbyFPv(a0); }
+void close_giveup_window__6TLobbyFPv(void* a0) { suppress_player_window(local_client_id); play_effect_all_players__6TLobbyFPv(a0); }
 
-void play_all_players_effect__6TLobbyFPv(void* a0) { TObjPlayer__sub_8024ABDC((local_client_id)); play_effect_all_players__6TLobbyFPv(a0); }
+void play_all_players_effect__6TLobbyFPv(void* a0) { disable_player_main_menu((local_client_id)); play_effect_all_players__6TLobbyFPv(a0); }
 
 void play_effect_all_players__6TLobbyFPv(void*) {
     s32 var_r31;
@@ -348,7 +347,6 @@ void giveup_window_handle_select(void *arg0) {
 }
 extern "C" {
 
-
 extern s32 retry_selection_value_table[];
 
 void TObjChallenge4PRetry::handle_retry_menu_select() {
@@ -369,8 +367,6 @@ void TObjChallenge4PRetry::handle_retry_menu_select() {
         }
     }
 }
-
-
 
 s32 TWindowCtrlMain__sub_8024CE58();
 

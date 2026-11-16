@@ -3,19 +3,33 @@
 #include "types.h"
 #include "pso/TObjEZRopeBase.h"
 
+class TObjPlayer;
+
+struct RopePlayerSegmentSource {
+    s8 type;
+    u8 pad1[0x13];
+    u8 *data;
+};
+
+struct RopePlayerSphereSource {
+    s8 type;
+    u8 pad1[0x13];
+};
+
 class TObjHMS_EZRope_Player : public TObjEZRopeBase {
 public:
+    TObjHMS_EZRope_Player(TObjPlayer *player, void *segment_sources, void *sphere_sources);
     virtual ~TObjHMS_EZRope_Player();
     virtual void run_task();
     virtual void render();
     void sub_800FF2D0();
-    u8 unk_30[0xC];
-    void * m_3c;
-    u8 unk_40[0x4];
-    void * m_44;
+    TObjPlayer *player;
+    RopePlayerSegmentSource *segment_sources;
+    RopePlayerSphereSource *sphere_sources;
+    RopeSegment *segment_storage;
+    RopeAnchor *anchor_storage;
+    RopeCollisionSphere *sphere_storage;
 };
 typedef char TObjHMS_EZRope_Player_size[sizeof(TObjHMS_EZRope_Player) == 0x48 ? 1 : -1];
-
-extern "C" void *__dt__21TObjHMS_EZRope_PlayerFv(TObjHMS_EZRope_Player *rope, s16 delete_flag);
 
 #endif

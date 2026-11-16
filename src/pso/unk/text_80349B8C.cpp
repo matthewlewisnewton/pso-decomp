@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "types.h"
 #include "pso/unk/text_80349B8C.h"
 #include "pso/TObjCMHairMenu.h"
@@ -83,7 +84,7 @@ s32 draw_color_quad_2d(void *arg0, void *arg1p, int arg2) {
     d.pos[6] = arg1[6];
     d.pos[7] = arg1[7];
     d.col[3] = arg2;
-    ((TObjCMHairMenu *)pd)->draw_tri_fan_2d(4, 3, lbl_805DFD18);
+    ((ColorLineList *)pd)->draw_tri_fan_2d(4, 3, lbl_805DFD18);
 }
 
 void draw_filled_rects_2d(void *arg0, void *arg1, int arg2) {
@@ -114,7 +115,7 @@ void draw_filled_rects_2d(void *arg0, void *arg1, int arg2) {
             d.pos[6] = item->pos[j * 2] + item->size[j * 2];
             d.pos[7] = item->pos[j * 2 + 1];
             d.col[3] = c;
-            ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 3, lbl_805DFD18);
+            ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 3, lbl_805DFD18);
         }
     }
 }

@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
@@ -42,8 +43,6 @@ void TLobby__sub_801E3E9C(s32, s32, void *, s32);
 extern s32 lbl_8049F43C[];
 Load_8011006C *init_buffer__9TItemLoadFPviii(Load_8011006C *self, s32 arg1, s32 arg2, s32 count);
 s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
-
 void *TUnk_8049F42C::sub_80110010(s16 arg1) {
     if (this != NULL) {
         *(s32 *)((s8 *)this + 0x14) = (s32)lbl_8049F43C;
@@ -84,7 +83,7 @@ s32 TItemLoad::has_resource_id(s32 id) {
 
 void TItemLoad::get_data_entry(s32 arg0, s32 *arg1) {
     if (arg1 != NULL) {
-        *arg1 = TObjFish__sub_8001EDB0(TItemLoad__bml_resource, 0);
+        *arg1 = (s32)TObjFish__sub_8001EDB0((BmlResource *)TItemLoad__bml_resource, 0);
     }
 }
 
@@ -97,7 +96,7 @@ void TItemLoad::lookup_item_data(s32 arg0, s32 *bml_model) {
 void TItemLoad::get_item_params(s32 *bml_model, s32 *arg1, s32 *bml_motion) {
     if ((bml_model != NULL) && (arg1 != NULL) && (bml_motion != NULL)) {
         *bml_model = (s32)get_bml_model((BmlResource *)TItemLoad__bml_resource, 1);
-        *arg1 = TObjFish__sub_8001EDB0(TItemLoad__bml_resource, 0);
+        *arg1 = (s32)TObjFish__sub_8001EDB0((BmlResource *)TItemLoad__bml_resource, 0);
         *bml_motion = get_bml_motion(TItemLoad__bml_resource, 0);
     }
 }
@@ -105,7 +104,7 @@ void TItemLoad::get_item_params(s32 *bml_model, s32 *arg1, s32 *bml_motion) {
 void TItemLoad::get_model_ids(u8 arg0, s32 *bml_model, s32 *arg2) {
     if ((bml_model != NULL) && (arg2 != NULL)) {
         *bml_model = (s32)get_bml_model((BmlResource *)TItemLoad__bml_resource, arg0 + 2);
-        *arg2 = TObjFish__sub_8001EDB0(TItemLoad__bml_resource, 0);
+        *arg2 = (s32)TObjFish__sub_8001EDB0((BmlResource *)TItemLoad__bml_resource, 0);
     }
 }
 }

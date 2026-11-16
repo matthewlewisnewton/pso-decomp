@@ -138,7 +138,7 @@ void vec3_add_to(void *, void *);
 void matrix_mult_vec(int, Vec *, void *);
 extern Vec lbl_80472280;
 extern Vec lbl_8047228C;
-extern const f64 TObjEneMe1GiGue__data_80472298;
+static const f64 TObjEneMe1GiGue__data_80472298 = 10430.38043493439;
 s16 get_entity_id(void *);
 s32 angle_difference_abs(s32, s32);
 void subtract_vector(void *, void *);
@@ -221,7 +221,7 @@ extern const char *lbl_805D3F18;
 #pragma fp_contract on
 void TObjEneMe1GiGue::load_params_from_table(s32 i) {
     model = (void *)TObjEneMe1GiGue__data_805D6838->models[i].model;
-    texlist = TObjEneMe1GiGue__data_805D6838->models[i].m_c;
+    texlist = (s32)TObjEneMe1GiGue__data_805D6838->models[i].m_c;
 }
 
 void TObjEneMe1GiGue::fn_802CDAE8() {  }
@@ -327,7 +327,7 @@ void TObjEneMe1GiGue::load_resources() {
     TObjEneMe1GiGue__param_table = (GiGueParameters *)get_battle_movement_params(0x1A);
     o = (int)::operator new(0x10);
     if (o != 0) {
-        o = init_from_model__11TBreakUpMdlFl(o, TObjEneMe1GiGue__data_805D6838->models[0].model);
+        o = init_from_model__11TBreakUpMdlFl(o, (s32)TObjEneMe1GiGue__data_805D6838->models[0].model);
     }
     TObjEneMe1GiGue__barrier_obj = (TUnk_8048FA00 *)o;
     TObjEneMe1GiGue__sub_802CE4EC();
@@ -1447,4 +1447,10 @@ f32 TObjEneMe1GiGue::receive_weapon_special_attack(void *attacker, void *attack)
         damage_received = TObjChara::receive_weapon_special_attack(attacker, attack);
     }
     return damage_received;
+}
+
+extern "C" {
+BmlResource *TObjEneMe1GiGue__data_805D6838;
+TUnk_8048FA00 *TObjEneMe1GiGue__barrier_obj;
+f32 lbl_805D6840;
 }

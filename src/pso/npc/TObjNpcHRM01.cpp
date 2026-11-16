@@ -34,7 +34,7 @@ void *__nw__7TObjectFUl(int);
 void TObjNpcHRM01::free_shared_objects() {
     if ((u32) TObjNpcHRM01__body_texture_gvm_handle != 0U) {
         release_texture_list((void*)TObjNpcHRM01__body_texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjNpcHRM01__body_texture_gvm_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcHRM01__body_texture_gvm_handle);
         TObjNpcHRM01__body_texture_gvm_handle = 0U;
     }
     if ((u32) TObjNpcHRM01__shared_object_resource != 0U) {

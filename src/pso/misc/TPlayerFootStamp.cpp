@@ -53,7 +53,7 @@ extern u32 player_footstamp_texture_gvm_handle;
 void TPlayerFootStamp::free_instance() {
     if ((u32) player_footstamp_texture_gvm_handle != 0U) {
         release_texture_list((GinjaTextureList *)player_footstamp_texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(player_footstamp_texture_gvm_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)player_footstamp_texture_gvm_handle);
         player_footstamp_texture_gvm_handle = 0U;
     }
 }

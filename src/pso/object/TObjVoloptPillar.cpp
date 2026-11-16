@@ -150,10 +150,10 @@ void TObjVoloptPillar::run_task() {
 }
 
 void TObjVoloptPillar::cache_target_values() {
-    volopt_pillar_model = boss3_volopt_resources->models[0x17].model;
-    volopt_pillar_textures = boss3_volopt_resources->models[0x17].m_c;
-    volopt_pillar_base_model = boss3_volopt_resources->models[0x15].model;
-    volopt_pillar_base_textures = boss3_volopt_resources->models[0x15].m_c;
+    volopt_pillar_model = (s32)boss3_volopt_resources->models[0x17].model;
+    volopt_pillar_textures = (s32)boss3_volopt_resources->models[0x17].m_c;
+    volopt_pillar_base_model = (s32)boss3_volopt_resources->models[0x15].model;
+    volopt_pillar_base_textures = (s32)boss3_volopt_resources->models[0x15].m_c;
 }
 
 TObjVoloptPillar::~TObjVoloptPillar() {

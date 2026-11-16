@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/CameraHelpers.h"
@@ -86,7 +87,7 @@ TBoss6Demo11_TYPE1_DEAD::TBoss6Demo11_TYPE1_DEAD(TBoss6PlotFalz *parent, const V
     for (s32 i = 0; i < 2; i++) {
         const s32 index = lbl_804DF614[i];
         models[i].object = get_bml_model(resource, index);
-        models[i].textures = TObjFish__sub_8001EDB0(resource, index);
+        models[i].textures = (s32)TObjFish__sub_8001EDB0((BmlResource *)resource, (s32)index);
         models[i].motion = get_bml_motion(resource, death_motion_indices[i]);
     }
     capture = ModelNodePositionCapture::create(lbl_80477E60, captured_positions);

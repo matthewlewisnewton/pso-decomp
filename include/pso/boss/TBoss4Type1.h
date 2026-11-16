@@ -2,9 +2,57 @@
 #define PSO_BOSS_TBOSS4TYPE1_H
 
 #include "types.h"
+#include "pso/enemy/TObjEnemy.h"
 
-struct TBoss4Type1
+struct TBoss4Type1 : public TObjEnemy
 {
+    TBoss4Type1(TObject *parent, s32 *params);
+    virtual ~TBoss4Type1();
+    virtual void run_task();
+    virtual void render();
+    virtual void apply_poison_status();
+    virtual void apply_paralysis();
+    virtual void apply_slow_status();
+    virtual void apply_confusion_status();
+    virtual void apply_movement_ailment(s32);
+    virtual void apply_shock_status();
+    virtual void clear_harmful_statuses();
+    virtual void vfunc_62();
+    virtual void vfunc_63();
+    // State handlers operate on this first-form controller.
+    void check_state_transition();
+    void calc_target_position();
+    void set_map_position(void *);
+    void apply_packed_state(u32 arg1);
+    void send_darkfalz_code(s32 arg1, s32 arg2, s32 arg3);
+    void send_state_to_target(s32 arg1);
+    void calc_scaled_field(s32 arg1, s32 arg2);
+    f32 calc_wave_offset(f32);
+    void set_motion_index(s32 arg1);
+    void calc_scale_slot_indices(s32 *a, s32 *b);
+    void set_state(s32 arg1);
+    void sub_800525AC();
+    void sub_800528B8();
+    void init_timer();
+    void update_tech_charge();
+    void update_scale_state();
+    void init_child_and_set_timer();
+    void update_attack_countdown();
+    void update_state();
+    void set_motion_for_state();
+    void tick_countdown_set_state7();
+    void update_spawn_uro();
+    void start_motion_for_index();
+    void tick_state_398_timer();
+    void sub_80052EE8();
+    void sub_80052EEC();
+    void sub_80052EF8();
+    void update_state_transition();
+    void sub_8005307C();
+    void update_flag800_state();
+    void sub_800530C0();
+    void check_state_if_idle();
+    void sub_800531BC();
     void sub_80053440();
     void sub_80053670();
     void snapshot_position();
@@ -14,49 +62,27 @@ struct TBoss4Type1
     void push_players_out_of_colliders();
     void sub_80053D4C();
     void update_follow_camera_offsets();
-    u8 _pad1C[0x8];
-    u32 m_24;
-    u8 _pad28[0xC];
-    u32 m_34;
-    void* m_38;
-    u8 _pad3C[0x8];
-    void* m_44;
-    u8 _pad48[0x8];
-    void* m_50;
-    u8 _pad54[0xC];
-    u32 m_60;
-    u8 _pad64[0x10];
-    void* m_74;
-    u8 _pad78[0x230];
-    u32 m_2a8;
-    u8 _pad2AC[0x50];
-    void* m_2fc;
-    u8 _pad300[0x2C];
-    s16 m_32c;
-    u8 _pad32E[0x10];
-    u16 m_33e;
-    u8 _pad340[0x38];
-    void* m_378;
-    u8 _pad37C[0x10];
-    u32 m_38c;
-    u32 m_390;
-    u32 m_394;
-    u8 _pad398[0x8];
-    u32 m_3a0;
-    u32 m_3a4;
-    u32 m_3a8;
-    u32 m_3ac;
-    u8 _pad3B0[0x14];
-    u32 m_3c4;
-    u32 m_3c8;
-    u32 m_3cc;
-    u32 m_3d0;
-    u32 m_3d4;
-    u32 m_3d8;
-    u8 _pad3DC[0xA4];
-    u32 m_480;
-    void* m_484;
+    s32 state;
+    u8 model_nodes[0x14];
+    void *owner;
+    void *uro;
+    s32 collision_body;
+    u8 pad_398[8];
+    s32 unk_3a0, unk_3a4, unk_3a8, unk_3ac;
+    u8 pad_3b0[0x14];
+    s32 unk_3c4, unk_3c8, move_frames, unk_3d0, unk_3d4, unk_3d8;
+    f32 unk_3dc, hp_ratio;
+    u8 pad_3e4[8];
+    f32 unk_3ec;
+    u8 pad_3f0[8];
+    void *parts[13];
+    void *captures[3];
+    Vec capture_positions[3][2];
+    void *last_capture;
+    Vec last_capture_positions[2];
     static s32 create(s32 arg0);
 };
+
+typedef char TBoss4Type1_size[sizeof(TBoss4Type1) == 0x49C ? 1 : -1];
 
 #endif

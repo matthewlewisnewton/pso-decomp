@@ -138,12 +138,12 @@ u8 TAdSinglePlyChrSelectGC::load_and_verify_character_save(char *desc) {
     }
     if (res != 0) {
         lbl_805D49B4 = 0;
-        TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+        TAdSinglePlyChrSelectGC::safe_free((void *)buf);
         return 0;
     }
     if (load_system_file__23TAdSinglePlyChrSelectGCFiPv(0, &sum) == 0) {
         lbl_805D49B4 = 0;
-        TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+        TAdSinglePlyChrSelectGC::safe_free((void *)buf);
         return 0;
     }
     lbl_805D49B4 = 0;
@@ -156,8 +156,8 @@ u8 TAdSinglePlyChrSelectGC::load_and_verify_character_save(char *desc) {
     res = TAdSinglePlyChrSelectGC__sub_80201204(data, 0x194B0);
     strncpy(((char *)this), (char *)(data + 0x193F0), 0x10);
     strncpy(desc, (char *)(data + 0x19400), 0x10);
-    TAdSinglePlyChrSelectGC::safe_free((u32)data);
-    TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+    TAdSinglePlyChrSelectGC::safe_free((void *)data);
+    TAdSinglePlyChrSelectGC::safe_free((void *)buf);
     return saved == res;
 }
 

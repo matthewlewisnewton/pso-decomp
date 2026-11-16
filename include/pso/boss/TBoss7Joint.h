@@ -31,10 +31,6 @@ struct TBoss7Joint : public TObjEneDD {
     void run_task();
     s32 init_params();
     static TBoss7DeRolLeC *get_state();
-    void read_state();
-    void byteswap_action_packet();
-    void update_and_send_60();
-    void broadcast_state();
     int is_part_active();
     u8 unk_3AC[0x1C];
 };

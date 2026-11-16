@@ -473,7 +473,7 @@ void init_area_lights(void) {
 
 void TObjLight::free_shared_data() {
     if ((u32) TObjLight__light_entry_data != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)((void*)TObjLight__light_entry_data));
+        TAdSinglePlyChrSelectGC::safe_free((void *)((void*)TObjLight__light_entry_data));
         TObjLight__light_entry_data = 0U;
     }
 }
@@ -773,4 +773,10 @@ __declspec(section ".sdata2") extern const f32 lbl_805DB098 = 180.0f;
 __declspec(section ".sdata2") extern const f32 lbl_805DB09C = 100000000.0f;
 __declspec(section ".sdata2") extern const f32 lbl_805DB0A0 = 0.89999997615814209f;
 __declspec(section ".sdata2") extern const f32 lbl_805DB0A4 = 48.0f;
+}
+
+extern "C" {
+s32 TObjLight__active_light_count;
+s32 TObjLight__actor_light_count;
+s32 TObjLight__light_count;
 }

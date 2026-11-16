@@ -19,6 +19,7 @@ void draw_ui_sprite_scaled(s32 sprite_id, const vec2f* position, const vec2f* sc
 void draw_ui_sprite_opaque(s32 sprite_id, const vec2f* position, const vec2f* scale,
                            f32 depth);
 void draw_ui_sprite(s32 sprite_id, const vec2f* position, f32 depth, f32 alpha);
+void draw_default_sprite__12TChCrEffWallFv(s32 sprite_id, const vec2f* position, f32 depth);
 }
 
 #include <stddef.h>

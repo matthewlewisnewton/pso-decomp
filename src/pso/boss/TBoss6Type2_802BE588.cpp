@@ -8,6 +8,22 @@
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/boss/TBoss6Type2.h"
 
+extern "C" {
+s32 lbl_805D6758;
+u8 lbl_805D675C;
+s32 lbl_805D6760;
+u8 lbl_805D6764;
+s32 lbl_805D6768;
+u8 lbl_805D676C;
+s32 lbl_805D6770;
+u8 lbl_805D6774;
+s32 lbl_805D6778;
+u8 lbl_805D677C;
+s32 lbl_805D6780;
+u8 lbl_805D6784;
+}
+
+
 struct T2_802BE6D4 { u8 pad0[0x45C]; s32 f45C; s32 f460; };
 
 struct Vec_802BE9AC { f32 x, y, z; };
@@ -33,14 +49,14 @@ extern const f32 lbl_805DE3F8;
 extern f32 lbl_805DE4DC;
 extern const f32 lbl_805DE4F0;
 
-extern const f32 lbl_805DE4E0;
-extern const f32 lbl_805DE4E4;
+static const f32 lbl_805DE4E0 = 0.0f;
+static const f32 lbl_805DE4E4 = 1.0f;
 void *get_player_by_client_id(s32 i);
 
 s32 spawn_flow_soul__11TBoss6Type2Fiii(s32 arg0, s32 arg1, s32 arg2);
 extern const f32 lbl_805DE404;
-extern const f32 lbl_805DE4E8;
-extern const f32 lbl_805DE4EC;
+static const f32 lbl_805DE4E8 = 60.0f;
+static const f32 lbl_805DE4EC = 10.0f;
 extern s32 lbl_805D6780;
 extern u8 lbl_805D6784;
 extern const f32 lbl_805DE400;
@@ -534,4 +550,9 @@ void TBoss6Type2::update_timer() {
 
 void TBoss6Type2::update_when_timer_zero() { if (*(int*)((char*)this + 0x460) == 0) { send_action_packet__11TBoss6Type2FSc(this, (void*)(*(void**)((char*)this + 0x47c))); } }
 
+}
+
+extern "C" {
+s32 boss6_type2_speed_from_ratio;
+u8 boss6_type2_speed_initialized;
 }

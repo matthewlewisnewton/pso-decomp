@@ -5,8 +5,8 @@
 #include "pso/map/FloorArea.h"
 extern "C" {
 }
-extern char lbl_80450C50[];
-extern char lbl_80450C6C[];
+extern const char lbl_80450C50[] = "obj_door_ruins_green.gvm";
+extern const char lbl_80450C6C[] = "obj_door_space_green.gvm";
 extern u8 bm_obj_door_ruins_resource_descriptor[];
 extern u8 bm_obj_door_space_resource_descriptor[];
 extern void *green_door_bml_resource;

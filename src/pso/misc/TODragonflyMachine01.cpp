@@ -177,7 +177,7 @@ void TODragonflyMachine01::load_resources() {
     node_yaw = 0;
     DragonflyMotionSetup setup = dragonfly_machine_attack_effect_params;
     setup.motions = resource->motions;
-    TObjEneMe3Stelth::spawn_attack(0x38, resource->models->model, resource->models->m_c, (s32)&setup, 3.0f, 15.0f);
+    TObjEneMe3Stelth::spawn_attack(0x38, (s32)resource->models->model, (s32)resource->models->m_c, (s32)&setup, 3.0f, 15.0f);
 }
 
 TODragonflyMachine01::~TODragonflyMachine01() {}
@@ -186,7 +186,7 @@ TODragonflyMachine01::TODragonflyMachine01(void *set_data) {
     m_name = class_name;
     apply_object_set_data(set_data);
     model = (NJS_OBJECT *)model_resource->models->model;
-    texlist = model_resource->models->m_c;
+    texlist = (s32)model_resource->models->m_c;
     motion = model_resource->motions->motion;
     animation_end_frame = (f32)motion->frameCount - 1.0f;
     animation_step = 1.0f;

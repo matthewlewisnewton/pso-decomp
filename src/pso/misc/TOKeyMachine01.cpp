@@ -224,7 +224,7 @@ void TOKeyMachine01::load_assets() {
     TOKeyMachine01__resource_bundle = resource;
     TOKeyMachine01__texture_lists = (s32 *)::operator new[](8);
     TOKeyMachine01__texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_ki_doa_panel_r.gvm");
-    TOKeyMachine01__texture_lists[1] = TOKeyMachine01__resource_bundle->models[0].m_c;
+    TOKeyMachine01__texture_lists[1] = (s32)TOKeyMachine01__resource_bundle->models[0].m_c;
 }
 
 TOKeyMachine01::~TOKeyMachine01() {}

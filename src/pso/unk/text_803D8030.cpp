@@ -32,3 +32,8 @@ void fn_803D8064(u16 arg0) {
 }
 
 }
+
+extern "C" {
+s32 lbl_805D76C8;
+s32 lbl_805D76CC;
+}

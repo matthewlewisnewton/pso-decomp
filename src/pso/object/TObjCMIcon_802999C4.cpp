@@ -1,22 +1,15 @@
-#include "pso/TObject.h"
+#include "pso/TObjCMIcon.h"
 #include "pso/object/TObjCMIcon_802999C4.h"
 #include "types.h"
 
-class TObjCMIcon : public TObject {
-public:
-    virtual ~TObjCMIcon();
-    virtual void run_task();
-    virtual void render();
-};
-
-s32 TObjCMIcon__icon_group_table[35] = {
-    2, 0x38, 0xA8, 0, 0,
-    2, 0x38, 0xA9, 0, 0,
-    2, 0x38, 0xAA, 0, 0,
-    3, 0x38, 0x37, 0xAA, 0,
-    2, 0x37, 0xA7, 0, 0,
-    2, 0x37, 0xAB, 0, 0,
-    2, 0x37, 0xAC, 0, 0,
+CreationIconGroup TObjCMIcon__icon_group_table[7] = {
+    { 2, { 0x38, 0xA8, 0, 0 } },
+    { 2, { 0x38, 0xA9, 0, 0 } },
+    { 2, { 0x38, 0xAA, 0, 0 } },
+    { 3, { 0x38, 0x37, 0xAA, 0 } },
+    { 2, { 0x37, 0xA7, 0, 0 } },
+    { 2, { 0x37, 0xAB, 0, 0 } },
+    { 2, { 0x37, 0xAC, 0, 0 } },
 };
 __declspec(section ".data") f32 cm_icon_screen_position[2] = { 604.0f, 443.0f };
 

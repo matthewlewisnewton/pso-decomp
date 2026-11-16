@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "types.h"
@@ -312,8 +313,8 @@ void TObjPlayer__sub_80357954(u8 *arg0) {
     }
 }
 
-void TUnk_804F14A8::update_idle() { TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1f8), 1820, 8192); }
-void TUnk_804F14A8::update_attack() { TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1f8), -3640, 0); }
+void TUnk_804F14A8::update_idle() { add_integer_clamped((s32 *)((char*)this + 0x1f8), 1820, 8192); }
+void TUnk_804F14A8::update_attack() { add_integer_clamped((s32 *)((char*)this + 0x1f8), -3640, 0); }
 
 extern s32 item_equip_variant_vtable[];
 

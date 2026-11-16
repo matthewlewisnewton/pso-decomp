@@ -118,7 +118,7 @@ TQuestListVM::~TQuestListVM() {
         list_window = NULL;
     }
     if (card_buffer != NULL) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)card_buffer);
+        TAdSinglePlyChrSelectGC::safe_free((void *)card_buffer);
         card_buffer = NULL;
     }
     quest_list_vm_instance = NULL;

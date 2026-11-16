@@ -397,7 +397,7 @@ void TObjLazerFenceNorm::free_resources() {
     }
     if ((u32) lazer_fence_norm_texture_list != 0U) {
         release_texture_list((void*)lazer_fence_norm_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free((u32)lazer_fence_norm_texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)lazer_fence_norm_texture_list);
         lazer_fence_norm_texture_list = 0;
     }
 }

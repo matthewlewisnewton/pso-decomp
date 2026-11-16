@@ -136,7 +136,7 @@ Req_8028C1F0 *__dt__22TChCrLoadAfsTextureReqFv(Req_8028C1F0 *arg0, s16 arg1) {
         finish_request__22TChCrLoadAfsTextureReqFPv(arg0);
         for (i = 0; i < arg0->count; i++) {
             if (arg0->tab[i] != 0) {
-                TAdSinglePlyChrSelectGC::safe_free(arg0->tab[i]);
+                TAdSinglePlyChrSelectGC::safe_free((void *)arg0->tab[i]);
                 arg0->tab[i] = 0;
             }
         }

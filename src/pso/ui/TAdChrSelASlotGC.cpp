@@ -37,7 +37,7 @@ s32 forward_slot_selection__16TAdChrSelASlotGCFPvPv(s32, s32, s32, f32);
 s32 create__19TWindowMessageYesNoFPvPvPvPv(s32, s32, s32, s32);
 extern const f32 lbl_805DF214;
 s32 TAdChrSelASlotGC__sub_8030CA84(s32 arg0, s32 arg1);
-extern const f32 lbl_805DF20C;
+static const f32 lbl_805DF20C = 193.0f;
 s32 TAdChrSelASlotGC__sub_8030C978(void *arg0, s32 arg1, s32 arg2);
 u8 *__nw__7TObjectFUl(s32);
 // The factory below owns this singleton; keep it before the local-static guard.
@@ -55,7 +55,7 @@ G_8030C45C *TAdChrSelASlotGC__sub_8030C45C(TAdChrSelASlotGC *self, s32 arg1, s32
 int sprintf(char *, const char *, ...);
 void *memset(void *, int, unsigned long);
 extern char char_select_format_message_buffer[];
-extern const f32 TAdChrSelASlotGC__data_805DF208;
+static const f32 TAdChrSelASlotGC__data_805DF208 = 190.0f;
 u32 TAdChrSelASlotGC__sub_8030CB08(TAdChrSelASlotGC *arg0, s32 kind, s32 text);
 s32 TAdChrSelASlotGC__sub_8030C4F8(TAdChrSelASlotGC *self, s32 kind);
 s32 TAdChrSelASlotGC__sub_8030C5C0(TAdChrSelASlotGC *self, s32 kind);
@@ -339,8 +339,8 @@ void TAdChrSelASlotGC::sub_8030CEEC() {
             push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_38, lbl_80475878[0]);
             push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_38, lbl_80475878[1]);
             push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_38, lbl_80475878[2]);
-            *(s32 *)((s8 *)this + 0x4C) = ((s32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0x12, lbl_805DF218));
-            *(s32 *)((s8 *)this + 0x50) = ((s32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0x13, lbl_805DF218));
+            *(s32 *)((s8 *)this + 0x4C) = ((s32)create_draw_line_ctrl(this, 0x12, lbl_805DF218));
+            *(s32 *)((s8 *)this + 0x50) = ((s32)create_draw_line_ctrl(this, 0x13, lbl_805DF218));
             break;
         case 2:
             push_plate_position__19TAdPlyChrSelPlateGCFv(this->m_38, lbl_80475858[0]);
@@ -653,18 +653,18 @@ void TAdChrSelASlotGC::close_windows() {
     }
     switch (this->mode) {
     case 0:
-        *(u32 *)&this->unk_4C = (u32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0xC, (f32)lbl_805DF218);
+        *(u32 *)&this->unk_4C = (u32)create_draw_line_ctrl(this, 0xC, (f32)lbl_805DF218);
         ((TAdMcSelectGC *)(*(s32 *)&this->_pad2C))->init_slot(0, (void *)lbl_80475840);
-        this->m_48 = (u32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0xB, (f32)lbl_805DF218);
+        this->m_48 = (u32)create_draw_line_ctrl(this, 0xB, (f32)lbl_805DF218);
         break;
     case 1:
         ((TAdMcSelectGC *)(*(s32 *)&this->_pad2C))->init_slot(0, (void *)lbl_80475840);
-        this->m_48 = (u32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0xB, (f32)lbl_805DF218);
+        this->m_48 = (u32)create_draw_line_ctrl(this, 0xB, (f32)lbl_805DF218);
         break;
     case 2:
         ((TAdMcSelectGC *)(*(s32 *)&this->_pad2C))->init_slot(0, (void *)lbl_804758A0);
-        this->m_48 = (u32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0xD, (f32)lbl_805DF218);
-        *(u32 *)&this->unk_4C = (u32)create_draw_line_ctrl__13TAdMcSelectGCFiif((s32)this, 0x14, (f32)lbl_805DF218);
+        this->m_48 = (u32)create_draw_line_ctrl(this, 0xD, (f32)lbl_805DF218);
+        *(u32 *)&this->unk_4C = (u32)create_draw_line_ctrl(this, 0x14, (f32)lbl_805DF218);
         break;
     }
     this->state = 1;

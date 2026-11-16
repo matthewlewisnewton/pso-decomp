@@ -168,7 +168,7 @@ extern "C" {
 f32 atan2_float(f32 y, f32 x);
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
-extern const f64 lbl_80439EF0;
+static const f64 lbl_80439EF0 = 10430.38043493439;
 extern const f32 TObjEneRe7Berura__data_805D9724;
 extern const f32 TObjEneRe7Berura__data_805D972C;
 extern const f32 TObjEneRe7Berura__data_805D9740;

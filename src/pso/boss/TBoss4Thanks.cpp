@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -50,7 +51,6 @@ struct Thanks_8035C6FC
 
 extern "C" {
 s32 get_bml_motion(void *, s32);
-s32 TObjFish__sub_8001EDB0(void *, s32);
 void __ct__7TObjectFP7TObject(void *, void *);
 extern RecoveredGlobal_8035C83C___vt__12TBoss4Thanks __vt__12TBoss4Thanks;
 extern s32 TBoss4Thanks__class_name;
@@ -241,7 +241,7 @@ u8 *TBoss4Thanks__ct(u8 *object, u8 *arg1) {
     *(s32 *)((s8 *)object + 0) = (s32) TBoss4Thanks__class_name;
     instance_count = (u8 *)(TBoss4Uro::get_instance_count());
     *(s32 *)((s8 *)object + 0x34) = (s32)get_bml_model((BmlResource *)instance_count, 1);
-    *(s32 *)((s8 *)object + 0x38) = TObjFish__sub_8001EDB0(instance_count, 1);
+    *(s32 *)((s8 *)object + 0x38) = (s32)TObjFish__sub_8001EDB0((BmlResource *)instance_count, 1);
     *(s32 *)((s8 *)object + 0x3C) = get_bml_motion(instance_count, 0x46);
     *(s32 *)((s8 *)object + 0x40) = get_bml_motion(instance_count, 0x47);
     TBoss4Thanks__sub_8035C480((s32)((s32) object));

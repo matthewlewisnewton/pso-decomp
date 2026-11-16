@@ -40,11 +40,7 @@ void *TObjRaderCol__create(void *arg0) {
 }
 
 void *TObjRaderHideCol__create(void *arg0) {
-    void *o = __nw__7TObjectFUl(0x98);
-    if (o != NULL) {
-        o = TObjRaderHideCol__ct((u8 *)o, (s32)tl_05, (s32)arg0);
-    }
-    return o;
+    return new TObjRaderHideCol(static_cast<TObject *>(tl_05), arg0);
 }
 
 void *TObjContainerAbeEnemy__create(void *arg0) {

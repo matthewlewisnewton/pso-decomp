@@ -74,7 +74,7 @@ TLobbyEventTheme::TLobbyEventTheme() : TObject(tl_00) {
 void free_obj_lobby_main() {
     if (lobby_main_texture_gvm != NULL) {
         release_texture_list(lobby_main_texture_gvm);
-        TAdSinglePlyChrSelectGC::safe_free((u32)lobby_main_texture_gvm);
+        TAdSinglePlyChrSelectGC::safe_free((void *)lobby_main_texture_gvm);
         lobby_main_texture_gvm = NULL;
     }
 }

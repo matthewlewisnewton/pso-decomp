@@ -367,7 +367,7 @@ s32 queue_destruction__7TObjectFv(void *);
 s32 angle_difference_abs(int, int);
 s32 lerp_angle_half__Fll(int, int);
 
-extern const f64 lbl_8043BA18;
+static const f64 lbl_8043BA18 = 10430.38043493439;
 s32 update_action_hold_status__12TObjEneLappyFv(s32 arg0);
 s32 update_movement_status__12TObjEneLappyFv(s32 arg0);
 s32 update_movement_status__9TObjCharaFv();
@@ -1543,7 +1543,7 @@ void TLobby::cleanup_handles() {
     if (TLobby::get_instance() == 0) {
         if ((u32) (*(u32 *)&rappy_alternate_texture_list) != 0U) {
             release_texture_list((void*)(*(u32 *)&rappy_alternate_texture_list));
-            TAdSinglePlyChrSelectGC::safe_free((*(u32 *)&rappy_alternate_texture_list));
+            TAdSinglePlyChrSelectGC::safe_free((void *)(*(u32 *)&rappy_alternate_texture_list));
             (*(u32 *)&rappy_alternate_texture_list) = 0U;
         }
     } else {
@@ -1952,3 +1952,7 @@ void TObjEneRe2Flower::render() {
 #undef draw_motion_model__10TObjMotionFv
 #undef apply_variant_speeds__12TObjEneLappyFv
 #undef render__12TObjEneLappyFv
+
+extern "C" {
+s32 *rappy_visibility_node;
+}

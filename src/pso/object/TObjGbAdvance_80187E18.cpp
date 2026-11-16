@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -21,7 +22,6 @@ extern "C" {
 
 s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
-s32 TObjFish__sub_8001EDB0(s32, s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 
@@ -32,7 +32,7 @@ extern const f32 lbl_805DBCE0;
 void TObjGbAdvance::render() {
     u8 *arg0 = (u8 *)this;
     if (((VObj*)arg0)->m8(lbl_805DBCDC, lbl_805DBCE0) != 0) {
-        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0(TObjGbAdvance__data_805D5B74, 0)));
+        set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)TObjGbAdvance__data_805D5B74, 0)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation.yaw);

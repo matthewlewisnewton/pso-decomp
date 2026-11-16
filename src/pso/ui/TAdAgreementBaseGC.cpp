@@ -61,10 +61,10 @@ Obj_80329AA8 *TAdAgreementBaseGC__ct(Obj_80329AA8 *arg0, void *arg1);
 void *get_localized_text_entry(int, u32);
 s32 render_status_line__15TAdSubPlyItemGCFi(void *, int, f32, f32, f32);
 void draw_window_frame__11TWindowBaseFPv();
-extern const f32 lbl_805DF700;
-extern const f32 lbl_805DF704;
-extern const f32 lbl_805DF708;
-extern const f32 lbl_805DF70C;
+static const f32 lbl_805DF700 = 320.0f;
+static const f32 lbl_805DF704 = 394.0f;
+static const f32 lbl_805DF708 = 20.0f;
+static const f32 lbl_805DF70C = 0.8f;
 
 void TAdAgreementBaseGC::check_main_task_state() {
     if (TMainTask::get_render_pass() == 1) { return;

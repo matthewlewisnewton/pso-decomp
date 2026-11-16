@@ -174,33 +174,33 @@ extern "C" s32 lbl_805D5254;
 extern "C" BmlResource *nano_drago_entry_params_resource;
 extern "C" void *tl_04;
 
-extern "C" u8 lbl_8043C760[];
+extern "C" const u8 lbl_8043C760[] = "bm6_s_drc_body.nj";
 
-extern "C" u8 lbl_8043C774[];
+extern "C" const u8 lbl_8043C774[] = "beam_bm6_s_drc_body.njm";
 
-extern "C" u8 lbl_8043C78C[];
+extern "C" const u8 lbl_8043C78C[] = "damfly_bm6_s_drc_body.njm";
 
-extern "C" u8 lbl_8043C7A8[];
+extern "C" const u8 lbl_8043C7A8[] = "damgrd_bm6_s_drc_body.njm";
 
-extern "C" u8 lbl_8043C7C4[];
+extern "C" const u8 lbl_8043C7C4[] = "deadg_bm6_s_drc_body.njm";
 
-extern "C" u8 lbl_8043C7E0[];
+extern "C" const u8 lbl_8043C7E0[] = "deads_bm6_s_drc_body.njm";
 
-extern "C" u8 lbl_8043C7FC[];
+extern "C" const u8 lbl_8043C7FC[] = "fly_bm6_s_drc_body.njm";
 
-extern "C" u8 lbl_8043C814[];
+extern "C" const u8 lbl_8043C814[] = "joy_bm6_s_drc_body.njm";
 
-extern "C" u8 lbl_8043C82C[];
+extern "C" const u8 lbl_8043C82C[] = "land_bm6_s_drc_body.njm";
 
-extern "C" u8 lbl_8043C844[];
+extern "C" const u8 lbl_8043C844[] = "lasfly_bm6_s_drc_body.njm";
 
-extern "C" u8 lbl_8043C860[];
+extern "C" const u8 lbl_8043C860[] = "lift_bm6_s_drc_body.njm";
 
-extern "C" u8 lbl_8043C878[];
+extern "C" const u8 lbl_8043C878[] = "wait_bm6_s_drc_body.njm";
 
-extern "C" u8 lbl_8043C890[];
+extern "C" const u8 lbl_8043C890[] = "walk_bm6_s_drc_body.njm";
 
-extern "C" u8 lbl_8043C8A8[];
+extern "C" const u8 lbl_8043C8A8[] = "bm_ene_nanodrago.bml";
 
 extern "C" const char *bm_ene_nanodrago_model_names[2];
 extern "C" const char *bm_ene_nanodrago_motion_names[13];

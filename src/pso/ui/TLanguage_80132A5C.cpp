@@ -53,7 +53,7 @@ void TLanguage::free_alphabet_textures() {
         if (inner->f8 != 0U) {
             release_texture_list(localized_alphabet_list);
         }
-        TAdSinglePlyChrSelectGC::safe_free((u32)localized_alphabet_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)localized_alphabet_list);
         localized_alphabet_list = NULL;
     }
 }

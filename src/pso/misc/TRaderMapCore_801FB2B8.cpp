@@ -48,7 +48,6 @@ s32 __dl__7TObjectFPv(void *);
 extern RecoveredGlobal_801FB430___vt__13TRaderMapCore __vt__13TRaderMapCore;
 extern s32 TRaderMapCore__instance;
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
-s32 fn_803D64F8(void *);
 extern f32 lbl_805D35F0;
 extern f32 lbl_805D35FC;
 extern s32 rader_map_core_name_ptr;

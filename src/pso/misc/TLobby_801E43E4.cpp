@@ -161,7 +161,7 @@ s32 TLobby::load_texture_pvm_file(const char *name, s32 arg1) {
     TGStream::load_sct_file((s32)path, buf);
     ret = load_gvm_texture_archive(buf, arg1);
     if (allocated != 0) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+        TAdSinglePlyChrSelectGC::safe_free((void *)buf);
     } else {
         TLobby::tmp_buf_release(lbl_804497C4);
     }

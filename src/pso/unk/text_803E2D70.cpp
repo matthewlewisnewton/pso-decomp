@@ -1,4 +1,5 @@
 #include "pso/system/ModelDrawCallback.h"
+#include "pso/system/ChunkVertexJob.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803DF7A8.h"
 #include "pso/player/TObjPlayer_803E21B8.h"
@@ -36,7 +37,7 @@ struct ChunkNode_803E2F78 {
     f32 f34;
 };
 
-struct Hdr_803E34B0 { u8 *dst; u8 *src; s32 count; };
+typedef ChunkVertexJob Hdr_803E34B0;
 
 typedef struct Vtx_803E2D70 { f32 x, y, w, u, v; u32 color; } Vtx_803E2D70;
 
@@ -765,7 +766,6 @@ extern "C" {
 void push_reordered_matrix_ps(void);
 void transform_chunk_vertices_pos_normal(Hdr_803E34B0 *job, ReorderedMatrix_803E3390 *matrix);
 void GXSetVtxAttrFmtv(Hdr_803E34B0 *job, s32 matrix, u32 format);
-void cache_chunk_vertex_colors(Hdr_803E34B0 *job, s32 matrix);
 void transform_vertex_list__10TObjPlayerFv(Hdr_803E34B0 *job, s32 matrix);
 }
 

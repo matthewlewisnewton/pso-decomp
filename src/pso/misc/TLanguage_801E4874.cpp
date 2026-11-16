@@ -64,7 +64,7 @@ GinjaTextureList *load_gvm_texture_file(const char *filename) {
     count = read_file_header__9TLanguageFiPv(buf, (u8 *)&hdr);
     if (count == 0) {
         if (big != 0) {
-            TAdSinglePlyChrSelectGC::safe_free((u32)big);
+            TAdSinglePlyChrSelectGC::safe_free((void *)big);
         } else {
             TLobby::tmp_buf_release((const char *)lbl_8044983C);
         }
@@ -95,7 +95,7 @@ GinjaTextureList *load_gvm_texture_file(const char *filename) {
     }
     load_gvm_texture_archive(buf, res);
     if (big != 0) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)big);
+        TAdSinglePlyChrSelectGC::safe_free((void *)big);
     } else {
         TLobby::tmp_buf_release((const char *)lbl_8044983C);
     }

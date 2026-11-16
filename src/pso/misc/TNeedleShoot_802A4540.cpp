@@ -16,7 +16,7 @@ struct Stack_802A4544 {
 
 extern "C" {
 extern NJS_ARGB needle_shoot_color_white;
-extern const f32 lbl_805DDF68;
+static const f32 lbl_805DDF68 = 10.0f;
 u8 *csnVector(f32 *, f32 *, s32);
 void TNeedleShoot::vfunc_8() {  }
 

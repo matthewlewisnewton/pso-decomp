@@ -4,6 +4,7 @@
 #include "types.h"
 
 extern "C" {
+// Copies three float coordinates and a trailing 32-bit color word.
 void TAdDrawLineTask__sub_80019A8C(void *p, void *q);
 void func_80019A68__Fv(void);
 }

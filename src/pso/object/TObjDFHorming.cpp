@@ -9,6 +9,7 @@
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/boss/TBoss4DarkFalz.h"
+#include "pso/boss/TBoss4ZakoDraw_8030AD38.h"
 #include "pso/boss/TBoss4DarkFalzState.h"
 
 struct Vec_8004AB90 { f32 x, y, z; };
@@ -678,7 +679,7 @@ void TBoss4DarkFalz__sub_8004B7DC(TBoss4DarkFalz *boss4_dark_falz) {
             v.x += 2.5e+02f * sin_table_lookup(ang);
             v.z += 2.5e+02f * cos_table_lookup(ang);
             ((TObjBase *)p)->set_position_from(&v);
-            ((TBoss4DarkFalz *)p)->save_position();
+            ((TObjBase *)p)->save_previous_position();
             ((TObjBase *)p)->get_rotation()->yaw = ang + 0x8000;
             ((TObjPlayer *)p)->refresh_equipment_slot();
             if (is_locally_controlled__10TObjPlayerFPv(p) != 0) {
@@ -705,7 +706,7 @@ void TBoss4DarkFalz__sub_8004B8F8(TBoss4DarkFalz *boss4_dark_falz) {
             v.x += 12.5f * sin_table_lookup(ang);
             v.z += 12.5f * cos_table_lookup(ang);
             ((TObjBase *)p)->set_position_from(&v);
-            ((TBoss4DarkFalz *)p)->save_position();
+            ((TObjBase *)p)->save_previous_position();
             ((TObjBase *)p)->get_rotation()->yaw = 0x8000;
             ((TObjPlayer *)p)->refresh_equipment_slot();
             if (is_locally_controlled__10TObjPlayerFPv(p) != 0) {
@@ -782,6 +783,7 @@ void TBoss4DarkFalz::update_roar_sound_timer() {
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/boss/TBoss4DarkFalz.h"
 #include "pso/boss/TBoss4Type2.h"
+#include "pso/boss/TBoss4Type1.h"
 #include "pso/boss/TBoss4Uro.h"
 #include "pso/misc/TLobby.h"
 #include "pso/player/TObjPlayer.h"
@@ -829,7 +831,6 @@ extern s32 game_difficulty_selection;
 
 extern "C" {
 s32 TBoss4DarkFalz__ct(s32 a0, s32 arg1, s32 a2);
-int TBoss4DarkFalz__sub_8030AD38(void);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
 
@@ -978,7 +979,7 @@ void handle_6x19_dark_falz_actions(Msg_8004BFA4 *arg0) {
     case 5:
     case 6:
         if (TBoss4DarkFalz__type1_instance != NULL) {
-            ((TBoss4Type2 *)TBoss4DarkFalz__type1_instance)->apply_packed_state(arg);
+            ((TBoss4Type1 *)TBoss4DarkFalz__type1_instance)->apply_packed_state(arg);
         }
         break;
     case 7:

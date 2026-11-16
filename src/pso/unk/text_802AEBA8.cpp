@@ -20,8 +20,8 @@ typedef struct {
     Quad_802AEBE4 q2[16];
 } Obj_802AEBE4;
 
-extern const f32 lbl_805DE1D8;
-extern const f32 lbl_805DE1DC;
+static const f32 lbl_805DE1D8 = 16.0f;
+static const f32 lbl_805DE1DC = 32.0f;
 
 void TAdEnterSerialAccessGC::reset_input_state() {
     Obj_802AEBA8 *self = (Obj_802AEBA8 *)this;

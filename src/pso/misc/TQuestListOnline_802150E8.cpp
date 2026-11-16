@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
@@ -161,7 +162,7 @@ void TQuestListOnline::begin_file_download() {
         main_task.render();
         main_task.render_screen_overlay();
         render_tick();
-        ((TWindowCtrl *)local_client_id)->suppress_slot();
+        suppress_player_window(local_client_id);
         main_task.toggle_pause_layers();
         quest_download_active = 1;
         quest_download_received_bytes = 0;
@@ -208,7 +209,7 @@ void TQuestListOnline::receive_quest_info(void *arg0) {
         memcpy(TQuestListOnline__selected_quest_info, arg0, 0x124);
         TQuestListOnline__sub_8013ACF4(2);
         if (THunterGuildSeqOffline__sub_80212074() != 0) {
-            ((TWindowCtrl *)local_client_id)->suppress_slot();
+            suppress_player_window(local_client_id);
             if ((u32) TQuestListOnline__quest_info_window != 0U) {
                 ((TWindowBase *)TQuestListOnline__quest_info_window)->close();
                 TQuestListOnline__quest_info_window = 0;
@@ -248,11 +249,11 @@ void TQuestListOnline::release_resources() {
         *(u32 *)((s8 *)(&(*(RecoveredGlobal_80215498_TQuestListOnline__data_80513DE8 *)&TQuestListOnline__dat_download_state).value) + 0x38) = 0U;
     }
     if ((u32) (*(u32 *)&TQuestListOnline__selected_quest_info) != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((int) ((*(u32 *)&TQuestListOnline__selected_quest_info)));
+        TAdSinglePlyChrSelectGC::safe_free((void *)((*(u32 *)&TQuestListOnline__selected_quest_info)));
         (*(u32 *)&TQuestListOnline__selected_quest_info) = 0U;
     }
     if ((u32) TQuestListOnline__quest_list_buffer != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free(TQuestListOnline__quest_list_buffer);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TQuestListOnline__quest_list_buffer);
         TQuestListOnline__quest_list_buffer = 0U;
     }
     if ((u32) (*(u32 *)&TQuestListOnline__download_window) != 0U) {

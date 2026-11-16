@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -50,7 +51,6 @@ int is_quest_active(void);
 s32 __nw__7TObjectFUl(int);
 extern s32 enable_v2_features;
 void submit_cursor_candidate(Obj_8015C48C *self, s32 x);
-s32 TObjFish__sub_8001EDB0(void *, s32);
 s32 check_value_equals__7TObjectFPCc(void *, s32);
 }
 void play_container_break_sound(s32 arg0);
@@ -154,14 +154,14 @@ void TUnk_804B08BC::vfunc_79() {
     a.z = self->z;
     a.y2 = a.y;
     a.a = (s32)get_bml_model((BmlResource *)ancient_container_resource_bundle, 1);
-    a.b = TObjFish__sub_8001EDB0((void *)ancient_container_resource_bundle, 1);
+    a.b = (s32)TObjFish__sub_8001EDB0((BmlResource *)ancient_container_resource_bundle, 1);
     Desc_8015C234 b = lbl_8044074C;
     b.x = self->x;
     b.y = self->y;
     b.z = self->z;
     b.y2 = b.y;
     b.a = (s32)get_bml_model((BmlResource *)ancient_container_resource_bundle, 2);
-    b.b = TObjFish__sub_8001EDB0((void *)ancient_container_resource_bundle, 2);
+    b.b = (s32)TObjFish__sub_8001EDB0((BmlResource *)ancient_container_resource_bundle, 2);
     if (check_value_equals__7TObjectFPCc(self, lbl_805D2F00) != 0) {
         a.b = ancient_container_fragment_texture_lists->a;
         b.b = ancient_container_fragment_texture_lists->b;

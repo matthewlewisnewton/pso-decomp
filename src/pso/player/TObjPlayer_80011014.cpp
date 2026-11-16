@@ -1,3 +1,4 @@
+#include "pso/system/RandomRatio.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/TObjPlayer_800F0810.h"
 #include "pso/unk/text_803D8F74.h"
@@ -888,7 +889,7 @@ u32 obj_testFlags30__14TObjCollidableFUl(ObjFlags* p, u32 mask);
 u16 get_entity_id(ObjFlags* p);
 void obj_setFlags30(ObjFlags* p, u32 mask);
 bool is_split_screen(void);
-f32 calc_random_ratio__10TObjPlayerFv(void);
+f32 calc_random_ratio__10TObjPlayerFv(void *state);
 s32 get_current_floor(void);
 f32 fabs_float(f32 x);
 f32 atan2_float(f32 y, f32 x);
@@ -896,7 +897,7 @@ f32 newton_sqrtf(f32 x);
 u32 csnLookAt(void *, void *);
 u8 * csnVectorUnder(f32 *, void *, s32, void *, f32);
 u32 csnVector(void *, void *, s32);
-u32 subtractive_rng_next();
+s32 subtractive_rng_next(s32 *state);
 void create__10TObjPlayerFUiii(u32, s32, s32);
 s32 spawn_particle_effect_with_flags(s32, s32, s32);
 s32 set_owner_id__13TParticleCtrlFUs(s32, s32);
@@ -917,7 +918,7 @@ int bswap_16__FPUs(void*);
 
 void __dl__7TObjectFPv(void *);
 u32 __nw__7TObjectFUl(s32);
-s32 construct_actor_light_task(f32, void *, void *, void *, s32, void *, s32);
+s32 construct_actor_light_task(f32, void *, const void *, const void *, s32, void *, s32);
 s32 rand();
 f64 atan2(f64 y, f64 x);
 s32 vec3_add_to(void *, void *);
@@ -935,13 +936,13 @@ s32 push_matrix();
 s32 pop_matrix();
 void post_translate_matrix(void *);
 
-extern s32 TObjPlayer__data_80434060[];
+extern const f32 player_attack_stat_status_light_colors[4] = {1.0f, 0.9f, 0.5f, 0.2f};
+extern const f32 player_defense_stat_status_light_colors[4] = {1.0f, 0.4f, 0.8f, 1.0f};
+extern const f32 TObjPlayer__data_80434060[3] = {0.0f, 1.0f, 0.0f};
+extern const s16 lbl_8043406C[4] = {0, 2, 5, 10};
+extern const Vec_800115C4 lbl_80434074 = {0.0f, 0.0f, 0.0f};
 extern const f64 TObjPlayer__data_804340B8;
 extern int TObjPlayer__data_8050D460[];
-extern s32 player_attack_stat_status_light_colors[];
-extern s32 player_defense_stat_status_light_colors[];
-extern s16 lbl_8043406C[];
-extern Vec_800115C4 lbl_80434074;
 extern const f64 lbl_80434098;
 extern const f64 lbl_804340A0;
 extern u8 lbl_804340A8[];
@@ -1482,7 +1483,7 @@ f32 TObjChara::random_ratio() {
     if (get_main_phase() == 0xE) {
         return (3.0517578e-05f) * (f32) rand();
     }
-    return ((f32 (*)(s32))calc_random_ratio__10TObjPlayerFv)((s32)this + 0x160);
+    return calc_random_ratio__10TObjPlayerFv((u8 *)this + 0x160);
 }
 
 extern const f32 lbl_805D7D3C = 65536.0f;
@@ -2957,7 +2958,7 @@ struct Obj_80014108 {
 #define COLL_80014108() (&((Obj_80014108 *)this)->colls[i])
 
 f32 TObjChara::receive_physical_attack(void *att, f32 scale) {
-    Vec_80014108 hit;
+    Vec hit;
     s32 immune;
     s32 i;
     s32 j;
@@ -3045,7 +3046,7 @@ f32 TObjChara::receive_physical_attack(void *att, f32 scale) {
                         lck = 100.0f;
                     }
                     if (crit <= lck) {
-                        ((TEffClitical *)(&hit))->create();
+                        TEffClitical::create(&hit);
                         play_sound_effect(0x4001A31F, (const Vec *)(&hit), 0, 0);
                         d *= (1.5f);
                     } else {
@@ -3200,7 +3201,7 @@ void TObjChara::apply_defense_stat_status(void *receipt_arg) {
         if (((s32 (*)(TObjChara *, s32))obj_testFlags30__14TObjCollidableFUl)(this, 0x02000000) == 0) {
             u32 temp_obj = __nw__7TObjectFUl(0x64);
             if (temp_obj != 0U) {
-                ((s32 (*)(u32, s32 *, s32 *, s32, s32, f32, s32))construct_actor_light_task)(temp_obj, player_defense_stat_status_light_colors, TObjPlayer__data_80434060, 0x2D, (s32)this, (0.1f), tl_07);
+                construct_actor_light_task(0.1f, (void *)temp_obj, player_defense_stat_status_light_colors, TObjPlayer__data_80434060, 0x2D, this, tl_07);
             }
         }
     }
@@ -3243,7 +3244,7 @@ void TObjChara::apply_attack_stat_status(void *arg1_arg) {
         if (((s32 (*)(TObjPlayer*, s32))obj_testFlags30__14TObjCollidableFUl)(((TObjPlayer *)this), 0x02000000) == 0) {
             u32 temp_obj = __nw__7TObjectFUl(0x64);
             if (temp_obj != 0U) {
-                ((s32 (*)(u32, s32 *, s32 *, s32, TObjPlayer*, f32, s32))construct_actor_light_task)(temp_obj, player_attack_stat_status_light_colors, TObjPlayer__data_80434060, 0x2D, ((TObjPlayer *)this), (0.1f), tl_07);
+                construct_actor_light_task(0.1f, (void *)temp_obj, player_attack_stat_status_light_colors, TObjPlayer__data_80434060, 0x2D, this, tl_07);
             }
         }
     }
@@ -3669,7 +3670,7 @@ s32 TObjChara::update_defense_stat_status() {
                 }
                 obj = ((void * (*)(u32))__nw__7TObjectFUl)(0x64);
                 if (obj != 0) {
-                    construct_actor_light_task((0.1f), obj, ((u8 *)&player_defense_stat_status_light_colors), ((u8 *)&TObjPlayer__data_80434060), 0x2D, ((u8 *)this), tl_07);
+                    construct_actor_light_task((0.1f), obj, player_defense_stat_status_light_colors, TObjPlayer__data_80434060, 0x2D, ((u8 *)this), tl_07);
                 }
             }
             return 1;
@@ -3709,7 +3710,7 @@ s32 TObjChara::update_attack_stat_status() {
                 }
                 obj = ((void * (*)(u32))__nw__7TObjectFUl)(0x64);
                 if (obj != 0) {
-                    construct_actor_light_task((0.1f), obj, ((u8 *)&player_attack_stat_status_light_colors), ((u8 *)&TObjPlayer__data_80434060), 0x2D, ((u8 *)this), tl_07);
+                    construct_actor_light_task((0.1f), obj, player_attack_stat_status_light_colors, TObjPlayer__data_80434060, 0x2D, ((u8 *)this), tl_07);
                 }
             }
             return 1;
@@ -3876,7 +3877,7 @@ s32 TObjChara::update_poison_status() {
             if ((s16) dmg < 1) {
                 dmg = 1;
             }
-            ((s32 (*)(u8 *, s32, void *))TObjectV8047c128_subtract_hp)(((u8 *)this), dmg + lbl_8043406C[game_difficulty_selection], lbl_8043406C);
+            ((s32 (*)(u8 *, s32, const void *))TObjectV8047c128_subtract_hp)(((u8 *)this), dmg + lbl_8043406C[game_difficulty_selection], lbl_8043406C);
             if (this->clamp_hp() <= 0) {
                 if (((s32 (*)(void *, s32))obj_testFlags30__14TObjCollidableFUl)(this, 0x800) == 0) {
                     ((TObjPlayer *)((u8 *)this))->set_hp_clamped(1);
@@ -4858,8 +4859,8 @@ bool is_split_screen(void) {
     return camera_split_screen_selector != 1;
 }
 
-f32 calc_random_ratio__10TObjPlayerFv(void) {
-    return (f32) (subtractive_rng_next() >> 0x10U) / *(const volatile f32 *)&lbl_805D7D3C;
+f32 calc_random_ratio__10TObjPlayerFv(void *state) {
+    return (f32) ((u32)subtractive_rng_next((s32 *)state) >> 0x10U) / *(const volatile f32 *)&lbl_805D7D3C;
 }
 
 s32 get_current_floor(void) {

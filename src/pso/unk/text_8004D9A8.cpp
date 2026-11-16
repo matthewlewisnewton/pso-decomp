@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/misc/ParticleFactory.h"
@@ -266,7 +267,6 @@ typedef struct Data_8004DEE0 {
 } Data_8004DEE0;
 
 s32 get_bml_motion(BmlResource *, s32);
-s32 TObjFish__sub_8001EDB0(BmlResource *, s32);
 void init_model_node_tables(void *, void *, s32);
 
 void __ct__8TObjBaseFP7TObject(void *, void *);
@@ -309,7 +309,7 @@ Obj_8004DEE0 *TObjDFDemo0__ct(void *arg0, void *parent) {
             k = t;
             self->fbc[0][i] = (s32)get_bml_model(h, t);
         }
-        self->fbc[1][i] = TObjFish__sub_8001EDB0(h, k);
+        self->fbc[1][i] = (s32)TObjFish__sub_8001EDB0((BmlResource *)h, (s32)k);
         self->fbc[2][i] = get_bml_motion(h, ((s32 *)lbl_804854D8)[i]);
     }
     self->f104 = (-0.5f);

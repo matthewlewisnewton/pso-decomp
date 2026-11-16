@@ -100,5 +100,5 @@ TObjRainbowLobby::TObjRainbowLobby(TObject *parent, void *set_data) : TObjMapObj
     }
     scale = 1.0f;
     model = (void *)shared_model_resource->models->model;
-    texlist = shared_model_resource->models->m_c;
+    texlist = (s32)shared_model_resource->models->m_c;
 }

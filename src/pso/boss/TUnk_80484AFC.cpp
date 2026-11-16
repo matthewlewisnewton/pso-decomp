@@ -157,8 +157,8 @@ TUnk_80484AFC::TUnk_80484AFC(TObject *parent, Vec *pos, s32 angle, s32 target) :
     rotate_matrix_x(0, this->rotation.pitch);
     matrix_mult_vec(0, &velocity, &velocity);
     pop_matrix();
-    model = boss3_volopt_resources->models[0x16].model;
-    textures = boss3_volopt_resources->models[0x16].m_c;
+    model = (s32)boss3_volopt_resources->models[0x16].model;
+    textures = (s32)boss3_volopt_resources->models[0x16].m_c;
     age = 0;
     trail_rotation[2] = 0;
     trail_rotation[1] = 0;

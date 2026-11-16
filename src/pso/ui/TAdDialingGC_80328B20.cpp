@@ -4,8 +4,6 @@
 #include "pso/ui/TAdDialingGC.h"
 
 extern "C" {
-// The renderer at this legacy symbol receives a ColorLineList.
-void draw_tri_fan_2d__14TObjCMHairMenuFllf(ColorLineList *polygon, s32 count, s32 flags, f32 depth);
 
 // The rectangle coordinates are in the original read-only data contribution.
 extern const ColorLineVertex lbl_804767A8[];
@@ -39,7 +37,7 @@ void draw_dialing_rectangle(const ColorLineVertex *origin, const ColorLineVertex
     rectangle.verts[3].y = origin->y;
     rectangle.colors[3] = color;
 
-    draw_tri_fan_2d__14TObjCMHairMenuFllf(&rectangle, 4, 7, -120.0f);
+    rectangle.draw_tri_fan_2d( 4, 7, -120.0f);
 }
 }
 

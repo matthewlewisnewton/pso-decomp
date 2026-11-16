@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/misc/TWindowComCard.h"
@@ -290,7 +291,7 @@ void draw_photon_blast_fan(s32 arg0, Vec2_80270244 *arg1, Params_80270244 *arg2,
         }
         verts[4] = amp_x * cos_table_lookup(angle) + verts[0];
         verts[5] = amp_y * sin_table_lookup(angle) + verts[1];
-        ((TObjCMHairMenu *)&prim)->draw_tri_fan_2d(3, 2, depth);
+        ((ColorLineList *)&prim)->draw_tri_fan_2d(3, 2, depth);
     }
 }
 #pragma pop

@@ -161,7 +161,7 @@ TODoorCave03::TODoorCave03(TObject *parent, void *set_data) : TODoorBase(parent)
     m_name = door_cave03_class_name;
     apply_object_set_data(set_data);
     model = (void *)bml_resource->models[0].model;
-    texlist = bml_resource->models[0].m_c;
+    texlist = (s32)bml_resource->models[0].m_c;
     init_collision_body_parts(this, door_cave03_collision_body, 1);
     refresh_collision_body_centers();
     register_object_by_id();

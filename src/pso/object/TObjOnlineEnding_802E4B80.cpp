@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
@@ -237,12 +238,12 @@ extern f32 online_ending_quad_y_offset;
 extern f32 online_ending_scene_z_offset;
 extern s8 online_ending_scene_translation_initialized;
 extern s8 online_ending_quad_vertices_initialized;
-extern const f32 lbl_805DE930;
-extern const f32 lbl_805DE934;
-extern const f32 lbl_805DE938;
-extern const f32 lbl_805DE93C;
-extern const f32 lbl_805DE940;
-extern const f32 lbl_805DE944;
+static const f32 lbl_805DE930 = -100.0f;
+static const f32 lbl_805DE934 = 1.0f;
+static const f32 lbl_805DE938 = 63.0f;
+static const f32 lbl_805DE93C = 343.0f;
+static const f32 lbl_805DE940 = 0.1f;
+static const f32 lbl_805DE944 = 0.0f;
 s32 restore_player_cameras();
 s32 TLobby__sub_80070ACC();
 s32 TWindowChallengeResult__ct(s32, s32, s32, s32);
@@ -389,7 +390,6 @@ struct Obj_802E4FFC {
 };
 
 s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
 void __ct__8TObjBaseFP7TObject(void *, void *);
 void play_area_music(char *name);
 void *fn_802E6218(void *arg0);
@@ -427,7 +427,7 @@ void *TObjOnlineEnding__ct(void *arg0, void *parent) {
         return arg0;
     }
     SELF->f90 = (s32)get_bml_model((BmlResource *)lbl_805D68F4, 0);
-    SELF->f94 = TObjFish__sub_8001EDB0(lbl_805D68F4, 0);
+    SELF->f94 = (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D68F4, 0);
     SELF->f98 = get_bml_motion(lbl_805D68F4, 0x18);
     SELF->count = 0;
     for (i = 0; i < 4; i++) {
@@ -492,4 +492,8 @@ void TBoss4DarkFalz::free_global_instance() {
     }
 }
 
+}
+
+extern "C" {
+f32 online_ending_scene_z_offset;
 }

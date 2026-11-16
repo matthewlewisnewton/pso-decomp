@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "types.h"
 #include "pso/item/TItem.h"
 #include "pso/unk/TUnk_804A4F60.h"
@@ -71,17 +72,17 @@ void psycho_wand_node_callback(void *arg0) {
 
 void TUnk_804A4F60::update_idle() {
     u8 *arg0 = (u8 *)this;
-    TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x278), 0x38E, 0x2AAA);
+    add_integer_clamped((s32 *)(arg0 + 0x278), 0x38E, 0x2AAA);
     if ((s32) *(s32 *)((s8 *)arg0 + 0x278) == 0x2AAA) {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x274), (f32)0.5f, (f32)6.0f);
+        add_float_clamped((f32 *)(arg0 + 0x274), (f32)0.5f, (f32)6.0f);
     }
 }
 
 void TUnk_804A4F60::update_attack() {
     u8 *arg0 = (u8 *)this;
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x274), (f32)(-2.0f), (f32)0.0f);
+    add_float_clamped((f32 *)(arg0 + 0x274), (f32)(-2.0f), (f32)0.0f);
     if (0.0f == this->m_274) {
-        TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x278), -0x71C, 0);
+        add_integer_clamped((s32 *)(arg0 + 0x278), -0x71C, 0);
     }
 }
 

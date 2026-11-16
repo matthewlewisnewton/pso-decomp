@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -50,8 +51,6 @@ extern const f32 lbl_805D9388;
 extern const f32 lbl_805D938C;
 s32 obj_testFlags30__14TObjCollidableFUl(s32, s32);
 s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
-
 extern s32 freeze_shell_bml_resource;
 extern s32 technique_effect_bml;
 extern s32 lbl_805D63B0;
@@ -85,7 +84,7 @@ s32 TUnk_8048E1A4::freeze_shell_hold() {
     }
     p = (s32)spawn_particle_effect((const Vec *)((u8 *)this + 0x38), 0x33);
     if (p != 0) {
-        attach_particle_model((u8 *)p, (s32)((s32)get_bml_model((BmlResource *)freeze_shell_bml_resource, 0)), (s32)(TObjFish__sub_8001EDB0(freeze_shell_bml_resource, 1)), (s32)(get_bml_motion(freeze_shell_bml_resource, 0)), 0, (f32)lbl_805D9384);
+        attach_particle_model((u8 *)p, (s32)((s32)get_bml_model((BmlResource *)freeze_shell_bml_resource, 0)), (s32)((s32)TObjFish__sub_8001EDB0((BmlResource *)freeze_shell_bml_resource, 1)), (s32)(get_bml_motion(freeze_shell_bml_resource, 0)), 0, (f32)lbl_805D9384);
         ((TParticleCtrl *)p)->set_scale(this->scale.x, this->scale.y);
     }
     this->frame = lbl_805D9378;
@@ -163,7 +162,7 @@ void TUnk_8048E1A4::render() {
         ok = p->m8(lbl_805D9390, lbl_805D9394);
     }
     if (ok != 0) {
-        set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((s32)((void *)freeze_shell_bml_resource), 1)));
+        set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)freeze_shell_bml_resource, 1)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation.yaw);

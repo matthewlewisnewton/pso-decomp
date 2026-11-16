@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
@@ -1066,10 +1067,9 @@ s32 __vt__20TOTrapChainSawDamage[31] = {
 #include "types.h"
 
 extern "C" {
-u8 * TObjFish__sub_8001EDB0(void *, int);
 u8 *fn_802C9924(s32 arg0) {
     if ((void *) lbl_805D6808 != NULL) {
-        return TObjFish__sub_8001EDB0(lbl_805D6808, arg0);
+        return (u8 *)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D6808, (s32)arg0);
     }
     return NULL;
 }
@@ -1176,3 +1176,8 @@ void TOTrapChainSawDamage__sub_802C9C00(u8 *arg0, s32 arg1) {
 
 void TOTrapChainSaw::vfunc_25() {  }
 void TOTrapChainSaw::vfunc_16() {  }
+
+extern "C" {
+u32 seabed_suiso_linked_switch_counts[5];
+u32 seabed_suiso_switch_counts[5];
+}

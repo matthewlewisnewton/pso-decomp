@@ -44,7 +44,8 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     static u8 get_chr_select_state();
     static u8 *get_global_state();
     static int get_state();
-    static void safe_free(u32 arg0);
+    // Generic null-checked heap release; the inherited class attribution is provisional.
+    static void safe_free(void *allocation);
     s32 get_selected_slot();
     void set_position(void* q);
     void noop_laser();

@@ -460,17 +460,17 @@ void TLobby__sub_80427378(Ent_80427D40 *e) {
                     len = 4;
                     NetMemcpy(p + 4, &len, 2);
                     e->frame_len = ((TLobby *)e->frame)->build_ethernet_frame_header(e->m_20, e->m_10, 0x8864, 0, e->id, 6);
-                    ((TLobby *)e->frame)->post_send_message(e->frame_len);
+                    post_send_message(e->frame, e->frame_len);
                     n = build_padt(e);
                     if (n >= 0) {
                         e->frame_len = ((TLobby *)e->frame)->build_ethernet_frame_header(e->m_20, e->m_10, 0x8863, 0xA7, e->id, n);
-                        ((TLobby *)e->frame)->post_send_message(e->frame_len);
+                        post_send_message(e->frame, e->frame_len);
                     }
                 }
                 e->id = 0;
                 if (TLobby__sub_80426D80(e) >= 0) {
                     u16 frame_len = e->frame_len;
-                    ((TLobby *)e->frame)->post_send_message(frame_len);
+                    post_send_message(e->frame, frame_len);
                     e->state = 1;
                     restart_timer(e, 2, 3000);
                 }
@@ -487,7 +487,7 @@ void TLobby__sub_80427378(Ent_80427D40 *e) {
         if (e->m_6 > 0) {
             if (TLobby__sub_80426D80(e) >= 0) {
                 u16 frame_len = e->frame_len;
-                ((TLobby *)e->frame)->post_send_message(frame_len);
+                post_send_message(e->frame, frame_len);
             }
             restart_timer(e, e->m_6 - 1, e->timeout * 2);
         } else {
@@ -545,7 +545,7 @@ s16 TLobby__sub_804275B0(s32 frame, u16 frame_len) {
         }
         {
             u16 sz = p->frame_len;
-            t = ((TLobby *)p->frame)->post_send_message(sz);
+            t = post_send_message(p->frame, sz);
         }
         ret = t;
         if (ret != 0) {
@@ -588,7 +588,7 @@ s16 TLobby__sub_804275B0(s32 frame, u16 frame_len) {
             ret = TLobby__sub_80426D80(p);
             if (ret >= 0) {
                 u16 sz = p->frame_len;
-                ret = ((TLobby *)p->frame)->post_send_message(sz);
+                ret = post_send_message(p->frame, sz);
             }
             break;
         }
@@ -905,7 +905,7 @@ s16 TLobby__sub_80427F48(s16 slot, u8 *frame, u16 len) {
         e->frame_len = 0x3C;
     }
     frame_len = e->frame_len;
-    return ((TLobby *)frame)->post_send_message(frame_len);
+    return post_send_message(frame, frame_len);
 }
 
 s32 TLobby__sub_80428094(s16 slot) {
@@ -940,7 +940,7 @@ s32 TLobby__sub_80428094(s16 slot) {
         e->state = 5;
         if (TLobby__sub_80426D80(e) >= 0) {
             u16 frame_len = e->frame_len;
-            ((TLobby *)e->frame)->post_send_message(frame_len);
+            post_send_message(e->frame, frame_len);
         }
         break;
     case 5:

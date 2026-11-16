@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/unk/text_80171A98.h"
@@ -46,17 +47,16 @@ struct Icon_80171A98 {
 };
 
 extern "C" {
-s32 TObjFish__sub_8001EDB0(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
 extern u8 mine_collision_body_parts[];
 extern s32 __vt__12TOMineIcon03[];
 extern s32 TOMineIcon03__name;
 extern s32 game_difficulty_selection;
 extern void *lbl_805D5A50;
-extern const f32 lbl_805DB8C0;
-extern const f32 lbl_805DB8C4;
-extern const f32 lbl_805DB8C8;
-extern const f32 lbl_805DB8CC;
+static const f32 lbl_805DB8C0 = 1.0f;
+static const f32 lbl_805DB8C4 = 2.0f;
+static const f32 lbl_805DB8C8 = 30.0f;
+static const f32 lbl_805DB8CC = 0.5f;
 extern const f32 lbl_805DB8D0;
 #pragma push
 #pragma fp_contract on
@@ -67,9 +67,9 @@ TOMineIcon03::TOMineIcon03(TObject *parent, void *set) : TOMine(parent) {
     ((TObjChara *)self)->initialize_position_copies();
     ((TObjChara *)self)->calc_attach_pos();
     self->f34 = (s32)get_bml_model((BmlResource *)lbl_805D5A50, 6);
-    self->f24 = TObjFish__sub_8001EDB0(lbl_805D5A50, 6);
+    self->f24 = (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D5A50, 6);
     self->f374 = (s32)get_bml_model((BmlResource *)lbl_805D5A50, 2);
-    self->f378 = TObjFish__sub_8001EDB0(lbl_805D5A50, 2);
+    self->f378 = (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D5A50, 2);
     self->f326 = 0;
     if (self->f84 < 0) {
         self->f84 = 0;

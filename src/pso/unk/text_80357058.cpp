@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "pso/protocol/protocol_types.h"
 #include "types.h"
 #include "pso/misc/TLobby_801E43E4.h"
@@ -49,20 +50,20 @@ f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
 f32 normalize_vector(void *);
 extern s32 TItemEffOrgaFlowShot__name;
-extern const f32 lbl_805E0038;
-extern const f32 lbl_805E003C;
-extern const f32 lbl_805E0040;
-extern const f32 lbl_805E0044;
-extern const f32 lbl_805E0028;
-extern const f32 lbl_805E002C;
+static const f32 lbl_805E0038 = 10.0f;
+static const f32 lbl_805E003C = 0.0f;
+static const f32 lbl_805E0040 = 200.0f;
+static const f32 lbl_805E0044 = 3.0f;
+static const f32 lbl_805E0028 = 0.5f;
+static const f32 lbl_805E002C = 4.0f;
 s32 is_local_client_floor_leader();
 void grid_to_world_pos__11TBoss6Type2FccPv(u8, u8, Vec_803570E4 *);
 void clear_rock_state__10TBoss6RockFl(s32 i, s32 a, s32 b);
 extern int olga_flow_subordinate_actions_enabled;
 void handle_6xAD_olga_flow_subordinate_boss_actions(Pkt_803570E4 *pkt);
 s32 has_game_join_id__13TUnk_804E355CFv();
-extern const f32 lbl_805E0030;
-extern const f32 lbl_805E0034;
+static const f32 lbl_805E0030 = 50.0f;
+static const f32 lbl_805E0034 = 0.6f;
 void *__nw__7TObjectFUl(int);
 }
 
@@ -203,7 +204,7 @@ void TItemEffOrgaFlowShot::render() {
     set_depth_buffer_settings_1();
     set_additive_blend();
     TObjPlayer__sub_803DF768(1);
-    draw_untextured_trail_strip((void *)(arg0 + 0xC4), (void *)(0xA));
+    draw_untextured_trail_strip((void *)(arg0 + 0xC4), 10);
     reset_player_transform();
     set_default_alpha_blend();
     restore_saved_depth_alpha_state();
@@ -221,9 +222,9 @@ void TItemEffOrgaFlowShot::run_task() {
         queue_destruction__7TObjectFv((item_eff_orga_flow_shot));
         disallow_rendering__7TObjectFv((TObject *)(item_eff_orga_flow_shot));
     }
-    TItemEffOrgaFlowShot::approach_value((f32 *)(item_eff_orga_flow_shot + 0x190), (f32)lbl_805E0030, (f32)((f32) (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x18C))));
+    add_float_clamped((f32 *)(item_eff_orga_flow_shot + 0x190), (f32)lbl_805E0030, (f32)((f32) (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x18C))));
     if (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x190) == *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x18C)) {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(item_eff_orga_flow_shot + 0x194), (f32)lbl_805E0034, (f32)((f32) (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x198))));
+        add_float_clamped((f32 *)(item_eff_orga_flow_shot + 0x194), (f32)lbl_805E0034, (f32)((f32) (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x198))));
     }
     for (i = 0; i != 10; i++) {
         TObjBoss2Tunnel::decrement_packed_timer((u32 *)(&((O_8035740C *)item_eff_orga_flow_shot)->v[i].w), 2);
