@@ -1253,7 +1253,7 @@ force_active:
   - TObjDoor__resource_param
   - TObjDoor__sub_8018E890
   - TObjDoor__sub_8018E8BC
-  - TObjEZBoneRotBase__ct
+  - __ct__17TObjEZBoneRotBaseFP7TObjectP10NJS_OBJECTP13EZBoneRotDesc
   - TObjEZRopeBase__name
   - TObjEneBalClawClaw__collision_body_template
   - TObjEneBalClawClaw__ct
@@ -2573,7 +2573,7 @@ force_active:
   - __ct__19TOComputerMachine01FPv
   - __ct__19TOMonumentAncient01FP7TObjectPv
   - __ct__19TOMonumentAncient02FP7TObjectPv
-  - __ct__19TObjEZBoneRotPlayerFv
+  - __ct__19TObjEZBoneRotPlayerFP10TObjPlayerP10NJS_OBJECTP13EZBoneRotDesc
   - __ct__19TObjEneDelDepthBombFP15TObjEneDelDepthP9TObjCharaPC3Vecl
   - __ct__19TObjStendGlassLobbyFP7TObjectPv
   - __ct__19TWindowMessageYesNoFP7TObjectPvPvPv
@@ -5058,7 +5058,7 @@ force_active:
   - calc_attack_params__12TBoss8DragonFPvl
   - calc_attack_stage_multiplier__10TObjPlayerFl
   - calc_battle_score__19TPlayerBattleCtrl4PFPvPv
-  - calc_bone_offsets_recursive__19TObjEZBoneRotPlayerFPvll
+  - calc_bone_offsets_recursive__19TObjEZBoneRotPlayerFP10NJS_OBJECTll
   - calc_box_escape_axis__10TNpcPlayerFv
   - calc_burrow_speed__12TBoss1DragonFPv
   - calc_ci4_tile_offset__FUlUl
@@ -18363,8 +18363,8 @@ force_active:
   - sub_800F47D4__16TObjEneMe3StelthFv
   - sub_800F4850__16TObjEneMe3StelthFv
   - sub_800F8250__13TUnk_80499988Ff
-  - sub_800FEC40__17TObjEZBoneRotBaseFPUc
-  - sub_800FED0C__17TObjEZBoneRotBaseFv
+  - capture_base_angles_recursive__17TObjEZBoneRotBaseFP10NJS_OBJECT
+  - capture_base_angles__17TObjEZBoneRotBaseFv
   - sub_800FF580__14TObjEZRopeBaseFP3Vecf
   - sub_80140F44__11TMapCsnCtrlFv
   - sub_80156A68__14TObjCollidableFv
