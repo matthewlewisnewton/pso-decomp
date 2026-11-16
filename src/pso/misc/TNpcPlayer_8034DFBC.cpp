@@ -115,9 +115,9 @@ struct Stack_8034ED58 {
 extern "C" {
 s32 get_player_by_client_id(s32);
 s32 obj_isState3_324__9TObjCharaFv();
-s32 set_arrival_override_coords(s32, s32, f32, f32, f32);
+void set_arrival_override_coords(u16, s32, f32, f32, f32);
 void send_6x21_inter_level_warp(void *obj, s32 value);
-s32 get_entity_id(s32);
+u16 get_entity_id(s32);
 s32 notify_field1c__10TObjPlayerFl();
 void send_6x24_teleport_player(u16 slot, void *pos, s32 heading);
 void TNpcPlayer__sub_8034EDB8(void);
@@ -324,7 +324,7 @@ void notify_partner_room_cleared(s32 arg0) {
     do {
         p = get_player_by_client_id(i);
         if (p != 0 && obj_isState3_324__9TObjCharaFv() != 0 && arg0 == ((TObjBase *)p)->get_room() && !(lbl_805D6EA0 & 2) && *win != 0) {
-            TWindowCtrl::open((s32)((s32)(get_entity_id(p))), (s32)((void *)((s32)win)), 0x1B);
+            TWindowCtrl::open(get_entity_id(p), (s32)((void *)((s32)win)), 0x1B);
         }
         i += 1;
     } while (i < 4);
@@ -337,7 +337,7 @@ void show_partner_chatter_for_key(s16 key) {
         player = get_player_by_client_id(i);
         if (player && obj_isState3_324__9TObjCharaFv() && key == ((TObjBase *)player)->get_room()
             && !(lbl_805D6EA0 & 2) && (*(Global_8034E5A8 *)&npc_partner_dialogue_state).f46e) {
-            TWindowCtrl::open((s32)(get_entity_id(player)), (s32)(&(*(Global_8034E5A8 *)&npc_partner_dialogue_state).f46e), 0x1B);
+            TWindowCtrl::open(get_entity_id(player), (s32)(&(*(Global_8034E5A8 *)&npc_partner_dialogue_state).f46e), 0x1B);
         }
     }
 }
@@ -504,7 +504,7 @@ loop_1:
         }
     }
     stack.spE = arg1;
-    set_arrival_override_coords(arg1, arg4, (f32) (*(f32 *)((s8 *)arg3 + 0)), (f32) (*(f32 *)((s8 *)arg3 + 4)), (f32) (*(f32 *)((s8 *)arg3 + 8)));
+    set_arrival_override_coords(stack.spE, arg4, (f32) (*(f32 *)((s8 *)arg3 + 0)), (f32) (*(f32 *)((s8 *)arg3 + 4)), (f32) (*(f32 *)((s8 *)arg3 + 8)));
     ((TNpcPlayer *)(&stack.sp8))->send_state_60();
 }
 
@@ -516,7 +516,7 @@ void TNpcPlayer::create_companion(u16 leader, u16 slot, s32 appearance, f32 *p, 
     pkt.zero = 0;
     pkt.appearance = appearance;
     pkt.slot = slot;
-    set_arrival_override_coords(slot, heading, p[0], p[1], p[2]);
+    set_arrival_override_coords(pkt.slot, heading, p[0], p[1], p[2]);
     ((TNpcPlayer *)(&pkt))->send_state_60();
     send_6x24_teleport_player(pkt.slot, p, heading);
 }

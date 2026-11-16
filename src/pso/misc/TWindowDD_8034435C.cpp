@@ -304,7 +304,7 @@ s16 TWindowDD__sub_80344774(u8 *window_dd, u32 arg1, s32 arg2, s32 value_index) 
     return v;
 }
 
-s32 format_word_select_french(WordSelectMessage *src, char *window_dd, s32 arg2) {
+s32 format_word_select_french(WordSelectMessage *src, char *window_dd, u16 arg2) {
     s32 k;
     s32 n;
     s32 m;
@@ -410,7 +410,7 @@ s32 format_word_select_french(WordSelectMessage *src, char *window_dd, s32 arg2)
             append_char__9TWindowDDFSclPl(0x2C, window_dd, &pos);
             append_string__9TWindowDDFllPl(TWindowDD__data_805D6E28[0xA4C / 4], window_dd, &pos);
             mode = 1;
-            i = word_select_player_gender((k - 0x68C) & 0xFFFF);
+            i = word_select_player_gender((u16)(k - 0x68C));
         } else {
             mode = 3;
             if (k == 0x2C5) {
@@ -491,7 +491,7 @@ s32 format_word_select_french(WordSelectMessage *src, char *window_dd, s32 arg2)
     return pos;
 }
 
-s32 format_word_select_german(WordSelectMessage *src, char *window_dd, s32 arg2) {
+s32 format_word_select_german(WordSelectMessage *src, char *window_dd, u16 arg2) {
     s32 pos;
     s32 id;
     s32 kind;
@@ -621,7 +621,7 @@ s32 format_word_select_german(WordSelectMessage *src, char *window_dd, s32 arg2)
             TWindowDD__sub_8034886C(id, window_dd, &pos);
             append_char__9TWindowDDFSclPl(0x2C, window_dd, &pos);
             mode = 1;
-            kind = word_select_player_gender((id - 0x68C) & 0xFFFF);
+            kind = word_select_player_gender((u16)(id - 0x68C));
             s1 = TWindowDD__data_805D6E28[0x2A3];
         } else {
             mode = 3;
@@ -742,7 +742,7 @@ static inline void append_spanish_word_form(s32 id, s32 form, char *buffer, s32 
     }
 }
 
-s32 format_word_select_spanish(WordSelectMessage *src, char *buffer, s32 player) {
+s32 format_word_select_spanish(WordSelectMessage *src, char *buffer, u16 player) {
     s32 selection;
     s32 count;
     s32 wordId;
@@ -849,7 +849,7 @@ s32 format_word_select_spanish(WordSelectMessage *src, char *buffer, s32 player)
             mode = 1;
             append_char__9TWindowDDFSclPl(0x2C, buffer, &length);
             append_string__9TWindowDDFllPl(TWindowDD__data_805D6E28[0xA80 / 4], buffer, &length);
-            value = word_select_player_gender((selection - 0x68C) & 0xFFFF);
+            value = word_select_player_gender((u16)(selection - 0x68C));
         } else {
             mode = 3;
             if (selection == 0x2C5) {
@@ -930,7 +930,7 @@ s32 format_word_select_spanish(WordSelectMessage *src, char *buffer, s32 player)
 #pragma pop
 #pragma push
 #pragma opt_common_subs on
-s32 format_word_select_english(WordSelectMessage *src, char *window_dd, s32 arg2) {
+s32 format_word_select_english(WordSelectMessage *src, char *window_dd, u16 arg2) {
     s32 b;
     s32 n;
     s32 i;
