@@ -7741,6 +7741,7 @@ pso/misc/TShopEquipmentSequence.cpp:
 
 pso/misc/TShopGenerator.cpp:
 	.text       start:0x8021DC30 end:0x8021E2E4
+	.bss        start:0x80513ED0 end:0x80513EE0
 	.sdata2     start:0x805DC6E8 end:0x805DC6F0
 
 pso/misc/TShopEquipmentSequence_8021E2E4.cpp:

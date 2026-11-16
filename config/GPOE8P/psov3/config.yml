@@ -1252,7 +1252,6 @@ force_active:
   - TObjDoor__resource_param
   - TObjDoor__sub_8018E890
   - TObjDoor__sub_8018E8BC
-  - __ct__17TObjEZBoneRotBaseFP7TObjectP10NJS_OBJECTP13EZBoneRotDesc
   - TObjEZRopeBase__name
   - TObjEneBalClawClaw__collision_body_template
   - TObjEneBalClawClaw__ct
@@ -2118,6 +2117,7 @@ force_active:
   - TShopEquipmentListWindow__sub_8021C85C
   - TShopEquipmentSequence__sub_8021D65C
   - TShopGenerator__ct
+  - TShopGenerator__slot_active_table
   - TSwitch__floor_switch_table
   - TSwitch__name
   - TTecAnti__ct
@@ -2538,6 +2538,7 @@ force_active:
   - __ct__17TOSensorAncient01FP7TObjectPv
   - __ct__17TOSensorGeneral01FP7TObjectPv
   - __ct__17TObjBoss7DustCtrlFP7TObject
+  - __ct__17TObjEZBoneRotBaseFP7TObjectP10NJS_OBJECTP13EZBoneRotDesc
   - __ct__17TObjEneBm3FlyNestFP7TObjectP14EnemySetRecord
   - __ct__17TObjEneMe1CanadinFP7TObjectP17TObjEneMe1CanadinP3Vecll
   - __ct__17TObjEneMe1CanadinFP7TObjectPvl
@@ -5203,6 +5204,8 @@ force_active:
   - capsule_machine01_collision_body
   - capsule_machine_ginja_mesh_handle
   - capture_attachment__17TObjEneBm3FlyNestFP10NJS_OBJECT
+  - capture_base_angles__17TObjEZBoneRotBaseFv
+  - capture_base_angles_recursive__17TObjEZBoneRotBaseFP10NJS_OBJECT
   - capture_beam_origins__16TObjEneNanoDragoFv
   - capture_effect_positions__14TObjEneIllGillFP10NJS_OBJECT
   - capture_lockon_targets
@@ -18363,8 +18366,6 @@ force_active:
   - sub_800F47D4__16TObjEneMe3StelthFv
   - sub_800F4850__16TObjEneMe3StelthFv
   - sub_800F8250__13TUnk_80499988Ff
-  - capture_base_angles_recursive__17TObjEZBoneRotBaseFP10NJS_OBJECT
-  - capture_base_angles__17TObjEZBoneRotBaseFv
   - sub_800FF580__14TObjEZRopeBaseFP3Vecf
   - sub_80140F44__11TMapCsnCtrlFv
   - sub_80156A68__14TObjCollidableFv
