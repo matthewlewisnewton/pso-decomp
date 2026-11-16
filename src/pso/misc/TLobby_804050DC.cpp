@@ -1053,7 +1053,7 @@ inline s32 get_80405A74(Strm_80405A74 **s) {
 }
 #define FWD_80405A74()                                                       \
     (*(s16 *)(G + 0x13A))++;                                            \
-    t = (Strm_80405A74 *)((TLobby *)arg0)->alloc_from_buffer(4); \
+    t = (Strm_80405A74 *)alloc_from_buffer((B_803FADA0 *)arg0, 4); \
     p = t->p;                                                                \
     *p++ = 0xFF;                                                             \
     *p++ = 3;                                                                \

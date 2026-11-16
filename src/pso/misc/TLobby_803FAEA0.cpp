@@ -1,3 +1,4 @@
+#include "pso/protocol/PacketBuffer.h"
 #include "pso/network/NetworkTransport.h"
 #include "pso/misc/TLobby.h"
 
@@ -373,8 +374,6 @@ typedef struct Tbl_80409BD4 {
 } Tbl_80409BD4;
 
 struct Strm_80405A74 { u8 *p; u16 len; };
-
-typedef struct B_803FADA0 { u8 *buf; u16 len; } B_803FADA0;
 
 typedef struct A_803FADA0 { u8 pad0[4]; u32 a; u32 b; } A_803FADA0;
 
@@ -1305,7 +1304,7 @@ struct Self_8040098C;
 #pragma inline_depth(4)
 #define FWD_80405A74()                                                       \
     (*(G + 0x13A))++;                                            \
-    t = (Strm_80405A74 *)((TLobby *)arg0)->alloc_from_buffer(4); \
+    t = (Strm_80405A74 *)alloc_from_buffer((B_803FADA0 *)arg0, 4); \
     p = t->p;                                                                \
     *p++ = 0xFF;                                                             \
     *p++ = 3;                                                                \

@@ -153,7 +153,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
 | MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,926 | 890 |
+| CodeWarrior pragmas (excluding push/pop) | 5,880 | 890 |
 | Per-unit compiler overrides in `configure.py` | 211 | 211 |
 | Approved regressions | 0 | 0 |
 
@@ -262,23 +262,100 @@ EXI/OS backend; the scalar bit helpers alone do not implement the driver.
 ## 4. CodeWarrior pragmas
 
 
-`pso/misc/TLobby_803FC178.cpp` completes the PPP control unit with scoped
-CSE, propagation, lifetime, Boolean and helper-inlining controls under its
-existing GC/1.2.5n profile. They preserve the native fast/slow cursor reads,
-callback register lifetimes and compiler-generated switch tables. The small
-reply-length helper uses `optimization_level 0` with propagation enabled to
-retain the native address materialization; it uses ordinary pointer arithmetic.
-The sender reuses its payload formal for the native word-sized wire length,
-including a widening/narrowing conversion that avoids a redundant halfword
-normalization. Guarded unused locals in `NetIPv4WriteHeader` and
-`TLobby__sub_80400744` retain the native 0x78- and 0x30-byte frames. Removing
-them scores 99.810524% and 99.93793%, respectively. These locals and source
-arrangements are matching constraints, not recovered application state. A port
-should remove the compiler controls and guarded locals, keep frame pointers
-and wire lengths separate, and use typed cursor operations and explicit wire
-byte order. Existing native error handling and legacy boundary views are
-preserved; the unit recovery does not establish portable network behavior.
+### PPP control unit: measured scopes and unresolved source blockers
 
+`pso/misc/TLobby_803FC178.cpp` remains 129/129 exact and source-linked.
+The rework removes the IPv4 frame-padding array: ordinary inline checksum
+acquisition and folding helpers reproduce the native 0x78 frame and the
+64-byte header at stack offset 0x20. Typed buffer allocation and length
+functions replace the false `TLobby` interfaces throughout their callers.
+`optimization_level 0`, redundant settings and empty/nested push stacks
+are removed. No compiler flags or unit overrides change.
+
+**This is a partial rework, not approval of the remaining source patterns.**
+`TLobby__sub_80400744` (0x80400744) still has its inherited guarded dead
+array and alias; removing them gives 99.93793%, with a 0x20 frame instead
+of 0x30. The target never accesses local state at 0x08..0x23(r1).
+The sender at 0x803FE6CC still reuses its payload formal as a wire length
+and retains the containing-prefix expression in its length-clear helper.
+The comma cast and false allocation/length receivers are removed.
+These remaining patterns require further recovery or Matt's explicit ruling;
+the EXI receiver precedent below does not authorize them.
+See [PPP rework evidence](evidence/ppp-control-rework.md) for alternatives
+and native storage evidence. Ports must remove the LCP padding, keep frame
+pointers and lengths separate, clear the real length member directly, and
+preserve explicit wire-byte order and existing error behavior.
+
+Each row below records one remaining directive in source order, including
+inherited controls. Scores are independent ablations against the final source
+using the existing GC/1.2.5n configuration; every listed function is 100%
+with the directive present. Push/pop restores belong to the corresponding
+scope. The `reset` row measures omitting that restoration. These are measured
+compiler constraints, not claims about original source pragmas. A port drops
+each listed control and keeps the ordinary C++ operation (including explicit
+Boolean comparisons and the checksum helpers).
+
+| Register ID | Function / address | Directive | Function score without directive | Port action |
+|---|---|---|---|---|
+| PPP-01 | TLobby__sub_803FC820 (`0x803FC820`) | `opt_common_subs on` | 97.853170% | Drop control; retain C++ semantics. |
+| PPP-02 | TLobby__sub_803FC820 (`0x803FC820`) | `dont_inline off` | 66.071430% | Drop control; retain C++ semantics. |
+| PPP-03 | TLobby__sub_803FC820 (`0x803FC820`) | `inline_depth(4)` | 66.071430% | Drop control; retain C++ semantics. |
+| PPP-04 | TLobby__sub_803FCC10 (`0x803FCC10`) | `dont_inline off` | 56.970730% | Drop control; retain C++ semantics. |
+| PPP-05 | TLobby__sub_803FCC10 (`0x803FCC10`) | `inline_depth(4)` | 56.970730% | Drop control; retain C++ semantics. |
+| PPP-06 | TLobby__sub_803FCC10 (`0x803FCC10`) | `opt_common_subs on` | 95.839030% | Drop control; retain C++ semantics. |
+| PPP-07 | TLobby__sub_803FCC10 (`0x803FCC10`) | `opt_propagation off` | 99.658540% | Drop control; retain C++ semantics. |
+| PPP-08 | TLobby__sub_803FCC10 (`0x803FCC10`) | `opt_lifetimes off` | 99.853660% | Drop control; retain C++ semantics. |
+| PPP-09 | TLobby__sub_803FCF44 (`0x803FCF44`) | `opt_common_subs on` | 82.646340% | Drop control; retain C++ semantics. |
+| PPP-10 | TLobby__sub_803FD21C (`0x803FD21C`) | `optimization_level 3` | 97.770490% | Drop control; retain C++ semantics. |
+| PPP-11 | TLobby__sub_803FD310 (`0x803FD310`) | `optimization_level 3` | 97.770490% | Drop control; retain C++ semantics. |
+| PPP-12 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `opt_common_subs on` | 99.267914% | Drop control; retain C++ semantics. |
+| PPP-13 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `dont_inline off` | 96.595020% | Drop control; retain C++ semantics. |
+| PPP-14 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `inline_depth(4)` | 96.595020% | Drop control; retain C++ semantics. |
+| PPP-15 | TLobby__sub_803FE6CC (`0x803FE6CC`) | `opt_lifetimes off` | 98.058820% | Drop control; retain C++ semantics. |
+| PPP-16 | TLobby__sub_803FE6CC (`0x803FE6CC`) | `dont_inline off` | 90.411766% | Drop control; retain C++ semantics. |
+| PPP-17 | TLobby__sub_803FE6CC (`0x803FE6CC`) | `inline_depth(4)` | 90.411766% | Drop control; retain C++ semantics. |
+| PPP-18 | NetIPv4WriteHeader (`0x803FEBFC`) | `dont_inline off` | 92.231580% | Drop control; retain C++ semantics. |
+| PPP-19 | NetIPv4WriteHeader (`0x803FEBFC`) | `inline_depth(4)` | 92.231580% | Drop control; retain C++ semantics. |
+| PPP-20 | TLobby__sub_803FEF4C (`0x803FEF4C`) | `opt_propagation off` | 62.609756% | Drop control; retain C++ semantics. |
+| PPP-21 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `opt_common_subs on` | 96.717170%<br>90.687500% | Drop control; retain C++ semantics. |
+| PPP-22 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `dont_inline off` | 62.868687%<br>60.080357% | Drop control; retain C++ semantics. |
+| PPP-23 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `inline_depth(4)` | 62.868687%<br>60.080357% | Drop control; retain C++ semantics. |
+| PPP-24 | TLobby__sub_803FF858 (`0x803FF858`) | `opt_lifetimes off` | 99.578316% | Drop control; retain C++ semantics. |
+| PPP-25 | TLobby__sub_803FF858 (`0x803FF858`) | `opt_dead_assignments off` | 99.963850% | Drop control; retain C++ semantics. |
+| PPP-26 | TLobby__sub_803FF858 (`0x803FF858`) | `dont_inline off` | 51.975903% | Drop control; retain C++ semantics. |
+| PPP-27 | TLobby__sub_803FF858 (`0x803FF858`) | `inline_depth(4)` | 51.975903% | Drop control; retain C++ semantics. |
+| PPP-28 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `opt_common_subs on` | 99.125000% | Drop control; retain C++ semantics. |
+| PPP-29 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `bool off` | 99.000000% | Drop control; retain C++ semantics. |
+| PPP-30 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `dont_inline off` | 87.958336% | Drop control; retain C++ semantics. |
+| PPP-31 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `inline_depth(4)` | 87.958336% | Drop control; retain C++ semantics. |
+| PPP-32 | TLobby__sub_803FFB84 (`0x803FFB84`)<br>TLobby__sub_80400174 (`0x80400174`) | `dont_inline off` | 95.171050%<br>36.968254% | Drop control; retain C++ semantics. |
+| PPP-33 | TLobby__sub_803FFB84 (`0x803FFB84`)<br>TLobby__sub_80400174 (`0x80400174`) | `inline_depth(4)` | 95.171050%<br>36.968254% | Drop control; retain C++ semantics. |
+| PPP-34 | TLobby__sub_803FFB84 (`0x803FFB84`) | `opt_common_subs on` | 98.513160% | Drop control; retain C++ semantics. |
+| PPP-35 | TLobby__sub_8040059C (`0x8040059C`) | `opt_propagation off` | 92.679245% | Drop control; retain C++ semantics. |
+| PPP-36 | TLobby__sub_80400DA8 (`0x80400DA8`) | `opt_common_subs on` | 92.043015% | Drop control; retain C++ semantics. |
+| PPP-37 | TLobby__sub_80400F1C (`0x80400F1C`) | `dont_inline off` | 40.278350% | Drop control; retain C++ semantics. |
+| PPP-38 | TLobby__sub_80400F1C (`0x80400F1C`) | `inline_depth(4)` | 40.278350% | Drop control; retain C++ semantics. |
+| PPP-39 | TLobby__sub_804010A0 (`0x804010A0`) | `bool off` | 99.166664% | Drop control; retain C++ semantics. |
+| PPP-40 | TLobby__sub_804010A0 (`0x804010A0`) | `dont_inline off` | 85.944440% | Drop control; retain C++ semantics. |
+| PPP-41 | TLobby__sub_804010A0 (`0x804010A0`) | `inline_depth(4)` | 85.944440% | Drop control; retain C++ semantics. |
+| PPP-42 | TLobby__sub_8040172C (`0x8040172C`) | `dont_inline off` | 49.604652% | Drop control; retain C++ semantics. |
+| PPP-43 | TLobby__sub_8040172C (`0x8040172C`) | `inline_depth(4)` | 49.604652% | Drop control; retain C++ semantics. |
+| PPP-44 | TLobby__sub_80401B20 (`0x80401B20`) | `opt_propagation off` | 86.111115% | Drop control; retain C++ semantics. |
+| PPP-45 | TLobby__sub_80401D2C (`0x80401D2C`)<br>TLobby__sub_80401EB8 (`0x80401EB8`)<br>MD5Transform__FPUlPUc (`0x80401FE8`)<br>TLobby__sub_80402CE0 (`0x80402CE0`)<br>TLobby__sub_80403D28 (`0x80403D28`) | `opt_propagation reset` | 89.797980%<br>85.083336%<br>99.620544%<br>99.597404%<br>57.281250% | Drop control; retain C++ semantics. |
+| PPP-46 | init_net_buffer_entry__6TLobbyFUs (`0x80401CE8`) | `opt_propagation off` | 62.647060% | Drop control; retain C++ semantics. |
+| PPP-47 | TLobby__sub_80401D2C (`0x80401D2C`) | `dont_inline off` | 26.151516% | Drop control; retain C++ semantics. |
+| PPP-48 | TLobby__sub_80401D2C (`0x80401D2C`) | `inline_depth(4)` | 26.151516% | Drop control; retain C++ semantics. |
+| PPP-49 | MD5Transform__FPUlPUc (`0x80401FE8`) | `dont_inline off` | 89.661910% | Drop control; retain C++ semantics. |
+| PPP-50 | MD5Transform__FPUlPUc (`0x80401FE8`) | `inline_depth(4)` | 89.661910% | Drop control; retain C++ semantics. |
+| PPP-51 | MD5Transform__FPUlPUc (`0x80401FE8`) | `opt_common_subs on` | 91.425110% | Drop control; retain C++ semantics. |
+| PPP-52 | NetPapDispatch (`0x80402E68`) | `opt_propagation off` | 98.432290% | Drop control; retain C++ semantics. |
+| PPP-53 | NetPapDispatch (`0x80402E68`) | `dont_inline off` | 29.286459% | Drop control; retain C++ semantics. |
+| PPP-54 | NetPapDispatch (`0x80402E68`) | `inline_depth(4)` | 29.286459% | Drop control; retain C++ semantics. |
+| PPP-55 | TLobby__sub_80403308 (`0x80403308`) | `dont_inline off` | 53.817734% | Drop control; retain C++ semantics. |
+| PPP-56 | TLobby__sub_80403308 (`0x80403308`) | `inline_depth(8)` | 53.817734% | Drop control; retain C++ semantics. |
+| PPP-57 | TLobby__sub_80403308 (`0x80403308`) | `bool off` | 99.704440% | Drop control; retain C++ semantics. |
+| PPP-58 | TLobby__sub_804040E0 (`0x804040E0`) | `dont_inline off` | 37.112840% | Drop control; retain C++ semantics. |
+| PPP-59 | TLobby__sub_804040E0 (`0x804040E0`) | `inline_depth(4)` | 37.112840% | Drop control; retain C++ semantics. |
 
 `src/pso/boss/TObjBoss5Ctrl.cpp` retains its existing `fp_contract on` when
 its three fragments are consolidated. Both countdown calculations use the
@@ -377,8 +454,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,926 pragmas in 890 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1168, `inline_depth` 1074, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 646, `opt_propagation` 271, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 89, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_lifetimes` 45, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
+5,880 pragmas in 890 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1159, `inline_depth` 1067, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 263, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_lifetimes` 42, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer

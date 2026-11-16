@@ -582,8 +582,6 @@ struct TLobby : public TObject {
     s32 configure_mode_by_type(s16 type);
     static void init_net_state_c();
     static s32 init_net_subsystem_block();
-    u8 *alloc_from_buffer(s16 arg1);
-    u32 get_field_4();
     static void init_net_block_620();
     static s32 init_net_block_620_secondary();
     s32 mark_ready();

@@ -785,12 +785,12 @@ found:
     cs->b = b;
     deltaS = cp - lbl_805C1890;
     if (compress_cid == 0 || comp->last_xmit != cs->id) {
-        cp = (*m = (Strm_80405A74 *)((TLobby *)*m)->alloc_from_buffer(deltaS + 4))->p;
+        cp = (*m = (Strm_80405A74 *)alloc_from_buffer((B_803FADA0 *)*m, deltaS + 4))->p;
         *cp++ = changes | 0x40;
         *cp++ = cs->id;
         comp->last_xmit = cs->id;
     } else {
-        cp = (*m = (Strm_80405A74 *)((TLobby *)*m)->alloc_from_buffer(deltaS + 3))->p;
+        cp = (*m = (Strm_80405A74 *)alloc_from_buffer((B_803FADA0 *)*m, deltaS + 3))->p;
         *cp++ = (s8)changes;
     }
     cp = write_network_u16_be(cp, deltaA);
@@ -900,7 +900,7 @@ struct Self_8040098C;
 #pragma inline_depth(4)
 #define FWD_80405A74()                                                       \
     (*(G + 0x13A))++;                                            \
-    t = (Strm_80405A74 *)((TLobby *)arg0)->alloc_from_buffer(4); \
+    t = (Strm_80405A74 *)alloc_from_buffer((B_803FADA0 *)arg0, 4); \
     p = t->p;                                                                \
     *p++ = 0xFF;                                                             \
     *p++ = 3;                                                                \

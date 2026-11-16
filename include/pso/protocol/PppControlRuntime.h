@@ -2,6 +2,7 @@
 #define PSO_PROTOCOL_PPP_CONTROL_RUNTIME_H
 
 #include "types.h"
+#include "pso/protocol/PacketBuffer.h"
 #include "pso/protocol/PppConfigure.h"
 #include <stddef.h>
 
@@ -22,8 +23,6 @@ typedef struct Conn_804004DC {
     u8 pad10[0x20];
     void *opts;
 } Conn_804004DC;
-
-typedef struct B_803FADA0 { u8 *buf; u16 len; } B_803FADA0;
 
 /* IPv4 configuration passed to the wire-header writer. */
 typedef struct A_80403F4C {

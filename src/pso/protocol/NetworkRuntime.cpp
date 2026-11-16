@@ -841,7 +841,7 @@ s32 verify_message_sequence__6TLobbyFPvPvUi(PppConfigureContext *arg0, PppConfig
         return -1;
     }
     u32 cur = ipv6cp_serialize_configure_options((Ipv6cpConfigureOptions *)arg0->options);
-    if (arg1->option_bytes != (u16)((TLobby *)cur)->get_field_4()) {
+    if (arg1->option_bytes != (u16)buffer_length((B_803FADA0 *)cur)) {
         err = 1;
     } else {
         while ((a = ipv6cp_read_configure_byte(&cur)) != -1) {
