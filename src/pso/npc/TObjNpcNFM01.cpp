@@ -18,7 +18,7 @@ struct RecoveredGlobal_8014CBA8___vt__12TObjNpcNFM01 {
 
 extern "C" {
 extern const char lbl_8043FD48[] = "TObjNpcNFM01";
-const char *TObjNpcNFM01__name = lbl_8043FD48;
+extern const char *TObjNpcNFM01__name;
 extern const char lbl_8043FD58[] = "npc_h01_data.rel";
 extern const char lbl_8043FD6C[] = "n_h01_e_body.gvm";
 extern s32 __vt__12TObjNpcNFM01[];

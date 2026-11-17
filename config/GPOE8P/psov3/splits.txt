@@ -4565,7 +4565,6 @@ pso/npc/TObjNpcGovernorBase.cpp:
 pso/npc/TObjNpcHFW00.cpp:
 	.text       start:0x8014AD64 end:0x8014AF38
 	.rodata     start:0x8043FA28 end:0x8043FA60
-	.sdata      start:0x805D2DB0 end:0x805D2DB8
 
 pso/npc/TObjNpcHFW01.cpp:
 	.text       start:0x8014AF38 end:0x8014B10C
@@ -4659,17 +4658,14 @@ pso/npc/TObjNpcMoja.cpp:
 pso/npc/TObjNpcNFM00.cpp:
 	.text       start:0x8014C8EC end:0x8014CAC0
 	.rodata     start:0x8043FD10 end:0x8043FD48
-	.sdata      start:0x805D2E20 end:0x805D2E28
 
 pso/npc/TObjNpcNFM01.cpp:
 	.text       start:0x8014CAC0 end:0x8014CC94
 	.rodata     start:0x8043FD48 end:0x8043FD80
-	.sdata      start:0x805D2E28 end:0x805D2E30
 
 pso/npc/TObjNpcNFW00.cpp:
 	.text       start:0x8014CC94 end:0x8014CE68
 	.rodata     start:0x8043FD80 end:0x8043FDB8
-	.sdata      start:0x805D2E30 end:0x805D2E38
 
 pso/npc/TObjNpcNFW01.cpp:
 	.text       start:0x8014CE68 end:0x8014D03C
