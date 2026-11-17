@@ -9,6 +9,7 @@
 #include "pso/network/ExiSendCompletion.h"
 
 struct TItemList;
+struct NetPacket;
 
 struct TLobbyFloorItemEntry {
     u8 n;
@@ -607,22 +608,22 @@ struct TLobby : public TObject {
     void init_packet_header(s32 arg1);
     void set_value_and_enable(s32 arg1);
     static s32 reset_socket_table();
-    static u8 *alloc_free_entry();
+    static NetPacket *alloc_free_entry();
     static s32 dispatch_slot_a(s16 arg0, s32 arg1);
     static s32 dispatch_slot_b(s16 arg0, s32 arg1);
     static s32 forward_net_op(s16 arg0, u8 *arg1, u8 *arg2);
-    static s16 forward_net_op_5args(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s8 arg6, s32 arg7);
+    static s16 forward_net_op_5args(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s16 arg6, s32 arg7);
     static void flush_flags_step();
     static void run_connect_step();
     static s16 init_net_sockets();
     static s32 send_ethernet_frame(s16 idx, s16 mode, u8 *addr, void *pkt);
     static s32 forward_socket_op_by_handle(s16 id, u8 *a, u8 *b);
     static s32 clear_table_entry_locked(s16 arg0);
-    static s32 call_handler_by_index(s16 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+    static s32 call_handler_by_index(s16 arg0, s16 arg1, s32 arg2, s32 arg3, s32 arg4);
     static s32 dispatch_handler_by_index(s16 arg0, s32 arg1, s32 arg2, s32 arg3);
     static s32 dispatch_handler_by_id(s16 arg0, s32 arg1, s32 arg2);
-    static s32 invoke_socket_callback(s16 i, s32 arg);
-    static s32 call_entry_callback(s16 i, s32 arg);
+    static s16 invoke_socket_callback(s16 i, s32 arg);
+    static s32 call_entry_callback(s16 i, s16 arg);
     static s16 is_slot_flag_0x40_set(s16 i);
     static s32 is_slot_flag_0x20_set(s16 i);
     static s16 is_entry_flag10_set(s16 i);
