@@ -783,6 +783,13 @@ Ports can drop this object-layout override and use normal float alignment.
 The compatible pointer reads of four materialized constants avoid duplicate
 MWCC literal-pool entries; a port can read those constants directly.
 
+### Download status coordinate alignment
+
+`pso/misc/TDLGraph.cpp` uses `cw_align: .sdata2=4` for the three floats
+at `0x805D92CC..0x805D92D8`. GC/2.0 emits the original floats and loads
+but requests eight-byte alignment for the pool. Ports can use the
+ordinary C++ coordinates directly and omit the object alignment override.
+
 ### Time setting and calendar startup
 
 | File | Scope | Setting | Original layout | Port behavior |
