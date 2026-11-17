@@ -12,19 +12,17 @@
 struct RecoveredGlobal_8014BD54_lbl_804AA3F0 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_8014BD54_lbl_804AA3F0_size[sizeof(RecoveredGlobal_8014BD54_lbl_804AA3F0) == 0x10 ? 1 : -1];
 
-struct RecoveredGlobal_8014BF2C_lbl_804AA580 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8014BF2C_lbl_804AA580_size[sizeof(RecoveredGlobal_8014BF2C_lbl_804AA580) == 0x10 ? 1 : -1];
-
 struct RecoveredGlobal_8014BDFC___vt__16TObjNpcMaleDwarf {
     s32 value;
     u8 remaining[0x174];
 };
 
 extern "C" {
+extern const char lbl_8043FBE0[] = "n_efsm_i_body_3.nj";
+extern const char lbl_8043FBF4[] = "bm_n_efsm_i_body_3.bml";
+extern const char lbl_8043FC0C[] = "TObjNpcMaleDwarf";
 extern RecoveredGlobal_8014BD54_lbl_804AA3F0 bm_n_efsm_i_body_3_resource_descriptor;
 extern u32 TObjNpcMaleDwarf__shared_model_resource;
-extern RecoveredGlobal_8014BF2C_lbl_804AA580 bm_n_efm_i_body_resource_descriptor;
-extern u32 TObjNpcMaleFat__static_model_resource;
 extern s32 __vt__16TObjNpcMaleDwarf[];
 extern s32 TObjNpcMaleDwarf__name;
 void *__ct__11TObjControlFP7TObject(void *, void *);
@@ -84,20 +82,6 @@ void * TObjNpcMaleFat__create(void *arg0) {
         o2 = TObjNpcMaleFat__ct((u8 *)o2, (s32)o, (s32)arg0);
     }
     return o2;
-}
-
-void TObjNpcMaleFat::free_static_model() {
-    if ((u32) TObjNpcMaleFat__static_model_resource != 0U) {
-        delete (BmlResource *)((void*)TObjNpcMaleFat__static_model_resource);
-        TObjNpcMaleFat__static_model_resource = 0U;
-    }
-}
-void TObjNpcMaleFat::load_static_resource() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_efm_i_body_resource_descriptor.value), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    (*(s32 *)&TObjNpcMaleFat__static_model_resource) = var_r0;
 }
 
 }

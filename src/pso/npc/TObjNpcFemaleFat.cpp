@@ -8,8 +8,8 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-struct RecoveredGlobal_8014A540_lbl_804A8E00 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8014A540_lbl_804A8E00_size[sizeof(RecoveredGlobal_8014A540_lbl_804A8E00) == 0x10 ? 1 : -1];
+struct RecoveredGlobal_8014A368_lbl_804A8C70 { s32 value; u8 remaining[0xC]; };
+typedef char RecoveredGlobal_8014A368_lbl_804A8C70_size[sizeof(RecoveredGlobal_8014A368_lbl_804A8C70) == 0x10 ? 1 : -1];
 
 struct RecoveredGlobal_8014A410___vt__16TObjNpcFemaleFat {
     s32 value;
@@ -17,14 +17,29 @@ struct RecoveredGlobal_8014A410___vt__16TObjNpcFemaleFat {
 };
 
 extern "C" {
-extern RecoveredGlobal_8014A540_lbl_804A8E00 bm_n_emw_i_body_resource_descriptor;
-extern u32 TObjNpcFemaleMacho__lobby_resource;
+extern const char lbl_8043F8E0[] = "n_efw_i_body.nj";
+extern const char lbl_8043F8F0[] = "bm_n_efw_i_body.bml";
+extern const char lbl_8043F904[] = "TObjNpcFemaleFat";
+extern RecoveredGlobal_8014A368_lbl_804A8C70 bm_n_efw_i_body_resource_descriptor;
 extern s32 __vt__16TObjNpcFemaleFat[];
 extern s32 TObjNpcFemaleFat__name;
-extern u8 *TObjNpcFemaleFat__static_model;
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
+
+void TObjNpcFemaleFat::free_static_model() {
+    if ((u32) TObjNpcFemaleFat__static_model != 0U) {
+        delete (BmlResource *)((void*)TObjNpcFemaleFat__static_model);
+        TObjNpcFemaleFat__static_model = 0U;
+    }
+}
+void TObjNpcFemaleFat::load_static_resource() {
+    BmlResource *temp_r3;
+    BmlResource *var_r0;
+    temp_r3 = new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_efw_i_body_resource_descriptor.value), 0, 0, (void *)(0));
+    var_r0 = temp_r3;
+    TObjNpcFemaleFat__static_model = var_r0;
+}
 
 void *__dt__16TObjNpcFemaleFatFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -64,20 +79,6 @@ void * TObjNpcFemaleMacho__create(void *arg0) {
         o2 = TObjNpcFemaleMacho__ct((u8 *)o2, (s32)o, (s32)arg0);
     }
     return o2;
-}
-
-void TObjNpcFemaleMacho::close_dialog_window() {
-    if ((u32) TObjNpcFemaleMacho__lobby_resource != 0U) {
-        delete (BmlResource *)((void*)TObjNpcFemaleMacho__lobby_resource);
-        TObjNpcFemaleMacho__lobby_resource = 0U;
-    }
-}
-void TObjNpcFemaleMacho::load_resources() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_emw_i_body_resource_descriptor.value), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    (*(s32 *)&TObjNpcFemaleMacho__lobby_resource) = var_r0;
 }
 
 }

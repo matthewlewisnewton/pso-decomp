@@ -143,9 +143,6 @@ void TEndingPic::render() {
 
 void TEndingPic::run_task() { advance_animation_state(); }
 
-// The shared texture-list storage still has an integer ABI in its owning unit.
-extern u32 ending_ab_wall_texture_list;
-
 TEndingPic::~TEndingPic() {}
 TEndingPic::TEndingPic(TObject *parent) : TObject(parent) {
     m_name = lbl_805D4378;
@@ -154,7 +151,7 @@ TEndingPic::TEndingPic(TObject *parent) : TObject(parent) {
     field_20 = 0xFF;
     picture_pair = 0;
     next_picture = 0;
-    ending_pic_wall_texture_list = (GinjaTextureList *)get_ending_ab_wall_texture_list();
+    ending_pic_wall_texture_list = get_ending_ab_wall_texture_list();
     init_positions();
     switch (TKeyBoardControl__sub_8000F828()) {
     case 0: timing_rate = 30; break;
@@ -163,4 +160,4 @@ TEndingPic::TEndingPic(TObject *parent) : TObject(parent) {
 }
 }
 
-int get_ending_ab_wall_texture_list(void) { return ending_ab_wall_texture_list; }
+GinjaTextureList *get_ending_ab_wall_texture_list(void) { return ending_ab_wall_texture_list; }
