@@ -6,7 +6,7 @@
 
 extern "C" {
 u8 *load_gvm_texture_file(s32 arg0);
-extern u8 lbl_80470A68[];
+extern const u8 lbl_80470A68[] = "boss06_tube_dat.gvm";
 extern u8 boss06_tube_dat_resource_descriptor[];
 extern u32 boss6_tube_bml_resource;
 extern u32 boss6_tube_texture_list;

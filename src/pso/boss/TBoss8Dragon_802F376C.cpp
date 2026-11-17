@@ -26,8 +26,8 @@ extern "C" {
 extern s32 tl_04;
 u16 get_entity_id(void *);
 u8 *get_enemy_entity(u16 arg0);
-extern const f32 lbl_805DED48;
-extern const f32 lbl_805DED4C;
+static const f32 lbl_805DED48 = 0.0f;
+static const f32 lbl_805DED4C = 120.0f;
 
 s32 TBoss8Dragon::is_closest_part() {
     Vec_802F376C v;

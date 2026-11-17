@@ -65,6 +65,16 @@ struct Obj_800A3D1C {
     s32 active;
 };
 
+namespace {
+extern const f32 lbl_805D99F0;
+extern const f32 lbl_805D99F4;
+extern const f32 lbl_805D99F8;
+extern const f32 lbl_805D99FC;
+extern const f32 lbl_805D9A00;
+extern const f32 lbl_805D9A04;
+extern const f32 lbl_805D9A08;
+}
+
 extern "C" {
 void build_beam_points__12TTecZondeEffFPv(struct Obj_800A39A8 *);
 void __ct__7TObjectFP7TObject(void *, void *);
@@ -76,15 +86,9 @@ extern s32 model_render_flags;
 f32 sin_table_lookup(s32);
 extern Entry_800A4064 *player_effect_task_list[];
 extern s32 TObjPlayer__effect_count;
-extern const f32 lbl_805D99F8;
-extern const f32 lbl_805D9A04;
-extern const f32 lbl_805D9A08;
 f32 newton_sqrtf(f32);
 s32 matrix_mult_vec(int, void *, void *);
 extern Cam_800A3D1C lbl_8058D4F8;
-extern const f32 lbl_805D99F0;
-extern const f32 lbl_805D99FC;
-extern const f32 lbl_805D9A00;
 
 struct Vec_800A39A8 { f32 x, y, z; };
 struct Obj_800A39A8 {
@@ -108,7 +112,169 @@ f32 rand_signed_unit();
 s32 normalize_vector_checked(void *);
 f32 vector_length(void *);
 s32 subtract_vector(void *, void *);
-extern const f32 lbl_805D99F4;
+}
+
+// Deferred code generation emits these definitions in reverse order.
+typedef char RecoveredGlobal_800A4204_lbl_80490A18_size[sizeof(RecoveredGlobal_800A4204_lbl_80490A18) == 0x18 ? 1 : -1];
+u8 *TObjPlayer__sub_800A4204(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4) {
+    __ct__7TObjectFP7TObject(arg0, arg1);
+    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_800A4204_lbl_80490A18 *)&__vt__21TeneFakeTecThunderEff).value;
+    *(s32 *)((s8 *)arg0 + 0) = (s32) lbl_805D29E0;
+    ((TeneFakeTecThunderEff *)arg0)->m_338 = arg2;
+    *(s32 *)((s8 *)arg0 + 0x33C) = arg3;
+    ((TeneFakeTecThunderEff *)arg0)->m_330 = 0;
+    *(s32 *)((s8 *)arg0 + 0x334) = 0;
+    *(s32 *)((s8 *)arg0 + 0x344) = arg4;
+    build_beam_points__12TTecZondeEffFPv((Obj_800A39A8 *)arg0);
+    ((TeneFakeTecThunderEff *)arg0)->m_328 = 0;
+    *(s32 *)((s8 *)arg0 + 0x32C) = 0xFF000000;
+    ((TeneFakeTecThunderEff *)arg0)->m_340 = 0;
+    return arg0;
+}
+
+TeneFakeTecThunderEff::~TeneFakeTecThunderEff() {
+}
+
+#pragma push
+#pragma fp_contract on
+void TeneFakeTecThunderEff::run_task() {
+    Obj_800A4064 *self = (Obj_800A4064 *)this;
+    s32 i;
+    if (this->m_340 != 0) {
+        build_beam_points__12TTecZondeEffFPv((Obj_800A39A8 *)self);
+        TObjPlayer__effect_count = *player_effect_task_list[0][this->m_330].inner->p;
+        for (i = 0; i < this->m_38; i++) {
+            self->scale[i] = lbl_805D99F8 * (lbl_805D9A08 * sin_table_lookup(this->m_328 * 0x1800) + lbl_805D9A04);
+        }
+        for (i = 0; i < this->m_38; i++) {
+            f32 s = self->scale[i];
+            self->out[i].x = self->dir[i].x * s + self->base[i].x;
+            self->out[i].y = self->dir[i].y * s + self->base[i].y;
+            self->out[i].z = self->dir[i].z * s + self->base[i].z;
+        }
+        this->m_328++;
+    }
+}
+#pragma pop
+
+#pragma push
+#pragma fp_contract on
+void TeneFakeTecThunderEff::render() {
+    Obj_800A3D1C *o = (Obj_800A3D1C *)this;
+    Vtx_800A3D1C verts[34];
+    Vec_800A3D1C out[17];
+    f32 sa[17];
+    f32 sb[17];
+    Vec_800A3D1C v;
+    f32 sw;
+    f32 sh;
+    f32 cy;
+    f32 cx;
+    f32 one;
+    f32 prevX;
+    f32 prevY;
+    f32 prevZ;
+    f32 curX;
+    f32 curY;
+    f32 dx;
+    f32 dy;
+    f32 vv;
+    f32 u0;
+    f32 w;
+    f32 a;
+    f32 b;
+    f32 inv;
+    f32 nx;
+    f32 ny;
+    u32 color;
+    Vec_800A3D1C *q;
+    Vtx_800A3D1C *p;
+    s32 i;
+    s32 j;
+    if (this->m_340 == 0) {
+        return;
+    }
+    saved_model_render_flags = model_render_flags;
+    model_render_flags |= 0x10;
+    sw = lbl_8058D4F8.sw;
+    cx = lbl_8058D4F8.cx;
+    cy = lbl_8058D4F8.cy;
+    sh = sw * (lbl_805D9A00 / (lbl_805D9A00 * lbl_8058D4F8.aspect));
+    color = o->color | 0xFFFFFF;
+    for (i = 0; i < this->m_38; i++) {
+        matrix_mult_vec(0, &o->pts[i], &v);
+        if (v.z >= lbl_805D99F0) {
+            v.z = lbl_805D99F0;
+        }
+        w = lbl_805D99F0 / -v.z;
+        v.y = -v.y;
+        a = sh * w;
+        b = sw * w;
+        out[i].x = v.x * a + cx;
+        sa[i] = a;
+        out[i].y = v.y * b + cy;
+        sb[i] = b;
+        out[i].z = w;
+    }
+    vv = lbl_805D99FC;
+    u0 = vv;
+    p = verts;
+    q = &out[1];
+    prevX = out[0].x;
+    prevY = out[0].y;
+    prevZ = out[0].z;
+    one = lbl_805D99F0;
+    for (j = 0; j < this->m_38 - 1; j++) {
+        curY = q->y;
+        curX = q->x;
+        dy = curY - prevY;
+        dx = curX - prevX;
+        inv = one / newton_sqrtf(dx * dx + dy * dy);
+        dx *= inv;
+        dy *= inv;
+        nx = one * (dy * sa[j]);
+        ny = one * (-dx * sb[j]);
+        p[0].x = prevX + nx;
+        p[0].y = prevY + ny;
+        p[0].z = prevZ;
+        p[0].u = u0;
+        p[0].v = vv;
+        p[0].color = color;
+        p[1].x = prevX - nx;
+        p[1].y = prevY - ny;
+        p[1].z = prevZ;
+        prevZ = q->z;
+        q++;
+        p[1].u = one;
+        p[1].v = vv;
+        vv += one;
+        p[1].color = color;
+        p += 2;
+        prevX = curX;
+        prevY = curY;
+    }
+    nx = lbl_805D99F0 * (dy * sa[this->m_38 - 1]);
+    ny = lbl_805D99F0 * (-dx * sb[this->m_38 - 1]);
+    p[0].x = prevX + nx;
+    p[0].y = prevY + ny;
+    p[0].z = prevZ;
+    p[0].u = lbl_805D99FC;
+    p[0].v = vv;
+    p[0].color = color;
+    p[1].x = prevX - nx;
+    p[1].y = prevY - ny;
+    p[1].z = prevZ;
+    p[1].u = lbl_805D99F0;
+    p[1].v = vv;
+    p[1].color = color;
+    set_additive_blend();
+    ((TWindowDD *)verts)->draw_transformed_primitive((void*)(this->m_38 * 2), (void*)TObjPlayer__effect_count, (void*)1);
+    set_constant_material(&chunk_material_color_half_alpha_f32);
+    model_render_flags = saved_model_render_flags;
+}
+#pragma pop
+
+extern "C" {
 #pragma push
 #pragma fp_contract on
 void build_beam_points__12TTecZondeEffFPv(Obj_800A39A8 *o) {
@@ -234,169 +400,18 @@ void build_beam_points__12TTecZondeEffFPv(Obj_800A39A8 *o) {
     }
     o->r[0] = lbl_805D99FC;
     o->r[o->count - 1] = lbl_805D99FC;
-#undef o
-}
-#pragma pop
-
-#pragma push
-#pragma fp_contract on
-#pragma fp_contract on
-void TeneFakeTecThunderEff::render() {
-    Obj_800A3D1C *o = (Obj_800A3D1C *)this;
-    Vtx_800A3D1C verts[34];
-    Vec_800A3D1C out[17];
-    f32 sa[17];
-    f32 sb[17];
-    Vec_800A3D1C v;
-    f32 sw;
-    f32 sh;
-    f32 cy;
-    f32 cx;
-    f32 one;
-    f32 prevX;
-    f32 prevY;
-    f32 prevZ;
-    f32 curX;
-    f32 curY;
-    f32 dx;
-    f32 dy;
-    f32 vv;
-    f32 u0;
-    f32 w;
-    f32 a;
-    f32 b;
-    f32 inv;
-    f32 nx;
-    f32 ny;
-    u32 color;
-    Vec_800A3D1C *q;
-    Vtx_800A3D1C *p;
-    s32 i;
-    s32 j;
-    if (this->m_340 == 0) {
-        return;
-    }
-    saved_model_render_flags = model_render_flags;
-    model_render_flags |= 0x10;
-    sw = lbl_8058D4F8.sw;
-    cx = lbl_8058D4F8.cx;
-    cy = lbl_8058D4F8.cy;
-    sh = sw * (lbl_805D9A00 / (lbl_805D9A00 * lbl_8058D4F8.aspect));
-    color = o->color | 0xFFFFFF;
-    for (i = 0; i < this->m_38; i++) {
-        matrix_mult_vec(0, &o->pts[i], &v);
-        if (v.z >= lbl_805D99F0) {
-            v.z = lbl_805D99F0;
-        }
-        w = lbl_805D99F0 / -v.z;
-        v.y = -v.y;
-        a = sh * w;
-        b = sw * w;
-        out[i].x = v.x * a + cx;
-        sa[i] = a;
-        out[i].y = v.y * b + cy;
-        sb[i] = b;
-        out[i].z = w;
-    }
-    vv = lbl_805D99FC;
-    u0 = vv;
-    p = verts;
-    q = &out[1];
-    prevX = out[0].x;
-    prevY = out[0].y;
-    prevZ = out[0].z;
-    one = lbl_805D99F0;
-    for (j = 0; j < this->m_38 - 1; j++) {
-        curY = q->y;
-        curX = q->x;
-        dy = curY - prevY;
-        dx = curX - prevX;
-        inv = one / newton_sqrtf(dx * dx + dy * dy);
-        dx *= inv;
-        dy *= inv;
-        nx = one * (dy * sa[j]);
-        ny = one * (-dx * sb[j]);
-        p[0].x = prevX + nx;
-        p[0].y = prevY + ny;
-        p[0].z = prevZ;
-        p[0].u = u0;
-        p[0].v = vv;
-        p[0].color = color;
-        p[1].x = prevX - nx;
-        p[1].y = prevY - ny;
-        p[1].z = prevZ;
-        prevZ = q->z;
-        q++;
-        p[1].u = one;
-        p[1].v = vv;
-        vv += one;
-        p[1].color = color;
-        p += 2;
-        prevX = curX;
-        prevY = curY;
-    }
-    nx = lbl_805D99F0 * (dy * sa[this->m_38 - 1]);
-    ny = lbl_805D99F0 * (-dx * sb[this->m_38 - 1]);
-    p[0].x = prevX + nx;
-    p[0].y = prevY + ny;
-    p[0].z = prevZ;
-    p[0].u = lbl_805D99FC;
-    p[0].v = vv;
-    p[0].color = color;
-    p[1].x = prevX - nx;
-    p[1].y = prevY - ny;
-    p[1].z = prevZ;
-    p[1].u = lbl_805D99F0;
-    p[1].v = vv;
-    p[1].color = color;
-    set_additive_blend();
-    ((TWindowDD *)verts)->draw_transformed_primitive((void*)(this->m_38 * 2), (void*)TObjPlayer__effect_count, (void*)1);
-    set_constant_material(&chunk_material_color_half_alpha_f32);
-    model_render_flags = saved_model_render_flags;
-}
-#pragma pop
-
-#pragma push
-#pragma fp_contract on
-void TeneFakeTecThunderEff::run_task() {
-    Obj_800A4064 *self = (Obj_800A4064 *)this;
-    s32 i;
-    if (this->m_340 != 0) {
-        build_beam_points__12TTecZondeEffFPv((Obj_800A39A8 *)self);
-        TObjPlayer__effect_count = *player_effect_task_list[0][this->m_330].inner->p;
-        for (i = 0; i < this->m_38; i++) {
-            self->scale[i] = lbl_805D99F8 * (lbl_805D9A08 * sin_table_lookup(this->m_328 * 0x1800) + lbl_805D9A04);
-        }
-        for (i = 0; i < this->m_38; i++) {
-            f32 s = self->scale[i];
-            self->out[i].x = self->dir[i].x * s + self->base[i].x;
-            self->out[i].y = self->dir[i].y * s + self->base[i].y;
-            self->out[i].z = self->dir[i].z * s + self->base[i].z;
-        }
-        this->m_328++;
-    }
 }
 #pragma pop
 
 }
-TeneFakeTecThunderEff::~TeneFakeTecThunderEff() {
 
+namespace {
+// Define the pool after its readers so their loads survive constant folding.
+const f32 lbl_805D99F0 = 1.0f;
+const f32 lbl_805D99F4 = 5.0f;
+const f32 lbl_805D99F8 = 4.0f;
+const f32 lbl_805D99FC = 0.0f;
+const f32 lbl_805D9A00 = 480.0f;
+const f32 lbl_805D9A04 = 0.2f;
+const f32 lbl_805D9A08 = 0.1f;
 }
-
-typedef char RecoveredGlobal_800A4204_lbl_80490A18_size[sizeof(RecoveredGlobal_800A4204_lbl_80490A18) == 0x18 ? 1 : -1];
-u8 *TObjPlayer__sub_800A4204(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4) {
-    __ct__7TObjectFP7TObject(arg0, arg1);
-    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_800A4204_lbl_80490A18 *)&__vt__21TeneFakeTecThunderEff).value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) lbl_805D29E0;
-    ((TeneFakeTecThunderEff *)arg0)->m_338 = arg2;
-    *(s32 *)((s8 *)arg0 + 0x33C) = arg3;
-    ((TeneFakeTecThunderEff *)arg0)->m_330 = 0;
-    *(s32 *)((s8 *)arg0 + 0x334) = 0;
-    *(s32 *)((s8 *)arg0 + 0x344) = arg4;
-    build_beam_points__12TTecZondeEffFPv((Obj_800A39A8 *)arg0);
-    ((TeneFakeTecThunderEff *)arg0)->m_328 = 0;
-    *(s32 *)((s8 *)arg0 + 0x32C) = 0xFF000000;
-    ((TeneFakeTecThunderEff *)arg0)->m_340 = 0;
-    return arg0;
-}
-

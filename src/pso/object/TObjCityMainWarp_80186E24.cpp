@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -38,7 +39,7 @@ void update_challenge_warp_window(void *arg0) {
                 }
                 begin_player_keyboard_hold(local_client_id);
                 request_active_window_close();
-                ((TWindowCtrl *)local_client_id)->suppress_slot();
+                suppress_player_window(local_client_id);
             }
         } else {
             if ((u32) *(u32 *)((s8 *)arg0 + 0xB0) != 0U) {
@@ -47,7 +48,7 @@ void update_challenge_warp_window(void *arg0) {
             }
             end_player_keyboard_hold(local_client_id);
             TWindowCtrl::clear_flag();
-            ((TWindowCtrl *)local_client_id)->unsuppress_slot();
+            unsuppress_player_window(local_client_id);
         }
         if ((s32) *(s32 *)((s8 *)arg0 + 0x15C) == 0) {
             *(s16 *)((s8 *)arg0 + 0xDC) = 0;
@@ -60,7 +61,7 @@ void update_challenge_warp_window(void *arg0) {
         }
         end_player_keyboard_hold(local_client_id);
         TWindowCtrl::clear_flag();
-        ((TWindowCtrl *)local_client_id)->unsuppress_slot();
+        unsuppress_player_window(local_client_id);
         break;
     }
 }

@@ -22,7 +22,7 @@ public:
     s32 m_24;
     u8 unk_28[0x4];
     s32 m_2c;
-    u8 unk_30[0x4];
+    s32 m_30;
     s32 m_34;
     s32 m_38;
     Vec position;

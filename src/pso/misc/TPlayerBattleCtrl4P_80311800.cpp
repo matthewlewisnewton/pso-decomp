@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/misc/TPlayerBattleCtrl4P.h"
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowBase.h"
@@ -33,7 +34,6 @@ extern s32 lbl_80475BC4[];
 extern s32 lbl_80475BCC[];
 extern RecoveredGlobal_80311A64_TPlayerBattleCtrl4P__data_80542E90 split_screen_battle_rankings;
 extern s32 local_client_id;
-s32 has_player_active_menu__11TWindowCtrlFv(s32);
 s32 align_menu_entry_positions(void *);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
 void *check_room_seq_4__16TAdChrSelASlotGCFl(void *, int);
@@ -188,7 +188,7 @@ void TPlayerBattleCtrl4P::close_rematch_menu() {
 #pragma pop
 
 void TPlayerBattleCtrl4P::update_rematch_menu() {
-    if (has_player_active_menu__11TWindowCtrlFv(local_client_id) == 0) {
+    if (has_player_active_menu(local_client_id) == 0) {
         if (((O_80311C2C *)this)->w0 == NULL) {
             ((O_80311C2C *)this)->w0 = create__14TWindowMessageFPvll(get_window_layout_position(0x53), lbl_80475B70, 1);
             if (((O_80311C2C *)this)->w0 != NULL) {

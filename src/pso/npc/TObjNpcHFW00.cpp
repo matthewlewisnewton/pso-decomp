@@ -17,18 +17,31 @@ struct RecoveredGlobal_8014AE4C___vt__12TObjNpcHFW00 {
 };
 
 extern "C" {
+extern const char lbl_8043FA28[] = "TObjNpcHFW00";
+extern const char *TObjNpcHFW00__name;
+extern const char lbl_8043FA38[] = "npc_g00_data.rel";
+extern const char lbl_8043FA4C[] = "n_g00_body.gvm";
 extern s32 __vt__12TObjNpcHFW00[];
-extern s32 TObjNpcHFW00__name;
-extern s32 *TObjNpcHFW00__shared_resource_obj;
-extern s32 TObjNpcHFW00__texture_handle;
-extern u32 TObjNpcHFW01__resource_node;
-extern u32 TObjNpcHFW01__texture_handle;
-extern char lbl_8043FA70[];
-extern char TObjNpcHFW01__texture_filename[];
-void release_texture_list(void*);
+void release_texture_list(void *);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
+
+void TObjNpcHFW00::free_resources() {
+    if ((u32) TObjNpcHFW00__texture_handle != 0U) {
+        release_texture_list((void*)TObjNpcHFW00__texture_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcHFW00__texture_handle);
+        TObjNpcHFW00__texture_handle = 0U;
+    }
+    if ((u32) TObjNpcHFW00__shared_resource_obj != 0U) {
+        TLobby::free_nodes_with_id((u32)((void*)TObjNpcHFW00__shared_resource_obj));
+        TObjNpcHFW00__shared_resource_obj = 0U;
+    }
+}
+void TObjNpcHFW00::load_resources() {
+    TObjNpcHFW00__shared_resource_obj = (s32 *)create_named_object((s32)lbl_8043FA38);
+    TObjNpcHFW00__texture_handle = load_gvm_texture_file(lbl_8043FA4C);
+}
 
 void *__dt__12TObjNpcHFW00Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -70,20 +83,5 @@ void * TObjNpcHFW01__create(void *arg0) {
     return o2;
 }
 
-void TObjNpcHFW01::free_static_resources() {
-    if ((u32) TObjNpcHFW01__texture_handle != 0U) {
-        release_texture_list((void*)TObjNpcHFW01__texture_handle);
-        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcHFW01__texture_handle);
-        TObjNpcHFW01__texture_handle = 0U;
-    }
-    if ((u32) TObjNpcHFW01__resource_node != 0U) {
-        TLobby::free_nodes_with_id((u32)((void*)TObjNpcHFW01__resource_node));
-        TObjNpcHFW01__resource_node = 0U;
-    }
-}
-void TObjNpcHFW01::load_resources() {
-    TObjNpcHFW01__resource_node = (u32)create_named_object((s32)lbl_8043FA70);
-    TObjNpcHFW01__texture_handle = (u32)load_gvm_texture_file(TObjNpcHFW01__texture_filename);
-}
 
 }

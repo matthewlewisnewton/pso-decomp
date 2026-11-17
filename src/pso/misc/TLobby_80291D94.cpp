@@ -1,3 +1,4 @@
+#include "pso/misc/TNpcPlayer.h"
 #include "pso/object/TObjWarnChime.h"
 #include "pso/TObject.h"
 #include "pso/system/vector.h"
@@ -610,7 +611,7 @@ struct Vec_80292730 { f32 x, y, z; };
 
 struct Hdr_80292730 { u32 w[2]; };
 
-struct Info_80292730 { u8 pad0[0x31]; u8 cls; u8 pad32[2]; u32 flags; u8 pad38[0x50 - 0x38]; };
+struct Info_80292730 { u8 pad0[0x31]; char cls; u8 pad32[2]; u32 flags; u8 pad38[0x50 - 0x38]; };
 
 struct CharData_80292730 { u8 pad0[0x370]; Info_80292730 info; u8 pad3C0[0x41C - 0x3C0]; };
 
@@ -627,7 +628,6 @@ void __ct__12TPlyCharDataFv(void *);
 Pl_80292730 *create_player_object(s32, s32, void *);
 void clamp_and_set_unit_value__10TObjPlayerFiUci(void *, u8, s16);
 void begin_action_state__10TObjPlayerFPv(void *);
-void send_command__10TNpcPlayerFlScllPSc(u8, s32, s32, s32, void *);
 #define is_challenge_mode_active ((s32 (*)())is_challenge_mode_active)
 
 #define lbl_804DB1F0 (*(s32 (*)[1])&lbl_804DB1F0)
@@ -695,7 +695,7 @@ void TLobby::rebuild_players_for_stage(s32 arg0) {
             __ct__12TPlyCharDataFv(&cd);
             copy_player_visual_record(&cd.info, &info);
             begin_action_state__10TObjPlayerFPv(&cd);
-            send_command__10TNpcPlayerFlScllPSc(info.cls, tbl->f4, tbl->f8, tbl->f0, &cd);
+            TNpcPlayer::send_command(info.cls, tbl->f4, tbl->f8, tbl->f0, &cd);
             p = create_player_object(i, map, &cd);
             if (p == NULL) {
                 __dt__12TPlyCharDataFv(&cd, -1);
@@ -704,7 +704,7 @@ void TLobby::rebuild_players_for_stage(s32 arg0) {
             __dt__12TPlyCharDataFv(&cd, -1);
             ((TLobby *)((u8 *)p + 0xDAC))->copy_header_struct(&hdr);
             ((TObjBase *)p)->set_position_from(&pos);
-            ((TBoss4DarkFalz *)p)->save_position();
+            ((TObjBase *)p)->save_previous_position();
             p->v6();
             ((TObjPlayer *)((u8 *)p + 0x428))->set_all_technique_levels((void *)0xFF);
             if (tbl->entries != NULL) {
@@ -1426,3 +1426,8 @@ void TLobby::copy_global_value_block() {
 #undef set_split_screen_name__6TLobbyFi
 #undef create_challenge4p__6TLobbyFv
 __declspec(section ".ctors") static void *const __sinit_TLobby_80291D94_cpp_ref = (void *)TLobby::copy_global_value_block;
+
+extern "C" {
+s32 lbl_805D6578;
+s8 lbl_805D657C;
+}

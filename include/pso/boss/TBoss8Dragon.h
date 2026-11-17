@@ -252,8 +252,6 @@ struct TBoss8Dragon : public TObjEneDD_ST
     void set_mode_params(s8 arg1);
     void render_nodes_flagged();
     void copy_vectors();
-    void send_swapped_packet();
-    void bswap_packet();
     void copy_position(s32 arg1);
     int queue_destruction();
     static void trigger_switches_in_range(void *arg0, void *arg1, void *arg2);

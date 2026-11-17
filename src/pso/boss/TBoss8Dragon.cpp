@@ -1,3 +1,4 @@
+#include "pso/protocol/BossActionPacket.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/NinjaHierarchy.h"
 #include "pso/system/RandomRatio.h"
@@ -457,7 +458,7 @@ s32 enemy_validate_retained_target(void *);
 void * __nw__7TObjectFUl(int);
 void TBoss8Dragon__sub_802FC9D8(u8 *arg0);
 s32 __ct__21TBoss8DragonEffBreathFP7TObjectPvPvls(void *, void *, void *, void *, s32, u16);
-extern const f32 lbl_805DEEAC;
+static const f32 lbl_805DEEAC = 115.0f;
 
 f32 newton_sqrtf(f32);
 s32 is_valid_target__9TObjEneDDFv(void);
@@ -1274,7 +1275,6 @@ struct Del_802FD354 : DelBase_802FD354 {
     virtual ~Del_802FD354();
 };
 
-struct Pkt_802FBBFC { u8 hdr[2]; u16 a; s16 b; s16 c; s32 d; f32 e; f32 f; s8 g; };
 
 struct VB_802FBBFC { u8 pad[0x18]; };
 
@@ -1367,7 +1367,6 @@ struct V_802FBBFC : VB_802FBBFC {
     virtual void m85(s32, int);
 };
 
-struct Pkt_802FBCBC { u8 hdr[2]; u16 a; s16 b; s16 c; s32 d; f32 e; f32 f; s8 g; };
 
 typedef struct Vec_802FC380 { f32 x, y, z; } Vec_802FC380;
 
@@ -1459,7 +1458,7 @@ extern s32 TBoss8Dragon__data_805D69A0;
 extern s32 TBoss8Dragon__data_805D69A8;
 extern u8 *TBoss8Dragon__data_805D69AC;
 
-extern const f32 TBoss8Dragon__data_805DEEA4;
+static const f32 TBoss8Dragon__data_805DEEA4 = 10.0f;
 extern s32 TLobby__designated_client_id;
 extern s32 boss8_dragon_init_state_params[];
 extern RecoveredGlobal_802F45A0_lbl_80474580 dragon_camera_script_frame_table;
@@ -1477,8 +1476,8 @@ extern RecoveredGlobal_802F4760_lbl_80541E3C dragon_forward_reference_vec;
 extern s32 lbl_805D6990;
 extern f32 boss8_dragon_visibility_distance;
 
-extern const f32 lbl_805DEEA0;
-extern const f32 lbl_805DEEA8;
+static const f32 lbl_805DEEA0 = 0.08f;
+static const f32 lbl_805DEEA8 = 23.0f;
 extern f32 lbl_805DEEB0;
 extern const f32 lbl_805DEEB4;
 extern const f32 lbl_805DEEB8;
@@ -2586,7 +2585,6 @@ struct VObj_18_444bc5x : VBase_18_444bc5x {
 
 extern "C" {
 
-struct Vec_802F8F88 { f32 x, y, z; };
 
 void rotate_vec_xz(void *, void *, s32);
 u32 spawn_continuous_particle_effect_with_flags(void *, void *, int);
@@ -3656,7 +3654,7 @@ void TBoss8Dragon__sub_802FBE3C(TBoss8Dragon *dragon) {
 
 extern "C++" void handle_6xA8_gol_dragon_boss_actions(void *boss8_dragon) {
     void *x;
-    ((TBoss8Dragon *)boss8_dragon)->bswap_packet();
+    bswap_boss_action_6xA8(boss8_dragon);
     x = get_enemy_entity(*(u16 *)((s8 *)boss8_dragon + 0x2));
     if (x != NULL) {
         ((void (*)(void *, void *))apply_6xA8_action__12TBoss8DragonFPvPv)(x, boss8_dragon);
@@ -3683,34 +3681,34 @@ void apply_6xA8_action__12TBoss8DragonFPvPv(u8 *boss8_dragon, u8 *arg1) {
 }
 
 void TBoss8Dragon::send_6xA8_action() {
-    Pkt_802FBCBC p;
+    GolDragonActionPacket p;
     f32 t;
     build_6xA8_gol_dragon_boss_actions(&p);
-    p.a = this->entity_id;
-    p.b = this->mode;
-    p.c = this->m_674;
-    p.d = this->target_entity_id;
-    p.e = this->m_688;
-    p.f = this->m_68c;
+    p.dragon.target.action.header.client_id = this->entity_id;
+    p.dragon.target.action.action = this->mode;
+    p.dragon.target.action.sequence = this->m_674;
+    p.dragon.target.target_entity_id = this->target_entity_id;
+    p.dragon.x = this->m_688;
+    p.dragon.z = this->m_68c;
     t = TBoss8Dragon__data_805DEDA4 * (f32)rand();
-    p.g = (s8)(TBoss8Dragon__data_805DED8C * t);
-    ((TBoss8Dragon *)(&p))->send_swapped_packet();
+    p.mode = (s8)(TBoss8Dragon__data_805DED8C * t);
+    send_boss_action_6xA8(&p);
 }
 
 void send_action_packet__12TBoss8DragonFPvi(u8 *boss8_dragon, s32 arg1) {
-    Pkt_802FBBFC p;
+    GolDragonActionPacket p;
     f32 t;
     ((V_802FBBFC *)boss8_dragon)->m85(arg1, 6);
     build_6xA8_gol_dragon_boss_actions(&p);
-    p.a = *(u16 *)((s8 *)boss8_dragon + 0x1C);
-    p.b = arg1;
-    p.c = ((TBoss8Dragon *)boss8_dragon)->m_674;
-    p.d = ((TBoss8Dragon *)boss8_dragon)->target_entity_id;
-    p.e = *(f32 *)((s8 *)boss8_dragon + 0x688);
-    p.f = ((TBoss8Dragon *)boss8_dragon)->m_68c;
+    p.dragon.target.action.header.client_id = *(u16 *)((s8 *)boss8_dragon + 0x1C);
+    p.dragon.target.action.action = arg1;
+    p.dragon.target.action.sequence = ((TBoss8Dragon *)boss8_dragon)->m_674;
+    p.dragon.target.target_entity_id = ((TBoss8Dragon *)boss8_dragon)->target_entity_id;
+    p.dragon.x = *(f32 *)((s8 *)boss8_dragon + 0x688);
+    p.dragon.z = ((TBoss8Dragon *)boss8_dragon)->m_68c;
     t = TBoss8Dragon__data_805DEDA4 * (f32)rand();
-    p.g = (s8)(TBoss8Dragon__data_805DED8C * t);
-    ((TBoss8Dragon *)(&p))->send_swapped_packet();
+    p.mode = (s8)(TBoss8Dragon__data_805DED8C * t);
+    send_boss_action_6xA8(&p);
 }
 
 void sync_target_pos__12TBoss8DragonFPv(void* p) { *(f32*)((char*)p + 0x394) = *(f32*)((char*)p + 0x690); *(f32*)((char*)p + 0x39c) = *(f32*)((char*)p + 0x694); }
@@ -4889,9 +4887,9 @@ void TBoss8Dragon::fn_802F8F88(u32 arg1) {
                 (*(u32 *)(arg0 + (0x894))) = 0;
             }
             if (((TObjMotion *)arg0)->is_passing_frame(lbl_805DEE80) != 0) {
-                Vec_802F8F88 v;
-                Vec_802F8F88 dir;
-                Vec_802F8F88 rot;
+                Vec v;
+                Vec dir;
+                Vec rot;
                 f32 len;
                 VecCopy__FP3VecPC3Vec(&dir, d);
                 subtract_vector(&dir, arg0 + 0x38);
@@ -4899,34 +4897,25 @@ void TBoss8Dragon::fn_802F8F88(u32 arg1) {
                 dir.y = TBoss8Dragon__data_805DED50;
                 VecCopy__FP3VecPC3Vec(&v, d);
                 v.y = *(f32 *)(TBoss8Dragon__data_804744A8 + 4);
-                {
-                    void *b = __nw__7TObjectFUl(0x58);
-                    if (b != 0) {
-                        TBoss8DragonEffBullet__ct((u8 *)b, arg0 + 0x3C4, arg0 + 0x410, &v, (*(s32 *)(arg0 + (0x75C))), get_entity_id(arg0));
-                    }
-                }
+                new TBoss8DragonEffBullet((TObject *)(arg0 + 0x3C4),
+                    (const Vec *)(arg0 + 0x410), &v,
+                    *(s32 *)(arg0 + 0x75C), get_entity_id(arg0));
                 rotate_vec_xz(&dir, &rot, 0x1000);
                 VecCopy__FP3VecPC3Vec(&v, arg0 + 0x38);
                 v.x += rot.x * len;
                 v.y = *(f32 *)(TBoss8Dragon__data_804744A8 + 4);
                 v.z += rot.z * len;
-                {
-                    void *b = __nw__7TObjectFUl(0x58);
-                    if (b != 0) {
-                        TBoss8DragonEffBullet__ct((u8 *)b, arg0 + 0x3C4, arg0 + 0x410, &v, (*(s32 *)(arg0 + (0x75C))), get_entity_id(arg0));
-                    }
-                }
+                new TBoss8DragonEffBullet((TObject *)(arg0 + 0x3C4),
+                    (const Vec *)(arg0 + 0x410), &v,
+                    *(s32 *)(arg0 + 0x75C), get_entity_id(arg0));
                 rotate_vec_xz(&dir, &rot, -0x1000);
                 VecCopy__FP3VecPC3Vec(&v, arg0 + 0x38);
                 v.x += rot.x * len;
                 v.y = *(f32 *)(TBoss8Dragon__data_804744A8 + 4);
                 v.z += rot.z * len;
-                {
-                    void *b = __nw__7TObjectFUl(0x58);
-                    if (b != 0) {
-                        TBoss8DragonEffBullet__ct((u8 *)b, arg0 + 0x3C4, arg0 + 0x410, &v, (*(s32 *)(arg0 + (0x75C))), get_entity_id(arg0));
-                    }
-                }
+                new TBoss8DragonEffBullet((TObject *)(arg0 + 0x3C4),
+                    (const Vec *)(arg0 + 0x410), &v,
+                    *(s32 *)(arg0 + 0x75C), get_entity_id(arg0));
                 spawn_particle_effect_with_flags(arg0 + 0x410, (void *)*(s32 *)((s8 *)((*(u8 * *)(arg0 + (0x760)))) + 0x24), 0x40);
                 (*(s32 *)(arg0 + (0x84C))) = 3;
                 (*(s32 *)(arg0 + (0x854))) = 0;
@@ -5031,7 +5020,6 @@ void TBoss8Dragon::fn_802F89F8(u32 event) {
                     m_84c = 4;
                     m_64c = 0;
                 }
-                void *bullet;
                 s32 found = 0;
                 if (!(m_854 & 1)) {
                     TObjBase *player = (TObjBase *)get_player_by_client_id((u16)(((s32)m_854 >> 1) % 4));
@@ -5047,8 +5035,8 @@ void TBoss8Dragon::fn_802F89F8(u32 event) {
                     target.y = TBoss8Dragon__data_805DED50;
                     target.z = lbl_805DEE60 * (calc_random_ratio__10TObjPlayerFv(&m_764) - TBoss8Dragon__data_805DEDA8);
                 }
-                bullet = TObject::operator new(0x58);
-                if (bullet) TBoss8DragonEffBullet__ct((u8 *)bullet, &child, &m_410, &target, m_75c, get_entity_id((u8 *)this));
+                new TBoss8DragonEffBullet(&child, (const Vec *)&m_410, &target, m_75c,
+                                         get_entity_id((u8 *)this));
             }
             rotation.pitch -= m_85c;
             break;

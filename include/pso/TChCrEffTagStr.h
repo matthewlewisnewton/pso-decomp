@@ -5,10 +5,17 @@
 
 class TChCrEffTagStr : public TObject {
 public:
-    TChCrEffTagStr(TObject *arg1, void *arg2, void *arg3);
+    TChCrEffTagStr(TObject *object, void *sprite, void *pos);
     virtual ~TChCrEffTagStr();
     virtual void run_task();
     virtual void render();
+
+    s32 fade_state;
+    s32 sprite_id;
+    f32 fade;
+    f32 position[2];
 };
+
+typedef char TChCrEffTagStr_size[sizeof(TChCrEffTagStr) == 0x30 ? 1 : -1];
 
 #endif

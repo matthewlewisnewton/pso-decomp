@@ -23,8 +23,8 @@ extern "C" {
 extern Rec_8035B788 lbl_804798CC;
 extern Rec_8035B788 lbl_804798DC;
 extern Obj_8035B788 *lbl_805D6F50;
-extern const f32 lbl_805E0140;
-extern const f32 lbl_805E0144;
+static const f32 lbl_805E0140 = 10.0f;
+static const f32 lbl_805E0144 = 0.0f;
 void fn_8035B788(void) {
     Obj_8035B788 *o = (Obj_8035B788 *)new BmlResource(1, (BmlResourceDescriptor *)(&nights_npc_resource_descriptor), 0, 0, (void *)(0));
     lbl_805D6F50 = o;

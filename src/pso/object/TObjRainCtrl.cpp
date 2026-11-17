@@ -1,5 +1,6 @@
 #include "pso/TObjRainCtrl.h"
-#include "pso/object/TObjRain.h"
+#include "pso/TMainTask.h"
+#include "pso/TObjRain.h"
 #include "pso/object/TObjRainCtrl.h"
 #include "pso/map/FloorArea.h"
 
@@ -7,8 +8,6 @@
 #include "pso/map/FloorArea.h"
 
 extern "C" {
-u32 __nw__7TObjectFUl(int);
-extern s32 tl_particle;
 void __ct__7TObjectFP7TObject(void *);
 
 extern s32 __vt__12TObjRainCtrl[];
@@ -19,20 +18,13 @@ extern void *lbl_805D3428;
 void TObjRainCtrl::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r0;
-    void *p;
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x1C) - 1;
     *(s32 *)((s8 *)arg0 + 0x1C) = temp_r0;
     if (temp_r0 < 0) {
         if (get_current_floor_area() == AREA_GAL_GRYPHON) {
-            p = (void *) __nw__7TObjectFUl(0x220);
-            if (p != NULL) {
-                __ct__8TObjRainFv((u8 *)p, (tl_particle), 0x24);
-            }
+            new TObjRain(tl_particle, 0x24);
         } else {
-            p = (void *) __nw__7TObjectFUl(0x220);
-            if (p != NULL) {
-                __ct__8TObjRainFv((u8 *)p, (tl_particle), 9);
-            }
+            new TObjRain(tl_particle, 9);
         }
         *(s32 *)((s8 *)arg0 + 0x1C) = 2;
     }

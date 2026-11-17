@@ -1327,3 +1327,10 @@ void TMCFormatSequence::run_task() {
         return;
     }
 }
+
+extern "C" {
+s32 TQuestVmDownLoadServer__dat_download_complete;
+s32 TQuestVmDownLoadServer__bin_download_complete;
+s32 TQuestVmDownLoadServer__pvr_download_complete;
+s32 TQuestVmDownLoadServer__gba_download_complete;
+}

@@ -62,8 +62,8 @@ struct Pkt_8018CB44 { u16 a; u16 b; s32 c; s32 d; s32 e; };
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
 void debug_printf_at(s32 id, const char *fmt, ...);
-extern char lbl_80445430[];
-extern char lbl_8044543C[];
+extern const char lbl_80445430[] = "EVT NO : %d";
+extern const char lbl_8044543C[] = "MODEL SELECT";
 s32 get_current_floor();
 extern s32 local_client_id;
 

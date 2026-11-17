@@ -1616,3 +1616,7 @@ void TUnk_804B6C24::vfunc_80() {  }
 void TUnk_804B6C24::vfunc_79() {  }
 void TLazerFenceSw__sub_8018A554(void* p, f32 v) { *(f32*)((char*)p + 0x1c) = v; }
 #pragma pop
+
+extern "C" {
+BmlResource *lbl_805D5B78;
+}

@@ -981,7 +981,7 @@ void TBoss4Type2::beam_update() {
         if (idx == 0) {
             create__11TTecRaBartaFPvPvPvPv(arg0, &p, &p, *(s32 *)((s8 *)((u8 *)get_battle_movement_params(0x36)) + 0x1C));
         } else {
-            ((TTecRaFoie *)arg0)->create(&p, &p, (void *)(*(s32 *)((s8 *)((u8 *)get_battle_movement_params(0x36)) + 0x18)));
+            TTecRaFoie::create((TObject *)arg0, &p, &p, (void *)(*(s32 *)((s8 *)((u8 *)get_battle_movement_params(0x36)) + 0x18)));
         }
         add_radar_scaled_marker(&p, -0x5DB4, 1, 1, 2.5f);
         *(f32 *)((s8 *)arg0 + 0x404) *= -1.0f;

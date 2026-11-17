@@ -15,7 +15,134 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
-## Summary (including approved native restore exception, 2026-11-11 UTC)
+### Shared warning-window lifecycle
+
+The `TObjBagWarnWin` and `TObjBagWarnWin4P` units use guarded
+`dont_inline off` / `inline_depth(2)` controls from the start of each unit
+through deferred template emission. Scoped controls restored before the end
+leave the lifecycle and policy adapters out of line in GC/2.6. The common
+warning lifecycle retains distinct predicates, creation methods and original
+virtual entry points. Ports can remove the pragmas and retain the ordinary
+template and composed warning state.
+
+### Shared three-channel weapon animation
+
+The idle and attack wrappers of `TUnk_804A6200` and `TUnk_804A67D0` use
+guarded, scoped `dont_inline off` / `inline_depth(1)` to expand the common
+`WeaponAnimationChannels` operations at the existing virtual entry points.
+Ports can remove the pragmas and retain the composed state and ordinary C++
+methods. The channels do not establish a new intermediate base class.
+
+### Shared technique band sounds
+
+The Barta, GiBarta and Megid sound wrappers use guarded, scoped
+`dont_inline off` / `inline_depth(1)` to expand `play_technique_band_sound`
+at their original entry points, keeping the native sound IDs, pitch schedule
+and switch tables. Ports can remove the pragmas and retain the ordinary inline
+function and inherited technique fields.
+
+### Shared cave-sign rendering
+
+`TOSignCave01::render` and `TOSignCave02::render` use guarded, scoped
+`dont_inline off` / `inline_depth(1)` to expand `render_cave_sign` at each
+existing entry point. This retains the two original virtual methods and their
+model traversal while sharing the implementation. Ports can remove the pragmas
+and retain the ordinary inline function; no intermediate class is inferred.
+
+### Zako shadow falloff
+
+`TObjPlayer__sub_8030A9B0` in `src/pso/boss/TBoss4ZakoDraw.cpp` retains
+its existing scoped `fp_contract on`: the cubic distance falloff and alpha
+calculation use the native fused multiply-add/subtract instructions. The unit
+fold removes the old `inline_depth` and `dont_inline` controls and trailing
+redeclaration; ordinary `Vec` copy initialization needs none of them. Ports
+should preserve the floating-point contraction/rounding behavior where required,
+using the platform compiler's equivalent support. See the
+[renderer consolidation evidence](evidence/zako-renderer-consolidation.md).
+
+### TCP out-of-order receive queue
+
+`TLobby__sub_8041F914` in `src/pso/network/SocketProtocolRuntime.cpp`
+retains the scoped `dont_inline off` / `inline_depth(4)` controls from
+[upstream #285](https://github.com/zeroz41/pso-decomp/pull/285), commit
+`be4a012306441b91fe0e30083800a8589bccf518`. They inline the reassembly-range
+removal helper, including its ordinary aggregate assignment. The receive-room
+clamp uses ordinary assignment in its condition and direct `TcpTcb` member
+access; it needs no additional matching constraint. Ports can drop the inline
+pragmas and keep the receive-ring copy and range-merging operations. See the
+[recovery and ABI evidence](evidence/tcp-out-of-order-queue.md).
+
+### Logo texture descriptor declaration
+
+`src/pso/misc/TLogo_8001C134.cpp` marks the existing eight-byte
+`texture_logo_e_descriptor` declaration as `.data` for CodeWarrior, matching
+its definition in `TAdSEGAlogo_8001BF4C.cpp`. Without it, the typed declaration
+changes the original absolute-address loads into small-data references.
+Ports can drop the guarded annotation and retain the `NJS_TEXLIST` type.
+
+### Duel-effect string lifetime data
+
+`src/pso/misc/TDuelEffectNumber_80080460.cpp` gives the final two-float
+object `lbl_805D9330` a guarded `.sdata2` section annotation. Its first
+float is the 30-frame lifetime; the second is the original zero tail.
+Without the annotation the array leaves the small-data constant section,
+changing the load and the object layout. The late definition keeps it after
+the digit-transform and opacity literals. Ports can drop the annotation and
+keep the ordinary array and C++ expressions.
+
+### Scalar collision-area helper
+
+`TObjPlayer__sub_803DF840` in `src/pso/player/TObjPlayer_803DF7A8.cpp` adds
+two `__fabs` and two `__frsqrte` uses. The lengths retain three double-precision
+Newton refinements and volatile float rounding homes. A double carrier and
+separate absolute-value and float-conversion assignments preserve the native
+register allocation; the arithmetic consumes the rounded float values. The
+function inherits the existing `fp_contract off` region. A port can use ordinary
+`fabs` and `sqrt`, retain the `0.025f` near-vertical rule, and validate rounding
+behavior. See [the scalar recovery evidence](evidence/scalar-collision-area-helper.md).
+
+### Dark Gunner center native emission
+
+`src/pso/enemy/TObjEneDarkGunCenter.cpp` uses `#pragma defer_codegen on`
+with reverse function definitions to retain the native vtable before the
+seven-entry switch table. Immediate generation preserves function instructions
+but puts the switch table first, moving the vtable by 28 bytes. Deferred
+generation reproduces all seven function positions, section contents and
+relocations with normal C++ virtual dispatch and destruction. Ports can drop
+the pragma and arrange definitions normally. The two late scalar definitions
+preserve named constant loads without generating duplicate literals.
+
+### Critical-hit effect data placement
+
+`src/pso/effect/TEffClitical.cpp` uses guarded section annotations for the
+owned eight-byte texture-list descriptor (`.data`) and the existing
+`lbl_805D93B0[2]` scalar object (`.sdata2`). The descriptor must use its real
+absolute address; ordinary small-data inference changes the renderer. The
+late scalar definition retains the original 1.0 value and zero tail without
+introducing an anonymous duplicate. Ports can drop both annotations and keep
+the ordinary declarations, array and C++ bodies. The prior common-subexpression
+and propagation pragmas are removed. See [the recovery evidence](evidence/critical-hit-effect-unit.md).
+
+### Equipment-effect native emission
+
+`src/pso/item/TItemEffEquip.cpp` uses `#pragma defer_codegen on` and reverse
+function definitions to emit the two compiler-generated vtables in their original
+order (`TItemEffEquip`, then `TUnk_8049F038`) while preserving all twelve function
+positions. Immediate generation emits the vtables in the opposite order. A port
+can drop the pragma and use ordinary definition order; both classes retain normal
+C++ constructors, destructors and virtual dispatch.
+
+### Raft splash shared constant
+
+`src/pso/boss/TObjBoss2RaftSplash.cpp` defines the shared scalar at
+`0x805D85B0` after `run_task` so CodeWarrior retains the named load rather
+than emitting a duplicate literal. Its guarded `__declspec(section ".sdata2")`
+keeps the scalar in the original small-data section; without it the scalar lands in
+`.sdata`. Dust, the raft-splash constructor and the tunnel update also read
+this exported scalar. Other compilers use the ordinary `const f32` definition
+and need no section placement or definition-order constraint.
+
+## Summary (including scalar collision-area recovery, 2026-11-13 UTC)
 
 Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
 for this source tree. Assembly is counted as source lines;
@@ -23,11 +150,11 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 87 | 56 |
+| Assembly (`asm` + `orig_asm` include) | 48 source lines | 12 |
+| MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,714 | 881 |
-| Per-unit compiler overrides in `configure.py` | 195 | 195 |
+| CodeWarrior pragmas (excluding push/pop) | 5,898 | 890 |
+| Per-unit compiler overrides in `configure.py` | 215 | 215 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -36,6 +163,29 @@ If assembly is approved, a scalar C/C++ equivalent ships next to it (Matt,
 2026-11-04). The asm is guarded for the GameCube/MWCC build (`#ifdef __MWERKS__`)
 and the scalar version is the compiled fallback, so a port builds the C. Approved
 asm always has an entry in this register.
+
+### TCP protocol recovery
+
+`src/pso/network/TcpProtocol.cpp` is source-linked with all 45 functions and its
+168-byte BSS exact. Its scoped optimizer constraints, guarded `__cntlzw` zero
+predicate and MWCC-only unused output-frame homes are recorded in
+[the TCP evidence](evidence/tcp-protocol-unit.md). The homes reproduce measured
+native compiler storage; they are not recovered TCP fields. A port removes the
+homes and optimizer steering and uses the scalar equality fallback. The record
+views retain native 32-bit address/callback and overlapping-layout debt;
+consolidate those providers before claiming portable TCP interfaces. The
+route-send result declaration also retains the documented inherited short/word
+provider discrepancy. This recovery introduces no assembly.
+
+### Rope-controller native emission
+
+`src/pso/object/TObjEZRopeSimulation.cpp` uses GC/2.6 `-inline deferred`,
+reverse definitions and `auto_inline off` to preserve its twelve functions and
+both compiler-generated vtables. The three existing record-copy helpers retain
+scoped `dont_inline off` and `inline_depth(1)` so aggregate assignments expand
+inline. A port can remove these emission controls and retain the ordinary C++
+bodies. This replaces the old handwritten derived vtable and its `force_active`
+pragma; it adds no assembly. See [the object-layout evidence](evidence/rope-controller-native-emission.md).
 
 ## 1. Assembly
 
@@ -111,6 +261,11 @@ EXI/OS backend; the scalar bit helpers alone do not implement the driver.
 
 ## 4. CodeWarrior pragmas
 
+`src/pso/boss/TObjBoss5Ctrl.cpp` retains its existing `fp_contract on` when
+its three fragments are consolidated. Both countdown calculations use the
+original fused `60 * normalized_random + 90`. Ports should preserve fused
+rounding if required. See [controller evidence](evidence/boss5-controller-unit.md).
+
 The EXI Ethernet receiver in `src/pso/misc/TLobby_80429598.cpp` uses scoped
 `opt_propagation off`, helper inlining and ordered volatile snapshot/publication
 accesses to preserve the original descriptor copy and callback lifetimes.
@@ -155,6 +310,17 @@ The draw-buffer helpers retain their existing native link names at a bounded
 ABI interface rather than casting vertex buffers to window objects; ports
 should map those legacy names to the corresponding shared draw operations.
 
+### `pso/boss/TBoss4Type1.cpp`
+
+The six trailing functions use `#pragma defer_codegen on` and reverse source
+order so the constructor addresses the compiler-generated vtable through the
+unit's shared data base while code stays in address order. The unit's `-sdata 4`
+keeps its two effect IDs in `.data`; the position generator uses scoped
+`#pragma fp_contract on` to reproduce fused arithmetic. A port can use normal
+compiler emission and data placement, preserving fused rounding where required.
+The constructor's existing `opt_loop_invariants off` pragma remains in place.
+
+
 `pso/boss/TBoss8Dragon_8002CC48.cpp` uses guarded `defer_codegen on/off`
 around its reversed first twelve definitions to preserve both native vtable
 offsets and scalar emission order. The initializer at `0x8002D5F8` uses scoped
@@ -192,11 +358,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,719 pragmas in 881 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1112, `inline_depth` 1005, `fp_contract` 884, `auto_inline` 803,
-`opt_common_subs` 617, `scheduling` 264, `opt_propagation` 247,
-`readonly_strings` 206, `peephole` 104, `optimization_level` 88, `bool` 56,
-`defer_codegen` 56, `pack` 46, `opt_dead_assignments` 41. Reason: reproduce the original code generation
+5,893 pragmas in 892 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1162, `inline_depth` 1068, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -204,6 +367,45 @@ MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
 check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
+
+### Player battle reset and wall response
+
+This unit uses `-inline off,deferred` and reversed function definitions to
+emit the native player vtable before the jump tables while preserving the
+original text order. The ten equipment-joint indices and compiler-generated
+vtable reclaim the aligned `.data` prefix at `0x804C3BA8`; ordinary emission
+places the vtable after the jump tables. All 379 function instruction streams
+remain exact. Ports can drop the emission switch and reorder definitions.
+
+`src/pso/player/TObjPlayer_801AF2F0.cpp` uses two new scoped
+`opt_propagation off` settings: `apply_wall_response` retains the original
+scalar float registers, and `spawn_level_change_feedback__10TObjPlayerFv`
+retains the register order of its named constant loads. The wall routine
+also keeps its declaration order. These are measured GC/2.6 constraints,
+not evidence of original pragmas. Ports can drop the steering while keeping
+the same collision queries and arithmetic.
+
+The owned newline and thirteen float constants use `__declspec(section
+".sdata2")` on their declarations and definitions. Without placement,
+CodeWarrior puts the exported constants in `.sdata`, selecting the wrong
+small-data base. Ports should use ordinary read-only constants. The new
+level-row and vector interfaces preserve historical export labels without
+claiming that the records are player objects. The previously matched code
+in this newly linked unit retains its existing provisional offset views,
+legacy receiver aliases and compiler settings; those interfaces still need
+native types when porting.
+
+The recovered class-byte providers, character-stat initializer and NPC builder
+use plain `char`, distinct from `s8`, under the native build's existing
+`-char signed`. Mutable `char` views borrow the encoded class representation;
+they do not create a character-record object in raw storage. A port should
+preserve the signed low-byte interpretation and migrate callers and providers
+together if choosing an explicit byte type. The NPC's visual temporary is the
+existing trivial `disp_data_part2` record; item counts remain full scalar
+words. Its item-address word and the inventory copier's provisional entry
+view remain inherited boundaries. Other legacy player aliases, including the
+no-argument class-normalizer call and word-typed experience-accessor alias,
+are not unified by this recovery.
 
 ### Symbol-chat part-grid rendering
 
@@ -357,7 +559,7 @@ an aligned stack object. A port should ignore these settings and use the plain
 |---|---|---|---|---|
 | `configure.py` | `pso/network/SocketProtocolRuntime.cpp` | `-inline on` | Inlines the reassembly range-removal helper without an extra emitted function. | Use the ordinary helper and target compiler settings. |
 | `src/pso/network/SocketProtocolRuntime.cpp` | Send ACK and segmentation at `0x8041FFF8` / `0x80420410` | Scoped `dont_inline`, `opt_lifetimes off`, and `opt_propagation off` | Preserve native call boundaries, register lifetimes, and the retained unreachable partial-fragment branch. | Drop optimizer steering; retain the signed halfword conversions. |
-| `src/pso/network/SocketProtocolRuntime.cpp` | Reassembly and send temporaries | Caller-owned eight-byte range value, unused eight-byte ACK frame area, ordered phase locals, and widened final `s64` length | Reproduce native frames and register assignment. Widening a signed 32-bit difference preserves its value but keeps the halfword store separate from extension. These are reconstruction constraints, not proof of original declarations. | Remove frame/type steering; use ordinary range values and bounded length arithmetic. |
+| `src/pso/network/SocketProtocolRuntime.cpp` | Reassembly and send temporaries | Unused eight-byte ACK frame area and ordered phase locals | Reproduce native frames and register assignment. The final partial length uses the 16-bit field width and a signed conversion when added to the total. | Remove frame/type steering; use ordinary range values and bounded length arithmetic. |
 | `src/pso/network/SocketProtocolRuntime.cpp` | Reverse/shift/prepend fragment cursors | Integer native addresses and one corresponding unsigned halfword access | Prevent a final unused decrement from forming a C++ pointer before an array; retain native 16-bit store behavior. | Use indices or guest addresses with appropriate width and preserve halfword conversion. |
 | `src/pso/network/SocketProtocolRuntime.cpp`, `src/pso/network/TcpProtocol.cpp`, `src/pso/unk/text_80421620.cpp` | Newly source-linked unit and shared boundary | Existing partial runtime/UDP views, legacy ABI symbol names and slot/thread handle-width declarations | The shared TCP record and send callback are verified, but these remaining providers and class ownership are still provisional. [Evidence](evidence/socket-protocol-runtime.md). | Consolidate the remaining providers and use platform-independent handles and shared protocol records. |
 
@@ -379,6 +581,17 @@ and the same function body.
 | File | What | Why | Port should |
 |---|---|---|---|
 | `src/pso/unk/text_802EDE90.cpp` | Scoped `opt_common_subs off`, `opt_propagation off`, and `opt_lifetimes off` | With CSE enabled the vector resets share a computed address instead of using indexed stores (96.78%, 1,600 bytes). Propagation reloads the data-bank address before installing the vtable (99.21%, 1,624 bytes). Lifetime splitting changes register allocation for the part and matrix loops (99.53%, 1,616 bytes). The three pragmas together preserve all 1,616 bytes with the existing unit flags. | Drop the optimizer pragmas. Keep the initialization order and use the target compiler's ordinary constructor and virtual dispatch when porting the rest of the class. |
+
+### Barba Ray behavior at `0x802E7888`
+
+| File | Function or data | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Native data and function emission | `defer_codegen on`, reverse function definitions and unit inline-expansion defaults | The compiler emits the actual `TBoss7DeRolLeC` vtable before the switch tables. Reverse definitions retain native text order; `dont_inline off`, `auto_inline off` and `inline_depth(1)` preserve the existing explicit helper and aggregate-copy expansion during deferred generation. `render_shadows` is declared first among the class overrides so this unit owns vtable emission. All sections and resolved relocations match. | Definition and vtable-emission order are immaterial; omit the compiler controls. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Pattern selector at `0x802E7BE8` | Scoped `opt_propagation off` | The real action, position and yaw arrays now form the compiler data pool. Ordinary indexing matches all 220 bytes; the former scaled byte offsets and pointer-to-integer conversion are removed. The positions pointer remains at function scope, and its table pointer at branch scope, preserving register lifetimes. See [table-pool recovery](evidence/barba-ray-table-pool-recovery.md). | Keep ordinary indexing and omit the pragma. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Crawfish spawn at `0x802E7D70` | Inline short-valued reference update with an explicit narrowing write; scoped `dont_inline off`, `inline_depth(4)`, `opt_propagation off`, and `opt_lifetimes off` | Preserves the original in-place `addi` / `extsh` displacement update. A plain scalar assignment, scalar reference helper, or removing the second narrowing write changes two register operands. The complete 304-byte function matches with the typed update. | Use a scalar `(s16)(slot + 11)` and omit the compiler pragmas and helper. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Movement state handler at `0x802EB270` | Scoped `fp_contract on` and `opt_common_subs off`; cached byte views of the actual `Vec` array's y and z members | Fused scalar operations and independent component-address lifetimes reproduce the original float registers, loads and stores. The views use `sizeof(Vec)` and `offsetof` within the complete array object. | Use ordinary `Vec` component accesses and omit the optimizer pragma; preserve fused float rounding where required. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Particle state handler at `0x802EAAC8` | Scoped `opt_propagation off` for the named random ratio and displacement | Keeps the random call before loading the exported 20.0f coefficient, with the original float register allocation. | Keep the call order and the scalar displacement calculation; omit the pragma. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Coefficients at `0x805DEA10..0x805DEBA4` | Explicit `.sdata2` placement and ordered named definitions | Preserves the shared exported constants, their original order, and SDA relocations without a second anonymous 20.0f word. | Use ordinary constant definitions and target linkage. |
 
 ### Approved: `TBoss6Type2::sub_802BEC28` ([#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312))
 
@@ -468,13 +681,94 @@ and the same function body.
 | File | Functions | What | Why | Port should |
 |---|---|---|---|---|
 | `src/pso/network/NetworkDispatcher.cpp` | All 12 dispatcher functions | Four existing pragma lines (`opt_common_subs on` x3, `pool_data off` x1), inherited `-opt nocse`, 32-bit handles and provisional `TLobby`/`TUdpSocket` wrappers; reset status and thread-creation callback/return declarations remain inconsistent across units | Extracts the fork's already-exact dispatcher and its 248-byte BSS so it can link. The follow-up replaces reset/shutdown/handler overlays with the shared state and names both thread handles without changing native objects. The reset callee now explicitly returns `s32`, but the incompatible DHCP caller is retained after a type-correct probe changed its frame and result copy; this is not a completed ABI repair. See [upstream-dispatcher.md](evidence/upstream-dispatcher.md). | Remove compiler-only steering and recover explicit dispatcher/OS contracts with portable handle types, validating callers and callees together. |
-| `src/pso/network/TcpProtocol.cpp` | Extracted TCP range; still unlinked | Inherited `-opt nocse`; 24 moved pragma lines plus explicit `dont_inline off` and `inline_depth(4)` that previously carried into this range from earlier source | Without the ambient settings, timer callbacks `8041A3CC` / `8041A5B4` have different stack frames and `8041D584` no longer inlines its segment-removal helper. Scores are 99.78432%, 99.916664% and 65.69705%; restoring the settings retains all 40 previously exact TCP functions. Existing raw views, local ABI redeclarations and provisional members remain unresolved. | Remove compiler steering; unify TCP layouts and callback/status interfaces. This extraction does not claim the five still-unmatched TCP functions as recovered. |
+| `src/pso/network/TcpProtocol.cpp` | Complete TCP unit; source-linked | Inherited `-opt nocse`; 24 moved pragma lines plus explicit `dont_inline off` and `inline_depth(4)` that previously carried into this range from earlier source | Without the ambient settings, timer callbacks `8041A3CC` / `8041A5B4` have different stack frames and `8041D584` no longer inlines its segment-removal helper. Scores are 99.78432%, 99.916664% and 65.69705%; restoring the settings retains all 40 previously exact TCP functions. Existing raw views, local ABI redeclarations and provisional members remain unresolved. | Remove compiler steering; unify TCP layouts and callback/status interfaces. All 45 functions now match; output also needs scoped loop-pass constraints and scalar workspaces documented in the TCP evidence. |
+
+### Quest-download cache address and traversal recovery
+
+`__VIRetraceHandler` in `TQuestVmDownLoadServer_803E6970.cpp` is the existing
+placeholder for the cache initializer. Its scoped `opt_common_subs off` preserves
+the native independent node-list bounds. Separate scopes in `803E8DA0`,
+`803E93DC` and `803E95BC` preserve the independently calculated bucket links.
+The rotation and rebuild routines inline their shared bounded name search at
+depth one after copying and terminating the name in the caller; this helper
+returns the stopping node and publishes the corresponding link address. The
+rebuild additionally uses a depth-two fixed-image/byte-count read boundary to
+recover the native name-buffer stack offset without padding. An MWCC-only integer address adapter
+reaches the separate canonical name index at cache address plus 0x2000; this
+records native placement rather than declaring a larger owner. The portable
+branch names `lbl_80593EC8` directly. Ports can drop the optimization pragma and
+keep ordinary typed traversal of the actual index and cache byte array. See
+[the unit investigation](evidence/quest-download-unit-completion.md).
+
+The cache mover (`803E8924`) uses a non-owning record view with a borrowed
+pointer constructor and depth-two byte/length accessors. The inline boundaries
+recover its native 0x90-byte frame and name buffer at offset 0x20. Chained
+source-pointer initialization preserves the native copy instruction; the
+identity comparison uses the live cursor before it advances. Ports may use
+ordinary accessors and separate initialization with the same pointer values.
+
+### Quest-download primary-record removal
+
+The whole-record tail helper for `803EF208` in
+`TQuestVmDownLoadServer_803ED0CC.cpp` uses an MWCC-only integer address sum
+to preserve native displacement/base operand order; its portable branch uses
+ordinary byte-pointer addition. The existing depth-two inline scope also
+contains a distinct forwarding boundary for partial-message compaction. These
+choices reproduce the native code and name-buffer stack offset without dummy
+locals. Ports may inline freely and retain the ordinary pointer arithmetic.
+The helper's source must be strictly past its backing page's start, as proved
+for this nonempty-record caller in [the evidence](evidence/quest-download-unit-completion.md).
+
+### Quest-download scratch storage and native workspace addressing
+
+`QuestDownloadScratch.h` declares the shared aligned byte storage consistently.
+The conversion producer and ID-list producer use tagged placement construction
+to begin complete halfword-array and ID-array objects before writing them.
+Scoped `dont_inline off` / `inline_depth(1)` regions inline the empty placement
+operator in the frontend conversion and request producer; a port can use the
+ordinary placement-new operator with the same storage and lifetime transitions.
+The scratch operator has its own tag, separate from the allocator-pool tag.
+
+The two recovered candidate routines retain the original workspace address and
+reach the following, separately owned slot array through native integer address
+arithmetic under `__MWERKS__`. The fallback accesses the real slot array directly.
+The display-prefix adapter likewise reaches the following scratch object only
+through native address arithmetic; ports name the real byte array.
+The workspace result remains a real member of the workspace object. These
+adapters do not assert a larger encompassing object or change the link map.
+The complete provider now links as three native layout groups; see
+[the completion evidence](evidence/quest-download-unit-completion.md).
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-195 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+The default compiler and linker now use GC/2.0. The
+[adoption record](evidence/compiler-default-gc20-adoption.md) follows the
+[reverse migration](evidence/compiler-default-gc20-impact.md), which found
+3,392 former GC/2.6 objects unchanged under GC/2.0. Four remaining game
+units use the retained GC/1.3.2 compiler, with unchanged source and flags:
+
+| Unit | Reason for GC/1.3.2 | Port should |
+|---|---|---|
+| `pso/network/TProtocol.cpp` | All 79 original-owned functions match. Fourteen other emitted helpers differ; the full link validates weak-definition selection. | Use the port compiler; preserve record layouts and ordinary copy semantics. |
+| `pso/object/TObjTombstone.cpp` | The record assignment's scalar-copy scheduling matches; the complete object is equivalent to GC/2.6. | Use the port compiler; preserve the record layout. |
+| `pso/object/TObjResultWin.cpp` | `copy_challenge_result_record` and the complete object match GC/2.6. | Use the port compiler and ordinary record copying. |
+| `pso/misc/TPlyMeetUserExtension_801DAC6C.cpp` | The name-field assignment and the complete object match GC/2.6. | Use the port compiler and ordinary record copying. |
+
+Gryphon, Slime and Dragon inherit GC/2.0; their source and effective flags
+remain unchanged. De Rol Le retains main's GC/2.0 profile and `-inline on`, with all 110 functions exact. No compiler or linker assignment requires GC/2.6. The remaining
+older compiler profiles are a separate consolidation task.
+
+The initial [GC/2.0 consolidation](evidence/compiler-consolidation-gc20.md)
+experiment moved nine game units to GC/1.3.2 while planning to retire GC/2.0.
+With GC/2.0 now the default, those nine units inherit it again, preserving
+main's effective compiler, source, flags and symbol mappings. Their earlier
+recovery records remain historical evidence. The current assignments and
+[main-merge validation](evidence/compiler-default-gc20-main-merge.md) are
+authoritative for this PR. Ports use their normal compiler for these units.
+
+Units override the default `GAME_COMPILER = "GC/2.0"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
-1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
+1.2.5n, 1.3, 1.3.2) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
 `configure.py` comment above each entry is its recorded reason (e.g.
 `pso_date.cpp`: GC/1.3.2 scheduling, see
@@ -498,6 +792,13 @@ changes those records without changing code, constants or relocations.
 Ports can drop this object-layout override and use normal float alignment.
 The compatible pointer reads of four materialized constants avoid duplicate
 MWCC literal-pool entries; a port can read those constants directly.
+
+### Download status coordinate alignment
+
+`pso/misc/TDLGraph.cpp` uses `cw_align: .sdata2=4` for the three floats
+at `0x805D92CC..0x805D92D8`. GC/2.0 emits the original floats and loads
+but requests eight-byte alignment for the pool. Ports can use the
+ordinary C++ coordinates directly and omit the object alignment override.
 
 ### Time setting and calendar startup
 
@@ -550,7 +851,7 @@ A port can use its regular compiler and call the renderer through a
 `ColorLineList` interface. Preserve the fused depth calculation if the port
 requires identical rounding.
 
-### `pso/unk/text_80049FD8.cpp` and the Vol Opt debris initializer
+### Vol Opt pillar debris and collision handling
 
 GC/2.0 interleaves the BML resource and model-table loads with the final
 load and store of the initializer copy. It loads all three
@@ -560,8 +861,13 @@ is used for debris in `TOExplosiveMachine.cpp` and `TOTrapAncient01.cpp`.
 
 The local initializer emits the 76-byte template at `0x80436748`. The
 original relocations to this template come from `fn_80049FD8`, and the split
-maps it to the compiler's local `@13` symbol. Ports can use the default
-compiler.
+maps it to the compiler's local `@15` symbol in `TObjVoloptPillar.cpp`.
+
+GC/2.0 pools the collision handler's read-only operands through a shared
+base and changes register allocation when their definitions are in the
+same translation unit. Scoped `pool_data off` in `TObjVoloptPillar::run_task`
+at `0x8004A1CC` restores the separate address loads and all 784 bytes.
+Ports can omit the pragma and use their default compiler.
 
 ### `pso/unk/text_8031EF14.cpp` with GC/2.0 and `-pooldata=off`
 
@@ -794,6 +1100,16 @@ immediately after the derived vtable. CodeWarrior declares eight-byte
 four-byte boundary in the ELF and CodeWarrior metadata. A port can use its
 default vtable placement.
 
+### `TObjRaderHideCol.cpp` native data alignment
+
+`pso/object/TObjRaderHideCol.cpp` uses `cw_align: .data=4 .sdata=4`.
+Its compiler-generated vtable starts at `0x804B890C`, and its class-name
+pointer at `0x805D3414`. Both addresses have four-byte alignment, while
+GC/2.6 records eight-byte alignment for the emitted sections. The existing
+`cw_comment_align.py` adapter changes only the ELF and CodeWarrior alignment
+metadata; instructions, data and relocations remain compiler-generated.
+A port can use its compiler's default vtable and pointer alignment.
+
 ### `TCheckMemoryCard.cpp` section placement
 
 The native static initializer at `0x8033C69C` computes the card-menu position and layout
@@ -871,6 +1187,20 @@ Ports can drop the compiler switch. The render and target-acquisition bodies in 
 | Unit | Functions | What | Why | Port should |
 |---|---|---|---|---|
 | `pso/boss/TBoss8Dragon.cpp` | `TBoss8Dragon::TBoss8Dragon` (`__ct__12TBoss8DragonFP7TObjectPv`, `0x802FD47C`, 0x554) and the compiler vtable `__vt__12TBoss8Dragon` (`0x804E5534`) | unit switch `-inline off,deferred` | The constructor stores the vptr with `addi r0, r31, 2348` off the `.data` anchor (`TBoss8Dragon__camera_offset_index_table` at `0x804E4C08`). Under plain `-inline off` that store is `lis`/`addi` of `__vt__12TBoss8Dragon` and the function is 0x558. Deferred code generation restores the anchor form and places the 107-slot compiler vtable at `.data+0x92C`. The destructor, `create`, and the other functions keep the same instructions; only their order in the object follows deferred emission. Precedent: [dtk-template `-inline auto`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was not needed; this is the `-inline off,deferred` form already used for `TObjEneGyaranzo.cpp` and [the per-group inline settings in brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264). `-inline auto,deferred` was tried in an earlier pass and rewrote 56 functions. | Drop the switch. Emission order has no semantic effect. |
+
+### `TeneFakeTecThunderEff.cpp` deferred emission
+
+`-inline off,deferred` lets CodeWarrior place the seven late-defined beam
+constants in `.sdata2` while keeping the original loads. With immediate
+generation, those definitions land in `.sdata`. Using literals instead
+reorders the increments in the beam builder loop and folds away the final
+vertex calculations' multiplies by one. Reverse definition order preserves
+the five original function offsets under deferred generation. The bridge and item-light
+recovery uses the same late-definition arrangement.
+[Bridge constant ownership](evidence/bridge-item-light-constant-pool.md)
+
+A port can drop the switch and order the definitions for readability. Keep the
+C++ expressions and constants.
 
 ### `TAdChrSelPlyPlateGC.cpp`: `-fp_contract on` ([#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214), folded by [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250))
 
@@ -1557,6 +1887,12 @@ This callback boundary is documented for review; it does not add assembly,
 steering pragmas, per-unit compiler switches or link-check exceptions. The
 mechanical inventory does not currently enumerate function-pointer conversions.
 
+### TObjBoss5Ctrl pillar-controller ABI
+
+| File | Boundary | Why | Port should |
+|---|---|---|---|
+| `src/pso/boss/TObjBoss5Ctrl.cpp` | `create__19TObjBoss5PillarCtrlFv` and `play_sound_once__19TObjBoss5PillarCtrlFv` retain explicit `TObject *` ABI boundaries | Their legacy member names have unresolved receiver ownership. See [controller evidence](evidence/boss5-controller-unit.md). | Unify those helper declarations when recovering the neighboring classes. |
+
 ### Radial particle interpolation and colour packing
 
 | Scope | Construct | Evidence and reason | Port action |
@@ -1570,6 +1906,18 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | `src/pso/misc/ParticleBallistic.cpp`, update at `0x800888E8` | Scoped `fp_contract on`; big-endian ARGB byte writes into a live `u32` | The original has fused bounce and colour interpolation. The recovered update matches all 2,060 bytes, using the radial particle's clamp and local-value layout. [Recovery evidence](evidence/ballistic-particle-recovery.md). | Preserve required single rounding with `fmaf`; pack converted ARGB channels explicitly on little-endian hosts. |
 | Same file, renderer at `0x800890F4` | Scoped `pool_data off` | With all owned constants defined, ordinary pooling shares a `.rodata` base and changes the renderer to 1,412 bytes / 94.68715%. Independent addresses reproduce the original 1,432 bytes exactly. Late definitions preserve instructions but put the constants in the wrong section order. | Drop the layout control; keep the ordinary constant values. |
 | Same file, `lbl_805D9520` | MWCC-only `.sdata2` placement for the existing two-float object | Retains the angular range and trailing zero in the original eight-byte object, instead of a four-byte literal. | Use the ordinary const array; the section annotation is guarded for MWCC. |
+### Ceiling-debris renderer data addresses
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/boss/TObjBoss2CeilJunk.cpp`, `TObjBoss2CeilJunk::render` at `0x8003A1B4` | Scoped `pool_data off` | With the tables and color defined in the same file, GC/2.0 forms a shared read-only data base and saves an extra register. The scope restores the three separate addresses and all 352 original instruction bytes. | Omit the pragma and keep the typed table and material initializers. |
+
+### Loading-screen data ownership
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/TLoadCtrl.cpp`, `TLoadCtrl::run_task` at `0x8001C620` | Scoped `pool_data off` | GC/2.0 otherwise uses a shared read-only data base and saves an extra register. The scope restores the independent addresses and the exact 384-byte function. See [loading-screen data ownership](evidence/loading-screen-data-ownership.md). | Omit the pragma and keep the three vector initializers. |
+
 ### AIFF parsing and ADX block transfer
 
 | Scope | Construct | Evidence and reason | Port action |
@@ -1614,6 +1962,23 @@ owned sections. A port can use its ordinary SDK/math declarations.
 | Native ADX runtime boundary | Existing legacy `TLobby` entry names, bounded record views, pointer/integer handle and callback casts, OS thread entry casts and volatile flags; inherited floating-point contraction in decoder and playback helpers | These are retained native ABI obligations. New encoder records use size/offset assertions and the shared SJ interface; stream-file callers share one recovered record definition. No assembly or hardware access is added. | Replace native handle words and thread casts with typed platform interfaces, provide synchronization for shared flags, and preserve fused rounding where required. |
 | `src/pso/system/AdxEncoder.cpp`, residual magnitude | MWCC `__abs` through `ADXENC_ABS`, with a compiled scalar conditional fallback on other compilers | A scalar sign-mask helper scores 99.816666% and a conditional helper 98.76667% in `fn_803C8020`; the native intrinsic retains the original repeated absolute-value sequences. The input is a signed 16-bit residual, so negation fits in `s32`. | Use the scalar fallback. |
 
+### Quest-download candidate and request construction
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `TQuestVmDownLoadServer_803E9A24.cpp`, `803EA428` and its local helpers | Scoped `dont_inline off`, `inline_depth(2)`, `opt_propagation off`, and `opt_lifetimes off`; borrowed workspace-address value and branch-local displacement/address reuse | Restores the native append handoffs, signed span promotion, temporary lifetime, and candidate-length flow. All 1,336 bytes match exactly. See [the candidate-builder evidence](evidence/quest-download-unit-completion.md). | Drop compiler steering and keep the ordinary scalar/list operations. The existing non-MWCC address adapters name the actual workspace result and separate slot array. |
+| `TQuestVmDownLoadServer_803ED0CC.cpp`, `803EE580` | Existing scoped `dont_inline off` / `inline_depth(1)` also inlines the borrowed request-storage view | The view constructor and leading-request handoff preserve the native temporary lifetimes and remove an extra address copy; all 408 bytes match. See [request-emitter evidence](evidence/quest-download-unit-completion.md). | Keep the real storage/subobject relationship and ordinary scratch placement construction; compiler controls can be removed. |
+| `TQuestVmDownLoadServer_803E6970.cpp`, `803E8DA0` | Scoped depth-two inlining, CSE off, propagation on and lifetimes off; sequenced record-length arithmetic and six retained scalar declarations | All 776 bytes, including the native 104-byte frame, match. Removing the now-unused caller locals leaves the instructions unchanged but shrinks the frame to 80 bytes (99.97423%). These are matching constraints, not evidence of original declarations. See [cache completion evidence](evidence/quest-download-unit-completion.md). | Remove the six unused locals and compiler controls; use the same search, length and record-writing operations. |
+| `TQuestVmDownLoadServer_803ED0CC.cpp`, `803EDC20` | Existing depth-one inlining plus scoped `opt_propagation off`; pending lead-byte state constructor | All 388 native bytes match. The actual decoder state preserves initialization and reset copies; an inlined scan hands off the entry pointer. See [decoder evidence](evidence/quest-download-unit-completion.md). | Drop compiler steering; retain the decoder state and scan operations. |
+| `TQuestVmDownLoadServer_803ED0CC.cpp`, `803EE2F4` | Scoped `opt_propagation off` and `opt_lifetimes off` | Independent uses of the actual buffers reproduce all 652 bytes and the 104-byte frame. Automatic lifetime splitting had left four linked address-setup bytes different. The final source removes the borrowed-pointer helper and obsolete wide-buffer local; 3,000 native differential cases pass. See [the complete-unit evidence](evidence/quest-download-unit-completion.md). | Drop compiler steering; retain the ordinary buffer and request operations. |
+
+| `TQuestVmDownLoadServer_803E9A24.cpp`, `803EA9E8`, and shared inline helpers | Scoped depth-three inlining with CSE, propagation and lifetime splitting off | Separate validation/pruning cursors, the consumed selected-length result, and the leading-slot handoff reproduce all 1,004 bytes and the 80-byte frame. A 3,000-case native differential check covers failure and consolidation paths. | Drop the compiler controls; retain the list operations and consumed snapshots. |
+
+### Quest-download character predicates
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `TQuestVmDownLoadServer_803E6970.cpp`, `803E6F98` and `803E7018` | Scoped `bool off` | These integer predicates have shared `s32(u16)` declarations. Disabling the legacy compiler's distinct Boolean type preserves the native integer comparison result without an extra byte mask. Both functions remain exact with two-byte output buffers. | Remove the pragma; retain the shared integer-return interfaces and two-byte buffers. |
 ### Complete Gol Dragon behavior unit
 
 | Scope | Construct | Evidence and reason | Port action |
@@ -1626,3 +1991,95 @@ owned sections. A port can use its ordinary SDK/math declarations.
 `src/pso/ui/DrawLine.cpp` uses GC/2.6 `-inline off,deferred` with reverse definitions to preserve the original function order and the compiler-generated controller/task vtables. Unit `-fp_contract on` replaces the task constructor's existing pragma and preserves its fused length calculation. Immediate emission with ascending definitions preserves instructions but reverses the two vtables; reverse/deferred emission preserves all code and symbolic data relocations.
 
 The four named float constants are declared with a guarded `.sdata2` placement attribute and defined after their uses. Their original order is `1.0, 0.0, -1.0, 0.5`. Literal-only probes instead emit `0.0, -1.0, 1.0, 0.5`; defining named constants before their uses also introduces anonymous duplicates. The guard becomes empty outside MWCC. A port can keep the ordinary constant definitions, use its normal compiler settings, and ignore definition order and section placement. No assembly or hand-written vtables are used.
+
+### Complete quest-download source organization
+
+The former `TQuestVmDownLoadServer_803E6970.cpp` range is represented by
+`TQuestVmDownLoadServer_803E6970.cpp`, `TQuestVmDownLoadServer_803E9A24.cpp`,
+and `TQuestVmDownLoadServer_803ED0CC.cpp`, sharing `QuestDownloadInternal.h`.
+Ordinary compiler-generated switch tables require two eight-byte-aligned
+object boundaries; the final group defines its real BSS after its functions
+to preserve native address materialization. The shared header retains the
+existing scoped inline-helper options. Default-only and empty declaration
+scopes are removed. These are source organization constraints, not new
+compiler profiles or recovered original filenames. All 173 functions and
+allocated sections match and link. Ports can organize these declarations and
+functions normally; preserve the real storage ownership and documented ABI
+boundaries. See [the complete-unit evidence](evidence/quest-download-unit-completion.md).
+
+### TDPBShower name-data alignment
+
+`pso/effect/TDPBShower.cpp` uses the existing `cw_align` adapter with
+`.rodata=4 .sdata=4`. Its name string starts at `0x80479C3C` and its name
+pointer at `0x805D4454`; neither address is eight-byte aligned. Stock GC/2.6
+emits eight-byte alignment in both the ELF headers and its private comment
+record. The adapter changes only those alignment records, preserving all
+payloads and relocations. Ordinary string pooling instead moves the string
+into `.data`; an explicit const array keeps the original read-only placement.
+The array has eleven bytes; the linker supplies the one-byte alignment tail
+before the next eight-byte-aligned read-only contribution. Ports can keep the
+ordinary C++ string, pointer, constructor and literals and omit this native
+object-alignment adapter. This does not establish the original compiler
+settings or filename.
+### Gol Dragon fireball table addressing
+
+`src/pso/boss/TBoss8DragonEffBullet.cpp` scopes `pool_data off` to its
+constructor. Defining its three particle descriptors in source otherwise makes
+GC/2.6 hoist a shared read-only-data base, changing the constructor's register
+allocation. Late definitions preserve the independent addresses but emit the
+descriptors in writable data. The scoped control retains the native code and
+read-only data together. Ports can drop this pragma and keep the ordinary
+constant descriptors and constructor. The existing `fp_contract on` scope in
+`run_task` preserves the three fused movement updates; a port needing the same
+rounding can use `fmaf` for those expressions. See the
+[unit evidence](evidence/gol-dragon-fireball-unit.md).
+
+
+### De Rol Le compiler and native scalar pool
+
+`src/pso/boss/TBoss2DeRolLe.cpp` uses GC/2.0 with `-inline on`. With the
+single-argument `free_laser` boundary, GC/2.0 reproduces the attack handler's
+native parameter-copy registers and load scheduling. GC/2.6 leaves that copy
+at 99.38865% even after the saved-register permutation is resolved. All 110
+functions and all allocated sections match together under GC/2.0; this is a
+reproducible compiler selection, not proof of the historical build command.
+
+The shared `add_motion_delta` helper preserves the moving value as the left
+operand after substitution of the native scalar literals. Direct literal
+additions are commuted during parsing and change load order and floating-point
+register allocation. Division by two similarly preserves the left operand when
+the backend folds it to multiplication by one half. The color-halfword swap
+uses ordinary masks instead of `__rlwimi`. A port can keep the ordinary C++
+arithmetic, masks and single-argument release call with its normal compiler;
+the compiler version, operand order and literal-emission order serve native
+matching. See the [complete unit evidence](evidence/tboss2-derolle-register-allocation.md).
+
+### Weighted chunk geometry unit
+
+Matt explicitly authorized the 640-byte `GXSetVtxAttrFmtv` at `0x803E3110` as
+an assembly exception on 2026-11-13. It is the weighted indexed transform,
+not the SDK descriptor-list API. The Metrowerks branch retains the original
+paired-single schedule and GQR1 setup; the scalar C++ fallback uses `fmaf` to
+retain fused rounding and leaves vertex padding untouched. Ports compile the
+fallback and need no GQR state. See [the contract](evidence/paired-single-sdk-asm.md).
+
+The polygon dispatcher uses scoped `use_lmw_stmw off`, `bool off`, and
+`opt_propagation off` to preserve native save/restore helpers, integer predicate
+results, and decoded-word lifetimes. Ports can drop these pragmas and keep the
+ordinary C++ dispatch. Separate signed wire, promoted header, and masked-word
+members permit the native compiler's scalar replacement and register
+coalescing; no bitfield or extra lifetime pragma is required. See the
+[complete unit evidence](evidence/chunk-geometry-compiler-research.md).
+The unit's `.sdata2` contribution begins at
+`0x805E109C`, so `cw_align: .sdata2=4` retains its four-byte alignment in both
+ELF and CodeWarrior metadata without modifying section contents. Ports need no
+object metadata adjustment.
+
+### Rico ring and controller unit
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `pso/menu/TAdRicoRing.cpp`, all 19 functions and both native vtables | Unit `-inline off,deferred`, with reverse definitions | Immediate emission places the ring vtable before the controller vtable. Deferred emission with reverse definitions preserves the original text and both vtable offsets (`.data+0x90` and `+0xA8`). The existing Gee and indirect-controller investigations document the same compiler behavior; see [compiler emission evidence](evidence/compiler-emission-evidence.md). | Use ordinary C++ definitions in any order; retain native constructors and virtual methods. |
+| Same unit, resource names and class names | Unit `-str reuse,readonly` and `-sdata 4` | Readonly strings preserve `.rodata`; the small-data threshold keeps the two eight-byte filename lists in `.data`, before their `BmlResourceDescriptor`. Without these switches the strings enter `.data` and the lists enter `.sdata`. Existing `TOBoss4.cpp` uses the same switches for its resource lists. | Drop the switches; retain the typed lists and resource descriptor. |
+| Same unit, named render records and constants | MWCC-only `RICO_SECTION` annotations | Preserve the existing initialized `.data` records, readonly vector/fan records, and scalar `.sdata2` constants. The macro is empty on other compilers. The three short zero tails are linker alignment, not additional source objects. | Keep the ordinary typed values and ignore their GameCube sections. |
+| Same unit, `TAdRicoRingCtrl::render`, `run_task`, and `sub_8001B424` | Existing scoped `opt_common_subs off` (two), `opt_dead_assignments off` (one), and `fp_contract on` (one), moved with their functions | These controls were already in the retired fragments. Removing render CSE control gives 94.86%; removing its dead-assignment control gives 99.46%; removing both gives 95.29%. Removing the update CSE control gives 97%. Contraction retains the original fused reflected-position calculation. Six formerly manual scalar guards are now native local statics. | Drop the optimization pragmas; retain the scalar calculations and local statics. Preserve fused arithmetic if identical floating-point rounding is required. |

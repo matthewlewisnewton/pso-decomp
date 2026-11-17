@@ -204,12 +204,12 @@ u8 *TCameraCtrl__ct(u8 *arg0, void *parent) {
         ((Cam_8006B0D4 *)arg0)->f104[j].y = 0.0f;
         ((Cam_8006B0D4 *)arg0)->f104[j].z = 0.0f;
     }
-    lbl_804FF5E8[0] = 0.0f;
-    lbl_804FF5E8[1] = 0.0f;
-    lbl_804FF5E8[2] = 0.0f;
-    lbl_804FF5E8[3] = 0.0f;
-    lbl_804FF5E8[4] = 0.0f;
-    lbl_804FF5E8[5] = lbl_805D8FE4;
+    lbl_804FF5E8.position.x = 0.0f;
+    lbl_804FF5E8.position.y = 0.0f;
+    lbl_804FF5E8.position.z = 0.0f;
+    lbl_804FF5E8.field0c = 0.0f;
+    lbl_804FF5E8.field10 = 0.0f;
+    lbl_804FF5E8.field14 = lbl_805D8FE4;
     return arg0;
 }
 #pragma pop
@@ -224,17 +224,17 @@ void TCameraCtrl::setup_default_view(void *arg1_arg) {
     Vec_8006AF9C at;
     Vec_8006AF9C d;
     Vec_8006AF9C *pat;
-    eye.x = lbl_804FF5E8[0];
-    eye.y = lbl_804FF5E8[1];
-    eye.z = lbl_804FF5E8[2];
+    eye.x = lbl_804FF5E8.position.x;
+    eye.y = lbl_804FF5E8.position.y;
+    eye.z = lbl_804FF5E8.position.z;
     if (arg1 != 0) {
         eye.x += arg1->x;
         eye.y += arg1->y;
         eye.z += arg1->z;
     }
-    at.x = lbl_804FF5E8[3] + eye.x;
-    at.y = lbl_804FF5E8[4] + eye.y;
-    at.z = lbl_804FF5E8[5] + eye.z;
+    at.x = lbl_804FF5E8.field0c + eye.x;
+    at.y = lbl_804FF5E8.field10 + eye.y;
+    at.z = lbl_804FF5E8.field14 + eye.z;
     d.x = eye.x - at.x;
     d.y = eye.y - at.y;
     d.z = eye.z - at.z;
@@ -289,28 +289,28 @@ void TCameraCtrl::run_task() {
         v.x = (((f32 *)t)[0] + (*(f32 *)((camera_ctrl_instance) + (0x184)))) - (*(f32 *)((camera_ctrl_instance) + (0x178)));
         v.y = (((f32 *)t)[1] + (*(f32 *)((camera_ctrl_instance) + (0x188)))) - (*(f32 *)((camera_ctrl_instance) + (0x17C)));
         v.z = (((f32 *)t)[2] + (*(f32 *)((camera_ctrl_instance) + (0x18C)))) - (*(f32 *)((camera_ctrl_instance) + (0x180)));
-        lbl_804FF5E8[0] = position.x;
-        lbl_804FF5E8[1] = position.y;
-        lbl_804FF5E8[2] = position.z;
+        lbl_804FF5E8.position.x = position.x;
+        lbl_804FF5E8.position.y = position.y;
+        lbl_804FF5E8.position.z = position.z;
         if (0.0f != vec_squared_length(&v)) {
             normalize_vector(&v);
         }
-        lbl_804FF5E8[3] = v.x;
-        lbl_804FF5E8[4] = v.y;
-        lbl_804FF5E8[5] = v.z;
+        lbl_804FF5E8.field0c = v.x;
+        lbl_804FF5E8.field10 = v.y;
+        lbl_804FF5E8.field14 = v.z;
         vector_length(&v);
     }
     if (is_split_screen() != 0) {
         if (TCameraCtrl__view_state[0] == 5) {
-            ((TObjBoss2Tunnel *)lbl_804FF5E8)->render(&TCameraCtrl__view_matrices[TCameraCtrl::get_camera_no()]);
+            ((TObjBoss2Tunnel *)&lbl_804FF5E8)->render(&TCameraCtrl__view_matrices[TCameraCtrl::get_camera_no()]);
             for (i = 1; i < 4; i++) {
                 copy_view_params__11TCameraCtrlFii(&TCameraCtrl__view_matrices[i], &TCameraCtrl__view_matrices[0]);
             }
         } else {
-            ((TObjBoss2Tunnel *)lbl_804FF5E8)->render(&TCameraCtrl__view_matrices[TCameraCtrl::get_camera_no()]);
+            ((TObjBoss2Tunnel *)&lbl_804FF5E8)->render(&TCameraCtrl__view_matrices[TCameraCtrl::get_camera_no()]);
         }
     } else {
-        ((TObjBoss2Tunnel *)lbl_804FF5E8)->render(TCameraCtrl__view_matrix);
+        ((TObjBoss2Tunnel *)&lbl_804FF5E8)->render(TCameraCtrl__view_matrix);
     }
     calc_rotated_axes();
 }
@@ -1395,8 +1395,8 @@ void TCameraCtrl::reset_default_view() {
     TCameraCtrl::set_target(0x280, 0x1E0);
     TCameraCtrl::set_fullscreen_viewport();
     TCameraCtrl::reset_viewport_scissor();
-    fn_803D64F8(&lbl_804FF5E8[0]);
-    camera_renderer_setup_nop(&lbl_804FF5E8[0], 0x3555);
+    fn_803D64F8(&lbl_804FF5E8);
+    camera_renderer_setup_nop(&lbl_804FF5E8, 0x3555);
     TCameraCtrl::update_camera_state((f32) (0.0f), (f32) (0.0f), (f32) (0.0f));
     TCameraCtrl::look_at_position((f32) (0.0f), (f32) (0.0f), lbl_805D8FE4);
     stack.sp10 = 320.0f;

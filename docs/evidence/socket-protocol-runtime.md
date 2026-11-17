@@ -6,6 +6,40 @@ The data boundary includes the four compiler-generated switch tables in emitted
 order; the last 88 bytes previously belonged to the following automatic split.
 No table is written by hand.
 
+## Integration with current fork main
+
+The local integration on fork main `9ab744a4ec` keeps main's upstream-derived
+out-of-order receive queue and uses its shared `TcpTcb` layout for the three
+new socket bodies. All three current TCP callers of the ACK routine use its
+shared signature. The partial send length is a `u16` because the output field
+stores its low halfword and the total adds that halfword interpreted as signed.
+Declaring it before the total preserves the generated registers and instruction
+schedule without a wider integer. The send-thread resume call uses the
+provider's signed 32-bit handle, also with identical emission.
+
+The integrated object matches all 21 functions, 10,388 code bytes and 200
+data bytes. A native rebuild reproduces the original DOL SHA-1 and
+`tools/check_pr.py --no-build` passes against a clean build of `9ab744a4ec`.
+It adds three exact functions, 4,160 matched code bytes and 88 matched data
+bytes. The linked-unit count is 3,621. The retention block gains six entries
+and loses none. The actual linker selects the compiled socket and TCP
+objects. The rebuilt TCP and callback-provider objects are byte-identical
+to their current-main counterparts.
+
+The SACK compaction still contains an out-of-bounds read of the five-element
+array on main. Limiting the copy to four source elements and then clearing the
+last range preserves the logical result and differs from the native routine by
+one instruction, the loop bound. The compiler's inline byte-copy intrinsic
+can reproduce the two word loads through an in-bounds view of the entire
+control block, but the tested source forms change instruction scheduling or
+register assignment. Those probes are excluded from this integration.
+
+Removing the unused ACK scratch array changed 22 instruction words.
+Enabling normal lifetimes while removing it changed 44. Neither probe
+explains the original stack layout. The SACK read, ACK frame and complete
+caller and behavioral review remain open. The historical results below
+apply to their cited checkpoints.
+
 ## Checkpoints and current status
 
 Historical validation below belongs to published head

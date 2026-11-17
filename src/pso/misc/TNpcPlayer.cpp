@@ -1,3 +1,4 @@
+#include "pso/TPlyDispData.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "types.h"
 #include "pso/TObject.h"
@@ -506,7 +507,9 @@ void __dla__FPv(void *);
 extern s32 game_difficulty_selection;
 extern s32 TNpcPlayer__data_805D5864;
 
-u32 lbl_8050CF68[20];
+disp_data_part2 lbl_8050CF68;
+typedef char NpcVisualRecordSize[sizeof(disp_data_part2) == 0x50 ? 1 : -1];
+typedef char NpcVisualClassOffset[offsetof(disp_data_part2, char_class) == 0x31 ? 1 : -1];
 u32 npc_player_ply_char_data_global[3];
 u32 lbl_8050CFC4[263];
 u32 lbl_8050D3E0[20];
@@ -1916,11 +1919,11 @@ u8 *TNpcPlayer::build_npc_player_record(s32 arg0) {
 
     if (TNpcPlayer__data_805D5864 != 0) {
         TNpcPlayer__data_805D5864 = 0;
-        copy_player_visual_record(lbl_8050CF68, lbl_8050D3E0);
+        copy_player_visual_record((&lbl_8050CF68), lbl_8050D3E0);
     } else {
-        copy_player_visual_record(lbl_8050CF68, (u8 *)lbl_805D5860 + arg0 * 0x50);
+        copy_player_visual_record((&lbl_8050CF68), (u8 *)lbl_805D5860 + arg0 * 0x50);
     }
-    bswap__15disp_data_part2Fv((s32)lbl_8050CF68);
+    bswap__15disp_data_part2Fv((s32)(&lbl_8050CF68));
     __dla__FPv((void *)lbl_805D5860);
     mode = game_difficulty_selection;
     lbl_805D5860 = 0;
@@ -1939,22 +1942,22 @@ u8 *TNpcPlayer::build_npc_player_record(s32 arg0) {
     }
     switch (mode) {
     case 0:
-        TNpcPlayer::send_command((s32)(((u8 *)lbl_8050CF68)[0x31]), (s8)5, (s32)((int)lbl_804AF330[arg0]), (s32)lvl, (s8 *)lbl_8050CFC4);
+        TNpcPlayer::send_command(*(char *)&lbl_8050CF68.char_class, 5, (s32)((int)lbl_804AF330[arg0]), (s32)lvl, (s8 *)lbl_8050CFC4);
         break;
     case 1:
-        TNpcPlayer::send_command((s32)(((u8 *)lbl_8050CF68)[0x31]), (s8)5, (s32)((int)lbl_804AF430[arg0]), (s32)lvl, (s8 *)lbl_8050CFC4);
+        TNpcPlayer::send_command(*(char *)&lbl_8050CF68.char_class, 5, (s32)((int)lbl_804AF430[arg0]), (s32)lvl, (s8 *)lbl_8050CFC4);
         break;
     case 2:
-        TNpcPlayer::send_command((s32)(((u8 *)lbl_8050CF68)[0x31]), (s8)5, (s32)((int)lbl_804AF530[arg0]), (s32)lvl, (s8 *)lbl_8050CFC4);
+        TNpcPlayer::send_command(*(char *)&lbl_8050CF68.char_class, 5, (s32)((int)lbl_804AF530[arg0]), (s32)lvl, (s8 *)lbl_8050CFC4);
         break;
     case 3:
-        TNpcPlayer::send_command((s32)(((u8 *)lbl_8050CF68)[0x31]), (s8)5, (s32)((int)lbl_804AF630[arg0]), (s32)lvl, (s8 *)lbl_8050CFC4);
+        TNpcPlayer::send_command(*(char *)&lbl_8050CF68.char_class, 5, (s32)((int)lbl_804AF630[arg0]), (s32)lvl, (s8 *)lbl_8050CFC4);
         break;
     default:
-        TNpcPlayer::send_command((s32)(((u8 *)lbl_8050CF68)[0x31]), (s8)5, (s32)((int)lbl_804AF530[arg0]), (s32)lvl, (s8 *)lbl_8050CFC4);
+        TNpcPlayer::send_command(*(char *)&lbl_8050CF68.char_class, 5, (s32)((int)lbl_804AF530[arg0]), (s32)lvl, (s8 *)lbl_8050CFC4);
         break;
     }
-    copy_player_visual_record((u8 *)lbl_8050CFC4 + 0x370, lbl_8050CF68);
+    copy_player_visual_record((u8 *)lbl_8050CFC4 + 0x370, (&lbl_8050CF68));
     return (u8 *)lbl_8050CFC4;
 }
 
@@ -1970,12 +1973,12 @@ u8 *load_npc_player_template(s32 index) {
     lbl_805D5860 = (u32)__nwa__FUl(0x1400);
     if (TNpcPlayer__data_805D5864 != 0) {
         TNpcPlayer__data_805D5864 = 0;
-        copy_player_visual_record(lbl_8050CF68, lbl_8050D3E0);
+        copy_player_visual_record((&lbl_8050CF68), lbl_8050D3E0);
     } else {
         read_disc_file(lbl_805D2E70, (void *)lbl_805D5860);
-        copy_player_visual_record(lbl_8050CF68, (u8 *)lbl_805D5860 + index * 0x50);
+        copy_player_visual_record((&lbl_8050CF68), (u8 *)lbl_805D5860 + index * 0x50);
     }
-    bswap__15disp_data_part2Fv((s32)lbl_8050CF68);
+    bswap__15disp_data_part2Fv((s32)(&lbl_8050CF68));
     __dla__FPv((void *)lbl_805D5860);
     mode = game_difficulty_selection;
     lbl_805D5860 = 0;
@@ -1994,22 +1997,22 @@ u8 *load_npc_player_template(s32 index) {
     }
     switch (mode) {
     case 0:
-        TNpcPlayer::send_command((s32)(((u8 *)lbl_8050CF68)[0x31]), (s8)5, (s32)((int)lbl_804AF330[index]), (s32)lvl, (s8 *)lbl_8050CFC4);
+        TNpcPlayer::send_command(*(char *)&lbl_8050CF68.char_class, 5, (s32)((int)lbl_804AF330[index]), (s32)lvl, (s8 *)lbl_8050CFC4);
         break;
     case 1:
-        TNpcPlayer::send_command((s32)(((u8 *)lbl_8050CF68)[0x31]), (s8)5, (s32)((int)lbl_804AF430[index]), (s32)lvl, (s8 *)lbl_8050CFC4);
+        TNpcPlayer::send_command(*(char *)&lbl_8050CF68.char_class, 5, (s32)((int)lbl_804AF430[index]), (s32)lvl, (s8 *)lbl_8050CFC4);
         break;
     case 2:
-        TNpcPlayer::send_command((s32)(((u8 *)lbl_8050CF68)[0x31]), (s8)5, (s32)((int)lbl_804AF530[index]), (s32)lvl, (s8 *)lbl_8050CFC4);
+        TNpcPlayer::send_command(*(char *)&lbl_8050CF68.char_class, 5, (s32)((int)lbl_804AF530[index]), (s32)lvl, (s8 *)lbl_8050CFC4);
         break;
     case 3:
-        TNpcPlayer::send_command((s32)(((u8 *)lbl_8050CF68)[0x31]), (s8)5, (s32)((int)lbl_804AF630[index]), (s32)lvl, (s8 *)lbl_8050CFC4);
+        TNpcPlayer::send_command(*(char *)&lbl_8050CF68.char_class, 5, (s32)((int)lbl_804AF630[index]), (s32)lvl, (s8 *)lbl_8050CFC4);
         break;
     default:
-        TNpcPlayer::send_command((s32)(((u8 *)lbl_8050CF68)[0x31]), (s8)5, (s32)((int)lbl_804AF330[index]), (s32)lvl, (s8 *)lbl_8050CFC4);
+        TNpcPlayer::send_command(*(char *)&lbl_8050CF68.char_class, 5, (s32)((int)lbl_804AF330[index]), (s32)lvl, (s8 *)lbl_8050CFC4);
         break;
     }
-    copy_player_visual_record((u8 *)lbl_8050CFC4 + 0x370, lbl_8050CF68);
+    copy_player_visual_record((u8 *)lbl_8050CFC4 + 0x370, (&lbl_8050CF68));
     return (u8 *)lbl_8050CFC4;
 }
 

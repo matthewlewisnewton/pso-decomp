@@ -68,7 +68,7 @@ extern void *__vt__21TAdMultiSelGameModeGC[];
 extern s32 TAdMultiSelGameModeGC__name;
 extern s32 game_difficulty_selection;
 extern s32 lbl_805D69F4;
-extern const f32 lbl_805DEF44;
+static const f32 lbl_805DEF44 = 0.0f;
 Obj_8030095C *__ct__21TAdMultiSelGameModeGCFv(Obj_8030095C *self, s32 parent, s32 mode);
 s32 set_default_camera__21TAdMultiChgGameModeGCFv(void *);
 }
@@ -86,7 +86,7 @@ s32 check_room_seq_4__16TAdChrSelASlotGCFl(void *, u32);
 extern Pos3_803001B4 multi_sel_game_mode_position;
 extern Arr3_803001B4 lbl_80474EEC;
 extern Arr3_803001B4 multi_sel_game_mode_arr3;
-extern const f32 lbl_805DEF40;
+static const f32 lbl_805DEF40 = 206.0f;
 extern u8 controller_input_state[];
 s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);

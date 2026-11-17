@@ -1,5 +1,6 @@
 #include "pso/misc/TUnk_804F1C58.h"
 #include "types.h"
+#include "pso/boss/Boss7StaticTables.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/object/TObject_80019A50.h"
@@ -143,7 +144,6 @@ s32 rotate_matrix_by_node_angles(void *, int);
 s32 push_matrix();
 s32 scale_current_matrix(void *);
 s32 post_translate_matrix(void *);
-extern s32 lbl_804E3BF0[];
 void TBoss7DeRolLeC::update_or_dispatch() {
     if (sub_802ECB10__14TBoss7DeRolLeCFv() != 0) {
         sub_802ECAA4();
@@ -244,7 +244,7 @@ void TBoss7DeRolLeC::run_task() {
         post_translate_matrix(((u8 *)this) + 0x38);
         post_translate_matrix(((u8 *)this) + 0x6EC);
         rotate_matrix_by_node_angles(((u8 *)this) + 0x5C, 1);
-        scale_current_matrix(lbl_804E3BF0);
+        scale_current_matrix(&lbl_804E3BF0);
         this->sub_802E8234();
         ((TUnk_804F1C58 *)(*(u32 *)((s8 *)((u8 *)this) + 0x7AC)))->apply_with_callback((NJS_MOTION *)this->current_motion, this->get_frame());
         pop_matrix();

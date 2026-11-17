@@ -559,8 +559,8 @@ extern const f32 lbl_805DF350;
 
 extern const f32 lbl_805DF374;
 extern const f32 lbl_805DF378;
-extern f32 lbl_805DF37C;
-extern f32 lbl_805DF380;
+extern const f32 lbl_805DF37C;
+extern const f32 lbl_805DF380;
 extern const f32 lbl_805DF384;
 extern const f32 lbl_805DF388;
 extern const f32 lbl_805DF38C;
@@ -1039,7 +1039,7 @@ struct VObj_18_347dfc : VBase_18_347dfc {
     virtual s32 m102(f32);
 };
 f64 atan2_float(f32, f32);
-extern const f64 TObjEneMe3SinowZoa__data_804760A0;
+static const f64 TObjEneMe3SinowZoa__data_804760A0 = 10430.38043493439;
 extern const f32 lbl_805DF338;
 extern const f32 lbl_805DF33C;
 extern const f32 lbl_805DF340;

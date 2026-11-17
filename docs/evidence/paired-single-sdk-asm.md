@@ -1,14 +1,15 @@
 # Paired-single SDK assembly and MWCC (no-asm exception record)
 
 > **Exception record.** `transform_chunk_vertices_pos_normal` (0x803E3390,
-> `src/pso/unk/text_803E2D70.cpp`) is the single exception to the
-> CONTRIBUTING.md no-assembly rule, approved by Matt on 2026-11-04. It covers
-> only this function. The no-asm rule otherwise stands.
+> `src/pso/unk/text_803E2D70.cpp`), approved by Matt on 2026-11-04, and
+> `GXSetVtxAttrFmtv` (0x803E3110), approved by Matt on 2026-11-13, are the
+> listed exceptions to CONTRIBUTING.md’s no-assembly rule. The rule otherwise stands.
 
-Some GameCube functions in this binary are hand-scheduled Gekko paired-single
-assembly copied from (or modelled on) the Dolphin SDK, not CodeWarrior output.
-They cannot be matched from C with this toolchain. This note explains how to
-recognize them and what the repository does with them.
+Some GameCube functions in this binary have instruction schedules consistent
+with hand-written Gekko paired-single routines, resembling the Dolphin SDK's
+assembly implementations. The tested C/C++ routes have not reproduced them.
+This note records those observations and the repository's approved treatment;
+it does not prove their original source or exhaust every possible C++ form.
 
 ## Recognizing hand-written paired-single code
 
@@ -39,7 +40,7 @@ custom variant:
 - `count - 1` iterations with a peeled first vertex, versus `count / 2`;
 - a 3x3 normal transform using `ps_muls1` (no translation).
 
-So it cannot be replaced by a call to `PSMTXROMultVecArray`. Before the
+These differences prevent replacing it by a call to `PSMTXROMultVecArray`. Before the
 exception the source used the scalar `C_MTX*`-style equivalent, which compiles
 to 304 B and scores 0%.
 `GXSetVtxAttrFmtv` in the same unit is the same kind of code.
@@ -58,14 +59,14 @@ for libogc, GNU assembler):
 | Super Mario Sunshine | `libs/dolphin/src/mtx/mtxvec.c` | https://github.com/doldecomp/sms |
 | Wind Waker (zeldaret/tww) | `src/dolphin/mtx/mtxvec.c`, `mtx.c`, `quat.c` | https://github.com/zeldaret/tww |
 | Mario Kart Double Dash | `libs/dolphin/mtx/mtxvec.c`, `mtx.c`, `quat.c` | https://github.com/doldecomp/mkdd |
-| Animal Crossing, GC/2.6 (this unit's compiler) | `src/static/dolphin/2.6/src/mtx/psmtx.c`: `asm void PSMTXROMultVecArray`, the SDK schedule byte for byte | https://github.com/ACreTeam/ac-decomp/blob/master/src/static/dolphin/2.6/src/mtx/psmtx.c |
+| Animal Crossing, GC/2.6 | `src/static/dolphin/2.6/src/mtx/psmtx.c`: `asm void PSMTXROMultVecArray`, the SDK schedule byte for byte | https://github.com/ACreTeam/ac-decomp/blob/master/src/static/dolphin/2.6/src/mtx/psmtx.c |
 | Star Fox Adventures / Decomp Academy | teaches paired singles as an `asm {}` block; states MWCC has no `psq_l`/`psq_st`/`ps_*` intrinsic | https://github.com/zcanann/SFA-Decomp, https://decomp-academy.dev/courses/gamecube-c/lesson/advanced-psq-asm-exception |
 | Mario Kart Wii (nw4r) | `register __vec2x32float__` used inside a hand-written `asm { psq_l; ps_madds0; ... }` | https://github.com/snailspeed3/mkw/blob/78572c95/lib/nw4r/math/mathTriangular.cpp |
 | libogc | `ps_guMtxConcat`, `ps_guVecMultiply`, ... in GNU assembler | https://github.com/devkitPro/libogc/blob/master/libogc/gu_psasm.S |
 
 Instruction reference: https://www.wiibrew.org/wiki/Paired_single.
 
-## Why C cannot produce it with MWCC
+## Why the tested MWCC C/C++ routes have not reproduced it
 
 - **No intrinsics.** The builtin name tables of every installed MWCC (GC 1.0
   through 3.0a5.2 and the Wii compilers) contain `__fabs`, `__fabsf`,
@@ -76,30 +77,38 @@ Instruction reference: https://www.wiibrew.org/wiki/Paired_single.
 - **`__vec2x32float__`** is a real MWCC type. Measured here, it emits
   `psq_l`/`psq_st`/`ps_mul`/`ps_merge00` at compiler-chosen offsets, but a
   float broadcast becomes `ps_merge00` + `ps_mul`, never the lane-selecting
-  `ps_muls0/1` / `ps_madds0/1`, and never a chosen W/GQR. An explicit column
-  loop gave 296 B and 0%.
+  `ps_muls0/1` / `ps_madds0/1`. An explicit column loop gave 296 B and 0%.
+  With `gecko_float_typecons` enabled, short-to-float conversion does emit GQR1
+  writes and quantized loads, including indexed loads. The measured selector
+  uses scale zero (`0x00070007`) plus a separate multiplication, rather than
+  the weighted transform's scale eight (`0x08070807`). See the
+  [compiler research](chunk-geometry-compiler-research.md) for that correction
+  and the GC 2.0/2.6 comparison; current unit code does not distinguish them.
 - **GCC/LLVM paired builtins** (`paired.h`, `__builtin_paired_madds0`,
   `llvm.ppc.paired.*`) and ProDG `-mpaired-single` belong to other
   compilers. ProDG on the scalar loop still emitted scalar `fmuls`/`fmadds`.
-  Swapping the unit compiler would also lose the functions already matching
-  on GC/2.6.
+  These alternatives have not reproduced the complete matching unit object.
 - **Flags and pragmas.** Sweeps across GC/Wii compilers with `-O2`..`-O4,p/s`,
   `-opt nopeephole/all`, `-fp_contract on`, `-vector on`, and per-function
   `#pragma fp_contract on` / `#pragma scheduling on` produced no
-  lane-selecting paired-single ops and scored 0%. No flag produces pre-`stwu`
-  loads or an f14-up `stfd`-only save.
+  lane-selecting paired-single ops and scored 0%. None of those tested flag
+  combinations produced pre-`stwu` loads or an f14-up `stfd`-only save.
 
-## Repository policy and the one exception
+## Repository policy and the listed exceptions
 
 CONTRIBUTING.md forbids assembly anywhere (including `asm void`, `asm {}`,
 and `orig_asm` includes). Functions of this kind normally stay as the honest
 scalar C equivalent, in the style of the SDK's `C_MTX*` functions, and remain
-unmatched. Do not chase them with steering pragmas, `__vec2x32float__`
-rewrites, or compiler swaps.
+unmatched. This was the rationale for the narrow exceptions below. Matt later
+requested renewed source and compiler research, recorded in the
+[compiler research note](chunk-geometry-compiler-research.md); that work has not
+produced a matching source replacement for the native transforms. It did recover
+the polygon dispatcher completely in ordinary C++ and source-link the unit.
 
-**Exception (approved by Matt, 2026-11-04):** `transform_chunk_vertices_pos_normal`
-only. It is SDK-style hand-written paired-single code that MWCC cannot emit,
-and every matching project above keeps such routines as `asm void`. It is
+**Exception (approved by Matt, 2026-11-04):** `transform_chunk_vertices_pos_normal`.
+Its SDK-style paired-single schedule was not reproduced by the tested MWCC
+source alternatives. The cited matching projects retain related SDK routines
+as assembly. It is
 written the same way, as an MWCC `asm void` with `nofralloc`, the
 instructions written out with labels and comments. It does not use an
 `orig_asm` include or `.incbin`. The function now matches 100% (288 B).
@@ -109,5 +118,30 @@ C++ implementation as real compiled code for other compilers or future ports,
 mirroring the SDK's `PSMTX*` (asm) / `C_MTX*` (C) split. The GameCube build
 always uses the asm.
 
-No other function is covered. Any further exception needs Matt's explicit
-approval and its own entry here.
+Only the explicitly listed functions are covered. Any further exception needs
+Matt's explicit approval and its own entry in the exceptions register.
+
+## Weighted indexed transform at 0x803E3110
+
+Matt authorized the same narrow assembly exception for `GXSetVtxAttrFmtv` on
+2026-11-13. Its name is provisional: this is a weighted indexed position/normal
+transform, not the SDK vertex-descriptor API. The 640-byte routine sets GQR1 to
+`0x08070807`, transforms six floats from each 28-byte input record, converts its
+signed 16-bit weight with a scale of 1/256, and selects a 32-byte destination
+record using the unsigned 16-bit index. Zero mode overwrites; nonzero mode adds
+the weighted transform to the existing six components. The last eight bytes of
+each destination record remain untouched.
+
+The non-Metrowerks branch is compiled scalar C++. It uses `fmaf` for every
+native fused operation, including weighted accumulation, and a separately
+rounded first normal product. Inputs and the destination cache are distinct
+in the vertex-list dispatcher. The native pipeline requires a positive count
+and reads ahead into the following source record; the scalar loop avoids those
+prefetches. It does not reproduce the GameCube-specific GQR1 side effect.
+
+The approved weighted transform body is generated from the disc by
+`tools/orig_asm.py`; no extracted instruction words are checked in.
+`python3 tools/probes/check_weighted_chunk_transform.py` compiles the scalar
+branch and compares it with an interpreter of the locally generated original
+disassembly over 640 deterministic cases, including signed boundary weights,
+repeated destination indices, both accumulation modes, and untouched padding.

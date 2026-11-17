@@ -196,9 +196,11 @@ pso/audio/GcrnaError.cpp
 pso/audio/GcrnaStream.cpp
 pso/boss/Boss5GryphonActionScripts.cpp
 pso/boss/Boss5GryphonBehavior.cpp
+pso/boss/Boss5GryphonConstants.cpp
 pso/boss/Boss6Type1Appearance.cpp
 pso/boss/Boss6Type2Appearance.cpp
 pso/boss/Boss6Type2Death.cpp
+pso/boss/Boss7DeRolLeCBehavior.cpp
 pso/boss/TBoss1Dragon.cpp
 pso/boss/TBoss1DragonColli.cpp
 pso/boss/TBoss1DragonDemo.cpp
@@ -207,6 +209,7 @@ pso/boss/TBoss1DragonEffBullet.cpp
 pso/boss/TBoss1DragonEffTail.cpp
 pso/boss/TBoss1Dragon_8002B108.cpp
 pso/boss/TBoss1Dragon_800BC3C4.cpp
+pso/boss/TBoss2DeRolLe.cpp
 pso/boss/TBoss2Fin.cpp
 pso/boss/TBoss2Joint.cpp
 pso/boss/TBoss2LaserLight.cpp
@@ -229,6 +232,7 @@ pso/boss/TBoss4DarkFalz_8004C93C.cpp
 pso/boss/TBoss4Fade.cpp
 pso/boss/TBoss4Thanks.cpp
 pso/boss/TBoss4Thanks_8035C8F0.cpp
+pso/boss/TBoss4Type1.cpp
 pso/boss/TBoss4Type2_8004A978.cpp
 pso/boss/TBoss4Type2_80086C44.cpp
 pso/boss/TBoss4Type2_800874F4.cpp
@@ -242,7 +246,6 @@ pso/boss/TBoss4Type3_800D9960.cpp
 pso/boss/TBoss4Uro.cpp
 pso/boss/TBoss4Zako.cpp
 pso/boss/TBoss4ZakoDraw.cpp
-pso/boss/TBoss4ZakoDraw_8030A96C.cpp
 pso/boss/TBoss4ZakoDraw_8030AD38.cpp
 pso/boss/TBoss4ZakoDraw_8030AD58.cpp
 pso/boss/TBoss4Zanzo.cpp
@@ -360,8 +363,6 @@ pso/boss/TObjBoss2Tunnel_802F2070.cpp
 pso/boss/TObjBoss2Tunnel_8036EF0C.cpp
 pso/boss/TObjBoss2Tunnel_803E2BAC.cpp
 pso/boss/TObjBoss5Ctrl.cpp
-pso/boss/TObjBoss5Ctrl_80067124.cpp
-pso/boss/TObjBoss5Ctrl_800673D0.cpp
 pso/boss/TObjBoss5FloorGrass.cpp
 pso/boss/TObjBoss5FloorGrass_8028AAB8.cpp
 pso/boss/TObjBoss5FloorGrass_8028AAFC.cpp
@@ -414,8 +415,10 @@ pso/enemy/DarkGunner.cpp
 pso/enemy/DelDepthConstants.cpp
 pso/enemy/DelDepthData.cpp
 pso/enemy/DelDepthMotion.cpp
+pso/enemy/Df2BringerConstants.cpp
 pso/enemy/EnemyFactoryTables.cpp
 pso/enemy/SaverLifecycle.cpp
+pso/enemy/SinowZoaConstants.cpp
 pso/enemy/TEnemyTaskList.cpp
 pso/enemy/TObjEneBalClaw.cpp
 pso/enemy/TObjEneBalClawBody_80090178.cpp
@@ -601,9 +604,6 @@ pso/item/TItemEffArmor.cpp
 pso/item/TItemEffBringer.cpp
 pso/item/TItemEffCane.cpp
 pso/item/TItemEffEquip.cpp
-pso/item/TItemEffEquip_801088D0.cpp
-pso/item/TItemEffEquip_801088F8.cpp
-pso/item/TItemEffEquip_80108920.cpp
 pso/item/TItemEffFlame.cpp
 pso/item/TItemEffHeaven.cpp
 pso/item/TItemEffLandHit.cpp
@@ -931,9 +931,6 @@ pso/misc/TDuelEffectNumber_80080290.cpp
 pso/misc/TDuelEffectNumber_80080460.cpp
 pso/misc/TEnding.cpp
 pso/misc/TEndingAB.cpp
-pso/misc/TEndingAB_8008C9FC.cpp
-pso/misc/TEndingAB_8008CCC4.cpp
-pso/misc/TEndingAB_8008CE08.cpp
 pso/misc/TEndingC.cpp
 pso/misc/TEndingC_8008D00C.cpp
 pso/misc/TEndingPic.cpp
@@ -1529,6 +1526,9 @@ pso/misc/TQuestVmDownLoadServer_801F9010.cpp
 pso/misc/TQuestVmDownLoadServer_8033BC88.cpp
 pso/misc/TQuestVmDownLoadServer_8033C22C.cpp
 pso/misc/TQuestVmDownLoadServer_803E5668.cpp
+pso/misc/TQuestVmDownLoadServer_803E6970.cpp
+pso/misc/TQuestVmDownLoadServer_803E9A24.cpp
+pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp
 pso/misc/TRaderMapCore.cpp
 pso/misc/TRaderMapCore_801A6CEC.cpp
 pso/misc/TRaderMapCore_801F3710.cpp
@@ -2026,6 +2026,7 @@ pso/network/TProtocol_801DFCAC.cpp
 pso/network/TProtocol_801E08CC.cpp
 pso/network/TTcpSocket.cpp
 pso/network/TTcpSocket_801E0BB4.cpp
+pso/network/TcpProtocol.cpp
 pso/npc/TObjNpcAHM01.cpp
 pso/npc/TObjNpcARM00.cpp
 pso/npc/TObjNpcARW00.cpp
@@ -2149,7 +2150,6 @@ pso/object/TObjDoor_8018E358.cpp
 pso/object/TObjDoor_801F3754.cpp
 pso/object/TObjEZBoneRotBase.cpp
 pso/object/TObjEZBoneRotPlayer.cpp
-pso/object/TObjEZRopeBase.cpp
 pso/object/TObjEZRopeSimulation.cpp
 pso/object/TObjEnvSoundGlobal.cpp
 pso/object/TObjEvtCollision.cpp
@@ -2258,6 +2258,7 @@ pso/object/TObject_800F794C.cpp
 pso/object/TUnk_804A6DC0.cpp
 pso/player/PhotonBlastResults.cpp
 pso/player/PlayerClassStats.cpp
+pso/player/PlayerCombatConstants.cpp
 pso/player/PlayerTaskEffects.cpp
 pso/player/THunterGuildSeqOnlineTask.cpp
 pso/player/THunterGuildWarning.cpp
@@ -2491,6 +2492,7 @@ pso/player/TObjPlayer_801AE48C.cpp
 pso/player/TObjPlayer_801AEB84.cpp
 pso/player/TObjPlayer_801AEE10.cpp
 pso/player/TObjPlayer_801AEFFC.cpp
+pso/player/TObjPlayer_801AF2F0.cpp
 pso/player/TObjPlayer_801BC140.cpp
 pso/player/TObjPlayer_801BC404.cpp
 pso/player/TObjPlayer_801BC5D4.cpp
@@ -2622,6 +2624,7 @@ pso/quest/TQuestListVM_8007EAF8.cpp
 pso/quest/TQuestListVM_800F95F4.cpp
 pso/quest/TQuestListVM_801F4398.cpp
 pso/quest/TQuestThread.cpp
+pso/render/ScreenProjectionConstants.cpp
 pso/render/render_util.cpp
 pso/render/render_util_head.cpp
 pso/render/render_util_tail.cpp
@@ -2757,7 +2760,6 @@ pso/ui/TAdMultiPlyChrSelectGC_802E0064.cpp
 pso/ui/TAdMultiPlyChrSelectGC_802E011C.cpp
 pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.cpp
 pso/ui/TAdMultiPlyChrSelectGC_803495B4.cpp
-pso/ui/TAdMultiPlyChrSelectGC_literals.s
 pso/ui/TAdMultiSaveGC.cpp
 pso/ui/TAdMultiSaveGC_802FF0A0.cpp
 pso/ui/TAdMultiSaveGC_802FF14C.cpp
@@ -2777,8 +2779,6 @@ pso/ui/TAdPlyStatusGC.cpp
 pso/ui/TAdPlyStatusGC_8033FD48.cpp
 pso/ui/TAdPsoPassSaveGC.cpp
 pso/ui/TAdRayGC.cpp
-pso/ui/TAdRicoRingCtrl.cpp
-pso/ui/TAdRicoRingCtrl_8001B4A0.cpp
 pso/ui/TAdSEGAlogo.cpp
 pso/ui/TAdSEGAlogo_8001BF4C.cpp
 pso/ui/TAdScrollWinGC.cpp
@@ -2862,15 +2862,15 @@ pso/unk/TUnk_804A5248.cpp
 pso/unk/TUnk_804A5C18.cpp
 pso/unk/TUnk_804A6CC8.cpp
 pso/unk/TUnk_804CC870.cpp
+pso/unk/data_805D8200.cpp
+pso/unk/data_805D8D28.cpp
 pso/unk/text_8000F740.cpp
-pso/unk/text_8001B424.cpp
 pso/unk/text_8001C388.cpp
 pso/unk/text_8002B164.cpp
 pso/unk/text_8002C190.cpp
 pso/unk/text_8002E090.cpp
 pso/unk/text_8002E174.cpp
 pso/unk/text_8003AFBC.cpp
-pso/unk/text_80049FD8.cpp
 pso/unk/text_8004AA04.cpp
 pso/unk/text_8004D9A8.cpp
 pso/unk/text_80050050.cpp
@@ -2976,7 +2976,6 @@ pso/unk/text_801036CC.cpp
 pso/unk/text_80104F4C.cpp
 pso/unk/text_80104FCC.cpp
 pso/unk/text_801057A8.cpp
-pso/unk/text_80108860.cpp
 pso/unk/text_801094D8.cpp
 pso/unk/text_801095EC.cpp
 pso/unk/text_8010EF14.cpp
@@ -3183,8 +3182,6 @@ pso/unk/text_80196814.cpp
 pso/unk/text_80196880.cpp
 pso/unk/text_80196A20.cpp
 pso/unk/text_80196A8C.cpp
-pso/unk/text_801977D4.cpp
-pso/unk/text_80197998.cpp
 pso/unk/text_80197E54.cpp
 pso/unk/text_80197F74.cpp
 pso/unk/text_80197FD0.cpp
@@ -3608,6 +3605,7 @@ pso/unk/text_803E2008.cpp
 pso/unk/text_803E2070.cpp
 pso/unk/text_803E20B0.cpp
 pso/unk/text_803E29B0.cpp
+pso/unk/text_803E2D70.cpp
 pso/unk/text_803E4CE8.cpp
 pso/unk/text_803E4D8C.cpp
 pso/unk/text_803F1804.cpp

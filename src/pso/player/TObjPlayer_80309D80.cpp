@@ -61,7 +61,7 @@ void emit_water_step_particles(s32 arg0, s32 arg1);
 void emit_idle_water_splash(s32 arg0, s32 arg1);
 extern f32 lbl_805DF134;
 s32 emit_player_model_particle(s32 owner, s32 position, s32 entry, s32 model);
-extern const f32 lbl_805DF130;
+static const f32 lbl_805DF130 = 0.0f;
 extern "C" {
 Fol_80309E9C *TObjPlayer__sub_80309E9C(Fol_80309E9C *o);
 struct VOff_80309DD0_arg0_80309dd0_80309D80 { char pad_0[0x4]; char f_4[1]; };

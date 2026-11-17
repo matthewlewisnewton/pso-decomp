@@ -1,6 +1,7 @@
 #include "pso/system/BmlTextureList.h"
 #include "pso/TBoss7Tentacle.h"
 #include "pso/boss/Boss7DeRolLeCBehavior.h"
+#include "pso/boss/Boss7StaticTables.h"
 #include "pso/boss/TBoss7DeRolLeC.h"
 #include "pso/boss/TBoss7Joint.h"
 #include "pso/boss/TBoss7LaserLight.h"
@@ -15,26 +16,14 @@
 #include "pso/unk/text_8035A860.h"
 
 namespace {
-// The constructor addresses these three records from the same .data base.
-struct Boss7ConstructorTables {
-    u8 leading_tables[0x9C];
-    u8 movement_data[0xA0];
-    TObjMotionAction first_action;
-    u8 before_vtable[0x118];
-    void *first_virtual_entry;
-};
-
 struct SavedEnemyState {
     u32 flags;
     u8 remaining[8];
 };
 
-typedef char Boss7ActionTable_offset[offsetof(Boss7ConstructorTables, first_action) == 0x13C ? 1 : -1];
-typedef char Boss7Vtable_offset[offsetof(Boss7ConstructorTables, first_virtual_entry) == 0x264 ? 1 : -1];
 }
 
 extern "C" {
-extern Boss7ConstructorTables lbl_804E3BF0;
 extern const Vec lbl_80473F6C;
 extern const CollisionBody lbl_80473C3C;
 extern BmlResource *lbl_805D6918;
@@ -56,9 +45,9 @@ void fill_value_array(PointerBuffer *);
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 extern "C" TBoss7DeRolLeC *TBoss7DeRolLeC__ct(TBoss7DeRolLeC *boss, TObject *parent, void *set_data) {
-    Boss7ConstructorTables *tables = &lbl_804E3BF0;
+    Boss7ConstructorTables *tables = reinterpret_cast<Boss7ConstructorTables *>(&lbl_804E3BF0);
     __ct__12TObjEneDD_STFP7TObject(boss, parent);
-    // The vtable is owned by the existing data split and used by the destructor.
+    // The behavior unit emits the native vtable; this keeps the existing constructor ABI.
     *reinterpret_cast<void ***>(reinterpret_cast<u8 *>(boss) + 0x18) = &tables->first_virtual_entry;
     init_resources__13TBoss2DeRolLeFi(&boss->float_blocks[0]);
     init_resources__13TBoss2DeRolLeFi(&boss->float_blocks[1]);

@@ -6,6 +6,8 @@
 #include "pso/items/TItemWeapon.h"
 #include "pso/TItemAttacker.h"
 #include "pso/TItemEffEquip.h"
+#include "pso/TMainTask.h"
+#include "pso/player/TObjPlayer_80011014.h"
 #include "pso/item/TItemMag.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/TObjPlayer.h"
@@ -174,11 +176,9 @@ struct Player_8012065C : VBase_8012065C {
 
 extern "C" {
 void clear_technique_boosts__14TItemEquipBaseFv(s32 arg0);
-s32 get_entity_id(s32);
 s32 test_flags_any(void *, s32);
 
 void set_flag_8_if_check_passes__10TObjPlayerFv();
-extern void *tl_05;
 
 void TItemWeapon::on_unequip() {
     Pl_80120568 *arg0 = (Pl_80120568 *)this;
@@ -211,9 +211,9 @@ void TItemWeapon::on_equip() {
             ((TItemWeapon *)arg0)->set_weapon_flags(8);
         } else {
             TItemAttacker::spawn_item_timer((TObject *)arg0, (ItemTimerCallback)set_flag_8_if_check_passes__10TObjPlayerFv, 0x14);
-            TItemEffEquip::create((void *)tl_05, (void *)(get_entity_id(*(s32 *)((s8 *)arg0 + 0xF0))), (void *)0x30, (void *)0x9D, (void *)0x9E);
+            TItemEffEquip::create(tl_05, get_entity_id(owner), 0x30, 0x9D, 0x9E);
             if (((TItemWeapon *)arg0)->test_weapon_flags(0x200) != 0U) {
-                TItemEffEquip::create((void *)tl_05, (void *)(get_entity_id(*(s32 *)((s8 *)arg0 + 0xF0))), (void *)0x23, (void *)0x9D, (void *)0x9E);
+                TItemEffEquip::create(tl_05, get_entity_id(owner), 0x23, 0x9D, 0x9E);
             }
             update_technique_slot__10TTecRaFoieFl(play_sound_effect(0x4000B20A, (const Vec *)(*(s32 *)((s8 *)arg0 + 0xF0) + 0x38), 0, 0), 0x300, 0);
         }

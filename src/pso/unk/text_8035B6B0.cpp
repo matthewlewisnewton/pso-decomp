@@ -17,8 +17,8 @@ extern "C" {
 extern s32 chao_npc_spawn_descriptor[];
 extern s32 bm_ene_npc_chao_resource_descriptor[];
 extern u8 *chao_npc_instance_handle;
-extern const f32 lbl_805E0138;
-extern const f32 lbl_805E013C;
+static const f32 lbl_805E0138 = 5.0f;
+static const f32 lbl_805E013C = 0.0f;
 void load_and_spawn_chao_npc(void) {
     typedef char sp8_offset[(offsetof(Stack_8035B6B0, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_8035B6B0, spC) == 0x4) ? 1 : -1];

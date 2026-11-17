@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "types.h"
 #include "pso/item/TItem.h"
 #include "pso/player/TObjPlayer.h"
@@ -37,7 +38,7 @@ void TUnk_804A68C8::update_attack() {
         this->m_1fc = 1;
     }
     if (((TItem *)arg0)->get_item_index() == 5) {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1F8), (f32)0.1f, (f32)1.0f);
+        add_float_clamped((f32 *)(arg0 + 0x1F8), (f32)0.1f, (f32)1.0f);
     }
 }
 

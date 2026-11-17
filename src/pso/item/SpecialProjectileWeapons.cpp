@@ -1,3 +1,4 @@
+#include "pso/item/TItemMenuCtrl_80115AF0.h"
 #include "pso/effect/TEffStarLight2D.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
@@ -98,7 +99,6 @@ extern s32 tl_05;
 u8 *create_drill_launcher(u8 *arg0);
 void drill_launcher_return_timer(void *arg0);
 int get_item_system_generation(void);
-u8 *spawn_star_light_2d(s32 arg0, s32 arg1, s32 arg2);
 extern "C" {
 const WeaponStarLightParameterWords weapon_star_light_parameters[] = {
     { { 0x40400000, 0x40E00000, 0xB4FF0019, 0, 0x41A00000 } }
@@ -173,7 +173,7 @@ TUnk_804A2018::TUnk_804A2018(TObject *parent, s32 a, s32 b) : TObject(parent) {
     p = find_item_by_id(((StarLightFollowerView *)this)->f1c);
     if (p != NULL && ((TItemWeapon *)p)->get_joint_position(((StarLightFollowerView *)this)->f20, &v) != 0) {
         WeaponStarLightParameterWords blk = weapon_star_light_parameters[0];
-        ((StarLightFollowerView *)this)->f24 = (s32)spawn_star_light_2d((s32)&v, (s32)&blk, (s32)((StarLightFollowerView *)this));
+        ((StarLightFollowerView *)this)->f24 = (s32)spawn_star_light_2d(&v, &blk, this);
     }
 }
 extern "C" {

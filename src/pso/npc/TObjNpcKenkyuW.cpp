@@ -40,8 +40,8 @@ extern TechniqueContactList technique_contact_list;
 void vector_length(void *);
 int get_player_data__10TObjPlayerFi(int a0);
 s32 get_entity_id(void *);
-extern const f32 lbl_805DDF60;
-extern const f32 lbl_805DDF64;
+static const f32 lbl_805DDF60 = 0.5f;
+static const f32 lbl_805DDF64 = 10000.0f;
 
 void *find_entity_by_id(u16 id);
 

@@ -1,3 +1,5 @@
+#include "pso/enemy/MojaResourceState.h"
+#include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/enemy/BattleParameters.h"
@@ -38,10 +40,6 @@ struct VObj800AFB60_800AFB28 : VBase800AFB60_800AFB28 {
 };
 
 #include "pso/enemy/TObjEneMoja.h"
-struct MojaResourceEntry {u8 unknown[8];void* model;void* textures;};
-
-struct MojaResources {u8 unknown[0x42C];MojaResourceEntry* models;};
-
 
 struct Base_800AFBF0 { char pad[0x18]; };
 
@@ -153,7 +151,6 @@ struct VObj_800AFBF0 : Base_800AFBF0 {
     virtual void v104();
 };
 
-extern MojaResources* lbl_805D50D8;
 extern "C" {
 s32 is_main_phase_15__9TObjEneDDFv();
 s32 clear_global_flag_400__9TObjEneDDFv();
@@ -193,7 +190,7 @@ f32 AttackParams::get_damage_radius() { return damage_radius; }
 
 void TObjEneMoja::bindModel(int index) {
     model=lbl_805D50D8->models[index].model;
-    (*(void * *)&this->texlist)=lbl_805D50D8->models[index].textures;
+    (*(void * *)&this->texlist)=lbl_805D50D8->models[index].m_c;
 }
 
 void TObjEneBm3Fly__vt104(TObjEneBm3Fly *arg0) {

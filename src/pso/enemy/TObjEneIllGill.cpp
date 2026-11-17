@@ -62,7 +62,7 @@ s32 minimap_render_dot(void *, int, int, int);
 void *__nw__7TObjectFUl(int);
 void TObjIllGillKage__ct(void *, s32, void *);
 void subtract_vector(void *, void *);
-extern const f64 TObjEneIllGill__data_8047A348;
+static const f64 TObjEneIllGill__data_8047A348 = 10430.38043493439;
 extern s32 tl_05;
 extern const f32 TObjEneIllGill__data_805E02BC;
 extern const f32 TObjEneIllGill__data_805E02D8;
@@ -1525,4 +1525,8 @@ void TObjEneIllGill::load_shared_resources() {
     }
 }
 
+}
+
+extern "C" {
+BmlResource *illGillResource;
 }

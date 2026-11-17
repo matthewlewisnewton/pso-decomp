@@ -3,8 +3,8 @@
 #include "pso/unk/text_803E2008.h"
 #include "pso/unk/text_803E2070.h"
 #include "pso/player/TObjPlayer.h"
-extern const f32 lbl_805E1050;
-extern const f32 lbl_805E1054;
+static const f32 lbl_805E1050 = 0.0f;
+static const f32 lbl_805E1054 = 1000000.0f;
 #pragma push
 #pragma scheduling off
 void reset_scene_fog(void) {

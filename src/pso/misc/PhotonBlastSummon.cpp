@@ -493,7 +493,7 @@ void TUnk_804C3248::setup_photon_blast_camera() {
   }
 }
 
-void *destroy_photon_motion_object(void *arg0, s16 arg1) {
+void *__dt__13TUnk_804C3248Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = lbl_804C3248;
         ((TUnk_804C3248 *)arg0)->m_148 = 0;
@@ -706,3 +706,7 @@ Group_801A7428 photon_blast_attachment_table[7] = {
 Reg_801A7578 photon_blast_joint_origins[1];
 Ent_801A710C photon_blast_hit_queue[32];
 Ent_801A70C8 deferred_photon_blast_hit_queue[32];
+
+extern "C" {
+s32 photon_blast_joint_index;
+}

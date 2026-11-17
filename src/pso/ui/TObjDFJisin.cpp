@@ -215,7 +215,7 @@ extern void *__vt__11TObjDFJisin[];
 extern void *__vt__13TObjDFHorming[];
 extern void *__vt__13TObjDFRecBall[];
 extern void *__vt__16TObjDFBeamCursor[];
-extern const f64 lbl_804374F0;
+static const f64 lbl_804374F0 = 10430.38043493439;
 extern s32 TObjDFJisin__particle_emitter_id_table[];
 extern s32 TObjDFRecBall__name;
 extern void *TObjDFBeamCursor__name;
@@ -953,11 +953,11 @@ u8 *TObjDFTenchuFuru__ct(u8 *object, u8 *arg1, u8 *arg2) {
     return object;
 }
 
-void *TObjDFTenchuFuru::create(void *arg1) {
+void *TObjDFTenchuFuru::create(TObject *parent, void *arg1) {
     void *o;
     o = __nw__7TObjectFUl(0x30);
     if (o != NULL) {
-        o = TObjDFTenchuFuru__ct((u8 *)o, (u8 *)this, (u8 *)arg1);
+        o = TObjDFTenchuFuru__ct((u8 *)o, (u8 *)parent, (u8 *)arg1);
     }
     return o;
 }

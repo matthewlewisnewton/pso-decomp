@@ -93,7 +93,7 @@ void update_state_from_input__16TKeyBoardControlFPv(void *arg0) {
 }
 
 extern s32 actor_frame_tick;
-extern const f32 lbl_805DC0B0;
+static const f32 lbl_805DC0B0 = 0.5f;
 
 s32 TKeyBoardControl::check_input_angle() {
     s32 temp_r4_2;

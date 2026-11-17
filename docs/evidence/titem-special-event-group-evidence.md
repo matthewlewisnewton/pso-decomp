@@ -53,8 +53,10 @@ class-name string, so the name is not recovered evidence.
 `apply_use_effect` (`0x803531FC`) selects one of nine steps by technique index
 and calls it with `(this->*handler)()`. The steps (`0x8035307C`-`0x803531F8`)
 and `send_obj_position_event` (`0x80353018`) use the typed `TItem::owner`
-(`TObjPlayer*` at `+0xF0`), so they are members of this item. They stay in
-`TEndingPic.cpp`, the unit that emitted them.
+(`TObjPlayer*` at `+0xF0`), so they are members of this item. The original split placed these steps in `TEndingPic.cpp`. The
+[ending-picture recovery](ending-picture-recovery.md) moves them next to the
+use-effect dispatcher, with their separate floating-point pool; the old split
+was not evidence of their historical translation-unit ownership.
 
 `send_obj_position_event` keeps the name already assigned to `0x80353018`.
 The other steps stay `sub_<addr>`. `set_phase_18`, `update_player_object`, and

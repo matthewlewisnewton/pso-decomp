@@ -36,3 +36,7 @@ void load_items() {
     load_item_pmt();
     item_mgr = (TObject *)create_drop__9TItemDropFi(0);
 }
+
+extern "C" {
+void *item_pmt;
+}

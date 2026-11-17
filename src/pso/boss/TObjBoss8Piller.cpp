@@ -21,8 +21,8 @@ void __ct__7TObjectFP7TObject(void *, void *);
 s32 rand(void);
 extern RecoveredGlobal_8030AF60___vt__15TObjBoss8Piller __vt__15TObjBoss8Piller;
 extern s32 TObjBoss8Piller__class_name;
-extern const f32 lbl_805DF158;
-extern const f32 lbl_805DF15C;
+static const f32 lbl_805DF158 = 0.0f;
+static const f32 lbl_805DF15C = 3.0f;
 extern const f32 lbl_805DF160;
 typedef char RecoveredGlobal_8030AF60___vt__15TObjBoss8Piller_size[sizeof(RecoveredGlobal_8030AF60___vt__15TObjBoss8Piller) == 0x18 ? 1 : -1];
 u8 *__ct__15TObjBoss8PillerFv(u8 *object, u8 *arg1, u8 *arg2, s16 arg3) {

@@ -10,9 +10,9 @@ f32 fabs_float();
 s32 __cvt_fp2unsigned(f32, f32);
 s32 sin_table_lookup(int);
 extern const f32 lbl_805D929C;
-extern const f32 lbl_805D92C0;
-extern const f32 lbl_805D92C4;
-extern const f32 lbl_805D92C8;
+static const f32 lbl_805D92C0 = 64.0f;
+static const f32 lbl_805D92C4 = 32.0f;
+static const f32 lbl_805D92C8 = 128.0f;
 extern const f32 lbl_805D92B8;
 #pragma fp_contract on
 

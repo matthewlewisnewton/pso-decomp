@@ -6,7 +6,7 @@
 #include "pso/object/TObjFish.h"
 
 extern void *status_disp_texture_handle;
-extern const f32 lbl_805DDF38;
+static const f32 lbl_805DDF38 = 0.25f;
 
 void TAdSelectTxtSubGC::render_status() {
     begin_screen_draw(1);

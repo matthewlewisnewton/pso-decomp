@@ -37,7 +37,7 @@ s32 forward_slot_selection__16TAdChrSelASlotGCFPvPv(s32, s32, s32, f32);
 s32 create__19TWindowMessageYesNoFPvPvPvPv(s32, s32, s32, s32);
 extern const f32 lbl_805DF214;
 s32 TAdChrSelASlotGC__sub_8030CA84(s32 arg0, s32 arg1);
-extern const f32 lbl_805DF20C;
+static const f32 lbl_805DF20C = 193.0f;
 s32 TAdChrSelASlotGC__sub_8030C978(void *arg0, s32 arg1, s32 arg2);
 u8 *__nw__7TObjectFUl(s32);
 // The factory below owns this singleton; keep it before the local-static guard.
@@ -55,7 +55,7 @@ G_8030C45C *TAdChrSelASlotGC__sub_8030C45C(TAdChrSelASlotGC *self, s32 arg1, s32
 int sprintf(char *, const char *, ...);
 void *memset(void *, int, unsigned long);
 extern char char_select_format_message_buffer[];
-extern const f32 TAdChrSelASlotGC__data_805DF208;
+static const f32 TAdChrSelASlotGC__data_805DF208 = 190.0f;
 u32 TAdChrSelASlotGC__sub_8030CB08(TAdChrSelASlotGC *arg0, s32 kind, s32 text);
 s32 TAdChrSelASlotGC__sub_8030C4F8(TAdChrSelASlotGC *self, s32 kind);
 s32 TAdChrSelASlotGC__sub_8030C5C0(TAdChrSelASlotGC *self, s32 kind);

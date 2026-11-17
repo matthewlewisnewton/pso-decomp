@@ -395,7 +395,7 @@ void *destroy__12TPhotonGollaFPvs(void *arg0, s16 arg1) {
         ((TUnk_804C3248 *)arg0)->free_photon();
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
-        destroy_photon_motion_object(arg0, 0);
+        __dt__13TUnk_804C3248Fv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -426,8 +426,8 @@ void *find_entity_by_id(u16 id);
 s32 init_collision_body_parts(void *, void *, int);
 void sub_801AB688__12TPhotonGollaFv(void *);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
-extern u8 lbl_80446DA8[];
-extern u8 lbl_80446DB4[];
+extern const u8 lbl_80446DA8[] = "goula2.adx";
+extern const u8 lbl_80446DB4[] = "goula.adx";
 extern s32 lbl_805D34E8;
 extern u8 *photon_blast_shared_resource;
 

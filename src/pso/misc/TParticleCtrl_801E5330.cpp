@@ -4,11 +4,11 @@
 #include "pso/effect/TEffect.h"
 
 #include "pso/misc/ParticleDefinition.h"
+#include "pso/misc/TQuadSpriteNormal.h"
 
 extern "C" {
 
 void *__nw__7TObjectFUl(u32);
-void *TQuadSpriteNormal__ct(void *, void *, ParticleDefinition *);
 void *TQuadSpriteScl__ct(void *, void *, ParticleDefinition *);
 void *TQuadSpriteCol__ct(void *, void *, ParticleDefinition *);
 void *TQuadSpriteSclCol__ct(void *, void *, ParticleDefinition *);
@@ -16,12 +16,12 @@ void *TQuadSpriteSclColRot__ct(void *, void *, ParticleDefinition *);
 
 extern ParticleDefinition lbl_804C5820[];
 extern void *TParticleCtrl__data_80511F70[];
-extern void *tl_particle;
+extern TObject *tl_particle;
 extern f32 particle_sprite_atlas_uv_rects[0x10][4];
 extern GinjaTextureList *lbl_805D35A0[2];
 extern f32 lbl_804C6900[1][4];
-extern const f32 lbl_805DC458;
-extern const f32 lbl_805DC45C;
+static const f32 lbl_805DC458 = 0.0f;
+static const f32 lbl_805DC45C = 0.25f;
 
 void TParticleCtrl::reset_emitter_table() {
     s32 i;

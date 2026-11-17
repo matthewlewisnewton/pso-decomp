@@ -11,6 +11,7 @@
 #include "pso/camera/CreationCamera.h"
 #include "pso/map/FloorArea.h"
 #include "pso/camera/CameraViewParams.h"
+#include "pso/misc/RadarMapData.h"
 #include <stddef.h>
 #include "pso/system/PadRumble.h"
 #include "pso/misc/TCameraCtrl_8006A03C.h"
@@ -33,12 +34,12 @@ extern "C" {
 s32 set_perspective_projection_from_fov(int, f32, f32, f32);
 f32 vec_squared_length(void *);
 }
-extern f32 lbl_804FF5E8[10];
+extern RadarMapViewState lbl_804FF5E8;
 extern u32 TCameraCtrl__up_vector[3];
 extern const f32 TCameraCtrl__data_805D8FDC;
 extern const f32 TCameraCtrl__data_805D8FE0;
 struct C30_8006AD34 { u8 b[0x30]; };
-f32 lbl_804FF5E8[10];
+RadarMapViewState lbl_804FF5E8;
 f32 camera_right[3];
 RecoveredGlobal_8006ABAC_lbl_804FF61C camera_pitch_rotated_up_vector;
 u8 TCameraCtrl__view_state[12];
@@ -325,7 +326,6 @@ void TCameraCtrl__sub_800687C8(void);
 s32 TCameraCtrl__sub_80069304(void);
 extern RecoveredGlobal_8006961C_lbl_8058CA60 scene_projection_state;
 s32 camera_renderer_setup_nop(void *, int);
-s32 fn_803D64F8(void *);
 extern f32 camera_default_view_value;
 extern f32 camera_default_view_value_b;
 extern s16 TCameraCtrl__camera_mode;

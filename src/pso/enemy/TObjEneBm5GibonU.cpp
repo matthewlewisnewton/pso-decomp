@@ -4763,3 +4763,8 @@ void* TObjEneBm5GibonU__sub_800D1D78(void* p) { return (char*)p + 0x47c; }
 #pragma pop
 
 __declspec(section ".ctors") static void *const __sinit_TObjEneBm5GibonU_cpp_ref = (void *)TObjEneBm5GibonU::register_global_objects;
+
+extern "C" {
+u8 *TObjEneBm5GibonU__model_archive;
+s32 TObjEneBm5GibonU__render_node_index;
+}

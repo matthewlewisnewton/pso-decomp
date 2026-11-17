@@ -65,8 +65,8 @@ void * TCameraCtrl__vt6(void) {
 
 extern Vec_8006C964 lbl_804384F4;
 extern char lbl_80438500[];
-extern const f64 lbl_80438510;
-extern const f64 lbl_80438518;
+static const f64 lbl_80438510 = 1.0;
+static const f64 lbl_80438518 = 0.0054931640625;
 #pragma push
 #pragma fp_contract on
 void TUnk_80488DA0::run_task() {

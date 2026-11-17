@@ -47,7 +47,7 @@ struct Obj_8015C88C {
 };
 
 extern "C" {
-extern const f32 lbl_805DB398;
+static const f32 lbl_805DB398 = 1.0f;
 extern const f32 lbl_805DB39C;
 u8 *load_gvm_texture_file(s32 arg0);
 extern char lbl_8044083C[];

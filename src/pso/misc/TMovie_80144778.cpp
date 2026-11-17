@@ -27,7 +27,7 @@ struct Vec_80144778 { s32 x, y, z; };
 
 extern "C" {
 char *strncpy(char *, const char *, u32);
-extern char lbl_8043F380[];
+extern const char lbl_8043F380[] = "movie.rel";
 extern s32 TMovie__name;
 void queue_destruction__7TObjectFv(void *arg0);
 u8 *__ct__10TAdEndTextFv(void *, void *);
@@ -44,8 +44,8 @@ extern Vec_80144778 lbl_8043F2F4;
 extern Vec_80144778 lbl_8043F300;
 extern s32 video_initial_draw_framebuffer;
 extern s32 video_initial_display_framebuffer;
-extern const f32 lbl_805DB180;
-extern const f32 lbl_805DB184;
+static const f32 lbl_805DB180 = 1.1333334f;
+static const f32 lbl_805DB184 = 1.0f;
 extern const f32 lbl_805DB188;
 void run_task__6TMovieFv(TMovie *arg0);
 

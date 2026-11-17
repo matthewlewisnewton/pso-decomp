@@ -6,7 +6,6 @@ struct NJS_OBJECT;
 
 struct TObjEneDD;
 extern "C" {
-void TBoss7DeRolLeC__dispatch_state(u8 *arg0, u32 arg1, u32 arg2);
 void TBoss7DeRolLeC__handle_crawfish_spawn_state(u8 *self, u32 event, s32 variant);
 void TBoss7DeRolLeC__sub_802EC994(void *p);
 s32 TBoss7Joint_get_shell_max_hp(void);
